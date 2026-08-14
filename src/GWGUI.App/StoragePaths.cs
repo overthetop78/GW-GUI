@@ -13,6 +13,8 @@ public static class StoragePaths
         ? Path.Combine(DataDirectory, "Emulation", "Storage")
         : Path.GetFullPath(_configuredEmulationStorageDirectory);
     public static string AmigaHardDisksDirectory => Path.Combine(EmulationStorageDirectory, "HDD", "Amiga");
+    public static string AmigaFloppyImagesDirectory => Path.Combine(EmulationStorageDirectory, "Floppies", "Amiga");
+    public static string AmigaCompactDiscsDirectory => Path.Combine(EmulationStorageDirectory, "CD", "Amiga");
     public static string AmigaDirectory => Path.Combine(EmulationDirectory, "Machines", "Amiga");
     public static string AmigaFirmwareDirectory => Path.Combine(AmigaDirectory, "Firmware");
     public static string AmigaConfigurationsDirectory => Path.Combine(AmigaDirectory, "Configurations");

@@ -30,6 +30,9 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly ObservableCollection<FirmwareItem> _firmware = [];
     private readonly ObservableCollection<OptionItem> _options = [];
     private readonly ObservableCollection<MediaItem> _media = [];
+    private readonly EmulationStorageDeviceList _storageDevices = new();
+    private readonly string[] _floppyDriveModels = ["35dd", "35dd", "35dd", "35dd"];
+    private string _cdDriveModel = "CD-ROM";
     private readonly ListBox _list = new() { MinWidth = 260 };
     private readonly ListBox _firmwareList = new() { MinWidth = 360, BorderThickness = new Thickness(0) };
     private readonly Button _useSelectedFirmware = new() { MinWidth = 100, IsEnabled = false };
@@ -149,6 +152,9 @@ public sealed class OptionsEmulationSection : UserControl
         _hardDriveCount.SelectionChanged += (_, _) => RefreshMediaRows();
         _cdDrive.Checked += (_, _) => RefreshMediaRows();
         _cdDrive.Unchecked += (_, _) => RefreshMediaRows();
+        _storageDevices.AddRequested += (_, _) => AddStorageDevice();
+        _storageDevices.ConfigureRequested += (_, args) => ConfigureStorageDevice(args.Device);
+        _storageDevices.RemoveRequested += (_, args) => RemoveStorageDevice(args.Device);
         _keyboardGrid.ItemsSource = _keyboardMappings;
         _multiDrive.Content = LocExtension.Get("Emulation.MultiDrive");
         ConfigureOptionChoices();
@@ -298,6 +304,8 @@ public sealed class OptionsEmulationSection : UserControl
                  {
                      Path.Combine(_appSettings.EmulationStorageFolder, "HDD", "Amiga"),
                      Path.Combine(_appSettings.EmulationStorageFolder, "HDD", "Atari"),
+                     Path.Combine(_appSettings.EmulationStorageFolder, "Floppies", "Amiga"),
+                     Path.Combine(_appSettings.EmulationStorageFolder, "CD", "Amiga"),
                      Path.Combine(_appSettings.EmulationStorageFolder, "Saves", "Amiga"),
                      Path.Combine(_appSettings.EmulationStorageFolder, "Saves", "Atari"),
                      _appSettings.EmulationCaptureFolder, _appSettings.EmulationStateFolder
@@ -525,7 +533,6 @@ public sealed class OptionsEmulationSection : UserControl
     {
         var root = new Grid { Margin = new Thickness(12) };
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        root.RowDefinitions.Add(new RowDefinition());
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         var storagePath = new Grid { Margin = new Thickness(10, 6, 10, 6) };
         storagePath.ColumnDefinitions.Add(new ColumnDefinition());
@@ -539,42 +546,22 @@ public sealed class OptionsEmulationSection : UserControl
         });
         var hddPath = new TextBlock { Text = StoragePaths.AmigaHardDisksDirectory, Margin = new Thickness(0, 7, 0, 0) };
         Grid.SetRow(hddPath, 1); storagePath.Children.Add(hddPath);
-        var generalButton = new Button { Content = LocExtension.Get("Emulation.GeneralTab"), MinWidth = 150 };
+        var generalButton = new Button { Content = LocExtension.Get("Emulation.ModifyInGeneral"), MinWidth = 190 };
         generalButton.Click += (_, _) => _familyTabs.SelectedIndex = 0;
         Grid.SetColumn(generalButton, 1); Grid.SetRowSpan(generalButton, 2); storagePath.Children.Add(generalButton);
         root.Children.Add(Card(storagePath));
 
-        var hardwareGrid = new Grid { Margin = new Thickness(0, 10, 0, 10) };
-        hardwareGrid.ColumnDefinitions.Add(new ColumnDefinition());
-        hardwareGrid.ColumnDefinitions.Add(new ColumnDefinition());
-        var floppy = FieldGrid(2,
-            (LocExtension.Get("Emulation.FloppyDriveCount"), _floppyDriveCount),
-            (LocExtension.Get("Emulation.FloppySpeed"), _floppySpeed),
-            (LocExtension.Get("Emulation.FloppyWriteProtection"), _floppyWriteProtection),
-            (LocExtension.Get("Emulation.FloppyWriteRedirect"), _floppyWriteRedirect));
-        var floppyCard = Card(floppy, LocExtension.Get("Emulation.Floppies"));
-        floppyCard.Margin = new Thickness(0, 0, 5, 0);
-        hardwareGrid.Children.Add(floppyCard);
-        var drives = new Grid { Margin = new Thickness(8) };
-        drives.RowDefinitions.Add(new RowDefinition());
-        drives.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        _mediaRows.Margin = new Thickness(0, 0, 0, 8);
-        drives.Children.Add(_mediaRows);
-        var driveButtons = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Right, Margin = new Thickness(8) };
-        AddButton(driveButtons, "Emulation.AddHardDisk", AddHardDiskAsync);
-        AddButton(driveButtons, "Emulation.CreateHardDisk", CreateHardDiskAsync);
-        Grid.SetRow(driveButtons, 1);
-        drives.Children.Add(driveButtons);
-        var drivesCard = Card(drives, LocExtension.Get("Emulation.HardDisks"));
-        drivesCard.Margin = new Thickness(5, 0, 0, 0);
-        Grid.SetColumn(drivesCard, 1);
-        hardwareGrid.Children.Add(drivesCard);
-        Grid.SetRow(hardwareGrid, 1);
-        root.Children.Add(hardwareGrid);
-        var cd = Card(FieldGrid(2,
-            (LocExtension.Get("Emulation.CdDrive"), _cdDrive),
-            (LocExtension.Get("Emulation.CdSpeed"), _cdSpeed)), "CD");
-        Grid.SetRow(cd, 2); root.Children.Add(cd);
+        var devicePanel = new StackPanel();
+        devicePanel.Children.Add(_storageDevices);
+        devicePanel.Children.Add(InformationBanner(new TextBlock
+        {
+            Text = LocExtension.Get("Emulation.RemovableMediaRuntimeHint"),
+            TextWrapping = TextWrapping.Wrap
+        }));
+        var devicesCard = ActionCard(devicePanel, LocExtension.Get("Emulation.StorageDevices"));
+        devicesCard.Margin = new Thickness(0, 0, 0, 8);
+        Grid.SetRow(devicesCard, 1);
+        root.Children.Add(devicesCard);
         return ScrollPage(root);
     }
 
@@ -878,38 +865,150 @@ public sealed class OptionsEmulationSection : UserControl
 
     private void RefreshMediaRows()
     {
-        _mediaRows.Children.Clear();
+        if (_model.SelectedItem is not AmigaModel model) return;
+        var devices = new List<EmulationStorageDeviceItem>();
+        var floppyCount = Math.Clamp(SelectedCount(_floppyDriveCount), 0, model.MaximumFloppyDrives);
+        for (var index = 0; index < floppyCount; index++)
+            devices.Add(new EmulationStorageDeviceItem($"DF{index}:", EmulationStorageDeviceType.Floppy,
+                FloppyModelName(_floppyDriveModels[index]), null, CanRemove: index > 0));
+
         var hardDisks = _media.Where(item => item.Kind == AmigaMediaKind.HardDrive).ToArray();
-        if (hardDisks.Length == 0)
+        var hardDriveCount = Math.Clamp(SelectedCount(_hardDriveCount), 0, model.MaximumHardDrives);
+        EnsureHardDiskSlots(hardDriveCount);
+        hardDisks = _media.Where(item => item.Kind == AmigaMediaKind.HardDrive).Take(hardDriveCount).ToArray();
+        for (var index = 0; index < hardDriveCount; index++)
+            devices.Add(new EmulationStorageDeviceItem($"DH{index}:", EmulationStorageDeviceType.HardDisk,
+                "HDF", hardDisks[index].Path));
+
+        if (_cdDrive.IsChecked == true)
+            devices.Add(new EmulationStorageDeviceItem("CD0:", EmulationStorageDeviceType.CompactDisc,
+                _cdDriveModel, null));
+        _storageDevices.SetDevices(devices);
+    }
+
+    private void AddStorageDevice()
+    {
+        if (_model.SelectedItem is not AmigaModel model) return;
+        var available = new List<EmulationStorageDeviceType>();
+        if (SelectedCount(_floppyDriveCount) < model.MaximumFloppyDrives)
+            available.Add(EmulationStorageDeviceType.Floppy);
+        if (SelectedCount(_hardDriveCount) < model.MaximumHardDrives)
+            available.Add(EmulationStorageDeviceType.HardDisk);
+        if (model.HasCdDrive && _cdDrive.IsChecked != true)
+            available.Add(EmulationStorageDeviceType.CompactDisc);
+        if (available.Count == 0)
         {
-            _mediaRows.Children.Add(new TextBlock
-            {
-                Text = LocExtension.Get("Emulation.NoHardDisks"),
-                Margin = new Thickness(8),
-                TextWrapping = TextWrapping.Wrap
-            });
+            MessageBox.Show(Window.GetWindow(this), LocExtension.Get("Emulation.NoStorageDeviceAvailable"),
+                LocExtension.Get("Emulation.StorageDevices"), MessageBoxButton.OK, MessageBoxImage.Information);
             return;
         }
-        foreach (var item in hardDisks)
+        var dialog = new AddStorageDeviceDialog(available) { Owner = Window.GetWindow(this) };
+        if (dialog.ShowDialog() != true) return;
+        switch (dialog.SelectedType)
         {
-            var row = new Grid { Margin = new Thickness(0, 0, 0, 8) };
-            row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(80) });
-            row.ColumnDefinitions.Add(new ColumnDefinition());
-            row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-            var label = new TextBox { Text = item.Label, Margin = new Thickness(4) };
-            label.TextChanged += (_, _) => item.Label = label.Text;
-            row.Children.Add(label);
-            var path = new TextBox { Text = item.Path, Margin = new Thickness(4), IsReadOnly = true };
-            path.TextChanged += (_, _) => item.Path = path.Text;
-            Grid.SetColumn(path, 1); row.Children.Add(path);
-            var remove = new Button { Content = LocExtension.Get("Common.Delete"), MinWidth = 90, Margin = new Thickness(4) };
-            remove.Click += (_, _) => { _media.Remove(item); RefreshMediaRows(); };
-            Grid.SetColumn(remove, 2); row.Children.Add(remove);
-            var card = new Border { Child = row };
-            card.SetResourceReference(StyleProperty, "Card");
-            _mediaRows.Children.Add(card);
+            case EmulationStorageDeviceType.Floppy:
+                _floppyDriveCount.SelectedItem = SelectedCount(_floppyDriveCount) + 1;
+                break;
+            case EmulationStorageDeviceType.HardDisk:
+                _hardDriveCount.SelectedItem = SelectedCount(_hardDriveCount) + 1;
+                EnsureHardDiskSlots(SelectedCount(_hardDriveCount));
+                break;
+            case EmulationStorageDeviceType.CompactDisc:
+                _cdDrive.IsChecked = true;
+                break;
+        }
+        RefreshMediaRows();
+    }
+
+    private void ConfigureStorageDevice(EmulationStorageDeviceItem device)
+    {
+        if (_model.SelectedItem is not AmigaModel model) return;
+        var index = DeviceIndex(device.Identifier);
+        switch (device.Type)
+        {
+            case EmulationStorageDeviceType.Floppy:
+            {
+                var dialog = new FloppyDriveConfigurationDialog(device.Identifier, model.DisplayName,
+                    new FloppyDriveSettings(_floppyDriveModels[index], SelectedText(_floppySpeed),
+                        _floppyWriteProtection.IsChecked == true, _floppyWriteRedirect.IsChecked == true))
+                    { Owner = Window.GetWindow(this) };
+                if (dialog.ShowDialog() != true) return;
+                _floppyDriveModels[index] = dialog.Settings.Model;
+                SelectValue(_floppySpeed, dialog.Settings.Speed);
+                _floppyWriteProtection.IsChecked = dialog.Settings.WriteProtected;
+                _floppyWriteRedirect.IsChecked = dialog.Settings.RedirectWrites;
+                break;
+            }
+            case EmulationStorageDeviceType.HardDisk:
+            {
+                EnsureHardDiskSlots(SelectedCount(_hardDriveCount));
+                var hardDisks = _media.Where(item => item.Kind == AmigaMediaKind.HardDrive).ToArray();
+                var item = hardDisks[index];
+                var dialog = new HardDiskDriveConfigurationDialog(device.Identifier, model.DisplayName, item.Path)
+                    { Owner = Window.GetWindow(this) };
+                if (dialog.ShowDialog() != true) return;
+                item.Path = dialog.SupportPath ?? string.Empty;
+                item.Label = string.IsNullOrWhiteSpace(item.Path) ? string.Empty : Path.GetFileNameWithoutExtension(item.Path);
+                break;
+            }
+            case EmulationStorageDeviceType.CompactDisc:
+            {
+                var dialog = new CompactDiscDriveConfigurationDialog(device.Identifier, model.DisplayName,
+                    new CompactDiscDriveSettings(_cdDriveModel, SelectedText(_cdSpeed)), supportsWriter: false)
+                    { Owner = Window.GetWindow(this) };
+                if (dialog.ShowDialog() != true) return;
+                _cdDriveModel = dialog.Settings.Model;
+                SelectValue(_cdSpeed, dialog.Settings.Speed);
+                break;
+            }
+        }
+        RefreshMediaRows();
+    }
+
+    private void RemoveStorageDevice(EmulationStorageDeviceItem device)
+    {
+        var index = DeviceIndex(device.Identifier);
+        switch (device.Type)
+        {
+            case EmulationStorageDeviceType.Floppy when index > 0:
+                _floppyDriveCount.SelectedItem = Math.Max(1, SelectedCount(_floppyDriveCount) - 1);
+                break;
+            case EmulationStorageDeviceType.HardDisk:
+            {
+                var item = _media.Where(media => media.Kind == AmigaMediaKind.HardDrive).ElementAtOrDefault(index);
+                if (item is not null) _media.Remove(item);
+                _hardDriveCount.SelectedItem = Math.Max(0, SelectedCount(_hardDriveCount) - 1);
+                break;
+            }
+            case EmulationStorageDeviceType.CompactDisc:
+                _cdDrive.IsChecked = false;
+                break;
+        }
+        RefreshMediaRows();
+    }
+
+    private void EnsureHardDiskSlots(int count)
+    {
+        var hardDisks = _media.Where(item => item.Kind == AmigaMediaKind.HardDrive).ToList();
+        while (hardDisks.Count < count)
+        {
+            var item = new MediaItem { Kind = AmigaMediaKind.HardDrive };
+            _media.Add(item);
+            hardDisks.Add(item);
+        }
+        while (hardDisks.Count > count)
+        {
+            _media.Remove(hardDisks[^1]);
+            hardDisks.RemoveAt(hardDisks.Count - 1);
         }
     }
+
+    private static int DeviceIndex(string identifier) =>
+        int.TryParse(new string(identifier.Where(char.IsDigit).ToArray()), out var index) ? index : 0;
+
+    private static string FloppyModelName(string model) => model == "35hd"
+        ? LocExtension.Get("Emulation.AmigaHdFloppy")
+        : LocExtension.Get("Emulation.AmigaDdFloppy");
 
     private static AmigaMediaKind InferMediaKind(string path) => Path.GetExtension(path).ToLowerInvariant() switch
     {
@@ -2096,7 +2195,10 @@ public sealed class OptionsEmulationSection : UserControl
         SetOption(_floppySpeed, configuration, "puae_floppy_speed", "100");
         _floppyWriteProtection.IsChecked = GetOption(configuration, "puae_floppy_write_protection", "disabled") == "enabled";
         _floppyWriteRedirect.IsChecked = GetOption(configuration, "puae_floppy_write_redirect", "disabled") == "enabled";
+        for (var index = 0; index < _floppyDriveModels.Length; index++)
+            _floppyDriveModels[index] = GetOption(configuration, $"gwgui_floppy_drive_model_{index}", "35dd");
         SetOption(_cdSpeed, configuration, "puae_cd_speed", "100");
+        _cdDriveModel = GetOption(configuration, "gwgui_cd_drive_model", "CD-ROM");
         _keyboardMappings.Clear();
         foreach (var key in Enum.GetValues<GWGUI.Emulation.EmulationKey>().Where(key => key != GWGUI.Emulation.EmulationKey.Unknown))
             _keyboardMappings.Add(new KeyMappingItem
@@ -2201,6 +2303,9 @@ public sealed class OptionsEmulationSection : UserControl
         options["gwgui_floppy_drive_count"] = SelectedCount(_floppyDriveCount).ToString();
         options["gwgui_hard_drive_count"] = SelectedCount(_hardDriveCount).ToString();
         options["gwgui_cd_drive_enabled"] = _cdDrive.IsChecked == true ? "enabled" : "disabled";
+        for (var index = 0; index < _floppyDriveModels.Length; index++)
+            options[$"gwgui_floppy_drive_model_{index}"] = _floppyDriveModels[index];
+        options["gwgui_cd_drive_model"] = _cdDriveModel;
         options["puae_physical_keyboard_pass_through"] = _keyboardPassThrough.IsChecked == true ? "enabled" : "disabled";
         options["puae_physicalmouse"] = SelectedText(_physicalMouse);
         options["puae_mouse_speed"] = SelectedText(_mouseSpeed);
