@@ -8,6 +8,39 @@ namespace GWGUI.Tests;
 public sealed class AmigaEnvironmentCallbackTests
 {
     [Fact]
+    public void DirectoryRequests_ReturnStableAbsoluteSessionPaths()
+    {
+        var root = TemporaryRoot();
+        using var callbacks = CreateCallbacks(root);
+        var output = Marshal.AllocHGlobal(IntPtr.Size);
+        try
+        {
+            AssertDirectory(AmigaExternalApi.GetSystemDirectory, callbacks.SystemDirectory);
+            AssertDirectory(AmigaExternalApi.GetContentDirectory, callbacks.ContentDirectory);
+            AssertDirectory(AmigaExternalApi.GetSaveDirectory, callbacks.SaveDirectory);
+            Assert.True(Directory.Exists(callbacks.SystemDirectory));
+            Assert.True(Directory.Exists(callbacks.ContentDirectory));
+            Assert.True(Directory.Exists(callbacks.SaveDirectory));
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(output);
+            Directory.Delete(root, true);
+        }
+
+        void AssertDirectory(uint command, string expected)
+        {
+            Marshal.WriteIntPtr(output, 0);
+            Assert.True(callbacks.Environment(command, output));
+            var first = Marshal.ReadIntPtr(output);
+            Assert.NotEqual(0, first);
+            Assert.Equal(Path.GetFullPath(expected), Marshal.PtrToStringUTF8(first));
+            Assert.True(callbacks.Environment(command, output));
+            Assert.Equal(first, Marshal.ReadIntPtr(output));
+        }
+    }
+
+    [Fact]
     public void SupportNoGame_IsReadFromTheNativeBoolean()
     {
         var root = TemporaryRoot();

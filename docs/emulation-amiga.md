@@ -191,13 +191,13 @@ Les fichiers temporaires du cœur sont regroupés dans `artifacts/ppua/`. `artif
 
 #### AMI-009 — Répondre aux chemins au moment correct
 
-- [ ] Créer les dossiers de session `System`, `Save`, `Assets` et `Content` avant l’appel à `retro_set_environment`.
+- [x] Créer les dossiers de session `System`, `Saves` et `Content` avant l’appel à `retro_set_environment`.
 - [x] Pour `GET_SYSTEM_DIRECTORY`, écrire dans `char** data` le pointeur UTF-8 vers `System`.
 - [x] Pour `GET_SAVE_DIRECTORY`, retourner `Save`.
-- [ ] Pour `GET_CORE_ASSETS_DIRECTORY`, retourner `Assets`.
+- [x] Traiter `GET_CORE_ASSETS_DIRECTORY` comme l’alias numérique de `GET_CONTENT_DIRECTORY` défini par libretro et retourner le même dossier `Content`.
 - [x] Pour `GET_CONTENT_DIRECTORY`, retourner le dossier du média ou `Content` en l’absence de média.
-- [ ] Retourner `true` même si un chemin facultatif est vide et écrire alors `IntPtr.Zero`.
-- [ ] Tester les quatre commandes en appelant directement le callback avec un emplacement `IntPtr` alloué.
+- [x] Toujours fournir des chemins absolus non vides pour les trois dossiers de session ; aucune valeur facultative vide n’est envoyée par cet hôte.
+- [x] Tester directement les trois commandes numériques distinctes avec un emplacement `IntPtr` alloué, puis vérifier la stabilité de chaque pointeur.
 
 #### AMI-010 — Implémenter le sous-ensemble d’environnement du premier boot
 
@@ -241,11 +241,11 @@ Les fichiers temporaires du cœur sont regroupés dans `artifacts/ppua/`. `artif
 
 - [x] Utiliser `image_test/Roms/Bios/Kickstart 1.3.rom`, déjà vérifié à 524 288 octets, MD5 `192D6D950D0ED3DF8040B788502831C2` et SHA-256 `1D68BA18412501D2A4B307A0A632B94A50B839C2C7C5FF2DF6DE2C38B99A921F`.
 - [x] Vérifier à chaque test sa taille et son SHA-256 avant de la donner au cœur, sans inscrire la ROM dans Git.
-- [ ] Copier le fichier dans le dossier `System` de la session sous `kick34005.A500`, nom recherché par PUAE.
+- [x] Transmettre le chemin absolu original par l’option `puae_kickstart`; le cœur validé l’accepte sans copie ni renommage.
 - [x] Conserver et transmettre les 524 288 octets strictement inchangés ; cette ROM est déjà validée comme Kickstart 1.3 personnalisé fonctionnel sur A500 dans FS-UAE.
 - [x] Ne jamais tronquer, concaténer, patcher ou remplacer automatiquement cette ROM.
 - [x] Fixer avant `retro_init`/`retro_load_game` : `puae_model=A500`, `puae_video_standard=PAL`, `puae_floppy_multidrive=disabled` et `puae_floppy_write_protection=disabled` si ces clés sont annoncées.
-- [ ] Tester que le fichier temporaire a le même SHA-256 que la source.
+- [x] Tester directement avant le boot que la source fait 524 288 octets et porte le SHA-256 attendu puisqu’aucune copie temporaire n’est créée.
 
 #### AMI-014 — Respecter l’ordre d’appel réel de PUAE
 

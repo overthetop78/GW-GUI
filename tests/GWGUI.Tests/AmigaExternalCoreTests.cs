@@ -1,5 +1,6 @@
 using System.IO;
 using System.Diagnostics;
+using System.Security.Cryptography;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using GWGUI.Emulation.Amiga;
@@ -179,6 +180,10 @@ public sealed class AmigaExternalCoreTests
         var workbench = @"F:\Disquettes\Amiga Workbench\Amiga_Workbench_1.3.3.adf";
         Assert.True(File.Exists(kickstart), $"Missing Kickstart: {kickstart}");
         Assert.True(File.Exists(workbench), $"Missing Workbench ADF: {workbench}");
+        Assert.Equal(524288, new FileInfo(kickstart).Length);
+        using (var stream = File.OpenRead(kickstart))
+            Assert.Equal("1D68BA18412501D2A4B307A0A632B94A50B839C2C7C5FF2DF6DE2C38B99A921F",
+                Convert.ToHexString(SHA256.HashData(stream)));
 
         var session = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Tests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(session);
