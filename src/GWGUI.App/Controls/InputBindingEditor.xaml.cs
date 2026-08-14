@@ -164,7 +164,10 @@ public sealed class InputBindingRow(string id, string label, string binding, str
         get
         {
             var parts = _binding.Split('+', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-            return parts.Select((part, index) => new InputBindingPart(part,
+            var translated = LocExtension.Get("Emulation.KeyDisplayNames").Split(';', StringSplitOptions.RemoveEmptyEntries)
+                .Select(item => item.Split('=', 2, StringSplitOptions.TrimEntries))
+                .Where(item => item.Length == 2).ToDictionary(item => item[0], item => item[1], StringComparer.OrdinalIgnoreCase);
+            return parts.Select((part, index) => new InputBindingPart(translated.GetValueOrDefault(part, part),
                 index < parts.Length - 1 ? Visibility.Visible : Visibility.Collapsed)).ToArray();
         }
     }

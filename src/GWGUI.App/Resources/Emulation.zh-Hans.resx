@@ -334,4 +334,5 @@
   <data name="Emulation.Key.RightAmiga"><value>右 Amiga</value></data>
   <data name="Emulation.SpecialKeysOnlyHint"><value>字母、数字和普通修饰键会直接传送。这里只需映射 Amiga 功能键和特殊键。</value></data>
   <data name="Emulation.ShortcutUnavailable"><value>当前模拟器尚未提供此操作。</value></data>
+  <data name="Emulation.KeyDisplayNames"><value>Ctrl=Ctrl;Shift=Shift;Alt=Alt;Win=Windows;Enter=回车;Escape=Esc;Backspace=退格;Delete=删除;Insert=插入;Home=主页;End=结束;PageUp=向上翻页;PageDown=向下翻页;Space=空格;Pause=暂停</value></data>
 </root>

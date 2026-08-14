@@ -219,10 +219,11 @@ public sealed class OptionsEmulationSection : UserControl
             BrowseStorageBaseFolderAsync, OpenStorageBaseFolderAsync));
         defaults.Children.Add(BuildPathRow(LocExtension.Get("Emulation.CaptureFolder"), _captureFolder, BrowseCaptureFolderAsync));
         defaults.Children.Add(BuildPathRow(LocExtension.Get("Emulation.StateFolder"), _stateFolder, BrowseStateFolderAsync));
-        root.Children.Add(Card(defaults, LocExtension.Get("Emulation.DefaultFolders")));
         var shortcuts = Card(_globalShortcutEditor, LocExtension.Get("Emulation.GlobalShortcuts"));
-        shortcuts.Margin = new Thickness(0, 10, 0, 0);
         root.Children.Add(shortcuts);
+        var folders = Card(defaults, LocExtension.Get("Emulation.DefaultFolders"));
+        folders.Margin = new Thickness(0, 10, 0, 0);
+        root.Children.Add(folders);
         return ScrollPage(root);
     }
 

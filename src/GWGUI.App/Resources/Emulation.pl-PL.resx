@@ -334,4 +334,5 @@
   <data name="Emulation.Key.RightAmiga"><value>Prawa Amiga</value></data>
   <data name="Emulation.SpecialKeysOnlyHint"><value>Litery, cyfry i zwykłe klawisze modyfikujące są przesyłane bezpośrednio. Tutaj przypisuje się tylko klawisze funkcyjne i specjalne Amigi.</value></data>
   <data name="Emulation.ShortcutUnavailable"><value>Ta akcja nie jest jeszcze obsługiwana przez bieżący emulator.</value></data>
+  <data name="Emulation.KeyDisplayNames"><value>Ctrl=Ctrl;Shift=Shift;Alt=Alt;Win=Windows;Enter=Enter;Escape=Esc;Backspace=Backspace;Delete=Delete;Insert=Insert;Home=Home;End=End;PageUp=Page Up;PageDown=Page Down;Space=Spacja;Pause=Pauza</value></data>
 </root>

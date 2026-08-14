@@ -334,4 +334,5 @@
   <data name="Emulation.Key.RightAmiga"><value>Jobb Amiga</value></data>
   <data name="Emulation.SpecialKeysOnlyHint"><value>A betűk, számok és szokásos módosítóbillentyűk közvetlenül továbbítódnak. Itt csak az Amiga funkció- és speciális billentyűit kell hozzárendelni.</value></data>
   <data name="Emulation.ShortcutUnavailable"><value>Ezt a műveletet a jelenlegi emulátor még nem támogatja.</value></data>
+  <data name="Emulation.KeyDisplayNames"><value>Ctrl=Ctrl;Shift=Shift;Alt=Alt;Win=Windows;Enter=Enter;Escape=Esc;Backspace=Backspace;Delete=Delete;Insert=Insert;Home=Home;End=End;PageUp=Page Up;PageDown=Page Down;Space=Szóköz;Pause=Szünet</value></data>
 </root>

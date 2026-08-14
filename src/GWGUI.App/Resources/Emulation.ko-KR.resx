@@ -334,4 +334,5 @@
   <data name="Emulation.Key.RightAmiga"><value>오른쪽 Amiga</value></data>
   <data name="Emulation.SpecialKeysOnlyHint"><value>문자, 숫자 및 일반 보조 키는 직접 전송됩니다. 여기서는 Amiga 기능 키와 특수 키만 할당합니다.</value></data>
   <data name="Emulation.ShortcutUnavailable"><value>이 작업은 현재 에뮬레이터에서 아직 지원되지 않습니다.</value></data>
+  <data name="Emulation.KeyDisplayNames"><value>Ctrl=Ctrl;Shift=Shift;Alt=Alt;Win=Windows;Enter=Enter;Escape=Esc;Backspace=Backspace;Delete=Delete;Insert=Insert;Home=Home;End=End;PageUp=Page Up;PageDown=Page Down;Space=스페이스;Pause=일시 중지</value></data>
 </root>

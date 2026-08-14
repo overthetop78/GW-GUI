@@ -334,4 +334,5 @@
   <data name="Emulation.Key.RightAmiga"><value>Right Amiga</value></data>
   <data name="Emulation.SpecialKeysOnlyHint"><value>Letters, numbers and ordinary modifiers are transmitted directly. Only the Amiga function and special keys need an association here.</value></data>
   <data name="Emulation.ShortcutUnavailable"><value>This action is not yet provided by the current emulator.</value></data>
+  <data name="Emulation.KeyDisplayNames"><value>Ctrl=Ctrl;Shift=Shift;Alt=Alt;Win=Windows;Enter=Enter;Escape=Escape;Backspace=Backspace;Delete=Delete;Insert=Insert;Home=Home;End=End;PageUp=Page Up;PageDown=Page Down;Space=Space;Pause=Pause</value></data>
 </root>
