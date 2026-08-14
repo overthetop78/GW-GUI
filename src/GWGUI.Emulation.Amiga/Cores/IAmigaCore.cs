@@ -6,6 +6,7 @@ internal interface IAmigaCore : IDisposable
 {
     VideoFrame? LatestVideoFrame { get; }
     AudioChunk? LatestAudioChunk { get; }
+    bool TryDequeueAudio(out AudioChunk? chunk);
     IReadOnlyList<AmigaCoreOption> Options { get; }
     string CoreSha256 { get; }
     double FramesPerSecond { get; }

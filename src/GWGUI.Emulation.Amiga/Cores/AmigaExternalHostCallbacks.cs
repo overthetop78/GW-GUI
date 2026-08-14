@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Collections.Concurrent;
 using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Amiga.Cores;
@@ -54,6 +55,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     internal string SaveDirectory { get; }
     internal VideoFrame? LatestVideoFrame { get; private set; }
     internal AudioChunk? LatestAudioChunk { get; private set; }
+    private readonly ConcurrentQueue<AudioChunk> _audioChunks = new();
     internal EmulationInputSnapshot Input
     {
         set { lock (_inputGate) _pendingInput = value; }
@@ -259,8 +261,8 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
 
     private void HandleAudioSample(short left, short right)
     {
-        LatestAudioChunk = new AudioChunk(new[] { left, right }, SampleRate, 1,
-            ++_audioSequence, _clock.Elapsed);
+        PublishAudio(new AudioChunk(new[] { left, right }, SampleRate, 1,
+            ++_audioSequence, _clock.Elapsed));
     }
 
     private nuint HandleAudioBatch(nint data, nuint frames)
@@ -268,10 +270,18 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
         if (data == 0 || frames == 0) return frames;
         var samples = new short[checked((int)frames * 2)];
         Marshal.Copy(data, samples, 0, samples.Length);
-        LatestAudioChunk = new AudioChunk(samples, SampleRate, checked((int)frames),
-            ++_audioSequence, _clock.Elapsed);
+        PublishAudio(new AudioChunk(samples, SampleRate, checked((int)frames),
+            ++_audioSequence, _clock.Elapsed));
         return frames;
     }
+
+    private void PublishAudio(AudioChunk chunk)
+    {
+        LatestAudioChunk = chunk;
+        _audioChunks.Enqueue(chunk);
+    }
+
+    internal bool TryDequeueAudio(out AudioChunk? chunk) => _audioChunks.TryDequeue(out chunk);
 
     private void HandleInputPoll()
     {

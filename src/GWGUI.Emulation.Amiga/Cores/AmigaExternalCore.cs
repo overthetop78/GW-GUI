@@ -22,6 +22,12 @@ internal sealed class AmigaExternalCore : IAmigaCore
 
     public VideoFrame? LatestVideoFrame => _host?.LatestVideoFrame;
     public AudioChunk? LatestAudioChunk => _host?.LatestAudioChunk;
+    public bool TryDequeueAudio(out AudioChunk? chunk)
+    {
+        if (_host is not null) return _host.TryDequeueAudio(out chunk);
+        chunk = null;
+        return false;
+    }
     public IReadOnlyList<AmigaCoreOption> Options => _host?.OptionCatalog ?? [];
     public string CoreSha256 { get; private set; } = string.Empty;
     public double FramesPerSecond { get; private set; } = 50;

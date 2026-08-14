@@ -164,7 +164,6 @@ internal sealed class AmigaMachine : IAmigaMachine
             var frameDuration = TimeSpan.FromSeconds(1 / _core.FramesPerSecond);
             var nextFrame = TimeProvider.System.GetTimestamp();
             long videoSequence = 0;
-            long audioSequence = 0;
 
             while (!cancellationToken.IsCancellationRequested)
             {
@@ -184,10 +183,13 @@ internal sealed class AmigaMachine : IAmigaMachine
                     videoSequence = video.Sequence;
                     VideoFrameReady?.Invoke(this, video);
                 }
-                if (_core.LatestAudioChunk is { } audio && audio.Sequence != audioSequence)
+                while (_core.TryDequeueAudio(out var audio) && audio is not null)
                 {
-                    audioSequence = audio.Sequence;
-                    _audioOutput?.Write(audio.InterleavedStereo.Span);
+                    if (_audioOutput is not null)
+                    {
+                        try { _audioOutput.Write(audio.InterleavedStereo.Span); }
+                        catch { _audioOutput.Dispose(); _audioOutput = null; }
+                    }
                     AudioChunkReady?.Invoke(this, audio);
                 }
 

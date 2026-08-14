@@ -9,6 +9,7 @@ public sealed class WasapiAudioOutput : IAudioOutput
 {
     private WasapiOut? _device;
     private BufferedWaveProvider? _buffer;
+    private byte[] _writeBuffer = [];
     private bool _disposed;
 
     public void Start(int sampleRate)
@@ -30,8 +31,10 @@ public sealed class WasapiAudioOutput : IAudioOutput
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
         if (_buffer is null) throw new InvalidOperationException("Audio output is not started.");
-        var bytes = MemoryMarshal.AsBytes(interleavedStereo).ToArray();
-        _buffer.AddSamples(bytes, 0, bytes.Length);
+        var bytes = MemoryMarshal.AsBytes(interleavedStereo);
+        if (_writeBuffer.Length < bytes.Length) _writeBuffer = new byte[bytes.Length];
+        bytes.CopyTo(_writeBuffer);
+        _buffer.AddSamples(_writeBuffer, 0, bytes.Length);
     }
 
     public void Flush() => _buffer?.ClearBuffer();
@@ -42,6 +45,7 @@ public sealed class WasapiAudioOutput : IAudioOutput
         _device?.Dispose();
         _device = null;
         _buffer = null;
+        _writeBuffer = [];
     }
 
     public void Dispose()

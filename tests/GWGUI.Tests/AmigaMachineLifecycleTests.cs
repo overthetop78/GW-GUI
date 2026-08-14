@@ -1,4 +1,5 @@
 using System.IO;
+using System.Runtime.InteropServices;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Amiga;
 using GWGUI.Emulation.Amiga.Cores;
@@ -43,6 +44,20 @@ public sealed class AmigaMachineLifecycleTests
     }
 
     [Fact]
+    public async Task AudioDeviceFailure_DoesNotStopTheMachine()
+    {
+        var core = new FakeCore { ProduceAudio = true };
+        var output = new FailingAudioOutput();
+        await using var machine = new AmigaMachine(Guid.NewGuid(), AmigaMachineConfiguration.A500(@"C:\kick.rom"),
+            core, Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Lifecycle", Guid.NewGuid().ToString("N")), output);
+        await machine.StartAsync();
+        await WaitUntil(() => output.Disposed);
+        var framesAfterFailure = core.FrameCount;
+        await WaitUntil(() => core.FrameCount > framesAfterFailure + 2);
+        Assert.Equal(EmulationMachineState.Running, machine.State);
+    }
+
+    [Fact]
     public async Task EjectingDisk_ProducesAStateWithoutMediaHash()
     {
         var root = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Lifecycle", Guid.NewGuid().ToString("N"));
@@ -69,6 +84,31 @@ public sealed class AmigaMachineLifecycleTests
         }
     }
 
+    [Fact]
+    public void AudioCallbacks_QueueEveryBatchInOrder()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Audio", Guid.NewGuid().ToString("N"));
+        using var host = new AmigaExternalHostCallbacks(Path.Combine(root, "system"), Path.Combine(root, "content"), Path.Combine(root, "save"), null);
+        var samples = new short[] { 1, -1, 2, -2 };
+        var pointer = Marshal.AllocHGlobal(samples.Length * sizeof(short));
+        try
+        {
+            Marshal.Copy(samples, 0, pointer, samples.Length);
+            Assert.Equal((nuint)2, host.AudioBatch(pointer, 2));
+            host.AudioSample(3, -3);
+            Assert.True(host.TryDequeueAudio(out var first));
+            Assert.Equal(samples, first!.InterleavedStereo.ToArray());
+            Assert.True(host.TryDequeueAudio(out var second));
+            Assert.Equal(new short[] { 3, -3 }, second!.InterleavedStereo.ToArray());
+            Assert.False(host.TryDequeueAudio(out _));
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(pointer);
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
     private static AmigaMachine CreateMachine(FakeCore core) => new(Guid.NewGuid(),
         AmigaMachineConfiguration.A500(@"C:\kick.rom"), core,
         Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Lifecycle", Guid.NewGuid().ToString("N")));
@@ -83,11 +123,19 @@ public sealed class AmigaMachineLifecycleTests
     {
         public int FrameCount { get; private set; }
         public int FailAtFrame { get; init; } = int.MaxValue;
+        public bool ProduceAudio { get; init; }
         public string? OptionValue { get; private set; }
         public bool Stopped { get; private set; }
         public bool Disposed { get; private set; }
         public VideoFrame? LatestVideoFrame => null;
-        public AudioChunk? LatestAudioChunk => null;
+        private readonly Queue<AudioChunk> _audio = new();
+        public AudioChunk? LatestAudioChunk { get; private set; }
+        public bool TryDequeueAudio(out AudioChunk? chunk)
+        {
+            if (_audio.Count == 0) { chunk = null; return false; }
+            chunk = _audio.Dequeue();
+            return true;
+        }
         public IReadOnlyList<AmigaCoreOption> Options => [];
         public string CoreSha256 => "fake-core";
         public double FramesPerSecond => 200;
@@ -97,6 +145,11 @@ public sealed class AmigaMachineLifecycleTests
         {
             FrameCount++;
             if (FrameCount >= FailAtFrame) throw new InvalidOperationException("Synthetic core failure.");
+            if (ProduceAudio)
+            {
+                LatestAudioChunk = new AudioChunk(new short[] { 1, -1 }, SampleRate, 1, FrameCount, TimeSpan.Zero);
+                _audio.Enqueue(LatestAudioChunk);
+            }
         }
         public void HardReset() { }
         public void Stop() => Stopped = true;
@@ -106,6 +159,16 @@ public sealed class AmigaMachineLifecycleTests
         public byte[] SaveState() => [9, 8, 7];
         public void LoadState(ReadOnlySpan<byte> state) { }
         public void SetOption(string key, string value) => OptionValue = value;
+        public void Dispose() => Disposed = true;
+    }
+
+    private sealed class FailingAudioOutput : IAudioOutput
+    {
+        public bool Disposed { get; private set; }
+        public void Start(int sampleRate) { }
+        public void Write(ReadOnlySpan<short> interleavedStereo) => throw new InvalidOperationException("Synthetic audio failure.");
+        public void Flush() { }
+        public void Stop() { }
         public void Dispose() => Disposed = true;
     }
 }
