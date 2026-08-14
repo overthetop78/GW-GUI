@@ -105,6 +105,8 @@ public sealed class OptionsEmulationSection : UserControl
         .Select(_ => new ObservableCollection<ControllerMappingItem>()).ToArray();
     private readonly ObservableCollection<KeyMappingItem> _keyboardMappings = [];
     private readonly CheckBox _keyboardPassThrough = new();
+    private readonly InputBindingEditor _globalShortcutEditor = new();
+    private readonly InputBindingEditor _amigaKeyboardEditor = new();
     private readonly CheckBox _turboFire = new();
     private readonly ComboBox _turboButton = new();
     private readonly ComboBox _turboPulse = new();
@@ -157,6 +159,7 @@ public sealed class OptionsEmulationSection : UserControl
         _storageDevices.ConfigureRequested += (_, args) => ConfigureStorageDevice(args.Device);
         _storageDevices.RemoveRequested += (_, args) => RemoveStorageDevice(args.Device);
         _keyboardGrid.ItemsSource = _keyboardMappings;
+        _globalShortcutEditor.BindingsChanged += async (_, _) => await SaveGlobalShortcutsAsync();
         _multiDrive.Content = LocExtension.Get("Emulation.MultiDrive");
         ConfigureOptionChoices();
         var controllerChoices = new[]
@@ -199,6 +202,8 @@ public sealed class OptionsEmulationSection : UserControl
         _captureFolder.Text = settings.EmulationCaptureFolder;
         _stateFolder.Text = settings.EmulationStateFolder;
         _amigaHardDisksFolder.Text = StoragePaths.AmigaHardDisksDirectory;
+        _globalShortcutEditor.SetRows(GlobalShortcutDefinitions(), settings.EmulationShortcuts);
+        _amigaKeyboardEditor.SetReservedBindings(settings.EmulationShortcuts.Values);
         EnsureStorageFolders();
     }
 
@@ -211,10 +216,54 @@ public sealed class OptionsEmulationSection : UserControl
         defaults.Children.Add(BuildPathRow(LocExtension.Get("Emulation.CaptureFolder"), _captureFolder, BrowseCaptureFolderAsync));
         defaults.Children.Add(BuildPathRow(LocExtension.Get("Emulation.StateFolder"), _stateFolder, BrowseStateFolderAsync));
         root.Children.Add(Card(defaults, LocExtension.Get("Emulation.DefaultFolders")));
-        var save = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Right, Margin = new Thickness(0, 10, 0, 0) };
-        AddButton(save, "Common.Save", SaveGeneralSettingsAsync);
-        root.Children.Add(save);
+        var shortcuts = Card(_globalShortcutEditor, LocExtension.Get("Emulation.GlobalShortcuts"));
+        shortcuts.Margin = new Thickness(0, 10, 0, 0);
+        root.Children.Add(shortcuts);
         return ScrollPage(root);
+    }
+
+    private static IReadOnlyList<InputBindingDefinition> GlobalShortcutDefinitions() =>
+    [
+        new(EmulationShortcutDefaults.ReleaseMouse, LocExtension.Get("Emulation.Shortcut.ReleaseMouse"), EmulationShortcutDefaults.Values[EmulationShortcutDefaults.ReleaseMouse]),
+        new(EmulationShortcutDefaults.PauseResume, LocExtension.Get("Emulation.Shortcut.PauseResume"), EmulationShortcutDefaults.Values[EmulationShortcutDefaults.PauseResume]),
+        new(EmulationShortcutDefaults.ToggleFullscreen, LocExtension.Get("Emulation.Shortcut.Fullscreen"), EmulationShortcutDefaults.Values[EmulationShortcutDefaults.ToggleFullscreen]),
+        new(EmulationShortcutDefaults.Power, LocExtension.Get("Emulation.Shortcut.Power"), EmulationShortcutDefaults.Values[EmulationShortcutDefaults.Power]),
+        new(EmulationShortcutDefaults.SoftReset, LocExtension.Get("Emulation.Shortcut.SoftReset"), EmulationShortcutDefaults.Values[EmulationShortcutDefaults.SoftReset]),
+        new(EmulationShortcutDefaults.HardReset, LocExtension.Get("Emulation.Shortcut.HardReset"), EmulationShortcutDefaults.Values[EmulationShortcutDefaults.HardReset]),
+        new(EmulationShortcutDefaults.QuickSave, LocExtension.Get("Emulation.Shortcut.QuickSave"), EmulationShortcutDefaults.Values[EmulationShortcutDefaults.QuickSave]),
+        new(EmulationShortcutDefaults.QuickLoad, LocExtension.Get("Emulation.Shortcut.QuickLoad"), EmulationShortcutDefaults.Values[EmulationShortcutDefaults.QuickLoad]),
+        new(EmulationShortcutDefaults.Screenshot, LocExtension.Get("Emulation.Shortcut.Screenshot"), EmulationShortcutDefaults.Values[EmulationShortcutDefaults.Screenshot]),
+        new(EmulationShortcutDefaults.ToggleMute, LocExtension.Get("Emulation.Shortcut.Mute"), EmulationShortcutDefaults.Values[EmulationShortcutDefaults.ToggleMute]),
+        new(EmulationShortcutDefaults.FastForward, LocExtension.Get("Emulation.Shortcut.FastForward"), EmulationShortcutDefaults.Values[EmulationShortcutDefaults.FastForward])
+    ];
+
+    private static IReadOnlyList<InputBindingDefinition> AmigaSpecialKeyDefinitions()
+    {
+        var keys = new[]
+        {
+            GWGUI.Emulation.EmulationKey.F1, GWGUI.Emulation.EmulationKey.F2,
+            GWGUI.Emulation.EmulationKey.F3, GWGUI.Emulation.EmulationKey.F4,
+            GWGUI.Emulation.EmulationKey.F5, GWGUI.Emulation.EmulationKey.F6,
+            GWGUI.Emulation.EmulationKey.F7, GWGUI.Emulation.EmulationKey.F8,
+            GWGUI.Emulation.EmulationKey.F9, GWGUI.Emulation.EmulationKey.F10
+        };
+        var definitions = keys.Select(key => new InputBindingDefinition(key.ToString(), key.ToString(), key.ToString())).ToList();
+        definitions.Add(new InputBindingDefinition(nameof(GWGUI.Emulation.EmulationKey.Help),
+            LocExtension.Get("Emulation.Key.Help"), "Insert"));
+        definitions.Add(new InputBindingDefinition(nameof(GWGUI.Emulation.EmulationKey.LeftAmiga),
+            LocExtension.Get("Emulation.Key.LeftAmiga"), "PageUp"));
+        definitions.Add(new InputBindingDefinition(nameof(GWGUI.Emulation.EmulationKey.RightAmiga),
+            LocExtension.Get("Emulation.Key.RightAmiga"), "PageDown"));
+        return definitions;
+    }
+
+    private async Task SaveGlobalShortcutsAsync()
+    {
+        if (_appSettings is null || _globalShortcutEditor.HasErrors) return;
+        _appSettings.EmulationShortcuts = _globalShortcutEditor.Rows
+            .ToDictionary(row => row.Id, row => row.Binding, StringComparer.Ordinal);
+        _amigaKeyboardEditor.SetReservedBindings(_appSettings.EmulationShortcuts.Values);
+        if (_persistAppSettings is not null) await _persistAppSettings();
     }
 
     private static Grid BuildPathRow(string label, TextBox textBox, Func<Task> browse, Func<Task>? open = null)
@@ -563,44 +612,13 @@ public sealed class OptionsEmulationSection : UserControl
 
     private UIElement BuildKeyboardTab()
     {
-        _keyboardGrid.MinHeight = 280;
-        var style = new Style(typeof(DataGridRow));
-        style.Triggers.Add(new DataTrigger
+        var panel = new StackPanel { Margin = new Thickness(12) };
+        panel.Children.Add(Card(_amigaKeyboardEditor, LocExtension.Get("Emulation.InputActions")));
+        panel.Children.Add(InformationBanner(new TextBlock
         {
-            Binding = new Binding(nameof(KeyMappingItem.HasConflict)),
-            Value = true,
-            Setters =
-            {
-                new Setter(BackgroundProperty, Brushes.MistyRose),
-                new Setter(ForegroundProperty, Brushes.DarkRed)
-            }
-        });
-        _keyboardGrid.RowStyle = style;
-        _keyboardGrid.CurrentCellChanged += (_, _) => ValidateKeyboardMappings();
-        var panel = new Grid { Margin = new Thickness(12) };
-        panel.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        panel.RowDefinitions.Add(new RowDefinition());
-        var keyboardOptions = FieldGrid(2,
-            (LocExtension.Get("Emulation.KeyboardPassThrough"), _keyboardPassThrough),
-            (LocExtension.Get("Emulation.KeyboardPriorityHint"), new TextBlock
-            {
-                Text = LocExtension.Get("Emulation.KeyboardPriorityDescription"),
-                TextWrapping = TextWrapping.Wrap, VerticalAlignment = VerticalAlignment.Center
-            }));
-        panel.Children.Add(Card(keyboardOptions, LocExtension.Get("Emulation.InputBehavior")));
-        var mappings = new Grid { Margin = new Thickness(8) };
-        mappings.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        mappings.RowDefinitions.Add(new RowDefinition());
-        var mappingActions = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Right, Margin = new Thickness(0, 0, 0, 8) };
-        AddButton(mappingActions, "Common.Refresh", ResetKeyboardMappings);
-        mappings.Children.Add(mappingActions);
-        Grid.SetRow(_keyboardGrid, 1);
-        _keyboardGrid.Margin = new Thickness(0);
-        mappings.Children.Add(_keyboardGrid);
-        var mappingCard = Card(mappings, LocExtension.Get("Emulation.InputActions"));
-        mappingCard.Margin = new Thickness(0, 10, 0, 0);
-        Grid.SetRow(mappingCard, 1);
-        panel.Children.Add(mappingCard);
+            Text = LocExtension.Get("Emulation.SpecialKeysOnlyHint"),
+            TextWrapping = TextWrapping.Wrap
+        }));
         return ScrollPage(panel);
     }
 
@@ -608,7 +626,6 @@ public sealed class OptionsEmulationSection : UserControl
     {
         var root = TwoColumnPage(
             Card(FieldGrid((LocExtension.Get("Emulation.CaptureMouse"), _captureMouse),
-                (LocExtension.Get("Emulation.ReleaseMouseKey"), _releaseMouseKey),
                 (LocExtension.Get("Emulation.KeyboardPriorityHint"), new TextBlock
                 {
                     Text = LocExtension.Get("Emulation.KeyboardPriorityDescription"), TextWrapping = TextWrapping.Wrap
@@ -2195,14 +2212,11 @@ public sealed class OptionsEmulationSection : UserControl
             _floppyDriveModels[index] = GetOption(configuration, $"gwgui_floppy_drive_model_{index}", "35dd");
         SetOption(_cdSpeed, configuration, "puae_cd_speed", "100");
         _cdDriveModel = GetOption(configuration, "gwgui_cd_drive_model", "CD-ROM");
-        _keyboardMappings.Clear();
-        foreach (var key in Enum.GetValues<GWGUI.Emulation.EmulationKey>().Where(key => key != GWGUI.Emulation.EmulationKey.Unknown))
-            _keyboardMappings.Add(new KeyMappingItem
-            {
-                AmigaKey = key.ToString(),
-                HostBinding = configuration.Input?.KeyboardBindings?.GetValueOrDefault(key.ToString())
-                    ?? (configuration.Input?.KeyboardMappings?.GetValueOrDefault(key.ToString()) ?? key).ToString()
-            });
+        var keyboardBindings = configuration.Input?.KeyboardBindings;
+        _amigaKeyboardEditor.SetRows(AmigaSpecialKeyDefinitions(), keyboardBindings);
+        _amigaKeyboardEditor.SetReservedBindings(_appSettings is null
+            ? Array.Empty<string>()
+            : _appSettings.EmulationShortcuts.Values);
         _mouseDevice.Text = configuration.Input?.MouseDeviceId ?? string.Empty;
         _captureMouse.IsChecked = configuration.Input?.CaptureMouse ?? true;
         _releaseMouseKey.SelectedItem = configuration.Input?.ReleaseMouseKey ?? GWGUI.Emulation.EmulationKey.Escape;
@@ -2211,7 +2225,7 @@ public sealed class OptionsEmulationSection : UserControl
         SetOption(_analogMouse, configuration, "puae_analogmouse", "both");
         SetOption(_analogMouseDeadzone, configuration, "puae_analogmouse_deadzone", "20");
         SetOption(_analogMouseSpeed, configuration, "puae_analogmouse_speed", "1.0");
-        _keyboardPassThrough.IsChecked = GetOption(configuration, "puae_physical_keyboard_pass_through", "disabled") == "enabled";
+        _keyboardPassThrough.IsChecked = true;
         _turboFire.IsChecked = GetOption(configuration, "puae_turbo_fire", "disabled") == "enabled";
         SetOption(_turboButton, configuration, "puae_turbo_fire_button", "B");
         SetOption(_turboPulse, configuration, "puae_turbo_pulse", "6");
@@ -2234,7 +2248,6 @@ public sealed class OptionsEmulationSection : UserControl
         }
         _ = DetectControllersAsync();
         RefreshMediaRows();
-        ValidateKeyboardMappings();
         UpdateRomFieldAvailability();
     }
 
@@ -2256,8 +2269,7 @@ public sealed class OptionsEmulationSection : UserControl
         ValidateOptionalFile(_kickstart.Text, required: true);
         ValidateOptionalFile(_extendedRom.Text);
         ValidateOptionalFile(_romKey.Text);
-        ValidateKeyboardMappings();
-        if (_keyboardMappings.Any(item => item.HasConflict))
+        if (_amigaKeyboardEditor.HasErrors)
             throw new InvalidOperationException(LocExtension.Get("Emulation.DuplicateKeyboardMapping"));
         var options = _options.Where(item => !string.IsNullOrWhiteSpace(item.Key))
             .ToDictionary(item => item.Key.Trim(), item => item.Value?.Trim() ?? string.Empty, StringComparer.Ordinal);
@@ -2302,7 +2314,7 @@ public sealed class OptionsEmulationSection : UserControl
         for (var index = 0; index < _floppyDriveModels.Length; index++)
             options[$"gwgui_floppy_drive_model_{index}"] = _floppyDriveModels[index];
         options["gwgui_cd_drive_model"] = _cdDriveModel;
-        options["puae_physical_keyboard_pass_through"] = _keyboardPassThrough.IsChecked == true ? "enabled" : "disabled";
+        options["puae_physical_keyboard_pass_through"] = "enabled";
         options["puae_physicalmouse"] = SelectedText(_physicalMouse);
         options["puae_mouse_speed"] = SelectedText(_mouseSpeed);
         options["puae_analogmouse"] = SelectedText(_analogMouse);
@@ -2329,8 +2341,8 @@ public sealed class OptionsEmulationSection : UserControl
         var initialPath = media.FirstOrDefault()?.Path;
         var floppies = media.Where(item => item.Kind == AmigaMediaKind.Floppy)
             .Select(item => new AmigaFloppyConfiguration(item.Path, item.Label, item.IsReadOnly)).ToArray();
-        var keyboardBindings = _keyboardMappings.Where(item => !string.IsNullOrWhiteSpace(item.AmigaKey))
-            .ToDictionary(item => item.AmigaKey.Trim(), item => item.HostBinding.Trim(), StringComparer.OrdinalIgnoreCase);
+        var keyboardBindings = _amigaKeyboardEditor.Rows.Where(item => !string.IsNullOrWhiteSpace(item.Binding))
+            .ToDictionary(item => item.Id, item => item.Binding.Trim(), StringComparer.OrdinalIgnoreCase);
         var keyboard = keyboardBindings
             .Where(item => Enum.TryParse<GWGUI.Emulation.EmulationKey>(item.Value, true, out _))
             .ToDictionary(item => item.Key,

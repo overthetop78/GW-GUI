@@ -7,7 +7,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using GWGUI.App.Localization;
+using GWGUI.App.Input;
 using GWGUI.App.Services;
+using GWGUI.Domain.Settings;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Amiga;
 using Microsoft.Win32;
@@ -20,6 +22,9 @@ public sealed class AmigaMachineView : UserControl
     private readonly AmigaInputConfiguration _input;
     private readonly IReadOnlyDictionary<EmulationKey, EmulationKey> _keyboardMap;
     private readonly IReadOnlyList<KeyboardShortcutBinding> _keyboardShortcuts;
+    private readonly IReadOnlyList<GlobalShortcutBinding> _globalShortcuts;
+    private readonly string _quickStatePath;
+    private readonly string _captureFolder;
     private readonly Image _display = new() { Stretch = Stretch.Uniform, Focusable = true };
     private readonly Border _screen;
     private readonly TextBlock _status = new() { VerticalAlignment = VerticalAlignment.Center };
@@ -27,6 +32,8 @@ public sealed class AmigaMachineView : UserControl
     private readonly HashSet<EmulationKey> _keys = [];
     private readonly HashSet<EmulationKey> _hostKeys = [];
     private readonly Dictionary<Key, EmulationKey> _pressedShortcutKeys = [];
+    private readonly HashSet<Key> _pressedPhysicalKeys = [];
+    private readonly HashSet<string> _activeGlobalShortcuts = new(StringComparer.Ordinal);
     private WriteableBitmap? _bitmap;
     private Point? _lastMouse;
     private int _framePending;
@@ -36,12 +43,17 @@ public sealed class AmigaMachineView : UserControl
     private Button? _pauseButton;
     private readonly DispatcherTimer _inputTimer = new() { Interval = TimeSpan.FromMilliseconds(16) };
 
-    public AmigaMachineView(IAmigaMachine machine, AmigaInputConfiguration? input = null)
+    public AmigaMachineView(IAmigaMachine machine, AmigaInputConfiguration? input = null,
+        IReadOnlyDictionary<string, string>? globalShortcuts = null, string? quickStatePath = null,
+        string? captureFolder = null)
     {
         _machine = machine;
         _input = input ?? new AmigaInputConfiguration();
         _keyboardMap = BuildKeyboardMap(_input.KeyboardMappings);
         _keyboardShortcuts = BuildKeyboardShortcuts(_input.KeyboardBindings);
+        _globalShortcuts = BuildGlobalShortcuts(globalShortcuts);
+        _quickStatePath = quickStatePath ?? Path.Combine(Path.GetTempPath(), "gwgui-amiga-quick.gwas");
+        _captureFolder = captureFolder ?? Path.Combine(Path.GetTempPath(), "GW GUI", "Captures");
         var root = new Grid();
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         root.RowDefinitions.Add(new RowDefinition());
@@ -237,14 +249,22 @@ public sealed class AmigaMachineView : UserControl
     {
         var source = e.Key == Key.System ? e.SystemKey : e.Key;
         if (IsReservedShortcut(source, Keyboard.Modifiers)) return;
-        if (_mouseCaptured && TryMapKey(source, out var pressed) && pressed == _input.ReleaseMouseKey)
+        if (!KeyboardChord.IsModifierKey(source)) _pressedPhysicalKeys.Add(source);
+        var global = _globalShortcuts.FirstOrDefault(binding =>
+            binding.Chord.Matches(Keyboard.Modifiers, _pressedPhysicalKeys));
+        if (global is not null)
         {
-            ReleaseRelativeMouse();
+            if (_activeGlobalShortcuts.Add(global.Action)) _ = ExecuteGlobalShortcutAsync(global.Action);
+            e.Handled = true;
+            return;
+        }
+        if (_globalShortcuts.Any(binding => binding.Chord.Modifiers == Keyboard.Modifiers && binding.Chord.Contains(source)))
+        {
             e.Handled = true;
             return;
         }
         var shortcut = _keyboardShortcuts.FirstOrDefault(binding =>
-            binding.Key == source && binding.Modifiers == Keyboard.Modifiers);
+            binding.Chord.Matches(Keyboard.Modifiers, _pressedPhysicalKeys));
         if (shortcut is not null)
         {
             _pressedShortcutKeys[source] = shortcut.AmigaKey;
@@ -264,6 +284,12 @@ public sealed class AmigaMachineView : UserControl
     private void DisplayKeyUp(object sender, KeyEventArgs e)
     {
         var source = e.Key == Key.System ? e.SystemKey : e.Key;
+        _pressedPhysicalKeys.Remove(source);
+        _activeGlobalShortcuts.RemoveWhere(action =>
+        {
+            var binding = _globalShortcuts.FirstOrDefault(item => item.Action == action);
+            return binding is null || !binding.Chord.Matches(Keyboard.Modifiers, _pressedPhysicalKeys);
+        });
         if (_pressedShortcutKeys.Remove(source, out var shortcutKey))
         {
             _keys.Remove(shortcutKey);
@@ -285,7 +311,78 @@ public sealed class AmigaMachineView : UserControl
         _keys.Clear();
         _hostKeys.Clear();
         _pressedShortcutKeys.Clear();
+        _pressedPhysicalKeys.Clear();
+        _activeGlobalShortcuts.Clear();
         PublishInput();
+    }
+
+    private async Task ExecuteGlobalShortcutAsync(string action)
+    {
+        try
+        {
+            switch (action)
+            {
+                case EmulationShortcutDefaults.ReleaseMouse:
+                    ReleaseRelativeMouse();
+                    break;
+                case EmulationShortcutDefaults.PauseResume:
+                    await TogglePauseAsync();
+                    break;
+                case EmulationShortcutDefaults.ToggleFullscreen:
+                    ToggleFullscreen();
+                    break;
+                case EmulationShortcutDefaults.Power:
+                    CloseRequested?.Invoke(this, EventArgs.Empty);
+                    break;
+                case EmulationShortcutDefaults.HardReset:
+                    await _machine.HardResetAsync();
+                    break;
+                case EmulationShortcutDefaults.QuickSave:
+                    Directory.CreateDirectory(Path.GetDirectoryName(_quickStatePath)!);
+                    await _machine.SaveStateAsync(_quickStatePath);
+                    break;
+                case EmulationShortcutDefaults.QuickLoad when File.Exists(_quickStatePath):
+                    await _machine.LoadStateAsync(_quickStatePath);
+                    break;
+                case EmulationShortcutDefaults.Screenshot:
+                    SaveScreenshot();
+                    break;
+                default:
+                    _status.Text = LocExtension.Get("Emulation.ShortcutUnavailable");
+                    break;
+            }
+        }
+        catch (Exception error) { ShowError(error); }
+    }
+
+    private void ToggleFullscreen()
+    {
+        var window = Window.GetWindow(this);
+        if (window is null) return;
+        if (window.WindowStyle == WindowStyle.None && window.WindowState == WindowState.Maximized)
+        {
+            window.WindowStyle = WindowStyle.SingleBorderWindow;
+            window.ResizeMode = ResizeMode.CanResize;
+            window.WindowState = WindowState.Normal;
+        }
+        else
+        {
+            window.WindowStyle = WindowStyle.None;
+            window.ResizeMode = ResizeMode.NoResize;
+            window.WindowState = WindowState.Maximized;
+        }
+    }
+
+    private void SaveScreenshot()
+    {
+        if (_bitmap is null) return;
+        Directory.CreateDirectory(_captureFolder);
+        var path = Path.Combine(_captureFolder, $"Amiga-{DateTime.Now:yyyyMMdd-HHmmss}.png");
+        var encoder = new PngBitmapEncoder();
+        encoder.Frames.Add(BitmapFrame.Create(_bitmap));
+        using var stream = File.Create(path);
+        encoder.Save(stream);
+        _status.Text = Path.GetFileName(path);
     }
 
     private void DisplayMouseMove(object sender, MouseEventArgs e)
@@ -430,10 +527,19 @@ public sealed class AmigaMachineView : UserControl
         foreach (var mapping in mappings)
         {
             if (!Enum.TryParse<EmulationKey>(mapping.Key, true, out var amigaKey) ||
-                !TryParseHostBinding(mapping.Value, out var key, out var modifiers)) continue;
-            result.Add(new KeyboardShortcutBinding(key, modifiers, amigaKey));
+                !KeyboardChord.TryParse(mapping.Value, out var chord)) continue;
+            result.Add(new KeyboardShortcutBinding(chord, amigaKey));
         }
         return result;
+    }
+
+    private static IReadOnlyList<GlobalShortcutBinding> BuildGlobalShortcuts(
+        IReadOnlyDictionary<string, string>? mappings)
+    {
+        if (mappings is null) return [];
+        return mappings.Select(mapping => KeyboardChord.TryParse(mapping.Value, out var chord)
+                ? new GlobalShortcutBinding(mapping.Key, chord) : null)
+            .Where(binding => binding is not null).Cast<GlobalShortcutBinding>().ToArray();
     }
 
     internal static bool TryParseHostBinding(string? text, out Key key, out ModifierKeys modifiers)
@@ -460,7 +566,8 @@ public sealed class AmigaMachineView : UserControl
         (modifiers.HasFlag(ModifierKeys.Control) && modifiers.HasFlag(ModifierKeys.Shift) && key == Key.Escape) ||
         modifiers.HasFlag(ModifierKeys.Windows);
 
-    private sealed record KeyboardShortcutBinding(Key Key, ModifierKeys Modifiers, EmulationKey AmigaKey);
+    private sealed record KeyboardShortcutBinding(KeyboardChord Chord, EmulationKey AmigaKey);
+    private sealed record GlobalShortcutBinding(string Action, KeyboardChord Chord);
 
     internal static bool TryMapKey(Key key, out EmulationKey result)
     {

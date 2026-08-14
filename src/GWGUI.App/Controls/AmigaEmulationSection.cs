@@ -4,6 +4,7 @@ using System.Windows.Automation;
 using System.Windows.Controls;
 using GWGUI.App.Localization;
 using GWGUI.App.Services;
+using GWGUI.Domain.Settings;
 using GWGUI.Emulation.Amiga;
 
 namespace GWGUI.App.Controls;
@@ -14,6 +15,7 @@ public sealed class AmigaEmulationSection : UserControl
     private readonly Button _open = new() { MinWidth = 130 };
     private readonly TabControl _machines = new();
     private readonly Dictionary<Guid, TabItem> _openMachines = [];
+    private AppSettings _settings = new();
 
     public AmigaEmulationSection()
     {
@@ -70,6 +72,8 @@ public sealed class AmigaEmulationSection : UserControl
         Loaded += async (_, _) => await ReloadConfigurationsAsync();
     }
 
+    public void Configure(AppSettings settings) => _settings = settings;
+
     public async Task ReloadConfigurationsAsync()
     {
         var selectedId = (_configuration.SelectedItem as ConfigurationItem)?.Configuration.Id;
@@ -102,7 +106,10 @@ public sealed class AmigaEmulationSection : UserControl
                 configuration => Path.Combine(StoragePaths.AmigaConfigurationsDirectory,
                     configuration.Id.ToString("N"), "Saves"), Environment.ProcessPath);
             var machine = engine.CreateAmigaMachine(selected.Configuration);
-            var view = new AmigaMachineView(machine, selected.Configuration.Input);
+            var view = new AmigaMachineView(machine, selected.Configuration.Input,
+                _settings.EmulationShortcuts,
+                Path.Combine(_settings.EmulationStateFolder, $"amiga-{selected.Configuration.Id:N}.gwas"),
+                _settings.EmulationCaptureFolder);
             var tab = new TabItem { Header = selected.DisplayName, Content = view };
             _openMachines.Add(selected.Configuration.Id, tab);
             view.CloseRequested += async (_, _) =>

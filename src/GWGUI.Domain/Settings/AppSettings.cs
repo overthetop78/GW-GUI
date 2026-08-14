@@ -13,6 +13,7 @@ public sealed class AppSettings
     public string EmulationStateFolder { get; set; } = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GW GUI", "Emulation", "States");
     public string AmigaHardDisksFolder { get; set; } = "";
+    public Dictionary<string, string> EmulationShortcuts { get; set; } = EmulationShortcutDefaults.Create();
     public bool CreateEmulationFoldersAutomatically { get; set; } = true;
     public string? LastDiskImageFolder { get; set; }
     public string? GwExecutablePath { get; set; }
