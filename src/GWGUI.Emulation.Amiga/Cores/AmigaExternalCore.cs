@@ -32,14 +32,19 @@ internal sealed class AmigaExternalCore : IAmigaCore
     public string CoreSha256 { get; private set; } = string.Empty;
     public double FramesPerSecond { get; private set; } = 50;
     public int SampleRate { get; private set; } = 44100;
+    public int DiskCount => _host?.DiskControl.ImageCount ?? 0;
+    public int CurrentDiskIndex => _host?.DiskControl.CurrentIndex ?? -1;
 
     public void Initialize(AmigaMachineConfiguration configuration, string sessionDirectory)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(configuration.KickstartPath);
         if (!File.Exists(configuration.KickstartPath))
             throw new FileNotFoundException("The configured Amiga Kickstart was not found.", configuration.KickstartPath);
-        if (configuration.InitialDiskPath is not null && !File.Exists(configuration.InitialDiskPath))
-            throw new FileNotFoundException("The configured Amiga disk image was not found.", configuration.InitialDiskPath);
+        var floppyPaths = configuration.Floppies is { Count: > 0 }
+            ? configuration.Floppies.Select(floppy => floppy.Path).ToArray()
+            : configuration.InitialDiskPath is null ? [] : new[] { configuration.InitialDiskPath };
+        foreach (var floppyPath in floppyPaths)
+            if (!File.Exists(floppyPath)) throw new FileNotFoundException("The configured Amiga disk image was not found.", floppyPath);
         if (configuration.ExtendedRomPath is not null && !File.Exists(configuration.ExtendedRomPath))
             throw new FileNotFoundException("The configured Amiga extended ROM was not found.", configuration.ExtendedRomPath);
         if (configuration.RomKeyPath is not null && !File.Exists(configuration.RomKeyPath))
@@ -48,9 +53,10 @@ internal sealed class AmigaExternalCore : IAmigaCore
         var sourceCorePath = ResolveCorePath(_corePath);
         using (var coreStream = File.OpenRead(sourceCorePath)) CoreSha256 = Convert.ToHexString(SHA256.HashData(coreStream));
         var systemDirectory = Path.Combine(sessionDirectory, "System");
-        var contentDirectory = configuration.InitialDiskPath is null
+        var contentPath = PrepareContentPath(configuration, sessionDirectory, floppyPaths);
+        var contentDirectory = contentPath is null
             ? Path.Combine(sessionDirectory, "Content")
-            : Path.GetDirectoryName(Path.GetFullPath(configuration.InitialDiskPath))!;
+            : Path.GetDirectoryName(contentPath)!;
         var saveDirectory = Path.Combine(sessionDirectory, "Saves");
         Directory.CreateDirectory(systemDirectory);
         Directory.CreateDirectory(contentDirectory);
@@ -75,6 +81,8 @@ internal sealed class AmigaExternalCore : IAmigaCore
             ["puae_model"] = configuration.Model,
             ["puae_kickstart"] = Path.GetFullPath(configuration.KickstartPath)
         };
+        if (floppyPaths.Length > 1)
+            options["puae_floppy_multidrive"] = configuration.MountFloppiesInSeparateDrives ? "enabled" : "disabled";
         _host = new AmigaExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory, options);
 
         try
@@ -111,13 +119,13 @@ internal sealed class AmigaExternalCore : IAmigaCore
             }
 
             AmigaExternalApi.LoadGame loadGame = Export<AmigaExternalApi.LoadGame>("retro_load_game");
-            if (configuration.InitialDiskPath is null)
+            if (contentPath is null)
             {
                 _gameLoaded = loadGame(0);
             }
             else
             {
-                var path = Marshal.StringToCoTaskMemUTF8(Path.GetFullPath(configuration.InitialDiskPath));
+                var path = Marshal.StringToCoTaskMemUTF8(contentPath);
                 var game = Marshal.AllocHGlobal(Marshal.SizeOf<AmigaExternalApi.GameInfo>());
                 try
                 {
@@ -145,6 +153,30 @@ internal sealed class AmigaExternalCore : IAmigaCore
     }
 
     public void RunFrame() => (_run ?? throw new InvalidOperationException("The Amiga core is not initialized."))();
+
+    internal static string? PrepareContentPath(AmigaMachineConfiguration configuration, string sessionDirectory,
+        IReadOnlyList<string>? resolvedFloppyPaths = null)
+    {
+        var paths = resolvedFloppyPaths ?? (configuration.Floppies is { Count: > 0 }
+            ? configuration.Floppies.Select(floppy => floppy.Path).ToArray()
+            : configuration.InitialDiskPath is null ? [] : new[] { configuration.InitialDiskPath });
+        if (paths.Count == 0) return null;
+        if (paths.Count == 1) return Path.GetFullPath(paths[0]);
+        if (paths.Count > 64) throw new ArgumentOutOfRangeException(nameof(configuration), "An Amiga playlist cannot contain more than 64 disks.");
+        var contentDirectory = Path.Combine(sessionDirectory, "Content");
+        Directory.CreateDirectory(contentDirectory);
+        var playlist = Path.Combine(contentDirectory,
+            configuration.MountFloppiesInSeparateDrives ? "GW GUI disks (MD).m3u" : "GW GUI disks.m3u");
+        var lines = paths.Select((path, index) =>
+        {
+            var label = configuration.Floppies?.ElementAtOrDefault(index)?.Label;
+            if (label?.IndexOfAny(['|', '\r', '\n']) >= 0) throw new InvalidDataException("An Amiga disk label cannot contain a pipe or a line break.");
+            var fullPath = Path.GetFullPath(path);
+            return string.IsNullOrWhiteSpace(label) ? fullPath : $"{fullPath}|{label}";
+        });
+        File.WriteAllLines(playlist, lines, new System.Text.UTF8Encoding(false));
+        return playlist;
+    }
     public void HardReset() => (_reset ?? throw new InvalidOperationException("The Amiga core is not initialized."))();
     public void SetInput(EmulationInputSnapshot snapshot)
     {
@@ -154,6 +186,8 @@ internal sealed class AmigaExternalCore : IAmigaCore
         .DiskControl.Insert(path);
     public void EjectFloppy() => (_host ?? throw new InvalidOperationException("The Amiga core is not initialized."))
         .DiskControl.Eject();
+    public void SelectDisk(int index) => (_host ?? throw new InvalidOperationException("The Amiga core is not initialized."))
+        .DiskControl.Select(index);
 
     public byte[] SaveState()
     {

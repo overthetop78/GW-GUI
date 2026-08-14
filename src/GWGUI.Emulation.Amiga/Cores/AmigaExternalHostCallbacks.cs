@@ -138,7 +138,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
                     if (data != 0) Marshal.WriteByte(data, Interlocked.Exchange(ref _optionsUpdated, 0) != 0 ? (byte)1 : (byte)0);
                     return true;
                 case AmigaExternalApi.GetDiskControlVersion:
-                    if (data != 0) Marshal.WriteInt32(data, 0);
+                    if (data != 0) Marshal.WriteInt32(data, 1);
                     return true;
                 case AmigaExternalApi.SetInputDescriptors:
                     return true;
@@ -150,6 +150,8 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
                     DiskControl.Capture(data);
                     return true;
                 case AmigaExternalApi.SetDiskControlExtended:
+                    DiskControl.CaptureExtended(data);
+                    return true;
                 case AmigaExternalApi.SetControllerInfo:
                 case AmigaExternalApi.SetMemoryMaps:
                 case AmigaExternalApi.SetSupportNoGame:

@@ -11,6 +11,8 @@ internal interface IAmigaCore : IDisposable
     string CoreSha256 { get; }
     double FramesPerSecond { get; }
     int SampleRate { get; }
+    int DiskCount { get; }
+    int CurrentDiskIndex { get; }
     void Initialize(AmigaMachineConfiguration configuration, string sessionDirectory);
     void RunFrame();
     void HardReset();
@@ -18,6 +20,7 @@ internal interface IAmigaCore : IDisposable
     void SetInput(EmulationInputSnapshot snapshot);
     void InsertFloppy(string path);
     void EjectFloppy();
+    void SelectDisk(int index);
     byte[] SaveState();
     void LoadState(ReadOnlySpan<byte> state);
     void SetOption(string key, string value);

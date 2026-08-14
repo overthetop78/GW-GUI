@@ -133,6 +133,30 @@ public sealed class AmigaMachineLifecycleTests
         }
     }
 
+    [Fact]
+    public async Task MultipleFloppies_CreateAValidatedMultidrivePlaylist()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-M3U", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        var first = Path.Combine(root, "disk 1.adf");
+        var second = Path.Combine(root, "disk 2.adf");
+        await File.WriteAllBytesAsync(first, [1]);
+        await File.WriteAllBytesAsync(second, [2]);
+        try
+        {
+            var configuration = AmigaMachineConfiguration.A500(@"C:\kick.rom") with
+            {
+                Floppies = [new AmigaFloppyConfiguration(first, "Workbench"), new AmigaFloppyConfiguration(second, "Extras")],
+                MountFloppiesInSeparateDrives = true
+            };
+            var playlist = AmigaExternalCore.PrepareContentPath(configuration, Path.Combine(root, "session"));
+            Assert.NotNull(playlist);
+            Assert.EndsWith("(MD).m3u", playlist, StringComparison.Ordinal);
+            Assert.Equal(new[] { $"{first}|Workbench", $"{second}|Extras" }, await File.ReadAllLinesAsync(playlist!));
+        }
+        finally { Directory.Delete(root, true); }
+    }
+
     private static AmigaMachine CreateMachine(FakeCore core) => new(Guid.NewGuid(),
         AmigaMachineConfiguration.A500(@"C:\kick.rom"), core,
         Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Lifecycle", Guid.NewGuid().ToString("N")));
@@ -164,6 +188,8 @@ public sealed class AmigaMachineLifecycleTests
         public string CoreSha256 => "fake-core";
         public double FramesPerSecond => 200;
         public int SampleRate => 44_100;
+        public int DiskCount => 0;
+        public int CurrentDiskIndex => -1;
         public void Initialize(AmigaMachineConfiguration configuration, string sessionDirectory) { }
         public void RunFrame()
         {
@@ -180,6 +206,7 @@ public sealed class AmigaMachineLifecycleTests
         public void SetInput(EmulationInputSnapshot snapshot) { }
         public void InsertFloppy(string path) { }
         public void EjectFloppy() { }
+        public void SelectDisk(int index) { }
         public byte[] SaveState() => [9, 8, 7];
         public void LoadState(ReadOnlySpan<byte> state) { }
         public void SetOption(string key, string value) => OptionValue = value;

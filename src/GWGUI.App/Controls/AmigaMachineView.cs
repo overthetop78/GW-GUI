@@ -18,6 +18,7 @@ public sealed class AmigaMachineView : UserControl
     private readonly IAmigaMachine _machine;
     private readonly Image _display = new() { Stretch = Stretch.Uniform, Focusable = true };
     private readonly TextBlock _status = new() { VerticalAlignment = VerticalAlignment.Center };
+    private readonly ComboBox _diskSelection = new() { MinWidth = 120, Margin = new Thickness(0, 0, 8, 0) };
     private readonly HashSet<EmulationKey> _keys = [];
     private WriteableBitmap? _bitmap;
     private Point? _lastMouse;
@@ -35,6 +36,8 @@ public sealed class AmigaMachineView : UserControl
         AddButton(bar, "Common.Stop", StopAsync);
         AddButton(bar, "Common.Reset", () => _machine.HardResetAsync().AsTask());
         AddButton(bar, "Common.Browse", InsertDisk);
+        bar.Children.Add(_diskSelection);
+        AddButton(bar, "Common.Choose", SelectDisk);
         AddButton(bar, "Common.Save", SaveState);
         AddButton(bar, "Common.Choose", LoadState);
         AddButton(bar, "Common.Close", () =>
@@ -67,6 +70,8 @@ public sealed class AmigaMachineView : UserControl
         _status.Text = "Starting";
         await _machine.StartAsync();
         _inputTimer.Start();
+        _diskSelection.ItemsSource = Enumerable.Range(0, _machine.DiskCount).Select(index => LocExtension.Get("Emulation.DiskNumber", index + 1)).ToArray();
+        _diskSelection.SelectedIndex = _machine.CurrentDiskIndex;
         _status.Text = _machine.State.ToString();
         _display.Focus();
     }
@@ -139,6 +144,12 @@ public sealed class AmigaMachineView : UserControl
     {
         var dialog = new SaveFileDialog { Filter = "GW GUI Amiga state|*.gwas", DefaultExt = ".gwas" };
         if (dialog.ShowDialog() == true) await _machine.SaveStateAsync(dialog.FileName);
+    }
+
+    private async Task SelectDisk()
+    {
+        if (_diskSelection.SelectedIndex < 0) return;
+        await _machine.SelectDiskAsync(_diskSelection.SelectedIndex);
     }
 
     private async Task LoadState()

@@ -26,7 +26,7 @@ internal sealed class AmigaMachine : IAmigaMachine
         _core = core;
         _sessionDirectory = sessionDirectory;
         _audioOutput = audioOutput;
-        _currentDiskPath = configuration.InitialDiskPath;
+        _currentDiskPath = configuration.Floppies?.FirstOrDefault()?.Path ?? configuration.InitialDiskPath;
     }
 
     public Guid Id { get; }
@@ -36,6 +36,8 @@ internal sealed class AmigaMachine : IAmigaMachine
     public VideoFrame? LatestVideoFrame => _core.LatestVideoFrame;
     public AudioChunk? LatestAudioChunk => _core.LatestAudioChunk;
     public IReadOnlyList<AmigaCoreOption> AvailableOptions => _core.Options;
+    public int DiskCount => _core.DiskCount;
+    public int CurrentDiskIndex => _core.CurrentDiskIndex;
     public event EventHandler<VideoFrame>? VideoFrameReady;
     public event EventHandler<AudioChunk>? AudioChunkReady;
 
@@ -108,6 +110,14 @@ internal sealed class AmigaMachine : IAmigaMachine
 
     public ValueTask EjectFloppyAsync(CancellationToken cancellationToken = default) =>
         QueueCommand(() => { _core.EjectFloppy(); _currentDiskPath = null; }, cancellationToken);
+
+    public ValueTask SelectDiskAsync(int index, CancellationToken cancellationToken = default) =>
+        QueueCommand(() =>
+        {
+            _core.SelectDisk(index);
+            if (Configuration.Floppies is { } floppies && index < floppies.Count)
+                _currentDiskPath = floppies[index].Path;
+        }, cancellationToken);
 
     public ValueTask SaveStateAsync(string path, CancellationToken cancellationToken = default) =>
         QueueCommand(() =>

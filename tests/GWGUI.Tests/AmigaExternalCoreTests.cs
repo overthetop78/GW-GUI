@@ -10,6 +10,37 @@ namespace GWGUI.Tests;
 public sealed class AmigaExternalCoreTests
 {
     [Fact]
+    public void A500_MultidiskPlaylist_ExposesAndSelectsEveryDisk()
+    {
+        var repository = FindRepositoryRoot();
+        var kickstart = Path.Combine(repository, "image_test", "Roms", "Bios", "Kickstart 1.3.rom");
+        var first = @"F:\Disquettes\Amiga Workbench\Amiga_Workbench_1.3.3.adf";
+        var second = Path.Combine(repository, "image_test", "validated_images", "Commodore", "Amiga",
+            "3.5 pouces DD - AmigaDOS OFS", "Boot-DD-OFS.adf");
+        var session = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Multidisk", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(session);
+        try
+        {
+            using var core = new AmigaExternalCore(Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll"));
+            var configuration = AmigaMachineConfiguration.A500(kickstart) with
+            {
+                Floppies = [new AmigaFloppyConfiguration(first, "Workbench"), new AmigaFloppyConfiguration(second, "Boot test")]
+            };
+            core.Initialize(configuration, session);
+            for (var frame = 0; frame < 30; frame++) core.RunFrame();
+            Assert.Equal(2, core.DiskCount);
+            core.SelectDisk(1);
+            Assert.Equal(1, core.CurrentDiskIndex);
+            core.SelectDisk(0);
+            Assert.Equal(0, core.CurrentDiskIndex);
+        }
+        finally
+        {
+            if (Directory.Exists(session)) Directory.Delete(session, true);
+        }
+    }
+
+    [Fact]
     public void A500_WithKickstartAndWorkbenchAdf_ProducesVideoAndAudio()
     {
         var repository = FindRepositoryRoot();

@@ -67,6 +67,10 @@ internal static class AmigaExternalApi
     internal delegate bool ReplaceImage(uint index, nint gameInfo);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
     internal delegate bool AddImage();
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
+    internal delegate bool GetImagePath(uint index, nint path, nuint length);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
+    internal delegate bool GetImageLabel(uint index, nint label, nuint length);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     internal delegate void KeyboardEvent([MarshalAs(UnmanagedType.I1)] bool down, uint keyCode, uint character, ushort modifiers);
 
@@ -154,6 +158,15 @@ internal static class AmigaExternalApi
         internal nint GetImageCount;
         internal nint ReplaceImage;
         internal nint AddImage;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct DiskControlExtended
+    {
+        internal DiskControl Basic;
+        internal nint SetInitialImage;
+        internal nint GetImagePath;
+        internal nint GetImageLabel;
     }
 
     [StructLayout(LayoutKind.Sequential)]

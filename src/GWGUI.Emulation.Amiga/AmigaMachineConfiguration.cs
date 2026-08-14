@@ -6,6 +6,7 @@ public sealed record AmigaControllerBinding(int Port, AmigaControllerType Type, 
     IReadOnlyDictionary<string, string>? ButtonMappings = null);
 public sealed record AmigaInputConfiguration(IReadOnlyDictionary<string, GWGUI.Emulation.EmulationKey>? KeyboardMappings = null,
     string? MouseDeviceId = null, bool CaptureMouse = true, IReadOnlyList<AmigaControllerBinding>? ControllerBindings = null);
+public sealed record AmigaFloppyConfiguration(string Path, string? Label = null, bool IsReadOnly = false);
 
 public sealed record AmigaMachineConfiguration(
     string Model,
@@ -18,7 +19,9 @@ public sealed record AmigaMachineConfiguration(
     Guid Id = default,
     bool AudioEnabled = true,
     IReadOnlyList<AmigaControllerType>? Controllers = null,
-    AmigaInputConfiguration? Input = null)
+    AmigaInputConfiguration? Input = null,
+    IReadOnlyList<AmigaFloppyConfiguration>? Floppies = null,
+    bool MountFloppiesInSeparateDrives = false)
 {
     public static AmigaMachineConfiguration A500(string kickstartPath, string? diskPath = null) =>
         new("A500", kickstartPath, diskPath, Options: new Dictionary<string, string>
