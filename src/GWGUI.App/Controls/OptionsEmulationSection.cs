@@ -114,8 +114,6 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly TextBox _captureFolder = new();
     private readonly TextBox _stateFolder = new();
     private readonly TextBox _amigaHardDisksFolder = new();
-    private readonly TextBox _amigaFloppyImagesFolder = new();
-    private readonly TextBox _amigaCompactDiscsFolder = new();
     private readonly TextBlock _detectedDevices = new() { TextWrapping = TextWrapping.Wrap };
     private readonly TextBlock _detectedControllers = new() { TextWrapping = TextWrapping.Wrap, VerticalAlignment = VerticalAlignment.Center };
     private readonly TextBlock _storageTree = new() { LineHeight = 24 };
@@ -196,14 +194,11 @@ public sealed class OptionsEmulationSection : UserControl
         _appSettings = settings;
         _persistAppSettings = persistSettings;
         StoragePaths.ConfigureEmulationStorageDirectory(settings.EmulationStorageFolder);
-        StoragePaths.ConfigureAmigaStorageDirectories(
-            settings.AmigaHardDisksFolder, settings.AmigaFloppyImagesFolder, settings.AmigaCompactDiscsFolder);
+        StoragePaths.ConfigureAmigaHardDisksDirectory(settings.AmigaHardDisksFolder);
         _storageBaseFolder.Text = settings.EmulationStorageFolder;
         _captureFolder.Text = settings.EmulationCaptureFolder;
         _stateFolder.Text = settings.EmulationStateFolder;
         _amigaHardDisksFolder.Text = StoragePaths.AmigaHardDisksDirectory;
-        _amigaFloppyImagesFolder.Text = StoragePaths.AmigaFloppyImagesDirectory;
-        _amigaCompactDiscsFolder.Text = StoragePaths.AmigaCompactDiscsDirectory;
         EnsureStorageFolders();
     }
 
@@ -215,12 +210,6 @@ public sealed class OptionsEmulationSection : UserControl
             BrowseStorageBaseFolderAsync, OpenStorageBaseFolderAsync));
         defaults.Children.Add(BuildPathRow(LocExtension.Get("Emulation.CaptureFolder"), _captureFolder, BrowseCaptureFolderAsync));
         defaults.Children.Add(BuildPathRow(LocExtension.Get("Emulation.StateFolder"), _stateFolder, BrowseStateFolderAsync));
-        defaults.Children.Add(BuildPathRow($"{LocExtension.Get("Emulation.HardDisks")} · Amiga", _amigaHardDisksFolder,
-            () => BrowseGeneralFolderAsync(_amigaHardDisksFolder, "Emulation.HardDisks")));
-        defaults.Children.Add(BuildPathRow($"{LocExtension.Get("Emulation.Floppies")} · Amiga", _amigaFloppyImagesFolder,
-            () => BrowseGeneralFolderAsync(_amigaFloppyImagesFolder, "Emulation.Floppies")));
-        defaults.Children.Add(BuildPathRow($"{LocExtension.Get("Emulation.CdDrive")} · Amiga", _amigaCompactDiscsFolder,
-            () => BrowseGeneralFolderAsync(_amigaCompactDiscsFolder, "Emulation.CdDrive")));
         root.Children.Add(Card(defaults, LocExtension.Get("Emulation.DefaultFolders")));
         var save = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Right, Margin = new Thickness(0, 10, 0, 0) };
         AddButton(save, "Common.Save", SaveGeneralSettingsAsync);
@@ -307,11 +296,8 @@ public sealed class OptionsEmulationSection : UserControl
         _appSettings.EmulationCaptureFolder = Path.GetFullPath(_captureFolder.Text.Trim());
         _appSettings.EmulationStateFolder = Path.GetFullPath(_stateFolder.Text.Trim());
         _appSettings.AmigaHardDisksFolder = Path.GetFullPath(_amigaHardDisksFolder.Text.Trim());
-        _appSettings.AmigaFloppyImagesFolder = Path.GetFullPath(_amigaFloppyImagesFolder.Text.Trim());
-        _appSettings.AmigaCompactDiscsFolder = Path.GetFullPath(_amigaCompactDiscsFolder.Text.Trim());
         StoragePaths.ConfigureEmulationStorageDirectory(_appSettings.EmulationStorageFolder);
-        StoragePaths.ConfigureAmigaStorageDirectories(
-            _appSettings.AmigaHardDisksFolder, _appSettings.AmigaFloppyImagesFolder, _appSettings.AmigaCompactDiscsFolder);
+        StoragePaths.ConfigureAmigaHardDisksDirectory(_appSettings.AmigaHardDisksFolder);
         EnsureStorageFolders();
         if (_persistAppSettings is not null) await _persistAppSettings();
     }
@@ -323,8 +309,8 @@ public sealed class OptionsEmulationSection : UserControl
                  {
                      _appSettings.AmigaHardDisksFolder,
                      Path.Combine(_appSettings.EmulationStorageFolder, "HDD", "Atari"),
-                     _appSettings.AmigaFloppyImagesFolder,
-                     _appSettings.AmigaCompactDiscsFolder,
+                     StoragePaths.AmigaFloppyImagesDirectory,
+                     StoragePaths.AmigaCompactDiscsDirectory,
                      Path.Combine(_appSettings.EmulationStorageFolder, "Saves", "Amiga"),
                      Path.Combine(_appSettings.EmulationStorageFolder, "Saves", "Atari"),
                      _appSettings.EmulationCaptureFolder, _appSettings.EmulationStateFolder
@@ -390,8 +376,7 @@ public sealed class OptionsEmulationSection : UserControl
         header.Children.Add(_model);
         root.Children.Add(header);
         var tabs = new TabControl();
-        AddMachineTab(tabs, "\uE713", LocExtension.Get("Emulation.GeneralTab"),
-            new AmigaCoreManagementSection { Margin = new Thickness(12) });
+        AddMachineTab(tabs, "\uE713", LocExtension.Get("Emulation.GeneralTab"), BuildAmigaGeneralTab());
         AddMachineTab(tabs, "\uE950", "CPU", BuildCpuTab());
         AddMachineTab(tabs, "\uE964", "RAM", BuildRamTab());
         AddMachineTab(tabs, "\uE8B7", "ROM", BuildRomTab());
@@ -408,6 +393,17 @@ public sealed class OptionsEmulationSection : UserControl
         Grid.SetRow(actions, 2);
         root.Children.Add(actions);
         return root;
+    }
+
+    private UIElement BuildAmigaGeneralTab()
+    {
+        var panel = new StackPanel { Margin = new Thickness(12) };
+        panel.Children.Add(new AmigaCoreManagementSection { Margin = new Thickness(0, 0, 0, 12) });
+        var hardDisks = new StackPanel { Margin = new Thickness(8, 6, 8, 8) };
+        hardDisks.Children.Add(BuildPathRow(LocExtension.Get("Emulation.HardDisks"), _amigaHardDisksFolder,
+            () => BrowseGeneralFolderAsync(_amigaHardDisksFolder, "Emulation.HardDisks")));
+        panel.Children.Add(Card(hardDisks, LocExtension.Get("Emulation.DefaultFolders")));
+        return ScrollPage(panel);
     }
 
     private UIElement BuildCpuTab()

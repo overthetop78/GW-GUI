@@ -110,10 +110,6 @@ public static class SettingsMigrator
             ? Path.Combine(settings.EmulationStorageFolder, "States") : settings.EmulationStateFolder.Trim();
         settings.AmigaHardDisksFolder = string.IsNullOrWhiteSpace(settings.AmigaHardDisksFolder)
             ? Path.Combine(settings.EmulationStorageFolder, "HDD", "Amiga") : settings.AmigaHardDisksFolder.Trim();
-        settings.AmigaFloppyImagesFolder = string.IsNullOrWhiteSpace(settings.AmigaFloppyImagesFolder)
-            ? Path.Combine(settings.EmulationStorageFolder, "Floppies", "Amiga") : settings.AmigaFloppyImagesFolder.Trim();
-        settings.AmigaCompactDiscsFolder = string.IsNullOrWhiteSpace(settings.AmigaCompactDiscsFolder)
-            ? Path.Combine(settings.EmulationStorageFolder, "CD", "Amiga") : settings.AmigaCompactDiscsFolder.Trim();
         settings.LastDiskImageFolder = string.IsNullOrWhiteSpace(settings.LastDiskImageFolder) ? null : settings.LastDiskImageFolder.Trim();
         settings.Window ??= new WindowPlacementSettings();
         settings.Controllers ??= [];
