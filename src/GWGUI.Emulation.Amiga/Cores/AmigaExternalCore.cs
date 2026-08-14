@@ -18,6 +18,9 @@ internal sealed class AmigaExternalCore : IAmigaCore
     private AmigaExternalApi.GetSerializedSize? _getSerializedSize;
     private AmigaExternalApi.Serialize? _serialize;
     private AmigaExternalApi.Serialize? _unserialize;
+    private AmigaExternalApi.GetRegion? _getRegion;
+    private AmigaExternalApi.GetMemoryData? _getMemoryData;
+    private AmigaExternalApi.GetMemorySize? _getMemorySize;
 
     internal AmigaExternalCore(string? corePath = null) => _corePath = corePath;
 
@@ -40,6 +43,11 @@ internal sealed class AmigaExternalCore : IAmigaCore
     public int SampleRate => _host?.SampleRate ?? 44100;
     public int DiskCount => _host?.DiskControl.ImageCount ?? 0;
     public int CurrentDiskIndex => _host?.DiskControl.CurrentIndex ?? -1;
+    internal uint Region => (_getRegion ?? throw new InvalidOperationException("The Amiga core is not initialized."))();
+    internal nuint GetMemorySize(uint id) =>
+        (_getMemorySize ?? throw new InvalidOperationException("The Amiga core is not initialized."))(id);
+    internal nint GetMemoryData(uint id) =>
+        (_getMemoryData ?? throw new InvalidOperationException("The Amiga core is not initialized."))(id);
 
     public void Initialize(AmigaMachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
@@ -95,7 +103,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
 
         try
         {
-            _library = NativeLibrary.Load(corePath);
+            _library = LoadNativeCore(corePath);
             var apiVersion = Export<AmigaExternalApi.GetApiVersion>("retro_api_version")();
             if (apiVersion != 1) throw new NotSupportedException($"The Amiga core uses unsupported API version {apiVersion}.");
             Export<AmigaExternalApi.GetSystemInfo>("retro_get_system_info")(out var systemInfo);
@@ -130,6 +138,9 @@ internal sealed class AmigaExternalCore : IAmigaCore
             _getSerializedSize = Export<AmigaExternalApi.GetSerializedSize>("retro_serialize_size");
             _serialize = Export<AmigaExternalApi.Serialize>("retro_serialize");
             _unserialize = Export<AmigaExternalApi.Serialize>("retro_unserialize");
+            _getRegion = Export<AmigaExternalApi.GetRegion>("retro_get_region");
+            _getMemoryData = Export<AmigaExternalApi.GetMemoryData>("retro_get_memory_data");
+            _getMemorySize = Export<AmigaExternalApi.GetMemorySize>("retro_get_memory_size");
             Export<AmigaExternalApi.VoidCall>("retro_init")();
             _initialized = true;
             _host.ValidateConfiguredOptions();
@@ -268,6 +279,15 @@ internal sealed class AmigaExternalCore : IAmigaCore
     private T Export<T>(string name) where T : Delegate =>
         Marshal.GetDelegateForFunctionPointer<T>(NativeLibrary.GetExport(_library, name));
 
+    private static nint LoadNativeCore(string absolutePath)
+    {
+        if (!Path.IsPathFullyQualified(absolutePath))
+            throw new ArgumentException("The Amiga core path must be absolute.", nameof(absolutePath));
+        if (!File.Exists(absolutePath))
+            throw new FileNotFoundException("AmigaCoreNotFound: the configured Amiga core was not found.", absolutePath);
+        return NativeLibrary.Load(absolutePath);
+    }
+
     internal static uint ControllerDevice(IReadOnlyList<IReadOnlyList<AmigaControllerDevice>> ports,
         int port, AmigaControllerType controller)
     {
@@ -292,9 +312,16 @@ internal sealed class AmigaExternalCore : IAmigaCore
 
     private static string ResolveCorePath(string? configuredPath)
     {
+        if (configuredPath is not null)
+        {
+            if (!Path.IsPathFullyQualified(configuredPath))
+                throw new ArgumentException("The Amiga core path must be absolute.", nameof(configuredPath));
+            if (!File.Exists(configuredPath))
+                throw new FileNotFoundException("AmigaCoreNotFound: the configured Amiga core was not found.", configuredPath);
+            return configuredPath;
+        }
         var candidates = new[]
         {
-            configuredPath,
             Path.Combine(AppContext.BaseDirectory, "Emulation", "puae_libretro.dll"),
             Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "artifacts", "ppua", "puae_libretro.dll")),
             Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "artifacts", "ppua", "puae_libretro.dll"))
@@ -317,6 +344,9 @@ internal sealed class AmigaExternalCore : IAmigaCore
             _getSerializedSize = null;
             _serialize = null;
             _unserialize = null;
+            _getRegion = null;
+            _getMemoryData = null;
+            _getMemorySize = null;
             _host?.Dispose();
             _host = null;
             if (_library != 0) NativeLibrary.Free(_library);

@@ -90,6 +90,9 @@ internal static class AmigaExternalApi
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void VoidCall();
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void GetSystemInfo(out SystemInfo info);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate uint GetApiVersion();
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate uint GetRegion();
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate nint GetMemoryData(uint id);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate nuint GetMemorySize(uint id);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void GetSystemAvInfo(out SystemAvInfo info);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     [return: MarshalAs(UnmanagedType.I1)]

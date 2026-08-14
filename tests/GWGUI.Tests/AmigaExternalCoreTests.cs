@@ -11,6 +11,62 @@ namespace GWGUI.Tests;
 public sealed class AmigaExternalCoreTests
 {
     [Fact]
+    public void RelativeCorePath_IsRejectedBeforeNativeLoading()
+    {
+        using var core = new AmigaExternalCore("puae_libretro.dll");
+        var error = Assert.Throws<ArgumentException>(() => core.Initialize(
+            AmigaMachineConfiguration.A500(FindKickstart()), CreateSession()));
+        Assert.Contains("absolute", error.Message, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void MissingCorePath_ReportsAmigaCoreNotFound()
+    {
+        var missing = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"), "missing.dll");
+        using var core = new AmigaExternalCore(missing);
+        var error = Assert.Throws<FileNotFoundException>(() => core.Initialize(
+            AmigaMachineConfiguration.A500(FindKickstart()), CreateSession()));
+        Assert.Contains("AmigaCoreNotFound", error.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void NativeLibraryWithoutRequiredExports_IsRejectedAndCanBeDisposedTwice()
+    {
+        var session = CreateSession();
+        using var core = new AmigaExternalCore(Path.Combine(Environment.SystemDirectory, "version.dll"));
+        try
+        {
+            Assert.Throws<EntryPointNotFoundException>(() => core.Initialize(
+                AmigaMachineConfiguration.A500(FindKickstart()), session));
+            core.Dispose();
+            core.Dispose();
+        }
+        finally
+        {
+            if (Directory.Exists(session)) Directory.Delete(session, true);
+        }
+    }
+
+    [Fact]
+    public void InvalidNativeLibraryFile_IsRejected()
+    {
+        var root = CreateSession();
+        Directory.CreateDirectory(root);
+        var invalidLibrary = Path.Combine(root, "invalid.dll");
+        File.WriteAllText(invalidLibrary, "not a native library");
+        using var core = new AmigaExternalCore(invalidLibrary);
+        try
+        {
+            Assert.Throws<BadImageFormatException>(() => core.Initialize(
+                AmigaMachineConfiguration.A500(FindKickstart()), Path.Combine(root, "session")));
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
     public async Task RepeatedStartStop_ReleasesEveryNativeSession()
     {
         var repository = FindRepositoryRoot();
@@ -143,6 +199,9 @@ public sealed class AmigaExternalCoreTests
                 SaveFrame(video, framePath);
             Assert.InRange(core.FramesPerSecond, 49, 61);
             Assert.InRange(core.SampleRate, 22050, 96000);
+            Assert.InRange(core.Region, 0u, 1u);
+            Assert.Equal(0u, core.GetMemorySize(0));
+            Assert.Equal(0, core.GetMemoryData(0));
             Assert.NotNull(core.LatestAudioChunk);
             Assert.True(core.Options.Count > 100);
             var modelOption = Assert.Single(core.Options, option => option.Key == "puae_model");
@@ -297,6 +356,10 @@ public sealed class AmigaExternalCoreTests
             directory = directory.Parent;
         return directory?.FullName ?? throw new DirectoryNotFoundException("GWGUI repository root not found.");
     }
+
+    private static string FindKickstart() => Path.Combine(FindRepositoryRoot(), "image_test", "Roms", "Bios", "Kickstart 1.3.rom");
+
+    private static string CreateSession() => Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Tests", Guid.NewGuid().ToString("N"));
 
     private static void SaveFrame(GWGUI.Emulation.VideoFrame frame, string path)
     {

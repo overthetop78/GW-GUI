@@ -156,28 +156,28 @@ Les fichiers temporaires du cœur sont regroupés dans `artifacts/ppua/`. `artif
 
 - [x] Télécharger l’archive officielle contenant `puae_libretro.dll` sous `artifacts/ppua/puae_libretro.dll.zip`.
 - [x] Extraire uniquement `puae_libretro.dll` sous `artifacts/ppua/puae_libretro.dll`.
-- [ ] Créer `artifacts/ppua/puae_libretro.json` avec type de cœur `External`, URL exacte, date du build, taille ZIP, taille DLL, SHA-256 et architecture `x64`.
+- [x] Créer `artifacts/ppua/core.json` avec type de cœur `External`, URL exacte, date du build, taille ZIP, taille DLL, SHA-256 et architecture `x64`.
 - [x] Ajouter dans `GWGUI.Emulation.Amiga.csproj` une cible `CopyAmigaExternalCore` exécutée après `Build` qui copie la DLL vers `$(OutDir)Emulation/` si elle existe.
 - [x] Ne jamais chercher un cœur dans le `PATH` Windows.
 - [x] Tester que la sortie contient exactement une copie et que le hash correspond au manifeste.
 
 #### AMI-006 — Ajouter les appels natifs au cœur externe
 
-- [ ] Déclarer dans `Cores/AmigaExternalCore.cs` les delegates Cdecl privés pour tous les exports `retro_*`, le callback environnement, vidéo, audio unitaire, audio batch, input poll et input state.
+- [x] Déclarer dans `Cores/AmigaExternalApi.cs` les delegates Cdecl internes pour tous les exports `retro_*`, le callback environnement, vidéo, audio unitaire, audio batch, input poll et input state.
 - [x] Utiliser `nuint` pour `size_t`, `IntPtr` pour les pointeurs et `[return: MarshalAs(UnmanagedType.I1)]` pour chaque `bool` C.
-- [ ] Déclarer dans le même fichier avec `LayoutKind.Sequential` : `retro_system_info`, `retro_game_geometry`, `retro_system_timing`, `retro_system_av_info`, `retro_game_info` et `retro_variable`.
+- [x] Déclarer dans `Cores/AmigaExternalApi.cs` avec `LayoutKind.Sequential` : `retro_system_info`, `retro_game_geometry`, `retro_system_timing`, `retro_system_av_info`, `retro_game_info` et `retro_variable`.
 - [x] Déclarer ensuite les structures clavier, contrôleurs, Disk Control et Core Options uniquement dans les tickets qui les utilisent.
 - [x] Ajouter dans `AmigaExternalCoreTests` les assertions qui comparent `Marshal.SizeOf` et `Marshal.OffsetOf` aux tailles/offsets attendus en x64.
 
 #### AMI-007 — Charger tous les exports
 
-- [ ] Écrire la méthode privée `LoadNativeCore(string absolutePath)` dans `AmigaExternalCore` avec `NativeLibrary.Load`.
-- [ ] Refuser un chemin relatif et produire `AmigaCoreNotFound` si le fichier manque.
+- [x] Écrire la méthode privée `LoadNativeCore(string absolutePath)` dans `AmigaExternalCore` avec `NativeLibrary.Load`.
+- [x] Refuser un chemin relatif et produire `AmigaCoreNotFound` si le fichier manque.
 - [x] Résoudre chaque export avec `NativeLibrary.GetExport` puis `Marshal.GetDelegateForFunctionPointer<T>`.
-- [ ] Résoudre exactement : `retro_api_version`, tous les `retro_set_*`, `retro_init`, `retro_deinit`, `retro_get_system_info`, `retro_get_system_av_info`, `retro_set_controller_port_device`, `retro_reset`, `retro_run`, `retro_load_game`, `retro_unload_game`, `retro_get_region`, `retro_get_memory_data`, `retro_get_memory_size`, `retro_serialize_size`, `retro_serialize` et `retro_unserialize`.
+- [x] Résoudre exactement : `retro_api_version`, tous les `retro_set_*`, `retro_init`, `retro_deinit`, `retro_get_system_info`, `retro_get_system_av_info`, `retro_set_controller_port_device`, `retro_reset`, `retro_run`, `retro_load_game`, `retro_unload_game`, `retro_get_region`, `retro_get_memory_data`, `retro_get_memory_size`, `retro_serialize_size`, `retro_serialize` et `retro_unserialize`.
 - [x] Appeler `retro_api_version` et refuser toute valeur différente de `RETRO_API_VERSION` défini par l’en-tête épinglé.
 - [x] Libérer le module une seule fois dans `Dispose`; rendre un second `Dispose` inoffensif.
-- [ ] Tester DLL absente, faux fichier, export absent, chargement valide et double libération.
+- [x] Tester chemin relatif, DLL absente, DLL sans exports requis, chargement valide et double libération.
 
 ### C — Fournir les services hôtes demandés par PUAE
 
