@@ -37,6 +37,8 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly TextBox _kickstart = new();
     private readonly TextBox _extendedRom = new();
     private readonly TextBox _romKey = new();
+    private PathFieldControls? _extendedRomField;
+    private PathFieldControls? _romKeyField;
     private readonly CheckBox _audio = new() { IsChecked = true };
     private readonly ComboBox _cpuModel = new();
     private readonly ComboBox _fpuModel = new();
@@ -126,6 +128,7 @@ public sealed class OptionsEmulationSection : UserControl
         _firmwareList.SelectionChanged += (_, _) =>
             _useSelectedFirmware.IsEnabled = SelectedFirmware() is not null;
         _model.SelectionChanged += (_, _) => ApplyModelDefaults();
+        _kickstart.TextChanged += (_, _) => UpdateRomFieldAvailability();
         _chipMemory.SelectionChanged += (_, _) => UpdateMemorySummary();
         _slowMemory.SelectionChanged += (_, _) => UpdateMemorySummary();
         _fastMemory.SelectionChanged += (_, _) => UpdateMemorySummary();
@@ -447,10 +450,11 @@ public sealed class OptionsEmulationSection : UserControl
         root.ColumnDefinitions.Add(new ColumnDefinition());
         var form = CreateForm(3);
         AddPathField(form, 0, "Kickstart", _kickstart, "ROM|*.rom;*.bin|All files|*.*");
-        AddPathField(form, 1, LocExtension.Get("Emulation.ExtendedRom"), _extendedRom,
+        _extendedRomField = AddPathField(form, 1, LocExtension.Get("Emulation.ExtendedRom"), _extendedRom,
             "ROM|*.rom;*.bin|All files|*.*", LocExtension.Get("Emulation.NotUsed"));
-        AddPathField(form, 2, LocExtension.Get("Emulation.RomKey"), _romKey,
+        _romKeyField = AddPathField(form, 2, LocExtension.Get("Emulation.RomKey"), _romKey,
             "ROM key|*.key|All files|*.*", LocExtension.Get("Emulation.NotUsed"));
+        UpdateRomFieldAvailability();
         var pathsCard = ActionCard(form, LocExtension.Get("Emulation.SystemRom"));
         pathsCard.Margin = new Thickness(0, 0, 5, 0);
         root.Children.Add(pathsCard);
@@ -1385,6 +1389,7 @@ public sealed class OptionsEmulationSection : UserControl
         _cdDrive.IsChecked = model.HasCdDrive;
         RefreshMediaRows();
         RefreshFirmwareRows();
+        UpdateRomFieldAvailability();
     }
 
     private void ConfigureMemoryChoices(AmigaModel model)
@@ -1663,7 +1668,7 @@ public sealed class OptionsEmulationSection : UserControl
         Grid.SetRow(control, row); Grid.SetColumn(control, 1); Grid.SetColumnSpan(control, 2); grid.Children.Add(control);
     }
 
-    private static void AddPathField(Grid grid, int row, string label, TextBox textBox, string filter,
+    private static PathFieldControls AddPathField(Grid grid, int row, string label, TextBox textBox, string filter,
         string? emptyText = null)
     {
         var fieldLabel = new TextBlock
@@ -1705,6 +1710,7 @@ public sealed class OptionsEmulationSection : UserControl
             if (dialog.ShowDialog() == true) textBox.Text = dialog.FileName;
         };
         Grid.SetRow(browse, row); Grid.SetColumn(browse, 2); grid.Children.Add(browse);
+        return new PathFieldControls(fieldLabel, editor, browse);
     }
 
     public async Task ReloadAsync()
@@ -1868,6 +1874,37 @@ public sealed class OptionsEmulationSection : UserControl
             case AmigaFirmwareType.RomKey: _romKey.Text = item.Firmware.Path; break;
             default: _kickstart.Text = item.Firmware.Path; break;
         }
+        UpdateRomFieldAvailability();
+    }
+
+    private void UpdateRomFieldAvailability()
+    {
+        var model = _model.SelectedItem as AmigaModel;
+        SetPathFieldEnabled(_extendedRomField, model?.Id is "CDTV" or "CD32");
+        SetPathFieldEnabled(_romKeyField,
+            !string.IsNullOrWhiteSpace(_romKey.Text) || IsEncryptedKickstart(_kickstart.Text));
+    }
+
+    private static void SetPathFieldEnabled(PathFieldControls? field, bool enabled)
+    {
+        if (field is null) return;
+        field.Label.IsEnabled = enabled;
+        field.Editor.IsEnabled = enabled;
+        field.Browse.IsEnabled = enabled;
+    }
+
+    private static bool IsEncryptedKickstart(string path)
+    {
+        if (string.IsNullOrWhiteSpace(path) || !File.Exists(path)) return false;
+        try
+        {
+            Span<byte> header = stackalloc byte[11];
+            using var stream = File.OpenRead(path);
+            return stream.Read(header) == header.Length
+                && System.Text.Encoding.ASCII.GetString(header) == "AMIROMTYPE1";
+        }
+        catch (IOException) { return false; }
+        catch (UnauthorizedAccessException) { return false; }
     }
 
     private void LoadEditor(AmigaMachineConfiguration configuration)
@@ -1978,6 +2015,7 @@ public sealed class OptionsEmulationSection : UserControl
         _ = DetectControllersAsync();
         RefreshMediaRows();
         ValidateKeyboardMappings();
+        UpdateRomFieldAvailability();
     }
 
     private static string GetOption(AmigaMachineConfiguration configuration, string key, string fallback) =>
@@ -2185,6 +2223,7 @@ public sealed class OptionsEmulationSection : UserControl
     }
 
     private sealed record FirmwareBadge(string Text, Brush Foreground, Brush Background, Brush Border);
+    private sealed record PathFieldControls(TextBlock Label, Grid Editor, Button Browse);
 
     public sealed class OptionItem
     {
