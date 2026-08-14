@@ -114,6 +114,8 @@ internal sealed class AmigaProcessCore : IAmigaCore
             LatestAudioChunk = chunk;
             _audio.Enqueue(chunk);
         }
+        FramesPerSecond = Response.ReadDouble();
+        SampleRate = Response.ReadInt32();
         DiskCount = Response.ReadInt32();
         CurrentDiskIndex = Response.ReadInt32();
     }

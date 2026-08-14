@@ -34,8 +34,8 @@ internal sealed class AmigaExternalCore : IAmigaCore
     public string CoreVersion { get; private set; } = string.Empty;
     public IReadOnlySet<string> SupportedContentExtensions { get; private set; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
     public string CoreSha256 { get; private set; } = string.Empty;
-    public double FramesPerSecond { get; private set; } = 50;
-    public int SampleRate { get; private set; } = 44100;
+    public double FramesPerSecond => _host?.FramesPerSecond ?? 50;
+    public int SampleRate => _host?.SampleRate ?? 44100;
     public int DiskCount => _host?.DiskControl.ImageCount ?? 0;
     public int CurrentDiskIndex => _host?.DiskControl.CurrentIndex ?? -1;
 
@@ -161,9 +161,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
 
             if (!_gameLoaded) throw new InvalidOperationException("The Amiga core refused the configured content.");
             Export<AmigaExternalApi.GetSystemAvInfo>("retro_get_system_av_info")(out var av);
-            FramesPerSecond = av.Timing.FramesPerSecond;
-            SampleRate = checked((int)Math.Round(av.Timing.SampleRate));
-            _host.SampleRate = SampleRate;
+            _host.ApplyInitialAvInfo(av);
         }
         catch
         {

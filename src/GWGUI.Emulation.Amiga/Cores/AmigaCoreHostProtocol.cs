@@ -170,6 +170,7 @@ public static class AmigaCoreHost
                         var audio = new List<AudioChunk>();
                         while (activeCore.TryDequeueAudio(out var chunk) && chunk is not null) audio.Add(chunk);
                         AmigaCoreHostProtocol.WriteAudio(writer, audio);
+                        writer.Write(activeCore.FramesPerSecond); writer.Write(activeCore.SampleRate);
                         writer.Write(activeCore.DiskCount); writer.Write(activeCore.CurrentDiskIndex);
                         break;
                     case AmigaHostCommand.HardReset: EnsureCore(core).HardReset(); WriteSuccess(writer); break;

@@ -207,9 +207,10 @@ internal sealed class AmigaMachine : IAmigaMachine
         {
             _core.Initialize(Configuration, _sessionDirectory, _saveDirectory);
             initialized = true;
+            var audioSampleRate = 0;
             if (_audioOutput is not null)
             {
-                try { _audioOutput.Start(_core.SampleRate); }
+                try { _audioOutput.Start(_core.SampleRate); audioSampleRate = _core.SampleRate; }
                 catch { _audioOutput.Dispose(); _audioOutput = null; }
             }
             lock (_gate)
@@ -217,7 +218,6 @@ internal sealed class AmigaMachine : IAmigaMachine
                 State = EmulationMachineState.Running;
                 _started?.TrySetResult();
             }
-            var frameDuration = TimeSpan.FromSeconds(1 / _core.FramesPerSecond);
             var nextFrame = TimeProvider.System.GetTimestamp();
             long videoSequence = 0;
 
@@ -243,12 +243,22 @@ internal sealed class AmigaMachine : IAmigaMachine
                 {
                     if (_audioOutput is not null)
                     {
-                        try { _audioOutput.Write(audio.InterleavedStereo.Span); }
+                        try
+                        {
+                            if (audio.SampleRate != audioSampleRate)
+                            {
+                                _audioOutput.Stop();
+                                _audioOutput.Start(audio.SampleRate);
+                                audioSampleRate = audio.SampleRate;
+                            }
+                            _audioOutput.Write(audio.InterleavedStereo.Span);
+                        }
                         catch { _audioOutput.Dispose(); _audioOutput = null; }
                     }
                     AudioChunkReady?.Invoke(this, audio);
                 }
 
+                var frameDuration = TimeSpan.FromSeconds(1 / Math.Clamp(_core.FramesPerSecond, 1, 1000));
                 nextFrame += (long)(frameDuration.TotalSeconds * TimeProvider.System.TimestampFrequency);
                 var remaining = TimeProvider.System.GetElapsedTime(TimeProvider.System.GetTimestamp(), nextFrame);
                 if (remaining > TimeSpan.Zero) Thread.Sleep(remaining);

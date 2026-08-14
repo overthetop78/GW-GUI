@@ -17,6 +17,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     private readonly Dictionary<string, nint> _nativeStrings = new(StringComparer.Ordinal);
     private readonly Stopwatch _clock = Stopwatch.StartNew();
     private EmulationPixelFormat _pixelFormat = EmulationPixelFormat.Rgb565;
+    private float _aspectRatio;
     private long _videoSequence;
     private long _audioSequence;
     private bool _disposed;
@@ -82,6 +83,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     internal AmigaExternalApi.InputStateCallback InputState { get; }
     internal AmigaExternalApi.LogCallback Log { get; }
     internal int SampleRate { get; set; } = 44100;
+    internal double FramesPerSecond { get; private set; } = 50;
     internal IReadOnlyList<AmigaCoreOption> OptionCatalog { get; private set; } = [];
     internal IReadOnlyList<string> Diagnostics => _diagnostics.ToArray();
 
@@ -164,8 +166,9 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
                 case AmigaExternalApi.SetFastForwardingOverride:
                     return true;
                 case AmigaExternalApi.SetGeometry:
+                    return ApplyGeometry(data);
                 case AmigaExternalApi.SetSystemAvInfo:
-                    return true;
+                    return ApplySystemAvInfo(data);
                 case AmigaExternalApi.GetLogInterface:
                     Marshal.StructureToPtr(new AmigaExternalApi.LogInterface
                     {
@@ -274,7 +277,39 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
         var pixels = new byte[byteCount];
         Marshal.Copy(data, pixels, 0, byteCount);
         LatestVideoFrame = new VideoFrame(pixels, checked((int)width), checked((int)height),
-            checked((int)pitch), _pixelFormat, width / (float)height, ++_videoSequence, _clock.Elapsed);
+            checked((int)pitch), _pixelFormat, _aspectRatio > 0 ? _aspectRatio : width / (float)height,
+            ++_videoSequence, _clock.Elapsed);
+    }
+
+    internal void ApplyInitialAvInfo(AmigaExternalApi.SystemAvInfo info)
+    {
+        ApplyGeometry(info.Geometry);
+        if (double.IsFinite(info.Timing.FramesPerSecond) && info.Timing.FramesPerSecond > 0)
+            FramesPerSecond = info.Timing.FramesPerSecond;
+        if (double.IsFinite(info.Timing.SampleRate) && info.Timing.SampleRate is > 0 and <= int.MaxValue)
+            SampleRate = checked((int)Math.Round(info.Timing.SampleRate));
+    }
+
+    private bool ApplyGeometry(nint data)
+    {
+        if (data == 0) return false;
+        ApplyGeometry(Marshal.PtrToStructure<AmigaExternalApi.Geometry>(data));
+        return true;
+    }
+
+    private void ApplyGeometry(AmigaExternalApi.Geometry geometry)
+    {
+        if (float.IsFinite(geometry.AspectRatio) && geometry.AspectRatio > 0)
+            _aspectRatio = geometry.AspectRatio;
+        else if (geometry.BaseHeight > 0)
+            _aspectRatio = geometry.BaseWidth / (float)geometry.BaseHeight;
+    }
+
+    private bool ApplySystemAvInfo(nint data)
+    {
+        if (data == 0) return false;
+        ApplyInitialAvInfo(Marshal.PtrToStructure<AmigaExternalApi.SystemAvInfo>(data));
+        return true;
     }
 
     private void HandleAudioSample(short left, short right)
