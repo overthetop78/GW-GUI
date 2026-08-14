@@ -147,8 +147,11 @@ public sealed class AmigaMachineView : UserControl
 
     private async Task InsertDisk()
     {
-        var dialog = new OpenFileDialog { Filter = "Amiga disk|*.adf;*.adz;*.ipf;*.dms;*.hdf;*.lha;*.iso;*.cue|All files|*.*" };
-        if (dialog.ShowDialog() == true) await _machine.InsertFloppyAsync(dialog.FileName);
+        var dialog = new OpenFileDialog
+        {
+            Filter = "Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*"
+        };
+        if (dialog.ShowDialog() == true) await _machine.InsertMediaAsync(dialog.FileName);
     }
 
     private async Task SaveState()

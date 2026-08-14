@@ -117,19 +117,25 @@ internal sealed class AmigaMachine : IAmigaMachine
 
     public void SetInput(EmulationInputSnapshot snapshot) => _core.SetInput(snapshot);
 
-    public ValueTask InsertFloppyAsync(string path, CancellationToken cancellationToken = default) =>
+    public ValueTask InsertMediaAsync(string path, CancellationToken cancellationToken = default) =>
         QueueCommand(() =>
         {
             var fullPath = Path.GetFullPath(path);
-            _core.InsertFloppy(fullPath);
+            _core.InsertMedia(fullPath);
             var index = Math.Max(0, _core.CurrentDiskIndex);
             if (index < _mediaPaths.Count) _mediaPaths[index] = fullPath;
             else _mediaPaths.Add(fullPath);
             _currentDiskPath = fullPath;
         }, cancellationToken);
 
+    public ValueTask EjectMediaAsync(CancellationToken cancellationToken = default) =>
+        QueueCommand(() => { _core.EjectMedia(); _currentDiskPath = null; }, cancellationToken);
+
+    public ValueTask InsertFloppyAsync(string path, CancellationToken cancellationToken = default) =>
+        InsertMediaAsync(path, cancellationToken);
+
     public ValueTask EjectFloppyAsync(CancellationToken cancellationToken = default) =>
-        QueueCommand(() => { _core.EjectFloppy(); _currentDiskPath = null; }, cancellationToken);
+        EjectMediaAsync(cancellationToken);
 
     public ValueTask SelectDiskAsync(int index, CancellationToken cancellationToken = default) =>
         QueueCommand(() =>

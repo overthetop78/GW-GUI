@@ -6,7 +6,7 @@ namespace GWGUI.Emulation.Amiga.Cores;
 
 internal enum AmigaHostCommand : byte
 {
-    Initialize = 1, RunFrame, HardReset, Stop, InsertFloppy, EjectFloppy,
+    Initialize = 1, RunFrame, HardReset, Stop, InsertMedia, EjectMedia,
     SaveState, LoadState, SetOption, SelectDisk, Dispose
 }
 
@@ -174,8 +174,8 @@ public static class AmigaCoreHost
                         break;
                     case AmigaHostCommand.HardReset: EnsureCore(core).HardReset(); WriteSuccess(writer); break;
                     case AmigaHostCommand.Stop: EnsureCore(core).Stop(); WriteSuccess(writer); break;
-                    case AmigaHostCommand.InsertFloppy: EnsureCore(core).InsertFloppy(reader.ReadString()); WriteSuccess(writer); break;
-                    case AmigaHostCommand.EjectFloppy: EnsureCore(core).EjectFloppy(); WriteSuccess(writer); break;
+                    case AmigaHostCommand.InsertMedia: EnsureCore(core).InsertMedia(reader.ReadString()); WriteSuccess(writer); break;
+                    case AmigaHostCommand.EjectMedia: EnsureCore(core).EjectMedia(); WriteSuccess(writer); break;
                     case AmigaHostCommand.SaveState:
                         var state = EnsureCore(core).SaveState(); writer.Write(true); AmigaCoreHostProtocol.WriteBytes(writer, state); break;
                     case AmigaHostCommand.LoadState: EnsureCore(core).LoadState(AmigaCoreHostProtocol.ReadBytes(reader)); WriteSuccess(writer); break;

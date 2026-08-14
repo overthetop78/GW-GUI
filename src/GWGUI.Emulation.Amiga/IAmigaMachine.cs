@@ -18,6 +18,8 @@ public interface IAmigaMachine : IEmulatedMachine
     event EventHandler<VideoFrame>? VideoFrameReady;
     event EventHandler<AudioChunk>? AudioChunkReady;
     void SetInput(EmulationInputSnapshot snapshot);
+    ValueTask InsertMediaAsync(string path, CancellationToken cancellationToken = default);
+    ValueTask EjectMediaAsync(CancellationToken cancellationToken = default);
     ValueTask InsertFloppyAsync(string path, CancellationToken cancellationToken = default);
     ValueTask EjectFloppyAsync(CancellationToken cancellationToken = default);
     ValueTask SelectDiskAsync(int index, CancellationToken cancellationToken = default);

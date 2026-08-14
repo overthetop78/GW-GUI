@@ -391,8 +391,8 @@ public sealed class AmigaMachineLifecycleTests
         public void HardReset() { }
         public void Stop() => Stopped = true;
         public void SetInput(EmulationInputSnapshot snapshot) { }
-        public void InsertFloppy(string path) { }
-        public void EjectFloppy() { }
+        public void InsertMedia(string path) { }
+        public void EjectMedia() { }
         public void SelectDisk(int index) { }
         public byte[] SaveState() => [9, 8, 7];
         public void LoadState(ReadOnlySpan<byte> state) { }

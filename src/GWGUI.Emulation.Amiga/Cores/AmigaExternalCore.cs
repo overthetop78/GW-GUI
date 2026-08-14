@@ -222,9 +222,9 @@ internal sealed class AmigaExternalCore : IAmigaCore
     {
         if (_host is not null) _host.Input = snapshot;
     }
-    public void InsertFloppy(string path) => (_host ?? throw new InvalidOperationException("The Amiga core is not initialized."))
+    public void InsertMedia(string path) => (_host ?? throw new InvalidOperationException("The Amiga core is not initialized."))
         .DiskControl.Insert(path);
-    public void EjectFloppy() => (_host ?? throw new InvalidOperationException("The Amiga core is not initialized."))
+    public void EjectMedia() => (_host ?? throw new InvalidOperationException("The Amiga core is not initialized."))
         .DiskControl.Eject();
     public void SelectDisk(int index) => (_host ?? throw new InvalidOperationException("The Amiga core is not initialized."))
         .DiskControl.Select(index);

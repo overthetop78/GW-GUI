@@ -16,7 +16,7 @@ internal sealed class AmigaProcessCore : IAmigaCore
     private BinaryReader? _responseReader;
     private BinaryWriter? _writer;
     private Process? _process;
-    private EmulationInputSnapshot _input = EmulationInputSnapshot.Empty;
+    private readonly AmigaInputAccumulator _input = new();
     private bool _initialized;
     private bool _disposed;
     private bool _connectionFailed;
@@ -106,7 +106,7 @@ internal sealed class AmigaProcessCore : IAmigaCore
     public void RunFrame()
     {
         Begin(AmigaHostCommand.RunFrame);
-        AmigaCoreHostProtocol.WriteInput(_writer!, Volatile.Read(ref _input));
+        AmigaCoreHostProtocol.WriteInput(_writer!, _input.Consume());
         CompleteRequest();
         LatestVideoFrame = AmigaCoreHostProtocol.ReadFrame(Response) ?? LatestVideoFrame;
         foreach (var chunk in AmigaCoreHostProtocol.ReadAudio(Response))
@@ -120,9 +120,9 @@ internal sealed class AmigaProcessCore : IAmigaCore
 
     public void HardReset() => SimpleRequest(AmigaHostCommand.HardReset);
     public void Stop() => SimpleRequest(AmigaHostCommand.Stop);
-    public void SetInput(EmulationInputSnapshot snapshot) => Volatile.Write(ref _input, snapshot ?? EmulationInputSnapshot.Empty);
-    public void InsertFloppy(string path) => StringRequest(AmigaHostCommand.InsertFloppy, Path.GetFullPath(path));
-    public void EjectFloppy() => SimpleRequest(AmigaHostCommand.EjectFloppy);
+    public void SetInput(EmulationInputSnapshot snapshot) => _input.Update(snapshot);
+    public void InsertMedia(string path) => StringRequest(AmigaHostCommand.InsertMedia, Path.GetFullPath(path));
+    public void EjectMedia() => SimpleRequest(AmigaHostCommand.EjectMedia);
 
     public void SelectDisk(int index)
     {
