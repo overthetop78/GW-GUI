@@ -130,10 +130,13 @@ public sealed class AmigaExternalCoreTests
         {
             using var core = new AmigaExternalCore(Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll"));
             core.Initialize(new AmigaMachineConfiguration(model, kickstart), session);
-            for (var frame = 0; frame < 180; frame++) core.RunFrame();
+            for (var frame = 0; frame < 300; frame++) core.RunFrame();
             Assert.NotNull(core.LatestVideoFrame);
             Assert.NotNull(core.LatestAudioChunk);
             Assert.True(core.LatestVideoFrame!.Sequence > 0);
+            Assert.InRange(core.LatestVideoFrame.Width, 320, 1920);
+            Assert.InRange(core.LatestVideoFrame.Height, 200, 1080);
+            Assert.True(core.LatestAudioChunk!.FrameCount > 0);
         }
         finally
         {

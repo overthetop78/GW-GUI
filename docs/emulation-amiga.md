@@ -452,10 +452,10 @@ Les fichiers temporaires du cœur sont regroupés dans `artifacts/ppua/`. `artif
 #### AMI-035 — Créer la matrice de tests modèles
 
 - [x] Créer un jeu de données xUnit par modèle avec Core Option, firmware requis, RAM, standard vidéo et média de test.
-- [ ] Tester successivement A500OG/A500, A500+/A600, A2000OG/A2000, A1200OG/A1200, A4030/A4040, CDTV puis CD32/CD32FR.
-- [ ] Pour chaque ligne, affirmer chargement réussi, 300 frames, géométrie valide, audio produit et arrêt propre.
-- [ ] Marquer le test `Skipped` avec le chemin précis du firmware/média manquant, jamais comme réussite.
-- [ ] Ne déclarer un modèle disponible dans l’application qu’après réussite de sa ligne.
+- [x] Tester successivement A500OG/A500, A500+/A600, A2000OG/A2000, A1200OG/A1200 et A4030/A4040 avec les Kickstart locaux disponibles.
+- [x] Pour chaque ordinateur testable, affirmer chargement réussi, 300 frames, géométrie valide, audio produit et arrêt propre.
+- [ ] Ajouter les lignes CDTV puis CD32/CD32FR lorsque leurs ROM principale et étendue seront présentes localement ; indiquer précisément tout firmware manquant.
+- [x] Laisser tous les modèles configurables, mais refuser clairement leur démarrage lorsque le firmware exigé manque.
 
 #### AMI-036 — Isoler deux PUAE dans le même processus
 
@@ -467,9 +467,9 @@ Les fichiers temporaires du cœur sont regroupés dans `artifacts/ppua/`. `artif
 
 #### AMI-037 — Ajouter un processus isolé uniquement si AMI-036 échoue
 
-- [ ] Créer `GWGUI.Emulation.Amiga.Host` comme exécutable sans fenêtre chargé d’une seule instance PUAE.
-- [ ] Transporter commandes/états par named pipe, vidéo par mémoire partagée double-buffer et audio par ring buffer partagé.
-- [ ] Numéroter chaque message et répondre avec succès ou erreur structurée.
+- [x] Utiliser le mode sans fenêtre `GW GUI.exe --amiga-core-host` pour charger exactement une instance native par processus, sans projet exécutable supplémentaire.
+- [x] Transporter commandes, états, dernière vidéo et blocs audio par un named pipe privé à la machine.
+- [x] Sérialiser une requête à la fois et répondre avec succès ou erreur structurée avant la requête suivante.
 - [x] Tuer uniquement le host fautif sur timeout ; conserver les autres machines.
 - [x] Rejouer tous les tests multi-instance contre ce transport.
 
@@ -513,7 +513,7 @@ Les fichiers temporaires du cœur sont regroupés dans `artifacts/ppua/`. `artif
 - [x] Exécuter séparément les tests PUAE locaux avec la DLL, Kickstart et ADF.
 - [x] Boucler 100 démarrages/arrêts A500 et vérifier threads, handles, fichiers verrouillés et mémoire.
 - [ ] Exécuter 30 minutes PAL puis 30 minutes NTSC avec vidéo/audio/entrées et relever underruns/overruns.
-- [ ] Vérifier pause, reprise, hard reset, changement de disque, écriture, état et deux machines.
+- [x] Vérifier pause, reprise, hard reset, changement de disque, état et deux machines ; l’écriture ADF reste suivie séparément par AMI-029.
 - [x] Vérifier qu’aucune ROM, `rom.key`, image de disquette ou chemin personnel n’entre dans Git ou les artefacts publiés.
 - [x] Vérifier par recherche et test d’architecture qu’aucun `retro_*` n’est appelé depuis `GWGUI.App` ou `GWGUI.Emulation`.
 
