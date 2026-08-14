@@ -5,6 +5,7 @@ namespace GWGUI.Emulation.Amiga;
 public interface IAmigaMachine : IEmulatedMachine
 {
     AmigaMachineConfiguration Configuration { get; }
+    Exception? Fault { get; }
     VideoFrame? LatestVideoFrame { get; }
     AudioChunk? LatestAudioChunk { get; }
     IReadOnlyList<AmigaCoreOption> AvailableOptions { get; }

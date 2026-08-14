@@ -14,7 +14,7 @@ internal sealed class AmigaMachine : IAmigaMachine
     private Task? _runLoop;
     private bool _pauseRequested;
     private bool _disposed;
-    private readonly ConcurrentQueue<Action> _commands = new();
+    private readonly ConcurrentQueue<PendingCommand> _commands = new();
     private TaskCompletionSource? _started;
     private string? _currentDiskPath;
 
@@ -31,6 +31,7 @@ internal sealed class AmigaMachine : IAmigaMachine
 
     public Guid Id { get; }
     public AmigaMachineConfiguration Configuration { get; }
+    public Exception? Fault { get; private set; }
     public EmulationMachineState State { get; private set; } = EmulationMachineState.Created;
     public VideoFrame? LatestVideoFrame => _core.LatestVideoFrame;
     public AudioChunk? LatestAudioChunk => _core.LatestAudioChunk;
@@ -88,11 +89,14 @@ internal sealed class AmigaMachine : IAmigaMachine
         lock (_gate)
         {
             if (State is EmulationMachineState.Stopped or EmulationMachineState.Created) return;
-            State = EmulationMachineState.Stopping;
-            _stop?.Cancel();
-            _pauseRequested = false;
-            Monitor.PulseAll(_gate);
             loop = _runLoop;
+            if (State != EmulationMachineState.Faulted)
+            {
+                State = EmulationMachineState.Stopping;
+                _stop?.Cancel();
+                _pauseRequested = false;
+                Monitor.PulseAll(_gate);
+            }
         }
         if (loop is not null) await loop.WaitAsync(cancellationToken).ConfigureAwait(false);
     }
@@ -103,7 +107,7 @@ internal sealed class AmigaMachine : IAmigaMachine
         QueueCommand(() => { _core.InsertFloppy(path); _currentDiskPath = Path.GetFullPath(path); }, cancellationToken);
 
     public ValueTask EjectFloppyAsync(CancellationToken cancellationToken = default) =>
-        QueueCommand(_core.EjectFloppy, cancellationToken);
+        QueueCommand(() => { _core.EjectFloppy(); _currentDiskPath = null; }, cancellationToken);
 
     public ValueTask SaveStateAsync(string path, CancellationToken cancellationToken = default) =>
         QueueCommand(() =>
@@ -135,20 +139,18 @@ internal sealed class AmigaMachine : IAmigaMachine
         if (State is not EmulationMachineState.Running and not EmulationMachineState.Paused)
             throw new InvalidOperationException("The Amiga machine must be running before changing a floppy.");
         var completion = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-        _commands.Enqueue(() =>
-        {
-            try { action(); completion.SetResult(); }
-            catch (Exception error) { completion.SetException(error); }
-        });
+        _commands.Enqueue(new PendingCommand(action, completion));
         lock (_gate) Monitor.PulseAll(_gate);
         return new ValueTask(completion.Task.WaitAsync(cancellationToken));
     }
 
     private void Run(CancellationToken cancellationToken)
     {
+        var initialized = false;
         try
         {
             _core.Initialize(Configuration, _sessionDirectory);
+            initialized = true;
             if (_audioOutput is not null)
             {
                 try { _audioOutput.Start(_core.SampleRate); }
@@ -171,7 +173,10 @@ internal sealed class AmigaMachine : IAmigaMachine
                         Monitor.Wait(_gate, TimeSpan.FromMilliseconds(100));
                 if (cancellationToken.IsCancellationRequested) break;
 
-                while (_commands.TryDequeue(out var command)) command();
+                while (_commands.TryDequeue(out var command)) command.Execute();
+
+                lock (_gate)
+                    if (_pauseRequested) continue;
 
                 _core.RunFrame();
                 if (_core.LatestVideoFrame is { } video && video.Sequence != videoSequence)
@@ -191,21 +196,32 @@ internal sealed class AmigaMachine : IAmigaMachine
                 if (remaining > TimeSpan.Zero) Thread.Sleep(remaining);
                 else nextFrame = TimeProvider.System.GetTimestamp();
             }
-            _core.Stop();
-            _audioOutput?.Stop();
-            lock (_gate) State = EmulationMachineState.Stopped;
-        }
-        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
-        {
-            _started?.TrySetCanceled(cancellationToken);
-            lock (_gate) State = EmulationMachineState.Stopped;
         }
         catch (Exception error)
         {
+            Fault = error;
             _started?.TrySetException(error);
+            FailPendingCommands(error);
             lock (_gate) State = EmulationMachineState.Faulted;
-            throw;
         }
+        finally
+        {
+            if (initialized)
+            {
+                try { _core.Stop(); }
+                catch (Exception error) { Fault ??= error; }
+            }
+            try { _audioOutput?.Stop(); }
+            catch (Exception error) { Fault ??= error; }
+            FailPendingCommands(new OperationCanceledException("The Amiga machine stopped."));
+            lock (_gate)
+                if (State != EmulationMachineState.Faulted) State = EmulationMachineState.Stopped;
+        }
+    }
+
+    private void FailPendingCommands(Exception error)
+    {
+        while (_commands.TryDequeue(out var command)) command.Completion.TrySetException(error);
     }
 
     private void ThrowIfDisposed() => ObjectDisposedException.ThrowIf(_disposed, this);
@@ -218,5 +234,14 @@ internal sealed class AmigaMachine : IAmigaMachine
         _core.Dispose();
         _audioOutput?.Dispose();
         _disposed = true;
+    }
+
+    private sealed record PendingCommand(Action Action, TaskCompletionSource Completion)
+    {
+        public void Execute()
+        {
+            try { Action(); Completion.TrySetResult(); }
+            catch (Exception error) { Completion.TrySetException(error); }
+        }
     }
 }

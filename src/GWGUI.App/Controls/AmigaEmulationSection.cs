@@ -136,7 +136,13 @@ public sealed class AmigaEmulationSection : UserControl
             view.CloseRequested += async (_, _) => { await view.StopAsync(); _machines.Items.Remove(tab); };
             _machines.Items.Add(tab);
             _machines.SelectedItem = tab;
-            await view.StartAsync();
+            try { await view.StartAsync(); }
+            catch
+            {
+                await view.StopAsync();
+                _machines.Items.Remove(tab);
+                throw;
+            }
         }
         catch (Exception error)
         {
