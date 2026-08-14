@@ -1,28 +1,44 @@
 namespace GWGUI.Emulation.Amiga;
 
-public sealed record AmigaModel(string Id, string DisplayName, string Cpu, string Chipset,
-    int ChipMemoryKib, int SlowMemoryKib, int FastMemoryMib, bool HasCdDrive, string RecommendedKickstart,
-    int MaximumFloppyDrives = 4, bool SupportsHardDrives = true, int MaximumHardDrives = 1);
+public sealed record AmigaModel(string Id, string DisplayName, string BackendModel,
+    IReadOnlyList<string> CpuModels, string Chipset, int ChipMemoryKib, int SlowMemoryKib,
+    int FastMemoryMib, bool HasCdDrive, string RecommendedKickstart,
+    int MaximumFloppyDrives = 4, bool SupportsHardDrives = true, int MaximumHardDrives = 1)
+{
+    public string DefaultCpu => CpuModels[0];
+}
 
 public static class AmigaModelCatalog
 {
+    private static readonly HashSet<string> LegacyBackendIds =
+        ["A500OG", "A1200OG", "A2000OG", "A4030", "A4040", "CD32FR"];
     public static IReadOnlyList<AmigaModel> All { get; } =
     [
-        new("A500OG", "Amiga 500 · 512 Kio", "68000", "OCS", 512, 0, 0, false, "1.3"),
-        new("A500", "Amiga 500 · 512 Kio + 512 Kio Slow", "68000", "OCS", 512, 512, 0, false, "1.3"),
-        new("A500PLUS", "Amiga 500 Plus", "68000", "ECS", 1024, 0, 0, false, "2.04"),
-        new("A600", "Amiga 600", "68000", "ECS", 2048, 0, 8, false, "3.1"),
-        new("A1200OG", "Amiga 1200 · standard", "68EC020", "AGA", 2048, 0, 0, false, "3.1"),
-        new("A1200", "Amiga 1200 · 8 Mio Fast", "68EC020", "AGA", 2048, 0, 8, false, "3.1"),
-        new("A2000OG", "Amiga 2000 · Kickstart 1.3", "68000", "OCS", 512, 512, 0, false, "1.3"),
-        new("A2000", "Amiga 2000 · Kickstart 3.1", "68000", "ECS", 1024, 0, 0, false, "3.1"),
-        new("A4030", "Amiga 4000/030", "68030", "AGA", 2048, 0, 8, false, "3.1"),
-        new("A4040", "Amiga 4000/040", "68040", "AGA", 2048, 0, 8, false, "3.1"),
-        new("CDTV", "Commodore CDTV", "68000", "OCS", 1024, 0, 0, true, "1.3 CDTV", 1, true, 1),
-        new("CD32", "Amiga CD32", "68EC020", "AGA", 2048, 0, 0, true, "3.1 CD32", 0, false, 0),
-        new("CD32FR", "Amiga CD32 · 8 Mio Fast", "68EC020", "AGA", 2048, 0, 8, true, "3.1 CD32", 0, false, 0)
+        new("A1000", "Amiga 1000", "A500OG", ["68000"], "OCS", 512, 0, 0, false, "1.2", 1),
+        new("A500", "Amiga 500", "A500", ["68000"], "OCS", 512, 512, 0, false, "1.3"),
+        new("A500PLUS", "Amiga 500 Plus", "A500PLUS", ["68000"], "ECS", 1024, 0, 0, false, "2.04"),
+        new("A2000", "Amiga 2000", "A2000", ["68000"], "ECS", 1024, 0, 0, false, "3.1"),
+        new("A3000", "Amiga 3000", "A4030", ["68030"], "ECS", 2048, 0, 8, false, "3.1"),
+        new("A600", "Amiga 600", "A600", ["68000"], "ECS", 2048, 0, 0, false, "3.1"),
+        new("A1200", "Amiga 1200", "A1200", ["68020"], "AGA", 2048, 0, 0, false, "3.1"),
+        new("A4000", "Amiga 4000", "A4040", ["68040", "68030"], "AGA", 2048, 0, 8, false, "3.1"),
+        new("CDTV", "Commodore CDTV", "CDTV", ["68000"], "OCS", 1024, 0, 0, true, "1.3 CDTV", 1),
+        new("CD32", "Amiga CD32", "CD32", ["68020"], "AGA", 2048, 0, 0, true, "3.1 CD32", 0, false, 0)
     ];
 
     public static AmigaModel Get(string id) => All.FirstOrDefault(model => model.Id.Equals(id, StringComparison.Ordinal))
+        ?? FromLegacyId(id)
         ?? throw new ArgumentOutOfRangeException(nameof(id), id, "Unsupported Amiga model.");
+
+    public static AmigaModel? FromLegacyId(string id) => id switch
+    {
+        "A500OG" => All.First(model => model.Id == "A500"),
+        "A1200OG" => All.First(model => model.Id == "A1200"),
+        "A2000OG" => All.First(model => model.Id == "A2000"),
+        "A4030" or "A4040" => All.First(model => model.Id == "A4000"),
+        "CD32FR" => All.First(model => model.Id == "CD32"),
+        _ => null
+    };
+
+    public static string BackendModelFor(string id) => LegacyBackendIds.Contains(id) ? id : Get(id).BackendModel;
 }

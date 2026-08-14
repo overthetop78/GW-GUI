@@ -115,9 +115,11 @@ public sealed class AmigaConfigurationTests
     [Fact]
     public void ModelCatalog_ContainsEveryExternallySupportedPreset()
     {
-        Assert.Equal(13, AmigaModelCatalog.All.Count);
+        Assert.Equal(10, AmigaModelCatalog.All.Count);
+        Assert.Equal("OCS", AmigaModelCatalog.Get("A1000").Chipset);
         Assert.Equal("OCS", AmigaModelCatalog.Get("A500").Chipset);
         Assert.Equal("AGA", AmigaModelCatalog.Get("A1200").Chipset);
+        Assert.Equal("ECS", AmigaModelCatalog.Get("A3000").Chipset);
         Assert.True(AmigaModelCatalog.Get("CD32").HasCdDrive);
     }
 

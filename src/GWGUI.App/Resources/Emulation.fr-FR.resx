@@ -157,4 +157,8 @@
   <data name="Emulation.DetectControllers"><value>Détecter les manettes</value></data>
   <data name="Emulation.EmulatedAction"><value>Action Amiga</value></data>
   <data name="Emulation.PhysicalControl"><value>Commande clavier, souris ou manette</value></data>
+  <data name="Emulation.Chipset"><value>Jeu de puces</value></data>
+  <data name="Emulation.CdDrive"><value>Lecteur de CD</value></data>
+  <data name="Emulation.FloppyDriveCount"><value>Nombre de lecteurs de disquette</value></data>
+  <data name="Emulation.HardDriveCount"><value>Nombre de disques durs</value></data>
 </root>

@@ -89,9 +89,10 @@ internal sealed class AmigaExternalCore : IAmigaCore
         if (configuration.RomKeyPath is not null)
             File.Copy(configuration.RomKeyPath, Path.Combine(systemDirectory, "rom.key"), true);
 
+        var backendModel = AmigaModelCatalog.BackendModelFor(configuration.Model);
         var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal)
         {
-            ["puae_model"] = configuration.Model,
+            ["puae_model"] = backendModel,
             ["puae_kickstart"] = Path.GetFullPath(configuration.KickstartPath)
         };
         var floppyCount = media.Count(item => item.Kind == AmigaMediaKind.Floppy);

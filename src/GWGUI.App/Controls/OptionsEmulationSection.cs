@@ -34,7 +34,7 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly TextBox _extendedRom = new();
     private readonly TextBox _romKey = new();
     private readonly CheckBox _audio = new() { IsChecked = true };
-    private readonly ComboBox _cpuModel = new() { ItemsSource = new[] { "68000", "68010", "68020", "68030", "68040", "68060" } };
+    private readonly ComboBox _cpuModel = new();
     private readonly CheckBox _cpuCompatible = new() { IsChecked = true };
     private readonly ComboBox _cpuMultiplier = new() { ItemsSource = new[] { "0", "1", "2", "4", "8", "16" } };
     private readonly ComboBox _chipMemory = new() { ItemsSource = new[] { "auto", "1", "2", "3", "4" } };
@@ -42,6 +42,7 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly ComboBox _fastMemory = new() { ItemsSource = new[] { "auto", "0", "1", "2", "4", "8" } };
     private readonly ComboBox _z3Memory = new() { ItemsSource = new[] { "auto", "0", "1", "2", "4", "8", "16", "32", "64", "128", "256", "512" } };
     private readonly ComboBox _videoStandard = new() { ItemsSource = new[] { "PAL", "NTSC" } };
+    private readonly TextBlock _chipset = new() { VerticalAlignment = VerticalAlignment.Center };
     private readonly ComboBox _videoResolution = new() { ItemsSource = new[] { "auto", "auto-lores", "auto-superhires", "lores", "hires", "superhires" } };
     private readonly ComboBox _videoAspect = new() { ItemsSource = new[] { "auto", "PAL", "NTSC", "1:1" } };
     private readonly ComboBox _cropVideo = new() { ItemsSource = new[] { "disabled", "minimum", "smaller", "small", "medium", "large", "larger", "maximum", "auto" } };
@@ -54,8 +55,10 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly ComboBox[] _controllers = Enumerable.Range(0, 4).Select(_ => new ComboBox
     {
     }).ToArray();
-    private readonly DataGrid _optionGrid = new() { AutoGenerateColumns = false };
     private readonly StackPanel _mediaRows = new();
+    private readonly ComboBox _floppyDriveCount = new() { ItemsSource = new[] { 0, 1, 2, 3, 4 }, SelectedItem = 1 };
+    private readonly ComboBox _hardDriveCount = new() { ItemsSource = new[] { 0, 1 }, SelectedItem = 0 };
+    private readonly CheckBox _cdDrive = new();
     private readonly CheckBox _multiDrive = new();
     private readonly TextBox _mouseDevice = new();
     private readonly CheckBox _captureMouse = new() { IsChecked = true };
@@ -79,13 +82,17 @@ public sealed class OptionsEmulationSection : UserControl
         _firmwareList.DisplayMemberPath = nameof(FirmwareItem.DisplayName);
         _firmwareList.SelectionChanged += FirmwareSelected;
         _model.SelectionChanged += (_, _) => ApplyModelDefaults();
-        _optionGrid.ItemsSource = _options;
+        _floppyDriveCount.SelectionChanged += (_, _) => RefreshMediaRows();
+        _hardDriveCount.SelectionChanged += (_, _) => RefreshMediaRows();
+        _cdDrive.Checked += (_, _) => RefreshMediaRows();
+        _cdDrive.Unchecked += (_, _) => RefreshMediaRows();
         _keyboardGrid.ItemsSource = _keyboardMappings;
         _audio.Content = LocExtension.Get("Emulation.Audio");
         _multiDrive.Content = LocExtension.Get("Emulation.MultiDrive");
         _captureMouse.Content = LocExtension.Get("Emulation.CaptureMouse");
         _cpuCompatible.Content = LocExtension.Get("Emulation.CpuCompatibility");
         _flickerFixer.Content = LocExtension.Get("Emulation.FlickerFixer");
+        _cdDrive.Content = LocExtension.Get("Emulation.CdDrive");
         var controllerChoices = new[]
         {
             new LocalizedChoice<AmigaControllerType>(AmigaControllerType.Automatic, LocExtension.Get("Visual.Automatic")),
@@ -162,11 +169,11 @@ public sealed class OptionsEmulationSection : UserControl
         var tabs = new TabControl();
         tabs.Items.Add(new TabItem { Header = "CPU", Content = BuildCpuTab() });
         tabs.Items.Add(new TabItem { Header = "RAM", Content = BuildRamTab() });
-        tabs.Items.Add(new TabItem { Header = "ROM", Content = BuildRomTab() });
+        tabs.Items.Add(new TabItem { Header = "ROM", Content = Wrap(BuildRomTab()) });
         tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.VideoTab"), Content = BuildVideoTab() });
         tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.Audio"), Content = BuildAudioTab() });
-        tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.StorageTab"), Content = BuildStorageTab() });
-        tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.KeyboardTab"), Content = BuildKeyboardTab() });
+        tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.StorageTab"), Content = Wrap(BuildStorageTab()) });
+        tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.KeyboardTab"), Content = Wrap(BuildKeyboardTab()) });
         tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.MouseTab"), Content = BuildMouseTab() });
         tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.ControllersTab"), Content = BuildControllersTab() });
         Grid.SetRow(tabs, 1);
@@ -199,12 +206,13 @@ public sealed class OptionsEmulationSection : UserControl
 
     private UIElement BuildVideoTab()
     {
-        var form = CreateForm(5);
-        AddField(form, 0, LocExtension.Get("Emulation.VideoStandard"), _videoStandard);
-        AddField(form, 1, LocExtension.Get("Emulation.VideoResolution"), _videoResolution);
-        AddField(form, 2, LocExtension.Get("Emulation.AspectRatio"), _videoAspect);
-        AddField(form, 3, LocExtension.Get("Emulation.VideoCrop"), _cropVideo);
-        AddField(form, 4, LocExtension.Get("Emulation.FlickerFixer"), _flickerFixer);
+        var form = CreateForm(6);
+        AddField(form, 0, LocExtension.Get("Emulation.Chipset"), _chipset);
+        AddField(form, 1, LocExtension.Get("Emulation.VideoStandard"), _videoStandard);
+        AddField(form, 2, LocExtension.Get("Emulation.VideoResolution"), _videoResolution);
+        AddField(form, 3, LocExtension.Get("Emulation.AspectRatio"), _videoAspect);
+        AddField(form, 4, LocExtension.Get("Emulation.VideoCrop"), _cropVideo);
+        AddField(form, 5, LocExtension.Get("Emulation.FlickerFixer"), _flickerFixer);
         return Wrap(form);
     }
 
@@ -251,18 +259,26 @@ public sealed class OptionsEmulationSection : UserControl
     private UIElement BuildStorageTab()
     {
         var root = new Grid { Margin = new Thickness(12) };
+        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         root.RowDefinitions.Add(new RowDefinition());
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        root.Children.Add(new ScrollViewer
+        var hardware = CreateForm(3);
+        AddField(hardware, 0, LocExtension.Get("Emulation.FloppyDriveCount"), _floppyDriveCount);
+        AddField(hardware, 1, LocExtension.Get("Emulation.HardDriveCount"), _hardDriveCount);
+        AddField(hardware, 2, LocExtension.Get("Emulation.CdDrive"), _cdDrive);
+        root.Children.Add(hardware);
+        var media = new ScrollViewer
         {
             Content = _mediaRows,
             VerticalScrollBarVisibility = ScrollBarVisibility.Auto
-        });
+        };
+        Grid.SetRow(media, 1);
+        root.Children.Add(media);
         var panel = new WrapPanel { Margin = new Thickness(0, 10, 0, 0) };
         AddButton(panel, "Emulation.AddMedia", AddMediaAsync);
         AddButton(panel, "Emulation.CreateHardDisk", CreateHardDiskAsync);
         panel.Children.Add(_multiDrive);
-        Grid.SetRow(panel, 1);
+        Grid.SetRow(panel, 2);
         root.Children.Add(panel);
         return root;
     }
@@ -320,20 +336,6 @@ public sealed class OptionsEmulationSection : UserControl
             });
         }
         return Wrap(root);
-    }
-
-    private UIElement BuildAdvancedTab()
-    {
-        var root = new Grid { Margin = new Thickness(12) };
-        root.RowDefinitions.Add(new RowDefinition());
-        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        _optionGrid.MinHeight = 260;
-        root.Children.Add(_optionGrid);
-        var actions = new WrapPanel { Margin = new Thickness(0, 8, 0, 0) };
-        AddButton(actions, "Emulation.LoadOptions", LoadAvailableOptionsAsync);
-        Grid.SetRow(actions, 1);
-        root.Children.Add(actions);
-        return root;
     }
 
     private DataGrid BuildControllerMappingGrid(int port)
@@ -403,7 +405,7 @@ public sealed class OptionsEmulationSection : UserControl
 
     private Task CreateHardDiskAsync()
     {
-        if (_model.SelectedItem is AmigaModel { SupportsHardDrives: false })
+        if (SelectedCount(_hardDriveCount) == 0)
             throw new InvalidOperationException(LocExtension.Get("Emulation.HardDiskNotSupported"));
         var dialog = new SaveFileDialog
         {
@@ -460,12 +462,11 @@ public sealed class OptionsEmulationSection : UserControl
             });
             return;
         }
-        var model = _model.SelectedItem as AmigaModel;
         var allowedKinds = Enum.GetValues<AmigaMediaKind>().Where(kind => kind switch
         {
-            AmigaMediaKind.Floppy => model?.MaximumFloppyDrives > 0,
-            AmigaMediaKind.HardDrive => model?.SupportsHardDrives != false,
-            AmigaMediaKind.CompactDisc => model?.HasCdDrive == true,
+            AmigaMediaKind.Floppy => SelectedCount(_floppyDriveCount) > 0,
+            AmigaMediaKind.HardDrive => SelectedCount(_hardDriveCount) > 0,
+            AmigaMediaKind.CompactDisc => _cdDrive.IsChecked == true,
             AmigaMediaKind.WhdLoad or AmigaMediaKind.Configuration => true,
             _ => false
         }).ToArray();
@@ -508,6 +509,8 @@ public sealed class OptionsEmulationSection : UserControl
         _ => AmigaMediaKind.Floppy
     };
 
+    private static int SelectedCount(ComboBox comboBox) => comboBox.SelectedItem is int value ? value : 0;
+
     private void ValidateKeyboardMappings()
     {
         var duplicates = _keyboardMappings.Where(item => item.HostKey != GWGUI.Emulation.EmulationKey.Unknown)
@@ -527,11 +530,18 @@ public sealed class OptionsEmulationSection : UserControl
         return form;
     }
 
-    private static UIElement Wrap(UIElement child) => new ScrollViewer
+    private static UIElement Wrap(UIElement child)
     {
-        Content = child,
-        VerticalScrollBarVisibility = ScrollBarVisibility.Auto
-    };
+        var card = new Border
+        {
+            Child = child,
+            Margin = new Thickness(12),
+            Padding = new Thickness(8),
+            VerticalAlignment = VerticalAlignment.Top
+        };
+        card.SetResourceReference(StyleProperty, "Card");
+        return new ScrollViewer { Content = card, VerticalScrollBarVisibility = ScrollBarVisibility.Auto };
+    }
 
     private void ConfigureGrids()
     {
@@ -556,8 +566,10 @@ public sealed class OptionsEmulationSection : UserControl
     private void ApplyModelDefaults()
     {
         if (_model.SelectedItem is not AmigaModel model) return;
-        _cpuModel.SelectedItem = model.Cpu.Replace("EC", string.Empty, StringComparison.OrdinalIgnoreCase);
-        if (_cpuModel.SelectedItem is null) _cpuModel.SelectedIndex = 0;
+        _cpuModel.ItemsSource = model.CpuModels;
+        _cpuModel.SelectedItem = model.DefaultCpu;
+        _cpuModel.IsEnabled = model.CpuModels.Count > 1;
+        _chipset.Text = model.Chipset;
         _chipMemory.SelectedItem = Math.Clamp(model.ChipMemoryKib / 512, 1, 4).ToString();
         _slowMemory.SelectedItem = model.SlowMemoryKib == 0 ? "0" : Math.Clamp(model.SlowMemoryKib / 256, 2, 7).ToString();
         _fastMemory.SelectedItem = model.FastMemoryMib.ToString();
@@ -566,15 +578,13 @@ public sealed class OptionsEmulationSection : UserControl
         _videoResolution.SelectedItem = "auto";
         _videoAspect.SelectedItem = "auto";
         _cropVideo.SelectedItem = "disabled";
+        _floppyDriveCount.ItemsSource = Enumerable.Range(0, model.MaximumFloppyDrives + 1).ToArray();
+        _floppyDriveCount.SelectedItem = Math.Min(1, model.MaximumFloppyDrives);
+        _hardDriveCount.ItemsSource = Enumerable.Range(0, model.MaximumHardDrives + 1).ToArray();
+        _hardDriveCount.SelectedItem = 0;
+        _cdDrive.IsChecked = model.HasCdDrive;
         RefreshMediaRows();
     }
-
-    private static string MemoryValue(int kib) => kib switch
-    {
-        0 => "none",
-        < 1024 => $"{kib}k",
-        _ => $"{kib / 1024d:0.#}M"
-    };
 
     private static void AddButton(Panel panel, string resourceKey, Func<Task> action)
     {
@@ -657,8 +667,8 @@ public sealed class OptionsEmulationSection : UserControl
     private void LoadEditor(AmigaMachineConfiguration configuration)
     {
         _currentId = configuration.Id;
-        _model.SelectedItem = AmigaModelCatalog.All.FirstOrDefault(model => model.Id == configuration.Model)
-            ?? AmigaModelCatalog.All[0];
+        var selectedModel = AmigaModelCatalog.Get(configuration.Model);
+        _model.SelectedItem = selectedModel;
         _kickstart.Text = configuration.KickstartPath;
         _extendedRom.Text = configuration.ExtendedRomPath ?? string.Empty;
         _romKey.Text = configuration.RomKeyPath ?? string.Empty;
@@ -668,7 +678,7 @@ public sealed class OptionsEmulationSection : UserControl
         _options.Clear();
         foreach (var option in configuration.Options ?? new Dictionary<string, string>())
             _options.Add(new OptionItem { Category = "Configuration", Key = option.Key, Name = option.Key, Value = option.Value });
-        SetOption(_cpuModel, configuration, "puae_cpu_model", (_model.SelectedItem as AmigaModel)?.Cpu.Replace("EC", string.Empty));
+        SetOption(_cpuModel, configuration, "puae_cpu_model", selectedModel.DefaultCpu);
         SetOption(_cpuMultiplier, configuration, "puae_cpu_multiplier", "0");
         _cpuCompatible.IsChecked = GetOption(configuration, "puae_cpu_compatibility", "exact") == "exact";
         SetOption(_chipMemory, configuration, "puae_chipmem_size", Math.Clamp(((_model.SelectedItem as AmigaModel)?.ChipMemoryKib ?? 512) / 512, 1, 4).ToString());
@@ -695,6 +705,11 @@ public sealed class OptionsEmulationSection : UserControl
             ?? (configuration.InitialDiskPath is null ? [] : [new AmigaMediaConfiguration(configuration.InitialDiskPath, InferMediaKind(configuration.InitialDiskPath))]);
         foreach (var item in media)
             _media.Add(new MediaItem { Path = item.Path, Kind = item.Kind, Label = item.Label ?? string.Empty, IsReadOnly = item.IsReadOnly });
+        _floppyDriveCount.SelectedItem = Math.Min(selectedModel.MaximumFloppyDrives,
+            Math.Max(selectedModel.MaximumFloppyDrives == 0 ? 0 : 1, media.Count(item => item.Kind == AmigaMediaKind.Floppy)));
+        _hardDriveCount.SelectedItem = Math.Min(selectedModel.MaximumHardDrives,
+            media.Count(item => item.Kind == AmigaMediaKind.HardDrive));
+        _cdDrive.IsChecked = selectedModel.HasCdDrive || media.Any(item => item.Kind == AmigaMediaKind.CompactDisc);
         _multiDrive.IsChecked = configuration.MountFloppiesInSeparateDrives;
         _keyboardMappings.Clear();
         foreach (var key in Enum.GetValues<GWGUI.Emulation.EmulationKey>().Where(key => key != GWGUI.Emulation.EmulationKey.Unknown))
@@ -750,7 +765,7 @@ public sealed class OptionsEmulationSection : UserControl
             throw new InvalidOperationException(LocExtension.Get("Emulation.DuplicateKeyboardMapping"));
         var options = _options.Where(item => !string.IsNullOrWhiteSpace(item.Key))
             .ToDictionary(item => item.Key.Trim(), item => item.Value?.Trim() ?? string.Empty, StringComparer.Ordinal);
-        options["puae_model"] = model.Id;
+        options["puae_model"] = model.BackendModel;
         options["puae_cpu_model"] = SelectedText(_cpuModel);
         options["puae_cpu_multiplier"] = SelectedText(_cpuMultiplier);
         options["puae_cpu_compatibility"] = _cpuCompatible.IsChecked == true ? "exact" : "normal";
@@ -772,11 +787,13 @@ public sealed class OptionsEmulationSection : UserControl
             return new AmigaMediaConfiguration(Path.GetFullPath(item.Path), item.Kind,
                 string.IsNullOrWhiteSpace(item.Label) ? null : item.Label.Trim(), item.IsReadOnly);
         }).ToArray();
-        if (media.Count(item => item.Kind == AmigaMediaKind.Floppy) > model.MaximumFloppyDrives)
-            throw new InvalidOperationException(LocExtension.Get("Emulation.TooManyFloppyDrives", model.MaximumFloppyDrives));
-        if (media.Count(item => item.Kind == AmigaMediaKind.HardDrive) > model.MaximumHardDrives)
-            throw new InvalidOperationException(LocExtension.Get("Emulation.TooManyHardDrives", model.MaximumHardDrives));
-        if (!model.HasCdDrive && media.Any(item => item.Kind == AmigaMediaKind.CompactDisc))
+        var floppyDriveCount = SelectedCount(_floppyDriveCount);
+        var hardDriveCount = SelectedCount(_hardDriveCount);
+        if (media.Count(item => item.Kind == AmigaMediaKind.Floppy) > floppyDriveCount)
+            throw new InvalidOperationException(LocExtension.Get("Emulation.TooManyFloppyDrives", floppyDriveCount));
+        if (media.Count(item => item.Kind == AmigaMediaKind.HardDrive) > hardDriveCount)
+            throw new InvalidOperationException(LocExtension.Get("Emulation.TooManyHardDrives", hardDriveCount));
+        if (_cdDrive.IsChecked != true && media.Any(item => item.Kind == AmigaMediaKind.CompactDisc))
             throw new InvalidOperationException(LocExtension.Get("Emulation.CdNotSupported"));
         var initialPath = media.FirstOrDefault()?.Path;
         var floppies = media.Where(item => item.Kind == AmigaMediaKind.Floppy)
@@ -829,40 +846,6 @@ public sealed class OptionsEmulationSection : UserControl
     private static void SelectChoice<T>(ComboBox comboBox, T value) where T : struct, Enum =>
         comboBox.SelectedItem = comboBox.Items.OfType<LocalizedChoice<T>>().FirstOrDefault(choice =>
             EqualityComparer<T>.Default.Equals(choice.Value, value));
-
-    private async Task LoadAvailableOptionsAsync()
-    {
-        if (_model.SelectedItem is not AmigaModel model) throw new InvalidOperationException(LocExtension.Get("Emulation.ModelRequired"));
-        ValidateOptionalFile(_kickstart.Text, required: true);
-        ValidateOptionalFile(_extendedRom.Text);
-        ValidateOptionalFile(_romKey.Text);
-        var configured = _options.Where(item => !string.IsNullOrWhiteSpace(item.Key))
-            .ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal);
-        var corePath = await AmigaCoreProvider.EnsureAvailableAsync();
-        var configuration = new AmigaMachineConfiguration(model.Id, Path.GetFullPath(_kickstart.Text),
-            ExtendedRomPath: OptionalFullPath(_extendedRom.Text), RomKeyPath: OptionalFullPath(_romKey.Text),
-            Options: new Dictionary<string, string> { ["puae_model"] = model.Id },
-            Id: _currentId == Guid.Empty ? Guid.NewGuid() : _currentId, AudioEnabled: false);
-        var engine = new AmigaEngine(StoragePaths.AmigaSessionsDirectory, corePath,
-            hostExecutablePath: Environment.ProcessPath);
-        await using var machine = engine.CreateAmigaMachine(configuration);
-        await machine.StartAsync();
-        try
-        {
-            var available = machine.AvailableOptions.ToArray();
-            _options.Clear();
-            foreach (var option in available)
-                _options.Add(new OptionItem
-                {
-                    Key = option.Key,
-                    Category = string.IsNullOrWhiteSpace(option.Category) ? "Avancé" : option.Category,
-                    Name = option.Name,
-                    Value = configured.TryGetValue(option.Key, out var value) ? value : option.DefaultValue,
-                    AllowedValues = string.Join(" | ", option.Values.Select(item => item.Value))
-                });
-        }
-        finally { await machine.StopAsync(); }
-    }
 
     private async Task DeleteConfigurationAsync()
     {

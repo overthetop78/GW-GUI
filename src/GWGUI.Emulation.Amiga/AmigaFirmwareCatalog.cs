@@ -14,15 +14,15 @@ public sealed class AmigaFirmwareCatalog
         {
             ["0b8442c311caa54fb12ec88eaaa9facf"] = ("1.1 rev 31.034 NTSC", AmigaFirmwareType.Kickstart, ["A1000"]),
             ["1fa1f93d3d7b51271dd1356b8b2b45a9"] = ("1.1 rev 32.034 PAL", AmigaFirmwareType.Kickstart, ["A1000"]),
-            ["85ad74194e87c08904327de1a9443b7a"] = ("1.2 rev 33.180", AmigaFirmwareType.Kickstart, ["A500OG", "A500", "A2000OG"]),
-            ["82a21c1890cae844b3df741f2762d48d"] = ("1.3 rev 34.005", AmigaFirmwareType.Kickstart, ["A500OG", "A500", "A2000OG", "CDTV"]),
+            ["85ad74194e87c08904327de1a9443b7a"] = ("1.2 rev 33.180", AmigaFirmwareType.Kickstart, ["A1000", "A500", "A2000"]),
+            ["82a21c1890cae844b3df741f2762d48d"] = ("1.3 rev 34.005", AmigaFirmwareType.Kickstart, ["A1000", "A500", "A2000", "CDTV"]),
             ["dc10d7bdd1b6f450773dfb558477c230"] = ("2.04 rev 37.175", AmigaFirmwareType.Kickstart, ["A500PLUS"]),
             ["465646c9b6729f77eea5314d1f057951"] = ("2.05 rev 37.350", AmigaFirmwareType.Kickstart, ["A600"]),
             ["e40a5dfb3d017ba8779faba30cbd1c8e"] = ("3.1 rev 40.063", AmigaFirmwareType.Kickstart, ["A600", "A2000"]),
             ["b7cc148386aa631136f510cd29e42fc3"] = ("3.0 rev 39.106", AmigaFirmwareType.Kickstart, ["A1200OG", "A1200"]),
             ["646773759326fbac3b2311fd8c8793ee"] = ("3.1 rev 40.068", AmigaFirmwareType.Kickstart, ["A1200OG", "A1200"]),
-            ["9b8bdd5a3fd32c2a5a6f5b1aefc799a5"] = ("3.0 rev 39.106", AmigaFirmwareType.Kickstart, ["A4030", "A4040"]),
-            ["9bdedde6a4f33555b4a270c8ca53297d"] = ("3.1 rev 40.068", AmigaFirmwareType.Kickstart, ["A4030", "A4040"]),
+            ["9b8bdd5a3fd32c2a5a6f5b1aefc799a5"] = ("3.0 rev 39.106", AmigaFirmwareType.Kickstart, ["A3000", "A4000"]),
+            ["9bdedde6a4f33555b4a270c8ca53297d"] = ("3.1 rev 40.068", AmigaFirmwareType.Kickstart, ["A3000", "A4000"]),
             ["89da1838a24460e4b93f4f0c5d92d48d"] = ("CDTV extended 1.0", AmigaFirmwareType.ExtendedRom, ["CDTV"]),
             ["f2f241bf094168cfb9e7805dc2856433"] = ("CD32 combined 3.1 rev 40.060", AmigaFirmwareType.Kickstart, ["CD32", "CD32FR"]),
             ["5f8924d013dd57a89cf349f4cdedc6b1"] = ("CD32 3.1 rev 40.060", AmigaFirmwareType.Kickstart, ["CD32", "CD32FR"]),
@@ -71,10 +71,10 @@ public sealed class AmigaFirmwareCatalog
         if (version is < 29 or > 50 || revision > 1000) return null;
         var models = version switch
         {
-            <= 34 => new[] { "A500OG", "A500", "A2000OG" },
+            <= 34 => new[] { "A1000", "A500", "A2000" },
             37 => new[] { "A500PLUS", "A600" },
-            39 => new[] { "A1200OG", "A1200", "A4030", "A4040" },
-            >= 40 => new[] { "A600", "A1200OG", "A1200", "A2000", "A4030", "A4040" },
+            39 => new[] { "A1200", "A3000", "A4000" },
+            >= 40 => new[] { "A600", "A1200", "A2000", "A3000", "A4000" },
             _ => []
         };
         return ($"rev {version}.{revision:D3}", models);

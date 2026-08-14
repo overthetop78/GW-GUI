@@ -157,4 +157,8 @@
   <data name="Emulation.DetectControllers"><value>Detect controllers</value></data>
   <data name="Emulation.EmulatedAction"><value>Amiga action</value></data>
   <data name="Emulation.PhysicalControl"><value>Keyboard, mouse or controller control</value></data>
+  <data name="Emulation.Chipset"><value>Bộ vi mạch</value></data>
+  <data name="Emulation.CdDrive"><value>Ổ đĩa CD</value></data>
+  <data name="Emulation.FloppyDriveCount"><value>Số ổ đĩa mềm</value></data>
+  <data name="Emulation.HardDriveCount"><value>Số ổ đĩa cứng</value></data>
 </root>

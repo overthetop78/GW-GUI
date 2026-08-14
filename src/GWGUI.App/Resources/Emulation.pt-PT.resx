@@ -157,4 +157,8 @@
   <data name="Emulation.DetectControllers"><value>Detect controllers</value></data>
   <data name="Emulation.EmulatedAction"><value>Amiga action</value></data>
   <data name="Emulation.PhysicalControl"><value>Keyboard, mouse or controller control</value></data>
+  <data name="Emulation.Chipset"><value>Chipset</value></data>
+  <data name="Emulation.CdDrive"><value>Unidade de CD</value></data>
+  <data name="Emulation.FloppyDriveCount"><value>Número de unidades de disquete</value></data>
+  <data name="Emulation.HardDriveCount"><value>Número de discos rígidos</value></data>
 </root>
