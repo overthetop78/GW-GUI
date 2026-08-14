@@ -14,6 +14,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     private const uint JoypadMask = 256;
     private static readonly IReadOnlyDictionary<uint, EmulationKey> KeyboardMap = CreateKeyboardMap();
     private readonly Dictionary<string, string> _options = new(StringComparer.Ordinal);
+    private readonly HashSet<string> _configuredOptionKeys = new(StringComparer.Ordinal);
     private readonly Dictionary<string, nint> _nativeStrings = new(StringComparer.Ordinal);
     private readonly Stopwatch _clock = Stopwatch.StartNew();
     private EmulationPixelFormat _pixelFormat = EmulationPixelFormat.Rgb565;
@@ -40,7 +41,10 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
         SaveDirectory = Path.GetFullPath(saveDirectory);
         if (options is not null)
             foreach (var option in options)
+            {
                 _options[option.Key] = option.Value;
+                _configuredOptionKeys.Add(option.Key);
+            }
 
         Environment = HandleEnvironment;
         Video = HandleVideo;
@@ -84,6 +88,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     internal AmigaExternalApi.LogCallback Log { get; }
     internal int SampleRate { get; set; } = 44100;
     internal double FramesPerSecond { get; private set; } = 50;
+    internal bool SupportsNoGame { get; private set; }
     internal IReadOnlyList<AmigaCoreOption> OptionCatalog { get; private set; } = [];
     internal IReadOnlyList<string> Diagnostics => _diagnostics.ToArray();
 
@@ -117,6 +122,8 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
                 case AmigaExternalApi.GetInputBitmasks:
                     if (data != 0) Marshal.WriteByte(data, 1);
                     return true;
+                case AmigaExternalApi.SetMessage:
+                    return CaptureMessage(data, extended: false);
                 case AmigaExternalApi.SetPixelFormat:
                     _pixelFormat = Marshal.ReadInt32(data) switch
                     {
@@ -159,12 +166,20 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
                     return true;
                 case AmigaExternalApi.SetControllerInfo:
                 case AmigaExternalApi.SetMemoryMaps:
-                case AmigaExternalApi.SetSupportNoGame:
                 case AmigaExternalApi.SetSupportAchievements:
                 case AmigaExternalApi.SetCoreOptionsDisplay:
                 case AmigaExternalApi.SetCoreOptionsUpdateDisplayCallback:
-                case AmigaExternalApi.SetFastForwardingOverride:
                     return true;
+                case AmigaExternalApi.SetSupportNoGame:
+                    SupportsNoGame = data != 0 && Marshal.ReadByte(data) != 0;
+                    return true;
+                case AmigaExternalApi.GetMessageInterfaceVersion:
+                    if (data != 0) Marshal.WriteInt32(data, 1);
+                    return data != 0;
+                case AmigaExternalApi.SetMessageExtended:
+                    return CaptureMessage(data, extended: true);
+                case AmigaExternalApi.SetFastForwardingOverride:
+                    return false;
                 case AmigaExternalApi.SetGeometry:
                     return ApplyGeometry(data);
                 case AmigaExternalApi.SetSystemAvInfo:
@@ -248,6 +263,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
 
     private bool ReturnOption(nint data)
     {
+        if (data == 0) return true;
         var variable = Marshal.PtrToStructure<AmigaExternalApi.Variable>(data);
         var key = Marshal.PtrToStringUTF8(variable.Key);
         if (key is not null && _options.TryGetValue(key, out var value))
@@ -257,9 +273,34 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
             return true;
         }
 
-        variable.Value = 0;
-        Marshal.StructureToPtr(variable, data, false);
-        return false;
+        if (data != 0)
+        {
+            variable.Value = 0;
+            Marshal.StructureToPtr(variable, data, false);
+        }
+        return true;
+    }
+
+    internal void ValidateConfiguredOptions()
+    {
+        foreach (var key in _configuredOptionKeys)
+        {
+            if (key.Equals("puae_kickstart", StringComparison.Ordinal)) continue;
+            var configuredValue = _options[key];
+            var option = OptionCatalog.FirstOrDefault(item => item.Key.Equals(key, StringComparison.Ordinal));
+            if (option is null || option.Values.Count == 0) continue;
+            if (!option.Values.Any(value => value.Value.Equals(configuredValue, StringComparison.Ordinal)))
+                throw new InvalidDataException($"Invalid value '{configuredValue}' for Amiga option '{key}'.");
+        }
+    }
+
+    private bool CaptureMessage(nint data, bool extended)
+    {
+        if (data == 0) return false;
+        var textPointer = Marshal.ReadIntPtr(data);
+        var message = textPointer == 0 ? null : Marshal.PtrToStringUTF8(textPointer);
+        if (!string.IsNullOrWhiteSpace(message)) AddDiagnostic($"[message{(extended ? "-extended" : string.Empty)}] {message}");
+        return true;
     }
 
     private nint NativeString(string value)

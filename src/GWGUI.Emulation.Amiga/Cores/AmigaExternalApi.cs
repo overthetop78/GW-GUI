@@ -5,6 +5,7 @@ namespace GWGUI.Emulation.Amiga.Cores;
 internal static class AmigaExternalApi
 {
     internal const uint GetCanDuplicateFrames = 3;
+    internal const uint SetMessage = 6;
     internal const uint GetSystemDirectory = 9;
     internal const uint SetPixelFormat = 10;
     internal const uint SetInputDescriptors = 11;
@@ -29,6 +30,8 @@ internal static class AmigaExternalApi
     internal const uint SetCoreOptionsDisplay = 55;
     internal const uint GetDiskControlVersion = 57;
     internal const uint SetDiskControlExtended = 58;
+    internal const uint GetMessageInterfaceVersion = 59;
+    internal const uint SetMessageExtended = 60;
     internal const uint SetFastForwardingOverride = 64;
     internal const uint SetCoreOptionsV2 = 67;
     internal const uint SetCoreOptionsV2International = 68;
@@ -173,5 +176,12 @@ internal static class AmigaExternalApi
     internal struct KeyboardCallback
     {
         internal nint Callback;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct Message
+    {
+        internal nint Text;
+        internal uint Frames;
     }
 }

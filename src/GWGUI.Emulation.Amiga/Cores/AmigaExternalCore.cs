@@ -129,6 +129,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
             _serialize = Export<AmigaExternalApi.Serialize>("retro_serialize");
             _unserialize = Export<AmigaExternalApi.Serialize>("retro_unserialize");
             Export<AmigaExternalApi.VoidCall>("retro_init")();
+            _host.ValidateConfiguredOptions();
             var setController = Export<AmigaExternalApi.SetControllerPortDevice>("retro_set_controller_port_device");
             for (var port = 0; port < 6; port++)
             {
@@ -141,6 +142,8 @@ internal sealed class AmigaExternalCore : IAmigaCore
             AmigaExternalApi.LoadGame loadGame = Export<AmigaExternalApi.LoadGame>("retro_load_game");
             if (contentPath is null)
             {
+                if (!_host.SupportsNoGame)
+                    throw new InvalidOperationException("The Amiga core does not support starting without media.");
                 _gameLoaded = loadGame(0);
             }
             else

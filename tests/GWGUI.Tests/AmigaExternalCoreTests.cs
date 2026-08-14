@@ -168,6 +168,30 @@ public sealed class AmigaExternalCoreTests
     }
 
     [Fact]
+    public void InvalidConfiguredCoreOption_IsRejectedDuringInitialization()
+    {
+        var repository = FindRepositoryRoot();
+        var session = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-InvalidOption", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(session);
+        try
+        {
+            using var core = new AmigaExternalCore(Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll"));
+            var configuration = AmigaMachineConfiguration.A500(
+                Path.Combine(repository, "image_test", "Roms", "Bios", "Kickstart 1.3.rom")) with
+            {
+                Options = new Dictionary<string, string> { ["puae_floppy_write_protection"] = "definitely-invalid" }
+            };
+
+            var error = Assert.Throws<InvalidDataException>(() => core.Initialize(configuration, session));
+            Assert.Contains("puae_floppy_write_protection", error.Message, StringComparison.Ordinal);
+        }
+        finally
+        {
+            if (Directory.Exists(session)) Directory.Delete(session, true);
+        }
+    }
+
+    [Fact]
     public async Task Engine_RunsTwoIndependentA500Machines()
     {
         var repository = FindRepositoryRoot();

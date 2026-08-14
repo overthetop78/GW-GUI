@@ -101,7 +101,8 @@ public sealed class AmigaEmulationSection : UserControl
     }
 
     private void BrowseKickstart(object sender, RoutedEventArgs e) => Browse(_kickstart, "ROM|*.rom;*.bin|All files|*.*");
-    private void BrowseDisk(object sender, RoutedEventArgs e) => Browse(_disk, "Amiga disk|*.adf;*.adz;*.ipf;*.dms;*.hdf;*.lha;*.iso;*.cue|All files|*.*");
+    private void BrowseDisk(object sender, RoutedEventArgs e) => Browse(_disk,
+        "Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*");
 
     private static void Browse(TextBox target, string filter)
     {
@@ -116,7 +117,8 @@ public sealed class AmigaEmulationSection : UserControl
             _start.IsEnabled = false;
             if (_model.SelectedItem is not AmigaModel model) return;
             if (!File.Exists(_kickstart.Text)) throw new FileNotFoundException("Kickstart", _kickstart.Text);
-            if (_disk.Text.Length > 0 && !File.Exists(_disk.Text)) throw new FileNotFoundException("ADF", _disk.Text);
+            if (_disk.Text.Length > 0 && !File.Exists(_disk.Text) && !Directory.Exists(_disk.Text))
+                throw new FileNotFoundException("Amiga media", _disk.Text);
             var corePath = await AmigaCoreProvider.EnsureAvailableAsync();
             var engine = new AmigaEngine(StoragePaths.AmigaSessionsDirectory, corePath, () => new WasapiAudioOutput(),
                 configuration => Path.Combine(StoragePaths.AmigaConfigurationsDirectory,

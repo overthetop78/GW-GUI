@@ -82,7 +82,8 @@ public sealed class OptionsEmulationSection : UserControl
         AddPathField(form, 1, "Kickstart", _kickstart, "ROM|*.rom;*.bin|All files|*.*");
         AddPathField(form, 2, LocExtension.Get("Emulation.ExtendedRom"), _extendedRom, "ROM|*.rom;*.bin|All files|*.*");
         AddPathField(form, 3, LocExtension.Get("Emulation.RomKey"), _romKey, "ROM key|*.key|All files|*.*");
-        AddPathField(form, 4, LocExtension.Get("Emulation.InitialDisk"), _disk, "Amiga disk|*.adf;*.adz;*.ipf;*.dms;*.hdf;*.lha;*.iso;*.cue|All files|*.*");
+        AddPathField(form, 4, LocExtension.Get("Emulation.InitialDisk"), _disk,
+            "Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*");
         _audio.Content = LocExtension.Get("Emulation.Audio");
         AddField(form, 5, LocExtension.Get("Emulation.Audio"), _audio);
         for (var port = 0; port < 4; port++) AddField(form, 6 + port, LocExtension.Get("Emulation.Controller", port + 1), _controllers[port]);
@@ -221,7 +222,7 @@ public sealed class OptionsEmulationSection : UserControl
         ValidateOptionalFile(_kickstart.Text, required: true);
         ValidateOptionalFile(_extendedRom.Text);
         ValidateOptionalFile(_romKey.Text);
-        ValidateOptionalFile(_disk.Text);
+        ValidateOptionalMedia(_disk.Text);
         var options = _options.Where(item => !string.IsNullOrWhiteSpace(item.Key))
             .ToDictionary(item => item.Key.Trim(), item => item.Value?.Trim() ?? string.Empty, StringComparer.Ordinal);
         options["puae_model"] = model.Id;
@@ -299,6 +300,13 @@ public sealed class OptionsEmulationSection : UserControl
             return;
         }
         if (!File.Exists(value)) throw new FileNotFoundException(LocExtension.Get("Emulation.FileMissing"), value);
+    }
+
+    private static void ValidateOptionalMedia(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value)) return;
+        if (!File.Exists(value) && !Directory.Exists(value))
+            throw new FileNotFoundException(LocExtension.Get("Emulation.FileMissing"), value);
     }
 
     private Task OpenFirmwareFolder()
