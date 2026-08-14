@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>マシン</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>コア</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>{0}エミュレーションコア</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>ライブラリはGW GUIの外部に保持されます。選択したバージョンが現在インストールされているバージョンを置き換えます。</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>GW GUIが必要とするバージョン</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>利用可能な最新の公式バージョン</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>現在インストールされているバージョン</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>検索をクリックして公式Libretroサーバーを確認します。</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>バージョンを検索</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>ダウンロードして置換</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>利用可能なバージョンを検索中…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>公式バージョンが見つかりません。</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>{0}個のバージョンが利用可能です。</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>{0}をダウンロード中…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>インストール済みバージョン: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · インストール済み</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>バージョンがインストールされていません</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>開く</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>ようこそ</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>上で保存済みマシンを選択し、開くをクリックします。実行中の各マシンは個別のタブに表示されます。</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>保存済み構成をここで作成、選択、変更、削除できます。選択した構成を編集するには{0}タブを選択します。</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>一般</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>ビデオ</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>ストレージ</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>キーボード</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>マウス</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>コントローラー</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>詳細</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>デバイス識別子</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>コントローラー{0}のデバイス</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>{0}キー</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>ホストキー</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>プロセッサー: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>ビデオチップセット: {0}</value>
+  </data>
+</root>

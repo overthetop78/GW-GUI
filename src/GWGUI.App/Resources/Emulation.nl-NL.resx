@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>Machines</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>Kern</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>{0}-emulatiekern</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>De bibliotheek blijft buiten GW GUI. De geselecteerde versie vervangt de momenteel geïnstalleerde versie.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>Door GW GUI vereiste versie</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>Nieuwste beschikbare officiële versie</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>Momenteel geïnstalleerde versie</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>Klik op Zoeken om de officiële Libretro-server te raadplegen.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>Versies zoeken</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>Downloaden en vervangen</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>Beschikbare versies zoeken…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>Geen officiële versie gevonden.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>{0} versie(s) beschikbaar.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>{0} downloaden…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>Geïnstalleerde versie: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · geïnstalleerd</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>Geen versie geïnstalleerd</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>Openen</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>Welkom</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>Selecteer hierboven een opgeslagen machine en klik op Openen. Elke actieve machine verschijnt op een eigen tabblad.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>Maak, selecteer, wijzig of verwijder hier opgeslagen configuraties. Selecteer het tabblad {0} om de gekozen configuratie te bewerken.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>Algemeen</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>Video</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>Opslag</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>Toetsenbord</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>Muis</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>Controllers</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>Geavanceerd</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>Apparaat-id</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>Apparaat voor controller {0}</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>{0}-toets</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>Hosttoets</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>Processor: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip-RAM: {0} KiB\nSlow-RAM: {1} KiB\nFast-RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>Videochipset: {0}</value>
+  </data>
+</root>

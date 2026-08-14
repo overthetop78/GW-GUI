@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>머신</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>코어</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>{0} 에뮬레이션 코어</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>라이브러리는 GW GUI 외부에 유지됩니다. 선택한 버전이 현재 설치된 버전을 대체합니다.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>GW GUI에 필요한 버전</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>사용 가능한 최신 공식 버전</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>현재 설치된 버전</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>검색을 클릭하여 공식 Libretro 서버를 조회합니다.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>버전 검색</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>다운로드 및 교체</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>사용 가능한 버전 검색 중…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>공식 버전을 찾지 못했습니다.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>{0}개 버전을 사용할 수 있습니다.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>{0} 다운로드 중…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>설치된 버전: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · 설치됨</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>설치된 버전 없음</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>열기</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>환영합니다</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>위에서 저장된 머신을 선택하고 열기를 클릭하십시오. 실행 중인 각 머신은 자체 탭에 표시됩니다.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>여기에서 저장된 구성을 만들고, 선택하고, 수정하거나 삭제할 수 있습니다. 선택한 구성을 편집하려면 {0} 탭을 선택하십시오.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>일반</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>비디오</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>저장소</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>키보드</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>마우스</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>컨트롤러</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>고급</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>장치 식별자</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>컨트롤러 {0} 장치</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>{0} 키</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>호스트 키</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>프로세서: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>비디오 칩셋: {0}</value>
+  </data>
+</root>

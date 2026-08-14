@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>Μηχανές</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>Πυρήνας</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>Πυρήνας εξομοίωσης {0}</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>Η βιβλιοθήκη παραμένει έξω από το GW GUI. Η επιλεγμένη έκδοση αντικαθιστά την τρέχουσα εγκατεστημένη έκδοση.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>Έκδοση που απαιτείται από το GW GUI</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>Τελευταία διαθέσιμη επίσημη έκδοση</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>Τρέχουσα εγκατεστημένη έκδοση</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>Κάντε κλικ στην Αναζήτηση για έλεγχο του επίσημου διακομιστή Libretro.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>Αναζήτηση εκδόσεων</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>Λήψη και αντικατάσταση</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>Αναζήτηση διαθέσιμων εκδόσεων…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>Δεν βρέθηκε επίσημη έκδοση.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>{0} διαθέσιμες εκδόσεις.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>Λήψη του {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>Εγκατεστημένη έκδοση: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · εγκαταστάθηκε</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>Δεν υπάρχει εγκατεστημένη έκδοση</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>Άνοιγμα</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>Καλώς ορίσατε</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>Επιλέξτε παραπάνω μια αποθηκευμένη μηχανή και πατήστε Άνοιγμα. Κάθε μηχανή που εκτελείται εμφανίζεται στη δική της καρτέλα.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>Δημιουργήστε, επιλέξτε, τροποποιήστε ή διαγράψτε εδώ αποθηκευμένες ρυθμίσεις. Επιλέξτε την καρτέλα {0} για επεξεργασία της επιλεγμένης ρύθμισης.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>Γενικά</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>Βίντεο</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>Αποθήκευση</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>Πληκτρολόγιο</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>Ποντίκι</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>Χειριστήρια</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>Για προχωρημένους</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>Αναγνωριστικό συσκευής</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>Συσκευή χειριστηρίου {0}</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>Πλήκτρο {0}</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>Πλήκτρο κεντρικού υπολογιστή</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>Επεξεργαστής: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>Σύνολο κυκλωμάτων βίντεο: {0}</value>
+  </data>
+</root>

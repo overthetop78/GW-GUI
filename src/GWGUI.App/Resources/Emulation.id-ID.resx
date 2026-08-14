@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>Mesin</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>Inti</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>Inti emulasi {0}</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>Pustaka tetap berada di luar GW GUI. Versi yang dipilih menggantikan versi yang saat ini terpasang.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>Versi yang diperlukan GW GUI</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>Versi resmi terbaru yang tersedia</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>Versi yang saat ini terpasang</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>Klik Cari untuk memeriksa server resmi Libretro.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>Cari versi</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>Unduh dan ganti</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>Mencari versi yang tersedia…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>Tidak ada versi resmi yang ditemukan.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>{0} versi tersedia.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>Mengunduh {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>Versi terpasang: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · terpasang</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>Tidak ada versi terpasang</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>Buka</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>Selamat datang</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>Pilih mesin tersimpan di atas lalu klik Buka. Setiap mesin yang berjalan muncul di tab tersendiri.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>Buat, pilih, ubah, atau hapus konfigurasi tersimpan di sini. Pilih tab {0} untuk mengedit konfigurasi yang dipilih.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>Umum</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>Video</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>Penyimpanan</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>Papan ketik</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>Tetikus</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>Pengontrol</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>Lanjutan</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>Pengenal perangkat</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>Perangkat pengontrol {0}</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>Tombol {0}</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>Tombol host</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>Prosesor: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>Chipset video: {0}</value>
+  </data>
+</root>

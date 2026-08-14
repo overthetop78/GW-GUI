@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>Makineler</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>Çekirdek</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>{0} öykünme çekirdeği</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>Kitaplık GW GUI dışında kalır. Seçilen sürüm, şu anda yüklü sürümün yerini alır.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>GW GUI tarafından gereken sürüm</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>Kullanılabilir en son resmî sürüm</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>Şu anda yüklü sürüm</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>Resmî Libretro sunucusunu sorgulamak için Ara düğmesine tıklayın.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>Sürümleri ara</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>İndir ve değiştir</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>Kullanılabilir sürümler aranıyor…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>Resmî sürüm bulunamadı.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>{0} sürüm kullanılabilir.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>{0} indiriliyor…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>Yüklü sürüm: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · yüklendi</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>Yüklü sürüm yok</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>Aç</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>Hoş geldiniz</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>Yukarıdan kaydedilmiş bir makine seçip Aç düğmesine tıklayın. Çalışan her makine kendi sekmesinde görünür.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>Kaydedilmiş yapılandırmaları burada oluşturun, seçin, değiştirin veya silin. Seçili yapılandırmayı düzenlemek için {0} sekmesini seçin.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>Genel</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>Video</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>Depolama</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>Klavye</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>Fare</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>Denetleyiciler</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>Gelişmiş</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>Aygıt kimliği</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>Denetleyici {0} aygıtı</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>{0} tuşu</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>Ana makine tuşu</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>İşlemci: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>Video yonga seti: {0}</value>
+  </data>
+</root>

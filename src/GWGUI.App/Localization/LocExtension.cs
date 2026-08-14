@@ -13,7 +13,7 @@ public sealed class LocExtension(string key) : MarkupExtension
     [
         "Common", "Actions", "Errors", "Shell", "Menus", "Read", "Write", "Conversion",
         "Visualizer", "Explorer", "ExplorerWarnings", "Formats", "Advanced", "Tools", "Hardware", "HostTools",
-        "Options", "Profiles", "Logs", "About"
+        "Options", "Emulation", "Profiles", "Logs", "About"
     ];
 
     private static readonly IReadOnlyDictionary<string, ResourceManager> ResourcesByKey = BuildResourceIndex();

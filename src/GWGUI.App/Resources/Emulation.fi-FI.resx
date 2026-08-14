@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>Koneet</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>Ydin</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>{0}-emulointiydin</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>Kirjasto pysyy GW GUI:n ulkopuolella. Valittu versio korvaa tällä hetkellä asennetun version.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>GW GUI:n vaatima versio</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>Uusin saatavilla oleva virallinen versio</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>Tällä hetkellä asennettu versio</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>Kysy viralliselta Libretro-palvelimelta napsauttamalla Hae.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>Hae versioita</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>Lataa ja korvaa</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>Haetaan saatavilla olevia versioita…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>Virallista versiota ei löytynyt.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>Saatavilla olevia versioita: {0}.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>Ladataan {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>Asennettu versio: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · asennettu</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>Versiota ei ole asennettu</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>Avaa</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>Tervetuloa</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>Valitse yllä tallennettu kone ja napsauta Avaa. Jokainen käynnissä oleva kone näkyy omalla välilehdellään.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>Luo, valitse, muokkaa tai poista tallennettuja kokoonpanoja tässä. Muokkaa valittua kokoonpanoa {0}-välilehdellä.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>Yleiset</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>Video</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>Tallennus</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>Näppäimistö</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>Hiiri</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>Ohjaimet</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>Lisäasetukset</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>Laitteen tunniste</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>Ohjaimen {0} laite</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>{0}-näppäin</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>Isäntänäppäin</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>Suoritin: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>Videopiirisarja: {0}</value>
+  </data>
+</root>

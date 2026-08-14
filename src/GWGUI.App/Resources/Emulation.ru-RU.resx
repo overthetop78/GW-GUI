@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>Машины</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>Ядро</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>Ядро эмуляции {0}</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>Библиотека остаётся вне GW GUI. Выбранная версия заменяет установленную сейчас.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>Версия, требуемая GW GUI</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>Последняя доступная официальная версия</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>Установленная сейчас версия</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>Нажмите «Поиск», чтобы обратиться к официальному серверу Libretro.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>Найти версии</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>Скачать и заменить</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>Поиск доступных версий…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>Официальная версия не найдена.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>Доступно версий: {0}.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>Загрузка {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>Установленная версия: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · установлена</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>Версия не установлена</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>Открыть</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>Добро пожаловать</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>Выберите выше сохранённую машину и нажмите «Открыть». Каждая запущенная машина появится на отдельной вкладке.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>Здесь можно создавать, выбирать, изменять и удалять сохранённые конфигурации. Для изменения выбранной конфигурации откройте вкладку {0}.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>Общие</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>Видео</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>Хранилище</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>Клавиатура</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>Мышь</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>Контроллеры</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>Дополнительно</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>Идентификатор устройства</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>Устройство контроллера {0}</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>Клавиша {0}</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>Клавиша хоста</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>Процессор: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} КиБ\nSlow RAM: {1} КиБ\nFast RAM: {2} МиБ</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>Видеочипсет: {0}</value>
+  </data>
+</root>

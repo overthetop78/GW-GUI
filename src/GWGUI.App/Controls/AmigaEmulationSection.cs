@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Automation;
@@ -6,192 +5,146 @@ using System.Windows.Controls;
 using GWGUI.App.Localization;
 using GWGUI.App.Services;
 using GWGUI.Emulation.Amiga;
-using Microsoft.Win32;
 
 namespace GWGUI.App.Controls;
 
 public sealed class AmigaEmulationSection : UserControl
 {
-    private readonly ComboBox _model = new() { DisplayMemberPath = nameof(AmigaModel.DisplayName) };
     private readonly ComboBox _configuration = new() { DisplayMemberPath = nameof(ConfigurationItem.DisplayName) };
-    private readonly TextBox _kickstart = new();
-    private readonly TextBox _disk = new();
-    private readonly Button _start = new() { MinWidth = 110 };
-    private readonly Button _firmwareFolder = new() { MinWidth = 130 };
-    private readonly Button _configure = new() { MinWidth = 130 };
-    private readonly Button _refresh = new() { MinWidth = 110 };
+    private readonly Button _open = new() { MinWidth = 130 };
     private readonly TabControl _machines = new();
+    private readonly Dictionary<Guid, TabItem> _openMachines = [];
 
     public AmigaEmulationSection()
     {
-        AutomationProperties.SetName(_model, "Amiga model");
         AutomationProperties.SetName(_configuration, "Amiga configuration");
-        AutomationProperties.SetName(_kickstart, "Amiga Kickstart");
-        AutomationProperties.SetName(_disk, "Amiga disk image");
-        AutomationProperties.SetName(_start, "Start Amiga");
-        AutomationProperties.SetName(_firmwareFolder, "Open Amiga firmware folder");
-        AutomationProperties.SetName(_configure, "Configure Amiga machines");
-        AutomationProperties.SetName(_refresh, "Refresh Amiga configurations");
-        AutomationProperties.SetName(_machines, "Running Amiga machines");
-        _model.ItemsSource = AmigaModelCatalog.All;
-        _model.SelectedItem = AmigaModelCatalog.Get("A500");
-        _configuration.SelectionChanged += ConfigurationSelected;
-        _start.Content = LocExtension.Get("Common.Execute");
-        _firmwareFolder.Content = "Firmware";
-        _configure.Content = LocExtension.Get("Emulation.Configurations");
-        _refresh.Content = LocExtension.Get("Common.Refresh");
-        _start.Click += StartClick;
-        _firmwareFolder.Click += OpenFirmwareFolder;
-        _configure.Click += (_, _) => ConfigurationRequested?.Invoke(this, EventArgs.Empty);
-        _refresh.Click += async (_, _) => await ReloadConfigurationsAsync();
+        AutomationProperties.SetName(_open, "Open selected Amiga configuration");
+        AutomationProperties.SetName(_machines, "Open emulated machines");
+        _open.Content = LocExtension.Get("Emulation.OpenMachine");
+        _open.Click += OpenSelectedMachine;
 
         var root = new Grid { Margin = new Thickness(16) };
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         root.RowDefinitions.Add(new RowDefinition());
-        var setup = new Grid { Margin = new Thickness(0, 0, 0, 12) };
-        setup.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(150) });
-        setup.ColumnDefinitions.Add(new ColumnDefinition());
-        setup.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-        setup.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-        setup.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        setup.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        setup.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        setup.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        AddRow(setup, 0, LocExtension.Get("Emulation.Configuration"), _configuration, null);
-        AddRow(setup, 1, LocExtension.Get("Emulation.Model"), _model, null);
-        AddRow(setup, 2, "Kickstart", _kickstart, BrowseKickstart);
-        AddRow(setup, 3, "Média Amiga", _disk, BrowseDisk);
-        Grid.SetColumn(_firmwareFolder, 3); Grid.SetRow(_firmwareFolder, 1); setup.Children.Add(_firmwareFolder);
-        Grid.SetColumn(_configure, 3); Grid.SetRow(_configure, 0); setup.Children.Add(_configure);
-        Grid.SetColumn(_refresh, 3); Grid.SetRow(_refresh, 2); setup.Children.Add(_refresh);
-        Grid.SetColumn(_start, 3); Grid.SetRow(_start, 3); setup.Children.Add(_start);
-        var setupCard = new Border { Child = setup };
-        setupCard.SetResourceReference(StyleProperty, "Card");
-        root.Children.Add(setupCard);
-        Grid.SetRow(_machines, 1); root.Children.Add(_machines);
-        Content = root;
-        Loaded += async (_, _) =>
+
+        var selector = new Grid { Margin = new Thickness(0, 0, 0, 12) };
+        selector.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(150) });
+        selector.ColumnDefinitions.Add(new ColumnDefinition());
+        selector.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        var label = new TextBlock
         {
-            await ReloadConfigurationsAsync();
-            LoadDefaultFirmware();
+            Text = LocExtension.Get("Emulation.Configuration"),
+            VerticalAlignment = VerticalAlignment.Center,
+            Margin = new Thickness(0, 5, 12, 5),
+            FontWeight = FontWeights.SemiBold
         };
-    }
+        selector.Children.Add(label);
+        _configuration.Margin = new Thickness(0, 4, 8, 4);
+        Grid.SetColumn(_configuration, 1);
+        selector.Children.Add(_configuration);
+        _open.Margin = new Thickness(0, 4, 0, 4);
+        Grid.SetColumn(_open, 2);
+        selector.Children.Add(_open);
+        var selectorCard = new Border { Child = selector };
+        selectorCard.SetResourceReference(StyleProperty, "Card");
+        root.Children.Add(selectorCard);
 
-    public event EventHandler? ConfigurationRequested;
-
-    private static void AddRow(Grid grid, int row, string label, Control input, RoutedEventHandler? browse)
-    {
-        var text = new TextBlock { Text = label, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 5, 12, 5) };
-        Grid.SetRow(text, row); grid.Children.Add(text);
-        input.Margin = new Thickness(0, 4, 8, 4); input.HorizontalAlignment = HorizontalAlignment.Stretch; Grid.SetRow(input, row); Grid.SetColumn(input, 1); grid.Children.Add(input);
-        if (browse is null) return;
-        var button = new Button { Content = LocExtension.Get("Common.Browse"), MinWidth = 100, Margin = new Thickness(0, 4, 8, 4) };
-        button.Click += browse; Grid.SetRow(button, row); Grid.SetColumn(button, 2); grid.Children.Add(button);
-    }
-
-    private void LoadDefaultFirmware()
-    {
-        Directory.CreateDirectory(StoragePaths.AmigaFirmwareDirectory);
-        if (_kickstart.Text.Length > 0) return;
-        var firmware = new AmigaFirmwareCatalog(StoragePaths.AmigaFirmwareDirectory).Scan()
-            .FirstOrDefault(entry => entry.Type is AmigaFirmwareType.Kickstart or AmigaFirmwareType.Unknown);
-        if (firmware is not null) _kickstart.Text = firmware.Path;
+        _machines.Items.Add(new TabItem
+        {
+            Header = LocExtension.Get("Emulation.WelcomeTab"),
+            Content = new TextBlock
+            {
+                Text = LocExtension.Get("Emulation.WelcomeText"),
+                TextWrapping = TextWrapping.Wrap,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                MaxWidth = 680,
+                TextAlignment = TextAlignment.Center,
+                FontSize = 18,
+                Margin = new Thickness(32)
+            }
+        });
+        Grid.SetRow(_machines, 1);
+        root.Children.Add(_machines);
+        Content = root;
+        Loaded += async (_, _) => await ReloadConfigurationsAsync();
     }
 
     public async Task ReloadConfigurationsAsync()
     {
         var selectedId = (_configuration.SelectedItem as ConfigurationItem)?.Configuration.Id;
-        var configurations = await new AmigaConfigurationStore(StoragePaths.AmigaConfigurationsDirectory, StoragePaths.DataDirectory).LoadAllAsync();
+        var configurations = await new AmigaConfigurationStore(StoragePaths.AmigaConfigurationsDirectory,
+            StoragePaths.DataDirectory).LoadAllAsync();
         _configuration.ItemsSource = configurations.Select(configuration => new ConfigurationItem(configuration)).ToArray();
         _configuration.SelectedItem = _configuration.Items.OfType<ConfigurationItem>()
             .FirstOrDefault(item => item.Configuration.Id == selectedId)
             ?? _configuration.Items.OfType<ConfigurationItem>().FirstOrDefault();
+        _open.IsEnabled = _configuration.SelectedItem is not null;
     }
 
-    private void ConfigurationSelected(object sender, SelectionChangedEventArgs e)
+    private async void OpenSelectedMachine(object sender, RoutedEventArgs e)
     {
-        if (_configuration.SelectedItem is not ConfigurationItem item) return;
-        var configuration = item.Configuration;
-        _model.SelectedItem = AmigaModelCatalog.All.FirstOrDefault(model => model.Id == configuration.Model) ?? AmigaModelCatalog.Get("A500");
-        _kickstart.Text = configuration.KickstartPath;
-        _disk.Text = configuration.Media?.FirstOrDefault()?.Path ?? configuration.InitialDiskPath ?? string.Empty;
-    }
+        if (_configuration.SelectedItem is not ConfigurationItem selected) return;
+        if (_openMachines.TryGetValue(selected.Configuration.Id, out var existing))
+        {
+            _machines.SelectedItem = existing;
+            return;
+        }
 
-    private void BrowseKickstart(object sender, RoutedEventArgs e) => Browse(_kickstart, "ROM|*.rom;*.bin|All files|*.*");
-    private void BrowseDisk(object sender, RoutedEventArgs e) => Browse(_disk,
-        "Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*");
-
-    private static void Browse(TextBox target, string filter)
-    {
-        var dialog = new OpenFileDialog { Filter = filter, CheckFileExists = true };
-        if (dialog.ShowDialog() == true) target.Text = dialog.FileName;
-    }
-
-    private async void StartClick(object sender, RoutedEventArgs e)
-    {
         try
         {
-            _start.IsEnabled = false;
-            if (_model.SelectedItem is not AmigaModel model) return;
-            if (!File.Exists(_kickstart.Text)) throw new FileNotFoundException("Kickstart", _kickstart.Text);
-            if (_disk.Text.Length > 0 && !File.Exists(_disk.Text) && !Directory.Exists(_disk.Text))
-                throw new FileNotFoundException("Amiga media", _disk.Text);
+            _open.IsEnabled = false;
+            ValidateConfiguration(selected.Configuration);
             var corePath = await AmigaCoreProvider.EnsureAvailableAsync();
-            var engine = new AmigaEngine(StoragePaths.AmigaSessionsDirectory, corePath, () => new WasapiAudioOutput(),
+            var engine = new AmigaEngine(StoragePaths.AmigaSessionsDirectory, corePath,
+                () => new WasapiAudioOutput(),
                 configuration => Path.Combine(StoragePaths.AmigaConfigurationsDirectory,
                     configuration.Id.ToString("N"), "Saves"), Environment.ProcessPath);
-            var saved = (_configuration.SelectedItem as ConfigurationItem)?.Configuration;
-            var media = saved?.Media;
-            var floppies = saved?.Floppies;
-            var selectedPath = string.IsNullOrWhiteSpace(_disk.Text) ? null : Path.GetFullPath(_disk.Text);
-            if (media is { Count: > 0 } && !string.Equals(Path.GetFullPath(media[0].Path),
-                    selectedPath, StringComparison.OrdinalIgnoreCase))
-                media = null;
-            if (media is null && floppies is { Count: > 0 }
-                && !string.Equals(Path.GetFullPath(floppies[0].Path), selectedPath, StringComparison.OrdinalIgnoreCase))
-                floppies = null;
-            var options = new Dictionary<string, string>(saved?.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal)
-            {
-                ["puae_model"] = model.Id
-            };
-            var configuration = new AmigaMachineConfiguration(model.Id, _kickstart.Text,
-                string.IsNullOrWhiteSpace(_disk.Text) ? null : _disk.Text,
-                saved?.ExtendedRomPath, saved?.RomKeyPath, saved?.Core ?? AmigaCoreKind.External,
-                options, saved?.Id ?? Guid.NewGuid(), saved?.AudioEnabled ?? true, saved?.Controllers, saved?.Input,
-                floppies, saved?.MountFloppiesInSeparateDrives ?? false, Media: media);
-            var machine = engine.CreateAmigaMachine(configuration);
+            var machine = engine.CreateAmigaMachine(selected.Configuration);
             var view = new AmigaMachineView(machine);
-            var tab = new TabItem { Header = model.DisplayName, Content = view };
-            view.CloseRequested += async (_, _) => { await view.StopAsync(); _machines.Items.Remove(tab); };
+            var tab = new TabItem { Header = selected.DisplayName, Content = view };
+            _openMachines.Add(selected.Configuration.Id, tab);
+            view.CloseRequested += async (_, _) =>
+            {
+                await view.StopAsync();
+                _openMachines.Remove(selected.Configuration.Id);
+                _machines.Items.Remove(tab);
+            };
             _machines.Items.Add(tab);
             _machines.SelectedItem = tab;
             try { await view.StartAsync(); }
             catch
             {
                 await view.StopAsync();
+                _openMachines.Remove(selected.Configuration.Id);
                 _machines.Items.Remove(tab);
                 throw;
             }
         }
         catch (Exception error)
         {
-            var logPath = ErrorLog.Write(error, "Amiga emulator");
+            var logPath = ErrorLog.Write(error, "Opening an Amiga configuration");
             var detail = logPath is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", logPath);
-            MessageBox.Show(Window.GetWindow(this), LocExtension.Get("Error.Unexpected", detail), "Amiga", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(Window.GetWindow(this), LocExtension.Get("Error.Unexpected", detail), "Amiga",
+                MessageBoxButton.OK, MessageBoxImage.Error);
         }
-        finally { _start.IsEnabled = true; }
+        finally { _open.IsEnabled = _configuration.SelectedItem is not null; }
     }
 
-    private void OpenFirmwareFolder(object sender, RoutedEventArgs e)
+    private static void ValidateConfiguration(AmigaMachineConfiguration configuration)
     {
-        Directory.CreateDirectory(StoragePaths.AmigaFirmwareDirectory);
-        Process.Start(new ProcessStartInfo(StoragePaths.AmigaFirmwareDirectory) { UseShellExecute = true });
+        if (!File.Exists(configuration.KickstartPath))
+            throw new FileNotFoundException("Kickstart", configuration.KickstartPath);
+        var media = configuration.Media?.FirstOrDefault()?.Path ?? configuration.InitialDiskPath;
+        if (!string.IsNullOrWhiteSpace(media) && !File.Exists(media) && !Directory.Exists(media))
+            throw new FileNotFoundException("Amiga media", media);
     }
 
     public async Task StopAllAsync()
     {
-        foreach (var view in _machines.Items.OfType<TabItem>().Select(item => item.Content).OfType<AmigaMachineView>().ToArray())
+        foreach (var view in _openMachines.Values.Select(item => item.Content).OfType<AmigaMachineView>().ToArray())
             await view.StopAsync();
+        _openMachines.Clear();
     }
 
     private sealed record ConfigurationItem(AmigaMachineConfiguration Configuration)

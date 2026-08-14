@@ -122,7 +122,7 @@ public sealed class AmigaConfigurationTests
     }
 
     [Fact]
-    public void ExternalCoreInstaller_OnlyAcceptsPinnedLibrary()
+    public void ExternalCoreInstaller_AcceptsTheInstalledWindowsX64Library()
     {
         var repository = FindRepositoryRoot();
         var source = Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll");
@@ -134,7 +134,15 @@ public sealed class AmigaConfigurationTests
             using var client = new HttpClient();
             var installer = new AmigaExternalCoreInstaller(client, directory);
             Assert.True(installer.IsInstalled);
-            using (var stream = new FileStream(installer.LibraryPath, FileMode.Append, FileAccess.Write)) stream.WriteByte(0);
+            using (var stream = new FileStream(installer.LibraryPath, FileMode.Open, FileAccess.ReadWrite))
+            {
+                using var reader = new BinaryReader(stream, System.Text.Encoding.UTF8, leaveOpen: true);
+                stream.Position = 0x3c;
+                var peOffset = reader.ReadInt32();
+                stream.Position = peOffset + 4;
+                stream.WriteByte(0x4c);
+                stream.WriteByte(0x01);
+            }
             Assert.False(installer.IsInstalled);
         }
         finally
@@ -144,23 +152,19 @@ public sealed class AmigaConfigurationTests
     }
 
     [Fact]
-    public async Task ExternalCoreInstaller_UsesPinnedFallbackAndValidatesTheLibrary()
+    public async Task ExternalCoreInstaller_ExtractsAndValidatesOfficialPinnedArchive()
     {
-        Assert.DoesNotContain("latest", AmigaExternalCoreInstaller.DownloadUrl, StringComparison.OrdinalIgnoreCase);
-        Assert.DoesNotContain("latest", AmigaExternalCoreInstaller.FallbackDownloadUrl, StringComparison.OrdinalIgnoreCase);
         var repository = FindRepositoryRoot();
-        var bytes = await File.ReadAllBytesAsync(Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll"));
-        var handler = new CoreDownloadHandler(bytes);
-        using var client = new HttpClient(handler);
+        var archive = await File.ReadAllBytesAsync(Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll.zip"));
+        using var client = new HttpClient(new StaticDownloadHandler(archive));
         var directory = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Core", Guid.NewGuid().ToString("N"));
         try
         {
             var installer = new AmigaExternalCoreInstaller(client, directory);
             var installed = await installer.InstallAsync();
             Assert.True(installer.IsInstalled);
-            Assert.Equal(2, handler.RequestCount);
             Assert.Equal(AmigaExternalCoreInstaller.LibrarySize, new FileInfo(installed).Length);
-            Assert.Contains(AmigaExternalCoreInstaller.FallbackDownloadUrl,
+            Assert.Contains(AmigaExternalCoreInstaller.DownloadUrl,
                 await File.ReadAllTextAsync(Path.Combine(directory, "core.json")), StringComparison.Ordinal);
         }
         finally
@@ -176,16 +180,9 @@ public sealed class AmigaConfigurationTests
         return directory?.FullName ?? throw new DirectoryNotFoundException("GWGUI repository root not found.");
     }
 
-    private sealed class CoreDownloadHandler(byte[] library) : HttpMessageHandler
+    private sealed class StaticDownloadHandler(byte[] content) : HttpMessageHandler
     {
-        public int RequestCount { get; private set; }
-
-        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
-        {
-            RequestCount++;
-            return Task.FromResult(RequestCount == 1
-                ? new HttpResponseMessage(HttpStatusCode.ServiceUnavailable)
-                : new HttpResponseMessage(HttpStatusCode.OK) { Content = new ByteArrayContent(library) });
-        }
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) =>
+            Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK) { Content = new ByteArrayContent(content) });
     }
 }

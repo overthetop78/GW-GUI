@@ -212,11 +212,6 @@ public partial class MainWindow : Window
         _runner = runner ?? new GreaseweazleRunner();
         _hardwareRegistry = hardwareRegistry ?? new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), _runner, _commandBuilder);
         _navigation = navigation ?? new WpfWindowNavigationService(this, _hostTools, _runner, _commandBuilder);
-        AmigaEmulationBlock.ConfigurationRequested += async (_, _) =>
-        {
-            _navigation.ShowOptions(_settings, OptionsSection.Emulation);
-            await AmigaEmulationBlock.ReloadConfigurationsAsync();
-        };
         _viewModel = new MainWindowViewModel(LocExtension.Get("Hardware.NotConfigured"), LocExtension.Get("Status.ReadyShort"));
         _progress = new OperationProgressController(_viewModel, Face0TrackProgress, Face1TrackProgress,
             (key, arguments) => LocExtension.Get(key, arguments));

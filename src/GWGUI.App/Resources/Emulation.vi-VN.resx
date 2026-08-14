@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>Máy</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>Lõi</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>Lõi giả lập {0}</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>Thư viện vẫn nằm bên ngoài GW GUI. Phiên bản được chọn sẽ thay thế phiên bản hiện đang cài đặt.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>Phiên bản GW GUI yêu cầu</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>Phiên bản chính thức mới nhất hiện có</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>Phiên bản hiện đang cài đặt</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>Nhấp Tìm kiếm để truy vấn máy chủ Libretro chính thức.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>Tìm phiên bản</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>Tải xuống và thay thế</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>Đang tìm các phiên bản hiện có…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>Không tìm thấy phiên bản chính thức.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>Có {0} phiên bản.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>Đang tải {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>Phiên bản đã cài đặt: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · đã cài đặt</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>Chưa cài đặt phiên bản nào</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>Mở</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>Chào mừng</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>Chọn một máy đã lưu ở trên rồi nhấp Mở. Mỗi máy đang chạy xuất hiện trong một thẻ riêng.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>Tạo, chọn, sửa đổi hoặc xóa cấu hình đã lưu tại đây. Chọn thẻ {0} để chỉnh sửa cấu hình đã chọn.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>Chung</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>Video</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>Lưu trữ</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>Bàn phím</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>Chuột</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>Bộ điều khiển</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>Nâng cao</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>Mã định danh thiết bị</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>Thiết bị bộ điều khiển {0}</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>Phím {0}</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>Phím máy chủ</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>Bộ xử lý: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>Chipset video: {0}</value>
+  </data>
+</root>

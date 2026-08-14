@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>מכונות</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>ליבה</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>ליבת הדמיית {0}</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>הספרייה נשארת מחוץ ל-GW GUI. הגרסה שנבחרה מחליפה את הגרסה המותקנת כעת.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>הגרסה הנדרשת על ידי GW GUI</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>הגרסה הרשמית האחרונה הזמינה</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>הגרסה המותקנת כעת</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>לחץ על חיפוש כדי לפנות לשרת Libretro הרשמי.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>חיפוש גרסאות</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>הורדה והחלפה</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>מחפש גרסאות זמינות…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>לא נמצאה גרסה רשמית.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>{0} גרסאות זמינות.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>מוריד את {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>גרסה מותקנת: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · מותקנת</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>אין גרסה מותקנת</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>פתיחה</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>ברוכים הבאים</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>בחר מכונה שמורה למעלה ולחץ על פתיחה. כל מכונה פועלת מופיעה בכרטיסייה נפרדת.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>כאן ניתן ליצור, לבחור, לשנות או למחוק תצורות שמורות. בחר בכרטיסייה {0} כדי לערוך את התצורה שנבחרה.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>כללי</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>וידאו</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>אחסון</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>מקלדת</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>עכבר</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>בקרים</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>מתקדם</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>מזהה התקן</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>התקן בקר {0}</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>מקש {0}</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>מקש מארח</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>מעבד: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>ערכת שבבי וידאו: {0}</value>
+  </data>
+</root>

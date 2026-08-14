@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>الأجهزة</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>النواة</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>نواة محاكاة {0}</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>تظل المكتبة خارج GW GUI. يحل الإصدار المحدد محل الإصدار المثبت حاليًا.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>الإصدار المطلوب من GW GUI</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>أحدث إصدار رسمي متاح</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>الإصدار المثبت حاليًا</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>انقر فوق بحث للاستعلام من خادم Libretro الرسمي.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>البحث عن الإصدارات</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>تنزيل واستبدال</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>جارٍ البحث عن الإصدارات المتاحة…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>لم يتم العثور على إصدار رسمي.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>يتوفر {0} إصدار.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>جارٍ تنزيل {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>الإصدار المثبت: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · مثبت</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>لا يوجد إصدار مثبت</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>فتح</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>مرحبًا</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>حدد جهازًا محفوظًا أعلاه وانقر فوق فتح. يظهر كل جهاز قيد التشغيل في علامة تبويب منفصلة.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>يمكنك هنا إنشاء التكوينات المحفوظة أو تحديدها أو تعديلها أو حذفها. حدد علامة تبويب {0} لتحرير التكوين المحدد.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>عام</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>فيديو</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>التخزين</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>لوحة المفاتيح</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>الماوس</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>وحدات التحكم</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>متقدم</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>معرّف الجهاز</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>جهاز وحدة التحكم {0}</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>مفتاح {0}</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>مفتاح المضيف</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>المعالج: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>مجموعة شرائح الفيديو: {0}</value>
+  </data>
+</root>

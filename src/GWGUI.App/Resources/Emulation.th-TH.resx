@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>เครื่อง</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>คอร์</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>คอร์จำลอง {0}</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>ไลบรารียังคงอยู่ภายนอก GW GUI รุ่นที่เลือกจะแทนที่รุ่นที่ติดตั้งอยู่ในขณะนี้</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>รุ่นที่ GW GUI ต้องการ</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>รุ่นทางการล่าสุดที่มี</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>รุ่นที่ติดตั้งอยู่ในขณะนี้</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>คลิก ค้นหา เพื่อสอบถามเซิร์ฟเวอร์ Libretro ทางการ</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>ค้นหารุ่น</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>ดาวน์โหลดและแทนที่</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>กำลังค้นหารุ่นที่มี…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>ไม่พบรุ่นทางการ</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>มี {0} รุ่น</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>กำลังดาวน์โหลด {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>รุ่นที่ติดตั้ง: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · ติดตั้งแล้ว</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>ไม่มีรุ่นที่ติดตั้ง</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>เปิด</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>ยินดีต้อนรับ</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>เลือกเครื่องที่บันทึกไว้ด้านบนแล้วคลิก เปิด เครื่องแต่ละเครื่องที่กำลังทำงานจะแสดงในแท็บของตนเอง</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>สร้าง เลือก แก้ไข หรือลบการกำหนดค่าที่บันทึกไว้ที่นี่ เลือกแท็บ {0} เพื่อแก้ไขการกำหนดค่าที่เลือก</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>ทั่วไป</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>วิดีโอ</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>ที่เก็บข้อมูล</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>แป้นพิมพ์</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>เมาส์</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>ตัวควบคุม</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>ขั้นสูง</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>รหัสอุปกรณ์</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>อุปกรณ์ตัวควบคุม {0}</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>ปุ่ม {0}</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>ปุ่มโฮสต์</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>ตัวประมวลผล: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>ชิปเซ็ตวิดีโอ: {0}</value>
+  </data>
+</root>

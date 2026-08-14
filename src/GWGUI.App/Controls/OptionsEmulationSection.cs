@@ -33,6 +33,14 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly DataGrid _optionGrid = new() { AutoGenerateColumns = false, CanUserAddRows = true, CanUserDeleteRows = true };
     private readonly DataGrid _floppyGrid = new() { AutoGenerateColumns = false, CanUserAddRows = true, CanUserDeleteRows = true };
     private readonly CheckBox _multiDrive = new();
+    private readonly TextBlock _cpuSummary = new() { TextWrapping = TextWrapping.Wrap };
+    private readonly TextBlock _ramSummary = new() { TextWrapping = TextWrapping.Wrap };
+    private readonly TextBlock _videoSummary = new() { TextWrapping = TextWrapping.Wrap };
+    private readonly TextBox _mouseDevice = new();
+    private readonly CheckBox _captureMouse = new() { IsChecked = true };
+    private readonly TextBox[] _controllerDevices = Enumerable.Range(0, 4).Select(_ => new TextBox()).ToArray();
+    private readonly ObservableCollection<KeyMappingItem> _keyboardMappings = [];
+    private readonly DataGrid _keyboardGrid = new() { AutoGenerateColumns = false, CanUserAddRows = true, CanUserDeleteRows = true };
     private Guid _currentId;
     private bool _loading;
     private IReadOnlyList<AmigaMediaConfiguration>? _loadedMedia;
@@ -40,81 +48,195 @@ public sealed class OptionsEmulationSection : UserControl
     public OptionsEmulationSection()
     {
         ConfigureGrids();
-        var root = new Grid { Margin = new Thickness(12) };
-        root.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(280) });
-        root.ColumnDefinitions.Add(new ColumnDefinition());
-
-        var left = new Grid { Margin = new Thickness(0, 0, 12, 0) };
-        left.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        left.RowDefinitions.Add(new RowDefinition());
-        left.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        left.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        left.RowDefinitions.Add(new RowDefinition());
-        var configurationsLabel = new TextBlock { Text = LocExtension.Get("Emulation.Configurations"), FontWeight = FontWeights.SemiBold, Margin = new Thickness(0, 0, 0, 6) };
-        left.Children.Add(configurationsLabel);
-        var leftButtons = new WrapPanel { Margin = new Thickness(0, 8, 0, 0) };
-        AddButton(leftButtons, "Common.New", NewConfiguration);
-        AddButton(leftButtons, "Common.Delete", DeleteConfigurationAsync);
-        Grid.SetRow(leftButtons, 2);
-        left.Children.Add(leftButtons);
         _list.ItemsSource = _configurations;
         _list.DisplayMemberPath = nameof(ConfigurationItem.DisplayName);
         _list.SelectionChanged += ConfigurationSelected;
-        Grid.SetRow(_list, 1);
-        left.Children.Add(_list);
-        var firmwareLabel = new TextBlock { Text = LocExtension.Get("Emulation.Firmware"), FontWeight = FontWeights.SemiBold, Margin = new Thickness(0, 12, 0, 6) };
-        Grid.SetRow(firmwareLabel, 3); left.Children.Add(firmwareLabel);
         _firmwareList.ItemsSource = _firmware;
         _firmwareList.DisplayMemberPath = nameof(FirmwareItem.DisplayName);
         _firmwareList.SelectionChanged += FirmwareSelected;
-        Grid.SetRow(_firmwareList, 4); left.Children.Add(_firmwareList);
-        root.Children.Add(left);
+        _model.SelectionChanged += (_, _) => RefreshModelSummaries();
+        _optionGrid.ItemsSource = _options;
+        _floppyGrid.ItemsSource = _floppies;
+        _keyboardGrid.ItemsSource = _keyboardMappings;
+        _audio.Content = LocExtension.Get("Emulation.Audio");
+        _multiDrive.Content = LocExtension.Get("Emulation.MultiDrive");
+        _captureMouse.Content = LocExtension.Get("Emulation.CaptureMouse");
 
-        var right = new Grid();
-        right.RowDefinitions.Add(new RowDefinition());
-        right.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        var scroll = new ScrollViewer { VerticalScrollBarVisibility = ScrollBarVisibility.Auto };
-        var form = new Grid { Margin = new Thickness(4) };
-        form.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(150) });
+        var families = new TabControl { Margin = new Thickness(8) };
+        families.Items.Add(new TabItem
+        {
+            Header = LocExtension.Get("Emulation.Configurations"),
+            Content = BuildConfigurationCatalog()
+        });
+        families.Items.Add(new TabItem { Header = "Amiga", Content = BuildAmigaEditor() });
+        Content = families;
+        Loaded += async (_, _) => await ReloadAsync();
+    }
+
+    private UIElement BuildConfigurationCatalog()
+    {
+        var root = new Grid { Margin = new Thickness(12) };
+        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        root.RowDefinitions.Add(new RowDefinition());
+        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        root.Children.Add(new TextBlock
+        {
+            Text = LocExtension.Get("Emulation.ConfigurationsDescription", "Amiga"),
+            TextWrapping = TextWrapping.Wrap,
+            Margin = new Thickness(0, 0, 0, 10)
+        });
+        Grid.SetRow(_list, 1);
+        root.Children.Add(_list);
+        var actions = new WrapPanel { Margin = new Thickness(0, 10, 0, 0) };
+        AddButton(actions, "Common.New", NewConfiguration);
+        AddButton(actions, "Common.Delete", DeleteConfigurationAsync);
+        AddButton(actions, "Common.Refresh", ReloadAsync);
+        Grid.SetRow(actions, 2);
+        root.Children.Add(actions);
+        return root;
+    }
+
+    private UIElement BuildAmigaEditor()
+    {
+        var root = new Grid { Margin = new Thickness(8) };
+        root.RowDefinitions.Add(new RowDefinition());
+        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        var tabs = new TabControl();
+        tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.GeneralTab"), Content = BuildGeneralTab() });
+        tabs.Items.Add(new TabItem { Header = "CPU", Content = WrapSummary(_cpuSummary) });
+        tabs.Items.Add(new TabItem { Header = "RAM", Content = WrapSummary(_ramSummary) });
+        tabs.Items.Add(new TabItem { Header = "ROM", Content = BuildRomTab() });
+        tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.VideoTab"), Content = WrapSummary(_videoSummary) });
+        tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.Audio"), Content = BuildAudioTab() });
+        tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.StorageTab"), Content = BuildStorageTab() });
+        tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.KeyboardTab"), Content = BuildKeyboardTab() });
+        tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.MouseTab"), Content = BuildMouseTab() });
+        tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.ControllersTab"), Content = BuildControllersTab() });
+        tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.AdvancedTab"), Content = BuildAdvancedTab() });
+        tabs.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.Core"), Content = new AmigaCoreManagementSection() });
+        root.Children.Add(tabs);
+        var actions = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Right, Margin = new Thickness(0, 10, 0, 0) };
+        AddButton(actions, "Common.Save", SaveConfigurationAsync);
+        Grid.SetRow(actions, 1);
+        root.Children.Add(actions);
+        return root;
+    }
+
+    private UIElement BuildGeneralTab()
+    {
+        var form = CreateForm(1);
+        AddField(form, 0, LocExtension.Get("Emulation.Model"), _model);
+        return Wrap(form);
+    }
+
+    private UIElement BuildRomTab()
+    {
+        var root = new Grid { Margin = new Thickness(12) };
+        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        root.RowDefinitions.Add(new RowDefinition());
+        var form = CreateForm(3);
+        AddPathField(form, 0, "Kickstart", _kickstart, "ROM|*.rom;*.bin|All files|*.*");
+        AddPathField(form, 1, LocExtension.Get("Emulation.ExtendedRom"), _extendedRom, "ROM|*.rom;*.bin|All files|*.*");
+        AddPathField(form, 2, LocExtension.Get("Emulation.RomKey"), _romKey, "ROM key|*.key|All files|*.*");
+        root.Children.Add(form);
+        var firmware = new Grid { Margin = new Thickness(0, 12, 0, 0) };
+        firmware.RowDefinitions.Add(new RowDefinition());
+        firmware.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        firmware.Children.Add(_firmwareList);
+        var actions = new WrapPanel { Margin = new Thickness(0, 8, 0, 0) };
+        AddButton(actions, "Common.OpenFolder", OpenFirmwareFolder);
+        Grid.SetRow(actions, 1);
+        firmware.Children.Add(actions);
+        Grid.SetRow(firmware, 1);
+        root.Children.Add(firmware);
+        return root;
+    }
+
+    private UIElement BuildAudioTab()
+    {
+        var panel = new StackPanel { Margin = new Thickness(16) };
+        panel.Children.Add(_audio);
+        return panel;
+    }
+
+    private UIElement BuildStorageTab()
+    {
+        var root = new Grid { Margin = new Thickness(12) };
+        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        root.RowDefinitions.Add(new RowDefinition());
+        var form = CreateForm(1);
+        AddPathField(form, 0, LocExtension.Get("Emulation.InitialDisk"), _disk,
+            "Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*");
+        root.Children.Add(form);
+        var panel = new StackPanel { Margin = new Thickness(0, 12, 0, 0) };
+        _floppyGrid.MinHeight = 180;
+        panel.Children.Add(_floppyGrid);
+        panel.Children.Add(_multiDrive);
+        Grid.SetRow(panel, 1);
+        root.Children.Add(panel);
+        return root;
+    }
+
+    private UIElement BuildKeyboardTab()
+    {
+        _keyboardGrid.MinHeight = 280;
+        return new Grid { Margin = new Thickness(12), Children = { _keyboardGrid } };
+    }
+
+    private UIElement BuildMouseTab()
+    {
+        var form = CreateForm(2);
+        AddField(form, 0, LocExtension.Get("Emulation.DeviceId"), _mouseDevice);
+        AddField(form, 1, LocExtension.Get("Emulation.CaptureMouse"), _captureMouse);
+        return Wrap(form);
+    }
+
+    private UIElement BuildControllersTab()
+    {
+        var form = CreateForm(8);
+        for (var port = 0; port < 4; port++)
+        {
+            AddField(form, port * 2, LocExtension.Get("Emulation.Controller", port + 1), _controllers[port]);
+            AddField(form, port * 2 + 1, LocExtension.Get("Emulation.ControllerDevice", port + 1), _controllerDevices[port]);
+        }
+        return Wrap(form);
+    }
+
+    private UIElement BuildAdvancedTab()
+    {
+        var root = new Grid { Margin = new Thickness(12) };
+        root.RowDefinitions.Add(new RowDefinition());
+        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        _optionGrid.MinHeight = 260;
+        root.Children.Add(_optionGrid);
+        var actions = new WrapPanel { Margin = new Thickness(0, 8, 0, 0) };
+        AddButton(actions, "Emulation.LoadOptions", LoadAvailableOptionsAsync);
+        Grid.SetRow(actions, 1);
+        root.Children.Add(actions);
+        return root;
+    }
+
+    private static Grid CreateForm(int rows)
+    {
+        var form = new Grid { Margin = new Thickness(12) };
+        form.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(180) });
         form.ColumnDefinitions.Add(new ColumnDefinition());
         form.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-        for (var i = 0; i < 12; i++) form.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        AddField(form, 0, LocExtension.Get("Emulation.Model"), _model);
-        AddPathField(form, 1, "Kickstart", _kickstart, "ROM|*.rom;*.bin|All files|*.*");
-        AddPathField(form, 2, LocExtension.Get("Emulation.ExtendedRom"), _extendedRom, "ROM|*.rom;*.bin|All files|*.*");
-        AddPathField(form, 3, LocExtension.Get("Emulation.RomKey"), _romKey, "ROM key|*.key|All files|*.*");
-        AddPathField(form, 4, LocExtension.Get("Emulation.InitialDisk"), _disk,
-            "Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*");
-        _audio.Content = LocExtension.Get("Emulation.Audio");
-        AddField(form, 5, LocExtension.Get("Emulation.Audio"), _audio);
-        for (var port = 0; port < 4; port++) AddField(form, 6 + port, LocExtension.Get("Emulation.Controller", port + 1), _controllers[port]);
-        var floppyLabel = new TextBlock { Text = LocExtension.Get("Emulation.Floppies"), Margin = new Thickness(0, 8, 12, 4) };
-        Grid.SetRow(floppyLabel, 10); form.Children.Add(floppyLabel);
-        var floppyPanel = new StackPanel { Margin = new Thickness(0, 8, 0, 4) };
-        _floppyGrid.ItemsSource = _floppies;
-        _floppyGrid.MinHeight = 120;
-        floppyPanel.Children.Add(_floppyGrid);
-        _multiDrive.Content = LocExtension.Get("Emulation.MultiDrive");
-        floppyPanel.Children.Add(_multiDrive);
-        Grid.SetRow(floppyPanel, 10); Grid.SetColumn(floppyPanel, 1); Grid.SetColumnSpan(floppyPanel, 2); form.Children.Add(floppyPanel);
-        var optionsLabel = new TextBlock { Text = LocExtension.Get("Emulation.CoreOptions"), Margin = new Thickness(0, 8, 12, 4) };
-        Grid.SetRow(optionsLabel, 11); form.Children.Add(optionsLabel);
-        _optionGrid.ItemsSource = _options;
-        _optionGrid.MinHeight = 180;
-        _optionGrid.Margin = new Thickness(0, 8, 0, 4);
-        Grid.SetRow(_optionGrid, 11); Grid.SetColumn(_optionGrid, 1); Grid.SetColumnSpan(_optionGrid, 2); form.Children.Add(_optionGrid);
-        scroll.Content = form;
-        right.Children.Add(scroll);
+        for (var index = 0; index < rows; index++) form.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        return form;
+    }
 
-        var actions = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Right };
-        AddButton(actions, "Common.Refresh", ReloadAsync);
-        AddButton(actions, "Emulation.LoadOptions", LoadAvailableOptionsAsync);
-        AddButton(actions, "Common.Save", SaveConfigurationAsync);
-        AddButton(actions, "Common.OpenFolder", OpenFirmwareFolder);
-        Grid.SetRow(actions, 1); right.Children.Add(actions);
-        Grid.SetColumn(right, 1); root.Children.Add(right);
-        Content = root;
-        Loaded += async (_, _) => await ReloadAsync();
+    private static UIElement Wrap(UIElement child) => new ScrollViewer
+    {
+        Content = child,
+        VerticalScrollBarVisibility = ScrollBarVisibility.Auto
+    };
+
+    private static UIElement WrapSummary(TextBlock summary)
+    {
+        summary.Margin = new Thickness(20);
+        summary.FontSize = 16;
+        return summary;
     }
 
     private void ConfigureGrids()
@@ -127,6 +249,32 @@ public sealed class OptionsEmulationSection : UserControl
         _floppyGrid.Columns.Add(new DataGridTextColumn { Header = "Image", Binding = new System.Windows.Data.Binding(nameof(FloppyItem.Path)) { UpdateSourceTrigger = System.Windows.Data.UpdateSourceTrigger.PropertyChanged }, Width = new DataGridLength(1, DataGridLengthUnitType.Star) });
         _floppyGrid.Columns.Add(new DataGridTextColumn { Header = "Libellé", Binding = new System.Windows.Data.Binding(nameof(FloppyItem.Label)) { UpdateSourceTrigger = System.Windows.Data.UpdateSourceTrigger.PropertyChanged }, Width = 150 });
         _floppyGrid.Columns.Add(new DataGridCheckBoxColumn { Header = "Lecture seule", Binding = new System.Windows.Data.Binding(nameof(FloppyItem.IsReadOnly)), Width = 100 });
+        _keyboardGrid.Columns.Add(new DataGridTextColumn
+        {
+            Header = LocExtension.Get("Emulation.SystemKey", "Amiga"),
+            Binding = new System.Windows.Data.Binding(nameof(KeyMappingItem.AmigaKey)) { UpdateSourceTrigger = System.Windows.Data.UpdateSourceTrigger.PropertyChanged },
+            Width = new DataGridLength(1, DataGridLengthUnitType.Star)
+        });
+        _keyboardGrid.Columns.Add(new DataGridComboBoxColumn
+        {
+            Header = LocExtension.Get("Emulation.HostKey"),
+            ItemsSource = Enum.GetValues<GWGUI.Emulation.EmulationKey>(),
+            SelectedItemBinding = new System.Windows.Data.Binding(nameof(KeyMappingItem.HostKey)) { UpdateSourceTrigger = System.Windows.Data.UpdateSourceTrigger.PropertyChanged },
+            Width = new DataGridLength(1, DataGridLengthUnitType.Star)
+        });
+    }
+
+    private void RefreshModelSummaries()
+    {
+        if (_model.SelectedItem is not AmigaModel model)
+        {
+            _cpuSummary.Text = _ramSummary.Text = _videoSummary.Text = string.Empty;
+            return;
+        }
+        _cpuSummary.Text = LocExtension.Get("Emulation.CpuSummary", model.Cpu);
+        _ramSummary.Text = LocExtension.Get("Emulation.RamSummary", model.ChipMemoryKib,
+            model.SlowMemoryKib, model.FastMemoryMib);
+        _videoSummary.Text = LocExtension.Get("Emulation.VideoSummary", model.Chipset);
     }
 
     private static void AddButton(Panel panel, string resourceKey, Func<Task> action)
@@ -226,6 +374,15 @@ public sealed class OptionsEmulationSection : UserControl
         foreach (var floppy in configuration.Floppies ?? [])
             _floppies.Add(new FloppyItem { Path = floppy.Path, Label = floppy.Label ?? string.Empty, IsReadOnly = floppy.IsReadOnly });
         _multiDrive.IsChecked = configuration.MountFloppiesInSeparateDrives;
+        _keyboardMappings.Clear();
+        foreach (var mapping in configuration.Input?.KeyboardMappings ?? new Dictionary<string, GWGUI.Emulation.EmulationKey>())
+            _keyboardMappings.Add(new KeyMappingItem { AmigaKey = mapping.Key, HostKey = mapping.Value });
+        _mouseDevice.Text = configuration.Input?.MouseDeviceId ?? string.Empty;
+        _captureMouse.IsChecked = configuration.Input?.CaptureMouse ?? true;
+        for (var port = 0; port < _controllerDevices.Length; port++)
+            _controllerDevices[port].Text = configuration.Input?.ControllerBindings?
+                .FirstOrDefault(binding => binding.Port == port)?.DeviceId ?? string.Empty;
+        RefreshModelSummaries();
     }
 
     private async Task SaveConfigurationAsync()
@@ -248,11 +405,20 @@ public sealed class OptionsEmulationSection : UserControl
         var preservedMedia = floppies.Length == 0 && _loadedMedia is { Count: > 0 }
             && string.Equals(Path.GetFullPath(_loadedMedia[0].Path), initialPath, StringComparison.OrdinalIgnoreCase)
                 ? _loadedMedia : null;
+        var keyboard = _keyboardMappings.Where(item => !string.IsNullOrWhiteSpace(item.AmigaKey))
+            .ToDictionary(item => item.AmigaKey.Trim(), item => item.HostKey, StringComparer.OrdinalIgnoreCase);
+        var controllerBindings = Enumerable.Range(0, 4).Select(port => new AmigaControllerBinding(port,
+            (AmigaControllerType)(_controllers[port].SelectedItem ?? AmigaControllerType.Automatic),
+            string.IsNullOrWhiteSpace(_controllerDevices[port].Text) ? null : _controllerDevices[port].Text.Trim())).ToArray();
+        var input = new AmigaInputConfiguration(keyboard,
+            string.IsNullOrWhiteSpace(_mouseDevice.Text) ? null : _mouseDevice.Text.Trim(),
+            _captureMouse.IsChecked == true, controllerBindings);
         var configuration = new AmigaMachineConfiguration(model.Id, Path.GetFullPath(_kickstart.Text),
             initialPath, OptionalFullPath(_extendedRom.Text), OptionalFullPath(_romKey.Text),
             Options: options, Id: _currentId == Guid.Empty ? Guid.NewGuid() : _currentId,
             AudioEnabled: _audio.IsChecked == true,
             Controllers: _controllers.Select(combo => (AmigaControllerType)(combo.SelectedItem ?? AmigaControllerType.Automatic)).ToArray(),
+            Input: input,
             Floppies: floppies.Length == 0 ? null : floppies,
             MountFloppiesInSeparateDrives: floppies.Length > 1 && _multiDrive.IsChecked == true,
             Media: preservedMedia);
@@ -369,5 +535,11 @@ public sealed class OptionsEmulationSection : UserControl
         public string Path { get; set; } = string.Empty;
         public string Label { get; set; } = string.Empty;
         public bool IsReadOnly { get; set; }
+    }
+
+    public sealed class KeyMappingItem
+    {
+        public string AmigaKey { get; set; } = string.Empty;
+        public GWGUI.Emulation.EmulationKey HostKey { get; set; }
     }
 }

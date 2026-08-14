@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>Mașini</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>Nucleu</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>Nucleu de emulare {0}</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>Biblioteca rămâne în afara GW GUI. Versiunea selectată înlocuiește versiunea instalată în prezent.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>Versiune necesară pentru GW GUI</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>Cea mai recentă versiune oficială disponibilă</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>Versiune instalată în prezent</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>Faceți clic pe Căutare pentru a interoga serverul oficial Libretro.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>Căutare versiuni</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>Descărcare și înlocuire</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>Se caută versiunile disponibile…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>Nu a fost găsită nicio versiune oficială.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>{0} versiuni disponibile.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>Se descarcă {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>Versiune instalată: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · instalată</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>Nicio versiune instalată</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>Deschidere</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>Bun venit</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>Selectați mai sus o mașină salvată și faceți clic pe Deschidere. Fiecare mașină pornită apare în fila proprie.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>Creați, selectați, modificați sau ștergeți aici configurațiile salvate. Selectați fila {0} pentru a edita configurația aleasă.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>General</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>Video</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>Stocare</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>Tastatură</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>Mouse</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>Controlere</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>Avansat</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>Identificator dispozitiv</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>Dispozitiv controler {0}</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>Tastă {0}</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>Tastă gazdă</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>Procesor: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>Chipset video: {0}</value>
+  </data>
+</root>

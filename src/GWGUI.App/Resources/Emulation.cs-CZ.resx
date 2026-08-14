@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>Stroje</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>Jádro</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>Emulační jádro {0}</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>Knihovna zůstává mimo GW GUI. Vybraná verze nahradí aktuálně nainstalovanou verzi.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>Verze vyžadovaná GW GUI</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>Nejnovější dostupná oficiální verze</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>Aktuálně nainstalovaná verze</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>Kliknutím na Hledat se dotážete oficiálního serveru Libretro.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>Hledat verze</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>Stáhnout a nahradit</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>Hledání dostupných verzí…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>Nebyla nalezena žádná oficiální verze.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>Počet dostupných verzí: {0}.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>Stahování {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>Nainstalovaná verze: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · nainstalováno</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>Není nainstalována žádná verze</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>Otevřít</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>Vítejte</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>Vyberte nahoře uložený stroj a klikněte na Otevřít. Každý spuštěný stroj se zobrazí na vlastní kartě.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>Zde můžete vytvářet, vybírat, upravovat nebo odstraňovat uložené konfigurace. Vybranou konfiguraci upravíte na kartě {0}.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>Obecné</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>Video</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>Úložiště</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>Klávesnice</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>Myš</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>Ovladače</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>Pokročilé</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>Identifikátor zařízení</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>Zařízení ovladače {0}</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>Klávesa {0}</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>Klávesa hostitele</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>Procesor: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>Video čipová sada: {0}</value>
+  </data>
+</root>

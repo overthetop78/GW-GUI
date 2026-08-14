@@ -502,10 +502,14 @@ Les fichiers temporaires du cœur sont regroupés dans `artifacts/ppua/`. `artif
 
 - [x] Comparer le binaire buildbot validé à une compilation du commit PUAE choisi.
 - [x] Choisir après mesure entre inclusion et téléchargement ; dans les deux cas conserver un manifeste exact par version de GW GUI.
-- [x] Si téléchargement, utiliser URL primaire versionnée, miroir GitHub versionné, taille et SHA-256 ; ne jamais utiliser `latest` à l’exécution.
+- [x] Ajouter dans Paramètres > Émulation un sous-onglet `Cœur Amiga` affichant la version exigée, son état d’installation et la dernière build officielle détectée.
+- [x] Ne montrer le sélecteur de versions et le bouton de téléchargement qu’après une recherche réseau réussie ; sélectionner initialement la version exigée par GW GUI.
+- [x] Télécharger l’archive ZIP officielle Libretro, extraire uniquement `puae_libretro.dll`, vérifier PE x64, taille et SHA-256 pour la version exigée, puis écrire un manifeste local.
+- [x] Installer les autres builds officielles sous un nom distinct afin de ne jamais écraser la version exigée par le projet.
+- [x] Pour la version exigée, accepter l’URL officielle uniquement si l’archive correspond exactement à la taille et au SHA-256 épinglés ; ne prévoir aucun secours dans le dépôt GW GUI.
 - [x] Télécharger vers `.tmp`, vérifier PE x64, hash et exports, puis renommer atomiquement.
 - [x] Refuser toute mise à jour du cœur indépendante d’une version GW GUI.
-- [x] Tester absence réseau, téléchargement tronqué, mauvais hash, mauvais x86/x64 et fallback.
+- [x] Tester absence réseau, téléchargement tronqué, mauvais hash et mauvais x86/x64.
 
 #### AMI-041 — Exécuter la validation complète
 

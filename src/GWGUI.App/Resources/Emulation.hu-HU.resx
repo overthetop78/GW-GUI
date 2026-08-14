@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>Gépek</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>Mag</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>{0} emulációs mag</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>A könyvtár a GW GUI-n kívül marad. A kiválasztott verzió lecseréli a jelenleg telepített verziót.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>A GW GUI által igényelt verzió</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>Legújabb elérhető hivatalos verzió</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>Jelenleg telepített verzió</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>Kattintson a Keresés gombra a hivatalos Libretro-kiszolgáló lekérdezéséhez.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>Verziók keresése</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>Letöltés és csere</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>Elérhető verziók keresése…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>Nem található hivatalos verzió.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>{0} verzió érhető el.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>{0} letöltése…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>Telepített verzió: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · telepítve</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>Nincs telepített verzió</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>Megnyitás</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>Üdvözöljük</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>Válasszon ki fent egy mentett gépet, majd kattintson a Megnyitás gombra. Minden futó gép külön lapon jelenik meg.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>Itt létrehozhatja, kiválaszthatja, módosíthatja vagy törölheti a mentett konfigurációkat. A kijelölt konfiguráció szerkesztéséhez válassza a(z) {0} lapot.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>Általános</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>Videó</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>Tárolás</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>Billentyűzet</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>Egér</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>Vezérlők</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>Speciális</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>Eszközazonosító</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>A(z) {0}. vezérlő eszköze</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>{0} billentyű</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>Gazdagép billentyűje</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>Processzor: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>Videó lapkakészlet: {0}</value>
+  </data>
+</root>

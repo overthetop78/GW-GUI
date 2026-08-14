@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>Maskiner</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>Kjerne</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>{0}-emuleringskjerne</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>Biblioteket forblir utenfor GW GUI. Den valgte versjonen erstatter versjonen som er installert nå.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>Versjon som kreves av GW GUI</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>Nyeste tilgjengelige offisielle versjon</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>Installert versjon</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>Klikk Søk for å spørre den offisielle Libretro-serveren.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>Søk etter versjoner</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>Last ned og erstatt</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>Søker etter tilgjengelige versjoner…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>Fant ingen offisiell versjon.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>{0} versjon(er) tilgjengelig.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>Laster ned {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>Installert versjon: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · installert</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>Ingen versjon installert</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>Åpne</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>Velkommen</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>Velg en lagret maskin ovenfor og klikk Åpne. Hver maskin som kjører, vises i sin egen fane.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>Opprett, velg, endre eller slett lagrede konfigurasjoner her. Velg fanen {0} for å redigere valgt konfigurasjon.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>Generelt</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>Video</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>Lagring</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>Tastatur</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>Mus</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>Kontrollere</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>Avansert</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>Enhets-ID</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>Enhet for kontroller {0}</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>{0}-tast</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>Vertstast</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>Prosessor: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>Videobrikke: {0}</value>
+  </data>
+</root>

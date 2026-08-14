@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>Maskiner</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>Kerne</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>{0}-emuleringskerne</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>Biblioteket forbliver uden for GW GUI. Den valgte version erstatter den aktuelt installerede version.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>Version krævet af GW GUI</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>Seneste tilgængelige officielle version</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>Aktuelt installeret version</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>Klik på Søg for at forespørge den officielle Libretro-server.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>Søg efter versioner</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>Download og erstat</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>Søger efter tilgængelige versioner…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>Ingen officiel version fundet.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>{0} version(er) tilgængelig(e).</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>Downloader {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>Installeret version: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · installeret</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>Ingen version installeret</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>Åbn</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>Velkommen</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>Vælg en gemt maskine ovenfor, og klik på Åbn. Hver kørende maskine vises i sin egen fane.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>Opret, vælg, rediger eller slet gemte konfigurationer her. Vælg fanen {0} for at redigere den valgte konfiguration.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>Generelt</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>Video</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>Lager</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>Tastatur</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>Mus</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>Controllere</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>Avanceret</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>Enheds-id</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>Enhed til controller {0}</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>{0}-tast</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>Værtstast</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>Processor: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>Videochipsæt: {0}</value>
+  </data>
+</root>

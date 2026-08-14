@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>Maskiner</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>Kärna</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>{0}-emuleringskärna</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>Biblioteket förblir utanför GW GUI. Den valda versionen ersätter den nu installerade versionen.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>Version som krävs av GW GUI</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>Senaste tillgängliga officiella version</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>Nu installerad version</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>Klicka på Sök för att fråga den officiella Libretro-servern.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>Sök versioner</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>Hämta och ersätt</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>Söker efter tillgängliga versioner…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>Ingen officiell version hittades.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>{0} version(er) tillgänglig(a).</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>Hämtar {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>Installerad version: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · installerad</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>Ingen version installerad</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>Öppna</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>Välkommen</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>Välj en sparad maskin ovan och klicka på Öppna. Varje körande maskin visas på en egen flik.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>Skapa, välj, ändra eller ta bort sparade konfigurationer här. Välj fliken {0} för att redigera den valda konfigurationen.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>Allmänt</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>Video</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>Lagring</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>Tangentbord</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>Mus</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>Kontroller</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>Avancerat</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>Enhetsidentifierare</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>Enhet för kontroller {0}</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>{0}-tangent</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>Värdtangent</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>Processor: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>Videokretsuppsättning: {0}</value>
+  </data>
+</root>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>Máquinas</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>Núcleo</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>Núcleo de emulação {0}</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>A biblioteca permanece fora do GW GUI. A versão selecionada substitui a versão atualmente instalada.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>Versão exigida pelo GW GUI</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>Última versão oficial disponível</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>Versão atualmente instalada</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>Clique em Procurar para consultar o servidor oficial Libretro.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>Procurar versões</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>Transferir e substituir</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>A procurar versões disponíveis…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>Nenhuma versão oficial encontrada.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>{0} versão(ões) disponível(eis).</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>A transferir {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>Versão instalada: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · instalada</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>Nenhuma versão instalada</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>Abrir</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>Bem-vindo</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>Selecione uma máquina guardada acima e clique em Abrir. Cada máquina em execução aparece no seu próprio separador.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>Crie, selecione, altere ou elimine aqui configurações guardadas. Selecione o separador {0} para editar a configuração escolhida.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>Geral</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>Vídeo</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>Armazenamento</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>Teclado</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>Rato</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>Controladores</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>Avançado</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>Identificador do dispositivo</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>Dispositivo do controlador {0}</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>Tecla {0}</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>Tecla do anfitrião</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>Processador: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>Chipset de vídeo: {0}</value>
+  </data>
+</root>

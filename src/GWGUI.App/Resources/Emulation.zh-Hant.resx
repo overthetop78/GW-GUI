@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>機器</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>核心</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>{0} 模擬核心</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>此程式庫保持在 GW GUI 外部。所選版本會取代目前安裝的版本。</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>GW GUI 要求的版本</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>最新可用官方版本</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>目前安裝的版本</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>按一下「搜尋」以查詢 Libretro 官方伺服器。</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>搜尋版本</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>下載並取代</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>正在搜尋可用版本…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>找不到官方版本。</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>有 {0} 個版本可用。</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>正在下載 {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>已安裝版本：{0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · 已安裝</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>未安裝任何版本</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>開啟</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>歡迎</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>在上方選取已儲存的機器，然後按一下「開啟」。每台執行中的機器都會顯示在自己的分頁中。</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>在此建立、選取、修改或刪除已儲存的設定。選取 {0} 分頁以編輯所選設定。</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>一般</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>視訊</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>儲存裝置</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>鍵盤</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>滑鼠</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>控制器</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>進階</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>裝置識別碼</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>控制器 {0} 裝置</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>{0} 鍵</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>主機鍵</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>處理器：{0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM：{0} KiB\nSlow RAM：{1} KiB\nFast RAM：{2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>視訊晶片組：{0}</value>
+  </data>
+</root>
