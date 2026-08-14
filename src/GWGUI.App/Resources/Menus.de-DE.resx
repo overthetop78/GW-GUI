@@ -78,4 +78,7 @@
   <data name="Tab.Explorer">
     <value>Datenträger-Explorer</value>
   </data>
+  <data name="Tab.Emulation">
+    <value>Emulation</value>
+  </data>
 </root>

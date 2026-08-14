@@ -9,7 +9,7 @@ internal sealed class AmigaMachine : IAmigaMachine
     private readonly object _gate = new();
     private readonly IAmigaCore _core;
     private readonly string _sessionDirectory;
-    private readonly IAudioOutput? _audioOutput;
+    private IAudioOutput? _audioOutput;
     private CancellationTokenSource? _stop;
     private Task? _runLoop;
     private bool _pauseRequested;
@@ -149,7 +149,11 @@ internal sealed class AmigaMachine : IAmigaMachine
         try
         {
             _core.Initialize(Configuration, _sessionDirectory);
-            _audioOutput?.Start(_core.SampleRate);
+            if (_audioOutput is not null)
+            {
+                try { _audioOutput.Start(_core.SampleRate); }
+                catch { _audioOutput.Dispose(); _audioOutput = null; }
+            }
             lock (_gate)
             {
                 State = EmulationMachineState.Running;

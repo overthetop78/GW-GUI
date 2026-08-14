@@ -1117,6 +1117,9 @@ public partial class MainWindow : Window
             failure = exception;
         }
 
+        var stopEmulation = await Dispatcher.InvokeAsync(() => AmigaEmulationBlock.StopAllAsync());
+        await stopEmulation.ConfigureAwait(false);
+
         await _operation.WaitForCompletionAsync().ConfigureAwait(false);
 
         if (Dispatcher.HasShutdownStarted || Dispatcher.HasShutdownFinished) return;
