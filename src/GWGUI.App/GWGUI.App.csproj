@@ -21,6 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <InternalsVisibleTo Include="GWGUI.Tests" />
     <ProjectReference Include="..\GWGUI.Domain\GWGUI.Domain.csproj" />
     <ProjectReference Include="..\GWGUI.Infrastructure\GWGUI.Infrastructure.csproj" />
     <ProjectReference Include="..\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />

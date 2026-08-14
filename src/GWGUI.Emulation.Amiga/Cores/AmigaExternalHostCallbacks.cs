@@ -58,7 +58,19 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     private readonly ConcurrentQueue<AudioChunk> _audioChunks = new();
     internal EmulationInputSnapshot Input
     {
-        set { lock (_inputGate) _pendingInput = value; }
+        set
+        {
+            lock (_inputGate)
+            {
+                var pointer = value.Pointer with
+                {
+                    DeltaX = SaturatingAdd(_pendingInput.Pointer.DeltaX, value.Pointer.DeltaX),
+                    DeltaY = SaturatingAdd(_pendingInput.Pointer.DeltaY, value.Pointer.DeltaY),
+                    Wheel = SaturatingAdd(_pendingInput.Pointer.Wheel, value.Pointer.Wheel)
+                };
+                _pendingInput = value with { Pointer = pointer };
+            }
+        }
     }
     internal AmigaExternalApi.EnvironmentCallback Environment { get; }
     internal AmigaExternalApi.VideoCallback Video { get; }
@@ -356,6 +368,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
 
     private static short Bool(bool value) => value ? (short)1 : (short)0;
     private static short ClampToShort(int value) => (short)Math.Clamp(value, short.MinValue, short.MaxValue);
+    private static int SaturatingAdd(int left, int right) => (int)Math.Clamp((long)left + right, int.MinValue, int.MaxValue);
 
     private static IReadOnlyDictionary<uint, EmulationKey> CreateKeyboardMap()
     {

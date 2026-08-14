@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using GWGUI.App.Localization;
 using GWGUI.App.Services;
 using GWGUI.Emulation;
@@ -22,6 +23,7 @@ public sealed class AmigaMachineView : UserControl
     private Point? _lastMouse;
     private int _framePending;
     private bool _disposed;
+    private readonly DispatcherTimer _inputTimer = new() { Interval = TimeSpan.FromMilliseconds(16) };
 
     public AmigaMachineView(IAmigaMachine machine)
     {
@@ -55,6 +57,7 @@ public sealed class AmigaMachineView : UserControl
         _display.MouseUp += MouseChanged;
         _display.MouseWheel += DisplayMouseWheel;
         _display.MouseDown += (_, _) => _display.Focus();
+        _inputTimer.Tick += (_, _) => PublishInput();
     }
 
     public event EventHandler? CloseRequested;
@@ -63,6 +66,7 @@ public sealed class AmigaMachineView : UserControl
     {
         _status.Text = "Starting";
         await _machine.StartAsync();
+        _inputTimer.Start();
         _status.Text = _machine.State.ToString();
         _display.Focus();
     }
@@ -73,6 +77,7 @@ public sealed class AmigaMachineView : UserControl
         try { await _machine.StopAsync(); }
         finally
         {
+            _inputTimer.Stop();
             await _machine.DisposeAsync();
             _machine.VideoFrameReady -= VideoFrameReady;
             _status.Text = _machine.State.ToString();
@@ -176,7 +181,7 @@ public sealed class AmigaMachineView : UserControl
         new HashSet<EmulationKey>(_keys), new EmulationPointerState(deltaX, deltaY, wheel,
             Mouse.LeftButton == MouseButtonState.Pressed, Mouse.RightButton == MouseButtonState.Pressed,
             Mouse.MiddleButton == MouseButtonState.Pressed),
-        [EmulationControllerState.Empty, EmulationControllerState.Empty, EmulationControllerState.Empty, EmulationControllerState.Empty]));
+        XInputControllerReader.ReadAll()));
 
     private static bool TryMapKey(Key key, out EmulationKey result)
     {

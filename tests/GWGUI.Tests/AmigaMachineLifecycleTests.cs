@@ -109,6 +109,30 @@ public sealed class AmigaMachineLifecycleTests
         }
     }
 
+    [Fact]
+    public void MouseDeltas_AccumulateUntilPollAndAreConsumedOnce()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Input", Guid.NewGuid().ToString("N"));
+        using var host = new AmigaExternalHostCallbacks(Path.Combine(root, "system"), Path.Combine(root, "content"), Path.Combine(root, "save"), null);
+        try
+        {
+            host.Input = EmulationInputSnapshot.Empty with { Pointer = new EmulationPointerState(12, -4, 1, true, false, false) };
+            host.Input = EmulationInputSnapshot.Empty with { Pointer = new EmulationPointerState(-3, 2, 0, true, false, false) };
+            host.InputPoll();
+            Assert.Equal((short)9, host.InputState(0, 2, 0, 0));
+            Assert.Equal((short)-2, host.InputState(0, 2, 0, 1));
+            Assert.Equal((short)1, host.InputState(0, 2, 0, 4));
+            host.InputPoll();
+            Assert.Equal((short)0, host.InputState(0, 2, 0, 0));
+            Assert.Equal((short)0, host.InputState(0, 2, 0, 1));
+            Assert.Equal((short)0, host.InputState(0, 2, 0, 4));
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
     private static AmigaMachine CreateMachine(FakeCore core) => new(Guid.NewGuid(),
         AmigaMachineConfiguration.A500(@"C:\kick.rom"), core,
         Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Lifecycle", Guid.NewGuid().ToString("N")));
