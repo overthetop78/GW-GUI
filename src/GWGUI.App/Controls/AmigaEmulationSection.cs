@@ -12,12 +12,14 @@ namespace GWGUI.App.Controls;
 
 public sealed class AmigaEmulationSection : UserControl
 {
-    private readonly ComboBox _model = new() { Width = 230, DisplayMemberPath = nameof(AmigaModel.DisplayName) };
-    private readonly ComboBox _configuration = new() { MinWidth = 320, DisplayMemberPath = nameof(ConfigurationItem.DisplayName) };
-    private readonly TextBox _kickstart = new() { MinWidth = 320 };
-    private readonly TextBox _disk = new() { MinWidth = 320 };
+    private readonly ComboBox _model = new() { DisplayMemberPath = nameof(AmigaModel.DisplayName) };
+    private readonly ComboBox _configuration = new() { DisplayMemberPath = nameof(ConfigurationItem.DisplayName) };
+    private readonly TextBox _kickstart = new();
+    private readonly TextBox _disk = new();
     private readonly Button _start = new() { MinWidth = 110 };
     private readonly Button _firmwareFolder = new() { MinWidth = 130 };
+    private readonly Button _configure = new() { MinWidth = 130 };
+    private readonly Button _refresh = new() { MinWidth = 110 };
     private readonly TabControl _machines = new();
 
     public AmigaEmulationSection()
@@ -28,20 +30,26 @@ public sealed class AmigaEmulationSection : UserControl
         AutomationProperties.SetName(_disk, "Amiga disk image");
         AutomationProperties.SetName(_start, "Start Amiga");
         AutomationProperties.SetName(_firmwareFolder, "Open Amiga firmware folder");
+        AutomationProperties.SetName(_configure, "Configure Amiga machines");
+        AutomationProperties.SetName(_refresh, "Refresh Amiga configurations");
         AutomationProperties.SetName(_machines, "Running Amiga machines");
         _model.ItemsSource = AmigaModelCatalog.All;
         _model.SelectedItem = AmigaModelCatalog.Get("A500");
         _configuration.SelectionChanged += ConfigurationSelected;
         _start.Content = LocExtension.Get("Common.Execute");
         _firmwareFolder.Content = "Firmware";
+        _configure.Content = LocExtension.Get("Emulation.Configurations");
+        _refresh.Content = LocExtension.Get("Common.Refresh");
         _start.Click += StartClick;
         _firmwareFolder.Click += OpenFirmwareFolder;
+        _configure.Click += (_, _) => ConfigurationRequested?.Invoke(this, EventArgs.Empty);
+        _refresh.Click += async (_, _) => await ReloadConfigurationsAsync();
 
         var root = new Grid { Margin = new Thickness(16) };
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         root.RowDefinitions.Add(new RowDefinition());
         var setup = new Grid { Margin = new Thickness(0, 0, 0, 12) };
-        setup.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        setup.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(150) });
         setup.ColumnDefinitions.Add(new ColumnDefinition());
         setup.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         setup.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
@@ -54,8 +62,12 @@ public sealed class AmigaEmulationSection : UserControl
         AddRow(setup, 2, "Kickstart", _kickstart, BrowseKickstart);
         AddRow(setup, 3, "Média Amiga", _disk, BrowseDisk);
         Grid.SetColumn(_firmwareFolder, 3); Grid.SetRow(_firmwareFolder, 1); setup.Children.Add(_firmwareFolder);
+        Grid.SetColumn(_configure, 3); Grid.SetRow(_configure, 0); setup.Children.Add(_configure);
+        Grid.SetColumn(_refresh, 3); Grid.SetRow(_refresh, 2); setup.Children.Add(_refresh);
         Grid.SetColumn(_start, 3); Grid.SetRow(_start, 3); setup.Children.Add(_start);
-        root.Children.Add(setup);
+        var setupCard = new Border { Child = setup };
+        setupCard.SetResourceReference(StyleProperty, "Card");
+        root.Children.Add(setupCard);
         Grid.SetRow(_machines, 1); root.Children.Add(_machines);
         Content = root;
         Loaded += async (_, _) =>
@@ -65,11 +77,13 @@ public sealed class AmigaEmulationSection : UserControl
         };
     }
 
+    public event EventHandler? ConfigurationRequested;
+
     private static void AddRow(Grid grid, int row, string label, Control input, RoutedEventHandler? browse)
     {
         var text = new TextBlock { Text = label, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 5, 12, 5) };
         Grid.SetRow(text, row); grid.Children.Add(text);
-        input.Margin = new Thickness(0, 4, 8, 4); Grid.SetRow(input, row); Grid.SetColumn(input, 1); grid.Children.Add(input);
+        input.Margin = new Thickness(0, 4, 8, 4); input.HorizontalAlignment = HorizontalAlignment.Stretch; Grid.SetRow(input, row); Grid.SetColumn(input, 1); grid.Children.Add(input);
         if (browse is null) return;
         var button = new Button { Content = LocExtension.Get("Common.Browse"), MinWidth = 100, Margin = new Thickness(0, 4, 8, 4) };
         button.Click += browse; Grid.SetRow(button, row); Grid.SetColumn(button, 2); grid.Children.Add(button);
@@ -84,11 +98,14 @@ public sealed class AmigaEmulationSection : UserControl
         if (firmware is not null) _kickstart.Text = firmware.Path;
     }
 
-    private async Task ReloadConfigurationsAsync()
+    public async Task ReloadConfigurationsAsync()
     {
+        var selectedId = (_configuration.SelectedItem as ConfigurationItem)?.Configuration.Id;
         var configurations = await new AmigaConfigurationStore(StoragePaths.AmigaConfigurationsDirectory, StoragePaths.DataDirectory).LoadAllAsync();
         _configuration.ItemsSource = configurations.Select(configuration => new ConfigurationItem(configuration)).ToArray();
-        _configuration.SelectedIndex = configurations.Count > 0 ? 0 : -1;
+        _configuration.SelectedItem = _configuration.Items.OfType<ConfigurationItem>()
+            .FirstOrDefault(item => item.Configuration.Id == selectedId)
+            ?? _configuration.Items.OfType<ConfigurationItem>().FirstOrDefault();
     }
 
     private void ConfigurationSelected(object sender, SelectionChangedEventArgs e)

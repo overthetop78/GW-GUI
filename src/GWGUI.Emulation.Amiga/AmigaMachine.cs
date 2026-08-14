@@ -64,8 +64,18 @@ internal sealed class AmigaMachine : IAmigaMachine
             State = EmulationMachineState.Starting;
             _stop = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
             _started = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
-            _runLoop = Task.Factory.StartNew(() => Run(_stop.Token), CancellationToken.None,
-                TaskCreationOptions.LongRunning, TaskScheduler.Default);
+            var completion = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+            var thread = new Thread(() =>
+            {
+                try { Run(_stop.Token); }
+                finally { completion.TrySetResult(); }
+            })
+            {
+                IsBackground = true,
+                Name = $"GWGUI Amiga {Id:N}"
+            };
+            _runLoop = completion.Task;
+            thread.Start();
             started = _started.Task;
         }
         await started.WaitAsync(cancellationToken).ConfigureAwait(false);

@@ -18,6 +18,7 @@ public sealed class AmigaMachineView : UserControl
 {
     private readonly IAmigaMachine _machine;
     private readonly Image _display = new() { Stretch = Stretch.Uniform, Focusable = true };
+    private readonly Border _screen;
     private readonly TextBlock _status = new() { VerticalAlignment = VerticalAlignment.Center };
     private readonly ComboBox _diskSelection = new() { MinWidth = 120, Margin = new Thickness(0, 0, 8, 0) };
     private readonly HashSet<EmulationKey> _keys = [];
@@ -36,7 +37,7 @@ public sealed class AmigaMachineView : UserControl
         var root = new Grid();
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         root.RowDefinitions.Add(new RowDefinition());
-        var bar = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 0, 0, 8) };
+        var bar = new WrapPanel { Margin = new Thickness(0, 0, 0, 8) };
         AddButton(bar, "Common.Stop", StopAsync);
         _pauseButton = AddButton(bar, "Common.Pause", TogglePauseAsync);
         AddButton(bar, "Common.Reset", () => _machine.HardResetAsync().AsTask());
@@ -53,8 +54,18 @@ public sealed class AmigaMachineView : UserControl
         });
         bar.Children.Add(_status);
         root.Children.Add(bar);
-        var border = new Border { Background = Brushes.Black, Child = _display, Padding = new Thickness(2) };
-        Grid.SetRow(border, 1); root.Children.Add(border);
+        _screen = new Border
+        {
+            Background = Brushes.Black,
+            Child = _display,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
+            SnapsToDevicePixels = true
+        };
+        var displayHost = new Grid { Background = Brushes.Transparent };
+        displayHost.Children.Add(_screen);
+        displayHost.SizeChanged += (_, _) => FitScreen(displayHost.ActualWidth, displayHost.ActualHeight);
+        Grid.SetRow(displayHost, 1); root.Children.Add(displayHost);
         Content = root;
 
         _machine.VideoFrameReady += VideoFrameReady;
@@ -70,6 +81,21 @@ public sealed class AmigaMachineView : UserControl
     }
 
     public event EventHandler? CloseRequested;
+
+    private void FitScreen(double availableWidth, double availableHeight)
+    {
+        var fitted = FitFourThree(availableWidth, availableHeight);
+        if (fitted.IsEmpty) return;
+        _screen.Width = fitted.Width;
+        _screen.Height = fitted.Height;
+    }
+
+    internal static Size FitFourThree(double availableWidth, double availableHeight)
+    {
+        if (availableWidth <= 0 || availableHeight <= 0) return Size.Empty;
+        var width = Math.Min(availableWidth, availableHeight * 4d / 3d);
+        return new Size(width, width * 3d / 4d);
+    }
 
     public async Task StartAsync()
     {

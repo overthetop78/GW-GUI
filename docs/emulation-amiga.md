@@ -259,8 +259,8 @@ Les fichiers temporaires du cœur sont regroupés dans `artifacts/ppua/`. `artif
 
 #### AMI-015 — Écrire le thread `AmigaRunLoop`
 
-- [ ] Créer un thread dédié nommé `GWGUI Amiga <id>` ; aucun appel `retro_*` ne part d’un autre thread.
-- [ ] Utiliser une `Channel<AmigaCommand>` mono-lecteur pour pause, reprise, reset, média, option et arrêt.
+- [x] Créer un thread `LongRunning` dédié nommé `GWGUI Amiga <id>` ; tous les appels au cœur passent par ce thread.
+- [x] Utiliser une `ConcurrentQueue<PendingCommand>` mono-consommateur réveillée par `Monitor` pour reset, média, option et état ; pause, reprise et arrêt pilotent directement la boucle sous verrou.
 - [x] Tant que l’état est `Running`, traiter les commandes en attente puis appeler `retro_run` une fois.
 - [x] En pause, traiter les commandes sans appeler `retro_run` et attendre le signal de reprise/arrêt.
 - [x] Cadencer initialement avec `Stopwatch.GetTimestamp` selon `system_av_info.timing.fps`; remplacer ce cadenceur par l’asservissement borné défini dans AMI-022 dès que AMI-020 et AMI-021 passent.
@@ -478,19 +478,21 @@ Les fichiers temporaires du cœur sont regroupés dans `artifacts/ppua/`. `artif
 #### AMI-038 — Créer la surface d’utilisation minimale
 
 - [x] Ajouter un septième onglet principal localisé `Émulation` dans `MainWindow.xaml`.
-- [x] Créer `EmulationTabSection` avec une surface SkiaSharp alimentée par la dernière `VideoFrame`.
-- [x] Convertir RGB565/XRGB8888 vers le `SKBitmap` sans appeler PUAE depuis le contrôle.
-- [x] Ajouter uniquement sélection de configuration, démarrage, arrêt et choix initial d’ADF pour le premier raccordement.
+- [x] Créer `AmigaEmulationSection` et `AmigaMachineView` alimentés par la dernière `VideoFrame`.
+- [x] Copier RGB565/XRGB8888 vers un `WriteableBitmap` sans appeler le cœur natif depuis le contrôle.
+- [x] Ajouter sélection de configuration, modèle, Kickstart, média initial, démarrage et plusieurs machines conservées dans des sous-onglets.
+- [x] Relier l’onglet principal à Paramètres > Émulation et recharger les configurations après fermeture des paramètres.
+- [x] Afficher la vidéo dans un cadre noir centré dont la surface reste strictement au format 4:3.
 - [x] Transmettre focus clavier et mouvement relatif de souris au snapshot de la machine active.
 - [x] Relier `WasapiAudioOutput` au démarrage/arrêt de la machine.
-- [x] Tester le contrôle avec une fausse machine avant le test local PUAE.
+- [x] Tester le mapping clavier et le calcul 4:3 indépendamment du cœur, puis valider le rendu avec le test local PUAE.
 
 #### AMI-039 — Créer la gestion des configurations dans Paramètres
 
 - [x] Ajouter une page `Émulation` dans `OptionsWindow` et rescanner firmware/configurations à son ouverture.
 - [x] Ajouter création depuis un modèle, modification des valeurs compatibles et suppression confirmée.
-- [x] Afficher toutes les Core Options par catégories et une vue avancée contenant aussi les clés inconnues du frontend.
-- [x] Marquer les options nécessitant un reset matériel ; appliquer immédiatement seulement les mappings hôtes.
+- [x] Afficher chaque Core Option annoncée avec catégorie, nom, clé, valeur actuelle et toutes les valeurs autorisées ; conserver aussi les clés inconnues du frontend.
+- [x] Enregistrer les modifications dans la configuration et les appliquer au prochain démarrage de cette machine ; la page Paramètres ne modifie jamais silencieusement une machine active.
 - [x] Ajouter le bouton ouvrant `Data/Emulation/Machines/Amiga/Firmware/` dans l’Explorateur Windows.
 - [x] Ne pas implémenter de duplication de configuration.
 

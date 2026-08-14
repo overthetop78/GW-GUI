@@ -9,6 +9,21 @@ namespace GWGUI.Tests;
 public sealed class AmigaMachineLifecycleTests
 {
     [Fact]
+    public async Task CoreCalls_UseOneNamedMachineThread()
+    {
+        var core = new FakeCore();
+        await using var machine = CreateMachine(core);
+        await machine.StartAsync();
+        await WaitUntil(() => core.FrameCount >= 2);
+        await machine.HardResetAsync();
+        await machine.SetOptionAsync("test", "value");
+        await machine.StopAsync();
+
+        Assert.True(core.AllCallsOnSameThread);
+        Assert.StartsWith("GWGUI Amiga ", core.CoreThreadName, StringComparison.Ordinal);
+    }
+
+    [Fact]
     public async Task RepeatedManagedRunLoops_DisposeEveryCore()
     {
         var cores = new List<FakeCore>();
@@ -351,6 +366,9 @@ public sealed class AmigaMachineLifecycleTests
         public string? OptionValue { get; private set; }
         public bool Stopped { get; private set; }
         public bool Disposed { get; private set; }
+        public bool AllCallsOnSameThread { get; private set; } = true;
+        public string? CoreThreadName { get; private set; }
+        private int? _coreThreadId;
         public VideoFrame? LatestVideoFrame => null;
         private readonly Queue<AudioChunk> _audio = new();
         public AudioChunk? LatestAudioChunk { get; private set; }
@@ -373,6 +391,7 @@ public sealed class AmigaMachineLifecycleTests
         public int CurrentDiskIndex => -1;
         public void Initialize(AmigaMachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
         {
+            CaptureCoreThread();
             if (!CreatePersistentFiles) return;
             Directory.CreateDirectory(sessionDirectory);
             File.WriteAllText(Path.Combine(sessionDirectory, "temporary.bin"), "temporary");
@@ -381,6 +400,7 @@ public sealed class AmigaMachineLifecycleTests
         }
         public void RunFrame()
         {
+            CaptureCoreThread();
             FrameCount++;
             if (FrameCount >= FailAtFrame) throw new InvalidOperationException("Synthetic core failure.");
             if (ProduceAudio)
@@ -389,16 +409,24 @@ public sealed class AmigaMachineLifecycleTests
                 _audio.Enqueue(LatestAudioChunk);
             }
         }
-        public void HardReset() { }
-        public void Stop() => Stopped = true;
+        public void HardReset() => CaptureCoreThread();
+        public void Stop() { CaptureCoreThread(); Stopped = true; }
         public void SetInput(EmulationInputSnapshot snapshot) { }
         public void InsertMedia(string path) { }
         public void EjectMedia() { }
         public void SelectDisk(int index) { }
         public byte[] SaveState() => [9, 8, 7];
         public void LoadState(ReadOnlySpan<byte> state) { }
-        public void SetOption(string key, string value) => OptionValue = value;
+        public void SetOption(string key, string value) { CaptureCoreThread(); OptionValue = value; }
         public void Dispose() => Disposed = true;
+
+        private void CaptureCoreThread()
+        {
+            var current = Environment.CurrentManagedThreadId;
+            _coreThreadId ??= current;
+            AllCallsOnSameThread &= _coreThreadId == current;
+            CoreThreadName ??= Thread.CurrentThread.Name;
+        }
     }
 
     private sealed class FailingAudioOutput : IAudioOutput

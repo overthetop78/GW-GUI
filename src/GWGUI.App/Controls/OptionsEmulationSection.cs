@@ -30,8 +30,8 @@ public sealed class OptionsEmulationSection : UserControl
         ItemsSource = Enum.GetValues<AmigaControllerType>(),
         SelectedItem = AmigaControllerType.Automatic
     }).ToArray();
-    private readonly DataGrid _optionGrid = new() { AutoGenerateColumns = true, CanUserAddRows = true, CanUserDeleteRows = true };
-    private readonly DataGrid _floppyGrid = new() { AutoGenerateColumns = true, CanUserAddRows = true, CanUserDeleteRows = true };
+    private readonly DataGrid _optionGrid = new() { AutoGenerateColumns = false, CanUserAddRows = true, CanUserDeleteRows = true };
+    private readonly DataGrid _floppyGrid = new() { AutoGenerateColumns = false, CanUserAddRows = true, CanUserDeleteRows = true };
     private readonly CheckBox _multiDrive = new();
     private Guid _currentId;
     private bool _loading;
@@ -39,6 +39,7 @@ public sealed class OptionsEmulationSection : UserControl
 
     public OptionsEmulationSection()
     {
+        ConfigureGrids();
         var root = new Grid { Margin = new Thickness(12) };
         root.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(280) });
         root.ColumnDefinitions.Add(new ColumnDefinition());
@@ -114,6 +115,18 @@ public sealed class OptionsEmulationSection : UserControl
         Grid.SetColumn(right, 1); root.Children.Add(right);
         Content = root;
         Loaded += async (_, _) => await ReloadAsync();
+    }
+
+    private void ConfigureGrids()
+    {
+        _optionGrid.Columns.Add(new DataGridTextColumn { Header = "Catégorie", Binding = new System.Windows.Data.Binding(nameof(OptionItem.Category)), IsReadOnly = true, Width = 130 });
+        _optionGrid.Columns.Add(new DataGridTextColumn { Header = "Option", Binding = new System.Windows.Data.Binding(nameof(OptionItem.Name)), IsReadOnly = true, Width = 220 });
+        _optionGrid.Columns.Add(new DataGridTextColumn { Header = "Clé", Binding = new System.Windows.Data.Binding(nameof(OptionItem.Key)), Width = 220 });
+        _optionGrid.Columns.Add(new DataGridTextColumn { Header = "Valeur", Binding = new System.Windows.Data.Binding(nameof(OptionItem.Value)) { UpdateSourceTrigger = System.Windows.Data.UpdateSourceTrigger.PropertyChanged }, Width = 150 });
+        _optionGrid.Columns.Add(new DataGridTextColumn { Header = "Valeurs autorisées", Binding = new System.Windows.Data.Binding(nameof(OptionItem.AllowedValues)), IsReadOnly = true, Width = new DataGridLength(1, DataGridLengthUnitType.Star) });
+        _floppyGrid.Columns.Add(new DataGridTextColumn { Header = "Image", Binding = new System.Windows.Data.Binding(nameof(FloppyItem.Path)) { UpdateSourceTrigger = System.Windows.Data.UpdateSourceTrigger.PropertyChanged }, Width = new DataGridLength(1, DataGridLengthUnitType.Star) });
+        _floppyGrid.Columns.Add(new DataGridTextColumn { Header = "Libellé", Binding = new System.Windows.Data.Binding(nameof(FloppyItem.Label)) { UpdateSourceTrigger = System.Windows.Data.UpdateSourceTrigger.PropertyChanged }, Width = 150 });
+        _floppyGrid.Columns.Add(new DataGridCheckBoxColumn { Header = "Lecture seule", Binding = new System.Windows.Data.Binding(nameof(FloppyItem.IsReadOnly)), Width = 100 });
     }
 
     private static void AddButton(Panel panel, string resourceKey, Func<Task> action)
@@ -208,7 +221,7 @@ public sealed class OptionsEmulationSection : UserControl
             _controllers[port].SelectedItem = configuration.Controllers?.ElementAtOrDefault(port) ?? AmigaControllerType.Automatic;
         _options.Clear();
         foreach (var option in configuration.Options ?? new Dictionary<string, string>())
-            _options.Add(new OptionItem { Key = option.Key, Value = option.Value });
+            _options.Add(new OptionItem { Category = "Configuration", Key = option.Key, Name = option.Key, Value = option.Value });
         _floppies.Clear();
         foreach (var floppy in configuration.Floppies ?? [])
             _floppies.Add(new FloppyItem { Path = floppy.Path, Label = floppy.Label ?? string.Empty, IsReadOnly = floppy.IsReadOnly });
@@ -273,6 +286,7 @@ public sealed class OptionsEmulationSection : UserControl
                 _options.Add(new OptionItem
                 {
                     Key = option.Key,
+                    Category = string.IsNullOrWhiteSpace(option.Category) ? "Avancé" : option.Category,
                     Name = option.Name,
                     Value = configured.TryGetValue(option.Key, out var value) ? value : option.DefaultValue,
                     AllowedValues = string.Join(" | ", option.Values.Select(item => item.Value))
@@ -343,6 +357,7 @@ public sealed class OptionsEmulationSection : UserControl
 
     public sealed class OptionItem
     {
+        public string Category { get; set; } = string.Empty;
         public string Key { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
         public string Value { get; set; } = string.Empty;
