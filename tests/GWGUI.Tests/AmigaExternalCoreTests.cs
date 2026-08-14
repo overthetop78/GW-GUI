@@ -42,6 +42,13 @@ public sealed class AmigaExternalCoreTests
             var modelOption = Assert.Single(core.Options, option => option.Key == "puae_model");
             Assert.Contains(modelOption.Values, value => value.Value == "A500");
             Assert.Contains(core.Options, option => option.Key == "puae_kickstart");
+            core.SetOption("puae_floppy_write_protection", "enabled");
+            core.RunFrame();
+            Assert.Throws<ArgumentOutOfRangeException>(() => core.SetOption("puae_floppy_write_protection", "invalid"));
+            core.SetInput(new EmulationInputSnapshot(new HashSet<EmulationKey> { EmulationKey.LeftAmiga, EmulationKey.M },
+                new EmulationPointerState(12, -4, 0, true, false, false),
+                [new EmulationControllerState(1, 0, 0, 0, 0, 0, 0)]));
+            core.RunFrame();
             var state = core.SaveState();
             Assert.True(state.Length > 1024);
             core.RunFrame();
