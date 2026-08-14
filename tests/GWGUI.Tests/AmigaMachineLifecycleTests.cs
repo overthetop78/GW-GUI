@@ -9,6 +9,25 @@ namespace GWGUI.Tests;
 public sealed class AmigaMachineLifecycleTests
 {
     [Fact]
+    public async Task RepeatedManagedRunLoops_DisposeEveryCore()
+    {
+        var cores = new List<FakeCore>();
+        for (var iteration = 0; iteration < 100; iteration++)
+        {
+            var core = new FakeCore();
+            cores.Add(core);
+            await using var machine = CreateMachine(core);
+            await machine.StartAsync();
+            await WaitUntil(() => machine.LatestVideoFrame is null && machine.State == EmulationMachineState.Running);
+        }
+        Assert.All(cores, core =>
+        {
+            Assert.True(core.Stopped);
+            Assert.True(core.Disposed);
+        });
+    }
+
+    [Fact]
     public async Task CommandWhilePaused_DoesNotAdvanceTheCore()
     {
         var core = new FakeCore();

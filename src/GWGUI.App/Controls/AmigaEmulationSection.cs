@@ -120,7 +120,7 @@ public sealed class AmigaEmulationSection : UserControl
             var corePath = await AmigaCoreProvider.EnsureAvailableAsync();
             var engine = new AmigaEngine(StoragePaths.AmigaSessionsDirectory, corePath, () => new WasapiAudioOutput(),
                 configuration => Path.Combine(StoragePaths.AmigaConfigurationsDirectory,
-                    configuration.Id.ToString("N"), "Saves"));
+                    configuration.Id.ToString("N"), "Saves"), Environment.ProcessPath);
             var saved = (_configuration.SelectedItem as ConfigurationItem)?.Configuration;
             var options = new Dictionary<string, string>(saved?.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal)
             {

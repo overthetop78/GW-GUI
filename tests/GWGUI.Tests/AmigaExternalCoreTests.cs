@@ -1,4 +1,5 @@
 using System.IO;
+using System.Diagnostics;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using GWGUI.Emulation.Amiga;
@@ -9,6 +10,43 @@ namespace GWGUI.Tests;
 
 public sealed class AmigaExternalCoreTests
 {
+    [Fact]
+    public async Task RepeatedStartStop_ReleasesEveryNativeSession()
+    {
+        var repository = FindRepositoryRoot();
+        var kickstart = Path.Combine(repository, "image_test", "Roms", "Bios", "Kickstart 1.3.rom");
+        var corePath = Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll");
+        var sessions = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Stress", Guid.NewGuid().ToString("N"));
+        var count = int.TryParse(Environment.GetEnvironmentVariable("GWGUI_AMIGA_STRESS_COUNT"), out var requested)
+            ? Math.Clamp(requested, 1, 500) : 5;
+        var process = Process.GetCurrentProcess();
+        var initialHandles = process.HandleCount;
+        var configuration = AmigaMachineConfiguration.A500(kickstart);
+        var hostExecutable = Path.Combine(AppContext.BaseDirectory, "GW GUI.exe");
+        var engine = new AmigaEngine(sessions, corePath, hostExecutablePath: hostExecutable);
+        try
+        {
+            for (var iteration = 0; iteration < count; iteration++)
+            {
+                await using (var machine = engine.CreateAmigaMachine(configuration))
+                {
+                    await machine.StartAsync();
+                    await WaitForFrame(machine, TimeSpan.FromSeconds(10));
+                }
+                Assert.Empty(Directory.Exists(sessions) ? Directory.EnumerateDirectories(sessions) : []);
+            }
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
+            process.Refresh();
+            Assert.InRange(process.HandleCount, 0, initialHandles + 25);
+        }
+        finally
+        {
+            if (Directory.Exists(sessions)) Directory.Delete(sessions, true);
+        }
+    }
+
     public static TheoryData<string, string> BootableComputerModels => new()
     {
         { "A500OG", "Kickstart 1.2.rom" },
@@ -137,7 +175,8 @@ public sealed class AmigaExternalCoreTests
         var adf = @"F:\Disquettes\Amiga Workbench\Amiga_Workbench_1.3.3.adf";
         var corePath = Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll");
         var sessions = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Tests", Guid.NewGuid().ToString("N"));
-        var engine = new AmigaEngine(sessions, corePath);
+        var engine = new AmigaEngine(sessions, corePath,
+            hostExecutablePath: Path.Combine(AppContext.BaseDirectory, "GW GUI.exe"));
         await using var first = engine.CreateAmigaMachine(AmigaMachineConfiguration.A500(kickstart, adf));
         await using var second = engine.CreateAmigaMachine(AmigaMachineConfiguration.A500(kickstart));
 
@@ -173,7 +212,8 @@ public sealed class AmigaExternalCoreTests
         var repository = FindRepositoryRoot();
         var output = new RecordingAudioOutput();
         var engine = new AmigaEngine(Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Tests", Guid.NewGuid().ToString("N")),
-            Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll"), () => output);
+            Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll"), () => output,
+            hostExecutablePath: Path.Combine(AppContext.BaseDirectory, "GW GUI.exe"));
         await using var machine = engine.CreateAmigaMachine(AmigaMachineConfiguration.A500(
             Path.Combine(repository, "image_test", "Roms", "Bios", "Kickstart 1.3.rom")));
         await machine.StartAsync();
@@ -189,7 +229,11 @@ public sealed class AmigaExternalCoreTests
     {
         using var cancellation = new CancellationTokenSource(timeout);
         while (machine.LatestVideoFrame is null)
+        {
+            if (machine.State == EmulationMachineState.Faulted)
+                throw new InvalidOperationException("The Amiga machine faulted before producing video.", machine.Fault);
             await Task.Delay(20, cancellation.Token);
+        }
     }
 
     private static string FindRepositoryRoot()

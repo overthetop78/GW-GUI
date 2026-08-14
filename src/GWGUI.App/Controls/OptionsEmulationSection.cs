@@ -253,7 +253,8 @@ public sealed class OptionsEmulationSection : UserControl
             ExtendedRomPath: OptionalFullPath(_extendedRom.Text), RomKeyPath: OptionalFullPath(_romKey.Text),
             Options: new Dictionary<string, string> { ["puae_model"] = model.Id },
             Id: _currentId == Guid.Empty ? Guid.NewGuid() : _currentId, AudioEnabled: false);
-        var engine = new AmigaEngine(StoragePaths.AmigaSessionsDirectory, corePath);
+        var engine = new AmigaEngine(StoragePaths.AmigaSessionsDirectory, corePath,
+            hostExecutablePath: Environment.ProcessPath);
         await using var machine = engine.CreateAmigaMachine(configuration);
         await machine.StartAsync();
         try

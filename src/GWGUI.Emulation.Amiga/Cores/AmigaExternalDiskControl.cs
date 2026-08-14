@@ -48,7 +48,15 @@ internal sealed class AmigaExternalDiskControl
     }
 
     internal int ImageCount => IsAvailable ? checked((int)_getImageCount!()) : 0;
-    internal int CurrentIndex => IsAvailable ? checked((int)_getImageIndex!()) : -1;
+    internal int CurrentIndex
+    {
+        get
+        {
+            if (!IsAvailable) return -1;
+            var index = _getImageIndex!();
+            return index == uint.MaxValue ? -1 : checked((int)index);
+        }
+    }
 
     internal void Select(int index)
     {
