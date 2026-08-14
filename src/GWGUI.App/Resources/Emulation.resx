@@ -317,7 +317,7 @@
   <data name="Emulation.BindingConflict"><value>Conflict</value></data>
   <data name="Emulation.BindingReserved"><value>Reserved</value></data>
   <data name="Emulation.BindingUnassigned"><value>Unassigned</value></data>
-  <data name="Emulation.GlobalShortcuts"><value>Emulation shortcuts</value></data>
+  <data name="Emulation.GlobalShortcuts"><value>Key assignments</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>Release mouse</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>Pause / resume</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>Fullscreen / windowed mode</value></data>

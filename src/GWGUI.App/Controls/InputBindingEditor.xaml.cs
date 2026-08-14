@@ -192,10 +192,10 @@ public sealed class InputBindingRow(string id, string label, string binding, str
     };
     public string StateIcon => State switch
     {
-        InputBindingState.Valid => "\uE73E",
-        InputBindingState.Conflict => "\uEA39",
-        InputBindingState.Reserved => "\uEA18",
-        _ => "\uE711"
+        InputBindingState.Valid => "✓",
+        InputBindingState.Conflict => "!",
+        InputBindingState.Reserved => "◆",
+        _ => "−"
     };
     public event PropertyChangedEventHandler? PropertyChanged;
     internal void SetState(InputBindingState state)
