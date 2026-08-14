@@ -35,6 +35,12 @@ public partial class InputBindingEditor : UserControl
     public IReadOnlyList<InputBindingRow> Rows => _rows;
     public event EventHandler? BindingsChanged;
 
+    public void ConfigurePresentation(string firstColumnHeader, string searchPlaceholder)
+    {
+        TargetColumn.Header = firstColumnHeader;
+        SearchPlaceholder.Text = searchPlaceholder;
+    }
+
     public void SetRows(IEnumerable<InputBindingDefinition> definitions, IReadOnlyDictionary<string, string>? values)
     {
         _rows.Clear();
@@ -152,7 +158,16 @@ public sealed class InputBindingRow(string id, string label, string binding, str
     public string Id { get; } = id;
     public string Label { get; } = label;
     public string DefaultBinding { get; } = defaultBinding;
-    public string Binding { get => _binding; set { _binding = value; OnChanged(); } }
+    public string Binding { get => _binding; set { _binding = value; OnChanged(); OnChanged(nameof(BindingParts)); } }
+    public IReadOnlyList<InputBindingPart> BindingParts
+    {
+        get
+        {
+            var parts = _binding.Split('+', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+            return parts.Select((part, index) => new InputBindingPart(part,
+                index < parts.Length - 1 ? Visibility.Visible : Visibility.Collapsed)).ToArray();
+        }
+    }
     public InputBindingState State { get => _state; private set { _state = value; OnChanged(); } }
     public string StateText => LocExtension.Get(State switch
     {
@@ -175,11 +190,21 @@ public sealed class InputBindingRow(string id, string label, string binding, str
         InputBindingState.Reserved => Brushes.AliceBlue,
         _ => Brushes.Gainsboro
     };
+    public string StateIcon => State switch
+    {
+        InputBindingState.Valid => "\uE73E",
+        InputBindingState.Conflict => "\uEA39",
+        InputBindingState.Reserved => "\uEA18",
+        _ => "\uE711"
+    };
     public event PropertyChangedEventHandler? PropertyChanged;
     internal void SetState(InputBindingState state)
     {
         State = state;
         OnChanged(nameof(StateText)); OnChanged(nameof(StateForeground)); OnChanged(nameof(StateBackground));
+        OnChanged(nameof(StateIcon));
     }
     private void OnChanged([CallerMemberName] string? property = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
 }
+
+public sealed record InputBindingPart(string Text, Visibility SeparatorVisibility);

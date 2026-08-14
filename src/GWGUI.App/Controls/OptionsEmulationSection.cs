@@ -159,6 +159,10 @@ public sealed class OptionsEmulationSection : UserControl
         _storageDevices.ConfigureRequested += (_, args) => ConfigureStorageDevice(args.Device);
         _storageDevices.RemoveRequested += (_, args) => RemoveStorageDevice(args.Device);
         _keyboardGrid.ItemsSource = _keyboardMappings;
+        _globalShortcutEditor.ConfigurePresentation(LocExtension.Get("Emulation.InputActions"),
+            LocExtension.Get("Emulation.SearchBinding"));
+        _amigaKeyboardEditor.ConfigurePresentation(LocExtension.Get("Emulation.SystemKey", "Amiga"),
+            LocExtension.Get("Emulation.SearchBinding"));
         _globalShortcutEditor.BindingsChanged += async (_, _) => await SaveGlobalShortcutsAsync();
         _multiDrive.Content = LocExtension.Get("Emulation.MultiDrive");
         ConfigureOptionChoices();
