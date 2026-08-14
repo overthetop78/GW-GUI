@@ -12,7 +12,7 @@ namespace GWGUI.App.Controls;
 
 public sealed class OptionsEmulationSection : UserControl
 {
-    private readonly AmigaConfigurationStore _store = new(StoragePaths.AmigaConfigurationsDirectory);
+    private readonly AmigaConfigurationStore _store = new(StoragePaths.AmigaConfigurationsDirectory, StoragePaths.DataDirectory);
     private readonly ObservableCollection<ConfigurationItem> _configurations = [];
     private readonly ObservableCollection<FirmwareItem> _firmware = [];
     private readonly ObservableCollection<OptionItem> _options = [];

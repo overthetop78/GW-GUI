@@ -21,7 +21,9 @@ public sealed record AmigaMachineConfiguration(
     IReadOnlyList<AmigaControllerType>? Controllers = null,
     AmigaInputConfiguration? Input = null,
     IReadOnlyList<AmigaFloppyConfiguration>? Floppies = null,
-    bool MountFloppiesInSeparateDrives = false)
+    bool MountFloppiesInSeparateDrives = false,
+    int SchemaVersion = 2,
+    string? ValidatedCoreSha256 = null)
 {
     public static AmigaMachineConfiguration A500(string kickstartPath, string? diskPath = null) =>
         new("A500", kickstartPath, diskPath, Options: new Dictionary<string, string>

@@ -42,6 +42,37 @@ public sealed class AmigaConfigurationTests
     }
 
     [Fact]
+    public async Task ConfigurationStore_UsesRelativePathsOnlyInsideDataDirectory()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Portable", Guid.NewGuid().ToString("N"));
+        var data = Path.Combine(root, "Data");
+        var configurations = Path.Combine(data, "Emulation", "Machines", "Amiga", "Configurations");
+        var firmware = Path.Combine(data, "Emulation", "Machines", "Amiga", "Firmware", "kick.rom");
+        var externalDisk = Path.Combine(root, "External", "game.adf");
+        Directory.CreateDirectory(Path.GetDirectoryName(firmware)!);
+        Directory.CreateDirectory(Path.GetDirectoryName(externalDisk)!);
+        await File.WriteAllBytesAsync(firmware, [1]);
+        await File.WriteAllBytesAsync(externalDisk, [2]);
+        try
+        {
+            var configuration = AmigaMachineConfiguration.A500(firmware, externalDisk);
+            var store = new AmigaConfigurationStore(configurations, data);
+            await store.SaveAsync(configuration);
+            var json = await File.ReadAllTextAsync(Path.Combine(configurations, configuration.Id.ToString("N"), "machine.json"));
+            Assert.Contains("Emulation/Machines/Amiga/Firmware/kick.rom", json, StringComparison.Ordinal);
+            Assert.Contains(externalDisk.Replace("\\", "\\\\"), json, StringComparison.OrdinalIgnoreCase);
+            var loaded = Assert.Single(await store.LoadAllAsync());
+            Assert.Equal(Path.GetFullPath(firmware), loaded.KickstartPath);
+            Assert.Equal(Path.GetFullPath(externalDisk), loaded.InitialDiskPath);
+            Assert.Equal(2, loaded.SchemaVersion);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
     public void FirmwareCatalog_FindsRomBinAndKeyWithHashes()
     {
         var directory = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Firmware", Guid.NewGuid().ToString("N"));

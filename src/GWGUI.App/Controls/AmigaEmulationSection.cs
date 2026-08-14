@@ -86,7 +86,7 @@ public sealed class AmigaEmulationSection : UserControl
 
     private async Task ReloadConfigurationsAsync()
     {
-        var configurations = await new AmigaConfigurationStore(StoragePaths.AmigaConfigurationsDirectory).LoadAllAsync();
+        var configurations = await new AmigaConfigurationStore(StoragePaths.AmigaConfigurationsDirectory, StoragePaths.DataDirectory).LoadAllAsync();
         _configuration.ItemsSource = configurations.Select(configuration => new ConfigurationItem(configuration)).ToArray();
         _configuration.SelectedIndex = configurations.Count > 0 ? 0 : -1;
     }

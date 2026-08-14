@@ -6,8 +6,13 @@ public sealed class AmigaConfigurationStore
 {
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web) { WriteIndented = true };
     private readonly string _directory;
+    private readonly string _pathBase;
 
-    public AmigaConfigurationStore(string directory) => _directory = Path.GetFullPath(directory);
+    public AmigaConfigurationStore(string directory, string? pathBase = null)
+    {
+        _directory = Path.GetFullPath(directory);
+        _pathBase = Path.GetFullPath(pathBase ?? directory);
+    }
 
     public async Task<IReadOnlyList<AmigaMachineConfiguration>> LoadAllAsync(CancellationToken cancellationToken = default)
     {
@@ -24,7 +29,8 @@ public sealed class AmigaConfigurationStore
             {
                 await using var stream = File.OpenRead(path);
                 var configuration = await JsonSerializer.DeserializeAsync<AmigaMachineConfiguration>(stream, JsonOptions, cancellationToken);
-                if (configuration is not null) configurations.Add(configuration.EnsureId());
+                if (configuration is not null && configuration.SchemaVersion is > 0 and <= 2)
+                    configurations.Add(ResolvePaths(configuration.EnsureId()));
             }
             catch (JsonException) { }
             catch (IOException) { }
@@ -40,7 +46,7 @@ public sealed class AmigaConfigurationStore
         var target = Path.Combine(machineDirectory, "machine.json");
         var temporary = target + ".tmp";
         await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, 4096, true))
-            await JsonSerializer.SerializeAsync(stream, configuration, JsonOptions, cancellationToken);
+            await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken);
         File.Move(temporary, target, true);
     }
 
@@ -50,5 +56,40 @@ public sealed class AmigaConfigurationStore
         if (Directory.Exists(target)) Directory.Delete(target, true);
         var legacy = Path.Combine(_directory, $"{id:N}.json");
         if (File.Exists(legacy)) File.Delete(legacy);
+    }
+
+    private AmigaMachineConfiguration StorePaths(AmigaMachineConfiguration configuration) => configuration with
+    {
+        KickstartPath = StorePath(configuration.KickstartPath)!,
+        InitialDiskPath = StorePath(configuration.InitialDiskPath),
+        ExtendedRomPath = StorePath(configuration.ExtendedRomPath),
+        RomKeyPath = StorePath(configuration.RomKeyPath),
+        Floppies = configuration.Floppies?.Select(floppy => floppy with { Path = StorePath(floppy.Path)! }).ToArray()
+    };
+
+    private AmigaMachineConfiguration ResolvePaths(AmigaMachineConfiguration configuration) => configuration with
+    {
+        KickstartPath = ResolvePath(configuration.KickstartPath)!,
+        InitialDiskPath = ResolvePath(configuration.InitialDiskPath),
+        ExtendedRomPath = ResolvePath(configuration.ExtendedRomPath),
+        RomKeyPath = ResolvePath(configuration.RomKeyPath),
+        Floppies = configuration.Floppies?.Select(floppy => floppy with { Path = ResolvePath(floppy.Path)! }).ToArray()
+    };
+
+    private string? StorePath(string? path)
+    {
+        if (string.IsNullOrWhiteSpace(path)) return path;
+        var fullPath = Path.GetFullPath(path);
+        var relative = Path.GetRelativePath(_pathBase, fullPath);
+        if (Path.IsPathFullyQualified(relative)) return fullPath;
+        if (relative != ".." && !relative.StartsWith(".." + Path.DirectorySeparatorChar, StringComparison.Ordinal))
+            return relative.Replace(Path.DirectorySeparatorChar, '/');
+        return fullPath;
+    }
+
+    private string? ResolvePath(string? path)
+    {
+        if (string.IsNullOrWhiteSpace(path) || Path.IsPathFullyQualified(path)) return path;
+        return Path.GetFullPath(Path.Combine(_pathBase, path.Replace('/', Path.DirectorySeparatorChar)));
     }
 }
