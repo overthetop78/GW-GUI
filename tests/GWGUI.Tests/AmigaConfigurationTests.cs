@@ -51,10 +51,21 @@ public sealed class AmigaConfigurationTests
             File.WriteAllBytes(Path.Combine(directory, "kick.rom"), [1, 2, 3]);
             File.WriteAllBytes(Path.Combine(directory, "extended.bin"), [4, 5]);
             File.WriteAllBytes(Path.Combine(directory, "rom.key"), [6]);
+            var customKickstart = new byte[524288];
+            customKickstart[12] = 0;
+            customKickstart[13] = 34;
+            customKickstart[14] = 0;
+            customKickstart[15] = 5;
+            File.WriteAllBytes(Path.Combine(directory, "custom.rom"), customKickstart);
             File.WriteAllText(Path.Combine(directory, "ignore.txt"), "ignored");
             var entries = new AmigaFirmwareCatalog(directory).Scan();
-            Assert.Equal(3, entries.Count);
+            Assert.Equal(4, entries.Count);
             Assert.All(entries, entry => Assert.Equal(64, entry.Sha256.Length));
+            var detected = Assert.Single(entries, entry => entry.Path.EndsWith("custom.rom", StringComparison.Ordinal));
+            Assert.Equal(AmigaFirmwareType.Kickstart, detected.Type);
+            Assert.Equal("rev 34.005", detected.Version);
+            Assert.Contains("A500", detected.CompatibleModels);
+            Assert.False(detected.IsKnown);
         }
         finally
         {

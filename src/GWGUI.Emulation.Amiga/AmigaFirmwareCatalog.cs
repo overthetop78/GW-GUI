@@ -49,12 +49,34 @@ public sealed class AmigaFirmwareCatalog
         var md5 = Convert.ToHexString(MD5.HashData(stream));
         stream.Position = 0;
         var sha256 = Convert.ToHexString(SHA256.HashData(stream));
+        stream.Position = 0;
+        var detected = TryReadKickstartVersion(stream, file.Length);
         var known = Known.TryGetValue(md5, out var identity);
         var type = Path.GetExtension(path).Equals(".key", StringComparison.OrdinalIgnoreCase) ? AmigaFirmwareType.RomKey
             : known ? identity.Type
             : Path.GetFileName(path).Contains("ext", StringComparison.OrdinalIgnoreCase) ? AmigaFirmwareType.ExtendedRom
+            : detected is not null ? AmigaFirmwareType.Kickstart
             : AmigaFirmwareType.Unknown;
         return new AmigaFirmware(file.FullName, file.Length, md5, sha256, file.LastWriteTimeUtc,
-            type, known, known ? identity.Version : null, known ? identity.Models : []);
+            type, known, known ? identity.Version : detected?.Version, known ? identity.Models : detected?.Models ?? []);
+    }
+
+    private static (string Version, string[] Models)? TryReadKickstartVersion(Stream stream, long length)
+    {
+        if (length is not (262_144 or 524_288 or 1_048_576)) return null;
+        Span<byte> header = stackalloc byte[16];
+        if (stream.Read(header) != header.Length) return null;
+        var version = (header[12] << 8) | header[13];
+        var revision = (header[14] << 8) | header[15];
+        if (version is < 29 or > 50 || revision > 1000) return null;
+        var models = version switch
+        {
+            <= 34 => new[] { "A500OG", "A500", "A2000OG" },
+            37 => new[] { "A500PLUS", "A600" },
+            39 => new[] { "A1200OG", "A1200", "A4030", "A4040" },
+            >= 40 => new[] { "A600", "A1200OG", "A1200", "A2000", "A4030", "A4040" },
+            _ => []
+        };
+        return ($"rev {version}.{revision:D3}", models);
     }
 }

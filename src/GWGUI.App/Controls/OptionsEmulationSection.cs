@@ -14,9 +14,11 @@ public sealed class OptionsEmulationSection : UserControl
 {
     private readonly AmigaConfigurationStore _store = new(StoragePaths.AmigaConfigurationsDirectory);
     private readonly ObservableCollection<ConfigurationItem> _configurations = [];
+    private readonly ObservableCollection<FirmwareItem> _firmware = [];
     private readonly ObservableCollection<OptionItem> _options = [];
     private readonly ObservableCollection<FloppyItem> _floppies = [];
     private readonly ListBox _list = new() { MinWidth = 260 };
+    private readonly ListBox _firmwareList = new() { MinWidth = 260 };
     private readonly ComboBox _model = new() { ItemsSource = AmigaModelCatalog.All, DisplayMemberPath = nameof(AmigaModel.DisplayName) };
     private readonly TextBox _kickstart = new();
     private readonly TextBox _extendedRom = new();
@@ -40,16 +42,30 @@ public sealed class OptionsEmulationSection : UserControl
         root.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(280) });
         root.ColumnDefinitions.Add(new ColumnDefinition());
 
-        var left = new DockPanel { Margin = new Thickness(0, 0, 12, 0) };
+        var left = new Grid { Margin = new Thickness(0, 0, 12, 0) };
+        left.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        left.RowDefinitions.Add(new RowDefinition());
+        left.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        left.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        left.RowDefinitions.Add(new RowDefinition());
+        var configurationsLabel = new TextBlock { Text = LocExtension.Get("Emulation.Configurations"), FontWeight = FontWeights.SemiBold, Margin = new Thickness(0, 0, 0, 6) };
+        left.Children.Add(configurationsLabel);
         var leftButtons = new WrapPanel { Margin = new Thickness(0, 8, 0, 0) };
         AddButton(leftButtons, "Common.New", NewConfiguration);
         AddButton(leftButtons, "Common.Delete", DeleteConfigurationAsync);
-        DockPanel.SetDock(leftButtons, Dock.Bottom);
+        Grid.SetRow(leftButtons, 2);
         left.Children.Add(leftButtons);
         _list.ItemsSource = _configurations;
         _list.DisplayMemberPath = nameof(ConfigurationItem.DisplayName);
         _list.SelectionChanged += ConfigurationSelected;
+        Grid.SetRow(_list, 1);
         left.Children.Add(_list);
+        var firmwareLabel = new TextBlock { Text = LocExtension.Get("Emulation.Firmware"), FontWeight = FontWeights.SemiBold, Margin = new Thickness(0, 12, 0, 6) };
+        Grid.SetRow(firmwareLabel, 3); left.Children.Add(firmwareLabel);
+        _firmwareList.ItemsSource = _firmware;
+        _firmwareList.DisplayMemberPath = nameof(FirmwareItem.DisplayName);
+        _firmwareList.SelectionChanged += FirmwareSelected;
+        Grid.SetRow(_firmwareList, 4); left.Children.Add(_firmwareList);
         root.Children.Add(left);
 
         var right = new Grid();
@@ -146,6 +162,9 @@ public sealed class OptionsEmulationSection : UserControl
             _list.SelectedItem = selected;
             if (selected is null) _ = NewConfiguration();
             else LoadEditor(selected.Configuration);
+            _firmware.Clear();
+            foreach (var entry in new AmigaFirmwareCatalog(StoragePaths.AmigaFirmwareDirectory).Scan())
+                _firmware.Add(new FirmwareItem(entry));
         }
         finally { _loading = false; }
     }
@@ -160,6 +179,17 @@ public sealed class OptionsEmulationSection : UserControl
     private void ConfigurationSelected(object sender, SelectionChangedEventArgs e)
     {
         if (!_loading && _list.SelectedItem is ConfigurationItem item) LoadEditor(item.Configuration);
+    }
+
+    private void FirmwareSelected(object sender, SelectionChangedEventArgs e)
+    {
+        if (_firmwareList.SelectedItem is not FirmwareItem item) return;
+        switch (item.Firmware.Type)
+        {
+            case AmigaFirmwareType.ExtendedRom: _extendedRom.Text = item.Firmware.Path; break;
+            case AmigaFirmwareType.RomKey: _romKey.Text = item.Firmware.Path; break;
+            default: _kickstart.Text = item.Firmware.Path; break;
+        }
     }
 
     private void LoadEditor(AmigaMachineConfiguration configuration)
@@ -280,6 +310,19 @@ public sealed class OptionsEmulationSection : UserControl
     private sealed record ConfigurationItem(AmigaMachineConfiguration Configuration)
     {
         public string DisplayName => $"{Configuration.Model} · {Configuration.Id.ToString("N")[..8]} · {Path.GetFileName(Configuration.KickstartPath)}";
+    }
+
+    private sealed record FirmwareItem(AmigaFirmware Firmware)
+    {
+        public string DisplayName
+        {
+            get
+            {
+                var identity = Firmware.Version ?? LocExtension.Get("Common.Unknown");
+                var models = Firmware.CompatibleModels.Count == 0 ? string.Empty : $" · {string.Join(", ", Firmware.CompatibleModels)}";
+                return $"{Path.GetFileName(Firmware.Path)} · {identity} · {Firmware.Size:N0} B · MD5 {Firmware.Md5} · SHA-256 {Firmware.Sha256}{models}";
+            }
+        }
     }
 
     public sealed class OptionItem
