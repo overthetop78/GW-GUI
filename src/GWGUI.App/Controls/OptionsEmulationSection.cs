@@ -448,8 +448,13 @@ public sealed class OptionsEmulationSection : UserControl
 
     private void ConfigureOptionChoices()
     {
-        _chipMemory.ItemsSource = new[] { ("auto", LocExtension.Get("Visual.Automatic")), ("1", "512 KiB"), ("2", "1 MiB"), ("3", "1.5 MiB"), ("4", "2 MiB") }.Select(item => new OptionChoice(item.Item1, item.Item2)).ToArray();
-        _slowMemory.ItemsSource = new[] { ("auto", LocExtension.Get("Visual.Automatic")), ("0", LocExtension.Get("HostTools.None")), ("2", "512 KiB"), ("4", "1 MiB"), ("6", "1.5 MiB"), ("7", "1.8 MiB") }.Select(item => new OptionChoice(item.Item1, item.Item2)).ToArray();
+        var frenchUnits = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr";
+        var kib = frenchUnits ? "Kio" : "KiB";
+        var mib = frenchUnits ? "Mio" : "MiB";
+        var oneAndHalf = 1.5.ToString("0.0", System.Globalization.CultureInfo.CurrentCulture);
+        var oneAndEight = 1.8.ToString("0.0", System.Globalization.CultureInfo.CurrentCulture);
+        _chipMemory.ItemsSource = new[] { ("auto", LocExtension.Get("Visual.Automatic")), ("1", $"512 {kib}"), ("2", $"1 {mib}"), ("3", $"{oneAndHalf} {mib}"), ("4", $"2 {mib}") }.Select(item => new OptionChoice(item.Item1, item.Item2)).ToArray();
+        _slowMemory.ItemsSource = new[] { ("auto", LocExtension.Get("Visual.Automatic")), ("0", LocExtension.Get("HostTools.None")), ("2", $"512 {kib}"), ("4", $"1 {mib}"), ("6", $"{oneAndHalf} {mib}"), ("7", $"{oneAndEight} {mib}") }.Select(item => new OptionChoice(item.Item1, item.Item2)).ToArray();
         _fastMemory.ItemsSource = MemoryChoices([0, 1, 2, 4, 8]);
         _z3Memory.ItemsSource = MemoryChoices([0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512]);
         _videoStandard.ItemsSource = new[] { new OptionChoice("PAL auto", $"PAL ({LocExtension.Get("Visual.Automatic")})"), new OptionChoice("NTSC auto", $"NTSC ({LocExtension.Get("Visual.Automatic")})"), new OptionChoice("PAL", "PAL"), new OptionChoice("NTSC", "NTSC") };
@@ -489,8 +494,11 @@ public sealed class OptionsEmulationSection : UserControl
         .Select(choice => new OptionChoice(choice.Value, choice.TextOrKey.Contains('.') ? LocExtension.Get(choice.TextOrKey) : choice.TextOrKey))
         .ToArray();
 
-    private static OptionChoice[] MemoryChoices(IEnumerable<int> values) =>
-        [new OptionChoice("auto", LocExtension.Get("Visual.Automatic")), .. values.Select(value => new OptionChoice(value.ToString(), value == 0 ? LocExtension.Get("HostTools.None") : $"{value} MiB"))];
+    private static OptionChoice[] MemoryChoices(IEnumerable<int> values)
+    {
+        var unit = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr" ? "Mio" : "MiB";
+        return [new OptionChoice("auto", LocExtension.Get("Visual.Automatic")), .. values.Select(value => new OptionChoice(value.ToString(), value == 0 ? LocExtension.Get("HostTools.None") : $"{value} {unit}"))];
+    }
 
     private Task AddMediaAsync()
     {
@@ -577,7 +585,15 @@ public sealed class OptionsEmulationSection : UserControl
             AmigaMediaKind.CompactDisc => _cdDrive.IsChecked == true,
             AmigaMediaKind.WhdLoad or AmigaMediaKind.Configuration => true,
             _ => false
-        }).ToArray();
+        }).Select(kind => new LocalizedChoice<AmigaMediaKind>(kind, kind switch
+        {
+            AmigaMediaKind.Floppy => "ADF",
+            AmigaMediaKind.HardDrive => "HDF",
+            AmigaMediaKind.CompactDisc => "CD",
+            AmigaMediaKind.WhdLoad => "WHDLoad",
+            AmigaMediaKind.Configuration => "UAE",
+            _ => kind.ToString()
+        })).ToArray();
         foreach (var item in _media.ToArray())
         {
             var row = new Grid { Margin = new Thickness(0, 0, 0, 8) };
@@ -586,8 +602,9 @@ public sealed class OptionsEmulationSection : UserControl
             row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(150) });
             row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
             row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-            var kind = new ComboBox { ItemsSource = allowedKinds, SelectedItem = item.Kind, Margin = new Thickness(4) };
-            kind.SelectionChanged += (_, _) => item.Kind = (AmigaMediaKind)(kind.SelectedItem ?? item.Kind);
+            var kind = new ComboBox { ItemsSource = allowedKinds, Margin = new Thickness(4) };
+            kind.SelectedItem = allowedKinds.FirstOrDefault(choice => choice.Value == item.Kind);
+            kind.SelectionChanged += (_, _) => item.Kind = kind.SelectedItem is LocalizedChoice<AmigaMediaKind> choice ? choice.Value : item.Kind;
             row.Children.Add(kind);
             var path = new TextBox { Text = item.Path, Margin = new Thickness(4) };
             path.TextChanged += (_, _) => item.Path = path.Text;
