@@ -89,6 +89,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     internal int SampleRate { get; set; } = 44100;
     internal double FramesPerSecond { get; private set; } = 50;
     internal bool SupportsNoGame { get; private set; }
+    internal IReadOnlyList<IReadOnlyList<AmigaControllerDevice>> ControllerPorts { get; private set; } = [];
     internal IReadOnlyList<AmigaCoreOption> OptionCatalog { get; private set; } = [];
     internal IReadOnlyList<string> Diagnostics => _diagnostics.ToArray();
 
@@ -165,6 +166,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
                     DiskControl.CaptureExtended(data);
                     return true;
                 case AmigaExternalApi.SetControllerInfo:
+                    return CaptureControllerInfo(data);
                 case AmigaExternalApi.SetMemoryMaps:
                 case AmigaExternalApi.SetSupportAchievements:
                 case AmigaExternalApi.SetCoreOptionsDisplay:
@@ -300,6 +302,35 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
         var textPointer = Marshal.ReadIntPtr(data);
         var message = textPointer == 0 ? null : Marshal.PtrToStringUTF8(textPointer);
         if (!string.IsNullOrWhiteSpace(message)) AddDiagnostic($"[message{(extended ? "-extended" : string.Empty)}] {message}");
+        return true;
+    }
+
+    private bool CaptureControllerInfo(nint data)
+    {
+        if (data == 0)
+        {
+            ControllerPorts = [];
+            return true;
+        }
+        var ports = new List<IReadOnlyList<AmigaControllerDevice>>();
+        var infoSize = Marshal.SizeOf<AmigaExternalApi.ControllerInfo>();
+        var descriptionSize = Marshal.SizeOf<AmigaExternalApi.ControllerDescription>();
+        for (var port = 0; port < 16; port++)
+        {
+            var info = Marshal.PtrToStructure<AmigaExternalApi.ControllerInfo>(data + port * infoSize);
+            if (info.Types == 0 || info.Count == 0) break;
+            if (info.Count > 64) return false;
+            var devices = new List<AmigaControllerDevice>(checked((int)info.Count));
+            for (var index = 0; index < info.Count; index++)
+            {
+                var description = Marshal.PtrToStructure<AmigaExternalApi.ControllerDescription>(
+                    info.Types + checked((int)index) * descriptionSize);
+                var name = description.Description == 0 ? null : Marshal.PtrToStringUTF8(description.Description);
+                if (!string.IsNullOrWhiteSpace(name)) devices.Add(new AmigaControllerDevice(name, description.Id));
+            }
+            ports.Add(devices);
+        }
+        ControllerPorts = ports;
         return true;
     }
 

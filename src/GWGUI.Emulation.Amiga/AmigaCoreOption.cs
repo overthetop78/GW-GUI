@@ -4,3 +4,5 @@ public sealed record AmigaCoreOptionValue(string Value, string Label);
 
 public sealed record AmigaCoreOption(string Key, string Name, string? Description, string? Category,
     string DefaultValue, IReadOnlyList<AmigaCoreOptionValue> Values);
+
+internal sealed record AmigaControllerDevice(string Name, uint Id);

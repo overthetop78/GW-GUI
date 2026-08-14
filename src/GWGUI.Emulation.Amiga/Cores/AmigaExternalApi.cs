@@ -179,6 +179,20 @@ internal static class AmigaExternalApi
     }
 
     [StructLayout(LayoutKind.Sequential)]
+    internal struct ControllerDescription
+    {
+        internal nint Description;
+        internal uint Id;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct ControllerInfo
+    {
+        internal nint Types;
+        internal uint Count;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
     internal struct Message
     {
         internal nint Text;

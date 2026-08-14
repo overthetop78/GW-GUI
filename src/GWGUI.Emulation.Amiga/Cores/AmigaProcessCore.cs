@@ -118,6 +118,8 @@ internal sealed class AmigaProcessCore : IAmigaCore
         SampleRate = Response.ReadInt32();
         DiskCount = Response.ReadInt32();
         CurrentDiskIndex = Response.ReadInt32();
+        if (Response.ReadBoolean())
+            Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(Response.ReadString(), AmigaCoreHostProtocol.JsonOptions) ?? [];
     }
 
     public void HardReset() => SimpleRequest(AmigaHostCommand.HardReset);

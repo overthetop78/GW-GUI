@@ -14,6 +14,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
     private AmigaExternalApi.VoidCall? _run;
     private AmigaExternalApi.VoidCall? _reset;
     private bool _gameLoaded;
+    private bool _initialized;
     private AmigaExternalApi.GetSerializedSize? _getSerializedSize;
     private AmigaExternalApi.Serialize? _serialize;
     private AmigaExternalApi.Serialize? _unserialize;
@@ -129,14 +130,15 @@ internal sealed class AmigaExternalCore : IAmigaCore
             _serialize = Export<AmigaExternalApi.Serialize>("retro_serialize");
             _unserialize = Export<AmigaExternalApi.Serialize>("retro_unserialize");
             Export<AmigaExternalApi.VoidCall>("retro_init")();
+            _initialized = true;
             _host.ValidateConfiguredOptions();
             var setController = Export<AmigaExternalApi.SetControllerPortDevice>("retro_set_controller_port_device");
-            for (var port = 0; port < 6; port++)
+            for (var port = 0; port < 4; port++)
             {
                 var controller = configuration.Controllers is { } controllers && port < controllers.Count ? controllers[port]
                     : configuration.Input?.ControllerBindings?.FirstOrDefault(binding => binding.Port == port)?.Type
                       ?? (port < 2 ? AmigaControllerType.Automatic : AmigaControllerType.None);
-                setController((uint)port, ControllerDevice(controller));
+                setController((uint)port, ControllerDevice(_host.ControllerPorts, port, controller));
             }
 
             AmigaExternalApi.LoadGame loadGame = Export<AmigaExternalApi.LoadGame>("retro_load_game");
@@ -265,17 +267,27 @@ internal sealed class AmigaExternalCore : IAmigaCore
     private T Export<T>(string name) where T : Delegate =>
         Marshal.GetDelegateForFunctionPointer<T>(NativeLibrary.GetExport(_library, name));
 
-    private static uint ControllerDevice(AmigaControllerType controller) => controller switch
+    internal static uint ControllerDevice(IReadOnlyList<IReadOnlyList<AmigaControllerDevice>> ports,
+        int port, AmigaControllerType controller)
     {
-        AmigaControllerType.Automatic => 1,
-        AmigaControllerType.RetroPad => (1u << 8) | 1,
-        AmigaControllerType.Cd32Pad => (2u << 8) | 5,
-        AmigaControllerType.AnalogJoystick => (3u << 8) | 5,
-        AmigaControllerType.Joystick => (1u << 8) | 5,
-        AmigaControllerType.Keyboard => (1u << 8) | 3,
-        AmigaControllerType.None => 0,
-        _ => throw new ArgumentOutOfRangeException(nameof(controller))
-    };
+        if (controller == AmigaControllerType.None) return 0;
+        var requestedName = controller switch
+        {
+            AmigaControllerType.Automatic => "Automatic",
+            AmigaControllerType.RetroPad => "RetroPad",
+            AmigaControllerType.Cd32Pad => "CD32 Pad",
+            AmigaControllerType.AnalogJoystick => "Analog Joystick",
+            AmigaControllerType.Joystick => "Joystick",
+            AmigaControllerType.Keyboard => "Keyboard",
+            _ => throw new ArgumentOutOfRangeException(nameof(controller))
+        };
+        var devices = port < ports.Count ? ports[port] : [];
+        var selected = devices.FirstOrDefault(device => device.Name.Equals(requestedName, StringComparison.OrdinalIgnoreCase));
+        if (selected is not null) return selected.Id;
+        if (controller == AmigaControllerType.Automatic)
+            return devices.FirstOrDefault(device => device.Name.Equals("RetroPad", StringComparison.OrdinalIgnoreCase))?.Id ?? 1;
+        throw new InvalidDataException($"Controller '{requestedName}' is not supported on Amiga port {port + 1}.");
+    }
 
     private static string ResolveCorePath(string? configuredPath)
     {
@@ -295,7 +307,8 @@ internal sealed class AmigaExternalCore : IAmigaCore
         try { Stop(); }
         finally
         {
-            _deinitialize?.Invoke();
+            if (_initialized) _deinitialize?.Invoke();
+            _initialized = false;
             _deinitialize = null;
             _unloadGame = null;
             _run = null;

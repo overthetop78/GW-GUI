@@ -131,6 +131,7 @@ public static class AmigaCoreHost
         using var transportWriter = new BinaryWriter(pipe, System.Text.Encoding.UTF8, true);
         AmigaExternalCore? core = null;
         var lastVideoSequence = 0L;
+        var lastDiagnosticCount = 0;
         while (true)
         {
             AmigaHostCommand command;
@@ -155,6 +156,7 @@ public static class AmigaCoreHost
                         writer.Write(core.CoreSha256); writer.Write(core.FramesPerSecond); writer.Write(core.SampleRate);
                         writer.Write(JsonSerializer.Serialize(core.Options, AmigaCoreHostProtocol.JsonOptions));
                         writer.Write(JsonSerializer.Serialize(core.Diagnostics, AmigaCoreHostProtocol.JsonOptions));
+                        lastDiagnosticCount = core.Diagnostics.Count;
                         writer.Write(core.CoreName); writer.Write(core.CoreVersion);
                         writer.Write(string.Join('|', core.SupportedContentExtensions.Order(StringComparer.OrdinalIgnoreCase)));
                         writer.Write(core.DiskCount); writer.Write(core.CurrentDiskIndex);
@@ -172,6 +174,14 @@ public static class AmigaCoreHost
                         AmigaCoreHostProtocol.WriteAudio(writer, audio);
                         writer.Write(activeCore.FramesPerSecond); writer.Write(activeCore.SampleRate);
                         writer.Write(activeCore.DiskCount); writer.Write(activeCore.CurrentDiskIndex);
+                        var diagnostics = activeCore.Diagnostics;
+                        var diagnosticsChanged = diagnostics.Count != lastDiagnosticCount;
+                        writer.Write(diagnosticsChanged);
+                        if (diagnosticsChanged)
+                        {
+                            writer.Write(JsonSerializer.Serialize(diagnostics, AmigaCoreHostProtocol.JsonOptions));
+                            lastDiagnosticCount = diagnostics.Count;
+                        }
                         break;
                     case AmigaHostCommand.HardReset: EnsureCore(core).HardReset(); WriteSuccess(writer); break;
                     case AmigaHostCommand.Stop: EnsureCore(core).Stop(); WriteSuccess(writer); break;

@@ -1,5 +1,6 @@
 using System.IO;
 using System.Runtime.InteropServices;
+using GWGUI.Emulation.Amiga;
 using GWGUI.Emulation.Amiga.Cores;
 
 namespace GWGUI.Tests;
@@ -67,6 +68,41 @@ public sealed class AmigaEnvironmentCallbackTests
         {
             Marshal.FreeHGlobal(variable);
             Marshal.FreeCoTaskMem(key);
+            Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void ControllerInfo_IsCopiedAndUsedForExactPerPortDeviceIds()
+    {
+        var root = TemporaryRoot();
+        using var callbacks = CreateCallbacks(root);
+        var automaticText = Marshal.StringToCoTaskMemUTF8("Automatic");
+        var cd32Text = Marshal.StringToCoTaskMemUTF8("CD32 Pad");
+        var descriptionSize = Marshal.SizeOf<AmigaExternalApi.ControllerDescription>();
+        var descriptions = Marshal.AllocHGlobal(descriptionSize * 2);
+        var infoSize = Marshal.SizeOf<AmigaExternalApi.ControllerInfo>();
+        var infos = Marshal.AllocHGlobal(infoSize * 2);
+        try
+        {
+            Marshal.StructureToPtr(new AmigaExternalApi.ControllerDescription { Description = automaticText, Id = 111 }, descriptions, false);
+            Marshal.StructureToPtr(new AmigaExternalApi.ControllerDescription { Description = cd32Text, Id = 777 }, descriptions + descriptionSize, false);
+            Marshal.StructureToPtr(new AmigaExternalApi.ControllerInfo { Types = descriptions, Count = 2 }, infos, false);
+            Marshal.StructureToPtr(new AmigaExternalApi.ControllerInfo(), infos + infoSize, false);
+
+            Assert.True(callbacks.Environment(AmigaExternalApi.SetControllerInfo, infos));
+            var port = Assert.Single(callbacks.ControllerPorts);
+            Assert.Collection(port,
+                device => { Assert.Equal("Automatic", device.Name); Assert.Equal(111u, device.Id); },
+                device => { Assert.Equal("CD32 Pad", device.Name); Assert.Equal(777u, device.Id); });
+            Assert.Equal(777u, AmigaExternalCore.ControllerDevice(callbacks.ControllerPorts, 0, AmigaControllerType.Cd32Pad));
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(infos);
+            Marshal.FreeHGlobal(descriptions);
+            Marshal.FreeCoTaskMem(cd32Text);
+            Marshal.FreeCoTaskMem(automaticText);
             Directory.Delete(root, true);
         }
     }
