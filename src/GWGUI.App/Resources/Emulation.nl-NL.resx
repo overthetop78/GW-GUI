@@ -262,4 +262,10 @@
   <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>De geheugenuitbreidingen zijn compatibel met {0}.</value></data>
   <data name="Emulation.Z3MemoryUnavailableForModel"><value>Zorro III-RAM is niet beschikbaar op {0}.</value></data>
   <data name="Emulation.TotalMemoryConfigured"><value>Totaal geconfigureerd geheugen: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>Systeem-ROM</value></data>
+  <data name="Emulation.DetectedRoms"><value>Gedetecteerde ROMs</value></data>
+  <data name="Emulation.UseFirmware"><value>Gebruiken</value></data>
+  <data name="Emulation.NotUsed"><value>Niet gebruikt</value></data>
+  <data name="Emulation.OpenRomFolder"><value>ROM-map openen</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>Gedeeltelijk compatibel</value></data>
 </root>

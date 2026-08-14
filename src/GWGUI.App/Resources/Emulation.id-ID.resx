@@ -262,4 +262,10 @@
   <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Ekstensi memori kompatibel dengan {0}.</value></data>
   <data name="Emulation.Z3MemoryUnavailableForModel"><value>RAM Zorro III tidak tersedia pada {0}.</value></data>
   <data name="Emulation.TotalMemoryConfigured"><value>Total memori yang dikonfigurasi: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>ROM sistem</value></data>
+  <data name="Emulation.DetectedRoms"><value>ROM terdeteksi</value></data>
+  <data name="Emulation.UseFirmware"><value>Gunakan</value></data>
+  <data name="Emulation.NotUsed"><value>Tidak digunakan</value></data>
+  <data name="Emulation.OpenRomFolder"><value>Buka folder ROM</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>Sebagian kompatibel</value></data>
 </root>

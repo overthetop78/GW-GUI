@@ -262,4 +262,10 @@
   <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Bellek genişletmeleri {0} ile uyumludur.</value></data>
   <data name="Emulation.Z3MemoryUnavailableForModel"><value>Zorro III RAM, {0} üzerinde kullanılamaz.</value></data>
   <data name="Emulation.TotalMemoryConfigured"><value>Toplam yapılandırılmış bellek: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>Sistem ROM'u</value></data>
+  <data name="Emulation.DetectedRoms"><value>Algılanan ROM'lar</value></data>
+  <data name="Emulation.UseFirmware"><value>Kullan</value></data>
+  <data name="Emulation.NotUsed"><value>Kullanılmıyor</value></data>
+  <data name="Emulation.OpenRomFolder"><value>ROM klasörünü aç</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>Kısmen uyumlu</value></data>
 </root>

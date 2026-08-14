@@ -262,4 +262,10 @@
   <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Las ampliaciones de memoria son compatibles con {0}.</value></data>
   <data name="Emulation.Z3MemoryUnavailableForModel"><value>La RAM Zorro III no está disponible en {0}.</value></data>
   <data name="Emulation.TotalMemoryConfigured"><value>Memoria total configurada: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>ROM del sistema</value></data>
+  <data name="Emulation.DetectedRoms"><value>ROM detectadas</value></data>
+  <data name="Emulation.UseFirmware"><value>Usar</value></data>
+  <data name="Emulation.NotUsed"><value>No utilizada</value></data>
+  <data name="Emulation.OpenRomFolder"><value>Abrir carpeta de ROM</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>Parcialmente compatible</value></data>
 </root>

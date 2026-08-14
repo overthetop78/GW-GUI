@@ -262,4 +262,10 @@
   <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>内存扩展与 {0} 兼容。</value></data>
   <data name="Emulation.Z3MemoryUnavailableForModel"><value>{0} 不支持 Zorro III 内存。</value></data>
   <data name="Emulation.TotalMemoryConfigured"><value>已配置内存总量：{0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>系统 ROM</value></data>
+  <data name="Emulation.DetectedRoms"><value>检测到的 ROM</value></data>
+  <data name="Emulation.UseFirmware"><value>使用</value></data>
+  <data name="Emulation.NotUsed"><value>未使用</value></data>
+  <data name="Emulation.OpenRomFolder"><value>打开 ROM 文件夹</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>部分兼容</value></data>
 </root>

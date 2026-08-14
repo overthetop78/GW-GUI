@@ -262,4 +262,10 @@
   <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Rozšíření paměti jsou kompatibilní s {0}.</value></data>
   <data name="Emulation.Z3MemoryUnavailableForModel"><value>Paměť Zorro III není u modelu {0} dostupná.</value></data>
   <data name="Emulation.TotalMemoryConfigured"><value>Celková nakonfigurovaná paměť: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>Systémová ROM</value></data>
+  <data name="Emulation.DetectedRoms"><value>Nalezené ROM</value></data>
+  <data name="Emulation.UseFirmware"><value>Použít</value></data>
+  <data name="Emulation.NotUsed"><value>Nepoužívá se</value></data>
+  <data name="Emulation.OpenRomFolder"><value>Otevřít složku ROM</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>Částečně kompatibilní</value></data>
 </root>

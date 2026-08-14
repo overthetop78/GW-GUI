@@ -262,4 +262,10 @@
   <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Расширения памяти совместимы с {0}.</value></data>
   <data name="Emulation.Z3MemoryUnavailableForModel"><value>ОЗУ Zorro III недоступно на {0}.</value></data>
   <data name="Emulation.TotalMemoryConfigured"><value>Всего настроено памяти: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>Системная ПЗУ</value></data>
+  <data name="Emulation.DetectedRoms"><value>Обнаруженные ПЗУ</value></data>
+  <data name="Emulation.UseFirmware"><value>Использовать</value></data>
+  <data name="Emulation.NotUsed"><value>Не используется</value></data>
+  <data name="Emulation.OpenRomFolder"><value>Открыть папку ПЗУ</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>Частично совместима</value></data>
 </root>

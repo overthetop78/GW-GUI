@@ -262,4 +262,10 @@
   <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>ส่วนขยายหน่วยความจำเข้ากันได้กับ {0}</value></data>
   <data name="Emulation.Z3MemoryUnavailableForModel"><value>RAM Zorro III ไม่พร้อมใช้งานบน {0}</value></data>
   <data name="Emulation.TotalMemoryConfigured"><value>หน่วยความจำที่กำหนดค่าทั้งหมด: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>ROM ระบบ</value></data>
+  <data name="Emulation.DetectedRoms"><value>ROM ที่ตรวจพบ</value></data>
+  <data name="Emulation.UseFirmware"><value>ใช้</value></data>
+  <data name="Emulation.NotUsed"><value>ไม่ได้ใช้</value></data>
+  <data name="Emulation.OpenRomFolder"><value>เปิดโฟลเดอร์ ROM</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>เข้ากันได้บางส่วน</value></data>
 </root>

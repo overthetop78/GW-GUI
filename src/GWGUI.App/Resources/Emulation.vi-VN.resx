@@ -262,4 +262,10 @@
   <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Các phần mở rộng bộ nhớ tương thích với {0}.</value></data>
   <data name="Emulation.Z3MemoryUnavailableForModel"><value>RAM Zorro III không khả dụng trên {0}.</value></data>
   <data name="Emulation.TotalMemoryConfigured"><value>Tổng bộ nhớ đã cấu hình: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>ROM hệ thống</value></data>
+  <data name="Emulation.DetectedRoms"><value>ROM đã phát hiện</value></data>
+  <data name="Emulation.UseFirmware"><value>Sử dụng</value></data>
+  <data name="Emulation.NotUsed"><value>Không sử dụng</value></data>
+  <data name="Emulation.OpenRomFolder"><value>Mở thư mục ROM</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>Tương thích một phần</value></data>
 </root>

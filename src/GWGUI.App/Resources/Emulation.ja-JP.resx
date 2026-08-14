@@ -262,4 +262,10 @@
   <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>メモリ拡張は {0} と互換性があります。</value></data>
   <data name="Emulation.Z3MemoryUnavailableForModel"><value>Zorro III RAM は {0} では使用できません。</value></data>
   <data name="Emulation.TotalMemoryConfigured"><value>構成済みメモリ合計: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>システム ROM</value></data>
+  <data name="Emulation.DetectedRoms"><value>検出された ROM</value></data>
+  <data name="Emulation.UseFirmware"><value>使用</value></data>
+  <data name="Emulation.NotUsed"><value>未使用</value></data>
+  <data name="Emulation.OpenRomFolder"><value>ROM フォルダーを開く</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>一部互換</value></data>
 </root>

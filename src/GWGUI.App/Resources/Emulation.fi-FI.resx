@@ -262,4 +262,10 @@
   <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Muistilaajennukset ovat yhteensopivia mallin {0} kanssa.</value></data>
   <data name="Emulation.Z3MemoryUnavailableForModel"><value>Zorro III -RAM ei ole käytettävissä mallissa {0}.</value></data>
   <data name="Emulation.TotalMemoryConfigured"><value>Määritetty muisti yhteensä: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>Järjestelmä-ROM</value></data>
+  <data name="Emulation.DetectedRoms"><value>Havaitut ROM-tiedostot</value></data>
+  <data name="Emulation.UseFirmware"><value>Käytä</value></data>
+  <data name="Emulation.NotUsed"><value>Ei käytössä</value></data>
+  <data name="Emulation.OpenRomFolder"><value>Avaa ROM-kansio</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>Osittain yhteensopiva</value></data>
 </root>

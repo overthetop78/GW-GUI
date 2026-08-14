@@ -262,4 +262,10 @@
   <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Hukommelsesudvidelserne er kompatible med {0}.</value></data>
   <data name="Emulation.Z3MemoryUnavailableForModel"><value>Zorro III-RAM er ikke tilgængelig på {0}.</value></data>
   <data name="Emulation.TotalMemoryConfigured"><value>Samlet konfigureret hukommelse: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>System-ROM</value></data>
+  <data name="Emulation.DetectedRoms"><value>Fundne ROM-filer</value></data>
+  <data name="Emulation.UseFirmware"><value>Brug</value></data>
+  <data name="Emulation.NotUsed"><value>Ikke brugt</value></data>
+  <data name="Emulation.OpenRomFolder"><value>Åbn ROM-mappe</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>Delvist kompatibel</value></data>
 </root>

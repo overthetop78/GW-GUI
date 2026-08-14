@@ -262,4 +262,10 @@
   <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Οι επεκτάσεις μνήμης είναι συμβατές με το {0}.</value></data>
   <data name="Emulation.Z3MemoryUnavailableForModel"><value>Η RAM Zorro III δεν είναι διαθέσιμη στο {0}.</value></data>
   <data name="Emulation.TotalMemoryConfigured"><value>Συνολική διαμορφωμένη μνήμη: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>ROM συστήματος</value></data>
+  <data name="Emulation.DetectedRoms"><value>ROM που εντοπίστηκαν</value></data>
+  <data name="Emulation.UseFirmware"><value>Χρήση</value></data>
+  <data name="Emulation.NotUsed"><value>Δεν χρησιμοποιείται</value></data>
+  <data name="Emulation.OpenRomFolder"><value>Άνοιγμα φακέλου ROM</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>Μερικώς συμβατή</value></data>
 </root>

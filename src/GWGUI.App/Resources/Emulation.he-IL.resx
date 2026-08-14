@@ -262,4 +262,10 @@
   <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>הרחבות הזיכרון תואמות ל־{0}.</value></data>
   <data name="Emulation.Z3MemoryUnavailableForModel"><value>זיכרון Zorro III אינו זמין ב־{0}.</value></data>
   <data name="Emulation.TotalMemoryConfigured"><value>סך הזיכרון שהוגדר: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>ROM מערכת</value></data>
+  <data name="Emulation.DetectedRoms"><value>קובצי ROM שזוהו</value></data>
+  <data name="Emulation.UseFirmware"><value>השתמש</value></data>
+  <data name="Emulation.NotUsed"><value>לא בשימוש</value></data>
+  <data name="Emulation.OpenRomFolder"><value>פתח תיקיית ROM</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>תואמת חלקית</value></data>
 </root>

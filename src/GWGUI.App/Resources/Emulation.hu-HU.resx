@@ -262,4 +262,10 @@
   <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>A memóriabővítések kompatibilisek ezzel: {0}.</value></data>
   <data name="Emulation.Z3MemoryUnavailableForModel"><value>A Zorro III RAM nem érhető el ezen: {0}.</value></data>
   <data name="Emulation.TotalMemoryConfigured"><value>Összes beállított memória: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>Rendszer-ROM</value></data>
+  <data name="Emulation.DetectedRoms"><value>Észlelt ROM-ok</value></data>
+  <data name="Emulation.UseFirmware"><value>Használat</value></data>
+  <data name="Emulation.NotUsed"><value>Nincs használatban</value></data>
+  <data name="Emulation.OpenRomFolder"><value>ROM-mappa megnyitása</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>Részben kompatibilis</value></data>
 </root>

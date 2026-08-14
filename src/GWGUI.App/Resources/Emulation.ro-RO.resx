@@ -262,4 +262,10 @@
   <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Extensiile de memorie sunt compatibile cu {0}.</value></data>
   <data name="Emulation.Z3MemoryUnavailableForModel"><value>Memoria RAM Zorro III nu este disponibilă pe {0}.</value></data>
   <data name="Emulation.TotalMemoryConfigured"><value>Memorie totală configurată: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>ROM de sistem</value></data>
+  <data name="Emulation.DetectedRoms"><value>ROM-uri detectate</value></data>
+  <data name="Emulation.UseFirmware"><value>Utilizează</value></data>
+  <data name="Emulation.NotUsed"><value>Neutilizată</value></data>
+  <data name="Emulation.OpenRomFolder"><value>Deschide folderul ROM</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>Parțial compatibilă</value></data>
 </root>

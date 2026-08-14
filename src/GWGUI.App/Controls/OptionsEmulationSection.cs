@@ -31,7 +31,8 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly ObservableCollection<OptionItem> _options = [];
     private readonly ObservableCollection<MediaItem> _media = [];
     private readonly ListBox _list = new() { MinWidth = 260 };
-    private readonly ListBox _firmwareList = new() { MinWidth = 260 };
+    private readonly ListBox _firmwareList = new() { MinWidth = 360, BorderThickness = new Thickness(0) };
+    private readonly Button _useSelectedFirmware = new() { MinWidth = 100, IsEnabled = false };
     private readonly ComboBox _model = new() { ItemsSource = AmigaModelCatalog.All, DisplayMemberPath = nameof(AmigaModel.DisplayName) };
     private readonly TextBox _kickstart = new();
     private readonly TextBox _extendedRom = new();
@@ -122,9 +123,8 @@ public sealed class OptionsEmulationSection : UserControl
         _list.ItemsSource = _configurations;
         _list.DisplayMemberPath = nameof(ConfigurationItem.DisplayName);
         _list.SelectionChanged += ConfigurationSelected;
-        _firmwareList.ItemsSource = _firmware;
-        _firmwareList.DisplayMemberPath = nameof(FirmwareItem.DisplayName);
-        _firmwareList.SelectionChanged += FirmwareSelected;
+        _firmwareList.SelectionChanged += (_, _) =>
+            _useSelectedFirmware.IsEnabled = SelectedFirmware() is not null;
         _model.SelectionChanged += (_, _) => ApplyModelDefaults();
         _chipMemory.SelectionChanged += (_, _) => UpdateMemorySummary();
         _slowMemory.SelectionChanged += (_, _) => UpdateMemorySummary();
@@ -364,7 +364,7 @@ public sealed class OptionsEmulationSection : UserControl
             new AmigaCoreManagementSection { Margin = new Thickness(12) });
         AddMachineTab(tabs, "\uE950", "CPU", BuildCpuTab());
         AddMachineTab(tabs, "\uE964", "RAM", BuildRamTab());
-        AddMachineTab(tabs, "\uE8B7", "ROM", Wrap(BuildRomTab()));
+        AddMachineTab(tabs, "\uE8B7", "ROM", BuildRomTab());
         AddMachineTab(tabs, "\uE7F4", LocExtension.Get("Emulation.VideoTab"), BuildVideoTab());
         AddMachineTab(tabs, "\uE767", LocExtension.Get("Emulation.Audio"), BuildAudioTab());
         AddMachineTab(tabs, "\uEDA2", LocExtension.Get("Emulation.StorageTab"), Wrap(BuildStorageTab()));
@@ -439,28 +439,43 @@ public sealed class OptionsEmulationSection : UserControl
 
     private UIElement BuildRomTab()
     {
-        var root = new Grid { Margin = new Thickness(4) };
-        root.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(3, GridUnitType.Star) });
-        root.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
+        var page = new Grid { Margin = new Thickness(12) };
+        page.RowDefinitions.Add(new RowDefinition());
+        page.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        var root = new Grid();
+        root.ColumnDefinitions.Add(new ColumnDefinition());
+        root.ColumnDefinitions.Add(new ColumnDefinition());
         var form = CreateForm(3);
         AddPathField(form, 0, "Kickstart", _kickstart, "ROM|*.rom;*.bin|All files|*.*");
-        AddPathField(form, 1, LocExtension.Get("Emulation.ExtendedRom"), _extendedRom, "ROM|*.rom;*.bin|All files|*.*");
-        AddPathField(form, 2, LocExtension.Get("Emulation.RomKey"), _romKey, "ROM key|*.key|All files|*.*");
-        var pathsCard = Card(form, "ROM");
-        pathsCard.Margin = new Thickness(0, 0, 6, 0);
+        AddPathField(form, 1, LocExtension.Get("Emulation.ExtendedRom"), _extendedRom,
+            "ROM|*.rom;*.bin|All files|*.*", LocExtension.Get("Emulation.NotUsed"));
+        AddPathField(form, 2, LocExtension.Get("Emulation.RomKey"), _romKey,
+            "ROM key|*.key|All files|*.*", LocExtension.Get("Emulation.NotUsed"));
+        var pathsCard = ActionCard(form, LocExtension.Get("Emulation.SystemRom"));
+        pathsCard.Margin = new Thickness(0, 0, 5, 0);
         root.Children.Add(pathsCard);
-        var firmware = new Grid { Margin = new Thickness(6, 0, 0, 0) };
-        firmware.RowDefinitions.Add(new RowDefinition());
-        firmware.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        firmware.Children.Add(_firmwareList);
-        var actions = new WrapPanel { Margin = new Thickness(0, 8, 0, 0) };
-        AddButton(actions, "Common.OpenFolder", OpenFirmwareFolder);
-        Grid.SetRow(actions, 1);
-        firmware.Children.Add(actions);
-        var firmwareCard = Card(firmware, LocExtension.Get("Emulation.Firmware"));
+
+        var headerActions = new StackPanel { Orientation = Orientation.Horizontal };
+        var refresh = CreateActionButton("\uE72C", LocExtension.Get("Common.Refresh"));
+        refresh.Click += async (_, _) => await RunUiActionAsync(refresh, RefreshFirmwareAsync);
+        headerActions.Children.Add(refresh);
+        _useSelectedFirmware.Content = LocExtension.Get("Emulation.UseFirmware");
+        _useSelectedFirmware.Margin = new Thickness(8, 0, 0, 0);
+        _useSelectedFirmware.Click += (_, _) => UseFirmware(SelectedFirmware());
+        headerActions.Children.Add(_useSelectedFirmware);
+        var firmwareCard = ActionCard(_firmwareList, LocExtension.Get("Emulation.DetectedRoms"), headerActions);
+        firmwareCard.Margin = new Thickness(5, 0, 0, 0);
         Grid.SetColumn(firmwareCard, 1);
         root.Children.Add(firmwareCard);
-        return root;
+        page.Children.Add(root);
+
+        var openFolder = CreateActionButton("\uE838", LocExtension.Get("Emulation.OpenRomFolder"));
+        openFolder.HorizontalAlignment = HorizontalAlignment.Left;
+        openFolder.Margin = new Thickness(0, 12, 0, 0);
+        openFolder.Click += async (_, _) => await RunUiActionAsync(openFolder, OpenFirmwareFolder);
+        Grid.SetRow(openFolder, 1);
+        page.Children.Add(openFolder);
+        return ScrollPage(page);
     }
 
     private UIElement BuildAudioTab()
@@ -1228,6 +1243,56 @@ public sealed class OptionsEmulationSection : UserControl
         return card;
     }
 
+    private static Border ActionCard(UIElement child, string title, FrameworkElement? actions = null)
+    {
+        var header = new Grid
+        {
+            Margin = new Thickness(0),
+            Height = 54
+        };
+        header.ColumnDefinitions.Add(new ColumnDefinition());
+        header.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        header.Children.Add(new TextBlock
+        {
+            Text = title,
+            FontWeight = FontWeights.SemiBold,
+            FontSize = 17,
+            VerticalAlignment = VerticalAlignment.Center,
+            Margin = new Thickness(16, 0, 12, 0)
+        });
+        if (actions is not null)
+        {
+            Grid.SetColumn(actions, 1);
+            actions.Margin = new Thickness(8, 8, 12, 8);
+            header.Children.Add(actions);
+        }
+
+        var headerBorder = new Border
+        {
+            Child = header,
+            BorderThickness = new Thickness(0, 0, 0, 1)
+        };
+        headerBorder.SetResourceReference(BorderBrushProperty, "BorderBrush");
+        var body = new Border { Child = child, Padding = new Thickness(8) };
+        var layout = new Grid();
+        layout.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        layout.RowDefinitions.Add(new RowDefinition());
+        layout.Children.Add(headerBorder);
+        Grid.SetRow(body, 1);
+        layout.Children.Add(body);
+
+        var card = new Border
+        {
+            Child = layout,
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(9),
+            ClipToBounds = true
+        };
+        card.SetResourceReference(BackgroundProperty, "CardBrush");
+        card.SetResourceReference(BorderBrushProperty, "BorderBrush");
+        return card;
+    }
+
     private static UIElement Wrap(UIElement child)
     {
         var card = new Border
@@ -1319,6 +1384,7 @@ public sealed class OptionsEmulationSection : UserControl
         _hardDriveCount.SelectedItem = 0;
         _cdDrive.IsChecked = model.HasCdDrive;
         RefreshMediaRows();
+        RefreshFirmwareRows();
     }
 
     private void ConfigureMemoryChoices(AmigaModel model)
@@ -1567,6 +1633,28 @@ public sealed class OptionsEmulationSection : UserControl
         panel.Children.Add(button);
     }
 
+    private static async Task RunUiActionAsync(Button button, Func<Task> action)
+    {
+        try { button.IsEnabled = false; await action(); }
+        catch (Exception error) { ShowError(button, error); }
+        finally { button.IsEnabled = true; }
+    }
+
+    private static Button CreateActionButton(string icon, string text)
+    {
+        var content = new StackPanel { Orientation = Orientation.Horizontal };
+        content.Children.Add(new TextBlock
+        {
+            Text = icon,
+            FontFamily = new FontFamily("Segoe MDL2 Assets"),
+            FontSize = 16,
+            VerticalAlignment = VerticalAlignment.Center,
+            Margin = new Thickness(0, 0, 8, 0)
+        });
+        content.Children.Add(new TextBlock { Text = text, VerticalAlignment = VerticalAlignment.Center });
+        return new Button { Content = content, MinWidth = 110, Margin = new Thickness(0) };
+    }
+
     private static void AddField(Grid grid, int row, string label, FrameworkElement control)
     {
         var text = new TextBlock { Text = label, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 5, 12, 5) };
@@ -1575,10 +1663,41 @@ public sealed class OptionsEmulationSection : UserControl
         Grid.SetRow(control, row); Grid.SetColumn(control, 1); Grid.SetColumnSpan(control, 2); grid.Children.Add(control);
     }
 
-    private static void AddPathField(Grid grid, int row, string label, TextBox textBox, string filter)
+    private static void AddPathField(Grid grid, int row, string label, TextBox textBox, string filter,
+        string? emptyText = null)
     {
-        AddField(grid, row, label, textBox);
-        Grid.SetColumnSpan(textBox, 1);
+        var fieldLabel = new TextBlock
+        {
+            Text = label,
+            VerticalAlignment = VerticalAlignment.Center,
+            Margin = new Thickness(0, 5, 12, 5)
+        };
+        Grid.SetRow(fieldLabel, row);
+        grid.Children.Add(fieldLabel);
+
+        var editor = new Grid { Margin = new Thickness(0, 4, 0, 4) };
+        textBox.Margin = new Thickness(0);
+        editor.Children.Add(textBox);
+        if (!string.IsNullOrWhiteSpace(emptyText))
+        {
+            var placeholder = new TextBlock
+            {
+                Text = emptyText,
+                IsHitTestVisible = false,
+                VerticalAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(11, 0, 8, 0)
+            };
+            placeholder.SetResourceReference(ForegroundProperty, "MutedTextBrush");
+            void UpdatePlaceholder() => placeholder.Visibility = string.IsNullOrEmpty(textBox.Text)
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+            textBox.TextChanged += (_, _) => UpdatePlaceholder();
+            UpdatePlaceholder();
+            editor.Children.Add(placeholder);
+        }
+        Grid.SetRow(editor, row);
+        Grid.SetColumn(editor, 1);
+        grid.Children.Add(editor);
         var browse = new Button { Content = LocExtension.Get("Common.Browse"), MinWidth = 100 };
         browse.Click += (_, _) =>
         {
@@ -1603,9 +1722,7 @@ public sealed class OptionsEmulationSection : UserControl
             _list.SelectedItem = selected;
             if (selected is null) _ = NewConfiguration();
             else LoadEditor(selected.Configuration);
-            _firmware.Clear();
-            foreach (var entry in new AmigaFirmwareCatalog(StoragePaths.AmigaFirmwareDirectory).Scan())
-                _firmware.Add(new FirmwareItem(entry));
+            await RefreshFirmwareAsync();
         }
         finally { _loading = false; }
     }
@@ -1622,9 +1739,129 @@ public sealed class OptionsEmulationSection : UserControl
         if (!_loading && _list.SelectedItem is ConfigurationItem item) LoadEditor(item.Configuration);
     }
 
-    private void FirmwareSelected(object sender, SelectionChangedEventArgs e)
+    private async Task RefreshFirmwareAsync()
     {
-        if (_firmwareList.SelectedItem is not FirmwareItem item) return;
+        var entries = await Task.Run(() => new AmigaFirmwareCatalog(StoragePaths.AmigaFirmwareDirectory).Scan());
+        _firmware.Clear();
+        foreach (var entry in entries) _firmware.Add(new FirmwareItem(entry));
+        RefreshFirmwareRows();
+    }
+
+    private void RefreshFirmwareRows()
+    {
+        if (_firmwareList is null) return;
+        var selectedPath = SelectedFirmware()?.Firmware.Path;
+        _firmwareList.Items.Clear();
+        foreach (var item in _firmware)
+        {
+            var row = new ListBoxItem
+            {
+                Tag = item,
+                Content = BuildFirmwareRow(item),
+                Padding = new Thickness(0),
+                HorizontalContentAlignment = HorizontalAlignment.Stretch
+            };
+            _firmwareList.Items.Add(row);
+            if (string.Equals(item.Firmware.Path, selectedPath, StringComparison.OrdinalIgnoreCase))
+                _firmwareList.SelectedItem = row;
+        }
+        _useSelectedFirmware.IsEnabled = SelectedFirmware() is not null;
+    }
+
+    private UIElement BuildFirmwareRow(FirmwareItem item)
+    {
+        var grid = new Grid { MinHeight = 66, Margin = new Thickness(8, 2, 8, 2) };
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(44) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition());
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(145) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(185) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+
+        var icon = new TextBlock
+        {
+            Text = "\uE950",
+            FontFamily = new FontFamily("Segoe MDL2 Assets"),
+            FontSize = 22,
+            VerticalAlignment = VerticalAlignment.Center,
+            HorizontalAlignment = HorizontalAlignment.Center
+        };
+        grid.Children.Add(icon);
+        var name = new TextBlock
+        {
+            Text = Path.GetFileName(item.Firmware.Path),
+            FontWeight = FontWeights.SemiBold,
+            VerticalAlignment = VerticalAlignment.Center,
+            TextTrimming = TextTrimming.CharacterEllipsis,
+            Margin = new Thickness(8, 0, 8, 0)
+        };
+        Grid.SetColumn(name, 1);
+        grid.Children.Add(name);
+        var version = new TextBlock
+        {
+            Text = item.Firmware.Version ?? LocExtension.Get("Common.Unknown"),
+            VerticalAlignment = VerticalAlignment.Center,
+            TextTrimming = TextTrimming.CharacterEllipsis,
+            Margin = new Thickness(8, 0, 8, 0)
+        };
+        Grid.SetColumn(version, 2);
+        grid.Children.Add(version);
+
+        var compatibility = FirmwareCompatibilityFor(item.Firmware);
+        var badge = new Border
+        {
+            Child = new TextBlock
+            {
+                Text = compatibility.Text,
+                Foreground = compatibility.Foreground,
+                VerticalAlignment = VerticalAlignment.Center
+            },
+            Background = compatibility.Background,
+            BorderBrush = compatibility.Border,
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(6),
+            Padding = new Thickness(10, 5, 10, 5),
+            HorizontalAlignment = HorizontalAlignment.Left,
+            VerticalAlignment = VerticalAlignment.Center,
+            Margin = new Thickness(8, 0, 8, 0)
+        };
+        Grid.SetColumn(badge, 3);
+        grid.Children.Add(badge);
+
+        var use = new Button
+        {
+            Content = LocExtension.Get("Emulation.UseFirmware"),
+            Tag = item,
+            MinWidth = 90,
+            Margin = new Thickness(8, 8, 0, 8)
+        };
+        use.Click += (_, _) => UseFirmware(item);
+        Grid.SetColumn(use, 4);
+        grid.Children.Add(use);
+        return grid;
+    }
+
+    private FirmwareBadge FirmwareCompatibilityFor(AmigaFirmware firmware)
+    {
+        var model = _model.SelectedItem as AmigaModel;
+        if (model is not null && firmware.CompatibleModels.Contains(model.Id, StringComparer.OrdinalIgnoreCase))
+            return new FirmwareBadge(LocExtension.Get("Emulation.CompatibilityCompatible"),
+                new SolidColorBrush(Color.FromRgb(31, 111, 58)), new SolidColorBrush(Color.FromRgb(231, 247, 235)),
+                new SolidColorBrush(Color.FromRgb(146, 211, 159)));
+        if (firmware.CompatibleModels.Count > 0)
+            return new FirmwareBadge(LocExtension.Get("Emulation.FirmwarePartiallyCompatible"),
+                new SolidColorBrush(Color.FromRgb(133, 85, 8)), new SolidColorBrush(Color.FromRgb(255, 246, 218)),
+                new SolidColorBrush(Color.FromRgb(234, 187, 91)));
+        return new FirmwareBadge(LocExtension.Get("Common.Unknown"),
+            new SolidColorBrush(Color.FromRgb(78, 85, 96)), new SolidColorBrush(Color.FromRgb(239, 241, 244)),
+            new SolidColorBrush(Color.FromRgb(190, 195, 204)));
+    }
+
+    private FirmwareItem? SelectedFirmware() =>
+        (_firmwareList.SelectedItem as ListBoxItem)?.Tag as FirmwareItem;
+
+    private void UseFirmware(FirmwareItem? item)
+    {
+        if (item is null) return;
         switch (item.Firmware.Type)
         {
             case AmigaFirmwareType.ExtendedRom: _extendedRom.Text = item.Firmware.Path; break;
@@ -1946,6 +2183,8 @@ public sealed class OptionsEmulationSection : UserControl
             }
         }
     }
+
+    private sealed record FirmwareBadge(string Text, Brush Foreground, Brush Background, Brush Border);
 
     public sealed class OptionItem
     {

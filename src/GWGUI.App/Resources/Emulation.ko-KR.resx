@@ -262,4 +262,10 @@
   <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>메모리 확장이 {0}과(와) 호환됩니다.</value></data>
   <data name="Emulation.Z3MemoryUnavailableForModel"><value>Zorro III RAM은 {0}에서 사용할 수 없습니다.</value></data>
   <data name="Emulation.TotalMemoryConfigured"><value>구성된 총 메모리: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>시스템 ROM</value></data>
+  <data name="Emulation.DetectedRoms"><value>감지된 ROM</value></data>
+  <data name="Emulation.UseFirmware"><value>사용</value></data>
+  <data name="Emulation.NotUsed"><value>사용 안 함</value></data>
+  <data name="Emulation.OpenRomFolder"><value>ROM 폴더 열기</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>부분 호환</value></data>
 </root>
