@@ -168,12 +168,14 @@ public sealed class AmigaMachineView : UserControl
 
     private void DisplayKeyDown(object sender, KeyEventArgs e)
     {
-        if (TryMapKey(e.Key, out var key)) { _keys.Add(key); PublishInput(); e.Handled = true; }
+        var source = e.Key == Key.System ? e.SystemKey : e.Key;
+        if (TryMapKey(source, out var key)) { _keys.Add(key); PublishInput(); e.Handled = true; }
     }
 
     private void DisplayKeyUp(object sender, KeyEventArgs e)
     {
-        if (TryMapKey(e.Key, out var key)) { _keys.Remove(key); PublishInput(); e.Handled = true; }
+        var source = e.Key == Key.System ? e.SystemKey : e.Key;
+        if (TryMapKey(source, out var key)) { _keys.Remove(key); PublishInput(); e.Handled = true; }
     }
 
     private void DisplayLostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e) { _keys.Clear(); PublishInput(); }
@@ -194,11 +196,12 @@ public sealed class AmigaMachineView : UserControl
             Mouse.MiddleButton == MouseButtonState.Pressed),
         XInputControllerReader.ReadAll()));
 
-    private static bool TryMapKey(Key key, out EmulationKey result)
+    internal static bool TryMapKey(Key key, out EmulationKey result)
     {
         if (key is >= Key.A and <= Key.Z) { result = (EmulationKey)((int)EmulationKey.A + key - Key.A); return true; }
         if (key is >= Key.D0 and <= Key.D9) { result = (EmulationKey)((int)EmulationKey.D0 + key - Key.D0); return true; }
         if (key is >= Key.F1 and <= Key.F10) { result = (EmulationKey)((int)EmulationKey.F1 + key - Key.F1); return true; }
+        if (key is >= Key.NumPad0 and <= Key.NumPad9) { result = (EmulationKey)((int)EmulationKey.Numpad0 + key - Key.NumPad0); return true; }
         result = key switch
         {
             Key.Back => EmulationKey.Backspace, Key.Tab => EmulationKey.Tab, Key.Enter => EmulationKey.Return,
@@ -211,11 +214,15 @@ public sealed class AmigaMachineView : UserControl
             Key.Delete => EmulationKey.Delete, Key.Insert => EmulationKey.Insert,
             Key.Home => EmulationKey.Home, Key.End => EmulationKey.End,
             Key.PageUp => EmulationKey.PageUp, Key.PageDown => EmulationKey.PageDown,
+            Key.CapsLock => EmulationKey.CapsLock, Key.Help => EmulationKey.Help,
             Key.OemComma => EmulationKey.Comma, Key.OemPeriod => EmulationKey.Period,
             Key.OemQuestion => EmulationKey.Slash, Key.OemMinus => EmulationKey.Minus,
             Key.OemPlus => EmulationKey.Equals, Key.OemSemicolon => EmulationKey.Semicolon,
             Key.OemQuotes => EmulationKey.Quote, Key.OemOpenBrackets => EmulationKey.LeftBracket,
             Key.OemCloseBrackets => EmulationKey.RightBracket, Key.OemBackslash => EmulationKey.Backslash,
+            Key.Oem3 => EmulationKey.Backquote, Key.Decimal => EmulationKey.NumpadPeriod,
+            Key.Divide => EmulationKey.NumpadDivide, Key.Multiply => EmulationKey.NumpadMultiply,
+            Key.Subtract => EmulationKey.NumpadMinus, Key.Add => EmulationKey.NumpadPlus,
             _ => EmulationKey.Unknown
         };
         return result != EmulationKey.Unknown;
