@@ -334,5 +334,4 @@
   <data name="Emulation.Key.RightAmiga"><value>Pravá Amiga</value></data>
   <data name="Emulation.SpecialKeysOnlyHint"><value>Písmena, číslice a běžné modifikační klávesy se přenášejí přímo. Zde je třeba přiřadit pouze funkční a speciální klávesy Amigy.</value></data>
   <data name="Emulation.ShortcutUnavailable"><value>Tato akce zatím není aktuálním emulátorem podporována.</value></data>
-  <data name="Emulation.KeyDisplayNames"><value>Ctrl=Ctrl;Shift=Shift;Alt=Alt;Win=Windows;Enter=Enter;Escape=Esc;Backspace=Backspace;Delete=Delete;Insert=Insert;Home=Home;End=End;PageUp=Page Up;PageDown=Page Down;Space=Mezerník;Pause=Pozastavit</value></data>
 </root>

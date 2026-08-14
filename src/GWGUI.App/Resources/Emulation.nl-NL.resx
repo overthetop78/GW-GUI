@@ -334,5 +334,4 @@
   <data name="Emulation.Key.RightAmiga"><value>Rechter Amiga</value></data>
   <data name="Emulation.SpecialKeysOnlyHint"><value>Letters, cijfers en gewone modificatietoetsen worden rechtstreeks doorgestuurd. Alleen de functie- en speciale Amiga-toetsen moeten hier worden toegewezen.</value></data>
   <data name="Emulation.ShortcutUnavailable"><value>Deze actie wordt nog niet ondersteund door de huidige emulator.</value></data>
-  <data name="Emulation.KeyDisplayNames"><value>Ctrl=Ctrl;Shift=Shift;Alt=Alt;Win=Windows;Enter=Enter;Escape=Esc;Backspace=Backspace;Delete=Delete;Insert=Insert;Home=Home;End=End;PageUp=Pagina omhoog;PageDown=Pagina omlaag;Space=Spatie;Pause=Pauze</value></data>
 </root>

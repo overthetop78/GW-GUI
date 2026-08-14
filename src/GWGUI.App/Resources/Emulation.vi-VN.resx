@@ -334,5 +334,4 @@
   <data name="Emulation.Key.RightAmiga"><value>Amiga phải</value></data>
   <data name="Emulation.SpecialKeysOnlyHint"><value>Chữ cái, chữ số và phím bổ trợ thông thường được truyền trực tiếp. Chỉ cần gán các phím chức năng và phím đặc biệt của Amiga tại đây.</value></data>
   <data name="Emulation.ShortcutUnavailable"><value>Trình mô phỏng hiện tại chưa hỗ trợ thao tác này.</value></data>
-  <data name="Emulation.KeyDisplayNames"><value>Ctrl=Ctrl;Shift=Shift;Alt=Alt;Win=Windows;Enter=Enter;Escape=Esc;Backspace=Backspace;Delete=Delete;Insert=Insert;Home=Home;End=End;PageUp=Page Up;PageDown=Page Down;Space=Dấu cách;Pause=Tạm dừng</value></data>
 </root>

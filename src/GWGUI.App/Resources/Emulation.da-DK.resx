@@ -334,5 +334,4 @@
   <data name="Emulation.Key.RightAmiga"><value>Højre Amiga</value></data>
   <data name="Emulation.SpecialKeysOnlyHint"><value>Bogstaver, tal og almindelige ændringstaster sendes direkte. Kun Amiga-funktions- og specialtaster skal tilknyttes her.</value></data>
   <data name="Emulation.ShortcutUnavailable"><value>Denne handling understøttes endnu ikke af den aktuelle emulator.</value></data>
-  <data name="Emulation.KeyDisplayNames"><value>Ctrl=Ctrl;Shift=Skift;Alt=Alt;Win=Windows;Enter=Enter;Escape=Esc;Backspace=Tilbage;Delete=Slet;Insert=Indsæt;Home=Hjem;End=Slut;PageUp=Side op;PageDown=Side ned;Space=Mellemrum;Pause=Pause</value></data>
 </root>

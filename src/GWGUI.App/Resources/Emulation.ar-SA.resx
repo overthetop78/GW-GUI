@@ -334,5 +334,4 @@
   <data name="Emulation.Key.RightAmiga"><value>Amiga الأيمن</value></data>
   <data name="Emulation.SpecialKeysOnlyHint"><value>تُنقل الأحرف والأرقام ومفاتيح التعديل العادية مباشرة. يجب تعيين مفاتيح الوظائف والمفاتيح الخاصة بـ Amiga فقط هنا.</value></data>
   <data name="Emulation.ShortcutUnavailable"><value>هذا الإجراء غير متوفر بعد في المحاكي الحالي.</value></data>
-  <data name="Emulation.KeyDisplayNames"><value>Ctrl=Ctrl;Shift=Shift;Alt=Alt;Win=Windows;Enter=إدخال;Escape=Esc;Backspace=مسح للخلف;Delete=حذف;Insert=إدراج;Home=البداية;End=النهاية;PageUp=صفحة لأعلى;PageDown=صفحة لأسفل;Space=مسافة;Pause=إيقاف مؤقت</value></data>
 </root>

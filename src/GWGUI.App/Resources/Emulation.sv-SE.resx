@@ -334,5 +334,4 @@
   <data name="Emulation.Key.RightAmiga"><value>Höger Amiga</value></data>
   <data name="Emulation.SpecialKeysOnlyHint"><value>Bokstäver, siffror och vanliga modifieringstangenter överförs direkt. Endast Amigas funktions- och specialtangenter behöver tilldelas här.</value></data>
   <data name="Emulation.ShortcutUnavailable"><value>Den här åtgärden stöds ännu inte av den aktuella emulatorn.</value></data>
-  <data name="Emulation.KeyDisplayNames"><value>Ctrl=Ctrl;Shift=Skift;Alt=Alt;Win=Windows;Enter=Retur;Escape=Esc;Backspace=Backsteg;Delete=Delete;Insert=Insert;Home=Home;End=End;PageUp=Sida upp;PageDown=Sida ned;Space=Mellanslag;Pause=Paus</value></data>
 </root>

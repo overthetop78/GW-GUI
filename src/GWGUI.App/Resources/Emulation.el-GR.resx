@@ -334,5 +334,4 @@
   <data name="Emulation.Key.RightAmiga"><value>Δεξί Amiga</value></data>
   <data name="Emulation.SpecialKeysOnlyHint"><value>Τα γράμματα, οι αριθμοί και τα συνήθη πλήκτρα τροποποίησης μεταδίδονται απευθείας. Εδώ αντιστοιχίζονται μόνο τα πλήκτρα λειτουργιών και τα ειδικά πλήκτρα του Amiga.</value></data>
   <data name="Emulation.ShortcutUnavailable"><value>Αυτή η ενέργεια δεν υποστηρίζεται ακόμη από τον τρέχοντα εξομοιωτή.</value></data>
-  <data name="Emulation.KeyDisplayNames"><value>Ctrl=Ctrl;Shift=Shift;Alt=Alt;Win=Windows;Enter=Enter;Escape=Esc;Backspace=Backspace;Delete=Delete;Insert=Insert;Home=Home;End=End;PageUp=Page Up;PageDown=Page Down;Space=Διάστημα;Pause=Παύση</value></data>
 </root>

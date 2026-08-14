@@ -334,5 +334,4 @@
   <data name="Emulation.Key.RightAmiga"><value>Sağ Amiga</value></data>
   <data name="Emulation.SpecialKeysOnlyHint"><value>Harfler, sayılar ve normal değiştirici tuşlar doğrudan iletilir. Burada yalnızca Amiga işlev ve özel tuşlarının atanması gerekir.</value></data>
   <data name="Emulation.ShortcutUnavailable"><value>Bu işlem mevcut emülatör tarafından henüz desteklenmiyor.</value></data>
-  <data name="Emulation.KeyDisplayNames"><value>Ctrl=Ctrl;Shift=Shift;Alt=Alt;Win=Windows;Enter=Enter;Escape=Esc;Backspace=Backspace;Delete=Delete;Insert=Insert;Home=Home;End=End;PageUp=Page Up;PageDown=Page Down;Space=Boşluk;Pause=Duraklat</value></data>
 </root>

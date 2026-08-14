@@ -334,5 +334,4 @@
   <data name="Emulation.Key.RightAmiga"><value>Правая Amiga</value></data>
   <data name="Emulation.SpecialKeysOnlyHint"><value>Буквы, цифры и обычные клавиши-модификаторы передаются напрямую. Здесь назначаются только функциональные и специальные клавиши Amiga.</value></data>
   <data name="Emulation.ShortcutUnavailable"><value>Это действие пока не поддерживается текущим эмулятором.</value></data>
-  <data name="Emulation.KeyDisplayNames"><value>Ctrl=Ctrl;Shift=Shift;Alt=Alt;Win=Windows;Enter=Ввод;Escape=Esc;Backspace=Backspace;Delete=Delete;Insert=Insert;Home=Home;End=End;PageUp=Page Up;PageDown=Page Down;Space=Пробел;Pause=Пауза</value></data>
 </root>

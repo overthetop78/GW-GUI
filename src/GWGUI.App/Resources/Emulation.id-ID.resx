@@ -334,5 +334,4 @@
   <data name="Emulation.Key.RightAmiga"><value>Amiga kanan</value></data>
   <data name="Emulation.SpecialKeysOnlyHint"><value>Huruf, angka, dan tombol pengubah biasa diteruskan langsung. Hanya tombol fungsi dan tombol khusus Amiga yang perlu dipetakan di sini.</value></data>
   <data name="Emulation.ShortcutUnavailable"><value>Tindakan ini belum didukung oleh emulator saat ini.</value></data>
-  <data name="Emulation.KeyDisplayNames"><value>Ctrl=Ctrl;Shift=Shift;Alt=Alt;Win=Windows;Enter=Enter;Escape=Esc;Backspace=Backspace;Delete=Delete;Insert=Insert;Home=Home;End=End;PageUp=Page Up;PageDown=Page Down;Space=Spasi;Pause=Jeda</value></data>
 </root>

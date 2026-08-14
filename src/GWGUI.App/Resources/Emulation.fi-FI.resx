@@ -334,5 +334,4 @@
   <data name="Emulation.Key.RightAmiga"><value>Oikea Amiga</value></data>
   <data name="Emulation.SpecialKeysOnlyHint"><value>Kirjaimet, numerot ja tavalliset muuntonäppäimet välitetään suoraan. Vain Amigan toiminto- ja erikoisnäppäimet määritetään tässä.</value></data>
   <data name="Emulation.ShortcutUnavailable"><value>Nykyinen emulaattori ei vielä tue tätä toimintoa.</value></data>
-  <data name="Emulation.KeyDisplayNames"><value>Ctrl=Ctrl;Shift=Vaihto;Alt=Alt;Win=Windows;Enter=Enter;Escape=Esc;Backspace=Askelpalautin;Delete=Delete;Insert=Insert;Home=Home;End=End;PageUp=Sivu ylös;PageDown=Sivu alas;Space=Välilyönti;Pause=Tauko</value></data>
 </root>

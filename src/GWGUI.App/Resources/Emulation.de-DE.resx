@@ -334,5 +334,4 @@
   <data name="Emulation.Key.RightAmiga"><value>Rechte Amiga-Taste</value></data>
   <data name="Emulation.SpecialKeysOnlyHint"><value>Buchstaben, Ziffern und normale Modifikatortasten werden direkt übertragen. Nur Funktions- und Sondertasten des Amiga müssen hier zugewiesen werden.</value></data>
   <data name="Emulation.ShortcutUnavailable"><value>Diese Aktion wird vom aktuellen Emulator noch nicht unterstützt.</value></data>
-  <data name="Emulation.KeyDisplayNames"><value>Ctrl=Strg;Shift=Umschalt;Alt=Alt;Win=Windows;Enter=Eingabe;Escape=Esc;Backspace=Rücktaste;Delete=Entf;Insert=Einfg;Home=Pos1;End=Ende;PageUp=Bild auf;PageDown=Bild ab;Space=Leertaste;Pause=Pause</value></data>
 </root>

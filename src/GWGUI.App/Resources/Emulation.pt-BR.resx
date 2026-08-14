@@ -334,5 +334,4 @@
   <data name="Emulation.Key.RightAmiga"><value>Amiga direito</value></data>
   <data name="Emulation.SpecialKeysOnlyHint"><value>Letras, números e modificadores comuns são transmitidos diretamente. Somente as teclas de função e especiais do Amiga precisam ser associadas aqui.</value></data>
   <data name="Emulation.ShortcutUnavailable"><value>Esta ação ainda não é fornecida pelo emulador atual.</value></data>
-  <data name="Emulation.KeyDisplayNames"><value>Ctrl=Ctrl;Shift=Shift;Alt=Alt;Win=Windows;Enter=Enter;Escape=Esc;Backspace=Backspace;Delete=Delete;Insert=Insert;Home=Início;End=Fim;PageUp=Page Up;PageDown=Page Down;Space=Espaço;Pause=Pausa</value></data>
 </root>

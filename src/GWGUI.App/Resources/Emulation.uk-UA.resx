@@ -334,5 +334,4 @@
   <data name="Emulation.Key.RightAmiga"><value>Права Amiga</value></data>
   <data name="Emulation.SpecialKeysOnlyHint"><value>Літери, цифри та звичайні клавіші-модифікатори передаються безпосередньо. Тут потрібно призначати лише функціональні та спеціальні клавіші Amiga.</value></data>
   <data name="Emulation.ShortcutUnavailable"><value>Ця дія ще не підтримується поточним емулятором.</value></data>
-  <data name="Emulation.KeyDisplayNames"><value>Ctrl=Ctrl;Shift=Shift;Alt=Alt;Win=Windows;Enter=Ввід;Escape=Esc;Backspace=Backspace;Delete=Delete;Insert=Insert;Home=Home;End=End;PageUp=Page Up;PageDown=Page Down;Space=Пробіл;Pause=Пауза</value></data>
 </root>

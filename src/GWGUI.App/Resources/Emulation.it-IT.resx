@@ -334,5 +334,4 @@
   <data name="Emulation.Key.RightAmiga"><value>Amiga destro</value></data>
   <data name="Emulation.SpecialKeysOnlyHint"><value>Lettere, numeri e modificatori normali vengono trasmessi direttamente. Qui devono essere associati solo i tasti funzione e speciali dell’Amiga.</value></data>
   <data name="Emulation.ShortcutUnavailable"><value>Questa azione non è ancora disponibile nell’emulatore corrente.</value></data>
-  <data name="Emulation.KeyDisplayNames"><value>Ctrl=Ctrl;Shift=Maiusc;Alt=Alt;Win=Windows;Enter=Invio;Escape=Esc;Backspace=Backspace;Delete=Canc;Insert=Ins;Home=Home;End=Fine;PageUp=Pagina su;PageDown=Pagina giù;Space=Spazio;Pause=Pausa</value></data>
 </root>
