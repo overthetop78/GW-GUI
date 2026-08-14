@@ -12,6 +12,9 @@ public sealed class AppSettings
         Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GW GUI", "Emulation", "Captures");
     public string EmulationStateFolder { get; set; } = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GW GUI", "Emulation", "States");
+    public string AmigaHardDisksFolder { get; set; } = "";
+    public string AmigaFloppyImagesFolder { get; set; } = "";
+    public string AmigaCompactDiscsFolder { get; set; } = "";
     public bool CreateEmulationFoldersAutomatically { get; set; } = true;
     public string? LastDiskImageFolder { get; set; }
     public string? GwExecutablePath { get; set; }

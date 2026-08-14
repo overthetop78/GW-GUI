@@ -113,6 +113,9 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly TextBox _storageBaseFolder = new();
     private readonly TextBox _captureFolder = new();
     private readonly TextBox _stateFolder = new();
+    private readonly TextBox _amigaHardDisksFolder = new();
+    private readonly TextBox _amigaFloppyImagesFolder = new();
+    private readonly TextBox _amigaCompactDiscsFolder = new();
     private readonly TextBlock _detectedDevices = new() { TextWrapping = TextWrapping.Wrap };
     private readonly TextBlock _detectedControllers = new() { TextWrapping = TextWrapping.Wrap, VerticalAlignment = VerticalAlignment.Center };
     private readonly TextBlock _storageTree = new() { LineHeight = 24 };
@@ -192,10 +195,15 @@ public sealed class OptionsEmulationSection : UserControl
     {
         _appSettings = settings;
         _persistAppSettings = persistSettings;
+        StoragePaths.ConfigureEmulationStorageDirectory(settings.EmulationStorageFolder);
+        StoragePaths.ConfigureAmigaStorageDirectories(
+            settings.AmigaHardDisksFolder, settings.AmigaFloppyImagesFolder, settings.AmigaCompactDiscsFolder);
         _storageBaseFolder.Text = settings.EmulationStorageFolder;
         _captureFolder.Text = settings.EmulationCaptureFolder;
         _stateFolder.Text = settings.EmulationStateFolder;
-        StoragePaths.ConfigureEmulationStorageDirectory(settings.EmulationStorageFolder);
+        _amigaHardDisksFolder.Text = StoragePaths.AmigaHardDisksDirectory;
+        _amigaFloppyImagesFolder.Text = StoragePaths.AmigaFloppyImagesDirectory;
+        _amigaCompactDiscsFolder.Text = StoragePaths.AmigaCompactDiscsDirectory;
         EnsureStorageFolders();
     }
 
@@ -207,11 +215,17 @@ public sealed class OptionsEmulationSection : UserControl
             BrowseStorageBaseFolderAsync, OpenStorageBaseFolderAsync));
         defaults.Children.Add(BuildPathRow(LocExtension.Get("Emulation.CaptureFolder"), _captureFolder, BrowseCaptureFolderAsync));
         defaults.Children.Add(BuildPathRow(LocExtension.Get("Emulation.StateFolder"), _stateFolder, BrowseStateFolderAsync));
+        defaults.Children.Add(BuildPathRow($"{LocExtension.Get("Emulation.HardDisks")} · Amiga", _amigaHardDisksFolder,
+            () => BrowseGeneralFolderAsync(_amigaHardDisksFolder, "Emulation.HardDisks")));
+        defaults.Children.Add(BuildPathRow($"{LocExtension.Get("Emulation.Floppies")} · Amiga", _amigaFloppyImagesFolder,
+            () => BrowseGeneralFolderAsync(_amigaFloppyImagesFolder, "Emulation.Floppies")));
+        defaults.Children.Add(BuildPathRow($"{LocExtension.Get("Emulation.CdDrive")} · Amiga", _amigaCompactDiscsFolder,
+            () => BrowseGeneralFolderAsync(_amigaCompactDiscsFolder, "Emulation.CdDrive")));
         root.Children.Add(Card(defaults, LocExtension.Get("Emulation.DefaultFolders")));
         var save = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Right, Margin = new Thickness(0, 10, 0, 0) };
         AddButton(save, "Common.Save", SaveGeneralSettingsAsync);
         root.Children.Add(save);
-        return new ScrollViewer { Content = root, VerticalScrollBarVisibility = ScrollBarVisibility.Auto };
+        return ScrollPage(root);
     }
 
     private static Grid BuildPathRow(string label, TextBox textBox, Func<Task> browse, Func<Task>? open = null)
@@ -292,7 +306,12 @@ public sealed class OptionsEmulationSection : UserControl
         _appSettings.EmulationStorageFolder = Path.GetFullPath(_storageBaseFolder.Text.Trim());
         _appSettings.EmulationCaptureFolder = Path.GetFullPath(_captureFolder.Text.Trim());
         _appSettings.EmulationStateFolder = Path.GetFullPath(_stateFolder.Text.Trim());
+        _appSettings.AmigaHardDisksFolder = Path.GetFullPath(_amigaHardDisksFolder.Text.Trim());
+        _appSettings.AmigaFloppyImagesFolder = Path.GetFullPath(_amigaFloppyImagesFolder.Text.Trim());
+        _appSettings.AmigaCompactDiscsFolder = Path.GetFullPath(_amigaCompactDiscsFolder.Text.Trim());
         StoragePaths.ConfigureEmulationStorageDirectory(_appSettings.EmulationStorageFolder);
+        StoragePaths.ConfigureAmigaStorageDirectories(
+            _appSettings.AmigaHardDisksFolder, _appSettings.AmigaFloppyImagesFolder, _appSettings.AmigaCompactDiscsFolder);
         EnsureStorageFolders();
         if (_persistAppSettings is not null) await _persistAppSettings();
     }
@@ -302,10 +321,10 @@ public sealed class OptionsEmulationSection : UserControl
         if (_appSettings?.CreateEmulationFoldersAutomatically != true) return;
         foreach (var path in new[]
                  {
-                     Path.Combine(_appSettings.EmulationStorageFolder, "HDD", "Amiga"),
+                     _appSettings.AmigaHardDisksFolder,
                      Path.Combine(_appSettings.EmulationStorageFolder, "HDD", "Atari"),
-                     Path.Combine(_appSettings.EmulationStorageFolder, "Floppies", "Amiga"),
-                     Path.Combine(_appSettings.EmulationStorageFolder, "CD", "Amiga"),
+                     _appSettings.AmigaFloppyImagesFolder,
+                     _appSettings.AmigaCompactDiscsFolder,
                      Path.Combine(_appSettings.EmulationStorageFolder, "Saves", "Amiga"),
                      Path.Combine(_appSettings.EmulationStorageFolder, "Saves", "Atari"),
                      _appSettings.EmulationCaptureFolder, _appSettings.EmulationStateFolder
@@ -533,24 +552,6 @@ public sealed class OptionsEmulationSection : UserControl
     {
         var root = new Grid { Margin = new Thickness(12) };
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        var storagePath = new Grid { Margin = new Thickness(10, 6, 10, 6) };
-        storagePath.ColumnDefinitions.Add(new ColumnDefinition());
-        storagePath.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-        storagePath.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        storagePath.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        storagePath.Children.Add(new TextBlock
-        {
-            Text = $"{LocExtension.Get("Emulation.StorageBaseFolder")} : {StoragePaths.EmulationStorageDirectory}",
-            FontWeight = FontWeights.SemiBold, TextWrapping = TextWrapping.Wrap
-        });
-        var hddPath = new TextBlock { Text = StoragePaths.AmigaHardDisksDirectory, Margin = new Thickness(0, 7, 0, 0) };
-        Grid.SetRow(hddPath, 1); storagePath.Children.Add(hddPath);
-        var generalButton = new Button { Content = LocExtension.Get("Emulation.ModifyInGeneral"), MinWidth = 190 };
-        generalButton.Click += (_, _) => _familyTabs.SelectedIndex = 0;
-        Grid.SetColumn(generalButton, 1); Grid.SetRowSpan(generalButton, 2); storagePath.Children.Add(generalButton);
-        root.Children.Add(Card(storagePath));
-
         var devicePanel = new StackPanel();
         devicePanel.Children.Add(_storageDevices);
         devicePanel.Children.Add(InformationBanner(new TextBlock
@@ -560,7 +561,6 @@ public sealed class OptionsEmulationSection : UserControl
         }));
         var devicesCard = ActionCard(devicePanel, LocExtension.Get("Emulation.StorageDevices"));
         devicesCard.Margin = new Thickness(0, 0, 0, 8);
-        Grid.SetRow(devicesCard, 1);
         root.Children.Add(devicesCard);
         return ScrollPage(root);
     }
@@ -1293,12 +1293,25 @@ public sealed class OptionsEmulationSection : UserControl
         return grid;
     }
 
-    private static ScrollViewer ScrollPage(UIElement child) => new()
+    private static ScrollViewer ScrollPage(UIElement child)
     {
-        Content = child,
-        VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
-        HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled
-    };
+        var viewer = new ScrollViewer
+        {
+            Content = child,
+            VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+            HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled,
+            PanningMode = PanningMode.VerticalOnly
+        };
+        viewer.PreviewMouseWheel += (_, e) =>
+        {
+            if (viewer.ScrollableHeight <= 0) return;
+            var offset = Math.Clamp(viewer.VerticalOffset - e.Delta, 0, viewer.ScrollableHeight);
+            if (Math.Abs(offset - viewer.VerticalOffset) < 0.5) return;
+            viewer.ScrollToVerticalOffset(offset);
+            e.Handled = true;
+        };
+        return viewer;
+    }
 
     private UIElement BuildMouseMappings()
     {
