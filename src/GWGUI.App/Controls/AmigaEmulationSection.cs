@@ -120,7 +120,9 @@ public sealed class AmigaEmulationSection : UserControl
             if (!File.Exists(_kickstart.Text)) throw new FileNotFoundException("Kickstart", _kickstart.Text);
             if (_disk.Text.Length > 0 && !File.Exists(_disk.Text)) throw new FileNotFoundException("ADF", _disk.Text);
             var corePath = await EnsureCoreAsync();
-            var engine = new AmigaEngine(StoragePaths.AmigaSessionsDirectory, corePath, () => new WasapiAudioOutput());
+            var engine = new AmigaEngine(StoragePaths.AmigaSessionsDirectory, corePath, () => new WasapiAudioOutput(),
+                configuration => Path.Combine(StoragePaths.AmigaConfigurationsDirectory,
+                    configuration.Id.ToString("N"), "Saves"));
             var saved = (_configuration.SelectedItem as ConfigurationItem)?.Configuration;
             var options = new Dictionary<string, string>(saved?.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal)
             {
@@ -129,7 +131,8 @@ public sealed class AmigaEmulationSection : UserControl
             var configuration = new AmigaMachineConfiguration(model.Id, _kickstart.Text,
                 string.IsNullOrWhiteSpace(_disk.Text) ? null : _disk.Text,
                 saved?.ExtendedRomPath, saved?.RomKeyPath, saved?.Core ?? AmigaCoreKind.External,
-                options, Guid.NewGuid(), saved?.AudioEnabled ?? true, saved?.Controllers, saved?.Input);
+                options, saved?.Id ?? Guid.NewGuid(), saved?.AudioEnabled ?? true, saved?.Controllers, saved?.Input,
+                saved?.Floppies, saved?.MountFloppiesInSeparateDrives ?? false);
             var machine = engine.CreateAmigaMachine(configuration);
             var view = new AmigaMachineView(machine);
             var tab = new TabItem { Header = model.DisplayName, Content = view };

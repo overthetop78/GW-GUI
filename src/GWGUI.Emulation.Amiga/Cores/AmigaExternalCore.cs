@@ -35,7 +35,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
     public int DiskCount => _host?.DiskControl.ImageCount ?? 0;
     public int CurrentDiskIndex => _host?.DiskControl.CurrentIndex ?? -1;
 
-    public void Initialize(AmigaMachineConfiguration configuration, string sessionDirectory)
+    public void Initialize(AmigaMachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(configuration.KickstartPath);
         if (!File.Exists(configuration.KickstartPath))
@@ -57,7 +57,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
         var contentDirectory = contentPath is null
             ? Path.Combine(sessionDirectory, "Content")
             : Path.GetDirectoryName(contentPath)!;
-        var saveDirectory = Path.Combine(sessionDirectory, "Saves");
+        saveDirectory = Path.GetFullPath(saveDirectory ?? Path.Combine(sessionDirectory, "Saves"));
         Directory.CreateDirectory(systemDirectory);
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);

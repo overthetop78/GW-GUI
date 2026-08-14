@@ -9,6 +9,43 @@ namespace GWGUI.Tests;
 
 public sealed class AmigaExternalCoreTests
 {
+    public static TheoryData<string, string> BootableComputerModels => new()
+    {
+        { "A500OG", "Kickstart 1.2.rom" },
+        { "A500", "Kickstart 1.3.rom" },
+        { "A500PLUS", "Kickstart 2.0.rom" },
+        { "A600", "Kickstart 3.1.rom" },
+        { "A1200OG", "Kickstart 3.1.rom" },
+        { "A1200", "Kickstart 3.1.rom" },
+        { "A2000OG", "Kickstart 1.3.rom" },
+        { "A2000", "Kickstart 3.1.rom" },
+        { "A4030", "Kickstart 3.1.rom" },
+        { "A4040", "Kickstart 3.1.rom" }
+    };
+
+    [Theory]
+    [MemberData(nameof(BootableComputerModels))]
+    public void ComputerModel_WithMatchingLocalKickstart_ProducesVideoAndAudio(string model, string romName)
+    {
+        var repository = FindRepositoryRoot();
+        var kickstart = Path.Combine(repository, "image_test", "Roms", "Bios", romName);
+        var session = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Models", model, Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(session);
+        try
+        {
+            using var core = new AmigaExternalCore(Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll"));
+            core.Initialize(new AmigaMachineConfiguration(model, kickstart), session);
+            for (var frame = 0; frame < 180; frame++) core.RunFrame();
+            Assert.NotNull(core.LatestVideoFrame);
+            Assert.NotNull(core.LatestAudioChunk);
+            Assert.True(core.LatestVideoFrame!.Sequence > 0);
+        }
+        finally
+        {
+            if (Directory.Exists(session)) Directory.Delete(session, true);
+        }
+    }
+
     [Fact]
     public void A500_MultidiskPlaylist_ExposesAndSelectsEveryDisk()
     {

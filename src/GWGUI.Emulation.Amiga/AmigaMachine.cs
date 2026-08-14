@@ -9,6 +9,7 @@ internal sealed class AmigaMachine : IAmigaMachine
     private readonly object _gate = new();
     private readonly IAmigaCore _core;
     private readonly string _sessionDirectory;
+    private readonly string? _saveDirectory;
     private IAudioOutput? _audioOutput;
     private CancellationTokenSource? _stop;
     private Task? _runLoop;
@@ -19,12 +20,13 @@ internal sealed class AmigaMachine : IAmigaMachine
     private string? _currentDiskPath;
 
     internal AmigaMachine(Guid id, AmigaMachineConfiguration configuration,
-        IAmigaCore core, string sessionDirectory, IAudioOutput? audioOutput = null)
+        IAmigaCore core, string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null)
     {
         Id = id;
         Configuration = configuration;
         _core = core;
         _sessionDirectory = sessionDirectory;
+        _saveDirectory = saveDirectory;
         _audioOutput = audioOutput;
         _currentDiskPath = configuration.Floppies?.FirstOrDefault()?.Path ?? configuration.InitialDiskPath;
     }
@@ -159,7 +161,7 @@ internal sealed class AmigaMachine : IAmigaMachine
         var initialized = false;
         try
         {
-            _core.Initialize(Configuration, _sessionDirectory);
+            _core.Initialize(Configuration, _sessionDirectory, _saveDirectory);
             initialized = true;
             if (_audioOutput is not null)
             {
@@ -245,7 +247,19 @@ internal sealed class AmigaMachine : IAmigaMachine
         _stop?.Dispose();
         _core.Dispose();
         _audioOutput?.Dispose();
+        DeleteSessionDirectory();
         _disposed = true;
+    }
+
+    private void DeleteSessionDirectory()
+    {
+        try
+        {
+            var path = Path.GetFullPath(_sessionDirectory);
+            if (Directory.Exists(path) && !string.IsNullOrWhiteSpace(Path.GetFileName(path))) Directory.Delete(path, true);
+        }
+        catch (IOException) { }
+        catch (UnauthorizedAccessException) { }
     }
 
     private sealed record PendingCommand(Action Action, TaskCompletionSource Completion)

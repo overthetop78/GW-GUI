@@ -58,6 +58,28 @@ public sealed class AmigaMachineLifecycleTests
     }
 
     [Fact]
+    public async Task Dispose_RemovesTransientSessionButKeepsPersistentSaves()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Storage", Guid.NewGuid().ToString("N"));
+        var session = Path.Combine(root, "Sessions", Guid.NewGuid().ToString("N"));
+        var saves = Path.Combine(root, "Configurations", Guid.NewGuid().ToString("N"), "Saves");
+        var core = new FakeCore { CreatePersistentFiles = true };
+        var machine = new AmigaMachine(Guid.NewGuid(), AmigaMachineConfiguration.A500(@"C:\kick.rom"), core, session,
+            saveDirectory: saves);
+        try
+        {
+            await machine.StartAsync();
+            await machine.DisposeAsync();
+            Assert.False(Directory.Exists(session));
+            Assert.True(File.Exists(Path.Combine(saves, "persistent.sav")));
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
     public async Task EjectingDisk_ProducesAStateWithoutMediaHash()
     {
         var root = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Lifecycle", Guid.NewGuid().ToString("N"));
@@ -172,6 +194,7 @@ public sealed class AmigaMachineLifecycleTests
         public int FrameCount { get; private set; }
         public int FailAtFrame { get; init; } = int.MaxValue;
         public bool ProduceAudio { get; init; }
+        public bool CreatePersistentFiles { get; init; }
         public string? OptionValue { get; private set; }
         public bool Stopped { get; private set; }
         public bool Disposed { get; private set; }
@@ -190,7 +213,14 @@ public sealed class AmigaMachineLifecycleTests
         public int SampleRate => 44_100;
         public int DiskCount => 0;
         public int CurrentDiskIndex => -1;
-        public void Initialize(AmigaMachineConfiguration configuration, string sessionDirectory) { }
+        public void Initialize(AmigaMachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
+        {
+            if (!CreatePersistentFiles) return;
+            Directory.CreateDirectory(sessionDirectory);
+            File.WriteAllText(Path.Combine(sessionDirectory, "temporary.bin"), "temporary");
+            Directory.CreateDirectory(saveDirectory!);
+            File.WriteAllText(Path.Combine(saveDirectory!, "persistent.sav"), "persistent");
+        }
         public void RunFrame()
         {
             FrameCount++;

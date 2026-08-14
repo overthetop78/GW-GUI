@@ -13,7 +13,7 @@ internal interface IAmigaCore : IDisposable
     int SampleRate { get; }
     int DiskCount { get; }
     int CurrentDiskIndex { get; }
-    void Initialize(AmigaMachineConfiguration configuration, string sessionDirectory);
+    void Initialize(AmigaMachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null);
     void RunFrame();
     void HardReset();
     void Stop();
