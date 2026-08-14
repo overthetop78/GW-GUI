@@ -29,6 +29,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
         return false;
     }
     public IReadOnlyList<AmigaCoreOption> Options => _host?.OptionCatalog ?? [];
+    public IReadOnlyList<string> Diagnostics => _host?.Diagnostics ?? [];
     public string CoreSha256 { get; private set; } = string.Empty;
     public double FramesPerSecond { get; private set; } = 50;
     public int SampleRate { get; private set; } = 44100;

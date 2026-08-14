@@ -9,6 +9,7 @@ public interface IAmigaMachine : IEmulatedMachine
     VideoFrame? LatestVideoFrame { get; }
     AudioChunk? LatestAudioChunk { get; }
     IReadOnlyList<AmigaCoreOption> AvailableOptions { get; }
+    IReadOnlyList<string> Diagnostics { get; }
     int DiskCount { get; }
     int CurrentDiskIndex { get; }
     event EventHandler<VideoFrame>? VideoFrameReady;

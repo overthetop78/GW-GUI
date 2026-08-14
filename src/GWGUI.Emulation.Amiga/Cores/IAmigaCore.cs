@@ -8,6 +8,7 @@ internal interface IAmigaCore : IDisposable
     AudioChunk? LatestAudioChunk { get; }
     bool TryDequeueAudio(out AudioChunk? chunk);
     IReadOnlyList<AmigaCoreOption> Options { get; }
+    IReadOnlyList<string> Diagnostics { get; }
     string CoreSha256 { get; }
     double FramesPerSecond { get; }
     int SampleRate { get; }

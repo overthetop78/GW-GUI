@@ -186,6 +186,26 @@ public sealed class AmigaMachineLifecycleTests
     }
 
     [Fact]
+    public void NativeDiagnostics_AreCapturedAndBounded()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Diagnostics", Guid.NewGuid().ToString("N"));
+        using var host = new AmigaExternalHostCallbacks(Path.Combine(root, "system"), Path.Combine(root, "content"), Path.Combine(root, "save"), null);
+        var message = Marshal.StringToCoTaskMemUTF8("native message %s");
+        try
+        {
+            host.Log(1, message);
+            Assert.False(host.Environment(9999, 0));
+            Assert.Contains(host.Diagnostics, entry => entry.Contains("native message", StringComparison.Ordinal));
+            Assert.Contains(host.Diagnostics, entry => entry.Contains("9999", StringComparison.Ordinal));
+        }
+        finally
+        {
+            Marshal.FreeCoTaskMem(message);
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
     public async Task MultipleFloppies_CreateAValidatedMultidrivePlaylist()
     {
         var root = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-M3U", Guid.NewGuid().ToString("N"));
@@ -238,6 +258,7 @@ public sealed class AmigaMachineLifecycleTests
             return true;
         }
         public IReadOnlyList<AmigaCoreOption> Options => [];
+        public IReadOnlyList<string> Diagnostics => [];
         public string CoreSha256 => "fake-core";
         public double FramesPerSecond => 200;
         public int SampleRate => 44_100;

@@ -56,6 +56,8 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     internal VideoFrame? LatestVideoFrame { get; private set; }
     internal AudioChunk? LatestAudioChunk { get; private set; }
     private readonly ConcurrentQueue<AudioChunk> _audioChunks = new();
+    private readonly ConcurrentQueue<string> _diagnostics = new();
+    private readonly HashSet<uint> _unknownEnvironmentCommands = [];
     internal EmulationInputSnapshot Input
     {
         set
@@ -81,6 +83,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     internal AmigaExternalApi.LogCallback Log { get; }
     internal int SampleRate { get; set; } = 44100;
     internal IReadOnlyList<AmigaCoreOption> OptionCatalog { get; private set; } = [];
+    internal IReadOnlyList<string> Diagnostics => _diagnostics.ToArray();
 
     internal void SetOption(string key, string value)
     {
@@ -173,6 +176,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
                 case AmigaExternalApi.GetLedInterface:
                     return false;
                 default:
+                    if (_unknownEnvironmentCommands.Add(command)) AddDiagnostic($"Unsupported environment command: {command}");
                     return false;
             }
         }
@@ -324,10 +328,16 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
         _previousKeys = new HashSet<EmulationKey>(keys);
     }
 
-    private static void HandleLog(int level, nint format)
+    private void HandleLog(int level, nint format)
     {
-        // Le callback consomme correctement l'appel variadique natif. Les journaux structurés
-        // seront raccordés au diagnostic de l'application sans interpréter ici les arguments C.
+        var message = format == 0 ? null : Marshal.PtrToStringUTF8(format);
+        if (!string.IsNullOrWhiteSpace(message)) AddDiagnostic($"[{level}] {message.TrimEnd()}");
+    }
+
+    private void AddDiagnostic(string message)
+    {
+        _diagnostics.Enqueue(message);
+        while (_diagnostics.Count > 500) _diagnostics.TryDequeue(out _);
     }
 
     private short HandleInputState(uint port, uint device, uint index, uint id)

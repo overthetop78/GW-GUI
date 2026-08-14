@@ -40,6 +40,7 @@ internal sealed class AmigaMachine : IAmigaMachine
     public VideoFrame? LatestVideoFrame => _core.LatestVideoFrame;
     public AudioChunk? LatestAudioChunk => _core.LatestAudioChunk;
     public IReadOnlyList<AmigaCoreOption> AvailableOptions => _core.Options;
+    public IReadOnlyList<string> Diagnostics => _core.Diagnostics;
     public int DiskCount => _core.DiskCount;
     public int CurrentDiskIndex => _core.CurrentDiskIndex;
     public event EventHandler<VideoFrame>? VideoFrameReady;
@@ -233,6 +234,7 @@ internal sealed class AmigaMachine : IAmigaMachine
         }
         catch (Exception error)
         {
+            if (_core.Diagnostics.Count > 0) error.Data["AmigaDiagnostics"] = string.Join(Environment.NewLine, _core.Diagnostics.TakeLast(100));
             Fault = error;
             _started?.TrySetException(error);
             FailPendingCommands(error);

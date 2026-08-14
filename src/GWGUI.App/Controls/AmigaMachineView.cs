@@ -138,7 +138,10 @@ public sealed class AmigaMachineView : UserControl
             _bitmap = new WriteableBitmap(frame.Width, frame.Height, 96, 96, format, null);
             _display.Source = _bitmap;
         }
-        _bitmap.WritePixels(new Int32Rect(0, 0, frame.Width, frame.Height), frame.Pixels.ToArray(), frame.Pitch, 0);
+        if (MemoryMarshal.TryGetArray(frame.Pixels, out var segment) && segment.Array is not null)
+            _bitmap.WritePixels(new Int32Rect(0, 0, frame.Width, frame.Height), segment.Array, frame.Pitch, segment.Offset);
+        else
+            _bitmap.WritePixels(new Int32Rect(0, 0, frame.Width, frame.Height), frame.Pixels.ToArray(), frame.Pitch, 0);
         _status.Text = $"{frame.Width}×{frame.Height} · {frame.Sequence}";
     }
 
