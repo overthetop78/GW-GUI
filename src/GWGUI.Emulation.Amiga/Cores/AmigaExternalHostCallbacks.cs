@@ -19,6 +19,10 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     private long _videoSequence;
     private long _audioSequence;
     private bool _disposed;
+    private int _optionsUpdated;
+    private readonly object _inputGate = new();
+    private EmulationInputSnapshot _pendingInput = EmulationInputSnapshot.Empty;
+    private EmulationInputSnapshot _polledInput = EmulationInputSnapshot.Empty;
     internal AmigaExternalDiskControl DiskControl { get; } = new();
 
     internal AmigaExternalHostCallbacks(string systemDirectory, string contentDirectory,
@@ -48,7 +52,10 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     internal string SaveDirectory { get; }
     internal VideoFrame? LatestVideoFrame { get; private set; }
     internal AudioChunk? LatestAudioChunk { get; private set; }
-    internal EmulationInputSnapshot Input { get; set; } = EmulationInputSnapshot.Empty;
+    internal EmulationInputSnapshot Input
+    {
+        set { lock (_inputGate) _pendingInput = value; }
+    }
     internal AmigaExternalApi.EnvironmentCallback Environment { get; }
     internal AmigaExternalApi.VideoCallback Video { get; }
     internal AmigaExternalApi.AudioSampleCallback AudioSample { get; }
@@ -57,8 +64,18 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     internal AmigaExternalApi.InputStateCallback InputState { get; }
     internal AmigaExternalApi.LogCallback Log { get; }
     internal int SampleRate { get; set; } = 44100;
+    internal IReadOnlyList<AmigaCoreOption> OptionCatalog { get; private set; } = [];
 
-    internal void SetOption(string key, string value) => _options[key] = value;
+    internal void SetOption(string key, string value)
+    {
+        if (!OptionCatalog.Any(option => option.Key.Equals(key, StringComparison.Ordinal)))
+            throw new ArgumentOutOfRangeException(nameof(key), key, "Unknown Amiga core option.");
+        var option = OptionCatalog.First(item => item.Key.Equals(key, StringComparison.Ordinal));
+        if (option.Values.Count > 0 && !option.Values.Any(item => item.Value.Equals(value, StringComparison.Ordinal)))
+            throw new ArgumentOutOfRangeException(nameof(value), value, $"Invalid value for Amiga option {key}.");
+        _options[key] = value;
+        Interlocked.Exchange(ref _optionsUpdated, 1);
+    }
 
     private bool HandleEnvironment(uint command, nint data)
     {
@@ -91,7 +108,10 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
                     if (data != 0) Marshal.WriteInt32(data, 2);
                     return true;
                 case AmigaExternalApi.SetCoreOptionsV2:
+                    RegisterVersionTwoOptions(data);
+                    return true;
                 case AmigaExternalApi.SetCoreOptionsV2International:
+                    RegisterVersionTwoOptions(Marshal.ReadIntPtr(data));
                     return true;
                 case AmigaExternalApi.SetVariables:
                     RegisterLegacyOptions(data);
@@ -99,7 +119,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
                 case AmigaExternalApi.GetVariable:
                     return ReturnOption(data);
                 case AmigaExternalApi.GetVariableUpdate:
-                    if (data != 0) Marshal.WriteByte(data, 0);
+                    if (data != 0) Marshal.WriteByte(data, Interlocked.Exchange(ref _optionsUpdated, 0) != 0 ? (byte)1 : (byte)0);
                     return true;
                 case AmigaExternalApi.GetDiskControlVersion:
                     if (data != 0) Marshal.WriteInt32(data, 0);
@@ -157,6 +177,47 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
         }
     }
 
+    private void RegisterVersionTwoOptions(nint options)
+    {
+        if (options == 0) return;
+        var definitions = Marshal.ReadIntPtr(options, IntPtr.Size);
+        const int pointerFieldsBeforeValues = 6;
+        const int maximumValues = 128;
+        var definitionSize = (pointerFieldsBeforeValues + maximumValues * 2 + 1) * IntPtr.Size;
+        var valuesOffset = pointerFieldsBeforeValues * IntPtr.Size;
+        var defaultOffset = valuesOffset + maximumValues * 2 * IntPtr.Size;
+        var catalog = new List<AmigaCoreOption>();
+
+        for (var optionIndex = 0; optionIndex < 1024; optionIndex++)
+        {
+            var definition = definitions + optionIndex * definitionSize;
+            var keyPointer = Marshal.ReadIntPtr(definition);
+            if (keyPointer == 0) break;
+            var key = Marshal.PtrToStringUTF8(keyPointer)!;
+            var name = StringAt(definition, IntPtr.Size) ?? key;
+            var description = StringAt(definition, 3 * IntPtr.Size);
+            var category = StringAt(definition, 5 * IntPtr.Size);
+            var defaultValue = StringAt(definition, defaultOffset) ?? string.Empty;
+            var values = new List<AmigaCoreOptionValue>();
+            for (var valueIndex = 0; valueIndex < maximumValues; valueIndex++)
+            {
+                var valueOffset = valuesOffset + valueIndex * 2 * IntPtr.Size;
+                var value = StringAt(definition, valueOffset);
+                if (value is null) break;
+                values.Add(new AmigaCoreOptionValue(value, StringAt(definition, valueOffset + IntPtr.Size) ?? value));
+            }
+            catalog.Add(new AmigaCoreOption(key, name, description, category, defaultValue, values));
+            if (!_options.ContainsKey(key) && defaultValue.Length > 0) _options[key] = defaultValue;
+        }
+        OptionCatalog = catalog;
+    }
+
+    private static string? StringAt(nint structure, int offset)
+    {
+        var pointer = Marshal.ReadIntPtr(structure, offset);
+        return pointer == 0 ? null : Marshal.PtrToStringUTF8(pointer);
+    }
+
     private bool ReturnOption(nint data)
     {
         var variable = Marshal.PtrToStructure<AmigaExternalApi.Variable>(data);
@@ -207,7 +268,17 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
         return frames;
     }
 
-    private static void HandleInputPoll() { }
+    private void HandleInputPoll()
+    {
+        lock (_inputGate)
+        {
+            _polledInput = _pendingInput;
+            _pendingInput = _pendingInput with
+            {
+                Pointer = _pendingInput.Pointer with { DeltaX = 0, DeltaY = 0, Wheel = 0 }
+            };
+        }
+    }
 
     private static void HandleLog(int level, nint format)
     {
@@ -217,7 +288,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
 
     private short HandleInputState(uint port, uint device, uint index, uint id)
     {
-        var input = Input;
+        var input = _polledInput;
         if (device == KeyboardDevice)
             return KeyboardMap.TryGetValue(id, out var key) && input.Keys.Contains(key) ? (short)1 : (short)0;
 

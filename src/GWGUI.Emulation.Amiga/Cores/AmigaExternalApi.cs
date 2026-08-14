@@ -76,10 +76,14 @@ internal static class AmigaExternalApi
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetInputState(InputStateCallback callback);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void VoidCall();
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void GetSystemInfo(out SystemInfo info);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate uint GetApiVersion();
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void GetSystemAvInfo(out SystemAvInfo info);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     [return: MarshalAs(UnmanagedType.I1)]
     internal delegate bool LoadGame(nint gameInfo);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate nuint GetSerializedSize();
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
+    internal delegate bool Serialize(nint data, nuint size);
 
     [StructLayout(LayoutKind.Sequential)]
     internal struct SystemInfo

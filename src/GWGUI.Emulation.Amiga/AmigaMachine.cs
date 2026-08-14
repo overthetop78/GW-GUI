@@ -32,6 +32,7 @@ internal sealed class AmigaMachine : IAmigaMachine
     public EmulationMachineState State { get; private set; } = EmulationMachineState.Created;
     public VideoFrame? LatestVideoFrame => _core.LatestVideoFrame;
     public AudioChunk? LatestAudioChunk => _core.LatestAudioChunk;
+    public IReadOnlyList<AmigaCoreOption> AvailableOptions => _core.Options;
     public event EventHandler<VideoFrame>? VideoFrameReady;
     public event EventHandler<AudioChunk>? AudioChunkReady;
 
@@ -101,6 +102,20 @@ internal sealed class AmigaMachine : IAmigaMachine
 
     public ValueTask EjectFloppyAsync(CancellationToken cancellationToken = default) =>
         QueueCommand(_core.EjectFloppy, cancellationToken);
+
+    public ValueTask SaveStateAsync(string path, CancellationToken cancellationToken = default) =>
+        QueueCommand(() =>
+        {
+            var fullPath = Path.GetFullPath(path);
+            Directory.CreateDirectory(Path.GetDirectoryName(fullPath)!);
+            File.WriteAllBytes(fullPath, _core.SaveState());
+        }, cancellationToken);
+
+    public ValueTask LoadStateAsync(string path, CancellationToken cancellationToken = default) =>
+        QueueCommand(() => _core.LoadState(File.ReadAllBytes(path)), cancellationToken);
+
+    public ValueTask SetOptionAsync(string key, string value, CancellationToken cancellationToken = default) =>
+        QueueCommand(() => _core.SetOption(key, value), cancellationToken);
 
     private ValueTask QueueCommand(Action action, CancellationToken cancellationToken)
     {

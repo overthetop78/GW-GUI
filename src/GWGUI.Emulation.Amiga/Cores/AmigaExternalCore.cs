@@ -13,11 +13,15 @@ internal sealed class AmigaExternalCore : IAmigaCore
     private AmigaExternalApi.VoidCall? _run;
     private AmigaExternalApi.VoidCall? _reset;
     private bool _gameLoaded;
+    private AmigaExternalApi.GetSerializedSize? _getSerializedSize;
+    private AmigaExternalApi.Serialize? _serialize;
+    private AmigaExternalApi.Serialize? _unserialize;
 
     internal AmigaExternalCore(string? corePath = null) => _corePath = corePath;
 
     public VideoFrame? LatestVideoFrame => _host?.LatestVideoFrame;
     public AudioChunk? LatestAudioChunk => _host?.LatestAudioChunk;
+    public IReadOnlyList<AmigaCoreOption> Options => _host?.OptionCatalog ?? [];
     public double FramesPerSecond { get; private set; } = 50;
     public int SampleRate { get; private set; } = 44100;
 
@@ -28,6 +32,10 @@ internal sealed class AmigaExternalCore : IAmigaCore
             throw new FileNotFoundException("The configured Amiga Kickstart was not found.", configuration.KickstartPath);
         if (configuration.InitialDiskPath is not null && !File.Exists(configuration.InitialDiskPath))
             throw new FileNotFoundException("The configured Amiga disk image was not found.", configuration.InitialDiskPath);
+        if (configuration.ExtendedRomPath is not null && !File.Exists(configuration.ExtendedRomPath))
+            throw new FileNotFoundException("The configured Amiga extended ROM was not found.", configuration.ExtendedRomPath);
+        if (configuration.RomKeyPath is not null && !File.Exists(configuration.RomKeyPath))
+            throw new FileNotFoundException("The configured Amiga ROM key was not found.", configuration.RomKeyPath);
 
         var sourceCorePath = ResolveCorePath(_corePath);
         var systemDirectory = Path.Combine(sessionDirectory, "System");
@@ -46,6 +54,15 @@ internal sealed class AmigaExternalCore : IAmigaCore
         var kickstartFileName = "kickstart.rom";
         var sessionKickstart = Path.Combine(systemDirectory, kickstartFileName);
         File.Copy(configuration.KickstartPath, sessionKickstart, true);
+        if (configuration.ExtendedRomPath is not null)
+        {
+            var extendedName = configuration.Model is "CD32" or "CD32FR" ? "kick40060.CD32.ext"
+                : configuration.Model == "CDTV" ? "kick34005.CDTV"
+                : Path.GetFileName(configuration.ExtendedRomPath);
+            File.Copy(configuration.ExtendedRomPath, Path.Combine(systemDirectory, extendedName), true);
+        }
+        if (configuration.RomKeyPath is not null)
+            File.Copy(configuration.RomKeyPath, Path.Combine(systemDirectory, "rom.key"), true);
 
         var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal)
         {
@@ -57,6 +74,12 @@ internal sealed class AmigaExternalCore : IAmigaCore
         try
         {
             _library = NativeLibrary.Load(corePath);
+            var apiVersion = Export<AmigaExternalApi.GetApiVersion>("retro_api_version")();
+            if (apiVersion != 1) throw new NotSupportedException($"The Amiga core uses unsupported API version {apiVersion}.");
+            Export<AmigaExternalApi.GetSystemInfo>("retro_get_system_info")(out var systemInfo);
+            var libraryName = Marshal.PtrToStringUTF8(systemInfo.LibraryName);
+            if (!string.Equals(libraryName, "PUAE", StringComparison.OrdinalIgnoreCase))
+                throw new InvalidDataException($"The selected native library identifies itself as '{libraryName}', not PUAE.");
             Export<AmigaExternalApi.SetEnvironment>("retro_set_environment")(_host.Environment);
             Export<AmigaExternalApi.SetVideo>("retro_set_video_refresh")(_host.Video);
             Export<AmigaExternalApi.SetAudioSample>("retro_set_audio_sample")(_host.AudioSample);
@@ -68,6 +91,9 @@ internal sealed class AmigaExternalCore : IAmigaCore
             _unloadGame = Export<AmigaExternalApi.VoidCall>("retro_unload_game");
             _run = Export<AmigaExternalApi.VoidCall>("retro_run");
             _reset = Export<AmigaExternalApi.VoidCall>("retro_reset");
+            _getSerializedSize = Export<AmigaExternalApi.GetSerializedSize>("retro_serialize_size");
+            _serialize = Export<AmigaExternalApi.Serialize>("retro_serialize");
+            _unserialize = Export<AmigaExternalApi.Serialize>("retro_unserialize");
             Export<AmigaExternalApi.VoidCall>("retro_init")();
 
             AmigaExternalApi.LoadGame loadGame = Export<AmigaExternalApi.LoadGame>("retro_load_game");
@@ -115,6 +141,32 @@ internal sealed class AmigaExternalCore : IAmigaCore
     public void EjectFloppy() => (_host ?? throw new InvalidOperationException("The Amiga core is not initialized."))
         .DiskControl.Eject();
 
+    public byte[] SaveState()
+    {
+        var size = (_getSerializedSize ?? throw new InvalidOperationException("The Amiga core is not initialized."))();
+        if (size == 0 || size > int.MaxValue) throw new InvalidOperationException($"The Amiga core returned invalid state size {size}.");
+        var state = new byte[(int)size];
+        unsafe
+        {
+            fixed (byte* pointer = state)
+                if (!_serialize!((nint)pointer, size)) throw new InvalidOperationException("The Amiga state could not be saved.");
+        }
+        return state;
+    }
+
+    public void LoadState(ReadOnlySpan<byte> state)
+    {
+        if (state.IsEmpty) throw new ArgumentException("The Amiga state is empty.", nameof(state));
+        unsafe
+        {
+            fixed (byte* pointer = state)
+                if (!_unserialize!((nint)pointer, (nuint)state.Length)) throw new InvalidOperationException("The Amiga state could not be restored.");
+        }
+    }
+
+    public void SetOption(string key, string value) =>
+        (_host ?? throw new InvalidOperationException("The Amiga core is not initialized.")).SetOption(key, value);
+
     public void Stop()
     {
         if (_gameLoaded) _unloadGame?.Invoke();
@@ -147,6 +199,9 @@ internal sealed class AmigaExternalCore : IAmigaCore
             _unloadGame = null;
             _run = null;
             _reset = null;
+            _getSerializedSize = null;
+            _serialize = null;
+            _unserialize = null;
             _host?.Dispose();
             _host = null;
             if (_library != 0) NativeLibrary.Free(_library);

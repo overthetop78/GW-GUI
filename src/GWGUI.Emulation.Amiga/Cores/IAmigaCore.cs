@@ -6,6 +6,7 @@ internal interface IAmigaCore : IDisposable
 {
     VideoFrame? LatestVideoFrame { get; }
     AudioChunk? LatestAudioChunk { get; }
+    IReadOnlyList<AmigaCoreOption> Options { get; }
     double FramesPerSecond { get; }
     int SampleRate { get; }
     void Initialize(AmigaMachineConfiguration configuration, string sessionDirectory);
@@ -15,4 +16,7 @@ internal interface IAmigaCore : IDisposable
     void SetInput(EmulationInputSnapshot snapshot);
     void InsertFloppy(string path);
     void EjectFloppy();
+    byte[] SaveState();
+    void LoadState(ReadOnlySpan<byte> state);
+    void SetOption(string key, string value);
 }

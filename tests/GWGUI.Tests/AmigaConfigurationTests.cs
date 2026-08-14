@@ -1,4 +1,5 @@
 using System.IO;
+using System.Net.Http;
 using GWGUI.Emulation.Amiga;
 
 namespace GWGUI.Tests;
@@ -57,5 +58,34 @@ public sealed class AmigaConfigurationTests
         Assert.Equal("OCS", AmigaModelCatalog.Get("A500").Chipset);
         Assert.Equal("AGA", AmigaModelCatalog.Get("A1200").Chipset);
         Assert.True(AmigaModelCatalog.Get("CD32").HasCdDrive);
+    }
+
+    [Fact]
+    public void ExternalCoreInstaller_OnlyAcceptsPinnedLibrary()
+    {
+        var repository = FindRepositoryRoot();
+        var source = Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll");
+        var directory = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Core", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(directory);
+        try
+        {
+            File.Copy(source, Path.Combine(directory, "puae_libretro.dll"));
+            using var client = new HttpClient();
+            var installer = new AmigaExternalCoreInstaller(client, directory);
+            Assert.True(installer.IsInstalled);
+            using (var stream = new FileStream(installer.LibraryPath, FileMode.Append, FileAccess.Write)) stream.WriteByte(0);
+            Assert.False(installer.IsInstalled);
+        }
+        finally
+        {
+            Directory.Delete(directory, true);
+        }
+    }
+
+    private static string FindRepositoryRoot()
+    {
+        var directory = new DirectoryInfo(AppContext.BaseDirectory);
+        while (directory is not null && !File.Exists(Path.Combine(directory.FullName, "GWGUI.sln"))) directory = directory.Parent;
+        return directory?.FullName ?? throw new DirectoryNotFoundException("GWGUI repository root not found.");
     }
 }
