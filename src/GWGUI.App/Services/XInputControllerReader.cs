@@ -18,6 +18,14 @@ internal static class XInputControllerReader
         return states;
     }
 
+    internal static IReadOnlyList<GameControllerDevice> GetConnectedDevices()
+    {
+        var devices = new List<GameControllerDevice>();
+        for (uint port = 0; port < 4; port++)
+            if (TryGetState(port, out _)) devices.Add(new GameControllerDevice($"xinput:{port}", $"XInput {port + 1}"));
+        return devices;
+    }
+
     private static bool TryGetState(uint port, out XInputState state)
     {
         try { return XInputGetState14(port, out state) == 0; }
@@ -81,4 +89,10 @@ internal static class XInputControllerReader
         public short RightX;
         public short RightY;
     }
+}
+
+
+internal sealed record GameControllerDevice(string Id, string Name)
+{
+    public override string ToString() => Name;
 }

@@ -96,12 +96,13 @@ public sealed class AmigaEmulationSection : UserControl
             _open.IsEnabled = false;
             ValidateConfiguration(selected.Configuration);
             var corePath = await AmigaCoreProvider.EnsureAvailableAsync();
+            var audio = selected.Configuration.Audio ?? new AmigaAudioConfiguration();
             var engine = new AmigaEngine(StoragePaths.AmigaSessionsDirectory, corePath,
-                () => new WasapiAudioOutput(),
+                () => new WasapiAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
                 configuration => Path.Combine(StoragePaths.AmigaConfigurationsDirectory,
                     configuration.Id.ToString("N"), "Saves"), Environment.ProcessPath);
             var machine = engine.CreateAmigaMachine(selected.Configuration);
-            var view = new AmigaMachineView(machine);
+            var view = new AmigaMachineView(machine, selected.Configuration.Input);
             var tab = new TabItem { Header = selected.DisplayName, Content = view };
             _openMachines.Add(selected.Configuration.Id, tab);
             view.CloseRequested += async (_, _) =>

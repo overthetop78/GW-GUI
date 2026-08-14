@@ -72,4 +72,6 @@
   <data name="Icon.Console">
     <value></value>
   </data>
+  <data name="Common.New"><value>Νέο</value></data>
+  <data name="Common.Refresh"><value>Ανανέωση</value></data>
 </root>

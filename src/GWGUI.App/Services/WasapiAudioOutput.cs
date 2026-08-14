@@ -7,10 +7,27 @@ namespace GWGUI.App.Services;
 
 public sealed class WasapiAudioOutput : IAudioOutput
 {
+    private readonly string? _deviceId;
+    private readonly int _latencyMilliseconds;
     private WasapiOut? _device;
     private BufferedWaveProvider? _buffer;
     private byte[] _writeBuffer = [];
     private bool _disposed;
+
+    public WasapiAudioOutput(string? deviceId = null, int latencyMilliseconds = 50)
+    {
+        _deviceId = string.IsNullOrWhiteSpace(deviceId) ? null : deviceId;
+        _latencyMilliseconds = Math.Clamp(latencyMilliseconds, 10, 500);
+    }
+
+    public static IReadOnlyList<AudioOutputDevice> GetOutputDevices()
+    {
+        using var enumerator = new MMDeviceEnumerator();
+        return enumerator.EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active)
+            .Select(device => new AudioOutputDevice(device.ID, device.FriendlyName))
+            .OrderBy(device => device.Name, StringComparer.CurrentCultureIgnoreCase)
+            .ToArray();
+    }
 
     public void Start(int sampleRate)
     {
@@ -22,7 +39,14 @@ public sealed class WasapiAudioOutput : IAudioOutput
             DiscardOnBufferOverflow = true,
             ReadFully = true
         };
-        _device = new WasapiOut(AudioClientShareMode.Shared, false, 50);
+        if (_deviceId is null)
+            _device = new WasapiOut(AudioClientShareMode.Shared, false, _latencyMilliseconds);
+        else
+        {
+            using var enumerator = new MMDeviceEnumerator();
+            var endpoint = enumerator.GetDevice(_deviceId);
+            _device = new WasapiOut(endpoint, AudioClientShareMode.Shared, false, _latencyMilliseconds);
+        }
         _device.Init(_buffer);
         _device.Play();
     }
@@ -54,4 +78,9 @@ public sealed class WasapiAudioOutput : IAudioOutput
         Stop();
         _disposed = true;
     }
+}
+
+public sealed record AudioOutputDevice(string Id, string Name)
+{
+    public override string ToString() => Name;
 }

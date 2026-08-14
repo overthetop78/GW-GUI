@@ -17,11 +17,14 @@ namespace GWGUI.App.Controls;
 public sealed class AmigaMachineView : UserControl
 {
     private readonly IAmigaMachine _machine;
+    private readonly AmigaInputConfiguration _input;
+    private readonly IReadOnlyDictionary<EmulationKey, EmulationKey> _keyboardMap;
     private readonly Image _display = new() { Stretch = Stretch.Uniform, Focusable = true };
     private readonly Border _screen;
     private readonly TextBlock _status = new() { VerticalAlignment = VerticalAlignment.Center };
     private readonly ComboBox _diskSelection = new() { MinWidth = 120, Margin = new Thickness(0, 0, 8, 0) };
     private readonly HashSet<EmulationKey> _keys = [];
+    private readonly HashSet<EmulationKey> _hostKeys = [];
     private WriteableBitmap? _bitmap;
     private Point? _lastMouse;
     private int _framePending;
@@ -31,9 +34,11 @@ public sealed class AmigaMachineView : UserControl
     private Button? _pauseButton;
     private readonly DispatcherTimer _inputTimer = new() { Interval = TimeSpan.FromMilliseconds(16) };
 
-    public AmigaMachineView(IAmigaMachine machine)
+    public AmigaMachineView(IAmigaMachine machine, AmigaInputConfiguration? input = null)
     {
         _machine = machine;
+        _input = input ?? new AmigaInputConfiguration();
+        _keyboardMap = BuildKeyboardMap(_input.KeyboardMappings);
         var root = new Grid();
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         root.RowDefinitions.Add(new RowDefinition());
@@ -76,7 +81,11 @@ public sealed class AmigaMachineView : UserControl
         _display.MouseDown += MouseChanged;
         _display.MouseUp += MouseChanged;
         _display.MouseWheel += DisplayMouseWheel;
-        _display.MouseDown += (_, _) => _display.Focus();
+        _display.MouseDown += (_, _) =>
+        {
+            _display.Focus();
+            if (_input.CaptureMouse && !_mouseCaptured) CaptureRelativeMouse();
+        };
         _inputTimer.Tick += (_, _) => PublishInput();
     }
 
@@ -223,26 +232,39 @@ public sealed class AmigaMachineView : UserControl
 
     private void DisplayKeyDown(object sender, KeyEventArgs e)
     {
-        if (_mouseCaptured && Keyboard.Modifiers.HasFlag(ModifierKeys.Control) && Keyboard.Modifiers.HasFlag(ModifierKeys.Alt))
+        var source = e.Key == Key.System ? e.SystemKey : e.Key;
+        if (_mouseCaptured && TryMapKey(source, out var pressed) && pressed == _input.ReleaseMouseKey)
         {
             ReleaseRelativeMouse();
             e.Handled = true;
             return;
         }
-        var source = e.Key == Key.System ? e.SystemKey : e.Key;
-        if (TryMapKey(source, out var key)) { _keys.Add(key); PublishInput(); e.Handled = true; }
+        if (TryMapKey(source, out var key))
+        {
+            _hostKeys.Add(key);
+            _keys.Add(_keyboardMap.GetValueOrDefault(key, key));
+            PublishInput();
+            e.Handled = true;
+        }
     }
 
     private void DisplayKeyUp(object sender, KeyEventArgs e)
     {
         var source = e.Key == Key.System ? e.SystemKey : e.Key;
-        if (TryMapKey(source, out var key)) { _keys.Remove(key); PublishInput(); e.Handled = true; }
+        if (TryMapKey(source, out var key))
+        {
+            _hostKeys.Remove(key);
+            _keys.Remove(_keyboardMap.GetValueOrDefault(key, key));
+            PublishInput();
+            e.Handled = true;
+        }
     }
 
     private void DisplayLostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
     {
         ReleaseRelativeMouse();
         _keys.Clear();
+        _hostKeys.Clear();
         PublishInput();
     }
 
@@ -270,18 +292,20 @@ public sealed class AmigaMachineView : UserControl
     private Task ToggleMouseCapture()
     {
         if (_mouseCaptured) ReleaseRelativeMouse();
-        else
-        {
-            _mouseCaptured = true;
-            _display.Cursor = Cursors.None;
-            Mouse.Capture(_display);
-            _display.Focus();
-            var center = new Point(_display.ActualWidth / 2, _display.ActualHeight / 2);
-            var screen = _display.PointToScreen(center);
-            SetCursorPos((int)Math.Round(screen.X), (int)Math.Round(screen.Y));
-            if (_mouseCaptureButton is not null) _mouseCaptureButton.Content = LocExtension.Get("Emulation.ReleaseMouse");
-        }
+        else CaptureRelativeMouse();
         return Task.CompletedTask;
+    }
+
+    private void CaptureRelativeMouse()
+    {
+        _mouseCaptured = true;
+        _display.Cursor = Cursors.None;
+        Mouse.Capture(_display);
+        _display.Focus();
+        var center = new Point(_display.ActualWidth / 2, _display.ActualHeight / 2);
+        var screen = _display.PointToScreen(center);
+        SetCursorPos((int)Math.Round(screen.X), (int)Math.Round(screen.Y));
+        if (_mouseCaptureButton is not null) _mouseCaptureButton.Content = LocExtension.Get("Emulation.ReleaseMouse");
     }
 
     private void ReleaseRelativeMouse()
@@ -299,11 +323,82 @@ public sealed class AmigaMachineView : UserControl
         if (_mouseCaptureButton is not null) _mouseCaptureButton.Content = LocExtension.Get("Emulation.CaptureMouse");
     }
 
-    private void PublishInput(int deltaX = 0, int deltaY = 0, int wheel = 0) => _machine.SetInput(new EmulationInputSnapshot(
-        new HashSet<EmulationKey>(_keys), new EmulationPointerState(deltaX, deltaY, wheel,
-            Mouse.LeftButton == MouseButtonState.Pressed, Mouse.RightButton == MouseButtonState.Pressed,
-            Mouse.MiddleButton == MouseButtonState.Pressed),
-        XInputControllerReader.ReadAll()));
+    private void PublishInput(int deltaX = 0, int deltaY = 0, int wheel = 0)
+    {
+        var physical = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
+        {
+            ["Left"] = Mouse.LeftButton == MouseButtonState.Pressed,
+            ["Right"] = Mouse.RightButton == MouseButtonState.Pressed,
+            ["Middle"] = Mouse.MiddleButton == MouseButtonState.Pressed
+        };
+        var actions = _input.MouseButtonMappings ?? new Dictionary<string, AmigaMouseAction>
+        {
+            ["Left"] = AmigaMouseAction.LeftButton,
+            ["Right"] = AmigaMouseAction.RightButton,
+            ["Middle"] = AmigaMouseAction.MiddleButton
+        };
+        bool IsPressed(AmigaMouseAction action) => actions.Any(mapping => mapping.Value == action
+            && physical.GetValueOrDefault(mapping.Key));
+        _machine.SetInput(new EmulationInputSnapshot(new HashSet<EmulationKey>(_keys),
+            new EmulationPointerState(deltaX, deltaY, wheel, IsPressed(AmigaMouseAction.LeftButton),
+                IsPressed(AmigaMouseAction.RightButton), IsPressed(AmigaMouseAction.MiddleButton)),
+            MapControllers(XInputControllerReader.ReadAll(), physical)));
+    }
+
+    private IReadOnlyList<EmulationControllerState> MapControllers(IReadOnlyList<EmulationControllerState> physical,
+        IReadOnlyDictionary<string, bool> mouseButtons)
+    {
+        var result = new EmulationControllerState[4];
+        for (var port = 0; port < result.Length; port++)
+        {
+            var binding = _input.ControllerBindings?.FirstOrDefault(item => item.Port == port);
+            var sourcePort = ParseXInputPort(binding?.DeviceId, port);
+            var source = sourcePort < physical.Count ? physical[sourcePort] : EmulationControllerState.Empty;
+            if (binding?.ButtonMappings is not { Count: > 0 })
+            {
+                result[port] = source;
+                continue;
+            }
+            uint buttons = 0;
+            foreach (var mapping in binding.ButtonMappings)
+            {
+                var target = Array.IndexOf(ControllerButtonNames, mapping.Value);
+                if (target >= 0 && IsControllerSourcePressed(mapping.Key, source, mouseButtons)) buttons |= 1u << target;
+            }
+            result[port] = source with { Buttons = buttons };
+        }
+        return result;
+    }
+
+    private bool IsControllerSourcePressed(string sourceName, EmulationControllerState controller,
+        IReadOnlyDictionary<string, bool> mouseButtons)
+    {
+        var controllerIndex = Array.IndexOf(ControllerButtonNames, sourceName);
+        if (controllerIndex >= 0) return (controller.Buttons & (1u << controllerIndex)) != 0;
+        if (sourceName.StartsWith("Keyboard:", StringComparison.OrdinalIgnoreCase)
+            && Enum.TryParse<EmulationKey>(sourceName[9..], true, out var key)) return _hostKeys.Contains(key);
+        if (sourceName.StartsWith("Mouse:", StringComparison.OrdinalIgnoreCase))
+            return mouseButtons.GetValueOrDefault(sourceName[6..]);
+        return false;
+    }
+
+    private static int ParseXInputPort(string? deviceId, int fallback) =>
+        deviceId?.StartsWith("xinput:", StringComparison.OrdinalIgnoreCase) == true
+        && int.TryParse(deviceId[7..], out var port) && port is >= 0 and < 4 ? port : fallback;
+
+    private static readonly string[] ControllerButtonNames =
+        ["B", "Y", "Select", "Start", "Up", "Down", "Left", "Right", "A", "X", "L", "R", "L2", "R2", "L3", "R3"];
+
+    private static IReadOnlyDictionary<EmulationKey, EmulationKey> BuildKeyboardMap(
+        IReadOnlyDictionary<string, EmulationKey>? mappings)
+    {
+        if (mappings is null || mappings.Count == 0) return new Dictionary<EmulationKey, EmulationKey>();
+        var result = new Dictionary<EmulationKey, EmulationKey>();
+        foreach (var mapping in mappings)
+            if (Enum.TryParse<EmulationKey>(mapping.Key, true, out var amigaKey) && mapping.Value != EmulationKey.Unknown)
+                result[mapping.Value] = amigaKey;
+        return result;
+    }
 
     internal static bool TryMapKey(Key key, out EmulationKey result)
     {

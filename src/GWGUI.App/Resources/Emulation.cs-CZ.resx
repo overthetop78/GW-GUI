@@ -117,4 +117,44 @@
   <data name="Emulation.VideoSummary">
     <value>Video čipová sada: {0}</value>
   </data>
+  <data name="Emulation.CpuModel"><value>CPU model</value></data>
+  <data name="Emulation.CpuMultiplier"><value>CPU multiplier</value></data>
+  <data name="Emulation.CpuCompatibility"><value>Cycle-compatible CPU</value></data>
+  <data name="Emulation.ChipMemory"><value>Chip RAM</value></data>
+  <data name="Emulation.SlowMemory"><value>Slow RAM</value></data>
+  <data name="Emulation.FastMemory"><value>Fast RAM</value></data>
+  <data name="Emulation.Z3Memory"><value>Zorro III RAM</value></data>
+  <data name="Emulation.VideoStandard"><value>Video standard</value></data>
+  <data name="Emulation.VideoResolution"><value>Resolution</value></data>
+  <data name="Emulation.AspectRatio"><value>Aspect ratio</value></data>
+  <data name="Emulation.VideoCrop"><value>Crop borders</value></data>
+  <data name="Emulation.FlickerFixer"><value>Flicker fixer</value></data>
+  <data name="Emulation.AudioEnabled"><value>Enable audio</value></data>
+  <data name="Emulation.AudioOutput"><value>Audio output</value></data>
+  <data name="Emulation.AudioLatency"><value>Latency (ms)</value></data>
+  <data name="Emulation.AudioInterpolation"><value>Interpolation</value></data>
+  <data name="Emulation.AudioFilter"><value>Amiga audio filter</value></data>
+  <data name="Emulation.StereoSeparation"><value>Stereo separation (%)</value></data>
+  <data name="Emulation.AudioInput"><value>Audio input</value></data>
+  <data name="Emulation.AudioInputUnavailable"><value>This Amiga core does not expose an audio input.</value></data>
+  <data name="Emulation.DefaultAudioOutput"><value>Windows default output</value></data>
+  <data name="Emulation.AddMedia"><value>Add media</value></data>
+  <data name="Emulation.CreateHardDisk"><value>Create hard disk</value></data>
+  <data name="Emulation.HardDiskSize"><value>Hard-disk size (MiB)</value></data>
+  <data name="Emulation.NoMedia"><value>No media. Add a floppy, hard disk or CD supported by the selected model.</value></data>
+  <data name="Emulation.ReadOnly"><value>Read-only</value></data>
+  <data name="Emulation.AmigaMediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value></data>
+  <data name="Emulation.HardDiskFilter"><value>Amiga hard disk|*.hdf|All files|*.*</value></data>
+  <data name="Emulation.HardDiskNotSupported"><value>The selected model does not support a hard disk.</value></data>
+  <data name="Emulation.TooManyFloppyDrives"><value>This model accepts at most {0} floppy drive(s).</value></data>
+  <data name="Emulation.TooManyHardDrives"><value>This model accepts at most {0} hard disk(s).</value></data>
+  <data name="Emulation.CdNotSupported"><value>The selected model does not support a CD drive.</value></data>
+  <data name="Emulation.DuplicateKeyboardMapping"><value>Two Amiga keys use the same PC key. Resolve the red mappings before saving.</value></data>
+  <data name="Emulation.ReleaseMouseKey"><value>Release-capture key</value></data>
+  <data name="Emulation.MouseLeftButton"><value>Left mouse button</value></data>
+  <data name="Emulation.MouseRightButton"><value>Right mouse button</value></data>
+  <data name="Emulation.MouseMiddleButton"><value>Middle mouse button</value></data>
+  <data name="Emulation.DetectControllers"><value>Detect controllers</value></data>
+  <data name="Emulation.EmulatedAction"><value>Amiga action</value></data>
+  <data name="Emulation.PhysicalControl"><value>Keyboard, mouse or controller control</value></data>
 </root>

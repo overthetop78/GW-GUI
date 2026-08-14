@@ -72,4 +72,6 @@
   <data name="Icon.Console">
     <value></value>
   </data>
+  <data name="Common.New"><value>ใหม่</value></data>
+  <data name="Common.Refresh"><value>รีเฟรช</value></data>
 </root>

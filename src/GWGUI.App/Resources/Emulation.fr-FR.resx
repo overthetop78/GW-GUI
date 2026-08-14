@@ -117,4 +117,44 @@
   <data name="Emulation.VideoSummary">
     <value>Jeu de puces vidéo : {0}</value>
   </data>
+  <data name="Emulation.CpuModel"><value>Modèle de CPU</value></data>
+  <data name="Emulation.CpuMultiplier"><value>Multiplicateur du CPU</value></data>
+  <data name="Emulation.CpuCompatibility"><value>CPU compatible cycle par cycle</value></data>
+  <data name="Emulation.ChipMemory"><value>Chip RAM</value></data>
+  <data name="Emulation.SlowMemory"><value>Slow RAM</value></data>
+  <data name="Emulation.FastMemory"><value>Fast RAM</value></data>
+  <data name="Emulation.Z3Memory"><value>RAM Zorro III</value></data>
+  <data name="Emulation.VideoStandard"><value>Norme vidéo</value></data>
+  <data name="Emulation.VideoResolution"><value>Résolution</value></data>
+  <data name="Emulation.AspectRatio"><value>Format d’image</value></data>
+  <data name="Emulation.VideoCrop"><value>Rogner les bordures</value></data>
+  <data name="Emulation.FlickerFixer"><value>Correction du scintillement</value></data>
+  <data name="Emulation.AudioEnabled"><value>Activer le son</value></data>
+  <data name="Emulation.AudioOutput"><value>Sortie audio</value></data>
+  <data name="Emulation.AudioLatency"><value>Latence (ms)</value></data>
+  <data name="Emulation.AudioInterpolation"><value>Interpolation</value></data>
+  <data name="Emulation.AudioFilter"><value>Filtre audio Amiga</value></data>
+  <data name="Emulation.StereoSeparation"><value>Séparation stéréo (%)</value></data>
+  <data name="Emulation.AudioInput"><value>Entrée audio</value></data>
+  <data name="Emulation.AudioInputUnavailable"><value>Ce cœur Amiga ne fournit aucune entrée audio.</value></data>
+  <data name="Emulation.DefaultAudioOutput"><value>Sortie Windows par défaut</value></data>
+  <data name="Emulation.AddMedia"><value>Ajouter un média</value></data>
+  <data name="Emulation.CreateHardDisk"><value>Créer un disque dur</value></data>
+  <data name="Emulation.HardDiskSize"><value>Taille du disque dur (Mio)</value></data>
+  <data name="Emulation.NoMedia"><value>Aucun média. Ajoutez une disquette, un disque dur ou un CD accepté par le modèle choisi.</value></data>
+  <data name="Emulation.ReadOnly"><value>Lecture seule</value></data>
+  <data name="Emulation.AmigaMediaFilter"><value>Médias Amiga|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Tous les fichiers|*.*</value></data>
+  <data name="Emulation.HardDiskFilter"><value>Disque dur Amiga|*.hdf|Tous les fichiers|*.*</value></data>
+  <data name="Emulation.HardDiskNotSupported"><value>Le modèle choisi ne prend pas en charge les disques durs.</value></data>
+  <data name="Emulation.TooManyFloppyDrives"><value>Ce modèle accepte au maximum {0} lecteur(s) de disquette.</value></data>
+  <data name="Emulation.TooManyHardDrives"><value>Ce modèle accepte au maximum {0} disque(s) dur(s).</value></data>
+  <data name="Emulation.CdNotSupported"><value>Le modèle choisi ne prend pas en charge les lecteurs de CD.</value></data>
+  <data name="Emulation.DuplicateKeyboardMapping"><value>Deux touches Amiga utilisent la même touche du PC. Corrigez les lignes rouges avant d’enregistrer.</value></data>
+  <data name="Emulation.ReleaseMouseKey"><value>Touche pour libérer la souris</value></data>
+  <data name="Emulation.MouseLeftButton"><value>Bouton gauche de la souris</value></data>
+  <data name="Emulation.MouseRightButton"><value>Bouton droit de la souris</value></data>
+  <data name="Emulation.MouseMiddleButton"><value>Bouton central de la souris</value></data>
+  <data name="Emulation.DetectControllers"><value>Détecter les manettes</value></data>
+  <data name="Emulation.EmulatedAction"><value>Action Amiga</value></data>
+  <data name="Emulation.PhysicalControl"><value>Commande clavier, souris ou manette</value></data>
 </root>

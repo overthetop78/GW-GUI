@@ -1,7 +1,8 @@
 namespace GWGUI.Emulation.Amiga;
 
 public sealed record AmigaModel(string Id, string DisplayName, string Cpu, string Chipset,
-    int ChipMemoryKib, int SlowMemoryKib, int FastMemoryMib, bool HasCdDrive, string RecommendedKickstart);
+    int ChipMemoryKib, int SlowMemoryKib, int FastMemoryMib, bool HasCdDrive, string RecommendedKickstart,
+    int MaximumFloppyDrives = 4, bool SupportsHardDrives = true, int MaximumHardDrives = 4);
 
 public static class AmigaModelCatalog
 {
