@@ -89,6 +89,7 @@ public sealed class OptionsEmulationSection : UserControl
 
         var actions = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Right };
         AddButton(actions, "Common.Refresh", ReloadAsync);
+        AddButton(actions, "Emulation.LoadOptions", LoadAvailableOptionsAsync);
         AddButton(actions, "Common.Save", SaveConfigurationAsync);
         AddButton(actions, "Common.OpenFolder", OpenFirmwareFolder);
         Grid.SetRow(actions, 1); right.Children.Add(actions);
@@ -209,6 +210,38 @@ public sealed class OptionsEmulationSection : UserControl
         await ReloadAsync();
     }
 
+    private async Task LoadAvailableOptionsAsync()
+    {
+        if (_model.SelectedItem is not AmigaModel model) throw new InvalidOperationException(LocExtension.Get("Emulation.ModelRequired"));
+        ValidateOptionalFile(_kickstart.Text, required: true);
+        ValidateOptionalFile(_extendedRom.Text);
+        ValidateOptionalFile(_romKey.Text);
+        var configured = _options.Where(item => !string.IsNullOrWhiteSpace(item.Key))
+            .ToDictionary(item => item.Key, item => item.Value, StringComparer.Ordinal);
+        var corePath = await AmigaCoreProvider.EnsureAvailableAsync();
+        var configuration = new AmigaMachineConfiguration(model.Id, Path.GetFullPath(_kickstart.Text),
+            ExtendedRomPath: OptionalFullPath(_extendedRom.Text), RomKeyPath: OptionalFullPath(_romKey.Text),
+            Options: new Dictionary<string, string> { ["puae_model"] = model.Id },
+            Id: _currentId == Guid.Empty ? Guid.NewGuid() : _currentId, AudioEnabled: false);
+        var engine = new AmigaEngine(StoragePaths.AmigaSessionsDirectory, corePath);
+        await using var machine = engine.CreateAmigaMachine(configuration);
+        await machine.StartAsync();
+        try
+        {
+            var available = machine.AvailableOptions.ToArray();
+            _options.Clear();
+            foreach (var option in available)
+                _options.Add(new OptionItem
+                {
+                    Key = option.Key,
+                    Name = option.Name,
+                    Value = configured.TryGetValue(option.Key, out var value) ? value : option.DefaultValue,
+                    AllowedValues = string.Join(" | ", option.Values.Select(item => item.Value))
+                });
+        }
+        finally { await machine.StopAsync(); }
+    }
+
     private async Task DeleteConfigurationAsync()
     {
         if (_currentId == Guid.Empty || _list.SelectedItem is null) return;
@@ -252,7 +285,9 @@ public sealed class OptionsEmulationSection : UserControl
     public sealed class OptionItem
     {
         public string Key { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
         public string Value { get; set; } = string.Empty;
+        public string AllowedValues { get; set; } = string.Empty;
     }
 
     public sealed class FloppyItem

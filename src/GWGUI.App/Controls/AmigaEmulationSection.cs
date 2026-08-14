@@ -1,6 +1,5 @@
 using System.Diagnostics;
 using System.IO;
-using System.Net.Http;
 using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Controls;
@@ -20,7 +19,6 @@ public sealed class AmigaEmulationSection : UserControl
     private readonly Button _start = new() { MinWidth = 110 };
     private readonly Button _firmwareFolder = new() { MinWidth = 130 };
     private readonly TabControl _machines = new();
-    private readonly HttpClient _httpClient = new();
 
     public AmigaEmulationSection()
     {
@@ -119,7 +117,7 @@ public sealed class AmigaEmulationSection : UserControl
             if (_model.SelectedItem is not AmigaModel model) return;
             if (!File.Exists(_kickstart.Text)) throw new FileNotFoundException("Kickstart", _kickstart.Text);
             if (_disk.Text.Length > 0 && !File.Exists(_disk.Text)) throw new FileNotFoundException("ADF", _disk.Text);
-            var corePath = await EnsureCoreAsync();
+            var corePath = await AmigaCoreProvider.EnsureAvailableAsync();
             var engine = new AmigaEngine(StoragePaths.AmigaSessionsDirectory, corePath, () => new WasapiAudioOutput(),
                 configuration => Path.Combine(StoragePaths.AmigaConfigurationsDirectory,
                     configuration.Id.ToString("N"), "Saves"));
@@ -154,14 +152,6 @@ public sealed class AmigaEmulationSection : UserControl
             MessageBox.Show(Window.GetWindow(this), LocExtension.Get("Error.Unexpected", detail), "Amiga", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         finally { _start.IsEnabled = true; }
-    }
-
-    private async Task<string> EnsureCoreAsync()
-    {
-        var bundled = Path.Combine(AppContext.BaseDirectory, "Emulation", "puae_libretro.dll");
-        if (File.Exists(bundled)) return bundled;
-        var installer = new AmigaExternalCoreInstaller(_httpClient, StoragePaths.AmigaCoreDirectory);
-        return installer.IsInstalled ? installer.LibraryPath : await installer.InstallAsync();
     }
 
     private void OpenFirmwareFolder(object sender, RoutedEventArgs e)

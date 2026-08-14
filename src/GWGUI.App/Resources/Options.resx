@@ -192,6 +192,7 @@
   <data name="Emulation.Floppies" xml:space="preserve"><value>Floppy disks</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Mount the first four disks in DF0–DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Disk {0}</value></data>
+  <data name="Emulation.LoadOptions" xml:space="preserve"><value>Load available options</value></data>
   <data name="Emulation.DeleteConfirm" xml:space="preserve"><value>Delete this Amiga configuration?</value></data>
   <data name="Emulation.ModelRequired" xml:space="preserve"><value>An Amiga model is required.</value></data>
   <data name="Emulation.KickstartRequired" xml:space="preserve"><value>A Kickstart path is required.</value></data>
