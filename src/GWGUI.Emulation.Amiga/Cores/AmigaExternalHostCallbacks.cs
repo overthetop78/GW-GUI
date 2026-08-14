@@ -438,12 +438,32 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
         var modifiers = (ushort)((keys.Contains(EmulationKey.LeftShift) || keys.Contains(EmulationKey.RightShift) ? 1 : 0)
             | (keys.Contains(EmulationKey.LeftControl) || keys.Contains(EmulationKey.RightControl) ? 2 : 0)
             | (keys.Contains(EmulationKey.LeftAlt) || keys.Contains(EmulationKey.RightAlt) ? 4 : 0));
-        foreach (var key in _previousKeys.Except(keys))
+        foreach (var key in _previousKeys.Except(keys).OrderBy(key => IsModifier(key) ? 1 : 0))
             if (reverseMap.TryGetValue(key, out var code)) _keyboardEvent(false, code, 0, modifiers);
-        foreach (var key in keys.Except(_previousKeys))
-            if (reverseMap.TryGetValue(key, out var code)) _keyboardEvent(true, code, code is >= 32 and <= 126 ? code : 0, modifiers);
+        foreach (var key in keys.Except(_previousKeys).OrderBy(key => IsModifier(key) ? 0 : 1))
+            if (reverseMap.TryGetValue(key, out var code)) _keyboardEvent(true, code, CharacterFor(code, keys), modifiers);
         _previousKeys = new HashSet<EmulationKey>(keys);
     }
+
+    private static uint CharacterFor(uint code, IReadOnlySet<EmulationKey> keys)
+    {
+        var shifted = keys.Contains(EmulationKey.LeftShift) || keys.Contains(EmulationKey.RightShift);
+        var caps = keys.Contains(EmulationKey.CapsLock);
+        if (code is >= (uint)'a' and <= (uint)'z') return shifted ^ caps ? code - 32 : code;
+        if (!shifted) return code is >= 32 and <= 126 ? code : 0;
+        return code switch
+        {
+            (uint)'0' => ')', (uint)'1' => '!', (uint)'2' => '@', (uint)'3' => '#', (uint)'4' => '$',
+            (uint)'5' => '%', (uint)'6' => '^', (uint)'7' => '&', (uint)'8' => '*', (uint)'9' => '(',
+            (uint)'-' => '_', (uint)'=' => '+', (uint)'[' => '{', (uint)']' => '}', (uint)'\\' => '|',
+            (uint)';' => ':', (uint)'\'' => '"', (uint)',' => '<', (uint)'.' => '>', (uint)'/' => '?',
+            (uint)'`' => '~', _ => code is >= 32 and <= 126 ? code : 0
+        };
+    }
+
+    private static bool IsModifier(EmulationKey key) => key is EmulationKey.LeftShift or EmulationKey.RightShift
+        or EmulationKey.LeftControl or EmulationKey.RightControl or EmulationKey.LeftAlt or EmulationKey.RightAlt
+        or EmulationKey.LeftAmiga or EmulationKey.RightAmiga;
 
     private void HandleLog(int level, nint format)
     {
