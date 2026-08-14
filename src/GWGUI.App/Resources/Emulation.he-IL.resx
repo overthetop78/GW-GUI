@@ -268,4 +268,7 @@
   <data name="Emulation.NotUsed"><value>לא בשימוש</value></data>
   <data name="Emulation.OpenRomFolder"><value>פתח תיקיית ROM</value></data>
   <data name="Emulation.FirmwarePartiallyCompatible"><value>תואמת חלקית</value></data>
+  <data name="Emulation.DisplaySettings"><value>תצוגה</value></data>
+  <data name="Emulation.RenderingSettings"><value>עיבוד</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>תאימות ערכת שבבים</value></data>
 </root>

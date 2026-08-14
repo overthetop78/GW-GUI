@@ -268,4 +268,7 @@
   <data name="Emulation.NotUsed"><value>Används inte</value></data>
   <data name="Emulation.OpenRomFolder"><value>Öppna ROM-mapp</value></data>
   <data name="Emulation.FirmwarePartiallyCompatible"><value>Delvis kompatibel</value></data>
+  <data name="Emulation.DisplaySettings"><value>Visning</value></data>
+  <data name="Emulation.RenderingSettings"><value>Rendering</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>Kretsuppsättningskompatibilitet</value></data>
 </root>

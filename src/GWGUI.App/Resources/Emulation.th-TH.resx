@@ -268,4 +268,7 @@
   <data name="Emulation.NotUsed"><value>ไม่ได้ใช้</value></data>
   <data name="Emulation.OpenRomFolder"><value>เปิดโฟลเดอร์ ROM</value></data>
   <data name="Emulation.FirmwarePartiallyCompatible"><value>เข้ากันได้บางส่วน</value></data>
+  <data name="Emulation.DisplaySettings"><value>การแสดงผล</value></data>
+  <data name="Emulation.RenderingSettings"><value>การเรนเดอร์</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>ความเข้ากันได้ของชิปเซ็ต</value></data>
 </root>

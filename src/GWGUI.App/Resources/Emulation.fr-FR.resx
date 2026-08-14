@@ -124,11 +124,11 @@
   <data name="Emulation.SlowMemory"><value>Slow RAM</value></data>
   <data name="Emulation.FastMemory"><value>Fast RAM</value></data>
   <data name="Emulation.Z3Memory"><value>RAM Zorro III</value></data>
-  <data name="Emulation.VideoStandard"><value>Norme vidéo</value></data>
+  <data name="Emulation.VideoStandard"><value>Norme</value></data>
   <data name="Emulation.VideoResolution"><value>Résolution</value></data>
   <data name="Emulation.AspectRatio"><value>Format d’image</value></data>
   <data name="Emulation.VideoCrop"><value>Rogner les bordures</value></data>
-  <data name="Emulation.FlickerFixer"><value>Correction du scintillement</value></data>
+  <data name="Emulation.FlickerFixer"><value>Corriger le scintillement</value></data>
   <data name="Emulation.AudioEnabled"><value>Activer le son</value></data>
   <data name="Emulation.AudioOutput"><value>Sortie audio</value></data>
   <data name="Emulation.AudioLatency"><value>Latence (ms)</value></data>
@@ -191,12 +191,12 @@
   <data name="Emulation.ResolutionHigh"><value>Haute résolution</value></data>
   <data name="Emulation.ResolutionSuperHigh"><value>Très haute résolution</value></data>
   <data name="Emulation.VideoLineMode"><value>Mode de lignes</value></data>
-  <data name="Emulation.VideoHzChange"><value>Changements de fréquence</value></data>
+  <data name="Emulation.VideoHzChange"><value>Changement de fréquence</value></data>
   <data name="Emulation.VideoFrameskip"><value>Saut d’images</value></data>
   <data name="Emulation.VideoColors"><value>Profondeur des couleurs</value></data>
   <data name="Emulation.VideoGamma"><value>Gamma</value></data>
-  <data name="Emulation.ImmediateBlits"><value>Fonctionnement du blitter</value></data>
-  <data name="Emulation.CollisionLevel"><value>Détection des collisions</value></data>
+  <data name="Emulation.ImmediateBlits"><value>Blitter</value></data>
+  <data name="Emulation.CollisionLevel"><value>Collisions</value></data>
   <data name="Emulation.LineModeSingle"><value>Balayage simple</value></data>
   <data name="Emulation.LineModeDouble"><value>Double balayage</value></data>
   <data name="Emulation.CollisionSprites"><value>Sprites</value></data>
@@ -268,4 +268,7 @@
   <data name="Emulation.NotUsed"><value>Non utilisé</value></data>
   <data name="Emulation.OpenRomFolder"><value>Ouvrir le dossier des ROM</value></data>
   <data name="Emulation.FirmwarePartiallyCompatible"><value>Partiellement compatible</value></data>
+  <data name="Emulation.DisplaySettings"><value>Affichage</value></data>
+  <data name="Emulation.RenderingSettings"><value>Rendu</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>Compatibilité du jeu de puces</value></data>
 </root>

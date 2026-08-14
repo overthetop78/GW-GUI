@@ -268,4 +268,7 @@
   <data name="Emulation.NotUsed"><value>Не используется</value></data>
   <data name="Emulation.OpenRomFolder"><value>Открыть папку ПЗУ</value></data>
   <data name="Emulation.FirmwarePartiallyCompatible"><value>Частично совместима</value></data>
+  <data name="Emulation.DisplaySettings"><value>Отображение</value></data>
+  <data name="Emulation.RenderingSettings"><value>Рендеринг</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>Совместимость чипсета</value></data>
 </root>

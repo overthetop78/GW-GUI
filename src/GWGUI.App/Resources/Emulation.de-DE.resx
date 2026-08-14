@@ -268,4 +268,7 @@
   <data name="Emulation.NotUsed"><value>Nicht verwendet</value></data>
   <data name="Emulation.OpenRomFolder"><value>ROM-Ordner öffnen</value></data>
   <data name="Emulation.FirmwarePartiallyCompatible"><value>Teilweise kompatibel</value></data>
+  <data name="Emulation.DisplaySettings"><value>Anzeige</value></data>
+  <data name="Emulation.RenderingSettings"><value>Darstellung</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>Chipsatzkompatibilität</value></data>
 </root>

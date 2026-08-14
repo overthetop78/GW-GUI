@@ -268,4 +268,7 @@
   <data name="Emulation.NotUsed"><value>未使用</value></data>
   <data name="Emulation.OpenRomFolder"><value>ROM フォルダーを開く</value></data>
   <data name="Emulation.FirmwarePartiallyCompatible"><value>一部互換</value></data>
+  <data name="Emulation.DisplaySettings"><value>表示</value></data>
+  <data name="Emulation.RenderingSettings"><value>レンダリング</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>チップセット互換性</value></data>
 </root>

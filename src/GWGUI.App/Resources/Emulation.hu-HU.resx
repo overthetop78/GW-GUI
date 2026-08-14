@@ -268,4 +268,7 @@
   <data name="Emulation.NotUsed"><value>Nincs használatban</value></data>
   <data name="Emulation.OpenRomFolder"><value>ROM-mappa megnyitása</value></data>
   <data name="Emulation.FirmwarePartiallyCompatible"><value>Részben kompatibilis</value></data>
+  <data name="Emulation.DisplaySettings"><value>Megjelenítés</value></data>
+  <data name="Emulation.RenderingSettings"><value>Renderelés</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>Lapkakészlet-kompatibilitás</value></data>
 </root>

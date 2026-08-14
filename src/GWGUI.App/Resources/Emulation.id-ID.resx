@@ -268,4 +268,7 @@
   <data name="Emulation.NotUsed"><value>Tidak digunakan</value></data>
   <data name="Emulation.OpenRomFolder"><value>Buka folder ROM</value></data>
   <data name="Emulation.FirmwarePartiallyCompatible"><value>Sebagian kompatibel</value></data>
+  <data name="Emulation.DisplaySettings"><value>Tampilan</value></data>
+  <data name="Emulation.RenderingSettings"><value>Perenderan</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>Kompatibilitas chipset</value></data>
 </root>

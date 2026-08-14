@@ -268,4 +268,7 @@
   <data name="Emulation.NotUsed"><value>Không sử dụng</value></data>
   <data name="Emulation.OpenRomFolder"><value>Mở thư mục ROM</value></data>
   <data name="Emulation.FirmwarePartiallyCompatible"><value>Tương thích một phần</value></data>
+  <data name="Emulation.DisplaySettings"><value>Hiển thị</value></data>
+  <data name="Emulation.RenderingSettings"><value>Kết xuất</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>Tương thích chipset</value></data>
 </root>

@@ -268,4 +268,7 @@
   <data name="Emulation.NotUsed"><value>Ei käytössä</value></data>
   <data name="Emulation.OpenRomFolder"><value>Avaa ROM-kansio</value></data>
   <data name="Emulation.FirmwarePartiallyCompatible"><value>Osittain yhteensopiva</value></data>
+  <data name="Emulation.DisplaySettings"><value>Näyttö</value></data>
+  <data name="Emulation.RenderingSettings"><value>Renderöinti</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>Piirisarjan yhteensopivuus</value></data>
 </root>

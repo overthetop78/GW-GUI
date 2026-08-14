@@ -268,4 +268,7 @@
   <data name="Emulation.NotUsed"><value>غير مستخدمة</value></data>
   <data name="Emulation.OpenRomFolder"><value>فتح مجلد ROM</value></data>
   <data name="Emulation.FirmwarePartiallyCompatible"><value>متوافقة جزئيًا</value></data>
+  <data name="Emulation.DisplaySettings"><value>العرض</value></data>
+  <data name="Emulation.RenderingSettings"><value>التصيير</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>توافق مجموعة الشرائح</value></data>
 </root>

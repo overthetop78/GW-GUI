@@ -268,4 +268,7 @@
   <data name="Emulation.NotUsed"><value>Nepoužívá se</value></data>
   <data name="Emulation.OpenRomFolder"><value>Otevřít složku ROM</value></data>
   <data name="Emulation.FirmwarePartiallyCompatible"><value>Částečně kompatibilní</value></data>
+  <data name="Emulation.DisplaySettings"><value>Zobrazení</value></data>
+  <data name="Emulation.RenderingSettings"><value>Vykreslování</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>Kompatibilita čipové sady</value></data>
 </root>

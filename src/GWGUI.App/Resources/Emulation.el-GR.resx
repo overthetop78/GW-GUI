@@ -268,4 +268,7 @@
   <data name="Emulation.NotUsed"><value>Δεν χρησιμοποιείται</value></data>
   <data name="Emulation.OpenRomFolder"><value>Άνοιγμα φακέλου ROM</value></data>
   <data name="Emulation.FirmwarePartiallyCompatible"><value>Μερικώς συμβατή</value></data>
+  <data name="Emulation.DisplaySettings"><value>Προβολή</value></data>
+  <data name="Emulation.RenderingSettings"><value>Απόδοση</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>Συμβατότητα chipset</value></data>
 </root>

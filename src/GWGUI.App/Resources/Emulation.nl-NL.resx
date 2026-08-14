@@ -268,4 +268,7 @@
   <data name="Emulation.NotUsed"><value>Niet gebruikt</value></data>
   <data name="Emulation.OpenRomFolder"><value>ROM-map openen</value></data>
   <data name="Emulation.FirmwarePartiallyCompatible"><value>Gedeeltelijk compatibel</value></data>
+  <data name="Emulation.DisplaySettings"><value>Weergave</value></data>
+  <data name="Emulation.RenderingSettings"><value>Rendering</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>Chipsetcompatibiliteit</value></data>
 </root>

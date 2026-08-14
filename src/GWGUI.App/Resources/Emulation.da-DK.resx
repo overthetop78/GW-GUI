@@ -268,4 +268,7 @@
   <data name="Emulation.NotUsed"><value>Ikke brugt</value></data>
   <data name="Emulation.OpenRomFolder"><value>Åbn ROM-mappe</value></data>
   <data name="Emulation.FirmwarePartiallyCompatible"><value>Delvist kompatibel</value></data>
+  <data name="Emulation.DisplaySettings"><value>Visning</value></data>
+  <data name="Emulation.RenderingSettings"><value>Gengivelse</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>Chipsætkompatibilitet</value></data>
 </root>

@@ -54,7 +54,7 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly TextBlock _extensionMemoryHint = new() { TextWrapping = TextWrapping.Wrap };
     private readonly TextBlock _totalMemory = new() { VerticalAlignment = VerticalAlignment.Center, FontSize = 16 };
     private readonly ComboBox _videoStandard = new() { ItemsSource = new[] { "PAL", "NTSC" } };
-    private readonly TextBlock _chipset = new() { VerticalAlignment = VerticalAlignment.Center };
+    private readonly ComboBox _chipset = new() { IsEnabled = false };
     private readonly ComboBox _videoResolution = new() { ItemsSource = new[] { "auto", "auto-lores", "auto-superhires", "lores", "hires", "superhires" } };
     private readonly ComboBox _videoAspect = new() { ItemsSource = new[] { "auto", "PAL", "NTSC", "1:1" } };
     private readonly ComboBox _cropVideo = new() { ItemsSource = new[] { "disabled", "minimum", "smaller", "small", "medium", "large", "larger", "maximum", "auto" } };
@@ -422,21 +422,26 @@ public sealed class OptionsEmulationSection : UserControl
 
     private UIElement BuildVideoTab()
     {
+        var display = TileGrid(2,
+            LabeledTile(LocExtension.Get("Emulation.VideoStandard"), _videoStandard),
+            LabeledTile(LocExtension.Get("Emulation.AspectRatio"), _videoAspect),
+            LabeledTile(LocExtension.Get("Emulation.VideoResolution"), _videoResolution),
+            LabeledTile(LocExtension.Get("Emulation.VideoLineMode"), _videoLineMode),
+            LabeledTile(LocExtension.Get("Emulation.VideoCrop"), _cropVideo, columnSpan: 2));
+        var rendering = TileGrid(2,
+            LabeledTile(LocExtension.Get("Emulation.VideoColors"), _videoColors),
+            LabeledTile(LocExtension.Get("Emulation.VideoFrameskip"), _videoFrameskip),
+            LabeledTile(LocExtension.Get("Emulation.VideoGamma"), _videoGamma),
+            TrailingCheckBoxTile(LocExtension.Get("Emulation.FlickerFixer"), _flickerFixer));
         var root = TwoColumnPage(
-            Card(FieldGrid((LocExtension.Get("Emulation.Chipset"), _chipset),
-                (LocExtension.Get("Emulation.VideoStandard"), _videoStandard),
-                (LocExtension.Get("Emulation.VideoResolution"), _videoResolution),
-                (LocExtension.Get("Emulation.AspectRatio"), _videoAspect)), LocExtension.Get("Emulation.VideoTab")),
-            Card(FieldGrid((LocExtension.Get("Emulation.VideoCrop"), _cropVideo),
-                (LocExtension.Get("Emulation.FlickerFixer"), _flickerFixer),
-                (LocExtension.Get("Emulation.VideoLineMode"), _videoLineMode),
-                (LocExtension.Get("Emulation.VideoHzChange"), _videoHzChange)), LocExtension.Get("Emulation.VideoResolution")));
-        root.Children.Add(FullWidthCard(FieldGrid(2,
-            (LocExtension.Get("Emulation.VideoFrameskip"), _videoFrameskip),
-            (LocExtension.Get("Emulation.VideoColors"), _videoColors),
-            (LocExtension.Get("Emulation.VideoGamma"), _videoGamma),
-            (LocExtension.Get("Emulation.ImmediateBlits"), _immediateBlits),
-            (LocExtension.Get("Emulation.CollisionLevel"), _collisionLevel)), LocExtension.Get("Emulation.AdvancedTab"), 1));
+            ActionCard(display, LocExtension.Get("Emulation.DisplaySettings")),
+            ActionCard(rendering, LocExtension.Get("Emulation.RenderingSettings")));
+        root.Children.Add(FullWidthActionCard(TileGrid(4,
+            LabeledTile(LocExtension.Get("Emulation.Chipset"), _chipset),
+            LabeledTile(LocExtension.Get("Emulation.ImmediateBlits"), _immediateBlits),
+            LabeledTile(LocExtension.Get("Emulation.CollisionLevel"), _collisionLevel),
+            LabeledTile(LocExtension.Get("Emulation.VideoHzChange"), _videoHzChange)),
+            LocExtension.Get("Emulation.ChipsetCompatibility"), 1));
         return ScrollPage(root);
     }
 
@@ -985,6 +990,71 @@ public sealed class OptionsEmulationSection : UserControl
         return card;
     }
 
+    private static Border FullWidthActionCard(UIElement content, string title, int row)
+    {
+        var card = ActionCard(content, title);
+        card.Margin = new Thickness(0, 10, 0, 0);
+        Grid.SetRow(card, row);
+        Grid.SetColumnSpan(card, 2);
+        return card;
+    }
+
+    private static Grid TileGrid(int columns, params FrameworkElement[] fields)
+    {
+        var grid = new Grid { Margin = new Thickness(14, 10, 14, 14) };
+        for (var column = 0; column < columns; column++)
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
+        var rows = (int)Math.Ceiling(fields.Length / (double)columns);
+        for (var row = 0; row < rows; row++)
+            grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        for (var index = 0; index < fields.Length; index++)
+        {
+            var field = fields[index];
+            field.Margin = new Thickness(index % columns == 0 ? 0 : 12, 4,
+                index % columns == columns - 1 ? 0 : 12, 10);
+            Grid.SetRow(field, index / columns);
+            Grid.SetColumn(field, index % columns);
+            grid.Children.Add(field);
+        }
+        return grid;
+    }
+
+    private static FrameworkElement LabeledTile(string label, FrameworkElement control, int columnSpan = 1)
+    {
+        var panel = new StackPanel();
+        panel.Children.Add(new TextBlock
+        {
+            Text = label,
+            Margin = new Thickness(0, 0, 0, 7),
+            TextWrapping = TextWrapping.NoWrap
+        });
+        control.HorizontalAlignment = HorizontalAlignment.Stretch;
+        control.Margin = new Thickness(0);
+        panel.Children.Add(control);
+        Grid.SetColumnSpan(panel, columnSpan);
+        return panel;
+    }
+
+    private static FrameworkElement TrailingCheckBoxTile(string label, CheckBox checkBox)
+    {
+        var row = new Grid { VerticalAlignment = VerticalAlignment.Bottom, MinHeight = 65 };
+        row.ColumnDefinitions.Add(new ColumnDefinition());
+        row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        row.Children.Add(new TextBlock
+        {
+            Text = label,
+            TextWrapping = TextWrapping.NoWrap,
+            VerticalAlignment = VerticalAlignment.Center,
+            Margin = new Thickness(0, 22, 12, 0)
+        });
+        checkBox.Content = null;
+        checkBox.Margin = new Thickness(8, 22, 0, 0);
+        checkBox.VerticalAlignment = VerticalAlignment.Center;
+        Grid.SetColumn(checkBox, 1);
+        row.Children.Add(checkBox);
+        return row;
+    }
+
     private Border FullWidthMemorySummary(int row)
     {
         var content = new StackPanel
@@ -1373,7 +1443,8 @@ public sealed class OptionsEmulationSection : UserControl
         ConfigureCpuModelChoices();
         SelectValue(_cpuModel, model.DefaultCpu);
         ConfigureFpuChoices();
-        _chipset.Text = model.Chipset;
+        _chipset.ItemsSource = new[] { model.Chipset };
+        _chipset.SelectedIndex = 0;
         ConfigureMemoryChoices(model);
         SelectValue(_videoStandard, "PAL auto");
         SelectValue(_cpuCompatibility, "exact");
