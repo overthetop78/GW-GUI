@@ -6,6 +6,12 @@ namespace GWGUI.Emulation.Amiga.Cores;
 
 internal sealed class AmigaExternalHostCallbacks : IDisposable
 {
+    private const uint KeyboardDevice = 3;
+    private const uint MouseDevice = 2;
+    private const uint JoypadDevice = 1;
+    private const uint AnalogDevice = 5;
+    private const uint JoypadMask = 256;
+    private static readonly IReadOnlyDictionary<uint, EmulationKey> KeyboardMap = CreateKeyboardMap();
     private readonly Dictionary<string, string> _options = new(StringComparer.Ordinal);
     private readonly Dictionary<string, nint> _nativeStrings = new(StringComparer.Ordinal);
     private readonly Stopwatch _clock = Stopwatch.StartNew();
@@ -13,6 +19,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     private long _videoSequence;
     private long _audioSequence;
     private bool _disposed;
+    internal AmigaExternalDiskControl DiskControl { get; } = new();
 
     internal AmigaExternalHostCallbacks(string systemDirectory, string contentDirectory,
         string saveDirectory, IReadOnlyDictionary<string, string>? options)
@@ -99,7 +106,10 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
                     return true;
                 case AmigaExternalApi.SetInputDescriptors:
                 case AmigaExternalApi.SetKeyboardCallback:
+                    return true;
                 case AmigaExternalApi.SetDiskControl:
+                    DiskControl.Capture(data);
+                    return true;
                 case AmigaExternalApi.SetDiskControlExtended:
                 case AmigaExternalApi.SetControllerInfo:
                 case AmigaExternalApi.SetMemoryMaps:
@@ -207,8 +217,71 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
 
     private short HandleInputState(uint port, uint device, uint index, uint id)
     {
-        // Les mappages Amiga complets sont raccordés après le premier démarrage vidéo.
+        var input = Input;
+        if (device == KeyboardDevice)
+            return KeyboardMap.TryGetValue(id, out var key) && input.Keys.Contains(key) ? (short)1 : (short)0;
+
+        if (device == MouseDevice && port == 0)
+            return id switch
+            {
+                0 => ClampToShort(input.Pointer.DeltaX),
+                1 => ClampToShort(input.Pointer.DeltaY),
+                2 => Bool(input.Pointer.Left),
+                3 => Bool(input.Pointer.Right),
+                4 => Bool(input.Pointer.Wheel > 0),
+                5 => Bool(input.Pointer.Wheel < 0),
+                6 => Bool(input.Pointer.Middle),
+                _ => 0
+            };
+
+        if (port >= input.Controllers.Count) return 0;
+        var controller = input.Controllers[(int)port];
+        if (device == JoypadDevice)
+        {
+            if (id == JoypadMask) return unchecked((short)(controller.Buttons & ushort.MaxValue));
+            return id < 32 && (controller.Buttons & (1u << (int)id)) != 0 ? (short)1 : (short)0;
+        }
+        if (device == AnalogDevice)
+            return (index, id) switch
+            {
+                (0, 0) => controller.LeftX,
+                (0, 1) => controller.LeftY,
+                (1, 0) => controller.RightX,
+                (1, 1) => controller.RightY,
+                _ => 0
+            };
         return 0;
+    }
+
+    private static short Bool(bool value) => value ? (short)1 : (short)0;
+    private static short ClampToShort(int value) => (short)Math.Clamp(value, short.MinValue, short.MaxValue);
+
+    private static IReadOnlyDictionary<uint, EmulationKey> CreateKeyboardMap()
+    {
+        var map = new Dictionary<uint, EmulationKey>
+        {
+            [8] = EmulationKey.Backspace, [9] = EmulationKey.Tab, [13] = EmulationKey.Return,
+            [27] = EmulationKey.Escape, [32] = EmulationKey.Space, [44] = EmulationKey.Comma,
+            [45] = EmulationKey.Minus, [46] = EmulationKey.Period, [47] = EmulationKey.Slash,
+            [59] = EmulationKey.Semicolon, [61] = EmulationKey.Equals, [91] = EmulationKey.LeftBracket,
+            [92] = EmulationKey.Backslash, [93] = EmulationKey.RightBracket, [39] = EmulationKey.Quote,
+            [96] = EmulationKey.Backquote, [127] = EmulationKey.Delete,
+            [273] = EmulationKey.Up, [274] = EmulationKey.Down, [275] = EmulationKey.Right,
+            [276] = EmulationKey.Left, [277] = EmulationKey.Insert, [278] = EmulationKey.Home,
+            [279] = EmulationKey.End, [280] = EmulationKey.PageUp, [281] = EmulationKey.PageDown,
+            [301] = EmulationKey.CapsLock, [303] = EmulationKey.RightShift, [304] = EmulationKey.LeftShift,
+            [305] = EmulationKey.RightControl, [306] = EmulationKey.LeftControl,
+            [307] = EmulationKey.RightAlt, [308] = EmulationKey.LeftAlt,
+            [311] = EmulationKey.LeftAmiga, [312] = EmulationKey.RightAmiga, [315] = EmulationKey.Help
+        };
+        for (var index = 0; index < 26; index++) map[(uint)('a' + index)] = (EmulationKey)((int)EmulationKey.A + index);
+        for (var index = 0; index < 10; index++) map[(uint)('0' + index)] = (EmulationKey)((int)EmulationKey.D0 + index);
+        for (var index = 0; index < 10; index++) map[(uint)(282 + index)] = (EmulationKey)((int)EmulationKey.F1 + index);
+        for (var index = 0; index < 10; index++) map[(uint)(256 + index)] = (EmulationKey)((int)EmulationKey.Numpad0 + index);
+        map[266] = EmulationKey.NumpadPeriod; map[267] = EmulationKey.NumpadDivide;
+        map[268] = EmulationKey.NumpadMultiply; map[269] = EmulationKey.NumpadMinus;
+        map[270] = EmulationKey.NumpadPlus; map[271] = EmulationKey.NumpadEnter;
+        return map;
     }
 
     public void Dispose()

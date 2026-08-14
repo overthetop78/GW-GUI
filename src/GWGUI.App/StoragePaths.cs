@@ -7,6 +7,12 @@ public static class StoragePaths
     public static bool IsPortable => File.Exists(Path.Combine(AppContext.BaseDirectory, "portable.flag"));
     public static string DataDirectory => ResolveDataDirectory(AppContext.BaseDirectory, Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
     public static string LogsDirectory => Path.Combine(DataDirectory, "Logs");
+    public static string EmulationDirectory => Path.Combine(DataDirectory, "Emulation");
+    public static string AmigaDirectory => Path.Combine(EmulationDirectory, "Machines", "Amiga");
+    public static string AmigaFirmwareDirectory => Path.Combine(AmigaDirectory, "Firmware");
+    public static string AmigaConfigurationsDirectory => Path.Combine(AmigaDirectory, "Configurations");
+    public static string AmigaSessionsDirectory => Path.Combine(AmigaDirectory, "Sessions");
+    public static string AmigaCoreDirectory => Path.Combine(AmigaDirectory, "Core");
     public static string HostToolsDirectory
     {
         get

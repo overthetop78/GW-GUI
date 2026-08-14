@@ -13,4 +13,6 @@ internal interface IAmigaCore : IDisposable
     void HardReset();
     void Stop();
     void SetInput(EmulationInputSnapshot snapshot);
+    void InsertFloppy(string path);
+    void EjectFloppy();
 }

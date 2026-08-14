@@ -7,12 +7,15 @@ public sealed class AmigaEngine : IEmulationEngine<AmigaMachineConfiguration>
 {
     private readonly string _sessionsDirectory;
     private readonly string? _externalCorePath;
+    private readonly Func<IAudioOutput?>? _audioOutputFactory;
 
-    public AmigaEngine(string sessionsDirectory, string? externalCorePath = null)
+    public AmigaEngine(string sessionsDirectory, string? externalCorePath = null,
+        Func<IAudioOutput?>? audioOutputFactory = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(sessionsDirectory);
         _sessionsDirectory = Path.GetFullPath(sessionsDirectory);
         _externalCorePath = externalCorePath;
+        _audioOutputFactory = audioOutputFactory;
     }
 
     public IEmulatedMachine CreateMachine(AmigaMachineConfiguration configuration) =>
@@ -21,8 +24,9 @@ public sealed class AmigaEngine : IEmulationEngine<AmigaMachineConfiguration>
     public IAmigaMachine CreateAmigaMachine(AmigaMachineConfiguration configuration)
     {
         ArgumentNullException.ThrowIfNull(configuration);
-        var id = Guid.NewGuid();
-        return new AmigaMachine(id, configuration,
-            new AmigaExternalCore(_externalCorePath), Path.Combine(_sessionsDirectory, id.ToString("N")));
+        configuration = configuration.EnsureId();
+        return new AmigaMachine(configuration.Id, configuration,
+            new AmigaExternalCore(_externalCorePath), Path.Combine(_sessionsDirectory, configuration.Id.ToString("N")),
+            configuration.AudioEnabled ? _audioOutputFactory?.Invoke() : null);
     }
 }

@@ -55,6 +55,18 @@ internal static class AmigaExternalApi
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     internal delegate void LogCallback(int level, nint format);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
+    internal delegate bool SetEjectState([MarshalAs(UnmanagedType.I1)] bool ejected);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
+    internal delegate bool GetEjectState();
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate uint GetImageIndex();
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
+    internal delegate bool SetImageIndex(uint index);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate uint GetImageCount();
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
+    internal delegate bool ReplaceImage(uint index, nint gameInfo);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
+    internal delegate bool AddImage();
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetEnvironment(EnvironmentCallback callback);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetVideo(VideoCallback callback);
@@ -123,5 +135,17 @@ internal static class AmigaExternalApi
     internal struct LogInterface
     {
         internal nint Log;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct DiskControl
+    {
+        internal nint SetEjectState;
+        internal nint GetEjectState;
+        internal nint GetImageIndex;
+        internal nint SetImageIndex;
+        internal nint GetImageCount;
+        internal nint ReplaceImage;
+        internal nint AddImage;
     }
 }
