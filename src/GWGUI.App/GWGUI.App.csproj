@@ -24,6 +24,8 @@
     <ProjectReference Include="..\GWGUI.Domain\GWGUI.Domain.csproj" />
     <ProjectReference Include="..\GWGUI.Infrastructure\GWGUI.Infrastructure.csproj" />
     <ProjectReference Include="..\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
+    <ProjectReference Include="..\GWGUI.Emulation\GWGUI.Emulation.csproj" />
+    <ProjectReference Include="..\GWGUI.Emulation.Amiga\GWGUI.Emulation.Amiga.csproj" />
   </ItemGroup>
 
   <ItemGroup>
