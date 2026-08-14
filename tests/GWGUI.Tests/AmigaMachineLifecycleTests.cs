@@ -107,6 +107,36 @@ public sealed class AmigaMachineLifecycleTests
     }
 
     [Fact]
+    public async Task StateV2_RejectsCorruptionAndChangedOptions()
+    {
+        var root = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-State", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        var rom = Path.Combine(root, "kick.rom");
+        var statePath = Path.Combine(root, "state.gwas");
+        await File.WriteAllBytesAsync(rom, [1, 2, 3]);
+        var machine = new AmigaMachine(Guid.NewGuid(), AmigaMachineConfiguration.A500(rom), new FakeCore(), Path.Combine(root, "session"));
+        try
+        {
+            await machine.StartAsync();
+            await machine.SaveStateAsync(statePath);
+            var original = await File.ReadAllBytesAsync(statePath);
+            var corrupted = original.ToArray();
+            corrupted[^1] ^= 0xff;
+            await File.WriteAllBytesAsync(statePath, corrupted);
+            await Assert.ThrowsAsync<InvalidDataException>(() => machine.LoadStateAsync(statePath).AsTask());
+
+            await File.WriteAllBytesAsync(statePath, original);
+            await machine.SetOptionAsync("test", "changed");
+            await Assert.ThrowsAsync<InvalidDataException>(() => machine.LoadStateAsync(statePath).AsTask());
+        }
+        finally
+        {
+            await machine.DisposeAsync();
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
     public void AudioCallbacks_QueueEveryBatchInOrder()
     {
         var root = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Audio", Guid.NewGuid().ToString("N"));

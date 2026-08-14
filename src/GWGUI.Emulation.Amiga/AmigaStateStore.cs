@@ -6,7 +6,8 @@ using System.Text.Json;
 namespace GWGUI.Emulation.Amiga;
 
 internal sealed record AmigaSavedStateHeader(int FormatVersion, string Model, string CoreSha256,
-    string KickstartSha256, string? MediaSha256, IReadOnlyDictionary<string, string>? Options);
+    string KickstartSha256, string? MediaSha256, IReadOnlyDictionary<string, string>? Options,
+    string? ExtendedRomSha256 = null, string? RomKeySha256 = null, string? StateSha256 = null);
 
 internal static class AmigaStateStore
 {
@@ -19,17 +20,21 @@ internal static class AmigaStateStore
         Directory.CreateDirectory(Path.GetDirectoryName(fullPath)!);
         var temporary = fullPath + ".tmp";
         var headerBytes = JsonSerializer.SerializeToUtf8Bytes(header, JsonOptions);
-        using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None))
+        try
         {
-            stream.Write(Magic);
-            Span<byte> length = stackalloc byte[4];
-            BinaryPrimitives.WriteInt32LittleEndian(length, headerBytes.Length);
-            stream.Write(length);
-            stream.Write(headerBytes);
-            stream.Write(state);
-            stream.Flush(true);
+            using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                stream.Write(Magic);
+                Span<byte> length = stackalloc byte[4];
+                BinaryPrimitives.WriteInt32LittleEndian(length, headerBytes.Length);
+                stream.Write(length);
+                stream.Write(headerBytes);
+                stream.Write(state);
+                stream.Flush(true);
+            }
+            File.Move(temporary, fullPath, true);
         }
-        File.Move(temporary, fullPath, true);
+        finally { if (File.Exists(temporary)) File.Delete(temporary); }
     }
 
     internal static (AmigaSavedStateHeader Header, byte[] State) Read(string path)
@@ -48,7 +53,10 @@ internal static class AmigaStateStore
             ?? throw new InvalidDataException("The Amiga state header is invalid.");
         using var state = new MemoryStream();
         stream.CopyTo(state);
-        return (header, state.ToArray());
+        var stateBytes = state.ToArray();
+        if (header.StateSha256 is { Length: > 0 } expected && !HashBytes(stateBytes).Equals(expected, StringComparison.OrdinalIgnoreCase))
+            throw new InvalidDataException("The Amiga state payload is corrupted.");
+        return (header, stateBytes);
     }
 
     internal static string HashFile(string path)
@@ -56,4 +64,6 @@ internal static class AmigaStateStore
         using var stream = File.OpenRead(path);
         return Convert.ToHexString(SHA256.HashData(stream));
     }
+
+    internal static string HashBytes(ReadOnlySpan<byte> bytes) => Convert.ToHexString(SHA256.HashData(bytes));
 }

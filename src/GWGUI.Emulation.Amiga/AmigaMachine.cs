@@ -18,6 +18,7 @@ internal sealed class AmigaMachine : IAmigaMachine
     private readonly ConcurrentQueue<PendingCommand> _commands = new();
     private TaskCompletionSource? _started;
     private string? _currentDiskPath;
+    private readonly Dictionary<string, string> _currentOptions;
 
     internal AmigaMachine(Guid id, AmigaMachineConfiguration configuration,
         IAmigaCore core, string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null)
@@ -29,6 +30,7 @@ internal sealed class AmigaMachine : IAmigaMachine
         _saveDirectory = saveDirectory;
         _audioOutput = audioOutput;
         _currentDiskPath = configuration.Floppies?.FirstOrDefault()?.Path ?? configuration.InitialDiskPath;
+        _currentOptions = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
     }
 
     public Guid Id { get; }
@@ -125,26 +127,43 @@ internal sealed class AmigaMachine : IAmigaMachine
     public ValueTask SaveStateAsync(string path, CancellationToken cancellationToken = default) =>
         QueueCommand(() =>
         {
-            var header = new AmigaSavedStateHeader(1, Configuration.Model, _core.CoreSha256,
+            var state = _core.SaveState();
+            var header = new AmigaSavedStateHeader(2, Configuration.Model, _core.CoreSha256,
                 AmigaStateStore.HashFile(Configuration.KickstartPath),
                 _currentDiskPath is null ? null : AmigaStateStore.HashFile(_currentDiskPath),
-                Configuration.Options);
-            AmigaStateStore.Write(path, header, _core.SaveState());
+                new Dictionary<string, string>(_currentOptions, StringComparer.Ordinal),
+                HashOptionalFile(Configuration.ExtendedRomPath), HashOptionalFile(Configuration.RomKeyPath),
+                AmigaStateStore.HashBytes(state));
+            AmigaStateStore.Write(path, header, state);
         }, cancellationToken);
 
     public ValueTask LoadStateAsync(string path, CancellationToken cancellationToken = default) =>
         QueueCommand(() =>
         {
             var saved = AmigaStateStore.Read(path);
-            if (saved.Header.FormatVersion != 1 || saved.Header.Model != Configuration.Model
+            if (saved.Header.FormatVersion is not (1 or 2) || saved.Header.Model != Configuration.Model
                 || saved.Header.CoreSha256 != _core.CoreSha256
                 || saved.Header.KickstartSha256 != AmigaStateStore.HashFile(Configuration.KickstartPath))
                 throw new InvalidDataException("The Amiga state does not match the running machine.");
+            if (saved.Header.FormatVersion >= 2
+                && (saved.Header.ExtendedRomSha256 != HashOptionalFile(Configuration.ExtendedRomPath)
+                    || saved.Header.RomKeySha256 != HashOptionalFile(Configuration.RomKeyPath)
+                    || saved.Header.MediaSha256 != HashOptionalFile(_currentDiskPath)
+                    || !OptionsEqual(saved.Header.Options, _currentOptions)))
+                throw new InvalidDataException("The Amiga state firmware, media or options do not match the running machine.");
             _core.LoadState(saved.State);
         }, cancellationToken);
 
     public ValueTask SetOptionAsync(string key, string value, CancellationToken cancellationToken = default) =>
-        QueueCommand(() => _core.SetOption(key, value), cancellationToken);
+        QueueCommand(() => { _core.SetOption(key, value); _currentOptions[key] = value; }, cancellationToken);
+
+    private static string? HashOptionalFile(string? path) => path is null ? null : AmigaStateStore.HashFile(path);
+
+    private static bool OptionsEqual(IReadOnlyDictionary<string, string>? left, IReadOnlyDictionary<string, string> right)
+    {
+        if ((left?.Count ?? 0) != right.Count) return false;
+        return left is null ? right.Count == 0 : left.All(pair => right.TryGetValue(pair.Key, out var value) && value == pair.Value);
+    }
 
     private ValueTask QueueCommand(Action action, CancellationToken cancellationToken)
     {
