@@ -382,8 +382,8 @@ public sealed class OptionsEmulationSection : UserControl
         AddMachineTab(tabs, "\uE8B7", "ROM", BuildRomTab());
         AddMachineTab(tabs, "\uE7F4", LocExtension.Get("Emulation.VideoTab"), BuildVideoTab());
         AddMachineTab(tabs, "\uE767", LocExtension.Get("Emulation.Audio"), BuildAudioTab());
-        AddMachineTab(tabs, "\uEDA2", LocExtension.Get("Emulation.StorageTab"), Wrap(BuildStorageTab()));
-        AddMachineTab(tabs, "\uE765", LocExtension.Get("Emulation.KeyboardTab"), Wrap(BuildKeyboardTab()));
+        AddMachineTab(tabs, "\uEDA2", LocExtension.Get("Emulation.StorageTab"), BuildStorageTab());
+        AddMachineTab(tabs, "\uE765", LocExtension.Get("Emulation.KeyboardTab"), BuildKeyboardTab());
         AddMachineTab(tabs, "\uE962", LocExtension.Get("Emulation.MouseTab"), BuildMouseTab());
         AddMachineTab(tabs, "\uE7FC", LocExtension.Get("Emulation.ControllersTab"), BuildControllersTab());
         Grid.SetRow(tabs, 1);
@@ -1524,19 +1524,6 @@ public sealed class OptionsEmulationSection : UserControl
         card.SetResourceReference(BackgroundProperty, "CardBrush");
         card.SetResourceReference(BorderBrushProperty, "BorderBrush");
         return card;
-    }
-
-    private static UIElement Wrap(UIElement child)
-    {
-        var card = new Border
-        {
-            Child = child,
-            Margin = new Thickness(12),
-            Padding = new Thickness(8),
-            VerticalAlignment = VerticalAlignment.Top
-        };
-        card.SetResourceReference(StyleProperty, "Card");
-        return new ScrollViewer { Content = card, VerticalScrollBarVisibility = ScrollBarVisibility.Auto };
     }
 
     private void ConfigureGrids()
