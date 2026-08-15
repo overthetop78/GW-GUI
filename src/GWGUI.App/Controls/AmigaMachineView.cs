@@ -64,7 +64,9 @@ public sealed class AmigaMachineView : UserControl
     private readonly DockPanel _toolbar;
     private readonly Grid _displayHost;
     private readonly Border _bottomBar;
-    private bool _videoOnly;
+    private Window? _fullscreenWindow;
+    private Grid? _fullscreenHost;
+    private bool _closingFullscreen;
     private bool _audioMuted;
     private readonly DispatcherTimer _inputTimer = new() { Interval = TimeSpan.FromMilliseconds(16) };
     private HwndSource? _windowSource;
@@ -411,6 +413,7 @@ public sealed class AmigaMachineView : UserControl
     public async Task StopAsync()
     {
         if (_disposed) return;
+        if (_fullscreenWindow is not null) ExitFullscreen();
         try { await _machine.StopAsync(); }
         finally
         {
@@ -753,12 +756,68 @@ public sealed class AmigaMachineView : UserControl
 
     private void ToggleFullscreen()
     {
-        _videoOnly = !_videoOnly;
-        _toolbar.Visibility = _videoOnly ? Visibility.Collapsed : Visibility.Visible;
-        _bottomBar.Visibility = _videoOnly ? Visibility.Collapsed : Visibility.Visible;
-        Grid.SetRow(_displayHost, _videoOnly ? 0 : 1);
-        Grid.SetRowSpan(_displayHost, _videoOnly ? 3 : 1);
-        _displayHost.Background = Brushes.Black;
+        if (_fullscreenWindow is not null)
+        {
+            ExitFullscreen();
+            return;
+        }
+
+        _displayHost.Children.Remove(_screen);
+        _fullscreenHost = new Grid { Background = Brushes.Black };
+        _fullscreenHost.Children.Add(_screen);
+        _fullscreenHost.SizeChanged += FullscreenHostSizeChanged;
+        var owner = Window.GetWindow(this);
+        _fullscreenWindow = new Window
+        {
+            Content = _fullscreenHost,
+            Background = Brushes.Black,
+            WindowStyle = WindowStyle.None,
+            ResizeMode = ResizeMode.NoResize,
+            ShowInTaskbar = false,
+            WindowStartupLocation = WindowStartupLocation.CenterOwner,
+            Owner = owner,
+            Title = "Amiga"
+        };
+        _fullscreenWindow.Closing += FullscreenWindowClosing;
+        _fullscreenWindow.PreviewKeyDown += DisplayKeyDown;
+        _fullscreenWindow.PreviewKeyUp += DisplayKeyUp;
+        _fullscreenWindow.Show();
+        _fullscreenWindow.WindowState = WindowState.Maximized;
+        _fullscreenWindow.Activate();
+        _display.Focus();
+    }
+
+    private void FullscreenHostSizeChanged(object sender, SizeChangedEventArgs e) =>
+        FitScreen(e.NewSize.Width, e.NewSize.Height);
+
+    private void FullscreenWindowClosing(object? sender, System.ComponentModel.CancelEventArgs e)
+    {
+        if (_closingFullscreen) return;
+        e.Cancel = true;
+        ExitFullscreen();
+    }
+
+    private void ExitFullscreen()
+    {
+        if (_fullscreenWindow is null) return;
+        var window = _fullscreenWindow;
+        if (_fullscreenHost is not null)
+        {
+            _fullscreenHost.SizeChanged -= FullscreenHostSizeChanged;
+            _fullscreenHost.Children.Remove(_screen);
+        }
+        _displayHost.Children.Add(_screen);
+        _fullscreenHost = null;
+        _fullscreenWindow = null;
+        _closingFullscreen = true;
+        try
+        {
+            window.Closing -= FullscreenWindowClosing;
+            window.PreviewKeyDown -= DisplayKeyDown;
+            window.PreviewKeyUp -= DisplayKeyUp;
+            window.Close();
+        }
+        finally { _closingFullscreen = false; }
         FitScreen(_displayHost.ActualWidth, _displayHost.ActualHeight);
         _display.Focus();
     }
