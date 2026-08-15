@@ -1,4 +1,5 @@
 using System.IO;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
@@ -55,6 +56,9 @@ public sealed class AmigaMachineView : UserControl
     private readonly HashSet<Key> _pressedPhysicalKeys = [];
     private readonly HashSet<string> _activeGlobalShortcuts = new(StringComparer.Ordinal);
     private int _framePending;
+    private long _frameRateWindowStarted = Stopwatch.GetTimestamp();
+    private int _framesProducedInWindow;
+    private double _measuredFramesPerSecond;
     private bool _disposed;
     private bool _mouseCaptured;
     private bool _poweredOff;
@@ -399,6 +403,7 @@ public sealed class AmigaMachineView : UserControl
     public async Task StartAsync()
     {
         _status.Text = string.Empty;
+        ResetFrameRateCounter();
         await _machine.StartAsync();
         _inputTimer.Start();
         _status.Text = string.Empty;
@@ -443,6 +448,7 @@ public sealed class AmigaMachineView : UserControl
         }
         _machine = _machineFactory();
         _machine.VideoFrameReady += VideoFrameReady;
+        ResetFrameRateCounter();
         await _machine.StartAsync();
         _machine.SetAudioMuted(_audioMuted);
         await RestoreMountedMediaAsync();
@@ -499,6 +505,7 @@ public sealed class AmigaMachineView : UserControl
 
     private void VideoFrameReady(object? sender, VideoFrame frame)
     {
+        Interlocked.Increment(ref _framesProducedInWindow);
         if (Interlocked.Exchange(ref _framePending, 1) != 0) return;
         Dispatcher.BeginInvoke(() =>
         {
@@ -524,10 +531,28 @@ public sealed class AmigaMachineView : UserControl
             _videoSurface.Present(frame);
         }
         UpdateDeviceLeds();
+        UpdateFrameRate();
         var hz = _machine.Configuration.Options?.GetValueOrDefault("puae_video_standard", "PAL")
             .StartsWith("NTSC", StringComparison.OrdinalIgnoreCase) == true ? 60d : 50d;
-        _status.Text = $"{frame.Width} × {frame.Height} · {hz:0.0} Hz";
+        _status.Text = $"{frame.Width} × {frame.Height} · {hz:0.0} Hz · {_measuredFramesPerSecond:0.0} FPS";
         _status.ToolTip = $"{LocExtension.Get("Emulation.RenderingSettings")} : {RendererName(_videoSurface.Renderer)}";
+    }
+
+    private void ResetFrameRateCounter()
+    {
+        Interlocked.Exchange(ref _framesProducedInWindow, 0);
+        _frameRateWindowStarted = Stopwatch.GetTimestamp();
+        _measuredFramesPerSecond = 0;
+    }
+
+    private void UpdateFrameRate()
+    {
+        var now = Stopwatch.GetTimestamp();
+        var elapsed = Stopwatch.GetElapsedTime(_frameRateWindowStarted, now);
+        if (elapsed < TimeSpan.FromSeconds(1)) return;
+        var frames = Interlocked.Exchange(ref _framesProducedInWindow, 0);
+        _measuredFramesPerSecond = frames / elapsed.TotalSeconds;
+        _frameRateWindowStarted = now;
     }
 
     private static string RendererName(EmulationVideoRenderer renderer) => renderer switch
