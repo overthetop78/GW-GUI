@@ -14,6 +14,7 @@ internal sealed class AmigaMachine : IAmigaMachine
     private CancellationTokenSource? _stop;
     private Task? _runLoop;
     private bool _pauseRequested;
+    private volatile bool _audioMuted;
     private bool _disposed;
     private readonly ConcurrentQueue<PendingCommand> _commands = new();
     private TaskCompletionSource? _started;
@@ -50,6 +51,7 @@ internal sealed class AmigaMachine : IAmigaMachine
     public IReadOnlySet<string> SupportedContentExtensions => _core.SupportedContentExtensions;
     public int DiskCount => _core.DiskCount;
     public int CurrentDiskIndex => _core.CurrentDiskIndex;
+    public bool IsAudioMuted => _audioMuted;
     public event EventHandler<VideoFrame>? VideoFrameReady;
     public event EventHandler<AudioChunk>? AudioChunkReady;
 
@@ -138,6 +140,12 @@ internal sealed class AmigaMachine : IAmigaMachine
     }
 
     public void SetInput(EmulationInputSnapshot snapshot) => _core.SetInput(snapshot);
+
+    public void SetAudioMuted(bool muted)
+    {
+        _audioMuted = muted;
+        if (muted) FlushAudio();
+    }
 
     public ValueTask InsertMediaAsync(string path, CancellationToken cancellationToken = default) =>
         QueueCommand(() =>
@@ -263,7 +271,7 @@ internal sealed class AmigaMachine : IAmigaMachine
                 }
                 while (_core.TryDequeueAudio(out var audio) && audio is not null)
                 {
-                    if (_audioOutput is not null)
+                    if (_audioOutput is not null && !_audioMuted)
                     {
                         try
                         {

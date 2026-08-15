@@ -68,6 +68,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     private int _bufferedAudioFrames;
     private readonly ConcurrentQueue<string> _diagnostics = new();
     private readonly ConcurrentDictionary<int, bool> _ledStates = new();
+    private readonly ConcurrentDictionary<int, long> _ledActivityUntil = new();
     private readonly HashSet<uint> _unknownEnvironmentCommands = [];
     internal EmulationInputSnapshot Input
     {
@@ -99,7 +100,16 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     internal IReadOnlyList<IReadOnlyList<AmigaControllerDevice>> ControllerPorts { get; private set; } = [];
     internal IReadOnlyList<AmigaCoreOption> OptionCatalog { get; private set; } = [];
     internal IReadOnlyList<string> Diagnostics => _diagnostics.ToArray();
-    internal IReadOnlyDictionary<int, bool> LedStates => new Dictionary<int, bool>(_ledStates);
+    internal IReadOnlyDictionary<int, bool> LedStates
+    {
+        get
+        {
+            var now = Stopwatch.GetTimestamp();
+            return _ledStates.Keys.Concat(_ledActivityUntil.Keys).Distinct()
+                .ToDictionary(key => key, key => _ledStates.GetValueOrDefault(key)
+                    || _ledActivityUntil.GetValueOrDefault(key) > now);
+        }
+    }
     internal int BufferedAudioFrames { get { lock (_audioGate) return _bufferedAudioFrames; } }
     internal long AudioOverrunCount { get; private set; }
 
@@ -536,7 +546,10 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
 
     private void HandleLed(int led, int state)
     {
-        if (led is >= 0 and < 256) _ledStates[led] = state != 0;
+        if (led is not (>= 0 and < 256)) return;
+        _ledStates[led] = state != 0;
+        if (state != 0)
+            _ledActivityUntil[led] = Stopwatch.GetTimestamp() + Stopwatch.Frequency * 140 / 1000;
     }
 
     private void AddDiagnostic(string message)

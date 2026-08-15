@@ -16,9 +16,11 @@ public interface IAmigaMachine : IEmulatedMachine
     IReadOnlySet<string> SupportedContentExtensions { get; }
     int DiskCount { get; }
     int CurrentDiskIndex { get; }
+    bool IsAudioMuted { get; }
     event EventHandler<VideoFrame>? VideoFrameReady;
     event EventHandler<AudioChunk>? AudioChunkReady;
     void SetInput(EmulationInputSnapshot snapshot);
+    void SetAudioMuted(bool muted);
     ValueTask InsertMediaAsync(string path, CancellationToken cancellationToken = default);
     ValueTask EjectMediaAsync(CancellationToken cancellationToken = default);
     ValueTask InsertFloppyAsync(string path, CancellationToken cancellationToken = default);
