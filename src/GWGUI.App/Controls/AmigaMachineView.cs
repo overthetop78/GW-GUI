@@ -461,6 +461,24 @@ public sealed class AmigaMachineView : UserControl
         _display.Focus();
     }
 
+    public void ApplyVideoRenderer(EmulationVideoRenderer renderer)
+    {
+        if (_videoSurface.Renderer == renderer) return;
+        ReleaseRelativeMouse();
+        var replacement = CreateVideoSurface(renderer);
+        var previous = _videoSurface;
+        if (_display is HwndHost previousHost) previousHost.MessageHook -= NativeVideoMessage;
+        _videoHost.Children.Clear();
+        _videoSurface = replacement;
+        _display = replacement.View;
+        _videoHost.Children.Add(_display);
+        AttachDisplayInputHandlers();
+        previous.Dispose();
+        _rendererStatus.Text = RendererName(_videoSurface.Renderer);
+        if (_machine.LatestVideoFrame is { } frame) _videoSurface.Present(frame);
+        _display.Focus();
+    }
+
     public async Task StopAsync()
     {
         if (_disposed) return;

@@ -17,6 +17,7 @@ namespace GWGUI.App.Controls;
 
 public sealed class OptionsEmulationSection : UserControl
 {
+    public static event EventHandler<AmigaMachineConfiguration>? ConfigurationSaved;
     private readonly AmigaConfigurationStore _store = new(StoragePaths.AmigaConfigurationsDirectory, StoragePaths.DataDirectory);
     private readonly ObservableCollection<ConfigurationItem> _configurations = [];
     private readonly ObservableCollection<FirmwareItem> _firmware = [];
@@ -646,7 +647,7 @@ public sealed class OptionsEmulationSection : UserControl
             LabeledTile(LocExtension.Get("Emulation.VideoLineMode"), _videoLineMode),
             LabeledTile(LocExtension.Get("Emulation.VideoCrop"), _cropVideo, columnSpan: 2));
         var rendering = TileGrid(2,
-            LabeledTile(LocExtension.Get("Emulation.RenderingSettings"), _videoRenderer, columnSpan: 2),
+            LabeledTile(LocExtension.Get("Emulation.RenderingSettings"), _videoRenderer),
             LabeledTile(LocExtension.Get("Emulation.VideoColors"), _videoColors),
             LabeledTile(LocExtension.Get("Emulation.VideoFrameskip"), _videoFrameskip),
             LabeledTile(LocExtension.Get("Emulation.VideoGamma"), _videoGamma),
@@ -2488,6 +2489,7 @@ public sealed class OptionsEmulationSection : UserControl
                 ? renderer.Renderer : GWGUI.Emulation.EmulationVideoRenderer.Direct3D11);
         await _store.SaveAsync(configuration);
         _currentId = configuration.Id;
+        ConfigurationSaved?.Invoke(this, configuration);
         await ReloadAsync();
     }
 

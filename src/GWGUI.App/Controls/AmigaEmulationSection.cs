@@ -24,6 +24,7 @@ public sealed class AmigaEmulationSection : UserControl
         AutomationProperties.SetName(_machines, "Open emulated machines");
         _open.Content = LocExtension.Get("Emulation.OpenMachine");
         _open.Click += OpenSelectedMachine;
+        OptionsEmulationSection.ConfigurationSaved += ConfigurationSaved;
 
         var root = new Grid { Margin = new Thickness(16) };
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
@@ -76,6 +77,13 @@ public sealed class AmigaEmulationSection : UserControl
     }
 
     public void Configure(AppSettings settings) => _settings = settings;
+
+    private async void ConfigurationSaved(object? sender, AmigaMachineConfiguration configuration)
+    {
+        await ReloadConfigurationsAsync();
+        if (_openMachines.TryGetValue(configuration.Id, out var tab) && tab.Content is AmigaMachineView view)
+            view.ApplyVideoRenderer(configuration.VideoRenderer);
+    }
 
     public async Task ReloadConfigurationsAsync()
     {
