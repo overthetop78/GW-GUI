@@ -730,11 +730,6 @@ public sealed class AmigaMachineView : UserControl
     private void ShowError(Exception error)
     {
         var logPath = ErrorLog.Write(error, "Amiga emulator command");
-        if (error is InvalidDataException or NotSupportedException)
-        {
-            MessageBox.Show(Window.GetWindow(this), error.Message, "Amiga", MessageBoxButton.OK, MessageBoxImage.Warning);
-            return;
-        }
         var detail = logPath is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", logPath);
         MessageBox.Show(Window.GetWindow(this), LocExtension.Get("Error.Unexpected", detail), "Amiga",
             MessageBoxButton.OK, MessageBoxImage.Error);
