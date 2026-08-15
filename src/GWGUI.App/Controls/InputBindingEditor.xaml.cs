@@ -130,14 +130,6 @@ public partial class InputBindingEditor : UserControl
             row.Binding.Contains(query, StringComparison.CurrentCultureIgnoreCase));
     }
 
-    private void BindingsScrollMouseWheel(object sender, MouseWheelEventArgs e)
-    {
-        if (sender is not ScrollViewer viewer || viewer.ScrollableHeight <= 0) return;
-        var offset = Math.Clamp(viewer.VerticalOffset - e.Delta / 3d, 0, viewer.ScrollableHeight);
-        viewer.ScrollToVerticalOffset(offset);
-        e.Handled = true;
-    }
-
     private void ValidateBindings()
     {
         var duplicates = _rows.Where(row => !string.IsNullOrWhiteSpace(row.Binding))

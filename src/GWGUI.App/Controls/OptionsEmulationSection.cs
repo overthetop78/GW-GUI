@@ -119,7 +119,12 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly TextBlock _detectedDevices = new() { TextWrapping = TextWrapping.Wrap };
     private readonly TextBlock _detectedControllers = new() { TextWrapping = TextWrapping.Wrap, VerticalAlignment = VerticalAlignment.Center };
     private readonly TextBlock _storageTree = new() { LineHeight = 24 };
-    private readonly TabControl _familyTabs = new() { Margin = new Thickness(8) };
+    private readonly TabControl _familyTabs = new()
+    {
+        Margin = new Thickness(8),
+        HorizontalContentAlignment = HorizontalAlignment.Stretch,
+        VerticalContentAlignment = VerticalAlignment.Stretch
+    };
     private AppSettings? _appSettings;
     private Func<Task>? _persistAppSettings;
     private Guid _currentId;
@@ -213,18 +218,32 @@ public sealed class OptionsEmulationSection : UserControl
 
     private UIElement BuildGeneralEmulationSettings()
     {
-        var root = new StackPanel { Margin = new Thickness(14) };
-        var defaults = new StackPanel { Margin = new Thickness(8, 6, 8, 8) };
-        defaults.Children.Add(BuildPathRow(LocExtension.Get("Emulation.StorageBaseFolder"), _storageBaseFolder,
-            BrowseStorageBaseFolderAsync, OpenStorageBaseFolderAsync));
-        defaults.Children.Add(BuildPathRow(LocExtension.Get("Emulation.CaptureFolder"), _captureFolder, BrowseCaptureFolderAsync));
-        defaults.Children.Add(BuildPathRow(LocExtension.Get("Emulation.StateFolder"), _stateFolder, BrowseStateFolderAsync));
-        var shortcuts = Card(_globalShortcutEditor, LocExtension.Get("Emulation.GlobalShortcuts"));
+        var root = new Grid { Margin = new Thickness(14) };
+        root.RowDefinitions.Add(new RowDefinition());
+        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        var defaults = new Grid { Margin = new Thickness(10, 6, 10, 10) };
+        defaults.ColumnDefinitions.Add(new ColumnDefinition());
+        defaults.ColumnDefinitions.Add(new ColumnDefinition());
+        defaults.ColumnDefinitions.Add(new ColumnDefinition());
+        var storage = BuildCompactPathTile(LocExtension.Get("Emulation.StorageBaseFolder"), _storageBaseFolder,
+            BrowseStorageBaseFolderAsync, OpenStorageBaseFolderAsync);
+        storage.Margin = new Thickness(0, 0, 8, 0);
+        defaults.Children.Add(storage);
+        var captures = BuildCompactPathTile(LocExtension.Get("Emulation.CaptureFolder"), _captureFolder, BrowseCaptureFolderAsync);
+        captures.Margin = new Thickness(4, 0, 4, 0);
+        Grid.SetColumn(captures, 1);
+        defaults.Children.Add(captures);
+        var states = BuildCompactPathTile(LocExtension.Get("Emulation.StateFolder"), _stateFolder, BrowseStateFolderAsync);
+        states.Margin = new Thickness(8, 0, 0, 0);
+        Grid.SetColumn(states, 2);
+        defaults.Children.Add(states);
+        var shortcuts = InputBindingCard(_globalShortcutEditor, LocExtension.Get("Emulation.GlobalShortcuts"));
         root.Children.Add(shortcuts);
         var folders = Card(defaults, LocExtension.Get("Emulation.DefaultFolders"));
         folders.Margin = new Thickness(0, 10, 0, 0);
+        Grid.SetRow(folders, 1);
         root.Children.Add(folders);
-        return ScrollPage(root);
+        return root;
     }
 
     private static IReadOnlyList<InputBindingDefinition> GlobalShortcutDefinitions() =>
@@ -290,6 +309,49 @@ public sealed class OptionsEmulationSection : UserControl
             Grid.SetColumn(openButton, 3); row.Children.Add(openButton);
         }
         return row;
+    }
+
+    private static FrameworkElement BuildCompactPathTile(string label, TextBox textBox, Func<Task> browse, Func<Task>? open = null)
+    {
+        var tile = new Grid();
+        tile.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        tile.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        tile.Children.Add(new TextBlock
+        {
+            Text = label,
+            Margin = new Thickness(0, 0, 0, 5),
+            TextWrapping = TextWrapping.Wrap
+        });
+        var controls = new Grid();
+        controls.ColumnDefinitions.Add(new ColumnDefinition());
+        controls.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        if (open is not null) controls.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        textBox.MinWidth = 0;
+        controls.Children.Add(textBox);
+        var browseButton = new Button
+        {
+            Content = LocExtension.Get("Common.Browse"),
+            MinWidth = 92,
+            Margin = new Thickness(6, 0, 0, 0)
+        };
+        browseButton.Click += async (_, _) => await browse();
+        Grid.SetColumn(browseButton, 1);
+        controls.Children.Add(browseButton);
+        if (open is not null)
+        {
+            var openButton = new Button
+            {
+                Content = LocExtension.Get("Common.OpenFolder"),
+                MinWidth = 104,
+                Margin = new Thickness(6, 0, 0, 0)
+            };
+            openButton.Click += async (_, _) => await open();
+            Grid.SetColumn(openButton, 2);
+            controls.Children.Add(openButton);
+        }
+        Grid.SetRow(controls, 1);
+        tile.Children.Add(controls);
+        return tile;
     }
 
     private UIElement BuildConfigurationCatalog()
@@ -429,7 +491,11 @@ public sealed class OptionsEmulationSection : UserControl
         Grid.SetColumn(_model, 1);
         header.Children.Add(_model);
         root.Children.Add(header);
-        var tabs = new TabControl();
+        var tabs = new TabControl
+        {
+            HorizontalContentAlignment = HorizontalAlignment.Stretch,
+            VerticalContentAlignment = VerticalAlignment.Stretch
+        };
         AddMachineTab(tabs, "\uE713", LocExtension.Get("Emulation.GeneralTab"), BuildAmigaGeneralTab());
         AddMachineTab(tabs, "\uE950", "CPU", BuildCpuTab());
         AddMachineTab(tabs, "\uE964", "RAM", BuildRamTab());
@@ -617,14 +683,19 @@ public sealed class OptionsEmulationSection : UserControl
 
     private UIElement BuildKeyboardTab()
     {
-        var panel = new StackPanel { Margin = new Thickness(12) };
-        panel.Children.Add(Card(_amigaKeyboardEditor, LocExtension.Get("Emulation.InputActions")));
-        panel.Children.Add(InformationBanner(new TextBlock
+        var panel = new Grid { Margin = new Thickness(12) };
+        panel.RowDefinitions.Add(new RowDefinition());
+        panel.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        panel.Children.Add(InputBindingCard(_amigaKeyboardEditor, LocExtension.Get("Emulation.InputActions")));
+        var hint = InformationBanner(new TextBlock
         {
             Text = LocExtension.Get("Emulation.SpecialKeysOnlyHint"),
             TextWrapping = TextWrapping.Wrap
-        }));
-        return ScrollPage(panel);
+        });
+        hint.Margin = new Thickness(0, 8, 0, 0);
+        Grid.SetRow(hint, 1);
+        panel.Children.Add(hint);
+        return panel;
     }
 
     private UIElement BuildMouseTab()
@@ -1079,7 +1150,9 @@ public sealed class OptionsEmulationSection : UserControl
         {
             Header = new MainTabHeader { Icon = icon, Text = title },
             Content = content,
-            Padding = new Thickness(14, 9, 14, 9)
+            Padding = new Thickness(14, 9, 14, 9),
+            HorizontalContentAlignment = HorizontalAlignment.Stretch,
+            VerticalContentAlignment = VerticalAlignment.Stretch
         };
         tab.SetResourceReference(StyleProperty, "MainTabItemStyle");
         tabs.Items.Add(tab);
@@ -1457,6 +1530,25 @@ public sealed class OptionsEmulationSection : UserControl
             content = panel;
         }
         var card = new Border { Child = content, Padding = new Thickness(2) };
+        card.SetResourceReference(StyleProperty, "Card");
+        return card;
+    }
+
+    private static Border InputBindingCard(InputBindingEditor editor, string title)
+    {
+        var layout = new Grid();
+        layout.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        layout.RowDefinitions.Add(new RowDefinition());
+        layout.Children.Add(new TextBlock
+        {
+            Text = title,
+            FontWeight = FontWeights.SemiBold,
+            FontSize = 16,
+            Margin = new Thickness(10, 8, 10, 2)
+        });
+        Grid.SetRow(editor, 1);
+        layout.Children.Add(editor);
+        var card = new Border { Child = layout, Padding = new Thickness(2) };
         card.SetResourceReference(StyleProperty, "Card");
         return card;
     }
