@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -129,21 +130,37 @@ public sealed class AmigaMachineView : UserControl
             IconButton("\uE8E5", "Emulation.Shortcut.QuickLoad", QuickLoad)));
         left.Children.Add(ToolbarGroup(IconButton("\uE722", "Emulation.Shortcut.Screenshot", () => { SaveScreenshot(); return Task.CompletedTask; })));
         left.Children.Add(ToolbarGroup(IconButton("\uE740", "Emulation.Shortcut.Fullscreen", () => { ToggleFullscreen(); return Task.CompletedTask; })));
+        var stateShortcuts = ShortcutGroup(
+            (EmulationShortcutDefaults.QuickSave, EmulationResourceKeys.QuickSave),
+            (EmulationShortcutDefaults.QuickLoad, EmulationResourceKeys.QuickLoad));
+        left.Children.Add(stateShortcuts);
         DockPanel.SetDock(left, Dock.Left);
         _toolbar.Children.Add(left);
         var right = new StackPanel { Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Center };
         _audioStatus = IconButton("\uE767", "Emulation.AudioTab", ToggleAudioMute, requiresPower: true);
         _audioStatus.Width = 28;
+        var displayShortcuts = ShortcutGroup(
+            (EmulationShortcutDefaults.ToggleFullscreen, EmulationResourceKeys.Fullscreen),
+            (EmulationShortcutDefaults.ReleaseMouse, EmulationResourceKeys.ReleaseMouse));
+        right.Children.Add(displayShortcuts);
         right.Children.Add(ToolbarGroup(_audioStatus, _controllerStatus, _mouseStatus));
         _status.Margin = new Thickness(7, 0, 7, 0);
         right.Children.Add(ToolbarGroup(_status));
         DockPanel.SetDock(right, Dock.Right); _toolbar.Children.Add(right);
         _rendererStatus.Text = RendererName(_videoSurface.Renderer);
-        _toolbar.Children.Add(CenteredToolbarGroup(new TextBlock
+        var rendererGroup = CenteredToolbarGroup(new TextBlock
         {
             Text = "\uE7F4", FontFamily = new FontFamily("Segoe MDL2 Assets"), FontSize = 15,
             Margin = new Thickness(4, 0, 6, 0), VerticalAlignment = VerticalAlignment.Center
-        }, _rendererStatus));
+        }, _rendererStatus);
+        rendererGroup.Margin = new Thickness(24, 1, 24, 1);
+        _toolbar.Children.Add(rendererGroup);
+        _toolbar.SizeChanged += (_, args) =>
+        {
+            var visibility = args.NewSize.Width >= 1450 ? Visibility.Visible : Visibility.Collapsed;
+            stateShortcuts.Visibility = visibility;
+            displayShortcuts.Visibility = visibility;
+        };
         _root.Children.Add(_toolbar);
         _screen = new Border
         {
@@ -216,6 +233,42 @@ public sealed class AmigaMachineView : UserControl
     private static Border ToolbarGroup(params UIElement[] children) => ToolbarGroup(false, children);
 
     private static Border CenteredToolbarGroup(params UIElement[] children) => ToolbarGroup(true, children);
+
+    private Border ShortcutGroup(params (string Action, string ResourceKey)[] shortcuts) =>
+        ToolbarGroup(shortcuts.Select(ShortcutHint).ToArray());
+
+    private UIElement ShortcutHint((string Action, string ResourceKey) shortcut)
+    {
+        var binding = _globalShortcuts.FirstOrDefault(item => item.Action == shortcut.Action)?.Chord;
+        if (binding is null && EmulationShortcutDefaults.Values.TryGetValue(shortcut.Action, out var fallback))
+            KeyboardChord.TryParse(fallback, out binding);
+        var shortcutText = binding is null ? string.Empty : KeyboardChord.Format(binding.Modifiers, binding.Keys);
+        var panel = new StackPanel
+        {
+            Orientation = Orientation.Horizontal,
+            VerticalAlignment = VerticalAlignment.Center,
+            Margin = new Thickness(5, 0, 5, 0)
+        };
+        panel.Children.Add(new TextBlock
+        {
+            Text = LocExtension.Get(shortcut.ResourceKey),
+            FontSize = 11,
+            VerticalAlignment = VerticalAlignment.Center,
+            Margin = new Thickness(0, 0, 5, 0)
+        });
+        var key = new Border
+        {
+            CornerRadius = new CornerRadius(3),
+            BorderThickness = new Thickness(1),
+            Padding = new Thickness(5, 1, 5, 1),
+            Child = new TextBlock { Text = shortcutText, FontSize = 11, FontWeight = FontWeights.SemiBold }
+        };
+        key.SetResourceReference(BackgroundProperty, "ControlBrush");
+        key.SetResourceReference(BorderBrushProperty, "BorderBrush");
+        panel.Children.Add(key);
+        AutomationProperties.SetName(panel, $"{LocExtension.Get(shortcut.ResourceKey)} {shortcutText}");
+        return panel;
+    }
 
     private static Border ToolbarGroup(bool centered, params UIElement[] children)
     {
