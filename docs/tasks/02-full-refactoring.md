@@ -27,13 +27,13 @@ Ces points sont des règles, pas des tâches à cocher.
 
 ### 2.1.1 Préparer le document de structure
 
-- [ ] Créer un document Markdown dédié à la structure cible de la phase 02.
-  - [ ] Y reprendre les projets existants sans refaire leur cartographie fonctionnelle complète.
-  - [ ] Y représenter l’arborescence actuelle seulement au niveau nécessaire pour comprendre les déplacements.
-  - [ ] Y représenter l’arborescence cible proposée.
-  - [ ] Y indiquer le rôle de chaque dossier cible.
-  - [ ] Y indiquer les dépendances autorisées entre les projets.
-  - [ ] Y indiquer les dépendances interdites entre les projets.
+- [x] Créer un [document Markdown dédié à la structure cible de la phase 02](02-target-structure.md).
+  - [x] Y reprendre les projets existants sans refaire leur cartographie fonctionnelle complète.
+  - [x] Y représenter l’arborescence actuelle seulement au niveau nécessaire pour comprendre les déplacements.
+  - [x] Y représenter l’arborescence cible proposée.
+  - [x] Y indiquer le rôle de chaque dossier cible.
+  - [x] Y indiquer les dépendances autorisées entre les projets.
+  - [x] Y indiquer les dépendances interdites entre les projets.
 
 ### 2.1.2 Préparer le plan de déplacement
 
@@ -164,115 +164,115 @@ Ces points sont des règles, pas des tâches à cocher.
 
 ### 2.3.1 Reprendre entièrement le dossier `Images`
 
-- [ ] Classer chaque fichier actuellement présent directement dans `Images`.
-  - [ ] Lecteurs de conteneurs et images sectorielles.
-  - [ ] Géométries et signatures.
-  - [ ] Métadonnées, systèmes et protections.
-  - [ ] Exploration des images.
-  - [ ] Détection et interprétation.
-  - [ ] Normalisation des images reconnues.
-  - [ ] Conversion interne.
-  - [ ] Visualisation des images sectorielles.
-  - [ ] Contrats et résultats partagés.
-- [ ] Déplacer chaque fichier vers la catégorie approuvée dans la structure cible.
-- [ ] Créer des sous-dossiers par famille uniquement lorsque plusieurs fichiers spécialisés de cette famille doivent rester ensemble.
-  - [ ] Acorn/BBC.
-  - [ ] Amiga.
-  - [ ] Amstrad.
-  - [ ] Apple.
-  - [ ] Atari.
-  - [ ] Commodore.
-  - [ ] DEC.
-  - [ ] Epson.
-  - [ ] IBM PC et compatibles.
-  - [ ] MSX.
-  - [ ] UCSD.
-  - [ ] Autres familles déjà prises en charge.
-- [ ] Ne pas ranger un lecteur commun dans une famille particulière uniquement parce qu’elle a été la première à l’utiliser.
-- [ ] Vérifier que l’ajout d’un nouveau lecteur possède un point d’enregistrement clairement identifié.
+- [x] Classer chaque fichier actuellement présent directement dans `Images`.
+  - [x] Lecteurs de conteneurs et images sectorielles.
+  - [x] Géométries et signatures.
+  - [x] Métadonnées, systèmes et protections.
+  - [x] Exploration des images.
+  - [x] Détection et interprétation.
+  - [x] Normalisation des images reconnues.
+  - [x] Conversion interne.
+  - [x] Visualisation des images sectorielles.
+  - [x] Contrats et résultats partagés.
+- [x] Déplacer chaque fichier vers la catégorie approuvée dans la structure cible.
+- [x] Créer des sous-dossiers par famille uniquement lorsque plusieurs fichiers spécialisés de cette famille doivent rester ensemble.
+  - [x] Acorn/BBC.
+  - [x] Amiga.
+  - [x] Amstrad.
+  - [x] Apple.
+  - [x] Atari.
+  - [x] Commodore.
+  - [x] DEC.
+  - [x] Epson.
+  - [x] IBM PC et compatibles.
+  - [x] MSX.
+  - [x] UCSD.
+  - [x] Autres familles déjà prises en charge.
+- [x] Ne pas ranger un lecteur commun dans une famille particulière uniquement parce qu’elle a été la première à l’utiliser.
+- [x] Vérifier que l’ajout d’un nouveau lecteur possède un point d’enregistrement clairement identifié.
 
 ### 2.3.2 Reprendre les conteneurs
 
-- [ ] Vérifier chaque politique de `Images/Containers`.
-  - [ ] Un conteneur doit seulement reconnaître et ouvrir son type d’image.
-  - [ ] Une politique de conteneur ne doit pas analyser le système de fichiers à la place du module prévu.
-  - [ ] Une politique générique ne doit pas porter le nom d’une machine particulière.
-  - [ ] Les délégations doivent avoir une destination unique et visible.
-- [ ] Regrouper les contrats, contextes, registres et implémentations sans les mélanger.
+- [x] Vérifier chaque politique de `Images/Containers`.
+  - [x] Un conteneur doit seulement reconnaître et ouvrir son type d’image.
+  - [x] Une politique de conteneur ne doit pas analyser le système de fichiers à la place du module prévu.
+  - [x] Une politique générique ne doit pas porter le nom d’une machine particulière.
+  - [x] Les délégations doivent avoir une destination unique et visible.
+- [x] Regrouper les contrats, contextes, registres et implémentations sans les mélanger.
 
 ### 2.3.3 Reprendre la détection et l’interprétation
 
-- [ ] Vérifier séparément les responsabilités de `ScpDetection` et `Interpretations`.
-  - [ ] Détection des familles compatibles.
-  - [ ] Production de plusieurs résultats compatibles pour une image multiformat.
-  - [ ] Classement des résultats sans supprimer les autres résultats valides.
-  - [ ] Interprétation supplémentaire d’une image déjà ouverte.
-  - [ ] Normalisation des résultats reconnus.
-- [ ] Retirer les essais successifs inutiles lorsqu’un conteneur ou une famille permet de limiter les candidats.
-- [ ] Conserver plusieurs candidats lorsque le support peut réellement contenir plusieurs systèmes.
-- [ ] Vérifier que la sélection manuelle choisit le traitement demandé sans détruire la capacité multiformat de la détection automatique.
-- [ ] Documenter le chemin automatique et le chemin manuel après leur réorganisation.
+- [x] Vérifier séparément les responsabilités de `ScpDetection` et `Interpretations`.
+  - [x] Détection des familles compatibles.
+  - [x] Production de plusieurs résultats compatibles pour une image multiformat.
+  - [x] Classement des résultats sans supprimer les autres résultats valides.
+  - [x] Interprétation supplémentaire d’une image déjà ouverte.
+  - [x] Normalisation des résultats reconnus.
+- [x] Retirer les essais successifs inutiles lorsqu’un conteneur ou une famille permet de limiter les candidats.
+- [x] Conserver plusieurs candidats lorsque le support peut réellement contenir plusieurs systèmes.
+- [x] Vérifier que la sélection manuelle choisit le traitement demandé sans détruire la capacité multiformat de la détection automatique.
+- [x] Documenter le chemin automatique et le chemin manuel après leur réorganisation.
 
 ### 2.3.4 Reprendre `SectorImages`
 
-- [ ] Classer tous les lecteurs et reconstructeurs sectoriels par responsabilité réelle.
-  - [ ] Contrats et modèles sectoriels communs.
-  - [ ] Reconstruction ISO FM/MFM commune.
-  - [ ] Politiques ISO propres aux machines.
-  - [ ] Reconstruction Apple.
-  - [ ] Reconstruction Commodore.
-  - [ ] Reconstruction DEC.
-  - [ ] Autres reconstructions spécialisées.
-- [ ] Vérifier `AtariScpSectorImageReader.cs` comme exemple, puis contrôler tous les autres lecteurs.
-  - [ ] Ne conserver dans un lecteur Atari que les décisions propres à Atari.
-  - [ ] Placer Amstrad dans son module.
-  - [ ] Placer BBC/Acorn dans son module.
-  - [ ] Placer Epson dans son module.
-  - [ ] Placer IBM PC dans son module.
-  - [ ] Placer UCSD dans son module.
-  - [ ] Placer les opérations ISO communes dans un composant au nom neutre.
-- [ ] Rechercher le même défaut dans chaque autre lecteur nommé selon une machine.
-- [ ] Corriger chaque nom qui ne représente pas le contenu réel du fichier.
-- [ ] Vérifier qu’une règle de géométrie spécialisée ne fuit pas dans le constructeur sectoriel commun.
+- [x] Classer tous les lecteurs et reconstructeurs sectoriels par responsabilité réelle.
+  - [x] Contrats et modèles sectoriels communs.
+  - [x] Reconstruction ISO FM/MFM commune.
+  - [x] Politiques ISO propres aux machines.
+  - [x] Reconstruction Apple.
+  - [x] Reconstruction Commodore.
+  - [x] Reconstruction DEC.
+  - [x] Autres reconstructions spécialisées.
+- [x] Vérifier `AtariScpSectorImageReader.cs` comme exemple, puis contrôler tous les autres lecteurs.
+  - [x] Ne conserver dans un lecteur Atari que les décisions propres à Atari.
+  - [x] Placer Amstrad dans son module.
+  - [x] Placer BBC/Acorn dans son module.
+  - [x] Placer Epson dans son module.
+  - [x] Placer IBM PC dans son module.
+  - [x] Placer UCSD dans son module.
+  - [x] Placer les opérations ISO communes dans un composant au nom neutre.
+- [x] Rechercher le même défaut dans chaque autre lecteur nommé selon une machine.
+- [x] Corriger chaque nom qui ne représente pas le contenu réel du fichier.
+- [x] Vérifier qu’une règle de géométrie spécialisée ne fuit pas dans le constructeur sectoriel commun.
 
 ### 2.3.5 Reprendre décodage et encodage
 
-- [ ] Vérifier l’organisation complète de `Decoding`.
-  - [ ] Un décodeur spécialisé par fichier.
-  - [ ] Bases partagées séparées des décodeurs concrets.
-  - [ ] Modèles et contrats séparés des implémentations.
-  - [ ] Registre unique des décodeurs disponibles.
-- [ ] Vérifier l’organisation complète de `Encoding`.
-  - [ ] Un encodeur spécialisé par fichier.
-  - [ ] Bases partagées séparées des encodeurs concrets.
-  - [ ] Modèles et contrats séparés des implémentations.
-  - [ ] Registre unique des encodeurs disponibles.
-- [ ] Comparer les registres de décodage et d’encodage sans supposer que toutes les capacités sont forcément symétriques.
-- [ ] Vérifier que les primitives partagées ne contiennent aucune décision propre à une machine.
-- [ ] Vérifier que les implémentations spécialisées ne recopient pas une primitive déjà disponible.
+- [x] Vérifier l’organisation complète de `Decoding`.
+  - [x] Un décodeur spécialisé par fichier.
+  - [x] Bases partagées séparées des décodeurs concrets.
+  - [x] Modèles et contrats séparés des implémentations.
+  - [x] Registre unique des décodeurs disponibles.
+- [x] Vérifier l’organisation complète de `Encoding`.
+  - [x] Un encodeur spécialisé par fichier.
+  - [x] Bases partagées séparées des encodeurs concrets.
+  - [x] Modèles et contrats séparés des implémentations.
+  - [x] Registre unique des encodeurs disponibles.
+- [x] Comparer les registres de décodage et d’encodage sans supposer que toutes les capacités sont forcément symétriques.
+- [x] Vérifier que les primitives partagées ne contiennent aucune décision propre à une machine.
+- [x] Vérifier que les implémentations spécialisées ne recopient pas une primitive déjà disponible.
 
 ### 2.3.6 Reprendre les systèmes de fichiers
 
-- [ ] Réorganiser `FileSystems` pour distinguer clairement contrats, modèles, registre, aides communes et lecteurs concrets.
-- [ ] Classer les lecteurs concrets selon la structure cible approuvée.
-- [ ] Vérifier qu’un lecteur de système de fichiers ne prend pas en charge un conteneur.
-- [ ] Vérifier qu’un lecteur de système de fichiers ne décide pas du rendu visuel.
-- [ ] Vérifier qu’une aide commune n’encode pas une règle propre à une seule famille.
-- [ ] Vérifier que le registre est l’unique point de découverte des lecteurs disponibles.
+- [x] Réorganiser `FileSystems` pour distinguer clairement contrats, modèles, registre, aides communes et lecteurs concrets.
+- [x] Classer les lecteurs concrets selon la structure cible approuvée.
+- [x] Vérifier qu’un lecteur de système de fichiers ne prend pas en charge un conteneur.
+- [x] Vérifier qu’un lecteur de système de fichiers ne décide pas du rendu visuel.
+- [x] Vérifier qu’une aide commune n’encode pas une règle propre à une seule famille.
+- [x] Vérifier que le registre est l’unique point de découverte des lecteurs disponibles.
 
 ### 2.3.7 Reprendre la visualisation technique
 
-- [ ] Vérifier la séparation entre reconstruction des données et classification visuelle.
-- [ ] Classer les politiques de visualisation selon la structure cible.
-- [ ] Conserver dans le registre le point unique de sélection de la politique.
-- [ ] Vérifier que les couleurs et catégories visuelles ne modifient pas le résultat du décodage.
-- [ ] Vérifier que le Visualisateur ne connaît pas directement chaque lecteur concret.
+- [x] Vérifier la séparation entre reconstruction des données et classification visuelle.
+- [x] Classer les politiques de visualisation selon la structure cible.
+- [x] Conserver dans le registre le point unique de sélection de la politique.
+- [x] Vérifier que les couleurs et catégories visuelles ne modifient pas le résultat du décodage.
+- [x] Vérifier que le Visualisateur ne connaît pas directement chaque lecteur concret.
 
 ### 2.3.8 Reprendre les modèles SCP et primitives
 
-- [ ] Vérifier la séparation entre lecteur SCP, modèles SCP, informations de capture et constantes de structure.
-- [ ] Vérifier que `ScpReader` ne contient que la lecture du conteneur SCP.
-- [ ] Vérifier que les primitives de bits et CRC ne dépendent ni de l’interface ni d’une machine précise.
+- [x] Vérifier la séparation entre lecteur SCP, modèles SCP, informations de capture et constantes de structure.
+- [x] Vérifier que `ScpReader` ne contient que la lecture du conteneur SCP.
+- [x] Vérifier que les primitives de bits et CRC ne dépendent ni de l’interface ni d’une machine précise.
 - [ ] Signaler dans la tâche 03 les constantes encore mal placées sans les traiter dans cette phase.
 - [ ] Signaler dans la tâche 04 les modèles ou contrats encore mélangés sans les traiter dans cette phase.
 
