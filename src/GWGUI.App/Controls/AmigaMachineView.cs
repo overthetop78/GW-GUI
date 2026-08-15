@@ -1038,8 +1038,8 @@ public sealed class AmigaMachineView : UserControl
         if (_mouseCaptured || _machine.State is not (EmulationMachineState.Running or EmulationMachineState.Paused)) return;
         _mouseCaptured = true;
         _display.Cursor = Cursors.None;
+        Mouse.Capture(_display);
         if (_videoSurface.InputHandle != IntPtr.Zero) SetCapture(_videoSurface.InputHandle);
-        else Mouse.Capture(_display);
         FocusVideoSurface();
         _mouseStatus.Opacity = 1;
         var center = new Point(_screen.ActualWidth / 2, _screen.ActualHeight / 2);
