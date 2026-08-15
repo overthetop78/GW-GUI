@@ -62,6 +62,7 @@ public sealed class AmigaMachineView : UserControl
     private double _measuredFramesPerSecond;
     private bool _disposed;
     private bool _mouseCaptured;
+    private bool _cursorHidden;
     private bool _poweredOff;
     private Button? _pauseButton;
     private Button? _powerButton;
@@ -802,7 +803,6 @@ public sealed class AmigaMachineView : UserControl
 
     private void DisplayLostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
     {
-        ReleaseRelativeMouse();
         _keys.Clear();
         _hostKeys.Clear();
         _pressedShortcutKeys.Clear();
@@ -951,7 +951,9 @@ public sealed class AmigaMachineView : UserControl
     private IntPtr NativeVideoMessage(IntPtr hwnd, int message, IntPtr wParam, IntPtr lParam, ref bool handled)
     {
         const int keyDown = 0x0100, keyUp = 0x0101, sysKeyDown = 0x0104, sysKeyUp = 0x0105;
-        const int mouseMove = 0x0200, leftDown = 0x0201, rightDown = 0x0204, middleDown = 0x0207;
+        const int mouseMove = 0x0200, leftDown = 0x0201, leftUp = 0x0202,
+            rightDown = 0x0204, rightUp = 0x0205, middleDown = 0x0207, middleUp = 0x0208,
+            xButtonDown = 0x020B, xButtonUp = 0x020C;
         const int mouseWheel = 0x020A, mouseHorizontalWheel = 0x020E, setCursor = 0x0020;
         switch (message)
         {
@@ -968,6 +970,13 @@ public sealed class AmigaMachineView : UserControl
             case middleDown:
                 _display.Focus();
                 if (_input.CaptureMouse && !_mouseCaptured) CaptureRelativeMouse();
+                if (_mouseCaptured) PublishInput();
+                break;
+            case leftUp:
+            case rightUp:
+            case middleUp:
+            case xButtonDown:
+            case xButtonUp:
                 if (_mouseCaptured) PublishInput();
                 break;
             case mouseMove when _mouseCaptured:
@@ -1012,7 +1021,12 @@ public sealed class AmigaMachineView : UserControl
 
     private IntPtr WindowMessageHook(IntPtr hwnd, int message, IntPtr wParam, IntPtr lParam, ref bool handled)
     {
-        const int mouseHorizontalWheel = 0x020E;
+        const int activateApp = 0x001C, mouseHorizontalWheel = 0x020E;
+        if (message == activateApp && wParam == IntPtr.Zero)
+        {
+            ReleaseRelativeMouse();
+            return IntPtr.Zero;
+        }
         if (message != mouseHorizontalWheel || !_mouseCaptured || !_display.IsMouseOver) return IntPtr.Zero;
         var delta = unchecked((short)((wParam.ToInt64() >> 16) & 0xffff));
         if (delta != 0) PublishInput(horizontalWheel: delta);
@@ -1033,6 +1047,7 @@ public sealed class AmigaMachineView : UserControl
         Mouse.Capture(_display);
         if (_videoSurface.InputHandle != IntPtr.Zero) SetCapture(_videoSurface.InputHandle);
         _display.Focus();
+        HideCursor();
         _mouseStatus.Opacity = 1;
         var center = new Point(_screen.ActualWidth / 2, _screen.ActualHeight / 2);
         var screen = _screen.PointToScreen(center);
@@ -1045,6 +1060,7 @@ public sealed class AmigaMachineView : UserControl
         _mouseCaptured = false;
         Mouse.Capture(null);
         if (_videoSurface.InputHandle != IntPtr.Zero) ReleaseCapture();
+        RestoreCursor();
         _display.Cursor = null;
         _mouseStatus.Opacity = 0.35;
         _keys.Remove(EmulationKey.LeftControl);
@@ -1059,11 +1075,11 @@ public sealed class AmigaMachineView : UserControl
         var mouseActive = _mouseCaptured;
         var physical = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
         {
-            ["Left"] = mouseActive && Mouse.LeftButton == MouseButtonState.Pressed,
-            ["Right"] = mouseActive && Mouse.RightButton == MouseButtonState.Pressed,
-            ["Middle"] = mouseActive && Mouse.MiddleButton == MouseButtonState.Pressed,
-            ["XButton1"] = mouseActive && Mouse.XButton1 == MouseButtonState.Pressed,
-            ["XButton2"] = mouseActive && Mouse.XButton2 == MouseButtonState.Pressed,
+            ["Left"] = mouseActive && IsMouseButtonPressed(0x01),
+            ["Right"] = mouseActive && IsMouseButtonPressed(0x02),
+            ["Middle"] = mouseActive && IsMouseButtonPressed(0x04),
+            ["XButton1"] = mouseActive && IsMouseButtonPressed(0x05),
+            ["XButton2"] = mouseActive && IsMouseButtonPressed(0x06),
             ["WheelUp"] = mouseActive && wheel > 0,
             ["WheelDown"] = mouseActive && wheel < 0,
             ["WheelLeft"] = mouseActive && horizontalWheel < 0,
@@ -1083,6 +1099,25 @@ public sealed class AmigaMachineView : UserControl
                 IsPressed(AmigaMouseAction.LeftButton),
                 IsPressed(AmigaMouseAction.RightButton), IsPressed(AmigaMouseAction.MiddleButton)),
             MapControllers(controllers, physical)));
+    }
+
+    private static bool IsMouseButtonPressed(int virtualKey) => (GetAsyncKeyState(virtualKey) & 0x8000) != 0;
+
+    private void HideCursor()
+    {
+        if (_cursorHidden) return;
+        var displayCount = ShowCursor(false);
+        for (var attempt = 0; attempt < 15 && displayCount >= 0; attempt++) displayCount = ShowCursor(false);
+        _cursorHidden = true;
+        SetCursor(IntPtr.Zero);
+    }
+
+    private void RestoreCursor()
+    {
+        if (!_cursorHidden) return;
+        var displayCount = ShowCursor(true);
+        for (var attempt = 0; attempt < 15 && displayCount < 0; attempt++) displayCount = ShowCursor(true);
+        _cursorHidden = false;
     }
 
     private IReadOnlyList<EmulationControllerState> MapControllers(IReadOnlyList<EmulationControllerState> physical,
@@ -1274,6 +1309,10 @@ public sealed class AmigaMachineView : UserControl
     private static extern bool ReleaseCapture();
     [DllImport("user32.dll")]
     private static extern IntPtr SetCursor(IntPtr cursor);
+    [DllImport("user32.dll")]
+    private static extern int ShowCursor(bool show);
+    [DllImport("user32.dll")]
+    private static extern short GetAsyncKeyState(int virtualKey);
 
     [StructLayout(LayoutKind.Sequential)]
     private struct NativePoint { public int X; public int Y; }
