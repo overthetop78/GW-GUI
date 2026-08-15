@@ -1,4 +1,5 @@
 using System.IO;
+using System.IO.Compression;
 using System.Net;
 using System.Net.Http;
 using GWGUI.Emulation.Amiga;
@@ -171,18 +172,28 @@ public sealed class AmigaConfigurationTests
     }
 
     [Fact]
-    public async Task ExternalCoreInstaller_ExtractsAndValidatesOfficialPinnedArchive()
+    public async Task ExternalCoreInstaller_ExtractsAndValidatesOfficialArchiveWithoutPinnedSizeOrHash()
     {
         var repository = FindRepositoryRoot();
-        var archive = await File.ReadAllBytesAsync(Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll.zip"));
-        using var client = new HttpClient(new StaticDownloadHandler(archive));
+        var library = await File.ReadAllBytesAsync(Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll"));
+        using var archiveStream = new MemoryStream();
+        using (var archive = new ZipArchive(archiveStream, ZipArchiveMode.Create, true))
+        {
+            var entry = archive.CreateEntry("puae_libretro.dll");
+            await using var entryStream = entry.Open();
+            await entryStream.WriteAsync(library);
+        }
+        using var client = new HttpClient(new StaticDownloadHandler(archiveStream.ToArray()));
         var directory = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Core", Guid.NewGuid().ToString("N"));
         try
         {
             var installer = new AmigaExternalCoreInstaller(client, directory);
             var installed = await installer.InstallAsync();
             Assert.True(installer.IsInstalled);
-            Assert.Equal(AmigaExternalCoreInstaller.LibrarySize, new FileInfo(installed).Length);
+            Assert.Equal(library.Length, new FileInfo(installed).Length);
+            Assert.Equal(AmigaExternalCoreInstaller.Hash(installed),
+                System.Text.Json.JsonDocument.Parse(await File.ReadAllTextAsync(Path.Combine(directory, "core.json")))
+                    .RootElement.GetProperty("librarySha256").GetString());
             Assert.Contains(AmigaExternalCoreInstaller.DownloadUrl,
                 await File.ReadAllTextAsync(Path.Combine(directory, "core.json")), StringComparison.Ordinal);
         }

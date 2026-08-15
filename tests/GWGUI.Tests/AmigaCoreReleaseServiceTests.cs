@@ -29,6 +29,10 @@ public sealed class AmigaCoreReleaseServiceTests
     public async Task OfficialZip_ReplacesTheActiveLibraryAndWritesManifest()
     {
         var root = TemporaryRoot();
+        Directory.CreateDirectory(root);
+        var activeLibrary = Path.Combine(root, "puae_libretro.dll");
+        await File.WriteAllBytesAsync(activeLibrary, [9, 8, 7]);
+        await File.WriteAllTextAsync(Path.Combine(root, "core.json"), "{\"version\":\"previous\"}");
         var modified = new DateTimeOffset(2026, 8, 14, 5, 0, 0, TimeSpan.Zero);
         using var client = new HttpClient(new CoreHandler(modified, CreateArchive()));
         var service = new AmigaCoreReleaseService(client, root);
@@ -37,9 +41,13 @@ public sealed class AmigaCoreReleaseServiceTests
             var release = (await service.GetAvailableAsync()).Single(item => !item.IsRequired);
             var installed = await service.InstallAsync(release);
 
-            Assert.Equal(Path.Combine(root, "puae_libretro.dll"), installed);
+            Assert.Equal(activeLibrary, installed);
             Assert.True(File.Exists(installed));
+            var installedBytes = await File.ReadAllBytesAsync(installed);
+            Assert.False(new byte[] { 9, 8, 7 }.SequenceEqual(installedBytes));
             Assert.True(File.Exists(Path.Combine(root, "core.json")));
+            Assert.Contains(release.Id, await File.ReadAllTextAsync(Path.Combine(root, "core.json")),
+                StringComparison.Ordinal);
             Assert.True(service.IsInstalled(release));
             Assert.False(File.Exists(installed + ".download"));
             Assert.False(File.Exists(installed + ".extract"));

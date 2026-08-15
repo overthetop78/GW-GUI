@@ -8,10 +8,6 @@ public sealed class AmigaExternalCoreInstaller
 {
     public const string CoreRevision = "96ebfcfc";
     public const string DownloadUrl = "https://buildbot.libretro.com/nightly/windows/x86_64/latest/puae_libretro.dll.zip";
-    public const string ArchiveSha256 = "6032064FADA8F45F6835DDE6CFEB36AEE3278B37AEB97A52202E17B51C4E303D";
-    public const long ArchiveSize = 6_636_879;
-    public const string LibrarySha256 = "E6569E59BF81C5A459A9CC0FBC45477AAE1F97441B5E68A4084E4E65F2FA0BFD";
-    public const long LibrarySize = 17_632_256;
     private readonly HttpClient _httpClient;
     private readonly string _directory;
 
@@ -49,7 +45,6 @@ public sealed class AmigaExternalCoreInstaller
                              81920, FileOptions.Asynchronous))
                 await source.CopyToAsync(destination, cancellationToken).ConfigureAwait(false);
 
-            VerifyPinnedArchive(package);
             using (var archive = ZipFile.OpenRead(package))
             {
                 var entry = archive.Entries.FirstOrDefault(item =>
@@ -57,9 +52,10 @@ public sealed class AmigaExternalCoreInstaller
                     ?? throw new InvalidDataException("The official Amiga core archive does not contain puae_libretro.dll.");
                 entry.ExtractToFile(extracted, true);
             }
-            VerifyPinnedLibrary(extracted);
+            AmigaCoreReleaseService.VerifyWindowsX64Library(extracted);
+            var sha256 = Hash(extracted);
             File.Move(extracted, LibraryPath, true);
-            await WriteManifestAsync(CoreRevision, DownloadUrl, LibraryPath, LibrarySha256,
+            await WriteManifestAsync(CoreRevision, DownloadUrl, LibraryPath, sha256,
                 cancellationToken).ConfigureAwait(false);
             return LibraryPath;
         }
@@ -85,26 +81,6 @@ public sealed class AmigaExternalCoreInstaller
         await File.WriteAllTextAsync(Path.Combine(Path.GetDirectoryName(libraryPath)!, "core.json"),
             JsonSerializer.Serialize(manifest, new JsonSerializerOptions { WriteIndented = true }),
             cancellationToken).ConfigureAwait(false);
-    }
-
-    private static void VerifyPinnedLibrary(string path)
-    {
-        var info = new FileInfo(path);
-        if (info.Length != LibrarySize) throw new InvalidDataException($"The downloaded Amiga core has size {info.Length}; expected {LibrarySize}.");
-        var actual = Hash(path);
-        if (!actual.Equals(LibrarySha256, StringComparison.OrdinalIgnoreCase))
-            throw new InvalidDataException($"The downloaded Amiga core has SHA-256 {actual}; expected {LibrarySha256}.");
-        AmigaCoreReleaseService.VerifyWindowsX64Library(path);
-    }
-
-    private static void VerifyPinnedArchive(string path)
-    {
-        var info = new FileInfo(path);
-        if (info.Length != ArchiveSize)
-            throw new InvalidDataException($"The downloaded Amiga core archive has size {info.Length}; expected {ArchiveSize}.");
-        var actual = Hash(path);
-        if (!actual.Equals(ArchiveSha256, StringComparison.OrdinalIgnoreCase))
-            throw new InvalidDataException($"The downloaded Amiga core archive has SHA-256 {actual}; expected {ArchiveSha256}.");
     }
 
     internal static string Hash(string path)
