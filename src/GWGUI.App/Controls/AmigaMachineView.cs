@@ -183,7 +183,6 @@ public sealed class AmigaMachineView : UserControl
     {
         _display.KeyDown += DisplayKeyDown;
         _display.KeyUp += DisplayKeyUp;
-        _display.LostKeyboardFocus += DisplayLostKeyboardFocus;
         _display.MouseMove += DisplayMouseMove;
         _display.MouseDown += MouseChanged;
         _display.MouseUp += MouseChanged;
@@ -193,7 +192,10 @@ public sealed class AmigaMachineView : UserControl
             _display.Focus();
             if (_input.CaptureMouse && !_mouseCaptured) CaptureRelativeMouse();
         };
-        if (_display is HwndHost host) host.MessageHook += NativeVideoMessage;
+        if (_display is HwndHost host)
+            host.MessageHook += NativeVideoMessage;
+        else
+            _display.LostKeyboardFocus += DisplayLostKeyboardFocus;
     }
 
     private IEmulationVideoSurface CreateVideoSurface(EmulationVideoRenderer renderer)
@@ -384,11 +386,14 @@ public sealed class AmigaMachineView : UserControl
         var output = Path.Combine(folder, $"{Path.GetFileNameWithoutExtension(path)}-{hash}.adf");
         if (File.Exists(output)) return output;
         var converter = MediaEngineFactory.CreateAmigaAdfConversionService();
-        try { await converter.ConvertAsync(path, output, DiskImageFormatIds.AmigaDos); }
-        catch (InvalidDataException)
+        try
+        {
+            await converter.ConvertDetectedAsync(path, output);
+        }
+        catch
         {
             if (File.Exists(output)) File.Delete(output);
-            await converter.ConvertAsync(path, output, DiskImageFormatIds.AmigaDosHighDensity);
+            throw;
         }
         return output;
     }
@@ -725,6 +730,11 @@ public sealed class AmigaMachineView : UserControl
     private void ShowError(Exception error)
     {
         var logPath = ErrorLog.Write(error, "Amiga emulator command");
+        if (error is InvalidDataException or NotSupportedException)
+        {
+            MessageBox.Show(Window.GetWindow(this), error.Message, "Amiga", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
         var detail = logPath is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", logPath);
         MessageBox.Show(Window.GetWindow(this), LocExtension.Get("Error.Unexpected", detail), "Amiga",
             MessageBoxButton.OK, MessageBoxImage.Error);
@@ -951,7 +961,9 @@ public sealed class AmigaMachineView : UserControl
     private IntPtr NativeVideoMessage(IntPtr hwnd, int message, IntPtr wParam, IntPtr lParam, ref bool handled)
     {
         const int keyDown = 0x0100, keyUp = 0x0101, sysKeyDown = 0x0104, sysKeyUp = 0x0105;
-        const int mouseMove = 0x0200, leftDown = 0x0201, rightDown = 0x0204, middleDown = 0x0207;
+        const int mouseMove = 0x0200, leftDown = 0x0201, leftUp = 0x0202,
+            rightDown = 0x0204, rightUp = 0x0205, middleDown = 0x0207, middleUp = 0x0208,
+            xButtonDown = 0x020B, xButtonUp = 0x020C;
         const int mouseWheel = 0x020A, mouseHorizontalWheel = 0x020E, setCursor = 0x0020;
         switch (message)
         {
@@ -966,8 +978,15 @@ public sealed class AmigaMachineView : UserControl
             case leftDown:
             case rightDown:
             case middleDown:
-                _display.Focus();
+            case xButtonDown:
+                SetFocus(hwnd);
                 if (_input.CaptureMouse && !_mouseCaptured) CaptureRelativeMouse();
+                if (_mouseCaptured) PublishInput();
+                break;
+            case leftUp:
+            case rightUp:
+            case middleUp:
+            case xButtonUp:
                 if (_mouseCaptured) PublishInput();
                 break;
             case mouseMove when _mouseCaptured:
@@ -1031,8 +1050,16 @@ public sealed class AmigaMachineView : UserControl
         _mouseCaptured = true;
         _display.Cursor = Cursors.None;
         Mouse.Capture(_display);
-        if (_videoSurface.InputHandle != IntPtr.Zero) SetCapture(_videoSurface.InputHandle);
-        _display.Focus();
+        if (_videoSurface.InputHandle != IntPtr.Zero)
+        {
+            SetCapture(_videoSurface.InputHandle);
+            SetFocus(_videoSurface.InputHandle);
+            SetCursor(IntPtr.Zero);
+        }
+        else
+        {
+            _display.Focus();
+        }
         _mouseStatus.Opacity = 1;
         var center = new Point(_screen.ActualWidth / 2, _screen.ActualHeight / 2);
         var screen = _screen.PointToScreen(center);
@@ -1059,11 +1086,11 @@ public sealed class AmigaMachineView : UserControl
         var mouseActive = _mouseCaptured;
         var physical = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
         {
-            ["Left"] = mouseActive && Mouse.LeftButton == MouseButtonState.Pressed,
-            ["Right"] = mouseActive && Mouse.RightButton == MouseButtonState.Pressed,
-            ["Middle"] = mouseActive && Mouse.MiddleButton == MouseButtonState.Pressed,
-            ["XButton1"] = mouseActive && Mouse.XButton1 == MouseButtonState.Pressed,
-            ["XButton2"] = mouseActive && Mouse.XButton2 == MouseButtonState.Pressed,
+            ["Left"] = mouseActive && IsMouseButtonPressed(0x01),
+            ["Right"] = mouseActive && IsMouseButtonPressed(0x02),
+            ["Middle"] = mouseActive && IsMouseButtonPressed(0x04),
+            ["XButton1"] = mouseActive && IsMouseButtonPressed(0x05),
+            ["XButton2"] = mouseActive && IsMouseButtonPressed(0x06),
             ["WheelUp"] = mouseActive && wheel > 0,
             ["WheelDown"] = mouseActive && wheel < 0,
             ["WheelLeft"] = mouseActive && horizontalWheel < 0,
@@ -1084,6 +1111,8 @@ public sealed class AmigaMachineView : UserControl
                 IsPressed(AmigaMouseAction.RightButton), IsPressed(AmigaMouseAction.MiddleButton)),
             MapControllers(controllers, physical)));
     }
+
+    private static bool IsMouseButtonPressed(int virtualKey) => (GetAsyncKeyState(virtualKey) & 0x8000) != 0;
 
     private IReadOnlyList<EmulationControllerState> MapControllers(IReadOnlyList<EmulationControllerState> physical,
         IReadOnlyDictionary<string, bool> mouseButtons)
@@ -1270,6 +1299,12 @@ public sealed class AmigaMachineView : UserControl
     private static extern bool GetCursorPos(out NativePoint point);
     [DllImport("user32.dll")]
     private static extern IntPtr SetCapture(IntPtr hwnd);
+
+    [DllImport("user32.dll")]
+    private static extern IntPtr SetFocus(IntPtr hwnd);
+
+    [DllImport("user32.dll")]
+    private static extern short GetAsyncKeyState(int virtualKey);
     [DllImport("user32.dll")]
     private static extern bool ReleaseCapture();
     [DllImport("user32.dll")]
