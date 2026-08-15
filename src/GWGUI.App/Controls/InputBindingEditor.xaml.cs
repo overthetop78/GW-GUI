@@ -24,7 +24,7 @@ public partial class InputBindingEditor : UserControl
     public InputBindingEditor()
     {
         InitializeComponent();
-        BindingsGrid.ItemsSource = _rows;
+        BindingsList.ItemsSource = _rows;
         SearchBox.ToolTip = LocExtension.Get("Emulation.SearchBinding");
         Legend.Text = LocExtension.Get("Emulation.BindingLegend");
         AddHandler(PreviewKeyDownEvent, new KeyEventHandler(CaptureKeyDown), true);
@@ -37,7 +37,7 @@ public partial class InputBindingEditor : UserControl
 
     public void ConfigurePresentation(string firstColumnHeader, string searchPlaceholder)
     {
-        TargetColumn.Header = firstColumnHeader;
+        TargetHeader.Text = firstColumnHeader;
         SearchPlaceholder.Text = searchPlaceholder;
     }
 
@@ -130,6 +130,14 @@ public partial class InputBindingEditor : UserControl
             row.Binding.Contains(query, StringComparison.CurrentCultureIgnoreCase));
     }
 
+    private void BindingsScrollMouseWheel(object sender, MouseWheelEventArgs e)
+    {
+        if (sender is not ScrollViewer viewer || viewer.ScrollableHeight <= 0) return;
+        var offset = Math.Clamp(viewer.VerticalOffset - e.Delta / 3d, 0, viewer.ScrollableHeight);
+        viewer.ScrollToVerticalOffset(offset);
+        e.Handled = true;
+    }
+
     private void ValidateBindings()
     {
         var duplicates = _rows.Where(row => !string.IsNullOrWhiteSpace(row.Binding))
@@ -144,7 +152,7 @@ public partial class InputBindingEditor : UserControl
             else if (duplicates.Contains(row.Binding.Trim())) row.SetState(InputBindingState.Conflict);
             else row.SetState(InputBindingState.Valid);
         }
-        BindingsGrid.Items.Refresh();
+        BindingsList.Items.Refresh();
     }
 }
 

@@ -1322,6 +1322,7 @@ public sealed class OptionsEmulationSection : UserControl
         };
         viewer.PreviewMouseWheel += (_, e) =>
         {
+            if (FindNestedScrollViewer(e.OriginalSource as DependencyObject, viewer) is { ScrollableHeight: > 0 }) return;
             if (viewer.ScrollableHeight <= 0) return;
             var offset = Math.Clamp(viewer.VerticalOffset - e.Delta, 0, viewer.ScrollableHeight);
             if (Math.Abs(offset - viewer.VerticalOffset) < 0.5) return;
@@ -1329,6 +1330,16 @@ public sealed class OptionsEmulationSection : UserControl
             e.Handled = true;
         };
         return viewer;
+    }
+
+    private static ScrollViewer? FindNestedScrollViewer(DependencyObject? source, ScrollViewer page)
+    {
+        while (source is not null && !ReferenceEquals(source, page))
+        {
+            if (source is ScrollViewer nested) return nested;
+            source = VisualTreeHelper.GetParent(source);
+        }
+        return null;
     }
 
     private UIElement BuildMouseMappings()
