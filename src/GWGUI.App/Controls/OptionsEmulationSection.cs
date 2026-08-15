@@ -195,22 +195,10 @@ public sealed class OptionsEmulationSection : UserControl
             };
         }
 
-        _familyTabs.Items.Add(new TabItem
-        {
-            Header = LocExtension.Get("Emulation.GeneralTab"),
-            Content = BuildGeneralEmulationSettings()
-        });
-        _familyTabs.Items.Add(new TabItem
-        {
-            Header = LocExtension.Get("Emulation.ShortcutsTab"),
-            Content = BuildGlobalInputAssignments()
-        });
-        _familyTabs.Items.Add(new TabItem
-        {
-            Header = LocExtension.Get("Emulation.Configurations"),
-            Content = BuildConfigurationCatalog()
-        });
-        _familyTabs.Items.Add(new TabItem { Header = "Amiga", Content = BuildAmigaEditor() });
+        AddFamilyTab("\uE713", LocExtension.Get("Emulation.GeneralTab"), BuildGeneralEmulationSettings());
+        AddFamilyTab("\uE765", LocExtension.Get("Emulation.ShortcutsTab"), BuildGlobalInputAssignments());
+        AddFamilyTab("\uE8A5", LocExtension.Get("Emulation.Configurations"), BuildConfigurationCatalog());
+        AddFamilyTab("\uE7FC", "Amiga", BuildAmigaEditor());
         Content = _familyTabs;
         Loaded += async (_, _) => await ReloadAsync();
     }
@@ -228,6 +216,18 @@ public sealed class OptionsEmulationSection : UserControl
         _globalShortcutEditor.SetRows(GlobalShortcutDefinitions(), settings.EmulationShortcuts);
         _amigaKeyboardEditor.SetReservedBindings(settings.EmulationShortcuts.Values);
         EnsureStorageFolders();
+    }
+
+    private void AddFamilyTab(string icon, string title, UIElement content)
+    {
+        var tab = new TabItem
+        {
+            Header = new MainTabHeader { Icon = icon, Text = title },
+            Content = content,
+            Padding = new Thickness(14, 8, 14, 8)
+        };
+        tab.SetResourceReference(StyleProperty, "MainTabItemStyle");
+        _familyTabs.Items.Add(tab);
     }
 
     private UIElement BuildGeneralEmulationSettings()

@@ -13,22 +13,22 @@
         </Grid.RowDefinitions>
 
         <TabControl x:Name="Navigation" SelectedIndex="0" AutomationProperties.Name="{l:Loc Options.Title}">
-            <TabItem Header="{l:Loc Options.General}">
+            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><controls:MainTabHeader Icon="&#xE713;" Text="{l:Loc Options.General}"/></TabItem.Header>
                 <controls:OptionsGeneralSection x:Name="GeneralSection" />
             </TabItem>
-            <TabItem Header="{l:Loc Options.Logs}">
+            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><controls:MainTabHeader Icon="&#xE9D5;" Text="{l:Loc Options.Logs}"/></TabItem.Header>
                 <controls:OptionsLogsSection x:Name="LogsSection" />
             </TabItem>
-            <TabItem Header="{l:Loc Options.Hardware}">
+            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><controls:MainTabHeader Icon="&#xE950;" Text="{l:Loc Options.Hardware}"/></TabItem.Header>
                 <controls:OptionsHardwareSection x:Name="HardwareSection" />
             </TabItem>
-            <TabItem Header="{l:Loc Options.Engines}">
+            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><controls:MainTabHeader Icon="&#xE943;" Text="{l:Loc Options.Engines}"/></TabItem.Header>
                 <controls:OptionsEnginesSection x:Name="EnginesSection" />
             </TabItem>
-            <TabItem Header="{l:Loc Options.Profiles}">
+            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><controls:MainTabHeader Icon="&#xE77B;" Text="{l:Loc Options.Profiles}"/></TabItem.Header>
                 <controls:OptionsProfilesSection x:Name="ProfilesSection" />
             </TabItem>
-            <TabItem Header="{l:Loc Tab.Emulation}">
+            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><controls:MainTabHeader Icon="&#xE7FC;" Text="{l:Loc Tab.Emulation}"/></TabItem.Header>
                 <controls:OptionsEmulationSection x:Name="EmulationSection" />
             </TabItem>
         </TabControl>

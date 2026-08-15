@@ -42,7 +42,7 @@ public sealed class AmigaMachineView : UserControl
     private readonly Button _audioStatus;
     private readonly TextBlock _controllerStatus = StatusIcon("\uE7FC");
     private readonly TextBlock _mouseStatus = StatusIcon("\uE962");
-    private readonly Ellipse _powerLed = new() { Width = 8, Height = 8, Fill = Brushes.Gray, Margin = new Thickness(0, 0, 4, 0) };
+    private readonly TextBlock _rendererStatus = new() { VerticalAlignment = VerticalAlignment.Center, FontWeight = FontWeights.SemiBold };
     private readonly StackPanel _deviceStrip = new() { Orientation = Orientation.Horizontal };
     private readonly AmigaMachineConfiguration _configuration;
     private readonly HashSet<string> _insertedMedia = new(StringComparer.OrdinalIgnoreCase);
@@ -112,25 +112,37 @@ public sealed class AmigaMachineView : UserControl
         _root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         _root.RowDefinitions.Add(new RowDefinition());
         _root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        _toolbar = new DockPanel { Height = 30, LastChildFill = false, Margin = new Thickness(0, 0, 0, 2) };
+        _toolbar = new DockPanel { Height = 34, LastChildFill = true, Margin = new Thickness(0, 0, 0, 2) };
         var left = new StackPanel { Orientation = Orientation.Horizontal };
-        _powerButton = IconButton("\uE7E8", "Emulation.Shortcut.Power", TogglePowerAsync, _powerLed, requiresPower: false);
-        left.Children.Add(_powerButton);
+        _powerButton = IconButton("\uE7E8", "Emulation.Shortcut.Power", TogglePowerAsync, requiresPower: false);
+        _powerButton.Foreground = Brushes.LimeGreen;
         _pauseButton = IconButton("\uE769", "Emulation.Shortcut.PauseResume", TogglePauseAsync);
-        left.Children.Add(_pauseButton);
-        left.Children.Add(IconButton("\uE777", "Emulation.Shortcut.SoftReset", () => _machine.SoftResetAsync().AsTask()));
-        left.Children.Add(IconButton("\uE72C", "Emulation.Shortcut.HardReset", () => _machine.HardResetAsync().AsTask()));
-        left.Children.Add(IconButton("\uE74E", "Emulation.Shortcut.QuickSave", QuickSave));
-        left.Children.Add(IconButton("\uE8E5", "Emulation.Shortcut.QuickLoad", QuickLoad));
-        left.Children.Add(IconButton("\uE722", "Emulation.Shortcut.Screenshot", () => { SaveScreenshot(); return Task.CompletedTask; }));
-        left.Children.Add(IconButton("\uE740", "Emulation.Shortcut.Fullscreen", () => { ToggleFullscreen(); return Task.CompletedTask; }));
+        _pauseButton.Foreground = Brushes.DarkOrange;
+        var softReset = IconButton("\uE777", "Emulation.Shortcut.SoftReset", () => _machine.SoftResetAsync().AsTask());
+        softReset.Foreground = new SolidColorBrush(Color.FromRgb(120, 160, 48));
+        var hardReset = IconButton("\uE72C", "Emulation.Shortcut.HardReset", () => _machine.HardResetAsync().AsTask());
+        hardReset.Foreground = new SolidColorBrush(Color.FromRgb(220, 92, 48));
+        left.Children.Add(ToolbarGroup(_powerButton, _pauseButton, softReset, hardReset));
+        left.Children.Add(ToolbarGroup(
+            IconButton("\uE74E", "Emulation.Shortcut.QuickSave", QuickSave),
+            IconButton("\uE8E5", "Emulation.Shortcut.QuickLoad", QuickLoad)));
+        left.Children.Add(ToolbarGroup(IconButton("\uE722", "Emulation.Shortcut.Screenshot", () => { SaveScreenshot(); return Task.CompletedTask; })));
+        left.Children.Add(ToolbarGroup(IconButton("\uE740", "Emulation.Shortcut.Fullscreen", () => { ToggleFullscreen(); return Task.CompletedTask; })));
+        DockPanel.SetDock(left, Dock.Left);
         _toolbar.Children.Add(left);
         var right = new StackPanel { Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Center };
         _audioStatus = IconButton("\uE767", "Emulation.AudioTab", ToggleAudioMute, requiresPower: true);
         _audioStatus.Width = 28;
-        right.Children.Add(_audioStatus); right.Children.Add(_controllerStatus); right.Children.Add(_mouseStatus);
-        _status.Margin = new Thickness(8, 0, 4, 0); right.Children.Add(_status);
+        right.Children.Add(ToolbarGroup(_audioStatus, _controllerStatus, _mouseStatus));
+        _status.Margin = new Thickness(7, 0, 7, 0);
+        right.Children.Add(ToolbarGroup(_status));
         DockPanel.SetDock(right, Dock.Right); _toolbar.Children.Add(right);
+        _rendererStatus.Text = RendererName(_videoSurface.Renderer);
+        _toolbar.Children.Add(CenteredToolbarGroup(new TextBlock
+        {
+            Text = "\uE7F4", FontFamily = new FontFamily("Segoe MDL2 Assets"), FontSize = 15,
+            Margin = new Thickness(4, 0, 6, 0), VerticalAlignment = VerticalAlignment.Center
+        }, _rendererStatus));
         _root.Children.Add(_toolbar);
         _screen = new Border
         {
@@ -141,7 +153,7 @@ public sealed class AmigaMachineView : UserControl
             SnapsToDevicePixels = true
         };
         _videoHost.Children.Add(_display);
-        _displayHost = new Grid { Background = Brushes.Transparent };
+        _displayHost = new Grid { Background = new SolidColorBrush(Color.FromRgb(43, 46, 50)) };
         _displayHost.Children.Add(_screen);
         _displayHost.SizeChanged += (_, _) => FitScreen(_displayHost.ActualWidth, _displayHost.ActualHeight);
         Grid.SetRow(_displayHost, 1); _root.Children.Add(_displayHost);
@@ -195,8 +207,36 @@ public sealed class AmigaMachineView : UserControl
         FontFamily = new FontFamily("Segoe MDL2 Assets"),
         FontSize = 17,
         VerticalAlignment = VerticalAlignment.Center,
-        Margin = new Thickness(8, 0, 2, 0)
+        Margin = new Thickness(4, 0, 4, 0)
     };
+
+    private static Border ToolbarGroup(params UIElement[] children) => ToolbarGroup(false, children);
+
+    private static Border CenteredToolbarGroup(params UIElement[] children) => ToolbarGroup(true, children);
+
+    private static Border ToolbarGroup(bool centered, params UIElement[] children)
+    {
+        var panel = new StackPanel
+        {
+            Orientation = Orientation.Horizontal,
+            HorizontalAlignment = centered ? HorizontalAlignment.Center : HorizontalAlignment.Left,
+            VerticalAlignment = VerticalAlignment.Center
+        };
+        foreach (var child in children) panel.Children.Add(child);
+        var border = new Border
+        {
+            Child = panel,
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(6),
+            Padding = new Thickness(2, 1, 2, 1),
+            Margin = new Thickness(2, 1, 2, 1),
+            HorizontalAlignment = centered ? HorizontalAlignment.Center : HorizontalAlignment.Left,
+            VerticalAlignment = VerticalAlignment.Center
+        };
+        border.SetResourceReference(BackgroundProperty, "CardBrush");
+        border.SetResourceReference(BorderBrushProperty, "BorderBrush");
+        return border;
+    }
 
     private Button IconButton(string glyph, string tooltipKey, Func<Task> action, UIElement? indicator = null,
         bool requiresPower = true)
@@ -407,7 +447,6 @@ public sealed class AmigaMachineView : UserControl
         await _machine.StartAsync();
         _inputTimer.Start();
         _status.Text = string.Empty;
-        _powerLed.Fill = Brushes.LimeGreen;
         SetPoweredState(true);
         _audioStatus.Opacity = _configuration.AudioEnabled ? 1 : 0.35;
         _controllerStatus.Opacity = XInputControllerReader.ReadAll().Any(item => item != EmulationControllerState.Empty) ? 1 : 0.35;
@@ -427,7 +466,6 @@ public sealed class AmigaMachineView : UserControl
             await _machine.DisposeAsync();
             _machine.VideoFrameReady -= VideoFrameReady;
             _status.Text = string.Empty;
-            _powerLed.Fill = Brushes.Gray;
             _videoSurface.Dispose();
             _disposed = true;
         }
@@ -459,7 +497,12 @@ public sealed class AmigaMachineView : UserControl
 
     private void SetPoweredState(bool powered)
     {
-        _powerLed.Fill = powered ? Brushes.LimeGreen : Brushes.Gray;
+        if (_powerButton is not null) _powerButton.Foreground = powered ? Brushes.LimeGreen : Brushes.Gray;
+        if (powered && _pauseButton is not null)
+        {
+            SetIcon(_pauseButton, "\uE769", "Common.Pause");
+            _pauseButton.Foreground = Brushes.DarkOrange;
+        }
         foreach (var button in _machineCommandButtons) button.IsEnabled = powered;
         _videoHost.Visibility = powered ? Visibility.Visible : Visibility.Hidden;
         _audioStatus.Opacity = powered && _configuration.AudioEnabled ? 1 : 0.25;
@@ -529,6 +572,7 @@ public sealed class AmigaMachineView : UserControl
             _videoHost.Children.Add(_display);
             AttachDisplayInputHandlers();
             _videoSurface.Present(frame);
+            _rendererStatus.Text = RendererName(_videoSurface.Renderer);
         }
         UpdateDeviceLeds();
         UpdateFrameRate();
@@ -621,11 +665,13 @@ public sealed class AmigaMachineView : UserControl
         {
             await _machine.PauseAsync();
             SetIcon(_pauseButton, "\uE768", "Common.Continue");
+            if (_pauseButton is not null) _pauseButton.Foreground = Brushes.LimeGreen;
         }
         else if (_machine.State == EmulationMachineState.Paused)
         {
             await _machine.ResumeAsync();
             SetIcon(_pauseButton, "\uE769", "Common.Pause");
+            if (_pauseButton is not null) _pauseButton.Foreground = Brushes.DarkOrange;
         }
     }
 
