@@ -153,6 +153,7 @@ public sealed class AmigaMachineView : UserControl
             VerticalAlignment = VerticalAlignment.Center,
             SnapsToDevicePixels = true
         };
+        _screen.AddHandler(Mouse.PreviewMouseDownEvent, new MouseButtonEventHandler(ScreenMouseDown), true);
         _videoHost.Children.Add(_display);
         _displayHost = new Grid { Background = new SolidColorBrush(Color.FromRgb(43, 46, 50)) };
         _displayHost.Children.Add(_screen);
@@ -188,12 +189,14 @@ public sealed class AmigaMachineView : UserControl
         _display.MouseDown += MouseChanged;
         _display.MouseUp += MouseChanged;
         _display.MouseWheel += DisplayMouseWheel;
-        _display.MouseDown += (_, _) =>
-        {
-            _display.Focus();
-            if (_input.CaptureMouse && !_mouseCaptured) CaptureRelativeMouse();
-        };
+        _display.MouseDown += ScreenMouseDown;
         if (_display is HwndHost host) host.MessageHook += NativeVideoMessage;
+    }
+
+    private void ScreenMouseDown(object sender, MouseButtonEventArgs e)
+    {
+        FocusVideoSurface();
+        if (!_mouseCaptured) CaptureRelativeMouse();
     }
 
     private IEmulationVideoSurface CreateVideoSurface(EmulationVideoRenderer renderer)
@@ -802,7 +805,6 @@ public sealed class AmigaMachineView : UserControl
 
     private void DisplayLostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
     {
-        ReleaseRelativeMouse();
         _keys.Clear();
         _hostKeys.Clear();
         _pressedShortcutKeys.Clear();
@@ -966,8 +968,8 @@ public sealed class AmigaMachineView : UserControl
             case leftDown:
             case rightDown:
             case middleDown:
-                _display.Focus();
-                if (_input.CaptureMouse && !_mouseCaptured) CaptureRelativeMouse();
+                FocusVideoSurface();
+                if (!_mouseCaptured) CaptureRelativeMouse();
                 if (_mouseCaptured) PublishInput();
                 break;
             case mouseMove when _mouseCaptured:
@@ -1012,7 +1014,12 @@ public sealed class AmigaMachineView : UserControl
 
     private IntPtr WindowMessageHook(IntPtr hwnd, int message, IntPtr wParam, IntPtr lParam, ref bool handled)
     {
-        const int mouseHorizontalWheel = 0x020E;
+        const int activateApp = 0x001C, mouseHorizontalWheel = 0x020E;
+        if (message == activateApp && wParam == IntPtr.Zero)
+        {
+            ReleaseRelativeMouse();
+            return IntPtr.Zero;
+        }
         if (message != mouseHorizontalWheel || !_mouseCaptured || !_display.IsMouseOver) return IntPtr.Zero;
         var delta = unchecked((short)((wParam.ToInt64() >> 16) & 0xffff));
         if (delta != 0) PublishInput(horizontalWheel: delta);
@@ -1028,15 +1035,23 @@ public sealed class AmigaMachineView : UserControl
 
     private void CaptureRelativeMouse()
     {
+        if (_mouseCaptured || _machine.State is not (EmulationMachineState.Running or EmulationMachineState.Paused)) return;
         _mouseCaptured = true;
         _display.Cursor = Cursors.None;
-        Mouse.Capture(_display);
         if (_videoSurface.InputHandle != IntPtr.Zero) SetCapture(_videoSurface.InputHandle);
-        _display.Focus();
+        else Mouse.Capture(_display);
+        FocusVideoSurface();
         _mouseStatus.Opacity = 1;
         var center = new Point(_screen.ActualWidth / 2, _screen.ActualHeight / 2);
         var screen = _screen.PointToScreen(center);
         SetCursorPos((int)Math.Round(screen.X), (int)Math.Round(screen.Y));
+    }
+
+    private void FocusVideoSurface()
+    {
+        _display.Focus();
+        if (_videoSurface.InputHandle != IntPtr.Zero) SetFocus(_videoSurface.InputHandle);
+        else Keyboard.Focus(_display);
     }
 
     private void ReleaseRelativeMouse()
@@ -1270,6 +1285,8 @@ public sealed class AmigaMachineView : UserControl
     private static extern bool GetCursorPos(out NativePoint point);
     [DllImport("user32.dll")]
     private static extern IntPtr SetCapture(IntPtr hwnd);
+    [DllImport("user32.dll")]
+    private static extern IntPtr SetFocus(IntPtr hwnd);
     [DllImport("user32.dll")]
     private static extern bool ReleaseCapture();
     [DllImport("user32.dll")]
