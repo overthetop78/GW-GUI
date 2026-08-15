@@ -182,4 +182,5 @@
   <data name="Engines.Internal" xml:space="preserve"><value>Wewnętrzny silnik GW GUI</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>Wybrany silnik jest używany bez przełączania. Jeśli nie może wykonać operacji, GW GUI zgłasza to zamiast po cichu używać drugiego silnika.</value></data>
   <data name="Emulation.Model" xml:space="preserve"><value>Model</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Przechwytuj mysz</value></data>
 </root>

@@ -182,4 +182,5 @@
   <data name="Engines.Internal" xml:space="preserve"><value>Intern GW GUI-motor</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>Den valgte motor bruges konsekvent. Hvis den ikke kan udføre handlingen, melder GW GUI det uden skjult at bruge den anden motor.</value></data>
   <data name="Emulation.Model" xml:space="preserve"><value>Model</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Fang musen</value></data>
 </root>

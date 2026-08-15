@@ -66,7 +66,7 @@ public sealed class FloppyDriveConfigurationDialog : Window
         Title = $"{LocExtension.Get("Emulation.ConfigureDevice")} {identifier}";
         Owner = Application.Current.Windows.OfType<Window>().FirstOrDefault(window => window.IsActive);
         WindowStartupLocation = WindowStartupLocation.CenterOwner;
-        Width = 760;
+        Width = 820;
         SizeToContent = SizeToContent.Height;
         ResizeMode = ResizeMode.NoResize;
 
@@ -88,13 +88,16 @@ public sealed class FloppyDriveConfigurationDialog : Window
         _redirectWrites.Content = LocExtension.Get("Emulation.FloppyWriteRedirect");
         _redirectWrites.IsChecked = settings.RedirectWrites;
 
-        var fields = new StackPanel();
-        fields.Children.Add(StorageDialogUi.TwoColumnFields(
+        var drive = StorageDialogUi.CompactFields(
             (LocExtension.Get("Emulation.DeviceId"), new TextBox { Text = identifier, IsReadOnly = true }),
-            (LocExtension.Get("Emulation.Model"), _model),
+            (LocExtension.Get("Emulation.Model"), _model));
+        var behavior = new StackPanel();
+        behavior.Children.Add(StorageDialogUi.CompactFields(
             (LocExtension.Get("Emulation.FloppySpeed"), _speed)));
-        fields.Children.Add(_writeProtected);
-        fields.Children.Add(_redirectWrites);
+        _writeProtected.Margin = new Thickness(0, 8, 0, 4);
+        _redirectWrites.Margin = new Thickness(0, 4, 0, 4);
+        behavior.Children.Add(_writeProtected);
+        behavior.Children.Add(_redirectWrites);
         var create = new Button
         {
             Content = LocExtension.Get("Emulation.CreateBlankFloppy"),
@@ -102,12 +105,18 @@ public sealed class FloppyDriveConfigurationDialog : Window
             Margin = new Thickness(0, 14, 0, 0)
         };
         create.Click += (_, _) => CreateBlankFloppy();
-        fields.Children.Add(create);
-        fields.Children.Add(StorageDialogUi.Info(LocExtension.Get("Emulation.RemovableMediaRuntimeHint")));
+        var blankMedia = new StackPanel();
+        blankMedia.Children.Add(create);
+        blankMedia.Children.Add(StorageDialogUi.Info(LocExtension.Get("Emulation.RemovableMediaRuntimeHint")));
+        var body = new StackPanel();
+        body.Children.Add(StorageDialogUi.SideBySide(
+            StorageDialogUi.IconCard("\uE964", LocExtension.Get("Emulation.FloppyDrive"), drive),
+            StorageDialogUi.IconCard("\uE713", LocExtension.Get("Emulation.InputBehavior"), behavior)));
+        body.Children.Add(StorageDialogUi.IconCard("\uE7C3", LocExtension.Get("Emulation.BlankMedia"), blankMedia));
 
         Content = StorageDialogUi.DialogLayout(
             StorageDialogUi.DialogHeader("\uE964", Title, $"{LocExtension.Get("Emulation.FloppyDevice")} · {machineName}"),
-            StorageDialogUi.Card(LocExtension.Get("Emulation.FloppyDevice"), fields),
+            body,
             StorageDialogUi.Footer(this, LocExtension.Get("Common.Save")));
     }
 
@@ -147,9 +156,17 @@ public sealed class HardDiskDriveConfigurationDialog : Window
     private readonly TabControl _supportMode = new();
     private readonly TextBox _existingPath = new();
     private readonly TextBox _newName = new() { Text = "Workbench.hdf" };
-    private readonly TextBox _newFolder = new();
-    private readonly ComboBox _newSize = new();
+    private readonly ComboBox _sizePreset = new();
+    private readonly TextBox _customSize = new() { Text = "2048" };
+    private readonly ComboBox _sizeUnit = new();
+    private readonly ComboBox _imageFormat = new() { ItemsSource = new[] { "HDF" }, SelectedIndex = 0, IsEnabled = false };
     private readonly CheckBox _preallocate = new() { IsChecked = true };
+    private readonly CheckBox _automaticGeometry = new() { IsChecked = true };
+    private readonly TextBox _cylinders = new();
+    private readonly TextBox _heads = new() { Text = "16" };
+    private readonly TextBox _sectors = new() { Text = "63" };
+    private readonly TextBox _bytesPerSector = new() { Text = "512" };
+    private readonly TextBlock _capacity = new() { TextWrapping = TextWrapping.Wrap };
 
     public string? SupportPath { get; private set; }
 
@@ -160,51 +177,97 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         Title = $"{LocExtension.Get("Emulation.ConfigureDevice")} {identifier}";
         Owner = Application.Current.Windows.OfType<Window>().FirstOrDefault(window => window.IsActive);
         WindowStartupLocation = WindowStartupLocation.CenterOwner;
-        Width = 900;
-        Height = 680;
+        Width = 940;
+        Height = 690;
         ResizeMode = ResizeMode.NoResize;
 
-        var address = new ComboBox { ItemsSource = new[] { identifier }, SelectedIndex = 0, IsEnabled = false };
+        var address = new TextBox { Text = identifier, IsReadOnly = true };
         var interfaceChoice = new ComboBox { ItemsSource = new[] { LocExtension.Get("Visual.Automatic") }, SelectedIndex = 0 };
-        var type = new ComboBox { ItemsSource = new[] { LocExtension.Get("Emulation.HardDiskDevice") }, SelectedIndex = 0, IsEnabled = false };
-        var model = new ComboBox { ItemsSource = new[] { "HDF" }, SelectedIndex = 0 };
-        var reader = StorageDialogUi.TwoColumnFields(
-            (LocExtension.Get("Emulation.DeviceId"), address),
-            (LocExtension.Get("Emulation.Interface"), interfaceChoice),
-            (LocExtension.Get("Emulation.Type"), type),
-            (LocExtension.Get("Emulation.Model"), model));
+        var reader = StorageDialogUi.SideBySide(
+            StorageDialogUi.IconCard("\uEDA2", LocExtension.Get("Emulation.Device"),
+                StorageDialogUi.CompactFields((LocExtension.Get("Emulation.DeviceId"), address))),
+            StorageDialogUi.IconCard("\uE8AB", LocExtension.Get("Emulation.Interface"),
+                StorageDialogUi.CompactFields((LocExtension.Get("Emulation.Interface"), interfaceChoice))));
 
         _existingPath.Text = currentPath ?? string.Empty;
         var existing = new StackPanel { Margin = new Thickness(8) };
         existing.Children.Add(StorageDialogUi.PathField(LocExtension.Get("Emulation.DiskImage"), _existingPath, BrowseExisting));
         existing.Children.Add(StorageDialogUi.Info(LocExtension.Get("Emulation.ExistingDiskHint")));
 
-        _newFolder.Text = StoragePaths.AmigaHardDisksDirectory;
-        _newSize.ItemsSource = new[] { 20, 40, 80, 120, 250, 500, 1024, 2048, 4096, 8192 };
-        _newSize.SelectedItem = 2048;
+        _sizeUnit.ItemsSource = new[] { LocExtension.Get("Emulation.UnitMiB"), LocExtension.Get("Emulation.UnitGiB") };
+        _sizeUnit.SelectedIndex = 0;
+        _sizePreset.ItemsSource = new[]
+        {
+            new DiskSizeChoice(20, $"20 {LocExtension.Get("Emulation.UnitMiB")}"),
+            new DiskSizeChoice(40, $"40 {LocExtension.Get("Emulation.UnitMiB")}"),
+            new DiskSizeChoice(80, $"80 {LocExtension.Get("Emulation.UnitMiB")}"),
+            new DiskSizeChoice(120, $"120 {LocExtension.Get("Emulation.UnitMiB")}"),
+            new DiskSizeChoice(250, $"250 {LocExtension.Get("Emulation.UnitMiB")}"),
+            new DiskSizeChoice(500, $"500 {LocExtension.Get("Emulation.UnitMiB")}"),
+            new DiskSizeChoice(1024, $"1 {LocExtension.Get("Emulation.UnitGiB")}"),
+            new DiskSizeChoice(2048, $"2 {LocExtension.Get("Emulation.UnitGiB")}"),
+            new DiskSizeChoice(4096, $"4 {LocExtension.Get("Emulation.UnitGiB")}"),
+            new DiskSizeChoice(8192, $"8 {LocExtension.Get("Emulation.UnitGiB")}"),
+            new DiskSizeChoice(null, LocExtension.Get("Emulation.CustomSize"))
+        };
+        _sizePreset.SelectedIndex = 7;
+        _sizePreset.SelectionChanged += (_, _) => UpdateDiskGeometry();
+        _customSize.TextChanged += (_, _) => UpdateDiskGeometry();
+        _sizeUnit.SelectionChanged += (_, _) => UpdateDiskGeometry();
+        _automaticGeometry.Checked += (_, _) => UpdateDiskGeometry();
+        _automaticGeometry.Unchecked += (_, _) => UpdateDiskGeometry();
+        _cylinders.TextChanged += (_, _) => UpdateCapacity();
+        _heads.TextChanged += (_, _) => UpdateCapacity();
+        _sectors.TextChanged += (_, _) => UpdateCapacity();
+        _bytesPerSector.TextChanged += (_, _) => UpdateCapacity();
         _preallocate.Content = LocExtension.Get("Emulation.PreallocateFile");
-        var create = new StackPanel { Margin = new Thickness(8) };
-        create.Children.Add(StorageDialogUi.PathField(LocExtension.Get("Read.FileName"), _newName, null));
-        create.Children.Add(StorageDialogUi.PathField(LocExtension.Get("Read.Folder"), _newFolder, BrowseFolder));
-        create.Children.Add(StorageDialogUi.TwoColumnFields(
-            (LocExtension.Get("Emulation.HardDiskSize"), _newSize),
-            (LocExtension.Get("Explorer.Format"), new TextBox { Text = "HDF", IsReadOnly = true })));
-        create.Children.Add(_preallocate);
-        create.Children.Add(StorageDialogUi.Info(LocExtension.Get("Emulation.BlankHardDiskHint")));
+        _automaticGeometry.Content = LocExtension.Get("Emulation.AutomaticGeometry");
+
+        var customSize = new Grid();
+        customSize.ColumnDefinitions.Add(new ColumnDefinition());
+        customSize.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(90) });
+        customSize.Children.Add(_customSize);
+        Grid.SetColumn(_sizeUnit, 1);
+        _sizeUnit.Margin = new Thickness(6, 0, 0, 0);
+        customSize.Children.Add(_sizeUnit);
+        var image = StorageDialogUi.CompactFields(
+            (LocExtension.Get("Read.FileName"), _newName),
+            (LocExtension.Get("Explorer.Format"), _imageFormat),
+            (LocExtension.Get("Emulation.DiskSizeProfile"), _sizePreset),
+            (LocExtension.Get("Emulation.CustomSize"), customSize));
+        var destination = new TextBlock
+        {
+            Text = StoragePaths.AmigaHardDisksDirectory,
+            TextWrapping = TextWrapping.Wrap,
+            Margin = new Thickness(0, 6, 0, 0)
+        };
+        var allocation = new StackPanel();
+        allocation.Children.Add(_preallocate);
+        allocation.Children.Add(StorageDialogUi.Info(LocExtension.Get("Emulation.PreallocationHint")));
+        var createTop = StorageDialogUi.SideBySide(
+            StorageDialogUi.IconCard("\uE8B7", LocExtension.Get("Emulation.DiskImage"), image),
+            StorageDialogUi.IconCard("\uE838", LocExtension.Get("Emulation.DestinationFolder"), destination));
+        var create = new StackPanel { Margin = new Thickness(4) };
+        create.Children.Add(createTop);
+        create.Children.Add(StorageDialogUi.IconCard("\uECA5", LocExtension.Get("Emulation.Allocation"), allocation));
 
         _supportMode.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.UseExistingDisk"), Content = existing });
         _supportMode.Items.Add(new TabItem { Header = LocExtension.Get("Emulation.CreateHardDisk"), Content = create });
         _supportMode.SelectedIndex = string.IsNullOrWhiteSpace(currentPath) ? 1 : 0;
 
+        var geometry = StorageDialogUi.CompactFields(
+            (LocExtension.Get("Emulation.Cylinders"), _cylinders),
+            (LocExtension.Get("Emulation.Heads"), _heads),
+            (LocExtension.Get("Emulation.Sectors"), _sectors),
+            (LocExtension.Get("Emulation.BytesPerSector"), _bytesPerSector));
+        var geometryPanel = new StackPanel { Margin = new Thickness(8) };
+        geometryPanel.Children.Add(_automaticGeometry);
+        geometryPanel.Children.Add(geometry);
+        geometryPanel.Children.Add(_capacity);
         var advanced = new Expander
         {
             Header = LocExtension.Get("Emulation.AdvancedTab"),
-            Content = new TextBlock
-            {
-                Text = LocExtension.Get("Emulation.AutomaticDiskGeometry"),
-                Margin = new Thickness(8),
-                TextWrapping = TextWrapping.Wrap
-            },
+            Content = StorageDialogUi.IconCard("\uE9D2", LocExtension.Get("Emulation.DiskGeometry"), geometryPanel),
             Margin = new Thickness(0, 10, 0, 0)
         };
         var support = new StackPanel();
@@ -218,9 +281,10 @@ public sealed class HardDiskDriveConfigurationDialog : Window
 
         Content = StorageDialogUi.DialogLayout(
             StorageDialogUi.DialogHeader("\uEDA2", Title, $"{LocExtension.Get("Emulation.HardDiskDevice")} · {machineName}"),
-            StorageDialogUi.Card(LocExtension.Get("Emulation.StorageTab"), reader),
+            reader,
             StorageDialogUi.Card(LocExtension.Get("Emulation.AssociatedMedia"), support),
             footer);
+        UpdateDiskGeometry();
     }
 
     private void BrowseExisting()
@@ -232,12 +296,6 @@ public sealed class HardDiskDriveConfigurationDialog : Window
             InitialDirectory = StoragePaths.AmigaHardDisksDirectory
         };
         if (dialog.ShowDialog(this) == true) _existingPath.Text = dialog.FileName;
-    }
-
-    private void BrowseFolder()
-    {
-        var dialog = new OpenFolderDialog { Multiselect = false, InitialDirectory = _newFolder.Text };
-        if (dialog.ShowDialog(this) == true) _newFolder.Text = dialog.FolderName;
     }
 
     private void Accept()
@@ -258,14 +316,18 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         var fileName = Path.GetFileName(_newName.Text.Trim());
         if (string.IsNullOrWhiteSpace(fileName)) fileName = $"{_identifier.TrimEnd(':')}.hdf";
         if (!fileName.EndsWith(".hdf", StringComparison.OrdinalIgnoreCase)) fileName += ".hdf";
-        var folder = string.IsNullOrWhiteSpace(_newFolder.Text) ? StoragePaths.AmigaHardDisksDirectory : _newFolder.Text.Trim();
+        var folder = StoragePaths.AmigaHardDisksDirectory;
         Directory.CreateDirectory(folder);
         var path = Path.Combine(folder, fileName);
         if (File.Exists(path) && MessageBox.Show(this,
                 LocExtension.Get("Emulation.ReplaceExistingDisk", path).Replace("\\n", Environment.NewLine), Title,
                 MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
-        var size = _newSize.SelectedItem is int selected ? selected : 2048;
-        var byteSize = size * 1024L * 1024L;
+        if (!TryGetByteSize(out var byteSize))
+        {
+            MessageBox.Show(this, LocExtension.Get("Emulation.InvalidDiskSize"), Title,
+                MessageBoxButton.OK, MessageBoxImage.Warning);
+            return;
+        }
         using (var stream = new FileStream(path, new FileStreamOptions
                {
                    Mode = FileMode.Create,
@@ -276,6 +338,83 @@ public sealed class HardDiskDriveConfigurationDialog : Window
             stream.SetLength(byteSize);
         SupportPath = path;
         DialogResult = true;
+    }
+
+    private void UpdateDiskGeometry()
+    {
+        var custom = (_sizePreset.SelectedItem as DiskSizeChoice)?.SizeMiB is null;
+        _customSize.IsEnabled = custom;
+        _sizeUnit.IsEnabled = custom;
+        var automatic = _automaticGeometry.IsChecked == true;
+        _cylinders.IsEnabled = !automatic;
+        _heads.IsEnabled = !automatic;
+        _sectors.IsEnabled = !automatic;
+        _bytesPerSector.IsEnabled = !automatic;
+        if (automatic && TryGetSelectedSize(out var byteSize))
+        {
+            const long heads = 16, sectors = 63, bytesPerSector = 512;
+            _heads.Text = heads.ToString();
+            _sectors.Text = sectors.ToString();
+            _bytesPerSector.Text = bytesPerSector.ToString();
+            _cylinders.Text = Math.Max(1, (long)Math.Ceiling(byteSize / (double)(heads * sectors * bytesPerSector))).ToString();
+        }
+        UpdateCapacity();
+    }
+
+    private void UpdateCapacity()
+    {
+        _capacity.Text = TryGetByteSize(out var byteSize)
+            ? LocExtension.Get("Emulation.CalculatedCapacity", FormatCapacity(byteSize))
+            : LocExtension.Get("Emulation.InvalidDiskSize");
+    }
+
+    private bool TryGetByteSize(out long byteSize)
+    {
+        if (_automaticGeometry.IsChecked == true) return TryGetSelectedSize(out byteSize);
+        if (long.TryParse(_cylinders.Text, out var cylinders) && cylinders > 0 &&
+            long.TryParse(_heads.Text, out var heads) && heads > 0 &&
+            long.TryParse(_sectors.Text, out var sectors) && sectors > 0 &&
+            long.TryParse(_bytesPerSector.Text, out var bytesPerSector) && bytesPerSector > 0)
+        {
+            try
+            {
+                byteSize = checked(cylinders * heads * sectors * bytesPerSector);
+                return byteSize > 0;
+            }
+            catch (OverflowException) { }
+        }
+        byteSize = 0;
+        return false;
+    }
+
+    private bool TryGetSelectedSize(out long byteSize)
+    {
+        if ((_sizePreset.SelectedItem as DiskSizeChoice)?.SizeMiB is long preset)
+        {
+            byteSize = preset * 1024L * 1024L;
+            return true;
+        }
+        if (double.TryParse(_customSize.Text, System.Globalization.NumberStyles.Float,
+                System.Globalization.CultureInfo.CurrentCulture, out var custom) && custom > 0)
+        {
+            var multiplier = _sizeUnit.SelectedIndex == 1 ? 1024d * 1024d * 1024d : 1024d * 1024d;
+            if (custom <= long.MaxValue / multiplier)
+            {
+                byteSize = (long)Math.Round(custom * multiplier);
+                return byteSize > 0;
+            }
+        }
+        byteSize = 0;
+        return false;
+    }
+
+    private static string FormatCapacity(long bytes) => bytes >= 1024L * 1024L * 1024L
+        ? $"{bytes / (1024d * 1024d * 1024d):0.##} {LocExtension.Get("Emulation.UnitGiB")}"
+        : $"{bytes / (1024d * 1024d):0.##} {LocExtension.Get("Emulation.UnitMiB")}";
+
+    private sealed record DiskSizeChoice(long? SizeMiB, string Text)
+    {
+        public override string ToString() => Text;
     }
 }
 
@@ -369,6 +508,86 @@ internal static class StorageDialogUi
         var card = new Border { Child = panel, Margin = new Thickness(0, 0, 0, 12) };
         card.SetResourceReference(FrameworkElement.StyleProperty, "Card");
         return card;
+    }
+
+    public static Border IconCard(string icon, string title, UIElement content)
+    {
+        var header = new StackPanel { Orientation = Orientation.Horizontal };
+        var glyph = new TextBlock
+        {
+            Text = icon,
+            FontFamily = new FontFamily("Segoe MDL2 Assets"),
+            FontSize = 18,
+            VerticalAlignment = VerticalAlignment.Center,
+            Margin = new Thickness(0, 0, 9, 0)
+        };
+        glyph.SetResourceReference(TextBlock.ForegroundProperty, "AccentBrush");
+        header.Children.Add(glyph);
+        header.Children.Add(new TextBlock
+        {
+            Text = title,
+            FontWeight = FontWeights.SemiBold,
+            FontSize = 16,
+            VerticalAlignment = VerticalAlignment.Center
+        });
+        var panel = new StackPanel();
+        panel.Children.Add(header);
+        var separator = new Border { Height = 1, Margin = new Thickness(0, 10, 0, 8) };
+        separator.SetResourceReference(Border.BackgroundProperty, "BorderBrush");
+        panel.Children.Add(separator);
+        panel.Children.Add(content);
+        var card = new Border
+        {
+            Child = panel,
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(8),
+            Padding = new Thickness(14),
+            Margin = new Thickness(0, 0, 0, 10)
+        };
+        card.SetResourceReference(Border.BackgroundProperty, "CardBrush");
+        card.SetResourceReference(Border.BorderBrushProperty, "BorderBrush");
+        return card;
+    }
+
+    public static Grid SideBySide(FrameworkElement left, FrameworkElement right)
+    {
+        var grid = new Grid();
+        grid.ColumnDefinitions.Add(new ColumnDefinition());
+        grid.ColumnDefinitions.Add(new ColumnDefinition());
+        left.Margin = new Thickness(0, 0, 5, 10);
+        right.Margin = new Thickness(5, 0, 0, 10);
+        grid.Children.Add(left);
+        Grid.SetColumn(right, 1);
+        grid.Children.Add(right);
+        return grid;
+    }
+
+    public static Grid CompactFields(params (string Label, FrameworkElement Control)[] fields)
+    {
+        var grid = new Grid();
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(135) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition());
+        for (var index = 0; index < fields.Length; index++)
+        {
+            grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            var label = new TextBlock
+            {
+                Text = fields[index].Label,
+                VerticalAlignment = VerticalAlignment.Center,
+                TextWrapping = TextWrapping.Wrap,
+                Margin = new Thickness(0, 6, 10, 6)
+            };
+            Grid.SetRow(label, index);
+            grid.Children.Add(label);
+            var control = fields[index].Control;
+            control.Margin = new Thickness(0, 4, 0, 4);
+            control.MaxWidth = 310;
+            control.HorizontalAlignment = HorizontalAlignment.Stretch;
+            Grid.SetRow(control, index);
+            Grid.SetColumn(control, 1);
+            grid.Children.Add(control);
+        }
+        return grid;
     }
 
     public static Grid TwoColumnFields(params (string Label, FrameworkElement Control)[] fields)

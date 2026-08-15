@@ -182,4 +182,5 @@
   <data name="Engines.Internal" xml:space="preserve"><value>GW GUI 내부 엔진</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>선택한 엔진만 사용합니다. 작업을 수행할 수 없으면 GW GUI가 다른 엔진으로 자동 전환하지 않고 이를 알립니다.</value></data>
   <data name="Emulation.Model" xml:space="preserve"><value>모델</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>마우스 캡처</value></data>
 </root>

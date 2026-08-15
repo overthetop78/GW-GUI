@@ -182,4 +182,5 @@
   <data name="Engines.Internal" xml:space="preserve"><value>Εσωτερική μηχανή GW GUI</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>Η επιλεγμένη μηχανή χρησιμοποιείται αυστηρά. Αν δεν μπορεί να εκτελέσει τη λειτουργία, το GW GUI το αναφέρει χωρίς να χρησιμοποιήσει σιωπηρά την άλλη μηχανή.</value></data>
   <data name="Emulation.Model" xml:space="preserve"><value>Μοντέλο</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Δέσμευση ποντικιού</value></data>
 </root>

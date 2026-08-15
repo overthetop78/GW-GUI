@@ -1,5 +1,6 @@
 using System.Runtime.InteropServices;
 using GWGUI.Emulation;
+using Windows.Gaming.Input;
 
 namespace GWGUI.App.Services;
 
@@ -20,10 +21,34 @@ internal static class XInputControllerReader
 
     internal static IReadOnlyList<GameControllerDevice> GetConnectedDevices()
     {
+        var names = GetWindowsGamepadNames();
         var devices = new List<GameControllerDevice>();
         for (uint port = 0; port < 4; port++)
-            if (TryGetState(port, out _)) devices.Add(new GameControllerDevice($"xinput:{port}", $"XInput {port + 1}"));
+            if (TryGetState(port, out _))
+            {
+                var xinputName = $"XInput {port + 1}";
+                var name = port < names.Count && !string.IsNullOrWhiteSpace(names[(int)port])
+                    ? $"{names[(int)port]} · {xinputName}"
+                    : xinputName;
+                devices.Add(new GameControllerDevice($"xinput:{port}", name));
+            }
         return devices;
+    }
+
+    private static IReadOnlyList<string> GetWindowsGamepadNames()
+    {
+        try
+        {
+            return Gamepad.Gamepads
+                .Select(gamepad => RawGameController.FromGameController(gamepad)?.DisplayName)
+                .Where(name => !string.IsNullOrWhiteSpace(name))
+                .Select(name => name!)
+                .ToArray();
+        }
+        catch (Exception exception) when (exception is COMException or InvalidOperationException or TypeInitializationException)
+        {
+            return [];
+        }
     }
 
     private static bool TryGetState(uint port, out XInputState state)

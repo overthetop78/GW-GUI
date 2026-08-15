@@ -19,12 +19,6 @@ public sealed class OptionsEmulationSection : UserControl
 {
     private static readonly string[] ControllerButtons =
         ["B", "Y", "Select", "Start", "Up", "Down", "Left", "Right", "A", "X", "L", "R", "L2", "R2", "L3", "R3"];
-    private static readonly string[] ControllerSources = ControllerButtons
-        .Concat(new[] { "Mouse:Left", "Mouse:Right", "Mouse:Middle" })
-        .Concat(Enum.GetValues<GWGUI.Emulation.EmulationKey>()
-            .Where(key => key != GWGUI.Emulation.EmulationKey.Unknown)
-            .Select(key => $"Keyboard:{key}"))
-        .ToArray();
     private readonly AmigaConfigurationStore _store = new(StoragePaths.AmigaConfigurationsDirectory, StoragePaths.DataDirectory);
     private readonly ObservableCollection<ConfigurationItem> _configurations = [];
     private readonly ObservableCollection<FirmwareItem> _firmware = [];
@@ -99,11 +93,10 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly ComboBox _analogMouseDeadzone = new();
     private readonly ComboBox _analogMouseSpeed = new();
     private readonly ComboBox _releaseMouseKey = new() { ItemsSource = Enum.GetValues<GWGUI.Emulation.EmulationKey>().Where(key => key != GWGUI.Emulation.EmulationKey.Unknown) };
-    private readonly ComboBox[] _mouseActions = Enumerable.Range(0, 3).Select(_ => new ComboBox()).ToArray();
+    private readonly InputBindingEditor _amigaMouseEditor = new();
     private readonly ComboBox[] _controllerDevices = Enumerable.Range(0, 4).Select(_ => new ComboBox { DisplayMemberPath = nameof(GameControllerDevice.Name) }).ToArray();
-    private readonly ObservableCollection<ControllerMappingItem>[] _controllerMappings = Enumerable.Range(0, 4)
-        .Select(_ => new ObservableCollection<ControllerMappingItem>()).ToArray();
-    private readonly ObservableCollection<KeyMappingItem> _keyboardMappings = [];
+    private readonly InputBindingEditor[] _controllerEditors = Enumerable.Range(0, 4)
+        .Select(_ => new InputBindingEditor()).ToArray();
     private readonly CheckBox _keyboardPassThrough = new();
     private readonly InputBindingEditor _globalShortcutEditor = new();
     private readonly InputBindingEditor _amigaKeyboardEditor = new();
@@ -111,7 +104,6 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly ComboBox _turboButton = new();
     private readonly ComboBox _turboPulse = new();
     private readonly ComboBox _joyPortOrder = new();
-    private readonly DataGrid _keyboardGrid = new() { AutoGenerateColumns = false, CanUserAddRows = true, CanUserDeleteRows = true };
     private readonly TextBox _storageBaseFolder = new();
     private readonly TextBox _captureFolder = new();
     private readonly TextBox _stateFolder = new();
@@ -132,7 +124,6 @@ public sealed class OptionsEmulationSection : UserControl
 
     public OptionsEmulationSection()
     {
-        ConfigureGrids();
         _list.ItemsSource = _configurations;
         _list.DisplayMemberPath = nameof(ConfigurationItem.DisplayName);
         _list.SelectionChanged += ConfigurationSelected;
@@ -163,11 +154,23 @@ public sealed class OptionsEmulationSection : UserControl
         _storageDevices.AddRequested += (_, _) => AddStorageDevice();
         _storageDevices.ConfigureRequested += (_, args) => ConfigureStorageDevice(args.Device);
         _storageDevices.RemoveRequested += (_, args) => RemoveStorageDevice(args.Device);
-        _keyboardGrid.ItemsSource = _keyboardMappings;
         _globalShortcutEditor.ConfigurePresentation(LocExtension.Get("Emulation.InputActions"),
             LocExtension.Get("Emulation.SearchBinding"));
         _amigaKeyboardEditor.ConfigurePresentation(LocExtension.Get("Emulation.SystemKey", "Amiga"),
             LocExtension.Get("Emulation.SearchBinding"));
+        _amigaMouseEditor.ConfigurePresentation(LocExtension.Get("Emulation.EmulatedAction"),
+            LocExtension.Get("Emulation.SearchInputBinding"));
+        _amigaMouseEditor.ConfigureCaptureSources(
+            InputCaptureSources.Keyboard | InputCaptureSources.Mouse | InputCaptureSources.Controller,
+            prefixKeyboardSource: true);
+        foreach (var editor in _controllerEditors)
+        {
+            editor.ConfigurePresentation(LocExtension.Get("Emulation.EmulatedAction"),
+                LocExtension.Get("Emulation.SearchInputBinding"));
+            editor.ConfigureCaptureSources(
+                InputCaptureSources.Keyboard | InputCaptureSources.Mouse | InputCaptureSources.Controller,
+                prefixKeyboardSource: true);
+        }
         _globalShortcutEditor.BindingsChanged += async (_, _) => await SaveGlobalShortcutsAsync();
         _multiDrive.Content = LocExtension.Get("Emulation.MultiDrive");
         ConfigureOptionChoices();
@@ -184,7 +187,6 @@ public sealed class OptionsEmulationSection : UserControl
             controller.ItemsSource = controllerChoices;
             controller.SelectedIndex = 0;
         }
-        foreach (var action in _mouseActions) action.ItemsSource = ControllerSources;
 
         _familyTabs.Items.Add(new TabItem
         {
@@ -276,6 +278,16 @@ public sealed class OptionsEmulationSection : UserControl
             LocExtension.Get("Emulation.Key.RightAmiga"), "PageDown"));
         return definitions;
     }
+
+    private static IReadOnlyList<InputBindingDefinition> AmigaMouseDefinitions() =>
+    [
+        new(nameof(AmigaMouseAction.LeftButton), LocExtension.Get("Emulation.MouseLeftButton"), "Mouse:Left"),
+        new(nameof(AmigaMouseAction.RightButton), LocExtension.Get("Emulation.MouseRightButton"), "Mouse:Right"),
+        new(nameof(AmigaMouseAction.MiddleButton), LocExtension.Get("Emulation.MouseMiddleButton"), "Mouse:Middle")
+    ];
+
+    private static IReadOnlyList<InputBindingDefinition> AmigaControllerDefinitions() =>
+        ControllerButtons.Select(action => new InputBindingDefinition(action, action, action)).ToArray();
 
     private async Task SaveGlobalShortcutsAsync()
     {
@@ -690,15 +702,23 @@ public sealed class OptionsEmulationSection : UserControl
 
     private UIElement BuildMouseTab()
     {
+        _captureMouse.Content = LocExtension.Get("Emulation.CaptureMouse");
+        var capture = new StackPanel { Margin = new Thickness(12, 8, 12, 10) };
+        capture.Children.Add(_captureMouse);
+        capture.Children.Add(InformationBanner(new TextBlock
+        {
+            Text = LocExtension.Get("Emulation.KeyboardPriorityDescription"),
+            TextWrapping = TextWrapping.Wrap
+        }));
         var root = TwoColumnPage(
-            Card(FieldGrid((LocExtension.Get("Emulation.CaptureMouse"), _captureMouse),
-                (LocExtension.Get("Emulation.KeyboardPriorityHint"), new TextBlock
-                {
-                    Text = LocExtension.Get("Emulation.KeyboardPriorityDescription"), TextWrapping = TextWrapping.Wrap
-                })), LocExtension.Get("Emulation.CaptureMouse")),
-            Card(FieldGrid((LocExtension.Get("Emulation.PhysicalMouse"), _physicalMouse),
-                (LocExtension.Get("Emulation.MouseSpeed"), _mouseSpeed)), LocExtension.Get("Emulation.PhysicalMouse")));
-        root.Children.Add(FullWidthCard(BuildMouseMappings(), LocExtension.Get("Emulation.InputActions"), 1));
+            IconCard(capture, LocExtension.Get("Emulation.MouseCaptureTitle"), "\uE962"),
+            IconCard(CreateCompactForm(1,
+                    (LocExtension.Get("Emulation.PhysicalMouse"), _physicalMouse),
+                    (LocExtension.Get("Emulation.MouseSpeed"), _mouseSpeed)),
+                LocExtension.Get("Emulation.PhysicalMouse"), "\uE962"));
+        root.Children.Add(FullWidthCard(
+            InputBindingCard(_amigaMouseEditor, LocExtension.Get("Emulation.MouseActions"),
+                LocExtension.Get("Emulation.InputCaptureHint")), string.Empty, 1));
         return ScrollPage(root);
     }
 
@@ -707,72 +727,54 @@ public sealed class OptionsEmulationSection : UserControl
         var root = new Grid { Margin = new Thickness(12) };
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        root.RowDefinitions.Add(new RowDefinition());
-        var detect = new WrapPanel { Margin = new Thickness(8) };
+        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        var detect = new Grid { Margin = new Thickness(12, 8, 12, 10) };
+        detect.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        detect.ColumnDefinitions.Add(new ColumnDefinition());
         AddButton(detect, "Emulation.DetectControllers", DetectControllersAsync);
+        Grid.SetColumn(_detectedControllers, 1);
+        _detectedControllers.Margin = new Thickness(14, 0, 0, 0);
         detect.Children.Add(_detectedControllers);
-        root.Children.Add(Card(detect, LocExtension.Get("Emulation.SharedDevices")));
+        root.Children.Add(IconCard(detect, LocExtension.Get("Emulation.DetectedControllers"), "\uE7FC"));
 
         var ports = new Grid { Margin = new Thickness(0, 10, 0, 10) };
         ports.ColumnDefinitions.Add(new ColumnDefinition());
         ports.ColumnDefinitions.Add(new ColumnDefinition());
         for (var port = 0; port < 2; port++)
         {
-            var portLabel = $"{LocExtension.Get("Emulation.ControllersTab")} {port + 1}";
+            var portLabel = LocExtension.Get("Emulation.ControllerPort", port + 1);
             var form = FieldGrid(
-                (portLabel, _controllers[port]),
+                (LocExtension.Get("Emulation.ControllerType"), _controllers[port]),
                 (LocExtension.Get("Emulation.ControllerDevice", port + 1), _controllerDevices[port]));
-            var card = Card(form, portLabel);
+            var card = IconCard(form, portLabel, "\uE7FC");
             card.Margin = new Thickness(port == 0 ? 0 : 5, 0, port == 0 ? 5 : 0, 0);
             Grid.SetColumn(card, port); ports.Children.Add(card);
         }
         Grid.SetRow(ports, 1); root.Children.Add(ports);
 
-        var lower = new Grid();
-        lower.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
-        lower.ColumnDefinitions.Add(new ColumnDefinition());
-        lower.Children.Add(Card(BuildControllerMappingGrid(0), LocExtension.Get("Emulation.InputActions")));
-        var behavior = FieldGrid(
+        var mappingTabs = new TabControl { Margin = new Thickness(0, 0, 8, 0), MinHeight = 300 };
+        for (var port = 0; port < 2; port++)
+            mappingTabs.Items.Add(new TabItem
+            {
+                Header = LocExtension.Get("Emulation.ControllerPort", port + 1),
+                Content = _controllerEditors[port]
+            });
+        var behavior = CreateCompactForm(1,
             (LocExtension.Get("Emulation.AnalogMouseDeadzone"), _analogMouseDeadzone),
             (LocExtension.Get("Emulation.AnalogMouseSpeed"), _analogMouseSpeed),
             (LocExtension.Get("Emulation.TurboFire"), _turboFire),
             (LocExtension.Get("Emulation.TurboButton"), _turboButton),
             (LocExtension.Get("Emulation.TurboPulse"), _turboPulse));
-        var behaviorCard = Card(behavior, LocExtension.Get("Emulation.InputBehavior"));
-        behaviorCard.Margin = new Thickness(10, 0, 0, 0); Grid.SetColumn(behaviorCard, 1); lower.Children.Add(behaviorCard);
+        var lower = new Grid();
+        lower.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
+        lower.ColumnDefinitions.Add(new ColumnDefinition());
+        lower.Children.Add(ActionCard(mappingTabs, LocExtension.Get("Emulation.ControllerMappings")));
+        var behaviorCard = IconCard(behavior, LocExtension.Get("Emulation.InputBehavior"), "\uE713");
+        behaviorCard.Margin = new Thickness(10, 0, 0, 0);
+        Grid.SetColumn(behaviorCard, 1);
+        lower.Children.Add(behaviorCard);
         Grid.SetRow(lower, 2); root.Children.Add(lower);
         return ScrollPage(root);
-    }
-
-    private DataGrid BuildControllerMappingGrid(int port)
-    {
-        var grid = new DataGrid
-        {
-            AutoGenerateColumns = false,
-            CanUserAddRows = false,
-            CanUserDeleteRows = false,
-            ItemsSource = _controllerMappings[port],
-            MinHeight = 190,
-            Margin = new Thickness(12, 0, 12, 12)
-        };
-        grid.Columns.Add(new DataGridTextColumn
-        {
-            Header = LocExtension.Get("Emulation.EmulatedAction"),
-            Binding = new Binding(nameof(ControllerMappingItem.Action)),
-            IsReadOnly = true,
-            Width = new DataGridLength(1, DataGridLengthUnitType.Star)
-        });
-        grid.Columns.Add(new DataGridComboBoxColumn
-        {
-            Header = LocExtension.Get("Emulation.PhysicalControl"),
-            ItemsSource = ControllerSources,
-            SelectedItemBinding = new Binding(nameof(ControllerMappingItem.PhysicalButton))
-            {
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-            },
-            Width = new DataGridLength(1, DataGridLengthUnitType.Star)
-        });
-        return grid;
     }
 
     private Task DetectControllersAsync()
@@ -1100,15 +1102,6 @@ public sealed class OptionsEmulationSection : UserControl
 
     private static int SelectedCount(ComboBox comboBox) => comboBox.SelectedItem is int value ? value : 0;
 
-    private void ValidateKeyboardMappings()
-    {
-        var duplicates = _keyboardMappings.Where(item => !string.IsNullOrWhiteSpace(item.HostBinding))
-            .GroupBy(item => item.HostBinding.Trim(), StringComparer.OrdinalIgnoreCase).Where(group => group.Count() > 1)
-            .Select(group => group.Key).ToHashSet();
-        foreach (var item in _keyboardMappings) item.HasConflict = duplicates.Contains(item.HostBinding.Trim());
-        _keyboardGrid.Items.Refresh();
-    }
-
     private static Grid CreateForm(int rows)
     {
         var form = new Grid { Margin = new Thickness(12) };
@@ -1405,76 +1398,6 @@ public sealed class OptionsEmulationSection : UserControl
         return null;
     }
 
-    private UIElement BuildMouseMappings()
-    {
-        var grid = new Grid { Margin = new Thickness(12, 6, 12, 12) };
-        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(210) });
-        grid.ColumnDefinitions.Add(new ColumnDefinition());
-        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-        var labels = new[]
-        {
-            LocExtension.Get("Emulation.MouseLeftButton"),
-            LocExtension.Get("Emulation.MouseRightButton"),
-            LocExtension.Get("Emulation.MouseMiddleButton")
-        };
-        for (var index = 0; index < labels.Length; index++)
-        {
-            grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-            var label = new TextBlock { Text = labels[index], Margin = new Thickness(0, 8, 10, 8), VerticalAlignment = VerticalAlignment.Center };
-            Grid.SetRow(label, index); grid.Children.Add(label);
-            var source = _mouseActions[index];
-            source.IsEditable = true;
-            Grid.SetRow(source, index); Grid.SetColumn(source, 1); grid.Children.Add(source);
-            var assign = new Button
-            {
-                Content = LocExtension.Get("Emulation.AssignInput"), MinWidth = 110,
-                Margin = new Thickness(8, 4, 0, 4), Tag = source
-            };
-            assign.Click += BeginSourceAssignment;
-            assign.PreviewKeyDown += CaptureSourceKey;
-            assign.PreviewMouseDown += CaptureSourceMouse;
-            Grid.SetRow(assign, index); Grid.SetColumn(assign, 2); grid.Children.Add(assign);
-        }
-        return grid;
-    }
-
-    private void BeginSourceAssignment(object sender, RoutedEventArgs e)
-    {
-        if (sender is not Button button) return;
-        button.Content = LocExtension.Get("Emulation.PressInput");
-        button.Focus();
-    }
-
-    private void CaptureSourceKey(object sender, KeyEventArgs e)
-    {
-        if (sender is not Button { Tag: ComboBox target } button) return;
-        var key = e.Key == Key.System ? e.SystemKey : e.Key;
-        if (key is Key.LeftCtrl or Key.RightCtrl or Key.LeftShift or Key.RightShift or Key.LeftAlt or Key.RightAlt) return;
-        var parts = new List<string>();
-        if (Keyboard.Modifiers.HasFlag(ModifierKeys.Control)) parts.Add("Ctrl");
-        if (Keyboard.Modifiers.HasFlag(ModifierKeys.Shift)) parts.Add("Shift");
-        if (Keyboard.Modifiers.HasFlag(ModifierKeys.Alt)) parts.Add("Alt");
-        parts.Add(key.ToString());
-        target.Text = $"Keyboard:{string.Join("+", parts)}";
-        button.Content = LocExtension.Get("Emulation.AssignInput");
-        e.Handled = true;
-    }
-
-    private void CaptureSourceMouse(object sender, MouseButtonEventArgs e)
-    {
-        if (sender is not Button { Tag: ComboBox target } button || e.ChangedButton == MouseButton.Left) return;
-        target.Text = $"Mouse:{e.ChangedButton}";
-        button.Content = LocExtension.Get("Emulation.AssignInput");
-        e.Handled = true;
-    }
-
-    private Task ResetKeyboardMappings()
-    {
-        foreach (var mapping in _keyboardMappings) mapping.HostBinding = mapping.AmigaKey;
-        ValidateKeyboardMappings();
-        return Task.CompletedTask;
-    }
-
     private static Grid CreateCompactForm(int fieldColumns, params (string Label, FrameworkElement Control)[] fields)
     {
         var form = new Grid { Margin = new Thickness(10) };
@@ -1653,63 +1576,6 @@ public sealed class OptionsEmulationSection : UserControl
         card.SetResourceReference(BackgroundProperty, "CardBrush");
         card.SetResourceReference(BorderBrushProperty, "BorderBrush");
         return card;
-    }
-
-    private void ConfigureGrids()
-    {
-        _keyboardGrid.CanUserAddRows = false;
-        _keyboardGrid.CanUserDeleteRows = false;
-        _keyboardGrid.Columns.Add(new DataGridTextColumn
-        {
-            Header = LocExtension.Get("Emulation.SystemKey", "Amiga"),
-            Binding = new Binding(nameof(KeyMappingItem.AmigaKey)),
-            IsReadOnly = true,
-            Width = new DataGridLength(1, DataGridLengthUnitType.Star)
-        });
-        _keyboardGrid.Columns.Add(new DataGridComboBoxColumn
-        {
-            Header = LocExtension.Get("Emulation.HostKey"),
-            ItemsSource = Enum.GetValues<GWGUI.Emulation.EmulationKey>().Select(key => key.ToString()),
-            SelectedItemBinding = new Binding(nameof(KeyMappingItem.HostBinding)) { UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged },
-            Width = new DataGridLength(1, DataGridLengthUnitType.Star)
-        });
-        var assignFactory = new FrameworkElementFactory(typeof(Button));
-        assignFactory.SetValue(ContentControl.ContentProperty, LocExtension.Get("Emulation.AssignInput"));
-        assignFactory.SetValue(FrameworkElement.MarginProperty, new Thickness(4));
-        assignFactory.AddHandler(Button.ClickEvent, new RoutedEventHandler(BeginKeyboardAssignment));
-        assignFactory.AddHandler(UIElement.PreviewKeyDownEvent, new KeyEventHandler(CaptureKeyboardAssignment));
-        _keyboardGrid.Columns.Add(new DataGridTemplateColumn
-        {
-            Header = LocExtension.Get("Emulation.InputActions"),
-            CellTemplate = new DataTemplate { VisualTree = assignFactory }, Width = DataGridLength.Auto
-        });
-    }
-
-    private void BeginKeyboardAssignment(object sender, RoutedEventArgs e)
-    {
-        if (sender is Button button)
-        {
-            button.Content = LocExtension.Get("Emulation.PressInput");
-            button.Focus();
-        }
-    }
-
-    private void CaptureKeyboardAssignment(object sender, KeyEventArgs e)
-    {
-        if (sender is not Button { DataContext: KeyMappingItem mapping } button) return;
-        var key = e.Key == Key.System ? e.SystemKey : e.Key;
-        if (key is Key.LeftCtrl or Key.RightCtrl or Key.LeftShift or Key.RightShift or Key.LeftAlt or Key.RightAlt or Key.LWin or Key.RWin)
-            return;
-        var parts = new List<string>();
-        if (Keyboard.Modifiers.HasFlag(ModifierKeys.Control)) parts.Add("Ctrl");
-        if (Keyboard.Modifiers.HasFlag(ModifierKeys.Shift)) parts.Add("Shift");
-        if (Keyboard.Modifiers.HasFlag(ModifierKeys.Alt)) parts.Add("Alt");
-        if (Keyboard.Modifiers.HasFlag(ModifierKeys.Windows)) parts.Add("Win");
-        parts.Add(key.ToString());
-        mapping.HostBinding = string.Join("+", parts);
-        button.Content = LocExtension.Get("Emulation.AssignInput");
-        ValidateKeyboardMappings();
-        e.Handled = true;
     }
 
     private void ApplyModelDefaults()
@@ -2355,19 +2221,28 @@ public sealed class OptionsEmulationSection : UserControl
         SetOption(_turboPulse, configuration, "puae_turbo_pulse", "6");
         SetOption(_joyPortOrder, configuration, "puae_joyport_order", "1234");
         var mouseMappings = configuration.Input?.MouseButtonMappings;
-        SelectValue(_mouseActions[0], mouseMappings?.FirstOrDefault(item => item.Value == AmigaMouseAction.LeftButton).Key ?? "Mouse:Left");
-        SelectValue(_mouseActions[1], mouseMappings?.FirstOrDefault(item => item.Value == AmigaMouseAction.RightButton).Key ?? "Mouse:Right");
-        SelectValue(_mouseActions[2], mouseMappings?.FirstOrDefault(item => item.Value == AmigaMouseAction.MiddleButton).Key ?? "Mouse:Middle");
+        var mouseValues = Enum.GetValues<AmigaMouseAction>().ToDictionary(
+            action => action.ToString(),
+            action => mouseMappings?.FirstOrDefault(item => item.Value == action).Key ?? action switch
+            {
+                AmigaMouseAction.LeftButton => "Mouse:Left",
+                AmigaMouseAction.RightButton => "Mouse:Right",
+                _ => "Mouse:Middle"
+            }, StringComparer.OrdinalIgnoreCase);
+        _amigaMouseEditor.SetRows(AmigaMouseDefinitions(), mouseValues);
+        _amigaMouseEditor.SetReservedBindings(_appSettings is null
+            ? Array.Empty<string>()
+            : _appSettings.EmulationShortcuts.Values);
         for (var port = 0; port < _controllerDevices.Length; port++)
         {
             var binding = configuration.Input?.ControllerBindings?.FirstOrDefault(item => item.Port == port);
-            _controllerMappings[port].Clear();
-            foreach (var action in ControllerButtons)
-                _controllerMappings[port].Add(new ControllerMappingItem
-                {
-                    Action = action,
-                    PhysicalButton = binding?.ButtonMappings?.FirstOrDefault(item => item.Value == action).Key ?? action
-                });
+            var values = ControllerButtons.ToDictionary(action => action,
+                action => binding?.ButtonMappings?.FirstOrDefault(item => item.Value == action).Key ?? action,
+                StringComparer.OrdinalIgnoreCase);
+            _controllerEditors[port].SetRows(AmigaControllerDefinitions(), values);
+            _controllerEditors[port].SetReservedBindings(_appSettings is null
+                ? Array.Empty<string>()
+                : _appSettings.EmulationShortcuts.Values);
             _controllerDevices[port].Tag = binding?.DeviceId;
         }
         _ = DetectControllersAsync();
@@ -2397,7 +2272,7 @@ public sealed class OptionsEmulationSection : UserControl
         ValidateOptionalFile(_kickstart.Text, required: true);
         if (supportsExtendedRom) ValidateOptionalFile(_extendedRom.Text);
         if (requiresRomKey) ValidateOptionalFile(_romKey.Text);
-        if (_amigaKeyboardEditor.HasErrors)
+        if (_amigaKeyboardEditor.HasErrors || _amigaMouseEditor.HasErrors || _controllerEditors.Any(editor => editor.HasErrors))
             throw new InvalidOperationException(LocExtension.Get("Emulation.DuplicateKeyboardMapping"));
         var options = _options.Where(item => !string.IsNullOrWhiteSpace(item.Key))
             .ToDictionary(item => item.Key.Trim(), item => item.Value?.Trim() ?? string.Empty, StringComparer.Ordinal);
@@ -2477,19 +2352,16 @@ public sealed class OptionsEmulationSection : UserControl
                 item => Enum.Parse<GWGUI.Emulation.EmulationKey>(item.Value, true), StringComparer.OrdinalIgnoreCase);
         var controllerBindings = Enumerable.Range(0, 4).Select(port =>
         {
-            var mappings = _controllerMappings[port].Where(item => !string.IsNullOrWhiteSpace(item.PhysicalButton))
-                .ToDictionary(item => item.PhysicalButton, item => item.Action, StringComparer.OrdinalIgnoreCase);
+            var mappings = _controllerEditors[port].Rows.Where(item => !string.IsNullOrWhiteSpace(item.Binding))
+                .ToDictionary(item => item.Binding.Trim(), item => item.Id, StringComparer.OrdinalIgnoreCase);
             return new AmigaControllerBinding(port,
                 SelectedChoice(_controllers[port], AmigaControllerType.Automatic),
                 (_controllerDevices[port].SelectedItem as GameControllerDevice)?.Id,
                 mappings);
         }).ToArray();
-        var mouseMappings = new Dictionary<string, AmigaMouseAction>(StringComparer.OrdinalIgnoreCase)
-        {
-            [SelectedText(_mouseActions[0])] = AmigaMouseAction.LeftButton,
-            [SelectedText(_mouseActions[1])] = AmigaMouseAction.RightButton,
-            [SelectedText(_mouseActions[2])] = AmigaMouseAction.MiddleButton
-        };
+        var mouseMappings = _amigaMouseEditor.Rows.Where(item => !string.IsNullOrWhiteSpace(item.Binding))
+            .ToDictionary(item => item.Binding.Trim(), item => Enum.Parse<AmigaMouseAction>(item.Id),
+                StringComparer.OrdinalIgnoreCase);
         var input = new AmigaInputConfiguration(keyboard,
             string.IsNullOrWhiteSpace(_mouseDevice.Text) ? null : _mouseDevice.Text.Trim(),
             _captureMouse.IsChecked == true, controllerBindings, mouseMappings,
@@ -2607,19 +2479,6 @@ public sealed class OptionsEmulationSection : UserControl
         public string Label { get; set; } = string.Empty;
         public bool IsReadOnly { get; set; }
         public AmigaMediaKind Kind { get; set; }
-    }
-
-    public sealed class KeyMappingItem
-    {
-        public string AmigaKey { get; set; } = string.Empty;
-        public string HostBinding { get; set; } = string.Empty;
-        public bool HasConflict { get; set; }
-    }
-
-    public sealed class ControllerMappingItem
-    {
-        public string Action { get; set; } = string.Empty;
-        public string PhysicalButton { get; set; } = string.Empty;
     }
 
     private sealed record LocalizedChoice<T>(T Value, string Text) where T : struct, Enum

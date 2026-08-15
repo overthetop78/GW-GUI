@@ -182,4 +182,5 @@
   <data name="Engines.Internal" xml:space="preserve"><value>Motor intern GW GUI</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>Motorul selectat este utilizat strict. Dacă nu poate efectua operația, GW GUI raportează acest lucru fără a utiliza în tăcere celălalt motor.</value></data>
   <data name="Emulation.Model" xml:space="preserve"><value>Model</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Capturează mouse-ul</value></data>
 </root>

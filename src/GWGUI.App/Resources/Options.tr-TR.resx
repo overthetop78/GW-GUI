@@ -182,4 +182,5 @@
   <data name="Engines.Internal" xml:space="preserve"><value>Dahili GW GUI motoru</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>Seçilen motor kesin olarak kullanılır. İşlemi yapamazsa GW GUI diğer motoru sessizce kullanmak yerine bunu bildirir.</value></data>
   <data name="Emulation.Model" xml:space="preserve"><value>Model</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Fareyi yakala</value></data>
 </root>

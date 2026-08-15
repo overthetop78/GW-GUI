@@ -182,4 +182,5 @@
   <data name="Engines.Internal" xml:space="preserve"><value>GW GUI 內部引擎</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>嚴格使用所選引擎。如果無法執行操作，GW GUI 會回報，而不會靜默改用另一個引擎。</value></data>
   <data name="Emulation.Model" xml:space="preserve"><value>型號</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>擷取滑鼠</value></data>
 </root>
