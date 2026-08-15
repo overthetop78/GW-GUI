@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -226,6 +227,7 @@ public sealed class AmigaMachineView : UserControl
         var border = new Border
         {
             Child = panel,
+            Height = 32,
             BorderThickness = new Thickness(1),
             CornerRadius = new CornerRadius(6),
             Padding = new Thickness(2, 1, 2, 1),
@@ -243,11 +245,16 @@ public sealed class AmigaMachineView : UserControl
     {
         var content = new StackPanel { Orientation = Orientation.Horizontal };
         if (indicator is not null) content.Children.Add(indicator);
-        content.Children.Add(new TextBlock
+        var icon = new TextBlock
         {
             Text = glyph, FontFamily = new FontFamily("Segoe MDL2 Assets"), FontSize = 17,
             HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center
+        };
+        icon.SetBinding(TextBlock.ForegroundProperty, new Binding(nameof(Button.Foreground))
+        {
+            RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(Button), 1)
         });
+        content.Children.Add(icon);
         var button = new Button
         {
             Content = content, ToolTip = LocExtension.Get(tooltipKey), Width = indicator is null ? 28 : 34,

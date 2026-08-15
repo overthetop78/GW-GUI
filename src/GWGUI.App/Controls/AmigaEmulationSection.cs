@@ -51,9 +51,9 @@ public sealed class AmigaEmulationSection : UserControl
         selectorCard.SetResourceReference(StyleProperty, "Card");
         root.Children.Add(selectorCard);
 
-        _machines.Items.Add(new TabItem
+        var welcomeTab = new TabItem
         {
-            Header = LocExtension.Get("Emulation.WelcomeTab"),
+            Header = new MainTabHeader { Icon = "\uE80F", Text = LocExtension.Get("Emulation.WelcomeTab") },
             Content = new TextBlock
             {
                 Text = LocExtension.Get("Emulation.WelcomeText"),
@@ -64,8 +64,11 @@ public sealed class AmigaEmulationSection : UserControl
                 TextAlignment = TextAlignment.Center,
                 FontSize = 18,
                 Margin = new Thickness(32)
-            }
-        });
+            },
+            Padding = new Thickness(18, 9, 18, 9)
+        };
+        welcomeTab.SetResourceReference(StyleProperty, "MainTabItemStyle");
+        _machines.Items.Add(welcomeTab);
         Grid.SetRow(_machines, 1);
         root.Children.Add(_machines);
         Content = root;
@@ -112,7 +115,8 @@ public sealed class AmigaEmulationSection : UserControl
                 _settings.EmulationShortcuts,
                 Path.Combine(_settings.EmulationStateFolder, $"amiga-{selected.Configuration.Id:N}.gwas"),
                 _settings.EmulationCaptureFolder);
-            var tab = new TabItem { Content = view };
+            var tab = new TabItem { Content = view, Padding = new Thickness(18, 9, 14, 9) };
+            tab.SetResourceReference(StyleProperty, "MainTabItemStyle");
             tab.Header = CreateMachineTabHeader(selected.DisplayName,
                 () => CloseMachineAsync(selected.Configuration.Id, tab, view));
             _openMachines.Add(selected.Configuration.Id, tab);
@@ -149,6 +153,11 @@ public sealed class AmigaEmulationSection : UserControl
     private static FrameworkElement CreateMachineTabHeader(string title, Func<Task> close)
     {
         var panel = new StackPanel { Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Center };
+        panel.Children.Add(new TextBlock
+        {
+            Text = "\uE7FC", FontFamily = new System.Windows.Media.FontFamily("Segoe MDL2 Assets"), FontSize = 16,
+            VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 7, 0)
+        });
         panel.Children.Add(new TextBlock
         {
             Text = title, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 7, 0)
