@@ -2,6 +2,7 @@ using System.IO;
 using System.Net.Http;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using GWGUI.App.Localization;
 using GWGUI.App.Services;
 using GWGUI.Emulation.Amiga;
@@ -12,75 +13,153 @@ public sealed class AmigaCoreManagementSection : UserControl
 {
     private static readonly HttpClient Client = new();
     private readonly AmigaCoreReleaseService _service = new(Client, StoragePaths.AmigaCoreDirectory);
-    private readonly TextBlock _installed = new() { TextWrapping = TextWrapping.Wrap };
-    private readonly ComboBox _versions = new() { Visibility = Visibility.Collapsed, MinWidth = 360 };
+    private readonly TextBlock _installed = new() { TextTrimming = TextTrimming.CharacterEllipsis };
+    private readonly Border _installedBadge = new() { CornerRadius = new CornerRadius(6), BorderThickness = new Thickness(1) };
+    private readonly ComboBox _versions = new() { MinWidth = 320 };
     private readonly Button _search = new() { MinWidth = 130 };
     private readonly Button _download = new() { MinWidth = 160, Visibility = Visibility.Collapsed };
     private readonly ProgressBar _progress = new() { Height = 8, Minimum = 0, Maximum = 1, Visibility = Visibility.Collapsed };
-    private readonly TextBlock _status = new() { TextWrapping = TextWrapping.Wrap };
-    private readonly TextBlock _requiredVersion = new() { TextWrapping = TextWrapping.Wrap };
-    private readonly TextBlock _latestVersion = new() { TextWrapping = TextWrapping.Wrap };
-    private readonly TextBlock _foundCount = new() { TextWrapping = TextWrapping.Wrap };
-    private readonly Grid _availableVersions = new() { Visibility = Visibility.Collapsed };
-    private readonly Grid _releaseDetails = new() { Visibility = Visibility.Collapsed };
+    private readonly TextBlock _status = new() { TextTrimming = TextTrimming.CharacterEllipsis };
+    private readonly TextBlock _requiredVersion = new() { TextTrimming = TextTrimming.CharacterEllipsis };
+    private readonly TextBlock _latestVersion = new() { TextTrimming = TextTrimming.CharacterEllipsis };
+    private readonly TextBlock _foundCount = new() { TextTrimming = TextTrimming.CharacterEllipsis };
+    private readonly Grid _results = new() { Visibility = Visibility.Hidden };
+    private readonly TextBlock _prompt = new() { TextWrapping = TextWrapping.Wrap };
+    private readonly Border _promptBanner = new()
+    {
+        CornerRadius = new CornerRadius(6), BorderThickness = new Thickness(1),
+        Padding = new Thickness(14, 10, 14, 10), HorizontalAlignment = HorizontalAlignment.Center,
+        VerticalAlignment = VerticalAlignment.Center
+    };
 
     public AmigaCoreManagementSection()
     {
-        _search.Content = L("Emulation.CoreSearch");
-        _download.Content = L("Emulation.CoreDownload");
+        _search.Content = ButtonContent("\uE721", L("Emulation.CoreSearch"));
+        _download.Content = ButtonContent("\uE896", L("Emulation.CoreDownload"));
 
         var panel = new Grid { VerticalAlignment = VerticalAlignment.Top };
-        panel.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        panel.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        panel.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        panel.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        panel.RowDefinitions.Add(new RowDefinition { Height = new GridLength(62) });
+        panel.RowDefinitions.Add(new RowDefinition { Height = new GridLength(106) });
+        panel.RowDefinitions.Add(new RowDefinition { Height = new GridLength(18) });
 
-        var installedRow = new Grid { Margin = new Thickness(8, 8, 8, 6) };
-        installedRow.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(230) });
+        var installedRow = new Grid { Margin = new Thickness(16, 10, 16, 6) };
+        installedRow.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         installedRow.ColumnDefinitions.Add(new ColumnDefinition());
         installedRow.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-        installedRow.Children.Add(new TextBlock
+        var title = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 0, 24, 0) };
+        title.Children.Add(new TextBlock
         {
-            Text = L("Emulation.CoreProjectVersion"), FontWeight = FontWeights.SemiBold,
-            VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 12, 0)
+            Text = "\uE7FC", FontFamily = new FontFamily("Segoe MDL2 Assets"), FontSize = 18,
+            VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 8, 0)
         });
+        title.Children.Add(new TextBlock
+        {
+            Text = L("Emulation.Emulator"), FontWeight = FontWeights.SemiBold,
+            VerticalAlignment = VerticalAlignment.Center
+        });
+        installedRow.Children.Add(title);
+        var installedPanel = new StackPanel
+        {
+            Margin = new Thickness(0),
+            VerticalAlignment = VerticalAlignment.Center
+        };
+        var installedLabel = new TextBlock
+        {
+            Text = L("Emulation.CoreProjectVersion"), FontSize = 11,
+            Margin = new Thickness(0, 0, 0, 2)
+        };
+        installedLabel.SetResourceReference(ForegroundProperty, "MutedTextBrush");
+        installedPanel.Children.Add(installedLabel);
         _installed.VerticalAlignment = VerticalAlignment.Center;
-        Grid.SetColumn(_installed, 1);
-        installedRow.Children.Add(_installed);
+        _installed.FontWeight = FontWeights.SemiBold;
+        installedPanel.Children.Add(_installed);
+        _installedBadge.Child = installedPanel;
+        _installedBadge.Padding = new Thickness(12, 6, 12, 6);
+        _installedBadge.SetResourceReference(BackgroundProperty, "WindowBrush");
+        _installedBadge.SetResourceReference(BorderBrushProperty, "BorderBrush");
+        Grid.SetColumn(_installedBadge, 1);
+        installedRow.Children.Add(_installedBadge);
         _search.Margin = new Thickness(12, 0, 0, 0);
         Grid.SetColumn(_search, 2);
         installedRow.Children.Add(_search);
         panel.Children.Add(installedRow);
 
-        _availableVersions.ColumnDefinitions.Add(new ColumnDefinition());
-        _availableVersions.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-        _availableVersions.Margin = new Thickness(8, 6, 8, 6);
+        var resultHost = new Grid { Margin = new Thickness(16, 4, 16, 2) };
+        _prompt.Text = L("Emulation.CoreSearchPrompt");
+        _prompt.VerticalAlignment = VerticalAlignment.Center;
+        _prompt.SetResourceReference(ForegroundProperty, "MutedTextBrush");
+        var promptContent = new StackPanel { Orientation = Orientation.Horizontal };
+        var promptIcon = new TextBlock
+        {
+            Text = "\uE946", FontFamily = new FontFamily("Segoe MDL2 Assets"), FontSize = 17,
+            VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 9, 0)
+        };
+        promptIcon.SetResourceReference(ForegroundProperty, "AccentBrush");
+        promptContent.Children.Add(promptIcon);
+        promptContent.Children.Add(_prompt);
+        _promptBanner.Child = promptContent;
+        _promptBanner.SetResourceReference(BackgroundProperty, "WindowBrush");
+        _promptBanner.SetResourceReference(BorderBrushProperty, "BorderBrush");
+        resultHost.Children.Add(_promptBanner);
+
+        _results.RowDefinitions.Add(new RowDefinition { Height = new GridLength(48) });
+        _results.RowDefinitions.Add(new RowDefinition());
+        var availableVersions = new Grid();
+        availableVersions.ColumnDefinitions.Add(new ColumnDefinition());
+        availableVersions.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         _versions.Margin = new Thickness(0, 0, 12, 0);
-        _availableVersions.Children.Add(_versions);
+        availableVersions.Children.Add(_versions);
         Grid.SetColumn(_download, 1);
-        _availableVersions.Children.Add(_download);
-        Grid.SetRow(_availableVersions, 1);
-        panel.Children.Add(_availableVersions);
+        availableVersions.Children.Add(_download);
+        _results.Children.Add(availableVersions);
 
-        var details = _releaseDetails;
-        details.Margin = new Thickness(8, 6, 8, 6);
+        var details = new Grid { Margin = new Thickness(0, 7, 0, 0) };
         details.ColumnDefinitions.Add(new ColumnDefinition());
         details.ColumnDefinitions.Add(new ColumnDefinition());
-        details.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        details.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        AddDetail(details, 0, L("Emulation.CoreRequiredVersion"), _requiredVersion);
-        AddDetail(details, 1, L("Emulation.CoreLatestVersion"), _latestVersion);
-        Grid.SetRow(_foundCount, 1);
-        Grid.SetColumnSpan(_foundCount, 2);
-        _foundCount.Margin = new Thickness(0, 8, 0, 0);
-        details.Children.Add(_foundCount);
-        Grid.SetRow(details, 2);
-        panel.Children.Add(details);
+        details.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(220) });
+        details.Children.Add(DetailTile(L("Emulation.CoreRequiredVersion"), _requiredVersion,
+            new Thickness(0, 0, 5, 0)));
+        var latestTile = DetailTile(L("Emulation.CoreLatestVersion"), _latestVersion,
+            new Thickness(5, 0, 5, 0));
+        Grid.SetColumn(latestTile, 1);
+        details.Children.Add(latestTile);
+        _foundCount.VerticalAlignment = VerticalAlignment.Center;
+        _foundCount.HorizontalAlignment = HorizontalAlignment.Center;
+        _foundCount.FontWeight = FontWeights.SemiBold;
+        var countTile = new Border
+        {
+            Child = _foundCount, CornerRadius = new CornerRadius(6), BorderThickness = new Thickness(1),
+            Padding = new Thickness(10, 8, 10, 8), Margin = new Thickness(5, 0, 0, 0)
+        };
+        countTile.SetResourceReference(BackgroundProperty, "WindowBrush");
+        countTile.SetResourceReference(BorderBrushProperty, "BorderBrush");
+        Grid.SetColumn(countTile, 2);
+        details.Children.Add(countTile);
+        Grid.SetRow(details, 1);
+        _results.Children.Add(details);
+        resultHost.Children.Add(_results);
+        Grid.SetRow(resultHost, 1);
+        panel.Children.Add(resultHost);
 
-        _status.Margin = new Thickness(8, 4, 8, 8);
-        Grid.SetRow(_status, 3);
-        panel.Children.Add(_status);
-        Content = panel;
+        var statusHost = new Grid { Margin = new Thickness(16, 0, 16, 6) };
+        statusHost.RowDefinitions.Add(new RowDefinition());
+        statusHost.RowDefinitions.Add(new RowDefinition { Height = new GridLength(8) });
+        _status.VerticalAlignment = VerticalAlignment.Center;
+        statusHost.Children.Add(_status);
+        Grid.SetRow(_progress, 1);
+        statusHost.Children.Add(_progress);
+        Grid.SetRow(statusHost, 2);
+        panel.Children.Add(statusHost);
+
+        var card = new Border
+        {
+            Child = panel,
+            CornerRadius = new CornerRadius(9),
+            BorderThickness = new Thickness(1)
+        };
+        card.SetResourceReference(BackgroundProperty, "CardBrush");
+        card.SetResourceReference(BorderBrushProperty, "BorderBrush");
+        Content = card;
 
         _search.Click += async (_, _) => await SearchAsync();
         _download.Click += async (_, _) => await DownloadAsync();
@@ -94,15 +173,24 @@ public sealed class AmigaCoreManagementSection : UserControl
     {
         await RunAsync(_search, async () =>
         {
-            _status.Text = L("Emulation.CoreSearching");
+            _status.Text = string.Empty;
+            _prompt.Text = L("Emulation.CoreSearching");
             var releases = await _service.GetAvailableAsync();
+            if (releases.Count == 0)
+            {
+                _prompt.Text = L("Emulation.CoreNoneFound");
+                _results.Visibility = Visibility.Hidden;
+                _promptBanner.Visibility = Visibility.Visible;
+                _status.Text = string.Empty;
+                return;
+            }
             _versions.ItemsSource = releases;
-            _versions.SelectedItem = releases.First(release => release.IsRequired);
+            var required = releases.FirstOrDefault(release => release.IsRequired) ?? releases[0];
+            _versions.SelectedItem = required;
             _versions.Visibility = Visibility.Visible;
             _download.Visibility = Visibility.Visible;
-            _availableVersions.Visibility = Visibility.Visible;
-            _releaseDetails.Visibility = Visibility.Visible;
-            var required = releases.First(release => release.IsRequired);
+            _results.Visibility = Visibility.Visible;
+            _promptBanner.Visibility = Visibility.Hidden;
             var latest = releases.Last();
             _requiredVersion.Text = required.DisplayName;
             _latestVersion.Text = latest.DisplayName;
@@ -138,6 +226,8 @@ public sealed class AmigaCoreManagementSection : UserControl
             var path = ErrorLog.Write(error, "Managing the external Amiga core");
             var detail = path is null ? L("Common.Unknown") : L("Error.LogSaved", path);
             _status.Text = L("Error.Unexpected", detail);
+            if (_results.Visibility != Visibility.Visible)
+                _prompt.Text = _status.Text;
         }
         finally
         {
@@ -154,13 +244,38 @@ public sealed class AmigaCoreManagementSection : UserControl
             : L("Emulation.CoreInstalled", version);
     }
 
-    private static void AddDetail(Grid grid, int column, string label, TextBlock value)
+    private static UIElement ButtonContent(string icon, string text)
     {
-        var block = new StackPanel { Margin = new Thickness(column == 0 ? 0 : 12, 0, column == 0 ? 12 : 0, 0) };
-        block.Children.Add(new TextBlock { Text = label, FontWeight = FontWeights.SemiBold, Margin = new Thickness(0, 0, 0, 4) });
-        block.Children.Add(value);
-        Grid.SetColumn(block, column);
-        grid.Children.Add(block);
+        var panel = new StackPanel { Orientation = Orientation.Horizontal };
+        panel.Children.Add(new TextBlock
+        {
+            Text = icon, FontFamily = new FontFamily("Segoe MDL2 Assets"), FontSize = 15,
+            VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 8, 0)
+        });
+        panel.Children.Add(new TextBlock { Text = text, VerticalAlignment = VerticalAlignment.Center });
+        return panel;
+    }
+
+    private static Border DetailTile(string label, TextBlock value, Thickness margin)
+    {
+        var content = new StackPanel();
+        var caption = new TextBlock
+        {
+            Text = label, FontSize = 11, Margin = new Thickness(0, 0, 0, 2),
+            TextTrimming = TextTrimming.CharacterEllipsis
+        };
+        caption.SetResourceReference(ForegroundProperty, "MutedTextBrush");
+        content.Children.Add(caption);
+        value.FontWeight = FontWeights.SemiBold;
+        content.Children.Add(value);
+        var tile = new Border
+        {
+            Child = content, CornerRadius = new CornerRadius(6), BorderThickness = new Thickness(1),
+            Padding = new Thickness(10, 7, 10, 7), Margin = margin
+        };
+        tile.SetResourceReference(BackgroundProperty, "WindowBrush");
+        tile.SetResourceReference(BorderBrushProperty, "BorderBrush");
+        return tile;
     }
 
 }

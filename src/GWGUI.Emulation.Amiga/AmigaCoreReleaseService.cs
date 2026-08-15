@@ -18,7 +18,7 @@ public sealed record AmigaCoreRelease(
 public sealed class AmigaCoreReleaseService
 {
     public const string RequiredReleaseId = "validated-ec639e2b";
-    public const string RequiredDisplayName = "Version validée par GW GUI · ec639e2b · 31/07/2026";
+    public const string RequiredDisplayName = "ec639e2b · 31/07/2026 · GW GUI";
     public static readonly Uri LatestOfficialUri = new(
         "https://buildbot.libretro.com/nightly/windows/x86_64/latest/puae_libretro.dll.zip");
 
@@ -65,8 +65,8 @@ public sealed class AmigaCoreReleaseService
         var published = response.Content.Headers.LastModified ?? response.Headers.Date;
         var suffix = published?.UtcDateTime.ToString("yyyyMMdd-HHmm") ?? "latest";
         releases.Add(new AmigaCoreRelease($"official-{suffix}",
-            published is null ? "Dernière build officielle Libretro"
-                : $"Build officielle Libretro · {published.Value.LocalDateTime:dd/MM/yyyy HH:mm}",
+            published is null ? "Libretro · latest"
+                : $"{published.Value.LocalDateTime:dd/MM/yyyy HH:mm} · Libretro",
             LatestOfficialUri, published, false, true));
         return releases;
     }

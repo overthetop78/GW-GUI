@@ -116,11 +116,24 @@ public sealed class AmigaConfigurationTests
     public void ModelCatalog_ContainsEveryExternallySupportedPreset()
     {
         Assert.Equal(10, AmigaModelCatalog.All.Count);
+        Assert.Equal(
+            ["A500", "A500PLUS", "A600", "A1000", "A1200", "A2000", "A3000", "A4000", "CDTV", "CD32"],
+            AmigaModelCatalog.All.Select(model => model.Id));
         Assert.Equal("OCS", AmigaModelCatalog.Get("A1000").Chipset);
         Assert.Equal("OCS", AmigaModelCatalog.Get("A500").Chipset);
         Assert.Equal("AGA", AmigaModelCatalog.Get("A1200").Chipset);
         Assert.Equal("ECS", AmigaModelCatalog.Get("A3000").Chipset);
+        Assert.Equal("A2000", AmigaModelCatalog.Get("A3000").BackendModel);
         Assert.True(AmigaModelCatalog.Get("CD32").HasCdDrive);
+        Assert.Equal(1024, AmigaModelCatalog.Get("A600").ChipMemoryKib);
+        Assert.Equal(4, AmigaModelCatalog.Get("A1000").MaximumFloppyDrives);
+        Assert.All(AmigaModelCatalog.All, model =>
+        {
+            Assert.NotEmpty(model.CpuModels);
+            Assert.Contains(model.Chipset, new[] { "OCS", "ECS", "AGA" });
+            Assert.Equal(model.SupportsHardDrives, model.MaximumHardDrives > 0);
+            Assert.InRange(model.MaximumFloppyDrives, 0, 4);
+        });
     }
 
     [Fact]

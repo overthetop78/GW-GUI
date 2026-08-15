@@ -14,13 +14,13 @@ public static class AmigaModelCatalog
         ["A500OG", "A1200OG", "A2000OG", "A4030", "A4040", "CD32FR"];
     public static IReadOnlyList<AmigaModel> All { get; } =
     [
-        new("A1000", "Amiga 1000", "A500OG", ["68000"], "OCS", 512, 0, 0, false, "1.2", 1, true, 2),
         new("A500", "Amiga 500", "A500", ["68000"], "OCS", 512, 512, 0, false, "1.3", 4, true, 4),
         new("A500PLUS", "Amiga 500 Plus", "A500PLUS", ["68000"], "ECS", 1024, 0, 0, false, "2.04", 4, true, 4),
-        new("A2000", "Amiga 2000", "A2000", ["68000"], "ECS", 1024, 0, 0, false, "3.1", 4, true, 8),
-        new("A3000", "Amiga 3000", "A4030", ["68030"], "ECS", 2048, 0, 8, false, "3.1", 4, true, 8),
-        new("A600", "Amiga 600", "A600", ["68000"], "ECS", 2048, 0, 0, false, "3.1", 4, true, 4),
+        new("A600", "Amiga 600", "A600", ["68000"], "ECS", 1024, 0, 0, false, "3.1", 4, true, 4),
+        new("A1000", "Amiga 1000", "A500OG", ["68000"], "OCS", 512, 0, 0, false, "1.2", 4, true, 2),
         new("A1200", "Amiga 1200", "A1200", ["68020"], "AGA", 2048, 0, 0, false, "3.1", 4, true, 4),
+        new("A2000", "Amiga 2000", "A2000", ["68000"], "ECS", 1024, 0, 0, false, "3.1", 4, true, 8),
+        new("A3000", "Amiga 3000", "A2000", ["68030"], "ECS", 2048, 0, 8, false, "3.1", 4, true, 8),
         new("A4000", "Amiga 4000", "A4040", ["68040", "68030"], "AGA", 2048, 0, 8, false, "3.1", 4, true, 8),
         new("CDTV", "Commodore CDTV", "CDTV", ["68000"], "OCS", 1024, 0, 0, true, "1.3 CDTV", 1, true, 2),
         new("CD32", "Amiga CD32", "CD32", ["68020"], "AGA", 2048, 0, 0, true, "3.1 CD32", 0, false, 0)

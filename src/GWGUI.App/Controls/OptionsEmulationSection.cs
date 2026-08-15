@@ -486,7 +486,7 @@ public sealed class OptionsEmulationSection : UserControl
     private UIElement BuildAmigaGeneralTab()
     {
         var panel = new StackPanel { Margin = new Thickness(12) };
-        var configuration = new Grid { Margin = new Thickness(4, 0, 4, 12) };
+        var configuration = new Grid { Margin = new Thickness(14, 10, 14, 10) };
         configuration.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         configuration.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(360) });
         configuration.ColumnDefinitions.Add(new ColumnDefinition());
@@ -506,7 +506,16 @@ public sealed class OptionsEmulationSection : UserControl
         AddButton(actions, "Common.Save", SaveConfigurationAsync);
         Grid.SetColumn(actions, 2);
         configuration.Children.Add(actions);
-        panel.Children.Add(configuration);
+        var configurationCard = new Border
+        {
+            Child = configuration,
+            CornerRadius = new CornerRadius(9),
+            BorderThickness = new Thickness(1),
+            Margin = new Thickness(0, 0, 0, 12)
+        };
+        configurationCard.SetResourceReference(BackgroundProperty, "CardBrush");
+        configurationCard.SetResourceReference(BorderBrushProperty, "BorderBrush");
+        panel.Children.Add(configurationCard);
         panel.Children.Add(new AmigaCoreManagementSection { Margin = new Thickness(0, 0, 0, 12) });
         var hardDisks = new StackPanel { Margin = new Thickness(8, 6, 8, 8) };
         hardDisks.Children.Add(BuildPathRow(LocExtension.Get("Emulation.HardDisks"), _amigaHardDisksFolder,
@@ -1724,6 +1733,18 @@ public sealed class OptionsEmulationSection : UserControl
         _hardDriveCount.ItemsSource = Enumerable.Range(0, model.MaximumHardDrives + 1).ToArray();
         _hardDriveCount.SelectedItem = 0;
         _cdDrive.IsChecked = model.HasCdDrive;
+        _floppyDriveCount.IsEnabled = model.MaximumFloppyDrives > 0;
+        _hardDriveCount.IsEnabled = model.SupportsHardDrives && model.MaximumHardDrives > 0;
+        _cdDrive.IsEnabled = model.HasCdDrive;
+        var hasFloppyDrive = model.MaximumFloppyDrives > 0;
+        _floppySpeed.IsEnabled = hasFloppyDrive;
+        _floppyWriteProtection.IsEnabled = hasFloppyDrive;
+        _floppyWriteRedirect.IsEnabled = hasFloppyDrive;
+        _floppySound.IsEnabled = hasFloppyDrive;
+        _floppySoundType.IsEnabled = hasFloppyDrive;
+        _muteEmptyFloppy.IsEnabled = hasFloppyDrive;
+        _cdSpeed.IsEnabled = model.HasCdDrive;
+        _cdAudioVolume.IsEnabled = model.HasCdDrive;
         RefreshMediaRows();
         RefreshFirmwareRows();
         UpdateRomFieldAvailability();
@@ -2369,9 +2390,13 @@ public sealed class OptionsEmulationSection : UserControl
     {
         if (_model.SelectedItem is not AmigaModel model) throw new InvalidOperationException(LocExtension.Get("Emulation.ModelRequired"));
         if (string.IsNullOrWhiteSpace(_kickstart.Text)) throw new InvalidOperationException(LocExtension.Get("Emulation.KickstartRequired"));
+        var supportsExtendedRom = model.Id is "CDTV" or "CD32";
+        var requiresRomKey = IsEncryptedKickstart(_kickstart.Text);
+        var extendedRomPath = supportsExtendedRom ? OptionalFullPath(_extendedRom.Text) : null;
+        var romKeyPath = requiresRomKey ? OptionalFullPath(_romKey.Text) : null;
         ValidateOptionalFile(_kickstart.Text, required: true);
-        ValidateOptionalFile(_extendedRom.Text);
-        ValidateOptionalFile(_romKey.Text);
+        if (supportsExtendedRom) ValidateOptionalFile(_extendedRom.Text);
+        if (requiresRomKey) ValidateOptionalFile(_romKey.Text);
         if (_amigaKeyboardEditor.HasErrors)
             throw new InvalidOperationException(LocExtension.Get("Emulation.DuplicateKeyboardMapping"));
         var options = _options.Where(item => !string.IsNullOrWhiteSpace(item.Key))
@@ -2476,7 +2501,7 @@ public sealed class OptionsEmulationSection : UserControl
             SelectedText(_audioInterpolation), SelectedText(_audioFilter),
             (int)_stereoSeparation.Value);
         var configuration = new AmigaMachineConfiguration(model.Id, Path.GetFullPath(_kickstart.Text),
-            initialPath, OptionalFullPath(_extendedRom.Text), OptionalFullPath(_romKey.Text),
+            initialPath, extendedRomPath, romKeyPath,
             Options: options, Id: _currentId == Guid.Empty ? Guid.NewGuid() : _currentId,
             AudioEnabled: _audio.IsChecked == true,
             Controllers: _controllers.Select(combo => SelectedChoice(combo, AmigaControllerType.Automatic)).ToArray(),
