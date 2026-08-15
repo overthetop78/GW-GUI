@@ -101,8 +101,6 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
     private Shader[]? _shaders;
     private int _width;
     private int _height;
-    private uint _swapchainWidth;
-    private uint _swapchainHeight;
     private WriteableBitmap? _snapshot;
 
     internal VeldridVideoSurface(GraphicsBackend backend)
@@ -131,14 +129,14 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
     protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
     {
         base.OnRenderSizeChanged(sizeInfo);
-        ResizeSwapchainToClient();
+        if (_device is not null && ActualWidth >= 1 && ActualHeight >= 1)
+            _device.ResizeMainWindow((uint)ActualWidth, (uint)ActualHeight);
     }
 
     public void Present(VideoFrame frame)
     {
         if (_hwnd == IntPtr.Zero) return;
         EnsureDevice(frame.Width, frame.Height);
-        ResizeSwapchainToClient();
         var pixels = EmulationVideoPixels.ToBgra32(frame);
         _device!.UpdateTexture(_texture!, pixels, 0, 0, 0, (uint)frame.Width, (uint)frame.Height, 1, 0, 0);
         _commands!.Begin();
@@ -160,11 +158,8 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
         {
             var options = new GraphicsDeviceOptions(false, null, true, ResourceBindingModel.Improved, true, true);
             var source = SwapchainSource.CreateWin32(_hwnd, GetModuleHandle(null));
-            var clientSize = GetNativeClientSize(_hwnd);
-            _swapchainWidth = clientSize.Width;
-            _swapchainHeight = clientSize.Height;
-            var swapchain = new SwapchainDescription(source, _swapchainWidth,
-                _swapchainHeight, null, false, true);
+            var swapchain = new SwapchainDescription(source, (uint)Math.Max(1, ActualWidth),
+                (uint)Math.Max(1, ActualHeight), null, false, true);
             _device = _backend == GraphicsBackend.Vulkan
                 ? GraphicsDevice.CreateVulkan(options, swapchain)
                 : GraphicsDevice.CreateD3D11(options, swapchain);
@@ -202,16 +197,6 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
             [_layout], _device.MainSwapchain.Framebuffer.OutputDescription));
     }
 
-    private void ResizeSwapchainToClient()
-    {
-        if (_device is null || _hwnd == IntPtr.Zero) return;
-        var clientSize = GetNativeClientSize(_hwnd);
-        if (clientSize.Width == _swapchainWidth && clientSize.Height == _swapchainHeight) return;
-        _device.ResizeMainWindow(clientSize.Width, clientSize.Height);
-        _swapchainWidth = clientSize.Width;
-        _swapchainHeight = clientSize.Height;
-    }
-
     private void UpdateSnapshot(byte[] pixels, int width, int height)
     {
         if (_snapshot is null || _snapshot.PixelWidth != width || _snapshot.PixelHeight != height)
@@ -246,17 +231,7 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
     private static extern IntPtr CreateWindowEx(int exStyle, string className, string windowName, int style,
         int x, int y, int width, int height, IntPtr parent, IntPtr menu, IntPtr instance, IntPtr parameter);
     [DllImport("user32.dll")] private static extern bool DestroyWindow(IntPtr hwnd);
-    [DllImport("user32.dll")] private static extern bool GetClientRect(IntPtr hwnd, out NativeRect rect);
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode)] private static extern IntPtr GetModuleHandle(string? name);
-
-    private static NativeSize GetNativeClientSize(IntPtr hwnd)
-    {
-        if (!GetClientRect(hwnd, out var rect)) return new NativeSize(1, 1);
-        return new NativeSize((uint)Math.Max(1, rect.Right - rect.Left), (uint)Math.Max(1, rect.Bottom - rect.Top));
-    }
-
-    [StructLayout(LayoutKind.Sequential)] private readonly record struct NativeRect(int Left, int Top, int Right, int Bottom);
-    private readonly record struct NativeSize(uint Width, uint Height);
 }
 
 internal sealed class OpenGlVideoSurface : HwndHost, IEmulationVideoSurface
@@ -302,14 +277,13 @@ internal sealed class OpenGlVideoSurface : HwndHost, IEmulationVideoSurface
 
     public void Present(VideoFrame frame)
     {
-        if (_context == IntPtr.Zero || _hwnd == IntPtr.Zero) return;
+        if (_context == IntPtr.Zero || ActualWidth < 1 || ActualHeight < 1) return;
         var pixels = EmulationVideoPixels.ToBgra32(frame);
-        var clientSize = GetNativeClientSize(_hwnd);
         WglMakeCurrent(_dc, _context);
-        GlViewport(0, 0, clientSize.Width, clientSize.Height);
+        GlViewport(0, 0, Math.Max(1, (int)ActualWidth), Math.Max(1, (int)ActualHeight));
         GlClearColor(0, 0, 0, 1); GlClear(GlColorBufferBit);
         GlRasterPos2f(-1, 1);
-        GlPixelZoom((float)clientSize.Width / frame.Width, -(float)clientSize.Height / frame.Height);
+        GlPixelZoom((float)ActualWidth / frame.Width, -(float)ActualHeight / frame.Height);
         var handle = GCHandle.Alloc(pixels, GCHandleType.Pinned);
         try { GlDrawPixels(frame.Width, frame.Height, GlBgra, GlUnsignedByte, handle.AddrOfPinnedObject()); }
         finally { handle.Free(); }
@@ -335,7 +309,6 @@ internal sealed class OpenGlVideoSurface : HwndHost, IEmulationVideoSurface
     private const uint GlColorBufferBit = 0x4000, GlBgra = 0x80E1, GlUnsignedByte = 0x1401;
     [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)] private static extern IntPtr CreateWindowEx(int exStyle, string className, string windowName, int style, int x, int y, int width, int height, IntPtr parent, IntPtr menu, IntPtr instance, IntPtr parameter);
     [DllImport("user32.dll")] private static extern bool DestroyWindow(IntPtr hwnd);
-    [DllImport("user32.dll")] private static extern bool GetClientRect(IntPtr hwnd, out NativeRect rect);
     [DllImport("user32.dll")] private static extern IntPtr GetDC(IntPtr hwnd);
     [DllImport("user32.dll")] private static extern int ReleaseDC(IntPtr hwnd, IntPtr dc);
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode)] private static extern IntPtr GetModuleHandle(string? name);
@@ -351,13 +324,4 @@ internal sealed class OpenGlVideoSurface : HwndHost, IEmulationVideoSurface
     [DllImport("opengl32.dll", EntryPoint = "glRasterPos2f")] private static extern void GlRasterPos2f(float x, float y);
     [DllImport("opengl32.dll", EntryPoint = "glPixelZoom")] private static extern void GlPixelZoom(float x, float y);
     [DllImport("opengl32.dll", EntryPoint = "glDrawPixels")] private static extern void GlDrawPixels(int width, int height, uint format, uint type, IntPtr pixels);
-
-    private static NativeSize GetNativeClientSize(IntPtr hwnd)
-    {
-        if (!GetClientRect(hwnd, out var rect)) return new NativeSize(1, 1);
-        return new NativeSize(Math.Max(1, rect.Right - rect.Left), Math.Max(1, rect.Bottom - rect.Top));
-    }
-
-    [StructLayout(LayoutKind.Sequential)] private readonly record struct NativeRect(int Left, int Top, int Right, int Bottom);
-    private readonly record struct NativeSize(int Width, int Height);
 }
