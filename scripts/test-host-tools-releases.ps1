@@ -64,7 +64,7 @@ try {
     }
 
     $env:GWGUI_REAL_HOST_TOOLS = [string]::Join(';', @($installations | ForEach-Object { "$($_.Version)|$($_.ArchivePath)" }))
-    dotnet test (Join-Path $repository 'GWGUI.sln') -c Release --no-restore --filter 'FullyQualifiedName~RealHostToolsInstallationsAreDetectedAndExposeFormatCapabilitiesWhenRequested'
+    dotnet test (Join-Path $repository 'GWGUI.sln') -c Release --no-restore --disable-build-servers --filter 'FullyQualifiedName~RealHostToolsInstallationsAreDetectedAndExposeFormatCapabilitiesWhenRequested'
     if ($LASTEXITCODE -ne 0) { throw 'The real Host Tools integration test failed.' }
     $installations | Select-Object Version,Sha256,PublishedDigestChecked
 }

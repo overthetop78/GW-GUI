@@ -101,6 +101,18 @@ public static class SettingsMigrator
     {
         settings.Language = settings.Language?.Trim() ?? "";
         settings.DefaultImagesFolder ??= Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        settings.EmulationStorageFolder = string.IsNullOrWhiteSpace(settings.EmulationStorageFolder)
+            ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GW GUI", "Emulation")
+            : settings.EmulationStorageFolder.Trim();
+        settings.EmulationCaptureFolder = string.IsNullOrWhiteSpace(settings.EmulationCaptureFolder)
+            ? Path.Combine(settings.EmulationStorageFolder, "Captures") : settings.EmulationCaptureFolder.Trim();
+        settings.EmulationStateFolder = string.IsNullOrWhiteSpace(settings.EmulationStateFolder)
+            ? Path.Combine(settings.EmulationStorageFolder, "States") : settings.EmulationStateFolder.Trim();
+        settings.AmigaHardDisksFolder = string.IsNullOrWhiteSpace(settings.AmigaHardDisksFolder)
+            ? Path.Combine(settings.EmulationStorageFolder, "HDD", "Amiga") : settings.AmigaHardDisksFolder.Trim();
+        settings.EmulationShortcuts ??= [];
+        foreach (var shortcut in EmulationShortcutDefaults.Values)
+            if (!settings.EmulationShortcuts.ContainsKey(shortcut.Key)) settings.EmulationShortcuts[shortcut.Key] = shortcut.Value;
         settings.LastDiskImageFolder = string.IsNullOrWhiteSpace(settings.LastDiskImageFolder) ? null : settings.LastDiskImageFolder.Trim();
         settings.Window ??= new WindowPlacementSettings();
         settings.Controllers ??= [];

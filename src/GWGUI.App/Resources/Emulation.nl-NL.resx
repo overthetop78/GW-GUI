@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>Machines</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>Kern</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>{0}-emulatiekern</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>De bibliotheek blijft buiten GW GUI. De geselecteerde versie vervangt de momenteel geïnstalleerde versie.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>Door GW GUI vereiste versie</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>Nieuwste beschikbare officiële versie</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>Momenteel geïnstalleerde versie</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>Klik op Zoeken om de officiële Libretro-server te raadplegen.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>Versies zoeken</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>Downloaden en vervangen</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>Beschikbare versies zoeken…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>Geen officiële versie gevonden.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>{0} versie(s) beschikbaar.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>{0} downloaden…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>Geïnstalleerde versie: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · geïnstalleerd</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>Geen versie geïnstalleerd</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>Openen</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>Welkom</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>Selecteer hierboven een opgeslagen machine en klik op Openen. Elke actieve machine verschijnt op een eigen tabblad.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>Maak, selecteer, wijzig of verwijder hier opgeslagen configuraties. Selecteer het tabblad {0} om de gekozen configuratie te bewerken.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>Algemeen</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>Video</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>Opslag</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>Toetsenbord</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>Muis</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>Controllers</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>Geavanceerd</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>Apparaat-id</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>Apparaat voor controller {0}</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>{0}-toets</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>Hosttoets</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>Processor: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip-RAM: {0} KiB\nSlow-RAM: {1} KiB\nFast-RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>Videochipset: {0}</value>
+  </data>
+  <data name="Emulation.CpuModel"><value>CPU-model</value></data>
+  <data name="Emulation.CpuMultiplier"><value>CPU-vermenigvuldiger</value></data>
+  <data name="Emulation.CpuCompatibility"><value>Cycluscompatibele CPU</value></data>
+  <data name="Emulation.ChipMemory"><value>Chip RAM</value></data>
+  <data name="Emulation.SlowMemory"><value>Slow RAM</value></data>
+  <data name="Emulation.FastMemory"><value>Fast RAM</value></data>
+  <data name="Emulation.Z3Memory"><value>Zorro III RAM</value></data>
+  <data name="Emulation.VideoStandard"><value>Videostandaard</value></data>
+  <data name="Emulation.VideoResolution"><value>Resolutie</value></data>
+  <data name="Emulation.AspectRatio"><value>Beeldverhouding</value></data>
+  <data name="Emulation.VideoCrop"><value>Randen bijsnijden</value></data>
+  <data name="Emulation.FlickerFixer"><value>Flikkercorrectie</value></data>
+  <data name="Emulation.AudioEnabled"><value>Audio inschakelen</value></data>
+  <data name="Emulation.AudioOutput"><value>Audio-uitvoer</value></data>
+  <data name="Emulation.AudioLatency"><value>Latentie (ms)</value></data>
+  <data name="Emulation.AudioInterpolation"><value>Interpolatie</value></data>
+  <data name="Emulation.AudioFilter"><value>Amiga-audiofilter</value></data>
+  <data name="Emulation.StereoSeparation"><value>Stereoscheiding (%)</value></data>
+  <data name="Emulation.AudioInput"><value>Audio-invoer</value></data>
+  <data name="Emulation.AudioInputUnavailable"><value>Deze Amiga-core biedt geen audio-invoer.</value></data>
+  <data name="Emulation.DefaultAudioOutput"><value>Standaarduitvoer van Windows</value></data>
+  <data name="Emulation.AddMedia"><value>Medium toevoegen</value></data>
+  <data name="Emulation.CreateHardDisk"><value>Harde schijf maken</value></data>
+  <data name="Emulation.HardDiskSize"><value>Grootte harde schijf (MiB)</value></data>
+  <data name="Emulation.NoMedia"><value>Geen media. Voeg een diskette, harde schijf of cd toe die door het geselecteerde model wordt ondersteund.</value></data>
+  <data name="Emulation.ReadOnly"><value>Alleen-lezen</value></data>
+  <data name="Emulation.AmigaMediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value></data>
+  <data name="Emulation.HardDiskFilter"><value>Amiga hard disk|*.hdf|All files|*.*</value></data>
+  <data name="Emulation.HardDiskNotSupported"><value>Het geselecteerde model ondersteunt geen harde schijf.</value></data>
+  <data name="Emulation.TooManyFloppyDrives"><value>Dit model ondersteunt maximaal {0} diskettestation(s).</value></data>
+  <data name="Emulation.TooManyHardDrives"><value>Dit model ondersteunt maximaal {0} harde schijf/schijven.</value></data>
+  <data name="Emulation.CdNotSupported"><value>Het geselecteerde model ondersteunt geen cd-station.</value></data>
+  <data name="Emulation.DuplicateKeyboardMapping"><value>Twee Amiga-toetsen gebruiken dezelfde pc-toets. Los de rode toewijzingen op voordat u opslaat.</value></data>
+  <data name="Emulation.ReleaseMouseKey"><value>Toets om muis vrij te geven</value></data>
+  <data name="Emulation.MouseLeftButton"><value>Linkermuisknop</value></data>
+  <data name="Emulation.MouseRightButton"><value>Rechtermuisknop</value></data>
+  <data name="Emulation.MouseMiddleButton"><value>Middelste muisknop</value></data>
+  <data name="Emulation.DetectControllers"><value>Controllers detecteren</value></data>
+  <data name="Emulation.EmulatedAction"><value>Amiga-actie</value></data>
+  <data name="Emulation.PhysicalControl"><value>Invoer van toetsenbord, muis of controller</value></data>
+  <data name="Emulation.Chipset"><value>Chipset</value></data>
+  <data name="Emulation.CdDrive"><value>Cd-station</value></data>
+  <data name="Emulation.FloppyDriveCount"><value>Aantal diskettestations</value></data>
+  <data name="Emulation.HardDriveCount"><value>Aantal harde schijven</value></data>
+  <data name="Emulation.FpuModel"><value>FPU</value></data>
+  <data name="Emulation.CpuSpeed"><value>CPU-snelheid</value></data>
+  <data name="Emulation.CpuSpeedOriginal"><value>Oorspronkelijke snelheid</value></data>
+  <data name="Emulation.CompatibilityNormal"><value>Normaal</value></data>
+  <data name="Emulation.CompatibilityCompatible"><value>Compatibel</value></data>
+  <data name="Emulation.CompatibilityMemory"><value>Geheugencompatibel</value></data>
+  <data name="Emulation.CompatibilityExact"><value>Cyclusnauwkeurig</value></data>
+  <data name="Emulation.IntegratedFpu"><value>Geïntegreerde FPU</value></data>
+  <data name="Emulation.Enabled"><value>Ingeschakeld</value></data>
+  <data name="Emulation.Disabled"><value>Uitgeschakeld</value></data>
+  <data name="Emulation.Minimum"><value>Minimum</value></data>
+  <data name="Emulation.VerySmall"><value>Zeer klein</value></data>
+  <data name="Emulation.Small"><value>Klein</value></data>
+  <data name="Emulation.Medium"><value>Middelgroot</value></data>
+  <data name="Emulation.Large"><value>Groot</value></data>
+  <data name="Emulation.VeryLarge"><value>Zeer groot</value></data>
+  <data name="Emulation.Maximum"><value>Maximum</value></data>
+  <data name="Emulation.Locked"><value>Vergrendeld</value></data>
+  <data name="Emulation.Immediate"><value>Onmiddellijk</value></data>
+  <data name="Emulation.Waiting"><value>Met wachttijd</value></data>
+  <data name="Emulation.Standard"><value>Standaard</value></data>
+  <data name="Emulation.Enhanced"><value>Verbeterd</value></data>
+  <data name="Emulation.Internal"><value>Intern</value></data>
+  <data name="Emulation.Loud"><value>Luid</value></data>
+  <data name="Emulation.ResolutionAutoLow"><value>Automatische lage resolutie</value></data>
+  <data name="Emulation.ResolutionAutoSuperHigh"><value>Automatische superhoge resolutie</value></data>
+  <data name="Emulation.ResolutionLow"><value>Lage resolutie</value></data>
+  <data name="Emulation.ResolutionHigh"><value>Hoge resolutie</value></data>
+  <data name="Emulation.ResolutionSuperHigh"><value>Superhoge resolutie</value></data>
+  <data name="Emulation.VideoLineMode"><value>Lijnmodus</value></data>
+  <data name="Emulation.VideoHzChange"><value>Wijzigingen in vernieuwingsfrequentie</value></data>
+  <data name="Emulation.VideoFrameskip"><value>Frames overslaan</value></data>
+  <data name="Emulation.VideoColors"><value>Kleurdiepte</value></data>
+  <data name="Emulation.VideoGamma"><value>Gamma</value></data>
+  <data name="Emulation.ImmediateBlits"><value>Blitterwerking</value></data>
+  <data name="Emulation.CollisionLevel"><value>Botsingsdetectie</value></data>
+  <data name="Emulation.LineModeSingle"><value>Enkele scan</value></data>
+  <data name="Emulation.LineModeDouble"><value>Dubbele scan</value></data>
+  <data name="Emulation.CollisionSprites"><value>Sprites</value></data>
+  <data name="Emulation.CollisionPlayfields"><value>Speelvelden</value></data>
+  <data name="Emulation.CollisionFull"><value>Volledig</value></data>
+  <data name="Emulation.InterpolationAnti"><value>Anti-interpolatie</value></data>
+  <data name="Emulation.FilterEmulated"><value>Geëmuleerd</value></data>
+  <data name="Emulation.AudioFilterType"><value>Filtertype</value></data>
+  <data name="Emulation.FloppySound"><value>Geluidsvolume diskettestation</value></data>
+  <data name="Emulation.FloppySoundType"><value>Geluidstype diskettestation</value></data>
+  <data name="Emulation.MuteEmptyFloppy"><value>Lege stations dempen</value></data>
+  <data name="Emulation.CdAudioVolume"><value>Cd-audiovolume</value></data>
+  <data name="Emulation.FloppySpeed"><value>Snelheid diskettestation</value></data>
+  <data name="Emulation.FloppyWriteProtection"><value>Diskette-images tegen schrijven beveiligen</value></data>
+  <data name="Emulation.FloppyWriteRedirect"><value>Schrijven naar diskette omleiden</value></data>
+  <data name="Emulation.CdSpeed"><value>Cd-snelheid</value></data>
+  <data name="Emulation.KeyboardPassThrough"><value>Fysiek toetsenbord doorgeven</value></data>
+  <data name="Emulation.PhysicalMouse"><value>Fysieke muis</value></data>
+  <data name="Emulation.PhysicalMouseDouble"><value>Dubbele beweging</value></data>
+  <data name="Emulation.MouseSpeed"><value>Muissnelheid</value></data>
+  <data name="Emulation.AnalogMouse"><value>Analoge sticks voor muisbesturing</value></data>
+  <data name="Emulation.AnalogMouseDeadzone"><value>Dode zone analoge sticks</value></data>
+  <data name="Emulation.AnalogMouseSpeed"><value>Muissnelheid analoge stick</value></data>
+  <data name="Emulation.LeftStick"><value>Linkerstick</value></data>
+  <data name="Emulation.RightStick"><value>Rechterstick</value></data>
+  <data name="Emulation.BothSticks"><value>Beide sticks</value></data>
+  <data name="Emulation.TurboFire"><value>Turbovuur</value></data>
+  <data name="Emulation.TurboButton"><value>Turboknop</value></data>
+  <data name="Emulation.TurboPulse"><value>Turbopuls</value></data>
+  <data name="Emulation.JoyPortOrder"><value>Volgorde controllerpoorten</value></data>
+  <data name="Emulation.Emulator"><value>Emulator</value></data>
+  <data name="Emulation.StorageBaseFolder"><value>Gedeelde opslagmap voor emulatie</value></data>
+  <data name="Emulation.StorageBaseFolderDescription"><value>Harde schijven worden automatisch georganiseerd in HDD\Amiga, HDD\Atari en de mappen van toekomstige systemen.</value></data>
+  <data name="Emulation.AddHardDisk"><value>Bestaande harde schijf toevoegen</value></data>
+  <data name="Emulation.HardDisks"><value>Harde schijven</value></data>
+  <data name="Emulation.NoHardDisks"><value>Er is geen harde schijf aan deze machine gekoppeld.</value></data>
+  <data name="Emulation.KeyboardPriorityHint"><value>Gereserveerde sneltoetsen</value></data>
+  <data name="Emulation.KeyboardPriorityDescription"><value>Sneltoetsen van GW GUI en Windows blijven actief en worden niet door de machine vastgelegd.</value></data>
+  <data name="Emulation.InputBehavior"><value>Gedrag</value></data>
+  <data name="Emulation.AssignInput"><value>Toewijzen...</value></data>
+  <data name="Emulation.InputActions"><value>Acties</value></data>
+  <data name="Emulation.PressInput"><value>Druk op een toets...</value></data>
+  <data name="Emulation.CreateStorageFolders"><value>Ontbrekende submappen automatisch maken</value></data>
+  <data name="Emulation.CommonFolders"><value>Gedeelde mappen</value></data>
+  <data name="Emulation.SharedInputDescription"><value>Apparaatdetectie wordt gedeeld, maar toewijzingen worden apart opgeslagen in elke machineconfiguratie.</value></data>
+  <data name="Emulation.TestInputs"><value>Invoer testen</value></data>
+  <data name="Emulation.SharedDevices"><value>Gedeelde invoerapparaten</value></data>
+  <data name="Emulation.CaptureFolder"><value>Map voor opnamen</value></data>
+  <data name="Emulation.StateFolder"><value>Map voor opgeslagen statussen</value></data>
+  <data name="Emulation.DefaultFolders"><value>Standaardmappen</value></data>
+  <data name="Emulation.NoControllersDetected"><value>Geen controller gedetecteerd</value></data>
+  <data name="Emulation.TestInputsPrompt"><value>Druk op een toetsenbordtoets of muisknop om de detectie te testen.</value></data>
+  <data name="Emulation.Floppies"><value>Diskettes</value></data>
+  <data name="Emulation.ExtendedRom"><value>Uitgebreide ROM</value></data>
+  <data name="Emulation.RomKey"><value>ROM-sleutel</value></data>
+  <data name="Emulation.Processor"><value>Processor</value></data>
+  <data name="Emulation.Precision"><value>Nauwkeurigheid</value></data>
+  <data name="Emulation.Acceleration"><value>Versnelling</value></data>
+  <data name="Emulation.MainMemory"><value>Hoofdgeheugen</value></data>
+  <data name="Emulation.MemoryExtensions"><value>Geheugenuitbreidingen</value></data>
+  <data name="Emulation.MemoryNone"><value>Geen</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>De geheugenconfiguratie is compatibel met {0}.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>De geheugenuitbreidingen zijn compatibel met {0}.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>Zorro III-RAM is niet beschikbaar op {0}.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>Totaal geconfigureerd geheugen: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>Systeem-ROM</value></data>
+  <data name="Emulation.DetectedRoms"><value>Gedetecteerde ROMs</value></data>
+  <data name="Emulation.UseFirmware"><value>Gebruiken</value></data>
+  <data name="Emulation.NotUsed"><value>Niet gebruikt</value></data>
+  <data name="Emulation.OpenRomFolder"><value>ROM-map openen</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>Gedeeltelijk compatibel</value></data>
+  <data name="Emulation.DisplaySettings"><value>Weergave</value></data>
+  <data name="Emulation.RenderingSettings"><value>Rendering</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>Chipsetcompatibiliteit</value></data>
+  <data name="Emulation.AudioDevice"><value>Apparaat</value></data>
+  <data name="Emulation.Latency"><value>Latentie</value></data>
+  <data name="Emulation.AudioQuality"><value>Kwaliteit</value></data>
+  <data name="Emulation.AudioDrives"><value>Stations</value></data>
+  <data name="Emulation.Type"><value>Type</value></data>
+  <data name="Emulation.AddStorageDevice"><value>Opslagapparaat toevoegen</value></data>
+  <data name="Emulation.AmigaDdFloppy"><value>Amiga 3,5 inch DD · 880 KiB</value></data>
+  <data name="Emulation.AmigaHdFloppy"><value>Amiga 3,5 inch HD · 1,76 MiB</value></data>
+  <data name="Emulation.AssociatedMedia"><value>Gekoppeld medium</value></data>
+  <data name="Emulation.AutomaticDiskGeometry"><value>De schijfgeometrie wordt automatisch door de emulator bepaald.</value></data>
+  <data name="Emulation.BlankFloppyCreated"><value>Lege diskettekopie gemaakt: {0}</value></data>
+  <data name="Emulation.BlankHardDiskHint"><value>Het bestand wordt leeg gemaakt en moet daarna in de geëmuleerde machine worden gepartitioneerd en geformatteerd.</value></data>
+  <data name="Emulation.CdWriter"><value>Cd-brander</value></data>
+  <data name="Emulation.CdWriterHint"><value>Een lege schijf kan alleen worden gemaakt als de geselecteerde machine en emulator schrijven ondersteunen.</value></data>
+  <data name="Emulation.CompactDiscDevice"><value>Cd-romstation</value></data>
+  <data name="Emulation.ConfigureDevice"><value>Configureren</value></data>
+  <data name="Emulation.CreateBlankFloppy"><value>Lege diskette maken</value></data>
+  <data name="Emulation.DiskImage"><value>Schijfkopie</value></data>
+  <data name="Emulation.DiskImageRequired"><value>Selecteer een bestaande schijfkopie.</value></data>
+  <data name="Emulation.ExistingDiskHint"><value>Het geselecteerde bestand wordt aan dit virtuele station gekoppeld.</value></data>
+  <data name="Emulation.FloppyDevice"><value>Diskettestation</value></data>
+  <data name="Emulation.FloppyImageFilter"><value>Amiga-diskettekopie|*.adf|Alle bestanden|*.*</value></data>
+  <data name="Emulation.HardDiskDevice"><value>Harde schijf</value></data>
+  <data name="Emulation.Interface"><value>Interface</value></data>
+  <data name="Emulation.PreallocateFile"><value>Bestand vooraf toewijzen</value></data>
+  <data name="Emulation.RemovableMediaRuntimeHint"><value>Diskettes en cd's worden vanuit de actieve machine geplaatst of vervangen.</value></data>
+  <data name="Emulation.RemoveMedia"><value>Medium verwijderen</value></data>
+  <data name="Emulation.ReplaceExistingDisk"><value>De schijfkopie bestaat al: {0}\nWilt u deze vervangen?</value></data>
+  <data name="Emulation.StorageDeviceCapabilitiesHint"><value>De beschikbare typen, modellen en id's hangen af van de geselecteerde machine.</value></data>
+  <data name="Emulation.TapeDevice"><value>Bandstation</value></data>
+  <data name="Emulation.UseDisk"><value>Schijf gebruiken</value></data>
+  <data name="Emulation.UseExistingDisk"><value>Bestaande schijf gebruiken</value></data>
+  <data name="Emulation.ModifyInGeneral"><value>Wijzigen in Algemeen</value></data>
+  <data name="Emulation.NoStorageDeviceAvailable"><value>Voor deze machine is geen extra opslagapparaat beschikbaar.</value></data>
+  <data name="Emulation.StorageDevices"><value>Opslagapparaten</value></data>
+  <data name="Emulation.RestoreDefaultBindings"><value>Standaardwaarden herstellen</value></data>
+  <data name="Emulation.ClearConflicts"><value>Conflicten wissen</value></data>
+  <data name="Emulation.EmulatedKey"><value>Machinetoets</value></data>
+  <data name="Emulation.Binding"><value>Toewijzing</value></data>
+  <data name="Emulation.BindingState"><value>Status</value></data>
+  <data name="Emulation.SearchBinding"><value>Zoek een toets of toewijzing</value></data>
+  <data name="Emulation.BindingLegend"><value>Geldig: unieke toewijzing · Conflict: toewijzing meermaals gebruikt · Gereserveerd: Windows- of GW GUI-sneltoets</value></data>
+  <data name="Emulation.BindingValid"><value>Geldig</value></data>
+  <data name="Emulation.BindingConflict"><value>Conflict</value></data>
+  <data name="Emulation.BindingReserved"><value>Gereserveerd</value></data>
+  <data name="Emulation.BindingUnassigned"><value>Niet toegewezen</value></data>
+  <data name="Emulation.GlobalShortcuts"><value>Emulatiesneltoetsen</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Sneltoetsen</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Muis vrijgeven</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Pauzeren / hervatten</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Volledig scherm / venster</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Aan / uit</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>Warme reset</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Koude reset</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Snel status opslaan</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Snel status laden</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Schermafbeelding</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Actieve machine dempen</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Snel vooruit tijdens ingedrukt houden</value></data>
+  <data name="Emulation.Key.Help"><value>Help</value></data>
+  <data name="Emulation.Key.LeftAmiga"><value>Linker Amiga</value></data>
+  <data name="Emulation.Key.RightAmiga"><value>Rechter Amiga</value></data>
+  <data name="Emulation.SpecialKeysOnlyHint"><value>Letters, cijfers en gewone modificatietoetsen worden rechtstreeks doorgestuurd. Alleen de functie- en speciale Amiga-toetsen moeten hier worden toegewezen.</value></data>
+  <data name="Emulation.ShortcutUnavailable"><value>Deze actie wordt nog niet ondersteund door de huidige emulator.</value></data>
+  <data name="Emulation.Allocation"><value>Toewijzing</value></data>
+  <data name="Emulation.AutomaticGeometry"><value>Automatische geometrie</value></data>
+  <data name="Emulation.BlankMedia"><value>Leeg medium</value></data>
+  <data name="Emulation.BytesPerSector"><value>Bytes per sector</value></data>
+  <data name="Emulation.CalculatedCapacity"><value>Berekende capaciteit: {0}</value></data>
+  <data name="Emulation.ControllerMappings"><value>Controllertoewijzingen</value></data>
+  <data name="Emulation.ControllerPort"><value>Poort {0}</value></data>
+  <data name="Emulation.ControllerType"><value>Controllertype</value></data>
+  <data name="Emulation.CustomSize"><value>Aangepaste grootte</value></data>
+  <data name="Emulation.Cylinders"><value>Cilinders</value></data>
+  <data name="Emulation.DestinationFolder"><value>Doelmap</value></data>
+  <data name="Emulation.DetectedControllers"><value>Gedetecteerde controllers</value></data>
+  <data name="Emulation.Device"><value>Apparaat</value></data>
+  <data name="Emulation.DiskGeometry"><value>Schijfgeometrie (CHS)</value></data>
+  <data name="Emulation.DiskSizeProfile"><value>Grootteprofiel</value></data>
+  <data name="Emulation.FloppyDrive"><value>Diskettestation</value></data>
+  <data name="Emulation.Heads"><value>Koppen</value></data>
+  <data name="Emulation.InputCaptureHint"><value>Klik op Toewijzen en gebruik daarna een toets, muisknop of controllerknop.</value></data>
+  <data name="Emulation.InvalidDiskSize"><value>De schijfgrootte of geometrie is ongeldig.</value></data>
+  <data name="Emulation.MouseActions"><value>Muisacties</value></data>
+  <data name="Emulation.MouseButton4"><value>Muisknop 4</value></data>
+  <data name="Emulation.MouseButton5"><value>Muisknop 5</value></data>
+  <data name="Emulation.MouseCaptureTitle"><value>Muis vastleggen</value></data>
+  <data name="Emulation.PreallocationHint"><value>Reserveert de fysieke schijfruimte direct; anders groeit het image tijdens het schrijven.</value></data>
+  <data name="Emulation.SearchInputBinding"><value>Zoek naar een actie of invoer</value></data>
+  <data name="Emulation.Sectors"><value>Sectoren</value></data>
+  <data name="Emulation.UnitMiB"><value>MiB</value></data>
+  <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>Omhoog</value></data>
+  <data name="Emulation.DirectionDown"><value>Omlaag</value></data>
+  <data name="Emulation.DirectionLeft"><value>Links</value></data>
+  <data name="Emulation.DirectionRight"><value>Rechts</value></data>
+  <data name="Emulation.FireButton1"><value>Vuurknop 1</value></data>
+  <data name="Emulation.FireButton2"><value>Vuurknop 2</value></data>
+  <data name="Emulation.Cd32Red"><value>Rode CD32-knop</value></data>
+  <data name="Emulation.Cd32Blue"><value>Blauwe CD32-knop</value></data>
+  <data name="Emulation.Cd32Green"><value>Groene CD32-knop</value></data>
+  <data name="Emulation.Cd32Yellow"><value>Gele CD32-knop</value></data>
+  <data name="Emulation.Cd32Rewind"><value>CD32 terugspoelen</value></data>
+  <data name="Emulation.Cd32FastForward"><value>CD32 vooruitspoelen</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>CD32 afspelen / pauzeren</value></data>
+  <data name="Emulation.AmigaJoystick"><value>Amiga-joystick</value></data>
+  <data name="Emulation.AnalogJoystick"><value>Analoge joystick</value></data>
+  <data name="Emulation.Cd32Controller"><value>CD32-controller</value></data>
+  <data name="Emulation.MouseWheelUp"><value>Muiswiel omhoog</value></data>
+  <data name="Emulation.MouseWheelDown"><value>Muiswiel omlaag</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>Muiswiel naar links</value></data>
+  <data name="Emulation.MouseWheelRight"><value>Muiswiel naar rechts</value></data>
+</root>

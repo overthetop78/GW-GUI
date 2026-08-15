@@ -72,4 +72,7 @@
   <data name="Icon.Console">
     <value></value>
   </data>
+  <data name="Common.New"><value>Nuovo</value></data>
+  <data name="Common.Refresh"><value>Aggiorna</value></data>
+  <data name="Common.OpenFolder"><value>Apri cartella</value></data>
 </root>

@@ -72,4 +72,7 @@
   <data name="Icon.Console">
     <value></value>
   </data>
+  <data name="Common.New"><value>جديد</value></data>
+  <data name="Common.Refresh"><value>تحديث</value></data>
+  <data name="Common.OpenFolder"><value>فتح المجلد</value></data>
 </root>

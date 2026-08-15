@@ -18,6 +18,18 @@ public sealed class AmigaAdfConversionService(AmigaScpSectorImageReader scpReade
         await ConvertAsync(image, outputPath, formatId, cancellationToken).ConfigureAwait(false);
     }
 
+    /// <summary>Reconstruit la source et conserve automatiquement sa géométrie Amiga DD ou HD.</summary>
+    public async Task ConvertDetectedAsync(string sourcePath, string outputPath, CancellationToken cancellationToken = default)
+    {
+        var image = Path.GetExtension(sourcePath).Equals(DiskImageFileExtensions.Scp, StringComparison.OrdinalIgnoreCase)
+            ? await scpReader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false)
+            : await reader.ReadAsync(sourcePath, cancellationToken).ConfigureAwait(false);
+        if (!image.FormatId.Equals(DiskImageFormatIds.AmigaDos, StringComparison.OrdinalIgnoreCase) &&
+            !image.FormatId.Equals(DiskImageFormatIds.AmigaDosHighDensity, StringComparison.OrdinalIgnoreCase))
+            throw AmigaAdfWriterExceptions.FormatMismatch(image.FormatId, DiskImageFormatIds.AmigaDos);
+        await writer.WriteAsync(image, outputPath, cancellationToken).ConfigureAwait(false);
+    }
+
     /// <summary>Valide et écrit directement une image sectorielle déjà reconstruite.</summary>
     public Task ConvertAsync(SectorImage image, string outputPath, string formatId, CancellationToken cancellationToken = default)
     {

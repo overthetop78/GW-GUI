@@ -39,7 +39,7 @@ try {
     }
 
     $env:GWGUI_REAL_SCP_CORPUS = [string]::Join([IO.Path]::PathSeparator, @($downloaded | ForEach-Object { "$($_.DecoderPrefix)|$($_.MinimumTracks)|$($_.Heads)|$($_.Path)" }))
-    dotnet test (Join-Path $repository 'GWGUI.sln') -c Release --no-restore --filter 'FullyQualifiedName~RealScpCorpusTests'
+    dotnet test (Join-Path $repository 'GWGUI.sln') -c Release --no-restore --disable-build-servers --filter 'FullyQualifiedName~RealScpCorpusTests'
     if ($LASTEXITCODE -ne 0) { throw 'The real SCP corpus integration tests failed.' }
     $downloaded | Select-Object Identifier,Size,Md5,Sha1
 }

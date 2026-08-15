@@ -181,4 +181,6 @@
   <data name="Engines.Description" xml:space="preserve"><value>اختر بشكل مستقل المحرك المستخدم لكل عملية.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>محرك GW GUI الداخلي</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>يُستخدم المحرك المحدد حصريًا. إذا تعذر عليه تنفيذ العملية، يبلغ GW GUI بذلك بدلًا من استخدام المحرك الآخر بصمت.</value></data>
+  <data name="Emulation.Model" xml:space="preserve"><value>النموذج</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>التقاط الماوس</value></data>
 </root>

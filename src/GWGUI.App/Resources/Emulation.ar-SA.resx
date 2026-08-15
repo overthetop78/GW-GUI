@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>الأجهزة</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>النواة</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>نواة محاكاة {0}</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>تظل المكتبة خارج GW GUI. يحل الإصدار المحدد محل الإصدار المثبت حاليًا.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>الإصدار المطلوب من GW GUI</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>أحدث إصدار رسمي متاح</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>الإصدار المثبت حاليًا</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>انقر فوق بحث للاستعلام من خادم Libretro الرسمي.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>البحث عن الإصدارات</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>تنزيل واستبدال</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>جارٍ البحث عن الإصدارات المتاحة…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>لم يتم العثور على إصدار رسمي.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>يتوفر {0} إصدار.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>جارٍ تنزيل {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>الإصدار المثبت: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · مثبت</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>لا يوجد إصدار مثبت</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>فتح</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>مرحبًا</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>حدد جهازًا محفوظًا أعلاه وانقر فوق فتح. يظهر كل جهاز قيد التشغيل في علامة تبويب منفصلة.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>يمكنك هنا إنشاء التكوينات المحفوظة أو تحديدها أو تعديلها أو حذفها. حدد علامة تبويب {0} لتحرير التكوين المحدد.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>عام</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>فيديو</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>التخزين</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>لوحة المفاتيح</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>الماوس</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>وحدات التحكم</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>متقدم</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>معرّف الجهاز</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>جهاز وحدة التحكم {0}</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>مفتاح {0}</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>مفتاح المضيف</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>المعالج: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>مجموعة شرائح الفيديو: {0}</value>
+  </data>
+  <data name="Emulation.CpuModel"><value>CPU model</value></data>
+  <data name="Emulation.CpuMultiplier"><value>CPU multiplier</value></data>
+  <data name="Emulation.CpuCompatibility"><value>Cycle-compatible CPU</value></data>
+  <data name="Emulation.ChipMemory"><value>Chip RAM</value></data>
+  <data name="Emulation.SlowMemory"><value>Slow RAM</value></data>
+  <data name="Emulation.FastMemory"><value>Fast RAM</value></data>
+  <data name="Emulation.Z3Memory"><value>Zorro III RAM</value></data>
+  <data name="Emulation.VideoStandard"><value>Video standard</value></data>
+  <data name="Emulation.VideoResolution"><value>Resolution</value></data>
+  <data name="Emulation.AspectRatio"><value>Aspect ratio</value></data>
+  <data name="Emulation.VideoCrop"><value>Crop borders</value></data>
+  <data name="Emulation.FlickerFixer"><value>Flicker fixer</value></data>
+  <data name="Emulation.AudioEnabled"><value>Enable audio</value></data>
+  <data name="Emulation.AudioOutput"><value>Audio output</value></data>
+  <data name="Emulation.AudioLatency"><value>Latency (ms)</value></data>
+  <data name="Emulation.AudioInterpolation"><value>Interpolation</value></data>
+  <data name="Emulation.AudioFilter"><value>Amiga audio filter</value></data>
+  <data name="Emulation.StereoSeparation"><value>Stereo separation (%)</value></data>
+  <data name="Emulation.AudioInput"><value>Audio input</value></data>
+  <data name="Emulation.AudioInputUnavailable"><value>This Amiga core does not expose an audio input.</value></data>
+  <data name="Emulation.DefaultAudioOutput"><value>Windows default output</value></data>
+  <data name="Emulation.AddMedia"><value>Add media</value></data>
+  <data name="Emulation.CreateHardDisk"><value>Create hard disk</value></data>
+  <data name="Emulation.HardDiskSize"><value>Hard-disk size (MiB)</value></data>
+  <data name="Emulation.NoMedia"><value>No media. Add a floppy, hard disk or CD supported by the selected model.</value></data>
+  <data name="Emulation.ReadOnly"><value>Read-only</value></data>
+  <data name="Emulation.AmigaMediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value></data>
+  <data name="Emulation.HardDiskFilter"><value>Amiga hard disk|*.hdf|All files|*.*</value></data>
+  <data name="Emulation.HardDiskNotSupported"><value>The selected model does not support a hard disk.</value></data>
+  <data name="Emulation.TooManyFloppyDrives"><value>This model accepts at most {0} floppy drive(s).</value></data>
+  <data name="Emulation.TooManyHardDrives"><value>This model accepts at most {0} hard disk(s).</value></data>
+  <data name="Emulation.CdNotSupported"><value>The selected model does not support a CD drive.</value></data>
+  <data name="Emulation.DuplicateKeyboardMapping"><value>Two Amiga keys use the same PC key. Resolve the red mappings before saving.</value></data>
+  <data name="Emulation.ReleaseMouseKey"><value>Release-capture key</value></data>
+  <data name="Emulation.MouseLeftButton"><value>Left mouse button</value></data>
+  <data name="Emulation.MouseRightButton"><value>Right mouse button</value></data>
+  <data name="Emulation.MouseMiddleButton"><value>Middle mouse button</value></data>
+  <data name="Emulation.DetectControllers"><value>Detect controllers</value></data>
+  <data name="Emulation.EmulatedAction"><value>Amiga action</value></data>
+  <data name="Emulation.PhysicalControl"><value>Keyboard, mouse or controller control</value></data>
+  <data name="Emulation.Chipset"><value>مجموعة الشرائح</value></data>
+  <data name="Emulation.CdDrive"><value>محرك أقراص CD</value></data>
+  <data name="Emulation.FloppyDriveCount"><value>عدد محركات الأقراص المرنة</value></data>
+  <data name="Emulation.HardDriveCount"><value>عدد الأقراص الصلبة</value></data>
+  <data name="Emulation.FpuModel"><value>FPU</value></data>
+  <data name="Emulation.CpuSpeed"><value>CPU speed</value></data>
+  <data name="Emulation.CpuSpeedOriginal"><value>Original speed</value></data>
+  <data name="Emulation.CompatibilityNormal"><value>Normal</value></data>
+  <data name="Emulation.CompatibilityCompatible"><value>Compatible</value></data>
+  <data name="Emulation.CompatibilityMemory"><value>Memory compatible</value></data>
+  <data name="Emulation.CompatibilityExact"><value>Cycle exact</value></data>
+  <data name="Emulation.IntegratedFpu"><value>Integrated FPU</value></data>
+  <data name="Emulation.Enabled"><value>Enabled</value></data>
+  <data name="Emulation.Disabled"><value>Disabled</value></data>
+  <data name="Emulation.Minimum"><value>Minimum</value></data>
+  <data name="Emulation.VerySmall"><value>Very small</value></data>
+  <data name="Emulation.Small"><value>Small</value></data>
+  <data name="Emulation.Medium"><value>Medium</value></data>
+  <data name="Emulation.Large"><value>Large</value></data>
+  <data name="Emulation.VeryLarge"><value>Very large</value></data>
+  <data name="Emulation.Maximum"><value>Maximum</value></data>
+  <data name="Emulation.Locked"><value>Locked</value></data>
+  <data name="Emulation.Immediate"><value>Immediate</value></data>
+  <data name="Emulation.Waiting"><value>Waiting</value></data>
+  <data name="Emulation.Standard"><value>Standard</value></data>
+  <data name="Emulation.Enhanced"><value>Enhanced</value></data>
+  <data name="Emulation.Internal"><value>Internal</value></data>
+  <data name="Emulation.Loud"><value>Loud</value></data>
+  <data name="Emulation.ResolutionAutoLow"><value>Automatic low resolution</value></data>
+  <data name="Emulation.ResolutionAutoSuperHigh"><value>Automatic super-high resolution</value></data>
+  <data name="Emulation.ResolutionLow"><value>Low resolution</value></data>
+  <data name="Emulation.ResolutionHigh"><value>High resolution</value></data>
+  <data name="Emulation.ResolutionSuperHigh"><value>Super-high resolution</value></data>
+  <data name="Emulation.VideoLineMode"><value>Line mode</value></data>
+  <data name="Emulation.VideoHzChange"><value>Refresh-rate changes</value></data>
+  <data name="Emulation.VideoFrameskip"><value>Frame skip</value></data>
+  <data name="Emulation.VideoColors"><value>Color depth</value></data>
+  <data name="Emulation.VideoGamma"><value>Gamma</value></data>
+  <data name="Emulation.ImmediateBlits"><value>Blitter operation</value></data>
+  <data name="Emulation.CollisionLevel"><value>Collision detection</value></data>
+  <data name="Emulation.LineModeSingle"><value>Single scan</value></data>
+  <data name="Emulation.LineModeDouble"><value>Double scan</value></data>
+  <data name="Emulation.CollisionSprites"><value>Sprites</value></data>
+  <data name="Emulation.CollisionPlayfields"><value>Playfields</value></data>
+  <data name="Emulation.CollisionFull"><value>Full</value></data>
+  <data name="Emulation.InterpolationAnti"><value>Anti interpolation</value></data>
+  <data name="Emulation.FilterEmulated"><value>Emulated</value></data>
+  <data name="Emulation.AudioFilterType"><value>Filter type</value></data>
+  <data name="Emulation.FloppySound"><value>Floppy-drive sound volume</value></data>
+  <data name="Emulation.FloppySoundType"><value>Floppy-drive sound type</value></data>
+  <data name="Emulation.MuteEmptyFloppy"><value>Mute empty drives</value></data>
+  <data name="Emulation.CdAudioVolume"><value>CD audio volume</value></data>
+  <data name="Emulation.FloppySpeed"><value>Floppy-drive speed</value></data>
+  <data name="Emulation.FloppyWriteProtection"><value>Write-protect floppy images</value></data>
+  <data name="Emulation.FloppyWriteRedirect"><value>Redirect floppy writes</value></data>
+  <data name="Emulation.CdSpeed"><value>CD speed</value></data>
+  <data name="Emulation.KeyboardPassThrough"><value>Physical keyboard pass-through</value></data>
+  <data name="Emulation.PhysicalMouse"><value>Physical mouse</value></data>
+  <data name="Emulation.PhysicalMouseDouble"><value>Double movement</value></data>
+  <data name="Emulation.MouseSpeed"><value>Mouse speed</value></data>
+  <data name="Emulation.AnalogMouse"><value>Analog sticks controlling the mouse</value></data>
+  <data name="Emulation.AnalogMouseDeadzone"><value>Analog-stick dead zone</value></data>
+  <data name="Emulation.AnalogMouseSpeed"><value>Analog-stick mouse speed</value></data>
+  <data name="Emulation.LeftStick"><value>Left stick</value></data>
+  <data name="Emulation.RightStick"><value>Right stick</value></data>
+  <data name="Emulation.BothSticks"><value>Both sticks</value></data>
+  <data name="Emulation.TurboFire"><value>Turbo fire</value></data>
+  <data name="Emulation.TurboButton"><value>Turbo button</value></data>
+  <data name="Emulation.TurboPulse"><value>Turbo pulse</value></data>
+  <data name="Emulation.JoyPortOrder"><value>Controller port order</value></data>
+  <data name="Emulation.Emulator"><value>المحاكي</value></data>
+  <data name="Emulation.StorageBaseFolder"><value>مجلد التخزين المشترك للمحاكاة</value></data>
+  <data name="Emulation.StorageBaseFolderDescription"><value>تُنظَّم الأقراص الصلبة تلقائيًا في HDD\Amiga وHDD\Atari ومجلدات الأنظمة المستقبلية.</value></data>
+  <data name="Emulation.AddHardDisk"><value>إضافة قرص صلب موجود</value></data>
+  <data name="Emulation.HardDisks"><value>الأقراص الصلبة</value></data>
+  <data name="Emulation.NoHardDisks"><value>لا يوجد قرص صلب مرتبط بهذا الجهاز.</value></data>
+  <data name="Emulation.KeyboardPriorityHint"><value>اختصارات محجوزة</value></data>
+  <data name="Emulation.KeyboardPriorityDescription"><value>تظل اختصارات GW GUI وWindows نشطة ولا يلتقطها الجهاز.</value></data>
+  <data name="Emulation.InputBehavior"><value>السلوك</value></data>
+  <data name="Emulation.AssignInput"><value>تعيين...</value></data>
+  <data name="Emulation.InputActions"><value>الإجراءات</value></data>
+  <data name="Emulation.PressInput"><value>اضغط مفتاحًا...</value></data>
+  <data name="Emulation.CreateStorageFolders"><value>إنشاء المجلدات الفرعية المفقودة تلقائيًا</value></data>
+  <data name="Emulation.CommonFolders"><value>المجلدات المشتركة</value></data>
+  <data name="Emulation.SharedInputDescription"><value>اكتشاف الأجهزة مشترك، بينما تُحفظ التعيينات بشكل منفصل في كل تكوين جهاز.</value></data>
+  <data name="Emulation.TestInputs"><value>اختبار الإدخال</value></data>
+  <data name="Emulation.SharedDevices"><value>أجهزة الإدخال المشتركة</value></data>
+  <data name="Emulation.CaptureFolder"><value>مجلد اللقطات</value></data>
+  <data name="Emulation.StateFolder"><value>مجلد الحالات المحفوظة</value></data>
+  <data name="Emulation.DefaultFolders"><value>المجلدات الافتراضية</value></data>
+  <data name="Emulation.NoControllersDetected"><value>لم يتم اكتشاف وحدة تحكم</value></data>
+  <data name="Emulation.TestInputsPrompt"><value>اضغط مفتاحًا أو زر ماوس لاختبار اكتشافه.</value></data>
+  <data name="Emulation.Floppies"><value>الأقراص المرنة</value></data>
+  <data name="Emulation.ExtendedRom"><value>ROM موسعة</value></data>
+  <data name="Emulation.RomKey"><value>مفتاح ROM</value></data>
+  <data name="Emulation.Processor"><value>المعالج</value></data>
+  <data name="Emulation.Precision"><value>الدقة</value></data>
+  <data name="Emulation.Acceleration"><value>التسريع</value></data>
+  <data name="Emulation.MainMemory"><value>الذاكرة الرئيسية</value></data>
+  <data name="Emulation.MemoryExtensions"><value>توسعات الذاكرة</value></data>
+  <data name="Emulation.MemoryNone"><value>لا شيء</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>إعداد الذاكرة متوافق مع {0}.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>توسعات الذاكرة متوافقة مع {0}.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>ذاكرة Zorro III غير متاحة على {0}.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>إجمالي الذاكرة المعدّة: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>ذاكرة ROM للنظام</value></data>
+  <data name="Emulation.DetectedRoms"><value>ملفات ROM المكتشفة</value></data>
+  <data name="Emulation.UseFirmware"><value>استخدام</value></data>
+  <data name="Emulation.NotUsed"><value>غير مستخدمة</value></data>
+  <data name="Emulation.OpenRomFolder"><value>فتح مجلد ROM</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>متوافقة جزئيًا</value></data>
+  <data name="Emulation.DisplaySettings"><value>العرض</value></data>
+  <data name="Emulation.RenderingSettings"><value>التصيير</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>توافق مجموعة الشرائح</value></data>
+  <data name="Emulation.AudioDevice"><value>الجهاز</value></data>
+  <data name="Emulation.Latency"><value>زمن الاستجابة</value></data>
+  <data name="Emulation.AudioQuality"><value>الجودة</value></data>
+  <data name="Emulation.AudioDrives"><value>محركات الأقراص</value></data>
+  <data name="Emulation.Type"><value>النوع</value></data>
+  <data name="Emulation.AddStorageDevice"><value>إضافة جهاز تخزين</value></data>
+  <data name="Emulation.AmigaDdFloppy"><value>قرص Amiga ‏3.5 بوصة DD · ‏880 KiB</value></data>
+  <data name="Emulation.AmigaHdFloppy"><value>قرص Amiga ‏3.5 بوصة HD · ‏1.76 MiB</value></data>
+  <data name="Emulation.AssociatedMedia"><value>الوسيط المرتبط</value></data>
+  <data name="Emulation.AutomaticDiskGeometry"><value>يحدد المحاكي هندسة القرص تلقائيًا.</value></data>
+  <data name="Emulation.BlankFloppyCreated"><value>تم إنشاء صورة القرص المرن الفارغة: {0}</value></data>
+  <data name="Emulation.BlankHardDiskHint"><value>سيُنشأ الملف فارغًا، ثم يجب تقسيمه وتهيئته في الجهاز المُحاكى.</value></data>
+  <data name="Emulation.CdWriter"><value>ناسخ أقراص مضغوطة</value></data>
+  <data name="Emulation.CdWriterHint"><value>لا يمكن إنشاء قرص فارغ إلا إذا كان الجهاز والمحاكي المحددان يدعمان الكتابة.</value></data>
+  <data name="Emulation.CompactDiscDevice"><value>محرك أقراص مضغوطة</value></data>
+  <data name="Emulation.ConfigureDevice"><value>تكوين</value></data>
+  <data name="Emulation.CreateBlankFloppy"><value>إنشاء قرص مرن فارغ</value></data>
+  <data name="Emulation.DiskImage"><value>صورة القرص</value></data>
+  <data name="Emulation.DiskImageRequired"><value>حدد صورة قرص موجودة.</value></data>
+  <data name="Emulation.ExistingDiskHint"><value>سيتم إرفاق الملف المحدد بمحرك الأقراص الافتراضي هذا.</value></data>
+  <data name="Emulation.FloppyDevice"><value>محرك أقراص مرنة</value></data>
+  <data name="Emulation.FloppyImageFilter"><value>صورة قرص Amiga مرن|*.adf|كل الملفات|*.*</value></data>
+  <data name="Emulation.HardDiskDevice"><value>قرص صلب</value></data>
+  <data name="Emulation.Interface"><value>الواجهة</value></data>
+  <data name="Emulation.PreallocateFile"><value>تخصيص الملف مسبقًا</value></data>
+  <data name="Emulation.RemovableMediaRuntimeHint"><value>تُدرج الأقراص المرنة والمضغوطة أو تُستبدل من الجهاز قيد التشغيل.</value></data>
+  <data name="Emulation.RemoveMedia"><value>إزالة الوسيط</value></data>
+  <data name="Emulation.ReplaceExistingDisk"><value>صورة القرص موجودة بالفعل: {0}\nهل تريد استبدالها؟</value></data>
+  <data name="Emulation.StorageDeviceCapabilitiesHint"><value>تعتمد الأنواع والطرازات والمعرفات المتاحة على الجهاز المحدد.</value></data>
+  <data name="Emulation.TapeDevice"><value>محرك أشرطة</value></data>
+  <data name="Emulation.UseDisk"><value>استخدام القرص</value></data>
+  <data name="Emulation.UseExistingDisk"><value>استخدام قرص موجود</value></data>
+  <data name="Emulation.ModifyInGeneral"><value>تعديل في عام</value></data>
+  <data name="Emulation.NoStorageDeviceAvailable"><value>لا يتوفر جهاز تخزين إضافي لهذا الجهاز.</value></data>
+  <data name="Emulation.StorageDevices"><value>أجهزة التخزين</value></data>
+  <data name="Emulation.RestoreDefaultBindings"><value>استعادة الإعدادات الافتراضية</value></data>
+  <data name="Emulation.ClearConflicts"><value>مسح التعارضات</value></data>
+  <data name="Emulation.EmulatedKey"><value>مفتاح الجهاز</value></data>
+  <data name="Emulation.Binding"><value>التعيين</value></data>
+  <data name="Emulation.BindingState"><value>الحالة</value></data>
+  <data name="Emulation.SearchBinding"><value>البحث عن مفتاح أو تعيين</value></data>
+  <data name="Emulation.BindingLegend"><value>صالح: تعيين فريد · تعارض: التعيين مستخدم عدة مرات · محجوز: اختصار Windows أو GW GUI</value></data>
+  <data name="Emulation.BindingValid"><value>صالح</value></data>
+  <data name="Emulation.BindingConflict"><value>تعارض</value></data>
+  <data name="Emulation.BindingReserved"><value>محجوز</value></data>
+  <data name="Emulation.BindingUnassigned"><value>غير معيّن</value></data>
+  <data name="Emulation.GlobalShortcuts"><value>اختصارات المحاكاة</value></data>
+  <data name="Emulation.ShortcutsTab"><value>اختصارات</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>تحرير الماوس</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>إيقاف مؤقت / متابعة</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>ملء الشاشة / نافذة</value></data>
+  <data name="Emulation.Shortcut.Power"><value>تشغيل / إيقاف</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>إعادة ضبط بسيطة</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>إعادة ضبط كاملة</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>حفظ سريع للحالة</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>تحميل سريع للحالة</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>لقطة شاشة</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>كتم الجهاز النشط</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>تقديم سريع أثناء الضغط</value></data>
+  <data name="Emulation.Key.Help"><value>تعليمات</value></data>
+  <data name="Emulation.Key.LeftAmiga"><value>Amiga الأيسر</value></data>
+  <data name="Emulation.Key.RightAmiga"><value>Amiga الأيمن</value></data>
+  <data name="Emulation.SpecialKeysOnlyHint"><value>تُنقل الأحرف والأرقام ومفاتيح التعديل العادية مباشرة. يجب تعيين مفاتيح الوظائف والمفاتيح الخاصة بـ Amiga فقط هنا.</value></data>
+  <data name="Emulation.ShortcutUnavailable"><value>هذا الإجراء غير متوفر بعد في المحاكي الحالي.</value></data>
+  <data name="Emulation.Allocation"><value>التخصيص</value></data>
+  <data name="Emulation.AutomaticGeometry"><value>هندسة تلقائية</value></data>
+  <data name="Emulation.BlankMedia"><value>وسيط فارغ</value></data>
+  <data name="Emulation.BytesPerSector"><value>بايت لكل قطاع</value></data>
+  <data name="Emulation.CalculatedCapacity"><value>السعة المحسوبة: {0}</value></data>
+  <data name="Emulation.ControllerMappings"><value>تعيينات وحدة التحكم</value></data>
+  <data name="Emulation.ControllerPort"><value>المنفذ {0}</value></data>
+  <data name="Emulation.ControllerType"><value>نوع وحدة التحكم</value></data>
+  <data name="Emulation.CustomSize"><value>حجم مخصص</value></data>
+  <data name="Emulation.Cylinders"><value>الأسطوانات</value></data>
+  <data name="Emulation.DestinationFolder"><value>مجلد الوجهة</value></data>
+  <data name="Emulation.DetectedControllers"><value>وحدات التحكم المكتشفة</value></data>
+  <data name="Emulation.Device"><value>الجهاز</value></data>
+  <data name="Emulation.DiskGeometry"><value>هندسة القرص (CHS)</value></data>
+  <data name="Emulation.DiskSizeProfile"><value>ملف تعريف الحجم</value></data>
+  <data name="Emulation.FloppyDrive"><value>محرك الأقراص المرنة</value></data>
+  <data name="Emulation.Heads"><value>الرؤوس</value></data>
+  <data name="Emulation.InputCaptureHint"><value>اضغط «تعيين»، ثم استخدم مفتاح لوحة المفاتيح أو زر الماوس أو زر وحدة التحكم.</value></data>
+  <data name="Emulation.InvalidDiskSize"><value>حجم القرص أو هندسته غير صالحين.</value></data>
+  <data name="Emulation.MouseActions"><value>إجراءات الماوس</value></data>
+  <data name="Emulation.MouseButton4"><value>زر الماوس 4</value></data>
+  <data name="Emulation.MouseButton5"><value>زر الماوس 5</value></data>
+  <data name="Emulation.MouseCaptureTitle"><value>التقاط الماوس</value></data>
+  <data name="Emulation.PreallocationHint"><value>يحجز مساحة القرص الفعلية فورًا؛ وإلا فستزداد الصورة مع كتابة البيانات.</value></data>
+  <data name="Emulation.SearchInputBinding"><value>البحث عن إجراء أو إدخال</value></data>
+  <data name="Emulation.Sectors"><value>القطاعات</value></data>
+  <data name="Emulation.UnitMiB"><value>م.ب</value></data>
+  <data name="Emulation.UnitGiB"><value>ج.ب</value></data>
+  <data name="Emulation.DirectionUp"><value>أعلى</value></data>
+  <data name="Emulation.DirectionDown"><value>أسفل</value></data>
+  <data name="Emulation.DirectionLeft"><value>يسار</value></data>
+  <data name="Emulation.DirectionRight"><value>يمين</value></data>
+  <data name="Emulation.FireButton1"><value>زر إطلاق 1</value></data>
+  <data name="Emulation.FireButton2"><value>زر إطلاق 2</value></data>
+  <data name="Emulation.Cd32Red"><value>زر CD32 الأحمر</value></data>
+  <data name="Emulation.Cd32Blue"><value>زر CD32 الأزرق</value></data>
+  <data name="Emulation.Cd32Green"><value>زر CD32 الأخضر</value></data>
+  <data name="Emulation.Cd32Yellow"><value>زر CD32 الأصفر</value></data>
+  <data name="Emulation.Cd32Rewind"><value>إرجاع CD32</value></data>
+  <data name="Emulation.Cd32FastForward"><value>تقديم CD32</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>تشغيل / إيقاف مؤقت CD32</value></data>
+  <data name="Emulation.AmigaJoystick"><value>عصا تحكم Amiga</value></data>
+  <data name="Emulation.AnalogJoystick"><value>عصا تحكم تناظرية</value></data>
+  <data name="Emulation.Cd32Controller"><value>وحدة تحكم CD32</value></data>
+  <data name="Emulation.MouseWheelUp"><value>عجلة الماوس لأعلى</value></data>
+  <data name="Emulation.MouseWheelDown"><value>عجلة الماوس لأسفل</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>عجلة الماوس لليسار</value></data>
+  <data name="Emulation.MouseWheelRight"><value>عجلة الماوس لليمين</value></data>
+</root>

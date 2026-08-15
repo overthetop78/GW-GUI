@@ -9,6 +9,7 @@ using Microsoft.Win32;
 using System.Windows.Threading;
 using GWGUI.App.Services;
 using GWGUI.Infrastructure.HostTools;
+using GWGUI.Emulation.Amiga.Cores;
 
 namespace GWGUI.App;
 
@@ -17,6 +18,12 @@ public partial class App : Application
     private AppTheme _theme;
     protected override void OnStartup(StartupEventArgs e)
     {
+        if (e.Args is ["--amiga-core-host", var pipeName, var videoMapName])
+        {
+            AmigaCoreHost.Run(pipeName, videoMapName);
+            Shutdown();
+            return;
+        }
         DispatcherUnhandledException += OnDispatcherUnhandledException;
         AppDomain.CurrentDomain.UnhandledException += OnDomainUnhandledException;
         TaskScheduler.UnobservedTaskException += OnUnobservedTaskException;

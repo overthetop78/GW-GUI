@@ -40,6 +40,9 @@ Cette documentation décrit l’état actuel, les décisions confirmées et l’
 
 ## Références techniques et couverture
 
+- [Référentiel technique pour l’émulation](emulation.md)
+- [Émulation Amiga — PUAE et Libretro](emulation-amiga.md)
+- [Émulation Atari ST/STE/TT/Falcon — Hatari et Libretro](emulation-atari.md)
 - [Familles et formats d’images](Liste-imagesdisk.md)
 - [Couverture des commandes Greaseweazle](gw-command-coverage.md)
 - [Couverture des décodeurs et encodeurs de flux](scp-decoder-coverage.md)

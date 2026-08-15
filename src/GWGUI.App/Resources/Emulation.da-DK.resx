@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>Maskiner</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>Kerne</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>{0}-emuleringskerne</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>Biblioteket forbliver uden for GW GUI. Den valgte version erstatter den aktuelt installerede version.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>Version krævet af GW GUI</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>Seneste tilgængelige officielle version</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>Aktuelt installeret version</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>Klik på Søg for at forespørge den officielle Libretro-server.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>Søg efter versioner</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>Download og erstat</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>Søger efter tilgængelige versioner…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>Ingen officiel version fundet.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>{0} version(er) tilgængelig(e).</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>Downloader {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>Installeret version: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · installeret</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>Ingen version installeret</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>Åbn</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>Velkommen</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>Vælg en gemt maskine ovenfor, og klik på Åbn. Hver kørende maskine vises i sin egen fane.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>Opret, vælg, rediger eller slet gemte konfigurationer her. Vælg fanen {0} for at redigere den valgte konfiguration.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>Generelt</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>Video</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>Lager</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>Tastatur</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>Mus</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>Controllere</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>Avanceret</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>Enheds-id</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>Enhed til controller {0}</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>{0}-tast</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>Værtstast</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>Processor: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>Videochipsæt: {0}</value>
+  </data>
+  <data name="Emulation.CpuModel"><value>CPU model</value></data>
+  <data name="Emulation.CpuMultiplier"><value>CPU multiplier</value></data>
+  <data name="Emulation.CpuCompatibility"><value>Cycle-compatible CPU</value></data>
+  <data name="Emulation.ChipMemory"><value>Chip RAM</value></data>
+  <data name="Emulation.SlowMemory"><value>Slow RAM</value></data>
+  <data name="Emulation.FastMemory"><value>Fast RAM</value></data>
+  <data name="Emulation.Z3Memory"><value>Zorro III RAM</value></data>
+  <data name="Emulation.VideoStandard"><value>Video standard</value></data>
+  <data name="Emulation.VideoResolution"><value>Resolution</value></data>
+  <data name="Emulation.AspectRatio"><value>Aspect ratio</value></data>
+  <data name="Emulation.VideoCrop"><value>Crop borders</value></data>
+  <data name="Emulation.FlickerFixer"><value>Flicker fixer</value></data>
+  <data name="Emulation.AudioEnabled"><value>Enable audio</value></data>
+  <data name="Emulation.AudioOutput"><value>Audio output</value></data>
+  <data name="Emulation.AudioLatency"><value>Latency (ms)</value></data>
+  <data name="Emulation.AudioInterpolation"><value>Interpolation</value></data>
+  <data name="Emulation.AudioFilter"><value>Amiga audio filter</value></data>
+  <data name="Emulation.StereoSeparation"><value>Stereo separation (%)</value></data>
+  <data name="Emulation.AudioInput"><value>Audio input</value></data>
+  <data name="Emulation.AudioInputUnavailable"><value>This Amiga core does not expose an audio input.</value></data>
+  <data name="Emulation.DefaultAudioOutput"><value>Windows default output</value></data>
+  <data name="Emulation.AddMedia"><value>Add media</value></data>
+  <data name="Emulation.CreateHardDisk"><value>Create hard disk</value></data>
+  <data name="Emulation.HardDiskSize"><value>Hard-disk size (MiB)</value></data>
+  <data name="Emulation.NoMedia"><value>No media. Add a floppy, hard disk or CD supported by the selected model.</value></data>
+  <data name="Emulation.ReadOnly"><value>Read-only</value></data>
+  <data name="Emulation.AmigaMediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value></data>
+  <data name="Emulation.HardDiskFilter"><value>Amiga hard disk|*.hdf|All files|*.*</value></data>
+  <data name="Emulation.HardDiskNotSupported"><value>The selected model does not support a hard disk.</value></data>
+  <data name="Emulation.TooManyFloppyDrives"><value>This model accepts at most {0} floppy drive(s).</value></data>
+  <data name="Emulation.TooManyHardDrives"><value>This model accepts at most {0} hard disk(s).</value></data>
+  <data name="Emulation.CdNotSupported"><value>The selected model does not support a CD drive.</value></data>
+  <data name="Emulation.DuplicateKeyboardMapping"><value>Two Amiga keys use the same PC key. Resolve the red mappings before saving.</value></data>
+  <data name="Emulation.ReleaseMouseKey"><value>Release-capture key</value></data>
+  <data name="Emulation.MouseLeftButton"><value>Left mouse button</value></data>
+  <data name="Emulation.MouseRightButton"><value>Right mouse button</value></data>
+  <data name="Emulation.MouseMiddleButton"><value>Middle mouse button</value></data>
+  <data name="Emulation.DetectControllers"><value>Detect controllers</value></data>
+  <data name="Emulation.EmulatedAction"><value>Amiga action</value></data>
+  <data name="Emulation.PhysicalControl"><value>Keyboard, mouse or controller control</value></data>
+  <data name="Emulation.Chipset"><value>Chipsæt</value></data>
+  <data name="Emulation.CdDrive"><value>Cd-drev</value></data>
+  <data name="Emulation.FloppyDriveCount"><value>Antal diskettedrev</value></data>
+  <data name="Emulation.HardDriveCount"><value>Antal harddiske</value></data>
+  <data name="Emulation.FpuModel"><value>FPU</value></data>
+  <data name="Emulation.CpuSpeed"><value>CPU speed</value></data>
+  <data name="Emulation.CpuSpeedOriginal"><value>Original speed</value></data>
+  <data name="Emulation.CompatibilityNormal"><value>Normal</value></data>
+  <data name="Emulation.CompatibilityCompatible"><value>Compatible</value></data>
+  <data name="Emulation.CompatibilityMemory"><value>Memory compatible</value></data>
+  <data name="Emulation.CompatibilityExact"><value>Cycle exact</value></data>
+  <data name="Emulation.IntegratedFpu"><value>Integrated FPU</value></data>
+  <data name="Emulation.Enabled"><value>Enabled</value></data>
+  <data name="Emulation.Disabled"><value>Disabled</value></data>
+  <data name="Emulation.Minimum"><value>Minimum</value></data>
+  <data name="Emulation.VerySmall"><value>Very small</value></data>
+  <data name="Emulation.Small"><value>Small</value></data>
+  <data name="Emulation.Medium"><value>Medium</value></data>
+  <data name="Emulation.Large"><value>Large</value></data>
+  <data name="Emulation.VeryLarge"><value>Very large</value></data>
+  <data name="Emulation.Maximum"><value>Maximum</value></data>
+  <data name="Emulation.Locked"><value>Locked</value></data>
+  <data name="Emulation.Immediate"><value>Immediate</value></data>
+  <data name="Emulation.Waiting"><value>Waiting</value></data>
+  <data name="Emulation.Standard"><value>Standard</value></data>
+  <data name="Emulation.Enhanced"><value>Enhanced</value></data>
+  <data name="Emulation.Internal"><value>Internal</value></data>
+  <data name="Emulation.Loud"><value>Loud</value></data>
+  <data name="Emulation.ResolutionAutoLow"><value>Automatic low resolution</value></data>
+  <data name="Emulation.ResolutionAutoSuperHigh"><value>Automatic super-high resolution</value></data>
+  <data name="Emulation.ResolutionLow"><value>Low resolution</value></data>
+  <data name="Emulation.ResolutionHigh"><value>High resolution</value></data>
+  <data name="Emulation.ResolutionSuperHigh"><value>Super-high resolution</value></data>
+  <data name="Emulation.VideoLineMode"><value>Line mode</value></data>
+  <data name="Emulation.VideoHzChange"><value>Refresh-rate changes</value></data>
+  <data name="Emulation.VideoFrameskip"><value>Frame skip</value></data>
+  <data name="Emulation.VideoColors"><value>Color depth</value></data>
+  <data name="Emulation.VideoGamma"><value>Gamma</value></data>
+  <data name="Emulation.ImmediateBlits"><value>Blitter operation</value></data>
+  <data name="Emulation.CollisionLevel"><value>Collision detection</value></data>
+  <data name="Emulation.LineModeSingle"><value>Single scan</value></data>
+  <data name="Emulation.LineModeDouble"><value>Double scan</value></data>
+  <data name="Emulation.CollisionSprites"><value>Sprites</value></data>
+  <data name="Emulation.CollisionPlayfields"><value>Playfields</value></data>
+  <data name="Emulation.CollisionFull"><value>Full</value></data>
+  <data name="Emulation.InterpolationAnti"><value>Anti interpolation</value></data>
+  <data name="Emulation.FilterEmulated"><value>Emulated</value></data>
+  <data name="Emulation.AudioFilterType"><value>Filter type</value></data>
+  <data name="Emulation.FloppySound"><value>Floppy-drive sound volume</value></data>
+  <data name="Emulation.FloppySoundType"><value>Floppy-drive sound type</value></data>
+  <data name="Emulation.MuteEmptyFloppy"><value>Mute empty drives</value></data>
+  <data name="Emulation.CdAudioVolume"><value>CD audio volume</value></data>
+  <data name="Emulation.FloppySpeed"><value>Floppy-drive speed</value></data>
+  <data name="Emulation.FloppyWriteProtection"><value>Write-protect floppy images</value></data>
+  <data name="Emulation.FloppyWriteRedirect"><value>Redirect floppy writes</value></data>
+  <data name="Emulation.CdSpeed"><value>CD speed</value></data>
+  <data name="Emulation.KeyboardPassThrough"><value>Physical keyboard pass-through</value></data>
+  <data name="Emulation.PhysicalMouse"><value>Physical mouse</value></data>
+  <data name="Emulation.PhysicalMouseDouble"><value>Double movement</value></data>
+  <data name="Emulation.MouseSpeed"><value>Mouse speed</value></data>
+  <data name="Emulation.AnalogMouse"><value>Analog sticks controlling the mouse</value></data>
+  <data name="Emulation.AnalogMouseDeadzone"><value>Analog-stick dead zone</value></data>
+  <data name="Emulation.AnalogMouseSpeed"><value>Analog-stick mouse speed</value></data>
+  <data name="Emulation.LeftStick"><value>Left stick</value></data>
+  <data name="Emulation.RightStick"><value>Right stick</value></data>
+  <data name="Emulation.BothSticks"><value>Both sticks</value></data>
+  <data name="Emulation.TurboFire"><value>Turbo fire</value></data>
+  <data name="Emulation.TurboButton"><value>Turbo button</value></data>
+  <data name="Emulation.TurboPulse"><value>Turbo pulse</value></data>
+  <data name="Emulation.JoyPortOrder"><value>Controller port order</value></data>
+  <data name="Emulation.Emulator"><value>Emulator</value></data>
+  <data name="Emulation.StorageBaseFolder"><value>Delt lagermappe til emulering</value></data>
+  <data name="Emulation.StorageBaseFolderDescription"><value>Harddiske organiseres automatisk i HDD\Amiga, HDD\Atari og mapperne til fremtidige systemer.</value></data>
+  <data name="Emulation.AddHardDisk"><value>Tilføj en eksisterende harddisk</value></data>
+  <data name="Emulation.HardDisks"><value>Harddiske</value></data>
+  <data name="Emulation.NoHardDisks"><value>Ingen harddisk er tilknyttet denne maskine.</value></data>
+  <data name="Emulation.KeyboardPriorityHint"><value>Reserverede genveje</value></data>
+  <data name="Emulation.KeyboardPriorityDescription"><value>Genveje i GW GUI og Windows forbliver aktive og opfanges ikke af maskinen.</value></data>
+  <data name="Emulation.InputBehavior"><value>Adfærd</value></data>
+  <data name="Emulation.AssignInput"><value>Tildel...</value></data>
+  <data name="Emulation.InputActions"><value>Handlinger</value></data>
+  <data name="Emulation.PressInput"><value>Tryk på en tast...</value></data>
+  <data name="Emulation.CreateStorageFolders"><value>Opret manglende undermapper automatisk</value></data>
+  <data name="Emulation.CommonFolders"><value>Delte mapper</value></data>
+  <data name="Emulation.SharedInputDescription"><value>Enhedsregistrering deles, mens tildelinger gemmes separat i hver maskinkonfiguration.</value></data>
+  <data name="Emulation.TestInputs"><value>Test input</value></data>
+  <data name="Emulation.SharedDevices"><value>Delte inputenheder</value></data>
+  <data name="Emulation.CaptureFolder"><value>Optagelsesmappe</value></data>
+  <data name="Emulation.StateFolder"><value>Mappe til gemte tilstande</value></data>
+  <data name="Emulation.DefaultFolders"><value>Standardmapper</value></data>
+  <data name="Emulation.NoControllersDetected"><value>Ingen controller fundet</value></data>
+  <data name="Emulation.TestInputsPrompt"><value>Tryk på en tast eller museknap for at teste registreringen.</value></data>
+  <data name="Emulation.Floppies"><value>Disketter</value></data>
+  <data name="Emulation.ExtendedRom"><value>Udvidet ROM</value></data>
+  <data name="Emulation.RomKey"><value>ROM-nøgle</value></data>
+  <data name="Emulation.Processor"><value>Processor</value></data>
+  <data name="Emulation.Precision"><value>Præcision</value></data>
+  <data name="Emulation.Acceleration"><value>Acceleration</value></data>
+  <data name="Emulation.MainMemory"><value>Hovedhukommelse</value></data>
+  <data name="Emulation.MemoryExtensions"><value>Hukommelsesudvidelser</value></data>
+  <data name="Emulation.MemoryNone"><value>Ingen</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>Hukommelseskonfigurationen er kompatibel med {0}.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Hukommelsesudvidelserne er kompatible med {0}.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>Zorro III-RAM er ikke tilgængelig på {0}.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>Samlet konfigureret hukommelse: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>System-ROM</value></data>
+  <data name="Emulation.DetectedRoms"><value>Fundne ROM-filer</value></data>
+  <data name="Emulation.UseFirmware"><value>Brug</value></data>
+  <data name="Emulation.NotUsed"><value>Ikke brugt</value></data>
+  <data name="Emulation.OpenRomFolder"><value>Åbn ROM-mappe</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>Delvist kompatibel</value></data>
+  <data name="Emulation.DisplaySettings"><value>Visning</value></data>
+  <data name="Emulation.RenderingSettings"><value>Gengivelse</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>Chipsætkompatibilitet</value></data>
+  <data name="Emulation.AudioDevice"><value>Enhed</value></data>
+  <data name="Emulation.Latency"><value>Forsinkelse</value></data>
+  <data name="Emulation.AudioQuality"><value>Kvalitet</value></data>
+  <data name="Emulation.AudioDrives"><value>Drev</value></data>
+  <data name="Emulation.Type"><value>Type</value></data>
+  <data name="Emulation.AddStorageDevice"><value>Tilføj lagerenhed</value></data>
+  <data name="Emulation.AmigaDdFloppy"><value>Amiga 3,5-tommer DD · 880 KiB</value></data>
+  <data name="Emulation.AmigaHdFloppy"><value>Amiga 3,5-tommer HD · 1,76 MiB</value></data>
+  <data name="Emulation.AssociatedMedia"><value>Tilknyttet medie</value></data>
+  <data name="Emulation.AutomaticDiskGeometry"><value>Diskgeometrien bestemmes automatisk af emulatoren.</value></data>
+  <data name="Emulation.BlankFloppyCreated"><value>Tom disketteafbildning oprettet: {0}</value></data>
+  <data name="Emulation.BlankHardDiskHint"><value>Filen oprettes tom og skal derefter partitioneres og formateres i den emulerede maskine.</value></data>
+  <data name="Emulation.CdWriter"><value>Cd-brænder</value></data>
+  <data name="Emulation.CdWriterHint"><value>En tom disk kan kun oprettes, når den valgte maskine og emulator understøtter skrivning.</value></data>
+  <data name="Emulation.CompactDiscDevice"><value>Cd-rom-drev</value></data>
+  <data name="Emulation.ConfigureDevice"><value>Konfigurer</value></data>
+  <data name="Emulation.CreateBlankFloppy"><value>Opret en tom diskette</value></data>
+  <data name="Emulation.DiskImage"><value>Diskafbildning</value></data>
+  <data name="Emulation.DiskImageRequired"><value>Vælg en eksisterende diskafbildning.</value></data>
+  <data name="Emulation.ExistingDiskHint"><value>Den valgte fil tilknyttes dette virtuelle drev.</value></data>
+  <data name="Emulation.FloppyDevice"><value>Diskettedrev</value></data>
+  <data name="Emulation.FloppyImageFilter"><value>Amiga-disketteafbildning|*.adf|Alle filer|*.*</value></data>
+  <data name="Emulation.HardDiskDevice"><value>Harddisk</value></data>
+  <data name="Emulation.Interface"><value>Grænseflade</value></data>
+  <data name="Emulation.PreallocateFile"><value>Forudalloker filen</value></data>
+  <data name="Emulation.RemovableMediaRuntimeHint"><value>Disketter og cd'er indsættes eller udskiftes fra den kørende maskine.</value></data>
+  <data name="Emulation.RemoveMedia"><value>Fjern medie</value></data>
+  <data name="Emulation.ReplaceExistingDisk"><value>Diskafbildningen findes allerede: {0}\nVil du erstatte den?</value></data>
+  <data name="Emulation.StorageDeviceCapabilitiesHint"><value>Tilgængelige typer, modeller og identifikatorer afhænger af den valgte maskine.</value></data>
+  <data name="Emulation.TapeDevice"><value>Bånddrev</value></data>
+  <data name="Emulation.UseDisk"><value>Brug disk</value></data>
+  <data name="Emulation.UseExistingDisk"><value>Brug en eksisterende disk</value></data>
+  <data name="Emulation.ModifyInGeneral"><value>Rediger under Generelt</value></data>
+  <data name="Emulation.NoStorageDeviceAvailable"><value>Der er ingen yderligere lagerenhed tilgængelig for denne maskine.</value></data>
+  <data name="Emulation.StorageDevices"><value>Lagerenheder</value></data>
+  <data name="Emulation.RestoreDefaultBindings"><value>Gendan standardværdier</value></data>
+  <data name="Emulation.ClearConflicts"><value>Ryd konflikter</value></data>
+  <data name="Emulation.EmulatedKey"><value>Maskintast</value></data>
+  <data name="Emulation.Binding"><value>Tilknytning</value></data>
+  <data name="Emulation.BindingState"><value>Status</value></data>
+  <data name="Emulation.SearchBinding"><value>Søg efter en tast eller tilknytning</value></data>
+  <data name="Emulation.BindingLegend"><value>Gyldig: entydig tilknytning · Konflikt: tilknytning bruges flere gange · Reserveret: Windows- eller GW GUI-genvej</value></data>
+  <data name="Emulation.BindingValid"><value>Gyldig</value></data>
+  <data name="Emulation.BindingConflict"><value>Konflikt</value></data>
+  <data name="Emulation.BindingReserved"><value>Reserveret</value></data>
+  <data name="Emulation.BindingUnassigned"><value>Ikke tildelt</value></data>
+  <data name="Emulation.GlobalShortcuts"><value>Emuleringsgenveje</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Genveje</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Frigiv musen</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Pause / fortsæt</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Fuld skærm / vindue</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Tænd / sluk</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>Blød nulstilling</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Hård nulstilling</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Hurtig lagring af tilstand</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Hurtig indlæsning af tilstand</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Skærmbillede</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Slå lyd fra på aktiv maskine</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Spol hurtigt frem mens tasten holdes nede</value></data>
+  <data name="Emulation.Key.Help"><value>Hjælp</value></data>
+  <data name="Emulation.Key.LeftAmiga"><value>Venstre Amiga</value></data>
+  <data name="Emulation.Key.RightAmiga"><value>Højre Amiga</value></data>
+  <data name="Emulation.SpecialKeysOnlyHint"><value>Bogstaver, tal og almindelige ændringstaster sendes direkte. Kun Amiga-funktions- og specialtaster skal tilknyttes her.</value></data>
+  <data name="Emulation.ShortcutUnavailable"><value>Denne handling understøttes endnu ikke af den aktuelle emulator.</value></data>
+  <data name="Emulation.Allocation"><value>Allokering</value></data>
+  <data name="Emulation.AutomaticGeometry"><value>Automatisk geometri</value></data>
+  <data name="Emulation.BlankMedia"><value>Tomt medie</value></data>
+  <data name="Emulation.BytesPerSector"><value>Byte pr. sektor</value></data>
+  <data name="Emulation.CalculatedCapacity"><value>Beregnet kapacitet: {0}</value></data>
+  <data name="Emulation.ControllerMappings"><value>Controller-tildelinger</value></data>
+  <data name="Emulation.ControllerPort"><value>Port {0}</value></data>
+  <data name="Emulation.ControllerType"><value>Controller-type</value></data>
+  <data name="Emulation.CustomSize"><value>Brugerdefineret størrelse</value></data>
+  <data name="Emulation.Cylinders"><value>Cylindre</value></data>
+  <data name="Emulation.DestinationFolder"><value>Destinationsmappe</value></data>
+  <data name="Emulation.DetectedControllers"><value>Registrerede controllere</value></data>
+  <data name="Emulation.Device"><value>Enhed</value></data>
+  <data name="Emulation.DiskGeometry"><value>Diskgeometri (CHS)</value></data>
+  <data name="Emulation.DiskSizeProfile"><value>Størrelsesprofil</value></data>
+  <data name="Emulation.FloppyDrive"><value>Diskettedrev</value></data>
+  <data name="Emulation.Heads"><value>Hoveder</value></data>
+  <data name="Emulation.InputCaptureHint"><value>Tryk på Tildel, og brug derefter en tast, museknap eller controllerknap.</value></data>
+  <data name="Emulation.InvalidDiskSize"><value>Diskstørrelsen eller geometrien er ugyldig.</value></data>
+  <data name="Emulation.MouseActions"><value>Musehandlinger</value></data>
+  <data name="Emulation.MouseButton4"><value>Museknap 4</value></data>
+  <data name="Emulation.MouseButton5"><value>Museknap 5</value></data>
+  <data name="Emulation.MouseCaptureTitle"><value>Musefangst</value></data>
+  <data name="Emulation.PreallocationHint"><value>Reserverer den fysiske diskplads med det samme; ellers vokser billedet, når data skrives.</value></data>
+  <data name="Emulation.SearchInputBinding"><value>Søg efter en handling eller input</value></data>
+  <data name="Emulation.Sectors"><value>Sektorer</value></data>
+  <data name="Emulation.UnitMiB"><value>MiB</value></data>
+  <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>Op</value></data>
+  <data name="Emulation.DirectionDown"><value>Ned</value></data>
+  <data name="Emulation.DirectionLeft"><value>Venstre</value></data>
+  <data name="Emulation.DirectionRight"><value>Højre</value></data>
+  <data name="Emulation.FireButton1"><value>Fireknap 1</value></data>
+  <data name="Emulation.FireButton2"><value>Fireknap 2</value></data>
+  <data name="Emulation.Cd32Red"><value>Rød CD32-knap</value></data>
+  <data name="Emulation.Cd32Blue"><value>Blå CD32-knap</value></data>
+  <data name="Emulation.Cd32Green"><value>Grøn CD32-knap</value></data>
+  <data name="Emulation.Cd32Yellow"><value>Gul CD32-knap</value></data>
+  <data name="Emulation.Cd32Rewind"><value>CD32 spole tilbage</value></data>
+  <data name="Emulation.Cd32FastForward"><value>CD32 spole frem</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>CD32 afspil / pause</value></data>
+  <data name="Emulation.AmigaJoystick"><value>Amiga-joystick</value></data>
+  <data name="Emulation.AnalogJoystick"><value>Analogt joystick</value></data>
+  <data name="Emulation.Cd32Controller"><value>CD32-controller</value></data>
+  <data name="Emulation.MouseWheelUp"><value>Musehjul op</value></data>
+  <data name="Emulation.MouseWheelDown"><value>Musehjul ned</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>Musehjul til venstre</value></data>
+  <data name="Emulation.MouseWheelRight"><value>Musehjul til højre</value></data>
+</root>

@@ -72,4 +72,7 @@
   <data name="Icon.Console">
     <value></value>
   </data>
+  <data name="Common.New"><value>Uusi</value></data>
+  <data name="Common.Refresh"><value>Päivitä</value></data>
+  <data name="Common.OpenFolder"><value>Avaa kansio</value></data>
 </root>

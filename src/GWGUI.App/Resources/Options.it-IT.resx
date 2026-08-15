@@ -181,4 +181,6 @@
   <data name="Engines.Description" xml:space="preserve"><value>Scegli in modo indipendente il motore usato per ogni operazione.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>Motore interno di GW GUI</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>Il motore selezionato viene usato rigorosamente. Se non può eseguire l’operazione, GW GUI lo segnala senza usare silenziosamente l’altro motore.</value></data>
+  <data name="Emulation.Model" xml:space="preserve"><value>Modello</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Cattura il mouse</value></data>
 </root>

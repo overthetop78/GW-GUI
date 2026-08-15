@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>머신</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>코어</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>{0} 에뮬레이션 코어</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>라이브러리는 GW GUI 외부에 유지됩니다. 선택한 버전이 현재 설치된 버전을 대체합니다.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>GW GUI에 필요한 버전</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>사용 가능한 최신 공식 버전</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>현재 설치된 버전</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>검색을 클릭하여 공식 Libretro 서버를 조회합니다.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>버전 검색</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>다운로드 및 교체</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>사용 가능한 버전 검색 중…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>공식 버전을 찾지 못했습니다.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>{0}개 버전을 사용할 수 있습니다.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>{0} 다운로드 중…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>설치된 버전: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · 설치됨</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>설치된 버전 없음</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>열기</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>환영합니다</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>위에서 저장된 머신을 선택하고 열기를 클릭하십시오. 실행 중인 각 머신은 자체 탭에 표시됩니다.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>여기에서 저장된 구성을 만들고, 선택하고, 수정하거나 삭제할 수 있습니다. 선택한 구성을 편집하려면 {0} 탭을 선택하십시오.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>일반</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>비디오</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>저장소</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>키보드</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>마우스</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>컨트롤러</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>고급</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>장치 식별자</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>컨트롤러 {0} 장치</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>{0} 키</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>호스트 키</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>프로세서: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>비디오 칩셋: {0}</value>
+  </data>
+  <data name="Emulation.CpuModel"><value>CPU 모델</value></data>
+  <data name="Emulation.CpuMultiplier"><value>CPU 배수</value></data>
+  <data name="Emulation.CpuCompatibility"><value>사이클 단위 호환 CPU</value></data>
+  <data name="Emulation.ChipMemory"><value>칩 RAM</value></data>
+  <data name="Emulation.SlowMemory"><value>슬로우 RAM</value></data>
+  <data name="Emulation.FastMemory"><value>패스트 RAM</value></data>
+  <data name="Emulation.Z3Memory"><value>Zorro III RAM</value></data>
+  <data name="Emulation.VideoStandard"><value>비디오 표준</value></data>
+  <data name="Emulation.VideoResolution"><value>해상도</value></data>
+  <data name="Emulation.AspectRatio"><value>화면 비율</value></data>
+  <data name="Emulation.VideoCrop"><value>테두리 자르기</value></data>
+  <data name="Emulation.FlickerFixer"><value>깜박임 보정</value></data>
+  <data name="Emulation.AudioEnabled"><value>오디오 사용</value></data>
+  <data name="Emulation.AudioOutput"><value>오디오 출력</value></data>
+  <data name="Emulation.AudioLatency"><value>지연 시간(ms)</value></data>
+  <data name="Emulation.AudioInterpolation"><value>보간</value></data>
+  <data name="Emulation.AudioFilter"><value>Amiga 오디오 필터</value></data>
+  <data name="Emulation.StereoSeparation"><value>스테레오 분리도(%)</value></data>
+  <data name="Emulation.AudioInput"><value>오디오 입력</value></data>
+  <data name="Emulation.AudioInputUnavailable"><value>이 Amiga 코어는 오디오 입력을 제공하지 않습니다.</value></data>
+  <data name="Emulation.DefaultAudioOutput"><value>Windows 기본 출력</value></data>
+  <data name="Emulation.AddMedia"><value>미디어 추가</value></data>
+  <data name="Emulation.CreateHardDisk"><value>하드 디스크 만들기</value></data>
+  <data name="Emulation.HardDiskSize"><value>하드 디스크 크기(MiB)</value></data>
+  <data name="Emulation.NoMedia"><value>미디어가 없습니다. 선택한 모델이 지원하는 플로피, 하드 디스크 또는 CD를 추가하세요.</value></data>
+  <data name="Emulation.ReadOnly"><value>읽기 전용</value></data>
+  <data name="Emulation.AmigaMediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value></data>
+  <data name="Emulation.HardDiskFilter"><value>Amiga hard disk|*.hdf|All files|*.*</value></data>
+  <data name="Emulation.HardDiskNotSupported"><value>선택한 모델은 하드 디스크를 지원하지 않습니다.</value></data>
+  <data name="Emulation.TooManyFloppyDrives"><value>이 모델은 최대 {0}개의 플로피 드라이브를 지원합니다.</value></data>
+  <data name="Emulation.TooManyHardDrives"><value>이 모델은 최대 {0}개의 하드 디스크를 지원합니다.</value></data>
+  <data name="Emulation.CdNotSupported"><value>선택한 모델은 CD 드라이브를 지원하지 않습니다.</value></data>
+  <data name="Emulation.DuplicateKeyboardMapping"><value>두 Amiga 키가 같은 PC 키를 사용합니다. 저장하기 전에 빨간색 매핑을 수정하세요.</value></data>
+  <data name="Emulation.ReleaseMouseKey"><value>마우스 캡처 해제 키</value></data>
+  <data name="Emulation.MouseLeftButton"><value>마우스 왼쪽 버튼</value></data>
+  <data name="Emulation.MouseRightButton"><value>마우스 오른쪽 버튼</value></data>
+  <data name="Emulation.MouseMiddleButton"><value>마우스 가운데 버튼</value></data>
+  <data name="Emulation.DetectControllers"><value>컨트롤러 검색</value></data>
+  <data name="Emulation.EmulatedAction"><value>Amiga 동작</value></data>
+  <data name="Emulation.PhysicalControl"><value>키보드, 마우스 또는 컨트롤러 입력</value></data>
+  <data name="Emulation.Chipset"><value>칩셋</value></data>
+  <data name="Emulation.CdDrive"><value>CD 드라이브</value></data>
+  <data name="Emulation.FloppyDriveCount"><value>플로피 드라이브 수</value></data>
+  <data name="Emulation.HardDriveCount"><value>하드 디스크 수</value></data>
+  <data name="Emulation.FpuModel"><value>FPU</value></data>
+  <data name="Emulation.CpuSpeed"><value>CPU 속도</value></data>
+  <data name="Emulation.CpuSpeedOriginal"><value>원래 속도</value></data>
+  <data name="Emulation.CompatibilityNormal"><value>일반</value></data>
+  <data name="Emulation.CompatibilityCompatible"><value>호환</value></data>
+  <data name="Emulation.CompatibilityMemory"><value>메모리 호환</value></data>
+  <data name="Emulation.CompatibilityExact"><value>사이클 단위 정확</value></data>
+  <data name="Emulation.IntegratedFpu"><value>통합 FPU</value></data>
+  <data name="Emulation.Enabled"><value>사용</value></data>
+  <data name="Emulation.Disabled"><value>사용 안 함</value></data>
+  <data name="Emulation.Minimum"><value>최소</value></data>
+  <data name="Emulation.VerySmall"><value>매우 작게</value></data>
+  <data name="Emulation.Small"><value>작게</value></data>
+  <data name="Emulation.Medium"><value>중간</value></data>
+  <data name="Emulation.Large"><value>크게</value></data>
+  <data name="Emulation.VeryLarge"><value>매우 크게</value></data>
+  <data name="Emulation.Maximum"><value>최대</value></data>
+  <data name="Emulation.Locked"><value>잠금</value></data>
+  <data name="Emulation.Immediate"><value>즉시</value></data>
+  <data name="Emulation.Waiting"><value>대기</value></data>
+  <data name="Emulation.Standard"><value>표준</value></data>
+  <data name="Emulation.Enhanced"><value>향상</value></data>
+  <data name="Emulation.Internal"><value>내부</value></data>
+  <data name="Emulation.Loud"><value>크게</value></data>
+  <data name="Emulation.ResolutionAutoLow"><value>자동 저해상도</value></data>
+  <data name="Emulation.ResolutionAutoSuperHigh"><value>자동 초고해상도</value></data>
+  <data name="Emulation.ResolutionLow"><value>저해상도</value></data>
+  <data name="Emulation.ResolutionHigh"><value>고해상도</value></data>
+  <data name="Emulation.ResolutionSuperHigh"><value>초고해상도</value></data>
+  <data name="Emulation.VideoLineMode"><value>라인 모드</value></data>
+  <data name="Emulation.VideoHzChange"><value>새로 고침 빈도 변경</value></data>
+  <data name="Emulation.VideoFrameskip"><value>프레임 건너뛰기</value></data>
+  <data name="Emulation.VideoColors"><value>색 심도</value></data>
+  <data name="Emulation.VideoGamma"><value>감마</value></data>
+  <data name="Emulation.ImmediateBlits"><value>블리터 동작</value></data>
+  <data name="Emulation.CollisionLevel"><value>충돌 감지</value></data>
+  <data name="Emulation.LineModeSingle"><value>단일 스캔</value></data>
+  <data name="Emulation.LineModeDouble"><value>이중 스캔</value></data>
+  <data name="Emulation.CollisionSprites"><value>스프라이트</value></data>
+  <data name="Emulation.CollisionPlayfields"><value>플레이필드</value></data>
+  <data name="Emulation.CollisionFull"><value>전체</value></data>
+  <data name="Emulation.InterpolationAnti"><value>안티 보간</value></data>
+  <data name="Emulation.FilterEmulated"><value>에뮬레이션</value></data>
+  <data name="Emulation.AudioFilterType"><value>필터 종류</value></data>
+  <data name="Emulation.FloppySound"><value>플로피 드라이브 소리 음량</value></data>
+  <data name="Emulation.FloppySoundType"><value>플로피 드라이브 소리 종류</value></data>
+  <data name="Emulation.MuteEmptyFloppy"><value>빈 드라이브 음소거</value></data>
+  <data name="Emulation.CdAudioVolume"><value>CD 오디오 음량</value></data>
+  <data name="Emulation.FloppySpeed"><value>플로피 드라이브 속도</value></data>
+  <data name="Emulation.FloppyWriteProtection"><value>플로피 이미지 쓰기 보호</value></data>
+  <data name="Emulation.FloppyWriteRedirect"><value>플로피 쓰기 리디렉션</value></data>
+  <data name="Emulation.CdSpeed"><value>CD 속도</value></data>
+  <data name="Emulation.KeyboardPassThrough"><value>물리 키보드 패스스루</value></data>
+  <data name="Emulation.PhysicalMouse"><value>물리 마우스</value></data>
+  <data name="Emulation.PhysicalMouseDouble"><value>이동 두 배</value></data>
+  <data name="Emulation.MouseSpeed"><value>마우스 속도</value></data>
+  <data name="Emulation.AnalogMouse"><value>마우스를 제어하는 아날로그 스틱</value></data>
+  <data name="Emulation.AnalogMouseDeadzone"><value>아날로그 스틱 데드존</value></data>
+  <data name="Emulation.AnalogMouseSpeed"><value>아날로그 스틱 마우스 속도</value></data>
+  <data name="Emulation.LeftStick"><value>왼쪽 스틱</value></data>
+  <data name="Emulation.RightStick"><value>오른쪽 스틱</value></data>
+  <data name="Emulation.BothSticks"><value>양쪽 스틱</value></data>
+  <data name="Emulation.TurboFire"><value>터보 발사</value></data>
+  <data name="Emulation.TurboButton"><value>터보 버튼</value></data>
+  <data name="Emulation.TurboPulse"><value>터보 펄스</value></data>
+  <data name="Emulation.JoyPortOrder"><value>컨트롤러 포트 순서</value></data>
+  <data name="Emulation.Emulator"><value>에뮬레이터</value></data>
+  <data name="Emulation.StorageBaseFolder"><value>공유 에뮬레이션 저장 폴더</value></data>
+  <data name="Emulation.StorageBaseFolderDescription"><value>하드 디스크는 HDD\Amiga, HDD\Atari 및 향후 시스템 폴더에 자동으로 정리됩니다.</value></data>
+  <data name="Emulation.AddHardDisk"><value>기존 하드 디스크 추가</value></data>
+  <data name="Emulation.HardDisks"><value>하드 디스크</value></data>
+  <data name="Emulation.NoHardDisks"><value>이 머신에 연결된 하드 디스크가 없습니다.</value></data>
+  <data name="Emulation.KeyboardPriorityHint"><value>예약된 바로 가기</value></data>
+  <data name="Emulation.KeyboardPriorityDescription"><value>GW GUI 및 Windows 바로 가기는 활성 상태로 유지되며 머신에서 캡처하지 않습니다.</value></data>
+  <data name="Emulation.InputBehavior"><value>동작</value></data>
+  <data name="Emulation.AssignInput"><value>할당...</value></data>
+  <data name="Emulation.InputActions"><value>작업</value></data>
+  <data name="Emulation.PressInput"><value>키를 누르세요...</value></data>
+  <data name="Emulation.CreateStorageFolders"><value>누락된 하위 폴더 자동 생성</value></data>
+  <data name="Emulation.CommonFolders"><value>공유 폴더</value></data>
+  <data name="Emulation.SharedInputDescription"><value>장치 감지는 공유되지만 할당은 각 머신 구성에 별도로 저장됩니다.</value></data>
+  <data name="Emulation.TestInputs"><value>입력 테스트</value></data>
+  <data name="Emulation.SharedDevices"><value>공유 입력 장치</value></data>
+  <data name="Emulation.CaptureFolder"><value>캡처 폴더</value></data>
+  <data name="Emulation.StateFolder"><value>저장 상태 폴더</value></data>
+  <data name="Emulation.DefaultFolders"><value>기본 폴더</value></data>
+  <data name="Emulation.NoControllersDetected"><value>컨트롤러가 감지되지 않음</value></data>
+  <data name="Emulation.TestInputsPrompt"><value>키보드 키나 마우스 버튼을 눌러 감지를 테스트하세요.</value></data>
+  <data name="Emulation.Floppies"><value>플로피 디스크</value></data>
+  <data name="Emulation.ExtendedRom"><value>확장 ROM</value></data>
+  <data name="Emulation.RomKey"><value>ROM 키</value></data>
+  <data name="Emulation.Processor"><value>프로세서</value></data>
+  <data name="Emulation.Precision"><value>정밀도</value></data>
+  <data name="Emulation.Acceleration"><value>가속</value></data>
+  <data name="Emulation.MainMemory"><value>주 메모리</value></data>
+  <data name="Emulation.MemoryExtensions"><value>메모리 확장</value></data>
+  <data name="Emulation.MemoryNone"><value>없음</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>메모리 구성이 {0}과(와) 호환됩니다.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>메모리 확장이 {0}과(와) 호환됩니다.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>Zorro III RAM은 {0}에서 사용할 수 없습니다.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>구성된 총 메모리: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>시스템 ROM</value></data>
+  <data name="Emulation.DetectedRoms"><value>감지된 ROM</value></data>
+  <data name="Emulation.UseFirmware"><value>사용</value></data>
+  <data name="Emulation.NotUsed"><value>사용 안 함</value></data>
+  <data name="Emulation.OpenRomFolder"><value>ROM 폴더 열기</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>부분 호환</value></data>
+  <data name="Emulation.DisplaySettings"><value>디스플레이</value></data>
+  <data name="Emulation.RenderingSettings"><value>렌더링</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>칩셋 호환성</value></data>
+  <data name="Emulation.AudioDevice"><value>장치</value></data>
+  <data name="Emulation.Latency"><value>지연 시간</value></data>
+  <data name="Emulation.AudioQuality"><value>품질</value></data>
+  <data name="Emulation.AudioDrives"><value>드라이브</value></data>
+  <data name="Emulation.Type"><value>유형</value></data>
+  <data name="Emulation.AddStorageDevice"><value>저장 장치 추가</value></data>
+  <data name="Emulation.AmigaDdFloppy"><value>Amiga 3.5인치 DD · 880 KiB</value></data>
+  <data name="Emulation.AmigaHdFloppy"><value>Amiga 3.5인치 HD · 1.76 MiB</value></data>
+  <data name="Emulation.AssociatedMedia"><value>연결된 미디어</value></data>
+  <data name="Emulation.AutomaticDiskGeometry"><value>디스크 구조는 에뮬레이터가 자동으로 결정합니다.</value></data>
+  <data name="Emulation.BlankFloppyCreated"><value>빈 플로피 이미지 생성됨: {0}</value></data>
+  <data name="Emulation.BlankHardDiskHint"><value>파일은 빈 상태로 생성되며 에뮬레이트된 컴퓨터에서 파티션하고 포맷해야 합니다.</value></data>
+  <data name="Emulation.CdWriter"><value>CD 기록기</value></data>
+  <data name="Emulation.CdWriterHint"><value>선택한 컴퓨터와 에뮬레이터가 쓰기를 지원할 때만 빈 디스크를 만들 수 있습니다.</value></data>
+  <data name="Emulation.CompactDiscDevice"><value>CD-ROM 드라이브</value></data>
+  <data name="Emulation.ConfigureDevice"><value>구성</value></data>
+  <data name="Emulation.CreateBlankFloppy"><value>빈 플로피 만들기</value></data>
+  <data name="Emulation.DiskImage"><value>디스크 이미지</value></data>
+  <data name="Emulation.DiskImageRequired"><value>기존 디스크 이미지를 선택하세요.</value></data>
+  <data name="Emulation.ExistingDiskHint"><value>선택한 파일이 이 가상 드라이브에 연결됩니다.</value></data>
+  <data name="Emulation.FloppyDevice"><value>플로피 드라이브</value></data>
+  <data name="Emulation.FloppyImageFilter"><value>Amiga 플로피 이미지|*.adf|모든 파일|*.*</value></data>
+  <data name="Emulation.HardDiskDevice"><value>하드 디스크</value></data>
+  <data name="Emulation.Interface"><value>인터페이스</value></data>
+  <data name="Emulation.PreallocateFile"><value>파일 미리 할당</value></data>
+  <data name="Emulation.RemovableMediaRuntimeHint"><value>플로피와 CD는 실행 중인 컴퓨터에서 삽입하거나 교체합니다.</value></data>
+  <data name="Emulation.RemoveMedia"><value>미디어 제거</value></data>
+  <data name="Emulation.ReplaceExistingDisk"><value>디스크 이미지가 이미 있습니다: {0}\n교체하시겠습니까?</value></data>
+  <data name="Emulation.StorageDeviceCapabilitiesHint"><value>사용 가능한 유형, 모델 및 식별자는 선택한 컴퓨터에 따라 달라집니다.</value></data>
+  <data name="Emulation.TapeDevice"><value>테이프 드라이브</value></data>
+  <data name="Emulation.UseDisk"><value>디스크 사용</value></data>
+  <data name="Emulation.UseExistingDisk"><value>기존 디스크 사용</value></data>
+  <data name="Emulation.ModifyInGeneral"><value>일반에서 수정</value></data>
+  <data name="Emulation.NoStorageDeviceAvailable"><value>이 컴퓨터에 사용할 수 있는 추가 저장 장치가 없습니다.</value></data>
+  <data name="Emulation.StorageDevices"><value>저장 장치</value></data>
+  <data name="Emulation.RestoreDefaultBindings"><value>기본값 복원</value></data>
+  <data name="Emulation.ClearConflicts"><value>충돌 지우기</value></data>
+  <data name="Emulation.EmulatedKey"><value>컴퓨터 키</value></data>
+  <data name="Emulation.Binding"><value>할당</value></data>
+  <data name="Emulation.BindingState"><value>상태</value></data>
+  <data name="Emulation.SearchBinding"><value>키 또는 할당 검색</value></data>
+  <data name="Emulation.BindingLegend"><value>유효: 고유한 할당 · 충돌: 여러 번 사용된 할당 · 예약됨: Windows 또는 GW GUI 바로 가기</value></data>
+  <data name="Emulation.BindingValid"><value>유효</value></data>
+  <data name="Emulation.BindingConflict"><value>충돌</value></data>
+  <data name="Emulation.BindingReserved"><value>예약됨</value></data>
+  <data name="Emulation.BindingUnassigned"><value>할당 안 됨</value></data>
+  <data name="Emulation.GlobalShortcuts"><value>에뮬레이션 바로 가기</value></data>
+  <data name="Emulation.ShortcutsTab"><value>바로 가기</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>마우스 해제</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>일시 중지 / 계속</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>전체 화면 / 창</value></data>
+  <data name="Emulation.Shortcut.Power"><value>전원 켜기 / 끄기</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>소프트 리셋</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>하드 리셋</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>상태 빠른 저장</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>상태 빠른 불러오기</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>스크린샷</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>활성 컴퓨터 음소거</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>누르는 동안 빨리 감기</value></data>
+  <data name="Emulation.Key.Help"><value>도움말</value></data>
+  <data name="Emulation.Key.LeftAmiga"><value>왼쪽 Amiga</value></data>
+  <data name="Emulation.Key.RightAmiga"><value>오른쪽 Amiga</value></data>
+  <data name="Emulation.SpecialKeysOnlyHint"><value>문자, 숫자 및 일반 보조 키는 직접 전송됩니다. 여기서는 Amiga 기능 키와 특수 키만 할당합니다.</value></data>
+  <data name="Emulation.ShortcutUnavailable"><value>이 작업은 현재 에뮬레이터에서 아직 지원되지 않습니다.</value></data>
+  <data name="Emulation.Allocation"><value>할당</value></data>
+  <data name="Emulation.AutomaticGeometry"><value>자동 지오메트리</value></data>
+  <data name="Emulation.BlankMedia"><value>빈 미디어</value></data>
+  <data name="Emulation.BytesPerSector"><value>섹터당 바이트</value></data>
+  <data name="Emulation.CalculatedCapacity"><value>계산된 용량: {0}</value></data>
+  <data name="Emulation.ControllerMappings"><value>컨트롤러 매핑</value></data>
+  <data name="Emulation.ControllerPort"><value>포트 {0}</value></data>
+  <data name="Emulation.ControllerType"><value>컨트롤러 유형</value></data>
+  <data name="Emulation.CustomSize"><value>사용자 지정 크기</value></data>
+  <data name="Emulation.Cylinders"><value>실린더</value></data>
+  <data name="Emulation.DestinationFolder"><value>대상 폴더</value></data>
+  <data name="Emulation.DetectedControllers"><value>검색된 컨트롤러</value></data>
+  <data name="Emulation.Device"><value>장치</value></data>
+  <data name="Emulation.DiskGeometry"><value>디스크 지오메트리 (CHS)</value></data>
+  <data name="Emulation.DiskSizeProfile"><value>크기 프로필</value></data>
+  <data name="Emulation.FloppyDrive"><value>플로피 드라이브</value></data>
+  <data name="Emulation.Heads"><value>헤드</value></data>
+  <data name="Emulation.InputCaptureHint"><value>할당을 누른 다음 키보드 키, 마우스 버튼 또는 컨트롤러 버튼을 누르세요.</value></data>
+  <data name="Emulation.InvalidDiskSize"><value>디스크 크기 또는 지오메트리가 잘못되었습니다.</value></data>
+  <data name="Emulation.MouseActions"><value>마우스 동작</value></data>
+  <data name="Emulation.MouseButton4"><value>마우스 버튼 4</value></data>
+  <data name="Emulation.MouseButton5"><value>마우스 버튼 5</value></data>
+  <data name="Emulation.MouseCaptureTitle"><value>마우스 캡처</value></data>
+  <data name="Emulation.PreallocationHint"><value>실제 디스크 공간을 즉시 예약합니다. 그렇지 않으면 데이터를 쓸 때 이미지가 커집니다.</value></data>
+  <data name="Emulation.SearchInputBinding"><value>동작 또는 입력 검색</value></data>
+  <data name="Emulation.Sectors"><value>섹터</value></data>
+  <data name="Emulation.UnitMiB"><value>MiB</value></data>
+  <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>위</value></data>
+  <data name="Emulation.DirectionDown"><value>아래</value></data>
+  <data name="Emulation.DirectionLeft"><value>왼쪽</value></data>
+  <data name="Emulation.DirectionRight"><value>오른쪽</value></data>
+  <data name="Emulation.FireButton1"><value>발사 버튼 1</value></data>
+  <data name="Emulation.FireButton2"><value>발사 버튼 2</value></data>
+  <data name="Emulation.Cd32Red"><value>CD32 빨간색 버튼</value></data>
+  <data name="Emulation.Cd32Blue"><value>CD32 파란색 버튼</value></data>
+  <data name="Emulation.Cd32Green"><value>CD32 녹색 버튼</value></data>
+  <data name="Emulation.Cd32Yellow"><value>CD32 노란색 버튼</value></data>
+  <data name="Emulation.Cd32Rewind"><value>CD32 되감기</value></data>
+  <data name="Emulation.Cd32FastForward"><value>CD32 빨리 감기</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>CD32 재생 / 일시 정지</value></data>
+  <data name="Emulation.AmigaJoystick"><value>Amiga 조이스틱</value></data>
+  <data name="Emulation.AnalogJoystick"><value>아날로그 조이스틱</value></data>
+  <data name="Emulation.Cd32Controller"><value>CD32 컨트롤러</value></data>
+  <data name="Emulation.MouseWheelUp"><value>마우스 휠 위</value></data>
+  <data name="Emulation.MouseWheelDown"><value>마우스 휠 아래</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>마우스 휠 왼쪽</value></data>
+  <data name="Emulation.MouseWheelRight"><value>마우스 휠 오른쪽</value></data>
+</root>

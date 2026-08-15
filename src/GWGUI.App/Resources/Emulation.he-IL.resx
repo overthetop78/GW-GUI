@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>מכונות</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>ליבה</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>ליבת הדמיית {0}</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>הספרייה נשארת מחוץ ל-GW GUI. הגרסה שנבחרה מחליפה את הגרסה המותקנת כעת.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>הגרסה הנדרשת על ידי GW GUI</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>הגרסה הרשמית האחרונה הזמינה</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>הגרסה המותקנת כעת</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>לחץ על חיפוש כדי לפנות לשרת Libretro הרשמי.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>חיפוש גרסאות</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>הורדה והחלפה</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>מחפש גרסאות זמינות…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>לא נמצאה גרסה רשמית.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>{0} גרסאות זמינות.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>מוריד את {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>גרסה מותקנת: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · מותקנת</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>אין גרסה מותקנת</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>פתיחה</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>ברוכים הבאים</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>בחר מכונה שמורה למעלה ולחץ על פתיחה. כל מכונה פועלת מופיעה בכרטיסייה נפרדת.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>כאן ניתן ליצור, לבחור, לשנות או למחוק תצורות שמורות. בחר בכרטיסייה {0} כדי לערוך את התצורה שנבחרה.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>כללי</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>וידאו</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>אחסון</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>מקלדת</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>עכבר</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>בקרים</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>מתקדם</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>מזהה התקן</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>התקן בקר {0}</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>מקש {0}</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>מקש מארח</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>מעבד: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>ערכת שבבי וידאו: {0}</value>
+  </data>
+  <data name="Emulation.CpuModel"><value>CPU model</value></data>
+  <data name="Emulation.CpuMultiplier"><value>CPU multiplier</value></data>
+  <data name="Emulation.CpuCompatibility"><value>Cycle-compatible CPU</value></data>
+  <data name="Emulation.ChipMemory"><value>Chip RAM</value></data>
+  <data name="Emulation.SlowMemory"><value>Slow RAM</value></data>
+  <data name="Emulation.FastMemory"><value>Fast RAM</value></data>
+  <data name="Emulation.Z3Memory"><value>Zorro III RAM</value></data>
+  <data name="Emulation.VideoStandard"><value>Video standard</value></data>
+  <data name="Emulation.VideoResolution"><value>Resolution</value></data>
+  <data name="Emulation.AspectRatio"><value>Aspect ratio</value></data>
+  <data name="Emulation.VideoCrop"><value>Crop borders</value></data>
+  <data name="Emulation.FlickerFixer"><value>Flicker fixer</value></data>
+  <data name="Emulation.AudioEnabled"><value>Enable audio</value></data>
+  <data name="Emulation.AudioOutput"><value>Audio output</value></data>
+  <data name="Emulation.AudioLatency"><value>Latency (ms)</value></data>
+  <data name="Emulation.AudioInterpolation"><value>Interpolation</value></data>
+  <data name="Emulation.AudioFilter"><value>Amiga audio filter</value></data>
+  <data name="Emulation.StereoSeparation"><value>Stereo separation (%)</value></data>
+  <data name="Emulation.AudioInput"><value>Audio input</value></data>
+  <data name="Emulation.AudioInputUnavailable"><value>This Amiga core does not expose an audio input.</value></data>
+  <data name="Emulation.DefaultAudioOutput"><value>Windows default output</value></data>
+  <data name="Emulation.AddMedia"><value>Add media</value></data>
+  <data name="Emulation.CreateHardDisk"><value>Create hard disk</value></data>
+  <data name="Emulation.HardDiskSize"><value>Hard-disk size (MiB)</value></data>
+  <data name="Emulation.NoMedia"><value>No media. Add a floppy, hard disk or CD supported by the selected model.</value></data>
+  <data name="Emulation.ReadOnly"><value>Read-only</value></data>
+  <data name="Emulation.AmigaMediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value></data>
+  <data name="Emulation.HardDiskFilter"><value>Amiga hard disk|*.hdf|All files|*.*</value></data>
+  <data name="Emulation.HardDiskNotSupported"><value>The selected model does not support a hard disk.</value></data>
+  <data name="Emulation.TooManyFloppyDrives"><value>This model accepts at most {0} floppy drive(s).</value></data>
+  <data name="Emulation.TooManyHardDrives"><value>This model accepts at most {0} hard disk(s).</value></data>
+  <data name="Emulation.CdNotSupported"><value>The selected model does not support a CD drive.</value></data>
+  <data name="Emulation.DuplicateKeyboardMapping"><value>Two Amiga keys use the same PC key. Resolve the red mappings before saving.</value></data>
+  <data name="Emulation.ReleaseMouseKey"><value>Release-capture key</value></data>
+  <data name="Emulation.MouseLeftButton"><value>Left mouse button</value></data>
+  <data name="Emulation.MouseRightButton"><value>Right mouse button</value></data>
+  <data name="Emulation.MouseMiddleButton"><value>Middle mouse button</value></data>
+  <data name="Emulation.DetectControllers"><value>Detect controllers</value></data>
+  <data name="Emulation.EmulatedAction"><value>Amiga action</value></data>
+  <data name="Emulation.PhysicalControl"><value>Keyboard, mouse or controller control</value></data>
+  <data name="Emulation.Chipset"><value>ערכת שבבים</value></data>
+  <data name="Emulation.CdDrive"><value>כונן CD</value></data>
+  <data name="Emulation.FloppyDriveCount"><value>מספר כונני תקליטונים</value></data>
+  <data name="Emulation.HardDriveCount"><value>מספר כוננים קשיחים</value></data>
+  <data name="Emulation.FpuModel"><value>FPU</value></data>
+  <data name="Emulation.CpuSpeed"><value>CPU speed</value></data>
+  <data name="Emulation.CpuSpeedOriginal"><value>Original speed</value></data>
+  <data name="Emulation.CompatibilityNormal"><value>Normal</value></data>
+  <data name="Emulation.CompatibilityCompatible"><value>Compatible</value></data>
+  <data name="Emulation.CompatibilityMemory"><value>Memory compatible</value></data>
+  <data name="Emulation.CompatibilityExact"><value>Cycle exact</value></data>
+  <data name="Emulation.IntegratedFpu"><value>Integrated FPU</value></data>
+  <data name="Emulation.Enabled"><value>Enabled</value></data>
+  <data name="Emulation.Disabled"><value>Disabled</value></data>
+  <data name="Emulation.Minimum"><value>Minimum</value></data>
+  <data name="Emulation.VerySmall"><value>Very small</value></data>
+  <data name="Emulation.Small"><value>Small</value></data>
+  <data name="Emulation.Medium"><value>Medium</value></data>
+  <data name="Emulation.Large"><value>Large</value></data>
+  <data name="Emulation.VeryLarge"><value>Very large</value></data>
+  <data name="Emulation.Maximum"><value>Maximum</value></data>
+  <data name="Emulation.Locked"><value>Locked</value></data>
+  <data name="Emulation.Immediate"><value>Immediate</value></data>
+  <data name="Emulation.Waiting"><value>Waiting</value></data>
+  <data name="Emulation.Standard"><value>Standard</value></data>
+  <data name="Emulation.Enhanced"><value>Enhanced</value></data>
+  <data name="Emulation.Internal"><value>Internal</value></data>
+  <data name="Emulation.Loud"><value>Loud</value></data>
+  <data name="Emulation.ResolutionAutoLow"><value>Automatic low resolution</value></data>
+  <data name="Emulation.ResolutionAutoSuperHigh"><value>Automatic super-high resolution</value></data>
+  <data name="Emulation.ResolutionLow"><value>Low resolution</value></data>
+  <data name="Emulation.ResolutionHigh"><value>High resolution</value></data>
+  <data name="Emulation.ResolutionSuperHigh"><value>Super-high resolution</value></data>
+  <data name="Emulation.VideoLineMode"><value>Line mode</value></data>
+  <data name="Emulation.VideoHzChange"><value>Refresh-rate changes</value></data>
+  <data name="Emulation.VideoFrameskip"><value>Frame skip</value></data>
+  <data name="Emulation.VideoColors"><value>Color depth</value></data>
+  <data name="Emulation.VideoGamma"><value>Gamma</value></data>
+  <data name="Emulation.ImmediateBlits"><value>Blitter operation</value></data>
+  <data name="Emulation.CollisionLevel"><value>Collision detection</value></data>
+  <data name="Emulation.LineModeSingle"><value>Single scan</value></data>
+  <data name="Emulation.LineModeDouble"><value>Double scan</value></data>
+  <data name="Emulation.CollisionSprites"><value>Sprites</value></data>
+  <data name="Emulation.CollisionPlayfields"><value>Playfields</value></data>
+  <data name="Emulation.CollisionFull"><value>Full</value></data>
+  <data name="Emulation.InterpolationAnti"><value>Anti interpolation</value></data>
+  <data name="Emulation.FilterEmulated"><value>Emulated</value></data>
+  <data name="Emulation.AudioFilterType"><value>Filter type</value></data>
+  <data name="Emulation.FloppySound"><value>Floppy-drive sound volume</value></data>
+  <data name="Emulation.FloppySoundType"><value>Floppy-drive sound type</value></data>
+  <data name="Emulation.MuteEmptyFloppy"><value>Mute empty drives</value></data>
+  <data name="Emulation.CdAudioVolume"><value>CD audio volume</value></data>
+  <data name="Emulation.FloppySpeed"><value>Floppy-drive speed</value></data>
+  <data name="Emulation.FloppyWriteProtection"><value>Write-protect floppy images</value></data>
+  <data name="Emulation.FloppyWriteRedirect"><value>Redirect floppy writes</value></data>
+  <data name="Emulation.CdSpeed"><value>CD speed</value></data>
+  <data name="Emulation.KeyboardPassThrough"><value>Physical keyboard pass-through</value></data>
+  <data name="Emulation.PhysicalMouse"><value>Physical mouse</value></data>
+  <data name="Emulation.PhysicalMouseDouble"><value>Double movement</value></data>
+  <data name="Emulation.MouseSpeed"><value>Mouse speed</value></data>
+  <data name="Emulation.AnalogMouse"><value>Analog sticks controlling the mouse</value></data>
+  <data name="Emulation.AnalogMouseDeadzone"><value>Analog-stick dead zone</value></data>
+  <data name="Emulation.AnalogMouseSpeed"><value>Analog-stick mouse speed</value></data>
+  <data name="Emulation.LeftStick"><value>Left stick</value></data>
+  <data name="Emulation.RightStick"><value>Right stick</value></data>
+  <data name="Emulation.BothSticks"><value>Both sticks</value></data>
+  <data name="Emulation.TurboFire"><value>Turbo fire</value></data>
+  <data name="Emulation.TurboButton"><value>Turbo button</value></data>
+  <data name="Emulation.TurboPulse"><value>Turbo pulse</value></data>
+  <data name="Emulation.JoyPortOrder"><value>Controller port order</value></data>
+  <data name="Emulation.Emulator"><value>אמולטור</value></data>
+  <data name="Emulation.StorageBaseFolder"><value>תיקיית אחסון משותפת לאמולציה</value></data>
+  <data name="Emulation.StorageBaseFolderDescription"><value>הדיסקים הקשיחים מאורגנים אוטומטית בתוך HDD\Amiga, HDD\Atari ובתיקיות של מערכות עתידיות.</value></data>
+  <data name="Emulation.AddHardDisk"><value>הוספת דיסק קשיח קיים</value></data>
+  <data name="Emulation.HardDisks"><value>דיסקים קשיחים</value></data>
+  <data name="Emulation.NoHardDisks"><value>לא משויך דיסק קשיח למכונה זו.</value></data>
+  <data name="Emulation.KeyboardPriorityHint"><value>קיצורי דרך שמורים</value></data>
+  <data name="Emulation.KeyboardPriorityDescription"><value>קיצורי הדרך של GW GUI ושל Windows נשארים פעילים ואינם נלכדים על ידי המכונה.</value></data>
+  <data name="Emulation.InputBehavior"><value>התנהגות</value></data>
+  <data name="Emulation.AssignInput"><value>הקצה...</value></data>
+  <data name="Emulation.InputActions"><value>פעולות</value></data>
+  <data name="Emulation.PressInput"><value>לחץ על מקש...</value></data>
+  <data name="Emulation.CreateStorageFolders"><value>צור אוטומטית תיקיות משנה חסרות</value></data>
+  <data name="Emulation.CommonFolders"><value>תיקיות משותפות</value></data>
+  <data name="Emulation.SharedInputDescription"><value>זיהוי המכשירים משותף, אך ההקצאות נשמרות בנפרד בכל תצורת מכונה.</value></data>
+  <data name="Emulation.TestInputs"><value>בדיקת קלט</value></data>
+  <data name="Emulation.SharedDevices"><value>התקני קלט משותפים</value></data>
+  <data name="Emulation.CaptureFolder"><value>תיקיית צילומים</value></data>
+  <data name="Emulation.StateFolder"><value>תיקיית מצבים שמורים</value></data>
+  <data name="Emulation.DefaultFolders"><value>תיקיות ברירת מחדל</value></data>
+  <data name="Emulation.NoControllersDetected"><value>לא זוהה בקר</value></data>
+  <data name="Emulation.TestInputsPrompt"><value>לחץ על מקש או על לחצן עכבר כדי לבדוק את הזיהוי.</value></data>
+  <data name="Emulation.Floppies"><value>תקליטונים</value></data>
+  <data name="Emulation.ExtendedRom"><value>ROM מורחב</value></data>
+  <data name="Emulation.RomKey"><value>מפתח ROM</value></data>
+  <data name="Emulation.Processor"><value>מעבד</value></data>
+  <data name="Emulation.Precision"><value>דיוק</value></data>
+  <data name="Emulation.Acceleration"><value>האצה</value></data>
+  <data name="Emulation.MainMemory"><value>זיכרון ראשי</value></data>
+  <data name="Emulation.MemoryExtensions"><value>הרחבות זיכרון</value></data>
+  <data name="Emulation.MemoryNone"><value>ללא</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>תצורת הזיכרון תואמת ל־{0}.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>הרחבות הזיכרון תואמות ל־{0}.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>זיכרון Zorro III אינו זמין ב־{0}.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>סך הזיכרון שהוגדר: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>ROM מערכת</value></data>
+  <data name="Emulation.DetectedRoms"><value>קובצי ROM שזוהו</value></data>
+  <data name="Emulation.UseFirmware"><value>השתמש</value></data>
+  <data name="Emulation.NotUsed"><value>לא בשימוש</value></data>
+  <data name="Emulation.OpenRomFolder"><value>פתח תיקיית ROM</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>תואמת חלקית</value></data>
+  <data name="Emulation.DisplaySettings"><value>תצוגה</value></data>
+  <data name="Emulation.RenderingSettings"><value>עיבוד</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>תאימות ערכת שבבים</value></data>
+  <data name="Emulation.AudioDevice"><value>התקן</value></data>
+  <data name="Emulation.Latency"><value>השהיה</value></data>
+  <data name="Emulation.AudioQuality"><value>איכות</value></data>
+  <data name="Emulation.AudioDrives"><value>כוננים</value></data>
+  <data name="Emulation.Type"><value>סוג</value></data>
+  <data name="Emulation.AddStorageDevice"><value>הוספת התקן אחסון</value></data>
+  <data name="Emulation.AmigaDdFloppy"><value>Amiga ‏3.5 אינץ׳ DD · ‏880 KiB</value></data>
+  <data name="Emulation.AmigaHdFloppy"><value>Amiga ‏3.5 אינץ׳ HD · ‏1.76 MiB</value></data>
+  <data name="Emulation.AssociatedMedia"><value>מדיה משויכת</value></data>
+  <data name="Emulation.AutomaticDiskGeometry"><value>גאומטריית הדיסק נקבעת אוטומטית בידי האמולטור.</value></data>
+  <data name="Emulation.BlankFloppyCreated"><value>נוצרה תמונת תקליטון ריקה: {0}</value></data>
+  <data name="Emulation.BlankHardDiskHint"><value>הקובץ ייווצר ריק ולאחר מכן יש לחלק ולאתחל אותו במכונה המדומה.</value></data>
+  <data name="Emulation.CdWriter"><value>צורב תקליטורים</value></data>
+  <data name="Emulation.CdWriterHint"><value>אפשר ליצור דיסק ריק רק אם המכונה והאמולטור שנבחרו תומכים בכתיבה.</value></data>
+  <data name="Emulation.CompactDiscDevice"><value>כונן תקליטורים</value></data>
+  <data name="Emulation.ConfigureDevice"><value>הגדרה</value></data>
+  <data name="Emulation.CreateBlankFloppy"><value>יצירת תקליטון ריק</value></data>
+  <data name="Emulation.DiskImage"><value>תמונת דיסק</value></data>
+  <data name="Emulation.DiskImageRequired"><value>בחר תמונת דיסק קיימת.</value></data>
+  <data name="Emulation.ExistingDiskHint"><value>הקובץ שנבחר יחובר לכונן הווירטואלי הזה.</value></data>
+  <data name="Emulation.FloppyDevice"><value>כונן תקליטונים</value></data>
+  <data name="Emulation.FloppyImageFilter"><value>תמונת תקליטון Amiga|*.adf|כל הקבצים|*.*</value></data>
+  <data name="Emulation.HardDiskDevice"><value>דיסק קשיח</value></data>
+  <data name="Emulation.Interface"><value>ממשק</value></data>
+  <data name="Emulation.PreallocateFile"><value>הקצאה מוקדמת של הקובץ</value></data>
+  <data name="Emulation.RemovableMediaRuntimeHint"><value>תקליטונים ותקליטורים מוכנסים או מוחלפים מתוך המכונה הפועלת.</value></data>
+  <data name="Emulation.RemoveMedia"><value>הסרת מדיה</value></data>
+  <data name="Emulation.ReplaceExistingDisk"><value>תמונת הדיסק כבר קיימת: {0}\nהאם להחליף אותה?</value></data>
+  <data name="Emulation.StorageDeviceCapabilitiesHint"><value>הסוגים, הדגמים והמזהים הזמינים תלויים במכונה שנבחרה.</value></data>
+  <data name="Emulation.TapeDevice"><value>כונן קלטת</value></data>
+  <data name="Emulation.UseDisk"><value>שימוש בדיסק</value></data>
+  <data name="Emulation.UseExistingDisk"><value>שימוש בדיסק קיים</value></data>
+  <data name="Emulation.ModifyInGeneral"><value>שינוי ב'כללי'</value></data>
+  <data name="Emulation.NoStorageDeviceAvailable"><value>אין התקן אחסון נוסף זמין למכונה זו.</value></data>
+  <data name="Emulation.StorageDevices"><value>התקני אחסון</value></data>
+  <data name="Emulation.RestoreDefaultBindings"><value>שחזור ברירות מחדל</value></data>
+  <data name="Emulation.ClearConflicts"><value>ניקוי התנגשויות</value></data>
+  <data name="Emulation.EmulatedKey"><value>מקש המכונה</value></data>
+  <data name="Emulation.Binding"><value>שיוך</value></data>
+  <data name="Emulation.BindingState"><value>מצב</value></data>
+  <data name="Emulation.SearchBinding"><value>חיפוש מקש או שיוך</value></data>
+  <data name="Emulation.BindingLegend"><value>תקין: שיוך ייחודי · התנגשות: השיוך בשימוש מספר פעמים · שמור: קיצור של Windows או GW GUI</value></data>
+  <data name="Emulation.BindingValid"><value>תקין</value></data>
+  <data name="Emulation.BindingConflict"><value>התנגשות</value></data>
+  <data name="Emulation.BindingReserved"><value>שמור</value></data>
+  <data name="Emulation.BindingUnassigned"><value>לא משויך</value></data>
+  <data name="Emulation.GlobalShortcuts"><value>קיצורי אמולציה</value></data>
+  <data name="Emulation.ShortcutsTab"><value>קיצורים</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>שחרור העכבר</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>השהיה / המשך</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>מסך מלא / חלון</value></data>
+  <data name="Emulation.Shortcut.Power"><value>הפעלה / כיבוי</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>איפוס רך</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>איפוס קשיח</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>שמירה מהירה של מצב</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>טעינה מהירה של מצב</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>צילום מסך</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>השתקת המכונה הפעילה</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>הרצה מהירה בזמן לחיצה</value></data>
+  <data name="Emulation.Key.Help"><value>עזרה</value></data>
+  <data name="Emulation.Key.LeftAmiga"><value>Amiga שמאל</value></data>
+  <data name="Emulation.Key.RightAmiga"><value>Amiga ימין</value></data>
+  <data name="Emulation.SpecialKeysOnlyHint"><value>אותיות, ספרות ומקשי שינוי רגילים מועברים ישירות. רק מקשי הפונקציה והמקשים המיוחדים של Amiga דורשים שיוך כאן.</value></data>
+  <data name="Emulation.ShortcutUnavailable"><value>פעולה זו עדיין אינה נתמכת באמולטור הנוכחי.</value></data>
+  <data name="Emulation.Allocation"><value>הקצאה</value></data>
+  <data name="Emulation.AutomaticGeometry"><value>גאומטריה אוטומטית</value></data>
+  <data name="Emulation.BlankMedia"><value>מדיה ריקה</value></data>
+  <data name="Emulation.BytesPerSector"><value>בתים למקטע</value></data>
+  <data name="Emulation.CalculatedCapacity"><value>קיבולת מחושבת: {0}</value></data>
+  <data name="Emulation.ControllerMappings"><value>מיפויי בקר</value></data>
+  <data name="Emulation.ControllerPort"><value>יציאה {0}</value></data>
+  <data name="Emulation.ControllerType"><value>סוג בקר</value></data>
+  <data name="Emulation.CustomSize"><value>גודל מותאם אישית</value></data>
+  <data name="Emulation.Cylinders"><value>גלילים</value></data>
+  <data name="Emulation.DestinationFolder"><value>תיקיית יעד</value></data>
+  <data name="Emulation.DetectedControllers"><value>בקרים שזוהו</value></data>
+  <data name="Emulation.Device"><value>התקן</value></data>
+  <data name="Emulation.DiskGeometry"><value>גאומטריית דיסק (CHS)</value></data>
+  <data name="Emulation.DiskSizeProfile"><value>פרופיל גודל</value></data>
+  <data name="Emulation.FloppyDrive"><value>כונן תקליטונים</value></data>
+  <data name="Emulation.Heads"><value>ראשים</value></data>
+  <data name="Emulation.InputCaptureHint"><value>לחץ על הקצה ולאחר מכן השתמש במקש, בלחצן עכבר או בלחצן בקר.</value></data>
+  <data name="Emulation.InvalidDiskSize"><value>גודל הדיסק או הגאומטריה אינם חוקיים.</value></data>
+  <data name="Emulation.MouseActions"><value>פעולות עכבר</value></data>
+  <data name="Emulation.MouseButton4"><value>לחצן עכבר 4</value></data>
+  <data name="Emulation.MouseButton5"><value>לחצן עכבר 5</value></data>
+  <data name="Emulation.MouseCaptureTitle"><value>לכידת עכבר</value></data>
+  <data name="Emulation.PreallocationHint"><value>מקצה מיד את שטח הדיסק הפיזי; אחרת התמונה גדלה בעת כתיבת נתונים.</value></data>
+  <data name="Emulation.SearchInputBinding"><value>חיפוש פעולה או קלט</value></data>
+  <data name="Emulation.Sectors"><value>מקטעים</value></data>
+  <data name="Emulation.UnitMiB"><value>MiB</value></data>
+  <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>למעלה</value></data>
+  <data name="Emulation.DirectionDown"><value>למטה</value></data>
+  <data name="Emulation.DirectionLeft"><value>שמאלה</value></data>
+  <data name="Emulation.DirectionRight"><value>ימינה</value></data>
+  <data name="Emulation.FireButton1"><value>כפתור ירי 1</value></data>
+  <data name="Emulation.FireButton2"><value>כפתור ירי 2</value></data>
+  <data name="Emulation.Cd32Red"><value>כפתור CD32 אדום</value></data>
+  <data name="Emulation.Cd32Blue"><value>כפתור CD32 כחול</value></data>
+  <data name="Emulation.Cd32Green"><value>כפתור CD32 ירוק</value></data>
+  <data name="Emulation.Cd32Yellow"><value>כפתור CD32 צהוב</value></data>
+  <data name="Emulation.Cd32Rewind"><value>CD32 הרצה לאחור</value></data>
+  <data name="Emulation.Cd32FastForward"><value>CD32 הרצה קדימה</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>CD32 הפעלה / השהיה</value></data>
+  <data name="Emulation.AmigaJoystick"><value>ג׳ויסטיק Amiga</value></data>
+  <data name="Emulation.AnalogJoystick"><value>ג׳ויסטיק אנלוגי</value></data>
+  <data name="Emulation.Cd32Controller"><value>בקר CD32</value></data>
+  <data name="Emulation.MouseWheelUp"><value>גלגלת עכבר למעלה</value></data>
+  <data name="Emulation.MouseWheelDown"><value>גלגלת עכבר למטה</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>גלגלת עכבר שמאלה</value></data>
+  <data name="Emulation.MouseWheelRight"><value>גלגלת עכבר ימינה</value></data>
+</root>

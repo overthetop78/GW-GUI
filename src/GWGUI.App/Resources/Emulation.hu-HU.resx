@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>Gépek</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>Mag</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>{0} emulációs mag</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>A könyvtár a GW GUI-n kívül marad. A kiválasztott verzió lecseréli a jelenleg telepített verziót.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>A GW GUI által igényelt verzió</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>Legújabb elérhető hivatalos verzió</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>Jelenleg telepített verzió</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>Kattintson a Keresés gombra a hivatalos Libretro-kiszolgáló lekérdezéséhez.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>Verziók keresése</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>Letöltés és csere</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>Elérhető verziók keresése…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>Nem található hivatalos verzió.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>{0} verzió érhető el.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>{0} letöltése…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>Telepített verzió: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · telepítve</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>Nincs telepített verzió</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>Megnyitás</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>Üdvözöljük</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>Válasszon ki fent egy mentett gépet, majd kattintson a Megnyitás gombra. Minden futó gép külön lapon jelenik meg.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>Itt létrehozhatja, kiválaszthatja, módosíthatja vagy törölheti a mentett konfigurációkat. A kijelölt konfiguráció szerkesztéséhez válassza a(z) {0} lapot.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>Általános</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>Videó</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>Tárolás</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>Billentyűzet</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>Egér</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>Vezérlők</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>Speciális</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>Eszközazonosító</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>A(z) {0}. vezérlő eszköze</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>{0} billentyű</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>Gazdagép billentyűje</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>Processzor: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>Videó lapkakészlet: {0}</value>
+  </data>
+  <data name="Emulation.CpuModel"><value>CPU model</value></data>
+  <data name="Emulation.CpuMultiplier"><value>CPU multiplier</value></data>
+  <data name="Emulation.CpuCompatibility"><value>Cycle-compatible CPU</value></data>
+  <data name="Emulation.ChipMemory"><value>Chip RAM</value></data>
+  <data name="Emulation.SlowMemory"><value>Slow RAM</value></data>
+  <data name="Emulation.FastMemory"><value>Fast RAM</value></data>
+  <data name="Emulation.Z3Memory"><value>Zorro III RAM</value></data>
+  <data name="Emulation.VideoStandard"><value>Video standard</value></data>
+  <data name="Emulation.VideoResolution"><value>Resolution</value></data>
+  <data name="Emulation.AspectRatio"><value>Aspect ratio</value></data>
+  <data name="Emulation.VideoCrop"><value>Crop borders</value></data>
+  <data name="Emulation.FlickerFixer"><value>Flicker fixer</value></data>
+  <data name="Emulation.AudioEnabled"><value>Enable audio</value></data>
+  <data name="Emulation.AudioOutput"><value>Audio output</value></data>
+  <data name="Emulation.AudioLatency"><value>Latency (ms)</value></data>
+  <data name="Emulation.AudioInterpolation"><value>Interpolation</value></data>
+  <data name="Emulation.AudioFilter"><value>Amiga audio filter</value></data>
+  <data name="Emulation.StereoSeparation"><value>Stereo separation (%)</value></data>
+  <data name="Emulation.AudioInput"><value>Audio input</value></data>
+  <data name="Emulation.AudioInputUnavailable"><value>This Amiga core does not expose an audio input.</value></data>
+  <data name="Emulation.DefaultAudioOutput"><value>Windows default output</value></data>
+  <data name="Emulation.AddMedia"><value>Add media</value></data>
+  <data name="Emulation.CreateHardDisk"><value>Create hard disk</value></data>
+  <data name="Emulation.HardDiskSize"><value>Hard-disk size (MiB)</value></data>
+  <data name="Emulation.NoMedia"><value>No media. Add a floppy, hard disk or CD supported by the selected model.</value></data>
+  <data name="Emulation.ReadOnly"><value>Read-only</value></data>
+  <data name="Emulation.AmigaMediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value></data>
+  <data name="Emulation.HardDiskFilter"><value>Amiga hard disk|*.hdf|All files|*.*</value></data>
+  <data name="Emulation.HardDiskNotSupported"><value>The selected model does not support a hard disk.</value></data>
+  <data name="Emulation.TooManyFloppyDrives"><value>This model accepts at most {0} floppy drive(s).</value></data>
+  <data name="Emulation.TooManyHardDrives"><value>This model accepts at most {0} hard disk(s).</value></data>
+  <data name="Emulation.CdNotSupported"><value>The selected model does not support a CD drive.</value></data>
+  <data name="Emulation.DuplicateKeyboardMapping"><value>Two Amiga keys use the same PC key. Resolve the red mappings before saving.</value></data>
+  <data name="Emulation.ReleaseMouseKey"><value>Release-capture key</value></data>
+  <data name="Emulation.MouseLeftButton"><value>Left mouse button</value></data>
+  <data name="Emulation.MouseRightButton"><value>Right mouse button</value></data>
+  <data name="Emulation.MouseMiddleButton"><value>Middle mouse button</value></data>
+  <data name="Emulation.DetectControllers"><value>Detect controllers</value></data>
+  <data name="Emulation.EmulatedAction"><value>Amiga action</value></data>
+  <data name="Emulation.PhysicalControl"><value>Keyboard, mouse or controller control</value></data>
+  <data name="Emulation.Chipset"><value>Lapkakészlet</value></data>
+  <data name="Emulation.CdDrive"><value>CD-meghajtó</value></data>
+  <data name="Emulation.FloppyDriveCount"><value>Hajlékonylemez-meghajtók száma</value></data>
+  <data name="Emulation.HardDriveCount"><value>Merevlemezek száma</value></data>
+  <data name="Emulation.FpuModel"><value>FPU</value></data>
+  <data name="Emulation.CpuSpeed"><value>CPU speed</value></data>
+  <data name="Emulation.CpuSpeedOriginal"><value>Original speed</value></data>
+  <data name="Emulation.CompatibilityNormal"><value>Normal</value></data>
+  <data name="Emulation.CompatibilityCompatible"><value>Compatible</value></data>
+  <data name="Emulation.CompatibilityMemory"><value>Memory compatible</value></data>
+  <data name="Emulation.CompatibilityExact"><value>Cycle exact</value></data>
+  <data name="Emulation.IntegratedFpu"><value>Integrated FPU</value></data>
+  <data name="Emulation.Enabled"><value>Enabled</value></data>
+  <data name="Emulation.Disabled"><value>Disabled</value></data>
+  <data name="Emulation.Minimum"><value>Minimum</value></data>
+  <data name="Emulation.VerySmall"><value>Very small</value></data>
+  <data name="Emulation.Small"><value>Small</value></data>
+  <data name="Emulation.Medium"><value>Medium</value></data>
+  <data name="Emulation.Large"><value>Large</value></data>
+  <data name="Emulation.VeryLarge"><value>Very large</value></data>
+  <data name="Emulation.Maximum"><value>Maximum</value></data>
+  <data name="Emulation.Locked"><value>Locked</value></data>
+  <data name="Emulation.Immediate"><value>Immediate</value></data>
+  <data name="Emulation.Waiting"><value>Waiting</value></data>
+  <data name="Emulation.Standard"><value>Standard</value></data>
+  <data name="Emulation.Enhanced"><value>Enhanced</value></data>
+  <data name="Emulation.Internal"><value>Internal</value></data>
+  <data name="Emulation.Loud"><value>Loud</value></data>
+  <data name="Emulation.ResolutionAutoLow"><value>Automatic low resolution</value></data>
+  <data name="Emulation.ResolutionAutoSuperHigh"><value>Automatic super-high resolution</value></data>
+  <data name="Emulation.ResolutionLow"><value>Low resolution</value></data>
+  <data name="Emulation.ResolutionHigh"><value>High resolution</value></data>
+  <data name="Emulation.ResolutionSuperHigh"><value>Super-high resolution</value></data>
+  <data name="Emulation.VideoLineMode"><value>Line mode</value></data>
+  <data name="Emulation.VideoHzChange"><value>Refresh-rate changes</value></data>
+  <data name="Emulation.VideoFrameskip"><value>Frame skip</value></data>
+  <data name="Emulation.VideoColors"><value>Color depth</value></data>
+  <data name="Emulation.VideoGamma"><value>Gamma</value></data>
+  <data name="Emulation.ImmediateBlits"><value>Blitter operation</value></data>
+  <data name="Emulation.CollisionLevel"><value>Collision detection</value></data>
+  <data name="Emulation.LineModeSingle"><value>Single scan</value></data>
+  <data name="Emulation.LineModeDouble"><value>Double scan</value></data>
+  <data name="Emulation.CollisionSprites"><value>Sprites</value></data>
+  <data name="Emulation.CollisionPlayfields"><value>Playfields</value></data>
+  <data name="Emulation.CollisionFull"><value>Full</value></data>
+  <data name="Emulation.InterpolationAnti"><value>Anti interpolation</value></data>
+  <data name="Emulation.FilterEmulated"><value>Emulated</value></data>
+  <data name="Emulation.AudioFilterType"><value>Filter type</value></data>
+  <data name="Emulation.FloppySound"><value>Floppy-drive sound volume</value></data>
+  <data name="Emulation.FloppySoundType"><value>Floppy-drive sound type</value></data>
+  <data name="Emulation.MuteEmptyFloppy"><value>Mute empty drives</value></data>
+  <data name="Emulation.CdAudioVolume"><value>CD audio volume</value></data>
+  <data name="Emulation.FloppySpeed"><value>Floppy-drive speed</value></data>
+  <data name="Emulation.FloppyWriteProtection"><value>Write-protect floppy images</value></data>
+  <data name="Emulation.FloppyWriteRedirect"><value>Redirect floppy writes</value></data>
+  <data name="Emulation.CdSpeed"><value>CD speed</value></data>
+  <data name="Emulation.KeyboardPassThrough"><value>Physical keyboard pass-through</value></data>
+  <data name="Emulation.PhysicalMouse"><value>Physical mouse</value></data>
+  <data name="Emulation.PhysicalMouseDouble"><value>Double movement</value></data>
+  <data name="Emulation.MouseSpeed"><value>Mouse speed</value></data>
+  <data name="Emulation.AnalogMouse"><value>Analog sticks controlling the mouse</value></data>
+  <data name="Emulation.AnalogMouseDeadzone"><value>Analog-stick dead zone</value></data>
+  <data name="Emulation.AnalogMouseSpeed"><value>Analog-stick mouse speed</value></data>
+  <data name="Emulation.LeftStick"><value>Left stick</value></data>
+  <data name="Emulation.RightStick"><value>Right stick</value></data>
+  <data name="Emulation.BothSticks"><value>Both sticks</value></data>
+  <data name="Emulation.TurboFire"><value>Turbo fire</value></data>
+  <data name="Emulation.TurboButton"><value>Turbo button</value></data>
+  <data name="Emulation.TurboPulse"><value>Turbo pulse</value></data>
+  <data name="Emulation.JoyPortOrder"><value>Controller port order</value></data>
+  <data name="Emulation.Emulator"><value>Emulátor</value></data>
+  <data name="Emulation.StorageBaseFolder"><value>Közös emulációs tárolómappa</value></data>
+  <data name="Emulation.StorageBaseFolderDescription"><value>A merevlemezek automatikusan a HDD\Amiga, HDD\Atari és a későbbi rendszerek mappáiba kerülnek.</value></data>
+  <data name="Emulation.AddHardDisk"><value>Meglévő merevlemez hozzáadása</value></data>
+  <data name="Emulation.HardDisks"><value>Merevlemezek</value></data>
+  <data name="Emulation.NoHardDisks"><value>Ehhez a géphez nincs merevlemez társítva.</value></data>
+  <data name="Emulation.KeyboardPriorityHint"><value>Fenntartott billentyűparancsok</value></data>
+  <data name="Emulation.KeyboardPriorityDescription"><value>A GW GUI és a Windows billentyűparancsai aktívak maradnak, a gép nem fogja el őket.</value></data>
+  <data name="Emulation.InputBehavior"><value>Viselkedés</value></data>
+  <data name="Emulation.AssignInput"><value>Hozzárendelés...</value></data>
+  <data name="Emulation.InputActions"><value>Műveletek</value></data>
+  <data name="Emulation.PressInput"><value>Nyomjon meg egy billentyűt...</value></data>
+  <data name="Emulation.CreateStorageFolders"><value>A hiányzó almappák automatikus létrehozása</value></data>
+  <data name="Emulation.CommonFolders"><value>Közös mappák</value></data>
+  <data name="Emulation.SharedInputDescription"><value>Az eszközfelismerés közös, a hozzárendelések azonban gépkonfigurációnként külön kerülnek mentésre.</value></data>
+  <data name="Emulation.TestInputs"><value>Bemenetek tesztelése</value></data>
+  <data name="Emulation.SharedDevices"><value>Közös beviteli eszközök</value></data>
+  <data name="Emulation.CaptureFolder"><value>Képrögzítési mappa</value></data>
+  <data name="Emulation.StateFolder"><value>Mentett állapotok mappája</value></data>
+  <data name="Emulation.DefaultFolders"><value>Alapértelmezett mappák</value></data>
+  <data name="Emulation.NoControllersDetected"><value>Nem található vezérlő</value></data>
+  <data name="Emulation.TestInputsPrompt"><value>A felismerés teszteléséhez nyomjon meg egy billentyűt vagy egérgombot.</value></data>
+  <data name="Emulation.Floppies"><value>Hajlékonylemezek</value></data>
+  <data name="Emulation.ExtendedRom"><value>Kiterjesztett ROM</value></data>
+  <data name="Emulation.RomKey"><value>ROM-kulcs</value></data>
+  <data name="Emulation.Processor"><value>Processzor</value></data>
+  <data name="Emulation.Precision"><value>Pontosság</value></data>
+  <data name="Emulation.Acceleration"><value>Gyorsítás</value></data>
+  <data name="Emulation.MainMemory"><value>Főmemória</value></data>
+  <data name="Emulation.MemoryExtensions"><value>Memóriabővítések</value></data>
+  <data name="Emulation.MemoryNone"><value>Nincs</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>A memóriabeállítás kompatibilis ezzel: {0}.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>A memóriabővítések kompatibilisek ezzel: {0}.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>A Zorro III RAM nem érhető el ezen: {0}.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>Összes beállított memória: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>Rendszer-ROM</value></data>
+  <data name="Emulation.DetectedRoms"><value>Észlelt ROM-ok</value></data>
+  <data name="Emulation.UseFirmware"><value>Használat</value></data>
+  <data name="Emulation.NotUsed"><value>Nincs használatban</value></data>
+  <data name="Emulation.OpenRomFolder"><value>ROM-mappa megnyitása</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>Részben kompatibilis</value></data>
+  <data name="Emulation.DisplaySettings"><value>Megjelenítés</value></data>
+  <data name="Emulation.RenderingSettings"><value>Renderelés</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>Lapkakészlet-kompatibilitás</value></data>
+  <data name="Emulation.AudioDevice"><value>Eszköz</value></data>
+  <data name="Emulation.Latency"><value>Késleltetés</value></data>
+  <data name="Emulation.AudioQuality"><value>Minőség</value></data>
+  <data name="Emulation.AudioDrives"><value>Meghajtók</value></data>
+  <data name="Emulation.Type"><value>Típus</value></data>
+  <data name="Emulation.AddStorageDevice"><value>Tárolóeszköz hozzáadása</value></data>
+  <data name="Emulation.AmigaDdFloppy"><value>Amiga 3,5 hüvelykes DD · 880 KiB</value></data>
+  <data name="Emulation.AmigaHdFloppy"><value>Amiga 3,5 hüvelykes HD · 1,76 MiB</value></data>
+  <data name="Emulation.AssociatedMedia"><value>Társított adathordozó</value></data>
+  <data name="Emulation.AutomaticDiskGeometry"><value>A lemez geometriáját az emulátor automatikusan határozza meg.</value></data>
+  <data name="Emulation.BlankFloppyCreated"><value>Üres lemezkép létrehozva: {0}</value></data>
+  <data name="Emulation.BlankHardDiskHint"><value>A fájl üresen jön létre, majd az emulált gépen particionálni és formázni kell.</value></data>
+  <data name="Emulation.CdWriter"><value>CD-író</value></data>
+  <data name="Emulation.CdWriterHint"><value>Üres lemez csak akkor hozható létre, ha a kiválasztott gép és emulátor támogatja az írást.</value></data>
+  <data name="Emulation.CompactDiscDevice"><value>CD-ROM-meghajtó</value></data>
+  <data name="Emulation.ConfigureDevice"><value>Beállítás</value></data>
+  <data name="Emulation.CreateBlankFloppy"><value>Üres hajlékonylemez létrehozása</value></data>
+  <data name="Emulation.DiskImage"><value>Lemezkép</value></data>
+  <data name="Emulation.DiskImageRequired"><value>Válasszon egy meglévő lemezképet.</value></data>
+  <data name="Emulation.ExistingDiskHint"><value>A kiválasztott fájl ehhez a virtuális meghajtóhoz lesz csatolva.</value></data>
+  <data name="Emulation.FloppyDevice"><value>Hajlékonylemez-meghajtó</value></data>
+  <data name="Emulation.FloppyImageFilter"><value>Amiga hajlékonylemez-kép|*.adf|Minden fájl|*.*</value></data>
+  <data name="Emulation.HardDiskDevice"><value>Merevlemez</value></data>
+  <data name="Emulation.Interface"><value>Csatoló</value></data>
+  <data name="Emulation.PreallocateFile"><value>Fájl előzetes lefoglalása</value></data>
+  <data name="Emulation.RemovableMediaRuntimeHint"><value>A hajlékonylemezek és CD-k a futó gépből helyezhetők be vagy cserélhetők.</value></data>
+  <data name="Emulation.RemoveMedia"><value>Adathordozó eltávolítása</value></data>
+  <data name="Emulation.ReplaceExistingDisk"><value>A lemezkép már létezik: {0}\nLecseréli?</value></data>
+  <data name="Emulation.StorageDeviceCapabilitiesHint"><value>Az elérhető típusok, modellek és azonosítók a kiválasztott géptől függenek.</value></data>
+  <data name="Emulation.TapeDevice"><value>Szalagos meghajtó</value></data>
+  <data name="Emulation.UseDisk"><value>Lemez használata</value></data>
+  <data name="Emulation.UseExistingDisk"><value>Meglévő lemez használata</value></data>
+  <data name="Emulation.ModifyInGeneral"><value>Módosítás az Általános lapon</value></data>
+  <data name="Emulation.NoStorageDeviceAvailable"><value>Ehhez a géphez nem érhető el további tárolóeszköz.</value></data>
+  <data name="Emulation.StorageDevices"><value>Tárolóeszközök</value></data>
+  <data name="Emulation.RestoreDefaultBindings"><value>Alapértékek visszaállítása</value></data>
+  <data name="Emulation.ClearConflicts"><value>Ütközések törlése</value></data>
+  <data name="Emulation.EmulatedKey"><value>Gépbillentyű</value></data>
+  <data name="Emulation.Binding"><value>Hozzárendelés</value></data>
+  <data name="Emulation.BindingState"><value>Állapot</value></data>
+  <data name="Emulation.SearchBinding"><value>Billentyű vagy hozzárendelés keresése</value></data>
+  <data name="Emulation.BindingLegend"><value>Érvényes: egyedi hozzárendelés · Ütközés: többször használt hozzárendelés · Fenntartott: Windows- vagy GW GUI-gyorsbillentyű</value></data>
+  <data name="Emulation.BindingValid"><value>Érvényes</value></data>
+  <data name="Emulation.BindingConflict"><value>Ütközés</value></data>
+  <data name="Emulation.BindingReserved"><value>Fenntartott</value></data>
+  <data name="Emulation.BindingUnassigned"><value>Nincs hozzárendelve</value></data>
+  <data name="Emulation.GlobalShortcuts"><value>Emulációs gyorsbillentyűk</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Gyorsbillentyűk</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Egér felengedése</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Szünet / folytatás</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Teljes képernyő / ablak</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Be / ki</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>Lágy újraindítás</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Kemény újraindítás</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Állapot gyorsmentése</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Állapot gyorsbetöltése</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Képernyőkép</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Aktív gép némítása</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Gyorsítás nyomva tartáskor</value></data>
+  <data name="Emulation.Key.Help"><value>Súgó</value></data>
+  <data name="Emulation.Key.LeftAmiga"><value>Bal Amiga</value></data>
+  <data name="Emulation.Key.RightAmiga"><value>Jobb Amiga</value></data>
+  <data name="Emulation.SpecialKeysOnlyHint"><value>A betűk, számok és szokásos módosítóbillentyűk közvetlenül továbbítódnak. Itt csak az Amiga funkció- és speciális billentyűit kell hozzárendelni.</value></data>
+  <data name="Emulation.ShortcutUnavailable"><value>Ezt a műveletet a jelenlegi emulátor még nem támogatja.</value></data>
+  <data name="Emulation.Allocation"><value>Lefoglalás</value></data>
+  <data name="Emulation.AutomaticGeometry"><value>Automatikus geometria</value></data>
+  <data name="Emulation.BlankMedia"><value>Üres adathordozó</value></data>
+  <data name="Emulation.BytesPerSector"><value>Bájt szektoronként</value></data>
+  <data name="Emulation.CalculatedCapacity"><value>Számított kapacitás: {0}</value></data>
+  <data name="Emulation.ControllerMappings"><value>Vezérlő-hozzárendelések</value></data>
+  <data name="Emulation.ControllerPort"><value>{0}. port</value></data>
+  <data name="Emulation.ControllerType"><value>Vezérlő típusa</value></data>
+  <data name="Emulation.CustomSize"><value>Egyéni méret</value></data>
+  <data name="Emulation.Cylinders"><value>Cilinderek</value></data>
+  <data name="Emulation.DestinationFolder"><value>Célmappa</value></data>
+  <data name="Emulation.DetectedControllers"><value>Észlelt vezérlők</value></data>
+  <data name="Emulation.Device"><value>Eszköz</value></data>
+  <data name="Emulation.DiskGeometry"><value>Lemezgeometria (CHS)</value></data>
+  <data name="Emulation.DiskSizeProfile"><value>Méretprofil</value></data>
+  <data name="Emulation.FloppyDrive"><value>Hajlékonylemez-meghajtó</value></data>
+  <data name="Emulation.Heads"><value>Fejek</value></data>
+  <data name="Emulation.InputCaptureHint"><value>Kattintson a Hozzárendelés gombra, majd nyomjon meg egy billentyűt, egér- vagy vezérlőgombot.</value></data>
+  <data name="Emulation.InvalidDiskSize"><value>A lemez mérete vagy geometriája érvénytelen.</value></data>
+  <data name="Emulation.MouseActions"><value>Egérműveletek</value></data>
+  <data name="Emulation.MouseButton4"><value>4. egérgomb</value></data>
+  <data name="Emulation.MouseButton5"><value>5. egérgomb</value></data>
+  <data name="Emulation.MouseCaptureTitle"><value>Egér rögzítése</value></data>
+  <data name="Emulation.PreallocationHint"><value>Azonnal lefoglalja a fizikai lemezterületet; különben a képfájl írás közben növekszik.</value></data>
+  <data name="Emulation.SearchInputBinding"><value>Művelet vagy bevitel keresése</value></data>
+  <data name="Emulation.Sectors"><value>Szektorok</value></data>
+  <data name="Emulation.UnitMiB"><value>MiB</value></data>
+  <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>Fel</value></data>
+  <data name="Emulation.DirectionDown"><value>Le</value></data>
+  <data name="Emulation.DirectionLeft"><value>Balra</value></data>
+  <data name="Emulation.DirectionRight"><value>Jobbra</value></data>
+  <data name="Emulation.FireButton1"><value>Tűzgomb 1</value></data>
+  <data name="Emulation.FireButton2"><value>Tűzgomb 2</value></data>
+  <data name="Emulation.Cd32Red"><value>CD32 piros gomb</value></data>
+  <data name="Emulation.Cd32Blue"><value>CD32 kék gomb</value></data>
+  <data name="Emulation.Cd32Green"><value>CD32 zöld gomb</value></data>
+  <data name="Emulation.Cd32Yellow"><value>CD32 sárga gomb</value></data>
+  <data name="Emulation.Cd32Rewind"><value>CD32 visszatekerés</value></data>
+  <data name="Emulation.Cd32FastForward"><value>CD32 előretekerés</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>CD32 lejátszás / szünet</value></data>
+  <data name="Emulation.AmigaJoystick"><value>Amiga botkormány</value></data>
+  <data name="Emulation.AnalogJoystick"><value>Analóg botkormány</value></data>
+  <data name="Emulation.Cd32Controller"><value>CD32 vezérlő</value></data>
+  <data name="Emulation.MouseWheelUp"><value>Egérgörgő fel</value></data>
+  <data name="Emulation.MouseWheelDown"><value>Egérgörgő le</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>Egérgörgő balra</value></data>
+  <data name="Emulation.MouseWheelRight"><value>Egérgörgő jobbra</value></data>
+</root>

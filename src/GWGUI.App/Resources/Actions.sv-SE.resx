@@ -72,4 +72,7 @@
   <data name="Icon.Console">
     <value></value>
   </data>
+  <data name="Common.New"><value>Ny</value></data>
+  <data name="Common.Refresh"><value>Uppdatera</value></data>
+  <data name="Common.OpenFolder"><value>Öppna mapp</value></data>
 </root>

@@ -1,0 +1,112 @@
+<UserControl x:Class="GWGUI.App.Controls.InputBindingEditor"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:l="clr-namespace:GWGUI.App.Localization">
+ <UserControl.Resources>
+  <Style x:Key="BindingActionButton" TargetType="Button">
+   <Setter Property="Height" Value="32"/><Setter Property="MinWidth" Value="40"/><Setter Property="Padding" Value="11,4"/>
+   <Setter Property="Margin" Value="4,0"/><Setter Property="VerticalAlignment" Value="Center"/><Setter Property="Background" Value="White"/>
+   <Setter Property="BorderBrush" Value="#C9D0DA"/><Setter Property="BorderThickness" Value="1"/>
+   <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button">
+    <Border x:Name="ButtonBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+     BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6" Padding="{TemplateBinding Padding}" ClipToBounds="True">
+     <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Border>
+    <ControlTemplate.Triggers>
+     <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="ButtonBorder" Property="Background" Value="#F3F7FC"/><Setter TargetName="ButtonBorder" Property="BorderBrush" Value="#8DA9C9"/></Trigger>
+     <Trigger Property="IsPressed" Value="True"><Setter TargetName="ButtonBorder" Property="Background" Value="#E6EFF9"/></Trigger>
+     <Trigger Property="IsEnabled" Value="False"><Setter TargetName="ButtonBorder" Property="Opacity" Value="0.45"/></Trigger>
+    </ControlTemplate.Triggers>
+   </ControlTemplate></Setter.Value></Setter>
+  </Style>
+  <Style x:Key="TableHeaderText" TargetType="TextBlock">
+   <Setter Property="FontWeight" Value="SemiBold"/><Setter Property="VerticalAlignment" Value="Center"/><Setter Property="Margin" Value="14,0"/>
+  </Style>
+ </UserControl.Resources>
+
+ <Grid Margin="10,4,10,8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+  <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+  <Grid Margin="0,0,0,6">
+   <Grid.ColumnDefinitions><ColumnDefinition Width="2*" MaxWidth="340"/><ColumnDefinition Width="3*"/></Grid.ColumnDefinitions>
+   <Grid>
+    <TextBox x:Name="SearchBox" Height="36" Padding="38,5,10,5" VerticalContentAlignment="Center" TextChanged="SearchChanged"/>
+    <TextBlock Text="&#xE721;" FontFamily="Segoe MDL2 Assets" FontSize="18" Margin="13,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
+    <TextBlock x:Name="SearchPlaceholder" Margin="42,0,8,0" Foreground="#77808F" VerticalAlignment="Center" IsHitTestVisible="False">
+     <TextBlock.Style><Style TargetType="TextBlock"><Setter Property="Visibility" Value="Collapsed"/><Style.Triggers><DataTrigger Binding="{Binding Text, ElementName=SearchBox}" Value=""><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers></Style></TextBlock.Style>
+    </TextBlock>
+   </Grid>
+   <WrapPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+    <Button Style="{StaticResource BindingActionButton}" Click="RestoreDefaultsClicked">
+     <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE777;" FontFamily="Segoe MDL2 Assets" FontSize="17" Margin="0,0,9,0"/><TextBlock Text="{l:Loc Emulation.RestoreDefaultBindings}"/></StackPanel>
+    </Button>
+    <Button Style="{StaticResource BindingActionButton}" Click="ClearConflictsClicked">
+     <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE74D;" FontFamily="Segoe MDL2 Assets" FontSize="17" Margin="0,0,9,0"/><TextBlock Text="{l:Loc Emulation.ClearConflicts}"/></StackPanel>
+    </Button>
+   </WrapPanel>
+  </Grid>
+
+  <Border Grid.Row="1" BorderBrush="#D8DEE8" BorderThickness="1" CornerRadius="7" ClipToBounds="True"
+          Background="White" VerticalAlignment="Stretch">
+   <Grid>
+    <Grid.RowDefinitions><RowDefinition Height="38"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+    <Grid Background="#FAFBFD">
+     <Grid.ColumnDefinitions><ColumnDefinition Width="1.25*"/><ColumnDefinition Width="1.75*"/><ColumnDefinition Width="1.15*"/><ColumnDefinition Width="220"/></Grid.ColumnDefinitions>
+     <TextBlock x:Name="TargetHeader" Style="{StaticResource TableHeaderText}" Text="{l:Loc Emulation.EmulatedKey}"/>
+     <Border Grid.Column="1" BorderBrush="#D8DEE8" BorderThickness="1,0,0,0"><TextBlock Style="{StaticResource TableHeaderText}" Text="{l:Loc Emulation.Binding}"/></Border>
+     <Border Grid.Column="2" BorderBrush="#D8DEE8" BorderThickness="1,0,0,0"><TextBlock Style="{StaticResource TableHeaderText}" Text="{l:Loc Emulation.BindingState}"/></Border>
+     <Border Grid.Column="3" BorderBrush="#D8DEE8" BorderThickness="1,0,0,0"><TextBlock Style="{StaticResource TableHeaderText}" Text="{l:Loc Emulation.InputActions}"/></Border>
+    </Grid>
+    <ListBox x:Name="BindingsList" Grid.Row="1" BorderThickness="0" Background="Transparent"
+             SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Auto"
+             ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="True">
+     <ListBox.ItemContainerStyle>
+      <Style TargetType="ListBoxItem">
+       <Setter Property="HorizontalContentAlignment" Value="Stretch"/><Setter Property="Padding" Value="0"/>
+       <Setter Property="Margin" Value="0"/><Setter Property="BorderThickness" Value="0"/><Setter Property="Focusable" Value="False"/>
+       <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="ListBoxItem"><ContentPresenter/></ControlTemplate></Setter.Value></Setter>
+      </Style>
+     </ListBox.ItemContainerStyle>
+     <ListBox.ItemsPanel><ItemsPanelTemplate><VirtualizingStackPanel/></ItemsPanelTemplate></ListBox.ItemsPanel>
+     <ListBox.ItemTemplate><DataTemplate>
+       <Border MinHeight="44" BorderBrush="#E1E6ED" BorderThickness="0,1,0,0">
+        <Border.Style><Style TargetType="Border"><Setter Property="Background" Value="White"/><Style.Triggers>
+         <DataTrigger Binding="{Binding State}" Value="Conflict"><Setter Property="Background" Value="#FFF1F1"/></DataTrigger>
+         <DataTrigger Binding="{Binding State}" Value="Reserved"><Setter Property="Background" Value="#F3F7FF"/></DataTrigger>
+        </Style.Triggers></Style></Border.Style>
+        <Grid>
+         <Grid.ColumnDefinitions><ColumnDefinition Width="1.25*"/><ColumnDefinition Width="1.75*"/><ColumnDefinition Width="1.15*"/><ColumnDefinition Width="220"/></Grid.ColumnDefinitions>
+         <TextBlock Text="{Binding Label}" Margin="14,8" VerticalAlignment="Center" TextWrapping="Wrap"/>
+         <Border Grid.Column="1" BorderBrush="#E1E6ED" BorderThickness="1,0,0,0" Padding="14,7">
+          <ItemsControl ItemsSource="{Binding BindingParts}" VerticalAlignment="Center">
+           <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel VerticalAlignment="Center"/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+           <ItemsControl.ItemTemplate><DataTemplate><StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <Border BorderBrush="#CDD4DE" BorderThickness="1" CornerRadius="5" Padding="9,4" Background="#FAFBFC"><TextBlock Text="{Binding Text}" VerticalAlignment="Center"/></Border>
+            <TextBlock Text="+" Margin="8,0" VerticalAlignment="Center" Visibility="{Binding SeparatorVisibility}"/>
+           </StackPanel></DataTemplate></ItemsControl.ItemTemplate>
+          </ItemsControl>
+         </Border>
+         <Border Grid.Column="2" BorderBrush="#E1E6ED" BorderThickness="1,0,0,0" Padding="14,7">
+          <Border Background="{Binding StateBackground}" CornerRadius="14" Padding="11,5" HorizontalAlignment="Left" VerticalAlignment="Center">
+           <StackPanel Orientation="Horizontal">
+            <Border Width="18" Height="18" CornerRadius="9" BorderBrush="{Binding StateForeground}" BorderThickness="1.5" Margin="0,0,7,0">
+             <TextBlock Text="{Binding StateIcon}" FontSize="11" Foreground="{Binding StateForeground}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <TextBlock Text="{Binding StateText}" Foreground="{Binding StateForeground}" FontWeight="SemiBold" VerticalAlignment="Center"/>
+           </StackPanel>
+          </Border>
+         </Border>
+         <Border Grid.Column="3" BorderBrush="#E1E6ED" BorderThickness="1,0,0,0" Padding="4,7">
+          <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Tag="{Binding}" Click="AssignClicked" Style="{StaticResource BindingActionButton}" Width="142" Padding="8,4">
+            <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE70F;" FontFamily="Segoe MDL2 Assets" Margin="0,0,8,0"/><TextBlock Text="{l:Loc Emulation.AssignInput}"/></StackPanel>
+           </Button>
+           <Button Content="&#xE74D;" FontFamily="Segoe MDL2 Assets" Tag="{Binding}" Click="ClearClicked" ToolTip="{l:Loc Common.Delete}" Style="{StaticResource BindingActionButton}" Width="48" Padding="9"/>
+          </StackPanel>
+         </Border>
+        </Grid>
+       </Border>
+      </DataTemplate></ListBox.ItemTemplate>
+    </ListBox>
+   </Grid>
+  </Border>
+ </Grid>
+</UserControl>

@@ -78,4 +78,7 @@
   <data name="Tab.Explorer">
     <value>디스크 탐색기</value>
   </data>
+  <data name="Tab.Emulation">
+    <value>Emulation</value>
+  </data>
 </root>

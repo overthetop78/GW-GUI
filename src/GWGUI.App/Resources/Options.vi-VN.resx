@@ -181,4 +181,6 @@
   <data name="Engines.Description" xml:space="preserve"><value>Chọn riêng bộ máy dùng cho từng thao tác.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>Bộ máy nội bộ GW GUI</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>Bộ máy đã chọn được sử dụng nghiêm ngặt. Nếu không thể thực hiện thao tác, GW GUI sẽ báo lỗi thay vì âm thầm dùng bộ máy khác.</value></data>
+  <data name="Emulation.Model" xml:space="preserve"><value>Mẫu máy</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Bắt chuột</value></data>
 </root>

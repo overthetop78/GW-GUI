@@ -83,6 +83,7 @@ public partial class OptionsWindow : Window
             PersistSettingsAsync,
             RefreshLocalizedContent,
             (key, arguments) => LocExtension.Get(key, arguments));
+        EmulationSection.Configure(settings, PersistSettingsAsync);
         _profileState = new ProfileOptionsState(settings.Profiles);
         _profileOptionsController = new ProfileOptionsController(
             this,
@@ -140,6 +141,7 @@ public partial class OptionsWindow : Window
             OptionsSection.Hardware or OptionsSection.HostTools => 2,
             OptionsSection.Engines => 3,
             OptionsSection.Profiles => 4,
+            OptionsSection.Emulation => 5,
             _ => 0
         };
         _initializing = false;

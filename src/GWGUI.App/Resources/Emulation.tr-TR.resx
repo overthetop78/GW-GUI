@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>Makineler</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>Çekirdek</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>{0} öykünme çekirdeği</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>Kitaplık GW GUI dışında kalır. Seçilen sürüm, şu anda yüklü sürümün yerini alır.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>GW GUI tarafından gereken sürüm</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>Kullanılabilir en son resmî sürüm</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>Şu anda yüklü sürüm</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>Resmî Libretro sunucusunu sorgulamak için Ara düğmesine tıklayın.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>Sürümleri ara</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>İndir ve değiştir</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>Kullanılabilir sürümler aranıyor…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>Resmî sürüm bulunamadı.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>{0} sürüm kullanılabilir.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>{0} indiriliyor…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>Yüklü sürüm: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · yüklendi</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>Yüklü sürüm yok</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>Aç</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>Hoş geldiniz</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>Yukarıdan kaydedilmiş bir makine seçip Aç düğmesine tıklayın. Çalışan her makine kendi sekmesinde görünür.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>Kaydedilmiş yapılandırmaları burada oluşturun, seçin, değiştirin veya silin. Seçili yapılandırmayı düzenlemek için {0} sekmesini seçin.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>Genel</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>Video</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>Depolama</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>Klavye</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>Fare</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>Denetleyiciler</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>Gelişmiş</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>Aygıt kimliği</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>Denetleyici {0} aygıtı</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>{0} tuşu</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>Ana makine tuşu</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>İşlemci: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>Video yonga seti: {0}</value>
+  </data>
+  <data name="Emulation.CpuModel"><value>CPU modeli</value></data>
+  <data name="Emulation.CpuMultiplier"><value>CPU çarpanı</value></data>
+  <data name="Emulation.CpuCompatibility"><value>Döngü uyumlu CPU</value></data>
+  <data name="Emulation.ChipMemory"><value>Chip RAM</value></data>
+  <data name="Emulation.SlowMemory"><value>Slow RAM</value></data>
+  <data name="Emulation.FastMemory"><value>Fast RAM</value></data>
+  <data name="Emulation.Z3Memory"><value>Zorro III RAM</value></data>
+  <data name="Emulation.VideoStandard"><value>Video standardı</value></data>
+  <data name="Emulation.VideoResolution"><value>Çözünürlük</value></data>
+  <data name="Emulation.AspectRatio"><value>En-boy oranı</value></data>
+  <data name="Emulation.VideoCrop"><value>Kenarları kırp</value></data>
+  <data name="Emulation.FlickerFixer"><value>Titreşim düzeltme</value></data>
+  <data name="Emulation.AudioEnabled"><value>Sesi etkinleştir</value></data>
+  <data name="Emulation.AudioOutput"><value>Ses çıkışı</value></data>
+  <data name="Emulation.AudioLatency"><value>Gecikme (ms)</value></data>
+  <data name="Emulation.AudioInterpolation"><value>Enterpolasyon</value></data>
+  <data name="Emulation.AudioFilter"><value>Amiga ses filtresi</value></data>
+  <data name="Emulation.StereoSeparation"><value>Stereo ayrımı (%)</value></data>
+  <data name="Emulation.AudioInput"><value>Ses girişi</value></data>
+  <data name="Emulation.AudioInputUnavailable"><value>Bu Amiga çekirdeği ses girişi sağlamaz.</value></data>
+  <data name="Emulation.DefaultAudioOutput"><value>Windows varsayılan çıkışı</value></data>
+  <data name="Emulation.AddMedia"><value>Ortam ekle</value></data>
+  <data name="Emulation.CreateHardDisk"><value>Sabit disk oluştur</value></data>
+  <data name="Emulation.HardDiskSize"><value>Sabit disk boyutu (MiB)</value></data>
+  <data name="Emulation.NoMedia"><value>Ortam yok. Seçilen modelin desteklediği bir disket, sabit disk veya CD ekleyin.</value></data>
+  <data name="Emulation.ReadOnly"><value>Salt okunur</value></data>
+  <data name="Emulation.AmigaMediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value></data>
+  <data name="Emulation.HardDiskFilter"><value>Amiga hard disk|*.hdf|All files|*.*</value></data>
+  <data name="Emulation.HardDiskNotSupported"><value>Seçilen model sabit diski desteklemiyor.</value></data>
+  <data name="Emulation.TooManyFloppyDrives"><value>Bu model en fazla {0} disket sürücüsünü destekler.</value></data>
+  <data name="Emulation.TooManyHardDrives"><value>Bu model en fazla {0} sabit diski destekler.</value></data>
+  <data name="Emulation.CdNotSupported"><value>Seçilen model CD sürücüsünü desteklemiyor.</value></data>
+  <data name="Emulation.DuplicateKeyboardMapping"><value>İki Amiga tuşu aynı PC tuşunu kullanıyor. Kaydetmeden önce kırmızı eşlemeleri düzeltin.</value></data>
+  <data name="Emulation.ReleaseMouseKey"><value>Fare yakalamayı bırakma tuşu</value></data>
+  <data name="Emulation.MouseLeftButton"><value>Sol fare düğmesi</value></data>
+  <data name="Emulation.MouseRightButton"><value>Sağ fare düğmesi</value></data>
+  <data name="Emulation.MouseMiddleButton"><value>Orta fare düğmesi</value></data>
+  <data name="Emulation.DetectControllers"><value>Denetleyicileri algıla</value></data>
+  <data name="Emulation.EmulatedAction"><value>Amiga eylemi</value></data>
+  <data name="Emulation.PhysicalControl"><value>Klavye, fare veya denetleyici girişi</value></data>
+  <data name="Emulation.Chipset"><value>Yonga seti</value></data>
+  <data name="Emulation.CdDrive"><value>CD sürücüsü</value></data>
+  <data name="Emulation.FloppyDriveCount"><value>Disket sürücüsü sayısı</value></data>
+  <data name="Emulation.HardDriveCount"><value>Sabit disk sayısı</value></data>
+  <data name="Emulation.FpuModel"><value>FPU</value></data>
+  <data name="Emulation.CpuSpeed"><value>CPU hızı</value></data>
+  <data name="Emulation.CpuSpeedOriginal"><value>Özgün hız</value></data>
+  <data name="Emulation.CompatibilityNormal"><value>Normal</value></data>
+  <data name="Emulation.CompatibilityCompatible"><value>Uyumlu</value></data>
+  <data name="Emulation.CompatibilityMemory"><value>Bellek uyumlu</value></data>
+  <data name="Emulation.CompatibilityExact"><value>Döngü düzeyinde kesin</value></data>
+  <data name="Emulation.IntegratedFpu"><value>Tümleşik FPU</value></data>
+  <data name="Emulation.Enabled"><value>Etkin</value></data>
+  <data name="Emulation.Disabled"><value>Devre dışı</value></data>
+  <data name="Emulation.Minimum"><value>En az</value></data>
+  <data name="Emulation.VerySmall"><value>Çok küçük</value></data>
+  <data name="Emulation.Small"><value>Küçük</value></data>
+  <data name="Emulation.Medium"><value>Orta</value></data>
+  <data name="Emulation.Large"><value>Büyük</value></data>
+  <data name="Emulation.VeryLarge"><value>Çok büyük</value></data>
+  <data name="Emulation.Maximum"><value>En fazla</value></data>
+  <data name="Emulation.Locked"><value>Kilitli</value></data>
+  <data name="Emulation.Immediate"><value>Anında</value></data>
+  <data name="Emulation.Waiting"><value>Beklemeli</value></data>
+  <data name="Emulation.Standard"><value>Standart</value></data>
+  <data name="Emulation.Enhanced"><value>Gelişmiş</value></data>
+  <data name="Emulation.Internal"><value>Dahili</value></data>
+  <data name="Emulation.Loud"><value>Yüksek</value></data>
+  <data name="Emulation.ResolutionAutoLow"><value>Otomatik düşük çözünürlük</value></data>
+  <data name="Emulation.ResolutionAutoSuperHigh"><value>Otomatik süper yüksek çözünürlük</value></data>
+  <data name="Emulation.ResolutionLow"><value>Düşük çözünürlük</value></data>
+  <data name="Emulation.ResolutionHigh"><value>Yüksek çözünürlük</value></data>
+  <data name="Emulation.ResolutionSuperHigh"><value>Süper yüksek çözünürlük</value></data>
+  <data name="Emulation.VideoLineMode"><value>Satır modu</value></data>
+  <data name="Emulation.VideoHzChange"><value>Yenileme hızı değişiklikleri</value></data>
+  <data name="Emulation.VideoFrameskip"><value>Kare atlama</value></data>
+  <data name="Emulation.VideoColors"><value>Renk derinliği</value></data>
+  <data name="Emulation.VideoGamma"><value>Gama</value></data>
+  <data name="Emulation.ImmediateBlits"><value>Blitter çalışması</value></data>
+  <data name="Emulation.CollisionLevel"><value>Çarpışma algılama</value></data>
+  <data name="Emulation.LineModeSingle"><value>Tek tarama</value></data>
+  <data name="Emulation.LineModeDouble"><value>Çift tarama</value></data>
+  <data name="Emulation.CollisionSprites"><value>Sprite'lar</value></data>
+  <data name="Emulation.CollisionPlayfields"><value>Oyun alanları</value></data>
+  <data name="Emulation.CollisionFull"><value>Tam</value></data>
+  <data name="Emulation.InterpolationAnti"><value>Anti enterpolasyon</value></data>
+  <data name="Emulation.FilterEmulated"><value>Öykünülmüş</value></data>
+  <data name="Emulation.AudioFilterType"><value>Filtre türü</value></data>
+  <data name="Emulation.FloppySound"><value>Disket sürücüsü ses düzeyi</value></data>
+  <data name="Emulation.FloppySoundType"><value>Disket sürücüsü ses türü</value></data>
+  <data name="Emulation.MuteEmptyFloppy"><value>Boş sürücüleri sessize al</value></data>
+  <data name="Emulation.CdAudioVolume"><value>CD ses düzeyi</value></data>
+  <data name="Emulation.FloppySpeed"><value>Disket sürücüsü hızı</value></data>
+  <data name="Emulation.FloppyWriteProtection"><value>Disket görüntülerini yazmaya karşı koru</value></data>
+  <data name="Emulation.FloppyWriteRedirect"><value>Disket yazmalarını yönlendir</value></data>
+  <data name="Emulation.CdSpeed"><value>CD hızı</value></data>
+  <data name="Emulation.KeyboardPassThrough"><value>Fiziksel klavyeyi doğrudan geçir</value></data>
+  <data name="Emulation.PhysicalMouse"><value>Fiziksel fare</value></data>
+  <data name="Emulation.PhysicalMouseDouble"><value>Çift hareket</value></data>
+  <data name="Emulation.MouseSpeed"><value>Fare hızı</value></data>
+  <data name="Emulation.AnalogMouse"><value>Fareyi denetleyen analog çubuklar</value></data>
+  <data name="Emulation.AnalogMouseDeadzone"><value>Analog çubuk ölü bölgesi</value></data>
+  <data name="Emulation.AnalogMouseSpeed"><value>Analog çubuk fare hızı</value></data>
+  <data name="Emulation.LeftStick"><value>Sol çubuk</value></data>
+  <data name="Emulation.RightStick"><value>Sağ çubuk</value></data>
+  <data name="Emulation.BothSticks"><value>Her iki çubuk</value></data>
+  <data name="Emulation.TurboFire"><value>Turbo ateş</value></data>
+  <data name="Emulation.TurboButton"><value>Turbo düğmesi</value></data>
+  <data name="Emulation.TurboPulse"><value>Turbo darbesi</value></data>
+  <data name="Emulation.JoyPortOrder"><value>Denetleyici bağlantı noktası sırası</value></data>
+  <data name="Emulation.Emulator"><value>Emülatör</value></data>
+  <data name="Emulation.StorageBaseFolder"><value>Paylaşılan emülasyon depolama klasörü</value></data>
+  <data name="Emulation.StorageBaseFolderDescription"><value>Sabit diskler otomatik olarak HDD\Amiga, HDD\Atari ve gelecekteki sistemlerin klasörlerinde düzenlenir.</value></data>
+  <data name="Emulation.AddHardDisk"><value>Mevcut bir sabit disk ekle</value></data>
+  <data name="Emulation.HardDisks"><value>Sabit diskler</value></data>
+  <data name="Emulation.NoHardDisks"><value>Bu makineye bağlı bir sabit disk yok.</value></data>
+  <data name="Emulation.KeyboardPriorityHint"><value>Ayrılmış kısayollar</value></data>
+  <data name="Emulation.KeyboardPriorityDescription"><value>GW GUI ve Windows kısayolları etkin kalır ve makine tarafından yakalanmaz.</value></data>
+  <data name="Emulation.InputBehavior"><value>Davranış</value></data>
+  <data name="Emulation.AssignInput"><value>Ata...</value></data>
+  <data name="Emulation.InputActions"><value>Eylemler</value></data>
+  <data name="Emulation.PressInput"><value>Bir tuşa basın...</value></data>
+  <data name="Emulation.CreateStorageFolders"><value>Eksik alt klasörleri otomatik oluştur</value></data>
+  <data name="Emulation.CommonFolders"><value>Paylaşılan klasörler</value></data>
+  <data name="Emulation.SharedInputDescription"><value>Aygıt algılama ortaktır, atamalar ise her makine yapılandırmasında ayrı kaydedilir.</value></data>
+  <data name="Emulation.TestInputs"><value>Girişleri test et</value></data>
+  <data name="Emulation.SharedDevices"><value>Paylaşılan giriş aygıtları</value></data>
+  <data name="Emulation.CaptureFolder"><value>Yakalama klasörü</value></data>
+  <data name="Emulation.StateFolder"><value>Kayıtlı durum klasörü</value></data>
+  <data name="Emulation.DefaultFolders"><value>Varsayılan klasörler</value></data>
+  <data name="Emulation.NoControllersDetected"><value>Denetleyici algılanmadı</value></data>
+  <data name="Emulation.TestInputsPrompt"><value>Algılamayı test etmek için bir klavye tuşuna veya fare düğmesine basın.</value></data>
+  <data name="Emulation.Floppies"><value>Disketler</value></data>
+  <data name="Emulation.ExtendedRom"><value>Genişletilmiş ROM</value></data>
+  <data name="Emulation.RomKey"><value>ROM anahtarı</value></data>
+  <data name="Emulation.Processor"><value>İşlemci</value></data>
+  <data name="Emulation.Precision"><value>Hassasiyet</value></data>
+  <data name="Emulation.Acceleration"><value>Hızlandırma</value></data>
+  <data name="Emulation.MainMemory"><value>Ana bellek</value></data>
+  <data name="Emulation.MemoryExtensions"><value>Bellek genişletmeleri</value></data>
+  <data name="Emulation.MemoryNone"><value>Yok</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>Bellek yapılandırması {0} ile uyumludur.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Bellek genişletmeleri {0} ile uyumludur.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>Zorro III RAM, {0} üzerinde kullanılamaz.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>Toplam yapılandırılmış bellek: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>Sistem ROM'u</value></data>
+  <data name="Emulation.DetectedRoms"><value>Algılanan ROM'lar</value></data>
+  <data name="Emulation.UseFirmware"><value>Kullan</value></data>
+  <data name="Emulation.NotUsed"><value>Kullanılmıyor</value></data>
+  <data name="Emulation.OpenRomFolder"><value>ROM klasörünü aç</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>Kısmen uyumlu</value></data>
+  <data name="Emulation.DisplaySettings"><value>Görüntü</value></data>
+  <data name="Emulation.RenderingSettings"><value>İşleme</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>Yonga seti uyumluluğu</value></data>
+  <data name="Emulation.AudioDevice"><value>Aygıt</value></data>
+  <data name="Emulation.Latency"><value>Gecikme</value></data>
+  <data name="Emulation.AudioQuality"><value>Kalite</value></data>
+  <data name="Emulation.AudioDrives"><value>Sürücüler</value></data>
+  <data name="Emulation.Type"><value>Tür</value></data>
+  <data name="Emulation.AddStorageDevice"><value>Depolama aygıtı ekle</value></data>
+  <data name="Emulation.AmigaDdFloppy"><value>Amiga 3,5 inç DD · 880 KiB</value></data>
+  <data name="Emulation.AmigaHdFloppy"><value>Amiga 3,5 inç HD · 1,76 MiB</value></data>
+  <data name="Emulation.AssociatedMedia"><value>İlişkili ortam</value></data>
+  <data name="Emulation.AutomaticDiskGeometry"><value>Disk geometrisi öykünücü tarafından otomatik belirlenir.</value></data>
+  <data name="Emulation.BlankFloppyCreated"><value>Boş disket görüntüsü oluşturuldu: {0}</value></data>
+  <data name="Emulation.BlankHardDiskHint"><value>Dosya boş oluşturulacak, ardından öykünülen makinede bölümlenip biçimlendirilmelidir.</value></data>
+  <data name="Emulation.CdWriter"><value>CD yazıcı</value></data>
+  <data name="Emulation.CdWriterHint"><value>Boş disk yalnızca seçilen makine ve öykünücü yazmayı destekliyorsa oluşturulabilir.</value></data>
+  <data name="Emulation.CompactDiscDevice"><value>CD-ROM sürücüsü</value></data>
+  <data name="Emulation.ConfigureDevice"><value>Yapılandır</value></data>
+  <data name="Emulation.CreateBlankFloppy"><value>Boş disket oluştur</value></data>
+  <data name="Emulation.DiskImage"><value>Disk görüntüsü</value></data>
+  <data name="Emulation.DiskImageRequired"><value>Mevcut bir disk görüntüsü seçin.</value></data>
+  <data name="Emulation.ExistingDiskHint"><value>Seçilen dosya bu sanal sürücüye bağlanacaktır.</value></data>
+  <data name="Emulation.FloppyDevice"><value>Disket sürücüsü</value></data>
+  <data name="Emulation.FloppyImageFilter"><value>Amiga disket görüntüsü|*.adf|Tüm dosyalar|*.*</value></data>
+  <data name="Emulation.HardDiskDevice"><value>Sabit disk</value></data>
+  <data name="Emulation.Interface"><value>Arayüz</value></data>
+  <data name="Emulation.PreallocateFile"><value>Dosyayı önceden ayır</value></data>
+  <data name="Emulation.RemovableMediaRuntimeHint"><value>Disketler ve CD'ler çalışan makineden takılır veya değiştirilir.</value></data>
+  <data name="Emulation.RemoveMedia"><value>Ortamı kaldır</value></data>
+  <data name="Emulation.ReplaceExistingDisk"><value>Disk görüntüsü zaten var: {0}\nDeğiştirmek istiyor musunuz?</value></data>
+  <data name="Emulation.StorageDeviceCapabilitiesHint"><value>Kullanılabilir türler, modeller ve tanımlayıcılar seçilen makineye bağlıdır.</value></data>
+  <data name="Emulation.TapeDevice"><value>Teyp sürücüsü</value></data>
+  <data name="Emulation.UseDisk"><value>Diski kullan</value></data>
+  <data name="Emulation.UseExistingDisk"><value>Mevcut diski kullan</value></data>
+  <data name="Emulation.ModifyInGeneral"><value>Genel bölümünde değiştir</value></data>
+  <data name="Emulation.NoStorageDeviceAvailable"><value>Bu makine için ek depolama aygıtı yok.</value></data>
+  <data name="Emulation.StorageDevices"><value>Depolama aygıtları</value></data>
+  <data name="Emulation.RestoreDefaultBindings"><value>Varsayılanları geri yükle</value></data>
+  <data name="Emulation.ClearConflicts"><value>Çakışmaları temizle</value></data>
+  <data name="Emulation.EmulatedKey"><value>Makine tuşu</value></data>
+  <data name="Emulation.Binding"><value>Atama</value></data>
+  <data name="Emulation.BindingState"><value>Durum</value></data>
+  <data name="Emulation.SearchBinding"><value>Tuş veya atama ara</value></data>
+  <data name="Emulation.BindingLegend"><value>Geçerli: benzersiz atama · Çakışma: atama birden çok kez kullanılmış · Ayrılmış: Windows veya GW GUI kısayolu</value></data>
+  <data name="Emulation.BindingValid"><value>Geçerli</value></data>
+  <data name="Emulation.BindingConflict"><value>Çakışma</value></data>
+  <data name="Emulation.BindingReserved"><value>Ayrılmış</value></data>
+  <data name="Emulation.BindingUnassigned"><value>Atanmamış</value></data>
+  <data name="Emulation.GlobalShortcuts"><value>Emülasyon kısayolları</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Kısayollar</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Fareyi serbest bırak</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Duraklat / sürdür</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Tam ekran / pencere</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Aç / kapat</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>Yazılımsal sıfırlama</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Donanımsal sıfırlama</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Hızlı durum kaydı</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Hızlı durum yükleme</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Ekran görüntüsü</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Etkin makinenin sesini kapat</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Basılı tutarken hızlı ileri sar</value></data>
+  <data name="Emulation.Key.Help"><value>Yardım</value></data>
+  <data name="Emulation.Key.LeftAmiga"><value>Sol Amiga</value></data>
+  <data name="Emulation.Key.RightAmiga"><value>Sağ Amiga</value></data>
+  <data name="Emulation.SpecialKeysOnlyHint"><value>Harfler, sayılar ve normal değiştirici tuşlar doğrudan iletilir. Burada yalnızca Amiga işlev ve özel tuşlarının atanması gerekir.</value></data>
+  <data name="Emulation.ShortcutUnavailable"><value>Bu işlem mevcut emülatör tarafından henüz desteklenmiyor.</value></data>
+  <data name="Emulation.Allocation"><value>Ayırma</value></data>
+  <data name="Emulation.AutomaticGeometry"><value>Otomatik geometri</value></data>
+  <data name="Emulation.BlankMedia"><value>Boş ortam</value></data>
+  <data name="Emulation.BytesPerSector"><value>Sektör başına bayt</value></data>
+  <data name="Emulation.CalculatedCapacity"><value>Hesaplanan kapasite: {0}</value></data>
+  <data name="Emulation.ControllerMappings"><value>Denetleyici eşlemeleri</value></data>
+  <data name="Emulation.ControllerPort"><value>Bağlantı noktası {0}</value></data>
+  <data name="Emulation.ControllerType"><value>Denetleyici türü</value></data>
+  <data name="Emulation.CustomSize"><value>Özel boyut</value></data>
+  <data name="Emulation.Cylinders"><value>Silindirler</value></data>
+  <data name="Emulation.DestinationFolder"><value>Hedef klasör</value></data>
+  <data name="Emulation.DetectedControllers"><value>Algılanan denetleyiciler</value></data>
+  <data name="Emulation.Device"><value>Aygıt</value></data>
+  <data name="Emulation.DiskGeometry"><value>Disk geometrisi (CHS)</value></data>
+  <data name="Emulation.DiskSizeProfile"><value>Boyut profili</value></data>
+  <data name="Emulation.FloppyDrive"><value>Disket sürücüsü</value></data>
+  <data name="Emulation.Heads"><value>Kafalar</value></data>
+  <data name="Emulation.InputCaptureHint"><value>Ata'ya tıklayın, ardından bir klavye tuşu, fare düğmesi veya denetleyici düğmesi kullanın.</value></data>
+  <data name="Emulation.InvalidDiskSize"><value>Disk boyutu veya geometrisi geçersiz.</value></data>
+  <data name="Emulation.MouseActions"><value>Fare eylemleri</value></data>
+  <data name="Emulation.MouseButton4"><value>Fare düğmesi 4</value></data>
+  <data name="Emulation.MouseButton5"><value>Fare düğmesi 5</value></data>
+  <data name="Emulation.MouseCaptureTitle"><value>Fare yakalama</value></data>
+  <data name="Emulation.PreallocationHint"><value>Fiziksel disk alanını hemen ayırır; aksi halde görüntü veri yazıldıkça büyür.</value></data>
+  <data name="Emulation.SearchInputBinding"><value>Eylem veya giriş ara</value></data>
+  <data name="Emulation.Sectors"><value>Sektörler</value></data>
+  <data name="Emulation.UnitMiB"><value>MiB</value></data>
+  <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>Yukarı</value></data>
+  <data name="Emulation.DirectionDown"><value>Aşağı</value></data>
+  <data name="Emulation.DirectionLeft"><value>Sol</value></data>
+  <data name="Emulation.DirectionRight"><value>Sağ</value></data>
+  <data name="Emulation.FireButton1"><value>Ateş düğmesi 1</value></data>
+  <data name="Emulation.FireButton2"><value>Ateş düğmesi 2</value></data>
+  <data name="Emulation.Cd32Red"><value>CD32 kırmızı düğme</value></data>
+  <data name="Emulation.Cd32Blue"><value>CD32 mavi düğme</value></data>
+  <data name="Emulation.Cd32Green"><value>CD32 yeşil düğme</value></data>
+  <data name="Emulation.Cd32Yellow"><value>CD32 sarı düğme</value></data>
+  <data name="Emulation.Cd32Rewind"><value>CD32 geri sar</value></data>
+  <data name="Emulation.Cd32FastForward"><value>CD32 ileri sar</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>CD32 oynat / duraklat</value></data>
+  <data name="Emulation.AmigaJoystick"><value>Amiga joystick</value></data>
+  <data name="Emulation.AnalogJoystick"><value>Analog joystick</value></data>
+  <data name="Emulation.Cd32Controller"><value>CD32 kumandası</value></data>
+  <data name="Emulation.MouseWheelUp"><value>Fare tekerleği yukarı</value></data>
+  <data name="Emulation.MouseWheelDown"><value>Fare tekerleği aşağı</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>Fare tekerleği sola</value></data>
+  <data name="Emulation.MouseWheelRight"><value>Fare tekerleği sağa</value></data>
+</root>

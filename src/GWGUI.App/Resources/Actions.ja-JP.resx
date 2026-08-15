@@ -72,4 +72,7 @@
   <data name="Icon.Console">
     <value></value>
   </data>
+  <data name="Common.New"><value>新規</value></data>
+  <data name="Common.Refresh"><value>更新</value></data>
+  <data name="Common.OpenFolder"><value>フォルダーを開く</value></data>
 </root>

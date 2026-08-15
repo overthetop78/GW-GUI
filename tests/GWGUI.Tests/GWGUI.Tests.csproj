@@ -24,6 +24,8 @@
     <ProjectReference Include="..\..\src\GWGUI.Infrastructure\GWGUI.Infrastructure.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.App\GWGUI.App.csproj" />
+    <ProjectReference Include="..\..\src\GWGUI.Emulation\GWGUI.Emulation.csproj" />
+    <ProjectReference Include="..\..\src\GWGUI.Emulation.Amiga\GWGUI.Emulation.Amiga.csproj" />
   </ItemGroup>
 
 </Project>

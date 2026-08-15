@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>เครื่อง</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>คอร์</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>คอร์จำลอง {0}</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>ไลบรารียังคงอยู่ภายนอก GW GUI รุ่นที่เลือกจะแทนที่รุ่นที่ติดตั้งอยู่ในขณะนี้</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>รุ่นที่ GW GUI ต้องการ</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>รุ่นทางการล่าสุดที่มี</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>รุ่นที่ติดตั้งอยู่ในขณะนี้</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>คลิก ค้นหา เพื่อสอบถามเซิร์ฟเวอร์ Libretro ทางการ</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>ค้นหารุ่น</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>ดาวน์โหลดและแทนที่</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>กำลังค้นหารุ่นที่มี…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>ไม่พบรุ่นทางการ</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>มี {0} รุ่น</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>กำลังดาวน์โหลด {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>รุ่นที่ติดตั้ง: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · ติดตั้งแล้ว</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>ไม่มีรุ่นที่ติดตั้ง</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>เปิด</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>ยินดีต้อนรับ</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>เลือกเครื่องที่บันทึกไว้ด้านบนแล้วคลิก เปิด เครื่องแต่ละเครื่องที่กำลังทำงานจะแสดงในแท็บของตนเอง</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>สร้าง เลือก แก้ไข หรือลบการกำหนดค่าที่บันทึกไว้ที่นี่ เลือกแท็บ {0} เพื่อแก้ไขการกำหนดค่าที่เลือก</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>ทั่วไป</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>วิดีโอ</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>ที่เก็บข้อมูล</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>แป้นพิมพ์</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>เมาส์</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>ตัวควบคุม</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>ขั้นสูง</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>รหัสอุปกรณ์</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>อุปกรณ์ตัวควบคุม {0}</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>ปุ่ม {0}</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>ปุ่มโฮสต์</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>ตัวประมวลผล: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>ชิปเซ็ตวิดีโอ: {0}</value>
+  </data>
+  <data name="Emulation.CpuModel"><value>CPU model</value></data>
+  <data name="Emulation.CpuMultiplier"><value>CPU multiplier</value></data>
+  <data name="Emulation.CpuCompatibility"><value>Cycle-compatible CPU</value></data>
+  <data name="Emulation.ChipMemory"><value>Chip RAM</value></data>
+  <data name="Emulation.SlowMemory"><value>Slow RAM</value></data>
+  <data name="Emulation.FastMemory"><value>Fast RAM</value></data>
+  <data name="Emulation.Z3Memory"><value>Zorro III RAM</value></data>
+  <data name="Emulation.VideoStandard"><value>Video standard</value></data>
+  <data name="Emulation.VideoResolution"><value>Resolution</value></data>
+  <data name="Emulation.AspectRatio"><value>Aspect ratio</value></data>
+  <data name="Emulation.VideoCrop"><value>Crop borders</value></data>
+  <data name="Emulation.FlickerFixer"><value>Flicker fixer</value></data>
+  <data name="Emulation.AudioEnabled"><value>Enable audio</value></data>
+  <data name="Emulation.AudioOutput"><value>Audio output</value></data>
+  <data name="Emulation.AudioLatency"><value>Latency (ms)</value></data>
+  <data name="Emulation.AudioInterpolation"><value>Interpolation</value></data>
+  <data name="Emulation.AudioFilter"><value>Amiga audio filter</value></data>
+  <data name="Emulation.StereoSeparation"><value>Stereo separation (%)</value></data>
+  <data name="Emulation.AudioInput"><value>Audio input</value></data>
+  <data name="Emulation.AudioInputUnavailable"><value>This Amiga core does not expose an audio input.</value></data>
+  <data name="Emulation.DefaultAudioOutput"><value>Windows default output</value></data>
+  <data name="Emulation.AddMedia"><value>Add media</value></data>
+  <data name="Emulation.CreateHardDisk"><value>Create hard disk</value></data>
+  <data name="Emulation.HardDiskSize"><value>Hard-disk size (MiB)</value></data>
+  <data name="Emulation.NoMedia"><value>No media. Add a floppy, hard disk or CD supported by the selected model.</value></data>
+  <data name="Emulation.ReadOnly"><value>Read-only</value></data>
+  <data name="Emulation.AmigaMediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value></data>
+  <data name="Emulation.HardDiskFilter"><value>Amiga hard disk|*.hdf|All files|*.*</value></data>
+  <data name="Emulation.HardDiskNotSupported"><value>The selected model does not support a hard disk.</value></data>
+  <data name="Emulation.TooManyFloppyDrives"><value>This model accepts at most {0} floppy drive(s).</value></data>
+  <data name="Emulation.TooManyHardDrives"><value>This model accepts at most {0} hard disk(s).</value></data>
+  <data name="Emulation.CdNotSupported"><value>The selected model does not support a CD drive.</value></data>
+  <data name="Emulation.DuplicateKeyboardMapping"><value>Two Amiga keys use the same PC key. Resolve the red mappings before saving.</value></data>
+  <data name="Emulation.ReleaseMouseKey"><value>Release-capture key</value></data>
+  <data name="Emulation.MouseLeftButton"><value>Left mouse button</value></data>
+  <data name="Emulation.MouseRightButton"><value>Right mouse button</value></data>
+  <data name="Emulation.MouseMiddleButton"><value>Middle mouse button</value></data>
+  <data name="Emulation.DetectControllers"><value>Detect controllers</value></data>
+  <data name="Emulation.EmulatedAction"><value>Amiga action</value></data>
+  <data name="Emulation.PhysicalControl"><value>Keyboard, mouse or controller control</value></data>
+  <data name="Emulation.Chipset"><value>ชิปเซ็ต</value></data>
+  <data name="Emulation.CdDrive"><value>ไดรฟ์ CD</value></data>
+  <data name="Emulation.FloppyDriveCount"><value>จำนวนไดรฟ์ฟลอปปี</value></data>
+  <data name="Emulation.HardDriveCount"><value>จำนวนฮาร์ดดิสก์</value></data>
+  <data name="Emulation.FpuModel"><value>FPU</value></data>
+  <data name="Emulation.CpuSpeed"><value>CPU speed</value></data>
+  <data name="Emulation.CpuSpeedOriginal"><value>Original speed</value></data>
+  <data name="Emulation.CompatibilityNormal"><value>Normal</value></data>
+  <data name="Emulation.CompatibilityCompatible"><value>Compatible</value></data>
+  <data name="Emulation.CompatibilityMemory"><value>Memory compatible</value></data>
+  <data name="Emulation.CompatibilityExact"><value>Cycle exact</value></data>
+  <data name="Emulation.IntegratedFpu"><value>Integrated FPU</value></data>
+  <data name="Emulation.Enabled"><value>Enabled</value></data>
+  <data name="Emulation.Disabled"><value>Disabled</value></data>
+  <data name="Emulation.Minimum"><value>Minimum</value></data>
+  <data name="Emulation.VerySmall"><value>Very small</value></data>
+  <data name="Emulation.Small"><value>Small</value></data>
+  <data name="Emulation.Medium"><value>Medium</value></data>
+  <data name="Emulation.Large"><value>Large</value></data>
+  <data name="Emulation.VeryLarge"><value>Very large</value></data>
+  <data name="Emulation.Maximum"><value>Maximum</value></data>
+  <data name="Emulation.Locked"><value>Locked</value></data>
+  <data name="Emulation.Immediate"><value>Immediate</value></data>
+  <data name="Emulation.Waiting"><value>Waiting</value></data>
+  <data name="Emulation.Standard"><value>Standard</value></data>
+  <data name="Emulation.Enhanced"><value>Enhanced</value></data>
+  <data name="Emulation.Internal"><value>Internal</value></data>
+  <data name="Emulation.Loud"><value>Loud</value></data>
+  <data name="Emulation.ResolutionAutoLow"><value>Automatic low resolution</value></data>
+  <data name="Emulation.ResolutionAutoSuperHigh"><value>Automatic super-high resolution</value></data>
+  <data name="Emulation.ResolutionLow"><value>Low resolution</value></data>
+  <data name="Emulation.ResolutionHigh"><value>High resolution</value></data>
+  <data name="Emulation.ResolutionSuperHigh"><value>Super-high resolution</value></data>
+  <data name="Emulation.VideoLineMode"><value>Line mode</value></data>
+  <data name="Emulation.VideoHzChange"><value>Refresh-rate changes</value></data>
+  <data name="Emulation.VideoFrameskip"><value>Frame skip</value></data>
+  <data name="Emulation.VideoColors"><value>Color depth</value></data>
+  <data name="Emulation.VideoGamma"><value>Gamma</value></data>
+  <data name="Emulation.ImmediateBlits"><value>Blitter operation</value></data>
+  <data name="Emulation.CollisionLevel"><value>Collision detection</value></data>
+  <data name="Emulation.LineModeSingle"><value>Single scan</value></data>
+  <data name="Emulation.LineModeDouble"><value>Double scan</value></data>
+  <data name="Emulation.CollisionSprites"><value>Sprites</value></data>
+  <data name="Emulation.CollisionPlayfields"><value>Playfields</value></data>
+  <data name="Emulation.CollisionFull"><value>Full</value></data>
+  <data name="Emulation.InterpolationAnti"><value>Anti interpolation</value></data>
+  <data name="Emulation.FilterEmulated"><value>Emulated</value></data>
+  <data name="Emulation.AudioFilterType"><value>Filter type</value></data>
+  <data name="Emulation.FloppySound"><value>Floppy-drive sound volume</value></data>
+  <data name="Emulation.FloppySoundType"><value>Floppy-drive sound type</value></data>
+  <data name="Emulation.MuteEmptyFloppy"><value>Mute empty drives</value></data>
+  <data name="Emulation.CdAudioVolume"><value>CD audio volume</value></data>
+  <data name="Emulation.FloppySpeed"><value>Floppy-drive speed</value></data>
+  <data name="Emulation.FloppyWriteProtection"><value>Write-protect floppy images</value></data>
+  <data name="Emulation.FloppyWriteRedirect"><value>Redirect floppy writes</value></data>
+  <data name="Emulation.CdSpeed"><value>CD speed</value></data>
+  <data name="Emulation.KeyboardPassThrough"><value>Physical keyboard pass-through</value></data>
+  <data name="Emulation.PhysicalMouse"><value>Physical mouse</value></data>
+  <data name="Emulation.PhysicalMouseDouble"><value>Double movement</value></data>
+  <data name="Emulation.MouseSpeed"><value>Mouse speed</value></data>
+  <data name="Emulation.AnalogMouse"><value>Analog sticks controlling the mouse</value></data>
+  <data name="Emulation.AnalogMouseDeadzone"><value>Analog-stick dead zone</value></data>
+  <data name="Emulation.AnalogMouseSpeed"><value>Analog-stick mouse speed</value></data>
+  <data name="Emulation.LeftStick"><value>Left stick</value></data>
+  <data name="Emulation.RightStick"><value>Right stick</value></data>
+  <data name="Emulation.BothSticks"><value>Both sticks</value></data>
+  <data name="Emulation.TurboFire"><value>Turbo fire</value></data>
+  <data name="Emulation.TurboButton"><value>Turbo button</value></data>
+  <data name="Emulation.TurboPulse"><value>Turbo pulse</value></data>
+  <data name="Emulation.JoyPortOrder"><value>Controller port order</value></data>
+  <data name="Emulation.Emulator"><value>โปรแกรมจำลอง</value></data>
+  <data name="Emulation.StorageBaseFolder"><value>โฟลเดอร์จัดเก็บข้อมูลจำลองที่ใช้ร่วมกัน</value></data>
+  <data name="Emulation.StorageBaseFolderDescription"><value>ฮาร์ดดิสก์จะถูกจัดระเบียบโดยอัตโนมัติใน HDD\Amiga, HDD\Atari และโฟลเดอร์ของระบบในอนาคต</value></data>
+  <data name="Emulation.AddHardDisk"><value>เพิ่มฮาร์ดดิสก์ที่มีอยู่</value></data>
+  <data name="Emulation.HardDisks"><value>ฮาร์ดดิสก์</value></data>
+  <data name="Emulation.NoHardDisks"><value>ไม่มีฮาร์ดดิสก์เชื่อมโยงกับเครื่องนี้</value></data>
+  <data name="Emulation.KeyboardPriorityHint"><value>แป้นพิมพ์ลัดที่สงวนไว้</value></data>
+  <data name="Emulation.KeyboardPriorityDescription"><value>แป้นพิมพ์ลัดของ GW GUI และ Windows ยังคงทำงานและเครื่องจะไม่จับไว้</value></data>
+  <data name="Emulation.InputBehavior"><value>ลักษณะการทำงาน</value></data>
+  <data name="Emulation.AssignInput"><value>กำหนด...</value></data>
+  <data name="Emulation.InputActions"><value>การทำงาน</value></data>
+  <data name="Emulation.PressInput"><value>กดปุ่ม...</value></data>
+  <data name="Emulation.CreateStorageFolders"><value>สร้างโฟลเดอร์ย่อยที่ขาดโดยอัตโนมัติ</value></data>
+  <data name="Emulation.CommonFolders"><value>โฟลเดอร์ที่ใช้ร่วมกัน</value></data>
+  <data name="Emulation.SharedInputDescription"><value>การตรวจหาอุปกรณ์ใช้ร่วมกัน แต่การกำหนดจะบันทึกแยกในแต่ละการตั้งค่าเครื่อง</value></data>
+  <data name="Emulation.TestInputs"><value>ทดสอบอินพุต</value></data>
+  <data name="Emulation.SharedDevices"><value>อุปกรณ์อินพุตที่ใช้ร่วมกัน</value></data>
+  <data name="Emulation.CaptureFolder"><value>โฟลเดอร์ภาพจับ</value></data>
+  <data name="Emulation.StateFolder"><value>โฟลเดอร์สถานะที่บันทึก</value></data>
+  <data name="Emulation.DefaultFolders"><value>โฟลเดอร์เริ่มต้น</value></data>
+  <data name="Emulation.NoControllersDetected"><value>ไม่พบตัวควบคุม</value></data>
+  <data name="Emulation.TestInputsPrompt"><value>กดปุ่มแป้นพิมพ์หรือปุ่มเมาส์เพื่อทดสอบการตรวจหา</value></data>
+  <data name="Emulation.Floppies"><value>ฟลอปปีดิสก์</value></data>
+  <data name="Emulation.ExtendedRom"><value>ROM เพิ่มเติม</value></data>
+  <data name="Emulation.RomKey"><value>คีย์ ROM</value></data>
+  <data name="Emulation.Processor"><value>หน่วยประมวลผล</value></data>
+  <data name="Emulation.Precision"><value>ความแม่นยำ</value></data>
+  <data name="Emulation.Acceleration"><value>การเร่งความเร็ว</value></data>
+  <data name="Emulation.MainMemory"><value>หน่วยความจำหลัก</value></data>
+  <data name="Emulation.MemoryExtensions"><value>ส่วนขยายหน่วยความจำ</value></data>
+  <data name="Emulation.MemoryNone"><value>ไม่มี</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>การกำหนดค่าหน่วยความจำเข้ากันได้กับ {0}</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>ส่วนขยายหน่วยความจำเข้ากันได้กับ {0}</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>RAM Zorro III ไม่พร้อมใช้งานบน {0}</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>หน่วยความจำที่กำหนดค่าทั้งหมด: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>ROM ระบบ</value></data>
+  <data name="Emulation.DetectedRoms"><value>ROM ที่ตรวจพบ</value></data>
+  <data name="Emulation.UseFirmware"><value>ใช้</value></data>
+  <data name="Emulation.NotUsed"><value>ไม่ได้ใช้</value></data>
+  <data name="Emulation.OpenRomFolder"><value>เปิดโฟลเดอร์ ROM</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>เข้ากันได้บางส่วน</value></data>
+  <data name="Emulation.DisplaySettings"><value>การแสดงผล</value></data>
+  <data name="Emulation.RenderingSettings"><value>การเรนเดอร์</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>ความเข้ากันได้ของชิปเซ็ต</value></data>
+  <data name="Emulation.AudioDevice"><value>อุปกรณ์</value></data>
+  <data name="Emulation.Latency"><value>ความหน่วง</value></data>
+  <data name="Emulation.AudioQuality"><value>คุณภาพ</value></data>
+  <data name="Emulation.AudioDrives"><value>ไดรฟ์</value></data>
+  <data name="Emulation.Type"><value>ชนิด</value></data>
+  <data name="Emulation.AddStorageDevice"><value>เพิ่มอุปกรณ์จัดเก็บข้อมูล</value></data>
+  <data name="Emulation.AmigaDdFloppy"><value>Amiga 3.5 นิ้ว DD · 880 KiB</value></data>
+  <data name="Emulation.AmigaHdFloppy"><value>Amiga 3.5 นิ้ว HD · 1.76 MiB</value></data>
+  <data name="Emulation.AssociatedMedia"><value>สื่อที่เชื่อมโยง</value></data>
+  <data name="Emulation.AutomaticDiskGeometry"><value>โปรแกรมจำลองจะกำหนดรูปทรงดิสก์โดยอัตโนมัติ</value></data>
+  <data name="Emulation.BlankFloppyCreated"><value>สร้างอิมเมจฟลอปปีดิสก์เปล่าแล้ว: {0}</value></data>
+  <data name="Emulation.BlankHardDiskHint"><value>ไฟล์จะถูกสร้างเป็นไฟล์เปล่า จากนั้นต้องแบ่งพาร์ติชันและฟอร์แมตในเครื่องจำลอง</value></data>
+  <data name="Emulation.CdWriter"><value>เครื่องเขียนซีดี</value></data>
+  <data name="Emulation.CdWriterHint"><value>สร้างดิสก์เปล่าได้เฉพาะเมื่อเครื่องและโปรแกรมจำลองที่เลือกสนับสนุนการเขียน</value></data>
+  <data name="Emulation.CompactDiscDevice"><value>ไดรฟ์ CD-ROM</value></data>
+  <data name="Emulation.ConfigureDevice"><value>กำหนดค่า</value></data>
+  <data name="Emulation.CreateBlankFloppy"><value>สร้างฟลอปปีดิสก์เปล่า</value></data>
+  <data name="Emulation.DiskImage"><value>อิมเมจดิสก์</value></data>
+  <data name="Emulation.DiskImageRequired"><value>เลือกอิมเมจดิสก์ที่มีอยู่</value></data>
+  <data name="Emulation.ExistingDiskHint"><value>ไฟล์ที่เลือกจะเชื่อมต่อกับไดรฟ์เสมือนนี้</value></data>
+  <data name="Emulation.FloppyDevice"><value>ไดรฟ์ฟลอปปีดิสก์</value></data>
+  <data name="Emulation.FloppyImageFilter"><value>อิมเมจฟลอปปีดิสก์ Amiga|*.adf|ไฟล์ทั้งหมด|*.*</value></data>
+  <data name="Emulation.HardDiskDevice"><value>ฮาร์ดดิสก์</value></data>
+  <data name="Emulation.Interface"><value>อินเทอร์เฟซ</value></data>
+  <data name="Emulation.PreallocateFile"><value>จัดสรรไฟล์ล่วงหน้า</value></data>
+  <data name="Emulation.RemovableMediaRuntimeHint"><value>ใส่หรือเปลี่ยนฟลอปปีดิสก์และซีดีจากเครื่องที่กำลังทำงาน</value></data>
+  <data name="Emulation.RemoveMedia"><value>นำสื่อออก</value></data>
+  <data name="Emulation.ReplaceExistingDisk"><value>อิมเมจดิสก์มีอยู่แล้ว: {0}\nต้องการแทนที่หรือไม่</value></data>
+  <data name="Emulation.StorageDeviceCapabilitiesHint"><value>ชนิด รุ่น และตัวระบุที่ใช้ได้ขึ้นอยู่กับเครื่องที่เลือก</value></data>
+  <data name="Emulation.TapeDevice"><value>ไดรฟ์เทป</value></data>
+  <data name="Emulation.UseDisk"><value>ใช้ดิสก์</value></data>
+  <data name="Emulation.UseExistingDisk"><value>ใช้ดิสก์ที่มีอยู่</value></data>
+  <data name="Emulation.ModifyInGeneral"><value>แก้ไขใน ทั่วไป</value></data>
+  <data name="Emulation.NoStorageDeviceAvailable"><value>ไม่มีอุปกรณ์จัดเก็บข้อมูลเพิ่มเติมสำหรับเครื่องนี้</value></data>
+  <data name="Emulation.StorageDevices"><value>อุปกรณ์จัดเก็บข้อมูล</value></data>
+  <data name="Emulation.RestoreDefaultBindings"><value>คืนค่าเริ่มต้น</value></data>
+  <data name="Emulation.ClearConflicts"><value>ล้างข้อขัดแย้ง</value></data>
+  <data name="Emulation.EmulatedKey"><value>ปุ่มของเครื่อง</value></data>
+  <data name="Emulation.Binding"><value>การกำหนด</value></data>
+  <data name="Emulation.BindingState"><value>สถานะ</value></data>
+  <data name="Emulation.SearchBinding"><value>ค้นหาปุ่มหรือการกำหนด</value></data>
+  <data name="Emulation.BindingLegend"><value>ถูกต้อง: การกำหนดไม่ซ้ำ · ขัดแย้ง: ใช้การกำหนดหลายครั้ง · สงวนไว้: ปุ่มลัด Windows หรือ GW GUI</value></data>
+  <data name="Emulation.BindingValid"><value>ถูกต้อง</value></data>
+  <data name="Emulation.BindingConflict"><value>ขัดแย้ง</value></data>
+  <data name="Emulation.BindingReserved"><value>สงวนไว้</value></data>
+  <data name="Emulation.BindingUnassigned"><value>ยังไม่กำหนด</value></data>
+  <data name="Emulation.GlobalShortcuts"><value>ปุ่มลัดการจำลอง</value></data>
+  <data name="Emulation.ShortcutsTab"><value>ปุ่มลัด</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>ปล่อยเมาส์</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>หยุดชั่วคราว / ทำต่อ</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>เต็มหน้าจอ / หน้าต่าง</value></data>
+  <data name="Emulation.Shortcut.Power"><value>เปิด / ปิด</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>รีเซ็ตแบบนุ่ม</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>รีเซ็ตแบบเต็ม</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>บันทึกสถานะด่วน</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>โหลดสถานะด่วน</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>ภาพหน้าจอ</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>ปิดเสียงเครื่องที่ใช้งาน</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>เดินหน้าเร็วขณะกดค้าง</value></data>
+  <data name="Emulation.Key.Help"><value>วิธีใช้</value></data>
+  <data name="Emulation.Key.LeftAmiga"><value>Amiga ซ้าย</value></data>
+  <data name="Emulation.Key.RightAmiga"><value>Amiga ขวา</value></data>
+  <data name="Emulation.SpecialKeysOnlyHint"><value>ตัวอักษร ตัวเลข และปุ่มปรับแต่งทั่วไปจะถูกส่งโดยตรง ที่นี่ต้องกำหนดเฉพาะปุ่มฟังก์ชันและปุ่มพิเศษของ Amiga</value></data>
+  <data name="Emulation.ShortcutUnavailable"><value>การทำงานนี้ยังไม่รองรับโดยโปรแกรมจำลองปัจจุบัน</value></data>
+  <data name="Emulation.Allocation"><value>การจัดสรร</value></data>
+  <data name="Emulation.AutomaticGeometry"><value>เรขาคณิตอัตโนมัติ</value></data>
+  <data name="Emulation.BlankMedia"><value>สื่อเปล่า</value></data>
+  <data name="Emulation.BytesPerSector"><value>ไบต์ต่อเซกเตอร์</value></data>
+  <data name="Emulation.CalculatedCapacity"><value>ความจุที่คำนวณได้: {0}</value></data>
+  <data name="Emulation.ControllerMappings"><value>การกำหนดปุ่มคอนโทรลเลอร์</value></data>
+  <data name="Emulation.ControllerPort"><value>พอร์ต {0}</value></data>
+  <data name="Emulation.ControllerType"><value>ชนิดคอนโทรลเลอร์</value></data>
+  <data name="Emulation.CustomSize"><value>ขนาดกำหนดเอง</value></data>
+  <data name="Emulation.Cylinders"><value>กระบอกสูบ</value></data>
+  <data name="Emulation.DestinationFolder"><value>โฟลเดอร์ปลายทาง</value></data>
+  <data name="Emulation.DetectedControllers"><value>คอนโทรลเลอร์ที่ตรวจพบ</value></data>
+  <data name="Emulation.Device"><value>อุปกรณ์</value></data>
+  <data name="Emulation.DiskGeometry"><value>เรขาคณิตดิสก์ (CHS)</value></data>
+  <data name="Emulation.DiskSizeProfile"><value>โปรไฟล์ขนาด</value></data>
+  <data name="Emulation.FloppyDrive"><value>ไดรฟ์ฟลอปปีดิสก์</value></data>
+  <data name="Emulation.Heads"><value>หัวอ่าน</value></data>
+  <data name="Emulation.InputCaptureHint"><value>กด กำหนด แล้วใช้ปุ่มคีย์บอร์ด ปุ่มเมาส์ หรือปุ่มคอนโทรลเลอร์</value></data>
+  <data name="Emulation.InvalidDiskSize"><value>ขนาดหรือเรขาคณิตของดิสก์ไม่ถูกต้อง</value></data>
+  <data name="Emulation.MouseActions"><value>การทำงานของเมาส์</value></data>
+  <data name="Emulation.MouseButton4"><value>ปุ่มเมาส์ 4</value></data>
+  <data name="Emulation.MouseButton5"><value>ปุ่มเมาส์ 5</value></data>
+  <data name="Emulation.MouseCaptureTitle"><value>การจับเมาส์</value></data>
+  <data name="Emulation.PreallocationHint"><value>จองพื้นที่จริงทันที มิฉะนั้นอิมเมจจะขยายเมื่อเขียนข้อมูล</value></data>
+  <data name="Emulation.SearchInputBinding"><value>ค้นหาการทำงานหรืออินพุต</value></data>
+  <data name="Emulation.Sectors"><value>เซกเตอร์</value></data>
+  <data name="Emulation.UnitMiB"><value>MiB</value></data>
+  <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>ขึ้น</value></data>
+  <data name="Emulation.DirectionDown"><value>ลง</value></data>
+  <data name="Emulation.DirectionLeft"><value>ซ้าย</value></data>
+  <data name="Emulation.DirectionRight"><value>ขวา</value></data>
+  <data name="Emulation.FireButton1"><value>ปุ่มยิง 1</value></data>
+  <data name="Emulation.FireButton2"><value>ปุ่มยิง 2</value></data>
+  <data name="Emulation.Cd32Red"><value>ปุ่มสีแดง CD32</value></data>
+  <data name="Emulation.Cd32Blue"><value>ปุ่มสีน้ำเงิน CD32</value></data>
+  <data name="Emulation.Cd32Green"><value>ปุ่มสีเขียว CD32</value></data>
+  <data name="Emulation.Cd32Yellow"><value>ปุ่มสีเหลือง CD32</value></data>
+  <data name="Emulation.Cd32Rewind"><value>CD32 กรอกลับ</value></data>
+  <data name="Emulation.Cd32FastForward"><value>CD32 กรอไปข้างหน้า</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>CD32 เล่น / หยุดชั่วคราว</value></data>
+  <data name="Emulation.AmigaJoystick"><value>จอยสติ๊ก Amiga</value></data>
+  <data name="Emulation.AnalogJoystick"><value>จอยสติ๊กแอนะล็อก</value></data>
+  <data name="Emulation.Cd32Controller"><value>ตัวควบคุม CD32</value></data>
+  <data name="Emulation.MouseWheelUp"><value>ล้อเมาส์ขึ้น</value></data>
+  <data name="Emulation.MouseWheelDown"><value>ล้อเมาส์ลง</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>ล้อเมาส์ไปทางซ้าย</value></data>
+  <data name="Emulation.MouseWheelRight"><value>ล้อเมาส์ไปทางขวา</value></data>
+</root>

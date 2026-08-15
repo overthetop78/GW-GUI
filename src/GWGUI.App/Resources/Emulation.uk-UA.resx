@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>Машини</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>Ядро</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>Ядро емуляції {0}</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>Бібліотека залишається поза GW GUI. Вибрана версія замінює встановлену зараз.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>Версія, потрібна GW GUI</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>Остання доступна офіційна версія</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>Встановлена зараз версія</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>Натисніть «Пошук», щоб звернутися до офіційного сервера Libretro.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>Знайти версії</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>Завантажити й замінити</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>Пошук доступних версій…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>Офіційну версію не знайдено.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>Доступно версій: {0}.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>Завантаження {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>Встановлена версія: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · встановлено</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>Версію не встановлено</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>Відкрити</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>Ласкаво просимо</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>Виберіть вище збережену машину й натисніть «Відкрити». Кожна запущена машина зʼявиться на окремій вкладці.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>Тут можна створювати, вибирати, змінювати та видаляти збережені конфігурації. Для редагування вибраної конфігурації відкрийте вкладку {0}.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>Загальні</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>Відео</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>Сховище</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>Клавіатура</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>Миша</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>Контролери</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>Додатково</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>Ідентифікатор пристрою</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>Пристрій контролера {0}</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>Клавіша {0}</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>Клавіша хоста</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>Процесор: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} КіБ\nSlow RAM: {1} КіБ\nFast RAM: {2} МіБ</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>Відеочипсет: {0}</value>
+  </data>
+  <data name="Emulation.CpuModel"><value>Модель ЦП</value></data>
+  <data name="Emulation.CpuMultiplier"><value>Множник ЦП</value></data>
+  <data name="Emulation.CpuCompatibility"><value>Поциклово сумісний ЦП</value></data>
+  <data name="Emulation.ChipMemory"><value>Chip RAM</value></data>
+  <data name="Emulation.SlowMemory"><value>Slow RAM</value></data>
+  <data name="Emulation.FastMemory"><value>Fast RAM</value></data>
+  <data name="Emulation.Z3Memory"><value>ОЗП Zorro III</value></data>
+  <data name="Emulation.VideoStandard"><value>Відеостандарт</value></data>
+  <data name="Emulation.VideoResolution"><value>Роздільна здатність</value></data>
+  <data name="Emulation.AspectRatio"><value>Співвідношення сторін</value></data>
+  <data name="Emulation.VideoCrop"><value>Обрізати межі</value></data>
+  <data name="Emulation.FlickerFixer"><value>Усунення мерехтіння</value></data>
+  <data name="Emulation.AudioEnabled"><value>Увімкнути звук</value></data>
+  <data name="Emulation.AudioOutput"><value>Аудіовихід</value></data>
+  <data name="Emulation.AudioLatency"><value>Затримка (мс)</value></data>
+  <data name="Emulation.AudioInterpolation"><value>Інтерполяція</value></data>
+  <data name="Emulation.AudioFilter"><value>Аудіофільтр Amiga</value></data>
+  <data name="Emulation.StereoSeparation"><value>Розділення стереоканалів (%)</value></data>
+  <data name="Emulation.AudioInput"><value>Аудіовхід</value></data>
+  <data name="Emulation.AudioInputUnavailable"><value>Це ядро Amiga не надає аудіовхід.</value></data>
+  <data name="Emulation.DefaultAudioOutput"><value>Типовий вихід Windows</value></data>
+  <data name="Emulation.AddMedia"><value>Додати носій</value></data>
+  <data name="Emulation.CreateHardDisk"><value>Створити жорсткий диск</value></data>
+  <data name="Emulation.HardDiskSize"><value>Розмір жорсткого диска (MiB)</value></data>
+  <data name="Emulation.NoMedia"><value>Немає носіїв. Додайте дискету, жорсткий диск або CD, підтримувані вибраною моделлю.</value></data>
+  <data name="Emulation.ReadOnly"><value>Лише читання</value></data>
+  <data name="Emulation.AmigaMediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value></data>
+  <data name="Emulation.HardDiskFilter"><value>Amiga hard disk|*.hdf|All files|*.*</value></data>
+  <data name="Emulation.HardDiskNotSupported"><value>Вибрана модель не підтримує жорсткий диск.</value></data>
+  <data name="Emulation.TooManyFloppyDrives"><value>Ця модель підтримує не більше {0} дисководів.</value></data>
+  <data name="Emulation.TooManyHardDrives"><value>Ця модель підтримує не більше {0} жорстких дисків.</value></data>
+  <data name="Emulation.CdNotSupported"><value>Вибрана модель не підтримує CD-привід.</value></data>
+  <data name="Emulation.DuplicateKeyboardMapping"><value>Дві клавіші Amiga використовують одну клавішу ПК. Виправте червоні призначення перед збереженням.</value></data>
+  <data name="Emulation.ReleaseMouseKey"><value>Клавіша звільнення миші</value></data>
+  <data name="Emulation.MouseLeftButton"><value>Ліва кнопка миші</value></data>
+  <data name="Emulation.MouseRightButton"><value>Права кнопка миші</value></data>
+  <data name="Emulation.MouseMiddleButton"><value>Середня кнопка миші</value></data>
+  <data name="Emulation.DetectControllers"><value>Виявити контролери</value></data>
+  <data name="Emulation.EmulatedAction"><value>Дія Amiga</value></data>
+  <data name="Emulation.PhysicalControl"><value>Введення з клавіатури, миші або контролера</value></data>
+  <data name="Emulation.Chipset"><value>Набір мікросхем</value></data>
+  <data name="Emulation.CdDrive"><value>Привід CD</value></data>
+  <data name="Emulation.FloppyDriveCount"><value>Кількість дисководів</value></data>
+  <data name="Emulation.HardDriveCount"><value>Кількість жорстких дисків</value></data>
+  <data name="Emulation.FpuModel"><value>FPU</value></data>
+  <data name="Emulation.CpuSpeed"><value>Швидкість ЦП</value></data>
+  <data name="Emulation.CpuSpeedOriginal"><value>Початкова швидкість</value></data>
+  <data name="Emulation.CompatibilityNormal"><value>Звичайна</value></data>
+  <data name="Emulation.CompatibilityCompatible"><value>Сумісна</value></data>
+  <data name="Emulation.CompatibilityMemory"><value>Сумісна з пам’яттю</value></data>
+  <data name="Emulation.CompatibilityExact"><value>Точна за циклами</value></data>
+  <data name="Emulation.IntegratedFpu"><value>Вбудований FPU</value></data>
+  <data name="Emulation.Enabled"><value>Увімкнено</value></data>
+  <data name="Emulation.Disabled"><value>Вимкнено</value></data>
+  <data name="Emulation.Minimum"><value>Мінімум</value></data>
+  <data name="Emulation.VerySmall"><value>Дуже малий</value></data>
+  <data name="Emulation.Small"><value>Малий</value></data>
+  <data name="Emulation.Medium"><value>Середній</value></data>
+  <data name="Emulation.Large"><value>Великий</value></data>
+  <data name="Emulation.VeryLarge"><value>Дуже великий</value></data>
+  <data name="Emulation.Maximum"><value>Максимум</value></data>
+  <data name="Emulation.Locked"><value>Заблоковано</value></data>
+  <data name="Emulation.Immediate"><value>Негайно</value></data>
+  <data name="Emulation.Waiting"><value>З очікуванням</value></data>
+  <data name="Emulation.Standard"><value>Стандартний</value></data>
+  <data name="Emulation.Enhanced"><value>Покращений</value></data>
+  <data name="Emulation.Internal"><value>Внутрішній</value></data>
+  <data name="Emulation.Loud"><value>Гучний</value></data>
+  <data name="Emulation.ResolutionAutoLow"><value>Автоматична низька роздільність</value></data>
+  <data name="Emulation.ResolutionAutoSuperHigh"><value>Автоматична надвисока роздільність</value></data>
+  <data name="Emulation.ResolutionLow"><value>Низька роздільність</value></data>
+  <data name="Emulation.ResolutionHigh"><value>Висока роздільність</value></data>
+  <data name="Emulation.ResolutionSuperHigh"><value>Надвисока роздільність</value></data>
+  <data name="Emulation.VideoLineMode"><value>Режим рядків</value></data>
+  <data name="Emulation.VideoHzChange"><value>Зміна частоти оновлення</value></data>
+  <data name="Emulation.VideoFrameskip"><value>Пропуск кадрів</value></data>
+  <data name="Emulation.VideoColors"><value>Глибина кольору</value></data>
+  <data name="Emulation.VideoGamma"><value>Гама</value></data>
+  <data name="Emulation.ImmediateBlits"><value>Робота блітера</value></data>
+  <data name="Emulation.CollisionLevel"><value>Виявлення зіткнень</value></data>
+  <data name="Emulation.LineModeSingle"><value>Одинарне сканування</value></data>
+  <data name="Emulation.LineModeDouble"><value>Подвійне сканування</value></data>
+  <data name="Emulation.CollisionSprites"><value>Спрайти</value></data>
+  <data name="Emulation.CollisionPlayfields"><value>Ігрові поля</value></data>
+  <data name="Emulation.CollisionFull"><value>Повне</value></data>
+  <data name="Emulation.InterpolationAnti"><value>Антиінтерполяція</value></data>
+  <data name="Emulation.FilterEmulated"><value>Емульований</value></data>
+  <data name="Emulation.AudioFilterType"><value>Тип фільтра</value></data>
+  <data name="Emulation.FloppySound"><value>Гучність звуку дисковода</value></data>
+  <data name="Emulation.FloppySoundType"><value>Тип звуку дисковода</value></data>
+  <data name="Emulation.MuteEmptyFloppy"><value>Вимкнути звук порожніх дисководів</value></data>
+  <data name="Emulation.CdAudioVolume"><value>Гучність CD-аудіо</value></data>
+  <data name="Emulation.FloppySpeed"><value>Швидкість дисковода</value></data>
+  <data name="Emulation.FloppyWriteProtection"><value>Захист образів дискет від запису</value></data>
+  <data name="Emulation.FloppyWriteRedirect"><value>Переспрямувати запис на дискету</value></data>
+  <data name="Emulation.CdSpeed"><value>Швидкість CD</value></data>
+  <data name="Emulation.KeyboardPassThrough"><value>Наскрізне передавання фізичної клавіатури</value></data>
+  <data name="Emulation.PhysicalMouse"><value>Фізична миша</value></data>
+  <data name="Emulation.PhysicalMouseDouble"><value>Подвійний рух</value></data>
+  <data name="Emulation.MouseSpeed"><value>Швидкість миші</value></data>
+  <data name="Emulation.AnalogMouse"><value>Аналогові стіки для керування мишею</value></data>
+  <data name="Emulation.AnalogMouseDeadzone"><value>Мертва зона аналогових стіків</value></data>
+  <data name="Emulation.AnalogMouseSpeed"><value>Швидкість миші від аналогового стіка</value></data>
+  <data name="Emulation.LeftStick"><value>Лівий стік</value></data>
+  <data name="Emulation.RightStick"><value>Правий стік</value></data>
+  <data name="Emulation.BothSticks"><value>Обидва стіки</value></data>
+  <data name="Emulation.TurboFire"><value>Турбовогонь</value></data>
+  <data name="Emulation.TurboButton"><value>Кнопка турбо</value></data>
+  <data name="Emulation.TurboPulse"><value>Імпульс турбо</value></data>
+  <data name="Emulation.JoyPortOrder"><value>Порядок портів контролерів</value></data>
+  <data name="Emulation.Emulator"><value>Емулятор</value></data>
+  <data name="Emulation.StorageBaseFolder"><value>Спільна папка зберігання емуляторів</value></data>
+  <data name="Emulation.StorageBaseFolderDescription"><value>Жорсткі диски автоматично впорядковуються в HDD\Amiga, HDD\Atari та папках майбутніх систем.</value></data>
+  <data name="Emulation.AddHardDisk"><value>Додати наявний жорсткий диск</value></data>
+  <data name="Emulation.HardDisks"><value>Жорсткі диски</value></data>
+  <data name="Emulation.NoHardDisks"><value>До цієї машини не підключено жорсткий диск.</value></data>
+  <data name="Emulation.KeyboardPriorityHint"><value>Зарезервовані сполучення клавіш</value></data>
+  <data name="Emulation.KeyboardPriorityDescription"><value>Сполучення клавіш GW GUI і Windows залишаються активними та не перехоплюються машиною.</value></data>
+  <data name="Emulation.InputBehavior"><value>Поведінка</value></data>
+  <data name="Emulation.AssignInput"><value>Призначити...</value></data>
+  <data name="Emulation.InputActions"><value>Дії</value></data>
+  <data name="Emulation.PressInput"><value>Натисніть клавішу...</value></data>
+  <data name="Emulation.CreateStorageFolders"><value>Автоматично створювати відсутні підпапки</value></data>
+  <data name="Emulation.CommonFolders"><value>Спільні папки</value></data>
+  <data name="Emulation.SharedInputDescription"><value>Виявлення пристроїв спільне, а призначення зберігаються окремо в кожній конфігурації машини.</value></data>
+  <data name="Emulation.TestInputs"><value>Перевірити введення</value></data>
+  <data name="Emulation.SharedDevices"><value>Спільні пристрої введення</value></data>
+  <data name="Emulation.CaptureFolder"><value>Папка знімків</value></data>
+  <data name="Emulation.StateFolder"><value>Папка збережених станів</value></data>
+  <data name="Emulation.DefaultFolders"><value>Типові папки</value></data>
+  <data name="Emulation.NoControllersDetected"><value>Контролер не виявлено</value></data>
+  <data name="Emulation.TestInputsPrompt"><value>Натисніть клавішу або кнопку миші, щоб перевірити виявлення.</value></data>
+  <data name="Emulation.Floppies"><value>Дискети</value></data>
+  <data name="Emulation.ExtendedRom"><value>Розширена ROM</value></data>
+  <data name="Emulation.RomKey"><value>Ключ ROM</value></data>
+  <data name="Emulation.Processor"><value>Процесор</value></data>
+  <data name="Emulation.Precision"><value>Точність</value></data>
+  <data name="Emulation.Acceleration"><value>Прискорення</value></data>
+  <data name="Emulation.MainMemory"><value>Основна пам’ять</value></data>
+  <data name="Emulation.MemoryExtensions"><value>Розширення пам’яті</value></data>
+  <data name="Emulation.MemoryNone"><value>Немає</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>Конфігурація пам’яті сумісна з {0}.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Розширення пам’яті сумісні з {0}.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>ОЗП Zorro III недоступна на {0}.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>Усього налаштовано пам’яті: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>Системна ПЗП</value></data>
+  <data name="Emulation.DetectedRoms"><value>Виявлені ПЗП</value></data>
+  <data name="Emulation.UseFirmware"><value>Використати</value></data>
+  <data name="Emulation.NotUsed"><value>Не використовується</value></data>
+  <data name="Emulation.OpenRomFolder"><value>Відкрити папку ПЗП</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>Частково сумісна</value></data>
+  <data name="Emulation.DisplaySettings"><value>Відображення</value></data>
+  <data name="Emulation.RenderingSettings"><value>Рендеринг</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>Сумісність чипсета</value></data>
+  <data name="Emulation.AudioDevice"><value>Пристрій</value></data>
+  <data name="Emulation.Latency"><value>Затримка</value></data>
+  <data name="Emulation.AudioQuality"><value>Якість</value></data>
+  <data name="Emulation.AudioDrives"><value>Приводи</value></data>
+  <data name="Emulation.Type"><value>Тип</value></data>
+  <data name="Emulation.AddStorageDevice"><value>Додати пристрій зберігання</value></data>
+  <data name="Emulation.AmigaDdFloppy"><value>Amiga 3,5 дюйма DD · 880 КіБ</value></data>
+  <data name="Emulation.AmigaHdFloppy"><value>Amiga 3,5 дюйма HD · 1,76 МіБ</value></data>
+  <data name="Emulation.AssociatedMedia"><value>Пов’язаний носій</value></data>
+  <data name="Emulation.AutomaticDiskGeometry"><value>Геометрія диска визначається емулятором автоматично.</value></data>
+  <data name="Emulation.BlankFloppyCreated"><value>Створено порожній образ дискети: {0}</value></data>
+  <data name="Emulation.BlankHardDiskHint"><value>Файл буде створено порожнім, після чого його потрібно розділити на розділи та відформатувати в емульованій машині.</value></data>
+  <data name="Emulation.CdWriter"><value>Записувач CD</value></data>
+  <data name="Emulation.CdWriterHint"><value>Порожній диск можна створити лише тоді, коли вибрана машина й емулятор підтримують запис.</value></data>
+  <data name="Emulation.CompactDiscDevice"><value>Привід CD-ROM</value></data>
+  <data name="Emulation.ConfigureDevice"><value>Налаштувати</value></data>
+  <data name="Emulation.CreateBlankFloppy"><value>Створити порожню дискету</value></data>
+  <data name="Emulation.DiskImage"><value>Образ диска</value></data>
+  <data name="Emulation.DiskImageRequired"><value>Виберіть наявний образ диска.</value></data>
+  <data name="Emulation.ExistingDiskHint"><value>Вибраний файл буде підключено до цього віртуального приводу.</value></data>
+  <data name="Emulation.FloppyDevice"><value>Дисковод</value></data>
+  <data name="Emulation.FloppyImageFilter"><value>Образ дискети Amiga|*.adf|Усі файли|*.*</value></data>
+  <data name="Emulation.HardDiskDevice"><value>Жорсткий диск</value></data>
+  <data name="Emulation.Interface"><value>Інтерфейс</value></data>
+  <data name="Emulation.PreallocateFile"><value>Попередньо виділити файл</value></data>
+  <data name="Emulation.RemovableMediaRuntimeHint"><value>Дискети та CD вставляються або замінюються із запущеної машини.</value></data>
+  <data name="Emulation.RemoveMedia"><value>Вилучити носій</value></data>
+  <data name="Emulation.ReplaceExistingDisk"><value>Образ диска вже існує: {0}\nЗамінити його?</value></data>
+  <data name="Emulation.StorageDeviceCapabilitiesHint"><value>Доступні типи, моделі та ідентифікатори залежать від вибраної машини.</value></data>
+  <data name="Emulation.TapeDevice"><value>Стрічковий накопичувач</value></data>
+  <data name="Emulation.UseDisk"><value>Використати диск</value></data>
+  <data name="Emulation.UseExistingDisk"><value>Використати наявний диск</value></data>
+  <data name="Emulation.ModifyInGeneral"><value>Змінити в розділі «Загальні»</value></data>
+  <data name="Emulation.NoStorageDeviceAvailable"><value>Для цієї машини немає додаткового пристрою зберігання.</value></data>
+  <data name="Emulation.StorageDevices"><value>Пристрої зберігання</value></data>
+  <data name="Emulation.RestoreDefaultBindings"><value>Відновити типові значення</value></data>
+  <data name="Emulation.ClearConflicts"><value>Очистити конфлікти</value></data>
+  <data name="Emulation.EmulatedKey"><value>Клавіша машини</value></data>
+  <data name="Emulation.Binding"><value>Призначення</value></data>
+  <data name="Emulation.BindingState"><value>Стан</value></data>
+  <data name="Emulation.SearchBinding"><value>Пошук клавіші або призначення</value></data>
+  <data name="Emulation.BindingLegend"><value>Дійсне: унікальне призначення · Конфлікт: призначення використано кілька разів · Зарезервоване: скорочення Windows або GW GUI</value></data>
+  <data name="Emulation.BindingValid"><value>Дійсне</value></data>
+  <data name="Emulation.BindingConflict"><value>Конфлікт</value></data>
+  <data name="Emulation.BindingReserved"><value>Зарезервоване</value></data>
+  <data name="Emulation.BindingUnassigned"><value>Не призначено</value></data>
+  <data name="Emulation.GlobalShortcuts"><value>Скорочення емуляції</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Скорочення</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Звільнити мишу</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Пауза / продовжити</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Повний екран / вікно</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Увімкнути / вимкнути</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>М’яке перезавантаження</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Жорстке перезавантаження</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Швидке збереження стану</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Швидке завантаження стану</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Знімок екрана</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Вимкнути звук активної машини</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Швидке перемотування під час утримання</value></data>
+  <data name="Emulation.Key.Help"><value>Довідка</value></data>
+  <data name="Emulation.Key.LeftAmiga"><value>Ліва Amiga</value></data>
+  <data name="Emulation.Key.RightAmiga"><value>Права Amiga</value></data>
+  <data name="Emulation.SpecialKeysOnlyHint"><value>Літери, цифри та звичайні клавіші-модифікатори передаються безпосередньо. Тут потрібно призначати лише функціональні та спеціальні клавіші Amiga.</value></data>
+  <data name="Emulation.ShortcutUnavailable"><value>Ця дія ще не підтримується поточним емулятором.</value></data>
+  <data name="Emulation.Allocation"><value>Розподіл</value></data>
+  <data name="Emulation.AutomaticGeometry"><value>Автоматична геометрія</value></data>
+  <data name="Emulation.BlankMedia"><value>Порожній носій</value></data>
+  <data name="Emulation.BytesPerSector"><value>Байтів на сектор</value></data>
+  <data name="Emulation.CalculatedCapacity"><value>Обчислена місткість: {0}</value></data>
+  <data name="Emulation.ControllerMappings"><value>Призначення контролера</value></data>
+  <data name="Emulation.ControllerPort"><value>Порт {0}</value></data>
+  <data name="Emulation.ControllerType"><value>Тип контролера</value></data>
+  <data name="Emulation.CustomSize"><value>Власний розмір</value></data>
+  <data name="Emulation.Cylinders"><value>Циліндри</value></data>
+  <data name="Emulation.DestinationFolder"><value>Цільова папка</value></data>
+  <data name="Emulation.DetectedControllers"><value>Виявлені контролери</value></data>
+  <data name="Emulation.Device"><value>Пристрій</value></data>
+  <data name="Emulation.DiskGeometry"><value>Геометрія диска (CHS)</value></data>
+  <data name="Emulation.DiskSizeProfile"><value>Профіль розміру</value></data>
+  <data name="Emulation.FloppyDrive"><value>Дисковод</value></data>
+  <data name="Emulation.Heads"><value>Головки</value></data>
+  <data name="Emulation.InputCaptureHint"><value>Натисніть «Призначити», а потім клавішу, кнопку миші або контролера.</value></data>
+  <data name="Emulation.InvalidDiskSize"><value>Розмір або геометрія диска неправильні.</value></data>
+  <data name="Emulation.MouseActions"><value>Дії миші</value></data>
+  <data name="Emulation.MouseButton4"><value>Кнопка миші 4</value></data>
+  <data name="Emulation.MouseButton5"><value>Кнопка миші 5</value></data>
+  <data name="Emulation.MouseCaptureTitle"><value>Захоплення миші</value></data>
+  <data name="Emulation.PreallocationHint"><value>Одразу резервує фізичне місце; інакше образ зростає під час запису.</value></data>
+  <data name="Emulation.SearchInputBinding"><value>Пошук дії або вводу</value></data>
+  <data name="Emulation.Sectors"><value>Сектори</value></data>
+  <data name="Emulation.UnitMiB"><value>МіБ</value></data>
+  <data name="Emulation.UnitGiB"><value>ГіБ</value></data>
+  <data name="Emulation.DirectionUp"><value>Вгору</value></data>
+  <data name="Emulation.DirectionDown"><value>Вниз</value></data>
+  <data name="Emulation.DirectionLeft"><value>Ліворуч</value></data>
+  <data name="Emulation.DirectionRight"><value>Праворуч</value></data>
+  <data name="Emulation.FireButton1"><value>Кнопка вогню 1</value></data>
+  <data name="Emulation.FireButton2"><value>Кнопка вогню 2</value></data>
+  <data name="Emulation.Cd32Red"><value>Червона кнопка CD32</value></data>
+  <data name="Emulation.Cd32Blue"><value>Синя кнопка CD32</value></data>
+  <data name="Emulation.Cd32Green"><value>Зелена кнопка CD32</value></data>
+  <data name="Emulation.Cd32Yellow"><value>Жовта кнопка CD32</value></data>
+  <data name="Emulation.Cd32Rewind"><value>CD32 перемотування назад</value></data>
+  <data name="Emulation.Cd32FastForward"><value>CD32 перемотування вперед</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>CD32 відтворення / пауза</value></data>
+  <data name="Emulation.AmigaJoystick"><value>Джойстик Amiga</value></data>
+  <data name="Emulation.AnalogJoystick"><value>Аналоговий джойстик</value></data>
+  <data name="Emulation.Cd32Controller"><value>Контролер CD32</value></data>
+  <data name="Emulation.MouseWheelUp"><value>Коліщатко миші вгору</value></data>
+  <data name="Emulation.MouseWheelDown"><value>Коліщатко миші вниз</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>Коліщатко миші ліворуч</value></data>
+  <data name="Emulation.MouseWheelRight"><value>Коліщатко миші праворуч</value></data>
+</root>

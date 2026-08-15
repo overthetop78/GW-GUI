@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>Mașini</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>Nucleu</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>Nucleu de emulare {0}</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>Biblioteca rămâne în afara GW GUI. Versiunea selectată înlocuiește versiunea instalată în prezent.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>Versiune necesară pentru GW GUI</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>Cea mai recentă versiune oficială disponibilă</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>Versiune instalată în prezent</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>Faceți clic pe Căutare pentru a interoga serverul oficial Libretro.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>Căutare versiuni</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>Descărcare și înlocuire</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>Se caută versiunile disponibile…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>Nu a fost găsită nicio versiune oficială.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>{0} versiuni disponibile.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>Se descarcă {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>Versiune instalată: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · instalată</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>Nicio versiune instalată</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>Deschidere</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>Bun venit</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>Selectați mai sus o mașină salvată și faceți clic pe Deschidere. Fiecare mașină pornită apare în fila proprie.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>Creați, selectați, modificați sau ștergeți aici configurațiile salvate. Selectați fila {0} pentru a edita configurația aleasă.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>General</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>Video</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>Stocare</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>Tastatură</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>Mouse</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>Controlere</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>Avansat</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>Identificator dispozitiv</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>Dispozitiv controler {0}</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>Tastă {0}</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>Tastă gazdă</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>Procesor: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>Chipset video: {0}</value>
+  </data>
+  <data name="Emulation.CpuModel"><value>CPU model</value></data>
+  <data name="Emulation.CpuMultiplier"><value>CPU multiplier</value></data>
+  <data name="Emulation.CpuCompatibility"><value>Cycle-compatible CPU</value></data>
+  <data name="Emulation.ChipMemory"><value>Chip RAM</value></data>
+  <data name="Emulation.SlowMemory"><value>Slow RAM</value></data>
+  <data name="Emulation.FastMemory"><value>Fast RAM</value></data>
+  <data name="Emulation.Z3Memory"><value>Zorro III RAM</value></data>
+  <data name="Emulation.VideoStandard"><value>Video standard</value></data>
+  <data name="Emulation.VideoResolution"><value>Resolution</value></data>
+  <data name="Emulation.AspectRatio"><value>Aspect ratio</value></data>
+  <data name="Emulation.VideoCrop"><value>Crop borders</value></data>
+  <data name="Emulation.FlickerFixer"><value>Flicker fixer</value></data>
+  <data name="Emulation.AudioEnabled"><value>Enable audio</value></data>
+  <data name="Emulation.AudioOutput"><value>Audio output</value></data>
+  <data name="Emulation.AudioLatency"><value>Latency (ms)</value></data>
+  <data name="Emulation.AudioInterpolation"><value>Interpolation</value></data>
+  <data name="Emulation.AudioFilter"><value>Amiga audio filter</value></data>
+  <data name="Emulation.StereoSeparation"><value>Stereo separation (%)</value></data>
+  <data name="Emulation.AudioInput"><value>Audio input</value></data>
+  <data name="Emulation.AudioInputUnavailable"><value>This Amiga core does not expose an audio input.</value></data>
+  <data name="Emulation.DefaultAudioOutput"><value>Windows default output</value></data>
+  <data name="Emulation.AddMedia"><value>Add media</value></data>
+  <data name="Emulation.CreateHardDisk"><value>Create hard disk</value></data>
+  <data name="Emulation.HardDiskSize"><value>Hard-disk size (MiB)</value></data>
+  <data name="Emulation.NoMedia"><value>No media. Add a floppy, hard disk or CD supported by the selected model.</value></data>
+  <data name="Emulation.ReadOnly"><value>Read-only</value></data>
+  <data name="Emulation.AmigaMediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value></data>
+  <data name="Emulation.HardDiskFilter"><value>Amiga hard disk|*.hdf|All files|*.*</value></data>
+  <data name="Emulation.HardDiskNotSupported"><value>The selected model does not support a hard disk.</value></data>
+  <data name="Emulation.TooManyFloppyDrives"><value>This model accepts at most {0} floppy drive(s).</value></data>
+  <data name="Emulation.TooManyHardDrives"><value>This model accepts at most {0} hard disk(s).</value></data>
+  <data name="Emulation.CdNotSupported"><value>The selected model does not support a CD drive.</value></data>
+  <data name="Emulation.DuplicateKeyboardMapping"><value>Two Amiga keys use the same PC key. Resolve the red mappings before saving.</value></data>
+  <data name="Emulation.ReleaseMouseKey"><value>Release-capture key</value></data>
+  <data name="Emulation.MouseLeftButton"><value>Left mouse button</value></data>
+  <data name="Emulation.MouseRightButton"><value>Right mouse button</value></data>
+  <data name="Emulation.MouseMiddleButton"><value>Middle mouse button</value></data>
+  <data name="Emulation.DetectControllers"><value>Detect controllers</value></data>
+  <data name="Emulation.EmulatedAction"><value>Amiga action</value></data>
+  <data name="Emulation.PhysicalControl"><value>Keyboard, mouse or controller control</value></data>
+  <data name="Emulation.Chipset"><value>Chipset</value></data>
+  <data name="Emulation.CdDrive"><value>Unitate CD</value></data>
+  <data name="Emulation.FloppyDriveCount"><value>Număr de unități de dischetă</value></data>
+  <data name="Emulation.HardDriveCount"><value>Număr de discuri fixe</value></data>
+  <data name="Emulation.FpuModel"><value>FPU</value></data>
+  <data name="Emulation.CpuSpeed"><value>CPU speed</value></data>
+  <data name="Emulation.CpuSpeedOriginal"><value>Original speed</value></data>
+  <data name="Emulation.CompatibilityNormal"><value>Normal</value></data>
+  <data name="Emulation.CompatibilityCompatible"><value>Compatible</value></data>
+  <data name="Emulation.CompatibilityMemory"><value>Memory compatible</value></data>
+  <data name="Emulation.CompatibilityExact"><value>Cycle exact</value></data>
+  <data name="Emulation.IntegratedFpu"><value>Integrated FPU</value></data>
+  <data name="Emulation.Enabled"><value>Enabled</value></data>
+  <data name="Emulation.Disabled"><value>Disabled</value></data>
+  <data name="Emulation.Minimum"><value>Minimum</value></data>
+  <data name="Emulation.VerySmall"><value>Very small</value></data>
+  <data name="Emulation.Small"><value>Small</value></data>
+  <data name="Emulation.Medium"><value>Medium</value></data>
+  <data name="Emulation.Large"><value>Large</value></data>
+  <data name="Emulation.VeryLarge"><value>Very large</value></data>
+  <data name="Emulation.Maximum"><value>Maximum</value></data>
+  <data name="Emulation.Locked"><value>Locked</value></data>
+  <data name="Emulation.Immediate"><value>Immediate</value></data>
+  <data name="Emulation.Waiting"><value>Waiting</value></data>
+  <data name="Emulation.Standard"><value>Standard</value></data>
+  <data name="Emulation.Enhanced"><value>Enhanced</value></data>
+  <data name="Emulation.Internal"><value>Internal</value></data>
+  <data name="Emulation.Loud"><value>Loud</value></data>
+  <data name="Emulation.ResolutionAutoLow"><value>Automatic low resolution</value></data>
+  <data name="Emulation.ResolutionAutoSuperHigh"><value>Automatic super-high resolution</value></data>
+  <data name="Emulation.ResolutionLow"><value>Low resolution</value></data>
+  <data name="Emulation.ResolutionHigh"><value>High resolution</value></data>
+  <data name="Emulation.ResolutionSuperHigh"><value>Super-high resolution</value></data>
+  <data name="Emulation.VideoLineMode"><value>Line mode</value></data>
+  <data name="Emulation.VideoHzChange"><value>Refresh-rate changes</value></data>
+  <data name="Emulation.VideoFrameskip"><value>Frame skip</value></data>
+  <data name="Emulation.VideoColors"><value>Color depth</value></data>
+  <data name="Emulation.VideoGamma"><value>Gamma</value></data>
+  <data name="Emulation.ImmediateBlits"><value>Blitter operation</value></data>
+  <data name="Emulation.CollisionLevel"><value>Collision detection</value></data>
+  <data name="Emulation.LineModeSingle"><value>Single scan</value></data>
+  <data name="Emulation.LineModeDouble"><value>Double scan</value></data>
+  <data name="Emulation.CollisionSprites"><value>Sprites</value></data>
+  <data name="Emulation.CollisionPlayfields"><value>Playfields</value></data>
+  <data name="Emulation.CollisionFull"><value>Full</value></data>
+  <data name="Emulation.InterpolationAnti"><value>Anti interpolation</value></data>
+  <data name="Emulation.FilterEmulated"><value>Emulated</value></data>
+  <data name="Emulation.AudioFilterType"><value>Filter type</value></data>
+  <data name="Emulation.FloppySound"><value>Floppy-drive sound volume</value></data>
+  <data name="Emulation.FloppySoundType"><value>Floppy-drive sound type</value></data>
+  <data name="Emulation.MuteEmptyFloppy"><value>Mute empty drives</value></data>
+  <data name="Emulation.CdAudioVolume"><value>CD audio volume</value></data>
+  <data name="Emulation.FloppySpeed"><value>Floppy-drive speed</value></data>
+  <data name="Emulation.FloppyWriteProtection"><value>Write-protect floppy images</value></data>
+  <data name="Emulation.FloppyWriteRedirect"><value>Redirect floppy writes</value></data>
+  <data name="Emulation.CdSpeed"><value>CD speed</value></data>
+  <data name="Emulation.KeyboardPassThrough"><value>Physical keyboard pass-through</value></data>
+  <data name="Emulation.PhysicalMouse"><value>Physical mouse</value></data>
+  <data name="Emulation.PhysicalMouseDouble"><value>Double movement</value></data>
+  <data name="Emulation.MouseSpeed"><value>Mouse speed</value></data>
+  <data name="Emulation.AnalogMouse"><value>Analog sticks controlling the mouse</value></data>
+  <data name="Emulation.AnalogMouseDeadzone"><value>Analog-stick dead zone</value></data>
+  <data name="Emulation.AnalogMouseSpeed"><value>Analog-stick mouse speed</value></data>
+  <data name="Emulation.LeftStick"><value>Left stick</value></data>
+  <data name="Emulation.RightStick"><value>Right stick</value></data>
+  <data name="Emulation.BothSticks"><value>Both sticks</value></data>
+  <data name="Emulation.TurboFire"><value>Turbo fire</value></data>
+  <data name="Emulation.TurboButton"><value>Turbo button</value></data>
+  <data name="Emulation.TurboPulse"><value>Turbo pulse</value></data>
+  <data name="Emulation.JoyPortOrder"><value>Controller port order</value></data>
+  <data name="Emulation.Emulator"><value>Emulator</value></data>
+  <data name="Emulation.StorageBaseFolder"><value>Folder comun de stocare pentru emulare</value></data>
+  <data name="Emulation.StorageBaseFolderDescription"><value>Discurile dure sunt organizate automat în HDD\Amiga, HDD\Atari și folderele sistemelor viitoare.</value></data>
+  <data name="Emulation.AddHardDisk"><value>Adăugați un disc dur existent</value></data>
+  <data name="Emulation.HardDisks"><value>Discuri dure</value></data>
+  <data name="Emulation.NoHardDisks"><value>Niciun disc dur nu este asociat acestei mașini.</value></data>
+  <data name="Emulation.KeyboardPriorityHint"><value>Comenzi rapide rezervate</value></data>
+  <data name="Emulation.KeyboardPriorityDescription"><value>Comenzile rapide GW GUI și Windows rămân active și nu sunt capturate de mașină.</value></data>
+  <data name="Emulation.InputBehavior"><value>Comportament</value></data>
+  <data name="Emulation.AssignInput"><value>Atribuiți...</value></data>
+  <data name="Emulation.InputActions"><value>Acțiuni</value></data>
+  <data name="Emulation.PressInput"><value>Apăsați o tastă...</value></data>
+  <data name="Emulation.CreateStorageFolders"><value>Creați automat subfolderele lipsă</value></data>
+  <data name="Emulation.CommonFolders"><value>Foldere comune</value></data>
+  <data name="Emulation.SharedInputDescription"><value>Detectarea dispozitivelor este comună, iar atribuirile sunt salvate separat în fiecare configurație de mașină.</value></data>
+  <data name="Emulation.TestInputs"><value>Testați intrările</value></data>
+  <data name="Emulation.SharedDevices"><value>Dispozitive de intrare comune</value></data>
+  <data name="Emulation.CaptureFolder"><value>Folder capturi</value></data>
+  <data name="Emulation.StateFolder"><value>Folder stări salvate</value></data>
+  <data name="Emulation.DefaultFolders"><value>Foldere implicite</value></data>
+  <data name="Emulation.NoControllersDetected"><value>Nu a fost detectat niciun controler</value></data>
+  <data name="Emulation.TestInputsPrompt"><value>Apăsați o tastă sau un buton al mouse-ului pentru a testa detectarea.</value></data>
+  <data name="Emulation.Floppies"><value>Dischete</value></data>
+  <data name="Emulation.ExtendedRom"><value>ROM extins</value></data>
+  <data name="Emulation.RomKey"><value>Cheie ROM</value></data>
+  <data name="Emulation.Processor"><value>Procesor</value></data>
+  <data name="Emulation.Precision"><value>Precizie</value></data>
+  <data name="Emulation.Acceleration"><value>Accelerare</value></data>
+  <data name="Emulation.MainMemory"><value>Memorie principală</value></data>
+  <data name="Emulation.MemoryExtensions"><value>Extensii de memorie</value></data>
+  <data name="Emulation.MemoryNone"><value>Niciuna</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>Configurația memoriei este compatibilă cu {0}.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Extensiile de memorie sunt compatibile cu {0}.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>Memoria RAM Zorro III nu este disponibilă pe {0}.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>Memorie totală configurată: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>ROM de sistem</value></data>
+  <data name="Emulation.DetectedRoms"><value>ROM-uri detectate</value></data>
+  <data name="Emulation.UseFirmware"><value>Utilizează</value></data>
+  <data name="Emulation.NotUsed"><value>Neutilizată</value></data>
+  <data name="Emulation.OpenRomFolder"><value>Deschide folderul ROM</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>Parțial compatibilă</value></data>
+  <data name="Emulation.DisplaySettings"><value>Afișare</value></data>
+  <data name="Emulation.RenderingSettings"><value>Randare</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>Compatibilitatea chipsetului</value></data>
+  <data name="Emulation.AudioDevice"><value>Dispozitiv</value></data>
+  <data name="Emulation.Latency"><value>Latență</value></data>
+  <data name="Emulation.AudioQuality"><value>Calitate</value></data>
+  <data name="Emulation.AudioDrives"><value>Unități</value></data>
+  <data name="Emulation.Type"><value>Tip</value></data>
+  <data name="Emulation.AddStorageDevice"><value>Adăugați un dispozitiv de stocare</value></data>
+  <data name="Emulation.AmigaDdFloppy"><value>Amiga 3,5 inchi DD · 880 KiB</value></data>
+  <data name="Emulation.AmigaHdFloppy"><value>Amiga 3,5 inchi HD · 1,76 MiB</value></data>
+  <data name="Emulation.AssociatedMedia"><value>Suport asociat</value></data>
+  <data name="Emulation.AutomaticDiskGeometry"><value>Geometria discului este determinată automat de emulator.</value></data>
+  <data name="Emulation.BlankFloppyCreated"><value>Imagine de dischetă goală creată: {0}</value></data>
+  <data name="Emulation.BlankHardDiskHint"><value>Fișierul va fi creat gol și apoi trebuie partiționat și formatat în mașina emulată.</value></data>
+  <data name="Emulation.CdWriter"><value>Unitate de inscripționare CD</value></data>
+  <data name="Emulation.CdWriterHint"><value>Un disc gol poate fi creat numai dacă mașina și emulatorul selectate acceptă scrierea.</value></data>
+  <data name="Emulation.CompactDiscDevice"><value>Unitate CD-ROM</value></data>
+  <data name="Emulation.ConfigureDevice"><value>Configurare</value></data>
+  <data name="Emulation.CreateBlankFloppy"><value>Creați o dischetă goală</value></data>
+  <data name="Emulation.DiskImage"><value>Imagine de disc</value></data>
+  <data name="Emulation.DiskImageRequired"><value>Selectați o imagine de disc existentă.</value></data>
+  <data name="Emulation.ExistingDiskHint"><value>Fișierul selectat va fi atașat acestei unități virtuale.</value></data>
+  <data name="Emulation.FloppyDevice"><value>Unitate de dischetă</value></data>
+  <data name="Emulation.FloppyImageFilter"><value>Imagine de dischetă Amiga|*.adf|Toate fișierele|*.*</value></data>
+  <data name="Emulation.HardDiskDevice"><value>Hard disk</value></data>
+  <data name="Emulation.Interface"><value>Interfață</value></data>
+  <data name="Emulation.PreallocateFile"><value>Prealocați fișierul</value></data>
+  <data name="Emulation.RemovableMediaRuntimeHint"><value>Dischetele și CD-urile sunt introduse sau înlocuite din mașina în execuție.</value></data>
+  <data name="Emulation.RemoveMedia"><value>Eliminați suportul</value></data>
+  <data name="Emulation.ReplaceExistingDisk"><value>Imaginea de disc există deja: {0}\nDoriți să o înlocuiți?</value></data>
+  <data name="Emulation.StorageDeviceCapabilitiesHint"><value>Tipurile, modelele și identificatorii disponibili depind de mașina selectată.</value></data>
+  <data name="Emulation.TapeDevice"><value>Unitate de bandă</value></data>
+  <data name="Emulation.UseDisk"><value>Utilizați discul</value></data>
+  <data name="Emulation.UseExistingDisk"><value>Utilizați un disc existent</value></data>
+  <data name="Emulation.ModifyInGeneral"><value>Modificați în General</value></data>
+  <data name="Emulation.NoStorageDeviceAvailable"><value>Nu este disponibil niciun dispozitiv de stocare suplimentar pentru această mașină.</value></data>
+  <data name="Emulation.StorageDevices"><value>Dispozitive de stocare</value></data>
+  <data name="Emulation.RestoreDefaultBindings"><value>Restabilește valorile implicite</value></data>
+  <data name="Emulation.ClearConflicts"><value>Șterge conflictele</value></data>
+  <data name="Emulation.EmulatedKey"><value>Tasta mașinii</value></data>
+  <data name="Emulation.Binding"><value>Asociere</value></data>
+  <data name="Emulation.BindingState"><value>Stare</value></data>
+  <data name="Emulation.SearchBinding"><value>Caută o tastă sau o asociere</value></data>
+  <data name="Emulation.BindingLegend"><value>Valid: asociere unică · Conflict: asociere folosită de mai multe ori · Rezervat: scurtătură Windows sau GW GUI</value></data>
+  <data name="Emulation.BindingValid"><value>Valid</value></data>
+  <data name="Emulation.BindingConflict"><value>Conflict</value></data>
+  <data name="Emulation.BindingReserved"><value>Rezervat</value></data>
+  <data name="Emulation.BindingUnassigned"><value>Neatribuit</value></data>
+  <data name="Emulation.GlobalShortcuts"><value>Scurtături de emulare</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Scurtături</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Eliberează mouse-ul</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Pauză / continuare</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Ecran complet / fereastră</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Pornire / oprire</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>Resetare simplă</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Resetare completă</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Salvare rapidă a stării</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Încărcare rapidă a stării</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Captură de ecran</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Dezactivează sunetul mașinii active</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Derulare rapidă cât timp este apăsat</value></data>
+  <data name="Emulation.Key.Help"><value>Ajutor</value></data>
+  <data name="Emulation.Key.LeftAmiga"><value>Amiga stânga</value></data>
+  <data name="Emulation.Key.RightAmiga"><value>Amiga dreapta</value></data>
+  <data name="Emulation.SpecialKeysOnlyHint"><value>Literele, cifrele și modificatorii obișnuiți sunt transmiși direct. Doar tastele funcționale și speciale Amiga trebuie asociate aici.</value></data>
+  <data name="Emulation.ShortcutUnavailable"><value>Această acțiune nu este încă oferită de emulatorul curent.</value></data>
+  <data name="Emulation.Allocation"><value>Alocare</value></data>
+  <data name="Emulation.AutomaticGeometry"><value>Geometrie automată</value></data>
+  <data name="Emulation.BlankMedia"><value>Suport gol</value></data>
+  <data name="Emulation.BytesPerSector"><value>Octeți pe sector</value></data>
+  <data name="Emulation.CalculatedCapacity"><value>Capacitate calculată: {0}</value></data>
+  <data name="Emulation.ControllerMappings"><value>Asocieri controler</value></data>
+  <data name="Emulation.ControllerPort"><value>Port {0}</value></data>
+  <data name="Emulation.ControllerType"><value>Tip controler</value></data>
+  <data name="Emulation.CustomSize"><value>Dimensiune particularizată</value></data>
+  <data name="Emulation.Cylinders"><value>Cilindri</value></data>
+  <data name="Emulation.DestinationFolder"><value>Folder destinație</value></data>
+  <data name="Emulation.DetectedControllers"><value>Controlere detectate</value></data>
+  <data name="Emulation.Device"><value>Dispozitiv</value></data>
+  <data name="Emulation.DiskGeometry"><value>Geometrie disc (CHS)</value></data>
+  <data name="Emulation.DiskSizeProfile"><value>Profil de dimensiune</value></data>
+  <data name="Emulation.FloppyDrive"><value>Unitate de dischetă</value></data>
+  <data name="Emulation.Heads"><value>Capete</value></data>
+  <data name="Emulation.InputCaptureHint"><value>Apăsați Atribuire, apoi utilizați o tastă, un buton al mouse-ului sau al controlerului.</value></data>
+  <data name="Emulation.InvalidDiskSize"><value>Dimensiunea sau geometria discului nu este validă.</value></data>
+  <data name="Emulation.MouseActions"><value>Acțiuni mouse</value></data>
+  <data name="Emulation.MouseButton4"><value>Buton mouse 4</value></data>
+  <data name="Emulation.MouseButton5"><value>Buton mouse 5</value></data>
+  <data name="Emulation.MouseCaptureTitle"><value>Capturare mouse</value></data>
+  <data name="Emulation.PreallocationHint"><value>Rezervă imediat spațiul fizic; altfel imaginea crește pe măsură ce se scriu date.</value></data>
+  <data name="Emulation.SearchInputBinding"><value>Căutați o acțiune sau o intrare</value></data>
+  <data name="Emulation.Sectors"><value>Sectoare</value></data>
+  <data name="Emulation.UnitMiB"><value>MiB</value></data>
+  <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>Sus</value></data>
+  <data name="Emulation.DirectionDown"><value>Jos</value></data>
+  <data name="Emulation.DirectionLeft"><value>Stânga</value></data>
+  <data name="Emulation.DirectionRight"><value>Dreapta</value></data>
+  <data name="Emulation.FireButton1"><value>Buton de foc 1</value></data>
+  <data name="Emulation.FireButton2"><value>Buton de foc 2</value></data>
+  <data name="Emulation.Cd32Red"><value>Buton roșu CD32</value></data>
+  <data name="Emulation.Cd32Blue"><value>Buton albastru CD32</value></data>
+  <data name="Emulation.Cd32Green"><value>Buton verde CD32</value></data>
+  <data name="Emulation.Cd32Yellow"><value>Buton galben CD32</value></data>
+  <data name="Emulation.Cd32Rewind"><value>Derulare înapoi CD32</value></data>
+  <data name="Emulation.Cd32FastForward"><value>Derulare înainte CD32</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>Redare / pauză CD32</value></data>
+  <data name="Emulation.AmigaJoystick"><value>Joystick Amiga</value></data>
+  <data name="Emulation.AnalogJoystick"><value>Joystick analogic</value></data>
+  <data name="Emulation.Cd32Controller"><value>Controler CD32</value></data>
+  <data name="Emulation.MouseWheelUp"><value>Rotița mouse-ului în sus</value></data>
+  <data name="Emulation.MouseWheelDown"><value>Rotița mouse-ului în jos</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>Rotița mouse-ului la stânga</value></data>
+  <data name="Emulation.MouseWheelRight"><value>Rotița mouse-ului la dreapta</value></data>
+</root>

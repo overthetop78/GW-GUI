@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>Koneet</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>Ydin</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>{0}-emulointiydin</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>Kirjasto pysyy GW GUI:n ulkopuolella. Valittu versio korvaa tällä hetkellä asennetun version.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>GW GUI:n vaatima versio</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>Uusin saatavilla oleva virallinen versio</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>Tällä hetkellä asennettu versio</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>Kysy viralliselta Libretro-palvelimelta napsauttamalla Hae.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>Hae versioita</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>Lataa ja korvaa</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>Haetaan saatavilla olevia versioita…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>Virallista versiota ei löytynyt.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>Saatavilla olevia versioita: {0}.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>Ladataan {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>Asennettu versio: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · asennettu</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>Versiota ei ole asennettu</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>Avaa</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>Tervetuloa</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>Valitse yllä tallennettu kone ja napsauta Avaa. Jokainen käynnissä oleva kone näkyy omalla välilehdellään.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>Luo, valitse, muokkaa tai poista tallennettuja kokoonpanoja tässä. Muokkaa valittua kokoonpanoa {0}-välilehdellä.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>Yleiset</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>Video</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>Tallennus</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>Näppäimistö</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>Hiiri</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>Ohjaimet</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>Lisäasetukset</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>Laitteen tunniste</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>Ohjaimen {0} laite</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>{0}-näppäin</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>Isäntänäppäin</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>Suoritin: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>Videopiirisarja: {0}</value>
+  </data>
+  <data name="Emulation.CpuModel"><value>CPU model</value></data>
+  <data name="Emulation.CpuMultiplier"><value>CPU multiplier</value></data>
+  <data name="Emulation.CpuCompatibility"><value>Cycle-compatible CPU</value></data>
+  <data name="Emulation.ChipMemory"><value>Chip RAM</value></data>
+  <data name="Emulation.SlowMemory"><value>Slow RAM</value></data>
+  <data name="Emulation.FastMemory"><value>Fast RAM</value></data>
+  <data name="Emulation.Z3Memory"><value>Zorro III RAM</value></data>
+  <data name="Emulation.VideoStandard"><value>Video standard</value></data>
+  <data name="Emulation.VideoResolution"><value>Resolution</value></data>
+  <data name="Emulation.AspectRatio"><value>Aspect ratio</value></data>
+  <data name="Emulation.VideoCrop"><value>Crop borders</value></data>
+  <data name="Emulation.FlickerFixer"><value>Flicker fixer</value></data>
+  <data name="Emulation.AudioEnabled"><value>Enable audio</value></data>
+  <data name="Emulation.AudioOutput"><value>Audio output</value></data>
+  <data name="Emulation.AudioLatency"><value>Latency (ms)</value></data>
+  <data name="Emulation.AudioInterpolation"><value>Interpolation</value></data>
+  <data name="Emulation.AudioFilter"><value>Amiga audio filter</value></data>
+  <data name="Emulation.StereoSeparation"><value>Stereo separation (%)</value></data>
+  <data name="Emulation.AudioInput"><value>Audio input</value></data>
+  <data name="Emulation.AudioInputUnavailable"><value>This Amiga core does not expose an audio input.</value></data>
+  <data name="Emulation.DefaultAudioOutput"><value>Windows default output</value></data>
+  <data name="Emulation.AddMedia"><value>Add media</value></data>
+  <data name="Emulation.CreateHardDisk"><value>Create hard disk</value></data>
+  <data name="Emulation.HardDiskSize"><value>Hard-disk size (MiB)</value></data>
+  <data name="Emulation.NoMedia"><value>No media. Add a floppy, hard disk or CD supported by the selected model.</value></data>
+  <data name="Emulation.ReadOnly"><value>Read-only</value></data>
+  <data name="Emulation.AmigaMediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value></data>
+  <data name="Emulation.HardDiskFilter"><value>Amiga hard disk|*.hdf|All files|*.*</value></data>
+  <data name="Emulation.HardDiskNotSupported"><value>The selected model does not support a hard disk.</value></data>
+  <data name="Emulation.TooManyFloppyDrives"><value>This model accepts at most {0} floppy drive(s).</value></data>
+  <data name="Emulation.TooManyHardDrives"><value>This model accepts at most {0} hard disk(s).</value></data>
+  <data name="Emulation.CdNotSupported"><value>The selected model does not support a CD drive.</value></data>
+  <data name="Emulation.DuplicateKeyboardMapping"><value>Two Amiga keys use the same PC key. Resolve the red mappings before saving.</value></data>
+  <data name="Emulation.ReleaseMouseKey"><value>Release-capture key</value></data>
+  <data name="Emulation.MouseLeftButton"><value>Left mouse button</value></data>
+  <data name="Emulation.MouseRightButton"><value>Right mouse button</value></data>
+  <data name="Emulation.MouseMiddleButton"><value>Middle mouse button</value></data>
+  <data name="Emulation.DetectControllers"><value>Detect controllers</value></data>
+  <data name="Emulation.EmulatedAction"><value>Amiga action</value></data>
+  <data name="Emulation.PhysicalControl"><value>Keyboard, mouse or controller control</value></data>
+  <data name="Emulation.Chipset"><value>Piirisarja</value></data>
+  <data name="Emulation.CdDrive"><value>CD-asema</value></data>
+  <data name="Emulation.FloppyDriveCount"><value>Levykeasemien määrä</value></data>
+  <data name="Emulation.HardDriveCount"><value>Kiintolevyjen määrä</value></data>
+  <data name="Emulation.FpuModel"><value>FPU</value></data>
+  <data name="Emulation.CpuSpeed"><value>CPU speed</value></data>
+  <data name="Emulation.CpuSpeedOriginal"><value>Original speed</value></data>
+  <data name="Emulation.CompatibilityNormal"><value>Normal</value></data>
+  <data name="Emulation.CompatibilityCompatible"><value>Compatible</value></data>
+  <data name="Emulation.CompatibilityMemory"><value>Memory compatible</value></data>
+  <data name="Emulation.CompatibilityExact"><value>Cycle exact</value></data>
+  <data name="Emulation.IntegratedFpu"><value>Integrated FPU</value></data>
+  <data name="Emulation.Enabled"><value>Enabled</value></data>
+  <data name="Emulation.Disabled"><value>Disabled</value></data>
+  <data name="Emulation.Minimum"><value>Minimum</value></data>
+  <data name="Emulation.VerySmall"><value>Very small</value></data>
+  <data name="Emulation.Small"><value>Small</value></data>
+  <data name="Emulation.Medium"><value>Medium</value></data>
+  <data name="Emulation.Large"><value>Large</value></data>
+  <data name="Emulation.VeryLarge"><value>Very large</value></data>
+  <data name="Emulation.Maximum"><value>Maximum</value></data>
+  <data name="Emulation.Locked"><value>Locked</value></data>
+  <data name="Emulation.Immediate"><value>Immediate</value></data>
+  <data name="Emulation.Waiting"><value>Waiting</value></data>
+  <data name="Emulation.Standard"><value>Standard</value></data>
+  <data name="Emulation.Enhanced"><value>Enhanced</value></data>
+  <data name="Emulation.Internal"><value>Internal</value></data>
+  <data name="Emulation.Loud"><value>Loud</value></data>
+  <data name="Emulation.ResolutionAutoLow"><value>Automatic low resolution</value></data>
+  <data name="Emulation.ResolutionAutoSuperHigh"><value>Automatic super-high resolution</value></data>
+  <data name="Emulation.ResolutionLow"><value>Low resolution</value></data>
+  <data name="Emulation.ResolutionHigh"><value>High resolution</value></data>
+  <data name="Emulation.ResolutionSuperHigh"><value>Super-high resolution</value></data>
+  <data name="Emulation.VideoLineMode"><value>Line mode</value></data>
+  <data name="Emulation.VideoHzChange"><value>Refresh-rate changes</value></data>
+  <data name="Emulation.VideoFrameskip"><value>Frame skip</value></data>
+  <data name="Emulation.VideoColors"><value>Color depth</value></data>
+  <data name="Emulation.VideoGamma"><value>Gamma</value></data>
+  <data name="Emulation.ImmediateBlits"><value>Blitter operation</value></data>
+  <data name="Emulation.CollisionLevel"><value>Collision detection</value></data>
+  <data name="Emulation.LineModeSingle"><value>Single scan</value></data>
+  <data name="Emulation.LineModeDouble"><value>Double scan</value></data>
+  <data name="Emulation.CollisionSprites"><value>Sprites</value></data>
+  <data name="Emulation.CollisionPlayfields"><value>Playfields</value></data>
+  <data name="Emulation.CollisionFull"><value>Full</value></data>
+  <data name="Emulation.InterpolationAnti"><value>Anti interpolation</value></data>
+  <data name="Emulation.FilterEmulated"><value>Emulated</value></data>
+  <data name="Emulation.AudioFilterType"><value>Filter type</value></data>
+  <data name="Emulation.FloppySound"><value>Floppy-drive sound volume</value></data>
+  <data name="Emulation.FloppySoundType"><value>Floppy-drive sound type</value></data>
+  <data name="Emulation.MuteEmptyFloppy"><value>Mute empty drives</value></data>
+  <data name="Emulation.CdAudioVolume"><value>CD audio volume</value></data>
+  <data name="Emulation.FloppySpeed"><value>Floppy-drive speed</value></data>
+  <data name="Emulation.FloppyWriteProtection"><value>Write-protect floppy images</value></data>
+  <data name="Emulation.FloppyWriteRedirect"><value>Redirect floppy writes</value></data>
+  <data name="Emulation.CdSpeed"><value>CD speed</value></data>
+  <data name="Emulation.KeyboardPassThrough"><value>Physical keyboard pass-through</value></data>
+  <data name="Emulation.PhysicalMouse"><value>Physical mouse</value></data>
+  <data name="Emulation.PhysicalMouseDouble"><value>Double movement</value></data>
+  <data name="Emulation.MouseSpeed"><value>Mouse speed</value></data>
+  <data name="Emulation.AnalogMouse"><value>Analog sticks controlling the mouse</value></data>
+  <data name="Emulation.AnalogMouseDeadzone"><value>Analog-stick dead zone</value></data>
+  <data name="Emulation.AnalogMouseSpeed"><value>Analog-stick mouse speed</value></data>
+  <data name="Emulation.LeftStick"><value>Left stick</value></data>
+  <data name="Emulation.RightStick"><value>Right stick</value></data>
+  <data name="Emulation.BothSticks"><value>Both sticks</value></data>
+  <data name="Emulation.TurboFire"><value>Turbo fire</value></data>
+  <data name="Emulation.TurboButton"><value>Turbo button</value></data>
+  <data name="Emulation.TurboPulse"><value>Turbo pulse</value></data>
+  <data name="Emulation.JoyPortOrder"><value>Controller port order</value></data>
+  <data name="Emulation.Emulator"><value>Emulaattori</value></data>
+  <data name="Emulation.StorageBaseFolder"><value>Emuloinnin yhteinen tallennuskansio</value></data>
+  <data name="Emulation.StorageBaseFolderDescription"><value>Kiintolevyt järjestetään automaattisesti kansioihin HDD\Amiga, HDD\Atari ja tulevien järjestelmien kansioihin.</value></data>
+  <data name="Emulation.AddHardDisk"><value>Lisää olemassa oleva kiintolevy</value></data>
+  <data name="Emulation.HardDisks"><value>Kiintolevyt</value></data>
+  <data name="Emulation.NoHardDisks"><value>Tähän koneeseen ei ole liitetty kiintolevyä.</value></data>
+  <data name="Emulation.KeyboardPriorityHint"><value>Varatut pikanäppäimet</value></data>
+  <data name="Emulation.KeyboardPriorityDescription"><value>GW GUI:n ja Windowsin pikanäppäimet pysyvät käytössä, eikä kone kaappaa niitä.</value></data>
+  <data name="Emulation.InputBehavior"><value>Toiminta</value></data>
+  <data name="Emulation.AssignInput"><value>Määritä...</value></data>
+  <data name="Emulation.InputActions"><value>Toiminnot</value></data>
+  <data name="Emulation.PressInput"><value>Paina näppäintä...</value></data>
+  <data name="Emulation.CreateStorageFolders"><value>Luo puuttuvat alikansiot automaattisesti</value></data>
+  <data name="Emulation.CommonFolders"><value>Jaetut kansiot</value></data>
+  <data name="Emulation.SharedInputDescription"><value>Laitteiden tunnistus on yhteinen, mutta määritykset tallennetaan erikseen kuhunkin konekokoonpanoon.</value></data>
+  <data name="Emulation.TestInputs"><value>Testaa syötteitä</value></data>
+  <data name="Emulation.SharedDevices"><value>Jaetut syöttölaitteet</value></data>
+  <data name="Emulation.CaptureFolder"><value>Kaappausten kansio</value></data>
+  <data name="Emulation.StateFolder"><value>Tallennustilojen kansio</value></data>
+  <data name="Emulation.DefaultFolders"><value>Oletuskansiot</value></data>
+  <data name="Emulation.NoControllersDetected"><value>Ohjainta ei havaittu</value></data>
+  <data name="Emulation.TestInputsPrompt"><value>Testaa tunnistusta painamalla näppäintä tai hiiren painiketta.</value></data>
+  <data name="Emulation.Floppies"><value>Levykkeet</value></data>
+  <data name="Emulation.ExtendedRom"><value>Laajennettu ROM</value></data>
+  <data name="Emulation.RomKey"><value>ROM-avain</value></data>
+  <data name="Emulation.Processor"><value>Suoritin</value></data>
+  <data name="Emulation.Precision"><value>Tarkkuus</value></data>
+  <data name="Emulation.Acceleration"><value>Kiihdytys</value></data>
+  <data name="Emulation.MainMemory"><value>Päämuisti</value></data>
+  <data name="Emulation.MemoryExtensions"><value>Muistilaajennukset</value></data>
+  <data name="Emulation.MemoryNone"><value>Ei mitään</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>Muistimääritys on yhteensopiva mallin {0} kanssa.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Muistilaajennukset ovat yhteensopivia mallin {0} kanssa.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>Zorro III -RAM ei ole käytettävissä mallissa {0}.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>Määritetty muisti yhteensä: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>Järjestelmä-ROM</value></data>
+  <data name="Emulation.DetectedRoms"><value>Havaitut ROM-tiedostot</value></data>
+  <data name="Emulation.UseFirmware"><value>Käytä</value></data>
+  <data name="Emulation.NotUsed"><value>Ei käytössä</value></data>
+  <data name="Emulation.OpenRomFolder"><value>Avaa ROM-kansio</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>Osittain yhteensopiva</value></data>
+  <data name="Emulation.DisplaySettings"><value>Näyttö</value></data>
+  <data name="Emulation.RenderingSettings"><value>Renderöinti</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>Piirisarjan yhteensopivuus</value></data>
+  <data name="Emulation.AudioDevice"><value>Laite</value></data>
+  <data name="Emulation.Latency"><value>Viive</value></data>
+  <data name="Emulation.AudioQuality"><value>Laatu</value></data>
+  <data name="Emulation.AudioDrives"><value>Asemat</value></data>
+  <data name="Emulation.Type"><value>Tyyppi</value></data>
+  <data name="Emulation.AddStorageDevice"><value>Lisää tallennuslaite</value></data>
+  <data name="Emulation.AmigaDdFloppy"><value>Amiga 3,5 tuumaa DD · 880 KiB</value></data>
+  <data name="Emulation.AmigaHdFloppy"><value>Amiga 3,5 tuumaa HD · 1,76 MiB</value></data>
+  <data name="Emulation.AssociatedMedia"><value>Liitetty tietoväline</value></data>
+  <data name="Emulation.AutomaticDiskGeometry"><value>Emulaattori määrittää levyn geometrian automaattisesti.</value></data>
+  <data name="Emulation.BlankFloppyCreated"><value>Tyhjä levykevedos luotu: {0}</value></data>
+  <data name="Emulation.BlankHardDiskHint"><value>Tiedosto luodaan tyhjänä, minkä jälkeen se on osioitava ja alustettava emuloidussa koneessa.</value></data>
+  <data name="Emulation.CdWriter"><value>CD-tallennin</value></data>
+  <data name="Emulation.CdWriterHint"><value>Tyhjä levy voidaan luoda vain, jos valittu kone ja emulaattori tukevat kirjoittamista.</value></data>
+  <data name="Emulation.CompactDiscDevice"><value>CD-ROM-asema</value></data>
+  <data name="Emulation.ConfigureDevice"><value>Määritä</value></data>
+  <data name="Emulation.CreateBlankFloppy"><value>Luo tyhjä levyke</value></data>
+  <data name="Emulation.DiskImage"><value>Levykuva</value></data>
+  <data name="Emulation.DiskImageRequired"><value>Valitse olemassa oleva levykuva.</value></data>
+  <data name="Emulation.ExistingDiskHint"><value>Valittu tiedosto liitetään tähän virtuaaliasemaan.</value></data>
+  <data name="Emulation.FloppyDevice"><value>Levykeasema</value></data>
+  <data name="Emulation.FloppyImageFilter"><value>Amiga-levykevedos|*.adf|Kaikki tiedostot|*.*</value></data>
+  <data name="Emulation.HardDiskDevice"><value>Kiintolevy</value></data>
+  <data name="Emulation.Interface"><value>Liitäntä</value></data>
+  <data name="Emulation.PreallocateFile"><value>Esivaraa tiedosto</value></data>
+  <data name="Emulation.RemovableMediaRuntimeHint"><value>Levykkeet ja CD-levyt asetetaan tai vaihdetaan käynnissä olevasta koneesta.</value></data>
+  <data name="Emulation.RemoveMedia"><value>Poista tietoväline</value></data>
+  <data name="Emulation.ReplaceExistingDisk"><value>Levykuva on jo olemassa: {0}\nHaluatko korvata sen?</value></data>
+  <data name="Emulation.StorageDeviceCapabilitiesHint"><value>Käytettävissä olevat tyypit, mallit ja tunnisteet riippuvat valitusta koneesta.</value></data>
+  <data name="Emulation.TapeDevice"><value>Nauha-asema</value></data>
+  <data name="Emulation.UseDisk"><value>Käytä levyä</value></data>
+  <data name="Emulation.UseExistingDisk"><value>Käytä olemassa olevaa levyä</value></data>
+  <data name="Emulation.ModifyInGeneral"><value>Muokkaa Yleiset-kohdassa</value></data>
+  <data name="Emulation.NoStorageDeviceAvailable"><value>Tälle koneelle ei ole saatavilla muita tallennuslaitteita.</value></data>
+  <data name="Emulation.StorageDevices"><value>Tallennuslaitteet</value></data>
+  <data name="Emulation.RestoreDefaultBindings"><value>Palauta oletukset</value></data>
+  <data name="Emulation.ClearConflicts"><value>Tyhjennä ristiriidat</value></data>
+  <data name="Emulation.EmulatedKey"><value>Koneen näppäin</value></data>
+  <data name="Emulation.Binding"><value>Määritys</value></data>
+  <data name="Emulation.BindingState"><value>Tila</value></data>
+  <data name="Emulation.SearchBinding"><value>Etsi näppäintä tai määritystä</value></data>
+  <data name="Emulation.BindingLegend"><value>Kelvollinen: yksilöllinen määritys · Ristiriita: määritystä käytetään useasti · Varattu: Windowsin tai GW GUI:n pikanäppäin</value></data>
+  <data name="Emulation.BindingValid"><value>Kelvollinen</value></data>
+  <data name="Emulation.BindingConflict"><value>Ristiriita</value></data>
+  <data name="Emulation.BindingReserved"><value>Varattu</value></data>
+  <data name="Emulation.BindingUnassigned"><value>Ei määritetty</value></data>
+  <data name="Emulation.GlobalShortcuts"><value>Emuloinnin pikanäppäimet</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Pikanäppäimet</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Vapauta hiiri</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Tauko / jatka</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Koko näyttö / ikkuna</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Virta päälle / pois</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>Pehmeä nollaus</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Kova nollaus</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Pikatallennus</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Pikalataus</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Näyttökuva</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Mykistä aktiivinen kone</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Pikakelaus pidettäessä</value></data>
+  <data name="Emulation.Key.Help"><value>Ohje</value></data>
+  <data name="Emulation.Key.LeftAmiga"><value>Vasen Amiga</value></data>
+  <data name="Emulation.Key.RightAmiga"><value>Oikea Amiga</value></data>
+  <data name="Emulation.SpecialKeysOnlyHint"><value>Kirjaimet, numerot ja tavalliset muuntonäppäimet välitetään suoraan. Vain Amigan toiminto- ja erikoisnäppäimet määritetään tässä.</value></data>
+  <data name="Emulation.ShortcutUnavailable"><value>Nykyinen emulaattori ei vielä tue tätä toimintoa.</value></data>
+  <data name="Emulation.Allocation"><value>Varaus</value></data>
+  <data name="Emulation.AutomaticGeometry"><value>Automaattinen geometria</value></data>
+  <data name="Emulation.BlankMedia"><value>Tyhjä tietoväline</value></data>
+  <data name="Emulation.BytesPerSector"><value>Tavua sektoria kohden</value></data>
+  <data name="Emulation.CalculatedCapacity"><value>Laskettu kapasiteetti: {0}</value></data>
+  <data name="Emulation.ControllerMappings"><value>Ohjaimen määritykset</value></data>
+  <data name="Emulation.ControllerPort"><value>Portti {0}</value></data>
+  <data name="Emulation.ControllerType"><value>Ohjaimen tyyppi</value></data>
+  <data name="Emulation.CustomSize"><value>Mukautettu koko</value></data>
+  <data name="Emulation.Cylinders"><value>Sylinterit</value></data>
+  <data name="Emulation.DestinationFolder"><value>Kohdekansio</value></data>
+  <data name="Emulation.DetectedControllers"><value>Havaitut ohjaimet</value></data>
+  <data name="Emulation.Device"><value>Laite</value></data>
+  <data name="Emulation.DiskGeometry"><value>Levyn geometria (CHS)</value></data>
+  <data name="Emulation.DiskSizeProfile"><value>Kokoprofiili</value></data>
+  <data name="Emulation.FloppyDrive"><value>Levykeasema</value></data>
+  <data name="Emulation.Heads"><value>Päät</value></data>
+  <data name="Emulation.InputCaptureHint"><value>Paina Määritä ja käytä sitten näppäintä, hiiren painiketta tai ohjaimen painiketta.</value></data>
+  <data name="Emulation.InvalidDiskSize"><value>Levyn koko tai geometria ei kelpaa.</value></data>
+  <data name="Emulation.MouseActions"><value>Hiiritoiminnot</value></data>
+  <data name="Emulation.MouseButton4"><value>Hiiren painike 4</value></data>
+  <data name="Emulation.MouseButton5"><value>Hiiren painike 5</value></data>
+  <data name="Emulation.MouseCaptureTitle"><value>Hiiren kaappaus</value></data>
+  <data name="Emulation.PreallocationHint"><value>Varaa fyysisen levytilan heti; muuten levykuva kasvaa tietoja kirjoitettaessa.</value></data>
+  <data name="Emulation.SearchInputBinding"><value>Etsi toimintoa tai syötettä</value></data>
+  <data name="Emulation.Sectors"><value>Sektorit</value></data>
+  <data name="Emulation.UnitMiB"><value>MiB</value></data>
+  <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>Ylös</value></data>
+  <data name="Emulation.DirectionDown"><value>Alas</value></data>
+  <data name="Emulation.DirectionLeft"><value>Vasen</value></data>
+  <data name="Emulation.DirectionRight"><value>Oikea</value></data>
+  <data name="Emulation.FireButton1"><value>Tulituspainike 1</value></data>
+  <data name="Emulation.FireButton2"><value>Tulituspainike 2</value></data>
+  <data name="Emulation.Cd32Red"><value>CD32:n punainen painike</value></data>
+  <data name="Emulation.Cd32Blue"><value>CD32:n sininen painike</value></data>
+  <data name="Emulation.Cd32Green"><value>CD32:n vihreä painike</value></data>
+  <data name="Emulation.Cd32Yellow"><value>CD32:n keltainen painike</value></data>
+  <data name="Emulation.Cd32Rewind"><value>CD32 kelaus taakse</value></data>
+  <data name="Emulation.Cd32FastForward"><value>CD32 kelaus eteen</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>CD32 toisto / tauko</value></data>
+  <data name="Emulation.AmigaJoystick"><value>Amiga-ohjain</value></data>
+  <data name="Emulation.AnalogJoystick"><value>Analoginen ohjain</value></data>
+  <data name="Emulation.Cd32Controller"><value>CD32-ohjain</value></data>
+  <data name="Emulation.MouseWheelUp"><value>Hiiren rulla ylös</value></data>
+  <data name="Emulation.MouseWheelDown"><value>Hiiren rulla alas</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>Hiiren rulla vasemmalle</value></data>
+  <data name="Emulation.MouseWheelRight"><value>Hiiren rulla oikealle</value></data>
+</root>

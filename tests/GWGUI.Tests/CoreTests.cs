@@ -403,7 +403,12 @@ public sealed class CoreTests
                 var failingSaveDialogs = new RecordingMessageDialogService();
                 var failingSaveWindow = new MainWindow(failingSaveDialogs, settingsStore: new FailingSettingsStore());
                 failingSaveWindow.Close();
-                Dispatcher.CurrentDispatcher.Invoke(() => { }, System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+                var saveFailureDeadline = DateTime.UtcNow.AddSeconds(5);
+                while (failingSaveDialogs.Requests.Count == 0 && DateTime.UtcNow < saveFailureDeadline)
+                {
+                    Dispatcher.CurrentDispatcher.Invoke(() => { }, System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+                    Thread.Sleep(1);
+                }
                 var saveFailure = Assert.Single(failingSaveDialogs.Requests);
                 Assert.Equal(UserDialogIcon.Warning, saveFailure.Icon);
                 Assert.DoesNotContain("test save failure", saveFailure.Message, StringComparison.Ordinal);
@@ -555,7 +560,8 @@ public sealed class CoreTests
         thread.SetApartmentState(ApartmentState.STA);
         thread.Start();
         Assert.True(thread.Join(TimeSpan.FromSeconds(60)), "The WPF smoke test timed out.");
-        if (failure is not null) throw failure;
+        if (failure is not null)
+            System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(failure).Throw();
     }
 
     [Fact]

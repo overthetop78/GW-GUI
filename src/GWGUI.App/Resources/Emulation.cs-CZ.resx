@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>Stroje</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>Jádro</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>Emulační jádro {0}</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>Knihovna zůstává mimo GW GUI. Vybraná verze nahradí aktuálně nainstalovanou verzi.</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>Verze vyžadovaná GW GUI</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>Nejnovější dostupná oficiální verze</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>Aktuálně nainstalovaná verze</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>Kliknutím na Hledat se dotážete oficiálního serveru Libretro.</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>Hledat verze</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>Stáhnout a nahradit</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>Hledání dostupných verzí…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>Nebyla nalezena žádná oficiální verze.</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>Počet dostupných verzí: {0}.</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>Stahování {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>Nainstalovaná verze: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · nainstalováno</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>Není nainstalována žádná verze</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>Otevřít</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>Vítejte</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>Vyberte nahoře uložený stroj a klikněte na Otevřít. Každý spuštěný stroj se zobrazí na vlastní kartě.</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>Zde můžete vytvářet, vybírat, upravovat nebo odstraňovat uložené konfigurace. Vybranou konfiguraci upravíte na kartě {0}.</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>Obecné</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>Video</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>Úložiště</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>Klávesnice</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>Myš</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>Ovladače</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>Pokročilé</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>Identifikátor zařízení</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>Zařízení ovladače {0}</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>Klávesa {0}</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>Klávesa hostitele</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>Procesor: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>Video čipová sada: {0}</value>
+  </data>
+  <data name="Emulation.CpuModel"><value>CPU model</value></data>
+  <data name="Emulation.CpuMultiplier"><value>CPU multiplier</value></data>
+  <data name="Emulation.CpuCompatibility"><value>Cycle-compatible CPU</value></data>
+  <data name="Emulation.ChipMemory"><value>Chip RAM</value></data>
+  <data name="Emulation.SlowMemory"><value>Slow RAM</value></data>
+  <data name="Emulation.FastMemory"><value>Fast RAM</value></data>
+  <data name="Emulation.Z3Memory"><value>Zorro III RAM</value></data>
+  <data name="Emulation.VideoStandard"><value>Video standard</value></data>
+  <data name="Emulation.VideoResolution"><value>Resolution</value></data>
+  <data name="Emulation.AspectRatio"><value>Aspect ratio</value></data>
+  <data name="Emulation.VideoCrop"><value>Crop borders</value></data>
+  <data name="Emulation.FlickerFixer"><value>Flicker fixer</value></data>
+  <data name="Emulation.AudioEnabled"><value>Enable audio</value></data>
+  <data name="Emulation.AudioOutput"><value>Audio output</value></data>
+  <data name="Emulation.AudioLatency"><value>Latency (ms)</value></data>
+  <data name="Emulation.AudioInterpolation"><value>Interpolation</value></data>
+  <data name="Emulation.AudioFilter"><value>Amiga audio filter</value></data>
+  <data name="Emulation.StereoSeparation"><value>Stereo separation (%)</value></data>
+  <data name="Emulation.AudioInput"><value>Audio input</value></data>
+  <data name="Emulation.AudioInputUnavailable"><value>This Amiga core does not expose an audio input.</value></data>
+  <data name="Emulation.DefaultAudioOutput"><value>Windows default output</value></data>
+  <data name="Emulation.AddMedia"><value>Add media</value></data>
+  <data name="Emulation.CreateHardDisk"><value>Create hard disk</value></data>
+  <data name="Emulation.HardDiskSize"><value>Hard-disk size (MiB)</value></data>
+  <data name="Emulation.NoMedia"><value>No media. Add a floppy, hard disk or CD supported by the selected model.</value></data>
+  <data name="Emulation.ReadOnly"><value>Read-only</value></data>
+  <data name="Emulation.AmigaMediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value></data>
+  <data name="Emulation.HardDiskFilter"><value>Amiga hard disk|*.hdf|All files|*.*</value></data>
+  <data name="Emulation.HardDiskNotSupported"><value>The selected model does not support a hard disk.</value></data>
+  <data name="Emulation.TooManyFloppyDrives"><value>This model accepts at most {0} floppy drive(s).</value></data>
+  <data name="Emulation.TooManyHardDrives"><value>This model accepts at most {0} hard disk(s).</value></data>
+  <data name="Emulation.CdNotSupported"><value>The selected model does not support a CD drive.</value></data>
+  <data name="Emulation.DuplicateKeyboardMapping"><value>Two Amiga keys use the same PC key. Resolve the red mappings before saving.</value></data>
+  <data name="Emulation.ReleaseMouseKey"><value>Release-capture key</value></data>
+  <data name="Emulation.MouseLeftButton"><value>Left mouse button</value></data>
+  <data name="Emulation.MouseRightButton"><value>Right mouse button</value></data>
+  <data name="Emulation.MouseMiddleButton"><value>Middle mouse button</value></data>
+  <data name="Emulation.DetectControllers"><value>Detect controllers</value></data>
+  <data name="Emulation.EmulatedAction"><value>Amiga action</value></data>
+  <data name="Emulation.PhysicalControl"><value>Keyboard, mouse or controller control</value></data>
+  <data name="Emulation.Chipset"><value>Čipová sada</value></data>
+  <data name="Emulation.CdDrive"><value>Jednotka CD</value></data>
+  <data name="Emulation.FloppyDriveCount"><value>Počet disketových jednotek</value></data>
+  <data name="Emulation.HardDriveCount"><value>Počet pevných disků</value></data>
+  <data name="Emulation.FpuModel"><value>FPU</value></data>
+  <data name="Emulation.CpuSpeed"><value>CPU speed</value></data>
+  <data name="Emulation.CpuSpeedOriginal"><value>Original speed</value></data>
+  <data name="Emulation.CompatibilityNormal"><value>Normal</value></data>
+  <data name="Emulation.CompatibilityCompatible"><value>Compatible</value></data>
+  <data name="Emulation.CompatibilityMemory"><value>Memory compatible</value></data>
+  <data name="Emulation.CompatibilityExact"><value>Cycle exact</value></data>
+  <data name="Emulation.IntegratedFpu"><value>Integrated FPU</value></data>
+  <data name="Emulation.Enabled"><value>Enabled</value></data>
+  <data name="Emulation.Disabled"><value>Disabled</value></data>
+  <data name="Emulation.Minimum"><value>Minimum</value></data>
+  <data name="Emulation.VerySmall"><value>Very small</value></data>
+  <data name="Emulation.Small"><value>Small</value></data>
+  <data name="Emulation.Medium"><value>Medium</value></data>
+  <data name="Emulation.Large"><value>Large</value></data>
+  <data name="Emulation.VeryLarge"><value>Very large</value></data>
+  <data name="Emulation.Maximum"><value>Maximum</value></data>
+  <data name="Emulation.Locked"><value>Locked</value></data>
+  <data name="Emulation.Immediate"><value>Immediate</value></data>
+  <data name="Emulation.Waiting"><value>Waiting</value></data>
+  <data name="Emulation.Standard"><value>Standard</value></data>
+  <data name="Emulation.Enhanced"><value>Enhanced</value></data>
+  <data name="Emulation.Internal"><value>Internal</value></data>
+  <data name="Emulation.Loud"><value>Loud</value></data>
+  <data name="Emulation.ResolutionAutoLow"><value>Automatic low resolution</value></data>
+  <data name="Emulation.ResolutionAutoSuperHigh"><value>Automatic super-high resolution</value></data>
+  <data name="Emulation.ResolutionLow"><value>Low resolution</value></data>
+  <data name="Emulation.ResolutionHigh"><value>High resolution</value></data>
+  <data name="Emulation.ResolutionSuperHigh"><value>Super-high resolution</value></data>
+  <data name="Emulation.VideoLineMode"><value>Line mode</value></data>
+  <data name="Emulation.VideoHzChange"><value>Refresh-rate changes</value></data>
+  <data name="Emulation.VideoFrameskip"><value>Frame skip</value></data>
+  <data name="Emulation.VideoColors"><value>Color depth</value></data>
+  <data name="Emulation.VideoGamma"><value>Gamma</value></data>
+  <data name="Emulation.ImmediateBlits"><value>Blitter operation</value></data>
+  <data name="Emulation.CollisionLevel"><value>Collision detection</value></data>
+  <data name="Emulation.LineModeSingle"><value>Single scan</value></data>
+  <data name="Emulation.LineModeDouble"><value>Double scan</value></data>
+  <data name="Emulation.CollisionSprites"><value>Sprites</value></data>
+  <data name="Emulation.CollisionPlayfields"><value>Playfields</value></data>
+  <data name="Emulation.CollisionFull"><value>Full</value></data>
+  <data name="Emulation.InterpolationAnti"><value>Anti interpolation</value></data>
+  <data name="Emulation.FilterEmulated"><value>Emulated</value></data>
+  <data name="Emulation.AudioFilterType"><value>Filter type</value></data>
+  <data name="Emulation.FloppySound"><value>Floppy-drive sound volume</value></data>
+  <data name="Emulation.FloppySoundType"><value>Floppy-drive sound type</value></data>
+  <data name="Emulation.MuteEmptyFloppy"><value>Mute empty drives</value></data>
+  <data name="Emulation.CdAudioVolume"><value>CD audio volume</value></data>
+  <data name="Emulation.FloppySpeed"><value>Floppy-drive speed</value></data>
+  <data name="Emulation.FloppyWriteProtection"><value>Write-protect floppy images</value></data>
+  <data name="Emulation.FloppyWriteRedirect"><value>Redirect floppy writes</value></data>
+  <data name="Emulation.CdSpeed"><value>CD speed</value></data>
+  <data name="Emulation.KeyboardPassThrough"><value>Physical keyboard pass-through</value></data>
+  <data name="Emulation.PhysicalMouse"><value>Physical mouse</value></data>
+  <data name="Emulation.PhysicalMouseDouble"><value>Double movement</value></data>
+  <data name="Emulation.MouseSpeed"><value>Mouse speed</value></data>
+  <data name="Emulation.AnalogMouse"><value>Analog sticks controlling the mouse</value></data>
+  <data name="Emulation.AnalogMouseDeadzone"><value>Analog-stick dead zone</value></data>
+  <data name="Emulation.AnalogMouseSpeed"><value>Analog-stick mouse speed</value></data>
+  <data name="Emulation.LeftStick"><value>Left stick</value></data>
+  <data name="Emulation.RightStick"><value>Right stick</value></data>
+  <data name="Emulation.BothSticks"><value>Both sticks</value></data>
+  <data name="Emulation.TurboFire"><value>Turbo fire</value></data>
+  <data name="Emulation.TurboButton"><value>Turbo button</value></data>
+  <data name="Emulation.TurboPulse"><value>Turbo pulse</value></data>
+  <data name="Emulation.JoyPortOrder"><value>Controller port order</value></data>
+  <data name="Emulation.Emulator"><value>Emulátor</value></data>
+  <data name="Emulation.StorageBaseFolder"><value>Sdílená složka úložiště emulátorů</value></data>
+  <data name="Emulation.StorageBaseFolderDescription"><value>Pevné disky se automaticky organizují do HDD\Amiga, HDD\Atari a složek budoucích systémů.</value></data>
+  <data name="Emulation.AddHardDisk"><value>Přidat existující pevný disk</value></data>
+  <data name="Emulation.HardDisks"><value>Pevné disky</value></data>
+  <data name="Emulation.NoHardDisks"><value>K tomuto stroji není připojen žádný pevný disk.</value></data>
+  <data name="Emulation.KeyboardPriorityHint"><value>Vyhrazené klávesové zkratky</value></data>
+  <data name="Emulation.KeyboardPriorityDescription"><value>Klávesové zkratky GW GUI a Windows zůstávají aktivní a stroj je nezachytává.</value></data>
+  <data name="Emulation.InputBehavior"><value>Chování</value></data>
+  <data name="Emulation.AssignInput"><value>Přiřadit...</value></data>
+  <data name="Emulation.InputActions"><value>Akce</value></data>
+  <data name="Emulation.PressInput"><value>Stiskněte klávesu...</value></data>
+  <data name="Emulation.CreateStorageFolders"><value>Automaticky vytvářet chybějící podsložky</value></data>
+  <data name="Emulation.CommonFolders"><value>Sdílené složky</value></data>
+  <data name="Emulation.SharedInputDescription"><value>Detekce zařízení je společná, ale přiřazení se ukládají samostatně v každé konfiguraci stroje.</value></data>
+  <data name="Emulation.TestInputs"><value>Otestovat vstupy</value></data>
+  <data name="Emulation.SharedDevices"><value>Sdílená vstupní zařízení</value></data>
+  <data name="Emulation.CaptureFolder"><value>Složka snímků</value></data>
+  <data name="Emulation.StateFolder"><value>Složka uložených stavů</value></data>
+  <data name="Emulation.DefaultFolders"><value>Výchozí složky</value></data>
+  <data name="Emulation.NoControllersDetected"><value>Nebyl zjištěn žádný ovladač</value></data>
+  <data name="Emulation.TestInputsPrompt"><value>Stisknutím klávesy nebo tlačítka myši otestujte detekci.</value></data>
+  <data name="Emulation.Floppies"><value>Diskety</value></data>
+  <data name="Emulation.ExtendedRom"><value>Rozšířená ROM</value></data>
+  <data name="Emulation.RomKey"><value>Klíč ROM</value></data>
+  <data name="Emulation.Processor"><value>Procesor</value></data>
+  <data name="Emulation.Precision"><value>Přesnost</value></data>
+  <data name="Emulation.Acceleration"><value>Akcelerace</value></data>
+  <data name="Emulation.MainMemory"><value>Hlavní paměť</value></data>
+  <data name="Emulation.MemoryExtensions"><value>Rozšíření paměti</value></data>
+  <data name="Emulation.MemoryNone"><value>Žádná</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>Konfigurace paměti je kompatibilní s {0}.</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Rozšíření paměti jsou kompatibilní s {0}.</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>Paměť Zorro III není u modelu {0} dostupná.</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>Celková nakonfigurovaná paměť: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>Systémová ROM</value></data>
+  <data name="Emulation.DetectedRoms"><value>Nalezené ROM</value></data>
+  <data name="Emulation.UseFirmware"><value>Použít</value></data>
+  <data name="Emulation.NotUsed"><value>Nepoužívá se</value></data>
+  <data name="Emulation.OpenRomFolder"><value>Otevřít složku ROM</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>Částečně kompatibilní</value></data>
+  <data name="Emulation.DisplaySettings"><value>Zobrazení</value></data>
+  <data name="Emulation.RenderingSettings"><value>Vykreslování</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>Kompatibilita čipové sady</value></data>
+  <data name="Emulation.AudioDevice"><value>Zařízení</value></data>
+  <data name="Emulation.Latency"><value>Latence</value></data>
+  <data name="Emulation.AudioQuality"><value>Kvalita</value></data>
+  <data name="Emulation.AudioDrives"><value>Jednotky</value></data>
+  <data name="Emulation.Type"><value>Typ</value></data>
+  <data name="Emulation.AddStorageDevice"><value>Přidat úložné zařízení</value></data>
+  <data name="Emulation.AmigaDdFloppy"><value>Amiga 3,5 palce DD · 880 KiB</value></data>
+  <data name="Emulation.AmigaHdFloppy"><value>Amiga 3,5 palce HD · 1,76 MiB</value></data>
+  <data name="Emulation.AssociatedMedia"><value>Připojené médium</value></data>
+  <data name="Emulation.AutomaticDiskGeometry"><value>Geometrii disku určí emulátor automaticky.</value></data>
+  <data name="Emulation.BlankFloppyCreated"><value>Prázdný obraz diskety byl vytvořen: {0}</value></data>
+  <data name="Emulation.BlankHardDiskHint"><value>Soubor bude vytvořen prázdný. Poté jej musíte v emulovaném počítači rozdělit a naformátovat.</value></data>
+  <data name="Emulation.CdWriter"><value>Vypalovačka CD</value></data>
+  <data name="Emulation.CdWriterHint"><value>Prázdný disk lze vytvořit jen tehdy, když vybraný počítač a emulátor podporují zápis.</value></data>
+  <data name="Emulation.CompactDiscDevice"><value>Jednotka CD-ROM</value></data>
+  <data name="Emulation.ConfigureDevice"><value>Nastavit</value></data>
+  <data name="Emulation.CreateBlankFloppy"><value>Vytvořit prázdnou disketu</value></data>
+  <data name="Emulation.DiskImage"><value>Obraz disku</value></data>
+  <data name="Emulation.DiskImageRequired"><value>Vyberte existující obraz disku.</value></data>
+  <data name="Emulation.ExistingDiskHint"><value>Vybraný soubor bude připojen k této virtuální jednotce.</value></data>
+  <data name="Emulation.FloppyDevice"><value>Disketová jednotka</value></data>
+  <data name="Emulation.FloppyImageFilter"><value>Obraz diskety Amiga|*.adf|Všechny soubory|*.*</value></data>
+  <data name="Emulation.HardDiskDevice"><value>Pevný disk</value></data>
+  <data name="Emulation.Interface"><value>Rozhraní</value></data>
+  <data name="Emulation.PreallocateFile"><value>Předalokovat soubor</value></data>
+  <data name="Emulation.RemovableMediaRuntimeHint"><value>Diskety a CD se vkládají nebo mění ve spuštěném počítači.</value></data>
+  <data name="Emulation.RemoveMedia"><value>Odebrat médium</value></data>
+  <data name="Emulation.ReplaceExistingDisk"><value>Obraz disku již existuje: {0}\nChcete jej nahradit?</value></data>
+  <data name="Emulation.StorageDeviceCapabilitiesHint"><value>Dostupné typy, modely a identifikátory závisí na vybraném počítači.</value></data>
+  <data name="Emulation.TapeDevice"><value>Pásková jednotka</value></data>
+  <data name="Emulation.UseDisk"><value>Použít disk</value></data>
+  <data name="Emulation.UseExistingDisk"><value>Použít existující disk</value></data>
+  <data name="Emulation.ModifyInGeneral"><value>Upravit v části Obecné</value></data>
+  <data name="Emulation.NoStorageDeviceAvailable"><value>Pro tento počítač není k dispozici žádné další úložné zařízení.</value></data>
+  <data name="Emulation.StorageDevices"><value>Úložná zařízení</value></data>
+  <data name="Emulation.RestoreDefaultBindings"><value>Obnovit výchozí hodnoty</value></data>
+  <data name="Emulation.ClearConflicts"><value>Vymazat konflikty</value></data>
+  <data name="Emulation.EmulatedKey"><value>Klávesa stroje</value></data>
+  <data name="Emulation.Binding"><value>Přiřazení</value></data>
+  <data name="Emulation.BindingState"><value>Stav</value></data>
+  <data name="Emulation.SearchBinding"><value>Hledat klávesu nebo přiřazení</value></data>
+  <data name="Emulation.BindingLegend"><value>Platné: jedinečné přiřazení · Konflikt: přiřazení použito vícekrát · Vyhrazené: zkratka Windows nebo GW GUI</value></data>
+  <data name="Emulation.BindingValid"><value>Platné</value></data>
+  <data name="Emulation.BindingConflict"><value>Konflikt</value></data>
+  <data name="Emulation.BindingReserved"><value>Vyhrazené</value></data>
+  <data name="Emulation.BindingUnassigned"><value>Nepřiřazeno</value></data>
+  <data name="Emulation.GlobalShortcuts"><value>Zkratky emulace</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Zkratky</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Uvolnit myš</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Pozastavit / pokračovat</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Celá obrazovka / okno</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Zapnout / vypnout</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>Měkký restart</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Tvrdý restart</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Rychlé uložení stavu</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Rychlé načtení stavu</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Snímek obrazovky</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Ztlumit aktivní stroj</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Rychlý posun při držení</value></data>
+  <data name="Emulation.Key.Help"><value>Nápověda</value></data>
+  <data name="Emulation.Key.LeftAmiga"><value>Levá Amiga</value></data>
+  <data name="Emulation.Key.RightAmiga"><value>Pravá Amiga</value></data>
+  <data name="Emulation.SpecialKeysOnlyHint"><value>Písmena, číslice a běžné modifikační klávesy se přenášejí přímo. Zde je třeba přiřadit pouze funkční a speciální klávesy Amigy.</value></data>
+  <data name="Emulation.ShortcutUnavailable"><value>Tato akce zatím není aktuálním emulátorem podporována.</value></data>
+  <data name="Emulation.Allocation"><value>Přidělení</value></data>
+  <data name="Emulation.AutomaticGeometry"><value>Automatická geometrie</value></data>
+  <data name="Emulation.BlankMedia"><value>Prázdné médium</value></data>
+  <data name="Emulation.BytesPerSector"><value>Bajtů na sektor</value></data>
+  <data name="Emulation.CalculatedCapacity"><value>Vypočtená kapacita: {0}</value></data>
+  <data name="Emulation.ControllerMappings"><value>Mapování ovladače</value></data>
+  <data name="Emulation.ControllerPort"><value>Port {0}</value></data>
+  <data name="Emulation.ControllerType"><value>Typ ovladače</value></data>
+  <data name="Emulation.CustomSize"><value>Vlastní velikost</value></data>
+  <data name="Emulation.Cylinders"><value>Cylindry</value></data>
+  <data name="Emulation.DestinationFolder"><value>Cílová složka</value></data>
+  <data name="Emulation.DetectedControllers"><value>Zjištěné ovladače</value></data>
+  <data name="Emulation.Device"><value>Zařízení</value></data>
+  <data name="Emulation.DiskGeometry"><value>Geometrie disku (CHS)</value></data>
+  <data name="Emulation.DiskSizeProfile"><value>Profil velikosti</value></data>
+  <data name="Emulation.FloppyDrive"><value>Disketová jednotka</value></data>
+  <data name="Emulation.Heads"><value>Hlavy</value></data>
+  <data name="Emulation.InputCaptureHint"><value>Klikněte na Přiřadit a potom použijte klávesu, tlačítko myši nebo tlačítko ovladače.</value></data>
+  <data name="Emulation.InvalidDiskSize"><value>Velikost nebo geometrie disku není platná.</value></data>
+  <data name="Emulation.MouseActions"><value>Akce myši</value></data>
+  <data name="Emulation.MouseButton4"><value>Tlačítko myši 4</value></data>
+  <data name="Emulation.MouseButton5"><value>Tlačítko myši 5</value></data>
+  <data name="Emulation.MouseCaptureTitle"><value>Zachytávání myši</value></data>
+  <data name="Emulation.PreallocationHint"><value>Okamžitě rezervuje fyzické místo; jinak se obraz zvětšuje při zápisu dat.</value></data>
+  <data name="Emulation.SearchInputBinding"><value>Hledat akci nebo vstup</value></data>
+  <data name="Emulation.Sectors"><value>Sektory</value></data>
+  <data name="Emulation.UnitMiB"><value>MiB</value></data>
+  <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>Nahoru</value></data>
+  <data name="Emulation.DirectionDown"><value>Dolů</value></data>
+  <data name="Emulation.DirectionLeft"><value>Vlevo</value></data>
+  <data name="Emulation.DirectionRight"><value>Vpravo</value></data>
+  <data name="Emulation.FireButton1"><value>Tlačítko střelby 1</value></data>
+  <data name="Emulation.FireButton2"><value>Tlačítko střelby 2</value></data>
+  <data name="Emulation.Cd32Red"><value>Červené tlačítko CD32</value></data>
+  <data name="Emulation.Cd32Blue"><value>Modré tlačítko CD32</value></data>
+  <data name="Emulation.Cd32Green"><value>Zelené tlačítko CD32</value></data>
+  <data name="Emulation.Cd32Yellow"><value>Žluté tlačítko CD32</value></data>
+  <data name="Emulation.Cd32Rewind"><value>CD32 převinout zpět</value></data>
+  <data name="Emulation.Cd32FastForward"><value>CD32 převinout vpřed</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>CD32 přehrát / pozastavit</value></data>
+  <data name="Emulation.AmigaJoystick"><value>Joystick Amiga</value></data>
+  <data name="Emulation.AnalogJoystick"><value>Analogový joystick</value></data>
+  <data name="Emulation.Cd32Controller"><value>Ovladač CD32</value></data>
+  <data name="Emulation.MouseWheelUp"><value>Kolečko myši nahoru</value></data>
+  <data name="Emulation.MouseWheelDown"><value>Kolečko myši dolů</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>Kolečko myši doleva</value></data>
+  <data name="Emulation.MouseWheelRight"><value>Kolečko myši doprava</value></data>
+</root>

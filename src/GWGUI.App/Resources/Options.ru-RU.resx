@@ -181,4 +181,6 @@
   <data name="Engines.Description" xml:space="preserve"><value>Независимо выберите движок для каждой операции.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>Внутренний движок GW GUI</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>Выбранный движок используется строго. Если он не может выполнить операцию, GW GUI сообщит об этом, не переключаясь незаметно на другой движок.</value></data>
+  <data name="Emulation.Model" xml:space="preserve"><value>Модель</value></data>
+  <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Захватывать мышь</value></data>
 </root>

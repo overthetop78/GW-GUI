@@ -78,4 +78,7 @@
   <data name="Tab.Explorer">
     <value>Explorateur</value>
   </data>
+  <data name="Tab.Emulation">
+    <value>Émulation</value>
+  </data>
 </root>

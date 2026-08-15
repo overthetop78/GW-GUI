@@ -28,6 +28,9 @@
             <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Tools}"><TabItem.Header><controls:MainTabHeader Icon="&#xE90F;" Text="{l:Loc Tab.Tools}"/></TabItem.Header>
                 <controls:ToolsTabSection x:Name="ToolsTabBlock"/>
             </TabItem>
+            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Emulation}"><TabItem.Header><controls:MainTabHeader Icon="&#xE7FC;" Text="{l:Loc Tab.Emulation}"/></TabItem.Header>
+                <controls:AmigaEmulationSection x:Name="AmigaEmulationBlock"/>
+            </TabItem>
         </TabControl>
         <GridSplitter x:Name="ConsoleSplitter" Grid.Row="2" Height="4" HorizontalAlignment="Stretch" ResizeDirection="Rows" Background="Transparent" BorderThickness="0" />
         <controls:TerminalSection Grid.Row="3" x:Name="TerminalBlock" Margin="16,8"/>

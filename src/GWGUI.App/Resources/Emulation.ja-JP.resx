@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>マシン</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>コア</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>{0}エミュレーションコア</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>ライブラリはGW GUIの外部に保持されます。選択したバージョンが現在インストールされているバージョンを置き換えます。</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>GW GUIが必要とするバージョン</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>利用可能な最新の公式バージョン</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>現在インストールされているバージョン</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>検索をクリックして公式Libretroサーバーを確認します。</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>バージョンを検索</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>ダウンロードして置換</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>利用可能なバージョンを検索中…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>公式バージョンが見つかりません。</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>{0}個のバージョンが利用可能です。</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>{0}をダウンロード中…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>インストール済みバージョン: {0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · インストール済み</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>バージョンがインストールされていません</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>開く</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>ようこそ</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>上で保存済みマシンを選択し、開くをクリックします。実行中の各マシンは個別のタブに表示されます。</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>保存済み構成をここで作成、選択、変更、削除できます。選択した構成を編集するには{0}タブを選択します。</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>一般</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>ビデオ</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>ストレージ</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>キーボード</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>マウス</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>コントローラー</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>詳細</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>デバイス識別子</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>コントローラー{0}のデバイス</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>{0}キー</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>ホストキー</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>プロセッサー: {0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>ビデオチップセット: {0}</value>
+  </data>
+  <data name="Emulation.CpuModel"><value>CPU モデル</value></data>
+  <data name="Emulation.CpuMultiplier"><value>CPU 倍率</value></data>
+  <data name="Emulation.CpuCompatibility"><value>サイクル互換 CPU</value></data>
+  <data name="Emulation.ChipMemory"><value>Chip RAM</value></data>
+  <data name="Emulation.SlowMemory"><value>Slow RAM</value></data>
+  <data name="Emulation.FastMemory"><value>Fast RAM</value></data>
+  <data name="Emulation.Z3Memory"><value>Zorro III RAM</value></data>
+  <data name="Emulation.VideoStandard"><value>ビデオ方式</value></data>
+  <data name="Emulation.VideoResolution"><value>解像度</value></data>
+  <data name="Emulation.AspectRatio"><value>アスペクト比</value></data>
+  <data name="Emulation.VideoCrop"><value>境界を切り抜く</value></data>
+  <data name="Emulation.FlickerFixer"><value>ちらつき補正</value></data>
+  <data name="Emulation.AudioEnabled"><value>オーディオを有効化</value></data>
+  <data name="Emulation.AudioOutput"><value>オーディオ出力</value></data>
+  <data name="Emulation.AudioLatency"><value>遅延（ms）</value></data>
+  <data name="Emulation.AudioInterpolation"><value>補間</value></data>
+  <data name="Emulation.AudioFilter"><value>Amiga オーディオフィルター</value></data>
+  <data name="Emulation.StereoSeparation"><value>ステレオ分離度（%）</value></data>
+  <data name="Emulation.AudioInput"><value>オーディオ入力</value></data>
+  <data name="Emulation.AudioInputUnavailable"><value>この Amiga コアはオーディオ入力を提供しません。</value></data>
+  <data name="Emulation.DefaultAudioOutput"><value>Windows の既定出力</value></data>
+  <data name="Emulation.AddMedia"><value>メディアを追加</value></data>
+  <data name="Emulation.CreateHardDisk"><value>ハードディスクを作成</value></data>
+  <data name="Emulation.HardDiskSize"><value>ハードディスク容量（MiB）</value></data>
+  <data name="Emulation.NoMedia"><value>メディアがありません。選択したモデルが対応するフロッピー、ハードディスク、または CD を追加してください。</value></data>
+  <data name="Emulation.ReadOnly"><value>読み取り専用</value></data>
+  <data name="Emulation.AmigaMediaFilter"><value>Amiga メディア|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|すべてのファイル|*.*</value></data>
+  <data name="Emulation.HardDiskFilter"><value>Amiga ハードディスク|*.hdf|すべてのファイル|*.*</value></data>
+  <data name="Emulation.HardDiskNotSupported"><value>選択したモデルはハードディスクに対応していません。</value></data>
+  <data name="Emulation.TooManyFloppyDrives"><value>このモデルは最大 {0} 台のフロッピードライブに対応します。</value></data>
+  <data name="Emulation.TooManyHardDrives"><value>このモデルは最大 {0} 台のハードディスクに対応します。</value></data>
+  <data name="Emulation.CdNotSupported"><value>選択したモデルは CD ドライブに対応していません。</value></data>
+  <data name="Emulation.DuplicateKeyboardMapping"><value>2 つの Amiga キーに同じ PC キーが割り当てられています。保存前に赤い割り当てを修正してください。</value></data>
+  <data name="Emulation.ReleaseMouseKey"><value>マウスキャプチャ解除キー</value></data>
+  <data name="Emulation.MouseLeftButton"><value>マウス左ボタン</value></data>
+  <data name="Emulation.MouseRightButton"><value>マウス右ボタン</value></data>
+  <data name="Emulation.MouseMiddleButton"><value>マウス中央ボタン</value></data>
+  <data name="Emulation.DetectControllers"><value>コントローラーを検出</value></data>
+  <data name="Emulation.EmulatedAction"><value>Amiga アクション</value></data>
+  <data name="Emulation.PhysicalControl"><value>キーボード、マウス、またはコントローラーの入力</value></data>
+  <data name="Emulation.Chipset"><value>チップセット</value></data>
+  <data name="Emulation.CdDrive"><value>CDドライブ</value></data>
+  <data name="Emulation.FloppyDriveCount"><value>フロッピードライブ数</value></data>
+  <data name="Emulation.HardDriveCount"><value>ハードディスク数</value></data>
+  <data name="Emulation.FpuModel"><value>FPU</value></data>
+  <data name="Emulation.CpuSpeed"><value>CPU 速度</value></data>
+  <data name="Emulation.CpuSpeedOriginal"><value>元の速度</value></data>
+  <data name="Emulation.CompatibilityNormal"><value>通常</value></data>
+  <data name="Emulation.CompatibilityCompatible"><value>互換</value></data>
+  <data name="Emulation.CompatibilityMemory"><value>メモリ互換</value></data>
+  <data name="Emulation.CompatibilityExact"><value>サイクル単位で正確</value></data>
+  <data name="Emulation.IntegratedFpu"><value>内蔵 FPU</value></data>
+  <data name="Emulation.Enabled"><value>有効</value></data>
+  <data name="Emulation.Disabled"><value>無効</value></data>
+  <data name="Emulation.Minimum"><value>最小</value></data>
+  <data name="Emulation.VerySmall"><value>非常に小さい</value></data>
+  <data name="Emulation.Small"><value>小さい</value></data>
+  <data name="Emulation.Medium"><value>中</value></data>
+  <data name="Emulation.Large"><value>大きい</value></data>
+  <data name="Emulation.VeryLarge"><value>非常に大きい</value></data>
+  <data name="Emulation.Maximum"><value>最大</value></data>
+  <data name="Emulation.Locked"><value>固定</value></data>
+  <data name="Emulation.Immediate"><value>即時</value></data>
+  <data name="Emulation.Waiting"><value>待機</value></data>
+  <data name="Emulation.Standard"><value>標準</value></data>
+  <data name="Emulation.Enhanced"><value>拡張</value></data>
+  <data name="Emulation.Internal"><value>内部</value></data>
+  <data name="Emulation.Loud"><value>大音量</value></data>
+  <data name="Emulation.ResolutionAutoLow"><value>自動低解像度</value></data>
+  <data name="Emulation.ResolutionAutoSuperHigh"><value>自動超高解像度</value></data>
+  <data name="Emulation.ResolutionLow"><value>低解像度</value></data>
+  <data name="Emulation.ResolutionHigh"><value>高解像度</value></data>
+  <data name="Emulation.ResolutionSuperHigh"><value>超高解像度</value></data>
+  <data name="Emulation.VideoLineMode"><value>ラインモード</value></data>
+  <data name="Emulation.VideoHzChange"><value>リフレッシュレート変更</value></data>
+  <data name="Emulation.VideoFrameskip"><value>フレームスキップ</value></data>
+  <data name="Emulation.VideoColors"><value>色深度</value></data>
+  <data name="Emulation.VideoGamma"><value>ガンマ</value></data>
+  <data name="Emulation.ImmediateBlits"><value>ブリッター動作</value></data>
+  <data name="Emulation.CollisionLevel"><value>衝突判定</value></data>
+  <data name="Emulation.LineModeSingle"><value>シングルスキャン</value></data>
+  <data name="Emulation.LineModeDouble"><value>ダブルスキャン</value></data>
+  <data name="Emulation.CollisionSprites"><value>スプライト</value></data>
+  <data name="Emulation.CollisionPlayfields"><value>プレイフィールド</value></data>
+  <data name="Emulation.CollisionFull"><value>完全</value></data>
+  <data name="Emulation.InterpolationAnti"><value>アンチ補間</value></data>
+  <data name="Emulation.FilterEmulated"><value>エミュレート</value></data>
+  <data name="Emulation.AudioFilterType"><value>フィルター種類</value></data>
+  <data name="Emulation.FloppySound"><value>フロッピードライブ音量</value></data>
+  <data name="Emulation.FloppySoundType"><value>フロッピードライブ音の種類</value></data>
+  <data name="Emulation.MuteEmptyFloppy"><value>空のドライブをミュート</value></data>
+  <data name="Emulation.CdAudioVolume"><value>CD オーディオ音量</value></data>
+  <data name="Emulation.FloppySpeed"><value>フロッピードライブ速度</value></data>
+  <data name="Emulation.FloppyWriteProtection"><value>フロッピーイメージを書き込み保護</value></data>
+  <data name="Emulation.FloppyWriteRedirect"><value>フロッピー書き込みをリダイレクト</value></data>
+  <data name="Emulation.CdSpeed"><value>CD 速度</value></data>
+  <data name="Emulation.KeyboardPassThrough"><value>物理キーボードのパススルー</value></data>
+  <data name="Emulation.PhysicalMouse"><value>物理マウス</value></data>
+  <data name="Emulation.PhysicalMouseDouble"><value>移動量を 2 倍</value></data>
+  <data name="Emulation.MouseSpeed"><value>マウス速度</value></data>
+  <data name="Emulation.AnalogMouse"><value>マウスを操作するアナログスティック</value></data>
+  <data name="Emulation.AnalogMouseDeadzone"><value>アナログスティックのデッドゾーン</value></data>
+  <data name="Emulation.AnalogMouseSpeed"><value>アナログスティックのマウス速度</value></data>
+  <data name="Emulation.LeftStick"><value>左スティック</value></data>
+  <data name="Emulation.RightStick"><value>右スティック</value></data>
+  <data name="Emulation.BothSticks"><value>両方のスティック</value></data>
+  <data name="Emulation.TurboFire"><value>連射</value></data>
+  <data name="Emulation.TurboButton"><value>連射ボタン</value></data>
+  <data name="Emulation.TurboPulse"><value>連射間隔</value></data>
+  <data name="Emulation.JoyPortOrder"><value>コントローラーポート順</value></data>
+  <data name="Emulation.Emulator"><value>エミュレーター</value></data>
+  <data name="Emulation.StorageBaseFolder"><value>エミュレーション共通ストレージフォルダー</value></data>
+  <data name="Emulation.StorageBaseFolderDescription"><value>ハードディスクは HDD\Amiga、HDD\Atari、および今後のシステムのフォルダーに自動的に整理されます。</value></data>
+  <data name="Emulation.AddHardDisk"><value>既存のハードディスクを追加</value></data>
+  <data name="Emulation.HardDisks"><value>ハードディスク</value></data>
+  <data name="Emulation.NoHardDisks"><value>このマシンにはハードディスクが関連付けられていません。</value></data>
+  <data name="Emulation.KeyboardPriorityHint"><value>予約済みショートカット</value></data>
+  <data name="Emulation.KeyboardPriorityDescription"><value>GW GUI と Windows のショートカットは有効なままで、マシンには取り込まれません。</value></data>
+  <data name="Emulation.InputBehavior"><value>動作</value></data>
+  <data name="Emulation.AssignInput"><value>割り当て...</value></data>
+  <data name="Emulation.InputActions"><value>操作</value></data>
+  <data name="Emulation.PressInput"><value>キーを押してください...</value></data>
+  <data name="Emulation.CreateStorageFolders"><value>不足しているサブフォルダーを自動作成</value></data>
+  <data name="Emulation.CommonFolders"><value>共有フォルダー</value></data>
+  <data name="Emulation.SharedInputDescription"><value>デバイス検出は共通ですが、割り当ては各マシン構成に個別に保存されます。</value></data>
+  <data name="Emulation.TestInputs"><value>入力をテスト</value></data>
+  <data name="Emulation.SharedDevices"><value>共有入力デバイス</value></data>
+  <data name="Emulation.CaptureFolder"><value>キャプチャフォルダー</value></data>
+  <data name="Emulation.StateFolder"><value>保存状態フォルダー</value></data>
+  <data name="Emulation.DefaultFolders"><value>既定のフォルダー</value></data>
+  <data name="Emulation.NoControllersDetected"><value>コントローラーが検出されません</value></data>
+  <data name="Emulation.TestInputsPrompt"><value>キーボードのキーまたはマウスボタンを押して検出をテストします。</value></data>
+  <data name="Emulation.Floppies"><value>フロッピーディスク</value></data>
+  <data name="Emulation.ExtendedRom"><value>拡張 ROM</value></data>
+  <data name="Emulation.RomKey"><value>ROM キー</value></data>
+  <data name="Emulation.Processor"><value>プロセッサ</value></data>
+  <data name="Emulation.Precision"><value>精度</value></data>
+  <data name="Emulation.Acceleration"><value>高速化</value></data>
+  <data name="Emulation.MainMemory"><value>メインメモリ</value></data>
+  <data name="Emulation.MemoryExtensions"><value>メモリ拡張</value></data>
+  <data name="Emulation.MemoryNone"><value>なし</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>メモリ構成は {0} と互換性があります。</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>メモリ拡張は {0} と互換性があります。</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>Zorro III RAM は {0} では使用できません。</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>構成済みメモリ合計: {0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>システム ROM</value></data>
+  <data name="Emulation.DetectedRoms"><value>検出された ROM</value></data>
+  <data name="Emulation.UseFirmware"><value>使用</value></data>
+  <data name="Emulation.NotUsed"><value>未使用</value></data>
+  <data name="Emulation.OpenRomFolder"><value>ROM フォルダーを開く</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>一部互換</value></data>
+  <data name="Emulation.DisplaySettings"><value>表示</value></data>
+  <data name="Emulation.RenderingSettings"><value>レンダリング</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>チップセット互換性</value></data>
+  <data name="Emulation.AudioDevice"><value>デバイス</value></data>
+  <data name="Emulation.Latency"><value>遅延</value></data>
+  <data name="Emulation.AudioQuality"><value>品質</value></data>
+  <data name="Emulation.AudioDrives"><value>ドライブ</value></data>
+  <data name="Emulation.Type"><value>種類</value></data>
+  <data name="Emulation.AddStorageDevice"><value>ストレージデバイスを追加</value></data>
+  <data name="Emulation.AmigaDdFloppy"><value>Amiga 3.5 インチ DD · 880 KiB</value></data>
+  <data name="Emulation.AmigaHdFloppy"><value>Amiga 3.5 インチ HD · 1.76 MiB</value></data>
+  <data name="Emulation.AssociatedMedia"><value>関連付けられたメディア</value></data>
+  <data name="Emulation.AutomaticDiskGeometry"><value>ディスクジオメトリはエミュレーターによって自動的に決定されます。</value></data>
+  <data name="Emulation.BlankFloppyCreated"><value>空のフロッピーイメージを作成しました: {0}</value></data>
+  <data name="Emulation.BlankHardDiskHint"><value>ファイルは空の状態で作成されます。その後、エミュレートされたマシンでパーティション作成とフォーマットが必要です。</value></data>
+  <data name="Emulation.CdWriter"><value>CD ライター</value></data>
+  <data name="Emulation.CdWriterHint"><value>空のディスクは、選択したマシンとエミュレーターが書き込みに対応している場合にのみ作成できます。</value></data>
+  <data name="Emulation.CompactDiscDevice"><value>CD-ROM ドライブ</value></data>
+  <data name="Emulation.ConfigureDevice"><value>設定</value></data>
+  <data name="Emulation.CreateBlankFloppy"><value>空のフロッピーを作成</value></data>
+  <data name="Emulation.DiskImage"><value>ディスクイメージ</value></data>
+  <data name="Emulation.DiskImageRequired"><value>既存のディスクイメージを選択してください。</value></data>
+  <data name="Emulation.ExistingDiskHint"><value>選択したファイルはこの仮想ドライブに接続されます。</value></data>
+  <data name="Emulation.FloppyDevice"><value>フロッピードライブ</value></data>
+  <data name="Emulation.FloppyImageFilter"><value>Amiga フロッピーイメージ|*.adf|すべてのファイル|*.*</value></data>
+  <data name="Emulation.HardDiskDevice"><value>ハードディスク</value></data>
+  <data name="Emulation.Interface"><value>インターフェイス</value></data>
+  <data name="Emulation.PreallocateFile"><value>ファイルを事前割り当て</value></data>
+  <data name="Emulation.RemovableMediaRuntimeHint"><value>フロッピーと CD は実行中のマシンから挿入または交換します。</value></data>
+  <data name="Emulation.RemoveMedia"><value>メディアを取り外す</value></data>
+  <data name="Emulation.ReplaceExistingDisk"><value>ディスクイメージは既に存在します: {0}\n置き換えますか？</value></data>
+  <data name="Emulation.StorageDeviceCapabilitiesHint"><value>利用可能な種類、モデル、識別子は選択したマシンによって異なります。</value></data>
+  <data name="Emulation.TapeDevice"><value>テープドライブ</value></data>
+  <data name="Emulation.UseDisk"><value>ディスクを使用</value></data>
+  <data name="Emulation.UseExistingDisk"><value>既存のディスクを使用</value></data>
+  <data name="Emulation.ModifyInGeneral"><value>全般で変更</value></data>
+  <data name="Emulation.NoStorageDeviceAvailable"><value>このマシンで利用できる追加のストレージデバイスはありません。</value></data>
+  <data name="Emulation.StorageDevices"><value>ストレージデバイス</value></data>
+  <data name="Emulation.RestoreDefaultBindings"><value>既定値に戻す</value></data>
+  <data name="Emulation.ClearConflicts"><value>競合を消去</value></data>
+  <data name="Emulation.EmulatedKey"><value>マシンのキー</value></data>
+  <data name="Emulation.Binding"><value>割り当て</value></data>
+  <data name="Emulation.BindingState"><value>状態</value></data>
+  <data name="Emulation.SearchBinding"><value>キーまたは割り当てを検索</value></data>
+  <data name="Emulation.BindingLegend"><value>有効: 一意の割り当て · 競合: 複数回使用 · 予約済み: Windows または GW GUI のショートカット</value></data>
+  <data name="Emulation.BindingValid"><value>有効</value></data>
+  <data name="Emulation.BindingConflict"><value>競合</value></data>
+  <data name="Emulation.BindingReserved"><value>予約済み</value></data>
+  <data name="Emulation.BindingUnassigned"><value>未割り当て</value></data>
+  <data name="Emulation.GlobalShortcuts"><value>エミュレーションのショートカット</value></data>
+  <data name="Emulation.ShortcutsTab"><value>ショートカット</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>マウスを解放</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>一時停止 / 再開</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>全画面 / ウィンドウ</value></data>
+  <data name="Emulation.Shortcut.Power"><value>電源オン / オフ</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>ソフトリセット</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>ハードリセット</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>状態をクイック保存</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>状態をクイック読込</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>スクリーンショット</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>アクティブなマシンをミュート</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>押している間早送り</value></data>
+  <data name="Emulation.Key.Help"><value>ヘルプ</value></data>
+  <data name="Emulation.Key.LeftAmiga"><value>左 Amiga</value></data>
+  <data name="Emulation.Key.RightAmiga"><value>右 Amiga</value></data>
+  <data name="Emulation.SpecialKeysOnlyHint"><value>文字、数字、通常の修飾キーは直接送信されます。ここでは Amiga のファンクションキーと特殊キーだけを割り当てます。</value></data>
+  <data name="Emulation.ShortcutUnavailable"><value>この操作は現在のエミュレーターではまだ利用できません。</value></data>
+  <data name="Emulation.Allocation"><value>割り当て</value></data>
+  <data name="Emulation.AutomaticGeometry"><value>自動ジオメトリ</value></data>
+  <data name="Emulation.BlankMedia"><value>空のメディア</value></data>
+  <data name="Emulation.BytesPerSector"><value>セクターあたりのバイト数</value></data>
+  <data name="Emulation.CalculatedCapacity"><value>計算された容量: {0}</value></data>
+  <data name="Emulation.ControllerMappings"><value>コントローラーの割り当て</value></data>
+  <data name="Emulation.ControllerPort"><value>ポート {0}</value></data>
+  <data name="Emulation.ControllerType"><value>コントローラーの種類</value></data>
+  <data name="Emulation.CustomSize"><value>カスタムサイズ</value></data>
+  <data name="Emulation.Cylinders"><value>シリンダー</value></data>
+  <data name="Emulation.DestinationFolder"><value>保存先フォルダー</value></data>
+  <data name="Emulation.DetectedControllers"><value>検出されたコントローラー</value></data>
+  <data name="Emulation.Device"><value>デバイス</value></data>
+  <data name="Emulation.DiskGeometry"><value>ディスクジオメトリ (CHS)</value></data>
+  <data name="Emulation.DiskSizeProfile"><value>サイズプロファイル</value></data>
+  <data name="Emulation.FloppyDrive"><value>フロッピードライブ</value></data>
+  <data name="Emulation.Heads"><value>ヘッド</value></data>
+  <data name="Emulation.InputCaptureHint"><value>［割り当て］を押してから、キーボード、マウス、またはコントローラーのボタンを押してください。</value></data>
+  <data name="Emulation.InvalidDiskSize"><value>ディスクサイズまたはジオメトリが無効です。</value></data>
+  <data name="Emulation.MouseActions"><value>マウス操作</value></data>
+  <data name="Emulation.MouseButton4"><value>マウスボタン 4</value></data>
+  <data name="Emulation.MouseButton5"><value>マウスボタン 5</value></data>
+  <data name="Emulation.MouseCaptureTitle"><value>マウスのキャプチャ</value></data>
+  <data name="Emulation.PreallocationHint"><value>物理ディスク領域を直ちに予約します。無効の場合、書き込みに応じてイメージが拡張されます。</value></data>
+  <data name="Emulation.SearchInputBinding"><value>操作または入力を検索</value></data>
+  <data name="Emulation.Sectors"><value>セクター</value></data>
+  <data name="Emulation.UnitMiB"><value>MiB</value></data>
+  <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>上</value></data>
+  <data name="Emulation.DirectionDown"><value>下</value></data>
+  <data name="Emulation.DirectionLeft"><value>左</value></data>
+  <data name="Emulation.DirectionRight"><value>右</value></data>
+  <data name="Emulation.FireButton1"><value>射撃ボタン 1</value></data>
+  <data name="Emulation.FireButton2"><value>射撃ボタン 2</value></data>
+  <data name="Emulation.Cd32Red"><value>CD32 赤ボタン</value></data>
+  <data name="Emulation.Cd32Blue"><value>CD32 青ボタン</value></data>
+  <data name="Emulation.Cd32Green"><value>CD32 緑ボタン</value></data>
+  <data name="Emulation.Cd32Yellow"><value>CD32 黄ボタン</value></data>
+  <data name="Emulation.Cd32Rewind"><value>CD32 巻き戻し</value></data>
+  <data name="Emulation.Cd32FastForward"><value>CD32 早送り</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>CD32 再生 / 一時停止</value></data>
+  <data name="Emulation.AmigaJoystick"><value>Amiga ジョイスティック</value></data>
+  <data name="Emulation.AnalogJoystick"><value>アナログジョイスティック</value></data>
+  <data name="Emulation.Cd32Controller"><value>CD32 コントローラー</value></data>
+  <data name="Emulation.MouseWheelUp"><value>マウスホイール上</value></data>
+  <data name="Emulation.MouseWheelDown"><value>マウスホイール下</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>マウスホイール左</value></data>
+  <data name="Emulation.MouseWheelRight"><value>マウスホイール右</value></data>
+</root>

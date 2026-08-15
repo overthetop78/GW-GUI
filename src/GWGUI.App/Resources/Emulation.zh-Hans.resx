@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Emulation.MachinesTab">
+    <value>机器</value>
+  </data>
+  <data name="Emulation.Core">
+    <value>核心</value>
+  </data>
+  <data name="Emulation.CoreManagerTitle">
+    <value>{0} 模拟核心</value>
+  </data>
+  <data name="Emulation.CoreManagerDescription">
+    <value>该库保持在 GW GUI 外部。所选版本将替换当前安装的版本。</value>
+  </data>
+  <data name="Emulation.CoreRequiredVersion">
+    <value>GW GUI 要求的版本</value>
+  </data>
+  <data name="Emulation.CoreLatestVersion">
+    <value>最新可用官方版本</value>
+  </data>
+  <data name="Emulation.CoreProjectVersion">
+    <value>当前安装的版本</value>
+  </data>
+  <data name="Emulation.CoreSearchPrompt">
+    <value>单击「搜索」以查询 Libretro 官方服务器。</value>
+  </data>
+  <data name="Emulation.CoreSearch">
+    <value>搜索版本</value>
+  </data>
+  <data name="Emulation.CoreDownload">
+    <value>下载并替换</value>
+  </data>
+  <data name="Emulation.CoreSearching">
+    <value>正在搜索可用版本…</value>
+  </data>
+  <data name="Emulation.CoreNoneFound">
+    <value>未找到官方版本。</value>
+  </data>
+  <data name="Emulation.CoreVersionsFound">
+    <value>有 {0} 个版本可用。</value>
+  </data>
+  <data name="Emulation.CoreDownloading">
+    <value>正在下载 {0}…</value>
+  </data>
+  <data name="Emulation.CoreInstalledPath">
+    <value>已安装版本：{0}</value>
+  </data>
+  <data name="Emulation.CoreInstalled">
+    <value>{0} · 已安装</value>
+  </data>
+  <data name="Emulation.CoreNotInstalled">
+    <value>未安装任何版本</value>
+  </data>
+  <data name="Emulation.OpenMachine">
+    <value>打开</value>
+  </data>
+  <data name="Emulation.WelcomeTab">
+    <value>欢迎</value>
+  </data>
+  <data name="Emulation.WelcomeText">
+    <value>在上方选择已保存的机器，然后单击「打开」。每台运行中的机器都会显示在单独的选项卡中。</value>
+  </data>
+  <data name="Emulation.ConfigurationsDescription">
+    <value>在此创建、选择、修改或删除已保存的配置。选择 {0} 选项卡以编辑所选配置。</value>
+  </data>
+  <data name="Emulation.GeneralTab">
+    <value>常规</value>
+  </data>
+  <data name="Emulation.VideoTab">
+    <value>视频</value>
+  </data>
+  <data name="Emulation.StorageTab">
+    <value>存储</value>
+  </data>
+  <data name="Emulation.KeyboardTab">
+    <value>键盘</value>
+  </data>
+  <data name="Emulation.MouseTab">
+    <value>鼠标</value>
+  </data>
+  <data name="Emulation.ControllersTab">
+    <value>控制器</value>
+  </data>
+  <data name="Emulation.AdvancedTab">
+    <value>高级</value>
+  </data>
+  <data name="Emulation.DeviceId">
+    <value>设备标识符</value>
+  </data>
+  <data name="Emulation.ControllerDevice">
+    <value>控制器 {0} 设备</value>
+  </data>
+  <data name="Emulation.SystemKey">
+    <value>{0} 键</value>
+  </data>
+  <data name="Emulation.HostKey">
+    <value>主机键</value>
+  </data>
+  <data name="Emulation.CpuSummary">
+    <value>处理器：{0}</value>
+  </data>
+  <data name="Emulation.RamSummary">
+    <value>Chip RAM：{0} KiB\nSlow RAM：{1} KiB\nFast RAM：{2} MiB</value>
+  </data>
+  <data name="Emulation.VideoSummary">
+    <value>视频芯片组：{0}</value>
+  </data>
+  <data name="Emulation.CpuModel"><value>CPU 型号</value></data>
+  <data name="Emulation.CpuMultiplier"><value>CPU 倍频</value></data>
+  <data name="Emulation.CpuCompatibility"><value>逐周期兼容 CPU</value></data>
+  <data name="Emulation.ChipMemory"><value>芯片内存</value></data>
+  <data name="Emulation.SlowMemory"><value>慢速内存</value></data>
+  <data name="Emulation.FastMemory"><value>快速内存</value></data>
+  <data name="Emulation.Z3Memory"><value>Zorro III 内存</value></data>
+  <data name="Emulation.VideoStandard"><value>视频制式</value></data>
+  <data name="Emulation.VideoResolution"><value>分辨率</value></data>
+  <data name="Emulation.AspectRatio"><value>宽高比</value></data>
+  <data name="Emulation.VideoCrop"><value>裁剪边框</value></data>
+  <data name="Emulation.FlickerFixer"><value>闪烁修正</value></data>
+  <data name="Emulation.AudioEnabled"><value>启用音频</value></data>
+  <data name="Emulation.AudioOutput"><value>音频输出</value></data>
+  <data name="Emulation.AudioLatency"><value>延迟（毫秒）</value></data>
+  <data name="Emulation.AudioInterpolation"><value>插值</value></data>
+  <data name="Emulation.AudioFilter"><value>Amiga 音频滤波器</value></data>
+  <data name="Emulation.StereoSeparation"><value>立体声分离度（%）</value></data>
+  <data name="Emulation.AudioInput"><value>音频输入</value></data>
+  <data name="Emulation.AudioInputUnavailable"><value>此 Amiga 核心不提供音频输入。</value></data>
+  <data name="Emulation.DefaultAudioOutput"><value>Windows 默认输出</value></data>
+  <data name="Emulation.AddMedia"><value>添加媒体</value></data>
+  <data name="Emulation.CreateHardDisk"><value>创建硬盘</value></data>
+  <data name="Emulation.HardDiskSize"><value>硬盘大小（MiB）</value></data>
+  <data name="Emulation.NoMedia"><value>无媒体。请添加所选型号支持的软盘、硬盘或 CD。</value></data>
+  <data name="Emulation.ReadOnly"><value>只读</value></data>
+  <data name="Emulation.AmigaMediaFilter"><value>Amiga 媒体|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|所有文件|*.*</value></data>
+  <data name="Emulation.HardDiskFilter"><value>Amiga 硬盘|*.hdf|所有文件|*.*</value></data>
+  <data name="Emulation.HardDiskNotSupported"><value>所选型号不支持硬盘。</value></data>
+  <data name="Emulation.TooManyFloppyDrives"><value>此型号最多支持 {0} 个软盘驱动器。</value></data>
+  <data name="Emulation.TooManyHardDrives"><value>此型号最多支持 {0} 个硬盘。</value></data>
+  <data name="Emulation.CdNotSupported"><value>所选型号不支持 CD 驱动器。</value></data>
+  <data name="Emulation.DuplicateKeyboardMapping"><value>两个 Amiga 按键使用了同一个 PC 按键。保存前请修正红色映射。</value></data>
+  <data name="Emulation.ReleaseMouseKey"><value>释放鼠标捕获的按键</value></data>
+  <data name="Emulation.MouseLeftButton"><value>鼠标左键</value></data>
+  <data name="Emulation.MouseRightButton"><value>鼠标右键</value></data>
+  <data name="Emulation.MouseMiddleButton"><value>鼠标中键</value></data>
+  <data name="Emulation.DetectControllers"><value>检测控制器</value></data>
+  <data name="Emulation.EmulatedAction"><value>Amiga 操作</value></data>
+  <data name="Emulation.PhysicalControl"><value>键盘、鼠标或控制器输入</value></data>
+  <data name="Emulation.Chipset"><value>芯片组</value></data>
+  <data name="Emulation.CdDrive"><value>CD 驱动器</value></data>
+  <data name="Emulation.FloppyDriveCount"><value>软盘驱动器数量</value></data>
+  <data name="Emulation.HardDriveCount"><value>硬盘数量</value></data>
+  <data name="Emulation.FpuModel"><value>FPU</value></data>
+  <data name="Emulation.CpuSpeed"><value>CPU 速度</value></data>
+  <data name="Emulation.CpuSpeedOriginal"><value>原始速度</value></data>
+  <data name="Emulation.CompatibilityNormal"><value>普通</value></data>
+  <data name="Emulation.CompatibilityCompatible"><value>兼容</value></data>
+  <data name="Emulation.CompatibilityMemory"><value>内存兼容</value></data>
+  <data name="Emulation.CompatibilityExact"><value>逐周期精确</value></data>
+  <data name="Emulation.IntegratedFpu"><value>集成 FPU</value></data>
+  <data name="Emulation.Enabled"><value>已启用</value></data>
+  <data name="Emulation.Disabled"><value>已禁用</value></data>
+  <data name="Emulation.Minimum"><value>最小</value></data>
+  <data name="Emulation.VerySmall"><value>很小</value></data>
+  <data name="Emulation.Small"><value>小</value></data>
+  <data name="Emulation.Medium"><value>中</value></data>
+  <data name="Emulation.Large"><value>大</value></data>
+  <data name="Emulation.VeryLarge"><value>很大</value></data>
+  <data name="Emulation.Maximum"><value>最大</value></data>
+  <data name="Emulation.Locked"><value>锁定</value></data>
+  <data name="Emulation.Immediate"><value>立即</value></data>
+  <data name="Emulation.Waiting"><value>等待</value></data>
+  <data name="Emulation.Standard"><value>标准</value></data>
+  <data name="Emulation.Enhanced"><value>增强</value></data>
+  <data name="Emulation.Internal"><value>内部</value></data>
+  <data name="Emulation.Loud"><value>响亮</value></data>
+  <data name="Emulation.ResolutionAutoLow"><value>自动低分辨率</value></data>
+  <data name="Emulation.ResolutionAutoSuperHigh"><value>自动超高分辨率</value></data>
+  <data name="Emulation.ResolutionLow"><value>低分辨率</value></data>
+  <data name="Emulation.ResolutionHigh"><value>高分辨率</value></data>
+  <data name="Emulation.ResolutionSuperHigh"><value>超高分辨率</value></data>
+  <data name="Emulation.VideoLineMode"><value>行模式</value></data>
+  <data name="Emulation.VideoHzChange"><value>刷新率更改</value></data>
+  <data name="Emulation.VideoFrameskip"><value>跳帧</value></data>
+  <data name="Emulation.VideoColors"><value>色深</value></data>
+  <data name="Emulation.VideoGamma"><value>伽马</value></data>
+  <data name="Emulation.ImmediateBlits"><value>Blitter 运行方式</value></data>
+  <data name="Emulation.CollisionLevel"><value>碰撞检测</value></data>
+  <data name="Emulation.LineModeSingle"><value>单扫描</value></data>
+  <data name="Emulation.LineModeDouble"><value>双扫描</value></data>
+  <data name="Emulation.CollisionSprites"><value>精灵</value></data>
+  <data name="Emulation.CollisionPlayfields"><value>图形平面</value></data>
+  <data name="Emulation.CollisionFull"><value>完整</value></data>
+  <data name="Emulation.InterpolationAnti"><value>抗插值</value></data>
+  <data name="Emulation.FilterEmulated"><value>模拟</value></data>
+  <data name="Emulation.AudioFilterType"><value>滤波器类型</value></data>
+  <data name="Emulation.FloppySound"><value>软盘驱动器音量</value></data>
+  <data name="Emulation.FloppySoundType"><value>软盘驱动器声音类型</value></data>
+  <data name="Emulation.MuteEmptyFloppy"><value>空驱动器静音</value></data>
+  <data name="Emulation.CdAudioVolume"><value>CD 音频音量</value></data>
+  <data name="Emulation.FloppySpeed"><value>软盘驱动器速度</value></data>
+  <data name="Emulation.FloppyWriteProtection"><value>软盘映像写保护</value></data>
+  <data name="Emulation.FloppyWriteRedirect"><value>重定向软盘写入</value></data>
+  <data name="Emulation.CdSpeed"><value>CD 速度</value></data>
+  <data name="Emulation.KeyboardPassThrough"><value>物理键盘直通</value></data>
+  <data name="Emulation.PhysicalMouse"><value>物理鼠标</value></data>
+  <data name="Emulation.PhysicalMouseDouble"><value>双倍移动</value></data>
+  <data name="Emulation.MouseSpeed"><value>鼠标速度</value></data>
+  <data name="Emulation.AnalogMouse"><value>控制鼠标的模拟摇杆</value></data>
+  <data name="Emulation.AnalogMouseDeadzone"><value>模拟摇杆死区</value></data>
+  <data name="Emulation.AnalogMouseSpeed"><value>模拟摇杆鼠标速度</value></data>
+  <data name="Emulation.LeftStick"><value>左摇杆</value></data>
+  <data name="Emulation.RightStick"><value>右摇杆</value></data>
+  <data name="Emulation.BothSticks"><value>两个摇杆</value></data>
+  <data name="Emulation.TurboFire"><value>连发</value></data>
+  <data name="Emulation.TurboButton"><value>连发按钮</value></data>
+  <data name="Emulation.TurboPulse"><value>连发脉冲</value></data>
+  <data name="Emulation.JoyPortOrder"><value>控制器端口顺序</value></data>
+  <data name="Emulation.Emulator"><value>模拟器</value></data>
+  <data name="Emulation.StorageBaseFolder"><value>共享模拟存储文件夹</value></data>
+  <data name="Emulation.StorageBaseFolderDescription"><value>硬盘会自动整理到 HDD\Amiga、HDD\Atari 以及未来系统的文件夹中。</value></data>
+  <data name="Emulation.AddHardDisk"><value>添加现有硬盘</value></data>
+  <data name="Emulation.HardDisks"><value>硬盘</value></data>
+  <data name="Emulation.NoHardDisks"><value>此机器未关联硬盘。</value></data>
+  <data name="Emulation.KeyboardPriorityHint"><value>保留的快捷键</value></data>
+  <data name="Emulation.KeyboardPriorityDescription"><value>GW GUI 和 Windows 快捷键保持有效，不会被机器捕获。</value></data>
+  <data name="Emulation.InputBehavior"><value>行为</value></data>
+  <data name="Emulation.AssignInput"><value>分配...</value></data>
+  <data name="Emulation.InputActions"><value>操作</value></data>
+  <data name="Emulation.PressInput"><value>请按键...</value></data>
+  <data name="Emulation.CreateStorageFolders"><value>自动创建缺少的子文件夹</value></data>
+  <data name="Emulation.CommonFolders"><value>共享文件夹</value></data>
+  <data name="Emulation.SharedInputDescription"><value>设备检测是共享的，但分配会分别保存在每个机器配置中。</value></data>
+  <data name="Emulation.TestInputs"><value>测试输入</value></data>
+  <data name="Emulation.SharedDevices"><value>共享输入设备</value></data>
+  <data name="Emulation.CaptureFolder"><value>捕获文件夹</value></data>
+  <data name="Emulation.StateFolder"><value>保存状态文件夹</value></data>
+  <data name="Emulation.DefaultFolders"><value>默认文件夹</value></data>
+  <data name="Emulation.NoControllersDetected"><value>未检测到控制器</value></data>
+  <data name="Emulation.TestInputsPrompt"><value>按键盘按键或鼠标按钮以测试检测。</value></data>
+  <data name="Emulation.Floppies"><value>软盘</value></data>
+  <data name="Emulation.ExtendedRom"><value>扩展 ROM</value></data>
+  <data name="Emulation.RomKey"><value>ROM 密钥</value></data>
+  <data name="Emulation.Processor"><value>处理器</value></data>
+  <data name="Emulation.Precision"><value>精度</value></data>
+  <data name="Emulation.Acceleration"><value>加速</value></data>
+  <data name="Emulation.MainMemory"><value>主内存</value></data>
+  <data name="Emulation.MemoryExtensions"><value>内存扩展</value></data>
+  <data name="Emulation.MemoryNone"><value>无</value></data>
+  <data name="Emulation.MemoryCompatibleWithModel"><value>内存配置与 {0} 兼容。</value></data>
+  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>内存扩展与 {0} 兼容。</value></data>
+  <data name="Emulation.Z3MemoryUnavailableForModel"><value>{0} 不支持 Zorro III 内存。</value></data>
+  <data name="Emulation.TotalMemoryConfigured"><value>已配置内存总量：{0} {1}</value></data>
+  <data name="Emulation.SystemRom"><value>系统 ROM</value></data>
+  <data name="Emulation.DetectedRoms"><value>检测到的 ROM</value></data>
+  <data name="Emulation.UseFirmware"><value>使用</value></data>
+  <data name="Emulation.NotUsed"><value>未使用</value></data>
+  <data name="Emulation.OpenRomFolder"><value>打开 ROM 文件夹</value></data>
+  <data name="Emulation.FirmwarePartiallyCompatible"><value>部分兼容</value></data>
+  <data name="Emulation.DisplaySettings"><value>显示</value></data>
+  <data name="Emulation.RenderingSettings"><value>渲染</value></data>
+  <data name="Emulation.ChipsetCompatibility"><value>芯片组兼容性</value></data>
+  <data name="Emulation.AudioDevice"><value>设备</value></data>
+  <data name="Emulation.Latency"><value>延迟</value></data>
+  <data name="Emulation.AudioQuality"><value>质量</value></data>
+  <data name="Emulation.AudioDrives"><value>驱动器</value></data>
+  <data name="Emulation.Type"><value>类型</value></data>
+  <data name="Emulation.AddStorageDevice"><value>添加存储设备</value></data>
+  <data name="Emulation.AmigaDdFloppy"><value>Amiga 3.5 英寸 DD · 880 KiB</value></data>
+  <data name="Emulation.AmigaHdFloppy"><value>Amiga 3.5 英寸 HD · 1.76 MiB</value></data>
+  <data name="Emulation.AssociatedMedia"><value>关联介质</value></data>
+  <data name="Emulation.AutomaticDiskGeometry"><value>磁盘几何结构由模拟器自动确定。</value></data>
+  <data name="Emulation.BlankFloppyCreated"><value>已创建空白软盘映像：{0}</value></data>
+  <data name="Emulation.BlankHardDiskHint"><value>文件将以空白状态创建，之后必须在模拟计算机中进行分区和格式化。</value></data>
+  <data name="Emulation.CdWriter"><value>CD 刻录机</value></data>
+  <data name="Emulation.CdWriterHint"><value>仅当所选计算机和模拟器支持写入时才能创建空白光盘。</value></data>
+  <data name="Emulation.CompactDiscDevice"><value>CD-ROM 驱动器</value></data>
+  <data name="Emulation.ConfigureDevice"><value>配置</value></data>
+  <data name="Emulation.CreateBlankFloppy"><value>创建空白软盘</value></data>
+  <data name="Emulation.DiskImage"><value>磁盘映像</value></data>
+  <data name="Emulation.DiskImageRequired"><value>选择现有磁盘映像。</value></data>
+  <data name="Emulation.ExistingDiskHint"><value>所选文件将连接到此虚拟驱动器。</value></data>
+  <data name="Emulation.FloppyDevice"><value>软盘驱动器</value></data>
+  <data name="Emulation.FloppyImageFilter"><value>Amiga 软盘映像|*.adf|所有文件|*.*</value></data>
+  <data name="Emulation.HardDiskDevice"><value>硬盘</value></data>
+  <data name="Emulation.Interface"><value>接口</value></data>
+  <data name="Emulation.PreallocateFile"><value>预分配文件</value></data>
+  <data name="Emulation.RemovableMediaRuntimeHint"><value>软盘和 CD 从正在运行的计算机中插入或更换。</value></data>
+  <data name="Emulation.RemoveMedia"><value>移除介质</value></data>
+  <data name="Emulation.ReplaceExistingDisk"><value>磁盘映像已存在：{0}\n是否替换？</value></data>
+  <data name="Emulation.StorageDeviceCapabilitiesHint"><value>可用类型、型号和标识符取决于所选计算机。</value></data>
+  <data name="Emulation.TapeDevice"><value>磁带驱动器</value></data>
+  <data name="Emulation.UseDisk"><value>使用磁盘</value></data>
+  <data name="Emulation.UseExistingDisk"><value>使用现有磁盘</value></data>
+  <data name="Emulation.ModifyInGeneral"><value>在“常规”中修改</value></data>
+  <data name="Emulation.NoStorageDeviceAvailable"><value>此计算机没有可用的其他存储设备。</value></data>
+  <data name="Emulation.StorageDevices"><value>存储设备</value></data>
+  <data name="Emulation.RestoreDefaultBindings"><value>恢复默认值</value></data>
+  <data name="Emulation.ClearConflicts"><value>清除冲突</value></data>
+  <data name="Emulation.EmulatedKey"><value>机器按键</value></data>
+  <data name="Emulation.Binding"><value>映射</value></data>
+  <data name="Emulation.BindingState"><value>状态</value></data>
+  <data name="Emulation.SearchBinding"><value>搜索按键或映射</value></data>
+  <data name="Emulation.BindingLegend"><value>有效：唯一映射 · 冲突：映射被多次使用 · 已保留：Windows 或 GW GUI 快捷键</value></data>
+  <data name="Emulation.BindingValid"><value>有效</value></data>
+  <data name="Emulation.BindingConflict"><value>冲突</value></data>
+  <data name="Emulation.BindingReserved"><value>已保留</value></data>
+  <data name="Emulation.BindingUnassigned"><value>未映射</value></data>
+  <data name="Emulation.GlobalShortcuts"><value>模拟快捷键</value></data>
+  <data name="Emulation.ShortcutsTab"><value>快捷键</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>释放鼠标</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>暂停 / 继续</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>全屏 / 窗口</value></data>
+  <data name="Emulation.Shortcut.Power"><value>开机 / 关机</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>软复位</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>硬复位</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>快速保存状态</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>快速加载状态</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>屏幕截图</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>将当前机器静音</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>按住时快进</value></data>
+  <data name="Emulation.Key.Help"><value>帮助</value></data>
+  <data name="Emulation.Key.LeftAmiga"><value>左 Amiga</value></data>
+  <data name="Emulation.Key.RightAmiga"><value>右 Amiga</value></data>
+  <data name="Emulation.SpecialKeysOnlyHint"><value>字母、数字和普通修饰键会直接传送。这里只需映射 Amiga 功能键和特殊键。</value></data>
+  <data name="Emulation.ShortcutUnavailable"><value>当前模拟器尚未提供此操作。</value></data>
+  <data name="Emulation.Allocation"><value>分配</value></data>
+  <data name="Emulation.AutomaticGeometry"><value>自动几何参数</value></data>
+  <data name="Emulation.BlankMedia"><value>空白介质</value></data>
+  <data name="Emulation.BytesPerSector"><value>每扇区字节数</value></data>
+  <data name="Emulation.CalculatedCapacity"><value>计算容量：{0}</value></data>
+  <data name="Emulation.ControllerMappings"><value>控制器映射</value></data>
+  <data name="Emulation.ControllerPort"><value>端口 {0}</value></data>
+  <data name="Emulation.ControllerType"><value>控制器类型</value></data>
+  <data name="Emulation.CustomSize"><value>自定义大小</value></data>
+  <data name="Emulation.Cylinders"><value>柱面</value></data>
+  <data name="Emulation.DestinationFolder"><value>目标文件夹</value></data>
+  <data name="Emulation.DetectedControllers"><value>检测到的控制器</value></data>
+  <data name="Emulation.Device"><value>设备</value></data>
+  <data name="Emulation.DiskGeometry"><value>磁盘几何参数 (CHS)</value></data>
+  <data name="Emulation.DiskSizeProfile"><value>大小配置</value></data>
+  <data name="Emulation.FloppyDrive"><value>软盘驱动器</value></data>
+  <data name="Emulation.Heads"><value>磁头</value></data>
+  <data name="Emulation.InputCaptureHint"><value>单击“分配”，然后按键盘键、鼠标按钮或控制器按钮。</value></data>
+  <data name="Emulation.InvalidDiskSize"><value>磁盘大小或几何参数无效。</value></data>
+  <data name="Emulation.MouseActions"><value>鼠标操作</value></data>
+  <data name="Emulation.MouseButton4"><value>鼠标按钮 4</value></data>
+  <data name="Emulation.MouseButton5"><value>鼠标按钮 5</value></data>
+  <data name="Emulation.MouseCaptureTitle"><value>鼠标捕获</value></data>
+  <data name="Emulation.PreallocationHint"><value>立即预留物理磁盘空间；否则映像会随写入数据而增大。</value></data>
+  <data name="Emulation.SearchInputBinding"><value>搜索操作或输入</value></data>
+  <data name="Emulation.Sectors"><value>扇区</value></data>
+  <data name="Emulation.UnitMiB"><value>MiB</value></data>
+  <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>上</value></data>
+  <data name="Emulation.DirectionDown"><value>下</value></data>
+  <data name="Emulation.DirectionLeft"><value>左</value></data>
+  <data name="Emulation.DirectionRight"><value>右</value></data>
+  <data name="Emulation.FireButton1"><value>射击按钮 1</value></data>
+  <data name="Emulation.FireButton2"><value>射击按钮 2</value></data>
+  <data name="Emulation.Cd32Red"><value>CD32 红色按钮</value></data>
+  <data name="Emulation.Cd32Blue"><value>CD32 蓝色按钮</value></data>
+  <data name="Emulation.Cd32Green"><value>CD32 绿色按钮</value></data>
+  <data name="Emulation.Cd32Yellow"><value>CD32 黄色按钮</value></data>
+  <data name="Emulation.Cd32Rewind"><value>CD32 快退</value></data>
+  <data name="Emulation.Cd32FastForward"><value>CD32 快进</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>CD32 播放 / 暂停</value></data>
+  <data name="Emulation.AmigaJoystick"><value>Amiga 操纵杆</value></data>
+  <data name="Emulation.AnalogJoystick"><value>模拟操纵杆</value></data>
+  <data name="Emulation.Cd32Controller"><value>CD32 控制器</value></data>
+  <data name="Emulation.MouseWheelUp"><value>鼠标滚轮向上</value></data>
+  <data name="Emulation.MouseWheelDown"><value>鼠标滚轮向下</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>鼠标滚轮向左</value></data>
+  <data name="Emulation.MouseWheelRight"><value>鼠标滚轮向右</value></data>
+</root>
