@@ -17,8 +17,6 @@ namespace GWGUI.App.Controls;
 
 public sealed class OptionsEmulationSection : UserControl
 {
-    private static readonly string[] ControllerButtons =
-        ["B", "Y", "Select", "Start", "Up", "Down", "Left", "Right", "A", "X", "L", "R", "L2", "R2", "L3", "R3"];
     private readonly AmigaConfigurationStore _store = new(StoragePaths.AmigaConfigurationsDirectory, StoragePaths.DataDirectory);
     private readonly ObservableCollection<ConfigurationItem> _configurations = [];
     private readonly ObservableCollection<FirmwareItem> _firmware = [];
@@ -171,21 +169,27 @@ public sealed class OptionsEmulationSection : UserControl
                 InputCaptureSources.Keyboard | InputCaptureSources.Mouse | InputCaptureSources.Controller,
                 prefixKeyboardSource: true);
         }
+        for (var port = 0; port < _controllerEditors.Length; port++)
+        {
+            var capturedPort = port;
+            _controllerEditors[port].ControllerCaptured += (_, args) =>
+            {
+                var device = _controllerDevices[capturedPort].Items.Cast<GameControllerDevice>()
+                    .FirstOrDefault(item => item.Id == $"xinput:{args.Port}");
+                if (device is not null) _controllerDevices[capturedPort].SelectedItem = device;
+            };
+        }
         _globalShortcutEditor.BindingsChanged += async (_, _) => await SaveGlobalShortcutsAsync();
         _multiDrive.Content = LocExtension.Get("Emulation.MultiDrive");
         ConfigureOptionChoices();
-        var controllerChoices = new[]
+        for (var port = 0; port < _controllers.Length; port++)
         {
-            new LocalizedChoice<AmigaControllerType>(AmigaControllerType.Automatic, LocExtension.Get("Visual.Automatic")),
-            new(AmigaControllerType.RetroPad, "RetroPad"), new(AmigaControllerType.Cd32Pad, "CD32 Pad"),
-            new(AmigaControllerType.AnalogJoystick, "Analog Joystick"), new(AmigaControllerType.Joystick, "Joystick"),
-            new(AmigaControllerType.Keyboard, LocExtension.Get("Emulation.KeyboardTab")),
-            new(AmigaControllerType.None, LocExtension.Get("HostTools.None"))
-        };
-        foreach (var controller in _controllers)
-        {
-            controller.ItemsSource = controllerChoices;
-            controller.SelectedIndex = 0;
+            var controller = _controllers[port];
+            var capturedPort = port;
+            controller.SelectionChanged += (_, _) =>
+            {
+                if (!_loading) RefreshControllerMappings(capturedPort, preserveBindings: true);
+            };
         }
 
         _familyTabs.Items.Add(new TabItem
@@ -286,8 +290,49 @@ public sealed class OptionsEmulationSection : UserControl
         new(nameof(AmigaMouseAction.MiddleButton), LocExtension.Get("Emulation.MouseMiddleButton"), "Mouse:Middle")
     ];
 
-    private static IReadOnlyList<InputBindingDefinition> AmigaControllerDefinitions() =>
-        ControllerButtons.Select(action => new InputBindingDefinition(action, action, action)).ToArray();
+    private static IReadOnlyList<InputBindingDefinition> AmigaControllerDefinitions(AmigaControllerType type)
+    {
+        if (type is AmigaControllerType.None or AmigaControllerType.Keyboard) return [];
+        var directions = new List<InputBindingDefinition>
+        {
+            new("Up", LocExtension.Get("Emulation.DirectionUp"), "Controller:DPadUp"),
+            new("Down", LocExtension.Get("Emulation.DirectionDown"), "Controller:DPadDown"),
+            new("Left", LocExtension.Get("Emulation.DirectionLeft"), "Controller:DPadLeft"),
+            new("Right", LocExtension.Get("Emulation.DirectionRight"), "Controller:DPadRight")
+        };
+        if (type == AmigaControllerType.Cd32Pad)
+        {
+            directions.AddRange([
+                new("B", LocExtension.Get("Emulation.Cd32Red"), "Controller:ButtonB"),
+                new("A", LocExtension.Get("Emulation.Cd32Blue"), "Controller:ButtonA"),
+                new("Y", LocExtension.Get("Emulation.Cd32Green"), "Controller:ButtonY"),
+                new("X", LocExtension.Get("Emulation.Cd32Yellow"), "Controller:ButtonX"),
+                new("L", LocExtension.Get("Emulation.Cd32Rewind"), "Controller:LeftShoulder"),
+                new("R", LocExtension.Get("Emulation.Cd32FastForward"), "Controller:RightShoulder"),
+                new("Start", LocExtension.Get("Emulation.Cd32PlayPause"), "Controller:Menu")
+            ]);
+            return directions;
+        }
+        directions.Add(new InputBindingDefinition("B", LocExtension.Get("Emulation.FireButton1"), "Controller:ButtonB"));
+        directions.Add(new InputBindingDefinition("A", LocExtension.Get("Emulation.FireButton2"), "Controller:ButtonA"));
+        return directions;
+    }
+
+    private void RefreshControllerMappings(int port, bool preserveBindings,
+        IReadOnlyDictionary<string, string>? configuredMappings = null)
+    {
+        var type = SelectedChoice(_controllers[port], AmigaControllerType.Automatic);
+        var definitions = AmigaControllerDefinitions(type);
+        var values = configuredMappings is not null
+            ? definitions.ToDictionary(definition => definition.Id,
+                definition => configuredMappings.FirstOrDefault(item => item.Value == definition.Id).Key
+                    ?? definition.DefaultBinding, StringComparer.OrdinalIgnoreCase)
+            : preserveBindings
+                ? _controllerEditors[port].Rows.ToDictionary(row => row.Id, row => row.Binding,
+                    StringComparer.OrdinalIgnoreCase)
+                : null;
+        _controllerEditors[port].SetRows(definitions, values);
+    }
 
     private async Task SaveGlobalShortcutsAsync()
     {
@@ -1611,9 +1656,36 @@ public sealed class OptionsEmulationSection : UserControl
         _muteEmptyFloppy.IsEnabled = hasFloppyDrive;
         _cdSpeed.IsEnabled = model.HasCdDrive;
         _cdAudioVolume.IsEnabled = model.HasCdDrive;
+        ConfigureControllerChoices(model);
         RefreshMediaRows();
         RefreshFirmwareRows();
         UpdateRomFieldAvailability();
+    }
+
+    private void ConfigureControllerChoices(AmigaModel model)
+    {
+        var choices = new List<LocalizedChoice<AmigaControllerType>>
+        {
+            new(AmigaControllerType.Automatic, LocExtension.Get("Visual.Automatic")),
+            new(AmigaControllerType.Joystick, LocExtension.Get("Emulation.AmigaJoystick")),
+            new(AmigaControllerType.AnalogJoystick, LocExtension.Get("Emulation.AnalogJoystick"))
+        };
+        if (model.Id == "CD32")
+            choices.Add(new(AmigaControllerType.Cd32Pad, LocExtension.Get("Emulation.Cd32Controller")));
+        choices.Add(new(AmigaControllerType.Keyboard, LocExtension.Get("Emulation.KeyboardTab")));
+        choices.Add(new(AmigaControllerType.None, LocExtension.Get("HostTools.None")));
+
+        for (var port = 0; port < _controllers.Length; port++)
+        {
+            var modelDefault = model.Id == "CD32" ? AmigaControllerType.Cd32Pad : AmigaControllerType.Joystick;
+            var current = _loading ? SelectedChoice(_controllers[port], modelDefault) : modelDefault;
+            _controllers[port].ItemsSource = choices;
+            var wanted = choices.Any(choice => choice.Value == current)
+                ? current
+                : modelDefault;
+            SelectChoice(_controllers[port], wanted);
+            RefreshControllerMappings(port, preserveBindings: true);
+        }
     }
 
     private void ConfigureMemoryChoices(AmigaModel model)
@@ -2236,10 +2308,7 @@ public sealed class OptionsEmulationSection : UserControl
         for (var port = 0; port < _controllerDevices.Length; port++)
         {
             var binding = configuration.Input?.ControllerBindings?.FirstOrDefault(item => item.Port == port);
-            var values = ControllerButtons.ToDictionary(action => action,
-                action => binding?.ButtonMappings?.FirstOrDefault(item => item.Value == action).Key ?? action,
-                StringComparer.OrdinalIgnoreCase);
-            _controllerEditors[port].SetRows(AmigaControllerDefinitions(), values);
+            RefreshControllerMappings(port, preserveBindings: false, binding?.ButtonMappings);
             _controllerEditors[port].SetReservedBindings(_appSettings is null
                 ? Array.Empty<string>()
                 : _appSettings.EmulationShortcuts.Values);

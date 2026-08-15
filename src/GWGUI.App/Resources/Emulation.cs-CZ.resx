@@ -363,4 +363,22 @@
   <data name="Emulation.Sectors"><value>Sektory</value></data>
   <data name="Emulation.UnitMiB"><value>MiB</value></data>
   <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>Nahoru</value></data>
+  <data name="Emulation.DirectionDown"><value>Dolů</value></data>
+  <data name="Emulation.DirectionLeft"><value>Vlevo</value></data>
+  <data name="Emulation.DirectionRight"><value>Vpravo</value></data>
+  <data name="Emulation.FireButton1"><value>Tlačítko střelby 1</value></data>
+  <data name="Emulation.FireButton2"><value>Tlačítko střelby 2</value></data>
+  <data name="Emulation.Cd32Red"><value>Červené tlačítko CD32</value></data>
+  <data name="Emulation.Cd32Blue"><value>Modré tlačítko CD32</value></data>
+  <data name="Emulation.Cd32Green"><value>Zelené tlačítko CD32</value></data>
+  <data name="Emulation.Cd32Yellow"><value>Žluté tlačítko CD32</value></data>
+  <data name="Emulation.Cd32Rewind"><value>CD32 převinout zpět</value></data>
+  <data name="Emulation.Cd32FastForward"><value>CD32 převinout vpřed</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>CD32 přehrát / pozastavit</value></data>
+  <data name="Emulation.AmigaJoystick"><value>Joystick Amiga</value></data>
+  <data name="Emulation.AnalogJoystick"><value>Analogový joystick</value></data>
+  <data name="Emulation.Cd32Controller"><value>Ovladač CD32</value></data>
+  <data name="Emulation.MouseWheelUp"><value>Kolečko myši nahoru</value></data>
+  <data name="Emulation.MouseWheelDown"><value>Kolečko myši dolů</value></data>
 </root>

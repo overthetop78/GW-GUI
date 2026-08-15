@@ -363,4 +363,22 @@
   <data name="Emulation.Sectors"><value>מקטעים</value></data>
   <data name="Emulation.UnitMiB"><value>MiB</value></data>
   <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>למעלה</value></data>
+  <data name="Emulation.DirectionDown"><value>למטה</value></data>
+  <data name="Emulation.DirectionLeft"><value>שמאלה</value></data>
+  <data name="Emulation.DirectionRight"><value>ימינה</value></data>
+  <data name="Emulation.FireButton1"><value>כפתור ירי 1</value></data>
+  <data name="Emulation.FireButton2"><value>כפתור ירי 2</value></data>
+  <data name="Emulation.Cd32Red"><value>כפתור CD32 אדום</value></data>
+  <data name="Emulation.Cd32Blue"><value>כפתור CD32 כחול</value></data>
+  <data name="Emulation.Cd32Green"><value>כפתור CD32 ירוק</value></data>
+  <data name="Emulation.Cd32Yellow"><value>כפתור CD32 צהוב</value></data>
+  <data name="Emulation.Cd32Rewind"><value>CD32 הרצה לאחור</value></data>
+  <data name="Emulation.Cd32FastForward"><value>CD32 הרצה קדימה</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>CD32 הפעלה / השהיה</value></data>
+  <data name="Emulation.AmigaJoystick"><value>ג׳ויסטיק Amiga</value></data>
+  <data name="Emulation.AnalogJoystick"><value>ג׳ויסטיק אנלוגי</value></data>
+  <data name="Emulation.Cd32Controller"><value>בקר CD32</value></data>
+  <data name="Emulation.MouseWheelUp"><value>גלגלת עכבר למעלה</value></data>
+  <data name="Emulation.MouseWheelDown"><value>גלגלת עכבר למטה</value></data>
 </root>

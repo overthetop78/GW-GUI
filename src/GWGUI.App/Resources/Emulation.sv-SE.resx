@@ -363,4 +363,22 @@
   <data name="Emulation.Sectors"><value>Sektorer</value></data>
   <data name="Emulation.UnitMiB"><value>MiB</value></data>
   <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>Upp</value></data>
+  <data name="Emulation.DirectionDown"><value>Ned</value></data>
+  <data name="Emulation.DirectionLeft"><value>Vänster</value></data>
+  <data name="Emulation.DirectionRight"><value>Höger</value></data>
+  <data name="Emulation.FireButton1"><value>Avfyrningsknapp 1</value></data>
+  <data name="Emulation.FireButton2"><value>Avfyrningsknapp 2</value></data>
+  <data name="Emulation.Cd32Red"><value>Röd CD32-knapp</value></data>
+  <data name="Emulation.Cd32Blue"><value>Blå CD32-knapp</value></data>
+  <data name="Emulation.Cd32Green"><value>Grön CD32-knapp</value></data>
+  <data name="Emulation.Cd32Yellow"><value>Gul CD32-knapp</value></data>
+  <data name="Emulation.Cd32Rewind"><value>CD32 spola tillbaka</value></data>
+  <data name="Emulation.Cd32FastForward"><value>CD32 spola framåt</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>CD32 spela / pausa</value></data>
+  <data name="Emulation.AmigaJoystick"><value>Amiga-styrspak</value></data>
+  <data name="Emulation.AnalogJoystick"><value>Analog styrspak</value></data>
+  <data name="Emulation.Cd32Controller"><value>CD32-handkontroll</value></data>
+  <data name="Emulation.MouseWheelUp"><value>Mushjul upp</value></data>
+  <data name="Emulation.MouseWheelDown"><value>Mushjul ned</value></data>
 </root>

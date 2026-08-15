@@ -363,4 +363,22 @@
   <data name="Emulation.Sectors"><value>Sektorit</value></data>
   <data name="Emulation.UnitMiB"><value>MiB</value></data>
   <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>Ylös</value></data>
+  <data name="Emulation.DirectionDown"><value>Alas</value></data>
+  <data name="Emulation.DirectionLeft"><value>Vasen</value></data>
+  <data name="Emulation.DirectionRight"><value>Oikea</value></data>
+  <data name="Emulation.FireButton1"><value>Tulituspainike 1</value></data>
+  <data name="Emulation.FireButton2"><value>Tulituspainike 2</value></data>
+  <data name="Emulation.Cd32Red"><value>CD32:n punainen painike</value></data>
+  <data name="Emulation.Cd32Blue"><value>CD32:n sininen painike</value></data>
+  <data name="Emulation.Cd32Green"><value>CD32:n vihreä painike</value></data>
+  <data name="Emulation.Cd32Yellow"><value>CD32:n keltainen painike</value></data>
+  <data name="Emulation.Cd32Rewind"><value>CD32 kelaus taakse</value></data>
+  <data name="Emulation.Cd32FastForward"><value>CD32 kelaus eteen</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>CD32 toisto / tauko</value></data>
+  <data name="Emulation.AmigaJoystick"><value>Amiga-ohjain</value></data>
+  <data name="Emulation.AnalogJoystick"><value>Analoginen ohjain</value></data>
+  <data name="Emulation.Cd32Controller"><value>CD32-ohjain</value></data>
+  <data name="Emulation.MouseWheelUp"><value>Hiiren rulla ylös</value></data>
+  <data name="Emulation.MouseWheelDown"><value>Hiiren rulla alas</value></data>
 </root>

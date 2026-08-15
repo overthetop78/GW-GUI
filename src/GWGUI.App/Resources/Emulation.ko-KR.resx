@@ -363,4 +363,22 @@
   <data name="Emulation.Sectors"><value>섹터</value></data>
   <data name="Emulation.UnitMiB"><value>MiB</value></data>
   <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>위</value></data>
+  <data name="Emulation.DirectionDown"><value>아래</value></data>
+  <data name="Emulation.DirectionLeft"><value>왼쪽</value></data>
+  <data name="Emulation.DirectionRight"><value>오른쪽</value></data>
+  <data name="Emulation.FireButton1"><value>발사 버튼 1</value></data>
+  <data name="Emulation.FireButton2"><value>발사 버튼 2</value></data>
+  <data name="Emulation.Cd32Red"><value>CD32 빨간색 버튼</value></data>
+  <data name="Emulation.Cd32Blue"><value>CD32 파란색 버튼</value></data>
+  <data name="Emulation.Cd32Green"><value>CD32 녹색 버튼</value></data>
+  <data name="Emulation.Cd32Yellow"><value>CD32 노란색 버튼</value></data>
+  <data name="Emulation.Cd32Rewind"><value>CD32 되감기</value></data>
+  <data name="Emulation.Cd32FastForward"><value>CD32 빨리 감기</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>CD32 재생 / 일시 정지</value></data>
+  <data name="Emulation.AmigaJoystick"><value>Amiga 조이스틱</value></data>
+  <data name="Emulation.AnalogJoystick"><value>아날로그 조이스틱</value></data>
+  <data name="Emulation.Cd32Controller"><value>CD32 컨트롤러</value></data>
+  <data name="Emulation.MouseWheelUp"><value>마우스 휠 위</value></data>
+  <data name="Emulation.MouseWheelDown"><value>마우스 휠 아래</value></data>
 </root>

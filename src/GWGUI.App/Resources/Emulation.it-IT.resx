@@ -363,4 +363,22 @@
   <data name="Emulation.Sectors"><value>Settori</value></data>
   <data name="Emulation.UnitMiB"><value>MiB</value></data>
   <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>Su</value></data>
+  <data name="Emulation.DirectionDown"><value>Giù</value></data>
+  <data name="Emulation.DirectionLeft"><value>Sinistra</value></data>
+  <data name="Emulation.DirectionRight"><value>Destra</value></data>
+  <data name="Emulation.FireButton1"><value>Pulsante di fuoco 1</value></data>
+  <data name="Emulation.FireButton2"><value>Pulsante di fuoco 2</value></data>
+  <data name="Emulation.Cd32Red"><value>Pulsante rosso CD32</value></data>
+  <data name="Emulation.Cd32Blue"><value>Pulsante blu CD32</value></data>
+  <data name="Emulation.Cd32Green"><value>Pulsante verde CD32</value></data>
+  <data name="Emulation.Cd32Yellow"><value>Pulsante giallo CD32</value></data>
+  <data name="Emulation.Cd32Rewind"><value>Riavvolgimento CD32</value></data>
+  <data name="Emulation.Cd32FastForward"><value>Avanzamento rapido CD32</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>Riproduci / pausa CD32</value></data>
+  <data name="Emulation.AmigaJoystick"><value>Joystick Amiga</value></data>
+  <data name="Emulation.AnalogJoystick"><value>Joystick analogico</value></data>
+  <data name="Emulation.Cd32Controller"><value>Controller CD32</value></data>
+  <data name="Emulation.MouseWheelUp"><value>Rotella del mouse su</value></data>
+  <data name="Emulation.MouseWheelDown"><value>Rotella del mouse giù</value></data>
 </root>

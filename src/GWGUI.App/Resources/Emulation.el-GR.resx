@@ -363,4 +363,22 @@
   <data name="Emulation.Sectors"><value>Τομείς</value></data>
   <data name="Emulation.UnitMiB"><value>MiB</value></data>
   <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>Πάνω</value></data>
+  <data name="Emulation.DirectionDown"><value>Κάτω</value></data>
+  <data name="Emulation.DirectionLeft"><value>Αριστερά</value></data>
+  <data name="Emulation.DirectionRight"><value>Δεξιά</value></data>
+  <data name="Emulation.FireButton1"><value>Κουμπί πυρός 1</value></data>
+  <data name="Emulation.FireButton2"><value>Κουμπί πυρός 2</value></data>
+  <data name="Emulation.Cd32Red"><value>Κόκκινο κουμπί CD32</value></data>
+  <data name="Emulation.Cd32Blue"><value>Μπλε κουμπί CD32</value></data>
+  <data name="Emulation.Cd32Green"><value>Πράσινο κουμπί CD32</value></data>
+  <data name="Emulation.Cd32Yellow"><value>Κίτρινο κουμπί CD32</value></data>
+  <data name="Emulation.Cd32Rewind"><value>CD32 γρήγορη επιστροφή</value></data>
+  <data name="Emulation.Cd32FastForward"><value>CD32 γρήγορη προώθηση</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>CD32 αναπαραγωγή / παύση</value></data>
+  <data name="Emulation.AmigaJoystick"><value>Χειριστήριο Amiga</value></data>
+  <data name="Emulation.AnalogJoystick"><value>Αναλογικό χειριστήριο</value></data>
+  <data name="Emulation.Cd32Controller"><value>Χειριστήριο CD32</value></data>
+  <data name="Emulation.MouseWheelUp"><value>Τροχός ποντικιού πάνω</value></data>
+  <data name="Emulation.MouseWheelDown"><value>Τροχός ποντικιού κάτω</value></data>
 </root>

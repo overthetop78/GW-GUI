@@ -16,8 +16,15 @@ namespace GWGUI.App.Controls;
 
 public partial class InputBindingEditor : UserControl
 {
-    private static readonly string[] ControllerButtonNames =
+    private static readonly string[] LegacyControllerButtonNames =
         ["B", "Y", "Select", "Start", "Up", "Down", "Left", "Right", "A", "X", "L", "R", "L2", "R2", "L3", "R3"];
+    private static readonly string[] ControllerButtonSources =
+    [
+        "Controller:ButtonB", "Controller:ButtonY", "Controller:View", "Controller:Menu",
+        "Controller:DPadUp", "Controller:DPadDown", "Controller:DPadLeft", "Controller:DPadRight",
+        "Controller:ButtonA", "Controller:ButtonX", "Controller:LeftShoulder", "Controller:RightShoulder",
+        "Controller:LeftTrigger", "Controller:RightTrigger", "Controller:LeftStickClick", "Controller:RightStickClick"
+    ];
     private readonly ObservableCollection<InputBindingRow> _rows = [];
     private readonly HashSet<Key> _capturePressed = [];
     private readonly List<Key> _captureOrder = [];
@@ -38,6 +45,7 @@ public partial class InputBindingEditor : UserControl
         AddHandler(PreviewKeyDownEvent, new KeyEventHandler(CaptureKeyDown), true);
         AddHandler(PreviewKeyUpEvent, new KeyEventHandler(CaptureKeyUp), true);
         AddHandler(PreviewMouseDownEvent, new MouseButtonEventHandler(CaptureMouseDown), true);
+        AddHandler(PreviewMouseWheelEvent, new MouseWheelEventHandler(CaptureMouseWheel), true);
         _controllerCaptureTimer = new DispatcherTimer(TimeSpan.FromMilliseconds(30), DispatcherPriority.Input,
             CaptureControllerInput, Dispatcher);
         _controllerCaptureTimer.Stop();
@@ -46,6 +54,7 @@ public partial class InputBindingEditor : UserControl
     public bool HasErrors => _rows.Any(row => row.State is InputBindingState.Conflict or InputBindingState.Reserved);
     public IReadOnlyList<InputBindingRow> Rows => _rows;
     public event EventHandler? BindingsChanged;
+    public event EventHandler<ControllerCapturedEventArgs>? ControllerCaptured;
 
     public void ConfigurePresentation(string firstColumnHeader, string searchPlaceholder)
     {
@@ -132,6 +141,14 @@ public partial class InputBindingEditor : UserControl
         FinishCapture();
     }
 
+    private void CaptureMouseWheel(object sender, MouseWheelEventArgs e)
+    {
+        if (_captureRow is null || !_captureSources.HasFlag(InputCaptureSources.Mouse) || e.Delta == 0) return;
+        _captureRow.Binding = e.Delta > 0 ? "Mouse:WheelUp" : "Mouse:WheelDown";
+        e.Handled = true;
+        FinishCapture();
+    }
+
     private void CaptureControllerInput(object? sender, EventArgs e)
     {
         if (_captureRow is null || !_captureSources.HasFlag(InputCaptureSources.Controller))
@@ -145,14 +162,46 @@ public partial class InputBindingEditor : UserControl
             var baseline = port < _controllerBaseline.Count ? _controllerBaseline[port].Buttons : 0u;
             var pressed = states[port].Buttons & ~baseline;
             if (pressed == 0) continue;
-            var index = Enumerable.Range(0, ControllerButtonNames.Length)
+            var index = Enumerable.Range(0, ControllerButtonSources.Length)
                 .FirstOrDefault(candidate => (pressed & (1u << candidate)) != 0, -1);
-            if (index < 0) continue;
-            _captureRow.Binding = ControllerButtonNames[index];
+            if (index >= 0)
+            {
+                _captureRow.Binding = ControllerBinding(port, ControllerButtonSources[index]["Controller:".Length..]);
+                ControllerCaptured?.Invoke(this, new ControllerCapturedEventArgs(port));
+                FinishCapture();
+                return;
+            }
+
+            var direction = NewlyMovedDirection(states[port], port < _controllerBaseline.Count
+                ? _controllerBaseline[port]
+                : EmulationControllerState.Empty);
+            if (direction is null) continue;
+            _captureRow.Binding = ControllerBinding(port, direction["Controller:".Length..]);
+            ControllerCaptured?.Invoke(this, new ControllerCapturedEventArgs(port));
             FinishCapture();
             return;
         }
         _controllerBaseline = states;
+    }
+
+    private static string ControllerBinding(int port, string source) => $"Controller:xinput:{port}:{source}";
+
+    private static string? NewlyMovedDirection(EmulationControllerState current, EmulationControllerState baseline)
+    {
+        const short threshold = 14000;
+        return Moved(current.LeftX, baseline.LeftX, -threshold) ? "Controller:LeftStickLeft"
+            : Moved(current.LeftX, baseline.LeftX, threshold) ? "Controller:LeftStickRight"
+            : Moved(current.LeftY, baseline.LeftY, -threshold) ? "Controller:LeftStickUp"
+            : Moved(current.LeftY, baseline.LeftY, threshold) ? "Controller:LeftStickDown"
+            : Moved(current.RightX, baseline.RightX, -threshold) ? "Controller:RightStickLeft"
+            : Moved(current.RightX, baseline.RightX, threshold) ? "Controller:RightStickRight"
+            : Moved(current.RightY, baseline.RightY, -threshold) ? "Controller:RightStickUp"
+            : Moved(current.RightY, baseline.RightY, threshold) ? "Controller:RightStickDown"
+            : null;
+
+        static bool Moved(short current, short baseline, int limit) => limit < 0
+            ? current < limit && baseline >= limit
+            : current > limit && baseline <= limit;
     }
 
     private void FinishCapture()
@@ -219,7 +268,9 @@ public partial class InputBindingEditor : UserControl
         var trimmed = value.Trim();
         if (trimmed.StartsWith("Mouse:", StringComparison.OrdinalIgnoreCase))
             return _captureSources.HasFlag(InputCaptureSources.Mouse) && trimmed.Length > "Mouse:".Length;
-        if (ControllerButtonNames.Contains(trimmed, StringComparer.OrdinalIgnoreCase))
+        if (trimmed.StartsWith("Controller:", StringComparison.OrdinalIgnoreCase))
+            return _captureSources.HasFlag(InputCaptureSources.Controller) && trimmed.Length > "Controller:".Length;
+        if (LegacyControllerButtonNames.Contains(trimmed, StringComparer.OrdinalIgnoreCase))
             return _captureSources.HasFlag(InputCaptureSources.Controller);
         var keyboard = trimmed.StartsWith("Keyboard:", StringComparison.OrdinalIgnoreCase)
             ? trimmed["Keyboard:".Length..]
@@ -235,6 +286,7 @@ public sealed record InputBindingDefinition(string Id, string Label, string Defa
 public enum InputBindingState { Valid, Conflict, Reserved, Unassigned }
 [Flags]
 public enum InputCaptureSources { Keyboard = 1, Mouse = 2, Controller = 4 }
+public sealed record ControllerCapturedEventArgs(int Port);
 
 public sealed class InputBindingRow(string id, string label, string binding, string defaultBinding) : INotifyPropertyChanged
 {
@@ -256,6 +308,8 @@ public sealed class InputBindingRow(string id, string label, string binding, str
     private static string DisplayPart(string part)
     {
         if (part.StartsWith("Keyboard:", StringComparison.OrdinalIgnoreCase)) return part["Keyboard:".Length..];
+        if (part.StartsWith("Controller:", StringComparison.OrdinalIgnoreCase))
+            return DisplayControllerPart(part["Controller:".Length..]);
         if (!part.StartsWith("Mouse:", StringComparison.OrdinalIgnoreCase)) return part;
         return part["Mouse:".Length..].ToLowerInvariant() switch
         {
@@ -264,8 +318,42 @@ public sealed class InputBindingRow(string id, string label, string binding, str
             "middle" => LocExtension.Get("Emulation.MouseMiddleButton"),
             "xbutton1" => LocExtension.Get("Emulation.MouseButton4"),
             "xbutton2" => LocExtension.Get("Emulation.MouseButton5"),
+            "wheelup" => LocExtension.Get("Emulation.MouseWheelUp"),
+            "wheeldown" => LocExtension.Get("Emulation.MouseWheelDown"),
             _ => part
         };
+    }
+
+    private static string DisplayControllerPart(string source)
+    {
+        var separator = " · ";
+        var segments = source.Split(':', StringSplitOptions.RemoveEmptyEntries);
+        var input = segments[^1];
+        var device = segments.Length >= 3 && segments[0].Equals("xinput", StringComparison.OrdinalIgnoreCase)
+                     && int.TryParse(segments[1], out var port)
+            ? XInputControllerReader.GetConnectedDevices().FirstOrDefault(item => item.Id == $"xinput:{port}")?.Name
+              ?? $"XInput {port + 1}"
+            : null;
+        var inputName = input switch
+        {
+            "DPadUp" => $"D-pad{separator}{LocExtension.Get("Emulation.DirectionUp")}",
+            "DPadDown" => $"D-pad{separator}{LocExtension.Get("Emulation.DirectionDown")}",
+            "DPadLeft" => $"D-pad{separator}{LocExtension.Get("Emulation.DirectionLeft")}",
+            "DPadRight" => $"D-pad{separator}{LocExtension.Get("Emulation.DirectionRight")}",
+            "LeftStickUp" => $"{LocExtension.Get("Emulation.LeftStick")}{separator}{LocExtension.Get("Emulation.DirectionUp")}",
+            "LeftStickDown" => $"{LocExtension.Get("Emulation.LeftStick")}{separator}{LocExtension.Get("Emulation.DirectionDown")}",
+            "LeftStickLeft" => $"{LocExtension.Get("Emulation.LeftStick")}{separator}{LocExtension.Get("Emulation.DirectionLeft")}",
+            "LeftStickRight" => $"{LocExtension.Get("Emulation.LeftStick")}{separator}{LocExtension.Get("Emulation.DirectionRight")}",
+            "RightStickUp" => $"{LocExtension.Get("Emulation.RightStick")}{separator}{LocExtension.Get("Emulation.DirectionUp")}",
+            "RightStickDown" => $"{LocExtension.Get("Emulation.RightStick")}{separator}{LocExtension.Get("Emulation.DirectionDown")}",
+            "RightStickLeft" => $"{LocExtension.Get("Emulation.RightStick")}{separator}{LocExtension.Get("Emulation.DirectionLeft")}",
+            "RightStickRight" => $"{LocExtension.Get("Emulation.RightStick")}{separator}{LocExtension.Get("Emulation.DirectionRight")}",
+            "ButtonA" => "A", "ButtonB" => "B", "ButtonX" => "X", "ButtonY" => "Y",
+            "View" => "View", "Menu" => "Menu", "LeftShoulder" => "LB", "RightShoulder" => "RB",
+            "LeftTrigger" => "LT", "RightTrigger" => "RT", "LeftStickClick" => "L3", "RightStickClick" => "R3",
+            _ => input
+        };
+        return device is null ? inputName : $"{device}{separator}{inputName}";
     }
     public InputBindingState State { get => _state; private set { _state = value; OnChanged(); } }
     public string StateText => LocExtension.Get(State switch

@@ -363,4 +363,22 @@
   <data name="Emulation.Sectors"><value>เซกเตอร์</value></data>
   <data name="Emulation.UnitMiB"><value>MiB</value></data>
   <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>ขึ้น</value></data>
+  <data name="Emulation.DirectionDown"><value>ลง</value></data>
+  <data name="Emulation.DirectionLeft"><value>ซ้าย</value></data>
+  <data name="Emulation.DirectionRight"><value>ขวา</value></data>
+  <data name="Emulation.FireButton1"><value>ปุ่มยิง 1</value></data>
+  <data name="Emulation.FireButton2"><value>ปุ่มยิง 2</value></data>
+  <data name="Emulation.Cd32Red"><value>ปุ่มสีแดง CD32</value></data>
+  <data name="Emulation.Cd32Blue"><value>ปุ่มสีน้ำเงิน CD32</value></data>
+  <data name="Emulation.Cd32Green"><value>ปุ่มสีเขียว CD32</value></data>
+  <data name="Emulation.Cd32Yellow"><value>ปุ่มสีเหลือง CD32</value></data>
+  <data name="Emulation.Cd32Rewind"><value>CD32 กรอกลับ</value></data>
+  <data name="Emulation.Cd32FastForward"><value>CD32 กรอไปข้างหน้า</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>CD32 เล่น / หยุดชั่วคราว</value></data>
+  <data name="Emulation.AmigaJoystick"><value>จอยสติ๊ก Amiga</value></data>
+  <data name="Emulation.AnalogJoystick"><value>จอยสติ๊กแอนะล็อก</value></data>
+  <data name="Emulation.Cd32Controller"><value>ตัวควบคุม CD32</value></data>
+  <data name="Emulation.MouseWheelUp"><value>ล้อเมาส์ขึ้น</value></data>
+  <data name="Emulation.MouseWheelDown"><value>ล้อเมาส์ลง</value></data>
 </root>

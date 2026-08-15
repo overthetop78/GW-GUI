@@ -363,4 +363,22 @@
   <data name="Emulation.Sectors"><value>Cung</value></data>
   <data name="Emulation.UnitMiB"><value>MiB</value></data>
   <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>Lên</value></data>
+  <data name="Emulation.DirectionDown"><value>Xuống</value></data>
+  <data name="Emulation.DirectionLeft"><value>Trái</value></data>
+  <data name="Emulation.DirectionRight"><value>Phải</value></data>
+  <data name="Emulation.FireButton1"><value>Nút bắn 1</value></data>
+  <data name="Emulation.FireButton2"><value>Nút bắn 2</value></data>
+  <data name="Emulation.Cd32Red"><value>Nút đỏ CD32</value></data>
+  <data name="Emulation.Cd32Blue"><value>Nút xanh dương CD32</value></data>
+  <data name="Emulation.Cd32Green"><value>Nút xanh lá CD32</value></data>
+  <data name="Emulation.Cd32Yellow"><value>Nút vàng CD32</value></data>
+  <data name="Emulation.Cd32Rewind"><value>CD32 tua lại</value></data>
+  <data name="Emulation.Cd32FastForward"><value>CD32 tua nhanh</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>CD32 phát / tạm dừng</value></data>
+  <data name="Emulation.AmigaJoystick"><value>Cần điều khiển Amiga</value></data>
+  <data name="Emulation.AnalogJoystick"><value>Cần điều khiển analog</value></data>
+  <data name="Emulation.Cd32Controller"><value>Tay cầm CD32</value></data>
+  <data name="Emulation.MouseWheelUp"><value>Con lăn chuột lên</value></data>
+  <data name="Emulation.MouseWheelDown"><value>Con lăn chuột xuống</value></data>
 </root>

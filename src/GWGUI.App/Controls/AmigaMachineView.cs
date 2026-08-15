@@ -446,7 +446,11 @@ public sealed class AmigaMachineView : UserControl
         {
             ["Left"] = Mouse.LeftButton == MouseButtonState.Pressed,
             ["Right"] = Mouse.RightButton == MouseButtonState.Pressed,
-            ["Middle"] = Mouse.MiddleButton == MouseButtonState.Pressed
+            ["Middle"] = Mouse.MiddleButton == MouseButtonState.Pressed,
+            ["XButton1"] = Mouse.XButton1 == MouseButtonState.Pressed,
+            ["XButton2"] = Mouse.XButton2 == MouseButtonState.Pressed,
+            ["WheelUp"] = wheel > 0,
+            ["WheelDown"] = wheel < 0
         };
         var actions = _input.MouseButtonMappings ?? new Dictionary<string, AmigaMouseAction>
         {
@@ -457,7 +461,7 @@ public sealed class AmigaMachineView : UserControl
         var controllers = XInputControllerReader.ReadAll();
         var primaryController = controllers.FirstOrDefault() ?? EmulationControllerState.Empty;
         bool IsPressed(AmigaMouseAction action) => actions.Any(mapping => mapping.Value == action
-            && IsControllerSourcePressed(mapping.Key, primaryController, physical));
+            && IsControllerSourcePressed(mapping.Key, ControllerForSource(mapping.Key, controllers, primaryController), physical));
         _machine.SetInput(new EmulationInputSnapshot(new HashSet<EmulationKey>(_keys),
             new EmulationPointerState(deltaX, deltaY, wheel, IsPressed(AmigaMouseAction.LeftButton),
                 IsPressed(AmigaMouseAction.RightButton), IsPressed(AmigaMouseAction.MiddleButton)),
@@ -492,6 +496,8 @@ public sealed class AmigaMachineView : UserControl
     private bool IsControllerSourcePressed(string sourceName, EmulationControllerState controller,
         IReadOnlyDictionary<string, bool> mouseButtons)
     {
+        if (sourceName.StartsWith("Controller:", StringComparison.OrdinalIgnoreCase))
+            return IsModernControllerSourcePressed(sourceName["Controller:".Length..], controller);
         var controllerIndex = Array.IndexOf(ControllerButtonNames, sourceName);
         if (controllerIndex >= 0) return (controller.Buttons & (1u << controllerIndex)) != 0;
         if (sourceName.StartsWith("Keyboard:", StringComparison.OrdinalIgnoreCase)
@@ -499,6 +505,45 @@ public sealed class AmigaMachineView : UserControl
         if (sourceName.StartsWith("Mouse:", StringComparison.OrdinalIgnoreCase))
             return mouseButtons.GetValueOrDefault(sourceName[6..]);
         return false;
+    }
+
+    private static bool IsModernControllerSourcePressed(string source, EmulationControllerState controller)
+    {
+        const short threshold = 14000;
+        var segments = source.Split(':', StringSplitOptions.RemoveEmptyEntries);
+        source = segments[^1];
+        var button = source switch
+        {
+            "ButtonB" => 0, "ButtonY" => 1, "View" => 2, "Menu" => 3,
+            "DPadUp" => 4, "DPadDown" => 5, "DPadLeft" => 6, "DPadRight" => 7,
+            "ButtonA" => 8, "ButtonX" => 9, "LeftShoulder" => 10, "RightShoulder" => 11,
+            "LeftTrigger" => 12, "RightTrigger" => 13,
+            "LeftStickClick" => 14, "RightStickClick" => 15,
+            _ => -1
+        };
+        if (button >= 0) return (controller.Buttons & (1u << button)) != 0;
+        return source switch
+        {
+            "LeftStickLeft" => controller.LeftX < -threshold,
+            "LeftStickRight" => controller.LeftX > threshold,
+            "LeftStickUp" => controller.LeftY < -threshold,
+            "LeftStickDown" => controller.LeftY > threshold,
+            "RightStickLeft" => controller.RightX < -threshold,
+            "RightStickRight" => controller.RightX > threshold,
+            "RightStickUp" => controller.RightY < -threshold,
+            "RightStickDown" => controller.RightY > threshold,
+            _ => false
+        };
+    }
+
+    private static EmulationControllerState ControllerForSource(string source,
+        IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback)
+    {
+        if (!source.StartsWith("Controller:xinput:", StringComparison.OrdinalIgnoreCase)) return fallback;
+        var segments = source.Split(':', StringSplitOptions.RemoveEmptyEntries);
+        return segments.Length >= 4 && int.TryParse(segments[2], out var port) && port >= 0 && port < controllers.Count
+            ? controllers[port]
+            : fallback;
     }
 
     private static int ParseXInputPort(string? deviceId, int fallback) =>

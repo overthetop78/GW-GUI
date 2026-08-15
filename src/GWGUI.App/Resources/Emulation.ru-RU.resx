@@ -363,4 +363,22 @@
   <data name="Emulation.Sectors"><value>Секторы</value></data>
   <data name="Emulation.UnitMiB"><value>МиБ</value></data>
   <data name="Emulation.UnitGiB"><value>ГиБ</value></data>
+  <data name="Emulation.DirectionUp"><value>Вверх</value></data>
+  <data name="Emulation.DirectionDown"><value>Вниз</value></data>
+  <data name="Emulation.DirectionLeft"><value>Влево</value></data>
+  <data name="Emulation.DirectionRight"><value>Вправо</value></data>
+  <data name="Emulation.FireButton1"><value>Кнопка огня 1</value></data>
+  <data name="Emulation.FireButton2"><value>Кнопка огня 2</value></data>
+  <data name="Emulation.Cd32Red"><value>Красная кнопка CD32</value></data>
+  <data name="Emulation.Cd32Blue"><value>Синяя кнопка CD32</value></data>
+  <data name="Emulation.Cd32Green"><value>Зелёная кнопка CD32</value></data>
+  <data name="Emulation.Cd32Yellow"><value>Жёлтая кнопка CD32</value></data>
+  <data name="Emulation.Cd32Rewind"><value>CD32 перемотка назад</value></data>
+  <data name="Emulation.Cd32FastForward"><value>CD32 перемотка вперёд</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>CD32 воспроизведение / пауза</value></data>
+  <data name="Emulation.AmigaJoystick"><value>Джойстик Amiga</value></data>
+  <data name="Emulation.AnalogJoystick"><value>Аналоговый джойстик</value></data>
+  <data name="Emulation.Cd32Controller"><value>Контроллер CD32</value></data>
+  <data name="Emulation.MouseWheelUp"><value>Колесо мыши вверх</value></data>
+  <data name="Emulation.MouseWheelDown"><value>Колесо мыши вниз</value></data>
 </root>

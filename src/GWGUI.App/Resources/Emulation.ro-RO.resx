@@ -363,4 +363,22 @@
   <data name="Emulation.Sectors"><value>Sectoare</value></data>
   <data name="Emulation.UnitMiB"><value>MiB</value></data>
   <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>Sus</value></data>
+  <data name="Emulation.DirectionDown"><value>Jos</value></data>
+  <data name="Emulation.DirectionLeft"><value>Stânga</value></data>
+  <data name="Emulation.DirectionRight"><value>Dreapta</value></data>
+  <data name="Emulation.FireButton1"><value>Buton de foc 1</value></data>
+  <data name="Emulation.FireButton2"><value>Buton de foc 2</value></data>
+  <data name="Emulation.Cd32Red"><value>Buton roșu CD32</value></data>
+  <data name="Emulation.Cd32Blue"><value>Buton albastru CD32</value></data>
+  <data name="Emulation.Cd32Green"><value>Buton verde CD32</value></data>
+  <data name="Emulation.Cd32Yellow"><value>Buton galben CD32</value></data>
+  <data name="Emulation.Cd32Rewind"><value>Derulare înapoi CD32</value></data>
+  <data name="Emulation.Cd32FastForward"><value>Derulare înainte CD32</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>Redare / pauză CD32</value></data>
+  <data name="Emulation.AmigaJoystick"><value>Joystick Amiga</value></data>
+  <data name="Emulation.AnalogJoystick"><value>Joystick analogic</value></data>
+  <data name="Emulation.Cd32Controller"><value>Controler CD32</value></data>
+  <data name="Emulation.MouseWheelUp"><value>Rotița mouse-ului în sus</value></data>
+  <data name="Emulation.MouseWheelDown"><value>Rotița mouse-ului în jos</value></data>
 </root>

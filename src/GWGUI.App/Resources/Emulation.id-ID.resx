@@ -363,4 +363,22 @@
   <data name="Emulation.Sectors"><value>Sektor</value></data>
   <data name="Emulation.UnitMiB"><value>MiB</value></data>
   <data name="Emulation.UnitGiB"><value>GiB</value></data>
+  <data name="Emulation.DirectionUp"><value>Atas</value></data>
+  <data name="Emulation.DirectionDown"><value>Bawah</value></data>
+  <data name="Emulation.DirectionLeft"><value>Kiri</value></data>
+  <data name="Emulation.DirectionRight"><value>Kanan</value></data>
+  <data name="Emulation.FireButton1"><value>Tombol tembak 1</value></data>
+  <data name="Emulation.FireButton2"><value>Tombol tembak 2</value></data>
+  <data name="Emulation.Cd32Red"><value>Tombol merah CD32</value></data>
+  <data name="Emulation.Cd32Blue"><value>Tombol biru CD32</value></data>
+  <data name="Emulation.Cd32Green"><value>Tombol hijau CD32</value></data>
+  <data name="Emulation.Cd32Yellow"><value>Tombol kuning CD32</value></data>
+  <data name="Emulation.Cd32Rewind"><value>CD32 putar balik</value></data>
+  <data name="Emulation.Cd32FastForward"><value>CD32 maju cepat</value></data>
+  <data name="Emulation.Cd32PlayPause"><value>CD32 putar / jeda</value></data>
+  <data name="Emulation.AmigaJoystick"><value>Joystick Amiga</value></data>
+  <data name="Emulation.AnalogJoystick"><value>Joystick analog</value></data>
+  <data name="Emulation.Cd32Controller"><value>Pengontrol CD32</value></data>
+  <data name="Emulation.MouseWheelUp"><value>Roda tetikus ke atas</value></data>
+  <data name="Emulation.MouseWheelDown"><value>Roda tetikus ke bawah</value></data>
 </root>
