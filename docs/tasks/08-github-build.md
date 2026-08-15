@@ -36,7 +36,11 @@ Un push, un commit ou une pull request ne déclenche seul ni build, ni snapshot,
 - `scripts/package.ps1` transmet déjà la version produit reçue à `dotnet publish` et à Inno Setup ;
 - les noms actuels du ZIP et de l’installateur utilisent déjà cette version produit.
 
-- [ ] Ajouter un `Directory.Build.props` commun à tous les projets de production pour centraliser la version stable courante et les règles de version des assemblies.
+- [ ] Ajouter un `Directory.Build.props` commun à tous les projets de production pour centraliser les règles de version des assemblies ; la dernière version stable provient du dernier tag Git, pas d’une copie maintenue dans chaque projet.
+- [ ] Créer `scripts/version.ps1` comme point unique de calcul de version pour les workflows et le packaging local.
+  - [ ] Lire automatiquement la dernière version stable depuis les tags Git.
+  - [ ] Recevoir uniquement le type de build demandé : correction snapshot, fonctionnalité snapshot ou promotion stable.
+  - [ ] Retourner la version produit, la révision, la version informative et les noms de fichiers sans modifier manuellement les projets.
 - [ ] Calculer automatiquement une seule fois l’identité complète lorsqu’une snapshot est demandée.
   - [ ] Conserver la version stable courante pour une snapshot de corrections.
   - [ ] Calculer automatiquement la prochaine version de fonctionnalité pour une snapshot contenant une nouvelle fonction, sans saisir son numéro.
@@ -56,6 +60,7 @@ Un push, un commit ou une pull request ne déclenche seul ni build, ni snapshot,
 
 - [x] Auditer les scripts locaux `scripts/build.ps1` et `scripts/package.ps1`.
 - [ ] Créer un workflow manuel `snapshot.yml` qui ne se déclenche jamais sur un push, un commit, une pull request ou une planification.
+- [ ] Faire appeler `scripts/version.ps1` automatiquement par ce workflow dès que la snapshot est demandée depuis GitHub Actions.
 - [ ] Permettre de choisir si la snapshot représente seulement une nouvelle révision ou une nouvelle fonctionnalité, sans saisir de numéro de version.
 - [x] Valider dans le workflow de release l’utilisation d’un runner Windows et de la version .NET du projet.
 - [x] Valider dans le workflow de release la restauration, la compilation Release et les tests compatibles CI.
@@ -64,7 +69,7 @@ Un push, un commit ou une pull request ne déclenche seul ni build, ni snapshot,
 - [ ] Compiler et publier en Release une seule fois, puis réutiliser cette sortie pour tous les fichiers de la snapshot.
 - [ ] Exécuter seulement `GWGUI.Tests` ; conserver `GWGUI.LocalDiskImageTests` hors CI.
 - [ ] Produire le ZIP portable, l’installateur et `SHA256SUMS.txt` avec la version candidate et la révision calculées.
-- [ ] Publier ou remplacer une unique GitHub Prerelease `snapshot` au lieu de créer une nouvelle release à chaque snapshot.
+- [ ] Publier chaque snapshot demandée comme une GitHub Prerelease distincte portant sa version candidate et sa révision.
 - [ ] Enregistrer dans la snapshot le commit, l’identité complète et les sommes des fichiers nécessaires à une promotion stable.
 - [x] Vérifier que toute erreur PowerShell ou commande native produit un code de sortie non nul.
 
