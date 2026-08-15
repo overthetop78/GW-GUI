@@ -463,28 +463,7 @@ public sealed class OptionsEmulationSection : UserControl
     private UIElement BuildAmigaEditor()
     {
         var root = new Grid { Margin = new Thickness(8) };
-        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         root.RowDefinitions.Add(new RowDefinition());
-        var header = new Grid { Margin = new Thickness(4, 4, 4, 12) };
-        header.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-        header.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(360) });
-        header.ColumnDefinitions.Add(new ColumnDefinition());
-        var modelLabel = new TextBlock
-        {
-            Text = LocExtension.Get("Emulation.Model"), FontWeight = FontWeights.SemiBold,
-            VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(8, 0, 12, 0)
-        };
-        header.Children.Add(modelLabel);
-        _model.Height = 36;
-        _model.Margin = new Thickness(0);
-        _model.VerticalAlignment = VerticalAlignment.Center;
-        Grid.SetColumn(_model, 1);
-        header.Children.Add(_model);
-        var headerActions = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Right, VerticalAlignment = VerticalAlignment.Center };
-        AddButton(headerActions, "Common.Save", SaveConfigurationAsync);
-        Grid.SetColumn(headerActions, 2);
-        header.Children.Add(headerActions);
-        root.Children.Add(header);
         var tabs = new TabControl
         {
             HorizontalContentAlignment = HorizontalAlignment.Stretch,
@@ -500,7 +479,6 @@ public sealed class OptionsEmulationSection : UserControl
         AddMachineTab(tabs, "\uE765", LocExtension.Get("Emulation.KeyboardTab"), BuildKeyboardTab());
         AddMachineTab(tabs, "\uE962", LocExtension.Get("Emulation.MouseTab"), BuildMouseTab());
         AddMachineTab(tabs, "\uE7FC", LocExtension.Get("Emulation.ControllersTab"), BuildControllersTab());
-        Grid.SetRow(tabs, 1);
         root.Children.Add(tabs);
         return root;
     }
@@ -508,6 +486,27 @@ public sealed class OptionsEmulationSection : UserControl
     private UIElement BuildAmigaGeneralTab()
     {
         var panel = new StackPanel { Margin = new Thickness(12) };
+        var configuration = new Grid { Margin = new Thickness(4, 0, 4, 12) };
+        configuration.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        configuration.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(360) });
+        configuration.ColumnDefinitions.Add(new ColumnDefinition());
+        configuration.Children.Add(new TextBlock
+        {
+            Text = LocExtension.Get("Emulation.Model"),
+            FontWeight = FontWeights.SemiBold,
+            VerticalAlignment = VerticalAlignment.Center,
+            Margin = new Thickness(0, 0, 12, 0)
+        });
+        _model.Height = 36;
+        _model.Margin = new Thickness(0);
+        _model.VerticalAlignment = VerticalAlignment.Center;
+        Grid.SetColumn(_model, 1);
+        configuration.Children.Add(_model);
+        var actions = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Right, VerticalAlignment = VerticalAlignment.Center };
+        AddButton(actions, "Common.Save", SaveConfigurationAsync);
+        Grid.SetColumn(actions, 2);
+        configuration.Children.Add(actions);
+        panel.Children.Add(configuration);
         panel.Children.Add(new AmigaCoreManagementSection { Margin = new Thickness(0, 0, 0, 12) });
         var hardDisks = new StackPanel { Margin = new Thickness(8, 6, 8, 8) };
         hardDisks.Children.Add(BuildPathRow(LocExtension.Get("Emulation.HardDisks"), _amigaHardDisksFolder,
