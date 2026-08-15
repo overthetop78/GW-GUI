@@ -119,7 +119,7 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
 
     protected override HandleRef BuildWindowCore(HandleRef hwndParent)
     {
-        _hwnd = CreateWindowEx(0, "STATIC", string.Empty, WsChild | WsVisible | WsClipChildren | WsClipSiblings,
+        _hwnd = CreateWindowEx(0, "STATIC", string.Empty, WsChild | WsVisible | WsClipChildren | WsClipSiblings | SsNotify,
             0, 0, Math.Max(1, (int)ActualWidth), Math.Max(1, (int)ActualHeight), hwndParent.Handle,
             IntPtr.Zero, GetModuleHandle(null), IntPtr.Zero);
         if (_hwnd == IntPtr.Zero) throw new InvalidOperationException("Unable to create the emulation video window.");
@@ -242,6 +242,7 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
     [StructLayout(LayoutKind.Sequential)]
     private readonly record struct Vertex(float X, float Y, float U, float V);
     private const int WsChild = 0x40000000, WsVisible = 0x10000000, WsClipChildren = 0x02000000, WsClipSiblings = 0x04000000;
+    private const int SsNotify = 0x00000100;
     [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
     private static extern IntPtr CreateWindowEx(int exStyle, string className, string windowName, int style,
         int x, int y, int width, int height, IntPtr parent, IntPtr menu, IntPtr instance, IntPtr parameter);
@@ -274,7 +275,7 @@ internal sealed class OpenGlVideoSurface : HwndHost, IEmulationVideoSurface
 
     protected override HandleRef BuildWindowCore(HandleRef hwndParent)
     {
-        _hwnd = CreateWindowEx(0, "STATIC", string.Empty, WsChild | WsVisible | WsClipChildren | WsClipSiblings,
+        _hwnd = CreateWindowEx(0, "STATIC", string.Empty, WsChild | WsVisible | WsClipChildren | WsClipSiblings | SsNotify,
             0, 0, Math.Max(1, (int)ActualWidth), Math.Max(1, (int)ActualHeight), hwndParent.Handle,
             IntPtr.Zero, GetModuleHandle(null), IntPtr.Zero);
         if (_hwnd == IntPtr.Zero) throw new InvalidOperationException("Unable to create the OpenGL video window.");
@@ -330,6 +331,7 @@ internal sealed class OpenGlVideoSurface : HwndHost, IEmulationVideoSurface
         public uint LayerMask, VisibleMask, DamageMask;
     }
     private const int WsChild = 0x40000000, WsVisible = 0x10000000, WsClipChildren = 0x02000000, WsClipSiblings = 0x04000000;
+    private const int SsNotify = 0x00000100;
     private const uint PfdDrawToWindow = 4, PfdSupportOpenGl = 32, PfdDoubleBuffer = 1;
     private const byte PfdTypeRgba = 0, PfdMainPlane = 0;
     private const uint GlColorBufferBit = 0x4000, GlBgra = 0x80E1, GlUnsignedByte = 0x1401;
