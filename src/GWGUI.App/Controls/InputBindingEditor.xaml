@@ -3,7 +3,7 @@
  xmlns:l="clr-namespace:GWGUI.App.Localization">
  <UserControl.Resources>
   <Style x:Key="BindingActionButton" TargetType="Button">
-   <Setter Property="Height" Value="34"/><Setter Property="MinWidth" Value="42"/><Setter Property="Padding" Value="12,5"/>
+   <Setter Property="Height" Value="32"/><Setter Property="MinWidth" Value="40"/><Setter Property="Padding" Value="11,4"/>
    <Setter Property="Margin" Value="4,0"/><Setter Property="VerticalAlignment" Value="Center"/><Setter Property="Background" Value="White"/>
    <Setter Property="BorderBrush" Value="#C9D0DA"/><Setter Property="BorderThickness" Value="1"/>
    <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button">
@@ -23,12 +23,12 @@
   </Style>
  </UserControl.Resources>
 
- <Grid Margin="12,6,12,8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-  <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
-  <Grid Margin="0,0,0,8">
-   <Grid.ColumnDefinitions><ColumnDefinition Width="390"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+ <Grid Margin="10,4,10,8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+  <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+  <Grid Margin="0,0,0,6">
+   <Grid.ColumnDefinitions><ColumnDefinition Width="340"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
    <Grid>
-    <TextBox x:Name="SearchBox" Height="38" Padding="40,6,10,6" VerticalContentAlignment="Center" TextChanged="SearchChanged"/>
+    <TextBox x:Name="SearchBox" Height="36" Padding="38,5,10,5" VerticalContentAlignment="Center" TextChanged="SearchChanged"/>
     <TextBlock Text="&#xE721;" FontFamily="Segoe MDL2 Assets" FontSize="18" Margin="13,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
     <TextBlock x:Name="SearchPlaceholder" Margin="42,0,8,0" Foreground="#77808F" VerticalAlignment="Center" IsHitTestVisible="False">
      <TextBlock.Style><Style TargetType="TextBlock"><Setter Property="Visibility" Value="Collapsed"/><Style.Triggers><DataTrigger Binding="{Binding Text, ElementName=SearchBox}" Value=""><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers></Style></TextBlock.Style>
@@ -45,9 +45,9 @@
   <Border Grid.Row="1" BorderBrush="#D8DEE8" BorderThickness="1" CornerRadius="7" ClipToBounds="True"
           Background="White" VerticalAlignment="Stretch">
    <Grid>
-    <Grid.RowDefinitions><RowDefinition Height="42"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+    <Grid.RowDefinitions><RowDefinition Height="38"/><RowDefinition Height="*"/></Grid.RowDefinitions>
     <Grid Background="#FAFBFD">
-     <Grid.ColumnDefinitions><ColumnDefinition Width="1.05*"/><ColumnDefinition Width="1.85*"/><ColumnDefinition Width="1.35*"/><ColumnDefinition Width="230"/></Grid.ColumnDefinitions>
+     <Grid.ColumnDefinitions><ColumnDefinition Width="1.25*"/><ColumnDefinition Width="1.75*"/><ColumnDefinition Width="1.15*"/><ColumnDefinition Width="220"/></Grid.ColumnDefinitions>
      <TextBlock x:Name="TargetHeader" Style="{StaticResource TableHeaderText}" Text="{l:Loc Emulation.EmulatedKey}"/>
      <Border Grid.Column="1" BorderBrush="#D8DEE8" BorderThickness="1,0,0,0"><TextBlock Style="{StaticResource TableHeaderText}" Text="{l:Loc Emulation.Binding}"/></Border>
      <Border Grid.Column="2" BorderBrush="#D8DEE8" BorderThickness="1,0,0,0"><TextBlock Style="{StaticResource TableHeaderText}" Text="{l:Loc Emulation.BindingState}"/></Border>
@@ -65,13 +65,13 @@
      </ListBox.ItemContainerStyle>
      <ListBox.ItemsPanel><ItemsPanelTemplate><VirtualizingStackPanel/></ItemsPanelTemplate></ListBox.ItemsPanel>
      <ListBox.ItemTemplate><DataTemplate>
-       <Border MinHeight="48" BorderBrush="#E1E6ED" BorderThickness="0,1,0,0">
+       <Border MinHeight="44" BorderBrush="#E1E6ED" BorderThickness="0,1,0,0">
         <Border.Style><Style TargetType="Border"><Setter Property="Background" Value="White"/><Style.Triggers>
          <DataTrigger Binding="{Binding State}" Value="Conflict"><Setter Property="Background" Value="#FFF1F1"/></DataTrigger>
          <DataTrigger Binding="{Binding State}" Value="Reserved"><Setter Property="Background" Value="#F3F7FF"/></DataTrigger>
         </Style.Triggers></Style></Border.Style>
         <Grid>
-         <Grid.ColumnDefinitions><ColumnDefinition Width="1.05*"/><ColumnDefinition Width="1.85*"/><ColumnDefinition Width="1.35*"/><ColumnDefinition Width="230"/></Grid.ColumnDefinitions>
+         <Grid.ColumnDefinitions><ColumnDefinition Width="1.25*"/><ColumnDefinition Width="1.75*"/><ColumnDefinition Width="1.15*"/><ColumnDefinition Width="220"/></Grid.ColumnDefinitions>
          <TextBlock Text="{Binding Label}" Margin="14,8" VerticalAlignment="Center" TextWrapping="Wrap"/>
          <Border Grid.Column="1" BorderBrush="#E1E6ED" BorderThickness="1,0,0,0" Padding="14,7">
           <ItemsControl ItemsSource="{Binding BindingParts}" VerticalAlignment="Center">
@@ -94,7 +94,7 @@
          </Border>
          <Border Grid.Column="3" BorderBrush="#E1E6ED" BorderThickness="1,0,0,0" Padding="4,7">
           <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Tag="{Binding}" Click="AssignClicked" Style="{StaticResource BindingActionButton}" MinWidth="132">
+            <Button Tag="{Binding}" Click="AssignClicked" Style="{StaticResource BindingActionButton}" MinWidth="126">
             <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE70F;" FontFamily="Segoe MDL2 Assets" Margin="0,0,8,0"/><TextBlock Text="{l:Loc Emulation.AssignInput}"/></StackPanel>
            </Button>
            <Button Content="&#xE74D;" FontFamily="Segoe MDL2 Assets" Tag="{Binding}" Click="ClearClicked" ToolTip="{l:Loc Common.Delete}" Style="{StaticResource BindingActionButton}" Width="48" Padding="9"/>
@@ -106,6 +106,5 @@
     </ListBox>
    </Grid>
   </Border>
-  <TextBlock x:Name="Legend" Grid.Row="2" Margin="4,10,4,0" TextWrapping="Wrap"/>
  </Grid>
 </UserControl>

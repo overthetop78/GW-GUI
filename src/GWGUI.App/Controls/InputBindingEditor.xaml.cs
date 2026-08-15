@@ -26,7 +26,6 @@ public partial class InputBindingEditor : UserControl
         InitializeComponent();
         BindingsList.ItemsSource = _rows;
         SearchBox.ToolTip = LocExtension.Get("Emulation.SearchBinding");
-        Legend.Text = LocExtension.Get("Emulation.BindingLegend");
         AddHandler(PreviewKeyDownEvent, new KeyEventHandler(CaptureKeyDown), true);
         AddHandler(PreviewKeyUpEvent, new KeyEventHandler(CaptureKeyUp), true);
     }

@@ -221,22 +221,11 @@ public sealed class OptionsEmulationSection : UserControl
         var root = new Grid { Margin = new Thickness(14) };
         root.RowDefinitions.Add(new RowDefinition());
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        var defaults = new Grid { Margin = new Thickness(10, 6, 10, 10) };
-        defaults.ColumnDefinitions.Add(new ColumnDefinition());
-        defaults.ColumnDefinitions.Add(new ColumnDefinition());
-        defaults.ColumnDefinitions.Add(new ColumnDefinition());
-        var storage = BuildCompactPathTile(LocExtension.Get("Emulation.StorageBaseFolder"), _storageBaseFolder,
-            BrowseStorageBaseFolderAsync, OpenStorageBaseFolderAsync);
-        storage.Margin = new Thickness(0, 0, 8, 0);
-        defaults.Children.Add(storage);
-        var captures = BuildCompactPathTile(LocExtension.Get("Emulation.CaptureFolder"), _captureFolder, BrowseCaptureFolderAsync);
-        captures.Margin = new Thickness(4, 0, 4, 0);
-        Grid.SetColumn(captures, 1);
-        defaults.Children.Add(captures);
-        var states = BuildCompactPathTile(LocExtension.Get("Emulation.StateFolder"), _stateFolder, BrowseStateFolderAsync);
-        states.Margin = new Thickness(8, 0, 0, 0);
-        Grid.SetColumn(states, 2);
-        defaults.Children.Add(states);
+        var defaults = new StackPanel { Margin = new Thickness(8, 4, 8, 6) };
+        defaults.Children.Add(BuildCompactPathRow(LocExtension.Get("Emulation.StorageBaseFolder"), _storageBaseFolder,
+            BrowseStorageBaseFolderAsync, OpenStorageBaseFolderAsync));
+        defaults.Children.Add(BuildCompactPathRow(LocExtension.Get("Emulation.CaptureFolder"), _captureFolder, BrowseCaptureFolderAsync));
+        defaults.Children.Add(BuildCompactPathRow(LocExtension.Get("Emulation.StateFolder"), _stateFolder, BrowseStateFolderAsync));
         var shortcuts = InputBindingCard(_globalShortcutEditor, LocExtension.Get("Emulation.GlobalShortcuts"));
         root.Children.Add(shortcuts);
         var folders = Card(defaults, LocExtension.Get("Emulation.DefaultFolders"));
@@ -311,47 +300,42 @@ public sealed class OptionsEmulationSection : UserControl
         return row;
     }
 
-    private static FrameworkElement BuildCompactPathTile(string label, TextBox textBox, Func<Task> browse, Func<Task>? open = null)
+    private static FrameworkElement BuildCompactPathRow(string label, TextBox textBox, Func<Task> browse, Func<Task>? open = null)
     {
-        var tile = new Grid();
-        tile.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        tile.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        tile.Children.Add(new TextBlock
-        {
-            Text = label,
-            Margin = new Thickness(0, 0, 0, 5),
-            TextWrapping = TextWrapping.Wrap
-        });
-        var controls = new Grid();
-        controls.ColumnDefinitions.Add(new ColumnDefinition());
-        controls.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-        if (open is not null) controls.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        var row = new Grid { Margin = new Thickness(2) };
+        row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(285) });
+        row.ColumnDefinitions.Add(new ColumnDefinition());
+        row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        if (open is not null) row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        row.Children.Add(new TextBlock { Text = label, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 10, 0) });
         textBox.MinWidth = 0;
-        controls.Children.Add(textBox);
+        textBox.Height = 32;
+        Grid.SetColumn(textBox, 1);
+        row.Children.Add(textBox);
         var browseButton = new Button
         {
             Content = LocExtension.Get("Common.Browse"),
-            MinWidth = 92,
+            Height = 32,
+            MinWidth = 96,
             Margin = new Thickness(6, 0, 0, 0)
         };
         browseButton.Click += async (_, _) => await browse();
-        Grid.SetColumn(browseButton, 1);
-        controls.Children.Add(browseButton);
+        Grid.SetColumn(browseButton, 2);
+        row.Children.Add(browseButton);
         if (open is not null)
         {
             var openButton = new Button
             {
                 Content = LocExtension.Get("Common.OpenFolder"),
-                MinWidth = 104,
+                Height = 32,
+                MinWidth = 112,
                 Margin = new Thickness(6, 0, 0, 0)
             };
             openButton.Click += async (_, _) => await open();
-            Grid.SetColumn(openButton, 2);
-            controls.Children.Add(openButton);
+            Grid.SetColumn(openButton, 3);
+            row.Children.Add(openButton);
         }
-        Grid.SetRow(controls, 1);
-        tile.Children.Add(controls);
-        return tile;
+        return row;
     }
 
     private UIElement BuildConfigurationCatalog()
@@ -474,7 +458,6 @@ public sealed class OptionsEmulationSection : UserControl
         var root = new Grid { Margin = new Thickness(8) };
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         root.RowDefinitions.Add(new RowDefinition());
-        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         var header = new Grid { Margin = new Thickness(4, 4, 4, 12) };
         header.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         header.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(360) });
@@ -485,11 +468,15 @@ public sealed class OptionsEmulationSection : UserControl
             VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(8, 0, 12, 0)
         };
         header.Children.Add(modelLabel);
-        _model.Height = 44;
-        _model.Margin = new Thickness(0, 4, 0, 4);
+        _model.Height = 36;
+        _model.Margin = new Thickness(0);
         _model.VerticalAlignment = VerticalAlignment.Center;
         Grid.SetColumn(_model, 1);
         header.Children.Add(_model);
+        var headerActions = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Right, VerticalAlignment = VerticalAlignment.Center };
+        AddButton(headerActions, "Common.Save", SaveConfigurationAsync);
+        Grid.SetColumn(headerActions, 2);
+        header.Children.Add(headerActions);
         root.Children.Add(header);
         var tabs = new TabControl
         {
@@ -508,10 +495,6 @@ public sealed class OptionsEmulationSection : UserControl
         AddMachineTab(tabs, "\uE7FC", LocExtension.Get("Emulation.ControllersTab"), BuildControllersTab());
         Grid.SetRow(tabs, 1);
         root.Children.Add(tabs);
-        var actions = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Right, Margin = new Thickness(0, 10, 0, 0) };
-        AddButton(actions, "Common.Save", SaveConfigurationAsync);
-        Grid.SetRow(actions, 2);
-        root.Children.Add(actions);
         return root;
     }
 
@@ -685,16 +668,8 @@ public sealed class OptionsEmulationSection : UserControl
     {
         var panel = new Grid { Margin = new Thickness(12) };
         panel.RowDefinitions.Add(new RowDefinition());
-        panel.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        panel.Children.Add(InputBindingCard(_amigaKeyboardEditor, LocExtension.Get("Emulation.InputActions")));
-        var hint = InformationBanner(new TextBlock
-        {
-            Text = LocExtension.Get("Emulation.SpecialKeysOnlyHint"),
-            TextWrapping = TextWrapping.Wrap
-        });
-        hint.Margin = new Thickness(0, 8, 0, 0);
-        Grid.SetRow(hint, 1);
-        panel.Children.Add(hint);
+        panel.Children.Add(InputBindingCard(_amigaKeyboardEditor, LocExtension.Get("Emulation.InputActions"),
+            LocExtension.Get("Emulation.SpecialKeysOnlyHint")));
         return panel;
     }
 
@@ -1534,18 +1509,32 @@ public sealed class OptionsEmulationSection : UserControl
         return card;
     }
 
-    private static Border InputBindingCard(InputBindingEditor editor, string title)
+    private static Border InputBindingCard(InputBindingEditor editor, string title, string? hint = null)
     {
         var layout = new Grid();
         layout.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         layout.RowDefinitions.Add(new RowDefinition());
-        layout.Children.Add(new TextBlock
+        var heading = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(10, 6, 10, 2) };
+        heading.Children.Add(new TextBlock
         {
             Text = title,
             FontWeight = FontWeights.SemiBold,
             FontSize = 16,
-            Margin = new Thickness(10, 8, 10, 2)
+            VerticalAlignment = VerticalAlignment.Center
         });
+        if (!string.IsNullOrWhiteSpace(hint))
+        {
+            heading.Children.Add(new TextBlock
+            {
+                Text = "\uE946",
+                FontFamily = new FontFamily("Segoe MDL2 Assets"),
+                FontSize = 15,
+                Margin = new Thickness(9, 0, 0, 0),
+                VerticalAlignment = VerticalAlignment.Center,
+                ToolTip = hint
+            });
+        }
+        layout.Children.Add(heading);
         Grid.SetRow(editor, 1);
         layout.Children.Add(editor);
         var card = new Border { Child = layout, Padding = new Thickness(2) };
