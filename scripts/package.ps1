@@ -28,6 +28,28 @@ dotnet publish (Join-Path $repository 'src\GWGUI.App\GWGUI.App.csproj') -c $Conf
 if ($LASTEXITCODE -ne 0) { throw 'dotnet publish failed.' }
 Get-ChildItem -LiteralPath $publish -Recurse -File -Filter '*.pdb' | Remove-Item -Force
 
+# Keep satellite translation assemblies out of the application root.
+$languageDirectories = @(Get-ChildItem -LiteralPath $publish -Directory | Where-Object {
+    @(Get-ChildItem -LiteralPath $_.FullName -File -Filter '*.resources.dll').Count -gt 0
+})
+if ($languageDirectories.Count -gt 0) {
+    $languages = Join-Path $publish 'Languages'
+    New-Item -ItemType Directory -Path $languages -Force | Out-Null
+    $dependencyManifests = @(Get-ChildItem -LiteralPath $publish -File -Filter '*.deps.json')
+    foreach ($languageDirectory in $languageDirectories) {
+        foreach ($resource in Get-ChildItem -LiteralPath $languageDirectory.FullName -File -Filter '*.resources.dll') {
+            $publishedPath = "$($languageDirectory.Name)/$($resource.Name)"
+            $packagedPath = "Languages/$publishedPath"
+            foreach ($manifest in $dependencyManifests) {
+                $content = [IO.File]::ReadAllText($manifest.FullName)
+                $updated = $content.Replace(('"' + $publishedPath + '"'), ('"' + $packagedPath + '"'))
+                if ($updated -ne $content) { [IO.File]::WriteAllText($manifest.FullName, $updated) }
+            }
+        }
+        Move-Item -LiteralPath $languageDirectory.FullName -Destination (Join-Path $languages $languageDirectory.Name)
+    }
+}
+
 Copy-Item -Path (Join-Path $publish '*') -Destination $portablePackage -Recurse -Force
 Copy-Item -LiteralPath (Join-Path $repository 'LICENSE') -Destination $portablePackage
 Copy-Item -LiteralPath (Join-Path $repository 'README.md') -Destination $portablePackage
