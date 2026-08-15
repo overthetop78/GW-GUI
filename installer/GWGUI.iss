@@ -74,3 +74,48 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Run]
 Filename: "{app}\GW GUI.exe"; Description: "{cm:LaunchProgram,GW GUI}"; Flags: nowait postinstall skipifsilent unchecked
+
+[Code]
+const
+  DotNetDesktopRuntimeRegistryKey = 'SOFTWARE\WOW6432Node\dotnet\Setup\InstalledVersions\x64\sharedfx\Microsoft.WindowsDesktop.App';
+  DotNetDesktopRuntimeMajorPrefix = '10.';
+  DotNetDesktopRuntimePackage = 'Microsoft.DotNet.DesktopRuntime.10';
+  DotNetDesktopRuntimeDownloadPage = 'https://dotnet.microsoft.com/download/dotnet/10.0';
+
+function DotNetDesktopRuntimeInstalled: Boolean;
+var
+  ValueNames: TArrayOfString;
+  Index: Integer;
+begin
+  Result := False;
+  if not RegGetValueNames(HKLM64, DotNetDesktopRuntimeRegistryKey, ValueNames) then Exit;
+  for Index := 0 to GetArrayLength(ValueNames) - 1 do
+    if Pos(DotNetDesktopRuntimeMajorPrefix, ValueNames[Index]) = 1 then
+    begin
+      Result := True;
+      Exit;
+    end;
+end;
+
+function PrepareToInstall(var NeedsRestart: Boolean): String;
+var
+  WingetPath: String;
+  ResultCode: Integer;
+begin
+  Result := '';
+  if DotNetDesktopRuntimeInstalled then Exit;
+
+  WingetPath := ExpandConstant('{localappdata}\Microsoft\WindowsApps\winget.exe');
+  if not FileExists(WingetPath) then
+  begin
+    ShellExec('open', DotNetDesktopRuntimeDownloadPage, '', '', SW_SHOWNORMAL, ewNoWait, ResultCode);
+    Result := SysErrorMessage(2);
+    Exit;
+  end;
+
+  ResultCode := -1;
+  if (not Exec(WingetPath,
+      'install --id ' + DotNetDesktopRuntimePackage + ' --exact --silent --accept-package-agreements --accept-source-agreements',
+      '', SW_SHOW, ewWaitUntilTerminated, ResultCode)) or (ResultCode <> 0) then
+    Result := SysErrorMessage(ResultCode);
+end;

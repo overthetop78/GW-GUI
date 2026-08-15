@@ -36,11 +36,6 @@ public sealed class LocExtension(string key) : MarkupExtension
             ? resources.GetString(key, CultureInfo.InvariantCulture) ?? $"[{key}]"
             : $"[{key}]";
 
-    public static void ReleaseCachedResources()
-    {
-        foreach (var resources in ResourcesByKey.Values.Distinct()) resources.ReleaseAllResources();
-    }
-
     public static IReadOnlySet<string> GetDefinedKeys(CultureInfo culture)
     {
         return CatalogNames.SelectMany(catalog => GetDefinedKeys(catalog, culture)).ToHashSet(StringComparer.Ordinal);

@@ -68,9 +68,6 @@ public partial class App : Application
         CultureInfo.DefaultThreadCurrentUICulture = uiCulture;
         CultureInfo.CurrentCulture = culture;
         CultureInfo.CurrentUICulture = uiCulture;
-        PackagedSatelliteResources.Load(uiCulture);
-        LocExtension.ReleaseCachedResources();
-        LocalizationSource.Instance.Refresh();
         base.OnStartup(e);
         _theme = settings.Theme;
         ThemeManager.Apply(settings.Theme);
@@ -135,8 +132,6 @@ public partial class App : Application
         CultureInfo.DefaultThreadCurrentUICulture = uiCulture;
         CultureInfo.CurrentCulture = culture;
         CultureInfo.CurrentUICulture = uiCulture;
-        PackagedSatelliteResources.Load(uiCulture);
-        LocExtension.ReleaseCachedResources();
         LocalizationSource.Instance.Refresh();
         foreach (var window in Windows)
         {

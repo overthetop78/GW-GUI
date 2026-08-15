@@ -24,11 +24,11 @@ New-Item -ItemType Directory -Path $publish,$portable,$portablePackage -Force | 
 Get-ChildItem -LiteralPath $portable -Force -ErrorAction SilentlyContinue | Where-Object { $_.Name -ne 'Data' } | Remove-Item -Recurse -Force
 Get-ChildItem -LiteralPath $artifacts -File -ErrorAction SilentlyContinue | Where-Object { $_.Name -match '^GW-GUI-.+-win-x64-(portable\.zip|setup\.exe)$' -or $_.Name -eq 'SHA256SUMS.txt' } | Remove-Item -Force
 
-dotnet publish (Join-Path $repository 'src\GWGUI.App\GWGUI.App.csproj') -c $Configuration -r win-x64 --self-contained true -p:Version=$Version -p:PublishReadyToRun=true -o $publish --disable-build-servers
+dotnet publish (Join-Path $repository 'src\GWGUI.App\GWGUI.App.csproj') -c $Configuration -r win-x64 --self-contained false -p:Version=$Version -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o $publish --disable-build-servers
 if ($LASTEXITCODE -ne 0) { throw 'dotnet publish failed.' }
 Get-ChildItem -LiteralPath $publish -Recurse -File -Filter '*.pdb' | Remove-Item -Force
 
-# Keep satellite translation assemblies out of the application root.
+# Keep one application satellite assembly per language in a flat language directory.
 $languageDirectories = @(Get-ChildItem -LiteralPath $publish -Directory | Where-Object {
     @(Get-ChildItem -LiteralPath $_.FullName -File -Filter '*.resources.dll').Count -gt 0
 })
@@ -37,16 +37,19 @@ if ($languageDirectories.Count -gt 0) {
     New-Item -ItemType Directory -Path $languages -Force | Out-Null
     $dependencyManifests = @(Get-ChildItem -LiteralPath $publish -File -Filter '*.deps.json')
     foreach ($languageDirectory in $languageDirectories) {
-        foreach ($resource in Get-ChildItem -LiteralPath $languageDirectory.FullName -File -Filter '*.resources.dll') {
-            $publishedPath = "$($languageDirectory.Name)/$($resource.Name)"
-            $packagedPath = "Languages/$publishedPath"
-            foreach ($manifest in $dependencyManifests) {
-                $content = [IO.File]::ReadAllText($manifest.FullName)
-                $updated = $content.Replace(('"' + $publishedPath + '"'), ('"' + $packagedPath + '"'))
-                if ($updated -ne $content) { [IO.File]::WriteAllText($manifest.FullName, $updated) }
-            }
+        $resource = Join-Path $languageDirectory.FullName 'GW GUI.resources.dll'
+        if (-not (Test-Path -LiteralPath $resource -PathType Leaf)) {
+            throw "GW GUI satellite resource is missing for '$($languageDirectory.Name)'."
         }
-        Move-Item -LiteralPath $languageDirectory.FullName -Destination (Join-Path $languages $languageDirectory.Name)
+        $publishedPath = "$($languageDirectory.Name)/GW GUI.resources.dll"
+        $packagedPath = "Languages/$($languageDirectory.Name).dll"
+        foreach ($manifest in $dependencyManifests) {
+            $content = [IO.File]::ReadAllText($manifest.FullName)
+            $updated = $content.Replace(('"' + $publishedPath + '"'), ('"' + $packagedPath + '"'))
+            if ($updated -ne $content) { [IO.File]::WriteAllText($manifest.FullName, $updated) }
+        }
+        Move-Item -LiteralPath $resource -Destination (Join-Path $languages "$($languageDirectory.Name).dll")
+        Remove-Item -LiteralPath $languageDirectory.FullName -Recurse -Force
     }
 }
 
