@@ -318,6 +318,7 @@
   <data name="Emulation.BindingReserved"><value>Reservert</value></data>
   <data name="Emulation.BindingUnassigned"><value>Ikke tilordnet</value></data>
   <data name="Emulation.GlobalShortcuts"><value>Emuleringssnarveier</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Snarveier</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>Frigi musen</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>Pause / fortsett</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>Fullskjerm / vindu</value></data>

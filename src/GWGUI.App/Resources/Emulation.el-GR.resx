@@ -318,6 +318,7 @@
   <data name="Emulation.BindingReserved"><value>Δεσμευμένο</value></data>
   <data name="Emulation.BindingUnassigned"><value>Χωρίς αντιστοίχιση</value></data>
   <data name="Emulation.GlobalShortcuts"><value>Συντομεύσεις εξομοίωσης</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Συντομεύσεις</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>Απελευθέρωση ποντικιού</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>Παύση / συνέχεια</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>Πλήρης οθόνη / παράθυρο</value></data>

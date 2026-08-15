@@ -318,6 +318,7 @@
   <data name="Emulation.BindingReserved"><value>已保留</value></data>
   <data name="Emulation.BindingUnassigned"><value>未對應</value></data>
   <data name="Emulation.GlobalShortcuts"><value>模擬快捷鍵</value></data>
+  <data name="Emulation.ShortcutsTab"><value>快捷鍵</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>釋放滑鼠</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>暫停 / 繼續</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>全螢幕 / 視窗</value></data>

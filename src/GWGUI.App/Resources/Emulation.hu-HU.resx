@@ -318,6 +318,7 @@
   <data name="Emulation.BindingReserved"><value>Fenntartott</value></data>
   <data name="Emulation.BindingUnassigned"><value>Nincs hozzárendelve</value></data>
   <data name="Emulation.GlobalShortcuts"><value>Emulációs gyorsbillentyűk</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Gyorsbillentyűk</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>Egér felengedése</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>Szünet / folytatás</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>Teljes képernyő / ablak</value></data>

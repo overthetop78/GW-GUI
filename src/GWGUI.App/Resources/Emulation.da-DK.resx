@@ -318,6 +318,7 @@
   <data name="Emulation.BindingReserved"><value>Reserveret</value></data>
   <data name="Emulation.BindingUnassigned"><value>Ikke tildelt</value></data>
   <data name="Emulation.GlobalShortcuts"><value>Emuleringsgenveje</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Genveje</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>Frigiv musen</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>Pause / fortsæt</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>Fuld skærm / vindue</value></data>

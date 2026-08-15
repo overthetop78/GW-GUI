@@ -318,6 +318,7 @@
   <data name="Emulation.BindingReserved"><value>Зарезервировано</value></data>
   <data name="Emulation.BindingUnassigned"><value>Не назначено</value></data>
   <data name="Emulation.GlobalShortcuts"><value>Сочетания эмуляции</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Горячие клавиши</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>Освободить мышь</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>Пауза / продолжить</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>Полный экран / окно</value></data>

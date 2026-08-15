@@ -318,6 +318,7 @@
   <data name="Emulation.BindingReserved"><value>محجوز</value></data>
   <data name="Emulation.BindingUnassigned"><value>غير معيّن</value></data>
   <data name="Emulation.GlobalShortcuts"><value>اختصارات المحاكاة</value></data>
+  <data name="Emulation.ShortcutsTab"><value>اختصارات</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>تحرير الماوس</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>إيقاف مؤقت / متابعة</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>ملء الشاشة / نافذة</value></data>

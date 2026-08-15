@@ -318,6 +318,7 @@
   <data name="Emulation.BindingReserved"><value>Vyhrazené</value></data>
   <data name="Emulation.BindingUnassigned"><value>Nepřiřazeno</value></data>
   <data name="Emulation.GlobalShortcuts"><value>Zkratky emulace</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Zkratky</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>Uvolnit myš</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>Pozastavit / pokračovat</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>Celá obrazovka / okno</value></data>

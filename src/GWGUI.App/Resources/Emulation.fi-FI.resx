@@ -318,6 +318,7 @@
   <data name="Emulation.BindingReserved"><value>Varattu</value></data>
   <data name="Emulation.BindingUnassigned"><value>Ei määritetty</value></data>
   <data name="Emulation.GlobalShortcuts"><value>Emuloinnin pikanäppäimet</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Pikanäppäimet</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>Vapauta hiiri</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>Tauko / jatka</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>Koko näyttö / ikkuna</value></data>

@@ -318,6 +318,7 @@
   <data name="Emulation.BindingReserved"><value>Rezervat</value></data>
   <data name="Emulation.BindingUnassigned"><value>Neatribuit</value></data>
   <data name="Emulation.GlobalShortcuts"><value>Scurtături de emulare</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Scurtături</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>Eliberează mouse-ul</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>Pauză / continuare</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>Ecran complet / fereastră</value></data>

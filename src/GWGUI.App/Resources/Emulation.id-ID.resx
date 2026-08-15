@@ -318,6 +318,7 @@
   <data name="Emulation.BindingReserved"><value>Dicadangkan</value></data>
   <data name="Emulation.BindingUnassigned"><value>Belum dipetakan</value></data>
   <data name="Emulation.GlobalShortcuts"><value>Pintasan emulasi</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Pintasan</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>Lepaskan mouse</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>Jeda / lanjutkan</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>Layar penuh / jendela</value></data>

@@ -318,6 +318,7 @@
   <data name="Emulation.BindingReserved"><value>Ayrılmış</value></data>
   <data name="Emulation.BindingUnassigned"><value>Atanmamış</value></data>
   <data name="Emulation.GlobalShortcuts"><value>Emülasyon kısayolları</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Kısayollar</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>Fareyi serbest bırak</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>Duraklat / sürdür</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>Tam ekran / pencere</value></data>

@@ -318,6 +318,7 @@
   <data name="Emulation.BindingReserved"><value>Reserviert</value></data>
   <data name="Emulation.BindingUnassigned"><value>Nicht zugewiesen</value></data>
   <data name="Emulation.GlobalShortcuts"><value>Emulations-Tastenkürzel</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Tastenkürzel</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>Maus freigeben</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>Pause / fortsetzen</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>Vollbild / Fenstermodus</value></data>

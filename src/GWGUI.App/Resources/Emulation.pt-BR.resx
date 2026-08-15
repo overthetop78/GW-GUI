@@ -318,6 +318,7 @@
   <data name="Emulation.BindingReserved"><value>Reservado</value></data>
   <data name="Emulation.BindingUnassigned"><value>Não atribuído</value></data>
   <data name="Emulation.GlobalShortcuts"><value>Atalhos de emulação</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Atalhos</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>Liberar o mouse</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>Pausar / continuar</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>Tela cheia / janela</value></data>

@@ -318,6 +318,7 @@
   <data name="Emulation.BindingReserved"><value>Gereserveerd</value></data>
   <data name="Emulation.BindingUnassigned"><value>Niet toegewezen</value></data>
   <data name="Emulation.GlobalShortcuts"><value>Emulatiesneltoetsen</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Sneltoetsen</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>Muis vrijgeven</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>Pauzeren / hervatten</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>Volledig scherm / venster</value></data>

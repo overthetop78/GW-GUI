@@ -318,6 +318,7 @@
   <data name="Emulation.BindingReserved"><value>שמור</value></data>
   <data name="Emulation.BindingUnassigned"><value>לא משויך</value></data>
   <data name="Emulation.GlobalShortcuts"><value>קיצורי אמולציה</value></data>
+  <data name="Emulation.ShortcutsTab"><value>קיצורים</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>שחרור העכבר</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>השהיה / המשך</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>מסך מלא / חלון</value></data>

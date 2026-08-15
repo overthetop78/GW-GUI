@@ -318,6 +318,7 @@
   <data name="Emulation.BindingReserved"><value>予約済み</value></data>
   <data name="Emulation.BindingUnassigned"><value>未割り当て</value></data>
   <data name="Emulation.GlobalShortcuts"><value>エミュレーションのショートカット</value></data>
+  <data name="Emulation.ShortcutsTab"><value>ショートカット</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>マウスを解放</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>一時停止 / 再開</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>全画面 / ウィンドウ</value></data>

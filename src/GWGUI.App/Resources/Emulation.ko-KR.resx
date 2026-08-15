@@ -318,6 +318,7 @@
   <data name="Emulation.BindingReserved"><value>예약됨</value></data>
   <data name="Emulation.BindingUnassigned"><value>할당 안 됨</value></data>
   <data name="Emulation.GlobalShortcuts"><value>에뮬레이션 바로 가기</value></data>
+  <data name="Emulation.ShortcutsTab"><value>바로 가기</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>마우스 해제</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>일시 중지 / 계속</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>전체 화면 / 창</value></data>

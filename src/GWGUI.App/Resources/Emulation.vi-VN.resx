@@ -318,6 +318,7 @@
   <data name="Emulation.BindingReserved"><value>Dành riêng</value></data>
   <data name="Emulation.BindingUnassigned"><value>Chưa gán</value></data>
   <data name="Emulation.GlobalShortcuts"><value>Phím tắt mô phỏng</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Phím tắt</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>Thả chuột</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>Tạm dừng / tiếp tục</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>Toàn màn hình / cửa sổ</value></data>

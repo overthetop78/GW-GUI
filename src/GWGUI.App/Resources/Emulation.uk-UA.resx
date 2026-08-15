@@ -318,6 +318,7 @@
   <data name="Emulation.BindingReserved"><value>Зарезервоване</value></data>
   <data name="Emulation.BindingUnassigned"><value>Не призначено</value></data>
   <data name="Emulation.GlobalShortcuts"><value>Скорочення емуляції</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Скорочення</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>Звільнити мишу</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>Пауза / продовжити</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>Повний екран / вікно</value></data>

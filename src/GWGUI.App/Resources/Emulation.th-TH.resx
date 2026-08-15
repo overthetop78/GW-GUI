@@ -318,6 +318,7 @@
   <data name="Emulation.BindingReserved"><value>สงวนไว้</value></data>
   <data name="Emulation.BindingUnassigned"><value>ยังไม่กำหนด</value></data>
   <data name="Emulation.GlobalShortcuts"><value>ปุ่มลัดการจำลอง</value></data>
+  <data name="Emulation.ShortcutsTab"><value>ปุ่มลัด</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>ปล่อยเมาส์</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>หยุดชั่วคราว / ทำต่อ</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>เต็มหน้าจอ / หน้าต่าง</value></data>

@@ -318,6 +318,7 @@
   <data name="Emulation.BindingReserved"><value>Reserverad</value></data>
   <data name="Emulation.BindingUnassigned"><value>Inte tilldelad</value></data>
   <data name="Emulation.GlobalShortcuts"><value>Emuleringsgenvägar</value></data>
+  <data name="Emulation.ShortcutsTab"><value>Genvägar</value></data>
   <data name="Emulation.Shortcut.ReleaseMouse"><value>Frigör musen</value></data>
   <data name="Emulation.Shortcut.PauseResume"><value>Pausa / fortsätt</value></data>
   <data name="Emulation.Shortcut.Fullscreen"><value>Helskärm / fönsterläge</value></data>

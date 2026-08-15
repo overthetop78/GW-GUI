@@ -193,6 +193,11 @@ public sealed class OptionsEmulationSection : UserControl
         });
         _familyTabs.Items.Add(new TabItem
         {
+            Header = LocExtension.Get("Emulation.ShortcutsTab"),
+            Content = BuildGlobalInputAssignments()
+        });
+        _familyTabs.Items.Add(new TabItem
+        {
             Header = LocExtension.Get("Emulation.Configurations"),
             Content = BuildConfigurationCatalog()
         });
@@ -219,19 +224,21 @@ public sealed class OptionsEmulationSection : UserControl
     private UIElement BuildGeneralEmulationSettings()
     {
         var root = new Grid { Margin = new Thickness(14) };
-        root.RowDefinitions.Add(new RowDefinition());
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         var defaults = new StackPanel { Margin = new Thickness(8, 4, 8, 6) };
         defaults.Children.Add(BuildCompactPathRow(LocExtension.Get("Emulation.StorageBaseFolder"), _storageBaseFolder,
             BrowseStorageBaseFolderAsync, OpenStorageBaseFolderAsync));
         defaults.Children.Add(BuildCompactPathRow(LocExtension.Get("Emulation.CaptureFolder"), _captureFolder, BrowseCaptureFolderAsync));
         defaults.Children.Add(BuildCompactPathRow(LocExtension.Get("Emulation.StateFolder"), _stateFolder, BrowseStateFolderAsync));
-        var shortcuts = InputBindingCard(_globalShortcutEditor, LocExtension.Get("Emulation.GlobalShortcuts"));
-        root.Children.Add(shortcuts);
         var folders = Card(defaults, LocExtension.Get("Emulation.DefaultFolders"));
-        folders.Margin = new Thickness(0, 10, 0, 0);
-        Grid.SetRow(folders, 1);
         root.Children.Add(folders);
+        return root;
+    }
+
+    private UIElement BuildGlobalInputAssignments()
+    {
+        var root = new Grid { Margin = new Thickness(14) };
+        root.Children.Add(InputBindingCard(_globalShortcutEditor, LocExtension.Get("Emulation.GlobalShortcuts")));
         return root;
     }
 
