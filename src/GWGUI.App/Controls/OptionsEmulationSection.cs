@@ -84,12 +84,16 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly CheckBox _floppyWriteRedirect = new();
     private readonly ComboBox _cdSpeed = new();
     private readonly TextBox _mouseDevice = new();
-    private readonly CheckBox _captureMouse = new() { IsChecked = true };
-    private readonly ComboBox _physicalMouse = new();
-    private readonly ComboBox _mouseSpeed = new();
+    private readonly TextBox _mouseSpeedRatio = new()
+    {
+        Text = "1.00",
+        HorizontalContentAlignment = HorizontalAlignment.Right,
+        MaxLength = 5
+    };
     private readonly ComboBox _analogMouse = new();
     private readonly ComboBox _analogMouseDeadzone = new();
     private readonly ComboBox _analogMouseSpeed = new();
+    private readonly ComboBox _analogMouseSpeedRight = new();
     private readonly ComboBox _releaseMouseKey = new() { ItemsSource = Enum.GetValues<GWGUI.Emulation.EmulationKey>().Where(key => key != GWGUI.Emulation.EmulationKey.Unknown) };
     private readonly InputBindingEditor _amigaMouseEditor = new();
     private readonly ComboBox[] _controllerDevices = Enumerable.Range(0, 4).Select(_ => new ComboBox { DisplayMemberPath = nameof(GameControllerDevice.Name) }).ToArray();
@@ -98,8 +102,6 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly CheckBox _keyboardPassThrough = new();
     private readonly InputBindingEditor _globalShortcutEditor = new();
     private readonly InputBindingEditor _amigaKeyboardEditor = new();
-    private readonly CheckBox _turboFire = new();
-    private readonly ComboBox _turboButton = new();
     private readonly ComboBox _turboPulse = new();
     private readonly ComboBox _joyPortOrder = new();
     private readonly TextBox _storageBaseFolder = new();
@@ -283,12 +285,27 @@ public sealed class OptionsEmulationSection : UserControl
         return definitions;
     }
 
-    private static IReadOnlyList<InputBindingDefinition> AmigaMouseDefinitions() =>
-    [
-        new(nameof(AmigaMouseAction.LeftButton), LocExtension.Get("Emulation.MouseLeftButton"), "Mouse:Left"),
-        new(nameof(AmigaMouseAction.RightButton), LocExtension.Get("Emulation.MouseRightButton"), "Mouse:Right"),
-        new(nameof(AmigaMouseAction.MiddleButton), LocExtension.Get("Emulation.MouseMiddleButton"), "Mouse:Middle")
-    ];
+    private static IReadOnlyList<InputBindingDefinition> AmigaMouseDefinitions(AmigaModel model)
+    {
+        var definitions = new List<InputBindingDefinition>
+        {
+            new(nameof(AmigaMouseAction.LeftButton), LocExtension.Get("Emulation.MouseLeftButton"), "Mouse:Left"),
+            new(nameof(AmigaMouseAction.RightButton), LocExtension.Get("Emulation.MouseRightButton"), "Mouse:Right")
+        };
+        if (model.MouseButtonCount >= 3)
+            definitions.Add(new InputBindingDefinition(nameof(AmigaMouseAction.MiddleButton),
+                LocExtension.Get("Emulation.MouseMiddleButton"), "Mouse:Middle"));
+        return definitions;
+    }
+
+    private void RefreshMouseMappings(bool preserveBindings)
+    {
+        if (_model.SelectedItem is not AmigaModel model) return;
+        var values = preserveBindings
+            ? _amigaMouseEditor.Rows.ToDictionary(row => row.Id, row => row.Binding, StringComparer.OrdinalIgnoreCase)
+            : null;
+        _amigaMouseEditor.SetRows(AmigaMouseDefinitions(model), values);
+    }
 
     private static IReadOnlyList<InputBindingDefinition> AmigaControllerDefinitions(AmigaControllerType type)
     {
@@ -311,10 +328,12 @@ public sealed class OptionsEmulationSection : UserControl
                 new("R", LocExtension.Get("Emulation.Cd32FastForward"), "Controller:RightShoulder"),
                 new("Start", LocExtension.Get("Emulation.Cd32PlayPause"), "Controller:Menu")
             ]);
+            directions.Add(new InputBindingDefinition("L2", LocExtension.Get("Emulation.TurboFire"), string.Empty));
             return directions;
         }
         directions.Add(new InputBindingDefinition("B", LocExtension.Get("Emulation.FireButton1"), "Controller:ButtonB"));
         directions.Add(new InputBindingDefinition("A", LocExtension.Get("Emulation.FireButton2"), "Controller:ButtonA"));
+        directions.Add(new InputBindingDefinition("L2", LocExtension.Get("Emulation.TurboFire"), string.Empty));
         return directions;
     }
 
@@ -747,20 +766,16 @@ public sealed class OptionsEmulationSection : UserControl
 
     private UIElement BuildMouseTab()
     {
-        _captureMouse.Content = LocExtension.Get("Emulation.CaptureMouse");
-        var capture = new StackPanel { Margin = new Thickness(12, 8, 12, 10) };
-        capture.Children.Add(_captureMouse);
-        capture.Children.Add(InformationBanner(new TextBlock
-        {
-            Text = LocExtension.Get("Emulation.KeyboardPriorityDescription"),
-            TextWrapping = TextWrapping.Wrap
-        }));
         var root = TwoColumnPage(
-            IconCard(capture, LocExtension.Get("Emulation.MouseCaptureTitle"), "\uE962"),
             IconCard(CreateCompactForm(1,
-                    (LocExtension.Get("Emulation.PhysicalMouse"), _physicalMouse),
-                    (LocExtension.Get("Emulation.MouseSpeed"), _mouseSpeed)),
-                LocExtension.Get("Emulation.PhysicalMouse"), "\uE962"));
+                    (LocExtension.Get("Emulation.MouseSpeed"), _mouseSpeedRatio)),
+                LocExtension.Get("Emulation.MouseTab"), "\uE962"),
+            IconCard(CreateCompactForm(1,
+                    (LocExtension.Get("Emulation.AnalogMouse"), _analogMouse),
+                    (LocExtension.Get("Emulation.AnalogMouseDeadzone"), _analogMouseDeadzone),
+                    ($"{LocExtension.Get("Emulation.AnalogMouseSpeed")} ({LocExtension.Get("Emulation.LeftStick")})", _analogMouseSpeed),
+                    ($"{LocExtension.Get("Emulation.AnalogMouseSpeed")} ({LocExtension.Get("Emulation.RightStick")})", _analogMouseSpeedRight)),
+                LocExtension.Get("Emulation.AnalogMouse"), "\uE7FC"));
         root.Children.Add(FullWidthCard(
             InputBindingCard(_amigaMouseEditor, LocExtension.Get("Emulation.MouseActions"),
                 LocExtension.Get("Emulation.InputCaptureHint")), string.Empty, 1));
@@ -804,18 +819,24 @@ public sealed class OptionsEmulationSection : UserControl
                 Header = LocExtension.Get("Emulation.ControllerPort", port + 1),
                 Content = _controllerEditors[port]
             });
-        var behavior = CreateCompactForm(1,
-            (LocExtension.Get("Emulation.AnalogMouseDeadzone"), _analogMouseDeadzone),
-            (LocExtension.Get("Emulation.AnalogMouseSpeed"), _analogMouseSpeed),
-            (LocExtension.Get("Emulation.TurboFire"), _turboFire),
-            (LocExtension.Get("Emulation.TurboButton"), _turboButton),
-            (LocExtension.Get("Emulation.TurboPulse"), _turboPulse));
+        var behavior = new Grid { Margin = new Thickness(16, 12, 16, 14) };
+        behavior.ColumnDefinitions.Add(new ColumnDefinition());
+        behavior.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(150) });
+        behavior.Children.Add(new TextBlock
+        {
+            Text = LocExtension.Get("Emulation.TurboPulse"),
+            VerticalAlignment = VerticalAlignment.Center
+        });
+        _turboPulse.HorizontalAlignment = HorizontalAlignment.Stretch;
+        Grid.SetColumn(_turboPulse, 1);
+        behavior.Children.Add(_turboPulse);
         var lower = new Grid();
         lower.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
         lower.ColumnDefinitions.Add(new ColumnDefinition());
         lower.Children.Add(ActionCard(mappingTabs, LocExtension.Get("Emulation.ControllerMappings")));
-        var behaviorCard = IconCard(behavior, LocExtension.Get("Emulation.InputBehavior"), "\uE713");
+        var behaviorCard = IconCard(behavior, LocExtension.Get("Emulation.TurboFire"), "\uE945");
         behaviorCard.Margin = new Thickness(10, 0, 0, 0);
+        behaviorCard.VerticalAlignment = VerticalAlignment.Top;
         Grid.SetColumn(behaviorCard, 1);
         lower.Children.Add(behaviorCard);
         Grid.SetRow(lower, 2); root.Children.Add(lower);
@@ -877,12 +898,10 @@ public sealed class OptionsEmulationSection : UserControl
         _floppySoundType.ItemsSource = new[] { new OptionChoice("internal", LocExtension.Get("Emulation.Internal")), new OptionChoice("A500", "A500"), new OptionChoice("LOUD", LocExtension.Get("Emulation.Loud")) };
         _floppySpeed.ItemsSource = new[] { 100, 200, 400, 800, 0 }.Select(value => new OptionChoice(value.ToString(), value == 0 ? LocExtension.Get("Emulation.Maximum") : $"{value} %")).ToArray();
         _cdSpeed.ItemsSource = new[] { new OptionChoice("100", "1×"), new OptionChoice("0", LocExtension.Get("Emulation.Maximum")) };
-        _physicalMouse.ItemsSource = Choices(("disabled", "Emulation.Disabled"), ("enabled", "Emulation.Enabled"), ("double", "Emulation.PhysicalMouseDouble"));
-        _mouseSpeed.ItemsSource = Enumerable.Range(1, 100).Select(value => value * 10).Select(value => new OptionChoice(value.ToString(), $"{value} %")).ToArray();
         _analogMouse.ItemsSource = Choices(("disabled", "Emulation.Disabled"), ("left", "Emulation.LeftStick"), ("right", "Emulation.RightStick"), ("both", "Emulation.BothSticks"));
         _analogMouseDeadzone.ItemsSource = Enumerable.Range(0, 11).Select(value => value * 5).Select(value => new OptionChoice(value.ToString(), $"{value} %")).ToArray();
         _analogMouseSpeed.ItemsSource = Enumerable.Range(1, 30).Select(value => value / 10d).Select(value => new OptionChoice(value.ToString("0.0", System.Globalization.CultureInfo.InvariantCulture), $"{value:0.0}×")).ToArray();
-        _turboButton.ItemsSource = new[] { "B", "A", "Y", "X", "L", "R", "L2", "R2" };
+        _analogMouseSpeedRight.ItemsSource = _analogMouseSpeed.ItemsSource;
         _turboPulse.ItemsSource = new[] { "2", "4", "6", "8", "10", "12" };
         _joyPortOrder.ItemsSource = new[] { "1234", "2143", "3412", "4321" };
     }
@@ -1556,7 +1575,7 @@ public sealed class OptionsEmulationSection : UserControl
         var body = new Border { Child = child, Padding = new Thickness(6, 8, 6, 8) };
         var layout = new Grid();
         layout.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        layout.RowDefinitions.Add(new RowDefinition());
+        layout.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         layout.Children.Add(header);
         Grid.SetRow(body, 1);
         layout.Children.Add(body);
@@ -1657,6 +1676,7 @@ public sealed class OptionsEmulationSection : UserControl
         _cdSpeed.IsEnabled = model.HasCdDrive;
         _cdAudioVolume.IsEnabled = model.HasCdDrive;
         ConfigureControllerChoices(model);
+        RefreshMouseMappings(preserveBindings: true);
         RefreshMediaRows();
         RefreshFirmwareRows();
         UpdateRomFieldAvailability();
@@ -1670,13 +1690,13 @@ public sealed class OptionsEmulationSection : UserControl
             new(AmigaControllerType.Joystick, LocExtension.Get("Emulation.AmigaJoystick")),
             new(AmigaControllerType.AnalogJoystick, LocExtension.Get("Emulation.AnalogJoystick"))
         };
-        if (model.Id == "CD32")
+        if (model.SupportsCd32Controller)
             choices.Add(new(AmigaControllerType.Cd32Pad, LocExtension.Get("Emulation.Cd32Controller")));
         choices.Add(new(AmigaControllerType.None, LocExtension.Get("HostTools.None")));
 
         for (var port = 0; port < _controllers.Length; port++)
         {
-            var modelDefault = model.Id == "CD32" ? AmigaControllerType.Cd32Pad : AmigaControllerType.Joystick;
+            var modelDefault = model.SupportsCd32Controller ? AmigaControllerType.Cd32Pad : AmigaControllerType.Joystick;
             var current = _loading ? SelectedChoice(_controllers[port], modelDefault) : modelDefault;
             _controllers[port].ItemsSource = choices;
             var wanted = choices.Any(choice => choice.Value == current)
@@ -2279,16 +2299,13 @@ public sealed class OptionsEmulationSection : UserControl
             ? Array.Empty<string>()
             : _appSettings.EmulationShortcuts.Values);
         _mouseDevice.Text = configuration.Input?.MouseDeviceId ?? string.Empty;
-        _captureMouse.IsChecked = configuration.Input?.CaptureMouse ?? true;
         _releaseMouseKey.SelectedItem = configuration.Input?.ReleaseMouseKey ?? GWGUI.Emulation.EmulationKey.Escape;
-        SetOption(_physicalMouse, configuration, "puae_physicalmouse", "enabled");
-        SetOption(_mouseSpeed, configuration, "puae_mouse_speed", "100");
+        _mouseSpeedRatio.Text = MouseSpeedRatioText(GetOption(configuration, "puae_mouse_speed", "100"));
         SetOption(_analogMouse, configuration, "puae_analogmouse", "both");
         SetOption(_analogMouseDeadzone, configuration, "puae_analogmouse_deadzone", "20");
         SetOption(_analogMouseSpeed, configuration, "puae_analogmouse_speed", "1.0");
+        SetOption(_analogMouseSpeedRight, configuration, "puae_analogmouse_speed_right", "1.0");
         _keyboardPassThrough.IsChecked = true;
-        _turboFire.IsChecked = GetOption(configuration, "puae_turbo_fire", "disabled") == "enabled";
-        SetOption(_turboButton, configuration, "puae_turbo_fire_button", "B");
         SetOption(_turboPulse, configuration, "puae_turbo_pulse", "6");
         SetOption(_joyPortOrder, configuration, "puae_joyport_order", "1234");
         var mouseMappings = configuration.Input?.MouseButtonMappings;
@@ -2300,7 +2317,7 @@ public sealed class OptionsEmulationSection : UserControl
                 AmigaMouseAction.RightButton => "Mouse:Right",
                 _ => "Mouse:Middle"
             }, StringComparer.OrdinalIgnoreCase);
-        _amigaMouseEditor.SetRows(AmigaMouseDefinitions(), mouseValues);
+        _amigaMouseEditor.SetRows(AmigaMouseDefinitions(selectedModel), mouseValues);
         _amigaMouseEditor.SetReservedBindings(_appSettings is null
             ? Array.Empty<string>()
             : _appSettings.EmulationShortcuts.Values);
@@ -2386,13 +2403,15 @@ public sealed class OptionsEmulationSection : UserControl
             options[$"gwgui_floppy_drive_model_{index}"] = _floppyDriveModels[index];
         options["gwgui_cd_drive_model"] = _cdDriveModel;
         options["puae_physical_keyboard_pass_through"] = "enabled";
-        options["puae_physicalmouse"] = SelectedText(_physicalMouse);
-        options["puae_mouse_speed"] = SelectedText(_mouseSpeed);
+        options["puae_physicalmouse"] = "enabled";
+        options["puae_mouse_speed"] = MouseSpeedPercentage(_mouseSpeedRatio.Text).ToString(System.Globalization.CultureInfo.InvariantCulture);
         options["puae_analogmouse"] = SelectedText(_analogMouse);
         options["puae_analogmouse_deadzone"] = SelectedText(_analogMouseDeadzone);
         options["puae_analogmouse_speed"] = SelectedText(_analogMouseSpeed);
-        options["puae_turbo_fire"] = _turboFire.IsChecked == true ? "enabled" : "disabled";
-        options["puae_turbo_fire_button"] = SelectedText(_turboButton);
+        options["puae_analogmouse_speed_right"] = SelectedText(_analogMouseSpeedRight);
+        options["puae_turbo_fire"] = _controllerEditors.Any(editor =>
+            editor.Rows.Any(row => row.Id == "L2" && !string.IsNullOrWhiteSpace(row.Binding))) ? "enabled" : "disabled";
+        options["puae_turbo_fire_button"] = "L2";
         options["puae_turbo_pulse"] = SelectedText(_turboPulse);
         options["puae_joyport_order"] = SelectedText(_joyPortOrder);
         var media = _media.Where(item => !string.IsNullOrWhiteSpace(item.Path)).Select(item =>
@@ -2432,7 +2451,7 @@ public sealed class OptionsEmulationSection : UserControl
                 StringComparer.OrdinalIgnoreCase);
         var input = new AmigaInputConfiguration(keyboard,
             string.IsNullOrWhiteSpace(_mouseDevice.Text) ? null : _mouseDevice.Text.Trim(),
-            _captureMouse.IsChecked == true, controllerBindings, mouseMappings,
+            true, controllerBindings, mouseMappings,
             (GWGUI.Emulation.EmulationKey)(_releaseMouseKey.SelectedItem ?? GWGUI.Emulation.EmulationKey.Escape),
             keyboardBindings);
         var selectedOutput = _audioOutput.SelectedItem as AudioOutputDevice;
@@ -2458,6 +2477,21 @@ public sealed class OptionsEmulationSection : UserControl
     private static string SelectedText(ComboBox comboBox) => comboBox.SelectedItem is OptionChoice choice
         ? choice.Value
         : comboBox.SelectedItem?.ToString() ?? string.Empty;
+
+    private static string MouseSpeedRatioText(string percentage)
+    {
+        var parsed = int.TryParse(percentage, System.Globalization.NumberStyles.Integer,
+            System.Globalization.CultureInfo.InvariantCulture, out var value) ? value : 100;
+        return (Math.Clamp(parsed, 1, 1000) / 100d).ToString("0.00", System.Globalization.CultureInfo.CurrentCulture);
+    }
+
+    private static int MouseSpeedPercentage(string ratio)
+    {
+        var normalized = ratio.Trim().TrimEnd('×', 'x', 'X').Replace(',', '.');
+        var parsed = double.TryParse(normalized, System.Globalization.NumberStyles.Float,
+            System.Globalization.CultureInfo.InvariantCulture, out var value) ? value : 1d;
+        return Math.Clamp((int)Math.Round(parsed * 100d), 1, 1000);
+    }
 
     private static int ParsePercentage(string value, int fallback) =>
         int.TryParse(value.Trim().TrimEnd('%'), out var parsed) ? Math.Clamp(parsed, 0, 100) : fallback;

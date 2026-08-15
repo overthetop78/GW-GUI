@@ -3,7 +3,8 @@ namespace GWGUI.Emulation.Amiga;
 public sealed record AmigaModel(string Id, string DisplayName, string BackendModel,
     IReadOnlyList<string> CpuModels, string Chipset, int ChipMemoryKib, int SlowMemoryKib,
     int FastMemoryMib, bool HasCdDrive, string RecommendedKickstart,
-    int MaximumFloppyDrives = 4, bool SupportsHardDrives = true, int MaximumHardDrives = 1)
+    int MaximumFloppyDrives = 4, bool SupportsHardDrives = true, int MaximumHardDrives = 1,
+    int MouseButtonCount = 2, bool SupportsCd32Controller = false)
 {
     public string DefaultCpu => CpuModels[0];
 }
@@ -23,7 +24,7 @@ public static class AmigaModelCatalog
         new("A3000", "Amiga 3000", "A2000", ["68030"], "ECS", 2048, 0, 8, false, "3.1", 4, true, 8),
         new("A4000", "Amiga 4000", "A4040", ["68040", "68030"], "AGA", 2048, 0, 8, false, "3.1", 4, true, 8),
         new("CDTV", "Commodore CDTV", "CDTV", ["68000"], "OCS", 1024, 0, 0, true, "1.3 CDTV", 1, true, 2),
-        new("CD32", "Amiga CD32", "CD32", ["68020"], "AGA", 2048, 0, 0, true, "3.1 CD32", 0, false, 0)
+        new("CD32", "Amiga CD32", "CD32", ["68020"], "AGA", 2048, 0, 0, true, "3.1 CD32", 0, false, 0, 2, true)
     ];
 
     public static AmigaModel Get(string id) => All.FirstOrDefault(model => model.Id.Equals(id, StringComparison.Ordinal))

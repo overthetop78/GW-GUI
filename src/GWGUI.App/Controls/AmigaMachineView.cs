@@ -483,8 +483,7 @@ public sealed class AmigaMachineView : UserControl
         var actions = _input.MouseButtonMappings ?? new Dictionary<string, AmigaMouseAction>
         {
             ["Mouse:Left"] = AmigaMouseAction.LeftButton,
-            ["Mouse:Right"] = AmigaMouseAction.RightButton,
-            ["Mouse:Middle"] = AmigaMouseAction.MiddleButton
+            ["Mouse:Right"] = AmigaMouseAction.RightButton
         };
         var controllers = XInputControllerReader.ReadAll();
         var primaryController = controllers.FirstOrDefault() ?? EmulationControllerState.Empty;

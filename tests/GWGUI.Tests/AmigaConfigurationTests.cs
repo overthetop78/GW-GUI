@@ -125,6 +125,10 @@ public sealed class AmigaConfigurationTests
         Assert.Equal("ECS", AmigaModelCatalog.Get("A3000").Chipset);
         Assert.Equal("A2000", AmigaModelCatalog.Get("A3000").BackendModel);
         Assert.True(AmigaModelCatalog.Get("CD32").HasCdDrive);
+        Assert.True(AmigaModelCatalog.Get("CD32").SupportsCd32Controller);
+        Assert.All(AmigaModelCatalog.All.Where(model => model.Id != "CD32"),
+            model => Assert.False(model.SupportsCd32Controller));
+        Assert.All(AmigaModelCatalog.All, model => Assert.Equal(2, model.MouseButtonCount));
         Assert.Equal(1024, AmigaModelCatalog.Get("A600").ChipMemoryKib);
         Assert.Equal(4, AmigaModelCatalog.Get("A1000").MaximumFloppyDrives);
         Assert.All(AmigaModelCatalog.All, model =>
