@@ -79,7 +79,7 @@ public sealed class AmigaExternalCoreTests
         var process = Process.GetCurrentProcess();
         var initialHandles = process.HandleCount;
         var configuration = AmigaMachineConfiguration.A500(kickstart);
-        var hostExecutable = Path.Combine(AppContext.BaseDirectory, "GW GUI.exe");
+        var hostExecutable = Path.Combine(AppContext.BaseDirectory, "gwgui.app.exe");
         var engine = new AmigaEngine(sessions, corePath, hostExecutablePath: hostExecutable);
         try
         {
@@ -272,7 +272,7 @@ public sealed class AmigaExternalCoreTests
         var corePath = Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll");
         var sessions = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Tests", Guid.NewGuid().ToString("N"));
         var engine = new AmigaEngine(sessions, corePath,
-            hostExecutablePath: Path.Combine(AppContext.BaseDirectory, "GW GUI.exe"));
+            hostExecutablePath: Path.Combine(AppContext.BaseDirectory, "gwgui.app.exe"));
         await using var first = engine.CreateAmigaMachine(AmigaMachineConfiguration.A500(kickstart, adf));
         await using var second = engine.CreateAmigaMachine(AmigaMachineConfiguration.A500(kickstart));
 
@@ -315,7 +315,7 @@ public sealed class AmigaExternalCoreTests
         var output = new RecordingAudioOutput();
         var engine = new AmigaEngine(Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Tests", Guid.NewGuid().ToString("N")),
             Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll"), () => output,
-            hostExecutablePath: Path.Combine(AppContext.BaseDirectory, "GW GUI.exe"));
+            hostExecutablePath: Path.Combine(AppContext.BaseDirectory, "gwgui.app.exe"));
         await using var machine = engine.CreateAmigaMachine(AmigaMachineConfiguration.A500(
             Path.Combine(repository, "image_test", "Roms", "Bios", "Kickstart 1.3.rom")));
         await machine.StartAsync();
@@ -337,7 +337,7 @@ public sealed class AmigaExternalCoreTests
         await File.WriteAllTextAsync(unsupported, "not an Amiga image");
         var engine = new AmigaEngine(Path.Combine(root, "Sessions"),
             Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll"),
-            hostExecutablePath: Path.Combine(AppContext.BaseDirectory, "GW GUI.exe"));
+            hostExecutablePath: Path.Combine(AppContext.BaseDirectory, "gwgui.app.exe"));
         await using var machine = engine.CreateAmigaMachine(AmigaMachineConfiguration.A500(
             Path.Combine(repository, "image_test", "Roms", "Bios", "Kickstart 1.3.rom"), unsupported));
         try

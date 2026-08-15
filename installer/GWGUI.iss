@@ -64,23 +64,23 @@ Name: "vietnamese"; MessagesFile: "Languages\Vietnamese.isl"
 Source: "{#SourceDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\LICENSE"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\README.md"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Prerequisites\windowsdesktop-runtime-10.0.11-win-x64.exe"; Flags: dontcopy
 
 [Icons]
-Name: "{autoprograms}\GW GUI"; Filename: "{app}\GW GUI.exe"
-Name: "{autodesktop}\GW GUI"; Filename: "{app}\GW GUI.exe"; Tasks: desktopicon
+Name: "{autoprograms}\GW GUI"; Filename: "{app}\gwgui.exe"
+Name: "{autodesktop}\GW GUI"; Filename: "{app}\gwgui.exe"; Tasks: desktopicon
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Run]
-Filename: "{app}\GW GUI.exe"; Description: "{cm:LaunchProgram,GW GUI}"; Flags: nowait postinstall skipifsilent unchecked
+Filename: "{app}\gwgui.exe"; Description: "{cm:LaunchProgram,GW GUI}"; Flags: nowait postinstall skipifsilent unchecked
 
 [Code]
 const
   DotNetDesktopRuntimeRegistryKey = 'SOFTWARE\WOW6432Node\dotnet\Setup\InstalledVersions\x64\sharedfx\Microsoft.WindowsDesktop.App';
   DotNetDesktopRuntimeMajorPrefix = '10.';
-  DotNetDesktopRuntimePackage = 'Microsoft.DotNet.DesktopRuntime.10';
-  DotNetDesktopRuntimeDownloadPage = 'https://dotnet.microsoft.com/download/dotnet/10.0';
+  DotNetDesktopRuntimeInstaller = 'windowsdesktop-runtime-10.0.11-win-x64.exe';
 
 function DotNetDesktopRuntimeInstalled: Boolean;
 var
@@ -99,23 +99,16 @@ end;
 
 function PrepareToInstall(var NeedsRestart: Boolean): String;
 var
-  WingetPath: String;
+  RuntimeInstallerPath: String;
   ResultCode: Integer;
 begin
   Result := '';
   if DotNetDesktopRuntimeInstalled then Exit;
 
-  WingetPath := ExpandConstant('{localappdata}\Microsoft\WindowsApps\winget.exe');
-  if not FileExists(WingetPath) then
-  begin
-    ShellExec('open', DotNetDesktopRuntimeDownloadPage, '', '', SW_SHOWNORMAL, ewNoWait, ResultCode);
-    Result := SysErrorMessage(2);
-    Exit;
-  end;
-
+  ExtractTemporaryFile(DotNetDesktopRuntimeInstaller);
+  RuntimeInstallerPath := ExpandConstant('{tmp}\') + DotNetDesktopRuntimeInstaller;
   ResultCode := -1;
-  if (not Exec(WingetPath,
-      'install --id ' + DotNetDesktopRuntimePackage + ' --exact --silent --accept-package-agreements --accept-source-agreements',
-      '', SW_SHOW, ewWaitUntilTerminated, ResultCode)) or (ResultCode <> 0) then
+  if (not Exec(RuntimeInstallerPath, '/install /passive /norestart', '', SW_SHOW,
+      ewWaitUntilTerminated, ResultCode)) or (ResultCode <> 0) then
     Result := SysErrorMessage(ResultCode);
 end;

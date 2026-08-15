@@ -88,7 +88,7 @@ try {
     $registration = Get-ItemProperty -LiteralPath $uninstallRegistryPath
     if ($registration.DisplayVersion -ne $ExpectedVersion) { throw "Registered version is $($registration.DisplayVersion)." }
     if ($registration.'Inno Setup: Language' -ne $InstallerLanguage) { throw "Registered language is $($registration.'Inno Setup: Language')." }
-    $productVersion = (Get-Item -LiteralPath (Join-Path $destination 'GW GUI.exe')).VersionInfo.ProductVersion
+    $productVersion = (Get-Item -LiteralPath (Join-Path $destination 'gwgui.exe')).VersionInfo.ProductVersion
     if (-not $productVersion.StartsWith($ExpectedVersion, [StringComparison]::Ordinal)) { throw "Product version is $productVersion." }
     Start-Sleep -Milliseconds 500
     $launched = @(Get-Process -ErrorAction SilentlyContinue | Where-Object { try { $_.Path -and $_.Path.StartsWith($destination, [StringComparison]::OrdinalIgnoreCase) } catch { $false } })

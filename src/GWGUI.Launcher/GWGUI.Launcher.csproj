@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>gwgui</AssemblyName>
+    <RootNamespace>GWGUI.Launcher</RootNamespace>
+    <ApplicationIcon>..\GWGUI.App\Assets\app-icon.ico</ApplicationIcon>
+    <ApplicationManifest>..\GWGUI.App\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+</Project>

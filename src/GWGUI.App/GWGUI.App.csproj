@@ -8,7 +8,7 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Assets\app-icon.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <AssemblyName>GW GUI</AssemblyName>
+    <AssemblyName>gwgui.app</AssemblyName>
     <RootNamespace>GWGUI.App</RootNamespace>
     <Version Condition="'$(Version)' == ''">0.1.0</Version>
     <Authors>overthetop78</Authors>

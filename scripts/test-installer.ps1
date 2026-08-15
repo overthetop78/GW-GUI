@@ -34,7 +34,7 @@ try {
     if ($install.ExitCode -ne 0) { throw "Installer exited with code $($install.ExitCode)." }
 
     $required = @(
-        'GW GUI.exe',
+        'gwgui.exe',
         'Documentation\user-guide.fr.md',
         'Documentation\user-guide.en.md',
         'Documentation\images\main-read-fr.png',
@@ -47,7 +47,7 @@ try {
     }
     if (Get-ChildItem -LiteralPath $destination -Recurse -File -Filter '*.pdb') { throw 'Debug symbols were installed.' }
 
-    $version = (Get-Item -LiteralPath (Join-Path $destination 'GW GUI.exe')).VersionInfo.ProductVersion
+    $version = (Get-Item -LiteralPath (Join-Path $destination 'gwgui.exe')).VersionInfo.ProductVersion
     if (-not $version.StartsWith($ExpectedVersion, [StringComparison]::Ordinal)) {
         throw "Unexpected installed product version: $version (expected $ExpectedVersion)."
     }

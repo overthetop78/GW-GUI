@@ -26,7 +26,7 @@ if (-not $destination.StartsWith($artifactsPrefix, [StringComparison]::OrdinalIg
     throw 'InstallDirectory must be located inside the repository artifacts directory.'
 }
 if (-not (Test-Path -LiteralPath $currentSetup -PathType Leaf)) { throw "Current installer not found: $currentSetup" }
-if (-not (Test-Path -LiteralPath (Join-Path $publishDirectory 'GW GUI.exe') -PathType Leaf)) {
+if (-not (Test-Path -LiteralPath (Join-Path $publishDirectory 'gwgui.exe') -PathType Leaf)) {
     throw "Published application not found: $publishDirectory"
 }
 if (Test-Path -LiteralPath $destination) { throw "Upgrade-test destination already exists: $destination" }
@@ -67,7 +67,7 @@ try {
     if ($currentRegistration.DisplayVersion -ne $CurrentVersion) {
         throw "Upgrade registered version $($currentRegistration.DisplayVersion), expected $CurrentVersion."
     }
-    $productVersion = (Get-Item -LiteralPath (Join-Path $destination 'GW GUI.exe')).VersionInfo.ProductVersion
+    $productVersion = (Get-Item -LiteralPath (Join-Path $destination 'gwgui.exe')).VersionInfo.ProductVersion
     if (-not $productVersion.StartsWith($CurrentVersion, [StringComparison]::Ordinal)) {
         throw "Upgraded executable version is $productVersion, expected $CurrentVersion."
     }

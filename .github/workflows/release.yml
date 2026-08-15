@@ -44,7 +44,7 @@ jobs:
         run: .\scripts\test-guide-images.ps1 -PublishedDocumentationPath ".\artifacts\publish\win-x64\Documentation"
       - name: Audit packaged application accessibility
         shell: pwsh
-        run: .\scripts\test-app-accessibility.ps1 -ApplicationPath ".\artifacts\portable\GW GUI\GW GUI.exe"
+        run: .\scripts\test-app-accessibility.ps1 -ApplicationPath ".\artifacts\portable\GW GUI\gwgui.exe"
       - name: Smoke-test installer in English
         shell: pwsh
         run: .\scripts\test-installer.ps1 -SetupPath ".\artifacts\GW-GUI-$env:PACKAGE_VERSION-win-x64-setup.exe" -ExpectedVersion $env:PACKAGE_VERSION -InstallerLanguage english

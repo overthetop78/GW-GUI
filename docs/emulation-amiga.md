@@ -467,7 +467,7 @@ Les fichiers temporaires du cœur sont regroupés dans `artifacts/ppua/`. `artif
 
 #### AMI-037 — Ajouter un processus isolé uniquement si AMI-036 échoue
 
-- [x] Utiliser le mode sans fenêtre `GW GUI.exe --amiga-core-host` pour charger exactement une instance native par processus, sans projet exécutable supplémentaire.
+- [x] Utiliser le mode sans fenêtre `gwgui.exe --amiga-core-host` pour charger exactement une instance native par processus, sans projet exécutable supplémentaire.
 - [x] Transporter commandes, états, dernière vidéo et blocs audio par un named pipe privé à la machine.
 - [x] Sérialiser une requête à la fois et répondre avec succès ou erreur structurée avant la requête suivante.
 - [x] Tuer uniquement le host fautif sur timeout ; conserver les autres machines.

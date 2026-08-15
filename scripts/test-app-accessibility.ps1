@@ -6,7 +6,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
-if ([string]::IsNullOrWhiteSpace($ApplicationPath)) { $ApplicationPath = Join-Path $repository 'artifacts\portable\GW GUI\GW GUI.exe' }
+if ([string]::IsNullOrWhiteSpace($ApplicationPath)) { $ApplicationPath = Join-Path $repository 'artifacts\portable\GW GUI\gwgui.exe' }
 $application = [IO.Path]::GetFullPath($ApplicationPath)
 if (-not (Test-Path -LiteralPath $application -PathType Leaf)) { throw "Application not found: $application" }
 

@@ -13,6 +13,6 @@ New-Item -ItemType Directory -Path $output -Force | Out-Null
 dotnet build $project -c $Configuration -o $output --disable-build-servers
 if ($LASTEXITCODE -ne 0) { throw 'dotnet build failed.' }
 
-$executable = Join-Path $output 'GW GUI.exe'
+$executable = Join-Path $output 'gwgui.exe'
 if (-not (Test-Path -LiteralPath $executable)) { throw 'The application executable was not produced.' }
 Write-Output "Build ready: $executable"
