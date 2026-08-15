@@ -10,6 +10,14 @@ namespace GWGUI.Tests;
 
 public sealed class LocalizationTests
 {
+    [Fact]
+    public void PackagedSatelliteResourcesUseTheSelectedCultureDirectory()
+    {
+        var path = PackagedSatelliteResources.GetPath(@"F:\GW GUI", CultureInfo.GetCultureInfo("fr-FR"));
+
+        Assert.Equal(@"F:\GW GUI\Languages\fr-FR\GW GUI.resources.dll", path);
+    }
+
     private const string InvariantDecoderPrefix = "Visual.DecoderName.";
     private static bool IsInvariantTechnicalKey(string key) =>
         key.StartsWith(InvariantDecoderPrefix, StringComparison.Ordinal) ||

@@ -153,7 +153,8 @@ public sealed class AmigaMachineView : UserControl
             Text = "\uE7F4", FontFamily = new FontFamily("Segoe MDL2 Assets"), FontSize = 15,
             Margin = new Thickness(4, 0, 6, 0), VerticalAlignment = VerticalAlignment.Center
         }, _rendererStatus);
-        rendererGroup.Margin = new Thickness(24, 1, 24, 1);
+        rendererGroup.Padding = new Thickness(16, 1, 16, 1);
+        rendererGroup.Margin = new Thickness(8, 1, 8, 1);
         _toolbar.Children.Add(rendererGroup);
         _toolbar.SizeChanged += (_, args) =>
         {
