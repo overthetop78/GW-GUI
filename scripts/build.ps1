@@ -10,7 +10,7 @@ $output = Join-Path $repository 'artifacts\build\GW GUI'
 if (Test-Path -LiteralPath $output) { Remove-Item -LiteralPath $output -Recurse -Force }
 New-Item -ItemType Directory -Path $output -Force | Out-Null
 
-dotnet build $project -c $Configuration -o $output
+dotnet build $project -c $Configuration -o $output --disable-build-servers
 if ($LASTEXITCODE -ne 0) { throw 'dotnet build failed.' }
 
 $executable = Join-Path $output 'GW GUI.exe'

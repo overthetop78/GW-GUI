@@ -25,7 +25,7 @@ foreach ($adf in $adfFiles) {
     [Environment]::SetEnvironmentVariable('GWGUI_REAL_AMIGA_ADF', $adf.FullName, 'Process')
     [Environment]::SetEnvironmentVariable('GWGUI_REAL_AMIGA_SCP', [IO.Path]::GetFullPath($scp), 'Process')
     try {
-        dotnet test $tests -c $Configuration --no-restore --verbosity minimal `
+        dotnet test $tests -c $Configuration --no-restore --disable-build-servers --verbosity minimal `
             --filter 'FullyQualifiedName~RealAmigaAdfAndScp|FullyQualifiedName~RealAmigaAdfRoundTripsThroughTheInternalEncoder'
         if ($LASTEXITCODE -ne 0) { $failures += $adf.Name }
     }

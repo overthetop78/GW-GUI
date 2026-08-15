@@ -24,7 +24,7 @@ New-Item -ItemType Directory -Path $publish,$portable,$portablePackage -Force | 
 Get-ChildItem -LiteralPath $portable -Force -ErrorAction SilentlyContinue | Where-Object { $_.Name -ne 'Data' } | Remove-Item -Recurse -Force
 Get-ChildItem -LiteralPath $artifacts -File -ErrorAction SilentlyContinue | Where-Object { $_.Name -match '^GW-GUI-.+-win-x64-(portable\.zip|setup\.exe)$' -or $_.Name -eq 'SHA256SUMS.txt' } | Remove-Item -Force
 
-dotnet publish (Join-Path $repository 'src\GWGUI.App\GWGUI.App.csproj') -c $Configuration -r win-x64 --self-contained true -p:Version=$Version -p:PublishReadyToRun=true -o $publish
+dotnet publish (Join-Path $repository 'src\GWGUI.App\GWGUI.App.csproj') -c $Configuration -r win-x64 --self-contained true -p:Version=$Version -p:PublishReadyToRun=true -o $publish --disable-build-servers
 if ($LASTEXITCODE -ne 0) { throw 'dotnet publish failed.' }
 Get-ChildItem -LiteralPath $publish -Recurse -File -Filter '*.pdb' | Remove-Item -Force
 
