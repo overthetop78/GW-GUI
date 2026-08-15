@@ -381,4 +381,6 @@
   <data name="Emulation.Cd32Controller"><value>CD32 コントローラー</value></data>
   <data name="Emulation.MouseWheelUp"><value>マウスホイール上</value></data>
   <data name="Emulation.MouseWheelDown"><value>マウスホイール下</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>マウスホイール左</value></data>
+  <data name="Emulation.MouseWheelRight"><value>マウスホイール右</value></data>
 </root>

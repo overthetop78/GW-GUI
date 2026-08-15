@@ -381,4 +381,6 @@
   <data name="Emulation.Cd32Controller"><value>CD32 vezérlő</value></data>
   <data name="Emulation.MouseWheelUp"><value>Egérgörgő fel</value></data>
   <data name="Emulation.MouseWheelDown"><value>Egérgörgő le</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>Egérgörgő balra</value></data>
+  <data name="Emulation.MouseWheelRight"><value>Egérgörgő jobbra</value></data>
 </root>

@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
@@ -42,6 +43,7 @@ public sealed class AmigaMachineView : UserControl
     private Button? _mouseCaptureButton;
     private Button? _pauseButton;
     private readonly DispatcherTimer _inputTimer = new() { Interval = TimeSpan.FromMilliseconds(16) };
+    private HwndSource? _windowSource;
 
     public AmigaMachineView(IAmigaMachine machine, AmigaInputConfiguration? input = null,
         IReadOnlyDictionary<string, string>? globalShortcuts = null, string? quickStatePath = null,
@@ -102,6 +104,8 @@ public sealed class AmigaMachineView : UserControl
             if (_input.CaptureMouse && !_mouseCaptured) CaptureRelativeMouse();
         };
         _inputTimer.Tick += (_, _) => PublishInput();
+        Loaded += (_, _) => AttachWindowHook();
+        Unloaded += (_, _) => DetachWindowHook();
     }
 
     public event EventHandler? CloseRequested;
@@ -406,6 +410,28 @@ public sealed class AmigaMachineView : UserControl
     private void MouseChanged(object sender, MouseButtonEventArgs e) => PublishInput();
     private void DisplayMouseWheel(object sender, MouseWheelEventArgs e) => PublishInput(wheel: e.Delta);
 
+    private void AttachWindowHook()
+    {
+        if (_windowSource is not null || Window.GetWindow(this) is not Window window) return;
+        _windowSource = PresentationSource.FromVisual(window) as HwndSource;
+        _windowSource?.AddHook(WindowMessageHook);
+    }
+
+    private void DetachWindowHook()
+    {
+        _windowSource?.RemoveHook(WindowMessageHook);
+        _windowSource = null;
+    }
+
+    private IntPtr WindowMessageHook(IntPtr hwnd, int message, IntPtr wParam, IntPtr lParam, ref bool handled)
+    {
+        const int mouseHorizontalWheel = 0x020E;
+        if (message != mouseHorizontalWheel || !_display.IsMouseOver) return IntPtr.Zero;
+        var delta = unchecked((short)((wParam.ToInt64() >> 16) & 0xffff));
+        if (delta != 0) PublishInput(horizontalWheel: delta);
+        return IntPtr.Zero;
+    }
+
     private Task ToggleMouseCapture()
     {
         if (_mouseCaptured) ReleaseRelativeMouse();
@@ -440,7 +466,7 @@ public sealed class AmigaMachineView : UserControl
         if (_mouseCaptureButton is not null) _mouseCaptureButton.Content = LocExtension.Get("Emulation.CaptureMouse");
     }
 
-    private void PublishInput(int deltaX = 0, int deltaY = 0, int wheel = 0)
+    private void PublishInput(int deltaX = 0, int deltaY = 0, int wheel = 0, int horizontalWheel = 0)
     {
         var physical = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
         {
@@ -450,7 +476,9 @@ public sealed class AmigaMachineView : UserControl
             ["XButton1"] = Mouse.XButton1 == MouseButtonState.Pressed,
             ["XButton2"] = Mouse.XButton2 == MouseButtonState.Pressed,
             ["WheelUp"] = wheel > 0,
-            ["WheelDown"] = wheel < 0
+            ["WheelDown"] = wheel < 0,
+            ["WheelLeft"] = horizontalWheel < 0,
+            ["WheelRight"] = horizontalWheel > 0
         };
         var actions = _input.MouseButtonMappings ?? new Dictionary<string, AmigaMouseAction>
         {
@@ -519,6 +547,7 @@ public sealed class AmigaMachineView : UserControl
             "ButtonA" => 8, "ButtonX" => 9, "LeftShoulder" => 10, "RightShoulder" => 11,
             "LeftTrigger" => 12, "RightTrigger" => 13,
             "LeftStickClick" => 14, "RightStickClick" => 15,
+            "XboxButton" => 16,
             _ => -1
         };
         if (button >= 0) return (controller.Buttons & (1u << button)) != 0;

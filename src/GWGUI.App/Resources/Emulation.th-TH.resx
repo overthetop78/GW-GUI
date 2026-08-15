@@ -381,4 +381,6 @@
   <data name="Emulation.Cd32Controller"><value>ตัวควบคุม CD32</value></data>
   <data name="Emulation.MouseWheelUp"><value>ล้อเมาส์ขึ้น</value></data>
   <data name="Emulation.MouseWheelDown"><value>ล้อเมาส์ลง</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>ล้อเมาส์ไปทางซ้าย</value></data>
+  <data name="Emulation.MouseWheelRight"><value>ล้อเมาส์ไปทางขวา</value></data>
 </root>

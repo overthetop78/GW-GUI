@@ -381,4 +381,6 @@
   <data name="Emulation.Cd32Controller"><value>CD32-kontroller</value></data>
   <data name="Emulation.MouseWheelUp"><value>Musehjul opp</value></data>
   <data name="Emulation.MouseWheelDown"><value>Musehjul ned</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>Musehjul til venstre</value></data>
+  <data name="Emulation.MouseWheelRight"><value>Musehjul til høyre</value></data>
 </root>

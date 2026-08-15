@@ -381,4 +381,6 @@
   <data name="Emulation.Cd32Controller"><value>Pengontrol CD32</value></data>
   <data name="Emulation.MouseWheelUp"><value>Roda tetikus ke atas</value></data>
   <data name="Emulation.MouseWheelDown"><value>Roda tetikus ke bawah</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>Roda tetikus ke kiri</value></data>
+  <data name="Emulation.MouseWheelRight"><value>Roda tetikus ke kanan</value></data>
 </root>

@@ -381,4 +381,6 @@
   <data name="Emulation.Cd32Controller"><value>Controler CD32</value></data>
   <data name="Emulation.MouseWheelUp"><value>Rotița mouse-ului în sus</value></data>
   <data name="Emulation.MouseWheelDown"><value>Rotița mouse-ului în jos</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>Rotița mouse-ului la stânga</value></data>
+  <data name="Emulation.MouseWheelRight"><value>Rotița mouse-ului la dreapta</value></data>
 </root>

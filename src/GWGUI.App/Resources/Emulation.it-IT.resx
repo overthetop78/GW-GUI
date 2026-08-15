@@ -381,4 +381,6 @@
   <data name="Emulation.Cd32Controller"><value>Controller CD32</value></data>
   <data name="Emulation.MouseWheelUp"><value>Rotella del mouse su</value></data>
   <data name="Emulation.MouseWheelDown"><value>Rotella del mouse giù</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>Rotella del mouse a sinistra</value></data>
+  <data name="Emulation.MouseWheelRight"><value>Rotella del mouse a destra</value></data>
 </root>

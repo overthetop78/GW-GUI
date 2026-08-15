@@ -381,4 +381,6 @@
   <data name="Emulation.Cd32Controller"><value>Manette CD32</value></data>
   <data name="Emulation.MouseWheelUp"><value>Molette vers le haut</value></data>
   <data name="Emulation.MouseWheelDown"><value>Molette vers le bas</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>Molette vers la gauche</value></data>
+  <data name="Emulation.MouseWheelRight"><value>Molette vers la droite</value></data>
 </root>

@@ -381,4 +381,6 @@
   <data name="Emulation.Cd32Controller"><value>Контроллер CD32</value></data>
   <data name="Emulation.MouseWheelUp"><value>Колесо мыши вверх</value></data>
   <data name="Emulation.MouseWheelDown"><value>Колесо мыши вниз</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>Колесо мыши влево</value></data>
+  <data name="Emulation.MouseWheelRight"><value>Колесо мыши вправо</value></data>
 </root>

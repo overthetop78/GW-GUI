@@ -381,4 +381,6 @@
   <data name="Emulation.Cd32Controller"><value>Χειριστήριο CD32</value></data>
   <data name="Emulation.MouseWheelUp"><value>Τροχός ποντικιού πάνω</value></data>
   <data name="Emulation.MouseWheelDown"><value>Τροχός ποντικιού κάτω</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>Τροχός ποντικιού αριστερά</value></data>
+  <data name="Emulation.MouseWheelRight"><value>Τροχός ποντικιού δεξιά</value></data>
 </root>

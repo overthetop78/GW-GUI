@@ -381,4 +381,6 @@
   <data name="Emulation.Cd32Controller"><value>وحدة تحكم CD32</value></data>
   <data name="Emulation.MouseWheelUp"><value>عجلة الماوس لأعلى</value></data>
   <data name="Emulation.MouseWheelDown"><value>عجلة الماوس لأسفل</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>عجلة الماوس لليسار</value></data>
+  <data name="Emulation.MouseWheelRight"><value>عجلة الماوس لليمين</value></data>
 </root>

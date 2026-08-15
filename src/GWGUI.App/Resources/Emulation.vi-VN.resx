@@ -381,4 +381,6 @@
   <data name="Emulation.Cd32Controller"><value>Tay cầm CD32</value></data>
   <data name="Emulation.MouseWheelUp"><value>Con lăn chuột lên</value></data>
   <data name="Emulation.MouseWheelDown"><value>Con lăn chuột xuống</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>Con lăn chuột sang trái</value></data>
+  <data name="Emulation.MouseWheelRight"><value>Con lăn chuột sang phải</value></data>
 </root>

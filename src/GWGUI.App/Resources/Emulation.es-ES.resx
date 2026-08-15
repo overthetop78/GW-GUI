@@ -381,4 +381,6 @@
   <data name="Emulation.Cd32Controller"><value>Mando CD32</value></data>
   <data name="Emulation.MouseWheelUp"><value>Rueda del ratón arriba</value></data>
   <data name="Emulation.MouseWheelDown"><value>Rueda del ratón abajo</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>Rueda del ratón a la izquierda</value></data>
+  <data name="Emulation.MouseWheelRight"><value>Rueda del ratón a la derecha</value></data>
 </root>

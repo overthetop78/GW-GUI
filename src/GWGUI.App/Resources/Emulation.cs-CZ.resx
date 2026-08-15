@@ -381,4 +381,6 @@
   <data name="Emulation.Cd32Controller"><value>Ovladač CD32</value></data>
   <data name="Emulation.MouseWheelUp"><value>Kolečko myši nahoru</value></data>
   <data name="Emulation.MouseWheelDown"><value>Kolečko myši dolů</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>Kolečko myši doleva</value></data>
+  <data name="Emulation.MouseWheelRight"><value>Kolečko myši doprava</value></data>
 </root>

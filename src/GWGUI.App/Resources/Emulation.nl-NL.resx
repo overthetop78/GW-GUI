@@ -381,4 +381,6 @@
   <data name="Emulation.Cd32Controller"><value>CD32-controller</value></data>
   <data name="Emulation.MouseWheelUp"><value>Muiswiel omhoog</value></data>
   <data name="Emulation.MouseWheelDown"><value>Muiswiel omlaag</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>Muiswiel naar links</value></data>
+  <data name="Emulation.MouseWheelRight"><value>Muiswiel naar rechts</value></data>
 </root>

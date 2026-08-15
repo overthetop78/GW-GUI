@@ -381,4 +381,6 @@
   <data name="Emulation.Cd32Controller"><value>בקר CD32</value></data>
   <data name="Emulation.MouseWheelUp"><value>גלגלת עכבר למעלה</value></data>
   <data name="Emulation.MouseWheelDown"><value>גלגלת עכבר למטה</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>גלגלת עכבר שמאלה</value></data>
+  <data name="Emulation.MouseWheelRight"><value>גלגלת עכבר ימינה</value></data>
 </root>

@@ -1672,7 +1672,6 @@ public sealed class OptionsEmulationSection : UserControl
         };
         if (model.Id == "CD32")
             choices.Add(new(AmigaControllerType.Cd32Pad, LocExtension.Get("Emulation.Cd32Controller")));
-        choices.Add(new(AmigaControllerType.Keyboard, LocExtension.Get("Emulation.KeyboardTab")));
         choices.Add(new(AmigaControllerType.None, LocExtension.Get("HostTools.None")));
 
         for (var port = 0; port < _controllers.Length; port++)

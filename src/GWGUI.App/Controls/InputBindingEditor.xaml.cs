@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Threading;
 using GWGUI.App.Input;
@@ -23,7 +24,8 @@ public partial class InputBindingEditor : UserControl
         "Controller:ButtonB", "Controller:ButtonY", "Controller:View", "Controller:Menu",
         "Controller:DPadUp", "Controller:DPadDown", "Controller:DPadLeft", "Controller:DPadRight",
         "Controller:ButtonA", "Controller:ButtonX", "Controller:LeftShoulder", "Controller:RightShoulder",
-        "Controller:LeftTrigger", "Controller:RightTrigger", "Controller:LeftStickClick", "Controller:RightStickClick"
+        "Controller:LeftTrigger", "Controller:RightTrigger", "Controller:LeftStickClick", "Controller:RightStickClick",
+        "Controller:XboxButton"
     ];
     private readonly ObservableCollection<InputBindingRow> _rows = [];
     private readonly HashSet<Key> _capturePressed = [];
@@ -36,6 +38,7 @@ public partial class InputBindingEditor : UserControl
     private readonly DispatcherTimer _controllerCaptureTimer;
     private IReadOnlyList<EmulationControllerState> _controllerBaseline = [];
     private IReadOnlySet<string> _reservedBindings = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+    private HwndSource? _windowSource;
 
     public InputBindingEditor()
     {
@@ -49,6 +52,8 @@ public partial class InputBindingEditor : UserControl
         _controllerCaptureTimer = new DispatcherTimer(TimeSpan.FromMilliseconds(30), DispatcherPriority.Input,
             CaptureControllerInput, Dispatcher);
         _controllerCaptureTimer.Stop();
+        Loaded += (_, _) => AttachWindowHook();
+        Unloaded += (_, _) => DetachWindowHook();
     }
 
     public bool HasErrors => _rows.Any(row => row.State is InputBindingState.Conflict or InputBindingState.Reserved);
@@ -149,6 +154,32 @@ public partial class InputBindingEditor : UserControl
         FinishCapture();
     }
 
+    private void AttachWindowHook()
+    {
+        if (_windowSource is not null || Window.GetWindow(this) is not Window window) return;
+        _windowSource = PresentationSource.FromVisual(window) as HwndSource;
+        _windowSource?.AddHook(WindowMessageHook);
+    }
+
+    private void DetachWindowHook()
+    {
+        _windowSource?.RemoveHook(WindowMessageHook);
+        _windowSource = null;
+    }
+
+    private IntPtr WindowMessageHook(IntPtr hwnd, int message, IntPtr wParam, IntPtr lParam, ref bool handled)
+    {
+        const int mouseHorizontalWheel = 0x020E;
+        if (message != mouseHorizontalWheel || _captureRow is null ||
+            !_captureSources.HasFlag(InputCaptureSources.Mouse)) return IntPtr.Zero;
+        var delta = unchecked((short)((wParam.ToInt64() >> 16) & 0xffff));
+        if (delta == 0) return IntPtr.Zero;
+        _captureRow.Binding = delta > 0 ? "Mouse:WheelRight" : "Mouse:WheelLeft";
+        handled = true;
+        FinishCapture();
+        return IntPtr.Zero;
+    }
+
     private void CaptureControllerInput(object? sender, EventArgs e)
     {
         if (_captureRow is null || !_captureSources.HasFlag(InputCaptureSources.Controller))
@@ -161,15 +192,17 @@ public partial class InputBindingEditor : UserControl
         {
             var baseline = port < _controllerBaseline.Count ? _controllerBaseline[port].Buttons : 0u;
             var pressed = states[port].Buttons & ~baseline;
-            if (pressed == 0) continue;
-            var index = Enumerable.Range(0, ControllerButtonSources.Length)
-                .FirstOrDefault(candidate => (pressed & (1u << candidate)) != 0, -1);
-            if (index >= 0)
+            if (pressed != 0)
             {
-                _captureRow.Binding = ControllerBinding(port, ControllerButtonSources[index]["Controller:".Length..]);
-                ControllerCaptured?.Invoke(this, new ControllerCapturedEventArgs(port));
-                FinishCapture();
-                return;
+                var index = Enumerable.Range(0, ControllerButtonSources.Length)
+                    .FirstOrDefault(candidate => (pressed & (1u << candidate)) != 0, -1);
+                if (index >= 0)
+                {
+                    _captureRow.Binding = ControllerBinding(port, ControllerButtonSources[index]["Controller:".Length..]);
+                    ControllerCaptured?.Invoke(this, new ControllerCapturedEventArgs(port));
+                    FinishCapture();
+                    return;
+                }
             }
 
             var direction = NewlyMovedDirection(states[port], port < _controllerBaseline.Count
@@ -320,6 +353,8 @@ public sealed class InputBindingRow(string id, string label, string binding, str
             "xbutton2" => LocExtension.Get("Emulation.MouseButton5"),
             "wheelup" => LocExtension.Get("Emulation.MouseWheelUp"),
             "wheeldown" => LocExtension.Get("Emulation.MouseWheelDown"),
+            "wheelleft" => LocExtension.Get("Emulation.MouseWheelLeft"),
+            "wheelright" => LocExtension.Get("Emulation.MouseWheelRight"),
             _ => part
         };
     }
@@ -331,8 +366,7 @@ public sealed class InputBindingRow(string id, string label, string binding, str
         var input = segments[^1];
         var device = segments.Length >= 3 && segments[0].Equals("xinput", StringComparison.OrdinalIgnoreCase)
                      && int.TryParse(segments[1], out var port)
-            ? XInputControllerReader.GetConnectedDevices().FirstOrDefault(item => item.Id == $"xinput:{port}")?.Name
-              ?? $"XInput {port + 1}"
+            ? $"X{port + 1}"
             : null;
         var inputName = input switch
         {
@@ -351,6 +385,7 @@ public sealed class InputBindingRow(string id, string label, string binding, str
             "ButtonA" => "A", "ButtonB" => "B", "ButtonX" => "X", "ButtonY" => "Y",
             "View" => "View", "Menu" => "Menu", "LeftShoulder" => "LB", "RightShoulder" => "RB",
             "LeftTrigger" => "LT", "RightTrigger" => "RT", "LeftStickClick" => "L3", "RightStickClick" => "R3",
+            "XboxButton" => "Xbox",
             _ => input
         };
         return device is null ? inputName : $"{device}{separator}{inputName}";

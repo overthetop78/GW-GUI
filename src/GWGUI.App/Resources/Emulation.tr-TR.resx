@@ -381,4 +381,6 @@
   <data name="Emulation.Cd32Controller"><value>CD32 kumandası</value></data>
   <data name="Emulation.MouseWheelUp"><value>Fare tekerleği yukarı</value></data>
   <data name="Emulation.MouseWheelDown"><value>Fare tekerleği aşağı</value></data>
+  <data name="Emulation.MouseWheelLeft"><value>Fare tekerleği sola</value></data>
+  <data name="Emulation.MouseWheelRight"><value>Fare tekerleği sağa</value></data>
 </root>
