@@ -889,8 +889,16 @@ public sealed class OptionsEmulationSection : UserControl
         _videoFrameskip.ItemsSource = Choices(("disabled", "Emulation.Disabled"), ("1", "1"), ("2", "2"));
         _videoColors.ItemsSource = new[] { new OptionChoice("16bit", "16 bits"), new OptionChoice("24bit", "24 bits") };
         _videoGamma.ItemsSource = Enumerable.Range(-5, 11).Select(value => new OptionChoice((value * 100).ToString(), value.ToString())).ToArray();
-        _videoRenderer.ItemsSource = Enum.GetValues<GWGUI.Emulation.EmulationVideoRenderer>();
-        _videoRenderer.SelectedItem = GWGUI.Emulation.EmulationVideoRenderer.Direct3D11;
+        _videoRenderer.ItemsSource = new[]
+        {
+            new RendererChoice(GWGUI.Emulation.EmulationVideoRenderer.Direct3D11, "Direct3D 11"),
+            new RendererChoice(GWGUI.Emulation.EmulationVideoRenderer.Vulkan, "Vulkan"),
+            new RendererChoice(GWGUI.Emulation.EmulationVideoRenderer.OpenGL, "OpenGL"),
+            new RendererChoice(GWGUI.Emulation.EmulationVideoRenderer.Wpf, "WPF")
+        };
+        _videoRenderer.DisplayMemberPath = nameof(RendererChoice.Label);
+        _videoRenderer.SelectedIndex = 0;
+        _videoRenderer.MaxDropDownHeight = 132;
         _immediateBlits.ItemsSource = Choices(("false", "Emulation.Disabled"), ("immediate", "Emulation.Immediate"), ("waiting", "Emulation.Waiting"));
         _collisionLevel.ItemsSource = Choices(("none", "HostTools.None"), ("sprites", "Emulation.CollisionSprites"), ("playfields", "Emulation.CollisionPlayfields"), ("full", "Emulation.CollisionFull"));
         _audioInterpolation.ItemsSource = Choices(("none", "HostTools.None"), ("anti", "Emulation.InterpolationAnti"), ("sinc", "Sinc"), ("rh", "RH"), ("crux", "Crux"));
@@ -925,6 +933,7 @@ public sealed class OptionsEmulationSection : UserControl
         {
             Multiselect = true,
             Filter = LocExtension.Get("Emulation.AmigaMediaFilter")
+                .Replace("|*.adf;", "|*.scp;*.adf;", StringComparison.OrdinalIgnoreCase)
         };
         if (dialog.ShowDialog() != true) return Task.CompletedTask;
         foreach (var path in dialog.FileNames)
@@ -2258,7 +2267,9 @@ public sealed class OptionsEmulationSection : UserControl
         SetOption(_videoFrameskip, configuration, "puae_gfx_framerate", "disabled");
         SetOption(_videoColors, configuration, "puae_gfx_colors", "24bit");
         SetOption(_videoGamma, configuration, "puae_gfx_gamma", "0");
-        _videoRenderer.SelectedItem = configuration.VideoRenderer;
+        _videoRenderer.SelectedItem = _videoRenderer.Items.OfType<RendererChoice>()
+            .FirstOrDefault(item => item.Renderer == configuration.VideoRenderer)
+            ?? _videoRenderer.Items.OfType<RendererChoice>().First();
         SetOption(_immediateBlits, configuration, "puae_immediate_blits", "waiting");
         SetOption(_collisionLevel, configuration, "puae_collision_level", "playfields");
         _flickerFixer.IsChecked = GetOption(configuration, "puae_gfx_flickerfixer", "disabled") == "enabled";
@@ -2473,8 +2484,8 @@ public sealed class OptionsEmulationSection : UserControl
             MountFloppiesInSeparateDrives: floppies.Length > 1 && _multiDrive.IsChecked == true,
             Media: media.Length == 0 ? null : media,
             Audio: audio,
-            VideoRenderer: _videoRenderer.SelectedItem is GWGUI.Emulation.EmulationVideoRenderer renderer
-                ? renderer : GWGUI.Emulation.EmulationVideoRenderer.Direct3D11);
+            VideoRenderer: _videoRenderer.SelectedItem is RendererChoice renderer
+                ? renderer.Renderer : GWGUI.Emulation.EmulationVideoRenderer.Direct3D11);
         await _store.SaveAsync(configuration);
         _currentId = configuration.Id;
         await ReloadAsync();
@@ -2555,6 +2566,8 @@ public sealed class OptionsEmulationSection : UserControl
     {
         public string DisplayName => $"{Configuration.Model} · {Configuration.Id.ToString("N")[..8]} · {Path.GetFileName(Configuration.KickstartPath)}";
     }
+
+    private sealed record RendererChoice(GWGUI.Emulation.EmulationVideoRenderer Renderer, string Label);
 
     private sealed record FirmwareItem(AmigaFirmware Firmware)
     {

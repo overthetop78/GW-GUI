@@ -15,6 +15,8 @@ internal interface IEmulationVideoSurface : IDisposable
 {
     FrameworkElement View { get; }
     BitmapSource? Snapshot { get; }
+    EmulationVideoRenderer Renderer { get; }
+    IntPtr InputHandle { get; }
     void Present(VideoFrame frame);
 }
 
@@ -66,6 +68,8 @@ internal sealed class WpfVideoSurface : IEmulationVideoSurface
     private WriteableBitmap? _bitmap;
     public FrameworkElement View => _image;
     public BitmapSource? Snapshot => _bitmap;
+    public EmulationVideoRenderer Renderer => EmulationVideoRenderer.Wpf;
+    public IntPtr InputHandle => IntPtr.Zero;
 
     public void Present(VideoFrame frame)
     {
@@ -107,6 +111,9 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
 
     public FrameworkElement View => this;
     public BitmapSource? Snapshot => _snapshot;
+    public EmulationVideoRenderer Renderer => _backend == GraphicsBackend.Vulkan
+        ? EmulationVideoRenderer.Vulkan : EmulationVideoRenderer.Direct3D11;
+    public IntPtr InputHandle => _hwnd;
 
     protected override HandleRef BuildWindowCore(HandleRef hwndParent)
     {
@@ -235,6 +242,8 @@ internal sealed class OpenGlVideoSurface : HwndHost, IEmulationVideoSurface
     private WriteableBitmap? _snapshot;
     public FrameworkElement View => this;
     public BitmapSource? Snapshot => _snapshot;
+    public EmulationVideoRenderer Renderer => EmulationVideoRenderer.OpenGL;
+    public IntPtr InputHandle => _hwnd;
 
     internal OpenGlVideoSurface() => Focusable = true;
 
