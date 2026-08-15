@@ -1204,8 +1204,10 @@ public partial class MainWindow : Window
     private void About_Click(object sender, RoutedEventArgs e) => _navigation.ShowAbout();
     private void Documentation_Click(object sender, RoutedEventArgs e)
     {
-        var language = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr" ? "fr" : "en";
-        var path = Path.Combine(AppContext.BaseDirectory, "Documentation", $"user-guide.{language}.md");
+        var language = System.Globalization.CultureInfo.CurrentUICulture.Name;
+        var directory = Path.Combine(AppContext.BaseDirectory, "Documentation", "user-guide");
+        var path = Path.Combine(directory, $"{language}.pdf");
+        if (!File.Exists(path)) path = Path.Combine(directory, "en-US.pdf");
         if (File.Exists(path)) Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
     }
 

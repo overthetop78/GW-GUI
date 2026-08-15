@@ -21,4 +21,7 @@
   <data name="About.Version">
     <value>Verze {0}</value>
   </data>
+  <data name="About.Components">
+    <value>Verze součástí</value>
+  </data>
 </root>

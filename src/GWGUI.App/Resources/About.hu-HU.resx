@@ -21,4 +21,7 @@
   <data name="About.Version">
     <value>{0} verzió</value>
   </data>
+  <data name="About.Components">
+    <value>Összetevők verziói</value>
+  </data>
 </root>

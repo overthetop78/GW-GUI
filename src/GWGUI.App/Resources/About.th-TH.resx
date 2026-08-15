@@ -21,4 +21,7 @@
   <data name="About.Version">
     <value>เวอร์ชัน {0}</value>
   </data>
+  <data name="About.Components">
+    <value>เวอร์ชันคอมโพเนนต์</value>
+  </data>
 </root>

@@ -21,4 +21,7 @@
   <data name="About.Version">
     <value>Έκδοση {0}</value>
   </data>
+  <data name="About.Components">
+    <value>Εκδόσεις στοιχείων</value>
+  </data>
 </root>

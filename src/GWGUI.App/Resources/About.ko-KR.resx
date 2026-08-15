@@ -21,4 +21,7 @@
   <data name="About.Version">
     <value>버전 {0}</value>
   </data>
+  <data name="About.Components">
+    <value>구성 요소 버전</value>
+  </data>
 </root>

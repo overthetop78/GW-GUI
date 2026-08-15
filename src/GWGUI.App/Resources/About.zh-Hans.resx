@@ -21,4 +21,7 @@
   <data name="About.Version">
     <value>版本 {0}</value>
   </data>
+  <data name="About.Components">
+    <value>组件版本</value>
+  </data>
 </root>
