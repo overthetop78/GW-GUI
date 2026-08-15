@@ -6,9 +6,11 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Ellipse = System.Windows.Shapes.Ellipse;
 using System.Windows.Threading;
 using GWGUI.App.Localization;
 using GWGUI.App.Input;
+using GWGUI.App.Rendering;
 using GWGUI.App.Services;
 using GWGUI.Domain.Settings;
 using GWGUI.Emulation;
@@ -19,78 +21,122 @@ namespace GWGUI.App.Controls;
 
 public sealed class AmigaMachineView : UserControl
 {
-    private readonly IAmigaMachine _machine;
+    private IAmigaMachine _machine;
+    private readonly Func<IAmigaMachine> _machineFactory;
     private readonly AmigaInputConfiguration _input;
     private readonly IReadOnlyDictionary<EmulationKey, EmulationKey> _keyboardMap;
     private readonly IReadOnlyList<KeyboardShortcutBinding> _keyboardShortcuts;
     private readonly IReadOnlyList<GlobalShortcutBinding> _globalShortcuts;
     private readonly string _quickStatePath;
     private readonly string _captureFolder;
-    private readonly Image _display = new() { Stretch = Stretch.Uniform, Focusable = true };
+    private IEmulationVideoSurface _videoSurface;
+    private FrameworkElement _display;
+    private readonly Grid _videoHost = new() { Background = Brushes.Black };
     private readonly Border _screen;
     private readonly TextBlock _status = new() { VerticalAlignment = VerticalAlignment.Center };
-    private readonly ComboBox _diskSelection = new() { MinWidth = 120, Margin = new Thickness(0, 0, 8, 0) };
+    private readonly TextBlock _audioStatus = StatusIcon("\uE767");
+    private readonly TextBlock _controllerStatus = StatusIcon("\uE7FC");
+    private readonly TextBlock _mouseStatus = StatusIcon("\uE962");
+    private readonly Ellipse _powerLed = new() { Width = 8, Height = 8, Fill = Brushes.Gray, Margin = new Thickness(0, 0, 4, 0) };
+    private readonly StackPanel _deviceStrip = new() { Orientation = Orientation.Horizontal };
+    private readonly AmigaMachineConfiguration _configuration;
+    private readonly HashSet<string> _insertedMedia = new(StringComparer.OrdinalIgnoreCase);
     private readonly HashSet<EmulationKey> _keys = [];
     private readonly HashSet<EmulationKey> _hostKeys = [];
     private readonly Dictionary<Key, EmulationKey> _pressedShortcutKeys = [];
     private readonly HashSet<Key> _pressedPhysicalKeys = [];
     private readonly HashSet<string> _activeGlobalShortcuts = new(StringComparer.Ordinal);
-    private WriteableBitmap? _bitmap;
-    private Point? _lastMouse;
     private int _framePending;
     private bool _disposed;
     private bool _mouseCaptured;
-    private Button? _mouseCaptureButton;
+    private bool _poweredOff;
     private Button? _pauseButton;
     private readonly DispatcherTimer _inputTimer = new() { Interval = TimeSpan.FromMilliseconds(16) };
     private HwndSource? _windowSource;
 
-    public AmigaMachineView(IAmigaMachine machine, AmigaInputConfiguration? input = null,
+    public AmigaMachineView(IAmigaMachine machine, Func<IAmigaMachine> machineFactory,
+        AmigaMachineConfiguration configuration,
+        AmigaInputConfiguration? input = null,
         IReadOnlyDictionary<string, string>? globalShortcuts = null, string? quickStatePath = null,
         string? captureFolder = null)
     {
         _machine = machine;
+        _machineFactory = machineFactory;
+        _configuration = configuration;
+        foreach (var item in configuration.Media ?? [])
+        {
+            var prefix = item.Kind == AmigaMediaKind.CompactDisc ? "CD" : item.Kind == AmigaMediaKind.Floppy ? "DF" : null;
+            if (prefix is not null) _insertedMedia.Add($"{prefix}{_insertedMedia.Count(value => value.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))}:");
+        }
         _input = input ?? new AmigaInputConfiguration();
+        _videoSurface = CreateVideoSurface(configuration.VideoRenderer);
+        _display = _videoSurface.View;
         _keyboardMap = BuildKeyboardMap(_input.KeyboardMappings);
         _keyboardShortcuts = BuildKeyboardShortcuts(_input.KeyboardBindings);
         _globalShortcuts = BuildGlobalShortcuts(globalShortcuts);
         _quickStatePath = quickStatePath ?? Path.Combine(Path.GetTempPath(), "gwgui-amiga-quick.gwas");
         _captureFolder = captureFolder ?? Path.Combine(Path.GetTempPath(), "GW GUI", "Captures");
-        var root = new Grid();
+        var root = new Grid { Background = Brushes.Transparent };
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         root.RowDefinitions.Add(new RowDefinition());
-        var bar = new WrapPanel { Margin = new Thickness(0, 0, 0, 8) };
-        AddButton(bar, "Common.Stop", StopAsync);
-        _pauseButton = AddButton(bar, "Common.Pause", TogglePauseAsync);
-        AddButton(bar, "Common.Reset", () => _machine.HardResetAsync().AsTask());
-        AddButton(bar, "Common.Browse", InsertDisk);
-        bar.Children.Add(_diskSelection);
-        AddButton(bar, "Common.Choose", SelectDisk);
-        _mouseCaptureButton = AddButton(bar, "Emulation.CaptureMouse", ToggleMouseCapture);
-        AddButton(bar, "Common.Save", SaveState);
-        AddButton(bar, "Common.Choose", LoadState);
-        AddButton(bar, "Common.Close", () =>
+        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        var bar = new DockPanel { Height = 38, LastChildFill = false, Margin = new Thickness(0, 0, 0, 4) };
+        var left = new StackPanel { Orientation = Orientation.Horizontal };
+        left.Children.Add(IconButton("\uE7E8", "Emulation.Shortcut.Power", TogglePowerAsync, _powerLed));
+        _pauseButton = IconButton("\uE769", "Emulation.Shortcut.PauseResume", TogglePauseAsync);
+        left.Children.Add(_pauseButton);
+        left.Children.Add(IconButton("\uE777", "Emulation.Shortcut.SoftReset", () => _machine.SoftResetAsync().AsTask()));
+        left.Children.Add(IconButton("\uE72C", "Emulation.Shortcut.HardReset", () => _machine.HardResetAsync().AsTask()));
+        left.Children.Add(IconButton("\uE74E", "Emulation.Shortcut.QuickSave", QuickSave));
+        left.Children.Add(IconButton("\uE8E5", "Emulation.Shortcut.QuickLoad", QuickLoad));
+        left.Children.Add(IconButton("\uE722", "Emulation.Shortcut.Screenshot", () => { SaveScreenshot(); return Task.CompletedTask; }));
+        left.Children.Add(IconButton("\uE740", "Emulation.Shortcut.Fullscreen", () => { ToggleFullscreen(); return Task.CompletedTask; }));
+        bar.Children.Add(left);
+        var right = new StackPanel { Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Center };
+        right.Children.Add(_audioStatus); right.Children.Add(_controllerStatus); right.Children.Add(_mouseStatus);
+        _status.Margin = new Thickness(8, 0, 4, 0); right.Children.Add(_status);
+        var close = IconButton("\uE8BB", "Common.Close", () =>
         {
             CloseRequested?.Invoke(this, EventArgs.Empty);
             return Task.CompletedTask;
         });
-        bar.Children.Add(_status);
+        right.Children.Add(close);
+        DockPanel.SetDock(right, Dock.Right); bar.Children.Add(right);
         root.Children.Add(bar);
         _screen = new Border
         {
             Background = Brushes.Black,
-            Child = _display,
+            Child = _videoHost,
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
             SnapsToDevicePixels = true
         };
+        _videoHost.Children.Add(_display);
         var displayHost = new Grid { Background = Brushes.Transparent };
         displayHost.Children.Add(_screen);
         displayHost.SizeChanged += (_, _) => FitScreen(displayHost.ActualWidth, displayHost.ActualHeight);
         Grid.SetRow(displayHost, 1); root.Children.Add(displayHost);
+        var bottom = new Border
+        {
+            Height = 28,
+            BorderThickness = new Thickness(1, 1, 1, 0),
+            BorderBrush = new SolidColorBrush(Color.FromRgb(215, 222, 231)),
+            Child = _deviceStrip,
+            Padding = new Thickness(6, 2, 6, 2)
+        };
+        BuildDeviceStrip();
+        Grid.SetRow(bottom, 2); root.Children.Add(bottom);
         Content = root;
 
         _machine.VideoFrameReady += VideoFrameReady;
+        AttachDisplayInputHandlers();
+        _inputTimer.Tick += (_, _) => PublishInput();
+        Loaded += (_, _) => AttachWindowHook();
+        Unloaded += (_, _) => DetachWindowHook();
+    }
+
+    private void AttachDisplayInputHandlers()
+    {
         _display.KeyDown += DisplayKeyDown;
         _display.KeyUp += DisplayKeyUp;
         _display.LostKeyboardFocus += DisplayLostKeyboardFocus;
@@ -103,9 +149,127 @@ public sealed class AmigaMachineView : UserControl
             _display.Focus();
             if (_input.CaptureMouse && !_mouseCaptured) CaptureRelativeMouse();
         };
-        _inputTimer.Tick += (_, _) => PublishInput();
-        Loaded += (_, _) => AttachWindowHook();
-        Unloaded += (_, _) => DetachWindowHook();
+    }
+
+    private IEmulationVideoSurface CreateVideoSurface(EmulationVideoRenderer renderer)
+    {
+        try { return EmulationVideoSurfaceFactory.Create(renderer); }
+        catch { return EmulationVideoSurfaceFactory.Create(EmulationVideoRenderer.Wpf); }
+    }
+
+    private static TextBlock StatusIcon(string glyph) => new()
+    {
+        Text = glyph,
+        FontFamily = new FontFamily("Segoe MDL2 Assets"),
+        FontSize = 17,
+        VerticalAlignment = VerticalAlignment.Center,
+        Margin = new Thickness(8, 0, 2, 0)
+    };
+
+    private Button IconButton(string glyph, string tooltipKey, Func<Task> action, UIElement? indicator = null)
+    {
+        var content = new StackPanel { Orientation = Orientation.Horizontal };
+        if (indicator is not null) content.Children.Add(indicator);
+        content.Children.Add(new TextBlock
+        {
+            Text = glyph, FontFamily = new FontFamily("Segoe MDL2 Assets"), FontSize = 17,
+            HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center
+        });
+        var button = new Button
+        {
+            Content = content, ToolTip = LocExtension.Get(tooltipKey), Width = indicator is null ? 36 : 44,
+            Height = 34, Padding = new Thickness(4), Margin = new Thickness(0, 0, 3, 0)
+        };
+        button.Click += async (_, _) =>
+        {
+            try { button.IsEnabled = false; await action(); }
+            catch (Exception error) { ShowError(error); }
+            finally { if (!_disposed) button.IsEnabled = true; }
+        };
+        return button;
+    }
+
+    private void BuildDeviceStrip()
+    {
+        _deviceStrip.Children.Clear();
+        var options = _configuration.Options ?? new Dictionary<string, string>();
+        var floppyCount = int.TryParse(options.GetValueOrDefault("gwgui_floppy_drive_count"), out var floppies)
+            ? Math.Clamp(floppies, 0, 4) : 1;
+        var hardCount = int.TryParse(options.GetValueOrDefault("gwgui_hard_drive_count"), out var hard)
+            ? Math.Clamp(hard, 0, 4) : _configuration.Media?.Count(item => item.Kind == AmigaMediaKind.HardDrive) ?? 0;
+        for (var index = 0; index < floppyCount; index++) _deviceStrip.Children.Add(DeviceItem($"DF{index}:", "\uE7C3", index, true));
+        for (var index = 0; index < hardCount; index++) _deviceStrip.Children.Add(DeviceItem($"DH{index}:", "\uEDA2", index, false));
+        if (options.GetValueOrDefault("gwgui_cd_drive_enabled") == "enabled")
+            _deviceStrip.Children.Add(DeviceItem("CD0:", "\uE958", 0, true));
+    }
+
+    private FrameworkElement DeviceItem(string name, string glyph, int index, bool removable)
+    {
+        var panel = new StackPanel { Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Center };
+        var led = new Ellipse { Width = 7, Height = 7, Fill = Brushes.Gray, Margin = new Thickness(0, 0, 3, 0), Tag = index };
+        panel.Children.Add(led);
+        var device = new Button
+        {
+            ToolTip = removable ? LocExtension.Get("Common.Browse") : name,
+            Height = 24, Padding = new Thickness(3, 0, 3, 0), Margin = new Thickness(0),
+            Content = new StackPanel
+            {
+                Orientation = Orientation.Horizontal,
+                Children =
+                {
+                    new TextBlock { Text = glyph, FontFamily = new FontFamily("Segoe MDL2 Assets"), FontSize = 15, Margin = new Thickness(0, 0, 4, 0) },
+                    new TextBlock { Text = name, FontWeight = FontWeights.SemiBold, VerticalAlignment = VerticalAlignment.Center }
+                }
+            }
+        };
+        if (removable) device.Click += async (_, _) => await InsertMedia(index, name.StartsWith("CD", StringComparison.Ordinal));
+        panel.Children.Add(device);
+        if (removable)
+        {
+            var eject = IconButton("\uE8FB", "Common.Eject", async () =>
+            {
+                if (index < _machine.DiskCount) await _machine.SelectDiskAsync(index);
+                await _machine.EjectMediaAsync();
+                _insertedMedia.Remove(name);
+                BuildDeviceStrip();
+            });
+            eject.Width = 28; eject.Height = 24; eject.Margin = new Thickness(6, 0, 0, 0);
+            eject.IsEnabled = _insertedMedia.Contains(name);
+            panel.Children.Add(eject);
+        }
+        return new Border
+        {
+            Child = panel, Padding = new Thickness(6, 0, 6, 0), Margin = new Thickness(0, 0, 6, 0),
+            BorderThickness = new Thickness(0, 0, 1, 0), BorderBrush = new SolidColorBrush(Color.FromRgb(215, 222, 231))
+        };
+    }
+
+    private async Task InsertMedia(int index, bool compactDisc)
+    {
+        var dialog = new OpenFileDialog
+        {
+            Filter = compactDisc
+                ? "CD|*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso|All files|*.*"
+                : "Amiga floppy|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw|All files|*.*"
+        };
+        if (dialog.ShowDialog() != true) return;
+        if (index < _machine.DiskCount) await _machine.SelectDiskAsync(index);
+        await _machine.InsertMediaAsync(dialog.FileName);
+        _insertedMedia.Add(compactDisc ? $"CD{index}:" : $"DF{index}:");
+        BuildDeviceStrip();
+    }
+
+    private void UpdateDeviceLeds()
+    {
+        var leds = _machine.LedStates;
+        var index = 0;
+        foreach (var border in _deviceStrip.Children.OfType<Border>())
+        {
+            if (border.Child is StackPanel panel && panel.Children.OfType<Ellipse>().FirstOrDefault() is { } led)
+                led.Fill = leds.GetValueOrDefault(index) ? Brushes.LimeGreen : Brushes.Gray;
+            index++;
+        }
+        _controllerStatus.Opacity = XInputControllerReader.ReadAll().Any(item => item != EmulationControllerState.Empty) ? 1 : 0.35;
     }
 
     public event EventHandler? CloseRequested;
@@ -127,12 +291,14 @@ public sealed class AmigaMachineView : UserControl
 
     public async Task StartAsync()
     {
-        _status.Text = "Starting";
+        _status.Text = string.Empty;
         await _machine.StartAsync();
         _inputTimer.Start();
-        _diskSelection.ItemsSource = Enumerable.Range(0, _machine.DiskCount).Select(index => LocExtension.Get("Emulation.DiskNumber", index + 1)).ToArray();
-        _diskSelection.SelectedIndex = _machine.CurrentDiskIndex;
-        _status.Text = _machine.State.ToString();
+        _status.Text = string.Empty;
+        _powerLed.Fill = Brushes.LimeGreen;
+        _audioStatus.Opacity = _configuration.AudioEnabled ? 1 : 0.35;
+        _controllerStatus.Opacity = XInputControllerReader.ReadAll().Any(item => item != EmulationControllerState.Empty) ? 1 : 0.35;
+        _mouseStatus.Opacity = 0.35;
         _display.Focus();
     }
 
@@ -146,9 +312,33 @@ public sealed class AmigaMachineView : UserControl
             ReleaseRelativeMouse();
             await _machine.DisposeAsync();
             _machine.VideoFrameReady -= VideoFrameReady;
-            _status.Text = _machine.State.ToString();
+            _status.Text = string.Empty;
+            _powerLed.Fill = Brushes.Gray;
+            _videoSurface.Dispose();
             _disposed = true;
         }
+    }
+
+    private async Task TogglePowerAsync()
+    {
+        ReleaseRelativeMouse();
+        if (!_poweredOff)
+        {
+            _inputTimer.Stop();
+            _machine.VideoFrameReady -= VideoFrameReady;
+            await _machine.StopAsync();
+            await _machine.DisposeAsync();
+            _poweredOff = true;
+            _powerLed.Fill = Brushes.Gray;
+            _status.Text = string.Empty;
+            return;
+        }
+        _machine = _machineFactory();
+        _machine.VideoFrameReady += VideoFrameReady;
+        await _machine.StartAsync();
+        _inputTimer.Start();
+        _poweredOff = false;
+        _powerLed.Fill = Brushes.LimeGreen;
     }
 
     private Button AddButton(Panel panel, string key, Func<Task> action)
@@ -186,17 +376,53 @@ public sealed class AmigaMachineView : UserControl
 
     private void Render(VideoFrame frame)
     {
-        var format = frame.PixelFormat == EmulationPixelFormat.Rgb565 ? PixelFormats.Bgr565 : PixelFormats.Bgr32;
-        if (_bitmap is null || _bitmap.PixelWidth != frame.Width || _bitmap.PixelHeight != frame.Height || _bitmap.Format != format)
+        try
         {
-            _bitmap = new WriteableBitmap(frame.Width, frame.Height, 96, 96, format, null);
-            _display.Source = _bitmap;
+            _videoSurface.Present(frame);
         }
-        if (MemoryMarshal.TryGetArray(frame.Pixels, out var segment) && segment.Array is not null)
-            _bitmap.WritePixels(new Int32Rect(0, 0, frame.Width, frame.Height), segment.Array, frame.Pitch, segment.Offset);
-        else
-            _bitmap.WritePixels(new Int32Rect(0, 0, frame.Width, frame.Height), frame.Pixels.ToArray(), frame.Pitch, 0);
-        _status.Text = $"{frame.Width}×{frame.Height} · {frame.Sequence}";
+        catch when (_videoSurface is not WpfVideoSurface)
+        {
+            _videoSurface.Dispose();
+            _videoSurface = EmulationVideoSurfaceFactory.Create(EmulationVideoRenderer.Wpf);
+            _display = _videoSurface.View;
+            _videoHost.Children.Clear();
+            _videoHost.Children.Add(_display);
+            AttachDisplayInputHandlers();
+            _videoSurface.Present(frame);
+        }
+        UpdateDeviceLeds();
+        var hz = _machine.Configuration.Options?.GetValueOrDefault("puae_video_standard", "PAL")
+            .StartsWith("NTSC", StringComparison.OrdinalIgnoreCase) == true ? 60d : 50d;
+        _status.Text = $"{frame.Width} × {frame.Height} · {hz:0.0} Hz";
+    }
+
+    private static byte[] ConvertToBgra32(VideoFrame frame, int destinationPitch)
+    {
+        var source = frame.Pixels.Span;
+        var destination = GC.AllocateUninitializedArray<byte>(checked(destinationPitch * frame.Height));
+        for (var y = 0; y < frame.Height; y++)
+        {
+            var sourceRow = source.Slice(checked(y * frame.Pitch), frame.Pitch);
+            var destinationRow = destination.AsSpan(checked(y * destinationPitch), destinationPitch);
+            if (frame.PixelFormat == EmulationPixelFormat.Xrgb8888)
+            {
+                sourceRow[..Math.Min(sourceRow.Length, destinationPitch)].CopyTo(destinationRow);
+                for (var x = 0; x < frame.Width; x++) destinationRow[x * 4 + 3] = 255;
+                continue;
+            }
+
+            for (var x = 0; x < frame.Width; x++)
+            {
+                var sourceOffset = x * 2;
+                var value = sourceRow[sourceOffset] | sourceRow[sourceOffset + 1] << 8;
+                var destinationOffset = x * 4;
+                destinationRow[destinationOffset] = (byte)((value & 0x1f) * 255 / 31);
+                destinationRow[destinationOffset + 1] = (byte)(((value >> 5) & 0x3f) * 255 / 63);
+                destinationRow[destinationOffset + 2] = (byte)(((value >> 11) & 0x1f) * 255 / 31);
+                destinationRow[destinationOffset + 3] = 255;
+            }
+        }
+        return destination;
     }
 
     private async Task InsertDisk()
@@ -214,25 +440,34 @@ public sealed class AmigaMachineView : UserControl
         if (dialog.ShowDialog() == true) await _machine.SaveStateAsync(dialog.FileName);
     }
 
-    private async Task SelectDisk()
+    private async Task QuickSave()
     {
-        if (_diskSelection.SelectedIndex < 0) return;
-        await _machine.SelectDiskAsync(_diskSelection.SelectedIndex);
+        Directory.CreateDirectory(Path.GetDirectoryName(_quickStatePath)!);
+        await _machine.SaveStateAsync(_quickStatePath);
     }
+
+    private Task QuickLoad() => File.Exists(_quickStatePath)
+        ? _machine.LoadStateAsync(_quickStatePath).AsTask() : Task.CompletedTask;
 
     private async Task TogglePauseAsync()
     {
         if (_machine.State == EmulationMachineState.Running)
         {
             await _machine.PauseAsync();
-            if (_pauseButton is not null) _pauseButton.Content = LocExtension.Get("Common.Continue");
+            SetIcon(_pauseButton, "\uE768", "Common.Continue");
         }
         else if (_machine.State == EmulationMachineState.Paused)
         {
             await _machine.ResumeAsync();
-            if (_pauseButton is not null) _pauseButton.Content = LocExtension.Get("Common.Pause");
+            SetIcon(_pauseButton, "\uE769", "Common.Pause");
         }
-        _status.Text = _machine.State.ToString();
+    }
+
+    private static void SetIcon(Button? button, string glyph, string tooltipKey)
+    {
+        if (button?.Content is StackPanel panel && panel.Children.OfType<TextBlock>().LastOrDefault() is { } icon)
+            icon.Text = glyph;
+        if (button is not null) button.ToolTip = LocExtension.Get(tooltipKey);
     }
 
     private async Task LoadState()
@@ -379,11 +614,12 @@ public sealed class AmigaMachineView : UserControl
 
     private void SaveScreenshot()
     {
-        if (_bitmap is null) return;
+        var snapshot = _videoSurface.Snapshot;
+        if (snapshot is null) return;
         Directory.CreateDirectory(_captureFolder);
         var path = Path.Combine(_captureFolder, $"Amiga-{DateTime.Now:yyyyMMdd-HHmmss}.png");
         var encoder = new PngBitmapEncoder();
-        encoder.Frames.Add(BitmapFrame.Create(_bitmap));
+        encoder.Frames.Add(BitmapFrame.Create(snapshot));
         using var stream = File.Create(path);
         encoder.Save(stream);
         _status.Text = Path.GetFileName(path);
@@ -391,24 +627,29 @@ public sealed class AmigaMachineView : UserControl
 
     private void DisplayMouseMove(object sender, MouseEventArgs e)
     {
-        var current = e.GetPosition(_display);
-        if (_mouseCaptured)
+        if (!_mouseCaptured)
         {
-            var center = new Point(_display.ActualWidth / 2, _display.ActualHeight / 2);
-            var deltaX = (int)Math.Round(current.X - center.X);
-            var deltaY = (int)Math.Round(current.Y - center.Y);
-            if (deltaX == 0 && deltaY == 0) return;
-            PublishInput(deltaX, deltaY);
-            var screen = _display.PointToScreen(center);
-            SetCursorPos((int)Math.Round(screen.X), (int)Math.Round(screen.Y));
             return;
         }
-        if (_lastMouse is { } previous) PublishInput((int)(current.X - previous.X), (int)(current.Y - previous.Y));
-        _lastMouse = current;
+        var current = e.GetPosition(_display);
+        var center = new Point(_display.ActualWidth / 2, _display.ActualHeight / 2);
+        var deltaX = (int)Math.Round(current.X - center.X);
+        var deltaY = (int)Math.Round(current.Y - center.Y);
+        if (deltaX == 0 && deltaY == 0) return;
+        PublishInput(deltaX, deltaY);
+        var screen = _display.PointToScreen(center);
+        SetCursorPos((int)Math.Round(screen.X), (int)Math.Round(screen.Y));
     }
 
-    private void MouseChanged(object sender, MouseButtonEventArgs e) => PublishInput();
-    private void DisplayMouseWheel(object sender, MouseWheelEventArgs e) => PublishInput(wheel: e.Delta);
+    private void MouseChanged(object sender, MouseButtonEventArgs e)
+    {
+        if (_mouseCaptured) PublishInput();
+    }
+
+    private void DisplayMouseWheel(object sender, MouseWheelEventArgs e)
+    {
+        if (_mouseCaptured) PublishInput(wheel: e.Delta);
+    }
 
     private void AttachWindowHook()
     {
@@ -426,7 +667,7 @@ public sealed class AmigaMachineView : UserControl
     private IntPtr WindowMessageHook(IntPtr hwnd, int message, IntPtr wParam, IntPtr lParam, ref bool handled)
     {
         const int mouseHorizontalWheel = 0x020E;
-        if (message != mouseHorizontalWheel || !_display.IsMouseOver) return IntPtr.Zero;
+        if (message != mouseHorizontalWheel || !_mouseCaptured || !_display.IsMouseOver) return IntPtr.Zero;
         var delta = unchecked((short)((wParam.ToInt64() >> 16) & 0xffff));
         if (delta != 0) PublishInput(horizontalWheel: delta);
         return IntPtr.Zero;
@@ -445,10 +686,11 @@ public sealed class AmigaMachineView : UserControl
         _display.Cursor = Cursors.None;
         Mouse.Capture(_display);
         _display.Focus();
+        _mouseStatus.Text = "\uE962";
+        _mouseStatus.Opacity = 1;
         var center = new Point(_display.ActualWidth / 2, _display.ActualHeight / 2);
         var screen = _display.PointToScreen(center);
         SetCursorPos((int)Math.Round(screen.X), (int)Math.Round(screen.Y));
-        if (_mouseCaptureButton is not null) _mouseCaptureButton.Content = LocExtension.Get("Emulation.ReleaseMouse");
     }
 
     private void ReleaseRelativeMouse()
@@ -457,28 +699,29 @@ public sealed class AmigaMachineView : UserControl
         _mouseCaptured = false;
         Mouse.Capture(null);
         _display.Cursor = null;
-        _lastMouse = null;
+        _mouseStatus.Text = "\uE8F8";
+        _mouseStatus.Opacity = 0.55;
         _keys.Remove(EmulationKey.LeftControl);
         _keys.Remove(EmulationKey.RightControl);
         _keys.Remove(EmulationKey.LeftAlt);
         _keys.Remove(EmulationKey.RightAlt);
         if (!_disposed) PublishInput();
-        if (_mouseCaptureButton is not null) _mouseCaptureButton.Content = LocExtension.Get("Emulation.CaptureMouse");
     }
 
     private void PublishInput(int deltaX = 0, int deltaY = 0, int wheel = 0, int horizontalWheel = 0)
     {
+        var mouseActive = _mouseCaptured;
         var physical = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
         {
-            ["Left"] = Mouse.LeftButton == MouseButtonState.Pressed,
-            ["Right"] = Mouse.RightButton == MouseButtonState.Pressed,
-            ["Middle"] = Mouse.MiddleButton == MouseButtonState.Pressed,
-            ["XButton1"] = Mouse.XButton1 == MouseButtonState.Pressed,
-            ["XButton2"] = Mouse.XButton2 == MouseButtonState.Pressed,
-            ["WheelUp"] = wheel > 0,
-            ["WheelDown"] = wheel < 0,
-            ["WheelLeft"] = horizontalWheel < 0,
-            ["WheelRight"] = horizontalWheel > 0
+            ["Left"] = mouseActive && Mouse.LeftButton == MouseButtonState.Pressed,
+            ["Right"] = mouseActive && Mouse.RightButton == MouseButtonState.Pressed,
+            ["Middle"] = mouseActive && Mouse.MiddleButton == MouseButtonState.Pressed,
+            ["XButton1"] = mouseActive && Mouse.XButton1 == MouseButtonState.Pressed,
+            ["XButton2"] = mouseActive && Mouse.XButton2 == MouseButtonState.Pressed,
+            ["WheelUp"] = mouseActive && wheel > 0,
+            ["WheelDown"] = mouseActive && wheel < 0,
+            ["WheelLeft"] = mouseActive && horizontalWheel < 0,
+            ["WheelRight"] = mouseActive && horizontalWheel > 0
         };
         var actions = _input.MouseButtonMappings ?? new Dictionary<string, AmigaMouseAction>
         {
@@ -490,7 +733,8 @@ public sealed class AmigaMachineView : UserControl
         bool IsPressed(AmigaMouseAction action) => actions.Any(mapping => mapping.Value == action
             && IsControllerSourcePressed(mapping.Key, ControllerForSource(mapping.Key, controllers, primaryController), physical));
         _machine.SetInput(new EmulationInputSnapshot(new HashSet<EmulationKey>(_keys),
-            new EmulationPointerState(deltaX, deltaY, wheel, IsPressed(AmigaMouseAction.LeftButton),
+            new EmulationPointerState(mouseActive ? deltaX : 0, mouseActive ? deltaY : 0, mouseActive ? wheel : 0,
+                IsPressed(AmigaMouseAction.LeftButton),
                 IsPressed(AmigaMouseAction.RightButton), IsPressed(AmigaMouseAction.MiddleButton)),
             MapControllers(controllers, physical)));
     }

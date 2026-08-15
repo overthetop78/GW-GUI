@@ -17,8 +17,8 @@ public sealed record AmigaCoreRelease(
 
 public sealed class AmigaCoreReleaseService
 {
-    public const string RequiredReleaseId = "validated-ec639e2b";
-    public const string RequiredDisplayName = "ec639e2b · 31/07/2026 · GW GUI";
+    public const string RequiredReleaseId = "validated-96ebfcfc";
+    public const string RequiredDisplayName = "96ebfcfc · 31/07/2026 · GW GUI";
     public static readonly Uri LatestOfficialUri = new(
         "https://buildbot.libretro.com/nightly/windows/x86_64/latest/puae_libretro.dll.zip");
 

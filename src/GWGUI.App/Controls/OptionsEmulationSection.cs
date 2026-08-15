@@ -58,6 +58,7 @@ public sealed class OptionsEmulationSection : UserControl
     private readonly ComboBox _videoFrameskip = new();
     private readonly ComboBox _videoColors = new();
     private readonly ComboBox _videoGamma = new();
+    private readonly ComboBox _videoRenderer = new();
     private readonly ComboBox _immediateBlits = new();
     private readonly ComboBox _collisionLevel = new();
     private readonly CheckBox _flickerFixer = new();
@@ -312,27 +313,27 @@ public sealed class OptionsEmulationSection : UserControl
         if (type is AmigaControllerType.None or AmigaControllerType.Keyboard) return [];
         var directions = new List<InputBindingDefinition>
         {
-            new("Up", LocExtension.Get("Emulation.DirectionUp"), "Controller:DPadUp"),
-            new("Down", LocExtension.Get("Emulation.DirectionDown"), "Controller:DPadDown"),
-            new("Left", LocExtension.Get("Emulation.DirectionLeft"), "Controller:DPadLeft"),
-            new("Right", LocExtension.Get("Emulation.DirectionRight"), "Controller:DPadRight")
+            new("Up", LocExtension.Get("Emulation.DirectionUp"), string.Empty),
+            new("Down", LocExtension.Get("Emulation.DirectionDown"), string.Empty),
+            new("Left", LocExtension.Get("Emulation.DirectionLeft"), string.Empty),
+            new("Right", LocExtension.Get("Emulation.DirectionRight"), string.Empty)
         };
         if (type == AmigaControllerType.Cd32Pad)
         {
             directions.AddRange([
-                new("B", LocExtension.Get("Emulation.Cd32Red"), "Controller:ButtonB"),
-                new("A", LocExtension.Get("Emulation.Cd32Blue"), "Controller:ButtonA"),
-                new("Y", LocExtension.Get("Emulation.Cd32Green"), "Controller:ButtonY"),
-                new("X", LocExtension.Get("Emulation.Cd32Yellow"), "Controller:ButtonX"),
-                new("L", LocExtension.Get("Emulation.Cd32Rewind"), "Controller:LeftShoulder"),
-                new("R", LocExtension.Get("Emulation.Cd32FastForward"), "Controller:RightShoulder"),
-                new("Start", LocExtension.Get("Emulation.Cd32PlayPause"), "Controller:Menu")
+                new("B", LocExtension.Get("Emulation.Cd32Red"), string.Empty),
+                new("A", LocExtension.Get("Emulation.Cd32Blue"), string.Empty),
+                new("Y", LocExtension.Get("Emulation.Cd32Green"), string.Empty),
+                new("X", LocExtension.Get("Emulation.Cd32Yellow"), string.Empty),
+                new("L", LocExtension.Get("Emulation.Cd32Rewind"), string.Empty),
+                new("R", LocExtension.Get("Emulation.Cd32FastForward"), string.Empty),
+                new("Start", LocExtension.Get("Emulation.Cd32PlayPause"), string.Empty)
             ]);
             directions.Add(new InputBindingDefinition("L2", LocExtension.Get("Emulation.TurboFire"), string.Empty));
             return directions;
         }
-        directions.Add(new InputBindingDefinition("B", LocExtension.Get("Emulation.FireButton1"), "Controller:ButtonB"));
-        directions.Add(new InputBindingDefinition("A", LocExtension.Get("Emulation.FireButton2"), "Controller:ButtonA"));
+        directions.Add(new InputBindingDefinition("B", LocExtension.Get("Emulation.FireButton1"), string.Empty));
+        directions.Add(new InputBindingDefinition("A", LocExtension.Get("Emulation.FireButton2"), string.Empty));
         directions.Add(new InputBindingDefinition("L2", LocExtension.Get("Emulation.TurboFire"), string.Empty));
         return directions;
     }
@@ -436,7 +437,6 @@ public sealed class OptionsEmulationSection : UserControl
         Grid.SetRow(_list, 1);
         root.Children.Add(_list);
         var actions = new WrapPanel { Margin = new Thickness(0, 10, 0, 0) };
-        AddButton(actions, "Common.New", NewConfiguration);
         AddButton(actions, "Common.Delete", DeleteConfigurationAsync);
         AddButton(actions, "Common.Refresh", ReloadAsync);
         Grid.SetRow(actions, 2);
@@ -646,6 +646,7 @@ public sealed class OptionsEmulationSection : UserControl
             LabeledTile(LocExtension.Get("Emulation.VideoLineMode"), _videoLineMode),
             LabeledTile(LocExtension.Get("Emulation.VideoCrop"), _cropVideo, columnSpan: 2));
         var rendering = TileGrid(2,
+            LabeledTile(LocExtension.Get("Emulation.RenderingSettings"), _videoRenderer, columnSpan: 2),
             LabeledTile(LocExtension.Get("Emulation.VideoColors"), _videoColors),
             LabeledTile(LocExtension.Get("Emulation.VideoFrameskip"), _videoFrameskip),
             LabeledTile(LocExtension.Get("Emulation.VideoGamma"), _videoGamma),
@@ -888,6 +889,8 @@ public sealed class OptionsEmulationSection : UserControl
         _videoFrameskip.ItemsSource = Choices(("disabled", "Emulation.Disabled"), ("1", "1"), ("2", "2"));
         _videoColors.ItemsSource = new[] { new OptionChoice("16bit", "16 bits"), new OptionChoice("24bit", "24 bits") };
         _videoGamma.ItemsSource = Enumerable.Range(-5, 11).Select(value => new OptionChoice((value * 100).ToString(), value.ToString())).ToArray();
+        _videoRenderer.ItemsSource = Enum.GetValues<GWGUI.Emulation.EmulationVideoRenderer>();
+        _videoRenderer.SelectedItem = GWGUI.Emulation.EmulationVideoRenderer.Direct3D11;
         _immediateBlits.ItemsSource = Choices(("false", "Emulation.Disabled"), ("immediate", "Emulation.Immediate"), ("waiting", "Emulation.Waiting"));
         _collisionLevel.ItemsSource = Choices(("none", "HostTools.None"), ("sprites", "Emulation.CollisionSprites"), ("playfields", "Emulation.CollisionPlayfields"), ("full", "Emulation.CollisionFull"));
         _audioInterpolation.ItemsSource = Choices(("none", "HostTools.None"), ("anti", "Emulation.InterpolationAnti"), ("sinc", "Sinc"), ("rh", "RH"), ("crux", "Crux"));
@@ -2255,6 +2258,7 @@ public sealed class OptionsEmulationSection : UserControl
         SetOption(_videoFrameskip, configuration, "puae_gfx_framerate", "disabled");
         SetOption(_videoColors, configuration, "puae_gfx_colors", "24bit");
         SetOption(_videoGamma, configuration, "puae_gfx_gamma", "0");
+        _videoRenderer.SelectedItem = configuration.VideoRenderer;
         SetOption(_immediateBlits, configuration, "puae_immediate_blits", "waiting");
         SetOption(_collisionLevel, configuration, "puae_collision_level", "playfields");
         _flickerFixer.IsChecked = GetOption(configuration, "puae_gfx_flickerfixer", "disabled") == "enabled";
@@ -2468,7 +2472,9 @@ public sealed class OptionsEmulationSection : UserControl
             Floppies: floppies.Length == 0 ? null : floppies,
             MountFloppiesInSeparateDrives: floppies.Length > 1 && _multiDrive.IsChecked == true,
             Media: media.Length == 0 ? null : media,
-            Audio: audio);
+            Audio: audio,
+            VideoRenderer: _videoRenderer.SelectedItem is GWGUI.Emulation.EmulationVideoRenderer renderer
+                ? renderer : GWGUI.Emulation.EmulationVideoRenderer.Direct3D11);
         await _store.SaveAsync(configuration);
         _currentId = configuration.Id;
         await ReloadAsync();

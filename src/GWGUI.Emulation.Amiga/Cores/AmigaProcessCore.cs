@@ -2,6 +2,7 @@ using System.Collections.Concurrent;
 using System.Buffers.Binary;
 using System.Diagnostics;
 using System.IO.Pipes;
+using System.IO.MemoryMappedFiles;
 using System.Text.Json;
 using GWGUI.Emulation;
 
@@ -16,6 +17,8 @@ internal sealed class AmigaProcessCore : IAmigaCore
     private BinaryReader? _responseReader;
     private BinaryWriter? _writer;
     private Process? _process;
+    private MemoryMappedFile? _videoMemory;
+    private MemoryMappedViewAccessor? _videoMap;
     private readonly AmigaInputAccumulator _input = new();
     private bool _initialized;
     private bool _disposed;
@@ -61,6 +64,11 @@ internal sealed class AmigaProcessCore : IAmigaCore
             throw new FileNotFoundException("The GW GUI executable used to host the Amiga core was not found.", _hostExecutablePath);
 
         var pipeName = $"gwgui-amiga-{Guid.NewGuid():N}";
+        var videoMapName = $"gwgui-amiga-video-{Guid.NewGuid():N}";
+        _videoMemory = MemoryMappedFile.CreateNew(videoMapName, AmigaCoreHostProtocol.VideoMapCapacity,
+            MemoryMappedFileAccess.ReadWrite);
+        _videoMap = _videoMemory.CreateViewAccessor(0, AmigaCoreHostProtocol.VideoMapCapacity,
+            MemoryMappedFileAccess.ReadWrite);
         const int pipeBufferSize = 8 * 1024 * 1024;
         _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, 1, PipeTransmissionMode.Byte,
             PipeOptions.Asynchronous, pipeBufferSize, pipeBufferSize);
@@ -72,6 +80,7 @@ internal sealed class AmigaProcessCore : IAmigaCore
         };
         startInfo.ArgumentList.Add("--amiga-core-host");
         startInfo.ArgumentList.Add(pipeName);
+        startInfo.ArgumentList.Add(videoMapName);
         _process = Process.Start(startInfo) ?? throw new InvalidOperationException("The Amiga core host process could not be started.");
         try
         {
@@ -110,7 +119,8 @@ internal sealed class AmigaProcessCore : IAmigaCore
         Begin(AmigaHostCommand.RunFrame);
         AmigaCoreHostProtocol.WriteInput(_writer!, _input.Consume());
         CompleteRequest();
-        LatestVideoFrame = AmigaCoreHostProtocol.ReadFrame(Response) ?? LatestVideoFrame;
+        LatestVideoFrame = AmigaCoreHostProtocol.ReadSharedFrame(Response,
+            _videoMap ?? throw new InvalidOperationException("The shared Amiga video buffer is unavailable.")) ?? LatestVideoFrame;
         foreach (var chunk in AmigaCoreHostProtocol.ReadAudio(Response))
         {
             LatestAudioChunk = chunk;
@@ -177,6 +187,8 @@ internal sealed class AmigaProcessCore : IAmigaCore
         _responseReader?.Dispose();
         _writer?.Dispose();
         _pipe?.Dispose();
+        _videoMap?.Dispose();
+        _videoMemory?.Dispose();
         if (_process is not null)
         {
             try

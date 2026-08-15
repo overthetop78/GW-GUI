@@ -34,7 +34,8 @@ public sealed record AmigaMachineConfiguration(
     int SchemaVersion = 3,
     string? ValidatedCoreSha256 = null,
     IReadOnlyList<AmigaMediaConfiguration>? Media = null,
-    AmigaAudioConfiguration? Audio = null)
+    AmigaAudioConfiguration? Audio = null,
+    GWGUI.Emulation.EmulationVideoRenderer VideoRenderer = GWGUI.Emulation.EmulationVideoRenderer.Direct3D11)
 {
     public static AmigaMachineConfiguration A500(string kickstartPath, string? diskPath = null) =>
         new("A500", kickstartPath, diskPath, Options: new Dictionary<string, string>

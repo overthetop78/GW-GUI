@@ -6,11 +6,11 @@ namespace GWGUI.Emulation.Amiga;
 
 public sealed class AmigaExternalCoreInstaller
 {
-    public const string CoreRevision = "ec639e2b";
+    public const string CoreRevision = "96ebfcfc";
     public const string DownloadUrl = "https://buildbot.libretro.com/nightly/windows/x86_64/latest/puae_libretro.dll.zip";
-    public const string ArchiveSha256 = "CC2AF29C684B39B80E65E974B9927C58685F7BC06F5AED5FE9B0F4725DD001A3";
+    public const string ArchiveSha256 = "6032064FADA8F45F6835DDE6CFEB36AEE3278B37AEB97A52202E17B51C4E303D";
     public const long ArchiveSize = 6_636_879;
-    public const string LibrarySha256 = "474A97533194C194107AFF6EDE2F4651E0E1D7ACF2ED4B57C3C9937433D1BD96";
+    public const string LibrarySha256 = "E6569E59BF81C5A459A9CC0FBC45477AAE1F97441B5E68A4084E4E65F2FA0BFD";
     public const long LibrarySize = 17_632_256;
     private readonly HttpClient _httpClient;
     private readonly string _directory;

@@ -32,6 +32,8 @@ public partial class InputBindingEditor : UserControl
     private readonly List<Key> _captureOrder = [];
     private InputBindingRow? _captureRow;
     private Button? _captureButton;
+    private object? _captureButtonContent;
+    private double _captureButtonHeight;
     private ModifierKeys _captureModifiers;
     private InputCaptureSources _captureSources = InputCaptureSources.Keyboard;
     private bool _prefixKeyboardSource;
@@ -95,10 +97,19 @@ public partial class InputBindingEditor : UserControl
         if (sender is not Button { Tag: InputBindingRow row } button) return;
         _captureRow = row;
         _captureButton = button;
+        _captureButtonContent = button.Content;
+        _captureButtonHeight = button.Height;
         _capturePressed.Clear();
         _captureOrder.Clear();
         _captureModifiers = ModifierKeys.None;
-        button.Content = LocExtension.Get("Emulation.PressInput");
+        button.Content = new TextBlock
+        {
+            Text = LocExtension.Get("Emulation.PressInput"),
+            FontSize = 11,
+            TextAlignment = TextAlignment.Center,
+            TextWrapping = TextWrapping.Wrap
+        };
+        button.Height = 40;
         button.Focus();
         if (_captureSources.HasFlag(InputCaptureSources.Controller))
         {
@@ -239,8 +250,13 @@ public partial class InputBindingEditor : UserControl
 
     private void FinishCapture()
     {
-        if (_captureButton is not null) _captureButton.Content = LocExtension.Get("Emulation.AssignInput");
+        if (_captureButton is not null)
+        {
+            _captureButton.Content = _captureButtonContent;
+            _captureButton.Height = _captureButtonHeight;
+        }
         _controllerCaptureTimer.Stop();
+        _captureButtonContent = null;
         _captureButton = null;
         _captureRow = null;
         ValidateBindings();

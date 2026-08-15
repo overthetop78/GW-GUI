@@ -194,6 +194,11 @@ public sealed class AmigaExternalCoreTests
         {
             using var core = new AmigaExternalCore(Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll"));
             core.Initialize(AmigaMachineConfiguration.A500(kickstart, workbench), session);
+            var sessionKickstart = Path.Combine(session, "System", "kick34005.A500");
+            Assert.True(File.Exists(sessionKickstart));
+            using (var stream = File.OpenRead(sessionKickstart))
+                Assert.Equal("1D68BA18412501D2A4B307A0A632B94A50B839C2C7C5FF2DF6DE2C38B99A921F",
+                    Convert.ToHexString(SHA256.HashData(stream)));
             for (var frame = 0; frame < 1500; frame++) core.RunFrame();
 
             var video = Assert.IsType<GWGUI.Emulation.VideoFrame>(core.LatestVideoFrame);

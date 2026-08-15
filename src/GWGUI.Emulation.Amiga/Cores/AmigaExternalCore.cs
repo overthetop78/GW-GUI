@@ -79,6 +79,13 @@ internal sealed class AmigaExternalCore : IAmigaCore
         var corePath = Path.Combine(isolatedCoreDirectory, "puae_libretro.dll");
         File.Copy(sourceCorePath, corePath, true);
 
+        // PUAE discovers firmware in the frontend system directory. The
+        // puae_kickstart option selects a discovered ROM; it does not accept an
+        // arbitrary absolute file path.
+        var sessionKickstartPath = Path.Combine(systemDirectory,
+            ResolveKickstartFileName(configuration.Model, configuration.KickstartPath));
+        File.Copy(configuration.KickstartPath, sessionKickstartPath, true);
+
         if (configuration.ExtendedRomPath is not null)
         {
             var extendedName = configuration.Model is "CD32" or "CD32FR" ? "kick40060.CD32.ext"
@@ -93,7 +100,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
         var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal)
         {
             ["puae_model"] = backendModel,
-            ["puae_kickstart"] = Path.GetFullPath(configuration.KickstartPath)
+            ["puae_kickstart"] = "auto"
         };
         var floppyCount = media.Count(item => item.Kind == AmigaMediaKind.Floppy);
         if (floppyCount > 1)
@@ -189,6 +196,48 @@ internal sealed class AmigaExternalCore : IAmigaCore
     }
 
     public void RunFrame() => (_run ?? throw new InvalidOperationException("The Amiga core is not initialized."))();
+
+    internal static string ResolveKickstartFileName(string model, string sourcePath)
+    {
+        using var stream = File.OpenRead(sourcePath);
+        var sha256 = Convert.ToHexString(SHA256.HashData(stream));
+        if (sha256.Equals("1D68BA18412501D2A4B307A0A632B94A50B839C2C7C5FF2DF6DE2C38B99A921F",
+                StringComparison.OrdinalIgnoreCase))
+            return model.Equals("CDTV", StringComparison.OrdinalIgnoreCase) ? "kick34005.CDTV" : "kick34005.A500";
+
+        stream.Position = 0;
+        Span<byte> header = stackalloc byte[16];
+        if (stream.Read(header) == header.Length)
+        {
+            var version = (header[12] << 8) | header[13];
+            var revision = (header[14] << 8) | header[15];
+            var suffix = model.ToUpperInvariant() switch
+            {
+                "A1000" => "A1000",
+                "A500" or "A500PLUS" or "A2000" or "A2000OG" => "A500",
+                "A600" => "A600",
+                "A1200" or "A1200OG" => "A1200",
+                "A3000" or "A4000" => "A4000",
+                "CDTV" => "CDTV",
+                "CD32" or "CD32FR" => "CD32",
+                _ => "A500"
+            };
+            if (version is >= 29 and <= 50 && revision is <= 999)
+                return $"kick{version}{revision:D3}.{suffix}";
+        }
+
+        return model.ToUpperInvariant() switch
+        {
+            "A1000" => "kick32034.A1000",
+            "A500PLUS" => "kick37175.A500",
+            "A600" => "kick40063.A600",
+            "A1200" or "A1200OG" => "kick40068.A1200",
+            "A3000" or "A4000" => "kick40068.A4000",
+            "CDTV" => "kick34005.CDTV",
+            "CD32" or "CD32FR" => "kick40060.CD32",
+            _ => "kick34005.A500"
+        };
+    }
 
     internal static IReadOnlyList<AmigaMediaConfiguration> ResolveConfiguredMedia(AmigaMachineConfiguration configuration)
     {

@@ -8,7 +8,7 @@
    <Setter Property="BorderBrush" Value="#C9D0DA"/><Setter Property="BorderThickness" Value="1"/>
    <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button">
     <Border x:Name="ButtonBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
-     BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6" Padding="{TemplateBinding Padding}">
+     BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6" Padding="{TemplateBinding Padding}" ClipToBounds="True">
      <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Border>
     <ControlTemplate.Triggers>
@@ -96,7 +96,7 @@
          </Border>
          <Border Grid.Column="3" BorderBrush="#E1E6ED" BorderThickness="1,0,0,0" Padding="4,7">
           <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Tag="{Binding}" Click="AssignClicked" Style="{StaticResource BindingActionButton}" MinWidth="126">
+            <Button Tag="{Binding}" Click="AssignClicked" Style="{StaticResource BindingActionButton}" Width="142" Padding="8,4">
             <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE70F;" FontFamily="Segoe MDL2 Assets" Margin="0,0,8,0"/><TextBlock Text="{l:Loc Emulation.AssignInput}"/></StackPanel>
            </Button>
            <Button Content="&#xE74D;" FontFamily="Segoe MDL2 Assets" Tag="{Binding}" Click="ClearClicked" ToolTip="{l:Loc Common.Delete}" Style="{StaticResource BindingActionButton}" Width="48" Padding="9"/>

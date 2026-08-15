@@ -108,6 +108,17 @@ internal sealed class AmigaMachine : IAmigaMachine
     public ValueTask HardResetAsync(CancellationToken cancellationToken = default) =>
         QueueCommand(() => { FlushAudio(); _core.HardReset(); }, cancellationToken);
 
+    public ValueTask SoftResetAsync(CancellationToken cancellationToken = default) =>
+        QueueCommand(() =>
+        {
+            FlushAudio();
+            var resetKeys = new HashSet<EmulationKey>
+                { EmulationKey.LeftControl, EmulationKey.LeftAmiga, EmulationKey.RightAmiga };
+            _core.SetInput(EmulationInputSnapshot.Empty with { Keys = resetKeys });
+            _core.RunFrame();
+            _core.SetInput(EmulationInputSnapshot.Empty);
+        }, cancellationToken);
+
     public async ValueTask StopAsync(CancellationToken cancellationToken = default)
     {
         Task? loop;

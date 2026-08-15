@@ -105,8 +105,9 @@ public sealed class AmigaEmulationSection : UserControl
                 () => new WasapiAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
                 configuration => Path.Combine(StoragePaths.AmigaConfigurationsDirectory,
                     configuration.Id.ToString("N"), "Saves"), Environment.ProcessPath);
-            var machine = engine.CreateAmigaMachine(selected.Configuration);
-            var view = new AmigaMachineView(machine, selected.Configuration.Input,
+            IAmigaMachine CreateMachine() => engine.CreateAmigaMachine(selected.Configuration);
+            var machine = CreateMachine();
+            var view = new AmigaMachineView(machine, CreateMachine, selected.Configuration, selected.Configuration.Input,
                 _settings.EmulationShortcuts,
                 Path.Combine(_settings.EmulationStateFolder, $"amiga-{selected.Configuration.Id:N}.gwas"),
                 _settings.EmulationCaptureFolder);

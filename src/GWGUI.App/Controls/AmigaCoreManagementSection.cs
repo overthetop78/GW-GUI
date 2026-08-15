@@ -19,7 +19,12 @@ public sealed class AmigaCoreManagementSection : UserControl
     private readonly Button _search = new() { MinWidth = 130 };
     private readonly Button _download = new() { MinWidth = 160, Visibility = Visibility.Collapsed };
     private readonly ProgressBar _progress = new() { Height = 8, Minimum = 0, Maximum = 1, Visibility = Visibility.Collapsed };
-    private readonly TextBlock _status = new() { TextTrimming = TextTrimming.CharacterEllipsis };
+    private readonly TextBlock _status = new() { TextWrapping = TextWrapping.Wrap };
+    private readonly Border _statusBanner = new()
+    {
+        CornerRadius = new CornerRadius(6), BorderThickness = new Thickness(1),
+        Padding = new Thickness(10, 7, 10, 7), Visibility = Visibility.Collapsed
+    };
     private readonly TextBlock _requiredVersion = new() { TextTrimming = TextTrimming.CharacterEllipsis };
     private readonly TextBlock _latestVersion = new() { TextTrimming = TextTrimming.CharacterEllipsis };
     private readonly TextBlock _foundCount = new() { TextTrimming = TextTrimming.CharacterEllipsis };
@@ -40,7 +45,7 @@ public sealed class AmigaCoreManagementSection : UserControl
         var panel = new Grid { VerticalAlignment = VerticalAlignment.Top };
         panel.RowDefinitions.Add(new RowDefinition { Height = new GridLength(62) });
         panel.RowDefinitions.Add(new RowDefinition { Height = new GridLength(106) });
-        panel.RowDefinitions.Add(new RowDefinition { Height = new GridLength(18) });
+        panel.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
 
         var installedRow = new Grid { Margin = new Thickness(16, 10, 16, 6) };
         installedRow.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
@@ -145,7 +150,8 @@ public sealed class AmigaCoreManagementSection : UserControl
         statusHost.RowDefinitions.Add(new RowDefinition());
         statusHost.RowDefinitions.Add(new RowDefinition { Height = new GridLength(8) });
         _status.VerticalAlignment = VerticalAlignment.Center;
-        statusHost.Children.Add(_status);
+        _statusBanner.Child = _status;
+        statusHost.Children.Add(_statusBanner);
         Grid.SetRow(_progress, 1);
         statusHost.Children.Add(_progress);
         Grid.SetRow(statusHost, 2);
@@ -173,7 +179,7 @@ public sealed class AmigaCoreManagementSection : UserControl
     {
         await RunAsync(_search, async () =>
         {
-            _status.Text = string.Empty;
+            SetStatus(string.Empty);
             _prompt.Text = L("Emulation.CoreSearching");
             var releases = await _service.GetAvailableAsync();
             if (releases.Count == 0)
@@ -181,7 +187,7 @@ public sealed class AmigaCoreManagementSection : UserControl
                 _prompt.Text = L("Emulation.CoreNoneFound");
                 _results.Visibility = Visibility.Hidden;
                 _promptBanner.Visibility = Visibility.Visible;
-                _status.Text = string.Empty;
+                SetStatus(string.Empty);
                 return;
             }
             _versions.ItemsSource = releases;
@@ -195,7 +201,7 @@ public sealed class AmigaCoreManagementSection : UserControl
             _requiredVersion.Text = required.DisplayName;
             _latestVersion.Text = latest.DisplayName;
             _foundCount.Text = L("Emulation.CoreVersionsFound", releases.Count);
-            _status.Text = string.Empty;
+            SetStatus(string.Empty);
         });
     }
 
@@ -206,10 +212,10 @@ public sealed class AmigaCoreManagementSection : UserControl
         {
             _progress.Value = 0;
             _progress.Visibility = Visibility.Visible;
-            _status.Text = L("Emulation.CoreDownloading", release.DisplayName);
+            SetStatus(L("Emulation.CoreDownloading", release.DisplayName));
             var progress = new Progress<double>(value => _progress.Value = value);
             var path = await _service.InstallAsync(release, progress);
-            _status.Text = L("Emulation.CoreInstalledPath", path);
+            SetStatus(L("Emulation.CoreInstalledPath", path));
             RefreshInstalledState();
         });
     }
@@ -225,7 +231,7 @@ public sealed class AmigaCoreManagementSection : UserControl
         {
             var path = ErrorLog.Write(error, "Managing the external Amiga core");
             var detail = path is null ? L("Common.Unknown") : L("Error.LogSaved", path);
-            _status.Text = L("Error.Unexpected", detail);
+            SetStatus(L("Error.Unexpected", detail), isError: true);
             if (_results.Visibility != Visibility.Visible)
                 _prompt.Text = _status.Text;
         }
@@ -242,6 +248,24 @@ public sealed class AmigaCoreManagementSection : UserControl
         _installed.Text = version is null
             ? L("Emulation.CoreNotInstalled")
             : L("Emulation.CoreInstalled", version);
+    }
+
+    private void SetStatus(string text, bool isError = false)
+    {
+        _status.Text = text;
+        _statusBanner.Visibility = string.IsNullOrWhiteSpace(text) ? Visibility.Collapsed : Visibility.Visible;
+        if (isError)
+        {
+            _statusBanner.Background = new SolidColorBrush(Color.FromRgb(255, 241, 241));
+            _statusBanner.BorderBrush = new SolidColorBrush(Color.FromRgb(210, 75, 75));
+            _status.Foreground = new SolidColorBrush(Color.FromRgb(150, 25, 25));
+        }
+        else
+        {
+            _statusBanner.SetResourceReference(BackgroundProperty, "WindowBrush");
+            _statusBanner.SetResourceReference(BorderBrushProperty, "BorderBrush");
+            _status.SetResourceReference(ForegroundProperty, "TextBrush");
+        }
     }
 
     private static UIElement ButtonContent(string icon, string text)

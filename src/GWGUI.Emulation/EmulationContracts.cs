@@ -9,6 +9,7 @@ public interface IEmulatedMachine : IAsyncDisposable
     ValueTask StartAsync(CancellationToken cancellationToken = default);
     ValueTask PauseAsync(CancellationToken cancellationToken = default);
     ValueTask ResumeAsync(CancellationToken cancellationToken = default);
+    ValueTask SoftResetAsync(CancellationToken cancellationToken = default);
     ValueTask HardResetAsync(CancellationToken cancellationToken = default);
     ValueTask StopAsync(CancellationToken cancellationToken = default);
 }
@@ -19,6 +20,14 @@ public interface IEmulationEngine<in TConfiguration>
 }
 
 public enum EmulationPixelFormat { Rgb565, Xrgb8888 }
+
+public enum EmulationVideoRenderer
+{
+    Direct3D11,
+    Vulkan,
+    OpenGL,
+    Wpf
+}
 
 public sealed record VideoFrame(ReadOnlyMemory<byte> Pixels, int Width, int Height, int Pitch,
     EmulationPixelFormat PixelFormat, float AspectRatio, long Sequence, TimeSpan Timestamp);

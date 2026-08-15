@@ -18,9 +18,9 @@ public partial class App : Application
     private AppTheme _theme;
     protected override void OnStartup(StartupEventArgs e)
     {
-        if (e.Args is ["--amiga-core-host", var pipeName])
+        if (e.Args is ["--amiga-core-host", var pipeName, var videoMapName])
         {
-            AmigaCoreHost.Run(pipeName);
+            AmigaCoreHost.Run(pipeName, videoMapName);
             Shutdown();
             return;
         }

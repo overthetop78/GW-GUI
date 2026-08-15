@@ -1,4 +1,6 @@
 using System.IO.Pipes;
+using System.IO.MemoryMappedFiles;
+using System.Runtime.Versioning;
 using System.Text.Json;
 using GWGUI.Emulation;
 
@@ -14,6 +16,9 @@ internal static class AmigaCoreHostProtocol
 {
     internal static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
     internal const int MaximumBlobLength = 512 * 1024 * 1024;
+    internal const int VideoSlotCapacity = 32 * 1024 * 1024;
+    internal const int VideoSlotCount = 2;
+    internal const long VideoMapCapacity = (long)VideoSlotCapacity * VideoSlotCount;
 
     internal static void WriteString(BinaryWriter writer, string? value)
     {
@@ -91,6 +96,38 @@ internal static class AmigaCoreHostProtocol
         return new VideoFrame(pixels, width, height, pitch, format, aspect, sequence, timestamp);
     }
 
+    internal static void WriteSharedFrame(BinaryWriter writer, VideoFrame? frame,
+        MemoryMappedViewAccessor videoMap)
+    {
+        writer.Write(frame is not null);
+        if (frame is null) return;
+        var length = frame.Pixels.Length;
+        if (length <= 0 || length > VideoSlotCapacity)
+            throw new InvalidDataException($"The Amiga video frame requires {length} bytes; the shared slot supports {VideoSlotCapacity}.");
+        var slot = (int)(frame.Sequence & 1);
+        var pixels = frame.Pixels.ToArray();
+        videoMap.WriteArray((long)slot * VideoSlotCapacity, pixels, 0, pixels.Length);
+        writer.Write(frame.Width); writer.Write(frame.Height); writer.Write(frame.Pitch); writer.Write((int)frame.PixelFormat);
+        writer.Write(frame.AspectRatio); writer.Write(frame.Sequence); writer.Write(frame.Timestamp.Ticks);
+        writer.Write(slot); writer.Write(length);
+    }
+
+    internal static VideoFrame? ReadSharedFrame(BinaryReader reader, MemoryMappedViewAccessor videoMap)
+    {
+        if (!reader.ReadBoolean()) return null;
+        var width = reader.ReadInt32(); var height = reader.ReadInt32(); var pitch = reader.ReadInt32();
+        var format = (EmulationPixelFormat)reader.ReadInt32(); var aspect = reader.ReadSingle();
+        var sequence = reader.ReadInt64(); var timestamp = TimeSpan.FromTicks(reader.ReadInt64());
+        var slot = reader.ReadInt32(); var length = reader.ReadInt32();
+        if (width <= 0 || height <= 0 || pitch <= 0 || length != checked(pitch * height)
+            || slot is < 0 or >= VideoSlotCount || length > VideoSlotCapacity)
+            throw new InvalidDataException("The Amiga host sent invalid shared video metadata.");
+        var pixels = GC.AllocateUninitializedArray<byte>(length);
+        var read = videoMap.ReadArray((long)slot * VideoSlotCapacity, pixels, 0, length);
+        if (read != length) throw new EndOfStreamException("The Amiga shared video frame ended early.");
+        return new VideoFrame(pixels, width, height, pitch, format, aspect, sequence, timestamp);
+    }
+
     internal static void WriteAudio(BinaryWriter writer, IReadOnlyList<AudioChunk> chunks)
     {
         writer.Write(chunks.Count);
@@ -142,8 +179,12 @@ internal static class AmigaCoreHostProtocol
 
 public static class AmigaCoreHost
 {
-    public static void Run(string pipeName)
+    [SupportedOSPlatform("windows")]
+    public static void Run(string pipeName, string videoMapName)
     {
+        using var videoMemory = MemoryMappedFile.OpenExisting(videoMapName, MemoryMappedFileRights.ReadWrite);
+        using var videoMap = videoMemory.CreateViewAccessor(0, AmigaCoreHostProtocol.VideoMapCapacity,
+            MemoryMappedFileAccess.ReadWrite);
         using var pipe = new NamedPipeClientStream(".", pipeName, PipeDirection.InOut, PipeOptions.None);
         pipe.Connect(15_000);
         using var reader = new BinaryReader(pipe, System.Text.Encoding.UTF8, true);
@@ -187,7 +228,8 @@ public static class AmigaCoreHost
                         activeCore.RunFrame();
                         writer.Write(true);
                         var frame = activeCore.LatestVideoFrame;
-                        AmigaCoreHostProtocol.WriteFrame(writer, frame?.Sequence == lastVideoSequence ? null : frame);
+                        AmigaCoreHostProtocol.WriteSharedFrame(writer,
+                            frame?.Sequence == lastVideoSequence ? null : frame, videoMap);
                         if (frame is not null) lastVideoSequence = frame.Sequence;
                         var audio = new List<AudioChunk>();
                         while (activeCore.TryDequeueAudio(out var chunk) && chunk is not null) audio.Add(chunk);
