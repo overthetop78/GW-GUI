@@ -6,12 +6,12 @@ Intégrer à GW GUI les six cœurs Libretro retenus, avec le même niveau d’in
 
 | Cœur | Machines visées | Médias principaux |
 |---|---|---|
-| Hatari | ST, STF, STFM, Mega ST, STE, Mega STE, TT, Falcon | disquette, disque dur, dossier GEMDOS |
-| Atari800 | 400, 800, XL, XE, XEGS, 5200 | disquette, cassette, cartouche |
-| Stella | 2600 | cartouche |
+| Hatari | ST, STE, TT, Falcon ; préréglages GW GUI explicites pour STF, STFM, Mega ST et Mega STE | disquette, disque dur, dossier GEMDOS |
+| Atari800 | 400/800, 800XL, 130XE, XL/XE modernes 320/576/1088 Kio, XEGS, 5200 | disquette, cassette, cartouche |
+| Stella 2023 | 2600 | cartouche |
 | ProSystem | 7800 | cartouche |
 | Beetle Lynx | Lynx | cartouche |
-| Virtual Jaguar | Jaguar, Jaguar CD | cartouche, CD |
+| Virtual Jaguar | Jaguar, Jaguar CD | cartouche ; image CD `.cue` ou `.cdi` chargée comme contenu principal |
 
 Cette matrice exprime la cible fonctionnelle. Les formats, options et limites exacts de chaque cœur doivent être confirmés à partir de son code et de ses métadonnées pendant les premières tâches, sans inventer de capacité absente.
 
@@ -118,16 +118,18 @@ Les licences du tableau sont les licences globales publiées dans les fichiers `
 
 #### ATA-002 — Établir la matrice vérifiée des capacités
 
-- [ ] Relever les modèles réellement sélectionnables par chacun des six cœurs.
-- [ ] Relever les extensions de contenu, `need_fullpath` et la possibilité de démarrer sans contenu.
-- [ ] Relever les firmwares obligatoires, facultatifs et intégrés ainsi que leurs noms attendus.
-- [ ] Relever toutes les Core Options, leurs valeurs, leurs défauts et leurs conditions de visibilité.
-- [ ] Relever les périphériques déclarés par port et les identifiants d’entrée réellement interrogés.
-- [ ] Vérifier séparément Disk Control standard, Disk Control étendu et sous-systèmes Libretro.
-- [ ] Vérifier `retro_serialize`, `retro_unserialize`, mémoire sauvegardée et limites des états.
-- [ ] Relever formats de pixels, géométries variables, régions, fréquences vidéo et taux audio.
-- [ ] Consigner les limites connues sans transformer une hypothèse ou une fonction de l’émulateur autonome en capacité du cœur Libretro.
-- [ ] Corriger la matrice cible de ce document avec les résultats prouvés.
+Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capabilities.md) et inventaire exhaustif [`atari-core-options.md`](atari-core-options.md).
+
+- [x] Relever les modèles réellement sélectionnables par chacun des six cœurs.
+- [x] Relever les extensions de contenu, `need_fullpath` et la possibilité de démarrer sans contenu.
+- [x] Relever les firmwares obligatoires, facultatifs et intégrés ainsi que leurs noms attendus.
+- [x] Relever toutes les Core Options, leurs valeurs, leurs défauts et leurs conditions de visibilité.
+- [x] Relever les périphériques déclarés par port et les identifiants d’entrée réellement interrogés.
+- [x] Vérifier séparément Disk Control standard, Disk Control étendu et sous-systèmes Libretro.
+- [x] Vérifier `retro_serialize`, `retro_unserialize`, mémoire sauvegardée et limites des états.
+- [x] Relever formats de pixels, géométries variables, régions, fréquences vidéo et taux audio.
+- [x] Consigner les limites connues sans transformer une hypothèse ou une fonction de l’émulateur autonome en capacité du cœur Libretro.
+- [x] Corriger la matrice cible de ce document avec les résultats prouvés.
 
 ### B — Contrats communs d’émulation
 
