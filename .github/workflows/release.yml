@@ -55,6 +55,9 @@ jobs:
       - name: Smoke-test installer in French
         shell: pwsh
         run: .\scripts\test-installer.ps1 -SetupPath ".\artifacts\GW-GUI-$env:PACKAGE_VERSION-win-x64-setup.exe" -ExpectedVersion $env:PACKAGE_VERSION -InstallerLanguage french
+      - name: Smoke-test upgrade from a legacy self-contained installation
+        shell: pwsh
+        run: .\scripts\test-installer-upgrade.ps1 -CurrentSetupPath ".\artifacts\GW-GUI-$env:PACKAGE_VERSION-win-x64-setup.exe" -CurrentVersion $env:PACKAGE_VERSION
       - uses: actions/upload-artifact@v6
         with:
           name: GW-GUI-${{ env.PACKAGE_VERSION }}-win-x64

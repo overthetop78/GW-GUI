@@ -61,6 +61,14 @@ try {
         throw "Previous installer registered version $($previousRegistration.DisplayVersion), expected $PreviousVersion."
     }
 
+    # Reproduce an upgrade from the former self-contained package. These files
+    # make apphost prefer an application-local .NET runtime and cause the false
+    # "install Microsoft .NET" prompt when that old runtime is incomplete.
+    $obsoleteRuntimeFiles = @('hostfxr.dll', 'hostpolicy.dll', 'coreclr.dll', 'GW GUI.dll')
+    foreach ($obsoleteRuntimeFile in $obsoleteRuntimeFiles) {
+        Set-Content -LiteralPath (Join-Path $destination $obsoleteRuntimeFile) -Value 'obsolete runtime fixture'
+    }
+
     $currentInstall = Start-Process -FilePath $currentSetup -ArgumentList $installArguments -Wait -PassThru
     if ($currentInstall.ExitCode -ne 0) { throw "Current installer exited with code $($currentInstall.ExitCode)." }
     $currentRegistration = Get-ItemProperty -LiteralPath $uninstallRegistryPath
@@ -70,6 +78,11 @@ try {
     $productVersion = (Get-Item -LiteralPath (Join-Path $destination 'gwgui.exe')).VersionInfo.ProductVersion
     if (-not $productVersion.StartsWith($CurrentVersion, [StringComparison]::Ordinal)) {
         throw "Upgraded executable version is $productVersion, expected $CurrentVersion."
+    }
+    foreach ($obsoleteRuntimeFile in $obsoleteRuntimeFiles) {
+        if (Test-Path -LiteralPath (Join-Path $destination $obsoleteRuntimeFile)) {
+            throw "Upgrade left obsolete application-local runtime file: $obsoleteRuntimeFile"
+        }
     }
 
     [pscustomobject]@{

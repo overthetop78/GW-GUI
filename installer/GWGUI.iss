@@ -76,6 +76,17 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Run]
 Filename: "{app}\gwgui.exe"; Description: "{cm:LaunchProgram,GW GUI}"; Flags: nowait postinstall skipifsilent unchecked
 
+[InstallDelete]
+; Releases older than 0.1.1 were self-contained and left a private .NET runtime
+; beside gwgui.exe. A framework-dependent upgrade must remove those root DLLs:
+; otherwise apphost selects the incomplete application-local runtime instead of
+; the Microsoft Windows Desktop Runtime installed on the computer.
+Type: files; Name: "{app}\*.dll"
+Type: files; Name: "{app}\*.deps.json"
+Type: files; Name: "{app}\*.runtimeconfig.json"
+Type: files; Name: "{app}\GW GUI.exe"
+Type: files; Name: "{app}\createdump.exe"
+
 [Code]
 const
   DotNetDesktopRuntimeRegistryKey = 'SOFTWARE\WOW6432Node\dotnet\Setup\InstalledVersions\x64\sharedfx\Microsoft.WindowsDesktop.App';
