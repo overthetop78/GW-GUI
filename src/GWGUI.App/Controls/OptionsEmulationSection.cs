@@ -865,9 +865,8 @@ public sealed class OptionsEmulationSection : UserControl
 
     private void ConfigureOptionChoices()
     {
-        var frenchUnits = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr";
-        var kib = frenchUnits ? "Kio" : "KiB";
-        var mib = frenchUnits ? "Mio" : "MiB";
+        var kib = StorageSizeFormatter.KibibyteUnit;
+        var mib = StorageSizeFormatter.MebibyteUnit;
         var oneAndHalf = 1.5.ToString("0.0", System.Globalization.CultureInfo.CurrentCulture);
         var oneAndEight = 1.8.ToString("0.0", System.Globalization.CultureInfo.CurrentCulture);
         _chipMemory.ItemsSource = new[] { ("auto", LocExtension.Get("Visual.Automatic")), ("1", $"512 {kib}"), ("2", $"1 {mib}"), ("3", $"{oneAndHalf} {mib}"), ("4", $"2 {mib}") }.Select(item => new OptionChoice(item.Item1, item.Item2)).ToArray();
@@ -924,7 +923,7 @@ public sealed class OptionsEmulationSection : UserControl
 
     private static OptionChoice[] MemoryChoices(IEnumerable<int> values)
     {
-        var unit = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr" ? "Mio" : "MiB";
+        var unit = StorageSizeFormatter.MebibyteUnit;
         return [new OptionChoice("auto", LocExtension.Get("Visual.Automatic")), .. values.Select(value => new OptionChoice(value.ToString(), value == 0 ? LocExtension.Get("Emulation.MemoryNone") : $"{value} {unit}"))];
     }
 
@@ -1366,7 +1365,7 @@ public sealed class OptionsEmulationSection : UserControl
         var icon = new TextBlock
         {
             Text = "\uE964",
-            FontFamily = new FontFamily("Segoe MDL2 Assets"),
+            FontFamily = ControlVisualConstants.IconFont,
             FontSize = 22,
             VerticalAlignment = VerticalAlignment.Center,
             Margin = new Thickness(0, 0, 12, 0)
@@ -1391,7 +1390,7 @@ public sealed class OptionsEmulationSection : UserControl
         var icon = new TextBlock
         {
             Text = "\uE946",
-            FontFamily = new FontFamily("Segoe MDL2 Assets"),
+            FontFamily = ControlVisualConstants.IconFont,
             FontSize = 18,
             VerticalAlignment = VerticalAlignment.Center,
             Margin = new Thickness(0, 0, 10, 0)
@@ -1542,7 +1541,7 @@ public sealed class OptionsEmulationSection : UserControl
             heading.Children.Add(new TextBlock
             {
                 Text = "\uE946",
-                FontFamily = new FontFamily("Segoe MDL2 Assets"),
+                FontFamily = ControlVisualConstants.IconFont,
                 FontSize = 15,
                 Margin = new Thickness(9, 0, 0, 0),
                 VerticalAlignment = VerticalAlignment.Center,
@@ -1569,7 +1568,7 @@ public sealed class OptionsEmulationSection : UserControl
         var glyph = new TextBlock
         {
             Text = icon,
-            FontFamily = new FontFamily("Segoe MDL2 Assets"),
+            FontFamily = ControlVisualConstants.IconFont,
             FontSize = 19,
             VerticalAlignment = VerticalAlignment.Center,
             Margin = new Thickness(0, 0, 10, 0)
@@ -1771,7 +1770,7 @@ public sealed class OptionsEmulationSection : UserControl
         var totalMib = totalKib / 1024d;
         _totalMemory.Text = LocExtension.Get("Emulation.TotalMemoryConfigured",
             totalMib.ToString(totalMib % 1 == 0 ? "0" : "0.##", System.Globalization.CultureInfo.CurrentCulture),
-            System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr" ? "Mio" : "MiB");
+            StorageSizeFormatter.MebibyteUnit);
     }
 
     private static OptionChoice ChipMemoryChoice(int kib) =>
@@ -1807,17 +1806,14 @@ public sealed class OptionsEmulationSection : UserControl
 
     private static OptionChoice[] ModelMemoryChoices(IEnumerable<int> values)
     {
-        var unit = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr" ? "Mio" : "MiB";
+        var unit = StorageSizeFormatter.MebibyteUnit;
         return values.Select(value => new OptionChoice(value.ToString(),
             value == 0 ? LocExtension.Get("Emulation.MemoryNone") : $"{value} {unit}")).ToArray();
     }
 
     private static string FormatMemory(int kib)
     {
-        var frenchUnits = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "fr";
-        if (kib < 1024) return $"{kib} {(frenchUnits ? "Kio" : "KiB")}";
-        var mib = kib / 1024d;
-        return $"{mib.ToString(mib % 1 == 0 ? "0" : "0.##", System.Globalization.CultureInfo.CurrentCulture)} {(frenchUnits ? "Mio" : "MiB")}";
+        return StorageSizeFormatter.FormatKibibytes(kib);
     }
 
     private void ConfigureFpuChoices()
@@ -1943,16 +1939,14 @@ public sealed class OptionsEmulationSection : UserControl
         _ => $"Motorola {cpu}"
     };
 
-    private static bool Approximately(double left, double right) => Math.Abs(left - right) < 0.01d;
+    private static bool Approximately(double left, double right) =>
+        Math.Abs(left - right) < ControlTechnicalConstants.FrequencyComparisonTolerance;
 
     private static string DefaultFpu(string cpu) => cpu is "68040" or "68060" ? "cpu" : "0";
 
     private static void SelectValue(ComboBox comboBox, string value)
-    {
-        comboBox.SelectedItem = comboBox.Items.Cast<object>().FirstOrDefault(item =>
-            string.Equals(item is OptionChoice choice ? choice.Value : item.ToString(), value, StringComparison.OrdinalIgnoreCase));
-        if (comboBox.SelectedItem is null && comboBox.Items.Count > 0) comboBox.SelectedIndex = 0;
-    }
+        => ComboBoxSelection.SelectByValue<object>(comboBox, value,
+            item => item is OptionChoice choice ? choice.Value : item.ToString());
 
     private static void AddButton(Panel panel, string resourceKey, Func<Task> action)
     {
@@ -1979,7 +1973,7 @@ public sealed class OptionsEmulationSection : UserControl
         content.Children.Add(new TextBlock
         {
             Text = icon,
-            FontFamily = new FontFamily("Segoe MDL2 Assets"),
+            FontFamily = ControlVisualConstants.IconFont,
             FontSize = 16,
             VerticalAlignment = VerticalAlignment.Center,
             Margin = new Thickness(0, 0, 8, 0)
@@ -2114,7 +2108,7 @@ public sealed class OptionsEmulationSection : UserControl
         var icon = new TextBlock
         {
             Text = "\uE950",
-            FontFamily = new FontFamily("Segoe MDL2 Assets"),
+            FontFamily = ControlVisualConstants.IconFont,
             FontSize = 22,
             VerticalAlignment = VerticalAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Center
@@ -2357,9 +2351,8 @@ public sealed class OptionsEmulationSection : UserControl
     private static void SetOption(ComboBox comboBox, AmigaMachineConfiguration configuration, string key, string? fallback)
     {
         var value = GetOption(configuration, key, fallback ?? string.Empty);
-        comboBox.SelectedItem = comboBox.Items.Cast<object>().FirstOrDefault(item =>
-            string.Equals(item is OptionChoice choice ? choice.Value : item.ToString(), value, StringComparison.OrdinalIgnoreCase));
-        if (comboBox.SelectedItem is null && comboBox.Items.Count > 0) comboBox.SelectedIndex = 0;
+        ComboBoxSelection.SelectByValue<object>(comboBox, value,
+            item => item is OptionChoice choice ? choice.Value : item.ToString());
     }
 
     private async Task SaveConfigurationAsync()
@@ -2493,9 +2486,8 @@ public sealed class OptionsEmulationSection : UserControl
         await ReloadAsync();
     }
 
-    private static string SelectedText(ComboBox comboBox) => comboBox.SelectedItem is OptionChoice choice
-        ? choice.Value
-        : comboBox.SelectedItem?.ToString() ?? string.Empty;
+    private static string SelectedText(ComboBox comboBox) =>
+        ComboBoxSelection.SelectedValue<OptionChoice>(comboBox, choice => choice.Value);
 
     private static string MouseSpeedRatioText(string percentage)
     {

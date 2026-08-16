@@ -51,7 +51,7 @@ public partial class InputBindingEditor : UserControl
         AddHandler(PreviewKeyUpEvent, new KeyEventHandler(CaptureKeyUp), true);
         AddHandler(PreviewMouseDownEvent, new MouseButtonEventHandler(CaptureMouseDown), true);
         AddHandler(PreviewMouseWheelEvent, new MouseWheelEventHandler(CaptureMouseWheel), true);
-        _controllerCaptureTimer = new DispatcherTimer(TimeSpan.FromMilliseconds(30), DispatcherPriority.Input,
+        _controllerCaptureTimer = new DispatcherTimer(ControlTechnicalConstants.ControllerCapturePollingInterval, DispatcherPriority.Input,
             CaptureControllerInput, Dispatcher);
         _controllerCaptureTimer.Stop();
         Loaded += (_, _) => AttachWindowHook();

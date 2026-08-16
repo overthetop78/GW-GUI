@@ -163,7 +163,7 @@ public sealed class AmigaEmulationSection : UserControl
         var panel = new StackPanel { Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Center };
         panel.Children.Add(new TextBlock
         {
-            Text = "\uE7FC", FontFamily = new System.Windows.Media.FontFamily("Segoe MDL2 Assets"), FontSize = 16,
+            Text = ControlVisualConstants.GameControllerGlyph, FontFamily = ControlVisualConstants.IconFont, FontSize = 16,
             VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 7, 0)
         });
         panel.Children.Add(new TextBlock
@@ -174,7 +174,7 @@ public sealed class AmigaEmulationSection : UserControl
         {
             Content = new TextBlock
             {
-                Text = "\uE8BB", FontFamily = new System.Windows.Media.FontFamily("Segoe MDL2 Assets"), FontSize = 9,
+                Text = ControlVisualConstants.CloseGlyph, FontFamily = ControlVisualConstants.IconFont, FontSize = 9,
                 HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center
             },
             ToolTip = LocExtension.Get("Common.Close"), Width = 18, Height = 18, MinWidth = 0, MinHeight = 0,

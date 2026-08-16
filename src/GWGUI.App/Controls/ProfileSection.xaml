@@ -5,8 +5,8 @@
             <Grid Margin="0,8,0,0">
                 <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                 <ComboBox x:Name="Profiles" MinWidth="0" DisplayMemberPath="Name" AutomationProperties.Name="{l:Loc Common.Profile}"/>
-                <Button x:Name="Save" Grid.Column="1" Content="{l:Loc Icon.Save}" FontFamily="Segoe MDL2 Assets" ToolTip="{l:Loc Common.Save}" AutomationProperties.Name="{l:Loc Common.Save}"/>
-                <Button x:Name="Reset" Grid.Column="2" Content="{l:Loc Icon.Reset}" FontFamily="Segoe MDL2 Assets" ToolTip="{l:Loc Common.Reset}" AutomationProperties.Name="{l:Loc Common.Reset}"/>
+                <Button x:Name="Save" Grid.Column="1" Content="{l:Loc Icon.Save}" FontFamily="{StaticResource IconFontFamily}" ToolTip="{l:Loc Common.Save}" AutomationProperties.Name="{l:Loc Common.Save}"/>
+                <Button x:Name="Reset" Grid.Column="2" Content="{l:Loc Icon.Reset}" FontFamily="{StaticResource IconFontFamily}" ToolTip="{l:Loc Common.Reset}" AutomationProperties.Name="{l:Loc Common.Reset}"/>
             </Grid>
         </StackPanel>
     </controls:CardSection>

@@ -41,16 +41,6 @@ public sealed class ExplorerContentItem
     public string Name => Entry.Name;
     public ExplorerIconKind IconKind { get; }
     public string TypeText { get; }
-    public string SizeText => Entry.Kind == FileSystemEntryKind.Directory ? string.Empty : ExplorerFormatting.FormatBytes(Entry.Size);
+    public string SizeText => Entry.Kind == FileSystemEntryKind.Directory ? string.Empty : StorageSizeFormatter.FormatBytes(Entry.Size);
     public string ModifiedText => Entry.Modified?.LocalDateTime.ToString("g") ?? "\u2014";
-}
-
-public static class ExplorerFormatting
-{
-    public static string FormatBytes(long bytes)
-    {
-        if (bytes < 1024) return $"{bytes} B";
-        if (bytes < 1024 * 1024) return $"{bytes / 1024d:0.#} KiB";
-        return $"{bytes / 1024d / 1024d:0.##} MiB";
-    }
 }

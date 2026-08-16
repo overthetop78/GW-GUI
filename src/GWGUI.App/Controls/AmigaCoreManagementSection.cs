@@ -54,7 +54,7 @@ public sealed class AmigaCoreManagementSection : UserControl
         var title = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 0, 24, 0) };
         title.Children.Add(new TextBlock
         {
-            Text = "\uE7FC", FontFamily = new FontFamily("Segoe MDL2 Assets"), FontSize = 18,
+            Text = ControlVisualConstants.GameControllerGlyph, FontFamily = ControlVisualConstants.IconFont, FontSize = 18,
             VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 8, 0)
         });
         title.Children.Add(new TextBlock
@@ -96,7 +96,7 @@ public sealed class AmigaCoreManagementSection : UserControl
         var promptContent = new StackPanel { Orientation = Orientation.Horizontal };
         var promptIcon = new TextBlock
         {
-            Text = "\uE946", FontFamily = new FontFamily("Segoe MDL2 Assets"), FontSize = 17,
+            Text = ControlVisualConstants.InformationGlyph, FontFamily = ControlVisualConstants.IconFont, FontSize = 17,
             VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 9, 0)
         };
         promptIcon.SetResourceReference(ForegroundProperty, "AccentBrush");
@@ -273,7 +273,7 @@ public sealed class AmigaCoreManagementSection : UserControl
         var panel = new StackPanel { Orientation = Orientation.Horizontal };
         panel.Children.Add(new TextBlock
         {
-            Text = icon, FontFamily = new FontFamily("Segoe MDL2 Assets"), FontSize = 15,
+            Text = icon, FontFamily = ControlVisualConstants.IconFont, FontSize = 15,
             VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 8, 0)
         });
         panel.Children.Add(new TextBlock { Text = text, VerticalAlignment = VerticalAlignment.Center });

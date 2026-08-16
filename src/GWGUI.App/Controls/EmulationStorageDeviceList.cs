@@ -130,8 +130,8 @@ public sealed class EmulationStorageDeviceList : UserControl
             actions.Children.Add(configure);
             var remove = new Button
             {
-                Content = "\uE74D",
-                FontFamily = new FontFamily("Segoe MDL2 Assets"),
+                Content = ControlVisualConstants.DeleteGlyph,
+                FontFamily = ControlVisualConstants.IconFont,
                 MinWidth = 40,
                 Padding = new Thickness(8),
                 IsEnabled = device.CanRemove,
@@ -202,9 +202,7 @@ public sealed class EmulationStorageDeviceList : UserControl
     {
         if (!File.Exists(path)) return Path.GetFileName(path);
         var size = new FileInfo(path).Length;
-        var value = size >= 1024L * 1024L * 1024L
-            ? $"{size / (1024d * 1024d * 1024d):0.##} Gio"
-            : $"{size / (1024d * 1024d):0.##} Mio";
+        var value = StorageSizeFormatter.FormatCapacity(size);
         return $"{Path.GetFileName(path)} · {value}";
     }
 }

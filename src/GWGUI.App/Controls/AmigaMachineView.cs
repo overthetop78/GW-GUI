@@ -74,7 +74,7 @@ public sealed class AmigaMachineView : UserControl
     private Grid? _fullscreenHost;
     private bool _closingFullscreen;
     private bool _audioMuted;
-    private readonly DispatcherTimer _inputTimer = new() { Interval = TimeSpan.FromMilliseconds(16) };
+    private readonly DispatcherTimer _inputTimer = new() { Interval = ControlTechnicalConstants.EmulationInputPollingInterval };
     private HwndSource? _windowSource;
 
     public AmigaMachineView(IAmigaMachine machine, Func<IAmigaMachine> machineFactory,
@@ -150,7 +150,7 @@ public sealed class AmigaMachineView : UserControl
         _rendererStatus.Text = RendererName(_videoSurface.Renderer);
         var rendererGroup = CenteredToolbarGroup(new TextBlock
         {
-            Text = "\uE7F4", FontFamily = new FontFamily("Segoe MDL2 Assets"), FontSize = 15,
+            Text = "\uE7F4", FontFamily = ControlVisualConstants.IconFont, FontSize = 15,
             Margin = new Thickness(4, 0, 6, 0), VerticalAlignment = VerticalAlignment.Center
         }, _rendererStatus);
         rendererGroup.Padding = new Thickness(16, 1, 16, 1);
@@ -225,7 +225,7 @@ public sealed class AmigaMachineView : UserControl
     private static TextBlock StatusIcon(string glyph) => new()
     {
         Text = glyph,
-        FontFamily = new FontFamily("Segoe MDL2 Assets"),
+        FontFamily = ControlVisualConstants.IconFont,
         FontSize = 17,
         VerticalAlignment = VerticalAlignment.Center,
         Margin = new Thickness(4, 0, 4, 0)
@@ -303,7 +303,7 @@ public sealed class AmigaMachineView : UserControl
         if (indicator is not null) content.Children.Add(indicator);
         var icon = new TextBlock
         {
-            Text = glyph, FontFamily = new FontFamily("Segoe MDL2 Assets"), FontSize = 17,
+            Text = glyph, FontFamily = ControlVisualConstants.IconFont, FontSize = 17,
             HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center
         };
         icon.SetBinding(TextBlock.ForegroundProperty, new Binding(nameof(Button.Foreground))
@@ -362,7 +362,7 @@ public sealed class AmigaMachineView : UserControl
                 Orientation = Orientation.Horizontal,
                 Children =
                 {
-                    new TextBlock { Text = glyph, FontFamily = new FontFamily("Segoe MDL2 Assets"), FontSize = 15, Margin = new Thickness(0, 0, 4, 0) },
+                    new TextBlock { Text = glyph, FontFamily = ControlVisualConstants.IconFont, FontSize = 15, Margin = new Thickness(0, 0, 4, 0) },
                     new TextBlock { Text = name, FontWeight = FontWeights.SemiBold, VerticalAlignment = VerticalAlignment.Center }
                 }
             }

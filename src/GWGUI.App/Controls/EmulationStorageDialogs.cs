@@ -75,14 +75,14 @@ public sealed class FloppyDriveConfigurationDialog : Window
             new Choice("35dd", LocExtension.Get("Emulation.AmigaDdFloppy")),
             new Choice("35hd", LocExtension.Get("Emulation.AmigaHdFloppy"))
         };
-        Select(_model, settings.Model);
+        ComboBoxSelection.SelectByValue<Choice>(_model, settings.Model, choice => choice.Value);
         _speed.ItemsSource = new[]
         {
             new Choice("100", "100 %"), new Choice("200", "200 %"),
             new Choice("400", "400 %"), new Choice("800", "800 %"),
             new Choice("0", LocExtension.Get("Emulation.Maximum"))
         };
-        Select(_speed, settings.Speed);
+        ComboBoxSelection.SelectByValue<Choice>(_speed, settings.Speed, choice => choice.Value);
         _writeProtected.Content = LocExtension.Get("Emulation.FloppyWriteProtection");
         _writeProtected.IsChecked = settings.WriteProtected;
         _redirectWrites.Content = LocExtension.Get("Emulation.FloppyWriteRedirect");
@@ -138,12 +138,6 @@ public sealed class FloppyDriveConfigurationDialog : Window
             MessageBoxButton.OK, MessageBoxImage.Information);
     }
 
-    private static void Select(ComboBox comboBox, string value)
-    {
-        comboBox.SelectedItem = comboBox.Items.OfType<Choice>().FirstOrDefault(choice => choice.Value == value);
-        if (comboBox.SelectedItem is null) comboBox.SelectedIndex = 0;
-    }
-
     private sealed record Choice(string Value, string Text)
     {
         public override string ToString() => Text;
@@ -155,17 +149,17 @@ public sealed class HardDiskDriveConfigurationDialog : Window
     private readonly string _identifier;
     private readonly TabControl _supportMode = new();
     private readonly TextBox _existingPath = new();
-    private readonly TextBox _newName = new() { Text = "Workbench.hdf" };
+    private readonly TextBox _newName = new() { Text = EmulationControlDefaults.HardDiskFileName };
     private readonly ComboBox _sizePreset = new();
-    private readonly TextBox _customSize = new() { Text = "2048" };
+    private readonly TextBox _customSize = new() { Text = EmulationControlDefaults.HardDiskSizeMiB.ToString() };
     private readonly ComboBox _sizeUnit = new();
     private readonly ComboBox _imageFormat = new() { ItemsSource = new[] { "HDF" }, SelectedIndex = 0, IsEnabled = false };
     private readonly CheckBox _preallocate = new() { IsChecked = true };
     private readonly CheckBox _automaticGeometry = new() { IsChecked = true };
     private readonly TextBox _cylinders = new();
-    private readonly TextBox _heads = new() { Text = "16" };
-    private readonly TextBox _sectors = new() { Text = "63" };
-    private readonly TextBox _bytesPerSector = new() { Text = "512" };
+    private readonly TextBox _heads = new() { Text = EmulationControlDefaults.HardDiskHeads.ToString() };
+    private readonly TextBox _sectors = new() { Text = EmulationControlDefaults.HardDiskSectorsPerTrack.ToString() };
+    private readonly TextBox _bytesPerSector = new() { Text = EmulationControlDefaults.HardDiskBytesPerSector.ToString() };
     private readonly TextBlock _capacity = new() { TextWrapping = TextWrapping.Wrap };
 
     public string? SupportPath { get; private set; }
@@ -352,7 +346,9 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         _bytesPerSector.IsEnabled = !automatic;
         if (automatic && TryGetSelectedSize(out var byteSize))
         {
-            const long heads = 16, sectors = 63, bytesPerSector = 512;
+            const long heads = EmulationControlDefaults.HardDiskHeads;
+            const long sectors = EmulationControlDefaults.HardDiskSectorsPerTrack;
+            const long bytesPerSector = EmulationControlDefaults.HardDiskBytesPerSector;
             _heads.Text = heads.ToString();
             _sectors.Text = sectors.ToString();
             _bytesPerSector.Text = bytesPerSector.ToString();
@@ -364,7 +360,7 @@ public sealed class HardDiskDriveConfigurationDialog : Window
     private void UpdateCapacity()
     {
         _capacity.Text = TryGetByteSize(out var byteSize)
-            ? LocExtension.Get("Emulation.CalculatedCapacity", FormatCapacity(byteSize))
+            ? LocExtension.Get("Emulation.CalculatedCapacity", StorageSizeFormatter.FormatCapacity(byteSize))
             : LocExtension.Get("Emulation.InvalidDiskSize");
     }
 
@@ -407,10 +403,6 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         byteSize = 0;
         return false;
     }
-
-    private static string FormatCapacity(long bytes) => bytes >= 1024L * 1024L * 1024L
-        ? $"{bytes / (1024d * 1024d * 1024d):0.##} {LocExtension.Get("Emulation.UnitGiB")}"
-        : $"{bytes / (1024d * 1024d):0.##} {LocExtension.Get("Emulation.UnitMiB")}";
 
     private sealed record DiskSizeChoice(long? SizeMiB, string Text)
     {
@@ -482,7 +474,7 @@ internal static class StorageDialogUi
         panel.Children.Add(new TextBlock
         {
             Text = icon,
-            FontFamily = new FontFamily("Segoe MDL2 Assets"),
+            FontFamily = ControlVisualConstants.IconFont,
             FontSize = 28,
             VerticalAlignment = VerticalAlignment.Center,
             Margin = new Thickness(0, 0, 14, 0)
@@ -516,7 +508,7 @@ internal static class StorageDialogUi
         var glyph = new TextBlock
         {
             Text = icon,
-            FontFamily = new FontFamily("Segoe MDL2 Assets"),
+            FontFamily = ControlVisualConstants.IconFont,
             FontSize = 18,
             VerticalAlignment = VerticalAlignment.Center,
             Margin = new Thickness(0, 0, 9, 0)

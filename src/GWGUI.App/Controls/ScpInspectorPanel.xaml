@@ -17,9 +17,9 @@
      <TextBlock Foreground="{DynamicResource MutedTextBrush}"><Run Text="{l:Loc Visual.ScpEntryLabel}"/><Run Text=" "/><Run Text="{Binding ScpEntry}"/></TextBlock>
     </StackPanel>
     <StackPanel Grid.Column="1" Orientation="Horizontal" Panel.ZIndex="3">
-     <Button x:Name="DetachButton" Style="{StaticResource StatusIconButton}" ToolTip="{l:Loc Visual.DetachInspector}" Click="Detach_Click"><TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE8A7;"/></Button>
-     <Button x:Name="AttachButton" Style="{StaticResource StatusIconButton}" ToolTip="{l:Loc Visual.AttachInspector}" Visibility="Collapsed" Click="Attach_Click"><TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE8A9;"/></Button>
-     <Button Style="{StaticResource StatusIconButton}" ToolTip="{l:Loc Common.Close}" Click="Close_Click"><TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE711;"/></Button>
+     <Button x:Name="DetachButton" Style="{StaticResource StatusIconButton}" ToolTip="{l:Loc Visual.DetachInspector}" Click="Detach_Click"><TextBlock FontFamily="{StaticResource IconFontFamily}" Text="&#xE8A7;"/></Button>
+     <Button x:Name="AttachButton" Style="{StaticResource StatusIconButton}" ToolTip="{l:Loc Visual.AttachInspector}" Visibility="Collapsed" Click="Attach_Click"><TextBlock FontFamily="{StaticResource IconFontFamily}" Text="&#xE8A9;"/></Button>
+     <Button Style="{StaticResource StatusIconButton}" ToolTip="{l:Loc Common.Close}" Click="Close_Click"><TextBlock FontFamily="{StaticResource IconFontFamily}" Text="&#xE711;"/></Button>
     </StackPanel>
    </Grid>
    <TabControl Grid.Row="2" Margin="0,12,0,0">

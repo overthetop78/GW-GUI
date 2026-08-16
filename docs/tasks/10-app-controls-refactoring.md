@@ -6,15 +6,15 @@ Une case n’est cochée qu’après modification et validation de la tâche cor
 
 ## 10.1 Ressources et constantes communes
 
-- [ ] Remplacer les textes d’accessibilité écrits en dur dans les contrôles Amiga par des ressources traduites.
-- [ ] Centraliser le nom de la police d’icônes et les symboles techniques d’interface réellement partagés.
-- [ ] Centraliser les valeurs par défaut des supports d’émulation et des opérations Greaseweazle.
-- [ ] Centraliser les intervalles techniques et tolérances utilisés par les contrôles.
+- [x] Remplacer les textes d’accessibilité écrits en dur dans les contrôles Amiga par des ressources traduites.
+- [x] Centraliser le nom de la police d’icônes et les symboles techniques d’interface réellement partagés.
+- [x] Centraliser les valeurs par défaut des supports d’émulation et des opérations Greaseweazle.
+- [x] Centraliser les intervalles techniques et tolérances utilisés par les contrôles.
 
 ## 10.2 Fonctions communes
 
-- [ ] Créer un formateur commun des capacités et supprimer les implémentations dupliquées.
-- [ ] Centraliser la sélection et la lecture des valeurs de `ComboBox` lorsqu’elles suivent la même règle.
+- [x] Créer un formateur commun des capacités et supprimer les implémentations dupliquées.
+- [x] Centraliser la sélection et la lecture des valeurs de `ComboBox` lorsqu’elles suivent la même règle.
 - [ ] Centraliser l’exécution asynchrone des boutons avec restauration garantie de leur état.
 - [ ] Centraliser l’affichage et la journalisation des erreurs des contrôles.
 

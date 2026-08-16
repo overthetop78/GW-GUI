@@ -102,8 +102,8 @@ public partial class ExplorerSection : UserControl
         SystemText.Text = currentSystem;
         ProtectionText.Text = ExplorerMetadataPresenter.Protection(document.Metadata);
         FileSystemText.Text = ExplorerDetailsPresenter.FileSystemText(document);
-        CapacityText.Text = ExplorerFormatting.FormatBytes(document.Volume.Capacity);
-        FreeText.Text = document.FileSystemRecognized && document.Volume.FreeSpaceKnown ? ExplorerFormatting.FormatBytes(document.Volume.FreeBytes) : "\u2014";
+        CapacityText.Text = StorageSizeFormatter.FormatBytes(document.Volume.Capacity);
+        FreeText.Text = document.FileSystemRecognized && document.Volume.FreeSpaceKnown ? StorageSizeFormatter.FormatBytes(document.Volume.FreeBytes) : ControlVisualConstants.EmptyValue;
         EntryCountText.Text = CountEntries(document.Volume.Entries).ToString();
         _rootEntries = document.Volume.Entries;
         _rootFolder = new ExplorerFolderItem(volumeName.Text, null, 0, _rootEntries, volumeName.IsSynthetic) { IsExpanded = true };

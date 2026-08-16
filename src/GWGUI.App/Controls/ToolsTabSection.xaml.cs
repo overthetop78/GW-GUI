@@ -8,6 +8,11 @@ public partial class ToolsTabSection : UserControl
     public ToolsTabSection()
     {
         InitializeComponent();
+        EraseTracksValueInput.Text = EmulationControlDefaults.EraseTrackRange;
+        EraseRevsValueInput.Text = EmulationControlDefaults.EraseRevolutions.ToString();
+        CleanCylindersValueInput.Text = EmulationControlDefaults.CleanCylinders.ToString();
+        CleanPassesValueInput.Text = EmulationControlDefaults.CleanPasses.ToString();
+        CleanLingerValueInput.Text = EmulationControlDefaults.CleanLingerMilliseconds.ToString();
         EraseButton.Click += (_, e) => EraseRequested?.Invoke(this, e);
         CleanButton.Click += (_, e) => CleanRequested?.Invoke(this, e);
     }

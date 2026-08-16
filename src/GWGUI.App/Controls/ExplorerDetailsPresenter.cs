@@ -44,10 +44,10 @@ public static class ExplorerDetailsPresenter
             foreach (var compressionId in document.Metadata.Content.CompressionIds) rows.Add(new("Explorer.Compression", LocExtension.Get($"Explorer.Content.{compressionId}")));
             if (document.Metadata.Content.OrganizationMemberCount > 0) rows.Add(new("Explorer.DataBlocks", document.Metadata.Content.OrganizationMemberCount.ToString()));
         }
-        rows.Add(new("Explorer.Capacity", ExplorerFormatting.FormatBytes(volume.Capacity)));
+        rows.Add(new("Explorer.Capacity", StorageSizeFormatter.FormatBytes(volume.Capacity)));
         if (!document.UsesCustomSectorLoader)
         {
-            rows.Add(new("Explorer.Free", document.FileSystemRecognized && volume.FreeSpaceKnown ? ExplorerFormatting.FormatBytes(volume.FreeBytes) : "\u2014"));
+            rows.Add(new("Explorer.Free", document.FileSystemRecognized && volume.FreeSpaceKnown ? StorageSizeFormatter.FormatBytes(volume.FreeBytes) : ControlVisualConstants.EmptyValue));
             rows.Add(new("Explorer.Entries", ExplorerSection.CountEntries(volume.Entries).ToString()));
             rows.Add(new("Explorer.Warnings", ExplorerIssueBuilder.Build(document).Count.ToString()));
         }

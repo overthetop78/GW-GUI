@@ -29,17 +29,17 @@
    <Grid.ColumnDefinitions><ColumnDefinition Width="2*" MaxWidth="340"/><ColumnDefinition Width="3*"/></Grid.ColumnDefinitions>
    <Grid>
     <TextBox x:Name="SearchBox" Height="36" Padding="38,5,10,5" VerticalContentAlignment="Center" TextChanged="SearchChanged"/>
-    <TextBlock Text="&#xE721;" FontFamily="Segoe MDL2 Assets" FontSize="18" Margin="13,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
+    <TextBlock Text="&#xE721;" FontFamily="{StaticResource IconFontFamily}" FontSize="18" Margin="13,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
     <TextBlock x:Name="SearchPlaceholder" Margin="42,0,8,0" Foreground="#77808F" VerticalAlignment="Center" IsHitTestVisible="False">
      <TextBlock.Style><Style TargetType="TextBlock"><Setter Property="Visibility" Value="Collapsed"/><Style.Triggers><DataTrigger Binding="{Binding Text, ElementName=SearchBox}" Value=""><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers></Style></TextBlock.Style>
     </TextBlock>
    </Grid>
    <WrapPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
     <Button Style="{StaticResource BindingActionButton}" Click="RestoreDefaultsClicked">
-     <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE777;" FontFamily="Segoe MDL2 Assets" FontSize="17" Margin="0,0,9,0"/><TextBlock Text="{l:Loc Emulation.RestoreDefaultBindings}"/></StackPanel>
+     <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE777;" FontFamily="{StaticResource IconFontFamily}" FontSize="17" Margin="0,0,9,0"/><TextBlock Text="{l:Loc Emulation.RestoreDefaultBindings}"/></StackPanel>
     </Button>
     <Button Style="{StaticResource BindingActionButton}" Click="ClearConflictsClicked">
-     <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE74D;" FontFamily="Segoe MDL2 Assets" FontSize="17" Margin="0,0,9,0"/><TextBlock Text="{l:Loc Emulation.ClearConflicts}"/></StackPanel>
+     <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE74D;" FontFamily="{StaticResource IconFontFamily}" FontSize="17" Margin="0,0,9,0"/><TextBlock Text="{l:Loc Emulation.ClearConflicts}"/></StackPanel>
     </Button>
    </WrapPanel>
   </Grid>
@@ -97,9 +97,9 @@
          <Border Grid.Column="3" BorderBrush="#E1E6ED" BorderThickness="1,0,0,0" Padding="4,7">
           <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Tag="{Binding}" Click="AssignClicked" Style="{StaticResource BindingActionButton}" Width="142" Padding="8,4">
-            <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE70F;" FontFamily="Segoe MDL2 Assets" Margin="0,0,8,0"/><TextBlock Text="{l:Loc Emulation.AssignInput}"/></StackPanel>
+            <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE70F;" FontFamily="{StaticResource IconFontFamily}" Margin="0,0,8,0"/><TextBlock Text="{l:Loc Emulation.AssignInput}"/></StackPanel>
            </Button>
-           <Button Content="&#xE74D;" FontFamily="Segoe MDL2 Assets" Tag="{Binding}" Click="ClearClicked" ToolTip="{l:Loc Common.Delete}" Style="{StaticResource BindingActionButton}" Width="48" Padding="9"/>
+           <Button Content="&#xE74D;" FontFamily="{StaticResource IconFontFamily}" Tag="{Binding}" Click="ClearClicked" ToolTip="{l:Loc Common.Delete}" Style="{StaticResource BindingActionButton}" Width="48" Padding="9"/>
           </StackPanel>
          </Border>
         </Grid>
