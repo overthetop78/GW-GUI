@@ -13,6 +13,7 @@ internal sealed class AtariHardwareSettingsSection : UserControl
     private readonly Dictionary<string, ComboBox> _editors = new(StringComparer.Ordinal);
     private readonly TextBlock _totalMemory = new() { Margin = new Thickness(0, 8, 0, 0) };
     private readonly AtariVideoAudioSettingsSection _videoAudio = new();
+    private readonly AtariStorageSettingsSection _storage = new();
     private AtariMachineConfiguration? _configuration;
     private AtariHardwareView? _view;
     private bool _loading;
@@ -30,6 +31,7 @@ internal sealed class AtariHardwareSettingsSection : UserControl
             _configuration = configuration;
             _view = AtariHardwareSettingsFunctions.Create(configuration.Model, configuration.Options);
             _videoAudio.Load(configuration);
+            _storage.Load(configuration);
             BuildFields(_cpu, _view.Cpu);
             BuildFields(_memory, _view.Memory);
             _memory.Children.Add(_totalMemory);
@@ -52,7 +54,7 @@ internal sealed class AtariHardwareSettingsSection : UserControl
     {
         var values = _editors.Where(item => item.Value.SelectedValue is string)
             .Select(item => KeyValuePair.Create(item.Key, (string)item.Value.SelectedValue));
-        return _videoAudio.Apply(AtariHardwareSettingsFunctions.ReplaceOptions(configuration, values));
+        return _storage.Apply(_videoAudio.Apply(AtariHardwareSettingsFunctions.ReplaceOptions(configuration, values)));
     }
 
     private UIElement BuildTabs(UIElement general)
@@ -64,6 +66,7 @@ internal sealed class AtariHardwareSettingsSection : UserControl
         tabs.Items.Add(Tab(AtariHardwareSettingsConstants.RomTab, _firmware));
         tabs.Items.Add(Tab(LocExtension.Get(AtariVideoAudioSettingsConstants.VideoTabResource), _videoAudio.Video));
         tabs.Items.Add(Tab(LocExtension.Get(AtariVideoAudioSettingsConstants.AudioTabResource), _videoAudio.Audio));
+        tabs.Items.Add(Tab(LocExtension.Get(AtariStorageSettingsConstants.StorageTabResource), _storage.Content));
         return tabs;
     }
 

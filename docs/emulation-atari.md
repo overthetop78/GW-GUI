@@ -550,14 +550,14 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-044 — Construire l’onglet Stockage
 
-- [ ] Présenter une liste de périphériques issue du modèle sélectionné.
-- [ ] Ajouter/configurer/supprimer lecteurs de disquette et disques Hatari autorisés.
-- [ ] Ajouter/configurer/supprimer lecteurs de disquette, cassette et cartouche Atari800 autorisés.
-- [ ] Afficher un lecteur cartouche pour 2600, 7800, Lynx et Jaguar.
-- [ ] Afficher cartouche et lecteur CD pour Jaguar CD.
-- [ ] Empêcher les doublons d’identifiant et les types incompatibles.
-- [ ] Expliquer que les médias amovibles peuvent être insérés ou remplacés depuis la machine active.
-- [ ] Tester toutes les transitions de modèle et la persistance des périphériques.
+- [x] Présenter une liste de périphériques issue du modèle sélectionné.
+- [x] Ajouter/configurer/supprimer lecteurs de disquette et disques Hatari autorisés.
+- [x] Ajouter/configurer/supprimer lecteurs de disquette, cassette et cartouche Atari800 autorisés.
+- [x] Afficher un lecteur cartouche pour 2600, 7800, Lynx et Jaguar.
+- [x] Afficher cartouche et lecteur CD pour Jaguar CD.
+- [x] Empêcher les doublons d’identifiant et les types incompatibles.
+- [x] Expliquer que les médias amovibles peuvent être insérés ou remplacés depuis la machine active.
+- [x] Tester toutes les transitions de modèle et la persistance des périphériques.
 
 #### ATA-045 — Construire les onglets Clavier, Souris et Contrôleurs
 

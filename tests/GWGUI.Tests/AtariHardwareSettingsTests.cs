@@ -2,6 +2,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using GWGUI.App.Controls;
+using GWGUI.App.Localization;
 using GWGUI.Emulation.Atari;
 
 namespace GWGUI.Tests;
@@ -50,7 +51,7 @@ public sealed class AtariHardwareSettingsTests
     }
 
     [Fact]
-    public void EditorContainsGeneralCpuRamRomVideoAndAudioTabs()
+    public void EditorContainsGeneralCpuRamRomVideoAudioAndStorageTabs()
     {
         RunOnSta(() =>
         {
@@ -64,6 +65,8 @@ public sealed class AtariHardwareSettingsTests
             Assert.Contains(tabs.Items.OfType<TabItem>(), item => Equals(item.Header, AtariHardwareSettingsConstants.CpuTab));
             Assert.Contains(tabs.Items.OfType<TabItem>(), item => Equals(item.Header, AtariHardwareSettingsConstants.RamTab));
             Assert.Contains(tabs.Items.OfType<TabItem>(), item => Equals(item.Header, AtariHardwareSettingsConstants.RomTab));
+            Assert.Contains(tabs.Items.OfType<TabItem>(), item => Equals(item.Header,
+                LocExtension.Get(AtariStorageSettingsConstants.StorageTabResource)));
         });
     }
 
@@ -87,7 +90,7 @@ internal static class AtariHardwareSettingsTestConstants
 {
     internal const int CpuFieldCount = 4;
     internal const int MemoryFieldCount = 2;
-    internal const int EditorTabCount = 6;
+    internal const int EditorTabCount = 7;
     internal const int StaTimeoutMilliseconds = 10000;
     internal const string UnknownKey = "future_hardware_option";
     internal const string UnknownValue = "preserved";
