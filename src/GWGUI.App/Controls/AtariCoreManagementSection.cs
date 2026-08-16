@@ -1,6 +1,7 @@
 using System.IO;
 using System.Net.Http;
 using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Media;
 using GWGUI.App.Localization;
@@ -55,11 +56,21 @@ public sealed class AtariCoreManagementSection : UserControl
     {
         _service = service;
         _localize = localize;
+        _versions.DisplayMemberPath = nameof(AtariCoreRelease.DeclaredVersion);
         _search.Content = AtariCoreManagementFunctions.CreateButtonContent(
             AtariCoreManagementConstants.SearchGlyph, L(AtariCoreManagementConstants.SearchResource));
         _download.Content = AtariCoreManagementFunctions.CreateButtonContent(
             AtariCoreManagementConstants.DownloadGlyph, L(AtariCoreManagementConstants.DownloadResource));
         _cancel.Content = L(AtariCoreManagementConstants.CancelResource);
+        AtariAccessibilityFunctions.Configure(_versions,
+            L(AtariCoreManagementConstants.VersionsFoundResource, AtariCoreManagementConstants.FirstVersionIndex));
+        AtariAccessibilityFunctions.Configure(_search, L(AtariCoreManagementConstants.SearchResource));
+        AtariAccessibilityFunctions.Configure(_download, L(AtariCoreManagementConstants.DownloadResource));
+        AtariAccessibilityFunctions.Configure(_cancel, L(AtariCoreManagementConstants.CancelResource));
+        AtariAccessibilityFunctions.Configure(_progress, L(AtariCoreManagementConstants.DownloadingResource,
+            string.Empty));
+        AtariAccessibilityFunctions.Configure(_status, L(AtariCoreManagementConstants.SearchResource));
+        AutomationProperties.SetLiveSetting(_status, AutomationLiveSetting.Assertive);
         Content = BuildContent();
         _search.Click += async (_, _) => await SearchAsync();
         _download.Click += async (_, _) => await DownloadSelectedAsync();
@@ -247,6 +258,7 @@ public sealed class AtariCoreManagementSection : UserControl
     private void SetStatus(string text, bool isError = false)
     {
         _status.Text = text;
+        AutomationProperties.SetItemStatus(_status, text);
         _statusBanner.Visibility = string.IsNullOrWhiteSpace(text) ? Visibility.Collapsed : Visibility.Visible;
         if (isError)
         {

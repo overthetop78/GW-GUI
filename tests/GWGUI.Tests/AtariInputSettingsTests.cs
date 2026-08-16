@@ -11,6 +11,22 @@ namespace GWGUI.Tests;
 [Collection(AtariNativeCoreTestConstants.CollectionName)]
 public sealed class AtariInputSettingsTests
 {
+    [Fact]
+    public void ComputerKeyboardEditorContainsOnlyMachineSpecificAssignments()
+    {
+        var st = AtariInputSettingsFunctions.Create(new AtariMachineConfiguration(AtariMachineModel.St));
+        var eightBit = AtariInputSettingsFunctions.Create(
+            new AtariMachineConfiguration(AtariMachineModel.Atari800Xl));
+
+        Assert.Equal(AtariInputSettingsConstants.FunctionKeys.Concat(AtariInputSettingsConstants.ComputerSpecialKeys)
+                .Select(value => value.ToString()),
+            st.KeyboardDefinitions.Select(value => value.Id));
+        Assert.Equal(AtariInputSettingsConstants.Atari800SpecialKeys.Select(value => value.ToString()),
+            eightBit.KeyboardDefinitions.Select(value => value.Id));
+        Assert.DoesNotContain(st.KeyboardDefinitions, value => value.Id == EmulationKey.A.ToString());
+        Assert.Equal(EmulationKey.Home.ToString(), st.KeyboardDefinitions
+            .Single(value => value.Id == EmulationKey.AtariUndo.ToString()).DefaultBinding);
+    }
     public static TheoryData<AtariMachineModel> EveryModel => new(Enum.GetValues<AtariMachineModel>());
 
     [Theory]

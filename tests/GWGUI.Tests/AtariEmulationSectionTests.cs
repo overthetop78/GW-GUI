@@ -12,18 +12,20 @@ namespace GWGUI.Tests;
 public sealed class AtariEmulationSectionTests
 {
     [Fact]
-    public void MainEmulationNavigationContainsAmigaAndAtariSections()
+    public void MainEmulationNavigationUsesOneConfigurationSelectorAndOneMachineTabControl()
     {
         RunOnSta(() =>
         {
             var app = Application.Current as GWGUI.App.App ?? new GWGUI.App.App();
             app.InitializeComponent();
             var section = new EmulationSection();
-            var tabs = Assert.IsType<TabControl>(section.Content);
+            var root = Assert.IsType<Grid>(section.Content);
+            var selectors = Descendants(root).OfType<ComboBox>().ToArray();
+            var machineTabs = Descendants(root).OfType<TabControl>().ToArray();
 
-            Assert.Equal(AtariEmulationSectionTestConstants.FamilyTabCount, tabs.Items.Count);
-            Assert.Single(tabs.Items.OfType<TabItem>(), item => item.Content is AmigaEmulationSection);
-            Assert.Single(tabs.Items.OfType<TabItem>(), item => item.Content is AtariEmulationSection);
+            Assert.Single(selectors);
+            Assert.Single(machineTabs);
+            Assert.DoesNotContain(Descendants(root), item => item is AmigaEmulationSection);
         });
     }
 
@@ -105,5 +107,23 @@ public sealed class AtariEmulationSectionTests
         thread.Start();
         Assert.True(thread.Join(AtariEmulationSectionTestConstants.StaTimeoutMilliseconds));
         if (failure is not null) throw failure;
+    }
+
+    private static IEnumerable<DependencyObject> Descendants(DependencyObject root)
+    {
+        yield return root;
+        switch (root)
+        {
+            case Panel panel:
+                foreach (UIElement child in panel.Children)
+                    foreach (var descendant in Descendants(child)) yield return descendant;
+                break;
+            case Decorator decorator when decorator.Child is not null:
+                foreach (var descendant in Descendants(decorator.Child)) yield return descendant;
+                break;
+            case ContentControl content when content.Content is DependencyObject child:
+                foreach (var descendant in Descendants(child)) yield return descendant;
+                break;
+        }
     }
 }

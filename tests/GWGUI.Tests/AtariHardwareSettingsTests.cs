@@ -64,13 +64,15 @@ public sealed class AtariHardwareSettingsTests
             Assert.Equal(AtariHardwareSettingsTestConstants.EditorTabCount, tabs.Items.Count);
             Assert.Same(general, Assert.IsType<ScrollViewer>(Assert.IsType<TabItem>(tabs.Items[0]).Content).Content
                 is Border wrapper ? wrapper.Child : null);
-            Assert.Contains(tabs.Items.OfType<TabItem>(), item => Equals(item.Header, AtariHardwareSettingsConstants.CpuTab));
-            Assert.Contains(tabs.Items.OfType<TabItem>(), item => Equals(item.Header, AtariHardwareSettingsConstants.RamTab));
-            Assert.Contains(tabs.Items.OfType<TabItem>(), item => Equals(item.Header, AtariHardwareSettingsConstants.RomTab));
-            Assert.Contains(tabs.Items.OfType<TabItem>(), item => Equals(item.Header,
-                LocExtension.Get(AtariStorageSettingsConstants.StorageTabResource)));
+            Assert.Contains(tabs.Items.OfType<TabItem>(), item => Header(item) == AtariHardwareSettingsConstants.CpuTab);
+            Assert.Contains(tabs.Items.OfType<TabItem>(), item => Header(item) == AtariHardwareSettingsConstants.RamTab);
+            Assert.Contains(tabs.Items.OfType<TabItem>(), item => Header(item) == AtariHardwareSettingsConstants.RomTab);
+            Assert.Contains(tabs.Items.OfType<TabItem>(), item => Header(item) ==
+                LocExtension.Get(AtariStorageSettingsConstants.StorageTabResource));
         });
     }
+
+    private static string? Header(TabItem item) => (item.Header as MainTabHeader)?.Text;
 
     private static void RunOnSta(Action action)
     {

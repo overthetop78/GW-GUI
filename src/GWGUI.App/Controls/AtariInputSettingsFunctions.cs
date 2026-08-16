@@ -72,10 +72,17 @@ internal static class AtariInputSettingsFunctions
 
     private static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(AtariMachineModel model)
     {
-        var keys = Enum.GetValues<EmulationKey>().Where(key => key != EmulationKey.Unknown).ToList();
-        if (AtariCompatibilityCatalog.Get(model).Core != AtariCoreKind.Atari800)
-            keys.RemoveAll(key => key is EmulationKey.AtariOption or EmulationKey.AtariSelect or EmulationKey.AtariStart);
-        return keys.Select(key => new InputBindingDefinition(key.ToString(), key.ToString(), key.ToString())).ToArray();
+        var core = AtariCompatibilityCatalog.Get(model).Core;
+        var keys = core == AtariCoreKind.Atari800
+            ? AtariInputSettingsConstants.Atari800SpecialKeys
+            : AtariInputSettingsConstants.ComputerSpecialKeys;
+        var machineKeys = core == AtariCoreKind.Atari800
+            ? keys : AtariInputSettingsConstants.FunctionKeys.Concat(keys);
+        return machineKeys.Distinct()
+            .Select(key => new InputBindingDefinition(key.ToString(), key.ToString(),
+                AtariInputSettingsConstants.SpecialKeyDefaults.TryGetValue(key, out var hostKey)
+                    ? hostKey.ToString() : key.ToString()))
+            .ToArray();
     }
 
     private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(AtariMachineModel model, int port)

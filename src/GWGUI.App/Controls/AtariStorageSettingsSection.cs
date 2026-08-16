@@ -9,6 +9,8 @@ namespace GWGUI.App.Controls;
 
 internal sealed class AtariStorageSettingsSection
 {
+    private readonly EmulationStorageDeviceList _deviceList = new();
+    private readonly StackPanel _editor = new();
     private readonly ListBox _devices = new() { DisplayMemberPath = nameof(AtariStorageDeviceItem.DisplayName) };
     private readonly ComboBox _type = new() { DisplayMemberPath = nameof(AtariStorageTypeChoice.DisplayName) };
     private readonly ComboBox _slot = new() { DisplayMemberPath = nameof(AtariStorageSlotChoice.DisplayName) };
@@ -17,13 +19,16 @@ internal sealed class AtariStorageSettingsSection
     private readonly Button _save = new();
     private AtariMachineConfiguration? _configuration;
     private AtariStorageView? _view;
-    internal StackPanel Content { get; } = new();
+    internal UIElement Content => _deviceList;
 
     internal AtariStorageSettingsSection()
     {
         _type.SelectionChanged += (_, _) => LoadSlots();
         _devices.SelectionChanged += (_, _) => LoadSelected();
-        Build();
+        _deviceList.AddRequested += (_, _) => EditDevice(null);
+        _deviceList.ConfigureRequested += (_, args) => EditDevice(args.Device.Identifier);
+        _deviceList.RemoveRequested += (_, args) => RemoveDevice(args.Device.Identifier);
+        _deviceList.SetCanAdd(false);
     }
 
     internal void Load(AtariMachineConfiguration configuration)
@@ -44,29 +49,43 @@ internal sealed class AtariStorageSettingsSection
 
     private void Build()
     {
-        Content.Children.Add(new TextBlock { Text = LocExtension.Get(AtariStorageSettingsConstants.HintResource), TextWrapping = TextWrapping.Wrap });
-        Content.Children.Add(_devices);
-        Content.Children.Add(Row(AtariStorageSettingsConstants.TypeResource, _type));
-        Content.Children.Add(Row(AtariStorageSettingsConstants.IdentifierResource, _slot));
-        Content.Children.Add(Row(AtariStorageSettingsConstants.InterfaceResource, _bus));
+        AtariAccessibilityFunctions.Configure(_devices,
+            LocExtension.Get(AtariAccessibilityConstants.MediaStatusResource));
+        _editor.Children.Add(new TextBlock { Text = LocExtension.Get(AtariStorageSettingsConstants.HintResource), TextWrapping = TextWrapping.Wrap });
+        _editor.Children.Add(_devices);
+        _editor.Children.Add(AtariAccessibilityFunctions.LabeledRow(
+            LocExtension.Get(AtariStorageSettingsConstants.TypeResource), _type));
+        _editor.Children.Add(AtariAccessibilityFunctions.LabeledRow(
+            LocExtension.Get(AtariStorageSettingsConstants.IdentifierResource), _slot));
+        _editor.Children.Add(AtariAccessibilityFunctions.LabeledRow(
+            LocExtension.Get(AtariStorageSettingsConstants.InterfaceResource), _bus));
         var path = new Grid();
         path.ColumnDefinitions.Add(new ColumnDefinition());
         path.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        AtariAccessibilityFunctions.Configure(_path,
+            LocExtension.Get(AtariStorageSettingsConstants.PathResource));
         path.Children.Add(_path);
         var browse = new Button { Content = LocExtension.Get(AtariStorageSettingsConstants.BrowseResource) };
+        AtariAccessibilityFunctions.Configure(browse,
+            LocExtension.Get(AtariStorageSettingsConstants.BrowseResource));
         browse.Click += (_, _) => Browse();
         Grid.SetColumn(browse, 1);
         path.Children.Add(browse);
-        Content.Children.Add(Row(AtariStorageSettingsConstants.PathResource, path));
+        _editor.Children.Add(AtariAccessibilityFunctions.LabeledRow(
+            LocExtension.Get(AtariStorageSettingsConstants.PathResource), path));
         var actions = new WrapPanel();
         _save.Content = LocExtension.Get(AtariStorageSettingsConstants.AddResource);
+        AtariAccessibilityFunctions.Configure(_save,
+            LocExtension.Get(AtariStorageSettingsConstants.AddResource));
         _save.Click += (_, _) => Save();
         var remove = new Button { Content = LocExtension.Get(AtariStorageSettingsConstants.RemoveResource) };
+        AtariAccessibilityFunctions.Configure(remove,
+            LocExtension.Get(AtariStorageSettingsConstants.RemoveResource));
         remove.Click += (_, _) => Remove();
         actions.Children.Add(_save);
         actions.Children.Add(remove);
-        Content.Children.Add(actions);
-        Content.Children.Add(new TextBlock { Text = LocExtension.Get(AtariStorageSettingsConstants.RuntimeHintResource), TextWrapping = TextWrapping.Wrap });
+        _editor.Children.Add(actions);
+        _editor.Children.Add(new TextBlock { Text = LocExtension.Get(AtariStorageSettingsConstants.RuntimeHintResource), TextWrapping = TextWrapping.Wrap });
     }
 
     private void LoadSlots()
@@ -117,7 +136,70 @@ internal sealed class AtariStorageSettingsSection
         _devices.ItemsSource = _view?.Devices;
         _devices.SelectedIndex = AtariStorageSettingsConstants.NoSelectionIndex;
         _save.Content = LocExtension.Get(AtariStorageSettingsConstants.AddResource);
+        _deviceList.SetDevices((_view?.Devices ?? []).Select(ToCommonDevice));
     }
+
+    private void EditDevice(string? identifier)
+    {
+        if (_view is null) return;
+        _devices.SelectedItem = identifier is null ? null : _view.Devices.FirstOrDefault(item =>
+            item.Configuration.Slot.ToString() == identifier);
+        if (identifier is null)
+        {
+            _type.SelectedIndex = _view.Types.Count == 0
+                ? AtariStorageSettingsConstants.NoSelectionIndex : AtariStorageSettingsConstants.FirstItemIndex;
+            _path.Clear();
+        }
+        var panel = new StackPanel { Margin = new Thickness(18) };
+        panel.Children.Add(AtariAccessibilityFunctions.LabeledRow(
+            LocExtension.Get(AtariStorageSettingsConstants.TypeResource), _type));
+        panel.Children.Add(AtariAccessibilityFunctions.LabeledRow(
+            LocExtension.Get(AtariStorageSettingsConstants.IdentifierResource), _slot));
+        panel.Children.Add(AtariAccessibilityFunctions.LabeledRow(
+            LocExtension.Get(AtariStorageSettingsConstants.InterfaceResource), _bus));
+        panel.Children.Add(AtariAccessibilityFunctions.LabeledRow(
+            LocExtension.Get(AtariStorageSettingsConstants.PathResource), _path));
+        var buttons = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Right };
+        var browse = new Button { Content = LocExtension.Get(AtariStorageSettingsConstants.BrowseResource) };
+        browse.Click += (_, _) => Browse();
+        var save = new Button { Content = LocExtension.Get(AtariStorageSettingsConstants.ConfigureResource), IsDefault = true };
+        var dialog = new Window
+        {
+            Title = LocExtension.Get(AtariStorageSettingsConstants.StorageTabResource),
+            Owner = Window.GetWindow(_deviceList), SizeToContent = SizeToContent.WidthAndHeight,
+            WindowStartupLocation = WindowStartupLocation.CenterOwner, Content = panel
+        };
+        save.Click += (_, _) => { Save(); dialog.DialogResult = true; };
+        buttons.Children.Add(browse);
+        buttons.Children.Add(save);
+        panel.Children.Add(buttons);
+        dialog.ShowDialog();
+        dialog.Content = null;
+    }
+
+    private void RemoveDevice(string identifier)
+    {
+        if (_view is null) return;
+        _devices.SelectedItem = _view.Devices.FirstOrDefault(item =>
+            item.Configuration.Slot.ToString() == identifier);
+        Remove();
+    }
+
+    private static EmulationStorageDeviceItem ToCommonDevice(AtariStorageDeviceItem item) => new(
+        item.Configuration.Slot.ToString(), ToCommonType(item.Configuration.Kind),
+        item.DisplayName, string.IsNullOrWhiteSpace(item.Configuration.Path) ? null : item.Configuration.Path,
+        false);
+
+    private static EmulationStorageDeviceType ToCommonType(AtariMediaKind kind) => kind switch
+    {
+        AtariMediaKind.Floppy => EmulationStorageDeviceType.Floppy,
+        AtariMediaKind.HardDisk => EmulationStorageDeviceType.HardDisk,
+        AtariMediaKind.CompactDisc => EmulationStorageDeviceType.CompactDisc,
+        AtariMediaKind.Cassette => EmulationStorageDeviceType.Tape,
+        AtariMediaKind.Cartridge => EmulationStorageDeviceType.Cartridge,
+        AtariMediaKind.Directory => EmulationStorageDeviceType.Directory,
+        _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
+    };
 
     private void Browse()
     {
@@ -134,14 +216,4 @@ internal sealed class AtariStorageSettingsSection
         if (dialog.ShowDialog() == true) _path.Text = dialog.FileName;
     }
 
-    private static UIElement Row(string resource, UIElement editor)
-    {
-        var row = new Grid { Margin = new Thickness(0, 4, 0, 4) };
-        row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(180) });
-        row.ColumnDefinitions.Add(new ColumnDefinition());
-        row.Children.Add(new TextBlock { Text = LocExtension.Get(resource), VerticalAlignment = VerticalAlignment.Center });
-        Grid.SetColumn(editor, 1);
-        row.Children.Add(editor);
-        return row;
-    }
 }

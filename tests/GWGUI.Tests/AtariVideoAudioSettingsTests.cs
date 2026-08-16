@@ -1,3 +1,5 @@
+using System.Windows;
+using System.Windows.Threading;
 using GWGUI.App.Controls;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari;
@@ -28,6 +30,8 @@ public sealed class AtariVideoAudioSettingsTests
         Assert.NotEmpty(view.Volumes);
         Assert.NotEmpty(view.Qualities);
         Assert.Equal(configuration.VideoRenderer, view.Renderer);
+        Assert.Equal(Enum.GetValues<EmulationVideoRenderer>().Order(),
+            view.Renderers.Select(value => Enum.Parse<EmulationVideoRenderer>(value.Value)).Order());
     }
 
     [Fact]
@@ -69,6 +73,30 @@ public sealed class AtariVideoAudioSettingsTests
         Assert.Equal(AtariVideoAudioSettingsTestConstants.ValidValue, selected);
         Assert.Equal(AtariVideoAudioSettingsTestConstants.UnknownValue,
             options[AtariVideoAudioSettingsTestConstants.OptionKey]);
+    }
+
+    [Fact]
+    public void ControlsCanLoadTheSameConfigurationRepeatedly()
+    {
+        Exception? failure = null;
+        var thread = new Thread(() =>
+        {
+            try
+            {
+                var app = Application.Current as GWGUI.App.App ?? new GWGUI.App.App();
+                app.InitializeComponent();
+                var section = new AtariVideoAudioSettingsSection();
+                var configuration = new AtariMachineConfiguration(AtariMachineModel.St);
+                section.Load(configuration);
+                section.Load(configuration);
+            }
+            catch (Exception error) { failure = error; }
+            finally { Dispatcher.CurrentDispatcher.InvokeShutdown(); }
+        });
+        thread.SetApartmentState(ApartmentState.STA);
+        thread.Start();
+        Assert.True(thread.Join(10000));
+        if (failure is not null) throw failure;
     }
 }
 

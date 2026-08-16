@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
@@ -73,6 +74,7 @@ public sealed class AtariMachineView : UserControl
         _globalShortcuts = EmulationShortcutMap.GlobalShortcuts(globalShortcuts);
         _quickStatePath = quickStatePath;
         _captureFolder = captureFolder;
+        AtariAccessibilityFunctions.ConfigureFlowDirection(this);
         _shortcutActions = new AtariMachineShortcutActions(TogglePowerAsync, TogglePauseAsync,
             () => _machine.SoftResetAsync().AsTask(), () => _machine.HardResetAsync().AsTask(),
             QuickSaveAsync, QuickLoadAsync, SaveScreenshotAsync, ToggleFullscreenAsync,
@@ -86,6 +88,7 @@ public sealed class AtariMachineView : UserControl
         root.RowDefinitions.Add(new RowDefinition());
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         var toolbar = new DockPanel { Height = 34, LastChildFill = true, Margin = new Thickness(0, 0, 0, 2) };
+        AtariAccessibilityFunctions.Configure(toolbar, L(AtariEmulationConstants.MachinesAutomationResource));
         var left = new StackPanel { Orientation = Orientation.Horizontal };
         _power = IconButton(AtariMachineViewConstants.PowerGlyph, AtariMachineViewConstants.PowerResource,
             TogglePowerAsync, false);
@@ -127,6 +130,15 @@ public sealed class AtariMachineView : UserControl
         DockPanel.SetDock(right, Dock.Right);
         toolbar.Children.Add(right);
         _renderer.Text = AtariMachineViewFunctions.RendererName(_videoSurface.Renderer);
+        AtariAccessibilityFunctions.Configure(_renderer, L(AtariMachineViewConstants.RenderingResource));
+        AtariAccessibilityFunctions.Configure(_status, L(AtariEmulationConstants.MachinesAutomationResource));
+        AtariAccessibilityFunctions.Configure(_controller,
+            L(AtariInputSettingsConstants.ControllersTabResource));
+        AtariAccessibilityFunctions.Configure(_mouse, L(AtariInputSettingsConstants.MouseTabResource));
+        AutomationProperties.SetItemStatus(_controller,
+            L(AtariVideoAudioSettingsConstants.DisabledResource));
+        AutomationProperties.SetItemStatus(_mouse,
+            L(AtariVideoAudioSettingsConstants.DisabledResource));
         var rendererGroup = ToolbarGroup(new TextBlock
         {
             Text = AtariMachineViewConstants.RendererGlyph,
@@ -155,6 +167,9 @@ public sealed class AtariMachineView : UserControl
             SnapsToDevicePixels = true
         };
         _displayHost = new Grid { Background = new SolidColorBrush(Color.FromRgb(43, 46, 50)) };
+        _displayHost.FlowDirection = FlowDirection.LeftToRight;
+        AtariAccessibilityFunctions.Configure(_displayHost,
+            L(AtariEmulationConstants.MachinesAutomationResource));
         _displayHost.Children.Add(_screen);
         _displayHost.SizeChanged += (_, _) => FitScreen();
         Grid.SetRow(_displayHost, 1);
@@ -240,6 +255,11 @@ public sealed class AtariMachineView : UserControl
             Margin = new Thickness(0, 0, 4, 0), VerticalAlignment = VerticalAlignment.Center
         };
         _mediaLeds[view.Configuration.Slot] = led;
+        AtariAccessibilityFunctions.Configure(led, view.Label);
+        AutomationProperties.SetItemStatus(led,
+            L(_mountedMedia.ContainsKey(view.Configuration.Slot)
+                ? AtariVideoAudioSettingsConstants.EnabledResource
+                : AtariVideoAudioSettingsConstants.DisabledResource));
         panel.Children.Add(led);
         var media = new Button
         {
@@ -320,12 +340,24 @@ public sealed class AtariMachineView : UserControl
             _measuredFramesPerSecond, _audioMuted, _mouseCapture.IsCaptured,
             XInputControllerReader.ReadAll().Any(item => item != EmulationControllerState.Empty));
         _status.Text = status.Text;
+        AutomationProperties.SetItemStatus(_status, status.Text);
         _audio.Opacity = status.AudioActive ? AtariMachineViewConstants.ActiveOpacity : AtariMachineViewConstants.InactiveOpacity;
         _mouse.Opacity = status.MouseAvailable ? AtariMachineViewConstants.ActiveOpacity : AtariMachineViewConstants.InactiveOpacity;
         _controller.Opacity = status.ControllerAvailable ? AtariMachineViewConstants.ActiveOpacity : AtariMachineViewConstants.InactiveOpacity;
+        AutomationProperties.SetItemStatus(_audio, L(status.AudioActive
+            ? AtariVideoAudioSettingsConstants.EnabledResource : AtariVideoAudioSettingsConstants.DisabledResource));
+        AutomationProperties.SetItemStatus(_mouse, L(status.MouseAvailable
+            ? AtariVideoAudioSettingsConstants.EnabledResource : AtariVideoAudioSettingsConstants.DisabledResource));
+        AutomationProperties.SetItemStatus(_controller, L(status.ControllerAvailable
+            ? AtariVideoAudioSettingsConstants.EnabledResource : AtariVideoAudioSettingsConstants.DisabledResource));
         foreach (var led in _mediaLeds)
+        {
             led.Value.Fill = status.MediaActivity.GetValueOrDefault(led.Key)
                 ? Brushes.LimeGreen : _mountedMedia.ContainsKey(led.Key) ? Brushes.ForestGreen : Brushes.Gray;
+            AutomationProperties.SetItemStatus(led.Value, L(status.MediaActivity.GetValueOrDefault(led.Key)
+                ? AtariVideoAudioSettingsConstants.EnabledResource
+                : AtariVideoAudioSettingsConstants.DisabledResource));
+        }
         FitScreen(status.AspectRatio);
     }
 
@@ -553,6 +585,9 @@ public sealed class AtariMachineView : UserControl
     private void SetPowered(bool powered)
     {
         _power.Foreground = powered ? Brushes.LimeGreen : Brushes.Gray;
+        AutomationProperties.SetItemStatus(_power, L(powered
+            ? AtariVideoAudioSettingsConstants.EnabledResource
+            : AtariVideoAudioSettingsConstants.DisabledResource));
         foreach (var button in _machineButtons) button.IsEnabled = powered;
         _quickSave.IsEnabled = powered && _machine.SupportsSaveStates;
         _quickLoad.IsEnabled = powered && _machine.SupportsSaveStates && File.Exists(_quickStatePath);
@@ -587,6 +622,7 @@ public sealed class AtariMachineView : UserControl
             Padding = new Thickness(2), Margin = new Thickness(0, 0, 2, 0)
         };
         button.SetResourceReference(StyleProperty, AtariMachineViewConstants.StatusIconButtonStyleResource);
+        AtariAccessibilityFunctions.Configure(button, L(tooltipResource));
         if (requiresPower) _machineButtons.Add(button);
         button.Click += async (_, _) => await ButtonAsyncAction.RunAsync(
             button, action, ShowError, restoreEnabled: () => !_disposed);
@@ -627,7 +663,9 @@ public sealed class AtariMachineView : UserControl
     private static void SetIcon(Button button, string glyph, string tooltipResource)
     {
         if (button.Content is TextBlock icon) icon.Text = glyph;
-        button.ToolTip = L(tooltipResource);
+        var label = L(tooltipResource);
+        button.ToolTip = label;
+        AutomationProperties.SetName(button, label);
     }
 
     private static IEmulationVideoSurface CreateVideoSurface(EmulationVideoRenderer renderer)

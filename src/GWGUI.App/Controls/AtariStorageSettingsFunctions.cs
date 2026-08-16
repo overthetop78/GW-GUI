@@ -9,22 +9,39 @@ internal static class AtariStorageSettingsFunctions
 {
     internal static AtariStorageView Create(AtariMachineConfiguration configuration)
     {
-        var available = AtariCompatibilityCatalog.Get(configuration.Model).Media
+        var allAvailable = AtariCompatibilityCatalog.Get(configuration.Model).Media
             .Where(rule => rule.Availability == AtariMediaAvailability.Available)
             .ToArray();
-        var types = available.Select(rule => rule.Kind).Distinct()
+        var primary = PrimaryDevice(configuration.Model);
+        var devicesAvailable = allAvailable.Where(rule => rule.Kind == primary.Kind && rule.Slots.Contains(primary.Slot))
+            .Select(rule => rule with { Slots = [primary.Slot] }).ToArray();
+        var types = allAvailable.Select(rule => rule.Kind).Distinct()
             .Select(kind => new AtariStorageTypeChoice(kind, KindName(kind))).ToArray();
-        var slots = available.GroupBy(rule => rule.Kind).ToDictionary(group => group.Key,
+        var slots = allAvailable.GroupBy(rule => rule.Kind).ToDictionary(group => group.Key,
             group => (IReadOnlyList<AtariStorageSlotChoice>)group.SelectMany(rule => rule.Slots).Distinct()
                 .Select(slot => new AtariStorageSlotChoice(slot, slot.ToString())).ToArray());
         var buses = types.ToDictionary(type => type.Kind,
             type => (IReadOnlyList<AtariStorageBusChoice>)Buses(configuration.Model, type.Kind)
                 .Select(bus => new AtariStorageBusChoice(bus, bus.ToString())).ToArray());
-        var devices = configuration.Media.Select(media => new AtariStorageDeviceItem(media,
-            media.Slot + AtariStorageSettingsConstants.DisplaySeparator + KindName(media.Kind)
-            + AtariStorageSettingsConstants.DisplaySeparator + Path.GetFileName(media.Path))).ToArray();
+        var devices = devicesAvailable.SelectMany(rule => rule.Slots.Select(slot => (rule.Kind, Slot: slot)))
+            .Distinct()
+            .Select(device =>
+            {
+                var media = configuration.Media.FirstOrDefault(item => item.Slot == device.Slot)
+                    ?? new AtariMediaConfiguration(string.Empty, device.Kind, device.Slot);
+                return new AtariStorageDeviceItem(media, KindName(device.Kind));
+            }).ToArray();
         return new AtariStorageView(types, slots, buses, devices);
     }
+
+    private static (AtariMediaKind Kind, EmulationMediaSlot Slot) PrimaryDevice(AtariMachineModel model) => model switch
+    {
+        AtariMachineModel.JaguarCd => (AtariMediaKind.CompactDisc, EmulationMediaSlot.Cd0),
+        AtariMachineModel.Atari2600 or AtariMachineModel.Atari5200 or AtariMachineModel.Atari7800
+            or AtariMachineModel.Lynx or AtariMachineModel.Jaguar or AtariMachineModel.Xegs
+            => (AtariMediaKind.Cartridge, EmulationMediaSlot.Cartridge0),
+        _ => (AtariMediaKind.Floppy, EmulationMediaSlot.Floppy0)
+    };
 
     internal static AtariMachineConfiguration AddOrReplace(AtariMachineConfiguration source,
         AtariMediaConfiguration media, EmulationMediaSlot? replacedSlot)

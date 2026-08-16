@@ -12,7 +12,9 @@ public enum EmulationStorageDeviceType
     HardDisk,
     CompactDisc,
     Zip,
-    Tape
+    Tape,
+    Cartridge,
+    Directory
 }
 
 public sealed record EmulationStorageDeviceItem(
@@ -34,6 +36,7 @@ public sealed class EmulationStorageDeviceEventArgs(EmulationStorageDeviceItem d
 public sealed class EmulationStorageDeviceList : UserControl
 {
     private readonly StackPanel _rows = new();
+    private readonly Button _add;
     private IReadOnlyList<EmulationStorageDeviceItem> _devices = [];
 
     public event EventHandler<EmulationStorageDeviceEventArgs>? ConfigureRequested;
@@ -53,14 +56,14 @@ public sealed class EmulationStorageDeviceList : UserControl
         var footer = new Grid { Margin = new Thickness(0, 10, 0, 0) };
         footer.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         footer.ColumnDefinitions.Add(new ColumnDefinition());
-        var add = new Button
+        _add = new Button
         {
             Content = $"＋  {LocExtension.Get("Emulation.AddStorageDevice")}",
             MinWidth = 180,
             HorizontalAlignment = HorizontalAlignment.Left
         };
-        add.Click += (_, _) => AddRequested?.Invoke(this, EventArgs.Empty);
-        footer.Children.Add(add);
+        _add.Click += (_, _) => AddRequested?.Invoke(this, EventArgs.Empty);
+        footer.Children.Add(_add);
         var hint = new TextBlock
         {
             Text = LocExtension.Get("Emulation.StorageDeviceCapabilitiesHint"),
@@ -82,6 +85,8 @@ public sealed class EmulationStorageDeviceList : UserControl
         _devices = devices.ToArray();
         RebuildRows();
     }
+
+    public void SetCanAdd(bool canAdd) => _add.Visibility = canAdd ? Visibility.Visible : Visibility.Collapsed;
 
     private static Grid BuildHeader()
     {
@@ -195,6 +200,8 @@ public sealed class EmulationStorageDeviceList : UserControl
         EmulationStorageDeviceType.CompactDisc => LocExtension.Get("Emulation.CompactDiscDevice"),
         EmulationStorageDeviceType.Zip => "ZIP",
         EmulationStorageDeviceType.Tape => LocExtension.Get("Emulation.TapeDevice"),
+        EmulationStorageDeviceType.Cartridge => LocExtension.Get(AtariStorageSettingsConstants.CartridgeResource),
+        EmulationStorageDeviceType.Directory => LocExtension.Get(AtariStorageSettingsConstants.DirectoryResource),
         _ => type.ToString()
     };
 

@@ -11,49 +11,67 @@ internal sealed class AtariVideoAudioSettingsSection
     private readonly Dictionary<string, ComboBox> _options = new(StringComparer.Ordinal);
     private readonly ComboBox _renderer = new();
     private readonly CheckBox _audioEnabled = new();
-    internal StackPanel Video { get; } = new();
-    internal StackPanel Audio { get; } = new();
+    private readonly StackPanel _video = new();
+    private readonly StackPanel _audioOutput = new();
+    private readonly StackPanel _audioQuality = new();
+    internal UIElement Video { get; }
+    internal UIElement Audio { get; }
+
+    internal AtariVideoAudioSettingsSection()
+    {
+        Video = EmulationSettingsLayout.ScrollPage(EmulationSettingsLayout.TwoColumnPage(
+            EmulationSettingsLayout.ActionCard(_video, LocExtension.Get("Emulation.DisplaySettings")),
+            EmulationSettingsLayout.ActionCard(new Grid(), LocExtension.Get("Emulation.RenderingSettings"))));
+        var videoPage = (Grid)((ScrollViewer)Video).Content;
+        var renderingCard = (Border)videoPage.Children[1];
+        ((Border)((Grid)renderingCard.Child).Children[1]).Child = _renderer;
+        Audio = EmulationSettingsLayout.ScrollPage(EmulationSettingsLayout.TwoColumnPage(
+            EmulationSettingsLayout.ActionCard(_audioOutput, LocExtension.Get("Emulation.AudioOutput")),
+            EmulationSettingsLayout.ActionCard(_audioQuality, LocExtension.Get("Emulation.AudioQuality"))));
+    }
 
     internal void Load(AtariMachineConfiguration configuration)
     {
         var view = AtariVideoAudioSettingsFunctions.Create(configuration);
         _options.Clear();
-        Video.Children.Clear();
-        Audio.Children.Clear();
-        Add(Video, AtariVideoAudioSettingsConstants.VideoStandardResource,
+        _video.Children.Clear();
+        _audioOutput.Children.Clear();
+        _audioQuality.Children.Clear();
+        Add(_video, AtariVideoAudioSettingsConstants.VideoStandardResource,
             AtariVideoAudioSettingsConstants.StandardOptionKey, view.Standards, configuration.Options,
             view.Standards.First().Value);
-        Add(Video, AtariVideoAudioSettingsConstants.RegionResource,
+        Add(_video, AtariVideoAudioSettingsConstants.RegionResource,
             AtariVideoAudioSettingsConstants.RegionOptionKey, view.Regions, configuration.Options,
-            view.Regions.First().Value);
-        Add(Video, AtariVideoAudioSettingsConstants.ResolutionResource,
+            AtariVideoAudioSettingsFunctions.PreferredRegion(configuration.Model, view.Regions));
+        Add(_video, AtariVideoAudioSettingsConstants.ResolutionResource,
             AtariVideoAudioSettingsConstants.ResolutionOptionKey, view.Resolutions, configuration.Options,
             AtariVideoAudioSettingsConstants.AutomaticValue);
-        Add(Video, AtariVideoAudioSettingsConstants.AspectRatioResource,
+        Add(_video, AtariVideoAudioSettingsConstants.AspectRatioResource,
             AtariVideoAudioSettingsConstants.AspectRatioOptionKey, view.AspectRatios, configuration.Options,
             AtariVideoAudioSettingsConstants.AutomaticValue);
-        Add(Video, AtariVideoAudioSettingsConstants.CropResource,
+        Add(_video, AtariVideoAudioSettingsConstants.CropResource,
             AtariVideoAudioSettingsConstants.CropOptionKey, view.Cropping, configuration.Options,
             AtariVideoAudioSettingsConstants.DisabledValue);
-        Add(Video, AtariVideoAudioSettingsConstants.FrameSkipResource,
+        Add(_video, AtariVideoAudioSettingsConstants.FrameSkipResource,
             AtariVideoAudioSettingsConstants.FrameSkipOptionKey, view.FrameSkips, configuration.Options,
             AtariVideoAudioSettingsConstants.MinimumFrameSkip.ToString());
         Configure(_renderer, view.Renderers, view.Renderer.ToString());
-        Video.Children.Add(Row(AtariVideoAudioSettingsConstants.RenderingResource, _renderer));
 
         _audioEnabled.Content = LocExtension.Get(AtariVideoAudioSettingsConstants.AudioEnabledResource);
+        AtariAccessibilityFunctions.Configure(_audioEnabled,
+            LocExtension.Get(AtariVideoAudioSettingsConstants.AudioEnabledResource));
         _audioEnabled.IsChecked = view.AudioEnabled;
-        Audio.Children.Add(_audioEnabled);
-        Add(Audio, AtariVideoAudioSettingsConstants.AudioOutputResource,
+        _audioOutput.Children.Add(_audioEnabled);
+        Add(_audioOutput, AtariVideoAudioSettingsConstants.AudioOutputResource,
             AtariVideoAudioSettingsConstants.AudioOutputOptionKey, view.Outputs, configuration.Options,
             AtariVideoAudioSettingsConstants.DefaultOutputValue);
-        Add(Audio, AtariVideoAudioSettingsConstants.AudioLatencyResource,
+        Add(_audioOutput, AtariVideoAudioSettingsConstants.AudioLatencyResource,
             AtariVideoAudioSettingsConstants.AudioLatencyOptionKey, view.Latencies, configuration.Options,
             AtariVideoAudioSettingsConstants.MinimumLatencyMilliseconds.ToString());
-        Add(Audio, AtariVideoAudioSettingsConstants.AudioVolumeResource,
+        Add(_audioQuality, AtariVideoAudioSettingsConstants.AudioVolumeResource,
             AtariVideoAudioSettingsConstants.AudioVolumeOptionKey, view.Volumes, configuration.Options,
             AtariVideoAudioSettingsConstants.MaximumVolumePercent.ToString());
-        Add(Audio, AtariVideoAudioSettingsConstants.AudioQualityResource,
+        Add(_audioQuality, AtariVideoAudioSettingsConstants.AudioQualityResource,
             AtariVideoAudioSettingsConstants.AudioQualityOptionKey, view.Qualities, configuration.Options,
             AtariVideoAudioSettingsConstants.NormalQualityValue);
     }
@@ -74,7 +92,7 @@ internal sealed class AtariVideoAudioSettingsSection
         var editor = new ComboBox();
         Configure(editor, choices, AtariVideoAudioSettingsFunctions.Select(options, key, choices, fallback));
         _options[key] = editor;
-        panel.Children.Add(Row(resource, editor));
+        panel.Children.Add(AtariAccessibilityFunctions.LabeledRow(LocExtension.Get(resource), editor));
     }
 
     private static void Configure(ComboBox editor, IReadOnlyList<AtariVideoAudioChoice> choices, string selected)
@@ -85,14 +103,4 @@ internal sealed class AtariVideoAudioSettingsSection
         editor.SelectedValue = selected;
     }
 
-    private static UIElement Row(string resource, UIElement editor)
-    {
-        var row = new Grid { Margin = new Thickness(0, 4, 0, 4) };
-        row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(180) });
-        row.ColumnDefinitions.Add(new ColumnDefinition());
-        row.Children.Add(new TextBlock { Text = LocExtension.Get(resource), VerticalAlignment = VerticalAlignment.Center });
-        Grid.SetColumn(editor, 1);
-        row.Children.Add(editor);
-        return row;
-    }
 }

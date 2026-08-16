@@ -11,25 +11,23 @@ namespace GWGUI.App.Controls;
 internal sealed class AtariInputSettingsSection
 {
     private readonly InputBindingEditor _keyboard = new();
-    private readonly StackPanel _mouse = new();
     private readonly InputBindingEditor _mouseBindings = new();
     private readonly StackPanel _controllers = new();
-    private readonly CheckBox _captureMouse = new();
-    private readonly ComboBox _releaseMouse = new();
     private readonly ComboBox _mouseSpeed = new();
     private readonly List<ControllerEditor> _portEditors = [];
-    internal UIElement Keyboard => _keyboard;
-    internal UIElement Mouse => _mouse;
+    internal UIElement Keyboard => BuildKeyboardPage();
+    internal UIElement Mouse => BuildMousePage();
     internal UIElement Controllers => _controllers;
 
     internal AtariInputSettingsSection()
     {
         _keyboard.ConfigurePresentation(LocExtension.Get(AtariInputSettingsConstants.AtariKeyResource),
             LocExtension.Get(AtariInputSettingsConstants.SearchKeyResource));
-        _releaseMouse.ItemsSource = Enum.GetValues<EmulationKey>().Where(value => value != EmulationKey.Unknown);
+        AtariAccessibilityFunctions.Configure(_keyboard,
+            LocExtension.Get(AtariInputSettingsConstants.KeyboardTabResource));
         _mouseSpeed.ItemsSource = AtariInputSettingsFunctions.MouseSpeeds();
-        _mouseBindings.ConfigureCaptureSources(InputCaptureSources.Mouse | InputCaptureSources.Controller);
-        BuildMouse();
+        _mouseBindings.ConfigureCaptureSources(
+            InputCaptureSources.Keyboard | InputCaptureSources.Mouse | InputCaptureSources.Controller, true);
     }
 
     internal void Load(AtariMachineConfiguration configuration)
@@ -37,9 +35,8 @@ internal sealed class AtariInputSettingsSection
         var view = AtariInputSettingsFunctions.Create(configuration);
         _keyboard.Visibility = view.HasKeyboard ? Visibility.Visible : Visibility.Collapsed;
         _keyboard.SetRows(view.KeyboardDefinitions, view.KeyboardBindings);
-        _mouse.Visibility = view.HasMouse ? Visibility.Visible : Visibility.Collapsed;
-        _captureMouse.IsChecked = configuration.Input.CaptureMouse;
-        _releaseMouse.SelectedItem = configuration.Input.ReleaseMouseKey;
+        _mouseBindings.Visibility = view.HasMouse ? Visibility.Visible : Visibility.Collapsed;
+        _mouseSpeed.Visibility = view.HasMouse ? Visibility.Visible : Visibility.Collapsed;
         _mouseSpeed.SelectedItem = view.MouseSpeedPercent;
         _mouseBindings.SetRows(view.MouseDefinitions, view.MouseBindings);
         BuildControllers(view.Ports);
@@ -54,18 +51,31 @@ internal sealed class AtariInputSettingsSection
             DeadZonePercent: editor.DeadZone.SelectedItem is int deadZone
                 ? deadZone : AtariControllerConstants.DefaultDeadZonePercent)).ToArray();
         return AtariInputSettingsFunctions.Apply(configuration, _keyboard.Rows, _mouseBindings.Rows, controllers,
-            _captureMouse.IsChecked == true,
-            _releaseMouse.SelectedItem is EmulationKey release ? release : EmulationKey.Escape,
+            configuration.Input.CaptureMouse, configuration.Input.ReleaseMouseKey,
             _mouseSpeed.SelectedItem is int speed ? speed : AtariInputSettingsConstants.DefaultMouseSpeedPercent);
     }
 
-    private void BuildMouse()
+    private UIElement BuildKeyboardPage()
     {
-        _captureMouse.Content = LocExtension.Get(AtariInputSettingsConstants.CaptureMouseResource);
-        _mouse.Children.Add(_captureMouse);
-        _mouse.Children.Add(Row(AtariInputSettingsConstants.ReleaseMouseResource, _releaseMouse));
-        _mouse.Children.Add(Row(AtariInputSettingsConstants.MouseSpeedResource, _mouseSpeed));
-        _mouse.Children.Add(_mouseBindings);
+        var page = new Grid { Margin = new Thickness(12) };
+        page.Children.Add(EmulationSettingsLayout.InputBindings(_keyboard,
+            LocExtension.Get("Emulation.InputActions"), LocExtension.Get("Emulation.SpecialKeysOnlyHint")));
+        return page;
+    }
+
+    private UIElement BuildMousePage()
+    {
+        var root = new Grid { Margin = new Thickness(12) };
+        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        root.RowDefinitions.Add(new RowDefinition());
+        root.Children.Add(EmulationSettingsLayout.IconCard(EmulationSettingsLayout.CompactForm(1,
+            (LocExtension.Get("Emulation.MouseSpeed"), _mouseSpeed)),
+            LocExtension.Get("Emulation.MouseTab"), "\uE962"));
+        var bindings = EmulationSettingsLayout.InputBindings(_mouseBindings,
+            LocExtension.Get("Emulation.MouseActions"), LocExtension.Get("Emulation.InputCaptureHint"));
+        bindings.Margin = new Thickness(0, 10, 0, 0);
+        Grid.SetRow(bindings, 1); root.Children.Add(bindings);
+        return EmulationSettingsLayout.ScrollPage(root);
     }
 
     private void BuildControllers(IReadOnlyList<AtariControllerPortView> ports)
@@ -74,6 +84,10 @@ internal sealed class AtariInputSettingsSection
         _portEditors.Clear();
         var detection = new TextBlock();
         var detect = new Button { Content = LocExtension.Get(AtariInputSettingsConstants.DetectControllersResource) };
+        AtariAccessibilityFunctions.Configure(detect,
+            LocExtension.Get(AtariInputSettingsConstants.DetectControllersResource));
+        AtariAccessibilityFunctions.Configure(detection,
+            LocExtension.Get(AtariAccessibilityConstants.ControllerStatusResource));
         detect.Click += (_, _) =>
         {
             var count = XInputControllerReader.ReadAll().Count;
@@ -105,24 +119,16 @@ internal sealed class AtariInputSettingsSection
             bindings.ConfigureCaptureSources(InputCaptureSources.Keyboard | InputCaptureSources.Controller, true);
             bindings.SetRows(port.Definitions, port.Bindings);
             var group = new StackPanel();
-            group.Children.Add(Row(AtariInputSettingsConstants.ControllerTypeResource, peripheral));
-            group.Children.Add(Row(AtariInputSettingsConstants.ControllerDeviceResource, device));
-            group.Children.Add(Row(AtariInputSettingsConstants.DeadZoneResource, deadZone));
+            group.Children.Add(AtariAccessibilityFunctions.LabeledRow(
+                LocExtension.Get(AtariInputSettingsConstants.ControllerTypeResource), peripheral));
+            group.Children.Add(AtariAccessibilityFunctions.LabeledRow(
+                LocExtension.Get(AtariInputSettingsConstants.ControllerDeviceResource), device));
+            group.Children.Add(AtariAccessibilityFunctions.LabeledRow(
+                LocExtension.Get(AtariInputSettingsConstants.DeadZoneResource), deadZone));
             group.Children.Add(bindings);
             _controllers.Children.Add(new GroupBox { Header = port.Port.ToString(CultureInfo.CurrentCulture), Content = group });
             _portEditors.Add(new ControllerEditor(port.Port, peripheral, device, deadZone, bindings));
         }
-    }
-
-    private static UIElement Row(string resource, UIElement editor)
-    {
-        var row = new Grid { Margin = new Thickness(0, 4, 0, 4) };
-        row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(180) });
-        row.ColumnDefinitions.Add(new ColumnDefinition());
-        row.Children.Add(new TextBlock { Text = LocExtension.Get(resource), VerticalAlignment = VerticalAlignment.Center });
-        Grid.SetColumn(editor, 1);
-        row.Children.Add(editor);
-        return row;
     }
 
     private sealed record ControllerEditor(int Port, ComboBox Peripheral, ComboBox Device, ComboBox DeadZone,

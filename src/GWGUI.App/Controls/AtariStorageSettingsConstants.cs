@@ -19,7 +19,7 @@ internal static class AtariStorageSettingsConstants
     internal const string BrowseResource = "Common.Browse";
     internal const string PathResource = "Emulation.AssociatedMedia";
     internal const string TypeResource = "Emulation.Type";
-    internal const string IdentifierResource = "Emulation.AudioDevice";
+    internal const string IdentifierResource = "Emulation.DeviceId";
     internal const string InterfaceResource = "Emulation.Interface";
     internal const string MediaFilterResource = "Emulation.AtariMediaFilter";
     internal const string DisplaySeparator = " · ";

@@ -201,7 +201,7 @@ public sealed class OptionsEmulationSection : UserControl
 
         AddFamilyTab("\uE713", LocExtension.Get("Emulation.GeneralTab"), BuildGeneralEmulationSettings());
         AddFamilyTab("\uE765", LocExtension.Get("Emulation.ShortcutsTab"), BuildGlobalInputAssignments());
-        AddFamilyTab("\uE8A5", LocExtension.Get("Emulation.Configurations"), BuildConfigurationCatalog());
+        AddFamilyTab("\uE8A5", LocExtension.Get("Emulation.Configurations"), BuildConfigurationCatalogs());
         AddFamilyTab("\uE7FC", "Amiga", BuildAmigaEditor());
         _atariConfigurations.ConfigurationSaved += (_, configuration) =>
             AtariConfigurationSaved?.Invoke(this, configuration);
@@ -422,7 +422,21 @@ public sealed class OptionsEmulationSection : UserControl
         return row;
     }
 
-    private UIElement BuildConfigurationCatalog()
+    private UIElement BuildConfigurationCatalogs()
+    {
+        var tabs = new TabControl
+        {
+            Margin = new Thickness(8),
+            HorizontalContentAlignment = HorizontalAlignment.Stretch,
+            VerticalContentAlignment = VerticalAlignment.Stretch
+        };
+        AddMachineTab(tabs, "\uE7FC", ControlVisualConstants.AmigaTitle, BuildAmigaConfigurationCatalog());
+        AddMachineTab(tabs, "\uE7FC", AtariConfigurationCatalogConstants.AtariTitle,
+            _atariConfigurations.CatalogContent);
+        return tabs;
+    }
+
+    private UIElement BuildAmigaConfigurationCatalog()
     {
         var root = new Grid { Margin = new Thickness(12) };
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
@@ -1147,19 +1161,7 @@ public sealed class OptionsEmulationSection : UserControl
     }
 
     private static Grid TwoColumnPage(Border left, Border right)
-    {
-        var grid = new Grid { Margin = new Thickness(12) };
-        grid.ColumnDefinitions.Add(new ColumnDefinition());
-        grid.ColumnDefinitions.Add(new ColumnDefinition());
-        grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        left.Margin = new Thickness(0, 0, 5, 0);
-        right.Margin = new Thickness(5, 0, 0, 0);
-        grid.Children.Add(left);
-        Grid.SetColumn(right, 1);
-        grid.Children.Add(right);
-        return grid;
-    }
+        => EmulationSettingsLayout.TwoColumnPage(left, right);
 
     private static void AddMachineTab(TabControl tabs, string icon, string title, UIElement content)
     {
@@ -1176,21 +1178,7 @@ public sealed class OptionsEmulationSection : UserControl
     }
 
     private static Grid ThreeColumnPage(Border left, Border center, Border right)
-    {
-        var grid = new Grid { Margin = new Thickness(12) };
-        grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        grid.ColumnDefinitions.Add(new ColumnDefinition());
-        grid.ColumnDefinitions.Add(new ColumnDefinition());
-        grid.ColumnDefinitions.Add(new ColumnDefinition());
-        left.Margin = new Thickness(0, 0, 5, 0);
-        center.Margin = new Thickness(5, 0, 5, 0);
-        right.Margin = new Thickness(5, 0, 0, 0);
-        grid.Children.Add(left);
-        Grid.SetColumn(center, 1); grid.Children.Add(center);
-        Grid.SetColumn(right, 2); grid.Children.Add(right);
-        return grid;
-    }
+        => EmulationSettingsLayout.ThreeColumnPage(left, center, right);
 
     private static Border FullWidthCard(UIElement content, string title, int row)
     {
@@ -1433,34 +1421,7 @@ public sealed class OptionsEmulationSection : UserControl
     }
 
     private static Grid CreateCompactForm(int fieldColumns, params (string Label, FrameworkElement Control)[] fields)
-    {
-        var form = new Grid { Margin = new Thickness(10) };
-        for (var column = 0; column < fieldColumns; column++)
-        {
-            form.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto, MinWidth = 125 });
-            form.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star), MinWidth = 150 });
-        }
-        var rows = (int)Math.Ceiling(fields.Length / (double)fieldColumns);
-        for (var row = 0; row < rows; row++) form.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        for (var index = 0; index < fields.Length; index++)
-        {
-            var row = index / fieldColumns;
-            var column = (index % fieldColumns) * 2;
-            var label = new TextBlock
-            {
-                Text = fields[index].Label, VerticalAlignment = VerticalAlignment.Center,
-                Margin = new Thickness(column == 0 ? 0 : 18, 7, 10, 7), TextWrapping = TextWrapping.Wrap
-            };
-            Grid.SetRow(label, row); Grid.SetColumn(label, column);
-            form.Children.Add(label);
-            var control = fields[index].Control;
-            control.Margin = new Thickness(0, 4, 0, 4);
-            control.VerticalAlignment = VerticalAlignment.Center;
-            Grid.SetRow(control, row); Grid.SetColumn(control, column + 1);
-            form.Children.Add(control);
-        }
-        return form;
-    }
+        => EmulationSettingsLayout.CompactForm(fieldColumns, fields);
 
     private static Border Card(UIElement child, string? title = null)
     {

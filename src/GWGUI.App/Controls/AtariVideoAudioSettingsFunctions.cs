@@ -55,6 +55,29 @@ internal static class AtariVideoAudioSettingsFunctions
         return choices.Any(value => value.Value == fallback) ? fallback : choices.First().Value;
     }
 
+    internal static string PreferredRegion(AtariMachineModel model, IReadOnlyList<AtariVideoAudioChoice> choices)
+    {
+        if (AtariCompatibilityCatalog.Get(model).Core != AtariCoreKind.Hatari) return choices.First().Value;
+        var region = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName switch
+        {
+            "en" => AtariStRegion.UnitedKingdom,
+            "de" => AtariStRegion.Germany,
+            "fr" => AtariStRegion.France,
+            "es" => AtariStRegion.Spain,
+            "it" => AtariStRegion.Italy,
+            "sv" => AtariStRegion.Sweden,
+            "fi" => AtariStRegion.Finland,
+            "nb" or "no" => AtariStRegion.Norway,
+            "cs" => AtariStRegion.CzechRepublic,
+            "ru" => AtariStRegion.Russia,
+            "el" => AtariStRegion.Greece,
+            _ => AtariStRegion.Multilingual
+        };
+        var value = region.ToString();
+        return choices.Any(choice => choice.Value == value)
+            ? value : AtariStRegion.Multilingual.ToString();
+    }
+
     private static IReadOnlyList<AtariVideoAudioChoice> Standards(AtariMachineModel model)
     {
         if (AtariCompatibilityCatalog.Get(model).Core == AtariCoreKind.Hatari)

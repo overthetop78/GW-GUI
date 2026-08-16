@@ -1,5 +1,7 @@
 namespace GWGUI.App.Controls;
 
+using GWGUI.Emulation;
+
 internal static class AtariInputSettingsConstants
 {
     internal const string KeyboardTabResource = "Emulation.KeyboardTab";
@@ -13,7 +15,7 @@ internal static class AtariInputSettingsConstants
     internal const string DetectControllersResource = "Emulation.DetectControllers";
     internal const string NoControllerResource = "Emulation.NoControllersDetected";
     internal const string ControllerTypeResource = "Emulation.ControllerType";
-    internal const string ControllerDeviceResource = "Emulation.AudioDevice";
+    internal const string ControllerDeviceResource = "Emulation.ControllerDevice";
     internal const string DeadZoneResource = "Emulation.AnalogMouseDeadzone";
     internal const string MouseSpeedOptionKey = "gwgui_atari_mouse_speed";
     internal const string MouseMappingOptionPrefix = "gwgui_atari_mouse_";
@@ -31,6 +33,22 @@ internal static class AtariInputSettingsConstants
         ["Start", "Pause", "Reset", "Key0", "Key1", "Key2", "Key3", "Key4", "Key5", "Key6", "Key7", "Key8", "Key9", "Star", "Hash"];
     internal static readonly IReadOnlyList<string> JaguarControllerActions =
         ["A", "B", "C", "Option", "Pause", "Key0", "Key1", "Key2", "Key3", "Key4", "Key5", "Key6", "Key7", "Key8", "Key9", "Star", "Hash"];
-    internal static readonly IReadOnlyList<string> MouseActions =
-        ["Left", "Right", "Middle", "WheelUp", "WheelDown"];
+    internal static readonly IReadOnlyList<string> MouseActions = ["Left", "Right"];
+    internal static readonly IReadOnlyList<EmulationKey> FunctionKeys =
+        [EmulationKey.F1, EmulationKey.F2, EmulationKey.F3, EmulationKey.F4, EmulationKey.F5,
+         EmulationKey.F6, EmulationKey.F7, EmulationKey.F8, EmulationKey.F9, EmulationKey.F10];
+    internal static readonly IReadOnlyList<EmulationKey> ComputerSpecialKeys =
+        [EmulationKey.Help, EmulationKey.AtariUndo, EmulationKey.AtariBreak];
+    internal static readonly IReadOnlyList<EmulationKey> Atari800SpecialKeys =
+        [EmulationKey.AtariOption, EmulationKey.AtariSelect, EmulationKey.AtariStart, EmulationKey.Help, EmulationKey.AtariBreak];
+    internal static readonly IReadOnlyDictionary<EmulationKey, EmulationKey> SpecialKeyDefaults =
+        new Dictionary<EmulationKey, EmulationKey>
+        {
+            [EmulationKey.Help] = EmulationKey.Insert,
+            [EmulationKey.AtariUndo] = EmulationKey.Home,
+            [EmulationKey.AtariBreak] = EmulationKey.End,
+            [EmulationKey.AtariOption] = EmulationKey.F2,
+            [EmulationKey.AtariSelect] = EmulationKey.F3,
+            [EmulationKey.AtariStart] = EmulationKey.F1
+        };
 }
