@@ -12,6 +12,9 @@ internal static class AtariStateConstants
     internal const int HashBufferSize = 64 * 1024;
     internal const int EmptyLength = 0;
     internal const int FirstBufferIndex = 0;
+    internal const int ReadRetryCount = 8;
+    internal const int FirstRetryIndex = 0;
+    internal const int NextRetryCount = 1;
     internal const char CanonicalDirectorySeparator = '/';
     internal const string AllFilesSearchPattern = "*";
     internal const string InvalidMagicError = "The file is not a GW GUI Atari state.";

@@ -471,12 +471,12 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-036 — Implémenter le magasin d’états
 
-- [ ] Créer un dossier par machine sous le stockage partagé ou portable approprié.
-- [ ] Écrire par fichier temporaire puis remplacement atomique.
-- [ ] Ajouter état rapide, états nommés, date, capture et métadonnées.
-- [ ] Ne jamais enregistrer firmware ou contenu protégé dans le fichier d’état.
-- [ ] Nettoyer uniquement les états de la configuration supprimée après confirmation.
-- [ ] Tester noms invalides, écriture interrompue, lecture concurrente et restauration.
+- [x] Créer un dossier par machine sous le stockage partagé ou portable approprié.
+- [x] Écrire par fichier temporaire puis remplacement atomique.
+- [x] Ajouter état rapide, états nommés, date, capture et métadonnées.
+- [x] Ne jamais enregistrer firmware ou contenu protégé dans le fichier d’état.
+- [x] Nettoyer uniquement les états de la configuration supprimée après confirmation.
+- [x] Tester noms invalides, écriture interrompue, lecture concurrente et restauration.
 
 #### ATA-037 — Implémenter le stockage des configurations
 
