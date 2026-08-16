@@ -126,19 +126,7 @@ public sealed class AtariConfigurationCatalogTests
     }
 
     private static void RunOnSta(Action action)
-    {
-        Exception? failure = null;
-        var thread = new Thread(() =>
-        {
-            try { action(); }
-            catch (Exception error) { failure = error; }
-            finally { Dispatcher.CurrentDispatcher.InvokeShutdown(); }
-        });
-        thread.SetApartmentState(ApartmentState.STA);
-        thread.Start();
-        Assert.True(thread.Join(AtariConfigurationCatalogTestConstants.StaTimeoutMilliseconds));
-        if (failure is not null) throw failure;
-    }
+        => WpfTestHost.Run(action);
 }
 
 internal static class AtariConfigurationCatalogTestConstants

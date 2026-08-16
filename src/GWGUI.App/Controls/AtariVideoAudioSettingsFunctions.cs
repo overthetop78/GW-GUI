@@ -58,25 +58,43 @@ internal static class AtariVideoAudioSettingsFunctions
     internal static string PreferredRegion(AtariMachineModel model, IReadOnlyList<AtariVideoAudioChoice> choices)
     {
         if (AtariCompatibilityCatalog.Get(model).Core != AtariCoreKind.Hatari) return choices.First().Value;
-        var region = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName switch
+        var culture = CultureInfo.CurrentUICulture;
+        var region = culture.Name switch
         {
-            "en" => AtariStRegion.UnitedKingdom,
-            "de" => AtariStRegion.Germany,
-            "fr" => AtariStRegion.France,
-            "es" => AtariStRegion.Spain,
-            "it" => AtariStRegion.Italy,
-            "sv" => AtariStRegion.Sweden,
-            "fi" => AtariStRegion.Finland,
-            "nb" or "no" => AtariStRegion.Norway,
-            "cs" => AtariStRegion.CzechRepublic,
-            "ru" => AtariStRegion.Russia,
-            "el" => AtariStRegion.Greece,
-            _ => AtariStRegion.Multilingual
+            AtariHardwareSettingsConstants.UnitedStatesCulture => AtariStRegion.UnitedStates,
+            AtariHardwareSettingsConstants.UnitedKingdomCulture => AtariStRegion.UnitedKingdom,
+            AtariHardwareSettingsConstants.GermanyCulture => AtariStRegion.Germany,
+            AtariHardwareSettingsConstants.FranceCulture => AtariStRegion.France,
+            AtariHardwareSettingsConstants.SpainCulture => AtariStRegion.Spain,
+            AtariHardwareSettingsConstants.ItalyCulture => AtariStRegion.Italy,
+            AtariHardwareSettingsConstants.SwedenCulture => AtariStRegion.Sweden,
+            AtariHardwareSettingsConstants.SwitzerlandCulture => AtariStRegion.Switzerland,
+            AtariHardwareSettingsConstants.FinlandCulture => AtariStRegion.Finland,
+            AtariHardwareSettingsConstants.NorwayCulture => AtariStRegion.Norway,
+            AtariHardwareSettingsConstants.CzechRepublicCulture => AtariStRegion.CzechRepublic,
+            AtariHardwareSettingsConstants.RussiaCulture => AtariStRegion.Russia,
+            AtariHardwareSettingsConstants.GreeceCulture => AtariStRegion.Greece,
+            _ => RegionFromLanguage(culture.TwoLetterISOLanguageName)
         };
         var value = region.ToString();
         return choices.Any(choice => choice.Value == value)
             ? value : AtariStRegion.Multilingual.ToString();
     }
+
+    private static AtariStRegion RegionFromLanguage(string language) => language switch
+    {
+        "de" => AtariStRegion.Germany,
+        "fr" => AtariStRegion.France,
+        "es" => AtariStRegion.Spain,
+        "it" => AtariStRegion.Italy,
+        "sv" => AtariStRegion.Sweden,
+        "fi" => AtariStRegion.Finland,
+        "nb" or "no" => AtariStRegion.Norway,
+        "cs" => AtariStRegion.CzechRepublic,
+        "ru" => AtariStRegion.Russia,
+        "el" => AtariStRegion.Greece,
+        _ => AtariStRegion.Multilingual
+    };
 
     private static IReadOnlyList<AtariVideoAudioChoice> Standards(AtariMachineModel model)
     {
@@ -101,7 +119,7 @@ internal static class AtariVideoAudioSettingsFunctions
             (AtariVideoAudioSettingsConstants.EnabledValue, L(AtariVideoAudioSettingsConstants.EnabledResource)));
 
     private static IReadOnlyList<AtariVideoAudioChoice> NumericChoices(int minimum, int maximum, int step) =>
-        Enumerable.Range(minimum, (maximum - minimum) / step + AtariVideoAudioSettingsConstants.FrameSkipStep)
+        Enumerable.Range(minimum, (maximum - minimum) / step + AtariVideoAudioSettingsConstants.InclusiveEndpointCount)
             .Select(index => minimum + index * step)
             .Select(value => Official(value.ToString(CultureInfo.InvariantCulture))).ToArray();
 

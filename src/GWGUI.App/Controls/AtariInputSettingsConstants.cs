@@ -14,7 +14,8 @@ internal static class AtariInputSettingsConstants
     internal const string NoControllerResource = "Emulation.NoControllersDetected";
     internal const string ControllerTypeResource = "Emulation.ControllerType";
     internal const string ControllerDeviceResource = "Emulation.ControllerDevice";
-    internal const string DeadZoneResource = "Emulation.AnalogMouseDeadzone";
+    internal const string NoKeyboardResource = "Emulation.AtariUnavailable.NoKeyboard";
+    internal const string NoMouseResource = "Emulation.AtariUnavailable.NoMouse";
     internal const string MouseSpeedOptionKey = "gwgui_atari_mouse_speed";
     internal const string MouseMappingOptionPrefix = "gwgui_atari_mouse_";
     internal const int DefaultMouseSpeedPercent = 100;
@@ -24,7 +25,8 @@ internal static class AtariInputSettingsConstants
     internal const int InclusiveEndpointCount = 1;
     internal const int FirstPort = 0;
     internal const int NoControllerCount = 0;
-    internal const string XInputDevicePrefix = "XInput ";
+    internal const string ControllerNameSeparator = " · ";
+    internal const int MappingEditorMinimumHeight = 300;
     internal static readonly IReadOnlyList<string> StandardControllerActions =
         ["Up", "Down", "Left", "Right", "Fire1", "Fire2", "Turbo"];
     internal static readonly IReadOnlyList<string> KeypadControllerActions =

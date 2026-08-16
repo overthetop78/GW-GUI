@@ -131,11 +131,14 @@ public sealed class EmulationSection : UserControl
         catch (Exception error)
         {
             var isAtari = selected.Family == MachineFamily.Atari;
-            ControlErrorPresenter.ShowDetailed(this, error,
-                isAtari ? AtariErrorLocalizationFunctions.Describe(error) : error.Message,
-                isAtari ? AtariEmulationConstants.ConfigurationOpeningContext
-                    : ControlErrorContexts.AmigaConfigurationOpening,
-                isAtari ? AtariEmulationConstants.AtariTitle : ControlVisualConstants.AmigaTitle);
+            if (isAtari)
+                ControlErrorPresenter.ShowDetailed(this, error,
+                    AtariErrorLocalizationFunctions.Describe(error),
+                    AtariEmulationConstants.ConfigurationOpeningContext,
+                    AtariEmulationConstants.AtariTitle);
+            else
+                ControlErrorPresenter.ShowUnexpected(this, error,
+                    ControlErrorContexts.AmigaConfigurationOpening, ControlVisualConstants.AmigaTitle);
         }
         finally { _open.IsEnabled = _configuration.SelectedItem is not null; }
     }

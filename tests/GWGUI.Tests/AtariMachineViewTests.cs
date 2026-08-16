@@ -222,24 +222,7 @@ public sealed class AtariMachineViewTests
         AtariMachineViewTestConstants.FramePitch, EmulationPixelFormat.Xrgb8888, aspect, default, default);
 
     private static void RunOnSta(Action action)
-    {
-        Exception? failure = null;
-        var thread = new Thread(() =>
-        {
-            try
-            {
-                var app = Application.Current as GWGUI.App.App ?? new GWGUI.App.App();
-                app.InitializeComponent();
-                action();
-            }
-            catch (Exception error) { failure = error; }
-            finally { Dispatcher.CurrentDispatcher.InvokeShutdown(); }
-        });
-        thread.SetApartmentState(ApartmentState.STA);
-        thread.Start();
-        Assert.True(thread.Join(AtariMachineViewTestConstants.StaTimeoutMilliseconds));
-        if (failure is not null) throw failure;
-    }
+        => WpfTestHost.Run(action);
 
     private sealed class ViewMachine : IAtariMachine
     {

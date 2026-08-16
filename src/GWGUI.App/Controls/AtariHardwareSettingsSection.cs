@@ -96,8 +96,12 @@ internal sealed class AtariHardwareSettingsSection : UserControl
 
     private UIElement StoragePage()
     {
+        var content = new StackPanel();
+        content.Children.Add(_storage.Content);
+        var hint = EmulationSettingsLayout.InformationBanner(LocExtension.Get("Emulation.RemovableMediaRuntimeHint"));
+        content.Children.Add(hint);
         var page = new Grid { Margin = new Thickness(12) };
-        page.Children.Add(EmulationSettingsLayout.ActionCard(_storage.Content,
+        page.Children.Add(EmulationSettingsLayout.ActionCard(content,
             LocExtension.Get("Emulation.StorageDevices")));
         return EmulationSettingsLayout.ScrollPage(page);
     }

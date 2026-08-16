@@ -215,13 +215,9 @@ public sealed class ApplicationShellTests : CoreTestBase
     [Fact]
     public void MainWindowXamlLoadsWithStatusBindingsAndAlignmentMenu()
     {
-        Exception? failure = null;
-        var thread = new Thread(() =>
+        WpfTestHost.Run(() =>
         {
-            try
-            {
-                var app = Application.Current as GWGUI.App.App ?? new GWGUI.App.App();
-                app.InitializeComponent();
+                var app = Assert.IsType<GWGUI.App.App>(Application.Current);
                 ThemeManager.Apply(AppTheme.Light);
                 var lightWindow = Assert.IsType<System.Windows.Media.SolidColorBrush>(app.Resources["WindowBrush"]).Color;
                 var lightText = Assert.IsType<System.Windows.Media.SolidColorBrush>(app.Resources["TextBrush"]).Color;
@@ -552,14 +548,6 @@ public sealed class ApplicationShellTests : CoreTestBase
                 window.Close();
                 Dispatcher.CurrentDispatcher.Invoke(() => { }, System.Windows.Threading.DispatcherPriority.ApplicationIdle);
                 Assert.Equal(1, settingsStore.SaveCount);
-            }
-            catch (Exception exception) { failure = exception; }
-            finally { Dispatcher.CurrentDispatcher.InvokeShutdown(); }
         });
-        thread.SetApartmentState(ApartmentState.STA);
-        thread.Start();
-        Assert.True(thread.Join(TimeSpan.FromSeconds(60)), "The WPF smoke test timed out.");
-        if (failure is not null)
-            System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(failure).Throw();
     }
 }

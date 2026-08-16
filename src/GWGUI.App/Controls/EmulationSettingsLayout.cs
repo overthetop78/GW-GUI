@@ -97,6 +97,41 @@ internal static class EmulationSettingsLayout
         return HeaderCard(child, header);
     }
 
+    internal static Border InformationBanner(string text)
+        => InformationBanner(new TextBlock { Text = text, TextWrapping = TextWrapping.Wrap });
+
+    internal static Border InformationBanner(TextBlock text)
+    {
+        var content = new StackPanel
+        {
+            Orientation = Orientation.Horizontal,
+            Margin = new Thickness(12, 9, 12, 9)
+        };
+        var icon = new TextBlock
+        {
+            Text = "\uE946",
+            FontFamily = ControlVisualConstants.IconFont,
+            FontSize = 18,
+            VerticalAlignment = VerticalAlignment.Center,
+            Margin = new Thickness(0, 0, 10, 0)
+        };
+        icon.SetResourceReference(TextBlock.ForegroundProperty, "AccentBrush");
+        content.Children.Add(icon);
+        text.VerticalAlignment = VerticalAlignment.Center;
+        text.SetResourceReference(TextBlock.ForegroundProperty, "MutedTextBrush");
+        content.Children.Add(text);
+        var banner = new Border
+        {
+            Child = content,
+            BorderThickness = new Thickness(1),
+            CornerRadius = new CornerRadius(7),
+            Margin = new Thickness(12, 0, 12, 12)
+        };
+        banner.SetResourceReference(Border.BackgroundProperty, "WindowBrush");
+        banner.SetResourceReference(Border.BorderBrushProperty, "BorderBrush");
+        return banner;
+    }
+
     internal static ScrollViewer ScrollPage(UIElement child)
     {
         var viewer = new ScrollViewer

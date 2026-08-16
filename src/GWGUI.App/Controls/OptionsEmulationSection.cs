@@ -638,12 +638,12 @@ public sealed class OptionsEmulationSection : UserControl
         var mainMemory = new StackPanel();
         mainMemory.Children.Add(FieldGrid((LocExtension.Get("Emulation.ChipMemory"), _chipMemory),
             (LocExtension.Get("Emulation.SlowMemory"), _slowMemory)));
-        mainMemory.Children.Add(InformationBanner(_mainMemoryHint));
+        mainMemory.Children.Add(EmulationSettingsLayout.InformationBanner(_mainMemoryHint));
 
         var extensions = new StackPanel();
         extensions.Children.Add(FieldGrid((LocExtension.Get("Emulation.FastMemory"), _fastMemory),
             (LocExtension.Get("Emulation.Z3Memory"), _z3Memory)));
-        extensions.Children.Add(InformationBanner(_extensionMemoryHint));
+        extensions.Children.Add(EmulationSettingsLayout.InformationBanner(_extensionMemoryHint));
 
         var root = TwoColumnPage(
             IconCard(mainMemory, LocExtension.Get("Emulation.MainMemory"), "\uE964"),
@@ -742,7 +742,7 @@ public sealed class OptionsEmulationSection : UserControl
                 CheckBoxTile(_muteEmptyFloppy),
                 PercentageSliderTile(LocExtension.Get("Emulation.CdAudioVolume"), _cdAudioVolume)),
                 LocExtension.Get("Emulation.AudioDrives")));
-        var audioInput = InformationBanner(new TextBlock
+        var audioInput = EmulationSettingsLayout.InformationBanner(new TextBlock
         {
             Text = LocExtension.Get("Emulation.AudioInputUnavailable"),
             TextWrapping = TextWrapping.Wrap
@@ -760,7 +760,7 @@ public sealed class OptionsEmulationSection : UserControl
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         var devicePanel = new StackPanel();
         devicePanel.Children.Add(_storageDevices);
-        devicePanel.Children.Add(InformationBanner(new TextBlock
+        devicePanel.Children.Add(EmulationSettingsLayout.InformationBanner(new TextBlock
         {
             Text = LocExtension.Get("Emulation.RemovableMediaRuntimeHint"),
             TextWrapping = TextWrapping.Wrap
@@ -1324,38 +1324,6 @@ public sealed class OptionsEmulationSection : UserControl
         Grid.SetRow(card, row);
         Grid.SetColumnSpan(card, 2);
         return card;
-    }
-
-    private static Border InformationBanner(TextBlock text)
-    {
-        var content = new StackPanel
-        {
-            Orientation = Orientation.Horizontal,
-            Margin = new Thickness(12, 9, 12, 9)
-        };
-        var icon = new TextBlock
-        {
-            Text = "\uE946",
-            FontFamily = ControlVisualConstants.IconFont,
-            FontSize = 18,
-            VerticalAlignment = VerticalAlignment.Center,
-            Margin = new Thickness(0, 0, 10, 0)
-        };
-        icon.SetResourceReference(ForegroundProperty, "AccentBrush");
-        content.Children.Add(icon);
-        text.VerticalAlignment = VerticalAlignment.Center;
-        text.SetResourceReference(ForegroundProperty, "MutedTextBrush");
-        content.Children.Add(text);
-        var banner = new Border
-        {
-            Child = content,
-            BorderThickness = new Thickness(1),
-            CornerRadius = new CornerRadius(7),
-            Margin = new Thickness(12, 0, 12, 12)
-        };
-        banner.SetResourceReference(BackgroundProperty, "WindowBrush");
-        banner.SetResourceReference(BorderBrushProperty, "BorderBrush");
-        return banner;
     }
 
     private static Grid FieldGrid(params (string Label, FrameworkElement Control)[] fields) => FieldGrid(1, fields);

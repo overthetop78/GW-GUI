@@ -524,7 +524,7 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 - [x] Ajouter le choix du modèle et déterminer automatiquement le cœur associé.
 - [x] Intégrer le panneau d’installation du cœur correspondant.
-- [x] Ajouter les dossiers partagés et ceux propres aux disquettes, cassettes, cartouches, CD, états et captures.
+- [x] Afficher uniquement le dossier par défaut utile au modèle, dans la même carte que pour Amiga, sans inventer de stockage commun supplémentaire.
 - [x] Ajouter firmware principal et complémentaires avec détection et compatibilité.
 - [x] Ajouter alimentation/reset/démarrage lorsque ces valeurs sont réellement configurables.
 - [x] Afficher toutes les erreurs et indisponibilités avec ressources localisées.
@@ -551,10 +551,10 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 #### ATA-044 — Construire l’onglet Stockage
 
 - [x] Présenter une liste de périphériques issue du modèle sélectionné.
-- [x] Ajouter/configurer/supprimer lecteurs de disquette et disques Hatari autorisés.
-- [x] Ajouter/configurer/supprimer lecteurs de disquette, cassette et cartouche Atari800 autorisés.
-- [x] Afficher un lecteur cartouche pour 2600, 7800, Lynx et Jaguar.
-- [x] Afficher cartouche et lecteur CD pour Jaguar CD.
+- [x] Afficher pour ST/STF/STFM/STE/TT/Falcon le lecteur de disquette principal fixe et non supprimable.
+- [x] Afficher pour les ordinateurs 8 bits le lecteur principal réellement associé au modèle, fixe et non supprimable.
+- [x] Afficher un lecteur cartouche fixe pour 2600, 5200, 7800, XEGS, Lynx et Jaguar.
+- [x] Afficher un lecteur CD fixe pour Jaguar CD, sans lecteur supplémentaire inventé.
 - [x] Empêcher les doublons d’identifiant et les types incompatibles.
 - [x] Expliquer que les médias amovibles peuvent être insérés ou remplacés depuis la machine active.
 - [x] Tester toutes les transitions de modèle et la persistance des périphériques.
@@ -566,7 +566,8 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 - [x] Afficher options souris et actions uniquement sur les modèles compatibles.
 - [x] Afficher détection, ports, types et périphériques de contrôleur selon la matrice.
 - [x] Ajouter mappings spécifiques 5200 et Jaguar lorsque nécessaires.
-- [x] Réutiliser zones mortes, vitesses analogiques, turbo et détection des conflits.
+- [x] Réutiliser les éditeurs communs, la détection des conflits et le turbo uniquement là où le périphérique Atari le permet.
+- [x] Limiter la souris aux boutons réellement présents et ne pas dupliquer ici la capture ou sa touche globale de libération.
 - [x] Tester restauration des défauts, suppression, conflit et changement de modèle.
 
 #### ATA-046 — Construire la section principale Atari

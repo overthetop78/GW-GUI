@@ -53,4 +53,5 @@ internal static class AtariVideoAudioSettingsConstants
     internal const int MinimumVolumePercent = 0;
     internal const int MaximumVolumePercent = 100;
     internal const int VolumeStepPercent = 10;
+    internal const int InclusiveEndpointCount = 1;
 }

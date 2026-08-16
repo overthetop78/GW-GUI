@@ -1,5 +1,6 @@
 using System.Globalization;
 using GWGUI.App.Input;
+using GWGUI.App.Localization;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari;
 
@@ -32,7 +33,7 @@ internal static class AtariInputSettingsFunctions
             && int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed)
                 ? parsed : AtariInputSettingsConstants.DefaultMouseSpeedPercent;
         var mouseDefinitions = hasMouse ? AtariInputSettingsConstants.MouseActions.Select(action =>
-            new InputBindingDefinition(action, action, InputBindingSyntax.Mouse(action))).ToArray() : [];
+            new InputBindingDefinition(action, MouseActionLabel(action), InputBindingSyntax.Mouse(action))).ToArray() : [];
         var mouseBindings = mouseDefinitions.ToDictionary(value => value.Id, value =>
             configuration.Options.GetValueOrDefault(AtariInputSettingsConstants.MouseMappingOptionPrefix + value.Id,
                 value.DefaultBinding), StringComparer.Ordinal);
@@ -65,11 +66,6 @@ internal static class AtariInputSettingsFunctions
             / AtariInputSettingsConstants.MouseSpeedStepPercent + AtariInputSettingsConstants.InclusiveEndpointCount)
         .Select(value => value * AtariInputSettingsConstants.MouseSpeedStepPercent).ToArray();
 
-    internal static IReadOnlyList<string> ControllerDeviceIds(int count) =>
-        Enumerable.Range(AtariInputSettingsConstants.FirstPort, count)
-            .Select(index => AtariInputSettingsConstants.XInputDevicePrefix
-                + index.ToString(CultureInfo.InvariantCulture)).ToArray();
-
     private static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(AtariMachineModel model)
     {
         var core = AtariCompatibilityCatalog.Get(model).Core;
@@ -79,7 +75,7 @@ internal static class AtariInputSettingsFunctions
         var machineKeys = core == AtariCoreKind.Atari800
             ? keys : AtariInputSettingsConstants.FunctionKeys.Concat(keys);
         return machineKeys.Distinct()
-            .Select(key => new InputBindingDefinition(key.ToString(), key.ToString(),
+            .Select(key => new InputBindingDefinition(key.ToString(), KeyboardKeyLabel(key),
                 AtariInputSettingsConstants.SpecialKeyDefaults.TryGetValue(key, out var hostKey)
                     ? hostKey.ToString() : key.ToString()))
             .ToArray();
@@ -92,9 +88,34 @@ internal static class AtariInputSettingsFunctions
             actions.AddRange(AtariInputSettingsConstants.KeypadControllerActions);
         if (model is AtariMachineModel.Jaguar or AtariMachineModel.JaguarCd)
             actions.AddRange(AtariInputSettingsConstants.JaguarControllerActions);
-        return actions.Select(action => new InputBindingDefinition(action, action,
+        return actions.Select(action => new InputBindingDefinition(action, ControllerActionLabel(action),
             InputBindingSyntax.Controller(port, action))).ToArray();
     }
+
+    private static string KeyboardKeyLabel(EmulationKey key) => key switch
+    {
+        EmulationKey.Help => LocExtension.Get("Emulation.Key.Help"),
+        _ => key.ToString()
+    };
+
+    private static string MouseActionLabel(string action) => action switch
+    {
+        "Left" => LocExtension.Get("Emulation.MouseLeftButton"),
+        "Right" => LocExtension.Get("Emulation.MouseRightButton"),
+        _ => action
+    };
+
+    private static string ControllerActionLabel(string action) => action switch
+    {
+        "Up" => LocExtension.Get("Emulation.DirectionUp"),
+        "Down" => LocExtension.Get("Emulation.DirectionDown"),
+        "Left" => LocExtension.Get("Emulation.DirectionLeft"),
+        "Right" => LocExtension.Get("Emulation.DirectionRight"),
+        "Fire1" => LocExtension.Get("Emulation.FireButton1"),
+        "Fire2" => LocExtension.Get("Emulation.FireButton2"),
+        "Turbo" => LocExtension.Get("Emulation.TurboFire"),
+        _ => action
+    };
 
     private static EmulationKey ParseKey(string binding)
     {

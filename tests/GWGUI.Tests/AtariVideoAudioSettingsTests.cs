@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Windows;
 using System.Windows.Threading;
 using GWGUI.App.Controls;
@@ -75,28 +76,40 @@ public sealed class AtariVideoAudioSettingsTests
             options[AtariVideoAudioSettingsTestConstants.OptionKey]);
     }
 
+    [Theory]
+    [InlineData("en-US", AtariStRegion.UnitedStates)]
+    [InlineData("en-GB", AtariStRegion.UnitedKingdom)]
+    [InlineData("fr-FR", AtariStRegion.France)]
+    [InlineData("de-CH", AtariStRegion.Switzerland)]
+    [InlineData("ja-JP", AtariStRegion.Multilingual)]
+    public void StRegionFollowsTheApplicationCulture(string cultureName, AtariStRegion expected)
+    {
+        var previous = CultureInfo.CurrentUICulture;
+        try
+        {
+            CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo(cultureName);
+            var view = AtariVideoAudioSettingsFunctions.Create(
+                new AtariMachineConfiguration(AtariMachineModel.St));
+
+            Assert.Equal(expected.ToString(),
+                AtariVideoAudioSettingsFunctions.PreferredRegion(AtariMachineModel.St, view.Regions));
+        }
+        finally
+        {
+            CultureInfo.CurrentUICulture = previous;
+        }
+    }
+
     [Fact]
     public void ControlsCanLoadTheSameConfigurationRepeatedly()
     {
-        Exception? failure = null;
-        var thread = new Thread(() =>
+        WpfTestHost.Run(() =>
         {
-            try
-            {
-                var app = Application.Current as GWGUI.App.App ?? new GWGUI.App.App();
-                app.InitializeComponent();
-                var section = new AtariVideoAudioSettingsSection();
-                var configuration = new AtariMachineConfiguration(AtariMachineModel.St);
-                section.Load(configuration);
-                section.Load(configuration);
-            }
-            catch (Exception error) { failure = error; }
-            finally { Dispatcher.CurrentDispatcher.InvokeShutdown(); }
+            var section = new AtariVideoAudioSettingsSection();
+            var configuration = new AtariMachineConfiguration(AtariMachineModel.St);
+            section.Load(configuration);
+            section.Load(configuration);
         });
-        thread.SetApartmentState(ApartmentState.STA);
-        thread.Start();
-        Assert.True(thread.Join(10000));
-        if (failure is not null) throw failure;
     }
 }
 

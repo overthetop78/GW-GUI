@@ -14,11 +14,10 @@ internal sealed class AtariGeneralSettingsSection : UserControl
     private static readonly HttpClient Client = new();
     private readonly IReadOnlyList<AtariModelItem> _models = AtariConfigurationCatalogFunctions.Models();
     private readonly ComboBox _model = new() { MinWidth = 260 };
-    private readonly TextBlock _core = new();
     private readonly TextBlock _error = new() { TextWrapping = TextWrapping.Wrap, Visibility = Visibility.Collapsed };
     private readonly AtariCoreManagementSection _coreManagement = new();
     private readonly StackPanel _options = new();
-    private readonly GroupBox _optionsGroup;
+    private readonly Border _optionsCard;
     private readonly Dictionary<string, TextBox> _folders = new(StringComparer.Ordinal);
     private readonly Dictionary<string, ComboBox> _optionEditors = new(StringComparer.Ordinal);
     private readonly AtariCoreReleaseService _releaseService = new(Client, StoragePaths.AtariCoreDirectory);
@@ -27,11 +26,12 @@ internal sealed class AtariGeneralSettingsSection : UserControl
 
     internal AtariGeneralSettingsSection()
     {
-        _optionsGroup = Group(AtariGeneralSettingsConstants.CoreOptionsResource, _options);
-        _optionsGroup.Visibility = Visibility.Collapsed;
+        _optionsCard = EmulationSettingsLayout.ActionCard(_options,
+            L(AtariGeneralSettingsConstants.CoreOptionsResource));
+        _optionsCard.Margin = new Thickness(0, 10, 0, 0);
+        _optionsCard.Visibility = Visibility.Collapsed;
         AtariAccessibilityFunctions.Configure(_model,
             L(AtariConfigurationCatalogConstants.ModelResource), tabIndex: AtariAccessibilityConstants.ModelTabIndex);
-        AtariAccessibilityFunctions.Configure(_core, L(AtariGeneralSettingsConstants.CoreResource));
         AtariAccessibilityFunctions.Configure(_error, AtariConfigurationCatalogConstants.AtariTitle);
         _model.ItemsSource = _models;
         _model.DisplayMemberPath = nameof(AtariModelItem.DisplayName);
@@ -107,12 +107,11 @@ internal sealed class AtariGeneralSettingsSection : UserControl
         ControlUiFactory.ApplyCardAppearance(configurationCard);
         root.Children.Add(configurationCard);
         root.Children.Add(_error);
-        _core.Visibility = Visibility.Collapsed;
         _coreManagement.Margin = new Thickness(0, 0, 0, 12);
         root.Children.Add(_coreManagement);
         root.Children.Add(EmulationSettingsLayout.ActionCard(BuildFolders(),
             L(AtariGeneralSettingsConstants.FoldersResource)));
-        root.Children.Add(_optionsGroup);
+        root.Children.Add(_optionsCard);
         return EmulationSettingsLayout.ScrollPage(root);
     }
 
@@ -137,8 +136,6 @@ internal sealed class AtariGeneralSettingsSection : UserControl
         _error.Visibility = Visibility.Collapsed;
         try
         {
-            var definition = AtariCompatibilityCatalog.Get(model);
-            _core.Text = AtariCoreCatalog.Get(definition.Core).LibraryName;
             await _coreManagement.SetModelAsync(model);
             await LoadCoreOptionsAsync();
         }
@@ -154,7 +151,7 @@ internal sealed class AtariGeneralSettingsSection : UserControl
     {
         _options.Children.Clear();
         _optionEditors.Clear();
-        _optionsGroup.Visibility = Visibility.Collapsed;
+        _optionsCard.Visibility = Visibility.Collapsed;
         if (_configuration is null || _model.SelectedItem is not AtariModelItem selected) return;
         var paths = await _releaseService.GetActiveInstallationAsync(AtariCompatibilityCatalog.Get(selected.Model).Core);
         if (paths is null) return;
@@ -185,7 +182,7 @@ internal sealed class AtariGeneralSettingsSection : UserControl
             _options.Children.Add(editor);
             _optionEditors[option.Key] = editor;
         }
-        _optionsGroup.Visibility = _optionEditors.Count == 0 ? Visibility.Collapsed : Visibility.Visible;
+        _optionsCard.Visibility = _optionEditors.Count == 0 ? Visibility.Collapsed : Visibility.Visible;
     }
 
     private void AddFolder(Panel panel, string key, string resource)
@@ -224,6 +221,5 @@ internal sealed class AtariGeneralSettingsSection : UserControl
     }
 
     private string Folder(string name) => _folders[name].Text;
-    private static GroupBox Group(string resource, UIElement content) => new() { Header = L(resource), Content = content, Margin = new Thickness(0, 10, 0, 0) };
     private static string L(string resource) => LocExtension.Get(resource);
 }

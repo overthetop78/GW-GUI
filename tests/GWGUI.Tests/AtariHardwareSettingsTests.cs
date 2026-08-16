@@ -118,19 +118,7 @@ public sealed class AtariHardwareSettingsTests
     private static string? Header(TabItem item) => (item.Header as MainTabHeader)?.Text;
 
     private static void RunOnSta(Action action)
-    {
-        string? failure = null;
-        var thread = new Thread(() =>
-        {
-            try { action(); }
-            catch (Exception error) { failure = error.ToString(); }
-            finally { Dispatcher.CurrentDispatcher.InvokeShutdown(); }
-        });
-        thread.SetApartmentState(ApartmentState.STA);
-        thread.Start();
-        Assert.True(thread.Join(AtariHardwareSettingsTestConstants.StaTimeoutMilliseconds));
-        Assert.Null(failure);
-    }
+        => WpfTestHost.Run(action);
 }
 
 internal static class AtariHardwareSettingsTestConstants
