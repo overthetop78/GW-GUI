@@ -184,15 +184,15 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-008 — Implémenter l’hôte Atari isolé
 
-- [ ] Ajouter `--atari-core-host` au démarrage de `gwgui.exe` sans ouvrir l’interface principale.
-- [ ] Définir commandes, réponses, versions et erreurs du protocole Atari.
-- [ ] Sérialiser configuration, entrées, médias, options, états et statuts sans envoyer de type WPF.
-- [ ] Transporter une requête à la fois sur un named pipe privé et répondre avant la suivante.
-- [ ] Transporter la dernière frame par mémoire partagée redimensionnable et les blocs audio sans corruption.
-- [ ] Créer un processus distinct par machine, même lorsque deux machines utilisent le même cœur.
-- [ ] Gérer connexion, timeout, annulation, fermeture normale, crash et processus bloqué.
-- [ ] Ne tuer que l’hôte fautif et laisser fonctionner les autres machines.
-- [ ] Vérifier qu’aucun processus, pipe, mapping ou fichier temporaire ne reste après arrêt.
+- [x] Ajouter `--atari-core-host` au démarrage de `gwgui.exe` sans ouvrir l’interface principale.
+- [x] Définir commandes, réponses, versions et erreurs du protocole Atari.
+- [x] Sérialiser configuration, entrées, médias, options, états et statuts sans envoyer de type WPF.
+- [x] Transporter une requête à la fois sur un named pipe privé et répondre avant la suivante.
+- [x] Transporter la dernière frame par mémoire partagée redimensionnable et les blocs audio sans corruption.
+- [x] Créer un processus distinct par machine, même lorsque deux machines utilisent le même cœur.
+- [x] Gérer connexion, timeout, annulation, fermeture normale, crash et processus bloqué.
+- [x] Ne tuer que l’hôte fautif et laisser fonctionner les autres machines.
+- [x] Vérifier qu’aucun processus, pipe, mapping ou fichier temporaire ne reste après arrêt.
 
 ### D — Installation et versions des cœurs
 

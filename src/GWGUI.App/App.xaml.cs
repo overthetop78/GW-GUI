@@ -10,6 +10,7 @@ using System.Windows.Threading;
 using GWGUI.App.Services;
 using GWGUI.Infrastructure.HostTools;
 using GWGUI.Emulation.Amiga.Cores;
+using GWGUI.Emulation.Atari.Cores;
 
 namespace GWGUI.App;
 
@@ -21,6 +22,12 @@ public partial class App : Application
         if (e.Args is ["--amiga-core-host", var pipeName, var videoMapName])
         {
             AmigaCoreHost.Run(pipeName, videoMapName);
+            Shutdown();
+            return;
+        }
+        if (e.Args is [AtariCoreHostConstants.CommandLineArgument, var atariPipeName, var atariVideoMapName])
+        {
+            AtariCoreHost.Run(atariPipeName, atariVideoMapName);
             Shutdown();
             return;
         }
