@@ -357,13 +357,13 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-024 — Respecter l’ordre d’initialisation des six cœurs
 
-- [ ] Installer environnement puis callbacks vidéo, audio et entrée avant l’initialisation.
-- [ ] Appeler `retro_init`, lire `retro_system_info`, préparer firmware et contenu, puis appeler `retro_load_game`.
-- [ ] Ne démarrer sans contenu que si le cœur l’a explicitement autorisé.
-- [ ] Lire `retro_system_av_info` seulement après chargement réussi.
-- [ ] Configurer les périphériques de chaque port au moment attendu.
-- [ ] Nettoyer dans l’ordre inverse uniquement les étapes réussies.
-- [ ] Tester l’ordre exact avec un faux module pour chaque profil de cœur.
+- [x] Installer environnement puis callbacks vidéo, audio et entrée avant l’initialisation.
+- [x] Appeler `retro_init`, lire `retro_system_info`, préparer firmware et contenu, puis appeler `retro_load_game`.
+- [x] Ne démarrer sans contenu que si le cœur l’a explicitement autorisé.
+- [x] Lire `retro_system_av_info` seulement après chargement réussi.
+- [x] Configurer les périphériques de chaque port au moment attendu.
+- [x] Nettoyer dans l’ordre inverse uniquement les étapes réussies.
+- [x] Tester l’ordre exact avec un faux module pour chaque profil de cœur.
 
 #### ATA-025 — Implémenter la boucle d’exécution Atari
 

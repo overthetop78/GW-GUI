@@ -26,6 +26,7 @@ internal static class AtariErrorMessages
     internal const string DuplicateMediaSlot = "An Atari media slot cannot be configured more than once.";
     internal const string IncompatibleMedia = "The Atari media is not compatible with the selected machine.";
     internal const string InvalidControllerPort = "The Atari controller port is outside the supported range.";
+    internal const string UnsupportedControllerDevice = "The selected Atari controller device is not supported on this port.";
     internal const string DuplicateControllerPort = "An Atari controller port cannot be configured more than once.";
     internal const string CorePathMustBeAbsolute = "The Atari core path must be absolute.";
     internal const string CoreFileMissing = "The configured Atari core was not found.";
@@ -38,6 +39,7 @@ internal static class AtariErrorMessages
     internal const string CoreAlreadyInitialized = "The Atari core is already initialized.";
     internal const string CoreNotInitialized = "The Atari core is not initialized.";
     internal const string ContentLoadFailed = "The Atari core rejected the configured content.";
+    internal const string ContentRequired = "The Atari core requires content before it can start.";
     internal const string DynamicMediaUnsupported = "Dynamic Atari media control is not initialized yet.";
     internal const string HatariFloppyRequired = "Hatari disk control accepts floppy media only.";
     internal const string StateSizeInvalid = "The Atari core reported an invalid saved-state size.";

@@ -1,5 +1,6 @@
 using System.IO;
 using System.Runtime.InteropServices;
+using GWGUI.Emulation.Atari;
 using GWGUI.Emulation.Atari.Cores;
 using GWGUI.Emulation.Common;
 
@@ -7,6 +8,16 @@ namespace GWGUI.Tests;
 
 public sealed class AtariExternalCoreCallbackTests
 {
+    public static TheoryData<AtariMachineModel> CoreProfiles => new()
+    {
+        AtariMachineModel.St,
+        AtariMachineModel.Atari800,
+        AtariMachineModel.Atari2600,
+        AtariMachineModel.Atari7800,
+        AtariMachineModel.Lynx,
+        AtariMachineModel.Jaguar
+    };
+
     [Fact]
     public void InstallCallbacks_UsesRequiredOrder()
     {
@@ -76,16 +87,62 @@ public sealed class AtariExternalCoreCallbackTests
         }
     }
 
-    private static AtariExternalCoreExports CreateExports(ICollection<string> calls) => new(
+    [Theory]
+    [MemberData(nameof(CoreProfiles))]
+    public void Load_UsesExactPostInitializationOrderForEveryCoreProfile(AtariMachineModel model)
+    {
+        var calls = new List<string>();
+        var exports = CreateExports(calls, recordLifecycle: true);
+        var root = Path.Combine(Path.GetTempPath(), $"gwgui-atari-lifecycle-{Guid.NewGuid():N}");
+        try
+        {
+            using var callbacks = new AtariExternalHostCallbacks(
+                Path.Combine(root, "system"), Path.Combine(root, "content"), Path.Combine(root, "saves"),
+                Path.Combine(root, "assets"), new Dictionary<string, string>());
+
+            AtariCoreLifecycleFunctions.Load(exports, callbacks, new AtariMachineConfiguration(model),
+                new nint(AtariCoreLifecycleTestConstants.GameInfoPointer));
+
+            Assert.Equal("load", calls[0]);
+            Assert.All(calls.Skip(1).Take(calls.Count - 2), call => Assert.StartsWith("controller-", call));
+            Assert.Equal("av-info", calls[^1]);
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, recursive: true);
+        }
+    }
+
+    [Fact]
+    public void Cleanup_ReversesOnlySuccessfulNativeStages()
+    {
+        var calls = new List<string>();
+        var exports = CreateExports(calls, recordLifecycle: true);
+
+        AtariCoreLifecycleFunctions.Cleanup(exports, gameLoaded: true, initialized: true,
+            () => calls.Add("callbacks-dispose"), () => calls.Add("library-dispose"));
+
+        Assert.Equal(new[] { "unload", "deinitialize", "callbacks-dispose", "library-dispose" }, calls);
+    }
+
+    private static AtariExternalCoreExports CreateExports(ICollection<string> calls,
+        bool recordLifecycle = false) => new(
         _ => calls.Add("environment"),
         _ => calls.Add("video"),
         _ => calls.Add("audio-sample"),
         _ => calls.Add("audio-batch"),
         _ => calls.Add("input-poll"),
         _ => calls.Add("input-state"),
-        () => { }, () => { },
+        () => { }, () => { if (recordLifecycle) calls.Add("deinitialize"); },
         (out ExternalCoreApi.SystemInfo info) => info = default,
-        (out ExternalCoreApi.SystemAvInfo info) => info = default,
-        (_, _) => { }, () => { }, () => { }, _ => true, () => { }, () => default,
+        (out ExternalCoreApi.SystemAvInfo info) => { if (recordLifecycle) calls.Add("av-info"); info = default; },
+        (port, _) => { if (recordLifecycle) calls.Add($"controller-{port}"); }, () => { }, () => { },
+        _ => { if (recordLifecycle) calls.Add("load"); return true; },
+        () => { if (recordLifecycle) calls.Add("unload"); }, () => default,
         _ => default, _ => default, () => default, (_, _) => true, (_, _) => true);
+}
+
+internal static class AtariCoreLifecycleTestConstants
+{
+    internal const int GameInfoPointer = 1;
 }

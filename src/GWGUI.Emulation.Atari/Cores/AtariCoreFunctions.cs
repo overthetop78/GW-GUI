@@ -6,6 +6,24 @@ namespace GWGUI.Emulation.Atari.Cores;
 
 internal static class AtariCoreFunctions
 {
+    internal static AtariExternalCoreInfo ReadInitializedInfo(AtariExternalCoreExports exports,
+        AtariCoreKind expectedKind)
+    {
+        exports.GetSystemInfo(out var nativeInfo);
+        var libraryName = Marshal.PtrToStringUTF8(nativeInfo.LibraryName) ?? string.Empty;
+        var expectedName = ExpectedLibraryName(expectedKind);
+        if (!string.Equals(libraryName, expectedName, StringComparison.OrdinalIgnoreCase))
+            throw new AtariEmulationException(AtariErrorKind.Core, AtariErrorCode.CoreRejected,
+                AtariErrorMessages.CoreIdentityMismatch,
+                new Dictionary<string, string>
+                {
+                    [AtariConstants.ExpectedContextKey] = expectedName,
+                    [AtariConstants.ActualContextKey] = libraryName
+                });
+        return new AtariExternalCoreInfo(expectedKind, libraryName,
+            Marshal.PtrToStringUTF8(nativeInfo.LibraryVersion) ?? string.Empty,
+            ParseExtensions(nativeInfo.ValidExtensions), nativeInfo.NeedFullPath, nativeInfo.BlockExtract);
+    }
     internal static string CreateInvalidOptionValueMessage(string key, string value) =>
         string.Format(CultureInfo.InvariantCulture,
             AtariErrorMessages.OptionValueInvalidFormat, key, value);

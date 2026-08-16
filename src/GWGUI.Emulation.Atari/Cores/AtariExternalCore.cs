@@ -8,7 +8,7 @@ namespace GWGUI.Emulation.Atari.Cores;
 internal sealed class AtariExternalCore : IAtariCore
 {
     private readonly string _corePath;
-    private readonly AtariExternalCoreInfo _info;
+    private AtariExternalCoreInfo _info;
     private ExternalCoreLibrary? _library;
     private AtariExternalCoreExports? _exports;
     private AtariExternalHostCallbacks? _callbacks;
@@ -64,13 +64,27 @@ internal sealed class AtariExternalCore : IAtariCore
             _configuration = configuration;
             _sessionDirectory = absoluteSession;
             var systemDirectory = Path.Combine(absoluteSession, AtariConstants.SystemDirectoryName);
-            AtariFirmwareRuntimeFunctions.PrepareSystemDirectory(configuration, systemDirectory);
             var media = configuration.Media.Where(item => item.IsInserted)
                 .OrderBy(item => item.MountOrder)
                 .ThenBy(item => item.Path, StringComparer.OrdinalIgnoreCase)
                 .FirstOrDefault();
             AtariSessionMedia? preparedMedia = null;
             Atari800PreparedMedia? atari800Media = null;
+            _library = new ExternalCoreLibrary(_corePath);
+            _exports = AtariCoreFunctions.ResolveExports(_library);
+            _callbacks = new AtariExternalHostCallbacks(
+                systemDirectory,
+                Path.Combine(absoluteSession, AtariConstants.ContentDirectoryName),
+                saveDirectory ?? Path.Combine(absoluteSession, AtariConstants.SavesDirectoryName),
+                Path.Combine(absoluteSession, AtariConstants.AssetsDirectoryName),
+                configuration.Options);
+            AtariCoreFunctions.InstallCallbacks(_exports, _callbacks);
+            _exports.Initialize();
+            _nativeInitialized = true;
+            _info = AtariCoreFunctions.ReadInitializedInfo(_exports, Kind);
+            _callbacks.ValidateConfiguredOptions();
+
+            AtariFirmwareRuntimeFunctions.PrepareSystemDirectory(configuration, systemDirectory);
             if (Kind == AtariCoreKind.Hatari)
             {
                 _hatariContent = AtariHatariContentFunctions.Prepare(configuration, absoluteSession, _info.Extensions);
@@ -98,24 +112,15 @@ internal sealed class AtariExternalCore : IAtariCore
             {
                 preparedMedia = AtariSessionMediaFunctions.Prepare(media, absoluteSession, _info.Extensions);
             }
-            IReadOnlyDictionary<string, string> configuredOptions = Kind == AtariCoreKind.Atari800
+            IReadOnlyDictionary<string, string> runtimeOptions = Kind == AtariCoreKind.Atari800
                 ? Atari800MediaFunctions.ApplyOptions(configuration, atari800Media)
                 : AtariHatariStorageFunctions.ApplyWriteProtection(configuration.Options, _hatariContent?.Storage);
             if (_cartridge is not null)
-                configuredOptions = AtariCartridgeFunctions.ApplyOptions(
-                    configuredOptions, _cartridge.Configuration, Kind);
-            _library = new ExternalCoreLibrary(_corePath);
-            _exports = AtariCoreFunctions.ResolveExports(_library);
-            _callbacks = new AtariExternalHostCallbacks(
-                systemDirectory,
-                Path.Combine(absoluteSession, AtariConstants.ContentDirectoryName),
-                saveDirectory ?? Path.Combine(absoluteSession, AtariConstants.SavesDirectoryName),
-                Path.Combine(absoluteSession, AtariConstants.AssetsDirectoryName),
-                configuredOptions);
-            AtariCoreFunctions.InstallCallbacks(_exports, _callbacks);
-            _exports.Initialize();
-            _nativeInitialized = true;
-            _callbacks.ValidateConfiguredOptions();
+                runtimeOptions = AtariCartridgeFunctions.ApplyOptions(runtimeOptions, _cartridge.Configuration, Kind);
+            foreach (var option in runtimeOptions)
+                if (!configuration.Options.TryGetValue(option.Key, out var configuredValue)
+                    || !string.Equals(configuredValue, option.Value, StringComparison.Ordinal))
+                    _callbacks.SetOption(option.Key, option.Value);
 
             if (media is not null)
             {
@@ -124,9 +129,8 @@ internal sealed class AtariExternalCore : IAtariCore
                 _content = AtariContentFunctions.Create(runtimePath,
                     _jaguarCd?.NeedsFullPath ?? _info.NeedsFullPath, _info.Extensions);
             }
-            if (!_exports.LoadGame(_content?.GameInfo ?? nint.Zero))
-                throw new AtariEmulationException(AtariErrorKind.Content, AtariErrorCode.ContentUnsupported,
-                    AtariErrorMessages.ContentLoadFailed);
+            AtariCoreLifecycleFunctions.Load(_exports, _callbacks, configuration,
+                _content?.GameInfo ?? nint.Zero);
             _gameLoaded = true;
             if (atari800Media?.ContentType is Atari800ContentType.Floppy or Atari800ContentType.Cassette &&
                 !_callbacks.DiskControl.IsAvailable)
@@ -140,8 +144,6 @@ internal sealed class AtariExternalCore : IAtariCore
                 else if (preparedMedia is not null)
                     _sessionMedia.Add(preparedMedia);
             }
-            _exports.GetSystemAvInfo(out var avInfo);
-            _callbacks.ApplySystemAvInfo(avInfo);
         }
         catch
         {
@@ -368,16 +370,24 @@ internal sealed class AtariExternalCore : IAtariCore
 
     private void DisposeNativeResources()
     {
-        Stop();
-        if (_nativeInitialized && _exports is not null)
-        {
-            _exports.Deinitialize();
-            _nativeInitialized = false;
-        }
-        _callbacks?.Dispose();
+        var exports = _exports;
+        var callbacks = _callbacks;
+        var library = _library;
+        AtariCoreLifecycleFunctions.Cleanup(exports, _gameLoaded, _nativeInitialized,
+            () => callbacks?.Dispose(), () => library?.Dispose());
+        _gameLoaded = false;
+        _nativeInitialized = false;
+        _content?.Dispose();
+        _content = null;
+        AtariHatariContentFunctions.Cleanup(_hatariContent);
+        _hatariContent = null;
+        _cartridge = null;
+        _jaguarCd = null;
+        _mountedMedia.Clear();
+        _sessionMedia.Clear();
+        _configuration = null;
         _callbacks = null;
         _exports = null;
-        _library?.Dispose();
         _library = null;
     }
 
