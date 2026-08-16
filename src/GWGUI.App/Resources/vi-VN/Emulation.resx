@@ -435,4 +435,7 @@
   <data name="Emulation.AtariCassettes"><value>Băng cassette</value></data>
   <data name="Emulation.AtariCartridges"><value>Hộp băng</value></data>
   <data name="Emulation.AtariCompactDiscs"><value>Đĩa compact</value></data>
+  <data name="Emulation.AtariRegion"><value>Khu vực</value></data>
+  <data name="Emulation.AtariMultilingual"><value>Đa ngôn ngữ</value></data>
+  <data name="Emulation.AtariRegionFree"><value>Không giới hạn khu vực</value></data>
 </root>

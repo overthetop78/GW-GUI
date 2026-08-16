@@ -435,4 +435,7 @@
   <data name="Emulation.AtariCassettes"><value>شريط كاسيت</value></data>
   <data name="Emulation.AtariCartridges"><value>خرطوشة</value></data>
   <data name="Emulation.AtariCompactDiscs"><value>أقراص مضغوطة</value></data>
+  <data name="Emulation.AtariRegion"><value>المنطقة</value></data>
+  <data name="Emulation.AtariMultilingual"><value>متعدد اللغات</value></data>
+  <data name="Emulation.AtariRegionFree"><value>بلا منطقة</value></data>
 </root>

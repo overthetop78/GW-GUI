@@ -435,4 +435,7 @@
   <data name="Emulation.AtariCassettes"><value>Kasetti</value></data>
   <data name="Emulation.AtariCartridges"><value>Pelikasetti</value></data>
   <data name="Emulation.AtariCompactDiscs"><value>CD-levyt</value></data>
+  <data name="Emulation.AtariRegion"><value>Alue</value></data>
+  <data name="Emulation.AtariMultilingual"><value>Monikielinen</value></data>
+  <data name="Emulation.AtariRegionFree"><value>Aluevapaa</value></data>
 </root>

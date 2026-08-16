@@ -37,6 +37,7 @@ internal sealed class AtariGeneralSettingsSection : UserControl
     }
 
     internal event EventHandler? Changed;
+    internal event EventHandler<AtariMachineConfiguration>? ModelChanged;
 
     internal async Task LoadAsync(AtariMachineConfiguration configuration)
     {
@@ -113,6 +114,7 @@ internal sealed class AtariGeneralSettingsSection : UserControl
         if (_loading || _model.SelectedItem is not AtariModelItem selected || _configuration is null) return;
         _configuration = AtariConfigurationCatalogFunctions.ChangeModel(_configuration, selected.Model);
         await RefreshModelAsync(selected.Model);
+        ModelChanged?.Invoke(this, _configuration);
         Changed?.Invoke(this, EventArgs.Empty);
     }
 

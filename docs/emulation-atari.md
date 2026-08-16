@@ -532,12 +532,12 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-042 — Construire les onglets CPU, RAM et ROM
 
-- [ ] Afficher CPU, fréquence, précision et FPU selon la matrice du modèle.
-- [ ] Afficher mémoire principale et extensions avec totaux et compatibilité.
-- [ ] Afficher TOS/BIOS/ROM système, région, version et fichiers détectés.
-- [ ] Alimenter toutes les listes depuis les catalogues, jamais depuis des tableaux du contrôle.
-- [ ] Griser toute valeur imposée ou non applicable avec motif traduit.
-- [ ] Tester chaque modèle ST, 8 bits et console contre la matrice.
+- [x] Afficher CPU, fréquence, précision et FPU selon la matrice du modèle.
+- [x] Afficher mémoire principale et extensions avec totaux et compatibilité.
+- [x] Afficher TOS/BIOS/ROM système, région, version et fichiers détectés.
+- [x] Alimenter toutes les listes depuis les catalogues, jamais depuis des tableaux du contrôle.
+- [x] Griser toute valeur imposée ou non applicable avec motif traduit.
+- [x] Tester chaque modèle ST, 8 bits et console contre la matrice.
 
 #### ATA-043 — Construire les onglets Vidéo et Audio
 

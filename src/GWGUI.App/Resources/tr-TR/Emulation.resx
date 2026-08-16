@@ -435,4 +435,7 @@
   <data name="Emulation.AtariCassettes"><value>Kaset</value></data>
   <data name="Emulation.AtariCartridges"><value>Kartuş</value></data>
   <data name="Emulation.AtariCompactDiscs"><value>Kompakt diskler</value></data>
+  <data name="Emulation.AtariRegion"><value>Bölge</value></data>
+  <data name="Emulation.AtariMultilingual"><value>Çok dilli</value></data>
+  <data name="Emulation.AtariRegionFree"><value>Bölgeden bağımsız</value></data>
 </root>

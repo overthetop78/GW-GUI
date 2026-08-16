@@ -435,4 +435,7 @@
   <data name="Emulation.AtariCassettes"><value>カセットテープ</value></data>
   <data name="Emulation.AtariCartridges"><value>カートリッジ</value></data>
   <data name="Emulation.AtariCompactDiscs"><value>コンパクトディスク</value></data>
+  <data name="Emulation.AtariRegion"><value>リージョン</value></data>
+  <data name="Emulation.AtariMultilingual"><value>多言語</value></data>
+  <data name="Emulation.AtariRegionFree"><value>リージョンフリー</value></data>
 </root>

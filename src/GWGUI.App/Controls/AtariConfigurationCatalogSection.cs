@@ -13,6 +13,7 @@ public sealed class AtariConfigurationCatalogSection : UserControl
     private readonly IReadOnlyList<AtariModelItem> _models = AtariConfigurationCatalogFunctions.Models();
     private readonly ListBox _list = new() { MinWidth = 260, DisplayMemberPath = nameof(AtariConfigurationItem.DisplayName) };
     private readonly AtariGeneralSettingsSection _general = new();
+    private readonly AtariHardwareSettingsSection _hardware;
     private Button? _save;
     private Button? _delete;
     private AtariMachineConfiguration? _current;
@@ -23,6 +24,8 @@ public sealed class AtariConfigurationCatalogSection : UserControl
 
     internal AtariConfigurationCatalogSection(AtariConfigurationStore store)
     {
+        _hardware = new AtariHardwareSettingsSection(_general);
+        _general.ModelChanged += async (_, configuration) => await _hardware.LoadAsync(configuration);
         _controller = new AtariConfigurationCatalogController(store);
         _list.ItemsSource = _configurations;
         _list.SelectionChanged += ConfigurationSelected;
@@ -79,8 +82,8 @@ public sealed class AtariConfigurationCatalogSection : UserControl
         body.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(300) });
         body.ColumnDefinitions.Add(new ColumnDefinition());
         body.Children.Add(_list);
-        Grid.SetColumn(_general, 1);
-        body.Children.Add(_general);
+        Grid.SetColumn(_hardware, 1);
+        body.Children.Add(_hardware);
         Grid.SetRow(body, 1);
         root.Children.Add(body);
         var actions = new WrapPanel { Margin = new Thickness(0, 10, 0, 0) };
@@ -118,6 +121,7 @@ public sealed class AtariConfigurationCatalogSection : UserControl
         if (_loading || _list.SelectedItem is not AtariConfigurationItem selected) return;
         _current = selected.Configuration;
         await _general.LoadAsync(_current);
+        await _hardware.LoadAsync(_current);
         UpdateEditorAvailability();
     }
 
@@ -126,13 +130,14 @@ public sealed class AtariConfigurationCatalogSection : UserControl
         _current = new AtariMachineConfiguration(AtariMachineModel.St);
         _list.SelectedItem = null;
         await _general.LoadAsync(_current);
+        await _hardware.LoadAsync(_current);
         UpdateEditorAvailability();
     }
 
     private async Task SaveConfiguration()
     {
         if (_current is null || _controller.IsActive(_current.Id)) return;
-        var configuration = _general.BuildConfiguration();
+        var configuration = _hardware.Apply(_general.BuildConfiguration());
         await _controller.SaveAsync(configuration);
         _current = configuration;
         ConfigurationSaved?.Invoke(this, configuration);
@@ -156,6 +161,7 @@ public sealed class AtariConfigurationCatalogSection : UserControl
     {
         var editable = _current is null || !_controller.IsActive(_current.Id);
         _general.IsEnabled = editable;
+        _hardware.IsEnabled = editable;
         if (_save is not null) _save.IsEnabled = editable;
         if (_delete is not null) _delete.IsEnabled = _current is not null && editable;
     }

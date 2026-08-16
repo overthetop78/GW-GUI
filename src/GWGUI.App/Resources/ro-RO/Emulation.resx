@@ -435,4 +435,7 @@
   <data name="Emulation.AtariCassettes"><value>Casetă</value></data>
   <data name="Emulation.AtariCartridges"><value>Cartuș</value></data>
   <data name="Emulation.AtariCompactDiscs"><value>Discuri compacte</value></data>
+  <data name="Emulation.AtariRegion"><value>Regiune</value></data>
+  <data name="Emulation.AtariMultilingual"><value>Multilingv</value></data>
+  <data name="Emulation.AtariRegionFree"><value>Fără regiune</value></data>
 </root>

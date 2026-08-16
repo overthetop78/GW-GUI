@@ -435,4 +435,7 @@
   <data name="Emulation.AtariCassettes"><value>Cassette</value></data>
   <data name="Emulation.AtariCartridges"><value>Cartridge</value></data>
   <data name="Emulation.AtariCompactDiscs"><value>Compact discs</value></data>
+  <data name="Emulation.AtariRegion"><value>Regio</value></data>
+  <data name="Emulation.AtariMultilingual"><value>Meertalig</value></data>
+  <data name="Emulation.AtariRegionFree"><value>Regiovrij</value></data>
 </root>

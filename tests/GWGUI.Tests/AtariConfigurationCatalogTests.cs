@@ -92,7 +92,7 @@ public sealed class AtariConfigurationCatalogTests
             Assert.Single(atariTabs);
             var catalog = Assert.IsType<AtariConfigurationCatalogSection>(atariTabs[0].Content);
             var models = Descendants(catalog).OfType<ComboBox>()
-                .Single(combo => combo.ItemsSource is IReadOnlyList<AtariModelItem>);
+                .Single(combo => combo.Items.Cast<object>().OfType<AtariModelItem>().Any());
             Assert.Equal(Enum.GetValues<AtariMachineModel>().Length, models.Items.Count);
         });
     }
@@ -118,6 +118,11 @@ public sealed class AtariConfigurationCatalogTests
         if (root is Panel panel)
             foreach (var element in panel.Children.Cast<object>())
                 foreach (var child in Descendants(element)) yield return child;
+        if (root is Decorator decorator && decorator.Child is not null)
+            foreach (var child in Descendants(decorator.Child)) yield return child;
+        if (root is ItemsControl items)
+            foreach (var item in items.Items.Cast<object>())
+                foreach (var child in Descendants(item)) yield return child;
     }
 
     private static void RunOnSta(Action action)

@@ -435,4 +435,7 @@
   <data name="Emulation.AtariCassettes"><value>เทปคาสเซ็ต</value></data>
   <data name="Emulation.AtariCartridges"><value>ตลับเกม</value></data>
   <data name="Emulation.AtariCompactDiscs"><value>คอมแพกต์ดิสก์</value></data>
+  <data name="Emulation.AtariRegion"><value>ภูมิภาค</value></data>
+  <data name="Emulation.AtariMultilingual"><value>หลายภาษา</value></data>
+  <data name="Emulation.AtariRegionFree"><value>ไม่จำกัดภูมิภาค</value></data>
 </root>

@@ -435,4 +435,7 @@
   <data name="Emulation.AtariCassettes"><value>Касета</value></data>
   <data name="Emulation.AtariCartridges"><value>Картридж</value></data>
   <data name="Emulation.AtariCompactDiscs"><value>Компакт-диски</value></data>
+  <data name="Emulation.AtariRegion"><value>Регіон</value></data>
+  <data name="Emulation.AtariMultilingual"><value>Багатомовний</value></data>
+  <data name="Emulation.AtariRegionFree"><value>Без регіону</value></data>
 </root>

@@ -435,4 +435,7 @@
   <data name="Emulation.AtariCassettes"><value>Kaset</value></data>
   <data name="Emulation.AtariCartridges"><value>Kartrid</value></data>
   <data name="Emulation.AtariCompactDiscs"><value>Cakram padat</value></data>
+  <data name="Emulation.AtariRegion"><value>Wilayah</value></data>
+  <data name="Emulation.AtariMultilingual"><value>Multibahasa</value></data>
+  <data name="Emulation.AtariRegionFree"><value>Bebas wilayah</value></data>
 </root>

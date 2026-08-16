@@ -8,6 +8,7 @@ internal static class AtariConfigurationCatalogConstants
     internal const string ConfigurationsDescriptionResource = "Emulation.ConfigurationsDescription";
     internal const string ConfigurationResource = "Emulation.Configuration";
     internal const string ModelResource = "Emulation.Model";
+    internal const string GeneralResource = "Options.General";
     internal const string NewResource = "Common.New";
     internal const string SaveResource = "Common.Save";
     internal const string DeleteResource = "Common.Delete";

@@ -435,4 +435,7 @@
   <data name="Emulation.AtariCassettes"><value>Κασέτα</value></data>
   <data name="Emulation.AtariCartridges"><value>Κασέτα ROM</value></data>
   <data name="Emulation.AtariCompactDiscs"><value>Συμπαγείς δίσκοι</value></data>
+  <data name="Emulation.AtariRegion"><value>Περιοχή</value></data>
+  <data name="Emulation.AtariMultilingual"><value>Πολύγλωσσο</value></data>
+  <data name="Emulation.AtariRegionFree"><value>Χωρίς περιοχή</value></data>
 </root>

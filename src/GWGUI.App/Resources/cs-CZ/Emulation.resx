@@ -435,4 +435,7 @@
   <data name="Emulation.AtariCassettes"><value>Kazeta</value></data>
   <data name="Emulation.AtariCartridges"><value>Kazeta ROM</value></data>
   <data name="Emulation.AtariCompactDiscs"><value>Kompaktní disky</value></data>
+  <data name="Emulation.AtariRegion"><value>Oblast</value></data>
+  <data name="Emulation.AtariMultilingual"><value>Vícejazyčné</value></data>
+  <data name="Emulation.AtariRegionFree"><value>Bez regionu</value></data>
 </root>

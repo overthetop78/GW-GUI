@@ -435,4 +435,7 @@
   <data name="Emulation.AtariCassettes"><value>Kassette</value></data>
   <data name="Emulation.AtariCartridges"><value>Spilkassette</value></data>
   <data name="Emulation.AtariCompactDiscs"><value>Cd'er</value></data>
+  <data name="Emulation.AtariRegion"><value>Område</value></data>
+  <data name="Emulation.AtariMultilingual"><value>Flersproget</value></data>
+  <data name="Emulation.AtariRegionFree"><value>Regionsfri</value></data>
 </root>

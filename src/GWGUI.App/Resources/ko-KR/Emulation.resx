@@ -435,4 +435,7 @@
   <data name="Emulation.AtariCassettes"><value>카세트</value></data>
   <data name="Emulation.AtariCartridges"><value>카트리지</value></data>
   <data name="Emulation.AtariCompactDiscs"><value>컴팩트 디스크</value></data>
+  <data name="Emulation.AtariRegion"><value>지역</value></data>
+  <data name="Emulation.AtariMultilingual"><value>다국어</value></data>
+  <data name="Emulation.AtariRegionFree"><value>지역 제한 없음</value></data>
 </root>

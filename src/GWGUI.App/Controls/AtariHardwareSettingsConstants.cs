@@ -1,0 +1,58 @@
+namespace GWGUI.App.Controls;
+
+internal static class AtariHardwareSettingsConstants
+{
+    internal const string CpuTab = "CPU";
+    internal const string RamTab = "RAM";
+    internal const string RomTab = "ROM";
+    internal const string CpuResource = "Emulation.CpuModel";
+    internal const string FrequencyResource = "Emulation.CpuSpeed";
+    internal const string PrecisionResource = "Emulation.Precision";
+    internal const string FpuResource = "Emulation.FpuModel";
+    internal const string MainMemoryResource = "Emulation.MainMemory";
+    internal const string AlternateMemoryResource = "Emulation.MemoryExtensions";
+    internal const string TotalMemoryResource = "Emulation.TotalMemoryConfigured";
+    internal const string SystemRomResource = "Emulation.SystemRom";
+    internal const string DetectedRomsResource = "Emulation.DetectedRoms";
+    internal const string RegionResource = "Emulation.AtariRegion";
+    internal const string ForcedResource = "Emulation.AtariUnavailable.ForcedByModel";
+    internal const string NoFpuResource = "Emulation.AtariUnavailable.NoFpu";
+    internal const string NoAlternateMemoryResource = "Emulation.AtariUnavailable.NoAlternateMemory";
+    internal const string CompatibleResource = "Emulation.CompatibilityCompatible";
+    internal const string CycleExactResource = "Emulation.CompatibilityExact";
+    internal const string NoneResource = "Emulation.MemoryNone";
+    internal const string CoreResource = "Emulation.Core";
+    internal const string MultilingualResource = "Emulation.AtariMultilingual";
+    internal const string RegionFreeResource = "Emulation.AtariRegionFree";
+    internal const string CpuOptionKey = "gwgui_atari_cpu";
+    internal const string FrequencyOptionKey = "gwgui_atari_cpu_frequency";
+    internal const string PrecisionOptionKey = "gwgui_atari_cpu_precision";
+    internal const string FpuOptionKey = "gwgui_atari_fpu";
+    internal const string MainMemoryOptionKey = "gwgui_atari_main_memory";
+    internal const string AlternateMemoryOptionKey = "gwgui_atari_alternate_memory";
+    internal const string RegionOptionKey = "gwgui_atari_region";
+    internal const string FrequencyMhzSuffix = " MHz";
+    internal const string FrequencyHzSuffix = " Hz";
+    internal const string KibibyteSuffix = " KiB";
+    internal const string MebibyteSuffix = " MiB";
+    internal const string ByteSuffix = " B";
+    internal const string ValueSeparator = ", ";
+    internal const string CoreManagedValue = "Core-managed";
+    internal const int BytesPerKibibyte = 1024;
+    internal const int BytesPerMebibyte = 1024 * 1024;
+    internal const int NoBytes = 0;
+    internal const int SingleChoiceCount = 1;
+    internal const string UnitedStatesCulture = "en-US";
+    internal const string GermanyCulture = "de-DE";
+    internal const string FranceCulture = "fr-FR";
+    internal const string UnitedKingdomCulture = "en-GB";
+    internal const string SpainCulture = "es-ES";
+    internal const string ItalyCulture = "it-IT";
+    internal const string SwedenCulture = "sv-SE";
+    internal const string SwitzerlandCulture = "de-CH";
+    internal const string FinlandCulture = "fi-FI";
+    internal const string NorwayCulture = "nb-NO";
+    internal const string CzechRepublicCulture = "cs-CZ";
+    internal const string RussiaCulture = "ru-RU";
+    internal const string GreeceCulture = "el-GR";
+}

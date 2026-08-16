@@ -435,4 +435,7 @@
   <data name="Emulation.AtariCassettes"><value>קלטת</value></data>
   <data name="Emulation.AtariCartridges"><value>מחסנית</value></data>
   <data name="Emulation.AtariCompactDiscs"><value>תקליטורים</value></data>
+  <data name="Emulation.AtariRegion"><value>אזור</value></data>
+  <data name="Emulation.AtariMultilingual"><value>רב-לשוני</value></data>
+  <data name="Emulation.AtariRegionFree"><value>ללא אזור</value></data>
 </root>

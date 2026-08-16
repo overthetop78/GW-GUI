@@ -435,4 +435,7 @@
   <data name="Emulation.AtariCassettes"><value>磁带</value></data>
   <data name="Emulation.AtariCartridges"><value>卡带</value></data>
   <data name="Emulation.AtariCompactDiscs"><value>光盘</value></data>
+  <data name="Emulation.AtariRegion"><value>区域</value></data>
+  <data name="Emulation.AtariMultilingual"><value>多语言</value></data>
+  <data name="Emulation.AtariRegionFree"><value>无区域限制</value></data>
 </root>
