@@ -33,7 +33,6 @@ internal static class AtariMachineViewConstants
     internal const string PauseCommandResource = "Common.Pause";
     internal const string RenderingResource = "Emulation.RenderingSettings";
     internal const string MediaFilterResource = "Emulation.AtariMediaFilter";
-    internal const string ExistingMediaFilterResource = "Emulation.AmigaMediaFilter";
     internal const string MuteResource = "Emulation.Shortcut.Mute";
     internal const string ReleaseMouseResource = "Emulation.Shortcut.ReleaseMouse";
     internal const string UnavailableResource = "Emulation.ShortcutUnavailable";

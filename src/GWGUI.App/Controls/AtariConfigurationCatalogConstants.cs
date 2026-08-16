@@ -13,7 +13,7 @@ internal static class AtariConfigurationCatalogConstants
     internal const string SaveResource = "Common.Save";
     internal const string DeleteResource = "Common.Delete";
     internal const string RefreshResource = "Common.Refresh";
-    internal const string ActiveConfigurationError = "The active Atari configuration cannot be modified or deleted.";
+    internal const string ActiveConfigurationErrorResource = "Emulation.AtariError.ActiveConfiguration";
     internal const string StResource = "Emulation.AtariModelSt";
     internal const string StfResource = "Emulation.AtariModelStf";
     internal const string StfmResource = "Emulation.AtariModelStfm";

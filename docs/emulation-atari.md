@@ -594,11 +594,11 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-048 — Ajouter les ressources Atari de référence
 
-- [ ] Inventorier chaque texte visible ajouté dans moteur, erreurs, contrôles et aide.
-- [ ] Créer des clés nommées dans les fichiers de ressources adéquats, sans texte brut dans les contrôles.
-- [ ] Fournir les valeurs anglaises de référence et françaises vérifiées.
-- [ ] Ajouter des tests qui détectent clés absentes, doublons et textes visibles écrits en dur.
-- [ ] Vérifier pluriels, paramètres, ponctuation, noms de machines et termes techniques.
+- [x] Inventorier chaque texte visible ajouté dans moteur, erreurs, contrôles et aide.
+- [x] Créer des clés nommées dans les fichiers de ressources adéquats, sans texte brut dans les contrôles.
+- [x] Fournir les valeurs anglaises de référence et françaises vérifiées.
+- [x] Ajouter des tests qui détectent clés absentes, doublons et textes visibles écrits en dur.
+- [x] Vérifier pluriels, paramètres, ponctuation, noms de machines et termes techniques.
 
 #### ATA-049 — Traduire toutes les langues prises en charge
 

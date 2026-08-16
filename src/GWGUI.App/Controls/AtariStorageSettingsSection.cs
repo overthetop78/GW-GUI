@@ -127,7 +127,10 @@ internal sealed class AtariStorageSettingsSection
             if (folder.ShowDialog() == true) _path.Text = folder.FolderName;
             return;
         }
-        var dialog = new OpenFileDialog { Filter = AtariStorageSettingsConstants.AllFilesFilter };
+        var dialog = new OpenFileDialog
+        {
+            Filter = LocExtension.Get(AtariStorageSettingsConstants.MediaFilterResource)
+        };
         if (dialog.ShowDialog() == true) _path.Text = dialog.FileName;
     }
 

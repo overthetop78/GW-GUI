@@ -274,7 +274,7 @@ public sealed class AtariMachineView : UserControl
 
     private async Task InsertMediaAsync(AtariMediaConfiguration template)
     {
-        var dialog = new OpenFileDialog { Filter = AtariStorageSettingsConstants.AllFilesFilter };
+        var dialog = new OpenFileDialog { Filter = L(AtariMachineViewConstants.MediaFilterResource) };
         if (dialog.ShowDialog() != true) return;
         var media = template with { Path = dialog.FileName, IsInserted = true };
         _mountedMedia[media.Slot] = media;
@@ -600,6 +600,7 @@ public sealed class AtariMachineView : UserControl
     }
 
     private void ShowError(Exception error) => ControlErrorPresenter.ShowDetailed(this, error,
+        AtariErrorLocalizationFunctions.Describe(error),
         AtariMachineViewConstants.CommandErrorContext, AtariMachineViewConstants.AtariTitle);
 
     private static Border ToolbarGroup(params UIElement[] children)

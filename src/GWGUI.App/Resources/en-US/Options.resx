@@ -183,4 +183,5 @@
   <data name="Engines.StrictChoice" xml:space="preserve"><value>The selected engine is used strictly. If it cannot perform the operation, GW GUI reports it instead of silently using the other engine.</value></data>
   <data name="Emulation.Model" xml:space="preserve"><value>Model</value></data>
   <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Capture mouse</value></data>
+  <data name="Emulation.Configuration"><value>Configuration</value></data>
 </root>

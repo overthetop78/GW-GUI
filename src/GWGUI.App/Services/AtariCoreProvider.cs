@@ -1,5 +1,6 @@
 using GWGUI.Emulation.Atari;
 using GWGUI.Emulation.Atari.Cores;
+using GWGUI.App.Localization;
 using System.Net.Http;
 
 namespace GWGUI.App.Services;
@@ -14,8 +15,8 @@ internal static class AtariCoreProvider
             .GetActiveInstallationAsync(kind, cancellationToken).ConfigureAwait(false);
         if (installation is null)
             throw new AtariEmulationException(AtariErrorKind.Core, AtariErrorCode.CoreNotFound,
-                string.Format(System.Globalization.CultureInfo.CurrentCulture,
-                    AtariCoreProviderConstants.CoreNotInstalledFormat, AtariCoreCatalog.Get(kind).LibraryName));
+                LocExtension.Get(AtariCoreProviderConstants.CoreNotInstalledResource,
+                    AtariCoreCatalog.Get(kind).LibraryName));
         return installation.LibraryPath;
     }
 }

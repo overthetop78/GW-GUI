@@ -438,4 +438,24 @@
   <data name="Emulation.AtariRegion"><value>Region</value></data>
   <data name="Emulation.AtariMultilingual"><value>Multilingual</value></data>
   <data name="Emulation.AtariRegionFree"><value>Region-free</value></data>
+  <data name="Emulation.AudioTab"><value>Audio</value></data>
+  <data name="Emulation.AtariError.CoreNotFound"><value>The required Atari core was not found.</value></data>
+  <data name="Emulation.AtariError.CoreRejected"><value>The selected Atari core could not be loaded.</value></data>
+  <data name="Emulation.AtariError.FirmwareMissing"><value>A required Atari firmware is missing.</value></data>
+  <data name="Emulation.AtariError.FirmwareInvalid"><value>An Atari firmware is invalid or incompatible.</value></data>
+  <data name="Emulation.AtariError.ContentNotFound"><value>The configured Atari media was not found.</value></data>
+  <data name="Emulation.AtariError.ContentUnsupported"><value>The configured media is not supported by this Atari machine.</value></data>
+  <data name="Emulation.AtariError.OptionInvalid"><value>An Atari option has an invalid value.</value></data>
+  <data name="Emulation.AtariError.HostProtocolFailure"><value>Communication with the Atari host failed.</value></data>
+  <data name="Emulation.AtariError.StateInvalid"><value>The Atari saved state is invalid.</value></data>
+  <data name="Emulation.AtariError.StateIncompatible"><value>The Atari saved state is incompatible with the current machine.</value></data>
+  <data name="Emulation.AtariError.Unexpected"><value>An unexpected Atari emulation error occurred.</value></data>
+  <data name="Emulation.AtariError.Details"><value>Details: {0}</value></data>
+  <data name="Emulation.AtariError.ActiveConfiguration"><value>The active Atari configuration cannot be modified or deleted.</value></data>
+  <data name="Emulation.AtariError.RequiredFirmwareMissing"><value>Required Atari firmware '{0}' is not configured for {1}.</value></data>
+  <data name="Emulation.AtariError.FirmwareFileMissing"><value>Configured Atari firmware '{0}' was not found: {1}</value></data>
+  <data name="Emulation.AtariError.MediaFileMissing"><value>Configured Atari media was not found: {0}</value></data>
+  <data name="Emulation.AtariError.HostExecutableMissing"><value>The Atari host executable path is unavailable.</value></data>
+  <data name="Emulation.AtariError.CoreNotInstalled"><value>The Atari core '{0}' is not installed.</value></data>
+  <data name="Emulation.AtariMediaFilter"><value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|All files|*.*</value></data>
 </root>

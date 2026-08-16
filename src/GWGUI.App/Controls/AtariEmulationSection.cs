@@ -143,6 +143,7 @@ public sealed class AtariEmulationSection : UserControl
         catch (Exception error)
         {
             ControlErrorPresenter.ShowDetailed(this, error,
+                AtariErrorLocalizationFunctions.Describe(error),
                 AtariEmulationConstants.ConfigurationOpeningContext, AtariEmulationConstants.AtariTitle);
         }
         finally { _open.IsEnabled = _configuration.SelectedItem is not null; }

@@ -15,4 +15,6 @@
   <data name="Common.Unknown">
     <value>Unknown</value>
   </data>
+  <data name="Common.Eject"><value>Eject</value></data>
+  <data name="Common.Pause"><value>Pause</value></data>
 </root>

@@ -1,4 +1,5 @@
 using GWGUI.Emulation.Atari;
+using GWGUI.App.Localization;
 
 namespace GWGUI.App.Controls;
 
@@ -31,6 +32,6 @@ internal sealed class AtariConfigurationCatalogController
     private void EnsureInactive(Guid id)
     {
         if (_isActive(id)) throw new InvalidOperationException(
-            AtariConfigurationCatalogConstants.ActiveConfigurationError);
+            LocExtension.Get(AtariConfigurationCatalogConstants.ActiveConfigurationErrorResource));
     }
 }

@@ -438,4 +438,24 @@
   <data name="Emulation.AtariRegion"><value>Région</value></data>
   <data name="Emulation.AtariMultilingual"><value>Multilingue</value></data>
   <data name="Emulation.AtariRegionFree"><value>Sans région</value></data>
+  <data name="Emulation.AudioTab"><value>Audio</value></data>
+  <data name="Emulation.AtariError.CoreNotFound"><value>Le cœur Atari requis est introuvable.</value></data>
+  <data name="Emulation.AtariError.CoreRejected"><value>Le cœur Atari sélectionné n’a pas pu être chargé.</value></data>
+  <data name="Emulation.AtariError.FirmwareMissing"><value>Un firmware Atari requis est manquant.</value></data>
+  <data name="Emulation.AtariError.FirmwareInvalid"><value>Un firmware Atari est invalide ou incompatible.</value></data>
+  <data name="Emulation.AtariError.ContentNotFound"><value>Le média Atari configuré est introuvable.</value></data>
+  <data name="Emulation.AtariError.ContentUnsupported"><value>Le média configuré n’est pas pris en charge par cette machine Atari.</value></data>
+  <data name="Emulation.AtariError.OptionInvalid"><value>Une option Atari contient une valeur invalide.</value></data>
+  <data name="Emulation.AtariError.HostProtocolFailure"><value>La communication avec l’hôte Atari a échoué.</value></data>
+  <data name="Emulation.AtariError.StateInvalid"><value>L’état sauvegardé Atari est invalide.</value></data>
+  <data name="Emulation.AtariError.StateIncompatible"><value>L’état sauvegardé Atari est incompatible avec la machine actuelle.</value></data>
+  <data name="Emulation.AtariError.Unexpected"><value>Une erreur inattendue d’émulation Atari s’est produite.</value></data>
+  <data name="Emulation.AtariError.Details"><value>Détails : {0}</value></data>
+  <data name="Emulation.AtariError.ActiveConfiguration"><value>La configuration Atari active ne peut pas être modifiée ni supprimée.</value></data>
+  <data name="Emulation.AtariError.RequiredFirmwareMissing"><value>Le firmware Atari requis « {0} » n'est pas configuré pour {1}.</value></data>
+  <data name="Emulation.AtariError.FirmwareFileMissing"><value>Le firmware Atari configuré « {0} » est introuvable : {1}</value></data>
+  <data name="Emulation.AtariError.MediaFileMissing"><value>Le média Atari configuré est introuvable : {0}</value></data>
+  <data name="Emulation.AtariError.HostExecutableMissing"><value>Le chemin de l'exécutable hôte Atari n'est pas disponible.</value></data>
+  <data name="Emulation.AtariError.CoreNotInstalled"><value>Le cœur Atari « {0} » n’est pas installé.</value></data>
+  <data name="Emulation.AtariMediaFilter"><value>Médias Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Tous les fichiers|*.*</value></data>
 </root>

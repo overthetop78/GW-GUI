@@ -19,16 +19,17 @@ internal static class ControlErrorPresenter
         MessageBox.Show(Window.GetWindow(owner), Describe(error, context), title,
             MessageBoxButton.OK, MessageBoxImage.Error);
 
-    internal static string DescribeDetailed(Exception error, string context)
+    internal static string DescribeDetailed(Exception error, string description, string context)
     {
         var logPath = ErrorLog.Write(error, context);
-        if (logPath is null) return error.Message;
-        return error.Message + Environment.NewLine + Environment.NewLine
+        if (logPath is null) return description;
+        return description + Environment.NewLine + Environment.NewLine
             + LocExtension.Get(ControlErrorPresenterConstants.LogSavedResource, logPath);
     }
 
-    internal static void ShowDetailed(FrameworkElement owner, Exception error, string context, string title) =>
-        MessageBox.Show(Window.GetWindow(owner), DescribeDetailed(error, context), title,
+    internal static void ShowDetailed(FrameworkElement owner, Exception error, string description,
+        string context, string title) =>
+        MessageBox.Show(Window.GetWindow(owner), DescribeDetailed(error, description, context), title,
             MessageBoxButton.OK, MessageBoxImage.Error);
 }
 

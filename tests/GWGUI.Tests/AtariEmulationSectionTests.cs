@@ -82,10 +82,11 @@ public sealed class AtariEmulationSectionTests
     }
 
     [Fact]
-    public void DetailedErrorPresentationKeepsTheOriginalErrorMessage()
+    public void DetailedErrorPresentationKeepsTheLocalizedDescription()
     {
         var expected = AtariEmulationSectionTestConstants.MissingMediaFileName;
         var result = ControlErrorPresenter.DescribeDetailed(new InvalidOperationException(expected),
+            expected,
             AtariEmulationConstants.ConfigurationOpeningContext);
 
         Assert.Contains(expected, result, StringComparison.Ordinal);

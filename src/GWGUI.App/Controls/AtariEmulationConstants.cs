@@ -20,8 +20,11 @@ internal static class AtariEmulationConstants
     internal const string RunningResource = "Status.Running";
     internal const string StoppedResource = "Status.ReadyShort";
     internal const string ConfigurationOpeningContext = "Opening Atari configuration";
-    internal const string MissingFirmwareFormat = "Required Atari firmware '{0}' is not configured for {1}.";
-    internal const string MissingFirmwareFileFormat = "Configured Atari firmware '{0}' was not found: {1}";
-    internal const string MissingMediaFileFormat = "Configured Atari media was not found: {0}";
-    internal const string MissingHostExecutable = "The Atari host executable path is unavailable.";
+    internal const string MissingFirmwareResource = "Emulation.AtariError.RequiredFirmwareMissing";
+    internal const string MissingFirmwareFileResource = "Emulation.AtariError.FirmwareFileMissing";
+    internal const string MissingMediaFileResource = "Emulation.AtariError.MediaFileMissing";
+    internal const string MissingHostExecutableResource = "Emulation.AtariError.HostExecutableMissing";
+    internal const string FirmwareRoleContextKey = "firmwareRole";
+    internal const string ModelContextKey = "model";
+    internal const string PathContextKey = "path";
 }
