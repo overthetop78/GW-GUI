@@ -50,7 +50,7 @@ public sealed class AtariHardwareSettingsTests
     }
 
     [Fact]
-    public void EditorContainsGeneralCpuRamAndRomTabs()
+    public void EditorContainsGeneralCpuRamRomVideoAndAudioTabs()
     {
         RunOnSta(() =>
         {
@@ -87,7 +87,7 @@ internal static class AtariHardwareSettingsTestConstants
 {
     internal const int CpuFieldCount = 4;
     internal const int MemoryFieldCount = 2;
-    internal const int EditorTabCount = 4;
+    internal const int EditorTabCount = 6;
     internal const int StaTimeoutMilliseconds = 10000;
     internal const string UnknownKey = "future_hardware_option";
     internal const string UnknownValue = "preserved";

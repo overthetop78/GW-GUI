@@ -1,0 +1,56 @@
+namespace GWGUI.App.Controls;
+
+internal static class AtariVideoAudioSettingsConstants
+{
+    internal const string VideoTabResource = "Emulation.VideoTab";
+    internal const string AudioTabResource = "Emulation.AudioOutput";
+    internal const string VideoStandardResource = "Emulation.VideoStandard";
+    internal const string RegionResource = "Emulation.AtariRegion";
+    internal const string ResolutionResource = "Emulation.VideoResolution";
+    internal const string AspectRatioResource = "Emulation.AspectRatio";
+    internal const string CropResource = "Emulation.VideoCrop";
+    internal const string FrameSkipResource = "Emulation.VideoFrameskip";
+    internal const string RenderingResource = "Emulation.RenderingSettings";
+    internal const string AudioEnabledResource = "Emulation.AudioEnabled";
+    internal const string AudioOutputResource = "Emulation.AudioOutput";
+    internal const string AudioLatencyResource = "Emulation.AudioLatency";
+    internal const string AudioVolumeResource = "Explorer.Volume";
+    internal const string AudioQualityResource = "Emulation.AudioQuality";
+    internal const string DefaultAudioOutputResource = "Emulation.DefaultAudioOutput";
+    internal const string AutomaticResource = "Visual.Automatic";
+    internal const string DisabledResource = "Emulation.Disabled";
+    internal const string EnabledResource = "Emulation.Enabled";
+    internal const string CoreManagedResource = "Emulation.Core";
+    internal const string StandardOptionKey = "gwgui_atari_video_standard";
+    internal const string RegionOptionKey = AtariHardwareSettingsConstants.RegionOptionKey;
+    internal const string ResolutionOptionKey = "gwgui_atari_video_resolution";
+    internal const string AspectRatioOptionKey = "gwgui_atari_video_aspect_ratio";
+    internal const string CropOptionKey = "gwgui_atari_video_crop";
+    internal const string FrameSkipOptionKey = "gwgui_atari_video_frameskip";
+    internal const string AudioOutputOptionKey = "gwgui_atari_audio_output";
+    internal const string AudioLatencyOptionKey = "gwgui_atari_audio_latency";
+    internal const string AudioVolumeOptionKey = "gwgui_atari_audio_volume";
+    internal const string AudioQualityOptionKey = "gwgui_atari_audio_quality";
+    internal const string AutomaticValue = "auto";
+    internal const string NativeValue = "native";
+    internal const string PixelAspectValue = "pixel";
+    internal const string FourByThreeValue = "4:3";
+    internal const string EnabledValue = "enabled";
+    internal const string DisabledValue = "disabled";
+    internal const string DefaultOutputValue = "default";
+    internal const string LowQualityValue = "low";
+    internal const string NormalQualityValue = "normal";
+    internal const string HighQualityValue = "high";
+    internal const string PalValue = "PAL";
+    internal const string NtscValue = "NTSC";
+    internal const string MonochromeValue = "Monochrome";
+    internal const int MinimumFrameSkip = 0;
+    internal const int MaximumFrameSkip = 5;
+    internal const int FrameSkipStep = 1;
+    internal const int MinimumLatencyMilliseconds = 20;
+    internal const int MaximumLatencyMilliseconds = 100;
+    internal const int LatencyStepMilliseconds = 10;
+    internal const int MinimumVolumePercent = 0;
+    internal const int MaximumVolumePercent = 100;
+    internal const int VolumeStepPercent = 10;
+}

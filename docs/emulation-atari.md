@@ -541,12 +541,12 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-043 — Construire les onglets Vidéo et Audio
 
-- [ ] Ajouter standard, région, résolution, ratio, recadrage, frameskip et options de rendu réellement exposées.
-- [ ] Ajouter sortie, activation, latence, volume et options de qualité audio réellement exposées.
-- [ ] Distinguer options frontend et Core Options sans écrire deux fois la même valeur.
-- [ ] Actualiser les disponibilités lors du changement de modèle sans perdre une valeur persistée valide.
-- [ ] Afficher valeurs techniques non traduites seulement lorsqu’elles sont des noms officiels.
-- [ ] Tester mise en page, sélection et persistance pour chaque famille.
+- [x] Ajouter standard, région, résolution, ratio, recadrage, frameskip et options de rendu réellement exposées.
+- [x] Ajouter sortie, activation, latence, volume et options de qualité audio réellement exposées.
+- [x] Distinguer options frontend et Core Options sans écrire deux fois la même valeur.
+- [x] Actualiser les disponibilités lors du changement de modèle sans perdre une valeur persistée valide.
+- [x] Afficher valeurs techniques non traduites seulement lorsqu’elles sont des noms officiels.
+- [x] Tester mise en page, sélection et persistance pour chaque famille.
 
 #### ATA-044 — Construire l’onglet Stockage
 
