@@ -12,4 +12,7 @@ internal static class AtariCoreLifecycleConstants
     internal const string PaddleDeviceName = "Paddle";
     internal const string LightGunDeviceName = "Lightgun";
     internal const string NumericKeypadDeviceName = "Keypad";
+    internal const string DrivingControllerDeviceName = "Driving";
+    internal const string ProLineControllerDeviceName = JoypadDeviceName;
+    internal const string EnhancedControllerDeviceName = JoypadDeviceName;
 }

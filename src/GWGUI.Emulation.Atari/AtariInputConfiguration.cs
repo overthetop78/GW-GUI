@@ -12,14 +12,18 @@ public enum AtariPeripheralKind
     AnalogJoystick,
     Paddle,
     LightGun,
-    NumericKeypad
+    NumericKeypad,
+    DrivingController,
+    ProLineController,
+    EnhancedController
 }
 
 public sealed record AtariControllerBinding(
     int Port,
     AtariPeripheralKind Peripheral,
     string? DeviceId = null,
-    IReadOnlyDictionary<string, string>? Mappings = null);
+    IReadOnlyDictionary<string, string>? Mappings = null,
+    int DeadZonePercent = AtariControllerConstants.DefaultDeadZonePercent);
 
 public sealed record AtariInputConfiguration(
     IReadOnlyDictionary<string, EmulationKey>? KeyboardMappings = null,

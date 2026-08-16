@@ -31,6 +31,9 @@ internal static class AtariControllerPortFunctions
             AtariPeripheralKind.Paddle => AtariCoreLifecycleConstants.PaddleDeviceName,
             AtariPeripheralKind.LightGun => AtariCoreLifecycleConstants.LightGunDeviceName,
             AtariPeripheralKind.NumericKeypad => AtariCoreLifecycleConstants.NumericKeypadDeviceName,
+            AtariPeripheralKind.DrivingController => AtariCoreLifecycleConstants.DrivingControllerDeviceName,
+            AtariPeripheralKind.ProLineController => AtariCoreLifecycleConstants.ProLineControllerDeviceName,
+            AtariPeripheralKind.EnhancedController => AtariCoreLifecycleConstants.EnhancedControllerDeviceName,
             _ => throw new ArgumentOutOfRangeException(nameof(peripheral))
         };
         var selected = devices.FirstOrDefault(device =>
@@ -40,5 +43,16 @@ internal static class AtariControllerPortFunctions
         if (peripheral == AtariPeripheralKind.Automatic)
             return devices.FirstOrDefault()?.Id ?? AtariCoreLifecycleConstants.DefaultJoypadDevice;
         throw new InvalidDataException(AtariErrorMessages.UnsupportedControllerDevice);
+    }
+
+    internal static void ConfigurePort(AtariExternalCoreExports exports, AtariExternalHostCallbacks callbacks,
+        AtariMachineConfiguration configuration, int port, AtariPeripheralKind peripheral)
+    {
+        var definition = AtariCompatibilityCatalog.Get(configuration.Model);
+        if (port < AtariConstants.MinimumControllerPort || port >= definition.ControllerPortCount)
+            throw new ArgumentOutOfRangeException(nameof(port), AtariErrorMessages.InvalidControllerPort);
+        if (!AtariControllerFunctions.Peripherals(configuration.Model).Contains(peripheral))
+            throw new InvalidDataException(AtariErrorMessages.UnsupportedControllerDevice);
+        exports.SetControllerPortDevice(checked((uint)port), ResolveDevice(callbacks.ControllerPorts, port, peripheral));
     }
 }

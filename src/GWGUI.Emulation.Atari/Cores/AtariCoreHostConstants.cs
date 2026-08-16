@@ -8,7 +8,7 @@ public static class AtariCoreHostConstants
     internal const string VideoMapPrefix = "gwgui-atari-video-";
     internal const string LocalPipeServerName = ".";
     internal const string UniqueNameFormat = "N";
-    internal const int ProtocolVersion = 1;
+    internal const int ProtocolVersion = 2;
     internal const int MaximumPipeInstances = 1;
     internal const int PipeBufferSize = 8 * 1024 * 1024;
     internal const int ConnectionTimeoutMilliseconds = 15_000;
@@ -34,6 +34,7 @@ public static class AtariCoreHostConstants
     internal const byte SaveMediaChangesCommand = 12;
     internal const byte GetDiskStatusCommand = 13;
     internal const byte HasUnsavedMediaChangesCommand = 14;
+    internal const byte SetControllerPortDeviceCommand = 15;
     internal const byte SuccessResponse = 1;
     internal const byte FailureResponse = 2;
 }

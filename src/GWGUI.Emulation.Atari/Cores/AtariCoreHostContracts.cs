@@ -15,7 +15,8 @@ internal enum AtariHostCommand : byte
     Dispose = AtariCoreHostConstants.DisposeCommand,
     SaveMediaChanges = AtariCoreHostConstants.SaveMediaChangesCommand,
     GetDiskStatus = AtariCoreHostConstants.GetDiskStatusCommand,
-    HasUnsavedMediaChanges = AtariCoreHostConstants.HasUnsavedMediaChangesCommand
+    HasUnsavedMediaChanges = AtariCoreHostConstants.HasUnsavedMediaChangesCommand,
+    SetControllerPortDevice = AtariCoreHostConstants.SetControllerPortDeviceCommand
 }
 
 internal enum AtariHostResponseStatus : byte

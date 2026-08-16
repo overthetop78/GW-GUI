@@ -441,12 +441,12 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-033 — Implémenter les contrôleurs
 
-- [ ] Importer les informations de contrôleurs et descripteurs annoncés par chaque cœur.
-- [ ] Définir le nombre de ports et périphériques compatibles par modèle.
-- [ ] Mapper RetroPad, joystick numérique, sticks analogiques, gâchettes et boutons supplémentaires nécessaires.
-- [ ] Gérer les quatre ports Atari 8 bits lorsque disponibles et les contrôleurs spécifiques 5200/Jaguar.
-- [ ] Appeler `retro_set_controller_port_device` à la configuration et lors d’un changement permis.
-- [ ] Tester bitmask, axes extrêmes, zones mortes, ports absents et deux manettes distinctes.
+- [x] Importer les informations de contrôleurs et descripteurs annoncés par chaque cœur.
+- [x] Définir le nombre de ports et périphériques compatibles par modèle.
+- [x] Mapper RetroPad, joystick numérique, sticks analogiques, gâchettes et boutons supplémentaires nécessaires.
+- [x] Gérer les quatre ports Atari 8 bits lorsque disponibles et les contrôleurs spécifiques 5200/Jaguar.
+- [x] Appeler `retro_set_controller_port_device` à la configuration et lors d’un changement permis.
+- [x] Tester bitmask, axes extrêmes, zones mortes, ports absents et deux manettes distinctes.
 
 #### ATA-034 — Intégrer les raccourcis d’émulation
 

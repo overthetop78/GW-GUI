@@ -137,6 +137,7 @@ public sealed class AtariRuntimeStatusTests
         public void HardReset() { }
         public void Stop() { }
         public void SetInput(EmulationInputSnapshot snapshot) { }
+        public void SetControllerPortDevice(int port, AtariPeripheralKind peripheral) { }
         public void InsertMedia(AtariMediaConfiguration media) { }
         public void EjectMedia(EmulationMediaSlot slot) { }
         public void SelectDisk(int index) { }

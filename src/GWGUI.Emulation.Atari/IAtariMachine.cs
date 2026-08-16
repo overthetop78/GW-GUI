@@ -20,6 +20,7 @@ public interface IAtariMachine : IEmulatedMachine
     event EventHandler<VideoFrame>? VideoFrameReady;
     event EventHandler<AudioChunk>? AudioChunkReady;
     void SetInput(EmulationInputSnapshot snapshot);
+    void SetControllerPortDevice(int port, AtariPeripheralKind peripheral);
     void SetAudioMuted(bool muted);
     void SetAudioVolume(float volume);
     void SetAudioOutputFactory(Func<IAudioOutput?>? factory);

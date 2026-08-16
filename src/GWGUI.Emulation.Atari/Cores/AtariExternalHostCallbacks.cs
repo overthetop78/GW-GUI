@@ -25,6 +25,7 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
     private EmulationPixelFormat _pixelFormat = EmulationPixelFormat.Xrgb8888;
     private bool _disposed;
     private ExternalCoreApi.KeyboardEvent? _keyboardEvent;
+    private IReadOnlyList<AtariControllerBinding>? _controllerBindings;
     private readonly AtariDiskControl _diskControl = new();
 
     internal AtariExternalHostCallbacks(string systemDirectory, string contentDirectory, string saveDirectory,
@@ -64,7 +65,10 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
     internal ExternalCoreApi.SetSensorState SetSensorState { get; }
     internal ExternalCoreApi.GetSensorInput GetSensorInput { get; }
     internal ExternalCoreApi.LogCallback Log { get; }
-    internal EmulationInputSnapshot Input { set => _input.Update(value); }
+    internal EmulationInputSnapshot Input
+    {
+        set => _input.Update(AtariControllerFunctions.ApplyDeadZones(value, _controllerBindings));
+    }
     internal VideoFrame? LatestVideoFrame { get; private set; }
     internal AudioChunk? LatestAudioChunk { get; private set; }
     internal IReadOnlyList<AtariCoreOption> Options => _optionHost.Catalog;
@@ -105,6 +109,7 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
     }
 
     internal void SetOption(string key, string value) => _optionHost.SetValue(key, value);
+    internal void ConfigureInput(AtariInputConfiguration input) => _controllerBindings = input.Controllers;
     internal void ValidateConfiguredOptions() => _optionHost.ValidateConfiguredValues();
 
     private bool OnEnvironment(uint command, nint data)

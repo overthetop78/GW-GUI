@@ -139,6 +139,12 @@ internal sealed class AtariProcessCore : IAtariCore
         if (_initialized && !_disposed && !_connectionFailed) Request(AtariHostCommand.Stop);
     }
     public void SetInput(EmulationInputSnapshot snapshot) => _input.Update(snapshot);
+    public void SetControllerPortDevice(int port, AtariPeripheralKind peripheral) =>
+        Request(AtariHostCommand.SetControllerPortDevice, writer =>
+        {
+            writer.Write(port);
+            writer.Write((int)peripheral);
+        });
     public void InsertMedia(AtariMediaConfiguration media) => Request(AtariHostCommand.InsertMedia,
         writer => writer.Write(JsonSerializer.Serialize(media, AtariCoreHostFunctions.JsonOptions)));
     public void EjectMedia(EmulationMediaSlot slot) => Request(AtariHostCommand.EjectMedia,

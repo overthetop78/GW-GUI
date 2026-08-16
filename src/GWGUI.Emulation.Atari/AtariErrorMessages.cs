@@ -28,6 +28,7 @@ internal static class AtariErrorMessages
     internal const string InvalidControllerPort = "The Atari controller port is outside the supported range.";
     internal const string UnsupportedControllerDevice = "The selected Atari controller device is not supported on this port.";
     internal const string DuplicateControllerPort = "An Atari controller port cannot be configured more than once.";
+    internal const string InvalidControllerDeadZone = "The Atari controller dead zone must be between zero and one hundred percent.";
     internal const string CorePathMustBeAbsolute = "The Atari core path must be absolute.";
     internal const string CoreFileMissing = "The configured Atari core was not found.";
     internal const string CoreExportMissing = "The Atari core is missing a required export.";

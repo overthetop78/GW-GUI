@@ -93,6 +93,11 @@ internal static class AtariConfigurationFunctions
                 throw new ArgumentOutOfRangeException(nameof(input), AtariErrorMessages.InvalidControllerPort);
             if (!ports.Add(controller.Port))
                 throw new ArgumentException(AtariErrorMessages.DuplicateControllerPort, nameof(input));
+            if (controller.DeadZonePercent is < AtariControllerConstants.MinimumDeadZonePercent
+                or > AtariControllerConstants.MaximumDeadZonePercent)
+                throw new ArgumentOutOfRangeException(nameof(input), AtariErrorMessages.InvalidControllerDeadZone);
+            if (!AtariControllerFunctions.Peripherals(model).Contains(controller.Peripheral))
+                throw new ArgumentException(AtariErrorMessages.UnsupportedControllerDevice, nameof(input));
         }
     }
 }

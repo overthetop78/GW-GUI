@@ -132,6 +132,10 @@ internal sealed class AtariMachine : IAtariMachine
     public void SetInput(EmulationInputSnapshot snapshot) =>
         QueueCommand(_core.SetInput, snapshot, CancellationToken.None).AsTask().GetAwaiter().GetResult();
 
+    public void SetControllerPortDevice(int port, AtariPeripheralKind peripheral) =>
+        QueueCommand(() => _core.SetControllerPortDevice(port, peripheral), CancellationToken.None)
+            .AsTask().GetAwaiter().GetResult();
+
     public void SetAudioMuted(bool muted)
     {
         _audio.SetMuted(muted);

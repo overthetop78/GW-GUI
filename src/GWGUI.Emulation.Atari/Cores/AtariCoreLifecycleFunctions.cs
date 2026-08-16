@@ -11,6 +11,7 @@ internal static class AtariCoreLifecycleFunctions
         if (!exports.LoadGame(gameInfo))
             throw new AtariEmulationException(AtariErrorKind.Content, AtariErrorCode.ContentUnsupported,
                 AtariErrorMessages.ContentLoadFailed);
+        callbacks.ConfigureInput(configuration.Input);
         AtariControllerPortFunctions.Configure(exports, callbacks, configuration);
         exports.GetSystemAvInfo(out var avInfo);
         callbacks.ApplySystemAvInfo(avInfo);

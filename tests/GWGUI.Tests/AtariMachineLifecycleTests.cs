@@ -43,6 +43,8 @@ public sealed class AtariMachineLifecycleTests
         await machine.SaveStateAsync(statePath);
         await machine.LoadStateAsync(statePath);
         machine.SetInput(EmulationInputSnapshot.Empty);
+        machine.SetControllerPortDevice(AtariMachineLifecycleTestConstants.FirstControllerPort,
+            AtariPeripheralKind.Automatic);
         await Task.Delay(AtariMachineLifecycleTestConstants.PauseObservationMilliseconds);
 
         Assert.Equal(pausedFrames, core.FrameCount);
@@ -51,6 +53,8 @@ public sealed class AtariMachineLifecycleTests
         Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedOptionCount, core.OptionCount);
         Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedStateCommandCount, core.StateCommandCount);
         Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedInputCount, core.InputCount);
+        Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedControllerConfigurationCount,
+            core.ControllerConfigurationCount);
         Assert.Single(core.ThreadIds);
         File.Delete(statePath);
         await machine.ResumeAsync();
@@ -124,6 +128,7 @@ public sealed class AtariMachineLifecycleTests
         public int OptionCount;
         public int StateCommandCount;
         public int InputCount;
+        public int ControllerConfigurationCount;
         public bool ThrowOnFrame { get; init; }
         public bool ThrowOnReset { get; init; }
         public IReadOnlyCollection<int> ThreadIds => _threads.Keys.ToArray();
@@ -163,6 +168,11 @@ public sealed class AtariMachineLifecycleTests
         }
         public void Stop() { CaptureThread(); Interlocked.Increment(ref StopCount); }
         public void SetInput(EmulationInputSnapshot snapshot) { CaptureThread(); Interlocked.Increment(ref InputCount); }
+        public void SetControllerPortDevice(int port, AtariPeripheralKind peripheral)
+        {
+            CaptureThread();
+            Interlocked.Increment(ref ControllerConfigurationCount);
+        }
         public void InsertMedia(AtariMediaConfiguration media) { CaptureThread(); Interlocked.Increment(ref MediaCommandCount); }
         public void EjectMedia(EmulationMediaSlot slot) { CaptureThread(); Interlocked.Increment(ref MediaCommandCount); }
         public void SelectDisk(int index) { CaptureThread(); Interlocked.Increment(ref MediaCommandCount); }
@@ -197,6 +207,8 @@ internal static class AtariMachineLifecycleTestConstants
     internal const int ExpectedOptionCount = 1;
     internal const int ExpectedStateCommandCount = 2;
     internal const int ExpectedInputCount = 1;
+    internal const int ExpectedControllerConfigurationCount = 1;
+    internal const int FirstControllerPort = 0;
     internal const int FirstDiskIndex = 0;
     internal const int PauseObservationMilliseconds = 100;
     internal const int TimeoutMilliseconds = 10000;

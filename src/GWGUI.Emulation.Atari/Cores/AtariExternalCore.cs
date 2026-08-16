@@ -162,6 +162,12 @@ internal sealed class AtariExternalCore : IAtariCore
     public void RunFrame() => RequireExports().Run();
     public void HardReset() => RequireExports().Reset();
     public void SetInput(EmulationInputSnapshot snapshot) => RequireCallbacks().Input = snapshot;
+    public void SetControllerPortDevice(int port, AtariPeripheralKind peripheral)
+    {
+        var configuration = _configuration ??
+            throw new InvalidOperationException(AtariErrorMessages.CoreNotInitialized);
+        AtariControllerPortFunctions.ConfigurePort(RequireExports(), RequireCallbacks(), configuration, port, peripheral);
+    }
     public void SetOption(string key, string value) => RequireCallbacks().SetOption(key, value);
 
     public void InsertMedia(AtariMediaConfiguration media)

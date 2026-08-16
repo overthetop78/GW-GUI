@@ -35,6 +35,8 @@ internal static class AtariInputFunctions
             (AtariInputConstants.LeftAnalogIndex, AtariInputConstants.AnalogYId) => controller.LeftY,
             (AtariInputConstants.RightAnalogIndex, AtariInputConstants.AnalogXId) => controller.RightX,
             (AtariInputConstants.RightAnalogIndex, AtariInputConstants.AnalogYId) => controller.RightY,
+            (AtariControllerConstants.TriggerAnalogIndex, AtariControllerConstants.LeftTriggerId) => controller.LeftTrigger,
+            (AtariControllerConstants.TriggerAnalogIndex, AtariControllerConstants.RightTriggerId) => controller.RightTrigger,
             _ => AtariInputConstants.InactiveState
         };
     }

@@ -28,6 +28,7 @@ internal interface IAtariCore : IDisposable
     void HardReset();
     void Stop();
     void SetInput(EmulationInputSnapshot snapshot);
+    void SetControllerPortDevice(int port, AtariPeripheralKind peripheral);
     void InsertMedia(AtariMediaConfiguration media);
     void EjectMedia(EmulationMediaSlot slot);
     void SelectDisk(int index);

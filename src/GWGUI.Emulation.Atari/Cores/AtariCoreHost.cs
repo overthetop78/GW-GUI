@@ -75,6 +75,10 @@ public static class AtariCoreHost
                             writer.Write(EnsureCore(core).HasUnsavedMediaChanges(
                                 (EmulationMediaSlot)reader.ReadInt32()));
                             break;
+                        case AtariHostCommand.SetControllerPortDevice:
+                            EnsureCore(core).SetControllerPortDevice(reader.ReadInt32(),
+                                (AtariPeripheralKind)reader.ReadInt32());
+                            break;
                         case AtariHostCommand.Dispose:
                             core?.Dispose();
                             core = null;
