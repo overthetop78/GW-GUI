@@ -10,14 +10,33 @@ internal static class ControlErrorPresenter
     {
         var logPath = ErrorLog.Write(error, context);
         var detail = logPath is null
-            ? LocExtension.Get("Common.Unknown")
-            : LocExtension.Get("Error.LogSaved", logPath);
-        return LocExtension.Get("Error.Unexpected", detail);
+            ? LocExtension.Get(ControlErrorPresenterConstants.UnknownResource)
+            : LocExtension.Get(ControlErrorPresenterConstants.LogSavedResource, logPath);
+        return LocExtension.Get(ControlErrorPresenterConstants.UnexpectedResource, detail);
     }
 
     internal static void ShowUnexpected(FrameworkElement owner, Exception error, string context, string title) =>
         MessageBox.Show(Window.GetWindow(owner), Describe(error, context), title,
             MessageBoxButton.OK, MessageBoxImage.Error);
+
+    internal static string DescribeDetailed(Exception error, string context)
+    {
+        var logPath = ErrorLog.Write(error, context);
+        if (logPath is null) return error.Message;
+        return error.Message + Environment.NewLine + Environment.NewLine
+            + LocExtension.Get(ControlErrorPresenterConstants.LogSavedResource, logPath);
+    }
+
+    internal static void ShowDetailed(FrameworkElement owner, Exception error, string context, string title) =>
+        MessageBox.Show(Window.GetWindow(owner), DescribeDetailed(error, context), title,
+            MessageBoxButton.OK, MessageBoxImage.Error);
+}
+
+internal static class ControlErrorPresenterConstants
+{
+    internal const string UnknownResource = "Common.Unknown";
+    internal const string LogSavedResource = "Error.LogSaved";
+    internal const string UnexpectedResource = "Error.Unexpected";
 }
 
 internal static class ControlErrorContexts

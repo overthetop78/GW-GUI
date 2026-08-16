@@ -571,12 +571,12 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-046 — Construire la section principale Atari
 
-- [ ] Ajouter sélection de configuration et bouton d’ouverture dans l’onglet principal Émulation.
-- [ ] Ouvrir chaque machine dans son propre sous-onglet avec titre et fermeture asynchrone.
-- [ ] Recharger la liste après sauvegarde ou fermeture des paramètres.
-- [ ] Valider cœur, firmware, configuration et média avant de démarrer.
-- [ ] Afficher l’erreur précise au lieu d’un état `Unknown` générique.
-- [ ] Arrêter toutes les machines Atari lors de la fermeture de l’application.
+- [x] Ajouter sélection de configuration et bouton d’ouverture dans l’onglet principal Émulation.
+- [x] Ouvrir chaque machine dans son propre sous-onglet avec titre et fermeture asynchrone.
+- [x] Recharger la liste après sauvegarde ou fermeture des paramètres.
+- [x] Valider cœur, firmware, configuration et média avant de démarrer.
+- [x] Afficher l’erreur précise au lieu d’un état `Unknown` générique.
+- [x] Arrêter toutes les machines Atari lors de la fermeture de l’application.
 
 #### ATA-047 — Construire la vue de machine Atari
 
