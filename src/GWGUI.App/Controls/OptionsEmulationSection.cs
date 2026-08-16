@@ -18,7 +18,7 @@ namespace GWGUI.App.Controls;
 public sealed class OptionsEmulationSection : UserControl
 {
     public static event EventHandler<AmigaMachineConfiguration>? ConfigurationSaved;
-    private readonly AmigaConfigurationStore _store = new(StoragePaths.AmigaConfigurationsDirectory, StoragePaths.DataDirectory);
+    private readonly AmigaConfigurationDocuments _configurationDocuments = new(StoragePaths.AmigaConfigurationsDirectory, StoragePaths.DataDirectory);
     private readonly ObservableCollection<ConfigurationItem> _configurations = [];
     private readonly ObservableCollection<FirmwareItem> _firmware = [];
     private readonly ObservableCollection<OptionItem> _options = [];
@@ -373,13 +373,13 @@ public sealed class OptionsEmulationSection : UserControl
         if (open is not null) row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         row.Children.Add(new TextBlock { Text = label, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 10, 0) });
         Grid.SetColumn(textBox, 1); row.Children.Add(textBox);
-        var browseButton = new Button { Content = LocExtension.Get("Common.Browse"), MinWidth = 110, Margin = new Thickness(8, 0, 0, 0) };
-        browseButton.Click += async (_, _) => await browse();
+        var browseButton = ControlUiFactory.TextButton(LocExtension.Get("Common.Browse"), 110,
+            async (_, _) => await browse(), new Thickness(8, 0, 0, 0));
         Grid.SetColumn(browseButton, 2); row.Children.Add(browseButton);
         if (open is not null)
         {
-            var openButton = new Button { Content = LocExtension.Get("Common.OpenFolder"), MinWidth = 120, Margin = new Thickness(8, 0, 0, 0) };
-            openButton.Click += async (_, _) => await open();
+            var openButton = ControlUiFactory.TextButton(LocExtension.Get("Common.OpenFolder"), 120,
+                async (_, _) => await open(), new Thickness(8, 0, 0, 0));
             Grid.SetColumn(openButton, 3); row.Children.Add(openButton);
         }
         return row;
@@ -397,26 +397,14 @@ public sealed class OptionsEmulationSection : UserControl
         textBox.Height = 32;
         Grid.SetColumn(textBox, 1);
         row.Children.Add(textBox);
-        var browseButton = new Button
-        {
-            Content = LocExtension.Get("Common.Browse"),
-            Height = 32,
-            MinWidth = 96,
-            Margin = new Thickness(6, 0, 0, 0)
-        };
-        browseButton.Click += async (_, _) => await browse();
+        var browseButton = ControlUiFactory.TextButton(LocExtension.Get("Common.Browse"), 96,
+            async (_, _) => await browse(), new Thickness(6, 0, 0, 0), 32);
         Grid.SetColumn(browseButton, 2);
         row.Children.Add(browseButton);
         if (open is not null)
         {
-            var openButton = new Button
-            {
-                Content = LocExtension.Get("Common.OpenFolder"),
-                Height = 32,
-                MinWidth = 112,
-                Margin = new Thickness(6, 0, 0, 0)
-            };
-            openButton.Click += async (_, _) => await open();
+            var openButton = ControlUiFactory.TextButton(LocExtension.Get("Common.OpenFolder"), 112,
+                async (_, _) => await open(), new Thickness(6, 0, 0, 0), 32);
             Grid.SetColumn(openButton, 3);
             row.Children.Add(openButton);
         }
@@ -590,8 +578,7 @@ public sealed class OptionsEmulationSection : UserControl
             BorderThickness = new Thickness(1),
             Margin = new Thickness(0, 0, 0, 12)
         };
-        configurationCard.SetResourceReference(BackgroundProperty, "CardBrush");
-        configurationCard.SetResourceReference(BorderBrushProperty, "BorderBrush");
+        ControlUiFactory.ApplyCardAppearance(configurationCard);
         panel.Children.Add(configurationCard);
         panel.Children.Add(new AmigaCoreManagementSection { Margin = new Thickness(0, 0, 0, 12) });
         var hardDisks = new StackPanel { Margin = new Thickness(8, 6, 8, 8) };
@@ -865,66 +852,40 @@ public sealed class OptionsEmulationSection : UserControl
 
     private void ConfigureOptionChoices()
     {
-        var kib = StorageSizeFormatter.KibibyteUnit;
-        var mib = StorageSizeFormatter.MebibyteUnit;
-        var oneAndHalf = 1.5.ToString("0.0", System.Globalization.CultureInfo.CurrentCulture);
-        var oneAndEight = 1.8.ToString("0.0", System.Globalization.CultureInfo.CurrentCulture);
-        _chipMemory.ItemsSource = new[] { ("auto", LocExtension.Get("Visual.Automatic")), ("1", $"512 {kib}"), ("2", $"1 {mib}"), ("3", $"{oneAndHalf} {mib}"), ("4", $"2 {mib}") }.Select(item => new OptionChoice(item.Item1, item.Item2)).ToArray();
-        _slowMemory.ItemsSource = new[] { ("auto", LocExtension.Get("Visual.Automatic")), ("0", LocExtension.Get("Emulation.MemoryNone")), ("2", $"512 {kib}"), ("4", $"1 {mib}"), ("6", $"{oneAndHalf} {mib}"), ("7", $"{oneAndEight} {mib}") }.Select(item => new OptionChoice(item.Item1, item.Item2)).ToArray();
-        _fastMemory.ItemsSource = MemoryChoices([0, 1, 2, 4, 8]);
-        _z3Memory.ItemsSource = MemoryChoices([0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512]);
-        _videoStandard.ItemsSource = new[] { new OptionChoice("PAL auto", $"PAL ({LocExtension.Get("Visual.Automatic")})"), new OptionChoice("NTSC auto", $"NTSC ({LocExtension.Get("Visual.Automatic")})"), new OptionChoice("PAL", "PAL"), new OptionChoice("NTSC", "NTSC") };
-        _cpuCompatibility.ItemsSource = new[]
-        {
-            new OptionChoice("normal", $"{LocExtension.Get("Emulation.CompatibilityNormal")} (CPU)"),
-            new OptionChoice("compatible", $"{LocExtension.Get("Emulation.CompatibilityCompatible")} (CPU)"),
-            new OptionChoice("memory", $"{LocExtension.Get("Emulation.CompatibilityMemory")} (DMA / RAM)"),
-            new OptionChoice("exact", $"{LocExtension.Get("Emulation.CompatibilityExact")} (CPU / DMA / RAM)")
-        };
-        _videoResolution.ItemsSource = Choices(("auto", "Visual.Automatic"), ("auto-lores", "Emulation.ResolutionAutoLow"), ("auto-superhires", "Emulation.ResolutionAutoSuperHigh"), ("lores", "Emulation.ResolutionLow"), ("hires", "Emulation.ResolutionHigh"), ("superhires", "Emulation.ResolutionSuperHigh"));
-        _videoAspect.ItemsSource = Choices(("auto", "Visual.Automatic"), ("PAL", "PAL"), ("NTSC", "NTSC"), ("1:1", "1:1"));
-        _cropVideo.ItemsSource = Choices(("disabled", "Emulation.Disabled"), ("minimum", "Emulation.Minimum"), ("smaller", "Emulation.VerySmall"), ("small", "Emulation.Small"), ("medium", "Emulation.Medium"), ("large", "Emulation.Large"), ("larger", "Emulation.VeryLarge"), ("maximum", "Emulation.Maximum"), ("auto", "Visual.Automatic"));
-        _videoLineMode.ItemsSource = Choices(("auto", "Visual.Automatic"), ("single", "Emulation.LineModeSingle"), ("double", "Emulation.LineModeDouble"));
-        _videoHzChange.ItemsSource = Choices(("disabled", "Emulation.Disabled"), ("enabled", "Emulation.Enabled"), ("locked", "Emulation.Locked"));
-        _videoFrameskip.ItemsSource = Choices(("disabled", "Emulation.Disabled"), ("1", "1"), ("2", "2"));
+        _chipMemory.ItemsSource = EmulationOptionCatalog.InitialChipMemory();
+        _slowMemory.ItemsSource = EmulationOptionCatalog.InitialSlowMemory();
+        _fastMemory.ItemsSource = EmulationOptionCatalog.MemoryChoices([0, 1, 2, 4, 8]);
+        _z3Memory.ItemsSource = EmulationOptionCatalog.MemoryChoices([0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512]);
+        _videoStandard.ItemsSource = EmulationOptionCatalog.VideoStandards();
+        _cpuCompatibility.ItemsSource = EmulationOptionCatalog.CpuCompatibility();
+        _videoResolution.ItemsSource = EmulationOptionCatalog.Choices(("auto", "Visual.Automatic"), ("auto-lores", "Emulation.ResolutionAutoLow"), ("auto-superhires", "Emulation.ResolutionAutoSuperHigh"), ("lores", "Emulation.ResolutionLow"), ("hires", "Emulation.ResolutionHigh"), ("superhires", "Emulation.ResolutionSuperHigh"));
+        _videoAspect.ItemsSource = EmulationOptionCatalog.Choices(("auto", "Visual.Automatic"), ("PAL", "PAL"), ("NTSC", "NTSC"), ("1:1", "1:1"));
+        _cropVideo.ItemsSource = EmulationOptionCatalog.Choices(("disabled", "Emulation.Disabled"), ("minimum", "Emulation.Minimum"), ("smaller", "Emulation.VerySmall"), ("small", "Emulation.Small"), ("medium", "Emulation.Medium"), ("large", "Emulation.Large"), ("larger", "Emulation.VeryLarge"), ("maximum", "Emulation.Maximum"), ("auto", "Visual.Automatic"));
+        _videoLineMode.ItemsSource = EmulationOptionCatalog.Choices(("auto", "Visual.Automatic"), ("single", "Emulation.LineModeSingle"), ("double", "Emulation.LineModeDouble"));
+        _videoHzChange.ItemsSource = EmulationOptionCatalog.Choices(("disabled", "Emulation.Disabled"), ("enabled", "Emulation.Enabled"), ("locked", "Emulation.Locked"));
+        _videoFrameskip.ItemsSource = EmulationOptionCatalog.Choices(("disabled", "Emulation.Disabled"), ("1", "1"), ("2", "2"));
         _videoColors.ItemsSource = new[] { new OptionChoice("16bit", "16 bits"), new OptionChoice("24bit", "24 bits") };
         _videoGamma.ItemsSource = Enumerable.Range(-5, 11).Select(value => new OptionChoice((value * 100).ToString(), value.ToString())).ToArray();
-        _videoRenderer.ItemsSource = new[]
-        {
-            new RendererChoice(GWGUI.Emulation.EmulationVideoRenderer.Direct3D11, "Direct3D 11"),
-            new RendererChoice(GWGUI.Emulation.EmulationVideoRenderer.Vulkan, "Vulkan"),
-            new RendererChoice(GWGUI.Emulation.EmulationVideoRenderer.OpenGL, "OpenGL"),
-            new RendererChoice(GWGUI.Emulation.EmulationVideoRenderer.Wpf, "WPF")
-        };
+        _videoRenderer.ItemsSource = EmulationOptionCatalog.VideoRenderers();
         _videoRenderer.DisplayMemberPath = nameof(RendererChoice.Label);
         _videoRenderer.SelectedIndex = 0;
         _videoRenderer.MaxDropDownHeight = 132;
-        _immediateBlits.ItemsSource = Choices(("false", "Emulation.Disabled"), ("immediate", "Emulation.Immediate"), ("waiting", "Emulation.Waiting"));
-        _collisionLevel.ItemsSource = Choices(("none", "HostTools.None"), ("sprites", "Emulation.CollisionSprites"), ("playfields", "Emulation.CollisionPlayfields"), ("full", "Emulation.CollisionFull"));
-        _audioInterpolation.ItemsSource = Choices(("none", "HostTools.None"), ("anti", "Emulation.InterpolationAnti"), ("sinc", "Sinc"), ("rh", "RH"), ("crux", "Crux"));
-        _audioFilter.ItemsSource = Choices(("emulated", "Emulation.FilterEmulated"), ("off", "Emulation.Disabled"), ("on", "Emulation.Enabled"));
-        _audioFilterType.ItemsSource = Choices(("auto", "Visual.Automatic"), ("standard", "Emulation.Standard"), ("enhanced", "Emulation.Enhanced"));
+        _immediateBlits.ItemsSource = EmulationOptionCatalog.Choices(("false", "Emulation.Disabled"), ("immediate", "Emulation.Immediate"), ("waiting", "Emulation.Waiting"));
+        _collisionLevel.ItemsSource = EmulationOptionCatalog.Choices(("none", "HostTools.None"), ("sprites", "Emulation.CollisionSprites"), ("playfields", "Emulation.CollisionPlayfields"), ("full", "Emulation.CollisionFull"));
+        _audioInterpolation.ItemsSource = EmulationOptionCatalog.Choices(("none", "HostTools.None"), ("anti", "Emulation.InterpolationAnti"), ("sinc", "Sinc"), ("rh", "RH"), ("crux", "Crux"));
+        _audioFilter.ItemsSource = EmulationOptionCatalog.Choices(("emulated", "Emulation.FilterEmulated"), ("off", "Emulation.Disabled"), ("on", "Emulation.Enabled"));
+        _audioFilterType.ItemsSource = EmulationOptionCatalog.Choices(("auto", "Visual.Automatic"), ("standard", "Emulation.Standard"), ("enhanced", "Emulation.Enhanced"));
         _audioLatency.ItemsSource = new[] { 20, 35, 50, 75, 100, 150, 250 }
             .Select(value => new OptionChoice(value.ToString(), $"{value} ms")).ToArray();
         _floppySoundType.ItemsSource = new[] { new OptionChoice("internal", LocExtension.Get("Emulation.Internal")), new OptionChoice("A500", "A500"), new OptionChoice("LOUD", LocExtension.Get("Emulation.Loud")) };
         _floppySpeed.ItemsSource = new[] { 100, 200, 400, 800, 0 }.Select(value => new OptionChoice(value.ToString(), value == 0 ? LocExtension.Get("Emulation.Maximum") : $"{value} %")).ToArray();
         _cdSpeed.ItemsSource = new[] { new OptionChoice("100", "1×"), new OptionChoice("0", LocExtension.Get("Emulation.Maximum")) };
-        _analogMouse.ItemsSource = Choices(("disabled", "Emulation.Disabled"), ("left", "Emulation.LeftStick"), ("right", "Emulation.RightStick"), ("both", "Emulation.BothSticks"));
+        _analogMouse.ItemsSource = EmulationOptionCatalog.Choices(("disabled", "Emulation.Disabled"), ("left", "Emulation.LeftStick"), ("right", "Emulation.RightStick"), ("both", "Emulation.BothSticks"));
         _analogMouseDeadzone.ItemsSource = Enumerable.Range(0, 11).Select(value => value * 5).Select(value => new OptionChoice(value.ToString(), $"{value} %")).ToArray();
         _analogMouseSpeed.ItemsSource = Enumerable.Range(1, 30).Select(value => value / 10d).Select(value => new OptionChoice(value.ToString("0.0", System.Globalization.CultureInfo.InvariantCulture), $"{value:0.0}×")).ToArray();
         _analogMouseSpeedRight.ItemsSource = _analogMouseSpeed.ItemsSource;
         _turboPulse.ItemsSource = new[] { "2", "4", "6", "8", "10", "12" };
         _joyPortOrder.ItemsSource = new[] { "1234", "2143", "3412", "4321" };
-    }
-
-    private static OptionChoice[] Choices(params (string Value, string TextOrKey)[] choices) => choices
-        .Select(choice => new OptionChoice(choice.Value, choice.TextOrKey.Contains('.') ? LocExtension.Get(choice.TextOrKey) : choice.TextOrKey))
-        .ToArray();
-
-    private static OptionChoice[] MemoryChoices(IEnumerable<int> values)
-    {
-        var unit = StorageSizeFormatter.MebibyteUnit;
-        return [new OptionChoice("auto", LocExtension.Get("Visual.Automatic")), .. values.Select(value => new OptionChoice(value.ToString(), value == 0 ? LocExtension.Get("Emulation.MemoryNone") : $"{value} {unit}"))];
     }
 
     private Task AddMediaAsync()
@@ -1599,8 +1560,7 @@ public sealed class OptionsEmulationSection : UserControl
             CornerRadius = new CornerRadius(9),
             ClipToBounds = true
         };
-        card.SetResourceReference(BackgroundProperty, "CardBrush");
-        card.SetResourceReference(BorderBrushProperty, "BorderBrush");
+        ControlUiFactory.ApplyCardAppearance(card);
         return card;
     }
 
@@ -1649,8 +1609,7 @@ public sealed class OptionsEmulationSection : UserControl
             CornerRadius = new CornerRadius(9),
             ClipToBounds = true
         };
-        card.SetResourceReference(BackgroundProperty, "CardBrush");
-        card.SetResourceReference(BorderBrushProperty, "BorderBrush");
+        ControlUiFactory.ApplyCardAppearance(card);
         return card;
     }
 
@@ -1721,38 +1680,25 @@ public sealed class OptionsEmulationSection : UserControl
 
     private void ConfigureMemoryChoices(AmigaModel model)
     {
-        var chipValues = model.Id switch
-        {
-            "A1000" => new[] { 512 },
-            "A500" => new[] { 512, 1024, 1536, 2048 },
-            "A500PLUS" or "A600" => new[] { 1024, 2048 },
-            "A2000" => new[] { 512, 1024, 2048 },
-            _ => new[] { 2048 }
-        };
-        var slowValues = model.Id switch
-        {
-            "A1000" or "A500" or "A500PLUS" or "A2000" => new[] { 0, 512, 1024, 1536, 1792 },
-            _ => new[] { 0 }
-        };
-        var fastValues = new[] { 0, 1, 2, 4, 8 };
-        var z3Values = model.Id is "A3000" or "A4000"
-            ? new[] { 0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512 }
-            : new[] { 0 };
+        var chipValues = EmulationOptionCatalog.ChipMemoryValues(model);
+        var slowValues = EmulationOptionCatalog.SlowMemoryValues(model);
+        var fastValues = EmulationOptionCatalog.FastMemoryValues();
+        var z3Values = EmulationOptionCatalog.Z3MemoryValues(model);
 
-        _chipMemory.ItemsSource = chipValues.Select(ChipMemoryChoice).ToArray();
-        _slowMemory.ItemsSource = slowValues.Select(SlowMemoryChoice).ToArray();
-        _fastMemory.ItemsSource = ModelMemoryChoices(fastValues);
-        _z3Memory.ItemsSource = ModelMemoryChoices(z3Values);
+        _chipMemory.ItemsSource = chipValues.Select(EmulationOptionCatalog.ChipMemoryChoice).ToArray();
+        _slowMemory.ItemsSource = slowValues.Select(EmulationOptionCatalog.SlowMemoryChoice).ToArray();
+        _fastMemory.ItemsSource = EmulationOptionCatalog.MemoryChoices(fastValues, includeAutomatic: false);
+        _z3Memory.ItemsSource = EmulationOptionCatalog.MemoryChoices(z3Values, includeAutomatic: false);
 
-        SelectValue(_chipMemory, ChipMemoryValue(model.ChipMemoryKib));
-        SelectValue(_slowMemory, SlowMemoryValue(model.SlowMemoryKib));
+        SelectValue(_chipMemory, EmulationOptionCatalog.ChipMemoryValue(model.ChipMemoryKib));
+        SelectValue(_slowMemory, EmulationOptionCatalog.SlowMemoryValue(model.SlowMemoryKib));
         SelectValue(_fastMemory, fastValues.Contains(model.FastMemoryMib) ? model.FastMemoryMib.ToString() : "0");
         SelectValue(_z3Memory, "0");
 
-        _chipMemory.IsEnabled = chipValues.Length > 1;
-        _slowMemory.IsEnabled = slowValues.Length > 1;
-        _fastMemory.IsEnabled = fastValues.Length > 1;
-        _z3Memory.IsEnabled = z3Values.Length > 1;
+        _chipMemory.IsEnabled = chipValues.Count > 1;
+        _slowMemory.IsEnabled = slowValues.Count > 1;
+        _fastMemory.IsEnabled = fastValues.Count > 1;
+        _z3Memory.IsEnabled = z3Values.Count > 1;
 
         _mainMemoryHint.Text = LocExtension.Get("Emulation.MemoryCompatibleWithModel", model.DisplayName);
         _extensionMemoryHint.Text = _z3Memory.IsEnabled
@@ -1763,79 +1709,31 @@ public sealed class OptionsEmulationSection : UserControl
 
     private void UpdateMemorySummary()
     {
-        var totalKib = ChipMemoryKib(SelectedText(_chipMemory))
-            + SlowMemoryKib(SelectedText(_slowMemory))
-            + MemoryMib(SelectedText(_fastMemory)) * 1024
-            + MemoryMib(SelectedText(_z3Memory)) * 1024;
+        var totalKib = EmulationOptionCatalog.ChipMemoryKib(SelectedText(_chipMemory))
+            + EmulationOptionCatalog.SlowMemoryKib(SelectedText(_slowMemory))
+            + EmulationOptionCatalog.MemoryMib(SelectedText(_fastMemory)) * 1024
+            + EmulationOptionCatalog.MemoryMib(SelectedText(_z3Memory)) * 1024;
         var totalMib = totalKib / 1024d;
         _totalMemory.Text = LocExtension.Get("Emulation.TotalMemoryConfigured",
             totalMib.ToString(totalMib % 1 == 0 ? "0" : "0.##", System.Globalization.CultureInfo.CurrentCulture),
             StorageSizeFormatter.MebibyteUnit);
     }
 
-    private static OptionChoice ChipMemoryChoice(int kib) =>
-        new(ChipMemoryValue(kib), FormatMemory(kib));
-
-    private static OptionChoice SlowMemoryChoice(int kib) =>
-        new(SlowMemoryValue(kib), kib == 0 ? LocExtension.Get("Emulation.MemoryNone") : FormatMemory(kib));
-
-    private static string ChipMemoryValue(int kib) => Math.Clamp(kib / 512, 1, 4).ToString();
-
-    private static string SlowMemoryValue(int kib) => kib switch
-    {
-        0 => "0",
-        512 => "2",
-        1024 => "4",
-        1536 => "6",
-        1792 => "7",
-        _ => "0"
-    };
-
-    private static int ChipMemoryKib(string value) => int.TryParse(value, out var units) ? units * 512 : 0;
-
-    private static int SlowMemoryKib(string value) => value switch
-    {
-        "2" => 512,
-        "4" => 1024,
-        "6" => 1536,
-        "7" => 1792,
-        _ => 0
-    };
-
-    private static int MemoryMib(string value) => int.TryParse(value, out var mib) ? mib : 0;
-
-    private static OptionChoice[] ModelMemoryChoices(IEnumerable<int> values)
-    {
-        var unit = StorageSizeFormatter.MebibyteUnit;
-        return values.Select(value => new OptionChoice(value.ToString(),
-            value == 0 ? LocExtension.Get("Emulation.MemoryNone") : $"{value} {unit}")).ToArray();
-    }
-
-    private static string FormatMemory(int kib)
-    {
-        return StorageSizeFormatter.FormatKibibytes(kib);
-    }
-
     private void ConfigureFpuChoices()
     {
         var cpu = SelectedText(_cpuModel);
         if (string.IsNullOrEmpty(cpu)) cpu = "68000";
-        var values = cpu switch
-        {
-            "68000" or "68010" => new[] { "0" },
-            "68020" or "68030" => new[] { "0", "68881", "68882" },
-            _ => new[] { "cpu", "0", "68881", "68882" }
-        };
+        var values = EmulationOptionCatalog.FpuValues(cpu);
         var previous = SelectedText(_fpuModel);
         _fpuModel.ItemsSource = values.Select(value => new OptionChoice(value, value switch
         {
-            "0" when values.Length == 1 => $"{LocExtension.Get("HostTools.None")} — {CpuDisplayName(cpu)}",
+            "0" when values.Count == 1 => $"{LocExtension.Get("HostTools.None")} — {EmulationOptionCatalog.CpuDisplayName(cpu)}",
             "0" => LocExtension.Get("HostTools.None"),
-            "cpu" => $"{LocExtension.Get("Emulation.IntegratedFpu")} — {CpuDisplayName(cpu)}",
+            "cpu" => $"{LocExtension.Get("Emulation.IntegratedFpu")} — {EmulationOptionCatalog.CpuDisplayName(cpu)}",
             _ => $"Motorola {value}"
         })).ToArray();
-        SelectValue(_fpuModel, values.Contains(previous) ? previous : DefaultFpu(cpu));
-        _fpuModel.IsEnabled = values.Length > 1;
+        SelectValue(_fpuModel, values.Contains(previous) ? previous : EmulationOptionCatalog.DefaultFpu(cpu));
+        _fpuModel.IsEnabled = values.Count > 1;
     }
 
     private void ConfigureCpuModelChoices()
@@ -1844,7 +1742,7 @@ public sealed class OptionsEmulationSection : UserControl
         var previous = SelectedText(_cpuModel);
         var nominalFrequency = NominalCpuFrequencyMhz(model);
         _cpuModel.ItemsSource = model.CpuModels
-            .Select(cpu => new OptionChoice(cpu, $"{CpuDisplayName(cpu)} — {FormatMhz(nominalFrequency)}"))
+            .Select(cpu => new OptionChoice(cpu, $"{EmulationOptionCatalog.CpuDisplayName(cpu)} — {FormatMhz(nominalFrequency)}"))
             .ToArray();
         SelectValue(_cpuModel, model.CpuModels.Contains(previous) ? previous : model.DefaultCpu);
         _cpuModel.IsEnabled = model.CpuModels.Count > 1;
@@ -1858,7 +1756,7 @@ public sealed class OptionsEmulationSection : UserControl
         if (string.IsNullOrWhiteSpace(cpu)) cpu = model.DefaultCpu;
         var frequency = FormatMhz(NominalCpuFrequencyMhz(model));
         _cpuNominalFrequency.Text = frequency;
-        _cpuModelHint.Text = $"{model.DisplayName} · {CpuDisplayName(cpu)} · {model.Chipset} · {frequency}";
+        _cpuModelHint.Text = $"{model.DisplayName} · {EmulationOptionCatalog.CpuDisplayName(cpu)} · {model.Chipset} · {frequency}";
     }
 
     private void ConfigureCpuFrequencyChoices()
@@ -1914,12 +1812,8 @@ public sealed class OptionsEmulationSection : UserControl
     private bool IsCycleExactCpu() => SelectedText(_cpuCompatibility) is "memory" or "exact";
     private bool IsNtsc() => SelectedText(_videoStandard).StartsWith("NTSC", StringComparison.OrdinalIgnoreCase);
 
-    private double NominalCpuFrequencyMhz(AmigaModel model) => model.Id switch
-    {
-        "A1200" or "CD32" => IsNtsc() ? 14.31818d : 14.18758d,
-        "A3000" or "A4000" => 25d,
-        _ => IsNtsc() ? 7.15909d : 7.09379d
-    };
+    private double NominalCpuFrequencyMhz(AmigaModel model) =>
+        EmulationOptionCatalog.NominalCpuFrequencyMhz(model, IsNtsc());
 
     private static string FrequencyChoiceText(double ratio, double frequency)
     {
@@ -1933,16 +1827,8 @@ public sealed class OptionsEmulationSection : UserControl
     private static string FormatMhz(double frequency) =>
         $"{frequency.ToString("0.00", System.Globalization.CultureInfo.CurrentCulture)} MHz";
 
-    private static string CpuDisplayName(string cpu) => cpu switch
-    {
-        "68020" => "Motorola 68EC020",
-        _ => $"Motorola {cpu}"
-    };
-
     private static bool Approximately(double left, double right) =>
         Math.Abs(left - right) < ControlTechnicalConstants.FrequencyComparisonTolerance;
-
-    private static string DefaultFpu(string cpu) => cpu is "68040" or "68060" ? "cpu" : "0";
 
     private static void SelectValue(ComboBox comboBox, string value)
         => ComboBoxSelection.SelectByValue<object>(comboBox, value,
@@ -1960,17 +1846,7 @@ public sealed class OptionsEmulationSection : UserControl
 
     private static Button CreateActionButton(string icon, string text)
     {
-        var content = new StackPanel { Orientation = Orientation.Horizontal };
-        content.Children.Add(new TextBlock
-        {
-            Text = icon,
-            FontFamily = ControlVisualConstants.IconFont,
-            FontSize = 16,
-            VerticalAlignment = VerticalAlignment.Center,
-            Margin = new Thickness(0, 0, 8, 0)
-        });
-        content.Children.Add(new TextBlock { Text = text, VerticalAlignment = VerticalAlignment.Center });
-        return new Button { Content = content, MinWidth = 110, Margin = new Thickness(0) };
+        return ControlUiFactory.IconTextButton(icon, text);
     }
 
     private static void AddField(Grid grid, int row, string label, FrameworkElement control)
@@ -2033,7 +1909,7 @@ public sealed class OptionsEmulationSection : UserControl
         try
         {
             var selectedId = _currentId;
-            var loaded = await _store.LoadAllAsync();
+            var loaded = await _configurationDocuments.LoadAllAsync();
             _configurations.Clear();
             foreach (var configuration in loaded) _configurations.Add(new ConfigurationItem(configuration));
             var selected = _configurations.FirstOrDefault(item => item.Configuration.Id == selectedId)
@@ -2234,45 +2110,45 @@ public sealed class OptionsEmulationSection : UserControl
         _options.Clear();
         foreach (var option in configuration.Options ?? new Dictionary<string, string>())
             _options.Add(new OptionItem { Category = "Configuration", Key = option.Key, Name = option.Key, Value = option.Value });
-        SetOption(_cpuModel, configuration, "puae_cpu_model", selectedModel.DefaultCpu);
-        SetOption(_fpuModel, configuration, "puae_fpu_model", DefaultFpu(selectedModel.DefaultCpu));
-        SetOption(_cpuCompatibility, configuration, "puae_cpu_compatibility", "exact");
+        AmigaConfigurationDocuments.SelectOption(_cpuModel, configuration, "puae_cpu_model", selectedModel.DefaultCpu);
+        AmigaConfigurationDocuments.SelectOption(_fpuModel, configuration, "puae_fpu_model", EmulationOptionCatalog.DefaultFpu(selectedModel.DefaultCpu));
+        AmigaConfigurationDocuments.SelectOption(_cpuCompatibility, configuration, "puae_cpu_compatibility", "exact");
         ConfigureCpuFrequencyChoices();
-        SelectCpuFrequency(GetOption(configuration, "puae_cpu_throttle", "0.0"),
-            GetOption(configuration, "puae_cpu_multiplier", "0"));
-        SetOption(_chipMemory, configuration, "puae_chipmem_size", Math.Clamp(((_model.SelectedItem as AmigaModel)?.ChipMemoryKib ?? 512) / 512, 1, 4).ToString());
-        SetOption(_slowMemory, configuration, "puae_bogomem_size", ((_model.SelectedItem as AmigaModel)?.SlowMemoryKib ?? 0) == 0 ? "0" : "2");
-        SetOption(_fastMemory, configuration, "puae_fastmem_size", ((_model.SelectedItem as AmigaModel)?.FastMemoryMib ?? 0).ToString());
-        SetOption(_z3Memory, configuration, "puae_z3mem_size", "0");
-        SetOption(_videoStandard, configuration, "puae_video_standard", "PAL");
-        SetOption(_videoResolution, configuration, "puae_video_resolution", "auto");
-        SetOption(_videoAspect, configuration, "puae_video_aspect", "auto");
-        SetOption(_cropVideo, configuration, "puae_crop", "disabled");
-        SetOption(_videoLineMode, configuration, "puae_video_vresolution", "auto");
-        SetOption(_videoHzChange, configuration, "puae_video_allow_hz_change", "locked");
-        SetOption(_videoFrameskip, configuration, "puae_gfx_framerate", "disabled");
-        SetOption(_videoColors, configuration, "puae_gfx_colors", "24bit");
-        SetOption(_videoGamma, configuration, "puae_gfx_gamma", "0");
+        SelectCpuFrequency(AmigaConfigurationDocuments.GetOption(configuration, "puae_cpu_throttle", "0.0"),
+            AmigaConfigurationDocuments.GetOption(configuration, "puae_cpu_multiplier", "0"));
+        AmigaConfigurationDocuments.SelectOption(_chipMemory, configuration, "puae_chipmem_size", Math.Clamp(((_model.SelectedItem as AmigaModel)?.ChipMemoryKib ?? 512) / 512, 1, 4).ToString());
+        AmigaConfigurationDocuments.SelectOption(_slowMemory, configuration, "puae_bogomem_size", ((_model.SelectedItem as AmigaModel)?.SlowMemoryKib ?? 0) == 0 ? "0" : "2");
+        AmigaConfigurationDocuments.SelectOption(_fastMemory, configuration, "puae_fastmem_size", ((_model.SelectedItem as AmigaModel)?.FastMemoryMib ?? 0).ToString());
+        AmigaConfigurationDocuments.SelectOption(_z3Memory, configuration, "puae_z3mem_size", "0");
+        AmigaConfigurationDocuments.SelectOption(_videoStandard, configuration, "puae_video_standard", "PAL");
+        AmigaConfigurationDocuments.SelectOption(_videoResolution, configuration, "puae_video_resolution", "auto");
+        AmigaConfigurationDocuments.SelectOption(_videoAspect, configuration, "puae_video_aspect", "auto");
+        AmigaConfigurationDocuments.SelectOption(_cropVideo, configuration, "puae_crop", "disabled");
+        AmigaConfigurationDocuments.SelectOption(_videoLineMode, configuration, "puae_video_vresolution", "auto");
+        AmigaConfigurationDocuments.SelectOption(_videoHzChange, configuration, "puae_video_allow_hz_change", "locked");
+        AmigaConfigurationDocuments.SelectOption(_videoFrameskip, configuration, "puae_gfx_framerate", "disabled");
+        AmigaConfigurationDocuments.SelectOption(_videoColors, configuration, "puae_gfx_colors", "24bit");
+        AmigaConfigurationDocuments.SelectOption(_videoGamma, configuration, "puae_gfx_gamma", "0");
         _videoRenderer.SelectedItem = _videoRenderer.Items.OfType<RendererChoice>()
             .FirstOrDefault(item => item.Renderer == configuration.VideoRenderer)
             ?? _videoRenderer.Items.OfType<RendererChoice>().First();
-        SetOption(_immediateBlits, configuration, "puae_immediate_blits", "waiting");
-        SetOption(_collisionLevel, configuration, "puae_collision_level", "playfields");
-        _flickerFixer.IsChecked = GetOption(configuration, "puae_gfx_flickerfixer", "disabled") == "enabled";
+        AmigaConfigurationDocuments.SelectOption(_immediateBlits, configuration, "puae_immediate_blits", "waiting");
+        AmigaConfigurationDocuments.SelectOption(_collisionLevel, configuration, "puae_collision_level", "playfields");
+        _flickerFixer.IsChecked = AmigaConfigurationDocuments.GetOption(configuration, "puae_gfx_flickerfixer", "disabled") == "enabled";
         var audio = configuration.Audio ?? new AmigaAudioConfiguration();
         var outputs = WasapiAudioOutput.GetOutputDevices();
         _audioOutput.ItemsSource = new[] { new AudioOutputDevice(string.Empty, LocExtension.Get("Emulation.DefaultAudioOutput")) }.Concat(outputs).ToArray();
         _audioOutput.SelectedItem = _audioOutput.Items.OfType<AudioOutputDevice>().FirstOrDefault(device => device.Id == audio.OutputDeviceId)
             ?? _audioOutput.Items.OfType<AudioOutputDevice>().FirstOrDefault();
         SelectValue(_audioLatency, audio.LatencyMilliseconds.ToString());
-        SetOption(_audioInterpolation, configuration, "puae_sound_interpol", audio.Interpolation);
-        SetOption(_audioFilter, configuration, "puae_sound_filter", audio.Filter);
-        SetOption(_audioFilterType, configuration, "puae_sound_filter_type", "auto");
-        _floppySound.Value = ParsePercentage(GetOption(configuration, "puae_floppy_sound", "80"), 80);
-        SetOption(_floppySoundType, configuration, "puae_floppy_sound_type", "internal");
-        _muteEmptyFloppy.IsChecked = GetOption(configuration, "puae_floppy_sound_empty_mute", "enabled") == "enabled";
-        _cdAudioVolume.Value = ParsePercentage(GetOption(configuration, "puae_sound_volume_cd", "100%"), 100);
-        _stereoSeparation.Value = int.TryParse(GetOption(configuration, "puae_sound_stereo_separation", $"{audio.StereoSeparation}%").TrimEnd('%'), out var separation) ? separation : 100;
+        AmigaConfigurationDocuments.SelectOption(_audioInterpolation, configuration, "puae_sound_interpol", audio.Interpolation);
+        AmigaConfigurationDocuments.SelectOption(_audioFilter, configuration, "puae_sound_filter", audio.Filter);
+        AmigaConfigurationDocuments.SelectOption(_audioFilterType, configuration, "puae_sound_filter_type", "auto");
+        _floppySound.Value = ParsePercentage(AmigaConfigurationDocuments.GetOption(configuration, "puae_floppy_sound", "80"), 80);
+        AmigaConfigurationDocuments.SelectOption(_floppySoundType, configuration, "puae_floppy_sound_type", "internal");
+        _muteEmptyFloppy.IsChecked = AmigaConfigurationDocuments.GetOption(configuration, "puae_floppy_sound_empty_mute", "enabled") == "enabled";
+        _cdAudioVolume.Value = ParsePercentage(AmigaConfigurationDocuments.GetOption(configuration, "puae_sound_volume_cd", "100%"), 100);
+        _stereoSeparation.Value = int.TryParse(AmigaConfigurationDocuments.GetOption(configuration, "puae_sound_stereo_separation", $"{audio.StereoSeparation}%").TrimEnd('%'), out var separation) ? separation : 100;
         _media.Clear();
         var media = configuration.Media ?? configuration.Floppies?.Select(floppy => new AmigaMediaConfiguration(
             floppy.Path, AmigaMediaKind.Floppy, floppy.Label, floppy.IsReadOnly)).ToArray()
@@ -2280,20 +2156,20 @@ public sealed class OptionsEmulationSection : UserControl
         foreach (var item in media.Where(item => item.Kind == AmigaMediaKind.HardDrive))
             _media.Add(new MediaItem { Path = item.Path, Kind = item.Kind, Label = item.Label ?? string.Empty });
         _floppyDriveCount.SelectedItem = Math.Clamp(
-            int.TryParse(GetOption(configuration, "gwgui_floppy_drive_count", "1"), out var floppyCount) ? floppyCount : 1,
+            int.TryParse(AmigaConfigurationDocuments.GetOption(configuration, "gwgui_floppy_drive_count", "1"), out var floppyCount) ? floppyCount : 1,
             0, selectedModel.MaximumFloppyDrives);
         _hardDriveCount.SelectedItem = Math.Clamp(
-            int.TryParse(GetOption(configuration, "gwgui_hard_drive_count", media.Count(item => item.Kind == AmigaMediaKind.HardDrive).ToString()), out var hardCount) ? hardCount : 0,
+            int.TryParse(AmigaConfigurationDocuments.GetOption(configuration, "gwgui_hard_drive_count", media.Count(item => item.Kind == AmigaMediaKind.HardDrive).ToString()), out var hardCount) ? hardCount : 0,
             0, selectedModel.MaximumHardDrives);
-        _cdDrive.IsChecked = GetOption(configuration, "gwgui_cd_drive_enabled", selectedModel.HasCdDrive ? "enabled" : "disabled") == "enabled";
+        _cdDrive.IsChecked = AmigaConfigurationDocuments.GetOption(configuration, "gwgui_cd_drive_enabled", selectedModel.HasCdDrive ? "enabled" : "disabled") == "enabled";
         _multiDrive.IsChecked = configuration.MountFloppiesInSeparateDrives;
-        SetOption(_floppySpeed, configuration, "puae_floppy_speed", "100");
-        _floppyWriteProtection.IsChecked = GetOption(configuration, "puae_floppy_write_protection", "disabled") == "enabled";
-        _floppyWriteRedirect.IsChecked = GetOption(configuration, "puae_floppy_write_redirect", "disabled") == "enabled";
+        AmigaConfigurationDocuments.SelectOption(_floppySpeed, configuration, "puae_floppy_speed", "100");
+        _floppyWriteProtection.IsChecked = AmigaConfigurationDocuments.GetOption(configuration, "puae_floppy_write_protection", "disabled") == "enabled";
+        _floppyWriteRedirect.IsChecked = AmigaConfigurationDocuments.GetOption(configuration, "puae_floppy_write_redirect", "disabled") == "enabled";
         for (var index = 0; index < _floppyDriveModels.Length; index++)
-            _floppyDriveModels[index] = GetOption(configuration, $"gwgui_floppy_drive_model_{index}", "35dd");
-        SetOption(_cdSpeed, configuration, "puae_cd_speed", "100");
-        _cdDriveModel = GetOption(configuration, "gwgui_cd_drive_model", "CD-ROM");
+            _floppyDriveModels[index] = AmigaConfigurationDocuments.GetOption(configuration, $"gwgui_floppy_drive_model_{index}", "35dd");
+        AmigaConfigurationDocuments.SelectOption(_cdSpeed, configuration, "puae_cd_speed", "100");
+        _cdDriveModel = AmigaConfigurationDocuments.GetOption(configuration, "gwgui_cd_drive_model", "CD-ROM");
         var keyboardBindings = configuration.Input?.KeyboardBindings;
         _amigaKeyboardEditor.SetRows(AmigaSpecialKeyDefinitions(), keyboardBindings);
         _amigaKeyboardEditor.SetReservedBindings(_appSettings is null
@@ -2301,14 +2177,14 @@ public sealed class OptionsEmulationSection : UserControl
             : _appSettings.EmulationShortcuts.Values);
         _mouseDevice.Text = configuration.Input?.MouseDeviceId ?? string.Empty;
         _releaseMouseKey.SelectedItem = configuration.Input?.ReleaseMouseKey ?? GWGUI.Emulation.EmulationKey.Escape;
-        _mouseSpeedRatio.Text = MouseSpeedRatioText(GetOption(configuration, "puae_mouse_speed", "100"));
-        SetOption(_analogMouse, configuration, "puae_analogmouse", "both");
-        SetOption(_analogMouseDeadzone, configuration, "puae_analogmouse_deadzone", "20");
-        SetOption(_analogMouseSpeed, configuration, "puae_analogmouse_speed", "1.0");
-        SetOption(_analogMouseSpeedRight, configuration, "puae_analogmouse_speed_right", "1.0");
+        _mouseSpeedRatio.Text = MouseSpeedRatioText(AmigaConfigurationDocuments.GetOption(configuration, "puae_mouse_speed", "100"));
+        AmigaConfigurationDocuments.SelectOption(_analogMouse, configuration, "puae_analogmouse", "both");
+        AmigaConfigurationDocuments.SelectOption(_analogMouseDeadzone, configuration, "puae_analogmouse_deadzone", "20");
+        AmigaConfigurationDocuments.SelectOption(_analogMouseSpeed, configuration, "puae_analogmouse_speed", "1.0");
+        AmigaConfigurationDocuments.SelectOption(_analogMouseSpeedRight, configuration, "puae_analogmouse_speed_right", "1.0");
         _keyboardPassThrough.IsChecked = true;
-        SetOption(_turboPulse, configuration, "puae_turbo_pulse", "6");
-        SetOption(_joyPortOrder, configuration, "puae_joyport_order", "1234");
+        AmigaConfigurationDocuments.SelectOption(_turboPulse, configuration, "puae_turbo_pulse", "6");
+        AmigaConfigurationDocuments.SelectOption(_joyPortOrder, configuration, "puae_joyport_order", "1234");
         var mouseMappings = configuration.Input?.MouseButtonMappings;
         var mouseValues = Enum.GetValues<AmigaMouseAction>().ToDictionary(
             action => action.ToString(),
@@ -2336,27 +2212,17 @@ public sealed class OptionsEmulationSection : UserControl
         UpdateRomFieldAvailability();
     }
 
-    private static string GetOption(AmigaMachineConfiguration configuration, string key, string fallback) =>
-        configuration.Options?.GetValueOrDefault(key) ?? fallback;
-
-    private static void SetOption(ComboBox comboBox, AmigaMachineConfiguration configuration, string key, string? fallback)
-    {
-        var value = GetOption(configuration, key, fallback ?? string.Empty);
-        ComboBoxSelection.SelectByValue<object>(comboBox, value,
-            item => item is OptionChoice choice ? choice.Value : item.ToString());
-    }
-
     private async Task SaveConfigurationAsync()
     {
         if (_model.SelectedItem is not AmigaModel model) throw new InvalidOperationException(LocExtension.Get("Emulation.ModelRequired"));
         if (string.IsNullOrWhiteSpace(_kickstart.Text)) throw new InvalidOperationException(LocExtension.Get("Emulation.KickstartRequired"));
         var supportsExtendedRom = model.Id is "CDTV" or "CD32";
         var requiresRomKey = IsEncryptedKickstart(_kickstart.Text);
-        var extendedRomPath = supportsExtendedRom ? OptionalFullPath(_extendedRom.Text) : null;
-        var romKeyPath = requiresRomKey ? OptionalFullPath(_romKey.Text) : null;
-        ValidateOptionalFile(_kickstart.Text, required: true);
-        if (supportsExtendedRom) ValidateOptionalFile(_extendedRom.Text);
-        if (requiresRomKey) ValidateOptionalFile(_romKey.Text);
+        var extendedRomPath = supportsExtendedRom ? AmigaConfigurationDocuments.OptionalFullPath(_extendedRom.Text) : null;
+        var romKeyPath = requiresRomKey ? AmigaConfigurationDocuments.OptionalFullPath(_romKey.Text) : null;
+        AmigaConfigurationDocuments.ValidateOptionalFile(_kickstart.Text, required: true);
+        if (supportsExtendedRom) AmigaConfigurationDocuments.ValidateOptionalFile(_extendedRom.Text);
+        if (requiresRomKey) AmigaConfigurationDocuments.ValidateOptionalFile(_romKey.Text);
         if (_amigaKeyboardEditor.HasErrors || _amigaMouseEditor.HasErrors || _controllerEditors.Any(editor => editor.HasErrors))
             throw new InvalidOperationException(LocExtension.Get("Emulation.DuplicateKeyboardMapping"));
         var options = _options.Where(item => !string.IsNullOrWhiteSpace(item.Key))
@@ -2416,7 +2282,7 @@ public sealed class OptionsEmulationSection : UserControl
         options["puae_joyport_order"] = SelectedText(_joyPortOrder);
         var media = _media.Where(item => !string.IsNullOrWhiteSpace(item.Path)).Select(item =>
         {
-            ValidateOptionalFile(item.Path, required: true);
+            AmigaConfigurationDocuments.ValidateOptionalFile(item.Path, required: true);
             return new AmigaMediaConfiguration(Path.GetFullPath(item.Path), item.Kind,
                 string.IsNullOrWhiteSpace(item.Label) ? null : item.Label.Trim(), item.IsReadOnly);
         }).ToArray();
@@ -2471,7 +2337,7 @@ public sealed class OptionsEmulationSection : UserControl
             Audio: audio,
             VideoRenderer: _videoRenderer.SelectedItem is RendererChoice renderer
                 ? renderer.Renderer : GWGUI.Emulation.EmulationVideoRenderer.Direct3D11);
-        await _store.SaveAsync(configuration);
+        await _configurationDocuments.SaveAsync(configuration);
         _currentId = configuration.Id;
         ConfigurationSaved?.Invoke(this, configuration);
         await ReloadAsync();
@@ -2510,27 +2376,9 @@ public sealed class OptionsEmulationSection : UserControl
         if (_currentId == Guid.Empty || _list.SelectedItem is null) return;
         if (MessageBox.Show(Window.GetWindow(this), LocExtension.Get("Emulation.DeleteConfirm"), ControlVisualConstants.AmigaTitle,
             MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
-        _store.Delete(_currentId);
+        _configurationDocuments.Delete(_currentId);
         _currentId = Guid.Empty;
         await ReloadAsync();
-    }
-
-    private static string? OptionalFullPath(string value) => string.IsNullOrWhiteSpace(value) ? null : Path.GetFullPath(value);
-    private static void ValidateOptionalFile(string value, bool required = false)
-    {
-        if (string.IsNullOrWhiteSpace(value))
-        {
-            if (required) throw new FileNotFoundException(LocExtension.Get("Emulation.FileRequired"));
-            return;
-        }
-        if (!File.Exists(value)) throw new FileNotFoundException(LocExtension.Get("Emulation.FileMissing"), value);
-    }
-
-    private static void ValidateOptionalMedia(string value)
-    {
-        if (string.IsNullOrWhiteSpace(value)) return;
-        if (!File.Exists(value) && !Directory.Exists(value))
-            throw new FileNotFoundException(LocExtension.Get("Emulation.FileMissing"), value);
     }
 
     private Task OpenFirmwareFolder()
@@ -2548,8 +2396,6 @@ public sealed class OptionsEmulationSection : UserControl
     {
         public string DisplayName => $"{Configuration.Model} · {Configuration.Id.ToString("N")[..8]} · {Path.GetFileName(Configuration.KickstartPath)}";
     }
-
-    private sealed record RendererChoice(GWGUI.Emulation.EmulationVideoRenderer Renderer, string Label);
 
     private sealed record FirmwareItem(AmigaFirmware Firmware)
     {
@@ -2589,13 +2435,4 @@ public sealed class OptionsEmulationSection : UserControl
         public override string ToString() => Text;
     }
 
-    private sealed record OptionChoice(string Value, string Text)
-    {
-        public override string ToString() => Text;
-    }
-
-    private sealed record CpuFrequencyChoice(double Ratio, string ThrottleValue, string MultiplierValue, string Text)
-    {
-        public override string ToString() => Text;
-    }
 }

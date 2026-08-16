@@ -33,9 +33,9 @@ Une case n’est cochée qu’après modification et validation de la tâche cor
 
 ## 10.5 Découpage des grands contrôles
 
-- [ ] Séparer de `OptionsEmulationSection` le catalogue des choix techniques et des modèles.
-- [ ] Séparer de `OptionsEmulationSection` la lecture et l’écriture des configurations Amiga.
-- [ ] Mutualiser les constructeurs de cartes, champs, chemins et boutons réellement identiques.
+- [x] Séparer de `OptionsEmulationSection` le catalogue des choix techniques et des modèles.
+- [x] Séparer de `OptionsEmulationSection` la lecture et l’écriture des configurations Amiga.
+- [x] Mutualiser les constructeurs de cartes, champs, chemins et boutons réellement identiques.
 - [ ] Vérifier que `OptionsEmulationSection` ne conserve que la composition et les interactions propres à l’écran.
 - [ ] Vérifier que `AmigaMachineView` ne conserve que la composition et le cycle de vie propres à la vue.
 

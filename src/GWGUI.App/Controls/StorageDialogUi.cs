@@ -88,8 +88,7 @@ internal static class StorageDialogUi
             Padding = new Thickness(14),
             Margin = new Thickness(0, 0, 0, 10)
         };
-        card.SetResourceReference(Border.BackgroundProperty, "CardBrush");
-        card.SetResourceReference(Border.BorderBrushProperty, "BorderBrush");
+        ControlUiFactory.ApplyCardAppearance(card);
         return card;
     }
 
@@ -186,8 +185,7 @@ internal static class StorageDialogUi
         grid.Children.Add(textBox);
         if (browse is not null)
         {
-            var button = new Button { Content = LocExtension.Get("Common.Browse"), MinWidth = 110 };
-            button.Click += (_, _) => browse();
+            var button = ControlUiFactory.TextButton(LocExtension.Get("Common.Browse"), 110, (_, _) => browse());
             Grid.SetColumn(button, 2);
             grid.Children.Add(button);
         }
