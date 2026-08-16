@@ -610,13 +610,7 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-050 — Intégrer Atari au guide utilisateur
 
-- [ ] Ajouter architecture utilisateur, création de configuration et installation des cœurs.
-- [ ] Documenter chaque famille, ses firmwares, ses médias et ses limites réelles.
-- [ ] Documenter réglages CPU, RAM, ROM, vidéo, audio, stockage et entrées.
-- [ ] Documenter exécution, raccourcis, états, changement de média et erreurs courantes.
-- [ ] Créer des captures actuelles cadrées correctement sans données personnelles.
-- [ ] Générer les PDF compressés disponibles et conserver les sources Markdown.
-- [ ] Ouvrir le PDF de la langue active avec repli vers l’anglais s’il manque.
+Tâche déplacée sans être cochée dans **À faire plus tard quand moi je te le dirai**.
 
 #### ATA-051 — Vérifier accessibilité et mise en page
 
@@ -640,8 +634,8 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-053 — Mettre à jour le portable
 
-- [ ] Inclure code Atari, ressources, PDF et installateur .NET prévu dans le ZIP portable.
-- [ ] Exclure sources Markdown, images de documentation et fichiers temporaires.
+- [ ] Inclure code Atari, ressources et installateur .NET prévu dans le ZIP portable.
+- [ ] Exclure les fichiers temporaires.
 - [ ] Exclure les six cœurs téléchargés, firmwares et médias privés sauf décision de licence explicitement validée.
 - [ ] Vérifier au lancement le runtime .NET comme le fait la distribution actuelle.
 - [ ] Tester sur un dossier neuf, avec et sans runtime déjà installé.
@@ -649,7 +643,7 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-054 — Mettre à jour l’installateur
 
-- [ ] Inclure les mêmes fichiers applicatifs et PDF que le portable.
+- [ ] Inclure les mêmes fichiers applicatifs que le portable.
 - [ ] Vérifier le runtime .NET avant installation et lancer l’installateur embarqué seulement s’il manque réellement.
 - [ ] Créer les dossiers de données sans écraser configurations, firmwares, cœurs ou médias existants.
 - [ ] Mettre à niveau une installation précédente sans conserver de DLL obsolète en doublon.
@@ -753,3 +747,20 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 ## Critère de fin
 
 L’intégration Atari est terminée uniquement lorsque les six cœurs sont gérés par le même parcours utilisateur, que chaque machine expose uniquement ses capacités réelles, que les distributions démarrent et que toutes les tâches ci-dessus sont cochées après validation.
+
+## À faire plus tard quand moi je te le dirai
+
+Les tâches de cette section sont volontairement différées. Elles ne doivent être reprises, cochées ou utilisées pour bloquer les tâches Atari non documentaires qu’après instruction explicite.
+
+### ATA-050 — Intégrer Atari au guide utilisateur
+
+- [ ] Ajouter architecture utilisateur, création de configuration et installation des cœurs.
+- [ ] Documenter chaque famille, ses firmwares, ses médias et ses limites réelles.
+- [ ] Documenter réglages CPU, RAM, ROM, vidéo, audio, stockage et entrées.
+- [ ] Documenter exécution, raccourcis, états, changement de média et erreurs courantes.
+- [ ] Créer des captures actuelles cadrées correctement sans données personnelles.
+- [ ] Traduire les sources Markdown du guide dans toutes les langues distribuées.
+- [ ] Générer les PDF compressés disponibles et conserver les sources Markdown.
+- [ ] Ouvrir le PDF de la langue active avec repli vers l’anglais s’il manque.
+- [ ] Inclure tous les PDF du guide dans le ZIP portable, sans sources Markdown ni images séparées.
+- [ ] Inclure tous les PDF du guide dans l’installateur, sans sources Markdown ni images séparées.

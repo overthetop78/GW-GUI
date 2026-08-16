@@ -27,14 +27,15 @@ Interface names are shown in **bold**. Filenames, paths, commands, and literal v
 11. [Application options](#application-options)
 12. [Emulation options](#emulation-options)
 13. [Amiga configuration](#amiga-configuration)
-14. [Hardware diagnostics and maintenance](#hardware-diagnostics-and-maintenance)
-15. [Logs and operation history](#logs-and-operation-history)
-16. [Application data and portable use](#application-data-and-portable-use)
-17. [Recommended workflows](#recommended-workflows)
-18. [Safety checklist](#safety-checklist)
-19. [Troubleshooting](#troubleshooting)
-20. [Glossary](#glossary)
-21. [Quick reference](#quick-reference)
+14. [Atari configuration](#atari-configuration)
+15. [Hardware diagnostics and maintenance](#hardware-diagnostics-and-maintenance)
+16. [Logs and operation history](#logs-and-operation-history)
+17. [Application data and portable use](#application-data-and-portable-use)
+18. [Recommended workflows](#recommended-workflows)
+19. [Safety checklist](#safety-checklist)
+20. [Troubleshooting](#troubleshooting)
+21. [Glossary](#glossary)
+22. [Quick reference](#quick-reference)
 
 ## Understanding the workflow
 
@@ -576,6 +577,139 @@ Increase the dead zone if a controller causes pointer drift. Adjust left- and ri
 Detect connected controllers, assign devices and controller types to Amiga ports, and configure controller mappings and turbo-fire settings. Available choices depend on detected hardware and the selected machine.
 
 Port 1 and Port 2 are configured independently. **Automatic** controller type is a sensible starting point, but software expecting a particular joystick or mouse may require an explicit type. Run detection before assigning a newly connected controller. Turbo fire repeatedly activates a mapped input and should remain disabled unless the game or application benefits from it.
+
+## Atari configuration
+
+GW GUI uses one Atari configuration editor for computer, console, and handheld families. Select the model first: the application then chooses the matching core and disables settings or media slots that the selected hardware cannot use. A saved configuration stores the model, firmware references, media, core options, input mappings, audio and video choices, and Atari-specific folders. The core binaries, firmware files, media, captures, and saved states remain separate files; they are not embedded in the configuration.
+
+### Create and save a machine
+
+1. Open **Options > Emulation > Atari**.
+2. Click **New**. A new configuration starts with the Atari ST model.
+3. Select the intended model before changing CPU, memory, firmware, or storage.
+4. In **Core**, install the core selected for that model if no active version is available.
+5. Set the shared, floppy, cassette, cartridge, compact-disc, hard-disk, state, and capture folders that apply to your library.
+6. Refresh the firmware scan and select only compatible firmware files.
+7. Review the CPU, RAM, ROM, video, audio, storage, keyboard, mouse, and controller tabs. Controls that do not apply to the model remain disabled or fixed.
+8. Add boot media in **Storage**, then click **Save**.
+9. Return to the main **Emulation** page, select the saved configuration, and click **Open**.
+
+Saving replaces the stored definition with the values shown in the editor. It does not copy or rename firmware and media files. A configuration used by a running machine cannot be modified or deleted; close that machine first.
+
+### Cores and supported families
+
+The model determines the core. GW GUI manages one active installation for each of the following six cores:
+
+| Core | Models exposed by GW GUI | Main media |
+|---|---|---|
+| Hatari | ST, STF, STFM, Mega ST, STE, Mega STE, TT, Falcon | Floppy, hard-disk image, GEMDOS directory |
+| Atari800 | Atari 400, Atari 800, Atari 800XL, Atari 130XE, modern XL/XE 320K, 576K and 1088K, XEGS, Atari 5200 | Floppy, cassette, cartridge |
+| Stella | Atari 2600 | Cartridge |
+| ProSystem | Atari 7800 | Cartridge |
+| Beetle Lynx | Atari Lynx | Cartridge |
+| Virtual Jaguar | Atari Jaguar, Atari Jaguar CD | Cartridge; complete disc image on Jaguar CD |
+
+Changing model can therefore change the core as well as every compatibility rule. Do not assume that a core file selected for one family can start another. Install and replace cores from the Atari editor so the application can validate the downloaded archive, activate its manifest, and retain the expected directory layout.
+
+Core installation does not provide copyrighted firmware or games. If **Open** reports that a core is not installed, return to the Atari **General** tab, install the core associated with the selected model, and save the configuration again.
+
+### Firmware and model limits
+
+The firmware scan reads the Atari firmware directory and compares known files with the selected model. Compatible entries can be selected; incompatible entries stay disabled. File names alone are not proof of identity, so prefer a recognized scan result.
+
+| Family | Firmware handled by the configuration | Important limit |
+|---|---|---|
+| ST / STF / STFM / Mega ST / STE / Mega STE | Compatible regional TOS image | TOS revision and machine generation must agree |
+| TT | TOS 3.01, 3.05, or 3.06 | ST-only TOS revisions are not a TT substitute |
+| Falcon | TOS 4.00, 4.01, 4.02, or 4.04 | Falcon hardware choices remain model-specific |
+| Atari 400 / 800 | Atari OS A or OS B and Atari BASIC where required | Keyboard computer media differs from 5200 cartridges |
+| XL / XE / XEGS | XL/XE OS, optional compatible replacement OS, BASIC, and XEGS firmware where applicable | Expansion-memory models still use the Atari800 family rules |
+| Atari 5200 | Atari 5200 BIOS | Console cartridges are not treated as computer cartridges |
+| Atari 2600 | No external BIOS required | Cartridge only; computer storage and keyboard pages are unavailable |
+| Atari 7800 | Optional external BIOS | Cartridge only |
+| Lynx | Required boot ROM | Cartridge only; no mouse or computer keyboard |
+| Jaguar | Boot ROM supplied by the core | Cartridge only; a standard Jaguar configuration rejects CD media |
+| Jaguar CD | Jaguar boot support plus a complete supported disc image | The selected core must report CD support; partial or missing CUE tracks are rejected |
+
+Firmware is not supplied by GW GUI. Use files that you are legally permitted to use and keep a backup of known-good originals. When a configured file is moved or deleted, the configuration remains but launch fails with the missing path identified in the error details.
+
+### General folders and core options
+
+The **General** tab displays the selected model and core, manages the active core version, scans firmware, and stores default Atari folders. Separate folders are available for shared data, floppy disks, cassettes, cartridges, compact discs, hard disks, states, and captures. Empty or irrelevant folders do not add a device to the machine; devices are created in **Storage**.
+
+Core options are read from the installed core. Their available values therefore depend on both the selected model and installed core version. Preserve the default value unless you understand the corresponding core option. After replacing a core, reopen the configuration and confirm that every stored option still appears in the new version.
+
+### CPU and RAM
+
+The **CPU** and **RAM** tabs derive their choices from the model catalog.
+
+- ST-family machines expose their compatible processor, timing precision, speed and FPU choices. A fixed model value is shown but cannot be edited.
+- Classic consoles and handhelds use CPU timing managed by their core; unsupported FPU and expansion-memory controls remain disabled.
+- ST-family main and alternate memory choices vary by model.
+- Atari 8-bit and console memory is fixed by the chosen hardware model, including the explicit 320K, 576K and 1088K XL/XE variants.
+- **Total memory** summarizes the selected main and alternate memory values.
+
+Choose the machine model that represents the intended hardware instead of forcing a superficially similar CPU or memory value. If software stops booting after a hardware change, restore the model defaults, then add one change at a time.
+
+### ROM
+
+The **ROM** tab lists firmware expected for the current model and firmware detected in the configured Atari firmware directory. Use it to confirm that the selected TOS, operating-system ROM, BASIC image, console BIOS, or handheld boot ROM matches the model. The scan does not download firmware and does not make an incompatible file compatible.
+
+### Video and audio
+
+The **Video** tab controls the options common to the selected core: video standard or region, output resolution, aspect ratio, cropping, frame skip, and rendering backend. A setting with only one hardware-valid value is fixed by the model. Start with automatic resolution and aspect ratio, no cropping, and no frame skip; change them only after the machine produces a stable picture.
+
+The **Audio** tab enables output and selects the Windows output target, latency, volume, and quality. Lower latency reduces delay but can crackle when the host cannot deliver audio quickly enough. Increase latency before reducing quality. Muting or disabling audio affects output only; it does not remove audio hardware from the emulated model.
+
+### Storage and removable media
+
+The **Storage** tab lists configured devices and provides **Type**, **Identifier**, **Interface**, and **Path** fields. Available device types and slots come from the selected model:
+
+- Hatari machines accept up to four floppy slots plus one hard-disk image or GEMDOS directory.
+- Atari 8-bit computers accept floppy, cassette, and cartridge media in their compatible slots.
+- Atari 5200, 2600, 7800, and Lynx configurations use cartridges.
+- Jaguar uses a cartridge; Jaguar CD additionally accepts one complete compact-disc image in `CD0`.
+
+Choose **Add** to create a device, select an existing entry to configure it, or remove it when the machine no longer needs that slot. A directory is valid only for a model and interface that expose directory-backed storage. A file extension must match both the selected media kind and the extensions reported by the installed core.
+
+The running-machine media bar can insert, eject, replace, and advance removable media without editing the saved configuration. Multi-disc lists use an `.m3u` file where supported. Before replacing writable media, pause the machine or use the guest operating system's normal eject procedure. Session copies and explicit save operations protect source media where that family requires them, but they are not a replacement for backups.
+
+For Jaguar CD, use a complete supported image. A `.cue` file must reference readable track files in the expected location. A normal Jaguar configuration deliberately rejects compact-disc media; select **Jaguar CD** first.
+
+### Keyboard, mouse, and controllers
+
+The input tabs follow the selected hardware:
+
+- ST-family and Atari 8-bit computers expose keyboard mappings.
+- ST-family machines expose mouse speed and mouse-action mappings.
+- Consoles and Lynx disable keyboard and mouse controls that the hardware does not provide.
+- Controller ports and available mappings are rebuilt for the model; configure each port independently and resolve any reported conflicts.
+
+Global application shortcuts are configured in **Options > Emulation > Shortcuts** and remain separate from emulated keys. Do not assign **Release mouse**, **Fullscreen**, pause, reset, state, or media shortcuts to a host key required frequently by the running software.
+
+### Run, states, captures, and shortcuts
+
+Open a saved Atari machine from the main **Emulation** page. Each running machine receives its own tab and toolbar. The toolbar and global shortcuts provide power, pause/resume, soft and hard reset, quick save/load, screenshot, fullscreen, mute, fast-forward, media insertion, ejection, and next-media selection where the active core supports them.
+
+Saved states contain core-specific runtime data. A state can become incompatible after changing model, firmware, core version, core options, or mounted media. Keep normal in-guest saves and media backups for long-term data; use quick states for short-term continuation. Screenshots are written to the configured capture folder, and states to the configured state folder.
+
+When changing media, use the slot shown in the running-machine media bar. **Eject** removes the active item from that slot; **Next media** advances a compatible playlist. If a program is writing, wait for disk activity to finish before ejecting.
+
+### Common Atari errors
+
+| Message category | What to check |
+|---|---|
+| Core not found, rejected, or not installed | Install the model's core again, then verify that its active manifest and DLL are present |
+| Required firmware missing | Select a compatible scanned firmware entry and save the configuration |
+| Firmware file missing or invalid | Restore the configured file, correct its path, or choose a recognized compatible image |
+| Media not found | Restore the file or directory and update the storage entry |
+| Media unsupported | Confirm model, media type, slot, extension, and support reported by the active core |
+| Invalid option | Reset the affected core option, especially after replacing a core version |
+| Host protocol failure | Close the machine, retry once, and inspect the error log for the failed host exchange |
+| Invalid or incompatible state | Load it with the same model, firmware, core version, options, and media, or use an in-guest save instead |
+| Active configuration cannot be modified | Close the running machine before saving or deleting its configuration |
+
+GW GUI reports a localized summary and keeps the technical details in the error log. When requesting help, include the model, core version, media type, operation, and complete logged error; do not share copyrighted firmware or private media.
 
 ## Hardware diagnostics and maintenance
 
