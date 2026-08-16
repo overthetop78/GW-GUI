@@ -85,4 +85,14 @@ internal static class AtariCoreFunctions
         Marshal.WriteInt32(destination, value);
         return true;
     }
+
+    internal static bool WriteInteger(nint destination, uint value) =>
+        WriteInteger(destination, checked((int)value));
+
+    internal static bool WriteUnsignedLong(nint destination, ulong value)
+    {
+        if (destination == nint.Zero) return false;
+        Marshal.WriteInt64(destination, unchecked((long)value));
+        return true;
+    }
 }

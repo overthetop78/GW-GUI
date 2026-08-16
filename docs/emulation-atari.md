@@ -333,17 +333,17 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-022 — Répondre aux commandes d’environnement communes
 
-- [ ] Créer avant `retro_set_environment` les dossiers absolus System, Saves, Content et Assets nécessaires.
-- [ ] Retourner des pointeurs UTF-8 stables pendant toute la session et les libérer après `retro_deinit`.
-- [ ] Implémenter répertoires, duplication de frame, format de pixels, géométrie, informations AV et messages.
-- [ ] Copier immédiatement toute structure native reçue sans conserver son pointeur.
-- [ ] Accepter descripteurs d’entrée, informations contrôleurs, cartes mémoire et achievements lorsque demandés.
-- [ ] Journaliser une seule fois chaque commande inconnue et répondre honnêtement aux interfaces non implémentées.
-- [ ] Fournir l’interface de log sans interpréter la chaîne de format native comme une chaîne .NET ordinaire.
-- [ ] Capturer l’interface LED lorsqu’elle est fournie et transmettre ses changements au statut de machine.
-- [ ] Fournir une interface VFS seulement si un cœur l’exige réellement ; sinon retourner `false` sans simuler sa présence.
-- [ ] Traiter correctement langues, fast-forward, rotation, rumble et capteurs si un des six cœurs les demande.
-- [ ] Tester chaque numéro de commande utilisé par chacun des six cœurs avec buffers natifs.
+- [x] Créer avant `retro_set_environment` les dossiers absolus System, Saves, Content et Assets nécessaires.
+- [x] Retourner des pointeurs UTF-8 stables pendant toute la session et les libérer après `retro_deinit`.
+- [x] Implémenter répertoires, duplication de frame, format de pixels, géométrie, informations AV et messages.
+- [x] Copier immédiatement toute structure native reçue sans conserver son pointeur.
+- [x] Accepter descripteurs d’entrée, informations contrôleurs, cartes mémoire et achievements lorsque demandés.
+- [x] Journaliser une seule fois chaque commande inconnue et répondre honnêtement aux interfaces non implémentées.
+- [x] Fournir l’interface de log sans interpréter la chaîne de format native comme une chaîne .NET ordinaire.
+- [x] Capturer l’interface LED lorsqu’elle est fournie et transmettre ses changements au statut de machine.
+- [x] Fournir une interface VFS seulement si un cœur l’exige réellement ; sinon retourner `false` sans simuler sa présence.
+- [x] Traiter correctement langues, fast-forward, rotation, rumble et capteurs si un des six cœurs les demande.
+- [x] Tester chaque numéro de commande utilisé par chacun des six cœurs avec buffers natifs.
 
 #### ATA-023 — Héberger toutes les Core Options
 

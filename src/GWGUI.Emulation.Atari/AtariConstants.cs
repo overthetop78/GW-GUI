@@ -27,6 +27,12 @@ public static class AtariConstants
     internal const int FirstCollectionIndex = 0;
     internal const int Sha256HexLength = 64;
     internal const int LegacyOptionValueStartOffset = 1;
+    internal const int StringIndexNotFound = -1;
+    internal const int EmptyCollectionCount = 0;
+    internal const uint EmptyNativeCollectionCount = 0;
+    internal const uint EmptyFrameDimension = 0;
+    internal const nuint EmptyNativeSize = 0;
+    internal const int InactiveState = 0;
     internal const string PathContextKey = "path";
     internal const string VersionContextKey = "version";
     internal const string ExpectedContextKey = "expected";
@@ -36,4 +42,5 @@ public static class AtariConstants
     internal const string SystemDirectoryName = "System";
     internal const string ContentDirectoryName = "Content";
     internal const string SavesDirectoryName = "Saves";
+    internal const string AssetsDirectoryName = "Assets";
 }

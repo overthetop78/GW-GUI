@@ -110,6 +110,7 @@ internal sealed class AtariExternalCore : IAtariCore
                 systemDirectory,
                 Path.Combine(absoluteSession, AtariConstants.ContentDirectoryName),
                 saveDirectory ?? Path.Combine(absoluteSession, AtariConstants.SavesDirectoryName),
+                Path.Combine(absoluteSession, AtariConstants.AssetsDirectoryName),
                 configuredOptions);
             AtariCoreFunctions.InstallCallbacks(_exports, _callbacks);
             _exports.Initialize();

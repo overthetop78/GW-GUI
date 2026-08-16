@@ -17,6 +17,7 @@ public sealed class AtariExternalCoreCallbackTests
         {
             using var callbacks = new AtariExternalHostCallbacks(
                 Path.Combine(root, "system"), Path.Combine(root, "content"), Path.Combine(root, "saves"),
+                Path.Combine(root, "assets"),
                 new Dictionary<string, string>());
 
             AtariCoreFunctions.InstallCallbacks(exports, callbacks);
@@ -58,6 +59,7 @@ public sealed class AtariExternalCoreCallbackTests
             Marshal.StructureToPtr(native, controlPointer, false);
             using var callbacks = new AtariExternalHostCallbacks(
                 Path.Combine(root, "system"), Path.Combine(root, "content"), Path.Combine(root, "saves"),
+                Path.Combine(root, "assets"),
                 new Dictionary<string, string>());
 
             Assert.True(callbacks.Environment(ExternalCoreApiConstants.SetDiskControl, controlPointer));

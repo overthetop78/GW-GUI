@@ -41,8 +41,11 @@ internal static class ExternalCoreApiConstants
     internal const int MessageExtendedTypeOffsetX64 = 24;
     internal const int MessageExtendedProgressOffsetX64 = 28;
     internal const int FunctionPointerInterfaceSizeX64 = 8;
+    internal const uint SetRotation = 1;
+    internal const uint GetOverscan = 2;
     internal const uint GetCanDuplicateFrames = 3;
     internal const uint SetMessage = 6;
+    internal const uint SetPerformanceLevel = 8;
     internal const uint GetSystemDirectory = 9;
     internal const uint SetPixelFormat = 10;
     internal const uint SetInputDescriptors = 11;
@@ -52,7 +55,11 @@ internal static class ExternalCoreApiConstants
     internal const uint SetVariables = 16;
     internal const uint GetVariableUpdate = 17;
     internal const uint SetSupportNoGame = 18;
+    internal const uint GetRumbleInterface = 23;
+    internal const uint GetInputDeviceCapabilities = 24;
+    internal const uint GetSensorInterface = 25 | ExperimentalCommandFlag;
     internal const uint GetLogInterface = 27;
+    internal const uint GetPerformanceInterface = 28;
     internal const uint GetContentDirectory = 30;
     internal const uint GetSaveDirectory = 31;
     internal const uint SetSystemAvInfo = 32;
@@ -60,9 +67,12 @@ internal static class ExternalCoreApiConstants
     internal const uint ExperimentalCommandFlag = 0x10000;
     internal const uint SetMemoryMaps = 36 | ExperimentalCommandFlag;
     internal const uint SetGeometry = 37;
+    internal const uint GetLanguage = 39;
     internal const uint SetSupportAchievements = 42 | ExperimentalCommandFlag;
     internal const uint GetVfsInterface = 45 | ExperimentalCommandFlag;
     internal const uint GetLedInterface = 46 | ExperimentalCommandFlag;
+    internal const uint GetMidiInterface = 48 | ExperimentalCommandFlag;
+    internal const uint GetFastForwarding = 49 | ExperimentalCommandFlag;
     internal const uint GetInputBitmasks = 51 | ExperimentalCommandFlag;
     internal const uint GetCoreOptionsVersion = 52;
     internal const uint SetCoreOptionsDisplay = 55;
@@ -71,7 +81,10 @@ internal static class ExternalCoreApiConstants
     internal const uint GetMessageInterfaceVersion = 59;
     internal const uint SetMessageExtended = 60;
     internal const uint SetFastForwardingOverride = 64;
+    internal const uint SetContentInfoOverride = 65;
     internal const uint SetCoreOptionsV2 = 67;
     internal const uint SetCoreOptionsV2International = 68;
     internal const uint SetCoreOptionsUpdateDisplayCallback = 69;
+    internal const uint SetNetworkPacketInterface = 78;
+    internal const uint SetSerializationQuirks = 87;
 }

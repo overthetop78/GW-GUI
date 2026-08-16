@@ -12,9 +12,12 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
     private readonly List<AtariCoreOption> _options = [];
     private readonly ConcurrentQueue<AudioChunk> _audio = new();
     private readonly Dictionary<int, bool> _ledStates = [];
+    private readonly HashSet<uint> _unknownEnvironmentCommands = [];
+    private readonly HashSet<uint> _environmentCommands = [];
     private readonly ExternalCoreUtf8String _systemDirectory;
     private readonly ExternalCoreUtf8String _contentDirectory;
     private readonly ExternalCoreUtf8String _saveDirectory;
+    private readonly ExternalCoreUtf8String _assetsDirectory;
     private long _videoSequence;
     private long _audioSequence;
     private EmulationPixelFormat _pixelFormat = EmulationPixelFormat.Xrgb8888;
@@ -22,14 +25,17 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
     private readonly AtariDiskControl _diskControl = new();
 
     internal AtariExternalHostCallbacks(string systemDirectory, string contentDirectory, string saveDirectory,
+        string assetsDirectory,
         IReadOnlyDictionary<string, string> configuredOptions)
     {
         Directory.CreateDirectory(systemDirectory);
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);
+        Directory.CreateDirectory(assetsDirectory);
         _systemDirectory = new ExternalCoreUtf8String(Path.GetFullPath(systemDirectory));
         _contentDirectory = new ExternalCoreUtf8String(Path.GetFullPath(contentDirectory));
         _saveDirectory = new ExternalCoreUtf8String(Path.GetFullPath(saveDirectory));
+        _assetsDirectory = new ExternalCoreUtf8String(Path.GetFullPath(assetsDirectory));
         _optionValues = new Dictionary<string, string>(configuredOptions, StringComparer.Ordinal);
         Environment = OnEnvironment;
         Video = OnVideo;
@@ -38,6 +44,9 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
         InputPoll = OnInputPoll;
         InputState = OnInputState;
         SetLedState = OnSetLedState;
+        SetRumbleState = OnSetRumbleState;
+        SetSensorState = OnSetSensorState;
+        GetSensorInput = OnGetSensorInput;
         Log = OnLog;
     }
 
@@ -48,6 +57,9 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
     internal ExternalCoreApi.InputPollCallback InputPoll { get; }
     internal ExternalCoreApi.InputStateCallback InputState { get; }
     internal ExternalCoreApi.SetLedState SetLedState { get; }
+    internal ExternalCoreApi.SetRumbleState SetRumbleState { get; }
+    internal ExternalCoreApi.SetSensorState SetSensorState { get; }
+    internal ExternalCoreApi.GetSensorInput GetSensorInput { get; }
     internal ExternalCoreApi.LogCallback Log { get; }
     internal EmulationInputSnapshot Input { get; set; } = EmulationInputSnapshot.Empty;
     internal VideoFrame? LatestVideoFrame { get; private set; }
@@ -55,6 +67,18 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
     internal IReadOnlyList<AtariCoreOption> Options => _options;
     internal List<string> Diagnostics { get; } = [];
     internal IReadOnlyDictionary<int, bool> LedStates => _ledStates;
+    internal IReadOnlyList<AtariInputDescriptor> InputDescriptors { get; private set; } = [];
+    internal IReadOnlyList<AtariControllerPort> ControllerPorts { get; private set; } = [];
+    internal IReadOnlyList<AtariMemoryDescriptor> MemoryDescriptors { get; private set; } = [];
+    internal nint KeyboardCallbackPointer { get; private set; }
+    internal uint Rotation { get; private set; } = AtariEnvironmentConstants.NoRotation;
+    internal bool SupportsAchievements { get; private set; }
+    internal uint PerformanceLevel { get; private set; }
+    internal ExternalCoreApi.Geometry Geometry { get; private set; }
+    internal ExternalCoreApi.SystemAvInfo SystemAvInfo { get; private set; }
+    internal List<AtariEnvironmentMessage> Messages { get; } = [];
+    internal List<AtariEnvironmentExtendedMessage> ExtendedMessages { get; } = [];
+    internal IReadOnlySet<uint> EnvironmentCommands => _environmentCommands;
     internal bool SupportsNoGame { get; private set; }
     internal double FramesPerSecond { get; private set; }
     internal int SampleRate { get; private set; }
@@ -65,6 +89,8 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
 
     internal void ApplySystemAvInfo(ExternalCoreApi.SystemAvInfo info)
     {
+        SystemAvInfo = info;
+        Geometry = info.Geometry;
         FramesPerSecond = info.Timing.FramesPerSecond;
         SampleRate = checked((int)Math.Round(info.Timing.SampleRate));
         AspectRatio = info.Geometry.AspectRatio;
@@ -84,12 +110,19 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
 
     private bool OnEnvironment(uint command, nint data)
     {
+        _environmentCommands.Add(command);
         switch (command)
         {
+            case ExternalCoreApiConstants.SetRotation:
+                return SetRotation(data);
+            case ExternalCoreApiConstants.GetOverscan:
+                return AtariCoreFunctions.WriteBoolean(data, false);
+            case ExternalCoreApiConstants.SetPerformanceLevel:
+                return CapturePerformanceLevel(data);
             case ExternalCoreApiConstants.GetSystemDirectory:
                 return AtariCoreFunctions.WritePointer(data, _systemDirectory.Pointer);
             case ExternalCoreApiConstants.GetContentDirectory:
-                return AtariCoreFunctions.WritePointer(data, _contentDirectory.Pointer);
+                return AtariCoreFunctions.WritePointer(data, _assetsDirectory.Pointer);
             case ExternalCoreApiConstants.GetSaveDirectory:
                 return AtariCoreFunctions.WritePointer(data, _saveDirectory.Pointer);
             case ExternalCoreApiConstants.SetPixelFormat:
@@ -101,8 +134,8 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
             case ExternalCoreApiConstants.GetVariableUpdate:
                 return AtariCoreFunctions.WriteBoolean(data, false);
             case ExternalCoreApiConstants.SetSupportNoGame:
-                SupportsNoGame = data != 0 && Marshal.ReadByte(data) != 0;
-                return data != 0;
+                SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != AtariConstants.NativeBooleanFalse;
+                return data != nint.Zero;
             case ExternalCoreApiConstants.GetCanDuplicateFrames:
             case ExternalCoreApiConstants.GetInputBitmasks:
                 return AtariCoreFunctions.WriteBoolean(data, true);
@@ -120,14 +153,36 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
                 return ReadExtendedMessage(data);
             case ExternalCoreApiConstants.GetLogInterface:
                 return SetLogInterface(data);
+            case ExternalCoreApiConstants.GetPerformanceInterface:
+                return false;
             case ExternalCoreApiConstants.GetLedInterface:
                 return SetLedInterface(data);
+            case ExternalCoreApiConstants.GetRumbleInterface:
+                return SetRumbleInterface(data);
+            case ExternalCoreApiConstants.GetSensorInterface:
+                return SetSensorInterface(data);
+            case ExternalCoreApiConstants.GetInputDeviceCapabilities:
+                return AtariCoreFunctions.WriteUnsignedLong(data,
+                    AtariEnvironmentConstants.JoypadCapability | AtariEnvironmentConstants.MouseCapability |
+                    AtariEnvironmentConstants.KeyboardCapability | AtariEnvironmentConstants.AnalogCapability);
+            case ExternalCoreApiConstants.GetLanguage:
+                return AtariCoreFunctions.WriteInteger(data, AtariEnvironmentFunctions.CurrentLanguage());
+            case ExternalCoreApiConstants.GetFastForwarding:
+                return AtariCoreFunctions.WriteBoolean(data, false);
             case ExternalCoreApiConstants.SetInputDescriptors:
+                InputDescriptors = AtariEnvironmentFunctions.CopyInputDescriptors(data);
+                return data != nint.Zero;
             case ExternalCoreApiConstants.SetKeyboardCallback:
+                return CaptureKeyboardCallback(data);
             case ExternalCoreApiConstants.SetControllerInfo:
+                ControllerPorts = AtariEnvironmentFunctions.CopyControllerPorts(data);
+                return data != nint.Zero;
             case ExternalCoreApiConstants.SetMemoryMaps:
+                MemoryDescriptors = AtariEnvironmentFunctions.CopyMemoryMap(data);
+                return data != nint.Zero;
             case ExternalCoreApiConstants.SetSupportAchievements:
-                return true;
+                SupportsAchievements = data != nint.Zero && Marshal.ReadByte(data) != AtariConstants.NativeBooleanFalse;
+                return data != nint.Zero;
             case ExternalCoreApiConstants.SetDiskControl:
                 if (data == nint.Zero) return false;
                 _diskControl.Capture(data);
@@ -139,20 +194,50 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
             case ExternalCoreApiConstants.GetDiskControlVersion:
                 return AtariCoreFunctions.WriteInteger(data, AtariDiskControlConstants.InterfaceVersion);
             case ExternalCoreApiConstants.GetVfsInterface:
+            case ExternalCoreApiConstants.GetMidiInterface:
             case ExternalCoreApiConstants.SetCoreOptionsV2:
             case ExternalCoreApiConstants.SetCoreOptionsV2International:
             case ExternalCoreApiConstants.SetCoreOptionsDisplay:
             case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:
             case ExternalCoreApiConstants.SetFastForwardingOverride:
+            case ExternalCoreApiConstants.SetContentInfoOverride:
+            case ExternalCoreApiConstants.SetNetworkPacketInterface:
+            case ExternalCoreApiConstants.SetSerializationQuirks:
                 return false;
             default:
+                if (_unknownEnvironmentCommands.Add(command))
+                    Diagnostics.Add(AtariEnvironmentFunctions.CreateUnknownCommandDiagnostic(command));
                 return false;
         }
     }
 
+    private bool SetRotation(nint data)
+    {
+        if (data == nint.Zero) return false;
+        var rotation = unchecked((uint)Marshal.ReadInt32(data));
+        if (rotation is < AtariEnvironmentConstants.FirstRotation or > AtariEnvironmentConstants.LastRotation)
+            return false;
+        Rotation = rotation;
+        return true;
+    }
+
+    private bool CapturePerformanceLevel(nint data)
+    {
+        if (data == nint.Zero) return false;
+        PerformanceLevel = unchecked((uint)Marshal.ReadInt32(data));
+        return true;
+    }
+
+    private bool CaptureKeyboardCallback(nint data)
+    {
+        if (data == nint.Zero) return false;
+        KeyboardCallbackPointer = Marshal.PtrToStructure<ExternalCoreApi.KeyboardCallback>(data).Callback;
+        return true;
+    }
+
     private bool SetPixelFormat(nint data)
     {
-        if (data == 0) return false;
+        if (data == nint.Zero) return false;
         switch (Marshal.ReadInt32(data))
         {
             case AtariConstants.PixelFormatXrgb8888:
@@ -169,41 +254,41 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
 
     private bool GetVariable(nint data)
     {
-        if (data == 0) return true;
+        if (data == nint.Zero) return true;
         var variable = Marshal.PtrToStructure<ExternalCoreApi.Variable>(data);
         var key = Marshal.PtrToStringUTF8(variable.Key);
         variable.Value = key is not null && _optionValues.TryGetValue(key, out var value)
             ? GetNativeOptionValue(key, value)
-            : 0;
+            : nint.Zero;
         Marshal.StructureToPtr(variable, data, false);
         return true;
     }
 
     private bool ReadLegacyOptions(nint data)
     {
-        if (data == 0) return false;
+        if (data == nint.Zero) return false;
         _options.Clear();
         var size = Marshal.SizeOf<ExternalCoreApi.Variable>();
-        for (var index = 0; index < AtariConstants.MaximumCoreOptionCount; index++)
+        for (var index = AtariConstants.FirstCollectionIndex; index < AtariConstants.MaximumCoreOptionCount; index++)
         {
             var variable = Marshal.PtrToStructure<ExternalCoreApi.Variable>(data + index * size);
-            if (variable.Key == 0) return true;
+            if (variable.Key == nint.Zero) return true;
             var key = Marshal.PtrToStringUTF8(variable.Key);
             var definition = Marshal.PtrToStringUTF8(variable.Value);
             if (string.IsNullOrWhiteSpace(key) || string.IsNullOrWhiteSpace(definition)) continue;
             var separator = definition.IndexOf(AtariConstants.LegacyOptionNameSeparator);
-            var name = separator < 0 ? key : definition[..separator].Trim();
-            var values = (separator < 0
+            var name = separator == AtariConstants.StringIndexNotFound ? key : definition[..separator].Trim();
+            var values = (separator == AtariConstants.StringIndexNotFound
                     ? definition
                     : definition[(separator + AtariConstants.LegacyOptionValueStartOffset)..])
                 .Split(AtariConstants.LegacyOptionValueSeparator,
                     StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-            if (values.Length == 0) continue;
+            if (values.Length == AtariConstants.EmptyCollectionCount) continue;
             var selected = _optionValues.TryGetValue(key, out var configured) && values.Contains(configured, StringComparer.Ordinal)
-                ? configured : values[0];
+                ? configured : values[AtariConstants.FirstCollectionIndex];
             _optionValues[key] = selected;
             ReplaceNativeOptionValue(key, selected);
-            _options.Add(new AtariCoreOption(key, name, null, null, values[0], selected,
+            _options.Add(new AtariCoreOption(key, name, null, null, values[AtariConstants.FirstCollectionIndex], selected,
                 values.Select(value => new AtariCoreOptionValue(value, value)).ToArray()));
         }
         return false;
@@ -211,7 +296,7 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
 
     private bool SetSystemAvInfo(nint data)
     {
-        if (data == 0) return false;
+        if (data == nint.Zero) return false;
         var info = Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data);
         ApplySystemAvInfo(info);
         return true;
@@ -219,36 +304,41 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
 
     private bool SetGeometry(nint data)
     {
-        if (data == 0) return false;
-        AspectRatio = Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data).AspectRatio;
+        if (data == nint.Zero) return false;
+        Geometry = Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data);
+        AspectRatio = Geometry.AspectRatio;
         return true;
     }
 
     private bool ReadMessage(nint data)
     {
-        if (data == 0) return false;
+        if (data == nint.Zero) return false;
         var message = Marshal.PtrToStructure<ExternalCoreApi.Message>(data);
-        AddDiagnostic(message.Text);
+        var text = CopyDiagnostic(message.Text);
+        if (text is not null) Messages.Add(new(text, message.Frames));
         return true;
     }
 
     private bool ReadExtendedMessage(nint data)
     {
-        if (data == 0) return false;
+        if (data == nint.Zero) return false;
         var message = Marshal.PtrToStructure<ExternalCoreApi.MessageExtended>(data);
-        AddDiagnostic(message.Text);
+        var text = CopyDiagnostic(message.Text);
+        if (text is not null) ExtendedMessages.Add(new(text, message.DurationMilliseconds, message.Priority,
+            message.Level, message.Target, message.Type, message.Progress));
         return true;
     }
 
-    private void AddDiagnostic(nint textPointer)
+    private string? CopyDiagnostic(nint textPointer)
     {
         var text = Marshal.PtrToStringUTF8(textPointer);
         if (!string.IsNullOrWhiteSpace(text)) Diagnostics.Add(text);
+        return string.IsNullOrWhiteSpace(text) ? null : text;
     }
 
     private bool SetLogInterface(nint data)
     {
-        if (data == 0) return false;
+        if (data == nint.Zero) return false;
         Marshal.StructureToPtr(new ExternalCoreApi.LogInterface
         {
             Log = Marshal.GetFunctionPointerForDelegate(Log)
@@ -258,7 +348,7 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
 
     private bool SetLedInterface(nint data)
     {
-        if (data == 0) return false;
+        if (data == nint.Zero) return false;
         Marshal.StructureToPtr(new ExternalCoreApi.LedInterface
         {
             SetLedState = Marshal.GetFunctionPointerForDelegate(SetLedState)
@@ -266,9 +356,31 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
         return true;
     }
 
+    private bool SetRumbleInterface(nint data)
+    {
+        if (data == nint.Zero) return false;
+        Marshal.StructureToPtr(new ExternalCoreApi.RumbleInterface
+        {
+            SetState = Marshal.GetFunctionPointerForDelegate(SetRumbleState)
+        }, data, false);
+        return true;
+    }
+
+    private bool SetSensorInterface(nint data)
+    {
+        if (data == nint.Zero) return false;
+        Marshal.StructureToPtr(new ExternalCoreApi.SensorInterface
+        {
+            SetState = Marshal.GetFunctionPointerForDelegate(SetSensorState),
+            GetInput = Marshal.GetFunctionPointerForDelegate(GetSensorInput)
+        }, data, false);
+        return true;
+    }
+
     private void OnVideo(nint data, uint width, uint height, nuint pitch)
     {
-        if (data == 0 || width == 0 || height == 0 || pitch == 0) return;
+        if (data == nint.Zero || width == AtariConstants.EmptyFrameDimension ||
+            height == AtariConstants.EmptyFrameDimension || pitch == AtariConstants.EmptyNativeSize) return;
         var length = checked((int)(pitch * height));
         if (length > EmulationHostProtocolConstants.VideoSlotCapacity) return;
         var pixels = GC.AllocateUninitializedArray<byte>(length);
@@ -284,7 +396,8 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
 
     private nuint OnAudioBatch(nint data, nuint frames)
     {
-        if (data == 0 || frames == 0 || frames > AtariConstants.MaximumAudioFramesPerBatch) return 0;
+        if (data == nint.Zero || frames == AtariConstants.EmptyNativeSize ||
+            frames > AtariConstants.MaximumAudioFramesPerBatch) return AtariConstants.EmptyNativeSize;
         var frameCount = checked((int)frames);
         var samples = GC.AllocateUninitializedArray<short>(checked(frameCount * AtariConstants.StereoChannelCount));
         Marshal.Copy(data, samples, AtariConstants.FirstBufferIndex, samples.Length);
@@ -301,12 +414,15 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
 
     private void OnInputPoll() { }
     private short OnInputState(uint port, uint device, uint index, uint id) => (short)AtariConstants.NoInputState;
-    private void OnSetLedState(int led, int state) => _ledStates[led] = state != 0;
+    private void OnSetLedState(int led, int state) => _ledStates[led] = state != AtariConstants.InactiveState;
+    private bool OnSetRumbleState(uint port, uint effect, ushort strength) => false;
+    private bool OnSetSensorState(uint port, uint action, uint rate) => false;
+    private float OnGetSensorInput(uint port, uint id) => AtariEnvironmentConstants.NoSensorInput;
 
     private void OnLog(int level, nint format)
     {
-        var text = Marshal.PtrToStringUTF8(format);
-        if (!string.IsNullOrWhiteSpace(text)) Diagnostics.Add(text.Trim());
+        var text = AtariEnvironmentFunctions.CopyNativeLogTemplate(format);
+        if (!string.IsNullOrEmpty(text)) Diagnostics.Add(text);
     }
 
     private nint GetNativeOptionValue(string key, string value)
@@ -334,5 +450,6 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
         _systemDirectory.Dispose();
         _contentDirectory.Dispose();
         _saveDirectory.Dispose();
+        _assetsDirectory.Dispose();
     }
 }

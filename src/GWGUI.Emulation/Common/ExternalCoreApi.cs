@@ -45,6 +45,11 @@ internal static class ExternalCoreApi
     internal delegate void KeyboardEvent([MarshalAs(UnmanagedType.I1)] bool down, uint keyCode, uint character, ushort modifiers);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetLedState(int led, int state);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
+    internal delegate bool SetRumbleState(uint port, uint effect, ushort strength);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
+    internal delegate bool SetSensorState(uint port, uint action, uint rate);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate float GetSensorInput(uint port, uint id);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
     internal delegate bool UpdateCoreOptionsDisplay();
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate void SetEnvironment(EnvironmentCallback callback);
@@ -201,5 +206,48 @@ internal static class ExternalCoreApi
     internal struct LedInterface
     {
         internal nint SetLedState;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct InputDescriptor
+    {
+        internal uint Port;
+        internal uint Device;
+        internal uint Index;
+        internal uint Id;
+        internal nint Description;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct MemoryDescriptor
+    {
+        internal ulong Flags;
+        internal nint Pointer;
+        internal nuint Offset;
+        internal nuint Start;
+        internal nuint Select;
+        internal nuint Disconnect;
+        internal nuint Length;
+        internal nint AddressSpace;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct MemoryMap
+    {
+        internal nint Descriptors;
+        internal uint Count;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct RumbleInterface
+    {
+        internal nint SetState;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct SensorInterface
+    {
+        internal nint SetState;
+        internal nint GetInput;
     }
 }
