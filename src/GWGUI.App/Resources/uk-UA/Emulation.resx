@@ -383,4 +383,28 @@
   <data name="Emulation.MouseWheelDown"><value>Коліщатко миші вниз</value></data>
   <data name="Emulation.MouseWheelLeft"><value>Коліщатко миші ліворуч</value></data>
   <data name="Emulation.MouseWheelRight"><value>Коліщатко миші праворуч</value></data>
+  <data name="Emulation.AtariModelSt" xml:space="preserve">
+    <value>Atari ST</value>
+  </data>
+  <data name="Emulation.AtariModelStf" xml:space="preserve">
+    <value>Atari STF</value>
+  </data>
+  <data name="Emulation.AtariModelStfm" xml:space="preserve">
+    <value>Atari STFM</value>
+  </data>
+  <data name="Emulation.AtariModelMegaSt" xml:space="preserve">
+    <value>Atari Mega ST</value>
+  </data>
+  <data name="Emulation.AtariModelSte" xml:space="preserve">
+    <value>Atari STE</value>
+  </data>
+  <data name="Emulation.AtariModelMegaSte" xml:space="preserve">
+    <value>Atari Mega STE</value>
+  </data>
+  <data name="Emulation.AtariModelTt" xml:space="preserve">
+    <value>Atari TT</value>
+  </data>
+  <data name="Emulation.AtariModelFalcon" xml:space="preserve">
+    <value>Atari Falcon</value>
+  </data>
 </root>

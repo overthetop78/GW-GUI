@@ -230,12 +230,12 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-012 — Cataloguer la famille ST
 
-- [ ] Définir séparément ST, STF, STFM, Mega ST, STE, Mega STE, TT et Falcon.
-- [ ] Associer CPU, FPU, fréquences et niveaux de précision réellement disponibles.
-- [ ] Associer tailles et types de RAM compatibles par modèle.
-- [ ] Associer TOS, région, vidéo, audio, stockage et ports compatibles.
-- [ ] Traduire les noms descriptifs tout en conservant les identifiants techniques stables.
-- [ ] Ajouter une ligne de test exhaustive par modèle.
+- [x] Définir séparément ST, STF, STFM, Mega ST, STE, Mega STE, TT et Falcon.
+- [x] Associer CPU, FPU, fréquences et niveaux de précision réellement disponibles.
+- [x] Associer tailles et types de RAM compatibles par modèle.
+- [x] Associer TOS, région, vidéo, audio, stockage et ports compatibles.
+- [x] Traduire les noms descriptifs tout en conservant les identifiants techniques stables.
+- [x] Ajouter une ligne de test exhaustive par modèle.
 
 #### ATA-013 — Cataloguer les Atari 8 bits et consoles
 
