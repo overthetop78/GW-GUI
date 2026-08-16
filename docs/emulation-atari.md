@@ -294,12 +294,12 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-018 — Implémenter les stockages Hatari
 
-- [ ] Gérer séparément images ACSI, images IDE et tout autre disque dur vérifié.
-- [ ] Gérer les dossiers GEMDOS sans confondre dossier hôte et faux fichier `.GEM`.
-- [ ] Préserver lecture seule, ordre de montage, lettres/partitions et chemins externes.
-- [ ] Valider les combinaisons de stockage en fonction du modèle ST/STE/TT/Falcon.
-- [ ] Restaurer les montages d’une configuration au démarrage et après remise sous tension.
-- [ ] Tester chemins avec espaces, dossier absent, image verrouillée, plusieurs volumes et arrêt propre.
+- [x] Gérer séparément images ACSI, images IDE et tout autre disque dur vérifié.
+- [x] Gérer les dossiers GEMDOS sans confondre dossier hôte et faux fichier `.GEM`.
+- [x] Préserver lecture seule, ordre de montage, lettres/partitions et chemins externes.
+- [x] Valider les combinaisons de stockage en fonction du modèle ST/STE/TT/Falcon.
+- [x] Restaurer les montages d’une configuration au démarrage et après remise sous tension.
+- [x] Tester chemins avec espaces, dossier absent, image verrouillée, plusieurs volumes et arrêt propre.
 
 #### ATA-019 — Implémenter les médias Atari800
 

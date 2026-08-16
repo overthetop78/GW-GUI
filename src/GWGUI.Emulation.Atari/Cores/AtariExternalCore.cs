@@ -19,6 +19,7 @@ internal sealed class AtariExternalCore : IAtariCore
     private readonly List<AtariMediaConfiguration> _mountedMedia = [];
     private readonly List<AtariSessionMedia> _sessionMedia = [];
     private string? _sessionDirectory;
+    private AtariHatariContent? _hatariContent;
 
     internal AtariExternalCore(string absoluteCorePath, AtariCoreKind kind)
     {
@@ -60,33 +61,50 @@ internal sealed class AtariExternalCore : IAtariCore
             _sessionDirectory = absoluteSession;
             var systemDirectory = Path.Combine(absoluteSession, AtariConstants.SystemDirectoryName);
             AtariFirmwareRuntimeFunctions.PrepareSystemDirectory(configuration, systemDirectory);
+            var media = configuration.Media.Where(item => item.IsInserted)
+                .OrderBy(item => item.MountOrder)
+                .ThenBy(item => item.Path, StringComparer.OrdinalIgnoreCase)
+                .FirstOrDefault();
+            AtariSessionMedia? preparedMedia = null;
+            if (Kind == AtariCoreKind.Hatari)
+            {
+                _hatariContent = AtariHatariContentFunctions.Prepare(configuration, absoluteSession, _info.Extensions);
+                media = _hatariContent?.Configuration;
+            }
+            else if (media is not null)
+            {
+                preparedMedia = AtariSessionMediaFunctions.Prepare(media, absoluteSession, _info.Extensions);
+            }
+            var configuredOptions = AtariHatariStorageFunctions.ApplyWriteProtection(
+                configuration.Options, _hatariContent?.Storage);
             _library = new ExternalCoreLibrary(_corePath);
             _exports = AtariCoreFunctions.ResolveExports(_library);
             _callbacks = new AtariExternalHostCallbacks(
                 systemDirectory,
                 Path.Combine(absoluteSession, AtariConstants.ContentDirectoryName),
                 saveDirectory ?? Path.Combine(absoluteSession, AtariConstants.SavesDirectoryName),
-                configuration.Options);
+                configuredOptions);
             AtariCoreFunctions.InstallCallbacks(_exports, _callbacks);
             _exports.Initialize();
             _nativeInitialized = true;
 
-            var media = configuration.Media.FirstOrDefault(item => item.IsInserted);
-            AtariSessionMedia? preparedMedia = null;
             if (media is not null)
             {
-                preparedMedia = AtariSessionMediaFunctions.Prepare(media, absoluteSession, _info.Extensions);
-                _content = AtariContentFunctions.Create(preparedMedia.RuntimePath,
+                var runtimePath = _hatariContent?.RuntimePath ?? preparedMedia!.RuntimePath;
+                _content = AtariContentFunctions.Create(runtimePath,
                     _info.NeedsFullPath, _info.Extensions);
             }
             if (!_exports.LoadGame(_content?.GameInfo ?? nint.Zero))
                 throw new AtariEmulationException(AtariErrorKind.Content, AtariErrorCode.ContentUnsupported,
                     AtariErrorMessages.ContentLoadFailed);
             _gameLoaded = true;
-            if (media is not null && preparedMedia is not null)
+            if (media is not null)
             {
                 AtariMediaRuntimeFunctions.Register(_mountedMedia, media);
-                _sessionMedia.Add(preparedMedia);
+                if (_hatariContent?.SessionMedia is { } hatariSessionMedia)
+                    _sessionMedia.Add(hatariSessionMedia);
+                else if (preparedMedia is not null)
+                    _sessionMedia.Add(preparedMedia);
             }
             _exports.GetSystemAvInfo(out var avInfo);
             _callbacks.ApplySystemAvInfo(avInfo);
@@ -196,6 +214,8 @@ internal sealed class AtariExternalCore : IAtariCore
         }
         _content?.Dispose();
         _content = null;
+        AtariHatariContentFunctions.Cleanup(_hatariContent);
+        _hatariContent = null;
         _mountedMedia.Clear();
         _sessionMedia.Clear();
     }
