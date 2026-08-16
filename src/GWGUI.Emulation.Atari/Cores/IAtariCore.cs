@@ -25,6 +25,9 @@ internal interface IAtariCore : IDisposable
     void InsertMedia(AtariMediaConfiguration media);
     void EjectMedia(EmulationMediaSlot slot);
     void SelectDisk(int index);
+    void SaveMediaChanges(EmulationMediaSlot slot);
+    AtariDiskStatus GetDiskStatus();
+    bool HasUnsavedMediaChanges(EmulationMediaSlot slot);
     byte[] SaveState();
     void LoadState(ReadOnlySpan<byte> state);
     void SetOption(string key, string value);

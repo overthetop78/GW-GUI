@@ -24,6 +24,7 @@ public static class AtariConstants
     internal const char SupportedExtensionSeparator = '|';
     internal const char ExtensionPrefix = '.';
     internal const int FirstBufferIndex = 0;
+    internal const int FirstCollectionIndex = 0;
     internal const int Sha256HexLength = 64;
     internal const int LegacyOptionValueStartOffset = 1;
     internal const string PathContextKey = "path";
@@ -31,6 +32,7 @@ public static class AtariConstants
     internal const string ExpectedContextKey = "expected";
     internal const string ActualContextKey = "actual";
     internal const string ExtensionContextKey = "extension";
+    internal const string SupportedExtensionsContextKey = "supportedExtensions";
     internal const string SystemDirectoryName = "System";
     internal const string ContentDirectoryName = "Content";
     internal const string SavesDirectoryName = "Saves";

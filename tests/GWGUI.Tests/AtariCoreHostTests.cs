@@ -108,6 +108,22 @@ public sealed class AtariCoreHostTests
         Assert.Equal(media, System.Text.Json.JsonSerializer.Deserialize<AtariMediaConfiguration>(mediaJson,
             AtariCoreHostFunctions.JsonOptions));
 
+        var diskStatus = new AtariDiskStatus(2, 1, false,
+        [
+            new AtariDiskImageStatus(0, "first.st", "First"),
+            new AtariDiskImageStatus(1, "second.st", "Second")
+        ]);
+        using var diskStatusStream = new MemoryStream();
+        using (var diskStatusWriter = new BinaryWriter(diskStatusStream, System.Text.Encoding.UTF8, leaveOpen: true))
+            AtariCoreHostFunctions.WriteDiskStatus(diskStatusWriter, diskStatus);
+        diskStatusStream.Position = AtariConstants.FirstBufferIndex;
+        using var diskStatusReader = new BinaryReader(diskStatusStream);
+        var restoredDiskStatus = AtariCoreHostFunctions.ReadDiskStatus(diskStatusReader);
+        Assert.Equal(diskStatus.ImageCount, restoredDiskStatus.ImageCount);
+        Assert.Equal(diskStatus.CurrentIndex, restoredDiskStatus.CurrentIndex);
+        Assert.Equal(diskStatus.IsEjected, restoredDiskStatus.IsEjected);
+        Assert.Equal(diskStatus.Images, restoredDiskStatus.Images);
+
         using var stream = new MemoryStream();
         using (var writer = new BinaryWriter(stream, System.Text.Encoding.UTF8, leaveOpen: true))
         {

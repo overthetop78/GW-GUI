@@ -2,23 +2,26 @@ namespace GWGUI.Emulation.Atari.Cores;
 
 internal enum AtariHostCommand : byte
 {
-    Initialize = 1,
-    RunFrame = 2,
-    HardReset = 3,
-    Stop = 4,
-    InsertMedia = 5,
-    EjectMedia = 6,
-    SaveState = 7,
-    LoadState = 8,
-    SetOption = 9,
-    SelectDisk = 10,
-    Dispose = 11
+    Initialize = AtariCoreHostConstants.InitializeCommand,
+    RunFrame = AtariCoreHostConstants.RunFrameCommand,
+    HardReset = AtariCoreHostConstants.HardResetCommand,
+    Stop = AtariCoreHostConstants.StopCommand,
+    InsertMedia = AtariCoreHostConstants.InsertMediaCommand,
+    EjectMedia = AtariCoreHostConstants.EjectMediaCommand,
+    SaveState = AtariCoreHostConstants.SaveStateCommand,
+    LoadState = AtariCoreHostConstants.LoadStateCommand,
+    SetOption = AtariCoreHostConstants.SetOptionCommand,
+    SelectDisk = AtariCoreHostConstants.SelectDiskCommand,
+    Dispose = AtariCoreHostConstants.DisposeCommand,
+    SaveMediaChanges = AtariCoreHostConstants.SaveMediaChangesCommand,
+    GetDiskStatus = AtariCoreHostConstants.GetDiskStatusCommand,
+    HasUnsavedMediaChanges = AtariCoreHostConstants.HasUnsavedMediaChangesCommand
 }
 
 internal enum AtariHostResponseStatus : byte
 {
-    Success = 1,
-    Failure = 2
+    Success = AtariCoreHostConstants.SuccessResponse,
+    Failure = AtariCoreHostConstants.FailureResponse
 }
 
 internal sealed record AtariHostError(

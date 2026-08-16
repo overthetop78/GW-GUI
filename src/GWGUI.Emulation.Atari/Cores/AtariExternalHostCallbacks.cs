@@ -19,6 +19,7 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
     private long _audioSequence;
     private EmulationPixelFormat _pixelFormat = EmulationPixelFormat.Xrgb8888;
     private bool _disposed;
+    private readonly AtariDiskControl _diskControl = new();
 
     internal AtariExternalHostCallbacks(string systemDirectory, string contentDirectory, string saveDirectory,
         IReadOnlyDictionary<string, string> configuredOptions)
@@ -58,6 +59,7 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
     internal double FramesPerSecond { get; private set; }
     internal int SampleRate { get; private set; }
     internal float AspectRatio { get; private set; }
+    internal AtariDiskControl DiskControl => _diskControl;
 
     internal bool TryDequeueAudio(out AudioChunk? chunk) => _audio.TryDequeue(out chunk);
 
@@ -127,7 +129,15 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
             case ExternalCoreApiConstants.SetSupportAchievements:
                 return true;
             case ExternalCoreApiConstants.SetDiskControl:
+                if (data == nint.Zero) return false;
+                _diskControl.Capture(data);
+                return true;
             case ExternalCoreApiConstants.SetDiskControlExtended:
+                if (data == nint.Zero) return false;
+                _diskControl.CaptureExtended(data);
+                return true;
+            case ExternalCoreApiConstants.GetDiskControlVersion:
+                return AtariCoreFunctions.WriteInteger(data, AtariDiskControlConstants.InterfaceVersion);
             case ExternalCoreApiConstants.GetVfsInterface:
             case ExternalCoreApiConstants.SetCoreOptionsV2:
             case ExternalCoreApiConstants.SetCoreOptionsV2International:

@@ -19,7 +19,7 @@ public sealed class AtariLoadedContentTests
         File.WriteAllBytes(path, [1, 2, 3, 4]);
         try
         {
-            using var content = AtariLoadedContent.Create(path, needsFullPath,
+            using var content = AtariContentFunctions.Create(path, needsFullPath,
                 new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "bin" });
             var info = Marshal.PtrToStructure<ExternalCoreApi.GameInfo>(content.GameInfo);
 
@@ -35,6 +35,8 @@ public sealed class AtariLoadedContentTests
 
             content.Dispose();
             Assert.Equal(nint.Zero, content.GameInfo);
+            using var exclusive = new FileStream(path, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+            Assert.Equal(4, exclusive.Length);
         }
         finally
         {
@@ -48,14 +50,29 @@ public sealed class AtariLoadedContentTests
         var path = Path.GetTempFileName();
         try
         {
-            var error = Assert.Throws<AtariEmulationException>(() => AtariLoadedContent.Create(
+            var error = Assert.Throws<AtariEmulationException>(() => AtariContentFunctions.Create(
                 path, true, new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "rom" }));
             Assert.Equal(AtariErrorKind.Content, error.Kind);
             Assert.Equal(AtariErrorCode.ContentUnsupported, error.Code);
+            Assert.Equal(Path.GetExtension(path).TrimStart('.'), error.Context[AtariConstants.ExtensionContextKey]);
+            Assert.Equal("rom", error.Context[AtariConstants.SupportedExtensionsContextKey]);
         }
         finally
         {
             File.Delete(path);
         }
+    }
+
+    [Fact]
+    public void MissingMedia_IsStructuredContentError()
+    {
+        var path = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"), "missing.st");
+
+        var error = Assert.Throws<AtariEmulationException>(() => AtariContentFunctions.Create(
+            path, true, new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "st" }));
+
+        Assert.Equal(AtariErrorKind.Content, error.Kind);
+        Assert.Equal(AtariErrorCode.ContentNotFound, error.Code);
+        Assert.Equal(path, error.Context[AtariConstants.PathContextKey]);
     }
 }

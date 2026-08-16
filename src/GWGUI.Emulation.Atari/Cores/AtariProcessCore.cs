@@ -138,6 +138,21 @@ internal sealed class AtariProcessCore : IAtariCore
     public void EjectMedia(EmulationMediaSlot slot) => Request(AtariHostCommand.EjectMedia,
         writer => writer.Write((int)slot));
     public void SelectDisk(int index) => Request(AtariHostCommand.SelectDisk, writer => writer.Write(index));
+    public void SaveMediaChanges(EmulationMediaSlot slot) => Request(AtariHostCommand.SaveMediaChanges,
+        writer => writer.Write((int)slot));
+    public AtariDiskStatus GetDiskStatus()
+    {
+        AtariDiskStatus? status = null;
+        Request(AtariHostCommand.GetDiskStatus, read: reader => status = AtariCoreHostFunctions.ReadDiskStatus(reader));
+        return status ?? throw new InvalidDataException(AtariCoreHostErrors.CommunicationFailed);
+    }
+    public bool HasUnsavedMediaChanges(EmulationMediaSlot slot)
+    {
+        var hasChanges = false;
+        Request(AtariHostCommand.HasUnsavedMediaChanges, writer => writer.Write((int)slot),
+            reader => hasChanges = reader.ReadBoolean());
+        return hasChanges;
+    }
     public byte[] SaveState()
     {
         byte[]? state = null;

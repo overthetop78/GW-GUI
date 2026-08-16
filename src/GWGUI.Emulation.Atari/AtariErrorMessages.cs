@@ -39,6 +39,7 @@ internal static class AtariErrorMessages
     internal const string CoreNotInitialized = "The Atari core is not initialized.";
     internal const string ContentLoadFailed = "The Atari core rejected the configured content.";
     internal const string DynamicMediaUnsupported = "Dynamic Atari media control is not initialized yet.";
+    internal const string HatariFloppyRequired = "Hatari disk control accepts floppy media only.";
     internal const string StateSizeInvalid = "The Atari core reported an invalid saved-state size.";
     internal const string StateSaveFailed = "The Atari core failed to save its state.";
     internal const string StateLoadFailed = "The Atari core rejected the saved state.";

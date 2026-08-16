@@ -16,6 +16,9 @@ internal sealed class AtariExternalCore : IAtariCore
     private bool _nativeInitialized;
     private bool _gameLoaded;
     private bool _disposed;
+    private readonly List<AtariMediaConfiguration> _mountedMedia = [];
+    private readonly List<AtariSessionMedia> _sessionMedia = [];
+    private string? _sessionDirectory;
 
     internal AtariExternalCore(string absoluteCorePath, AtariCoreKind kind)
     {
@@ -37,6 +40,7 @@ internal sealed class AtariExternalCore : IAtariCore
     public IReadOnlySet<string> SupportedContentExtensions => _info.Extensions;
     public double FramesPerSecond => _callbacks?.FramesPerSecond ?? default;
     public int SampleRate => _callbacks?.SampleRate ?? default;
+    internal IReadOnlyList<AtariMediaConfiguration> MountedMedia => _mountedMedia;
 
     public bool TryDequeueAudio(out AudioChunk? chunk)
     {
@@ -53,6 +57,7 @@ internal sealed class AtariExternalCore : IAtariCore
         try
         {
             var absoluteSession = Path.GetFullPath(sessionDirectory);
+            _sessionDirectory = absoluteSession;
             var systemDirectory = Path.Combine(absoluteSession, AtariConstants.SystemDirectoryName);
             AtariFirmwareRuntimeFunctions.PrepareSystemDirectory(configuration, systemDirectory);
             _library = new ExternalCoreLibrary(_corePath);
@@ -67,12 +72,22 @@ internal sealed class AtariExternalCore : IAtariCore
             _nativeInitialized = true;
 
             var media = configuration.Media.FirstOrDefault(item => item.IsInserted);
+            AtariSessionMedia? preparedMedia = null;
             if (media is not null)
-                _content = AtariLoadedContent.Create(media.Path, _info.NeedsFullPath, _info.Extensions);
+            {
+                preparedMedia = AtariSessionMediaFunctions.Prepare(media, absoluteSession, _info.Extensions);
+                _content = AtariContentFunctions.Create(preparedMedia.RuntimePath,
+                    _info.NeedsFullPath, _info.Extensions);
+            }
             if (!_exports.LoadGame(_content?.GameInfo ?? nint.Zero))
                 throw new AtariEmulationException(AtariErrorKind.Content, AtariErrorCode.ContentUnsupported,
                     AtariErrorMessages.ContentLoadFailed);
             _gameLoaded = true;
+            if (media is not null && preparedMedia is not null)
+            {
+                AtariMediaRuntimeFunctions.Register(_mountedMedia, media);
+                _sessionMedia.Add(preparedMedia);
+            }
             _exports.GetSystemAvInfo(out var avInfo);
             _callbacks.ApplySystemAvInfo(avInfo);
         }
@@ -88,9 +103,46 @@ internal sealed class AtariExternalCore : IAtariCore
     public void SetInput(EmulationInputSnapshot snapshot) => RequireCallbacks().Input = snapshot;
     public void SetOption(string key, string value) => RequireCallbacks().SetOption(key, value);
 
-    public void InsertMedia(AtariMediaConfiguration media) => throw new NotSupportedException(AtariErrorMessages.DynamicMediaUnsupported);
-    public void EjectMedia(EmulationMediaSlot slot) => throw new NotSupportedException(AtariErrorMessages.DynamicMediaUnsupported);
-    public void SelectDisk(int index) => throw new NotSupportedException(AtariErrorMessages.DynamicMediaUnsupported);
+    public void InsertMedia(AtariMediaConfiguration media)
+    {
+        if (Kind != AtariCoreKind.Hatari || media.Kind != AtariMediaKind.Floppy)
+            throw new NotSupportedException(AtariErrorMessages.HatariFloppyRequired);
+        var preparedMedia = AtariSessionMediaFunctions.Prepare(media,
+            _sessionDirectory ?? throw new InvalidOperationException(AtariErrorMessages.CoreNotInitialized),
+            _info.Extensions);
+        RequireCallbacks().DiskControl.Insert(preparedMedia.RuntimePath);
+        AtariMediaRuntimeFunctions.Register(_mountedMedia, media with { IsInserted = true });
+        _sessionMedia.Add(preparedMedia);
+    }
+
+    public void EjectMedia(EmulationMediaSlot slot)
+    {
+        if (Kind != AtariCoreKind.Hatari) throw new NotSupportedException(AtariErrorMessages.HatariFloppyRequired);
+        RequireCallbacks().DiskControl.Eject();
+        AtariMediaRuntimeFunctions.MarkEjected(_mountedMedia, slot);
+    }
+
+    public void SelectDisk(int index)
+    {
+        if (Kind != AtariCoreKind.Hatari) throw new NotSupportedException(AtariErrorMessages.HatariFloppyRequired);
+        RequireCallbacks().DiskControl.Select(index);
+    }
+
+    public void SaveMediaChanges(EmulationMediaSlot slot)
+    {
+        var media = _sessionMedia.LastOrDefault(item => item.Configuration.Slot == slot) ??
+            throw new InvalidOperationException(AtariSessionMediaErrors.ExplicitSaveRequired);
+        AtariSessionMediaFunctions.Save(media);
+    }
+
+    public AtariDiskStatus GetDiskStatus()
+    {
+        if (Kind != AtariCoreKind.Hatari) throw new NotSupportedException(AtariErrorMessages.HatariFloppyRequired);
+        return RequireCallbacks().DiskControl.GetStatus();
+    }
+
+    public bool HasUnsavedMediaChanges(EmulationMediaSlot slot) =>
+        _sessionMedia.LastOrDefault(item => item.Configuration.Slot == slot)?.RequiresExplicitSave == true;
 
     public byte[] SaveState()
     {
@@ -144,6 +196,8 @@ internal sealed class AtariExternalCore : IAtariCore
         }
         _content?.Dispose();
         _content = null;
+        _mountedMedia.Clear();
+        _sessionMedia.Clear();
     }
 
     private AtariExternalCoreExports RequireExports() => _exports ??

@@ -282,15 +282,15 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-017 — Implémenter les disquettes Hatari
 
-- [ ] Construire `retro_game_info` conformément à `need_fullpath` et conserver ses allocations jusqu’au déchargement.
-- [ ] Accepter uniquement les extensions réellement annoncées par Hatari et afficher les formats refusés.
-- [ ] Enregistrer le média dans le slot seulement après chargement réussi.
-- [ ] Capturer Disk Control standard ou étendu lorsqu’il est réellement fourni.
-- [ ] Implémenter insertion, éjection, remplacement, index et libellé de chaque image.
-- [ ] Gérer les listes multidisques et la rotation sans perdre l’ordre.
-- [ ] Rouvrir les fichiers en accès exclusif après arrêt pour prouver l’absence de handle restant.
-- [ ] Tester média absent, invalide, protégé en écriture et changement à chaud.
-- [ ] Si l’écriture est activée, travailler sur une copie de session et proposer explicitement l’enregistrement ; ne jamais modifier silencieusement l’image source.
+- [x] Construire `retro_game_info` conformément à `need_fullpath` et conserver ses allocations jusqu’au déchargement.
+- [x] Accepter uniquement les extensions réellement annoncées par Hatari et afficher les formats refusés.
+- [x] Enregistrer le média dans le slot seulement après chargement réussi.
+- [x] Capturer Disk Control standard ou étendu lorsqu’il est réellement fourni.
+- [x] Implémenter insertion, éjection, remplacement, index et libellé de chaque image.
+- [x] Gérer les listes multidisques et la rotation sans perdre l’ordre.
+- [x] Rouvrir les fichiers en accès exclusif après arrêt pour prouver l’absence de handle restant.
+- [x] Tester média absent, invalide, protégé en écriture et changement à chaud.
+- [x] Si l’écriture est activée, travailler sur une copie de session et proposer explicitement l’enregistrement ; ne jamais modifier silencieusement l’image source.
 
 #### ATA-018 — Implémenter les stockages Hatari
 

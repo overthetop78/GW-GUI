@@ -65,6 +65,16 @@ public static class AtariCoreHost
                         case AtariHostCommand.SelectDisk:
                             EnsureCore(core).SelectDisk(reader.ReadInt32());
                             break;
+                        case AtariHostCommand.SaveMediaChanges:
+                            EnsureCore(core).SaveMediaChanges((EmulationMediaSlot)reader.ReadInt32());
+                            break;
+                        case AtariHostCommand.GetDiskStatus:
+                            AtariCoreHostFunctions.WriteDiskStatus(writer, EnsureCore(core).GetDiskStatus());
+                            break;
+                        case AtariHostCommand.HasUnsavedMediaChanges:
+                            writer.Write(EnsureCore(core).HasUnsavedMediaChanges(
+                                (EmulationMediaSlot)reader.ReadInt32()));
+                            break;
                         case AtariHostCommand.Dispose:
                             core?.Dispose();
                             core = null;

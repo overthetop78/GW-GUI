@@ -157,6 +157,13 @@ internal static class AtariCoreHostFunctions
     internal static IReadOnlyDictionary<int, bool> ReadLedStates(BinaryReader reader) =>
         EmulationHostProtocolFunctions.ReadLedStates(reader, AtariCoreHostConstants.HostName);
 
+    internal static void WriteDiskStatus(BinaryWriter writer, AtariDiskStatus status) =>
+        writer.Write(JsonSerializer.Serialize(status, JsonOptions));
+
+    internal static AtariDiskStatus ReadDiskStatus(BinaryReader reader) =>
+        JsonSerializer.Deserialize<AtariDiskStatus>(reader.ReadString(), JsonOptions)
+        ?? throw new InvalidDataException(AtariCoreHostErrors.CommunicationFailed);
+
     internal static void DisposeTransport(IDisposable? resource)
     {
         if (resource is null) return;
