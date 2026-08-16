@@ -25,6 +25,14 @@ public enum AtariCartridgePlatform
     Atari5200
 }
 
+public enum AtariCartridgeRegion
+{
+    Automatic,
+    Ntsc,
+    Pal,
+    Secam
+}
+
 public sealed record AtariMediaConfiguration(
     string Path,
     AtariMediaKind Kind,
@@ -37,4 +45,5 @@ public sealed record AtariMediaConfiguration(
     int MountOrder = AtariMediaConstants.DefaultMountOrder,
     AtariCartridgePlatform? CartridgePlatform = null,
     int? CartridgeType = null,
-    bool CassetteAutoBoot = false);
+    bool CassetteAutoBoot = false,
+    AtariCartridgeRegion? CartridgeRegion = null);

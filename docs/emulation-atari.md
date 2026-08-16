@@ -313,12 +313,12 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-020 — Implémenter les cartouches 2600, 7800, Lynx et Jaguar
 
-- [ ] Créer un contrôleur de cartouche commun sans mélanger les règles des quatre cœurs.
-- [ ] Valider les extensions et besoins de chemin ou de données selon chaque cœur.
-- [ ] Transmettre type de mapper, région ou métadonnée uniquement lorsque le cœur le permet.
-- [ ] Implémenter insertion initiale, remplacement par remise sous tension et éjection si elle est supportée.
-- [ ] Conserver le média de chaque machine et restaurer uniquement sa propre cartouche.
-- [ ] Tester les quatre cœurs avec contenu factice ou légal, mauvais format et fichier verrouillé.
+- [x] Créer un contrôleur de cartouche commun sans mélanger les règles des quatre cœurs.
+- [x] Valider les extensions et besoins de chemin ou de données selon chaque cœur.
+- [x] Transmettre type de mapper, région ou métadonnée uniquement lorsque le cœur le permet.
+- [x] Implémenter insertion initiale, remplacement par remise sous tension et éjection si elle est supportée.
+- [x] Conserver le média de chaque machine et restaurer uniquement sa propre cartouche.
+- [x] Tester les quatre cœurs avec contenu factice ou légal, mauvais format et fichier verrouillé.
 
 #### ATA-021 — Implémenter Jaguar CD
 
