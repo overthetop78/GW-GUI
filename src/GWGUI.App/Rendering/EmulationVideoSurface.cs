@@ -35,7 +35,7 @@ internal static class EmulationVideoPixels
 {
     internal static byte[] ToBgra32(VideoFrame frame)
     {
-        var pitch = checked(frame.Width * 4);
+        var pitch = checked(frame.Width * EmulationVideoPixelConstants.BytesPerBgraPixel);
         var source = frame.Pixels.Span;
         var destination = GC.AllocateUninitializedArray<byte>(checked(pitch * frame.Height));
         for (var y = 0; y < frame.Height; y++)
@@ -45,17 +45,45 @@ internal static class EmulationVideoPixels
             if (frame.PixelFormat == EmulationPixelFormat.Xrgb8888)
             {
                 sourceRow[..Math.Min(sourceRow.Length, pitch)].CopyTo(destinationRow);
-                for (var x = 0; x < frame.Width; x++) destinationRow[x * 4 + 3] = 255;
+                for (var x = 0; x < frame.Width; x++)
+                    destinationRow[x * EmulationVideoPixelConstants.BytesPerBgraPixel +
+                        EmulationVideoPixelConstants.AlphaByteOffset] = EmulationVideoPixelConstants.OpaqueAlpha;
                 continue;
             }
             for (var x = 0; x < frame.Width; x++)
             {
-                var value = sourceRow[x * 2] | sourceRow[x * 2 + 1] << 8;
-                var offset = x * 4;
-                destinationRow[offset] = (byte)((value & 0x1f) * 255 / 31);
-                destinationRow[offset + 1] = (byte)(((value >> 5) & 0x3f) * 255 / 63);
-                destinationRow[offset + 2] = (byte)(((value >> 11) & 0x1f) * 255 / 31);
-                destinationRow[offset + 3] = 255;
+                var sourceOffset = x * EmulationVideoPixelConstants.BytesPerPackedPixel;
+                var value = sourceRow[sourceOffset] |
+                    sourceRow[sourceOffset + EmulationVideoPixelConstants.SecondPackedByteOffset] <<
+                    EmulationVideoPixelConstants.HighByteBitShift;
+                var offset = x * EmulationVideoPixelConstants.BytesPerBgraPixel;
+                destinationRow[offset + EmulationVideoPixelConstants.BlueByteOffset] = (byte)(
+                    (value & EmulationVideoPixelConstants.FiveBitMask) * EmulationVideoPixelConstants.OpaqueAlpha /
+                    EmulationVideoPixelConstants.FiveBitMaximum);
+                if (frame.PixelFormat == EmulationPixelFormat.Rgb1555)
+                {
+                    destinationRow[offset + EmulationVideoPixelConstants.GreenByteOffset] = (byte)(
+                        ((value >> EmulationVideoPixelConstants.GreenBitShift) &
+                         EmulationVideoPixelConstants.FiveBitMask) * EmulationVideoPixelConstants.OpaqueAlpha /
+                        EmulationVideoPixelConstants.FiveBitMaximum);
+                    destinationRow[offset + EmulationVideoPixelConstants.RedByteOffset] = (byte)(
+                        ((value >> EmulationVideoPixelConstants.Rgb1555RedBitShift) &
+                         EmulationVideoPixelConstants.FiveBitMask) * EmulationVideoPixelConstants.OpaqueAlpha /
+                        EmulationVideoPixelConstants.FiveBitMaximum);
+                }
+                else
+                {
+                    destinationRow[offset + EmulationVideoPixelConstants.GreenByteOffset] = (byte)(
+                        ((value >> EmulationVideoPixelConstants.GreenBitShift) &
+                         EmulationVideoPixelConstants.SixBitMask) * EmulationVideoPixelConstants.OpaqueAlpha /
+                        EmulationVideoPixelConstants.SixBitMaximum);
+                    destinationRow[offset + EmulationVideoPixelConstants.RedByteOffset] = (byte)(
+                        ((value >> EmulationVideoPixelConstants.Rgb565RedBitShift) &
+                         EmulationVideoPixelConstants.FiveBitMask) * EmulationVideoPixelConstants.OpaqueAlpha /
+                        EmulationVideoPixelConstants.FiveBitMaximum);
+                }
+                destinationRow[offset + EmulationVideoPixelConstants.AlphaByteOffset] =
+                    EmulationVideoPixelConstants.OpaqueAlpha;
             }
         }
         return destination;
@@ -89,7 +117,7 @@ internal sealed class WpfVideoSurface : IEmulationVideoSurface
     public void Present(VideoFrame frame)
     {
         var pixels = EmulationVideoPixels.ToBgra32(frame);
-        var pitch = checked(frame.Width * 4);
+        var pitch = checked(frame.Width * EmulationVideoPixelConstants.BytesPerBgraPixel);
         if (_bitmap is null || _bitmap.PixelWidth != frame.Width || _bitmap.PixelHeight != frame.Height)
         {
             _bitmap = new WriteableBitmap(frame.Width, frame.Height, 96, 96, PixelFormats.Bgra32, null);

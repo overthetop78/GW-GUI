@@ -377,13 +377,13 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-026 — Copier et publier la vidéo
 
-- [ ] Traiter un pointeur nul comme duplication de la dernière frame.
-- [ ] Copier `pitch * height`, ligne par ligne, sans supposer `width * bytesPerPixel`.
-- [ ] Gérer tous les formats de pixels réellement négociés par les six cœurs.
-- [ ] Alterner des buffers loués pour ne jamais publier un buffer en cours d’écriture.
-- [ ] Publier dimensions, pitch, format, ratio, séquence et horodatage.
-- [ ] Redimensionner et restituer les buffers sans fuite lors d’un changement de géométrie.
-- [ ] Tester padding, formats, pointeur nul, résolutions dynamiques et ratios de chaque famille.
+- [x] Traiter un pointeur nul comme duplication de la dernière frame.
+- [x] Copier `pitch * height`, ligne par ligne, sans supposer `width * bytesPerPixel`.
+- [x] Gérer tous les formats de pixels réellement négociés par les six cœurs.
+- [x] Alterner des buffers loués pour ne jamais publier un buffer en cours d’écriture.
+- [x] Publier dimensions, pitch, format, ratio, séquence et horodatage.
+- [x] Redimensionner et restituer les buffers sans fuite lors d’un changement de géométrie.
+- [x] Tester padding, formats, pointeur nul, résolutions dynamiques et ratios de chaque famille.
 
 #### ATA-027 — Mettre le PCM dans une file bornée
 

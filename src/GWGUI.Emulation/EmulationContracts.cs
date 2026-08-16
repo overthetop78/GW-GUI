@@ -19,7 +19,7 @@ public interface IEmulationEngine<in TConfiguration>
     IEmulatedMachine CreateMachine(TConfiguration configuration);
 }
 
-public enum EmulationPixelFormat { Rgb565, Xrgb8888 }
+public enum EmulationPixelFormat { Rgb565 = 0, Xrgb8888 = 1, Rgb1555 = 2 }
 
 public enum EmulationVideoRenderer
 {

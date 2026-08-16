@@ -42,7 +42,7 @@ public partial class App : Application
             }
             catch (Exception error)
             {
-                Console.Error.WriteLine(error.Message);
+                Console.Error.WriteLine(AtariCoreOptionProbe.DescribeFailure(error));
                 Environment.ExitCode = AtariCoreOptionProbeConstants.FailureExitCode;
             }
             Shutdown(Environment.ExitCode);

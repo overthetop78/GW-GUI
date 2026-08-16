@@ -1,4 +1,5 @@
 using System.Collections.Concurrent;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Common;
@@ -8,6 +9,8 @@ namespace GWGUI.Emulation.Atari.Cores;
 internal sealed class AtariExternalHostCallbacks : IDisposable
 {
     private readonly AtariCoreOptionHost _optionHost;
+    private readonly AtariVideoBufferSet _videoBuffers = new();
+    private readonly long _videoStartTimestamp = Stopwatch.GetTimestamp();
     private readonly ConcurrentQueue<AudioChunk> _audio = new();
     private readonly Dictionary<int, bool> _ledStates = [];
     private readonly HashSet<uint> _unknownEnvironmentCommands = [];
@@ -253,6 +256,8 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
                 _pixelFormat = EmulationPixelFormat.Rgb565;
                 return true;
             case AtariConstants.PixelFormat0Rgb1555:
+                _pixelFormat = EmulationPixelFormat.Rgb1555;
+                return true;
             default:
                 return false;
         }
@@ -343,14 +348,25 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
 
     private void OnVideo(nint data, uint width, uint height, nuint pitch)
     {
-        if (data == nint.Zero || width == AtariConstants.EmptyFrameDimension ||
+        if (data == nint.Zero)
+        {
+            if (LatestVideoFrame is { } previous)
+                LatestVideoFrame = previous with
+                {
+                    Sequence = ++_videoSequence,
+                    Timestamp = AtariVideoFunctions.Timestamp(_videoStartTimestamp)
+                };
+            return;
+        }
+        if (width == AtariConstants.EmptyFrameDimension ||
             height == AtariConstants.EmptyFrameDimension || pitch == AtariConstants.EmptyNativeSize) return;
-        var length = checked((int)(pitch * height));
+        var length = AtariVideoFunctions.FrameLength(height, pitch);
         if (length > EmulationHostProtocolConstants.VideoSlotCapacity) return;
-        var pixels = GC.AllocateUninitializedArray<byte>(length);
-        Marshal.Copy(data, pixels, AtariConstants.FirstBufferIndex, length);
-        LatestVideoFrame = new VideoFrame(pixels, checked((int)width), checked((int)height), checked((int)pitch),
-            _pixelFormat, AspectRatio, ++_videoSequence, TimeSpan.Zero);
+        var pixels = _videoBuffers.Rent(length);
+        AtariVideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));
+        LatestVideoFrame = new VideoFrame(pixels.AsMemory(AtariConstants.FirstBufferIndex, length),
+            checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio,
+            ++_videoSequence, AtariVideoFunctions.Timestamp(_videoStartTimestamp));
     }
 
     private void OnAudioSample(short left, short right)
@@ -394,6 +410,7 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
         if (_disposed) return;
         _disposed = true;
         _optionHost.Dispose();
+        _videoBuffers.Dispose();
         _systemDirectory.Dispose();
         _contentDirectory.Dispose();
         _saveDirectory.Dispose();

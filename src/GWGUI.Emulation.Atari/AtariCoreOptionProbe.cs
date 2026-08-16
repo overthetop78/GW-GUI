@@ -5,6 +5,12 @@ namespace GWGUI.Emulation.Atari;
 
 public static class AtariCoreOptionProbe
 {
+    public static string DescribeFailure(Exception error)
+    {
+        ArgumentNullException.ThrowIfNull(error);
+        return error.GetType().Name;
+    }
+
     public static IReadOnlyList<AtariCoreOption> Inspect(string corePath, AtariCoreKind kind)
     {
         var absoluteCore = Path.GetFullPath(corePath);
