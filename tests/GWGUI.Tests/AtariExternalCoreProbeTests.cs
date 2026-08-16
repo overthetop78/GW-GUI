@@ -7,6 +7,7 @@ using GWGUI.Emulation.Common;
 namespace GWGUI.Tests;
 
 [Trait("Category", "LocalAssets")]
+[Collection(AtariNativeCoreTestConstants.CollectionName)]
 public sealed class AtariExternalCoreProbeTests
 {
     public static TheoryData<string, AtariCoreKind> OfficialCoreFiles => new()

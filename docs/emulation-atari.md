@@ -367,13 +367,13 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-025 — Implémenter la boucle d’exécution Atari
 
-- [ ] Créer un thread LongRunning nommé avec l’identifiant de machine et le cœur.
-- [ ] Faire passer tous les appels natifs d’une instance par ce thread unique.
-- [ ] Utiliser une file mono-consommateur pour reset, option, média et état.
-- [ ] Exécuter une frame en état Running, aucune en pause, tout en continuant à traiter les commandes.
-- [ ] Rendre arrêt et double arrêt sûrs et annulables.
-- [ ] Transformer toute exception en état Faulted avec erreur structurée et nettoyage complet.
-- [ ] Tester 300 frames, pause, reprise, reset, arrêt, double arrêt et exception injectée.
+- [x] Créer un thread LongRunning nommé avec l’identifiant de machine et le cœur.
+- [x] Faire passer tous les appels natifs d’une instance par ce thread unique.
+- [x] Utiliser une file mono-consommateur pour reset, option, média et état.
+- [x] Exécuter une frame en état Running, aucune en pause, tout en continuant à traiter les commandes.
+- [x] Rendre arrêt et double arrêt sûrs et annulables.
+- [x] Transformer toute exception en état Faulted avec erreur structurée et nettoyage complet.
+- [x] Tester 300 frames, pause, reprise, reset, arrêt, double arrêt et exception injectée.
 
 #### ATA-026 — Copier et publier la vidéo
 

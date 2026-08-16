@@ -5,6 +5,7 @@ using GWGUI.Emulation.Atari.Cores;
 
 namespace GWGUI.Tests;
 
+[Collection(AtariNativeCoreTestConstants.CollectionName)]
 public sealed class AtariCartridgeTests
 {
     private const int StellaTestCartridgeSize = 4096;
