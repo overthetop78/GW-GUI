@@ -10,6 +10,8 @@ internal static class ControlVisualConstants
     internal const string GameControllerGlyph = "\uE7FC";
     internal const string CloseGlyph = "\uE8BB";
     internal const string EmptyValue = "\u2014";
+    internal const string AddGlyph = "\uFF0B";
+    internal const string DetailSeparator = " \u00B7 ";
     internal const string AmigaTitle = "Amiga";
     internal const string CardBrushResource = "CardBrush";
     internal const string ControlBrushResource = "ControlBrush";

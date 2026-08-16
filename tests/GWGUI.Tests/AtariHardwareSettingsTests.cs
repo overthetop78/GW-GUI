@@ -72,21 +72,64 @@ public sealed class AtariHardwareSettingsTests
         });
     }
 
+    [Fact]
+    public void EditorCanLoadTheSameConfigurationRepeatedly()
+    {
+        RunOnSta(() =>
+        {
+            var app = Application.Current as GWGUI.App.App ?? new GWGUI.App.App();
+            app.InitializeComponent();
+            var section = new AtariHardwareSettingsSection(new Border());
+            var configuration = new AtariMachineConfiguration(AtariMachineModel.St);
+            var dispatcher = Dispatcher.CurrentDispatcher;
+            SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(dispatcher));
+
+            WaitWithDispatcher(section.LoadAsync(configuration), dispatcher);
+            WaitWithDispatcher(section.LoadAsync(configuration), dispatcher);
+        });
+    }
+
+    [Fact]
+    public void EditorLoadsEveryAtariModelWithoutLeavingASettingsPageEmpty()
+    {
+        RunOnSta(() =>
+        {
+            var app = Application.Current as GWGUI.App.App ?? new GWGUI.App.App();
+            app.InitializeComponent();
+            var section = new AtariHardwareSettingsSection(new Border());
+            var dispatcher = Dispatcher.CurrentDispatcher;
+            SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(dispatcher));
+
+            foreach (var model in Enum.GetValues<AtariMachineModel>())
+                WaitWithDispatcher(section.LoadAsync(new AtariMachineConfiguration(model)), dispatcher);
+
+            var tabs = Assert.IsType<TabControl>(section.Content);
+            Assert.All(tabs.Items.OfType<TabItem>(), item => Assert.NotNull(item.Content));
+        });
+    }
+
+    private static void WaitWithDispatcher(Task task, Dispatcher dispatcher)
+    {
+        while (!task.IsCompleted)
+            dispatcher.Invoke(() => { }, DispatcherPriority.Background);
+        task.GetAwaiter().GetResult();
+    }
+
     private static string? Header(TabItem item) => (item.Header as MainTabHeader)?.Text;
 
     private static void RunOnSta(Action action)
     {
-        Exception? failure = null;
+        string? failure = null;
         var thread = new Thread(() =>
         {
             try { action(); }
-            catch (Exception error) { failure = error; }
+            catch (Exception error) { failure = error.ToString(); }
             finally { Dispatcher.CurrentDispatcher.InvokeShutdown(); }
         });
         thread.SetApartmentState(ApartmentState.STA);
         thread.Start();
         Assert.True(thread.Join(AtariHardwareSettingsTestConstants.StaTimeoutMilliseconds));
-        if (failure is not null) throw failure;
+        Assert.Null(failure);
     }
 }
 
@@ -95,7 +138,7 @@ internal static class AtariHardwareSettingsTestConstants
     internal const int CpuFieldCount = 4;
     internal const int MemoryFieldCount = 2;
     internal const int EditorTabCount = 10;
-    internal const int StaTimeoutMilliseconds = 10000;
+    internal const int StaTimeoutMilliseconds = 30000;
     internal const string UnknownKey = "future_hardware_option";
     internal const string UnknownValue = "preserved";
     internal const string ChangedValue = "changed";

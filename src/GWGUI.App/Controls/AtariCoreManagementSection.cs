@@ -93,7 +93,8 @@ public sealed class AtariCoreManagementSection : UserControl
         _kind = AtariCompatibilityCatalog.Get(model).Core;
         _required.Text = L(AtariCoreManagementConstants.RequiredForModelResource,
             AtariCoreCatalog.Get(_kind).LibraryName)
-            + AtariCoreManagementConstants.DetailSeparator + model;
+            + AtariCoreManagementConstants.DetailSeparator
+            + AtariConfigurationCatalogFunctions.ModelName(model);
         HideResults();
         SetStatus(L(AtariCoreManagementConstants.SearchResource));
         await RefreshInstalledStateAsync(cancellationToken);

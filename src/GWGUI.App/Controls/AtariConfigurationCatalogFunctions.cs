@@ -6,8 +6,10 @@ namespace GWGUI.App.Controls;
 internal static class AtariConfigurationCatalogFunctions
 {
     internal static IReadOnlyList<AtariModelItem> Models() => Enum.GetValues<AtariMachineModel>()
-        .Select(model => new AtariModelItem(model, LocExtension.Get(ResourceKey(model))))
+        .Select(model => new AtariModelItem(model, ModelName(model)))
         .ToArray();
+
+    internal static string ModelName(AtariMachineModel model) => LocExtension.Get(ResourceKey(model));
 
     internal static AtariMachineConfiguration ChangeModel(AtariMachineConfiguration? current,
         AtariMachineModel model) => current is not null && current.Model == model
@@ -15,8 +17,9 @@ internal static class AtariConfigurationCatalogFunctions
         : new AtariMachineConfiguration(model, id: current?.Id ?? Guid.NewGuid());
 
     internal static string DisplayName(AtariMachineConfiguration configuration, string modelName) =>
-        $"{modelName} · {configuration.Id.ToString(AtariConfigurationCatalogConstants.IdentifierFormat)
-            [..AtariConfigurationCatalogConstants.DisplayIdentifierLength]} · {configuration.Core}";
+        $"{modelName} {ControlVisualConstants.DetailSeparator} "
+        + configuration.Id.ToString(AtariConfigurationCatalogConstants.IdentifierFormat)
+            [..AtariConfigurationCatalogConstants.DisplayIdentifierLength];
 
     private static string ResourceKey(AtariMachineModel model) => model switch
     {

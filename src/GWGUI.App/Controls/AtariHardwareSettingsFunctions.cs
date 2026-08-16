@@ -6,6 +6,22 @@ namespace GWGUI.App.Controls;
 
 internal static class AtariHardwareSettingsFunctions
 {
+    internal static string FirmwareKindName(AtariFirmwareKind kind) => kind switch
+    {
+        AtariFirmwareKind.Tos => AtariHardwareSettingsConstants.TosFirmwareContext,
+        AtariFirmwareKind.AtariOsA => AtariHardwareSettingsConstants.AtariOsAFirmwareContext,
+        AtariFirmwareKind.AtariOsB => AtariHardwareSettingsConstants.AtariOsBFirmwareContext,
+        AtariFirmwareKind.AtariXlOs => AtariHardwareSettingsConstants.AtariXlOsFirmwareContext,
+        AtariFirmwareKind.AtariBasic => AtariHardwareSettingsConstants.AtariBasicFirmwareContext,
+        AtariFirmwareKind.Atari5200Bios => AtariHardwareSettingsConstants.Atari5200BiosFirmwareContext,
+        AtariFirmwareKind.AtariXegsBios => AtariHardwareSettingsConstants.AtariXegsBiosFirmwareContext,
+        AtariFirmwareKind.Atari7800Bios => AtariHardwareSettingsConstants.Atari7800BiosFirmwareContext,
+        AtariFirmwareKind.LynxBootRom => AtariHardwareSettingsConstants.LynxBootRomFirmwareContext,
+        AtariFirmwareKind.JaguarBootRom => AtariHardwareSettingsConstants.JaguarBootRomFirmwareContext,
+        AtariFirmwareKind.JaguarCdBios => AtariHardwareSettingsConstants.JaguarCdBiosFirmwareContext,
+        _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
+    };
+
     internal static AtariHardwareView Create(AtariMachineModel model,
         IReadOnlyDictionary<string, string> options)
     {

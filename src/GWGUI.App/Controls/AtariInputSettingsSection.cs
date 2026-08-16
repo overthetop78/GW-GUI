@@ -17,7 +17,7 @@ internal sealed class AtariInputSettingsSection
     private readonly List<ControllerEditor> _portEditors = [];
     internal UIElement Keyboard => BuildKeyboardPage();
     internal UIElement Mouse => BuildMousePage();
-    internal UIElement Controllers => _controllers;
+    internal UIElement Controllers => EmulationSettingsLayout.ScrollPage(_controllers);
 
     internal AtariInputSettingsSection()
     {
@@ -33,10 +33,10 @@ internal sealed class AtariInputSettingsSection
     internal void Load(AtariMachineConfiguration configuration)
     {
         var view = AtariInputSettingsFunctions.Create(configuration);
-        _keyboard.Visibility = view.HasKeyboard ? Visibility.Visible : Visibility.Collapsed;
+        _keyboard.IsEnabled = view.HasKeyboard;
         _keyboard.SetRows(view.KeyboardDefinitions, view.KeyboardBindings);
-        _mouseBindings.Visibility = view.HasMouse ? Visibility.Visible : Visibility.Collapsed;
-        _mouseSpeed.Visibility = view.HasMouse ? Visibility.Visible : Visibility.Collapsed;
+        _mouseBindings.IsEnabled = view.HasMouse;
+        _mouseSpeed.IsEnabled = view.HasMouse;
         _mouseSpeed.SelectedItem = view.MouseSpeedPercent;
         _mouseBindings.SetRows(view.MouseDefinitions, view.MouseBindings);
         BuildControllers(view.Ports);
@@ -81,8 +81,14 @@ internal sealed class AtariInputSettingsSection
     private void BuildControllers(IReadOnlyList<AtariControllerPortView> ports)
     {
         _controllers.Children.Clear();
+        _controllers.Margin = new Thickness(12);
         _portEditors.Clear();
-        var detection = new TextBlock();
+        var detection = new TextBlock
+        {
+            Text = LocExtension.Get(AtariInputSettingsConstants.NoControllerResource),
+            VerticalAlignment = VerticalAlignment.Center,
+            Margin = new Thickness(12, 0, 0, 0)
+        };
         var detect = new Button { Content = LocExtension.Get(AtariInputSettingsConstants.DetectControllersResource) };
         AtariAccessibilityFunctions.Configure(detect,
             LocExtension.Get(AtariInputSettingsConstants.DetectControllersResource));
@@ -97,8 +103,14 @@ internal sealed class AtariInputSettingsSection
             var devices = AtariInputSettingsFunctions.ControllerDeviceIds(count);
             foreach (var editor in _portEditors) editor.Device.ItemsSource = devices;
         };
-        _controllers.Children.Add(detect);
-        _controllers.Children.Add(detection);
+        var detectionContent = new StackPanel { Orientation = Orientation.Horizontal };
+        detectionContent.Children.Add(detect);
+        detectionContent.Children.Add(detection);
+        _controllers.Children.Add(EmulationSettingsLayout.IconCard(detectionContent,
+            LocExtension.Get("Emulation.DetectedControllers"), ControlVisualConstants.GameControllerGlyph));
+        var portCards = new Grid { Margin = new Thickness(0, 10, 0, 0) };
+        portCards.ColumnDefinitions.Add(new ColumnDefinition());
+        portCards.ColumnDefinitions.Add(new ColumnDefinition());
         foreach (var port in ports)
         {
             var peripheral = new ComboBox { ItemsSource = port.Peripherals, SelectedItem = port.Selected };
@@ -125,10 +137,22 @@ internal sealed class AtariInputSettingsSection
                 LocExtension.Get(AtariInputSettingsConstants.ControllerDeviceResource), device));
             group.Children.Add(AtariAccessibilityFunctions.LabeledRow(
                 LocExtension.Get(AtariInputSettingsConstants.DeadZoneResource), deadZone));
-            group.Children.Add(bindings);
-            _controllers.Children.Add(new GroupBox { Header = port.Port.ToString(CultureInfo.CurrentCulture), Content = group });
+            group.Children.Add(EmulationSettingsLayout.InputBindings(bindings,
+                LocExtension.Get("Emulation.ControllerMappings")));
+            var card = EmulationSettingsLayout.IconCard(group,
+                LocExtension.Get("Emulation.ControllerPort", port.Port + AtariInputSettingsConstants.InclusiveEndpointCount),
+                ControlVisualConstants.GameControllerGlyph);
+            card.Margin = new Thickness(port.Port % 2 == 0 ? 0 : 5, port.Port < 2 ? 0 : 10,
+                port.Port % 2 == 0 ? 5 : 0, 0);
+            var row = port.Port / 2;
+            while (portCards.RowDefinitions.Count <= row)
+                portCards.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            Grid.SetRow(card, row);
+            Grid.SetColumn(card, port.Port % 2);
+            portCards.Children.Add(card);
             _portEditors.Add(new ControllerEditor(port.Port, peripheral, device, deadZone, bindings));
         }
+        _controllers.Children.Add(portCards);
     }
 
     private sealed record ControllerEditor(int Port, ComboBox Peripheral, ComboBox Device, ComboBox DeadZone,

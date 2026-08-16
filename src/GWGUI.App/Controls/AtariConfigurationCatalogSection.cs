@@ -32,6 +32,7 @@ public sealed class AtariConfigurationCatalogSection : UserControl
     {
         _hardware = new AtariHardwareSettingsSection(_general);
         _general.ModelChanged += async (_, configuration) => await _hardware.LoadAsync(configuration);
+        _general.SaveRequested += async (_, _) => await ExecuteAsync(_general, SaveConfiguration);
         _controller = new AtariConfigurationCatalogController(store);
         _list.ItemsSource = _configurations;
         AtariAccessibilityFunctions.Configure(_list,

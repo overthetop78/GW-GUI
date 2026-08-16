@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace GWGUI.App.Controls;
 
@@ -96,11 +97,35 @@ internal static class EmulationSettingsLayout
         return HeaderCard(child, header);
     }
 
-    internal static ScrollViewer ScrollPage(UIElement child) => new()
+    internal static ScrollViewer ScrollPage(UIElement child)
     {
-        Content = child, VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
-        HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled, PanningMode = PanningMode.VerticalOnly
-    };
+        var viewer = new ScrollViewer
+        {
+            Content = child, VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+            HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled, PanningMode = PanningMode.VerticalOnly
+        };
+        viewer.PreviewMouseWheel += (_, args) =>
+        {
+            if (FindNestedScrollViewer(args.OriginalSource as DependencyObject, viewer) is { ScrollableHeight: > 0 })
+                return;
+            if (viewer.ScrollableHeight <= 0) return;
+            var offset = Math.Clamp(viewer.VerticalOffset - args.Delta, 0, viewer.ScrollableHeight);
+            if (Math.Abs(offset - viewer.VerticalOffset) < 0.5) return;
+            viewer.ScrollToVerticalOffset(offset);
+            args.Handled = true;
+        };
+        return viewer;
+    }
+
+    private static ScrollViewer? FindNestedScrollViewer(DependencyObject? source, ScrollViewer page)
+    {
+        while (source is not null && !ReferenceEquals(source, page))
+        {
+            if (source is ScrollViewer nested) return nested;
+            source = VisualTreeHelper.GetParent(source);
+        }
+        return null;
+    }
 
     private static Border HeaderCard(UIElement child, string title, FrameworkElement icon)
     {

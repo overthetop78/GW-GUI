@@ -36,6 +36,18 @@ public sealed class AtariStorageSettingsTests
         Assert.Contains(jaguarCd.Types, value => value.Kind == AtariMediaKind.CompactDisc);
     }
 
+    [Theory]
+    [MemberData(nameof(EveryModel))]
+    public void EveryModelHasExactlyOneFixedPrimaryDevice(AtariMachineModel model)
+    {
+        var view = AtariStorageSettingsFunctions.Create(new AtariMachineConfiguration(model));
+        var device = Assert.Single(view.Devices).Configuration;
+        var expected = ExpectedPrimaryDevice(model);
+
+        Assert.Equal(expected.Kind, device.Kind);
+        Assert.Equal(expected.Slot, device.Slot);
+    }
+
     [Fact]
     public void DuplicateIdentifierIsRejected()
     {
@@ -69,6 +81,16 @@ public sealed class AtariStorageSettingsTests
         Assert.Equal(AtariStorageSettingsTestConstants.OptionValue,
             removed.Options[AtariStorageSettingsTestConstants.OptionKey]);
     }
+
+    private static (AtariMediaKind Kind, EmulationMediaSlot Slot) ExpectedPrimaryDevice(
+        AtariMachineModel model) => model switch
+    {
+        AtariMachineModel.JaguarCd => (AtariMediaKind.CompactDisc, EmulationMediaSlot.Cd0),
+        AtariMachineModel.Atari2600 or AtariMachineModel.Atari5200 or AtariMachineModel.Atari7800
+            or AtariMachineModel.Lynx or AtariMachineModel.Jaguar or AtariMachineModel.Xegs
+            => (AtariMediaKind.Cartridge, EmulationMediaSlot.Cartridge0),
+        _ => (AtariMediaKind.Floppy, EmulationMediaSlot.Floppy0)
+    };
 }
 
 internal static class AtariStorageSettingsTestConstants

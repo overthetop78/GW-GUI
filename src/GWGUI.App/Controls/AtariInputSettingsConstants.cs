@@ -10,8 +10,6 @@ internal static class AtariInputSettingsConstants
     internal const string AtariKeyResource = "Emulation.EmulatedKey";
     internal const string SearchKeyResource = "Emulation.SearchBinding";
     internal const string MouseSpeedResource = "Emulation.MouseSpeed";
-    internal const string CaptureMouseResource = "Emulation.CaptureMouse";
-    internal const string ReleaseMouseResource = "Emulation.ReleaseMouseKey";
     internal const string DetectControllersResource = "Emulation.DetectControllers";
     internal const string NoControllerResource = "Emulation.NoControllersDetected";
     internal const string ControllerTypeResource = "Emulation.ControllerType";

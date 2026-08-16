@@ -19,12 +19,12 @@ internal sealed class AtariVideoAudioSettingsSection
 
     internal AtariVideoAudioSettingsSection()
     {
+        var rendering = new StackPanel();
+        rendering.Children.Add(AtariAccessibilityFunctions.LabeledRow(
+            LocExtension.Get("Emulation.RenderingSettings"), _renderer));
         Video = EmulationSettingsLayout.ScrollPage(EmulationSettingsLayout.TwoColumnPage(
             EmulationSettingsLayout.ActionCard(_video, LocExtension.Get("Emulation.DisplaySettings")),
-            EmulationSettingsLayout.ActionCard(new Grid(), LocExtension.Get("Emulation.RenderingSettings"))));
-        var videoPage = (Grid)((ScrollViewer)Video).Content;
-        var renderingCard = (Border)videoPage.Children[1];
-        ((Border)((Grid)renderingCard.Child).Children[1]).Child = _renderer;
+            EmulationSettingsLayout.ActionCard(rendering, LocExtension.Get("Emulation.RenderingSettings"))));
         Audio = EmulationSettingsLayout.ScrollPage(EmulationSettingsLayout.TwoColumnPage(
             EmulationSettingsLayout.ActionCard(_audioOutput, LocExtension.Get("Emulation.AudioOutput")),
             EmulationSettingsLayout.ActionCard(_audioQuality, LocExtension.Get("Emulation.AudioQuality"))));

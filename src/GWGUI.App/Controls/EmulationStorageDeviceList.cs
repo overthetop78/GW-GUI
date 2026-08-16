@@ -58,7 +58,7 @@ public sealed class EmulationStorageDeviceList : UserControl
         footer.ColumnDefinitions.Add(new ColumnDefinition());
         _add = new Button
         {
-            Content = $"＋  {LocExtension.Get("Emulation.AddStorageDevice")}",
+            Content = $"{ControlVisualConstants.AddGlyph}  {LocExtension.Get("Emulation.AddStorageDevice")}",
             MinWidth = 180,
             HorizontalAlignment = HorizontalAlignment.Left
         };
@@ -210,6 +210,6 @@ public sealed class EmulationStorageDeviceList : UserControl
         if (!File.Exists(path)) return Path.GetFileName(path);
         var size = new FileInfo(path).Length;
         var value = StorageSizeFormatter.FormatCapacity(size);
-        return $"{Path.GetFileName(path)} · {value}";
+        return $"{Path.GetFileName(path)}{ControlVisualConstants.DetailSeparator}{value}";
     }
 }

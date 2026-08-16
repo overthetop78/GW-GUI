@@ -42,6 +42,7 @@ internal sealed class AtariGeneralSettingsSection : UserControl
 
     internal event EventHandler? Changed;
     internal event EventHandler<AtariMachineConfiguration>? ModelChanged;
+    internal event EventHandler? SaveRequested;
 
     internal async Task LoadAsync(AtariMachineConfiguration configuration)
     {
@@ -71,16 +72,48 @@ internal sealed class AtariGeneralSettingsSection : UserControl
 
     private UIElement BuildContent()
     {
-        var root = new StackPanel();
-        root.Children.Add(Label(AtariConfigurationCatalogConstants.ModelResource));
-        root.Children.Add(_model);
+        var root = new StackPanel { Margin = new Thickness(12) };
+        var configuration = new Grid { Margin = new Thickness(14, 10, 14, 10) };
+        configuration.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        configuration.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(360) });
+        configuration.ColumnDefinitions.Add(new ColumnDefinition());
+        configuration.Children.Add(new TextBlock
+        {
+            Text = L(AtariConfigurationCatalogConstants.ModelResource),
+            FontWeight = FontWeights.SemiBold,
+            VerticalAlignment = VerticalAlignment.Center,
+            Margin = new Thickness(0, 0, 12, 0)
+        });
+        _model.Height = 36;
+        _model.Margin = new Thickness(0);
+        Grid.SetColumn(_model, 1);
+        configuration.Children.Add(_model);
+        var save = new Button
+        {
+            Content = L(AtariConfigurationCatalogConstants.SaveResource),
+            MinWidth = 110,
+            HorizontalAlignment = HorizontalAlignment.Right
+        };
+        save.Click += (_, _) => SaveRequested?.Invoke(this, EventArgs.Empty);
+        Grid.SetColumn(save, 2);
+        configuration.Children.Add(save);
+        var configurationCard = new Border
+        {
+            Child = configuration,
+            CornerRadius = new CornerRadius(9),
+            BorderThickness = new Thickness(1),
+            Margin = new Thickness(0, 0, 0, 12)
+        };
+        ControlUiFactory.ApplyCardAppearance(configurationCard);
+        root.Children.Add(configurationCard);
         root.Children.Add(_error);
-        root.Children.Add(Label(AtariGeneralSettingsConstants.CoreResource));
-        root.Children.Add(_core);
+        _core.Visibility = Visibility.Collapsed;
+        _coreManagement.Margin = new Thickness(0, 0, 0, 12);
         root.Children.Add(_coreManagement);
-        root.Children.Add(Group(AtariGeneralSettingsConstants.FoldersResource, BuildFolders()));
+        root.Children.Add(EmulationSettingsLayout.ActionCard(BuildFolders(),
+            L(AtariGeneralSettingsConstants.FoldersResource)));
         root.Children.Add(_optionsGroup);
-        return root;
+        return EmulationSettingsLayout.ScrollPage(root);
     }
 
     private UIElement BuildFolders()
@@ -172,7 +205,7 @@ internal sealed class AtariGeneralSettingsSection : UserControl
         row.Children.Add(value);
         var browse = new Button { Content = L(AtariGeneralSettingsConstants.BrowseResource), Margin = new Thickness(6, 0, 0, 0) };
         AtariAccessibilityFunctions.Configure(browse,
-            $"{L(AtariGeneralSettingsConstants.BrowseResource)} — {label}");
+            $"{L(AtariGeneralSettingsConstants.BrowseResource)}{AtariCoreManagementConstants.DetailSeparator}{label}");
         browse.Click += (_, _) => BrowseFolder(value);
         Grid.SetColumn(browse, 2);
         row.Children.Add(browse);
@@ -192,6 +225,5 @@ internal sealed class AtariGeneralSettingsSection : UserControl
 
     private string Folder(string name) => _folders[name].Text;
     private static GroupBox Group(string resource, UIElement content) => new() { Header = L(resource), Content = content, Margin = new Thickness(0, 10, 0, 0) };
-    private static TextBlock Label(string resource) => new() { Text = L(resource), Margin = new Thickness(0, 7, 0, 4) };
     private static string L(string resource) => LocExtension.Get(resource);
 }

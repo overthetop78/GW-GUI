@@ -1389,36 +1389,7 @@ public sealed class OptionsEmulationSection : UserControl
         return grid;
     }
 
-    private static ScrollViewer ScrollPage(UIElement child)
-    {
-        var viewer = new ScrollViewer
-        {
-            Content = child,
-            VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
-            HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled,
-            PanningMode = PanningMode.VerticalOnly
-        };
-        viewer.PreviewMouseWheel += (_, e) =>
-        {
-            if (FindNestedScrollViewer(e.OriginalSource as DependencyObject, viewer) is { ScrollableHeight: > 0 }) return;
-            if (viewer.ScrollableHeight <= 0) return;
-            var offset = Math.Clamp(viewer.VerticalOffset - e.Delta, 0, viewer.ScrollableHeight);
-            if (Math.Abs(offset - viewer.VerticalOffset) < 0.5) return;
-            viewer.ScrollToVerticalOffset(offset);
-            e.Handled = true;
-        };
-        return viewer;
-    }
-
-    private static ScrollViewer? FindNestedScrollViewer(DependencyObject? source, ScrollViewer page)
-    {
-        while (source is not null && !ReferenceEquals(source, page))
-        {
-            if (source is ScrollViewer nested) return nested;
-            source = VisualTreeHelper.GetParent(source);
-        }
-        return null;
-    }
+    private static ScrollViewer ScrollPage(UIElement child) => EmulationSettingsLayout.ScrollPage(child);
 
     private static Grid CreateCompactForm(int fieldColumns, params (string Label, FrameworkElement Control)[] fields)
         => EmulationSettingsLayout.CompactForm(fieldColumns, fields);
@@ -1442,134 +1413,14 @@ public sealed class OptionsEmulationSection : UserControl
         return card;
     }
 
-    private static Border InputBindingCard(InputBindingEditor editor, string title, string? hint = null)
-    {
-        var layout = new Grid();
-        layout.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        layout.RowDefinitions.Add(new RowDefinition());
-        var heading = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(10, 6, 10, 2) };
-        heading.Children.Add(new TextBlock
-        {
-            Text = title,
-            FontWeight = FontWeights.SemiBold,
-            FontSize = 16,
-            VerticalAlignment = VerticalAlignment.Center
-        });
-        if (!string.IsNullOrWhiteSpace(hint))
-        {
-            heading.Children.Add(new TextBlock
-            {
-                Text = "\uE946",
-                FontFamily = ControlVisualConstants.IconFont,
-                FontSize = 15,
-                Margin = new Thickness(9, 0, 0, 0),
-                VerticalAlignment = VerticalAlignment.Center,
-                ToolTip = hint
-            });
-        }
-        layout.Children.Add(heading);
-        Grid.SetRow(editor, 1);
-        layout.Children.Add(editor);
-        var card = new Border { Child = layout, Padding = new Thickness(2) };
-        card.SetResourceReference(StyleProperty, "Card");
-        return card;
-    }
+    private static Border InputBindingCard(InputBindingEditor editor, string title, string? hint = null) =>
+        EmulationSettingsLayout.InputBindings(editor, title, hint);
 
-    private static Border IconCard(UIElement child, string title, string icon)
-    {
-        var header = new Border
-        {
-            BorderThickness = new Thickness(0, 0, 0, 1),
-            Padding = new Thickness(16, 12, 16, 12)
-        };
-        header.SetResourceReference(BorderBrushProperty, "BorderBrush");
-        var heading = new StackPanel { Orientation = Orientation.Horizontal };
-        var glyph = new TextBlock
-        {
-            Text = icon,
-            FontFamily = ControlVisualConstants.IconFont,
-            FontSize = 19,
-            VerticalAlignment = VerticalAlignment.Center,
-            Margin = new Thickness(0, 0, 10, 0)
-        };
-        glyph.SetResourceReference(ForegroundProperty, "AccentBrush");
-        heading.Children.Add(glyph);
-        heading.Children.Add(new TextBlock
-        {
-            Text = title,
-            FontWeight = FontWeights.SemiBold,
-            FontSize = 17,
-            VerticalAlignment = VerticalAlignment.Center
-        });
-        header.Child = heading;
+    private static Border IconCard(UIElement child, string title, string icon) =>
+        EmulationSettingsLayout.IconCard(child, title, icon);
 
-        var body = new Border { Child = child, Padding = new Thickness(6, 8, 6, 8) };
-        var layout = new Grid();
-        layout.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        layout.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        layout.Children.Add(header);
-        Grid.SetRow(body, 1);
-        layout.Children.Add(body);
-
-        var card = new Border
-        {
-            Child = layout,
-            BorderThickness = new Thickness(1),
-            CornerRadius = new CornerRadius(9),
-            ClipToBounds = true
-        };
-        ControlUiFactory.ApplyCardAppearance(card);
-        return card;
-    }
-
-    private static Border ActionCard(UIElement child, string title, FrameworkElement? actions = null)
-    {
-        var header = new Grid
-        {
-            Margin = new Thickness(0),
-            Height = 54
-        };
-        header.ColumnDefinitions.Add(new ColumnDefinition());
-        header.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-        header.Children.Add(new TextBlock
-        {
-            Text = title,
-            FontWeight = FontWeights.SemiBold,
-            FontSize = 17,
-            VerticalAlignment = VerticalAlignment.Center,
-            Margin = new Thickness(16, 0, 12, 0)
-        });
-        if (actions is not null)
-        {
-            Grid.SetColumn(actions, 1);
-            actions.Margin = new Thickness(8, 8, 12, 8);
-            header.Children.Add(actions);
-        }
-
-        var headerBorder = new Border
-        {
-            Child = header,
-            BorderThickness = new Thickness(0, 0, 0, 1)
-        };
-        headerBorder.SetResourceReference(BorderBrushProperty, "BorderBrush");
-        var body = new Border { Child = child, Padding = new Thickness(8) };
-        var layout = new Grid();
-        layout.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        layout.RowDefinitions.Add(new RowDefinition());
-        layout.Children.Add(headerBorder);
-        Grid.SetRow(body, 1);
-        layout.Children.Add(body);
-
-        var card = new Border
-        {
-            Child = layout,
-            BorderThickness = new Thickness(1),
-            CornerRadius = new CornerRadius(9),
-            ClipToBounds = true
-        };
-        ControlUiFactory.ApplyCardAppearance(card);
-        return card;
-    }
+    private static Border ActionCard(UIElement child, string title, FrameworkElement? actions = null) =>
+        EmulationSettingsLayout.ActionCard(child, title, actions);
 
     private void ApplyModelDefaults()
     {

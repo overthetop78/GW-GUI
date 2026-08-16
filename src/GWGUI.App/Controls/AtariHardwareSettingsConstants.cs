@@ -2,6 +2,17 @@ namespace GWGUI.App.Controls;
 
 internal static class AtariHardwareSettingsConstants
 {
+    internal const string TosFirmwareContext = "TOS";
+    internal const string AtariOsAFirmwareContext = "Atari OS-A";
+    internal const string AtariOsBFirmwareContext = "Atari OS-B";
+    internal const string AtariXlOsFirmwareContext = "Atari XL/XE OS";
+    internal const string AtariBasicFirmwareContext = "Atari BASIC";
+    internal const string Atari5200BiosFirmwareContext = "Atari 5200 BIOS";
+    internal const string AtariXegsBiosFirmwareContext = "Atari XEGS BIOS";
+    internal const string Atari7800BiosFirmwareContext = "Atari 7800 BIOS";
+    internal const string LynxBootRomFirmwareContext = "Atari Lynx boot ROM";
+    internal const string JaguarBootRomFirmwareContext = "Atari Jaguar boot ROM";
+    internal const string JaguarCdBiosFirmwareContext = "Atari Jaguar CD BIOS";
     internal const string CpuTab = "CPU";
     internal const string RamTab = "RAM";
     internal const string RomTab = "ROM";
