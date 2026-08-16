@@ -9,6 +9,7 @@ using GWGUI.Emulation;
 
 namespace GWGUI.Tests;
 
+[Trait("Category", "LocalAssets")]
 public sealed class AmigaExternalCoreTests
 {
     [Fact]
