@@ -17,6 +17,12 @@ internal interface IAtariCore : IDisposable
     IReadOnlySet<string> SupportedContentExtensions { get; }
     double FramesPerSecond { get; }
     int SampleRate { get; }
+    AtariRuntimeRegion? Region { get; }
+    int BufferedAudioFrames { get; }
+    long AudioOverrunCount { get; }
+    long AudioUnderrunCount { get; }
+    AtariHostProcessState HostProcessState { get; }
+    int? HostProcessId { get; }
     void Initialize(AtariMachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null);
     void RunFrame();
     void HardReset();

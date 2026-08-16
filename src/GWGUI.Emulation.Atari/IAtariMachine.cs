@@ -16,6 +16,7 @@ public interface IAtariMachine : IEmulatedMachine
     IReadOnlySet<string> SupportedContentExtensions { get; }
     bool IsAudioMuted { get; }
     float AudioVolume { get; }
+    AtariRuntimeStatus RuntimeStatus { get; }
     event EventHandler<VideoFrame>? VideoFrameReady;
     event EventHandler<AudioChunk>? AudioChunkReady;
     void SetInput(EmulationInputSnapshot snapshot);

@@ -67,7 +67,13 @@ internal sealed class AtariProcessCore : IAtariCore
         new HashSet<string>(StringComparer.OrdinalIgnoreCase);
     public double FramesPerSecond { get; private set; }
     public int SampleRate { get; private set; }
-    internal int? HostProcessId => _hostProcessId;
+    public AtariRuntimeRegion? Region { get; private set; }
+    public int BufferedAudioFrames { get; private set; }
+    public long AudioOverrunCount { get; private set; }
+    public long AudioUnderrunCount { get; private set; }
+    public AtariHostProcessState HostProcessState =>
+        AtariRuntimeFunctions.ProcessState(_process, _connectionFailed, _disposed);
+    public int? HostProcessId => _hostProcessId;
     internal string? PipeName => _pipeName;
     internal string? VideoMapName => _activeVideoMapName ?? _videoMapName;
 
@@ -189,6 +195,7 @@ internal sealed class AtariProcessCore : IAtariCore
         CoreSha256 = reader.ReadString();
         FramesPerSecond = reader.ReadDouble();
         SampleRate = reader.ReadInt32();
+        ReadRuntimeStatus(reader);
         Options = JsonSerializer.Deserialize<IReadOnlyList<AtariCoreOption>>(reader.ReadString(),
             AtariCoreHostFunctions.JsonOptions) ?? [];
         Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(reader.ReadString(),
@@ -212,10 +219,19 @@ internal sealed class AtariProcessCore : IAtariCore
         }
         FramesPerSecond = reader.ReadDouble();
         SampleRate = reader.ReadInt32();
+        ReadRuntimeStatus(reader);
         if (reader.ReadBoolean())
             Diagnostics = JsonSerializer.Deserialize<IReadOnlyList<string>>(reader.ReadString(),
                 AtariCoreHostFunctions.JsonOptions) ?? [];
         LedStates = AtariCoreHostFunctions.ReadLedStates(reader);
+    }
+
+    private void ReadRuntimeStatus(BinaryReader reader)
+    {
+        Region = AtariRuntimeFunctions.ReadRegion(reader.ReadInt32());
+        BufferedAudioFrames = reader.ReadInt32();
+        AudioOverrunCount = reader.ReadInt64();
+        AudioUnderrunCount = reader.ReadInt64();
     }
 
     private void Request(AtariHostCommand command, Action<BinaryWriter>? write = null,

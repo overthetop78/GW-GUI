@@ -46,6 +46,7 @@ internal sealed class AtariMachine : IAtariMachine
     public IReadOnlySet<string> SupportedContentExtensions => _core.SupportedContentExtensions;
     public bool IsAudioMuted => _audio.IsMuted;
     public float AudioVolume => _audio.Volume;
+    public AtariRuntimeStatus RuntimeStatus => AtariRuntimeFunctions.Status(Configuration, _core, Fault);
     public event EventHandler<VideoFrame>? VideoFrameReady;
     public event EventHandler<AudioChunk>? AudioChunkReady;
 

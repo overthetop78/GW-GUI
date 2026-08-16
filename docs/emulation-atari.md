@@ -406,11 +406,11 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-029 — Publier les informations de fonctionnement
 
-- [ ] Exposer région, FPS, fréquence audio, géométrie et nom du cœur actif.
-- [ ] Exposer activité des médias et LED uniquement lorsque le cœur fournit une information fiable.
-- [ ] Exposer compteurs audio, dernière erreur et état du processus hôte.
-- [ ] Ne pas inventer une LED ou un état matériel absent.
-- [ ] Tester les instantanés de statut et leur isolement entre machines.
+- [x] Exposer région, FPS, fréquence audio, géométrie et nom du cœur actif.
+- [x] Exposer activité des médias et LED uniquement lorsque le cœur fournit une information fiable.
+- [x] Exposer compteurs audio, dernière erreur et état du processus hôte.
+- [x] Ne pas inventer une LED ou un état matériel absent.
+- [x] Tester les instantanés de statut et leur isolement entre machines.
 
 ### I — Clavier, souris et contrôleurs
 

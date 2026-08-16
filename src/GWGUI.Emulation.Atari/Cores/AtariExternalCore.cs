@@ -44,6 +44,12 @@ internal sealed class AtariExternalCore : IAtariCore
     public IReadOnlySet<string> SupportedContentExtensions => _info.Extensions;
     public double FramesPerSecond => _callbacks?.FramesPerSecond ?? default;
     public int SampleRate => _callbacks?.SampleRate ?? default;
+    public AtariRuntimeRegion? Region { get; private set; }
+    public int BufferedAudioFrames => _callbacks?.BufferedAudioFrames ?? default;
+    public long AudioOverrunCount => _callbacks?.AudioOverrunCount ?? default;
+    public long AudioUnderrunCount => _callbacks?.AudioUnderrunCount ?? default;
+    public AtariHostProcessState HostProcessState => AtariHostProcessState.InProcess;
+    public int? HostProcessId => null;
     internal IReadOnlyList<AtariMediaConfiguration> MountedMedia => _mountedMedia;
 
     public bool TryDequeueAudio(out AudioChunk? chunk)
@@ -132,6 +138,7 @@ internal sealed class AtariExternalCore : IAtariCore
             AtariCoreLifecycleFunctions.Load(_exports, _callbacks, configuration,
                 _content?.GameInfo ?? nint.Zero);
             _gameLoaded = true;
+            Region = AtariRuntimeFunctions.Region(_exports.GetRegion());
             if (atari800Media?.ContentType is Atari800ContentType.Floppy or Atari800ContentType.Cassette &&
                 !_callbacks.DiskControl.IsAvailable)
                 throw new AtariEmulationException(AtariErrorKind.Content, AtariErrorCode.ContentUnsupported,

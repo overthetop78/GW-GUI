@@ -133,6 +133,8 @@ public static class AtariCoreHost
         writer.Write(core.CoreSha256);
         writer.Write(core.FramesPerSecond);
         writer.Write(core.SampleRate);
+        WriteRuntimeStatus(writer, core.Region, core.BufferedAudioFrames, core.AudioOverrunCount,
+            core.AudioUnderrunCount);
         writer.Write(JsonSerializer.Serialize(core.Options, AtariCoreHostFunctions.JsonOptions));
         writer.Write(JsonSerializer.Serialize(core.Diagnostics, AtariCoreHostFunctions.JsonOptions));
         lastDiagnosticCount = core.Diagnostics.Count;
@@ -153,11 +155,15 @@ public static class AtariCoreHost
         AtariCoreHostFunctions.WriteResizableSharedFrame(writer,
             frame?.Sequence == lastVideoSequence ? null : frame, video);
         if (frame is not null) lastVideoSequence = frame.Sequence;
+        var bufferedAudioFrames = core.BufferedAudioFrames;
+        var audioOverrunCount = core.AudioOverrunCount;
+        var audioUnderrunCount = core.AudioUnderrunCount;
         var audio = new List<AudioChunk>();
         while (core.TryDequeueAudio(out var chunk) && chunk is not null) audio.Add(chunk);
         AtariCoreHostFunctions.WriteAudio(writer, audio);
         writer.Write(core.FramesPerSecond);
         writer.Write(core.SampleRate);
+        WriteRuntimeStatus(writer, core.Region, bufferedAudioFrames, audioOverrunCount, audioUnderrunCount);
         var diagnosticsChanged = core.Diagnostics.Count != lastDiagnosticCount;
         writer.Write(diagnosticsChanged);
         if (diagnosticsChanged)
@@ -166,6 +172,15 @@ public static class AtariCoreHost
             lastDiagnosticCount = core.Diagnostics.Count;
         }
         AtariCoreHostFunctions.WriteLedStates(writer, core.LedStates);
+    }
+
+    private static void WriteRuntimeStatus(BinaryWriter writer, AtariRuntimeRegion? region, int bufferedAudioFrames,
+        long audioOverrunCount, long audioUnderrunCount)
+    {
+        writer.Write(AtariRuntimeFunctions.RegionValue(region));
+        writer.Write(bufferedAudioFrames);
+        writer.Write(audioOverrunCount);
+        writer.Write(audioUnderrunCount);
     }
 
     private static AtariMediaConfiguration ReadMedia(BinaryReader reader) =>

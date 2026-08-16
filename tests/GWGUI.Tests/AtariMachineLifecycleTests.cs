@@ -140,6 +140,12 @@ public sealed class AtariMachineLifecycleTests
         public IReadOnlySet<string> SupportedContentExtensions => new HashSet<string>();
         public double FramesPerSecond => AtariMachineLifecycleTestConstants.TestFramesPerSecond;
         public int SampleRate => AtariMachineLifecycleTestConstants.TestSampleRate;
+        public AtariRuntimeRegion? Region => AtariRuntimeRegion.Ntsc;
+        public int BufferedAudioFrames => AtariMachineLifecycleTestConstants.EmptyCount;
+        public long AudioOverrunCount => AtariMachineLifecycleTestConstants.EmptyCount;
+        public long AudioUnderrunCount => AtariMachineLifecycleTestConstants.EmptyCount;
+        public AtariHostProcessState HostProcessState => AtariHostProcessState.InProcess;
+        public int? HostProcessId => null;
         public bool TryDequeueAudio(out AudioChunk? chunk) { chunk = null; return false; }
         public void Initialize(AtariMachineConfiguration configuration, string sessionDirectory,
             string? saveDirectory = null) => CaptureThread();
