@@ -22,6 +22,9 @@ public static class StoragePaths
     public static string AmigaConfigurationsDirectory => Path.Combine(AmigaDirectory, "Configurations");
     public static string AmigaSessionsDirectory => Path.Combine(AmigaDirectory, "Sessions");
     public static string AmigaCoreDirectory => Path.Combine(AmigaDirectory, "Core");
+    public static string AtariDirectory => Path.Combine(EmulationDirectory, StoragePathConstants.MachinesDirectory,
+        StoragePathConstants.AtariDirectory);
+    public static string AtariCoreDirectory => Path.Combine(AtariDirectory, StoragePathConstants.CoreDirectory);
 
     public static void ConfigureEmulationStorageDirectory(string? directory) =>
         _configuredEmulationStorageDirectory = string.IsNullOrWhiteSpace(directory) ? null : directory.Trim();

@@ -218,13 +218,13 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-011 — Ajouter l’interface de gestion des cœurs Atari
 
-- [ ] Afficher le cœur requis automatiquement pour le modèle sélectionné.
-- [ ] Afficher version installée, absence d’installation et chemin local sans ambiguïté.
-- [ ] N’afficher la liste et le bouton de téléchargement qu’après une recherche réussie.
-- [ ] Permettre de choisir chaque version retournée puis de la télécharger et remplacer.
-- [ ] Afficher progression, annulation, succès et erreur détaillée avec ressources traduites.
-- [ ] Actualiser la configuration et l’état installé après remplacement sans redémarrage des machines déjà actives.
-- [ ] Tester le contrôle avec un faux service pour chacun des six cœurs.
+- [x] Afficher le cœur requis automatiquement pour le modèle sélectionné.
+- [x] Afficher version installée, absence d’installation et chemin local sans ambiguïté.
+- [x] N’afficher la liste et le bouton de téléchargement qu’après une recherche réussie.
+- [x] Permettre de choisir chaque version retournée puis de la télécharger et remplacer.
+- [x] Afficher progression, annulation, succès et erreur détaillée avec ressources traduites.
+- [x] Actualiser la configuration et l’état installé après remplacement sans redémarrage des machines déjà actives.
+- [x] Tester le contrôle avec un faux service pour chacun des six cœurs.
 
 ### E — Modèles et compatibilité matérielle
 

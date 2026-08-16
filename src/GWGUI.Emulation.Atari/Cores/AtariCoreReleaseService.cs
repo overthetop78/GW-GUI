@@ -1,6 +1,6 @@
 namespace GWGUI.Emulation.Atari.Cores;
 
-public sealed class AtariCoreReleaseService
+public sealed class AtariCoreReleaseService : IAtariCoreReleaseService
 {
     private readonly HttpClient _httpClient;
     private readonly string _installationRoot;
