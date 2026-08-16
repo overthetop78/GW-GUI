@@ -43,4 +43,18 @@ internal sealed class AmigaConfigurationDocuments(string directory, string pathB
         if (!File.Exists(value) && !Directory.Exists(value))
             throw new FileNotFoundException(LocExtension.Get("Emulation.FileMissing"), value);
     }
+
+    internal static bool IsEncryptedKickstart(string path)
+    {
+        if (string.IsNullOrWhiteSpace(path) || !File.Exists(path)) return false;
+        try
+        {
+            Span<byte> header = stackalloc byte[11];
+            using var stream = File.OpenRead(path);
+            return stream.Read(header) == header.Length &&
+                System.Text.Encoding.ASCII.GetString(header) == "AMIROMTYPE1";
+        }
+        catch (IOException) { return false; }
+        catch (UnauthorizedAccessException) { return false; }
+    }
 }

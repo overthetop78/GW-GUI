@@ -36,12 +36,12 @@ Une case n’est cochée qu’après modification et validation de la tâche cor
 - [x] Séparer de `OptionsEmulationSection` le catalogue des choix techniques et des modèles.
 - [x] Séparer de `OptionsEmulationSection` la lecture et l’écriture des configurations Amiga.
 - [x] Mutualiser les constructeurs de cartes, champs, chemins et boutons réellement identiques.
-- [ ] Vérifier que `OptionsEmulationSection` ne conserve que la composition et les interactions propres à l’écran.
-- [ ] Vérifier que `AmigaMachineView` ne conserve que la composition et le cycle de vie propres à la vue.
+- [x] Vérifier que `OptionsEmulationSection` ne conserve que la composition et les interactions propres à l’écran.
+- [x] Vérifier que `AmigaMachineView` ne conserve que la composition et le cycle de vie propres à la vue.
 
 ## 10.6 Contrôles finaux
 
-- [ ] Rechercher de nouveau les textes visibles écrits en dur dans tout `GWGUI.App/Controls`.
-- [ ] Rechercher de nouveau les constantes métier ou techniques dupliquées, hors mise en page.
-- [ ] Ajouter ou adapter les tests unitaires des composants extraits.
-- [ ] Exécuter tous les tests du projet et vérifier le build de l’application.
+- [x] Rechercher de nouveau les textes visibles écrits en dur dans tout `GWGUI.App/Controls`.
+- [x] Rechercher de nouveau les constantes métier ou techniques dupliquées, hors mise en page.
+- [x] Ajouter ou adapter les tests unitaires des composants extraits.
+- [x] Exécuter tous les tests du projet et vérifier le build de l’application.

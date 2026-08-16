@@ -1,7 +1,5 @@
 using System.IO;
 using System.Diagnostics;
-using System.Security.Cryptography;
-using System.Text;
 using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Controls;
@@ -19,7 +17,6 @@ using GWGUI.App.Services;
 using GWGUI.Domain.Settings;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Amiga;
-using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Definitions;
 using Microsoft.Win32;
 
@@ -104,9 +101,9 @@ public sealed class AmigaMachineView : UserControl
         _input = input ?? new AmigaInputConfiguration();
         _videoSurface = CreateVideoSurface(configuration.VideoRenderer);
         _display = _videoSurface.View;
-        _keyboardMap = BuildKeyboardMap(_input.KeyboardMappings);
-        _keyboardShortcuts = BuildKeyboardShortcuts(_input.KeyboardBindings);
-        _globalShortcuts = BuildGlobalShortcuts(globalShortcuts);
+        _keyboardMap = EmulationShortcutMap.KeyboardMap(_input.KeyboardMappings);
+        _keyboardShortcuts = EmulationShortcutMap.KeyboardShortcuts(_input.KeyboardBindings);
+        _globalShortcuts = EmulationShortcutMap.GlobalShortcuts(globalShortcuts);
         _quickStatePath = quickStatePath ?? Path.Combine(Path.GetTempPath(), "gwgui-amiga-quick.gwas");
         _captureFolder = captureFolder ?? Path.Combine(Path.GetTempPath(), "GW GUI", "Captures");
         _root = new Grid { Background = Brushes.Transparent };
@@ -405,12 +402,10 @@ public sealed class AmigaMachineView : UserControl
     {
         var dialog = new OpenFileDialog
         {
-            Filter = compactDisc
-                ? "CD|*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso|All files|*.*"
-                : "Amiga floppy|*.scp;*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw|All files|*.*"
+            Filter = LocExtension.Get("Emulation.AmigaMediaFilter")
         };
         if (dialog.ShowDialog() != true) return;
-        var mediaPath = await PrepareMediaAsync(dialog.FileName);
+        var mediaPath = await AmigaRuntimeMedia.PrepareAsync(dialog.FileName);
         var deviceName = compactDisc ? $"CD{index}:" : $"DF{index}:";
         _mountedMedia[deviceName] = mediaPath;
         _insertedMedia.Add(deviceName);
@@ -422,41 +417,6 @@ public sealed class AmigaMachineView : UserControl
         if (index < _machine.DiskCount) await _machine.SelectDiskAsync(index);
         await _machine.InsertMediaAsync(mediaPath);
         BuildDeviceStrip();
-    }
-
-    private static async Task<string> PrepareMediaAsync(string path)
-    {
-        if (!Path.GetExtension(path).Equals(".scp", StringComparison.OrdinalIgnoreCase)) return path;
-        var info = new FileInfo(path);
-        var identity = $"{Path.GetFullPath(path)}|{info.Length}|{info.LastWriteTimeUtc.Ticks}";
-        var hash = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(identity)))[..16];
-        var folder = Path.Combine(Path.GetTempPath(), "GW GUI", "Emulation", "Amiga", "Converted");
-        Directory.CreateDirectory(folder);
-        var output = Path.Combine(folder, $"{Path.GetFileNameWithoutExtension(path)}-{hash}.adf");
-        if (File.Exists(output)) return output;
-        var converter = MediaEngineFactory.CreateAmigaAdfConversionService();
-        try
-        {
-            await converter.ConvertDetectedAsync(path, output);
-        }
-        catch
-        {
-            if (File.Exists(output)) File.Delete(output);
-            throw;
-        }
-        return output;
-    }
-
-    internal static async Task<AmigaMachineConfiguration> PrepareRuntimeConfigurationAsync(
-        AmigaMachineConfiguration configuration)
-    {
-        var initial = string.IsNullOrWhiteSpace(configuration.InitialDiskPath)
-            ? configuration.InitialDiskPath : await PrepareMediaAsync(configuration.InitialDiskPath);
-        if (configuration.Media is not { Count: > 0 }) return configuration with { InitialDiskPath = initial };
-        var media = new List<AmigaMediaConfiguration>(configuration.Media.Count);
-        foreach (var item in configuration.Media)
-            media.Add(item with { Path = await PrepareMediaAsync(item.Path) });
-        return configuration with { InitialDiskPath = initial, Media = media };
     }
 
     private void UpdateDeviceLeds()
@@ -488,17 +448,10 @@ public sealed class AmigaMachineView : UserControl
 
     private void FitScreen(double availableWidth, double availableHeight)
     {
-        var fitted = FitFourThree(availableWidth, availableHeight);
+        var fitted = EmulationVideoLayout.FitFourThree(availableWidth, availableHeight);
         if (fitted.IsEmpty) return;
         _screen.Width = fitted.Width;
         _screen.Height = fitted.Height;
-    }
-
-    internal static Size FitFourThree(double availableWidth, double availableHeight)
-    {
-        if (availableWidth <= 0 || availableHeight <= 0) return Size.Empty;
-        var width = Math.Min(availableWidth, availableHeight * 4d / 3d);
-        return new Size(width, width * 3d / 4d);
     }
 
     public async Task StartAsync()
@@ -675,14 +628,14 @@ public sealed class AmigaMachineView : UserControl
     {
         var dialog = new OpenFileDialog
         {
-            Filter = "Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*"
+            Filter = LocExtension.Get("Emulation.AmigaMediaFilter")
         };
         if (dialog.ShowDialog() == true) await _machine.InsertMediaAsync(dialog.FileName);
     }
 
     private async Task SaveState()
     {
-        var dialog = new SaveFileDialog { Filter = "GW GUI Amiga state|*.gwas", DefaultExt = ".gwas" };
+        var dialog = new SaveFileDialog { Filter = $"{LocExtension.Get("Emulation.Shortcut.QuickSave")}|*.gwas", DefaultExt = ".gwas" };
         if (dialog.ShowDialog() == true) await _machine.SaveStateAsync(dialog.FileName);
     }
 
@@ -729,7 +682,7 @@ public sealed class AmigaMachineView : UserControl
 
     private async Task LoadState()
     {
-        var dialog = new OpenFileDialog { Filter = "GW GUI Amiga state|*.gwas" };
+        var dialog = new OpenFileDialog { Filter = $"{LocExtension.Get("Emulation.Shortcut.QuickLoad")}|*.gwas" };
         if (dialog.ShowDialog() == true) await _machine.LoadStateAsync(dialog.FileName);
     }
 
@@ -951,45 +904,40 @@ public sealed class AmigaMachineView : UserControl
 
     private IntPtr NativeVideoMessage(IntPtr hwnd, int message, IntPtr wParam, IntPtr lParam, ref bool handled)
     {
-        const int keyDown = 0x0100, keyUp = 0x0101, sysKeyDown = 0x0104, sysKeyUp = 0x0105;
-        const int mouseMove = 0x0200, leftDown = 0x0201, leftUp = 0x0202,
-            rightDown = 0x0204, rightUp = 0x0205, middleDown = 0x0207, middleUp = 0x0208,
-            xButtonDown = 0x020B, xButtonUp = 0x020C;
-        const int mouseWheel = 0x020A, mouseHorizontalWheel = 0x020E, setCursor = 0x0020;
         switch (message)
         {
-            case keyDown:
-            case sysKeyDown:
+            case WindowsInputMessages.KeyDown:
+            case WindowsInputMessages.SystemKeyDown:
                 handled = HandleKeyDown(KeyInterop.KeyFromVirtualKey(unchecked((int)wParam.ToInt64())));
                 break;
-            case keyUp:
-            case sysKeyUp:
+            case WindowsInputMessages.KeyUp:
+            case WindowsInputMessages.SystemKeyUp:
                 handled = HandleKeyUp(KeyInterop.KeyFromVirtualKey(unchecked((int)wParam.ToInt64())));
                 break;
-            case leftDown:
-            case rightDown:
-            case middleDown:
-            case xButtonDown:
+            case WindowsInputMessages.LeftButtonDown:
+            case WindowsInputMessages.RightButtonDown:
+            case WindowsInputMessages.MiddleButtonDown:
+            case WindowsInputMessages.XButtonDown:
                 RelativeMouseCapture.FocusNative(hwnd);
                 if (_input.CaptureMouse && !_mouseCapture.IsCaptured) CaptureRelativeMouse();
                 if (_mouseCapture.IsCaptured) PublishInput();
                 break;
-            case leftUp:
-            case rightUp:
-            case middleUp:
-            case xButtonUp:
+            case WindowsInputMessages.LeftButtonUp:
+            case WindowsInputMessages.RightButtonUp:
+            case WindowsInputMessages.MiddleButtonUp:
+            case WindowsInputMessages.XButtonUp:
                 if (_mouseCapture.IsCaptured) PublishInput();
                 break;
-            case mouseMove when _mouseCapture.IsCaptured:
+            case WindowsInputMessages.MouseMove when _mouseCapture.IsCaptured:
                 ProcessRelativePointer();
                 break;
-            case mouseWheel when _mouseCapture.IsCaptured:
+            case WindowsInputMessages.MouseWheel when _mouseCapture.IsCaptured:
                 PublishInput(wheel: unchecked((short)((wParam.ToInt64() >> 16) & 0xffff)));
                 break;
-            case mouseHorizontalWheel when _mouseCapture.IsCaptured:
+            case WindowsInputMessages.MouseHorizontalWheel when _mouseCapture.IsCaptured:
                 PublishInput(horizontalWheel: unchecked((short)((wParam.ToInt64() >> 16) & 0xffff)));
                 break;
-            case setCursor when _mouseCapture.IsCaptured:
+            case WindowsInputMessages.SetCursor when _mouseCapture.IsCaptured:
                 RelativeMouseCapture.HideNativeCursor();
                 handled = true;
                 break;
@@ -1022,8 +970,7 @@ public sealed class AmigaMachineView : UserControl
 
     private IntPtr WindowMessageHook(IntPtr hwnd, int message, IntPtr wParam, IntPtr lParam, ref bool handled)
     {
-        const int mouseHorizontalWheel = 0x020E;
-        if (message != mouseHorizontalWheel || !_mouseCapture.IsCaptured || !_display.IsMouseOver) return IntPtr.Zero;
+        if (message != WindowsInputMessages.MouseHorizontalWheel || !_mouseCapture.IsCaptured || !_display.IsMouseOver) return IntPtr.Zero;
         var delta = unchecked((short)((wParam.ToInt64() >> 16) & 0xffff));
         if (delta != 0) PublishInput(horizontalWheel: delta);
         return IntPtr.Zero;
@@ -1123,42 +1070,5 @@ public sealed class AmigaMachineView : UserControl
             return mouseButtons.GetValueOrDefault(mouseSource);
         return false;
     }
-
-    private static IReadOnlyDictionary<EmulationKey, EmulationKey> BuildKeyboardMap(
-        IReadOnlyDictionary<string, EmulationKey>? mappings)
-    {
-        if (mappings is null || mappings.Count == 0) return new Dictionary<EmulationKey, EmulationKey>();
-        var result = new Dictionary<EmulationKey, EmulationKey>();
-        foreach (var mapping in mappings)
-            if (Enum.TryParse<EmulationKey>(mapping.Key, true, out var amigaKey) && mapping.Value != EmulationKey.Unknown)
-                result[mapping.Value] = amigaKey;
-        return result;
-    }
-
-    private static IReadOnlyList<KeyboardShortcutBinding> BuildKeyboardShortcuts(
-        IReadOnlyDictionary<string, string>? mappings)
-    {
-        if (mappings is null || mappings.Count == 0) return [];
-        var result = new List<KeyboardShortcutBinding>();
-        foreach (var mapping in mappings)
-        {
-            if (!Enum.TryParse<EmulationKey>(mapping.Key, true, out var amigaKey) ||
-                !KeyboardChord.TryParse(mapping.Value, out var chord)) continue;
-            result.Add(new KeyboardShortcutBinding(chord, amigaKey));
-        }
-        return result;
-    }
-
-    private static IReadOnlyList<GlobalShortcutBinding> BuildGlobalShortcuts(
-        IReadOnlyDictionary<string, string>? mappings)
-    {
-        if (mappings is null) return [];
-        return mappings.Select(mapping => KeyboardChord.TryParse(mapping.Value, out var chord)
-                ? new GlobalShortcutBinding(mapping.Key, chord) : null)
-            .Where(binding => binding is not null).Cast<GlobalShortcutBinding>().ToArray();
-    }
-
-    private sealed record KeyboardShortcutBinding(KeyboardChord Chord, EmulationKey AmigaKey);
-    private sealed record GlobalShortcutBinding(string Action, KeyboardChord Chord);
 
 }

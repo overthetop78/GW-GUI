@@ -170,8 +170,7 @@ public partial class InputBindingEditor : UserControl
 
     private IntPtr WindowMessageHook(IntPtr hwnd, int message, IntPtr wParam, IntPtr lParam, ref bool handled)
     {
-        const int mouseHorizontalWheel = 0x020E;
-        if (message != mouseHorizontalWheel || _captureRow is null ||
+        if (message != WindowsInputMessages.MouseHorizontalWheel || _captureRow is null ||
             !_captureSources.HasFlag(InputCaptureSources.Mouse)) return IntPtr.Zero;
         var delta = unchecked((short)((wParam.ToInt64() >> 16) & 0xffff));
         if (delta == 0) return IntPtr.Zero;

@@ -901,7 +901,7 @@ public sealed class OptionsEmulationSection : UserControl
             _media.Add(new MediaItem
             {
                 Path = path,
-                Kind = InferMediaKind(path),
+                Kind = EmulationOptionValueConverter.InferMediaKind(path),
                 Label = Path.GetFileNameWithoutExtension(path)
             });
         RefreshMediaRows();
@@ -988,7 +988,7 @@ public sealed class OptionsEmulationSection : UserControl
         var floppyCount = Math.Clamp(SelectedCount(_floppyDriveCount), 0, model.MaximumFloppyDrives);
         for (var index = 0; index < floppyCount; index++)
             devices.Add(new EmulationStorageDeviceItem($"DF{index}:", EmulationStorageDeviceType.Floppy,
-                FloppyModelName(_floppyDriveModels[index]), null, CanRemove: index > 0));
+                EmulationOptionValueConverter.FloppyModelName(_floppyDriveModels[index]), null, CanRemove: index > 0));
 
         var hardDisks = _media.Where(item => item.Kind == AmigaMediaKind.HardDrive).ToArray();
         var hardDriveCount = Math.Clamp(SelectedCount(_hardDriveCount), 0, model.MaximumHardDrives);
@@ -1041,7 +1041,7 @@ public sealed class OptionsEmulationSection : UserControl
     private void ConfigureStorageDevice(EmulationStorageDeviceItem device)
     {
         if (_model.SelectedItem is not AmigaModel model) return;
-        var index = DeviceIndex(device.Identifier);
+        var index = EmulationOptionValueConverter.DeviceIndex(device.Identifier);
         switch (device.Type)
         {
             case EmulationStorageDeviceType.Floppy:
@@ -1085,7 +1085,7 @@ public sealed class OptionsEmulationSection : UserControl
 
     private void RemoveStorageDevice(EmulationStorageDeviceItem device)
     {
-        var index = DeviceIndex(device.Identifier);
+        var index = EmulationOptionValueConverter.DeviceIndex(device.Identifier);
         switch (device.Type)
         {
             case EmulationStorageDeviceType.Floppy when index > 0:
@@ -1120,22 +1120,6 @@ public sealed class OptionsEmulationSection : UserControl
             hardDisks.RemoveAt(hardDisks.Count - 1);
         }
     }
-
-    private static int DeviceIndex(string identifier) =>
-        int.TryParse(new string(identifier.Where(char.IsDigit).ToArray()), out var index) ? index : 0;
-
-    private static string FloppyModelName(string model) => model == "35hd"
-        ? LocExtension.Get("Emulation.AmigaHdFloppy")
-        : LocExtension.Get("Emulation.AmigaDdFloppy");
-
-    private static AmigaMediaKind InferMediaKind(string path) => Path.GetExtension(path).ToLowerInvariant() switch
-    {
-        ".hdf" or ".hdz" => AmigaMediaKind.HardDrive,
-        ".cue" or ".ccd" or ".chd" or ".nrg" or ".mds" or ".iso" => AmigaMediaKind.CompactDisc,
-        ".lha" or ".slave" or ".info" => AmigaMediaKind.WhdLoad,
-        ".uae" => AmigaMediaKind.Configuration,
-        _ => AmigaMediaKind.Floppy
-    };
 
     private static int SelectedCount(ComboBox comboBox) => comboBox.SelectedItem is int value ? value : 0;
 
@@ -2071,7 +2055,7 @@ public sealed class OptionsEmulationSection : UserControl
         var model = _model.SelectedItem as AmigaModel;
         SetPathFieldEnabled(_extendedRomField, model?.Id is "CDTV" or "CD32");
         SetPathFieldEnabled(_romKeyField,
-            !string.IsNullOrWhiteSpace(_romKey.Text) || IsEncryptedKickstart(_kickstart.Text));
+            !string.IsNullOrWhiteSpace(_romKey.Text) || AmigaConfigurationDocuments.IsEncryptedKickstart(_kickstart.Text));
     }
 
     private static void SetPathFieldEnabled(PathFieldControls? field, bool enabled)
@@ -2080,20 +2064,6 @@ public sealed class OptionsEmulationSection : UserControl
         field.Label.IsEnabled = enabled;
         field.Editor.IsEnabled = enabled;
         field.Browse.IsEnabled = enabled;
-    }
-
-    private static bool IsEncryptedKickstart(string path)
-    {
-        if (string.IsNullOrWhiteSpace(path) || !File.Exists(path)) return false;
-        try
-        {
-            Span<byte> header = stackalloc byte[11];
-            using var stream = File.OpenRead(path);
-            return stream.Read(header) == header.Length
-                && System.Text.Encoding.ASCII.GetString(header) == "AMIROMTYPE1";
-        }
-        catch (IOException) { return false; }
-        catch (UnauthorizedAccessException) { return false; }
     }
 
     private void LoadEditor(AmigaMachineConfiguration configuration)
@@ -2144,15 +2114,15 @@ public sealed class OptionsEmulationSection : UserControl
         AmigaConfigurationDocuments.SelectOption(_audioInterpolation, configuration, "puae_sound_interpol", audio.Interpolation);
         AmigaConfigurationDocuments.SelectOption(_audioFilter, configuration, "puae_sound_filter", audio.Filter);
         AmigaConfigurationDocuments.SelectOption(_audioFilterType, configuration, "puae_sound_filter_type", "auto");
-        _floppySound.Value = ParsePercentage(AmigaConfigurationDocuments.GetOption(configuration, "puae_floppy_sound", "80"), 80);
+        _floppySound.Value = EmulationOptionValueConverter.ParsePercentage(AmigaConfigurationDocuments.GetOption(configuration, "puae_floppy_sound", "80"), 80);
         AmigaConfigurationDocuments.SelectOption(_floppySoundType, configuration, "puae_floppy_sound_type", "internal");
         _muteEmptyFloppy.IsChecked = AmigaConfigurationDocuments.GetOption(configuration, "puae_floppy_sound_empty_mute", "enabled") == "enabled";
-        _cdAudioVolume.Value = ParsePercentage(AmigaConfigurationDocuments.GetOption(configuration, "puae_sound_volume_cd", "100%"), 100);
+        _cdAudioVolume.Value = EmulationOptionValueConverter.ParsePercentage(AmigaConfigurationDocuments.GetOption(configuration, "puae_sound_volume_cd", "100%"), 100);
         _stereoSeparation.Value = int.TryParse(AmigaConfigurationDocuments.GetOption(configuration, "puae_sound_stereo_separation", $"{audio.StereoSeparation}%").TrimEnd('%'), out var separation) ? separation : 100;
         _media.Clear();
         var media = configuration.Media ?? configuration.Floppies?.Select(floppy => new AmigaMediaConfiguration(
             floppy.Path, AmigaMediaKind.Floppy, floppy.Label, floppy.IsReadOnly)).ToArray()
-            ?? (configuration.InitialDiskPath is null ? [] : [new AmigaMediaConfiguration(configuration.InitialDiskPath, InferMediaKind(configuration.InitialDiskPath))]);
+            ?? (configuration.InitialDiskPath is null ? [] : [new AmigaMediaConfiguration(configuration.InitialDiskPath, EmulationOptionValueConverter.InferMediaKind(configuration.InitialDiskPath))]);
         foreach (var item in media.Where(item => item.Kind == AmigaMediaKind.HardDrive))
             _media.Add(new MediaItem { Path = item.Path, Kind = item.Kind, Label = item.Label ?? string.Empty });
         _floppyDriveCount.SelectedItem = Math.Clamp(
@@ -2177,7 +2147,7 @@ public sealed class OptionsEmulationSection : UserControl
             : _appSettings.EmulationShortcuts.Values);
         _mouseDevice.Text = configuration.Input?.MouseDeviceId ?? string.Empty;
         _releaseMouseKey.SelectedItem = configuration.Input?.ReleaseMouseKey ?? GWGUI.Emulation.EmulationKey.Escape;
-        _mouseSpeedRatio.Text = MouseSpeedRatioText(AmigaConfigurationDocuments.GetOption(configuration, "puae_mouse_speed", "100"));
+        _mouseSpeedRatio.Text = EmulationOptionValueConverter.MouseSpeedRatioText(AmigaConfigurationDocuments.GetOption(configuration, "puae_mouse_speed", "100"));
         AmigaConfigurationDocuments.SelectOption(_analogMouse, configuration, "puae_analogmouse", "both");
         AmigaConfigurationDocuments.SelectOption(_analogMouseDeadzone, configuration, "puae_analogmouse_deadzone", "20");
         AmigaConfigurationDocuments.SelectOption(_analogMouseSpeed, configuration, "puae_analogmouse_speed", "1.0");
@@ -2217,7 +2187,7 @@ public sealed class OptionsEmulationSection : UserControl
         if (_model.SelectedItem is not AmigaModel model) throw new InvalidOperationException(LocExtension.Get("Emulation.ModelRequired"));
         if (string.IsNullOrWhiteSpace(_kickstart.Text)) throw new InvalidOperationException(LocExtension.Get("Emulation.KickstartRequired"));
         var supportsExtendedRom = model.Id is "CDTV" or "CD32";
-        var requiresRomKey = IsEncryptedKickstart(_kickstart.Text);
+        var requiresRomKey = AmigaConfigurationDocuments.IsEncryptedKickstart(_kickstart.Text);
         var extendedRomPath = supportsExtendedRom ? AmigaConfigurationDocuments.OptionalFullPath(_extendedRom.Text) : null;
         var romKeyPath = requiresRomKey ? AmigaConfigurationDocuments.OptionalFullPath(_romKey.Text) : null;
         AmigaConfigurationDocuments.ValidateOptionalFile(_kickstart.Text, required: true);
@@ -2270,7 +2240,7 @@ public sealed class OptionsEmulationSection : UserControl
         options["gwgui_cd_drive_model"] = _cdDriveModel;
         options["puae_physical_keyboard_pass_through"] = "enabled";
         options["puae_physicalmouse"] = "enabled";
-        options["puae_mouse_speed"] = MouseSpeedPercentage(_mouseSpeedRatio.Text).ToString(System.Globalization.CultureInfo.InvariantCulture);
+        options["puae_mouse_speed"] = EmulationOptionValueConverter.MouseSpeedPercentage(_mouseSpeedRatio.Text).ToString(System.Globalization.CultureInfo.InvariantCulture);
         options["puae_analogmouse"] = SelectedText(_analogMouse);
         options["puae_analogmouse_deadzone"] = SelectedText(_analogMouseDeadzone);
         options["puae_analogmouse_speed"] = SelectedText(_analogMouseSpeed);
@@ -2345,24 +2315,6 @@ public sealed class OptionsEmulationSection : UserControl
 
     private static string SelectedText(ComboBox comboBox) =>
         ComboBoxSelection.SelectedValue<OptionChoice>(comboBox, choice => choice.Value);
-
-    private static string MouseSpeedRatioText(string percentage)
-    {
-        var parsed = int.TryParse(percentage, System.Globalization.NumberStyles.Integer,
-            System.Globalization.CultureInfo.InvariantCulture, out var value) ? value : 100;
-        return (Math.Clamp(parsed, 1, 1000) / 100d).ToString("0.00", System.Globalization.CultureInfo.CurrentCulture);
-    }
-
-    private static int MouseSpeedPercentage(string ratio)
-    {
-        var normalized = ratio.Trim().TrimEnd('×', 'x', 'X').Replace(',', '.');
-        var parsed = double.TryParse(normalized, System.Globalization.NumberStyles.Float,
-            System.Globalization.CultureInfo.InvariantCulture, out var value) ? value : 1d;
-        return Math.Clamp((int)Math.Round(parsed * 100d), 1, 1000);
-    }
-
-    private static int ParsePercentage(string value, int fallback) =>
-        int.TryParse(value.Trim().TrimEnd('%'), out var parsed) ? Math.Clamp(parsed, 0, 100) : fallback;
 
     private static T SelectedChoice<T>(ComboBox comboBox, T fallback) where T : struct, Enum =>
         comboBox.SelectedItem is LocalizedChoice<T> choice ? choice.Value : fallback;

@@ -110,7 +110,7 @@ public sealed class AmigaEmulationSection : UserControl
         {
             _open.IsEnabled = false;
             ValidateConfiguration(selected.Configuration);
-            var runtimeConfiguration = await AmigaMachineView.PrepareRuntimeConfigurationAsync(selected.Configuration);
+            var runtimeConfiguration = await AmigaRuntimeMedia.PrepareConfigurationAsync(selected.Configuration);
             var corePath = await AmigaCoreProvider.EnsureAvailableAsync();
             var audio = selected.Configuration.Audio ?? new AmigaAudioConfiguration();
             var engine = new AmigaEngine(StoragePaths.AmigaSessionsDirectory, corePath,

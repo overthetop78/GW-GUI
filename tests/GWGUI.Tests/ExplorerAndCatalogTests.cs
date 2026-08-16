@@ -313,7 +313,7 @@ public sealed class ExplorerAndCatalogTests : CoreTestBase
                 Assert.Contains("Amiga", detected.Text);
                 Assert.Equal("Atari ST", currentSystem.Text);
                 Assert.Equal("fat12", currentFileSystem.Text);
-                Assert.Equal("720 KiB", currentCapacity.Text);
+                Assert.Equal(StorageSizeFormatter.FormatBytes(720 * 1024), currentCapacity.Text);
 
                 var machine = Assert.IsType<System.Windows.Controls.ComboBox>(selector.FindName("Machine"));
                 var format = Assert.IsType<System.Windows.Controls.ComboBox>(selector.FindName("Format"));
@@ -336,7 +336,7 @@ public sealed class ExplorerAndCatalogTests : CoreTestBase
                 Assert.Equal("amiga.amigados", selector.SelectedFormatId);
                 Assert.Equal("Amiga", currentSystem.Text);
                 Assert.Equal("amigados.ofs", currentFileSystem.Text);
-                Assert.Equal("880 KiB", currentCapacity.Text);
+                Assert.Equal(StorageSizeFormatter.FormatBytes(880 * 1024), currentCapacity.Text);
                 Assert.False(machine.Items.Cast<DiskMachineChoice>().Single(item => item.DisplayName == "Atari ST").IsDetected);
             }
             catch (Exception exception) { failure = exception; }
