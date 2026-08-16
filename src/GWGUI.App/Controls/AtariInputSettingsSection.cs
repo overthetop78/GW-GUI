@@ -109,7 +109,7 @@ internal sealed class AtariInputSettingsSection
             var devices = XInputControllerReader.GetConnectedDevices();
             detection.Text = devices.Count == AtariInputSettingsConstants.NoControllerCount
                 ? LocExtension.Get(AtariInputSettingsConstants.NoControllerResource)
-                : string.Join(AtariInputSettingsConstants.ControllerNameSeparator,
+                : string.Join(ControlVisualConstants.DetailSeparator,
                     devices.Select(device => device.Name));
             foreach (var editor in _portEditors)
             {

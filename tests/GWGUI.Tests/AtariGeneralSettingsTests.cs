@@ -60,6 +60,16 @@ public sealed class AtariGeneralSettingsTests
     [InlineData(AtariMachineModel.Jaguar, AtariCoreKind.VirtualJaguar)]
     public void ModelDeterminesCore(AtariMachineModel model, AtariCoreKind expected) =>
         Assert.Equal(expected, new AtariMachineConfiguration(model).Core);
+
+    [Theory]
+    [InlineData(AtariMachineModel.St, true)]
+    [InlineData(AtariMachineModel.Falcon, true)]
+    [InlineData(AtariMachineModel.Atari800, false)]
+    [InlineData(AtariMachineModel.Atari2600, false)]
+    [InlineData(AtariMachineModel.JaguarCd, false)]
+    public void HardDiskFolderIsOnlyShownForMachinesThatSupportIt(
+        AtariMachineModel model, bool expected) =>
+        Assert.Equal(expected, AtariGeneralSettingsFunctions.SupportsHardDiskFolder(model));
 }
 
 internal static class AtariGeneralSettingsTestConstants

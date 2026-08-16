@@ -41,11 +41,38 @@ public sealed class AtariStorageSettingsTests
     public void EveryModelHasExactlyOneFixedPrimaryDevice(AtariMachineModel model)
     {
         var view = AtariStorageSettingsFunctions.Create(new AtariMachineConfiguration(model));
-        var device = Assert.Single(view.Devices).Configuration;
+        var item = Assert.Single(view.Devices);
+        var device = item.Configuration;
         var expected = ExpectedPrimaryDevice(model);
 
         Assert.Equal(expected.Kind, device.Kind);
         Assert.Equal(expected.Slot, device.Slot);
+        Assert.False(item.CanRemove);
+    }
+
+    [Fact]
+    public void ConfiguredCompatibleAdditionalDevicesRemainVisibleAndRemovable()
+    {
+        var extra = new AtariMediaConfiguration(AtariStorageSettingsTestConstants.FirstPath,
+            AtariMediaKind.Floppy, EmulationMediaSlot.Floppy1);
+        var view = AtariStorageSettingsFunctions.Create(
+            new AtariMachineConfiguration(AtariMachineModel.St, media: [extra]));
+
+        Assert.Equal(2, view.Devices.Count);
+        Assert.False(view.Devices.Single(item => item.Configuration.Slot == EmulationMediaSlot.Floppy0).CanRemove);
+        Assert.True(view.Devices.Single(item => item.Configuration.Slot == EmulationMediaSlot.Floppy1).CanRemove);
+    }
+
+    [Theory]
+    [InlineData(AtariMachineModel.St, true)]
+    [InlineData(AtariMachineModel.Atari800, true)]
+    [InlineData(AtariMachineModel.Atari2600, false)]
+    [InlineData(AtariMachineModel.JaguarCd, false)]
+    public void AddIsOnlyAvailableWhenTheSelectedCoreReallySupportsAdditionalMedia(
+        AtariMachineModel model, bool expected)
+    {
+        var view = AtariStorageSettingsFunctions.Create(new AtariMachineConfiguration(model));
+        Assert.Equal(expected, AtariStorageSettingsFunctions.CanAdd(model, view));
     }
 
     [Fact]

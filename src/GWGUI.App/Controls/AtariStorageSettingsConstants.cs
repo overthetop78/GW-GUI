@@ -22,7 +22,6 @@ internal static class AtariStorageSettingsConstants
     internal const string IdentifierResource = "Emulation.DeviceId";
     internal const string InterfaceResource = "Emulation.Interface";
     internal const string MediaFilterResource = "Emulation.AtariMediaFilter";
-    internal const string DisplaySeparator = " · ";
     internal const int FirstItemIndex = 0;
     internal const int NoSelectionIndex = -1;
 }

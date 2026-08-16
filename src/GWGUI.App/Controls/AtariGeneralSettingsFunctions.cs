@@ -33,6 +33,11 @@ internal static class AtariGeneralSettingsFunctions
             folders.States ?? defaults.States, folders.Captures ?? defaults.Captures);
     }
 
+    internal static bool SupportsHardDiskFolder(AtariMachineModel model) =>
+        AtariCompatibilityCatalog.Get(model).Media.Any(rule =>
+            rule.Availability == AtariMediaAvailability.Available
+            && rule.Kind is AtariMediaKind.HardDisk or AtariMediaKind.Directory);
+
     internal static string OptionHeading(AtariCoreOption option) => option.CategorizedName
         ?? (option.Category is null
             ? option.Name

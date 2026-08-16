@@ -96,16 +96,46 @@ public sealed class AtariHardwareSettingsTests
         {
             var app = Application.Current as GWGUI.App.App ?? new GWGUI.App.App();
             app.InitializeComponent();
-            var section = new AtariHardwareSettingsSection(new Border());
+            var section = new AtariHardwareSettingsSection(new Border
+            {
+                Child = new TextBlock { Text = AtariHardwareSettingsTestConstants.GeneralContent }
+            });
             var dispatcher = Dispatcher.CurrentDispatcher;
             SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(dispatcher));
 
-            foreach (var model in Enum.GetValues<AtariMachineModel>())
+            foreach (var model in AtariHardwareSettingsTestConstants.RepresentativeModels)
+            {
                 WaitWithDispatcher(section.LoadAsync(new AtariMachineConfiguration(model)), dispatcher);
-
-            var tabs = Assert.IsType<TabControl>(section.Content);
-            Assert.All(tabs.Items.OfType<TabItem>(), item => Assert.NotNull(item.Content));
+                var tabs = Assert.IsType<TabControl>(section.Content);
+                Assert.All(tabs.Items.OfType<TabItem>(), item => Assert.Contains(
+                    Descendants(item.Content), IsMeaningfulVisibleContent));
+            }
         });
+    }
+
+    private static bool IsMeaningfulVisibleContent(object item) => item switch
+    {
+        TextBlock text => text.Visibility == Visibility.Visible && !string.IsNullOrWhiteSpace(text.Text),
+        ComboBox combo => combo.Visibility == Visibility.Visible && combo.Items.Count > 0,
+        ListBox list => list.Visibility == Visibility.Visible,
+        InputBindingEditor editor => editor.Visibility == Visibility.Visible,
+        _ => false
+    };
+
+    private static IEnumerable<object> Descendants(object? root)
+    {
+        if (root is null) yield break;
+        yield return root;
+        if (root is ContentControl content && content.Content is not null)
+            foreach (var child in Descendants(content.Content)) yield return child;
+        if (root is Panel panel)
+            foreach (var element in panel.Children.Cast<object>())
+                foreach (var child in Descendants(element)) yield return child;
+        if (root is Decorator decorator && decorator.Child is not null)
+            foreach (var child in Descendants(decorator.Child)) yield return child;
+        if (root is ItemsControl items)
+            foreach (var item in items.Items.Cast<object>())
+                foreach (var child in Descendants(item)) yield return child;
     }
 
     private static void WaitWithDispatcher(Task task, Dispatcher dispatcher)
@@ -130,6 +160,10 @@ internal static class AtariHardwareSettingsTestConstants
     internal const string UnknownKey = "future_hardware_option";
     internal const string UnknownValue = "preserved";
     internal const string ChangedValue = "changed";
+    internal const string GeneralContent = "Atari general settings";
+    internal static readonly IReadOnlyList<AtariMachineModel> RepresentativeModels =
+        [AtariMachineModel.St, AtariMachineModel.Atari800, AtariMachineModel.Atari2600,
+            AtariMachineModel.Atari7800, AtariMachineModel.Lynx, AtariMachineModel.JaguarCd];
     internal static readonly IReadOnlyDictionary<string, string> UnknownOptions =
         new Dictionary<string, string> { [UnknownKey] = UnknownValue };
     internal static readonly IReadOnlyList<KeyValuePair<string, string>> DisplayedOptions =

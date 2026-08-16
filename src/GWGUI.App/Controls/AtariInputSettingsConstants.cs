@@ -25,7 +25,6 @@ internal static class AtariInputSettingsConstants
     internal const int InclusiveEndpointCount = 1;
     internal const int FirstPort = 0;
     internal const int NoControllerCount = 0;
-    internal const string ControllerNameSeparator = " · ";
     internal const int MappingEditorMinimumHeight = 300;
     internal static readonly IReadOnlyList<string> StandardControllerActions =
         ["Up", "Down", "Left", "Right", "Fire1", "Fire2", "Turbo"];

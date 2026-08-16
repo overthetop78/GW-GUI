@@ -13,8 +13,6 @@ internal static class AtariStorageSettingsFunctions
             .Where(rule => rule.Availability == AtariMediaAvailability.Available)
             .ToArray();
         var primary = PrimaryDevice(configuration.Model);
-        var devicesAvailable = allAvailable.Where(rule => rule.Kind == primary.Kind && rule.Slots.Contains(primary.Slot))
-            .Select(rule => rule with { Slots = [primary.Slot] }).ToArray();
         var types = allAvailable.Select(rule => rule.Kind).Distinct()
             .Select(kind => new AtariStorageTypeChoice(kind, KindName(kind))).ToArray();
         var slots = allAvailable.GroupBy(rule => rule.Kind).ToDictionary(group => group.Key,
@@ -23,16 +21,27 @@ internal static class AtariStorageSettingsFunctions
         var buses = types.ToDictionary(type => type.Kind,
             type => (IReadOnlyList<AtariStorageBusChoice>)Buses(configuration.Model, type.Kind)
                 .Select(bus => new AtariStorageBusChoice(bus, bus.ToString())).ToArray());
-        var devices = devicesAvailable.SelectMany(rule => rule.Slots.Select(slot => (rule.Kind, Slot: slot)))
-            .Distinct()
-            .Select(device =>
-            {
-                var media = configuration.Media.FirstOrDefault(item => item.Slot == device.Slot)
-                    ?? new AtariMediaConfiguration(string.Empty, device.Kind, device.Slot);
-                return new AtariStorageDeviceItem(media, KindName(device.Kind));
-            }).ToArray();
+        var primaryMedia = configuration.Media.FirstOrDefault(item => item.Slot == primary.Slot)
+            ?? new AtariMediaConfiguration(string.Empty, primary.Kind, primary.Slot);
+        var devices = new[] { new AtariStorageDeviceItem(primaryMedia, KindName(primary.Kind), false) }
+            .Concat(configuration.Media
+                .Where(item => item.Slot != primary.Slot && IsAvailable(allAvailable, item))
+                .Select(item => new AtariStorageDeviceItem(item, KindName(item.Kind), true)))
+            .ToArray();
         return new AtariStorageView(types, slots, buses, devices);
     }
+
+    internal static bool CanAdd(AtariMachineModel model, AtariStorageView view) =>
+        AtariCompatibilityCatalog.Get(model).Core is AtariCoreKind.Hatari or AtariCoreKind.Atari800
+        && view.Types.Any(type => view.Slots[type.Kind].Any(slot => view.Devices.All(device =>
+            device.Configuration.Slot != slot.Slot)));
+
+    internal static bool IsPrimaryDevice(AtariMachineModel model, EmulationMediaSlot slot) =>
+        PrimaryDevice(model).Slot == slot;
+
+    private static bool IsAvailable(IReadOnlyList<AtariMediaCompatibilityRule> rules,
+        AtariMediaConfiguration media) => rules.Any(rule => rule.Kind == media.Kind
+            && rule.Slots.Contains(media.Slot));
 
     private static (AtariMediaKind Kind, EmulationMediaSlot Slot) PrimaryDevice(AtariMachineModel model) => model switch
     {

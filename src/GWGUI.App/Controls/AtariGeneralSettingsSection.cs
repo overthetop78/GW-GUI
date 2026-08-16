@@ -18,6 +18,7 @@ internal sealed class AtariGeneralSettingsSection : UserControl
     private readonly AtariCoreManagementSection _coreManagement = new();
     private readonly StackPanel _options = new();
     private readonly Border _optionsCard;
+    private Border _foldersCard = null!;
     private readonly Dictionary<string, TextBox> _folders = new(StringComparer.Ordinal);
     private readonly Dictionary<string, ComboBox> _optionEditors = new(StringComparer.Ordinal);
     private readonly AtariCoreReleaseService _releaseService = new(Client, StoragePaths.AtariCoreDirectory);
@@ -61,7 +62,9 @@ internal sealed class AtariGeneralSettingsSection : UserControl
         var existingFolders = _configuration.Folders;
         var folders = existingFolders with
         {
-            HardDisks = Folder(nameof(AtariFolderConfiguration.HardDisks))
+            HardDisks = AtariGeneralSettingsFunctions.SupportsHardDiskFolder(selected.Model)
+                ? Folder(nameof(AtariFolderConfiguration.HardDisks))
+                : existingFolders.HardDisks
         };
         var displayed = _optionEditors.Where(item => item.Value.SelectedValue is string)
             .Select(item => KeyValuePair.Create(item.Key, (string)item.Value.SelectedValue));
@@ -109,8 +112,9 @@ internal sealed class AtariGeneralSettingsSection : UserControl
         root.Children.Add(_error);
         _coreManagement.Margin = new Thickness(0, 0, 0, 12);
         root.Children.Add(_coreManagement);
-        root.Children.Add(EmulationSettingsLayout.ActionCard(BuildFolders(),
-            L(AtariGeneralSettingsConstants.FoldersResource)));
+        _foldersCard = EmulationSettingsLayout.ActionCard(BuildFolders(),
+            L(AtariGeneralSettingsConstants.FoldersResource));
+        root.Children.Add(_foldersCard);
         root.Children.Add(_optionsCard);
         return EmulationSettingsLayout.ScrollPage(root);
     }
@@ -134,6 +138,8 @@ internal sealed class AtariGeneralSettingsSection : UserControl
     private async Task RefreshModelAsync(AtariMachineModel model)
     {
         _error.Visibility = Visibility.Collapsed;
+        _foldersCard.Visibility = AtariGeneralSettingsFunctions.SupportsHardDiskFolder(model)
+            ? Visibility.Visible : Visibility.Collapsed;
         try
         {
             await _coreManagement.SetModelAsync(model);
