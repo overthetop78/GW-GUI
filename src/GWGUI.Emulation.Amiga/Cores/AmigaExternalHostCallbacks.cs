@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Collections.Concurrent;
 using GWGUI.Emulation;
+using GWGUI.Emulation.Common;
 
 namespace GWGUI.Emulation.Amiga.Cores;
 
@@ -27,8 +28,8 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     private EmulationInputSnapshot _pendingInput = EmulationInputSnapshot.Empty;
     private EmulationInputSnapshot _polledInput = EmulationInputSnapshot.Empty;
     private IReadOnlySet<EmulationKey> _previousKeys = new HashSet<EmulationKey>();
-    private AmigaExternalApi.KeyboardEvent? _keyboardEvent;
-    private AmigaExternalApi.UpdateCoreOptionsDisplay? _updateOptionsDisplay;
+    private ExternalCoreApi.KeyboardEvent? _keyboardEvent;
+    private ExternalCoreApi.UpdateCoreOptionsDisplay? _updateOptionsDisplay;
     private readonly Dictionary<string, bool> _optionVisibility = new(StringComparer.Ordinal);
     internal AmigaExternalDiskControl DiskControl { get; } = new();
 
@@ -86,14 +87,14 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
             }
         }
     }
-    internal AmigaExternalApi.EnvironmentCallback Environment { get; }
-    internal AmigaExternalApi.VideoCallback Video { get; }
-    internal AmigaExternalApi.AudioSampleCallback AudioSample { get; }
-    internal AmigaExternalApi.AudioBatchCallback AudioBatch { get; }
-    internal AmigaExternalApi.InputPollCallback InputPoll { get; }
-    internal AmigaExternalApi.InputStateCallback InputState { get; }
-    internal AmigaExternalApi.LogCallback Log { get; }
-    internal AmigaExternalApi.SetLedState Led { get; }
+    internal ExternalCoreApi.EnvironmentCallback Environment { get; }
+    internal ExternalCoreApi.VideoCallback Video { get; }
+    internal ExternalCoreApi.AudioSampleCallback AudioSample { get; }
+    internal ExternalCoreApi.AudioBatchCallback AudioBatch { get; }
+    internal ExternalCoreApi.InputPollCallback InputPoll { get; }
+    internal ExternalCoreApi.InputStateCallback InputState { get; }
+    internal ExternalCoreApi.LogCallback Log { get; }
+    internal ExternalCoreApi.SetLedState Led { get; }
     internal int SampleRate { get; set; } = 44100;
     internal double FramesPerSecond { get; private set; } = 50;
     internal bool SupportsNoGame { get; private set; }
@@ -131,22 +132,22 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
         {
             switch (command)
             {
-                case AmigaExternalApi.GetSystemDirectory:
+                case ExternalCoreApiConstants.GetSystemDirectory:
                     Marshal.WriteIntPtr(data, NativeString(SystemDirectory));
                     return true;
-                case AmigaExternalApi.GetContentDirectory:
+                case ExternalCoreApiConstants.GetContentDirectory:
                     Marshal.WriteIntPtr(data, NativeString(ContentDirectory));
                     return true;
-                case AmigaExternalApi.GetSaveDirectory:
+                case ExternalCoreApiConstants.GetSaveDirectory:
                     Marshal.WriteIntPtr(data, NativeString(SaveDirectory));
                     return true;
-                case AmigaExternalApi.GetCanDuplicateFrames:
-                case AmigaExternalApi.GetInputBitmasks:
+                case ExternalCoreApiConstants.GetCanDuplicateFrames:
+                case ExternalCoreApiConstants.GetInputBitmasks:
                     if (data != 0) Marshal.WriteByte(data, 1);
                     return true;
-                case AmigaExternalApi.SetMessage:
+                case ExternalCoreApiConstants.SetMessage:
                     return CaptureMessage(data, extended: false);
-                case AmigaExternalApi.SetPixelFormat:
+                case ExternalCoreApiConstants.SetPixelFormat:
                     _pixelFormat = Marshal.ReadInt32(data) switch
                     {
                         1 => EmulationPixelFormat.Xrgb8888,
@@ -154,72 +155,72 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
                         var value => throw new NotSupportedException($"Pixel format {value} is not supported.")
                     };
                     return true;
-                case AmigaExternalApi.GetCoreOptionsVersion:
+                case ExternalCoreApiConstants.GetCoreOptionsVersion:
                     if (data != 0) Marshal.WriteInt32(data, 2);
                     return true;
-                case AmigaExternalApi.SetCoreOptionsV2:
+                case ExternalCoreApiConstants.SetCoreOptionsV2:
                     RegisterVersionTwoOptions(data);
                     return true;
-                case AmigaExternalApi.SetCoreOptionsV2International:
+                case ExternalCoreApiConstants.SetCoreOptionsV2International:
                     RegisterVersionTwoOptions(Marshal.ReadIntPtr(data));
                     return true;
-                case AmigaExternalApi.SetVariables:
+                case ExternalCoreApiConstants.SetVariables:
                     RegisterLegacyOptions(data);
                     return true;
-                case AmigaExternalApi.GetVariable:
+                case ExternalCoreApiConstants.GetVariable:
                     return ReturnOption(data);
-                case AmigaExternalApi.GetVariableUpdate:
+                case ExternalCoreApiConstants.GetVariableUpdate:
                     if (data != 0) Marshal.WriteByte(data, Interlocked.Exchange(ref _optionsUpdated, 0) != 0 ? (byte)1 : (byte)0);
                     return true;
-                case AmigaExternalApi.GetDiskControlVersion:
+                case ExternalCoreApiConstants.GetDiskControlVersion:
                     if (data != 0) Marshal.WriteInt32(data, 1);
                     return true;
-                case AmigaExternalApi.SetInputDescriptors:
+                case ExternalCoreApiConstants.SetInputDescriptors:
                     return true;
-                case AmigaExternalApi.SetKeyboardCallback:
-                    var keyboard = Marshal.PtrToStructure<AmigaExternalApi.KeyboardCallback>(data);
-                    _keyboardEvent = keyboard.Callback == 0 ? null : Marshal.GetDelegateForFunctionPointer<AmigaExternalApi.KeyboardEvent>(keyboard.Callback);
+                case ExternalCoreApiConstants.SetKeyboardCallback:
+                    var keyboard = Marshal.PtrToStructure<ExternalCoreApi.KeyboardCallback>(data);
+                    _keyboardEvent = keyboard.Callback == 0 ? null : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(keyboard.Callback);
                     return true;
-                case AmigaExternalApi.SetDiskControl:
+                case ExternalCoreApiConstants.SetDiskControl:
                     DiskControl.Capture(data);
                     return true;
-                case AmigaExternalApi.SetDiskControlExtended:
+                case ExternalCoreApiConstants.SetDiskControlExtended:
                     DiskControl.CaptureExtended(data);
                     return true;
-                case AmigaExternalApi.SetControllerInfo:
+                case ExternalCoreApiConstants.SetControllerInfo:
                     return CaptureControllerInfo(data);
-                case AmigaExternalApi.SetMemoryMaps:
-                case AmigaExternalApi.SetSupportAchievements:
+                case ExternalCoreApiConstants.SetMemoryMaps:
+                case ExternalCoreApiConstants.SetSupportAchievements:
                     return true;
-                case AmigaExternalApi.SetCoreOptionsDisplay:
+                case ExternalCoreApiConstants.SetCoreOptionsDisplay:
                     return ApplyOptionVisibility(data);
-                case AmigaExternalApi.SetCoreOptionsUpdateDisplayCallback:
+                case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:
                     return CaptureOptionsDisplayCallback(data);
-                case AmigaExternalApi.SetSupportNoGame:
+                case ExternalCoreApiConstants.SetSupportNoGame:
                     SupportsNoGame = data != 0 && Marshal.ReadByte(data) != 0;
                     return true;
-                case AmigaExternalApi.GetMessageInterfaceVersion:
+                case ExternalCoreApiConstants.GetMessageInterfaceVersion:
                     if (data != 0) Marshal.WriteInt32(data, 1);
                     return data != 0;
-                case AmigaExternalApi.SetMessageExtended:
+                case ExternalCoreApiConstants.SetMessageExtended:
                     return CaptureMessage(data, extended: true);
-                case AmigaExternalApi.SetFastForwardingOverride:
+                case ExternalCoreApiConstants.SetFastForwardingOverride:
                     return false;
-                case AmigaExternalApi.SetGeometry:
+                case ExternalCoreApiConstants.SetGeometry:
                     return ApplyGeometry(data);
-                case AmigaExternalApi.SetSystemAvInfo:
+                case ExternalCoreApiConstants.SetSystemAvInfo:
                     return ApplySystemAvInfo(data);
-                case AmigaExternalApi.GetLogInterface:
-                    Marshal.StructureToPtr(new AmigaExternalApi.LogInterface
+                case ExternalCoreApiConstants.GetLogInterface:
+                    Marshal.StructureToPtr(new ExternalCoreApi.LogInterface
                     {
                         Log = Marshal.GetFunctionPointerForDelegate(Log)
                     }, data, false);
                     return true;
-                case AmigaExternalApi.GetVfsInterface:
+                case ExternalCoreApiConstants.GetVfsInterface:
                     return false;
-                case AmigaExternalApi.GetLedInterface:
+                case ExternalCoreApiConstants.GetLedInterface:
                     if (data == 0) return false;
-                    Marshal.StructureToPtr(new AmigaExternalApi.LedInterface
+                    Marshal.StructureToPtr(new ExternalCoreApi.LedInterface
                     {
                         SetLedState = Marshal.GetFunctionPointerForDelegate(Led)
                     }, data, false);
@@ -237,11 +238,11 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
 
     private void RegisterLegacyOptions(nint data)
     {
-        var size = Marshal.SizeOf<AmigaExternalApi.Variable>();
+        var size = Marshal.SizeOf<ExternalCoreApi.Variable>();
         var catalog = new List<AmigaCoreOption>();
         for (var current = data; current != 0; current += size)
         {
-            var variable = Marshal.PtrToStructure<AmigaExternalApi.Variable>(current);
+            var variable = Marshal.PtrToStructure<ExternalCoreApi.Variable>(current);
             if (variable.Key == 0) break;
             var key = Marshal.PtrToStringUTF8(variable.Key)!;
             var definition = Marshal.PtrToStringUTF8(variable.Value);
@@ -296,7 +297,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     private bool ApplyOptionVisibility(nint data)
     {
         if (data == 0) return false;
-        var display = Marshal.PtrToStructure<AmigaExternalApi.CoreOptionDisplay>(data);
+        var display = Marshal.PtrToStructure<ExternalCoreApi.CoreOptionDisplay>(data);
         var key = display.Key == 0 ? null : Marshal.PtrToStringUTF8(display.Key);
         if (string.IsNullOrWhiteSpace(key)) return false;
         _optionVisibility[key] = display.Visible;
@@ -309,10 +310,10 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     private bool CaptureOptionsDisplayCallback(nint data)
     {
         if (data == 0) return false;
-        var callback = Marshal.PtrToStructure<AmigaExternalApi.CoreOptionsUpdateDisplayCallback>(data).Callback;
+        var callback = Marshal.PtrToStructure<ExternalCoreApi.CoreOptionsUpdateDisplayCallback>(data).Callback;
         _updateOptionsDisplay = callback == 0
             ? null
-            : Marshal.GetDelegateForFunctionPointer<AmigaExternalApi.UpdateCoreOptionsDisplay>(callback);
+            : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.UpdateCoreOptionsDisplay>(callback);
         return true;
     }
 
@@ -325,7 +326,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     private bool ReturnOption(nint data)
     {
         if (data == 0) return true;
-        var variable = Marshal.PtrToStructure<AmigaExternalApi.Variable>(data);
+        var variable = Marshal.PtrToStructure<ExternalCoreApi.Variable>(data);
         var key = Marshal.PtrToStringUTF8(variable.Key);
         if (key is not null && _options.TryGetValue(key, out var value))
         {
@@ -372,17 +373,17 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
             return true;
         }
         var ports = new List<IReadOnlyList<AmigaControllerDevice>>();
-        var infoSize = Marshal.SizeOf<AmigaExternalApi.ControllerInfo>();
-        var descriptionSize = Marshal.SizeOf<AmigaExternalApi.ControllerDescription>();
+        var infoSize = Marshal.SizeOf<ExternalCoreApi.ControllerInfo>();
+        var descriptionSize = Marshal.SizeOf<ExternalCoreApi.ControllerDescription>();
         for (var port = 0; port < 16; port++)
         {
-            var info = Marshal.PtrToStructure<AmigaExternalApi.ControllerInfo>(data + port * infoSize);
+            var info = Marshal.PtrToStructure<ExternalCoreApi.ControllerInfo>(data + port * infoSize);
             if (info.Types == 0 || info.Count == 0) break;
             if (info.Count > 64) return false;
             var devices = new List<AmigaControllerDevice>(checked((int)info.Count));
             for (var index = 0; index < info.Count; index++)
             {
-                var description = Marshal.PtrToStructure<AmigaExternalApi.ControllerDescription>(
+                var description = Marshal.PtrToStructure<ExternalCoreApi.ControllerDescription>(
                     info.Types + checked((int)index) * descriptionSize);
                 var name = description.Description == 0 ? null : Marshal.PtrToStringUTF8(description.Description);
                 if (!string.IsNullOrWhiteSpace(name)) devices.Add(new AmigaControllerDevice(name, description.Id));
@@ -412,7 +413,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
             ++_videoSequence, _clock.Elapsed);
     }
 
-    internal void ApplyInitialAvInfo(AmigaExternalApi.SystemAvInfo info)
+    internal void ApplyInitialAvInfo(ExternalCoreApi.SystemAvInfo info)
     {
         ApplyGeometry(info.Geometry);
         if (double.IsFinite(info.Timing.FramesPerSecond) && info.Timing.FramesPerSecond > 0)
@@ -424,11 +425,11 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     private bool ApplyGeometry(nint data)
     {
         if (data == 0) return false;
-        ApplyGeometry(Marshal.PtrToStructure<AmigaExternalApi.Geometry>(data));
+        ApplyGeometry(Marshal.PtrToStructure<ExternalCoreApi.Geometry>(data));
         return true;
     }
 
-    private void ApplyGeometry(AmigaExternalApi.Geometry geometry)
+    private void ApplyGeometry(ExternalCoreApi.Geometry geometry)
     {
         if (float.IsFinite(geometry.AspectRatio) && geometry.AspectRatio > 0)
             _aspectRatio = geometry.AspectRatio;
@@ -439,7 +440,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     private bool ApplySystemAvInfo(nint data)
     {
         if (data == 0) return false;
-        ApplyInitialAvInfo(Marshal.PtrToStructure<AmigaExternalApi.SystemAvInfo>(data));
+        ApplyInitialAvInfo(Marshal.PtrToStructure<ExternalCoreApi.SystemAvInfo>(data));
         return true;
     }
 

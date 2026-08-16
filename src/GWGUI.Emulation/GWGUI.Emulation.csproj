@@ -5,4 +5,8 @@
     <Nullable>enable</Nullable>
     <AssemblyName>gwgui.emulation</AssemblyName>
   </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="GWGUI.Emulation.Amiga" />
+    <InternalsVisibleTo Include="GWGUI.Tests" />
+  </ItemGroup>
 </Project>

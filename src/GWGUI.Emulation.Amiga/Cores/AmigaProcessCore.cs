@@ -5,6 +5,7 @@ using System.IO.Pipes;
 using System.IO.MemoryMappedFiles;
 using System.Text.Json;
 using GWGUI.Emulation;
+using GWGUI.Emulation.Common;
 
 namespace GWGUI.Emulation.Amiga.Cores;
 
@@ -65,9 +66,9 @@ internal sealed class AmigaProcessCore : IAmigaCore
 
         var pipeName = $"gwgui-amiga-{Guid.NewGuid():N}";
         var videoMapName = $"gwgui-amiga-video-{Guid.NewGuid():N}";
-        _videoMemory = MemoryMappedFile.CreateNew(videoMapName, AmigaCoreHostProtocol.VideoMapCapacity,
+        _videoMemory = MemoryMappedFile.CreateNew(videoMapName, EmulationHostProtocolConstants.VideoMapCapacity,
             MemoryMappedFileAccess.ReadWrite);
-        _videoMap = _videoMemory.CreateViewAccessor(0, AmigaCoreHostProtocol.VideoMapCapacity,
+        _videoMap = _videoMemory.CreateViewAccessor(0, EmulationHostProtocolConstants.VideoMapCapacity,
             MemoryMappedFileAccess.ReadWrite);
         const int pipeBufferSize = 8 * 1024 * 1024;
         _pipe = new NamedPipeServerStream(pipeName, PipeDirection.InOut, 1, PipeTransmissionMode.Byte,
@@ -251,7 +252,7 @@ internal sealed class AmigaProcessCore : IAmigaCore
         var header = new byte[sizeof(int)];
         await _pipe!.ReadExactlyAsync(header, timeout.Token).ConfigureAwait(false);
         var length = BinaryPrimitives.ReadInt32LittleEndian(header);
-        if (length is < 0 or > AmigaCoreHostProtocol.MaximumBlobLength)
+        if (length is < 0 or > EmulationHostProtocolConstants.MaximumBlobLength)
             throw new InvalidDataException($"The Amiga core process sent invalid response length {length}.");
         var response = GC.AllocateUninitializedArray<byte>(length);
         await _pipe.ReadExactlyAsync(response, timeout.Token).ConfigureAwait(false);

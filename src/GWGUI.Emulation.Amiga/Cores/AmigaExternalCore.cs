@@ -1,5 +1,6 @@
 using System.Runtime.InteropServices;
 using GWGUI.Emulation;
+using GWGUI.Emulation.Common;
 using System.Security.Cryptography;
 
 namespace GWGUI.Emulation.Amiga.Cores;
@@ -7,20 +8,20 @@ namespace GWGUI.Emulation.Amiga.Cores;
 internal sealed class AmigaExternalCore : IAmigaCore
 {
     private readonly string? _corePath;
-    private nint _library;
+    private ExternalCoreLibrary? _library;
     private AmigaExternalHostCallbacks? _host;
-    private AmigaExternalApi.VoidCall? _deinitialize;
-    private AmigaExternalApi.VoidCall? _unloadGame;
-    private AmigaExternalApi.VoidCall? _run;
-    private AmigaExternalApi.VoidCall? _reset;
+    private ExternalCoreApi.VoidCall? _deinitialize;
+    private ExternalCoreApi.VoidCall? _unloadGame;
+    private ExternalCoreApi.VoidCall? _run;
+    private ExternalCoreApi.VoidCall? _reset;
     private bool _gameLoaded;
     private bool _initialized;
-    private AmigaExternalApi.GetSerializedSize? _getSerializedSize;
-    private AmigaExternalApi.Serialize? _serialize;
-    private AmigaExternalApi.Serialize? _unserialize;
-    private AmigaExternalApi.GetRegion? _getRegion;
-    private AmigaExternalApi.GetMemoryData? _getMemoryData;
-    private AmigaExternalApi.GetMemorySize? _getMemorySize;
+    private ExternalCoreApi.GetSerializedSize? _getSerializedSize;
+    private ExternalCoreApi.Serialize? _serialize;
+    private ExternalCoreApi.Serialize? _unserialize;
+    private ExternalCoreApi.GetRegion? _getRegion;
+    private ExternalCoreApi.GetMemoryData? _getMemoryData;
+    private ExternalCoreApi.GetMemorySize? _getMemorySize;
 
     internal AmigaExternalCore(string? corePath = null) => _corePath = corePath;
 
@@ -111,10 +112,10 @@ internal sealed class AmigaExternalCore : IAmigaCore
 
         try
         {
-            _library = LoadNativeCore(corePath);
-            var apiVersion = Export<AmigaExternalApi.GetApiVersion>("retro_api_version")();
+            _library = new ExternalCoreLibrary(corePath);
+            var apiVersion = Export<ExternalCoreApi.GetApiVersion>("retro_api_version")();
             if (apiVersion != 1) throw new NotSupportedException($"The Amiga core uses unsupported API version {apiVersion}.");
-            Export<AmigaExternalApi.GetSystemInfo>("retro_get_system_info")(out var systemInfo);
+            Export<ExternalCoreApi.GetSystemInfo>("retro_get_system_info")(out var systemInfo);
             var libraryName = Marshal.PtrToStringUTF8(systemInfo.LibraryName);
             if (!string.Equals(libraryName, "PUAE", StringComparison.OrdinalIgnoreCase))
                 throw new InvalidDataException($"The selected native library identifies itself as '{libraryName}', not PUAE.");
@@ -132,27 +133,27 @@ internal sealed class AmigaExternalCore : IAmigaCore
                 if (extension.Length == 0 || !SupportedContentExtensions.Contains(extension))
                     throw new InvalidDataException($"The Amiga core does not support '.{extension}' content.");
             }
-            Export<AmigaExternalApi.SetEnvironment>("retro_set_environment")(_host.Environment);
-            Export<AmigaExternalApi.SetVideo>("retro_set_video_refresh")(_host.Video);
-            Export<AmigaExternalApi.SetAudioSample>("retro_set_audio_sample")(_host.AudioSample);
-            Export<AmigaExternalApi.SetAudioBatch>("retro_set_audio_sample_batch")(_host.AudioBatch);
-            Export<AmigaExternalApi.SetInputPoll>("retro_set_input_poll")(_host.InputPoll);
-            Export<AmigaExternalApi.SetInputState>("retro_set_input_state")(_host.InputState);
+            Export<ExternalCoreApi.SetEnvironment>("retro_set_environment")(_host.Environment);
+            Export<ExternalCoreApi.SetVideo>("retro_set_video_refresh")(_host.Video);
+            Export<ExternalCoreApi.SetAudioSample>("retro_set_audio_sample")(_host.AudioSample);
+            Export<ExternalCoreApi.SetAudioBatch>("retro_set_audio_sample_batch")(_host.AudioBatch);
+            Export<ExternalCoreApi.SetInputPoll>("retro_set_input_poll")(_host.InputPoll);
+            Export<ExternalCoreApi.SetInputState>("retro_set_input_state")(_host.InputState);
 
-            _deinitialize = Export<AmigaExternalApi.VoidCall>("retro_deinit");
-            _unloadGame = Export<AmigaExternalApi.VoidCall>("retro_unload_game");
-            _run = Export<AmigaExternalApi.VoidCall>("retro_run");
-            _reset = Export<AmigaExternalApi.VoidCall>("retro_reset");
-            _getSerializedSize = Export<AmigaExternalApi.GetSerializedSize>("retro_serialize_size");
-            _serialize = Export<AmigaExternalApi.Serialize>("retro_serialize");
-            _unserialize = Export<AmigaExternalApi.Serialize>("retro_unserialize");
-            _getRegion = Export<AmigaExternalApi.GetRegion>("retro_get_region");
-            _getMemoryData = Export<AmigaExternalApi.GetMemoryData>("retro_get_memory_data");
-            _getMemorySize = Export<AmigaExternalApi.GetMemorySize>("retro_get_memory_size");
-            Export<AmigaExternalApi.VoidCall>("retro_init")();
+            _deinitialize = Export<ExternalCoreApi.VoidCall>("retro_deinit");
+            _unloadGame = Export<ExternalCoreApi.VoidCall>("retro_unload_game");
+            _run = Export<ExternalCoreApi.VoidCall>("retro_run");
+            _reset = Export<ExternalCoreApi.VoidCall>("retro_reset");
+            _getSerializedSize = Export<ExternalCoreApi.GetSerializedSize>("retro_serialize_size");
+            _serialize = Export<ExternalCoreApi.Serialize>("retro_serialize");
+            _unserialize = Export<ExternalCoreApi.Serialize>("retro_unserialize");
+            _getRegion = Export<ExternalCoreApi.GetRegion>("retro_get_region");
+            _getMemoryData = Export<ExternalCoreApi.GetMemoryData>("retro_get_memory_data");
+            _getMemorySize = Export<ExternalCoreApi.GetMemorySize>("retro_get_memory_size");
+            Export<ExternalCoreApi.VoidCall>("retro_init")();
             _initialized = true;
             _host.ValidateConfiguredOptions();
-            var setController = Export<AmigaExternalApi.SetControllerPortDevice>("retro_set_controller_port_device");
+            var setController = Export<ExternalCoreApi.SetControllerPortDevice>("retro_set_controller_port_device");
             for (var port = 0; port < 4; port++)
             {
                 var controller = configuration.Controllers is { } controllers && port < controllers.Count ? controllers[port]
@@ -161,7 +162,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
                 setController((uint)port, ControllerDevice(_host.ControllerPorts, port, controller));
             }
 
-            AmigaExternalApi.LoadGame loadGame = Export<AmigaExternalApi.LoadGame>("retro_load_game");
+            ExternalCoreApi.LoadGame loadGame = Export<ExternalCoreApi.LoadGame>("retro_load_game");
             if (contentPath is null)
             {
                 if (!_host.SupportsNoGame)
@@ -170,22 +171,21 @@ internal sealed class AmigaExternalCore : IAmigaCore
             }
             else
             {
-                var path = Marshal.StringToCoTaskMemUTF8(contentPath);
-                var game = Marshal.AllocHGlobal(Marshal.SizeOf<AmigaExternalApi.GameInfo>());
+                using var path = new ExternalCoreUtf8String(contentPath);
+                var game = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.GameInfo>());
                 try
                 {
-                    Marshal.StructureToPtr(new AmigaExternalApi.GameInfo { Path = path }, game, false);
+                    Marshal.StructureToPtr(new ExternalCoreApi.GameInfo { Path = path.Pointer }, game, false);
                     _gameLoaded = loadGame(game);
                 }
                 finally
                 {
                     Marshal.FreeHGlobal(game);
-                    Marshal.FreeCoTaskMem(path);
                 }
             }
 
             if (!_gameLoaded) throw new InvalidOperationException("The Amiga core refused the configured content.");
-            Export<AmigaExternalApi.GetSystemAvInfo>("retro_get_system_av_info")(out var av);
+            Export<ExternalCoreApi.GetSystemAvInfo>("retro_get_system_av_info")(out var av);
             _host.ApplyInitialAvInfo(av);
         }
         catch
@@ -327,16 +327,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
     }
 
     private T Export<T>(string name) where T : Delegate =>
-        Marshal.GetDelegateForFunctionPointer<T>(NativeLibrary.GetExport(_library, name));
-
-    private static nint LoadNativeCore(string absolutePath)
-    {
-        if (!Path.IsPathFullyQualified(absolutePath))
-            throw new ArgumentException("The Amiga core path must be absolute.", nameof(absolutePath));
-        if (!File.Exists(absolutePath))
-            throw new FileNotFoundException("AmigaCoreNotFound: the configured Amiga core was not found.", absolutePath);
-        return NativeLibrary.Load(absolutePath);
-    }
+        (_library ?? throw new InvalidOperationException("The Amiga core is not loaded.")).Resolve<T>(name);
 
     internal static uint ControllerDevice(IReadOnlyList<IReadOnlyList<AmigaControllerDevice>> ports,
         int port, AmigaControllerType controller)
@@ -399,8 +390,8 @@ internal sealed class AmigaExternalCore : IAmigaCore
             _getMemorySize = null;
             _host?.Dispose();
             _host = null;
-            if (_library != 0) NativeLibrary.Free(_library);
-            _library = 0;
+            _library?.Dispose();
+            _library = null;
         }
     }
 }

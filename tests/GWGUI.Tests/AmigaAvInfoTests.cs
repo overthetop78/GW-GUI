@@ -1,6 +1,7 @@
 using System.IO;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation.Amiga.Cores;
+using GWGUI.Emulation.Common;
 
 namespace GWGUI.Tests;
 
@@ -12,9 +13,9 @@ public sealed class AmigaAvInfoTests
         var root = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Av", Guid.NewGuid().ToString("N"));
         using var callbacks = new AmigaExternalHostCallbacks(
             Path.Combine(root, "System"), Path.Combine(root, "Content"), Path.Combine(root, "Saves"), null);
-        var info = new AmigaExternalApi.SystemAvInfo
+        var info = new ExternalCoreApi.SystemAvInfo
         {
-            Geometry = new AmigaExternalApi.Geometry
+            Geometry = new ExternalCoreApi.Geometry
             {
                 BaseWidth = 320,
                 BaseHeight = 256,
@@ -22,14 +23,14 @@ public sealed class AmigaAvInfoTests
                 MaximumHeight = 576,
                 AspectRatio = 4f / 3f
             },
-            Timing = new AmigaExternalApi.Timing { FramesPerSecond = 59.94, SampleRate = 48000 }
+            Timing = new ExternalCoreApi.Timing { FramesPerSecond = 59.94, SampleRate = 48000 }
         };
-        var pointer = Marshal.AllocHGlobal(Marshal.SizeOf<AmigaExternalApi.SystemAvInfo>());
+        var pointer = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.SystemAvInfo>());
         try
         {
             Marshal.StructureToPtr(info, pointer, false);
 
-            Assert.True(callbacks.Environment(AmigaExternalApi.SetSystemAvInfo, pointer));
+            Assert.True(callbacks.Environment(ExternalCoreApiConstants.SetSystemAvInfo, pointer));
             Assert.Equal(59.94, callbacks.FramesPerSecond, 2);
             Assert.Equal(48000, callbacks.SampleRate);
         }
@@ -48,8 +49,8 @@ public sealed class AmigaAvInfoTests
             Path.Combine(root, "System"), Path.Combine(root, "Content"), Path.Combine(root, "Saves"), null);
         try
         {
-            Assert.False(callbacks.Environment(AmigaExternalApi.SetGeometry, 0));
-            Assert.False(callbacks.Environment(AmigaExternalApi.SetSystemAvInfo, 0));
+            Assert.False(callbacks.Environment(ExternalCoreApiConstants.SetGeometry, 0));
+            Assert.False(callbacks.Environment(ExternalCoreApiConstants.SetSystemAvInfo, 0));
             Assert.Equal(50, callbacks.FramesPerSecond);
             Assert.Equal(44100, callbacks.SampleRate);
         }

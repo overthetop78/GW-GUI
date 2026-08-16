@@ -141,14 +141,14 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 - [x] Mettre à jour la sérialisation du protocole et les configurations sans casser les documents Amiga existants.
 - [x] Ajouter les tests de compatibilité ascendante, de round-trip et de slot invalide.
 
-#### ATA-004 — Extraire uniquement les éléments Libretro réellement communs
+#### ATA-004 — Extraire uniquement les éléments des moteurs externes réellement communs
 
-- [ ] Comparer toutes les structures et constantes de `AmigaExternalApi` à l’API nécessaire aux six cœurs.
-- [ ] Déplacer dans `GWGUI.Emulation` uniquement l’ABI Libretro indépendante d’une machine.
-- [ ] Mutualiser le chargement et la résolution des exports sans exposer `retro_*` publiquement.
-- [ ] Mutualiser les allocations UTF-8, la copie vidéo et les primitives de sérialisation IPC réellement identiques.
-- [ ] Conserver options, firmwares, médias, contrôleurs et règles de modèle dans les projets spécialisés.
-- [ ] Prouver par tests que l’intégration Amiga continue de charger, fonctionner et se libérer après l’extraction.
+- [x] Comparer toutes les structures et constantes du contrat externe Amiga existant à l’API nécessaire aux six cœurs Atari.
+- [x] Déplacer dans `GWGUI.Emulation` uniquement l’ABI des moteurs externes indépendante d’une machine.
+- [x] Mutualiser le chargement et la résolution des exports sans exposer `retro_*` publiquement.
+- [x] Mutualiser les allocations UTF-8, la copie vidéo et les primitives de sérialisation IPC réellement identiques.
+- [x] Conserver options, firmwares, médias, contrôleurs et règles de modèle dans les projets spécialisés.
+- [x] Prouver par tests que l’intégration Amiga continue de charger, fonctionner et se libérer après l’extraction.
 
 ### C — Domaine Atari et processus hôte
 

@@ -1,50 +1,51 @@
 using System.Runtime.InteropServices;
+using GWGUI.Emulation.Common;
 
 namespace GWGUI.Emulation.Amiga.Cores;
 
 internal sealed class AmigaExternalDiskControl
 {
-    private AmigaExternalApi.SetEjectState? _setEjectState;
-    private AmigaExternalApi.GetEjectState? _getEjectState;
-    private AmigaExternalApi.GetImageIndex? _getImageIndex;
-    private AmigaExternalApi.SetImageIndex? _setImageIndex;
-    private AmigaExternalApi.GetImageCount? _getImageCount;
-    private AmigaExternalApi.ReplaceImage? _replaceImage;
-    private AmigaExternalApi.AddImage? _addImage;
-    private AmigaExternalApi.GetImagePath? _getImagePath;
-    private AmigaExternalApi.GetImageLabel? _getImageLabel;
+    private ExternalCoreApi.SetEjectState? _setEjectState;
+    private ExternalCoreApi.GetEjectState? _getEjectState;
+    private ExternalCoreApi.GetImageIndex? _getImageIndex;
+    private ExternalCoreApi.SetImageIndex? _setImageIndex;
+    private ExternalCoreApi.GetImageCount? _getImageCount;
+    private ExternalCoreApi.ReplaceImage? _replaceImage;
+    private ExternalCoreApi.AddImage? _addImage;
+    private ExternalCoreApi.GetImagePath? _getImagePath;
+    private ExternalCoreApi.GetImageLabel? _getImageLabel;
 
     internal bool IsAvailable => _setEjectState is not null;
 
     internal void Capture(nint data)
     {
-        var api = Marshal.PtrToStructure<AmigaExternalApi.DiskControl>(data);
-        _setEjectState = Delegate<AmigaExternalApi.SetEjectState>(api.SetEjectState);
-        _getEjectState = Delegate<AmigaExternalApi.GetEjectState>(api.GetEjectState);
-        _getImageIndex = Delegate<AmigaExternalApi.GetImageIndex>(api.GetImageIndex);
-        _setImageIndex = Delegate<AmigaExternalApi.SetImageIndex>(api.SetImageIndex);
-        _getImageCount = Delegate<AmigaExternalApi.GetImageCount>(api.GetImageCount);
-        _replaceImage = Delegate<AmigaExternalApi.ReplaceImage>(api.ReplaceImage);
-        _addImage = Delegate<AmigaExternalApi.AddImage>(api.AddImage);
+        var api = Marshal.PtrToStructure<ExternalCoreApi.DiskControl>(data);
+        _setEjectState = Delegate<ExternalCoreApi.SetEjectState>(api.SetEjectState);
+        _getEjectState = Delegate<ExternalCoreApi.GetEjectState>(api.GetEjectState);
+        _getImageIndex = Delegate<ExternalCoreApi.GetImageIndex>(api.GetImageIndex);
+        _setImageIndex = Delegate<ExternalCoreApi.SetImageIndex>(api.SetImageIndex);
+        _getImageCount = Delegate<ExternalCoreApi.GetImageCount>(api.GetImageCount);
+        _replaceImage = Delegate<ExternalCoreApi.ReplaceImage>(api.ReplaceImage);
+        _addImage = Delegate<ExternalCoreApi.AddImage>(api.AddImage);
     }
 
     internal void CaptureExtended(nint data)
     {
-        var api = Marshal.PtrToStructure<AmigaExternalApi.DiskControlExtended>(data);
+        var api = Marshal.PtrToStructure<ExternalCoreApi.DiskControlExtended>(data);
         CaptureBasic(api.Basic);
-        _getImagePath = OptionalDelegate<AmigaExternalApi.GetImagePath>(api.GetImagePath);
-        _getImageLabel = OptionalDelegate<AmigaExternalApi.GetImageLabel>(api.GetImageLabel);
+        _getImagePath = OptionalDelegate<ExternalCoreApi.GetImagePath>(api.GetImagePath);
+        _getImageLabel = OptionalDelegate<ExternalCoreApi.GetImageLabel>(api.GetImageLabel);
     }
 
-    private void CaptureBasic(AmigaExternalApi.DiskControl api)
+    private void CaptureBasic(ExternalCoreApi.DiskControl api)
     {
-        _setEjectState = Delegate<AmigaExternalApi.SetEjectState>(api.SetEjectState);
-        _getEjectState = Delegate<AmigaExternalApi.GetEjectState>(api.GetEjectState);
-        _getImageIndex = Delegate<AmigaExternalApi.GetImageIndex>(api.GetImageIndex);
-        _setImageIndex = Delegate<AmigaExternalApi.SetImageIndex>(api.SetImageIndex);
-        _getImageCount = Delegate<AmigaExternalApi.GetImageCount>(api.GetImageCount);
-        _replaceImage = Delegate<AmigaExternalApi.ReplaceImage>(api.ReplaceImage);
-        _addImage = Delegate<AmigaExternalApi.AddImage>(api.AddImage);
+        _setEjectState = Delegate<ExternalCoreApi.SetEjectState>(api.SetEjectState);
+        _getEjectState = Delegate<ExternalCoreApi.GetEjectState>(api.GetEjectState);
+        _getImageIndex = Delegate<ExternalCoreApi.GetImageIndex>(api.GetImageIndex);
+        _setImageIndex = Delegate<ExternalCoreApi.SetImageIndex>(api.SetImageIndex);
+        _getImageCount = Delegate<ExternalCoreApi.GetImageCount>(api.GetImageCount);
+        _replaceImage = Delegate<ExternalCoreApi.ReplaceImage>(api.ReplaceImage);
+        _addImage = Delegate<ExternalCoreApi.AddImage>(api.AddImage);
     }
 
     internal int ImageCount => IsAvailable ? checked((int)_getImageCount!()) : 0;
@@ -93,8 +94,8 @@ internal sealed class AmigaExternalDiskControl
         {
             var success = getter switch
             {
-                AmigaExternalApi.GetImagePath path => path((uint)index, buffer, 4096),
-                AmigaExternalApi.GetImageLabel label => label((uint)index, buffer, 4096),
+                ExternalCoreApi.GetImagePath path => path((uint)index, buffer, 4096),
+                ExternalCoreApi.GetImageLabel label => label((uint)index, buffer, 4096),
                 _ => false
             };
             return success ? Marshal.PtrToStringUTF8(buffer) : null;
@@ -113,11 +114,11 @@ internal sealed class AmigaExternalDiskControl
         if (count == 0 && !_addImage!()) throw new InvalidOperationException("The Amiga core could not create a media slot.");
 
         var nativePath = Marshal.StringToCoTaskMemUTF8(Path.GetFullPath(path));
-        var game = Marshal.AllocHGlobal(Marshal.SizeOf<AmigaExternalApi.GameInfo>());
+        var game = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.GameInfo>());
         var inserted = false;
         try
         {
-            Marshal.StructureToPtr(new AmigaExternalApi.GameInfo { Path = nativePath }, game, false);
+            Marshal.StructureToPtr(new ExternalCoreApi.GameInfo { Path = nativePath }, game, false);
             if (!_replaceImage!(index, game)) throw new InvalidOperationException("The Amiga core refused the media image.");
             if (!_setImageIndex!(index)) throw new InvalidOperationException("The Amiga core could not select the media image.");
             if (!_setEjectState!(false)) throw new InvalidOperationException("The Amiga media drive could not insert the image.");
