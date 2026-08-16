@@ -27,6 +27,7 @@
     <ProjectReference Include="..\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
     <ProjectReference Include="..\GWGUI.Emulation\GWGUI.Emulation.csproj" />
     <ProjectReference Include="..\GWGUI.Emulation.Amiga\GWGUI.Emulation.Amiga.csproj" />
+    <ProjectReference Include="..\GWGUI.Emulation.Atari\GWGUI.Emulation.Atari.csproj" />
   </ItemGroup>
 
   <ItemGroup>

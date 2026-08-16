@@ -154,11 +154,11 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-005 — Créer le projet `GWGUI.Emulation.Atari`
 
-- [ ] Créer le projet en `net10.0` avec nullable et implicit usings, sans WPF ni package d’interface.
-- [ ] Référencer uniquement `GWGUI.Emulation` et les dépendances strictement nécessaires.
-- [ ] Ajouter le projet à `GWGUI.sln`, à `GWGUI.App` et aux tests sans dépendance inverse vers l’application.
-- [ ] Fixer assembly, namespace et fichiers produits selon la convention `gwgui` du package.
-- [ ] Faire passer une compilation x64 Debug et Release avant de cocher.
+- [x] Créer le projet en `net10.0` avec nullable et implicit usings, sans WPF ni package d’interface.
+- [x] Référencer uniquement `GWGUI.Emulation` et les dépendances strictement nécessaires.
+- [x] Ajouter le projet à `GWGUI.sln`, à `GWGUI.App` et aux tests sans dépendance inverse vers l’application.
+- [x] Fixer assembly, namespace et fichiers produits selon la convention `gwgui` du package.
+- [x] Faire passer une compilation x64 Debug et Release avant de cocher.
 
 #### ATA-006 — Définir les contrats Atari
 

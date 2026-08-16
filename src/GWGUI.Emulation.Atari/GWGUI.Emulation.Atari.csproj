@@ -3,11 +3,13 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyName>gwgui.emulation</AssemblyName>
+    <AssemblyName>gwgui.emulation.atari</AssemblyName>
+    <RootNamespace>GWGUI.Emulation.Atari</RootNamespace>
+    <Platforms>x64</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <InternalsVisibleTo Include="GWGUI.Emulation.Amiga" />
-    <InternalsVisibleTo Include="GWGUI.Emulation.Atari" />
     <InternalsVisibleTo Include="GWGUI.Tests" />
+    <ProjectReference Include="..\GWGUI.Emulation\GWGUI.Emulation.csproj" />
   </ItemGroup>
 </Project>
