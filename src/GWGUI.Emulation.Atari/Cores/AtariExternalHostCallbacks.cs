@@ -10,6 +10,7 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
     private readonly AtariCoreOptionHost _optionHost;
     private readonly AtariVideoBufferSet _videoBuffers = new();
     private readonly AtariInputFrameStore _input = new();
+    private readonly AtariKeyboardState _keyboard = new();
     private readonly long _videoStartTimestamp = Stopwatch.GetTimestamp();
     private readonly AtariAudioBuffer _audio = new();
     private readonly Dictionary<int, bool> _ledStates = [];
@@ -23,6 +24,7 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
     private long _audioSequence;
     private EmulationPixelFormat _pixelFormat = EmulationPixelFormat.Xrgb8888;
     private bool _disposed;
+    private ExternalCoreApi.KeyboardEvent? _keyboardEvent;
     private readonly AtariDiskControl _diskControl = new();
 
     internal AtariExternalHostCallbacks(string systemDirectory, string contentDirectory, string saveDirectory,
@@ -244,6 +246,9 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
     {
         if (data == nint.Zero) return false;
         KeyboardCallbackPointer = Marshal.PtrToStructure<ExternalCoreApi.KeyboardCallback>(data).Callback;
+        _keyboardEvent = KeyboardCallbackPointer == nint.Zero
+            ? null
+            : Marshal.GetDelegateForFunctionPointer<ExternalCoreApi.KeyboardEvent>(KeyboardCallbackPointer);
         return true;
     }
 
@@ -394,7 +399,11 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
         _audio.Enqueue(chunk);
     }
 
-    private void OnInputPoll() => _input.Poll();
+    private void OnInputPoll()
+    {
+        _input.Poll();
+        _keyboard.Publish(_input.Polled.Keys, _keyboardEvent);
+    }
     private short OnInputState(uint port, uint device, uint index, uint id) => _input.State(port, device, index, id);
     private void OnSetLedState(int led, int state) => _ledStates[led] = state != AtariConstants.InactiveState;
     private bool OnSetRumbleState(uint port, uint effect, ushort strength) => false;

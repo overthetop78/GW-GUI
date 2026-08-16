@@ -21,7 +21,8 @@ internal static class AtariInputFunctions
             if (id == AtariInputConstants.JoypadMaskId)
                 return unchecked((short)(controller.Buttons & ushort.MaxValue));
             return id < AtariInputConstants.MaximumJoypadButtonCount &&
-                   (controller.Buttons & (1u << checked((int)id))) != AtariConstants.NoInputState
+                   ((controller.Buttons & (1u << checked((int)id))) != AtariConstants.NoInputState ||
+                    AtariKeyboardFunctions.IsConsoleKeyActive(snapshot.Keys, id))
                 ? AtariInputConstants.ActiveState
                 : AtariInputConstants.InactiveState;
         }

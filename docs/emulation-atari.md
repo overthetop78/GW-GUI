@@ -424,12 +424,12 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-031 — Mapper les claviers Atari
 
-- [ ] Créer une table exhaustive `EmulationKey` vers les codes clavier des moteurs externes sans dépendance WPF dans le moteur.
-- [ ] Mapper le clavier ST/STE/TT/Falcon et ses touches propres.
-- [ ] Mapper le clavier Atari 8 bits et ses touches console Option, Select, Start et Help.
-- [ ] Transmettre down/up, caractère Unicode et modificateurs au mécanisme utilisé par le cœur.
-- [ ] Conserver l’adaptation `System.Windows.Input.Key` dans l’application.
-- [ ] Tester toutes les touches mappées, touches inconnues, dispositions et relâchement après perte de focus.
+- [x] Créer une table exhaustive `EmulationKey` vers les codes clavier des moteurs externes sans dépendance WPF dans le moteur.
+- [x] Mapper le clavier ST/STE/TT/Falcon et ses touches propres.
+- [x] Mapper le clavier Atari 8 bits et ses touches console Option, Select, Start et Help.
+- [x] Transmettre down/up, caractère Unicode et modificateurs au mécanisme utilisé par le cœur.
+- [x] Conserver l’adaptation `System.Windows.Input.Key` dans l’application.
+- [x] Tester toutes les touches mappées, touches inconnues, dispositions et relâchement après perte de focus.
 
 #### ATA-032 — Implémenter souris et capture relative
 

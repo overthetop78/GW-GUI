@@ -79,7 +79,8 @@ public enum EmulationKey
     Left, Right, Up, Down, LeftShift, RightShift, LeftControl, RightControl, LeftAlt, RightAlt,
     F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, Delete, Insert, Home, End, PageUp, PageDown,
     Comma, Period, Slash, Backslash, Minus, Equals, Semicolon, Quote, LeftBracket, RightBracket,
-    Backquote, CapsLock, Help, LeftAmiga, RightAmiga,
+    Backquote, CapsLock, Help, LeftAmiga, RightAmiga, AtariUndo, AtariBreak,
+    AtariOption, AtariSelect, AtariStart,
     Numpad0, Numpad1, Numpad2, Numpad3, Numpad4, Numpad5, Numpad6, Numpad7, Numpad8, Numpad9,
     NumpadPeriod, NumpadDivide, NumpadMultiply, NumpadMinus, NumpadPlus, NumpadEnter
 }

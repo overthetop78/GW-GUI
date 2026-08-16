@@ -14,4 +14,6 @@ internal sealed class AtariInputFrameStore
 
     internal short State(uint port, uint device, uint index, uint id) =>
         AtariInputFunctions.State(Volatile.Read(ref _polled), port, device, index, id);
+
+    internal EmulationInputSnapshot Polled => Volatile.Read(ref _polled);
 }

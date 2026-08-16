@@ -1,0 +1,57 @@
+namespace GWGUI.Emulation.Atari;
+
+internal static class AtariKeyboardConstants
+{
+    internal const uint Backspace = 8;
+    internal const uint Tab = 9;
+    internal const uint Return = 13;
+    internal const uint Escape = 27;
+    internal const uint Space = 32;
+    internal const uint FirstPrintableCharacter = 32;
+    internal const uint LastPrintableCharacter = 126;
+    internal const uint Delete = 127;
+    internal const uint FirstKeypadDigit = 256;
+    internal const uint KeypadPeriod = 266;
+    internal const uint KeypadDivide = 267;
+    internal const uint KeypadMultiply = 268;
+    internal const uint KeypadMinus = 269;
+    internal const uint KeypadPlus = 270;
+    internal const uint KeypadEnter = 271;
+    internal const uint Up = 273;
+    internal const uint Down = 274;
+    internal const uint Right = 275;
+    internal const uint Left = 276;
+    internal const uint Insert = 277;
+    internal const uint Home = 278;
+    internal const uint End = 279;
+    internal const uint PageUp = 280;
+    internal const uint PageDown = 281;
+    internal const uint FirstFunctionKey = 282;
+    internal const uint CapsLock = 301;
+    internal const uint RightShift = 303;
+    internal const uint LeftShift = 304;
+    internal const uint RightControl = 305;
+    internal const uint LeftControl = 306;
+    internal const uint RightAlt = 307;
+    internal const uint LeftAlt = 308;
+    internal const uint LeftMeta = 311;
+    internal const uint RightMeta = 312;
+    internal const uint Help = 315;
+    internal const uint Break = 318;
+    internal const uint Undo = 322;
+    internal const uint FirstLetter = 'a';
+    internal const uint LastLetter = 'z';
+    internal const uint FirstDigit = '0';
+    internal const int LetterCount = 26;
+    internal const int DigitCount = 10;
+    internal const int FunctionKeyCount = 10;
+    internal const ushort ShiftModifier = 1;
+    internal const ushort ControlModifier = 2;
+    internal const ushort AltModifier = 4;
+    internal const uint UppercaseOffset = 32;
+    internal const uint NoCharacter = 0;
+    internal const ushort NoModifiers = 0;
+    internal const int FirstRangeOffset = 0;
+    internal const int ModifierFirstOrder = 0;
+    internal const int ModifierLastOrder = 1;
+}
