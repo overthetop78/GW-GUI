@@ -1,7 +1,3 @@
-param(
-    [string]$PublishedDocumentationPath
-)
-
 $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $guideDirectory = Join-Path $repository 'docs\user-guide'
@@ -36,18 +32,6 @@ $results = foreach ($item in $expected) {
 }
 
 if ($results[0].Sha256 -eq $results[1].Sha256) { throw 'French and English guide images are identical.' }
-
-if ([string]::IsNullOrWhiteSpace($PublishedDocumentationPath)) {
-    $candidate = Join-Path $repository 'artifacts\publish\win-x64\Documentation\user-guide'
-    if (Test-Path -LiteralPath $candidate -PathType Container) { $PublishedDocumentationPath = $candidate }
-}
-if (-not [string]::IsNullOrWhiteSpace($PublishedDocumentationPath)) {
-    $published = [IO.Path]::GetFullPath($PublishedDocumentationPath)
-    foreach ($item in $expected) {
-        $path = Join-Path $published "images\$($item.File)"
-        if (-not (Test-Path -LiteralPath $path -PathType Leaf)) { throw "Published documentation image not found: $path" }
-    }
-}
 
 $results
 Write-Output 'Guide image validation passed.'

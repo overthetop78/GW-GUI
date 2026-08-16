@@ -1205,10 +1205,8 @@ public partial class MainWindow : Window
     private void Documentation_Click(object sender, RoutedEventArgs e)
     {
         var language = System.Globalization.CultureInfo.CurrentUICulture.Name;
-        var directory = Path.Combine(AppContext.BaseDirectory, "Documentation", "user-guide");
-        var path = Path.Combine(directory, $"{language}.pdf");
-        if (!File.Exists(path)) path = Path.Combine(directory, "en-US.pdf");
-        if (File.Exists(path)) Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
+        var path = Services.UserGuideLocator.Find(AppContext.BaseDirectory, language);
+        if (path is not null) Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
     }
 
     private async void ExportConsole_Click(object sender, RoutedEventArgs e)

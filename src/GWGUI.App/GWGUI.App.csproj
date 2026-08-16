@@ -39,7 +39,6 @@
 
   <ItemGroup>
     <Content Include="..\..\docs\user-guide\*.pdf" Link="Documentation\user-guide\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="..\..\docs\user-guide\images\*.png" Link="Documentation\user-guide\images\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="Assets\DiskDefinitions\built-in.cfg" CopyToOutputDirectory="PreserveNewest" />
     <Resource Include="Assets\app-icon.png" />
   </ItemGroup>

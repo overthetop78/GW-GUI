@@ -95,6 +95,9 @@ if (Test-Path -LiteralPath $applicationDependencyManifest) {
     Move-Item -LiteralPath $applicationDependencyManifest -Destination (Join-Path $libraries 'gwgui.app.deps.json')
 }
 
+& (Join-Path $repository 'scripts\test-user-guide-package.ps1') -PublishedUserGuidePath (Join-Path $publish 'Documentation\user-guide')
+if ($LASTEXITCODE -ne 0) { throw 'Published user-guide validation failed.' }
+
 Copy-Item -Path (Join-Path $publish '*') -Destination $portablePackage -Recurse -Force
 Copy-Item -LiteralPath (Join-Path $repository 'LICENSE') -Destination $portablePackage
 Copy-Item -LiteralPath (Join-Path $repository 'README.md') -Destination $portablePackage
