@@ -9,6 +9,7 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
 {
     private readonly AtariCoreOptionHost _optionHost;
     private readonly AtariVideoBufferSet _videoBuffers = new();
+    private readonly AtariInputFrameStore _input = new();
     private readonly long _videoStartTimestamp = Stopwatch.GetTimestamp();
     private readonly AtariAudioBuffer _audio = new();
     private readonly Dictionary<int, bool> _ledStates = [];
@@ -61,7 +62,7 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
     internal ExternalCoreApi.SetSensorState SetSensorState { get; }
     internal ExternalCoreApi.GetSensorInput GetSensorInput { get; }
     internal ExternalCoreApi.LogCallback Log { get; }
-    internal EmulationInputSnapshot Input { get; set; } = EmulationInputSnapshot.Empty;
+    internal EmulationInputSnapshot Input { set => _input.Update(value); }
     internal VideoFrame? LatestVideoFrame { get; private set; }
     internal AudioChunk? LatestAudioChunk { get; private set; }
     internal IReadOnlyList<AtariCoreOption> Options => _optionHost.Catalog;
@@ -393,8 +394,8 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
         _audio.Enqueue(chunk);
     }
 
-    private void OnInputPoll() { }
-    private short OnInputState(uint port, uint device, uint index, uint id) => (short)AtariConstants.NoInputState;
+    private void OnInputPoll() => _input.Poll();
+    private short OnInputState(uint port, uint device, uint index, uint id) => _input.State(port, device, index, id);
     private void OnSetLedState(int led, int state) => _ledStates[led] = state != AtariConstants.InactiveState;
     private bool OnSetRumbleState(uint port, uint effect, ushort strength) => false;
     private bool OnSetSensorState(uint port, uint action, uint rate) => false;

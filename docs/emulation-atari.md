@@ -416,11 +416,11 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-030 — Figer les entrées par frame
 
-- [ ] Stocker un snapshot immuable complet par échange atomique.
-- [ ] Copier le snapshot actif dans `input_poll` et répondre depuis cette copie jusqu’au poll suivant.
-- [ ] Retourner zéro pour port, device, index ou id inconnu.
-- [ ] Transporter exactement le même snapshot à travers le processus hôte.
-- [ ] Tester un changement concurrent en milieu de frame et deux instances indépendantes.
+- [x] Stocker un snapshot immuable complet par échange atomique.
+- [x] Copier le snapshot actif dans `input_poll` et répondre depuis cette copie jusqu’au poll suivant.
+- [x] Retourner zéro pour port, device, index ou id inconnu.
+- [x] Transporter exactement le même snapshot à travers le processus hôte.
+- [x] Tester un changement concurrent en milieu de frame et deux instances indépendantes.
 
 #### ATA-031 — Mapper les claviers Atari
 
