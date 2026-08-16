@@ -183,4 +183,5 @@
   <data name="Engines.StrictChoice" xml:space="preserve"><value>ระบบจะใช้เอนจินที่เลือกเท่านั้น หากทำงานไม่ได้ GW GUI จะแจ้งให้ทราบโดยไม่สลับไปใช้อีกเอนจินอย่างเงียบ ๆ</value></data>
   <data name="Emulation.Model" xml:space="preserve"><value>รุ่น</value></data>
   <data name="Emulation.CaptureMouse" xml:space="preserve"><value>จับเมาส์</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>การกำหนดค่า</value></data>
 </root>

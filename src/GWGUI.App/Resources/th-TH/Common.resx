@@ -15,4 +15,5 @@
   <data name="Common.Unknown">
     <value>ไม่ทราบ</value>
   </data>
+  <data name="Common.Eject" xml:space="preserve"><value>นำออก</value></data>
 </root>

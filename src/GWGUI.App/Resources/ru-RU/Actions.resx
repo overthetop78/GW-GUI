@@ -75,4 +75,5 @@
   <data name="Common.New"><value>Создать</value></data>
   <data name="Common.Refresh"><value>Обновить</value></data>
   <data name="Common.OpenFolder"><value>Открыть папку</value></data>
+  <data name="Common.Pause" xml:space="preserve"><value>Пауза</value></data>
 </root>

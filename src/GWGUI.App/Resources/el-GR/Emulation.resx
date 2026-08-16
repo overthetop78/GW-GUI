@@ -438,4 +438,24 @@
   <data name="Emulation.AtariRegion"><value>Περιοχή</value></data>
   <data name="Emulation.AtariMultilingual"><value>Πολύγλωσσο</value></data>
   <data name="Emulation.AtariRegionFree"><value>Χωρίς περιοχή</value></data>
+  <data name="Emulation.AudioTab" xml:space="preserve"><value>Ήχος</value></data>
+  <data name="Emulation.AtariError.CoreNotFound" xml:space="preserve"><value>Δεν βρέθηκε ο απαιτούμενος πυρήνας Ατάρι.</value></data>
+  <data name="Emulation.AtariError.CoreRejected" xml:space="preserve"><value>Δεν ήταν δυνατή η φόρτωση του επιλεγμένου πυρήνα Atari.</value></data>
+  <data name="Emulation.AtariError.FirmwareMissing" xml:space="preserve"><value>Ένα απαιτούμενο λογισμικό Ατάρι λείπει.</value></data>
+  <data name="Emulation.AtariError.FirmwareInvalid" xml:space="preserve"><value>Ένα firmware Atari είναι άκυρο ή ασυμβίβαστο.</value></data>
+  <data name="Emulation.AtariError.ContentNotFound" xml:space="preserve"><value>Το ρυθμισμένο μέσο Atari δε βρέθηκε.</value></data>
+  <data name="Emulation.AtariError.ContentUnsupported" xml:space="preserve"><value>Τα ρυθμισμένα μέσα δεν υποστηρίζονται από αυτή τη μηχανή Atari.</value></data>
+  <data name="Emulation.AtariError.OptionInvalid" xml:space="preserve"><value>Μια επιλογή Atari έχει μη έγκυρη τιμή.</value></data>
+  <data name="Emulation.AtariError.HostProtocolFailure" xml:space="preserve"><value>Η επικοινωνία με τον ξενιστή Ατάρι απέτυχε.</value></data>
+  <data name="Emulation.AtariError.StateInvalid" xml:space="preserve"><value>Η σωζόμενη κατάσταση του Ατάρι είναι άκυρη.</value></data>
+  <data name="Emulation.AtariError.StateIncompatible" xml:space="preserve"><value>Η σωζόμενη κατάσταση Ατάρι είναι ασύμβατη με την τρέχουσα μηχανή.</value></data>
+  <data name="Emulation.AtariError.Unexpected" xml:space="preserve"><value>Συνέβη ένα απροσδόκητο σφάλμα εξομοίωσης Atari.</value></data>
+  <data name="Emulation.AtariError.Details" xml:space="preserve"><value>Λεπτομέρειες: {0}</value></data>
+  <data name="Emulation.AtariError.ActiveConfiguration" xml:space="preserve"><value>Η ενεργή διαμόρφωση Atari δεν μπορεί να τροποποιηθεί ή να διαγραφεί.</value></data>
+  <data name="Emulation.AtariError.RequiredFirmwareMissing" xml:space="preserve"><value>Το απαιτούμενο firmware Atari &#x27;{0}&#x27; δεν έχει ρυθμιστεί για το {1}.</value></data>
+  <data name="Emulation.AtariError.FirmwareFileMissing" xml:space="preserve"><value>Το ρυθμισμένο λογισμικό Atari firmware &#x27;{0}&#x27; δεν βρέθηκε: {1}</value></data>
+  <data name="Emulation.AtariError.MediaFileMissing" xml:space="preserve"><value>Δε βρέθηκαν ρυθμισμένα μέσα Atari: {0}</value></data>
+  <data name="Emulation.AtariError.HostExecutableMissing" xml:space="preserve"><value>Η εκτελέσιμη διαδρομή του ξενιστή Atari δεν είναι διαθέσιμη.</value></data>
+  <data name="Emulation.AtariError.CoreNotInstalled" xml:space="preserve"><value>Ο πυρήνας Atari &#x27;{0}&#x27; δεν είναι εγκατεστημένος.</value></data>
+  <data name="Emulation.AtariMediaFilter" xml:space="preserve"><value>Μέσα Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Όλα τα αρχεία|*.*</value></data>
 </root>

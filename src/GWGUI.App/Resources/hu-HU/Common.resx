@@ -15,4 +15,5 @@
   <data name="Common.Unknown">
     <value>Ismeretlen</value>
   </data>
+  <data name="Common.Eject" xml:space="preserve"><value>Kibocsátás</value></data>
 </root>

@@ -438,4 +438,24 @@
   <data name="Emulation.AtariRegion"><value>Bölge</value></data>
   <data name="Emulation.AtariMultilingual"><value>Çok dilli</value></data>
   <data name="Emulation.AtariRegionFree"><value>Bölgeden bağımsız</value></data>
+  <data name="Emulation.AudioTab" xml:space="preserve"><value>Audio Audio Audio</value></data>
+  <data name="Emulation.AtariError.CoreNotFound" xml:space="preserve"><value>Gerekli Atari çekirdeği bulunamadı.</value></data>
+  <data name="Emulation.AtariError.CoreRejected" xml:space="preserve"><value>Seçilmiş Atari çekirdeği yüklenemezdi.</value></data>
+  <data name="Emulation.AtariError.FirmwareMissing" xml:space="preserve"><value>Gerekli Atari Hardware eksik.</value></data>
+  <data name="Emulation.AtariError.FirmwareInvalid" xml:space="preserve"><value>Bir Atariware geçersiz veya uyumlu.</value></data>
+  <data name="Emulation.AtariError.ContentNotFound" xml:space="preserve"><value>yapılandırılmış Atari medyası bulunamadı.</value></data>
+  <data name="Emulation.AtariError.ContentUnsupported" xml:space="preserve"><value>yapılandırılmış medya bu Atari makinesi tarafından desteklenmez.</value></data>
+  <data name="Emulation.AtariError.OptionInvalid" xml:space="preserve"><value>Bir Atari seçeneğinin geçersiz bir değeri vardır.</value></data>
+  <data name="Emulation.AtariError.HostProtocolFailure" xml:space="preserve"><value>Atari host ile iletişim başarısız oldu.</value></data>
+  <data name="Emulation.AtariError.StateInvalid" xml:space="preserve"><value>Atari kurtarılan devlet geçersizdir.</value></data>
+  <data name="Emulation.AtariError.StateIncompatible" xml:space="preserve"><value>Atari kurtarılan devlet mevcut makine ile uyumlu değildir.</value></data>
+  <data name="Emulation.AtariError.Unexpected" xml:space="preserve"><value>beklenmedik bir Atari emulation hatası meydana geldi.</value></data>
+  <data name="Emulation.AtariError.Details" xml:space="preserve"><value>Detaylar: {0}</value></data>
+  <data name="Emulation.AtariError.ActiveConfiguration" xml:space="preserve"><value>Aktif Atari yapılandırması değiştirilemez veya silinemez.</value></data>
+  <data name="Emulation.AtariError.RequiredFirmwareMissing" xml:space="preserve"><value>Gerekli Atari Hardware &#x27;{0}&#x27; {1} için yapılandırılmıyor.</value></data>
+  <data name="Emulation.AtariError.FirmwareFileMissing" xml:space="preserve"><value>Configured Atari Hardware &#x27;{0}&#x27; bulunamadı: {1}</value></data>
+  <data name="Emulation.AtariError.MediaFileMissing" xml:space="preserve"><value>Configured Atari medyası bulunamadı: {0}</value></data>
+  <data name="Emulation.AtariError.HostExecutableMissing" xml:space="preserve"><value>Atari host executable yolu mevcut değildir.</value></data>
+  <data name="Emulation.AtariError.CoreNotInstalled" xml:space="preserve"><value>Atari core &#x27;{0}&#x27; yüklü değil.</value></data>
+  <data name="Emulation.AtariMediaFilter" xml:space="preserve"><value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Tüm dosyalar|*.*</value></data>
 </root>

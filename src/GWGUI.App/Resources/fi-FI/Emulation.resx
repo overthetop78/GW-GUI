@@ -438,4 +438,24 @@
   <data name="Emulation.AtariRegion"><value>Alue</value></data>
   <data name="Emulation.AtariMultilingual"><value>Monikielinen</value></data>
   <data name="Emulation.AtariRegionFree"><value>Aluevapaa</value></data>
+  <data name="Emulation.AudioTab" xml:space="preserve"><value>Ääni</value></data>
+  <data name="Emulation.AtariError.CoreNotFound" xml:space="preserve"><value>Tarvittavaa Atarin ydintä ei löytynyt.</value></data>
+  <data name="Emulation.AtariError.CoreRejected" xml:space="preserve"><value>Valittua Atarin ydintä ei voitu ladata.</value></data>
+  <data name="Emulation.AtariError.FirmwareMissing" xml:space="preserve"><value>Tarvittava Atari-ohjelmisto puuttuu.</value></data>
+  <data name="Emulation.AtariError.FirmwareInvalid" xml:space="preserve"><value>Atari-ohjelmisto on virheellinen tai yhteensopimaton.</value></data>
+  <data name="Emulation.AtariError.ContentNotFound" xml:space="preserve"><value>Määriteltyä Atarin mediaa ei löytynyt.</value></data>
+  <data name="Emulation.AtariError.ContentUnsupported" xml:space="preserve"><value>Tämä Atari-kone ei tue konfiguroitua mediaa.</value></data>
+  <data name="Emulation.AtariError.OptionInvalid" xml:space="preserve"><value>Atari-valinnalla on virheellinen arvo.</value></data>
+  <data name="Emulation.AtariError.HostProtocolFailure" xml:space="preserve"><value>Yhteydenpito Atarin isäntään epäonnistui.</value></data>
+  <data name="Emulation.AtariError.StateInvalid" xml:space="preserve"><value>Atarin pelastama osavaltio on kelvoton.</value></data>
+  <data name="Emulation.AtariError.StateIncompatible" xml:space="preserve"><value>Atarin pelastama tila on yhteensopimaton nykyisen koneen kanssa.</value></data>
+  <data name="Emulation.AtariError.Unexpected" xml:space="preserve"><value>Tapahtui odottamaton atari-emulointivirhe.</value></data>
+  <data name="Emulation.AtariError.Details" xml:space="preserve"><value>Lisätiedot: {0}</value></data>
+  <data name="Emulation.AtariError.ActiveConfiguration" xml:space="preserve"><value>Aktiivista Atarin asetusta ei voi muuttaa tai poistaa.</value></data>
+  <data name="Emulation.AtariError.RequiredFirmwareMissing" xml:space="preserve"><value>Vaadittu Atari firmware &#x27;{0}&#x27; ei ole konfiguroitu {1}.</value></data>
+  <data name="Emulation.AtariError.FirmwareFileMissing" xml:space="preserve"><value>Atarin ohjelmistoa &#x27;{0}&#x27; ei löytynyt: {1}</value></data>
+  <data name="Emulation.AtariError.MediaFileMissing" xml:space="preserve"><value>Atari-mediaa ei löytynyt: {0}</value></data>
+  <data name="Emulation.AtariError.HostExecutableMissing" xml:space="preserve"><value>Atarin isännän suoritettava polku ei ole käytettävissä.</value></data>
+  <data name="Emulation.AtariError.CoreNotInstalled" xml:space="preserve"><value>Atarin ydintä &#x27;{0}&#x27; ei ole asennettu.</value></data>
+  <data name="Emulation.AtariMediaFilter" xml:space="preserve"><value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Kaikki tiedostot|*.*</value></data>
 </root>

@@ -75,4 +75,5 @@
   <data name="Common.New"><value>Baru</value></data>
   <data name="Common.Refresh"><value>Segarkan</value></data>
   <data name="Common.OpenFolder"><value>Buka folder</value></data>
+  <data name="Common.Pause" xml:space="preserve"><value>Jeda</value></data>
 </root>

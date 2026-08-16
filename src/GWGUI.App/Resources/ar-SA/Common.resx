@@ -15,4 +15,5 @@
   <data name="Common.Unknown">
     <value>مجهول</value>
   </data>
+  <data name="Common.Eject" xml:space="preserve"><value>إخراج</value></data>
 </root>

@@ -183,4 +183,5 @@
   <data name="Engines.StrictChoice" xml:space="preserve"><value>המנוע שנבחר משמש באופן בלעדי. אם אינו יכול לבצע את הפעולה, GW GUI ידווח על כך ולא ישתמש במנוע האחר ללא הודעה.</value></data>
   <data name="Emulation.Model" xml:space="preserve"><value>דגם</value></data>
   <data name="Emulation.CaptureMouse" xml:space="preserve"><value>לכידת העכבר</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>תצורה</value></data>
 </root>

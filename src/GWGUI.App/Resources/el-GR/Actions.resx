@@ -75,4 +75,5 @@
   <data name="Common.New"><value>Νέο</value></data>
   <data name="Common.Refresh"><value>Ανανέωση</value></data>
   <data name="Common.OpenFolder"><value>Άνοιγμα φακέλου</value></data>
+  <data name="Common.Pause" xml:space="preserve"><value>Παύση</value></data>
 </root>

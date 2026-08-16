@@ -438,4 +438,24 @@
   <data name="Emulation.AtariRegion"><value>Khu vực</value></data>
   <data name="Emulation.AtariMultilingual"><value>Đa ngôn ngữ</value></data>
   <data name="Emulation.AtariRegionFree"><value>Không giới hạn khu vực</value></data>
+  <data name="Emulation.AudioTab" xml:space="preserve"><value>Âm thanh</value></data>
+  <data name="Emulation.AtariError.CoreNotFound" xml:space="preserve"><value>Không tìm thấy lõi Atari.</value></data>
+  <data name="Emulation.AtariError.CoreRejected" xml:space="preserve"><value>Không thể tải lõi Atari đã chọn.</value></data>
+  <data name="Emulation.AtariError.FirmwareMissing" xml:space="preserve"><value>Một phần cứng Atari bị thiếu.</value></data>
+  <data name="Emulation.AtariError.FirmwareInvalid" xml:space="preserve"><value>Một phần cứng Atari không hợp lệ hay không tương thích.</value></data>
+  <data name="Emulation.AtariError.ContentNotFound" xml:space="preserve"><value>Không tìm thấy phương tiện truyền thông Atari được cấu hình.</value></data>
+  <data name="Emulation.AtariError.ContentUnsupported" xml:space="preserve"><value>Phương tiện được cấu hình không được hỗ trợ bởi máy Atari này.</value></data>
+  <data name="Emulation.AtariError.OptionInvalid" xml:space="preserve"><value>Một tùy chọn Atari có giá trị không hợp lệ.</value></data>
+  <data name="Emulation.AtariError.HostProtocolFailure" xml:space="preserve"><value>Liên lạc với tổ chức Atari thất bại.</value></data>
+  <data name="Emulation.AtariError.StateInvalid" xml:space="preserve"><value>Bang Atari không có quyền.</value></data>
+  <data name="Emulation.AtariError.StateIncompatible" xml:space="preserve"><value>Bang Atari tiết kiệm không tương thích với cỗ máy hiện tại.</value></data>
+  <data name="Emulation.AtariError.Unexpected" xml:space="preserve"><value>Một lỗi không ngờ xảy ra ở Atari.</value></data>
+  <data name="Emulation.AtariError.Details" xml:space="preserve"><value>Chi tiết: {0}</value></data>
+  <data name="Emulation.AtariError.ActiveConfiguration" xml:space="preserve"><value>Cấu hình Atari hoạt động không thể thay đổi hay xoá.</value></data>
+  <data name="Emulation.AtariError.RequiredFirmwareMissing" xml:space="preserve"><value>Cần thiết phần cứng Atari &#x27;{0}&#x27; chưa được cấu hình cho {1}.</value></data>
+  <data name="Emulation.AtariError.FirmwareFileMissing" xml:space="preserve"><value>Cấu hình phần cứng Atari &#x27;{0}&#x27; không được tìm thấy: {1}</value></data>
+  <data name="Emulation.AtariError.MediaFileMissing" xml:space="preserve"><value>Không tìm thấy phương tiện truyền thông Atari: {0}</value></data>
+  <data name="Emulation.AtariError.HostExecutableMissing" xml:space="preserve"><value>Không có đường dẫn đến máy Atari.</value></data>
+  <data name="Emulation.AtariError.CoreNotInstalled" xml:space="preserve"><value>lõi Atari &#x27;{0}&#x27; chưa được cài đặt.</value></data>
+  <data name="Emulation.AtariMediaFilter" xml:space="preserve"><value>Truyền thông Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Mọi tập tin|*.*</value></data>
 </root>

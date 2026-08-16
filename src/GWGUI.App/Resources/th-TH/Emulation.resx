@@ -438,4 +438,24 @@
   <data name="Emulation.AtariRegion"><value>ภูมิภาค</value></data>
   <data name="Emulation.AtariMultilingual"><value>หลายภาษา</value></data>
   <data name="Emulation.AtariRegionFree"><value>ไม่จำกัดภูมิภาค</value></data>
+  <data name="Emulation.AudioTab" xml:space="preserve"><value>เสียง</value></data>
+  <data name="Emulation.AtariError.CoreNotFound" xml:space="preserve"><value>ไม่พบแกน Atari ที่จำเป็น</value></data>
+  <data name="Emulation.AtariError.CoreRejected" xml:space="preserve"><value>ไม่สามารถโหลดแกน Atari ที่เลือกได้</value></data>
+  <data name="Emulation.AtariError.FirmwareMissing" xml:space="preserve"><value>ไม่มีเฟิร์มแวร์ Atari ที่จำเป็น</value></data>
+  <data name="Emulation.AtariError.FirmwareInvalid" xml:space="preserve"><value>เฟิร์มแวร์ Atari ไม่ถูกต้องหรือเข้ากันไม่ได้</value></data>
+  <data name="Emulation.AtariError.ContentNotFound" xml:space="preserve"><value>ไม่พบสื่อ Atari ที่กำหนดค่าไว้</value></data>
+  <data name="Emulation.AtariError.ContentUnsupported" xml:space="preserve"><value>เครื่อง Atari นี้ไม่รองรับสื่อที่กำหนดค่าไว้</value></data>
+  <data name="Emulation.AtariError.OptionInvalid" xml:space="preserve"><value>ตัวเลือก Atari มีค่าไม่ถูกต้อง</value></data>
+  <data name="Emulation.AtariError.HostProtocolFailure" xml:space="preserve"><value>การสื่อสารกับโฮสต์ Atari ล้มเหลว</value></data>
+  <data name="Emulation.AtariError.StateInvalid" xml:space="preserve"><value>สถานะบันทึกของ Atari ไม่ถูกต้อง</value></data>
+  <data name="Emulation.AtariError.StateIncompatible" xml:space="preserve"><value>สถานะบันทึกของ Atari เข้ากันไม่ได้กับเครื่องปัจจุบัน</value></data>
+  <data name="Emulation.AtariError.Unexpected" xml:space="preserve"><value>เกิดข้อผิดพลาดในการจำลอง Atari ที่ไม่คาดคิด</value></data>
+  <data name="Emulation.AtariError.Details" xml:space="preserve"><value>รายละเอียด: {0}</value></data>
+  <data name="Emulation.AtariError.ActiveConfiguration" xml:space="preserve"><value>ไม่สามารถแก้ไขหรือลบการกำหนดค่า Atari ที่ใช้งานอยู่ได้</value></data>
+  <data name="Emulation.AtariError.RequiredFirmwareMissing" xml:space="preserve"><value>ไม่ได้กำหนดค่าเฟิร์มแวร์ Atari ที่จำเป็น &#x27;{0}&#x27; สำหรับ {1}</value></data>
+  <data name="Emulation.AtariError.FirmwareFileMissing" xml:space="preserve"><value>ไม่พบเฟิร์มแวร์ Atari ที่กำหนดค่าไว้ &#x27;{0}&#x27;: {1}</value></data>
+  <data name="Emulation.AtariError.MediaFileMissing" xml:space="preserve"><value>ไม่พบสื่อ Atari ที่กำหนดค่าไว้: {0}</value></data>
+  <data name="Emulation.AtariError.HostExecutableMissing" xml:space="preserve"><value>ไม่พบเส้นทางไฟล์ปฏิบัติการของโฮสต์ Atari</value></data>
+  <data name="Emulation.AtariError.CoreNotInstalled" xml:space="preserve"><value>ไม่ได้ติดตั้งแกน Atari &#x27;{0}&#x27;</value></data>
+  <data name="Emulation.AtariMediaFilter" xml:space="preserve"><value>สื่อ Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|ไฟล์ทั้งหมด|*.*</value></data>
 </root>

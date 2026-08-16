@@ -438,4 +438,24 @@
   <data name="Emulation.AtariRegion"><value>אזור</value></data>
   <data name="Emulation.AtariMultilingual"><value>רב-לשוני</value></data>
   <data name="Emulation.AtariRegionFree"><value>ללא אזור</value></data>
+  <data name="Emulation.AudioTab" xml:space="preserve"><value>שמע</value></data>
+  <data name="Emulation.AtariError.CoreNotFound" xml:space="preserve"><value>ליבת Atari הנדרשת לא נמצאה.</value></data>
+  <data name="Emulation.AtariError.CoreRejected" xml:space="preserve"><value>לא ניתן לטעון את ליבת Atari שנבחרה.</value></data>
+  <data name="Emulation.AtariError.FirmwareMissing" xml:space="preserve"><value>חסרה קושחת Atari נדרשת.</value></data>
+  <data name="Emulation.AtariError.FirmwareInvalid" xml:space="preserve"><value>קושחת Atari אינה תקינה או אינה תואמת.</value></data>
+  <data name="Emulation.AtariError.ContentNotFound" xml:space="preserve"><value>מדיית Atari שהוגדרה לא נמצאה.</value></data>
+  <data name="Emulation.AtariError.ContentUnsupported" xml:space="preserve"><value>המדיה שהוגדרה אינה נתמכת במכונת Atari זו.</value></data>
+  <data name="Emulation.AtariError.OptionInvalid" xml:space="preserve"><value>לאפשרות Atari יש ערך לא תקין.</value></data>
+  <data name="Emulation.AtariError.HostProtocolFailure" xml:space="preserve"><value>התקשורת עם מארח Atari נכשלה.</value></data>
+  <data name="Emulation.AtariError.StateInvalid" xml:space="preserve"><value>מצב השמירה של Atari אינו תקין.</value></data>
+  <data name="Emulation.AtariError.StateIncompatible" xml:space="preserve"><value>מצב השמירה של Atari אינו תואם למכונה הנוכחית.</value></data>
+  <data name="Emulation.AtariError.Unexpected" xml:space="preserve"><value>אירעה שגיאת הדמיית Atari בלתי צפויה.</value></data>
+  <data name="Emulation.AtariError.Details" xml:space="preserve"><value>פרטים: {0}</value></data>
+  <data name="Emulation.AtariError.ActiveConfiguration" xml:space="preserve"><value>לא ניתן לשנות או למחוק את תצורת Atari הפעילה.</value></data>
+  <data name="Emulation.AtariError.RequiredFirmwareMissing" xml:space="preserve"><value>קושחת Atari הנדרשת &#x27;{0}&#x27; אינה מוגדרת עבור {1}.</value></data>
+  <data name="Emulation.AtariError.FirmwareFileMissing" xml:space="preserve"><value>קושחת Atari שהוגדרה &#x27;{0}&#x27; לא נמצאה: {1}</value></data>
+  <data name="Emulation.AtariError.MediaFileMissing" xml:space="preserve"><value>מדיית Atari שהוגדרה לא נמצאה: {0}</value></data>
+  <data name="Emulation.AtariError.HostExecutableMissing" xml:space="preserve"><value>נתיב קובץ ההפעלה של מארח Atari אינו זמין.</value></data>
+  <data name="Emulation.AtariError.CoreNotInstalled" xml:space="preserve"><value>ליבת Atari &#x27;{0}&#x27; אינה מותקנת.</value></data>
+  <data name="Emulation.AtariMediaFilter" xml:space="preserve"><value>מדיית Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|כל הקבצים|*.*</value></data>
 </root>

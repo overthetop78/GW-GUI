@@ -183,4 +183,5 @@
   <data name="Engines.StrictChoice" xml:space="preserve"><value>严格使用所选引擎。如果无法执行操作，GW GUI 会进行报告，而不会静默改用另一个引擎。</value></data>
   <data name="Emulation.Model" xml:space="preserve"><value>型号</value></data>
   <data name="Emulation.CaptureMouse" xml:space="preserve"><value>捕获鼠标</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>配置</value></data>
 </root>

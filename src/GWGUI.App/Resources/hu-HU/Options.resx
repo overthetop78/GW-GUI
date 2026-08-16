@@ -183,4 +183,5 @@
   <data name="Engines.StrictChoice" xml:space="preserve"><value>A kiválasztott motor kizárólagosan használatos. Ha nem tudja elvégezni a műveletet, a GW GUI jelzi ezt, és nem vált át észrevétlenül a másik motorra.</value></data>
   <data name="Emulation.Model" xml:space="preserve"><value>Modell</value></data>
   <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Egér rögzítése</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>Beállítás</value></data>
 </root>

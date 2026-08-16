@@ -438,4 +438,24 @@
   <data name="Emulation.AtariRegion"><value>Wilayah</value></data>
   <data name="Emulation.AtariMultilingual"><value>Multibahasa</value></data>
   <data name="Emulation.AtariRegionFree"><value>Bebas wilayah</value></data>
+  <data name="Emulation.AudioTab" xml:space="preserve"><value>Audio</value></data>
+  <data name="Emulation.AtariError.CoreNotFound" xml:space="preserve"><value>Inti yang diperlukan Atari tidak ditemukan.</value></data>
+  <data name="Emulation.AtariError.CoreRejected" xml:space="preserve"><value>Inti Atari yang dipilih tidak dapat dimuat.</value></data>
+  <data name="Emulation.AtariError.FirmwareMissing" xml:space="preserve"><value>Sebuah firmware Atari yang diperlukan hilang.</value></data>
+  <data name="Emulation.AtariError.FirmwareInvalid" xml:space="preserve"><value>Firmware Atari tidak valid atau tidak kompatibel.</value></data>
+  <data name="Emulation.AtariError.ContentNotFound" xml:space="preserve"><value>Media Atari yang dikonfigurasi tidak ditemukan.</value></data>
+  <data name="Emulation.AtariError.ContentUnsupported" xml:space="preserve"><value>Media yang dikonfigurasi tidak didukung oleh mesin Atari ini.</value></data>
+  <data name="Emulation.AtariError.OptionInvalid" xml:space="preserve"><value>Sebuah opsi Atari memiliki nilai yang tidak valid.</value></data>
+  <data name="Emulation.AtariError.HostProtocolFailure" xml:space="preserve"><value>Komunikasi dengan pemilik Atari gagal.</value></data>
+  <data name="Emulation.AtariError.StateInvalid" xml:space="preserve"><value>Negara bagian tabungan Atari tidak valid.</value></data>
+  <data name="Emulation.AtariError.StateIncompatible" xml:space="preserve"><value>Negara bagian tabungan Atari tidak kompatibel dengan mesin saat ini.</value></data>
+  <data name="Emulation.AtariError.Unexpected" xml:space="preserve"><value>Kesalahan emulasi Atari yang tak terduga terjadi.</value></data>
+  <data name="Emulation.AtariError.Details" xml:space="preserve"><value>Rincian: {0}</value></data>
+  <data name="Emulation.AtariError.ActiveConfiguration" xml:space="preserve"><value>Konfigurasi Atari yang aktif tak dapat diubah atau dihapus.</value></data>
+  <data name="Emulation.AtariError.RequiredFirmwareMissing" xml:space="preserve"><value>Firmware Atari yang diperlukan '{0}' tidak dikonfigurasi untuk {1}.</value></data>
+  <data name="Emulation.AtariError.FirmwareFileMissing" xml:space="preserve"><value>Dikonfigured Atari firmware &#x27;{0}&#x27; tidak ditemukan: {1}</value></data>
+  <data name="Emulation.AtariError.MediaFileMissing" xml:space="preserve"><value>Media Atari yang dikonfigurasi tidak ditemukan: {0}</value></data>
+  <data name="Emulation.AtariError.HostExecutableMissing" xml:space="preserve"><value>Jalur eksekusi Atari host tidak tersedia.</value></data>
+  <data name="Emulation.AtariError.CoreNotInstalled" xml:space="preserve"><value>Inti Atari &#x27;{0}&#x27; belum terpasang.</value></data>
+  <data name="Emulation.AtariMediaFilter" xml:space="preserve"><value>Media Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Semua berkas|*.*</value></data>
 </root>

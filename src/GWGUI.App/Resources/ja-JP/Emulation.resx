@@ -438,4 +438,24 @@
   <data name="Emulation.AtariRegion"><value>リージョン</value></data>
   <data name="Emulation.AtariMultilingual"><value>多言語</value></data>
   <data name="Emulation.AtariRegionFree"><value>リージョンフリー</value></data>
+  <data name="Emulation.AudioTab" xml:space="preserve"><value>オーディオ</value></data>
+  <data name="Emulation.AtariError.CoreNotFound" xml:space="preserve"><value>必要なAtariコアが見つかりません。</value></data>
+  <data name="Emulation.AtariError.CoreRejected" xml:space="preserve"><value>選択したAtariコアを読み込めませんでした。</value></data>
+  <data name="Emulation.AtariError.FirmwareMissing" xml:space="preserve"><value>必要なAtariファームウェアがありません。</value></data>
+  <data name="Emulation.AtariError.FirmwareInvalid" xml:space="preserve"><value>Atariファームウェアが無効または互換性がありません。</value></data>
+  <data name="Emulation.AtariError.ContentNotFound" xml:space="preserve"><value>構成されたAtariメディアが見つかりません。</value></data>
+  <data name="Emulation.AtariError.ContentUnsupported" xml:space="preserve"><value>構成されたメディアはこのAtariマシンではサポートされていません。</value></data>
+  <data name="Emulation.AtariError.OptionInvalid" xml:space="preserve"><value>Atariオプションの値が無効です。</value></data>
+  <data name="Emulation.AtariError.HostProtocolFailure" xml:space="preserve"><value>Atariホストとの通信に失敗しました。</value></data>
+  <data name="Emulation.AtariError.StateInvalid" xml:space="preserve"><value>Atariの保存状態が無効です。</value></data>
+  <data name="Emulation.AtariError.StateIncompatible" xml:space="preserve"><value>Atariの保存状態は現在のマシンと互換性がありません。</value></data>
+  <data name="Emulation.AtariError.Unexpected" xml:space="preserve"><value>予期しないAtariエミュレーションエラーが発生しました。</value></data>
+  <data name="Emulation.AtariError.Details" xml:space="preserve"><value>詳細: {0}</value></data>
+  <data name="Emulation.AtariError.ActiveConfiguration" xml:space="preserve"><value>使用中のAtari構成は変更または削除できません。</value></data>
+  <data name="Emulation.AtariError.RequiredFirmwareMissing" xml:space="preserve"><value>必要なAtariファームウェア「{0}」が{1}用に構成されていません。</value></data>
+  <data name="Emulation.AtariError.FirmwareFileMissing" xml:space="preserve"><value>構成されたAtariファームウェア「{0}」が見つかりません: {1}</value></data>
+  <data name="Emulation.AtariError.MediaFileMissing" xml:space="preserve"><value>構成されたAtariメディアが見つかりません: {0}</value></data>
+  <data name="Emulation.AtariError.HostExecutableMissing" xml:space="preserve"><value>Atariホストの実行ファイルパスを利用できません。</value></data>
+  <data name="Emulation.AtariError.CoreNotInstalled" xml:space="preserve"><value>Atariコア「{0}」がインストールされていません。</value></data>
+  <data name="Emulation.AtariMediaFilter" xml:space="preserve"><value>Atariメディア|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|すべてのファイル|*.*</value></data>
 </root>

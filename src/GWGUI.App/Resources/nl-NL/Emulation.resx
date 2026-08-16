@@ -438,4 +438,24 @@
   <data name="Emulation.AtariRegion"><value>Regio</value></data>
   <data name="Emulation.AtariMultilingual"><value>Meertalig</value></data>
   <data name="Emulation.AtariRegionFree"><value>Regiovrij</value></data>
+  <data name="Emulation.AudioTab" xml:space="preserve"><value>Audio</value></data>
+  <data name="Emulation.AtariError.CoreNotFound" xml:space="preserve"><value>De vereiste Atari kern werd niet gevonden.</value></data>
+  <data name="Emulation.AtariError.CoreRejected" xml:space="preserve"><value>De geselecteerde Atari-kern kon niet geladen worden.</value></data>
+  <data name="Emulation.AtariError.FirmwareMissing" xml:space="preserve"><value>Een vereiste Atari firmware ontbreekt.</value></data>
+  <data name="Emulation.AtariError.FirmwareInvalid" xml:space="preserve"><value>Een Atari firmware is ongeldig of onverenigbaar.</value></data>
+  <data name="Emulation.AtariError.ContentNotFound" xml:space="preserve"><value>De geconfigureerde Atari media werd niet gevonden.</value></data>
+  <data name="Emulation.AtariError.ContentUnsupported" xml:space="preserve"><value>De geconfigureerde media worden niet ondersteund door deze Atari machine.</value></data>
+  <data name="Emulation.AtariError.OptionInvalid" xml:space="preserve"><value>Een Atari-optie heeft een ongeldige waarde.</value></data>
+  <data name="Emulation.AtariError.HostProtocolFailure" xml:space="preserve"><value>Communicatie met de gastheer van Atari is mislukt.</value></data>
+  <data name="Emulation.AtariError.StateInvalid" xml:space="preserve"><value>De opgeslagen Atari staat is ongeldig.</value></data>
+  <data name="Emulation.AtariError.StateIncompatible" xml:space="preserve"><value>De opgeslagen Atari staat is onverenigbaar met de huidige machine.</value></data>
+  <data name="Emulation.AtariError.Unexpected" xml:space="preserve"><value>Er is een onverwachte Atari emulatiefout opgetreden.</value></data>
+  <data name="Emulation.AtariError.Details" xml:space="preserve"><value>Details: {0}</value></data>
+  <data name="Emulation.AtariError.ActiveConfiguration" xml:space="preserve"><value>De actieve Atari configuratie kan niet worden gewijzigd of verwijderd.</value></data>
+  <data name="Emulation.AtariError.RequiredFirmwareMissing" xml:space="preserve"><value>Vereiste Atari-firmware '{0}' is niet geconfigureerd voor {1}.</value></data>
+  <data name="Emulation.AtariError.FirmwareFileMissing" xml:space="preserve"><value>Geconfigureerde Atari-firmware '{0}' is niet gevonden: {1}</value></data>
+  <data name="Emulation.AtariError.MediaFileMissing" xml:space="preserve"><value>Geconfigureerde Atari media is niet gevonden: {0}</value></data>
+  <data name="Emulation.AtariError.HostExecutableMissing" xml:space="preserve"><value>Het uitvoerbare pad van de Atari-host is niet beschikbaar.</value></data>
+  <data name="Emulation.AtariError.CoreNotInstalled" xml:space="preserve"><value>De Atari kern &#x27;{0}&#x27; is niet geïnstalleerd.</value></data>
+  <data name="Emulation.AtariMediaFilter" xml:space="preserve"><value>Atari-media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Alle bestanden|*.*</value></data>
 </root>

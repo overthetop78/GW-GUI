@@ -75,4 +75,5 @@
   <data name="Common.New"><value>Nouveau</value></data>
   <data name="Common.Refresh"><value>Actualiser</value></data>
   <data name="Common.OpenFolder"><value>Ouvrir le dossier</value></data>
+  <data name="Common.Pause"><value>Pause</value></data>
 </root>

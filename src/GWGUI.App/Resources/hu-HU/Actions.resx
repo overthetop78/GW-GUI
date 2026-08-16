@@ -75,4 +75,5 @@
   <data name="Common.New"><value>Új</value></data>
   <data name="Common.Refresh"><value>Frissítés</value></data>
   <data name="Common.OpenFolder"><value>Mappa megnyitása</value></data>
+  <data name="Common.Pause" xml:space="preserve"><value>Szünet</value></data>
 </root>

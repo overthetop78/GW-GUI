@@ -75,4 +75,5 @@
   <data name="Common.New"><value>新規</value></data>
   <data name="Common.Refresh"><value>更新</value></data>
   <data name="Common.OpenFolder"><value>フォルダーを開く</value></data>
+  <data name="Common.Pause" xml:space="preserve"><value>一時停止</value></data>
 </root>

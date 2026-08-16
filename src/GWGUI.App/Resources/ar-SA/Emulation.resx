@@ -438,4 +438,24 @@
   <data name="Emulation.AtariRegion"><value>المنطقة</value></data>
   <data name="Emulation.AtariMultilingual"><value>متعدد اللغات</value></data>
   <data name="Emulation.AtariRegionFree"><value>بلا منطقة</value></data>
+  <data name="Emulation.AudioTab" xml:space="preserve"><value>الصوت</value></data>
+  <data name="Emulation.AtariError.CoreNotFound" xml:space="preserve"><value>لم يتم العثور على نواة Atari المطلوبة.</value></data>
+  <data name="Emulation.AtariError.CoreRejected" xml:space="preserve"><value>تعذر تحميل نواة Atari المحددة.</value></data>
+  <data name="Emulation.AtariError.FirmwareMissing" xml:space="preserve"><value>برنامج Atari الثابت المطلوب مفقود.</value></data>
+  <data name="Emulation.AtariError.FirmwareInvalid" xml:space="preserve"><value>أحد برامج Atari الثابتة غير صالح أو غير متوافق.</value></data>
+  <data name="Emulation.AtariError.ContentNotFound" xml:space="preserve"><value>لم يتم العثور على وسائط Atari المكوّنة.</value></data>
+  <data name="Emulation.AtariError.ContentUnsupported" xml:space="preserve"><value>الوسائط المكوّنة غير مدعومة بواسطة جهاز Atari هذا.</value></data>
+  <data name="Emulation.AtariError.OptionInvalid" xml:space="preserve"><value>يحتوي أحد خيارات Atari على قيمة غير صالحة.</value></data>
+  <data name="Emulation.AtariError.HostProtocolFailure" xml:space="preserve"><value>فشل الاتصال بمضيف Atari.</value></data>
+  <data name="Emulation.AtariError.StateInvalid" xml:space="preserve"><value>حالة Atari المحفوظة غير صالحة.</value></data>
+  <data name="Emulation.AtariError.StateIncompatible" xml:space="preserve"><value>حالة Atari المحفوظة غير متوافقة مع الجهاز الحالي.</value></data>
+  <data name="Emulation.AtariError.Unexpected" xml:space="preserve"><value>حدث خطأ غير متوقع في محاكاة Atari.</value></data>
+  <data name="Emulation.AtariError.Details" xml:space="preserve"><value>التفاصيل: {0}</value></data>
+  <data name="Emulation.AtariError.ActiveConfiguration" xml:space="preserve"><value>لا يمكن تعديل تكوين Atari النشط أو حذفه.</value></data>
+  <data name="Emulation.AtariError.RequiredFirmwareMissing" xml:space="preserve"><value>لم يتم تكوين برنامج Atari الثابت المطلوب &#x27;{0}&#x27; لـ {1}.</value></data>
+  <data name="Emulation.AtariError.FirmwareFileMissing" xml:space="preserve"><value>لم يتم العثور على برنامج Atari الثابت المكوّن '{0}': {1}</value></data>
+  <data name="Emulation.AtariError.MediaFileMissing" xml:space="preserve"><value>لم يتم العثور على وسائط Atari المكوّنة: {0}</value></data>
+  <data name="Emulation.AtariError.HostExecutableMissing" xml:space="preserve"><value>مسار الملف التنفيذي لمضيف Atari غير متاح.</value></data>
+  <data name="Emulation.AtariError.CoreNotInstalled" xml:space="preserve"><value>لم يتم تثبيت نواة Atari &#x27;{0}&#x27;.</value></data>
+  <data name="Emulation.AtariMediaFilter" xml:space="preserve"><value>وسائط Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|كل الملفات|*.*</value></data>
 </root>

@@ -75,4 +75,5 @@
   <data name="Common.New"><value>חדש</value></data>
   <data name="Common.Refresh"><value>רענון</value></data>
   <data name="Common.OpenFolder"><value>פתח תיקייה</value></data>
+  <data name="Common.Pause" xml:space="preserve"><value>השהיה</value></data>
 </root>

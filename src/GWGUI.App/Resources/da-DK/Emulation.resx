@@ -438,4 +438,24 @@
   <data name="Emulation.AtariRegion"><value>Område</value></data>
   <data name="Emulation.AtariMultilingual"><value>Flersproget</value></data>
   <data name="Emulation.AtariRegionFree"><value>Regionsfri</value></data>
+  <data name="Emulation.AudioTab" xml:space="preserve"><value>Lyd</value></data>
+  <data name="Emulation.AtariError.CoreNotFound" xml:space="preserve"><value>Den krævede Atari-kerne blev ikke fundet.</value></data>
+  <data name="Emulation.AtariError.CoreRejected" xml:space="preserve"><value>Den valgte Atari-kerne kunne ikke indlæses.</value></data>
+  <data name="Emulation.AtariError.FirmwareMissing" xml:space="preserve"><value>En krævet Atari firmware mangler.</value></data>
+  <data name="Emulation.AtariError.FirmwareInvalid" xml:space="preserve"><value>En Atari firmware er ugyldig eller inkompatibel.</value></data>
+  <data name="Emulation.AtariError.ContentNotFound" xml:space="preserve"><value>De konfigurerede Atari medier blev ikke fundet.</value></data>
+  <data name="Emulation.AtariError.ContentUnsupported" xml:space="preserve"><value>De konfigurerede medier understøttes ikke af denne Atari maskine.</value></data>
+  <data name="Emulation.AtariError.OptionInvalid" xml:space="preserve"><value>En Atari-indstilling har en ugyldig værdi.</value></data>
+  <data name="Emulation.AtariError.HostProtocolFailure" xml:space="preserve"><value>Kommunikation med Atari-værten mislykkedes.</value></data>
+  <data name="Emulation.AtariError.StateInvalid" xml:space="preserve"><value>Atari gemt tilstand er ugyldig.</value></data>
+  <data name="Emulation.AtariError.StateIncompatible" xml:space="preserve"><value>Atari gemt tilstand er uforenelig med den nuværende maskine.</value></data>
+  <data name="Emulation.AtariError.Unexpected" xml:space="preserve"><value>En uventet Atari emulering fejl opstod.</value></data>
+  <data name="Emulation.AtariError.Details" xml:space="preserve"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.AtariError.ActiveConfiguration" xml:space="preserve"><value>Den aktive Atari-konfiguration kan ikke ændres eller slettes.</value></data>
+  <data name="Emulation.AtariError.RequiredFirmwareMissing" xml:space="preserve"><value>Krævet Atari firmware &#x27;{0}&#x27; er ikke konfigureret til {1}.</value></data>
+  <data name="Emulation.AtariError.FirmwareFileMissing" xml:space="preserve"><value>Configured Atari firmware &#x27;{0}&#x27; blev ikke fundet: {1}</value></data>
+  <data name="Emulation.AtariError.MediaFileMissing" xml:space="preserve"><value>Konfigure Atari medier blev ikke fundet: {0}</value></data>
+  <data name="Emulation.AtariError.HostExecutableMissing" xml:space="preserve"><value>Atari-værtens kørbare sti er ikke tilgængelig.</value></data>
+  <data name="Emulation.AtariError.CoreNotInstalled" xml:space="preserve"><value>Atari-kernen &#x27;{0}&#x27; er ikke installeret.</value></data>
+  <data name="Emulation.AtariMediaFilter" xml:space="preserve"><value>Atari-medier|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Alle filer|*.*</value></data>
 </root>

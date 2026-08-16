@@ -602,11 +602,11 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-049 — Traduire toutes les langues prises en charge
 
-- [ ] Traduire toutes les nouvelles clés dans les 28 langues actuellement distribuées.
-- [ ] Conserver placeholders, raccourcis, noms officiels, unités et direction du texte.
-- [ ] Vérifier automatiquement que chaque langue possède exactement les clés de référence.
-- [ ] Relire les écrans longs en RTL, CJK et langues à expansion importante.
-- [ ] Ne considérer ce ticket terminé qu’après absence de fallback anglais involontaire dans chaque langue.
+- [x] Traduire toutes les nouvelles clés dans les 28 langues actuellement distribuées.
+- [x] Conserver placeholders, raccourcis, noms officiels, unités et direction du texte.
+- [x] Vérifier automatiquement que chaque langue possède exactement les clés de référence.
+- [x] Relire les écrans longs en RTL, CJK et langues à expansion importante.
+- [x] Ne considérer ce ticket terminé qu’après absence de fallback anglais involontaire dans chaque langue.
 
 #### ATA-050 — Intégrer Atari au guide utilisateur
 

@@ -15,4 +15,5 @@
   <data name="Common.Unknown">
     <value>לֹא יְדוּעַ</value>
   </data>
+  <data name="Common.Eject" xml:space="preserve"><value>הוצאה</value></data>
 </root>

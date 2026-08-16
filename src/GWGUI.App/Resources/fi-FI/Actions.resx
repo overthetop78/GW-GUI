@@ -75,4 +75,5 @@
   <data name="Common.New"><value>Uusi</value></data>
   <data name="Common.Refresh"><value>Päivitä</value></data>
   <data name="Common.OpenFolder"><value>Avaa kansio</value></data>
+  <data name="Common.Pause" xml:space="preserve"><value>Keskeytä</value></data>
 </root>

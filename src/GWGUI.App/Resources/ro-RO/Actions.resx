@@ -75,4 +75,5 @@
   <data name="Common.New"><value>Nou</value></data>
   <data name="Common.Refresh"><value>Reîmprospătează</value></data>
   <data name="Common.OpenFolder"><value>Deschideți folderul</value></data>
+  <data name="Common.Pause" xml:space="preserve"><value>Pauză</value></data>
 </root>

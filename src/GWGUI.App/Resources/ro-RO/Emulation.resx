@@ -438,4 +438,24 @@
   <data name="Emulation.AtariRegion"><value>Regiune</value></data>
   <data name="Emulation.AtariMultilingual"><value>Multilingv</value></data>
   <data name="Emulation.AtariRegionFree"><value>Fără regiune</value></data>
+  <data name="Emulation.AudioTab" xml:space="preserve"><value>Audio</value></data>
+  <data name="Emulation.AtariError.CoreNotFound" xml:space="preserve"><value>Miezul Atari necesar nu a fost găsit.</value></data>
+  <data name="Emulation.AtariError.CoreRejected" xml:space="preserve"><value>Miezul Atari selectat nu a putut fi încărcat.</value></data>
+  <data name="Emulation.AtariError.FirmwareMissing" xml:space="preserve"><value>Lipseşte un firmware Atari necesar.</value></data>
+  <data name="Emulation.AtariError.FirmwareInvalid" xml:space="preserve"><value>Un firmware Atari este invalid sau incompatibil.</value></data>
+  <data name="Emulation.AtariError.ContentNotFound" xml:space="preserve"><value>Presa configurată Atari nu a fost găsită.</value></data>
+  <data name="Emulation.AtariError.ContentUnsupported" xml:space="preserve"><value>Mass-media configurată nu este susținută de această mașină Atari.</value></data>
+  <data name="Emulation.AtariError.OptionInvalid" xml:space="preserve"><value>O opțiune Atari are o valoare invalidă.</value></data>
+  <data name="Emulation.AtariError.HostProtocolFailure" xml:space="preserve"><value>Comunicarea cu gazda Atari a eșuat.</value></data>
+  <data name="Emulation.AtariError.StateInvalid" xml:space="preserve"><value>Starea salvată de Atari este invalidă.</value></data>
+  <data name="Emulation.AtariError.StateIncompatible" xml:space="preserve"><value>Starea salvată de Atari este incompatibilă cu maşina curentă.</value></data>
+  <data name="Emulation.AtariError.Unexpected" xml:space="preserve"><value>A avut loc o eroare neaşteptată de emulare Atari.</value></data>
+  <data name="Emulation.AtariError.Details" xml:space="preserve"><value>Detalii: {0}</value></data>
+  <data name="Emulation.AtariError.ActiveConfiguration" xml:space="preserve"><value>Configuraţia activă Atari nu poate fi modificată sau eliminată.</value></data>
+  <data name="Emulation.AtariError.RequiredFirmwareMissing" xml:space="preserve"><value>Atari firmware &quot;{0}&quot; nu este configurat pentru {1}.</value></data>
+  <data name="Emulation.AtariError.FirmwareFileMissing" xml:space="preserve"><value>Configurat Atari firmware &#x27;{0}&#x27; nu a fost găsit: {1}</value></data>
+  <data name="Emulation.AtariError.MediaFileMissing" xml:space="preserve"><value>Configurat Atari media nu a fost găsit: {0}</value></data>
+  <data name="Emulation.AtariError.HostExecutableMissing" xml:space="preserve"><value>Calea executabilă a gazdei Atari nu este disponibilă.</value></data>
+  <data name="Emulation.AtariError.CoreNotInstalled" xml:space="preserve"><value>Miezul Atari &#x27;{0}&#x27; nu este instalat.</value></data>
+  <data name="Emulation.AtariMediaFilter" xml:space="preserve"><value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Toate fișierele|*.*</value></data>
 </root>

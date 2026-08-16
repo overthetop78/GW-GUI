@@ -438,4 +438,24 @@
   <data name="Emulation.AtariRegion"><value>Region</value></data>
   <data name="Emulation.AtariMultilingual"><value>Flerspråkig</value></data>
   <data name="Emulation.AtariRegionFree"><value>Regionsfri</value></data>
+  <data name="Emulation.AudioTab" xml:space="preserve"><value>Audio</value></data>
+  <data name="Emulation.AtariError.CoreNotFound" xml:space="preserve"><value>Den nödvändiga kärnan i Atari hittades inte.</value></data>
+  <data name="Emulation.AtariError.CoreRejected" xml:space="preserve"><value>Den valda kärnan i Atari kunde inte laddas.</value></data>
+  <data name="Emulation.AtariError.FirmwareMissing" xml:space="preserve"><value>En nödvändig Atari firmware saknas.</value></data>
+  <data name="Emulation.AtariError.FirmwareInvalid" xml:space="preserve"><value>En Atari firmware är ogiltig eller oförenlig.</value></data>
+  <data name="Emulation.AtariError.ContentNotFound" xml:space="preserve"><value>De konfigurerade Atari-medierna hittades inte.</value></data>
+  <data name="Emulation.AtariError.ContentUnsupported" xml:space="preserve"><value>De konfigurerade medierna stöds inte av denna Atari-maskin.</value></data>
+  <data name="Emulation.AtariError.OptionInvalid" xml:space="preserve"><value>Ett Atari-alternativ har ett ogiltigt värde.</value></data>
+  <data name="Emulation.AtariError.HostProtocolFailure" xml:space="preserve"><value>Kommunikation med Atari-värden misslyckades.</value></data>
+  <data name="Emulation.AtariError.StateInvalid" xml:space="preserve"><value>Atari räddade staten är ogiltig.</value></data>
+  <data name="Emulation.AtariError.StateIncompatible" xml:space="preserve"><value>Atari räddade staten är oförenlig med den nuvarande maskinen.</value></data>
+  <data name="Emulation.AtariError.Unexpected" xml:space="preserve"><value>Ett oväntat Atari-emuleringsfel inträffade.</value></data>
+  <data name="Emulation.AtariError.Details" xml:space="preserve"><value>Detaljer: {0}</value></data>
+  <data name="Emulation.AtariError.ActiveConfiguration" xml:space="preserve"><value>Den aktiva Atarikonfigurationen kan inte ändras eller tas bort.</value></data>
+  <data name="Emulation.AtariError.RequiredFirmwareMissing" xml:space="preserve"><value>Atari firmware &quot;{0}&quot; är inte konfigurerad för {1}.</value></data>
+  <data name="Emulation.AtariError.FirmwareFileMissing" xml:space="preserve"><value>Konfigurerad Atari firmware &quot;{0}&quot; hittades inte: {1}</value></data>
+  <data name="Emulation.AtariError.MediaFileMissing" xml:space="preserve"><value>Configured Atari media hittades inte: {0}</value></data>
+  <data name="Emulation.AtariError.HostExecutableMissing" xml:space="preserve"><value>Atari värd körbar väg är otillgänglig.</value></data>
+  <data name="Emulation.AtariError.CoreNotInstalled" xml:space="preserve"><value>Kärnan &quot;{0}&quot; är inte installerad.</value></data>
+  <data name="Emulation.AtariMediaFilter" xml:space="preserve"><value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Alla filer|*.*</value></data>
 </root>

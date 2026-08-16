@@ -15,4 +15,5 @@
   <data name="Common.Unknown">
     <value>Onbekend</value>
   </data>
+  <data name="Common.Eject" xml:space="preserve"><value>Uitwerpen</value></data>
 </root>

@@ -183,4 +183,5 @@
   <data name="Engines.StrictChoice" xml:space="preserve"><value>Valittua moottoria käytetään ehdottomasti. Jos se ei voi suorittaa toimintoa, GW GUI ilmoittaa siitä vaihtamatta huomaamatta toiseen moottoriin.</value></data>
   <data name="Emulation.Model" xml:space="preserve"><value>Malli</value></data>
   <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Kaappaa hiiri</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>Asetukset</value></data>
 </root>

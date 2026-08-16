@@ -75,4 +75,5 @@
   <data name="Common.New"><value>Ny</value></data>
   <data name="Common.Refresh"><value>Uppdatera</value></data>
   <data name="Common.OpenFolder"><value>Öppna mapp</value></data>
+  <data name="Common.Pause" xml:space="preserve"><value>Paus</value></data>
 </root>

@@ -15,4 +15,5 @@
   <data name="Common.Unknown">
     <value>Neznámý</value>
   </data>
+  <data name="Common.Eject" xml:space="preserve"><value>Vysunout</value></data>
 </root>

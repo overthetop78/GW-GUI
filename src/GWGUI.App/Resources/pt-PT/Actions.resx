@@ -75,4 +75,5 @@
   <data name="Common.New"><value>Novo</value></data>
   <data name="Common.Refresh"><value>Atualizar</value></data>
   <data name="Common.OpenFolder"><value>Abrir pasta</value></data>
+  <data name="Common.Pause" xml:space="preserve"><value>Pausa</value></data>
 </root>

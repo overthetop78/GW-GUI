@@ -438,4 +438,24 @@
   <data name="Emulation.AtariRegion"><value>Регіон</value></data>
   <data name="Emulation.AtariMultilingual"><value>Багатомовний</value></data>
   <data name="Emulation.AtariRegionFree"><value>Без регіону</value></data>
+  <data name="Emulation.AudioTab" xml:space="preserve"><value>Аудіо</value></data>
+  <data name="Emulation.AtariError.CoreNotFound" xml:space="preserve"><value>Не знайдено обов&#x27;язкове ядро Atari.</value></data>
+  <data name="Emulation.AtariError.CoreRejected" xml:space="preserve"><value>Вибране ядро Atari не можна завантажити.</value></data>
+  <data name="Emulation.AtariError.FirmwareMissing" xml:space="preserve"><value>Прошивка Atari відсутні.</value></data>
+  <data name="Emulation.AtariError.FirmwareInvalid" xml:space="preserve"><value>Прошивка Atari недійсна або несумісна.</value></data>
+  <data name="Emulation.AtariError.ContentNotFound" xml:space="preserve"><value>Не знайдено налаштований Atari media.</value></data>
+  <data name="Emulation.AtariError.ContentUnsupported" xml:space="preserve"><value>Налаштовані медіа не підтримуються цією машиною Atari.</value></data>
+  <data name="Emulation.AtariError.OptionInvalid" xml:space="preserve"><value>Опція Atari має недійсне значення.</value></data>
+  <data name="Emulation.AtariError.HostProtocolFailure" xml:space="preserve"><value>Зв&#x27;язок з Атарі не вдалося.</value></data>
+  <data name="Emulation.AtariError.StateInvalid" xml:space="preserve"><value>Атарі врятував стан недійсним.</value></data>
+  <data name="Emulation.AtariError.StateIncompatible" xml:space="preserve"><value>При збереженому стані Атарі не сумісний з поточною машиною.</value></data>
+  <data name="Emulation.AtariError.Unexpected" xml:space="preserve"><value>Несподівана помилка емульсії Atari.</value></data>
+  <data name="Emulation.AtariError.Details" xml:space="preserve"><value>Опис: {0}</value></data>
+  <data name="Emulation.AtariError.ActiveConfiguration" xml:space="preserve"><value>Активна конфігурація Atari не може бути змінена або видалена.</value></data>
+  <data name="Emulation.AtariError.RequiredFirmwareMissing" xml:space="preserve"><value>Необхідна прошивка Atari &#x27;{0}&#x27; не налаштована для {1}.</value></data>
+  <data name="Emulation.AtariError.FirmwareFileMissing" xml:space="preserve"><value>Конфігурація прошивки Atari &#x27;{0}&#x27; не знайдено: {1}</value></data>
+  <data name="Emulation.AtariError.MediaFileMissing" xml:space="preserve"><value>Конфігурація Atari media не знайдено: {0}</value></data>
+  <data name="Emulation.AtariError.HostExecutableMissing" xml:space="preserve"><value>The Atari хост виконуваний шлях не доступний.</value></data>
+  <data name="Emulation.AtariError.CoreNotInstalled" xml:space="preserve"><value>Ядро Atari &#x27;{0}&#x27; не встановлено.</value></data>
+  <data name="Emulation.AtariMediaFilter" xml:space="preserve"><value>Atari медіа|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Всі файли|*.*</value></data>
 </root>

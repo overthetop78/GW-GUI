@@ -75,4 +75,5 @@
   <data name="Common.New"><value>Yeni</value></data>
   <data name="Common.Refresh"><value>Yenile</value></data>
   <data name="Common.OpenFolder"><value>Klasörü aç</value></data>
+  <data name="Common.Pause" xml:space="preserve"><value>Duraklat</value></data>
 </root>

@@ -75,4 +75,5 @@
   <data name="Common.New"><value>新建</value></data>
   <data name="Common.Refresh"><value>刷新</value></data>
   <data name="Common.OpenFolder"><value>打开文件夹</value></data>
+  <data name="Common.Pause" xml:space="preserve"><value>暂停</value></data>
 </root>

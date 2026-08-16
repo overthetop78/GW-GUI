@@ -183,4 +183,5 @@
   <data name="Engines.StrictChoice" xml:space="preserve"><value>Vybraný modul se používá striktně. Pokud operaci nezvládne, GW GUI to oznámí a tiše nepoužije druhý modul.</value></data>
   <data name="Emulation.Model" xml:space="preserve"><value>Model</value></data>
   <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Zachytávat myš</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>Nastavení</value></data>
 </root>

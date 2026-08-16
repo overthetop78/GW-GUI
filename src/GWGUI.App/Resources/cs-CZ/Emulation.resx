@@ -438,4 +438,24 @@
   <data name="Emulation.AtariRegion"><value>Oblast</value></data>
   <data name="Emulation.AtariMultilingual"><value>Vícejazyčné</value></data>
   <data name="Emulation.AtariRegionFree"><value>Bez regionu</value></data>
+  <data name="Emulation.AudioTab" xml:space="preserve"><value>Audio</value></data>
+  <data name="Emulation.AtariError.CoreNotFound" xml:space="preserve"><value>Požadované jádro Atari nebylo nalezeno.</value></data>
+  <data name="Emulation.AtariError.CoreRejected" xml:space="preserve"><value>Zvolené jádro Atari nebylo možné načíst.</value></data>
+  <data name="Emulation.AtariError.FirmwareMissing" xml:space="preserve"><value>Chybí požadovaný firmware Atari.</value></data>
+  <data name="Emulation.AtariError.FirmwareInvalid" xml:space="preserve"><value>Atari firmware je neplatný nebo nekompatibilní.</value></data>
+  <data name="Emulation.AtariError.ContentNotFound" xml:space="preserve"><value>Nakonfigurovaná média Atari nebyla nalezena.</value></data>
+  <data name="Emulation.AtariError.ContentUnsupported" xml:space="preserve"><value>Nakonfigurovaná média nejsou podporována tímto zařízením Atari.</value></data>
+  <data name="Emulation.AtariError.OptionInvalid" xml:space="preserve"><value>Možnost Atari má neplatnou hodnotu.</value></data>
+  <data name="Emulation.AtariError.HostProtocolFailure" xml:space="preserve"><value>Komunikace s hostitelem Atari selhala.</value></data>
+  <data name="Emulation.AtariError.StateInvalid" xml:space="preserve"><value>Uložený stav Atari je neplatný.</value></data>
+  <data name="Emulation.AtariError.StateIncompatible" xml:space="preserve"><value>Uložený stav Atari je neslučitelný se stávajícím strojem.</value></data>
+  <data name="Emulation.AtariError.Unexpected" xml:space="preserve"><value>Nastala neočekávaná chyba emulace Atari.</value></data>
+  <data name="Emulation.AtariError.Details" xml:space="preserve"><value>Podrobnosti: {0}</value></data>
+  <data name="Emulation.AtariError.ActiveConfiguration" xml:space="preserve"><value>Aktivní konfiguraci Atari nelze změnit nebo smazat.</value></data>
+  <data name="Emulation.AtariError.RequiredFirmwareMissing" xml:space="preserve"><value>Požadovaný firmware Atari &#x27;{0}&#x27; není konfigurován pro{1}.</value></data>
+  <data name="Emulation.AtariError.FirmwareFileMissing" xml:space="preserve"><value>Konfigurovaný firmware Atari &#x27;{0}&#x27; nebyl nalezen: {1}</value></data>
+  <data name="Emulation.AtariError.MediaFileMissing" xml:space="preserve"><value>Konfigurovaná média Atari nebyla nalezena: {0}</value></data>
+  <data name="Emulation.AtariError.HostExecutableMissing" xml:space="preserve"><value>Spustitelná cesta Atari je nedostupná.</value></data>
+  <data name="Emulation.AtariError.CoreNotInstalled" xml:space="preserve"><value>Jádro Atari &#x27;{0}&#x27; není instalováno.</value></data>
+  <data name="Emulation.AtariMediaFilter" xml:space="preserve"><value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Všechny soubory|*.*</value></data>
 </root>

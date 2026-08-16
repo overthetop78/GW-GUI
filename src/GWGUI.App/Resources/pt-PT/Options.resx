@@ -183,4 +183,5 @@
   <data name="Engines.StrictChoice" xml:space="preserve"><value>O motor selecionado é usado estritamente. Se não puder realizar a operação, o GW GUI informa sem usar silenciosamente o outro motor.</value></data>
   <data name="Emulation.Model" xml:space="preserve"><value>Modelo</value></data>
   <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Capturar o rato</value></data>
+  <data name="Emulation.Configuration" xml:space="preserve"><value>Configuração</value></data>
 </root>

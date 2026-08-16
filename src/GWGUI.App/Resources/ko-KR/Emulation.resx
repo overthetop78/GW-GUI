@@ -438,4 +438,24 @@
   <data name="Emulation.AtariRegion"><value>지역</value></data>
   <data name="Emulation.AtariMultilingual"><value>다국어</value></data>
   <data name="Emulation.AtariRegionFree"><value>지역 제한 없음</value></data>
+  <data name="Emulation.AudioTab" xml:space="preserve"><value>오디오</value></data>
+  <data name="Emulation.AtariError.CoreNotFound" xml:space="preserve"><value>필수 Atari 코어를 찾을 수 없습니다.</value></data>
+  <data name="Emulation.AtariError.CoreRejected" xml:space="preserve"><value>선택한 Atari 코어를 불러올 수 없습니다.</value></data>
+  <data name="Emulation.AtariError.FirmwareMissing" xml:space="preserve"><value>필수 Atari 펌웨어가 없습니다.</value></data>
+  <data name="Emulation.AtariError.FirmwareInvalid" xml:space="preserve"><value>Atari 펌웨어가 잘못되었거나 호환되지 않습니다.</value></data>
+  <data name="Emulation.AtariError.ContentNotFound" xml:space="preserve"><value>구성된 Atari 미디어를 찾을 수 없습니다.</value></data>
+  <data name="Emulation.AtariError.ContentUnsupported" xml:space="preserve"><value>구성된 미디어는 이 Atari 기기에서 지원되지 않습니다.</value></data>
+  <data name="Emulation.AtariError.OptionInvalid" xml:space="preserve"><value>Atari 옵션 값이 잘못되었습니다.</value></data>
+  <data name="Emulation.AtariError.HostProtocolFailure" xml:space="preserve"><value>Atari 호스트와 통신하지 못했습니다.</value></data>
+  <data name="Emulation.AtariError.StateInvalid" xml:space="preserve"><value>Atari 저장 상태가 잘못되었습니다.</value></data>
+  <data name="Emulation.AtariError.StateIncompatible" xml:space="preserve"><value>Atari 저장 상태가 현재 기기와 호환되지 않습니다.</value></data>
+  <data name="Emulation.AtariError.Unexpected" xml:space="preserve"><value>예기치 않은 Atari 에뮬레이션 오류가 발생했습니다.</value></data>
+  <data name="Emulation.AtariError.Details" xml:space="preserve"><value>세부 정보: {0}</value></data>
+  <data name="Emulation.AtariError.ActiveConfiguration" xml:space="preserve"><value>사용 중인 Atari 구성은 수정하거나 삭제할 수 없습니다.</value></data>
+  <data name="Emulation.AtariError.RequiredFirmwareMissing" xml:space="preserve"><value>필수 Atari 펌웨어 &#x27;{0}&#x27;이(가) {1}에 대해 구성되지 않았습니다.</value></data>
+  <data name="Emulation.AtariError.FirmwareFileMissing" xml:space="preserve"><value>구성된 Atari 펌웨어 &#x27;{0}&#x27;을(를) 찾을 수 없습니다: {1}</value></data>
+  <data name="Emulation.AtariError.MediaFileMissing" xml:space="preserve"><value>구성된 Atari 미디어를 찾을 수 없습니다: {0}</value></data>
+  <data name="Emulation.AtariError.HostExecutableMissing" xml:space="preserve"><value>Atari 호스트 실행 파일 경로를 사용할 수 없습니다.</value></data>
+  <data name="Emulation.AtariError.CoreNotInstalled" xml:space="preserve"><value>Atari 코어 &#x27;{0}&#x27;이(가) 설치되어 있지 않습니다.</value></data>
+  <data name="Emulation.AtariMediaFilter" xml:space="preserve"><value>Atari 미디어|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|모든 파일|*.*</value></data>
 </root>

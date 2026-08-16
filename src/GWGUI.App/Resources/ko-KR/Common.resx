@@ -15,4 +15,5 @@
   <data name="Common.Unknown">
     <value>알려지지 않은</value>
   </data>
+  <data name="Common.Eject" xml:space="preserve"><value>꺼내기</value></data>
 </root>

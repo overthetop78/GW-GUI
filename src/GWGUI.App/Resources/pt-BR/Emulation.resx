@@ -438,4 +438,24 @@
   <data name="Emulation.AtariRegion"><value>Região</value></data>
   <data name="Emulation.AtariMultilingual"><value>Multilíngue</value></data>
   <data name="Emulation.AtariRegionFree"><value>Livre de região</value></data>
+  <data name="Emulation.AudioTab" xml:space="preserve"><value>Áudio</value></data>
+  <data name="Emulation.AtariError.CoreNotFound" xml:space="preserve"><value>O núcleo Atari necessário não foi encontrado.</value></data>
+  <data name="Emulation.AtariError.CoreRejected" xml:space="preserve"><value>Não foi possível carregar o núcleo Atari seleccionado.</value></data>
+  <data name="Emulation.AtariError.FirmwareMissing" xml:space="preserve"><value>Falta um firmware Atari necessário.</value></data>
+  <data name="Emulation.AtariError.FirmwareInvalid" xml:space="preserve"><value>Um firmware Atari é inválido ou incompatível.</value></data>
+  <data name="Emulation.AtariError.ContentNotFound" xml:space="preserve"><value>A mídia Atari configurada não foi encontrada.</value></data>
+  <data name="Emulation.AtariError.ContentUnsupported" xml:space="preserve"><value>A mídia configurada não é suportada por esta máquina Atari.</value></data>
+  <data name="Emulation.AtariError.OptionInvalid" xml:space="preserve"><value>Uma opção Atari tem um valor inválido.</value></data>
+  <data name="Emulation.AtariError.HostProtocolFailure" xml:space="preserve"><value>A comunicação com o anfitrião da Atari falhou.</value></data>
+  <data name="Emulation.AtariError.StateInvalid" xml:space="preserve"><value>O estado salvo do Atari é inválido.</value></data>
+  <data name="Emulation.AtariError.StateIncompatible" xml:space="preserve"><value>O estado salvo Atari é incompatível com a máquina atual.</value></data>
+  <data name="Emulation.AtariError.Unexpected" xml:space="preserve"><value>Ocorreu um erro inesperado de emulação do Atari.</value></data>
+  <data name="Emulation.AtariError.Details" xml:space="preserve"><value>Detalhes: {0}</value></data>
+  <data name="Emulation.AtariError.ActiveConfiguration" xml:space="preserve"><value>A configuração ativa do Atari não pode ser modificada ou excluída.</value></data>
+  <data name="Emulation.AtariError.RequiredFirmwareMissing" xml:space="preserve"><value>O firmware Atari necessário &#x27;{0}&#x27; não está configurado para {1}.</value></data>
+  <data name="Emulation.AtariError.FirmwareFileMissing" xml:space="preserve"><value>O firmware Atari configurado &#x27;{0}&#x27; não foi encontrado: {1}</value></data>
+  <data name="Emulation.AtariError.MediaFileMissing" xml:space="preserve"><value>Mídia Atari não foi encontrada: {0}</value></data>
+  <data name="Emulation.AtariError.HostExecutableMissing" xml:space="preserve"><value>O caminho executável da máquina Atari está indisponível.</value></data>
+  <data name="Emulation.AtariError.CoreNotInstalled" xml:space="preserve"><value>O núcleo Atari &#x27;{0}&#x27; não está instalado.</value></data>
+  <data name="Emulation.AtariMediaFilter" xml:space="preserve"><value>Mídia Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Todos os arquivos|*.*</value></data>
 </root>

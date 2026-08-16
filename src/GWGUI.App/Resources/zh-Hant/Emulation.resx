@@ -438,4 +438,24 @@
   <data name="Emulation.AtariRegion"><value>區域</value></data>
   <data name="Emulation.AtariMultilingual"><value>多語言</value></data>
   <data name="Emulation.AtariRegionFree"><value>無區域限制</value></data>
+  <data name="Emulation.AudioTab" xml:space="preserve"><value>音訊</value></data>
+  <data name="Emulation.AtariError.CoreNotFound" xml:space="preserve"><value>找不到所需的 Atari 核心。</value></data>
+  <data name="Emulation.AtariError.CoreRejected" xml:space="preserve"><value>無法載入所選的 Atari 核心。</value></data>
+  <data name="Emulation.AtariError.FirmwareMissing" xml:space="preserve"><value>缺少所需的 Atari 韌體。</value></data>
+  <data name="Emulation.AtariError.FirmwareInvalid" xml:space="preserve"><value>Atari 韌體無效或不相容。</value></data>
+  <data name="Emulation.AtariError.ContentNotFound" xml:space="preserve"><value>找不到已設定的 Atari 媒體。</value></data>
+  <data name="Emulation.AtariError.ContentUnsupported" xml:space="preserve"><value>此 Atari 機器不支援已設定的媒體。</value></data>
+  <data name="Emulation.AtariError.OptionInvalid" xml:space="preserve"><value>Atari 選項的值無效。</value></data>
+  <data name="Emulation.AtariError.HostProtocolFailure" xml:space="preserve"><value>與 Atari 主機通訊失敗。</value></data>
+  <data name="Emulation.AtariError.StateInvalid" xml:space="preserve"><value>Atari 儲存狀態無效。</value></data>
+  <data name="Emulation.AtariError.StateIncompatible" xml:space="preserve"><value>Atari 儲存狀態與目前的機器不相容。</value></data>
+  <data name="Emulation.AtariError.Unexpected" xml:space="preserve"><value>發生未預期的 Atari 模擬錯誤。</value></data>
+  <data name="Emulation.AtariError.Details" xml:space="preserve"><value>詳細資料：{0}</value></data>
+  <data name="Emulation.AtariError.ActiveConfiguration" xml:space="preserve"><value>無法修改或刪除正在使用的 Atari 設定。</value></data>
+  <data name="Emulation.AtariError.RequiredFirmwareMissing" xml:space="preserve"><value>尚未針對 {1} 設定所需的 Atari 韌體「{0}」。</value></data>
+  <data name="Emulation.AtariError.FirmwareFileMissing" xml:space="preserve"><value>找不到已設定的 Atari 韌體「{0}」：{1}</value></data>
+  <data name="Emulation.AtariError.MediaFileMissing" xml:space="preserve"><value>找不到已設定的 Atari 媒體：{0}</value></data>
+  <data name="Emulation.AtariError.HostExecutableMissing" xml:space="preserve"><value>Atari 主機執行檔路徑無法使用。</value></data>
+  <data name="Emulation.AtariError.CoreNotInstalled" xml:space="preserve"><value>尚未安裝 Atari 核心「{0}」。</value></data>
+  <data name="Emulation.AtariMediaFilter" xml:space="preserve"><value>Atari 媒體|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|所有檔案|*.*</value></data>
 </root>

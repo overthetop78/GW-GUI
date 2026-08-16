@@ -438,4 +438,24 @@
   <data name="Emulation.AtariRegion"><value>Régió</value></data>
   <data name="Emulation.AtariMultilingual"><value>Többnyelvű</value></data>
   <data name="Emulation.AtariRegionFree"><value>Régiófüggetlen</value></data>
+  <data name="Emulation.AudioTab" xml:space="preserve"><value>Hang</value></data>
+  <data name="Emulation.AtariError.CoreNotFound" xml:space="preserve"><value>A szükséges Atari magot nem találták meg.</value></data>
+  <data name="Emulation.AtariError.CoreRejected" xml:space="preserve"><value>A kiválasztott Atari magot nem sikerült betölteni.</value></data>
+  <data name="Emulation.AtariError.FirmwareMissing" xml:space="preserve"><value>Egy szükséges Atari firmware hiányzik.</value></data>
+  <data name="Emulation.AtariError.FirmwareInvalid" xml:space="preserve"><value>Az Atari firmware érvénytelen vagy összeegyeztethetetlen.</value></data>
+  <data name="Emulation.AtariError.ContentNotFound" xml:space="preserve"><value>A konfigurált Atari média nem található.</value></data>
+  <data name="Emulation.AtariError.ContentUnsupported" xml:space="preserve"><value>A beállított médiát nem támogatja ez az Atari gép.</value></data>
+  <data name="Emulation.AtariError.OptionInvalid" xml:space="preserve"><value>Az Atari opció érvénytelen.</value></data>
+  <data name="Emulation.AtariError.HostProtocolFailure" xml:space="preserve"><value>Az Atarival való kommunikáció nem sikerült.</value></data>
+  <data name="Emulation.AtariError.StateInvalid" xml:space="preserve"><value>Az Atari mentett állam érvénytelen.</value></data>
+  <data name="Emulation.AtariError.StateIncompatible" xml:space="preserve"><value>Az Atari mentett állam összeegyeztethetetlen az aktuális gép.</value></data>
+  <data name="Emulation.AtariError.Unexpected" xml:space="preserve"><value>Váratlan Atari emulációs hiba történt.</value></data>
+  <data name="Emulation.AtariError.Details" xml:space="preserve"><value>Részletek: {0}</value></data>
+  <data name="Emulation.AtariError.ActiveConfiguration" xml:space="preserve"><value>Az aktív Atari konfiguráció nem módosítható vagy törölhető.</value></data>
+  <data name="Emulation.AtariError.RequiredFirmwareMissing" xml:space="preserve"><value>A szükséges Atari firmware &#x27;{0}&#x27; nincs beállítva a {1}-re.</value></data>
+  <data name="Emulation.AtariError.FirmwareFileMissing" xml:space="preserve"><value>A konfigurált Atari firmware &#x27;{0}&#x27; nem található: {1}</value></data>
+  <data name="Emulation.AtariError.MediaFileMissing" xml:space="preserve"><value>A konfigurált Atari média nem található: {0}</value></data>
+  <data name="Emulation.AtariError.HostExecutableMissing" xml:space="preserve"><value>Az Atari host futtatható útvonal nem elérhető.</value></data>
+  <data name="Emulation.AtariError.CoreNotInstalled" xml:space="preserve"><value>Az Atari mag ({0}) nincs telepítve.</value></data>
+  <data name="Emulation.AtariMediaFilter" xml:space="preserve"><value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Minden fájl|*.*</value></data>
 </root>

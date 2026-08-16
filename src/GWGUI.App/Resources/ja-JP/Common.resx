@@ -15,4 +15,5 @@
   <data name="Common.Unknown">
     <value>未知</value>
   </data>
+  <data name="Common.Eject" xml:space="preserve"><value>取り出す</value></data>
 </root>
