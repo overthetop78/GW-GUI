@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>Capture d’écran</value></data>
   <data name="Emulation.Shortcut.Mute"><value>Couper le son de la machine active</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>Avance rapide tant que la touche est maintenue</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Insérer ou remplacer un média</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Éjecter le média</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Média suivant</value></data>
   <data name="Emulation.Key.Help"><value>Aide</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>Amiga gauche</value></data>
   <data name="Emulation.Key.RightAmiga"><value>Amiga droite</value></data>

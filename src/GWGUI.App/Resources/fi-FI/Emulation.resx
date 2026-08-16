@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>Näyttökuva</value></data>
   <data name="Emulation.Shortcut.Mute"><value>Mykistä aktiivinen kone</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>Pikakelaus pidettäessä</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Aseta tai vaihda media</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Poista media</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Seuraava media</value></data>
   <data name="Emulation.Key.Help"><value>Ohje</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>Vasen Amiga</value></data>
   <data name="Emulation.Key.RightAmiga"><value>Oikea Amiga</value></data>

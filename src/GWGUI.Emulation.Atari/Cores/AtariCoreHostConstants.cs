@@ -8,7 +8,7 @@ public static class AtariCoreHostConstants
     internal const string VideoMapPrefix = "gwgui-atari-video-";
     internal const string LocalPipeServerName = ".";
     internal const string UniqueNameFormat = "N";
-    internal const int ProtocolVersion = 2;
+    internal const int ProtocolVersion = 3;
     internal const int MaximumPipeInstances = 1;
     internal const int PipeBufferSize = 8 * 1024 * 1024;
     internal const int ConnectionTimeoutMilliseconds = 15_000;

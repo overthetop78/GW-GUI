@@ -126,7 +126,7 @@ public sealed class AmigaMachineView : UserControl
             IconButton("\uE8E5", "Emulation.Shortcut.QuickLoad", QuickLoad)));
         left.Children.Add(ToolbarGroup(IconButton("\uE722", "Emulation.Shortcut.Screenshot", () => { SaveScreenshot(); return Task.CompletedTask; })));
         left.Children.Add(ToolbarGroup(IconButton("\uE740", "Emulation.Shortcut.Fullscreen", () => { ToggleFullscreen(); return Task.CompletedTask; })));
-        var stateShortcuts = ShortcutGroup(
+        var stateShortcuts = EmulationShortcutViewFunctions.CreateGroup(_globalShortcuts,
             (EmulationShortcutDefaults.QuickSave, EmulationResourceKeys.QuickSave),
             (EmulationShortcutDefaults.QuickLoad, EmulationResourceKeys.QuickLoad));
         left.Children.Add(stateShortcuts);
@@ -135,7 +135,7 @@ public sealed class AmigaMachineView : UserControl
         var right = new StackPanel { Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Center };
         _audioStatus = IconButton("\uE767", "Emulation.AudioTab", ToggleAudioMute, requiresPower: true);
         _audioStatus.Width = 28;
-        var displayShortcuts = ShortcutGroup(
+        var displayShortcuts = EmulationShortcutViewFunctions.CreateGroup(_globalShortcuts,
             (EmulationShortcutDefaults.ToggleFullscreen, EmulationResourceKeys.Fullscreen),
             (EmulationShortcutDefaults.ReleaseMouse, EmulationResourceKeys.ReleaseMouse));
         right.Children.Add(displayShortcuts);
@@ -230,42 +230,6 @@ public sealed class AmigaMachineView : UserControl
     private static Border ToolbarGroup(params UIElement[] children) => ToolbarGroup(false, children);
 
     private static Border CenteredToolbarGroup(params UIElement[] children) => ToolbarGroup(true, children);
-
-    private Border ShortcutGroup(params (string Action, string ResourceKey)[] shortcuts) =>
-        ToolbarGroup(shortcuts.Select(ShortcutHint).ToArray());
-
-    private UIElement ShortcutHint((string Action, string ResourceKey) shortcut)
-    {
-        var binding = _globalShortcuts.FirstOrDefault(item => item.Action == shortcut.Action)?.Chord;
-        if (binding is null && EmulationShortcutDefaults.Values.TryGetValue(shortcut.Action, out var fallback))
-            KeyboardChord.TryParse(fallback, out binding);
-        var shortcutText = binding is null ? string.Empty : KeyboardChord.Format(binding.Modifiers, binding.Keys);
-        var panel = new StackPanel
-        {
-            Orientation = Orientation.Horizontal,
-            VerticalAlignment = VerticalAlignment.Center,
-            Margin = new Thickness(5, 0, 5, 0)
-        };
-        panel.Children.Add(new TextBlock
-        {
-            Text = LocExtension.Get(shortcut.ResourceKey),
-            FontSize = 11,
-            VerticalAlignment = VerticalAlignment.Center,
-            Margin = new Thickness(0, 0, 5, 0)
-        });
-        var key = new Border
-        {
-            CornerRadius = new CornerRadius(3),
-            BorderThickness = new Thickness(1),
-            Padding = new Thickness(5, 1, 5, 1),
-            Child = new TextBlock { Text = shortcutText, FontSize = 11, FontWeight = FontWeights.SemiBold }
-        };
-        key.SetResourceReference(BackgroundProperty, "ControlBrush");
-        key.SetResourceReference(BorderBrushProperty, "BorderBrush");
-        panel.Children.Add(key);
-        AutomationProperties.SetName(panel, $"{LocExtension.Get(shortcut.ResourceKey)} {shortcutText}");
-        return panel;
-    }
 
     private static Border ToolbarGroup(bool centered, params UIElement[] children)
     {
@@ -701,17 +665,15 @@ public sealed class AmigaMachineView : UserControl
     {
         if (InputBindingSyntax.IsReservedShortcut(source, Keyboard.Modifiers)) return false;
         if (!KeyboardChord.IsModifierKey(source)) _pressedPhysicalKeys.Add(source);
-        var global = _globalShortcuts.FirstOrDefault(binding =>
-            binding.Chord.Matches(Keyboard.Modifiers, _pressedPhysicalKeys));
-        if (global is not null)
+        var global = EmulationShortcutFunctions.ResolveGlobal(_globalShortcuts, Keyboard.Modifiers,
+            _pressedPhysicalKeys, source, _activeGlobalShortcuts);
+        if (global.Kind == EmulationShortcutMatchKind.Global)
         {
-            if (_activeGlobalShortcuts.Add(global.Action)) _ = ExecuteGlobalShortcutAsync(global.Action);
+            if (global.ShouldExecute && global.Action is not null && _activeGlobalShortcuts.Add(global.Action))
+                _ = ExecuteGlobalShortcutAsync(global.Action);
             return true;
         }
-        if (_globalShortcuts.Any(binding => binding.Chord.Modifiers == Keyboard.Modifiers && binding.Chord.Contains(source)))
-        {
-            return true;
-        }
+        if (global.Kind == EmulationShortcutMatchKind.ReservedForGlobal) return true;
         var shortcut = _keyboardShortcuts.FirstOrDefault(binding =>
             binding.Chord.Matches(Keyboard.Modifiers, _pressedPhysicalKeys));
         if (shortcut is not null)
@@ -740,11 +702,8 @@ public sealed class AmigaMachineView : UserControl
     private bool HandleKeyUp(Key source)
     {
         _pressedPhysicalKeys.Remove(source);
-        _activeGlobalShortcuts.RemoveWhere(action =>
-        {
-            var binding = _globalShortcuts.FirstOrDefault(item => item.Action == action);
-            return binding is null || !binding.Chord.Matches(Keyboard.Modifiers, _pressedPhysicalKeys);
-        });
+        EmulationShortcutFunctions.ReleaseInactive(_activeGlobalShortcuts, _globalShortcuts,
+            Keyboard.Modifiers, _pressedPhysicalKeys);
         if (_pressedShortcutKeys.Remove(source, out var shortcutKey))
         {
             _keys.Remove(shortcutKey);

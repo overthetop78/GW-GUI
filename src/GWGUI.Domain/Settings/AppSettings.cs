@@ -14,7 +14,7 @@ public sealed class AppSettings
         Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GW GUI", "Emulation", "States");
     public string AmigaHardDisksFolder { get; set; } = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GW GUI", "Emulation", "HDD", "Amiga");
-    public Dictionary<string, string> EmulationShortcuts { get; set; } = EmulationShortcutDefaults.Create();
+    public Dictionary<string, string> EmulationShortcuts { get; set; } = EmulationShortcutDefaultFunctions.Create();
     public bool CreateEmulationFoldersAutomatically { get; set; } = true;
     public string? LastDiskImageFolder { get; set; }
     public string? GwExecutablePath { get; set; }

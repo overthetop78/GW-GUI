@@ -14,6 +14,7 @@ public interface IAtariMachine : IEmulatedMachine
     string CoreName { get; }
     string CoreVersion { get; }
     IReadOnlySet<string> SupportedContentExtensions { get; }
+    bool SupportsSaveStates { get; }
     bool IsAudioMuted { get; }
     float AudioVolume { get; }
     AtariRuntimeStatus RuntimeStatus { get; }

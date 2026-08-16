@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>Zrzut ekranu</value></data>
   <data name="Emulation.Shortcut.Mute"><value>Wycisz aktywną maszynę</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>Szybkie przewijanie podczas przytrzymania</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Włóż lub zastąp nośnik</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Wysuń nośnik</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Następny nośnik</value></data>
   <data name="Emulation.Key.Help"><value>Pomoc</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>Lewa Amiga</value></data>
   <data name="Emulation.Key.RightAmiga"><value>Prawa Amiga</value></data>

@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>Skjermbilde</value></data>
   <data name="Emulation.Shortcut.Mute"><value>Demp aktiv maskin</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>Spol raskt mens tasten holdes nede</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Sett inn eller bytt medium</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Løs ut medium</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Neste medium</value></data>
   <data name="Emulation.Key.Help"><value>Hjelp</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>Venstre Amiga</value></data>
   <data name="Emulation.Key.RightAmiga"><value>Høyre Amiga</value></data>

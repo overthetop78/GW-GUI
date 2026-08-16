@@ -11,6 +11,9 @@ internal static class ControlVisualConstants
     internal const string CloseGlyph = "\uE8BB";
     internal const string EmptyValue = "\u2014";
     internal const string AmigaTitle = "Amiga";
+    internal const string CardBrushResource = "CardBrush";
+    internal const string ControlBrushResource = "ControlBrush";
+    internal const string BorderBrushResource = "BorderBrush";
 
     internal static FontFamily IconFont { get; } = new(IconFontName);
 }

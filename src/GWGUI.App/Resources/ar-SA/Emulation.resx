@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>لقطة شاشة</value></data>
   <data name="Emulation.Shortcut.Mute"><value>كتم الجهاز النشط</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>تقديم سريع أثناء الضغط</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>إدراج الوسائط أو استبدالها</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>إخراج الوسائط</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>الوسائط التالية</value></data>
   <data name="Emulation.Key.Help"><value>تعليمات</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>Amiga الأيسر</value></data>
   <data name="Emulation.Key.RightAmiga"><value>Amiga الأيمن</value></data>

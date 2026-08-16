@@ -44,6 +44,7 @@ internal sealed class AtariMachine : IAtariMachine
     public string CoreName => _core.CoreName;
     public string CoreVersion => _core.CoreVersion;
     public IReadOnlySet<string> SupportedContentExtensions => _core.SupportedContentExtensions;
+    public bool SupportsSaveStates => _core.SupportsSaveStates;
     public bool IsAudioMuted => _audio.IsMuted;
     public float AudioVolume => _audio.Volume;
     public AtariRuntimeStatus RuntimeStatus => AtariRuntimeFunctions.Status(Configuration, _core, Fault);

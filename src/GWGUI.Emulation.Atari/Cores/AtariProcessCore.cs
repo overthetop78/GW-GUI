@@ -65,6 +65,7 @@ internal sealed class AtariProcessCore : IAtariCore
     public string CoreSha256 { get; private set; } = string.Empty;
     public IReadOnlySet<string> SupportedContentExtensions { get; private set; } =
         new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+    public bool SupportsSaveStates { get; private set; }
     public double FramesPerSecond { get; private set; }
     public int SampleRate { get; private set; }
     public AtariRuntimeRegion? Region { get; private set; }
@@ -201,6 +202,7 @@ internal sealed class AtariProcessCore : IAtariCore
         CoreSha256 = reader.ReadString();
         FramesPerSecond = reader.ReadDouble();
         SampleRate = reader.ReadInt32();
+        SupportsSaveStates = reader.ReadBoolean();
         ReadRuntimeStatus(reader);
         Options = JsonSerializer.Deserialize<IReadOnlyList<AtariCoreOption>>(reader.ReadString(),
             AtariCoreHostFunctions.JsonOptions) ?? [];

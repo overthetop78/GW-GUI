@@ -96,13 +96,13 @@ public sealed class AtariCompatibilityCatalogTests
         _ = new AtariMachineConfiguration(model, input: new AtariInputConfiguration(Controllers:
         [
             new AtariControllerBinding(portCount - AtariCompatibilityConstants.OneControllerPort,
-                AtariPeripheralKind.Joystick)
+                AtariPeripheralKind.Automatic)
         ]));
 
         Assert.Throws<ArgumentOutOfRangeException>(() => new AtariMachineConfiguration(model,
             input: new AtariInputConfiguration(Controllers:
             [
-                new AtariControllerBinding(portCount, AtariPeripheralKind.Joystick)
+                new AtariControllerBinding(portCount, AtariPeripheralKind.Automatic)
             ])));
     }
 

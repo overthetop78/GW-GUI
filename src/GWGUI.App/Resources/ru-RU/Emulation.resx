@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>Снимок экрана</value></data>
   <data name="Emulation.Shortcut.Mute"><value>Отключить звук активной машины</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>Ускорение при удержании</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Вставить или заменить носитель</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Извлечь носитель</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Следующий носитель</value></data>
   <data name="Emulation.Key.Help"><value>Справка</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>Левая Amiga</value></data>
   <data name="Emulation.Key.RightAmiga"><value>Правая Amiga</value></data>

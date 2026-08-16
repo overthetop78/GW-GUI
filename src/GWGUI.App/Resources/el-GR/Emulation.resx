@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>Στιγμιότυπο οθόνης</value></data>
   <data name="Emulation.Shortcut.Mute"><value>Σίγαση ενεργού μηχανής</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>Γρήγορη προώθηση κατά το κράτημα</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Εισαγωγή ή αντικατάσταση μέσου</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Εξαγωγή μέσου</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Επόμενο μέσο</value></data>
   <data name="Emulation.Key.Help"><value>Βοήθεια</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>Αριστερό Amiga</value></data>
   <data name="Emulation.Key.RightAmiga"><value>Δεξί Amiga</value></data>

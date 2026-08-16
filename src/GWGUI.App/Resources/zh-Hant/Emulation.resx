@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>螢幕擷取</value></data>
   <data name="Emulation.Shortcut.Mute"><value>將目前機器靜音</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>按住時快轉</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>插入或更換媒體</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>退出媒體</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>下一個媒體</value></data>
   <data name="Emulation.Key.Help"><value>說明</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>左 Amiga</value></data>
   <data name="Emulation.Key.RightAmiga"><value>右 Amiga</value></data>

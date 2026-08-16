@@ -15,6 +15,7 @@ internal sealed class AtariExternalCore : IAtariCore
     private AtariLoadedContent? _content;
     private bool _nativeInitialized;
     private bool _gameLoaded;
+    private bool _supportsSaveStates;
     private bool _disposed;
     private readonly List<AtariMediaConfiguration> _mountedMedia = [];
     private readonly List<AtariSessionMedia> _sessionMedia = [];
@@ -42,6 +43,7 @@ internal sealed class AtariExternalCore : IAtariCore
     public string CoreVersion => _info.LibraryVersion;
     public string CoreSha256 { get; }
     public IReadOnlySet<string> SupportedContentExtensions => _info.Extensions;
+    public bool SupportsSaveStates => _supportsSaveStates;
     public double FramesPerSecond => _callbacks?.FramesPerSecond ?? default;
     public int SampleRate => _callbacks?.SampleRate ?? default;
     public AtariRuntimeRegion? Region { get; private set; }
@@ -138,6 +140,7 @@ internal sealed class AtariExternalCore : IAtariCore
             AtariCoreLifecycleFunctions.Load(_exports, _callbacks, configuration,
                 _content?.GameInfo ?? nint.Zero);
             _gameLoaded = true;
+            _supportsSaveStates = AtariStateFunctions.IsAvailable(_exports);
             Region = AtariRuntimeFunctions.Region(_exports.GetRegion());
             if (atari800Media?.ContentType is Atari800ContentType.Floppy or Atari800ContentType.Cassette &&
                 !_callbacks.DiskControl.IsAvailable)
@@ -296,6 +299,7 @@ internal sealed class AtariExternalCore : IAtariCore
             _exports.UnloadGame();
             _gameLoaded = false;
         }
+        _supportsSaveStates = false;
         _content?.Dispose();
         _content = null;
         AtariHatariContentFunctions.Cleanup(_hatariContent);
@@ -338,6 +342,7 @@ internal sealed class AtariExternalCore : IAtariCore
         }
 
         _gameLoaded = true;
+        _supportsSaveStates = AtariStateFunctions.IsAvailable(exports);
         previousContent?.Dispose();
         _content = candidate;
         _cartridge = prepared;
@@ -368,6 +373,7 @@ internal sealed class AtariExternalCore : IAtariCore
             throw AtariJaguarCdFunctions.Unsupported(AtariErrorMessages.ContentLoadFailed);
         }
         _gameLoaded = true;
+        _supportsSaveStates = AtariStateFunctions.IsAvailable(exports);
         previousContent?.Dispose();
         _content = candidate;
         _jaguarCd = prepared;
@@ -389,6 +395,7 @@ internal sealed class AtariExternalCore : IAtariCore
         AtariCoreLifecycleFunctions.Cleanup(exports, _gameLoaded, _nativeInitialized,
             () => callbacks?.Dispose(), () => library?.Dispose());
         _gameLoaded = false;
+        _supportsSaveStates = false;
         _nativeInitialized = false;
         _content?.Dispose();
         _content = null;

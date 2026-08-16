@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>Captură de ecran</value></data>
   <data name="Emulation.Shortcut.Mute"><value>Dezactivează sunetul mașinii active</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>Derulare rapidă cât timp este apăsat</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Introduceți sau înlocuiți suportul</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Scoateți suportul</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Următorul suport</value></data>
   <data name="Emulation.Key.Help"><value>Ajutor</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>Amiga stânga</value></data>
   <data name="Emulation.Key.RightAmiga"><value>Amiga dreapta</value></data>

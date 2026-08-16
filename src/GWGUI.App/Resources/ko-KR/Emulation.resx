@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>스크린샷</value></data>
   <data name="Emulation.Shortcut.Mute"><value>활성 컴퓨터 음소거</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>누르는 동안 빨리 감기</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>미디어 삽입 또는 교체</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>미디어 꺼내기</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>다음 미디어</value></data>
   <data name="Emulation.Key.Help"><value>도움말</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>왼쪽 Amiga</value></data>
   <data name="Emulation.Key.RightAmiga"><value>오른쪽 Amiga</value></data>

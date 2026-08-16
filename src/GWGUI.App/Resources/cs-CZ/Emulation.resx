@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>Snímek obrazovky</value></data>
   <data name="Emulation.Shortcut.Mute"><value>Ztlumit aktivní stroj</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>Rychlý posun při držení</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Vložit nebo nahradit médium</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Vysunout médium</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Další médium</value></data>
   <data name="Emulation.Key.Help"><value>Nápověda</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>Levá Amiga</value></data>
   <data name="Emulation.Key.RightAmiga"><value>Pravá Amiga</value></data>

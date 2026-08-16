@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>ภาพหน้าจอ</value></data>
   <data name="Emulation.Shortcut.Mute"><value>ปิดเสียงเครื่องที่ใช้งาน</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>เดินหน้าเร็วขณะกดค้าง</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>ใส่หรือเปลี่ยนสื่อ</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>นำสื่อออก</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>สื่อถัดไป</value></data>
   <data name="Emulation.Key.Help"><value>วิธีใช้</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>Amiga ซ้าย</value></data>
   <data name="Emulation.Key.RightAmiga"><value>Amiga ขวา</value></data>

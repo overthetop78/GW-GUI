@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>Cattura schermo</value></data>
   <data name="Emulation.Shortcut.Mute"><value>Disattiva audio della macchina attiva</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>Avanzamento rapido mentre si tiene premuto</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Inserisci o sostituisci supporto</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Espelli supporto</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Supporto successivo</value></data>
   <data name="Emulation.Key.Help"><value>Aiuto</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>Amiga sinistro</value></data>
   <data name="Emulation.Key.RightAmiga"><value>Amiga destro</value></data>

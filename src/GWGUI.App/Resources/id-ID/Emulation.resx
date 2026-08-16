@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>Tangkapan layar</value></data>
   <data name="Emulation.Shortcut.Mute"><value>Bisukan mesin aktif</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>Percepat saat ditahan</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Masukkan atau ganti media</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Keluarkan media</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Media berikutnya</value></data>
   <data name="Emulation.Key.Help"><value>Bantuan</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>Amiga kiri</value></data>
   <data name="Emulation.Key.RightAmiga"><value>Amiga kanan</value></data>

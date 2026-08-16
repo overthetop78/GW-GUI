@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>צילום מסך</value></data>
   <data name="Emulation.Shortcut.Mute"><value>השתקת המכונה הפעילה</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>הרצה מהירה בזמן לחיצה</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>הכנס או החלף מדיה</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>הוצא מדיה</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>המדיה הבאה</value></data>
   <data name="Emulation.Key.Help"><value>עזרה</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>Amiga שמאל</value></data>
   <data name="Emulation.Key.RightAmiga"><value>Amiga ימין</value></data>

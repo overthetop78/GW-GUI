@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>Bildschirmfoto</value></data>
   <data name="Emulation.Shortcut.Mute"><value>Aktive Maschine stummschalten</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>Schnellvorlauf beim Gedrückthalten</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Medium einlegen oder ersetzen</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Medium auswerfen</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Nächstes Medium</value></data>
   <data name="Emulation.Key.Help"><value>Hilfe</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>Linke Amiga-Taste</value></data>
   <data name="Emulation.Key.RightAmiga"><value>Rechte Amiga-Taste</value></data>

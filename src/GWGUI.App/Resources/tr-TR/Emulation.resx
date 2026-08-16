@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>Ekran görüntüsü</value></data>
   <data name="Emulation.Shortcut.Mute"><value>Etkin makinenin sesini kapat</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>Basılı tutarken hızlı ileri sar</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Ortam tak veya değiştir</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Ortamı çıkar</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Sonraki ortam</value></data>
   <data name="Emulation.Key.Help"><value>Yardım</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>Sol Amiga</value></data>
   <data name="Emulation.Key.RightAmiga"><value>Sağ Amiga</value></data>

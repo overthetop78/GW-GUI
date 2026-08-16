@@ -143,6 +143,7 @@ public sealed class AtariMachineLifecycleTests
         public string CoreVersion => AtariMachineLifecycleTestConstants.CoreVersion;
         public string CoreSha256 => string.Empty;
         public IReadOnlySet<string> SupportedContentExtensions => new HashSet<string>();
+        public bool SupportsSaveStates => true;
         public double FramesPerSecond => AtariMachineLifecycleTestConstants.TestFramesPerSecond;
         public int SampleRate => AtariMachineLifecycleTestConstants.TestSampleRate;
         public AtariRuntimeRegion? Region => AtariRuntimeRegion.Ntsc;

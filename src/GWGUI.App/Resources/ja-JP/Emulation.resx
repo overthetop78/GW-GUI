@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>スクリーンショット</value></data>
   <data name="Emulation.Shortcut.Mute"><value>アクティブなマシンをミュート</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>押している間早送り</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>メディアを挿入または交換</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>メディアを取り出す</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>次のメディア</value></data>
   <data name="Emulation.Key.Help"><value>ヘルプ</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>左 Amiga</value></data>
   <data name="Emulation.Key.RightAmiga"><value>右 Amiga</value></data>

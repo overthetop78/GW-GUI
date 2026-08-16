@@ -264,7 +264,10 @@ public sealed class OptionsEmulationSection : UserControl
         new(EmulationShortcutDefaults.QuickLoad, LocExtension.Get("Emulation.Shortcut.QuickLoad"), EmulationShortcutDefaults.Values[EmulationShortcutDefaults.QuickLoad]),
         new(EmulationShortcutDefaults.Screenshot, LocExtension.Get("Emulation.Shortcut.Screenshot"), EmulationShortcutDefaults.Values[EmulationShortcutDefaults.Screenshot]),
         new(EmulationShortcutDefaults.ToggleMute, LocExtension.Get("Emulation.Shortcut.Mute"), EmulationShortcutDefaults.Values[EmulationShortcutDefaults.ToggleMute]),
-        new(EmulationShortcutDefaults.FastForward, LocExtension.Get("Emulation.Shortcut.FastForward"), EmulationShortcutDefaults.Values[EmulationShortcutDefaults.FastForward])
+        new(EmulationShortcutDefaults.FastForward, LocExtension.Get("Emulation.Shortcut.FastForward"), EmulationShortcutDefaults.Values[EmulationShortcutDefaults.FastForward]),
+        new(EmulationShortcutDefaults.InsertMedia, LocExtension.Get(EmulationResourceKeys.InsertMedia), EmulationShortcutDefaults.Values[EmulationShortcutDefaults.InsertMedia]),
+        new(EmulationShortcutDefaults.EjectMedia, LocExtension.Get(EmulationResourceKeys.EjectMedia), EmulationShortcutDefaults.Values[EmulationShortcutDefaults.EjectMedia]),
+        new(EmulationShortcutDefaults.NextMedia, LocExtension.Get(EmulationResourceKeys.NextMedia), EmulationShortcutDefaults.Values[EmulationShortcutDefaults.NextMedia])
     ];
 
     private static IReadOnlyList<InputBindingDefinition> AmigaSpecialKeyDefinitions()

@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>Chụp màn hình</value></data>
   <data name="Emulation.Shortcut.Mute"><value>Tắt tiếng máy đang hoạt động</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>Tua nhanh khi giữ phím</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Lắp hoặc thay phương tiện</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Đẩy phương tiện ra</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Phương tiện tiếp theo</value></data>
   <data name="Emulation.Key.Help"><value>Trợ giúp</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>Amiga trái</value></data>
   <data name="Emulation.Key.RightAmiga"><value>Amiga phải</value></data>

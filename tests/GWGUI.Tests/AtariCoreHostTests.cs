@@ -68,6 +68,7 @@ public sealed class AtariCoreHostTests
         try
         {
             core.Initialize(new AtariMachineConfiguration(AtariMachineModel.Atari800), session);
+            Assert.True(core.SupportsSaveStates);
             var processId = Assert.IsType<int>(core.HostProcessId);
             var videoMapName = Assert.IsType<string>(core.VideoMapName);
             var pipeName = Assert.IsType<string>(core.PipeName);

@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>Знімок екрана</value></data>
   <data name="Emulation.Shortcut.Mute"><value>Вимкнути звук активної машини</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>Швидке перемотування під час утримання</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Вставити або замінити носій</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Витягти носій</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Наступний носій</value></data>
   <data name="Emulation.Key.Help"><value>Довідка</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>Ліва Amiga</value></data>
   <data name="Emulation.Key.RightAmiga"><value>Права Amiga</value></data>

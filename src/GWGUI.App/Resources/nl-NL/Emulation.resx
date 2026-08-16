@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>Schermafbeelding</value></data>
   <data name="Emulation.Shortcut.Mute"><value>Actieve machine dempen</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>Snel vooruit tijdens ingedrukt houden</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Medium plaatsen of vervangen</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Medium uitwerpen</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Volgend medium</value></data>
   <data name="Emulation.Key.Help"><value>Help</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>Linker Amiga</value></data>
   <data name="Emulation.Key.RightAmiga"><value>Rechter Amiga</value></data>

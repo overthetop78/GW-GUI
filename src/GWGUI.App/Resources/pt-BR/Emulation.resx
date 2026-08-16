@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>Captura de tela</value></data>
   <data name="Emulation.Shortcut.Mute"><value>Silenciar a máquina ativa</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>Avanço rápido enquanto pressionado</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Inserir ou substituir mídia</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Ejetar mídia</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Próxima mídia</value></data>
   <data name="Emulation.Key.Help"><value>Ajuda</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>Amiga esquerdo</value></data>
   <data name="Emulation.Key.RightAmiga"><value>Amiga direito</value></data>

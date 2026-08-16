@@ -15,6 +15,7 @@ internal interface IAtariCore : IDisposable
     string CoreVersion { get; }
     string CoreSha256 { get; }
     IReadOnlySet<string> SupportedContentExtensions { get; }
+    bool SupportsSaveStates { get; }
     double FramesPerSecond { get; }
     int SampleRate { get; }
     AtariRuntimeRegion? Region { get; }

@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>Screenshot</value></data>
   <data name="Emulation.Shortcut.Mute"><value>Mute active machine</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>Fast forward while held</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Insert or replace media</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Eject media</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Next media</value></data>
   <data name="Emulation.Key.Help"><value>Help</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>Left Amiga</value></data>
   <data name="Emulation.Key.RightAmiga"><value>Right Amiga</value></data>

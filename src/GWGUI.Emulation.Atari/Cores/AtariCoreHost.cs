@@ -137,6 +137,7 @@ public static class AtariCoreHost
         writer.Write(core.CoreSha256);
         writer.Write(core.FramesPerSecond);
         writer.Write(core.SampleRate);
+        writer.Write(core.SupportsSaveStates);
         WriteRuntimeStatus(writer, core.Region, core.BufferedAudioFrames, core.AudioOverrunCount,
             core.AudioUnderrunCount);
         writer.Write(JsonSerializer.Serialize(core.Options, AtariCoreHostFunctions.JsonOptions));

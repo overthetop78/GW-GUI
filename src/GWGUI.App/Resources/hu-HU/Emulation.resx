@@ -330,6 +330,9 @@
   <data name="Emulation.Shortcut.Screenshot"><value>Képernyőkép</value></data>
   <data name="Emulation.Shortcut.Mute"><value>Aktív gép némítása</value></data>
   <data name="Emulation.Shortcut.FastForward"><value>Gyorsítás nyomva tartáskor</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Adathordozó behelyezése vagy cseréje</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Adathordozó kiadása</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Következő adathordozó</value></data>
   <data name="Emulation.Key.Help"><value>Súgó</value></data>
   <data name="Emulation.Key.LeftAmiga"><value>Bal Amiga</value></data>
   <data name="Emulation.Key.RightAmiga"><value>Jobb Amiga</value></data>

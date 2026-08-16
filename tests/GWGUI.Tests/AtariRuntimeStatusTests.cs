@@ -119,6 +119,7 @@ public sealed class AtariRuntimeStatusTests
         public string CoreVersion => AtariRuntimeStatusTestConstants.CoreVersion;
         public string CoreSha256 => string.Empty;
         public IReadOnlySet<string> SupportedContentExtensions => new HashSet<string>();
+        public bool SupportsSaveStates => true;
         public double FramesPerSecond => AtariRuntimeStatusTestConstants.FramesPerSecond;
         public int SampleRate => AtariRuntimeStatusTestConstants.SampleRate;
         public AtariRuntimeRegion? Region => AtariRuntimeRegion.Pal;

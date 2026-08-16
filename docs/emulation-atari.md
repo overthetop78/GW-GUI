@@ -450,12 +450,12 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-034 — Intégrer les raccourcis d’émulation
 
-- [ ] Ajouter les actions communes : alimentation, pause, reset, plein écran et libération souris.
-- [ ] Ajouter sauvegarde/chargement rapide uniquement lorsque les états sont disponibles.
-- [ ] Ajouter insertion, éjection et média suivant pour les périphériques applicables.
-- [ ] Afficher dans la barre les raccourcis réellement configurés, sans texte en dur.
-- [ ] Réutiliser attribution, restauration, suppression et détection de conflits.
-- [ ] Tester priorité globale/machine, répétition clavier et conflit entre actions.
+- [x] Ajouter les actions communes : alimentation, pause, reset, plein écran et libération souris.
+- [x] Ajouter sauvegarde/chargement rapide uniquement lorsque les états sont disponibles.
+- [x] Ajouter insertion, éjection et média suivant pour les périphériques applicables.
+- [x] Afficher dans la barre les raccourcis réellement configurés, sans texte en dur.
+- [x] Réutiliser attribution, restauration, suppression et détection de conflits.
+- [x] Tester priorité globale/machine, répétition clavier et conflit entre actions.
 
 ### J — États, configurations et cycle de vie
 
