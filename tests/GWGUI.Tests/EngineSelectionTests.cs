@@ -1,3 +1,4 @@
+using System.IO;
 using GWGUI.App.Services;
 using GWGUI.Domain.Commands;
 using GWGUI.Domain.Conversion;
@@ -57,6 +58,19 @@ public sealed class EngineSelectionTests
 
         Assert.Equal(0, runner.CallCount);
         Assert.Single(result.FailedLabels);
+    }
+
+    [Fact]
+    public void InternalConversionFailureDescriptionPreservesSectorDetails()
+    {
+        var error = new InvalidDataException(
+            "Unable to reconstruct the disk image.",
+            new InvalidDataException("Track 12, side 1, sector 4 is unreadable."));
+
+        var description = ConversionBatchExecutor.DescribeFailure(error);
+
+        Assert.Contains("Unable to reconstruct the disk image.", description, StringComparison.Ordinal);
+        Assert.Contains("Track 12, side 1, sector 4 is unreadable.", description, StringComparison.Ordinal);
     }
 
     private sealed class RecordingRunner : IGreaseweazleRunner

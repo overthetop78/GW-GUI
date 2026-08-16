@@ -171,11 +171,26 @@ public sealed class ConversionBatchExecutor(
             catch (Exception exception)
             {
                 ErrorLog.Write(exception, $"Converting image to {output.FormatId}");
-                var line = Report(progress, GwOutputStream.Error, LocExtension.Get("Conversion.EngineInternalFailed", item.Label, LocExtension.Get("Common.Unknown")));
+                var line = Report(progress, GwOutputStream.Error, LocExtension.Get("Conversion.EngineInternalFailed", item.Label, DescribeFailure(exception)));
                 completed.Add(new(item, new(1, false, stopwatch.Elapsed, [line])));
             }
         }
         return new(completed, cancellationToken.IsCancellationRequested || completed.Any(result => result.Result.WasCancelled));
+    }
+
+    internal static string DescribeFailure(Exception exception)
+    {
+        var messages = new List<string>();
+        for (Exception? current = exception; current is not null; current = current.InnerException)
+        {
+            if (!string.IsNullOrWhiteSpace(current.Message) &&
+                !messages.Contains(current.Message, StringComparer.Ordinal))
+                messages.Add(current.Message.Trim());
+        }
+
+        return messages.Count == 0
+            ? LocExtension.Get("Common.Unknown")
+            : string.Join(" → ", messages);
     }
 
     private static GwOutputLine Report(IProgress<GwOutputLine>? progress, GwOutputStream stream, string text)
