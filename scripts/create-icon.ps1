@@ -1,5 +1,5 @@
 param(
-    [string]$InputPath = (Join-Path $PSScriptRoot '..\src\GWGUI.App\Assets\app-icon-chroma.png'),
+    [string]$InputPath = (Join-Path $PSScriptRoot '..\src\GWGUI.App\Assets\app-icon-source.png'),
     [string]$PngPath = (Join-Path $PSScriptRoot '..\src\GWGUI.App\Assets\app-icon.png'),
     [string]$IcoPath = (Join-Path $PSScriptRoot '..\src\GWGUI.App\Assets\app-icon.ico')
 )
@@ -8,23 +8,17 @@ $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Drawing
 $source = [Drawing.Bitmap]::new([IO.Path]::GetFullPath($InputPath))
 try {
-    $key = $source.GetPixel(0, 0)
-    $transparent = [Drawing.Bitmap]::new($source.Width, $source.Height, [Drawing.Imaging.PixelFormat]::Format32bppArgb)
+    $canvasSize = [Math]::Max($source.Width, $source.Height)
+    $transparent = [Drawing.Bitmap]::new($canvasSize, $canvasSize, [Drawing.Imaging.PixelFormat]::Format32bppArgb)
     try {
-        for ($y = 0; $y -lt $source.Height; $y++) {
-            for ($x = 0; $x -lt $source.Width; $x++) {
-                $pixel = $source.GetPixel($x, $y)
-                $distance = [Math]::Sqrt([Math]::Pow($pixel.R-$key.R,2) + [Math]::Pow($pixel.G-$key.G,2) + [Math]::Pow($pixel.B-$key.B,2))
-                $alpha = if ($distance -le 12) { 0 } elseif ($distance -ge 220) { 255 } else { $t=($distance-12)/208; [int](255*$t*$t*(3-2*$t)) }
-                if ($alpha -gt 0 -and $alpha -lt 255) {
-                    $a = $alpha / 255.0
-                    $red = [Math]::Min(255,[Math]::Max(0,[int](($pixel.R - $key.R*(1-$a))/$a)))
-                    $green = [Math]::Min(255,[Math]::Max(0,[int](($pixel.G - $key.G*(1-$a))/$a)))
-                    $blue = [Math]::Min(255,[Math]::Max(0,[int](($pixel.B - $key.B*(1-$a))/$a)))
-                } else { $red=$pixel.R; $green=$pixel.G; $blue=$pixel.B }
-                $transparent.SetPixel($x, $y, [Drawing.Color]::FromArgb($alpha, $red, $green, $blue))
-            }
-        }
+        $graphics = [Drawing.Graphics]::FromImage($transparent)
+        try {
+            $graphics.Clear([Drawing.Color]::Transparent)
+            $graphics.CompositingMode = [Drawing.Drawing2D.CompositingMode]::SourceCopy
+            $x = [int](($canvasSize - $source.Width) / 2)
+            $y = [int](($canvasSize - $source.Height) / 2)
+            $graphics.DrawImageUnscaled($source, $x, $y)
+        } finally { $graphics.Dispose() }
         $transparent.Save([IO.Path]::GetFullPath($PngPath), [Drawing.Imaging.ImageFormat]::Png)
 
         $sizes = @(16,24,32,48,64,128,256)
