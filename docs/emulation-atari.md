@@ -502,12 +502,12 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-039 — Isoler plusieurs machines Atari
 
-- [ ] Démarrer deux instances du même cœur avec dossiers, options, médias et callbacks distincts.
-- [ ] Démarrer simultanément deux familles utilisant deux cœurs différents.
-- [ ] Envoyer entrée, option et changement de média à une seule instance et vérifier l’autre inchangée.
-- [ ] Arrêter ou faire planter une instance et vérifier que l’autre continue vidéo et audio.
-- [ ] Vérifier noms uniques de pipes, mappings, dossiers de session et fichiers de cœur.
-- [ ] Tester fermeture de toutes les machines lors de l’arrêt de l’application.
+- [x] Démarrer deux instances du même cœur avec dossiers, options, médias et callbacks distincts.
+- [x] Démarrer simultanément deux familles utilisant deux cœurs différents.
+- [x] Envoyer entrée, option et changement de média à une seule instance et vérifier l’autre inchangée.
+- [x] Arrêter ou faire planter une instance et vérifier que l’autre continue vidéo et audio.
+- [x] Vérifier noms uniques de pipes, mappings, dossiers de session et fichiers de cœur.
+- [x] Tester fermeture de toutes les machines lors de l’arrêt de l’application.
 
 ### K — Interface Atari
 

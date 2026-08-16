@@ -9,6 +9,109 @@ namespace GWGUI.Tests;
 public sealed class AtariMachineLifecycleTests
 {
     [Fact]
+    public async Task TwoMachinesKeepConfigurationsSessionsAndCommandsIsolated()
+    {
+        var firstCore = new RecordingAtariCore();
+        var secondCore = new RecordingAtariCore();
+        var firstSession = SessionDirectory();
+        var secondSession = SessionDirectory();
+        var firstConfiguration = Configuration(AtariMachineModel.Atari800Xl,
+            AtariMachineLifecycleTestConstants.FirstMappingValue);
+        var secondConfiguration = Configuration(AtariMachineModel.Atari800Xl,
+            AtariMachineLifecycleTestConstants.SecondMappingValue);
+        await using var first = CreateMachine(firstCore, firstSession, firstConfiguration);
+        await using var second = CreateMachine(secondCore, secondSession, secondConfiguration);
+
+        await Task.WhenAll(first.StartAsync().AsTask(), second.StartAsync().AsTask());
+        await first.SetOptionAsync(AtariMachineLifecycleTestConstants.OptionKey,
+            AtariMachineLifecycleTestConstants.OptionValue);
+        await first.InsertMediaAsync(Media());
+        first.SetInput(EmulationInputSnapshot.Empty);
+
+        Assert.NotEqual(firstCore.SessionDirectory, secondCore.SessionDirectory);
+        var initializedFirst = Assert.IsType<AtariMachineConfiguration>(firstCore.Configuration);
+        var initializedSecond = Assert.IsType<AtariMachineConfiguration>(secondCore.Configuration);
+        var firstMappings = Assert.IsAssignableFrom<IReadOnlyDictionary<string, EmulationKey>>(
+            initializedFirst.Input.KeyboardMappings);
+        var secondMappings = Assert.IsAssignableFrom<IReadOnlyDictionary<string, EmulationKey>>(
+            initializedSecond.Input.KeyboardMappings);
+        Assert.Equal(AtariMachineLifecycleTestConstants.FirstMappingValue,
+            firstMappings[AtariMachineLifecycleTestConstants.MappingKey]);
+        Assert.Equal(AtariMachineLifecycleTestConstants.SecondMappingValue,
+            secondMappings[AtariMachineLifecycleTestConstants.MappingKey]);
+        Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedOptionCount, firstCore.OptionCount);
+        Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedSingleMediaCommandCount, firstCore.MediaCommandCount);
+        Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedInputCountWithoutPause, firstCore.InputCount);
+        Assert.Equal(AtariMachineLifecycleTestConstants.EmptyCount, secondCore.OptionCount);
+        Assert.Equal(AtariMachineLifecycleTestConstants.EmptyCount, secondCore.MediaCommandCount);
+        Assert.Equal(AtariMachineLifecycleTestConstants.EmptyCount, secondCore.InputCount);
+    }
+
+    [Fact]
+    public async Task DifferentFamiliesAndCoresRunAtTheSameTime()
+    {
+        var firstCore = new RecordingAtariCore { CoreKind = AtariCoreKind.Stella };
+        var secondCore = new RecordingAtariCore { CoreKind = AtariCoreKind.BeetleLynx };
+        await using var first = CreateMachine(firstCore, configuration:
+            new AtariMachineConfiguration(AtariMachineModel.Atari2600));
+        await using var second = CreateMachine(secondCore, configuration:
+            new AtariMachineConfiguration(AtariMachineModel.Lynx));
+
+        await Task.WhenAll(first.StartAsync().AsTask(), second.StartAsync().AsTask());
+        await WaitUntil(() => firstCore.FrameCount > AtariMachineLifecycleTestConstants.MinimumInitialFrames
+                              && secondCore.FrameCount > AtariMachineLifecycleTestConstants.MinimumInitialFrames);
+
+        Assert.Equal(AtariCoreKind.Stella, firstCore.Kind);
+        Assert.Equal(AtariCoreKind.BeetleLynx, secondCore.Kind);
+        Assert.Equal(EmulationMachineState.Running, first.State);
+        Assert.Equal(EmulationMachineState.Running, second.State);
+    }
+
+    [Fact]
+    public async Task FaultedMachineDoesNotStopOtherMachineOutputs()
+    {
+        var faultedCore = new RecordingAtariCore { ThrowOnFrame = true };
+        var healthyCore = new RecordingAtariCore { EmitOutputs = true };
+        await using var faulted = CreateMachine(faultedCore);
+        await using var healthy = CreateMachine(healthyCore);
+        var videoCount = AtariMachineLifecycleTestConstants.EmptyCount;
+        var audioCount = AtariMachineLifecycleTestConstants.EmptyCount;
+        healthy.VideoFrameReady += (_, _) => Interlocked.Increment(ref videoCount);
+        healthy.AudioChunkReady += (_, _) => Interlocked.Increment(ref audioCount);
+
+        await Task.WhenAll(faulted.StartAsync().AsTask(), healthy.StartAsync().AsTask());
+        await WaitUntil(() => faulted.State == EmulationMachineState.Faulted
+                              && videoCount > AtariMachineLifecycleTestConstants.MinimumOutputCount
+                              && audioCount > AtariMachineLifecycleTestConstants.MinimumOutputCount);
+        var previousVideoCount = videoCount;
+        var previousAudioCount = audioCount;
+        await WaitUntil(() => videoCount > previousVideoCount && audioCount > previousAudioCount);
+
+        Assert.Equal(EmulationMachineState.Running, healthy.State);
+    }
+
+    [Fact]
+    public async Task MachineCollectionStopsEveryMachineAtApplicationShutdown()
+    {
+        var firstCore = new RecordingAtariCore();
+        var secondCore = new RecordingAtariCore();
+        var first = CreateMachine(firstCore);
+        var second = CreateMachine(secondCore);
+        await using var machines = new AtariMachineCollection();
+        machines.Register(first);
+        machines.Register(second);
+        await Task.WhenAll(first.StartAsync().AsTask(), second.StartAsync().AsTask());
+
+        await machines.StopAllAsync();
+
+        Assert.Empty(machines.Machines);
+        Assert.Equal(EmulationMachineState.Stopped, first.State);
+        Assert.Equal(EmulationMachineState.Stopped, second.State);
+        Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedDisposeCount, firstCore.DisposeCount);
+        Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedDisposeCount, secondCore.DisposeCount);
+    }
+
+    [Fact]
     public async Task RunsThreeHundredFramesOnOneNamedThread()
     {
         var core = new RecordingAtariCore();
@@ -169,11 +272,18 @@ public sealed class AtariMachineLifecycleTests
         Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedStopCount, core.StopCount);
     }
 
-    private static AtariMachine CreateMachine(RecordingAtariCore core, string? sessionDirectory = null) => new(Guid.NewGuid(),
-        new AtariMachineConfiguration(AtariMachineModel.Atari2600), core,
-        sessionDirectory ?? Path.Combine(Path.GetTempPath(),
-            AtariMachineLifecycleTestConstants.SessionDirectoryPrefix
-            + Guid.NewGuid().ToString(AtariMachineLifecycleTestConstants.IdentifierFormat)));
+    private static AtariMachine CreateMachine(RecordingAtariCore core, string? sessionDirectory = null,
+        AtariMachineConfiguration? configuration = null) => new(Guid.NewGuid(),
+        configuration ?? new AtariMachineConfiguration(AtariMachineModel.Atari2600), core,
+        sessionDirectory ?? SessionDirectory());
+
+    private static string SessionDirectory() => Path.Combine(Path.GetTempPath(),
+        AtariMachineLifecycleTestConstants.SessionDirectoryPrefix
+        + Guid.NewGuid().ToString(AtariMachineLifecycleTestConstants.IdentifierFormat));
+
+    private static AtariMachineConfiguration Configuration(AtariMachineModel model, EmulationKey mapping) =>
+        new(model, input: new AtariInputConfiguration(KeyboardMappings:
+            new Dictionary<string, EmulationKey> { [AtariMachineLifecycleTestConstants.MappingKey] = mapping }));
 
     private static AtariMediaConfiguration Media() => new(
         Path.Combine(Path.GetTempPath(), AtariMachineLifecycleTestConstants.MediaFileName),
@@ -188,6 +298,7 @@ public sealed class AtariMachineLifecycleTests
     private sealed class RecordingAtariCore : IAtariCore
     {
         private readonly ConcurrentDictionary<int, byte> _threads = new();
+        private readonly ConcurrentQueue<AudioChunk> _audio = new();
         public int FrameCount;
         public int ResetCount;
         public int StopCount;
@@ -201,14 +312,18 @@ public sealed class AtariMachineLifecycleTests
         public bool ThrowOnReset { get; init; }
         public bool BlockInitialization { get; init; }
         public bool BlockStop { get; init; }
+        public bool EmitOutputs { get; init; }
+        public AtariCoreKind CoreKind { get; init; } = AtariCoreKind.Stella;
+        public AtariMachineConfiguration? Configuration { get; private set; }
+        public string? SessionDirectory { get; private set; }
         public ManualResetEventSlim InitializationEntered { get; } = new();
         public ManualResetEventSlim ContinueInitialization { get; } = new();
         public ManualResetEventSlim StopEntered { get; } = new();
         public ManualResetEventSlim ContinueStop { get; } = new();
         public IReadOnlyCollection<int> ThreadIds => _threads.Keys.ToArray();
         public string ThreadName { get; private set; } = string.Empty;
-        public AtariCoreKind Kind => AtariCoreKind.Stella;
-        public VideoFrame? LatestVideoFrame => null;
+        public AtariCoreKind Kind => CoreKind;
+        public VideoFrame? LatestVideoFrame { get; private set; }
         public AudioChunk? LatestAudioChunk => null;
         public IReadOnlyList<AtariCoreOption> Options => [];
         public IReadOnlyList<string> Diagnostics => [];
@@ -226,11 +341,13 @@ public sealed class AtariMachineLifecycleTests
         public long AudioUnderrunCount => AtariMachineLifecycleTestConstants.EmptyCount;
         public AtariHostProcessState HostProcessState => AtariHostProcessState.InProcess;
         public int? HostProcessId => null;
-        public bool TryDequeueAudio(out AudioChunk? chunk) { chunk = null; return false; }
+        public bool TryDequeueAudio(out AudioChunk? chunk) => _audio.TryDequeue(out chunk);
         public void Initialize(AtariMachineConfiguration configuration, string sessionDirectory,
             string? saveDirectory = null)
         {
             CaptureThread();
+            Configuration = configuration;
+            SessionDirectory = sessionDirectory;
             InitializationEntered.Set();
             if (BlockInitialization) ContinueInitialization.Wait();
         }
@@ -238,7 +355,15 @@ public sealed class AtariMachineLifecycleTests
         {
             CaptureThread();
             if (ThrowOnFrame) throw new InvalidOperationException(AtariMachineLifecycleTestConstants.FaultMessage);
-            Interlocked.Increment(ref FrameCount);
+            var sequence = Interlocked.Increment(ref FrameCount);
+            if (!EmitOutputs) return;
+            LatestVideoFrame = new VideoFrame(AtariMachineLifecycleTestConstants.VideoPixels,
+                AtariMachineLifecycleTestConstants.VideoWidth, AtariMachineLifecycleTestConstants.VideoHeight,
+                AtariMachineLifecycleTestConstants.VideoPitch, EmulationPixelFormat.Xrgb8888,
+                AtariMachineLifecycleTestConstants.VideoAspectRatio, sequence, TimeSpan.Zero);
+            _audio.Enqueue(new AudioChunk(AtariMachineLifecycleTestConstants.AudioSamples,
+                AtariMachineLifecycleTestConstants.TestSampleRate,
+                AtariMachineLifecycleTestConstants.AudioFrameCount, sequence, TimeSpan.Zero));
         }
         public void HardReset()
         {
@@ -295,10 +420,13 @@ internal static class AtariMachineLifecycleTestConstants
     internal const int ExpectedStopCount = 1;
     internal const int ExpectedDisposeCount = 1;
     internal const int ExpectedCommandCount = 3;
+    internal const int ExpectedSingleMediaCommandCount = 1;
     internal const int ExpectedOptionCount = 1;
     internal const int ExpectedStateCommandCount = 2;
     internal const int ExpectedPausedInputCount = 2;
     internal const int ExpectedReleasedInputCount = 1;
+    internal const int ExpectedInputCountWithoutPause = 1;
+    internal const int MinimumOutputCount = 1;
     internal const byte StateByte = 42;
     internal const int ExpectedControllerConfigurationCount = 1;
     internal const int FirstControllerPort = 0;
@@ -309,6 +437,11 @@ internal static class AtariMachineLifecycleTestConstants
     internal const int TestSampleRate = 44100;
     internal const int EmptyCount = 0;
     internal const double TestFramesPerSecond = 1000;
+    internal const int VideoWidth = 1;
+    internal const int VideoHeight = 1;
+    internal const int VideoPitch = 4;
+    internal const float VideoAspectRatio = 1;
+    internal const int AudioFrameCount = 1;
     internal const string OptionKey = "test_option";
     internal const string OptionValue = "enabled";
     internal const string MediaFileName = "test.a26";
@@ -318,4 +451,9 @@ internal static class AtariMachineLifecycleTestConstants
     internal const string SessionDirectoryPrefix = "gwgui-atari-machine-";
     internal const string IdentifierFormat = "N";
     internal const string SiblingDirectorySuffix = "-keep";
+    internal const string MappingKey = "FIRE";
+    internal const EmulationKey FirstMappingValue = EmulationKey.Space;
+    internal const EmulationKey SecondMappingValue = EmulationKey.Return;
+    internal static readonly byte[] VideoPixels = [0, 0, 0, 0];
+    internal static readonly short[] AudioSamples = [0, 0];
 }
