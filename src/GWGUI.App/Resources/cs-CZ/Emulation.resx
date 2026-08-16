@@ -432,4 +432,7 @@
   <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>Tento model nemá myš.</value></data>
   <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>Tento model nemá žádná paměťová média.</value></data>
   <data name="Emulation.AtariUnavailable.JaguarStandardNoCd" xml:space="preserve"><value>Chcete-li používat disky CD, vyberte model Jaguar CD.</value></data>
+  <data name="Emulation.AtariCassettes"><value>Kazeta</value></data>
+  <data name="Emulation.AtariCartridges"><value>Kazeta ROM</value></data>
+  <data name="Emulation.AtariCompactDiscs"><value>Kompaktní disky</value></data>
 </root>

@@ -432,4 +432,7 @@
   <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>此機型沒有滑鼠。</value></data>
   <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>此機型沒有儲存媒體。</value></data>
   <data name="Emulation.AtariUnavailable.JaguarStandardNoCd" xml:space="preserve"><value>請選擇 Jaguar CD 機型以使用 CD 光碟。</value></data>
+  <data name="Emulation.AtariCassettes"><value>卡式錄音帶</value></data>
+  <data name="Emulation.AtariCartridges"><value>卡匣</value></data>
+  <data name="Emulation.AtariCompactDiscs"><value>光碟</value></data>
 </root>

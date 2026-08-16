@@ -432,4 +432,7 @@
   <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>Tässä mallissa ei ole hiiriä.</value></data>
   <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>Tässä mallissa ei ole tallennusvälineitä.</value></data>
   <data name="Emulation.AtariUnavailable.JaguarStandardNoCd" xml:space="preserve"><value>Valitse Jaguar CD -malli käyttääksesi CD-levyjä.</value></data>
+  <data name="Emulation.AtariCassettes"><value>Kasetti</value></data>
+  <data name="Emulation.AtariCartridges"><value>Pelikasetti</value></data>
+  <data name="Emulation.AtariCompactDiscs"><value>CD-levyt</value></data>
 </root>

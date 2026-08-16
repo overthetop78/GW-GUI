@@ -522,13 +522,13 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-041 — Construire les paramètres généraux Atari
 
-- [ ] Ajouter le choix du modèle et déterminer automatiquement le cœur associé.
-- [ ] Intégrer le panneau d’installation du cœur correspondant.
-- [ ] Ajouter les dossiers partagés et ceux propres aux disquettes, cassettes, cartouches, CD, états et captures.
-- [ ] Ajouter firmware principal et complémentaires avec détection et compatibilité.
-- [ ] Ajouter alimentation/reset/démarrage lorsque ces valeurs sont réellement configurables.
-- [ ] Afficher toutes les erreurs et indisponibilités avec ressources localisées.
-- [ ] Afficher toutes les Core Options annoncées avec catégorie, aide, valeurs et visibilité, sans perdre les clés inconnues.
+- [x] Ajouter le choix du modèle et déterminer automatiquement le cœur associé.
+- [x] Intégrer le panneau d’installation du cœur correspondant.
+- [x] Ajouter les dossiers partagés et ceux propres aux disquettes, cassettes, cartouches, CD, états et captures.
+- [x] Ajouter firmware principal et complémentaires avec détection et compatibilité.
+- [x] Ajouter alimentation/reset/démarrage lorsque ces valeurs sont réellement configurables.
+- [x] Afficher toutes les erreurs et indisponibilités avec ressources localisées.
+- [x] Afficher toutes les Core Options annoncées avec catégorie, aide, valeurs et visibilité, sans perdre les clés inconnues.
 
 #### ATA-042 — Construire les onglets CPU, RAM et ROM
 

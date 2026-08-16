@@ -432,4 +432,7 @@
   <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>Model ini tidak memiliki mouse.</value></data>
   <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>Model ini tidak memiliki media penyimpanan.</value></data>
   <data name="Emulation.AtariUnavailable.JaguarStandardNoCd" xml:space="preserve"><value>Pilih model Jaguar CD untuk menggunakan media CD.</value></data>
+  <data name="Emulation.AtariCassettes"><value>Kaset</value></data>
+  <data name="Emulation.AtariCartridges"><value>Kartrid</value></data>
+  <data name="Emulation.AtariCompactDiscs"><value>Cakram padat</value></data>
 </root>

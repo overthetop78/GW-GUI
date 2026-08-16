@@ -432,4 +432,7 @@
   <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>Acest model nu are şoarece.</value></data>
   <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>Acest model nu are suport de stocare.</value></data>
   <data name="Emulation.AtariUnavailable.JaguarStandardNoCd" xml:space="preserve"><value>Selectați modelul Jaguar CD pentru a utiliza discuri CD.</value></data>
+  <data name="Emulation.AtariCassettes"><value>Casetă</value></data>
+  <data name="Emulation.AtariCartridges"><value>Cartuș</value></data>
+  <data name="Emulation.AtariCompactDiscs"><value>Discuri compacte</value></data>
 </root>

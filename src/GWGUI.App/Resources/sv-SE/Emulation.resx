@@ -432,4 +432,7 @@
   <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>Denna modell har ingen mus.</value></data>
   <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>Denna modell har inga lagringsmedier.</value></data>
   <data name="Emulation.AtariUnavailable.JaguarStandardNoCd" xml:space="preserve"><value>Välj Jaguar CD-modellen för att använda CD-medier.</value></data>
+  <data name="Emulation.AtariCassettes"><value>Kassett</value></data>
+  <data name="Emulation.AtariCartridges"><value>Spelkassett</value></data>
+  <data name="Emulation.AtariCompactDiscs"><value>CD-skivor</value></data>
 </root>

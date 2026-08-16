@@ -432,4 +432,7 @@
   <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>Ennek a modellnek nincs egere.</value></data>
   <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>Ennek a modellnek nincs tárolója.</value></data>
   <data name="Emulation.AtariUnavailable.JaguarStandardNoCd" xml:space="preserve"><value>CD-adathordozó használatához válaszd a Jaguar CD modellt.</value></data>
+  <data name="Emulation.AtariCassettes"><value>Kazetta</value></data>
+  <data name="Emulation.AtariCartridges"><value>Játékkazetta</value></data>
+  <data name="Emulation.AtariCompactDiscs"><value>Kompaktlemezek</value></data>
 </root>

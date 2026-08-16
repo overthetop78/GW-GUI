@@ -432,4 +432,7 @@
   <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>Αυτό το μοντέλο δεν έχει ποντίκι.</value></data>
   <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>Αυτό το μοντέλο δεν έχει μέσα αποθήκευσης.</value></data>
   <data name="Emulation.AtariUnavailable.JaguarStandardNoCd" xml:space="preserve"><value>Επιλέξτε το μοντέλο Jaguar CD για να χρησιμοποιήσετε δίσκους CD.</value></data>
+  <data name="Emulation.AtariCassettes"><value>Κασέτα</value></data>
+  <data name="Emulation.AtariCartridges"><value>Κασέτα ROM</value></data>
+  <data name="Emulation.AtariCompactDiscs"><value>Συμπαγείς δίσκοι</value></data>
 </root>

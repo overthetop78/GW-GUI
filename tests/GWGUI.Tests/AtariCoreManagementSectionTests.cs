@@ -9,6 +9,7 @@ using GWGUI.Emulation.Atari.Cores;
 
 namespace GWGUI.Tests;
 
+[Collection(AtariNativeCoreTestConstants.CollectionName)]
 public sealed class AtariCoreManagementSectionTests
 {
     private const int UiThreadTimeoutSeconds = 15;

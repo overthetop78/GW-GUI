@@ -432,4 +432,7 @@
   <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>למודל הזה אין עכבר.</value></data>
   <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>לדגם הזה אין אמצעי אחסון.</value></data>
   <data name="Emulation.AtariUnavailable.JaguarStandardNoCd" xml:space="preserve"><value>יש לבחור בדגם Jaguar CD כדי להשתמש בתקליטורי CD.</value></data>
+  <data name="Emulation.AtariCassettes"><value>קלטת</value></data>
+  <data name="Emulation.AtariCartridges"><value>מחסנית</value></data>
+  <data name="Emulation.AtariCompactDiscs"><value>תקליטורים</value></data>
 </root>

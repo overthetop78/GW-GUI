@@ -432,4 +432,7 @@
   <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>У этой модели нет мыши.</value></data>
   <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>Эта модель не имеет носителей информации.</value></data>
   <data name="Emulation.AtariUnavailable.JaguarStandardNoCd" xml:space="preserve"><value>Выберите модель Jaguar CD, чтобы использовать компакт-диски.</value></data>
+  <data name="Emulation.AtariCassettes"><value>Кассета</value></data>
+  <data name="Emulation.AtariCartridges"><value>Картридж</value></data>
+  <data name="Emulation.AtariCompactDiscs"><value>Компакт-диски</value></data>
 </root>

@@ -432,4 +432,7 @@
   <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>This model has no mouse.</value></data>
   <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>This model has no storage media.</value></data>
   <data name="Emulation.AtariUnavailable.JaguarStandardNoCd" xml:space="preserve"><value>Select the Jaguar CD model to use CD media.</value></data>
+  <data name="Emulation.AtariCassettes"><value>Cassette</value></data>
+  <data name="Emulation.AtariCartridges"><value>Cartridge</value></data>
+  <data name="Emulation.AtariCompactDiscs"><value>Compact discs</value></data>
 </root>

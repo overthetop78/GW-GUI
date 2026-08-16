@@ -432,4 +432,7 @@
   <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>Este modelo não tem rato.</value></data>
   <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>Este modelo não tem suporte de armazenamento.</value></data>
   <data name="Emulation.AtariUnavailable.JaguarStandardNoCd" xml:space="preserve"><value>Selecione o modelo Jaguar CD para usar mídias de CD.</value></data>
+  <data name="Emulation.AtariCassettes"><value>Fita cassete</value></data>
+  <data name="Emulation.AtariCartridges"><value>Cartucho</value></data>
+  <data name="Emulation.AtariCompactDiscs"><value>Discos compactos</value></data>
 </root>

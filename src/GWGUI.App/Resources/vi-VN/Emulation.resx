@@ -432,4 +432,7 @@
   <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>Mô hình này không có chuột.</value></data>
   <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>Mô hình này không có phương tiện lưu trữ.</value></data>
   <data name="Emulation.AtariUnavailable.JaguarStandardNoCd" xml:space="preserve"><value>Chọn mẫu Jaguar CD để sử dụng đĩa CD.</value></data>
+  <data name="Emulation.AtariCassettes"><value>Băng cassette</value></data>
+  <data name="Emulation.AtariCartridges"><value>Hộp băng</value></data>
+  <data name="Emulation.AtariCompactDiscs"><value>Đĩa compact</value></data>
 </root>

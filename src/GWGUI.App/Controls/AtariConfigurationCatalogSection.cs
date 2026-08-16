@@ -12,7 +12,7 @@ public sealed class AtariConfigurationCatalogSection : UserControl
     private readonly ObservableCollection<AtariConfigurationItem> _configurations = [];
     private readonly IReadOnlyList<AtariModelItem> _models = AtariConfigurationCatalogFunctions.Models();
     private readonly ListBox _list = new() { MinWidth = 260, DisplayMemberPath = nameof(AtariConfigurationItem.DisplayName) };
-    private readonly ComboBox _model = new() { MinWidth = 260 };
+    private readonly AtariGeneralSettingsSection _general = new();
     private Button? _save;
     private Button? _delete;
     private AtariMachineConfiguration? _current;
@@ -25,8 +25,6 @@ public sealed class AtariConfigurationCatalogSection : UserControl
     {
         _controller = new AtariConfigurationCatalogController(store);
         _list.ItemsSource = _configurations;
-        _model.ItemsSource = _models;
-        _model.DisplayMemberPath = nameof(AtariModelItem.DisplayName);
         _list.SelectionChanged += ConfigurationSelected;
         Content = BuildContent();
         Loaded += async (_, _) => await ReloadAsync();
@@ -81,15 +79,8 @@ public sealed class AtariConfigurationCatalogSection : UserControl
         body.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(300) });
         body.ColumnDefinitions.Add(new ColumnDefinition());
         body.Children.Add(_list);
-        var editor = new StackPanel { Margin = new Thickness(18, 0, 0, 0) };
-        editor.Children.Add(new TextBlock
-        {
-            Text = LocExtension.Get(AtariConfigurationCatalogConstants.ModelResource),
-            Margin = new Thickness(0, 0, 0, 6)
-        });
-        editor.Children.Add(_model);
-        Grid.SetColumn(editor, 1);
-        body.Children.Add(editor);
+        Grid.SetColumn(_general, 1);
+        body.Children.Add(_general);
         Grid.SetRow(body, 1);
         root.Children.Add(body);
         var actions = new WrapPanel { Margin = new Thickness(0, 10, 0, 0) };
@@ -122,28 +113,26 @@ public sealed class AtariConfigurationCatalogSection : UserControl
             ControlErrorContexts.AtariConfiguration, AtariConfigurationCatalogConstants.AtariTitle); }
     }
 
-    private void ConfigurationSelected(object sender, SelectionChangedEventArgs args)
+    private async void ConfigurationSelected(object sender, SelectionChangedEventArgs args)
     {
         if (_loading || _list.SelectedItem is not AtariConfigurationItem selected) return;
         _current = selected.Configuration;
-        _model.SelectedItem = _models.Single(item => item.Model == _current.Model);
+        await _general.LoadAsync(_current);
         UpdateEditorAvailability();
     }
 
-    private Task NewConfiguration()
+    private async Task NewConfiguration()
     {
-        _current = null;
+        _current = new AtariMachineConfiguration(AtariMachineModel.St);
         _list.SelectedItem = null;
-        _model.SelectedItem = _models.First(item => item.Model == AtariMachineModel.St);
+        await _general.LoadAsync(_current);
         UpdateEditorAvailability();
-        return Task.CompletedTask;
     }
 
     private async Task SaveConfiguration()
     {
-        if (_model.SelectedItem is not AtariModelItem selected) return;
-        if (_current is not null && _controller.IsActive(_current.Id)) return;
-        var configuration = AtariConfigurationCatalogFunctions.ChangeModel(_current, selected.Model);
+        if (_current is null || _controller.IsActive(_current.Id)) return;
+        var configuration = _general.BuildConfiguration();
         await _controller.SaveAsync(configuration);
         _current = configuration;
         ConfigurationSaved?.Invoke(this, configuration);
@@ -166,7 +155,7 @@ public sealed class AtariConfigurationCatalogSection : UserControl
     private void UpdateEditorAvailability()
     {
         var editable = _current is null || !_controller.IsActive(_current.Id);
-        _model.IsEnabled = editable;
+        _general.IsEnabled = editable;
         if (_save is not null) _save.IsEnabled = editable;
         if (_delete is not null) _delete.IsEnabled = _current is not null && editable;
     }

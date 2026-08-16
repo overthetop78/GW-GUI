@@ -8,6 +8,7 @@ using GWGUI.Emulation.Atari;
 
 namespace GWGUI.Tests;
 
+[Collection(AtariNativeCoreTestConstants.CollectionName)]
 public sealed class AtariConfigurationCatalogTests
 {
     [Fact]

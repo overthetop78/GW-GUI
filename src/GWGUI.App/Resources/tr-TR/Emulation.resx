@@ -432,4 +432,7 @@
   <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>Bu modelin faresi yoktur.</value></data>
   <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>Bu modelin depolama medyası yoktur.</value></data>
   <data name="Emulation.AtariUnavailable.JaguarStandardNoCd" xml:space="preserve"><value>CD medyası kullanmak için Jaguar CD modelini seçin.</value></data>
+  <data name="Emulation.AtariCassettes"><value>Kaset</value></data>
+  <data name="Emulation.AtariCartridges"><value>Kartuş</value></data>
+  <data name="Emulation.AtariCompactDiscs"><value>Kompakt diskler</value></data>
 </root>
