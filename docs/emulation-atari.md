@@ -580,15 +580,15 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-047 — Construire la vue de machine Atari
 
-- [ ] Réutiliser la surface vidéo Direct3D 11 et son fallback sans appel natif depuis le contrôle.
-- [ ] Ajouter alimentation, pause, resets, états, capture et plein écran selon les capacités.
-- [ ] Conserver des marges équilibrées autour du bloc renderer.
-- [ ] Afficher les raccourcis utiles et localisés dans les groupes existants.
-- [ ] Construire dynamiquement disquettes, disques, cassette, cartouche et CD depuis les périphériques configurés.
-- [ ] Afficher activité, son, contrôleurs, souris, résolution, fréquence et FPS sans inventer d’état.
-- [ ] Restaurer les médias montés après remise sous tension.
-- [ ] Tester rendu 4:3 et autres ratios, plein écran, capture souris, médias et arrêt.
-- [ ] Enregistrer les captures dans le dossier configuré avec nom sûr, format PNG et erreur détaillée en cas d’échec.
+- [x] Réutiliser la surface vidéo Direct3D 11 et son fallback sans appel natif depuis le contrôle.
+- [x] Ajouter alimentation, pause, resets, états, capture et plein écran selon les capacités.
+- [x] Conserver des marges équilibrées autour du bloc renderer.
+- [x] Afficher les raccourcis utiles et localisés dans les groupes existants.
+- [x] Construire dynamiquement disquettes, disques, cassette, cartouche et CD depuis les périphériques configurés.
+- [x] Afficher activité, son, contrôleurs, souris, résolution, fréquence et FPS sans inventer d’état.
+- [x] Restaurer les médias montés après remise sous tension.
+- [x] Tester rendu 4:3 et autres ratios, plein écran, capture souris, médias et arrêt.
+- [x] Enregistrer les captures dans le dossier configuré avec nom sûr, format PNG et erreur détaillée en cas d’échec.
 
 ### L — Traductions, aide et accessibilité
 

@@ -90,16 +90,6 @@ internal static class EmulationVideoPixels
     }
 }
 
-internal static class EmulationVideoLayout
-{
-    internal static Size FitFourThree(double availableWidth, double availableHeight)
-    {
-        if (availableWidth <= 0 || availableHeight <= 0) return Size.Empty;
-        var width = Math.Min(availableWidth, availableHeight * 4d / 3d);
-        return new Size(width, width * 3d / 4d);
-    }
-}
-
 internal static class NativeChildWindowStyle
 {
     internal const int Value = 0x40000000 | 0x10000000 | 0x02000000 | 0x04000000 | 0x00000100;

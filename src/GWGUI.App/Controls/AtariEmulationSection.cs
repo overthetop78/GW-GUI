@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.IO;
 using GWGUI.App.Localization;
 using GWGUI.App.Services;
+using GWGUI.Domain.Settings;
 using GWGUI.Emulation.Atari;
 
 namespace GWGUI.App.Controls;
@@ -12,11 +13,11 @@ public sealed class AtariEmulationSection : UserControl
 {
     private readonly AtariConfigurationStore _store = new(StoragePaths.AtariConfigurationsDirectory,
         StoragePaths.DataDirectory);
-    private readonly AtariMachineCollection _machinesCollection = new();
     private readonly ComboBox _configuration = new() { DisplayMemberPath = nameof(ConfigurationItem.DisplayName) };
     private readonly Button _open = new() { MinWidth = 130 };
     private readonly TabControl _machines = new();
     private readonly Dictionary<Guid, TabItem> _openMachines = [];
+    private AppSettings _settings = new();
 
     public AtariEmulationSection()
     {
@@ -29,6 +30,8 @@ public sealed class AtariEmulationSection : UserControl
         Content = BuildContent();
         Loaded += async (_, _) => await ReloadConfigurationsAsync();
     }
+
+    public void Configure(AppSettings settings) => _settings = settings;
 
     private UIElement BuildContent()
     {
@@ -80,6 +83,8 @@ public sealed class AtariEmulationSection : UserControl
     private async void ConfigurationSaved(object? sender, AtariMachineConfiguration configuration)
     {
         await ReloadConfigurationsAsync();
+        if (_openMachines.TryGetValue(configuration.Id, out var tab) && tab.Content is AtariMachineView view)
+            view.ApplyVideoRenderer(configuration.VideoRenderer);
     }
 
     public async Task ReloadConfigurationsAsync()
@@ -112,20 +117,24 @@ public sealed class AtariEmulationSection : UserControl
                 () => new WasapiAudioOutput(),
                 configuration => Path.Combine(StoragePaths.AtariStatesDirectory,
                     configuration.Id.ToString(AtariEmulationConstants.IdentifierFormat)));
-            var machine = engine.CreateAtariMachine(selected.Configuration);
-            _machinesCollection.Register(machine);
-            var view = new AtariMachineSessionView(machine);
+            IAtariMachine CreateMachine() => engine.CreateAtariMachine(selected.Configuration);
+            var machine = CreateMachine();
+            var view = new AtariMachineView(machine, CreateMachine, selected.Configuration,
+                _settings.EmulationShortcuts,
+                AtariMachineViewFunctions.QuickStatePath(_settings.EmulationStateFolder,
+                    selected.Configuration.Id),
+                _settings.EmulationCaptureFolder);
             var tab = new TabItem { Content = view, Padding = new Thickness(18, 9, 14, 9) };
             tab.SetResourceReference(StyleProperty, AtariEmulationConstants.MainTabItemStyleResource);
             tab.Header = CreateMachineTabHeader(selected.DisplayName,
-                () => CloseMachineAsync(selected.Configuration.Id, machine.Id, tab, view));
+                () => CloseMachineAsync(selected.Configuration.Id, tab, view));
             _openMachines.Add(selected.Configuration.Id, tab);
             _machines.Items.Add(tab);
             _machines.SelectedItem = tab;
             try { await view.StartAsync(); }
             catch
             {
-                await _machinesCollection.CloseAsync(machine.Id);
+                await view.StopAsync();
                 _openMachines.Remove(selected.Configuration.Id);
                 _machines.Items.Remove(tab);
                 throw;
@@ -139,12 +148,10 @@ public sealed class AtariEmulationSection : UserControl
         finally { _open.IsEnabled = _configuration.SelectedItem is not null; }
     }
 
-    private async Task CloseMachineAsync(Guid configurationId, Guid machineId, TabItem tab,
-        AtariMachineSessionView view)
+    private async Task CloseMachineAsync(Guid configurationId, TabItem tab, AtariMachineView view)
     {
         if (!_openMachines.ContainsKey(configurationId)) return;
         await view.StopAsync();
-        await _machinesCollection.CloseAsync(machineId);
         _openMachines.Remove(configurationId);
         _machines.Items.Remove(tab);
     }
@@ -185,7 +192,8 @@ public sealed class AtariEmulationSection : UserControl
 
     public async Task StopAllAsync()
     {
-        await _machinesCollection.StopAllAsync();
+        foreach (var tab in _openMachines.Values.ToArray())
+            if (tab.Content is AtariMachineView view) await view.StopAsync();
         _openMachines.Clear();
     }
 

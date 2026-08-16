@@ -19,7 +19,11 @@ public sealed class EmulationSection : UserControl
         };
     }
 
-    public void Configure(GWGUI.Domain.Settings.AppSettings settings) => _amiga.Configure(settings);
+    public void Configure(GWGUI.Domain.Settings.AppSettings settings)
+    {
+        _amiga.Configure(settings);
+        _atari.Configure(settings);
+    }
     public async Task StopAllAsync()
     {
         await _amiga.StopAllAsync();
