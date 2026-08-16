@@ -115,6 +115,7 @@ internal sealed class AtariExternalCore : IAtariCore
             AtariCoreFunctions.InstallCallbacks(_exports, _callbacks);
             _exports.Initialize();
             _nativeInitialized = true;
+            _callbacks.ValidateConfiguredOptions();
 
             if (media is not null)
             {

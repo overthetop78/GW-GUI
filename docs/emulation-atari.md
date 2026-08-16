@@ -347,13 +347,13 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-023 — Héberger toutes les Core Options
 
-- [ ] Implémenter Core Options V2, V2 international, V1 et `SET_VARIABLES`.
-- [ ] Copier catégories, clés, libellés, aides, valeurs, labels, défauts et visibilité sans perdre une entrée.
-- [ ] Retourner la valeur configurée ou le défaut avec un pointeur stable dans `GET_VARIABLE`.
-- [ ] Implémenter `GET_VARIABLE_UPDATE`, `SET_VARIABLE` et le callback de mise à jour d’affichage.
-- [ ] Valider les valeurs contre celles annoncées tout en conservant les clés inconnues dans les documents.
-- [ ] Isoler les catalogues d’options par cœur et par instance.
-- [ ] Tester qu’aucune option annoncée par chacune des six DLL n’est perdue.
+- [x] Implémenter Core Options V2, V2 international, V1 et `SET_VARIABLES`.
+- [x] Copier catégories, clés, libellés, aides, valeurs, labels, défauts et visibilité sans perdre une entrée.
+- [x] Retourner la valeur configurée ou le défaut avec un pointeur stable dans `GET_VARIABLE`.
+- [x] Implémenter `GET_VARIABLE_UPDATE`, `SET_VARIABLE` et le callback de mise à jour d’affichage.
+- [x] Valider les valeurs contre celles annoncées tout en conservant les clés inconnues dans les documents.
+- [x] Isoler les catalogues d’options par cœur et par instance.
+- [x] Tester qu’aucune option annoncée par chacune des six DLL n’est perdue.
 
 #### ATA-024 — Respecter l’ordre d’initialisation des six cœurs
 

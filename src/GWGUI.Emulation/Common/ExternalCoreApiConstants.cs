@@ -75,6 +75,8 @@ internal static class ExternalCoreApiConstants
     internal const uint GetFastForwarding = 49 | ExperimentalCommandFlag;
     internal const uint GetInputBitmasks = 51 | ExperimentalCommandFlag;
     internal const uint GetCoreOptionsVersion = 52;
+    internal const uint SetCoreOptions = 53;
+    internal const uint SetCoreOptionsInternational = 54;
     internal const uint SetCoreOptionsDisplay = 55;
     internal const uint GetDiskControlVersion = 57;
     internal const uint SetDiskControlExtended = 58;
@@ -85,6 +87,7 @@ internal static class ExternalCoreApiConstants
     internal const uint SetCoreOptionsV2 = 67;
     internal const uint SetCoreOptionsV2International = 68;
     internal const uint SetCoreOptionsUpdateDisplayCallback = 69;
+    internal const uint SetVariable = 70;
     internal const uint SetNetworkPacketInterface = 78;
     internal const uint SetSerializationQuirks = 87;
 }

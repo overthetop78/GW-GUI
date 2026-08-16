@@ -7,9 +7,7 @@ namespace GWGUI.Emulation.Atari.Cores;
 
 internal sealed class AtariExternalHostCallbacks : IDisposable
 {
-    private readonly Dictionary<string, string> _optionValues;
-    private readonly Dictionary<string, ExternalCoreUtf8String> _nativeOptionValues = new(StringComparer.Ordinal);
-    private readonly List<AtariCoreOption> _options = [];
+    private readonly AtariCoreOptionHost _optionHost;
     private readonly ConcurrentQueue<AudioChunk> _audio = new();
     private readonly Dictionary<int, bool> _ledStates = [];
     private readonly HashSet<uint> _unknownEnvironmentCommands = [];
@@ -36,7 +34,7 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
         _contentDirectory = new ExternalCoreUtf8String(Path.GetFullPath(contentDirectory));
         _saveDirectory = new ExternalCoreUtf8String(Path.GetFullPath(saveDirectory));
         _assetsDirectory = new ExternalCoreUtf8String(Path.GetFullPath(assetsDirectory));
-        _optionValues = new Dictionary<string, string>(configuredOptions, StringComparer.Ordinal);
+        _optionHost = new AtariCoreOptionHost(configuredOptions);
         Environment = OnEnvironment;
         Video = OnVideo;
         AudioSample = OnAudioSample;
@@ -64,7 +62,9 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
     internal EmulationInputSnapshot Input { get; set; } = EmulationInputSnapshot.Empty;
     internal VideoFrame? LatestVideoFrame { get; private set; }
     internal AudioChunk? LatestAudioChunk { get; private set; }
-    internal IReadOnlyList<AtariCoreOption> Options => _options;
+    internal IReadOnlyList<AtariCoreOption> Options => _optionHost.Catalog;
+    internal IReadOnlyList<AtariCoreOptionCategory> OptionCategories => _optionHost.Categories;
+    internal IReadOnlyDictionary<string, string> OptionDocumentValues => _optionHost.DocumentValues;
     internal List<string> Diagnostics { get; } = [];
     internal IReadOnlyDictionary<int, bool> LedStates => _ledStates;
     internal IReadOnlyList<AtariInputDescriptor> InputDescriptors { get; private set; } = [];
@@ -96,17 +96,8 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
         AspectRatio = info.Geometry.AspectRatio;
     }
 
-    internal void SetOption(string key, string value)
-    {
-        var option = _options.FirstOrDefault(item => string.Equals(item.Key, key, StringComparison.Ordinal));
-        if (option is null || option.Values.All(item => !string.Equals(item.Value, value, StringComparison.Ordinal)))
-            throw new AtariEmulationException(AtariErrorKind.Option, AtariErrorCode.OptionInvalid,
-                AtariCoreFunctions.CreateInvalidOptionValueMessage(key, value));
-        _optionValues[key] = value;
-        ReplaceNativeOptionValue(key, value);
-        var index = _options.IndexOf(option);
-        _options[index] = option with { CurrentValue = value };
-    }
+    internal void SetOption(string key, string value) => _optionHost.SetValue(key, value);
+    internal void ValidateConfiguredOptions() => _optionHost.ValidateConfiguredValues();
 
     private bool OnEnvironment(uint command, nint data)
     {
@@ -128,11 +119,12 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
             case ExternalCoreApiConstants.SetPixelFormat:
                 return SetPixelFormat(data);
             case ExternalCoreApiConstants.GetVariable:
-                return GetVariable(data);
+                return _optionHost.ReturnValue(data);
             case ExternalCoreApiConstants.SetVariables:
-                return ReadLegacyOptions(data);
+                _optionHost.RegisterLegacyVariables(data);
+                return data != nint.Zero;
             case ExternalCoreApiConstants.GetVariableUpdate:
-                return AtariCoreFunctions.WriteBoolean(data, false);
+                return _optionHost.GetAndClearUpdated(data);
             case ExternalCoreApiConstants.SetSupportNoGame:
                 SupportsNoGame = data != nint.Zero && Marshal.ReadByte(data) != AtariConstants.NativeBooleanFalse;
                 return data != nint.Zero;
@@ -140,7 +132,13 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
             case ExternalCoreApiConstants.GetInputBitmasks:
                 return AtariCoreFunctions.WriteBoolean(data, true);
             case ExternalCoreApiConstants.GetCoreOptionsVersion:
-                return AtariCoreFunctions.WriteInteger(data, AtariConstants.LegacyCoreOptionsVersion);
+                return AtariCoreFunctions.WriteInteger(data, AtariCoreOptionConstants.SupportedInterfaceVersion);
+            case ExternalCoreApiConstants.SetCoreOptions:
+                _optionHost.RegisterVersionOne(data);
+                return data != nint.Zero;
+            case ExternalCoreApiConstants.SetCoreOptionsInternational:
+                _optionHost.RegisterVersionOneInternational(data);
+                return data != nint.Zero;
             case ExternalCoreApiConstants.GetMessageInterfaceVersion:
                 return AtariCoreFunctions.WriteInteger(data, AtariConstants.MessageInterfaceVersion);
             case ExternalCoreApiConstants.SetSystemAvInfo:
@@ -193,12 +191,20 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
                 return true;
             case ExternalCoreApiConstants.GetDiskControlVersion:
                 return AtariCoreFunctions.WriteInteger(data, AtariDiskControlConstants.InterfaceVersion);
+            case ExternalCoreApiConstants.SetCoreOptionsV2:
+                _optionHost.RegisterVersionTwo(data);
+                return data != nint.Zero;
+            case ExternalCoreApiConstants.SetCoreOptionsV2International:
+                _optionHost.RegisterVersionTwoInternational(data);
+                return data != nint.Zero;
+            case ExternalCoreApiConstants.SetCoreOptionsDisplay:
+                return _optionHost.ApplyVisibility(data);
+            case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:
+                return _optionHost.CaptureDisplayUpdate(data);
+            case ExternalCoreApiConstants.SetVariable:
+                return _optionHost.SetNativeValue(data);
             case ExternalCoreApiConstants.GetVfsInterface:
             case ExternalCoreApiConstants.GetMidiInterface:
-            case ExternalCoreApiConstants.SetCoreOptionsV2:
-            case ExternalCoreApiConstants.SetCoreOptionsV2International:
-            case ExternalCoreApiConstants.SetCoreOptionsDisplay:
-            case ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback:
             case ExternalCoreApiConstants.SetFastForwardingOverride:
             case ExternalCoreApiConstants.SetContentInfoOverride:
             case ExternalCoreApiConstants.SetNetworkPacketInterface:
@@ -250,48 +256,6 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
             default:
                 return false;
         }
-    }
-
-    private bool GetVariable(nint data)
-    {
-        if (data == nint.Zero) return true;
-        var variable = Marshal.PtrToStructure<ExternalCoreApi.Variable>(data);
-        var key = Marshal.PtrToStringUTF8(variable.Key);
-        variable.Value = key is not null && _optionValues.TryGetValue(key, out var value)
-            ? GetNativeOptionValue(key, value)
-            : nint.Zero;
-        Marshal.StructureToPtr(variable, data, false);
-        return true;
-    }
-
-    private bool ReadLegacyOptions(nint data)
-    {
-        if (data == nint.Zero) return false;
-        _options.Clear();
-        var size = Marshal.SizeOf<ExternalCoreApi.Variable>();
-        for (var index = AtariConstants.FirstCollectionIndex; index < AtariConstants.MaximumCoreOptionCount; index++)
-        {
-            var variable = Marshal.PtrToStructure<ExternalCoreApi.Variable>(data + index * size);
-            if (variable.Key == nint.Zero) return true;
-            var key = Marshal.PtrToStringUTF8(variable.Key);
-            var definition = Marshal.PtrToStringUTF8(variable.Value);
-            if (string.IsNullOrWhiteSpace(key) || string.IsNullOrWhiteSpace(definition)) continue;
-            var separator = definition.IndexOf(AtariConstants.LegacyOptionNameSeparator);
-            var name = separator == AtariConstants.StringIndexNotFound ? key : definition[..separator].Trim();
-            var values = (separator == AtariConstants.StringIndexNotFound
-                    ? definition
-                    : definition[(separator + AtariConstants.LegacyOptionValueStartOffset)..])
-                .Split(AtariConstants.LegacyOptionValueSeparator,
-                    StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-            if (values.Length == AtariConstants.EmptyCollectionCount) continue;
-            var selected = _optionValues.TryGetValue(key, out var configured) && values.Contains(configured, StringComparer.Ordinal)
-                ? configured : values[AtariConstants.FirstCollectionIndex];
-            _optionValues[key] = selected;
-            ReplaceNativeOptionValue(key, selected);
-            _options.Add(new AtariCoreOption(key, name, null, null, values[AtariConstants.FirstCollectionIndex], selected,
-                values.Select(value => new AtariCoreOptionValue(value, value)).ToArray()));
-        }
-        return false;
     }
 
     private bool SetSystemAvInfo(nint data)
@@ -425,28 +389,11 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
         if (!string.IsNullOrEmpty(text)) Diagnostics.Add(text);
     }
 
-    private nint GetNativeOptionValue(string key, string value)
-    {
-        if (!_nativeOptionValues.TryGetValue(key, out var native))
-        {
-            native = new ExternalCoreUtf8String(value);
-            _nativeOptionValues.Add(key, native);
-        }
-        return native.Pointer;
-    }
-
-    private void ReplaceNativeOptionValue(string key, string value)
-    {
-        if (_nativeOptionValues.Remove(key, out var previous)) previous.Dispose();
-        _nativeOptionValues.Add(key, new ExternalCoreUtf8String(value));
-    }
-
     public void Dispose()
     {
         if (_disposed) return;
         _disposed = true;
-        foreach (var value in _nativeOptionValues.Values) value.Dispose();
-        _nativeOptionValues.Clear();
+        _optionHost.Dispose();
         _systemDirectory.Dispose();
         _contentDirectory.Dispose();
         _saveDirectory.Dispose();

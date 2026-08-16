@@ -10,8 +10,6 @@ public static class AtariConstants
     internal const int MaximumAudioFramesPerBatch = 64 * 1024;
     internal const int StereoChannelCount = 2;
     internal const int SingleAudioFrameCount = 1;
-    internal const int MaximumCoreOptionCount = 1024;
-    internal const int LegacyCoreOptionsVersion = 0;
     internal const int MessageInterfaceVersion = 1;
     internal const int PixelFormat0Rgb1555 = 0;
     internal const int PixelFormatXrgb8888 = 1;
@@ -19,15 +17,11 @@ public static class AtariConstants
     internal const uint NoInputState = 0;
     internal const byte NativeBooleanFalse = 0;
     internal const byte NativeBooleanTrue = 1;
-    internal const char LegacyOptionNameSeparator = ';';
-    internal const char LegacyOptionValueSeparator = '|';
     internal const char SupportedExtensionSeparator = '|';
     internal const char ExtensionPrefix = '.';
     internal const int FirstBufferIndex = 0;
     internal const int FirstCollectionIndex = 0;
     internal const int Sha256HexLength = 64;
-    internal const int LegacyOptionValueStartOffset = 1;
-    internal const int StringIndexNotFound = -1;
     internal const int EmptyCollectionCount = 0;
     internal const uint EmptyNativeCollectionCount = 0;
     internal const uint EmptyFrameDimension = 0;

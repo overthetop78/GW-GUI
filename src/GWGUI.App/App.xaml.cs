@@ -11,6 +11,7 @@ using GWGUI.App.Services;
 using GWGUI.Infrastructure.HostTools;
 using GWGUI.Emulation.Amiga.Cores;
 using GWGUI.Emulation.Atari.Cores;
+using GWGUI.Emulation.Atari;
 
 namespace GWGUI.App;
 
@@ -29,6 +30,22 @@ public partial class App : Application
         {
             AtariCoreHost.Run(atariPipeName, atariVideoMapName);
             Shutdown();
+            return;
+        }
+        if (e.Args is [AtariCoreOptionProbeConstants.CommandLineArgument, var atariCorePath, var atariCoreKind]
+            && Enum.TryParse<AtariCoreKind>(atariCoreKind, out var parsedAtariCoreKind))
+        {
+            try
+            {
+                Console.Out.WriteLine(AtariCoreOptionProbe.Inspect(atariCorePath, parsedAtariCoreKind).Count);
+                Environment.ExitCode = AtariCoreOptionProbeConstants.SuccessExitCode;
+            }
+            catch (Exception error)
+            {
+                Console.Error.WriteLine(error.Message);
+                Environment.ExitCode = AtariCoreOptionProbeConstants.FailureExitCode;
+            }
+            Shutdown(Environment.ExitCode);
             return;
         }
         DispatcherUnhandledException += OnDispatcherUnhandledException;
