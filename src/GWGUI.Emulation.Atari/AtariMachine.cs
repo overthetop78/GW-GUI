@@ -241,6 +241,7 @@ internal sealed class AtariMachine : IAtariMachine
                 try { _core.Stop(); } catch (Exception error) { Fault ??= error; }
             try { _core.Dispose(); } catch (Exception error) { Fault ??= error; }
             try { _audio.Stop(); } catch (Exception error) { Fault ??= error; }
+            AtariMachineFunctions.DeleteSessionDirectory(_sessionDirectory);
             FailPendingCommands(new OperationCanceledException(AtariMachineConstants.StoppedMessage));
             lock (_gate)
                 State = Fault is null ? EmulationMachineState.Stopped : EmulationMachineState.Faulted;

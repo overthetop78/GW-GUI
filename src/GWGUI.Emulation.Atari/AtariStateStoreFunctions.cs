@@ -82,7 +82,7 @@ internal static class AtariStateStoreFunctions
             catch (IOException) when (retry + AtariStateStoreConstants.NextRetryCount
                                       < AtariStateStoreConstants.MetadataReadRetryCount)
             {
-                Thread.Yield();
+                Thread.Sleep(AtariStateStoreConstants.MetadataReadRetryDelayMilliseconds);
             }
         }
         throw new FileNotFoundException(path);

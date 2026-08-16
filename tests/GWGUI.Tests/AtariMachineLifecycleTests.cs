@@ -77,6 +77,30 @@ public sealed class AtariMachineLifecycleTests
     }
 
     [Fact]
+    public async Task StopRemovesOnlyItsTemporarySessionDirectory()
+    {
+        var session = Path.Combine(Path.GetTempPath(), AtariMachineLifecycleTestConstants.SessionDirectoryPrefix
+            + Guid.NewGuid().ToString(AtariMachineLifecycleTestConstants.IdentifierFormat));
+        Directory.CreateDirectory(session);
+        var sibling = session + AtariMachineLifecycleTestConstants.SiblingDirectorySuffix;
+        Directory.CreateDirectory(sibling);
+        try
+        {
+            await using var machine = CreateMachine(new RecordingAtariCore(), session);
+            await machine.StartAsync();
+            await machine.StopAsync();
+
+            Assert.False(Directory.Exists(session));
+            Assert.True(Directory.Exists(sibling));
+        }
+        finally
+        {
+            if (Directory.Exists(session)) Directory.Delete(session, recursive: true);
+            if (Directory.Exists(sibling)) Directory.Delete(sibling, recursive: true);
+        }
+    }
+
+    [Fact]
     public async Task InjectedFrameExceptionFaultsAndCleansMachine()
     {
         var core = new RecordingAtariCore { ThrowOnFrame = true };
@@ -103,9 +127,11 @@ public sealed class AtariMachineLifecycleTests
         Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedStopCount, core.StopCount);
     }
 
-    private static AtariMachine CreateMachine(RecordingAtariCore core) => new(Guid.NewGuid(),
+    private static AtariMachine CreateMachine(RecordingAtariCore core, string? sessionDirectory = null) => new(Guid.NewGuid(),
         new AtariMachineConfiguration(AtariMachineModel.Atari2600), core,
-        Path.Combine(Path.GetTempPath(), $"gwgui-atari-machine-{Guid.NewGuid():N}"));
+        sessionDirectory ?? Path.Combine(Path.GetTempPath(),
+            AtariMachineLifecycleTestConstants.SessionDirectoryPrefix
+            + Guid.NewGuid().ToString(AtariMachineLifecycleTestConstants.IdentifierFormat)));
 
     private static AtariMediaConfiguration Media() => new(
         Path.Combine(Path.GetTempPath(), AtariMachineLifecycleTestConstants.MediaFileName),
@@ -229,4 +255,7 @@ internal static class AtariMachineLifecycleTestConstants
     internal const string CoreVersion = "test";
     internal const string CoreSha256 = "test-core-sha256";
     internal const string FaultMessage = "Injected Atari frame failure.";
+    internal const string SessionDirectoryPrefix = "gwgui-atari-machine-";
+    internal const string IdentifierFormat = "N";
+    internal const string SiblingDirectorySuffix = "-keep";
 }

@@ -16,7 +16,8 @@ internal static class AtariStateStoreConstants
     internal const string ParentDirectoryName = "..";
     internal const int MaximumStateNameLength = 80;
     internal const int CopyBufferSize = 81920;
-    internal const int MetadataReadRetryCount = 8;
+    internal const int MetadataReadRetryCount = 64;
+    internal const int MetadataReadRetryDelayMilliseconds = 1;
     internal const int FirstRetryIndex = 0;
     internal const int NextRetryCount = 1;
     internal static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)

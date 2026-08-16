@@ -209,6 +209,8 @@ public sealed class OptionsEmulationSection : UserControl
         _appSettings = settings;
         _persistAppSettings = persistSettings;
         StoragePaths.ConfigureEmulationStorageDirectory(settings.EmulationStorageFolder);
+        StoragePaths.ConfigureEmulationStateDirectory(settings.EmulationStateFolder);
+        StoragePaths.ConfigureEmulationCaptureDirectory(settings.EmulationCaptureFolder);
         StoragePaths.ConfigureAmigaHardDisksDirectory(settings.AmigaHardDisksFolder);
         _storageBaseFolder.Text = settings.EmulationStorageFolder;
         _captureFolder.Text = settings.EmulationCaptureFolder;
@@ -472,6 +474,8 @@ public sealed class OptionsEmulationSection : UserControl
         _appSettings.EmulationStateFolder = Path.GetFullPath(_stateFolder.Text.Trim());
         _appSettings.AmigaHardDisksFolder = Path.GetFullPath(_amigaHardDisksFolder.Text.Trim());
         StoragePaths.ConfigureEmulationStorageDirectory(_appSettings.EmulationStorageFolder);
+        StoragePaths.ConfigureEmulationStateDirectory(_appSettings.EmulationStateFolder);
+        StoragePaths.ConfigureEmulationCaptureDirectory(_appSettings.EmulationCaptureFolder);
         StoragePaths.ConfigureAmigaHardDisksDirectory(_appSettings.AmigaHardDisksFolder);
         EnsureStorageFolders();
         if (_persistAppSettings is not null) await _persistAppSettings();

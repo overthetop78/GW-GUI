@@ -6,6 +6,8 @@ namespace GWGUI.App;
 public static class StoragePaths
 {
     private static string? _configuredEmulationStorageDirectory;
+    private static string? _configuredEmulationStateDirectory;
+    private static string? _configuredEmulationCaptureDirectory;
     private static string? _configuredAmigaHardDisksDirectory;
     public static bool IsPortable => File.Exists(Path.Combine(AppContext.BaseDirectory, "portable.flag"));
     public static string DataDirectory => ResolveDataDirectory(AppContext.BaseDirectory, Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
@@ -26,6 +28,39 @@ public static class StoragePaths
     public static string AtariDirectory => Path.Combine(EmulationDirectory, StoragePathConstants.MachinesDirectory,
         StoragePathConstants.AtariDirectory);
     public static string AtariCoreDirectory => Path.Combine(AtariDirectory, StoragePathConstants.CoreDirectory);
+    public static string AtariConfigurationsDirectory =>
+        Path.Combine(AtariDirectory, StoragePathConstants.ConfigurationsDirectory);
+    public static string AtariSessionsDirectory =>
+        Path.Combine(AtariDirectory, StoragePathConstants.SessionsDirectory);
+    public static string AtariSavesDirectory =>
+        Path.Combine(AtariDirectory, StoragePathConstants.SavesDirectory);
+    public static string AtariSharedStorageDirectory =>
+        Path.Combine(EmulationStorageDirectory, StoragePathConstants.AtariDirectory);
+    public static string AtariFloppyImagesDirectory =>
+        Path.Combine(EmulationStorageDirectory, StoragePathConstants.FloppiesDirectory,
+            StoragePathConstants.AtariDirectory);
+    public static string AtariCassetteImagesDirectory =>
+        Path.Combine(EmulationStorageDirectory, StoragePathConstants.CassettesDirectory,
+            StoragePathConstants.AtariDirectory);
+    public static string AtariCartridgeImagesDirectory =>
+        Path.Combine(EmulationStorageDirectory, StoragePathConstants.CartridgesDirectory,
+            StoragePathConstants.AtariDirectory);
+    public static string AtariCompactDiscsDirectory =>
+        Path.Combine(EmulationStorageDirectory, StoragePathConstants.CompactDiscsDirectory,
+            StoragePathConstants.AtariDirectory);
+    public static string AtariHardDisksDirectory =>
+        Path.Combine(EmulationStorageDirectory, StoragePathConstants.HardDisksDirectory,
+            StoragePathConstants.AtariDirectory);
+    public static string EmulationStateDirectory => ResolveConfiguredDirectory(
+        _configuredEmulationStateDirectory,
+        Path.Combine(EmulationStorageDirectory, StoragePathConstants.StatesDirectory));
+    public static string EmulationCaptureDirectory => ResolveConfiguredDirectory(
+        _configuredEmulationCaptureDirectory,
+        Path.Combine(EmulationStorageDirectory, StoragePathConstants.CapturesDirectory));
+    public static string AtariStatesDirectory =>
+        Path.Combine(EmulationStateDirectory, StoragePathConstants.AtariDirectory);
+    public static string AtariCapturesDirectory =>
+        Path.Combine(EmulationCaptureDirectory, StoragePathConstants.AtariDirectory);
     public static string AtariFirmwareDirectory =>
         Path.Combine(AtariDirectory, AtariFirmwareConstants.FirmwareDirectoryName);
     public static string AtariStFirmwareDirectory =>
@@ -45,6 +80,12 @@ public static class StoragePaths
 
     public static void ConfigureEmulationStorageDirectory(string? directory) =>
         _configuredEmulationStorageDirectory = string.IsNullOrWhiteSpace(directory) ? null : directory.Trim();
+
+    public static void ConfigureEmulationStateDirectory(string? directory) =>
+        _configuredEmulationStateDirectory = NormalizeConfiguredDirectory(directory);
+
+    public static void ConfigureEmulationCaptureDirectory(string? directory) =>
+        _configuredEmulationCaptureDirectory = NormalizeConfiguredDirectory(directory);
 
     public static void ConfigureAmigaHardDisksDirectory(string? directory) =>
         _configuredAmigaHardDisksDirectory = NormalizeConfiguredDirectory(directory);

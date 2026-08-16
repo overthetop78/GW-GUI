@@ -47,7 +47,7 @@ internal static class AtariStateFileFunctions
                 catch (IOException) when (retry + AtariStateConstants.NextRetryCount
                                           < AtariStateConstants.ReadRetryCount)
                 {
-                    Thread.Yield();
+                    Thread.Sleep(AtariStateConstants.ReadRetryDelayMilliseconds);
                 }
             }
             throw new FileNotFoundException(path);

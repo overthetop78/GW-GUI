@@ -480,15 +480,15 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-037 — Implémenter le stockage des configurations
 
-- [ ] Définir un schéma JSON versionné distinct des configurations Amiga.
-- [ ] Persister modèle, cœur déterminé, options, firmwares, médias, entrées, dossiers et renderer.
-- [ ] Conserver relatifs les chemins sous `Data` et absolus les chemins externes.
-- [ ] Écrire atomiquement et ne jamais démarrer une machine pendant le chargement des documents.
-- [ ] Isoler un document corrompu tout en chargeant les autres.
-- [ ] Migrer les futures versions avec des fonctions explicites et testées.
-- [ ] Tester deux configurations par famille, round-trip, corruption et suppression sans toucher aux fichiers partagés.
-- [ ] Centraliser dans `StoragePaths` tous les chemins définitifs Atari pour mode installé et portable.
-- [ ] Vérifier que sessions et temporaires restent hors des documents utilisateur et sont nettoyés après exécution.
+- [x] Définir un schéma JSON versionné distinct des configurations Amiga.
+- [x] Persister modèle, cœur déterminé, options, firmwares, médias, entrées, dossiers et renderer.
+- [x] Conserver relatifs les chemins sous `Data` et absolus les chemins externes.
+- [x] Écrire atomiquement et ne jamais démarrer une machine pendant le chargement des documents.
+- [x] Isoler un document corrompu tout en chargeant les autres.
+- [x] Migrer les futures versions avec des fonctions explicites et testées.
+- [x] Tester deux configurations par famille, round-trip, corruption et suppression sans toucher aux fichiers partagés.
+- [x] Centraliser dans `StoragePaths` tous les chemins définitifs Atari pour mode installé et portable.
+- [x] Vérifier que sessions et temporaires restent hors des documents utilisateur et sont nettoyés après exécution.
 
 #### ATA-038 — Implémenter le cycle de vie de la machine Atari
 
