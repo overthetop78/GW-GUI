@@ -8,6 +8,7 @@ internal static class AtariMachineConstants
     internal const int DiagnosticTailCount = 100;
     internal const int EmptyCount = 0;
     internal const long NoRemainingTicks = 0;
+    internal const int InvalidSampleRate = 0;
     internal const string ThreadNamePrefix = "gwgui Atari";
     internal const string DiagnosticDataKey = "AtariDiagnostics";
     internal const string InvalidStartStateMessage = "The Atari machine can only be started once.";

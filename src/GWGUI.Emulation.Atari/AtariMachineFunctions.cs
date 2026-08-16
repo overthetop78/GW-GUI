@@ -11,11 +11,11 @@ internal static class AtariMachineFunctions
         (long)(Stopwatch.Frequency / Math.Clamp(framesPerSecond,
             AtariMachineConstants.MinimumFramesPerSecond, AtariMachineConstants.MaximumFramesPerSecond));
 
-    internal static void WaitForFrame(long target)
+    internal static void WaitForFrame(long target, CancellationToken cancellationToken)
     {
         var remaining = target - Stopwatch.GetTimestamp();
         if (remaining > AtariMachineConstants.NoRemainingTicks)
-            Thread.Sleep(TimeSpan.FromSeconds((double)remaining / Stopwatch.Frequency));
+            cancellationToken.WaitHandle.WaitOne(TimeSpan.FromSeconds((double)remaining / Stopwatch.Frequency));
     }
 
     internal static void DeleteSessionDirectory(string sessionDirectory)

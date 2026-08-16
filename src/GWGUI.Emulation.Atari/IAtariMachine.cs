@@ -15,10 +15,13 @@ public interface IAtariMachine : IEmulatedMachine
     string CoreVersion { get; }
     IReadOnlySet<string> SupportedContentExtensions { get; }
     bool IsAudioMuted { get; }
+    float AudioVolume { get; }
     event EventHandler<VideoFrame>? VideoFrameReady;
     event EventHandler<AudioChunk>? AudioChunkReady;
     void SetInput(EmulationInputSnapshot snapshot);
     void SetAudioMuted(bool muted);
+    void SetAudioVolume(float volume);
+    void SetAudioOutputFactory(Func<IAudioOutput?>? factory);
     ValueTask InsertMediaAsync(AtariMediaConfiguration media, CancellationToken cancellationToken = default);
     ValueTask EjectMediaAsync(EmulationMediaSlot slot, CancellationToken cancellationToken = default);
     ValueTask SelectDiskAsync(int index, CancellationToken cancellationToken = default);

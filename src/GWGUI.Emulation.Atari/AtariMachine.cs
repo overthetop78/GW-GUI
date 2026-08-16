@@ -12,22 +12,23 @@ internal sealed class AtariMachine : IAtariMachine
     private readonly string _sessionDirectory;
     private readonly string? _saveDirectory;
     private readonly ConcurrentQueue<AtariMachineCommand> _commands = new();
-    private IAudioOutput? _audioOutput;
+    private readonly AtariAudioOutputController _audio;
     private CancellationTokenSource? _stopSource;
     private Task? _runLoop;
     private TaskCompletionSource? _started;
     private bool _pauseRequested;
-    private bool _audioMuted;
     private bool _disposed;
 
     internal AtariMachine(Guid id, AtariMachineConfiguration configuration, IAtariCore core,
-        string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null)
+        string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null,
+        Func<IAudioOutput?>? audioOutputFactory = null)
     {
         Id = id;
         Configuration = configuration;
         _core = core;
         _sessionDirectory = sessionDirectory;
-        _audioOutput = audioOutput;
+        _audio = new AtariAudioOutputController(audioOutput, audioOutputFactory);
+        _audio.SetMuted(!configuration.AudioEnabled);
         _saveDirectory = saveDirectory;
     }
 
@@ -43,7 +44,8 @@ internal sealed class AtariMachine : IAtariMachine
     public string CoreName => _core.CoreName;
     public string CoreVersion => _core.CoreVersion;
     public IReadOnlySet<string> SupportedContentExtensions => _core.SupportedContentExtensions;
-    public bool IsAudioMuted => _audioMuted;
+    public bool IsAudioMuted => _audio.IsMuted;
+    public float AudioVolume => _audio.Volume;
     public event EventHandler<VideoFrame>? VideoFrameReady;
     public event EventHandler<AudioChunk>? AudioChunkReady;
 
@@ -83,7 +85,7 @@ internal sealed class AtariMachine : IAtariMachine
             if (State != EmulationMachineState.Running) return ValueTask.CompletedTask;
             _pauseRequested = true;
             State = EmulationMachineState.Paused;
-            FlushAudio();
+            _audio.Pause();
         }
         return QueueCommand(static () => { }, cancellationToken);
     }
@@ -96,16 +98,17 @@ internal sealed class AtariMachine : IAtariMachine
             if (State != EmulationMachineState.Paused) return ValueTask.CompletedTask;
             _pauseRequested = false;
             State = EmulationMachineState.Running;
+            _audio.Resume();
             Monitor.PulseAll(_gate);
         }
         return ValueTask.CompletedTask;
     }
 
     public ValueTask SoftResetAsync(CancellationToken cancellationToken = default) =>
-        QueueCommand(_core.HardReset, cancellationToken);
+        QueueCommand(ResetCore, cancellationToken);
 
     public ValueTask HardResetAsync(CancellationToken cancellationToken = default) =>
-        QueueCommand(_core.HardReset, cancellationToken);
+        QueueCommand(ResetCore, cancellationToken);
 
     public async ValueTask StopAsync(CancellationToken cancellationToken = default)
     {
@@ -130,9 +133,12 @@ internal sealed class AtariMachine : IAtariMachine
 
     public void SetAudioMuted(bool muted)
     {
-        _audioMuted = muted;
-        if (muted) FlushAudio();
+        _audio.SetMuted(muted);
     }
+
+    public void SetAudioVolume(float volume) => _audio.SetVolume(volume);
+
+    public void SetAudioOutputFactory(Func<IAudioOutput?>? factory) => _audio.ReplaceFactory(factory);
 
     public ValueTask InsertMediaAsync(AtariMediaConfiguration media, CancellationToken cancellationToken = default) =>
         QueueCommand(() => _core.InsertMedia(media), cancellationToken);
@@ -193,7 +199,7 @@ internal sealed class AtariMachine : IAtariMachine
                 _core.RunFrame();
                 PublishOutputs(ref videoSequence);
                 nextFrame = AtariMachineFunctions.NextFrameTimestamp(nextFrame, _core.FramesPerSecond);
-                AtariMachineFunctions.WaitForFrame(nextFrame);
+                AtariMachineFunctions.WaitForFrame(nextFrame, cancellationToken);
                 if (nextFrame < Stopwatch.GetTimestamp()) nextFrame = Stopwatch.GetTimestamp();
             }
         }
@@ -212,7 +218,7 @@ internal sealed class AtariMachine : IAtariMachine
             if (initialized)
                 try { _core.Stop(); } catch (Exception error) { Fault ??= error; }
             try { _core.Dispose(); } catch (Exception error) { Fault ??= error; }
-            try { _audioOutput?.Stop(); } catch (Exception error) { Fault ??= error; }
+            try { _audio.Stop(); } catch (Exception error) { Fault ??= error; }
             FailPendingCommands(new OperationCanceledException(AtariMachineConstants.StoppedMessage));
             lock (_gate)
                 State = Fault is null ? EmulationMachineState.Stopped : EmulationMachineState.Faulted;
@@ -221,9 +227,7 @@ internal sealed class AtariMachine : IAtariMachine
 
     private void StartAudio()
     {
-        if (_audioOutput is null) return;
-        try { _audioOutput.Start(_core.SampleRate); }
-        catch { _audioOutput.Dispose(); _audioOutput = null; }
+        _audio.Start(_core.SampleRate);
     }
 
     private void PublishOutputs(ref long videoSequence)
@@ -235,9 +239,7 @@ internal sealed class AtariMachine : IAtariMachine
         }
         while (_core.TryDequeueAudio(out var audio) && audio is not null)
         {
-            if (_audioOutput is not null && !_audioMuted)
-                try { _audioOutput.Write(audio.InterleavedStereo.Span); }
-                catch { _audioOutput.Dispose(); _audioOutput = null; }
+            _audio.Write(audio);
             AudioChunkReady?.Invoke(this, audio);
         }
     }
@@ -247,11 +249,10 @@ internal sealed class AtariMachine : IAtariMachine
         while (_commands.TryDequeue(out var command)) command.Completion.TrySetException(error);
     }
 
-    private void FlushAudio()
+    private void ResetCore()
     {
-        if (_audioOutput is null) return;
-        try { _audioOutput.Flush(); }
-        catch { _audioOutput.Dispose(); _audioOutput = null; }
+        _audio.Reset();
+        _core.HardReset();
     }
 
     public async ValueTask DisposeAsync()
@@ -261,7 +262,7 @@ internal sealed class AtariMachine : IAtariMachine
         await StopAsync().ConfigureAwait(false);
         _stopSource?.Dispose();
         if (disposeUnstartedCore) _core.Dispose();
-        _audioOutput?.Dispose();
+        _audio.Dispose();
         AtariMachineFunctions.DeleteSessionDirectory(_sessionDirectory);
         _disposed = true;
     }

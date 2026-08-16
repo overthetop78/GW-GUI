@@ -396,13 +396,13 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-028 — Sortir et synchroniser l’audio
 
-- [ ] Réutiliser `IAudioOutput`/WASAPI sans ajouter NAudio au moteur Atari.
-- [ ] Démarrer avec le taux réel, gérer mute, volume, pause, reprise, reset et arrêt.
-- [ ] Recréer la sortie après changement de périphérique ou erreur sans arrêter la machine.
-- [ ] Asservir la cadence à une cible et des bornes de tampon explicitement définies.
-- [ ] Respecter PAL, NTSC et les cadences propres aux consoles portables ou Jaguar.
-- [ ] Ne jamais dormir dans un callback natif et utiliser des attentes annulables.
-- [ ] Tester la dérive, les bornes mémoire et les compteurs sur une durée définie par famille.
+- [x] Réutiliser `IAudioOutput`/WASAPI sans ajouter NAudio au moteur Atari.
+- [x] Démarrer avec le taux réel, gérer mute, volume, pause, reprise, reset et arrêt.
+- [x] Recréer la sortie après changement de périphérique ou erreur sans arrêter la machine.
+- [x] Asservir la cadence à une cible et des bornes de tampon explicitement définies.
+- [x] Respecter PAL, NTSC et les cadences propres aux consoles portables ou Jaguar.
+- [x] Ne jamais dormir dans un callback natif et utiliser des attentes annulables.
+- [x] Tester la dérive, les bornes mémoire et les compteurs sur une durée définie par famille.
 
 #### ATA-029 — Publier les informations de fonctionnement
 
