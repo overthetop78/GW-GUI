@@ -6,11 +6,12 @@ namespace GWGUI.App.Input;
 
 internal sealed class RelativeMouseCapture
 {
-    internal bool IsCaptured { get; private set; }
+    private readonly RelativeMouseCaptureState _state = new();
+    internal bool IsCaptured => _state.IsCaptured;
 
     internal void Capture(FrameworkElement display, FrameworkElement screen, IntPtr nativeHandle)
     {
-        IsCaptured = true;
+        _state.Capture();
         display.Cursor = Cursors.None;
         Mouse.Capture(display);
         if (nativeHandle != IntPtr.Zero)
@@ -25,8 +26,7 @@ internal sealed class RelativeMouseCapture
 
     internal void Release(FrameworkElement display, IntPtr nativeHandle)
     {
-        if (!IsCaptured) return;
-        IsCaptured = false;
+        if (!_state.Release()) return;
         Mouse.Capture(null);
         if (nativeHandle != IntPtr.Zero) ReleaseCapture();
         display.Cursor = null;
@@ -35,21 +35,20 @@ internal sealed class RelativeMouseCapture
     internal void ProcessMovement(FrameworkElement screen, Action<int, int> moved)
     {
         if (!IsCaptured || !GetCursorPos(out var current)) return;
-        var center = screen.PointToScreen(new Point(screen.ActualWidth / 2, screen.ActualHeight / 2));
-        var deltaX = current.X - (int)Math.Round(center.X);
-        var deltaY = current.Y - (int)Math.Round(center.Y);
-        if (deltaX == 0 && deltaY == 0) return;
+        var center = screen.PointToScreen(RelativeMouseCaptureFunctions.Center(screen.ActualWidth, screen.ActualHeight));
+        var (deltaX, deltaY) = RelativeMouseCaptureFunctions.Delta(new Point(current.X, current.Y), center);
+        if (!RelativeMouseCaptureFunctions.HasMovement(deltaX, deltaY)) return;
         moved(deltaX, deltaY);
         SetCursorPos((int)Math.Round(center.X), (int)Math.Round(center.Y));
     }
 
     internal static void FocusNative(IntPtr handle) => SetFocus(handle);
     internal static void HideNativeCursor() => SetCursor(IntPtr.Zero);
-    internal static bool IsButtonPressed(int virtualKey) => (GetAsyncKeyState(virtualKey) & 0x8000) != 0;
+    internal static bool IsButtonPressed(int virtualKey) => RelativeMouseCaptureFunctions.IsPressed(GetAsyncKeyState(virtualKey));
 
     private static void CenterCursor(FrameworkElement screen)
     {
-        var center = new Point(screen.ActualWidth / 2, screen.ActualHeight / 2);
+        var center = RelativeMouseCaptureFunctions.Center(screen.ActualWidth, screen.ActualHeight);
         var position = screen.PointToScreen(center);
         SetCursorPos((int)Math.Round(position.X), (int)Math.Round(position.Y));
     }

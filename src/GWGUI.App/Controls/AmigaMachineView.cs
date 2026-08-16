@@ -652,6 +652,7 @@ public sealed class AmigaMachineView : UserControl
     {
         if (_machine.State == EmulationMachineState.Running)
         {
+            ReleaseRelativeMouse();
             await _machine.PauseAsync();
             SetIcon(_pauseButton, "\uE768", "Common.Continue");
             if (_pauseButton is not null) _pauseButton.Foreground = Brushes.LimeGreen;
@@ -812,6 +813,7 @@ public sealed class AmigaMachineView : UserControl
 
     private void ToggleFullscreen()
     {
+        ReleaseRelativeMouse();
         if (_fullscreenWindow is not null)
         {
             ExitFullscreen();
@@ -932,10 +934,12 @@ public sealed class AmigaMachineView : UserControl
                 ProcessRelativePointer();
                 break;
             case WindowsInputMessages.MouseWheel when _mouseCapture.IsCaptured:
-                PublishInput(wheel: unchecked((short)((wParam.ToInt64() >> 16) & 0xffff)));
+                PublishInput(wheel: unchecked((short)((wParam.ToInt64() >> WindowsInputMessages.WheelHighWordShift)
+                    & WindowsInputMessages.UnsignedWordMask)));
                 break;
             case WindowsInputMessages.MouseHorizontalWheel when _mouseCapture.IsCaptured:
-                PublishInput(horizontalWheel: unchecked((short)((wParam.ToInt64() >> 16) & 0xffff)));
+                PublishInput(horizontalWheel: unchecked((short)((wParam.ToInt64() >> WindowsInputMessages.WheelHighWordShift)
+                    & WindowsInputMessages.UnsignedWordMask)));
                 break;
             case WindowsInputMessages.SetCursor when _mouseCapture.IsCaptured:
                 RelativeMouseCapture.HideNativeCursor();
@@ -971,8 +975,9 @@ public sealed class AmigaMachineView : UserControl
     private IntPtr WindowMessageHook(IntPtr hwnd, int message, IntPtr wParam, IntPtr lParam, ref bool handled)
     {
         if (message != WindowsInputMessages.MouseHorizontalWheel || !_mouseCapture.IsCaptured || !_display.IsMouseOver) return IntPtr.Zero;
-        var delta = unchecked((short)((wParam.ToInt64() >> 16) & 0xffff));
-        if (delta != 0) PublishInput(horizontalWheel: delta);
+        var delta = unchecked((short)((wParam.ToInt64() >> WindowsInputMessages.WheelHighWordShift)
+            & WindowsInputMessages.UnsignedWordMask));
+        if (delta != WindowsInputMessages.NeutralWheelDelta) PublishInput(horizontalWheel: delta);
         return IntPtr.Zero;
     }
 
@@ -1001,20 +1006,23 @@ public sealed class AmigaMachineView : UserControl
         if (!_disposed) PublishInput();
     }
 
-    private void PublishInput(int deltaX = 0, int deltaY = 0, int wheel = 0, int horizontalWheel = 0)
+    private void PublishInput(int deltaX = RelativeMouseCaptureConstants.NoMovement,
+        int deltaY = RelativeMouseCaptureConstants.NoMovement,
+        int wheel = WindowsInputMessages.NeutralWheelDelta,
+        int horizontalWheel = WindowsInputMessages.NeutralWheelDelta)
     {
         var mouseActive = _mouseCapture.IsCaptured;
         var physical = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
         {
-            ["Left"] = mouseActive && RelativeMouseCapture.IsButtonPressed(0x01),
-            ["Right"] = mouseActive && RelativeMouseCapture.IsButtonPressed(0x02),
-            ["Middle"] = mouseActive && RelativeMouseCapture.IsButtonPressed(0x04),
-            ["XButton1"] = mouseActive && RelativeMouseCapture.IsButtonPressed(0x05),
-            ["XButton2"] = mouseActive && RelativeMouseCapture.IsButtonPressed(0x06),
-            ["WheelUp"] = mouseActive && wheel > 0,
-            ["WheelDown"] = mouseActive && wheel < 0,
-            ["WheelLeft"] = mouseActive && horizontalWheel < 0,
-            ["WheelRight"] = mouseActive && horizontalWheel > 0
+            ["Left"] = mouseActive && RelativeMouseCapture.IsButtonPressed(WindowsInputMessages.LeftMouseVirtualKey),
+            ["Right"] = mouseActive && RelativeMouseCapture.IsButtonPressed(WindowsInputMessages.RightMouseVirtualKey),
+            ["Middle"] = mouseActive && RelativeMouseCapture.IsButtonPressed(WindowsInputMessages.MiddleMouseVirtualKey),
+            ["XButton1"] = mouseActive && RelativeMouseCapture.IsButtonPressed(WindowsInputMessages.FirstExtendedMouseVirtualKey),
+            ["XButton2"] = mouseActive && RelativeMouseCapture.IsButtonPressed(WindowsInputMessages.SecondExtendedMouseVirtualKey),
+            ["WheelUp"] = mouseActive && wheel > WindowsInputMessages.NeutralWheelDelta,
+            ["WheelDown"] = mouseActive && wheel < WindowsInputMessages.NeutralWheelDelta,
+            ["WheelLeft"] = mouseActive && horizontalWheel < WindowsInputMessages.NeutralWheelDelta,
+            ["WheelRight"] = mouseActive && horizontalWheel > WindowsInputMessages.NeutralWheelDelta
         };
         var actions = _input.MouseButtonMappings ?? new Dictionary<string, AmigaMouseAction>
         {
@@ -1026,7 +1034,9 @@ public sealed class AmigaMachineView : UserControl
         bool IsPressed(AmigaMouseAction action) => actions.Any(mapping => mapping.Value == action
             && IsControllerSourcePressed(mapping.Key, ControllerInputMap.ControllerForSource(mapping.Key, controllers, primaryController), physical));
         _machine.SetInput(new EmulationInputSnapshot(new HashSet<EmulationKey>(_keys),
-            new EmulationPointerState(mouseActive ? deltaX : 0, mouseActive ? deltaY : 0, mouseActive ? wheel : 0,
+            new EmulationPointerState(mouseActive ? deltaX : RelativeMouseCaptureConstants.NoMovement,
+                mouseActive ? deltaY : RelativeMouseCaptureConstants.NoMovement,
+                mouseActive ? wheel : WindowsInputMessages.NeutralWheelDelta,
                 IsPressed(AmigaMouseAction.LeftButton),
                 IsPressed(AmigaMouseAction.RightButton), IsPressed(AmigaMouseAction.MiddleButton)),
             MapControllers(controllers, physical)));

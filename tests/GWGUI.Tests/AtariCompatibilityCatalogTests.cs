@@ -127,5 +127,12 @@ public sealed class AtariCompatibilityCatalogTests
             console.Options.Single(rule => rule.Option == AtariSettingOption.KeyboardMappings).Availability);
         Assert.Equal(AtariOptionAvailability.Unavailable,
             console.Options.Single(rule => rule.Option == AtariSettingOption.MouseMappings).Availability);
+        Assert.Equal(AtariOptionAvailability.Unavailable,
+            computer.Options.Single(rule => rule.Option == AtariSettingOption.MouseSpeed).Availability);
+        var st = AtariCompatibilityCatalog.Get(AtariMachineModel.St);
+        Assert.Equal(AtariOptionAvailability.Editable,
+            st.Options.Single(rule => rule.Option == AtariSettingOption.MouseSpeed).Availability);
+        Assert.Equal(AtariOptionAvailability.Editable,
+            st.Options.Single(rule => rule.Option == AtariSettingOption.MouseMappings).Availability);
     }
 }

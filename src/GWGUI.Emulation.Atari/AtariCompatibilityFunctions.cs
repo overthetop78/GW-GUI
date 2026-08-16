@@ -94,6 +94,7 @@ internal static class AtariCompatibilityFunctions
             Editable(AtariSettingOption.AudioEnabled),
             Editable(AtariSettingOption.Storage),
             Editable(AtariSettingOption.KeyboardMappings),
+            Editable(AtariSettingOption.MouseSpeed),
             Editable(AtariSettingOption.MouseMappings),
             Editable(AtariSettingOption.ControllerMappings));
         return NewDefinition(model, AtariCoreKind.Hatari, options, Values(AtariFirmwareKind.Tos),
@@ -137,6 +138,7 @@ internal static class AtariCompatibilityFunctions
             hasKeyboard
                 ? Editable(AtariSettingOption.KeyboardMappings)
                 : Unavailable(AtariSettingOption.KeyboardMappings, AtariCompatibilityConstants.NoKeyboardResource),
+            Unavailable(AtariSettingOption.MouseSpeed, AtariCompatibilityConstants.NoMouseResource),
             Unavailable(AtariSettingOption.MouseMappings, AtariCompatibilityConstants.NoMouseResource),
             Editable(AtariSettingOption.ControllerMappings));
         var media = hardware.Media.Select(CreateMediaRule).ToList();

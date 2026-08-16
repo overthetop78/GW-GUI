@@ -46,6 +46,7 @@ public enum AtariSettingOption
     AudioEnabled,
     Storage,
     KeyboardMappings,
+    MouseSpeed,
     MouseMappings,
     ControllerMappings
 }

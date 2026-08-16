@@ -13,6 +13,8 @@ internal static class AtariInputFunctions
 
     internal static short State(EmulationInputSnapshot snapshot, uint port, uint device, uint index, uint id)
     {
+        if (device == AtariInputConstants.MouseDevice)
+            return MouseState(snapshot.Pointer, port, index, id);
         if (port >= snapshot.Controllers.Count) return AtariInputConstants.InactiveState;
         var controller = snapshot.Controllers[checked((int)port)];
         if (device == AtariInputConstants.JoypadDevice)
@@ -36,4 +38,45 @@ internal static class AtariInputFunctions
             _ => AtariInputConstants.InactiveState
         };
     }
+
+    internal static EmulationInputSnapshot Accumulate(EmulationInputSnapshot current,
+        EmulationInputSnapshot update) => new(new HashSet<EmulationKey>(update.Keys), update.Pointer with
+    {
+        DeltaX = SaturatingAdd(current.Pointer.DeltaX, update.Pointer.DeltaX),
+        DeltaY = SaturatingAdd(current.Pointer.DeltaY, update.Pointer.DeltaY),
+        Wheel = SaturatingAdd(current.Pointer.Wheel, update.Pointer.Wheel)
+    }, update.Controllers.ToArray());
+
+    internal static EmulationInputSnapshot ConsumeRelativePointer(EmulationInputSnapshot snapshot) =>
+        snapshot with
+        {
+            Pointer = snapshot.Pointer with
+            {
+                DeltaX = AtariInputConstants.ConsumedRelativeValue,
+                DeltaY = AtariInputConstants.ConsumedRelativeValue,
+                Wheel = AtariInputConstants.ConsumedRelativeValue
+            }
+        };
+
+    private static short MouseState(EmulationPointerState pointer, uint port, uint index, uint id)
+    {
+        if (port != AtariInputConstants.PrimaryPort || index != AtariInputConstants.LeftAnalogIndex)
+            return AtariInputConstants.InactiveState;
+        return id switch
+        {
+            AtariInputConstants.MouseXId => Clamp(pointer.DeltaX),
+            AtariInputConstants.MouseYId => Clamp(pointer.DeltaY),
+            AtariInputConstants.MouseLeftId => Boolean(pointer.Left),
+            AtariInputConstants.MouseRightId => Boolean(pointer.Right),
+            AtariInputConstants.MouseWheelUpId => Boolean(pointer.Wheel > AtariInputConstants.ConsumedRelativeValue),
+            AtariInputConstants.MouseWheelDownId => Boolean(pointer.Wheel < AtariInputConstants.ConsumedRelativeValue),
+            AtariInputConstants.MouseMiddleId => Boolean(pointer.Middle),
+            _ => AtariInputConstants.InactiveState
+        };
+    }
+
+    private static short Boolean(bool value) => value ? AtariInputConstants.ActiveState : AtariInputConstants.InactiveState;
+    private static short Clamp(int value) => (short)Math.Clamp(value, short.MinValue, short.MaxValue);
+    private static int SaturatingAdd(int left, int right) =>
+        (int)Math.Clamp((long)left + right, int.MinValue, int.MaxValue);
 }

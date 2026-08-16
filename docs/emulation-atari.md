@@ -433,11 +433,11 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-032 — Implémenter souris et capture relative
 
-- [ ] Mapper mouvement relatif, boutons, molette et éventuelle souris par port selon le cœur.
-- [ ] Réutiliser la capture Raw Input et la libération de souris de la vue Amiga.
-- [ ] Restaurer curseur, clipping et état des boutons après perte de focus, plein écran, pause ou arrêt.
-- [ ] Griser vitesse et mappages souris sur les modèles qui ne les utilisent pas.
-- [ ] Tester accumulation, consommation par frame, capture, libération et fermeture forcée.
+- [x] Mapper mouvement relatif, boutons, molette et éventuelle souris par port selon le cœur.
+- [x] Réutiliser la capture Raw Input et la libération de souris de la vue Amiga.
+- [x] Restaurer curseur, clipping et état des boutons après perte de focus, plein écran, pause ou arrêt.
+- [x] Griser vitesse et mappages souris sur les modèles qui ne les utilisent pas.
+- [x] Tester accumulation, consommation par frame, capture, libération et fermeture forcée.
 
 #### ATA-033 — Implémenter les contrôleurs
 

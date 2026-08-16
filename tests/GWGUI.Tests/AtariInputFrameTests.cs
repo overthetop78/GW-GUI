@@ -125,6 +125,56 @@ public sealed class AtariInputFrameTests
             AtariInputFrameTestConstants.SecondButtonId));
     }
 
+    [Fact]
+    public void Mouse_AccumulatesBeforePollAndConsumesRelativeValuesOncePerFrame()
+    {
+        var store = new AtariInputFrameStore();
+        store.Update(MouseSnapshot(AtariInputFrameTestConstants.FirstMouseX,
+            AtariInputFrameTestConstants.FirstMouseY, AtariInputFrameTestConstants.FirstMouseWheel,
+            left: true, right: false, middle: false));
+        store.Update(MouseSnapshot(AtariInputFrameTestConstants.SecondMouseX,
+            AtariInputFrameTestConstants.SecondMouseY, AtariInputFrameTestConstants.SecondMouseWheel,
+            left: false, right: true, middle: true));
+        store.Poll();
+
+        Assert.Equal(AtariInputFrameTestConstants.TotalMouseX, MouseState(store, AtariInputConstants.MouseXId));
+        Assert.Equal(AtariInputFrameTestConstants.TotalMouseY, MouseState(store, AtariInputConstants.MouseYId));
+        Assert.Equal(AtariInputConstants.ActiveState, MouseState(store, AtariInputConstants.MouseWheelUpId));
+        Assert.Equal(AtariInputConstants.InactiveState, MouseState(store, AtariInputConstants.MouseLeftId));
+        Assert.Equal(AtariInputConstants.ActiveState, MouseState(store, AtariInputConstants.MouseRightId));
+        Assert.Equal(AtariInputConstants.ActiveState, MouseState(store, AtariInputConstants.MouseMiddleId));
+
+        store.Poll();
+        Assert.Equal(AtariInputConstants.InactiveState, MouseState(store, AtariInputConstants.MouseXId));
+        Assert.Equal(AtariInputConstants.InactiveState, MouseState(store, AtariInputConstants.MouseYId));
+        Assert.Equal(AtariInputConstants.InactiveState, MouseState(store, AtariInputConstants.MouseWheelUpId));
+        Assert.Equal(AtariInputConstants.ActiveState, MouseState(store, AtariInputConstants.MouseRightId));
+    }
+
+    [Fact]
+    public void Mouse_ClampsDeltasAndRejectsOtherPortsIndexesAndIds()
+    {
+        var store = new AtariInputFrameStore();
+        store.Update(MouseSnapshot(int.MaxValue, int.MinValue, AtariInputFrameTestConstants.NoMouseWheel,
+            left: false, right: false, middle: false));
+        store.Poll();
+        Assert.Equal(short.MaxValue, MouseState(store, AtariInputConstants.MouseXId));
+        Assert.Equal(short.MinValue, MouseState(store, AtariInputConstants.MouseYId));
+        Assert.Equal(AtariInputConstants.InactiveState, store.State(AtariInputFrameTestConstants.UnknownPort,
+            AtariInputConstants.MouseDevice, AtariInputConstants.LeftAnalogIndex, AtariInputConstants.MouseXId));
+        Assert.Equal(AtariInputConstants.InactiveState, store.State(AtariInputConstants.PrimaryPort,
+            AtariInputConstants.MouseDevice, AtariInputFrameTestConstants.UnknownIndex, AtariInputConstants.MouseXId));
+        Assert.Equal(AtariInputConstants.InactiveState, store.State(AtariInputConstants.PrimaryPort,
+            AtariInputConstants.MouseDevice, AtariInputConstants.LeftAnalogIndex, AtariInputFrameTestConstants.UnknownId));
+    }
+
+    private static short MouseState(AtariInputFrameStore store, uint id) => store.State(
+        AtariInputConstants.PrimaryPort, AtariInputConstants.MouseDevice, AtariInputConstants.LeftAnalogIndex, id);
+
+    private static EmulationInputSnapshot MouseSnapshot(int deltaX, int deltaY, int wheel,
+        bool left, bool right, bool middle) => new(new HashSet<EmulationKey>(), new EmulationPointerState(deltaX, deltaY, wheel,
+            left, right, middle), EmulationInputSnapshot.Empty.Controllers);
+
     private static EmulationInputSnapshot Snapshot(uint buttons) => new(
         new HashSet<EmulationKey> { EmulationKey.A, EmulationKey.LeftShift }, Pointer(), [Controller(buttons)]);
 
@@ -159,4 +209,13 @@ internal static class AtariInputFrameTestConstants
     internal const uint UnknownIndex = 99;
     internal const uint UnknownId = 99;
     internal const long FirstStreamPosition = 0;
+    internal const int FirstMouseX = 12;
+    internal const int FirstMouseY = -8;
+    internal const int FirstMouseWheel = 1;
+    internal const int SecondMouseX = 7;
+    internal const int SecondMouseY = 3;
+    internal const int SecondMouseWheel = 2;
+    internal const short TotalMouseX = FirstMouseX + SecondMouseX;
+    internal const short TotalMouseY = FirstMouseY + SecondMouseY;
+    internal const int NoMouseWheel = 0;
 }
