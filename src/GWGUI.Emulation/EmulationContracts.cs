@@ -46,8 +46,28 @@ public interface IAudioOutput : IDisposable
     void Stop();
 }
 
-public enum EmulationMediaSlot { Floppy0, Floppy1, Floppy2, Floppy3, HardDisk0, Cd0 }
-public enum EmulationMediaType { Floppy, HardDisk, CompactDisc, Directory }
+public enum EmulationMediaSlot
+{
+    Floppy0 = 0,
+    Floppy1 = 1,
+    Floppy2 = 2,
+    Floppy3 = 3,
+    HardDisk0 = 4,
+    Cd0 = 5,
+    Cartridge0 = 6,
+    Cassette0 = 7
+}
+
+public enum EmulationMediaType
+{
+    Floppy = 0,
+    HardDisk = 1,
+    CompactDisc = 2,
+    Directory = 3,
+    Cartridge = 4,
+    Cassette = 5
+}
+
 public sealed record EmulationMedia(string Path, EmulationMediaSlot Slot, EmulationMediaType Type,
     bool IsReadOnly, bool IsInserted);
 

@@ -135,11 +135,11 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-003 — Généraliser les types de médias
 
-- [ ] Ajouter `Cartridge` et `Cassette` à `EmulationMediaType` sans modifier les valeurs persistées existantes.
-- [ ] Ajouter des slots explicites de cartouche et cassette ; étendre les slots CD et disque uniquement si la matrice l’exige.
-- [ ] Définir les règles d’unicité, d’éjection, de lecture seule et de remplacement pour chaque type.
-- [ ] Mettre à jour la sérialisation du protocole et les configurations sans casser les documents Amiga existants.
-- [ ] Ajouter les tests de compatibilité ascendante, de round-trip et de slot invalide.
+- [x] Ajouter `Cartridge` et `Cassette` à `EmulationMediaType` sans modifier les valeurs persistées existantes.
+- [x] Ajouter des slots explicites de cartouche et cassette ; étendre les slots CD et disque uniquement si la matrice l’exige.
+- [x] Définir les règles d’unicité, d’éjection, de lecture seule et de remplacement pour chaque type.
+- [x] Mettre à jour la sérialisation du protocole et les configurations sans casser les documents Amiga existants.
+- [x] Ajouter les tests de compatibilité ascendante, de round-trip et de slot invalide.
 
 #### ATA-004 — Extraire uniquement les éléments Libretro réellement communs
 
