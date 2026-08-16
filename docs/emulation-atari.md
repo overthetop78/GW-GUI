@@ -2,7 +2,7 @@
 
 ## Objectif
 
-Intégrer à GW GUI les six cœurs Libretro retenus, avec le même niveau d’intégration que l’émulation Amiga : installation et remplacement des cœurs, configurations persistantes, firmwares, médias, vidéo, audio, entrées, états, interface traduite, documentation, packaging et tests.
+Intégrer à GW GUI les six cœurs Atari retenus, avec le même niveau d’intégration que l’émulation Amiga : installation et remplacement des cœurs, configurations persistantes, firmwares, médias, vidéo, audio, entrées, états, interface traduite, documentation, packaging et tests.
 
 | Cœur | Machines visées | Médias principaux |
 |---|---|---|
@@ -30,7 +30,7 @@ Cette matrice exprime la cible fonctionnelle. Les formats, options et limites ex
 
 ## Architecture cible
 
-- `GWGUI.Emulation.Atari` contient le domaine Atari, les catalogues, la persistance, l’installation des cœurs et les adaptateurs Libretro.
+- `GWGUI.Emulation.Atari` contient le domaine Atari, les catalogues, la persistance, l’installation des cœurs et les adaptateurs de moteurs externes.
 - `GWGUI.App` contient uniquement la présentation, les fournisseurs applicatifs, la préparation des médias et le démarrage des hôtes.
 - Le protocole hôte reprend le modèle Amiga et transporte commandes, vidéo, audio, entrées, médias, état et erreurs structurées.
 - Les abstractions réellement communes à Amiga et Atari sont extraites sans créer de dépendance entre les deux domaines.
@@ -54,7 +54,7 @@ Cette matrice empêche d’oublier un morceau déjà nécessaire à Amiga. Un fi
 | `AmigaExternalCoreInstaller.cs` | installation et remplacement atomique par cœur |
 | `AmigaCoreReleaseService.cs` | recherche des versions officielles des six cœurs |
 | `Cores/IAmigaCore.cs` | interface interne indépendante d’une DLL précise |
-| `Cores/AmigaExternalApi.cs` | ABI Libretro commune ou Atari spécialisée |
+| `Common/ExternalCoreApi.cs` | ABI commune des moteurs externes |
 | `Cores/AmigaExternalCore.cs` | adaptateur natif sélectionnant l’un des six cœurs |
 | `Cores/AmigaExternalHostCallbacks.cs` | environnement, options, chemins, vidéo, audio, entrée, logs et LED |
 | `Cores/AmigaExternalDiskControl.cs` | contrôleurs de disquette/CD réellement exposés |
@@ -162,20 +162,20 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-006 — Définir les contrats Atari
 
-- [ ] Créer `IAtariMachine` avec le cycle de vie commun, événements vidéo et commandes Atari.
-- [ ] Créer `IAtariCore` pour isoler la machine du cœur natif concret.
-- [ ] Créer `AtariCoreKind` et les six identifiants de cœur sans les déduire du nom de DLL.
-- [ ] Créer `AtariMachineConfiguration` avec version de schéma, modèle, cœur déterminé, firmwares, médias, options et entrées.
-- [ ] Créer les valeurs de modèle, famille, firmware, média et périphérique sans dépendance WPF.
-- [ ] Créer les erreurs structurées pour cœur, firmware, contenu, option, hôte et état.
-- [ ] Tester les invariants des contrats et le refus des combinaisons manifestement incohérentes.
+- [x] Créer `IAtariMachine` avec le cycle de vie commun, événements vidéo et commandes Atari.
+- [x] Créer `IAtariCore` pour isoler la machine du cœur natif concret.
+- [x] Créer `AtariCoreKind` et les six identifiants de cœur sans les déduire du nom de DLL.
+- [x] Créer `AtariMachineConfiguration` avec version de schéma, modèle, cœur déterminé, firmwares, médias, options et entrées.
+- [x] Créer les valeurs de modèle, famille, firmware, média et périphérique sans dépendance WPF.
+- [x] Créer les erreurs structurées pour cœur, firmware, contenu, option, hôte et état.
+- [x] Tester les invariants des contrats et le refus des combinaisons manifestement incohérentes.
 
-#### ATA-007 — Implémenter l’adaptateur Libretro Atari
+#### ATA-007 — Implémenter l’adaptateur des moteurs externes Atari
 
 - [ ] Déclarer les delegates Cdecl, structures séquentielles et marshaling booléen requis en x64.
 - [ ] Tester tailles et offsets natifs de toutes les structures utilisées.
 - [ ] Refuser les chemins relatifs et produire une erreur structurée si la DLL ou un export manque.
-- [ ] Résoudre l’ensemble des exports Libretro requis et vérifier `RETRO_API_VERSION`.
+- [ ] Résoudre l’ensemble des exports requis et vérifier la version d’ABI attendue.
 - [ ] Installer les callbacks environnement, vidéo, audio et entrée dans l’ordre imposé par l’API.
 - [ ] Vérifier `retro_system_info` contre le cœur attendu au lieu de se fier au nom du fichier.
 - [ ] Charger le contenu avec `retro_game_info` selon `need_fullpath` et les extensions annoncées.
@@ -329,7 +329,7 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 - [ ] Griser le lecteur CD sur Jaguar standard avec une explication traduite.
 - [ ] Tester image incomplète, piste manquante, changement autorisé et absence de support signalée proprement.
 
-### H — Environnement Libretro, exécution, vidéo et audio
+### H — Environnement des moteurs externes, exécution, vidéo et audio
 
 #### ATA-022 — Répondre aux commandes d’environnement communes
 
@@ -424,7 +424,7 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-031 — Mapper les claviers Atari
 
-- [ ] Créer une table exhaustive `EmulationKey` vers les codes Libretro sans dépendance WPF dans le moteur.
+- [ ] Créer une table exhaustive `EmulationKey` vers les codes clavier des moteurs externes sans dépendance WPF dans le moteur.
 - [ ] Mapper le clavier ST/STE/TT/Falcon et ses touches propres.
 - [ ] Mapper le clavier Atari 8 bits et ses touches console Option, Select, Start et Help.
 - [ ] Transmettre down/up, caractère Unicode et modificateurs au mécanisme utilisé par le cœur.
