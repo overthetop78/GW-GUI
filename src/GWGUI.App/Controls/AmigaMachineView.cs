@@ -1,6 +1,5 @@
 using System.IO;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
@@ -62,7 +61,7 @@ public sealed class AmigaMachineView : UserControl
     private int _framesProducedInWindow;
     private double _measuredFramesPerSecond;
     private bool _disposed;
-    private bool _mouseCaptured;
+    private readonly RelativeMouseCapture _mouseCapture = new();
     private bool _poweredOff;
     private Button? _pauseButton;
     private Button? _powerButton;
@@ -208,7 +207,7 @@ public sealed class AmigaMachineView : UserControl
         _display.MouseDown += (_, _) =>
         {
             _display.Focus();
-            if (_input.CaptureMouse && !_mouseCaptured) CaptureRelativeMouse();
+            if (_input.CaptureMouse && !_mouseCapture.IsCaptured) CaptureRelativeMouse();
         };
         if (_display is HwndHost host)
             host.MessageHook += NativeVideoMessage;
@@ -587,7 +586,7 @@ public sealed class AmigaMachineView : UserControl
         _videoHost.Visibility = powered ? Visibility.Visible : Visibility.Hidden;
         _audioStatus.Opacity = powered && _configuration.AudioEnabled ? 1 : 0.25;
         _controllerStatus.Opacity = powered ? _controllerStatus.Opacity : 0.25;
-        _mouseStatus.Opacity = powered && _mouseCaptured ? 1 : 0.25;
+        _mouseStatus.Opacity = powered && _mouseCapture.IsCaptured ? 1 : 0.25;
         if (!powered) _status.Text = string.Empty;
     }
 
@@ -671,35 +670,6 @@ public sealed class AmigaMachineView : UserControl
         EmulationVideoRenderer.Wpf => "WPF",
         _ => renderer.ToString()
     };
-
-    private static byte[] ConvertToBgra32(VideoFrame frame, int destinationPitch)
-    {
-        var source = frame.Pixels.Span;
-        var destination = GC.AllocateUninitializedArray<byte>(checked(destinationPitch * frame.Height));
-        for (var y = 0; y < frame.Height; y++)
-        {
-            var sourceRow = source.Slice(checked(y * frame.Pitch), frame.Pitch);
-            var destinationRow = destination.AsSpan(checked(y * destinationPitch), destinationPitch);
-            if (frame.PixelFormat == EmulationPixelFormat.Xrgb8888)
-            {
-                sourceRow[..Math.Min(sourceRow.Length, destinationPitch)].CopyTo(destinationRow);
-                for (var x = 0; x < frame.Width; x++) destinationRow[x * 4 + 3] = 255;
-                continue;
-            }
-
-            for (var x = 0; x < frame.Width; x++)
-            {
-                var sourceOffset = x * 2;
-                var value = sourceRow[sourceOffset] | sourceRow[sourceOffset + 1] << 8;
-                var destinationOffset = x * 4;
-                destinationRow[destinationOffset] = (byte)((value & 0x1f) * 255 / 31);
-                destinationRow[destinationOffset + 1] = (byte)(((value >> 5) & 0x3f) * 255 / 63);
-                destinationRow[destinationOffset + 2] = (byte)(((value >> 11) & 0x1f) * 255 / 31);
-                destinationRow[destinationOffset + 3] = 255;
-            }
-        }
-        return destination;
-    }
 
     private async Task InsertDisk()
     {
@@ -970,19 +940,13 @@ public sealed class AmigaMachineView : UserControl
 
     private void DisplayMouseMove(object sender, MouseEventArgs e)
     {
-        if (!_mouseCaptured) return;
+        if (!_mouseCapture.IsCaptured) return;
         ProcessRelativePointer();
     }
 
     private void ProcessRelativePointer()
     {
-        if (!_mouseCaptured || !GetCursorPos(out var current)) return;
-        var center = _screen.PointToScreen(new Point(_screen.ActualWidth / 2, _screen.ActualHeight / 2));
-        var deltaX = current.X - (int)Math.Round(center.X);
-        var deltaY = current.Y - (int)Math.Round(center.Y);
-        if (deltaX == 0 && deltaY == 0) return;
-        PublishInput(deltaX, deltaY);
-        SetCursorPos((int)Math.Round(center.X), (int)Math.Round(center.Y));
+        _mouseCapture.ProcessMovement(_screen, (deltaX, deltaY) => PublishInput(deltaX, deltaY));
     }
 
     private IntPtr NativeVideoMessage(IntPtr hwnd, int message, IntPtr wParam, IntPtr lParam, ref bool handled)
@@ -1006,27 +970,27 @@ public sealed class AmigaMachineView : UserControl
             case rightDown:
             case middleDown:
             case xButtonDown:
-                SetFocus(hwnd);
-                if (_input.CaptureMouse && !_mouseCaptured) CaptureRelativeMouse();
-                if (_mouseCaptured) PublishInput();
+                RelativeMouseCapture.FocusNative(hwnd);
+                if (_input.CaptureMouse && !_mouseCapture.IsCaptured) CaptureRelativeMouse();
+                if (_mouseCapture.IsCaptured) PublishInput();
                 break;
             case leftUp:
             case rightUp:
             case middleUp:
             case xButtonUp:
-                if (_mouseCaptured) PublishInput();
+                if (_mouseCapture.IsCaptured) PublishInput();
                 break;
-            case mouseMove when _mouseCaptured:
+            case mouseMove when _mouseCapture.IsCaptured:
                 ProcessRelativePointer();
                 break;
-            case mouseWheel when _mouseCaptured:
+            case mouseWheel when _mouseCapture.IsCaptured:
                 PublishInput(wheel: unchecked((short)((wParam.ToInt64() >> 16) & 0xffff)));
                 break;
-            case mouseHorizontalWheel when _mouseCaptured:
+            case mouseHorizontalWheel when _mouseCapture.IsCaptured:
                 PublishInput(horizontalWheel: unchecked((short)((wParam.ToInt64() >> 16) & 0xffff)));
                 break;
-            case setCursor when _mouseCaptured:
-                SetCursor(IntPtr.Zero);
+            case setCursor when _mouseCapture.IsCaptured:
+                RelativeMouseCapture.HideNativeCursor();
                 handled = true;
                 break;
         }
@@ -1035,12 +999,12 @@ public sealed class AmigaMachineView : UserControl
 
     private void MouseChanged(object sender, MouseButtonEventArgs e)
     {
-        if (_mouseCaptured) PublishInput();
+        if (_mouseCapture.IsCaptured) PublishInput();
     }
 
     private void DisplayMouseWheel(object sender, MouseWheelEventArgs e)
     {
-        if (_mouseCaptured) PublishInput(wheel: e.Delta);
+        if (_mouseCapture.IsCaptured) PublishInput(wheel: e.Delta);
     }
 
     private void AttachWindowHook()
@@ -1059,7 +1023,7 @@ public sealed class AmigaMachineView : UserControl
     private IntPtr WindowMessageHook(IntPtr hwnd, int message, IntPtr wParam, IntPtr lParam, ref bool handled)
     {
         const int mouseHorizontalWheel = 0x020E;
-        if (message != mouseHorizontalWheel || !_mouseCaptured || !_display.IsMouseOver) return IntPtr.Zero;
+        if (message != mouseHorizontalWheel || !_mouseCapture.IsCaptured || !_display.IsMouseOver) return IntPtr.Zero;
         var delta = unchecked((short)((wParam.ToInt64() >> 16) & 0xffff));
         if (delta != 0) PublishInput(horizontalWheel: delta);
         return IntPtr.Zero;
@@ -1067,39 +1031,21 @@ public sealed class AmigaMachineView : UserControl
 
     private Task ToggleMouseCapture()
     {
-        if (_mouseCaptured) ReleaseRelativeMouse();
+        if (_mouseCapture.IsCaptured) ReleaseRelativeMouse();
         else CaptureRelativeMouse();
         return Task.CompletedTask;
     }
 
     private void CaptureRelativeMouse()
     {
-        _mouseCaptured = true;
-        _display.Cursor = Cursors.None;
-        Mouse.Capture(_display);
-        if (_videoSurface.InputHandle != IntPtr.Zero)
-        {
-            SetCapture(_videoSurface.InputHandle);
-            SetFocus(_videoSurface.InputHandle);
-            SetCursor(IntPtr.Zero);
-        }
-        else
-        {
-            _display.Focus();
-        }
+        _mouseCapture.Capture(_display, _screen, _videoSurface.InputHandle);
         _mouseStatus.Opacity = 1;
-        var center = new Point(_screen.ActualWidth / 2, _screen.ActualHeight / 2);
-        var screen = _screen.PointToScreen(center);
-        SetCursorPos((int)Math.Round(screen.X), (int)Math.Round(screen.Y));
     }
 
     private void ReleaseRelativeMouse()
     {
-        if (!_mouseCaptured) return;
-        _mouseCaptured = false;
-        Mouse.Capture(null);
-        if (_videoSurface.InputHandle != IntPtr.Zero) ReleaseCapture();
-        _display.Cursor = null;
+        if (!_mouseCapture.IsCaptured) return;
+        _mouseCapture.Release(_display, _videoSurface.InputHandle);
         _mouseStatus.Opacity = 0.35;
         _keys.Remove(EmulationKey.LeftControl);
         _keys.Remove(EmulationKey.RightControl);
@@ -1110,14 +1056,14 @@ public sealed class AmigaMachineView : UserControl
 
     private void PublishInput(int deltaX = 0, int deltaY = 0, int wheel = 0, int horizontalWheel = 0)
     {
-        var mouseActive = _mouseCaptured;
+        var mouseActive = _mouseCapture.IsCaptured;
         var physical = new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
         {
-            ["Left"] = mouseActive && IsMouseButtonPressed(0x01),
-            ["Right"] = mouseActive && IsMouseButtonPressed(0x02),
-            ["Middle"] = mouseActive && IsMouseButtonPressed(0x04),
-            ["XButton1"] = mouseActive && IsMouseButtonPressed(0x05),
-            ["XButton2"] = mouseActive && IsMouseButtonPressed(0x06),
+            ["Left"] = mouseActive && RelativeMouseCapture.IsButtonPressed(0x01),
+            ["Right"] = mouseActive && RelativeMouseCapture.IsButtonPressed(0x02),
+            ["Middle"] = mouseActive && RelativeMouseCapture.IsButtonPressed(0x04),
+            ["XButton1"] = mouseActive && RelativeMouseCapture.IsButtonPressed(0x05),
+            ["XButton2"] = mouseActive && RelativeMouseCapture.IsButtonPressed(0x06),
             ["WheelUp"] = mouseActive && wheel > 0,
             ["WheelDown"] = mouseActive && wheel < 0,
             ["WheelLeft"] = mouseActive && horizontalWheel < 0,
@@ -1138,8 +1084,6 @@ public sealed class AmigaMachineView : UserControl
                 IsPressed(AmigaMouseAction.RightButton), IsPressed(AmigaMouseAction.MiddleButton)),
             MapControllers(controllers, physical)));
     }
-
-    private static bool IsMouseButtonPressed(int virtualKey) => (GetAsyncKeyState(virtualKey) & 0x8000) != 0;
 
     private IReadOnlyList<EmulationControllerState> MapControllers(IReadOnlyList<EmulationControllerState> physical,
         IReadOnlyDictionary<string, bool> mouseButtons)
@@ -1217,23 +1161,4 @@ public sealed class AmigaMachineView : UserControl
     private sealed record KeyboardShortcutBinding(KeyboardChord Chord, EmulationKey AmigaKey);
     private sealed record GlobalShortcutBinding(string Action, KeyboardChord Chord);
 
-    [DllImport("user32.dll")]
-    private static extern bool SetCursorPos(int x, int y);
-    [DllImport("user32.dll")]
-    private static extern bool GetCursorPos(out NativePoint point);
-    [DllImport("user32.dll")]
-    private static extern IntPtr SetCapture(IntPtr hwnd);
-
-    [DllImport("user32.dll")]
-    private static extern IntPtr SetFocus(IntPtr hwnd);
-
-    [DllImport("user32.dll")]
-    private static extern short GetAsyncKeyState(int virtualKey);
-    [DllImport("user32.dll")]
-    private static extern bool ReleaseCapture();
-    [DllImport("user32.dll")]
-    private static extern IntPtr SetCursor(IntPtr cursor);
-
-    [StructLayout(LayoutKind.Sequential)]
-    private struct NativePoint { public int X; public int Y; }
 }

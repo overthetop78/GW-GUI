@@ -27,9 +27,9 @@ Une case n’est cochée qu’après modification et validation de la tâche cor
 
 ## 10.4 Stockage et rendu
 
-- [ ] Sortir les fonctions communes des dialogues de stockage dans des fichiers dédiés.
-- [ ] Sortir la conversion des images vidéo de `AmigaMachineView`.
-- [ ] Sortir la gestion de capture relative de la souris de `AmigaMachineView`.
+- [x] Sortir les fonctions communes des dialogues de stockage dans des fichiers dédiés.
+- [x] Sortir la conversion des images vidéo de `AmigaMachineView`.
+- [x] Sortir la gestion de capture relative de la souris de `AmigaMachineView`.
 
 ## 10.5 Découpage des grands contrôles
 
