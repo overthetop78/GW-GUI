@@ -1,0 +1,44 @@
+namespace GWGUI.Emulation.Atari;
+
+public static class AtariFirmwareConstants
+{
+    public const int Md5HexLength = 32;
+    public const int Atari800ExternalFirmwareCount = 7;
+    public const string TosIdPrefix = "tos-";
+    public const string TosFileName = "tos.img";
+    public const string Tos102UnitedStatesMd5 = "c1c57ce48e8ee4135885cee9e63a68a2";
+    public const string AtariOsAId = "atari-osa";
+    public const string AtariOsAFileName = "ATARIOSA.ROM";
+    public const string AtariOsAMd5 = "eb1f32f5d9f382db1bbfb8d7f9cb343a";
+    public const string AtariOsBId = "atari-osb";
+    public const string AtariOsBFileName = "ATARIOSB.ROM";
+    public const string AtariOsBMd5 = "4177f386a3bac989a981d3fe3388cb6c";
+    public const string AtariXlOsId = "atari-xl-os";
+    public const string AtariXlOsFileName = "ATARIXL.ROM";
+    public const string AtariXlOsMd5 = "06daac977823773a3eea3422fd26a703";
+    public const string AtariXlXeOsV4Id = "atari-xl-xe-os-v4";
+    public const string AtariXlXeOsV4FileName = "BB01R4_OS.ROM";
+    public const string AtariXlXeOsV4Md5 = "b7a2a04677d34f069eeb643d5238bf86";
+    public const string AtariBasicId = "atari-basic";
+    public const string AtariBasicFileName = "ATARIBAS.ROM";
+    public const string AtariBasicMd5 = "0bac0c6a50104045d902df4503a4c30b";
+    public const string Atari5200Id = "atari-5200";
+    public const string Atari5200FileName = "5200.rom";
+    public const string Atari5200Md5 = "281f20ea4320404ec820fb7ec0693b38";
+    public const string AtariXegsId = "atari-xegs-game";
+    public const string AtariXegsFileName = "XEGAME.ROM";
+    public const string AtariXegsMd5 = "d7eb37aec6960cba36bc500e0e5d00bc";
+    public const string Atari2600NoBiosId = "atari-2600-no-bios";
+    public const string Atari7800Id = "atari-7800";
+    public const string Atari7800FileName = "7800 BIOS (U).rom";
+    public const string Atari7800Md5 = "0763f1ffb006ddbe32e52d497ee848ae";
+    public const string LynxBootId = "lynx-boot";
+    public const string LynxBootFileName = "lynxboot.img";
+    public const string LynxBootMd5 = "fcd403db69f54290b51035d82f835e7b";
+    public const string JaguarBootId = "jaguar-boot-embedded";
+    public const string JaguarCdRetailId = "jaguar-cd-retail";
+    public const string JaguarCdRetailFileName = "[BIOS] Atari Jaguar CD (World).j64";
+    public const string JaguarCdDeveloperId = "jaguar-cd-developer";
+    public const string JaguarCdDeveloperFileName = "[BIOS] Atari Jaguar Developer CD (World).j64";
+    public const string JaguarCdDriveFirmwareId = "jaguar-cd-drive-firmware-not-used";
+}

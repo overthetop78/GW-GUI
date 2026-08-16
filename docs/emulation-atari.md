@@ -259,13 +259,13 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-015 — Créer le catalogue des firmwares Atari
 
-- [ ] Cataloguer les TOS par version, région et modèle compatible.
-- [ ] Cataloguer les ROM Atari 8 bits et 5200 réellement utilisées par Atari800.
-- [ ] Cataloguer les BIOS facultatifs ou obligatoires des 2600, 7800 et Lynx.
-- [ ] Cataloguer les BIOS Jaguar et Jaguar CD ainsi que tout firmware de lecteur requis.
-- [ ] Enregistrer nom attendu, taille et empreintes publiques uniquement lorsqu’une source fiable les fournit.
-- [ ] Marquer clairement firmware requis, facultatif, intégré ou remplaçable.
-- [ ] Vérifier qu’aucun firmware protégé n’entre dans Git ou un package.
+- [x] Cataloguer les TOS par version, région et modèle compatible.
+- [x] Cataloguer les ROM Atari 8 bits et 5200 réellement utilisées par Atari800.
+- [x] Cataloguer les BIOS facultatifs ou obligatoires des 2600, 7800 et Lynx.
+- [x] Cataloguer les BIOS Jaguar et Jaguar CD ainsi que tout firmware de lecteur requis.
+- [x] Enregistrer nom attendu, taille et empreintes publiques uniquement lorsqu’une source fiable les fournit.
+- [x] Marquer clairement firmware requis, facultatif, intégré ou remplaçable.
+- [x] Vérifier qu’aucun firmware protégé n’entre dans Git ou un package.
 
 #### ATA-016 — Implémenter détection et sélection des firmwares
 

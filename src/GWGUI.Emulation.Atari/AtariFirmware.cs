@@ -11,6 +11,7 @@ public enum AtariFirmwareKind
     AtariXegsBios,
     Atari7800Bios,
     LynxBootRom,
+    JaguarBootRom,
     JaguarCdBios
 }
 

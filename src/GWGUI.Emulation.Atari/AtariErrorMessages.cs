@@ -2,6 +2,7 @@ namespace GWGUI.Emulation.Atari;
 
 internal static class AtariErrorMessages
 {
+    internal const string UnknownFirmware = "Unknown Atari firmware definition.";
     internal const string DuplicateStModelDefinition = "An Atari ST model is declared more than once.";
     internal const string UnknownStModel = "The requested Atari model is not part of the ST family.";
     internal const string DuplicateClassicModelDefinition = "An Atari 8-bit or console model is declared more than once.";
