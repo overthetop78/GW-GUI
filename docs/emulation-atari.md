@@ -198,11 +198,11 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-009 — Créer le catalogue des six cœurs
 
-- [ ] Associer à chaque identifiant le nom de bibliothèque, le nom de DLL, l’archive et la source officielle.
-- [ ] Associer chaque modèle à exactement un cœur et refuser une association ambiguë.
-- [ ] Définir les dossiers installés et manifestes séparément pour chaque cœur et chaque version.
-- [ ] Enregistrer URL, date, taille ZIP, taille DLL, SHA-256 calculé, architecture et version déclarée comme diagnostic.
-- [ ] Tester les six associations, chemins et noms sans accès réseau.
+- [x] Associer à chaque identifiant le nom de bibliothèque, le nom de DLL, l’archive et la source officielle.
+- [x] Associer chaque modèle à exactement un cœur et refuser une association ambiguë.
+- [x] Définir les dossiers installés et manifestes séparément pour chaque cœur et chaque version.
+- [x] Enregistrer URL, date, taille ZIP, taille DLL, SHA-256 calculé, architecture et version déclarée comme diagnostic.
+- [x] Tester les six associations, chemins et noms sans accès réseau.
 
 #### ATA-010 — Implémenter recherche, téléchargement et remplacement
 
