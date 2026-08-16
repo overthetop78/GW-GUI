@@ -186,6 +186,18 @@ internal static class ExternalCoreApi
     }
 
     [StructLayout(LayoutKind.Sequential)]
+    internal struct MessageExtended
+    {
+        internal nint Text;
+        internal uint DurationMilliseconds;
+        internal uint Priority;
+        internal uint Level;
+        internal uint Target;
+        internal uint Type;
+        internal sbyte Progress;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
     internal struct LedInterface
     {
         internal nint SetLedState;

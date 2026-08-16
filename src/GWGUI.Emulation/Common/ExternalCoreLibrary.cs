@@ -9,9 +9,9 @@ internal sealed class ExternalCoreLibrary : IDisposable
     internal ExternalCoreLibrary(string absolutePath)
     {
         if (!Path.IsPathFullyQualified(absolutePath))
-            throw new ArgumentException("The external core path must be absolute.", nameof(absolutePath));
+            throw new ArgumentException(ExternalCoreErrorMessages.PathMustBeAbsolute, nameof(absolutePath));
         if (!File.Exists(absolutePath))
-            throw new FileNotFoundException("The configured external core was not found.", absolutePath);
+            throw new FileNotFoundException(ExternalCoreErrorMessages.FileMissing, absolutePath);
         _handle = NativeLibrary.Load(absolutePath);
     }
 

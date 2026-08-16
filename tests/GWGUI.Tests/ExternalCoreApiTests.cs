@@ -37,6 +37,26 @@ public sealed class ExternalCoreApiTests
     }
 
     [Fact]
+    public void NativeBooleanValues_UseOneByteMarshalling()
+    {
+        Assert.Equal(UnmanagedType.I1,
+            typeof(ExternalCoreApi.SystemInfo).GetField(nameof(ExternalCoreApi.SystemInfo.NeedFullPath),
+                BindingFlags.Instance | BindingFlags.NonPublic)?.GetCustomAttribute<MarshalAsAttribute>()?.Value);
+        Assert.Equal(UnmanagedType.I1,
+            typeof(ExternalCoreApi.SystemInfo).GetField(nameof(ExternalCoreApi.SystemInfo.BlockExtract),
+                BindingFlags.Instance | BindingFlags.NonPublic)?.GetCustomAttribute<MarshalAsAttribute>()?.Value);
+        Assert.Equal(UnmanagedType.I1,
+            typeof(ExternalCoreApi.EnvironmentCallback).GetMethod("Invoke")?.ReturnParameter
+                .GetCustomAttribute<MarshalAsAttribute>()?.Value);
+        Assert.Equal(UnmanagedType.I1,
+            typeof(ExternalCoreApi.LoadGame).GetMethod("Invoke")?.ReturnParameter
+                .GetCustomAttribute<MarshalAsAttribute>()?.Value);
+        Assert.Equal(UnmanagedType.I1,
+            typeof(ExternalCoreApi.Serialize).GetMethod("Invoke")?.ReturnParameter
+                .GetCustomAttribute<MarshalAsAttribute>()?.Value);
+    }
+
+    [Fact]
     public void NativeLibrary_CanResolveExportsAndBeDisposedTwice()
     {
         using var library = new ExternalCoreLibrary(Path.Combine(Environment.SystemDirectory, "version.dll"));

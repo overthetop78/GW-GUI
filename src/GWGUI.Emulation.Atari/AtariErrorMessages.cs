@@ -11,4 +11,19 @@ internal static class AtariErrorMessages
     internal const string IncompatibleMedia = "The Atari media is not compatible with the selected machine.";
     internal const string InvalidControllerPort = "The Atari controller port is outside the supported range.";
     internal const string DuplicateControllerPort = "An Atari controller port cannot be configured more than once.";
+    internal const string CorePathMustBeAbsolute = "The Atari core path must be absolute.";
+    internal const string CoreFileMissing = "The configured Atari core was not found.";
+    internal const string CoreExportMissing = "The Atari core is missing a required export.";
+    internal const string CoreApiVersionUnsupported = "The Atari core uses an unsupported API version.";
+    internal const string CoreIdentityMismatch = "The selected Atari core does not identify itself as the expected engine.";
+    internal const string ContentFileMissing = "The configured Atari content was not found.";
+    internal const string ContentExtensionUnsupported = "The configured Atari content extension is not supported by the selected core.";
+    internal const string OptionValueInvalidFormat = "The Atari option '{0}' does not accept value '{1}'.";
+    internal const string CoreAlreadyInitialized = "The Atari core is already initialized.";
+    internal const string CoreNotInitialized = "The Atari core is not initialized.";
+    internal const string ContentLoadFailed = "The Atari core rejected the configured content.";
+    internal const string DynamicMediaUnsupported = "Dynamic Atari media control is not initialized yet.";
+    internal const string StateSizeInvalid = "The Atari core reported an invalid saved-state size.";
+    internal const string StateSaveFailed = "The Atari core failed to save its state.";
+    internal const string StateLoadFailed = "The Atari core rejected the saved state.";
 }

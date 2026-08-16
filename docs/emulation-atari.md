@@ -172,15 +172,15 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-007 — Implémenter l’adaptateur des moteurs externes Atari
 
-- [ ] Déclarer les delegates Cdecl, structures séquentielles et marshaling booléen requis en x64.
-- [ ] Tester tailles et offsets natifs de toutes les structures utilisées.
-- [ ] Refuser les chemins relatifs et produire une erreur structurée si la DLL ou un export manque.
-- [ ] Résoudre l’ensemble des exports requis et vérifier la version d’ABI attendue.
-- [ ] Installer les callbacks environnement, vidéo, audio et entrée dans l’ordre imposé par l’API.
-- [ ] Vérifier `retro_system_info` contre le cœur attendu au lieu de se fier au nom du fichier.
-- [ ] Charger le contenu avec `retro_game_info` selon `need_fullpath` et les extensions annoncées.
-- [ ] Nettoyer uniquement les étapes initialisées, rendre le second arrêt inoffensif et libérer le module une seule fois.
-- [ ] Exécuter ces tests séparément pour les six DLL.
+- [x] Déclarer les delegates Cdecl, structures séquentielles et marshaling booléen requis en x64.
+- [x] Tester tailles et offsets natifs de toutes les structures utilisées.
+- [x] Refuser les chemins relatifs et produire une erreur structurée si la DLL ou un export manque.
+- [x] Résoudre l’ensemble des exports requis et vérifier la version d’ABI attendue.
+- [x] Installer les callbacks environnement, vidéo, audio et entrée dans l’ordre imposé par l’API.
+- [x] Vérifier `retro_system_info` contre le cœur attendu au lieu de se fier au nom du fichier.
+- [x] Charger le contenu avec `retro_game_info` selon `need_fullpath` et les extensions annoncées.
+- [x] Nettoyer uniquement les étapes initialisées, rendre le second arrêt inoffensif et libérer le module une seule fois.
+- [x] Exécuter ces tests séparément pour les six DLL.
 
 #### ATA-008 — Implémenter l’hôte Atari isolé
 
