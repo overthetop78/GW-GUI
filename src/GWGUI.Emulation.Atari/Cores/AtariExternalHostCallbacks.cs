@@ -1,4 +1,3 @@
-using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation;
@@ -11,7 +10,7 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
     private readonly AtariCoreOptionHost _optionHost;
     private readonly AtariVideoBufferSet _videoBuffers = new();
     private readonly long _videoStartTimestamp = Stopwatch.GetTimestamp();
-    private readonly ConcurrentQueue<AudioChunk> _audio = new();
+    private readonly AtariAudioBuffer _audio = new();
     private readonly Dictionary<int, bool> _ledStates = [];
     private readonly HashSet<uint> _unknownEnvironmentCommands = [];
     private readonly HashSet<uint> _environmentCommands = [];
@@ -85,6 +84,9 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
     internal bool SupportsNoGame { get; private set; }
     internal double FramesPerSecond { get; private set; }
     internal int SampleRate { get; private set; }
+    internal int BufferedAudioFrames => _audio.BufferedFrames;
+    internal long AudioOverrunCount => _audio.OverrunCount;
+    internal long AudioUnderrunCount => _audio.UnderrunCount;
     internal float AspectRatio { get; private set; }
     internal AtariDiskControl DiskControl => _diskControl;
 
@@ -371,16 +373,15 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
 
     private void OnAudioSample(short left, short right)
     {
-        AddAudio(new short[] { left, right }, AtariConstants.SingleAudioFrameCount);
+        AddAudio(AtariAudioFunctions.SingleFrame(left, right), AtariAudioConstants.SingleFrameCount);
     }
 
     private nuint OnAudioBatch(nint data, nuint frames)
     {
         if (data == nint.Zero || frames == AtariConstants.EmptyNativeSize ||
-            frames > AtariConstants.MaximumAudioFramesPerBatch) return AtariConstants.EmptyNativeSize;
+            frames > AtariAudioConstants.MaximumFramesPerBatch) return AtariConstants.EmptyNativeSize;
         var frameCount = checked((int)frames);
-        var samples = GC.AllocateUninitializedArray<short>(checked(frameCount * AtariConstants.StereoChannelCount));
-        Marshal.Copy(data, samples, AtariConstants.FirstBufferIndex, samples.Length);
+        var samples = AtariAudioFunctions.CopyBatch(data, frameCount);
         AddAudio(samples, frameCount);
         return frames;
     }

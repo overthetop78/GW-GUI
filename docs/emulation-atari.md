@@ -387,12 +387,12 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-027 — Mettre le PCM dans une file bornée
 
-- [ ] Convertir correctement frames stéréo et échantillons des callbacks batch et unitaire.
-- [ ] Copier dans une file bornée selon le taux annoncé par le cœur.
-- [ ] Supprimer les blocs les plus anciens en dépassement et compter les overruns.
-- [ ] Compter les underruns sans fabriquer de faux `AudioChunk` dans le moteur.
-- [ ] Isoler complètement les tampons de deux machines simultanées.
-- [ ] Tester canaux gauche/droit, limites, ordre, compteurs et changement de taux.
+- [x] Convertir correctement frames stéréo et échantillons des callbacks batch et unitaire.
+- [x] Copier dans une file bornée selon le taux annoncé par le cœur.
+- [x] Supprimer les blocs les plus anciens en dépassement et compter les overruns.
+- [x] Compter les underruns sans fabriquer de faux `AudioChunk` dans le moteur.
+- [x] Isoler complètement les tampons de deux machines simultanées.
+- [x] Tester canaux gauche/droit, limites, ordre, compteurs et changement de taux.
 
 #### ATA-028 — Sortir et synchroniser l’audio
 

@@ -22,6 +22,9 @@ public sealed class AtariCoreHostTests
     private const int SecondFrameHeight = 256;
     private const int BytesPerTestPixel = 4;
     private const int TestSampleRate = 44_100;
+    private const int TestSingleItemCount = 1;
+    private const int TestStereoChannelCount = 2;
+    private const long TestFirstSequence = 1;
     private const int ConcurrentRequestCount = 8;
     [Fact]
     public void ProtocolHeaders_RoundTripAndRejectAnotherVersion()
@@ -75,7 +78,7 @@ public sealed class AtariCoreHostTests
                 core.LatestVideoFrame.Pixels.Length);
             var state = core.SaveState();
             core.LoadState(state);
-            var option = Assert.Single(core.Options.Take(AtariConstants.SingleAudioFrameCount));
+            var option = Assert.Single(core.Options.Take(TestSingleItemCount));
             core.SetOption(option.Key, option.CurrentValue);
             core.Dispose();
             core.Dispose();
@@ -172,7 +175,7 @@ public sealed class AtariCoreHostTests
         var chunks = new[]
         {
             new GWGUI.Emulation.AudioChunk(samples, TestSampleRate,
-                samples.Length / AtariConstants.StereoChannelCount, AtariConstants.SingleAudioFrameCount,
+                samples.Length / TestStereoChannelCount, TestFirstSequence,
                 TimeSpan.Zero)
         };
         using var audioStream = new MemoryStream();
@@ -331,7 +334,7 @@ public sealed class AtariCoreHostTests
         var pitch = width * BytesPerTestPixel;
         return new GWGUI.Emulation.VideoFrame(Enumerable.Repeat(value, pitch * height).ToArray(), width, height,
             pitch, GWGUI.Emulation.EmulationPixelFormat.Xrgb8888, default,
-            AtariConstants.SingleAudioFrameCount, TimeSpan.Zero);
+            TestFirstSequence, TimeSpan.Zero);
     }
 
     private static GWGUI.Emulation.VideoFrame? RoundTripFrame(GWGUI.Emulation.VideoFrame frame,

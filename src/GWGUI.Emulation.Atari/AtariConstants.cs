@@ -7,9 +7,6 @@ public static class AtariConstants
     public const int MinimumControllerPort = 0;
     internal const uint ExternalCoreApiVersion = 1;
     internal const int MaximumStateSize = 16 * 1024 * 1024;
-    internal const int MaximumAudioFramesPerBatch = 64 * 1024;
-    internal const int StereoChannelCount = 2;
-    internal const int SingleAudioFrameCount = 1;
     internal const int MessageInterfaceVersion = 1;
     internal const int PixelFormat0Rgb1555 = 0;
     internal const int PixelFormatXrgb8888 = 1;
