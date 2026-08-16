@@ -82,16 +82,20 @@ public sealed class AtariCoreCatalogTests
     public void DiagnosticManifestRetainsEveryRequiredField()
     {
         var downloaded = DateTimeOffset.UtcNow;
-        var manifest = new AtariCoreDiagnosticManifest("https://example.invalid/core.zip", downloaded,
+        var manifest = new AtariCoreDiagnosticManifest("release-id", TestVersion,
+            "https://example.invalid/core.zip", downloaded,
             ArchiveSize: 123, LibrarySize: 456, LibrarySha256: "ABC", Architecture: "x64",
-            DeclaredVersion: TestVersion);
+            DeclaredVersion: TestVersion, Exports: ["example"]);
 
         Assert.Equal(downloaded, manifest.DownloadedUtc);
+        Assert.Equal("release-id", manifest.ReleaseId);
+        Assert.Equal(TestVersion, manifest.ReleaseVersion);
         Assert.Equal(123, manifest.ArchiveSize);
         Assert.Equal(456, manifest.LibrarySize);
         Assert.Equal("ABC", manifest.LibrarySha256);
         Assert.Equal("x64", manifest.Architecture);
         Assert.Equal(TestVersion, manifest.DeclaredVersion);
+        Assert.Equal("example", Assert.Single(manifest.Exports));
         Assert.EndsWith("core.zip", manifest.DownloadUrl, StringComparison.Ordinal);
     }
 }

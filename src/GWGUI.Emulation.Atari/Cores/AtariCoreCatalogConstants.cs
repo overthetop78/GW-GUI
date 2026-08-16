@@ -18,6 +18,7 @@ internal static class AtariCoreCatalogConstants
 
     internal const string ArchiveExtension = ".zip";
     internal const string ManifestFileName = "core.json";
+    internal const string ActiveManifestFileName = "active.json";
     internal const string WindowsX64Architecture = "x64";
 
     internal const string BuildServerRoot =

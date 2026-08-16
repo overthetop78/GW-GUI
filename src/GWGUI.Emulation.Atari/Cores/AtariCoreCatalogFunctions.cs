@@ -24,6 +24,14 @@ internal static class AtariCoreCatalogFunctions
             Path.Combine(versionDirectory, AtariCoreCatalogConstants.ManifestFileName));
     }
 
+    internal static string GetActiveManifestPath(AtariCoreCatalogEntry entry, string installationRoot)
+    {
+        if (string.IsNullOrWhiteSpace(installationRoot))
+            throw new ArgumentException(AtariCoreCatalogErrors.EmptyInstallationRoot, nameof(installationRoot));
+        return Path.Combine(Path.GetFullPath(installationRoot), entry.Id,
+            AtariCoreCatalogConstants.ActiveManifestFileName);
+    }
+
     internal static IReadOnlyDictionary<AtariMachineModel, AtariCoreKind> CreateModelAssociations(
         IReadOnlyList<AtariCoreCatalogEntry> entries)
     {

@@ -51,4 +51,7 @@ public static class AtariCoreCatalog
     public static AtariCoreInstallationPaths GetInstallationPaths(AtariCoreKind kind,
         string installationRoot, string version) =>
         AtariCoreCatalogFunctions.GetInstallationPaths(Get(kind), installationRoot, version);
+
+    public static string GetActiveManifestPath(AtariCoreKind kind, string installationRoot) =>
+        AtariCoreCatalogFunctions.GetActiveManifestPath(Get(kind), installationRoot);
 }

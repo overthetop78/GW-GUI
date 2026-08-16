@@ -206,15 +206,15 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-010 — Implémenter recherche, téléchargement et remplacement
 
-- [ ] Interroger la source officielle de chaque cœur et parser toutes les versions qu’elle propose.
-- [ ] Afficher les erreurs réseau et de format sans masquer leur cause technique utile.
-- [ ] Télécharger dans un fichier temporaire avec progression et annulation.
-- [ ] Extraire uniquement la DLL attendue et refuser une archive qui ne la contient pas.
-- [ ] Autoriser l’installation de toute version proposée par l’interface.
-- [ ] Remplacer atomiquement la version installée lorsque l’utilisateur en choisit une autre.
-- [ ] Calculer taille, SHA-256, architecture et exports pour le manifeste et le diagnostic, sans bloquer une version proposée sur ces diagnostics.
-- [ ] Nettoyer les temporaires après succès, annulation ou erreur.
-- [ ] Tester hors ligne, archive tronquée, DLL absente, remplacement, fichier verrouillé et annulation.
+- [x] Interroger la source officielle de chaque cœur et parser toutes les versions qu’elle propose.
+- [x] Afficher les erreurs réseau et de format sans masquer leur cause technique utile.
+- [x] Télécharger dans un fichier temporaire avec progression et annulation.
+- [x] Extraire uniquement la DLL attendue et refuser une archive qui ne la contient pas.
+- [x] Autoriser l’installation de toute version proposée par l’interface.
+- [x] Remplacer atomiquement la version installée lorsque l’utilisateur en choisit une autre.
+- [x] Calculer taille, SHA-256, architecture et exports pour le manifeste et le diagnostic, sans bloquer une version proposée sur ces diagnostics.
+- [x] Nettoyer les temporaires après succès, annulation ou erreur.
+- [x] Tester hors ligne, archive tronquée, DLL absente, remplacement, fichier verrouillé et annulation.
 
 #### ATA-011 — Ajouter l’interface de gestion des cœurs Atari
 
