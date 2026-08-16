@@ -420,4 +420,12 @@
   <data name="Emulation.AtariModel7800" xml:space="preserve"><value>Atari 7800</value></data>
   <data name="Emulation.AtariModelLynx" xml:space="preserve"><value>Atari Lynx</value></data>
   <data name="Emulation.AtariModelJaguar" xml:space="preserve"><value>Atari Jaguar</value></data>
-  <data name="Emulation.AtariModelJaguarCd" xml:space="preserve"><value>Atari Jaguar CD</value></data></root>
+  <data name="Emulation.AtariModelJaguarCd" xml:space="preserve"><value>Atari Jaguar CD</value></data>
+  <data name="Emulation.AtariUnavailable.ForcedByModel" xml:space="preserve"><value>Giá trị này được xác định bởi mô hình đã chọn.</value></data>
+  <data name="Emulation.AtariUnavailable.NoFpu" xml:space="preserve"><value>Không có sẵn cho mô hình này.</value></data>
+  <data name="Emulation.AtariUnavailable.NoAlternateMemory" xml:space="preserve"><value>Không có bộ nhớ khác sẵn sàng cho mô hình này.</value></data>
+  <data name="Emulation.AtariUnavailable.NoFirmware" xml:space="preserve"><value>Mô hình này không có phần mềm cấu hình được.</value></data>
+  <data name="Emulation.AtariUnavailable.NoKeyboard" xml:space="preserve"><value>Mô hình này không có bàn phím.</value></data>
+  <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>Mô hình này không có chuột.</value></data>
+  <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>Mô hình này không có phương tiện lưu trữ.</value></data>
+</root>

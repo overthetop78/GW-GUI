@@ -248,12 +248,12 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-014 — Centraliser les règles d’activation
 
-- [ ] Créer un catalogue unique de compatibilité consulté par moteur et interface.
-- [ ] Déterminer pour chaque modèle les onglets et groupes visibles.
-- [ ] Déterminer pour chaque option si elle est modifiable, imposée ou indisponible.
-- [ ] Déterminer slots, types de médias et nombre de ports utilisables.
-- [ ] Fournir pour chaque indisponibilité une clé de ressource explicative.
-- [ ] Tester toutes les règles par données, sans reproduire les conditions dans les contrôles WPF.
+- [x] Créer un catalogue unique de compatibilité consulté par moteur et interface.
+- [x] Déterminer pour chaque modèle les onglets et groupes visibles.
+- [x] Déterminer pour chaque option si elle est modifiable, imposée ou indisponible.
+- [x] Déterminer slots, types de médias et nombre de ports utilisables.
+- [x] Fournir pour chaque indisponibilité une clé de ressource explicative.
+- [x] Tester toutes les règles par données, sans reproduire les conditions dans les contrôles WPF.
 
 ### F — Firmwares et ROM système
 

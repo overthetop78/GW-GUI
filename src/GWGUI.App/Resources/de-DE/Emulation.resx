@@ -420,4 +420,12 @@
   <data name="Emulation.AtariModel7800" xml:space="preserve"><value>Atari 7800</value></data>
   <data name="Emulation.AtariModelLynx" xml:space="preserve"><value>Atari Lynx</value></data>
   <data name="Emulation.AtariModelJaguar" xml:space="preserve"><value>Atari Jaguar</value></data>
-  <data name="Emulation.AtariModelJaguarCd" xml:space="preserve"><value>Atari Jaguar CD</value></data></root>
+  <data name="Emulation.AtariModelJaguarCd" xml:space="preserve"><value>Atari Jaguar CD</value></data>
+  <data name="Emulation.AtariUnavailable.ForcedByModel" xml:space="preserve"><value>Dieser Wert wird durch das ausgewählte Modell bestimmt.</value></data>
+  <data name="Emulation.AtariUnavailable.NoFpu" xml:space="preserve"><value>Für dieses Modell ist kein kompatibler FPU verfügbar.</value></data>
+  <data name="Emulation.AtariUnavailable.NoAlternateMemory" xml:space="preserve"><value>Für dieses Modell ist kein alternativer Speicher verfügbar.</value></data>
+  <data name="Emulation.AtariUnavailable.NoFirmware" xml:space="preserve"><value>Dieses Modell hat keine konfigurierbare Firmware.</value></data>
+  <data name="Emulation.AtariUnavailable.NoKeyboard" xml:space="preserve"><value>Dieses Modell hat keine Tastatur.</value></data>
+  <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>Dieses Modell hat keine Maus.</value></data>
+  <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>Dieses Modell hat keine Speichermedien.</value></data>
+</root>

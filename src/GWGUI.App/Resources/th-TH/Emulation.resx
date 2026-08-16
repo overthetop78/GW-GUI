@@ -420,4 +420,12 @@
   <data name="Emulation.AtariModel7800" xml:space="preserve"><value>Atari 7800</value></data>
   <data name="Emulation.AtariModelLynx" xml:space="preserve"><value>Atari Lynx</value></data>
   <data name="Emulation.AtariModelJaguar" xml:space="preserve"><value>Atari Jaguar</value></data>
-  <data name="Emulation.AtariModelJaguarCd" xml:space="preserve"><value>Atari Jaguar CD</value></data></root>
+  <data name="Emulation.AtariModelJaguarCd" xml:space="preserve"><value>Atari Jaguar CD</value></data>
+  <data name="Emulation.AtariUnavailable.ForcedByModel" xml:space="preserve"><value>ค่านี้จะถูกกําหนดโดยโมเดลที่เลือกไว้</value></data>
+  <data name="Emulation.AtariUnavailable.NoFpu" xml:space="preserve"><value>ไม่มี FPU ที่เข้ากันได้กับรุ่นนี้</value></data>
+  <data name="Emulation.AtariUnavailable.NoAlternateMemory" xml:space="preserve"><value>ไม่มีหน่วยความจําอื่นสําหรับรุ่นนี้</value></data>
+  <data name="Emulation.AtariUnavailable.NoFirmware" xml:space="preserve"><value>รุ่นนี้ไม่มีบริษัทที่ปรับแต่งได้</value></data>
+  <data name="Emulation.AtariUnavailable.NoKeyboard" xml:space="preserve"><value>รุ่นนี้ไม่มีคีย์บอร์ด</value></data>
+  <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>รุ่นนี้ไม่มีเมาส์</value></data>
+  <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>รุ่นนี้ไม่มีสื่อจัดเก็บข้อมูล</value></data>
+</root>

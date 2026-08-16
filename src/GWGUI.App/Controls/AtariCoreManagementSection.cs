@@ -79,7 +79,7 @@ public sealed class AtariCoreManagementSection : UserControl
 
     public async Task SetModelAsync(AtariMachineModel model, CancellationToken cancellationToken = default)
     {
-        _kind = AtariCoreCatalog.Get(model).Kind;
+        _kind = AtariCompatibilityCatalog.Get(model).Core;
         _required.Text = L(AtariCoreManagementConstants.RequiredForModelResource,
             AtariCoreCatalog.Get(_kind).LibraryName)
             + AtariCoreManagementConstants.DetailSeparator + model;

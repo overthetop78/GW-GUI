@@ -45,7 +45,7 @@ internal static class AtariConfigurationFunctions
 
         ValidateFirmware(model, firmwares);
         ValidateMedia(model, media);
-        ValidateInput(input);
+        ValidateInput(model, input);
     }
 
     private static void ValidateFirmware(AtariMachineModel model, IReadOnlyList<AtariFirmwareConfiguration> firmwares)
@@ -63,11 +63,7 @@ internal static class AtariConfigurationFunctions
     }
 
     private static bool IsFirmwareCompatible(AtariMachineModel model, AtariFirmwareKind kind)
-    {
-        var family = GetFamily(model);
-        if (family == AtariMachineFamily.St) return kind == AtariFirmwareKind.Tos;
-        return AtariClassicModelFunctions.IsFirmwareCompatible(AtariClassicModelCatalog.Get(model), kind);
-    }
+        => AtariCompatibilityFunctions.IsFirmwareCompatible(AtariCompatibilityCatalog.Get(model), kind);
 
     private static void ValidateMedia(AtariMachineModel model, IReadOnlyList<AtariMediaConfiguration> media)
     {
@@ -84,26 +80,16 @@ internal static class AtariConfigurationFunctions
     }
 
     private static bool IsMediaCompatible(AtariMachineModel model, AtariMediaKind kind, EmulationMediaSlot slot)
-    {
-        var family = GetFamily(model);
-        if (family != AtariMachineFamily.St)
-            return AtariClassicModelFunctions.IsMediaCompatible(AtariClassicModelCatalog.Get(model), kind, slot);
-        return kind switch
-        {
-            AtariMediaKind.Floppy => slot is >= EmulationMediaSlot.Floppy0 and <= EmulationMediaSlot.Floppy3,
-            AtariMediaKind.HardDisk => slot == EmulationMediaSlot.HardDisk0,
-            AtariMediaKind.Directory => slot == EmulationMediaSlot.HardDisk0,
-            _ => false
-        };
-    }
+        => AtariCompatibilityFunctions.IsMediaCompatible(AtariCompatibilityCatalog.Get(model), kind, slot);
 
-    private static void ValidateInput(AtariInputConfiguration input)
+    private static void ValidateInput(AtariMachineModel model, AtariInputConfiguration input)
     {
+        var compatiblePortCount = AtariCompatibilityCatalog.Get(model).ControllerPortCount;
         var ports = new HashSet<int>();
         foreach (var controller in input.Controllers ?? [])
         {
             if (controller.Port < AtariConstants.MinimumControllerPort
-                || controller.Port >= AtariConstants.MaximumControllerPortCount)
+                || controller.Port >= compatiblePortCount)
                 throw new ArgumentOutOfRangeException(nameof(input), AtariErrorMessages.InvalidControllerPort);
             if (!ports.Add(controller.Port))
                 throw new ArgumentException(AtariErrorMessages.DuplicateControllerPort, nameof(input));
