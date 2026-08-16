@@ -4,16 +4,17 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
-$imagesDirectory = Join-Path $repository 'docs\images'
+$guideDirectory = Join-Path $repository 'docs\user-guide'
+$imagesDirectory = Join-Path $guideDirectory 'images'
 $expected = @(
-    @{ Language='fr'; File='main-read-fr.png'; Guide='user-guide.fr.md' },
-    @{ Language='en'; File='main-read-en.png'; Guide='user-guide.en.md' }
+    @{ Language='fr-FR'; File='main-read-fr.png'; Guide='fr-FR.md' },
+    @{ Language='en-US'; File='main-read-en.png'; Guide='en-US.md' }
 )
 
 Add-Type -AssemblyName System.Drawing
 $results = foreach ($item in $expected) {
     $imagePath = Join-Path $imagesDirectory $item.File
-    $guidePath = Join-Path (Join-Path $repository 'docs') $item.Guide
+    $guidePath = Join-Path $guideDirectory $item.Guide
     if (-not (Test-Path -LiteralPath $imagePath -PathType Leaf)) { throw "Guide image not found: $imagePath" }
     if (-not (Test-Path -LiteralPath $guidePath -PathType Leaf)) { throw "Guide not found: $guidePath" }
 
@@ -37,16 +38,14 @@ $results = foreach ($item in $expected) {
 if ($results[0].Sha256 -eq $results[1].Sha256) { throw 'French and English guide images are identical.' }
 
 if ([string]::IsNullOrWhiteSpace($PublishedDocumentationPath)) {
-    $candidate = Join-Path $repository 'artifacts\publish\win-x64\Documentation'
+    $candidate = Join-Path $repository 'artifacts\publish\win-x64\Documentation\user-guide'
     if (Test-Path -LiteralPath $candidate -PathType Container) { $PublishedDocumentationPath = $candidate }
 }
 if (-not [string]::IsNullOrWhiteSpace($PublishedDocumentationPath)) {
     $published = [IO.Path]::GetFullPath($PublishedDocumentationPath)
     foreach ($item in $expected) {
-        foreach ($relative in @($item.Guide, "images\$($item.File)")) {
-            $path = Join-Path $published $relative
-            if (-not (Test-Path -LiteralPath $path -PathType Leaf)) { throw "Published documentation file not found: $path" }
-        }
+        $path = Join-Path $published "images\$($item.File)"
+        if (-not (Test-Path -LiteralPath $path -PathType Leaf)) { throw "Published documentation image not found: $path" }
     }
 }
 
