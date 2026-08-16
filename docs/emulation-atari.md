@@ -461,13 +461,13 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-035 — Implémenter les états natifs
 
-- [ ] Vérifier taille et disponibilité de sérialisation après chargement du contenu.
-- [ ] Allouer exactement la taille annoncée et traiter proprement une taille nulle ou variable.
-- [ ] Implémenter sauvegarde et chargement sur le thread du cœur.
-- [ ] Ajouter un en-tête GW GUI avec cœur, version, modèle, configuration et empreinte du contenu.
-- [ ] Refuser un état d’un autre cœur, modèle ou contenu avec une erreur précise.
-- [ ] Rendre l’indisponibilité visible lorsque le cœur ne fournit pas les états.
-- [ ] Tester round-trip, données tronquées, incompatibilité et échec de `retro_unserialize` pour les six cœurs.
+- [x] Vérifier taille et disponibilité de sérialisation après chargement du contenu.
+- [x] Allouer exactement la taille annoncée et traiter proprement une taille nulle ou variable.
+- [x] Implémenter sauvegarde et chargement sur le thread du cœur.
+- [x] Ajouter un en-tête GW GUI avec cœur, version, modèle, configuration et empreinte du contenu.
+- [x] Refuser un état d’un autre cœur, modèle ou contenu avec une erreur précise.
+- [x] Rendre l’indisponibilité visible lorsque le cœur ne fournit pas les états.
+- [x] Tester round-trip, données tronquées, incompatibilité et échec de `retro_unserialize` pour les six cœurs.
 
 #### ATA-036 — Implémenter le magasin d’états
 

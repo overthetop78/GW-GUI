@@ -156,10 +156,26 @@ internal sealed class AtariMachine : IAtariMachine
         QueueCommand(() => _core.SelectDisk(index), cancellationToken);
 
     public ValueTask SaveStateAsync(string path, CancellationToken cancellationToken = default) =>
-        QueueCommand(() => AtariMachineFunctions.SaveState(path, _core.SaveState()), cancellationToken);
+        QueueCommand(() =>
+        {
+            if (!_core.SupportsSaveStates)
+                throw AtariSavedStateFunctions.Invalid(AtariErrorCode.StateInvalid,
+                    AtariErrorMessages.StateUnavailable);
+            var state = _core.SaveState();
+            var header = AtariSavedStateFunctions.CreateHeader(Configuration, _core, state);
+            AtariStateFileFunctions.Write(path, header, state);
+        }, cancellationToken);
 
     public ValueTask LoadStateAsync(string path, CancellationToken cancellationToken = default) =>
-        QueueCommand(() => _core.LoadState(AtariMachineFunctions.LoadState(path)), cancellationToken);
+        QueueCommand(() =>
+        {
+            if (!_core.SupportsSaveStates)
+                throw AtariSavedStateFunctions.Invalid(AtariErrorCode.StateInvalid,
+                    AtariErrorMessages.StateUnavailable);
+            var saved = AtariStateFileFunctions.Read(path);
+            AtariSavedStateFunctions.Validate(saved.Header, Configuration, _core);
+            _core.LoadState(saved.State);
+        }, cancellationToken);
 
     public ValueTask SetOptionAsync(string key, string value, CancellationToken cancellationToken = default) =>
         QueueCommand(() => _core.SetOption(key, value), cancellationToken);

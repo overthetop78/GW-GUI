@@ -141,7 +141,7 @@ public sealed class AtariMachineLifecycleTests
         public IReadOnlyDictionary<int, bool> LedStates => new Dictionary<int, bool>();
         public string CoreName => nameof(RecordingAtariCore);
         public string CoreVersion => AtariMachineLifecycleTestConstants.CoreVersion;
-        public string CoreSha256 => string.Empty;
+        public string CoreSha256 => AtariMachineLifecycleTestConstants.CoreSha256;
         public IReadOnlySet<string> SupportedContentExtensions => new HashSet<string>();
         public bool SupportsSaveStates => true;
         public double FramesPerSecond => AtariMachineLifecycleTestConstants.TestFramesPerSecond;
@@ -185,7 +185,12 @@ public sealed class AtariMachineLifecycleTests
                 AtariMachineLifecycleTestConstants.EmptyCount, true, []);
         }
         public bool HasUnsavedMediaChanges(EmulationMediaSlot slot) { CaptureThread(); return false; }
-        public byte[] SaveState() { CaptureThread(); Interlocked.Increment(ref StateCommandCount); return []; }
+        public byte[] SaveState()
+        {
+            CaptureThread();
+            Interlocked.Increment(ref StateCommandCount);
+            return [AtariMachineLifecycleTestConstants.StateByte];
+        }
         public void LoadState(ReadOnlySpan<byte> state) { CaptureThread(); Interlocked.Increment(ref StateCommandCount); }
         public void SetOption(string key, string value) { CaptureThread(); Interlocked.Increment(ref OptionCount); }
         public void Dispose() { CaptureThread(); Interlocked.Increment(ref DisposeCount); }
@@ -208,6 +213,7 @@ internal static class AtariMachineLifecycleTestConstants
     internal const int ExpectedOptionCount = 1;
     internal const int ExpectedStateCommandCount = 2;
     internal const int ExpectedInputCount = 1;
+    internal const byte StateByte = 42;
     internal const int ExpectedControllerConfigurationCount = 1;
     internal const int FirstControllerPort = 0;
     internal const int FirstDiskIndex = 0;
@@ -221,5 +227,6 @@ internal static class AtariMachineLifecycleTestConstants
     internal const string OptionValue = "enabled";
     internal const string MediaFileName = "test.a26";
     internal const string CoreVersion = "test";
+    internal const string CoreSha256 = "test-core-sha256";
     internal const string FaultMessage = "Injected Atari frame failure.";
 }

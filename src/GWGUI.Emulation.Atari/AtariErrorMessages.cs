@@ -44,6 +44,7 @@ internal static class AtariErrorMessages
     internal const string DynamicMediaUnsupported = "Dynamic Atari media control is not initialized yet.";
     internal const string HatariFloppyRequired = "Hatari disk control accepts floppy media only.";
     internal const string StateSizeInvalid = "The Atari core reported an invalid saved-state size.";
+    internal const string StateUnavailable = "The Atari core does not provide saved states for the loaded content.";
     internal const string StateSaveFailed = "The Atari core failed to save its state.";
     internal const string StateLoadFailed = "The Atari core rejected the saved state.";
 }

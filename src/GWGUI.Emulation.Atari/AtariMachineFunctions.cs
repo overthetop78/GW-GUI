@@ -30,7 +30,4 @@ internal static class AtariMachineFunctions
         catch (UnauthorizedAccessException) { }
     }
 
-    internal static void SaveState(string path, byte[] state) => File.WriteAllBytes(path, state);
-
-    internal static byte[] LoadState(string path) => File.ReadAllBytes(path);
 }
