@@ -4,6 +4,8 @@ internal static class AtariErrorMessages
 {
     internal const string DuplicateStModelDefinition = "An Atari ST model is declared more than once.";
     internal const string UnknownStModel = "The requested Atari model is not part of the ST family.";
+    internal const string DuplicateClassicModelDefinition = "An Atari 8-bit or console model is declared more than once.";
+    internal const string UnknownClassicModel = "The requested Atari model is not part of the 8-bit or console catalog.";
     internal const string UnsupportedSchema = "The Atari configuration schema is not supported.";
     internal const string EmptyFirmwarePath = "An Atari firmware path cannot be empty.";
     internal const string DuplicateFirmware = "An Atari firmware role cannot be configured more than once.";

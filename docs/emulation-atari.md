@@ -239,12 +239,12 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-013 — Cataloguer les Atari 8 bits et consoles
 
-- [ ] Définir 400, 800, XL, XE et XEGS avec leurs variantes réellement supportées.
-- [ ] Définir séparément 5200, 2600, 7800, Lynx, Jaguar et Jaguar CD.
-- [ ] Associer automatiquement Atari800, Stella, ProSystem, Beetle Lynx ou Virtual Jaguar.
-- [ ] Associer CPU, mémoire, région, vidéo, audio, stockage et ports vérifiés.
-- [ ] Empêcher qu’un modèle reçoive un firmware ou média d’une autre famille.
-- [ ] Ajouter une ligne de test exhaustive par modèle et variante.
+- [x] Définir 400, 800, XL, XE et XEGS avec leurs variantes réellement supportées.
+- [x] Définir séparément 5200, 2600, 7800, Lynx, Jaguar et Jaguar CD.
+- [x] Associer automatiquement Atari800, Stella, ProSystem, Beetle Lynx ou Virtual Jaguar.
+- [x] Associer CPU, mémoire, région, vidéo, audio, stockage et ports vérifiés.
+- [x] Empêcher qu’un modèle reçoive un firmware ou média d’une autre famille.
+- [x] Ajouter une ligne de test exhaustive par modèle et variante.
 
 #### ATA-014 — Centraliser les règles d’activation
 

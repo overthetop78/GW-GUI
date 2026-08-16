@@ -65,17 +65,8 @@ internal static class AtariConfigurationFunctions
     private static bool IsFirmwareCompatible(AtariMachineModel model, AtariFirmwareKind kind)
     {
         var family = GetFamily(model);
-        return family switch
-        {
-            AtariMachineFamily.St => kind == AtariFirmwareKind.Tos,
-            AtariMachineFamily.EightBit => kind is AtariFirmwareKind.AtariOsA or AtariFirmwareKind.AtariOsB
-                or AtariFirmwareKind.AtariXlOs or AtariFirmwareKind.AtariBasic or AtariFirmwareKind.AtariXegsBios,
-            AtariMachineFamily.Atari5200 => kind == AtariFirmwareKind.Atari5200Bios,
-            AtariMachineFamily.Atari7800 => kind == AtariFirmwareKind.Atari7800Bios,
-            AtariMachineFamily.Lynx => kind == AtariFirmwareKind.LynxBootRom,
-            AtariMachineFamily.Jaguar when model == AtariMachineModel.JaguarCd => kind == AtariFirmwareKind.JaguarCdBios,
-            _ => false
-        };
+        if (family == AtariMachineFamily.St) return kind == AtariFirmwareKind.Tos;
+        return AtariClassicModelFunctions.IsFirmwareCompatible(AtariClassicModelCatalog.Get(model), kind);
     }
 
     private static void ValidateMedia(AtariMachineModel model, IReadOnlyList<AtariMediaConfiguration> media)
@@ -95,28 +86,13 @@ internal static class AtariConfigurationFunctions
     private static bool IsMediaCompatible(AtariMachineModel model, AtariMediaKind kind, EmulationMediaSlot slot)
     {
         var family = GetFamily(model);
-        return family switch
+        if (family != AtariMachineFamily.St)
+            return AtariClassicModelFunctions.IsMediaCompatible(AtariClassicModelCatalog.Get(model), kind, slot);
+        return kind switch
         {
-            AtariMachineFamily.St => kind switch
-            {
-                AtariMediaKind.Floppy => slot is >= EmulationMediaSlot.Floppy0 and <= EmulationMediaSlot.Floppy3,
-                AtariMediaKind.HardDisk => slot == EmulationMediaSlot.HardDisk0,
-                AtariMediaKind.Directory => slot == EmulationMediaSlot.HardDisk0,
-                _ => false
-            },
-            AtariMachineFamily.EightBit => kind switch
-            {
-                AtariMediaKind.Floppy => slot is >= EmulationMediaSlot.Floppy0 and <= EmulationMediaSlot.Floppy3,
-                AtariMediaKind.Cassette => slot == EmulationMediaSlot.Cassette0,
-                AtariMediaKind.Cartridge => slot == EmulationMediaSlot.Cartridge0,
-                _ => false
-            },
-            AtariMachineFamily.Atari5200 or AtariMachineFamily.Atari2600 or AtariMachineFamily.Atari7800
-                or AtariMachineFamily.Lynx => kind == AtariMediaKind.Cartridge && slot == EmulationMediaSlot.Cartridge0,
-            AtariMachineFamily.Jaguar when model == AtariMachineModel.JaguarCd =>
-                (kind == AtariMediaKind.CompactDisc && slot == EmulationMediaSlot.Cd0)
-                || (kind == AtariMediaKind.Cartridge && slot == EmulationMediaSlot.Cartridge0),
-            AtariMachineFamily.Jaguar => kind == AtariMediaKind.Cartridge && slot == EmulationMediaSlot.Cartridge0,
+            AtariMediaKind.Floppy => slot is >= EmulationMediaSlot.Floppy0 and <= EmulationMediaSlot.Floppy3,
+            AtariMediaKind.HardDisk => slot == EmulationMediaSlot.HardDisk0,
+            AtariMediaKind.Directory => slot == EmulationMediaSlot.HardDisk0,
             _ => false
         };
     }

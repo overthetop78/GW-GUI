@@ -407,4 +407,17 @@
   <data name="Emulation.AtariModelFalcon" xml:space="preserve">
     <value>Atari Falcon</value>
   </data>
-</root>
+  <data name="Emulation.AtariModel400" xml:space="preserve"><value>Atari 400</value></data>
+  <data name="Emulation.AtariModel800" xml:space="preserve"><value>Atari 800</value></data>
+  <data name="Emulation.AtariModel800Xl" xml:space="preserve"><value>Atari 800XL</value></data>
+  <data name="Emulation.AtariModel130Xe" xml:space="preserve"><value>Atari 130XE</value></data>
+  <data name="Emulation.AtariModelModern320K" xml:space="preserve"><value>Atari XL/XE 320K</value></data>
+  <data name="Emulation.AtariModelModern576K" xml:space="preserve"><value>Atari XL/XE 576K</value></data>
+  <data name="Emulation.AtariModelModern1088K" xml:space="preserve"><value>Atari XL/XE 1088K</value></data>
+  <data name="Emulation.AtariModelXegs" xml:space="preserve"><value>Atari XEGS</value></data>
+  <data name="Emulation.AtariModel5200" xml:space="preserve"><value>Atari 5200</value></data>
+  <data name="Emulation.AtariModel2600" xml:space="preserve"><value>Atari 2600</value></data>
+  <data name="Emulation.AtariModel7800" xml:space="preserve"><value>Atari 7800</value></data>
+  <data name="Emulation.AtariModelLynx" xml:space="preserve"><value>Atari Lynx</value></data>
+  <data name="Emulation.AtariModelJaguar" xml:space="preserve"><value>Atari Jaguar</value></data>
+  <data name="Emulation.AtariModelJaguarCd" xml:space="preserve"><value>Atari Jaguar CD</value></data></root>
