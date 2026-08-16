@@ -75,19 +75,46 @@ Cette matrice empêche d’oublier un morceau déjà nécessaire à Amiga. Un fi
 | `EmulationVideoSurface.cs` | rendu partagé, sans appel `retro_*` dans l’application |
 | tests `Amiga*` et `EmulationControlRefactoringTests` | équivalents Atari plus non-régression Amiga |
 
+## Sources officielles verrouillées
+
+Les références ci-dessous ont été vérifiées le 16 août 2026 directement dans les dépôts officiels Libretro, leurs fichiers `Makefile`, le dépôt officiel `libretro-core-info` et le buildbot Libretro Windows x64. Les archives du répertoire `latest` sont roulantes : les révisions indiquées sont celles des sources inspectées et ne sont pas présentées comme les révisions exactes des binaires servis par le buildbot.
+
+Révision de métadonnées commune inspectée : [`libretro/libretro-core-info`](https://github.com/libretro/libretro-core-info) à `f105af2925f70f2d72a8676d04a5f2282c1d01ba` (commit du 1er août 2026).
+
+| Cœur | Dépôt officiel et révision inspectée | Documentation / métadonnées officielles | Licence déclarée par Libretro | DLL Windows x64 / archive buildbot |
+|---|---|---|---|---|
+| Hatari | [`libretro/hatari`](https://github.com/libretro/hatari), `24e7bd744f24f20b464385f365a3850c269bd140` (11 août 2026) | [documentation](https://docs.libretro.com/library/hatari/) / [`hatari_libretro.info`](https://github.com/libretro/libretro-core-info/blob/master/hatari_libretro.info) | GPLv2 | `hatari_libretro.dll` / [`hatari_libretro.dll.zip`](https://buildbot.libretro.com/nightly/windows/x86_64/latest/hatari_libretro.dll.zip) |
+| Atari800 | [`libretro/libretro-atari800`](https://github.com/libretro/libretro-atari800), `cd721790a0aa0e0772810949abcf5bd699c15371` (15 août 2026) | [documentation](https://docs.libretro.com/library/atari800/) / [`atari800_libretro.info`](https://github.com/libretro/libretro-core-info/blob/master/atari800_libretro.info) | GPLv2 | `atari800_libretro.dll` / [`atari800_libretro.dll.zip`](https://buildbot.libretro.com/nightly/windows/x86_64/latest/atari800_libretro.dll.zip) |
+| Stella 2023 | [`libretro/stella`](https://github.com/libretro/stella), `878a9c8d5f03ef0b7cd190b5713d6bf31c48df38` (16 juillet 2026) | [documentation](https://docs.libretro.com/library/stella/) / [`stella2023_libretro.info`](https://github.com/libretro/libretro-core-info/blob/master/stella2023_libretro.info) | GPLv2 | `stella2023_libretro.dll` / [`stella2023_libretro.dll.zip`](https://buildbot.libretro.com/nightly/windows/x86_64/latest/stella2023_libretro.dll.zip) |
+| ProSystem | [`libretro/prosystem-libretro`](https://github.com/libretro/prosystem-libretro), `363b6dfbd3e240762e022c2b4897b4fe55722be3` (4 juin 2026) | [documentation](https://docs.libretro.com/library/prosystem/) / [`prosystem_libretro.info`](https://github.com/libretro/libretro-core-info/blob/master/prosystem_libretro.info) | GPLv2 | `prosystem_libretro.dll` / [`prosystem_libretro.dll.zip`](https://buildbot.libretro.com/nightly/windows/x86_64/latest/prosystem_libretro.dll.zip) |
+| Beetle Lynx | [`libretro/beetle-lynx-libretro`](https://github.com/libretro/beetle-lynx-libretro), `fcdefcfb3c11d6d2e71be076a5d3df2e88ab73ed` (20 avril 2026) | [documentation](https://docs.libretro.com/library/beetle_lynx/) / [`mednafen_lynx_libretro.info`](https://github.com/libretro/libretro-core-info/blob/master/mednafen_lynx_libretro.info) | zlib et GPLv2 | `mednafen_lynx_libretro.dll` / [`mednafen_lynx_libretro.dll.zip`](https://buildbot.libretro.com/nightly/windows/x86_64/latest/mednafen_lynx_libretro.dll.zip) |
+| Virtual Jaguar | [`libretro/virtualjaguar-libretro`](https://github.com/libretro/virtualjaguar-libretro), `385c4d458538fd473c4bc8dc8dab4778897e8ac6` (13 août 2026) | [documentation](https://docs.libretro.com/library/virtual_jaguar/) / [`virtualjaguar_libretro.info`](https://github.com/libretro/libretro-core-info/blob/master/virtualjaguar_libretro.info) | GPLv3 | `virtualjaguar_libretro.dll` / [`virtualjaguar_libretro.dll.zip`](https://buildbot.libretro.com/nightly/windows/x86_64/latest/virtualjaguar_libretro.dll.zip) |
+
+### Obtention et compilation
+
+- Méthode binaire commune : télécharger l’archive correspondante depuis le répertoire officiel [`nightly/windows/x86_64/latest`](https://buildbot.libretro.com/nightly/windows/x86_64/latest/), puis extraire la DLL. Les six URL directes du tableau ont répondu avec le statut HTTP 200 lors de la vérification.
+- Hatari : depuis la racine du dépôt, `make -f Makefile.libretro EXTERNAL_ZLIB=1`, conformément au `README.md` officiel.
+- Atari800 : depuis la racine du dépôt, `make -f Makefile`; le dépôt documente aussi les surcharges Libretro, notamment `platform=win`.
+- Stella 2023 : utiliser `src/os/libretro/Makefile` ; pour Windows, ce Makefile produit `stella2023_libretro.dll` et accepte les variantes de plateforme Windows qu’il déclare.
+- ProSystem : depuis la racine du dépôt, utiliser le `Makefile` Libretro avec `platform=win` pour produire `prosystem_libretro.dll`.
+- Beetle Lynx : depuis la racine du dépôt, utiliser le `Makefile` Libretro avec `platform=win` pour produire `mednafen_lynx_libretro.dll`.
+- Virtual Jaguar : depuis la racine du dépôt, `make`; la plateforme est détectée automatiquement et le `README.md` officiel annonce `virtualjaguar_libretro.dll` comme sortie Windows.
+
+Les licences du tableau sont les licences globales publiées dans les fichiers `.info`. Beetle Lynx est le seul des six à y déclarer explicitement deux licences (`Zlib|GPLv2`). Les dépôts peuvent aussi contenir des composants tiers sous leurs propres avis ; leur inventaire distributif complet sera contrôlé lors du packaging, sans remplacer ici la licence officielle déclarée pour chaque cœur.
+
 ## Tâches
 
 ### A — Sources et capacités réelles
 
 #### ATA-001 — Figer les sources des six cœurs
 
-- [ ] Enregistrer séparément les dépôts officiels de Hatari, Atari800, Stella, ProSystem, Beetle Lynx et Virtual Jaguar.
-- [ ] Enregistrer pour chaque cœur la page de documentation Libretro et le fichier `.info` officiel.
-- [ ] Relever la licence exacte de chaque cœur et les éventuelles licences multiples de ses composants.
-- [ ] Relever le nom exact de chaque DLL Windows x64 et de son archive buildbot.
-- [ ] Documenter la méthode officielle de téléchargement du binaire et la méthode de compilation depuis les sources.
-- [ ] Enregistrer la révision inspectée et la date de consultation sans prétendre qu’elle est celle d’un binaire non vérifié.
-- [ ] Vérifier tous les liens et toutes les valeurs contre les sources primaires avant de cocher ce ticket.
+- [x] Enregistrer séparément les dépôts officiels de Hatari, Atari800, Stella, ProSystem, Beetle Lynx et Virtual Jaguar.
+- [x] Enregistrer pour chaque cœur la page de documentation Libretro et le fichier `.info` officiel.
+- [x] Relever la licence exacte de chaque cœur et les éventuelles licences multiples de ses composants.
+- [x] Relever le nom exact de chaque DLL Windows x64 et de son archive buildbot.
+- [x] Documenter la méthode officielle de téléchargement du binaire et la méthode de compilation depuis les sources.
+- [x] Enregistrer la révision inspectée et la date de consultation sans prétendre qu’elle est celle d’un binaire non vérifié.
+- [x] Vérifier tous les liens et toutes les valeurs contre les sources primaires avant de cocher ce ticket.
 
 #### ATA-002 — Établir la matrice vérifiée des capacités
 
