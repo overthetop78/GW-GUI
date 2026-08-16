@@ -303,13 +303,13 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-019 — Implémenter les médias Atari800
 
-- [ ] Gérer les images de disquette avec leurs lecteurs et opérations réellement exposées.
-- [ ] Gérer les images cassette avec insertion, éjection, lecture et options moteur disponibles.
-- [ ] Gérer les cartouches d’ordinateur et distinguer leur type lorsque le cœur le demande.
-- [ ] Gérer les cartouches 5200 sans appliquer une configuration BIOS d’ordinateur.
-- [ ] Déterminer le type de contenu par le modèle et les métadonnées, pas seulement par extension ambiguë.
-- [ ] Tester chaque type, changement à chaud autorisé, contenu incompatible et arrêt sans verrou.
-- [ ] Appliquer aux disquettes et cassettes inscriptibles la même politique de copie de session et d’enregistrement explicite.
+- [x] Gérer les images de disquette avec leurs lecteurs et opérations réellement exposées.
+- [x] Gérer les images cassette avec insertion, éjection, lecture et options moteur disponibles.
+- [x] Gérer les cartouches d’ordinateur et distinguer leur type lorsque le cœur le demande.
+- [x] Gérer les cartouches 5200 sans appliquer une configuration BIOS d’ordinateur.
+- [x] Déterminer le type de contenu par le modèle et les métadonnées, pas seulement par extension ambiguë.
+- [x] Tester chaque type, changement à chaud autorisé, contenu incompatible et arrêt sans verrou.
+- [x] Appliquer aux disquettes et cassettes inscriptibles la même politique de copie de session et d’enregistrement explicite.
 
 #### ATA-020 — Implémenter les cartouches 2600, 7800, Lynx et Jaguar
 

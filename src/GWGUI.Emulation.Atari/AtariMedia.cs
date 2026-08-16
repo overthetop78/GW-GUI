@@ -19,6 +19,12 @@ public enum AtariStorageBus
     Gemdos
 }
 
+public enum AtariCartridgePlatform
+{
+    EightBitComputer,
+    Atari5200
+}
+
 public sealed record AtariMediaConfiguration(
     string Path,
     AtariMediaKind Kind,
@@ -28,4 +34,7 @@ public sealed record AtariMediaConfiguration(
     bool IsInserted = true,
     AtariStorageBus? StorageBus = null,
     string? MountPoint = null,
-    int MountOrder = AtariMediaConstants.DefaultMountOrder);
+    int MountOrder = AtariMediaConstants.DefaultMountOrder,
+    AtariCartridgePlatform? CartridgePlatform = null,
+    int? CartridgeType = null,
+    bool CassetteAutoBoot = false);
