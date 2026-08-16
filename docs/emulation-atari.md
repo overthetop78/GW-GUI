@@ -36,97 +36,690 @@ Cette matrice exprime la cible fonctionnelle. Les formats, options et limites ex
 - Les abstractions réellement communes à Amiga et Atari sont extraites sans créer de dépendance entre les deux domaines.
 - Les bibliothèques propres au projet restent dans `lib`; les dépendances tierces suivent le rangement déjà défini par bibliothèque.
 
+## Matrice obligatoire des fichiers Amiga à couvrir
+
+Cette matrice empêche d’oublier un morceau déjà nécessaire à Amiga. Un fichier Atari peut être découpé différemment si la responsabilité reste couverte et testée ; il ne doit pas être créé comme simple copie si un composant commun convient réellement.
+
+| Référence Amiga actuelle | Responsabilité Atari attendue |
+|---|---|
+| `IAmigaMachine.cs` | contrat public `IAtariMachine` |
+| `AmigaEngine.cs` | factory du cœur déterminé par le modèle |
+| `AmigaMachine.cs` | cycle de vie, boucle et commandes de la machine |
+| `AmigaMachineConfiguration.cs` | document Atari complet et versionné |
+| `AmigaConfigurationStore.cs` | chargement, sauvegarde atomique, migration et suppression |
+| `AmigaModelCatalog.cs` | catalogues ST, Atari 8 bits et consoles |
+| `AmigaFirmwareCatalog.cs` | TOS, BIOS, ROM système et compatibilités |
+| `AmigaCoreOption.cs` | catégories, valeurs, défauts et visibilité des options des six cœurs |
+| `AmigaStateStore.cs` | états rapides et nommés, captures et métadonnées |
+| `AmigaExternalCoreInstaller.cs` | installation et remplacement atomique par cœur |
+| `AmigaCoreReleaseService.cs` | recherche des versions officielles des six cœurs |
+| `Cores/IAmigaCore.cs` | interface interne indépendante d’une DLL précise |
+| `Cores/AmigaExternalApi.cs` | ABI Libretro commune ou Atari spécialisée |
+| `Cores/AmigaExternalCore.cs` | adaptateur natif sélectionnant l’un des six cœurs |
+| `Cores/AmigaExternalHostCallbacks.cs` | environnement, options, chemins, vidéo, audio, entrée, logs et LED |
+| `Cores/AmigaExternalDiskControl.cs` | contrôleurs de disquette/CD réellement exposés |
+| `Cores/AmigaInputAccumulator.cs` | accumulation et consommation des entrées par frame |
+| `Cores/AmigaProcessCore.cs` | proxy vers un hôte isolé par machine |
+| `Cores/AmigaCoreHostProtocol.cs` | commandes, réponses et sérialisation IPC Atari |
+| `App.xaml.cs` / `AmigaCoreHost.Run` | mode `--atari-core-host` et arrêt sans fenêtre |
+| `AmigaConfigurationDocuments.cs` | validation et documents Atari côté application |
+| `AmigaCoreManagementSection.cs` | recherche, sélection, téléchargement et remplacement du cœur requis |
+| `AmigaEmulationSection.cs` | choix de configuration et onglets des machines Atari |
+| `AmigaMachineView.cs` | surface, barre d’outils, médias, états, entrées, plein écran et captures |
+| `OptionsEmulationSection.cs` | paramètres Atari et sous-onglets par modèle |
+| `AmigaCoreProvider.cs` | résolution et installation du cœur avant démarrage |
+| `AmigaRuntimeMedia.cs` | préparation non destructive des médias et fichiers auxiliaires |
+| `AmigaKeyMapper.cs` | adaptation clavier WPF vers touches d’émulation Atari |
+| `EmulationShortcutMap.cs` | actions globales et spécifiques Atari |
+| `EmulationResourceKeys.cs` et `Emulation.resx` | toutes les clés et les 28 traductions |
+| `EmulationVideoSurface.cs` | rendu partagé, sans appel `retro_*` dans l’application |
+| tests `Amiga*` et `EmulationControlRefactoringTests` | équivalents Atari plus non-régression Amiga |
+
 ## Tâches
 
 ### A — Sources et capacités réelles
 
-- [ ] **ATA-001 — Figer les sources des six cœurs.** Enregistrer pour chaque cœur le dépôt officiel, la documentation, les métadonnées Libretro, la licence, le nom des DLL Windows x64 et la méthode officielle d’obtention des builds.
-- [ ] **ATA-002 — Établir la matrice vérifiée des capacités.** Relever dans les sources les modèles, extensions, firmwares, options, périphériques, Disk Control, états sérialisés, résolutions, audio, entrées et limites ; corriger le tableau cible si une capacité réelle diffère.
+#### ATA-001 — Figer les sources des six cœurs
+
+- [ ] Enregistrer séparément les dépôts officiels de Hatari, Atari800, Stella, ProSystem, Beetle Lynx et Virtual Jaguar.
+- [ ] Enregistrer pour chaque cœur la page de documentation Libretro et le fichier `.info` officiel.
+- [ ] Relever la licence exacte de chaque cœur et les éventuelles licences multiples de ses composants.
+- [ ] Relever le nom exact de chaque DLL Windows x64 et de son archive buildbot.
+- [ ] Documenter la méthode officielle de téléchargement du binaire et la méthode de compilation depuis les sources.
+- [ ] Enregistrer la révision inspectée et la date de consultation sans prétendre qu’elle est celle d’un binaire non vérifié.
+- [ ] Vérifier tous les liens et toutes les valeurs contre les sources primaires avant de cocher ce ticket.
+
+#### ATA-002 — Établir la matrice vérifiée des capacités
+
+- [ ] Relever les modèles réellement sélectionnables par chacun des six cœurs.
+- [ ] Relever les extensions de contenu, `need_fullpath` et la possibilité de démarrer sans contenu.
+- [ ] Relever les firmwares obligatoires, facultatifs et intégrés ainsi que leurs noms attendus.
+- [ ] Relever toutes les Core Options, leurs valeurs, leurs défauts et leurs conditions de visibilité.
+- [ ] Relever les périphériques déclarés par port et les identifiants d’entrée réellement interrogés.
+- [ ] Vérifier séparément Disk Control standard, Disk Control étendu et sous-systèmes Libretro.
+- [ ] Vérifier `retro_serialize`, `retro_unserialize`, mémoire sauvegardée et limites des états.
+- [ ] Relever formats de pixels, géométries variables, régions, fréquences vidéo et taux audio.
+- [ ] Consigner les limites connues sans transformer une hypothèse ou une fonction de l’émulateur autonome en capacité du cœur Libretro.
+- [ ] Corriger la matrice cible de ce document avec les résultats prouvés.
 
 ### B — Contrats communs d’émulation
 
-- [ ] **ATA-003 — Généraliser les types de médias.** Ajouter les types et emplacements nécessaires aux cartouches et cassettes sans casser les emplacements Amiga existants ; couvrir sérialisation et compatibilité par tests.
-- [ ] **ATA-004 — Extraire uniquement les éléments Libretro réellement communs.** Mutualiser ABI, résolution des symboles, callbacks, mémoire partagée et structures de protocole réutilisables, tout en conservant les règles propres à chaque machine dans son projet.
+#### ATA-003 — Généraliser les types de médias
+
+- [ ] Ajouter `Cartridge` et `Cassette` à `EmulationMediaType` sans modifier les valeurs persistées existantes.
+- [ ] Ajouter des slots explicites de cartouche et cassette ; étendre les slots CD et disque uniquement si la matrice l’exige.
+- [ ] Définir les règles d’unicité, d’éjection, de lecture seule et de remplacement pour chaque type.
+- [ ] Mettre à jour la sérialisation du protocole et les configurations sans casser les documents Amiga existants.
+- [ ] Ajouter les tests de compatibilité ascendante, de round-trip et de slot invalide.
+
+#### ATA-004 — Extraire uniquement les éléments Libretro réellement communs
+
+- [ ] Comparer toutes les structures et constantes de `AmigaExternalApi` à l’API nécessaire aux six cœurs.
+- [ ] Déplacer dans `GWGUI.Emulation` uniquement l’ABI Libretro indépendante d’une machine.
+- [ ] Mutualiser le chargement et la résolution des exports sans exposer `retro_*` publiquement.
+- [ ] Mutualiser les allocations UTF-8, la copie vidéo et les primitives de sérialisation IPC réellement identiques.
+- [ ] Conserver options, firmwares, médias, contrôleurs et règles de modèle dans les projets spécialisés.
+- [ ] Prouver par tests que l’intégration Amiga continue de charger, fonctionner et se libérer après l’extraction.
 
 ### C — Domaine Atari et processus hôte
 
-- [ ] **ATA-005 — Créer le projet `GWGUI.Emulation.Atari`.** Ajouter références, conventions de nommage `gwgui`, analyseurs, injection et raccordement à la solution sans fusionner le code dans l’exécutable.
-- [ ] **ATA-006 — Définir les contrats Atari.** Créer machine, configuration, modèle, firmware, média, entrée, vidéo, audio, état, résultat et erreurs structurées.
-- [ ] **ATA-007 — Implémenter l’adaptateur Libretro Atari.** Charger chacun des six cœurs, négocier environnement et options, transmettre les callbacks et libérer toutes les ressources de façon déterministe.
-- [ ] **ATA-008 — Implémenter l’hôte Atari isolé.** Ajouter l’argument de démarrage dédié, le protocole IPC, les mémoires vidéo/audio, les délais, l’arrêt propre, la remontée des erreurs et les tests de panne du processus.
+#### ATA-005 — Créer le projet `GWGUI.Emulation.Atari`
+
+- [ ] Créer le projet en `net10.0` avec nullable et implicit usings, sans WPF ni package d’interface.
+- [ ] Référencer uniquement `GWGUI.Emulation` et les dépendances strictement nécessaires.
+- [ ] Ajouter le projet à `GWGUI.sln`, à `GWGUI.App` et aux tests sans dépendance inverse vers l’application.
+- [ ] Fixer assembly, namespace et fichiers produits selon la convention `gwgui` du package.
+- [ ] Faire passer une compilation x64 Debug et Release avant de cocher.
+
+#### ATA-006 — Définir les contrats Atari
+
+- [ ] Créer `IAtariMachine` avec le cycle de vie commun, événements vidéo et commandes Atari.
+- [ ] Créer `IAtariCore` pour isoler la machine du cœur natif concret.
+- [ ] Créer `AtariCoreKind` et les six identifiants de cœur sans les déduire du nom de DLL.
+- [ ] Créer `AtariMachineConfiguration` avec version de schéma, modèle, cœur déterminé, firmwares, médias, options et entrées.
+- [ ] Créer les valeurs de modèle, famille, firmware, média et périphérique sans dépendance WPF.
+- [ ] Créer les erreurs structurées pour cœur, firmware, contenu, option, hôte et état.
+- [ ] Tester les invariants des contrats et le refus des combinaisons manifestement incohérentes.
+
+#### ATA-007 — Implémenter l’adaptateur Libretro Atari
+
+- [ ] Déclarer les delegates Cdecl, structures séquentielles et marshaling booléen requis en x64.
+- [ ] Tester tailles et offsets natifs de toutes les structures utilisées.
+- [ ] Refuser les chemins relatifs et produire une erreur structurée si la DLL ou un export manque.
+- [ ] Résoudre l’ensemble des exports Libretro requis et vérifier `RETRO_API_VERSION`.
+- [ ] Installer les callbacks environnement, vidéo, audio et entrée dans l’ordre imposé par l’API.
+- [ ] Vérifier `retro_system_info` contre le cœur attendu au lieu de se fier au nom du fichier.
+- [ ] Charger le contenu avec `retro_game_info` selon `need_fullpath` et les extensions annoncées.
+- [ ] Nettoyer uniquement les étapes initialisées, rendre le second arrêt inoffensif et libérer le module une seule fois.
+- [ ] Exécuter ces tests séparément pour les six DLL.
+
+#### ATA-008 — Implémenter l’hôte Atari isolé
+
+- [ ] Ajouter `--atari-core-host` au démarrage de `gwgui.exe` sans ouvrir l’interface principale.
+- [ ] Définir commandes, réponses, versions et erreurs du protocole Atari.
+- [ ] Sérialiser configuration, entrées, médias, options, états et statuts sans envoyer de type WPF.
+- [ ] Transporter une requête à la fois sur un named pipe privé et répondre avant la suivante.
+- [ ] Transporter la dernière frame par mémoire partagée redimensionnable et les blocs audio sans corruption.
+- [ ] Créer un processus distinct par machine, même lorsque deux machines utilisent le même cœur.
+- [ ] Gérer connexion, timeout, annulation, fermeture normale, crash et processus bloqué.
+- [ ] Ne tuer que l’hôte fautif et laisser fonctionner les autres machines.
+- [ ] Vérifier qu’aucun processus, pipe, mapping ou fichier temporaire ne reste après arrêt.
 
 ### D — Installation et versions des cœurs
 
-- [ ] **ATA-009 — Créer le catalogue des six cœurs.** Associer identifiant, machines, source officielle, versions disponibles, DLL attendue et chemin d’installation à chaque cœur.
-- [ ] **ATA-010 — Implémenter recherche, téléchargement et remplacement.** Réutiliser le parcours Amiga en autorisant toute version proposée, remplacer simplement l’ancienne DLL et conserver taille/empreinte/informations PE uniquement pour diagnostic.
-- [ ] **ATA-011 — Ajouter l’interface de gestion des cœurs Atari.** Afficher version installée, versions disponibles, recherche, téléchargement/remplacement, progression et erreurs utiles pour le cœur déterminé par le modèle.
+#### ATA-009 — Créer le catalogue des six cœurs
+
+- [ ] Associer à chaque identifiant le nom de bibliothèque, le nom de DLL, l’archive et la source officielle.
+- [ ] Associer chaque modèle à exactement un cœur et refuser une association ambiguë.
+- [ ] Définir les dossiers installés et manifestes séparément pour chaque cœur et chaque version.
+- [ ] Enregistrer URL, date, taille ZIP, taille DLL, SHA-256 calculé, architecture et version déclarée comme diagnostic.
+- [ ] Tester les six associations, chemins et noms sans accès réseau.
+
+#### ATA-010 — Implémenter recherche, téléchargement et remplacement
+
+- [ ] Interroger la source officielle de chaque cœur et parser toutes les versions qu’elle propose.
+- [ ] Afficher les erreurs réseau et de format sans masquer leur cause technique utile.
+- [ ] Télécharger dans un fichier temporaire avec progression et annulation.
+- [ ] Extraire uniquement la DLL attendue et refuser une archive qui ne la contient pas.
+- [ ] Autoriser l’installation de toute version proposée par l’interface.
+- [ ] Remplacer atomiquement la version installée lorsque l’utilisateur en choisit une autre.
+- [ ] Calculer taille, SHA-256, architecture et exports pour le manifeste et le diagnostic, sans bloquer une version proposée sur ces diagnostics.
+- [ ] Nettoyer les temporaires après succès, annulation ou erreur.
+- [ ] Tester hors ligne, archive tronquée, DLL absente, remplacement, fichier verrouillé et annulation.
+
+#### ATA-011 — Ajouter l’interface de gestion des cœurs Atari
+
+- [ ] Afficher le cœur requis automatiquement pour le modèle sélectionné.
+- [ ] Afficher version installée, absence d’installation et chemin local sans ambiguïté.
+- [ ] N’afficher la liste et le bouton de téléchargement qu’après une recherche réussie.
+- [ ] Permettre de choisir chaque version retournée puis de la télécharger et remplacer.
+- [ ] Afficher progression, annulation, succès et erreur détaillée avec ressources traduites.
+- [ ] Actualiser la configuration et l’état installé après remplacement sans redémarrage des machines déjà actives.
+- [ ] Tester le contrôle avec un faux service pour chacun des six cœurs.
 
 ### E — Modèles et compatibilité matérielle
 
-- [ ] **ATA-012 — Cataloguer la famille ST.** Définir ST, STF, STFM, Mega ST, STE, Mega STE, TT et Falcon avec CPU, fréquence, mémoire, vidéo, audio et périphériques compatibles.
-- [ ] **ATA-013 — Cataloguer les Atari 8 bits et consoles.** Définir 400, 800, XL, XE, XEGS, 5200, 2600, 7800, Lynx, Jaguar et Jaguar CD avec le cœur automatiquement associé.
-- [ ] **ATA-014 — Centraliser les règles d’activation.** Fournir une source unique indiquant quelles options, firmwares, ports et médias sont applicables à chaque modèle, avec motif de désactivation traduisible.
+#### ATA-012 — Cataloguer la famille ST
+
+- [ ] Définir séparément ST, STF, STFM, Mega ST, STE, Mega STE, TT et Falcon.
+- [ ] Associer CPU, FPU, fréquences et niveaux de précision réellement disponibles.
+- [ ] Associer tailles et types de RAM compatibles par modèle.
+- [ ] Associer TOS, région, vidéo, audio, stockage et ports compatibles.
+- [ ] Traduire les noms descriptifs tout en conservant les identifiants techniques stables.
+- [ ] Ajouter une ligne de test exhaustive par modèle.
+
+#### ATA-013 — Cataloguer les Atari 8 bits et consoles
+
+- [ ] Définir 400, 800, XL, XE et XEGS avec leurs variantes réellement supportées.
+- [ ] Définir séparément 5200, 2600, 7800, Lynx, Jaguar et Jaguar CD.
+- [ ] Associer automatiquement Atari800, Stella, ProSystem, Beetle Lynx ou Virtual Jaguar.
+- [ ] Associer CPU, mémoire, région, vidéo, audio, stockage et ports vérifiés.
+- [ ] Empêcher qu’un modèle reçoive un firmware ou média d’une autre famille.
+- [ ] Ajouter une ligne de test exhaustive par modèle et variante.
+
+#### ATA-014 — Centraliser les règles d’activation
+
+- [ ] Créer un catalogue unique de compatibilité consulté par moteur et interface.
+- [ ] Déterminer pour chaque modèle les onglets et groupes visibles.
+- [ ] Déterminer pour chaque option si elle est modifiable, imposée ou indisponible.
+- [ ] Déterminer slots, types de médias et nombre de ports utilisables.
+- [ ] Fournir pour chaque indisponibilité une clé de ressource explicative.
+- [ ] Tester toutes les règles par données, sans reproduire les conditions dans les contrôles WPF.
 
 ### F — Firmwares et ROM système
 
-- [ ] **ATA-015 — Créer le catalogue des firmwares Atari.** Identifier TOS et autres BIOS requis ou facultatifs, noms reconnus, régions, versions et compatibilités, sans distribuer les fichiers protégés.
-- [ ] **ATA-016 — Implémenter détection et sélection.** Scanner les dossiers configurés, identifier les fichiers quand c’est possible, signaler absent/inconnu/incompatible et transmettre le bon firmware au cœur.
+#### ATA-015 — Créer le catalogue des firmwares Atari
+
+- [ ] Cataloguer les TOS par version, région et modèle compatible.
+- [ ] Cataloguer les ROM Atari 8 bits et 5200 réellement utilisées par Atari800.
+- [ ] Cataloguer les BIOS facultatifs ou obligatoires des 2600, 7800 et Lynx.
+- [ ] Cataloguer les BIOS Jaguar et Jaguar CD ainsi que tout firmware de lecteur requis.
+- [ ] Enregistrer nom attendu, taille et empreintes publiques uniquement lorsqu’une source fiable les fournit.
+- [ ] Marquer clairement firmware requis, facultatif, intégré ou remplaçable.
+- [ ] Vérifier qu’aucun firmware protégé n’entre dans Git ou un package.
+
+#### ATA-016 — Implémenter détection et sélection des firmwares
+
+- [ ] Créer les dossiers de firmware par famille sous le stockage d’émulation.
+- [ ] Scanner sans bloquer l’interface et ignorer proprement les fichiers non pertinents.
+- [ ] Identifier version et région par empreinte lorsqu’elles sont connues, sinon conserver un état inconnu explicite.
+- [ ] Classer chaque fichier compatible, partiellement compatible ou incompatible avec le modèle sélectionné.
+- [ ] Permettre sélection et rafraîchissement sans copier ni modifier le fichier source.
+- [ ] Refuser le démarrage avec un message précis lorsque le firmware réellement obligatoire manque.
+- [ ] Transmettre au cœur les chemins et noms attendus sans choisir silencieusement une autre ROM.
+- [ ] Tester dossier absent, doublons, fichier inconnu, mauvaise région, fichier verrouillé et firmware valide.
 
 ### G — Médias et stockage
 
-- [ ] **ATA-017 — Implémenter les médias Hatari.** Gérer insertion, éjection, remplacement et rotation des disquettes, listes multidisques, disques durs et dossiers GEMDOS selon les capacités vérifiées.
-- [ ] **ATA-018 — Implémenter les médias Atari800.** Gérer disquettes, cassettes et cartouches, y compris les besoins propres à la 5200 et la sélection de type lorsque le cœur l’exige.
-- [ ] **ATA-019 — Implémenter les cartouches console.** Gérer chargement et remplacement pour 2600, 7800, Lynx et Jaguar avec validation lisible des formats réellement pris en charge.
-- [ ] **ATA-020 — Implémenter Jaguar CD.** Ajouter le lecteur CD, insertion, éjection et remplacement, et désactiver ce périphérique pour la Jaguar sans CD.
+#### ATA-017 — Implémenter les disquettes Hatari
 
-### H — Vidéo, audio et synchronisation
+- [ ] Construire `retro_game_info` conformément à `need_fullpath` et conserver ses allocations jusqu’au déchargement.
+- [ ] Accepter uniquement les extensions réellement annoncées par Hatari et afficher les formats refusés.
+- [ ] Enregistrer le média dans le slot seulement après chargement réussi.
+- [ ] Capturer Disk Control standard ou étendu lorsqu’il est réellement fourni.
+- [ ] Implémenter insertion, éjection, remplacement, index et libellé de chaque image.
+- [ ] Gérer les listes multidisques et la rotation sans perdre l’ordre.
+- [ ] Rouvrir les fichiers en accès exclusif après arrêt pour prouver l’absence de handle restant.
+- [ ] Tester média absent, invalide, protégé en écriture et changement à chaud.
+- [ ] Si l’écriture est activée, travailler sur une copie de session et proposer explicitement l’enregistrement ; ne jamais modifier silencieusement l’image source.
 
-- [ ] **ATA-021 — Intégrer la vidéo.** Transmettre dimensions, pitch, format de pixels, fréquence et changements de géométrie ; rendre dans la surface commune sans fenêtre créée par le cœur.
-- [ ] **ATA-022 — Intégrer l’audio.** Transmettre les lots stéréo, gérer tampon, volume, silence, reprise et périphérique Windows avec arrêt sans processus résiduel.
-- [ ] **ATA-023 — Gérer cadence et région.** Respecter PAL/NTSC et les fréquences propres aux machines, synchroniser audio/vidéo, calculer les FPS et tester pause, reprise et accélération autorisée.
+#### ATA-018 — Implémenter les stockages Hatari
+
+- [ ] Gérer séparément images ACSI, images IDE et tout autre disque dur vérifié.
+- [ ] Gérer les dossiers GEMDOS sans confondre dossier hôte et faux fichier `.GEM`.
+- [ ] Préserver lecture seule, ordre de montage, lettres/partitions et chemins externes.
+- [ ] Valider les combinaisons de stockage en fonction du modèle ST/STE/TT/Falcon.
+- [ ] Restaurer les montages d’une configuration au démarrage et après remise sous tension.
+- [ ] Tester chemins avec espaces, dossier absent, image verrouillée, plusieurs volumes et arrêt propre.
+
+#### ATA-019 — Implémenter les médias Atari800
+
+- [ ] Gérer les images de disquette avec leurs lecteurs et opérations réellement exposées.
+- [ ] Gérer les images cassette avec insertion, éjection, lecture et options moteur disponibles.
+- [ ] Gérer les cartouches d’ordinateur et distinguer leur type lorsque le cœur le demande.
+- [ ] Gérer les cartouches 5200 sans appliquer une configuration BIOS d’ordinateur.
+- [ ] Déterminer le type de contenu par le modèle et les métadonnées, pas seulement par extension ambiguë.
+- [ ] Tester chaque type, changement à chaud autorisé, contenu incompatible et arrêt sans verrou.
+- [ ] Appliquer aux disquettes et cassettes inscriptibles la même politique de copie de session et d’enregistrement explicite.
+
+#### ATA-020 — Implémenter les cartouches 2600, 7800, Lynx et Jaguar
+
+- [ ] Créer un contrôleur de cartouche commun sans mélanger les règles des quatre cœurs.
+- [ ] Valider les extensions et besoins de chemin ou de données selon chaque cœur.
+- [ ] Transmettre type de mapper, région ou métadonnée uniquement lorsque le cœur le permet.
+- [ ] Implémenter insertion initiale, remplacement par remise sous tension et éjection si elle est supportée.
+- [ ] Conserver le média de chaque machine et restaurer uniquement sa propre cartouche.
+- [ ] Tester les quatre cœurs avec contenu factice ou légal, mauvais format et fichier verrouillé.
+
+#### ATA-021 — Implémenter Jaguar CD
+
+- [ ] Vérifier d’abord que le cœur Virtual Jaguar retenu expose réellement Jaguar CD et ses formats.
+- [ ] Définir le slot CD et les fichiers descriptifs/feuilles nécessaires sans confondre une piste avec un disque complet.
+- [ ] Charger, éjecter et remplacer le CD selon les interfaces réellement fournies.
+- [ ] Associer BIOS et périphérique CD uniquement au modèle Jaguar CD.
+- [ ] Griser le lecteur CD sur Jaguar standard avec une explication traduite.
+- [ ] Tester image incomplète, piste manquante, changement autorisé et absence de support signalée proprement.
+
+### H — Environnement Libretro, exécution, vidéo et audio
+
+#### ATA-022 — Répondre aux commandes d’environnement communes
+
+- [ ] Créer avant `retro_set_environment` les dossiers absolus System, Saves, Content et Assets nécessaires.
+- [ ] Retourner des pointeurs UTF-8 stables pendant toute la session et les libérer après `retro_deinit`.
+- [ ] Implémenter répertoires, duplication de frame, format de pixels, géométrie, informations AV et messages.
+- [ ] Copier immédiatement toute structure native reçue sans conserver son pointeur.
+- [ ] Accepter descripteurs d’entrée, informations contrôleurs, cartes mémoire et achievements lorsque demandés.
+- [ ] Journaliser une seule fois chaque commande inconnue et répondre honnêtement aux interfaces non implémentées.
+- [ ] Fournir l’interface de log sans interpréter la chaîne de format native comme une chaîne .NET ordinaire.
+- [ ] Capturer l’interface LED lorsqu’elle est fournie et transmettre ses changements au statut de machine.
+- [ ] Fournir une interface VFS seulement si un cœur l’exige réellement ; sinon retourner `false` sans simuler sa présence.
+- [ ] Traiter correctement langues, fast-forward, rotation, rumble et capteurs si un des six cœurs les demande.
+- [ ] Tester chaque numéro de commande utilisé par chacun des six cœurs avec buffers natifs.
+
+#### ATA-023 — Héberger toutes les Core Options
+
+- [ ] Implémenter Core Options V2, V2 international, V1 et `SET_VARIABLES`.
+- [ ] Copier catégories, clés, libellés, aides, valeurs, labels, défauts et visibilité sans perdre une entrée.
+- [ ] Retourner la valeur configurée ou le défaut avec un pointeur stable dans `GET_VARIABLE`.
+- [ ] Implémenter `GET_VARIABLE_UPDATE`, `SET_VARIABLE` et le callback de mise à jour d’affichage.
+- [ ] Valider les valeurs contre celles annoncées tout en conservant les clés inconnues dans les documents.
+- [ ] Isoler les catalogues d’options par cœur et par instance.
+- [ ] Tester qu’aucune option annoncée par chacune des six DLL n’est perdue.
+
+#### ATA-024 — Respecter l’ordre d’initialisation des six cœurs
+
+- [ ] Installer environnement puis callbacks vidéo, audio et entrée avant l’initialisation.
+- [ ] Appeler `retro_init`, lire `retro_system_info`, préparer firmware et contenu, puis appeler `retro_load_game`.
+- [ ] Ne démarrer sans contenu que si le cœur l’a explicitement autorisé.
+- [ ] Lire `retro_system_av_info` seulement après chargement réussi.
+- [ ] Configurer les périphériques de chaque port au moment attendu.
+- [ ] Nettoyer dans l’ordre inverse uniquement les étapes réussies.
+- [ ] Tester l’ordre exact avec un faux module pour chaque profil de cœur.
+
+#### ATA-025 — Implémenter la boucle d’exécution Atari
+
+- [ ] Créer un thread LongRunning nommé avec l’identifiant de machine et le cœur.
+- [ ] Faire passer tous les appels natifs d’une instance par ce thread unique.
+- [ ] Utiliser une file mono-consommateur pour reset, option, média et état.
+- [ ] Exécuter une frame en état Running, aucune en pause, tout en continuant à traiter les commandes.
+- [ ] Rendre arrêt et double arrêt sûrs et annulables.
+- [ ] Transformer toute exception en état Faulted avec erreur structurée et nettoyage complet.
+- [ ] Tester 300 frames, pause, reprise, reset, arrêt, double arrêt et exception injectée.
+
+#### ATA-026 — Copier et publier la vidéo
+
+- [ ] Traiter un pointeur nul comme duplication de la dernière frame.
+- [ ] Copier `pitch * height`, ligne par ligne, sans supposer `width * bytesPerPixel`.
+- [ ] Gérer tous les formats de pixels réellement négociés par les six cœurs.
+- [ ] Alterner des buffers loués pour ne jamais publier un buffer en cours d’écriture.
+- [ ] Publier dimensions, pitch, format, ratio, séquence et horodatage.
+- [ ] Redimensionner et restituer les buffers sans fuite lors d’un changement de géométrie.
+- [ ] Tester padding, formats, pointeur nul, résolutions dynamiques et ratios de chaque famille.
+
+#### ATA-027 — Mettre le PCM dans une file bornée
+
+- [ ] Convertir correctement frames stéréo et échantillons des callbacks batch et unitaire.
+- [ ] Copier dans une file bornée selon le taux annoncé par le cœur.
+- [ ] Supprimer les blocs les plus anciens en dépassement et compter les overruns.
+- [ ] Compter les underruns sans fabriquer de faux `AudioChunk` dans le moteur.
+- [ ] Isoler complètement les tampons de deux machines simultanées.
+- [ ] Tester canaux gauche/droit, limites, ordre, compteurs et changement de taux.
+
+#### ATA-028 — Sortir et synchroniser l’audio
+
+- [ ] Réutiliser `IAudioOutput`/WASAPI sans ajouter NAudio au moteur Atari.
+- [ ] Démarrer avec le taux réel, gérer mute, volume, pause, reprise, reset et arrêt.
+- [ ] Recréer la sortie après changement de périphérique ou erreur sans arrêter la machine.
+- [ ] Asservir la cadence à une cible et des bornes de tampon explicitement définies.
+- [ ] Respecter PAL, NTSC et les cadences propres aux consoles portables ou Jaguar.
+- [ ] Ne jamais dormir dans un callback natif et utiliser des attentes annulables.
+- [ ] Tester la dérive, les bornes mémoire et les compteurs sur une durée définie par famille.
+
+#### ATA-029 — Publier les informations de fonctionnement
+
+- [ ] Exposer région, FPS, fréquence audio, géométrie et nom du cœur actif.
+- [ ] Exposer activité des médias et LED uniquement lorsque le cœur fournit une information fiable.
+- [ ] Exposer compteurs audio, dernière erreur et état du processus hôte.
+- [ ] Ne pas inventer une LED ou un état matériel absent.
+- [ ] Tester les instantanés de statut et leur isolement entre machines.
 
 ### I — Clavier, souris et contrôleurs
 
-- [ ] **ATA-024 — Définir les actions Atari.** Créer les actions communes et spécifiques par famille sans chaînes ni codes magiques dispersés.
-- [ ] **ATA-025 — Implémenter clavier et souris.** Mapper clavier ST/8 bits, clavier Libretro, souris et capture/libération ; désactiver proprement ce qui ne s’applique pas aux consoles.
-- [ ] **ATA-026 — Implémenter les contrôleurs.** Gérer joysticks, joypads, contrôleurs analogiques et nombre de ports selon le modèle et les capacités du cœur.
-- [ ] **ATA-027 — Intégrer les raccourcis.** Réutiliser le système commun pour alimentation, pause, reset, plein écran, libération souris, états rapides et changement de média, avec détection des conflits.
+#### ATA-030 — Figer les entrées par frame
+
+- [ ] Stocker un snapshot immuable complet par échange atomique.
+- [ ] Copier le snapshot actif dans `input_poll` et répondre depuis cette copie jusqu’au poll suivant.
+- [ ] Retourner zéro pour port, device, index ou id inconnu.
+- [ ] Transporter exactement le même snapshot à travers le processus hôte.
+- [ ] Tester un changement concurrent en milieu de frame et deux instances indépendantes.
+
+#### ATA-031 — Mapper les claviers Atari
+
+- [ ] Créer une table exhaustive `EmulationKey` vers les codes Libretro sans dépendance WPF dans le moteur.
+- [ ] Mapper le clavier ST/STE/TT/Falcon et ses touches propres.
+- [ ] Mapper le clavier Atari 8 bits et ses touches console Option, Select, Start et Help.
+- [ ] Transmettre down/up, caractère Unicode et modificateurs au mécanisme utilisé par le cœur.
+- [ ] Conserver l’adaptation `System.Windows.Input.Key` dans l’application.
+- [ ] Tester toutes les touches mappées, touches inconnues, dispositions et relâchement après perte de focus.
+
+#### ATA-032 — Implémenter souris et capture relative
+
+- [ ] Mapper mouvement relatif, boutons, molette et éventuelle souris par port selon le cœur.
+- [ ] Réutiliser la capture Raw Input et la libération de souris de la vue Amiga.
+- [ ] Restaurer curseur, clipping et état des boutons après perte de focus, plein écran, pause ou arrêt.
+- [ ] Griser vitesse et mappages souris sur les modèles qui ne les utilisent pas.
+- [ ] Tester accumulation, consommation par frame, capture, libération et fermeture forcée.
+
+#### ATA-033 — Implémenter les contrôleurs
+
+- [ ] Importer les informations de contrôleurs et descripteurs annoncés par chaque cœur.
+- [ ] Définir le nombre de ports et périphériques compatibles par modèle.
+- [ ] Mapper RetroPad, joystick numérique, sticks analogiques, gâchettes et boutons supplémentaires nécessaires.
+- [ ] Gérer les quatre ports Atari 8 bits lorsque disponibles et les contrôleurs spécifiques 5200/Jaguar.
+- [ ] Appeler `retro_set_controller_port_device` à la configuration et lors d’un changement permis.
+- [ ] Tester bitmask, axes extrêmes, zones mortes, ports absents et deux manettes distinctes.
+
+#### ATA-034 — Intégrer les raccourcis d’émulation
+
+- [ ] Ajouter les actions communes : alimentation, pause, reset, plein écran et libération souris.
+- [ ] Ajouter sauvegarde/chargement rapide uniquement lorsque les états sont disponibles.
+- [ ] Ajouter insertion, éjection et média suivant pour les périphériques applicables.
+- [ ] Afficher dans la barre les raccourcis réellement configurés, sans texte en dur.
+- [ ] Réutiliser attribution, restauration, suppression et détection de conflits.
+- [ ] Tester priorité globale/machine, répétition clavier et conflit entre actions.
 
 ### J — États, configurations et cycle de vie
 
-- [ ] **ATA-028 — Implémenter les états.** Ajouter sauvegarde, chargement, états rapides, captures et métadonnées lorsque le cœur le permet ; afficher une indisponibilité explicite sinon.
-- [ ] **ATA-029 — Implémenter le stockage des configurations.** Sauvegarder modèle, options, firmwares, médias, entrées et dossiers dans un format versionné, migrable et testé.
-- [ ] **ATA-030 — Implémenter le cycle de vie complet.** Ouvrir plusieurs machines en onglets, démarrer, arrêter, redémarrer, fermer, restaurer la souris et nettoyer processus, pipes, mappings et fichiers temporaires.
+#### ATA-035 — Implémenter les états natifs
+
+- [ ] Vérifier taille et disponibilité de sérialisation après chargement du contenu.
+- [ ] Allouer exactement la taille annoncée et traiter proprement une taille nulle ou variable.
+- [ ] Implémenter sauvegarde et chargement sur le thread du cœur.
+- [ ] Ajouter un en-tête GW GUI avec cœur, version, modèle, configuration et empreinte du contenu.
+- [ ] Refuser un état d’un autre cœur, modèle ou contenu avec une erreur précise.
+- [ ] Rendre l’indisponibilité visible lorsque le cœur ne fournit pas les états.
+- [ ] Tester round-trip, données tronquées, incompatibilité et échec de `retro_unserialize` pour les six cœurs.
+
+#### ATA-036 — Implémenter le magasin d’états
+
+- [ ] Créer un dossier par machine sous le stockage partagé ou portable approprié.
+- [ ] Écrire par fichier temporaire puis remplacement atomique.
+- [ ] Ajouter état rapide, états nommés, date, capture et métadonnées.
+- [ ] Ne jamais enregistrer firmware ou contenu protégé dans le fichier d’état.
+- [ ] Nettoyer uniquement les états de la configuration supprimée après confirmation.
+- [ ] Tester noms invalides, écriture interrompue, lecture concurrente et restauration.
+
+#### ATA-037 — Implémenter le stockage des configurations
+
+- [ ] Définir un schéma JSON versionné distinct des configurations Amiga.
+- [ ] Persister modèle, cœur déterminé, options, firmwares, médias, entrées, dossiers et renderer.
+- [ ] Conserver relatifs les chemins sous `Data` et absolus les chemins externes.
+- [ ] Écrire atomiquement et ne jamais démarrer une machine pendant le chargement des documents.
+- [ ] Isoler un document corrompu tout en chargeant les autres.
+- [ ] Migrer les futures versions avec des fonctions explicites et testées.
+- [ ] Tester deux configurations par famille, round-trip, corruption et suppression sans toucher aux fichiers partagés.
+- [ ] Centraliser dans `StoragePaths` tous les chemins définitifs Atari pour mode installé et portable.
+- [ ] Vérifier que sessions et temporaires restent hors des documents utilisateur et sont nettoyés après exécution.
+
+#### ATA-038 — Implémenter le cycle de vie de la machine Atari
+
+- [ ] Faire dépendre `AtariMachine` uniquement de `IAtariCore`.
+- [ ] Implémenter transitions Created, Starting, Running, Paused, Stopping, Stopped et Faulted.
+- [ ] Refuser les commandes interdites et rendre deux arrêts successifs inoffensifs.
+- [ ] Acheminer reset, options, entrées, médias et états sur la boucle dédiée.
+- [ ] Publier vidéo, audio, statut et erreurs sans bloquer le thread d’interface.
+- [ ] Restaurer souris et audio lors de pause, faute et arrêt.
+- [ ] Tester tout le cycle avec un faux cœur puis avec chaque processus réel disponible.
+
+#### ATA-039 — Isoler plusieurs machines Atari
+
+- [ ] Démarrer deux instances du même cœur avec dossiers, options, médias et callbacks distincts.
+- [ ] Démarrer simultanément deux familles utilisant deux cœurs différents.
+- [ ] Envoyer entrée, option et changement de média à une seule instance et vérifier l’autre inchangée.
+- [ ] Arrêter ou faire planter une instance et vérifier que l’autre continue vidéo et audio.
+- [ ] Vérifier noms uniques de pipes, mappings, dossiers de session et fichiers de cœur.
+- [ ] Tester fermeture de toutes les machines lors de l’arrêt de l’application.
 
 ### K — Interface Atari
 
-- [ ] **ATA-031 — Ajouter l’entrée Atari dans l’application.** Intégrer création, sélection, ouverture et suppression des configurations Atari sans modifier le fonctionnement Amiga.
-- [ ] **ATA-032 — Construire les sous-onglets de paramètres.** Reprendre la structure Amiga : Général, CPU, RAM, ROM, Vidéo, Audio, Stockage, Clavier, Souris et Contrôleurs.
-- [ ] **ATA-033 — Adapter dynamiquement l’interface au modèle.** Afficher les valeurs compatibles et griser les contrôles non applicables avec une explication, notamment disquette/cartouche/cassette/CD et périphériques d’entrée.
-- [ ] **ATA-034 — Construire la vue de machine en cours d’exécution.** Ajouter barre d’outils, rendu, indicateurs, raccourcis, médias et statut, avec les mêmes règles de marge et de localisation que la vue Amiga.
+#### ATA-040 — Ajouter Atari à la page Émulation
+
+- [ ] Ajouter la famille Atari dans la navigation existante sans créer une seconde page incohérente.
+- [ ] Charger les documents Atari à l’ouverture des paramètres et après enregistrement.
+- [ ] Ajouter création depuis un modèle, sélection, modification, sauvegarde et suppression confirmée.
+- [ ] Ne pas ajouter de duplication de configuration tant qu’elle n’est pas demandée.
+- [ ] Ne jamais modifier silencieusement une machine déjà active.
+- [ ] Tester que toutes les fonctions Amiga existantes restent inchangées.
+
+#### ATA-041 — Construire les paramètres généraux Atari
+
+- [ ] Ajouter le choix du modèle et déterminer automatiquement le cœur associé.
+- [ ] Intégrer le panneau d’installation du cœur correspondant.
+- [ ] Ajouter les dossiers partagés et ceux propres aux disquettes, cassettes, cartouches, CD, états et captures.
+- [ ] Ajouter firmware principal et complémentaires avec détection et compatibilité.
+- [ ] Ajouter alimentation/reset/démarrage lorsque ces valeurs sont réellement configurables.
+- [ ] Afficher toutes les erreurs et indisponibilités avec ressources localisées.
+- [ ] Afficher toutes les Core Options annoncées avec catégorie, aide, valeurs et visibilité, sans perdre les clés inconnues.
+
+#### ATA-042 — Construire les onglets CPU, RAM et ROM
+
+- [ ] Afficher CPU, fréquence, précision et FPU selon la matrice du modèle.
+- [ ] Afficher mémoire principale et extensions avec totaux et compatibilité.
+- [ ] Afficher TOS/BIOS/ROM système, région, version et fichiers détectés.
+- [ ] Alimenter toutes les listes depuis les catalogues, jamais depuis des tableaux du contrôle.
+- [ ] Griser toute valeur imposée ou non applicable avec motif traduit.
+- [ ] Tester chaque modèle ST, 8 bits et console contre la matrice.
+
+#### ATA-043 — Construire les onglets Vidéo et Audio
+
+- [ ] Ajouter standard, région, résolution, ratio, recadrage, frameskip et options de rendu réellement exposées.
+- [ ] Ajouter sortie, activation, latence, volume et options de qualité audio réellement exposées.
+- [ ] Distinguer options frontend et Core Options sans écrire deux fois la même valeur.
+- [ ] Actualiser les disponibilités lors du changement de modèle sans perdre une valeur persistée valide.
+- [ ] Afficher valeurs techniques non traduites seulement lorsqu’elles sont des noms officiels.
+- [ ] Tester mise en page, sélection et persistance pour chaque famille.
+
+#### ATA-044 — Construire l’onglet Stockage
+
+- [ ] Présenter une liste de périphériques issue du modèle sélectionné.
+- [ ] Ajouter/configurer/supprimer lecteurs de disquette et disques Hatari autorisés.
+- [ ] Ajouter/configurer/supprimer lecteurs de disquette, cassette et cartouche Atari800 autorisés.
+- [ ] Afficher un lecteur cartouche pour 2600, 7800, Lynx et Jaguar.
+- [ ] Afficher cartouche et lecteur CD pour Jaguar CD.
+- [ ] Empêcher les doublons d’identifiant et les types incompatibles.
+- [ ] Expliquer que les médias amovibles peuvent être insérés ou remplacés depuis la machine active.
+- [ ] Tester toutes les transitions de modèle et la persistance des périphériques.
+
+#### ATA-045 — Construire les onglets Clavier, Souris et Contrôleurs
+
+- [ ] Réutiliser les tableaux communs d’association, recherche, statut, attribution et suppression.
+- [ ] Afficher les actions clavier propres au modèle et conserver les raccourcis globaux séparés.
+- [ ] Afficher options souris et actions uniquement sur les modèles compatibles.
+- [ ] Afficher détection, ports, types et périphériques de contrôleur selon la matrice.
+- [ ] Ajouter mappings spécifiques 5200 et Jaguar lorsque nécessaires.
+- [ ] Réutiliser zones mortes, vitesses analogiques, turbo et détection des conflits.
+- [ ] Tester restauration des défauts, suppression, conflit et changement de modèle.
+
+#### ATA-046 — Construire la section principale Atari
+
+- [ ] Ajouter sélection de configuration et bouton d’ouverture dans l’onglet principal Émulation.
+- [ ] Ouvrir chaque machine dans son propre sous-onglet avec titre et fermeture asynchrone.
+- [ ] Recharger la liste après sauvegarde ou fermeture des paramètres.
+- [ ] Valider cœur, firmware, configuration et média avant de démarrer.
+- [ ] Afficher l’erreur précise au lieu d’un état `Unknown` générique.
+- [ ] Arrêter toutes les machines Atari lors de la fermeture de l’application.
+
+#### ATA-047 — Construire la vue de machine Atari
+
+- [ ] Réutiliser la surface vidéo Direct3D 11 et son fallback sans appel natif depuis le contrôle.
+- [ ] Ajouter alimentation, pause, resets, états, capture et plein écran selon les capacités.
+- [ ] Conserver des marges équilibrées autour du bloc renderer.
+- [ ] Afficher les raccourcis utiles et localisés dans les groupes existants.
+- [ ] Construire dynamiquement disquettes, disques, cassette, cartouche et CD depuis les périphériques configurés.
+- [ ] Afficher activité, son, contrôleurs, souris, résolution, fréquence et FPS sans inventer d’état.
+- [ ] Restaurer les médias montés après remise sous tension.
+- [ ] Tester rendu 4:3 et autres ratios, plein écran, capture souris, médias et arrêt.
+- [ ] Enregistrer les captures dans le dossier configuré avec nom sûr, format PNG et erreur détaillée en cas d’échec.
 
 ### L — Traductions, aide et accessibilité
 
-- [ ] **ATA-035 — Ajouter toutes les ressources Atari.** Créer les clés dans les fichiers appropriés et fournir les traductions pour toutes les langues actuellement prises en charge, sans texte visible écrit en dur.
-- [ ] **ATA-036 — Intégrer Atari dans l’aide.** Documenter modèles, firmwares, médias, contrôles, états et limites, puis inclure les PDF disponibles avec repli vers l’anglais.
-- [ ] **ATA-037 — Vérifier accessibilité et mise en page.** Contrôler navigation clavier, lecteurs d’écran, contrastes, textes longs, RTL, polices CJK et absence de débordement ou barre inutile.
+#### ATA-048 — Ajouter les ressources Atari de référence
+
+- [ ] Inventorier chaque texte visible ajouté dans moteur, erreurs, contrôles et aide.
+- [ ] Créer des clés nommées dans les fichiers de ressources adéquats, sans texte brut dans les contrôles.
+- [ ] Fournir les valeurs anglaises de référence et françaises vérifiées.
+- [ ] Ajouter des tests qui détectent clés absentes, doublons et textes visibles écrits en dur.
+- [ ] Vérifier pluriels, paramètres, ponctuation, noms de machines et termes techniques.
+
+#### ATA-049 — Traduire toutes les langues prises en charge
+
+- [ ] Traduire toutes les nouvelles clés dans les 28 langues actuellement distribuées.
+- [ ] Conserver placeholders, raccourcis, noms officiels, unités et direction du texte.
+- [ ] Vérifier automatiquement que chaque langue possède exactement les clés de référence.
+- [ ] Relire les écrans longs en RTL, CJK et langues à expansion importante.
+- [ ] Ne considérer ce ticket terminé qu’après absence de fallback anglais involontaire dans chaque langue.
+
+#### ATA-050 — Intégrer Atari au guide utilisateur
+
+- [ ] Ajouter architecture utilisateur, création de configuration et installation des cœurs.
+- [ ] Documenter chaque famille, ses firmwares, ses médias et ses limites réelles.
+- [ ] Documenter réglages CPU, RAM, ROM, vidéo, audio, stockage et entrées.
+- [ ] Documenter exécution, raccourcis, états, changement de média et erreurs courantes.
+- [ ] Créer des captures actuelles cadrées correctement sans données personnelles.
+- [ ] Générer les PDF compressés disponibles et conserver les sources Markdown.
+- [ ] Ouvrir le PDF de la langue active avec repli vers l’anglais s’il manque.
+
+#### ATA-051 — Vérifier accessibilité et mise en page
+
+- [ ] Définir noms accessibles, ordre de tabulation, raccourcis et focus initial.
+- [ ] Vérifier contraste, états grisés, indicateurs qui ne reposent pas seulement sur la couleur et zoom Windows.
+- [ ] Vérifier absence de débordement, texte coupé et barre de défilement inutile.
+- [ ] Vérifier langues RTL, CJK et chaînes longues sur tous les onglets Atari.
+- [ ] Vérifier la vue de machine aux tailles minimales et en plein écran.
+- [ ] Ajouter des tests automatisables et consigner les vérifications manuelles restantes.
 
 ### M — Packaging et distribution
 
-- [ ] **ATA-038 — Intégrer le projet et les dépendances aux builds.** Mettre les DLL `gwgui` à la racine de `lib`, ranger chaque bibliothèque tierce dans son propre sous-dossier et mettre à jour le résolveur sans casser le démarrage.
-- [ ] **ATA-039 — Mettre à jour portable, installateur et CI.** Inclure code, ressources, documentation et installateur .NET déjà prévu dans les deux distributions, sans inclure les cœurs, firmwares ou médias non autorisés.
+#### ATA-052 — Intégrer le projet aux sorties de build
+
+- [ ] Inclure l’assembly Atari et ses symboles selon les mêmes règles que les assemblies `gwgui` existantes.
+- [ ] Placer les DLL créées par le projet à la racine de `lib` avec leur nom `gwgui` en minuscules.
+- [ ] Ranger chaque dépendance tierce dans son propre sous-dossier de `lib`, jamais dans un dossier générique.
+- [ ] Mettre à jour le résolveur d’assemblies et de DLL natives pour ces chemins.
+- [ ] Ne pas incorporer les assemblies du projet dans l’exécutable.
+- [ ] Tester le démarrage depuis une sortie propre et l’absence de doublons à la racine.
+
+#### ATA-053 — Mettre à jour le portable
+
+- [ ] Inclure code Atari, ressources, PDF et installateur .NET prévu dans le ZIP portable.
+- [ ] Exclure sources Markdown, images de documentation et fichiers temporaires.
+- [ ] Exclure les six cœurs téléchargés, firmwares et médias privés sauf décision de licence explicitement validée.
+- [ ] Vérifier au lancement le runtime .NET comme le fait la distribution actuelle.
+- [ ] Tester sur un dossier neuf, avec et sans runtime déjà installé.
+- [ ] Vérifier installation d’un cœur puis démarrage après extraction dans un chemin avec espaces.
+
+#### ATA-054 — Mettre à jour l’installateur
+
+- [ ] Inclure les mêmes fichiers applicatifs et PDF que le portable.
+- [ ] Vérifier le runtime .NET avant installation et lancer l’installateur embarqué seulement s’il manque réellement.
+- [ ] Créer les dossiers de données sans écraser configurations, firmwares, cœurs ou médias existants.
+- [ ] Mettre à niveau une installation précédente sans conserver de DLL obsolète en doublon.
+- [ ] Désinstaller uniquement les fichiers appartenant au produit.
+- [ ] Tester installation propre, mise à niveau, réparation, désinstallation et relance.
+
+#### ATA-055 — Mettre à jour la CI et les releases
+
+- [ ] Restaurer, compiler et tester le projet Atari dans les workflows existants sans build à chaque commit non demandé.
+- [ ] Inclure portable et installateur Atari dans les builds snapshot et stables déclenchés manuellement.
+- [ ] Ne télécharger aucun firmware ou média privé pendant la CI.
+- [ ] Mettre en cache uniquement les dépendances sûres sans publier les cœurs comme artefacts involontaires.
+- [ ] Vérifier les noms, versions, manifests et contenus des deux packages.
+- [ ] Conserver le mécanisme snapshot/stable existant sans créer une release à chaque push.
 
 ### N — Tests et validation fonctionnelle
 
-- [ ] **ATA-040 — Tester domaine et persistance.** Couvrir catalogues, compatibilités, migrations, firmwares, chemins, médias et erreurs pour toutes les familles.
-- [ ] **ATA-041 — Tester les six adaptateurs.** Couvrir chargement/déchargement, options, vidéo, audio, entrées, médias, états et erreurs avec doubles contrôlés puis DLL réelles autorisées.
-- [ ] **ATA-042 — Tester l’interface et les traductions.** Vérifier changement de modèle, grisage, ressources des 28 langues, RTL, commandes et absence de texte anglais résiduel hors valeurs techniques.
-- [ ] **ATA-043 — Effectuer la validation manuelle par famille.** Démarrer au moins une machine Hatari, Atari800, 2600, 7800, Lynx, Jaguar et Jaguar CD lorsque les firmwares/médias de test légaux sont disponibles ; consigner précisément tout test bloqué.
+#### ATA-056 — Tester domaine, catalogues et persistance
+
+- [ ] Couvrir tous les modèles, associations de cœur et règles de compatibilité par jeux de données.
+- [ ] Couvrir tous les firmwares, statuts et choix compatibles/incompatibles.
+- [ ] Couvrir tous les slots, types de médias, chemins relatifs/absolus et validations.
+- [ ] Couvrir sauvegarde, chargement, migration, corruption et suppression des configurations.
+- [ ] Couvrir codes d’erreur et messages structurés sans se contenter de `Unknown`.
+- [ ] Vérifier que les tests ordinaires ne dépendent d’aucun binaire, firmware ou média local.
+
+#### ATA-057 — Tester l’ABI et les hôtes des six cœurs
+
+- [ ] Créer des doubles natifs minimaux pour les profils d’environnement différents.
+- [ ] Couvrir chargement, exports, ordre d’appel, options, vidéo, audio, entrée, médias et états.
+- [ ] Couvrir pointeurs, allocations, GC forcé, structures x64 et double libération.
+- [ ] Couvrir protocole, mémoire partagée, pipe, timeout, annulation, crash et arrêt.
+- [ ] Exécuter séparément les tests locaux contre chaque DLL officielle disponible.
+- [ ] Vérifier qu’aucun test local n’est présenté comme réussi lorsqu’un prérequis manque.
+- [ ] Tester les six services de versions et installateurs avec réponses réseau simulées, archives invalides et remplacements.
+
+#### ATA-058 — Tester l’interface et les traductions
+
+- [ ] Tester création, sélection, sauvegarde, suppression et ouverture de configurations Atari.
+- [ ] Tester chaque changement de modèle et chaque contrôle activé, imposé ou grisé.
+- [ ] Tester barre de machine, médias, raccourcis, plein écran, capture souris et erreurs.
+- [ ] Comparer les clés des 28 langues et détecter les chaînes visibles codées en dur.
+- [ ] Vérifier RTL, CJK, textes longs, accessibilité et tailles minimales.
+- [ ] Rejouer les tests de non-régression de tous les contrôles Amiga et communs.
+
+#### ATA-059 — Valider Hatari manuellement
+
+- [ ] Démarrer légalement au moins un ST/STF/STFM, un STE, un TT et un Falcon quand les TOS requis sont disponibles.
+- [ ] Vérifier boot, vidéo, audio, clavier, souris, joystick, pause, reset et arrêt.
+- [ ] Vérifier disquette, changement de disque, disque dur et dossier GEMDOS selon support réel.
+- [ ] Vérifier sauvegarde/chargement d’état ou indisponibilité explicite.
+- [ ] Consigner firmware ou média légal manquant sans cocher le cas non exécuté.
+
+#### ATA-060 — Valider Atari800 manuellement
+
+- [ ] Démarrer légalement un ordinateur 400/800/XL/XE/XEGS représentatif et une 5200.
+- [ ] Vérifier boot, vidéo, audio, clavier console, joysticks et quatre ports lorsqu’ils sont disponibles.
+- [ ] Vérifier disquette, cassette et cartouche sur les modèles concernés.
+- [ ] Vérifier isolation des BIOS ordinateur/5200, états et arrêt sans verrou.
+- [ ] Consigner tout prérequis manquant sans transformer son absence en succès.
+
+#### ATA-061 — Valider les consoles à cartouche manuellement
+
+- [ ] Démarrer légalement une 2600 avec Stella et vérifier région, vidéo, audio et contrôleur.
+- [ ] Démarrer légalement une 7800 avec ProSystem et vérifier BIOS éventuel et contrôleurs.
+- [ ] Démarrer légalement une Lynx avec Beetle Lynx et vérifier orientation, rotation et entrées si exposées.
+- [ ] Démarrer légalement une Jaguar avec Virtual Jaguar et vérifier BIOS, vidéo, audio et pavé de contrôleur.
+- [ ] Vérifier états, remplacement de cartouche par redémarrage et arrêt propre pour chaque cœur.
+
+#### ATA-062 — Valider Jaguar CD manuellement
+
+- [ ] Confirmer avec la DLL choisie que Jaguar CD peut réellement démarrer.
+- [ ] Démarrer avec BIOS et disque légaux lorsque disponibles.
+- [ ] Vérifier lecture du disque, audio CD éventuel, commandes, états et arrêt.
+- [ ] Vérifier qu’une Jaguar standard ne reçoit pas le lecteur CD.
+- [ ] Si le cœur retenu ne supporte pas Jaguar CD, documenter la preuve et proposer un cœur distinct avant toute substitution.
 
 ### O — Audit final
 
-- [ ] **ATA-044 — Exécuter la validation complète.** Lancer compilation Release, suite de tests, création portable, création installateur, contrôle de démarrage et vérification qu’aucun processus `dotnet` ou hôte Atari n’est laissé après fermeture.
-- [ ] **ATA-045 — Auditer et finaliser la feuille.** Vérifier que chaque exigence de ce document correspond à du code, des tests ou une limite documentée ; contrôler le dépôt complet, cocher cette tâche en dernier et préparer un commit descriptif sans fichier orphelin.
+#### ATA-063 — Exécuter la validation complète
+
+- [ ] Compiler toute la solution en Debug x64 puis Release x64 depuis une sortie propre.
+- [ ] Exécuter tous les tests ordinaires puis chaque suite locale dont les prérequis légaux existent.
+- [ ] Boucler 100 démarrages/arrêts sur un représentant de chacun des six cœurs.
+- [ ] Exécuter une session longue par famille et relever mémoire, handles, audio, vidéo et dérive.
+- [ ] Créer portable et installateur puis tester leur démarrage et leur gestion du runtime .NET.
+- [ ] Vérifier après fermeture l’absence de processus `dotnet`, `gwgui` hôte, pipe, mapping et fichier verrouillé.
+- [ ] Vérifier qu’aucun firmware, média, chemin personnel ou secret n’est suivi ou emballé.
+- [ ] Vérifier qu’aucun appel `retro_*` n’existe dans `GWGUI.App` ni dans les contrats communs publics.
+
+#### ATA-064 — Auditer et finaliser la feuille
+
+- [ ] Relire chaque ticket et chaque sous-tâche contre le code, les tests et les artefacts actuels.
+- [ ] Considérer toute preuve absente, indirecte ou non exécutée comme non terminée.
+- [ ] Vérifier que les six cœurs suivent le même parcours utilisateur sans masquer leurs différences réelles.
+- [ ] Vérifier toutes les traductions, l’aide, le portable, l’installateur et la CI.
+- [ ] Exécuter `git diff --check` et contrôler tous les fichiers du dépôt sans fichier orphelin.
+- [ ] Cocher cette dernière sous-tâche uniquement après que toutes les autres cases sont réellement cochées.
+- [ ] Créer un commit descriptif complet et laisser le dépôt propre.
 
 ## Critère de fin
 
