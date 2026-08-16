@@ -14,6 +14,7 @@ internal sealed class AtariHardwareSettingsSection : UserControl
     private readonly TextBlock _totalMemory = new() { Margin = new Thickness(0, 8, 0, 0) };
     private readonly AtariVideoAudioSettingsSection _videoAudio = new();
     private readonly AtariStorageSettingsSection _storage = new();
+    private readonly AtariInputSettingsSection _input = new();
     private AtariMachineConfiguration? _configuration;
     private AtariHardwareView? _view;
     private bool _loading;
@@ -32,6 +33,7 @@ internal sealed class AtariHardwareSettingsSection : UserControl
             _view = AtariHardwareSettingsFunctions.Create(configuration.Model, configuration.Options);
             _videoAudio.Load(configuration);
             _storage.Load(configuration);
+            _input.Load(configuration);
             BuildFields(_cpu, _view.Cpu);
             BuildFields(_memory, _view.Memory);
             _memory.Children.Add(_totalMemory);
@@ -54,7 +56,8 @@ internal sealed class AtariHardwareSettingsSection : UserControl
     {
         var values = _editors.Where(item => item.Value.SelectedValue is string)
             .Select(item => KeyValuePair.Create(item.Key, (string)item.Value.SelectedValue));
-        return _storage.Apply(_videoAudio.Apply(AtariHardwareSettingsFunctions.ReplaceOptions(configuration, values)));
+        return _input.Apply(_storage.Apply(_videoAudio.Apply(
+            AtariHardwareSettingsFunctions.ReplaceOptions(configuration, values))));
     }
 
     private UIElement BuildTabs(UIElement general)
@@ -67,6 +70,9 @@ internal sealed class AtariHardwareSettingsSection : UserControl
         tabs.Items.Add(Tab(LocExtension.Get(AtariVideoAudioSettingsConstants.VideoTabResource), _videoAudio.Video));
         tabs.Items.Add(Tab(LocExtension.Get(AtariVideoAudioSettingsConstants.AudioTabResource), _videoAudio.Audio));
         tabs.Items.Add(Tab(LocExtension.Get(AtariStorageSettingsConstants.StorageTabResource), _storage.Content));
+        tabs.Items.Add(Tab(LocExtension.Get(AtariInputSettingsConstants.KeyboardTabResource), _input.Keyboard));
+        tabs.Items.Add(Tab(LocExtension.Get(AtariInputSettingsConstants.MouseTabResource), _input.Mouse));
+        tabs.Items.Add(Tab(LocExtension.Get(AtariInputSettingsConstants.ControllersTabResource), _input.Controllers));
         return tabs;
     }
 

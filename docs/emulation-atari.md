@@ -561,13 +561,13 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-045 — Construire les onglets Clavier, Souris et Contrôleurs
 
-- [ ] Réutiliser les tableaux communs d’association, recherche, statut, attribution et suppression.
-- [ ] Afficher les actions clavier propres au modèle et conserver les raccourcis globaux séparés.
-- [ ] Afficher options souris et actions uniquement sur les modèles compatibles.
-- [ ] Afficher détection, ports, types et périphériques de contrôleur selon la matrice.
-- [ ] Ajouter mappings spécifiques 5200 et Jaguar lorsque nécessaires.
-- [ ] Réutiliser zones mortes, vitesses analogiques, turbo et détection des conflits.
-- [ ] Tester restauration des défauts, suppression, conflit et changement de modèle.
+- [x] Réutiliser les tableaux communs d’association, recherche, statut, attribution et suppression.
+- [x] Afficher les actions clavier propres au modèle et conserver les raccourcis globaux séparés.
+- [x] Afficher options souris et actions uniquement sur les modèles compatibles.
+- [x] Afficher détection, ports, types et périphériques de contrôleur selon la matrice.
+- [x] Ajouter mappings spécifiques 5200 et Jaguar lorsque nécessaires.
+- [x] Réutiliser zones mortes, vitesses analogiques, turbo et détection des conflits.
+- [x] Tester restauration des défauts, suppression, conflit et changement de modèle.
 
 #### ATA-046 — Construire la section principale Atari
 

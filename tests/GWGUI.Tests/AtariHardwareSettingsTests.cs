@@ -51,10 +51,12 @@ public sealed class AtariHardwareSettingsTests
     }
 
     [Fact]
-    public void EditorContainsGeneralCpuRamRomVideoAudioAndStorageTabs()
+    public void EditorContainsAllImplementedAtariSettingsTabs()
     {
         RunOnSta(() =>
         {
+            var app = Application.Current as GWGUI.App.App ?? new GWGUI.App.App();
+            app.InitializeComponent();
             var general = new Border();
             var section = new AtariHardwareSettingsSection(general);
             var tabs = Assert.IsType<TabControl>(section.Content);
@@ -90,7 +92,7 @@ internal static class AtariHardwareSettingsTestConstants
 {
     internal const int CpuFieldCount = 4;
     internal const int MemoryFieldCount = 2;
-    internal const int EditorTabCount = 7;
+    internal const int EditorTabCount = 10;
     internal const int StaTimeoutMilliseconds = 10000;
     internal const string UnknownKey = "future_hardware_option";
     internal const string UnknownValue = "preserved";
