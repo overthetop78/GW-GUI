@@ -11,6 +11,7 @@ using GWGUI.App.Localization;
 using GWGUI.App.Services;
 using GWGUI.Domain.Settings;
 using GWGUI.Emulation.Amiga;
+using GWGUI.Emulation.Atari;
 using Microsoft.Win32;
 
 namespace GWGUI.App.Controls;
@@ -18,7 +19,9 @@ namespace GWGUI.App.Controls;
 public sealed class OptionsEmulationSection : UserControl
 {
     public static event EventHandler<AmigaMachineConfiguration>? ConfigurationSaved;
+    public static event EventHandler<AtariMachineConfiguration>? AtariConfigurationSaved;
     private readonly AmigaConfigurationDocuments _configurationDocuments = new(StoragePaths.AmigaConfigurationsDirectory, StoragePaths.DataDirectory);
+    private readonly AtariConfigurationCatalogSection _atariConfigurations = new();
     private readonly ObservableCollection<ConfigurationItem> _configurations = [];
     private readonly ObservableCollection<FirmwareItem> _firmware = [];
     private readonly ObservableCollection<OptionItem> _options = [];
@@ -200,6 +203,9 @@ public sealed class OptionsEmulationSection : UserControl
         AddFamilyTab("\uE765", LocExtension.Get("Emulation.ShortcutsTab"), BuildGlobalInputAssignments());
         AddFamilyTab("\uE8A5", LocExtension.Get("Emulation.Configurations"), BuildConfigurationCatalog());
         AddFamilyTab("\uE7FC", "Amiga", BuildAmigaEditor());
+        _atariConfigurations.ConfigurationSaved += (_, configuration) =>
+            AtariConfigurationSaved?.Invoke(this, configuration);
+        AddFamilyTab("\uE7FC", AtariConfigurationCatalogConstants.AtariTitle, _atariConfigurations);
         Content = _familyTabs;
         Loaded += async (_, _) => await ReloadAsync();
     }
@@ -1831,6 +1837,9 @@ public sealed class OptionsEmulationSection : UserControl
         button.Click += async (_, _) => await ButtonAsyncAction.RunAsync(button, action, error => ShowError(button, error));
         panel.Children.Add(button);
     }
+
+    public void ConfigureAtariActiveConfigurationCheck(Func<Guid, bool>? isActive) =>
+        _atariConfigurations.ConfigureActiveCheck(isActive);
 
     private static Task RunUiActionAsync(Button button, Func<Task> action) =>
         ButtonAsyncAction.RunAsync(button, action, error => ShowError(button, error));

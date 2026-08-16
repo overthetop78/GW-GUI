@@ -513,12 +513,12 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-040 — Ajouter Atari à la page Émulation
 
-- [ ] Ajouter la famille Atari dans la navigation existante sans créer une seconde page incohérente.
-- [ ] Charger les documents Atari à l’ouverture des paramètres et après enregistrement.
-- [ ] Ajouter création depuis un modèle, sélection, modification, sauvegarde et suppression confirmée.
-- [ ] Ne pas ajouter de duplication de configuration tant qu’elle n’est pas demandée.
-- [ ] Ne jamais modifier silencieusement une machine déjà active.
-- [ ] Tester que toutes les fonctions Amiga existantes restent inchangées.
+- [x] Ajouter la famille Atari dans la navigation existante sans créer une seconde page incohérente.
+- [x] Charger les documents Atari à l’ouverture des paramètres et après enregistrement.
+- [x] Ajouter création depuis un modèle, sélection, modification, sauvegarde et suppression confirmée.
+- [x] Ne pas ajouter de duplication de configuration tant qu’elle n’est pas demandée.
+- [x] Ne jamais modifier silencieusement une machine déjà active.
+- [x] Tester que toutes les fonctions Amiga existantes restent inchangées.
 
 #### ATA-041 — Construire les paramètres généraux Atari
 

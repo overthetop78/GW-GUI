@@ -24,6 +24,7 @@ internal static class ControlErrorContexts
 {
     internal const string AmigaConfigurationOpening = "Opening an Amiga configuration";
     internal const string AmigaConfiguration = "Amiga configuration";
+    internal const string AtariConfiguration = "Atari configuration";
     internal const string AmigaCoreManagement = "Managing the external Amiga core";
     internal const string AtariCoreManagement = "Managing an external Atari core";
     internal const string AmigaEmulatorCommand = "Amiga emulator command";
