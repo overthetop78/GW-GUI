@@ -89,7 +89,7 @@ internal sealed class AtariMachine : IAtariMachine
             State = EmulationMachineState.Paused;
             _audio.Pause();
         }
-        return QueueCommand(static () => { }, cancellationToken);
+        return QueueCommand(() => AtariMachineFunctions.ReleaseInput(_core), cancellationToken);
     }
 
     public ValueTask ResumeAsync(CancellationToken cancellationToken = default)
@@ -237,6 +237,7 @@ internal sealed class AtariMachine : IAtariMachine
         }
         finally
         {
+            if (initialized) AtariMachineFunctions.TryReleaseInput(_core);
             if (initialized)
                 try { _core.Stop(); } catch (Exception error) { Fault ??= error; }
             try { _core.Dispose(); } catch (Exception error) { Fault ??= error; }

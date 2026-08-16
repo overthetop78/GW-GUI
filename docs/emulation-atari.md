@@ -492,13 +492,13 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-038 — Implémenter le cycle de vie de la machine Atari
 
-- [ ] Faire dépendre `AtariMachine` uniquement de `IAtariCore`.
-- [ ] Implémenter transitions Created, Starting, Running, Paused, Stopping, Stopped et Faulted.
-- [ ] Refuser les commandes interdites et rendre deux arrêts successifs inoffensifs.
-- [ ] Acheminer reset, options, entrées, médias et états sur la boucle dédiée.
-- [ ] Publier vidéo, audio, statut et erreurs sans bloquer le thread d’interface.
-- [ ] Restaurer souris et audio lors de pause, faute et arrêt.
-- [ ] Tester tout le cycle avec un faux cœur puis avec chaque processus réel disponible.
+- [x] Faire dépendre `AtariMachine` uniquement de `IAtariCore`.
+- [x] Implémenter transitions Created, Starting, Running, Paused, Stopping, Stopped et Faulted.
+- [x] Refuser les commandes interdites et rendre deux arrêts successifs inoffensifs.
+- [x] Acheminer reset, options, entrées, médias et états sur la boucle dédiée.
+- [x] Publier vidéo, audio, statut et erreurs sans bloquer le thread d’interface.
+- [x] Restaurer souris et audio lors de pause, faute et arrêt.
+- [x] Tester tout le cycle avec un faux cœur puis avec chaque processus réel disponible.
 
 #### ATA-039 — Isoler plusieurs machines Atari
 

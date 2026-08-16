@@ -24,6 +24,47 @@ public sealed class AtariMachineLifecycleTests
     }
 
     [Fact]
+    public async Task ExposesEveryNonFaultedLifecycleState()
+    {
+        var core = new RecordingAtariCore { BlockInitialization = true, BlockStop = true };
+        await using var machine = CreateMachine(core);
+        Assert.Equal(EmulationMachineState.Created, machine.State);
+
+        var start = machine.StartAsync().AsTask();
+        Assert.True(core.InitializationEntered.Wait(AtariMachineLifecycleTestConstants.TimeoutMilliseconds));
+        Assert.Equal(EmulationMachineState.Starting, machine.State);
+        core.ContinueInitialization.Set();
+        await start;
+        Assert.Equal(EmulationMachineState.Running, machine.State);
+
+        await machine.PauseAsync();
+        Assert.Equal(EmulationMachineState.Paused, machine.State);
+        await machine.ResumeAsync();
+        Assert.Equal(EmulationMachineState.Running, machine.State);
+
+        var stop = machine.StopAsync().AsTask();
+        Assert.True(core.StopEntered.Wait(AtariMachineLifecycleTestConstants.TimeoutMilliseconds));
+        Assert.Equal(EmulationMachineState.Stopping, machine.State);
+        core.ContinueStop.Set();
+        await stop;
+        Assert.Equal(EmulationMachineState.Stopped, machine.State);
+    }
+
+    [Fact]
+    public async Task CommandsAreRejectedOutsideRunningAndPausedStates()
+    {
+        var core = new RecordingAtariCore();
+        await using var machine = CreateMachine(core);
+
+        await Assert.ThrowsAsync<InvalidOperationException>(() => machine.HardResetAsync().AsTask());
+        await machine.StartAsync();
+        await machine.StopAsync();
+        await Assert.ThrowsAsync<InvalidOperationException>(() => machine.SetOptionAsync(
+            AtariMachineLifecycleTestConstants.OptionKey,
+            AtariMachineLifecycleTestConstants.OptionValue).AsTask());
+    }
+
+    [Fact]
     public async Task PauseStopsFramesButProcessesCommandsAndResumeContinues()
     {
         var core = new RecordingAtariCore();
@@ -52,7 +93,7 @@ public sealed class AtariMachineLifecycleTests
         Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedCommandCount, core.MediaCommandCount);
         Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedOptionCount, core.OptionCount);
         Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedStateCommandCount, core.StateCommandCount);
-        Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedInputCount, core.InputCount);
+        Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedPausedInputCount, core.InputCount);
         Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedControllerConfigurationCount,
             core.ControllerConfigurationCount);
         Assert.Single(core.ThreadIds);
@@ -111,6 +152,7 @@ public sealed class AtariMachineLifecycleTests
 
         Assert.IsType<InvalidOperationException>(machine.Fault);
         Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedStopCount, core.StopCount);
+        Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedReleasedInputCount, core.InputCount);
     }
 
     [Fact]
@@ -157,6 +199,12 @@ public sealed class AtariMachineLifecycleTests
         public int ControllerConfigurationCount;
         public bool ThrowOnFrame { get; init; }
         public bool ThrowOnReset { get; init; }
+        public bool BlockInitialization { get; init; }
+        public bool BlockStop { get; init; }
+        public ManualResetEventSlim InitializationEntered { get; } = new();
+        public ManualResetEventSlim ContinueInitialization { get; } = new();
+        public ManualResetEventSlim StopEntered { get; } = new();
+        public ManualResetEventSlim ContinueStop { get; } = new();
         public IReadOnlyCollection<int> ThreadIds => _threads.Keys.ToArray();
         public string ThreadName { get; private set; } = string.Empty;
         public AtariCoreKind Kind => AtariCoreKind.Stella;
@@ -180,7 +228,12 @@ public sealed class AtariMachineLifecycleTests
         public int? HostProcessId => null;
         public bool TryDequeueAudio(out AudioChunk? chunk) { chunk = null; return false; }
         public void Initialize(AtariMachineConfiguration configuration, string sessionDirectory,
-            string? saveDirectory = null) => CaptureThread();
+            string? saveDirectory = null)
+        {
+            CaptureThread();
+            InitializationEntered.Set();
+            if (BlockInitialization) ContinueInitialization.Wait();
+        }
         public void RunFrame()
         {
             CaptureThread();
@@ -193,7 +246,13 @@ public sealed class AtariMachineLifecycleTests
             if (ThrowOnReset) throw new InvalidOperationException(AtariMachineLifecycleTestConstants.FaultMessage);
             Interlocked.Increment(ref ResetCount);
         }
-        public void Stop() { CaptureThread(); Interlocked.Increment(ref StopCount); }
+        public void Stop()
+        {
+            CaptureThread();
+            StopEntered.Set();
+            if (BlockStop) ContinueStop.Wait();
+            Interlocked.Increment(ref StopCount);
+        }
         public void SetInput(EmulationInputSnapshot snapshot) { CaptureThread(); Interlocked.Increment(ref InputCount); }
         public void SetControllerPortDevice(int port, AtariPeripheralKind peripheral)
         {
@@ -238,7 +297,8 @@ internal static class AtariMachineLifecycleTestConstants
     internal const int ExpectedCommandCount = 3;
     internal const int ExpectedOptionCount = 1;
     internal const int ExpectedStateCommandCount = 2;
-    internal const int ExpectedInputCount = 1;
+    internal const int ExpectedPausedInputCount = 2;
+    internal const int ExpectedReleasedInputCount = 1;
     internal const byte StateByte = 42;
     internal const int ExpectedControllerConfigurationCount = 1;
     internal const int FirstControllerPort = 0;
