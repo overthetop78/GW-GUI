@@ -4,6 +4,22 @@ public static class AtariFirmwareConstants
 {
     public const int Md5HexLength = 32;
     public const int Atari800ExternalFirmwareCount = 7;
+    public const int FileBufferSize = 81920;
+    public const int DuplicateMinimumCount = 2;
+    public const string FirmwareDirectoryName = "Firmware";
+    public const string StFamilyDirectoryName = "ST";
+    public const string EightBitFamilyDirectoryName = "8Bit";
+    public const string Atari5200FamilyDirectoryName = "5200";
+    public const string Atari2600FamilyDirectoryName = "2600";
+    public const string Atari7800FamilyDirectoryName = "7800";
+    public const string LynxFamilyDirectoryName = "Lynx";
+    public const string JaguarFamilyDirectoryName = "Jaguar";
+    public const string RomExtension = ".rom";
+    public const string ImageExtension = ".img";
+    public const string TosExtension = ".tos";
+    public const string BinaryExtension = ".bin";
+    public const string JaguarExtension = ".j64";
+    public const string AllFilesPattern = "*";
     public const string TosIdPrefix = "tos-";
     public const string TosFileName = "tos.img";
     public const string Tos102UnitedStatesMd5 = "c1c57ce48e8ee4135885cee9e63a68a2";

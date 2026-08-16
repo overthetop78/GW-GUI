@@ -53,10 +53,12 @@ internal sealed class AtariExternalCore : IAtariCore
         try
         {
             var absoluteSession = Path.GetFullPath(sessionDirectory);
+            var systemDirectory = Path.Combine(absoluteSession, AtariConstants.SystemDirectoryName);
+            AtariFirmwareRuntimeFunctions.PrepareSystemDirectory(configuration, systemDirectory);
             _library = new ExternalCoreLibrary(_corePath);
             _exports = AtariCoreFunctions.ResolveExports(_library);
             _callbacks = new AtariExternalHostCallbacks(
-                Path.Combine(absoluteSession, AtariConstants.SystemDirectoryName),
+                systemDirectory,
                 Path.Combine(absoluteSession, AtariConstants.ContentDirectoryName),
                 saveDirectory ?? Path.Combine(absoluteSession, AtariConstants.SavesDirectoryName),
                 configuration.Options);

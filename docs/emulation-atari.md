@@ -269,14 +269,14 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-016 — Implémenter détection et sélection des firmwares
 
-- [ ] Créer les dossiers de firmware par famille sous le stockage d’émulation.
-- [ ] Scanner sans bloquer l’interface et ignorer proprement les fichiers non pertinents.
-- [ ] Identifier version et région par empreinte lorsqu’elles sont connues, sinon conserver un état inconnu explicite.
-- [ ] Classer chaque fichier compatible, partiellement compatible ou incompatible avec le modèle sélectionné.
-- [ ] Permettre sélection et rafraîchissement sans copier ni modifier le fichier source.
-- [ ] Refuser le démarrage avec un message précis lorsque le firmware réellement obligatoire manque.
-- [ ] Transmettre au cœur les chemins et noms attendus sans choisir silencieusement une autre ROM.
-- [ ] Tester dossier absent, doublons, fichier inconnu, mauvaise région, fichier verrouillé et firmware valide.
+- [x] Créer les dossiers de firmware par famille sous le stockage d’émulation.
+- [x] Scanner sans bloquer l’interface et ignorer proprement les fichiers non pertinents.
+- [x] Identifier version et région par empreinte lorsqu’elles sont connues, sinon conserver un état inconnu explicite.
+- [x] Classer chaque fichier compatible, partiellement compatible ou incompatible avec le modèle sélectionné.
+- [x] Permettre sélection et rafraîchissement sans copier ni modifier le fichier source.
+- [x] Refuser le démarrage avec un message précis lorsque le firmware réellement obligatoire manque.
+- [x] Transmettre au cœur les chemins et noms attendus sans choisir silencieusement une autre ROM.
+- [x] Tester dossier absent, doublons, fichier inconnu, mauvaise région, fichier verrouillé et firmware valide.
 
 ### G — Médias et stockage
 

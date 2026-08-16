@@ -1,4 +1,5 @@
 using System.IO;
+using GWGUI.Emulation.Atari;
 
 namespace GWGUI.App;
 
@@ -25,6 +26,22 @@ public static class StoragePaths
     public static string AtariDirectory => Path.Combine(EmulationDirectory, StoragePathConstants.MachinesDirectory,
         StoragePathConstants.AtariDirectory);
     public static string AtariCoreDirectory => Path.Combine(AtariDirectory, StoragePathConstants.CoreDirectory);
+    public static string AtariFirmwareDirectory =>
+        Path.Combine(AtariDirectory, AtariFirmwareConstants.FirmwareDirectoryName);
+    public static string AtariStFirmwareDirectory =>
+        Path.Combine(AtariFirmwareDirectory, AtariFirmwareConstants.StFamilyDirectoryName);
+    public static string AtariEightBitFirmwareDirectory =>
+        Path.Combine(AtariFirmwareDirectory, AtariFirmwareConstants.EightBitFamilyDirectoryName);
+    public static string Atari5200FirmwareDirectory =>
+        Path.Combine(AtariFirmwareDirectory, AtariFirmwareConstants.Atari5200FamilyDirectoryName);
+    public static string Atari2600FirmwareDirectory =>
+        Path.Combine(AtariFirmwareDirectory, AtariFirmwareConstants.Atari2600FamilyDirectoryName);
+    public static string Atari7800FirmwareDirectory =>
+        Path.Combine(AtariFirmwareDirectory, AtariFirmwareConstants.Atari7800FamilyDirectoryName);
+    public static string AtariLynxFirmwareDirectory =>
+        Path.Combine(AtariFirmwareDirectory, AtariFirmwareConstants.LynxFamilyDirectoryName);
+    public static string AtariJaguarFirmwareDirectory =>
+        Path.Combine(AtariFirmwareDirectory, AtariFirmwareConstants.JaguarFamilyDirectoryName);
 
     public static void ConfigureEmulationStorageDirectory(string? directory) =>
         _configuredEmulationStorageDirectory = string.IsNullOrWhiteSpace(directory) ? null : directory.Trim();

@@ -3,6 +3,11 @@ namespace GWGUI.Emulation.Atari;
 internal static class AtariErrorMessages
 {
     internal const string UnknownFirmware = "Unknown Atari firmware definition.";
+    internal const string RequiredFirmwareMissing = "Required Atari firmware '{0}' is not configured for {1}.";
+    internal const string FirmwareFileMissing = "Configured Atari firmware '{0}' was not found: {1}";
+    internal const string FirmwareFileUnreadable = "Configured Atari firmware '{0}' cannot be read: {1}";
+    internal const string FirmwareIdentityAmbiguous = "Configured Atari firmware '{0}' cannot be mapped to an expected core file name: {1}";
+    internal const string FirmwareCannotBeSelected = "The scanned Atari firmware is unreadable, incompatible or has no firmware role.";
     internal const string DuplicateStModelDefinition = "An Atari ST model is declared more than once.";
     internal const string UnknownStModel = "The requested Atari model is not part of the ST family.";
     internal const string DuplicateClassicModelDefinition = "An Atari 8-bit or console model is declared more than once.";
