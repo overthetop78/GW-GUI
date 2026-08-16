@@ -9,7 +9,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $repository = Split-Path -Parent $PSScriptRoot
 $resourceDirectory = Join-Path $repository 'src\GWGUI.App\Resources'
-$sourcePath = Join-Path $resourceDirectory "$Catalog.en-US.resx"
+$sourcePath = Join-Path (Join-Path $resourceDirectory 'en-US') "$Catalog.resx"
 
 $languageCodes = [ordered]@{
     'fr-FR' = 'fr'
@@ -138,7 +138,11 @@ function Translate-All([string[]]$texts, [string]$targetLanguage) {
 
 foreach ($culture in $Cultures) {
     if (-not $languageCodes.Contains($culture)) { throw "Unsupported culture: $culture" }
-    $targetPath = Join-Path $resourceDirectory "$Catalog.$culture.resx"
+    $targetDirectory = Join-Path $resourceDirectory $culture
+    if (-not (Test-Path -LiteralPath $targetDirectory)) {
+        New-Item -ItemType Directory -Path $targetDirectory | Out-Null
+    }
+    $targetPath = Join-Path $targetDirectory "$Catalog.resx"
     $targetExists = Test-Path -LiteralPath $targetPath
     [xml]$target = if ($targetExists) {
         Get-Content -LiteralPath $targetPath -Raw -Encoding UTF8

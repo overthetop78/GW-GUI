@@ -154,10 +154,10 @@ public sealed class LocalizationTests
 
         foreach (var catalog in LocExtension.CatalogNames)
         {
-            var source = ReadResx(Path.Combine(resources, $"{catalog}.en-US.resx"));
+            var source = ReadResx(Path.Combine(resources, "en-US", $"{catalog}.resx"));
             foreach (var language in UiLanguageCatalog.Available)
             {
-                var target = ReadResx(Path.Combine(resources, $"{catalog}.{language.Code}.resx"));
+                var target = ReadResx(Path.Combine(resources, language.Code, $"{catalog}.resx"));
                 Assert.Equal(source.Keys.Order(), target.Keys.Order());
                 foreach (var (key, sourceValue) in source)
                 {

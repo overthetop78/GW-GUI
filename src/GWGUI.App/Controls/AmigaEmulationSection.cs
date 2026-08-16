@@ -19,9 +19,9 @@ public sealed class AmigaEmulationSection : UserControl
 
     public AmigaEmulationSection()
     {
-        AutomationProperties.SetName(_configuration, "Amiga configuration");
-        AutomationProperties.SetName(_open, "Open selected Amiga configuration");
-        AutomationProperties.SetName(_machines, "Open emulated machines");
+        AutomationProperties.SetName(_configuration, LocExtension.Get("Emulation.Configuration"));
+        AutomationProperties.SetName(_open, LocExtension.Get("Emulation.OpenMachine"));
+        AutomationProperties.SetName(_machines, LocExtension.Get("Emulation.MachinesTab"));
         _open.Content = LocExtension.Get("Emulation.OpenMachine");
         _open.Click += OpenSelectedMachine;
         OptionsEmulationSection.ConfigurationSaved += ConfigurationSaved;

@@ -13,5 +13,6 @@ L’ordre ci-dessous reprend l’ordre demandé. Il ne doit pas être réorganis
 7. [Contrôler l’interface, la robustesse et la maintenance](07-ui-robustness-maintenance.md).
 8. [Créer le workflow GitHub de build](08-github-build.md).
 9. [Valider toutes les images puis le matériel réel](09-final-validation.md), toujours en dernier.
+10. [Refactoriser les contrôles de l’application](10-app-controls-refactoring.md).
 
 Chaque document contient ses propres tâches et sous-tâches. La fréquence des commits et des pushes suit exactement la section Git de [rules.md](../rules.md).

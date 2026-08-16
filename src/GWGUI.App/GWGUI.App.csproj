@@ -43,4 +43,12 @@
     <Resource Include="Assets\app-icon.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\*\*.resx">
+      <Culture>$([System.IO.Path]::GetFileName($([System.IO.Path]::GetDirectoryName('%(Identity)'))))</Culture>
+      <WithCulture>true</WithCulture>
+      <ManifestResourceName>GWGUI.App.Resources.%(Filename).$([System.IO.Path]::GetFileName($([System.IO.Path]::GetDirectoryName('%(Identity)'))))</ManifestResourceName>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
