@@ -428,4 +428,5 @@
   <data name="Emulation.AtariUnavailable.NoKeyboard" xml:space="preserve"><value>Denne modellen har ikke noe tastatur.</value></data>
   <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>Denne modellen har ingen mus.</value></data>
   <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>Denne modellen har ingen lagringsmedier.</value></data>
+  <data name="Emulation.AtariUnavailable.JaguarStandardNoCd" xml:space="preserve"><value>Velg Jaguar CD-modellen for å bruke CD-medier.</value></data>
 </root>

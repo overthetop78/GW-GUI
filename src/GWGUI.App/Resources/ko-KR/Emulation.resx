@@ -428,4 +428,5 @@
   <data name="Emulation.AtariUnavailable.NoKeyboard" xml:space="preserve"><value>이 모델에는 키보드가 없습니다.</value></data>
   <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>이 모델은 마우스가 없습니다.</value></data>
   <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>이 모형에는 저장 매체가 없습니다.</value></data>
+  <data name="Emulation.AtariUnavailable.JaguarStandardNoCd" xml:space="preserve"><value>CD 미디어를 사용하려면 Jaguar CD 모델을 선택하세요.</value></data>
 </root>

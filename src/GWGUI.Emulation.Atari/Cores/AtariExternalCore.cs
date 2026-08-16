@@ -22,6 +22,7 @@ internal sealed class AtariExternalCore : IAtariCore
     private AtariHatariContent? _hatariContent;
     private AtariMachineConfiguration? _configuration;
     private AtariPreparedCartridge? _cartridge;
+    private AtariPreparedJaguarCd? _jaguarCd;
 
     internal AtariExternalCore(string absoluteCorePath, AtariCoreKind kind)
     {
@@ -81,6 +82,12 @@ internal sealed class AtariExternalCore : IAtariCore
                     _info.Extensions);
                 preparedMedia = atari800Media.SessionMedia;
             }
+            else if (configuration.Model == AtariMachineModel.JaguarCd
+                     && media?.Kind == AtariMediaKind.CompactDisc)
+            {
+                _jaguarCd = AtariJaguarCdFunctions.Prepare(configuration, media,
+                    _info.NeedsFullPath, _info.Extensions);
+            }
             else if (AtariCartridgeFunctions.Supports(Kind) && media is not null)
             {
                 _cartridge = AtariCartridgeFunctions.Prepare(configuration, media, Kind,
@@ -111,9 +118,9 @@ internal sealed class AtariExternalCore : IAtariCore
             if (media is not null)
             {
                 var runtimePath = _hatariContent?.RuntimePath ?? atari800Media?.RuntimePath ??
-                    _cartridge?.RuntimePath ?? preparedMedia!.RuntimePath;
+                    _cartridge?.RuntimePath ?? _jaguarCd?.RuntimePath ?? preparedMedia!.RuntimePath;
                 _content = AtariContentFunctions.Create(runtimePath,
-                    _info.NeedsFullPath, _info.Extensions);
+                    _jaguarCd?.NeedsFullPath ?? _info.NeedsFullPath, _info.Extensions);
             }
             if (!_exports.LoadGame(_content?.GameInfo ?? nint.Zero))
                 throw new AtariEmulationException(AtariErrorKind.Content, AtariErrorCode.ContentUnsupported,
@@ -148,6 +155,14 @@ internal sealed class AtariExternalCore : IAtariCore
 
     public void InsertMedia(AtariMediaConfiguration media)
     {
+        var configuration = _configuration ??
+            throw new InvalidOperationException(AtariErrorMessages.CoreNotInitialized);
+        AtariJaguarCdFunctions.RejectForStandardJaguar(configuration.Model, media);
+        if (media.Kind == AtariMediaKind.CompactDisc)
+        {
+            ReplaceJaguarCd(media);
+            return;
+        }
         if (AtariCartridgeFunctions.Supports(Kind))
         {
             ReplaceCartridge(media);
@@ -180,6 +195,8 @@ internal sealed class AtariExternalCore : IAtariCore
 
     public void EjectMedia(EmulationMediaSlot slot)
     {
+        if (slot == EmulationMediaSlot.Cd0 && Kind == AtariCoreKind.VirtualJaguar)
+            throw new NotSupportedException(AtariJaguarCdErrors.EjectionUnsupported);
         if (AtariCartridgeFunctions.Supports(Kind))
             throw new NotSupportedException(AtariCartridgeErrors.EjectionUnsupported);
         if (Kind != AtariCoreKind.Hatari && Kind != AtariCoreKind.Atari800)
@@ -267,6 +284,7 @@ internal sealed class AtariExternalCore : IAtariCore
         AtariHatariContentFunctions.Cleanup(_hatariContent);
         _hatariContent = null;
         _cartridge = null;
+        _jaguarCd = null;
         _mountedMedia.Clear();
         _sessionMedia.Clear();
         _configuration = null;
@@ -306,6 +324,37 @@ internal sealed class AtariExternalCore : IAtariCore
         previousContent?.Dispose();
         _content = candidate;
         _cartridge = prepared;
+        _jaguarCd = null;
+        AtariMediaRuntimeFunctions.Register(_mountedMedia, media with { IsInserted = true });
+    }
+
+    private void ReplaceJaguarCd(AtariMediaConfiguration media)
+    {
+        var configuration = _configuration ??
+            throw new InvalidOperationException(AtariErrorMessages.CoreNotInitialized);
+        var prepared = AtariJaguarCdFunctions.Prepare(configuration, media,
+            _info.NeedsFullPath, _info.Extensions);
+        var candidate = AtariContentFunctions.Create(prepared.RuntimePath,
+            prepared.NeedsFullPath, _info.Extensions);
+        var exports = RequireExports();
+        var previousContent = _content;
+        if (_gameLoaded)
+        {
+            exports.UnloadGame();
+            _gameLoaded = false;
+        }
+        if (!exports.LoadGame(candidate.GameInfo))
+        {
+            candidate.Dispose();
+            if (previousContent is not null && exports.LoadGame(previousContent.GameInfo))
+                _gameLoaded = true;
+            throw AtariJaguarCdFunctions.Unsupported(AtariErrorMessages.ContentLoadFailed);
+        }
+        _gameLoaded = true;
+        previousContent?.Dispose();
+        _content = candidate;
+        _jaguarCd = prepared;
+        _cartridge = null;
         AtariMediaRuntimeFunctions.Register(_mountedMedia, media with { IsInserted = true });
     }
 

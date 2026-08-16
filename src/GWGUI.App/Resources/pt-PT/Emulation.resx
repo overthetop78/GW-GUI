@@ -428,4 +428,5 @@
   <data name="Emulation.AtariUnavailable.NoKeyboard" xml:space="preserve"><value>Este modelo não tem teclado.</value></data>
   <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>Este modelo não tem rato.</value></data>
   <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>Este modelo não tem suporte de armazenamento.</value></data>
+  <data name="Emulation.AtariUnavailable.JaguarStandardNoCd" xml:space="preserve"><value>Selecione o modelo Jaguar CD para utilizar discos CD.</value></data>
 </root>

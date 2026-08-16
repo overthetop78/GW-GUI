@@ -428,4 +428,5 @@
   <data name="Emulation.AtariUnavailable.NoKeyboard" xml:space="preserve"><value>هذا النموذج ليس لديه لوحة مفاتيح</value></data>
   <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>هذا النموذج ليس لديه فأر</value></data>
   <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>هذا النموذج ليس لديه وسائل تخزين</value></data>
+  <data name="Emulation.AtariUnavailable.JaguarStandardNoCd" xml:space="preserve"><value>حدد طراز Jaguar CD لاستخدام أقراص CD.</value></data>
 </root>

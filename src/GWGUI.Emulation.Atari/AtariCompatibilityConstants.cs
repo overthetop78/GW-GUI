@@ -16,6 +16,7 @@ internal static class AtariCompatibilityConstants
     internal const string NoKeyboardResource = "Emulation.AtariUnavailable.NoKeyboard";
     internal const string NoMouseResource = "Emulation.AtariUnavailable.NoMouse";
     internal const string NoStorageResource = "Emulation.AtariUnavailable.NoStorage";
+    internal const string JaguarStandardNoCdResource = "Emulation.AtariUnavailable.JaguarStandardNoCd";
 
     internal const string ForcedValueSeparator = ",";
     internal const string CoreManagedValue = "core-managed";

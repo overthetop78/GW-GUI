@@ -29,6 +29,12 @@ internal static class AtariCompatibilityFunctions
     internal static AtariMediaCompatibilityRule Media(AtariMediaKind kind, params EmulationMediaSlot[] slots) =>
         new(kind, Array.AsReadOnly(slots));
 
+    internal static AtariMediaCompatibilityRule UnavailableMedia(
+        AtariMediaKind kind,
+        string explanationResourceKey,
+        params EmulationMediaSlot[] slots) =>
+        new(kind, Array.AsReadOnly(slots), AtariMediaAvailability.Unavailable, explanationResourceKey);
+
     internal static string JoinValues<T>(IEnumerable<T> values) =>
         string.Join(AtariCompatibilityConstants.ForcedValueSeparator, values);
 
@@ -36,7 +42,8 @@ internal static class AtariCompatibilityFunctions
         definition.Firmware.Contains(kind);
 
     internal static bool IsMediaCompatible(AtariCompatibilityDefinition definition, AtariMediaKind kind,
-        EmulationMediaSlot slot) => definition.Media.Any(rule => rule.Kind == kind && rule.Slots.Contains(slot));
+        EmulationMediaSlot slot) => definition.Media.Any(rule => rule.Kind == kind
+            && rule.Availability == AtariMediaAvailability.Available && rule.Slots.Contains(slot));
 
     internal static void Validate(AtariCompatibilityDefinition definition)
     {
@@ -49,6 +56,9 @@ internal static class AtariCompatibilityFunctions
         if (definition.Options.Any(rule => rule.Availability == AtariOptionAvailability.Forced
                                            && string.IsNullOrWhiteSpace(rule.ForcedValue)))
             throw new InvalidOperationException(AtariErrorMessages.MissingForcedOptionValue);
+        if (definition.Media.Any(rule => rule.Availability == AtariMediaAvailability.Unavailable
+                                         && string.IsNullOrWhiteSpace(rule.ExplanationResourceKey)))
+            throw new InvalidOperationException(AtariErrorMessages.MissingUnavailableExplanation);
         if (definition.ControllerPortCount < AtariCompatibilityConstants.NoControllerPort)
             throw new InvalidOperationException(AtariErrorMessages.InvalidCompatibilityControllerCount);
     }
@@ -129,7 +139,10 @@ internal static class AtariCompatibilityFunctions
                 : Unavailable(AtariSettingOption.KeyboardMappings, AtariCompatibilityConstants.NoKeyboardResource),
             Unavailable(AtariSettingOption.MouseMappings, AtariCompatibilityConstants.NoMouseResource),
             Editable(AtariSettingOption.ControllerMappings));
-        var media = hardware.Media.Select(CreateMediaRule).ToArray();
+        var media = hardware.Media.Select(CreateMediaRule).ToList();
+        if (model == AtariMachineModel.Jaguar)
+            media.Add(UnavailableMedia(AtariMediaKind.CompactDisc,
+                AtariCompatibilityConstants.JaguarStandardNoCdResource, EmulationMediaSlot.Cd0));
         var portCount = hardware.Ports.Max(port => port.Count);
         return NewDefinition(model, hardware.Core, options, hardware.Firmware, media, portCount);
     }

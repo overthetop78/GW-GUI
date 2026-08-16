@@ -92,15 +92,15 @@ public sealed class AtariConfigurationTests
     }
 
     [Fact]
-    public void JaguarCd_AcceptsCdAndCartridgeSlots()
+    public void JaguarCd_AcceptsCdSlot()
     {
-        var configuration = new AtariMachineConfiguration(AtariMachineModel.JaguarCd, media:
-        [
-            new AtariMediaConfiguration("game.cue", AtariMediaKind.CompactDisc, EmulationMediaSlot.Cd0),
-            new AtariMediaConfiguration("game.j64", AtariMediaKind.Cartridge, EmulationMediaSlot.Cartridge0)
-        ]);
+        var compactDisc = new AtariMediaConfiguration(
+            "game.cue", AtariMediaKind.CompactDisc, EmulationMediaSlot.Cd0);
 
-        Assert.Equal(2, configuration.Media.Count);
+        var configuration = new AtariMachineConfiguration(
+            AtariMachineModel.JaguarCd, media: [compactDisc]);
+
+        Assert.Single(configuration.Media);
     }
 
     [Fact]

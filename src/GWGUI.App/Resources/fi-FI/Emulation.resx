@@ -428,4 +428,5 @@
   <data name="Emulation.AtariUnavailable.NoKeyboard" xml:space="preserve"><value>Tässä mallissa ei ole koskettimia.</value></data>
   <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>Tässä mallissa ei ole hiiriä.</value></data>
   <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>Tässä mallissa ei ole tallennusvälineitä.</value></data>
+  <data name="Emulation.AtariUnavailable.JaguarStandardNoCd" xml:space="preserve"><value>Valitse Jaguar CD -malli käyttääksesi CD-levyjä.</value></data>
 </root>

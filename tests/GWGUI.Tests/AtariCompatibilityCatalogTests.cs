@@ -52,6 +52,8 @@ public sealed class AtariCompatibilityCatalogTests
             AtariCompatibilityConstants.FourControllerPorts);
         Assert.Equal(definition.Media.Select(rule => rule.Kind).Distinct().Count(), definition.Media.Count);
         Assert.All(definition.Media, rule => Assert.NotEmpty(rule.Slots));
+        Assert.All(definition.Media.Where(rule => rule.Availability == AtariMediaAvailability.Unavailable),
+            rule => Assert.False(string.IsNullOrWhiteSpace(rule.ExplanationResourceKey)));
     }
 
     [Theory]
@@ -62,9 +64,13 @@ public sealed class AtariCompatibilityCatalogTests
         var previousUiCulture = CultureInfo.CurrentUICulture;
         try
         {
-            var keys = AtariCompatibilityCatalog.Get(model).Options
+            var definition = AtariCompatibilityCatalog.Get(model);
+            var keys = definition.Options
                 .Where(rule => rule.Availability != AtariOptionAvailability.Editable)
                 .Select(rule => rule.ExplanationResourceKey!)
+                .Concat(definition.Media
+                    .Where(rule => rule.Availability == AtariMediaAvailability.Unavailable)
+                    .Select(rule => rule.ExplanationResourceKey!))
                 .Distinct(StringComparer.Ordinal)
                 .ToArray();
             foreach (var language in UiLanguageCatalog.Available)

@@ -322,12 +322,12 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 #### ATA-021 — Implémenter Jaguar CD
 
-- [ ] Vérifier d’abord que le cœur Virtual Jaguar retenu expose réellement Jaguar CD et ses formats.
-- [ ] Définir le slot CD et les fichiers descriptifs/feuilles nécessaires sans confondre une piste avec un disque complet.
-- [ ] Charger, éjecter et remplacer le CD selon les interfaces réellement fournies.
-- [ ] Associer BIOS et périphérique CD uniquement au modèle Jaguar CD.
-- [ ] Griser le lecteur CD sur Jaguar standard avec une explication traduite.
-- [ ] Tester image incomplète, piste manquante, changement autorisé et absence de support signalée proprement.
+- [x] Vérifier d’abord que le cœur Virtual Jaguar retenu expose réellement Jaguar CD et ses formats.
+- [x] Définir le slot CD et les fichiers descriptifs/feuilles nécessaires sans confondre une piste avec un disque complet.
+- [x] Charger, éjecter et remplacer le CD selon les interfaces réellement fournies.
+- [x] Associer BIOS et périphérique CD uniquement au modèle Jaguar CD.
+- [x] Griser le lecteur CD sur Jaguar standard avec une explication traduite.
+- [x] Tester image incomplète, piste manquante, changement autorisé et absence de support signalée proprement.
 
 ### H — Environnement des moteurs externes, exécution, vidéo et audio
 

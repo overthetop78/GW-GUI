@@ -57,6 +57,12 @@ public enum AtariOptionAvailability
     Unavailable
 }
 
+public enum AtariMediaAvailability
+{
+    Available,
+    Unavailable
+}
+
 public sealed record AtariOptionRule(
     AtariSettingOption Option,
     AtariOptionAvailability Availability,
@@ -65,7 +71,9 @@ public sealed record AtariOptionRule(
 
 public sealed record AtariMediaCompatibilityRule(
     AtariMediaKind Kind,
-    IReadOnlyList<EmulationMediaSlot> Slots);
+    IReadOnlyList<EmulationMediaSlot> Slots,
+    AtariMediaAvailability Availability = AtariMediaAvailability.Available,
+    string? ExplanationResourceKey = null);
 
 public sealed record AtariCompatibilityDefinition(
     AtariMachineModel Model,

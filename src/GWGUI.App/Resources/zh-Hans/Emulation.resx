@@ -428,4 +428,5 @@
   <data name="Emulation.AtariUnavailable.NoKeyboard" xml:space="preserve"><value>这个模型没有键盘.</value></data>
   <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>这个模型没有鼠标.</value></data>
   <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>这个模型没有存储介质.</value></data>
+  <data name="Emulation.AtariUnavailable.JaguarStandardNoCd" xml:space="preserve"><value>请选择 Jaguar CD 型号以使用 CD 光盘。</value></data>
 </root>
