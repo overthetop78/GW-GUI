@@ -11,3 +11,5 @@ settings.json
 gw/
 artifacts/
 image_test/
+tmp/
+__pycache__/
