@@ -142,10 +142,8 @@ public sealed class AmigaEmulationSection : UserControl
         }
         catch (Exception error)
         {
-            var logPath = ErrorLog.Write(error, "Opening an Amiga configuration");
-            var detail = logPath is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", logPath);
-            MessageBox.Show(Window.GetWindow(this), LocExtension.Get("Error.Unexpected", detail), "Amiga",
-                MessageBoxButton.OK, MessageBoxImage.Error);
+            ControlErrorPresenter.ShowUnexpected(this, error,
+                ControlErrorContexts.AmigaConfigurationOpening, ControlVisualConstants.AmigaTitle);
         }
         finally { _open.IsEnabled = _configuration.SelectedItem is not null; }
     }
@@ -184,9 +182,7 @@ public sealed class AmigaEmulationSection : UserControl
         button.Click += async (_, e) =>
         {
             e.Handled = true;
-            button.IsEnabled = false;
-            try { await close(); }
-            finally { button.IsEnabled = true; }
+            await ButtonAsyncAction.RunAsync(button, close);
         };
         panel.Children.Add(button);
         return panel;

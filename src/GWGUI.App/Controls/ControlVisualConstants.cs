@@ -10,6 +10,7 @@ internal static class ControlVisualConstants
     internal const string GameControllerGlyph = "\uE7FC";
     internal const string CloseGlyph = "\uE8BB";
     internal const string EmptyValue = "\u2014";
+    internal const string AmigaTitle = "Amiga";
 
     internal static FontFamily IconFont { get; } = new(IconFontName);
 }

@@ -17,16 +17,6 @@ namespace GWGUI.App.Controls;
 
 public partial class InputBindingEditor : UserControl
 {
-    private static readonly string[] LegacyControllerButtonNames =
-        ["B", "Y", "Select", "Start", "Up", "Down", "Left", "Right", "A", "X", "L", "R", "L2", "R2", "L3", "R3"];
-    private static readonly string[] ControllerButtonSources =
-    [
-        "Controller:ButtonB", "Controller:ButtonY", "Controller:View", "Controller:Menu",
-        "Controller:DPadUp", "Controller:DPadDown", "Controller:DPadLeft", "Controller:DPadRight",
-        "Controller:ButtonA", "Controller:ButtonX", "Controller:LeftShoulder", "Controller:RightShoulder",
-        "Controller:LeftTrigger", "Controller:RightTrigger", "Controller:LeftStickClick", "Controller:RightStickClick",
-        "Controller:XboxButton"
-    ];
     private readonly ObservableCollection<InputBindingRow> _rows = [];
     private readonly HashSet<Key> _capturePressed = [];
     private readonly List<Key> _captureOrder = [];
@@ -135,7 +125,7 @@ public partial class InputBindingEditor : UserControl
         e.Handled = true;
         if (_captureOrder.Count == 0 || _capturePressed.Count != 0) return;
         var binding = KeyboardChord.Format(_captureModifiers, _captureOrder);
-        _captureRow.Binding = _prefixKeyboardSource ? $"Keyboard:{binding}" : binding;
+        _captureRow.Binding = _prefixKeyboardSource ? InputBindingSyntax.Keyboard(binding) : binding;
         FinishCapture();
     }
 
@@ -152,7 +142,7 @@ public partial class InputBindingEditor : UserControl
             _ => null
         };
         if (button is null) return;
-        _captureRow.Binding = $"Mouse:{button}";
+        _captureRow.Binding = InputBindingSyntax.Mouse(button);
         e.Handled = true;
         FinishCapture();
     }
@@ -160,7 +150,7 @@ public partial class InputBindingEditor : UserControl
     private void CaptureMouseWheel(object sender, MouseWheelEventArgs e)
     {
         if (_captureRow is null || !_captureSources.HasFlag(InputCaptureSources.Mouse) || e.Delta == 0) return;
-        _captureRow.Binding = e.Delta > 0 ? "Mouse:WheelUp" : "Mouse:WheelDown";
+        _captureRow.Binding = InputBindingSyntax.Mouse(e.Delta > 0 ? "WheelUp" : "WheelDown");
         e.Handled = true;
         FinishCapture();
     }
@@ -185,7 +175,7 @@ public partial class InputBindingEditor : UserControl
             !_captureSources.HasFlag(InputCaptureSources.Mouse)) return IntPtr.Zero;
         var delta = unchecked((short)((wParam.ToInt64() >> 16) & 0xffff));
         if (delta == 0) return IntPtr.Zero;
-        _captureRow.Binding = delta > 0 ? "Mouse:WheelRight" : "Mouse:WheelLeft";
+        _captureRow.Binding = InputBindingSyntax.Mouse(delta > 0 ? "WheelRight" : "WheelLeft");
         handled = true;
         FinishCapture();
         return IntPtr.Zero;
@@ -205,11 +195,11 @@ public partial class InputBindingEditor : UserControl
             var pressed = states[port].Buttons & ~baseline;
             if (pressed != 0)
             {
-                var index = Enumerable.Range(0, ControllerButtonSources.Length)
+                var index = Enumerable.Range(0, ControllerInputMap.ModernButtonSources.Length)
                     .FirstOrDefault(candidate => (pressed & (1u << candidate)) != 0, -1);
                 if (index >= 0)
                 {
-                    _captureRow.Binding = ControllerBinding(port, ControllerButtonSources[index]["Controller:".Length..]);
+                    _captureRow.Binding = ControllerBinding(port, ControllerInputMap.ModernButtonSources[index][InputBindingSyntax.ControllerPrefix.Length..]);
                     ControllerCaptured?.Invoke(this, new ControllerCapturedEventArgs(port));
                     FinishCapture();
                     return;
@@ -228,7 +218,7 @@ public partial class InputBindingEditor : UserControl
         _controllerBaseline = states;
     }
 
-    private static string ControllerBinding(int port, string source) => $"Controller:xinput:{port}:{source}";
+    private static string ControllerBinding(int port, string source) => InputBindingSyntax.Controller(port, source);
 
     private static string? NewlyMovedDirection(EmulationControllerState current, EmulationControllerState baseline)
     {
@@ -315,15 +305,14 @@ public partial class InputBindingEditor : UserControl
     {
         reserved = false;
         var trimmed = value.Trim();
-        if (trimmed.StartsWith("Mouse:", StringComparison.OrdinalIgnoreCase))
-            return _captureSources.HasFlag(InputCaptureSources.Mouse) && trimmed.Length > "Mouse:".Length;
-        if (trimmed.StartsWith("Controller:", StringComparison.OrdinalIgnoreCase))
-            return _captureSources.HasFlag(InputCaptureSources.Controller) && trimmed.Length > "Controller:".Length;
-        if (LegacyControllerButtonNames.Contains(trimmed, StringComparer.OrdinalIgnoreCase))
+        if (InputBindingSyntax.TryRemovePrefix(trimmed, InputBindingSyntax.MousePrefix, out _))
+            return _captureSources.HasFlag(InputCaptureSources.Mouse);
+        if (InputBindingSyntax.TryRemovePrefix(trimmed, InputBindingSyntax.ControllerPrefix, out _))
             return _captureSources.HasFlag(InputCaptureSources.Controller);
-        var keyboard = trimmed.StartsWith("Keyboard:", StringComparison.OrdinalIgnoreCase)
-            ? trimmed["Keyboard:".Length..]
-            : trimmed;
+        if (ControllerInputMap.LegacyButtonNames.Contains(trimmed, StringComparer.OrdinalIgnoreCase))
+            return _captureSources.HasFlag(InputCaptureSources.Controller);
+        var keyboard = InputBindingSyntax.TryRemovePrefix(trimmed, InputBindingSyntax.KeyboardPrefix, out var keyboardSource)
+            ? keyboardSource : trimmed;
         if (!_captureSources.HasFlag(InputCaptureSources.Keyboard) || !KeyboardChord.TryParse(keyboard, out var chord)) return false;
         reserved = KeyboardChord.IsWindowsReserved(chord) ||
                    _reservedBindings.Contains(trimmed) || _reservedBindings.Contains(keyboard);
@@ -356,11 +345,11 @@ public sealed class InputBindingRow(string id, string label, string binding, str
     }
     private static string DisplayPart(string part)
     {
-        if (part.StartsWith("Keyboard:", StringComparison.OrdinalIgnoreCase)) return part["Keyboard:".Length..];
-        if (part.StartsWith("Controller:", StringComparison.OrdinalIgnoreCase))
-            return DisplayControllerPart(part["Controller:".Length..]);
-        if (!part.StartsWith("Mouse:", StringComparison.OrdinalIgnoreCase)) return part;
-        return part["Mouse:".Length..].ToLowerInvariant() switch
+        if (InputBindingSyntax.TryRemovePrefix(part, InputBindingSyntax.KeyboardPrefix, out var keyboardSource)) return keyboardSource;
+        if (InputBindingSyntax.TryRemovePrefix(part, InputBindingSyntax.ControllerPrefix, out var controllerSource))
+            return DisplayControllerPart(controllerSource);
+        if (!InputBindingSyntax.TryRemovePrefix(part, InputBindingSyntax.MousePrefix, out var mouseSource)) return part;
+        return mouseSource.ToLowerInvariant() switch
         {
             "left" => LocExtension.Get("Emulation.MouseLeftButton"),
             "right" => LocExtension.Get("Emulation.MouseRightButton"),

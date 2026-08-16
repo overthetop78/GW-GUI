@@ -177,7 +177,7 @@ public sealed class AmigaCoreManagementSection : UserControl
 
     private async Task SearchAsync()
     {
-        await RunAsync(_search, async () =>
+        await RunCoreActionAsync(_search, async () =>
         {
             SetStatus(string.Empty);
             _prompt.Text = L("Emulation.CoreSearching");
@@ -208,7 +208,7 @@ public sealed class AmigaCoreManagementSection : UserControl
     private async Task DownloadAsync()
     {
         if (_versions.SelectedItem is not AmigaCoreRelease release) return;
-        await RunAsync(_download, async () =>
+        await RunCoreActionAsync(_download, async () =>
         {
             _progress.Value = 0;
             _progress.Visibility = Visibility.Visible;
@@ -220,27 +220,13 @@ public sealed class AmigaCoreManagementSection : UserControl
         });
     }
 
-    private async Task RunAsync(Button button, Func<Task> action)
-    {
-        try
+    private Task RunCoreActionAsync(Button button, Func<Task> action) =>
+        ButtonAsyncAction.RunAsync(button, action, error =>
         {
-            button.IsEnabled = false;
-            await action();
-        }
-        catch (Exception error)
-        {
-            var path = ErrorLog.Write(error, "Managing the external Amiga core");
-            var detail = path is null ? L("Common.Unknown") : L("Error.LogSaved", path);
-            SetStatus(L("Error.Unexpected", detail), isError: true);
+            SetStatus(ControlErrorPresenter.Describe(error, ControlErrorContexts.AmigaCoreManagement), isError: true);
             if (_results.Visibility != Visibility.Visible)
                 _prompt.Text = _status.Text;
-        }
-        finally
-        {
-            button.IsEnabled = true;
-            _progress.Visibility = Visibility.Collapsed;
-        }
-    }
+        }, () => _progress.Visibility = Visibility.Collapsed);
 
     private void RefreshInstalledState()
     {

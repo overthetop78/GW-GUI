@@ -1951,21 +1951,12 @@ public sealed class OptionsEmulationSection : UserControl
     private static void AddButton(Panel panel, string resourceKey, Func<Task> action)
     {
         var button = new Button { Content = LocExtension.Get(resourceKey), MinWidth = 100 };
-        button.Click += async (_, _) =>
-        {
-            try { button.IsEnabled = false; await action(); }
-            catch (Exception error) { ShowError(button, error); }
-            finally { button.IsEnabled = true; }
-        };
+        button.Click += async (_, _) => await ButtonAsyncAction.RunAsync(button, action, error => ShowError(button, error));
         panel.Children.Add(button);
     }
 
-    private static async Task RunUiActionAsync(Button button, Func<Task> action)
-    {
-        try { button.IsEnabled = false; await action(); }
-        catch (Exception error) { ShowError(button, error); }
-        finally { button.IsEnabled = true; }
-    }
+    private static Task RunUiActionAsync(Button button, Func<Task> action) =>
+        ButtonAsyncAction.RunAsync(button, action, error => ShowError(button, error));
 
     private static Button CreateActionButton(string icon, string text)
     {
@@ -2517,7 +2508,7 @@ public sealed class OptionsEmulationSection : UserControl
     private async Task DeleteConfigurationAsync()
     {
         if (_currentId == Guid.Empty || _list.SelectedItem is null) return;
-        if (MessageBox.Show(Window.GetWindow(this), LocExtension.Get("Emulation.DeleteConfirm"), "Amiga",
+        if (MessageBox.Show(Window.GetWindow(this), LocExtension.Get("Emulation.DeleteConfirm"), ControlVisualConstants.AmigaTitle,
             MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
         _store.Delete(_currentId);
         _currentId = Guid.Empty;
@@ -2550,11 +2541,8 @@ public sealed class OptionsEmulationSection : UserControl
     }
 
     private static void ShowError(FrameworkElement owner, Exception error)
-    {
-        var path = ErrorLog.Write(error, "Amiga configuration");
-        var detail = path is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", path);
-        MessageBox.Show(Window.GetWindow(owner), LocExtension.Get("Error.Unexpected", detail), "Amiga", MessageBoxButton.OK, MessageBoxImage.Error);
-    }
+        => ControlErrorPresenter.ShowUnexpected(owner, error,
+            ControlErrorContexts.AmigaConfiguration, ControlVisualConstants.AmigaTitle);
 
     private sealed record ConfigurationItem(AmigaMachineConfiguration Configuration)
     {

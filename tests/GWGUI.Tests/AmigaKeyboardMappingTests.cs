@@ -1,5 +1,6 @@
 using System.Windows.Input;
 using GWGUI.App.Controls;
+using GWGUI.App.Input;
 using GWGUI.Emulation;
 
 namespace GWGUI.Tests;
@@ -34,7 +35,7 @@ public sealed class AmigaKeyboardMappingTests
     [InlineData(Key.Add, EmulationKey.NumpadPlus)]
     public void TryMapKey_CoversTheAmigaKeyboard(Key input, EmulationKey expected)
     {
-        Assert.True(AmigaMachineView.TryMapKey(input, out var mapped));
+        Assert.True(AmigaKeyMapper.TryMap(input, out var mapped));
         Assert.Equal(expected, mapped);
     }
 }

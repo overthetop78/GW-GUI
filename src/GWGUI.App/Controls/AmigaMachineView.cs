@@ -318,12 +318,8 @@ public sealed class AmigaMachineView : UserControl
         };
         button.SetResourceReference(StyleProperty, "StatusIconButton");
         if (requiresPower) _machineCommandButtons.Add(button);
-        button.Click += async (_, _) =>
-        {
-            try { button.IsEnabled = false; await action(); }
-            catch (Exception error) { ShowError(error); }
-            finally { if (!_disposed) button.IsEnabled = true; }
-        };
+        button.Click += async (_, _) => await ButtonAsyncAction.RunAsync(
+            button, action, ShowError, restoreEnabled: () => !_disposed);
         return button;
     }
 
@@ -610,22 +606,8 @@ public sealed class AmigaMachineView : UserControl
     private Button AddButton(Panel panel, string key, Func<Task> action)
     {
         var button = new Button { Content = LocExtension.Get(key), MinWidth = 88, Margin = new Thickness(0, 0, 8, 0) };
-        button.Click += async (_, _) =>
-        {
-            try
-            {
-                button.IsEnabled = false;
-                await action();
-            }
-            catch (Exception error)
-            {
-                ShowError(error);
-            }
-            finally
-            {
-                if (!_disposed) button.IsEnabled = true;
-            }
-        };
+        button.Click += async (_, _) => await ButtonAsyncAction.RunAsync(
+            button, action, ShowError, restoreEnabled: () => !_disposed);
         panel.Children.Add(button);
         return button;
     }
@@ -782,12 +764,8 @@ public sealed class AmigaMachineView : UserControl
     }
 
     private void ShowError(Exception error)
-    {
-        var logPath = ErrorLog.Write(error, "Amiga emulator command");
-        var detail = logPath is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", logPath);
-        MessageBox.Show(Window.GetWindow(this), LocExtension.Get("Error.Unexpected", detail), "Amiga",
-            MessageBoxButton.OK, MessageBoxImage.Error);
-    }
+        => ControlErrorPresenter.ShowUnexpected(this, error,
+            ControlErrorContexts.AmigaEmulatorCommand, ControlVisualConstants.AmigaTitle);
 
     private void DisplayKeyDown(object sender, KeyEventArgs e)
     {
@@ -797,7 +775,7 @@ public sealed class AmigaMachineView : UserControl
 
     private bool HandleKeyDown(Key source)
     {
-        if (IsReservedShortcut(source, Keyboard.Modifiers)) return false;
+        if (InputBindingSyntax.IsReservedShortcut(source, Keyboard.Modifiers)) return false;
         if (!KeyboardChord.IsModifierKey(source)) _pressedPhysicalKeys.Add(source);
         var global = _globalShortcuts.FirstOrDefault(binding =>
             binding.Chord.Matches(Keyboard.Modifiers, _pressedPhysicalKeys));
@@ -819,7 +797,7 @@ public sealed class AmigaMachineView : UserControl
             PublishInput();
             return true;
         }
-        else if (TryMapKey(source, out var key))
+        else if (AmigaKeyMapper.TryMap(source, out var key))
         {
             _hostKeys.Add(key);
             _keys.Add(_keyboardMap.GetValueOrDefault(key, key));
@@ -849,7 +827,7 @@ public sealed class AmigaMachineView : UserControl
             PublishInput();
             return true;
         }
-        else if (TryMapKey(source, out var key))
+        else if (AmigaKeyMapper.TryMap(source, out var key))
         {
             _hostKeys.Remove(key);
             _keys.Remove(_keyboardMap.GetValueOrDefault(key, key));
@@ -1153,7 +1131,7 @@ public sealed class AmigaMachineView : UserControl
         var controllers = XInputControllerReader.ReadAll();
         var primaryController = controllers.FirstOrDefault() ?? EmulationControllerState.Empty;
         bool IsPressed(AmigaMouseAction action) => actions.Any(mapping => mapping.Value == action
-            && IsControllerSourcePressed(mapping.Key, ControllerForSource(mapping.Key, controllers, primaryController), physical));
+            && IsControllerSourcePressed(mapping.Key, ControllerInputMap.ControllerForSource(mapping.Key, controllers, primaryController), physical));
         _machine.SetInput(new EmulationInputSnapshot(new HashSet<EmulationKey>(_keys),
             new EmulationPointerState(mouseActive ? deltaX : 0, mouseActive ? deltaY : 0, mouseActive ? wheel : 0,
                 IsPressed(AmigaMouseAction.LeftButton),
@@ -1170,7 +1148,7 @@ public sealed class AmigaMachineView : UserControl
         for (var port = 0; port < result.Length; port++)
         {
             var binding = _input.ControllerBindings?.FirstOrDefault(item => item.Port == port);
-            var sourcePort = ParseXInputPort(binding?.DeviceId, port);
+            var sourcePort = ControllerInputMap.ParseXInputPort(binding?.DeviceId, port);
             var source = sourcePort < physical.Count ? physical[sourcePort] : EmulationControllerState.Empty;
             if (binding?.ButtonMappings is not { Count: > 0 })
             {
@@ -1180,7 +1158,7 @@ public sealed class AmigaMachineView : UserControl
             uint buttons = 0;
             foreach (var mapping in binding.ButtonMappings)
             {
-                var target = Array.IndexOf(ControllerButtonNames, mapping.Value);
+                var target = Array.IndexOf(ControllerInputMap.LegacyButtonNames, mapping.Value);
                 if (target >= 0 && IsControllerSourcePressed(mapping.Key, source, mouseButtons)) buttons |= 1u << target;
             }
             result[port] = source with { Buttons = buttons };
@@ -1191,63 +1169,16 @@ public sealed class AmigaMachineView : UserControl
     private bool IsControllerSourcePressed(string sourceName, EmulationControllerState controller,
         IReadOnlyDictionary<string, bool> mouseButtons)
     {
-        if (sourceName.StartsWith("Controller:", StringComparison.OrdinalIgnoreCase))
-            return IsModernControllerSourcePressed(sourceName["Controller:".Length..], controller);
-        var controllerIndex = Array.IndexOf(ControllerButtonNames, sourceName);
+        if (InputBindingSyntax.TryRemovePrefix(sourceName, InputBindingSyntax.ControllerPrefix, out var controllerSource))
+            return ControllerInputMap.IsModernSourcePressed(controllerSource, controller);
+        var controllerIndex = Array.IndexOf(ControllerInputMap.LegacyButtonNames, sourceName);
         if (controllerIndex >= 0) return (controller.Buttons & (1u << controllerIndex)) != 0;
-        if (sourceName.StartsWith("Keyboard:", StringComparison.OrdinalIgnoreCase)
-            && Enum.TryParse<EmulationKey>(sourceName[9..], true, out var key)) return _hostKeys.Contains(key);
-        if (sourceName.StartsWith("Mouse:", StringComparison.OrdinalIgnoreCase))
-            return mouseButtons.GetValueOrDefault(sourceName[6..]);
+        if (InputBindingSyntax.TryRemovePrefix(sourceName, InputBindingSyntax.KeyboardPrefix, out var keyboardSource)
+            && Enum.TryParse<EmulationKey>(keyboardSource, true, out var key)) return _hostKeys.Contains(key);
+        if (InputBindingSyntax.TryRemovePrefix(sourceName, InputBindingSyntax.MousePrefix, out var mouseSource))
+            return mouseButtons.GetValueOrDefault(mouseSource);
         return false;
     }
-
-    private static bool IsModernControllerSourcePressed(string source, EmulationControllerState controller)
-    {
-        const short threshold = 14000;
-        var segments = source.Split(':', StringSplitOptions.RemoveEmptyEntries);
-        source = segments[^1];
-        var button = source switch
-        {
-            "ButtonB" => 0, "ButtonY" => 1, "View" => 2, "Menu" => 3,
-            "DPadUp" => 4, "DPadDown" => 5, "DPadLeft" => 6, "DPadRight" => 7,
-            "ButtonA" => 8, "ButtonX" => 9, "LeftShoulder" => 10, "RightShoulder" => 11,
-            "LeftTrigger" => 12, "RightTrigger" => 13,
-            "LeftStickClick" => 14, "RightStickClick" => 15,
-            "XboxButton" => 16,
-            _ => -1
-        };
-        if (button >= 0) return (controller.Buttons & (1u << button)) != 0;
-        return source switch
-        {
-            "LeftStickLeft" => controller.LeftX < -threshold,
-            "LeftStickRight" => controller.LeftX > threshold,
-            "LeftStickUp" => controller.LeftY < -threshold,
-            "LeftStickDown" => controller.LeftY > threshold,
-            "RightStickLeft" => controller.RightX < -threshold,
-            "RightStickRight" => controller.RightX > threshold,
-            "RightStickUp" => controller.RightY < -threshold,
-            "RightStickDown" => controller.RightY > threshold,
-            _ => false
-        };
-    }
-
-    private static EmulationControllerState ControllerForSource(string source,
-        IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback)
-    {
-        if (!source.StartsWith("Controller:xinput:", StringComparison.OrdinalIgnoreCase)) return fallback;
-        var segments = source.Split(':', StringSplitOptions.RemoveEmptyEntries);
-        return segments.Length >= 4 && int.TryParse(segments[2], out var port) && port >= 0 && port < controllers.Count
-            ? controllers[port]
-            : fallback;
-    }
-
-    private static int ParseXInputPort(string? deviceId, int fallback) =>
-        deviceId?.StartsWith("xinput:", StringComparison.OrdinalIgnoreCase) == true
-        && int.TryParse(deviceId[7..], out var port) && port is >= 0 and < 4 ? port : fallback;
-
-    private static readonly string[] ControllerButtonNames =
-        ["B", "Y", "Select", "Start", "Up", "Down", "Left", "Right", "A", "X", "L", "R", "L2", "R2", "L3", "R3"];
 
     private static IReadOnlyDictionary<EmulationKey, EmulationKey> BuildKeyboardMap(
         IReadOnlyDictionary<string, EmulationKey>? mappings)
@@ -1283,64 +1214,8 @@ public sealed class AmigaMachineView : UserControl
             .Where(binding => binding is not null).Cast<GlobalShortcutBinding>().ToArray();
     }
 
-    internal static bool TryParseHostBinding(string? text, out Key key, out ModifierKeys modifiers)
-    {
-        key = Key.None;
-        modifiers = ModifierKeys.None;
-        if (string.IsNullOrWhiteSpace(text)) return false;
-        var parts = text.Split('+', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-        foreach (var part in parts[..^1])
-            modifiers |= part.ToLowerInvariant() switch
-            {
-                "ctrl" or "control" => ModifierKeys.Control,
-                "shift" => ModifierKeys.Shift,
-                "alt" => ModifierKeys.Alt,
-                "win" or "windows" => ModifierKeys.Windows,
-                _ => ModifierKeys.None
-            };
-        return Enum.TryParse(parts[^1], true, out key) && key != Key.None;
-    }
-
-    private static bool IsReservedShortcut(Key key, ModifierKeys modifiers) =>
-        (modifiers.HasFlag(ModifierKeys.Alt) && key is Key.F4 or Key.Tab) ||
-        (modifiers.HasFlag(ModifierKeys.Control) && key == Key.Escape) ||
-        (modifiers.HasFlag(ModifierKeys.Control) && modifiers.HasFlag(ModifierKeys.Shift) && key == Key.Escape) ||
-        modifiers.HasFlag(ModifierKeys.Windows);
-
     private sealed record KeyboardShortcutBinding(KeyboardChord Chord, EmulationKey AmigaKey);
     private sealed record GlobalShortcutBinding(string Action, KeyboardChord Chord);
-
-    internal static bool TryMapKey(Key key, out EmulationKey result)
-    {
-        if (key is >= Key.A and <= Key.Z) { result = (EmulationKey)((int)EmulationKey.A + key - Key.A); return true; }
-        if (key is >= Key.D0 and <= Key.D9) { result = (EmulationKey)((int)EmulationKey.D0 + key - Key.D0); return true; }
-        if (key is >= Key.F1 and <= Key.F10) { result = (EmulationKey)((int)EmulationKey.F1 + key - Key.F1); return true; }
-        if (key is >= Key.NumPad0 and <= Key.NumPad9) { result = (EmulationKey)((int)EmulationKey.Numpad0 + key - Key.NumPad0); return true; }
-        result = key switch
-        {
-            Key.Back => EmulationKey.Backspace, Key.Tab => EmulationKey.Tab, Key.Enter => EmulationKey.Return,
-            Key.Escape => EmulationKey.Escape, Key.Space => EmulationKey.Space, Key.Left => EmulationKey.Left,
-            Key.Right => EmulationKey.Right, Key.Up => EmulationKey.Up, Key.Down => EmulationKey.Down,
-            Key.LeftShift => EmulationKey.LeftShift, Key.RightShift => EmulationKey.RightShift,
-            Key.LeftCtrl => EmulationKey.LeftControl, Key.RightCtrl => EmulationKey.RightControl,
-            Key.LeftAlt => EmulationKey.LeftAlt, Key.RightAlt => EmulationKey.RightAlt,
-            Key.LWin => EmulationKey.LeftAmiga, Key.RWin => EmulationKey.RightAmiga,
-            Key.Delete => EmulationKey.Delete, Key.Insert => EmulationKey.Insert,
-            Key.Home => EmulationKey.Home, Key.End => EmulationKey.End,
-            Key.PageUp => EmulationKey.PageUp, Key.PageDown => EmulationKey.PageDown,
-            Key.CapsLock => EmulationKey.CapsLock, Key.Help => EmulationKey.Help,
-            Key.OemComma => EmulationKey.Comma, Key.OemPeriod => EmulationKey.Period,
-            Key.OemQuestion => EmulationKey.Slash, Key.OemMinus => EmulationKey.Minus,
-            Key.OemPlus => EmulationKey.Equals, Key.OemSemicolon => EmulationKey.Semicolon,
-            Key.OemQuotes => EmulationKey.Quote, Key.OemOpenBrackets => EmulationKey.LeftBracket,
-            Key.OemCloseBrackets => EmulationKey.RightBracket, Key.OemBackslash => EmulationKey.Backslash,
-            Key.Oem3 => EmulationKey.Backquote, Key.Decimal => EmulationKey.NumpadPeriod,
-            Key.Divide => EmulationKey.NumpadDivide, Key.Multiply => EmulationKey.NumpadMultiply,
-            Key.Subtract => EmulationKey.NumpadMinus, Key.Add => EmulationKey.NumpadPlus,
-            _ => EmulationKey.Unknown
-        };
-        return result != EmulationKey.Unknown;
-    }
 
     [DllImport("user32.dll")]
     private static extern bool SetCursorPos(int x, int y);

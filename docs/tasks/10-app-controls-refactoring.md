@@ -15,15 +15,15 @@ Une case n’est cochée qu’après modification et validation de la tâche cor
 
 - [x] Créer un formateur commun des capacités et supprimer les implémentations dupliquées.
 - [x] Centraliser la sélection et la lecture des valeurs de `ComboBox` lorsqu’elles suivent la même règle.
-- [ ] Centraliser l’exécution asynchrone des boutons avec restauration garantie de leur état.
-- [ ] Centraliser l’affichage et la journalisation des erreurs des contrôles.
+- [x] Centraliser l’exécution asynchrone des boutons avec restauration garantie de leur état.
+- [x] Centraliser l’affichage et la journalisation des erreurs des contrôles.
 
 ## 10.3 Entrées d’émulation
 
-- [ ] Sortir la syntaxe et l’analyse des raccourcis clavier de `AmigaMachineView`.
-- [ ] Sortir la correspondance des touches Amiga de `AmigaMachineView`.
-- [ ] Sortir la correspondance des boutons de manette et l’analyse des ports XInput.
-- [ ] Faire utiliser les mêmes définitions d’entrées par la vue de la machine et l’éditeur d’associations.
+- [x] Sortir la syntaxe et l’analyse des raccourcis clavier de `AmigaMachineView`.
+- [x] Sortir la correspondance des touches Amiga de `AmigaMachineView`.
+- [x] Sortir la correspondance des boutons de manette et l’analyse des ports XInput.
+- [x] Faire utiliser les mêmes définitions d’entrées par la vue de la machine et l’éditeur d’associations.
 
 ## 10.4 Stockage et rendu
 
