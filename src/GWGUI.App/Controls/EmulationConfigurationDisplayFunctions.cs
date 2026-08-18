@@ -15,46 +15,61 @@ internal static partial class EmulationConfigurationDisplayFunctions
     {
         var model = AmigaModelCatalog.Get(configuration.Model);
         var options = configuration.Options ?? new Dictionary<string, string>();
-        var chip = EmulationOptionCatalog.ChipMemoryKib(Option(options, "puae_chipmem_size",
-            EmulationOptionCatalog.ChipMemoryValue(model.ChipMemoryKib)));
-        var slow = EmulationOptionCatalog.SlowMemoryKib(Option(options, "puae_bogomem_size",
-            EmulationOptionCatalog.SlowMemoryValue(model.SlowMemoryKib)));
-        var fast = EmulationOptionCatalog.MemoryMib(Option(options, "puae_fastmem_size",
-            model.FastMemoryMib.ToString(CultureInfo.InvariantCulture)));
-        var z3 = EmulationOptionCatalog.MemoryMib(Option(options, "puae_z3mem_size", "0"));
-        var totalKib = chip + slow + (fast + z3) * 1024;
-        var cpu = Option(options, "puae_cpu_model", model.DefaultCpu);
-        var video = Option(options, "puae_video_standard", "PAL").StartsWith("NTSC",
-            StringComparison.OrdinalIgnoreCase) ? "NTSC" : "PAL";
-        var floppyCount = NumberOption(options, "gwgui_floppy_drive_count",
-            configuration.Floppies?.Count ?? 1);
-        var hardDriveCount = NumberOption(options, "gwgui_hard_drive_count",
-            configuration.Media?.Count(item => item.Kind == AmigaMediaKind.HardDrive) ?? 0);
+        var details = new List<string> { $"Amiga {configuration.Model}" };
+        if (TryOption(options, "puae_cpu_model", out var cpu)) details.Add($"CPU {cpu}");
+        var chipset = model.Chipset;
+        if (TryOption(options, "puae_video_standard", out var configuredVideo))
+        {
+            var video = configuredVideo.StartsWith("NTSC", StringComparison.OrdinalIgnoreCase) ? "NTSC" : "PAL";
+            chipset += $"/{video}";
+        }
+        details.Add(chipset);
+        if (HasAnyOption(options, "puae_chipmem_size", "puae_bogomem_size", "puae_fastmem_size", "puae_z3mem_size"))
+        {
+            var chip = EmulationOptionCatalog.ChipMemoryKib(Option(options, "puae_chipmem_size", "0"));
+            var slow = EmulationOptionCatalog.SlowMemoryKib(Option(options, "puae_bogomem_size", "0"));
+            var fast = EmulationOptionCatalog.MemoryMib(Option(options, "puae_fastmem_size", "0"));
+            var z3 = EmulationOptionCatalog.MemoryMib(Option(options, "puae_z3mem_size", "0"));
+            details.Add($"RAM {FormatMemory((chip + slow + (fast + z3) * 1024) * 1024L)}");
+        }
+        if (!string.IsNullOrWhiteSpace(configuration.KickstartPath))
+            details.Add(AmigaFirmware(configuration.KickstartPath));
+        var floppyCount = NumberOption(options, "gwgui_floppy_drive_count", 0);
+        var hardDriveCount = NumberOption(options, "gwgui_hard_drive_count", 0);
+        var cdDrive = Option(options, "gwgui_cd_drive_enabled", "disabled")
+            .Equals("enabled", StringComparison.OrdinalIgnoreCase);
         var devices = new List<string>();
         if (floppyCount > 0) devices.Add($"DF {floppyCount}");
         if (hardDriveCount > 0) devices.Add($"HD {hardDriveCount}");
-        if (model.HasCdDrive) devices.Add("CD");
-        var details = new List<string>
-        {
-            $"Amiga {configuration.Model}", $"CPU {cpu}", $"{model.Chipset}/{video}",
-            $"RAM {FormatMemory(totalKib * 1024L)}", AmigaFirmware(configuration.KickstartPath)
-        };
+        if (cdDrive) devices.Add("CD");
         if (devices.Count > 0) details.Add(string.Join(" / ", devices));
+        details.Add($"Video {Renderer(configuration.VideoRenderer)}");
+        details.Add(configuration.AudioEnabled ? "Audio On" : "Audio Off");
         details.Add(ShortId(configuration.Id));
         return string.Join(" · ", details);
     }
 
     internal static string Atari(AtariMachineConfiguration configuration, string modelName)
     {
-        var view = AtariHardwareSettingsFunctions.Create(configuration.Model, configuration.Options);
-        var memory = AtariHardwareSettingsFunctions.TotalMemoryBytes(configuration.Options, view);
-        var cpu = view.Cpu.First(field => field.Option == AtariSettingOption.CpuModel).SelectedValue;
-        var firmware = AtariFirmwareSummary(configuration.Firmwares);
         var brandedModel = modelName.StartsWith("Atari ", StringComparison.OrdinalIgnoreCase)
             ? modelName
             : $"Atari {modelName}";
-        return $"{brandedModel} · CPU {cpu} · RAM {FormatMemory(memory)} · {firmware} · "
-            + $"Core {configuration.Core} · {ShortId(configuration.Id)}";
+        var details = new List<string> { brandedModel };
+        if (TryOption(configuration.Options, AtariHardwareSettingsConstants.CpuOptionKey, out var cpu))
+            details.Add($"CPU {cpu}");
+        if (HasAnyOption(configuration.Options, AtariHardwareSettingsConstants.MainMemoryOptionKey,
+                AtariHardwareSettingsConstants.AlternateMemoryOptionKey))
+        {
+            var main = LongOption(configuration.Options, AtariHardwareSettingsConstants.MainMemoryOptionKey);
+            var alternate = LongOption(configuration.Options, AtariHardwareSettingsConstants.AlternateMemoryOptionKey);
+            details.Add($"RAM {FormatMemory(main + alternate)}");
+        }
+        if (configuration.Firmwares.Count > 0) details.Add(AtariFirmwareSummary(configuration.Firmwares));
+        details.Add($"Core {configuration.Core}");
+        details.Add($"Video {Renderer(configuration.VideoRenderer)}");
+        details.Add(configuration.AudioEnabled ? "Audio On" : "Audio Off");
+        details.Add(ShortId(configuration.Id));
+        return string.Join(" · ", details);
     }
 
     internal static string ShortFallbackName(string? path)
@@ -126,10 +141,34 @@ internal static partial class EmulationConfigurationDisplayFunctions
     private static string Option(IReadOnlyDictionary<string, string> options, string key, string fallback) =>
         options.TryGetValue(key, out var value) ? value : fallback;
 
+    private static bool TryOption(IReadOnlyDictionary<string, string> options, string key, out string value)
+    {
+        if (options.TryGetValue(key, out var configured) && !string.IsNullOrWhiteSpace(configured))
+        {
+            value = configured;
+            return true;
+        }
+        value = string.Empty;
+        return false;
+    }
+
+    private static bool HasAnyOption(IReadOnlyDictionary<string, string> options, params string[] keys) =>
+        keys.Any(options.ContainsKey);
+
+    private static long LongOption(IReadOnlyDictionary<string, string> options, string key) =>
+        options.TryGetValue(key, out var value) && long.TryParse(value, NumberStyles.Integer,
+            CultureInfo.InvariantCulture, out var parsed) ? parsed : 0;
+
     private static int NumberOption(IReadOnlyDictionary<string, string> options, string key, int fallback) =>
         options.TryGetValue(key, out var value) && int.TryParse(value, out var parsed) ? parsed : fallback;
 
     private static string ShortId(Guid id) => id.ToString("N")[..8];
+
+    private static string Renderer(GWGUI.Emulation.EmulationVideoRenderer renderer) => renderer switch
+    {
+        GWGUI.Emulation.EmulationVideoRenderer.Direct3D11 => "D3D11",
+        _ => renderer.ToString()
+    };
 
     [GeneratedRegex(@"(?<!\d)(?:1\.[123]|2\.0[45]|3\.[01])(?:\.\d+)?(?!\d)", RegexOptions.IgnoreCase)]
     private static partial Regex FirmwareVersionPattern();

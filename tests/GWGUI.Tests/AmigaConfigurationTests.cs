@@ -42,18 +42,48 @@ public sealed class AmigaConfigurationTests
     [Fact]
     public void ConfigurationDisplayIncludesHardwareAndKickstartVersion()
     {
-        var configuration = AmigaMachineConfiguration.A500(@"C:\ROMs\Kickstart 3.1 very long name.rom");
+        var configuration = AmigaMachineConfiguration.A500(@"C:\ROMs\Kickstart 3.1 very long name.rom") with
+        {
+            Options = new Dictionary<string, string>
+            {
+                ["puae_model"] = "A500",
+                ["puae_cpu_model"] = "68000",
+                ["puae_video_standard"] = "PAL",
+                ["puae_chipmem_size"] = "1",
+                ["puae_bogomem_size"] = "2",
+                ["puae_fastmem_size"] = "0",
+                ["puae_z3mem_size"] = "0",
+                ["gwgui_floppy_drive_count"] = "1",
+                ["gwgui_hard_drive_count"] = "0",
+                ["gwgui_cd_drive_enabled"] = "disabled"
+            }
+        };
 
         var display = EmulationConfigurationDisplayFunctions.Amiga(configuration);
 
         Assert.StartsWith("Amiga A500 · CPU 68000 · OCS/PAL · RAM ", display, StringComparison.Ordinal);
         Assert.Contains("· Kickstart 3.1 · DF 1 ·", display, StringComparison.Ordinal);
         Assert.DoesNotContain("HD 0", display, StringComparison.Ordinal);
+        Assert.Contains("· Video D3D11 · Audio On ·", display, StringComparison.Ordinal);
         Assert.EndsWith(configuration.Id.ToString("N")[..8], display, StringComparison.Ordinal);
         Assert.DoesNotContain(".rom", display, StringComparison.OrdinalIgnoreCase);
         Assert.True(EmulationConfigurationDisplayFunctions.ShortFallbackName(
             @"C:\ROMs\A firmware name that is far too long.rom").Length
             <= EmulationConfigurationDisplayFunctions.MaximumFallbackNameLength);
+    }
+
+    [Fact]
+    public void DisplayDoesNotInventDetailsMissingFromSavedConfiguration()
+    {
+        var configuration = new AmigaMachineConfiguration("A500", string.Empty, Id: Guid.NewGuid());
+
+        var display = EmulationConfigurationDisplayFunctions.Amiga(configuration);
+
+        Assert.DoesNotContain("CPU ", display, StringComparison.Ordinal);
+        Assert.DoesNotContain("RAM ", display, StringComparison.Ordinal);
+        Assert.DoesNotContain("Kickstart", display, StringComparison.Ordinal);
+        Assert.DoesNotContain("DF ", display, StringComparison.Ordinal);
+        Assert.DoesNotContain("HD ", display, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -63,7 +93,8 @@ public sealed class AmigaConfigurationTests
             Options: new Dictionary<string, string>
             {
                 ["gwgui_floppy_drive_count"] = "0",
-                ["gwgui_hard_drive_count"] = "0"
+                ["gwgui_hard_drive_count"] = "0",
+                ["gwgui_cd_drive_enabled"] = "enabled"
             }, Id: Guid.NewGuid());
 
         var display = EmulationConfigurationDisplayFunctions.Amiga(configuration);
@@ -71,6 +102,23 @@ public sealed class AmigaConfigurationTests
         Assert.Contains("· CD ·", display, StringComparison.Ordinal);
         Assert.DoesNotContain("DF 0", display, StringComparison.Ordinal);
         Assert.DoesNotContain("HD 0", display, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void DeviceDisplayUsesSavedConfigurationInsteadOfModelCapabilities()
+    {
+        var configuration = new AmigaMachineConfiguration("CD32", @"C:\ROMs\Kickstart CD32 3.1.rom",
+            Options: new Dictionary<string, string>
+            {
+                ["gwgui_floppy_drive_count"] = "2",
+                ["gwgui_hard_drive_count"] = "1",
+                ["gwgui_cd_drive_enabled"] = "disabled"
+            }, Id: Guid.NewGuid());
+
+        var display = EmulationConfigurationDisplayFunctions.Amiga(configuration);
+
+        Assert.Contains("· DF 2 / HD 1 ·", display, StringComparison.Ordinal);
+        Assert.DoesNotContain(" / CD", display, StringComparison.Ordinal);
     }
 
     [Theory]

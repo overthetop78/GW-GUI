@@ -78,7 +78,13 @@ public sealed class AtariConfigurationCatalogTests
         try
         {
             var configuration = new AtariMachineConfiguration(AtariMachineModel.St,
-                firmwares: [new AtariFirmwareConfiguration(AtariFirmwareKind.Tos, tos, true)]);
+                firmwares: [new AtariFirmwareConfiguration(AtariFirmwareKind.Tos, tos, true)],
+                options: new Dictionary<string, string>
+                {
+                    [AtariHardwareSettingsConstants.CpuOptionKey] = "68000",
+                    [AtariHardwareSettingsConstants.MainMemoryOptionKey] = "1048576",
+                    [AtariHardwareSettingsConstants.AlternateMemoryOptionKey] = "0"
+                });
 
             var display = AtariConfigurationCatalogFunctions.DisplayName(configuration, "Atari ST");
 
@@ -86,10 +92,24 @@ public sealed class AtariConfigurationCatalogTests
             Assert.Contains("· RAM ", display, StringComparison.Ordinal);
             Assert.Contains("· TOS 1.04 ·", display, StringComparison.Ordinal);
             Assert.Contains("· Core Hatari ·", display, StringComparison.Ordinal);
+            Assert.Contains("· Video D3D11 · Audio On ·", display, StringComparison.Ordinal);
             Assert.EndsWith(configuration.Id.ToString("N")[..8], display, StringComparison.Ordinal);
             Assert.DoesNotContain(Path.GetFileName(tos), display, StringComparison.Ordinal);
         }
         finally { DeleteRoot(root); }
+    }
+
+    [Fact]
+    public void ConfigurationDisplayDoesNotInventMissingHardwareOrFirmware()
+    {
+        var configuration = new AtariMachineConfiguration(AtariMachineModel.Atari2600);
+
+        var display = AtariConfigurationCatalogFunctions.DisplayName(configuration, "Atari 2600");
+
+        Assert.DoesNotContain("CPU ", display, StringComparison.Ordinal);
+        Assert.DoesNotContain("RAM ", display, StringComparison.Ordinal);
+        Assert.DoesNotContain("Firmware", display, StringComparison.Ordinal);
+        Assert.Contains("Core Stella", display, StringComparison.Ordinal);
     }
 
     [Fact]
