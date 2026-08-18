@@ -30,12 +30,18 @@ internal static partial class EmulationConfigurationDisplayFunctions
             configuration.Floppies?.Count ?? 1);
         var hardDriveCount = NumberOption(options, "gwgui_hard_drive_count",
             configuration.Media?.Count(item => item.Kind == AmigaMediaKind.HardDrive) ?? 0);
-        var drives = model.HasCdDrive
-            ? $"DF {floppyCount} / HD {hardDriveCount} / CD"
-            : $"DF {floppyCount} / HD {hardDriveCount}";
-        return $"Amiga {configuration.Model} · CPU {cpu} · {model.Chipset}/{video} · "
-            + $"RAM {FormatMemory(totalKib * 1024L)} · {AmigaFirmware(configuration.KickstartPath)} · "
-            + $"{drives} · {ShortId(configuration.Id)}";
+        var devices = new List<string>();
+        if (floppyCount > 0) devices.Add($"DF {floppyCount}");
+        if (hardDriveCount > 0) devices.Add($"HD {hardDriveCount}");
+        if (model.HasCdDrive) devices.Add("CD");
+        var details = new List<string>
+        {
+            $"Amiga {configuration.Model}", $"CPU {cpu}", $"{model.Chipset}/{video}",
+            $"RAM {FormatMemory(totalKib * 1024L)}", AmigaFirmware(configuration.KickstartPath)
+        };
+        if (devices.Count > 0) details.Add(string.Join(" / ", devices));
+        details.Add(ShortId(configuration.Id));
+        return string.Join(" · ", details);
     }
 
     internal static string Atari(AtariMachineConfiguration configuration, string modelName)
