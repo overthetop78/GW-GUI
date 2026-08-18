@@ -17,6 +17,14 @@ dotnet test GWGUI.sln
 dotnet run --project src/GWGUI.App
 ```
 
+La solution exécute uniquement les tests portables ne dépendant pas de ressources
+privées. Les tests d'images disque locales sont conservés dans un projet séparé et
+doivent être lancés explicitement sur une machine disposant du dossier `image_test` :
+
+```powershell
+dotnet test tests/GWGUI.LocalDiskImageTests/GWGUI.LocalDiskImageTests.csproj
+```
+
 Licence MIT.
 
 ## Créer les paquets Windows
