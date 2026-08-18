@@ -40,18 +40,19 @@ public sealed class AmigaConfigurationTests
     }
 
     [Fact]
-    public void ConfigurationDisplayIncludesBrandMemoryShortRomAndIdentifier()
+    public void ConfigurationDisplayIncludesHardwareAndKickstartVersion()
     {
         var configuration = AmigaMachineConfiguration.A500(@"C:\ROMs\Kickstart 3.1 very long name.rom");
 
         var display = EmulationConfigurationDisplayFunctions.Amiga(configuration);
-        var shortened = EmulationConfigurationDisplayFunctions.ShortFileName(configuration.KickstartPath);
 
-        Assert.StartsWith("Amiga A500 · RAM ", display, StringComparison.Ordinal);
-        Assert.Contains($"· ROM {shortened} · {configuration.Id.ToString("N")[..8]}",
-            display, StringComparison.Ordinal);
-        Assert.True(shortened.Length <= EmulationConfigurationDisplayFunctions.MaximumRomNameLength);
-        Assert.EndsWith(".rom", shortened, StringComparison.OrdinalIgnoreCase);
+        Assert.StartsWith("Amiga A500 · CPU 68000 · OCS/PAL · RAM ", display, StringComparison.Ordinal);
+        Assert.Contains("· Kickstart 3.1 · DF 1 / HD 0 ·", display, StringComparison.Ordinal);
+        Assert.EndsWith(configuration.Id.ToString("N")[..8], display, StringComparison.Ordinal);
+        Assert.DoesNotContain(".rom", display, StringComparison.OrdinalIgnoreCase);
+        Assert.True(EmulationConfigurationDisplayFunctions.ShortFallbackName(
+            @"C:\ROMs\A firmware name that is far too long.rom").Length
+            <= EmulationConfigurationDisplayFunctions.MaximumFallbackNameLength);
     }
 
     [Theory]
@@ -183,7 +184,7 @@ public sealed class AmigaConfigurationTests
             Assert.All(entries, entry => Assert.Equal(64, entry.Sha256.Length));
             var detected = Assert.Single(entries, entry => entry.Path.EndsWith("custom.rom", StringComparison.Ordinal));
             Assert.Equal(AmigaFirmwareType.Kickstart, detected.Type);
-            Assert.Equal("rev 34.005", detected.Version);
+            Assert.Equal("1.3 rev 34.005", detected.Version);
             Assert.Contains("A500", detected.CompatibleModels);
             Assert.False(detected.IsKnown);
         }

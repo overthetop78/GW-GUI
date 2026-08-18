@@ -42,6 +42,8 @@ public sealed class AmigaFirmwareCatalog
             .ToArray();
     }
 
+    public static AmigaFirmware Inspect(string path) => CreateEntry(Path.GetFullPath(path));
+
     private static AmigaFirmware CreateEntry(string path)
     {
         var file = new FileInfo(path);
@@ -77,6 +79,18 @@ public sealed class AmigaFirmwareCatalog
             >= 40 => new[] { "A600", "A1200", "A2000", "A3000", "A4000" },
             _ => []
         };
-        return ($"rev {version}.{revision:D3}", models);
+        return ($"{MarketingVersion(version, revision)} rev {version}.{revision:D3}", models);
     }
+
+    private static string MarketingVersion(int version, int revision) => (version, revision) switch
+    {
+        (31 or 32, _) => "1.1",
+        (33, _) => "1.2",
+        (34, _) => "1.3",
+        (37, <= 299) => "2.04",
+        (37, _) => "2.05",
+        (39, _) => "3.0",
+        (40, _) => "3.1",
+        _ => $"{version}.{revision:D3}"
+    };
 }

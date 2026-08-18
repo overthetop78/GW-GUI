@@ -69,16 +69,27 @@ public sealed class AtariConfigurationCatalogTests
     [Fact]
     public void ConfigurationDisplayIncludesBrandMemoryFirmwareAndIdentifier()
     {
-        var configuration = new AtariMachineConfiguration(AtariMachineModel.St,
-            firmwares: [new AtariFirmwareConfiguration(AtariFirmwareKind.Tos,
-                @"C:\ROMs\Very long Atari TOS filename.img", true)]);
+        var root = CreateRoot();
+        var tos = Path.Combine(root, "Very long Atari TOS filename.img");
+        var content = new byte[192 * 1024];
+        content[2] = 0x01;
+        content[3] = 0x04;
+        File.WriteAllBytes(tos, content);
+        try
+        {
+            var configuration = new AtariMachineConfiguration(AtariMachineModel.St,
+                firmwares: [new AtariFirmwareConfiguration(AtariFirmwareKind.Tos, tos, true)]);
 
-        var display = AtariConfigurationCatalogFunctions.DisplayName(configuration, "Atari ST");
+            var display = AtariConfigurationCatalogFunctions.DisplayName(configuration, "Atari ST");
 
-        Assert.StartsWith("Atari ST · RAM ", display, StringComparison.Ordinal);
-        Assert.Contains("· ROM ", display, StringComparison.Ordinal);
-        Assert.EndsWith(configuration.Id.ToString("N")[..8], display, StringComparison.Ordinal);
-        Assert.DoesNotContain("Very long Atari TOS filename.img", display, StringComparison.Ordinal);
+            Assert.StartsWith("Atari ST · CPU ", display, StringComparison.Ordinal);
+            Assert.Contains("· RAM ", display, StringComparison.Ordinal);
+            Assert.Contains("· TOS 1.04 ·", display, StringComparison.Ordinal);
+            Assert.Contains("· Core Hatari ·", display, StringComparison.Ordinal);
+            Assert.EndsWith(configuration.Id.ToString("N")[..8], display, StringComparison.Ordinal);
+            Assert.DoesNotContain(Path.GetFileName(tos), display, StringComparison.Ordinal);
+        }
+        finally { DeleteRoot(root); }
     }
 
     [Fact]
