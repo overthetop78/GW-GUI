@@ -17,9 +17,7 @@ internal static class AtariConfigurationCatalogFunctions
         : new AtariMachineConfiguration(model);
 
     internal static string DisplayName(AtariMachineConfiguration configuration, string modelName) =>
-        $"{modelName} {ControlVisualConstants.DetailSeparator} "
-        + configuration.Id.ToString(AtariConfigurationCatalogConstants.IdentifierFormat)
-            [..AtariConfigurationCatalogConstants.DisplayIdentifierLength];
+        EmulationConfigurationDisplayFunctions.Atari(configuration, modelName);
 
     private static string ResourceKey(AtariMachineModel model) => model switch
     {

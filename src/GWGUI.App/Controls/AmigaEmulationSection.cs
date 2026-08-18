@@ -206,6 +206,6 @@ public sealed class AmigaEmulationSection : UserControl
 
     private sealed record ConfigurationItem(AmigaMachineConfiguration Configuration)
     {
-        public string DisplayName => $"{Configuration.Model} · {Configuration.Id.ToString("N")[..8]}";
+        public string DisplayName => EmulationConfigurationDisplayFunctions.Amiga(Configuration);
     }
 }

@@ -22,6 +22,21 @@ public sealed class AmigaConfigurationTests
             AmigaConfigurationDocuments.ResolveIdForSave(current.Id, "A1200", saved));
     }
 
+    [Fact]
+    public void ConfigurationDisplayIncludesBrandMemoryShortRomAndIdentifier()
+    {
+        var configuration = AmigaMachineConfiguration.A500(@"C:\ROMs\Kickstart 3.1 very long name.rom");
+
+        var display = EmulationConfigurationDisplayFunctions.Amiga(configuration);
+        var shortened = EmulationConfigurationDisplayFunctions.ShortFileName(configuration.KickstartPath);
+
+        Assert.StartsWith("Amiga A500 · RAM ", display, StringComparison.Ordinal);
+        Assert.Contains($"· ROM {shortened} · {configuration.Id.ToString("N")[..8]}",
+            display, StringComparison.Ordinal);
+        Assert.True(shortened.Length <= EmulationConfigurationDisplayFunctions.MaximumRomNameLength);
+        Assert.EndsWith(".rom", shortened, StringComparison.OrdinalIgnoreCase);
+    }
+
     [Theory]
     [InlineData("A500", 40, 63, "kick40063.A600")]
     [InlineData("CDTV", 34, 5, "kick34005.A500")]

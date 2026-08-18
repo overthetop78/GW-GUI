@@ -102,7 +102,7 @@ public sealed class EmulationSection : UserControl
         var atariModels = AtariConfigurationCatalogFunctions.Models().ToDictionary(item => item.Model);
         _configuration.ItemsSource = amiga.Select(configuration => new ConfigurationItem(
                 MachineFamily.Amiga, configuration.Id,
-                $"{configuration.Model} · {configuration.Id.ToString("N")[..8]}", configuration, null))
+                EmulationConfigurationDisplayFunctions.Amiga(configuration), configuration, null))
             .Concat(atari.Select(configuration => new ConfigurationItem(
                 MachineFamily.Atari, configuration.Id,
                 AtariEmulationFunctions.DisplayName(configuration, atariModels[configuration.Model].DisplayName),

@@ -46,6 +46,5 @@ internal static class AtariEmulationFunctions
     }
 
     internal static string DisplayName(AtariMachineConfiguration configuration, string modelName) =>
-        $"{modelName} · {configuration.Id.ToString(AtariEmulationConstants.IdentifierFormat)
-            [..AtariEmulationConstants.DisplayIdentifierLength]}";
+        EmulationConfigurationDisplayFunctions.Atari(configuration, modelName);
 }
