@@ -35,11 +35,19 @@ internal static class AtariControllerFunctions
 
     internal static IReadOnlySet<AtariPeripheralKind> Peripherals(AtariMachineModel model)
     {
+        if (model == AtariMachineModel.Atari2600)
+            return new HashSet<AtariPeripheralKind>
+            {
+                AtariPeripheralKind.None, AtariPeripheralKind.Automatic, AtariPeripheralKind.Joystick,
+                AtariPeripheralKind.Paddle, AtariPeripheralKind.DrivingController,
+                AtariPeripheralKind.BoosterGrip, AtariPeripheralKind.GenesisController,
+                AtariPeripheralKind.Joy2BPlus
+            };
         if (AtariConfigurationFunctions.GetFamily(model) == AtariMachineFamily.St)
             return new HashSet<AtariPeripheralKind>
             {
                 AtariPeripheralKind.None, AtariPeripheralKind.Automatic,
-                AtariPeripheralKind.Mouse, AtariPeripheralKind.Joystick
+                AtariPeripheralKind.Joystick
             };
         return new HashSet<AtariPeripheralKind>(AtariClassicModelCatalog.Get(model).Ports
             .Where(port => port.Capability != AtariClassicPortCapability.Keyboard)

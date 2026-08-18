@@ -16,6 +16,8 @@ public sealed class AtariControllerTests
             Assert.InRange(definition.ControllerPortCount, AtariCompatibilityConstants.OneControllerPort,
                 AtariCompatibilityConstants.FourControllerPorts);
             var peripherals = AtariControllerFunctions.Peripherals(model);
+            // Kept in the core contract for legacy configurations and Stella's API,
+            // but the settings UI must never expose it.
             Assert.Contains(AtariPeripheralKind.Automatic, peripherals);
             Assert.Contains(AtariPeripheralKind.None, peripherals);
         }
@@ -24,7 +26,7 @@ public sealed class AtariControllerTests
     [Fact]
     public void EightBitAndSpecificConsoleControllersAreDeclared()
     {
-        Assert.Equal(AtariCompatibilityConstants.FourControllerPorts,
+        Assert.Equal(AtariCompatibilityConstants.TwoControllerPorts,
             AtariCompatibilityCatalog.Get(AtariMachineModel.Atari800Xl).ControllerPortCount);
         var atari5200 = AtariControllerFunctions.Peripherals(AtariMachineModel.Atari5200);
         Assert.Contains(AtariPeripheralKind.AnalogJoystick, atari5200);
@@ -57,8 +59,28 @@ public sealed class AtariControllerTests
         Assert.Equal(AtariCoreLifecycleConstants.NoDevice,
             AtariControllerPortFunctions.ResolveDevice(ports, AtariControllerTestConstants.FirstPort,
                 AtariPeripheralKind.None));
-        Assert.Throws<InvalidDataException>(() => AtariControllerPortFunctions.ResolveDevice(ports,
-            AtariControllerTestConstants.FirstPort, AtariPeripheralKind.LightGun));
+        Assert.Equal(AtariControllerTestConstants.JoypadDeviceId,
+            AtariControllerPortFunctions.ResolveDevice(ports,
+                AtariControllerTestConstants.FirstPort, AtariPeripheralKind.LightGun));
+    }
+
+    [Fact]
+    public void StellaControllerProfilesAreSentToTheCoreAsAutomatic()
+    {
+        const uint automatic = 41;
+        IReadOnlyList<AtariControllerPort> ports =
+        [
+            new AtariControllerPort(
+            [
+                new AtariControllerDevice("Automatic", automatic),
+                new AtariControllerDevice("None", 0)
+            ])
+        ];
+
+        Assert.Equal(automatic, AtariControllerPortFunctions.ResolveDevice(
+            ports, 0, AtariPeripheralKind.Paddle, AtariCoreKind.Stella));
+        Assert.Equal(automatic, AtariControllerPortFunctions.ResolveDevice(
+            ports, 0, AtariPeripheralKind.DrivingController, AtariCoreKind.Stella));
     }
 
     [Fact]

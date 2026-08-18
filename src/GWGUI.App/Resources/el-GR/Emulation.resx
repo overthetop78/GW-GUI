@@ -12,450 +12,1102 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Emulation.MachinesTab">
+  <data name="Emulation.Tab.Machines">
     <value>Μηχανές</value>
   </data>
-  <data name="Emulation.Core">
+  <data name="Emulation.Core.Name">
     <value>Πυρήνας</value>
   </data>
-  <data name="Emulation.CoreManagerTitle">
+  <data name="Emulation.Core.NameManagerTitle">
     <value>Πυρήνας εξομοίωσης {0}</value>
   </data>
-  <data name="Emulation.CoreManagerDescription">
+  <data name="Emulation.Core.NameManagerDescription">
     <value>Η βιβλιοθήκη παραμένει έξω από το GW GUI. Η επιλεγμένη έκδοση αντικαθιστά την τρέχουσα εγκατεστημένη έκδοση.</value>
   </data>
-  <data name="Emulation.CoreRequiredVersion">
+  <data name="Emulation.Core.NameRequiredVersion">
     <value>Έκδοση που απαιτείται από το GW GUI</value>
   </data>
-  <data name="Emulation.CoreLatestVersion">
+  <data name="Emulation.Core.NameLatestVersion">
     <value>Τελευταία διαθέσιμη επίσημη έκδοση</value>
   </data>
-  <data name="Emulation.CoreProjectVersion">
+  <data name="Emulation.Core.NameProjectVersion">
     <value>Τρέχουσα εγκατεστημένη έκδοση</value>
   </data>
-  <data name="Emulation.CoreSearchPrompt">
+  <data name="Emulation.Core.NameSearchPrompt">
     <value>Κάντε κλικ στην Αναζήτηση για έλεγχο του επίσημου διακομιστή Libretro.</value>
   </data>
-  <data name="Emulation.CoreSearch">
+  <data name="Emulation.Core.NameSearch">
     <value>Αναζήτηση εκδόσεων</value>
   </data>
-  <data name="Emulation.CoreDownload">
+  <data name="Emulation.Core.NameDownload">
     <value>Λήψη και αντικατάσταση</value>
   </data>
-  <data name="Emulation.CoreSearching">
+  <data name="Emulation.Core.NameSearching">
     <value>Αναζήτηση διαθέσιμων εκδόσεων…</value>
   </data>
-  <data name="Emulation.CoreNoneFound">
+  <data name="Emulation.Core.NameNoneFound">
     <value>Δεν βρέθηκε επίσημη έκδοση.</value>
   </data>
-  <data name="Emulation.CoreVersionsFound">
+  <data name="Emulation.Core.NameVersionsFound">
     <value>{0} διαθέσιμες εκδόσεις.</value>
   </data>
-  <data name="Emulation.CoreDownloading">
+  <data name="Emulation.Core.NameDownloading">
     <value>Λήψη του {0}…</value>
   </data>
-  <data name="Emulation.CoreInstalledPath">
+  <data name="Emulation.Core.NameInstalledPath">
     <value>Εγκατεστημένη έκδοση: {0}</value>
   </data>
-  <data name="Emulation.CoreInstalled">
+  <data name="Emulation.Core.NameInstalled">
     <value>{0} · εγκαταστάθηκε</value>
   </data>
-  <data name="Emulation.CoreNotInstalled">
+  <data name="Emulation.Core.NameNotInstalled">
     <value>Δεν υπάρχει εγκατεστημένη έκδοση</value>
   </data>
-  <data name="Emulation.OpenMachine">
+  <data name="Emulation.Machine.Open">
     <value>Άνοιγμα</value>
   </data>
-  <data name="Emulation.WelcomeTab">
+  <data name="Emulation.Tab.Welcome">
     <value>Καλώς ορίσατε</value>
   </data>
-  <data name="Emulation.WelcomeText">
+  <data name="Emulation.Welcome.Text">
     <value>Επιλέξτε παραπάνω μια αποθηκευμένη μηχανή και πατήστε Άνοιγμα. Κάθε μηχανή που εκτελείται εμφανίζεται στη δική της καρτέλα.</value>
   </data>
-  <data name="Emulation.ConfigurationsDescription">
+  <data name="Emulation.Configuration.Description">
     <value>Δημιουργήστε, επιλέξτε, τροποποιήστε ή διαγράψτε εδώ αποθηκευμένες ρυθμίσεις. Επιλέξτε την καρτέλα {0} για επεξεργασία της επιλεγμένης ρύθμισης.</value>
   </data>
-  <data name="Emulation.GeneralTab">
+  <data name="Emulation.Tab.General">
     <value>Γενικά</value>
   </data>
-  <data name="Emulation.VideoTab">
+  <data name="Emulation.Tab.Video">
     <value>Βίντεο</value>
   </data>
-  <data name="Emulation.StorageTab">
+  <data name="Emulation.Tab.Storage">
     <value>Αποθήκευση</value>
   </data>
-  <data name="Emulation.KeyboardTab">
+  <data name="Emulation.Tab.Keyboard">
     <value>Πληκτρολόγιο</value>
   </data>
-  <data name="Emulation.MouseTab">
+  <data name="Emulation.Tab.Mouse">
     <value>Ποντίκι</value>
   </data>
-  <data name="Emulation.ControllersTab">
+  <data name="Emulation.Controller.Tab">
     <value>Χειριστήρια</value>
   </data>
-  <data name="Emulation.AdvancedTab">
+  <data name="Emulation.Tab.Advanced">
     <value>Για προχωρημένους</value>
   </data>
-  <data name="Emulation.DeviceId">
+  <data name="Emulation.Device.Name.Id">
     <value>Αναγνωριστικό συσκευής</value>
   </data>
-  <data name="Emulation.ControllerDevice">
+  <data name="Emulation.Controller.Device">
     <value>Συσκευή χειριστηρίου {0}</value>
   </data>
-  <data name="Emulation.SystemKey">
+  <data name="Emulation.Keyboard.SystemKey">
     <value>Πλήκτρο {0}</value>
   </data>
-  <data name="Emulation.HostKey">
+  <data name="Emulation.Keyboard.HostKey">
     <value>Πλήκτρο κεντρικού υπολογιστή</value>
   </data>
-  <data name="Emulation.CpuSummary">
+  <data name="Emulation.Cpu.Summary">
     <value>Επεξεργαστής: {0}</value>
   </data>
-  <data name="Emulation.RamSummary">
+  <data name="Emulation.Memory.Summary">
     <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
   </data>
-  <data name="Emulation.VideoSummary">
+  <data name="Emulation.Video.Summary">
     <value>Σύνολο κυκλωμάτων βίντεο: {0}</value>
   </data>
-  <data name="Emulation.CpuModel"><value>CPU model</value></data>
-  <data name="Emulation.CpuMultiplier"><value>CPU multiplier</value></data>
-  <data name="Emulation.CpuCompatibility"><value>Cycle-compatible CPU</value></data>
-  <data name="Emulation.ChipMemory"><value>Chip RAM</value></data>
-  <data name="Emulation.SlowMemory"><value>Slow RAM</value></data>
-  <data name="Emulation.FastMemory"><value>Fast RAM</value></data>
-  <data name="Emulation.Z3Memory"><value>Zorro III RAM</value></data>
-  <data name="Emulation.VideoStandard"><value>Video standard</value></data>
-  <data name="Emulation.VideoResolution"><value>Resolution</value></data>
-  <data name="Emulation.AspectRatio"><value>Aspect ratio</value></data>
-  <data name="Emulation.VideoCrop"><value>Crop borders</value></data>
-  <data name="Emulation.FlickerFixer"><value>Flicker fixer</value></data>
-  <data name="Emulation.AudioEnabled"><value>Enable audio</value></data>
-  <data name="Emulation.AudioOutput"><value>Audio output</value></data>
-  <data name="Emulation.AudioLatency"><value>Latency (ms)</value></data>
-  <data name="Emulation.AudioInterpolation"><value>Interpolation</value></data>
-  <data name="Emulation.AudioFilter"><value>Amiga audio filter</value></data>
-  <data name="Emulation.StereoSeparation"><value>Stereo separation (%)</value></data>
-  <data name="Emulation.AudioInput"><value>Audio input</value></data>
-  <data name="Emulation.AudioInputUnavailable"><value>This Amiga core does not expose an audio input.</value></data>
-  <data name="Emulation.DefaultAudioOutput"><value>Windows default output</value></data>
-  <data name="Emulation.AddMedia"><value>Add media</value></data>
-  <data name="Emulation.CreateHardDisk"><value>Create hard disk</value></data>
-  <data name="Emulation.HardDiskSize"><value>Hard-disk size (MiB)</value></data>
-  <data name="Emulation.NoMedia"><value>No media. Add a floppy, hard disk or CD supported by the selected model.</value></data>
-  <data name="Emulation.ReadOnly"><value>Read-only</value></data>
-  <data name="Emulation.AmigaMediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value></data>
-  <data name="Emulation.HardDiskFilter"><value>Amiga hard disk|*.hdf|All files|*.*</value></data>
-  <data name="Emulation.HardDiskNotSupported"><value>The selected model does not support a hard disk.</value></data>
-  <data name="Emulation.TooManyFloppyDrives"><value>This model accepts at most {0} floppy drive(s).</value></data>
-  <data name="Emulation.TooManyHardDrives"><value>This model accepts at most {0} hard disk(s).</value></data>
-  <data name="Emulation.CdNotSupported"><value>The selected model does not support a CD drive.</value></data>
-  <data name="Emulation.DuplicateKeyboardMapping"><value>Two Amiga keys use the same PC key. Resolve the red mappings before saving.</value></data>
-  <data name="Emulation.ReleaseMouseKey"><value>Release-capture key</value></data>
-  <data name="Emulation.MouseLeftButton"><value>Left mouse button</value></data>
-  <data name="Emulation.MouseRightButton"><value>Right mouse button</value></data>
-  <data name="Emulation.MouseMiddleButton"><value>Middle mouse button</value></data>
-  <data name="Emulation.DetectControllers"><value>Detect controllers</value></data>
-  <data name="Emulation.EmulatedAction"><value>Amiga action</value></data>
-  <data name="Emulation.PhysicalControl"><value>Keyboard, mouse or controller control</value></data>
-  <data name="Emulation.Chipset"><value>Σύνολο ολοκληρωμένων</value></data>
-  <data name="Emulation.CdDrive"><value>Μονάδα CD</value></data>
-  <data name="Emulation.FloppyDriveCount"><value>Αριθμός μονάδων δισκέτας</value></data>
-  <data name="Emulation.HardDriveCount"><value>Αριθμός σκληρών δίσκων</value></data>
-  <data name="Emulation.FpuModel"><value>FPU</value></data>
-  <data name="Emulation.CpuSpeed"><value>CPU speed</value></data>
-  <data name="Emulation.CpuSpeedOriginal"><value>Original speed</value></data>
-  <data name="Emulation.CompatibilityNormal"><value>Normal</value></data>
-  <data name="Emulation.CompatibilityCompatible"><value>Compatible</value></data>
-  <data name="Emulation.CompatibilityMemory"><value>Memory compatible</value></data>
-  <data name="Emulation.CompatibilityExact"><value>Cycle exact</value></data>
-  <data name="Emulation.IntegratedFpu"><value>Integrated FPU</value></data>
-  <data name="Emulation.Enabled"><value>Enabled</value></data>
-  <data name="Emulation.Disabled"><value>Disabled</value></data>
-  <data name="Emulation.Minimum"><value>Minimum</value></data>
-  <data name="Emulation.VerySmall"><value>Very small</value></data>
-  <data name="Emulation.Small"><value>Small</value></data>
-  <data name="Emulation.Medium"><value>Medium</value></data>
-  <data name="Emulation.Large"><value>Large</value></data>
-  <data name="Emulation.VeryLarge"><value>Very large</value></data>
-  <data name="Emulation.Maximum"><value>Maximum</value></data>
-  <data name="Emulation.Locked"><value>Locked</value></data>
-  <data name="Emulation.Immediate"><value>Immediate</value></data>
-  <data name="Emulation.Waiting"><value>Waiting</value></data>
-  <data name="Emulation.Standard"><value>Standard</value></data>
-  <data name="Emulation.Enhanced"><value>Enhanced</value></data>
-  <data name="Emulation.Internal"><value>Internal</value></data>
-  <data name="Emulation.Loud"><value>Loud</value></data>
-  <data name="Emulation.ResolutionAutoLow"><value>Automatic low resolution</value></data>
-  <data name="Emulation.ResolutionAutoSuperHigh"><value>Automatic super-high resolution</value></data>
-  <data name="Emulation.ResolutionLow"><value>Low resolution</value></data>
-  <data name="Emulation.ResolutionHigh"><value>High resolution</value></data>
-  <data name="Emulation.ResolutionSuperHigh"><value>Super-high resolution</value></data>
-  <data name="Emulation.VideoLineMode"><value>Line mode</value></data>
-  <data name="Emulation.VideoHzChange"><value>Refresh-rate changes</value></data>
-  <data name="Emulation.VideoFrameskip"><value>Frame skip</value></data>
-  <data name="Emulation.VideoColors"><value>Color depth</value></data>
-  <data name="Emulation.VideoGamma"><value>Gamma</value></data>
-  <data name="Emulation.ImmediateBlits"><value>Blitter operation</value></data>
-  <data name="Emulation.CollisionLevel"><value>Collision detection</value></data>
-  <data name="Emulation.LineModeSingle"><value>Single scan</value></data>
-  <data name="Emulation.LineModeDouble"><value>Double scan</value></data>
-  <data name="Emulation.CollisionSprites"><value>Sprites</value></data>
-  <data name="Emulation.CollisionPlayfields"><value>Playfields</value></data>
-  <data name="Emulation.CollisionFull"><value>Full</value></data>
-  <data name="Emulation.InterpolationAnti"><value>Anti interpolation</value></data>
-  <data name="Emulation.FilterEmulated"><value>Emulated</value></data>
-  <data name="Emulation.AudioFilterType"><value>Filter type</value></data>
-  <data name="Emulation.FloppySound"><value>Floppy-drive sound volume</value></data>
-  <data name="Emulation.FloppySoundType"><value>Floppy-drive sound type</value></data>
-  <data name="Emulation.MuteEmptyFloppy"><value>Mute empty drives</value></data>
-  <data name="Emulation.CdAudioVolume"><value>CD audio volume</value></data>
-  <data name="Emulation.FloppySpeed"><value>Floppy-drive speed</value></data>
-  <data name="Emulation.FloppyWriteProtection"><value>Write-protect floppy images</value></data>
-  <data name="Emulation.FloppyWriteRedirect"><value>Redirect floppy writes</value></data>
-  <data name="Emulation.CdSpeed"><value>CD speed</value></data>
-  <data name="Emulation.KeyboardPassThrough"><value>Physical keyboard pass-through</value></data>
-  <data name="Emulation.PhysicalMouse"><value>Physical mouse</value></data>
-  <data name="Emulation.PhysicalMouseDouble"><value>Double movement</value></data>
-  <data name="Emulation.MouseSpeed"><value>Mouse speed</value></data>
-  <data name="Emulation.AnalogMouse"><value>Analog sticks controlling the mouse</value></data>
-  <data name="Emulation.AnalogMouseDeadzone"><value>Analog-stick dead zone</value></data>
-  <data name="Emulation.AnalogMouseSpeed"><value>Analog-stick mouse speed</value></data>
-  <data name="Emulation.LeftStick"><value>Left stick</value></data>
-  <data name="Emulation.RightStick"><value>Right stick</value></data>
-  <data name="Emulation.BothSticks"><value>Both sticks</value></data>
-  <data name="Emulation.TurboFire"><value>Turbo fire</value></data>
-  <data name="Emulation.TurboButton"><value>Turbo button</value></data>
-  <data name="Emulation.TurboPulse"><value>Turbo pulse</value></data>
-  <data name="Emulation.JoyPortOrder"><value>Controller port order</value></data>
-  <data name="Emulation.Emulator"><value>Εξομοιωτής</value></data>
-  <data name="Emulation.StorageBaseFolder"><value>Κοινόχρηστος φάκελος αποθήκευσης εξομοίωσης</value></data>
-  <data name="Emulation.StorageBaseFolderDescription"><value>Οι σκληροί δίσκοι οργανώνονται αυτόματα στα HDD\Amiga, HDD\Atari και στους φακέλους μελλοντικών συστημάτων.</value></data>
-  <data name="Emulation.AddHardDisk"><value>Προσθήκη υπάρχοντος σκληρού δίσκου</value></data>
-  <data name="Emulation.HardDisks"><value>Σκληροί δίσκοι</value></data>
-  <data name="Emulation.NoHardDisks"><value>Δεν έχει συνδεθεί σκληρός δίσκος σε αυτό το μηχάνημα.</value></data>
-  <data name="Emulation.KeyboardPriorityHint"><value>Δεσμευμένες συντομεύσεις</value></data>
-  <data name="Emulation.KeyboardPriorityDescription"><value>Οι συντομεύσεις του GW GUI και των Windows παραμένουν ενεργές και δεν καταγράφονται από το μηχάνημα.</value></data>
-  <data name="Emulation.InputBehavior"><value>Συμπεριφορά</value></data>
-  <data name="Emulation.AssignInput"><value>Αντιστοίχιση...</value></data>
-  <data name="Emulation.InputActions"><value>Ενέργειες</value></data>
-  <data name="Emulation.PressInput"><value>Πατήστε ένα πλήκτρο...</value></data>
-  <data name="Emulation.CreateStorageFolders"><value>Αυτόματη δημιουργία υποφακέλων που λείπουν</value></data>
-  <data name="Emulation.CommonFolders"><value>Κοινόχρηστοι φάκελοι</value></data>
-  <data name="Emulation.SharedInputDescription"><value>Η ανίχνευση συσκευών είναι κοινή, ενώ οι αντιστοιχίσεις αποθηκεύονται χωριστά σε κάθε διαμόρφωση μηχανήματος.</value></data>
-  <data name="Emulation.TestInputs"><value>Δοκιμή εισόδων</value></data>
-  <data name="Emulation.SharedDevices"><value>Κοινόχρηστες συσκευές εισόδου</value></data>
-  <data name="Emulation.CaptureFolder"><value>Φάκελος στιγμιοτύπων</value></data>
-  <data name="Emulation.StateFolder"><value>Φάκελος αποθηκευμένων καταστάσεων</value></data>
-  <data name="Emulation.DefaultFolders"><value>Προεπιλεγμένοι φάκελοι</value></data>
-  <data name="Emulation.NoControllersDetected"><value>Δεν εντοπίστηκε χειριστήριο</value></data>
-  <data name="Emulation.TestInputsPrompt"><value>Πατήστε ένα πλήκτρο ή κουμπί ποντικιού για να δοκιμάσετε την ανίχνευση.</value></data>
-  <data name="Emulation.Floppies"><value>Δισκέτες</value></data>
-  <data name="Emulation.ExtendedRom"><value>Εκτεταμένη ROM</value></data>
-  <data name="Emulation.RomKey"><value>Κλειδί ROM</value></data>
-  <data name="Emulation.Processor"><value>Επεξεργαστής</value></data>
-  <data name="Emulation.Precision"><value>Ακρίβεια</value></data>
-  <data name="Emulation.Acceleration"><value>Επιτάχυνση</value></data>
-  <data name="Emulation.MainMemory"><value>Κύρια μνήμη</value></data>
-  <data name="Emulation.MemoryExtensions"><value>Επεκτάσεις μνήμης</value></data>
-  <data name="Emulation.MemoryNone"><value>Καμία</value></data>
-  <data name="Emulation.MemoryCompatibleWithModel"><value>Η διαμόρφωση μνήμης είναι συμβατή με το {0}.</value></data>
-  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Οι επεκτάσεις μνήμης είναι συμβατές με το {0}.</value></data>
-  <data name="Emulation.Z3MemoryUnavailableForModel"><value>Η RAM Zorro III δεν είναι διαθέσιμη στο {0}.</value></data>
-  <data name="Emulation.TotalMemoryConfigured"><value>Συνολική διαμορφωμένη μνήμη: {0} {1}</value></data>
-  <data name="Emulation.SystemRom"><value>ROM συστήματος</value></data>
-  <data name="Emulation.DetectedRoms"><value>ROM που εντοπίστηκαν</value></data>
-  <data name="Emulation.UseFirmware"><value>Χρήση</value></data>
-  <data name="Emulation.NotUsed"><value>Δεν χρησιμοποιείται</value></data>
-  <data name="Emulation.OpenRomFolder"><value>Άνοιγμα φακέλου ROM</value></data>
-  <data name="Emulation.FirmwarePartiallyCompatible"><value>Μερικώς συμβατή</value></data>
-  <data name="Emulation.DisplaySettings"><value>Προβολή</value></data>
-  <data name="Emulation.RenderingSettings"><value>Απόδοση</value></data>
-  <data name="Emulation.ChipsetCompatibility"><value>Συμβατότητα chipset</value></data>
-  <data name="Emulation.AudioDevice"><value>Συσκευή</value></data>
-  <data name="Emulation.Latency"><value>Καθυστέρηση</value></data>
-  <data name="Emulation.AudioQuality"><value>Ποιότητα</value></data>
-  <data name="Emulation.AudioDrives"><value>Μονάδες</value></data>
-  <data name="Emulation.Type"><value>Τύπος</value></data>
-  <data name="Emulation.AddStorageDevice"><value>Προσθήκη συσκευής αποθήκευσης</value></data>
-  <data name="Emulation.AmigaDdFloppy"><value>Amiga 3,5 ιντσών DD · 880 KiB</value></data>
-  <data name="Emulation.AmigaHdFloppy"><value>Amiga 3,5 ιντσών HD · 1,76 MiB</value></data>
-  <data name="Emulation.AssociatedMedia"><value>Συσχετισμένο μέσο</value></data>
-  <data name="Emulation.AutomaticDiskGeometry"><value>Η γεωμετρία του δίσκου καθορίζεται αυτόματα από τον εξομοιωτή.</value></data>
-  <data name="Emulation.BlankFloppyCreated"><value>Δημιουργήθηκε κενή εικόνα δισκέτας: {0}</value></data>
-  <data name="Emulation.BlankHardDiskHint"><value>Το αρχείο θα δημιουργηθεί κενό και πρέπει να διαμεριστεί και να μορφοποιηθεί στο εξομοιούμενο μηχάνημα.</value></data>
-  <data name="Emulation.CdWriter"><value>Εγγραφέας CD</value></data>
-  <data name="Emulation.CdWriterHint"><value>Κενός δίσκος δημιουργείται μόνο όταν το επιλεγμένο μηχάνημα και ο εξομοιωτής υποστηρίζουν εγγραφή.</value></data>
-  <data name="Emulation.CompactDiscDevice"><value>Μονάδα CD-ROM</value></data>
-  <data name="Emulation.ConfigureDevice"><value>Ρύθμιση</value></data>
-  <data name="Emulation.CreateBlankFloppy"><value>Δημιουργία κενής δισκέτας</value></data>
-  <data name="Emulation.DiskImage"><value>Εικόνα δίσκου</value></data>
-  <data name="Emulation.DiskImageRequired"><value>Επιλέξτε μια υπάρχουσα εικόνα δίσκου.</value></data>
-  <data name="Emulation.ExistingDiskHint"><value>Το επιλεγμένο αρχείο θα συνδεθεί σε αυτήν την εικονική μονάδα.</value></data>
-  <data name="Emulation.FloppyDevice"><value>Μονάδα δισκέτας</value></data>
-  <data name="Emulation.FloppyImageFilter"><value>Εικόνα δισκέτας Amiga|*.adf|Όλα τα αρχεία|*.*</value></data>
-  <data name="Emulation.HardDiskDevice"><value>Σκληρός δίσκος</value></data>
-  <data name="Emulation.Interface"><value>Διασύνδεση</value></data>
-  <data name="Emulation.PreallocateFile"><value>Προκατανομή αρχείου</value></data>
-  <data name="Emulation.RemovableMediaRuntimeHint"><value>Οι δισκέτες και τα CD εισάγονται ή αντικαθίστανται από το μηχάνημα που εκτελείται.</value></data>
-  <data name="Emulation.RemoveMedia"><value>Αφαίρεση μέσου</value></data>
-  <data name="Emulation.ReplaceExistingDisk"><value>Η εικόνα δίσκου υπάρχει ήδη: {0}\nΘέλετε να την αντικαταστήσετε;</value></data>
-  <data name="Emulation.StorageDeviceCapabilitiesHint"><value>Οι διαθέσιμοι τύποι, τα μοντέλα και τα αναγνωριστικά εξαρτώνται από το επιλεγμένο μηχάνημα.</value></data>
-  <data name="Emulation.TapeDevice"><value>Μονάδα ταινίας</value></data>
-  <data name="Emulation.UseDisk"><value>Χρήση δίσκου</value></data>
-  <data name="Emulation.UseExistingDisk"><value>Χρήση υπάρχοντος δίσκου</value></data>
-  <data name="Emulation.ModifyInGeneral"><value>Τροποποίηση στα Γενικά</value></data>
-  <data name="Emulation.NoStorageDeviceAvailable"><value>Δεν υπάρχει άλλη διαθέσιμη συσκευή αποθήκευσης για αυτό το μηχάνημα.</value></data>
-  <data name="Emulation.StorageDevices"><value>Συσκευές αποθήκευσης</value></data>
-  <data name="Emulation.RestoreDefaultBindings"><value>Επαναφορά προεπιλογών</value></data>
-  <data name="Emulation.ClearConflicts"><value>Εκκαθάριση διενέξεων</value></data>
-  <data name="Emulation.EmulatedKey"><value>Πλήκτρο μηχανής</value></data>
-  <data name="Emulation.Binding"><value>Αντιστοίχιση</value></data>
-  <data name="Emulation.BindingState"><value>Κατάσταση</value></data>
-  <data name="Emulation.SearchBinding"><value>Αναζήτηση πλήκτρου ή αντιστοίχισης</value></data>
-  <data name="Emulation.BindingLegend"><value>Έγκυρο: μοναδική αντιστοίχιση · Διένεξη: πολλαπλή χρήση · Δεσμευμένο: συντόμευση Windows ή GW GUI</value></data>
-  <data name="Emulation.BindingValid"><value>Έγκυρο</value></data>
-  <data name="Emulation.BindingConflict"><value>Διένεξη</value></data>
-  <data name="Emulation.BindingReserved"><value>Δεσμευμένο</value></data>
-  <data name="Emulation.BindingUnassigned"><value>Χωρίς αντιστοίχιση</value></data>
-  <data name="Emulation.GlobalShortcuts"><value>Συντομεύσεις εξομοίωσης</value></data>
-  <data name="Emulation.ShortcutsTab"><value>Συντομεύσεις</value></data>
-  <data name="Emulation.Shortcut.ReleaseMouse"><value>Απελευθέρωση ποντικιού</value></data>
-  <data name="Emulation.Shortcut.PauseResume"><value>Παύση / συνέχεια</value></data>
-  <data name="Emulation.Shortcut.Fullscreen"><value>Πλήρης οθόνη / παράθυρο</value></data>
-  <data name="Emulation.Shortcut.Power"><value>Ενεργοποίηση / απενεργοποίηση</value></data>
-  <data name="Emulation.Shortcut.SoftReset"><value>Ήπια επανεκκίνηση</value></data>
-  <data name="Emulation.Shortcut.HardReset"><value>Πλήρης επανεκκίνηση</value></data>
-  <data name="Emulation.Shortcut.QuickSave"><value>Γρήγορη αποθήκευση</value></data>
-  <data name="Emulation.Shortcut.QuickLoad"><value>Γρήγορη φόρτωση</value></data>
-  <data name="Emulation.Shortcut.Screenshot"><value>Στιγμιότυπο οθόνης</value></data>
-  <data name="Emulation.Shortcut.Mute"><value>Σίγαση ενεργού μηχανής</value></data>
-  <data name="Emulation.Shortcut.FastForward"><value>Γρήγορη προώθηση κατά το κράτημα</value></data>
-  <data name="Emulation.Shortcut.InsertMedia"><value>Εισαγωγή ή αντικατάσταση μέσου</value></data>
-  <data name="Emulation.Shortcut.EjectMedia"><value>Εξαγωγή μέσου</value></data>
-  <data name="Emulation.Shortcut.NextMedia"><value>Επόμενο μέσο</value></data>
-  <data name="Emulation.Key.Help"><value>Βοήθεια</value></data>
-  <data name="Emulation.Key.LeftAmiga"><value>Αριστερό Amiga</value></data>
-  <data name="Emulation.Key.RightAmiga"><value>Δεξί Amiga</value></data>
-  <data name="Emulation.SpecialKeysOnlyHint"><value>Τα γράμματα, οι αριθμοί και τα συνήθη πλήκτρα τροποποίησης μεταδίδονται απευθείας. Εδώ αντιστοιχίζονται μόνο τα πλήκτρα λειτουργιών και τα ειδικά πλήκτρα του Amiga.</value></data>
-  <data name="Emulation.ShortcutUnavailable"><value>Αυτή η ενέργεια δεν υποστηρίζεται ακόμη από τον τρέχοντα εξομοιωτή.</value></data>
-  <data name="Emulation.Allocation"><value>Δέσμευση</value></data>
-  <data name="Emulation.AutomaticGeometry"><value>Αυτόματη γεωμετρία</value></data>
-  <data name="Emulation.BlankMedia"><value>Κενό μέσο</value></data>
-  <data name="Emulation.BytesPerSector"><value>Byte ανά τομέα</value></data>
-  <data name="Emulation.CalculatedCapacity"><value>Υπολογισμένη χωρητικότητα: {0}</value></data>
-  <data name="Emulation.ControllerMappings"><value>Αντιστοιχίσεις χειριστηρίου</value></data>
-  <data name="Emulation.ControllerPort"><value>Θύρα {0}</value></data>
-  <data name="Emulation.ControllerType"><value>Τύπος χειριστηρίου</value></data>
-  <data name="Emulation.CustomSize"><value>Προσαρμοσμένο μέγεθος</value></data>
-  <data name="Emulation.Cylinders"><value>Κύλινδροι</value></data>
-  <data name="Emulation.DestinationFolder"><value>Φάκελος προορισμού</value></data>
-  <data name="Emulation.DetectedControllers"><value>Εντοπισμένα χειριστήρια</value></data>
-  <data name="Emulation.Device"><value>Συσκευή</value></data>
-  <data name="Emulation.DiskGeometry"><value>Γεωμετρία δίσκου (CHS)</value></data>
-  <data name="Emulation.DiskSizeProfile"><value>Προφίλ μεγέθους</value></data>
-  <data name="Emulation.FloppyDrive"><value>Μονάδα δισκέτας</value></data>
-  <data name="Emulation.Heads"><value>Κεφαλές</value></data>
-  <data name="Emulation.InputCaptureHint"><value>Πατήστε «Αντιστοίχιση» και μετά ένα πλήκτρο, κουμπί ποντικιού ή κουμπί χειριστηρίου.</value></data>
-  <data name="Emulation.InvalidDiskSize"><value>Το μέγεθος ή η γεωμετρία του δίσκου δεν είναι έγκυρα.</value></data>
-  <data name="Emulation.MouseActions"><value>Ενέργειες ποντικιού</value></data>
-  <data name="Emulation.MouseButton4"><value>Κουμπί ποντικιού 4</value></data>
-  <data name="Emulation.MouseButton5"><value>Κουμπί ποντικιού 5</value></data>
-  <data name="Emulation.MouseCaptureTitle"><value>Δέσμευση ποντικιού</value></data>
-  <data name="Emulation.PreallocationHint"><value>Δεσμεύει αμέσως τον φυσικό χώρο· διαφορετικά το είδωλο μεγαλώνει κατά την εγγραφή.</value></data>
-  <data name="Emulation.SearchInputBinding"><value>Αναζήτηση ενέργειας ή εισόδου</value></data>
-  <data name="Emulation.Sectors"><value>Τομείς</value></data>
-  <data name="Emulation.UnitMiB"><value>MiB</value></data>
-  <data name="Emulation.UnitGiB"><value>GiB</value></data>
-  <data name="Emulation.DirectionUp"><value>Πάνω</value></data>
-  <data name="Emulation.DirectionDown"><value>Κάτω</value></data>
-  <data name="Emulation.DirectionLeft"><value>Αριστερά</value></data>
-  <data name="Emulation.DirectionRight"><value>Δεξιά</value></data>
-  <data name="Emulation.FireButton1"><value>Κουμπί πυρός 1</value></data>
-  <data name="Emulation.FireButton2"><value>Κουμπί πυρός 2</value></data>
-  <data name="Emulation.Cd32Red"><value>Κόκκινο κουμπί CD32</value></data>
-  <data name="Emulation.Cd32Blue"><value>Μπλε κουμπί CD32</value></data>
-  <data name="Emulation.Cd32Green"><value>Πράσινο κουμπί CD32</value></data>
-  <data name="Emulation.Cd32Yellow"><value>Κίτρινο κουμπί CD32</value></data>
-  <data name="Emulation.Cd32Rewind"><value>CD32 γρήγορη επιστροφή</value></data>
-  <data name="Emulation.Cd32FastForward"><value>CD32 γρήγορη προώθηση</value></data>
-  <data name="Emulation.Cd32PlayPause"><value>CD32 αναπαραγωγή / παύση</value></data>
-  <data name="Emulation.AmigaJoystick"><value>Χειριστήριο Amiga</value></data>
-  <data name="Emulation.AnalogJoystick"><value>Αναλογικό χειριστήριο</value></data>
-  <data name="Emulation.Cd32Controller"><value>Χειριστήριο CD32</value></data>
-  <data name="Emulation.MouseWheelUp"><value>Τροχός ποντικιού πάνω</value></data>
-  <data name="Emulation.MouseWheelDown"><value>Τροχός ποντικιού κάτω</value></data>
-  <data name="Emulation.MouseWheelLeft"><value>Τροχός ποντικιού αριστερά</value></data>
-  <data name="Emulation.MouseWheelRight"><value>Τροχός ποντικιού δεξιά</value></data>
-  <data name="Emulation.AtariModelSt" xml:space="preserve">
+  <data name="Emulation.Cpu.Model">
+    <value>CPU model</value>
+  </data>
+  <data name="Emulation.Cpu.Multiplier">
+    <value>CPU multiplier</value>
+  </data>
+  <data name="Emulation.Cpu.Compatibility">
+    <value>Cycle-compatible CPU</value>
+  </data>
+  <data name="Emulation.Memory.Chip">
+    <value>Chip RAM</value>
+  </data>
+  <data name="Emulation.Memory.Slow">
+    <value>Slow RAM</value>
+  </data>
+  <data name="Emulation.Memory.Fast">
+    <value>Fast RAM</value>
+  </data>
+  <data name="Emulation.Memory.Z3">
+    <value>Zorro III RAM</value>
+  </data>
+  <data name="Emulation.Video.Standard">
+    <value>Video standard</value>
+  </data>
+  <data name="Emulation.Video.Resolution">
+    <value>Resolution</value>
+  </data>
+  <data name="Emulation.Video.AspectRatio">
+    <value>Aspect ratio</value>
+  </data>
+  <data name="Emulation.Video.Crop">
+    <value>Crop borders</value>
+  </data>
+  <data name="Emulation.Video.FlickerFixer">
+    <value>Flicker fixer</value>
+  </data>
+  <data name="Emulation.Audio.Enabled">
+    <value>Enable audio</value>
+  </data>
+  <data name="Emulation.Audio.Output">
+    <value>Audio output</value>
+  </data>
+  <data name="Emulation.Audio.Latency">
+    <value>Latency (ms)</value>
+  </data>
+  <data name="Emulation.Audio.Interpolation">
+    <value>Interpolation</value>
+  </data>
+  <data name="Emulation.Audio.Filter">
+    <value>Amiga audio filter</value>
+  </data>
+  <data name="Emulation.Audio.StereoSeparation">
+    <value>Stereo separation (%)</value>
+  </data>
+  <data name="Emulation.Audio.Input">
+    <value>Audio input</value>
+  </data>
+  <data name="Emulation.Audio.InputUnavailable">
+    <value>This Amiga core does not expose an audio input.</value>
+  </data>
+  <data name="Emulation.Audio.DefaultOutput">
+    <value>Windows default output</value>
+  </data>
+  <data name="Emulation.Storage.Media.Add">
+    <value>Add media</value>
+  </data>
+  <data name="Emulation.Storage.HardDisk.Create">
+    <value>Create hard disk</value>
+  </data>
+  <data name="Emulation.Storage.HardDisk.Size">
+    <value>Hard-disk size (MiB)</value>
+  </data>
+  <data name="Emulation.Storage.Media.None">
+    <value>No media. Add a floppy, hard disk or CD supported by the selected model.</value>
+  </data>
+  <data name="Emulation.Storage.ReadOnly">
+    <value>Read-only</value>
+  </data>
+  <data name="Emulation.Amiga.Storage.MediaFilter">
+    <value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value>
+  </data>
+  <data name="Emulation.Storage.HardDisk.Filter">
+    <value>Amiga hard disk|*.hdf|All files|*.*</value>
+  </data>
+  <data name="Emulation.Storage.HardDisk.NotSupported">
+    <value>The selected model does not support a hard disk.</value>
+  </data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives">
+    <value>This model accepts at most {0} floppy drive(s).</value>
+  </data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives">
+    <value>This model accepts at most {0} hard disk(s).</value>
+  </data>
+  <data name="Emulation.Storage.Cd.NotSupported">
+    <value>The selected model does not support a CD drive.</value>
+  </data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate">
+    <value>Two Amiga keys use the same PC key. Resolve the red mappings before saving.</value>
+  </data>
+  <data name="Emulation.Mouse.ReleaseKey">
+    <value>Release-capture key</value>
+  </data>
+  <data name="Emulation.Mouse.Button.Left">
+    <value>Left mouse button</value>
+  </data>
+  <data name="Emulation.Mouse.Button.Right">
+    <value>Right mouse button</value>
+  </data>
+  <data name="Emulation.Mouse.Button.Middle">
+    <value>Middle mouse button</value>
+  </data>
+  <data name="Emulation.Controller.Detect">
+    <value>Detect controllers</value>
+  </data>
+  <data name="Emulation.Controller.EmulatedAction">
+    <value>Amiga action</value>
+  </data>
+  <data name="Emulation.Controller.PhysicalControl">
+    <value>Keyboard, mouse or controller control</value>
+  </data>
+  <data name="Emulation.Amiga.Chipset.Name">
+    <value>Σύνολο ολοκληρωμένων</value>
+  </data>
+  <data name="Emulation.Storage.Cd.Drive">
+    <value>Μονάδα CD</value>
+  </data>
+  <data name="Emulation.Storage.Floppy.DriveCount">
+    <value>Αριθμός μονάδων δισκέτας</value>
+  </data>
+  <data name="Emulation.Storage.HardDisk.DriveCount">
+    <value>Αριθμός σκληρών δίσκων</value>
+  </data>
+  <data name="Emulation.Fpu.Model">
+    <value>FPU</value>
+  </data>
+  <data name="Emulation.Cpu.Speed">
+    <value>CPU speed</value>
+  </data>
+  <data name="Emulation.Cpu.SpeedOriginal">
+    <value>Original speed</value>
+  </data>
+  <data name="Emulation.Cpu.Compatibility.Normal">
+    <value>Normal</value>
+  </data>
+  <data name="Emulation.Cpu.Compatibility.Compatible">
+    <value>Compatible</value>
+  </data>
+  <data name="Emulation.Cpu.Compatibility.Memory">
+    <value>Memory compatible</value>
+  </data>
+  <data name="Emulation.Cpu.Compatibility.Exact">
+    <value>Cycle exact</value>
+  </data>
+  <data name="Emulation.Fpu.Integrated">
+    <value>Integrated FPU</value>
+  </data>
+  <data name="Emulation.Value.Enabled">
+    <value>Enabled</value>
+  </data>
+  <data name="Emulation.Value.Disabled">
+    <value>Disabled</value>
+  </data>
+  <data name="Emulation.Value.Minimum">
+    <value>Minimum</value>
+  </data>
+  <data name="Emulation.Value.VerySmall">
+    <value>Very small</value>
+  </data>
+  <data name="Emulation.Value.Small">
+    <value>Small</value>
+  </data>
+  <data name="Emulation.Value.Medium">
+    <value>Medium</value>
+  </data>
+  <data name="Emulation.Value.Large">
+    <value>Large</value>
+  </data>
+  <data name="Emulation.Value.VeryLarge">
+    <value>Very large</value>
+  </data>
+  <data name="Emulation.Value.Maximum">
+    <value>Maximum</value>
+  </data>
+  <data name="Emulation.State.Locked">
+    <value>Locked</value>
+  </data>
+  <data name="Emulation.State.Immediate">
+    <value>Immediate</value>
+  </data>
+  <data name="Emulation.State.Waiting">
+    <value>Waiting</value>
+  </data>
+  <data name="Emulation.Value.Standard">
+    <value>Standard</value>
+  </data>
+  <data name="Emulation.Value.Enhanced">
+    <value>Enhanced</value>
+  </data>
+  <data name="Emulation.Value.Internal">
+    <value>Internal</value>
+  </data>
+  <data name="Emulation.Value.Loud">
+    <value>Loud</value>
+  </data>
+  <data name="Emulation.Video.Resolution.AutoLow">
+    <value>Automatic low resolution</value>
+  </data>
+  <data name="Emulation.Video.Resolution.AutoSuperHigh">
+    <value>Automatic super-high resolution</value>
+  </data>
+  <data name="Emulation.Video.Resolution.Low">
+    <value>Low resolution</value>
+  </data>
+  <data name="Emulation.Video.Resolution.High">
+    <value>High resolution</value>
+  </data>
+  <data name="Emulation.Video.Resolution.SuperHigh">
+    <value>Super-high resolution</value>
+  </data>
+  <data name="Emulation.Video.LineMode">
+    <value>Line mode</value>
+  </data>
+  <data name="Emulation.Video.HzChange">
+    <value>Refresh-rate changes</value>
+  </data>
+  <data name="Emulation.Video.FrameSkip">
+    <value>Frame skip</value>
+  </data>
+  <data name="Emulation.Video.Colors">
+    <value>Color depth</value>
+  </data>
+  <data name="Emulation.Video.Gamma">
+    <value>Gamma</value>
+  </data>
+  <data name="Emulation.State.ImmediateBlits">
+    <value>Blitter operation</value>
+  </data>
+  <data name="Emulation.Video.Collision.Level">
+    <value>Collision detection</value>
+  </data>
+  <data name="Emulation.Video.LineMode.Single">
+    <value>Single scan</value>
+  </data>
+  <data name="Emulation.Video.LineMode.Double">
+    <value>Double scan</value>
+  </data>
+  <data name="Emulation.Video.Collision.Sprites">
+    <value>Sprites</value>
+  </data>
+  <data name="Emulation.Video.Collision.Playfields">
+    <value>Playfields</value>
+  </data>
+  <data name="Emulation.Video.Collision.Full">
+    <value>Full</value>
+  </data>
+  <data name="Emulation.Audio.Interpolation.Anti">
+    <value>Anti interpolation</value>
+  </data>
+  <data name="Emulation.Audio.Filter.Emulated">
+    <value>Emulated</value>
+  </data>
+  <data name="Emulation.Audio.FilterType">
+    <value>Filter type</value>
+  </data>
+  <data name="Emulation.Audio.Floppy.Sound">
+    <value>Floppy-drive sound volume</value>
+  </data>
+  <data name="Emulation.Audio.Floppy.SoundType">
+    <value>Floppy-drive sound type</value>
+  </data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty">
+    <value>Mute empty drives</value>
+  </data>
+  <data name="Emulation.Audio.Cd.Volume">
+    <value>CD audio volume</value>
+  </data>
+  <data name="Emulation.Storage.Floppy.Speed">
+    <value>Floppy-drive speed</value>
+  </data>
+  <data name="Emulation.Storage.Floppy.WriteProtection">
+    <value>Write-protect floppy images</value>
+  </data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect">
+    <value>Redirect floppy writes</value>
+  </data>
+  <data name="Emulation.Storage.Cd.Speed">
+    <value>CD speed</value>
+  </data>
+  <data name="Emulation.Keyboard.PassThrough">
+    <value>Physical keyboard pass-through</value>
+  </data>
+  <data name="Emulation.Mouse.Physical">
+    <value>Physical mouse</value>
+  </data>
+  <data name="Emulation.Mouse.PhysicalDouble">
+    <value>Double movement</value>
+  </data>
+  <data name="Emulation.Mouse.Speed">
+    <value>Mouse speed</value>
+  </data>
+  <data name="Emulation.Mouse.Analog">
+    <value>Analog sticks controlling the mouse</value>
+  </data>
+  <data name="Emulation.Mouse.AnalogDeadzone">
+    <value>Analog-stick dead zone</value>
+  </data>
+  <data name="Emulation.Mouse.AnalogSpeed">
+    <value>Analog-stick mouse speed</value>
+  </data>
+  <data name="Emulation.Controller.Stick.Left">
+    <value>Left stick</value>
+  </data>
+  <data name="Emulation.Controller.Stick.Right">
+    <value>Right stick</value>
+  </data>
+  <data name="Emulation.Controller.Stick.Both">
+    <value>Both sticks</value>
+  </data>
+  <data name="Emulation.Controller.Action.TurboFire">
+    <value>Turbo fire</value>
+  </data>
+  <data name="Emulation.Controller.Turbo.Button">
+    <value>Turbo button</value>
+  </data>
+  <data name="Emulation.Controller.Turbo.Pulse">
+    <value>Turbo pulse</value>
+  </data>
+  <data name="Emulation.Controller.PortOrder">
+    <value>Controller port order</value>
+  </data>
+  <data name="Emulation.Core.Emulator">
+    <value>Εξομοιωτής</value>
+  </data>
+  <data name="Emulation.Folder.StorageBase">
+    <value>Κοινόχρηστος φάκελος αποθήκευσης εξομοίωσης</value>
+  </data>
+  <data name="Emulation.Folder.StorageBaseDescription">
+    <value>Οι σκληροί δίσκοι οργανώνονται αυτόματα στα HDD\Amiga, HDD\Atari και στους φακέλους μελλοντικών συστημάτων.</value>
+  </data>
+  <data name="Emulation.Storage.HardDisk.Add">
+    <value>Προσθήκη υπάρχοντος σκληρού δίσκου</value>
+  </data>
+  <data name="Emulation.Storage.HardDisk.List">
+    <value>Σκληροί δίσκοι</value>
+  </data>
+  <data name="Emulation.Storage.HardDisk.None">
+    <value>Δεν έχει συνδεθεί σκληρός δίσκος σε αυτό το μηχάνημα.</value>
+  </data>
+  <data name="Emulation.Keyboard.Priority.Hint">
+    <value>Δεσμευμένες συντομεύσεις</value>
+  </data>
+  <data name="Emulation.Keyboard.Priority.Description">
+    <value>Οι συντομεύσεις του GW GUI και των Windows παραμένουν ενεργές και δεν καταγράφονται από το μηχάνημα.</value>
+  </data>
+  <data name="Emulation.Input.Behavior">
+    <value>Συμπεριφορά</value>
+  </data>
+  <data name="Emulation.Input.Assign">
+    <value>Αντιστοίχιση...</value>
+  </data>
+  <data name="Emulation.Input.Actions">
+    <value>Ενέργειες</value>
+  </data>
+  <data name="Emulation.Input.Press">
+    <value>Πατήστε ένα πλήκτρο...</value>
+  </data>
+  <data name="Emulation.Folder.CreateStorage">
+    <value>Αυτόματη δημιουργία υποφακέλων που λείπουν</value>
+  </data>
+  <data name="Emulation.Folder.Common">
+    <value>Κοινόχρηστοι φάκελοι</value>
+  </data>
+  <data name="Emulation.Input.SharedDescription">
+    <value>Η ανίχνευση συσκευών είναι κοινή, ενώ οι αντιστοιχίσεις αποθηκεύονται χωριστά σε κάθε διαμόρφωση μηχανήματος.</value>
+  </data>
+  <data name="Emulation.Input.Test">
+    <value>Δοκιμή εισόδων</value>
+  </data>
+  <data name="Emulation.Input.SharedDevices">
+    <value>Κοινόχρηστες συσκευές εισόδου</value>
+  </data>
+  <data name="Emulation.Folder.Capture">
+    <value>Φάκελος στιγμιοτύπων</value>
+  </data>
+  <data name="Emulation.Folder.State">
+    <value>Φάκελος αποθηκευμένων καταστάσεων</value>
+  </data>
+  <data name="Emulation.Folder.Default">
+    <value>Προεπιλεγμένοι φάκελοι</value>
+  </data>
+  <data name="Emulation.Controller.NoneDetected">
+    <value>Δεν εντοπίστηκε χειριστήριο</value>
+  </data>
+  <data name="Emulation.Input.TestPrompt">
+    <value>Πατήστε ένα πλήκτρο ή κουμπί ποντικιού για να δοκιμάσετε την ανίχνευση.</value>
+  </data>
+  <data name="Emulation.Storage.Floppy.List">
+    <value>Δισκέτες</value>
+  </data>
+  <data name="Emulation.Firmware.Rom.Extended">
+    <value>Εκτεταμένη ROM</value>
+  </data>
+  <data name="Emulation.Firmware.Rom.Key">
+    <value>Κλειδί ROM</value>
+  </data>
+  <data name="Emulation.Cpu.Processor">
+    <value>Επεξεργαστής</value>
+  </data>
+  <data name="Emulation.Cpu.Precision">
+    <value>Ακρίβεια</value>
+  </data>
+  <data name="Emulation.Cpu.Acceleration">
+    <value>Επιτάχυνση</value>
+  </data>
+  <data name="Emulation.Memory.Main">
+    <value>Κύρια μνήμη</value>
+  </data>
+  <data name="Emulation.Memory.Extensions">
+    <value>Επεκτάσεις μνήμης</value>
+  </data>
+  <data name="Emulation.Memory.None">
+    <value>Καμία</value>
+  </data>
+  <data name="Emulation.Memory.CompatibleWithModel">
+    <value>Η διαμόρφωση μνήμης είναι συμβατή με το {0}.</value>
+  </data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel">
+    <value>Οι επεκτάσεις μνήμης είναι συμβατές με το {0}.</value>
+  </data>
+  <data name="Emulation.Memory.Z3UnavailableForModel">
+    <value>Η RAM Zorro III δεν είναι διαθέσιμη στο {0}.</value>
+  </data>
+  <data name="Emulation.Memory.TotalConfigured">
+    <value>Συνολική διαμορφωμένη μνήμη: {0} {1}</value>
+  </data>
+  <data name="Emulation.Firmware.Rom.System">
+    <value>ROM συστήματος</value>
+  </data>
+  <data name="Emulation.Firmware.Rom.Detected">
+    <value>ROM που εντοπίστηκαν</value>
+  </data>
+  <data name="Emulation.Firmware.Use">
+    <value>Χρήση</value>
+  </data>
+  <data name="Emulation.Value.NotUsed">
+    <value>Δεν χρησιμοποιείται</value>
+  </data>
+  <data name="Emulation.Firmware.Rom.OpenFolder">
+    <value>Άνοιγμα φακέλου ROM</value>
+  </data>
+  <data name="Emulation.Firmware.PartiallyCompatible">
+    <value>Μερικώς συμβατή</value>
+  </data>
+  <data name="Emulation.Video.Settings.Display">
+    <value>Προβολή</value>
+  </data>
+  <data name="Emulation.Video.Settings.Rendering">
+    <value>Απόδοση</value>
+  </data>
+  <data name="Emulation.Amiga.Chipset.NameCompatibility">
+    <value>Συμβατότητα chipset</value>
+  </data>
+  <data name="Emulation.Audio.Device">
+    <value>Συσκευή</value>
+  </data>
+  <data name="Emulation.Audio.LatencyLabel">
+    <value>Καθυστέρηση</value>
+  </data>
+  <data name="Emulation.Audio.Quality">
+    <value>Ποιότητα</value>
+  </data>
+  <data name="Emulation.Audio.Drives">
+    <value>Μονάδες</value>
+  </data>
+  <data name="Emulation.Device.Name.Type">
+    <value>Τύπος</value>
+  </data>
+  <data name="Emulation.Storage.Device.Add">
+    <value>Προσθήκη συσκευής αποθήκευσης</value>
+  </data>
+  <data name="Emulation.Amiga.Storage.Floppy.Dd">
+    <value>Amiga 3,5 ιντσών DD · 880 KiB</value>
+  </data>
+  <data name="Emulation.Amiga.Storage.Floppy.Hd">
+    <value>Amiga 3,5 ιντσών HD · 1,76 MiB</value>
+  </data>
+  <data name="Emulation.Storage.Media.Associated">
+    <value>Συσχετισμένο μέσο</value>
+  </data>
+  <data name="Emulation.Storage.Geometry.Automatic">
+    <value>Η γεωμετρία του δίσκου καθορίζεται αυτόματα από τον εξομοιωτή.</value>
+  </data>
+  <data name="Emulation.Storage.Floppy.BlankCreated">
+    <value>Δημιουργήθηκε κενή εικόνα δισκέτας: {0}</value>
+  </data>
+  <data name="Emulation.Storage.HardDisk.BlankHint">
+    <value>Το αρχείο θα δημιουργηθεί κενό και πρέπει να διαμεριστεί και να μορφοποιηθεί στο εξομοιούμενο μηχάνημα.</value>
+  </data>
+  <data name="Emulation.Storage.Cd.Writer">
+    <value>Εγγραφέας CD</value>
+  </data>
+  <data name="Emulation.Storage.Cd.WriterHint">
+    <value>Κενός δίσκος δημιουργείται μόνο όταν το επιλεγμένο μηχάνημα και ο εξομοιωτής υποστηρίζουν εγγραφή.</value>
+  </data>
+  <data name="Emulation.Storage.Cd.Device">
+    <value>Μονάδα CD-ROM</value>
+  </data>
+  <data name="Emulation.Storage.Device.Configure">
+    <value>Ρύθμιση</value>
+  </data>
+  <data name="Emulation.Storage.Floppy.CreateBlank">
+    <value>Δημιουργία κενής δισκέτας</value>
+  </data>
+  <data name="Emulation.Storage.Disk.Image">
+    <value>Εικόνα δίσκου</value>
+  </data>
+  <data name="Emulation.Storage.Disk.ImageRequired">
+    <value>Επιλέξτε μια υπάρχουσα εικόνα δίσκου.</value>
+  </data>
+  <data name="Emulation.Storage.Disk.ExistingHint">
+    <value>Το επιλεγμένο αρχείο θα συνδεθεί σε αυτήν την εικονική μονάδα.</value>
+  </data>
+  <data name="Emulation.Storage.Floppy.Device">
+    <value>Μονάδα δισκέτας</value>
+  </data>
+  <data name="Emulation.Storage.Floppy.ImageFilter">
+    <value>Εικόνα δισκέτας Amiga|*.adf|Όλα τα αρχεία|*.*</value>
+  </data>
+  <data name="Emulation.Storage.HardDisk.Device">
+    <value>Σκληρός δίσκος</value>
+  </data>
+  <data name="Emulation.Storage.Device.Interface">
+    <value>Διασύνδεση</value>
+  </data>
+  <data name="Emulation.Storage.File.Preallocate">
+    <value>Προκατανομή αρχείου</value>
+  </data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint">
+    <value>Οι δισκέτες και τα CD εισάγονται ή αντικαθίστανται από το μηχάνημα που εκτελείται.</value>
+  </data>
+  <data name="Emulation.Storage.Media.Remove">
+    <value>Αφαίρεση μέσου</value>
+  </data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting">
+    <value>Η εικόνα δίσκου υπάρχει ήδη: {0}\nΘέλετε να την αντικαταστήσετε;</value>
+  </data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint">
+    <value>Οι διαθέσιμοι τύποι, τα μοντέλα και τα αναγνωριστικά εξαρτώνται από το επιλεγμένο μηχάνημα.</value>
+  </data>
+  <data name="Emulation.Storage.Tape.Device">
+    <value>Μονάδα ταινίας</value>
+  </data>
+  <data name="Emulation.Storage.Disk.Use">
+    <value>Χρήση δίσκου</value>
+  </data>
+  <data name="Emulation.Storage.Disk.UseExisting">
+    <value>Χρήση υπάρχοντος δίσκου</value>
+  </data>
+  <data name="Emulation.Storage.ModifyInGeneral">
+    <value>Τροποποίηση στα Γενικά</value>
+  </data>
+  <data name="Emulation.Storage.Device.NoneAvailable">
+    <value>Δεν υπάρχει άλλη διαθέσιμη συσκευή αποθήκευσης για αυτό το μηχάνημα.</value>
+  </data>
+  <data name="Emulation.Storage.Device.List">
+    <value>Συσκευές αποθήκευσης</value>
+  </data>
+  <data name="Emulation.Input.Binding.RestoreDefaults">
+    <value>Επαναφορά προεπιλογών</value>
+  </data>
+  <data name="Emulation.Input.Binding.ClearConflicts">
+    <value>Εκκαθάριση διενέξεων</value>
+  </data>
+  <data name="Emulation.Keyboard.EmulatedKey">
+    <value>Πλήκτρο μηχανής</value>
+  </data>
+  <data name="Emulation.Input.Binding.Label">
+    <value>Αντιστοίχιση</value>
+  </data>
+  <data name="Emulation.Input.Binding.LabelState">
+    <value>Κατάσταση</value>
+  </data>
+  <data name="Emulation.Input.Binding.Search">
+    <value>Αναζήτηση πλήκτρου ή αντιστοίχισης</value>
+  </data>
+  <data name="Emulation.Input.Binding.LabelLegend">
+    <value>Έγκυρο: μοναδική αντιστοίχιση · Διένεξη: πολλαπλή χρήση · Δεσμευμένο: συντόμευση Windows ή GW GUI</value>
+  </data>
+  <data name="Emulation.Input.Binding.LabelValid">
+    <value>Έγκυρο</value>
+  </data>
+  <data name="Emulation.Input.Binding.LabelConflict">
+    <value>Διένεξη</value>
+  </data>
+  <data name="Emulation.Input.Binding.LabelReserved">
+    <value>Δεσμευμένο</value>
+  </data>
+  <data name="Emulation.Input.Binding.LabelUnassigned">
+    <value>Χωρίς αντιστοίχιση</value>
+  </data>
+  <data name="Emulation.Shortcut.Global">
+    <value>Συντομεύσεις εξομοίωσης</value>
+  </data>
+  <data name="Emulation.Tab.Shortcuts">
+    <value>Συντομεύσεις</value>
+  </data>
+  <data name="Emulation.Shortcut.ReleaseMouse">
+    <value>Απελευθέρωση ποντικιού</value>
+  </data>
+  <data name="Emulation.Shortcut.PauseResume">
+    <value>Παύση / συνέχεια</value>
+  </data>
+  <data name="Emulation.Shortcut.Fullscreen">
+    <value>Πλήρης οθόνη / παράθυρο</value>
+  </data>
+  <data name="Emulation.Shortcut.Power">
+    <value>Ενεργοποίηση / απενεργοποίηση</value>
+  </data>
+  <data name="Emulation.Shortcut.SoftReset">
+    <value>Ήπια επανεκκίνηση</value>
+  </data>
+  <data name="Emulation.Shortcut.HardReset">
+    <value>Πλήρης επανεκκίνηση</value>
+  </data>
+  <data name="Emulation.Shortcut.QuickSave">
+    <value>Γρήγορη αποθήκευση</value>
+  </data>
+  <data name="Emulation.Shortcut.QuickLoad">
+    <value>Γρήγορη φόρτωση</value>
+  </data>
+  <data name="Emulation.Shortcut.Screenshot">
+    <value>Στιγμιότυπο οθόνης</value>
+  </data>
+  <data name="Emulation.Shortcut.Mute">
+    <value>Σίγαση ενεργού μηχανής</value>
+  </data>
+  <data name="Emulation.Shortcut.FastForward">
+    <value>Γρήγορη προώθηση κατά το κράτημα</value>
+  </data>
+  <data name="Emulation.Shortcut.InsertMedia">
+    <value>Εισαγωγή ή αντικατάσταση μέσου</value>
+  </data>
+  <data name="Emulation.Shortcut.EjectMedia">
+    <value>Εξαγωγή μέσου</value>
+  </data>
+  <data name="Emulation.Shortcut.NextMedia">
+    <value>Επόμενο μέσο</value>
+  </data>
+  <data name="Emulation.Key.Help">
+    <value>Βοήθεια</value>
+  </data>
+  <data name="Emulation.Key.LeftAmiga">
+    <value>Αριστερό Amiga</value>
+  </data>
+  <data name="Emulation.Key.RightAmiga">
+    <value>Δεξί Amiga</value>
+  </data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint">
+    <value>Τα γράμματα, οι αριθμοί και τα συνήθη πλήκτρα τροποποίησης μεταδίδονται απευθείας. Εδώ αντιστοιχίζονται μόνο τα πλήκτρα λειτουργιών και τα ειδικά πλήκτρα του Amiga.</value>
+  </data>
+  <data name="Emulation.Shortcut.Unavailable">
+    <value>Αυτή η ενέργεια δεν υποστηρίζεται ακόμη από τον τρέχοντα εξομοιωτή.</value>
+  </data>
+  <data name="Emulation.Storage.Geometry.Allocation">
+    <value>Δέσμευση</value>
+  </data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile">
+    <value>Αυτόματη γεωμετρία</value>
+  </data>
+  <data name="Emulation.Storage.Media.Blank">
+    <value>Κενό μέσο</value>
+  </data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector">
+    <value>Byte ανά τομέα</value>
+  </data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity">
+    <value>Υπολογισμένη χωρητικότητα: {0}</value>
+  </data>
+  <data name="Emulation.Controller.Mappings">
+    <value>Αντιστοιχίσεις χειριστηρίου</value>
+  </data>
+  <data name="Emulation.Controller.Port">
+    <value>Θύρα {0}</value>
+  </data>
+  <data name="Emulation.Controller.Type">
+    <value>Τύπος χειριστηρίου</value>
+  </data>
+  <data name="Emulation.Storage.Geometry.CustomSize">
+    <value>Προσαρμοσμένο μέγεθος</value>
+  </data>
+  <data name="Emulation.Storage.Geometry.Cylinders">
+    <value>Κύλινδροι</value>
+  </data>
+  <data name="Emulation.Storage.File.DestinationFolder">
+    <value>Φάκελος προορισμού</value>
+  </data>
+  <data name="Emulation.Controller.Detected">
+    <value>Εντοπισμένα χειριστήρια</value>
+  </data>
+  <data name="Emulation.Device.Name">
+    <value>Συσκευή</value>
+  </data>
+  <data name="Emulation.Storage.Geometry.Label">
+    <value>Γεωμετρία δίσκου (CHS)</value>
+  </data>
+  <data name="Emulation.Storage.Geometry.SizeProfile">
+    <value>Προφίλ μεγέθους</value>
+  </data>
+  <data name="Emulation.Storage.Floppy.Drive">
+    <value>Μονάδα δισκέτας</value>
+  </data>
+  <data name="Emulation.Storage.Geometry.Heads">
+    <value>Κεφαλές</value>
+  </data>
+  <data name="Emulation.Input.Capture.Hint">
+    <value>Πατήστε «Αντιστοίχιση» και μετά ένα πλήκτρο, κουμπί ποντικιού ή κουμπί χειριστηρίου.</value>
+  </data>
+  <data name="Emulation.Storage.Disk.InvalidSize">
+    <value>Το μέγεθος ή η γεωμετρία του δίσκου δεν είναι έγκυρα.</value>
+  </data>
+  <data name="Emulation.Mouse.Actions">
+    <value>Ενέργειες ποντικιού</value>
+  </data>
+  <data name="Emulation.Mouse.Button.4">
+    <value>Κουμπί ποντικιού 4</value>
+  </data>
+  <data name="Emulation.Mouse.Button.5">
+    <value>Κουμπί ποντικιού 5</value>
+  </data>
+  <data name="Emulation.Mouse.Capture.Title">
+    <value>Δέσμευση ποντικιού</value>
+  </data>
+  <data name="Emulation.Storage.File.PreallocationHint">
+    <value>Δεσμεύει αμέσως τον φυσικό χώρο· διαφορετικά το είδωλο μεγαλώνει κατά την εγγραφή.</value>
+  </data>
+  <data name="Emulation.Controller.SearchBinding">
+    <value>Αναζήτηση ενέργειας ή εισόδου</value>
+  </data>
+  <data name="Emulation.Storage.Geometry.Sectors">
+    <value>Τομείς</value>
+  </data>
+  <data name="Emulation.Storage.Unit.MiB">
+    <value>MiB</value>
+  </data>
+  <data name="Emulation.Storage.Unit.GiB">
+    <value>GiB</value>
+  </data>
+  <data name="Emulation.Controller.Action.Up">
+    <value>Πάνω</value>
+  </data>
+  <data name="Emulation.Controller.Action.Down">
+    <value>Κάτω</value>
+  </data>
+  <data name="Emulation.Controller.Action.Left">
+    <value>Αριστερά</value>
+  </data>
+  <data name="Emulation.Controller.Action.Right">
+    <value>Δεξιά</value>
+  </data>
+  <data name="Emulation.Controller.Action.Fire1">
+    <value>Κουμπί πυρός 1</value>
+  </data>
+  <data name="Emulation.Controller.Action.Fire2">
+    <value>Κουμπί πυρός 2</value>
+  </data>
+  <data name="Emulation.Amiga.Controller.Cd32.Red">
+    <value>Κόκκινο κουμπί CD32</value>
+  </data>
+  <data name="Emulation.Amiga.Controller.Cd32.Blue">
+    <value>Μπλε κουμπί CD32</value>
+  </data>
+  <data name="Emulation.Amiga.Controller.Cd32.Green">
+    <value>Πράσινο κουμπί CD32</value>
+  </data>
+  <data name="Emulation.Amiga.Controller.Cd32.Yellow">
+    <value>Κίτρινο κουμπί CD32</value>
+  </data>
+  <data name="Emulation.Amiga.Controller.Cd32.Rewind">
+    <value>CD32 γρήγορη επιστροφή</value>
+  </data>
+  <data name="Emulation.Amiga.Controller.Cd32.FastForward">
+    <value>CD32 γρήγορη προώθηση</value>
+  </data>
+  <data name="Emulation.Amiga.Controller.Cd32.PlayPause">
+    <value>CD32 αναπαραγωγή / παύση</value>
+  </data>
+  <data name="Emulation.Amiga.Controller.Joystick">
+    <value>Χειριστήριο Amiga</value>
+  </data>
+  <data name="Emulation.Controller.AnalogJoystick">
+    <value>Αναλογικό χειριστήριο</value>
+  </data>
+  <data name="Emulation.Amiga.Controller.Cd32">
+    <value>Χειριστήριο CD32</value>
+  </data>
+  <data name="Emulation.Mouse.Wheel.Up">
+    <value>Τροχός ποντικιού πάνω</value>
+  </data>
+  <data name="Emulation.Mouse.Wheel.Down">
+    <value>Τροχός ποντικιού κάτω</value>
+  </data>
+  <data name="Emulation.Mouse.Wheel.Left">
+    <value>Τροχός ποντικιού αριστερά</value>
+  </data>
+  <data name="Emulation.Mouse.Wheel.Right">
+    <value>Τροχός ποντικιού δεξιά</value>
+  </data>
+  <data name="Emulation.Atari.Model.St" xml:space="preserve">
     <value>Atari ST</value>
   </data>
-  <data name="Emulation.AtariModelStf" xml:space="preserve">
+  <data name="Emulation.Atari.Model.Stf" xml:space="preserve">
     <value>Atari STF</value>
   </data>
-  <data name="Emulation.AtariModelStfm" xml:space="preserve">
+  <data name="Emulation.Atari.Model.Stfm" xml:space="preserve">
     <value>Atari STFM</value>
   </data>
-  <data name="Emulation.AtariModelMegaSt" xml:space="preserve">
+  <data name="Emulation.Atari.Model.MegaSt" xml:space="preserve">
     <value>Atari Mega ST</value>
   </data>
-  <data name="Emulation.AtariModelSte" xml:space="preserve">
+  <data name="Emulation.Atari.Model.Ste" xml:space="preserve">
     <value>Atari STE</value>
   </data>
-  <data name="Emulation.AtariModelMegaSte" xml:space="preserve">
+  <data name="Emulation.Atari.Model.MegaSte" xml:space="preserve">
     <value>Atari Mega STE</value>
   </data>
-  <data name="Emulation.AtariModelTt" xml:space="preserve">
+  <data name="Emulation.Atari.Model.Tt" xml:space="preserve">
     <value>Atari TT</value>
   </data>
-  <data name="Emulation.AtariModelFalcon" xml:space="preserve">
+  <data name="Emulation.Atari.Model.Falcon" xml:space="preserve">
     <value>Atari Falcon</value>
   </data>
-  <data name="Emulation.AtariModel400" xml:space="preserve"><value>Atari 400</value></data>
-  <data name="Emulation.AtariModel800" xml:space="preserve"><value>Atari 800</value></data>
-  <data name="Emulation.AtariModel800Xl" xml:space="preserve"><value>Atari 800XL</value></data>
-  <data name="Emulation.AtariModel130Xe" xml:space="preserve"><value>Atari 130XE</value></data>
-  <data name="Emulation.AtariModelModern320K" xml:space="preserve"><value>Atari XL/XE 320K</value></data>
-  <data name="Emulation.AtariModelModern576K" xml:space="preserve"><value>Atari XL/XE 576K</value></data>
-  <data name="Emulation.AtariModelModern1088K" xml:space="preserve"><value>Atari XL/XE 1088K</value></data>
-  <data name="Emulation.AtariModelXegs" xml:space="preserve"><value>Atari XEGS</value></data>
-  <data name="Emulation.AtariModel5200" xml:space="preserve"><value>Atari 5200</value></data>
-  <data name="Emulation.AtariModel2600" xml:space="preserve"><value>Atari 2600</value></data>
-  <data name="Emulation.AtariModel7800" xml:space="preserve"><value>Atari 7800</value></data>
-  <data name="Emulation.AtariModelLynx" xml:space="preserve"><value>Atari Lynx</value></data>
-  <data name="Emulation.AtariModelJaguar" xml:space="preserve"><value>Atari Jaguar</value></data>
-  <data name="Emulation.AtariModelJaguarCd" xml:space="preserve"><value>Atari Jaguar CD</value></data>
-  <data name="Emulation.AtariUnavailable.ForcedByModel" xml:space="preserve"><value>Η τιμή αυτή καθορίζεται από το επιλεγμένο μοντέλο.</value></data>
-  <data name="Emulation.AtariUnavailable.NoFpu" xml:space="preserve"><value>Δεν είναι διαθέσιμο συμβατό FPU για αυτό το μοντέλο.</value></data>
-  <data name="Emulation.AtariUnavailable.NoAlternateMemory" xml:space="preserve"><value>Δεν υπάρχει εναλλακτική μνήμη για αυτό το μοντέλο.</value></data>
-  <data name="Emulation.AtariUnavailable.NoFirmware" xml:space="preserve"><value>Αυτό το μοντέλο δεν έχει διαμορφώσιμο firmware.</value></data>
-  <data name="Emulation.AtariUnavailable.NoKeyboard" xml:space="preserve"><value>Αυτό το μοντέλο δεν έχει πληκτρολόγιο.</value></data>
-  <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>Αυτό το μοντέλο δεν έχει ποντίκι.</value></data>
-  <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>Αυτό το μοντέλο δεν έχει μέσα αποθήκευσης.</value></data>
-  <data name="Emulation.AtariUnavailable.JaguarStandardNoCd" xml:space="preserve"><value>Επιλέξτε το μοντέλο Jaguar CD για να χρησιμοποιήσετε δίσκους CD.</value></data>
-  <data name="Emulation.AtariCassettes"><value>Κασέτα</value></data>
-  <data name="Emulation.AtariCartridges"><value>Κασέτα ROM</value></data>
-  <data name="Emulation.AtariCompactDiscs"><value>Συμπαγείς δίσκοι</value></data>
-  <data name="Emulation.AtariRegion"><value>Περιοχή</value></data>
-  <data name="Emulation.AtariMultilingual"><value>Πολύγλωσσο</value></data>
-  <data name="Emulation.AtariRegionFree"><value>Χωρίς περιοχή</value></data>
-  <data name="Emulation.AudioTab" xml:space="preserve"><value>Ήχος</value></data>
-  <data name="Emulation.AtariError.CoreNotFound" xml:space="preserve"><value>Δεν βρέθηκε ο απαιτούμενος πυρήνας Ατάρι.</value></data>
-  <data name="Emulation.AtariError.CoreRejected" xml:space="preserve"><value>Δεν ήταν δυνατή η φόρτωση του επιλεγμένου πυρήνα Atari.</value></data>
-  <data name="Emulation.AtariError.FirmwareMissing" xml:space="preserve"><value>Ένα απαιτούμενο λογισμικό Ατάρι λείπει.</value></data>
-  <data name="Emulation.AtariError.FirmwareInvalid" xml:space="preserve"><value>Ένα firmware Atari είναι άκυρο ή ασυμβίβαστο.</value></data>
-  <data name="Emulation.AtariError.ContentNotFound" xml:space="preserve"><value>Το ρυθμισμένο μέσο Atari δε βρέθηκε.</value></data>
-  <data name="Emulation.AtariError.ContentUnsupported" xml:space="preserve"><value>Τα ρυθμισμένα μέσα δεν υποστηρίζονται από αυτή τη μηχανή Atari.</value></data>
-  <data name="Emulation.AtariError.OptionInvalid" xml:space="preserve"><value>Μια επιλογή Atari έχει μη έγκυρη τιμή.</value></data>
-  <data name="Emulation.AtariError.HostProtocolFailure" xml:space="preserve"><value>Η επικοινωνία με τον ξενιστή Ατάρι απέτυχε.</value></data>
-  <data name="Emulation.AtariError.StateInvalid" xml:space="preserve"><value>Η σωζόμενη κατάσταση του Ατάρι είναι άκυρη.</value></data>
-  <data name="Emulation.AtariError.StateIncompatible" xml:space="preserve"><value>Η σωζόμενη κατάσταση Ατάρι είναι ασύμβατη με την τρέχουσα μηχανή.</value></data>
-  <data name="Emulation.AtariError.Unexpected" xml:space="preserve"><value>Συνέβη ένα απροσδόκητο σφάλμα εξομοίωσης Atari.</value></data>
-  <data name="Emulation.AtariError.Details" xml:space="preserve"><value>Λεπτομέρειες: {0}</value></data>
-  <data name="Emulation.AtariError.ActiveConfiguration" xml:space="preserve"><value>Η ενεργή διαμόρφωση Atari δεν μπορεί να τροποποιηθεί ή να διαγραφεί.</value></data>
-  <data name="Emulation.AtariError.RequiredFirmwareMissing" xml:space="preserve"><value>Το απαιτούμενο firmware Atari &#x27;{0}&#x27; δεν έχει ρυθμιστεί για το {1}.</value></data>
-  <data name="Emulation.AtariError.FirmwareFileMissing" xml:space="preserve"><value>Το ρυθμισμένο λογισμικό Atari firmware &#x27;{0}&#x27; δεν βρέθηκε: {1}</value></data>
-  <data name="Emulation.AtariError.MediaFileMissing" xml:space="preserve"><value>Δε βρέθηκαν ρυθμισμένα μέσα Atari: {0}</value></data>
-  <data name="Emulation.AtariError.HostExecutableMissing" xml:space="preserve"><value>Η εκτελέσιμη διαδρομή του ξενιστή Atari δεν είναι διαθέσιμη.</value></data>
-  <data name="Emulation.AtariError.CoreNotInstalled" xml:space="preserve"><value>Ο πυρήνας Atari &#x27;{0}&#x27; δεν είναι εγκατεστημένος.</value></data>
-  <data name="Emulation.AtariMediaFilter" xml:space="preserve"><value>Μέσα Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Όλα τα αρχεία|*.*</value></data>
+  <data name="Emulation.Atari.Model.400" xml:space="preserve">
+    <value>Atari 400</value>
+  </data>
+  <data name="Emulation.Atari.Model.800" xml:space="preserve">
+    <value>Atari 800</value>
+  </data>
+  <data name="Emulation.Atari.Model.800Xl" xml:space="preserve">
+    <value>Atari 800XL</value>
+  </data>
+  <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
+    <value>Atari 130XE</value>
+  </data>
+  <data name="Emulation.Atari.Model.Modern320K" xml:space="preserve">
+    <value>Atari XL/XE 320K</value>
+  </data>
+  <data name="Emulation.Atari.Model.Modern576K" xml:space="preserve">
+    <value>Atari XL/XE 576K</value>
+  </data>
+  <data name="Emulation.Atari.Model.Modern1088K" xml:space="preserve">
+    <value>Atari XL/XE 1088K</value>
+  </data>
+  <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
+    <value>Atari XEGS</value>
+  </data>
+  <data name="Emulation.Atari.Model.5200" xml:space="preserve">
+    <value>Atari 5200</value>
+  </data>
+  <data name="Emulation.Atari.Model.2600" xml:space="preserve">
+    <value>Atari 2600</value>
+  </data>
+  <data name="Emulation.Atari.Model.7800" xml:space="preserve">
+    <value>Atari 7800</value>
+  </data>
+  <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
+    <value>Built-in controls</value>
+  </data>
+  <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
+    <value>Atari Jaguar</value>
+  </data>
+  <data name="Emulation.Atari.Model.JaguarCd" xml:space="preserve">
+    <value>Atari Jaguar CD</value>
+  </data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve">
+    <value>Η τιμή αυτή καθορίζεται από το επιλεγμένο μοντέλο.</value>
+  </data>
+  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve">
+    <value>Δεν είναι διαθέσιμο συμβατό FPU για αυτό το μοντέλο.</value>
+  </data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve">
+    <value>Δεν υπάρχει εναλλακτική μνήμη για αυτό το μοντέλο.</value>
+  </data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve">
+    <value>Αυτό το μοντέλο δεν έχει διαμορφώσιμο firmware.</value>
+  </data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve">
+    <value>Αυτό το μοντέλο δεν έχει πληκτρολόγιο.</value>
+  </data>
+  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve">
+    <value>Αυτό το μοντέλο δεν έχει ποντίκι.</value>
+  </data>
+  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve">
+    <value>Αυτό το μοντέλο δεν έχει μέσα αποθήκευσης.</value>
+  </data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
+    <value>Επιλέξτε το μοντέλο Jaguar CD για να χρησιμοποιήσετε δίσκους CD.</value>
+  </data>
+  <data name="Emulation.Atari.Storage.Cassettes">
+    <value>Κασέτα</value>
+  </data>
+  <data name="Emulation.Atari.Storage.Cartridges">
+    <value>Κασέτα ROM</value>
+  </data>
+  <data name="Emulation.Atari.Storage.CompactDiscs">
+    <value>Συμπαγείς δίσκοι</value>
+  </data>
+  <data name="Emulation.Atari.Video.Region">
+    <value>Περιοχή</value>
+  </data>
+  <data name="Emulation.Atari.Firmware.Multilingual">
+    <value>Πολύγλωσσο</value>
+  </data>
+  <data name="Emulation.Atari.Video.RegionFree">
+    <value>Χωρίς περιοχή</value>
+  </data>
+  <data name="Emulation.Tab.Audio" xml:space="preserve">
+    <value>Ήχος</value>
+  </data>
+  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve">
+    <value>Δεν βρέθηκε ο απαιτούμενος πυρήνας Ατάρι.</value>
+  </data>
+  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve">
+    <value>Δεν ήταν δυνατή η φόρτωση του επιλεγμένου πυρήνα Atari.</value>
+  </data>
+  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve">
+    <value>Ένα απαιτούμενο λογισμικό Ατάρι λείπει.</value>
+  </data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve">
+    <value>Ένα firmware Atari είναι άκυρο ή ασυμβίβαστο.</value>
+  </data>
+  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve">
+    <value>Το ρυθμισμένο μέσο Atari δε βρέθηκε.</value>
+  </data>
+  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve">
+    <value>Τα ρυθμισμένα μέσα δεν υποστηρίζονται από αυτή τη μηχανή Atari.</value>
+  </data>
+  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve">
+    <value>Μια επιλογή Atari έχει μη έγκυρη τιμή.</value>
+  </data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve">
+    <value>Η επικοινωνία με τον ξενιστή Ατάρι απέτυχε.</value>
+  </data>
+  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve">
+    <value>Η σωζόμενη κατάσταση του Ατάρι είναι άκυρη.</value>
+  </data>
+  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve">
+    <value>Η σωζόμενη κατάσταση Ατάρι είναι ασύμβατη με την τρέχουσα μηχανή.</value>
+  </data>
+  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve">
+    <value>Συνέβη ένα απροσδόκητο σφάλμα εξομοίωσης Atari.</value>
+  </data>
+  <data name="Emulation.Atari.Error.Details" xml:space="preserve">
+    <value>Λεπτομέρειες: {0}</value>
+  </data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve">
+    <value>Η ενεργή διαμόρφωση Atari δεν μπορεί να τροποποιηθεί ή να διαγραφεί.</value>
+  </data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve">
+    <value>Το απαιτούμενο firmware Atari '{0}' δεν έχει ρυθμιστεί για το {1}.</value>
+  </data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve">
+    <value>Το ρυθμισμένο λογισμικό Atari firmware '{0}' δεν βρέθηκε: {1}</value>
+  </data>
+  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve">
+    <value>Δε βρέθηκαν ρυθμισμένα μέσα Atari: {0}</value>
+  </data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve">
+    <value>Η εκτελέσιμη διαδρομή του ξενιστή Atari δεν είναι διαθέσιμη.</value>
+  </data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve">
+    <value>Ο πυρήνας Atari '{0}' δεν είναι εγκατεστημένος.</value>
+  </data>
+  <data name="Emulation.Atari.Storage.MediaFilter" xml:space="preserve">
+    <value>Μέσα Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Όλα τα αρχεία|*.*</value>
+  </data>
+  <data name="Emulation.Atari.Controller.Joystick">
+    <value>Χειριστήριο Atari</value>
+  </data>
+<data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Paddle Controllers</value></data>
+<data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 Light Gun</value></data>
+<data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
+  <data name="Emulation.Atari.Controller.Driving"><value>Atari Driving Controller</value></data>
+  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
+  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
+  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar Controller</value></data>
+  <data name="Emulation.Controller.Automatic"><value>Αυτόματο</value></data>
+  <data name="Emulation.Controller.None"><value>Καμία</value></data>
+  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Παράλληλος προσαρμοστής μοχλός τεσσάρων παικτών</value></data>
+  <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Εναλλαγή χειριστήριο/ποντίκι</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>Αριθμητικό πληκτρολόγιο</value></data>
+  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Ατάρι Booster Grip</value></data>
+  <data name="Emulation.Atari.Controller.Genesis"><value>Ελεγκτής Γένεσης Sega</value></data>
+  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ ελεγκτής</value></data>
 </root>

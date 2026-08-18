@@ -11,8 +11,8 @@ internal static class EmulationOptionValueConverter
         int.TryParse(new string(identifier.Where(char.IsDigit).ToArray()), out var index) ? index : 0;
 
     internal static string FloppyModelName(string model) => model == "35hd"
-        ? LocExtension.Get("Emulation.AmigaHdFloppy")
-        : LocExtension.Get("Emulation.AmigaDdFloppy");
+        ? LocExtension.Get("Emulation.Amiga.Storage.Floppy.Hd")
+        : LocExtension.Get("Emulation.Amiga.Storage.Floppy.Dd");
 
     internal static AmigaMediaKind InferMediaKind(string path) => Path.GetExtension(path).ToLowerInvariant() switch
     {

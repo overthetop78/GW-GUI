@@ -36,7 +36,7 @@ public partial class InputBindingEditor : UserControl
     {
         InitializeComponent();
         BindingsList.ItemsSource = _rows;
-        SearchBox.ToolTip = LocExtension.Get("Emulation.SearchBinding");
+        SearchBox.ToolTip = LocExtension.Get("Emulation.Input.Binding.Search");
         AddHandler(PreviewKeyDownEvent, new KeyEventHandler(CaptureKeyDown), true);
         AddHandler(PreviewKeyUpEvent, new KeyEventHandler(CaptureKeyUp), true);
         AddHandler(PreviewMouseDownEvent, new MouseButtonEventHandler(CaptureMouseDown), true);
@@ -94,7 +94,7 @@ public partial class InputBindingEditor : UserControl
         _captureModifiers = ModifierKeys.None;
         button.Content = new TextBlock
         {
-            Text = LocExtension.Get("Emulation.PressInput"),
+            Text = LocExtension.Get("Emulation.Input.Press"),
             FontSize = 11,
             TextAlignment = TextAlignment.Center,
             TextWrapping = TextWrapping.Wrap
@@ -350,15 +350,15 @@ public sealed class InputBindingRow(string id, string label, string binding, str
         if (!InputBindingSyntax.TryRemovePrefix(part, InputBindingSyntax.MousePrefix, out var mouseSource)) return part;
         return mouseSource.ToLowerInvariant() switch
         {
-            "left" => LocExtension.Get("Emulation.MouseLeftButton"),
-            "right" => LocExtension.Get("Emulation.MouseRightButton"),
-            "middle" => LocExtension.Get("Emulation.MouseMiddleButton"),
-            "xbutton1" => LocExtension.Get("Emulation.MouseButton4"),
-            "xbutton2" => LocExtension.Get("Emulation.MouseButton5"),
-            "wheelup" => LocExtension.Get("Emulation.MouseWheelUp"),
-            "wheeldown" => LocExtension.Get("Emulation.MouseWheelDown"),
-            "wheelleft" => LocExtension.Get("Emulation.MouseWheelLeft"),
-            "wheelright" => LocExtension.Get("Emulation.MouseWheelRight"),
+            "left" => LocExtension.Get("Emulation.Mouse.Button.Left"),
+            "right" => LocExtension.Get("Emulation.Mouse.Button.Right"),
+            "middle" => LocExtension.Get("Emulation.Mouse.Button.Middle"),
+            "xbutton1" => LocExtension.Get("Emulation.Mouse.Button.4"),
+            "xbutton2" => LocExtension.Get("Emulation.Mouse.Button.5"),
+            "wheelup" => LocExtension.Get("Emulation.Mouse.Wheel.Up"),
+            "wheeldown" => LocExtension.Get("Emulation.Mouse.Wheel.Down"),
+            "wheelleft" => LocExtension.Get("Emulation.Mouse.Wheel.Left"),
+            "wheelright" => LocExtension.Get("Emulation.Mouse.Wheel.Right"),
             _ => part
         };
     }
@@ -374,18 +374,18 @@ public sealed class InputBindingRow(string id, string label, string binding, str
             : null;
         var inputName = input switch
         {
-            "DPadUp" => $"D-pad{separator}{LocExtension.Get("Emulation.DirectionUp")}",
-            "DPadDown" => $"D-pad{separator}{LocExtension.Get("Emulation.DirectionDown")}",
-            "DPadLeft" => $"D-pad{separator}{LocExtension.Get("Emulation.DirectionLeft")}",
-            "DPadRight" => $"D-pad{separator}{LocExtension.Get("Emulation.DirectionRight")}",
-            "LeftStickUp" => $"{LocExtension.Get("Emulation.LeftStick")}{separator}{LocExtension.Get("Emulation.DirectionUp")}",
-            "LeftStickDown" => $"{LocExtension.Get("Emulation.LeftStick")}{separator}{LocExtension.Get("Emulation.DirectionDown")}",
-            "LeftStickLeft" => $"{LocExtension.Get("Emulation.LeftStick")}{separator}{LocExtension.Get("Emulation.DirectionLeft")}",
-            "LeftStickRight" => $"{LocExtension.Get("Emulation.LeftStick")}{separator}{LocExtension.Get("Emulation.DirectionRight")}",
-            "RightStickUp" => $"{LocExtension.Get("Emulation.RightStick")}{separator}{LocExtension.Get("Emulation.DirectionUp")}",
-            "RightStickDown" => $"{LocExtension.Get("Emulation.RightStick")}{separator}{LocExtension.Get("Emulation.DirectionDown")}",
-            "RightStickLeft" => $"{LocExtension.Get("Emulation.RightStick")}{separator}{LocExtension.Get("Emulation.DirectionLeft")}",
-            "RightStickRight" => $"{LocExtension.Get("Emulation.RightStick")}{separator}{LocExtension.Get("Emulation.DirectionRight")}",
+            "DPadUp" => $"D-pad{separator}{LocExtension.Get("Emulation.Controller.Action.Up")}",
+            "DPadDown" => $"D-pad{separator}{LocExtension.Get("Emulation.Controller.Action.Down")}",
+            "DPadLeft" => $"D-pad{separator}{LocExtension.Get("Emulation.Controller.Action.Left")}",
+            "DPadRight" => $"D-pad{separator}{LocExtension.Get("Emulation.Controller.Action.Right")}",
+            "LeftStickUp" => $"{LocExtension.Get("Emulation.Controller.Stick.Left")}{separator}{LocExtension.Get("Emulation.Controller.Action.Up")}",
+            "LeftStickDown" => $"{LocExtension.Get("Emulation.Controller.Stick.Left")}{separator}{LocExtension.Get("Emulation.Controller.Action.Down")}",
+            "LeftStickLeft" => $"{LocExtension.Get("Emulation.Controller.Stick.Left")}{separator}{LocExtension.Get("Emulation.Controller.Action.Left")}",
+            "LeftStickRight" => $"{LocExtension.Get("Emulation.Controller.Stick.Left")}{separator}{LocExtension.Get("Emulation.Controller.Action.Right")}",
+            "RightStickUp" => $"{LocExtension.Get("Emulation.Controller.Stick.Right")}{separator}{LocExtension.Get("Emulation.Controller.Action.Up")}",
+            "RightStickDown" => $"{LocExtension.Get("Emulation.Controller.Stick.Right")}{separator}{LocExtension.Get("Emulation.Controller.Action.Down")}",
+            "RightStickLeft" => $"{LocExtension.Get("Emulation.Controller.Stick.Right")}{separator}{LocExtension.Get("Emulation.Controller.Action.Left")}",
+            "RightStickRight" => $"{LocExtension.Get("Emulation.Controller.Stick.Right")}{separator}{LocExtension.Get("Emulation.Controller.Action.Right")}",
             "ButtonA" => "A", "ButtonB" => "B", "ButtonX" => "X", "ButtonY" => "Y",
             "View" => "View", "Menu" => "Menu", "LeftShoulder" => "LB", "RightShoulder" => "RB",
             "LeftTrigger" => "LT", "RightTrigger" => "RT", "LeftStickClick" => "L3", "RightStickClick" => "R3",
@@ -397,10 +397,10 @@ public sealed class InputBindingRow(string id, string label, string binding, str
     public InputBindingState State { get => _state; private set { _state = value; OnChanged(); } }
     public string StateText => LocExtension.Get(State switch
     {
-        InputBindingState.Valid => "Emulation.BindingValid",
-        InputBindingState.Conflict => "Emulation.BindingConflict",
-        InputBindingState.Reserved => "Emulation.BindingReserved",
-        _ => "Emulation.BindingUnassigned"
+        InputBindingState.Valid => "Emulation.Input.Binding.LabelValid",
+        InputBindingState.Conflict => "Emulation.Input.Binding.LabelConflict",
+        InputBindingState.Reserved => "Emulation.Input.Binding.LabelReserved",
+        _ => "Emulation.Input.Binding.LabelUnassigned"
     });
     public Brush StateForeground => State switch
     {

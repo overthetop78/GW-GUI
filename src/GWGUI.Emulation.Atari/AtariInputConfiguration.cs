@@ -15,7 +15,10 @@ public enum AtariPeripheralKind
     NumericKeypad,
     DrivingController,
     ProLineController,
-    EnhancedController
+    EnhancedController,
+    BoosterGrip,
+    GenesisController,
+    Joy2BPlus
 }
 
 public sealed record AtariControllerBinding(

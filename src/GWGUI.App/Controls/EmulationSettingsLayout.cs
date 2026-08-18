@@ -1,10 +1,11 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using GWGUI.App.Localization;
 
 namespace GWGUI.App.Controls;
 
-internal static class EmulationSettingsLayout
+internal static partial class EmulationSettingsLayout
 {
     internal static Grid TwoColumnPage(Border left, Border right)
     {
@@ -63,25 +64,6 @@ internal static class EmulationSettingsLayout
         return form;
     }
 
-    internal static Border InputBindings(InputBindingEditor editor, string title, string? hint = null)
-    {
-        var layout = new Grid();
-        layout.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        layout.RowDefinitions.Add(new RowDefinition());
-        var heading = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(10, 6, 10, 2) };
-        heading.Children.Add(new TextBlock { Text = title, FontWeight = FontWeights.SemiBold, FontSize = 16,
-            VerticalAlignment = VerticalAlignment.Center });
-        if (!string.IsNullOrWhiteSpace(hint))
-            heading.Children.Add(new TextBlock { Text = "\uE946", FontFamily = ControlVisualConstants.IconFont,
-                FontSize = 15, Margin = new Thickness(9, 0, 0, 0), VerticalAlignment = VerticalAlignment.Center,
-                ToolTip = hint });
-        layout.Children.Add(heading);
-        Grid.SetRow(editor, 1); layout.Children.Add(editor);
-        var card = new Border { Child = layout, Padding = new Thickness(2) };
-        card.SetResourceReference(FrameworkElement.StyleProperty, "Card");
-        return card;
-    }
-
     internal static Border IconCard(UIElement child, string title, string icon) =>
         HeaderCard(child, title, new TextBlock { Text = icon, FontFamily = ControlVisualConstants.IconFont,
             FontSize = 19, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 10, 0) });
@@ -97,36 +79,21 @@ internal static class EmulationSettingsLayout
         return HeaderCard(child, header);
     }
 
-    internal static Border InformationBanner(string text)
-        => InformationBanner(new TextBlock { Text = text, TextWrapping = TextWrapping.Wrap });
+    internal static Border InformationBanner(string text) =>
+        InformationBanner(new TextBlock { Text = text, TextWrapping = TextWrapping.Wrap });
 
     internal static Border InformationBanner(TextBlock text)
     {
-        var content = new StackPanel
-        {
-            Orientation = Orientation.Horizontal,
-            Margin = new Thickness(12, 9, 12, 9)
-        };
-        var icon = new TextBlock
-        {
-            Text = "\uE946",
-            FontFamily = ControlVisualConstants.IconFont,
-            FontSize = 18,
-            VerticalAlignment = VerticalAlignment.Center,
-            Margin = new Thickness(0, 0, 10, 0)
-        };
+        var content = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(12, 9, 12, 9) };
+        var icon = new TextBlock { Text = "\uE946", FontFamily = ControlVisualConstants.IconFont, FontSize = 18,
+            VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 10, 0) };
         icon.SetResourceReference(TextBlock.ForegroundProperty, "AccentBrush");
         content.Children.Add(icon);
         text.VerticalAlignment = VerticalAlignment.Center;
         text.SetResourceReference(TextBlock.ForegroundProperty, "MutedTextBrush");
         content.Children.Add(text);
-        var banner = new Border
-        {
-            Child = content,
-            BorderThickness = new Thickness(1),
-            CornerRadius = new CornerRadius(7),
-            Margin = new Thickness(12, 0, 12, 12)
-        };
+        var banner = new Border { Child = content, BorderThickness = new Thickness(1), CornerRadius = new CornerRadius(7),
+            Margin = new Thickness(12, 0, 12, 12) };
         banner.SetResourceReference(Border.BackgroundProperty, "WindowBrush");
         banner.SetResourceReference(Border.BorderBrushProperty, "BorderBrush");
         return banner;
@@ -134,15 +101,11 @@ internal static class EmulationSettingsLayout
 
     internal static ScrollViewer ScrollPage(UIElement child)
     {
-        var viewer = new ScrollViewer
-        {
-            Content = child, VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
-            HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled, PanningMode = PanningMode.VerticalOnly
-        };
+        var viewer = new ScrollViewer { Content = child, VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+            HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled, PanningMode = PanningMode.VerticalOnly };
         viewer.PreviewMouseWheel += (_, args) =>
         {
-            if (FindNestedScrollViewer(args.OriginalSource as DependencyObject, viewer) is { ScrollableHeight: > 0 })
-                return;
+            if (FindNestedScrollViewer(args.OriginalSource as DependencyObject, viewer) is { ScrollableHeight: > 0 }) return;
             if (viewer.ScrollableHeight <= 0) return;
             var offset = Math.Clamp(viewer.VerticalOffset - args.Delta, 0, viewer.ScrollableHeight);
             if (Math.Abs(offset - viewer.VerticalOffset) < 0.5) return;

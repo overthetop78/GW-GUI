@@ -10,8 +10,8 @@ internal static class AtariAccessibilityConstants
     internal const string ConfigurationListResource = "Emulation.Configuration";
     internal const string ConfigurationTabsResource = "Emulation.Configuration";
     internal const string FirmwareStatusResource = "Menu.Firmware";
-    internal const string ControllerStatusResource = "Emulation.ControllersTab";
-    internal const string MediaStatusResource = "Emulation.StorageDevices";
+    internal const string ControllerStatusResource = "Emulation.Controller.Tab";
+    internal const string MediaStatusResource = "Emulation.Storage.Device.List";
     internal const ModifierKeys CommandModifier = ModifierKeys.Control;
     internal const Key NewConfigurationKey = Key.N;
     internal const Key SaveConfigurationKey = Key.S;

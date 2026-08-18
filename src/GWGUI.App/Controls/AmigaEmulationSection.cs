@@ -20,9 +20,9 @@ public sealed class AmigaEmulationSection : UserControl
     public AmigaEmulationSection()
     {
         AutomationProperties.SetName(_configuration, LocExtension.Get("Emulation.Configuration"));
-        AutomationProperties.SetName(_open, LocExtension.Get("Emulation.OpenMachine"));
-        AutomationProperties.SetName(_machines, LocExtension.Get("Emulation.MachinesTab"));
-        _open.Content = LocExtension.Get("Emulation.OpenMachine");
+        AutomationProperties.SetName(_open, LocExtension.Get("Emulation.Machine.Open"));
+        AutomationProperties.SetName(_machines, LocExtension.Get("Emulation.Tab.Machines"));
+        _open.Content = LocExtension.Get("Emulation.Machine.Open");
         _open.Click += OpenSelectedMachine;
         OptionsEmulationSection.ConfigurationSaved += ConfigurationSaved;
 
@@ -54,10 +54,10 @@ public sealed class AmigaEmulationSection : UserControl
 
         var welcomeTab = new TabItem
         {
-            Header = new MainTabHeader { Icon = "\uE80F", Text = LocExtension.Get("Emulation.WelcomeTab") },
+            Header = new MainTabHeader { Icon = "\uE80F", Text = LocExtension.Get("Emulation.Tab.Welcome") },
             Content = new TextBlock
             {
-                Text = LocExtension.Get("Emulation.WelcomeText"),
+                Text = LocExtension.Get("Emulation.Welcome.Text"),
                 TextWrapping = TextWrapping.Wrap,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,

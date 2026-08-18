@@ -1,4 +1,5 @@
 using GWGUI.App.Controls;
+using GWGUI.App.Localization;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari;
 
@@ -61,6 +62,34 @@ public sealed class AtariStorageSettingsTests
         Assert.Equal(2, view.Devices.Count);
         Assert.False(view.Devices.Single(item => item.Configuration.Slot == EmulationMediaSlot.Floppy0).CanRemove);
         Assert.True(view.Devices.Single(item => item.Configuration.Slot == EmulationMediaSlot.Floppy1).CanRemove);
+    }
+
+    [Theory]
+    [InlineData(AtariMachineModel.St, "A:", "Format.atarist.720")]
+    [InlineData(AtariMachineModel.Atari800, "D1:", "Format.atari.90")]
+    public void PrimaryFloppyUsesMachineIdentifierAndActualDriveModel(
+        AtariMachineModel model, string identifier, string modelResource)
+    {
+        var device = Assert.Single(AtariStorageSettingsFunctions.Create(
+            new AtariMachineConfiguration(model)).Devices);
+
+        Assert.Equal(identifier, device.Identifier);
+        Assert.Equal(LocExtension.Get(modelResource), device.Model);
+    }
+
+    [Fact]
+    public void ConfiguredSecondStFloppyUsesDriveBAndSelectedCapacity()
+    {
+        var source = AtariStorageSettingsFunctions.AddDevice(
+            new AtariMachineConfiguration(AtariMachineModel.Falcon),
+            AtariMediaKind.Floppy, EmulationMediaSlot.Floppy1);
+        source = AtariStorageSettingsFunctions.ConfigureFloppy(source, EmulationMediaSlot.Floppy1,
+            new FloppyDriveSettings("atarist.1440", "100", false, false));
+
+        var device = AtariStorageSettingsFunctions.Create(source).Devices.Single(item => item.CanRemove);
+
+        Assert.Equal("B:", device.Identifier);
+        Assert.Equal(LocExtension.Get("Format.atarist.1440"), device.Model);
     }
 
     [Theory]

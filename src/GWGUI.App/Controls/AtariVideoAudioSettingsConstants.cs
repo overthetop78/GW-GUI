@@ -2,25 +2,32 @@ namespace GWGUI.App.Controls;
 
 internal static class AtariVideoAudioSettingsConstants
 {
-    internal const string VideoTabResource = "Emulation.VideoTab";
-    internal const string AudioTabResource = "Emulation.AudioOutput";
-    internal const string VideoStandardResource = "Emulation.VideoStandard";
-    internal const string RegionResource = "Emulation.AtariRegion";
-    internal const string ResolutionResource = "Emulation.VideoResolution";
-    internal const string AspectRatioResource = "Emulation.AspectRatio";
-    internal const string CropResource = "Emulation.VideoCrop";
-    internal const string FrameSkipResource = "Emulation.VideoFrameskip";
-    internal const string RenderingResource = "Emulation.RenderingSettings";
-    internal const string AudioEnabledResource = "Emulation.AudioEnabled";
-    internal const string AudioOutputResource = "Emulation.AudioOutput";
-    internal const string AudioLatencyResource = "Emulation.AudioLatency";
+    internal static readonly IReadOnlySet<string> PalApplicationCultures =
+        new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        {
+            "cs-CZ", "da-DK", "de-DE", "el-GR", "es-ES", "fi-FI", "fr-FR", "hu-HU", "it-IT",
+            "nb-NO", "nl-NL", "pl-PL", "pt-PT", "ro-RO", "ru-RU", "sv-SE", "tr-TR", "uk-UA"
+        };
+
+    internal const string VideoTabResource = "Emulation.Tab.Video";
+    internal const string AudioTabResource = "Emulation.Tab.Audio";
+    internal const string VideoStandardResource = "Emulation.Video.Standard";
+    internal const string RegionResource = "Emulation.Atari.Video.Region";
+    internal const string ResolutionResource = "Emulation.Video.Resolution";
+    internal const string AspectRatioResource = "Emulation.Video.AspectRatio";
+    internal const string CropResource = "Emulation.Video.Crop";
+    internal const string FrameSkipResource = "Emulation.Video.FrameSkip";
+    internal const string RenderingResource = "Emulation.Video.Settings.Rendering";
+    internal const string AudioEnabledResource = "Emulation.Audio.Enabled";
+    internal const string AudioOutputResource = "Emulation.Audio.Output";
+    internal const string AudioLatencyResource = "Emulation.Audio.Latency";
     internal const string AudioVolumeResource = "Explorer.Volume";
-    internal const string AudioQualityResource = "Emulation.AudioQuality";
-    internal const string DefaultAudioOutputResource = "Emulation.DefaultAudioOutput";
+    internal const string AudioQualityResource = "Emulation.Audio.Quality";
+    internal const string DefaultAudioOutputResource = "Emulation.Audio.DefaultOutput";
     internal const string AutomaticResource = "Visual.Automatic";
-    internal const string DisabledResource = "Emulation.Disabled";
-    internal const string EnabledResource = "Emulation.Enabled";
-    internal const string CoreManagedResource = "Emulation.Core";
+    internal const string DisabledResource = "Emulation.Value.Disabled";
+    internal const string EnabledResource = "Emulation.Value.Enabled";
+    internal const string CoreManagedResource = "Emulation.Core.Name";
     internal const string StandardOptionKey = "gwgui_atari_video_standard";
     internal const string RegionOptionKey = AtariHardwareSettingsConstants.RegionOptionKey;
     internal const string ResolutionOptionKey = "gwgui_atari_video_resolution";

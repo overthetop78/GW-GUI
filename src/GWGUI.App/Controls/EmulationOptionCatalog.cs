@@ -31,7 +31,7 @@ internal static class EmulationOptionCatalog
         var kib = StorageSizeFormatter.KibibyteUnit;
         return
         [
-            new("auto", LocExtension.Get("Visual.Automatic")), new("0", LocExtension.Get("Emulation.MemoryNone")),
+            new("auto", LocExtension.Get("Visual.Automatic")), new("0", LocExtension.Get("Emulation.Memory.None")),
             new("2", $"512 {kib}"), new("4", $"1 {mib}"),
             new("6", $"{1.5.ToString("0.0", CultureInfo.CurrentCulture)} {mib}"),
             new("7", $"{1.8.ToString("0.0", CultureInfo.CurrentCulture)} {mib}")
@@ -41,7 +41,7 @@ internal static class EmulationOptionCatalog
     internal static OptionChoice[] MemoryChoices(IEnumerable<int> values, bool includeAutomatic = true)
     {
         var choices = values.Select(value => new OptionChoice(value.ToString(),
-            value == 0 ? LocExtension.Get("Emulation.MemoryNone") : $"{value} {StorageSizeFormatter.MebibyteUnit}"));
+            value == 0 ? LocExtension.Get("Emulation.Memory.None") : $"{value} {StorageSizeFormatter.MebibyteUnit}"));
         return includeAutomatic
             ? [new("auto", LocExtension.Get("Visual.Automatic")), .. choices]
             : choices.ToArray();
@@ -55,10 +55,10 @@ internal static class EmulationOptionCatalog
 
     internal static OptionChoice[] CpuCompatibility() =>
     [
-        new("normal", $"{LocExtension.Get("Emulation.CompatibilityNormal")} (CPU)"),
-        new("compatible", $"{LocExtension.Get("Emulation.CompatibilityCompatible")} (CPU)"),
-        new("memory", $"{LocExtension.Get("Emulation.CompatibilityMemory")} (DMA / RAM)"),
-        new("exact", $"{LocExtension.Get("Emulation.CompatibilityExact")} (CPU / DMA / RAM)")
+        new("normal", $"{LocExtension.Get("Emulation.Cpu.Compatibility.Normal")} (CPU)"),
+        new("compatible", $"{LocExtension.Get("Emulation.Cpu.Compatibility.Compatible")} (CPU)"),
+        new("memory", $"{LocExtension.Get("Emulation.Cpu.Compatibility.Memory")} (DMA / RAM)"),
+        new("exact", $"{LocExtension.Get("Emulation.Cpu.Compatibility.Exact")} (CPU / DMA / RAM)")
     ];
 
     internal static RendererChoice[] VideoRenderers() =>
@@ -84,7 +84,7 @@ internal static class EmulationOptionCatalog
 
     internal static OptionChoice ChipMemoryChoice(int kib) => new(ChipMemoryValue(kib), StorageSizeFormatter.FormatKibibytes(kib));
     internal static OptionChoice SlowMemoryChoice(int kib) => new(SlowMemoryValue(kib),
-        kib == 0 ? LocExtension.Get("Emulation.MemoryNone") : StorageSizeFormatter.FormatKibibytes(kib));
+        kib == 0 ? LocExtension.Get("Emulation.Memory.None") : StorageSizeFormatter.FormatKibibytes(kib));
     internal static string ChipMemoryValue(int kib) => Math.Clamp(kib / 512, 1, 4).ToString();
     internal static string SlowMemoryValue(int kib) => kib switch { 0 => "0", 512 => "2", 1024 => "4", 1536 => "6", 1792 => "7", _ => "0" };
     internal static int ChipMemoryKib(string value) => int.TryParse(value, out var units) ? units * 512 : 0;

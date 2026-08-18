@@ -2,17 +2,17 @@ namespace GWGUI.App.Controls;
 
 internal static class AtariCoreManagementConstants
 {
-    internal const string RequiredForModelResource = "Emulation.CoreManagerTitle";
-    internal const string InstalledResource = "Emulation.CoreInstalled";
+    internal const string RequiredForModelResource = "Emulation.Core.NameManagerTitle";
+    internal const string InstalledResource = "Emulation.Core.NameInstalled";
     internal const string CancelledResource = "Operation.Cancelled";
-    internal const string SearchResource = "Emulation.CoreSearch";
-    internal const string DownloadResource = "Emulation.CoreDownload";
-    internal const string SearchingResource = "Emulation.CoreSearching";
-    internal const string NoneFoundResource = "Emulation.CoreNoneFound";
-    internal const string VersionsFoundResource = "Emulation.CoreVersionsFound";
-    internal const string DownloadingResource = "Emulation.CoreDownloading";
-    internal const string InstalledPathResource = "Emulation.CoreInstalledPath";
-    internal const string NotInstalledResource = "Emulation.CoreNotInstalled";
+    internal const string SearchResource = "Emulation.Core.NameSearch";
+    internal const string DownloadResource = "Emulation.Core.NameDownload";
+    internal const string SearchingResource = "Emulation.Core.NameSearching";
+    internal const string NoneFoundResource = "Emulation.Core.NameNoneFound";
+    internal const string VersionsFoundResource = "Emulation.Core.NameVersionsFound";
+    internal const string DownloadingResource = "Emulation.Core.NameDownloading";
+    internal const string InstalledPathResource = "Emulation.Core.NameInstalledPath";
+    internal const string NotInstalledResource = "Emulation.Core.NameNotInstalled";
     internal const string CancelResource = "Common.Cancel";
     internal const string DetailSeparator = " — ";
     internal const string DetailLineSeparator = "\n";

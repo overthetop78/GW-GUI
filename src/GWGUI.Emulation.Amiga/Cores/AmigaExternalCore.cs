@@ -101,7 +101,8 @@ internal sealed class AmigaExternalCore : IAmigaCore
         var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal)
         {
             ["puae_model"] = backendModel,
-            ["puae_kickstart"] = "auto"
+            ["puae_kickstart"] = "auto",
+            ["puae_mapper_select"] = "SWITCH_JOYMOUSE"
         };
         var floppyCount = media.Count(item => item.Kind == AmigaMediaKind.Floppy);
         if (floppyCount > 1)
@@ -154,11 +155,18 @@ internal sealed class AmigaExternalCore : IAmigaCore
             _initialized = true;
             _host.ValidateConfiguredOptions();
             var setController = Export<ExternalCoreApi.SetControllerPortDevice>("retro_set_controller_port_device");
+            var defaultController = configuration.Model.Equals("CD32", StringComparison.OrdinalIgnoreCase)
+                ? AmigaControllerType.Cd32Pad
+                : AmigaControllerType.Joystick;
             for (var port = 0; port < 4; port++)
             {
-                var controller = configuration.Controllers is { } controllers && port < controllers.Count ? controllers[port]
+                var controller = port >= 2 && configuration.Input?.ParallelJoystickAdapterEnabled != true
+                    ? AmigaControllerType.None
+                    : configuration.Controllers is { } controllers && port < controllers.Count ? controllers[port]
                     : configuration.Input?.ControllerBindings?.FirstOrDefault(binding => binding.Port == port)?.Type
-                      ?? (port < 2 ? AmigaControllerType.Automatic : AmigaControllerType.None);
+                      ?? (port < 2 ? defaultController : AmigaControllerType.None);
+                if (controller == AmigaControllerType.Automatic)
+                    controller = port < 2 ? defaultController : AmigaControllerType.None;
                 setController((uint)port, ControllerDevice(_host.ControllerPorts, port, controller));
             }
 

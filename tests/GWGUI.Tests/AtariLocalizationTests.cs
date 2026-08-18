@@ -15,15 +15,15 @@ public sealed class AtariLocalizationTests
     private const string PlaceholderPattern = "\\{\\d+(?::[^{}]+)?\\}";
     private const string NaturalLanguagePattern = "[A-Za-zÀ-ÿ]{2,}\\s+[A-Za-zÀ-ÿ]{2,}";
     private const string ContextSuffix = "Context";
-    private const string ActiveConfigurationKey = "Emulation.AtariError.ActiveConfiguration";
-    private const string HostExecutableMissingKey = "Emulation.AtariError.HostExecutableMissing";
-    private const string CoreNotInstalledKey = "Emulation.AtariError.CoreNotInstalled";
+    private const string ActiveConfigurationKey = "Emulation.Atari.Error.ActiveConfiguration";
+    private const string HostExecutableMissingKey = "Emulation.Atari.Error.HostExecutableMissing";
+    private const string CoreNotInstalledKey = "Emulation.Atari.Error.CoreNotInstalled";
     private const string ConfigurationKey = "Emulation.Configuration";
-    private const string AudioTabKey = "Emulation.AudioTab";
+    private const string AudioTabKey = "Emulation.Tab.Audio";
     private const string EjectKey = "Common.Eject";
     private const string PauseKey = "Common.Pause";
-    private const string ErrorDetailsKey = "Emulation.AtariError.Details";
-    private const string AtariModelKeyPrefix = "Emulation.AtariModel";
+    private const string ErrorDetailsKey = "Emulation.Atari.Error.Details";
+    private const string AtariModelKeyPrefix = "Emulation.Atari.Model.";
     private const string MissingResourceMessage = "Missing Atari resource key: {0}";
     private const string DuplicateResourceMessage = "Duplicate Atari resource key: {0}";
     private const string RawTextMessage = "Raw visible Atari text in {0}: {1}";
@@ -34,12 +34,12 @@ public sealed class AtariLocalizationTests
     private static readonly string[] ReferenceKeys =
     [
         ActiveConfigurationKey,
-        "Emulation.AtariError.RequiredFirmwareMissing",
-        "Emulation.AtariError.FirmwareFileMissing",
-        "Emulation.AtariError.MediaFileMissing",
+        "Emulation.Atari.Error.RequiredFirmwareMissing",
+        "Emulation.Atari.Error.FirmwareFileMissing",
+        "Emulation.Atari.Error.MediaFileMissing",
         HostExecutableMissingKey,
         CoreNotInstalledKey,
-        "Emulation.AtariMediaFilter",
+        "Emulation.Atari.Storage.MediaFilter",
         ConfigurationKey,
         AudioTabKey,
         EjectKey,

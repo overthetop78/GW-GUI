@@ -62,11 +62,15 @@ public sealed class AtariHardwareSettingsTests
             var tabs = Assert.IsType<TabControl>(section.Content);
 
             Assert.Equal(AtariHardwareSettingsTestConstants.EditorTabCount, tabs.Items.Count);
-            Assert.Same(general, Assert.IsType<ScrollViewer>(Assert.IsType<TabItem>(tabs.Items[0]).Content).Content
-                is Border wrapper ? wrapper.Child : null);
-            Assert.Contains(tabs.Items.OfType<TabItem>(), item => Header(item) == AtariHardwareSettingsConstants.CpuTab);
-            Assert.Contains(tabs.Items.OfType<TabItem>(), item => Header(item) == AtariHardwareSettingsConstants.RamTab);
-            Assert.Contains(tabs.Items.OfType<TabItem>(), item => Header(item) == AtariHardwareSettingsConstants.RomTab);
+            Assert.Equal(new Thickness(EmulationMachineTabs.OuterMargin), tabs.Margin);
+            Assert.Same(general, Assert.IsType<TabItem>(tabs.Items[0]).Content);
+            Assert.All(tabs.Items.OfType<TabItem>(), item => Assert.Equal(
+                new Thickness(EmulationMachineTabs.HorizontalPadding, EmulationMachineTabs.VerticalPadding,
+                    EmulationMachineTabs.HorizontalPadding, EmulationMachineTabs.VerticalPadding),
+                item.Padding));
+            Assert.Contains(tabs.Items.OfType<TabItem>(), item => Header(item) == LocExtension.Get("Emulation.Tab.Cpu"));
+            Assert.Contains(tabs.Items.OfType<TabItem>(), item => Header(item) == LocExtension.Get("Emulation.Tab.Ram"));
+            Assert.Contains(tabs.Items.OfType<TabItem>(), item => Header(item) == LocExtension.Get("Emulation.Tab.Rom"));
             Assert.Contains(tabs.Items.OfType<TabItem>(), item => Header(item) ==
                 LocExtension.Get(AtariStorageSettingsConstants.StorageTabResource));
         });

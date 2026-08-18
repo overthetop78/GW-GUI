@@ -47,6 +47,17 @@ internal static class AtariHardwareSettingsFunctions
         return main + alternate;
     }
 
+    internal static (string Value, string Unit) FormatMemoryTotal(long bytes)
+    {
+        if (bytes % AtariHardwareSettingsConstants.BytesPerMebibyte == AtariHardwareSettingsConstants.NoBytes)
+            return ((bytes / AtariHardwareSettingsConstants.BytesPerMebibyte)
+                .ToString(CultureInfo.CurrentCulture), AtariHardwareSettingsConstants.MebibyteSuffix.Trim());
+        if (bytes % AtariHardwareSettingsConstants.BytesPerKibibyte == AtariHardwareSettingsConstants.NoBytes)
+            return ((bytes / AtariHardwareSettingsConstants.BytesPerKibibyte)
+                .ToString(CultureInfo.CurrentCulture), AtariHardwareSettingsConstants.KibibyteSuffix.Trim());
+        return (bytes.ToString(CultureInfo.CurrentCulture), AtariHardwareSettingsConstants.ByteSuffix.Trim());
+    }
+
     internal static string OptionKey(AtariSettingOption option) => option switch
     {
         AtariSettingOption.CpuModel => AtariHardwareSettingsConstants.CpuOptionKey,
@@ -140,9 +151,7 @@ internal static class AtariHardwareSettingsFunctions
         };
         return new AtariHardwareView(cpu, memory, AtariFirmwareCatalog.ForModel(model),
             hardware.Regions.Select(value => new AtariHardwareChoice(value.ToString(),
-                value == AtariClassicRegion.RegionFree
-                    ? LocExtension.Get(AtariHardwareSettingsConstants.RegionFreeResource)
-                    : value.ToString())).ToArray());
+                AtariRegionDisplayFunctions.DisplayName(value))).ToArray());
     }
 
     private static AtariHardwareField Field(AtariCompatibilityDefinition compatibility,

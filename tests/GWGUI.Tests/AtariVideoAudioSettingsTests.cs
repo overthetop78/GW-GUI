@@ -100,6 +100,123 @@ public sealed class AtariVideoAudioSettingsTests
         }
     }
 
+    [Theory]
+    [InlineData(AtariMachineModel.Atari400, "fr-FR", AtariClassicRegion.Pal)]
+    [InlineData(AtariMachineModel.Atari800, "de-DE", AtariClassicRegion.Pal)]
+    [InlineData(AtariMachineModel.Atari800Xl, "pt-PT", AtariClassicRegion.Pal)]
+    [InlineData(AtariMachineModel.Atari130Xe, "en-US", AtariClassicRegion.Ntsc)]
+    [InlineData(AtariMachineModel.Xegs, "ja-JP", AtariClassicRegion.Ntsc)]
+    [InlineData(AtariMachineModel.Atari5200, "fr-FR", AtariClassicRegion.Pal)]
+    [InlineData(AtariMachineModel.Atari2600, "en-US", AtariClassicRegion.Ntsc)]
+    [InlineData(AtariMachineModel.Atari7800, "de-DE", AtariClassicRegion.Pal)]
+    [InlineData(AtariMachineModel.Jaguar, "fr-FR", AtariClassicRegion.Pal)]
+    [InlineData(AtariMachineModel.Jaguar, "zh-Hans", AtariClassicRegion.Ntsc)]
+    [InlineData(AtariMachineModel.JaguarCd, "pt-BR", AtariClassicRegion.Ntsc)]
+    public void CultureSelectedVideoStandardFollowsTheApplicationCulture(AtariMachineModel model,
+        string cultureName, AtariClassicRegion expected)
+    {
+        var previous = CultureInfo.CurrentUICulture;
+        try
+        {
+            CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo(cultureName);
+            var view = AtariVideoAudioSettingsFunctions.Create(
+                new AtariMachineConfiguration(model));
+
+            Assert.Equal(expected.ToString(),
+                AtariVideoAudioSettingsFunctions.PreferredVideoStandard(model, view.Standards));
+            Assert.Equal(expected.ToString(),
+                AtariVideoAudioSettingsFunctions.PreferredRegion(model, view.Regions));
+        }
+        finally
+        {
+            CultureInfo.CurrentUICulture = previous;
+        }
+    }
+
+    [Fact]
+    public void EveryClassicMachineWithPalAndNtscFollowsTheApplicationCulture()
+    {
+        var previous = CultureInfo.CurrentUICulture;
+        try
+        {
+            var models = AtariClassicModelCatalog.All
+                .Where(definition => definition.Regions.Contains(AtariClassicRegion.Pal)
+                    && definition.Regions.Contains(AtariClassicRegion.Ntsc))
+                .Select(definition => definition.Model)
+                .ToArray();
+
+            foreach (var model in models)
+            {
+                var view = AtariVideoAudioSettingsFunctions.Create(new AtariMachineConfiguration(model));
+                CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
+                Assert.Equal("PAL", view.Standards.Single(choice =>
+                    choice.Value == AtariClassicRegion.Pal.ToString()).DisplayName);
+                Assert.Equal("NTSC", view.Standards.Single(choice =>
+                    choice.Value == AtariClassicRegion.Ntsc.ToString()).DisplayName);
+                Assert.Equal("PAL", view.Regions.Single(choice =>
+                    choice.Value == AtariClassicRegion.Pal.ToString()).DisplayName);
+                Assert.Equal("NTSC", view.Regions.Single(choice =>
+                    choice.Value == AtariClassicRegion.Ntsc.ToString()).DisplayName);
+                Assert.Equal(AtariClassicRegion.Pal.ToString(),
+                    AtariVideoAudioSettingsFunctions.PreferredVideoStandard(model, view.Standards));
+                Assert.Equal(AtariClassicRegion.Pal.ToString(),
+                    AtariVideoAudioSettingsFunctions.PreferredRegion(model, view.Regions));
+
+                CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+                Assert.Equal(AtariClassicRegion.Ntsc.ToString(),
+                    AtariVideoAudioSettingsFunctions.PreferredVideoStandard(model, view.Standards));
+                Assert.Equal(AtariClassicRegion.Ntsc.ToString(),
+                    AtariVideoAudioSettingsFunctions.PreferredRegion(model, view.Regions));
+            }
+        }
+        finally
+        {
+            CultureInfo.CurrentUICulture = previous;
+        }
+    }
+
+    [Fact]
+    public void CultureBasedVideoStandardDoesNotReplaceTheStSpecificDefault()
+    {
+        var previous = CultureInfo.CurrentUICulture;
+        try
+        {
+            CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
+            var view = AtariVideoAudioSettingsFunctions.Create(
+                new AtariMachineConfiguration(AtariMachineModel.St));
+
+            Assert.Equal(view.Standards.First().Value,
+                AtariVideoAudioSettingsFunctions.PreferredVideoStandard(AtariMachineModel.St,
+                    view.Standards));
+        }
+        finally
+        {
+            CultureInfo.CurrentUICulture = previous;
+        }
+    }
+
+    [Fact]
+    public void LynxRemainsRegionFreeForEveryApplicationCulture()
+    {
+        var previous = CultureInfo.CurrentUICulture;
+        try
+        {
+            CultureInfo.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
+            var view = AtariVideoAudioSettingsFunctions.Create(
+                new AtariMachineConfiguration(AtariMachineModel.Lynx));
+
+            Assert.Single(view.Standards);
+            Assert.Equal(AtariClassicRegion.RegionFree.ToString(), view.Standards[0].Value);
+            Assert.Equal(view.Standards[0].Value,
+                AtariVideoAudioSettingsFunctions.PreferredVideoStandard(AtariMachineModel.Lynx,
+                    view.Standards));
+        }
+        finally
+        {
+            CultureInfo.CurrentUICulture = previous;
+        }
+    }
+
     [Fact]
     public void ControlsCanLoadTheSameConfigurationRepeatedly()
     {

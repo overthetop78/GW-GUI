@@ -21,9 +21,9 @@ public sealed class EmulationSection : UserControl
     public EmulationSection()
     {
         AutomationProperties.SetName(_configuration, LocExtension.Get("Emulation.Configuration"));
-        AutomationProperties.SetName(_open, LocExtension.Get("Emulation.OpenMachine"));
-        AutomationProperties.SetName(_machines, LocExtension.Get("Emulation.MachinesTab"));
-        _open.Content = LocExtension.Get("Emulation.OpenMachine");
+        AutomationProperties.SetName(_open, LocExtension.Get("Emulation.Machine.Open"));
+        AutomationProperties.SetName(_machines, LocExtension.Get("Emulation.Tab.Machines"));
+        _open.Content = LocExtension.Get("Emulation.Machine.Open");
         _open.Click += OpenSelectedMachine;
         OptionsEmulationSection.ConfigurationSaved += AmigaConfigurationSaved;
         OptionsEmulationSection.AtariConfigurationSaved += AtariConfigurationSaved;

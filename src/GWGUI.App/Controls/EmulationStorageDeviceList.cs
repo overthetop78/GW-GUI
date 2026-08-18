@@ -58,7 +58,7 @@ public sealed class EmulationStorageDeviceList : UserControl
         footer.ColumnDefinitions.Add(new ColumnDefinition());
         _add = new Button
         {
-            Content = $"{ControlVisualConstants.AddGlyph}  {LocExtension.Get("Emulation.AddStorageDevice")}",
+            Content = $"{ControlVisualConstants.AddGlyph}  {LocExtension.Get("Emulation.Storage.Device.Add")}",
             MinWidth = 180,
             HorizontalAlignment = HorizontalAlignment.Left
         };
@@ -66,7 +66,7 @@ public sealed class EmulationStorageDeviceList : UserControl
         footer.Children.Add(_add);
         var hint = new TextBlock
         {
-            Text = LocExtension.Get("Emulation.StorageDeviceCapabilitiesHint"),
+            Text = LocExtension.Get("Emulation.Storage.Device.CapabilitiesHint"),
             TextWrapping = TextWrapping.Wrap,
             VerticalAlignment = VerticalAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Right,
@@ -92,11 +92,11 @@ public sealed class EmulationStorageDeviceList : UserControl
     {
         var header = CreateColumns();
         header.Margin = new Thickness(0, 0, 0, 2);
-        AddHeader(header, LocExtension.Get("Emulation.DeviceId"), 0);
-        AddHeader(header, LocExtension.Get("Emulation.Type"), 1);
+        AddHeader(header, LocExtension.Get("Emulation.Device.Name.Id"), 0);
+        AddHeader(header, LocExtension.Get("Emulation.Device.Name.Type"), 1);
         AddHeader(header, LocExtension.Get("Emulation.Model"), 2);
-        AddHeader(header, LocExtension.Get("Emulation.AssociatedMedia"), 3);
-        AddHeader(header, LocExtension.Get("Emulation.InputActions"), 4);
+        AddHeader(header, LocExtension.Get("Emulation.Storage.Media.Associated"), 3);
+        AddHeader(header, LocExtension.Get("Emulation.Input.Actions"), 4);
         return header;
     }
 
@@ -111,7 +111,7 @@ public sealed class EmulationStorageDeviceList : UserControl
             AddCell(row, TypeLabel(device.Type), 1);
             AddCell(row, device.Model, 2);
             var support = string.IsNullOrWhiteSpace(device.SupportPath)
-                ? LocExtension.Get("Emulation.NotUsed")
+                ? LocExtension.Get("Emulation.Value.NotUsed")
                 : SupportSummary(device.SupportPath);
             var supportText = Cell(support);
             if (string.IsNullOrWhiteSpace(device.SupportPath))
@@ -127,7 +127,7 @@ public sealed class EmulationStorageDeviceList : UserControl
             };
             var configure = new Button
             {
-                Content = LocExtension.Get("Emulation.ConfigureDevice"),
+                Content = LocExtension.Get("Emulation.Storage.Device.Configure"),
                 MinWidth = 112,
                 Tag = device
             };
@@ -195,11 +195,11 @@ public sealed class EmulationStorageDeviceList : UserControl
 
     private static string TypeLabel(EmulationStorageDeviceType type) => type switch
     {
-        EmulationStorageDeviceType.Floppy => LocExtension.Get("Emulation.FloppyDevice"),
-        EmulationStorageDeviceType.HardDisk => LocExtension.Get("Emulation.HardDiskDevice"),
-        EmulationStorageDeviceType.CompactDisc => LocExtension.Get("Emulation.CompactDiscDevice"),
+        EmulationStorageDeviceType.Floppy => LocExtension.Get("Emulation.Storage.Floppy.Device"),
+        EmulationStorageDeviceType.HardDisk => LocExtension.Get("Emulation.Storage.HardDisk.Device"),
+        EmulationStorageDeviceType.CompactDisc => LocExtension.Get("Emulation.Storage.Cd.Device"),
         EmulationStorageDeviceType.Zip => "ZIP",
-        EmulationStorageDeviceType.Tape => LocExtension.Get("Emulation.TapeDevice"),
+        EmulationStorageDeviceType.Tape => LocExtension.Get("Emulation.Storage.Tape.Device"),
         EmulationStorageDeviceType.Cartridge => LocExtension.Get(AtariStorageSettingsConstants.CartridgeResource),
         EmulationStorageDeviceType.Directory => LocExtension.Get(AtariStorageSettingsConstants.DirectoryResource),
         _ => type.ToString()

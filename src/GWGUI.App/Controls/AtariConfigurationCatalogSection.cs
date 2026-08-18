@@ -1,8 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Automation;
 using System.Windows.Controls;
-using System.Windows.Input;
 using GWGUI.App.Localization;
 using GWGUI.Emulation.Atari;
 
@@ -16,14 +14,8 @@ public sealed class AtariConfigurationCatalogSection : UserControl
     private readonly ListBox _list = new() { MinWidth = 260, DisplayMemberPath = nameof(AtariConfigurationItem.DisplayName) };
     private readonly AtariGeneralSettingsSection _general = new();
     private readonly AtariHardwareSettingsSection _hardware;
-    private Button? _new;
-    private Button? _save;
-    private Button? _delete;
-    private Button? _refresh;
     private AtariMachineConfiguration? _current;
     private bool _loading;
-
-    internal UIElement CatalogContent { get; }
 
     public AtariConfigurationCatalogSection() : this(new AtariConfigurationStore(
         StoragePaths.AtariConfigurationsDirectory, StoragePaths.DataDirectory)) { }
@@ -39,19 +31,14 @@ public sealed class AtariConfigurationCatalogSection : UserControl
             LocExtension.Get(AtariAccessibilityConstants.ConfigurationListResource),
             tabIndex: AtariAccessibilityConstants.ConfigurationListTabIndex);
         _list.SelectionChanged += ConfigurationSelected;
-        CatalogContent = BuildCatalogContent();
         Content = _hardware;
         AtariAccessibilityFunctions.ConfigureFlowDirection(this);
-        PreviewKeyDown += CatalogPreviewKeyDown;
-        Loaded += async (_, _) =>
-        {
-            await ReloadAsync();
-            if (_configurations.Count > 0) _list.Focus();
-            else _new?.Focus();
-        };
+        Loaded += async (_, _) => await ReloadAsync();
     }
 
     public event EventHandler<AtariMachineConfiguration>? ConfigurationSaved;
+
+    internal IReadOnlyList<AtariConfigurationItem> ConfigurationItems => _configurations.ToArray();
 
     public void ConfigureActiveCheck(Func<Guid, bool>? isActive)
     {
@@ -95,79 +82,23 @@ public sealed class AtariConfigurationCatalogSection : UserControl
         UpdateEditorAvailability();
     }
 
-    private UIElement BuildCatalogContent()
+    internal async Task SelectConfigurationAsync(Guid id)
     {
-        var root = new Grid { Margin = new Thickness(14) };
-        KeyboardNavigation.SetTabNavigation(root, KeyboardNavigationMode.Continue);
-        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        root.RowDefinitions.Add(new RowDefinition());
-        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        root.Children.Add(new TextBlock
-        {
-            Text = LocExtension.Get(AtariConfigurationCatalogConstants.ConfigurationsDescriptionResource,
-                AtariConfigurationCatalogConstants.AtariTitle),
-            TextWrapping = TextWrapping.Wrap,
-            Margin = new Thickness(0, 0, 0, 10)
-        });
-        AtariAccessibilityFunctions.ConfigureFlowDirection(root);
-        Grid.SetRow(_list, 1);
-        root.Children.Add(_list);
-        var actions = new WrapPanel { Margin = new Thickness(0, 10, 0, 0) };
-        _new = Button(AtariConfigurationCatalogConstants.NewResource, NewConfiguration,
-            AtariAccessibilityConstants.NewConfigurationAccelerator);
-        actions.Children.Add(_new);
-        _save = Button(AtariConfigurationCatalogConstants.SaveResource, SaveConfiguration);
-        _delete = Button(AtariConfigurationCatalogConstants.DeleteResource, DeleteConfiguration,
-            AtariAccessibilityConstants.DeleteConfigurationAccelerator);
-        actions.Children.Add(_save);
-        actions.Children.Add(_delete);
-        AutomationProperties.SetAcceleratorKey(_save, AtariAccessibilityConstants.SaveConfigurationAccelerator);
-        _refresh = Button(AtariConfigurationCatalogConstants.RefreshResource, async () => await ReloadAsync(),
-            AtariAccessibilityConstants.RefreshConfigurationAccelerator);
-        actions.Children.Add(_refresh);
-        Grid.SetRow(actions, 2);
-        root.Children.Add(actions);
-        return root;
+        var selected = _configurations.FirstOrDefault(item => item.Configuration.Id == id);
+        if (selected is null) return;
+        _list.SelectedItem = selected;
+        _current = selected.Configuration;
+        await _general.LoadAsync(_current);
+        await _hardware.LoadAsync(_current);
+        UpdateEditorAvailability();
     }
 
-    private static Button Button(string resource, Func<Task> action, string? accelerator = null)
+    internal async Task DeleteConfigurationAsync(Guid id)
     {
-        var label = LocExtension.Get(resource);
-        var button = new Button
-        {
-            Content = label, MinWidth = 110,
-            Margin = new Thickness(0, 0, 8, 0), Padding = new Thickness(12, 7, 12, 7)
-        };
-        AtariAccessibilityFunctions.Configure(button, label);
-        if (accelerator is not null) AutomationProperties.SetAcceleratorKey(button, accelerator);
-        button.Click += async (_, _) => await ExecuteAsync(button, action);
-        return button;
-    }
-
-    private async void CatalogPreviewKeyDown(object sender, KeyEventArgs args)
-    {
-        var control = Keyboard.Modifiers.HasFlag(AtariAccessibilityConstants.CommandModifier);
-        if (control && args.Key == AtariAccessibilityConstants.NewConfigurationKey)
-        {
-            args.Handled = true;
-            await ExecuteAsync((FrameworkElement?)_new ?? this, NewConfiguration);
-        }
-        else if (control && args.Key == AtariAccessibilityConstants.SaveConfigurationKey && _save?.IsEnabled == true)
-        {
-            args.Handled = true;
-            await ExecuteAsync(_save, SaveConfiguration);
-        }
-        else if (args.Key == AtariAccessibilityConstants.RefreshConfigurationKey)
-        {
-            args.Handled = true;
-            await ExecuteAsync((FrameworkElement?)_refresh ?? this, ReloadAsync);
-        }
-        else if (args.Key == AtariAccessibilityConstants.DeleteConfigurationKey
-                 && _list.IsKeyboardFocusWithin && _delete?.IsEnabled == true)
-        {
-            args.Handled = true;
-            await ExecuteAsync(_delete, DeleteConfiguration);
-        }
+        if (_controller.IsActive(id)) return;
+        _controller.Delete(id);
+        if (_current?.Id == id) _current = null;
+        await ReloadAsync();
     }
 
     private static async Task ExecuteAsync(FrameworkElement owner, Func<Task> action)
@@ -205,25 +136,10 @@ public sealed class AtariConfigurationCatalogSection : UserControl
         await ReloadAsync();
     }
 
-    private async Task DeleteConfiguration()
-    {
-        if (_current is null) return;
-        if (_controller.IsActive(_current.Id)) return;
-        if (MessageBox.Show(Window.GetWindow(this),
-                $"{LocExtension.Get(AtariConfigurationCatalogConstants.DeleteResource)}?",
-                AtariConfigurationCatalogConstants.AtariTitle, MessageBoxButton.YesNo,
-                MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
-        _controller.Delete(_current.Id);
-        _current = null;
-        await ReloadAsync();
-    }
-
     private void UpdateEditorAvailability()
     {
         var editable = _current is null || !_controller.IsActive(_current.Id);
         _general.IsEnabled = editable;
         _hardware.IsEnabled = editable;
-        if (_save is not null) _save.IsEnabled = editable;
-        if (_delete is not null) _delete.IsEnabled = _current is not null && editable;
     }
 }

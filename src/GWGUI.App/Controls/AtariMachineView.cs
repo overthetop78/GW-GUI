@@ -59,6 +59,7 @@ public sealed class AtariMachineView : UserControl
     private bool _poweredOff;
     private bool _disposed;
     private bool _audioMuted;
+    private bool _joyMouseSwitchPressed;
     private int _framePending;
     private int _framesInWindow;
     private long _frameWindowStarted = Stopwatch.GetTimestamp();
@@ -125,7 +126,13 @@ public sealed class AtariMachineView : UserControl
         _audio = IconButton(AtariMachineViewConstants.AudioGlyph, AtariMachineViewConstants.AudioResource,
             ToggleAudioAsync);
         _audio.IsEnabled = configuration.AudioEnabled;
-        right.Children.Add(ToolbarGroup(_audio, _controller, _mouse));
+        var inputStatus = new List<UIElement> { _audio };
+        if (configuration.Core == AtariCoreKind.Hatari)
+            inputStatus.Add(IconButton(AtariMachineViewConstants.JoyMouseSwitchGlyph,
+                "Emulation.Controller.Action.SwitchJoystickMouse", SwitchJoystickMouseAsync));
+        inputStatus.Add(_controller);
+        inputStatus.Add(_mouse);
+        right.Children.Add(ToolbarGroup(inputStatus.ToArray()));
         right.Children.Add(ToolbarGroup(_status));
         DockPanel.SetDock(right, Dock.Right);
         toolbar.Children.Add(right);
@@ -532,12 +539,6 @@ public sealed class AtariMachineView : UserControl
             return;
         }
         if (!AtariMachineInputFunctions.TryMap(source, out var key)) return;
-        if (key == _configuration.Input.ReleaseMouseKey && _mouseCapture.IsCaptured)
-        {
-            ReleaseMouse();
-            args.Handled = true;
-            return;
-        }
         _keys.Add(AtariMachineInputFunctions.Resolve(key, _configuration.Input.KeyboardMappings));
         PublishInput();
         args.Handled = true;
@@ -572,8 +573,25 @@ public sealed class AtariMachineView : UserControl
     {
         if (_poweredOff || _disposed) return;
         var controllers = XInputControllerReader.ReadAll();
-        _machine.SetInput(AtariMachineInputFunctions.Snapshot(_keys, deltaX, deltaY, wheel,
-            _mouseCapture.IsCaptured, controllers));
+        var snapshot = AtariMachineInputFunctions.Snapshot(_keys, deltaX, deltaY, wheel,
+            _mouseCapture.IsCaptured, controllers, _configuration.Input, _configuration.Model);
+        if (_joyMouseSwitchPressed)
+        {
+            var mapped = snapshot.Controllers.ToArray();
+            if (mapped.Length == 0) mapped = [EmulationControllerState.Empty];
+            mapped[0] = mapped[0] with { Buttons = mapped[0].Buttons | (1u << 2) };
+            snapshot = snapshot with { Controllers = mapped };
+        }
+        _machine.SetInput(snapshot);
+    }
+
+    private async Task SwitchJoystickMouseAsync()
+    {
+        _joyMouseSwitchPressed = true;
+        PublishInput();
+        await Task.Delay(100);
+        _joyMouseSwitchPressed = false;
+        if (!_disposed) PublishInput();
     }
 
     private void ReleaseMouse()

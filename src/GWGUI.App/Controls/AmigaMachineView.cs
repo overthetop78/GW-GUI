@@ -70,6 +70,7 @@ public sealed class AmigaMachineView : UserControl
     private Grid? _fullscreenHost;
     private bool _closingFullscreen;
     private bool _audioMuted;
+    private bool _joyMouseSwitchPressed;
     private readonly DispatcherTimer _inputTimer = new() { Interval = ControlTechnicalConstants.EmulationInputPollingInterval };
     private HwndSource? _windowSource;
 
@@ -133,13 +134,15 @@ public sealed class AmigaMachineView : UserControl
         DockPanel.SetDock(left, Dock.Left);
         _toolbar.Children.Add(left);
         var right = new StackPanel { Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Center };
-        _audioStatus = IconButton("\uE767", "Emulation.AudioTab", ToggleAudioMute, requiresPower: true);
+        _audioStatus = IconButton("\uE767", "Emulation.Tab.Audio", ToggleAudioMute, requiresPower: true);
         _audioStatus.Width = 28;
         var displayShortcuts = EmulationShortcutViewFunctions.CreateGroup(_globalShortcuts,
             (EmulationShortcutDefaults.ToggleFullscreen, EmulationResourceKeys.Fullscreen),
             (EmulationShortcutDefaults.ReleaseMouse, EmulationResourceKeys.ReleaseMouse));
         right.Children.Add(displayShortcuts);
-        right.Children.Add(ToolbarGroup(_audioStatus, _controllerStatus, _mouseStatus));
+        right.Children.Add(ToolbarGroup(_audioStatus,
+            IconButton("\uE8AB", "Emulation.Controller.Action.SwitchJoystickMouse", SwitchJoystickMouseAsync),
+            _controllerStatus, _mouseStatus));
         _status.Margin = new Thickness(7, 0, 7, 0);
         right.Children.Add(ToolbarGroup(_status));
         DockPanel.SetDock(right, Dock.Right); _toolbar.Children.Add(right);
@@ -366,7 +369,7 @@ public sealed class AmigaMachineView : UserControl
     {
         var dialog = new OpenFileDialog
         {
-            Filter = LocExtension.Get("Emulation.AmigaMediaFilter")
+            Filter = LocExtension.Get("Emulation.Amiga.Storage.MediaFilter")
         };
         if (dialog.ShowDialog() != true) return;
         var mediaPath = await AmigaRuntimeMedia.PrepareAsync(dialog.FileName);
@@ -561,7 +564,7 @@ public sealed class AmigaMachineView : UserControl
         var hz = _machine.Configuration.Options?.GetValueOrDefault("puae_video_standard", "PAL")
             .StartsWith("NTSC", StringComparison.OrdinalIgnoreCase) == true ? 60d : 50d;
         _status.Text = $"{frame.Width} × {frame.Height} · {hz:0.0} Hz · {_measuredFramesPerSecond:0.0} FPS";
-        _status.ToolTip = $"{LocExtension.Get("Emulation.RenderingSettings")} : {RendererName(_videoSurface.Renderer)}";
+        _status.ToolTip = $"{LocExtension.Get("Emulation.Video.Settings.Rendering")} : {RendererName(_videoSurface.Renderer)}";
     }
 
     private void ResetFrameRateCounter()
@@ -592,7 +595,7 @@ public sealed class AmigaMachineView : UserControl
     {
         var dialog = new OpenFileDialog
         {
-            Filter = LocExtension.Get("Emulation.AmigaMediaFilter")
+            Filter = LocExtension.Get("Emulation.Amiga.Storage.MediaFilter")
         };
         if (dialog.ShowDialog() == true) await _machine.InsertMediaAsync(dialog.FileName);
     }
@@ -763,7 +766,7 @@ public sealed class AmigaMachineView : UserControl
                     SaveScreenshot();
                     break;
                 default:
-                    _status.Text = LocExtension.Get("Emulation.ShortcutUnavailable");
+                    _status.Text = LocExtension.Get("Emulation.Shortcut.Unavailable");
                     break;
             }
         }
@@ -1001,6 +1004,15 @@ public sealed class AmigaMachineView : UserControl
             MapControllers(controllers, physical)));
     }
 
+    private async Task SwitchJoystickMouseAsync()
+    {
+        _joyMouseSwitchPressed = true;
+        PublishInput();
+        await Task.Delay(100);
+        _joyMouseSwitchPressed = false;
+        if (!_disposed) PublishInput();
+    }
+
     private IReadOnlyList<EmulationControllerState> MapControllers(IReadOnlyList<EmulationControllerState> physical,
         IReadOnlyDictionary<string, bool> mouseButtons)
     {
@@ -1023,6 +1035,8 @@ public sealed class AmigaMachineView : UserControl
             }
             result[port] = source with { Buttons = buttons };
         }
+        if (_joyMouseSwitchPressed)
+            result[0] = result[0] with { Buttons = result[0].Buttons | (1u << 2) };
         return result;
     }
 

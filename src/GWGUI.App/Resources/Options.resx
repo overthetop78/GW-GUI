@@ -186,7 +186,7 @@
   <data name="Emulation.InitialDisk" xml:space="preserve"><value>Initial disk</value></data>
   <data name="Emulation.Audio" xml:space="preserve"><value>Audio</value></data>
   <data name="Emulation.Controller" xml:space="preserve"><value>Controller {0}</value></data>
-  <data name="Emulation.CoreOptions" xml:space="preserve"><value>Core options</value></data>
+  <data name="Emulation.Core.NameOptions" xml:space="preserve"><value>Core options</value></data>
   <data name="Emulation.MultiDrive" xml:space="preserve"><value>Mount the first four disks in DF0–DF3</value></data>
   <data name="Emulation.DiskNumber" xml:space="preserve"><value>Disk {0}</value></data>
   <data name="Emulation.LoadOptions" xml:space="preserve"><value>Load available options</value></data>

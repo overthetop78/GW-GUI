@@ -26,11 +26,16 @@ public static class AtariClassicModelCatalog
         AtariClassicModelFunctions.Values(AtariClassicStorageCapability.Floppy,
             AtariClassicStorageCapability.Cassette, AtariClassicStorageCapability.Cartridge,
             AtariClassicStorageCapability.ExecutableFile);
-    private static readonly IReadOnlyList<AtariClassicPortDefinition> ComputerPorts =
+    private static readonly IReadOnlyList<AtariClassicPortDefinition> FourPortComputerPorts =
         AtariClassicModelFunctions.Values(
             new AtariClassicPortDefinition(AtariClassicPortCapability.Keyboard, AtariClassicModelConstants.OnePort),
             new AtariClassicPortDefinition(AtariClassicPortCapability.Joystick, AtariClassicModelConstants.FourPorts),
             new AtariClassicPortDefinition(AtariClassicPortCapability.Paddle, AtariClassicModelConstants.FourPorts));
+    private static readonly IReadOnlyList<AtariClassicPortDefinition> TwoPortComputerPorts =
+        AtariClassicModelFunctions.Values(
+            new AtariClassicPortDefinition(AtariClassicPortCapability.Keyboard, AtariClassicModelConstants.OnePort),
+            new AtariClassicPortDefinition(AtariClassicPortCapability.Joystick, AtariClassicModelConstants.TwoPorts),
+            new AtariClassicPortDefinition(AtariClassicPortCapability.Paddle, AtariClassicModelConstants.TwoPorts));
     private static readonly IReadOnlyList<AtariFirmwareKind> Atari400And800Firmware =
         AtariClassicModelFunctions.Values(AtariFirmwareKind.AtariOsA, AtariFirmwareKind.AtariOsB,
             AtariFirmwareKind.AtariBasic);
@@ -50,35 +55,35 @@ public static class AtariClassicModelCatalog
         AtariClassicModelFunctions.Values(
             AtariClassicModelFunctions.CreateEightBit(AtariMachineModel.Atari400, AtariClassicModelConstants.Atari400And800ModelId,
                 AtariClassicModelConstants.Atari400DisplayNameResource, AtariClassicModelConstants.FortyEightKibibytes,
-                EightBitCpu, TelevisionRegions, EightBitVideo, PokeyAudio, EightBitStorage, ComputerPorts,
+                EightBitCpu, TelevisionRegions, EightBitVideo, PokeyAudio, EightBitStorage, FourPortComputerPorts,
                 Atari400And800Firmware, EightBitMedia),
             AtariClassicModelFunctions.CreateEightBit(AtariMachineModel.Atari800, AtariClassicModelConstants.Atari400And800ModelId,
                 AtariClassicModelConstants.Atari800DisplayNameResource, AtariClassicModelConstants.FortyEightKibibytes,
-                EightBitCpu, TelevisionRegions, EightBitVideo, PokeyAudio, EightBitStorage, ComputerPorts,
+                EightBitCpu, TelevisionRegions, EightBitVideo, PokeyAudio, EightBitStorage, FourPortComputerPorts,
                 Atari400And800Firmware, EightBitMedia),
             AtariClassicModelFunctions.CreateEightBit(AtariMachineModel.Atari800Xl, AtariClassicModelConstants.Atari800XlModelId,
                 AtariClassicModelConstants.Atari800XlDisplayNameResource, AtariClassicModelConstants.SixtyFourKibibytes,
-                EightBitCpu, TelevisionRegions, EightBitVideo, PokeyAudio, EightBitStorage, ComputerPorts,
+                EightBitCpu, TelevisionRegions, EightBitVideo, PokeyAudio, EightBitStorage, TwoPortComputerPorts,
                 XlXeFirmware, EightBitMedia),
             AtariClassicModelFunctions.CreateEightBit(AtariMachineModel.Atari130Xe, AtariClassicModelConstants.Atari130XeModelId,
                 AtariClassicModelConstants.Atari130XeDisplayNameResource,
                 AtariClassicModelConstants.OneHundredTwentyEightKibibytes, EightBitCpu, TelevisionRegions,
-                EightBitVideo, PokeyAudio, EightBitStorage, ComputerPorts, XlXeFirmware, EightBitMedia),
+                EightBitVideo, PokeyAudio, EightBitStorage, TwoPortComputerPorts, XlXeFirmware, EightBitMedia),
             AtariClassicModelFunctions.CreateEightBit(AtariMachineModel.ModernXlXe320K, AtariClassicModelConstants.Modern320KModelId,
                 AtariClassicModelConstants.Modern320KDisplayNameResource,
                 AtariClassicModelConstants.ThreeHundredTwentyKibibytes, EightBitCpu, TelevisionRegions,
-                EightBitVideo, PokeyAudio, EightBitStorage, ComputerPorts, XlXeFirmware, EightBitMedia),
+                EightBitVideo, PokeyAudio, EightBitStorage, TwoPortComputerPorts, XlXeFirmware, EightBitMedia),
             AtariClassicModelFunctions.CreateEightBit(AtariMachineModel.ModernXlXe576K, AtariClassicModelConstants.Modern576KModelId,
                 AtariClassicModelConstants.Modern576KDisplayNameResource,
                 AtariClassicModelConstants.FiveHundredSeventySixKibibytes, EightBitCpu, TelevisionRegions,
-                EightBitVideo, PokeyAudio, EightBitStorage, ComputerPorts, XlXeFirmware, EightBitMedia),
+                EightBitVideo, PokeyAudio, EightBitStorage, TwoPortComputerPorts, XlXeFirmware, EightBitMedia),
             AtariClassicModelFunctions.CreateEightBit(AtariMachineModel.ModernXlXe1088K, AtariClassicModelConstants.Modern1088KModelId,
                 AtariClassicModelConstants.Modern1088KDisplayNameResource,
                 AtariClassicModelConstants.OneThousandEightyEightKibibytes, EightBitCpu, TelevisionRegions,
-                EightBitVideo, PokeyAudio, EightBitStorage, ComputerPorts, XlXeFirmware, EightBitMedia),
+                EightBitVideo, PokeyAudio, EightBitStorage, TwoPortComputerPorts, XlXeFirmware, EightBitMedia),
             AtariClassicModelFunctions.CreateEightBit(AtariMachineModel.Xegs, AtariClassicModelConstants.XegsModelId,
                 AtariClassicModelConstants.XegsDisplayNameResource, AtariClassicModelConstants.SixtyFourKibibytes,
-                EightBitCpu, TelevisionRegions, EightBitVideo, PokeyAudio, EightBitStorage, ComputerPorts,
+                EightBitCpu, TelevisionRegions, EightBitVideo, PokeyAudio, EightBitStorage, TwoPortComputerPorts,
                 AtariClassicModelFunctions.Values(AtariFirmwareKind.AtariXlOs, AtariFirmwareKind.AtariBasic,
                     AtariFirmwareKind.AtariXegsBios), EightBitMedia),
             AtariClassicModelFunctions.Create(AtariMachineModel.Atari5200, AtariClassicModelConstants.Atari5200ModelId,

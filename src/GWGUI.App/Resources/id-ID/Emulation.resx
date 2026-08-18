@@ -12,450 +12,1102 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Emulation.MachinesTab">
+  <data name="Emulation.Tab.Machines">
     <value>Mesin</value>
   </data>
-  <data name="Emulation.Core">
+  <data name="Emulation.Core.Name">
     <value>Inti</value>
   </data>
-  <data name="Emulation.CoreManagerTitle">
+  <data name="Emulation.Core.NameManagerTitle">
     <value>Inti emulasi {0}</value>
   </data>
-  <data name="Emulation.CoreManagerDescription">
+  <data name="Emulation.Core.NameManagerDescription">
     <value>Pustaka tetap berada di luar GW GUI. Versi yang dipilih menggantikan versi yang saat ini terpasang.</value>
   </data>
-  <data name="Emulation.CoreRequiredVersion">
+  <data name="Emulation.Core.NameRequiredVersion">
     <value>Versi yang diperlukan GW GUI</value>
   </data>
-  <data name="Emulation.CoreLatestVersion">
+  <data name="Emulation.Core.NameLatestVersion">
     <value>Versi resmi terbaru yang tersedia</value>
   </data>
-  <data name="Emulation.CoreProjectVersion">
+  <data name="Emulation.Core.NameProjectVersion">
     <value>Versi yang saat ini terpasang</value>
   </data>
-  <data name="Emulation.CoreSearchPrompt">
+  <data name="Emulation.Core.NameSearchPrompt">
     <value>Klik Cari untuk memeriksa server resmi Libretro.</value>
   </data>
-  <data name="Emulation.CoreSearch">
+  <data name="Emulation.Core.NameSearch">
     <value>Cari versi</value>
   </data>
-  <data name="Emulation.CoreDownload">
+  <data name="Emulation.Core.NameDownload">
     <value>Unduh dan ganti</value>
   </data>
-  <data name="Emulation.CoreSearching">
+  <data name="Emulation.Core.NameSearching">
     <value>Mencari versi yang tersedia…</value>
   </data>
-  <data name="Emulation.CoreNoneFound">
+  <data name="Emulation.Core.NameNoneFound">
     <value>Tidak ada versi resmi yang ditemukan.</value>
   </data>
-  <data name="Emulation.CoreVersionsFound">
+  <data name="Emulation.Core.NameVersionsFound">
     <value>{0} versi tersedia.</value>
   </data>
-  <data name="Emulation.CoreDownloading">
+  <data name="Emulation.Core.NameDownloading">
     <value>Mengunduh {0}…</value>
   </data>
-  <data name="Emulation.CoreInstalledPath">
+  <data name="Emulation.Core.NameInstalledPath">
     <value>Versi terpasang: {0}</value>
   </data>
-  <data name="Emulation.CoreInstalled">
+  <data name="Emulation.Core.NameInstalled">
     <value>{0} · terpasang</value>
   </data>
-  <data name="Emulation.CoreNotInstalled">
+  <data name="Emulation.Core.NameNotInstalled">
     <value>Tidak ada versi terpasang</value>
   </data>
-  <data name="Emulation.OpenMachine">
+  <data name="Emulation.Machine.Open">
     <value>Buka</value>
   </data>
-  <data name="Emulation.WelcomeTab">
+  <data name="Emulation.Tab.Welcome">
     <value>Selamat datang</value>
   </data>
-  <data name="Emulation.WelcomeText">
+  <data name="Emulation.Welcome.Text">
     <value>Pilih mesin tersimpan di atas lalu klik Buka. Setiap mesin yang berjalan muncul di tab tersendiri.</value>
   </data>
-  <data name="Emulation.ConfigurationsDescription">
+  <data name="Emulation.Configuration.Description">
     <value>Buat, pilih, ubah, atau hapus konfigurasi tersimpan di sini. Pilih tab {0} untuk mengedit konfigurasi yang dipilih.</value>
   </data>
-  <data name="Emulation.GeneralTab">
+  <data name="Emulation.Tab.General">
     <value>Umum</value>
   </data>
-  <data name="Emulation.VideoTab">
+  <data name="Emulation.Tab.Video">
     <value>Video</value>
   </data>
-  <data name="Emulation.StorageTab">
+  <data name="Emulation.Tab.Storage">
     <value>Penyimpanan</value>
   </data>
-  <data name="Emulation.KeyboardTab">
+  <data name="Emulation.Tab.Keyboard">
     <value>Papan ketik</value>
   </data>
-  <data name="Emulation.MouseTab">
+  <data name="Emulation.Tab.Mouse">
     <value>Tetikus</value>
   </data>
-  <data name="Emulation.ControllersTab">
+  <data name="Emulation.Controller.Tab">
     <value>Pengontrol</value>
   </data>
-  <data name="Emulation.AdvancedTab">
+  <data name="Emulation.Tab.Advanced">
     <value>Lanjutan</value>
   </data>
-  <data name="Emulation.DeviceId">
+  <data name="Emulation.Device.Name.Id">
     <value>Pengenal perangkat</value>
   </data>
-  <data name="Emulation.ControllerDevice">
+  <data name="Emulation.Controller.Device">
     <value>Perangkat pengontrol {0}</value>
   </data>
-  <data name="Emulation.SystemKey">
+  <data name="Emulation.Keyboard.SystemKey">
     <value>Tombol {0}</value>
   </data>
-  <data name="Emulation.HostKey">
+  <data name="Emulation.Keyboard.HostKey">
     <value>Tombol host</value>
   </data>
-  <data name="Emulation.CpuSummary">
+  <data name="Emulation.Cpu.Summary">
     <value>Prosesor: {0}</value>
   </data>
-  <data name="Emulation.RamSummary">
+  <data name="Emulation.Memory.Summary">
     <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
   </data>
-  <data name="Emulation.VideoSummary">
+  <data name="Emulation.Video.Summary">
     <value>Chipset video: {0}</value>
   </data>
-  <data name="Emulation.CpuModel"><value>Model CPU</value></data>
-  <data name="Emulation.CpuMultiplier"><value>Pengali CPU</value></data>
-  <data name="Emulation.CpuCompatibility"><value>CPU kompatibel per siklus</value></data>
-  <data name="Emulation.ChipMemory"><value>Chip RAM</value></data>
-  <data name="Emulation.SlowMemory"><value>Slow RAM</value></data>
-  <data name="Emulation.FastMemory"><value>Fast RAM</value></data>
-  <data name="Emulation.Z3Memory"><value>RAM Zorro III</value></data>
-  <data name="Emulation.VideoStandard"><value>Standar video</value></data>
-  <data name="Emulation.VideoResolution"><value>Resolusi</value></data>
-  <data name="Emulation.AspectRatio"><value>Rasio aspek</value></data>
-  <data name="Emulation.VideoCrop"><value>Pangkas tepi</value></data>
-  <data name="Emulation.FlickerFixer"><value>Koreksi kedipan</value></data>
-  <data name="Emulation.AudioEnabled"><value>Aktifkan audio</value></data>
-  <data name="Emulation.AudioOutput"><value>Keluaran audio</value></data>
-  <data name="Emulation.AudioLatency"><value>Latensi (ms)</value></data>
-  <data name="Emulation.AudioInterpolation"><value>Interpolasi</value></data>
-  <data name="Emulation.AudioFilter"><value>Filter audio Amiga</value></data>
-  <data name="Emulation.StereoSeparation"><value>Pemisahan stereo (%)</value></data>
-  <data name="Emulation.AudioInput"><value>Masukan audio</value></data>
-  <data name="Emulation.AudioInputUnavailable"><value>Core Amiga ini tidak menyediakan masukan audio.</value></data>
-  <data name="Emulation.DefaultAudioOutput"><value>Keluaran bawaan Windows</value></data>
-  <data name="Emulation.AddMedia"><value>Tambah media</value></data>
-  <data name="Emulation.CreateHardDisk"><value>Buat hard disk</value></data>
-  <data name="Emulation.HardDiskSize"><value>Ukuran hard disk (MiB)</value></data>
-  <data name="Emulation.NoMedia"><value>Tidak ada media. Tambahkan disket, hard disk, atau CD yang didukung model terpilih.</value></data>
-  <data name="Emulation.ReadOnly"><value>Hanya baca</value></data>
-  <data name="Emulation.AmigaMediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value></data>
-  <data name="Emulation.HardDiskFilter"><value>Amiga hard disk|*.hdf|All files|*.*</value></data>
-  <data name="Emulation.HardDiskNotSupported"><value>Model terpilih tidak mendukung hard disk.</value></data>
-  <data name="Emulation.TooManyFloppyDrives"><value>Model ini mendukung paling banyak {0} drive disket.</value></data>
-  <data name="Emulation.TooManyHardDrives"><value>Model ini mendukung paling banyak {0} hard disk.</value></data>
-  <data name="Emulation.CdNotSupported"><value>Model terpilih tidak mendukung drive CD.</value></data>
-  <data name="Emulation.DuplicateKeyboardMapping"><value>Dua tombol Amiga menggunakan tombol PC yang sama. Perbaiki pemetaan merah sebelum menyimpan.</value></data>
-  <data name="Emulation.ReleaseMouseKey"><value>Tombol pelepas tangkapan mouse</value></data>
-  <data name="Emulation.MouseLeftButton"><value>Tombol kiri mouse</value></data>
-  <data name="Emulation.MouseRightButton"><value>Tombol kanan mouse</value></data>
-  <data name="Emulation.MouseMiddleButton"><value>Tombol tengah mouse</value></data>
-  <data name="Emulation.DetectControllers"><value>Deteksi pengontrol</value></data>
-  <data name="Emulation.EmulatedAction"><value>Aksi Amiga</value></data>
-  <data name="Emulation.PhysicalControl"><value>Kontrol keyboard, mouse, atau pengontrol</value></data>
-  <data name="Emulation.Chipset"><value>Chipset</value></data>
-  <data name="Emulation.CdDrive"><value>Drive CD</value></data>
-  <data name="Emulation.FloppyDriveCount"><value>Jumlah drive disket</value></data>
-  <data name="Emulation.HardDriveCount"><value>Jumlah hard disk</value></data>
-  <data name="Emulation.FpuModel"><value>FPU</value></data>
-  <data name="Emulation.CpuSpeed"><value>Kecepatan CPU</value></data>
-  <data name="Emulation.CpuSpeedOriginal"><value>Kecepatan asli</value></data>
-  <data name="Emulation.CompatibilityNormal"><value>Normal</value></data>
-  <data name="Emulation.CompatibilityCompatible"><value>Kompatibel</value></data>
-  <data name="Emulation.CompatibilityMemory"><value>Kompatibel dengan memori</value></data>
-  <data name="Emulation.CompatibilityExact"><value>Akurat per siklus</value></data>
-  <data name="Emulation.IntegratedFpu"><value>FPU terintegrasi</value></data>
-  <data name="Emulation.Enabled"><value>Diaktifkan</value></data>
-  <data name="Emulation.Disabled"><value>Dinonaktifkan</value></data>
-  <data name="Emulation.Minimum"><value>Minimum</value></data>
-  <data name="Emulation.VerySmall"><value>Sangat kecil</value></data>
-  <data name="Emulation.Small"><value>Kecil</value></data>
-  <data name="Emulation.Medium"><value>Sedang</value></data>
-  <data name="Emulation.Large"><value>Besar</value></data>
-  <data name="Emulation.VeryLarge"><value>Sangat besar</value></data>
-  <data name="Emulation.Maximum"><value>Maksimum</value></data>
-  <data name="Emulation.Locked"><value>Terkunci</value></data>
-  <data name="Emulation.Immediate"><value>Seketika</value></data>
-  <data name="Emulation.Waiting"><value>Dengan tunggu</value></data>
-  <data name="Emulation.Standard"><value>Standar</value></data>
-  <data name="Emulation.Enhanced"><value>Ditingkatkan</value></data>
-  <data name="Emulation.Internal"><value>Internal</value></data>
-  <data name="Emulation.Loud"><value>Keras</value></data>
-  <data name="Emulation.ResolutionAutoLow"><value>Resolusi rendah otomatis</value></data>
-  <data name="Emulation.ResolutionAutoSuperHigh"><value>Resolusi supertinggi otomatis</value></data>
-  <data name="Emulation.ResolutionLow"><value>Resolusi rendah</value></data>
-  <data name="Emulation.ResolutionHigh"><value>Resolusi tinggi</value></data>
-  <data name="Emulation.ResolutionSuperHigh"><value>Resolusi supertinggi</value></data>
-  <data name="Emulation.VideoLineMode"><value>Mode garis</value></data>
-  <data name="Emulation.VideoHzChange"><value>Perubahan laju penyegaran</value></data>
-  <data name="Emulation.VideoFrameskip"><value>Lewati frame</value></data>
-  <data name="Emulation.VideoColors"><value>Kedalaman warna</value></data>
-  <data name="Emulation.VideoGamma"><value>Gamma</value></data>
-  <data name="Emulation.ImmediateBlits"><value>Operasi blitter</value></data>
-  <data name="Emulation.CollisionLevel"><value>Deteksi tabrakan</value></data>
-  <data name="Emulation.LineModeSingle"><value>Pemindaian tunggal</value></data>
-  <data name="Emulation.LineModeDouble"><value>Pemindaian ganda</value></data>
-  <data name="Emulation.CollisionSprites"><value>Sprite</value></data>
-  <data name="Emulation.CollisionPlayfields"><value>Bidang permainan</value></data>
-  <data name="Emulation.CollisionFull"><value>Penuh</value></data>
-  <data name="Emulation.InterpolationAnti"><value>Anti-interpolasi</value></data>
-  <data name="Emulation.FilterEmulated"><value>Diemulasikan</value></data>
-  <data name="Emulation.AudioFilterType"><value>Jenis filter</value></data>
-  <data name="Emulation.FloppySound"><value>Volume suara drive disket</value></data>
-  <data name="Emulation.FloppySoundType"><value>Jenis suara drive disket</value></data>
-  <data name="Emulation.MuteEmptyFloppy"><value>Bisukan drive kosong</value></data>
-  <data name="Emulation.CdAudioVolume"><value>Volume audio CD</value></data>
-  <data name="Emulation.FloppySpeed"><value>Kecepatan drive disket</value></data>
-  <data name="Emulation.FloppyWriteProtection"><value>Lindungi citra disket dari penulisan</value></data>
-  <data name="Emulation.FloppyWriteRedirect"><value>Alihkan penulisan disket</value></data>
-  <data name="Emulation.CdSpeed"><value>Kecepatan CD</value></data>
-  <data name="Emulation.KeyboardPassThrough"><value>Teruskan keyboard fisik</value></data>
-  <data name="Emulation.PhysicalMouse"><value>Mouse fisik</value></data>
-  <data name="Emulation.PhysicalMouseDouble"><value>Gerakan ganda</value></data>
-  <data name="Emulation.MouseSpeed"><value>Kecepatan mouse</value></data>
-  <data name="Emulation.AnalogMouse"><value>Stik analog pengendali mouse</value></data>
-  <data name="Emulation.AnalogMouseDeadzone"><value>Zona mati stik analog</value></data>
-  <data name="Emulation.AnalogMouseSpeed"><value>Kecepatan mouse stik analog</value></data>
-  <data name="Emulation.LeftStick"><value>Stik kiri</value></data>
-  <data name="Emulation.RightStick"><value>Stik kanan</value></data>
-  <data name="Emulation.BothSticks"><value>Kedua stik</value></data>
-  <data name="Emulation.TurboFire"><value>Tembakan turbo</value></data>
-  <data name="Emulation.TurboButton"><value>Tombol turbo</value></data>
-  <data name="Emulation.TurboPulse"><value>Pulsa turbo</value></data>
-  <data name="Emulation.JoyPortOrder"><value>Urutan port pengontrol</value></data>
-  <data name="Emulation.Emulator"><value>Emulator</value></data>
-  <data name="Emulation.StorageBaseFolder"><value>Folder penyimpanan emulasi bersama</value></data>
-  <data name="Emulation.StorageBaseFolderDescription"><value>Hard disk diatur otomatis dalam HDD\Amiga, HDD\Atari, dan folder sistem mendatang.</value></data>
-  <data name="Emulation.AddHardDisk"><value>Tambahkan hard disk yang ada</value></data>
-  <data name="Emulation.HardDisks"><value>Hard disk</value></data>
-  <data name="Emulation.NoHardDisks"><value>Tidak ada hard disk yang terkait dengan mesin ini.</value></data>
-  <data name="Emulation.KeyboardPriorityHint"><value>Pintasan yang dicadangkan</value></data>
-  <data name="Emulation.KeyboardPriorityDescription"><value>Pintasan GW GUI dan Windows tetap aktif dan tidak ditangkap oleh mesin.</value></data>
-  <data name="Emulation.InputBehavior"><value>Perilaku</value></data>
-  <data name="Emulation.AssignInput"><value>Tetapkan...</value></data>
-  <data name="Emulation.InputActions"><value>Tindakan</value></data>
-  <data name="Emulation.PressInput"><value>Tekan tombol...</value></data>
-  <data name="Emulation.CreateStorageFolders"><value>Buat subfolder yang hilang secara otomatis</value></data>
-  <data name="Emulation.CommonFolders"><value>Folder bersama</value></data>
-  <data name="Emulation.SharedInputDescription"><value>Deteksi perangkat digunakan bersama, sedangkan penetapan disimpan terpisah pada setiap konfigurasi mesin.</value></data>
-  <data name="Emulation.TestInputs"><value>Uji input</value></data>
-  <data name="Emulation.SharedDevices"><value>Perangkat input bersama</value></data>
-  <data name="Emulation.CaptureFolder"><value>Folder tangkapan</value></data>
-  <data name="Emulation.StateFolder"><value>Folder status tersimpan</value></data>
-  <data name="Emulation.DefaultFolders"><value>Folder default</value></data>
-  <data name="Emulation.NoControllersDetected"><value>Tidak ada pengontrol terdeteksi</value></data>
-  <data name="Emulation.TestInputsPrompt"><value>Tekan tombol keyboard atau mouse untuk menguji deteksinya.</value></data>
-  <data name="Emulation.Floppies"><value>Disket</value></data>
-  <data name="Emulation.ExtendedRom"><value>ROM tambahan</value></data>
-  <data name="Emulation.RomKey"><value>Kunci ROM</value></data>
-  <data name="Emulation.Processor"><value>Prosesor</value></data>
-  <data name="Emulation.Precision"><value>Presisi</value></data>
-  <data name="Emulation.Acceleration"><value>Akselerasi</value></data>
-  <data name="Emulation.MainMemory"><value>Memori utama</value></data>
-  <data name="Emulation.MemoryExtensions"><value>Ekstensi memori</value></data>
-  <data name="Emulation.MemoryNone"><value>Tidak ada</value></data>
-  <data name="Emulation.MemoryCompatibleWithModel"><value>Konfigurasi memori kompatibel dengan {0}.</value></data>
-  <data name="Emulation.MemoryExtensionsCompatibleWithModel"><value>Ekstensi memori kompatibel dengan {0}.</value></data>
-  <data name="Emulation.Z3MemoryUnavailableForModel"><value>RAM Zorro III tidak tersedia pada {0}.</value></data>
-  <data name="Emulation.TotalMemoryConfigured"><value>Total memori yang dikonfigurasi: {0} {1}</value></data>
-  <data name="Emulation.SystemRom"><value>ROM sistem</value></data>
-  <data name="Emulation.DetectedRoms"><value>ROM terdeteksi</value></data>
-  <data name="Emulation.UseFirmware"><value>Gunakan</value></data>
-  <data name="Emulation.NotUsed"><value>Tidak digunakan</value></data>
-  <data name="Emulation.OpenRomFolder"><value>Buka folder ROM</value></data>
-  <data name="Emulation.FirmwarePartiallyCompatible"><value>Sebagian kompatibel</value></data>
-  <data name="Emulation.DisplaySettings"><value>Tampilan</value></data>
-  <data name="Emulation.RenderingSettings"><value>Perenderan</value></data>
-  <data name="Emulation.ChipsetCompatibility"><value>Kompatibilitas chipset</value></data>
-  <data name="Emulation.AudioDevice"><value>Perangkat</value></data>
-  <data name="Emulation.Latency"><value>Latensi</value></data>
-  <data name="Emulation.AudioQuality"><value>Kualitas</value></data>
-  <data name="Emulation.AudioDrives"><value>Drive</value></data>
-  <data name="Emulation.Type"><value>Jenis</value></data>
-  <data name="Emulation.AddStorageDevice"><value>Tambah perangkat penyimpanan</value></data>
-  <data name="Emulation.AmigaDdFloppy"><value>Amiga 3,5 inci DD · 880 KiB</value></data>
-  <data name="Emulation.AmigaHdFloppy"><value>Amiga 3,5 inci HD · 1,76 MiB</value></data>
-  <data name="Emulation.AssociatedMedia"><value>Media terkait</value></data>
-  <data name="Emulation.AutomaticDiskGeometry"><value>Geometri disk ditentukan otomatis oleh emulator.</value></data>
-  <data name="Emulation.BlankFloppyCreated"><value>Citra disket kosong dibuat: {0}</value></data>
-  <data name="Emulation.BlankHardDiskHint"><value>Berkas akan dibuat kosong lalu harus dipartisi dan diformat di mesin emulasi.</value></data>
-  <data name="Emulation.CdWriter"><value>Perekam CD</value></data>
-  <data name="Emulation.CdWriterHint"><value>Disk kosong hanya dapat dibuat jika mesin dan emulator yang dipilih mendukung penulisan.</value></data>
-  <data name="Emulation.CompactDiscDevice"><value>Drive CD-ROM</value></data>
-  <data name="Emulation.ConfigureDevice"><value>Konfigurasi</value></data>
-  <data name="Emulation.CreateBlankFloppy"><value>Buat disket kosong</value></data>
-  <data name="Emulation.DiskImage"><value>Citra disk</value></data>
-  <data name="Emulation.DiskImageRequired"><value>Pilih citra disk yang sudah ada.</value></data>
-  <data name="Emulation.ExistingDiskHint"><value>Berkas yang dipilih akan dipasang pada drive virtual ini.</value></data>
-  <data name="Emulation.FloppyDevice"><value>Drive disket</value></data>
-  <data name="Emulation.FloppyImageFilter"><value>Citra disket Amiga|*.adf|Semua berkas|*.*</value></data>
-  <data name="Emulation.HardDiskDevice"><value>Hard disk</value></data>
-  <data name="Emulation.Interface"><value>Antarmuka</value></data>
-  <data name="Emulation.PreallocateFile"><value>Alokasikan berkas di muka</value></data>
-  <data name="Emulation.RemovableMediaRuntimeHint"><value>Disket dan CD dimasukkan atau diganti dari mesin yang sedang berjalan.</value></data>
-  <data name="Emulation.RemoveMedia"><value>Lepas media</value></data>
-  <data name="Emulation.ReplaceExistingDisk"><value>Citra disk sudah ada: {0}\nApakah Anda ingin menggantinya?</value></data>
-  <data name="Emulation.StorageDeviceCapabilitiesHint"><value>Jenis, model, dan pengenal yang tersedia bergantung pada mesin yang dipilih.</value></data>
-  <data name="Emulation.TapeDevice"><value>Drive pita</value></data>
-  <data name="Emulation.UseDisk"><value>Gunakan disk</value></data>
-  <data name="Emulation.UseExistingDisk"><value>Gunakan disk yang ada</value></data>
-  <data name="Emulation.ModifyInGeneral"><value>Ubah di Umum</value></data>
-  <data name="Emulation.NoStorageDeviceAvailable"><value>Tidak ada perangkat penyimpanan tambahan yang tersedia untuk mesin ini.</value></data>
-  <data name="Emulation.StorageDevices"><value>Perangkat penyimpanan</value></data>
-  <data name="Emulation.RestoreDefaultBindings"><value>Pulihkan bawaan</value></data>
-  <data name="Emulation.ClearConflicts"><value>Hapus konflik</value></data>
-  <data name="Emulation.EmulatedKey"><value>Tombol mesin</value></data>
-  <data name="Emulation.Binding"><value>Pemetaan</value></data>
-  <data name="Emulation.BindingState"><value>Status</value></data>
-  <data name="Emulation.SearchBinding"><value>Cari tombol atau pemetaan</value></data>
-  <data name="Emulation.BindingLegend"><value>Valid: pemetaan unik · Konflik: pemetaan dipakai beberapa kali · Dicadangkan: pintasan Windows atau GW GUI</value></data>
-  <data name="Emulation.BindingValid"><value>Valid</value></data>
-  <data name="Emulation.BindingConflict"><value>Konflik</value></data>
-  <data name="Emulation.BindingReserved"><value>Dicadangkan</value></data>
-  <data name="Emulation.BindingUnassigned"><value>Belum dipetakan</value></data>
-  <data name="Emulation.GlobalShortcuts"><value>Pintasan emulasi</value></data>
-  <data name="Emulation.ShortcutsTab"><value>Pintasan</value></data>
-  <data name="Emulation.Shortcut.ReleaseMouse"><value>Lepaskan mouse</value></data>
-  <data name="Emulation.Shortcut.PauseResume"><value>Jeda / lanjutkan</value></data>
-  <data name="Emulation.Shortcut.Fullscreen"><value>Layar penuh / jendela</value></data>
-  <data name="Emulation.Shortcut.Power"><value>Nyalakan / matikan</value></data>
-  <data name="Emulation.Shortcut.SoftReset"><value>Reset lunak</value></data>
-  <data name="Emulation.Shortcut.HardReset"><value>Reset keras</value></data>
-  <data name="Emulation.Shortcut.QuickSave"><value>Simpan cepat status</value></data>
-  <data name="Emulation.Shortcut.QuickLoad"><value>Muat cepat status</value></data>
-  <data name="Emulation.Shortcut.Screenshot"><value>Tangkapan layar</value></data>
-  <data name="Emulation.Shortcut.Mute"><value>Bisukan mesin aktif</value></data>
-  <data name="Emulation.Shortcut.FastForward"><value>Percepat saat ditahan</value></data>
-  <data name="Emulation.Shortcut.InsertMedia"><value>Masukkan atau ganti media</value></data>
-  <data name="Emulation.Shortcut.EjectMedia"><value>Keluarkan media</value></data>
-  <data name="Emulation.Shortcut.NextMedia"><value>Media berikutnya</value></data>
-  <data name="Emulation.Key.Help"><value>Bantuan</value></data>
-  <data name="Emulation.Key.LeftAmiga"><value>Amiga kiri</value></data>
-  <data name="Emulation.Key.RightAmiga"><value>Amiga kanan</value></data>
-  <data name="Emulation.SpecialKeysOnlyHint"><value>Huruf, angka, dan tombol pengubah biasa diteruskan langsung. Hanya tombol fungsi dan tombol khusus Amiga yang perlu dipetakan di sini.</value></data>
-  <data name="Emulation.ShortcutUnavailable"><value>Tindakan ini belum didukung oleh emulator saat ini.</value></data>
-  <data name="Emulation.Allocation"><value>Alokasi</value></data>
-  <data name="Emulation.AutomaticGeometry"><value>Geometri otomatis</value></data>
-  <data name="Emulation.BlankMedia"><value>Media kosong</value></data>
-  <data name="Emulation.BytesPerSector"><value>Byte per sektor</value></data>
-  <data name="Emulation.CalculatedCapacity"><value>Kapasitas terhitung: {0}</value></data>
-  <data name="Emulation.ControllerMappings"><value>Pemetaan pengontrol</value></data>
-  <data name="Emulation.ControllerPort"><value>Port {0}</value></data>
-  <data name="Emulation.ControllerType"><value>Jenis pengontrol</value></data>
-  <data name="Emulation.CustomSize"><value>Ukuran khusus</value></data>
-  <data name="Emulation.Cylinders"><value>Silinder</value></data>
-  <data name="Emulation.DestinationFolder"><value>Folder tujuan</value></data>
-  <data name="Emulation.DetectedControllers"><value>Pengontrol terdeteksi</value></data>
-  <data name="Emulation.Device"><value>Perangkat</value></data>
-  <data name="Emulation.DiskGeometry"><value>Geometri disk (CHS)</value></data>
-  <data name="Emulation.DiskSizeProfile"><value>Profil ukuran</value></data>
-  <data name="Emulation.FloppyDrive"><value>Drive disket</value></data>
-  <data name="Emulation.Heads"><value>Head</value></data>
-  <data name="Emulation.InputCaptureHint"><value>Klik Tetapkan, lalu gunakan tombol keyboard, mouse, atau pengontrol.</value></data>
-  <data name="Emulation.InvalidDiskSize"><value>Ukuran atau geometri disk tidak valid.</value></data>
-  <data name="Emulation.MouseActions"><value>Tindakan mouse</value></data>
-  <data name="Emulation.MouseButton4"><value>Tombol mouse 4</value></data>
-  <data name="Emulation.MouseButton5"><value>Tombol mouse 5</value></data>
-  <data name="Emulation.MouseCaptureTitle"><value>Penangkapan mouse</value></data>
-  <data name="Emulation.PreallocationHint"><value>Mencadangkan ruang fisik segera; jika tidak, citra membesar saat data ditulis.</value></data>
-  <data name="Emulation.SearchInputBinding"><value>Cari tindakan atau input</value></data>
-  <data name="Emulation.Sectors"><value>Sektor</value></data>
-  <data name="Emulation.UnitMiB"><value>MiB</value></data>
-  <data name="Emulation.UnitGiB"><value>GiB</value></data>
-  <data name="Emulation.DirectionUp"><value>Atas</value></data>
-  <data name="Emulation.DirectionDown"><value>Bawah</value></data>
-  <data name="Emulation.DirectionLeft"><value>Kiri</value></data>
-  <data name="Emulation.DirectionRight"><value>Kanan</value></data>
-  <data name="Emulation.FireButton1"><value>Tombol tembak 1</value></data>
-  <data name="Emulation.FireButton2"><value>Tombol tembak 2</value></data>
-  <data name="Emulation.Cd32Red"><value>Tombol merah CD32</value></data>
-  <data name="Emulation.Cd32Blue"><value>Tombol biru CD32</value></data>
-  <data name="Emulation.Cd32Green"><value>Tombol hijau CD32</value></data>
-  <data name="Emulation.Cd32Yellow"><value>Tombol kuning CD32</value></data>
-  <data name="Emulation.Cd32Rewind"><value>CD32 putar balik</value></data>
-  <data name="Emulation.Cd32FastForward"><value>CD32 maju cepat</value></data>
-  <data name="Emulation.Cd32PlayPause"><value>CD32 putar / jeda</value></data>
-  <data name="Emulation.AmigaJoystick"><value>Joystick Amiga</value></data>
-  <data name="Emulation.AnalogJoystick"><value>Joystick analog</value></data>
-  <data name="Emulation.Cd32Controller"><value>Pengontrol CD32</value></data>
-  <data name="Emulation.MouseWheelUp"><value>Roda tetikus ke atas</value></data>
-  <data name="Emulation.MouseWheelDown"><value>Roda tetikus ke bawah</value></data>
-  <data name="Emulation.MouseWheelLeft"><value>Roda tetikus ke kiri</value></data>
-  <data name="Emulation.MouseWheelRight"><value>Roda tetikus ke kanan</value></data>
-  <data name="Emulation.AtariModelSt" xml:space="preserve">
+  <data name="Emulation.Cpu.Model">
+    <value>Model CPU</value>
+  </data>
+  <data name="Emulation.Cpu.Multiplier">
+    <value>Pengali CPU</value>
+  </data>
+  <data name="Emulation.Cpu.Compatibility">
+    <value>CPU kompatibel per siklus</value>
+  </data>
+  <data name="Emulation.Memory.Chip">
+    <value>Chip RAM</value>
+  </data>
+  <data name="Emulation.Memory.Slow">
+    <value>Slow RAM</value>
+  </data>
+  <data name="Emulation.Memory.Fast">
+    <value>Fast RAM</value>
+  </data>
+  <data name="Emulation.Memory.Z3">
+    <value>RAM Zorro III</value>
+  </data>
+  <data name="Emulation.Video.Standard">
+    <value>Standar video</value>
+  </data>
+  <data name="Emulation.Video.Resolution">
+    <value>Resolusi</value>
+  </data>
+  <data name="Emulation.Video.AspectRatio">
+    <value>Rasio aspek</value>
+  </data>
+  <data name="Emulation.Video.Crop">
+    <value>Pangkas tepi</value>
+  </data>
+  <data name="Emulation.Video.FlickerFixer">
+    <value>Koreksi kedipan</value>
+  </data>
+  <data name="Emulation.Audio.Enabled">
+    <value>Aktifkan audio</value>
+  </data>
+  <data name="Emulation.Audio.Output">
+    <value>Keluaran audio</value>
+  </data>
+  <data name="Emulation.Audio.Latency">
+    <value>Latensi (ms)</value>
+  </data>
+  <data name="Emulation.Audio.Interpolation">
+    <value>Interpolasi</value>
+  </data>
+  <data name="Emulation.Audio.Filter">
+    <value>Filter audio Amiga</value>
+  </data>
+  <data name="Emulation.Audio.StereoSeparation">
+    <value>Pemisahan stereo (%)</value>
+  </data>
+  <data name="Emulation.Audio.Input">
+    <value>Masukan audio</value>
+  </data>
+  <data name="Emulation.Audio.InputUnavailable">
+    <value>Core Amiga ini tidak menyediakan masukan audio.</value>
+  </data>
+  <data name="Emulation.Audio.DefaultOutput">
+    <value>Keluaran bawaan Windows</value>
+  </data>
+  <data name="Emulation.Storage.Media.Add">
+    <value>Tambah media</value>
+  </data>
+  <data name="Emulation.Storage.HardDisk.Create">
+    <value>Buat hard disk</value>
+  </data>
+  <data name="Emulation.Storage.HardDisk.Size">
+    <value>Ukuran hard disk (MiB)</value>
+  </data>
+  <data name="Emulation.Storage.Media.None">
+    <value>Tidak ada media. Tambahkan disket, hard disk, atau CD yang didukung model terpilih.</value>
+  </data>
+  <data name="Emulation.Storage.ReadOnly">
+    <value>Hanya baca</value>
+  </data>
+  <data name="Emulation.Amiga.Storage.MediaFilter">
+    <value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value>
+  </data>
+  <data name="Emulation.Storage.HardDisk.Filter">
+    <value>Amiga hard disk|*.hdf|All files|*.*</value>
+  </data>
+  <data name="Emulation.Storage.HardDisk.NotSupported">
+    <value>Model terpilih tidak mendukung hard disk.</value>
+  </data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives">
+    <value>Model ini mendukung paling banyak {0} drive disket.</value>
+  </data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives">
+    <value>Model ini mendukung paling banyak {0} hard disk.</value>
+  </data>
+  <data name="Emulation.Storage.Cd.NotSupported">
+    <value>Model terpilih tidak mendukung drive CD.</value>
+  </data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate">
+    <value>Dua tombol Amiga menggunakan tombol PC yang sama. Perbaiki pemetaan merah sebelum menyimpan.</value>
+  </data>
+  <data name="Emulation.Mouse.ReleaseKey">
+    <value>Tombol pelepas tangkapan mouse</value>
+  </data>
+  <data name="Emulation.Mouse.Button.Left">
+    <value>Tombol kiri mouse</value>
+  </data>
+  <data name="Emulation.Mouse.Button.Right">
+    <value>Tombol kanan mouse</value>
+  </data>
+  <data name="Emulation.Mouse.Button.Middle">
+    <value>Tombol tengah mouse</value>
+  </data>
+  <data name="Emulation.Controller.Detect">
+    <value>Deteksi pengontrol</value>
+  </data>
+  <data name="Emulation.Controller.EmulatedAction">
+    <value>Aksi Amiga</value>
+  </data>
+  <data name="Emulation.Controller.PhysicalControl">
+    <value>Kontrol keyboard, mouse, atau pengontrol</value>
+  </data>
+  <data name="Emulation.Amiga.Chipset.Name">
+    <value>Chipset</value>
+  </data>
+  <data name="Emulation.Storage.Cd.Drive">
+    <value>Drive CD</value>
+  </data>
+  <data name="Emulation.Storage.Floppy.DriveCount">
+    <value>Jumlah drive disket</value>
+  </data>
+  <data name="Emulation.Storage.HardDisk.DriveCount">
+    <value>Jumlah hard disk</value>
+  </data>
+  <data name="Emulation.Fpu.Model">
+    <value>FPU</value>
+  </data>
+  <data name="Emulation.Cpu.Speed">
+    <value>Kecepatan CPU</value>
+  </data>
+  <data name="Emulation.Cpu.SpeedOriginal">
+    <value>Kecepatan asli</value>
+  </data>
+  <data name="Emulation.Cpu.Compatibility.Normal">
+    <value>Normal</value>
+  </data>
+  <data name="Emulation.Cpu.Compatibility.Compatible">
+    <value>Kompatibel</value>
+  </data>
+  <data name="Emulation.Cpu.Compatibility.Memory">
+    <value>Kompatibel dengan memori</value>
+  </data>
+  <data name="Emulation.Cpu.Compatibility.Exact">
+    <value>Akurat per siklus</value>
+  </data>
+  <data name="Emulation.Fpu.Integrated">
+    <value>FPU terintegrasi</value>
+  </data>
+  <data name="Emulation.Value.Enabled">
+    <value>Diaktifkan</value>
+  </data>
+  <data name="Emulation.Value.Disabled">
+    <value>Dinonaktifkan</value>
+  </data>
+  <data name="Emulation.Value.Minimum">
+    <value>Minimum</value>
+  </data>
+  <data name="Emulation.Value.VerySmall">
+    <value>Sangat kecil</value>
+  </data>
+  <data name="Emulation.Value.Small">
+    <value>Kecil</value>
+  </data>
+  <data name="Emulation.Value.Medium">
+    <value>Sedang</value>
+  </data>
+  <data name="Emulation.Value.Large">
+    <value>Besar</value>
+  </data>
+  <data name="Emulation.Value.VeryLarge">
+    <value>Sangat besar</value>
+  </data>
+  <data name="Emulation.Value.Maximum">
+    <value>Maksimum</value>
+  </data>
+  <data name="Emulation.State.Locked">
+    <value>Terkunci</value>
+  </data>
+  <data name="Emulation.State.Immediate">
+    <value>Seketika</value>
+  </data>
+  <data name="Emulation.State.Waiting">
+    <value>Dengan tunggu</value>
+  </data>
+  <data name="Emulation.Value.Standard">
+    <value>Standar</value>
+  </data>
+  <data name="Emulation.Value.Enhanced">
+    <value>Ditingkatkan</value>
+  </data>
+  <data name="Emulation.Value.Internal">
+    <value>Internal</value>
+  </data>
+  <data name="Emulation.Value.Loud">
+    <value>Keras</value>
+  </data>
+  <data name="Emulation.Video.Resolution.AutoLow">
+    <value>Resolusi rendah otomatis</value>
+  </data>
+  <data name="Emulation.Video.Resolution.AutoSuperHigh">
+    <value>Resolusi supertinggi otomatis</value>
+  </data>
+  <data name="Emulation.Video.Resolution.Low">
+    <value>Resolusi rendah</value>
+  </data>
+  <data name="Emulation.Video.Resolution.High">
+    <value>Resolusi tinggi</value>
+  </data>
+  <data name="Emulation.Video.Resolution.SuperHigh">
+    <value>Resolusi supertinggi</value>
+  </data>
+  <data name="Emulation.Video.LineMode">
+    <value>Mode garis</value>
+  </data>
+  <data name="Emulation.Video.HzChange">
+    <value>Perubahan laju penyegaran</value>
+  </data>
+  <data name="Emulation.Video.FrameSkip">
+    <value>Lewati frame</value>
+  </data>
+  <data name="Emulation.Video.Colors">
+    <value>Kedalaman warna</value>
+  </data>
+  <data name="Emulation.Video.Gamma">
+    <value>Gamma</value>
+  </data>
+  <data name="Emulation.State.ImmediateBlits">
+    <value>Operasi blitter</value>
+  </data>
+  <data name="Emulation.Video.Collision.Level">
+    <value>Deteksi tabrakan</value>
+  </data>
+  <data name="Emulation.Video.LineMode.Single">
+    <value>Pemindaian tunggal</value>
+  </data>
+  <data name="Emulation.Video.LineMode.Double">
+    <value>Pemindaian ganda</value>
+  </data>
+  <data name="Emulation.Video.Collision.Sprites">
+    <value>Sprite</value>
+  </data>
+  <data name="Emulation.Video.Collision.Playfields">
+    <value>Bidang permainan</value>
+  </data>
+  <data name="Emulation.Video.Collision.Full">
+    <value>Penuh</value>
+  </data>
+  <data name="Emulation.Audio.Interpolation.Anti">
+    <value>Anti-interpolasi</value>
+  </data>
+  <data name="Emulation.Audio.Filter.Emulated">
+    <value>Diemulasikan</value>
+  </data>
+  <data name="Emulation.Audio.FilterType">
+    <value>Jenis filter</value>
+  </data>
+  <data name="Emulation.Audio.Floppy.Sound">
+    <value>Volume suara drive disket</value>
+  </data>
+  <data name="Emulation.Audio.Floppy.SoundType">
+    <value>Jenis suara drive disket</value>
+  </data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty">
+    <value>Bisukan drive kosong</value>
+  </data>
+  <data name="Emulation.Audio.Cd.Volume">
+    <value>Volume audio CD</value>
+  </data>
+  <data name="Emulation.Storage.Floppy.Speed">
+    <value>Kecepatan drive disket</value>
+  </data>
+  <data name="Emulation.Storage.Floppy.WriteProtection">
+    <value>Lindungi citra disket dari penulisan</value>
+  </data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect">
+    <value>Alihkan penulisan disket</value>
+  </data>
+  <data name="Emulation.Storage.Cd.Speed">
+    <value>Kecepatan CD</value>
+  </data>
+  <data name="Emulation.Keyboard.PassThrough">
+    <value>Teruskan keyboard fisik</value>
+  </data>
+  <data name="Emulation.Mouse.Physical">
+    <value>Mouse fisik</value>
+  </data>
+  <data name="Emulation.Mouse.PhysicalDouble">
+    <value>Gerakan ganda</value>
+  </data>
+  <data name="Emulation.Mouse.Speed">
+    <value>Kecepatan mouse</value>
+  </data>
+  <data name="Emulation.Mouse.Analog">
+    <value>Stik analog pengendali mouse</value>
+  </data>
+  <data name="Emulation.Mouse.AnalogDeadzone">
+    <value>Zona mati stik analog</value>
+  </data>
+  <data name="Emulation.Mouse.AnalogSpeed">
+    <value>Kecepatan mouse stik analog</value>
+  </data>
+  <data name="Emulation.Controller.Stick.Left">
+    <value>Stik kiri</value>
+  </data>
+  <data name="Emulation.Controller.Stick.Right">
+    <value>Stik kanan</value>
+  </data>
+  <data name="Emulation.Controller.Stick.Both">
+    <value>Kedua stik</value>
+  </data>
+  <data name="Emulation.Controller.Action.TurboFire">
+    <value>Tembakan turbo</value>
+  </data>
+  <data name="Emulation.Controller.Turbo.Button">
+    <value>Tombol turbo</value>
+  </data>
+  <data name="Emulation.Controller.Turbo.Pulse">
+    <value>Pulsa turbo</value>
+  </data>
+  <data name="Emulation.Controller.PortOrder">
+    <value>Urutan port pengontrol</value>
+  </data>
+  <data name="Emulation.Core.Emulator">
+    <value>Emulator</value>
+  </data>
+  <data name="Emulation.Folder.StorageBase">
+    <value>Folder penyimpanan emulasi bersama</value>
+  </data>
+  <data name="Emulation.Folder.StorageBaseDescription">
+    <value>Hard disk diatur otomatis dalam HDD\Amiga, HDD\Atari, dan folder sistem mendatang.</value>
+  </data>
+  <data name="Emulation.Storage.HardDisk.Add">
+    <value>Tambahkan hard disk yang ada</value>
+  </data>
+  <data name="Emulation.Storage.HardDisk.List">
+    <value>Hard disk</value>
+  </data>
+  <data name="Emulation.Storage.HardDisk.None">
+    <value>Tidak ada hard disk yang terkait dengan mesin ini.</value>
+  </data>
+  <data name="Emulation.Keyboard.Priority.Hint">
+    <value>Pintasan yang dicadangkan</value>
+  </data>
+  <data name="Emulation.Keyboard.Priority.Description">
+    <value>Pintasan GW GUI dan Windows tetap aktif dan tidak ditangkap oleh mesin.</value>
+  </data>
+  <data name="Emulation.Input.Behavior">
+    <value>Perilaku</value>
+  </data>
+  <data name="Emulation.Input.Assign">
+    <value>Tetapkan...</value>
+  </data>
+  <data name="Emulation.Input.Actions">
+    <value>Tindakan</value>
+  </data>
+  <data name="Emulation.Input.Press">
+    <value>Tekan tombol...</value>
+  </data>
+  <data name="Emulation.Folder.CreateStorage">
+    <value>Buat subfolder yang hilang secara otomatis</value>
+  </data>
+  <data name="Emulation.Folder.Common">
+    <value>Folder bersama</value>
+  </data>
+  <data name="Emulation.Input.SharedDescription">
+    <value>Deteksi perangkat digunakan bersama, sedangkan penetapan disimpan terpisah pada setiap konfigurasi mesin.</value>
+  </data>
+  <data name="Emulation.Input.Test">
+    <value>Uji input</value>
+  </data>
+  <data name="Emulation.Input.SharedDevices">
+    <value>Perangkat input bersama</value>
+  </data>
+  <data name="Emulation.Folder.Capture">
+    <value>Folder tangkapan</value>
+  </data>
+  <data name="Emulation.Folder.State">
+    <value>Folder status tersimpan</value>
+  </data>
+  <data name="Emulation.Folder.Default">
+    <value>Folder default</value>
+  </data>
+  <data name="Emulation.Controller.NoneDetected">
+    <value>Tidak ada pengontrol terdeteksi</value>
+  </data>
+  <data name="Emulation.Input.TestPrompt">
+    <value>Tekan tombol keyboard atau mouse untuk menguji deteksinya.</value>
+  </data>
+  <data name="Emulation.Storage.Floppy.List">
+    <value>Disket</value>
+  </data>
+  <data name="Emulation.Firmware.Rom.Extended">
+    <value>ROM tambahan</value>
+  </data>
+  <data name="Emulation.Firmware.Rom.Key">
+    <value>Kunci ROM</value>
+  </data>
+  <data name="Emulation.Cpu.Processor">
+    <value>Prosesor</value>
+  </data>
+  <data name="Emulation.Cpu.Precision">
+    <value>Presisi</value>
+  </data>
+  <data name="Emulation.Cpu.Acceleration">
+    <value>Akselerasi</value>
+  </data>
+  <data name="Emulation.Memory.Main">
+    <value>Memori utama</value>
+  </data>
+  <data name="Emulation.Memory.Extensions">
+    <value>Ekstensi memori</value>
+  </data>
+  <data name="Emulation.Memory.None">
+    <value>Tidak ada</value>
+  </data>
+  <data name="Emulation.Memory.CompatibleWithModel">
+    <value>Konfigurasi memori kompatibel dengan {0}.</value>
+  </data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel">
+    <value>Ekstensi memori kompatibel dengan {0}.</value>
+  </data>
+  <data name="Emulation.Memory.Z3UnavailableForModel">
+    <value>RAM Zorro III tidak tersedia pada {0}.</value>
+  </data>
+  <data name="Emulation.Memory.TotalConfigured">
+    <value>Total memori yang dikonfigurasi: {0} {1}</value>
+  </data>
+  <data name="Emulation.Firmware.Rom.System">
+    <value>ROM sistem</value>
+  </data>
+  <data name="Emulation.Firmware.Rom.Detected">
+    <value>ROM terdeteksi</value>
+  </data>
+  <data name="Emulation.Firmware.Use">
+    <value>Gunakan</value>
+  </data>
+  <data name="Emulation.Value.NotUsed">
+    <value>Tidak digunakan</value>
+  </data>
+  <data name="Emulation.Firmware.Rom.OpenFolder">
+    <value>Buka folder ROM</value>
+  </data>
+  <data name="Emulation.Firmware.PartiallyCompatible">
+    <value>Sebagian kompatibel</value>
+  </data>
+  <data name="Emulation.Video.Settings.Display">
+    <value>Tampilan</value>
+  </data>
+  <data name="Emulation.Video.Settings.Rendering">
+    <value>Perenderan</value>
+  </data>
+  <data name="Emulation.Amiga.Chipset.NameCompatibility">
+    <value>Kompatibilitas chipset</value>
+  </data>
+  <data name="Emulation.Audio.Device">
+    <value>Perangkat</value>
+  </data>
+  <data name="Emulation.Audio.LatencyLabel">
+    <value>Latensi</value>
+  </data>
+  <data name="Emulation.Audio.Quality">
+    <value>Kualitas</value>
+  </data>
+  <data name="Emulation.Audio.Drives">
+    <value>Drive</value>
+  </data>
+  <data name="Emulation.Device.Name.Type">
+    <value>Jenis</value>
+  </data>
+  <data name="Emulation.Storage.Device.Add">
+    <value>Tambah perangkat penyimpanan</value>
+  </data>
+  <data name="Emulation.Amiga.Storage.Floppy.Dd">
+    <value>Amiga 3,5 inci DD · 880 KiB</value>
+  </data>
+  <data name="Emulation.Amiga.Storage.Floppy.Hd">
+    <value>Amiga 3,5 inci HD · 1,76 MiB</value>
+  </data>
+  <data name="Emulation.Storage.Media.Associated">
+    <value>Media terkait</value>
+  </data>
+  <data name="Emulation.Storage.Geometry.Automatic">
+    <value>Geometri disk ditentukan otomatis oleh emulator.</value>
+  </data>
+  <data name="Emulation.Storage.Floppy.BlankCreated">
+    <value>Citra disket kosong dibuat: {0}</value>
+  </data>
+  <data name="Emulation.Storage.HardDisk.BlankHint">
+    <value>Berkas akan dibuat kosong lalu harus dipartisi dan diformat di mesin emulasi.</value>
+  </data>
+  <data name="Emulation.Storage.Cd.Writer">
+    <value>Perekam CD</value>
+  </data>
+  <data name="Emulation.Storage.Cd.WriterHint">
+    <value>Disk kosong hanya dapat dibuat jika mesin dan emulator yang dipilih mendukung penulisan.</value>
+  </data>
+  <data name="Emulation.Storage.Cd.Device">
+    <value>Drive CD-ROM</value>
+  </data>
+  <data name="Emulation.Storage.Device.Configure">
+    <value>Konfigurasi</value>
+  </data>
+  <data name="Emulation.Storage.Floppy.CreateBlank">
+    <value>Buat disket kosong</value>
+  </data>
+  <data name="Emulation.Storage.Disk.Image">
+    <value>Citra disk</value>
+  </data>
+  <data name="Emulation.Storage.Disk.ImageRequired">
+    <value>Pilih citra disk yang sudah ada.</value>
+  </data>
+  <data name="Emulation.Storage.Disk.ExistingHint">
+    <value>Berkas yang dipilih akan dipasang pada drive virtual ini.</value>
+  </data>
+  <data name="Emulation.Storage.Floppy.Device">
+    <value>Drive disket</value>
+  </data>
+  <data name="Emulation.Storage.Floppy.ImageFilter">
+    <value>Citra disket Amiga|*.adf|Semua berkas|*.*</value>
+  </data>
+  <data name="Emulation.Storage.HardDisk.Device">
+    <value>Hard disk</value>
+  </data>
+  <data name="Emulation.Storage.Device.Interface">
+    <value>Antarmuka</value>
+  </data>
+  <data name="Emulation.Storage.File.Preallocate">
+    <value>Alokasikan berkas di muka</value>
+  </data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint">
+    <value>Disket dan CD dimasukkan atau diganti dari mesin yang sedang berjalan.</value>
+  </data>
+  <data name="Emulation.Storage.Media.Remove">
+    <value>Lepas media</value>
+  </data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting">
+    <value>Citra disk sudah ada: {0}\nApakah Anda ingin menggantinya?</value>
+  </data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint">
+    <value>Jenis, model, dan pengenal yang tersedia bergantung pada mesin yang dipilih.</value>
+  </data>
+  <data name="Emulation.Storage.Tape.Device">
+    <value>Drive pita</value>
+  </data>
+  <data name="Emulation.Storage.Disk.Use">
+    <value>Gunakan disk</value>
+  </data>
+  <data name="Emulation.Storage.Disk.UseExisting">
+    <value>Gunakan disk yang ada</value>
+  </data>
+  <data name="Emulation.Storage.ModifyInGeneral">
+    <value>Ubah di Umum</value>
+  </data>
+  <data name="Emulation.Storage.Device.NoneAvailable">
+    <value>Tidak ada perangkat penyimpanan tambahan yang tersedia untuk mesin ini.</value>
+  </data>
+  <data name="Emulation.Storage.Device.List">
+    <value>Perangkat penyimpanan</value>
+  </data>
+  <data name="Emulation.Input.Binding.RestoreDefaults">
+    <value>Pulihkan bawaan</value>
+  </data>
+  <data name="Emulation.Input.Binding.ClearConflicts">
+    <value>Hapus konflik</value>
+  </data>
+  <data name="Emulation.Keyboard.EmulatedKey">
+    <value>Tombol mesin</value>
+  </data>
+  <data name="Emulation.Input.Binding.Label">
+    <value>Pemetaan</value>
+  </data>
+  <data name="Emulation.Input.Binding.LabelState">
+    <value>Status</value>
+  </data>
+  <data name="Emulation.Input.Binding.Search">
+    <value>Cari tombol atau pemetaan</value>
+  </data>
+  <data name="Emulation.Input.Binding.LabelLegend">
+    <value>Valid: pemetaan unik · Konflik: pemetaan dipakai beberapa kali · Dicadangkan: pintasan Windows atau GW GUI</value>
+  </data>
+  <data name="Emulation.Input.Binding.LabelValid">
+    <value>Valid</value>
+  </data>
+  <data name="Emulation.Input.Binding.LabelConflict">
+    <value>Konflik</value>
+  </data>
+  <data name="Emulation.Input.Binding.LabelReserved">
+    <value>Dicadangkan</value>
+  </data>
+  <data name="Emulation.Input.Binding.LabelUnassigned">
+    <value>Belum dipetakan</value>
+  </data>
+  <data name="Emulation.Shortcut.Global">
+    <value>Pintasan emulasi</value>
+  </data>
+  <data name="Emulation.Tab.Shortcuts">
+    <value>Pintasan</value>
+  </data>
+  <data name="Emulation.Shortcut.ReleaseMouse">
+    <value>Lepaskan mouse</value>
+  </data>
+  <data name="Emulation.Shortcut.PauseResume">
+    <value>Jeda / lanjutkan</value>
+  </data>
+  <data name="Emulation.Shortcut.Fullscreen">
+    <value>Layar penuh / jendela</value>
+  </data>
+  <data name="Emulation.Shortcut.Power">
+    <value>Nyalakan / matikan</value>
+  </data>
+  <data name="Emulation.Shortcut.SoftReset">
+    <value>Reset lunak</value>
+  </data>
+  <data name="Emulation.Shortcut.HardReset">
+    <value>Reset keras</value>
+  </data>
+  <data name="Emulation.Shortcut.QuickSave">
+    <value>Simpan cepat status</value>
+  </data>
+  <data name="Emulation.Shortcut.QuickLoad">
+    <value>Muat cepat status</value>
+  </data>
+  <data name="Emulation.Shortcut.Screenshot">
+    <value>Tangkapan layar</value>
+  </data>
+  <data name="Emulation.Shortcut.Mute">
+    <value>Bisukan mesin aktif</value>
+  </data>
+  <data name="Emulation.Shortcut.FastForward">
+    <value>Percepat saat ditahan</value>
+  </data>
+  <data name="Emulation.Shortcut.InsertMedia">
+    <value>Masukkan atau ganti media</value>
+  </data>
+  <data name="Emulation.Shortcut.EjectMedia">
+    <value>Keluarkan media</value>
+  </data>
+  <data name="Emulation.Shortcut.NextMedia">
+    <value>Media berikutnya</value>
+  </data>
+  <data name="Emulation.Key.Help">
+    <value>Bantuan</value>
+  </data>
+  <data name="Emulation.Key.LeftAmiga">
+    <value>Amiga kiri</value>
+  </data>
+  <data name="Emulation.Key.RightAmiga">
+    <value>Amiga kanan</value>
+  </data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint">
+    <value>Huruf, angka, dan tombol pengubah biasa diteruskan langsung. Hanya tombol fungsi dan tombol khusus Amiga yang perlu dipetakan di sini.</value>
+  </data>
+  <data name="Emulation.Shortcut.Unavailable">
+    <value>Tindakan ini belum didukung oleh emulator saat ini.</value>
+  </data>
+  <data name="Emulation.Storage.Geometry.Allocation">
+    <value>Alokasi</value>
+  </data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile">
+    <value>Geometri otomatis</value>
+  </data>
+  <data name="Emulation.Storage.Media.Blank">
+    <value>Media kosong</value>
+  </data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector">
+    <value>Byte per sektor</value>
+  </data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity">
+    <value>Kapasitas terhitung: {0}</value>
+  </data>
+  <data name="Emulation.Controller.Mappings">
+    <value>Pemetaan pengontrol</value>
+  </data>
+  <data name="Emulation.Controller.Port">
+    <value>Port {0}</value>
+  </data>
+  <data name="Emulation.Controller.Type">
+    <value>Jenis pengontrol</value>
+  </data>
+  <data name="Emulation.Storage.Geometry.CustomSize">
+    <value>Ukuran khusus</value>
+  </data>
+  <data name="Emulation.Storage.Geometry.Cylinders">
+    <value>Silinder</value>
+  </data>
+  <data name="Emulation.Storage.File.DestinationFolder">
+    <value>Folder tujuan</value>
+  </data>
+  <data name="Emulation.Controller.Detected">
+    <value>Pengontrol terdeteksi</value>
+  </data>
+  <data name="Emulation.Device.Name">
+    <value>Perangkat</value>
+  </data>
+  <data name="Emulation.Storage.Geometry.Label">
+    <value>Geometri disk (CHS)</value>
+  </data>
+  <data name="Emulation.Storage.Geometry.SizeProfile">
+    <value>Profil ukuran</value>
+  </data>
+  <data name="Emulation.Storage.Floppy.Drive">
+    <value>Drive disket</value>
+  </data>
+  <data name="Emulation.Storage.Geometry.Heads">
+    <value>Head</value>
+  </data>
+  <data name="Emulation.Input.Capture.Hint">
+    <value>Klik Tetapkan, lalu gunakan tombol keyboard, mouse, atau pengontrol.</value>
+  </data>
+  <data name="Emulation.Storage.Disk.InvalidSize">
+    <value>Ukuran atau geometri disk tidak valid.</value>
+  </data>
+  <data name="Emulation.Mouse.Actions">
+    <value>Tindakan mouse</value>
+  </data>
+  <data name="Emulation.Mouse.Button.4">
+    <value>Tombol mouse 4</value>
+  </data>
+  <data name="Emulation.Mouse.Button.5">
+    <value>Tombol mouse 5</value>
+  </data>
+  <data name="Emulation.Mouse.Capture.Title">
+    <value>Penangkapan mouse</value>
+  </data>
+  <data name="Emulation.Storage.File.PreallocationHint">
+    <value>Mencadangkan ruang fisik segera; jika tidak, citra membesar saat data ditulis.</value>
+  </data>
+  <data name="Emulation.Controller.SearchBinding">
+    <value>Cari tindakan atau input</value>
+  </data>
+  <data name="Emulation.Storage.Geometry.Sectors">
+    <value>Sektor</value>
+  </data>
+  <data name="Emulation.Storage.Unit.MiB">
+    <value>MiB</value>
+  </data>
+  <data name="Emulation.Storage.Unit.GiB">
+    <value>GiB</value>
+  </data>
+  <data name="Emulation.Controller.Action.Up">
+    <value>Atas</value>
+  </data>
+  <data name="Emulation.Controller.Action.Down">
+    <value>Bawah</value>
+  </data>
+  <data name="Emulation.Controller.Action.Left">
+    <value>Kiri</value>
+  </data>
+  <data name="Emulation.Controller.Action.Right">
+    <value>Kanan</value>
+  </data>
+  <data name="Emulation.Controller.Action.Fire1">
+    <value>Tombol tembak 1</value>
+  </data>
+  <data name="Emulation.Controller.Action.Fire2">
+    <value>Tombol tembak 2</value>
+  </data>
+  <data name="Emulation.Amiga.Controller.Cd32.Red">
+    <value>Tombol merah CD32</value>
+  </data>
+  <data name="Emulation.Amiga.Controller.Cd32.Blue">
+    <value>Tombol biru CD32</value>
+  </data>
+  <data name="Emulation.Amiga.Controller.Cd32.Green">
+    <value>Tombol hijau CD32</value>
+  </data>
+  <data name="Emulation.Amiga.Controller.Cd32.Yellow">
+    <value>Tombol kuning CD32</value>
+  </data>
+  <data name="Emulation.Amiga.Controller.Cd32.Rewind">
+    <value>CD32 putar balik</value>
+  </data>
+  <data name="Emulation.Amiga.Controller.Cd32.FastForward">
+    <value>CD32 maju cepat</value>
+  </data>
+  <data name="Emulation.Amiga.Controller.Cd32.PlayPause">
+    <value>CD32 putar / jeda</value>
+  </data>
+  <data name="Emulation.Amiga.Controller.Joystick">
+    <value>Joystick Amiga</value>
+  </data>
+  <data name="Emulation.Controller.AnalogJoystick">
+    <value>Joystick analog</value>
+  </data>
+  <data name="Emulation.Amiga.Controller.Cd32">
+    <value>Pengontrol CD32</value>
+  </data>
+  <data name="Emulation.Mouse.Wheel.Up">
+    <value>Roda tetikus ke atas</value>
+  </data>
+  <data name="Emulation.Mouse.Wheel.Down">
+    <value>Roda tetikus ke bawah</value>
+  </data>
+  <data name="Emulation.Mouse.Wheel.Left">
+    <value>Roda tetikus ke kiri</value>
+  </data>
+  <data name="Emulation.Mouse.Wheel.Right">
+    <value>Roda tetikus ke kanan</value>
+  </data>
+  <data name="Emulation.Atari.Model.St" xml:space="preserve">
     <value>Atari ST</value>
   </data>
-  <data name="Emulation.AtariModelStf" xml:space="preserve">
+  <data name="Emulation.Atari.Model.Stf" xml:space="preserve">
     <value>Atari STF</value>
   </data>
-  <data name="Emulation.AtariModelStfm" xml:space="preserve">
+  <data name="Emulation.Atari.Model.Stfm" xml:space="preserve">
     <value>Atari STFM</value>
   </data>
-  <data name="Emulation.AtariModelMegaSt" xml:space="preserve">
+  <data name="Emulation.Atari.Model.MegaSt" xml:space="preserve">
     <value>Atari Mega ST</value>
   </data>
-  <data name="Emulation.AtariModelSte" xml:space="preserve">
+  <data name="Emulation.Atari.Model.Ste" xml:space="preserve">
     <value>Atari STE</value>
   </data>
-  <data name="Emulation.AtariModelMegaSte" xml:space="preserve">
+  <data name="Emulation.Atari.Model.MegaSte" xml:space="preserve">
     <value>Atari Mega STE</value>
   </data>
-  <data name="Emulation.AtariModelTt" xml:space="preserve">
+  <data name="Emulation.Atari.Model.Tt" xml:space="preserve">
     <value>Atari TT</value>
   </data>
-  <data name="Emulation.AtariModelFalcon" xml:space="preserve">
+  <data name="Emulation.Atari.Model.Falcon" xml:space="preserve">
     <value>Atari Falcon</value>
   </data>
-  <data name="Emulation.AtariModel400" xml:space="preserve"><value>Atari 400</value></data>
-  <data name="Emulation.AtariModel800" xml:space="preserve"><value>Atari 800</value></data>
-  <data name="Emulation.AtariModel800Xl" xml:space="preserve"><value>Atari 800XL</value></data>
-  <data name="Emulation.AtariModel130Xe" xml:space="preserve"><value>Atari 130XE</value></data>
-  <data name="Emulation.AtariModelModern320K" xml:space="preserve"><value>Atari XL/XE 320K</value></data>
-  <data name="Emulation.AtariModelModern576K" xml:space="preserve"><value>Atari XL/XE 576K</value></data>
-  <data name="Emulation.AtariModelModern1088K" xml:space="preserve"><value>Atari XL/XE 1088K</value></data>
-  <data name="Emulation.AtariModelXegs" xml:space="preserve"><value>Atari XEGS</value></data>
-  <data name="Emulation.AtariModel5200" xml:space="preserve"><value>Atari 5200</value></data>
-  <data name="Emulation.AtariModel2600" xml:space="preserve"><value>Atari 2600</value></data>
-  <data name="Emulation.AtariModel7800" xml:space="preserve"><value>Atari 7800</value></data>
-  <data name="Emulation.AtariModelLynx" xml:space="preserve"><value>Atari Lynx</value></data>
-  <data name="Emulation.AtariModelJaguar" xml:space="preserve"><value>Atari Jaguar</value></data>
-  <data name="Emulation.AtariModelJaguarCd" xml:space="preserve"><value>Atari Jaguar CD</value></data>
-  <data name="Emulation.AtariUnavailable.ForcedByModel" xml:space="preserve"><value>Nilai ini ditentukan oleh model yang dipilih.</value></data>
-  <data name="Emulation.AtariUnavailable.NoFpu" xml:space="preserve"><value>FPU yang kompatibel tidak tersedia untuk model ini.</value></data>
-  <data name="Emulation.AtariUnavailable.NoAlternateMemory" xml:space="preserve"><value>Tidak ada memori alternatif yang tersedia untuk model ini.</value></data>
-  <data name="Emulation.AtariUnavailable.NoFirmware" xml:space="preserve"><value>Model ini tidak memiliki firmware yang dapat diatur.</value></data>
-  <data name="Emulation.AtariUnavailable.NoKeyboard" xml:space="preserve"><value>Model ini tidak memiliki keyboard.</value></data>
-  <data name="Emulation.AtariUnavailable.NoMouse" xml:space="preserve"><value>Model ini tidak memiliki mouse.</value></data>
-  <data name="Emulation.AtariUnavailable.NoStorage" xml:space="preserve"><value>Model ini tidak memiliki media penyimpanan.</value></data>
-  <data name="Emulation.AtariUnavailable.JaguarStandardNoCd" xml:space="preserve"><value>Pilih model Jaguar CD untuk menggunakan media CD.</value></data>
-  <data name="Emulation.AtariCassettes"><value>Kaset</value></data>
-  <data name="Emulation.AtariCartridges"><value>Kartrid</value></data>
-  <data name="Emulation.AtariCompactDiscs"><value>Cakram padat</value></data>
-  <data name="Emulation.AtariRegion"><value>Wilayah</value></data>
-  <data name="Emulation.AtariMultilingual"><value>Multibahasa</value></data>
-  <data name="Emulation.AtariRegionFree"><value>Bebas wilayah</value></data>
-  <data name="Emulation.AudioTab" xml:space="preserve"><value>Audio</value></data>
-  <data name="Emulation.AtariError.CoreNotFound" xml:space="preserve"><value>Inti yang diperlukan Atari tidak ditemukan.</value></data>
-  <data name="Emulation.AtariError.CoreRejected" xml:space="preserve"><value>Inti Atari yang dipilih tidak dapat dimuat.</value></data>
-  <data name="Emulation.AtariError.FirmwareMissing" xml:space="preserve"><value>Sebuah firmware Atari yang diperlukan hilang.</value></data>
-  <data name="Emulation.AtariError.FirmwareInvalid" xml:space="preserve"><value>Firmware Atari tidak valid atau tidak kompatibel.</value></data>
-  <data name="Emulation.AtariError.ContentNotFound" xml:space="preserve"><value>Media Atari yang dikonfigurasi tidak ditemukan.</value></data>
-  <data name="Emulation.AtariError.ContentUnsupported" xml:space="preserve"><value>Media yang dikonfigurasi tidak didukung oleh mesin Atari ini.</value></data>
-  <data name="Emulation.AtariError.OptionInvalid" xml:space="preserve"><value>Sebuah opsi Atari memiliki nilai yang tidak valid.</value></data>
-  <data name="Emulation.AtariError.HostProtocolFailure" xml:space="preserve"><value>Komunikasi dengan pemilik Atari gagal.</value></data>
-  <data name="Emulation.AtariError.StateInvalid" xml:space="preserve"><value>Negara bagian tabungan Atari tidak valid.</value></data>
-  <data name="Emulation.AtariError.StateIncompatible" xml:space="preserve"><value>Negara bagian tabungan Atari tidak kompatibel dengan mesin saat ini.</value></data>
-  <data name="Emulation.AtariError.Unexpected" xml:space="preserve"><value>Kesalahan emulasi Atari yang tak terduga terjadi.</value></data>
-  <data name="Emulation.AtariError.Details" xml:space="preserve"><value>Rincian: {0}</value></data>
-  <data name="Emulation.AtariError.ActiveConfiguration" xml:space="preserve"><value>Konfigurasi Atari yang aktif tak dapat diubah atau dihapus.</value></data>
-  <data name="Emulation.AtariError.RequiredFirmwareMissing" xml:space="preserve"><value>Firmware Atari yang diperlukan '{0}' tidak dikonfigurasi untuk {1}.</value></data>
-  <data name="Emulation.AtariError.FirmwareFileMissing" xml:space="preserve"><value>Dikonfigured Atari firmware &#x27;{0}&#x27; tidak ditemukan: {1}</value></data>
-  <data name="Emulation.AtariError.MediaFileMissing" xml:space="preserve"><value>Media Atari yang dikonfigurasi tidak ditemukan: {0}</value></data>
-  <data name="Emulation.AtariError.HostExecutableMissing" xml:space="preserve"><value>Jalur eksekusi Atari host tidak tersedia.</value></data>
-  <data name="Emulation.AtariError.CoreNotInstalled" xml:space="preserve"><value>Inti Atari &#x27;{0}&#x27; belum terpasang.</value></data>
-  <data name="Emulation.AtariMediaFilter" xml:space="preserve"><value>Media Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Semua berkas|*.*</value></data>
+  <data name="Emulation.Atari.Model.400" xml:space="preserve">
+    <value>Atari 400</value>
+  </data>
+  <data name="Emulation.Atari.Model.800" xml:space="preserve">
+    <value>Atari 800</value>
+  </data>
+  <data name="Emulation.Atari.Model.800Xl" xml:space="preserve">
+    <value>Atari 800XL</value>
+  </data>
+  <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
+    <value>Atari 130XE</value>
+  </data>
+  <data name="Emulation.Atari.Model.Modern320K" xml:space="preserve">
+    <value>Atari XL/XE 320K</value>
+  </data>
+  <data name="Emulation.Atari.Model.Modern576K" xml:space="preserve">
+    <value>Atari XL/XE 576K</value>
+  </data>
+  <data name="Emulation.Atari.Model.Modern1088K" xml:space="preserve">
+    <value>Atari XL/XE 1088K</value>
+  </data>
+  <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
+    <value>Atari XEGS</value>
+  </data>
+  <data name="Emulation.Atari.Model.5200" xml:space="preserve">
+    <value>Atari 5200</value>
+  </data>
+  <data name="Emulation.Atari.Model.2600" xml:space="preserve">
+    <value>Atari 2600</value>
+  </data>
+  <data name="Emulation.Atari.Model.7800" xml:space="preserve">
+    <value>Atari 7800</value>
+  </data>
+  <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
+    <value>Built-in controls</value>
+  </data>
+  <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
+    <value>Atari Jaguar</value>
+  </data>
+  <data name="Emulation.Atari.Model.JaguarCd" xml:space="preserve">
+    <value>Atari Jaguar CD</value>
+  </data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve">
+    <value>Nilai ini ditentukan oleh model yang dipilih.</value>
+  </data>
+  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve">
+    <value>FPU yang kompatibel tidak tersedia untuk model ini.</value>
+  </data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve">
+    <value>Tidak ada memori alternatif yang tersedia untuk model ini.</value>
+  </data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve">
+    <value>Model ini tidak memiliki firmware yang dapat diatur.</value>
+  </data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve">
+    <value>Model ini tidak memiliki keyboard.</value>
+  </data>
+  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve">
+    <value>Model ini tidak memiliki mouse.</value>
+  </data>
+  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve">
+    <value>Model ini tidak memiliki media penyimpanan.</value>
+  </data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
+    <value>Pilih model Jaguar CD untuk menggunakan media CD.</value>
+  </data>
+  <data name="Emulation.Atari.Storage.Cassettes">
+    <value>Kaset</value>
+  </data>
+  <data name="Emulation.Atari.Storage.Cartridges">
+    <value>Kartrid</value>
+  </data>
+  <data name="Emulation.Atari.Storage.CompactDiscs">
+    <value>Cakram padat</value>
+  </data>
+  <data name="Emulation.Atari.Video.Region">
+    <value>Wilayah</value>
+  </data>
+  <data name="Emulation.Atari.Firmware.Multilingual">
+    <value>Multibahasa</value>
+  </data>
+  <data name="Emulation.Atari.Video.RegionFree">
+    <value>Bebas wilayah</value>
+  </data>
+  <data name="Emulation.Tab.Audio" xml:space="preserve">
+    <value>Audio</value>
+  </data>
+  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve">
+    <value>Inti yang diperlukan Atari tidak ditemukan.</value>
+  </data>
+  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve">
+    <value>Inti Atari yang dipilih tidak dapat dimuat.</value>
+  </data>
+  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve">
+    <value>Sebuah firmware Atari yang diperlukan hilang.</value>
+  </data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve">
+    <value>Firmware Atari tidak valid atau tidak kompatibel.</value>
+  </data>
+  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve">
+    <value>Media Atari yang dikonfigurasi tidak ditemukan.</value>
+  </data>
+  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve">
+    <value>Media yang dikonfigurasi tidak didukung oleh mesin Atari ini.</value>
+  </data>
+  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve">
+    <value>Sebuah opsi Atari memiliki nilai yang tidak valid.</value>
+  </data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve">
+    <value>Komunikasi dengan pemilik Atari gagal.</value>
+  </data>
+  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve">
+    <value>Negara bagian tabungan Atari tidak valid.</value>
+  </data>
+  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve">
+    <value>Negara bagian tabungan Atari tidak kompatibel dengan mesin saat ini.</value>
+  </data>
+  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve">
+    <value>Kesalahan emulasi Atari yang tak terduga terjadi.</value>
+  </data>
+  <data name="Emulation.Atari.Error.Details" xml:space="preserve">
+    <value>Rincian: {0}</value>
+  </data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve">
+    <value>Konfigurasi Atari yang aktif tak dapat diubah atau dihapus.</value>
+  </data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve">
+    <value>Firmware Atari yang diperlukan '{0}' tidak dikonfigurasi untuk {1}.</value>
+  </data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve">
+    <value>Dikonfigured Atari firmware '{0}' tidak ditemukan: {1}</value>
+  </data>
+  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve">
+    <value>Media Atari yang dikonfigurasi tidak ditemukan: {0}</value>
+  </data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve">
+    <value>Jalur eksekusi Atari host tidak tersedia.</value>
+  </data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve">
+    <value>Inti Atari '{0}' belum terpasang.</value>
+  </data>
+  <data name="Emulation.Atari.Storage.MediaFilter" xml:space="preserve">
+    <value>Media Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Semua berkas|*.*</value>
+  </data>
+  <data name="Emulation.Atari.Controller.Joystick">
+    <value>Joystick Atari</value>
+  </data>
+<data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Paddle Controllers</value></data>
+<data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 Light Gun</value></data>
+<data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
+  <data name="Emulation.Atari.Controller.Driving"><value>Atari Driving Controller</value></data>
+  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
+  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
+  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar Controller</value></data>
+  <data name="Emulation.Controller.Automatic"><value>Otomatis</value></data>
+  <data name="Emulation.Controller.None"><value>Tidak ada</value></data>
+  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Adaptor joystick paralel empat pemain</value></data>
+  <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Tukar joystick / mouse</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>keypad numerik</value></data>
+  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Grip Atari Booster</value></data>
+  <data name="Emulation.Atari.Controller.Genesis"><value>Pengontrol Kejadian Sega</value></data>
+  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B + Controller</value></data>
 </root>

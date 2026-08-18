@@ -64,9 +64,9 @@ public sealed class AtariCoreManagementSectionTests
             Assert.NotNull(change);
             Assert.Equal(expectedKind, change!.Kind);
             Assert.Contains(TestReleaseVersion, control.InstalledText, StringComparison.Ordinal);
-            Assert.Contains(change.Paths.LibraryPath, control.InstalledText, StringComparison.Ordinal);
             Assert.Contains(AtariCoreManagementConstants.InstalledPathResource, control.StatusText,
                 StringComparison.Ordinal);
+            Assert.Contains(change.Paths.LibraryPath, control.StatusText, StringComparison.Ordinal);
             Assert.Equal(TestReleaseVersion, Path.GetFileName(change.Paths.VersionDirectory));
         });
     }

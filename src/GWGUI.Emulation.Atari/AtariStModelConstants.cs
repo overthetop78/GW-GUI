@@ -7,14 +7,14 @@ internal static class AtariStModelConstants
     internal const string TtMachineId = "tt";
     internal const string FalconMachineId = "falcon";
 
-    internal const string StDisplayNameResource = "Emulation.AtariModelSt";
-    internal const string StfDisplayNameResource = "Emulation.AtariModelStf";
-    internal const string StfmDisplayNameResource = "Emulation.AtariModelStfm";
-    internal const string MegaStDisplayNameResource = "Emulation.AtariModelMegaSt";
-    internal const string SteDisplayNameResource = "Emulation.AtariModelSte";
-    internal const string MegaSteDisplayNameResource = "Emulation.AtariModelMegaSte";
-    internal const string TtDisplayNameResource = "Emulation.AtariModelTt";
-    internal const string FalconDisplayNameResource = "Emulation.AtariModelFalcon";
+    internal const string StDisplayNameResource = "Emulation.Atari.Model.St";
+    internal const string StfDisplayNameResource = "Emulation.Atari.Model.Stf";
+    internal const string StfmDisplayNameResource = "Emulation.Atari.Model.Stfm";
+    internal const string MegaStDisplayNameResource = "Emulation.Atari.Model.MegaSt";
+    internal const string SteDisplayNameResource = "Emulation.Atari.Model.Ste";
+    internal const string MegaSteDisplayNameResource = "Emulation.Atari.Model.MegaSte";
+    internal const string TtDisplayNameResource = "Emulation.Atari.Model.Tt";
+    internal const string FalconDisplayNameResource = "Emulation.Atari.Model.Falcon";
 
     internal const int HalfMibibyteKib = 512;
     internal const int OneMibibyteKib = 1024;

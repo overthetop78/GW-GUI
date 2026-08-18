@@ -1,0 +1,48 @@
+using System.Windows;
+using System.Windows.Controls;
+
+namespace GWGUI.App.Controls;
+
+internal sealed record EmulationSettingsField(string Label, FrameworkElement Control);
+
+internal static partial class EmulationSettingsLayout
+{
+    private const double SettingsFieldLabelWidth = 155;
+    private const double SettingsFieldControlMinimumWidth = 145;
+
+    internal static Grid SettingsFields(int columns,
+        params (string Label, FrameworkElement Control)[] fields) => SettingsFieldGrid(columns, fields);
+
+    private static Grid SettingsFieldGrid(params (string Label, FrameworkElement Control)[] fields) =>
+        SettingsFieldGrid(1, fields);
+
+    private static Grid SettingsFieldGrid(int columns, params (string Label, FrameworkElement Control)[] fields)
+    {
+        var grid = new Grid { Margin = new Thickness(12, 6, 12, 10) };
+        for (var column = 0; column < columns; column++)
+        {
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(SettingsFieldLabelWidth) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
+        }
+        var rowCount = (int)Math.Ceiling(fields.Length / (double)columns);
+        for (var row = 0; row < rowCount; row++) grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        for (var index = 0; index < fields.Length; index++)
+        {
+            var row = index / columns;
+            var column = index % columns * 2;
+            var label = new TextBlock { Text = fields[index].Label, VerticalAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(column == 0 ? 0 : 18, 8, 10, 8), TextWrapping = TextWrapping.Wrap };
+            Grid.SetRow(label, row);
+            Grid.SetColumn(label, column);
+            grid.Children.Add(label);
+            var control = fields[index].Control;
+            control.MinWidth = control is CheckBox ? 0 : SettingsFieldControlMinimumWidth;
+            control.Margin = new Thickness(0, 4, 0, 4);
+            control.VerticalAlignment = VerticalAlignment.Center;
+            Grid.SetRow(control, row);
+            Grid.SetColumn(control, column + 1);
+            grid.Children.Add(control);
+        }
+        return grid;
+    }
+}

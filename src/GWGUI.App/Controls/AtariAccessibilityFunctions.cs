@@ -39,22 +39,4 @@ internal static class AtariAccessibilityFunctions
             ? FlowDirection.RightToLeft
             : FlowDirection.LeftToRight;
 
-    internal static TabItem Tab(string icon, string header, UIElement content)
-    {
-        var scroll = new ScrollViewer
-        {
-            Content = new Border { Child = content, Padding = new Thickness(14) },
-            VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
-            HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled
-        };
-        Configure(scroll, header);
-        var tab = new TabItem
-        {
-            Header = new MainTabHeader { Icon = icon, Text = header },
-            Content = scroll,
-            Padding = new Thickness(14, 8, 14, 8)
-        };
-        tab.SetResourceReference(FrameworkElement.StyleProperty, "MainTabItemStyle");
-        return tab;
-    }
 }

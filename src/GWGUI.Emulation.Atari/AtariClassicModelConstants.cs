@@ -16,20 +16,20 @@ internal static class AtariClassicModelConstants
     internal const string JaguarModelId = "jaguar";
     internal const string JaguarCdModelId = "jaguar-cd";
 
-    internal const string Atari400DisplayNameResource = "Emulation.AtariModel400";
-    internal const string Atari800DisplayNameResource = "Emulation.AtariModel800";
-    internal const string Atari800XlDisplayNameResource = "Emulation.AtariModel800Xl";
-    internal const string Atari130XeDisplayNameResource = "Emulation.AtariModel130Xe";
-    internal const string Modern320KDisplayNameResource = "Emulation.AtariModelModern320K";
-    internal const string Modern576KDisplayNameResource = "Emulation.AtariModelModern576K";
-    internal const string Modern1088KDisplayNameResource = "Emulation.AtariModelModern1088K";
-    internal const string XegsDisplayNameResource = "Emulation.AtariModelXegs";
-    internal const string Atari5200DisplayNameResource = "Emulation.AtariModel5200";
-    internal const string Atari2600DisplayNameResource = "Emulation.AtariModel2600";
-    internal const string Atari7800DisplayNameResource = "Emulation.AtariModel7800";
-    internal const string LynxDisplayNameResource = "Emulation.AtariModelLynx";
-    internal const string JaguarDisplayNameResource = "Emulation.AtariModelJaguar";
-    internal const string JaguarCdDisplayNameResource = "Emulation.AtariModelJaguarCd";
+    internal const string Atari400DisplayNameResource = "Emulation.Atari.Model.400";
+    internal const string Atari800DisplayNameResource = "Emulation.Atari.Model.800";
+    internal const string Atari800XlDisplayNameResource = "Emulation.Atari.Model.800Xl";
+    internal const string Atari130XeDisplayNameResource = "Emulation.Atari.Model.130Xe";
+    internal const string Modern320KDisplayNameResource = "Emulation.Atari.Model.Modern320K";
+    internal const string Modern576KDisplayNameResource = "Emulation.Atari.Model.Modern576K";
+    internal const string Modern1088KDisplayNameResource = "Emulation.Atari.Model.Modern1088K";
+    internal const string XegsDisplayNameResource = "Emulation.Atari.Model.Xegs";
+    internal const string Atari5200DisplayNameResource = "Emulation.Atari.Model.5200";
+    internal const string Atari2600DisplayNameResource = "Emulation.Atari.Model.2600";
+    internal const string Atari7800DisplayNameResource = "Emulation.Atari.Model.7800";
+    internal const string LynxDisplayNameResource = "Emulation.Atari.Model.Lynx";
+    internal const string JaguarDisplayNameResource = "Emulation.Atari.Model.Jaguar";
+    internal const string JaguarCdDisplayNameResource = "Emulation.Atari.Model.JaguarCd";
 
     internal const long Atari8BitCpuFrequencyHz = 1_789_772;
     internal const long Atari2600CpuFrequencyHz = 1_193_182;

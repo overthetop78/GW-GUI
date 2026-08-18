@@ -36,10 +36,10 @@
    </Grid>
    <WrapPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
     <Button Style="{StaticResource BindingActionButton}" Click="RestoreDefaultsClicked">
-     <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE777;" FontFamily="{StaticResource IconFontFamily}" FontSize="17" Margin="0,0,9,0"/><TextBlock Text="{l:Loc Emulation.RestoreDefaultBindings}"/></StackPanel>
+     <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE777;" FontFamily="{StaticResource IconFontFamily}" FontSize="17" Margin="0,0,9,0"/><TextBlock Text="{l:Loc Emulation.Input.Binding.RestoreDefaults}"/></StackPanel>
     </Button>
     <Button Style="{StaticResource BindingActionButton}" Click="ClearConflictsClicked">
-     <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE74D;" FontFamily="{StaticResource IconFontFamily}" FontSize="17" Margin="0,0,9,0"/><TextBlock Text="{l:Loc Emulation.ClearConflicts}"/></StackPanel>
+     <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE74D;" FontFamily="{StaticResource IconFontFamily}" FontSize="17" Margin="0,0,9,0"/><TextBlock Text="{l:Loc Emulation.Input.Binding.ClearConflicts}"/></StackPanel>
     </Button>
    </WrapPanel>
   </Grid>
@@ -50,10 +50,10 @@
     <Grid.RowDefinitions><RowDefinition Height="38"/><RowDefinition Height="*"/></Grid.RowDefinitions>
     <Grid Background="#FAFBFD">
      <Grid.ColumnDefinitions><ColumnDefinition Width="1.25*"/><ColumnDefinition Width="1.75*"/><ColumnDefinition Width="1.15*"/><ColumnDefinition Width="220"/></Grid.ColumnDefinitions>
-     <TextBlock x:Name="TargetHeader" Style="{StaticResource TableHeaderText}" Text="{l:Loc Emulation.EmulatedKey}"/>
-     <Border Grid.Column="1" BorderBrush="#D8DEE8" BorderThickness="1,0,0,0"><TextBlock Style="{StaticResource TableHeaderText}" Text="{l:Loc Emulation.Binding}"/></Border>
-     <Border Grid.Column="2" BorderBrush="#D8DEE8" BorderThickness="1,0,0,0"><TextBlock Style="{StaticResource TableHeaderText}" Text="{l:Loc Emulation.BindingState}"/></Border>
-     <Border Grid.Column="3" BorderBrush="#D8DEE8" BorderThickness="1,0,0,0"><TextBlock Style="{StaticResource TableHeaderText}" Text="{l:Loc Emulation.InputActions}"/></Border>
+     <TextBlock x:Name="TargetHeader" Style="{StaticResource TableHeaderText}" Text="{l:Loc Emulation.Keyboard.EmulatedKey}"/>
+     <Border Grid.Column="1" BorderBrush="#D8DEE8" BorderThickness="1,0,0,0"><TextBlock Style="{StaticResource TableHeaderText}" Text="{l:Loc Emulation.Input.Binding.Label}"/></Border>
+     <Border Grid.Column="2" BorderBrush="#D8DEE8" BorderThickness="1,0,0,0"><TextBlock Style="{StaticResource TableHeaderText}" Text="{l:Loc Emulation.Input.Binding.LabelState}"/></Border>
+     <Border Grid.Column="3" BorderBrush="#D8DEE8" BorderThickness="1,0,0,0"><TextBlock Style="{StaticResource TableHeaderText}" Text="{l:Loc Emulation.Input.Actions}"/></Border>
     </Grid>
     <ListBox x:Name="BindingsList" Grid.Row="1" BorderThickness="0" Background="Transparent"
              SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -97,7 +97,7 @@
          <Border Grid.Column="3" BorderBrush="#E1E6ED" BorderThickness="1,0,0,0" Padding="4,7">
           <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Tag="{Binding}" Click="AssignClicked" Style="{StaticResource BindingActionButton}" Width="142" Padding="8,4">
-            <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE70F;" FontFamily="{StaticResource IconFontFamily}" Margin="0,0,8,0"/><TextBlock Text="{l:Loc Emulation.AssignInput}"/></StackPanel>
+            <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE70F;" FontFamily="{StaticResource IconFontFamily}" Margin="0,0,8,0"/><TextBlock Text="{l:Loc Emulation.Input.Assign}"/></StackPanel>
            </Button>
            <Button Content="&#xE74D;" FontFamily="{StaticResource IconFontFamily}" Tag="{Binding}" Click="ClearClicked" ToolTip="{l:Loc Common.Delete}" Style="{StaticResource BindingActionButton}" Width="48" Padding="9"/>
           </StackPanel>

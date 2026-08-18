@@ -55,4 +55,24 @@ public sealed class EmulationShortcutFunctionsTests
         EmulationShortcutFunctions.ReleaseInactive(active, bindings, ModifierKeys.Control, new HashSet<Key>());
         Assert.Empty(active);
     }
+
+    [Fact]
+    public void ConfiguredGlobalHostBindingReplacesTheDefaultChord()
+    {
+        var bindings = EmulationShortcutMap.GlobalShortcuts(new Dictionary<string, string>
+        {
+            [EmulationShortcutActions.SoftReset] = "Ctrl+F8"
+        });
+
+        var configured = EmulationShortcutFunctions.ResolveGlobal(bindings, ModifierKeys.Control,
+            new HashSet<Key> { Key.F8 }, Key.F8, new HashSet<string>());
+        Assert.Equal(EmulationShortcutMatchKind.Global, configured.Kind);
+        Assert.Equal(EmulationShortcutActions.SoftReset, configured.Action);
+        Assert.True(configured.ShouldExecute);
+
+        var formerDefault = EmulationShortcutFunctions.ResolveGlobal(bindings,
+            ModifierKeys.Control | ModifierKeys.Alt, new HashSet<Key> { Key.R }, Key.R,
+            new HashSet<string>());
+        Assert.Equal(EmulationShortcutMatchKind.None, formerDefault.Kind);
+    }
 }

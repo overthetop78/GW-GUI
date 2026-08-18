@@ -57,6 +57,8 @@ internal static class AtariVideoAudioSettingsFunctions
 
     internal static string PreferredRegion(AtariMachineModel model, IReadOnlyList<AtariVideoAudioChoice> choices)
     {
+        if (UsesApplicationCultureForVideoStandard(model))
+            return PreferredVideoStandard(model, choices);
         if (AtariCompatibilityCatalog.Get(model).Core != AtariCoreKind.Hatari) return choices.First().Value;
         var culture = CultureInfo.CurrentUICulture;
         var region = culture.Name switch
@@ -79,6 +81,28 @@ internal static class AtariVideoAudioSettingsFunctions
         var value = region.ToString();
         return choices.Any(choice => choice.Value == value)
             ? value : AtariStRegion.Multilingual.ToString();
+    }
+
+    internal static string PreferredVideoStandard(AtariMachineModel model,
+        IReadOnlyList<AtariVideoAudioChoice> choices)
+    {
+        if (!UsesApplicationCultureForVideoStandard(model))
+            return choices.First().Value;
+
+        var preferred = AtariVideoAudioSettingsConstants.PalApplicationCultures.Contains(
+            CultureInfo.CurrentUICulture.Name)
+            ? AtariClassicRegion.Pal.ToString()
+            : AtariClassicRegion.Ntsc.ToString();
+        return choices.Any(choice => string.Equals(choice.Value, preferred, StringComparison.Ordinal))
+            ? preferred
+            : choices.First().Value;
+    }
+
+    private static bool UsesApplicationCultureForVideoStandard(AtariMachineModel model)
+    {
+        if (AtariCompatibilityCatalog.Get(model).Core == AtariCoreKind.Hatari) return false;
+        var regions = AtariClassicModelCatalog.Get(model).Regions;
+        return regions.Contains(AtariClassicRegion.Pal) && regions.Contains(AtariClassicRegion.Ntsc);
     }
 
     private static AtariStRegion RegionFromLanguage(string language) => language switch
@@ -107,7 +131,10 @@ internal static class AtariVideoAudioSettingsFunctions
             if (video.Contains(AtariStVideoCapability.Monochrome)) values.Add(Official(AtariVideoAudioSettingsConstants.MonochromeValue));
             return values;
         }
-        return AtariClassicModelCatalog.Get(model).Regions.Select(value => Official(value.ToString())).ToArray();
+        return AtariClassicModelCatalog.Get(model).Regions
+            .Select(value => new AtariVideoAudioChoice(value.ToString(),
+                AtariRegionDisplayFunctions.DisplayName(value)))
+            .ToArray();
     }
 
     private static IReadOnlyList<AtariVideoAudioChoice> Regions(AtariMachineModel model) =>

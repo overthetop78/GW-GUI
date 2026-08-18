@@ -17,6 +17,7 @@ internal sealed class AtariHardwareSettingsSection : UserControl
     private readonly Dictionary<string, ComboBox> _editors = new(StringComparer.Ordinal);
     private readonly Dictionary<AtariFirmwareKind, TextBox> _firmwarePaths = new();
     private readonly ListBox _firmwareList = new();
+    private readonly Button _useSelectedFirmware = new() { MinWidth = 100, IsEnabled = false };
     private readonly TextBlock _firmwareError = new()
     {
         TextWrapping = TextWrapping.Wrap,
@@ -24,8 +25,7 @@ internal sealed class AtariHardwareSettingsSection : UserControl
         Margin = new Thickness(0, 0, 0, 10)
     };
     private IReadOnlyList<AtariScannedFirmware> _scannedFirmware = [];
-    private readonly TextBlock _totalMemory = new() { Margin = new Thickness(0, 8, 0, 0) };
-    private readonly Border _totalMemoryCard;
+    private TextBlock _totalMemory = new();
     private readonly AtariVideoAudioSettingsSection _videoAudio = new();
     private readonly AtariStorageSettingsSection _storage = new();
     private readonly AtariInputSettingsSection _input = new();
@@ -35,10 +35,9 @@ internal sealed class AtariHardwareSettingsSection : UserControl
 
     internal AtariHardwareSettingsSection(UIElement general)
     {
-        _totalMemoryCard = EmulationSettingsLayout.IconCard(_totalMemory,
-            LocExtension.Get(AtariHardwareSettingsConstants.TotalMemoryResource,
-                AtariHardwareSettingsConstants.NoBytes, AtariHardwareSettingsConstants.ByteSuffix.Trim()), "\uE964");
-        _totalMemoryCard.Margin = new Thickness(12, 0, 12, 12);
+        _firmwareList.SelectionChanged += (_, _) =>
+            _useSelectedFirmware.IsEnabled = SelectedFirmware() is not null;
+        _useSelectedFirmware.Click += (_, _) => UseSelectedFirmware();
         _firmware.Children.Add(BuildFirmwarePage());
         Content = BuildTabs(general);
     }
@@ -55,7 +54,6 @@ internal sealed class AtariHardwareSettingsSection : UserControl
             _input.Load(configuration);
             BuildFields(_cpu, _view.Cpu);
             BuildFields(_memory, _view.Memory);
-            _memory.Children.Add(_totalMemoryCard);
             UpdateTotalMemory();
             try { await BuildFirmwareAsync(configuration.Model); }
             catch (Exception error)
@@ -78,38 +76,29 @@ internal sealed class AtariHardwareSettingsSection : UserControl
 
     private UIElement BuildTabs(UIElement general)
     {
-        var tabs = new TabControl();
-        AtariAccessibilityFunctions.Configure(tabs,
-            LocExtension.Get(AtariAccessibilityConstants.ConfigurationTabsResource));
-        tabs.Items.Add(AtariAccessibilityFunctions.Tab("\uE713", LocExtension.Get(AtariConfigurationCatalogConstants.GeneralResource), general));
-        tabs.Items.Add(AtariAccessibilityFunctions.Tab("\uE950", AtariHardwareSettingsConstants.CpuTab, EmulationSettingsLayout.ScrollPage(_cpu)));
-        tabs.Items.Add(AtariAccessibilityFunctions.Tab("\uE964", AtariHardwareSettingsConstants.RamTab, EmulationSettingsLayout.ScrollPage(_memory)));
-        tabs.Items.Add(AtariAccessibilityFunctions.Tab("\uE8B7", AtariHardwareSettingsConstants.RomTab, EmulationSettingsLayout.ScrollPage(_firmware)));
-        tabs.Items.Add(AtariAccessibilityFunctions.Tab("\uE7F4", LocExtension.Get(AtariVideoAudioSettingsConstants.VideoTabResource), _videoAudio.Video));
-        tabs.Items.Add(AtariAccessibilityFunctions.Tab("\uE767", LocExtension.Get(AtariVideoAudioSettingsConstants.AudioTabResource), _videoAudio.Audio));
-        tabs.Items.Add(AtariAccessibilityFunctions.Tab("\uEDA2", LocExtension.Get(AtariStorageSettingsConstants.StorageTabResource), StoragePage()));
-        tabs.Items.Add(AtariAccessibilityFunctions.Tab("\uE765", LocExtension.Get(AtariInputSettingsConstants.KeyboardTabResource), _input.Keyboard));
-        tabs.Items.Add(AtariAccessibilityFunctions.Tab("\uE962", LocExtension.Get(AtariInputSettingsConstants.MouseTabResource), _input.Mouse));
-        tabs.Items.Add(AtariAccessibilityFunctions.Tab("\uE7FC", LocExtension.Get(AtariInputSettingsConstants.ControllersTabResource), _input.Controllers));
-        return tabs;
-    }
-
-    private UIElement StoragePage()
-    {
-        var content = new StackPanel();
-        content.Children.Add(_storage.Content);
-        var hint = EmulationSettingsLayout.InformationBanner(LocExtension.Get("Emulation.RemovableMediaRuntimeHint"));
-        content.Children.Add(hint);
-        var page = new Grid { Margin = new Thickness(12) };
-        page.Children.Add(EmulationSettingsLayout.ActionCard(content,
-            LocExtension.Get("Emulation.StorageDevices")));
-        return EmulationSettingsLayout.ScrollPage(page);
+        return EmulationMachineTabs.Create(kind => kind switch
+        {
+            EmulationMachineTabKind.General => general,
+            EmulationMachineTabKind.Cpu => EmulationSettingsLayout.ScrollPage(_cpu),
+            EmulationMachineTabKind.Ram => EmulationSettingsLayout.ScrollPage(_memory),
+            EmulationMachineTabKind.Rom => EmulationSettingsLayout.ScrollPage(_firmware),
+            EmulationMachineTabKind.Video => _videoAudio.Video,
+            EmulationMachineTabKind.Audio => _videoAudio.Audio,
+            EmulationMachineTabKind.Storage => EmulationSettingsLayout.StorageSettingsPage(_storage.DeviceList),
+            EmulationMachineTabKind.Keyboard => _input.Keyboard,
+            EmulationMachineTabKind.Mouse => _input.Mouse,
+            EmulationMachineTabKind.Controllers => _input.Controllers,
+            _ => null
+        }, LocExtension.Get(AtariAccessibilityConstants.ConfigurationTabsResource));
     }
 
     private void BuildFields(Panel panel, IReadOnlyList<AtariHardwareField> fields)
     {
         panel.Children.Clear();
+        var isCpuPanel = ReferenceEquals(panel, _cpu);
+        var isMemoryPanel = ReferenceEquals(panel, _memory);
         var rows = new Dictionary<AtariSettingOption, UIElement>();
+        var editors = new Dictionary<AtariSettingOption, FrameworkElement>();
         foreach (var field in fields)
         {
             var editor = new ComboBox
@@ -126,41 +115,57 @@ internal sealed class AtariHardwareSettingsSection : UserControl
                 AtariHardwareSettingsFunctions.Explanation(field));
             editor.SelectionChanged += (_, _) => { if (!_loading) UpdateTotalMemory(); };
             _editors[key] = editor;
-            rows[field.Option] = AtariAccessibilityFunctions.LabeledRow(LocExtension.Get(field.ResourceKey), editor);
+            editors[field.Option] = editor;
+            if (!isCpuPanel && !isMemoryPanel)
+                rows[field.Option] = AtariAccessibilityFunctions.LabeledRow(
+                    LocExtension.Get(field.ResourceKey), editor);
         }
-        if (ReferenceEquals(panel, _cpu)) BuildCpuLayout(rows);
-        else if (ReferenceEquals(panel, _memory)) BuildMemoryLayout(rows);
+        if (isCpuPanel) BuildCpuLayout(editors, fields);
+        else if (isMemoryPanel) BuildMemoryLayout(editors, fields);
         else foreach (var row in rows.Values) panel.Children.Add(row);
     }
 
-    private void BuildCpuLayout(IReadOnlyDictionary<AtariSettingOption, UIElement> rows)
+    private void BuildCpuLayout(IReadOnlyDictionary<AtariSettingOption, FrameworkElement> editors,
+        IReadOnlyList<AtariHardwareField> fields)
     {
-        var processor = new StackPanel();
-        processor.Children.Add(rows[AtariSettingOption.CpuModel]);
-        var compatibility = new StackPanel();
-        compatibility.Children.Add(rows[AtariSettingOption.CpuPrecision]);
-        compatibility.Children.Add(rows[AtariSettingOption.Fpu]);
-        var root = EmulationSettingsLayout.TwoColumnPage(
-            EmulationSettingsLayout.IconCard(processor, LocExtension.Get("Emulation.Processor"), "\uE950"),
-            EmulationSettingsLayout.IconCard(compatibility,
-                LocExtension.Get("Emulation.CpuCompatibility"), "\uEA18"));
-        var acceleration = EmulationSettingsLayout.IconCard(rows[AtariSettingOption.CpuSpeed],
-            LocExtension.Get("Emulation.Acceleration"), "\uE945");
-        acceleration.Margin = new Thickness(0, 10, 0, 0);
-        Grid.SetRow(acceleration, 1);
-        Grid.SetColumnSpan(acceleration, 2);
-        root.Children.Add(acceleration);
-        _cpu.Children.Add(root);
+        var cpu = fields.Single(field => field.Option == AtariSettingOption.CpuModel);
+        var speed = fields.Single(field => field.Option == AtariSettingOption.CpuSpeed);
+        var modelName = _configuration is null
+            ? string.Empty
+            : AtariConfigurationCatalogFunctions.Models()
+                .Single(model => model.Model == _configuration.Model).DisplayName;
+        var cpuName = cpu.Choices.Single(choice => choice.Value == cpu.SelectedValue).DisplayName;
+        var originalSpeed = speed.Choices[0].DisplayName;
+        _cpu.Children.Add(EmulationSettingsLayout.CpuSettingsPage(new EmulationCpuSettingsContent(
+            editors[AtariSettingOption.CpuModel],
+            new TextBlock { Text = $"{modelName} · {cpuName} · {originalSpeed}" },
+            editors[AtariSettingOption.CpuPrecision],
+            editors[AtariSettingOption.Fpu],
+            new TextBlock { Text = originalSpeed },
+            editors[AtariSettingOption.CpuSpeed])));
     }
 
-    private void BuildMemoryLayout(IReadOnlyDictionary<AtariSettingOption, UIElement> rows)
+    private void BuildMemoryLayout(IReadOnlyDictionary<AtariSettingOption, FrameworkElement> editors,
+        IReadOnlyList<AtariHardwareField> fields)
     {
-        var root = EmulationSettingsLayout.TwoColumnPage(
-            EmulationSettingsLayout.IconCard(rows[AtariSettingOption.MainMemory],
-                LocExtension.Get("Emulation.MainMemory"), "\uE964"),
-            EmulationSettingsLayout.IconCard(rows[AtariSettingOption.AlternateMemory],
-                LocExtension.Get("Emulation.MemoryExtensions"), "\uE950"));
-        _memory.Children.Add(root);
+        _totalMemory = new TextBlock();
+        var main = fields.Single(field => field.Option == AtariSettingOption.MainMemory);
+        var extensions = fields.Single(field => field.Option == AtariSettingOption.AlternateMemory);
+        var modelName = _configuration is null
+            ? string.Empty
+            : AtariConfigurationCatalogFunctions.Models()
+                .Single(model => model.Model == _configuration.Model).DisplayName;
+        _memory.Children.Add(EmulationSettingsLayout.MemorySettingsPage(new EmulationMemorySettingsContent(
+            [new(LocExtension.Get(main.ResourceKey), editors[main.Option])],
+            new TextBlock { Text = LocExtension.Get("Emulation.Memory.CompatibleWithModel", modelName) },
+            [new(LocExtension.Get(extensions.ResourceKey), editors[extensions.Option])],
+            new TextBlock
+            {
+                Text = extensions.Availability == AtariOptionAvailability.Unavailable
+                    ? AtariHardwareSettingsFunctions.Explanation(extensions)
+                    : LocExtension.Get("Emulation.Memory.ExtensionsCompatibleWithModel", modelName)
+            },
+            _totalMemory)));
     }
 
     private async Task BuildFirmwareAsync(AtariMachineModel model)
@@ -189,45 +194,52 @@ internal sealed class AtariHardwareSettingsSection : UserControl
         if (_configuredFirmware.Children.Count == 0)
             _configuredFirmware.Children.Add(new TextBlock
             {
-                Text = LocExtension.Get("Emulation.NotUsed"),
+                Text = LocExtension.Get("Emulation.Value.NotUsed"),
                 TextWrapping = TextWrapping.Wrap
             });
         _scannedFirmware = await new AtariFirmwareScanner(StoragePaths.AtariFirmwareDirectory).ScanAsync(model);
-        _firmwareList.ItemsSource = _scannedFirmware;
+        RefreshFirmwareRows();
+    }
+
+    private void RefreshFirmwareRows()
+    {
+        _firmwareList.ItemsSource = null;
+        _firmwareList.Items.Clear();
+        foreach (var firmware in _scannedFirmware)
+        {
+            var row = new ListBoxItem
+            {
+                Tag = firmware,
+                Content = EmulationSettingsLayout.FirmwareRow(
+                    Path.GetFileName(firmware.Path),
+                    firmware.Definition?.Version,
+                    firmware.Compatibility switch
+                    {
+                        AtariFirmwareCompatibility.Compatible => EmulationFirmwareCompatibility.Compatible,
+                        AtariFirmwareCompatibility.PartiallyCompatible =>
+                            EmulationFirmwareCompatibility.PartiallyCompatible,
+                        _ => EmulationFirmwareCompatibility.Unknown
+                    },
+                    () => UseFirmware(firmware)),
+                Padding = new Thickness(0),
+                HorizontalContentAlignment = HorizontalAlignment.Stretch
+            };
+            _firmwareList.Items.Add(row);
+        }
+        _useSelectedFirmware.IsEnabled = SelectedFirmware() is not null;
     }
 
     private UIElement BuildFirmwarePage()
     {
-        _firmwareList.ItemTemplate = AtariFirmwarePresentation.CreateTemplate();
-        _firmwareList.HorizontalContentAlignment = HorizontalAlignment.Stretch;
-        var refresh = new Button { Content = LocExtension.Get("Common.Refresh") };
-        refresh.Click += async (_, _) => await RefreshFirmwareAsync();
-        var use = new Button
-        {
-            Content = LocExtension.Get("Emulation.UseFirmware"),
-            Margin = new Thickness(8, 0, 0, 0)
-        };
-        use.Click += (_, _) => UseSelectedFirmware();
-        var actions = new StackPanel { Orientation = Orientation.Horizontal };
-        actions.Children.Add(refresh);
-        actions.Children.Add(use);
-        var layout = EmulationSettingsLayout.TwoColumnPage(
-            EmulationSettingsLayout.ActionCard(_configuredFirmware,
-                LocExtension.Get(AtariHardwareSettingsConstants.SystemRomResource)),
-            EmulationSettingsLayout.ActionCard(_firmwareList,
-                LocExtension.Get(AtariHardwareSettingsConstants.DetectedRomsResource), actions));
-        var openFolder = new Button
-        {
-            Content = LocExtension.Get("Emulation.OpenRomFolder"),
-            HorizontalAlignment = HorizontalAlignment.Right,
-            Margin = new Thickness(0, 10, 0, 0)
-        };
-        openFolder.Click += (_, _) => OpenFirmwareFolder();
-        var root = new StackPanel { Margin = new Thickness(12) };
-        root.Children.Add(_firmwareError);
-        root.Children.Add(layout);
-        root.Children.Add(openFolder);
-        return root;
+        var configuredFirmware = new StackPanel();
+        configuredFirmware.Children.Add(_firmwareError);
+        configuredFirmware.Children.Add(_configuredFirmware);
+        return EmulationSettingsLayout.FirmwareSettingsPage(new EmulationFirmwareSettingsContent(
+            configuredFirmware,
+            _firmwareList,
+            _ => RefreshFirmwareAsync(),
+            _useSelectedFirmware,
+            _ => OpenFirmwareFolderAsync()));
     }
 
     private async Task RefreshFirmwareAsync()
@@ -255,6 +267,12 @@ internal sealed class AtariHardwareSettingsSection : UserControl
         }
     }
 
+    private Task OpenFirmwareFolderAsync()
+    {
+        OpenFirmwareFolder();
+        return Task.CompletedTask;
+    }
+
     private void BrowseFirmware(TextBox target)
     {
         var dialog = new OpenFileDialog { Filter = LocExtension.Get(AtariStorageSettingsConstants.MediaFilterResource) };
@@ -263,7 +281,15 @@ internal sealed class AtariHardwareSettingsSection : UserControl
 
     private void UseSelectedFirmware()
     {
-        if (_firmwareList.SelectedItem is not AtariScannedFirmware selected) return;
+        if (SelectedFirmware() is not { } selected) return;
+        UseFirmware(selected);
+    }
+
+    private AtariScannedFirmware? SelectedFirmware() =>
+        (_firmwareList.SelectedItem as ListBoxItem)?.Tag as AtariScannedFirmware;
+
+    private void UseFirmware(AtariScannedFirmware selected)
+    {
         var firmware = AtariFirmwareScanFunctions.CreateSelection(selected);
         if (_firmwarePaths.TryGetValue(firmware.Kind, out var target)) target.Text = firmware.Path;
     }
@@ -285,8 +311,9 @@ internal sealed class AtariHardwareSettingsSection : UserControl
         var selected = _editors.Where(item => item.Value.SelectedValue is string)
             .ToDictionary(item => item.Key, item => (string)item.Value.SelectedValue, StringComparer.Ordinal);
         var bytes = AtariHardwareSettingsFunctions.TotalMemoryBytes(selected, _view);
+        var formatted = AtariHardwareSettingsFunctions.FormatMemoryTotal(bytes);
         _totalMemory.Text = LocExtension.Get(AtariHardwareSettingsConstants.TotalMemoryResource,
-            bytes, AtariHardwareSettingsConstants.ByteSuffix.Trim());
+            formatted.Value, formatted.Unit);
     }
 
 }

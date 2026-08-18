@@ -1,28 +1,19 @@
 using System.Windows;
-using System.Windows.Controls;
 using GWGUI.App.Localization;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari;
-using Microsoft.Win32;
 
 namespace GWGUI.App.Controls;
 
 internal sealed class AtariStorageSettingsSection
 {
     private readonly EmulationStorageDeviceList _deviceList = new();
-    private readonly ListBox _devices = new() { DisplayMemberPath = nameof(AtariStorageDeviceItem.DisplayName) };
-    private readonly ComboBox _type = new() { DisplayMemberPath = nameof(AtariStorageTypeChoice.DisplayName) };
-    private readonly ComboBox _slot = new() { DisplayMemberPath = nameof(AtariStorageSlotChoice.DisplayName) };
-    private readonly ComboBox _bus = new() { DisplayMemberPath = nameof(AtariStorageBusChoice.DisplayName) };
-    private readonly TextBox _path = new();
     private AtariMachineConfiguration? _configuration;
     private AtariStorageView? _view;
-    internal UIElement Content => _deviceList;
+    internal EmulationStorageDeviceList DeviceList => _deviceList;
 
     internal AtariStorageSettingsSection()
     {
-        _type.SelectionChanged += (_, _) => LoadSlots();
-        _devices.SelectionChanged += (_, _) => LoadSelected();
         _deviceList.AddRequested += (_, _) => EditDevice(null);
         _deviceList.ConfigureRequested += (_, args) => EditDevice(args.Device.Identifier);
         _deviceList.RemoveRequested += (_, args) => RemoveDevice(args.Device.Identifier);
@@ -32,60 +23,17 @@ internal sealed class AtariStorageSettingsSection
     {
         _configuration = configuration;
         _view = AtariStorageSettingsFunctions.Create(configuration);
-        _type.ItemsSource = _view.Types;
-        _type.SelectedIndex = _view.Types.Count == AtariStorageSettingsConstants.FirstItemIndex
-            ? AtariStorageSettingsConstants.NoSelectionIndex : AtariStorageSettingsConstants.FirstItemIndex;
         RefreshDevices();
     }
 
     internal AtariMachineConfiguration Apply(AtariMachineConfiguration configuration) =>
         _configuration is null ? configuration : new AtariMachineConfiguration(configuration.Model,
-            configuration.Firmwares, _configuration.Media, configuration.Options, configuration.Input,
+            configuration.Firmwares, _configuration.Media, _configuration.Options, configuration.Input,
             configuration.Id, configuration.SchemaVersion, configuration.AudioEnabled,
             configuration.VideoRenderer, configuration.Folders);
 
-    private void LoadSlots()
-    {
-        if (_view is null || _type.SelectedItem is not AtariStorageTypeChoice selected) return;
-        var slots = _view.Slots[selected.Kind];
-        if (_devices.SelectedItem is null)
-            slots = slots.Where(slot => _view.Devices.All(device =>
-                device.Configuration.Slot != slot.Slot)).ToArray();
-        _slot.ItemsSource = slots;
-        _slot.SelectedIndex = AtariStorageSettingsConstants.FirstItemIndex;
-        _bus.ItemsSource = _view.Buses[selected.Kind];
-        _bus.SelectedIndex = _view.Buses[selected.Kind].Count == AtariStorageSettingsConstants.FirstItemIndex
-            ? AtariStorageSettingsConstants.NoSelectionIndex : AtariStorageSettingsConstants.FirstItemIndex;
-        _bus.IsEnabled = _view.Buses[selected.Kind].Count > AtariStorageSettingsConstants.FirstItemIndex;
-    }
-
-    private void LoadSelected()
-    {
-        if (_devices.SelectedItem is not AtariStorageDeviceItem selected || _view is null) return;
-        _type.SelectedItem = _view.Types.First(value => value.Kind == selected.Configuration.Kind);
-        _slot.SelectedItem = _view.Slots[selected.Configuration.Kind]
-            .First(value => value.Slot == selected.Configuration.Slot);
-        _bus.SelectedItem = _view.Buses[selected.Configuration.Kind]
-            .FirstOrDefault(value => value.Bus == selected.Configuration.StorageBus);
-        _path.Text = selected.Configuration.Path;
-    }
-
-    private void Save()
-    {
-        if (_configuration is null || _type.SelectedItem is not AtariStorageTypeChoice type
-            || _slot.SelectedItem is not AtariStorageSlotChoice slot) return;
-        var replaced = (_devices.SelectedItem as AtariStorageDeviceItem)?.Configuration.Slot;
-        _configuration = AtariStorageSettingsFunctions.AddOrReplace(_configuration,
-            new AtariMediaConfiguration(_path.Text, type.Kind, slot.Slot,
-                StorageBus: (_bus.SelectedItem as AtariStorageBusChoice)?.Bus), replaced);
-        _view = AtariStorageSettingsFunctions.Create(_configuration);
-        RefreshDevices();
-    }
-
     private void RefreshDevices()
     {
-        _devices.ItemsSource = _view?.Devices;
-        _devices.SelectedIndex = AtariStorageSettingsConstants.NoSelectionIndex;
         _deviceList.SetDevices((_view?.Devices ?? []).Select(ToCommonDevice));
         _deviceList.SetCanAdd(_view is not null && _configuration is not null
             && AtariStorageSettingsFunctions.CanAdd(_configuration.Model, _view));
@@ -93,65 +41,53 @@ internal sealed class AtariStorageSettingsSection
 
     private void EditDevice(string? identifier)
     {
-        if (_view is null) return;
-        _devices.SelectedItem = identifier is null ? null : _view.Devices.FirstOrDefault(item =>
-            item.Configuration.Slot.ToString() == identifier);
+        if (_view is null || _configuration is null) return;
         if (identifier is null)
         {
-            _type.ItemsSource = _view.Types.Where(type => _view.Slots[type.Kind].Any(slot =>
+            var available = _view.Types.Where(type => _view.Slots[type.Kind].Any(slot =>
                 _view.Devices.All(device => device.Configuration.Slot != slot.Slot))).ToArray();
-            _type.SelectedIndex = _type.Items.Count == 0
-                ? AtariStorageSettingsConstants.NoSelectionIndex : AtariStorageSettingsConstants.FirstItemIndex;
-            _path.Clear();
+            var dialog = new AddStorageDeviceDialog(available.Select(type => ToCommonType(type.Kind)))
+                { Owner = Window.GetWindow(_deviceList) };
+            if (dialog.ShowDialog() != true) return;
+            var kind = ToAtariType(dialog.SelectedType);
+            var slot = _view.Slots[kind].First(choice => _view.Devices.All(device =>
+                device.Configuration.Slot != choice.Slot)).Slot;
+            _configuration = AtariStorageSettingsFunctions.AddDevice(_configuration, kind, slot);
+            Reload();
+            return;
         }
-        else
+
+        var selected = _view.Devices.FirstOrDefault(item => item.Identifier == identifier);
+        if (selected is null) return;
+        switch (selected.Configuration.Kind)
         {
-            _type.ItemsSource = _view.Types;
-            LoadSelected();
+            case AtariMediaKind.Floppy:
+                ConfigureFloppy(selected);
+                break;
+            case AtariMediaKind.HardDisk:
+            case AtariMediaKind.Directory:
+                ConfigureHardDisk(selected);
+                break;
+            case AtariMediaKind.CompactDisc:
+                ConfigureCompactDisc(selected);
+                break;
         }
-        var panel = new StackPanel { Margin = new Thickness(18) };
-        panel.Children.Add(AtariAccessibilityFunctions.LabeledRow(
-            LocExtension.Get(AtariStorageSettingsConstants.TypeResource), _type));
-        panel.Children.Add(AtariAccessibilityFunctions.LabeledRow(
-            LocExtension.Get(AtariStorageSettingsConstants.IdentifierResource), _slot));
-        panel.Children.Add(AtariAccessibilityFunctions.LabeledRow(
-            LocExtension.Get(AtariStorageSettingsConstants.InterfaceResource), _bus));
-        panel.Children.Add(AtariAccessibilityFunctions.LabeledRow(
-            LocExtension.Get(AtariStorageSettingsConstants.PathResource), _path));
-        var adding = identifier is null;
-        _type.IsEnabled = adding;
-        _slot.IsEnabled = adding;
-        _bus.IsEnabled = adding && _bus.Items.Count > AtariStorageSettingsConstants.FirstItemIndex;
-        var buttons = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Right };
-        var browse = new Button { Content = LocExtension.Get(AtariStorageSettingsConstants.BrowseResource) };
-        browse.Click += (_, _) => Browse();
-        var save = new Button { Content = LocExtension.Get(AtariStorageSettingsConstants.ConfigureResource), IsDefault = true };
-        var dialog = new Window
-        {
-            Title = LocExtension.Get(AtariStorageSettingsConstants.StorageTabResource),
-            Owner = Window.GetWindow(_deviceList), SizeToContent = SizeToContent.WidthAndHeight,
-            WindowStartupLocation = WindowStartupLocation.CenterOwner, Content = panel
-        };
-        save.Click += (_, _) => { Save(); dialog.DialogResult = true; };
-        buttons.Children.Add(browse);
-        buttons.Children.Add(save);
-        panel.Children.Add(buttons);
-        dialog.ShowDialog();
-        dialog.Content = null;
     }
 
     private static EmulationStorageDeviceItem ToCommonDevice(AtariStorageDeviceItem item) => new(
-        item.Configuration.Slot.ToString(), ToCommonType(item.Configuration.Kind),
-        item.DisplayName, string.IsNullOrWhiteSpace(item.Configuration.Path) ? null : item.Configuration.Path,
+        item.Identifier, ToCommonType(item.Configuration.Kind),
+        item.Model, string.IsNullOrWhiteSpace(item.Configuration.Path) ? null : item.Configuration.Path,
         item.CanRemove);
 
     private void RemoveDevice(string identifier)
     {
-        if (_configuration is null || !Enum.TryParse<EmulationMediaSlot>(identifier, out var slot)
-            || AtariStorageSettingsFunctions.IsPrimaryDevice(_configuration.Model, slot)) return;
+        if (_configuration is null || _view is null) return;
+        var selected = _view.Devices.FirstOrDefault(item => item.Identifier == identifier);
+        if (selected is null || AtariStorageSettingsFunctions.IsPrimaryDevice(
+                _configuration.Model, selected.Configuration.Slot)) return;
+        var slot = selected.Configuration.Slot;
         _configuration = AtariStorageSettingsFunctions.Remove(_configuration, slot);
-        _view = AtariStorageSettingsFunctions.Create(_configuration);
-        RefreshDevices();
+        Reload();
     }
 
     private static EmulationStorageDeviceType ToCommonType(AtariMediaKind kind) => kind switch
@@ -165,19 +101,62 @@ internal sealed class AtariStorageSettingsSection
         _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
     };
 
-    private void Browse()
+    private static AtariMediaKind ToAtariType(EmulationStorageDeviceType type) => type switch
     {
-        if (_type.SelectedItem is AtariStorageTypeChoice { Kind: AtariMediaKind.Directory })
-        {
-            var folder = new OpenFolderDialog();
-            if (folder.ShowDialog() == true) _path.Text = folder.FolderName;
-            return;
-        }
-        var dialog = new OpenFileDialog
-        {
-            Filter = LocExtension.Get(AtariStorageSettingsConstants.MediaFilterResource)
-        };
-        if (dialog.ShowDialog() == true) _path.Text = dialog.FileName;
+        EmulationStorageDeviceType.Floppy => AtariMediaKind.Floppy,
+        EmulationStorageDeviceType.HardDisk => AtariMediaKind.HardDisk,
+        EmulationStorageDeviceType.CompactDisc => AtariMediaKind.CompactDisc,
+        EmulationStorageDeviceType.Tape => AtariMediaKind.Cassette,
+        EmulationStorageDeviceType.Cartridge => AtariMediaKind.Cartridge,
+        EmulationStorageDeviceType.Directory => AtariMediaKind.Directory,
+        _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+    };
+
+    private void ConfigureFloppy(AtariStorageDeviceItem device)
+    {
+        if (_configuration is null) return;
+        var family = AtariStorageSettingsFunctions.Family(_configuration.Model);
+        var options = new FloppyDriveDialogOptions(
+            AtariStorageSettingsFunctions.FloppyModels(_configuration.Model),
+            _configuration.Folders.Floppies ?? _configuration.Folders.Shared ?? Environment.CurrentDirectory,
+            LocExtension.Get(AtariStorageSettingsConstants.MediaFilterResource),
+            family == AtariMachineFamily.St ? ".st" : ".atr");
+        var dialog = new FloppyDriveConfigurationDialog(device.Identifier,
+            AtariStorageSettingsFunctions.MachineName(_configuration.Model),
+            AtariStorageSettingsFunctions.FloppySettings(_configuration, device.Configuration.Slot), options)
+            { Owner = Window.GetWindow(_deviceList) };
+        if (dialog.ShowDialog() != true) return;
+        _configuration = AtariStorageSettingsFunctions.ConfigureFloppy(
+            _configuration, device.Configuration.Slot, dialog.Settings);
+        Reload();
     }
 
+    private void ConfigureHardDisk(AtariStorageDeviceItem device)
+    {
+        if (_configuration is null) return;
+        var dialog = new HardDiskDriveConfigurationDialog(device.Identifier,
+            AtariStorageSettingsFunctions.MachineName(_configuration.Model), device.Configuration.Path)
+            { Owner = Window.GetWindow(_deviceList) };
+        if (dialog.ShowDialog() != true || string.IsNullOrWhiteSpace(dialog.SupportPath)) return;
+        _configuration = AtariStorageSettingsFunctions.AddOrReplace(_configuration,
+            device.Configuration with { Path = dialog.SupportPath }, device.Configuration.Slot);
+        Reload();
+    }
+
+    private void ConfigureCompactDisc(AtariStorageDeviceItem device)
+    {
+        if (_configuration is null) return;
+        var dialog = new CompactDiscDriveConfigurationDialog(device.Identifier,
+            AtariStorageSettingsFunctions.MachineName(_configuration.Model),
+            new CompactDiscDriveSettings("CD-ROM", "100"), supportsWriter: false)
+            { Owner = Window.GetWindow(_deviceList) };
+        dialog.ShowDialog();
+    }
+
+    private void Reload()
+    {
+        if (_configuration is null) return;
+        _view = AtariStorageSettingsFunctions.Create(_configuration);
+        RefreshDevices();
+    }
 }

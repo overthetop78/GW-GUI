@@ -8,7 +8,8 @@ internal sealed record AtariStorageSlotChoice(EmulationMediaSlot Slot, string Di
 internal sealed record AtariStorageBusChoice(AtariStorageBus Bus, string DisplayName);
 internal sealed record AtariStorageDeviceItem(
     AtariMediaConfiguration Configuration,
-    string DisplayName,
+    string Identifier,
+    string Model,
     bool CanRemove);
 internal sealed record AtariStorageView(
     IReadOnlyList<AtariStorageTypeChoice> Types,
