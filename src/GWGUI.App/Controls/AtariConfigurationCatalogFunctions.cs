@@ -14,7 +14,7 @@ internal static class AtariConfigurationCatalogFunctions
     internal static AtariMachineConfiguration ChangeModel(AtariMachineConfiguration? current,
         AtariMachineModel model) => current is not null && current.Model == model
         ? current
-        : new AtariMachineConfiguration(model, id: current?.Id ?? Guid.NewGuid());
+        : new AtariMachineConfiguration(model);
 
     internal static string DisplayName(AtariMachineConfiguration configuration, string modelName) =>
         $"{modelName} {ControlVisualConstants.DetailSeparator} "

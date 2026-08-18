@@ -26,10 +26,13 @@ public sealed class AtariConfigurationCatalogTests
 
             var changed = AtariConfigurationCatalogFunctions.ChangeModel(configuration, AtariMachineModel.Ste);
             await controller.SaveAsync(changed);
-            Assert.Equal(AtariMachineModel.Ste, Assert.Single(await controller.LoadAsync()).Model);
+            var saved = await controller.LoadAsync();
+            Assert.Equal(2, saved.Count);
+            Assert.Contains(saved, item => item.Id == configuration.Id && item.Model == AtariMachineModel.St);
+            Assert.Contains(saved, item => item.Id == changed.Id && item.Model == AtariMachineModel.Ste);
 
             controller.Delete(configuration.Id);
-            Assert.Empty(await controller.LoadAsync());
+            Assert.Equal(changed.Id, Assert.Single(await controller.LoadAsync()).Id);
         }
         finally { DeleteRoot(root); }
     }
@@ -64,7 +67,7 @@ public sealed class AtariConfigurationCatalogTests
     }
 
     [Fact]
-    public void SelectingSameModelPreservesDocumentAndChangingModelKeepsIdentifier()
+    public void SelectingSameModelPreservesDocumentAndChangingModelCreatesMachine()
     {
         var configuration = new AtariMachineConfiguration(AtariMachineModel.St,
             options: AtariConfigurationCatalogTestConstants.Options);
@@ -72,7 +75,7 @@ public sealed class AtariConfigurationCatalogTests
         Assert.Same(configuration,
             AtariConfigurationCatalogFunctions.ChangeModel(configuration, AtariMachineModel.St));
         var changed = AtariConfigurationCatalogFunctions.ChangeModel(configuration, AtariMachineModel.Falcon);
-        Assert.Equal(configuration.Id, changed.Id);
+        Assert.NotEqual(configuration.Id, changed.Id);
         Assert.Equal(AtariMachineModel.Falcon, changed.Model);
         Assert.Empty(changed.Options);
     }

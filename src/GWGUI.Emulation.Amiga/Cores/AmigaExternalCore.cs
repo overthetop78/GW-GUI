@@ -7,6 +7,23 @@ namespace GWGUI.Emulation.Amiga.Cores;
 
 internal sealed class AmigaExternalCore : IAmigaCore
 {
+    private static readonly IReadOnlyDictionary<string, string> KnownKickstartNames =
+        new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            ["0b8442c311caa54fb12ec88eaaa9facf"] = "kick31034.A1000",
+            ["1fa1f93d3d7b51271dd1356b8b2b45a9"] = "kick32034.A1000",
+            ["85ad74194e87c08904327de1a9443b7a"] = "kick33180.A500",
+            ["82a21c1890cae844b3df741f2762d48d"] = "kick34005.A500",
+            ["dc10d7bdd1b6f450773dfb558477c230"] = "kick37175.A500",
+            ["465646c9b6729f77eea5314d1f057951"] = "kick37350.A600",
+            ["e40a5dfb3d017ba8779faba30cbd1c8e"] = "kick40063.A600",
+            ["b7cc148386aa631136f510cd29e42fc3"] = "kick39106.A1200",
+            ["646773759326fbac3b2311fd8c8793ee"] = "kick40068.A1200",
+            ["9b8bdd5a3fd32c2a5a6f5b1aefc799a5"] = "kick39106.A4000",
+            ["9bdedde6a4f33555b4a270c8ca53297d"] = "kick40068.A4000",
+            ["f2f241bf094168cfb9e7805dc2856433"] = "kick40060.CD32",
+            ["5f8924d013dd57a89cf349f4cdedc6b1"] = "kick40060.CD32"
+        };
     private readonly string? _corePath;
     private ExternalCoreLibrary? _library;
     private AmigaExternalHostCallbacks? _host;
@@ -89,9 +106,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
 
         if (configuration.ExtendedRomPath is not null)
         {
-            var extendedName = configuration.Model is "CD32" or "CD32FR" ? "kick40060.CD32.ext"
-                : configuration.Model == "CDTV" ? "kick34005.CDTV"
-                : Path.GetFileName(configuration.ExtendedRomPath);
+            var extendedName = ResolveExtendedRomFileName(configuration.Model, configuration.ExtendedRomPath);
             File.Copy(configuration.ExtendedRomPath, Path.Combine(systemDirectory, extendedName), true);
         }
         if (configuration.RomKeyPath is not null)
@@ -208,10 +223,8 @@ internal sealed class AmigaExternalCore : IAmigaCore
     internal static string ResolveKickstartFileName(string model, string sourcePath)
     {
         using var stream = File.OpenRead(sourcePath);
-        var sha256 = Convert.ToHexString(SHA256.HashData(stream));
-        if (sha256.Equals("1D68BA18412501D2A4B307A0A632B94A50B839C2C7C5FF2DF6DE2C38B99A921F",
-                StringComparison.OrdinalIgnoreCase))
-            return model.Equals("CDTV", StringComparison.OrdinalIgnoreCase) ? "kick34005.CDTV" : "kick34005.A500";
+        var md5 = Convert.ToHexString(MD5.HashData(stream));
+        if (KnownKickstartNames.TryGetValue(md5, out var knownName)) return knownName;
 
         stream.Position = 0;
         Span<byte> header = stackalloc byte[16];
@@ -219,17 +232,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
         {
             var version = (header[12] << 8) | header[13];
             var revision = (header[14] << 8) | header[15];
-            var suffix = model.ToUpperInvariant() switch
-            {
-                "A1000" => "A1000",
-                "A500" or "A500PLUS" or "A2000" or "A2000OG" => "A500",
-                "A600" => "A600",
-                "A1200" or "A1200OG" => "A1200",
-                "A3000" or "A4000" => "A4000",
-                "CDTV" => "CDTV",
-                "CD32" or "CD32FR" => "CD32",
-                _ => "A500"
-            };
+            var suffix = ResolveKickstartSuffix(model, version, revision);
             if (version is >= 29 and <= 50 && revision is <= 999)
                 return $"kick{version}{revision:D3}.{suffix}";
         }
@@ -241,11 +244,39 @@ internal sealed class AmigaExternalCore : IAmigaCore
             "A600" => "kick40063.A600",
             "A1200" or "A1200OG" => "kick40068.A1200",
             "A3000" or "A4000" => "kick40068.A4000",
-            "CDTV" => "kick34005.CDTV",
+            "CDTV" => "kick34005.A500",
             "CD32" or "CD32FR" => "kick40060.CD32",
             _ => "kick34005.A500"
         };
     }
+
+    internal static string ResolveExtendedRomFileName(string model, string sourcePath) =>
+        model.ToUpperInvariant() switch
+        {
+            "CD32" or "CD32FR" => "kick40060.CD32.ext",
+            "CDTV" => "kick34005.CDTV",
+            _ => Path.GetFileName(sourcePath)
+        };
+
+    private static string ResolveKickstartSuffix(string model, int version, int revision) => (version, revision) switch
+    {
+        (31 or 32, 34) => "A1000",
+        (33, 180) or (34, 5) or (37, 175) => "A500",
+        (37, 350) or (40, 63) => "A600",
+        (40, 60) => "CD32",
+        (39, 106) or (40, 68) when model.Equals("A3000", StringComparison.OrdinalIgnoreCase)
+            || model.Equals("A4000", StringComparison.OrdinalIgnoreCase) => "A4000",
+        (39, 106) or (40, 68) => "A1200",
+        _ => model.ToUpperInvariant() switch
+        {
+            "A1000" => "A1000",
+            "A600" => "A600",
+            "A1200" or "A1200OG" => "A1200",
+            "A3000" or "A4000" => "A4000",
+            "CD32" or "CD32FR" => "CD32",
+            _ => "A500"
+        }
+    };
 
     internal static IReadOnlyList<AmigaMediaConfiguration> ResolveConfiguredMedia(AmigaMachineConfiguration configuration)
     {

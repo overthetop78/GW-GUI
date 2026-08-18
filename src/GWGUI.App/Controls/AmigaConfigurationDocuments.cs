@@ -13,6 +13,16 @@ internal sealed class AmigaConfigurationDocuments(string directory, string pathB
     internal Task SaveAsync(AmigaMachineConfiguration configuration) => _store.SaveAsync(configuration);
     internal void Delete(Guid id) => _store.Delete(id);
 
+    internal static Guid ResolveIdForSave(Guid currentId, string model,
+        IEnumerable<AmigaMachineConfiguration> savedConfigurations)
+    {
+        if (currentId == Guid.Empty) return Guid.NewGuid();
+        var current = savedConfigurations.FirstOrDefault(configuration => configuration.Id == currentId);
+        return current is null || current.Model.Equals(model, StringComparison.OrdinalIgnoreCase)
+            ? currentId
+            : Guid.NewGuid();
+    }
+
     internal static string GetOption(AmigaMachineConfiguration configuration, string key, string fallback) =>
         configuration.Options?.GetValueOrDefault(key) ?? fallback;
 

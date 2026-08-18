@@ -23,7 +23,8 @@ public sealed class AtariConfigurationCatalogSection : UserControl
     internal AtariConfigurationCatalogSection(AtariConfigurationStore store)
     {
         _hardware = new AtariHardwareSettingsSection(_general);
-        _general.ModelChanged += async (_, configuration) => await _hardware.LoadAsync(configuration);
+        _general.ModelChanged += (_, configuration) =>
+            _ = ExecuteAsync(_hardware, () => _hardware.LoadAsync(configuration));
         _general.SaveRequested += async (_, _) => await ExecuteAsync(_general, SaveConfiguration);
         _controller = new AtariConfigurationCatalogController(store);
         _list.ItemsSource = _configurations;
@@ -33,7 +34,7 @@ public sealed class AtariConfigurationCatalogSection : UserControl
         _list.SelectionChanged += ConfigurationSelected;
         Content = _hardware;
         AtariAccessibilityFunctions.ConfigureFlowDirection(this);
-        Loaded += async (_, _) => await ReloadAsync();
+        Loaded += (_, _) => _ = ExecuteAsync(this, ReloadAsync);
     }
 
     public event EventHandler<AtariMachineConfiguration>? ConfigurationSaved;
@@ -108,13 +109,16 @@ public sealed class AtariConfigurationCatalogSection : UserControl
             ControlErrorContexts.AtariConfiguration, AtariConfigurationCatalogConstants.AtariTitle); }
     }
 
-    private async void ConfigurationSelected(object sender, SelectionChangedEventArgs args)
+    private void ConfigurationSelected(object sender, SelectionChangedEventArgs args)
     {
         if (_loading || _list.SelectedItem is not AtariConfigurationItem selected) return;
-        _current = selected.Configuration;
-        await _general.LoadAsync(_current);
-        await _hardware.LoadAsync(_current);
-        UpdateEditorAvailability();
+        _ = ExecuteAsync(this, async () =>
+        {
+            _current = selected.Configuration;
+            await _general.LoadAsync(_current);
+            await _hardware.LoadAsync(_current);
+            UpdateEditorAvailability();
+        });
     }
 
     private async Task NewConfiguration()

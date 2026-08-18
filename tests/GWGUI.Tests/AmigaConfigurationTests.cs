@@ -2,12 +2,60 @@ using System.IO;
 using System.IO.Compression;
 using System.Net;
 using System.Net.Http;
+using GWGUI.App.Controls;
 using GWGUI.Emulation.Amiga;
+using GWGUI.Emulation.Amiga.Cores;
 
 namespace GWGUI.Tests;
 
 public sealed class AmigaConfigurationTests
 {
+    [Fact]
+    public void SavingAnotherModelCreatesMachineWhileSameModelUpdatesCurrentMachine()
+    {
+        var current = AmigaMachineConfiguration.A500(@"C:\ROMs\Kickstart 1.3.rom");
+        var saved = new[] { current };
+
+        Assert.Equal(current.Id,
+            AmigaConfigurationDocuments.ResolveIdForSave(current.Id, "A500", saved));
+        Assert.NotEqual(current.Id,
+            AmigaConfigurationDocuments.ResolveIdForSave(current.Id, "A1200", saved));
+    }
+
+    [Theory]
+    [InlineData("A500", 40, 63, "kick40063.A600")]
+    [InlineData("CDTV", 34, 5, "kick34005.A500")]
+    [InlineData("A500PLUS", 37, 175, "kick37175.A500")]
+    [InlineData("A600", 37, 350, "kick37350.A600")]
+    [InlineData("A1200", 40, 68, "kick40068.A1200")]
+    [InlineData("A4000", 40, 68, "kick40068.A4000")]
+    [InlineData("A1000", 32, 34, "kick32034.A1000")]
+    public void KickstartNameFollowsRomIdentityInsteadOfSelectedMachine(string model, int version,
+        int revision, string expected)
+    {
+        var root = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Rom", Guid.NewGuid().ToString("N"));
+        var path = Path.Combine(root, "arbitrary-name.rom");
+        Directory.CreateDirectory(root);
+        try
+        {
+            var content = new byte[524_288];
+            content[12] = (byte)(version >> 8);
+            content[13] = (byte)version;
+            content[14] = (byte)(revision >> 8);
+            content[15] = (byte)revision;
+            File.WriteAllBytes(path, content);
+
+            Assert.Equal(expected, AmigaExternalCore.ResolveKickstartFileName(model, path));
+        }
+        finally { Directory.Delete(root, true); }
+    }
+
+    [Theory]
+    [InlineData("CDTV", "kick34005.CDTV")]
+    [InlineData("CD32", "kick40060.CD32.ext")]
+    public void ExtendedRomUsesTheCoreFirmwareName(string model, string expected) =>
+        Assert.Equal(expected, AmigaExternalCore.ResolveExtendedRomFileName(model, @"C:\ROMs\extended.rom"));
+
     [Fact]
     public async Task ConfigurationStore_RoundTripsMultipleMachines()
     {
@@ -142,6 +190,7 @@ public sealed class AmigaConfigurationTests
     }
 
     [Fact]
+    [Trait("Category", "LocalAssets")]
     public void ExternalCoreInstaller_AcceptsTheInstalledWindowsX64Library()
     {
         var repository = FindRepositoryRoot();
@@ -172,6 +221,7 @@ public sealed class AmigaConfigurationTests
     }
 
     [Fact]
+    [Trait("Category", "LocalAssets")]
     public async Task ExternalCoreInstaller_ExtractsAndValidatesOfficialArchiveWithoutPinnedSizeOrHash()
     {
         var repository = FindRepositoryRoot();

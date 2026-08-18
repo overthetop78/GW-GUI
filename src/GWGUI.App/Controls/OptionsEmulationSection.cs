@@ -1755,9 +1755,11 @@ public sealed class OptionsEmulationSection : UserControl
             int.TryParse(SelectedText(_audioLatency), out var latency) ? latency : 50,
             SelectedText(_audioInterpolation), SelectedText(_audioFilter),
             (int)_stereoSeparation.Value);
+        var configurationId = AmigaConfigurationDocuments.ResolveIdForSave(_currentId, model.Id,
+            _configurations.Select(item => item.Configuration));
         var configuration = new AmigaMachineConfiguration(model.Id, Path.GetFullPath(_kickstart.Text),
             initialPath, extendedRomPath, romKeyPath,
-            Options: options, Id: _currentId == Guid.Empty ? Guid.NewGuid() : _currentId,
+            Options: options, Id: configurationId,
             AudioEnabled: _audio.IsChecked == true,
             Controllers: _controllers.Select((combo, port) => SelectedChoice(combo, port < 2
                 ? AmigaControllerSettingsFunctions.Default(model)
