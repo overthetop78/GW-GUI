@@ -96,6 +96,24 @@ public sealed class AtariConfigurationCatalogTests
     }
 
     [Fact]
+    public void SelectingModelLoadsSavedMachineOrCreatesCleanDefaults()
+    {
+        var saved = new AtariMachineConfiguration(AtariMachineModel.Falcon,
+            firmwares: [new AtariFirmwareConfiguration(AtariFirmwareKind.Tos, @"C:\ROMs\tos.img", true)],
+            options: AtariConfigurationCatalogTestConstants.Options);
+        var current = new AtariMachineConfiguration(AtariMachineModel.St);
+
+        Assert.Same(saved, AtariConfigurationCatalogFunctions.ConfigurationForModel(current,
+            AtariMachineModel.Falcon, new[] { saved }));
+        var created = AtariConfigurationCatalogFunctions.ConfigurationForModel(current,
+            AtariMachineModel.Lynx, new[] { saved });
+        Assert.Equal(AtariMachineModel.Lynx, created.Model);
+        Assert.Empty(created.Firmwares);
+        Assert.Empty(created.Options);
+        Assert.NotEqual(current.Id, created.Id);
+    }
+
+    [Fact]
     public void OptionsNavigationContainsOneAtariCatalogWithEveryModel()
     {
         RunOnSta(() =>

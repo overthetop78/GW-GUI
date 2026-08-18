@@ -16,6 +16,11 @@ internal static class AtariConfigurationCatalogFunctions
         ? current
         : new AtariMachineConfiguration(model);
 
+    internal static AtariMachineConfiguration ConfigurationForModel(AtariMachineConfiguration? current,
+        AtariMachineModel model, IEnumerable<AtariMachineConfiguration> savedConfigurations) =>
+        savedConfigurations.FirstOrDefault(configuration => configuration.Model == model)
+        ?? ChangeModel(current, model);
+
     internal static string DisplayName(AtariMachineConfiguration configuration, string modelName) =>
         EmulationConfigurationDisplayFunctions.Atari(configuration, modelName);
 

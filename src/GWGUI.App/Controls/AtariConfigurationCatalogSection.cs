@@ -24,7 +24,7 @@ public sealed class AtariConfigurationCatalogSection : UserControl
     {
         _hardware = new AtariHardwareSettingsSection(_general);
         _general.ModelChanged += (_, configuration) =>
-            _ = ExecuteAsync(_hardware, () => _hardware.LoadAsync(configuration));
+            _ = ExecuteAsync(_hardware, () => ModelChangedAsync(configuration));
         _general.SaveRequested += async (_, _) => await ExecuteAsync(_general, SaveConfiguration);
         _controller = new AtariConfigurationCatalogController(store);
         _list.ItemsSource = _configurations;
@@ -127,6 +127,20 @@ public sealed class AtariConfigurationCatalogSection : UserControl
         _list.SelectedItem = null;
         await _general.LoadAsync(_current);
         await _hardware.LoadAsync(_current);
+        UpdateEditorAvailability();
+    }
+
+    private async Task ModelChangedAsync(AtariMachineConfiguration requested)
+    {
+        var configuration = AtariConfigurationCatalogFunctions.ConfigurationForModel(_current,
+            requested.Model, _configurations.Select(item => item.Configuration));
+        _current = configuration;
+        var saved = _configurations.FirstOrDefault(item => item.Configuration.Id == configuration.Id);
+        _loading = true;
+        try { _list.SelectedItem = saved; }
+        finally { _loading = false; }
+        if (saved is not null) await _general.LoadAsync(configuration);
+        await _hardware.LoadAsync(configuration);
         UpdateEditorAvailability();
     }
 

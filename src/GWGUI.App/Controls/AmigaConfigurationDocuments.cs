@@ -23,6 +23,12 @@ internal sealed class AmigaConfigurationDocuments(string directory, string pathB
             : Guid.NewGuid();
     }
 
+    internal static AmigaMachineConfiguration ConfigurationForModel(string model,
+        IEnumerable<AmigaMachineConfiguration> savedConfigurations) =>
+        savedConfigurations.FirstOrDefault(configuration =>
+            configuration.Model.Equals(model, StringComparison.OrdinalIgnoreCase))
+        ?? new AmigaMachineConfiguration(model, string.Empty, Id: Guid.NewGuid());
+
     internal static string GetOption(AmigaMachineConfiguration configuration, string key, string fallback) =>
         configuration.Options?.GetValueOrDefault(key) ?? fallback;
 

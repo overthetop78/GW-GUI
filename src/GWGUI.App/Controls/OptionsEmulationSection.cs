@@ -135,6 +135,7 @@ public sealed class OptionsEmulationSection : UserControl
     private Func<Task>? _persistAppSettings;
     private Guid _currentId;
     private bool _loading;
+    private bool _loadingAmigaModel;
 
     public OptionsEmulationSection()
     {
@@ -147,7 +148,7 @@ public sealed class OptionsEmulationSection : UserControl
         _firmwareList.SelectionChanged += (_, _) =>
             _useSelectedFirmware.IsEnabled = SelectedFirmware() is not null;
         _useSelectedFirmware.Click += (_, _) => UseFirmware(SelectedFirmware());
-        _model.SelectionChanged += (_, _) => ApplyModelDefaults();
+        _model.SelectionChanged += (_, _) => AmigaModelSelected();
         _kickstart.TextChanged += (_, _) => UpdateRomFieldAvailability();
         _chipMemory.SelectionChanged += (_, _) => UpdateMemorySummary();
         _slowMemory.SelectionChanged += (_, _) => UpdateMemorySummary();
@@ -1387,6 +1388,15 @@ public sealed class OptionsEmulationSection : UserControl
         return Task.CompletedTask;
     }
 
+    private void AmigaModelSelected()
+    {
+        if (_loadingAmigaModel || _model.SelectedItem is not AmigaModel model) return;
+        var configuration = AmigaConfigurationDocuments.ConfigurationForModel(model.Id,
+            _configurations.Select(item => item.Configuration));
+        _list.SelectedItem = _configurations.FirstOrDefault(item => item.Configuration.Id == configuration.Id);
+        LoadEditor(configuration);
+    }
+
     private void ConfigurationSelected(object sender, SelectionChangedEventArgs e)
     {
         if (!_loading && _list.SelectedItem is ConfigurationItem item) LoadEditor(item.Configuration);
@@ -1514,7 +1524,10 @@ public sealed class OptionsEmulationSection : UserControl
     {
         _currentId = configuration.Id;
         var selectedModel = AmigaModelCatalog.Get(configuration.Model);
-        _model.SelectedItem = selectedModel;
+        _loadingAmigaModel = true;
+        try { _model.SelectedItem = selectedModel; }
+        finally { _loadingAmigaModel = false; }
+        ApplyModelDefaults();
         _kickstart.Text = configuration.KickstartPath;
         _extendedRom.Text = configuration.ExtendedRomPath ?? string.Empty;
         _romKey.Text = configuration.RomKeyPath ?? string.Empty;

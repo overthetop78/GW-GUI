@@ -23,6 +23,23 @@ public sealed class AmigaConfigurationTests
     }
 
     [Fact]
+    public void SelectingModelLoadsSavedMachineOrCreatesDefaultsWithoutFirmwarePaths()
+    {
+        var saved = new AmigaMachineConfiguration("A1200", @"C:\ROMs\kick1200.rom",
+            ExtendedRomPath: @"C:\ROMs\extended.rom", RomKeyPath: @"C:\ROMs\rom.key",
+            Id: Guid.NewGuid());
+
+        Assert.Same(saved,
+            AmigaConfigurationDocuments.ConfigurationForModel("A1200", new[] { saved }));
+        var created = AmigaConfigurationDocuments.ConfigurationForModel("A600", new[] { saved });
+        Assert.Equal("A600", created.Model);
+        Assert.Empty(created.KickstartPath);
+        Assert.Null(created.ExtendedRomPath);
+        Assert.Null(created.RomKeyPath);
+        Assert.NotEqual(saved.Id, created.Id);
+    }
+
+    [Fact]
     public void ConfigurationDisplayIncludesBrandMemoryShortRomAndIdentifier()
     {
         var configuration = AmigaMachineConfiguration.A500(@"C:\ROMs\Kickstart 3.1 very long name.rom");
