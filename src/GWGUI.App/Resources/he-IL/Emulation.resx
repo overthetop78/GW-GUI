@@ -570,6 +570,12 @@
   <data name="Emulation.Firmware.PartiallyCompatible">
     <value>תואמת חלקית</value>
   </data>
+  <data name="Emulation.Firmware.Official">
+    <value>רשמי</value>
+  </data>
+  <data name="Emulation.Firmware.Incompatible">
+    <value>לא תואם</value>
+  </data>
   <data name="Emulation.Video.Settings.Display">
     <value>תצוגה</value>
   </data>
@@ -1110,4 +1116,20 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>המפקח Sega Genesis</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Controller</value></data>
+  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
+    <value>האמולטור דורש מדיה לפני שניתן להפעיל מכונה זו. הכנס תקליטון או הגדר דיסק קשיח.</value>
+  </data>
+  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
+    <value>לא ניתן להפעיל את המכונה</value>
+  </data>
+  <data name="Emulation.Error.Machine" xml:space="preserve">
+    <value>מכונה</value>
+  </data>
+  <data name="Emulation.Error.RequiredMedia" xml:space="preserve">
+    <value>מדיה נדרשת</value>
+  </data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>אתחול מהיר</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>צליל כונן תקליטונים</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>מסנן שמע מקוטב</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>הצג פעילות כוננים במסך האמולטור</value></data>
 </root>

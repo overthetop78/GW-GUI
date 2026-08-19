@@ -570,6 +570,12 @@
   <data name="Emulation.Firmware.PartiallyCompatible">
     <value>Μερικώς συμβατή</value>
   </data>
+  <data name="Emulation.Firmware.Official">
+    <value>Επίσημο</value>
+  </data>
+  <data name="Emulation.Firmware.Incompatible">
+    <value>Μη συμβατό</value>
+  </data>
   <data name="Emulation.Video.Settings.Display">
     <value>Προβολή</value>
   </data>
@@ -1110,4 +1116,20 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Ατάρι Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Ελεγκτής Γένεσης Sega</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ ελεγκτής</value></data>
+  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
+    <value>Ο εξομοιωτής απαιτεί ένα μέσο πριν ενεργοποιηθεί αυτό το μηχάνημα. Εισαγάγετε μια δισκέτα ή ρυθμίστε έναν σκληρό δίσκο.</value>
+  </data>
+  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
+    <value>Δεν ήταν δυνατή η ενεργοποίηση του μηχανήματος</value>
+  </data>
+  <data name="Emulation.Error.Machine" xml:space="preserve">
+    <value>Μηχάνημα</value>
+  </data>
+  <data name="Emulation.Error.RequiredMedia" xml:space="preserve">
+    <value>Απαιτούμενα μέσα</value>
+  </data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Γρήγορη εκκίνηση</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Ήχος μονάδας δισκέτας</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Πολωμένο φίλτρο ήχου</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Εμφάνιση δραστηριότητας μονάδων στην οθόνη του εξομοιωτή</value></data>
 </root>

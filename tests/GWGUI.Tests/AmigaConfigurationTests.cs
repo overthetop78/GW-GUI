@@ -250,14 +250,52 @@ public sealed class AmigaConfigurationTests
             Assert.All(entries, entry => Assert.Equal(64, entry.Sha256.Length));
             var detected = Assert.Single(entries, entry => entry.Path.EndsWith("custom.rom", StringComparison.Ordinal));
             Assert.Equal(AmigaFirmwareType.Kickstart, detected.Type);
+            Assert.Equal("Kickstart", detected.Name);
             Assert.Equal("1.3 rev 34.005", detected.Version);
             Assert.Contains("A500", detected.CompatibleModels);
             Assert.False(detected.IsKnown);
+            Assert.False(detected.IsOfficial);
         }
         finally
         {
             Directory.Delete(directory, true);
         }
+    }
+
+    [Theory]
+    [InlineData("EmuTOS", "0.9.9.1", "EmuTOS 0.9.9.1")]
+    [InlineData("Serena", "0.3.0", "Serena 0.3.0")]
+    public void FirmwareCatalog_IdentifiesAlternativeSystemsFromEmbeddedMetadata(
+        string product, string version, string expected)
+    {
+        var directory = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Alternative", Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(directory);
+        try
+        {
+            var data = new byte[262_144];
+            System.Text.Encoding.ASCII.GetBytes($"{product} version {version}").CopyTo(data, 128);
+            var path = Path.Combine(directory, "system.rom");
+            File.WriteAllBytes(path, data);
+
+            var firmware = AmigaFirmwareCatalog.Inspect(path);
+
+            Assert.Equal(AmigaFirmwareType.Kickstart, firmware.Type);
+            Assert.True(firmware.IsKnown);
+            Assert.False(firmware.IsOfficial);
+            Assert.Equal(product, firmware.Name);
+            Assert.Equal(expected, firmware.Version);
+        if (product == "EmuTOS")
+        {
+            Assert.Equal(
+                AmigaModelCatalog.All.Select(model => model.Id),
+                firmware.CompatibleModels);
+        }
+        else
+        {
+            Assert.Empty(firmware.CompatibleModels);
+        }
+        }
+        finally { Directory.Delete(directory, true); }
     }
 
     [Fact]

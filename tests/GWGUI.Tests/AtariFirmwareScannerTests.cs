@@ -140,6 +140,156 @@ public sealed class AtariFirmwareScannerTests
         Assert.Equal(AtariFirmwareKind.LynxBootRom, definition.Kind);
     }
 
+    [Theory]
+    [InlineData(AtariFirmwareConstants.Atari5200RevisionAMd5, AtariMachineModel.Atari5200,
+        AtariFirmwareKind.Atari5200Bios, "Revision A")]
+    [InlineData(AtariFirmwareConstants.Atari7800EuropeMd5, AtariMachineModel.Atari7800,
+        AtariFirmwareKind.Atari7800Bios, "Europe")]
+    [InlineData(AtariFirmwareConstants.AtariXlXeOsV3Md5, AtariMachineModel.Atari800Xl,
+        AtariFirmwareKind.AtariXlOs, "BB01R3")]
+    [InlineData(AtariFirmwareConstants.AtariXlXeOsR59Md5, AtariMachineModel.Atari130Xe,
+        AtariFirmwareKind.AtariXlOs, "BB01R59")]
+    [InlineData(AtariFirmwareConstants.AtariXlXeOsR59AMd5, AtariMachineModel.Xegs,
+        AtariFirmwareKind.AtariXlOs, "BB01R59A")]
+    public void VerifiedAlternateRevisionsAreKnownAndCompatible(string md5, AtariMachineModel model,
+        AtariFirmwareKind kind, string version)
+    {
+        var definition = AtariFirmwareScanFunctions.Identify(md5);
+
+        Assert.NotNull(definition);
+        Assert.Equal(kind, definition.Kind);
+        Assert.Equal(version, definition.Version);
+        Assert.Equal(AtariFirmwareCompatibility.Compatible,
+            AtariFirmwareScanFunctions.Classify(definition, null, model, null));
+    }
+
+    [Fact]
+    public void ExternalJaguarBiosIsNamedButCannotBeSelectedByEmbeddedBiosCore()
+    {
+        var definition = AtariFirmwareScanFunctions.Identify(AtariFirmwareConstants.JaguarBootMd5);
+
+        Assert.NotNull(definition);
+        Assert.Equal("World", definition.Version);
+        Assert.Equal(AtariFirmwareCompatibility.Incompatible,
+            AtariFirmwareScanFunctions.Classify(definition, null, AtariMachineModel.Jaguar, null));
+        var scanned = new AtariScannedFirmware("jaguar.j64", 131072, AtariFirmwareConstants.JaguarBootMd5,
+            AtariFirmwareDetectionStatus.Known, definition, AtariFirmwareCompatibility.Incompatible, false, null);
+        Assert.Throws<InvalidOperationException>(() => AtariFirmwareScanFunctions.CreateSelection(scanned));
+    }
+
+    [Theory]
+    [InlineData(0x01, 0x62, 0x00, 0x05, AtariMachineModel.Ste, AtariStRegion.France, "1.62")]
+    [InlineData(0x02, 0x06, 0x00, 0x05, AtariMachineModel.MegaSte, AtariStRegion.France, "2.06")]
+    [InlineData(0x03, 0x06, 0x00, 0x05, AtariMachineModel.Tt, AtariStRegion.France, "3.06")]
+    [InlineData(0x04, 0x04, 0x00, 0xFF, AtariMachineModel.Falcon, AtariStRegion.Multilingual, "4.04")]
+    public async Task TosHeaderIdentifiesVersionRegionAndCompatibleModel(byte major, byte minor,
+        byte configurationHigh, byte configurationLow, AtariMachineModel model, AtariStRegion expectedRegion,
+        string expectedVersion)
+    {
+        var root = NewRoot();
+        try
+        {
+            var directory = Path.Combine(root,
+                AtariFirmwareScanFunctions.FamilyDirectoryName(AtariMachineFamily.St));
+            Directory.CreateDirectory(directory);
+            var path = Path.Combine(directory, $"tos-{expectedVersion}.img");
+            var data = new byte[262_144];
+            data[0] = 0x60; data[1] = 0x2E;
+            data[2] = major; data[3] = minor;
+            data[28] = configurationHigh; data[29] = configurationLow;
+            await File.WriteAllBytesAsync(path, data);
+
+            var identity = await AtariFirmwareScanFunctions.IdentifyTosAsync(path, CancellationToken.None);
+            var scanned = Assert.Single(await new AtariFirmwareScanner(root).ScanAsync(model, expectedRegion));
+
+            Assert.NotNull(identity);
+            Assert.Equal(expectedVersion, identity.Value.Definition.Version);
+            Assert.Equal(expectedRegion, identity.Value.Region);
+            Assert.Equal(AtariFirmwareDetectionStatus.Known, scanned.Detection);
+            Assert.Equal(AtariFirmwareCompatibility.Compatible, scanned.Compatibility);
+        }
+        finally { DeleteRoot(root); }
+    }
+
+    [Fact]
+    public async Task TosHeaderRegionMismatchIsIncompatible()
+    {
+        var root = NewRoot();
+        try
+        {
+            var directory = Path.Combine(root,
+                AtariFirmwareScanFunctions.FamilyDirectoryName(AtariMachineFamily.St));
+            Directory.CreateDirectory(directory);
+            var path = Path.Combine(directory, "tos-1.62.img");
+            var data = new byte[262_144];
+            data[0] = 0x60; data[1] = 0x2E; data[2] = 0x01; data[3] = 0x62;
+            data[28] = 0x00; data[29] = 0x05;
+            await File.WriteAllBytesAsync(path, data);
+
+            var scanned = Assert.Single(await new AtariFirmwareScanner(root).ScanAsync(
+                AtariMachineModel.Ste, AtariStRegion.Germany));
+
+            Assert.Equal(AtariFirmwareCompatibility.Incompatible, scanned.Compatibility);
+        }
+        finally { DeleteRoot(root); }
+    }
+
+    [Fact]
+    public async Task OriginalTosBranchHeaderIsRecognized()
+    {
+        var root = NewRoot();
+        try
+        {
+            var directory = Path.Combine(root,
+                AtariFirmwareScanFunctions.FamilyDirectoryName(AtariMachineFamily.St));
+            Directory.CreateDirectory(directory);
+            var path = Path.Combine(directory, "tos-1.00.img");
+            var data = new byte[196_608];
+            data[0] = 0x60; data[1] = 0x1E; data[2] = 0x01; data[3] = 0x00;
+            data[28] = 0x00; data[29] = 0x07;
+            await File.WriteAllBytesAsync(path, data);
+
+            var scanned = Assert.Single(await new AtariFirmwareScanner(root).ScanAsync(
+                AtariMachineModel.St, AtariStRegion.UnitedKingdom));
+
+            Assert.Equal(AtariFirmwareDetectionStatus.Known, scanned.Detection);
+            Assert.Equal("1.00", scanned.Definition?.Version);
+            Assert.Equal(AtariFirmwareCompatibility.Compatible, scanned.Compatibility);
+        }
+        finally { DeleteRoot(root); }
+    }
+
+    [Theory]
+    [InlineData("EmuTOS 0.9.9.1", 262_144, AtariMachineModel.Ste, "EmuTOS 0.9.9.1",
+        AtariFirmwareDistribution.BuiltInOpenReplacement)]
+    [InlineData("KAOS - TOS 1.4.3", 196_608, AtariMachineModel.St, "KAOS TOS 1.4.3",
+        AtariFirmwareDistribution.UserSuppliedCopyrighted)]
+    public async Task AlternativeTosIsIdentifiedByEmbeddedProductAndVersion(string marker, int imageSize,
+        AtariMachineModel model, string expectedVersion, AtariFirmwareDistribution expectedDistribution)
+    {
+        var root = NewRoot();
+        try
+        {
+            var directory = Path.Combine(root,
+                AtariFirmwareScanFunctions.FamilyDirectoryName(AtariMachineFamily.St));
+            Directory.CreateDirectory(directory);
+            var path = Path.Combine(directory, "alternative.img");
+            var data = new byte[imageSize];
+            data[0] = 0x60; data[1] = 0x2E; data[2] = 0x01; data[3] = 0x04;
+            data[28] = 0x00; data[29] = 0x05;
+            System.Text.Encoding.ASCII.GetBytes(marker).CopyTo(data, 128);
+            await File.WriteAllBytesAsync(path, data);
+
+            var scanned = Assert.Single(await new AtariFirmwareScanner(root).ScanAsync(model, AtariStRegion.France));
+
+            Assert.Equal(AtariFirmwareDetectionStatus.Known, scanned.Detection);
+            Assert.Equal(expectedVersion, scanned.Definition?.Version);
+            Assert.Equal(expectedDistribution, scanned.Definition?.Distribution);
+            Assert.Equal(AtariFirmwareCompatibility.Compatible, scanned.Compatibility);
+        }
+        finally { DeleteRoot(root); }
+    }
+
     [Fact]
     public async Task SelectionReferencesOriginalPathAndRefreshDoesNotCopyIt()
     {
@@ -197,6 +347,31 @@ public sealed class AtariFirmwareScannerTests
             Assert.Equal(content, await File.ReadAllBytesAsync(
                 Path.Combine(system, AtariFirmwareConstants.LynxBootFileName)));
             Assert.Single(Directory.EnumerateFiles(system));
+        }
+        finally { DeleteRoot(root); }
+    }
+
+    [Fact]
+    public async Task HeaderIdentifiedTosIsStagedUnderTheSharedHatariFileName()
+    {
+        var root = NewRoot();
+        try
+        {
+            Directory.CreateDirectory(root);
+            var source = Path.Combine(root, "TOS v2.06 (1991)(Atari)(Mega-STE)(FR).img");
+            var system = Path.Combine(root, "session", "System");
+            var content = new byte[262_144];
+            content[0] = 0x60; content[1] = 0x2E; content[2] = 0x02; content[3] = 0x06;
+            content[28] = 0x00; content[29] = 0x05;
+            await File.WriteAllBytesAsync(source, content);
+            var configuration = new AtariMachineConfiguration(AtariMachineModel.MegaSte,
+                [new AtariFirmwareConfiguration(AtariFirmwareKind.Tos, source, true)]);
+
+            AtariFirmwareRuntimeFunctions.PrepareSystemDirectory(configuration, system);
+
+            Assert.Equal(content, await File.ReadAllBytesAsync(
+                Path.Combine(system, AtariFirmwareConstants.TosFileName)));
+            Assert.True(File.Exists(source));
         }
         finally { DeleteRoot(root); }
     }

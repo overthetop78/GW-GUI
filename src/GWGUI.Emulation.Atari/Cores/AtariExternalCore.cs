@@ -80,12 +80,15 @@ internal sealed class AtariExternalCore : IAtariCore
             Atari800PreparedMedia? atari800Media = null;
             _library = new ExternalCoreLibrary(_corePath);
             _exports = AtariCoreFunctions.ResolveExports(_library);
+            var configuredOptions = Kind == AtariCoreKind.Hatari
+                ? AtariMachineOptionFunctions.Apply(configuration)
+                : configuration.Options;
             _callbacks = new AtariExternalHostCallbacks(
                 systemDirectory,
                 Path.Combine(absoluteSession, AtariConstants.ContentDirectoryName),
                 saveDirectory ?? Path.Combine(absoluteSession, AtariConstants.SavesDirectoryName),
                 Path.Combine(absoluteSession, AtariConstants.AssetsDirectoryName),
-                configuration.Options);
+                configuredOptions);
             AtariCoreFunctions.InstallCallbacks(_exports, _callbacks);
             _exports.Initialize();
             _nativeInitialized = true;

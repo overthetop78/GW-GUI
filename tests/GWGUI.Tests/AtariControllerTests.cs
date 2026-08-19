@@ -118,6 +118,18 @@ public sealed class AtariControllerTests
     }
 
     [Fact]
+    public void InputExposesPressedKeyboardKeysToDirectCorePolling()
+    {
+        var snapshot = new EmulationInputSnapshot(new HashSet<EmulationKey> { EmulationKey.A },
+            EmulationInputSnapshot.Empty.Pointer, []);
+
+        Assert.Equal(AtariInputConstants.ActiveState, State(snapshot, AtariInputConstants.PrimaryPort,
+            AtariInputConstants.KeyboardDevice, AtariInputConstants.LeftAnalogIndex, 'a'));
+        Assert.Equal(AtariInputConstants.InactiveState, State(snapshot, AtariInputConstants.PrimaryPort,
+            AtariInputConstants.KeyboardDevice, AtariInputConstants.LeftAnalogIndex, 'b'));
+    }
+
+    [Fact]
     public void DeadZoneIsAppliedPerPortAndValidated()
     {
         Assert.Equal(AtariControllerConstants.NeutralAxis,

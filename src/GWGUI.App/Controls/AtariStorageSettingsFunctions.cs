@@ -30,7 +30,7 @@ internal static class AtariStorageSettingsFunctions
             type => (IReadOnlyList<AtariStorageBusChoice>)Buses(configuration.Model, type.Kind)
                 .Select(bus => new AtariStorageBusChoice(bus, bus.ToString())).ToArray());
         var primaryMedia = configuration.Media.FirstOrDefault(item => item.Slot == primary.Slot)
-            ?? new AtariMediaConfiguration(string.Empty, primary.Kind, primary.Slot);
+            ?? new AtariMediaConfiguration(string.Empty, primary.Kind, primary.Slot, IsInserted: false);
         var configuredSlots = configuration.Options
             .Where(option => option.Key.StartsWith(DeviceOptionPrefix, StringComparison.Ordinal))
             .Select(option => Enum.TryParse<EmulationMediaSlot>(option.Key[DeviceOptionPrefix.Length..], out var slot)
@@ -48,7 +48,7 @@ internal static class AtariStorageSettingsFunctions
                 .Where(item => item.Slot != primary.Slot)
                 .Select(item => Device(configuration,
                     configuration.Media.FirstOrDefault(media => media.Slot == item.Slot)
-                    ?? new AtariMediaConfiguration(string.Empty, item.Kind, item.Slot), true)))
+                    ?? new AtariMediaConfiguration(string.Empty, item.Kind, item.Slot, IsInserted: false), true)))
             .ToArray();
         return new AtariStorageView(types, slots, buses, devices);
     }

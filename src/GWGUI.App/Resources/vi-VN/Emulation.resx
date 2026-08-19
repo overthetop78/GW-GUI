@@ -570,6 +570,12 @@
   <data name="Emulation.Firmware.PartiallyCompatible">
     <value>Tương thích một phần</value>
   </data>
+  <data name="Emulation.Firmware.Official">
+    <value>Chính thức</value>
+  </data>
+  <data name="Emulation.Firmware.Incompatible">
+    <value>Không tương thích</value>
+  </data>
   <data name="Emulation.Video.Settings.Display">
     <value>Hiển thị</value>
   </data>
@@ -1110,4 +1116,20 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Điều khiển Sega Genesis</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Điều khiển</value></data>
+  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
+    <value>Trình giả lập cần có phương tiện trước khi có thể bật máy này. Hãy đưa đĩa mềm vào hoặc cấu hình ổ đĩa cứng.</value>
+  </data>
+  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
+    <value>Không thể bật máy</value>
+  </data>
+  <data name="Emulation.Error.Machine" xml:space="preserve">
+    <value>Máy</value>
+  </data>
+  <data name="Emulation.Error.RequiredMedia" xml:space="preserve">
+    <value>Phương tiện bắt buộc</value>
+  </data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Khởi động nhanh</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Âm thanh ổ đĩa mềm</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Bộ lọc âm thanh phân cực</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Hiển thị hoạt động ổ đĩa trên màn hình trình giả lập</value></data>
 </root>

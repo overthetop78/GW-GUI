@@ -1,4 +1,5 @@
 using System.Windows;
+using System.Windows.Media;
 using GWGUI.App.Localization;
 using GWGUI.App.Services;
 
@@ -16,8 +17,8 @@ internal static class ControlErrorPresenter
     }
 
     internal static void ShowUnexpected(FrameworkElement owner, Exception error, string context, string title) =>
-        MessageBox.Show(Window.GetWindow(owner), Describe(error, context), title,
-            MessageBoxButton.OK, MessageBoxImage.Error);
+        CommonErrorDialog.Show(owner, new CommonErrorDialogContent(title, Describe(error, context),
+            CommonErrorDialog.ErrorIcon, Brushes.Firebrick));
 
     internal static string DescribeDetailed(Exception error, string description, string context)
     {
@@ -28,9 +29,17 @@ internal static class ControlErrorPresenter
     }
 
     internal static void ShowDetailed(FrameworkElement owner, Exception error, string description,
-        string context, string title) =>
-        MessageBox.Show(Window.GetWindow(owner), DescribeDetailed(error, description, context), title,
-            MessageBoxButton.OK, MessageBoxImage.Error);
+        string context, string title, IReadOnlyList<CommonErrorDialogDetail>? details = null,
+        IReadOnlyList<CommonErrorDialogMediaIcon>? mediaIcons = null, bool showLogPath = true) =>
+        CommonErrorDialog.Show(owner, new CommonErrorDialogContent(title,
+            showLogPath ? DescribeDetailed(error, description, context) : LogWithoutPath(error, description, context),
+            CommonErrorDialog.ErrorIcon, Brushes.Firebrick, details, mediaIcons));
+
+    private static string LogWithoutPath(Exception error, string description, string context)
+    {
+        ErrorLog.Write(error, context);
+        return description;
+    }
 }
 
 internal static class ControlErrorPresenterConstants

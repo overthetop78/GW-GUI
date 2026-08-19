@@ -570,6 +570,12 @@
   <data name="Emulation.Firmware.PartiallyCompatible">
     <value>Parcialmente compatível</value>
   </data>
+  <data name="Emulation.Firmware.Official">
+    <value>Oficial</value>
+  </data>
+  <data name="Emulation.Firmware.Incompatible">
+    <value>Incompatível</value>
+  </data>
   <data name="Emulation.Video.Settings.Display">
     <value>Exibição</value>
   </data>
@@ -1110,4 +1116,20 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Controlador Atari Joy 2B+</value></data>
+  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
+    <value>O emulador precisa de uma mídia antes que esta máquina possa ser ligada. Insira um disquete ou configure um disco rígido.</value>
+  </data>
+  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
+    <value>Não foi possível ligar a máquina</value>
+  </data>
+  <data name="Emulation.Error.Machine" xml:space="preserve">
+    <value>Máquina</value>
+  </data>
+  <data name="Emulation.Error.RequiredMedia" xml:space="preserve">
+    <value>Mídias necessárias</value>
+  </data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Inicialização rápida</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Som da unidade de disquete</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Filtro de áudio polarizado</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Mostrar atividade das unidades na tela do emulador</value></data>
 </root>

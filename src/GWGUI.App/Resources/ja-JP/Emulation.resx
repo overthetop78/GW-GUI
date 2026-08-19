@@ -570,6 +570,12 @@
   <data name="Emulation.Firmware.PartiallyCompatible">
     <value>一部互換</value>
   </data>
+  <data name="Emulation.Firmware.Official">
+    <value>公式</value>
+  </data>
+  <data name="Emulation.Firmware.Incompatible">
+    <value>非対応</value>
+  </data>
   <data name="Emulation.Video.Settings.Display">
     <value>表示</value>
   </data>
@@ -1110,4 +1116,20 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>アタリブースターグリップ</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>セガジェネシスコントローラ</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>アタリジョイ2B+コントローラー</value></data>
+  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
+    <value>このマシンの電源を入れる前に、エミュレーターにメディアが必要です。フロッピーディスクを挿入するか、ハードディスクを設定してください。</value>
+  </data>
+  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
+    <value>マシンの電源を入れられませんでした</value>
+  </data>
+  <data name="Emulation.Error.Machine" xml:space="preserve">
+    <value>マシン</value>
+  </data>
+  <data name="Emulation.Error.RequiredMedia" xml:space="preserve">
+    <value>必要なメディア</value>
+  </data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>高速起動</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>フロッピードライブ音</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>偏極オーディオフィルター</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>エミュレーター画面にドライブの動作状況を表示</value></data>
 </root>

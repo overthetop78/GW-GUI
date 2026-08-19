@@ -268,6 +268,8 @@
   <data name="Emulation.Value.NotUsed"><value>Non utilisé</value></data>
   <data name="Emulation.Firmware.Rom.OpenFolder"><value>Ouvrir le dossier des ROM</value></data>
   <data name="Emulation.Firmware.PartiallyCompatible"><value>Partiellement compatible</value></data>
+  <data name="Emulation.Firmware.Official"><value>Officiel</value></data>
+  <data name="Emulation.Firmware.Incompatible"><value>Incompatible</value></data>
   <data name="Emulation.Video.Settings.Display"><value>Affichage</value></data>
   <data name="Emulation.Video.Settings.Rendering"><value>Rendu</value></data>
   <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Compatibilité du jeu de puces</value></data>
@@ -453,6 +455,10 @@
   <data name="Emulation.Atari.Error.FirmwareInvalid"><value>Un firmware Atari est invalide ou incompatible.</value></data>
   <data name="Emulation.Atari.Error.ContentNotFound"><value>Le média Atari configuré est introuvable.</value></data>
   <data name="Emulation.Atari.Error.ContentUnsupported"><value>Le média configuré n’est pas pris en charge par cette machine Atari.</value></data>
+  <data name="Emulation.Atari.Error.ContentRequired"><value>L’émulateur nécessite un média avant de pouvoir allumer cette machine. Insérez une disquette ou configurez un disque dur.</value></data>
+  <data name="Emulation.Error.PowerFailureTitle"><value>Impossible d’allumer la machine</value></data>
+  <data name="Emulation.Error.Machine"><value>Machine</value></data>
+  <data name="Emulation.Error.RequiredMedia"><value>Supports requis</value></data>
   <data name="Emulation.Atari.Error.OptionInvalid"><value>Une option Atari contient une valeur invalide.</value></data>
   <data name="Emulation.Atari.Error.HostProtocolFailure"><value>La communication avec l’hôte Atari a échoué.</value></data>
   <data name="Emulation.Atari.Error.StateInvalid"><value>L’état sauvegardé Atari est invalide.</value></data>
@@ -474,4 +480,8 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Poignée du booster Atari</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Contrôleur Sega Genesis</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Contrôleur</value></data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Démarrage rapide</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Bruit des lecteurs de disquettes</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Filtre audio polarisé</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Afficher l’activité des lecteurs sur l’écran de l’émulateur</value></data>
 </root>

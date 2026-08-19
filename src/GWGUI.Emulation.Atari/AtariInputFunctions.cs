@@ -4,6 +4,9 @@ namespace GWGUI.Emulation.Atari;
 
 internal static class AtariInputFunctions
 {
+    private static readonly IReadOnlyDictionary<uint, EmulationKey> KeyboardMap =
+        AtariKeyboardFunctions.CreateKeyMap().ToDictionary(pair => pair.Value, pair => pair.Key);
+
     internal static EmulationInputSnapshot Freeze(EmulationInputSnapshot? snapshot)
     {
         snapshot ??= EmulationInputSnapshot.Empty;
@@ -13,6 +16,10 @@ internal static class AtariInputFunctions
 
     internal static short State(EmulationInputSnapshot snapshot, uint port, uint device, uint index, uint id)
     {
+        if (device == AtariInputConstants.KeyboardDevice)
+            return KeyboardMap.TryGetValue(id, out var key) && snapshot.Keys.Contains(key)
+                ? AtariInputConstants.ActiveState
+                : AtariInputConstants.InactiveState;
         if (device == AtariInputConstants.MouseDevice)
             return MouseState(snapshot.Pointer, port, index, id);
         if (port >= snapshot.Controllers.Count) return AtariInputConstants.InactiveState;

@@ -43,7 +43,7 @@ internal static class EmulationMachineTabs
     ];
 
     internal static TabControl Create(Func<EmulationMachineTabKind, UIElement?> contentProvider,
-        string? automationName = null)
+        string? automationName = null, Func<EmulationMachineTabKind, Task>? tabActivated = null)
     {
         var tabs = new TabControl
         {
@@ -59,6 +59,7 @@ internal static class EmulationMachineTabs
             var title = LocExtension.Get(definition.ResourceKey);
             var tab = new TabItem
             {
+                Tag = definition.Kind,
                 Header = new MainTabHeader { Icon = definition.Icon, Text = title },
                 Content = content,
                 Padding = new Thickness(HorizontalPadding, VerticalPadding,
@@ -70,6 +71,12 @@ internal static class EmulationMachineTabs
             tab.SetResourceReference(FrameworkElement.StyleProperty, "MainTabItemStyle");
             tabs.Items.Add(tab);
         }
+        if (tabActivated is not null)
+            tabs.SelectionChanged += async (_, args) =>
+            {
+                if (args.Source == tabs && tabs.SelectedItem is TabItem { Tag: EmulationMachineTabKind kind })
+                    await tabActivated(kind);
+            };
         return tabs;
     }
 }

@@ -570,6 +570,12 @@
   <data name="Emulation.Firmware.PartiallyCompatible">
     <value>متوافقة جزئيًا</value>
   </data>
+  <data name="Emulation.Firmware.Official">
+    <value>رسمي</value>
+  </data>
+  <data name="Emulation.Firmware.Incompatible">
+    <value>غير متوافق</value>
+  </data>
   <data name="Emulation.Video.Settings.Display">
     <value>العرض</value>
   </data>
@@ -1110,4 +1116,20 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Observer</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Observer</value></data>
+  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
+    <value>يتطلب المحاكي وسيطًا قبل تشغيل هذا الجهاز. أدخل قرصًا مرنًا أو قم بإعداد قرص ثابت.</value>
+  </data>
+  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
+    <value>تعذر تشغيل الجهاز</value>
+  </data>
+  <data name="Emulation.Error.Machine" xml:space="preserve">
+    <value>الجهاز</value>
+  </data>
+  <data name="Emulation.Error.RequiredMedia" xml:space="preserve">
+    <value>الوسائط المطلوبة</value>
+  </data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>تمهيد سريع</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>صوت محرك الأقراص المرنة</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>مرشح صوت مستقطب</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>إظهار نشاط محركات الأقراص على شاشة المحاكي</value></data>
 </root>

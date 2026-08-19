@@ -13,6 +13,9 @@ public static class StoragePaths
     public static string DataDirectory => ResolveDataDirectory(AppContext.BaseDirectory, Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
     public static string LogsDirectory => Path.Combine(DataDirectory, "Logs");
     public static string EmulationDirectory => Path.Combine(DataDirectory, "Emulation");
+    public static string FirmwareCatalogDirectory => Path.Combine(EmulationDirectory, "Catalogs", "Firmware");
+    public static string FirmwareCatalogPath(string platform) =>
+        Path.Combine(FirmwareCatalogDirectory, $"{platform.ToLowerInvariant()}.json");
     public static string EmulationStorageDirectory => string.IsNullOrWhiteSpace(_configuredEmulationStorageDirectory)
         ? Path.Combine(DataDirectory, "Emulation", "Storage")
         : Path.GetFullPath(_configuredEmulationStorageDirectory);

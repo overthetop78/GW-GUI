@@ -49,7 +49,10 @@ public static class AtariFirmwareRuntimeFunctions
         var definitions = AtariFirmwareCatalog.ForModel(model)
             .Where(definition => definition.Kind == kind && definition.ExpectedFileName is not null)
             .ToArray();
-        if (definitions.Length == AtariFirmwareRuntimeConstants.SingleDefinitionCount)
+        var expectedFileNames = definitions.Select(definition => definition.ExpectedFileName!)
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+        if (expectedFileNames.Length == AtariFirmwareRuntimeConstants.SingleDefinitionCount)
             return definitions[AtariFirmwareRuntimeConstants.FirstDefinitionIndex];
 
         var md5 = ComputeMd5(sourcePath);

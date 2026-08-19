@@ -2,6 +2,9 @@ using System.IO;
 using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
 using GWGUI.App.Localization;
 using GWGUI.App.Services;
 using GWGUI.Domain.Settings;
@@ -17,6 +20,10 @@ public sealed class EmulationSection : UserControl
     private readonly TabControl _machines = new();
     private readonly Dictionary<(MachineFamily Family, Guid Id), TabItem> _openMachines = [];
     private AppSettings _settings = new();
+    private Point _tabDragStart;
+    private TabItem? _draggedMachineTab;
+    private Point _tabDragOffset;
+    private MachineTabDragAdorner? _tabDragAdorner;
 
     public EmulationSection()
     {
@@ -25,6 +32,11 @@ public sealed class EmulationSection : UserControl
         AutomationProperties.SetName(_machines, LocExtension.Get("Emulation.Tab.Machines"));
         _open.Content = LocExtension.Get("Emulation.Machine.Open");
         _open.Click += OpenSelectedMachine;
+        _machines.AllowDrop = true;
+        _machines.PreviewMouseLeftButtonDown += MachineTabMouseDown;
+        _machines.PreviewMouseMove += MachineTabMouseMove;
+        _machines.DragOver += MachineTabDragOver;
+        _machines.Drop += MachineTabDrop;
         OptionsEmulationSection.ConfigurationSaved += AmigaConfigurationSaved;
         OptionsEmulationSection.AtariConfigurationSaved += AtariConfigurationSaved;
         Content = BuildContent();
@@ -82,14 +94,14 @@ public sealed class EmulationSection : UserControl
     {
         await ReloadConfigurationsAsync();
         if (_openMachines.TryGetValue((MachineFamily.Amiga, configuration.Id), out var tab)
-            && tab.Content is AmigaMachineView view) view.ApplyVideoRenderer(configuration.VideoRenderer);
+            && tab.Content is AmigaMachineController view) view.ApplyVideoRenderer(configuration.VideoRenderer);
     }
 
     private async void AtariConfigurationSaved(object? sender, AtariMachineConfiguration configuration)
     {
         await ReloadConfigurationsAsync();
         if (_openMachines.TryGetValue((MachineFamily.Atari, configuration.Id), out var tab)
-            && tab.Content is AtariMachineView view) view.ApplyVideoRenderer(configuration.VideoRenderer);
+            && tab.Content is AtariMachineController view) view.ApplyVideoRenderer(configuration.VideoRenderer);
     }
 
     public async Task ReloadConfigurationsAsync()
@@ -153,12 +165,12 @@ public sealed class EmulationSection : UserControl
             () => new WasapiAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
             value => Path.Combine(StoragePaths.AmigaConfigurationsDirectory, value.Id.ToString("N"), "Saves"),
             Environment.ProcessPath);
-        IAmigaMachine CreateMachine() => engine.CreateAmigaMachine(runtime);
-        var view = new AmigaMachineView(CreateMachine(), CreateMachine, runtime, configuration.Input,
+        IAmigaMachine CreateMachine(AmigaMachineConfiguration value) => engine.CreateAmigaMachine(value);
+        var view = new AmigaMachineController(CreateMachine(runtime), CreateMachine, runtime, configuration.Input,
             _settings.EmulationShortcuts,
             Path.Combine(_settings.EmulationStateFolder, $"amiga-{configuration.Id:N}.gwas"),
-            _settings.EmulationCaptureFolder);
-        await AddMachineAsync(selected, view, view.StartAsync, view.StopAsync);
+            _settings.EmulationCaptureFolder, _settings.EmulationMediaFolders);
+        await AddMachineAsync(selected, view, view.StopAsync);
     }
 
     private async Task OpenAtariAsync(ConfigurationItem selected, AtariMachineConfiguration configuration)
@@ -168,32 +180,25 @@ public sealed class EmulationSection : UserControl
         var engine = new AtariEngine(StoragePaths.AtariSessionsDirectory, corePath, Environment.ProcessPath!,
             () => new WasapiAudioOutput(), value => Path.Combine(StoragePaths.AtariStatesDirectory,
                 value.Id.ToString(AtariEmulationConstants.IdentifierFormat)));
-        IAtariMachine CreateMachine() => engine.CreateAtariMachine(configuration);
-        var view = new AtariMachineView(CreateMachine(), CreateMachine, configuration,
+        IAtariMachine CreateMachine(AtariMachineConfiguration value) => engine.CreateAtariMachine(value);
+        var view = new AtariMachineController(CreateMachine(configuration), CreateMachine, configuration,
             _settings.EmulationShortcuts,
             AtariMachineViewFunctions.QuickStatePath(_settings.EmulationStateFolder, configuration.Id),
-            _settings.EmulationCaptureFolder);
-        await AddMachineAsync(selected, view, view.StartAsync, view.StopAsync);
+            _settings.EmulationCaptureFolder, _settings.EmulationMediaFolders);
+        await AddMachineAsync(selected, view, view.StopAsync);
     }
 
-    private async Task AddMachineAsync(ConfigurationItem selected, FrameworkElement view,
-        Func<Task> start, Func<Task> stop)
+    private Task AddMachineAsync(ConfigurationItem selected, FrameworkElement view, Func<Task> stop)
     {
         var key = (selected.Family, selected.Id);
         var tab = new TabItem { Content = view, Padding = new Thickness(18, 9, 14, 9) };
         tab.SetResourceReference(StyleProperty, AtariEmulationConstants.MainTabItemStyleResource);
-        tab.Header = CreateMachineTabHeader(selected.DisplayName, () => CloseMachineAsync(key, tab, stop));
+        tab.Header = CreateMachineTabHeader(MachineTitle(selected), selected.DisplayName,
+            () => CloseMachineAsync(key, tab, stop));
         _openMachines.Add(key, tab);
         _machines.Items.Add(tab);
         _machines.SelectedItem = tab;
-        try { await start(); }
-        catch
-        {
-            await stop();
-            _openMachines.Remove(key);
-            _machines.Items.Remove(tab);
-            throw;
-        }
+        return Task.CompletedTask;
     }
 
     private async Task CloseMachineAsync((MachineFamily Family, Guid Id) key, TabItem tab, Func<Task> stop)
@@ -204,9 +209,14 @@ public sealed class EmulationSection : UserControl
         _machines.Items.Remove(tab);
     }
 
-    private static FrameworkElement CreateMachineTabHeader(string title, Func<Task> close)
+    private static FrameworkElement CreateMachineTabHeader(string title, string description, Func<Task> close)
     {
-        var panel = new StackPanel { Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Center };
+        var panel = new StackPanel
+        {
+            Orientation = Orientation.Horizontal,
+            VerticalAlignment = VerticalAlignment.Center,
+            ToolTip = description
+        };
         panel.Children.Add(new TextBlock
         {
             Text = ControlVisualConstants.GameControllerGlyph, FontFamily = ControlVisualConstants.IconFont,
@@ -235,6 +245,139 @@ public sealed class EmulationSection : UserControl
         return panel;
     }
 
+    private static string MachineTitle(ConfigurationItem selected) => selected switch
+    {
+        { Amiga: { } amiga } => AmigaModelCatalog.Get(amiga.Model).DisplayName,
+        { Atari: { } atari } => AtariConfigurationCatalogFunctions.Models()
+            .Single(model => model.Model == atari.Model).DisplayName,
+        _ => selected.DisplayName
+    };
+
+    private void MachineTabMouseDown(object sender, MouseButtonEventArgs args)
+    {
+        _tabDragStart = args.GetPosition(_machines);
+        _draggedMachineTab = Ancestor<TabItem>(args.OriginalSource as DependencyObject);
+        if (_draggedMachineTab is null || _machines.Items.IndexOf(_draggedMachineTab) <= 0
+            || Ancestor<Button>(args.OriginalSource as DependencyObject) is not null)
+            _draggedMachineTab = null;
+        else
+            _tabDragOffset = args.GetPosition(_draggedMachineTab);
+    }
+
+    private void MachineTabMouseMove(object sender, MouseEventArgs args)
+    {
+        if (_draggedMachineTab is null || args.LeftButton != MouseButtonState.Pressed) return;
+        var position = args.GetPosition(_machines);
+        if (Math.Abs(position.X - _tabDragStart.X) < SystemParameters.MinimumHorizontalDragDistance
+            && Math.Abs(position.Y - _tabDragStart.Y) < SystemParameters.MinimumVerticalDragDistance) return;
+        var tab = _draggedMachineTab;
+        _draggedMachineTab = null;
+        var layer = AdornerLayer.GetAdornerLayer(_machines);
+        if (layer is not null)
+        {
+            _tabDragAdorner = new MachineTabDragAdorner(_machines, tab, _tabDragOffset);
+            layer.Add(_tabDragAdorner);
+        }
+        try { DragDrop.DoDragDrop(_machines, tab, DragDropEffects.Move); }
+        finally
+        {
+            if (_tabDragAdorner is not null) layer?.Remove(_tabDragAdorner);
+            _tabDragAdorner = null;
+        }
+    }
+
+    private void MachineTabDragOver(object sender, DragEventArgs args)
+    {
+        var dragged = args.Data.GetData(typeof(TabItem)) as TabItem;
+        var target = Ancestor<TabItem>(args.OriginalSource as DependencyObject);
+        args.Effects = dragged is not null && target is not null
+            && _machines.Items.IndexOf(dragged) > 0 && _machines.Items.IndexOf(target) > 0
+            ? DragDropEffects.Move : DragDropEffects.None;
+        var position = args.GetPosition(_machines);
+        double? insertionX = null;
+        if (args.Effects == DragDropEffects.Move && target is not null)
+        {
+            var bounds = target.TransformToAncestor(_machines)
+                .TransformBounds(new Rect(new Point(), target.RenderSize));
+            insertionX = position.X > bounds.Left + bounds.Width / 2 ? bounds.Right : bounds.Left;
+        }
+        _tabDragAdorner?.Update(position, insertionX);
+        args.Handled = true;
+    }
+
+    private void MachineTabDrop(object sender, DragEventArgs args)
+    {
+        var dragged = args.Data.GetData(typeof(TabItem)) as TabItem;
+        var target = Ancestor<TabItem>(args.OriginalSource as DependencyObject);
+        if (dragged is null || target is null || ReferenceEquals(dragged, target)) return;
+        MoveMachineTab(dragged, target, args.GetPosition(_machines).X);
+        _machines.SelectedItem = dragged;
+        args.Handled = true;
+    }
+
+    private void MoveMachineTab(TabItem dragged, TabItem target, double pointerX)
+    {
+        var sourceIndex = _machines.Items.IndexOf(dragged);
+        var targetIndex = _machines.Items.IndexOf(target);
+        if (sourceIndex <= 0 || targetIndex <= 0) return;
+        var bounds = target.TransformToAncestor(_machines)
+            .TransformBounds(new Rect(new Point(), target.RenderSize));
+        var insertionIndex = targetIndex + (pointerX > bounds.Left + bounds.Width / 2 ? 1 : 0);
+        if (sourceIndex < insertionIndex) insertionIndex--;
+        if (sourceIndex == insertionIndex) return;
+        _machines.Items.RemoveAt(sourceIndex);
+        _machines.Items.Insert(Math.Clamp(insertionIndex, 1, _machines.Items.Count), dragged);
+        _machines.SelectedItem = dragged;
+    }
+
+    private static T? Ancestor<T>(DependencyObject? current) where T : DependencyObject
+    {
+        while (current is not null)
+        {
+            if (current is T match) return match;
+            current = VisualTreeHelper.GetParent(current);
+        }
+        return null;
+    }
+
+    private sealed class MachineTabDragAdorner : Adorner
+    {
+        private readonly VisualBrush _tabBrush;
+        private readonly Size _tabSize;
+        private readonly Point _pointerOffset;
+        private Point _pointer;
+        private double? _insertionX;
+
+        internal MachineTabDragAdorner(UIElement adornedElement, TabItem tab, Point pointerOffset)
+            : base(adornedElement)
+        {
+            IsHitTestVisible = false;
+            _tabBrush = new VisualBrush(tab) { Opacity = 0.78, Stretch = Stretch.None };
+            _tabSize = tab.RenderSize;
+            _pointerOffset = pointerOffset;
+            _pointer = pointerOffset;
+        }
+
+        internal void Update(Point pointer, double? insertionX)
+        {
+            _pointer = pointer;
+            _insertionX = insertionX;
+            InvalidateVisual();
+        }
+
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+            var origin = new Point(_pointer.X - _pointerOffset.X, _pointer.Y - _pointerOffset.Y);
+            drawingContext.PushOpacity(0.88);
+            drawingContext.DrawRoundedRectangle(_tabBrush, new Pen(Brushes.DodgerBlue, 1.5),
+                new Rect(origin, _tabSize), 9, 9);
+            drawingContext.Pop();
+            if (_insertionX is { } x)
+                drawingContext.DrawLine(new Pen(Brushes.DodgerBlue, 3), new Point(x, 2),
+                    new Point(x, Math.Max(2, _tabSize.Height - 2)));
+        }
+    }
+
     private static void ValidateAmigaConfiguration(AmigaMachineConfiguration configuration)
     {
         if (!File.Exists(configuration.KickstartPath))
@@ -248,8 +391,8 @@ public sealed class EmulationSection : UserControl
     {
         foreach (var tab in _openMachines.Values.ToArray())
         {
-            if (tab.Content is AmigaMachineView amiga) await amiga.StopAsync();
-            else if (tab.Content is AtariMachineView atari) await atari.StopAsync();
+            if (tab.Content is AmigaMachineController amiga) await amiga.StopAsync();
+            else if (tab.Content is AtariMachineController atari) await atari.StopAsync();
         }
         _openMachines.Clear();
     }

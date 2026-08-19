@@ -134,11 +134,26 @@ public sealed class AtariMachineViewTests
             new AtariMediaConfiguration(AtariMachineViewTestConstants.FirstMediaPath, kind, slot)
         ]);
 
-        var media = Assert.Single(AtariMachineViewFunctions.Media(configuration));
+        var media = AtariMachineViewFunctions.Media(configuration)
+            .Single(item => item.Configuration.Kind == kind && item.Configuration.Slot == slot);
 
         Assert.Equal(kind, media.Configuration.Kind);
         Assert.Equal(slot, media.Configuration.Slot);
         Assert.Equal(removable, media.Removable);
+    }
+
+    [Fact]
+    public void MediaStripIncludesTheEmptyPrimaryStFloppyDrive()
+    {
+        var configuration = new AtariMachineConfiguration(AtariMachineModel.St);
+
+        var media = Assert.Single(AtariMachineViewFunctions.Media(configuration));
+
+        Assert.Equal(AtariMediaKind.Floppy, media.Configuration.Kind);
+        Assert.Equal(EmulationMediaSlot.Floppy0, media.Configuration.Slot);
+        Assert.False(media.Configuration.IsInserted);
+        Assert.Equal("A:", media.Label);
+        Assert.True(media.Removable);
     }
 
     [Fact]
@@ -151,7 +166,7 @@ public sealed class AtariMachineViewTests
             var machine = new ViewMachine(configuration);
             var folder = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString(
                 AtariEmulationConstants.IdentifierFormat));
-            var view = new AtariMachineView(machine, () => new ViewMachine(configuration), configuration,
+            var view = new AtariMachineController(machine, value => new ViewMachine(value), configuration,
                 null, Path.Combine(folder, AtariMachineViewTestConstants.StateFileName), folder);
 
             view.StartAsync().GetAwaiter().GetResult();
@@ -172,16 +187,16 @@ public sealed class AtariMachineViewTests
             var configuration = new AtariMachineConfiguration(AtariMachineModel.Atari800Xl,
                 media: [media], videoRenderer: EmulationVideoRenderer.Wpf);
             var machines = new List<ViewMachine>();
-            ViewMachine Create()
+            ViewMachine Create(AtariMachineConfiguration value)
             {
-                var value = new ViewMachine(configuration);
-                machines.Add(value);
-                return value;
+                var machine = new ViewMachine(value);
+                machines.Add(machine);
+                return machine;
             }
-            var original = Create();
+            var original = Create(configuration);
             var folder = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString(
                 AtariEmulationConstants.IdentifierFormat));
-            var view = new AtariMachineView(original, Create, configuration, null,
+            var view = new AtariMachineController(original, Create, configuration, null,
                 Path.Combine(folder, AtariMachineViewTestConstants.StateFileName), folder);
 
             view.StartAsync().GetAwaiter().GetResult();
@@ -190,9 +205,21 @@ public sealed class AtariMachineViewTests
 
             Assert.Equal(AtariMachineViewTestConstants.ExpectedPowerCycleMachineCount, machines.Count);
             Assert.True(original.Disposed);
-            Assert.Contains(media, machines[^1].InsertedMedia);
+            Assert.Contains(media, machines[^1].Configuration.Media);
             view.StopAsync().GetAwaiter().GetResult();
         });
+    }
+
+    [Fact]
+    public void MountedFloppyIsInjectedIntoTheConfigurationUsedAtPowerOn()
+    {
+        var configuration = new AtariMachineConfiguration(AtariMachineModel.St);
+        var floppy = new AtariMediaConfiguration(AtariMachineViewTestConstants.FirstMediaPath,
+            AtariMediaKind.Floppy, EmulationMediaSlot.Floppy0, IsInserted: true);
+
+        var runtime = AtariMachineViewFunctions.WithMountedMedia(configuration, [floppy]);
+
+        Assert.Equal(floppy, Assert.Single(runtime.Media));
     }
 
     [Fact]
@@ -205,7 +232,7 @@ public sealed class AtariMachineViewTests
             var machine = new ViewMachine(configuration);
             var folder = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString(
                 AtariEmulationConstants.IdentifierFormat));
-            var view = new AtariMachineView(machine, () => new ViewMachine(configuration), configuration,
+            var view = new AtariMachineController(machine, value => new ViewMachine(value), configuration,
                 null, Path.Combine(folder, AtariMachineViewTestConstants.StateFileName), folder);
 
             view.ToggleFullscreenAsync().GetAwaiter().GetResult();

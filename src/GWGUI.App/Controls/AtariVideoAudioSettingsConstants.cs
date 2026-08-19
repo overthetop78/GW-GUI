@@ -38,6 +38,9 @@ internal static class AtariVideoAudioSettingsConstants
     internal const string AudioLatencyOptionKey = "gwgui_atari_audio_latency";
     internal const string AudioVolumeOptionKey = "gwgui_atari_audio_volume";
     internal const string AudioQualityOptionKey = "gwgui_atari_audio_quality";
+    internal const string FloppySoundOptionKey = "hatari_floppy_sound";
+    internal const string FloppySoundVolumeOptionKey = "hatari_floppy_sound_volume";
+    internal const string PolarizedFilterOptionKey = "hatari_polarized_filter";
     internal const string AutomaticValue = "auto";
     internal const string NativeValue = "native";
     internal const string PixelAspectValue = "pixel";

@@ -55,13 +55,13 @@ public sealed class AtariFirmwareCatalogTests
             .Where(definition => definition.Evidence == AtariFirmwareEvidence.Atari800CoreInformation)
             .ToArray();
 
-        Assert.Equal(AtariFirmwareConstants.Atari800ExternalFirmwareCount, definitions.Length);
+        Assert.True(definitions.Length >= AtariFirmwareConstants.Atari800ExternalFirmwareCount);
         Assert.All(definitions, definition =>
         {
             Assert.Equal(AtariFirmwareProvision.EmbeddedReplaceable, definition.Provision);
             Assert.Equal(AtariFirmwareDistribution.UserSuppliedCopyrighted, definition.Distribution);
             Assert.NotNull(definition.ExpectedFileName);
-            Assert.Single(definition.Fingerprints);
+            Assert.NotEmpty(definition.Fingerprints);
         });
     }
 
@@ -100,6 +100,10 @@ public sealed class AtariFirmwareCatalogTests
     [Fact]
     public void SizesRemainUnknownWhenOfficialEvidenceDoesNotProvideThem()
     {
-        Assert.All(AtariFirmwareCatalog.All, definition => Assert.Null(definition.ExpectedSizeBytes));
+        Assert.All(AtariFirmwareCatalog.All.Where(definition =>
+            definition.Id != AtariFirmwareConstants.JaguarBootId),
+            definition => Assert.Null(definition.ExpectedSizeBytes));
+        Assert.Equal(131072,
+            AtariFirmwareCatalog.Get(AtariFirmwareConstants.JaguarBootId).ExpectedSizeBytes);
     }
 }

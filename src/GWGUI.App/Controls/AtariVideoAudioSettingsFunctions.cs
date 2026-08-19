@@ -20,7 +20,8 @@ internal static class AtariVideoAudioSettingsFunctions
                 (AtariVideoAudioSettingsConstants.FourByThreeValue, AtariVideoAudioSettingsConstants.FourByThreeValue),
                 (AtariVideoAudioSettingsConstants.PixelAspectValue, AtariVideoAudioSettingsConstants.PixelAspectValue)),
             ToggleChoices(), NumericChoices(AtariVideoAudioSettingsConstants.MinimumFrameSkip,
-                AtariVideoAudioSettingsConstants.MaximumFrameSkip, AtariVideoAudioSettingsConstants.FrameSkipStep),
+                AtariVideoAudioSettingsConstants.MaximumFrameSkip, AtariVideoAudioSettingsConstants.FrameSkipStep)
+                .Append(Official("10")).ToArray(),
             EmulationOptionCatalog.VideoRenderers().Select(value =>
                 new AtariVideoAudioChoice(value.Renderer.ToString(), value.Label)).ToArray(),
             [new(AtariVideoAudioSettingsConstants.DefaultOutputValue,

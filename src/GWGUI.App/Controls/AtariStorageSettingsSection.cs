@@ -1,4 +1,5 @@
 using System.Windows;
+using System.Windows.Controls;
 using GWGUI.App.Localization;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari;
@@ -10,10 +11,15 @@ internal sealed class AtariStorageSettingsSection
     private readonly EmulationStorageDeviceList _deviceList = new();
     private AtariMachineConfiguration? _configuration;
     private AtariStorageView? _view;
+    private readonly CheckBox _showActivityOsd = new();
     internal EmulationStorageDeviceList DeviceList => _deviceList;
+    internal UIElement EmulatorOptions => _showActivityOsd;
 
     internal AtariStorageSettingsSection()
     {
+        _showActivityOsd.Content = LocExtension.Get("Emulation.Storage.ActivityOsd");
+        _showActivityOsd.Margin = new Thickness(12, 14, 12, 4);
+        _showActivityOsd.Visibility = Visibility.Collapsed;
         _deviceList.AddRequested += (_, _) => EditDevice(null);
         _deviceList.ConfigureRequested += (_, args) => EditDevice(args.Device.Identifier);
         _deviceList.RemoveRequested += (_, args) => RemoveDevice(args.Device.Identifier);
@@ -23,14 +29,26 @@ internal sealed class AtariStorageSettingsSection
     {
         _configuration = configuration;
         _view = AtariStorageSettingsFunctions.Create(configuration);
+        _showActivityOsd.IsChecked = configuration.Options.TryGetValue("hatari_led_status_display", out var value)
+            && string.Equals(value, "true", StringComparison.OrdinalIgnoreCase);
+        _showActivityOsd.Visibility = configuration.Core == AtariCoreKind.Hatari
+            ? Visibility.Visible : Visibility.Collapsed;
         RefreshDevices();
     }
 
-    internal AtariMachineConfiguration Apply(AtariMachineConfiguration configuration) =>
-        _configuration is null ? configuration : new AtariMachineConfiguration(configuration.Model,
-            configuration.Firmwares, _configuration.Media, _configuration.Options, configuration.Input,
-            configuration.Id, configuration.SchemaVersion, configuration.AudioEnabled,
-            configuration.VideoRenderer, configuration.Folders);
+    internal AtariMachineConfiguration Apply(AtariMachineConfiguration configuration)
+    {
+        if (_configuration is null) return configuration;
+        var storageOptions = _configuration.Options
+            .Where(option => option.Key.StartsWith("storage.", StringComparison.Ordinal)).ToList();
+        if (configuration.Core == AtariCoreKind.Hatari)
+            storageOptions.Add(KeyValuePair.Create("hatari_led_status_display",
+                _showActivityOsd.IsChecked == true ? "true" : "false"));
+        var options = AtariGeneralSettingsFunctions.MergeOptions(configuration.Options, storageOptions);
+        return new AtariMachineConfiguration(configuration.Model, configuration.Firmwares, _configuration.Media,
+            options, configuration.Input, configuration.Id, configuration.SchemaVersion,
+            configuration.AudioEnabled, configuration.VideoRenderer, configuration.Folders);
+    }
 
     private void RefreshDevices()
     {

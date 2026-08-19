@@ -570,6 +570,12 @@
   <data name="Emulation.Firmware.PartiallyCompatible">
     <value>Gedeeltelijk compatibel</value>
   </data>
+  <data name="Emulation.Firmware.Official">
+    <value>Officieel</value>
+  </data>
+  <data name="Emulation.Firmware.Incompatible">
+    <value>Niet compatibel</value>
+  </data>
   <data name="Emulation.Video.Settings.Display">
     <value>Weergave</value>
   </data>
@@ -1110,4 +1116,20 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Controller</value></data>
+  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
+    <value>De emulator heeft een medium nodig voordat deze machine kan worden ingeschakeld. Plaats een diskette of configureer een harde schijf.</value>
+  </data>
+  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
+    <value>De machine kon niet worden ingeschakeld</value>
+  </data>
+  <data name="Emulation.Error.Machine" xml:space="preserve">
+    <value>Machine</value>
+  </data>
+  <data name="Emulation.Error.RequiredMedia" xml:space="preserve">
+    <value>Vereiste media</value>
+  </data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Snel opstarten</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Diskettestationsgeluid</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Gepolariseerd audiofilter</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Stationsactiviteit op het emulatorscherm weergeven</value></data>
 </root>

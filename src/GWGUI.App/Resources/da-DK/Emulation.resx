@@ -570,6 +570,12 @@
   <data name="Emulation.Firmware.PartiallyCompatible">
     <value>Delvist kompatibel</value>
   </data>
+  <data name="Emulation.Firmware.Official">
+    <value>Officiel</value>
+  </data>
+  <data name="Emulation.Firmware.Incompatible">
+    <value>Ikke kompatibel</value>
+  </data>
   <data name="Emulation.Video.Settings.Display">
     <value>Visning</value>
   </data>
@@ -1110,4 +1116,20 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B + Controller</value></data>
+  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
+    <value>Emulatoren kræver et medie, før denne maskine kan tændes. Indsæt en diskette, eller konfigurer en harddisk.</value>
+  </data>
+  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
+    <value>Maskinen kunne ikke tændes</value>
+  </data>
+  <data name="Emulation.Error.Machine" xml:space="preserve">
+    <value>Maskine</value>
+  </data>
+  <data name="Emulation.Error.RequiredMedia" xml:space="preserve">
+    <value>Påkrævede medier</value>
+  </data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Hurtig opstart</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Diskettedrevlyd</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Polariseret lydfilter</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Vis drevaktivitet på emulatorens skærm</value></data>
 </root>

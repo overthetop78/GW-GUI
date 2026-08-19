@@ -5,6 +5,31 @@ namespace GWGUI.App.Controls;
 
 internal static class AtariErrorLocalizationFunctions
 {
+    internal static bool IsContentRequired(Exception error) =>
+        error is AtariEmulationException { Code: AtariErrorCode.ContentRequired };
+
+    internal static IReadOnlyList<CommonErrorDialogDetail> ContentRequiredDetails(
+        AtariMachineConfiguration configuration)
+    {
+        var model = AtariConfigurationCatalogFunctions.Models()
+            .Single(item => item.Model == configuration.Model).DisplayName;
+        var supports = string.Join(" / ",
+            LocExtension.Get(AtariStorageSettingsConstants.FloppyResource),
+            LocExtension.Get(AtariStorageSettingsConstants.HardDiskResource));
+        return
+        [
+            new CommonErrorDialogDetail(LocExtension.Get(AtariErrorLocalizationConstants.MachineResource), model),
+            new CommonErrorDialogDetail(LocExtension.Get(AtariErrorLocalizationConstants.RequiredMediaResource), supports)
+        ];
+    }
+
+    internal static IReadOnlyList<CommonErrorDialogMediaIcon> ContentRequiredMediaIcons(
+        AtariMachineConfiguration configuration) =>
+    [
+        CommonErrorDialogMediaIcon.Floppy,
+        CommonErrorDialogMediaIcon.HardDisk
+    ];
+
     internal static string Describe(Exception error)
     {
         if (error is not AtariEmulationException atariError)
@@ -26,6 +51,7 @@ internal static class AtariErrorLocalizationFunctions
         AtariErrorCode.FirmwareMissing => AtariErrorLocalizationConstants.FirmwareMissingResource,
         AtariErrorCode.FirmwareInvalid => AtariErrorLocalizationConstants.FirmwareInvalidResource,
         AtariErrorCode.ContentNotFound => AtariErrorLocalizationConstants.ContentNotFoundResource,
+        AtariErrorCode.ContentRequired => AtariErrorLocalizationConstants.ContentRequiredResource,
         AtariErrorCode.ContentUnsupported => AtariErrorLocalizationConstants.ContentUnsupportedResource,
         AtariErrorCode.OptionInvalid => AtariErrorLocalizationConstants.OptionInvalidResource,
         AtariErrorCode.HostProtocolFailure => AtariErrorLocalizationConstants.HostProtocolFailureResource,

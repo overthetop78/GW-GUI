@@ -111,6 +111,11 @@ public static class SettingsMigrator
         settings.AmigaHardDisksFolder = string.IsNullOrWhiteSpace(settings.AmigaHardDisksFolder)
             ? Path.Combine(settings.EmulationStorageFolder, "HDD", "Amiga") : settings.AmigaHardDisksFolder.Trim();
         settings.EmulationShortcuts ??= [];
+        settings.EmulationMediaFolders ??= [];
+        settings.EmulationMediaFolders = settings.EmulationMediaFolders
+            .Where(item => !string.IsNullOrWhiteSpace(item.Model) && !string.IsNullOrWhiteSpace(item.Folder))
+            .GroupBy(item => (item.Family, Model: item.Model.Trim(), item.Type))
+            .Select(group => group.Last()).ToList();
         foreach (var shortcut in EmulationShortcutDefaults.Values)
             if (!settings.EmulationShortcuts.ContainsKey(shortcut.Key)) settings.EmulationShortcuts[shortcut.Key] = shortcut.Value;
         settings.LastDiskImageFolder = string.IsNullOrWhiteSpace(settings.LastDiskImageFolder) ? null : settings.LastDiskImageFolder.Trim();

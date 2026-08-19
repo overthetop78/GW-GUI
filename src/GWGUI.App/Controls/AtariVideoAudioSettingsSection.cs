@@ -77,14 +77,29 @@ internal sealed class AtariVideoAudioSettingsSection
         AddAudio(qualityFields, AtariVideoAudioSettingsConstants.AudioQualityResource,
             AtariVideoAudioSettingsConstants.AudioQualityOptionKey, view.Qualities, configuration.Options,
             AtariVideoAudioSettingsConstants.NormalQualityValue);
+        if (configuration.Core == AtariCoreKind.Hatari)
+        {
+            AddAudio(qualityFields, "Emulation.Audio.Floppy.Enabled",
+                AtariVideoAudioSettingsConstants.FloppySoundOptionKey, ToggleChoices(), configuration.Options,
+                "true");
+            AddAudio(qualityFields, "Emulation.Audio.Floppy.Sound",
+                AtariVideoAudioSettingsConstants.FloppySoundVolumeOptionKey, PercentageChoices(),
+                configuration.Options, "75");
+            AddAudio(qualityFields, "Emulation.Audio.PolarizedFilter",
+                AtariVideoAudioSettingsConstants.PolarizedFilterOptionKey, ToggleChoices(), configuration.Options,
+                "false");
+        }
         _audio.Content = EmulationSettingsLayout.AudioSettingsPage(outputFields, qualityFields);
     }
 
     internal AtariMachineConfiguration Apply(AtariMachineConfiguration configuration)
     {
-        var displayed = _options.Where(value => value.Value.SelectedValue is string)
-            .Select(value => KeyValuePair.Create(value.Key, (string)value.Value.SelectedValue));
-        var renderer = Enum.TryParse<EmulationVideoRenderer>(_renderer.SelectedValue as string, out var parsed)
+        var displayed = _options
+            .Where(value => value.Value.SelectedItem is AtariVideoAudioChoice)
+            .Select(value => KeyValuePair.Create(value.Key,
+                ((AtariVideoAudioChoice)value.Value.SelectedItem).Value));
+        var rendererValue = (_renderer.SelectedItem as AtariVideoAudioChoice)?.Value;
+        var renderer = Enum.TryParse<EmulationVideoRenderer>(rendererValue, out var parsed)
             ? parsed : configuration.VideoRenderer;
         return AtariVideoAudioSettingsFunctions.Apply(configuration, displayed,
             _audioEnabled.IsChecked == true, renderer);
@@ -116,5 +131,16 @@ internal sealed class AtariVideoAudioSettingsSection
         editor.SelectedValuePath = nameof(AtariVideoAudioChoice.Value);
         editor.SelectedValue = selected;
     }
+
+    private static IReadOnlyList<AtariVideoAudioChoice> ToggleChoices() =>
+    new AtariVideoAudioChoice[]
+    {
+        new("true", LocExtension.Get(AtariVideoAudioSettingsConstants.EnabledResource)),
+        new("false", LocExtension.Get(AtariVideoAudioSettingsConstants.DisabledResource))
+    };
+
+    private static IReadOnlyList<AtariVideoAudioChoice> PercentageChoices() =>
+        new[] { 25, 50, 75, 100 }.Select(value =>
+            new AtariVideoAudioChoice(value.ToString(), $"{value} %")).ToArray();
 
 }

@@ -5,6 +5,7 @@ internal static class AtariInputConstants
     internal const uint JoypadDevice = 1;
     internal const uint AnalogDevice = 5;
     internal const uint MouseDevice = 2;
+    internal const uint KeyboardDevice = 3;
     internal const uint PrimaryPort = 0;
     internal const uint MouseXId = 0;
     internal const uint MouseYId = 1;

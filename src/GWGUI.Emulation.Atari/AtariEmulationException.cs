@@ -17,6 +17,7 @@ public enum AtariErrorCode
     FirmwareMissing,
     FirmwareInvalid,
     ContentNotFound,
+    ContentRequired,
     ContentUnsupported,
     OptionInvalid,
     HostProtocolFailure,

@@ -194,7 +194,7 @@ public sealed class AtariMachineLifecycleTests
         Assert.Equal(pausedFrames, core.FrameCount);
         Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedResetCount, core.ResetCount);
         Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedCommandCount, core.MediaCommandCount);
-        Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedOptionCount, core.OptionCount);
+        Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedOptionCountWithReset, core.OptionCount);
         Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedStateCommandCount, core.StateCommandCount);
         Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedPausedInputCount, core.InputCount);
         Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedControllerConfigurationCount,
@@ -422,6 +422,7 @@ internal static class AtariMachineLifecycleTestConstants
     internal const int ExpectedCommandCount = 3;
     internal const int ExpectedSingleMediaCommandCount = 1;
     internal const int ExpectedOptionCount = 1;
+    internal const int ExpectedOptionCountWithReset = 2;
     internal const int ExpectedStateCommandCount = 2;
     internal const int ExpectedPausedInputCount = 2;
     internal const int ExpectedReleasedInputCount = 1;

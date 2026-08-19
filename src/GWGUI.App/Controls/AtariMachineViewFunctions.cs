@@ -10,9 +10,24 @@ namespace GWGUI.App.Controls;
 
 internal static class AtariMachineViewFunctions
 {
+    internal static AtariMachineConfiguration WithMountedMedia(AtariMachineConfiguration configuration,
+        IEnumerable<AtariMediaConfiguration> mountedMedia)
+    {
+        var mounted = mountedMedia.Select(item => item with { IsInserted = true }).ToArray();
+        var mountedSlots = mounted.Select(item => item.Slot).ToHashSet();
+        var media = configuration.Media.Where(item => !mountedSlots.Contains(item.Slot))
+            .Concat(mounted).OrderBy(item => item.Slot).ToArray();
+        return new AtariMachineConfiguration(configuration.Model, configuration.Firmwares, media,
+            configuration.Options, configuration.Input, configuration.Id, configuration.SchemaVersion,
+            configuration.AudioEnabled, configuration.VideoRenderer, configuration.Folders);
+    }
+
     internal static IReadOnlyList<AtariMachineMediaView> Media(AtariMachineConfiguration configuration) =>
-        configuration.Media.OrderBy(item => item.Slot).Select(item => new AtariMachineMediaView(item,
-            Label(item), Glyph(item.Kind), IsRemovable(item.Kind))).ToArray();
+        AtariStorageSettingsFunctions.Create(configuration).Devices
+            .OrderBy(device => device.Configuration.Slot)
+            .Select(device => new AtariMachineMediaView(device.Configuration,
+                device.Identifier, Glyph(device.Configuration.Kind), IsRemovable(device.Configuration.Kind)))
+            .ToArray();
 
     internal static Size Fit(double width, double height, float aspectRatio) =>
         EmulationVideoLayout.Fit(width, height,
@@ -85,25 +100,6 @@ internal static class AtariMachineViewFunctions
             stem + AtariMachineViewConstants.FileNameSeparator + suffix++ + extension);
         return path;
     }
-
-    private static string Label(AtariMediaConfiguration media) => string.Format(CultureInfo.CurrentCulture,
-        AtariMachineViewConstants.MediaLabelFormat, media.Kind switch
-        {
-            AtariMediaKind.Floppy => AtariMachineViewConstants.FloppyPrefix + SlotIndex(media.Slot),
-            AtariMediaKind.HardDisk => AtariMachineViewConstants.HardDiskPrefix + SlotIndex(media.Slot),
-            AtariMediaKind.Directory => AtariMachineViewConstants.DirectoryPrefix + SlotIndex(media.Slot),
-            AtariMediaKind.Cassette => AtariMachineViewConstants.CassettePrefix,
-            AtariMediaKind.Cartridge => AtariMachineViewConstants.CartridgePrefix,
-            AtariMediaKind.CompactDisc => AtariMachineViewConstants.CompactDiscPrefix,
-            _ => media.Kind.ToString()
-        });
-
-    private static int SlotIndex(EmulationMediaSlot slot) => slot switch
-    {
-        >= EmulationMediaSlot.Floppy0 and <= EmulationMediaSlot.Floppy3 =>
-            (int)slot - (int)EmulationMediaSlot.Floppy0,
-        _ => AtariMachineViewConstants.DefaultSlotIndex
-    };
 
     private static string Glyph(AtariMediaKind kind) => kind switch
     {

@@ -268,6 +268,8 @@
   <data name="Emulation.Value.NotUsed"><value>Not used</value></data>
   <data name="Emulation.Firmware.Rom.OpenFolder"><value>Open ROM folder</value></data>
   <data name="Emulation.Firmware.PartiallyCompatible"><value>Partially compatible</value></data>
+  <data name="Emulation.Firmware.Official"><value>Official</value></data>
+  <data name="Emulation.Firmware.Incompatible"><value>Incompatible</value></data>
   <data name="Emulation.Video.Settings.Display"><value>Display</value></data>
   <data name="Emulation.Video.Settings.Rendering"><value>Rendering</value></data>
   <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Chipset compatibility</value></data>
@@ -453,6 +455,10 @@
   <data name="Emulation.Atari.Error.FirmwareInvalid"><value>An Atari firmware is invalid or incompatible.</value></data>
   <data name="Emulation.Atari.Error.ContentNotFound"><value>The configured Atari media was not found.</value></data>
   <data name="Emulation.Atari.Error.ContentUnsupported"><value>The configured media is not supported by this Atari machine.</value></data>
+  <data name="Emulation.Atari.Error.ContentRequired"><value>The emulator requires media before this machine can be powered on. Insert a floppy disk or configure a hard disk.</value></data>
+  <data name="Emulation.Error.PowerFailureTitle"><value>Unable to power on the machine</value></data>
+  <data name="Emulation.Error.Machine"><value>Machine</value></data>
+  <data name="Emulation.Error.RequiredMedia"><value>Required media</value></data>
   <data name="Emulation.Atari.Error.OptionInvalid"><value>An Atari option has an invalid value.</value></data>
   <data name="Emulation.Atari.Error.HostProtocolFailure"><value>Communication with the Atari host failed.</value></data>
   <data name="Emulation.Atari.Error.StateInvalid"><value>The Atari saved state is invalid.</value></data>
@@ -474,4 +480,8 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Controller</value></data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Fast boot</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Floppy-drive sound</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Polarized audio filter</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Show drive activity on the emulator screen</value></data>
 </root>

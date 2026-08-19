@@ -570,6 +570,12 @@
   <data name="Emulation.Firmware.PartiallyCompatible">
     <value>Частично совместима</value>
   </data>
+  <data name="Emulation.Firmware.Official">
+    <value>Официальная</value>
+  </data>
+  <data name="Emulation.Firmware.Incompatible">
+    <value>Несовместима</value>
+  </data>
   <data name="Emulation.Video.Settings.Display">
     <value>Отображение</value>
   </data>
@@ -1110,4 +1116,20 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Контроллер Atari Joy 2B+</value></data>
+  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
+    <value>Перед включением этой машины эмулятору требуется носитель. Вставьте дискету или настройте жёсткий диск.</value>
+  </data>
+  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
+    <value>Не удалось включить машину</value>
+  </data>
+  <data name="Emulation.Error.Machine" xml:space="preserve">
+    <value>Машина</value>
+  </data>
+  <data name="Emulation.Error.RequiredMedia" xml:space="preserve">
+    <value>Необходимые носители</value>
+  </data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Быстрая загрузка</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Звук дисковода</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Поляризованный аудиофильтр</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Показывать активность дисководов на экране эмулятора</value></data>
 </root>

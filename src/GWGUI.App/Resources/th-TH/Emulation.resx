@@ -570,6 +570,12 @@
   <data name="Emulation.Firmware.PartiallyCompatible">
     <value>เข้ากันได้บางส่วน</value>
   </data>
+  <data name="Emulation.Firmware.Official">
+    <value>เป็นทางการ</value>
+  </data>
+  <data name="Emulation.Firmware.Incompatible">
+    <value>ไม่รองรับ</value>
+  </data>
   <data name="Emulation.Video.Settings.Display">
     <value>การแสดงผล</value>
   </data>
@@ -1110,4 +1116,20 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>แอตาริ บูสเตอร์ กริป</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>เซกา เยเน ซิศ</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari จอย 2B+ Controller</value></data>
+  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
+    <value>โปรแกรมจำลองต้องมีสื่อก่อนจึงจะเปิดเครื่องนี้ได้ โปรดใส่ฟลอปปีดิสก์หรือตั้งค่าฮาร์ดดิสก์</value>
+  </data>
+  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
+    <value>ไม่สามารถเปิดเครื่องได้</value>
+  </data>
+  <data name="Emulation.Error.Machine" xml:space="preserve">
+    <value>เครื่อง</value>
+  </data>
+  <data name="Emulation.Error.RequiredMedia" xml:space="preserve">
+    <value>สื่อที่จำเป็น</value>
+  </data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>บูตแบบเร็ว</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>เสียงไดรฟ์ฟลอปปี้</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>ตัวกรองเสียงแบบโพลาไรซ์</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>แสดงการทำงานของไดรฟ์บนหน้าจออีมูเลเตอร์</value></data>
 </root>

@@ -7,6 +7,7 @@ internal static class AtariErrorLocalizationConstants
     internal const string FirmwareMissingResource = "Emulation.Atari.Error.FirmwareMissing";
     internal const string FirmwareInvalidResource = "Emulation.Atari.Error.FirmwareInvalid";
     internal const string ContentNotFoundResource = "Emulation.Atari.Error.ContentNotFound";
+    internal const string ContentRequiredResource = "Emulation.Atari.Error.ContentRequired";
     internal const string ContentUnsupportedResource = "Emulation.Atari.Error.ContentUnsupported";
     internal const string OptionInvalidResource = "Emulation.Atari.Error.OptionInvalid";
     internal const string HostProtocolFailureResource = "Emulation.Atari.Error.HostProtocolFailure";
@@ -15,5 +16,8 @@ internal static class AtariErrorLocalizationConstants
     internal const string UnexpectedResource = "Emulation.Atari.Error.Unexpected";
     internal const string DetailsResource = "Emulation.Atari.Error.Details";
     internal const string DetailSeparator = ", ";
+    internal const string MachineResource = "Emulation.Error.Machine";
+    internal const string RequiredMediaResource = "Emulation.Error.RequiredMedia";
+    internal const string PowerFailureTitleResource = "Emulation.Error.PowerFailureTitle";
     internal const int NoDetailsCount = 0;
 }

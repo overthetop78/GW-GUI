@@ -148,6 +148,37 @@ public sealed class AtariSavedStateTests
     }
 
     [Fact]
+    public async Task StateValidationUsesMediaChangedWhileTheMachineIsRunning()
+    {
+        var paths = CreatePaths();
+        var mediaPath = Path.Combine(paths.Session, "state-disk.st");
+        Directory.CreateDirectory(paths.Session);
+        await File.WriteAllBytesAsync(mediaPath, AtariSavedStateTestConstants.FirstContent);
+        var core = new StateCore(AtariCoreKind.Hatari);
+        await using var machine = CreateMachine(core, AtariMachineModel.St, paths.Session);
+        try
+        {
+            var media = new AtariMediaConfiguration(mediaPath, AtariMediaKind.Floppy,
+                EmulationMediaSlot.Floppy0);
+            await machine.StartAsync();
+            await machine.InsertMediaAsync(media);
+            await machine.SaveStateAsync(paths.State);
+            await machine.LoadStateAsync(paths.State);
+
+            await machine.EjectMediaAsync(EmulationMediaSlot.Floppy0);
+            var error = await Assert.ThrowsAsync<AtariEmulationException>(
+                () => machine.LoadStateAsync(paths.State).AsTask());
+            Assert.Equal(AtariStateConstants.ContentMismatchError, error.Message);
+        }
+        finally
+        {
+            await machine.StopAsync();
+            DeleteFile(paths.State);
+            DeleteFile(mediaPath);
+        }
+    }
+
+    [Fact]
     public void FileContainerPreservesVariablePayloadSizesExactly()
     {
         var paths = CreatePaths();

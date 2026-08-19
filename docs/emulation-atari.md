@@ -753,6 +753,17 @@ L’intégration Atari est terminée uniquement lorsque les six cœurs sont gér
 
 Les tâches de cette section sont volontairement différées. Elles ne doivent être reprises, cochées ou utilisées pour bloquer les tâches Atari non documentaires qu’après instruction explicite.
 
+### ATA-065 — Ajouter Atari System 1 avec MAME et FBNeo
+
+- [ ] Ajouter les cœurs libretro MAME et FBNeo à la gestion des moteurs, au téléchargement, à la détection de version et au lancement.
+- [ ] Ajouter Atari System 1 comme famille arcade Atari distincte des consoles et ordinateurs Atari.
+- [ ] Déterminer pour chaque jeu si MAME, FBNeo ou les deux le prennent réellement en charge, sans annoncer une compatibilité non vérifiée.
+- [ ] Détecter `atarisy1.zip` comme ensemble de ROM/firmware Atari System 1 et le ranger dans l’emplacement arcade approprié, jamais dans un emplacement TOS ou BIOS de console.
+- [ ] Recenser les ROM système, ROM de jeu, clés, PROM et échantillons éventuellement requis par chaque cœur et chaque version de catalogue.
+- [ ] Ajouter les réglages, médias, contrôleurs, statuts de compatibilité et messages d’erreur propres à Atari System 1.
+- [ ] Ajouter les traductions dans toutes les langues distribuées.
+- [ ] Tester installation des deux cœurs, audit des ROM, démarrage de jeux compatibles, erreurs de jeux incomplets et absence de régression des machines Atari existantes.
+
 ### ATA-050 — Intégrer Atari au guide utilisateur
 
 - [ ] Ajouter architecture utilisateur, création de configuration et installation des cœurs.

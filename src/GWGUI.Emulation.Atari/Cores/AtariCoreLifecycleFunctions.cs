@@ -6,7 +6,7 @@ internal static class AtariCoreLifecycleFunctions
         AtariMachineConfiguration configuration, nint gameInfo)
     {
         if (gameInfo == nint.Zero && !callbacks.SupportsNoGame)
-            throw new AtariEmulationException(AtariErrorKind.Content, AtariErrorCode.ContentUnsupported,
+            throw new AtariEmulationException(AtariErrorKind.Content, AtariErrorCode.ContentRequired,
                 AtariErrorMessages.ContentRequired);
         if (!exports.LoadGame(gameInfo))
             throw new AtariEmulationException(AtariErrorKind.Content, AtariErrorCode.ContentUnsupported,

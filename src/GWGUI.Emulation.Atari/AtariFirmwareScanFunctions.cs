@@ -59,6 +59,47 @@ public static class AtariFirmwareScanFunctions
         definition => definition.Fingerprints.Any(fingerprint =>
             string.Equals(fingerprint.Value, md5, StringComparison.OrdinalIgnoreCase)));
 
+    public static async Task<(AtariFirmwareDefinition Definition, AtariStRegion? Region)?> IdentifyTosAsync(
+        string path, CancellationToken cancellationToken)
+    {
+        var header = await AtariTosHeaderReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
+        if (header is null) return null;
+        if (header.Variant != AtariTosVariant.Atari)
+            return (CreateAlternativeTosDefinition(header), header.Region);
+        var definition = AtariFirmwareCatalog.All.FirstOrDefault(candidate =>
+            candidate.Kind == AtariFirmwareKind.Tos &&
+            string.Equals(candidate.Version, header.Version, StringComparison.Ordinal));
+        if (definition is null) return null;
+        return (definition, header.Region);
+    }
+
+    private static AtariFirmwareDefinition CreateAlternativeTosDefinition(AtariTosHeader header)
+    {
+        var product = header.Variant == AtariTosVariant.EmuTos ? "EmuTOS" : "KAOS TOS";
+        var models = header.Variant switch
+        {
+            AtariTosVariant.KaosTos => AtariFirmwareFunctions.Values(AtariMachineModel.St,
+                AtariMachineModel.Stf, AtariMachineModel.Stfm, AtariMachineModel.MegaSt),
+            AtariTosVariant.EmuTos when header.ImageSize <= 196_608 => AtariFirmwareFunctions.Values(
+                AtariMachineModel.St, AtariMachineModel.Stf, AtariMachineModel.Stfm, AtariMachineModel.MegaSt),
+            AtariTosVariant.EmuTos when header.ImageSize <= 262_144 => AtariFirmwareFunctions.Values(
+                AtariMachineModel.St, AtariMachineModel.Stf, AtariMachineModel.Stfm, AtariMachineModel.MegaSt,
+                AtariMachineModel.Ste, AtariMachineModel.MegaSte),
+            _ => AtariFirmwareFunctions.Values(AtariMachineModel.St, AtariMachineModel.Stf,
+                AtariMachineModel.Stfm, AtariMachineModel.MegaSt, AtariMachineModel.Ste,
+                AtariMachineModel.MegaSte, AtariMachineModel.Tt, AtariMachineModel.Falcon)
+        };
+        return new AtariFirmwareDefinition(
+            $"{product.ToLowerInvariant().Replace(' ', '-')}-{header.Version}", AtariFirmwareKind.Tos,
+            $"{product} {header.Version}", AtariFirmwareConstants.TosFileName, header.ImageSize,
+            AtariFirmwareProvision.RequiredExternal,
+            header.Variant == AtariTosVariant.EmuTos
+                ? AtariFirmwareDistribution.BuiltInOpenReplacement
+                : AtariFirmwareDistribution.UserSuppliedCopyrighted,
+            AtariFirmwareEvidence.HatariCoreInformation, models,
+            AtariFirmwareFunctions.Values(header.Region), AtariFirmwareFunctions.Values<AtariFirmwareFingerprint>());
+    }
+
     public static AtariFirmwareDefinition? IdentifyByExpectedName(string path, AtariMachineModel model) =>
         AtariFirmwareCatalog.ForModel(model).FirstOrDefault(definition => definition.ExpectedFileName is not null &&
             string.Equals(Path.GetFileName(path), definition.ExpectedFileName, StringComparison.OrdinalIgnoreCase));
@@ -67,7 +108,9 @@ public static class AtariFirmwareScanFunctions
         AtariFirmwareDefinition? named, AtariMachineModel model, AtariStRegion? region)
     {
         var candidate = identified ?? named;
-        if (candidate is null || !candidate.Models.Contains(model)) return AtariFirmwareCompatibility.Incompatible;
+        if (candidate is null || !candidate.Models.Contains(model) ||
+            candidate.Provision is AtariFirmwareProvision.Embedded or AtariFirmwareProvision.NotUsed)
+            return AtariFirmwareCompatibility.Incompatible;
         if (identified is null) return AtariFirmwareCompatibility.PartiallyCompatible;
         var fingerprintRegion = identified.Fingerprints.FirstOrDefault(fingerprint =>
             region is null || fingerprint.Region == region)?.Region;
@@ -85,10 +128,17 @@ public static class AtariFirmwareScanFunctions
             var file = new FileInfo(path);
             var md5 = await ComputeMd5Async(path, cancellationToken).ConfigureAwait(false);
             var identified = Identify(md5);
+            var tos = identified is null ? await IdentifyTosAsync(path, cancellationToken).ConfigureAwait(false) : null;
+            identified ??= tos?.Definition;
             var named = IdentifyByExpectedName(path, model);
+            var detectedRegion = tos?.Region;
+            var compatibility = Classify(identified, named, model, region);
+            if (compatibility == AtariFirmwareCompatibility.Compatible && region is not null &&
+                detectedRegion is not null && detectedRegion != AtariStRegion.Multilingual && detectedRegion != region)
+                compatibility = AtariFirmwareCompatibility.Incompatible;
             return new(file.FullName, file.Length, md5,
                 identified is null ? AtariFirmwareDetectionStatus.Unknown : AtariFirmwareDetectionStatus.Known,
-                identified ?? named, Classify(identified, named, model, region), false, null);
+                identified ?? named, compatibility, false, null);
         }
         catch (OperationCanceledException) { throw; }
         catch (Exception error) when (error is IOException or UnauthorizedAccessException)
@@ -101,7 +151,8 @@ public static class AtariFirmwareScanFunctions
     public static AtariFirmwareConfiguration CreateSelection(AtariScannedFirmware firmware)
     {
         if (firmware.Detection == AtariFirmwareDetectionStatus.Unreadable ||
-            firmware.Compatibility == AtariFirmwareCompatibility.Incompatible || firmware.Definition?.Kind is null)
+            firmware.Compatibility == AtariFirmwareCompatibility.Incompatible || firmware.Definition?.Kind is null ||
+            firmware.Definition.Provision is AtariFirmwareProvision.Embedded or AtariFirmwareProvision.NotUsed)
             throw new InvalidOperationException(AtariErrorMessages.FirmwareCannotBeSelected);
         return new(firmware.Definition.Kind.Value, firmware.Path, firmware.Definition.RequiresExternalFile);
     }

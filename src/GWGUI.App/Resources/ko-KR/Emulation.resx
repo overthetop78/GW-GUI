@@ -570,6 +570,12 @@
   <data name="Emulation.Firmware.PartiallyCompatible">
     <value>부분 호환</value>
   </data>
+  <data name="Emulation.Firmware.Official">
+    <value>공식</value>
+  </data>
+  <data name="Emulation.Firmware.Incompatible">
+    <value>호환되지 않음</value>
+  </data>
   <data name="Emulation.Video.Settings.Display">
     <value>디스플레이</value>
   </data>
@@ -1110,4 +1116,20 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari 부스터 그립</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis 컨트롤러</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B + 컨트롤러</value></data>
+  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
+    <value>이 컴퓨터를 켜기 전에 에뮬레이터에 미디어가 필요합니다. 플로피 디스크를 삽입하거나 하드 디스크를 설정하세요.</value>
+  </data>
+  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
+    <value>컴퓨터를 켤 수 없습니다</value>
+  </data>
+  <data name="Emulation.Error.Machine" xml:space="preserve">
+    <value>컴퓨터</value>
+  </data>
+  <data name="Emulation.Error.RequiredMedia" xml:space="preserve">
+    <value>필수 미디어</value>
+  </data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>빠른 부팅</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>플로피 드라이브 소리</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>편광 오디오 필터</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>에뮬레이터 화면에 드라이브 활동 표시</value></data>
 </root>

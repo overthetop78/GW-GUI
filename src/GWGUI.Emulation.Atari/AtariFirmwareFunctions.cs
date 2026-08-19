@@ -19,8 +19,17 @@ public static class AtariFirmwareFunctions
         AtariFirmwareEvidence.HatariCoreInformation, models, regions, Values(fingerprints));
 
     public static AtariFirmwareDefinition Replaceable(string id, AtariFirmwareKind kind, string fileName,
-        string md5, IReadOnlyList<AtariMachineModel> models, IReadOnlyList<AtariStRegion> noRegions) => new(
+        string md5, IReadOnlyList<AtariMachineModel> models, IReadOnlyList<AtariStRegion> noRegions,
+        params string[] additionalMd5) => new(
         id, kind, null, fileName, null, AtariFirmwareProvision.EmbeddedReplaceable,
+        AtariFirmwareDistribution.UserSuppliedCopyrighted, AtariFirmwareEvidence.Atari800CoreInformation,
+        models, noRegions, Values(new[] { md5 }.Concat(additionalMd5).Select(value =>
+            new AtariFirmwareFingerprint(AtariFirmwareHashAlgorithm.Md5, value)).ToArray()));
+
+    public static AtariFirmwareDefinition ReplaceableRevision(string id, AtariFirmwareKind kind, string version,
+        string fileName, string md5, IReadOnlyList<AtariMachineModel> models,
+        IReadOnlyList<AtariStRegion> noRegions) => new(
+        id, kind, version, fileName, null, AtariFirmwareProvision.EmbeddedReplaceable,
         AtariFirmwareDistribution.UserSuppliedCopyrighted, AtariFirmwareEvidence.Atari800CoreInformation,
         models, noRegions, Values(new AtariFirmwareFingerprint(AtariFirmwareHashAlgorithm.Md5, md5)));
 
@@ -28,6 +37,13 @@ public static class AtariFirmwareFunctions
         string md5, AtariFirmwareProvision provision, AtariMachineModel model, AtariFirmwareEvidence evidence,
         IReadOnlyList<AtariStRegion> noRegions) => new(
         id, kind, null, fileName, null, provision, AtariFirmwareDistribution.UserSuppliedCopyrighted,
+        evidence, Values(model), noRegions,
+        Values(new AtariFirmwareFingerprint(AtariFirmwareHashAlgorithm.Md5, md5)));
+
+    public static AtariFirmwareDefinition ExternalRevision(string id, AtariFirmwareKind kind, string version,
+        string fileName, string md5, AtariFirmwareProvision provision, AtariMachineModel model,
+        AtariFirmwareEvidence evidence, IReadOnlyList<AtariStRegion> noRegions) => new(
+        id, kind, version, fileName, null, provision, AtariFirmwareDistribution.UserSuppliedCopyrighted,
         evidence, Values(model), noRegions,
         Values(new AtariFirmwareFingerprint(AtariFirmwareHashAlgorithm.Md5, md5)));
 

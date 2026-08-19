@@ -471,6 +471,10 @@ public sealed class OptionsEmulationSection : UserControl
             EmulationMachineTabKind.Mouse => BuildMouseTab(),
             EmulationMachineTabKind.Controllers => BuildControllersTab(),
             _ => null
+        }, tabActivated: kind =>
+        {
+            if (kind == EmulationMachineTabKind.Rom) LoadFirmwareCatalog();
+            return Task.CompletedTask;
         });
         return tabs;
     }
@@ -1376,7 +1380,7 @@ public sealed class OptionsEmulationSection : UserControl
             else LoadEditor(selected.Configuration);
             await _atariConfigurations.ReloadAsync();
             RefreshUnifiedConfigurationCatalog(selectedId, ConfigurationFamily.Amiga);
-            await RefreshFirmwareAsync();
+            LoadFirmwareCatalog();
         }
         finally { _loading = false; }
     }
@@ -1404,7 +1408,20 @@ public sealed class OptionsEmulationSection : UserControl
 
     private async Task RefreshFirmwareAsync()
     {
-        var entries = await Task.Run(() => new AmigaFirmwareCatalog(StoragePaths.AmigaFirmwareDirectory).Scan());
+        var entries = await Task.Run(() =>
+        {
+            var scanned = new AmigaFirmwareCatalog(StoragePaths.AmigaFirmwareDirectory).Scan();
+            FirmwareCatalogCache.Write("Amiga", scanned);
+            return scanned;
+        });
+        _firmware.Clear();
+        foreach (var entry in entries) _firmware.Add(new FirmwareItem(entry));
+        RefreshFirmwareRows();
+    }
+
+    private void LoadFirmwareCatalog()
+    {
+        var entries = FirmwareCatalogCache.Read<AmigaFirmware>("Amiga");
         _firmware.Clear();
         foreach (var entry in entries) _firmware.Add(new FirmwareItem(entry));
         RefreshFirmwareRows();
@@ -1415,7 +1432,12 @@ public sealed class OptionsEmulationSection : UserControl
         if (_firmwareList is null) return;
         var selectedPath = SelectedFirmware()?.Firmware.Path;
         _firmwareList.Items.Clear();
-        foreach (var item in _firmware)
+        foreach (var item in _firmware
+                     .OrderBy(item => EmulationSettingsLayout.FirmwareCompatibilityOrder(
+                         FirmwareCompatibilityFor(item.Firmware)))
+                     .ThenBy(item => item.Firmware.Name ?? Path.GetFileName(item.Firmware.Path),
+                         StringComparer.CurrentCultureIgnoreCase)
+                     .ThenBy(item => item.Firmware.Version, StringComparer.CurrentCultureIgnoreCase))
         {
             var row = new ListBoxItem
             {
@@ -1434,11 +1456,15 @@ public sealed class OptionsEmulationSection : UserControl
     private UIElement BuildFirmwareRow(FirmwareItem item)
     {
         var compatibility = FirmwareCompatibilityFor(item.Firmware);
+        var detectedName = item.Firmware.Name;
+        if (item.Firmware.Type == AmigaFirmwareType.ExtendedRom && !string.IsNullOrWhiteSpace(detectedName))
+            detectedName = $"{LocExtension.Get("Emulation.Firmware.Rom.Extended")} {detectedName}";
         return EmulationSettingsLayout.FirmwareRow(
-            Path.GetFileName(item.Firmware.Path),
+            detectedName ?? Path.GetFileName(item.Firmware.Path),
             item.Firmware.Version,
             compatibility,
-            () => UseFirmware(item));
+            () => UseFirmware(item),
+            item.Firmware.Path);
     }
 
     private async void UnifiedConfigurationSelected(object sender, SelectionChangedEventArgs e)
@@ -1483,9 +1509,11 @@ public sealed class OptionsEmulationSection : UserControl
     {
         var model = _model.SelectedItem as AmigaModel;
         if (model is not null && firmware.CompatibleModels.Contains(model.Id, StringComparer.OrdinalIgnoreCase))
-            return EmulationFirmwareCompatibility.Compatible;
+            return firmware.IsOfficial
+                ? EmulationFirmwareCompatibility.Official
+                : EmulationFirmwareCompatibility.Compatible;
         if (firmware.CompatibleModels.Count > 0)
-            return EmulationFirmwareCompatibility.PartiallyCompatible;
+            return EmulationFirmwareCompatibility.Incompatible;
         return EmulationFirmwareCompatibility.Unknown;
     }
 

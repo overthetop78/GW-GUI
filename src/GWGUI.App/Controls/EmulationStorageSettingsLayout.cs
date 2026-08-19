@@ -10,11 +10,13 @@ namespace GWGUI.App.Controls;
 /// </summary>
 internal static partial class EmulationSettingsLayout
 {
-    internal static ScrollViewer StorageSettingsPage(EmulationStorageDeviceList devices)
+    internal static ScrollViewer StorageSettingsPage(EmulationStorageDeviceList devices,
+        UIElement? emulatorOptions = null)
     {
         var content = new StackPanel();
         content.Children.Add(devices);
         content.Children.Add(InformationBanner(LocExtension.Get("Emulation.Storage.Media.RemovableRuntimeHint")));
+        if (emulatorOptions is not null) content.Children.Add(emulatorOptions);
 
         var card = ActionCard(content, LocExtension.Get("Emulation.Storage.Device.List"));
         card.Margin = new Thickness(0, 0, 0, 8);

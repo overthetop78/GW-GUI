@@ -19,15 +19,17 @@ using Ellipse = System.Windows.Shapes.Ellipse;
 
 namespace GWGUI.App.Controls;
 
-public sealed class AtariMachineView : UserControl
+public sealed class AtariMachineController : UserControl
 {
     private IAtariMachine _machine;
-    private readonly Func<IAtariMachine> _machineFactory;
+    private readonly MachineView _sharedView;
+    private readonly Func<AtariMachineConfiguration, IAtariMachine> _machineFactory;
     private readonly AtariMachineConfiguration _configuration;
     private readonly IReadOnlyList<GlobalShortcutBinding> _globalShortcuts;
     private readonly string _quickStatePath;
     private readonly string _captureFolder;
     private readonly Dictionary<EmulationMediaSlot, AtariMediaConfiguration> _mountedMedia = [];
+    private readonly IList<EmulationMediaFolderSettings> _mediaFolders;
     private readonly Dictionary<EmulationMediaSlot, Ellipse> _mediaLeds = [];
     private readonly List<Button> _machineButtons = [];
     private readonly HashSet<EmulationKey> _keys = [];
@@ -41,22 +43,23 @@ public sealed class AtariMachineView : UserControl
     };
     private IEmulationVideoSurface _videoSurface;
     private FrameworkElement _display;
-    private readonly Grid _videoHost = new() { Background = Brushes.Black };
+    private readonly Grid _videoHost;
     private readonly Border _screen;
     private readonly Grid _displayHost;
     private readonly TextBlock _status = new() { VerticalAlignment = VerticalAlignment.Center };
     private readonly TextBlock _renderer = new() { VerticalAlignment = VerticalAlignment.Center };
     private readonly TextBlock _controller = StatusIcon(AtariMachineViewConstants.ControllerGlyph);
     private readonly TextBlock _mouse = StatusIcon(AtariMachineViewConstants.MouseGlyph);
-    private readonly StackPanel _mediaStrip = new() { Orientation = Orientation.Horizontal };
     private readonly Button _power;
     private readonly Button _pause;
     private readonly Button _audio;
     private readonly Button _quickSave;
     private readonly Button _quickLoad;
+    private readonly Button? _joyMouseSwitch;
+    private bool _joystickControlsMouse;
     private Window? _fullscreenWindow;
     private Grid? _fullscreenHost;
-    private bool _poweredOff;
+    private bool _poweredOff = true;
     private bool _disposed;
     private bool _audioMuted;
     private bool _joyMouseSwitchPressed;
@@ -65,9 +68,11 @@ public sealed class AtariMachineView : UserControl
     private long _frameWindowStarted = Stopwatch.GetTimestamp();
     private double _measuredFramesPerSecond;
 
-    public AtariMachineView(IAtariMachine machine, Func<IAtariMachine> machineFactory,
+    public AtariMachineController(IAtariMachine machine,
+        Func<AtariMachineConfiguration, IAtariMachine> machineFactory,
         AtariMachineConfiguration configuration, IReadOnlyDictionary<string, string>? globalShortcuts,
-        string quickStatePath, string captureFolder)
+        string quickStatePath, string captureFolder,
+        IList<EmulationMediaFolderSettings>? mediaFolders = null)
     {
         _machine = machine;
         _machineFactory = machineFactory;
@@ -75,6 +80,7 @@ public sealed class AtariMachineView : UserControl
         _globalShortcuts = EmulationShortcutMap.GlobalShortcuts(globalShortcuts);
         _quickStatePath = quickStatePath;
         _captureFolder = captureFolder;
+        _mediaFolders = mediaFolders ?? [];
         AtariAccessibilityFunctions.ConfigureFlowDirection(this);
         _shortcutActions = new AtariMachineShortcutActions(TogglePowerAsync, TogglePauseAsync,
             () => _machine.SoftResetAsync().AsTask(), () => _machine.HardResetAsync().AsTask(),
@@ -84,11 +90,9 @@ public sealed class AtariMachineView : UserControl
         _videoSurface = CreateVideoSurface(configuration.VideoRenderer);
         _display = _videoSurface.View;
 
-        var root = new Grid { Background = Brushes.Transparent };
-        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        root.RowDefinitions.Add(new RowDefinition());
-        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        var toolbar = new DockPanel { Height = 34, LastChildFill = true, Margin = new Thickness(0, 0, 0, 2) };
+        _sharedView = new MachineView();
+        var toolbar = _sharedView.Toolbar;
+        _videoHost = _sharedView.VideoHost;
         AtariAccessibilityFunctions.Configure(toolbar, L(AtariEmulationConstants.MachinesAutomationResource));
         var left = new StackPanel { Orientation = Orientation.Horizontal };
         _power = IconButton(AtariMachineViewConstants.PowerGlyph, AtariMachineViewConstants.PowerResource,
@@ -96,11 +100,14 @@ public sealed class AtariMachineView : UserControl
         _power.Foreground = Brushes.LimeGreen;
         _pause = IconButton(AtariMachineViewConstants.PauseGlyph, AtariMachineViewConstants.PauseResource,
             TogglePauseAsync);
-        left.Children.Add(ToolbarGroup(_power, _pause,
-            IconButton(AtariMachineViewConstants.SoftResetGlyph, AtariMachineViewConstants.SoftResetResource,
-                () => _machine.SoftResetAsync().AsTask()),
-            IconButton(AtariMachineViewConstants.HardResetGlyph, AtariMachineViewConstants.HardResetResource,
-                () => _machine.HardResetAsync().AsTask())));
+        _pause.Foreground = Brushes.DarkOrange;
+        var softReset = IconButton(AtariMachineViewConstants.SoftResetGlyph,
+            AtariMachineViewConstants.SoftResetResource, () => _machine.SoftResetAsync().AsTask());
+        softReset.Foreground = new SolidColorBrush(Color.FromRgb(120, 160, 48));
+        var hardReset = IconButton(AtariMachineViewConstants.HardResetGlyph,
+            AtariMachineViewConstants.HardResetResource, () => _machine.HardResetAsync().AsTask());
+        hardReset.Foreground = new SolidColorBrush(Color.FromRgb(220, 92, 48));
+        left.Children.Add(ToolbarGroup(_power, _pause, softReset, hardReset));
         _quickSave = IconButton(AtariMachineViewConstants.QuickSaveGlyph,
             AtariMachineViewConstants.QuickSaveResource, QuickSaveAsync);
         _quickLoad = IconButton(AtariMachineViewConstants.QuickLoadGlyph,
@@ -128,8 +135,12 @@ public sealed class AtariMachineView : UserControl
         _audio.IsEnabled = configuration.AudioEnabled;
         var inputStatus = new List<UIElement> { _audio };
         if (configuration.Core == AtariCoreKind.Hatari)
-            inputStatus.Add(IconButton(AtariMachineViewConstants.JoyMouseSwitchGlyph,
-                "Emulation.Controller.Action.SwitchJoystickMouse", SwitchJoystickMouseAsync));
+        {
+            _joyMouseSwitch = IconButton(AtariMachineViewConstants.MouseGlyph,
+                "Emulation.Controller.Action.SwitchJoystickMouse", SwitchJoystickMouseAsync);
+            _joyMouseSwitch.Foreground = Brushes.LimeGreen;
+            inputStatus.Add(_joyMouseSwitch);
+        }
         inputStatus.Add(_controller);
         inputStatus.Add(_mouse);
         right.Children.Add(ToolbarGroup(inputStatus.ToArray()));
@@ -162,36 +173,15 @@ public sealed class AtariMachineView : UserControl
             stateShortcuts.Visibility = visible;
             displayShortcuts.Visibility = visible;
         };
-        root.Children.Add(toolbar);
-
-        _videoHost.Children.Add(_display);
-        _screen = new Border
-        {
-            Background = Brushes.Black,
-            Child = _videoHost,
-            HorizontalAlignment = HorizontalAlignment.Center,
-            VerticalAlignment = VerticalAlignment.Center,
-            SnapsToDevicePixels = true
-        };
-        _displayHost = new Grid { Background = new SolidColorBrush(Color.FromRgb(43, 46, 50)) };
+        _sharedView.SetVideoView(_display);
+        _screen = _sharedView.Screen;
+        _displayHost = _sharedView.DisplayHost;
         _displayHost.FlowDirection = FlowDirection.LeftToRight;
         AtariAccessibilityFunctions.Configure(_displayHost,
             L(AtariEmulationConstants.MachinesAutomationResource));
-        _displayHost.Children.Add(_screen);
         _displayHost.SizeChanged += (_, _) => FitScreen();
-        Grid.SetRow(_displayHost, 1);
-        root.Children.Add(_displayHost);
-
-        var bottom = new Border
-        {
-            Height = 24, Child = _mediaStrip, Padding = new Thickness(4, 1, 4, 1),
-            BorderThickness = new Thickness(1, 1, 1, 0)
-        };
-        bottom.SetResourceReference(Border.BorderBrushProperty, AtariMachineViewConstants.BorderBrushResource);
         BuildMediaStrip();
-        Grid.SetRow(bottom, 2);
-        root.Children.Add(bottom);
-        Content = root;
+        Content = _sharedView;
 
         AttachMachine();
         AttachInput();
@@ -199,6 +189,7 @@ public sealed class AtariMachineView : UserControl
         PreviewKeyDown += KeyDownHandler;
         PreviewKeyUp += KeyUpHandler;
         Unloaded += (_, _) => ReleaseMouse();
+        SetPowered(false);
     }
 
     public async Task StartAsync()
@@ -206,6 +197,7 @@ public sealed class AtariMachineView : UserControl
         ResetFrameRate();
         await _machine.StartAsync();
         _inputTimer.Start();
+        _poweredOff = false;
         SetPowered(true);
         _display.Focus();
     }
@@ -245,64 +237,29 @@ public sealed class AtariMachineView : UserControl
 
     private void BuildMediaStrip()
     {
-        _mediaStrip.Children.Clear();
         _mediaLeds.Clear();
-        foreach (var view in AtariMachineViewFunctions.Media(_configuration))
-            _mediaStrip.Children.Add(MediaItem(view));
-    }
-
-    private FrameworkElement MediaItem(AtariMachineMediaView view)
-    {
-        var panel = new StackPanel { Orientation = Orientation.Horizontal };
-        var led = new Ellipse
+        var views = AtariMachineViewFunctions.Media(_configuration);
+        _sharedView.SetDevices(views.Select(view => new MachineViewDevice(
+            view.Configuration.Slot.ToString(), view.Label, view.Glyph, view.Removable,
+            _mountedMedia.ContainsKey(view.Configuration.Slot),
+            view.Removable ? () => InsertMediaAsync(view.Configuration) : null,
+            view.Removable ? () => EjectMediaAsync(view.Configuration.Slot) : null)), ShowError);
+        foreach (var view in views)
         {
-            Width = 10, Height = 10,
-            Fill = _mountedMedia.ContainsKey(view.Configuration.Slot) || !view.Removable
-                ? Brushes.ForestGreen : Brushes.Gray,
-            Margin = new Thickness(0, 0, 4, 0), VerticalAlignment = VerticalAlignment.Center
-        };
-        _mediaLeds[view.Configuration.Slot] = led;
-        AtariAccessibilityFunctions.Configure(led, view.Label);
-        AutomationProperties.SetItemStatus(led,
-            L(_mountedMedia.ContainsKey(view.Configuration.Slot)
-                ? AtariVideoAudioSettingsConstants.EnabledResource
-                : AtariVideoAudioSettingsConstants.DisabledResource));
-        panel.Children.Add(led);
-        var media = new Button
-        {
-            ToolTip = view.Removable ? L(AtariMachineViewConstants.BrowseResource) : view.Label,
-            Height = 20, MinHeight = 0, MinWidth = 0, Padding = new Thickness(2, 0, 2, 0),
-            Background = Brushes.Transparent, BorderBrush = Brushes.Transparent,
-            Content = new StackPanel
-            {
-                Orientation = Orientation.Horizontal,
-                Children =
-                {
-                    new TextBlock { Text = view.Glyph, FontFamily = ControlVisualConstants.IconFont,
-                        Margin = new Thickness(0, 0, 4, 0) },
-                    new TextBlock { Text = view.Label, FontWeight = FontWeights.SemiBold }
-                }
-            }
-        };
-        if (view.Removable) media.Click += async (_, _) => await RunAsync(() => InsertMediaAsync(view.Configuration));
-        panel.Children.Add(media);
-        if (view.Removable)
-        {
-            var eject = IconButton(AtariMachineViewConstants.EjectGlyph, AtariMachineViewConstants.EjectResource,
-                () => EjectMediaAsync(view.Configuration.Slot));
-            _machineButtons.Remove(eject);
-            eject.Width = 22;
-            eject.Height = 20;
-            eject.IsEnabled = _mountedMedia.ContainsKey(view.Configuration.Slot);
-            panel.Children.Add(eject);
+            var key = view.Configuration.Slot.ToString();
+            if (_sharedView.DeviceLeds.TryGetValue(key, out var led)) _mediaLeds[view.Configuration.Slot] = led;
         }
-        return new Border { Child = panel, Padding = new Thickness(4, 0, 4, 0), Margin = new Thickness(0, 0, 3, 0) };
     }
 
     private async Task InsertMediaAsync(AtariMediaConfiguration template)
     {
         var dialog = new OpenFileDialog { Filter = L(AtariMachineViewConstants.MediaFilterResource) };
+        var folder = MediaFolder(template.Kind);
+        if (folder is not null && (folder.Folder is { } initialDirectory)
+            && Directory.Exists(initialDirectory)) dialog.InitialDirectory = initialDirectory;
         if (dialog.ShowDialog() != true) return;
+        if (Path.GetDirectoryName(dialog.FileName) is { } selectedDirectory)
+            SetMediaFolder(template.Kind, selectedDirectory);
         var media = template with { Path = dialog.FileName, IsInserted = true };
         _mountedMedia[media.Slot] = media;
         if (!_poweredOff) await _machine.InsertMediaAsync(media);
@@ -314,12 +271,6 @@ public sealed class AtariMachineView : UserControl
         if (!_poweredOff) await _machine.EjectMediaAsync(slot);
         _mountedMedia.Remove(slot);
         BuildMediaStrip();
-    }
-
-    private async Task RestoreMountedMediaAsync()
-    {
-        foreach (var media in _mountedMedia.Values.OrderBy(item => item.Slot))
-            await _machine.InsertMediaAsync(media with { IsInserted = true });
     }
 
     private void VideoFrameReady(object? sender, VideoFrame frame)
@@ -381,16 +332,41 @@ public sealed class AtariMachineView : UserControl
             SetPowered(false);
             return;
         }
-        _machine = _machineFactory();
-        AttachMachine();
-        await _machine.StartAsync();
-        _machine.SetAudioMuted(_audioMuted);
-        await RestoreMountedMediaAsync();
-        ResetFrameRate();
-        _inputTimer.Start();
-        _poweredOff = false;
-        SetPowered(true);
+        if (_machine.State == EmulationMachineState.Created)
+        {
+            DetachMachine();
+            await _machine.DisposeAsync();
+            _machine = _machineFactory(ConfigurationWithMountedMedia());
+            AttachMachine();
+        }
+        else
+        {
+            _machine = _machineFactory(ConfigurationWithMountedMedia());
+            AttachMachine();
+        }
+        try
+        {
+            await _machine.StartAsync();
+            _machine.SetAudioMuted(_audioMuted);
+            ResetFrameRate();
+            _inputTimer.Start();
+            _poweredOff = false;
+            SetPowered(true);
+        }
+        catch
+        {
+            _inputTimer.Stop();
+            DetachMachine();
+            try { await _machine.StopAsync(); }
+            finally { await _machine.DisposeAsync(); }
+            _poweredOff = true;
+            SetPowered(false);
+            throw;
+        }
     }
+
+    private AtariMachineConfiguration ConfigurationWithMountedMedia() =>
+        AtariMachineViewFunctions.WithMountedMedia(_configuration, _mountedMedia.Values);
 
     private async Task TogglePauseAsync()
     {
@@ -495,6 +471,8 @@ public sealed class AtariMachineView : UserControl
         _display.MouseDown += DisplayMouseDown;
         _display.MouseMove += DisplayMouseMove;
         _display.MouseWheel += DisplayMouseWheel;
+        if (_display is HwndHost host)
+            host.MessageHook += NativeVideoMessage;
     }
 
     private void DetachDisplayInput()
@@ -504,13 +482,15 @@ public sealed class AtariMachineView : UserControl
         _display.MouseDown -= DisplayMouseDown;
         _display.MouseMove -= DisplayMouseMove;
         _display.MouseWheel -= DisplayMouseWheel;
+        if (_display is HwndHost host)
+            host.MessageHook -= NativeVideoMessage;
     }
 
     private void DisplayMouseDown(object sender, MouseButtonEventArgs args)
     {
         _display.Focus();
         if (_configuration.Input.CaptureMouse && !_mouseCapture.IsCaptured)
-            _mouseCapture.Capture(_display, _screen, _videoSurface.InputHandle);
+            CaptureRelativeMouse();
         PublishInput();
     }
 
@@ -520,9 +500,55 @@ public sealed class AtariMachineView : UserControl
     private void DisplayMouseWheel(object sender, MouseWheelEventArgs args) =>
         PublishInput(wheel: args.Delta);
 
+    private IntPtr NativeVideoMessage(IntPtr hwnd, int message, IntPtr wParam, IntPtr lParam, ref bool handled)
+    {
+        switch (message)
+        {
+            case WindowsInputMessages.KeyDown:
+            case WindowsInputMessages.SystemKeyDown:
+                handled = HandleKeyDown(KeyInterop.KeyFromVirtualKey(unchecked((int)wParam.ToInt64())));
+                break;
+            case WindowsInputMessages.KeyUp:
+            case WindowsInputMessages.SystemKeyUp:
+                handled = HandleKeyUp(KeyInterop.KeyFromVirtualKey(unchecked((int)wParam.ToInt64())));
+                break;
+            case WindowsInputMessages.LeftButtonDown:
+            case WindowsInputMessages.RightButtonDown:
+            case WindowsInputMessages.MiddleButtonDown:
+            case WindowsInputMessages.XButtonDown:
+                RelativeMouseCapture.FocusNative(hwnd);
+                if (_configuration.Input.CaptureMouse && !_mouseCapture.IsCaptured) CaptureRelativeMouse();
+                if (_mouseCapture.IsCaptured) PublishInput();
+                break;
+            case WindowsInputMessages.LeftButtonUp:
+            case WindowsInputMessages.RightButtonUp:
+            case WindowsInputMessages.MiddleButtonUp:
+            case WindowsInputMessages.XButtonUp:
+                if (_mouseCapture.IsCaptured) PublishInput();
+                break;
+            case WindowsInputMessages.MouseMove when _mouseCapture.IsCaptured:
+                _mouseCapture.ProcessMovement(_screen, (x, y) => PublishInput(x, y));
+                break;
+            case WindowsInputMessages.MouseWheel when _mouseCapture.IsCaptured:
+                PublishInput(wheel: unchecked((short)((wParam.ToInt64() >> WindowsInputMessages.WheelHighWordShift)
+                    & WindowsInputMessages.UnsignedWordMask)));
+                break;
+            case WindowsInputMessages.SetCursor when _mouseCapture.IsCaptured:
+                RelativeMouseCapture.HideNativeCursor();
+                handled = true;
+                break;
+        }
+        return IntPtr.Zero;
+    }
+
     private void KeyDownHandler(object sender, KeyEventArgs args)
     {
         var source = args.Key == Key.System ? args.SystemKey : args.Key;
+        args.Handled = HandleKeyDown(source);
+    }
+
+    private bool HandleKeyDown(Key source)
+    {
         if (!KeyboardChord.IsModifierKey(source)) _pressedPhysicalKeys.Add(source);
         var global = EmulationShortcutFunctions.ResolveGlobal(_globalShortcuts, Keyboard.Modifiers,
             _pressedPhysicalKeys, source, _activeGlobalShortcuts);
@@ -530,30 +556,33 @@ public sealed class AtariMachineView : UserControl
         {
             if (global.ShouldExecute && global.Action is not null && _activeGlobalShortcuts.Add(global.Action))
                 _ = ExecuteGlobalShortcutAsync(global.Action);
-            args.Handled = true;
-            return;
+            return true;
         }
         if (global.Kind == EmulationShortcutMatchKind.ReservedForGlobal)
         {
-            args.Handled = true;
-            return;
+            return true;
         }
-        if (!AtariMachineInputFunctions.TryMap(source, out var key)) return;
+        if (!AtariMachineInputFunctions.TryMap(source, out var key)) return false;
         _keys.Add(AtariMachineInputFunctions.Resolve(key, _configuration.Input.KeyboardMappings));
         PublishInput();
-        args.Handled = true;
+        return true;
     }
 
     private void KeyUpHandler(object sender, KeyEventArgs args)
     {
         var source = args.Key == Key.System ? args.SystemKey : args.Key;
+        args.Handled = HandleKeyUp(source);
+    }
+
+    private bool HandleKeyUp(Key source)
+    {
         _pressedPhysicalKeys.Remove(source);
         EmulationShortcutFunctions.ReleaseInactive(_activeGlobalShortcuts, _globalShortcuts,
             Keyboard.Modifiers, _pressedPhysicalKeys);
-        if (!AtariMachineInputFunctions.TryMap(source, out var key)) return;
+        if (!AtariMachineInputFunctions.TryMap(source, out var key)) return false;
         _keys.Remove(AtariMachineInputFunctions.Resolve(key, _configuration.Input.KeyboardMappings));
         PublishInput();
-        args.Handled = true;
+        return true;
     }
 
     private async Task ExecuteGlobalShortcutAsync(string action)
@@ -591,13 +620,60 @@ public sealed class AtariMachineView : UserControl
         PublishInput();
         await Task.Delay(100);
         _joyMouseSwitchPressed = false;
+        _joystickControlsMouse = !_joystickControlsMouse;
+        if (_joyMouseSwitch is not null)
+            SetButtonGlyph(_joyMouseSwitch, _joystickControlsMouse
+                ? AtariMachineViewConstants.ControllerGlyph : AtariMachineViewConstants.MouseGlyph);
         if (!_disposed) PublishInput();
+    }
+
+    private EmulationMediaFolderSettings? MediaFolder(AtariMediaKind kind) => _mediaFolders.FirstOrDefault(item =>
+        item.Family == EmulationMediaFolderFamily.Atari
+        && string.Equals(item.Model, _configuration.Model.ToString(), StringComparison.Ordinal)
+        && item.Type == MediaFolderType(kind));
+
+    private void SetMediaFolder(AtariMediaKind kind, string folder)
+    {
+        var item = MediaFolder(kind);
+        if (item is null)
+        {
+            item = new EmulationMediaFolderSettings
+            {
+                Family = EmulationMediaFolderFamily.Atari,
+                Model = _configuration.Model.ToString(),
+                Type = MediaFolderType(kind)
+            };
+            _mediaFolders.Add(item);
+        }
+        item.Folder = folder;
+    }
+
+    private static EmulationMediaFolderType MediaFolderType(AtariMediaKind kind) => kind switch
+    {
+        AtariMediaKind.Floppy => EmulationMediaFolderType.Floppy,
+        AtariMediaKind.CompactDisc => EmulationMediaFolderType.CompactDisc,
+        AtariMediaKind.HardDisk => EmulationMediaFolderType.HardDisk,
+        AtariMediaKind.Cartridge => EmulationMediaFolderType.Cartridge,
+        AtariMediaKind.Cassette => EmulationMediaFolderType.Cassette,
+        AtariMediaKind.Directory => EmulationMediaFolderType.Directory,
+        _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
+    };
+
+    private static void SetButtonGlyph(Button button, string glyph)
+    {
+        if (button.Content is TextBlock icon) icon.Text = glyph;
     }
 
     private void ReleaseMouse()
     {
         if (_mouseCapture.IsCaptured) _mouseCapture.Release(_display, _videoSurface.InputHandle);
         _mouse.Opacity = AtariMachineViewConstants.InactiveOpacity;
+    }
+
+    private void CaptureRelativeMouse()
+    {
+        _mouseCapture.Capture(_display, _screen, _videoSurface.InputHandle);
+        _mouse.Opacity = 1;
     }
 
     private void SetPowered(bool powered)
@@ -633,13 +709,7 @@ public sealed class AtariMachineView : UserControl
 
     private Button IconButton(string glyph, string tooltipResource, Func<Task> action, bool requiresPower = true)
     {
-        var button = new Button
-        {
-            Content = new TextBlock { Text = glyph, FontFamily = ControlVisualConstants.IconFont },
-            ToolTip = L(tooltipResource), Width = 28, Height = 28, MinWidth = 0, MinHeight = 0,
-            Padding = new Thickness(2), Margin = new Thickness(0, 0, 2, 0)
-        };
-        button.SetResourceReference(StyleProperty, AtariMachineViewConstants.StatusIconButtonStyleResource);
+        var button = MachineView.CreateCommandButton(glyph, L(tooltipResource));
         AtariAccessibilityFunctions.Configure(button, L(tooltipResource));
         if (requiresPower) _machineButtons.Add(button);
         button.Click += async (_, _) => await ButtonAsyncAction.RunAsync(
@@ -653,24 +723,26 @@ public sealed class AtariMachineView : UserControl
         catch (Exception error) { ShowError(error); }
     }
 
-    private void ShowError(Exception error) => ControlErrorPresenter.ShowDetailed(this, error,
-        AtariErrorLocalizationFunctions.Describe(error),
-        AtariMachineViewConstants.CommandErrorContext, AtariMachineViewConstants.AtariTitle);
-
-    private static Border ToolbarGroup(params UIElement[] children)
+    private void ShowError(Exception error)
     {
-        var panel = new StackPanel { Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Center };
-        foreach (var child in children) panel.Children.Add(child);
-        var border = new Border
-        {
-            Child = panel, Height = 32, BorderThickness = new Thickness(1), CornerRadius = new CornerRadius(6),
-            Padding = new Thickness(2, 1, 2, 1), Margin = new Thickness(2, 1, 2, 1),
-            VerticalAlignment = VerticalAlignment.Center
-        };
-        border.SetResourceReference(Border.BackgroundProperty, AtariMachineViewConstants.CardBrushResource);
-        border.SetResourceReference(Border.BorderBrushProperty, AtariMachineViewConstants.BorderBrushResource);
-        return border;
+        var contentRequired = AtariErrorLocalizationFunctions.IsContentRequired(error)
+            && _configuration.Core == AtariCoreKind.Hatari;
+        ControlErrorPresenter.ShowDetailed(this, error,
+            AtariErrorLocalizationFunctions.Describe(error),
+            AtariMachineViewConstants.CommandErrorContext,
+            contentRequired
+                ? L(AtariErrorLocalizationConstants.PowerFailureTitleResource)
+                : AtariMachineViewConstants.AtariTitle,
+            contentRequired
+                ? AtariErrorLocalizationFunctions.ContentRequiredDetails(_configuration)
+                : null,
+            contentRequired
+                ? AtariErrorLocalizationFunctions.ContentRequiredMediaIcons(_configuration)
+                : null,
+            showLogPath: !contentRequired);
     }
+
+    private static Border ToolbarGroup(params UIElement[] children) => MachineView.CreateToolbarGroup(children);
 
     private static TextBlock StatusIcon(string glyph) => new()
     {

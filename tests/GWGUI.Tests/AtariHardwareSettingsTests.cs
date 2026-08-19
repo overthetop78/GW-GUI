@@ -94,6 +94,35 @@ public sealed class AtariHardwareSettingsTests
     }
 
     [Fact]
+    public void EditorApplyKeepsEveryDisplayedHardwareChoiceIncludingChangedMemory()
+    {
+        RunOnSta(() =>
+        {
+            var app = Application.Current as GWGUI.App.App ?? new GWGUI.App.App();
+            app.InitializeComponent();
+            var section = new AtariHardwareSettingsSection(new Border());
+            var configuration = new AtariMachineConfiguration(AtariMachineModel.St);
+            var dispatcher = Dispatcher.CurrentDispatcher;
+            SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(dispatcher));
+            WaitWithDispatcher(section.LoadAsync(configuration), dispatcher);
+            var memory = Descendants(section).OfType<ComboBox>().Single(combo => combo.Items
+                .OfType<AtariHardwareChoice>().Any(choice => choice.Value == "1048576"));
+            memory.SelectedItem = memory.Items.OfType<AtariHardwareChoice>()
+                .Single(choice => choice.Value == "1048576");
+
+            var saved = section.Apply(configuration);
+
+            Assert.Equal("1048576", saved.Options[AtariHardwareSettingsConstants.MainMemoryOptionKey]);
+            foreach (var editor in Descendants(section).OfType<ComboBox>()
+                         .Where(combo => combo.Items.OfType<AtariHardwareChoice>().Any()))
+            {
+                var selected = Assert.IsType<AtariHardwareChoice>(editor.SelectedItem);
+                Assert.Contains(selected.Value, saved.Options.Values);
+            }
+        });
+    }
+
+    [Fact]
     public void EditorLoadsEveryAtariModelWithoutLeavingASettingsPageEmpty()
     {
         RunOnSta(() =>

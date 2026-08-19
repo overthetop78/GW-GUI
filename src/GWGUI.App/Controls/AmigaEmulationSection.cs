@@ -81,7 +81,7 @@ public sealed class AmigaEmulationSection : UserControl
     private async void ConfigurationSaved(object? sender, AmigaMachineConfiguration configuration)
     {
         await ReloadConfigurationsAsync();
-        if (_openMachines.TryGetValue(configuration.Id, out var tab) && tab.Content is AmigaMachineView view)
+        if (_openMachines.TryGetValue(configuration.Id, out var tab) && tab.Content is AmigaMachineController view)
             view.ApplyVideoRenderer(configuration.VideoRenderer);
     }
 
@@ -117,9 +117,9 @@ public sealed class AmigaEmulationSection : UserControl
                 () => new WasapiAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
                 configuration => Path.Combine(StoragePaths.AmigaConfigurationsDirectory,
                     configuration.Id.ToString("N"), "Saves"), Environment.ProcessPath);
-            IAmigaMachine CreateMachine() => engine.CreateAmigaMachine(runtimeConfiguration);
-            var machine = CreateMachine();
-            var view = new AmigaMachineView(machine, CreateMachine, runtimeConfiguration, selected.Configuration.Input,
+            IAmigaMachine CreateMachine(AmigaMachineConfiguration value) => engine.CreateAmigaMachine(value);
+            var machine = CreateMachine(runtimeConfiguration);
+            var view = new AmigaMachineController(machine, CreateMachine, runtimeConfiguration, selected.Configuration.Input,
                 _settings.EmulationShortcuts,
                 Path.Combine(_settings.EmulationStateFolder, $"amiga-{selected.Configuration.Id:N}.gwas"),
                 _settings.EmulationCaptureFolder);
@@ -148,7 +148,7 @@ public sealed class AmigaEmulationSection : UserControl
         finally { _open.IsEnabled = _configuration.SelectedItem is not null; }
     }
 
-    private async Task CloseMachineAsync(Guid id, TabItem tab, AmigaMachineView view)
+    private async Task CloseMachineAsync(Guid id, TabItem tab, AmigaMachineController view)
     {
         if (!_openMachines.ContainsKey(id)) return;
         await view.StopAsync();
@@ -199,7 +199,7 @@ public sealed class AmigaEmulationSection : UserControl
 
     public async Task StopAllAsync()
     {
-        foreach (var view in _openMachines.Values.Select(item => item.Content).OfType<AmigaMachineView>().ToArray())
+        foreach (var view in _openMachines.Values.Select(item => item.Content).OfType<AmigaMachineController>().ToArray())
             await view.StopAsync();
         _openMachines.Clear();
     }

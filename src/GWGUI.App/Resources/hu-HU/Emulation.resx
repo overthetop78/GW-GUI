@@ -570,6 +570,12 @@
   <data name="Emulation.Firmware.PartiallyCompatible">
     <value>Részben kompatibilis</value>
   </data>
+  <data name="Emulation.Firmware.Official">
+    <value>Hivatalos</value>
+  </data>
+  <data name="Emulation.Firmware.Incompatible">
+    <value>Nem kompatibilis</value>
+  </data>
   <data name="Emulation.Video.Settings.Display">
     <value>Megjelenítés</value>
   </data>
@@ -1110,4 +1116,20 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B + vezérlő</value></data>
+  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
+    <value>Az emulátornak adathordozóra van szüksége a gép bekapcsolása előtt. Helyezzen be egy hajlékonylemezt, vagy állítson be merevlemezt.</value>
+  </data>
+  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
+    <value>A gépet nem sikerült bekapcsolni</value>
+  </data>
+  <data name="Emulation.Error.Machine" xml:space="preserve">
+    <value>Gép</value>
+  </data>
+  <data name="Emulation.Error.RequiredMedia" xml:space="preserve">
+    <value>Szükséges adathordozók</value>
+  </data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Gyors rendszerindítás</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Hajlékonylemez-meghajtó hangja</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Polarizált hangszűrő</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Meghajtóaktivitás megjelenítése az emulátor képernyőjén</value></data>
 </root>

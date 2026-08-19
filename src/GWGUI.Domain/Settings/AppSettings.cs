@@ -15,6 +15,7 @@ public sealed class AppSettings
     public string AmigaHardDisksFolder { get; set; } = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GW GUI", "Emulation", "HDD", "Amiga");
     public Dictionary<string, string> EmulationShortcuts { get; set; } = EmulationShortcutDefaultFunctions.Create();
+    public List<EmulationMediaFolderSettings> EmulationMediaFolders { get; set; } = [];
     public bool CreateEmulationFoldersAutomatically { get; set; } = true;
     public string? LastDiskImageFolder { get; set; }
     public string? GwExecutablePath { get; set; }
@@ -34,4 +35,16 @@ public sealed class AppSettings
     public AdvancedUiSettings Write { get; set; } = new();
     public List<ProfileSettings> Profiles { get; set; } = [];
     public ConversionUiSettings Conversion { get; set; } = new();
+}
+
+public enum EmulationMediaFolderFamily { Amiga, Atari }
+
+public enum EmulationMediaFolderType { Floppy, CompactDisc, HardDisk, Cartridge, Cassette, Directory }
+
+public sealed class EmulationMediaFolderSettings
+{
+    public EmulationMediaFolderFamily Family { get; set; }
+    public string Model { get; set; } = "";
+    public EmulationMediaFolderType Type { get; set; }
+    public string Folder { get; set; } = "";
 }

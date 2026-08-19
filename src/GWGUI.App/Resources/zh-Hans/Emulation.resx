@@ -570,6 +570,12 @@
   <data name="Emulation.Firmware.PartiallyCompatible">
     <value>部分兼容</value>
   </data>
+  <data name="Emulation.Firmware.Official">
+    <value>官方</value>
+  </data>
+  <data name="Emulation.Firmware.Incompatible">
+    <value>不兼容</value>
+  </data>
   <data name="Emulation.Video.Settings.Display">
     <value>显示</value>
   </data>
@@ -1110,4 +1116,20 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>阿塔里助推器 Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>世嘉创世纪控制器</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ 主计长</value></data>
+  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
+    <value>在开启此机器之前，模拟器需要媒体。请插入软盘或配置硬盘。</value>
+  </data>
+  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
+    <value>无法开启机器</value>
+  </data>
+  <data name="Emulation.Error.Machine" xml:space="preserve">
+    <value>机器</value>
+  </data>
+  <data name="Emulation.Error.RequiredMedia" xml:space="preserve">
+    <value>所需媒体</value>
+  </data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>快速启动</value></data>
+  <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>软盘驱动器声音</value></data>
+  <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>偏振音频滤波器</value></data>
+  <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>在模拟器屏幕上显示驱动器活动</value></data>
 </root>

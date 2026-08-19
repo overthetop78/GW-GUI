@@ -13,6 +13,7 @@ internal sealed class AtariMachine : IAtariMachine
     private readonly string? _saveDirectory;
     private readonly ConcurrentQueue<AtariMachineCommand> _commands = new();
     private readonly AtariAudioOutputController _audio;
+    private readonly List<AtariMediaConfiguration> _mountedMedia;
     private CancellationTokenSource? _stopSource;
     private Task? _runLoop;
     private TaskCompletionSource? _started;
@@ -25,6 +26,7 @@ internal sealed class AtariMachine : IAtariMachine
     {
         Id = id;
         Configuration = configuration;
+        _mountedMedia = configuration.Media.Where(item => item.IsInserted).ToList();
         _core = core;
         _sessionDirectory = sessionDirectory;
         _audio = new AtariAudioOutputController(audioOutput, audioOutputFactory);
@@ -107,10 +109,10 @@ internal sealed class AtariMachine : IAtariMachine
     }
 
     public ValueTask SoftResetAsync(CancellationToken cancellationToken = default) =>
-        QueueCommand(ResetCore, cancellationToken);
+        QueueCommand(() => ResetCore("0"), cancellationToken);
 
     public ValueTask HardResetAsync(CancellationToken cancellationToken = default) =>
-        QueueCommand(ResetCore, cancellationToken);
+        QueueCommand(() => ResetCore("1"), cancellationToken);
 
     public async ValueTask StopAsync(CancellationToken cancellationToken = default)
     {
@@ -147,10 +149,19 @@ internal sealed class AtariMachine : IAtariMachine
     public void SetAudioOutputFactory(Func<IAudioOutput?>? factory) => _audio.ReplaceFactory(factory);
 
     public ValueTask InsertMediaAsync(AtariMediaConfiguration media, CancellationToken cancellationToken = default) =>
-        QueueCommand(() => _core.InsertMedia(media), cancellationToken);
+        QueueCommand(() =>
+        {
+            var inserted = media with { IsInserted = true };
+            _core.InsertMedia(inserted);
+            AtariMediaRuntimeFunctions.Register(_mountedMedia, inserted);
+        }, cancellationToken);
 
     public ValueTask EjectMediaAsync(EmulationMediaSlot slot, CancellationToken cancellationToken = default) =>
-        QueueCommand(() => _core.EjectMedia(slot), cancellationToken);
+        QueueCommand(() =>
+        {
+            _core.EjectMedia(slot);
+            _mountedMedia.RemoveAll(item => item.Slot == slot);
+        }, cancellationToken);
 
     public ValueTask SelectDiskAsync(int index, CancellationToken cancellationToken = default) =>
         QueueCommand(() => _core.SelectDisk(index), cancellationToken);
@@ -162,7 +173,7 @@ internal sealed class AtariMachine : IAtariMachine
                 throw AtariSavedStateFunctions.Invalid(AtariErrorCode.StateInvalid,
                     AtariErrorMessages.StateUnavailable);
             var state = _core.SaveState();
-            var header = AtariSavedStateFunctions.CreateHeader(Configuration, _core, state);
+            var header = AtariSavedStateFunctions.CreateHeader(CurrentConfiguration(), _core, state);
             AtariStateFileFunctions.Write(path, header, state);
         }, cancellationToken);
 
@@ -173,12 +184,17 @@ internal sealed class AtariMachine : IAtariMachine
                 throw AtariSavedStateFunctions.Invalid(AtariErrorCode.StateInvalid,
                     AtariErrorMessages.StateUnavailable);
             var saved = AtariStateFileFunctions.Read(path);
-            AtariSavedStateFunctions.Validate(saved.Header, Configuration, _core);
+            AtariSavedStateFunctions.Validate(saved.Header, CurrentConfiguration(), _core);
             _core.LoadState(saved.State);
         }, cancellationToken);
 
     public ValueTask SetOptionAsync(string key, string value, CancellationToken cancellationToken = default) =>
         QueueCommand(() => _core.SetOption(key, value), cancellationToken);
+
+    private AtariMachineConfiguration CurrentConfiguration() => new(Configuration.Model,
+        Configuration.Firmwares, _mountedMedia.ToArray(), Configuration.Options, Configuration.Input,
+        Configuration.Id, Configuration.SchemaVersion, Configuration.AudioEnabled,
+        Configuration.VideoRenderer, Configuration.Folders);
 
     private ValueTask QueueCommand(Action action, CancellationToken cancellationToken)
     {
@@ -273,9 +289,10 @@ internal sealed class AtariMachine : IAtariMachine
         while (_commands.TryDequeue(out var command)) command.Completion.TrySetException(error);
     }
 
-    private void ResetCore()
+    private void ResetCore(string resetType)
     {
         _audio.Reset();
+        _core.SetOption("hatari_reset_type", resetType);
         _core.HardReset();
     }
 
