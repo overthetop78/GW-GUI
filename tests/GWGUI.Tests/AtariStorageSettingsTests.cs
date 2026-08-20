@@ -2,6 +2,9 @@ using GWGUI.App.Controls;
 using GWGUI.App.Localization;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari;
+using System.Reflection;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace GWGUI.Tests;
 
@@ -42,6 +45,11 @@ public sealed class AtariStorageSettingsTests
     public void EveryModelHasExactlyOneFixedPrimaryDevice(AtariMachineModel model)
     {
         var view = AtariStorageSettingsFunctions.Create(new AtariMachineConfiguration(model));
+        if (model == AtariMachineModel.Atari400)
+        {
+            Assert.Empty(view.Devices);
+            return;
+        }
         var item = Assert.Single(view.Devices);
         var device = item.Configuration;
         var expected = ExpectedPrimaryDevice(model);
@@ -62,6 +70,25 @@ public sealed class AtariStorageSettingsTests
         Assert.Equal(2, view.Devices.Count);
         Assert.False(view.Devices.Single(item => item.Configuration.Slot == EmulationMediaSlot.Floppy0).CanRemove);
         Assert.True(view.Devices.Single(item => item.Configuration.Slot == EmulationMediaSlot.Floppy1).CanRemove);
+    }
+
+    [Fact]
+    public void Atari400StartsWithoutAnInventedDriveAndCanAddItsPhysicalDevices()
+    {
+        var source = new AtariMachineConfiguration(AtariMachineModel.Atari400);
+        var initial = AtariStorageSettingsFunctions.Create(source);
+        Assert.Empty(initial.Devices);
+        Assert.True(AtariStorageSettingsFunctions.CanAdd(source.Model, initial));
+        Assert.Contains(initial.Types, type => type.Kind == AtariMediaKind.Floppy);
+        Assert.Contains(initial.Types, type => type.Kind == AtariMediaKind.Cassette);
+        Assert.Contains(initial.Types, type => type.Kind == AtariMediaKind.Cartridge);
+
+        var withDrive = AtariStorageSettingsFunctions.AddDevice(source,
+            AtariMediaKind.Floppy, EmulationMediaSlot.Floppy0);
+        var drive = Assert.Single(AtariStorageSettingsFunctions.Create(withDrive).Devices);
+        Assert.Equal("D1:", drive.Identifier);
+        Assert.True(drive.CanRemove);
+        Assert.StartsWith("Atari 8-bit", drive.Model, StringComparison.OrdinalIgnoreCase);
     }
 
     [Theory]
@@ -137,6 +164,46 @@ public sealed class AtariStorageSettingsTests
         Assert.Equal(AtariStorageSettingsTestConstants.OptionValue,
             removed.Options[AtariStorageSettingsTestConstants.OptionKey]);
     }
+
+    [Fact]
+    public void Atari400PeripheralAndOsdOptionsPersistWhileStDoesNotExposeThem()
+    {
+        WpfTestHost.Run(() =>
+        {
+            var app = Application.Current as GWGUI.App.App ?? new GWGUI.App.App();
+            app.InitializeComponent();
+            var section = new AtariStorageSettingsSection();
+            var source = new AtariMachineConfiguration(AtariMachineModel.Atari400);
+            section.Load(source);
+
+            CheckBox(section, "_showSpeedOsd").IsChecked = true;
+            CheckBox(section, "_showSectorOsd").IsChecked = true;
+            CheckBox(section, "_realTimeClock").IsChecked = true;
+            CheckBox(section, "_printerDevice").IsChecked = true;
+            CheckBox(section, "_serialDevice").IsChecked = true;
+            var saved = section.Apply(source);
+
+            Assert.Equal(AtariEightBitSettingsConstants.Enabled,
+                saved.Options[AtariEightBitSettingsConstants.ShowSpeedOptionKey]);
+            Assert.Equal(AtariEightBitSettingsConstants.Enabled,
+                saved.Options[AtariEightBitSettingsConstants.ShowSectorOptionKey]);
+            Assert.Equal(AtariEightBitSettingsConstants.Enabled,
+                saved.Options[AtariEightBitSettingsConstants.RealTimeClockOptionKey]);
+            Assert.Equal(AtariEightBitSettingsConstants.Enabled,
+                saved.Options[AtariEightBitSettingsConstants.PrinterDeviceOptionKey]);
+            Assert.Equal(AtariEightBitSettingsConstants.Enabled,
+                saved.Options[AtariEightBitSettingsConstants.SerialDeviceOptionKey]);
+
+            section.Load(new AtariMachineConfiguration(AtariMachineModel.St));
+            Assert.Equal(Visibility.Collapsed, CheckBox(section, "_showSpeedOsd").Visibility);
+            Assert.Equal(Visibility.Collapsed, CheckBox(section, "_realTimeClock").Visibility);
+            Assert.Equal(Visibility.Collapsed, CheckBox(section, "_printerDevice").Visibility);
+        });
+    }
+
+    private static CheckBox CheckBox(AtariStorageSettingsSection section, string field) =>
+        Assert.IsType<CheckBox>(typeof(AtariStorageSettingsSection).GetField(field,
+            BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(section));
 
     private static (AtariMediaKind Kind, EmulationMediaSlot Slot) ExpectedPrimaryDevice(
         AtariMachineModel model) => model switch

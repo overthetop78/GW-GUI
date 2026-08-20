@@ -83,7 +83,7 @@ public sealed class AtariMachineController : UserControl
         _mediaFolders = mediaFolders ?? [];
         AtariAccessibilityFunctions.ConfigureFlowDirection(this);
         _shortcutActions = new AtariMachineShortcutActions(TogglePowerAsync, TogglePauseAsync,
-            () => _machine.SoftResetAsync().AsTask(), () => _machine.HardResetAsync().AsTask(),
+            () => _machine.SoftResetAsync().AsTask(), HardResetAsync,
             QuickSaveAsync, QuickLoadAsync, SaveScreenshotAsync, ToggleFullscreenAsync,
             ReleaseMouse, ToggleAudioAsync);
         foreach (var media in configuration.Media.Where(item => item.IsInserted)) _mountedMedia[media.Slot] = media;
@@ -105,7 +105,7 @@ public sealed class AtariMachineController : UserControl
             AtariMachineViewConstants.SoftResetResource, () => _machine.SoftResetAsync().AsTask());
         softReset.Foreground = new SolidColorBrush(Color.FromRgb(120, 160, 48));
         var hardReset = IconButton(AtariMachineViewConstants.HardResetGlyph,
-            AtariMachineViewConstants.HardResetResource, () => _machine.HardResetAsync().AsTask());
+            AtariMachineViewConstants.HardResetResource, HardResetAsync);
         hardReset.Foreground = new SolidColorBrush(Color.FromRgb(220, 92, 48));
         left.Children.Add(ToolbarGroup(_power, _pause, softReset, hardReset));
         _quickSave = IconButton(AtariMachineViewConstants.QuickSaveGlyph,
@@ -262,15 +262,61 @@ public sealed class AtariMachineController : UserControl
             SetMediaFolder(template.Kind, selectedDirectory);
         var media = template with { Path = dialog.FileName, IsInserted = true };
         _mountedMedia[media.Slot] = media;
-        if (!_poweredOff) await _machine.InsertMediaAsync(media);
+        if (!_poweredOff)
+        {
+            if (RequiresInstanceReload(media.Kind)) await RestartMachineAsync();
+            else await _machine.InsertMediaAsync(media);
+        }
         BuildMediaStrip();
     }
 
     private async Task EjectMediaAsync(EmulationMediaSlot slot)
     {
-        if (!_poweredOff) await _machine.EjectMediaAsync(slot);
+        var requiresReload = _mountedMedia.TryGetValue(slot, out var media)
+            && RequiresInstanceReload(media.Kind);
         _mountedMedia.Remove(slot);
+        if (!_poweredOff)
+        {
+            if (requiresReload) await RestartMachineAsync();
+            else await _machine.EjectMediaAsync(slot);
+        }
         BuildMediaStrip();
+    }
+
+    private bool RequiresInstanceReload(AtariMediaKind kind) =>
+        _configuration.Core == AtariCoreKind.Atari800 && kind == AtariMediaKind.Cartridge;
+
+    internal Task HardResetAsync() => _mountedMedia.Values.Any(media => RequiresInstanceReload(media.Kind))
+        ? RestartMachineAsync()
+        : _machine.HardResetAsync().AsTask();
+
+    private async Task RestartMachineAsync()
+    {
+        ReleaseMouse();
+        _inputTimer.Stop();
+        DetachMachine();
+        try
+        {
+            await _machine.StopAsync();
+            await _machine.DisposeAsync();
+            _machine = _machineFactory(ConfigurationWithMountedMedia());
+            AttachMachine();
+            await _machine.StartAsync();
+            _machine.SetAudioMuted(_audioMuted);
+            ResetFrameRate();
+            _inputTimer.Start();
+            _poweredOff = false;
+            SetPowered(true);
+        }
+        catch
+        {
+            DetachMachine();
+            try { await _machine.StopAsync(); }
+            finally { await _machine.DisposeAsync(); }
+            _poweredOff = true;
+            SetPowered(false);
+            throw;
+        }
     }
 
     private void VideoFrameReady(object? sender, VideoFrame frame)

@@ -3,9 +3,6 @@ namespace GWGUI.Emulation.Atari;
 internal static class Atari800MediaConstants
 {
     internal const string SystemOptionKey = "atari800_system";
-    internal const string CassetteBootOptionKey = "atari800_cassboot";
-    internal const string EnabledOptionValue = "enabled";
-    internal const string DisabledOptionValue = "disabled";
     internal const string Atari5200SystemValue = "5200";
     internal const string CartridgeHeaderText = "CART";
     internal const int CartridgeHeaderLength = 4;

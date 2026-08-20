@@ -1,10 +1,8 @@
-using GWGUI.Emulation.Atari;
+namespace GWGUI.Emulation.Atari;
 
-namespace GWGUI.App.Controls;
+public sealed record AtariHardwareChoice(string Value, string DisplayName, long? Bytes = null);
 
-internal sealed record AtariHardwareChoice(string Value, string DisplayName);
-
-internal sealed record AtariHardwareField(
+public sealed record AtariHardwareField(
     AtariSettingOption Option,
     string ResourceKey,
     IReadOnlyList<AtariHardwareChoice> Choices,
@@ -12,7 +10,7 @@ internal sealed record AtariHardwareField(
     AtariOptionAvailability Availability,
     string? ExplanationResourceKey);
 
-internal sealed record AtariHardwareView(
+public sealed record AtariHardwareView(
     IReadOnlyList<AtariHardwareField> Cpu,
     IReadOnlyList<AtariHardwareField> Memory,
     IReadOnlyList<AtariFirmwareDefinition> Firmware,

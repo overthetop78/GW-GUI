@@ -10,8 +10,8 @@ internal static class AtariConfigurationFunctions
             or AtariMachineModel.Ste or AtariMachineModel.MegaSte or AtariMachineModel.Tt or AtariMachineModel.Falcon
             => AtariCoreKind.Hatari,
         AtariMachineModel.Atari400 or AtariMachineModel.Atari800 or AtariMachineModel.Atari800Xl
-            or AtariMachineModel.Atari130Xe or AtariMachineModel.ModernXlXe320K or AtariMachineModel.ModernXlXe576K
-            or AtariMachineModel.ModernXlXe1088K or AtariMachineModel.Xegs or AtariMachineModel.Atari5200
+            or AtariMachineModel.Atari130Xe or AtariMachineModel.Xegs or AtariMachineModel.XlXe
+            or AtariMachineModel.Atari5200
             => AtariCoreKind.Atari800,
         AtariMachineModel.Atari2600 => AtariCoreKind.Stella,
         AtariMachineModel.Atari7800 => AtariCoreKind.ProSystem,
@@ -26,8 +26,8 @@ internal static class AtariConfigurationFunctions
             or AtariMachineModel.Ste or AtariMachineModel.MegaSte or AtariMachineModel.Tt or AtariMachineModel.Falcon
             => AtariMachineFamily.St,
         AtariMachineModel.Atari400 or AtariMachineModel.Atari800 or AtariMachineModel.Atari800Xl
-            or AtariMachineModel.Atari130Xe or AtariMachineModel.ModernXlXe320K or AtariMachineModel.ModernXlXe576K
-            or AtariMachineModel.ModernXlXe1088K or AtariMachineModel.Xegs => AtariMachineFamily.EightBit,
+            or AtariMachineModel.Atari130Xe or AtariMachineModel.Xegs or AtariMachineModel.XlXe
+            => AtariMachineFamily.EightBit,
         AtariMachineModel.Atari5200 => AtariMachineFamily.Atari5200,
         AtariMachineModel.Atari2600 => AtariMachineFamily.Atari2600,
         AtariMachineModel.Atari7800 => AtariMachineFamily.Atari7800,

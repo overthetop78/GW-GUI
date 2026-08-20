@@ -1,6 +1,7 @@
 using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Controls;
+using System.Windows.Data;
 using GWGUI.App.Localization;
 using GWGUI.App.Services;
 
@@ -186,7 +187,18 @@ internal static partial class EmulationSettingsLayout
             var row = new Grid { Margin = new Thickness(0, panel.Children.Count == 0 ? 0 : 10, 0, 0) };
             row.ColumnDefinitions.Add(new ColumnDefinition());
             row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(ControllerBehaviorWidth) });
-            row.Children.Add(new TextBlock { Text = behavior.Label, VerticalAlignment = VerticalAlignment.Center, TextWrapping = TextWrapping.Wrap });
+            var label = new TextBlock
+            {
+                Text = behavior.Label,
+                VerticalAlignment = VerticalAlignment.Center,
+                TextWrapping = TextWrapping.Wrap
+            };
+            label.SetBinding(UIElement.VisibilityProperty, new Binding(nameof(UIElement.Visibility))
+            {
+                Source = behavior.Control,
+                Mode = BindingMode.OneWay
+            });
+            row.Children.Add(label);
             behavior.Control.HorizontalAlignment = HorizontalAlignment.Stretch;
             Grid.SetColumn(behavior.Control, 1);
             row.Children.Add(behavior.Control);

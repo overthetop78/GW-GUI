@@ -966,15 +966,6 @@
   <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
     <value>Atari 130XE</value>
   </data>
-  <data name="Emulation.Atari.Model.Modern320K" xml:space="preserve">
-    <value>Atari XL/XE 320K</value>
-  </data>
-  <data name="Emulation.Atari.Model.Modern576K" xml:space="preserve">
-    <value>Atari XL/XE 576K</value>
-  </data>
-  <data name="Emulation.Atari.Model.Modern1088K" xml:space="preserve">
-    <value>Atari XL/XE 1088K</value>
-  </data>
   <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
     <value>Atari XEGS</value>
   </data>
@@ -988,7 +979,7 @@
     <value>Atari 7800</value>
   </data>
   <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
-    <value>Built-in controls</value>
+    <value>Atari Lynx</value>
   </data>
   <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
     <value>Atari Jaguar</value>
@@ -1132,4 +1123,38 @@
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>플로피 드라이브 소리</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>편광 오디오 필터</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>에뮬레이터 화면에 드라이브 활동 표시</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Mosaic 메모리 확장</value></data>
+  <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Axlon 메모리 확장</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Axlon $0F 뱅크 섀도</value></data>
+  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
+  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>스테레오 POKEY</value></data>
+  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>고해상도 아티팩트</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>SIO 가속</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>카세트에서 부팅</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>운영 체제 리비전</value></data>
+  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>내장 BASIC</value></data>
+  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>BASIC 리비전</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>패들 이동 속도</value></data>
+  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>자동 발사</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>발사 버튼을 누르는 동안</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>항상</value></data>
+  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>색조</value></data>
+  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>채도</value></data>
+  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>대비</value></data>
+  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>밝기</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>GTIA 색상 지연</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>외부 팔레트</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>컨트롤러 호환성</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>디지털 감도</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>아날로그 감도</value></data>
+  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>듀얼 스틱</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>포트 교환</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>에뮬레이션 속도 표시</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>섹터/블록 카운터 표시</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>R-Time 8 실시간 시계</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>P: 프린터 장치</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>R: 직렬 장치</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>낮음</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>보통</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>높음</value></data>
 </root>

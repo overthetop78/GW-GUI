@@ -4,55 +4,35 @@ namespace GWGUI.Emulation.Atari;
 
 internal static class AtariMachineOptionFunctions
 {
-    private const string MachineType = "hatari_machinetype";
-    private const string RamSize = "hatari_ramsize";
-    private const string CpuFrequency = "hatari_cpu_freq";
-    private const string HighResolution = "hatari_video_hires";
-    private const string RefreshRate = "hatari_forcerefresh";
-    private const string CropOverscan = "hatari_video_crop_overscan";
-    private const string FrameSkip = "hatari_frameskips";
-    private const string MouseSpeed = "hatari_emulated_mouse_speed";
-    private const string FastFloppy = "hatari_fastfdc";
-    private const string FloppyWriteProtection = "hatari_writeprotect_floppy";
-
-    private const string MainMemory = "gwgui_atari_main_memory";
-    private const string Frequency = "gwgui_atari_cpu_frequency";
-    private const string VideoStandard = "gwgui_atari_video_standard";
-    private const string Crop = "gwgui_atari_video_crop";
-    private const string Frames = "gwgui_atari_video_frameskip";
-    private const string PointerSpeed = "gwgui_atari_mouse_speed";
-    private const string FloppySpeedPrefix = "storage.speed.";
-    private const string FloppyWriteProtectionPrefix = "storage.writeProtected.";
-
     internal static IReadOnlyDictionary<string, string> Apply(AtariMachineConfiguration configuration)
     {
         var showDriveActivity = configuration.Options.GetValueOrDefault(
-            "hatari_led_status_display", "false");
+            AtariMachineOptionConstants.DriveActivity, "false");
         var result = new Dictionary<string, string>(configuration.Options, StringComparer.Ordinal)
         {
-            [MachineType] = MachineTypeFor(configuration.Model),
-            ["hatari_nomouse"] = "false",
+            [AtariMachineOptionConstants.MachineType] = MachineTypeFor(configuration.Model),
+            [AtariMachineOptionConstants.DisableMouse] = "false",
             // Hatari calls its joypad-driven pointer mode "mouse mode". GW GUI supplies a real
             // relative mouse through RETRO_DEVICE_MOUSE, which Hatari reads in the opposite mode.
-            ["hatari_start_in_mouse_mode"] = "false",
-            ["hatari_nokeys"] = "false",
-            ["hatari_twojoy"] = SecondJoystick(configuration) ? "true" : "false",
-            ["hatari_led_status_display"] = showDriveActivity,
+            [AtariMachineOptionConstants.StartInMouseMode] = "false",
+            [AtariMachineOptionConstants.DisableKeyboard] = "false",
+            [AtariMachineOptionConstants.TwoJoysticks] = SecondJoystick(configuration) ? "true" : "false",
+            [AtariMachineOptionConstants.DriveActivity] = showDriveActivity,
             // Older Hatari builds only paint drive LEDs inside their status line. Newer builds
             // also draw the compact OSD bars, so setting both keeps this option effective.
-            ["hatari_joymousestatus_display"] = string.Equals(showDriveActivity, "true",
+            [AtariMachineOptionConstants.InputStatusDisplay] = string.Equals(showDriveActivity, "true",
                 StringComparison.OrdinalIgnoreCase) ? "1" : "0",
-            ["hatari_autoload_config"] = "false"
+            [AtariMachineOptionConstants.AutoloadConfiguration] = "false"
         };
-        Copy(result, MainMemory, RamSize, RamValue);
-        Copy(result, Frequency, CpuFrequency, CpuFrequencyValue);
-        Copy(result, VideoStandard, HighResolution,
+        Copy(result, AtariMachineOptionConstants.MainMemory, AtariMachineOptionConstants.RamSize, RamValue);
+        Copy(result, AtariMachineOptionConstants.Frequency, AtariMachineOptionConstants.CpuFrequency, CpuFrequencyValue);
+        Copy(result, AtariConfigurationOptionConstants.VideoStandard, AtariMachineOptionConstants.HighResolution,
             value => string.Equals(value, "Monochrome", StringComparison.OrdinalIgnoreCase) ? "true" : "false");
-        Copy(result, VideoStandard, RefreshRate, RefreshRateValue);
-        Copy(result, Crop, CropOverscan,
+        Copy(result, AtariConfigurationOptionConstants.VideoStandard, AtariMachineOptionConstants.RefreshRate, RefreshRateValue);
+        Copy(result, AtariMachineOptionConstants.Crop, AtariMachineOptionConstants.CropOverscan,
             value => string.Equals(value, "enabled", StringComparison.OrdinalIgnoreCase) ? "true" : "false");
-        Copy(result, Frames, FrameSkip, value => value);
-        Copy(result, PointerSpeed, MouseSpeed, MouseSpeedValue);
+        Copy(result, AtariMachineOptionConstants.Frames, AtariMachineOptionConstants.FrameSkip, value => value);
+        Copy(result, AtariMachineOptionConstants.PointerSpeed, AtariMachineOptionConstants.MouseSpeed, MouseSpeedValue);
         ApplyFloppySettings(configuration, result);
         return result;
     }
@@ -120,10 +100,10 @@ internal static class AtariMachineOptionFunctions
     {
         var slot = configuration.Media.FirstOrDefault(media => media.Kind == AtariMediaKind.Floppy
             && media.IsInserted)?.Slot ?? Emulation.EmulationMediaSlot.Floppy0;
-        if (configuration.Options.TryGetValue(FloppySpeedPrefix + slot, out var speed))
-            result[FastFloppy] = speed == "100" ? "false" : "true";
-        if (configuration.Options.TryGetValue(FloppyWriteProtectionPrefix + slot, out var protection)
+        if (configuration.Options.TryGetValue(AtariMachineOptionConstants.FloppySpeedPrefix + slot, out var speed))
+            result[AtariMachineOptionConstants.FastFloppy] = speed == "100" ? "false" : "true";
+        if (configuration.Options.TryGetValue(AtariMachineOptionConstants.FloppyWriteProtectionPrefix + slot, out var protection)
             && bool.TryParse(protection, out var protectedMedia))
-            result[FloppyWriteProtection] = protectedMedia ? "on" : "off";
+            result[AtariMachineOptionConstants.FloppyWriteProtection] = protectedMedia ? "on" : "off";
     }
 }

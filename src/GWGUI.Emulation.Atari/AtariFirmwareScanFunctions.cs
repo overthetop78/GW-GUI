@@ -59,6 +59,10 @@ public static class AtariFirmwareScanFunctions
         definition => definition.Fingerprints.Any(fingerprint =>
             string.Equals(fingerprint.Value, md5, StringComparison.OrdinalIgnoreCase)));
 
+    public static AtariFirmwareDefinition? Identify(string md5, AtariMachineModel model) =>
+        AtariFirmwareCatalog.ForModel(model).FirstOrDefault(definition => definition.Fingerprints.Any(fingerprint =>
+            string.Equals(fingerprint.Value, md5, StringComparison.OrdinalIgnoreCase)));
+
     public static async Task<(AtariFirmwareDefinition Definition, AtariStRegion? Region)?> IdentifyTosAsync(
         string path, CancellationToken cancellationToken)
     {
@@ -127,7 +131,7 @@ public static class AtariFirmwareScanFunctions
         {
             var file = new FileInfo(path);
             var md5 = await ComputeMd5Async(path, cancellationToken).ConfigureAwait(false);
-            var identified = Identify(md5);
+            var identified = Identify(md5, model);
             var tos = identified is null ? await IdentifyTosAsync(path, cancellationToken).ConfigureAwait(false) : null;
             identified ??= tos?.Definition;
             var named = IdentifyByExpectedName(path, model);

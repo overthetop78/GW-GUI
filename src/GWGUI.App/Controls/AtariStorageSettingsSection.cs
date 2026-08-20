@@ -11,15 +11,35 @@ internal sealed class AtariStorageSettingsSection
     private readonly EmulationStorageDeviceList _deviceList = new();
     private AtariMachineConfiguration? _configuration;
     private AtariStorageView? _view;
+    private readonly StackPanel _emulatorOptions = new();
     private readonly CheckBox _showActivityOsd = new();
+    private readonly CheckBox _sioAcceleration = new();
+    private readonly CheckBox _cassetteBoot = new();
+    private readonly CheckBox _showSpeedOsd = new();
+    private readonly CheckBox _showSectorOsd = new();
+    private readonly CheckBox _realTimeClock = new();
+    private readonly CheckBox _printerDevice = new();
+    private readonly CheckBox _serialDevice = new();
     internal EmulationStorageDeviceList DeviceList => _deviceList;
-    internal UIElement EmulatorOptions => _showActivityOsd;
+    internal UIElement EmulatorOptions => _emulatorOptions;
 
     internal AtariStorageSettingsSection()
     {
         _showActivityOsd.Content = LocExtension.Get("Emulation.Storage.ActivityOsd");
-        _showActivityOsd.Margin = new Thickness(12, 14, 12, 4);
-        _showActivityOsd.Visibility = Visibility.Collapsed;
+        _sioAcceleration.Content = LocExtension.Get("Emulation.Atari.Storage.SioAcceleration");
+        _cassetteBoot.Content = LocExtension.Get("Emulation.Atari.Storage.CassetteBoot");
+        _showSpeedOsd.Content = LocExtension.Get("Emulation.Atari.Storage.SpeedOsd");
+        _showSectorOsd.Content = LocExtension.Get("Emulation.Atari.Storage.SectorOsd");
+        _realTimeClock.Content = LocExtension.Get("Emulation.Atari.Storage.RealTimeClock");
+        _printerDevice.Content = LocExtension.Get("Emulation.Atari.Storage.PrinterDevice");
+        _serialDevice.Content = LocExtension.Get("Emulation.Atari.Storage.SerialDevice");
+        foreach (var option in new[] { _showActivityOsd, _showSpeedOsd, _showSectorOsd, _sioAcceleration,
+                     _cassetteBoot, _realTimeClock, _printerDevice, _serialDevice })
+        {
+            option.Margin = new Thickness(12, 8, 12, 0);
+            option.Visibility = Visibility.Collapsed;
+            _emulatorOptions.Children.Add(option);
+        }
         _deviceList.AddRequested += (_, _) => EditDevice(null);
         _deviceList.ConfigureRequested += (_, args) => EditDevice(args.Device.Identifier);
         _deviceList.RemoveRequested += (_, args) => RemoveDevice(args.Device.Identifier);
@@ -29,10 +49,32 @@ internal sealed class AtariStorageSettingsSection
     {
         _configuration = configuration;
         _view = AtariStorageSettingsFunctions.Create(configuration);
-        _showActivityOsd.IsChecked = configuration.Options.TryGetValue("hatari_led_status_display", out var value)
-            && string.Equals(value, "true", StringComparison.OrdinalIgnoreCase);
-        _showActivityOsd.Visibility = configuration.Core == AtariCoreKind.Hatari
+        var eightBitComputer = AtariEightBitSettingsCatalog.SupportsComputerOptions(configuration.Model);
+        var activityKey = configuration.Core == AtariCoreKind.Hatari
+            ? "hatari_led_status_display" : AtariEightBitSettingsConstants.ShowActivityOptionKey;
+        _showActivityOsd.IsChecked = configuration.Options.TryGetValue(activityKey, out var value)
+            ? IsEnabled(value)
+            : configuration.Core == AtariCoreKind.Atari800;
+        _showActivityOsd.Visibility = configuration.Core == AtariCoreKind.Hatari || eightBitComputer
             ? Visibility.Visible : Visibility.Collapsed;
+        _sioAcceleration.IsChecked = !configuration.Options.TryGetValue(
+            AtariEightBitSettingsConstants.SioAccelerationOptionKey, out var sio) || IsEnabled(sio);
+        _sioAcceleration.Visibility = eightBitComputer ? Visibility.Visible : Visibility.Collapsed;
+        var hasCassette = AtariCompatibilityCatalog.Get(configuration.Model).Media.Any(rule =>
+            rule.Kind == AtariMediaKind.Cassette && rule.Availability == AtariMediaAvailability.Available);
+        _cassetteBoot.IsChecked = configuration.Options.TryGetValue(
+            AtariEightBitSettingsConstants.CassetteBootOptionKey, out var cassette) && IsEnabled(cassette);
+        _cassetteBoot.Visibility = hasCassette ? Visibility.Visible : Visibility.Collapsed;
+        LoadToggle(_showSpeedOsd, configuration, AtariEightBitSettingsConstants.ShowSpeedOptionKey,
+            defaultEnabled: false, eightBitComputer);
+        LoadToggle(_showSectorOsd, configuration, AtariEightBitSettingsConstants.ShowSectorOptionKey,
+            defaultEnabled: false, eightBitComputer);
+        LoadToggle(_realTimeClock, configuration, AtariEightBitSettingsConstants.RealTimeClockOptionKey,
+            defaultEnabled: false, eightBitComputer);
+        LoadToggle(_printerDevice, configuration, AtariEightBitSettingsConstants.PrinterDeviceOptionKey,
+            defaultEnabled: false, eightBitComputer);
+        LoadToggle(_serialDevice, configuration, AtariEightBitSettingsConstants.SerialDeviceOptionKey,
+            defaultEnabled: false, eightBitComputer);
         RefreshDevices();
     }
 
@@ -44,6 +86,25 @@ internal sealed class AtariStorageSettingsSection
         if (configuration.Core == AtariCoreKind.Hatari)
             storageOptions.Add(KeyValuePair.Create("hatari_led_status_display",
                 _showActivityOsd.IsChecked == true ? "true" : "false"));
+        else if (AtariEightBitSettingsCatalog.SupportsComputerOptions(configuration.Model))
+        {
+            storageOptions.Add(KeyValuePair.Create(AtariEightBitSettingsConstants.ShowActivityOptionKey,
+                ToggleValue(_showActivityOsd)));
+            storageOptions.Add(KeyValuePair.Create(AtariEightBitSettingsConstants.SioAccelerationOptionKey,
+                ToggleValue(_sioAcceleration)));
+            storageOptions.Add(KeyValuePair.Create(AtariEightBitSettingsConstants.CassetteBootOptionKey,
+                ToggleValue(_cassetteBoot)));
+            storageOptions.Add(KeyValuePair.Create(AtariEightBitSettingsConstants.ShowSpeedOptionKey,
+                ToggleValue(_showSpeedOsd)));
+            storageOptions.Add(KeyValuePair.Create(AtariEightBitSettingsConstants.ShowSectorOptionKey,
+                ToggleValue(_showSectorOsd)));
+            storageOptions.Add(KeyValuePair.Create(AtariEightBitSettingsConstants.RealTimeClockOptionKey,
+                ToggleValue(_realTimeClock)));
+            storageOptions.Add(KeyValuePair.Create(AtariEightBitSettingsConstants.PrinterDeviceOptionKey,
+                ToggleValue(_printerDevice)));
+            storageOptions.Add(KeyValuePair.Create(AtariEightBitSettingsConstants.SerialDeviceOptionKey,
+                ToggleValue(_serialDevice)));
+        }
         var options = AtariGeneralSettingsFunctions.MergeOptions(configuration.Options, storageOptions);
         return new AtariMachineConfiguration(configuration.Model, configuration.Firmwares, _configuration.Media,
             options, configuration.Input, configuration.Id, configuration.SchemaVersion,
@@ -177,4 +238,19 @@ internal sealed class AtariStorageSettingsSection
         _view = AtariStorageSettingsFunctions.Create(_configuration);
         RefreshDevices();
     }
+
+    private static bool IsEnabled(string value) =>
+        string.Equals(value, AtariEightBitSettingsConstants.Enabled, StringComparison.OrdinalIgnoreCase)
+        || string.Equals(value, "true", StringComparison.OrdinalIgnoreCase);
+
+    private static void LoadToggle(CheckBox editor, AtariMachineConfiguration configuration, string key,
+        bool defaultEnabled, bool visible)
+    {
+        editor.IsChecked = configuration.Options.TryGetValue(key, out var value)
+            ? IsEnabled(value) : defaultEnabled;
+        editor.Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    private static string ToggleValue(CheckBox option) => option.IsChecked == true
+        ? AtariEightBitSettingsConstants.Enabled : AtariEightBitSettingsConstants.Disabled;
 }

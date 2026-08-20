@@ -58,9 +58,9 @@ public sealed class AtariConfigurationCatalogSection : UserControl
             _configurations.Clear();
             foreach (var configuration in configurations)
             {
-                var model = _models.Single(item => item.Model == configuration.Model);
                 _configurations.Add(new AtariConfigurationItem(configuration,
-                    AtariConfigurationCatalogFunctions.DisplayName(configuration, model.DisplayName)));
+                    AtariConfigurationCatalogFunctions.DisplayName(configuration,
+                        AtariConfigurationCatalogFunctions.ModelName(configuration.Model))));
             }
             _list.SelectedItem = _configurations.FirstOrDefault(item => item.Configuration.Id == selectedId)
                 ?? _configurations.FirstOrDefault();

@@ -966,15 +966,6 @@
   <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
     <value>Atari 130XE</value>
   </data>
-  <data name="Emulation.Atari.Model.Modern320K" xml:space="preserve">
-    <value>Atari XL/XE 320K</value>
-  </data>
-  <data name="Emulation.Atari.Model.Modern576K" xml:space="preserve">
-    <value>Atari XL/XE 576K</value>
-  </data>
-  <data name="Emulation.Atari.Model.Modern1088K" xml:space="preserve">
-    <value>Atari XL/XE 1088K</value>
-  </data>
   <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
     <value>Atari XEGS</value>
   </data>
@@ -988,7 +979,7 @@
     <value>Atari 7800</value>
   </data>
   <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
-    <value>Built-in controls</value>
+    <value>Atari Lynx</value>
   </data>
   <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
     <value>Atari Jaguar</value>
@@ -1132,4 +1123,38 @@
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Âm thanh ổ đĩa mềm</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Bộ lọc âm thanh phân cực</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Hiển thị hoạt động ổ đĩa trên màn hình trình giả lập</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Mở rộng bộ nhớ Mosaic</value></data>
+  <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Mở rộng bộ nhớ Axlon</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Bóng ngân hàng Axlon $0F</value></data>
+  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
+  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>POKEY âm thanh nổi</value></data>
+  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Nhiễu màu độ phân giải cao</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>Tăng tốc SIO</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Khởi động từ băng cassette</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>Bản sửa đổi hệ điều hành</value></data>
+  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>BASIC tích hợp</value></data>
+  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>Bản sửa đổi BASIC</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>Tốc độ di chuyển paddle</value></data>
+  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>Bắn tự động</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>Trong khi giữ nút bắn</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Luôn luôn</value></data>
+  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Sắc độ</value></data>
+  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Độ bão hòa</value></data>
+  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>Độ tương phản</value></data>
+  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Độ sáng</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>Độ trễ màu GTIA</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>Bảng màu ngoài</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>Khả năng tương thích tay cầm</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>Độ nhạy số</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>Độ nhạy tương tự</value></data>
+  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>Cần điều khiển kép</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>Hoán đổi cổng</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>Hiện tốc độ mô phỏng</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>Hiện bộ đếm cung/khối</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>Đồng hồ thời gian thực R-Time 8</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>Thiết bị máy in P:</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>Thiết bị nối tiếp R:</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Thấp</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Bình thường</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Cao</value></data>
 </root>

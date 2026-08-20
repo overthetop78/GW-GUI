@@ -4,6 +4,8 @@ public static class AtariClassicModelCatalog
 {
     private static readonly IReadOnlyList<AtariClassicCpu> EightBitCpu =
         AtariClassicModelFunctions.Values(AtariClassicCpu.Mos6502C);
+    private static readonly IReadOnlyList<AtariClassicCpu> OriginalEightBitCpu =
+        AtariClassicModelFunctions.Values(AtariClassicCpu.Mos6502B);
     private static readonly IReadOnlyList<AtariClassicCpu> Atari2600Cpu =
         AtariClassicModelFunctions.Values(AtariClassicCpu.Mos6507);
     private static readonly IReadOnlyList<AtariClassicCpu> Atari7800Cpu =
@@ -24,8 +26,7 @@ public static class AtariClassicModelCatalog
         AtariClassicModelFunctions.Values(AtariClassicAudioCapability.Pokey);
     private static readonly IReadOnlyList<AtariClassicStorageCapability> EightBitStorage =
         AtariClassicModelFunctions.Values(AtariClassicStorageCapability.Floppy,
-            AtariClassicStorageCapability.Cassette, AtariClassicStorageCapability.Cartridge,
-            AtariClassicStorageCapability.ExecutableFile);
+            AtariClassicStorageCapability.Cassette, AtariClassicStorageCapability.Cartridge);
     private static readonly IReadOnlyList<AtariClassicPortDefinition> FourPortComputerPorts =
         AtariClassicModelFunctions.Values(
             new AtariClassicPortDefinition(AtariClassicPortCapability.Keyboard, AtariClassicModelConstants.OnePort),
@@ -39,6 +40,8 @@ public static class AtariClassicModelCatalog
     private static readonly IReadOnlyList<AtariFirmwareKind> Atari400And800Firmware =
         AtariClassicModelFunctions.Values(AtariFirmwareKind.AtariOsA, AtariFirmwareKind.AtariOsB,
             AtariFirmwareKind.AtariBasic);
+    private static readonly IReadOnlyList<AtariFirmwareKind> Atari400Firmware =
+        AtariClassicModelFunctions.Values(AtariFirmwareKind.AtariSystemOs);
     private static readonly IReadOnlyList<AtariFirmwareKind> XlXeFirmware =
         AtariClassicModelFunctions.Values(AtariFirmwareKind.AtariXlOs, AtariFirmwareKind.AtariBasic);
     private static readonly IReadOnlyList<AtariMediaKind> EightBitMedia =
@@ -55,11 +58,11 @@ public static class AtariClassicModelCatalog
         AtariClassicModelFunctions.Values(
             AtariClassicModelFunctions.CreateEightBit(AtariMachineModel.Atari400, AtariClassicModelConstants.Atari400And800ModelId,
                 AtariClassicModelConstants.Atari400DisplayNameResource, AtariClassicModelConstants.FortyEightKibibytes,
-                EightBitCpu, TelevisionRegions, EightBitVideo, PokeyAudio, EightBitStorage, FourPortComputerPorts,
-                Atari400And800Firmware, EightBitMedia),
+                OriginalEightBitCpu, TelevisionRegions, EightBitVideo, PokeyAudio, EightBitStorage, FourPortComputerPorts,
+                Atari400Firmware, EightBitMedia),
             AtariClassicModelFunctions.CreateEightBit(AtariMachineModel.Atari800, AtariClassicModelConstants.Atari400And800ModelId,
                 AtariClassicModelConstants.Atari800DisplayNameResource, AtariClassicModelConstants.FortyEightKibibytes,
-                EightBitCpu, TelevisionRegions, EightBitVideo, PokeyAudio, EightBitStorage, FourPortComputerPorts,
+                OriginalEightBitCpu, TelevisionRegions, EightBitVideo, PokeyAudio, EightBitStorage, FourPortComputerPorts,
                 Atari400And800Firmware, EightBitMedia),
             AtariClassicModelFunctions.CreateEightBit(AtariMachineModel.Atari800Xl, AtariClassicModelConstants.Atari800XlModelId,
                 AtariClassicModelConstants.Atari800XlDisplayNameResource, AtariClassicModelConstants.SixtyFourKibibytes,
@@ -69,18 +72,10 @@ public static class AtariClassicModelCatalog
                 AtariClassicModelConstants.Atari130XeDisplayNameResource,
                 AtariClassicModelConstants.OneHundredTwentyEightKibibytes, EightBitCpu, TelevisionRegions,
                 EightBitVideo, PokeyAudio, EightBitStorage, TwoPortComputerPorts, XlXeFirmware, EightBitMedia),
-            AtariClassicModelFunctions.CreateEightBit(AtariMachineModel.ModernXlXe320K, AtariClassicModelConstants.Modern320KModelId,
-                AtariClassicModelConstants.Modern320KDisplayNameResource,
-                AtariClassicModelConstants.ThreeHundredTwentyKibibytes, EightBitCpu, TelevisionRegions,
-                EightBitVideo, PokeyAudio, EightBitStorage, TwoPortComputerPorts, XlXeFirmware, EightBitMedia),
-            AtariClassicModelFunctions.CreateEightBit(AtariMachineModel.ModernXlXe576K, AtariClassicModelConstants.Modern576KModelId,
-                AtariClassicModelConstants.Modern576KDisplayNameResource,
-                AtariClassicModelConstants.FiveHundredSeventySixKibibytes, EightBitCpu, TelevisionRegions,
-                EightBitVideo, PokeyAudio, EightBitStorage, TwoPortComputerPorts, XlXeFirmware, EightBitMedia),
-            AtariClassicModelFunctions.CreateEightBit(AtariMachineModel.ModernXlXe1088K, AtariClassicModelConstants.Modern1088KModelId,
-                AtariClassicModelConstants.Modern1088KDisplayNameResource,
-                AtariClassicModelConstants.OneThousandEightyEightKibibytes, EightBitCpu, TelevisionRegions,
-                EightBitVideo, PokeyAudio, EightBitStorage, TwoPortComputerPorts, XlXeFirmware, EightBitMedia),
+            AtariClassicModelFunctions.CreateEightBit(AtariMachineModel.XlXe, AtariClassicModelConstants.XlXeModelId,
+                AtariClassicModelConstants.XlXeDisplayNameResource, AtariClassicModelConstants.ThreeHundredTwentyKibibytes,
+                EightBitCpu, TelevisionRegions, EightBitVideo, PokeyAudio, EightBitStorage, TwoPortComputerPorts,
+                XlXeFirmware, EightBitMedia),
             AtariClassicModelFunctions.CreateEightBit(AtariMachineModel.Xegs, AtariClassicModelConstants.XegsModelId,
                 AtariClassicModelConstants.XegsDisplayNameResource, AtariClassicModelConstants.SixtyFourKibibytes,
                 EightBitCpu, TelevisionRegions, EightBitVideo, PokeyAudio, EightBitStorage, TwoPortComputerPorts,

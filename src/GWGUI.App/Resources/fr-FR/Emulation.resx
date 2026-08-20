@@ -424,14 +424,11 @@
   <data name="Emulation.Atari.Model.800" xml:space="preserve"><value>Atari 800</value></data>
   <data name="Emulation.Atari.Model.800Xl" xml:space="preserve"><value>Atari 800XL</value></data>
   <data name="Emulation.Atari.Model.130Xe" xml:space="preserve"><value>Atari 130XE</value></data>
-  <data name="Emulation.Atari.Model.Modern320K" xml:space="preserve"><value>Atari XL/XE 320K</value></data>
-  <data name="Emulation.Atari.Model.Modern576K" xml:space="preserve"><value>Atari XL/XE 576K</value></data>
-  <data name="Emulation.Atari.Model.Modern1088K" xml:space="preserve"><value>Atari XL/XE 1088K</value></data>
   <data name="Emulation.Atari.Model.Xegs" xml:space="preserve"><value>Atari XEGS</value></data>
   <data name="Emulation.Atari.Model.5200" xml:space="preserve"><value>Atari 5200</value></data>
   <data name="Emulation.Atari.Model.2600" xml:space="preserve"><value>Atari 2600</value></data>
   <data name="Emulation.Atari.Model.7800" xml:space="preserve"><value>Atari 7800</value></data>
-  <data name="Emulation.Atari.Model.Lynx" xml:space="preserve"><value>Built-in controls</value></data>
+  <data name="Emulation.Atari.Model.Lynx" xml:space="preserve"><value>Atari Lynx</value></data>
   <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve"><value>Atari Jaguar</value></data>
   <data name="Emulation.Atari.Model.JaguarCd" xml:space="preserve"><value>Atari Jaguar CD</value></data>
   <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>Cette valeur est déterminée par le modèle sélectionné.</value></data>
@@ -484,4 +481,38 @@
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Bruit des lecteurs de disquettes</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Filtre audio polarisé</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Afficher l’activité des lecteurs sur l’écran de l’émulateur</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Extension mémoire Mosaic</value></data>
+  <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Extension mémoire Axlon</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Banque fantôme Axlon $0F</value></data>
+  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
+  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>POKEY stéréo</value></data>
+  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Artéfacts haute résolution</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>Accélération SIO</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Démarrer depuis la cassette</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>Révision du système d’exploitation</value></data>
+  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>BASIC interne</value></data>
+  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>Révision du BASIC</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>Vitesse des paddles</value></data>
+  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>Tir automatique</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>Pendant l’appui sur le tir</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Toujours</value></data>
+  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Teinte</value></data>
+  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Saturation</value></data>
+  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>Contraste</value></data>
+  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Luminosité</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>Retard de couleur GTIA</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>Palette externe</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>Compatibilité des manettes</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>Sensibilité numérique</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>Sensibilité analogique</value></data>
+  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>Double joystick</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>Permuter les ports</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>Afficher la vitesse d’émulation à l’écran</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>Afficher le compteur secteur/bloc</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>Horloge temps réel R-Time 8</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>Périphérique d’impression P:</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>Périphérique série R:</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Basse</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normale</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Haute</value></data>
 </root>

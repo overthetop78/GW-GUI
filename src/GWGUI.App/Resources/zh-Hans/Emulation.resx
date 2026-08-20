@@ -966,15 +966,6 @@
   <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
     <value>Atari 130XE</value>
   </data>
-  <data name="Emulation.Atari.Model.Modern320K" xml:space="preserve">
-    <value>Atari XL/XE 320K</value>
-  </data>
-  <data name="Emulation.Atari.Model.Modern576K" xml:space="preserve">
-    <value>Atari XL/XE 576K</value>
-  </data>
-  <data name="Emulation.Atari.Model.Modern1088K" xml:space="preserve">
-    <value>Atari XL/XE 1088K</value>
-  </data>
   <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
     <value>Atari XEGS</value>
   </data>
@@ -988,7 +979,7 @@
     <value>Atari 7800</value>
   </data>
   <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
-    <value>Built-in controls</value>
+    <value>Atari Lynx</value>
   </data>
   <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
     <value>Atari Jaguar</value>
@@ -1132,4 +1123,38 @@
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>软盘驱动器声音</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>偏振音频滤波器</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>在模拟器屏幕上显示驱动器活动</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Mosaic 内存扩展</value></data>
+  <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Axlon 内存扩展</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Axlon $0F 存储体影子</value></data>
+  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
+  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>立体声 POKEY</value></data>
+  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>高分辨率伪色</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>SIO 加速</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>从磁带启动</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>操作系统修订版</value></data>
+  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>内置 BASIC</value></data>
+  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>BASIC 修订版</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>旋钮控制器移动速度</value></data>
+  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>自动连发</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>按住开火键时</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>始终</value></data>
+  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>色调</value></data>
+  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>饱和度</value></data>
+  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>对比度</value></data>
+  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>亮度</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>GTIA 色彩延迟</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>外部调色板</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>控制器兼容性</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>数字灵敏度</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>模拟灵敏度</value></data>
+  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>双摇杆</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>交换端口</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>显示模拟速度</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>显示扇区/块计数器</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>R-Time 8 实时时钟</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>P: 打印机设备</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>R: 串行设备</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>低</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>正常</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>高</value></data>
 </root>

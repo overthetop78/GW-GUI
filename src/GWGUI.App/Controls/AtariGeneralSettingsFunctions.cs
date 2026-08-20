@@ -34,7 +34,8 @@ internal static class AtariGeneralSettingsFunctions
     }
 
     internal static bool SupportsHardDiskFolder(AtariMachineModel model) =>
-        AtariCompatibilityCatalog.Get(model).Media.Any(rule =>
+        AtariEightBitSettingsCatalog.SupportsComputerOptions(model)
+        || AtariCompatibilityCatalog.Get(model).Media.Any(rule =>
             rule.Availability == AtariMediaAvailability.Available
             && rule.Kind is AtariMediaKind.HardDisk or AtariMediaKind.Directory);
 

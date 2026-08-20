@@ -48,6 +48,21 @@ public sealed class AtariInputSettingsTests
     }
 
     [Fact]
+    public void Atari400KeyboardHasConsoleKeysButNoLaterHelpKey()
+    {
+        var view = AtariInputSettingsFunctions.Create(
+            new AtariMachineConfiguration(AtariMachineModel.Atari400));
+
+        Assert.Contains(view.KeyboardDefinitions, value => value.Id == nameof(EmulationKey.AtariOption)
+            && value.Label == "Option");
+        Assert.Contains(view.KeyboardDefinitions, value => value.Id == nameof(EmulationKey.AtariSelect)
+            && value.Label == "Select");
+        Assert.Contains(view.KeyboardDefinitions, value => value.Id == nameof(EmulationKey.AtariStart)
+            && value.Label == "Start");
+        Assert.DoesNotContain(view.KeyboardDefinitions, value => value.Id == nameof(EmulationKey.Help));
+    }
+
+    [Fact]
     public void ConsoleInputPagesDoNotExposeControllerButtonsAsKeyboardOrMouseActions()
     {
         foreach (var model in new[]
@@ -173,6 +188,56 @@ public sealed class AtariInputSettingsTests
             result.Options[AtariMouseSettingsConstants.SpeedOptionKey]);
         Assert.Equal(AtariInputSettingsTestConstants.UnknownValue,
             result.Options[AtariInputSettingsTestConstants.UnknownOption]);
+    }
+
+    [Fact]
+    public void Atari400PaddleSelectionEnablesAndPersistsNativePaddleOptions()
+    {
+        var source = new AtariMachineConfiguration(AtariMachineModel.Atari400,
+            options: new Dictionary<string, string>
+            {
+                [AtariInputSettingsTestConstants.UnknownOption] = AtariInputSettingsTestConstants.UnknownValue
+            });
+        var paddle = new AtariControllerBinding(AtariInputSettingsTestConstants.FirstPort,
+            AtariPeripheralKind.Paddle);
+
+        var result = AtariInputSettingsFunctions.Apply(source, [], [], [paddle], false,
+            EmulationKey.F10, AtariMouseSettingsConstants.DefaultSpeedPercent, "7",
+            AtariEightBitSettingsConstants.AutofireOnButton, AtariEightBitSettingsConstants.Joy2BPlus,
+            "55", "80");
+
+        Assert.Equal(AtariEightBitSettingsConstants.Enabled,
+            result.Options[AtariEightBitSettingsConstants.PaddleActiveOptionKey]);
+        Assert.Equal("7", result.Options[AtariEightBitSettingsConstants.PaddleMovementSpeedOptionKey]);
+        Assert.Equal(AtariEightBitSettingsConstants.AutofireOnButton,
+            result.Options[AtariEightBitSettingsConstants.AutofireOptionKey]);
+        Assert.Equal(AtariEightBitSettingsConstants.Joy2BPlus,
+            result.Options[AtariEightBitSettingsConstants.ControllerCompatibilityOptionKey]);
+        Assert.Equal("55", result.Options[AtariEightBitSettingsConstants.DigitalSensitivityOptionKey]);
+        Assert.Equal("80", result.Options[AtariEightBitSettingsConstants.AnalogSensitivityOptionKey]);
+        Assert.Equal(AtariInputSettingsTestConstants.UnknownValue,
+            result.Options[AtariInputSettingsTestConstants.UnknownOption]);
+    }
+
+    [Fact]
+    public void Atari400PaddleOptionsNormalizeUnknownSavedValues()
+    {
+        var view = AtariInputSettingsFunctions.Create(new AtariMachineConfiguration(AtariMachineModel.Atari400,
+            options: new Dictionary<string, string>
+            {
+                [AtariEightBitSettingsConstants.PaddleMovementSpeedOptionKey] = "99",
+                [AtariEightBitSettingsConstants.AutofireOptionKey] = "invalid",
+                [AtariEightBitSettingsConstants.ControllerCompatibilityOptionKey] = "invalid",
+                [AtariEightBitSettingsConstants.DigitalSensitivityOptionKey] = "101",
+                [AtariEightBitSettingsConstants.AnalogSensitivityOptionKey] = "0"
+            }));
+
+        Assert.True(view.HasEightBitControllerOptions);
+        Assert.Equal(AtariEightBitSettingsConstants.DefaultPaddleMovementSpeed, view.PaddleMovementSpeed);
+        Assert.Equal(AtariEightBitSettingsConstants.Disabled, view.AutofireMode);
+        Assert.Equal(AtariEightBitSettingsConstants.None, view.ControllerCompatibilityMode);
+        Assert.Equal(AtariEightBitSettingsConstants.DefaultSensitivity, view.DigitalSensitivity);
+        Assert.Equal(AtariEightBitSettingsConstants.DefaultSensitivity, view.AnalogSensitivity);
     }
 
     [Fact]

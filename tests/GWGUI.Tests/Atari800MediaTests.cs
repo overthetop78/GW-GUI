@@ -1,6 +1,7 @@
 using System.IO;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari;
+using GWGUI.App.Controls;
 
 namespace GWGUI.Tests;
 
@@ -124,8 +125,56 @@ public sealed class Atari800MediaTests
 
         Assert.Equal(Atari800MediaConstants.Atari5200SystemValue,
             options[Atari800MediaConstants.SystemOptionKey]);
-        Assert.Equal(Atari800MediaConstants.DisabledOptionValue,
-            options[Atari800MediaConstants.CassetteBootOptionKey]);
+        Assert.Equal(AtariEightBitSettingsConstants.Disabled,
+            options[AtariEightBitSettingsConstants.CassetteBootOptionKey]);
+    }
+
+    [Fact]
+    public void Atari400SettingsAreTranslatedToNativeOptions()
+    {
+        var configuration = new AtariMachineConfiguration(AtariMachineModel.Atari400, options:
+            new Dictionary<string, string>
+            {
+                [AtariVideoAudioSettingsConstants.StandardOptionKey] = AtariClassicRegion.Pal.ToString(),
+                [AtariVideoAudioSettingsConstants.ResolutionOptionKey] = "384x288",
+                [AtariEightBitSettingsConstants.AxlonMemoryOptionKey] = "256 KB",
+                [AtariEightBitSettingsConstants.PokeyStereoOptionKey] = AtariEightBitSettingsConstants.Enabled
+            });
+
+        var options = Atari800MediaFunctions.ApplyOptions(configuration, null);
+
+        Assert.Equal(AtariEightBitSettingsConstants.Pal,
+            options[AtariEightBitSettingsConstants.VideoStandardOptionKey]);
+        Assert.Equal("384x288", options[AtariEightBitSettingsConstants.ResolutionOptionKey]);
+        Assert.Equal(AtariEightBitSettingsConstants.Disabled,
+            options[AtariEightBitSettingsConstants.MosaicMemoryOptionKey]);
+        Assert.Equal("256 KB", options[AtariEightBitSettingsConstants.AxlonMemoryOptionKey]);
+        Assert.Equal(AtariEightBitSettingsConstants.Enabled,
+            options[AtariEightBitSettingsConstants.PokeyStereoOptionKey]);
+        Assert.Equal(AtariEightBitSettingsConstants.NeutralAnalogDeadZone,
+            options[AtariEightBitSettingsConstants.AnalogDeadZoneOptionKey]);
+        Assert.DoesNotContain(AtariConfigurationOptionConstants.VideoStandard, options);
+        Assert.DoesNotContain(AtariConfigurationOptionConstants.VideoResolution, options);
+    }
+
+    [Fact]
+    public void Atari400MutuallyExclusiveMemoryExtensionsAreNormalized()
+    {
+        var configuration = new AtariMachineConfiguration(AtariMachineModel.Atari400, options:
+            new Dictionary<string, string>
+            {
+                [AtariEightBitSettingsConstants.MosaicMemoryOptionKey] = "80 KB",
+                [AtariEightBitSettingsConstants.AxlonMemoryOptionKey] = "256 KB",
+                [AtariEightBitSettingsConstants.AxlonShadowOptionKey] = AtariEightBitSettingsConstants.Enabled
+            });
+
+        var options = Atari800MediaFunctions.ApplyOptions(configuration, null);
+
+        Assert.Equal("80 KB", options[AtariEightBitSettingsConstants.MosaicMemoryOptionKey]);
+        Assert.Equal(AtariEightBitSettingsConstants.Disabled,
+            options[AtariEightBitSettingsConstants.AxlonMemoryOptionKey]);
+        Assert.Equal(AtariEightBitSettingsConstants.Disabled,
+            options[AtariEightBitSettingsConstants.AxlonShadowOptionKey]);
     }
 
     private static EmulationMediaSlot Slot(AtariMediaKind kind) => kind switch

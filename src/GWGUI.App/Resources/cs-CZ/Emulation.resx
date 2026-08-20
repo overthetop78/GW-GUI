@@ -966,15 +966,6 @@
   <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
     <value>Atari 130XE</value>
   </data>
-  <data name="Emulation.Atari.Model.Modern320K" xml:space="preserve">
-    <value>Atari XL/XE 320K</value>
-  </data>
-  <data name="Emulation.Atari.Model.Modern576K" xml:space="preserve">
-    <value>Atari XL/XE 576K</value>
-  </data>
-  <data name="Emulation.Atari.Model.Modern1088K" xml:space="preserve">
-    <value>Atari XL/XE 1088K</value>
-  </data>
   <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
     <value>Atari XEGS</value>
   </data>
@@ -988,7 +979,7 @@
     <value>Atari 7800</value>
   </data>
   <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
-    <value>Built-in controls</value>
+    <value>Atari Lynx</value>
   </data>
   <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
     <value>Atari Jaguar</value>
@@ -1132,4 +1123,38 @@
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Zvuk disketové mechaniky</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Polarizovaný zvukový filtr</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Zobrazit aktivitu jednotek na obrazovce emulátoru</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Rozšíření paměti Mosaic</value></data>
+  <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Rozšíření paměti Axlon</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Stín banky Axlon $0F</value></data>
+  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
+  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>Stereo POKEY</value></data>
+  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Artefakty ve vysokém rozlišení</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>Zrychlení SIO</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Spustit z kazety</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>Revize operačního systému</value></data>
+  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>Interní BASIC</value></data>
+  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>Revize BASIC</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>Rychlost pohybu paddle ovladačů</value></data>
+  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>Automatická střelba</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>Při podržení střelby</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Vždy</value></data>
+  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Odstín</value></data>
+  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Sytost</value></data>
+  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>Kontrast</value></data>
+  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Jas</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>Zpoždění barev GTIA</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>Externí paleta</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>Kompatibilita ovladače</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>Digitální citlivost</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>Analogová citlivost</value></data>
+  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>Dvojitý joystick</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>Prohodit porty</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>Zobrazit rychlost emulace</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>Zobrazit počítadlo sektorů/bloků</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>Hodiny reálného času R-Time 8</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>Tiskové zařízení P:</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>Sériové zařízení R:</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Nízká</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normální</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Vysoká</value></data>
 </root>

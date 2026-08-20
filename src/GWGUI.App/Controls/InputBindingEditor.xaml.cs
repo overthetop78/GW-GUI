@@ -319,12 +319,6 @@ public partial class InputBindingEditor : UserControl
     }
 }
 
-public sealed record InputBindingDefinition(string Id, string Label, string DefaultBinding);
-public enum InputBindingState { Valid, Conflict, Reserved, Unassigned }
-[Flags]
-public enum InputCaptureSources { Keyboard = 1, Mouse = 2, Controller = 4 }
-public sealed record ControllerCapturedEventArgs(int Port);
-
 public sealed class InputBindingRow(string id, string label, string binding, string defaultBinding) : INotifyPropertyChanged
 {
     private string _binding = binding;
@@ -433,4 +427,3 @@ public sealed class InputBindingRow(string id, string label, string binding, str
     private void OnChanged([CallerMemberName] string? property = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
 }
 
-public sealed record InputBindingPart(string Text, Visibility SeparatorVisibility);

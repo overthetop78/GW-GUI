@@ -223,6 +223,38 @@ public sealed class AtariMachineViewTests
     }
 
     [Fact]
+    public void Atari400HardResetReloadsTheInstanceWhenACartridgeIsMounted()
+    {
+        RunOnSta(() =>
+        {
+            var cartridge = new AtariMediaConfiguration(AtariMachineViewTestConstants.FirstMediaPath,
+                AtariMediaKind.Cartridge, EmulationMediaSlot.Cartridge0, IsInserted: true);
+            var configuration = new AtariMachineConfiguration(AtariMachineModel.Atari400,
+                media: [cartridge], videoRenderer: EmulationVideoRenderer.Wpf);
+            var machines = new List<ViewMachine>();
+            ViewMachine Create(AtariMachineConfiguration value)
+            {
+                var machine = new ViewMachine(value);
+                machines.Add(machine);
+                return machine;
+            }
+            var original = Create(configuration);
+            var folder = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString(
+                AtariEmulationConstants.IdentifierFormat));
+            var view = new AtariMachineController(original, Create, configuration, null,
+                Path.Combine(folder, AtariMachineViewTestConstants.StateFileName), folder);
+
+            view.StartAsync().GetAwaiter().GetResult();
+            view.HardResetAsync().GetAwaiter().GetResult();
+
+            Assert.Equal(2, machines.Count);
+            Assert.True(original.Disposed);
+            Assert.Equal(cartridge, Assert.Single(machines[^1].Configuration.Media));
+            view.StopAsync().GetAwaiter().GetResult();
+        });
+    }
+
+    [Fact]
     public void FullscreenCanBeEnteredAndExitedWithoutChangingTheMachine()
     {
         RunOnSta(() =>

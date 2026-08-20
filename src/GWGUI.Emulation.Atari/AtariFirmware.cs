@@ -3,6 +3,7 @@ namespace GWGUI.Emulation.Atari;
 public enum AtariFirmwareKind
 {
     Tos,
+    AtariSystemOs,
     AtariOsA,
     AtariOsB,
     AtariXlOs,

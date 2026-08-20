@@ -10,6 +10,102 @@ namespace GWGUI.Tests;
 [Collection(AtariNativeCoreTestConstants.CollectionName)]
 public sealed class AtariHardwareSettingsTests
 {
+    [Fact]
+    public void EightBitNativeOptionInventoryMatchesTheActiveEmulatorInterface()
+    {
+        string[] expected =
+        [
+            "atari800_ntscpal", "atari800_artifacting_mode", "atari800_resolution",
+            "color_hue", "color_saturation", "color_contrast", "color_brightness", "color_gamma",
+            "color_delay", "external_palette", "atari800_opt2", "paddle_active",
+            "paddle_movement_speed", "pot_digital_sensitivity", "pot_analog_sensitivity",
+            "pot_analog_deadzone", "atari800_keyboard", "atarixegs_keyboard_detached",
+            "atari800_vkbd_enabled", "atari800_system", "atari800_internalbasic", "atari800_os_800",
+            "atari800_os_xl", "atari800_os_5200", "atari800_basic_version", "atari800_mosaic",
+            "atari800_axlon", "atari800_axlon_shadow", "atari800_mapram", "atari800_autofire",
+            "atari800_show_speed", "atari800_show_diskled", "atari800_show_sector",
+            "atari800_show_1200leds", "atari800_xep80", "atari800_rtime", "atari800_pdevice",
+            "atari800_rdevice", "atari800_slowxex", "atari800_sioaccel", "atari800_cassboot",
+            "atari800_pokey_stereo", "atari800_cfg"
+        ];
+        var actual = AtariEightBitSettingsCatalog.NativeSettings.Select(setting => setting.Key).ToArray();
+
+        Assert.Equal(expected.Order(), actual.Order());
+        Assert.Equal(actual.Length, actual.Distinct(StringComparer.Ordinal).Count());
+    }
+
+    [Fact]
+    public void Atari400NativeSettingsAreNormalizedAndIrrelevantOptionsAreRemoved()
+    {
+        var configuration = new AtariMachineConfiguration(AtariMachineModel.Atari400, options:
+            new Dictionary<string, string>
+            {
+                [AtariEightBitSettingsConstants.ColorHueOptionKey] = "9.99",
+                [AtariEightBitSettingsConstants.DigitalSensitivityOptionKey] = "101",
+                [AtariEightBitSettingsConstants.PaddleActiveOptionKey] = AtariEightBitSettingsConstants.Enabled,
+                [AtariEightBitSettingsConstants.ControllerCompatibilityOptionKey] =
+                    AtariEightBitSettingsConstants.DualStick,
+                [AtariConfigurationOptionConstants.VideoStandard] = "SECAM",
+                [AtariConfigurationOptionConstants.VideoResolution] = "999x999",
+                [AtariEightBitSettingsConstants.ArtifactingModeOptionKey] = "invalid",
+                [AtariEightBitSettingsConstants.ShowActivityOptionKey] = "invalid",
+                [AtariEightBitSettingsConstants.SioAccelerationOptionKey] = "invalid",
+                [AtariEightBitSettingsConstants.XlOsOptionKey] = "something",
+                [AtariEightBitSettingsConstants.Xep80OptionKey] = "port 1"
+            });
+
+        var options = AtariEightBitSettingsFunctions.Normalize(configuration);
+
+        Assert.Equal(AtariEightBitSettingsConstants.DefaultColorAdjustment,
+            options[AtariEightBitSettingsConstants.ColorHueOptionKey]);
+        Assert.Equal(AtariEightBitSettingsConstants.DefaultSensitivity,
+            options[AtariEightBitSettingsConstants.DigitalSensitivityOptionKey]);
+        Assert.Equal(AtariEightBitSettingsConstants.None,
+            options[AtariEightBitSettingsConstants.ControllerCompatibilityOptionKey]);
+        Assert.Equal(AtariEightBitSettingsConstants.NeutralAnalogDeadZone,
+            options[AtariEightBitSettingsConstants.AnalogDeadZoneOptionKey]);
+        Assert.Equal(AtariClassicRegion.Ntsc.ToString(),
+            options[AtariConfigurationOptionConstants.VideoStandard]);
+        Assert.Equal(AtariEightBitSettingsCatalog.OriginalComputerResolutions[0],
+            options[AtariConfigurationOptionConstants.VideoResolution]);
+        Assert.Equal(AtariEightBitSettingsConstants.None,
+            options[AtariEightBitSettingsConstants.ArtifactingModeOptionKey]);
+        Assert.Equal(AtariEightBitSettingsConstants.Enabled,
+            options[AtariEightBitSettingsConstants.ShowActivityOptionKey]);
+        Assert.Equal(AtariEightBitSettingsConstants.Enabled,
+            options[AtariEightBitSettingsConstants.SioAccelerationOptionKey]);
+        Assert.DoesNotContain(AtariEightBitSettingsConstants.XlOsOptionKey, options);
+        Assert.DoesNotContain(AtariEightBitSettingsConstants.Xep80OptionKey, options);
+    }
+
+
+    [Fact]
+    public void OriginalAtariOsChoicesFollowTheSelectedVideoStandard()
+    {
+        Assert.Equal(["auto", "Rev. A PAL", "Rev. B NTSC", "AltirraOS"],
+            AtariEightBitSettingsCatalog.OriginalOsRevisions(AtariClassicRegion.Pal));
+        Assert.Equal(["auto", "Rev. A NTSC", "Rev. B NTSC", "AltirraOS"],
+            AtariEightBitSettingsCatalog.OriginalOsRevisions(AtariClassicRegion.Ntsc));
+    }
+
+    [Fact]
+    public void OriginalAtariOsFirmwareCompatibilityFollowsTheSelectedVideoStandard()
+    {
+        var pal = AtariFirmwareCatalog.Get(AtariFirmwareConstants.AtariOsAId);
+        var ntscA = AtariFirmwareCatalog.Get(AtariFirmwareConstants.AtariOsANtscId);
+        var ntscB = AtariFirmwareCatalog.Get(AtariFirmwareConstants.AtariOsBId);
+        var patchedB = AtariFirmwareCatalog.Get(AtariFirmwareConstants.AtariOsBPatchedId);
+
+        Assert.True(AtariEightBitSettingsCatalog.IsOriginalOsCompatible(pal, AtariClassicRegion.Pal));
+        Assert.False(AtariEightBitSettingsCatalog.IsOriginalOsCompatible(pal, AtariClassicRegion.Ntsc));
+        Assert.True(AtariEightBitSettingsCatalog.IsOriginalOsCompatible(ntscA, AtariClassicRegion.Ntsc));
+        Assert.False(AtariEightBitSettingsCatalog.IsOriginalOsCompatible(ntscA, AtariClassicRegion.Pal));
+        Assert.True(AtariEightBitSettingsCatalog.IsOriginalOsCompatible(ntscB, AtariClassicRegion.Ntsc));
+        Assert.True(AtariEightBitSettingsCatalog.IsOriginalOsCompatible(ntscB, AtariClassicRegion.Pal));
+        Assert.True(AtariEightBitSettingsCatalog.IsOriginalOsCompatible(patchedB, AtariClassicRegion.Pal));
+        Assert.True(AtariEightBitSettingsCatalog.IsOriginalOsCompatible(patchedB, AtariClassicRegion.Ntsc));
+    }
+
     public static TheoryData<AtariMachineModel> EveryModel => new(Enum.GetValues<AtariMachineModel>());
 
     [Theory]
@@ -20,7 +116,11 @@ public sealed class AtariHardwareSettingsTests
             AtariHardwareSettingsTestConstants.UnknownOptions);
 
         Assert.Equal(AtariHardwareSettingsTestConstants.CpuFieldCount, view.Cpu.Count);
-        Assert.Equal(AtariHardwareSettingsTestConstants.MemoryFieldCount, view.Memory.Count);
+        var expectedMemoryFields = model is AtariMachineModel.Atari400 or AtariMachineModel.Atari800
+            ? 5
+            : AtariEightBitSettingsCatalog.SupportsMapRam(model) ? 3
+            : AtariHardwareSettingsTestConstants.MemoryFieldCount;
+        Assert.Equal(expectedMemoryFields, view.Memory.Count);
         Assert.Equal(AtariFirmwareCatalog.ForModel(model), view.Firmware);
         Assert.NotEmpty(view.Regions);
         Assert.All(view.Cpu.Concat(view.Memory), field =>
@@ -48,6 +148,97 @@ public sealed class AtariHardwareSettingsTests
             result.Options[AtariHardwareSettingsTestConstants.UnknownKey]);
         Assert.Equal(AtariHardwareSettingsTestConstants.ChangedValue,
             result.Options[AtariHardwareSettingsConstants.CpuOptionKey]);
+    }
+
+    [Fact]
+    public void Atari400UsesPalFrequencyAndExposesItsRealMemoryExpansions()
+    {
+        var options = new Dictionary<string, string>
+        {
+            [AtariVideoAudioSettingsConstants.StandardOptionKey] = AtariClassicRegion.Pal.ToString(),
+            [AtariEightBitSettingsConstants.MosaicMemoryOptionKey] = "80 KB",
+            [AtariEightBitSettingsConstants.AxlonMemoryOptionKey] = "256 KB"
+        };
+        var view = AtariHardwareSettingsFunctions.Create(AtariMachineModel.Atari400, options);
+
+        var cpu = view.Cpu.Single(field => field.Option == AtariSettingOption.CpuModel);
+        var speed = view.Cpu.Single(field => field.Option == AtariSettingOption.CpuSpeed);
+        Assert.Equal(AtariClassicCpu.Mos6502B.ToString(), cpu.SelectedValue);
+        Assert.Equal(AtariEightBitSettingsConstants.PalCpuFrequencyHz.ToString(), speed.SelectedValue);
+        Assert.Contains("MHz", speed.Choices.Single().DisplayName);
+        Assert.Contains("PAL", speed.Choices.Single().DisplayName, StringComparison.OrdinalIgnoreCase);
+        Assert.Equal(48 * 1024 + 80 * 1024 + 256 * 1024,
+            AtariHardwareSettingsFunctions.TotalMemoryBytes(options, view));
+        Assert.Equal(AtariOptionAvailability.Hidden,
+            view.Cpu.Single(field => field.Option == AtariSettingOption.CpuPrecision).Availability);
+        Assert.Equal(AtariOptionAvailability.Hidden,
+            view.Cpu.Single(field => field.Option == AtariSettingOption.Fpu).Availability);
+        Assert.DoesNotContain(view.Memory, field => field.Option == AtariSettingOption.MapRam);
+    }
+
+    [Fact]
+    public void MapRamIsOfferedOnlyToXlXeModels()
+    {
+        var xl = AtariHardwareSettingsFunctions.Create(AtariMachineModel.Atari800Xl,
+            AtariHardwareSettingsTestConstants.UnknownOptions);
+        Assert.Equal(AtariOptionAvailability.Editable,
+            xl.Memory.Single(field => field.Option == AtariSettingOption.MapRam).Availability);
+
+        var original = AtariHardwareSettingsFunctions.Create(AtariMachineModel.Atari400,
+            AtariHardwareSettingsTestConstants.UnknownOptions);
+        Assert.DoesNotContain(original.Memory, field => field.Option == AtariSettingOption.MapRam);
+    }
+
+    [Fact]
+    public void Atari400EditorHidesMouseTabAndKeepsCommonTabsForOtherModels()
+    {
+        RunOnSta(() =>
+        {
+            var app = Application.Current as GWGUI.App.App ?? new GWGUI.App.App();
+            app.InitializeComponent();
+            var section = new AtariHardwareSettingsSection(new Border());
+            var dispatcher = Dispatcher.CurrentDispatcher;
+            SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(dispatcher));
+            WaitWithDispatcher(section.LoadAsync(new AtariMachineConfiguration(AtariMachineModel.Atari400)), dispatcher);
+            var tabs = Assert.IsType<TabControl>(section.Content).Items.OfType<TabItem>().ToArray();
+            Assert.Equal(Visibility.Collapsed, tabs.Single(tab =>
+                Equals(tab.Tag, EmulationMachineTabKind.Mouse)).Visibility);
+
+            WaitWithDispatcher(section.LoadAsync(new AtariMachineConfiguration(AtariMachineModel.St)), dispatcher);
+            Assert.Equal(Visibility.Visible, tabs.Single(tab =>
+                Equals(tab.Tag, EmulationMachineTabKind.Mouse)).Visibility);
+        });
+    }
+
+    [Fact]
+    public void Atari400MemoryExtensionsAreMutuallyExclusiveAndShadowFollowsAxlon()
+    {
+        RunOnSta(() =>
+        {
+            var app = Application.Current as GWGUI.App.App ?? new GWGUI.App.App();
+            app.InitializeComponent();
+            var section = new AtariHardwareSettingsSection(new Border());
+            var dispatcher = Dispatcher.CurrentDispatcher;
+            SynchronizationContext.SetSynchronizationContext(new DispatcherSynchronizationContext(dispatcher));
+            WaitWithDispatcher(section.LoadAsync(new AtariMachineConfiguration(AtariMachineModel.Atari400)), dispatcher);
+
+            var editors = Descendants(section).OfType<ComboBox>().ToArray();
+            var mosaic = editors.Single(combo => combo.Items.OfType<AtariHardwareChoice>()
+                .Any(choice => choice.Value == "144 KB"));
+            var axlon = editors.Single(combo => combo.Items.OfType<AtariHardwareChoice>()
+                .Any(choice => choice.Value == "4 MB"));
+            var shadow = editors.Single(combo => combo.Items.OfType<AtariHardwareChoice>().Count() == 2
+                && combo.Items.OfType<AtariHardwareChoice>().Any(choice =>
+                    choice.Value == AtariEightBitSettingsConstants.Enabled)
+                && combo.Visibility == Visibility.Collapsed);
+
+            Assert.Equal(Visibility.Collapsed, shadow.Visibility);
+            axlon.SelectedValue = "128 KB";
+            Assert.Equal(Visibility.Visible, shadow.Visibility);
+            mosaic.SelectedValue = "16 KB";
+            Assert.Equal(AtariEightBitSettingsConstants.Disabled, axlon.SelectedValue);
+            Assert.Equal(Visibility.Collapsed, shadow.Visibility);
+        });
     }
 
     [Fact]

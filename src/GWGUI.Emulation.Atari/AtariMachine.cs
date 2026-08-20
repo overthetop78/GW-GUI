@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using System.Diagnostics;
+using System.Globalization;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari.Cores;
 
@@ -31,6 +32,9 @@ internal sealed class AtariMachine : IAtariMachine
         _sessionDirectory = sessionDirectory;
         _audio = new AtariAudioOutputController(audioOutput, audioOutputFactory);
         _audio.SetMuted(!configuration.AudioEnabled);
+        if (configuration.Options.TryGetValue(AtariConfigurationOptionConstants.AudioVolume, out var volume)
+            && int.TryParse(volume, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volumePercent))
+            _audio.SetVolume(volumePercent / 100f);
         _saveDirectory = saveDirectory;
     }
 

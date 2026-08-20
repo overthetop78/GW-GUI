@@ -9,6 +9,7 @@ internal static class AtariHardwareSettingsFunctions
     internal static string FirmwareKindName(AtariFirmwareKind kind) => kind switch
     {
         AtariFirmwareKind.Tos => AtariHardwareSettingsConstants.TosFirmwareContext,
+        AtariFirmwareKind.AtariSystemOs => LocExtension.Get(AtariHardwareSettingsConstants.SystemRomResource),
         AtariFirmwareKind.AtariOsA => AtariHardwareSettingsConstants.AtariOsAFirmwareContext,
         AtariFirmwareKind.AtariOsB => AtariHardwareSettingsConstants.AtariOsBFirmwareContext,
         AtariFirmwareKind.AtariXlOs => AtariHardwareSettingsConstants.AtariXlOsFirmwareContext,
@@ -36,15 +37,29 @@ internal static class AtariHardwareSettingsFunctions
         AtariGeneralSettingsFunctions.ReplaceGeneral(source, source.Model, source.Folders, source.Firmwares,
             AtariGeneralSettingsFunctions.MergeOptions(source.Options, displayed));
 
+    internal static AtariClassicRegion ClassicRegion(AtariMachineConfiguration configuration)
+    {
+        var hardware = AtariClassicModelCatalog.Get(configuration.Model);
+        return configuration.Options.TryGetValue(AtariVideoAudioSettingsConstants.StandardOptionKey,
+                   out var configured)
+               && Enum.TryParse<AtariClassicRegion>(configured, true, out var region)
+               && hardware.Regions.Contains(region)
+            ? region
+            : hardware.DefaultRegion;
+    }
+
     internal static long TotalMemoryBytes(IReadOnlyDictionary<string, string> options,
         AtariHardwareView view)
     {
-        var main = SelectedNumber(options, AtariHardwareSettingsConstants.MainMemoryOptionKey,
-            view.Memory.First(field => field.Option == AtariSettingOption.MainMemory).SelectedValue);
-        var alternateField = view.Memory.First(field => field.Option == AtariSettingOption.AlternateMemory);
-        var alternate = SelectedNumber(options, AtariHardwareSettingsConstants.AlternateMemoryOptionKey,
-            alternateField.SelectedValue);
-        return main + alternate;
+        return view.Memory.Where(field => field.Availability != AtariOptionAvailability.Hidden)
+            .Where(field => field.Option is AtariSettingOption.MainMemory or AtariSettingOption.AlternateMemory
+                or AtariSettingOption.MosaicMemory or AtariSettingOption.AxlonMemory)
+            .Sum(field =>
+            {
+                var key = OptionKey(field.Option);
+                var selected = options.TryGetValue(key, out var current) ? current : field.SelectedValue;
+                return field.Choices.FirstOrDefault(choice => choice.Value == selected)?.Bytes ?? 0;
+            });
     }
 
     internal static (string Value, string Unit) FormatMemoryTotal(long bytes)
@@ -66,6 +81,10 @@ internal static class AtariHardwareSettingsFunctions
         AtariSettingOption.Fpu => AtariHardwareSettingsConstants.FpuOptionKey,
         AtariSettingOption.MainMemory => AtariHardwareSettingsConstants.MainMemoryOptionKey,
         AtariSettingOption.AlternateMemory => AtariHardwareSettingsConstants.AlternateMemoryOptionKey,
+        AtariSettingOption.MosaicMemory => AtariEightBitSettingsConstants.MosaicMemoryOptionKey,
+        AtariSettingOption.AxlonMemory => AtariEightBitSettingsConstants.AxlonMemoryOptionKey,
+        AtariSettingOption.AxlonShadow => AtariEightBitSettingsConstants.AxlonShadowOptionKey,
+        AtariSettingOption.MapRam => AtariEightBitSettingsConstants.MapRamOptionKey,
         _ => throw new ArgumentOutOfRangeException(nameof(option), option, null)
     };
 
@@ -117,6 +136,12 @@ internal static class AtariHardwareSettingsFunctions
         AtariCompatibilityDefinition compatibility, IReadOnlyDictionary<string, string> options)
     {
         var hardware = AtariClassicModelCatalog.Get(model);
+        var standard = options.TryGetValue(AtariVideoAudioSettingsConstants.StandardOptionKey, out var configuredStandard)
+            && Enum.TryParse<AtariClassicRegion>(configuredStandard, true, out var configuredRegion)
+            && hardware.Regions.Contains(configuredRegion)
+            ? configuredRegion : hardware.DefaultRegion;
+        var frequency = AtariEightBitSettingsCatalog.SupportsOriginalComputerOptions(model)
+            ? AtariEightBitSettingsCatalog.CpuFrequency(standard) : hardware.DefaultCpuFrequencyHz;
         var cpuValue = string.Join(AtariHardwareSettingsConstants.ValueSeparator, hardware.Cpus);
         var cpu = new[]
         {
@@ -124,9 +149,8 @@ internal static class AtariHardwareSettingsFunctions
                 [new AtariHardwareChoice(cpuValue, cpuValue)], cpuValue, options,
                 AtariHardwareSettingsConstants.CpuOptionKey),
             Field(compatibility, AtariSettingOption.CpuSpeed, AtariHardwareSettingsConstants.FrequencyResource,
-                [Choice(hardware.DefaultCpuFrequencyHz, hardware.DefaultCpuFrequencyHz
-                    + AtariHardwareSettingsConstants.FrequencyHzSuffix)],
-                hardware.DefaultCpuFrequencyHz.ToString(CultureInfo.InvariantCulture), options,
+                [Choice(frequency, FormatFrequency(frequency, standard))],
+                frequency.ToString(CultureInfo.InvariantCulture), options,
                 AtariHardwareSettingsConstants.FrequencyOptionKey),
             Field(compatibility, AtariSettingOption.CpuPrecision, AtariHardwareSettingsConstants.PrecisionResource,
                 [new AtariHardwareChoice(AtariHardwareSettingsConstants.CoreManagedValue,
@@ -138,10 +162,12 @@ internal static class AtariHardwareSettingsFunctions
                     LocExtension.Get(AtariHardwareSettingsConstants.NoneResource))],
                 AtariStFpu.None.ToString(), options, AtariHardwareSettingsConstants.FpuOptionKey)
         };
-        var memory = new[]
+        var memory = new List<AtariHardwareField>
         {
             Field(compatibility, AtariSettingOption.MainMemory, AtariHardwareSettingsConstants.MainMemoryResource,
-                [Choice(hardware.MainMemoryBytes, FormatBytes(hardware.MainMemoryBytes))],
+                model == AtariMachineModel.XlXe
+                    ? XlXeMemoryChoices()
+                    : [Choice(hardware.MainMemoryBytes, FormatBytes(hardware.MainMemoryBytes))],
                 hardware.MainMemoryBytes.ToString(CultureInfo.InvariantCulture), options,
                 AtariHardwareSettingsConstants.MainMemoryOptionKey),
             Field(compatibility, AtariSettingOption.AlternateMemory, AtariHardwareSettingsConstants.AlternateMemoryResource,
@@ -149,6 +175,28 @@ internal static class AtariHardwareSettingsFunctions
                 AtariHardwareSettingsConstants.NoBytes.ToString(CultureInfo.InvariantCulture), options,
                 AtariHardwareSettingsConstants.AlternateMemoryOptionKey)
         };
+        if (AtariEightBitSettingsCatalog.SupportsOriginalComputerOptions(model))
+        {
+            memory.Add(Field(compatibility, AtariSettingOption.MosaicMemory,
+                AtariHardwareSettingsConstants.MosaicMemoryResource,
+                ExpansionChoices(AtariEightBitSettingsCatalog.Mosaic(model)),
+                AtariEightBitSettingsConstants.Disabled, options,
+                AtariEightBitSettingsConstants.MosaicMemoryOptionKey));
+            memory.Add(Field(compatibility, AtariSettingOption.AxlonMemory,
+                AtariHardwareSettingsConstants.AxlonMemoryResource,
+                ExpansionChoices(AtariEightBitSettingsCatalog.Axlon(model)),
+                AtariEightBitSettingsConstants.Disabled, options,
+                AtariEightBitSettingsConstants.AxlonMemoryOptionKey));
+            memory.Add(Field(compatibility, AtariSettingOption.AxlonShadow,
+                AtariHardwareSettingsConstants.AxlonShadowResource, ToggleChoices(),
+                AtariEightBitSettingsConstants.Disabled, options,
+                AtariEightBitSettingsConstants.AxlonShadowOptionKey));
+        }
+        if (AtariEightBitSettingsCatalog.SupportsMapRam(model))
+            memory.Add(Field(compatibility, AtariSettingOption.MapRam,
+                AtariHardwareSettingsConstants.MapRamResource, ToggleChoices(),
+                AtariEightBitSettingsConstants.Disabled, options,
+                AtariEightBitSettingsConstants.MapRamOptionKey));
         return new AtariHardwareView(cpu, memory, AtariFirmwareCatalog.ForModel(model),
             hardware.Regions.Select(value => new AtariHardwareChoice(value.ToString(),
                 AtariRegionDisplayFunctions.DisplayName(value))).ToArray());
@@ -197,7 +245,27 @@ internal static class AtariHardwareSettingsFunctions
             _ => throw new ArgumentOutOfRangeException(nameof(region), region, null)
         }).DisplayName;
     private static AtariHardwareChoice Choice(long value, string display) =>
-        new(value.ToString(CultureInfo.InvariantCulture), display);
+        new(value.ToString(CultureInfo.InvariantCulture), display, value);
+    private static IReadOnlyList<AtariHardwareChoice> ExpansionChoices(
+        IReadOnlyList<AtariMemoryExpansionChoice> choices) => choices.Select(choice =>
+            new AtariHardwareChoice(choice.Value,
+                choice.AdditionalBytes == 0 ? LocExtension.Get(AtariHardwareSettingsConstants.NoneResource)
+                    : FormatBytes(choice.AdditionalBytes), choice.AdditionalBytes)).ToArray();
+    private static IReadOnlyList<AtariHardwareChoice> XlXeMemoryChoices() =>
+    [
+        Choice(320 * AtariHardwareSettingsConstants.BytesPerKibibyte, "320 KiB (Compy Shop)"),
+        Choice(576 * AtariHardwareSettingsConstants.BytesPerKibibyte, "576 KiB"),
+        Choice(1088 * AtariHardwareSettingsConstants.BytesPerKibibyte, "1088 KiB")
+    ];
+    private static IReadOnlyList<AtariHardwareChoice> ToggleChoices() =>
+    [
+        new(AtariEightBitSettingsConstants.Disabled,
+            LocExtension.Get(AtariVideoAudioSettingsConstants.DisabledResource)),
+        new(AtariEightBitSettingsConstants.Enabled,
+            LocExtension.Get(AtariVideoAudioSettingsConstants.EnabledResource))
+    ];
+    private static string FormatFrequency(long hertz, AtariClassicRegion region) =>
+        $"{hertz / 1_000_000d:0.00} MHz ({AtariRegionDisplayFunctions.DisplayName(region)})";
     private static long SelectedNumber(IReadOnlyDictionary<string, string> values, string key, string fallback) =>
         long.Parse(values.TryGetValue(key, out var value) ? value : fallback, CultureInfo.InvariantCulture);
     private static string FormatBytes(long value) => value % AtariHardwareSettingsConstants.BytesPerKibibyte == AtariHardwareSettingsConstants.NoBytes

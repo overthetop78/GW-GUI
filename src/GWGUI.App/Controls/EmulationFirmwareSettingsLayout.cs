@@ -105,6 +105,16 @@ internal static partial class EmulationSettingsLayout
         _ => 4
     };
 
+    internal static void UpdateFirmwareUseButton(Button button,
+        EmulationFirmwareCompatibility? compatibility) =>
+        button.IsEnabled = compatibility is not null and not EmulationFirmwareCompatibility.Incompatible;
+
+    internal static void UseFirmware(EmulationFirmwareCompatibility compatibility, Action useFirmware)
+    {
+        if (compatibility == EmulationFirmwareCompatibility.Incompatible) return;
+        useFirmware();
+    }
+
     private static (string Text, Brush Foreground, Brush Background, Brush Border) FirmwareBadgeColors(
         EmulationFirmwareCompatibility compatibility) => compatibility switch
         {

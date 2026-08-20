@@ -131,6 +131,27 @@ public sealed class AtariFirmwareScannerTests
     }
 
     [Fact]
+    public void Atari400AcceptsItsOsRevisionsButNeverAnAtariStTos()
+    {
+        var osA = AtariFirmwareCatalog.Get(AtariFirmwareConstants.AtariOsAId);
+        var osANtsc = AtariFirmwareCatalog.Get(AtariFirmwareConstants.AtariOsANtscId);
+        var osB = AtariFirmwareCatalog.Get(AtariFirmwareConstants.AtariOsBId);
+        var tos = AtariFirmwareCatalog.Get(AtariFirmwareFunctions.TosId(AtariStModelConstants.Tos206));
+
+        Assert.Equal(AtariFirmwareCompatibility.Compatible,
+            AtariFirmwareScanFunctions.Classify(osA, null, AtariMachineModel.Atari400, null));
+        Assert.Equal("Rev. A PAL", osA.Version);
+        Assert.Equal(AtariFirmwareCompatibility.Compatible,
+            AtariFirmwareScanFunctions.Classify(osANtsc, null, AtariMachineModel.Atari400, null));
+        Assert.Equal("Rev. A NTSC", osANtsc.Version);
+        Assert.Equal(AtariFirmwareCompatibility.Compatible,
+            AtariFirmwareScanFunctions.Classify(osB, null, AtariMachineModel.Atari400, null));
+        Assert.Equal("Rev. B NTSC", osB.Version);
+        Assert.Equal(AtariFirmwareCompatibility.Incompatible,
+            AtariFirmwareScanFunctions.Classify(tos, null, AtariMachineModel.Atari400, null));
+    }
+
+    [Fact]
     public void PublishedFingerprintIsIdentifiedAsTheExactFirmwareDefinition()
     {
         var definition = AtariFirmwareScanFunctions.Identify(AtariFirmwareConstants.LynxBootMd5);

@@ -5,9 +5,9 @@ internal static class AtariClassicModelConstants
     internal const string Atari400And800ModelId = "400/800 (OS B)";
     internal const string Atari800XlModelId = "800XL (64K)";
     internal const string Atari130XeModelId = "130XE (128K)";
-    internal const string Modern320KModelId = "Modern XL/XE(320K CS)";
-    internal const string Modern576KModelId = "Modern XL/XE(576K)";
-    internal const string Modern1088KModelId = "Modern XL/XE(1088K)";
+    internal const string XlXeModelId = "Modern XL/XE(320K CS)";
+    internal const string XlXe576KModelId = "Modern XL/XE(576K)";
+    internal const string XlXe1088KModelId = "Modern XL/XE(1088K)";
     internal const string XegsModelId = "XEGS";
     internal const string Atari5200ModelId = "5200";
     internal const string Atari2600ModelId = "2600";
@@ -20,9 +20,7 @@ internal static class AtariClassicModelConstants
     internal const string Atari800DisplayNameResource = "Emulation.Atari.Model.800";
     internal const string Atari800XlDisplayNameResource = "Emulation.Atari.Model.800Xl";
     internal const string Atari130XeDisplayNameResource = "Emulation.Atari.Model.130Xe";
-    internal const string Modern320KDisplayNameResource = "Emulation.Atari.Model.Modern320K";
-    internal const string Modern576KDisplayNameResource = "Emulation.Atari.Model.Modern576K";
-    internal const string Modern1088KDisplayNameResource = "Emulation.Atari.Model.Modern1088K";
+    internal const string XlXeDisplayNameResource = "Emulation.Atari.Model.XlXe";
     internal const string XegsDisplayNameResource = "Emulation.Atari.Model.Xegs";
     internal const string Atari5200DisplayNameResource = "Emulation.Atari.Model.5200";
     internal const string Atari2600DisplayNameResource = "Emulation.Atari.Model.2600";

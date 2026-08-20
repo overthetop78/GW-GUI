@@ -64,8 +64,17 @@ public sealed class AtariGeneralSettingsTests
     [Theory]
     [InlineData(AtariMachineModel.St, true)]
     [InlineData(AtariMachineModel.Falcon, true)]
-    [InlineData(AtariMachineModel.Atari800, false)]
+    [InlineData(AtariMachineModel.Atari400, true)]
+    [InlineData(AtariMachineModel.Atari800, true)]
+    [InlineData(AtariMachineModel.Atari800Xl, true)]
+    [InlineData(AtariMachineModel.Atari130Xe, true)]
+    [InlineData(AtariMachineModel.XlXe, true)]
+    [InlineData(AtariMachineModel.Xegs, true)]
+    [InlineData(AtariMachineModel.Atari5200, false)]
     [InlineData(AtariMachineModel.Atari2600, false)]
+    [InlineData(AtariMachineModel.Atari7800, false)]
+    [InlineData(AtariMachineModel.Lynx, false)]
+    [InlineData(AtariMachineModel.Jaguar, false)]
     [InlineData(AtariMachineModel.JaguarCd, false)]
     public void HardDiskFolderIsOnlyShownForMachinesThatSupportIt(
         AtariMachineModel model, bool expected) =>

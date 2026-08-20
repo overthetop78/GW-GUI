@@ -77,8 +77,6 @@ public partial class TrackProgressStrip : UserControl
     }
 }
 
-public enum TrackSegmentState { Pending, Active, Success, Retry, Failed }
-
 public sealed class TrackSegment(int cylinder, int head, Brush brush) : INotifyPropertyChanged
 {
     private Brush _brush = brush;

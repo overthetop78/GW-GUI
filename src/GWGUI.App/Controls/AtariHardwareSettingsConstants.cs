@@ -1,3 +1,5 @@
+using GWGUI.Emulation.Atari;
+
 namespace GWGUI.App.Controls;
 
 internal static class AtariHardwareSettingsConstants
@@ -19,6 +21,13 @@ internal static class AtariHardwareSettingsConstants
     internal const string FpuResource = "Emulation.Fpu.Model";
     internal const string MainMemoryResource = "Emulation.Memory.Main";
     internal const string AlternateMemoryResource = "Emulation.Memory.Extensions";
+    internal const string MosaicMemoryResource = "Emulation.Atari.Memory.Mosaic";
+    internal const string AxlonMemoryResource = "Emulation.Atari.Memory.Axlon";
+    internal const string AxlonShadowResource = "Emulation.Atari.Memory.AxlonShadow";
+    internal const string MapRamResource = "Emulation.Atari.Memory.MapRam";
+    internal const string OsRevisionResource = "Emulation.Atari.Firmware.OsRevision";
+    internal const string BasicEnabledResource = "Emulation.Atari.Firmware.BasicEnabled";
+    internal const string BasicVersionResource = "Emulation.Atari.Firmware.BasicVersion";
     internal const string TotalMemoryResource = "Emulation.Memory.TotalConfigured";
     internal const string SystemRomResource = "Emulation.Firmware.Rom.System";
     internal const string DetectedRomsResource = "Emulation.Firmware.Rom.Detected";
@@ -36,7 +45,7 @@ internal static class AtariHardwareSettingsConstants
     internal const string FrequencyOptionKey = "gwgui_atari_cpu_frequency";
     internal const string PrecisionOptionKey = "gwgui_atari_cpu_precision";
     internal const string FpuOptionKey = "gwgui_atari_fpu";
-    internal const string MainMemoryOptionKey = "gwgui_atari_main_memory";
+    internal const string MainMemoryOptionKey = AtariConfigurationOptionConstants.MainMemory;
     internal const string AlternateMemoryOptionKey = "gwgui_atari_alternate_memory";
     internal const string RegionOptionKey = "gwgui_atari_region";
     internal const string FrequencyMhzSuffix = " MHz";

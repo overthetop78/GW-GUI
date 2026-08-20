@@ -7,15 +7,27 @@ namespace GWGUI.App.Controls;
 
 internal static class AtariVideoAudioSettingsFunctions
 {
-    internal static AtariVideoAudioView Create(AtariMachineConfiguration configuration)
+    internal static AtariVideoAudioView Create(AtariMachineConfiguration configuration,
+        IReadOnlyList<AtariVideoAudioChoice>? audioOutputs = null)
     {
         var compatibility = AtariCompatibilityCatalog.Get(configuration.Model);
         var standards = Standards(configuration.Model);
         return new AtariVideoAudioView(
             standards,
             Regions(configuration.Model),
-            Choices((AtariVideoAudioSettingsConstants.AutomaticValue, L(AtariVideoAudioSettingsConstants.AutomaticResource)),
-                (AtariVideoAudioSettingsConstants.NativeValue, AtariVideoAudioSettingsConstants.NativeValue)),
+            Resolutions(configuration.Model),
+            ArtifactingModes(configuration.Model),
+            DecimalChoices(-1.0m, 1.0m, 0.05m),
+            DecimalChoices(-1.0m, 1.0m, 0.05m),
+            DecimalChoices(-2.0m, 2.0m, 0.05m),
+            DecimalChoices(-2.0m, 2.0m, 0.05m),
+            DecimalChoices(1.0m, 3.5m, 0.05m),
+            [new(AtariEightBitSettingsConstants.DefaultColorDelay,
+                    L(AtariVideoAudioSettingsConstants.AutomaticResource)),
+                ..DecimalChoices(10.0m, 50.0m, 0.5m, "°")],
+            Choices(("none", L(AtariHardwareSettingsConstants.NoneResource)),
+                ("default", L(AtariVideoAudioSettingsConstants.AutomaticResource)),
+                ("gray", "Gray"), ("jakub", "Jakub"), ("real", "Real"), ("xformer", "Xformer")),
             Choices((AtariVideoAudioSettingsConstants.AutomaticValue, L(AtariVideoAudioSettingsConstants.AutomaticResource)),
                 (AtariVideoAudioSettingsConstants.FourByThreeValue, AtariVideoAudioSettingsConstants.FourByThreeValue),
                 (AtariVideoAudioSettingsConstants.PixelAspectValue, AtariVideoAudioSettingsConstants.PixelAspectValue)),
@@ -24,17 +36,19 @@ internal static class AtariVideoAudioSettingsFunctions
                 .Append(Official("10")).ToArray(),
             EmulationOptionCatalog.VideoRenderers().Select(value =>
                 new AtariVideoAudioChoice(value.Renderer.ToString(), value.Label)).ToArray(),
-            [new(AtariVideoAudioSettingsConstants.DefaultOutputValue,
+            audioOutputs ?? [new(AtariVideoAudioSettingsConstants.DefaultOutputValue,
                 L(AtariVideoAudioSettingsConstants.DefaultAudioOutputResource))],
-            NumericChoices(AtariVideoAudioSettingsConstants.MinimumLatencyMilliseconds,
-                AtariVideoAudioSettingsConstants.MaximumLatencyMilliseconds,
-                AtariVideoAudioSettingsConstants.LatencyStepMilliseconds),
+            new[] { 20, 35, 50, 75, 100, 150, 250 }.Select(value =>
+                new AtariVideoAudioChoice(value.ToString(CultureInfo.InvariantCulture), $"{value} ms")).ToArray(),
             NumericChoices(AtariVideoAudioSettingsConstants.MinimumVolumePercent,
                 AtariVideoAudioSettingsConstants.MaximumVolumePercent,
-                AtariVideoAudioSettingsConstants.VolumeStepPercent),
-            Choices((AtariVideoAudioSettingsConstants.LowQualityValue, AtariVideoAudioSettingsConstants.LowQualityValue),
-                (AtariVideoAudioSettingsConstants.NormalQualityValue, AtariVideoAudioSettingsConstants.NormalQualityValue),
-                (AtariVideoAudioSettingsConstants.HighQualityValue, AtariVideoAudioSettingsConstants.HighQualityValue)),
+                AtariVideoAudioSettingsConstants.VolumeStepPercent, " %"),
+            Choices((AtariVideoAudioSettingsConstants.LowQualityValue,
+                    L(AtariVideoAudioSettingsConstants.AudioQualityLowResource)),
+                (AtariVideoAudioSettingsConstants.NormalQualityValue,
+                    L(AtariVideoAudioSettingsConstants.AudioQualityNormalResource)),
+                (AtariVideoAudioSettingsConstants.HighQualityValue,
+                    L(AtariVideoAudioSettingsConstants.AudioQualityHighResource))),
             compatibility.Options.Single(value => value.Option == AtariSettingOption.AudioEnabled).Availability
                 != AtariOptionAvailability.Unavailable && configuration.AudioEnabled,
             configuration.VideoRenderer);
@@ -142,14 +156,40 @@ internal static class AtariVideoAudioSettingsFunctions
         AtariHardwareSettingsFunctions.Create(model, new Dictionary<string, string>()).Regions
             .Select(value => new AtariVideoAudioChoice(value.Value, value.DisplayName)).ToArray();
 
+    private static IReadOnlyList<AtariVideoAudioChoice> Resolutions(AtariMachineModel model) =>
+        AtariEightBitSettingsCatalog.SupportsOriginalComputerOptions(model)
+            ? AtariEightBitSettingsCatalog.OriginalComputerResolutions.Select(value =>
+                new AtariVideoAudioChoice(value, value.Replace("x", " × ", StringComparison.Ordinal))).ToArray()
+            : Choices((AtariVideoAudioSettingsConstants.AutomaticValue,
+                    L(AtariVideoAudioSettingsConstants.AutomaticResource)),
+                (AtariVideoAudioSettingsConstants.NativeValue, AtariVideoAudioSettingsConstants.NativeValue));
+
+    private static IReadOnlyList<AtariVideoAudioChoice> ArtifactingModes(AtariMachineModel model) =>
+        AtariEightBitSettingsCatalog.SupportsComputerOptions(model)
+            ? AtariEightBitSettingsCatalog.ArtifactingModes.Select(value => new AtariVideoAudioChoice(value,
+                value == AtariEightBitSettingsConstants.None
+                    ? L(AtariHardwareSettingsConstants.NoneResource) : value)).ToArray()
+            : [];
+
     private static IReadOnlyList<AtariVideoAudioChoice> ToggleChoices() =>
         Choices((AtariVideoAudioSettingsConstants.DisabledValue, L(AtariVideoAudioSettingsConstants.DisabledResource)),
             (AtariVideoAudioSettingsConstants.EnabledValue, L(AtariVideoAudioSettingsConstants.EnabledResource)));
 
-    private static IReadOnlyList<AtariVideoAudioChoice> NumericChoices(int minimum, int maximum, int step) =>
+    private static IReadOnlyList<AtariVideoAudioChoice> NumericChoices(int minimum, int maximum, int step,
+        string suffix = "") =>
         Enumerable.Range(minimum, (maximum - minimum) / step + AtariVideoAudioSettingsConstants.InclusiveEndpointCount)
             .Select(index => minimum + index * step)
-            .Select(value => Official(value.ToString(CultureInfo.InvariantCulture))).ToArray();
+            .Select(value => new AtariVideoAudioChoice(value.ToString(CultureInfo.InvariantCulture),
+                value.ToString(CultureInfo.CurrentCulture) + suffix)).ToArray();
+
+    private static IReadOnlyList<AtariVideoAudioChoice> DecimalChoices(decimal minimum, decimal maximum,
+        decimal step, string suffix = "")
+    {
+        var count = decimal.ToInt32((maximum - minimum) / step) + 1;
+        return Enumerable.Range(0, count).Select(index => minimum + index * step).Select(value =>
+            new AtariVideoAudioChoice(value.ToString("0.00", CultureInfo.InvariantCulture),
+                value.ToString("0.00", CultureInfo.CurrentCulture) + suffix)).ToArray();
+    }
 
     private static IReadOnlyList<AtariVideoAudioChoice> Choices(params (string Value, string Label)[] values) =>
         values.Select(value => new AtariVideoAudioChoice(value.Value, value.Label)).ToArray();

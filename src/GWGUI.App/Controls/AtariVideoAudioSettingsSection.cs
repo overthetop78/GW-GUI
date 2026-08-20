@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using GWGUI.App.Localization;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari;
+using GWGUI.App.Services;
 
 namespace GWGUI.App.Controls;
 
@@ -25,7 +26,13 @@ internal sealed class AtariVideoAudioSettingsSection
 
     internal void Load(AtariMachineConfiguration configuration)
     {
-        var view = AtariVideoAudioSettingsFunctions.Create(configuration);
+        var audioOutputs = new[]
+        {
+            new AtariVideoAudioChoice(AtariVideoAudioSettingsConstants.DefaultOutputValue,
+                LocExtension.Get(AtariVideoAudioSettingsConstants.DefaultAudioOutputResource))
+        }.Concat(WasapiAudioOutput.GetOutputDevices().Select(device =>
+            new AtariVideoAudioChoice(device.Id, device.Name))).ToArray();
+        var view = AtariVideoAudioSettingsFunctions.Create(configuration, audioOutputs);
         _options.Clear();
         _video.Content = null;
         _rendering.Content = null;
@@ -35,21 +42,52 @@ internal sealed class AtariVideoAudioSettingsSection
         AddVideo(videoFields, AtariVideoAudioSettingsConstants.VideoStandardResource,
             AtariVideoAudioSettingsConstants.StandardOptionKey, view.Standards, configuration.Options,
             AtariVideoAudioSettingsFunctions.PreferredVideoStandard(configuration.Model, view.Standards));
-        AddVideo(videoFields, AtariVideoAudioSettingsConstants.RegionResource,
-            AtariVideoAudioSettingsConstants.RegionOptionKey, view.Regions, configuration.Options,
-            AtariVideoAudioSettingsFunctions.PreferredRegion(configuration.Model, view.Regions));
+        if (AtariCompatibilityCatalog.Get(configuration.Model).Options.Single(option =>
+                option.Option == AtariSettingOption.Region).Availability != AtariOptionAvailability.Hidden)
+            AddVideo(videoFields, AtariVideoAudioSettingsConstants.RegionResource,
+                AtariVideoAudioSettingsConstants.RegionOptionKey, view.Regions, configuration.Options,
+                AtariVideoAudioSettingsFunctions.PreferredRegion(configuration.Model, view.Regions));
         AddVideo(videoFields, AtariVideoAudioSettingsConstants.ResolutionResource,
             AtariVideoAudioSettingsConstants.ResolutionOptionKey, view.Resolutions, configuration.Options,
-            AtariVideoAudioSettingsConstants.AutomaticValue);
-        AddVideo(videoFields, AtariVideoAudioSettingsConstants.AspectRatioResource,
-            AtariVideoAudioSettingsConstants.AspectRatioOptionKey, view.AspectRatios, configuration.Options,
-            AtariVideoAudioSettingsConstants.AutomaticValue);
-        AddVideo(videoFields, AtariVideoAudioSettingsConstants.CropResource,
-            AtariVideoAudioSettingsConstants.CropOptionKey, view.Cropping, configuration.Options,
-            AtariVideoAudioSettingsConstants.DisabledValue);
-        AddVideo(videoFields, AtariVideoAudioSettingsConstants.FrameSkipResource,
-            AtariVideoAudioSettingsConstants.FrameSkipOptionKey, view.FrameSkips, configuration.Options,
-            AtariVideoAudioSettingsConstants.MinimumFrameSkip.ToString());
+            view.Resolutions[0].Value);
+        if (view.ArtifactingModes.Count > 0)
+            AddVideo(videoFields, "Emulation.Atari.Video.Artifacting",
+                AtariEightBitSettingsConstants.ArtifactingModeOptionKey, view.ArtifactingModes,
+                configuration.Options, AtariEightBitSettingsConstants.None);
+        if (AtariEightBitSettingsCatalog.SupportsComputerOptions(configuration.Model))
+        {
+            AddVideo(videoFields, "Emulation.Atari.Video.Hue", AtariEightBitSettingsConstants.ColorHueOptionKey,
+                view.ColorHue, configuration.Options, AtariEightBitSettingsConstants.DefaultColorAdjustment);
+            AddVideo(videoFields, "Emulation.Atari.Video.Saturation",
+                AtariEightBitSettingsConstants.ColorSaturationOptionKey, view.ColorSaturation,
+                configuration.Options, AtariEightBitSettingsConstants.DefaultColorAdjustment);
+            AddVideo(videoFields, "Emulation.Atari.Video.Contrast",
+                AtariEightBitSettingsConstants.ColorContrastOptionKey, view.ColorContrast,
+                configuration.Options, AtariEightBitSettingsConstants.DefaultColorAdjustment);
+            AddVideo(videoFields, "Emulation.Atari.Video.Brightness",
+                AtariEightBitSettingsConstants.ColorBrightnessOptionKey, view.ColorBrightness,
+                configuration.Options, AtariEightBitSettingsConstants.DefaultColorAdjustment);
+            AddVideo(videoFields, "Emulation.Video.Gamma", AtariEightBitSettingsConstants.ColorGammaOptionKey,
+                view.ColorGamma, configuration.Options, AtariEightBitSettingsConstants.DefaultGamma);
+            AddVideo(videoFields, "Emulation.Atari.Video.ColorDelay",
+                AtariEightBitSettingsConstants.ColorDelayOptionKey, view.ColorDelay,
+                configuration.Options, AtariEightBitSettingsConstants.DefaultColorDelay);
+            AddVideo(videoFields, "Emulation.Atari.Video.ExternalPalette",
+                AtariEightBitSettingsConstants.ExternalPaletteOptionKey, view.ExternalPalettes,
+                configuration.Options, AtariEightBitSettingsConstants.None);
+        }
+        if (configuration.Core == AtariCoreKind.Hatari)
+        {
+            AddVideo(videoFields, AtariVideoAudioSettingsConstants.AspectRatioResource,
+                AtariVideoAudioSettingsConstants.AspectRatioOptionKey, view.AspectRatios, configuration.Options,
+                AtariVideoAudioSettingsConstants.AutomaticValue);
+            AddVideo(videoFields, AtariVideoAudioSettingsConstants.CropResource,
+                AtariVideoAudioSettingsConstants.CropOptionKey, view.Cropping, configuration.Options,
+                AtariVideoAudioSettingsConstants.DisabledValue);
+            AddVideo(videoFields, AtariVideoAudioSettingsConstants.FrameSkipResource,
+                AtariVideoAudioSettingsConstants.FrameSkipOptionKey, view.FrameSkips, configuration.Options,
+                AtariVideoAudioSettingsConstants.MinimumFrameSkip.ToString());
+        }
         _video.Content = EmulationSettingsLayout.VideoSettingsFields(videoFields.ToArray());
         _renderer = new ComboBox();
         Configure(_renderer, view.Renderers, view.Renderer.ToString());
@@ -69,14 +107,11 @@ internal sealed class AtariVideoAudioSettingsSection
             AtariVideoAudioSettingsConstants.DefaultOutputValue);
         AddAudio(outputFields, AtariVideoAudioSettingsConstants.AudioLatencyResource,
             AtariVideoAudioSettingsConstants.AudioLatencyOptionKey, view.Latencies, configuration.Options,
-            AtariVideoAudioSettingsConstants.MinimumLatencyMilliseconds.ToString());
+            AtariConfigurationOptionConstants.DefaultAudioLatencyMilliseconds.ToString());
         var qualityFields = new List<FrameworkElement>();
         AddAudio(qualityFields, AtariVideoAudioSettingsConstants.AudioVolumeResource,
             AtariVideoAudioSettingsConstants.AudioVolumeOptionKey, view.Volumes, configuration.Options,
-            AtariVideoAudioSettingsConstants.MaximumVolumePercent.ToString());
-        AddAudio(qualityFields, AtariVideoAudioSettingsConstants.AudioQualityResource,
-            AtariVideoAudioSettingsConstants.AudioQualityOptionKey, view.Qualities, configuration.Options,
-            AtariVideoAudioSettingsConstants.NormalQualityValue);
+            AtariConfigurationOptionConstants.DefaultAudioVolumePercent.ToString());
         if (configuration.Core == AtariCoreKind.Hatari)
         {
             AddAudio(qualityFields, "Emulation.Audio.Floppy.Enabled",
@@ -88,6 +123,12 @@ internal sealed class AtariVideoAudioSettingsSection
             AddAudio(qualityFields, "Emulation.Audio.PolarizedFilter",
                 AtariVideoAudioSettingsConstants.PolarizedFilterOptionKey, ToggleChoices(), configuration.Options,
                 "false");
+        }
+        else if (AtariEightBitSettingsCatalog.SupportsComputerOptions(configuration.Model))
+        {
+            AddAudio(qualityFields, "Emulation.Atari.Audio.PokeyStereo",
+                AtariEightBitSettingsConstants.PokeyStereoOptionKey, AtariToggleChoices(), configuration.Options,
+                AtariEightBitSettingsConstants.Disabled);
         }
         _audio.Content = EmulationSettingsLayout.AudioSettingsPage(outputFields, qualityFields);
     }
@@ -142,5 +183,13 @@ internal sealed class AtariVideoAudioSettingsSection
     private static IReadOnlyList<AtariVideoAudioChoice> PercentageChoices() =>
         new[] { 25, 50, 75, 100 }.Select(value =>
             new AtariVideoAudioChoice(value.ToString(), $"{value} %")).ToArray();
+
+    private static IReadOnlyList<AtariVideoAudioChoice> AtariToggleChoices() =>
+    [
+        new(AtariEightBitSettingsConstants.Enabled,
+            LocExtension.Get(AtariVideoAudioSettingsConstants.EnabledResource)),
+        new(AtariEightBitSettingsConstants.Disabled,
+            LocExtension.Get(AtariVideoAudioSettingsConstants.DisabledResource))
+    ];
 
 }

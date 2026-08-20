@@ -20,9 +20,7 @@ public sealed class AtariCompatibilityCatalogTests
         AtariMachineModel.Atari800,
         AtariMachineModel.Atari800Xl,
         AtariMachineModel.Atari130Xe,
-        AtariMachineModel.ModernXlXe320K,
-        AtariMachineModel.ModernXlXe576K,
-        AtariMachineModel.ModernXlXe1088K,
+        AtariMachineModel.XlXe,
         AtariMachineModel.Xegs,
         AtariMachineModel.Atari5200,
         AtariMachineModel.Atari2600,
@@ -40,11 +38,14 @@ public sealed class AtariCompatibilityCatalogTests
 
         Assert.Equal(model, definition.Model);
         Assert.Equal(AtariConfigurationFunctions.GetCore(model), definition.Core);
-        Assert.Equal(Enum.GetValues<AtariSettingsTab>().Order(), definition.VisibleTabs.Order());
+        Assert.Equal(definition.VisibleTabs.Distinct().Count(), definition.VisibleTabs.Count);
+        Assert.All(definition.VisibleTabs, tab => Assert.Contains(tab, Enum.GetValues<AtariSettingsTab>()));
+        Assert.Contains(AtariSettingsTab.General, definition.VisibleTabs);
         Assert.Equal(Enum.GetValues<AtariSettingsGroup>().Order(), definition.VisibleGroups.Order());
         Assert.Equal(Enum.GetValues<AtariSettingOption>().Order(),
             definition.Options.Select(rule => rule.Option).Order());
-        Assert.All(definition.Options.Where(rule => rule.Availability != AtariOptionAvailability.Editable),
+        Assert.All(definition.Options.Where(rule => rule.Availability is AtariOptionAvailability.Forced
+                or AtariOptionAvailability.Unavailable),
             rule => Assert.False(string.IsNullOrWhiteSpace(rule.ExplanationResourceKey)));
         Assert.All(definition.Options.Where(rule => rule.Availability == AtariOptionAvailability.Forced),
             rule => Assert.False(string.IsNullOrWhiteSpace(rule.ForcedValue)));
@@ -66,7 +67,8 @@ public sealed class AtariCompatibilityCatalogTests
         {
             var definition = AtariCompatibilityCatalog.Get(model);
             var keys = definition.Options
-                .Where(rule => rule.Availability != AtariOptionAvailability.Editable)
+                .Where(rule => rule.Availability is AtariOptionAvailability.Forced
+                    or AtariOptionAvailability.Unavailable)
                 .Select(rule => rule.ExplanationResourceKey!)
                 .Concat(definition.Media
                     .Where(rule => rule.Availability == AtariMediaAvailability.Unavailable)
@@ -125,9 +127,9 @@ public sealed class AtariCompatibilityCatalogTests
             computer.Options.Single(rule => rule.Option == AtariSettingOption.KeyboardMappings).Availability);
         Assert.Equal(AtariOptionAvailability.Unavailable,
             console.Options.Single(rule => rule.Option == AtariSettingOption.KeyboardMappings).Availability);
-        Assert.Equal(AtariOptionAvailability.Unavailable,
+        Assert.Equal(AtariOptionAvailability.Hidden,
             console.Options.Single(rule => rule.Option == AtariSettingOption.MouseMappings).Availability);
-        Assert.Equal(AtariOptionAvailability.Unavailable,
+        Assert.Equal(AtariOptionAvailability.Hidden,
             computer.Options.Single(rule => rule.Option == AtariSettingOption.MouseSpeed).Availability);
         var st = AtariCompatibilityCatalog.Get(AtariMachineModel.St);
         Assert.Equal(AtariOptionAvailability.Editable,

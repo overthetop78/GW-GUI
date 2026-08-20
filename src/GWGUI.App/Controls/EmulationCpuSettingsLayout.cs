@@ -7,10 +7,10 @@ namespace GWGUI.App.Controls;
 internal sealed record EmulationCpuSettingsContent(
     FrameworkElement CpuModel,
     TextBlock CpuSummary,
-    FrameworkElement Precision,
-    FrameworkElement Fpu,
+    FrameworkElement? Precision,
+    FrameworkElement? Fpu,
     TextBlock OriginalSpeed,
-    FrameworkElement CpuSpeed);
+    FrameworkElement? CpuSpeed);
 
 internal static partial class EmulationSettingsLayout
 {
@@ -28,16 +28,25 @@ internal static partial class EmulationSettingsLayout
         settings.CpuSummary.SetResourceReference(TextBlock.ForegroundProperty, "MutedTextBrush");
         processor.Children.Add(settings.CpuSummary);
 
-        var root = TwoColumnPage(
-            IconCard(processor, LocExtension.Get("Emulation.Cpu.Processor"), ProcessorIcon),
-            IconCard(SettingsFieldGrid(
-                    (LocExtension.Get("Emulation.Cpu.Precision"), settings.Precision),
-                    (LocExtension.Get("Emulation.Fpu.Model"), settings.Fpu)),
-                LocExtension.Get("Emulation.Cpu.Compatibility"), CompatibilityIcon));
+        var processorCard = IconCard(processor, LocExtension.Get("Emulation.Cpu.Processor"), ProcessorIcon);
+        var compatibilityFields = new List<(string Label, FrameworkElement Editor)>();
+        if (settings.Precision is not null)
+            compatibilityFields.Add((LocExtension.Get("Emulation.Cpu.Precision"), settings.Precision));
+        if (settings.Fpu is not null)
+            compatibilityFields.Add((LocExtension.Get("Emulation.Fpu.Model"), settings.Fpu));
+        var root = compatibilityFields.Count == 0
+            ? SingleColumnPage(processorCard)
+            : TwoColumnPage(processorCard,
+                IconCard(SettingsFieldGrid(compatibilityFields.ToArray()),
+                    LocExtension.Get("Emulation.Cpu.Compatibility"), CompatibilityIcon));
 
-        var acceleration = IconCard(SettingsFieldGrid(2,
-                (LocExtension.Get("Emulation.Cpu.SpeedOriginal"), settings.OriginalSpeed),
-                (LocExtension.Get("Emulation.Cpu.Speed"), settings.CpuSpeed)),
+        var speedFields = new List<(string Label, FrameworkElement Editor)>
+        {
+            (LocExtension.Get("Emulation.Cpu.SpeedOriginal"), settings.OriginalSpeed)
+        };
+        if (settings.CpuSpeed is not null)
+            speedFields.Add((LocExtension.Get("Emulation.Cpu.Speed"), settings.CpuSpeed));
+        var acceleration = IconCard(SettingsFieldGrid(speedFields.Count, speedFields.ToArray()),
             LocExtension.Get("Emulation.Cpu.Acceleration"), AccelerationIcon);
         acceleration.Margin = new Thickness(0, 10, 0, 0);
         Grid.SetRow(acceleration, 1);

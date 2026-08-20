@@ -26,6 +26,9 @@ internal static class AtariCompatibilityFunctions
     internal static AtariOptionRule Unavailable(AtariSettingOption option, string explanationResourceKey) =>
         new(option, AtariOptionAvailability.Unavailable, ExplanationResourceKey: explanationResourceKey);
 
+    internal static AtariOptionRule Hidden(AtariSettingOption option) =>
+        new(option, AtariOptionAvailability.Hidden);
+
     internal static AtariMediaCompatibilityRule Media(AtariMediaKind kind, params EmulationMediaSlot[] slots) =>
         new(kind, Array.AsReadOnly(slots));
 
@@ -50,7 +53,8 @@ internal static class AtariCompatibilityFunctions
         if (definition.Options.Select(rule => rule.Option).Distinct().Count() !=
             Enum.GetValues<AtariSettingOption>().Length)
             throw new InvalidOperationException(AtariErrorMessages.IncompleteCompatibilityOptions);
-        if (definition.Options.Any(rule => rule.Availability != AtariOptionAvailability.Editable
+        if (definition.Options.Any(rule => rule.Availability is AtariOptionAvailability.Forced
+                                               or AtariOptionAvailability.Unavailable
                                            && string.IsNullOrWhiteSpace(rule.ExplanationResourceKey)))
             throw new InvalidOperationException(AtariErrorMessages.MissingUnavailableExplanation);
         if (definition.Options.Any(rule => rule.Availability == AtariOptionAvailability.Forced
@@ -87,6 +91,10 @@ internal static class AtariCompatibilityFunctions
                 ? Editable(AtariSettingOption.AlternateMemory)
                 : Unavailable(AtariSettingOption.AlternateMemory,
                     AtariCompatibilityConstants.NoAlternateMemoryResource),
+            Hidden(AtariSettingOption.MosaicMemory),
+            Hidden(AtariSettingOption.AxlonMemory),
+            Hidden(AtariSettingOption.AxlonShadow),
+            Hidden(AtariSettingOption.MapRam),
             Editable(AtariSettingOption.Firmware),
             Editable(AtariSettingOption.Region),
             Editable(AtariSettingOption.VideoStandard),
@@ -117,18 +125,25 @@ internal static class AtariCompatibilityFunctions
         var firmware = hardware.Firmware.Count == AtariCompatibilityConstants.EmptyCollectionCount
             ? Unavailable(AtariSettingOption.Firmware, AtariCompatibilityConstants.NoFirmwareResource)
             : Editable(AtariSettingOption.Firmware);
+        var originalComputer = AtariEightBitSettingsCatalog.SupportsOriginalComputerOptions(model);
         var options = Values(
             Forced(AtariSettingOption.CpuModel, JoinValues(hardware.Cpus)),
-            Forced(AtariSettingOption.CpuPrecision, AtariCompatibilityConstants.CoreManagedValue),
+            Hidden(AtariSettingOption.CpuPrecision),
             Forced(AtariSettingOption.CpuSpeed,
                 hardware.DefaultCpuFrequencyHz.ToString(CultureInfo.InvariantCulture)),
-            Unavailable(AtariSettingOption.Fpu, AtariCompatibilityConstants.NoFpuResource),
-            Forced(AtariSettingOption.MainMemory,
-                hardware.MainMemoryBytes.ToString(CultureInfo.InvariantCulture)),
-            Unavailable(AtariSettingOption.AlternateMemory,
-                AtariCompatibilityConstants.NoAlternateMemoryResource),
+            Hidden(AtariSettingOption.Fpu),
+            model == AtariMachineModel.XlXe
+                ? Editable(AtariSettingOption.MainMemory)
+                : Forced(AtariSettingOption.MainMemory,
+                    hardware.MainMemoryBytes.ToString(CultureInfo.InvariantCulture)),
+            Hidden(AtariSettingOption.AlternateMemory),
+            originalComputer ? Editable(AtariSettingOption.MosaicMemory) : Hidden(AtariSettingOption.MosaicMemory),
+            originalComputer ? Editable(AtariSettingOption.AxlonMemory) : Hidden(AtariSettingOption.AxlonMemory),
+            originalComputer ? Editable(AtariSettingOption.AxlonShadow) : Hidden(AtariSettingOption.AxlonShadow),
+            AtariEightBitSettingsCatalog.SupportsMapRam(model)
+                ? Editable(AtariSettingOption.MapRam) : Hidden(AtariSettingOption.MapRam),
             firmware,
-            region,
+            originalComputer ? Hidden(AtariSettingOption.Region) : region,
             region with { Option = AtariSettingOption.VideoStandard },
             Editable(AtariSettingOption.Renderer),
             Editable(AtariSettingOption.AudioEnabled),
@@ -138,15 +153,19 @@ internal static class AtariCompatibilityFunctions
             hasKeyboard
                 ? Editable(AtariSettingOption.KeyboardMappings)
                 : Unavailable(AtariSettingOption.KeyboardMappings, AtariCompatibilityConstants.NoKeyboardResource),
-            Unavailable(AtariSettingOption.MouseSpeed, AtariCompatibilityConstants.NoMouseResource),
-            Unavailable(AtariSettingOption.MouseMappings, AtariCompatibilityConstants.NoMouseResource),
+            Hidden(AtariSettingOption.MouseSpeed),
+            Hidden(AtariSettingOption.MouseMappings),
             Editable(AtariSettingOption.ControllerMappings));
         var media = hardware.Media.Select(CreateMediaRule).ToList();
         if (model == AtariMachineModel.Jaguar)
             media.Add(UnavailableMedia(AtariMediaKind.CompactDisc,
                 AtariCompatibilityConstants.JaguarStandardNoCdResource, EmulationMediaSlot.Cd0));
         var portCount = hardware.Ports.Max(port => port.Count);
-        return NewDefinition(model, hardware.Core, options, hardware.Firmware, media, portCount);
+        var visibleTabs = EnumValues<AtariSettingsTab>()
+            .Where(tab => hasKeyboard || tab != AtariSettingsTab.Keyboard)
+            .Where(tab => tab != AtariSettingsTab.Mouse)
+            .ToArray();
+        return NewDefinition(model, hardware.Core, options, hardware.Firmware, media, portCount, visibleTabs);
     }
 
     private static AtariMediaCompatibilityRule CreateMediaRule(AtariMediaKind kind) => kind switch
@@ -161,9 +180,10 @@ internal static class AtariCompatibilityFunctions
 
     private static AtariCompatibilityDefinition NewDefinition(AtariMachineModel model, AtariCoreKind core,
         IReadOnlyList<AtariOptionRule> options, IReadOnlyList<AtariFirmwareKind> firmware,
-        IReadOnlyList<AtariMediaCompatibilityRule> media, int controllerPortCount)
+        IReadOnlyList<AtariMediaCompatibilityRule> media, int controllerPortCount,
+        IReadOnlyList<AtariSettingsTab>? visibleTabs = null)
     {
-        var definition = new AtariCompatibilityDefinition(model, core, EnumValues<AtariSettingsTab>(),
+        var definition = new AtariCompatibilityDefinition(model, core, visibleTabs ?? EnumValues<AtariSettingsTab>(),
             EnumValues<AtariSettingsGroup>(), options, firmware, media, controllerPortCount);
         Validate(definition);
         return definition;

@@ -966,15 +966,6 @@
   <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
     <value>Atari 130XE</value>
   </data>
-  <data name="Emulation.Atari.Model.Modern320K" xml:space="preserve">
-    <value>Atari XL/XE 320K</value>
-  </data>
-  <data name="Emulation.Atari.Model.Modern576K" xml:space="preserve">
-    <value>Atari XL/XE 576K</value>
-  </data>
-  <data name="Emulation.Atari.Model.Modern1088K" xml:space="preserve">
-    <value>Atari XL/XE 1088K</value>
-  </data>
   <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
     <value>Atari XEGS</value>
   </data>
@@ -988,7 +979,7 @@
     <value>Atari 7800</value>
   </data>
   <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
-    <value>Built-in controls</value>
+    <value>Atari Lynx</value>
   </data>
   <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
     <value>Atari Jaguar</value>
@@ -1132,4 +1123,38 @@
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>เสียงไดรฟ์ฟลอปปี้</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>ตัวกรองเสียงแบบโพลาไรซ์</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>แสดงการทำงานของไดรฟ์บนหน้าจออีมูเลเตอร์</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>ส่วนขยายหน่วยความจำ Mosaic</value></data>
+  <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>ส่วนขยายหน่วยความจำ Axlon</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>เงาแบงก์ Axlon $0F</value></data>
+  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
+  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>POKEY สเตอริโอ</value></data>
+  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>อาร์ติแฟกต์ความละเอียดสูง</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>การเร่ง SIO</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>บูตจากเทป</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>รุ่นปรับปรุงของระบบปฏิบัติการ</value></data>
+  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>BASIC ภายใน</value></data>
+  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>รุ่นปรับปรุง BASIC</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>ความเร็วการเคลื่อนที่ของ Paddle</value></data>
+  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>ยิงอัตโนมัติ</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>ขณะกดปุ่มยิงค้างไว้</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>ตลอดเวลา</value></data>
+  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>เฉดสี</value></data>
+  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>ความอิ่มตัว</value></data>
+  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>ความคมชัด</value></data>
+  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>ความสว่าง</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>การหน่วงสี GTIA</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>จานสีภายนอก</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>ความเข้ากันได้ของตัวควบคุม</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>ความไวแบบดิจิทัล</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>ความไวแบบแอนะล็อก</value></data>
+  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>จอยสติ๊กคู่</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>สลับพอร์ต</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>แสดงความเร็วการจำลอง</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>แสดงตัวนับเซกเตอร์/บล็อก</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>นาฬิกาเวลาจริง R-Time 8</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>อุปกรณ์เครื่องพิมพ์ P:</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>อุปกรณ์อนุกรม R:</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>ต่ำ</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>ปกติ</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>สูง</value></data>
 </root>

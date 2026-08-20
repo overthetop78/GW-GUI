@@ -10,13 +10,16 @@ public static class AtariFirmwareCatalog
         AtariFirmwareFunctions.Values(AtariMachineModel.Ste);
     private static readonly IReadOnlyList<AtariMachineModel> SteAndMegaSteModels =
         AtariFirmwareFunctions.Values(AtariMachineModel.Ste, AtariMachineModel.MegaSte);
-    private static readonly IReadOnlyList<AtariMachineModel> EightBitModels = AtariFirmwareFunctions.Values(
-        AtariMachineModel.Atari400, AtariMachineModel.Atari800, AtariMachineModel.Atari800Xl,
-        AtariMachineModel.Atari130Xe, AtariMachineModel.ModernXlXe320K, AtariMachineModel.ModernXlXe576K,
-        AtariMachineModel.ModernXlXe1088K, AtariMachineModel.Xegs);
+    private static readonly IReadOnlyList<AtariMachineModel> BasicFirmwareModels = AtariFirmwareFunctions.Values(
+        AtariMachineModel.Atari800, AtariMachineModel.Atari800Xl,
+        AtariMachineModel.Atari130Xe, AtariMachineModel.Xegs, AtariMachineModel.XlXe);
     private static readonly IReadOnlyList<AtariMachineModel> XlXeModels = AtariFirmwareFunctions.Values(
-        AtariMachineModel.Atari800Xl, AtariMachineModel.Atari130Xe, AtariMachineModel.ModernXlXe320K,
-        AtariMachineModel.ModernXlXe576K, AtariMachineModel.ModernXlXe1088K, AtariMachineModel.Xegs);
+        AtariMachineModel.Atari800Xl, AtariMachineModel.Atari130Xe, AtariMachineModel.Xegs,
+        AtariMachineModel.XlXe);
+    private static readonly IReadOnlyList<AtariMachineModel> Atari400Model =
+        AtariFirmwareFunctions.Values(AtariMachineModel.Atari400);
+    private static readonly IReadOnlyList<AtariMachineModel> Atari800Model =
+        AtariFirmwareFunctions.Values(AtariMachineModel.Atari800);
     private static readonly IReadOnlyList<AtariStRegion> AllTosRegions =
         AtariFirmwareFunctions.Values(Enum.GetValues<AtariStRegion>());
     private static readonly IReadOnlyList<AtariStRegion> NoRegions =
@@ -43,13 +46,35 @@ public static class AtariFirmwareCatalog
         AtariFirmwareFunctions.Tos(AtariStModelConstants.Tos401, AtariFirmwareFunctions.Values(AtariMachineModel.Falcon), AllTosRegions),
         AtariFirmwareFunctions.Tos(AtariStModelConstants.Tos402, AtariFirmwareFunctions.Values(AtariMachineModel.Falcon), AllTosRegions),
         AtariFirmwareFunctions.Tos(AtariStModelConstants.Tos404, AtariFirmwareFunctions.Values(AtariMachineModel.Falcon), AllTosRegions),
-        AtariFirmwareFunctions.Replaceable(AtariFirmwareConstants.AtariOsAId, AtariFirmwareKind.AtariOsA,
-            AtariFirmwareConstants.AtariOsAFileName, AtariFirmwareConstants.AtariOsAMd5,
-            AtariFirmwareFunctions.Values(AtariMachineModel.Atari400, AtariMachineModel.Atari800), NoRegions),
-        AtariFirmwareFunctions.Replaceable(AtariFirmwareConstants.AtariOsBId, AtariFirmwareKind.AtariOsB,
-            AtariFirmwareConstants.AtariOsBFileName, AtariFirmwareConstants.AtariOsBMd5,
-            AtariFirmwareFunctions.Values(AtariMachineModel.Atari400, AtariMachineModel.Atari800), NoRegions,
-            AtariFirmwareConstants.AtariOsBAlternateMd5),
+        AtariFirmwareFunctions.ReplaceableRevision("atari-400-osa-pal",
+            AtariFirmwareKind.AtariSystemOs, "Rev. A PAL", AtariFirmwareConstants.AtariOsAFileName,
+            AtariFirmwareConstants.AtariOsAMd5, Atari400Model, NoRegions),
+        AtariFirmwareFunctions.ReplaceableRevision("atari-400-osa-ntsc",
+            AtariFirmwareKind.AtariSystemOs, "Rev. A NTSC", AtariFirmwareConstants.AtariOsAFileName,
+            AtariFirmwareConstants.AtariOsANtscMd5, Atari400Model, NoRegions),
+        AtariFirmwareFunctions.ReplaceableRevision("atari-400-osb",
+            AtariFirmwareKind.AtariSystemOs, "Rev. B NTSC", AtariFirmwareConstants.AtariOsBFileName,
+            AtariFirmwareConstants.AtariOsBMd5, Atari400Model, NoRegions),
+        AtariFirmwareFunctions.ReplaceableRevision("atari-400-osb-pc-xformer-patched",
+            AtariFirmwareKind.AtariSystemOs, "Rev. B NTSC — PC Xformer patched",
+            AtariFirmwareConstants.AtariOsBFileName, AtariFirmwareConstants.AtariOsBPatchedMd5,
+            Atari400Model, NoRegions),
+        AtariFirmwareFunctions.ReplaceableRevision(AtariFirmwareConstants.AtariOsAId,
+            AtariFirmwareKind.AtariOsA, "Rev. A PAL", AtariFirmwareConstants.AtariOsAFileName,
+            AtariFirmwareConstants.AtariOsAMd5,
+            Atari800Model, NoRegions),
+        AtariFirmwareFunctions.ReplaceableRevision(AtariFirmwareConstants.AtariOsANtscId,
+            AtariFirmwareKind.AtariOsA, "Rev. A NTSC", AtariFirmwareConstants.AtariOsAFileName,
+            AtariFirmwareConstants.AtariOsANtscMd5,
+            Atari800Model, NoRegions),
+        AtariFirmwareFunctions.ReplaceableRevision(AtariFirmwareConstants.AtariOsBId,
+            AtariFirmwareKind.AtariOsB, "Rev. B NTSC", AtariFirmwareConstants.AtariOsBFileName,
+            AtariFirmwareConstants.AtariOsBMd5,
+            Atari800Model, NoRegions),
+        AtariFirmwareFunctions.ReplaceableRevision(AtariFirmwareConstants.AtariOsBPatchedId,
+            AtariFirmwareKind.AtariOsB, "Rev. B NTSC — PC Xformer patched", AtariFirmwareConstants.AtariOsBFileName,
+            AtariFirmwareConstants.AtariOsBPatchedMd5,
+            Atari800Model, NoRegions),
         AtariFirmwareFunctions.ReplaceableRevision(AtariFirmwareConstants.AtariXlOsId, AtariFirmwareKind.AtariXlOs,
             "BB01R2", AtariFirmwareConstants.AtariXlOsFileName, AtariFirmwareConstants.AtariXlOsMd5, XlXeModels, NoRegions),
         AtariFirmwareFunctions.ReplaceableRevision("atari-xl-xe-os-v3", AtariFirmwareKind.AtariXlOs,
@@ -61,7 +86,8 @@ public static class AtariFirmwareCatalog
         AtariFirmwareFunctions.ReplaceableRevision("atari-xl-xe-os-r59a", AtariFirmwareKind.AtariXlOs,
             "BB01R59A", AtariFirmwareConstants.AtariXlOsFileName, AtariFirmwareConstants.AtariXlXeOsR59AMd5, XlXeModels, NoRegions),
         AtariFirmwareFunctions.Replaceable(AtariFirmwareConstants.AtariBasicId, AtariFirmwareKind.AtariBasic,
-            AtariFirmwareConstants.AtariBasicFileName, AtariFirmwareConstants.AtariBasicMd5, EightBitModels, NoRegions),
+            AtariFirmwareConstants.AtariBasicFileName, AtariFirmwareConstants.AtariBasicMd5,
+            BasicFirmwareModels, NoRegions),
         AtariFirmwareFunctions.Replaceable(AtariFirmwareConstants.Atari5200Id, AtariFirmwareKind.Atari5200Bios,
             AtariFirmwareConstants.Atari5200FileName, AtariFirmwareConstants.Atari5200Md5,
             AtariFirmwareFunctions.Values(AtariMachineModel.Atari5200), NoRegions),

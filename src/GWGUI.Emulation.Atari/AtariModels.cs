@@ -25,14 +25,12 @@ public enum AtariMachineModel
     Atari800,
     Atari800Xl,
     Atari130Xe,
-    ModernXlXe320K,
-    ModernXlXe576K,
-    ModernXlXe1088K,
     Xegs,
     Atari5200,
     Atari2600,
     Atari7800,
     Lynx,
     Jaguar,
-    JaguarCd
+    JaguarCd,
+    XlXe
 }

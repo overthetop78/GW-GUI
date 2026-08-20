@@ -7,6 +7,15 @@ namespace GWGUI.App.Controls;
 
 internal static partial class EmulationSettingsLayout
 {
+    internal static Grid SingleColumnPage(Border content)
+    {
+        var grid = new Grid { Margin = new Thickness(12) };
+        grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        grid.Children.Add(content);
+        return grid;
+    }
+
     internal static Grid TwoColumnPage(Border left, Border right)
     {
         var grid = new Grid { Margin = new Thickness(12) };

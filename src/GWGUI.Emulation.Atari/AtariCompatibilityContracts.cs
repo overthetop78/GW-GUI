@@ -39,6 +39,10 @@ public enum AtariSettingOption
     Fpu,
     MainMemory,
     AlternateMemory,
+    MosaicMemory,
+    AxlonMemory,
+    AxlonShadow,
+    MapRam,
     Firmware,
     Region,
     VideoStandard,
@@ -55,7 +59,8 @@ public enum AtariOptionAvailability
 {
     Editable,
     Forced,
-    Unavailable
+    Unavailable,
+    Hidden
 }
 
 public enum AtariMediaAvailability

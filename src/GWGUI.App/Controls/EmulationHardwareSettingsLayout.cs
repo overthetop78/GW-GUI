@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace GWGUI.App.Controls;
 
@@ -32,6 +33,11 @@ internal static partial class EmulationSettingsLayout
             var column = index % columns * 2;
             var label = new TextBlock { Text = fields[index].Label, VerticalAlignment = VerticalAlignment.Center,
                 Margin = new Thickness(column == 0 ? 0 : 18, 8, 10, 8), TextWrapping = TextWrapping.Wrap };
+            label.SetBinding(UIElement.VisibilityProperty, new Binding(nameof(UIElement.Visibility))
+            {
+                Source = fields[index].Control,
+                Mode = BindingMode.OneWay
+            });
             Grid.SetRow(label, row);
             Grid.SetColumn(label, column);
             grid.Children.Add(label);

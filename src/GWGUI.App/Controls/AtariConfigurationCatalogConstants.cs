@@ -26,9 +26,7 @@ internal static class AtariConfigurationCatalogConstants
     internal const string Atari800Resource = "Emulation.Atari.Model.800";
     internal const string Atari800XlResource = "Emulation.Atari.Model.800Xl";
     internal const string Atari130XeResource = "Emulation.Atari.Model.130Xe";
-    internal const string Modern320KResource = "Emulation.Atari.Model.Modern320K";
-    internal const string Modern576KResource = "Emulation.Atari.Model.Modern576K";
-    internal const string Modern1088KResource = "Emulation.Atari.Model.Modern1088K";
+    internal const string XlXeResource = "Emulation.Atari.Model.XlXe";
     internal const string XegsResource = "Emulation.Atari.Model.Xegs";
     internal const string Atari5200Resource = "Emulation.Atari.Model.5200";
     internal const string Atari2600Resource = "Emulation.Atari.Model.2600";

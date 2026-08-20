@@ -111,13 +111,13 @@ public sealed class EmulationSection : UserControl
             StoragePaths.DataDirectory).LoadAllAsync();
         var atari = await new AtariConfigurationStore(StoragePaths.AtariConfigurationsDirectory,
             StoragePaths.DataDirectory).LoadAllAsync();
-        var atariModels = AtariConfigurationCatalogFunctions.Models().ToDictionary(item => item.Model);
         _configuration.ItemsSource = amiga.Select(configuration => new ConfigurationItem(
                 MachineFamily.Amiga, configuration.Id,
                 EmulationConfigurationDisplayFunctions.Amiga(configuration), configuration, null))
             .Concat(atari.Select(configuration => new ConfigurationItem(
                 MachineFamily.Atari, configuration.Id,
-                AtariEmulationFunctions.DisplayName(configuration, atariModels[configuration.Model].DisplayName),
+                AtariEmulationFunctions.DisplayName(configuration,
+                    AtariConfigurationCatalogFunctions.ModelName(configuration.Model)),
                 null, configuration))).ToArray();
         _configuration.SelectedItem = _configuration.Items.OfType<ConfigurationItem>()
             .FirstOrDefault(item => item.Family == selected?.Family && item.Id == selected.Id)
@@ -177,8 +177,15 @@ public sealed class EmulationSection : UserControl
     {
         AtariEmulationFunctions.ValidateConfiguration(configuration);
         var corePath = await AtariCoreProvider.GetInstalledPathAsync(configuration.Core);
+        var audioDevice = configuration.Options.GetValueOrDefault(
+            AtariConfigurationOptionConstants.AudioOutput);
+        if (string.Equals(audioDevice, AtariConfigurationOptionConstants.DefaultAudioOutput,
+                StringComparison.Ordinal)) audioDevice = null;
+        var audioLatency = configuration.Options.TryGetValue(AtariConfigurationOptionConstants.AudioLatency,
+                out var configuredLatency) && int.TryParse(configuredLatency, out var parsedLatency)
+            ? parsedLatency : AtariConfigurationOptionConstants.DefaultAudioLatencyMilliseconds;
         var engine = new AtariEngine(StoragePaths.AtariSessionsDirectory, corePath, Environment.ProcessPath!,
-            () => new WasapiAudioOutput(), value => Path.Combine(StoragePaths.AtariStatesDirectory,
+            () => new WasapiAudioOutput(audioDevice, audioLatency), value => Path.Combine(StoragePaths.AtariStatesDirectory,
                 value.Id.ToString(AtariEmulationConstants.IdentifierFormat)));
         IAtariMachine CreateMachine(AtariMachineConfiguration value) => engine.CreateAtariMachine(value);
         var view = new AtariMachineController(CreateMachine(configuration), CreateMachine, configuration,
@@ -248,8 +255,7 @@ public sealed class EmulationSection : UserControl
     private static string MachineTitle(ConfigurationItem selected) => selected switch
     {
         { Amiga: { } amiga } => AmigaModelCatalog.Get(amiga.Model).DisplayName,
-        { Atari: { } atari } => AtariConfigurationCatalogFunctions.Models()
-            .Single(model => model.Model == atari.Model).DisplayName,
+        { Atari: { } atari } => AtariConfigurationCatalogFunctions.ModelName(atari.Model),
         _ => selected.DisplayName
     };
 

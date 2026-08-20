@@ -146,7 +146,8 @@ public sealed class OptionsEmulationSection : UserControl
         _catalogList.DisplayMemberPath = nameof(UnifiedConfigurationItem.DisplayName);
         _catalogList.SelectionChanged += UnifiedConfigurationSelected;
         _firmwareList.SelectionChanged += (_, _) =>
-            _useSelectedFirmware.IsEnabled = SelectedFirmware() is not null;
+            EmulationSettingsLayout.UpdateFirmwareUseButton(_useSelectedFirmware,
+                SelectedFirmware() is { } selected ? FirmwareCompatibilityFor(selected.Firmware) : null);
         _useSelectedFirmware.Click += (_, _) => UseFirmware(SelectedFirmware());
         _model.SelectionChanged += (_, _) => AmigaModelSelected();
         _kickstart.TextChanged += (_, _) => UpdateRomFieldAvailability();
@@ -292,7 +293,7 @@ public sealed class OptionsEmulationSection : UserControl
         IReadOnlyDictionary<string, string>? configuredMappings = null)
     {
         var model = (_model.SelectedItem as AmigaModel) ?? AmigaModelCatalog.All[0];
-        var type = SelectedChoice(_controllers[port], AmigaControllerSettingsFunctions.Default(model));
+        var type = SelectedChoice(_controllers[port], AmigaControllerCatalog.Default(model));
         var definitions = AmigaControllerSettingsFunctions.Definitions(type);
         var values = configuredMappings is not null
             ? definitions.ToDictionary(definition => definition.Id,
@@ -460,20 +461,20 @@ public sealed class OptionsEmulationSection : UserControl
     {
         var tabs = EmulationMachineTabs.Create(kind => kind switch
         {
-            EmulationMachineTabKind.General => BuildAmigaGeneralTab(),
-            EmulationMachineTabKind.Cpu => BuildCpuTab(),
-            EmulationMachineTabKind.Ram => BuildRamTab(),
-            EmulationMachineTabKind.Rom => BuildRomTab(),
-            EmulationMachineTabKind.Video => BuildVideoTab(),
-            EmulationMachineTabKind.Audio => BuildAudioTab(),
-            EmulationMachineTabKind.Storage => BuildStorageTab(),
-            EmulationMachineTabKind.Keyboard => BuildKeyboardTab(),
-            EmulationMachineTabKind.Mouse => BuildMouseTab(),
-            EmulationMachineTabKind.Controllers => BuildControllersTab(),
+            EmulationMachineTab.General => BuildAmigaGeneralTab(),
+            EmulationMachineTab.Cpu => BuildCpuTab(),
+            EmulationMachineTab.Ram => BuildRamTab(),
+            EmulationMachineTab.Rom => BuildRomTab(),
+            EmulationMachineTab.Video => BuildVideoTab(),
+            EmulationMachineTab.Audio => BuildAudioTab(),
+            EmulationMachineTab.Storage => BuildStorageTab(),
+            EmulationMachineTab.Keyboard => BuildKeyboardTab(),
+            EmulationMachineTab.Mouse => BuildMouseTab(),
+            EmulationMachineTab.Controllers => BuildControllersTab(),
             _ => null
         }, tabActivated: kind =>
         {
-            if (kind == EmulationMachineTabKind.Rom) LoadFirmwareCatalog();
+            if (kind == EmulationMachineTab.Rom) LoadFirmwareCatalog();
             return Task.CompletedTask;
         });
         return tabs;
@@ -1115,16 +1116,16 @@ public sealed class OptionsEmulationSection : UserControl
 
     private void ConfigureControllerChoices(AmigaModel model)
     {
-        var standardChoices = AmigaControllerSettingsFunctions.Types(model)
+        var standardChoices = AmigaControllerCatalog.Types(model)
             .Select(type => new LocalizedChoice<AmigaControllerType>(type,
                 AmigaControllerSettingsFunctions.Label(type))).ToArray();
 
         for (var port = 0; port < _controllers.Length; port++)
         {
-            var choices = port < 2 ? standardChoices : AmigaControllerSettingsFunctions.ParallelPortTypes()
+            var choices = port < 2 ? standardChoices : AmigaControllerCatalog.ParallelPortTypes
                 .Select(type => new LocalizedChoice<AmigaControllerType>(type,
                     AmigaControllerSettingsFunctions.Label(type))).ToArray();
-            var modelDefault = port < 2 ? AmigaControllerSettingsFunctions.Default(model)
+            var modelDefault = port < 2 ? AmigaControllerCatalog.Default(model)
                 : _parallelJoystickAdapter.IsChecked == true ? AmigaControllerType.Joystick : AmigaControllerType.None;
             var current = _loading ? SelectedChoice(_controllers[port], modelDefault) : modelDefault;
             _controllers[port].ItemsSource = choices;
@@ -1450,7 +1451,8 @@ public sealed class OptionsEmulationSection : UserControl
             if (string.Equals(item.Firmware.Path, selectedPath, StringComparison.OrdinalIgnoreCase))
                 _firmwareList.SelectedItem = row;
         }
-        _useSelectedFirmware.IsEnabled = SelectedFirmware() is not null;
+        EmulationSettingsLayout.UpdateFirmwareUseButton(_useSelectedFirmware,
+            SelectedFirmware() is { } selected ? FirmwareCompatibilityFor(selected.Firmware) : null);
     }
 
     private UIElement BuildFirmwareRow(FirmwareItem item)
@@ -1523,13 +1525,16 @@ public sealed class OptionsEmulationSection : UserControl
     private void UseFirmware(FirmwareItem? item)
     {
         if (item is null) return;
-        switch (item.Firmware.Type)
+        EmulationSettingsLayout.UseFirmware(FirmwareCompatibilityFor(item.Firmware), () =>
         {
-            case AmigaFirmwareType.ExtendedRom: _extendedRom.Text = item.Firmware.Path; break;
-            case AmigaFirmwareType.RomKey: _romKey.Text = item.Firmware.Path; break;
-            default: _kickstart.Text = item.Firmware.Path; break;
-        }
-        UpdateRomFieldAvailability();
+            switch (item.Firmware.Type)
+            {
+                case AmigaFirmwareType.ExtendedRom: _extendedRom.Text = item.Firmware.Path; break;
+                case AmigaFirmwareType.RomKey: _romKey.Text = item.Firmware.Path; break;
+                default: _kickstart.Text = item.Firmware.Path; break;
+            }
+            UpdateRomFieldAvailability();
+        });
     }
 
     private void UpdateRomFieldAvailability()
@@ -1565,9 +1570,9 @@ public sealed class OptionsEmulationSection : UserControl
         {
             var configured = configuration.Controllers?.ElementAtOrDefault(port)
                 ?? configuration.Input?.ControllerBindings?.FirstOrDefault(binding => binding.Port == port)?.Type
-                ?? (port < 2 ? AmigaControllerSettingsFunctions.Default(selectedModel) : AmigaControllerType.None);
+                ?? (port < 2 ? AmigaControllerCatalog.Default(selectedModel) : AmigaControllerType.None);
             var explicitType = port < 2
-                ? AmigaControllerSettingsFunctions.Normalize(selectedModel, configured)
+                ? AmigaControllerCatalog.Normalize(selectedModel, configured)
                 : configured is AmigaControllerType.Joystick or AmigaControllerType.None
                     ? configured
                     : configuration.Input?.ParallelJoystickAdapterEnabled == true
@@ -1777,7 +1782,7 @@ public sealed class OptionsEmulationSection : UserControl
                 .ToDictionary(item => item.Binding.Trim(), item => item.Id, StringComparer.OrdinalIgnoreCase);
             return new AmigaControllerBinding(port,
                 SelectedChoice(_controllers[port], port < 2
-                    ? AmigaControllerSettingsFunctions.Default(model)
+                    ? AmigaControllerCatalog.Default(model)
                     : AmigaControllerType.None),
                 (_controllerDevices[port].SelectedItem as GameControllerDevice)?.Id,
                 mappings);
@@ -1803,7 +1808,7 @@ public sealed class OptionsEmulationSection : UserControl
             Options: options, Id: configurationId,
             AudioEnabled: _audio.IsChecked == true,
             Controllers: _controllers.Select((combo, port) => SelectedChoice(combo, port < 2
-                ? AmigaControllerSettingsFunctions.Default(model)
+                ? AmigaControllerCatalog.Default(model)
                 : AmigaControllerType.None)).ToArray(),
             Input: input,
             Floppies: floppies.Length == 0 ? null : floppies,

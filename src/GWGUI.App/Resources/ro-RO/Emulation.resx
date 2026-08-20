@@ -966,15 +966,6 @@
   <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
     <value>Atari 130XE</value>
   </data>
-  <data name="Emulation.Atari.Model.Modern320K" xml:space="preserve">
-    <value>Atari XL/XE 320K</value>
-  </data>
-  <data name="Emulation.Atari.Model.Modern576K" xml:space="preserve">
-    <value>Atari XL/XE 576K</value>
-  </data>
-  <data name="Emulation.Atari.Model.Modern1088K" xml:space="preserve">
-    <value>Atari XL/XE 1088K</value>
-  </data>
   <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
     <value>Atari XEGS</value>
   </data>
@@ -988,7 +979,7 @@
     <value>Atari 7800</value>
   </data>
   <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
-    <value>Built-in controls</value>
+    <value>Atari Lynx</value>
   </data>
   <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
     <value>Atari Jaguar</value>
@@ -1132,4 +1123,38 @@
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Sunetul unității de dischetă</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Filtru audio polarizat</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Afișează activitatea unităților pe ecranul emulatorului</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Extensie de memorie Mosaic</value></data>
+  <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Extensie de memorie Axlon</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Umbră banc Axlon $0F</value></data>
+  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
+  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>POKEY stereo</value></data>
+  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Artefacte de înaltă rezoluție</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>Accelerare SIO</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Pornire de pe casetă</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>Revizia sistemului de operare</value></data>
+  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>BASIC intern</value></data>
+  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>Revizie BASIC</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>Viteza de mișcare a controllerelor paddle</value></data>
+  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>Foc automat</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>Cât timp butonul de foc este apăsat</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Întotdeauna</value></data>
+  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Nuanță</value></data>
+  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Saturație</value></data>
+  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>Contrast</value></data>
+  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Luminozitate</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>Întârziere culoare GTIA</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>Paletă externă</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>Compatibilitate controler</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>Sensibilitate digitală</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>Sensibilitate analogică</value></data>
+  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>Joystick dublu</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>Inversează porturile</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>Afișează viteza emulării</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>Afișează contorul sector/bloc</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>Ceas în timp real R-Time 8</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>Dispozitiv imprimantă P:</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>Dispozitiv serial R:</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Scăzută</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normală</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Ridicată</value></data>
 </root>

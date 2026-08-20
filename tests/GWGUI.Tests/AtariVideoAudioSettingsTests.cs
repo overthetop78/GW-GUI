@@ -1,7 +1,10 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Threading;
+using System.Reflection;
+using System.Windows.Controls;
 using GWGUI.App.Controls;
+using GWGUI.App.Localization;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari;
 
@@ -10,6 +13,49 @@ namespace GWGUI.Tests;
 [Collection(AtariNativeCoreTestConstants.CollectionName)]
 public sealed class AtariVideoAudioSettingsTests
 {
+    [Fact]
+    public void Atari400ExposesEveryNativeColorAndDisplayChoice()
+    {
+        var view = AtariVideoAudioSettingsFunctions.Create(
+            new AtariMachineConfiguration(AtariMachineModel.Atari400));
+
+        Assert.Contains(view.ColorHue, choice => choice.Value == "-1.00");
+        Assert.Contains(view.ColorHue, choice => choice.Value == "1.00");
+        Assert.Contains(view.ColorGamma, choice => choice.Value == AtariEightBitSettingsConstants.DefaultGamma);
+        Assert.Contains(view.ColorDelay, choice => choice.Value == AtariEightBitSettingsConstants.DefaultColorDelay);
+        Assert.Equal(["none", "default", "gray", "jakub", "real", "xformer"],
+            view.ExternalPalettes.Select(choice => choice.Value));
+    }
+
+    [Fact]
+    public void Atari400ColorOptionsAreDisplayedAndPersistedButRemainAbsentFromSt()
+    {
+        WpfTestHost.Run(() =>
+        {
+            var app = Application.Current as GWGUI.App.App ?? new GWGUI.App.App();
+            app.InitializeComponent();
+            var section = new AtariVideoAudioSettingsSection();
+            var source = new AtariMachineConfiguration(AtariMachineModel.Atari400);
+            section.Load(source);
+            var options = OptionEditors(section);
+
+            options[AtariEightBitSettingsConstants.ColorHueOptionKey].SelectedValue = "0.50";
+            options[AtariEightBitSettingsConstants.ExternalPaletteOptionKey].SelectedValue = "real";
+            var saved = section.Apply(source);
+            Assert.Equal("0.50", saved.Options[AtariEightBitSettingsConstants.ColorHueOptionKey]);
+            Assert.Equal("real", saved.Options[AtariEightBitSettingsConstants.ExternalPaletteOptionKey]);
+
+            section.Load(new AtariMachineConfiguration(AtariMachineModel.St));
+            options = OptionEditors(section);
+            Assert.DoesNotContain(AtariEightBitSettingsConstants.ColorHueOptionKey, options);
+            Assert.DoesNotContain(AtariEightBitSettingsConstants.ExternalPaletteOptionKey, options);
+        });
+    }
+
+    private static Dictionary<string, ComboBox> OptionEditors(AtariVideoAudioSettingsSection section) =>
+        Assert.IsType<Dictionary<string, ComboBox>>(typeof(AtariVideoAudioSettingsSection).GetField("_options",
+            BindingFlags.Instance | BindingFlags.NonPublic)!.GetValue(section));
+
     public static TheoryData<AtariMachineModel> EveryModel => new(Enum.GetValues<AtariMachineModel>());
 
     [Theory]
@@ -30,6 +76,8 @@ public sealed class AtariVideoAudioSettingsTests
         Assert.NotEmpty(view.Latencies);
         Assert.NotEmpty(view.Volumes);
         Assert.NotEmpty(view.Qualities);
+        Assert.Equal(LocExtension.Get(AtariVideoAudioSettingsConstants.AudioQualityNormalResource),
+            view.Qualities.Single(choice => choice.Value == AtariVideoAudioSettingsConstants.NormalQualityValue).DisplayName);
         Assert.Equal(configuration.VideoRenderer, view.Renderer);
         Assert.Equal(Enum.GetValues<EmulationVideoRenderer>().Order(),
             view.Renderers.Select(value => Enum.Parse<EmulationVideoRenderer>(value.Value)).Order());

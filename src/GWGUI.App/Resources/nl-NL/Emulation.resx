@@ -966,15 +966,6 @@
   <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
     <value>Atari 130XE</value>
   </data>
-  <data name="Emulation.Atari.Model.Modern320K" xml:space="preserve">
-    <value>Atari XL/XE 320K</value>
-  </data>
-  <data name="Emulation.Atari.Model.Modern576K" xml:space="preserve">
-    <value>Atari XL/XE 576K</value>
-  </data>
-  <data name="Emulation.Atari.Model.Modern1088K" xml:space="preserve">
-    <value>Atari XL/XE 1088K</value>
-  </data>
   <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
     <value>Atari XEGS</value>
   </data>
@@ -988,7 +979,7 @@
     <value>Atari 7800</value>
   </data>
   <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
-    <value>Built-in controls</value>
+    <value>Atari Lynx</value>
   </data>
   <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
     <value>Atari Jaguar</value>
@@ -1132,4 +1123,38 @@
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Diskettestationsgeluid</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Gepolariseerd audiofilter</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Stationsactiviteit op het emulatorscherm weergeven</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Mosaic-geheugenuitbreiding</value></data>
+  <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Axlon-geheugenuitbreiding</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Axlon $0F-bankschaduw</value></data>
+  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
+  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>Stereo-POKEY</value></data>
+  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Artefacten met hoge resolutie</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>SIO-versnelling</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Opstarten vanaf cassette</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>Besturingssysteemrevisie</value></data>
+  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>Interne BASIC</value></data>
+  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>BASIC-revisie</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>Bewegingssnelheid van paddles</value></data>
+  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>Automatisch vuren</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>Terwijl vuur ingedrukt wordt</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Altijd</value></data>
+  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Tint</value></data>
+  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Verzadiging</value></data>
+  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>Contrast</value></data>
+  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Helderheid</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>GTIA-kleurvertraging</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>Extern palet</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>Controllercompatibiliteit</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>Digitale gevoeligheid</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>Analoge gevoeligheid</value></data>
+  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>Dubbele joystick</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>Poorten omwisselen</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>Emulatiesnelheid weergeven</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>Sector-/blokteller weergeven</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>R-Time 8-realtimeklok</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>P:-printerapparaat</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>R:-serieel apparaat</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Laag</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normaal</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Hoog</value></data>
 </root>

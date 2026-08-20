@@ -5,26 +5,6 @@ namespace GWGUI.App.Controls;
 
 internal static class AmigaControllerSettingsFunctions
 {
-    internal static IReadOnlyList<AmigaControllerType> Types(AmigaModel model)
-    {
-        var types = new List<AmigaControllerType>
-        {
-            AmigaControllerType.Joystick, AmigaControllerType.AnalogJoystick
-        };
-        if (model.SupportsCd32Controller) types.Add(AmigaControllerType.Cd32Pad);
-        types.Add(AmigaControllerType.None);
-        return types;
-    }
-
-    internal static AmigaControllerType Default(AmigaModel model) =>
-        model.SupportsCd32Controller ? AmigaControllerType.Cd32Pad : AmigaControllerType.Joystick;
-
-    internal static AmigaControllerType Normalize(AmigaModel model, AmigaControllerType type) =>
-        type != AmigaControllerType.Automatic && Types(model).Contains(type) ? type : Default(model);
-
-    internal static IReadOnlyList<AmigaControllerType> ParallelPortTypes() =>
-        [AmigaControllerType.Joystick, AmigaControllerType.None];
-
     internal static string Label(AmigaControllerType type) => type switch
     {
         AmigaControllerType.Automatic => LocExtension.Get("Emulation.Controller.Automatic"),

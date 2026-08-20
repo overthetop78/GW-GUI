@@ -966,15 +966,6 @@
   <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
     <value>Atari 130XE</value>
   </data>
-  <data name="Emulation.Atari.Model.Modern320K" xml:space="preserve">
-    <value>Atari XL/XE 320K</value>
-  </data>
-  <data name="Emulation.Atari.Model.Modern576K" xml:space="preserve">
-    <value>Atari XL/XE 576K</value>
-  </data>
-  <data name="Emulation.Atari.Model.Modern1088K" xml:space="preserve">
-    <value>Atari XL/XE 1088K</value>
-  </data>
   <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
     <value>Atari XEGS</value>
   </data>
@@ -988,7 +979,7 @@
     <value>Atari 7800</value>
   </data>
   <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
-    <value>Built-in controls</value>
+    <value>Atari Lynx</value>
   </data>
   <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
     <value>Atari Jaguar</value>
@@ -1132,4 +1123,38 @@
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Ήχος μονάδας δισκέτας</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Πολωμένο φίλτρο ήχου</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Εμφάνιση δραστηριότητας μονάδων στην οθόνη του εξομοιωτή</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Επέκταση μνήμης Mosaic</value></data>
+  <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Επέκταση μνήμης Axlon</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Σκιά τράπεζας Axlon $0F</value></data>
+  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
+  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>Στερεοφωνικό POKEY</value></data>
+  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Τεχνουργήματα υψηλής ανάλυσης</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>Επιτάχυνση SIO</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Εκκίνηση από κασέτα</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>Αναθεώρηση λειτουργικού συστήματος</value></data>
+  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>Εσωτερικό BASIC</value></data>
+  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>Αναθεώρηση BASIC</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>Ταχύτητα κίνησης paddle</value></data>
+  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>Αυτόματη πυροδότηση</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>Όσο κρατιέται πατημένη η πυροδότηση</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Πάντα</value></data>
+  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Απόχρωση</value></data>
+  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Κορεσμός</value></data>
+  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>Αντίθεση</value></data>
+  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Φωτεινότητα</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>Καθυστέρηση χρώματος GTIA</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>Εξωτερική παλέτα</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>Συμβατότητα χειριστηρίου</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>Ψηφιακή ευαισθησία</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>Αναλογική ευαισθησία</value></data>
+  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>Διπλό χειριστήριο</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>Εναλλαγή θυρών</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>Εμφάνιση ταχύτητας εξομοίωσης</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>Εμφάνιση μετρητή τομέα/μπλοκ</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>Ρολόι πραγματικού χρόνου R-Time 8</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>Συσκευή εκτυπωτή P:</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>Σειριακή συσκευή R:</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Χαμηλή</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Κανονική</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Υψηλή</value></data>
 </root>

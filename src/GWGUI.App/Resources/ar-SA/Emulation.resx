@@ -966,15 +966,6 @@
   <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
     <value>Atari 130XE</value>
   </data>
-  <data name="Emulation.Atari.Model.Modern320K" xml:space="preserve">
-    <value>Atari XL/XE 320K</value>
-  </data>
-  <data name="Emulation.Atari.Model.Modern576K" xml:space="preserve">
-    <value>Atari XL/XE 576K</value>
-  </data>
-  <data name="Emulation.Atari.Model.Modern1088K" xml:space="preserve">
-    <value>Atari XL/XE 1088K</value>
-  </data>
   <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
     <value>Atari XEGS</value>
   </data>
@@ -988,7 +979,7 @@
     <value>Atari 7800</value>
   </data>
   <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
-    <value>Built-in controls</value>
+    <value>Atari Lynx</value>
   </data>
   <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
     <value>Atari Jaguar</value>
@@ -1132,4 +1123,38 @@
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>صوت محرك الأقراص المرنة</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>مرشح صوت مستقطب</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>إظهار نشاط محركات الأقراص على شاشة المحاكي</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>توسعة ذاكرة Mosaic</value></data>
+  <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>توسعة ذاكرة Axlon</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>ظل بنك Axlon $0F</value></data>
+  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
+  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>POKEY ستيريو</value></data>
+  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>تشوهات الدقة العالية</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>تسريع SIO</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>الإقلاع من الشريط</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>مراجعة نظام التشغيل</value></data>
+  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>BASIC داخلي</value></data>
+  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>مراجعة BASIC</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>سرعة حركة وحدات Paddle</value></data>
+  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>إطلاق تلقائي</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>أثناء الضغط على زر الإطلاق</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>دائمًا</value></data>
+  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>تدرج اللون</value></data>
+  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>التشبع</value></data>
+  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>التباين</value></data>
+  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>السطوع</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>تأخير لون GTIA</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>لوحة ألوان خارجية</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>توافق وحدة التحكم</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>الحساسية الرقمية</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>الحساسية التناظرية</value></data>
+  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>عصا تحكم مزدوجة</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>تبديل المنافذ</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>إظهار سرعة المحاكاة</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>إظهار عداد القطاع/الكتلة</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>ساعة الوقت الحقيقي R-Time 8</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>جهاز الطابعة P:</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>الجهاز التسلسلي R:</value></data>
+  <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>منخفضة</value></data>
+  <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>عادية</value></data>
+  <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>عالية</value></data>
 </root>

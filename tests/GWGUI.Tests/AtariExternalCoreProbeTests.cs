@@ -180,6 +180,58 @@ public sealed class AtariExternalCoreProbeTests
     }
 
     [Fact]
+    [Trait("Category", "LocalAssets")]
+    public void Atari400AcceptsEveryConfiguredNativeOptionExposedByTheApplication()
+    {
+        var corePath = Path.Combine(FindRepositoryRoot(), "tmp", "atari-cores", "atari800.dll");
+        var sessionDirectory = Path.Combine(Path.GetTempPath(), $"gwgui-atari400-options-{Guid.NewGuid():N}");
+        Directory.CreateDirectory(sessionDirectory);
+        try
+        {
+            var configuration = new AtariMachineConfiguration(AtariMachineModel.Atari400, options:
+                new Dictionary<string, string>
+                {
+                    [AtariConfigurationOptionConstants.VideoStandard] = AtariClassicRegion.Pal.ToString(),
+                    [AtariEightBitSettingsConstants.ArtifactingModeOptionKey] = "GTIA",
+                    [AtariEightBitSettingsConstants.ColorHueOptionKey] = "0.50",
+                    [AtariEightBitSettingsConstants.ColorSaturationOptionKey] = "-0.50",
+                    [AtariEightBitSettingsConstants.ColorContrastOptionKey] = "1.00",
+                    [AtariEightBitSettingsConstants.ColorBrightnessOptionKey] = "-1.00",
+                    [AtariEightBitSettingsConstants.ColorGammaOptionKey] = "2.35",
+                    [AtariEightBitSettingsConstants.ColorDelayOptionKey] = "23.00",
+                    [AtariEightBitSettingsConstants.ExternalPaletteOptionKey] = "real",
+                    [AtariEightBitSettingsConstants.ControllerCompatibilityOptionKey] = "Joy 2B+",
+                    [AtariEightBitSettingsConstants.DigitalSensitivityOptionKey] = "55",
+                    [AtariEightBitSettingsConstants.AnalogSensitivityOptionKey] = "80",
+                    [AtariEightBitSettingsConstants.Os400800OptionKey] = "Rev. B NTSC",
+                    [AtariEightBitSettingsConstants.BasicEnabledOptionKey] = "disabled",
+                    [AtariEightBitSettingsConstants.BasicVersionOptionKey] = "Altirra BASIC",
+                    [AtariEightBitSettingsConstants.MosaicMemoryOptionKey] = "80 KB",
+                    [AtariEightBitSettingsConstants.AxlonMemoryOptionKey] = "disabled",
+                    [AtariEightBitSettingsConstants.ShowSpeedOptionKey] = "enabled",
+                    [AtariEightBitSettingsConstants.ShowActivityOptionKey] = "enabled",
+                    [AtariEightBitSettingsConstants.ShowSectorOptionKey] = "enabled",
+                    [AtariEightBitSettingsConstants.RealTimeClockOptionKey] = "enabled",
+                    [AtariEightBitSettingsConstants.PrinterDeviceOptionKey] = "enabled",
+                    [AtariEightBitSettingsConstants.SerialDeviceOptionKey] = "enabled",
+                    [AtariEightBitSettingsConstants.SioAccelerationOptionKey] = "enabled",
+                    [AtariEightBitSettingsConstants.CassetteBootOptionKey] = "disabled",
+                    [AtariEightBitSettingsConstants.PokeyStereoOptionKey] = "disabled"
+                });
+            using var core = new AtariExternalCore(corePath, AtariCoreKind.Atari800);
+
+            core.Initialize(configuration, sessionDirectory);
+            core.RunFrame();
+
+            Assert.NotEmpty(core.Options);
+        }
+        finally
+        {
+            Directory.Delete(sessionDirectory, recursive: true);
+        }
+    }
+
+    [Fact]
     public void FailedContentInitialization_CleansInitializedStagesAndAllowsRetry()
     {
         var corePath = Path.Combine(FindRepositoryRoot(), "tmp", "atari-cores", "atari800.dll");

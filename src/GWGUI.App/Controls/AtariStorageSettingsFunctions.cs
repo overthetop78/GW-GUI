@@ -18,7 +18,7 @@ internal static class AtariStorageSettingsFunctions
         var allAvailable = AtariCompatibilityCatalog.Get(configuration.Model).Media
             .Where(rule => rule.Availability == AtariMediaAvailability.Available)
             .ToArray();
-        var primary = PrimaryDevice(configuration.Model);
+        var primary = AtariStorageConfigurationFunctions.PrimaryDevice(configuration.Model);
         var types = allAvailable.Select(rule => rule.Kind).Distinct()
             .Select(kind => new AtariStorageTypeChoice(kind, KindName(kind))).ToArray();
         var slots = allAvailable.GroupBy(rule => rule.Kind).ToDictionary(group => group.Key,
@@ -29,23 +29,27 @@ internal static class AtariStorageSettingsFunctions
         var buses = types.ToDictionary(type => type.Kind,
             type => (IReadOnlyList<AtariStorageBusChoice>)Buses(configuration.Model, type.Kind)
                 .Select(bus => new AtariStorageBusChoice(bus, bus.ToString())).ToArray());
-        var primaryMedia = configuration.Media.FirstOrDefault(item => item.Slot == primary.Slot)
-            ?? new AtariMediaConfiguration(string.Empty, primary.Kind, primary.Slot, IsInserted: false);
+        var primaryMedia = primary is { } primaryDevice
+            ? configuration.Media.FirstOrDefault(item => item.Slot == primaryDevice.Slot)
+                ?? new AtariMediaConfiguration(string.Empty, primaryDevice.Kind, primaryDevice.Slot, IsInserted: false)
+            : null;
         var configuredSlots = configuration.Options
             .Where(option => option.Key.StartsWith(DeviceOptionPrefix, StringComparison.Ordinal))
             .Select(option => Enum.TryParse<EmulationMediaSlot>(option.Key[DeviceOptionPrefix.Length..], out var slot)
-                && Enum.TryParse<AtariMediaKind>(option.Value, out var kind) ? (Slot: slot, Kind: kind) : default)
-            .Where(item => item != default && IsAvailable(allAvailable,
-                new AtariMediaConfiguration(string.Empty, item.Kind, item.Slot)))
+                && Enum.TryParse<AtariMediaKind>(option.Value, out var kind)
+                    ? ((EmulationMediaSlot Slot, AtariMediaKind Kind)?)(slot, kind) : null)
+            .Where(item => item is not null && IsAvailable(allAvailable,
+                new AtariMediaConfiguration(string.Empty, item.Value.Kind, item.Value.Slot)))
+            .Select(item => item!.Value)
             .ToArray();
         var extraMedia = configuration.Media
-            .Where(item => item.Slot != primary.Slot && IsAvailable(allAvailable, item))
+            .Where(item => (primary is null || item.Slot != primary.Value.Slot) && IsAvailable(allAvailable, item))
             .Select(item => (item.Slot, item.Kind));
-        var devices = new[] { Device(configuration, primaryMedia, false) }
+        var devices = (primaryMedia is null ? [] : new[] { Device(configuration, primaryMedia, false) })
             .Concat(configuredSlots.Concat(extraMedia)
                 .GroupBy(item => item.Slot)
                 .Select(group => group.Last())
-                .Where(item => item.Slot != primary.Slot)
+                .Where(item => primary is null || item.Slot != primary.Value.Slot)
                 .Select(item => Device(configuration,
                     configuration.Media.FirstOrDefault(media => media.Slot == item.Slot)
                     ?? new AtariMediaConfiguration(string.Empty, item.Kind, item.Slot, IsInserted: false), true)))
@@ -59,27 +63,10 @@ internal static class AtariStorageSettingsFunctions
             device.Configuration.Slot != slot.Slot)));
 
     internal static bool IsPrimaryDevice(AtariMachineModel model, EmulationMediaSlot slot) =>
-        PrimaryDevice(model).Slot == slot;
+        AtariStorageConfigurationFunctions.IsPrimaryDevice(model, slot);
 
     internal static string MachineName(AtariMachineModel model) =>
         AtariConfigurationCatalogFunctions.ModelName(model);
-
-    internal static AtariMachineFamily Family(AtariMachineModel model) => model switch
-    {
-        AtariMachineModel.St or AtariMachineModel.Stf or AtariMachineModel.Stfm or AtariMachineModel.MegaSt
-            or AtariMachineModel.Ste or AtariMachineModel.MegaSte or AtariMachineModel.Tt
-            or AtariMachineModel.Falcon => AtariMachineFamily.St,
-        AtariMachineModel.Atari400 or AtariMachineModel.Atari800 or AtariMachineModel.Atari800Xl
-            or AtariMachineModel.Atari130Xe or AtariMachineModel.ModernXlXe320K
-            or AtariMachineModel.ModernXlXe576K or AtariMachineModel.ModernXlXe1088K
-            or AtariMachineModel.Xegs => AtariMachineFamily.EightBit,
-        AtariMachineModel.Atari5200 => AtariMachineFamily.Atari5200,
-        AtariMachineModel.Atari2600 => AtariMachineFamily.Atari2600,
-        AtariMachineModel.Atari7800 => AtariMachineFamily.Atari7800,
-        AtariMachineModel.Lynx => AtariMachineFamily.Lynx,
-        AtariMachineModel.Jaguar or AtariMachineModel.JaguarCd => AtariMachineFamily.Jaguar,
-        _ => throw new ArgumentOutOfRangeException(nameof(model), model, null)
-    };
 
     internal static string DeviceIdentifier(AtariMachineModel model, AtariMediaKind kind,
         EmulationMediaSlot slot) => (Family(model), kind, slot) switch
@@ -160,15 +147,6 @@ internal static class AtariStorageSettingsFunctions
         AtariMediaConfiguration media) => rules.Any(rule => rule.Kind == media.Kind
             && rule.Slots.Contains(media.Slot));
 
-    private static (AtariMediaKind Kind, EmulationMediaSlot Slot) PrimaryDevice(AtariMachineModel model) => model switch
-    {
-        AtariMachineModel.JaguarCd => (AtariMediaKind.CompactDisc, EmulationMediaSlot.Cd0),
-        AtariMachineModel.Atari2600 or AtariMachineModel.Atari5200 or AtariMachineModel.Atari7800
-            or AtariMachineModel.Lynx or AtariMachineModel.Jaguar or AtariMachineModel.Xegs
-            => (AtariMediaKind.Cartridge, EmulationMediaSlot.Cartridge0),
-        _ => (AtariMediaKind.Floppy, EmulationMediaSlot.Floppy0)
-    };
-
     internal static AtariMachineConfiguration AddOrReplace(AtariMachineConfiguration source,
         AtariMediaConfiguration media, EmulationMediaSlot? replacedSlot)
     {
@@ -199,8 +177,8 @@ internal static class AtariStorageSettingsFunctions
             throw new ArgumentException(AtariStorageSettingsConstants.PathResource, nameof(media));
     }
 
-    internal static bool IsRemovable(AtariMediaKind kind) => kind is AtariMediaKind.Floppy
-        or AtariMediaKind.Cassette or AtariMediaKind.Cartridge or AtariMediaKind.CompactDisc;
+    internal static bool IsRemovable(AtariMediaKind kind) =>
+        AtariStorageConfigurationFunctions.IsRemovable(kind);
 
     private static IReadOnlyList<AtariStorageBus> Buses(AtariMachineModel model, AtariMediaKind kind)
     {

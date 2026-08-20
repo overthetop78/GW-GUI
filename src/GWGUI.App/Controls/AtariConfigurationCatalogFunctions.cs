@@ -5,11 +5,36 @@ namespace GWGUI.App.Controls;
 
 internal static class AtariConfigurationCatalogFunctions
 {
-    internal static IReadOnlyList<AtariModelItem> Models() => Enum.GetValues<AtariMachineModel>()
+    private static readonly AtariMachineModel[] DisplayOrder =
+    [
+        AtariMachineModel.St,
+        AtariMachineModel.Stf,
+        AtariMachineModel.Stfm,
+        AtariMachineModel.MegaSt,
+        AtariMachineModel.Ste,
+        AtariMachineModel.MegaSte,
+        AtariMachineModel.Tt,
+        AtariMachineModel.Falcon,
+        AtariMachineModel.Atari400,
+        AtariMachineModel.Atari800,
+        AtariMachineModel.Atari800Xl,
+        AtariMachineModel.Atari130Xe,
+        AtariMachineModel.XlXe,
+        AtariMachineModel.Xegs,
+        AtariMachineModel.Atari2600,
+        AtariMachineModel.Atari5200,
+        AtariMachineModel.Atari7800,
+        AtariMachineModel.Lynx,
+        AtariMachineModel.Jaguar,
+        AtariMachineModel.JaguarCd
+    ];
+
+    internal static IReadOnlyList<AtariModelItem> Models() => DisplayOrder
         .Select(model => new AtariModelItem(model, ModelName(model)))
         .ToArray();
 
-    internal static string ModelName(AtariMachineModel model) => LocExtension.Get(ResourceKey(model));
+    internal static string ModelName(AtariMachineModel model) => model == AtariMachineModel.Lynx
+        ? "Atari Lynx" : LocExtension.Get(ResourceKey(model));
 
     internal static AtariMachineConfiguration ChangeModel(AtariMachineConfiguration? current,
         AtariMachineModel model) => current is not null && current.Model == model
@@ -38,9 +63,7 @@ internal static class AtariConfigurationCatalogFunctions
         AtariMachineModel.Atari800 => AtariConfigurationCatalogConstants.Atari800Resource,
         AtariMachineModel.Atari800Xl => AtariConfigurationCatalogConstants.Atari800XlResource,
         AtariMachineModel.Atari130Xe => AtariConfigurationCatalogConstants.Atari130XeResource,
-        AtariMachineModel.ModernXlXe320K => AtariConfigurationCatalogConstants.Modern320KResource,
-        AtariMachineModel.ModernXlXe576K => AtariConfigurationCatalogConstants.Modern576KResource,
-        AtariMachineModel.ModernXlXe1088K => AtariConfigurationCatalogConstants.Modern1088KResource,
+        AtariMachineModel.XlXe => AtariConfigurationCatalogConstants.XlXeResource,
         AtariMachineModel.Xegs => AtariConfigurationCatalogConstants.XegsResource,
         AtariMachineModel.Atari5200 => AtariConfigurationCatalogConstants.Atari5200Resource,
         AtariMachineModel.Atari2600 => AtariConfigurationCatalogConstants.Atari2600Resource,

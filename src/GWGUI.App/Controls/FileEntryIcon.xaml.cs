@@ -4,8 +4,6 @@ using System.Windows.Media;
 
 namespace GWGUI.App.Controls;
 
-public enum ExplorerIconKind { Folder, Text, Image, Audio, Archive, Program, DiskImage, Link, File }
-
 public partial class FileEntryIcon : UserControl
 {
     public static readonly DependencyProperty KindProperty = DependencyProperty.Register(

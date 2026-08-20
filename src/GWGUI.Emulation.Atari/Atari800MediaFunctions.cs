@@ -40,13 +40,48 @@ internal static class Atari800MediaFunctions
         AtariMachineConfiguration machine,
         Atari800PreparedMedia? media)
     {
-        var options = new Dictionary<string, string>(machine.Options, StringComparer.Ordinal);
-        options[Atari800MediaConstants.SystemOptionKey] = AtariClassicModelCatalog.Get(machine.Model).StableModelId;
-        options[Atari800MediaConstants.CassetteBootOptionKey] =
-            media?.ContentType == Atari800ContentType.Cassette && media.Configuration.CassetteAutoBoot
-                ? Atari800MediaConstants.EnabledOptionValue
-                : Atari800MediaConstants.DisabledOptionValue;
+        var options = new Dictionary<string, string>(AtariEightBitSettingsFunctions.Normalize(machine),
+            StringComparer.Ordinal);
+        options[Atari800MediaConstants.SystemOptionKey] = SystemValue(machine, options);
+        options.Remove(AtariConfigurationOptionConstants.MainMemory);
+        var configuredCassetteBoot = options.TryGetValue(AtariEightBitSettingsConstants.CassetteBootOptionKey,
+            out var cassetteBoot) && string.Equals(cassetteBoot, AtariEightBitSettingsConstants.Enabled,
+            StringComparison.OrdinalIgnoreCase);
+        options[AtariEightBitSettingsConstants.CassetteBootOptionKey] =
+            configuredCassetteBoot || media?.ContentType == Atari800ContentType.Cassette
+                && media.Configuration.CassetteAutoBoot
+                ? AtariEightBitSettingsConstants.Enabled
+                : AtariEightBitSettingsConstants.Disabled;
+        if (options.TryGetValue(AtariConfigurationOptionConstants.VideoStandard, out var standard))
+            options[AtariEightBitSettingsConstants.VideoStandardOptionKey] =
+                string.Equals(standard, AtariClassicRegion.Pal.ToString(), StringComparison.OrdinalIgnoreCase)
+                    ? AtariEightBitSettingsConstants.Pal : AtariEightBitSettingsConstants.Ntsc;
+        options.Remove(AtariConfigurationOptionConstants.VideoStandard);
+        MoveOption(options, AtariConfigurationOptionConstants.VideoResolution,
+            AtariEightBitSettingsConstants.ResolutionOptionKey);
+        // Per-port dead zones are already applied by GW GUI before analog input is forwarded.
+        options[AtariEightBitSettingsConstants.AnalogDeadZoneOptionKey] =
+            AtariEightBitSettingsConstants.NeutralAnalogDeadZone;
         return options;
+    }
+
+    private static void MoveOption(IDictionary<string, string> options, string source, string destination)
+    {
+        if (options.TryGetValue(source, out var value)) options[destination] = value;
+        options.Remove(source);
+    }
+
+    private static string SystemValue(AtariMachineConfiguration machine,
+        IReadOnlyDictionary<string, string> options)
+    {
+        if (machine.Model != AtariMachineModel.XlXe)
+            return AtariClassicModelCatalog.Get(machine.Model).StableModelId;
+        return options.GetValueOrDefault(AtariConfigurationOptionConstants.MainMemory) switch
+        {
+            "589824" => AtariClassicModelConstants.XlXe576KModelId,
+            "1114112" => AtariClassicModelConstants.XlXe1088KModelId,
+            _ => AtariClassicModelConstants.XlXeModelId
+        };
     }
 
     internal static bool HasCartridgeHeader(string path)
