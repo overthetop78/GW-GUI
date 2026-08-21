@@ -1,4 +1,5 @@
 using System.IO;
+using GWGUI.App.Enums;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.Domain.Commands;
 using GWGUI.Domain.Profiles;

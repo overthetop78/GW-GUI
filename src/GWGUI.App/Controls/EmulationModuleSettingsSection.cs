@@ -5,6 +5,7 @@ using GWGUI.App.Localization;
 using GWGUI.App.Services;
 using GWGUI.Emulation;
 using Microsoft.Win32;
+using System.IO;
 
 namespace GWGUI.App.Controls;
 

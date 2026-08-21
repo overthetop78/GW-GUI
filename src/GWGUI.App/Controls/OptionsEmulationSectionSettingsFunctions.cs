@@ -1,5 +1,6 @@
 using System.Windows.Controls;
 using GWGUI.App.Services;
+using GWGUI.Domain.Settings;
 using GWGUI.Emulation;
 using Microsoft.Win32;
 

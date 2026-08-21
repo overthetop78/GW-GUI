@@ -1,3 +1,4 @@
+using GWGUI.App.Contracts;
 using GWGUI.Emulation;
 
 namespace GWGUI.App.Constants;

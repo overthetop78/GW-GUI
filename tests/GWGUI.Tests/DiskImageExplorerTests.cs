@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Exploration;
+using GWGUI.App.Enums;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Exploration.Metadata;
 using System.Buffers.Binary;
