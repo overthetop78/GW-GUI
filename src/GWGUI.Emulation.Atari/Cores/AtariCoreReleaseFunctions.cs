@@ -17,7 +17,7 @@ internal static class AtariCoreReleaseFunctions
             ?? throw new InvalidDataException(AtariCoreReleaseErrors.MissingPublishedDate);
         var version = published.UtcDateTime.ToString(AtariCoreReleaseConstants.ReleaseVersionFormat,
             CultureInfo.InvariantCulture);
-        return new AtariCoreRelease(entry.Kind, AtariCoreReleaseConstants.ReleaseIdPrefix + version,
+        return new AtariCoreRelease(entry.Emulator, AtariCoreReleaseConstants.ReleaseIdPrefix + version,
             version, entry.ArchiveUri, published, response.Content.Headers.ContentLength);
     }
 

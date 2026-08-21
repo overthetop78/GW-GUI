@@ -38,7 +38,7 @@ public sealed class AtariHatariStorageTests
         var root = CreateRoot();
         var directory = Path.Combine(root, "My GEMDOS Drive");
         Directory.CreateDirectory(directory);
-        var media = new AtariMediaConfiguration(directory, AtariMediaKind.Directory,
+        var media = new AtariMediaConfiguration(directory, AtariMediaCategory.Directory,
             EmulationMediaSlot.HardDisk0, MountPoint: "D:");
         try
         {
@@ -70,7 +70,7 @@ public sealed class AtariHatariStorageTests
         var directory = Path.Combine(root, "Volumes");
         Directory.CreateDirectory(Path.Combine(directory, "D"));
         Directory.CreateDirectory(Path.Combine(directory, "C"));
-        var media = new AtariMediaConfiguration(directory, AtariMediaKind.Directory,
+        var media = new AtariMediaConfiguration(directory, AtariMediaCategory.Directory,
             EmulationMediaSlot.HardDisk0, MountOrder: 7);
         AtariHatariStorage? storage = null;
         try
@@ -95,7 +95,7 @@ public sealed class AtariHatariStorageTests
         File.WriteAllBytes(marker, []);
         try
         {
-            var media = new AtariMediaConfiguration(marker, AtariMediaKind.Directory,
+            var media = new AtariMediaConfiguration(marker, AtariMediaCategory.Directory,
                 EmulationMediaSlot.HardDisk0);
             var error = Assert.Throws<InvalidDataException>(() => AtariHatariStorageFunctions.Prepare(
                 AtariMachineModel.St, media, SupportedExtensions));
@@ -113,7 +113,7 @@ public sealed class AtariHatariStorageTests
         var root = CreateRoot();
         try
         {
-            var media = new AtariMediaConfiguration(Path.Combine(root, "missing"), AtariMediaKind.Directory,
+            var media = new AtariMediaConfiguration(Path.Combine(root, "missing"), AtariMediaCategory.Directory,
                 EmulationMediaSlot.HardDisk0);
             Assert.Throws<DirectoryNotFoundException>(() => AtariHatariStorageFunctions.Prepare(
                 AtariMachineModel.St, media, SupportedExtensions));
@@ -200,7 +200,7 @@ public sealed class AtariHatariStorageTests
         {
             var configuration = new AtariMachineConfiguration(AtariMachineModel.St, media:
             [
-                new AtariMediaConfiguration(floppy, AtariMediaKind.Floppy, EmulationMediaSlot.Floppy0),
+                new AtariMediaConfiguration(floppy, AtariMediaCategory.Floppy, EmulationMediaSlot.Floppy0),
                 CreateHardDisk(hardDisk) with { MountOrder = 1 }
             ]);
             Assert.Throws<InvalidOperationException>(() => AtariHatariContentFunctions.Prepare(
@@ -220,7 +220,7 @@ public sealed class AtariHatariStorageTests
         Directory.CreateDirectory(directory);
         var configuration = new AtariMachineConfiguration(AtariMachineModel.St, media:
         [
-            new AtariMediaConfiguration(directory, AtariMediaKind.Directory, EmulationMediaSlot.HardDisk0,
+            new AtariMediaConfiguration(directory, AtariMediaCategory.Directory, EmulationMediaSlot.HardDisk0,
                 MountPoint: "E")
         ]);
         try
@@ -243,7 +243,7 @@ public sealed class AtariHatariStorageTests
     }
 
     private static AtariMediaConfiguration CreateHardDisk(string path) =>
-        new(path, AtariMediaKind.HardDisk, EmulationMediaSlot.HardDisk0);
+        new(path, AtariMediaCategory.HardDisk, EmulationMediaSlot.HardDisk0);
 
     private static string CreateRoot()
     {

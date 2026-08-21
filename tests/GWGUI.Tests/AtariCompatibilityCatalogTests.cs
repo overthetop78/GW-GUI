@@ -51,7 +51,7 @@ public sealed class AtariCompatibilityCatalogTests
             rule => Assert.False(string.IsNullOrWhiteSpace(rule.ForcedValue)));
         Assert.InRange(definition.ControllerPortCount, AtariCompatibilityConstants.OneControllerPort,
             AtariCompatibilityConstants.FourControllerPorts);
-        Assert.Equal(definition.Media.Select(rule => rule.Kind).Distinct().Count(), definition.Media.Count);
+        Assert.Equal(definition.Media.Select(rule => rule.Category).Distinct().Count(), definition.Media.Count);
         Assert.All(definition.Media, rule => Assert.NotEmpty(rule.Slots));
         Assert.All(definition.Media.Where(rule => rule.Availability == AtariMediaAvailability.Unavailable),
             rule => Assert.False(string.IsNullOrWhiteSpace(rule.ExplanationResourceKey)));
@@ -98,13 +98,13 @@ public sealed class AtariCompatibilityCatalogTests
         _ = new AtariMachineConfiguration(model, input: new AtariInputConfiguration(Controllers:
         [
             new AtariControllerBinding(portCount - AtariCompatibilityConstants.OneControllerPort,
-                AtariPeripheralKind.Automatic)
+                AtariPeripheralCategory.Automatic)
         ]));
 
         Assert.Throws<ArgumentOutOfRangeException>(() => new AtariMachineConfiguration(model,
             input: new AtariInputConfiguration(Controllers:
             [
-                new AtariControllerBinding(portCount, AtariPeripheralKind.Automatic)
+                new AtariControllerBinding(portCount, AtariPeripheralCategory.Automatic)
             ])));
     }
 

@@ -1,32 +1,14 @@
-using System.Text.Json;
-
 namespace GWGUI.Emulation;
-
-public static class EmulationMediaProtocol
-{
-    private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
-
-    public static byte[] Serialize(IReadOnlyList<EmulationMedia> media) =>
-        JsonSerializer.SerializeToUtf8Bytes(EmulationMediaRules.Validate(media), JsonOptions);
-
-    public static IReadOnlyList<EmulationMedia> Deserialize(ReadOnlySpan<byte> payload)
-    {
-        var media = JsonSerializer.Deserialize<EmulationMedia[]>(payload, JsonOptions)
-            ?? throw new InvalidDataException("The emulation media document is empty.");
-        return EmulationMediaRules.Validate(media);
-    }
-}
 
 public static class EmulationMediaRules
 {
-    public static bool IsCompatible(EmulationMediaSlot slot, EmulationMediaType type) => slot switch
+    public static bool IsCompatible(EmulationMediaSlot slot, EmulationMediaType type) => slot.Category switch
     {
-        EmulationMediaSlot.Floppy0 or EmulationMediaSlot.Floppy1 or
-            EmulationMediaSlot.Floppy2 or EmulationMediaSlot.Floppy3 => type == EmulationMediaType.Floppy,
-        EmulationMediaSlot.HardDisk0 => type is EmulationMediaType.HardDisk or EmulationMediaType.Directory,
-        EmulationMediaSlot.Cd0 => type == EmulationMediaType.CompactDisc,
-        EmulationMediaSlot.Cartridge0 => type == EmulationMediaType.Cartridge,
-        EmulationMediaSlot.Cassette0 => type == EmulationMediaType.Cassette,
+        EmulationMediaCategory.FloppyDrive => type == EmulationMediaType.Floppy,
+        EmulationMediaCategory.HardDisk => type == EmulationMediaType.HardDisk,
+        EmulationMediaCategory.CompactDiscDrive => type == EmulationMediaType.CompactDisc,
+        EmulationMediaCategory.CartridgeSlot => type == EmulationMediaType.Cartridge,
+        EmulationMediaCategory.CassetteDrive => type == EmulationMediaType.Cassette,
         _ => false
     };
 

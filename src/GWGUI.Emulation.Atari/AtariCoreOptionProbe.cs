@@ -11,10 +11,10 @@ public static class AtariCoreOptionProbe
         return error.GetType().Name;
     }
 
-    public static IReadOnlyList<AtariCoreOption> Inspect(string corePath, AtariCoreKind kind)
+    public static IReadOnlyList<AtariCoreOption> Inspect(string corePath, AtariEmulator category)
     {
         var absoluteCore = Path.GetFullPath(corePath);
-        AtariExternalCoreProbe.Inspect(absoluteCore, kind);
+        AtariExternalCoreProbe.Inspect(absoluteCore, category);
         var session = Path.Combine(Path.GetTempPath(), "GWGUI-Atari-OptionProbe", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(session);
         try

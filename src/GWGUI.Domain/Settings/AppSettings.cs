@@ -12,8 +12,6 @@ public sealed class AppSettings
         Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GW GUI", "Emulation", "Captures");
     public string EmulationStateFolder { get; set; } = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GW GUI", "Emulation", "States");
-    public string AmigaHardDisksFolder { get; set; } = Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "GW GUI", "Emulation", "HDD", "Amiga");
     public Dictionary<string, string> EmulationShortcuts { get; set; } = EmulationShortcutDefaultFunctions.Create();
     public List<EmulationMediaFolderSettings> EmulationMediaFolders { get; set; } = [];
     public bool CreateEmulationFoldersAutomatically { get; set; } = true;
@@ -37,14 +35,12 @@ public sealed class AppSettings
     public ConversionUiSettings Conversion { get; set; } = new();
 }
 
-public enum EmulationMediaFolderFamily { Amiga, Atari }
-
-public enum EmulationMediaFolderType { Floppy, CompactDisc, HardDisk, Cartridge, Cassette, Directory }
+public enum EmulationMediaFolderCategory { Floppy, CompactDisc, HardDisk, Cartridge, Cassette }
 
 public sealed class EmulationMediaFolderSettings
 {
-    public EmulationMediaFolderFamily Family { get; set; }
-    public string Model { get; set; } = "";
-    public EmulationMediaFolderType Type { get; set; }
+    public string ModuleId { get; set; } = "";
+    public string MachineId { get; set; } = "";
+    public EmulationMediaFolderCategory Category { get; set; }
     public string Folder { get; set; } = "";
 }

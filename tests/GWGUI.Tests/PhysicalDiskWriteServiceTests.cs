@@ -62,7 +62,7 @@ public sealed class PhysicalDiskWriteServiceTests
             new ScpTrack(0, 0, 0, [new ScpRevolution(300, 2, [100u, 200u])])), Options());
 
         Assert.False(result.IsSuccess);
-        Assert.Equal(PhysicalDiskWriteFailureKind.WriteProtected, Assert.Single(result.Failures).Kind);
+        Assert.Equal(PhysicalDiskWriteFailureCategory.WriteProtected, Assert.Single(result.Failures).Category);
         Assert.False(device.IsOpen);
     }
 
@@ -94,11 +94,11 @@ public sealed class PhysicalDiskWriteServiceTests
         var image = CreateScpImage(new ScpTrack(0, 0, 0, [new ScpRevolution(300, 2, [100u, 200u])]));
         var unavailable = await new PhysicalDiskWriteService(new RecordingWriteDevice())
             .WriteAsync(image, Options() with { Verify = true });
-        Assert.Equal(PhysicalDiskWriteFailureKind.Validation, Assert.Single(unavailable.Failures).Kind);
+        Assert.Equal(PhysicalDiskWriteFailureCategory.Validation, Assert.Single(unavailable.Failures).Category);
 
         var rejected = await new PhysicalDiskWriteService(new RecordingWriteDevice(), new RejectingVerifier())
             .WriteAsync(image, Options() with { Verify = true });
-        Assert.Equal(PhysicalDiskWriteFailureKind.Verification, Assert.Single(rejected.Failures).Kind);
+        Assert.Equal(PhysicalDiskWriteFailureCategory.Verification, Assert.Single(rejected.Failures).Category);
     }
 
     private static PhysicalDiskWriteOptions Options() =>

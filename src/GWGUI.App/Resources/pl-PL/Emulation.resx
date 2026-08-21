@@ -1011,13 +1011,13 @@
   <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
     <value>Wybierz model Jaguar CD, aby używać nośników CD.</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cassettes">
+  <data name="Emulation.Storage.Cassettes">
     <value>Kaseta</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cartridges">
+  <data name="Emulation.Storage.Cartridges">
     <value>Kartridż</value>
   </data>
-  <data name="Emulation.Atari.Storage.CompactDiscs">
+  <data name="Emulation.Storage.CompactDiscs">
     <value>Płyty kompaktowe</value>
   </data>
   <data name="Emulation.Atari.Video.Region">
@@ -1107,8 +1107,8 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sterownik Sega Genesis</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B + Kontroler</value></data>
-  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
-    <value>Emulator wymaga nośnika przed włączeniem tej maszyny. Włóż dyskietkę lub skonfiguruj dysk twardy.</value>
+  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
+    <value>Emulator wymaga nośnika przed włączeniem tej maszyny. Włóż lub skonfiguruj jeden z wymaganych nośników pokazanych poniżej.</value>
   </data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
     <value>Nie można włączyć maszyny</value>
@@ -1157,4 +1157,5 @@
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Niska</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normalna</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Wysoka</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Gniazdo kartridża</value></data>
 </root>

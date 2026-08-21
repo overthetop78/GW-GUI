@@ -27,12 +27,12 @@ internal static class Atari800MediaFunctions
         if (media.CartridgeType is < Atari800MediaConstants.MinimumCartridgeType)
             throw new ArgumentOutOfRangeException(nameof(media), Atari800MediaErrors.CartridgeTypeInvalid);
 
-        return media.Kind switch
+        return media.Category switch
         {
-            AtariMediaKind.Floppy => RequireComputer(model, Atari800ContentType.Floppy),
-            AtariMediaKind.Cassette => RequireComputer(model, Atari800ContentType.Cassette),
-            AtariMediaKind.Cartridge => ClassifyCartridge(model, media),
-            _ => throw new ArgumentException(Atari800MediaErrors.UnsupportedKind, nameof(media))
+            AtariMediaCategory.Floppy => RequireComputer(model, Atari800ContentType.Floppy),
+            AtariMediaCategory.Cassette => RequireComputer(model, Atari800ContentType.Cassette),
+            AtariMediaCategory.Cartridge => ClassifyCartridge(model, media),
+            _ => throw new ArgumentException(Atari800MediaErrors.UnsupportedMediaCategory, nameof(media))
         };
     }
 
@@ -123,7 +123,7 @@ internal static class Atari800MediaFunctions
             _ => Atari800MediaConstants.CartridgeExtensions
         };
         if (!extensions.Contains(Extension(media.Path)))
-            throw new AtariEmulationException(AtariErrorKind.Content, AtariErrorCode.ContentUnsupported,
+            throw new AtariEmulationException(AtariErrorCategory.Content, AtariErrorCode.ContentUnsupported,
                 Atari800MediaErrors.InvalidExtension);
     }
 

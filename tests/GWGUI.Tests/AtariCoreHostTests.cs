@@ -43,7 +43,7 @@ public sealed class AtariCoreHostTests
     [Fact]
     public void StructuredAtariError_RoundTripsWithoutWpfType()
     {
-        var source = new AtariEmulationException(AtariErrorKind.Content, AtariErrorCode.ContentUnsupported,
+        var source = new AtariEmulationException(AtariErrorCategory.Content, AtariErrorCode.ContentUnsupported,
             AtariErrorMessages.ContentExtensionUnsupported,
             new Dictionary<string, string> { [AtariConstants.ExtensionContextKey] = "bad" });
         using var stream = new MemoryStream();
@@ -54,7 +54,7 @@ public sealed class AtariCoreHostTests
 
         var result = AtariCoreHostFunctions.ReadError(reader);
 
-        Assert.Equal(source.Kind, result.Kind);
+        Assert.Equal(source.Category, result.Category);
         Assert.Equal(source.Code, result.Code);
         Assert.Equal("bad", result.Context[AtariConstants.ExtensionContextKey]);
         Assert.DoesNotContain("System.Windows", System.Text.Encoding.UTF8.GetString(stream.ToArray()));
@@ -106,7 +106,7 @@ public sealed class AtariCoreHostTests
             configurationJson, AtariCoreHostFunctions.JsonOptions);
         Assert.Equal(configuration.Model, restoredConfiguration?.Model);
 
-        var media = new AtariMediaConfiguration("game.rom", AtariMediaKind.Cartridge,
+        var media = new AtariMediaConfiguration("game.rom", AtariMediaCategory.Cartridge,
             GWGUI.Emulation.EmulationMediaSlot.Cartridge0, IsReadOnly: true);
         var mediaJson = System.Text.Json.JsonSerializer.Serialize(media, AtariCoreHostFunctions.JsonOptions);
         Assert.Equal(media, System.Text.Json.JsonSerializer.Deserialize<AtariMediaConfiguration>(mediaJson,
@@ -307,7 +307,7 @@ public sealed class AtariCoreHostTests
         var session = CreateSessionDirectory();
         var commandInterpreter = Path.Combine(Environment.SystemDirectory, "cmd.exe");
         using var core = new AtariProcessCore(commandInterpreter,
-            Path.Combine(FindRepositoryRoot(), "tmp", "atari-cores", "atari800.dll"), AtariCoreKind.Atari800,
+            Path.Combine(FindRepositoryRoot(), "tmp", "atari-cores", "atari800.dll"), AtariEmulator.Atari800,
             connectionTimeout: TimeSpan.FromMilliseconds(ConnectionFailureTimeoutMilliseconds));
         try
         {
@@ -327,7 +327,7 @@ public sealed class AtariCoreHostTests
 
     private static AtariProcessCore CreateCore(TimeSpan? responseTimeout = null,
         CancellationToken cancellationToken = default) => new(FindAppExecutable(),
-        Path.Combine(FindRepositoryRoot(), "tmp", "atari-cores", "atari800.dll"), AtariCoreKind.Atari800,
+        Path.Combine(FindRepositoryRoot(), "tmp", "atari-cores", "atari800.dll"), AtariEmulator.Atari800,
         responseTimeout, cancellationToken);
 
     private static GWGUI.Emulation.VideoFrame CreateFrame(int width, int height, byte value)

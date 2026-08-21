@@ -55,8 +55,8 @@ internal static class AtariHatariStorageFunctions
 
     internal static AtariStorageBus ResolveBus(AtariMediaConfiguration media)
     {
-        if (media.Kind == AtariMediaKind.Directory) return AtariStorageBus.Gemdos;
-        if (media.Kind != AtariMediaKind.HardDisk)
+        if (media.Category == AtariMediaCategory.Directory) return AtariStorageBus.Gemdos;
+        if (media.Category != AtariMediaCategory.HardDisk)
             throw new InvalidDataException(AtariHatariStorageErrors.StorageTypeInvalid);
         if (media.StorageBus is { } configured) return configured;
         return Path.GetExtension(media.Path).ToLowerInvariant() switch
@@ -121,7 +121,7 @@ internal static class AtariHatariStorageFunctions
     }
 
     private static bool IsStorage(AtariMediaConfiguration media) =>
-        media.Kind is AtariMediaKind.HardDisk or AtariMediaKind.Directory;
+        media.Category is AtariMediaCategory.HardDisk or AtariMediaCategory.Directory;
 
     private static void ValidateImageAccess(AtariMediaConfiguration media)
     {

@@ -79,7 +79,7 @@ internal static class AtariMachineOptionFunctions
 
     private static bool SecondJoystick(AtariMachineConfiguration configuration) =>
         configuration.Input.Controllers is not { } controllers
-        || controllers.Any(binding => binding.Port == 1 && binding.Peripheral != AtariPeripheralKind.None);
+        || controllers.Any(binding => binding.Port == 1 && binding.Peripheral != AtariPeripheralCategory.None);
 
     private static string? MouseSpeedValue(string value)
     {
@@ -98,7 +98,7 @@ internal static class AtariMachineOptionFunctions
     private static void ApplyFloppySettings(AtariMachineConfiguration configuration,
         IDictionary<string, string> result)
     {
-        var slot = configuration.Media.FirstOrDefault(media => media.Kind == AtariMediaKind.Floppy
+        var slot = configuration.Media.FirstOrDefault(media => media.Category == AtariMediaCategory.Floppy
             && media.IsInserted)?.Slot ?? Emulation.EmulationMediaSlot.Floppy0;
         if (configuration.Options.TryGetValue(AtariMachineOptionConstants.FloppySpeedPrefix + slot, out var speed))
             result[AtariMachineOptionConstants.FastFloppy] = speed == "100" ? "false" : "true";

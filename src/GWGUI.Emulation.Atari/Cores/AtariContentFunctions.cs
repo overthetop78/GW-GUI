@@ -8,12 +8,12 @@ internal static class AtariContentFunctions
     internal static string Validate(string contentPath, IReadOnlySet<string> supportedExtensions)
     {
         if (!File.Exists(contentPath))
-            throw new AtariEmulationException(AtariErrorKind.Content, AtariErrorCode.ContentNotFound,
+            throw new AtariEmulationException(AtariErrorCategory.Content, AtariErrorCode.ContentNotFound,
                 AtariErrorMessages.ContentFileMissing,
                 new Dictionary<string, string> { [AtariConstants.PathContextKey] = contentPath });
         var extension = Path.GetExtension(contentPath).TrimStart(AtariConstants.ExtensionPrefix);
         if (!supportedExtensions.Contains(extension))
-            throw new AtariEmulationException(AtariErrorKind.Content, AtariErrorCode.ContentUnsupported,
+            throw new AtariEmulationException(AtariErrorCategory.Content, AtariErrorCode.ContentUnsupported,
                 AtariErrorMessages.ContentExtensionUnsupported,
                 new Dictionary<string, string>
                 {

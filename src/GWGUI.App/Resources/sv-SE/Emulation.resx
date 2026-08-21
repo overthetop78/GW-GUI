@@ -1011,13 +1011,13 @@
   <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
     <value>Välj Jaguar CD-modellen för att använda CD-medier.</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cassettes">
+  <data name="Emulation.Storage.Cassettes">
     <value>Kassett</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cartridges">
+  <data name="Emulation.Storage.Cartridges">
     <value>Spelkassett</value>
   </data>
-  <data name="Emulation.Atari.Storage.CompactDiscs">
+  <data name="Emulation.Storage.CompactDiscs">
     <value>CD-skivor</value>
   </data>
   <data name="Emulation.Atari.Video.Region">
@@ -1107,7 +1107,7 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Controller</value></data>
-  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
+  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
     <value>Emulatorn kräver ett medium innan den här maskinen kan startas. Sätt in en diskett eller konfigurera en hårddisk.</value>
   </data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">

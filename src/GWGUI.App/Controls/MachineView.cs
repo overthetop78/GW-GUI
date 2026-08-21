@@ -3,18 +3,10 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using GWGUI.App.Contracts;
 using GWGUI.App.Localization;
 
 namespace GWGUI.App.Controls;
-
-internal sealed record MachineViewDevice(
-    string Key,
-    string Label,
-    string Glyph,
-    bool Removable,
-    bool Present,
-    Func<Task>? Insert,
-    Func<Task>? Eject);
 
 /// <summary>The single visual shell used by every emulated machine.</summary>
 internal sealed class MachineView : UserControl

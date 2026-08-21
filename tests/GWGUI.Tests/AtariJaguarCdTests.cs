@@ -17,7 +17,7 @@ public sealed class AtariJaguarCdTests
     {
         var info = AtariExternalCoreProbe.Inspect(
             Path.Combine(FindRepositoryRoot(), "tmp", "atari-cores", "virtual-jaguar.dll"),
-            AtariCoreKind.VirtualJaguar);
+            AtariEmulator.VirtualJaguar);
 
         Assert.True(AtariJaguarCdFunctions.IsSupported(info.Extensions));
         Assert.All(AtariJaguarCdConstants.CompleteDiscExtensions,
@@ -28,9 +28,9 @@ public sealed class AtariJaguarCdTests
     public void CdSlotIsDisabledOnJaguarAndAvailableOnJaguarCd()
     {
         var jaguar = AtariCompatibilityCatalog.Get(AtariMachineModel.Jaguar).Media.Single(
-            item => item.Kind == AtariMediaKind.CompactDisc);
+            item => item.Category == AtariMediaCategory.CompactDisc);
         var jaguarCd = AtariCompatibilityCatalog.Get(AtariMachineModel.JaguarCd).Media.Single(
-            item => item.Kind == AtariMediaKind.CompactDisc);
+            item => item.Category == AtariMediaCategory.CompactDisc);
 
         Assert.Equal(AtariMediaAvailability.Unavailable, jaguar.Availability);
         Assert.Equal(AtariCompatibilityConstants.JaguarStandardNoCdResource,
@@ -131,9 +131,9 @@ public sealed class AtariJaguarCdTests
         AtariJaguarCdFunctions.RejectForStandardJaguar(
             AtariMachineModel.JaguarCd, CompactDisc(CompleteDiscFileName));
 
-        Assert.DoesNotContain(AtariFirmwareKind.JaguarCdBios,
+        Assert.DoesNotContain(AtariFirmwareCategory.JaguarCdBios,
             AtariCompatibilityCatalog.Get(AtariMachineModel.Jaguar).Firmware);
-        Assert.Contains(AtariFirmwareKind.JaguarCdBios,
+        Assert.Contains(AtariFirmwareCategory.JaguarCdBios,
             AtariCompatibilityCatalog.Get(AtariMachineModel.JaguarCd).Firmware);
     }
 
@@ -143,7 +143,7 @@ public sealed class AtariJaguarCdTests
     {
         using var core = new AtariExternalCore(
             Path.Combine(FindRepositoryRoot(), "tmp", "atari-cores", "virtual-jaguar.dll"),
-            AtariCoreKind.VirtualJaguar);
+            AtariEmulator.VirtualJaguar);
 
         var exception = Assert.Throws<NotSupportedException>(
             () => core.EjectMedia(EmulationMediaSlot.Cd0));
@@ -174,7 +174,7 @@ public sealed class AtariJaguarCdTests
     }
 
     private static AtariMediaConfiguration CompactDisc(string path) =>
-        new(path, AtariMediaKind.CompactDisc, EmulationMediaSlot.Cd0, IsReadOnly: true);
+        new(path, AtariMediaCategory.CompactDisc, EmulationMediaSlot.Cd0, IsReadOnly: true);
 
     private static string CreateRoot()
     {

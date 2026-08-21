@@ -6,12 +6,6 @@ namespace GWGUI.App.Services;
 
 internal static class XInputControllerReader
 {
-    private const ushort DpadUp = 0x0001, DpadDown = 0x0002, DpadLeft = 0x0004, DpadRight = 0x0008;
-    private const ushort Start = 0x0010, Back = 0x0020, LeftThumb = 0x0040, RightThumb = 0x0080;
-    private const ushort LeftShoulder = 0x0100, RightShoulder = 0x0200;
-    private const ushort Guide = 0x0400;
-    private const ushort A = 0x1000, B = 0x2000, X = 0x4000, Y = 0x8000;
-
     internal static IReadOnlyList<EmulationControllerState> ReadAll()
     {
         var states = new EmulationControllerState[4];
@@ -77,21 +71,29 @@ internal static class XInputControllerReader
     private static EmulationControllerState Map(XInputGamepad gamepad)
     {
         uint buttons = 0;
-        Set(B, 0); Set(Y, 1); Set(Back, 2); Set(Start, 3);
-        Set(DpadUp, 4); Set(DpadDown, 5); Set(DpadLeft, 6); Set(DpadRight, 7);
-        Set(A, 8); Set(X, 9); Set(LeftShoulder, 10); Set(RightShoulder, 11);
+        buttons = SetButton(buttons, gamepad.Buttons, XInputButtonConstants.B, 0);
+        buttons = SetButton(buttons, gamepad.Buttons, XInputButtonConstants.Y, 1);
+        buttons = SetButton(buttons, gamepad.Buttons, XInputButtonConstants.Back, 2);
+        buttons = SetButton(buttons, gamepad.Buttons, XInputButtonConstants.Start, 3);
+        buttons = SetButton(buttons, gamepad.Buttons, XInputButtonConstants.DpadUp, 4);
+        buttons = SetButton(buttons, gamepad.Buttons, XInputButtonConstants.DpadDown, 5);
+        buttons = SetButton(buttons, gamepad.Buttons, XInputButtonConstants.DpadLeft, 6);
+        buttons = SetButton(buttons, gamepad.Buttons, XInputButtonConstants.DpadRight, 7);
+        buttons = SetButton(buttons, gamepad.Buttons, XInputButtonConstants.A, 8);
+        buttons = SetButton(buttons, gamepad.Buttons, XInputButtonConstants.X, 9);
+        buttons = SetButton(buttons, gamepad.Buttons, XInputButtonConstants.LeftShoulder, 10);
+        buttons = SetButton(buttons, gamepad.Buttons, XInputButtonConstants.RightShoulder, 11);
         if (gamepad.LeftTrigger > 30) buttons |= 1u << 12;
         if (gamepad.RightTrigger > 30) buttons |= 1u << 13;
-        Set(LeftThumb, 14); Set(RightThumb, 15);
-        Set(Guide, 16);
+        buttons = SetButton(buttons, gamepad.Buttons, XInputButtonConstants.LeftThumb, 14);
+        buttons = SetButton(buttons, gamepad.Buttons, XInputButtonConstants.RightThumb, 15);
+        buttons = SetButton(buttons, gamepad.Buttons, XInputButtonConstants.Guide, 16);
         return new EmulationControllerState(buttons, gamepad.LeftX, InvertY(gamepad.LeftY),
             gamepad.RightX, InvertY(gamepad.RightY), Trigger(gamepad.LeftTrigger), Trigger(gamepad.RightTrigger));
-
-        void Set(ushort source, int target)
-        {
-            if ((gamepad.Buttons & source) != 0) buttons |= 1u << target;
-        }
     }
+
+    private static uint SetButton(uint result, ushort pressedButtons, ushort source, int target) =>
+        (pressedButtons & source) == 0 ? result : result | 1u << target;
 
     private static short InvertY(short value) => value == short.MinValue ? short.MaxValue : (short)-value;
     private static short Trigger(byte value) => (short)Math.Round(value / 255d * short.MaxValue);

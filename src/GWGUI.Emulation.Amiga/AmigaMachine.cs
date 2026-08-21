@@ -4,7 +4,8 @@ using System.Collections.Concurrent;
 
 namespace GWGUI.Emulation.Amiga;
 
-internal sealed class AmigaMachine : IAmigaMachine
+internal sealed class AmigaMachine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput,
+    IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime
 {
     private readonly object _gate = new();
     private readonly IAmigaCore _core;
@@ -15,12 +16,17 @@ internal sealed class AmigaMachine : IAmigaMachine
     private Task? _runLoop;
     private bool _pauseRequested;
     private volatile bool _audioMuted;
+    private float _audioVolume = 1f;
     private bool _disposed;
     private readonly ConcurrentQueue<PendingCommand> _commands = new();
     private TaskCompletionSource? _started;
     private string? _currentDiskPath;
     private readonly List<string> _mediaPaths;
+    private readonly List<EmulationMedia> _mountedCommonMedia;
     private readonly Dictionary<string, string> _currentOptions;
+    private EmulationInputSnapshot _lastPhysicalInput = EmulationInputSnapshot.Empty;
+    private bool _controllerPointerSwitchPressed;
+    private bool _controllerPointerMode;
 
     internal AmigaMachine(Guid id, AmigaMachineConfiguration configuration,
         IAmigaCore core, string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null)
@@ -33,18 +39,31 @@ internal sealed class AmigaMachine : IAmigaMachine
         _audioOutput = audioOutput;
         _mediaPaths = AmigaExternalCore.ResolveConfiguredMedia(configuration)
             .Select(item => Path.GetFullPath(item.Path)).ToList();
+        _mountedCommonMedia = EmulationMediaConversionFunctions
+            .ToCommon(AmigaExternalCore.ResolveConfiguredMedia(configuration)).ToList();
         _currentDiskPath = _mediaPaths.FirstOrDefault();
         _currentOptions = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal);
     }
 
     public Guid Id { get; }
     public AmigaMachineConfiguration Configuration { get; }
-    public Exception? Fault { get; private set; }
+    public IEmulationLifecycle Lifecycle => this;
+    public IEmulationInput Input => this;
+    public IEmulationMedia Media => this;
+    public IEmulationVideo Video => this;
+    public IEmulationAudio Audio => this;
+    public IEmulationSavedStates SavedStates => this;
+    public IEmulationRuntime Runtime => this;
+    bool IEmulationInput.SupportsPointerCapture => true;
+    bool IEmulationInput.CapturePointerOnClick => Configuration.Input?.CaptureMouse ?? true;
+    IReadOnlyDictionary<string, string> IEmulationInput.KeyboardBindings =>
+        Configuration.Input?.KeyboardBindings ?? new Dictionary<string, string>();
+    bool IEmulationInput.SupportsControllerPointerSwitch => true;
+    bool IEmulationInput.ControllerPointerMode => _controllerPointerMode;
     public EmulationMachineState State { get; private set; } = EmulationMachineState.Created;
     public VideoFrame? LatestVideoFrame => _core.LatestVideoFrame;
     public AudioChunk? LatestAudioChunk => _core.LatestAudioChunk;
     public IReadOnlyList<AmigaCoreOption> AvailableOptions => _core.Options;
-    public IReadOnlyList<string> Diagnostics => _core.Diagnostics;
     public IReadOnlyDictionary<int, bool> LedStates => _core.LedStates;
     public string CoreName => _core.CoreName;
     public string CoreVersion => _core.CoreVersion;
@@ -54,6 +73,69 @@ internal sealed class AmigaMachine : IAmigaMachine
     public bool IsAudioMuted => _audioMuted;
     public event EventHandler<VideoFrame>? VideoFrameReady;
     public event EventHandler<AudioChunk>? AudioChunkReady;
+    IReadOnlyList<EmulationMedia> IEmulationMedia.MountedMedia => _mountedCommonMedia.ToArray();
+    async ValueTask IEmulationMedia.InsertAsync(EmulationMedia media, CancellationToken cancellationToken)
+    {
+        await SelectDiskAsync(media.Slot.Index, cancellationToken).ConfigureAwait(false);
+        await InsertMediaAsync(media.Path, cancellationToken).ConfigureAwait(false);
+        var inserted = media with { IsInserted = true };
+        _mountedCommonMedia.RemoveAll(item => item.Slot == inserted.Slot);
+        _mountedCommonMedia.Add(inserted);
+    }
+    async ValueTask IEmulationMedia.EjectAsync(EmulationMediaSlot slot, CancellationToken cancellationToken)
+    {
+        await SelectDiskAsync(slot.Index, cancellationToken).ConfigureAwait(false);
+        await EjectMediaAsync(cancellationToken).ConfigureAwait(false);
+        var mountedIndex = _mountedCommonMedia.FindIndex(item => item.Slot == slot);
+        if (mountedIndex >= 0)
+            _mountedCommonMedia[mountedIndex] = _mountedCommonMedia[mountedIndex] with { IsInserted = false };
+    }
+    ValueTask IEmulationMedia.SelectDiskAsync(EmulationMediaSlot slot, int index,
+        CancellationToken cancellationToken) => SelectDiskAsync(index, cancellationToken);
+    AudioChunk? IEmulationAudio.LatestChunk => LatestAudioChunk;
+    int IEmulationAudio.SampleRate => _core.SampleRate;
+    bool IEmulationAudio.IsMuted => IsAudioMuted;
+    float IEmulationAudio.Volume => _audioVolume;
+    event EventHandler<AudioChunk>? IEmulationAudio.ChunkReady
+    {
+        add => AudioChunkReady += value;
+        remove => AudioChunkReady -= value;
+    }
+    void IEmulationAudio.SetMuted(bool muted) => SetAudioMuted(muted);
+    void IEmulationAudio.SetVolume(float volume) => _audioVolume = Math.Clamp(volume, 0f, 1f);
+    void IEmulationAudio.SetOutputFactory(Func<IAudioOutput?>? factory) => ReplaceAudioOutput(factory);
+    string IEmulationRuntime.EmulatorName => CoreName;
+    string IEmulationRuntime.EmulatorVersion => CoreVersion;
+    IReadOnlySet<string> IEmulationRuntime.SupportedContentExtensions => SupportedContentExtensions;
+    IReadOnlyDictionary<EmulationMediaSlot, bool> IEmulationRuntime.MediaActivity =>
+        EmulationMediaActivityFunctions.FromLedStates(_core.LedStates);
+    IReadOnlyList<EmulationOption> IEmulationRuntime.AvailableOptions => AvailableOptions
+        .Select(option => new EmulationOption(
+            option.Key,
+            option.Name,
+            option.Description,
+            option.Category,
+            option.DefaultValue,
+            _currentOptions.GetValueOrDefault(option.Key, option.DefaultValue),
+            option.Values.Select(value => new EmulationOptionValue(value.Value, value.Label)).ToArray(),
+            option.IsVisible))
+        .ToArray();
+    VideoFrame? IEmulationVideo.LatestFrame => LatestVideoFrame;
+    double IEmulationVideo.FramesPerSecond => _core.FramesPerSecond;
+    event EventHandler<VideoFrame>? IEmulationVideo.FrameReady
+    {
+        add => VideoFrameReady += value;
+        remove => VideoFrameReady -= value;
+    }
+    bool IEmulationSavedStates.IsSupported => true;
+    ValueTask IEmulationSavedStates.SaveAsync(string path, CancellationToken cancellationToken) =>
+        SaveStateAsync(path, cancellationToken);
+    ValueTask IEmulationSavedStates.LoadAsync(string path, CancellationToken cancellationToken) =>
+        LoadStateAsync(path, cancellationToken);
+    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) =>
+        throw new NotSupportedException();
+    ValueTask<bool> IEmulationInput.SwitchControllerPointerAsync(CancellationToken cancellationToken) =>
+        SwitchControllerPointerAsync(cancellationToken);
 
     public async ValueTask StartAsync(CancellationToken cancellationToken = default)
     {
@@ -139,7 +221,23 @@ internal sealed class AmigaMachine : IAmigaMachine
         if (loop is not null) await loop.WaitAsync(cancellationToken).ConfigureAwait(false);
     }
 
-    public void SetInput(EmulationInputSnapshot snapshot) => _core.SetInput(snapshot);
+    public void SetInput(EmulationInputSnapshot snapshot)
+    {
+        _lastPhysicalInput = snapshot;
+        _core.SetInput(AmigaInputSnapshotFunctions.Apply(snapshot, Configuration.Input,
+            _controllerPointerSwitchPressed));
+    }
+
+    private async ValueTask<bool> SwitchControllerPointerAsync(CancellationToken cancellationToken)
+    {
+        _controllerPointerSwitchPressed = true;
+        SetInput(_lastPhysicalInput);
+        await Task.Delay(100, cancellationToken).ConfigureAwait(false);
+        _controllerPointerSwitchPressed = false;
+        _controllerPointerMode = !_controllerPointerMode;
+        SetInput(_lastPhysicalInput);
+        return _controllerPointerMode;
+    }
 
     public void SetAudioMuted(bool muted)
     {
@@ -281,7 +379,7 @@ internal sealed class AmigaMachine : IAmigaMachine
                                 _audioOutput.Start(audio.SampleRate);
                                 audioSampleRate = audio.SampleRate;
                             }
-                            _audioOutput.Write(audio.InterleavedStereo.Span);
+                            WriteAudio(audio.InterleavedStereo.Span);
                         }
                         catch { _audioOutput.Dispose(); _audioOutput = null; }
                     }
@@ -298,7 +396,6 @@ internal sealed class AmigaMachine : IAmigaMachine
         catch (Exception error)
         {
             if (_core.Diagnostics.Count > 0) error.Data["AmigaDiagnostics"] = string.Join(Environment.NewLine, _core.Diagnostics.TakeLast(100));
-            Fault = error;
             _started?.TrySetException(error);
             FailPendingCommands(error);
             lock (_gate) State = EmulationMachineState.Faulted;
@@ -308,10 +405,10 @@ internal sealed class AmigaMachine : IAmigaMachine
             if (initialized)
             {
                 try { _core.Stop(); }
-                catch (Exception error) { Fault ??= error; }
+                catch (Exception) { }
             }
             try { _audioOutput?.Stop(); }
-            catch (Exception error) { Fault ??= error; }
+            catch (Exception) { }
             FailPendingCommands(new OperationCanceledException("The Amiga machine stopped."));
             lock (_gate)
                 if (State != EmulationMachineState.Faulted) State = EmulationMachineState.Stopped;
@@ -328,6 +425,33 @@ internal sealed class AmigaMachine : IAmigaMachine
         if (_audioOutput is null) return;
         try { _audioOutput.Flush(); }
         catch { _audioOutput.Dispose(); _audioOutput = null; }
+    }
+
+    private void WriteAudio(ReadOnlySpan<short> samples)
+    {
+        if (_audioOutput is null) return;
+        if (_audioVolume >= 1f)
+        {
+            _audioOutput.Write(samples);
+            return;
+        }
+
+        var scaled = new short[samples.Length];
+        for (var index = 0; index < samples.Length; index++)
+            scaled[index] = (short)Math.Clamp(samples[index] * _audioVolume, short.MinValue, short.MaxValue);
+        _audioOutput.Write(scaled);
+    }
+
+    private void ReplaceAudioOutput(Func<IAudioOutput?>? factory)
+    {
+        lock (_gate)
+        {
+            try { _audioOutput?.Stop(); }
+            finally { _audioOutput?.Dispose(); }
+            _audioOutput = factory?.Invoke();
+            if (_audioOutput is not null && State is EmulationMachineState.Running or EmulationMachineState.Paused)
+                _audioOutput.Start(_core.SampleRate);
+        }
     }
 
     private void ThrowIfDisposed() => ObjectDisposedException.ThrowIf(_disposed, this);

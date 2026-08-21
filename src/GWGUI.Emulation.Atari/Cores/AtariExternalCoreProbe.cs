@@ -4,7 +4,7 @@ using GWGUI.Emulation.Common;
 namespace GWGUI.Emulation.Atari.Cores;
 
 internal sealed record AtariExternalCoreInfo(
-    AtariCoreKind Kind,
+    AtariEmulator Emulator,
     string LibraryName,
     string LibraryVersion,
     IReadOnlySet<string> Extensions,
@@ -13,13 +13,13 @@ internal sealed record AtariExternalCoreInfo(
 
 internal static class AtariExternalCoreProbe
 {
-    internal static AtariExternalCoreInfo Inspect(string absolutePath, AtariCoreKind expectedKind)
+    internal static AtariExternalCoreInfo Inspect(string absolutePath, AtariEmulator expectedEmulator)
     {
         if (!Path.IsPathFullyQualified(absolutePath))
-            throw new AtariEmulationException(AtariErrorKind.Core, AtariErrorCode.CoreRejected,
+            throw new AtariEmulationException(AtariErrorCategory.Core, AtariErrorCode.CoreRejected,
                 AtariErrorMessages.CorePathMustBeAbsolute);
         if (!File.Exists(absolutePath))
-            throw new AtariEmulationException(AtariErrorKind.Core, AtariErrorCode.CoreNotFound,
+            throw new AtariEmulationException(AtariErrorCategory.Core, AtariErrorCode.CoreNotFound,
                 AtariErrorMessages.CoreFileMissing,
                 new Dictionary<string, string> { [AtariConstants.PathContextKey] = absolutePath });
 
@@ -32,7 +32,7 @@ internal static class AtariExternalCoreProbe
 
             var apiVersion = getApiVersion();
             if (apiVersion != AtariConstants.ExternalCoreApiVersion)
-                throw new AtariEmulationException(AtariErrorKind.Core, AtariErrorCode.CoreRejected,
+                throw new AtariEmulationException(AtariErrorCategory.Core, AtariErrorCode.CoreRejected,
                     AtariErrorMessages.CoreApiVersionUnsupported,
                     new Dictionary<string, string>
                     {
@@ -41,9 +41,9 @@ internal static class AtariExternalCoreProbe
 
             getSystemInfo(out var nativeInfo);
             var libraryName = Marshal.PtrToStringUTF8(nativeInfo.LibraryName) ?? string.Empty;
-            var expectedName = AtariCoreFunctions.ExpectedLibraryName(expectedKind);
+            var expectedName = AtariCoreFunctions.ExpectedLibraryName(expectedEmulator);
             if (!string.Equals(libraryName, expectedName, StringComparison.OrdinalIgnoreCase))
-                throw new AtariEmulationException(AtariErrorKind.Core, AtariErrorCode.CoreRejected,
+                throw new AtariEmulationException(AtariErrorCategory.Core, AtariErrorCode.CoreRejected,
                     AtariErrorMessages.CoreIdentityMismatch,
                     new Dictionary<string, string>
                     {
@@ -51,7 +51,7 @@ internal static class AtariExternalCoreProbe
                         [AtariConstants.ActualContextKey] = libraryName
                     });
 
-            return new AtariExternalCoreInfo(expectedKind, libraryName,
+            return new AtariExternalCoreInfo(expectedEmulator, libraryName,
                 Marshal.PtrToStringUTF8(nativeInfo.LibraryVersion) ?? string.Empty,
                 AtariCoreFunctions.ParseExtensions(nativeInfo.ValidExtensions), nativeInfo.NeedFullPath, nativeInfo.BlockExtract);
         }
@@ -61,12 +61,12 @@ internal static class AtariExternalCoreProbe
         }
         catch (EntryPointNotFoundException error)
         {
-            throw new AtariEmulationException(AtariErrorKind.Core, AtariErrorCode.CoreRejected,
+            throw new AtariEmulationException(AtariErrorCategory.Core, AtariErrorCode.CoreRejected,
                 AtariErrorMessages.CoreExportMissing, innerException: error);
         }
         catch (BadImageFormatException error)
         {
-            throw new AtariEmulationException(AtariErrorKind.Core, AtariErrorCode.CoreRejected,
+            throw new AtariEmulationException(AtariErrorCategory.Core, AtariErrorCode.CoreRejected,
                 AtariErrorMessages.CoreIdentityMismatch, innerException: error);
         }
     }

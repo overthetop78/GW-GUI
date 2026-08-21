@@ -81,14 +81,15 @@ public sealed class AmigaExternalCoreTests
         var initialHandles = process.HandleCount;
         var configuration = AmigaMachineConfiguration.A500(kickstart);
         var hostExecutable = Path.Combine(AppContext.BaseDirectory, "gwgui.app.exe");
-        var engine = new AmigaEngine(sessions, corePath, hostExecutablePath: hostExecutable);
+        var engine = new AmigaEngine();
+        var context = CreateContext(sessions, corePath, hostExecutable);
         try
         {
             for (var iteration = 0; iteration < count; iteration++)
             {
-                await using (var machine = engine.CreateAmigaMachine(configuration))
+                await using (var machine = engine.CreateMachine(configuration, context))
                 {
-                    await machine.StartAsync();
+                    await machine.Lifecycle.StartAsync();
                     await WaitForFrame(machine, TimeSpan.FromSeconds(10));
                 }
                 Assert.Empty(Directory.Exists(sessions) ? Directory.EnumerateDirectories(sessions) : []);
@@ -272,39 +273,40 @@ public sealed class AmigaExternalCoreTests
         var adf = @"F:\Disquettes\Amiga Workbench\Amiga_Workbench_1.3.3.adf";
         var corePath = Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll");
         var sessions = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Tests", Guid.NewGuid().ToString("N"));
-        var engine = new AmigaEngine(sessions, corePath,
-            hostExecutablePath: Path.Combine(AppContext.BaseDirectory, "gwgui.app.exe"));
-        await using var first = engine.CreateAmigaMachine(AmigaMachineConfiguration.A500(kickstart, adf));
-        await using var second = engine.CreateAmigaMachine(AmigaMachineConfiguration.A500(kickstart));
+        var engine = new AmigaEngine();
+        var context = CreateContext(sessions, corePath, Path.Combine(AppContext.BaseDirectory, "gwgui.app.exe"));
+        await using var first = engine.CreateMachine(AmigaMachineConfiguration.A500(kickstart, adf), context);
+        await using var second = engine.CreateMachine(AmigaMachineConfiguration.A500(kickstart), context);
 
-        await first.StartAsync();
-        await second.StartAsync();
+        await first.Lifecycle.StartAsync();
+        await second.Lifecycle.StartAsync();
         await WaitForFrame(first, TimeSpan.FromSeconds(15));
         await WaitForFrame(second, TimeSpan.FromSeconds(15));
 
-        Assert.Equal("PUAE", first.CoreName);
-        Assert.False(string.IsNullOrWhiteSpace(first.CoreVersion));
-        Assert.Contains("adf", first.SupportedContentExtensions);
-        Assert.Contains("hdf", first.SupportedContentExtensions);
-        Assert.Contains("iso", first.SupportedContentExtensions);
-        Assert.Contains("m3u", first.SupportedContentExtensions);
+        Assert.Equal("PUAE", first.Runtime.EmulatorName);
+        Assert.False(string.IsNullOrWhiteSpace(first.Runtime.EmulatorVersion));
+        Assert.Contains("adf", first.Runtime.SupportedContentExtensions);
+        Assert.Contains("hdf", first.Runtime.SupportedContentExtensions);
+        Assert.Contains("iso", first.Runtime.SupportedContentExtensions);
+        Assert.Contains("m3u", first.Runtime.SupportedContentExtensions);
         Assert.NotEqual(first.Id, second.Id);
         Assert.Equal(GWGUI.Emulation.EmulationMachineState.Running, first.State);
         Assert.Equal(GWGUI.Emulation.EmulationMachineState.Running, second.State);
-        await first.PauseAsync();
+        await first.Lifecycle.PauseAsync();
         Assert.Equal(GWGUI.Emulation.EmulationMachineState.Paused, first.State);
         Assert.Equal(GWGUI.Emulation.EmulationMachineState.Running, second.State);
-        await first.EjectFloppyAsync();
+        await first.Media.EjectAsync(EmulationMediaSlot.Floppy0);
         var replacement = Path.Combine(repository, "image_test", "validated_images", "Commodore", "Amiga",
             "3.5 pouces DD - AmigaDOS OFS", "Boot-DD-OFS.adf");
-        await first.InsertFloppyAsync(replacement);
+        await first.Media.InsertAsync(new EmulationMedia(
+            replacement, EmulationMediaSlot.Floppy0, EmulationMediaType.Floppy, false, true));
         var statePath = Path.Combine(sessions, "first.state");
-        await first.SaveStateAsync(statePath);
+        await first.SavedStates.SaveAsync(statePath);
         Assert.True(new FileInfo(statePath).Length > 1024);
-        await first.LoadStateAsync(statePath);
-        await first.ResumeAsync();
-        await first.StopAsync();
-        await second.StopAsync();
+        await first.SavedStates.LoadAsync(statePath);
+        await first.Lifecycle.ResumeAsync();
+        await first.Lifecycle.StopAsync();
+        await second.Lifecycle.StopAsync();
         Assert.Equal(GWGUI.Emulation.EmulationMachineState.Stopped, first.State);
         Assert.Equal(GWGUI.Emulation.EmulationMachineState.Stopped, second.State);
     }
@@ -314,15 +316,17 @@ public sealed class AmigaExternalCoreTests
     {
         var repository = FindRepositoryRoot();
         var output = new RecordingAudioOutput();
-        var engine = new AmigaEngine(Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Tests", Guid.NewGuid().ToString("N")),
-            Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll"), () => output,
-            hostExecutablePath: Path.Combine(AppContext.BaseDirectory, "gwgui.app.exe"));
-        await using var machine = engine.CreateAmigaMachine(AmigaMachineConfiguration.A500(
-            Path.Combine(repository, "image_test", "Roms", "Bios", "Kickstart 1.3.rom")));
-        await machine.StartAsync();
+        var engine = new AmigaEngine();
+        var context = CreateContext(
+            Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Tests", Guid.NewGuid().ToString("N")),
+            Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll"),
+            Path.Combine(AppContext.BaseDirectory, "gwgui.app.exe"), () => output);
+        await using var machine = engine.CreateMachine(AmigaMachineConfiguration.A500(
+            Path.Combine(repository, "image_test", "Roms", "Bios", "Kickstart 1.3.rom")), context);
+        await machine.Lifecycle.StartAsync();
         using var cancellation = new CancellationTokenSource(TimeSpan.FromSeconds(10));
         while (output.SamplesWritten == 0) await Task.Delay(20, cancellation.Token);
-        await machine.StopAsync();
+        await machine.Lifecycle.StopAsync();
         Assert.InRange(output.SampleRate, 22050, 96000);
         Assert.True(output.SamplesWritten > 0);
         Assert.True(output.WasStopped);
@@ -336,14 +340,15 @@ public sealed class AmigaExternalCoreTests
         Directory.CreateDirectory(root);
         var unsupported = Path.Combine(root, "not-amiga.txt");
         await File.WriteAllTextAsync(unsupported, "not an Amiga image");
-        var engine = new AmigaEngine(Path.Combine(root, "Sessions"),
+        var engine = new AmigaEngine();
+        var context = CreateContext(Path.Combine(root, "Sessions"),
             Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll"),
-            hostExecutablePath: Path.Combine(AppContext.BaseDirectory, "gwgui.app.exe"));
-        await using var machine = engine.CreateAmigaMachine(AmigaMachineConfiguration.A500(
-            Path.Combine(repository, "image_test", "Roms", "Bios", "Kickstart 1.3.rom"), unsupported));
+            Path.Combine(AppContext.BaseDirectory, "gwgui.app.exe"));
+        await using var machine = engine.CreateMachine(AmigaMachineConfiguration.A500(
+            Path.Combine(repository, "image_test", "Roms", "Bios", "Kickstart 1.3.rom"), unsupported), context);
         try
         {
-            var error = await Assert.ThrowsAsync<InvalidOperationException>(() => machine.StartAsync().AsTask());
+            var error = await Assert.ThrowsAsync<InvalidOperationException>(() => machine.Lifecycle.StartAsync().AsTask());
             Assert.Contains("does not support '.txt'", error.Message, StringComparison.Ordinal);
         }
         finally
@@ -352,13 +357,13 @@ public sealed class AmigaExternalCoreTests
         }
     }
 
-    private static async Task WaitForFrame(IAmigaMachine machine, TimeSpan timeout)
+    private static async Task WaitForFrame(IEmulatedMachine machine, TimeSpan timeout)
     {
         using var cancellation = new CancellationTokenSource(timeout);
-        while (machine.LatestVideoFrame is null)
+        while (machine.Video.LatestFrame is null)
         {
             if (machine.State == EmulationMachineState.Faulted)
-                throw new InvalidOperationException("The Amiga machine faulted before producing video.", machine.Fault);
+                throw new InvalidOperationException("The Amiga machine faulted before producing video.");
             await Task.Delay(20, cancellation.Token);
         }
     }
@@ -374,6 +379,10 @@ public sealed class AmigaExternalCoreTests
     private static string FindKickstart() => Path.Combine(FindRepositoryRoot(), "image_test", "Roms", "Bios", "Kickstart 1.3.rom");
 
     private static string CreateSession() => Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Tests", Guid.NewGuid().ToString("N"));
+
+    private static AmigaMachineCreationContext CreateContext(string sessions, string corePath,
+        string hostExecutable, Func<IAudioOutput?>? audioOutputFactory = null) =>
+        new(sessions, corePath, hostExecutable, audioOutputFactory, null);
 
     private static void SaveFrame(GWGUI.Emulation.VideoFrame frame, string path)
     {

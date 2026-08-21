@@ -7,35 +7,35 @@ namespace GWGUI.Emulation.Atari.Cores;
 internal static class AtariCoreFunctions
 {
     internal static AtariExternalCoreInfo ReadInitializedInfo(AtariExternalCoreExports exports,
-        AtariCoreKind expectedKind)
+        AtariEmulator expectedEmulator)
     {
         exports.GetSystemInfo(out var nativeInfo);
         var libraryName = Marshal.PtrToStringUTF8(nativeInfo.LibraryName) ?? string.Empty;
-        var expectedName = ExpectedLibraryName(expectedKind);
+        var expectedName = ExpectedLibraryName(expectedEmulator);
         if (!string.Equals(libraryName, expectedName, StringComparison.OrdinalIgnoreCase))
-            throw new AtariEmulationException(AtariErrorKind.Core, AtariErrorCode.CoreRejected,
+            throw new AtariEmulationException(AtariErrorCategory.Core, AtariErrorCode.CoreRejected,
                 AtariErrorMessages.CoreIdentityMismatch,
                 new Dictionary<string, string>
                 {
                     [AtariConstants.ExpectedContextKey] = expectedName,
                     [AtariConstants.ActualContextKey] = libraryName
                 });
-        return new AtariExternalCoreInfo(expectedKind, libraryName,
+        return new AtariExternalCoreInfo(expectedEmulator, libraryName,
             Marshal.PtrToStringUTF8(nativeInfo.LibraryVersion) ?? string.Empty,
             ParseExtensions(nativeInfo.ValidExtensions), nativeInfo.NeedFullPath, nativeInfo.BlockExtract);
     }
     internal static string CreateInvalidOptionValueMessage(string key, string value) =>
         string.Format(CultureInfo.InvariantCulture,
             AtariErrorMessages.OptionValueInvalidFormat, key, value);
-    internal static string ExpectedLibraryName(AtariCoreKind kind) => kind switch
+    internal static string ExpectedLibraryName(AtariEmulator emulator) => emulator switch
     {
-        AtariCoreKind.Hatari => AtariCoreIdentityConstants.Hatari,
-        AtariCoreKind.Atari800 => AtariCoreIdentityConstants.Atari800,
-        AtariCoreKind.Stella => AtariCoreIdentityConstants.Stella,
-        AtariCoreKind.ProSystem => AtariCoreIdentityConstants.ProSystem,
-        AtariCoreKind.BeetleLynx => AtariCoreIdentityConstants.BeetleLynx,
-        AtariCoreKind.VirtualJaguar => AtariCoreIdentityConstants.VirtualJaguar,
-        _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
+        AtariEmulator.Hatari => AtariCoreIdentityConstants.Hatari,
+        AtariEmulator.Atari800 => AtariCoreIdentityConstants.Atari800,
+        AtariEmulator.Stella => AtariCoreIdentityConstants.Stella,
+        AtariEmulator.ProSystem => AtariCoreIdentityConstants.ProSystem,
+        AtariEmulator.BeetleLynx => AtariCoreIdentityConstants.BeetleLynx,
+        AtariEmulator.VirtualJaguar => AtariCoreIdentityConstants.VirtualJaguar,
+        _ => throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null)
     };
 
     internal static IReadOnlySet<string> ParseExtensions(nint value)

@@ -1011,13 +1011,13 @@
   <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
     <value>Chọn mẫu Jaguar CD để sử dụng đĩa CD.</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cassettes">
+  <data name="Emulation.Storage.Cassettes">
     <value>Băng cassette</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cartridges">
+  <data name="Emulation.Storage.Cartridges">
     <value>Hộp băng</value>
   </data>
-  <data name="Emulation.Atari.Storage.CompactDiscs">
+  <data name="Emulation.Storage.CompactDiscs">
     <value>Đĩa compact</value>
   </data>
   <data name="Emulation.Atari.Video.Region">
@@ -1107,7 +1107,7 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Điều khiển Sega Genesis</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Điều khiển</value></data>
-  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
+  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
     <value>Trình giả lập cần có phương tiện trước khi có thể bật máy này. Hãy đưa đĩa mềm vào hoặc cấu hình ổ đĩa cứng.</value>
   </data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">

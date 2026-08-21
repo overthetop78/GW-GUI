@@ -1,6 +1,6 @@
 namespace GWGUI.Emulation.Atari;
 
-public enum AtariFirmwareKind
+public enum AtariFirmwareCategory
 {
     Tos,
     AtariSystemOs,
@@ -17,7 +17,7 @@ public enum AtariFirmwareKind
 }
 
 public sealed record AtariFirmwareConfiguration(
-    AtariFirmwareKind Kind,
+    AtariFirmwareCategory Category,
     string Path,
     bool IsRequired,
     bool IsOriginalFirmware = true);

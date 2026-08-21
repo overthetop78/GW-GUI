@@ -677,3 +677,618 @@ Travail réalisé :
 - mise à jour de `EmulationMachineTabs.cs`, `OptionsEmulationSection.cs` et `AtariHardwareSettingsSection.cs` afin d'utiliser `EmulationMachineTab` et la propriété `Tab`.
 
 Pourquoi : l'ancien fichier mélangeait deux catégories de types et le nom `Kind` contrevenait à la convention décidée. Amiga et Atari continuent d'utiliser exactement la même fabrique de sous-onglets et les mêmes valeurs. Une recherche ciblée a confirmé qu'aucune référence à `EmulationMachineTabKind` ne subsiste.
+
+#### Inventaire exhaustif de reprise
+
+Cette checklist est reconstruite depuis l’état Git réel avant toute nouvelle modification de code. Chaque entrée sera lue, ses erreurs seront consignées, les corrections seront annoncées, puis seulement appliquées et l’entrée marquée comme traitée.
+
+- [x] `M` `docs/emulation-amiga.md`
+  - Vérification : le diff ne supprime aucun contenu ; il remplace uniquement l'ancien identifiant `AmigaCoreKind.External` par `AmigaEmulator.External`.
+  - Conclusion : le renommage correspond à la convention retenue pour identifier l'émulateur et ne nécessite aucune autre correction dans ce fichier.
+  - Traité : contenu conservé sans modification supplémentaire.
+- [x] `M` `docs/emulation-atari.md`
+  - Vérification : le diff ne supprime aucun contenu ; il remplace uniquement l'ancien nom `AtariCoreKind` par `AtariEmulator`.
+  - Conclusion : ce renommage décrit les six identifiants d'émulateur sans utiliser `Kind` et ne nécessite aucune autre correction dans ce fichier.
+  - Traité : contenu conservé sans modification supplémentaire.
+- [x] `M` `src/GWGUI.App/App.xaml.cs`
+  - Vérification : les branches directes de l'hôte Amiga, de l'hôte Atari et de la sonde d'options Atari ont été remplacées par l'itération des modules enregistrés.
+  - Vérification des dépendances : `AmigaEmulationModule.TryHandleHostCommand` reprend l'hôte Amiga ; `AtariEmulationModule.TryHandleHostCommand` reprend l'hôte Atari et la sonde, y compris leurs codes de sortie et leur traitement d'erreur.
+  - Conclusion : App ne connaît plus ces commandes familiales et aucun des trois comportements retirés n'est perdu.
+  - Traité : contenu conservé sans modification supplémentaire.
+- [x] `M` `src/GWGUI.App/Contracts/EmulationMachineTabDefinition.cs`
+  - Vérification : le record graphique conserve exactement `Tab`, `Icon` et `ResourceKey`.
+  - Vérification : son namespace passe de `GWGUI.App.Controls` à `GWGUI.App.Contracts` et son enum provient désormais du contrat commun `GWGUI.Emulation.EmulationMachineTab`.
+  - Conclusion : le rangement correspond à sa responsabilité et aucune donnée n'a été supprimée.
+  - Traité : contenu conservé sans modification supplémentaire.
+- [x] `D` `src/GWGUI.App/Controls/AmigaConfigurationDocuments.cs`
+  - Vérification de la suppression : la persistance est exposée par `IEmulationModule` et implémentée par `AmigaEmulationModule` avec `AmigaConfigurationStore`.
+  - Vérification de la suppression : la réutilisation d'une configuration sauvegardée par modèle et la création d'un nouvel identifiant lors d'un changement de modèle sont reprises par le contrôle commun et `ChangeMachine`.
+  - Vérification de la suppression : la validation des fichiers et la reconnaissance de l'en-tête `AMIROMTYPE1` sont déplacées dans `AmigaConfigurationValidationFunctions`.
+  - Vérification de la suppression : la normalisation des chemins est effectuée par `AmigaConfigurationStore` lors du stockage et du rechargement.
+  - Conclusion : aucune responsabilité ne nécessite de conserver ou recréer ce fichier familial dans App.
+  - Traité : suppression conservée sans correction supplémentaire.
+- [x] `D` `src/GWGUI.App/Controls/AmigaControllerSettingsFunctions.cs`
+  - Vérification de la suppression : les choix de contrôleur et leurs clés de traduction sont produits par `AmigaInputSettingsFunctions` dans `GWGUI.Emulation.Amiga`.
+  - Vérification de la suppression : les actions directionnelles, les deux boutons joystick, les sept boutons CD32 et l'action Turbo sont toutes conservées dans les définitions retournées au contrôle commun.
+  - Vérification de la séparation : `EmulationInputSettingsController` et les éditeurs communs d'App affichent ces données sans connaître `AmigaControllerType`.
+  - Conclusion : aucune responsabilité ne nécessite de recréer ce fichier familial dans App.
+  - Traité : suppression conservée sans correction supplémentaire.
+- [x] `D` `src/GWGUI.App/Controls/AmigaCoreManagementSection.cs`
+  - Vérification de la suppression : installation actuelle, recherche des versions, sélection de la version requise, dernière version, compteur, téléchargement, progression et erreurs sont repris par `EmulationEmulatorManagementController` et `IEmulationEmulatorManager`.
+  - Erreur relevée : l'ancien contrôle actualisait l'infobulle du sélecteur avec le nom complet de la version sélectionnée ; ce comportement manque dans le contrôleur commun.
+  - Correction retenue : ajouter ce comportement au contrôleur commun avec un gestionnaire d'événement nommé, sans recréer de contrôle Amiga.
+  - Traité : l'infobulle de version est restaurée dans le contrôleur commun et le fichier familial reste supprimé.
+- [x] `D` `src/GWGUI.App/Controls/AmigaEmulationSection.cs`
+  - Vérification de la suppression : liste et rechargement des configurations, unicité des onglets, création du runtime, création de l'instance, fermeture et arrêt global sont repris par `EmulationSection` et les modules communs.
+  - Vérification de la suppression : la vue, les commandes, le renderer, les médias et le nettoyage des instances sont repris par `MachineController` et `MachineSession`.
+  - Vérification fonctionnelle : l'absence de démarrage automatique est volontaire ; un onglet s'ouvre machine éteinte et le démarrage passe par le bouton d'alimentation commun.
+  - Vérification de présentation : le titre court utilise le nom de la machine et la description complète reste dans l'infobulle de l'onglet.
+  - Conclusion : aucune responsabilité ne nécessite de recréer ce contrôle familial.
+  - Traité : suppression conservée sans correction supplémentaire.
+- [x] `D` `src/GWGUI.App/Controls/AmigaKeyboardSettingsFunctions.cs`
+  - Vérification de la suppression : F1 à F10 et leurs associations par défaut sont conservées dans `AmigaInputSettingsFunctions`.
+  - Vérification de la suppression : Help/Insert, Amiga gauche/PageUp et Amiga droite/PageDown sont conservés avec leurs clés de traduction.
+  - Vérification de la séparation : le module fournit les définitions et App effectue uniquement leur traduction et leur rendu commun.
+  - Conclusion : aucune responsabilité ne nécessite de recréer ce fichier familial.
+  - Traité : suppression conservée sans correction supplémentaire.
+- [x] `D` `src/GWGUI.App/Controls/AmigaMachineController.cs`
+  - Erreur de migration : l’insertion à chaud d’un média Amiga ne passe plus par la préparation propre au module. Une image SCP sélectionnée après l’ouverture de l’onglet est donc transmise telle quelle, alors que l’ancien contrôleur la convertissait avant insertion.
+  - Erreur de migration : le contrôleur d’entrée commun ne libère plus la capture de la souris et ne vide plus les touches actives lors de la perte du focus clavier. Une touche peut rester logiquement enfoncée après un changement de focus.
+  - Erreur de migration : la molette horizontale captée au niveau de la fenêtre WPF n’est plus transmise lorsque la surface vidéo n’est pas une fenêtre native.
+  - Erreur de migration : l’entrée en plein écran ne réactive plus explicitement la fenêtre et la surface vidéo, contrairement à l’ancien contrôleur.
+  - Erreur de migration : si la création de la surface vidéo demandée échoue, le remplacement commun ne revient plus immédiatement vers le rendu WPF comme le faisait l’ancien contrôleur.
+  - Erreur de migration : après une capture d’écran, le nom du fichier enregistré n’est plus affiché dans la zone d’état.
+  - Vérification de la migration : la barre commune conserve alimentation, pause, redémarrages logiciel et matériel, sauvegarde rapide, chargement rapide, capture, plein écran, audio et bascule manette/souris.
+  - Vérification de la migration : les associations personnalisées du clavier, de la souris et des manettes ont été déplacées dans `AmigaInputSnapshotFunctions`, puis sont appliquées par l’instance Amiga aux entrées physiques communes.
+  - Vérification de la migration : les médias montés, leur réinsertion au rallumage, les périphériques, les LED, les dossiers mémorisés par module/machine/support et la recréation d’instance sont repris par `MachineSession`, `MachineController` et le module.
+  - Traité : préparation des médias rendue injectable par le module et fournie par Amiga ; nettoyage des entrées à la perte du focus, molette horizontale WPF, focus plein écran, repli vidéo WPF et retour du nom de capture restaurés dans les composants communs.
+- [x] `D` `src/GWGUI.App/Controls/AmigaMouseSettingsFunctions.cs`
+  - Vérification de la suppression : bouton gauche, bouton droit et leurs associations physiques par défaut sont conservés dans `AmigaInputSettingsFunctions`.
+  - Vérification de la suppression : le bouton central reste déclaré uniquement lorsque le modèle Amiga possède au moins trois boutons de souris.
+  - Vérification de la séparation : le module fournit les définitions, valeurs et clés de traduction ; `EmulationInputSettingsController` construit uniquement l’éditeur graphique commun.
+  - Conclusion : aucune responsabilité ni donnée de ce fichier familial n’a été perdue.
+  - Traité : suppression conservée sans correction supplémentaire.
+- [ ] `D` `src/GWGUI.App/Controls/AtariAccessibilityConstants.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariAccessibilityFunctions.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariConfigurationCatalogConstants.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariConfigurationCatalogController.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariConfigurationCatalogFunctions.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariConfigurationCatalogSection.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariControllerSettingsConstants.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariControllerSettingsFunctions.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariCoreManagementConstants.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariCoreManagementFunctions.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariCoreManagementSection.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariEmulationConstants.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariEmulationFunctions.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariErrorLocalizationConstants.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariErrorLocalizationFunctions.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariGeneralSettingsConstants.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariGeneralSettingsFunctions.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariGeneralSettingsSection.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariHardwareSettingsConstants.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariHardwareSettingsFunctions.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariHardwareSettingsSection.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariInputSettingsConstants.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariInputSettingsFunctions.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariInputSettingsSection.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariKeyboardSettingsConstants.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariKeyboardSettingsFunctions.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariMachineController.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariMachineInputFunctions.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariMachineViewConstants.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariMachineViewContracts.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariMachineViewFunctions.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariMouseSettingsConstants.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariMouseSettingsFunctions.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariRegionDisplayFunctions.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariStorageSettingsConstants.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariStorageSettingsFunctions.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariStorageSettingsSection.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariVideoAudioSettingsConstants.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariVideoAudioSettingsFunctions.cs`
+- [ ] `D` `src/GWGUI.App/Controls/AtariVideoAudioSettingsSection.cs`
+- [ ] `M` `src/GWGUI.App/Controls/CommonErrorDialog.cs`
+- [ ] `M` `src/GWGUI.App/Controls/CommonErrorDialogContracts.cs`
+- [ ] `M` `src/GWGUI.App/Controls/ControlErrorPresenter.cs`
+- [ ] `M` `src/GWGUI.App/Controls/ControlErrorPresenterConstants.cs`
+- [ ] `M` `src/GWGUI.App/Controls/ControlTechnicalConstants.cs`
+- [ ] `D` `src/GWGUI.App/Controls/ControlVisualConstants.cs`
+- [ ] `D` `src/GWGUI.App/Controls/EmulationAudioSettingsLayout.cs`
+- [ ] `D` `src/GWGUI.App/Controls/EmulationConfigurationDisplayFunctions.cs`
+- [ ] `M` `src/GWGUI.App/Controls/EmulationControllerSettingsLayout.cs`
+- [ ] `M` `src/GWGUI.App/Controls/EmulationCoreManagementPanel.cs`
+- [ ] `M` `src/GWGUI.App/Controls/EmulationDefaultFoldersLayout.cs`
+- [ ] `M` `src/GWGUI.App/Controls/EmulationFirmwareSettingsLayout.cs`
+- [ ] `M` `src/GWGUI.App/Controls/EmulationHardwareSettingsLayout.cs`
+- [ ] `M` `src/GWGUI.App/Controls/EmulationInputSettingsLayout.cs`
+- [ ] `M` `src/GWGUI.App/Controls/EmulationMachineTabs.cs`
+- [ ] `M` `src/GWGUI.App/Controls/EmulationMemorySettingsLayout.cs`
+- [ ] `D` `src/GWGUI.App/Controls/EmulationOptionCatalog.cs`
+- [ ] `D` `src/GWGUI.App/Controls/EmulationOptionValueConverter.cs`
+- [ ] `M` `src/GWGUI.App/Controls/EmulationSection.cs`
+- [ ] `M` `src/GWGUI.App/Controls/EmulationSettingsLayout.cs`
+- [ ] `M` `src/GWGUI.App/Controls/EmulationStorageDeviceList.cs`
+- [ ] `D` `src/GWGUI.App/Controls/EmulationStorageDialogs.cs`
+- [ ] `M` `src/GWGUI.App/Controls/EmulationStorageSettingsLayout.cs`
+- [ ] `M` `src/GWGUI.App/Controls/ExplorerDetailsPanel.xaml.cs`
+- [ ] `M` `src/GWGUI.App/Controls/ExplorerDetailsPresenter.cs`
+- [ ] `M` `src/GWGUI.App/Controls/ExplorerFileContentClassifier.cs`
+- [ ] `M` `src/GWGUI.App/Controls/ExplorerFileIconClassifier.cs`
+- [ ] `RD` `src/GWGUI.App/Controls/ExplorerIconKind.cs -> src/GWGUI.App/Controls/ExplorerIconCategory.cs`
+- [ ] `D` `src/GWGUI.App/Controls/ExplorerItems.cs`
+- [ ] `M` `src/GWGUI.App/Controls/ExplorerSection.xaml`
+- [ ] `M` `src/GWGUI.App/Controls/ExplorerSection.xaml.cs`
+- [ ] `M` `src/GWGUI.App/Controls/FileEntryIcon.xaml.cs`
+- [ ] `D` `src/GWGUI.App/Controls/InputBindingContracts.cs`
+- [ ] `M` `src/GWGUI.App/Controls/InputBindingEditor.xaml.cs`
+- [ ] `M` `src/GWGUI.App/Controls/MachineView.cs`
+- [ ] `M` `src/GWGUI.App/Controls/OptionsEmulationSection.cs`
+- [ ] `D` `src/GWGUI.App/Enums/EmulationMachineTab.cs`
+- [ ] `D` `src/GWGUI.App/Input/AmigaKeyMapper.cs`
+- [ ] `D` `src/GWGUI.App/Input/EmulationShortcutContracts.cs`
+- [ ] `M` `src/GWGUI.App/Input/EmulationShortcutFunctions.cs`
+- [ ] `M` `src/GWGUI.App/Input/EmulationShortcutMap.cs`
+- [ ] `M` `src/GWGUI.App/Localization/EmulationResourceKeys.cs`
+- [ ] `M` `src/GWGUI.App/MainWindow.xaml`
+- [ ] `M` `src/GWGUI.App/MainWindow.xaml.cs`
+- [ ] `M` `src/GWGUI.App/Rendering/IScpRenderer.cs`
+- [ ] `M` `src/GWGUI.App/Rendering/SkiaScpRenderer.cs`
+- [ ] `M` `src/GWGUI.App/Resources/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/ar-SA/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/cs-CZ/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/da-DK/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/de-DE/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/el-GR/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/en-US/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/es-ES/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/fi-FI/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/fr-FR/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/he-IL/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/hu-HU/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/id-ID/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/it-IT/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/ja-JP/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/ko-KR/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/nb-NO/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/nl-NL/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/pl-PL/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/pt-BR/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/pt-PT/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/ro-RO/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/ru-RU/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/sv-SE/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/th-TH/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/tr-TR/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/uk-UA/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/vi-VN/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/zh-Hans/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/Resources/zh-Hant/Emulation.resx`
+- [ ] `M` `src/GWGUI.App/ScpDiskView.xaml.cs`
+- [ ] `D` `src/GWGUI.App/Services/AmigaCoreProvider.cs`
+- [ ] `D` `src/GWGUI.App/Services/AmigaRuntimeMedia.cs`
+- [ ] `D` `src/GWGUI.App/Services/AtariCoreProvider.cs`
+- [ ] `D` `src/GWGUI.App/Services/AtariCoreProviderConstants.cs`
+- [ ] `M` `src/GWGUI.App/Services/DiskImageWorkspaceController.cs`
+- [ ] `M` `src/GWGUI.App/Services/DiskVisualizationClassificationPolicy.cs`
+- [ ] `RM` `src/GWGUI.App/Services/PhysicalDiskWriting/PhysicalDiskWriteFailureKind.cs -> src/GWGUI.App/Services/PhysicalDiskWriting/PhysicalDiskWriteFailureCategory.cs`
+- [ ] `M` `src/GWGUI.App/Services/PhysicalDiskWriting/PhysicalDiskWriteResult.cs`
+- [ ] `M` `src/GWGUI.App/Services/PhysicalDiskWriting/PhysicalDiskWriteService.cs`
+- [ ] `M` `src/GWGUI.App/Services/XInputControllerReader.cs`
+- [ ] `M` `src/GWGUI.App/StoragePathConstants.cs`
+- [ ] `M` `src/GWGUI.App/StoragePaths.cs`
+- [ ] `M` `src/GWGUI.Domain/Settings/AppSettings.cs`
+- [ ] `M` `src/GWGUI.Domain/Settings/SettingsMigrator.cs`
+- [ ] `M` `src/GWGUI.Emulation.Amiga/AmigaCoreOption.cs`
+- [ ] `M` `src/GWGUI.Emulation.Amiga/AmigaEngine.cs`
+- [ ] `M` `src/GWGUI.Emulation.Amiga/AmigaFirmwareCatalog.cs`
+- [ ] `M` `src/GWGUI.Emulation.Amiga/AmigaMachine.cs`
+- [ ] `M` `src/GWGUI.Emulation.Amiga/AmigaMachineConfiguration.cs`
+- [ ] `M` `src/GWGUI.Emulation.Amiga/AmigaModelCatalog.cs`
+- [ ] `M` `src/GWGUI.Emulation.Amiga/Cores/AmigaExternalCore.cs`
+- [ ] `M` `src/GWGUI.Emulation.Amiga/Cores/AmigaExternalHostCallbacks.cs`
+- [ ] `M` `src/GWGUI.Emulation.Amiga/Cores/AmigaInputAccumulator.cs`
+- [ ] `M` `src/GWGUI.Emulation.Amiga/GWGUI.Emulation.Amiga.csproj`
+- [ ] `D` `src/GWGUI.Emulation.Amiga/IAmigaMachine.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/Atari800MediaErrors.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/Atari800MediaFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariCartridgeConstants.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariCartridgeContracts.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariCartridgeFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariClassicModelCatalog.cs`
+- [ ] `D` `src/GWGUI.Emulation.Atari/AtariClassicModelContracts.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariClassicModelFunctions.cs`
+- [ ] `D` `src/GWGUI.Emulation.Atari/AtariCompatibilityContracts.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariCompatibilityFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariConfigurationFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariConfigurationStoreContracts.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariControllerConstants.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariControllerFunctions.cs`
+- [ ] `D` `src/GWGUI.Emulation.Atari/AtariCoreKind.cs`
+- [ ] `D` `src/GWGUI.Emulation.Atari/AtariCoreOption.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariCoreOptionHost.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariCoreOptionProbe.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariEightBitSettingsCatalog.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariEmulationException.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariEngine.cs`
+- [ ] `D` `src/GWGUI.Emulation.Atari/AtariEnvironmentContracts.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariFirmware.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariFirmwareCatalog.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariFirmwareConstants.cs`
+- [ ] `D` `src/GWGUI.Emulation.Atari/AtariFirmwareContracts.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariFirmwareFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariFirmwareRuntimeFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariFirmwareScanFunctions.cs`
+- [ ] `D` `src/GWGUI.Emulation.Atari/AtariHardwareSettingsView.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariHatariContentFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariHatariStorageFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariInputConfiguration.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariInputFunctions.cs`
+- [ ] `D` `src/GWGUI.Emulation.Atari/AtariInputSettingsView.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariJaguarCdFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariMachine.cs`
+- [ ] `D` `src/GWGUI.Emulation.Atari/AtariMachineCollection.cs`
+- [ ] `D` `src/GWGUI.Emulation.Atari/AtariMachineCollectionConstants.cs`
+- [ ] `D` `src/GWGUI.Emulation.Atari/AtariMachineCollectionFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariMachineConfiguration.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariMachineFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariMachineOptionFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariMedia.cs`
+- [ ] `D` `src/GWGUI.Emulation.Atari/AtariModels.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariRuntimeFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariRuntimeStatus.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariSavedStateFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariShortcutContracts.cs`
+- [ ] `D` `src/GWGUI.Emulation.Atari/AtariShortcutExecutionFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariShortcutFunctions.cs`
+- [ ] `D` `src/GWGUI.Emulation.Atari/AtariStModelContracts.cs`
+- [ ] `D` `src/GWGUI.Emulation.Atari/AtariStateContracts.cs`
+- [ ] `D` `src/GWGUI.Emulation.Atari/AtariStateStore.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariStateStoreContracts.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariStateStoreFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/AtariStorageConfigurationFunctions.cs`
+- [ ] `D` `src/GWGUI.Emulation.Atari/AtariStorageSettingsView.cs`
+- [ ] `D` `src/GWGUI.Emulation.Atari/AtariVideoAudioSettingsView.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/Cores/AtariContentFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/Cores/AtariControllerPortFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/Cores/AtariCoreCatalog.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/Cores/AtariCoreCatalogContracts.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/Cores/AtariCoreCatalogFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/Cores/AtariCoreFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/Cores/AtariCoreHost.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/Cores/AtariCoreHostContracts.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/Cores/AtariCoreHostFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/Cores/AtariCoreLifecycleFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/Cores/AtariCoreReleaseContracts.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/Cores/AtariCoreReleaseFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/Cores/AtariCoreReleaseService.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/Cores/AtariExternalCore.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/Cores/AtariExternalCoreProbe.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/Cores/AtariProcessCore.cs`
+- [ ] `M` `src/GWGUI.Emulation.Atari/Cores/IAtariCore.cs`
+- [ ] `D` `src/GWGUI.Emulation.Atari/IAtariMachine.cs`
+- [ ] `M` `src/GWGUI.Emulation/Common/EmulationHostProtocolFunctions.cs`
+- [ ] `M` `src/GWGUI.Emulation/Common/EmulationInputAccumulator.cs`
+- [ ] `M` `src/GWGUI.Emulation/Contracts/EmulationInputSnapshot.cs`
+- [ ] `M` `src/GWGUI.Emulation/Contracts/EmulationPointerState.cs`
+- [ ] `M` `src/GWGUI.Emulation/EmulationMediaRules.cs`
+- [ ] `D` `src/GWGUI.Emulation/Enums/EmulationMediaSlot.cs`
+- [ ] `M` `src/GWGUI.Emulation/Enums/EmulationMediaType.cs`
+- [ ] `M` `src/GWGUI.Emulation/Interfaces/IEmulatedMachine.cs`
+- [ ] `D` `src/GWGUI.Emulation/Interfaces/IEmulationEngine.cs`
+- [ ] `D` `tests/GWGUI.Tests/AmigaConfigurationTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AmigaExternalCoreTests.cs`
+- [ ] `D` `tests/GWGUI.Tests/AmigaInputSettingsTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AmigaKeyboardMappingTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AmigaMachineLifecycleTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/ApplicationShellTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/Atari800MediaTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariCartridgeTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariClassicModelCatalogTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariCompatibilityCatalogTests.cs`
+- [ ] `D` `tests/GWGUI.Tests/AtariConfigurationCatalogTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariConfigurationStoreTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariConfigurationTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariControllerMappingTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariControllerTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariCoreCatalogTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariCoreHostTests.cs`
+- [ ] `D` `tests/GWGUI.Tests/AtariCoreManagementSectionTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariCoreOptionTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariCoreReleaseServiceTests.cs`
+- [ ] `D` `tests/GWGUI.Tests/AtariEmulationSectionTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariEnvironmentCoreCommandTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariExternalCoreProbeTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariFirmwareCatalogTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariFirmwareScannerTests.cs`
+- [ ] `D` `tests/GWGUI.Tests/AtariGeneralSettingsTests.cs`
+- [ ] `D` `tests/GWGUI.Tests/AtariHardwareSettingsTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariHatariStorageTests.cs`
+- [ ] `D` `tests/GWGUI.Tests/AtariInputSettingsTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariJaguarCdTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariLoadedContentTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariLocalizationTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariMachineLifecycleTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariMachineViewTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariRuntimeStatusTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariSavedStateTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariSessionMediaTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariShortcutTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/AtariStateStoreTests.cs`
+- [ ] `D` `tests/GWGUI.Tests/AtariStorageSettingsTests.cs`
+- [ ] `D` `tests/GWGUI.Tests/AtariVideoAudioSettingsTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/DiskImageExplorerTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/DiskVisualizationClassificationPolicyTests.cs`
+- [ ] `D` `tests/GWGUI.Tests/EmulationControlRefactoringTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/EmulationControllerSettingsLayoutTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/EmulationMediaRulesTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/EmulationShortcutFunctionsTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/ExplorerAndCatalogTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/GWGUI.Tests.csproj`
+- [ ] `M` `tests/GWGUI.Tests/PhysicalDiskWriteServiceTests.cs`
+- [ ] `M` `tests/GWGUI.Tests/SettingsAndLoggingTests.cs`
+- [ ] `A` `src/GWGUI.App/Constants/ControlVisualConstants.cs`
+- [ ] `A` `src/GWGUI.App/Constants/EmulationControllerSettingsConstants.cs`
+- [ ] `A` `src/GWGUI.App/Constants/EmulationCoreManagementConstants.cs`
+- [ ] `A` `src/GWGUI.App/Constants/EmulationFirmwareSettingsConstants.cs`
+- [ ] `A` `src/GWGUI.App/Constants/EmulationHardwareSettingsConstants.cs`
+- [ ] `A` `src/GWGUI.App/Constants/EmulationInputSettingsConstants.cs`
+- [ ] `A` `src/GWGUI.App/Constants/EmulationMachineTabConstants.cs`
+- [ ] `A` `src/GWGUI.App/Constants/EmulationMemorySettingsConstants.cs`
+- [ ] `A` `src/GWGUI.App/Constants/EmulationStorageDeviceListConstants.cs`
+- [ ] `A` `src/GWGUI.App/Constants/FileEntryIconGeometryConstants.cs`
+- [ ] `A` `src/GWGUI.App/Constants/MachineCommandGlyphConstants.cs`
+- [ ] `A` `src/GWGUI.App/Constants/MachinePresentationConstants.cs`
+- [ ] `A` `src/GWGUI.App/Constants/XInputButtonConstants.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/CompactDiscDriveSettings.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/ControllerCapturedEventArgs.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/DiskSizeChoice.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/EmulationConfigurationListItem.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/EmulationConfigurationSavedEventArgs.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/EmulationControllerChoiceView.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/EmulationControllerPortSettings.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/EmulationFirmwareSettingsContent.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/EmulationMachineChoice.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/EmulationMemorySettingsContent.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/EmulationSettingsChoiceView.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/EmulationSettingsControlField.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/EmulationShortcutMatch.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/EmulationStorageDeviceEventArgs.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/EmulationStorageDeviceItem.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/ExplorerDetailRow.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/ExplorerDetailsPresentation.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/ExplorerVolumeNamePresentation.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/GlobalShortcutBinding.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/InputBindingPart.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/KeyboardShortcutBinding.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/MachineCommandActions.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/MachineControllerOptions.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/MachineViewDevice.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/StorageDeviceChoice.cs`
+- [ ] `A` `src/GWGUI.App/Contracts/StorageDialogChoice.cs`
+- [ ] `A` `src/GWGUI.App/Controls/AddStorageDeviceDialog.cs`
+- [ ] `A` `src/GWGUI.App/Controls/CompactDiscDriveConfigurationDialog.cs`
+- [ ] `A` `src/GWGUI.App/Controls/EmulationControllerPortEditor.cs`
+- [ ] `A` `src/GWGUI.App/Controls/EmulationControllerSettingsSection.cs`
+- [ ] `A` `src/GWGUI.App/Controls/EmulationEmulatorManagementController.cs`
+- [ ] `A` `src/GWGUI.App/Controls/EmulationFirmwareManagementController.cs`
+- [ ] `A` `src/GWGUI.App/Controls/EmulationInputSettingsController.cs`
+- [ ] `A` `src/GWGUI.App/Controls/EmulationModuleHardwareSettingsSection.cs`
+- [ ] `A` `src/GWGUI.App/Controls/EmulationModuleInputSettingsSection.cs`
+- [ ] `A` `src/GWGUI.App/Controls/EmulationModuleSettingsSection.cs`
+- [ ] `A` `src/GWGUI.App/Controls/EmulationSectionConfigurationFunctions.cs`
+- [ ] `A` `src/GWGUI.App/Controls/EmulationSectionLayoutFunctions.cs`
+- [ ] `A` `src/GWGUI.App/Controls/EmulationSectionMachineFunctions.cs`
+- [ ] `A` `src/GWGUI.App/Controls/EmulationSectionMediaFolderFunctions.cs`
+- [ ] `A` `src/GWGUI.App/Controls/EmulationSectionTabDragFunctions.cs`
+- [ ] `A` `src/GWGUI.App/Controls/EmulationStorageSettingsController.cs`
+- [ ] `A` `src/GWGUI.App/Controls/FloppyDriveConfigurationDialog.cs`
+- [ ] `A` `src/GWGUI.App/Controls/HardDiskDriveConfigurationDialog.cs`
+- [ ] `A` `src/GWGUI.App/Controls/InputBindingEditorBindingFunctions.cs`
+- [ ] `A` `src/GWGUI.App/Controls/InputBindingEditorCaptureFunctions.cs`
+- [ ] `A` `src/GWGUI.App/Controls/MachineCommandBar.cs`
+- [ ] `A` `src/GWGUI.App/Controls/MachineController.cs`
+- [ ] `A` `src/GWGUI.App/Controls/MachineInputController.cs`
+- [ ] `A` `src/GWGUI.App/Controls/MachineTabDragAdorner.cs`
+- [ ] `A` `src/GWGUI.App/Controls/MachineVideoPresenter.cs`
+- [ ] `A` `src/GWGUI.App/Controls/OptionsEmulationSectionConfigurationFunctions.cs`
+- [ ] `A` `src/GWGUI.App/Controls/OptionsEmulationSectionLayoutFunctions.cs`
+- [ ] `A` `src/GWGUI.App/Controls/OptionsEmulationSectionSettingsFunctions.cs`
+- [ ] `A` `src/GWGUI.App/Enums/EmulationShortcutMatchCategory.cs`
+- [ ] `A` `src/GWGUI.App/Enums/ExplorerIconCategory.cs`
+- [ ] `A` `src/GWGUI.App/Enums/InputBindingState.cs`
+- [ ] `A` `src/GWGUI.App/Enums/InputCaptureSources.cs`
+- [ ] `A` `src/GWGUI.App/Functions/MachineCaptureFunctions.cs`
+- [ ] `A` `src/GWGUI.App/Functions/MachinePresentationFunctions.cs`
+- [ ] `A` `src/GWGUI.App/Rendering/DiskMediaCategory.cs`
+- [ ] `A` `src/GWGUI.App/Rendering/ScpMediaGeometry.cs`
+- [ ] `A` `src/GWGUI.App/Rendering/ScpRenderRequest.cs`
+- [ ] `A` `src/GWGUI.App/Rendering/ScpTrackPreparation.cs`
+- [ ] `A` `src/GWGUI.App/Rendering/ScpTrackVisualState.cs`
+- [ ] `A` `src/GWGUI.App/Services/EmulationModuleRegistry.cs`
+- [ ] `A` `src/GWGUI.App/Services/MachineSession.cs`
+- [ ] `A` `src/GWGUI.App/ViewModels/ExplorerContentItem.cs`
+- [ ] `A` `src/GWGUI.App/ViewModels/ExplorerFolderItem.cs`
+- [ ] `A` `src/GWGUI.App/ViewModels/ExplorerFormatChoice.cs`
+- [ ] `A` `src/GWGUI.App/ViewModels/InputBindingRow.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Constants/AmigaSettingsConstants.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Contracts/AmigaAudioConfiguration.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Contracts/AmigaControllerBinding.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Contracts/AmigaControllerDevice.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Contracts/AmigaCoreOptionValue.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Contracts/AmigaFirmware.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Contracts/AmigaFloppyConfiguration.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Contracts/AmigaInputConfiguration.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Contracts/AmigaMachineCreationContext.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Contracts/AmigaMediaConfiguration.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Contracts/AmigaModel.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Dictionaries/AmigaMachineCatalog.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Enums/AmigaControllerType.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Enums/AmigaEmulator.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Enums/AmigaFirmwareType.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Enums/AmigaMediaCategory.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Enums/AmigaMouseAction.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Factories/PuaeMachineFactory.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Functions/AmigaConfigurationValidationFunctions.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Functions/AmigaInputSettingsFunctions.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Functions/AmigaInputSnapshotFunctions.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Functions/AmigaRuntimeMediaFunctions.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Functions/AmigaSettingsDescriptionFunctions.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Functions/AmigaStorageSettingsFunctions.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Functions/EmulationMediaActivityFunctions.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Functions/EmulationMediaConversionFunctions.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Interfaces/IAmigaMachineFactory.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModule.cs`
+- [ ] `A` `src/GWGUI.Emulation.Amiga/Services/AmigaCoreProvider.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/AtariEmulator.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Constants/AtariHardwareSettingsConstants.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Constants/AtariInputSettingsConstants.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Constants/AtariMouseSettingsConstants.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Constants/AtariSettingsConstants.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Constants/AtariVideoAudioSettingsConstants.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariClassicModelDefinition.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariClassicPortDefinition.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariCompatibilityDefinition.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariControllerBinding.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariControllerDevice.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariControllerPort.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariCoreOption.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariCoreOptionCategory.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariCoreOptionValue.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariEnvironmentExtendedMessage.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariEnvironmentMessage.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariFirmwareDefinition.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariFirmwareFingerprint.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariHardwareChoice.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariHardwareField.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariHardwareView.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariInputDescriptor.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariMachineCreationContext.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariMediaCompatibilityRule.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariMemoryDescriptor.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariOptionRule.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariRuntimeGeometry.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariSavedStateHeader.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariScannedFirmware.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariShortcutRule.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariStModelDefinition.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariStateConfigurationFingerprint.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariStateContentEntry.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariStateControllerFingerprint.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariStateFile.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Contracts/AtariStateInputFingerprint.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Dictionaries/AtariModelCatalog.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariCartridgePlatform.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariCartridgeRegion.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariClassicAudioCapability.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariClassicCpu.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariClassicPortCapability.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariClassicRegion.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariClassicStorageCapability.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariClassicVideoCapability.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariFirmwareCompatibility.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariFirmwareDetectionStatus.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariFirmwareDistribution.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariFirmwareEvidence.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariFirmwareHashAlgorithm.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariFirmwareProvision.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariHostProcessState.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariMachineFamily.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariMachineModel.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariMediaAvailability.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariMediaCategory.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariOptionAvailability.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariPeripheralCategory.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariRuntimeRegion.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariSettingOption.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariSettingsGroup.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariSettingsTab.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariShortcutAvailability.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariStAudioCapability.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariStCpu.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariStCpuPrecision.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariStFpu.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariStPortCapability.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariStRegion.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariStStorageCapability.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariStVideoCapability.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Enums/AtariStorageBus.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Factories/AtariMachineFactory.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Functions/AtariHardwareSettingsFunctions.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Functions/AtariInputSettingsFunctions.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Functions/AtariInputSnapshotFunctions.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Functions/AtariMessageFunctions.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Functions/AtariSettingsDescriptionFunctions.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Functions/AtariStorageSettingsFunctions.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Functions/EmulationMediaActivityFunctions.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Functions/EmulationMediaConversionFunctions.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Functions/EmulationPeripheralConversionFunctions.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Interfaces/IAtariMachineFactory.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs`
+- [ ] `A` `src/GWGUI.Emulation.Atari/Services/AtariCoreProvider.cs`
+- [ ] `A` `src/GWGUI.Emulation/Constants/EmulationMediaSlotConstants.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationControllerChoice.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationControllerPort.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationEmulatorInstallation.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationEmulatorMessageContext.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationEmulatorRelease.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationFirmwareCandidate.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationInputBindingSet.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationInputSettings.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationMachineDefinition.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationMachineMessageContext.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationMachineRuntime.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationMachineSettings.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationMediaDevice.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationMediaSlot.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationMessage.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationOption.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationOptionValue.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationRequiredMachineMediaMessageContext.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationRuntimeServices.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationSettingsBlock.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationSettingsChoice.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationSettingsField.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationSettingsRule.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationSettingsVisibility.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationStorageDeviceSettings.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/EmulationStorageSettings.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/FloppyDriveDialogOptions.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/FloppyDriveModelChoice.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/FloppyDriveSettings.cs`
+- [ ] `A` `src/GWGUI.Emulation/Contracts/InputBindingDefinition.cs`
+- [ ] `A` `src/GWGUI.Emulation/Dictionaries/EmulationMediaSlotDictionaries.cs`
+- [ ] `A` `src/GWGUI.Emulation/EmulationMediaProtocol.cs`
+- [ ] `A` `src/GWGUI.Emulation/Enums/EmulationDefaultFolderCategory.cs`
+- [ ] `A` `src/GWGUI.Emulation/Enums/EmulationFirmwareCompatibility.cs`
+- [ ] `A` `src/GWGUI.Emulation/Enums/EmulationInputSource.cs`
+- [ ] `A` `src/GWGUI.Emulation/Enums/EmulationMachineTab.cs`
+- [ ] `A` `src/GWGUI.Emulation/Enums/EmulationMediaCategory.cs`
+- [ ] `A` `src/GWGUI.Emulation/Enums/EmulationMessageCategory.cs`
+- [ ] `A` `src/GWGUI.Emulation/Enums/EmulationMessageCode.cs`
+- [ ] `A` `src/GWGUI.Emulation/Enums/EmulationMessageSeverity.cs`
+- [ ] `A` `src/GWGUI.Emulation/Enums/EmulationMessageTarget.cs`
+- [ ] `A` `src/GWGUI.Emulation/Enums/EmulationPeripheralCategory.cs`
+- [ ] `A` `src/GWGUI.Emulation/Enums/EmulationSettingsChoiceSource.cs`
+- [ ] `A` `src/GWGUI.Emulation/Enums/EmulationSettingsEditor.cs`
+- [ ] `A` `src/GWGUI.Emulation/Enums/EmulationSettingsRuleCategory.cs`
+- [ ] `A` `src/GWGUI.Emulation/Exceptions/EmulationMessageException.cs`
+- [ ] `A` `src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs`
+- [ ] `A` `src/GWGUI.Emulation/Interfaces/IEmulationAudio.cs`
+- [ ] `A` `src/GWGUI.Emulation/Interfaces/IEmulationConfiguration.cs`
+- [ ] `A` `src/GWGUI.Emulation/Interfaces/IEmulationEmulatorManager.cs`
+- [ ] `A` `src/GWGUI.Emulation/Interfaces/IEmulationEmulatorMessageContext.cs`
+- [ ] `A` `src/GWGUI.Emulation/Interfaces/IEmulationFirmwareManager.cs`
+- [ ] `A` `src/GWGUI.Emulation/Interfaces/IEmulationInput.cs`
+- [ ] `A` `src/GWGUI.Emulation/Interfaces/IEmulationInputSettingsManager.cs`
+- [ ] `A` `src/GWGUI.Emulation/Interfaces/IEmulationLifecycle.cs`
+- [ ] `A` `src/GWGUI.Emulation/Interfaces/IEmulationMachineMessageContext.cs`
+- [ ] `A` `src/GWGUI.Emulation/Interfaces/IEmulationMedia.cs`
+- [ ] `A` `src/GWGUI.Emulation/Interfaces/IEmulationMessageContext.cs`
+- [ ] `A` `src/GWGUI.Emulation/Interfaces/IEmulationModule.cs`
+- [ ] `A` `src/GWGUI.Emulation/Interfaces/IEmulationRequiredMediaMessageContext.cs`
+- [ ] `A` `src/GWGUI.Emulation/Interfaces/IEmulationRuntime.cs`
+- [ ] `A` `src/GWGUI.Emulation/Interfaces/IEmulationSavedStates.cs`
+- [ ] `A` `src/GWGUI.Emulation/Interfaces/IEmulationStorageSettingsManager.cs`
+- [ ] `A` `src/GWGUI.Emulation/Interfaces/IEmulationVideo.cs`
+- [ ] `A` `tests/GWGUI.Tests/EmulationModuleFirmwareTests.cs`

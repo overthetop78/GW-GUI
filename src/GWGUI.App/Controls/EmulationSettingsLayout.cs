@@ -1,4 +1,5 @@
 using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Media;
 using GWGUI.App.Localization;
@@ -66,6 +67,7 @@ internal static partial class EmulationSettingsLayout
                 Margin = new Thickness(column == 0 ? 0 : 18, 7, 10, 7), TextWrapping = TextWrapping.Wrap };
             Grid.SetRow(label, row); Grid.SetColumn(label, column); form.Children.Add(label);
             var control = fields[index].Control;
+            AutomationProperties.SetName(control, fields[index].Label);
             control.Margin = new Thickness(0, 4, 0, 4);
             control.VerticalAlignment = VerticalAlignment.Center;
             Grid.SetRow(control, row); Grid.SetColumn(control, column + 1); form.Children.Add(control);

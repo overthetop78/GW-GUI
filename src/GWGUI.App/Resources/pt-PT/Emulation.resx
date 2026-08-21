@@ -1011,13 +1011,13 @@
   <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
     <value>Selecione o modelo Jaguar CD para utilizar discos CD.</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cassettes">
+  <data name="Emulation.Storage.Cassettes">
     <value>Cassete</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cartridges">
+  <data name="Emulation.Storage.Cartridges">
     <value>Cartucho</value>
   </data>
-  <data name="Emulation.Atari.Storage.CompactDiscs">
+  <data name="Emulation.Storage.CompactDiscs">
     <value>Discos compactos</value>
   </data>
   <data name="Emulation.Atari.Video.Region">
@@ -1107,8 +1107,8 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Controlador Atari Joy 2B+</value></data>
-  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
-    <value>O emulador necessita de um suporte antes de esta máquina poder ser ligada. Insira uma disquete ou configure um disco rígido.</value>
+  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
+    <value>O emulador necessita de um suporte antes de esta máquina poder ser ligada. Insira ou configure um dos suportes necessários apresentados abaixo.</value>
   </data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
     <value>Não foi possível ligar a máquina</value>
@@ -1157,4 +1157,5 @@
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Baixa</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normal</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Alta</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Ranhura de cartucho</value></data>
 </root>

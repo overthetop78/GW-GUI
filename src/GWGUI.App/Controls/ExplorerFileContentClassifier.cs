@@ -1,18 +1,19 @@
 using GWGUI.MediaEngine.FileSystems;
+using GWGUI.App.Enums;
 
 namespace GWGUI.App.Controls;
 
 internal static class ExplorerFileContentClassifier
 {
-    public static ExplorerIconKind? KnownIcon(FileSystemEntry entry, ExplorerFileSystemFamily family)
+    public static ExplorerIconCategory? KnownIcon(FileSystemEntry entry, ExplorerFileSystemFamily family)
     {
         var metadata = MetadataIcon(entry, family);
         if (metadata is not null) return metadata;
-        if (IsAmigaExecutable(entry.Content) && family == ExplorerFileSystemFamily.Amiga) return ExplorerIconKind.Program;
-        if (IsDosExecutable(entry.Content) && family == ExplorerFileSystemFamily.IbmPc) return ExplorerIconKind.Program;
-        if (IsAtariExecutable(entry.Content) && family == ExplorerFileSystemFamily.AtariSt) return ExplorerIconKind.Program;
-        if (HasFormType(entry.Content, "ILBM")) return ExplorerIconKind.Image;
-        if (HasFormType(entry.Content, "8SVX")) return ExplorerIconKind.Audio;
+        if (IsAmigaExecutable(entry.Content) && family == ExplorerFileSystemFamily.Amiga) return ExplorerIconCategory.Program;
+        if (IsDosExecutable(entry.Content) && family == ExplorerFileSystemFamily.IbmPc) return ExplorerIconCategory.Program;
+        if (IsAtariExecutable(entry.Content) && family == ExplorerFileSystemFamily.AtariSt) return ExplorerIconCategory.Program;
+        if (HasFormType(entry.Content, "ILBM")) return ExplorerIconCategory.Image;
+        if (HasFormType(entry.Content, "8SVX")) return ExplorerIconCategory.Audio;
         return null;
     }
 
@@ -24,26 +25,26 @@ internal static class ExplorerFileContentClassifier
         return printable >= sample.Length * 0.9;
     }
 
-    private static ExplorerIconKind? MetadataIcon(FileSystemEntry entry, ExplorerFileSystemFamily family)
+    private static ExplorerIconCategory? MetadataIcon(FileSystemEntry entry, ExplorerFileSystemFamily family)
     {
         var type = entry.Comment.Trim();
-        if (family == ExplorerFileSystemFamily.Commodore && type.StartsWith("PRG", StringComparison.OrdinalIgnoreCase)) return ExplorerIconKind.Program;
-        if (family == ExplorerFileSystemFamily.AppleDos && type is "Text") return ExplorerIconKind.Text;
-        if (family == ExplorerFileSystemFamily.AppleDos && type is "Integer BASIC" or "Applesoft BASIC") return ExplorerIconKind.Program;
-        if (family == ExplorerFileSystemFamily.ProDos && type is "Text") return ExplorerIconKind.Text;
-        if (family == ExplorerFileSystemFamily.ProDos && type is "BASIC" or "System") return ExplorerIconKind.Program;
+        if (family == ExplorerFileSystemFamily.Commodore && type.StartsWith("PRG", StringComparison.OrdinalIgnoreCase)) return ExplorerIconCategory.Program;
+        if (family == ExplorerFileSystemFamily.AppleDos && type is "Text") return ExplorerIconCategory.Text;
+        if (family == ExplorerFileSystemFamily.AppleDos && type is "Integer BASIC" or "Applesoft BASIC") return ExplorerIconCategory.Program;
+        if (family == ExplorerFileSystemFamily.ProDos && type is "Text") return ExplorerIconCategory.Text;
+        if (family == ExplorerFileSystemFamily.ProDos && type is "BASIC" or "System") return ExplorerIconCategory.Program;
         if (family == ExplorerFileSystemFamily.Macintosh)
         {
-            if (type.Equals("APPL", StringComparison.OrdinalIgnoreCase)) return ExplorerIconKind.Program;
-            if (type.Equals("TEXT", StringComparison.OrdinalIgnoreCase)) return ExplorerIconKind.Text;
-            if (type.Equals("PICT", StringComparison.OrdinalIgnoreCase)) return ExplorerIconKind.Image;
-            if (type.Equals("snd", StringComparison.OrdinalIgnoreCase) || type.Equals("AIFF", StringComparison.OrdinalIgnoreCase)) return ExplorerIconKind.Audio;
+            if (type.Equals("APPL", StringComparison.OrdinalIgnoreCase)) return ExplorerIconCategory.Program;
+            if (type.Equals("TEXT", StringComparison.OrdinalIgnoreCase)) return ExplorerIconCategory.Text;
+            if (type.Equals("PICT", StringComparison.OrdinalIgnoreCase)) return ExplorerIconCategory.Image;
+            if (type.Equals("snd", StringComparison.OrdinalIgnoreCase) || type.Equals("AIFF", StringComparison.OrdinalIgnoreCase)) return ExplorerIconCategory.Audio;
         }
         if (family == ExplorerFileSystemFamily.Ucsd)
         {
-            if (type.Equals("UCSD code file", StringComparison.OrdinalIgnoreCase)) return ExplorerIconKind.Program;
-            if (type.Equals("UCSD text file", StringComparison.OrdinalIgnoreCase)) return ExplorerIconKind.Text;
-            if (type is "UCSD graphics file" or "UCSD photo file") return ExplorerIconKind.Image;
+            if (type.Equals("UCSD code file", StringComparison.OrdinalIgnoreCase)) return ExplorerIconCategory.Program;
+            if (type.Equals("UCSD text file", StringComparison.OrdinalIgnoreCase)) return ExplorerIconCategory.Text;
+            if (type is "UCSD graphics file" or "UCSD photo file") return ExplorerIconCategory.Image;
         }
         return null;
     }

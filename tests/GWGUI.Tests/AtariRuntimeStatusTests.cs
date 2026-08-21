@@ -31,7 +31,6 @@ public sealed class AtariRuntimeStatusTests
         Assert.Equal(AtariRuntimeStatusTestConstants.BufferedFrames, status.BufferedAudioFrames);
         Assert.Equal(AtariRuntimeStatusTestConstants.Overruns, status.AudioOverrunCount);
         Assert.Equal(AtariRuntimeStatusTestConstants.Underruns, status.AudioUnderrunCount);
-        Assert.Null(status.LastError);
         Assert.Equal(AtariHostProcessState.Running, status.HostProcessState);
         Assert.Equal(AtariRuntimeStatusTestConstants.FirstHostProcessId, status.HostProcessId);
     }
@@ -58,7 +57,7 @@ public sealed class AtariRuntimeStatusTests
     }
 
     [Fact]
-    public async Task Fault_IsPublishedAsLastErrorWithoutInventingHardwareState()
+    public async Task Fault_DoesNotInventHardwareState()
     {
         var core = new StatusCore(AtariRuntimeStatusTestConstants.FirstCoreName,
             AtariRuntimeStatusTestConstants.FirstLed, AtariRuntimeStatusTestConstants.FirstHostProcessId)
@@ -71,7 +70,7 @@ public sealed class AtariRuntimeStatusTests
 
         var status = machine.RuntimeStatus;
 
-        Assert.IsType<InvalidOperationException>(status.LastError);
+        Assert.Equal(EmulationMachineState.Faulted, machine.State);
         Assert.Empty(status.MediaActivity);
     }
 
@@ -97,6 +96,7 @@ public sealed class AtariRuntimeStatusTests
 
     private sealed class StatusCore : IAtariCore
     {
+        public AtariEmulator Emulator => AtariEmulator.Hatari;
         internal StatusCore(string name, int led, int processId)
         {
             CoreName = name;
@@ -106,7 +106,6 @@ public sealed class AtariRuntimeStatusTests
 
         internal Dictionary<int, bool> Leds { get; } = [];
         internal bool ThrowOnFrame { get; init; }
-        public AtariCoreKind Kind => AtariCoreKind.Hatari;
         public VideoFrame? LatestVideoFrame => new(new byte[AtariRuntimeStatusTestConstants.FrameLength],
             AtariRuntimeStatusTestConstants.Width, AtariRuntimeStatusTestConstants.Height,
             AtariRuntimeStatusTestConstants.Pitch, EmulationPixelFormat.Xrgb8888,
@@ -138,7 +137,7 @@ public sealed class AtariRuntimeStatusTests
         public void HardReset() { }
         public void Stop() { }
         public void SetInput(EmulationInputSnapshot snapshot) { }
-        public void SetControllerPortDevice(int port, AtariPeripheralKind peripheral) { }
+        public void SetControllerPortDevice(int port, AtariPeripheralCategory peripheral) { }
         public void InsertMedia(AtariMediaConfiguration media) { }
         public void EjectMedia(EmulationMediaSlot slot) { }
         public void SelectDisk(int index) { }

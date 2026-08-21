@@ -120,7 +120,7 @@ public sealed class AtariSessionMediaTests
     }
 
     private static AtariMediaConfiguration CreateConfiguration(string path) =>
-        new(path, AtariMediaKind.Floppy, GWGUI.Emulation.EmulationMediaSlot.Floppy0);
+        new(path, AtariMediaCategory.Floppy, GWGUI.Emulation.EmulationMediaSlot.Floppy0);
 
     private static string CreateRoot()
     {

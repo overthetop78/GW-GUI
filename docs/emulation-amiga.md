@@ -147,7 +147,7 @@ Les fichiers temporaires du cœur sont regroupés dans `artifacts/ppua/`. `artif
 - [x] Faire dépendre `AmigaMachine` uniquement de `IAmigaCore`, jamais directement de `AmigaExternalCore` ni d’un export natif.
 - [x] Créer `Cores/AmigaExternalCore.cs` comme première implémentation de `IAmigaCore`.
 - [x] Instancier `AmigaExternalCore` dans `AmigaEngine` via une factory sélectionnée par le type de cœur enregistré dans la configuration.
-- [x] Enregistrer `AmigaCoreKind.External` dans la configuration ; ne pas déduire le type du nom de la DLL.
+- [x] Enregistrer `AmigaEmulator.External` dans la configuration ; ne pas déduire le type du nom de la DLL.
 - [x] Tester `AmigaMachine` avec un faux `IAmigaCore`, puis tester séparément `AmigaExternalCore` avec la DLL native.
 
 ### B — Installer et charger PUAE

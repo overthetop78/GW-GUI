@@ -1011,13 +1011,13 @@
   <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
     <value>Pilih model Jaguar CD untuk menggunakan media CD.</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cassettes">
+  <data name="Emulation.Storage.Cassettes">
     <value>Kaset</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cartridges">
+  <data name="Emulation.Storage.Cartridges">
     <value>Kartrid</value>
   </data>
-  <data name="Emulation.Atari.Storage.CompactDiscs">
+  <data name="Emulation.Storage.CompactDiscs">
     <value>Cakram padat</value>
   </data>
   <data name="Emulation.Atari.Video.Region">
@@ -1107,8 +1107,8 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Grip Atari Booster</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Pengontrol Kejadian Sega</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B + Controller</value></data>
-  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
-    <value>Emulator memerlukan media sebelum mesin ini dapat dinyalakan. Masukkan disket atau konfigurasikan hard disk.</value>
+  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
+    <value>Emulator memerlukan media sebelum mesin ini dapat dinyalakan. Masukkan atau konfigurasikan salah satu media yang diperlukan yang ditampilkan di bawah.</value>
   </data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
     <value>Mesin tidak dapat dinyalakan</value>
@@ -1157,4 +1157,5 @@
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Rendah</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normal</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Tinggi</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Slot kartrid</value></data>
 </root>

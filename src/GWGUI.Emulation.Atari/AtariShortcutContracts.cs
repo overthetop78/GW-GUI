@@ -1,13 +1,5 @@
 namespace GWGUI.Emulation.Atari;
 
-public enum AtariShortcutAvailability
-{
-    Available,
-    Unavailable
-}
-
-public sealed record AtariShortcutRule(string Action, AtariShortcutAvailability Availability);
-
 public sealed record AtariShortcutExecutionContext(
     string QuickStatePath,
     Func<CancellationToken, ValueTask> TogglePowerAsync,

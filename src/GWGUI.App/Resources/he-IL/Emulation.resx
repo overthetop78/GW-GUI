@@ -1011,13 +1011,13 @@
   <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
     <value>יש לבחור בדגם Jaguar CD כדי להשתמש בתקליטורי CD.</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cassettes">
+  <data name="Emulation.Storage.Cassettes">
     <value>קלטת</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cartridges">
+  <data name="Emulation.Storage.Cartridges">
     <value>מחסנית</value>
   </data>
-  <data name="Emulation.Atari.Storage.CompactDiscs">
+  <data name="Emulation.Storage.CompactDiscs">
     <value>תקליטורים</value>
   </data>
   <data name="Emulation.Atari.Video.Region">
@@ -1107,8 +1107,8 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>המפקח Sega Genesis</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Controller</value></data>
-  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
-    <value>האמולטור דורש מדיה לפני שניתן להפעיל מכונה זו. הכנס תקליטון או הגדר דיסק קשיח.</value>
+  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
+    <value>האמולטור דורש מדיה לפני שניתן להפעיל מכונה זו. הכנס או הגדר אחד מאמצעי המדיה הנדרשים המוצגים להלן.</value>
   </data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
     <value>לא ניתן להפעיל את המכונה</value>
@@ -1157,4 +1157,5 @@
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>נמוכה</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>רגילה</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>גבוהה</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>חריץ מחסנית</value></data>
 </root>

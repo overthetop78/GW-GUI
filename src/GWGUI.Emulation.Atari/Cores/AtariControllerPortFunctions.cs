@@ -10,38 +10,38 @@ internal static class AtariControllerPortFunctions
         {
             var binding = configuration.Input.Controllers?.FirstOrDefault(item => item.Port == port);
             exports.SetControllerPortDevice((uint)port, ResolveDevice(callbacks.ControllerPorts, port,
-                binding?.Peripheral ?? AtariPeripheralKind.Automatic, configuration.Core));
+                binding?.Peripheral ?? AtariPeripheralCategory.Automatic, configuration.Core));
         }
     }
 
     internal static uint ResolveDevice(IReadOnlyList<AtariControllerPort> ports, int port,
-        AtariPeripheralKind peripheral, AtariCoreKind? core = null)
+        AtariPeripheralCategory peripheral, AtariEmulator? core = null)
     {
-        if (peripheral == AtariPeripheralKind.None)
+        if (peripheral == AtariPeripheralCategory.None)
             return AtariCoreLifecycleConstants.NoDevice;
 
         var devices = port < ports.Count ? ports[port].Devices : [];
-        if (core == AtariCoreKind.Stella && peripheral is not AtariPeripheralKind.None)
+        if (core == AtariEmulator.Stella && peripheral is not AtariPeripheralCategory.None)
             return devices.FirstOrDefault(device =>
                        device.Description.Contains("Automatic", StringComparison.OrdinalIgnoreCase))?.Id
                    ?? devices.FirstOrDefault()?.Id
                    ?? AtariCoreLifecycleConstants.DefaultJoypadDevice;
         var name = peripheral switch
         {
-            AtariPeripheralKind.Automatic => AtariCoreLifecycleConstants.JoypadDeviceName,
-            AtariPeripheralKind.Keyboard => AtariCoreLifecycleConstants.KeyboardDeviceName,
-            AtariPeripheralKind.Mouse => AtariCoreLifecycleConstants.MouseDeviceName,
-            AtariPeripheralKind.Joystick => AtariCoreLifecycleConstants.JoystickDeviceName,
-            AtariPeripheralKind.AnalogJoystick => AtariCoreLifecycleConstants.AnalogDeviceName,
-            AtariPeripheralKind.Paddle => AtariCoreLifecycleConstants.PaddleDeviceName,
-            AtariPeripheralKind.LightGun => AtariCoreLifecycleConstants.LightGunDeviceName,
-            AtariPeripheralKind.NumericKeypad => AtariCoreLifecycleConstants.NumericKeypadDeviceName,
-            AtariPeripheralKind.DrivingController => AtariCoreLifecycleConstants.DrivingControllerDeviceName,
-            AtariPeripheralKind.ProLineController => AtariCoreLifecycleConstants.ProLineControllerDeviceName,
-            AtariPeripheralKind.EnhancedController => AtariCoreLifecycleConstants.EnhancedControllerDeviceName,
-            AtariPeripheralKind.BoosterGrip => "Booster Grip",
-            AtariPeripheralKind.GenesisController => "Genesis",
-            AtariPeripheralKind.Joy2BPlus => "Joy 2B+",
+            AtariPeripheralCategory.Automatic => AtariCoreLifecycleConstants.JoypadDeviceName,
+            AtariPeripheralCategory.Keyboard => AtariCoreLifecycleConstants.KeyboardDeviceName,
+            AtariPeripheralCategory.Mouse => AtariCoreLifecycleConstants.MouseDeviceName,
+            AtariPeripheralCategory.Joystick => AtariCoreLifecycleConstants.JoystickDeviceName,
+            AtariPeripheralCategory.AnalogJoystick => AtariCoreLifecycleConstants.AnalogDeviceName,
+            AtariPeripheralCategory.Paddle => AtariCoreLifecycleConstants.PaddleDeviceName,
+            AtariPeripheralCategory.LightGun => AtariCoreLifecycleConstants.LightGunDeviceName,
+            AtariPeripheralCategory.NumericKeypad => AtariCoreLifecycleConstants.NumericKeypadDeviceName,
+            AtariPeripheralCategory.DrivingController => AtariCoreLifecycleConstants.DrivingControllerDeviceName,
+            AtariPeripheralCategory.ProLineController => AtariCoreLifecycleConstants.ProLineControllerDeviceName,
+            AtariPeripheralCategory.EnhancedController => AtariCoreLifecycleConstants.EnhancedControllerDeviceName,
+            AtariPeripheralCategory.BoosterGrip => "Booster Grip",
+            AtariPeripheralCategory.GenesisController => "Genesis",
+            AtariPeripheralCategory.Joy2BPlus => "Joy 2B+",
             _ => throw new ArgumentOutOfRangeException(nameof(peripheral))
         };
         var selected = devices.FirstOrDefault(device =>
@@ -50,12 +50,12 @@ internal static class AtariControllerPortFunctions
             return selected.Id;
         // Several cores expose the physical emulated controller only as a generic
         // Libretro joypad. The selected semantic type still drives GW GUI's mappings.
-        if (peripheral is AtariPeripheralKind.Joystick or AtariPeripheralKind.AnalogJoystick
-            or AtariPeripheralKind.Paddle or AtariPeripheralKind.DrivingController
-            or AtariPeripheralKind.ProLineController or AtariPeripheralKind.EnhancedController
-            or AtariPeripheralKind.LightGun or AtariPeripheralKind.NumericKeypad
-            or AtariPeripheralKind.BoosterGrip or AtariPeripheralKind.GenesisController
-            or AtariPeripheralKind.Joy2BPlus)
+        if (peripheral is AtariPeripheralCategory.Joystick or AtariPeripheralCategory.AnalogJoystick
+            or AtariPeripheralCategory.Paddle or AtariPeripheralCategory.DrivingController
+            or AtariPeripheralCategory.ProLineController or AtariPeripheralCategory.EnhancedController
+            or AtariPeripheralCategory.LightGun or AtariPeripheralCategory.NumericKeypad
+            or AtariPeripheralCategory.BoosterGrip or AtariPeripheralCategory.GenesisController
+            or AtariPeripheralCategory.Joy2BPlus)
             return devices.FirstOrDefault(device =>
                        device.Description.Contains(AtariCoreLifecycleConstants.JoypadDeviceName,
                            StringComparison.OrdinalIgnoreCase)
@@ -63,13 +63,13 @@ internal static class AtariControllerPortFunctions
                            StringComparison.OrdinalIgnoreCase))?.Id
                    ?? devices.FirstOrDefault()?.Id
                    ?? AtariCoreLifecycleConstants.DefaultJoypadDevice;
-        if (peripheral == AtariPeripheralKind.Automatic)
+        if (peripheral == AtariPeripheralCategory.Automatic)
             return devices.FirstOrDefault()?.Id ?? AtariCoreLifecycleConstants.DefaultJoypadDevice;
         throw new InvalidDataException(AtariErrorMessages.UnsupportedControllerDevice);
     }
 
     internal static void ConfigurePort(AtariExternalCoreExports exports, AtariExternalHostCallbacks callbacks,
-        AtariMachineConfiguration configuration, int port, AtariPeripheralKind peripheral)
+        AtariMachineConfiguration configuration, int port, AtariPeripheralCategory peripheral)
     {
         var definition = AtariCompatibilityCatalog.Get(configuration.Model);
         if (port < AtariConstants.MinimumControllerPort || port >= definition.ControllerPortCount)

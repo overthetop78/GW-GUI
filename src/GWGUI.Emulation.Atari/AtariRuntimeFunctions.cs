@@ -30,8 +30,7 @@ internal static class AtariRuntimeFunctions
         catch (InvalidOperationException) { return AtariHostProcessState.Exited; }
     }
 
-    internal static AtariRuntimeStatus Status(AtariMachineConfiguration configuration, IAtariCore core,
-        Exception? fault)
+    internal static AtariRuntimeStatus Status(AtariMachineConfiguration configuration, IAtariCore core)
     {
         var frame = core.LatestVideoFrame;
         var geometry = frame is null
@@ -40,6 +39,6 @@ internal static class AtariRuntimeFunctions
         return new AtariRuntimeStatus(configuration.Model, core.Region, core.FramesPerSecond, core.SampleRate,
             geometry, core.CoreName, new Dictionary<EmulationMediaSlot, bool>(),
             new Dictionary<int, bool>(core.LedStates), core.BufferedAudioFrames, core.AudioOverrunCount,
-            core.AudioUnderrunCount, fault, core.HostProcessState, core.HostProcessId);
+            core.AudioUnderrunCount, core.HostProcessState, core.HostProcessId);
     }
 }

@@ -164,7 +164,7 @@ Documents de preuves vérifiés : [`atari-core-capabilities.md`](atari-core-capa
 
 - [x] Créer `IAtariMachine` avec le cycle de vie commun, événements vidéo et commandes Atari.
 - [x] Créer `IAtariCore` pour isoler la machine du cœur natif concret.
-- [x] Créer `AtariCoreKind` et les six identifiants de cœur sans les déduire du nom de DLL.
+- [x] Créer `AtariEmulator` et les six identifiants de cœur sans les déduire du nom de DLL.
 - [x] Créer `AtariMachineConfiguration` avec version de schéma, modèle, cœur déterminé, firmwares, médias, options et entrées.
 - [x] Créer les valeurs de modèle, famille, firmware, média et périphérique sans dépendance WPF.
 - [x] Créer les erreurs structurées pour cœur, firmware, contenu, option, hôte et état.

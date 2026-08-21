@@ -1011,13 +1011,13 @@
   <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
     <value>Seleziona il modello Jaguar CD per utilizzare supporti CD.</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cassettes">
+  <data name="Emulation.Storage.Cassettes">
     <value>Cassetta</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cartridges">
+  <data name="Emulation.Storage.Cartridges">
     <value>Cartuccia</value>
   </data>
-  <data name="Emulation.Atari.Storage.CompactDiscs">
+  <data name="Emulation.Storage.CompactDiscs">
     <value>Compact disc</value>
   </data>
   <data name="Emulation.Atari.Video.Region">
@@ -1107,8 +1107,8 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Controller</value></data>
-  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
-    <value>L’emulatore richiede un supporto prima di poter accendere questa macchina. Inserire un dischetto o configurare un disco rigido.</value>
+  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
+    <value>L’emulatore richiede un supporto prima di poter accendere questa macchina. Inserire o configurare uno dei supporti richiesti mostrati di seguito.</value>
   </data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
     <value>Impossibile accendere la macchina</value>
@@ -1157,4 +1157,5 @@
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Bassa</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normale</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Alta</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Slot cartuccia</value></data>
 </root>

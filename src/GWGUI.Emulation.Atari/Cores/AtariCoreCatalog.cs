@@ -4,54 +4,54 @@ public static class AtariCoreCatalog
 {
     private static readonly IReadOnlyList<AtariCoreCatalogEntry> Entries =
     [
-        AtariCoreCatalogFunctions.Create(AtariCoreKind.Hatari, AtariCoreCatalogConstants.HatariId,
+        AtariCoreCatalogFunctions.Create(AtariEmulator.Hatari, AtariCoreCatalogConstants.HatariId,
             AtariCoreIdentityConstants.Hatari, AtariCoreCatalogConstants.HatariDllName,
             AtariCoreCatalogConstants.HatariSource, AtariCoreCatalogConstants.HatariRevision,
             AtariMachineModel.St, AtariMachineModel.Stf, AtariMachineModel.Stfm, AtariMachineModel.MegaSt,
             AtariMachineModel.Ste, AtariMachineModel.MegaSte, AtariMachineModel.Tt, AtariMachineModel.Falcon),
-        AtariCoreCatalogFunctions.Create(AtariCoreKind.Atari800, AtariCoreCatalogConstants.Atari800Id,
+        AtariCoreCatalogFunctions.Create(AtariEmulator.Atari800, AtariCoreCatalogConstants.Atari800Id,
             AtariCoreIdentityConstants.Atari800, AtariCoreCatalogConstants.Atari800DllName,
             AtariCoreCatalogConstants.Atari800Source, AtariCoreCatalogConstants.Atari800Revision,
             AtariMachineModel.Atari400, AtariMachineModel.Atari800, AtariMachineModel.Atari800Xl,
             AtariMachineModel.Atari130Xe, AtariMachineModel.Xegs, AtariMachineModel.XlXe,
             AtariMachineModel.Atari5200),
-        AtariCoreCatalogFunctions.Create(AtariCoreKind.Stella, AtariCoreCatalogConstants.StellaId,
+        AtariCoreCatalogFunctions.Create(AtariEmulator.Stella, AtariCoreCatalogConstants.StellaId,
             AtariCoreIdentityConstants.Stella, AtariCoreCatalogConstants.StellaDllName,
             AtariCoreCatalogConstants.StellaSource, AtariCoreCatalogConstants.StellaRevision,
             AtariMachineModel.Atari2600),
-        AtariCoreCatalogFunctions.Create(AtariCoreKind.ProSystem, AtariCoreCatalogConstants.ProSystemId,
+        AtariCoreCatalogFunctions.Create(AtariEmulator.ProSystem, AtariCoreCatalogConstants.ProSystemId,
             AtariCoreIdentityConstants.ProSystem, AtariCoreCatalogConstants.ProSystemDllName,
             AtariCoreCatalogConstants.ProSystemSource, AtariCoreCatalogConstants.ProSystemRevision,
             AtariMachineModel.Atari7800),
-        AtariCoreCatalogFunctions.Create(AtariCoreKind.BeetleLynx, AtariCoreCatalogConstants.BeetleLynxId,
+        AtariCoreCatalogFunctions.Create(AtariEmulator.BeetleLynx, AtariCoreCatalogConstants.BeetleLynxId,
             AtariCoreIdentityConstants.BeetleLynx, AtariCoreCatalogConstants.BeetleLynxDllName,
             AtariCoreCatalogConstants.BeetleLynxSource, AtariCoreCatalogConstants.BeetleLynxRevision,
             AtariMachineModel.Lynx),
-        AtariCoreCatalogFunctions.Create(AtariCoreKind.VirtualJaguar, AtariCoreCatalogConstants.VirtualJaguarId,
+        AtariCoreCatalogFunctions.Create(AtariEmulator.VirtualJaguar, AtariCoreCatalogConstants.VirtualJaguarId,
             AtariCoreIdentityConstants.VirtualJaguar, AtariCoreCatalogConstants.VirtualJaguarDllName,
             AtariCoreCatalogConstants.VirtualJaguarSource, AtariCoreCatalogConstants.VirtualJaguarRevision,
             AtariMachineModel.Jaguar, AtariMachineModel.JaguarCd)
     ];
 
-    private static readonly IReadOnlyDictionary<AtariCoreKind, AtariCoreCatalogEntry> ByKind =
-        Entries.ToDictionary(entry => entry.Kind);
-    private static readonly IReadOnlyDictionary<AtariMachineModel, AtariCoreKind> ByModel =
+    private static readonly IReadOnlyDictionary<AtariEmulator, AtariCoreCatalogEntry> ByEmulator =
+        Entries.ToDictionary(entry => entry.Emulator);
+    private static readonly IReadOnlyDictionary<AtariMachineModel, AtariEmulator> ByModel =
         AtariCoreCatalogFunctions.CreateModelAssociations(Entries);
 
     public static IReadOnlyList<AtariCoreCatalogEntry> All => Entries;
 
-    public static AtariCoreCatalogEntry Get(AtariCoreKind kind) => ByKind.TryGetValue(kind, out var entry)
+    public static AtariCoreCatalogEntry Get(AtariEmulator emulator) => ByEmulator.TryGetValue(emulator, out var entry)
         ? entry
-        : throw new ArgumentOutOfRangeException(nameof(kind), kind, null);
+        : throw new ArgumentOutOfRangeException(nameof(emulator), emulator, null);
 
-    public static AtariCoreCatalogEntry Get(AtariMachineModel model) => ByModel.TryGetValue(model, out var kind)
-        ? Get(kind)
+    public static AtariCoreCatalogEntry Get(AtariMachineModel model) => ByModel.TryGetValue(model, out var emulator)
+        ? Get(emulator)
         : throw new ArgumentOutOfRangeException(nameof(model), model, AtariCoreCatalogErrors.MissingModel);
 
-    public static AtariCoreInstallationPaths GetInstallationPaths(AtariCoreKind kind,
+    public static AtariCoreInstallationPaths GetInstallationPaths(AtariEmulator emulator,
         string installationRoot, string version) =>
-        AtariCoreCatalogFunctions.GetInstallationPaths(Get(kind), installationRoot, version);
+        AtariCoreCatalogFunctions.GetInstallationPaths(Get(emulator), installationRoot, version);
 
-    public static string GetActiveManifestPath(AtariCoreKind kind, string installationRoot) =>
-        AtariCoreCatalogFunctions.GetActiveManifestPath(Get(kind), installationRoot);
+    public static string GetActiveManifestPath(AtariEmulator emulator, string installationRoot) =>
+        AtariCoreCatalogFunctions.GetActiveManifestPath(Get(emulator), installationRoot);
 }

@@ -2,11 +2,11 @@ namespace GWGUI.Emulation.Atari.Cores;
 
 internal static class AtariCoreCatalogFunctions
 {
-    internal static AtariCoreCatalogEntry Create(AtariCoreKind kind, string id, string libraryName,
+    internal static AtariCoreCatalogEntry Create(AtariEmulator emulator, string id, string libraryName,
         string dllName, string source, string revision, params AtariMachineModel[] models)
     {
         var archiveName = dllName + AtariCoreCatalogConstants.ArchiveExtension;
-        return new AtariCoreCatalogEntry(kind, id, libraryName, dllName, archiveName,
+        return new AtariCoreCatalogEntry(emulator, id, libraryName, dllName, archiveName,
             new Uri(AtariCoreCatalogConstants.BuildServerRoot + archiveName, UriKind.Absolute),
             new Uri(source, UriKind.Absolute), revision, models.ToHashSet());
     }
@@ -32,19 +32,19 @@ internal static class AtariCoreCatalogFunctions
             AtariCoreCatalogConstants.ActiveManifestFileName);
     }
 
-    internal static IReadOnlyDictionary<AtariMachineModel, AtariCoreKind> CreateModelAssociations(
+    internal static IReadOnlyDictionary<AtariMachineModel, AtariEmulator> CreateModelAssociations(
         IReadOnlyList<AtariCoreCatalogEntry> entries)
     {
-        if (entries.Select(entry => entry.Kind).Distinct().Count() != entries.Count
+        if (entries.Select(entry => entry.Emulator).Distinct().Count() != entries.Count
             || entries.Select(entry => entry.Id).Distinct(StringComparer.OrdinalIgnoreCase).Count() != entries.Count)
             throw new InvalidDataException(AtariCoreCatalogErrors.DuplicateCore);
 
-        var result = new Dictionary<AtariMachineModel, AtariCoreKind>();
+        var result = new Dictionary<AtariMachineModel, AtariEmulator>();
         foreach (var entry in entries)
         {
             foreach (var model in entry.Models)
             {
-                if (!result.TryAdd(model, entry.Kind))
+                if (!result.TryAdd(model, entry.Emulator))
                     throw new InvalidDataException(AtariCoreCatalogErrors.DuplicateModel);
             }
         }

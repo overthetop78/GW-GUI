@@ -19,13 +19,13 @@ public sealed class AtariFirmwareCatalogTests
         foreach (var model in AtariStModelCatalog.All)
         {
             var versions = AtariFirmwareCatalog.ForModel(model.Model)
-                .Where(definition => definition.Kind == AtariFirmwareKind.Tos)
+                .Where(definition => definition.Category == AtariFirmwareCategory.Tos)
                 .Select(definition => definition.Version)
                 .ToArray();
 
             Assert.Equal(model.TosVersions.Order(), versions.Order());
             Assert.All(AtariFirmwareCatalog.ForModel(model.Model)
-                    .Where(definition => definition.Kind == AtariFirmwareKind.Tos),
+                    .Where(definition => definition.Category == AtariFirmwareCategory.Tos),
                 definition =>
                 {
                     Assert.Equal(AtariFirmwareProvision.RequiredExternal, definition.Provision);
@@ -39,7 +39,7 @@ public sealed class AtariFirmwareCatalogTests
     public void OnlyVerifiedUnitedStatesTos102FingerprintIsPublished()
     {
         var tosFingerprints = AtariFirmwareCatalog.All
-            .Where(definition => definition.Kind == AtariFirmwareKind.Tos)
+            .Where(definition => definition.Category == AtariFirmwareCategory.Tos)
             .SelectMany(definition => definition.Fingerprints)
             .ToArray();
 

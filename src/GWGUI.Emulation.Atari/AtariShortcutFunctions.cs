@@ -14,12 +14,12 @@ public static class AtariShortcutFunctions
             Availability(statesAvailable && quickStateExists)));
 
         var removable = AtariCompatibilityCatalog.Get(configuration.Model).Media
-            .Any(rule => rule.Availability == AtariMediaAvailability.Available && IsRemovable(rule.Kind));
+            .Any(rule => rule.Availability == AtariMediaAvailability.Available && IsRemovable(rule.Category));
         rules.Add(new AtariShortcutRule(EmulationShortcutActions.InsertMedia, Availability(removable)));
         rules.Add(new AtariShortcutRule(EmulationShortcutActions.EjectMedia,
-            Availability(configuration.Media.Any(media => media.IsInserted && IsEjectable(media.Kind)))));
+            Availability(configuration.Media.Any(media => media.IsInserted && IsEjectable(media.Category)))));
         rules.Add(new AtariShortcutRule(EmulationShortcutActions.NextMedia,
-            Availability(configuration.Media.Count(media => IsDiskSelectable(media.Kind)) >
+            Availability(configuration.Media.Count(media => IsDiskSelectable(media.Category)) >
                          AtariShortcutConstants.MinimumMediaForSelection)));
         return rules;
     }
@@ -35,11 +35,11 @@ public static class AtariShortcutFunctions
         ? AtariShortcutAvailability.Available
         : AtariShortcutAvailability.Unavailable;
 
-    private static bool IsRemovable(AtariMediaKind kind) => kind is AtariMediaKind.Floppy or
-        AtariMediaKind.Cassette or AtariMediaKind.Cartridge or AtariMediaKind.CompactDisc;
+    private static bool IsRemovable(AtariMediaCategory category) => category is AtariMediaCategory.Floppy or
+        AtariMediaCategory.Cassette or AtariMediaCategory.Cartridge or AtariMediaCategory.CompactDisc;
 
-    private static bool IsDiskSelectable(AtariMediaKind kind) => kind == AtariMediaKind.Floppy;
+    private static bool IsDiskSelectable(AtariMediaCategory category) => category == AtariMediaCategory.Floppy;
 
-    private static bool IsEjectable(AtariMediaKind kind) =>
-        kind is AtariMediaKind.Floppy or AtariMediaKind.Cassette;
+    private static bool IsEjectable(AtariMediaCategory category) =>
+        category is AtariMediaCategory.Floppy or AtariMediaCategory.Cassette;
 }

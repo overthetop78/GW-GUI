@@ -1,28 +1,20 @@
 using System.Windows;
 using System.Windows.Controls;
+using GWGUI.App.Constants;
 using GWGUI.App.Localization;
 
 namespace GWGUI.App.Controls;
 
-internal sealed record EmulationMemorySettingsContent(
-    IReadOnlyList<EmulationSettingsField> MainMemory,
-    TextBlock MainMemoryHint,
-    IReadOnlyList<EmulationSettingsField> MemoryExtensions,
-    TextBlock MemoryExtensionsHint,
-    TextBlock TotalMemory);
-
 internal static partial class EmulationSettingsLayout
 {
-    private const string MainMemoryIcon = "\uE964";
-    private const string MemoryExtensionsIcon = "\uE950";
-
     internal static Grid MemorySettingsPage(EmulationMemorySettingsContent settings)
     {
         var mainMemory = new StackPanel();
         mainMemory.Children.Add(SettingsFieldGrid(settings.MainMemory.Select(field => (field.Label, field.Control)).ToArray()));
         mainMemory.Children.Add(InformationBanner(settings.MainMemoryHint));
 
-        var mainCard = IconCard(mainMemory, LocExtension.Get("Emulation.Memory.Main"), MainMemoryIcon);
+        var mainCard = IconCard(mainMemory, LocExtension.Get("Emulation.Memory.Main"),
+            EmulationMemorySettingsConstants.MainMemoryIcon);
         Grid root;
         if (settings.MemoryExtensions.Count == 0)
         {
@@ -35,7 +27,8 @@ internal static partial class EmulationSettingsLayout
                 .Select(field => (field.Label, field.Control)).ToArray()));
             extensions.Children.Add(InformationBanner(settings.MemoryExtensionsHint));
             root = TwoColumnPage(mainCard,
-                IconCard(extensions, LocExtension.Get("Emulation.Memory.Extensions"), MemoryExtensionsIcon));
+                IconCard(extensions, LocExtension.Get("Emulation.Memory.Extensions"),
+                    EmulationMemorySettingsConstants.MemoryExtensionsIcon));
         }
         root.Children.Add(MemorySummaryCard(settings.TotalMemory));
         return root;
@@ -46,7 +39,8 @@ internal static partial class EmulationSettingsLayout
         totalMemory.VerticalAlignment = VerticalAlignment.Center;
         totalMemory.FontSize = 16;
         var content = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(14, 10, 14, 10) };
-        var icon = new TextBlock { Text = MainMemoryIcon, FontFamily = ControlVisualConstants.IconFont, FontSize = 22,
+        var icon = new TextBlock { Text = EmulationMemorySettingsConstants.MainMemoryIcon,
+            FontFamily = ControlVisualConstants.IconFont, FontSize = 22,
             VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 12, 0) };
         icon.SetResourceReference(TextBlock.ForegroundProperty, "AccentBrush");
         content.Children.Add(icon);

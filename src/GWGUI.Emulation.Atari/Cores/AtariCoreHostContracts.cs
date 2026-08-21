@@ -28,6 +28,6 @@ internal enum AtariHostResponseStatus : byte
 internal sealed record AtariHostError(
     string Type,
     string Message,
-    AtariErrorKind? Kind,
+    AtariErrorCategory? Category,
     AtariErrorCode? Code,
     IReadOnlyDictionary<string, string> Context);

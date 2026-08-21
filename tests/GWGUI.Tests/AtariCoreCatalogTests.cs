@@ -10,28 +10,28 @@ public sealed class AtariCoreCatalogTests
     private const string TestVersion = "test-version";
     private const string ExpectedManifestName = "core.json";
 
-    public static TheoryData<AtariCoreKind, string, string, string> CoreFiles => new()
+    public static TheoryData<AtariEmulator, string, string, string> CoreFiles => new()
     {
-        { AtariCoreKind.Hatari, "hatari", "hatari_libretro.dll", "hatari_libretro.dll.zip" },
-        { AtariCoreKind.Atari800, "atari800", "atari800_libretro.dll", "atari800_libretro.dll.zip" },
-        { AtariCoreKind.Stella, "stella2023", "stella2023_libretro.dll", "stella2023_libretro.dll.zip" },
-        { AtariCoreKind.ProSystem, "prosystem", "prosystem_libretro.dll", "prosystem_libretro.dll.zip" },
-        { AtariCoreKind.BeetleLynx, "beetle-lynx", "mednafen_lynx_libretro.dll", "mednafen_lynx_libretro.dll.zip" },
-        { AtariCoreKind.VirtualJaguar, "virtual-jaguar", "virtualjaguar_libretro.dll", "virtualjaguar_libretro.dll.zip" }
+        { AtariEmulator.Hatari, "hatari", "hatari_libretro.dll", "hatari_libretro.dll.zip" },
+        { AtariEmulator.Atari800, "atari800", "atari800_libretro.dll", "atari800_libretro.dll.zip" },
+        { AtariEmulator.Stella, "stella2023", "stella2023_libretro.dll", "stella2023_libretro.dll.zip" },
+        { AtariEmulator.ProSystem, "prosystem", "prosystem_libretro.dll", "prosystem_libretro.dll.zip" },
+        { AtariEmulator.BeetleLynx, "beetle-lynx", "mednafen_lynx_libretro.dll", "mednafen_lynx_libretro.dll.zip" },
+        { AtariEmulator.VirtualJaguar, "virtual-jaguar", "virtualjaguar_libretro.dll", "virtualjaguar_libretro.dll.zip" }
     };
 
     [Fact]
     public void CatalogContainsExactlyTheSixDistinctCores()
     {
         Assert.Equal(ExpectedCoreCount, AtariCoreCatalog.All.Count);
-        Assert.Equal(Enum.GetValues<AtariCoreKind>().Order(), AtariCoreCatalog.All.Select(item => item.Kind).Order());
+        Assert.Equal(Enum.GetValues<AtariEmulator>().Order(), AtariCoreCatalog.All.Select(item => item.Emulator).Order());
         Assert.Equal(ExpectedCoreCount, AtariCoreCatalog.All.Select(item => item.Id)
             .Distinct(StringComparer.OrdinalIgnoreCase).Count());
     }
 
     [Theory]
     [MemberData(nameof(CoreFiles))]
-    public void CoreHasExactOfficialNamesAndSeparateVersionPaths(AtariCoreKind kind, string id,
+    public void CoreHasExactOfficialNamesAndSeparateVersionPaths(AtariEmulator kind, string id,
         string dllName, string archiveName)
     {
         var entry = AtariCoreCatalog.Get(kind);
@@ -57,18 +57,18 @@ public sealed class AtariCoreCatalogTests
         foreach (var model in Enum.GetValues<AtariMachineModel>())
         {
             var configuration = new AtariMachineConfiguration(model);
-            Assert.Equal(configuration.Core, AtariCoreCatalog.Get(model).Kind);
+            Assert.Equal(configuration.Core, AtariCoreCatalog.Get(model).Emulator);
         }
     }
 
     [Fact]
     public void AmbiguousMachineAssociationIsRejected()
     {
-        var first = AtariCoreCatalog.Get(AtariCoreKind.Hatari) with
+        var first = AtariCoreCatalog.Get(AtariEmulator.Hatari) with
         {
             Models = new HashSet<AtariMachineModel> { AtariMachineModel.St }
         };
-        var second = AtariCoreCatalog.Get(AtariCoreKind.Atari800) with
+        var second = AtariCoreCatalog.Get(AtariEmulator.Atari800) with
         {
             Models = new HashSet<AtariMachineModel> { AtariMachineModel.St }
         };

@@ -1,7 +1,7 @@
 namespace GWGUI.Emulation.Atari.Cores;
 
 public sealed record AtariCoreCatalogEntry(
-    AtariCoreKind Kind,
+    AtariEmulator Emulator,
     string Id,
     string LibraryName,
     string DllName,

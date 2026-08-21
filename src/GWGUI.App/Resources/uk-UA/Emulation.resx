@@ -1011,13 +1011,13 @@
   <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
     <value>Виберіть модель Jaguar CD, щоб використовувати компакт-диски.</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cassettes">
+  <data name="Emulation.Storage.Cassettes">
     <value>Касета</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cartridges">
+  <data name="Emulation.Storage.Cartridges">
     <value>Картридж</value>
   </data>
-  <data name="Emulation.Atari.Storage.CompactDiscs">
+  <data name="Emulation.Storage.CompactDiscs">
     <value>Компакт-диски</value>
   </data>
   <data name="Emulation.Atari.Video.Region">
@@ -1107,7 +1107,7 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Гріп</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis контролер</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B + контролер</value></data>
-  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
+  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
     <value>Перед увімкненням цієї машини емулятору потрібен носій. Вставте дискету або налаштуйте жорсткий диск.</value>
   </data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">

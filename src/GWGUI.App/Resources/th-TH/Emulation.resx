@@ -1011,13 +1011,13 @@
   <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
     <value>เลือกรุ่น Jaguar CD เพื่อใช้สื่อ CD</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cassettes">
+  <data name="Emulation.Storage.Cassettes">
     <value>เทปคาสเซ็ต</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cartridges">
+  <data name="Emulation.Storage.Cartridges">
     <value>ตลับเกม</value>
   </data>
-  <data name="Emulation.Atari.Storage.CompactDiscs">
+  <data name="Emulation.Storage.CompactDiscs">
     <value>คอมแพกต์ดิสก์</value>
   </data>
   <data name="Emulation.Atari.Video.Region">
@@ -1107,7 +1107,7 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>แอตาริ บูสเตอร์ กริป</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>เซกา เยเน ซิศ</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari จอย 2B+ Controller</value></data>
-  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
+  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
     <value>โปรแกรมจำลองต้องมีสื่อก่อนจึงจะเปิดเครื่องนี้ได้ โปรดใส่ฟลอปปีดิสก์หรือตั้งค่าฮาร์ดดิสก์</value>
   </data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">

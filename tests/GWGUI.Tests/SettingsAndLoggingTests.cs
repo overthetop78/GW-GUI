@@ -151,20 +151,20 @@ public sealed class SettingsAndLoggingTests : CoreTestBase
             {
                 EmulationMediaFolders =
                 [
-                    new() { Family = EmulationMediaFolderFamily.Atari, Model = "St", Type = EmulationMediaFolderType.Floppy, Folder = @"F:\Atari\Disks" },
-                    new() { Family = EmulationMediaFolderFamily.Amiga, Model = "A500", Type = EmulationMediaFolderType.Floppy, Folder = @"F:\Amiga\Disks" },
-                    new() { Family = EmulationMediaFolderFamily.Amiga, Model = "Cd32", Type = EmulationMediaFolderType.CompactDisc, Folder = @"F:\Amiga\CD" }
+                    new() { ModuleId = "atari", MachineId = "St", Category = EmulationMediaFolderCategory.Floppy, Folder = @"F:\Atari\Disks" },
+                    new() { ModuleId = "amiga", MachineId = "A500", Category = EmulationMediaFolderCategory.Floppy, Folder = @"F:\Amiga\Disks" },
+                    new() { ModuleId = "amiga", MachineId = "Cd32", Category = EmulationMediaFolderCategory.CompactDisc, Folder = @"F:\Amiga\CD" }
                 ]
             });
 
             var restored = await store.LoadAsync();
 
-            Assert.Contains(restored.EmulationMediaFolders, item => item.Family == EmulationMediaFolderFamily.Atari
-                && item.Model == "St" && item.Type == EmulationMediaFolderType.Floppy && item.Folder == @"F:\Atari\Disks");
-            Assert.Contains(restored.EmulationMediaFolders, item => item.Family == EmulationMediaFolderFamily.Amiga
-                && item.Model == "A500" && item.Type == EmulationMediaFolderType.Floppy && item.Folder == @"F:\Amiga\Disks");
-            Assert.Contains(restored.EmulationMediaFolders, item => item.Family == EmulationMediaFolderFamily.Amiga
-                && item.Model == "Cd32" && item.Type == EmulationMediaFolderType.CompactDisc && item.Folder == @"F:\Amiga\CD");
+            Assert.Contains(restored.EmulationMediaFolders, item => item.ModuleId == "atari"
+                && item.MachineId == "St" && item.Category == EmulationMediaFolderCategory.Floppy && item.Folder == @"F:\Atari\Disks");
+            Assert.Contains(restored.EmulationMediaFolders, item => item.ModuleId == "amiga"
+                && item.MachineId == "A500" && item.Category == EmulationMediaFolderCategory.Floppy && item.Folder == @"F:\Amiga\Disks");
+            Assert.Contains(restored.EmulationMediaFolders, item => item.ModuleId == "amiga"
+                && item.MachineId == "Cd32" && item.Category == EmulationMediaFolderCategory.CompactDisc && item.Folder == @"F:\Amiga\CD");
         }
         finally { Directory.Delete(directory, true); }
     }

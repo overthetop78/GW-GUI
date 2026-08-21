@@ -1011,13 +1011,13 @@
   <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
     <value>請選擇 Jaguar CD 機型以使用 CD 光碟。</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cassettes">
+  <data name="Emulation.Storage.Cassettes">
     <value>卡式錄音帶</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cartridges">
+  <data name="Emulation.Storage.Cartridges">
     <value>卡匣</value>
   </data>
-  <data name="Emulation.Atari.Storage.CompactDiscs">
+  <data name="Emulation.Storage.CompactDiscs">
     <value>光碟</value>
   </data>
   <data name="Emulation.Atari.Video.Region">
@@ -1107,7 +1107,7 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>阿塔里助推器 Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>世嘉创世纪控制器</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ 主计长</value></data>
-  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
+  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
     <value>在開啟此機器之前，模擬器需要媒體。請插入軟碟或設定硬碟。</value>
   </data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">

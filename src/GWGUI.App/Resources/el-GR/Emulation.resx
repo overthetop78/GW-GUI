@@ -1011,13 +1011,13 @@
   <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
     <value>Επιλέξτε το μοντέλο Jaguar CD για να χρησιμοποιήσετε δίσκους CD.</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cassettes">
+  <data name="Emulation.Storage.Cassettes">
     <value>Κασέτα</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cartridges">
+  <data name="Emulation.Storage.Cartridges">
     <value>Κασέτα ROM</value>
   </data>
-  <data name="Emulation.Atari.Storage.CompactDiscs">
+  <data name="Emulation.Storage.CompactDiscs">
     <value>Συμπαγείς δίσκοι</value>
   </data>
   <data name="Emulation.Atari.Video.Region">
@@ -1107,8 +1107,8 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Ατάρι Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Ελεγκτής Γένεσης Sega</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ ελεγκτής</value></data>
-  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
-    <value>Ο εξομοιωτής απαιτεί ένα μέσο πριν ενεργοποιηθεί αυτό το μηχάνημα. Εισαγάγετε μια δισκέτα ή ρυθμίστε έναν σκληρό δίσκο.</value>
+  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
+    <value>Ο εξομοιωτής απαιτεί ένα μέσο πριν ενεργοποιηθεί αυτό το μηχάνημα. Εισαγάγετε ή ρυθμίστε ένα από τα απαιτούμενα μέσα που εμφανίζονται παρακάτω.</value>
   </data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
     <value>Δεν ήταν δυνατή η ενεργοποίηση του μηχανήματος</value>
@@ -1157,4 +1157,5 @@
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Χαμηλή</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Κανονική</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Υψηλή</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Υποδοχή κασέτας ROM</value></data>
 </root>

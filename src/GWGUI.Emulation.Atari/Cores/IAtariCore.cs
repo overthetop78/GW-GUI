@@ -4,7 +4,7 @@ namespace GWGUI.Emulation.Atari.Cores;
 
 internal interface IAtariCore : IDisposable
 {
-    AtariCoreKind Kind { get; }
+    AtariEmulator Emulator { get; }
     VideoFrame? LatestVideoFrame { get; }
     AudioChunk? LatestAudioChunk { get; }
     bool TryDequeueAudio(out AudioChunk? chunk);
@@ -29,7 +29,7 @@ internal interface IAtariCore : IDisposable
     void HardReset();
     void Stop();
     void SetInput(EmulationInputSnapshot snapshot);
-    void SetControllerPortDevice(int port, AtariPeripheralKind peripheral);
+    void SetControllerPortDevice(int port, AtariPeripheralCategory peripheral);
     void InsertMedia(AtariMediaConfiguration media);
     void EjectMedia(EmulationMediaSlot slot);
     void SelectDisk(int index);

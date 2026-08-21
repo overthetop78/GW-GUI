@@ -10,7 +10,7 @@ public sealed record PhysicalTrackWriteProgress(
 public sealed record PhysicalTrackWriteFailure(
     int? Cylinder,
     int? Head,
-    PhysicalDiskWriteFailureKind Kind,
+    PhysicalDiskWriteFailureCategory Category,
     Exception? Exception = null);
 
 public sealed record PhysicalDiskWriteResult(

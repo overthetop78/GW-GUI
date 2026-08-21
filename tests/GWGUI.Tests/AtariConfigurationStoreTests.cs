@@ -59,10 +59,10 @@ public sealed class AtariConfigurationStoreTests
         CreateFile(internalMedia, AtariConfigurationStoreTestConstants.InternalMediaBytes);
         CreateFile(externalMedia, AtariConfigurationStoreTestConstants.ExternalMediaBytes);
         var configuration = new AtariMachineConfiguration(AtariMachineModel.St,
-            [new AtariFirmwareConfiguration(AtariFirmwareKind.Tos, firmware, IsRequired: true)],
+            [new AtariFirmwareConfiguration(AtariFirmwareCategory.Tos, firmware, IsRequired: true)],
             [
-                new AtariMediaConfiguration(internalMedia, AtariMediaKind.Floppy, EmulationMediaSlot.Floppy0),
-                new AtariMediaConfiguration(externalMedia, AtariMediaKind.Floppy, EmulationMediaSlot.Floppy1)
+                new AtariMediaConfiguration(internalMedia, AtariMediaCategory.Floppy, EmulationMediaSlot.Floppy0),
+                new AtariMediaConfiguration(externalMedia, AtariMediaCategory.Floppy, EmulationMediaSlot.Floppy1)
             ],
             AtariConfigurationStoreTestConstants.Options,
             AtariConfigurationStoreTestConstants.Input,
@@ -203,13 +203,10 @@ public sealed class AtariConfigurationStoreTests
             Assert.Equal(Path.Combine(AtariConfigurationStoreTestConstants.RoamingDirectory,
                 AtariConfigurationStoreTestConstants.ApplicationName), installed);
             Assert.Equal(Path.Combine(portableRoot, AtariConfigurationStoreTestConstants.DataDirectoryName), portable);
-            Assert.EndsWith(Path.Combine(AtariConfigurationStoreTestConstants.MachinesDirectoryName,
-                AtariConfigurationStoreTestConstants.AtariDirectoryName,
-                AtariConfigurationStoreTestConstants.ConfigurationsDirectoryName),
-                StoragePaths.AtariConfigurationsDirectory, StringComparison.OrdinalIgnoreCase);
-            Assert.EndsWith(Path.Combine(AtariConfigurationStoreTestConstants.StatesDirectoryName,
-                AtariConfigurationStoreTestConstants.AtariDirectoryName), StoragePaths.AtariStatesDirectory,
-                StringComparison.OrdinalIgnoreCase);
+            Assert.EndsWith(Path.Combine("Emulation", "Storage"),
+                StoragePaths.EmulationStorageDirectory, StringComparison.OrdinalIgnoreCase);
+            Assert.EndsWith(Path.Combine("Emulation", "Storage", AtariConfigurationStoreTestConstants.StatesDirectoryName),
+                StoragePaths.EmulationStateDirectory, StringComparison.OrdinalIgnoreCase);
         }
         finally
         {

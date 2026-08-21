@@ -4,19 +4,19 @@ namespace GWGUI.Emulation.Atari;
 
 internal static class AtariConfigurationFunctions
 {
-    internal static AtariCoreKind GetCore(AtariMachineModel model) => model switch
+    internal static AtariEmulator GetCore(AtariMachineModel model) => model switch
     {
         AtariMachineModel.St or AtariMachineModel.Stf or AtariMachineModel.Stfm or AtariMachineModel.MegaSt
             or AtariMachineModel.Ste or AtariMachineModel.MegaSte or AtariMachineModel.Tt or AtariMachineModel.Falcon
-            => AtariCoreKind.Hatari,
+            => AtariEmulator.Hatari,
         AtariMachineModel.Atari400 or AtariMachineModel.Atari800 or AtariMachineModel.Atari800Xl
             or AtariMachineModel.Atari130Xe or AtariMachineModel.Xegs or AtariMachineModel.XlXe
             or AtariMachineModel.Atari5200
-            => AtariCoreKind.Atari800,
-        AtariMachineModel.Atari2600 => AtariCoreKind.Stella,
-        AtariMachineModel.Atari7800 => AtariCoreKind.ProSystem,
-        AtariMachineModel.Lynx => AtariCoreKind.BeetleLynx,
-        AtariMachineModel.Jaguar or AtariMachineModel.JaguarCd => AtariCoreKind.VirtualJaguar,
+            => AtariEmulator.Atari800,
+        AtariMachineModel.Atari2600 => AtariEmulator.Stella,
+        AtariMachineModel.Atari7800 => AtariEmulator.ProSystem,
+        AtariMachineModel.Lynx => AtariEmulator.BeetleLynx,
+        AtariMachineModel.Jaguar or AtariMachineModel.JaguarCd => AtariEmulator.VirtualJaguar,
         _ => throw new ArgumentOutOfRangeException(nameof(model), model, null)
     };
 
@@ -50,20 +50,20 @@ internal static class AtariConfigurationFunctions
 
     private static void ValidateFirmware(AtariMachineModel model, IReadOnlyList<AtariFirmwareConfiguration> firmwares)
     {
-        var kinds = new HashSet<AtariFirmwareKind>();
+        var categories = new HashSet<AtariFirmwareCategory>();
         foreach (var firmware in firmwares)
         {
             if (string.IsNullOrWhiteSpace(firmware.Path))
                 throw new ArgumentException(AtariErrorMessages.EmptyFirmwarePath, nameof(firmwares));
-            if (!kinds.Add(firmware.Kind))
+            if (!categories.Add(firmware.Category))
                 throw new ArgumentException(AtariErrorMessages.DuplicateFirmware, nameof(firmwares));
-            if (!IsFirmwareCompatible(model, firmware.Kind))
+            if (!IsFirmwareCompatible(model, firmware.Category))
                 throw new ArgumentException(AtariErrorMessages.IncompatibleFirmware, nameof(firmwares));
         }
     }
 
-    private static bool IsFirmwareCompatible(AtariMachineModel model, AtariFirmwareKind kind)
-        => AtariCompatibilityFunctions.IsFirmwareCompatible(AtariCompatibilityCatalog.Get(model), kind);
+    private static bool IsFirmwareCompatible(AtariMachineModel model, AtariFirmwareCategory category)
+        => AtariCompatibilityFunctions.IsFirmwareCompatible(AtariCompatibilityCatalog.Get(model), category);
 
     private static void ValidateMedia(AtariMachineModel model, IReadOnlyList<AtariMediaConfiguration> media)
     {
@@ -74,13 +74,13 @@ internal static class AtariConfigurationFunctions
                 throw new ArgumentException(AtariErrorMessages.EmptyMediaPath, nameof(media));
             if (!slots.Add(item.Slot))
                 throw new ArgumentException(AtariErrorMessages.DuplicateMediaSlot, nameof(media));
-            if (!IsMediaCompatible(model, item.Kind, item.Slot))
+            if (!IsMediaCompatible(model, item.Category, item.Slot))
                 throw new ArgumentException(AtariErrorMessages.IncompatibleMedia, nameof(media));
         }
     }
 
-    private static bool IsMediaCompatible(AtariMachineModel model, AtariMediaKind kind, EmulationMediaSlot slot)
-        => AtariCompatibilityFunctions.IsMediaCompatible(AtariCompatibilityCatalog.Get(model), kind, slot);
+    private static bool IsMediaCompatible(AtariMachineModel model, AtariMediaCategory category, EmulationMediaSlot slot)
+        => AtariCompatibilityFunctions.IsMediaCompatible(AtariCompatibilityCatalog.Get(model), category, slot);
 
     private static void ValidateInput(AtariMachineModel model, AtariInputConfiguration input)
     {

@@ -1,35 +1,14 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using GWGUI.App.Constants;
 using GWGUI.App.Localization;
+using GWGUI.Emulation;
 
 namespace GWGUI.App.Controls;
 
-internal sealed record EmulationFirmwareSettingsContent(
-    UIElement ConfiguredFirmware,
-    ListBox DetectedFirmware,
-    Func<Button, Task> Refresh,
-    Button UseSelected,
-    Func<Button, Task> OpenFolder);
-
-internal enum EmulationFirmwareCompatibility
-{
-    Official,
-    Compatible,
-    PartiallyCompatible,
-    Incompatible,
-    Unknown
-}
-
 internal static partial class EmulationSettingsLayout
 {
-    private const string RefreshIcon = "\uE72C";
-    private const string OpenFolderIcon = "\uE838";
-    private const string FirmwareIcon = "\uE950";
-    private const double FirmwareRowMinimumHeight = 66;
-    private const double FirmwareIconColumnWidth = 44;
-    private const double FirmwareCompatibilityColumnWidth = 185;
-
     internal static Grid FirmwareSettingsPage(EmulationFirmwareSettingsContent settings)
     {
         settings.DetectedFirmware.MinWidth = 360;
@@ -38,7 +17,8 @@ internal static partial class EmulationSettingsLayout
         ScrollViewer.SetHorizontalScrollBarVisibility(settings.DetectedFirmware, ScrollBarVisibility.Disabled);
         ScrollViewer.SetVerticalScrollBarVisibility(settings.DetectedFirmware, ScrollBarVisibility.Auto);
 
-        var refresh = ControlUiFactory.IconTextButton(RefreshIcon, LocExtension.Get("Common.Refresh"));
+        var refresh = ControlUiFactory.IconTextButton(EmulationFirmwareSettingsConstants.RefreshIcon,
+            LocExtension.Get("Common.Refresh"));
         refresh.Click += async (_, _) => await settings.Refresh(refresh);
         var use = settings.UseSelected;
         use.Content = LocExtension.Get("Emulation.Firmware.Use");
@@ -53,7 +33,8 @@ internal static partial class EmulationSettingsLayout
         var page = TwoColumnPage(configuredCard, detectedCard);
         page.RowDefinitions[0].Height = new GridLength(1, GridUnitType.Star);
 
-        var openFolder = ControlUiFactory.IconTextButton(OpenFolderIcon, LocExtension.Get("Emulation.Firmware.Rom.OpenFolder"));
+        var openFolder = ControlUiFactory.IconTextButton(EmulationFirmwareSettingsConstants.OpenFolderIcon,
+            LocExtension.Get("Emulation.Firmware.Rom.OpenFolder"));
         openFolder.HorizontalAlignment = HorizontalAlignment.Left;
         openFolder.Margin = new Thickness(0, 12, 0, 0);
         openFolder.Click += async (_, _) => await settings.OpenFolder(openFolder);
@@ -64,14 +45,18 @@ internal static partial class EmulationSettingsLayout
     }
 
     internal static Grid FirmwareRow(string name, string? version,
-        EmulationFirmwareCompatibility compatibility, Action useFirmware, string? sourcePath = null)
+        EmulationFirmwareCompatibility compatibility, string? sourcePath = null)
     {
-        var grid = new Grid { MinHeight = FirmwareRowMinimumHeight, Margin = new Thickness(8, 2, 8, 2) };
-        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(FirmwareIconColumnWidth) });
+        var grid = new Grid { MinHeight = EmulationFirmwareSettingsConstants.FirmwareRowMinimumHeight,
+            Margin = new Thickness(8, 2, 8, 2) };
+        grid.ColumnDefinitions.Add(new ColumnDefinition
+            { Width = new GridLength(EmulationFirmwareSettingsConstants.FirmwareIconColumnWidth) });
         grid.ColumnDefinitions.Add(new ColumnDefinition());
-        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(FirmwareCompatibilityColumnWidth) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition
+            { Width = new GridLength(EmulationFirmwareSettingsConstants.FirmwareCompatibilityColumnWidth) });
 
-        grid.Children.Add(new TextBlock { Text = FirmwareIcon, FontFamily = ControlVisualConstants.IconFont, FontSize = 22,
+        grid.Children.Add(new TextBlock { Text = EmulationFirmwareSettingsConstants.FirmwareIcon,
+            FontFamily = ControlVisualConstants.IconFont, FontSize = 22,
             VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Center });
         var identityText = string.IsNullOrWhiteSpace(version) ? name : $"{name} — {version}";
         var identity = new TextBlock
@@ -108,12 +93,6 @@ internal static partial class EmulationSettingsLayout
     internal static void UpdateFirmwareUseButton(Button button,
         EmulationFirmwareCompatibility? compatibility) =>
         button.IsEnabled = compatibility is not null and not EmulationFirmwareCompatibility.Incompatible;
-
-    internal static void UseFirmware(EmulationFirmwareCompatibility compatibility, Action useFirmware)
-    {
-        if (compatibility == EmulationFirmwareCompatibility.Incompatible) return;
-        useFirmware();
-    }
 
     private static (string Text, Brush Foreground, Brush Background, Brush Border) FirmwareBadgeColors(
         EmulationFirmwareCompatibility compatibility) => compatibility switch

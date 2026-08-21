@@ -11,22 +11,22 @@ internal static class AtariCartridgeConstants
     internal const string EnabledValue = "enabled";
     internal const string DisabledValue = "disabled";
 
-    internal static readonly IReadOnlySet<AtariCoreKind> CartridgeCores =
-        new HashSet<AtariCoreKind>
+    internal static readonly IReadOnlySet<AtariEmulator> CartridgeCores =
+        new HashSet<AtariEmulator>
         {
-            AtariCoreKind.Stella,
-            AtariCoreKind.ProSystem,
-            AtariCoreKind.BeetleLynx,
-            AtariCoreKind.VirtualJaguar
+            AtariEmulator.Stella,
+            AtariEmulator.ProSystem,
+            AtariEmulator.BeetleLynx,
+            AtariEmulator.VirtualJaguar
         };
 
-    internal static readonly IReadOnlyDictionary<AtariCoreKind, IReadOnlySet<string>> Extensions =
-        new Dictionary<AtariCoreKind, IReadOnlySet<string>>
+    internal static readonly IReadOnlyDictionary<AtariEmulator, IReadOnlySet<string>> Extensions =
+        new Dictionary<AtariEmulator, IReadOnlySet<string>>
         {
-            [AtariCoreKind.Stella] = Values("a26", "bin"),
-            [AtariCoreKind.ProSystem] = Values("a78", "bin", "cdf"),
-            [AtariCoreKind.BeetleLynx] = Values("lnx", "lyx", "bll", "o"),
-            [AtariCoreKind.VirtualJaguar] = Values("j64", "jag", "rom", "abs", "cof", "bin", "prg")
+            [AtariEmulator.Stella] = Values("a26", "bin"),
+            [AtariEmulator.ProSystem] = Values("a78", "bin", "cdf"),
+            [AtariEmulator.BeetleLynx] = Values("lnx", "lyx", "bll", "o"),
+            [AtariEmulator.VirtualJaguar] = Values("j64", "jag", "rom", "abs", "cof", "bin", "prg")
         };
 
     private static IReadOnlySet<string> Values(params string[] extensions) =>

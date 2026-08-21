@@ -1,4 +1,4 @@
-﻿using GWGUI.MediaEngine.Visualization;
+using GWGUI.MediaEngine.Visualization;
 using GWGUI.MediaEngine.Exploration;
 using System.IO;
 using System.Windows;
@@ -345,8 +345,8 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         var choice = decoder.Items.Cast<ScpDecoderChoice>()
             .FirstOrDefault(item => string.Equals(item.Id, classification.DecoderId, StringComparison.OrdinalIgnoreCase));
         if (choice is not null && !Equals(decoder.SelectedItem, choice)) decoder.SelectedItem = choice;
-        _visualizer.FirstSide.SetMediaKind(classification.MediaKind);
-        _visualizer.SecondSide.SetMediaKind(classification.MediaKind);
+        _visualizer.FirstSide.SetMediaCategory(classification.MediaCategory);
+        _visualizer.SecondSide.SetMediaCategory(classification.MediaCategory);
     }
 
     public void ClearVisualizer(string fileName)

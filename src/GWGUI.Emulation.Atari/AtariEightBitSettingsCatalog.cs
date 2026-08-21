@@ -148,13 +148,13 @@ public static class AtariEightBitSettingsCatalog
     };
 
     public static bool IsOriginalOsCompatible(AtariFirmwareDefinition definition, AtariClassicRegion region) =>
-        definition.Kind switch
+        definition.Category switch
         {
-            AtariFirmwareKind.AtariOsA when definition.Version == "Rev. A PAL" =>
+            AtariFirmwareCategory.AtariOsA when definition.Version == "Rev. A PAL" =>
                 region == AtariClassicRegion.Pal,
-            AtariFirmwareKind.AtariOsA when definition.Version == "Rev. A NTSC" =>
+            AtariFirmwareCategory.AtariOsA when definition.Version == "Rev. A NTSC" =>
                 region == AtariClassicRegion.Ntsc,
-            AtariFirmwareKind.AtariOsB => true,
+            AtariFirmwareCategory.AtariOsB => true,
             _ => true
         };
 

@@ -29,7 +29,7 @@
                 <controls:ToolsTabSection x:Name="ToolsTabBlock"/>
             </TabItem>
             <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Emulation}"><TabItem.Header><controls:MainTabHeader Icon="&#xE7FC;" Text="{l:Loc Tab.Emulation}"/></TabItem.Header>
-                <controls:EmulationSection x:Name="AmigaEmulationBlock"/>
+                <controls:EmulationSection x:Name="EmulationBlock"/>
             </TabItem>
         </TabControl>
         <GridSplitter x:Name="ConsoleSplitter" Grid.Row="2" Height="4" HorizontalAlignment="Stretch" ResizeDirection="Rows" Background="Transparent" BorderThickness="0" />

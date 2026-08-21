@@ -1011,13 +1011,13 @@
   <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
     <value>CD-adathordozó használatához válaszd a Jaguar CD modellt.</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cassettes">
+  <data name="Emulation.Storage.Cassettes">
     <value>Kazetta</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cartridges">
+  <data name="Emulation.Storage.Cartridges">
     <value>Játékkazetta</value>
   </data>
-  <data name="Emulation.Atari.Storage.CompactDiscs">
+  <data name="Emulation.Storage.CompactDiscs">
     <value>Kompaktlemezek</value>
   </data>
   <data name="Emulation.Atari.Video.Region">
@@ -1107,8 +1107,8 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B + vezérlő</value></data>
-  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
-    <value>Az emulátornak adathordozóra van szüksége a gép bekapcsolása előtt. Helyezzen be egy hajlékonylemezt, vagy állítson be merevlemezt.</value>
+  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
+    <value>Az emulátornak adathordozóra van szüksége a gép bekapcsolása előtt. Helyezze be vagy állítsa be az alább látható szükséges adathordozók egyikét.</value>
   </data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
     <value>A gépet nem sikerült bekapcsolni</value>
@@ -1157,4 +1157,5 @@
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Alacsony</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normál</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Magas</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Kazettafoglalat</value></data>
 </root>

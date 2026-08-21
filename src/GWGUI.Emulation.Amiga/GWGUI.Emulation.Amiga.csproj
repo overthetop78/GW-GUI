@@ -11,6 +11,7 @@
   <ItemGroup>
     <InternalsVisibleTo Include="GWGUI.Tests" />
     <ProjectReference Include="..\GWGUI.Emulation\GWGUI.Emulation.csproj" />
+    <ProjectReference Include="..\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
   </ItemGroup>
   <Target Name="CopyAmigaExternalCore" AfterTargets="Build" Condition="Exists('$(MSBuildThisFileDirectory)..\..\artifacts\ppua\puae_libretro.dll')">
     <MakeDir Directories="$(OutDir)Emulation" />

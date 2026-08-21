@@ -14,8 +14,8 @@ public static class AtariFirmwareRuntimeFunctions
         foreach (var firmware in configuration.Firmwares)
         {
             var sourcePath = Path.GetFullPath(firmware.Path);
-            ValidateReadableFile(firmware.Kind, sourcePath);
-            var definition = ResolveDefinition(configuration.Model, firmware.Kind, sourcePath);
+            ValidateReadableFile(firmware.Category, sourcePath);
+            var definition = ResolveDefinition(configuration.Model, firmware.Category, sourcePath);
             var targetPath = Path.Combine(absoluteSystemDirectory, definition.ExpectedFileName!);
             File.Copy(sourcePath, targetPath, true);
         }
@@ -33,21 +33,21 @@ public static class AtariFirmwareRuntimeFunctions
 
     public static void ValidateRequiredFirmware(AtariMachineConfiguration configuration)
     {
-        var configuredKinds = configuration.Firmwares.Select(firmware => firmware.Kind).ToHashSet();
-        var requiredKinds = AtariFirmwareCatalog.ForModel(configuration.Model)
-            .Where(definition => definition.RequiresExternalFile && definition.Kind is not null)
-            .Select(definition => definition.Kind!.Value)
+        var configuredCategories = configuration.Firmwares.Select(firmware => firmware.Category).ToHashSet();
+        var requiredCategories = AtariFirmwareCatalog.ForModel(configuration.Model)
+            .Where(definition => definition.RequiresExternalFile && definition.Category is not null)
+            .Select(definition => definition.Category!.Value)
             .Distinct();
-        foreach (var kind in requiredKinds.Where(kind => !configuredKinds.Contains(kind)))
+        foreach (var category in requiredCategories.Where(category => !configuredCategories.Contains(category)))
             throw new FileNotFoundException(string.Format(CultureInfo.InvariantCulture,
-                AtariErrorMessages.RequiredFirmwareMissing, kind, configuration.Model));
+                AtariErrorMessages.RequiredFirmwareMissing, category, configuration.Model));
     }
 
-    public static AtariFirmwareDefinition ResolveDefinition(AtariMachineModel model, AtariFirmwareKind kind,
+    public static AtariFirmwareDefinition ResolveDefinition(AtariMachineModel model, AtariFirmwareCategory category,
         string sourcePath)
     {
         var definitions = AtariFirmwareCatalog.ForModel(model)
-            .Where(definition => definition.Kind == kind && definition.ExpectedFileName is not null)
+            .Where(definition => definition.Category == category && definition.ExpectedFileName is not null)
             .ToArray();
         var expectedFileNames = definitions.Select(definition => definition.ExpectedFileName!)
             .Distinct(StringComparer.OrdinalIgnoreCase)
@@ -62,13 +62,13 @@ public static class AtariFirmwareRuntimeFunctions
         var named = definitions.FirstOrDefault(definition => string.Equals(definition.ExpectedFileName,
             Path.GetFileName(sourcePath), StringComparison.OrdinalIgnoreCase));
         return named ?? throw new InvalidDataException(string.Format(CultureInfo.InvariantCulture,
-            AtariErrorMessages.FirmwareIdentityAmbiguous, kind, sourcePath));
+            AtariErrorMessages.FirmwareIdentityAmbiguous, category, sourcePath));
     }
 
-    public static void ValidateReadableFile(AtariFirmwareKind kind, string sourcePath)
+    public static void ValidateReadableFile(AtariFirmwareCategory category, string sourcePath)
     {
         if (!File.Exists(sourcePath)) throw new FileNotFoundException(string.Format(CultureInfo.InvariantCulture,
-            AtariErrorMessages.FirmwareFileMissing, kind, sourcePath), sourcePath);
+            AtariErrorMessages.FirmwareFileMissing, category, sourcePath), sourcePath);
         try
         {
             using var stream = new FileStream(sourcePath, FileMode.Open, FileAccess.Read, FileShare.Read);
@@ -77,7 +77,7 @@ public static class AtariFirmwareRuntimeFunctions
         catch (Exception error) when (error is IOException or UnauthorizedAccessException)
         {
             throw new IOException(string.Format(CultureInfo.InvariantCulture,
-                AtariErrorMessages.FirmwareFileUnreadable, kind, sourcePath), error);
+                AtariErrorMessages.FirmwareFileUnreadable, category, sourcePath), error);
         }
     }
 

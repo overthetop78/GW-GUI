@@ -77,7 +77,7 @@ public sealed class PhysicalDiskWriteService(
                     progress?.Report(new(written, orderedTracks.Length, track.Cylinder, track.Head, true));
                     if (!await verifier!.VerifyAsync(track.Cylinder, track.Head, intervals, cancellationToken))
                     {
-                        failures.Add(new(track.Cylinder, track.Head, PhysicalDiskWriteFailureKind.Verification));
+                        failures.Add(new(track.Cylinder, track.Head, PhysicalDiskWriteFailureCategory.Verification));
                         break;
                     }
                 }
@@ -108,7 +108,7 @@ public sealed class PhysicalDiskWriteService(
             }
             catch (Exception exception)
             {
-                failures.Add(new(null, null, PhysicalDiskWriteFailureKind.Device, exception));
+                failures.Add(new(null, null, PhysicalDiskWriteFailureCategory.Device, exception));
             }
         }
 
@@ -136,15 +136,15 @@ public sealed class PhysicalDiskWriteService(
         PhysicalDiskWriteOptions options)
     {
         if (tracks.Count == 0)
-            return new(null, null, PhysicalDiskWriteFailureKind.Validation);
+            return new(null, null, PhysicalDiskWriteFailureCategory.Validation);
         if (string.IsNullOrWhiteSpace(options.PortName))
-            return new(null, null, PhysicalDiskWriteFailureKind.Validation);
+            return new(null, null, PhysicalDiskWriteFailureCategory.Validation);
         if (options.Verify && verifier is null)
-            return new(null, null, PhysicalDiskWriteFailureKind.Validation);
+            return new(null, null, PhysicalDiskWriteFailureCategory.Validation);
         if (options.Precompensation is { Count: > 0 } && tracks.Any(track => track.EncodedTrack is null))
-            return new(null, null, PhysicalDiskWriteFailureKind.Validation);
+            return new(null, null, PhysicalDiskWriteFailureCategory.Validation);
         if (tracks.Any(track => track.Cylinder is < 0 or > short.MaxValue || track.Head is < 0 or > byte.MaxValue))
-            return new(null, null, PhysicalDiskWriteFailureKind.Validation);
+            return new(null, null, PhysicalDiskWriteFailureCategory.Validation);
         return null;
     }
 
@@ -176,10 +176,10 @@ public sealed class PhysicalDiskWriteService(
             GreaseweazleProtocolException
             {
                 Acknowledgement: GreaseweazleAcknowledgement.WriteProtected
-            } => PhysicalDiskWriteFailureKind.WriteProtected,
-            GreaseweazleProtocolException => PhysicalDiskWriteFailureKind.Device,
-            ArgumentException or InvalidDataException or OverflowException => PhysicalDiskWriteFailureKind.Validation,
-            _ => PhysicalDiskWriteFailureKind.Unexpected
+            } => PhysicalDiskWriteFailureCategory.WriteProtected,
+            GreaseweazleProtocolException => PhysicalDiskWriteFailureCategory.Device,
+            ArgumentException or InvalidDataException or OverflowException => PhysicalDiskWriteFailureCategory.Validation,
+            _ => PhysicalDiskWriteFailureCategory.Unexpected
         };
         return new(track?.Cylinder, track?.Head, kind, exception);
     }

@@ -9,20 +9,20 @@ namespace GWGUI.Tests;
 
 public sealed class AtariCoreOptionTests
 {
-    public static TheoryData<string, AtariCoreKind, int> OfficialCatalogs => new()
+    public static TheoryData<string, AtariEmulator, int> OfficialCatalogs => new()
     {
-        { "hatari.dll", AtariCoreKind.Hatari, AtariCoreOptionConstants.HatariDefinitionCount },
-        { "atari800.dll", AtariCoreKind.Atari800, AtariCoreOptionConstants.Atari800DefinitionCount },
-        { "stella.dll", AtariCoreKind.Stella, AtariCoreOptionConstants.StellaDefinitionCount },
-        { "prosystem.dll", AtariCoreKind.ProSystem, AtariCoreOptionConstants.ProSystemDefinitionCount },
-        { "beetle-lynx.dll", AtariCoreKind.BeetleLynx, AtariCoreOptionConstants.BeetleLynxDefinitionCount },
-        { "virtual-jaguar.dll", AtariCoreKind.VirtualJaguar, AtariCoreOptionConstants.VirtualJaguarDefinitionCount }
+        { "hatari.dll", AtariEmulator.Hatari, AtariCoreOptionConstants.HatariDefinitionCount },
+        { "atari800.dll", AtariEmulator.Atari800, AtariCoreOptionConstants.Atari800DefinitionCount },
+        { "stella.dll", AtariEmulator.Stella, AtariCoreOptionConstants.StellaDefinitionCount },
+        { "prosystem.dll", AtariEmulator.ProSystem, AtariCoreOptionConstants.ProSystemDefinitionCount },
+        { "beetle-lynx.dll", AtariEmulator.BeetleLynx, AtariCoreOptionConstants.BeetleLynxDefinitionCount },
+        { "virtual-jaguar.dll", AtariEmulator.VirtualJaguar, AtariCoreOptionConstants.VirtualJaguarDefinitionCount }
     };
 
     [Theory]
     [MemberData(nameof(OfficialCatalogs))]
     [Trait("Category", "LocalAssets")]
-    public void OfficialCore_CopiesEveryAnnouncedOption(string fileName, AtariCoreKind kind, int expectedCount)
+    public void OfficialCore_CopiesEveryAnnouncedOption(string fileName, AtariEmulator kind, int expectedCount)
     {
         Assert.True(Enum.IsDefined(kind));
         var executable = Path.Combine(AppContext.BaseDirectory, "gwgui.app.exe");

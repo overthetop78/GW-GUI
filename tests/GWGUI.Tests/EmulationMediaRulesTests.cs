@@ -5,21 +5,22 @@ namespace GWGUI.Tests;
 public sealed class EmulationMediaRulesTests
 {
     [Fact]
-    public void ExistingPersistedEnumValuesRemainStable()
+    public void StructuredSlotsExposeTheirCategoryAndIndex()
     {
-        Assert.Equal(0, (int)EmulationMediaSlot.Floppy0);
-        Assert.Equal(5, (int)EmulationMediaSlot.Cd0);
+        Assert.Equal(EmulationMediaCategory.FloppyDrive, EmulationMediaSlot.Floppy0.Category);
+        Assert.Equal(0, EmulationMediaSlot.Floppy0.Index);
+        Assert.Equal(EmulationMediaCategory.CompactDiscDrive, EmulationMediaSlot.Cd0.Category);
         Assert.Equal(0, (int)EmulationMediaType.Floppy);
-        Assert.Equal(3, (int)EmulationMediaType.Directory);
     }
 
     [Theory]
-    [InlineData(EmulationMediaSlot.Cartridge0, EmulationMediaType.Cartridge)]
-    [InlineData(EmulationMediaSlot.Cassette0, EmulationMediaType.Cassette)]
-    [InlineData(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc)]
-    [InlineData(EmulationMediaSlot.HardDisk0, EmulationMediaType.Directory)]
-    public void NewAndExistingSlotsAcceptTheirSupportedMedia(EmulationMediaSlot slot, EmulationMediaType type) =>
-        Assert.True(EmulationMediaRules.IsCompatible(slot, type));
+    [InlineData(EmulationMediaCategory.CartridgeSlot, EmulationMediaType.Cartridge)]
+    [InlineData(EmulationMediaCategory.CassetteDrive, EmulationMediaType.Cassette)]
+    [InlineData(EmulationMediaCategory.CompactDiscDrive, EmulationMediaType.CompactDisc)]
+    [InlineData(EmulationMediaCategory.HardDisk, EmulationMediaType.HardDisk)]
+    public void NewAndExistingSlotsAcceptTheirSupportedMedia(EmulationMediaCategory category,
+        EmulationMediaType type) =>
+        Assert.True(EmulationMediaRules.IsCompatible(new EmulationMediaSlot(category, 0), type));
 
     [Fact]
     public void ValidationRejectsDuplicateAndIncompatibleSlots()
@@ -61,15 +62,15 @@ public sealed class EmulationMediaRulesTests
     }
 
     [Fact]
-    public void LegacyAndNewMediaRoundTripThroughProtocolJson()
+    public void StructuredMediaRoundTripsThroughProtocolJson()
     {
-        const string legacy = "[{\"path\":\"disk.adf\",\"slot\":0,\"type\":0,\"isReadOnly\":false,\"isInserted\":true}]";
-        var oldMedia = Assert.Single(EmulationMediaProtocol.Deserialize(System.Text.Encoding.UTF8.GetBytes(legacy)));
+        var floppy = new EmulationMedia("disk.adf", EmulationMediaSlot.Floppy0,
+            EmulationMediaType.Floppy, false, true);
         var cartridge = new EmulationMedia("game.j64", EmulationMediaSlot.Cartridge0,
             EmulationMediaType.Cartridge, true, true);
 
-        Assert.Equal(EmulationMediaSlot.Floppy0, oldMedia.Slot);
-        Assert.Equal(EmulationMediaType.Floppy, oldMedia.Type);
+        Assert.Equal(floppy, Assert.Single(EmulationMediaProtocol.Deserialize(
+            EmulationMediaProtocol.Serialize([floppy]))));
         Assert.Equal(cartridge, Assert.Single(EmulationMediaProtocol.Deserialize(
             EmulationMediaProtocol.Serialize([cartridge]))));
     }

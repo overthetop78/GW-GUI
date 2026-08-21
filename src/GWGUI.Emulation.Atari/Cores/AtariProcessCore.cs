@@ -17,7 +17,7 @@ internal sealed class AtariProcessCore : IAtariCore
 {
     private readonly string _hostExecutablePath;
     private readonly string _corePath;
-    private readonly AtariCoreKind _kind;
+    private readonly AtariEmulator _emulator;
     private readonly TimeSpan _responseTimeout;
     private readonly TimeSpan _connectionTimeout;
     private readonly CancellationToken _cancellationToken;
@@ -38,7 +38,7 @@ internal sealed class AtariProcessCore : IAtariCore
     private string? _videoMapName;
     private string? _activeVideoMapName;
 
-    internal AtariProcessCore(string hostExecutablePath, string corePath, AtariCoreKind kind,
+    internal AtariProcessCore(string hostExecutablePath, string corePath, AtariEmulator emulator,
         TimeSpan? responseTimeout = null, CancellationToken cancellationToken = default,
         TimeSpan? connectionTimeout = null)
     {
@@ -46,7 +46,7 @@ internal sealed class AtariProcessCore : IAtariCore
         ArgumentException.ThrowIfNullOrWhiteSpace(corePath);
         _hostExecutablePath = Path.GetFullPath(hostExecutablePath);
         _corePath = Path.GetFullPath(corePath);
-        _kind = kind;
+        _emulator = emulator;
         _responseTimeout = responseTimeout ??
             TimeSpan.FromSeconds(AtariCoreHostConstants.ResponseTimeoutSeconds);
         _cancellationToken = cancellationToken;
@@ -54,7 +54,7 @@ internal sealed class AtariProcessCore : IAtariCore
             TimeSpan.FromMilliseconds(AtariCoreHostConstants.ConnectionTimeoutMilliseconds);
     }
 
-    public AtariCoreKind Kind => _kind;
+    public AtariEmulator Emulator => _emulator;
     public VideoFrame? LatestVideoFrame { get; private set; }
     public AudioChunk? LatestAudioChunk { get; private set; }
     public IReadOnlyList<AtariCoreOption> Options { get; private set; } = [];
@@ -116,7 +116,7 @@ internal sealed class AtariProcessCore : IAtariCore
             Request(AtariHostCommand.Initialize, writer =>
             {
                 writer.Write(_corePath);
-                writer.Write((int)_kind);
+                writer.Write((int)_emulator);
                 writer.Write(Path.GetFullPath(sessionDirectory));
                 AtariCoreHostFunctions.WriteString(writer,
                     saveDirectory is null ? null : Path.GetFullPath(saveDirectory));
@@ -140,7 +140,7 @@ internal sealed class AtariProcessCore : IAtariCore
         if (_initialized && !_disposed && !_connectionFailed) Request(AtariHostCommand.Stop);
     }
     public void SetInput(EmulationInputSnapshot snapshot) => _input.Update(snapshot);
-    public void SetControllerPortDevice(int port, AtariPeripheralKind peripheral) =>
+    public void SetControllerPortDevice(int port, AtariPeripheralCategory peripheral) =>
         Request(AtariHostCommand.SetControllerPortDevice, writer =>
         {
             writer.Write(port);
@@ -149,10 +149,10 @@ internal sealed class AtariProcessCore : IAtariCore
     public void InsertMedia(AtariMediaConfiguration media) => Request(AtariHostCommand.InsertMedia,
         writer => writer.Write(JsonSerializer.Serialize(media, AtariCoreHostFunctions.JsonOptions)));
     public void EjectMedia(EmulationMediaSlot slot) => Request(AtariHostCommand.EjectMedia,
-        writer => writer.Write((int)slot));
+        writer => writer.Write(slot.ProtocolValue));
     public void SelectDisk(int index) => Request(AtariHostCommand.SelectDisk, writer => writer.Write(index));
     public void SaveMediaChanges(EmulationMediaSlot slot) => Request(AtariHostCommand.SaveMediaChanges,
-        writer => writer.Write((int)slot));
+        writer => writer.Write(slot.ProtocolValue));
     public AtariDiskStatus GetDiskStatus()
     {
         AtariDiskStatus? status = null;
@@ -162,7 +162,7 @@ internal sealed class AtariProcessCore : IAtariCore
     public bool HasUnsavedMediaChanges(EmulationMediaSlot slot)
     {
         var hasChanges = false;
-        Request(AtariHostCommand.HasUnsavedMediaChanges, writer => writer.Write((int)slot),
+        Request(AtariHostCommand.HasUnsavedMediaChanges, writer => writer.Write(slot.ProtocolValue),
             reader => hasChanges = reader.ReadBoolean());
         return hasChanges;
     }
@@ -294,8 +294,8 @@ internal sealed class AtariProcessCore : IAtariCore
 
     private static void ThrowRemoteError(AtariHostError error)
     {
-        if (error.Kind is { } kind && error.Code is { } code)
-            throw new AtariEmulationException(kind, code, error.Message, error.Context);
+        if (error.Category is { } category && error.Code is { } code)
+            throw new AtariEmulationException(category, code, error.Message, error.Context);
         throw new InvalidOperationException(error.Message);
     }
 

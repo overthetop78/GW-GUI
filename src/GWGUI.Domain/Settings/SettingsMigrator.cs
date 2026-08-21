@@ -108,13 +108,13 @@ public static class SettingsMigrator
             ? Path.Combine(settings.EmulationStorageFolder, "Captures") : settings.EmulationCaptureFolder.Trim();
         settings.EmulationStateFolder = string.IsNullOrWhiteSpace(settings.EmulationStateFolder)
             ? Path.Combine(settings.EmulationStorageFolder, "States") : settings.EmulationStateFolder.Trim();
-        settings.AmigaHardDisksFolder = string.IsNullOrWhiteSpace(settings.AmigaHardDisksFolder)
-            ? Path.Combine(settings.EmulationStorageFolder, "HDD", "Amiga") : settings.AmigaHardDisksFolder.Trim();
         settings.EmulationShortcuts ??= [];
         settings.EmulationMediaFolders ??= [];
         settings.EmulationMediaFolders = settings.EmulationMediaFolders
-            .Where(item => !string.IsNullOrWhiteSpace(item.Model) && !string.IsNullOrWhiteSpace(item.Folder))
-            .GroupBy(item => (item.Family, Model: item.Model.Trim(), item.Type))
+            .Where(item => !string.IsNullOrWhiteSpace(item.ModuleId)
+                           && !string.IsNullOrWhiteSpace(item.MachineId)
+                           && !string.IsNullOrWhiteSpace(item.Folder))
+            .GroupBy(item => (Module: item.ModuleId.Trim(), Machine: item.MachineId.Trim(), item.Category))
             .Select(group => group.Last()).ToList();
         foreach (var shortcut in EmulationShortcutDefaults.Values)
             if (!settings.EmulationShortcuts.ContainsKey(shortcut.Key)) settings.EmulationShortcuts[shortcut.Key] = shortcut.Value;

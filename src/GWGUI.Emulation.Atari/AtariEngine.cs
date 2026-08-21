@@ -1,43 +1,30 @@
 using GWGUI.Emulation;
-using GWGUI.Emulation.Atari.Cores;
 using System.Runtime.Versioning;
 
 namespace GWGUI.Emulation.Atari;
 
 [SupportedOSPlatform("windows")]
-public sealed class AtariEngine : IEmulationEngine<AtariMachineConfiguration>
+public sealed class AtariEngine
 {
-    private readonly string _sessionsDirectory;
-    private readonly string _corePath;
-    private readonly string _hostExecutablePath;
-    private readonly Func<IAudioOutput?>? _audioOutputFactory;
-    private readonly Func<AtariMachineConfiguration, string>? _saveDirectoryResolver;
+    private readonly IReadOnlyDictionary<AtariEmulator, IAtariMachineFactory> _factories;
 
-    public AtariEngine(string sessionsDirectory, string corePath, string hostExecutablePath,
-        Func<IAudioOutput?>? audioOutputFactory = null,
-        Func<AtariMachineConfiguration, string>? saveDirectoryResolver = null)
+    public AtariEngine()
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(sessionsDirectory);
-        ArgumentException.ThrowIfNullOrWhiteSpace(corePath);
-        ArgumentException.ThrowIfNullOrWhiteSpace(hostExecutablePath);
-        _sessionsDirectory = Path.GetFullPath(sessionsDirectory);
-        _corePath = Path.GetFullPath(corePath);
-        _hostExecutablePath = Path.GetFullPath(hostExecutablePath);
-        _audioOutputFactory = audioOutputFactory;
-        _saveDirectoryResolver = saveDirectoryResolver;
+        IAtariMachineFactory[] factories =
+        [
+            new HatariMachineFactory(), new Atari800MachineFactory(), new StellaMachineFactory(),
+            new ProSystemMachineFactory(), new BeetleLynxMachineFactory(), new VirtualJaguarMachineFactory()
+        ];
+        _factories = factories.ToDictionary(factory => factory.Emulator);
     }
 
-    public IEmulatedMachine CreateMachine(AtariMachineConfiguration configuration) =>
-        CreateAtariMachine(configuration);
-
-    public IAtariMachine CreateAtariMachine(AtariMachineConfiguration configuration)
+    internal IEmulatedMachine CreateMachine(AtariMachineConfiguration configuration,
+        AtariMachineCreationContext context)
     {
         ArgumentNullException.ThrowIfNull(configuration);
-        var machineId = Guid.NewGuid();
-        var core = new AtariProcessCore(_hostExecutablePath, _corePath, configuration.Core);
-        return new AtariMachine(machineId, configuration, core,
-            Path.Combine(_sessionsDirectory, machineId.ToString(AtariEngineConstants.IdentifierFormat)),
-            audioOutputFactory: configuration.AudioEnabled ? _audioOutputFactory : null,
-            saveDirectory: _saveDirectoryResolver?.Invoke(configuration));
+        ArgumentNullException.ThrowIfNull(context);
+        return _factories.TryGetValue(configuration.Core, out var factory)
+            ? factory.Create(configuration, context)
+            : throw new ArgumentOutOfRangeException(nameof(configuration));
     }
 }

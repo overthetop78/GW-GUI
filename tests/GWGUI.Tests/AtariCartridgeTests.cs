@@ -10,26 +10,26 @@ public sealed class AtariCartridgeTests
 {
     private const int StellaTestCartridgeSize = 4096;
     private const int TestCartridgeType = 1;
-    public static TheoryData<AtariMachineModel, AtariCoreKind, string, bool> CoreCases => new()
+    public static TheoryData<AtariMachineModel, AtariEmulator, string, bool> CoreCases => new()
     {
-        { AtariMachineModel.Atari2600, AtariCoreKind.Stella, "game.a26", false },
-        { AtariMachineModel.Atari7800, AtariCoreKind.ProSystem, "game.a78", false },
-        { AtariMachineModel.Lynx, AtariCoreKind.BeetleLynx, "game.lnx", false },
-        { AtariMachineModel.Jaguar, AtariCoreKind.VirtualJaguar, "game.j64", false }
+        { AtariMachineModel.Atari2600, AtariEmulator.Stella, "game.a26", false },
+        { AtariMachineModel.Atari7800, AtariEmulator.ProSystem, "game.a78", false },
+        { AtariMachineModel.Lynx, AtariEmulator.BeetleLynx, "game.lnx", false },
+        { AtariMachineModel.Jaguar, AtariEmulator.VirtualJaguar, "game.j64", false }
     };
 
-    public static TheoryData<string, AtariCoreKind> OfficialCoreCases => new()
+    public static TheoryData<string, AtariEmulator> OfficialCoreCases => new()
     {
-        { "stella.dll", AtariCoreKind.Stella },
-        { "prosystem.dll", AtariCoreKind.ProSystem },
-        { "beetle-lynx.dll", AtariCoreKind.BeetleLynx },
-        { "virtual-jaguar.dll", AtariCoreKind.VirtualJaguar }
+        { "stella.dll", AtariEmulator.Stella },
+        { "prosystem.dll", AtariEmulator.ProSystem },
+        { "beetle-lynx.dll", AtariEmulator.BeetleLynx },
+        { "virtual-jaguar.dll", AtariEmulator.VirtualJaguar }
     };
 
     [Theory]
     [MemberData(nameof(OfficialCoreCases))]
     [Trait("Category", "LocalAssets")]
-    public void RulesMatchExtensionsReportedByOfficialCore(string fileName, AtariCoreKind core)
+    public void RulesMatchExtensionsReportedByOfficialCore(string fileName, AtariEmulator core)
     {
         var info = AtariExternalCoreProbe.Inspect(
             Path.Combine(FindRepositoryRoot(), "tmp", "atari-cores", fileName), core);
@@ -41,7 +41,7 @@ public sealed class AtariCartridgeTests
     [Theory]
     [MemberData(nameof(CoreCases))]
     public void EachCoreAcceptsOnlyItsConfiguredCartridge(
-        AtariMachineModel model, AtariCoreKind core, string fileName, bool needsFullPath)
+        AtariMachineModel model, AtariEmulator core, string fileName, bool needsFullPath)
     {
         var root = CreateRoot();
         var path = Path.Combine(root, fileName);
@@ -67,7 +67,7 @@ public sealed class AtariCartridgeTests
     [Theory]
     [MemberData(nameof(CoreCases))]
     public void WrongExtensionIsRejectedForEveryCore(
-        AtariMachineModel model, AtariCoreKind core, string _, bool needsFullPath)
+        AtariMachineModel model, AtariEmulator core, string _, bool needsFullPath)
     {
         var root = CreateRoot();
         var path = Path.Combine(root, "wrong.txt");
@@ -94,7 +94,7 @@ public sealed class AtariCartridgeTests
         {
             Assert.Throws<ArgumentException>(() => AtariCartridgeFunctions.Prepare(
                 new AtariMachineConfiguration(AtariMachineModel.Atari2600), Cartridge(path),
-                AtariCoreKind.ProSystem, false, AtariCartridgeConstants.Extensions[AtariCoreKind.ProSystem]));
+                AtariEmulator.ProSystem, false, AtariCartridgeConstants.Extensions[AtariEmulator.ProSystem]));
         }
         finally
         {
@@ -120,7 +120,7 @@ public sealed class AtariCartridgeTests
         var media = Cartridge("game.a26") with { CartridgeRegion = region };
 
         var options = AtariCartridgeFunctions.ApplyOptions(
-            new Dictionary<string, string>(), media, AtariCoreKind.Stella);
+            new Dictionary<string, string>(), media, AtariEmulator.Stella);
 
         Assert.Equal(expected, options[AtariCartridgeConstants.StellaRegionOptionKey]);
     }
@@ -134,15 +134,15 @@ public sealed class AtariCartridgeTests
         var media = Cartridge("game.j64") with { CartridgeRegion = region };
 
         var options = AtariCartridgeFunctions.ApplyOptions(
-            new Dictionary<string, string>(), media, AtariCoreKind.VirtualJaguar);
+            new Dictionary<string, string>(), media, AtariEmulator.VirtualJaguar);
 
         Assert.Equal(expected, options[AtariCartridgeConstants.JaguarRegionOptionKey]);
     }
 
     [Theory]
-    [InlineData(AtariCoreKind.ProSystem)]
-    [InlineData(AtariCoreKind.BeetleLynx)]
-    public void RegionMetadataIsRejectedWhenCoreDoesNotExposeIt(AtariCoreKind core)
+    [InlineData(AtariEmulator.ProSystem)]
+    [InlineData(AtariEmulator.BeetleLynx)]
+    public void RegionMetadataIsRejectedWhenCoreDoesNotExposeIt(AtariEmulator core)
     {
         var media = Cartridge("game.bin") with { CartridgeRegion = AtariCartridgeRegion.Pal };
 
@@ -164,7 +164,7 @@ public sealed class AtariCartridgeTests
         try
         {
             using var core = new AtariExternalCore(
-                Path.Combine(FindRepositoryRoot(), "tmp", "atari-cores", "stella.dll"), AtariCoreKind.Stella);
+                Path.Combine(FindRepositoryRoot(), "tmp", "atari-cores", "stella.dll"), AtariEmulator.Stella);
             core.Initialize(new AtariMachineConfiguration(AtariMachineModel.Atari2600,
                 media: [Cartridge(first)]), Path.Combine(root, "session"));
 
@@ -194,7 +194,7 @@ public sealed class AtariCartridgeTests
         try
         {
             using var core = new AtariExternalCore(
-                Path.Combine(FindRepositoryRoot(), "tmp", "atari-cores", "stella.dll"), AtariCoreKind.Stella);
+                Path.Combine(FindRepositoryRoot(), "tmp", "atari-cores", "stella.dll"), AtariEmulator.Stella);
             core.Initialize(new AtariMachineConfiguration(AtariMachineModel.Atari2600,
                 media: [Cartridge(first)]), Path.Combine(root, "session"));
 
@@ -223,12 +223,12 @@ public sealed class AtariCartridgeTests
             {
                 Assert.Throws<AtariEmulationException>(() => AtariCartridgeFunctions.Prepare(
                     new AtariMachineConfiguration(AtariMachineModel.Atari2600), Cartridge(path),
-                    AtariCoreKind.Stella, false, AtariCartridgeConstants.Extensions[AtariCoreKind.Stella]));
+                    AtariEmulator.Stella, false, AtariCartridgeConstants.Extensions[AtariEmulator.Stella]));
             }
 
             var prepared = AtariCartridgeFunctions.Prepare(
                 new AtariMachineConfiguration(AtariMachineModel.Atari2600), Cartridge(path),
-                AtariCoreKind.Stella, false, AtariCartridgeConstants.Extensions[AtariCoreKind.Stella]);
+                AtariEmulator.Stella, false, AtariCartridgeConstants.Extensions[AtariEmulator.Stella]);
             Assert.Equal(Path.GetFullPath(path), prepared.RuntimePath);
         }
         finally
@@ -238,7 +238,7 @@ public sealed class AtariCartridgeTests
     }
 
     private static AtariMediaConfiguration Cartridge(string path) =>
-        new(path, AtariMediaKind.Cartridge, EmulationMediaSlot.Cartridge0, IsReadOnly: true);
+        new(path, AtariMediaCategory.Cartridge, EmulationMediaSlot.Cartridge0, IsReadOnly: true);
 
     private static string CreateRoot()
     {

@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using GWGUI.App.Localization;
+using GWGUI.App.ViewModels;
 using GWGUI.Domain.Formats;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Exploration.Results;

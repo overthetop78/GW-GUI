@@ -439,9 +439,9 @@
   <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>Ce modèle n&#x27;a pas de souris.</value></data>
   <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Ce modèle n&#x27;a pas de support de stockage.</value></data>
   <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve"><value>Sélectionnez le modèle Jaguar CD pour utiliser un disque CD.</value></data>
-  <data name="Emulation.Atari.Storage.Cassettes"><value>Cassette</value></data>
-  <data name="Emulation.Atari.Storage.Cartridges"><value>Cartouche</value></data>
-  <data name="Emulation.Atari.Storage.CompactDiscs"><value>Disques compacts</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>Cassette</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>Cartouche</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>Disques compacts</value></data>
   <data name="Emulation.Atari.Video.Region"><value>Région</value></data>
   <data name="Emulation.Atari.Firmware.Multilingual"><value>Multilingue</value></data>
   <data name="Emulation.Atari.Video.RegionFree"><value>Sans région</value></data>
@@ -452,7 +452,7 @@
   <data name="Emulation.Atari.Error.FirmwareInvalid"><value>Un firmware Atari est invalide ou incompatible.</value></data>
   <data name="Emulation.Atari.Error.ContentNotFound"><value>Le média Atari configuré est introuvable.</value></data>
   <data name="Emulation.Atari.Error.ContentUnsupported"><value>Le média configuré n’est pas pris en charge par cette machine Atari.</value></data>
-  <data name="Emulation.Atari.Error.ContentRequired"><value>L’émulateur nécessite un média avant de pouvoir allumer cette machine. Insérez une disquette ou configurez un disque dur.</value></data>
+  <data name="Emulation.Error.RequiredMediaMissing"><value>L’émulateur nécessite un média avant de pouvoir allumer cette machine. Insérez ou configurez l’un des supports requis indiqués ci-dessous.</value></data>
   <data name="Emulation.Error.PowerFailureTitle"><value>Impossible d’allumer la machine</value></data>
   <data name="Emulation.Error.Machine"><value>Machine</value></data>
   <data name="Emulation.Error.RequiredMedia"><value>Supports requis</value></data>
@@ -515,4 +515,5 @@
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Basse</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normale</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Haute</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Emplacement cartouche</value></data>
 </root>

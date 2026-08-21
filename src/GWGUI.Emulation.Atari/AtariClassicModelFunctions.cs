@@ -19,7 +19,7 @@ internal static class AtariClassicModelFunctions
         AtariMachineModel model,
         string stableModelId,
         string displayNameResourceKey,
-        AtariCoreKind core,
+        AtariEmulator core,
         long cpuFrequencyHz,
         long mainMemoryBytes,
         IReadOnlyList<AtariClassicCpu> cpus,
@@ -28,8 +28,8 @@ internal static class AtariClassicModelFunctions
         IReadOnlyList<AtariClassicAudioCapability> audio,
         IReadOnlyList<AtariClassicStorageCapability> storage,
         IReadOnlyList<AtariClassicPortDefinition> ports,
-        IReadOnlyList<AtariFirmwareKind> firmware,
-        IReadOnlyList<AtariMediaKind> media) =>
+        IReadOnlyList<AtariFirmwareCategory> firmware,
+        IReadOnlyList<AtariMediaCategory> media) =>
         new(model, stableModelId, displayNameResourceKey, core, cpus, cpuFrequencyHz, mainMemoryBytes,
             regions, video, audio, storage, ports, firmware, media);
 
@@ -44,9 +44,9 @@ internal static class AtariClassicModelFunctions
         IReadOnlyList<AtariClassicAudioCapability> audio,
         IReadOnlyList<AtariClassicStorageCapability> storage,
         IReadOnlyList<AtariClassicPortDefinition> ports,
-        IReadOnlyList<AtariFirmwareKind> firmware,
-        IReadOnlyList<AtariMediaKind> media) =>
-        Create(model, modelId, resourceKey, AtariCoreKind.Atari800,
+        IReadOnlyList<AtariFirmwareCategory> firmware,
+        IReadOnlyList<AtariMediaCategory> media) =>
+        Create(model, modelId, resourceKey, AtariEmulator.Atari800,
             AtariClassicModelConstants.Atari8BitCpuFrequencyHz, memoryBytes, cpus, regions,
             video, audio, storage, ports, firmware, media);
 
@@ -59,25 +59,25 @@ internal static class AtariClassicModelFunctions
         IReadOnlyList<AtariClassicVideoCapability> video,
         IReadOnlyList<AtariClassicAudioCapability> audio,
         IReadOnlyList<AtariClassicPortDefinition> ports,
-        IReadOnlyList<AtariFirmwareKind> firmware,
+        IReadOnlyList<AtariFirmwareCategory> firmware,
         IReadOnlyList<AtariClassicStorageCapability> storage,
-        IReadOnlyList<AtariMediaKind> media) =>
-        Create(model, modelId, resourceKey, AtariCoreKind.VirtualJaguar,
+        IReadOnlyList<AtariMediaCategory> media) =>
+        Create(model, modelId, resourceKey, AtariEmulator.VirtualJaguar,
             AtariClassicModelConstants.JaguarCpuFrequencyHz, AtariClassicModelConstants.TwoMibibytes,
             cpus, regions, video, audio, storage, ports, firmware, media);
 
-    internal static bool IsFirmwareCompatible(AtariClassicModelDefinition definition, AtariFirmwareKind kind) =>
-        definition.Firmware.Contains(kind);
+    internal static bool IsFirmwareCompatible(AtariClassicModelDefinition definition, AtariFirmwareCategory category) =>
+        definition.Firmware.Contains(category);
 
-    internal static bool IsMediaCompatible(AtariClassicModelDefinition definition, AtariMediaKind kind,
-        EmulationMediaSlot slot) => definition.Media.Contains(kind) && IsSlotCompatible(kind, slot);
+    internal static bool IsMediaCompatible(AtariClassicModelDefinition definition, AtariMediaCategory category,
+        EmulationMediaSlot slot) => definition.Media.Contains(category) && IsSlotCompatible(category, slot);
 
-    private static bool IsSlotCompatible(AtariMediaKind kind, EmulationMediaSlot slot) => kind switch
+    private static bool IsSlotCompatible(AtariMediaCategory category, EmulationMediaSlot slot) => category switch
     {
-        AtariMediaKind.Floppy => slot is >= EmulationMediaSlot.Floppy0 and <= EmulationMediaSlot.Floppy3,
-        AtariMediaKind.Cassette => slot == EmulationMediaSlot.Cassette0,
-        AtariMediaKind.Cartridge => slot == EmulationMediaSlot.Cartridge0,
-        AtariMediaKind.CompactDisc => slot == EmulationMediaSlot.Cd0,
+        AtariMediaCategory.Floppy => slot.Category == EmulationMediaCategory.FloppyDrive && slot.Index is >= 0 and <= 3,
+        AtariMediaCategory.Cassette => slot == EmulationMediaSlot.Cassette0,
+        AtariMediaCategory.Cartridge => slot == EmulationMediaSlot.Cartridge0,
+        AtariMediaCategory.CompactDisc => slot == EmulationMediaSlot.Cd0,
         _ => false
     };
 }

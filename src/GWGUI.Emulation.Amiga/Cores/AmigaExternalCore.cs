@@ -119,10 +119,10 @@ internal sealed class AmigaExternalCore : IAmigaCore
             ["puae_kickstart"] = "auto",
             ["puae_mapper_select"] = "SWITCH_JOYMOUSE"
         };
-        var floppyCount = media.Count(item => item.Kind == AmigaMediaKind.Floppy);
+        var floppyCount = media.Count(item => item.Category == AmigaMediaCategory.Floppy);
         if (floppyCount > 1)
             options["puae_floppy_multidrive"] = configuration.MountFloppiesInSeparateDrives ? "enabled" : "disabled";
-        if (floppyCount > 0 && media.Where(item => item.Kind == AmigaMediaKind.Floppy).All(item => item.IsReadOnly))
+        if (floppyCount > 0 && media.Where(item => item.Category == AmigaMediaCategory.Floppy).All(item => item.IsReadOnly))
             options["puae_floppy_write_protection"] = "enabled";
         _host = new AmigaExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory, options);
 
@@ -283,9 +283,9 @@ internal sealed class AmigaExternalCore : IAmigaCore
         if (configuration.Media is { Count: > 0 }) return configuration.Media;
         if (configuration.Floppies is { Count: > 0 })
             return configuration.Floppies.Select(floppy => new AmigaMediaConfiguration(
-                floppy.Path, AmigaMediaKind.Floppy, floppy.Label, floppy.IsReadOnly)).ToArray();
+                floppy.Path, AmigaMediaCategory.Floppy, floppy.Label, floppy.IsReadOnly)).ToArray();
         return configuration.InitialDiskPath is null ? []
-            : [new AmigaMediaConfiguration(configuration.InitialDiskPath, InferMediaKind(configuration.InitialDiskPath))];
+            : [new AmigaMediaConfiguration(configuration.InitialDiskPath, InferMediaCategory(configuration.InitialDiskPath))];
     }
 
     internal static string? PrepareContentPath(AmigaMachineConfiguration configuration, string sessionDirectory,
@@ -297,7 +297,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
         if (media.Count > 64) throw new ArgumentOutOfRangeException(nameof(configuration), "An Amiga playlist cannot contain more than 64 media images.");
         var contentDirectory = Path.Combine(sessionDirectory, "Content");
         Directory.CreateDirectory(contentDirectory);
-        var multidrive = configuration.MountFloppiesInSeparateDrives && media.All(item => item.Kind == AmigaMediaKind.Floppy);
+        var multidrive = configuration.MountFloppiesInSeparateDrives && media.All(item => item.Category == AmigaMediaCategory.Floppy);
         var playlist = Path.Combine(contentDirectory,
             multidrive ? "GW GUI media (MD).m3u" : "GW GUI media.m3u");
         var lines = media.Select(item =>
@@ -311,15 +311,15 @@ internal sealed class AmigaExternalCore : IAmigaCore
         return playlist;
     }
 
-    internal static AmigaMediaKind InferMediaKind(string path) => Directory.Exists(path)
-        ? AmigaMediaKind.HardDrive
+    internal static AmigaMediaCategory InferMediaCategory(string path) => Directory.Exists(path)
+        ? AmigaMediaCategory.HardDrive
         : Path.GetExtension(path).ToLowerInvariant() switch
     {
-        ".hdf" or ".hdz" => AmigaMediaKind.HardDrive,
-        ".cue" or ".ccd" or ".chd" or ".nrg" or ".mds" or ".iso" => AmigaMediaKind.CompactDisc,
-        ".lha" or ".slave" or ".info" => AmigaMediaKind.WhdLoad,
-        ".uae" => AmigaMediaKind.Configuration,
-            _ => AmigaMediaKind.Floppy
+        ".hdf" or ".hdz" => AmigaMediaCategory.HardDrive,
+        ".cue" or ".ccd" or ".chd" or ".nrg" or ".mds" or ".iso" => AmigaMediaCategory.CompactDisc,
+        ".lha" or ".slave" or ".info" => AmigaMediaCategory.WhdLoad,
+        ".uae" => AmigaMediaCategory.Configuration,
+            _ => AmigaMediaCategory.Floppy
         };
     public void HardReset() => (_reset ?? throw new InvalidOperationException("The Amiga core is not initialized."))();
     public void SetInput(EmulationInputSnapshot snapshot)

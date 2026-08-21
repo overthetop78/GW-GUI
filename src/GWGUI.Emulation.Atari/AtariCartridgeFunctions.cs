@@ -2,24 +2,24 @@ namespace GWGUI.Emulation.Atari;
 
 internal static class AtariCartridgeFunctions
 {
-    internal static bool Supports(AtariCoreKind core) => AtariCartridgeConstants.CartridgeCores.Contains(core);
+    internal static bool Supports(AtariEmulator core) => AtariCartridgeConstants.CartridgeCores.Contains(core);
 
     internal static AtariPreparedCartridge Prepare(
         AtariMachineConfiguration machine,
         AtariMediaConfiguration media,
-        AtariCoreKind core,
+        AtariEmulator core,
         bool needsFullPath,
         IReadOnlySet<string> reportedExtensions)
     {
         if (!Supports(core)) throw new ArgumentException(AtariCartridgeErrors.UnsupportedCore, nameof(core));
         if (machine.Core != core) throw new ArgumentException(AtariErrorMessages.IncompatibleMedia, nameof(machine));
-        if (media.Kind != AtariMediaKind.Cartridge || media.Slot != GWGUI.Emulation.EmulationMediaSlot.Cartridge0)
+        if (media.Category != AtariMediaCategory.Cartridge || media.Slot != GWGUI.Emulation.EmulationMediaSlot.Cartridge0)
             throw new ArgumentException(AtariCartridgeErrors.CartridgeRequired, nameof(media));
 
         var extension = Path.GetExtension(media.Path).TrimStart(AtariConstants.ExtensionPrefix);
         var acceptedExtensions = AtariCartridgeConstants.Extensions[core];
         if (!acceptedExtensions.Contains(extension) || !reportedExtensions.Contains(extension))
-            throw new AtariEmulationException(AtariErrorKind.Content, AtariErrorCode.ContentUnsupported,
+            throw new AtariEmulationException(AtariErrorCategory.Content, AtariErrorCode.ContentUnsupported,
                 AtariCartridgeErrors.ExtensionUnsupported,
                 new Dictionary<string, string>
                 {
@@ -43,7 +43,7 @@ internal static class AtariCartridgeFunctions
     internal static IReadOnlyDictionary<string, string> ApplyOptions(
         IReadOnlyDictionary<string, string> configuredOptions,
         AtariMediaConfiguration media,
-        AtariCoreKind core)
+        AtariEmulator core)
     {
         var options = new Dictionary<string, string>(configuredOptions, StringComparer.Ordinal);
         foreach (var option in GetMediaOptions(media, core)) options[option.Key] = option.Value;
@@ -52,13 +52,13 @@ internal static class AtariCartridgeFunctions
 
     internal static IReadOnlyDictionary<string, string> GetMediaOptions(
         AtariMediaConfiguration media,
-        AtariCoreKind core)
+        AtariEmulator core)
     {
         var options = new Dictionary<string, string>(StringComparer.Ordinal);
         if (media.CartridgeRegion is not { } region) return options;
         switch (core)
         {
-            case AtariCoreKind.Stella:
+            case AtariEmulator.Stella:
                 options[AtariCartridgeConstants.StellaRegionOptionKey] = region switch
                 {
                     AtariCartridgeRegion.Automatic => AtariCartridgeConstants.AutomaticRegionValue,
@@ -68,7 +68,7 @@ internal static class AtariCartridgeFunctions
                     _ => throw new ArgumentOutOfRangeException(nameof(media), media, null)
                 };
                 break;
-            case AtariCoreKind.VirtualJaguar:
+            case AtariEmulator.VirtualJaguar:
                 options[AtariCartridgeConstants.JaguarRegionOptionKey] = region switch
                 {
                     AtariCartridgeRegion.Automatic or AtariCartridgeRegion.Ntsc =>
@@ -93,13 +93,13 @@ internal static class AtariCartridgeFunctions
         }
         catch (IOException exception)
         {
-            throw new AtariEmulationException(AtariErrorKind.Content, AtariErrorCode.ContentNotFound,
+            throw new AtariEmulationException(AtariErrorCategory.Content, AtariErrorCode.ContentNotFound,
                 AtariCartridgeErrors.FileUnreadable,
                 new Dictionary<string, string> { [AtariConstants.PathContextKey] = path }, exception);
         }
         catch (UnauthorizedAccessException exception)
         {
-            throw new AtariEmulationException(AtariErrorKind.Content, AtariErrorCode.ContentNotFound,
+            throw new AtariEmulationException(AtariErrorCategory.Content, AtariErrorCode.ContentNotFound,
                 AtariCartridgeErrors.FileUnreadable,
                 new Dictionary<string, string> { [AtariConstants.PathContextKey] = path }, exception);
         }

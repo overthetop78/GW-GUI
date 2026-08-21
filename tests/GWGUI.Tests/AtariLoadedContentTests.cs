@@ -52,7 +52,7 @@ public sealed class AtariLoadedContentTests
         {
             var error = Assert.Throws<AtariEmulationException>(() => AtariContentFunctions.Create(
                 path, true, new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "rom" }));
-            Assert.Equal(AtariErrorKind.Content, error.Kind);
+            Assert.Equal(AtariErrorCategory.Content, error.Category);
             Assert.Equal(AtariErrorCode.ContentUnsupported, error.Code);
             Assert.Equal(Path.GetExtension(path).TrimStart('.'), error.Context[AtariConstants.ExtensionContextKey]);
             Assert.Equal("rom", error.Context[AtariConstants.SupportedExtensionsContextKey]);
@@ -71,7 +71,7 @@ public sealed class AtariLoadedContentTests
         var error = Assert.Throws<AtariEmulationException>(() => AtariContentFunctions.Create(
             path, true, new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "st" }));
 
-        Assert.Equal(AtariErrorKind.Content, error.Kind);
+        Assert.Equal(AtariErrorCategory.Content, error.Category);
         Assert.Equal(AtariErrorCode.ContentNotFound, error.Code);
         Assert.Equal(path, error.Context[AtariConstants.PathContextKey]);
     }

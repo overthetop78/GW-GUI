@@ -6,16 +6,16 @@ namespace GWGUI.Tests;
 public sealed class DiskVisualizationClassificationPolicyTests
 {
     [Theory]
-    [InlineData("Apple II", "apple2.gcr", DiskMediaKind.FiveQuarterDd)]
-    [InlineData("Amiga", "amiga.mfm", DiskMediaKind.ThreeHalfDd)]
-    [InlineData("DEC", "dec.rx02", DiskMediaKind.EightInch)]
-    [InlineData("Amstrad", "iso.mfm", DiskMediaKind.ThreeInch)]
-    public void MachineSelectsDecoderAndMedia(string machine, string decoder, DiskMediaKind media)
+    [InlineData("Apple II", "apple2.gcr", DiskMediaCategory.FiveQuarterDd)]
+    [InlineData("Amiga", "amiga.mfm", DiskMediaCategory.ThreeHalfDd)]
+    [InlineData("DEC", "dec.rx02", DiskMediaCategory.EightInch)]
+    [InlineData("Amstrad", "iso.mfm", DiskMediaCategory.ThreeInch)]
+    public void MachineSelectsDecoderAndMedia(string machine, string decoder, DiskMediaCategory media)
     {
         var result = DiskVisualizationClassificationPolicy.Resolve(machine, null, null, false);
 
         Assert.Equal(decoder, result.DecoderId);
-        Assert.Equal(media, result.MediaKind);
+        Assert.Equal(media, result.MediaCategory);
     }
 
     [Fact]
@@ -32,7 +32,7 @@ public sealed class DiskVisualizationClassificationPolicyTests
         var result = DiskVisualizationClassificationPolicy.Resolve(null, null, null, true);
 
         Assert.Null(result.DecoderId);
-        Assert.Equal(DiskMediaKind.Unknown, result.MediaKind);
+        Assert.Equal(DiskMediaCategory.Unknown, result.MediaCategory);
     }
 
     [Theory]
@@ -43,6 +43,6 @@ public sealed class DiskVisualizationClassificationPolicyTests
     {
         var result = DiskVisualizationClassificationPolicy.Resolve("IBM PC", formatId, null, false);
 
-        Assert.Equal(DiskMediaKind.ThreeHalfHd, result.MediaKind);
+        Assert.Equal(DiskMediaCategory.ThreeHalfHd, result.MediaCategory);
     }
 }

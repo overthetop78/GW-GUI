@@ -452,9 +452,9 @@
   <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>This model has no mouse.</value></data>
   <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>This model has no storage media.</value></data>
   <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve"><value>Select the Jaguar CD model to use CD media.</value></data>
-  <data name="Emulation.Atari.Storage.Cassettes"><value>Cassette</value></data>
-  <data name="Emulation.Atari.Storage.Cartridges"><value>Cartridge</value></data>
-  <data name="Emulation.Atari.Storage.CompactDiscs"><value>Compact discs</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>Cassette</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>Cartridge</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>Compact discs</value></data>
   <data name="Emulation.Atari.Video.Region"><value>Region</value></data>
   <data name="Emulation.Atari.Firmware.Multilingual"><value>Multilingual</value></data>
   <data name="Emulation.Atari.Video.RegionFree"><value>Region-free</value></data>
@@ -465,7 +465,7 @@
   <data name="Emulation.Atari.Error.FirmwareInvalid"><value>An Atari firmware is invalid or incompatible.</value></data>
   <data name="Emulation.Atari.Error.ContentNotFound"><value>The configured Atari media was not found.</value></data>
   <data name="Emulation.Atari.Error.ContentUnsupported"><value>The configured media is not supported by this Atari machine.</value></data>
-  <data name="Emulation.Atari.Error.ContentRequired"><value>The emulator requires media before this machine can be powered on. Insert a floppy disk or configure a hard disk.</value></data>
+  <data name="Emulation.Error.RequiredMediaMissing"><value>The emulator requires media before this machine can be powered on. Insert or configure one of the required media shown below.</value></data>
   <data name="Emulation.Error.PowerFailureTitle"><value>Unable to power on the machine</value></data>
   <data name="Emulation.Error.Machine"><value>Machine</value></data>
   <data name="Emulation.Error.RequiredMedia"><value>Required media</value></data>
@@ -528,4 +528,5 @@
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Low</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normal</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>High</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Cartridge slot</value></data>
 </root>

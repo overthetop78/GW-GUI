@@ -96,7 +96,7 @@ public sealed class ApplicationShellTests : CoreTestBase
     [Fact]
     public void ScpRendererUsesDistinctFaithfulMediaColorsAndSides()
     {
-        static SKBitmap Render(DiskMediaKind kind, int head)
+        static SKBitmap Render(DiskMediaCategory kind, int head)
         {
             var bitmap = new SKBitmap(256, 256);
             using var canvas = new SKCanvas(bitmap);
@@ -105,15 +105,15 @@ public sealed class ApplicationShellTests : CoreTestBase
             return bitmap;
         }
 
-        using var ddFront = Render(DiskMediaKind.ThreeHalfDd, 0);
-        using var ddBack = Render(DiskMediaKind.ThreeHalfDd, 1);
-        using var hdFront = Render(DiskMediaKind.ThreeHalfHd, 0);
+        using var ddFront = Render(DiskMediaCategory.ThreeHalfDd, 0);
+        using var ddBack = Render(DiskMediaCategory.ThreeHalfDd, 1);
+        using var hdFront = Render(DiskMediaCategory.ThreeHalfHd, 0);
 
         Assert.True(ddFront.GetPixel(20, 40).Blue > ddFront.GetPixel(20, 40).Red);
         Assert.True(hdFront.GetPixel(20, 40).Red > hdFront.GetPixel(20, 40).Blue);
         Assert.NotEqual(ddFront.GetPixel(80, 15), ddBack.GetPixel(80, 15));
         Assert.NotEqual(ddFront.GetPixel(20, 236), hdFront.GetPixel(20, 236));
-        Assert.Equal(110.08f, ScpMediaGeometry.FluxRadius(256, 256, 1, DiskMediaKind.ThreeHalfDd), 2);
+        Assert.Equal(110.08f, ScpMediaGeometry.FluxRadius(256, 256, 1, DiskMediaCategory.ThreeHalfDd), 2);
     }
 
     [Fact]

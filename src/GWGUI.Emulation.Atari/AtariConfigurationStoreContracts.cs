@@ -6,7 +6,7 @@ internal sealed record AtariConfigurationDocument(
     int SchemaVersion,
     Guid Id,
     AtariMachineModel Model,
-    AtariCoreKind Core,
+    AtariEmulator Core,
     IReadOnlyList<AtariFirmwareConfiguration> Firmwares,
     IReadOnlyList<AtariMediaConfiguration> Media,
     IReadOnlyDictionary<string, string> Options,

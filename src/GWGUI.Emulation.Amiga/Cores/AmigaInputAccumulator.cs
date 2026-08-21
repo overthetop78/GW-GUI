@@ -16,7 +16,9 @@ internal sealed class AmigaInputAccumulator
             {
                 DeltaX = SaturatingAdd(_current.Pointer.DeltaX, snapshot.Pointer.DeltaX),
                 DeltaY = SaturatingAdd(_current.Pointer.DeltaY, snapshot.Pointer.DeltaY),
-                Wheel = SaturatingAdd(_current.Pointer.Wheel, snapshot.Pointer.Wheel)
+                Wheel = SaturatingAdd(_current.Pointer.Wheel, snapshot.Pointer.Wheel),
+                HorizontalWheel = SaturatingAdd(_current.Pointer.HorizontalWheel,
+                    snapshot.Pointer.HorizontalWheel)
             };
             _current = snapshot with { Pointer = pointer };
         }
@@ -29,7 +31,7 @@ internal sealed class AmigaInputAccumulator
             var result = _current;
             _current = _current with
             {
-                Pointer = _current.Pointer with { DeltaX = 0, DeltaY = 0, Wheel = 0 }
+                Pointer = _current.Pointer with { DeltaX = 0, DeltaY = 0, Wheel = 0, HorizontalWheel = 0 }
             };
             return result;
         }

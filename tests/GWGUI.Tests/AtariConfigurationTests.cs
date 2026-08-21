@@ -5,33 +5,33 @@ namespace GWGUI.Tests;
 
 public sealed class AtariConfigurationTests
 {
-    public static TheoryData<AtariMachineModel, AtariCoreKind, AtariMachineFamily> ModelMappings => new()
+    public static TheoryData<AtariMachineModel, AtariEmulator, AtariMachineFamily> ModelMappings => new()
     {
-        { AtariMachineModel.St, AtariCoreKind.Hatari, AtariMachineFamily.St },
-        { AtariMachineModel.Stf, AtariCoreKind.Hatari, AtariMachineFamily.St },
-        { AtariMachineModel.Stfm, AtariCoreKind.Hatari, AtariMachineFamily.St },
-        { AtariMachineModel.MegaSt, AtariCoreKind.Hatari, AtariMachineFamily.St },
-        { AtariMachineModel.Ste, AtariCoreKind.Hatari, AtariMachineFamily.St },
-        { AtariMachineModel.MegaSte, AtariCoreKind.Hatari, AtariMachineFamily.St },
-        { AtariMachineModel.Tt, AtariCoreKind.Hatari, AtariMachineFamily.St },
-        { AtariMachineModel.Falcon, AtariCoreKind.Hatari, AtariMachineFamily.St },
-        { AtariMachineModel.Atari400, AtariCoreKind.Atari800, AtariMachineFamily.EightBit },
-        { AtariMachineModel.Atari800, AtariCoreKind.Atari800, AtariMachineFamily.EightBit },
-        { AtariMachineModel.Atari800Xl, AtariCoreKind.Atari800, AtariMachineFamily.EightBit },
-        { AtariMachineModel.Atari130Xe, AtariCoreKind.Atari800, AtariMachineFamily.EightBit },
-        { AtariMachineModel.XlXe, AtariCoreKind.Atari800, AtariMachineFamily.EightBit },
-        { AtariMachineModel.Xegs, AtariCoreKind.Atari800, AtariMachineFamily.EightBit },
-        { AtariMachineModel.Atari5200, AtariCoreKind.Atari800, AtariMachineFamily.Atari5200 },
-        { AtariMachineModel.Atari2600, AtariCoreKind.Stella, AtariMachineFamily.Atari2600 },
-        { AtariMachineModel.Atari7800, AtariCoreKind.ProSystem, AtariMachineFamily.Atari7800 },
-        { AtariMachineModel.Lynx, AtariCoreKind.BeetleLynx, AtariMachineFamily.Lynx },
-        { AtariMachineModel.Jaguar, AtariCoreKind.VirtualJaguar, AtariMachineFamily.Jaguar },
-        { AtariMachineModel.JaguarCd, AtariCoreKind.VirtualJaguar, AtariMachineFamily.Jaguar }
+        { AtariMachineModel.St, AtariEmulator.Hatari, AtariMachineFamily.St },
+        { AtariMachineModel.Stf, AtariEmulator.Hatari, AtariMachineFamily.St },
+        { AtariMachineModel.Stfm, AtariEmulator.Hatari, AtariMachineFamily.St },
+        { AtariMachineModel.MegaSt, AtariEmulator.Hatari, AtariMachineFamily.St },
+        { AtariMachineModel.Ste, AtariEmulator.Hatari, AtariMachineFamily.St },
+        { AtariMachineModel.MegaSte, AtariEmulator.Hatari, AtariMachineFamily.St },
+        { AtariMachineModel.Tt, AtariEmulator.Hatari, AtariMachineFamily.St },
+        { AtariMachineModel.Falcon, AtariEmulator.Hatari, AtariMachineFamily.St },
+        { AtariMachineModel.Atari400, AtariEmulator.Atari800, AtariMachineFamily.EightBit },
+        { AtariMachineModel.Atari800, AtariEmulator.Atari800, AtariMachineFamily.EightBit },
+        { AtariMachineModel.Atari800Xl, AtariEmulator.Atari800, AtariMachineFamily.EightBit },
+        { AtariMachineModel.Atari130Xe, AtariEmulator.Atari800, AtariMachineFamily.EightBit },
+        { AtariMachineModel.XlXe, AtariEmulator.Atari800, AtariMachineFamily.EightBit },
+        { AtariMachineModel.Xegs, AtariEmulator.Atari800, AtariMachineFamily.EightBit },
+        { AtariMachineModel.Atari5200, AtariEmulator.Atari800, AtariMachineFamily.Atari5200 },
+        { AtariMachineModel.Atari2600, AtariEmulator.Stella, AtariMachineFamily.Atari2600 },
+        { AtariMachineModel.Atari7800, AtariEmulator.ProSystem, AtariMachineFamily.Atari7800 },
+        { AtariMachineModel.Lynx, AtariEmulator.BeetleLynx, AtariMachineFamily.Lynx },
+        { AtariMachineModel.Jaguar, AtariEmulator.VirtualJaguar, AtariMachineFamily.Jaguar },
+        { AtariMachineModel.JaguarCd, AtariEmulator.VirtualJaguar, AtariMachineFamily.Jaguar }
     };
 
     [Theory]
     [MemberData(nameof(ModelMappings))]
-    public void Model_DeterminesCoreAndFamily(AtariMachineModel model, AtariCoreKind core, AtariMachineFamily family)
+    public void Model_DeterminesCoreAndFamily(AtariMachineModel model, AtariEmulator core, AtariMachineFamily family)
     {
         var configuration = new AtariMachineConfiguration(model);
 
@@ -45,7 +45,7 @@ public sealed class AtariConfigurationTests
     {
         Assert.Equal(
             ["Hatari", "Atari800", "Stella", "ProSystem", "BeetleLynx", "VirtualJaguar"],
-            Enum.GetNames<AtariCoreKind>());
+            Enum.GetNames<AtariEmulator>());
     }
 
     [Fact]
@@ -60,8 +60,8 @@ public sealed class AtariConfigurationTests
     {
         AtariMediaConfiguration[] media =
         [
-            new("one.st", AtariMediaKind.Floppy, EmulationMediaSlot.Floppy0),
-            new("two.st", AtariMediaKind.Floppy, EmulationMediaSlot.Floppy0)
+            new("one.st", AtariMediaCategory.Floppy, EmulationMediaSlot.Floppy0),
+            new("two.st", AtariMediaCategory.Floppy, EmulationMediaSlot.Floppy0)
         ];
 
         Assert.Throws<ArgumentException>(() => new AtariMachineConfiguration(AtariMachineModel.St, media: media));
@@ -70,18 +70,23 @@ public sealed class AtariConfigurationTests
     [Fact]
     public void ManifestlyIncompatibleFirmware_IsRejected()
     {
-        var firmware = new AtariFirmwareConfiguration(AtariFirmwareKind.Tos, "tos.img", true);
+        var firmware = new AtariFirmwareConfiguration(AtariFirmwareCategory.Tos, "tos.img", true);
 
         Assert.Throws<ArgumentException>(() => new AtariMachineConfiguration(
             AtariMachineModel.Atari2600, firmwares: [firmware]));
     }
 
+    public static TheoryData<AtariMachineModel, AtariMediaCategory, EmulationMediaSlot> IncompatibleMedia => new()
+    {
+        { AtariMachineModel.Atari2600, AtariMediaCategory.Floppy, EmulationMediaSlot.Floppy0 },
+        { AtariMachineModel.Lynx, AtariMediaCategory.CompactDisc, EmulationMediaSlot.Cd0 },
+        { AtariMachineModel.Jaguar, AtariMediaCategory.CompactDisc, EmulationMediaSlot.Cd0 },
+        { AtariMachineModel.St, AtariMediaCategory.Cartridge, EmulationMediaSlot.Cartridge0 }
+    };
+
     [Theory]
-    [InlineData(AtariMachineModel.Atari2600, AtariMediaKind.Floppy, EmulationMediaSlot.Floppy0)]
-    [InlineData(AtariMachineModel.Lynx, AtariMediaKind.CompactDisc, EmulationMediaSlot.Cd0)]
-    [InlineData(AtariMachineModel.Jaguar, AtariMediaKind.CompactDisc, EmulationMediaSlot.Cd0)]
-    [InlineData(AtariMachineModel.St, AtariMediaKind.Cartridge, EmulationMediaSlot.Cartridge0)]
-    public void ManifestlyIncompatibleMedia_IsRejected(AtariMachineModel model, AtariMediaKind kind,
+    [MemberData(nameof(IncompatibleMedia))]
+    public void ManifestlyIncompatibleMedia_IsRejected(AtariMachineModel model, AtariMediaCategory kind,
         EmulationMediaSlot slot)
     {
         var media = new AtariMediaConfiguration("content.bin", kind, slot);
@@ -93,7 +98,7 @@ public sealed class AtariConfigurationTests
     public void JaguarCd_AcceptsCdSlot()
     {
         var compactDisc = new AtariMediaConfiguration(
-            "game.cue", AtariMediaKind.CompactDisc, EmulationMediaSlot.Cd0);
+            "game.cue", AtariMediaCategory.CompactDisc, EmulationMediaSlot.Cd0);
 
         var configuration = new AtariMachineConfiguration(
             AtariMachineModel.JaguarCd, media: [compactDisc]);
@@ -105,11 +110,11 @@ public sealed class AtariConfigurationTests
     public void InvalidAndDuplicateControllerPorts_AreRejected()
     {
         var invalid = new AtariInputConfiguration(Controllers:
-            [new AtariControllerBinding(AtariConstants.MaximumControllerPortCount, AtariPeripheralKind.Joystick)]);
+            [new AtariControllerBinding(AtariConstants.MaximumControllerPortCount, AtariPeripheralCategory.Joystick)]);
         var duplicate = new AtariInputConfiguration(Controllers:
         [
-            new AtariControllerBinding(0, AtariPeripheralKind.Joystick),
-            new AtariControllerBinding(0, AtariPeripheralKind.Keyboard)
+            new AtariControllerBinding(0, AtariPeripheralCategory.Joystick),
+            new AtariControllerBinding(0, AtariPeripheralCategory.Keyboard)
         ]);
 
         Assert.Throws<ArgumentOutOfRangeException>(() => new AtariMachineConfiguration(AtariMachineModel.Atari800, input: invalid));
@@ -120,10 +125,10 @@ public sealed class AtariConfigurationTests
     public void StructuredError_PreservesKindCodeAndContext()
     {
         var context = new Dictionary<string, string> { ["core"] = "Hatari" };
-        var error = new AtariEmulationException(AtariErrorKind.Core, AtariErrorCode.CoreRejected,
+        var error = new AtariEmulationException(AtariErrorCategory.Core, AtariErrorCode.CoreRejected,
             "Rejected", context);
 
-        Assert.Equal(AtariErrorKind.Core, error.Kind);
+        Assert.Equal(AtariErrorCategory.Core, error.Category);
         Assert.Equal(AtariErrorCode.CoreRejected, error.Code);
         Assert.Equal("Hatari", error.Context["core"]);
     }

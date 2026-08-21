@@ -12,10 +12,10 @@ public sealed class AtariCoreReleaseService : IAtariCoreReleaseService
         _installationRoot = Path.GetFullPath(installationRoot);
     }
 
-    public async Task<IReadOnlyList<AtariCoreRelease>> GetAvailableAsync(AtariCoreKind kind,
+    public async Task<IReadOnlyList<AtariCoreRelease>> GetAvailableAsync(AtariEmulator emulator,
         CancellationToken cancellationToken = default)
     {
-        var entry = AtariCoreCatalog.Get(kind);
+        var entry = AtariCoreCatalog.Get(emulator);
         using var request = new HttpRequestMessage(HttpMethod.Head, entry.ArchiveUri);
         using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead,
             cancellationToken).ConfigureAwait(false);
@@ -28,8 +28,8 @@ public sealed class AtariCoreReleaseService : IAtariCoreReleaseService
         CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(release);
-        var entry = AtariCoreCatalog.Get(release.Kind);
-        var paths = AtariCoreCatalog.GetInstallationPaths(release.Kind, _installationRoot,
+        var entry = AtariCoreCatalog.Get(release.Emulator);
+        var paths = AtariCoreCatalog.GetInstallationPaths(release.Emulator, _installationRoot,
             release.DeclaredVersion);
         Directory.CreateDirectory(paths.VersionDirectory);
         var download = paths.LibraryPath + AtariCoreReleaseConstants.TemporaryDownloadExtension;
@@ -49,7 +49,7 @@ public sealed class AtariCoreReleaseService : IAtariCoreReleaseService
             AtariCoreReleaseFunctions.ReplaceLibraryAtomically(extracted, paths.LibraryPath);
             await AtariCoreReleaseFunctions.WriteManifestAtomicallyAsync(paths.ManifestPath, manifest,
                 cancellationToken).ConfigureAwait(false);
-            var activeManifestPath = AtariCoreCatalog.GetActiveManifestPath(release.Kind, _installationRoot);
+            var activeManifestPath = AtariCoreCatalog.GetActiveManifestPath(release.Emulator, _installationRoot);
             await AtariCoreReleaseFunctions.WriteActiveInstallationAtomicallyAsync(activeManifestPath,
                 new AtariCoreActiveInstallation(release.Id, release.DeclaredVersion), cancellationToken)
                 .ConfigureAwait(false);
@@ -63,14 +63,14 @@ public sealed class AtariCoreReleaseService : IAtariCoreReleaseService
         }
     }
 
-    public async Task<AtariCoreInstallationPaths?> GetActiveInstallationAsync(AtariCoreKind kind,
+    public async Task<AtariCoreInstallationPaths?> GetActiveInstallationAsync(AtariEmulator emulator,
         CancellationToken cancellationToken = default)
     {
         var marker = await AtariCoreReleaseFunctions.ReadJsonAsync<AtariCoreActiveInstallation>(
-            AtariCoreCatalog.GetActiveManifestPath(kind, _installationRoot), cancellationToken)
+            AtariCoreCatalog.GetActiveManifestPath(emulator, _installationRoot), cancellationToken)
             .ConfigureAwait(false);
         if (marker is null) return null;
-        var paths = AtariCoreCatalog.GetInstallationPaths(kind, _installationRoot, marker.ReleaseVersion);
+        var paths = AtariCoreCatalog.GetInstallationPaths(emulator, _installationRoot, marker.ReleaseVersion);
         return File.Exists(paths.LibraryPath) && File.Exists(paths.ManifestPath) ? paths : null;
     }
 }

@@ -5,7 +5,7 @@ namespace GWGUI.Emulation.Atari;
 
 internal static class AtariMachineFunctions
 {
-    internal static string ThreadName(Guid id, AtariCoreKind core) =>
+    internal static string ThreadName(Guid id, AtariEmulator core) =>
         $"{AtariMachineConstants.ThreadNamePrefix} {core} {id:N}";
 
     internal static long NextFrameTimestamp(long current, double framesPerSecond) => current +

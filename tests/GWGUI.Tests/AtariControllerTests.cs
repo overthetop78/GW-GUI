@@ -18,8 +18,8 @@ public sealed class AtariControllerTests
             var peripherals = AtariControllerFunctions.Peripherals(model);
             // Kept in the core contract for legacy configurations and Stella's API,
             // but the settings UI must never expose it.
-            Assert.Contains(AtariPeripheralKind.Automatic, peripherals);
-            Assert.Contains(AtariPeripheralKind.None, peripherals);
+            Assert.Contains(AtariPeripheralCategory.Automatic, peripherals);
+            Assert.Contains(AtariPeripheralCategory.None, peripherals);
         }
     }
 
@@ -29,10 +29,10 @@ public sealed class AtariControllerTests
         Assert.Equal(AtariCompatibilityConstants.TwoControllerPorts,
             AtariCompatibilityCatalog.Get(AtariMachineModel.Atari800Xl).ControllerPortCount);
         var atari5200 = AtariControllerFunctions.Peripherals(AtariMachineModel.Atari5200);
-        Assert.Contains(AtariPeripheralKind.AnalogJoystick, atari5200);
-        Assert.Contains(AtariPeripheralKind.NumericKeypad, atari5200);
+        Assert.Contains(AtariPeripheralCategory.AnalogJoystick, atari5200);
+        Assert.Contains(AtariPeripheralCategory.NumericKeypad, atari5200);
         var jaguar = AtariControllerFunctions.Peripherals(AtariMachineModel.Jaguar);
-        Assert.Contains(AtariPeripheralKind.EnhancedController, jaguar);
+        Assert.Contains(AtariPeripheralCategory.EnhancedController, jaguar);
         Assert.Equal(AtariCompatibilityConstants.TwoControllerPorts,
             AtariCompatibilityCatalog.Get(AtariMachineModel.Jaguar).ControllerPortCount);
     }
@@ -52,16 +52,16 @@ public sealed class AtariControllerTests
         };
         Assert.Equal(AtariControllerTestConstants.JoypadDeviceId,
             AtariControllerPortFunctions.ResolveDevice(ports, AtariControllerTestConstants.FirstPort,
-                AtariPeripheralKind.Automatic));
+                AtariPeripheralCategory.Automatic));
         Assert.Equal(AtariControllerTestConstants.MouseDeviceId,
             AtariControllerPortFunctions.ResolveDevice(ports, AtariControllerTestConstants.FirstPort,
-                AtariPeripheralKind.Mouse));
+                AtariPeripheralCategory.Mouse));
         Assert.Equal(AtariCoreLifecycleConstants.NoDevice,
             AtariControllerPortFunctions.ResolveDevice(ports, AtariControllerTestConstants.FirstPort,
-                AtariPeripheralKind.None));
+                AtariPeripheralCategory.None));
         Assert.Equal(AtariControllerTestConstants.JoypadDeviceId,
             AtariControllerPortFunctions.ResolveDevice(ports,
-                AtariControllerTestConstants.FirstPort, AtariPeripheralKind.LightGun));
+                AtariControllerTestConstants.FirstPort, AtariPeripheralCategory.LightGun));
     }
 
     [Fact]
@@ -78,9 +78,9 @@ public sealed class AtariControllerTests
         ];
 
         Assert.Equal(automatic, AtariControllerPortFunctions.ResolveDevice(
-            ports, 0, AtariPeripheralKind.Paddle, AtariCoreKind.Stella));
+            ports, 0, AtariPeripheralCategory.Paddle, AtariEmulator.Stella));
         Assert.Equal(automatic, AtariControllerPortFunctions.ResolveDevice(
-            ports, 0, AtariPeripheralKind.DrivingController, AtariCoreKind.Stella));
+            ports, 0, AtariPeripheralCategory.DrivingController, AtariEmulator.Stella));
     }
 
     [Fact]
@@ -152,7 +152,7 @@ public sealed class AtariControllerTests
         ]);
         var filtered = AtariControllerFunctions.ApplyDeadZones(snapshot,
         [
-            new AtariControllerBinding(AtariControllerTestConstants.FirstPort, AtariPeripheralKind.Joystick,
+            new AtariControllerBinding(AtariControllerTestConstants.FirstPort, AtariPeripheralCategory.Joystick,
                 DeadZonePercent: AtariControllerConstants.DefaultDeadZonePercent)
         ]);
         Assert.Equal(AtariControllerConstants.NeutralAxis,
@@ -166,12 +166,12 @@ public sealed class AtariControllerTests
 
         Assert.Throws<ArgumentOutOfRangeException>(() => new AtariMachineConfiguration(
             AtariMachineModel.Atari800Xl, input: new AtariInputConfiguration(Controllers:
-            [new AtariControllerBinding(AtariControllerTestConstants.FirstPort, AtariPeripheralKind.Joystick,
+            [new AtariControllerBinding(AtariControllerTestConstants.FirstPort, AtariPeripheralCategory.Joystick,
                 DeadZonePercent: AtariControllerConstants.MaximumDeadZonePercent +
                                  AtariControllerTestConstants.OnePercent)])));
         Assert.Throws<ArgumentException>(() => new AtariMachineConfiguration(AtariMachineModel.Lynx,
             input: new AtariInputConfiguration(Controllers:
-            [new AtariControllerBinding(AtariControllerTestConstants.FirstPort, AtariPeripheralKind.Paddle)])));
+            [new AtariControllerBinding(AtariControllerTestConstants.FirstPort, AtariPeripheralCategory.Paddle)])));
     }
 
     private static short State(EmulationInputSnapshot snapshot, uint port, uint device, uint index, uint id) =>

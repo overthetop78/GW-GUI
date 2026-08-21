@@ -71,7 +71,7 @@ public static class AtariFirmwareScanFunctions
         if (header.Variant != AtariTosVariant.Atari)
             return (CreateAlternativeTosDefinition(header), header.Region);
         var definition = AtariFirmwareCatalog.All.FirstOrDefault(candidate =>
-            candidate.Kind == AtariFirmwareKind.Tos &&
+            candidate.Category == AtariFirmwareCategory.Tos &&
             string.Equals(candidate.Version, header.Version, StringComparison.Ordinal));
         if (definition is null) return null;
         return (definition, header.Region);
@@ -94,7 +94,7 @@ public static class AtariFirmwareScanFunctions
                 AtariMachineModel.MegaSte, AtariMachineModel.Tt, AtariMachineModel.Falcon)
         };
         return new AtariFirmwareDefinition(
-            $"{product.ToLowerInvariant().Replace(' ', '-')}-{header.Version}", AtariFirmwareKind.Tos,
+            $"{product.ToLowerInvariant().Replace(' ', '-')}-{header.Version}", AtariFirmwareCategory.Tos,
             $"{product} {header.Version}", AtariFirmwareConstants.TosFileName, header.ImageSize,
             AtariFirmwareProvision.RequiredExternal,
             header.Variant == AtariTosVariant.EmuTos
@@ -155,9 +155,9 @@ public static class AtariFirmwareScanFunctions
     public static AtariFirmwareConfiguration CreateSelection(AtariScannedFirmware firmware)
     {
         if (firmware.Detection == AtariFirmwareDetectionStatus.Unreadable ||
-            firmware.Compatibility == AtariFirmwareCompatibility.Incompatible || firmware.Definition?.Kind is null ||
+            firmware.Compatibility == AtariFirmwareCompatibility.Incompatible || firmware.Definition?.Category is null ||
             firmware.Definition.Provision is AtariFirmwareProvision.Embedded or AtariFirmwareProvision.NotUsed)
             throw new InvalidOperationException(AtariErrorMessages.FirmwareCannotBeSelected);
-        return new(firmware.Definition.Kind.Value, firmware.Path, firmware.Definition.RequiresExternalFile);
+        return new(firmware.Definition.Category.Value, firmware.Path, firmware.Definition.RequiresExternalFile);
     }
 }

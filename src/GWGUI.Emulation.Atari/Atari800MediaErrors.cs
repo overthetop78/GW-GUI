@@ -2,7 +2,7 @@ namespace GWGUI.Emulation.Atari;
 
 internal static class Atari800MediaErrors
 {
-    internal const string UnsupportedKind = "Atari800 accepts floppy, cassette and cartridge media only.";
+    internal const string UnsupportedMediaCategory = "Atari800 accepts floppy, cassette and cartridge media only.";
     internal const string InvalidExtension = "The content extension does not match the configured Atari800 media type.";
     internal const string ComputerMediaOn5200 = "Atari 8-bit computer media cannot be mounted on an Atari 5200.";
     internal const string ConsoleMediaOnComputer = "Atari 5200 cartridge media cannot be mounted on an Atari 8-bit computer.";

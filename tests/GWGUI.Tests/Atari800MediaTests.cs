@@ -14,11 +14,11 @@ public sealed class Atari800MediaTests
         };
 
     [Theory]
-    [InlineData("disk.atr", AtariMediaKind.Floppy, "Floppy")]
-    [InlineData("tape.cas", AtariMediaKind.Cassette, "Cassette")]
-    [InlineData("game.bin", AtariMediaKind.Cartridge, "ComputerCartridge")]
+    [InlineData("disk.atr", AtariMediaCategory.Floppy, "Floppy")]
+    [InlineData("tape.cas", AtariMediaCategory.Cassette, "Cassette")]
+    [InlineData("game.bin", AtariMediaCategory.Cartridge, "ComputerCartridge")]
     public void ComputerContent_IsClassifiedByKindAndModel(
-        string fileName, AtariMediaKind kind, string expected)
+        string fileName, AtariMediaCategory kind, string expected)
     {
         var media = new AtariMediaConfiguration(fileName, kind, Slot(kind));
 
@@ -31,7 +31,7 @@ public sealed class Atari800MediaTests
     [InlineData("game.rom")]
     public void Atari5200Cartridge_IsSelectedFromModelAndMetadata(string fileName)
     {
-        var media = new AtariMediaConfiguration(fileName, AtariMediaKind.Cartridge,
+        var media = new AtariMediaConfiguration(fileName, AtariMediaCategory.Cartridge,
             EmulationMediaSlot.Cartridge0, CartridgePlatform: AtariCartridgePlatform.Atari5200);
 
         Assert.Equal(Atari800ContentType.ConsoleCartridge,
@@ -41,7 +41,7 @@ public sealed class Atari800MediaTests
     [Fact]
     public void AmbiguousRawCartridge_RejectsPlatformThatConflictsWithMachine()
     {
-        var media = new AtariMediaConfiguration("game.rom", AtariMediaKind.Cartridge,
+        var media = new AtariMediaConfiguration("game.rom", AtariMediaCategory.Cartridge,
             EmulationMediaSlot.Cartridge0, CartridgePlatform: AtariCartridgePlatform.Atari5200);
 
         Assert.Throws<ArgumentException>(() =>
@@ -65,10 +65,10 @@ public sealed class Atari800MediaTests
     }
 
     [Theory]
-    [InlineData(AtariMediaKind.Floppy, "disk.cas")]
-    [InlineData(AtariMediaKind.Cassette, "tape.atr")]
-    [InlineData(AtariMediaKind.Cartridge, "game.atr")]
-    public void KindAndExtensionMismatch_IsRejected(AtariMediaKind kind, string fileName)
+    [InlineData(AtariMediaCategory.Floppy, "disk.cas")]
+    [InlineData(AtariMediaCategory.Cassette, "tape.atr")]
+    [InlineData(AtariMediaCategory.Cartridge, "game.atr")]
+    public void KindAndExtensionMismatch_IsRejected(AtariMediaCategory kind, string fileName)
     {
         var root = CreateRoot();
         var path = Path.Combine(root, fileName);
@@ -87,9 +87,9 @@ public sealed class Atari800MediaTests
     }
 
     [Theory]
-    [InlineData(AtariMediaKind.Floppy, "disk.atr")]
-    [InlineData(AtariMediaKind.Cassette, "tape.cas")]
-    public void WritableDiskAndCassette_UseExplicitSessionSave(AtariMediaKind kind, string fileName)
+    [InlineData(AtariMediaCategory.Floppy, "disk.atr")]
+    [InlineData(AtariMediaCategory.Cassette, "tape.cas")]
+    public void WritableDiskAndCassette_UseExplicitSessionSave(AtariMediaCategory kind, string fileName)
     {
         var root = CreateRoot();
         var path = Path.Combine(root, fileName);
@@ -117,7 +117,7 @@ public sealed class Atari800MediaTests
     public void CassetteBootAndMachineOptions_AreExplicit()
     {
         var configuration = new AtariMachineConfiguration(AtariMachineModel.Atari5200);
-        var media = new AtariMediaConfiguration("game.a52", AtariMediaKind.Cartridge,
+        var media = new AtariMediaConfiguration("game.a52", AtariMediaCategory.Cartridge,
             EmulationMediaSlot.Cartridge0, CartridgePlatform: AtariCartridgePlatform.Atari5200);
         var prepared = new Atari800PreparedMedia(media, Atari800ContentType.ConsoleCartridge, media.Path, null);
 
@@ -135,8 +135,8 @@ public sealed class Atari800MediaTests
         var configuration = new AtariMachineConfiguration(AtariMachineModel.Atari400, options:
             new Dictionary<string, string>
             {
-                [AtariVideoAudioSettingsConstants.StandardOptionKey] = AtariClassicRegion.Pal.ToString(),
-                [AtariVideoAudioSettingsConstants.ResolutionOptionKey] = "384x288",
+                [AtariConfigurationOptionConstants.VideoStandard] = AtariClassicRegion.Pal.ToString(),
+                [AtariConfigurationOptionConstants.VideoResolution] = "384x288",
                 [AtariEightBitSettingsConstants.AxlonMemoryOptionKey] = "256 KB",
                 [AtariEightBitSettingsConstants.PokeyStereoOptionKey] = AtariEightBitSettingsConstants.Enabled
             });
@@ -177,11 +177,11 @@ public sealed class Atari800MediaTests
             options[AtariEightBitSettingsConstants.AxlonShadowOptionKey]);
     }
 
-    private static EmulationMediaSlot Slot(AtariMediaKind kind) => kind switch
+    private static EmulationMediaSlot Slot(AtariMediaCategory kind) => kind switch
     {
-        AtariMediaKind.Floppy => EmulationMediaSlot.Floppy0,
-        AtariMediaKind.Cassette => EmulationMediaSlot.Cassette0,
-        AtariMediaKind.Cartridge => EmulationMediaSlot.Cartridge0,
+        AtariMediaCategory.Floppy => EmulationMediaSlot.Floppy0,
+        AtariMediaCategory.Cassette => EmulationMediaSlot.Cassette0,
+        AtariMediaCategory.Cartridge => EmulationMediaSlot.Cartridge0,
         _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null)
     };
 

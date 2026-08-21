@@ -1011,13 +1011,13 @@
   <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
     <value>Chcete-li používat disky CD, vyberte model Jaguar CD.</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cassettes">
+  <data name="Emulation.Storage.Cassettes">
     <value>Kazeta</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cartridges">
+  <data name="Emulation.Storage.Cartridges">
     <value>Kazeta ROM</value>
   </data>
-  <data name="Emulation.Atari.Storage.CompactDiscs">
+  <data name="Emulation.Storage.CompactDiscs">
     <value>Kompaktní disky</value>
   </data>
   <data name="Emulation.Atari.Video.Region">
@@ -1107,8 +1107,8 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Name</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B + Controller</value></data>
-  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
-    <value>Emulátor před zapnutím tohoto stroje vyžaduje médium. Vložte disketu nebo nastavte pevný disk.</value>
+  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
+    <value>Emulátor před zapnutím tohoto stroje vyžaduje médium. Vložte nebo nastavte jedno z požadovaných médií uvedených níže.</value>
   </data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
     <value>Stroj nelze zapnout</value>
@@ -1157,4 +1157,5 @@
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Nízká</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normální</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Vysoká</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Slot pro kazetu ROM</value></data>
 </root>

@@ -1,5 +1,4 @@
 using System.IO;
-using GWGUI.App;
 using GWGUI.Emulation.Atari;
 
 namespace GWGUI.Tests;
@@ -10,22 +9,16 @@ public sealed class AtariFirmwareScannerTests
     private const byte SecondTestByte = 0x51;
 
     [Fact]
-    public void ApplicationStorageExposesEveryAtariFirmwareFamilyDirectory()
+    public void AtariScannerCreatesEveryFirmwareFamilyDirectoryBelowItsProvidedRoot()
     {
-        Assert.Equal(Path.Combine(StoragePaths.AtariFirmwareDirectory, AtariFirmwareConstants.StFamilyDirectoryName),
-            StoragePaths.AtariStFirmwareDirectory);
-        Assert.Equal(Path.Combine(StoragePaths.AtariFirmwareDirectory, AtariFirmwareConstants.EightBitFamilyDirectoryName),
-            StoragePaths.AtariEightBitFirmwareDirectory);
-        Assert.Equal(Path.Combine(StoragePaths.AtariFirmwareDirectory, AtariFirmwareConstants.Atari5200FamilyDirectoryName),
-            StoragePaths.Atari5200FirmwareDirectory);
-        Assert.Equal(Path.Combine(StoragePaths.AtariFirmwareDirectory, AtariFirmwareConstants.Atari2600FamilyDirectoryName),
-            StoragePaths.Atari2600FirmwareDirectory);
-        Assert.Equal(Path.Combine(StoragePaths.AtariFirmwareDirectory, AtariFirmwareConstants.Atari7800FamilyDirectoryName),
-            StoragePaths.Atari7800FirmwareDirectory);
-        Assert.Equal(Path.Combine(StoragePaths.AtariFirmwareDirectory, AtariFirmwareConstants.LynxFamilyDirectoryName),
-            StoragePaths.AtariLynxFirmwareDirectory);
-        Assert.Equal(Path.Combine(StoragePaths.AtariFirmwareDirectory, AtariFirmwareConstants.JaguarFamilyDirectoryName),
-            StoragePaths.AtariJaguarFirmwareDirectory);
+        var root = NewRoot();
+        try
+        {
+            AtariFirmwareScanFunctions.EnsureFamilyDirectories(root);
+            Assert.All(Enum.GetValues<AtariMachineFamily>(), family => Assert.True(Directory.Exists(
+                Path.Combine(root, AtariFirmwareScanFunctions.FamilyDirectoryName(family)))));
+        }
+        finally { DeleteRoot(root); }
     }
 
     [Fact]
@@ -61,7 +54,7 @@ public sealed class AtariFirmwareScannerTests
             var firmware = Assert.Single(result);
             Assert.Equal(AtariFirmwareDetectionStatus.Unknown, firmware.Detection);
             Assert.Equal(AtariFirmwareCompatibility.PartiallyCompatible, firmware.Compatibility);
-            Assert.Equal(AtariFirmwareKind.LynxBootRom, firmware.Definition?.Kind);
+            Assert.Equal(AtariFirmwareCategory.LynxBootRom, firmware.Definition?.Category);
             Assert.Equal(Path.GetFullPath(firmwarePath), firmware.Path);
         }
         finally { DeleteRoot(root); }
@@ -133,9 +126,9 @@ public sealed class AtariFirmwareScannerTests
     [Fact]
     public void Atari400AcceptsItsOsRevisionsButNeverAnAtariStTos()
     {
-        var osA = AtariFirmwareCatalog.Get(AtariFirmwareConstants.AtariOsAId);
-        var osANtsc = AtariFirmwareCatalog.Get(AtariFirmwareConstants.AtariOsANtscId);
-        var osB = AtariFirmwareCatalog.Get(AtariFirmwareConstants.AtariOsBId);
+        var osA = AtariFirmwareCatalog.Get(AtariFirmwareConstants.Atari400OsAId);
+        var osANtsc = AtariFirmwareCatalog.Get(AtariFirmwareConstants.Atari400OsANtscId);
+        var osB = AtariFirmwareCatalog.Get(AtariFirmwareConstants.Atari400OsBId);
         var tos = AtariFirmwareCatalog.Get(AtariFirmwareFunctions.TosId(AtariStModelConstants.Tos206));
 
         Assert.Equal(AtariFirmwareCompatibility.Compatible,
@@ -158,27 +151,27 @@ public sealed class AtariFirmwareScannerTests
 
         Assert.NotNull(definition);
         Assert.Equal(AtariFirmwareConstants.LynxBootId, definition.Id);
-        Assert.Equal(AtariFirmwareKind.LynxBootRom, definition.Kind);
+        Assert.Equal(AtariFirmwareCategory.LynxBootRom, definition.Category);
     }
 
     [Theory]
     [InlineData(AtariFirmwareConstants.Atari5200RevisionAMd5, AtariMachineModel.Atari5200,
-        AtariFirmwareKind.Atari5200Bios, "Revision A")]
+        AtariFirmwareCategory.Atari5200Bios, "Revision A")]
     [InlineData(AtariFirmwareConstants.Atari7800EuropeMd5, AtariMachineModel.Atari7800,
-        AtariFirmwareKind.Atari7800Bios, "Europe")]
+        AtariFirmwareCategory.Atari7800Bios, "Europe")]
     [InlineData(AtariFirmwareConstants.AtariXlXeOsV3Md5, AtariMachineModel.Atari800Xl,
-        AtariFirmwareKind.AtariXlOs, "BB01R3")]
+        AtariFirmwareCategory.AtariXlOs, "BB01R3")]
     [InlineData(AtariFirmwareConstants.AtariXlXeOsR59Md5, AtariMachineModel.Atari130Xe,
-        AtariFirmwareKind.AtariXlOs, "BB01R59")]
+        AtariFirmwareCategory.AtariXlOs, "BB01R59")]
     [InlineData(AtariFirmwareConstants.AtariXlXeOsR59AMd5, AtariMachineModel.Xegs,
-        AtariFirmwareKind.AtariXlOs, "BB01R59A")]
+        AtariFirmwareCategory.AtariXlOs, "BB01R59A")]
     public void VerifiedAlternateRevisionsAreKnownAndCompatible(string md5, AtariMachineModel model,
-        AtariFirmwareKind kind, string version)
+        AtariFirmwareCategory kind, string version)
     {
         var definition = AtariFirmwareScanFunctions.Identify(md5);
 
         Assert.NotNull(definition);
-        Assert.Equal(kind, definition.Kind);
+        Assert.Equal(kind, definition.Category);
         Assert.Equal(version, definition.Version);
         Assert.Equal(AtariFirmwareCompatibility.Compatible,
             AtariFirmwareScanFunctions.Classify(definition, null, model, null));
@@ -328,7 +321,7 @@ public sealed class AtariFirmwareScannerTests
             var selection = AtariFirmwareScanFunctions.CreateSelection(item);
 
             Assert.Equal(Path.GetFullPath(path), selection.Path);
-            Assert.Equal(AtariFirmwareKind.LynxBootRom, selection.Kind);
+            Assert.Equal(AtariFirmwareCategory.LynxBootRom, selection.Category);
             Assert.Single(Directory.EnumerateFiles(Path.GetDirectoryName(path)!));
         }
         finally { DeleteRoot(root); }
@@ -342,7 +335,7 @@ public sealed class AtariFirmwareScannerTests
         var error = Assert.Throws<FileNotFoundException>(() =>
             AtariFirmwareRuntimeFunctions.ValidateRequiredFirmware(configuration));
 
-        Assert.Contains(nameof(AtariFirmwareKind.LynxBootRom), error.Message, StringComparison.Ordinal);
+        Assert.Contains(nameof(AtariFirmwareCategory.LynxBootRom), error.Message, StringComparison.Ordinal);
         Assert.Contains(nameof(AtariMachineModel.Lynx), error.Message, StringComparison.Ordinal);
     }
 
@@ -359,7 +352,7 @@ public sealed class AtariFirmwareScannerTests
             await File.WriteAllBytesAsync(source, content);
             var written = File.GetLastWriteTimeUtc(source);
             var configuration = new AtariMachineConfiguration(AtariMachineModel.Lynx,
-                [new AtariFirmwareConfiguration(AtariFirmwareKind.LynxBootRom, source, true)]);
+                [new AtariFirmwareConfiguration(AtariFirmwareCategory.LynxBootRom, source, true)]);
 
             AtariFirmwareRuntimeFunctions.PrepareSystemDirectory(configuration, system);
 
@@ -386,7 +379,7 @@ public sealed class AtariFirmwareScannerTests
             content[28] = 0x00; content[29] = 0x05;
             await File.WriteAllBytesAsync(source, content);
             var configuration = new AtariMachineConfiguration(AtariMachineModel.MegaSte,
-                [new AtariFirmwareConfiguration(AtariFirmwareKind.Tos, source, true)]);
+                [new AtariFirmwareConfiguration(AtariFirmwareCategory.Tos, source, true)]);
 
             AtariFirmwareRuntimeFunctions.PrepareSystemDirectory(configuration, system);
 
@@ -409,9 +402,9 @@ public sealed class AtariFirmwareScannerTests
 
             var error = Assert.Throws<InvalidDataException>(() =>
                 AtariFirmwareRuntimeFunctions.ResolveDefinition(AtariMachineModel.Atari800Xl,
-                    AtariFirmwareKind.AtariXlOs, source));
+                    AtariFirmwareCategory.AtariXlOs, source));
 
-            Assert.Contains(nameof(AtariFirmwareKind.AtariXlOs), error.Message, StringComparison.Ordinal);
+            Assert.Contains(nameof(AtariFirmwareCategory.AtariXlOs), error.Message, StringComparison.Ordinal);
             Assert.Contains(source, error.Message, StringComparison.Ordinal);
         }
         finally { DeleteRoot(root); }

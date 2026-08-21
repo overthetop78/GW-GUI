@@ -15,13 +15,13 @@ public sealed class EmulationControllerSettingsLayoutTests
                 InputCaptureSources.Keyboard | InputCaptureSources.Controller, true,
                 "Action", "Search");
             var behavior = new CheckBox { Content = "Parallel adapter" };
-            IReadOnlyList<EmulationSettingsField> behaviors = [new("Adapter", behavior)];
+            var behaviorField = new EmulationSettingsControlField("Adapter", behavior);
 
-            var firstPage = section.Build([port.Settings], behaviors);
-            var secondPage = section.Build([port.Settings], behaviors);
+            var firstPage = section.Build([port.Settings], behaviorField);
+            var secondPage = section.Build([port.Settings], behaviorField);
 
             Assert.NotSame(firstPage, secondPage);
-            Assert.Same(behavior, Assert.Single(behaviors).Control);
+            Assert.Same(behavior, behaviorField.Control);
         });
     }
 }

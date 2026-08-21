@@ -2,7 +2,7 @@ using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Atari;
 
-public sealed record AtariMachineConfiguration
+public sealed record AtariMachineConfiguration : IEmulationConfiguration
 {
     public AtariMachineConfiguration(
         AtariMachineModel model,
@@ -31,11 +31,13 @@ public sealed record AtariMachineConfiguration
         AtariConfigurationFunctions.Validate(SchemaVersion, Model, Firmwares, Media, Input);
     }
 
+    public string ModuleId => "atari";
     public int SchemaVersion { get; }
     public Guid Id { get; }
     public AtariMachineModel Model { get; }
+    public string MachineId => Model.ToString();
     public AtariMachineFamily Family { get; }
-    public AtariCoreKind Core { get; }
+    public AtariEmulator Core { get; }
     public IReadOnlyList<AtariFirmwareConfiguration> Firmwares { get; }
     public IReadOnlyList<AtariMediaConfiguration> Media { get; }
     public IReadOnlyDictionary<string, string> Options { get; }

@@ -50,8 +50,8 @@ public sealed class AtariMachineLifecycleTests
     [Fact]
     public async Task DifferentFamiliesAndCoresRunAtTheSameTime()
     {
-        var firstCore = new RecordingAtariCore { CoreKind = AtariCoreKind.Stella };
-        var secondCore = new RecordingAtariCore { CoreKind = AtariCoreKind.BeetleLynx };
+        var firstCore = new RecordingAtariCore { CoreKind = AtariEmulator.Stella };
+        var secondCore = new RecordingAtariCore { CoreKind = AtariEmulator.BeetleLynx };
         await using var first = CreateMachine(firstCore, configuration:
             new AtariMachineConfiguration(AtariMachineModel.Atari2600));
         await using var second = CreateMachine(secondCore, configuration:
@@ -61,8 +61,8 @@ public sealed class AtariMachineLifecycleTests
         await WaitUntil(() => firstCore.FrameCount > AtariMachineLifecycleTestConstants.MinimumInitialFrames
                               && secondCore.FrameCount > AtariMachineLifecycleTestConstants.MinimumInitialFrames);
 
-        Assert.Equal(AtariCoreKind.Stella, firstCore.Kind);
-        Assert.Equal(AtariCoreKind.BeetleLynx, secondCore.Kind);
+        Assert.Equal(AtariEmulator.Stella, firstCore.Kind);
+        Assert.Equal(AtariEmulator.BeetleLynx, secondCore.Kind);
         Assert.Equal(EmulationMachineState.Running, first.State);
         Assert.Equal(EmulationMachineState.Running, second.State);
     }
@@ -91,20 +91,18 @@ public sealed class AtariMachineLifecycleTests
     }
 
     [Fact]
-    public async Task MachineCollectionStopsEveryMachineAtApplicationShutdown()
+    public async Task IndependentMachinesCanBeStoppedAtApplicationShutdown()
     {
         var firstCore = new RecordingAtariCore();
         var secondCore = new RecordingAtariCore();
         var first = CreateMachine(firstCore);
         var second = CreateMachine(secondCore);
-        await using var machines = new AtariMachineCollection();
-        machines.Register(first);
-        machines.Register(second);
         await Task.WhenAll(first.StartAsync().AsTask(), second.StartAsync().AsTask());
 
-        await machines.StopAllAsync();
+        await Task.WhenAll(first.StopAsync().AsTask(), second.StopAsync().AsTask());
+        await first.DisposeAsync();
+        await second.DisposeAsync();
 
-        Assert.Empty(machines.Machines);
         Assert.Equal(EmulationMachineState.Stopped, first.State);
         Assert.Equal(EmulationMachineState.Stopped, second.State);
         Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedDisposeCount, firstCore.DisposeCount);
@@ -123,7 +121,7 @@ public sealed class AtariMachineLifecycleTests
 
         Assert.Single(core.ThreadIds);
         Assert.Contains(AtariMachineConstants.ThreadNamePrefix, core.ThreadName, StringComparison.Ordinal);
-        Assert.Contains(AtariCoreKind.Stella.ToString(), core.ThreadName, StringComparison.Ordinal);
+        Assert.Contains(AtariEmulator.Stella.ToString(), core.ThreadName, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -188,7 +186,7 @@ public sealed class AtariMachineLifecycleTests
         await machine.LoadStateAsync(statePath);
         machine.SetInput(EmulationInputSnapshot.Empty);
         machine.SetControllerPortDevice(AtariMachineLifecycleTestConstants.FirstControllerPort,
-            AtariPeripheralKind.Automatic);
+            AtariPeripheralCategory.Automatic);
         await Task.Delay(AtariMachineLifecycleTestConstants.PauseObservationMilliseconds);
 
         Assert.Equal(pausedFrames, core.FrameCount);
@@ -253,7 +251,7 @@ public sealed class AtariMachineLifecycleTests
 
         await WaitUntil(() => machine.State == EmulationMachineState.Faulted);
 
-        Assert.IsType<InvalidOperationException>(machine.Fault);
+        Assert.Equal(EmulationMachineState.Faulted, machine.State);
         Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedStopCount, core.StopCount);
         Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedReleasedInputCount, core.InputCount);
     }
@@ -268,7 +266,7 @@ public sealed class AtariMachineLifecycleTests
         await Assert.ThrowsAsync<InvalidOperationException>(() => machine.HardResetAsync().AsTask());
         await WaitUntil(() => machine.State == EmulationMachineState.Faulted);
 
-        Assert.IsType<InvalidOperationException>(machine.Fault);
+        Assert.Equal(EmulationMachineState.Faulted, machine.State);
         Assert.Equal(AtariMachineLifecycleTestConstants.ExpectedStopCount, core.StopCount);
     }
 
@@ -287,7 +285,7 @@ public sealed class AtariMachineLifecycleTests
 
     private static AtariMediaConfiguration Media() => new(
         Path.Combine(Path.GetTempPath(), AtariMachineLifecycleTestConstants.MediaFileName),
-        AtariMediaKind.Cartridge, EmulationMediaSlot.Cartridge0);
+        AtariMediaCategory.Cartridge, EmulationMediaSlot.Cartridge0);
 
     private static async Task WaitUntil(Func<bool> condition)
     {
@@ -297,6 +295,7 @@ public sealed class AtariMachineLifecycleTests
 
     private sealed class RecordingAtariCore : IAtariCore
     {
+        public AtariEmulator Emulator => AtariEmulator.Hatari;
         private readonly ConcurrentDictionary<int, byte> _threads = new();
         private readonly ConcurrentQueue<AudioChunk> _audio = new();
         public int FrameCount;
@@ -313,7 +312,7 @@ public sealed class AtariMachineLifecycleTests
         public bool BlockInitialization { get; init; }
         public bool BlockStop { get; init; }
         public bool EmitOutputs { get; init; }
-        public AtariCoreKind CoreKind { get; init; } = AtariCoreKind.Stella;
+        public AtariEmulator CoreKind { get; init; } = AtariEmulator.Stella;
         public AtariMachineConfiguration? Configuration { get; private set; }
         public string? SessionDirectory { get; private set; }
         public ManualResetEventSlim InitializationEntered { get; } = new();
@@ -322,7 +321,7 @@ public sealed class AtariMachineLifecycleTests
         public ManualResetEventSlim ContinueStop { get; } = new();
         public IReadOnlyCollection<int> ThreadIds => _threads.Keys.ToArray();
         public string ThreadName { get; private set; } = string.Empty;
-        public AtariCoreKind Kind => CoreKind;
+        public AtariEmulator Kind => CoreKind;
         public VideoFrame? LatestVideoFrame { get; private set; }
         public AudioChunk? LatestAudioChunk => null;
         public IReadOnlyList<AtariCoreOption> Options => [];
@@ -379,7 +378,7 @@ public sealed class AtariMachineLifecycleTests
             Interlocked.Increment(ref StopCount);
         }
         public void SetInput(EmulationInputSnapshot snapshot) { CaptureThread(); Interlocked.Increment(ref InputCount); }
-        public void SetControllerPortDevice(int port, AtariPeripheralKind peripheral)
+        public void SetControllerPortDevice(int port, AtariPeripheralCategory peripheral)
         {
             CaptureThread();
             Interlocked.Increment(ref ControllerConfigurationCount);

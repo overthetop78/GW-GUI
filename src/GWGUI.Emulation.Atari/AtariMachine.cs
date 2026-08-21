@@ -6,7 +6,8 @@ using GWGUI.Emulation.Atari.Cores;
 
 namespace GWGUI.Emulation.Atari;
 
-internal sealed class AtariMachine : IAtariMachine
+internal sealed class AtariMachine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput,
+    IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime
 {
     private readonly object _gate = new();
     private readonly IAtariCore _core;
@@ -40,12 +41,25 @@ internal sealed class AtariMachine : IAtariMachine
 
     public Guid Id { get; }
     public AtariMachineConfiguration Configuration { get; }
-    public Exception? Fault { get; private set; }
+    public IEmulationLifecycle Lifecycle => this;
+    public IEmulationInput Input => this;
+    public IEmulationMedia Media => this;
+    public IEmulationVideo Video => this;
+    public IEmulationAudio Audio => this;
+    public IEmulationSavedStates SavedStates => this;
+    public IEmulationRuntime Runtime => this;
+    bool IEmulationInput.SupportsPointerCapture =>
+        AtariCompatibilityCatalog.Get(Configuration.Model).VisibleTabs.Contains(AtariSettingsTab.Mouse);
+    bool IEmulationInput.CapturePointerOnClick => Configuration.Input?.CaptureMouse ?? true;
+    IReadOnlyDictionary<string, string> IEmulationInput.KeyboardBindings =>
+        Configuration.Input?.KeyboardMappings?.ToDictionary(item => item.Key, item => item.Value.ToString(),
+            StringComparer.Ordinal) ?? new Dictionary<string, string>();
+    bool IEmulationInput.SupportsControllerPointerSwitch => false;
+    bool IEmulationInput.ControllerPointerMode => false;
     public EmulationMachineState State { get; private set; } = EmulationMachineState.Created;
     public VideoFrame? LatestVideoFrame => _core.LatestVideoFrame;
     public AudioChunk? LatestAudioChunk => _core.LatestAudioChunk;
     public IReadOnlyList<AtariCoreOption> AvailableOptions => _core.Options;
-    public IReadOnlyList<string> Diagnostics => _core.Diagnostics;
     public IReadOnlyDictionary<int, bool> LedStates => _core.LedStates;
     public string CoreName => _core.CoreName;
     public string CoreVersion => _core.CoreVersion;
@@ -53,9 +67,59 @@ internal sealed class AtariMachine : IAtariMachine
     public bool SupportsSaveStates => _core.SupportsSaveStates;
     public bool IsAudioMuted => _audio.IsMuted;
     public float AudioVolume => _audio.Volume;
-    public AtariRuntimeStatus RuntimeStatus => AtariRuntimeFunctions.Status(Configuration, _core, Fault);
+    public AtariRuntimeStatus RuntimeStatus => AtariRuntimeFunctions.Status(Configuration, _core);
     public event EventHandler<VideoFrame>? VideoFrameReady;
     public event EventHandler<AudioChunk>? AudioChunkReady;
+    IReadOnlyList<EmulationMedia> IEmulationMedia.MountedMedia => _mountedMedia
+        .Select(EmulationMediaConversionFunctions.ToCommon).OfType<EmulationMedia>().ToArray();
+    ValueTask IEmulationMedia.InsertAsync(EmulationMedia media, CancellationToken cancellationToken) =>
+        InsertMediaAsync(EmulationMediaConversionFunctions.ToAtari(media, _mountedMedia), cancellationToken);
+    ValueTask IEmulationMedia.EjectAsync(EmulationMediaSlot slot, CancellationToken cancellationToken) =>
+        EjectMediaAsync(slot, cancellationToken);
+    ValueTask IEmulationMedia.SelectDiskAsync(EmulationMediaSlot slot, int index,
+        CancellationToken cancellationToken) => SelectDiskAsync(index, cancellationToken);
+    AudioChunk? IEmulationAudio.LatestChunk => LatestAudioChunk;
+    int IEmulationAudio.SampleRate => _core.SampleRate;
+    bool IEmulationAudio.IsMuted => IsAudioMuted;
+    float IEmulationAudio.Volume => AudioVolume;
+    event EventHandler<AudioChunk>? IEmulationAudio.ChunkReady
+    {
+        add => AudioChunkReady += value;
+        remove => AudioChunkReady -= value;
+    }
+    void IEmulationAudio.SetMuted(bool muted) => SetAudioMuted(muted);
+    void IEmulationAudio.SetVolume(float volume) => SetAudioVolume(volume);
+    void IEmulationAudio.SetOutputFactory(Func<IAudioOutput?>? factory) => SetAudioOutputFactory(factory);
+    string IEmulationRuntime.EmulatorName => CoreName;
+    string IEmulationRuntime.EmulatorVersion => CoreVersion;
+    IReadOnlySet<string> IEmulationRuntime.SupportedContentExtensions => SupportedContentExtensions;
+    IReadOnlyDictionary<EmulationMediaSlot, bool> IEmulationRuntime.MediaActivity =>
+        EmulationMediaActivityFunctions.FromRuntimeStatus(RuntimeStatus);
+    IReadOnlyList<EmulationOption> IEmulationRuntime.AvailableOptions => AvailableOptions
+        .Select(option => new EmulationOption(
+            option.Key,
+            option.Name,
+            option.Description,
+            option.Category,
+            option.DefaultValue,
+            option.CurrentValue,
+            option.Values.Select(value => new EmulationOptionValue(value.Value, value.Label)).ToArray(),
+            option.IsVisible))
+        .ToArray();
+    VideoFrame? IEmulationVideo.LatestFrame => LatestVideoFrame;
+    double IEmulationVideo.FramesPerSecond => _core.FramesPerSecond;
+    event EventHandler<VideoFrame>? IEmulationVideo.FrameReady
+    {
+        add => VideoFrameReady += value;
+        remove => VideoFrameReady -= value;
+    }
+    bool IEmulationSavedStates.IsSupported => SupportsSaveStates;
+    ValueTask IEmulationSavedStates.SaveAsync(string path, CancellationToken cancellationToken) =>
+        SaveStateAsync(path, cancellationToken);
+    ValueTask IEmulationSavedStates.LoadAsync(string path, CancellationToken cancellationToken) =>
+        LoadStateAsync(path, cancellationToken);
+    void IEmulationInput.SetControllerPortDevice(int port, EmulationPeripheralCategory peripheral) =>
+        SetControllerPortDevice(port, EmulationPeripheralConversionFunctions.ToAtari(peripheral));
 
     public async ValueTask StartAsync(CancellationToken cancellationToken = default)
     {
@@ -137,11 +201,15 @@ internal sealed class AtariMachine : IAtariMachine
     }
 
     public void SetInput(EmulationInputSnapshot snapshot) =>
-        QueueCommand(_core.SetInput, snapshot, CancellationToken.None).AsTask().GetAwaiter().GetResult();
+        QueueCommand(_core.SetInput, AtariInputSnapshotFunctions.Apply(snapshot, Configuration.Input,
+            Configuration.Model), CancellationToken.None).AsTask().GetAwaiter().GetResult();
 
-    public void SetControllerPortDevice(int port, AtariPeripheralKind peripheral) =>
+    public void SetControllerPortDevice(int port, AtariPeripheralCategory peripheral) =>
         QueueCommand(() => _core.SetControllerPortDevice(port, peripheral), CancellationToken.None)
             .AsTask().GetAwaiter().GetResult();
+
+    ValueTask<bool> IEmulationInput.SwitchControllerPointerAsync(CancellationToken cancellationToken) =>
+        ValueTask.FromResult(false);
 
     public void SetAudioMuted(bool muted)
     {
@@ -247,10 +315,10 @@ internal sealed class AtariMachine : IAtariMachine
         }
         catch (Exception error)
         {
+            error = AtariMessageFunctions.Translate(error, Configuration);
             if (_core.Diagnostics.Count > AtariMachineConstants.EmptyCount)
                 error.Data[AtariMachineConstants.DiagnosticDataKey] = string.Join(Environment.NewLine,
                     _core.Diagnostics.TakeLast(AtariMachineConstants.DiagnosticTailCount));
-            Fault = error;
             _started?.TrySetException(error);
             FailPendingCommands(error);
             lock (_gate) State = EmulationMachineState.Faulted;
@@ -259,13 +327,13 @@ internal sealed class AtariMachine : IAtariMachine
         {
             if (initialized) AtariMachineFunctions.TryReleaseInput(_core);
             if (initialized)
-                try { _core.Stop(); } catch (Exception error) { Fault ??= error; }
-            try { _core.Dispose(); } catch (Exception error) { Fault ??= error; }
-            try { _audio.Stop(); } catch (Exception error) { Fault ??= error; }
+                try { _core.Stop(); } catch (Exception) { }
+            try { _core.Dispose(); } catch (Exception) { }
+            try { _audio.Stop(); } catch (Exception) { }
             AtariMachineFunctions.DeleteSessionDirectory(_sessionDirectory);
             FailPendingCommands(new OperationCanceledException(AtariMachineConstants.StoppedMessage));
             lock (_gate)
-                State = Fault is null ? EmulationMachineState.Stopped : EmulationMachineState.Faulted;
+                if (State != EmulationMachineState.Faulted) State = EmulationMachineState.Stopped;
         }
     }
 

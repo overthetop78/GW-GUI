@@ -1011,13 +1011,13 @@
   <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
     <value>CD メディアを使用するには Jaguar CD モデルを選択してください。</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cassettes">
+  <data name="Emulation.Storage.Cassettes">
     <value>カセットテープ</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cartridges">
+  <data name="Emulation.Storage.Cartridges">
     <value>カートリッジ</value>
   </data>
-  <data name="Emulation.Atari.Storage.CompactDiscs">
+  <data name="Emulation.Storage.CompactDiscs">
     <value>コンパクトディスク</value>
   </data>
   <data name="Emulation.Atari.Video.Region">
@@ -1107,8 +1107,8 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>アタリブースターグリップ</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>セガジェネシスコントローラ</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>アタリジョイ2B+コントローラー</value></data>
-  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
-    <value>このマシンの電源を入れる前に、エミュレーターにメディアが必要です。フロッピーディスクを挿入するか、ハードディスクを設定してください。</value>
+  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
+    <value>このマシンの電源を入れる前に、エミュレーターにメディアが必要です。以下に表示されている必要なメディアのいずれかを挿入または設定してください。</value>
   </data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
     <value>マシンの電源を入れられませんでした</value>
@@ -1157,4 +1157,5 @@
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>低</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>標準</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>高</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>カートリッジスロット</value></data>
 </root>

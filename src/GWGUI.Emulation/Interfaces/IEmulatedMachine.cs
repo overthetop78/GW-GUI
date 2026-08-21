@@ -4,10 +4,11 @@ public interface IEmulatedMachine : IAsyncDisposable
 {
     Guid Id { get; }
     EmulationMachineState State { get; }
-    ValueTask StartAsync(CancellationToken cancellationToken = default);
-    ValueTask PauseAsync(CancellationToken cancellationToken = default);
-    ValueTask ResumeAsync(CancellationToken cancellationToken = default);
-    ValueTask SoftResetAsync(CancellationToken cancellationToken = default);
-    ValueTask HardResetAsync(CancellationToken cancellationToken = default);
-    ValueTask StopAsync(CancellationToken cancellationToken = default);
+    IEmulationLifecycle Lifecycle { get; }
+    IEmulationInput Input { get; }
+    IEmulationMedia Media { get; }
+    IEmulationVideo Video { get; }
+    IEmulationAudio Audio { get; }
+    IEmulationSavedStates SavedStates { get; }
+    IEmulationRuntime Runtime { get; }
 }

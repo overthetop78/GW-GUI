@@ -53,7 +53,8 @@ internal static class AtariInputFunctions
     {
         DeltaX = SaturatingAdd(current.Pointer.DeltaX, update.Pointer.DeltaX),
         DeltaY = SaturatingAdd(current.Pointer.DeltaY, update.Pointer.DeltaY),
-        Wheel = SaturatingAdd(current.Pointer.Wheel, update.Pointer.Wheel)
+        Wheel = SaturatingAdd(current.Pointer.Wheel, update.Pointer.Wheel),
+        HorizontalWheel = SaturatingAdd(current.Pointer.HorizontalWheel, update.Pointer.HorizontalWheel)
     }, update.Controllers.ToArray());
 
     internal static EmulationInputSnapshot ConsumeRelativePointer(EmulationInputSnapshot snapshot) =>
@@ -63,7 +64,8 @@ internal static class AtariInputFunctions
             {
                 DeltaX = AtariInputConstants.ConsumedRelativeValue,
                 DeltaY = AtariInputConstants.ConsumedRelativeValue,
-                Wheel = AtariInputConstants.ConsumedRelativeValue
+                Wheel = AtariInputConstants.ConsumedRelativeValue,
+                HorizontalWheel = AtariInputConstants.ConsumedRelativeValue
             }
         };
 

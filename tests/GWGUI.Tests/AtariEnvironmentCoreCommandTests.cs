@@ -24,9 +24,9 @@ public sealed class AtariEnvironmentCoreCommandTests
         ExternalCoreApiConstants.SetNetworkPacketInterface, ExternalCoreApiConstants.SetSerializationQuirks
     }.Select(command => new object[] { command });
 
-    public static TheoryData<AtariCoreKind, uint[]> CommandsByCore => new()
+    public static TheoryData<AtariEmulator, uint[]> CommandsByCore => new()
     {
-        { AtariCoreKind.Hatari, [
+        { AtariEmulator.Hatari, [
             ExternalCoreApiConstants.GetSystemDirectory, ExternalCoreApiConstants.SetPixelFormat,
             ExternalCoreApiConstants.SetInputDescriptors, ExternalCoreApiConstants.GetVariable,
             ExternalCoreApiConstants.SetVariables, ExternalCoreApiConstants.GetLogInterface,
@@ -34,7 +34,7 @@ public sealed class AtariEnvironmentCoreCommandTests
             ExternalCoreApiConstants.GetCoreOptionsVersion, ExternalCoreApiConstants.GetDiskControlVersion,
             ExternalCoreApiConstants.SetDiskControlExtended, ExternalCoreApiConstants.SetSerializationQuirks,
             ExternalCoreApiConstants.GetVfsInterface, ExternalCoreApiConstants.GetMidiInterface ] },
-        { AtariCoreKind.Atari800, [
+        { AtariEmulator.Atari800, [
             ExternalCoreApiConstants.GetSystemDirectory, ExternalCoreApiConstants.SetPixelFormat,
             ExternalCoreApiConstants.SetInputDescriptors, ExternalCoreApiConstants.GetVariable,
             ExternalCoreApiConstants.SetVariables, ExternalCoreApiConstants.SetSupportNoGame,
@@ -43,19 +43,19 @@ public sealed class AtariEnvironmentCoreCommandTests
             ExternalCoreApiConstants.GetCoreOptionsVersion, ExternalCoreApiConstants.GetDiskControlVersion,
             ExternalCoreApiConstants.SetDiskControlExtended, ExternalCoreApiConstants.GetVfsInterface,
             ExternalCoreApiConstants.GetInputBitmasks ] },
-        { AtariCoreKind.Stella, [ ExternalCoreApiConstants.SetPerformanceLevel,
+        { AtariEmulator.Stella, [ ExternalCoreApiConstants.SetPerformanceLevel,
             ExternalCoreApiConstants.SetVariables, ExternalCoreApiConstants.GetLogInterface,
             ExternalCoreApiConstants.GetInputBitmasks ] },
-        { AtariCoreKind.ProSystem, [ ExternalCoreApiConstants.SetPerformanceLevel,
+        { AtariEmulator.ProSystem, [ ExternalCoreApiConstants.SetPerformanceLevel,
             ExternalCoreApiConstants.SetVariables, ExternalCoreApiConstants.GetLogInterface,
             ExternalCoreApiConstants.GetCoreOptionsVersion, ExternalCoreApiConstants.SetContentInfoOverride,
             ExternalCoreApiConstants.GetVfsInterface, ExternalCoreApiConstants.GetInputBitmasks ] },
-        { AtariCoreKind.BeetleLynx, [ ExternalCoreApiConstants.SetPerformanceLevel,
+        { AtariEmulator.BeetleLynx, [ ExternalCoreApiConstants.SetPerformanceLevel,
             ExternalCoreApiConstants.GetSystemDirectory, ExternalCoreApiConstants.SetVariables,
             ExternalCoreApiConstants.GetLogInterface, ExternalCoreApiConstants.GetPerformanceInterface,
             ExternalCoreApiConstants.GetCoreOptionsVersion, ExternalCoreApiConstants.GetVfsInterface,
             ExternalCoreApiConstants.GetInputBitmasks ] },
-        { AtariCoreKind.VirtualJaguar, [ ExternalCoreApiConstants.SetPerformanceLevel,
+        { AtariEmulator.VirtualJaguar, [ ExternalCoreApiConstants.SetPerformanceLevel,
             ExternalCoreApiConstants.SetVariables, ExternalCoreApiConstants.GetLogInterface,
             ExternalCoreApiConstants.GetCoreOptionsVersion, ExternalCoreApiConstants.SetContentInfoOverride,
             ExternalCoreApiConstants.SetCoreOptionsUpdateDisplayCallback,
@@ -65,7 +65,7 @@ public sealed class AtariEnvironmentCoreCommandTests
 
     [Theory]
     [MemberData(nameof(CommandsByCore))]
-    public void CommandsObservedFromOfficialCore_AreAllExplicitlyRecognized(AtariCoreKind kind, uint[] commands)
+    public void CommandsObservedFromOfficialCore_AreAllExplicitlyRecognized(AtariEmulator kind, uint[] commands)
     {
         var root = Path.Combine(Path.GetTempPath(), $"gwgui-atari-command-contract-{Guid.NewGuid():N}");
         Directory.CreateDirectory(root);

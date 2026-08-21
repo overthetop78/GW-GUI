@@ -1,14 +1,12 @@
 using System.Windows;
 using System.Windows.Controls;
+using GWGUI.App.Constants;
 using GWGUI.App.Localization;
 
 namespace GWGUI.App.Controls;
 
 internal static partial class EmulationSettingsLayout
 {
-    private const string MouseIcon = "\uE962";
-    private const string ControllerIcon = "\uE7FC";
-
     internal static Border InputBindings(InputBindingEditor editor, string title, string? hint = null)
     {
         var layout = new Grid();
@@ -18,7 +16,8 @@ internal static partial class EmulationSettingsLayout
         heading.Children.Add(new TextBlock { Text = title, FontWeight = FontWeights.SemiBold, FontSize = 16,
             VerticalAlignment = VerticalAlignment.Center });
         if (!string.IsNullOrWhiteSpace(hint))
-            heading.Children.Add(new TextBlock { Text = "\uE946", FontFamily = ControlVisualConstants.IconFont,
+            heading.Children.Add(new TextBlock { Text = EmulationInputSettingsConstants.InformationIcon,
+                FontFamily = ControlVisualConstants.IconFont,
                 FontSize = 15, Margin = new Thickness(9, 0, 0, 0), VerticalAlignment = VerticalAlignment.Center,
                 ToolTip = hint });
         layout.Children.Add(heading);
@@ -47,8 +46,8 @@ internal static partial class EmulationSettingsLayout
     }
 
     internal static ScrollViewer MouseSettingsPage(
-        IReadOnlyList<EmulationSettingsField> mouseFields,
-        IReadOnlyList<EmulationSettingsField>? analogFields,
+        IReadOnlyList<EmulationSettingsControlField> mouseFields,
+        IReadOnlyList<EmulationSettingsControlField>? analogFields,
         InputBindingEditor editor,
         Border? unavailable = null)
     {
@@ -60,13 +59,13 @@ internal static partial class EmulationSettingsLayout
 
         var mouse = IconCard(SettingsFields(1,
                 mouseFields.Select(field => (field.Label, field.Control)).ToArray()),
-            LocExtension.Get("Emulation.Tab.Mouse"), MouseIcon);
+            LocExtension.Get("Emulation.Tab.Mouse"), EmulationInputSettingsConstants.MouseIcon);
         mouse.Margin = new Thickness(0, 0, 5, 0);
         if (analogFields is not null && analogFields.Count > 0)
         {
             var analog = IconCard(SettingsFields(1,
                     analogFields.Select(field => (field.Label, field.Control)).ToArray()),
-                LocExtension.Get("Emulation.Mouse.Analog"), ControllerIcon);
+                LocExtension.Get("Emulation.Mouse.Analog"), EmulationInputSettingsConstants.ControllerIcon);
             analog.Margin = new Thickness(5, 0, 0, 0);
             Grid.SetColumn(analog, 1);
             settings.Children.Add(analog);

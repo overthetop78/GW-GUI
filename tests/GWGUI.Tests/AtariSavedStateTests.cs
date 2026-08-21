@@ -7,19 +7,19 @@ namespace GWGUI.Tests;
 
 public sealed class AtariSavedStateTests
 {
-    public static TheoryData<AtariCoreKind, AtariMachineModel> CoreModels => new()
+    public static TheoryData<AtariEmulator, AtariMachineModel> CoreModels => new()
     {
-        { AtariCoreKind.Hatari, AtariMachineModel.St },
-        { AtariCoreKind.Atari800, AtariMachineModel.Atari800 },
-        { AtariCoreKind.Stella, AtariMachineModel.Atari2600 },
-        { AtariCoreKind.ProSystem, AtariMachineModel.Atari7800 },
-        { AtariCoreKind.BeetleLynx, AtariMachineModel.Lynx },
-        { AtariCoreKind.VirtualJaguar, AtariMachineModel.Jaguar }
+        { AtariEmulator.Hatari, AtariMachineModel.St },
+        { AtariEmulator.Atari800, AtariMachineModel.Atari800 },
+        { AtariEmulator.Stella, AtariMachineModel.Atari2600 },
+        { AtariEmulator.ProSystem, AtariMachineModel.Atari7800 },
+        { AtariEmulator.BeetleLynx, AtariMachineModel.Lynx },
+        { AtariEmulator.VirtualJaguar, AtariMachineModel.Jaguar }
     };
 
     [Theory]
     [MemberData(nameof(CoreModels))]
-    public async Task StateRoundTripUsesContainerForEveryCore(AtariCoreKind kind, AtariMachineModel model)
+    public async Task StateRoundTripUsesContainerForEveryCore(AtariEmulator kind, AtariMachineModel model)
     {
         var paths = CreatePaths();
         var core = new StateCore(kind);
@@ -46,7 +46,7 @@ public sealed class AtariSavedStateTests
 
     [Theory]
     [MemberData(nameof(CoreModels))]
-    public async Task NativeLoadFailureIsPreciseForEveryCore(AtariCoreKind kind, AtariMachineModel model)
+    public async Task NativeLoadFailureIsPreciseForEveryCore(AtariEmulator kind, AtariMachineModel model)
     {
         var paths = CreatePaths();
         var core = new StateCore(kind) { RejectLoad = true };
@@ -58,7 +58,7 @@ public sealed class AtariSavedStateTests
 
             var error = await Assert.ThrowsAsync<AtariEmulationException>(
                 () => machine.LoadStateAsync(paths.State).AsTask());
-            Assert.Equal(AtariErrorKind.State, error.Kind);
+            Assert.Equal(AtariErrorCategory.State, error.Category);
             Assert.Equal(AtariErrorCode.StateIncompatible, error.Code);
             Assert.Equal(AtariErrorMessages.StateLoadFailed, error.Message);
         }
@@ -78,7 +78,7 @@ public sealed class AtariSavedStateTests
             var truncated = Assert.Throws<AtariEmulationException>(() => AtariStateFileFunctions.Read(paths.State));
             Assert.Equal(AtariStateConstants.TruncatedFileError, truncated.Message);
 
-            var core = new StateCore(AtariCoreKind.Stella);
+            var core = new StateCore(AtariEmulator.Stella);
             var configuration = new AtariMachineConfiguration(AtariMachineModel.Atari2600);
             var header = AtariSavedStateFunctions.CreateHeader(configuration, core,
                 AtariSavedStateTestConstants.Payload);
@@ -104,12 +104,12 @@ public sealed class AtariSavedStateTests
         File.WriteAllBytes(contentPath, AtariSavedStateTestConstants.FirstContent);
         try
         {
-            var core = new StateCore(AtariCoreKind.Stella);
+            var core = new StateCore(AtariEmulator.Stella);
             var configuration = Configuration(contentPath, AtariSavedStateTestConstants.FirstOptionValue);
             var header = AtariSavedStateFunctions.CreateHeader(configuration, core,
                 AtariSavedStateTestConstants.Payload);
 
-            AssertMismatch(header with { Core = AtariCoreKind.ProSystem }, configuration, core,
+            AssertMismatch(header with { Core = AtariEmulator.ProSystem }, configuration, core,
                 AtariStateConstants.CoreMismatchError);
             AssertMismatch(header with { Model = AtariMachineModel.Atari7800 }, configuration, core,
                 AtariStateConstants.ModelMismatchError);
@@ -130,7 +130,7 @@ public sealed class AtariSavedStateTests
     public async Task UnavailableStatesAreRejectedBeforeCallingCore()
     {
         var paths = CreatePaths();
-        var core = new StateCore(AtariCoreKind.Stella) { SupportsSaveStates = false };
+        var core = new StateCore(AtariEmulator.Stella) { SupportsSaveStates = false };
         await using var machine = CreateMachine(core, AtariMachineModel.Atari2600, paths.Session);
         try
         {
@@ -154,11 +154,11 @@ public sealed class AtariSavedStateTests
         var mediaPath = Path.Combine(paths.Session, "state-disk.st");
         Directory.CreateDirectory(paths.Session);
         await File.WriteAllBytesAsync(mediaPath, AtariSavedStateTestConstants.FirstContent);
-        var core = new StateCore(AtariCoreKind.Hatari);
+        var core = new StateCore(AtariEmulator.Hatari);
         await using var machine = CreateMachine(core, AtariMachineModel.St, paths.Session);
         try
         {
-            var media = new AtariMediaConfiguration(mediaPath, AtariMediaKind.Floppy,
+            var media = new AtariMediaConfiguration(mediaPath, AtariMediaCategory.Floppy,
                 EmulationMediaSlot.Floppy0);
             await machine.StartAsync();
             await machine.InsertMediaAsync(media);
@@ -182,7 +182,7 @@ public sealed class AtariSavedStateTests
     public void FileContainerPreservesVariablePayloadSizesExactly()
     {
         var paths = CreatePaths();
-        var core = new StateCore(AtariCoreKind.Stella);
+        var core = new StateCore(AtariEmulator.Stella);
         var configuration = new AtariMachineConfiguration(AtariMachineModel.Atari2600);
         try
         {
@@ -206,7 +206,7 @@ public sealed class AtariSavedStateTests
         AtariMachineModel.Atari2600,
         media:
         [
-            new AtariMediaConfiguration(contentPath, AtariMediaKind.Cartridge, EmulationMediaSlot.Cartridge0)
+            new AtariMediaConfiguration(contentPath, AtariMediaCategory.Cartridge, EmulationMediaSlot.Cartridge0)
         ],
         options: new Dictionary<string, string>
         {
@@ -237,9 +237,9 @@ public sealed class AtariSavedStateTests
         if (directory is not null && Directory.Exists(directory)) Directory.Delete(directory, recursive: true);
     }
 
-    private sealed class StateCore(AtariCoreKind kind) : IAtariCore
+    private sealed class StateCore(AtariEmulator kind) : IAtariCore
     {
-        public AtariCoreKind Kind { get; } = kind;
+        public AtariEmulator Emulator { get; } = kind;
         public byte[]? LoadedState { get; private set; }
         public bool RejectLoad { get; init; }
         public int SaveCalls { get; private set; }
@@ -248,7 +248,7 @@ public sealed class AtariSavedStateTests
         public IReadOnlyList<AtariCoreOption> Options => [];
         public IReadOnlyList<string> Diagnostics => [];
         public IReadOnlyDictionary<int, bool> LedStates => new Dictionary<int, bool>();
-        public string CoreName => Kind.ToString();
+        public string CoreName => Emulator.ToString();
         public string CoreVersion => AtariSavedStateTestConstants.CoreVersion;
         public string CoreSha256 => AtariSavedStateTestConstants.CoreSha256;
         public IReadOnlySet<string> SupportedContentExtensions => new HashSet<string>();
@@ -268,7 +268,7 @@ public sealed class AtariSavedStateTests
         public void HardReset() { }
         public void Stop() { }
         public void SetInput(EmulationInputSnapshot snapshot) { }
-        public void SetControllerPortDevice(int port, AtariPeripheralKind peripheral) { }
+        public void SetControllerPortDevice(int port, AtariPeripheralCategory peripheral) { }
         public void InsertMedia(AtariMediaConfiguration media) { }
         public void EjectMedia(EmulationMediaSlot slot) { }
         public void SelectDisk(int index) { }
@@ -284,7 +284,7 @@ public sealed class AtariSavedStateTests
         public void LoadState(ReadOnlySpan<byte> state)
         {
             if (RejectLoad)
-                throw new AtariEmulationException(AtariErrorKind.State, AtariErrorCode.StateIncompatible,
+                throw new AtariEmulationException(AtariErrorCategory.State, AtariErrorCode.StateIncompatible,
                     AtariErrorMessages.StateLoadFailed);
             LoadedState = state.ToArray();
         }

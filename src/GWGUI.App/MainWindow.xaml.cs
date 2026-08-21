@@ -552,7 +552,7 @@ public partial class MainWindow : Window
     private async void Window_Loaded(object sender, RoutedEventArgs e)
     {
         if (!_settingsProvidedAtStartup) _settings = await _settingsStore.LoadAsync();
-        AmigaEmulationBlock.Configure(_settings);
+        EmulationBlock.Configure(_settings);
         if (!string.IsNullOrWhiteSpace(_settings.GwExecutablePath))
             _formatWorkspace.SetCapabilities(await new GwFormatCapabilityReader().ReadAsync(_settings.GwExecutablePath));
         SynchronizeFormatWorkspace();
@@ -1118,7 +1118,7 @@ public partial class MainWindow : Window
             failure = exception;
         }
 
-        var stopEmulation = await Dispatcher.InvokeAsync(() => AmigaEmulationBlock.StopAllAsync());
+        var stopEmulation = await Dispatcher.InvokeAsync(() => EmulationBlock.StopAllAsync());
         await stopEmulation.ConfigureAwait(false);
 
         await _operation.WaitForCompletionAsync().ConfigureAwait(false);

@@ -25,15 +25,15 @@ internal sealed class AtariExternalCore : IAtariCore
     private AtariPreparedCartridge? _cartridge;
     private AtariPreparedJaguarCd? _jaguarCd;
 
-    internal AtariExternalCore(string absoluteCorePath, AtariCoreKind kind)
+    internal AtariExternalCore(string absoluteCorePath, AtariEmulator emulator)
     {
         _corePath = Path.GetFullPath(absoluteCorePath);
-        Kind = kind;
-        _info = AtariExternalCoreProbe.Inspect(absoluteCorePath, kind);
+        Emulator = emulator;
+        _info = AtariExternalCoreProbe.Inspect(absoluteCorePath, emulator);
         CoreSha256 = Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(_corePath))).ToLowerInvariant();
     }
 
-    public AtariCoreKind Kind { get; }
+    public AtariEmulator Emulator { get; }
     public VideoFrame? LatestVideoFrame => _callbacks?.LatestVideoFrame;
     public AudioChunk? LatestAudioChunk => _callbacks?.LatestAudioChunk;
     public IReadOnlyList<AtariCoreOption> Options => _callbacks?.Options ?? [];
@@ -80,7 +80,7 @@ internal sealed class AtariExternalCore : IAtariCore
             Atari800PreparedMedia? atari800Media = null;
             _library = new ExternalCoreLibrary(_corePath);
             _exports = AtariCoreFunctions.ResolveExports(_library);
-            var configuredOptions = Kind == AtariCoreKind.Hatari
+            var configuredOptions = Emulator == AtariEmulator.Hatari
                 ? AtariMachineOptionFunctions.Apply(configuration)
                 : configuration.Options;
             _callbacks = new AtariExternalHostCallbacks(
@@ -92,30 +92,30 @@ internal sealed class AtariExternalCore : IAtariCore
             AtariCoreFunctions.InstallCallbacks(_exports, _callbacks);
             _exports.Initialize();
             _nativeInitialized = true;
-            _info = AtariCoreFunctions.ReadInitializedInfo(_exports, Kind);
+            _info = AtariCoreFunctions.ReadInitializedInfo(_exports, Emulator);
             _callbacks.ValidateConfiguredOptions();
 
             AtariFirmwareRuntimeFunctions.PrepareSystemDirectory(configuration, systemDirectory);
-            if (Kind == AtariCoreKind.Hatari)
+            if (Emulator == AtariEmulator.Hatari)
             {
                 _hatariContent = AtariHatariContentFunctions.Prepare(configuration, absoluteSession, _info.Extensions);
                 media = _hatariContent?.Configuration;
             }
-            else if (Kind == AtariCoreKind.Atari800 && media is not null)
+            else if (Emulator == AtariEmulator.Atari800 && media is not null)
             {
                 atari800Media = Atari800MediaFunctions.Prepare(configuration, media, absoluteSession,
                     _info.Extensions);
                 preparedMedia = atari800Media.SessionMedia;
             }
             else if (configuration.Model == AtariMachineModel.JaguarCd
-                     && media?.Kind == AtariMediaKind.CompactDisc)
+                     && media?.Category == AtariMediaCategory.CompactDisc)
             {
                 _jaguarCd = AtariJaguarCdFunctions.Prepare(configuration, media,
                     _info.NeedsFullPath, _info.Extensions);
             }
-            else if (AtariCartridgeFunctions.Supports(Kind) && media is not null)
+            else if (AtariCartridgeFunctions.Supports(Emulator) && media is not null)
             {
-                _cartridge = AtariCartridgeFunctions.Prepare(configuration, media, Kind,
+                _cartridge = AtariCartridgeFunctions.Prepare(configuration, media, Emulator,
                     _info.NeedsFullPath, _info.Extensions);
                 AtariCartridgeFunctions.ValidateNoUnsupportedMetadata(media);
             }
@@ -123,11 +123,11 @@ internal sealed class AtariExternalCore : IAtariCore
             {
                 preparedMedia = AtariSessionMediaFunctions.Prepare(media, absoluteSession, _info.Extensions);
             }
-            IReadOnlyDictionary<string, string> runtimeOptions = Kind == AtariCoreKind.Atari800
+            IReadOnlyDictionary<string, string> runtimeOptions = Emulator == AtariEmulator.Atari800
                 ? Atari800MediaFunctions.ApplyOptions(configuration, atari800Media)
                 : AtariHatariStorageFunctions.ApplyWriteProtection(configuration.Options, _hatariContent?.Storage);
             if (_cartridge is not null)
-                runtimeOptions = AtariCartridgeFunctions.ApplyOptions(runtimeOptions, _cartridge.Configuration, Kind);
+                runtimeOptions = AtariCartridgeFunctions.ApplyOptions(runtimeOptions, _cartridge.Configuration, Emulator);
             foreach (var option in runtimeOptions)
                 if (!configuration.Options.TryGetValue(option.Key, out var configuredValue)
                     || !string.Equals(configuredValue, option.Value, StringComparison.Ordinal))
@@ -147,7 +147,7 @@ internal sealed class AtariExternalCore : IAtariCore
             Region = AtariRuntimeFunctions.Region(_exports.GetRegion());
             if (atari800Media?.ContentType is Atari800ContentType.Floppy or Atari800ContentType.Cassette &&
                 !_callbacks.DiskControl.IsAvailable)
-                throw new AtariEmulationException(AtariErrorKind.Content, AtariErrorCode.ContentUnsupported,
+                throw new AtariEmulationException(AtariErrorCategory.Content, AtariErrorCode.ContentUnsupported,
                     Atari800MediaErrors.MediaControlRequired);
             if (media is not null)
             {
@@ -168,7 +168,7 @@ internal sealed class AtariExternalCore : IAtariCore
     public void RunFrame() => RequireExports().Run();
     public void HardReset() => RequireExports().Reset();
     public void SetInput(EmulationInputSnapshot snapshot) => RequireCallbacks().Input = snapshot;
-    public void SetControllerPortDevice(int port, AtariPeripheralKind peripheral)
+    public void SetControllerPortDevice(int port, AtariPeripheralCategory peripheral)
     {
         var configuration = _configuration ??
             throw new InvalidOperationException(AtariErrorMessages.CoreNotInitialized);
@@ -181,25 +181,25 @@ internal sealed class AtariExternalCore : IAtariCore
         var configuration = _configuration ??
             throw new InvalidOperationException(AtariErrorMessages.CoreNotInitialized);
         AtariJaguarCdFunctions.RejectForStandardJaguar(configuration.Model, media);
-        if (media.Kind == AtariMediaKind.CompactDisc)
+        if (media.Category == AtariMediaCategory.CompactDisc)
         {
             ReplaceJaguarCd(media);
             return;
         }
-        if (AtariCartridgeFunctions.Supports(Kind))
+        if (AtariCartridgeFunctions.Supports(Emulator))
         {
             ReplaceCartridge(media);
             return;
         }
-        if (Kind == AtariCoreKind.Atari800 && media.Kind == AtariMediaKind.Cartridge)
+        if (Emulator == AtariEmulator.Atari800 && media.Category == AtariMediaCategory.Cartridge)
             throw new NotSupportedException(Atari800MediaErrors.DynamicCartridgeUnsupported);
-        if ((Kind != AtariCoreKind.Hatari && Kind != AtariCoreKind.Atari800) ||
-            media.Kind is not (AtariMediaKind.Floppy or AtariMediaKind.Cassette))
+        if ((Emulator != AtariEmulator.Hatari && Emulator != AtariEmulator.Atari800) ||
+            media.Category is not (AtariMediaCategory.Floppy or AtariMediaCategory.Cassette))
             throw new NotSupportedException(AtariErrorMessages.HatariFloppyRequired);
         var sessionDirectory = _sessionDirectory ??
             throw new InvalidOperationException(AtariErrorMessages.CoreNotInitialized);
         AtariSessionMedia preparedMedia;
-        if (Kind == AtariCoreKind.Atari800)
+        if (Emulator == AtariEmulator.Atari800)
         {
             var prepared = Atari800MediaFunctions.Prepare(
                 _configuration ?? throw new InvalidOperationException(AtariErrorMessages.CoreNotInitialized),
@@ -218,11 +218,11 @@ internal sealed class AtariExternalCore : IAtariCore
 
     public void EjectMedia(EmulationMediaSlot slot)
     {
-        if (slot == EmulationMediaSlot.Cd0 && Kind == AtariCoreKind.VirtualJaguar)
+        if (slot == EmulationMediaSlot.Cd0 && Emulator == AtariEmulator.VirtualJaguar)
             throw new NotSupportedException(AtariJaguarCdErrors.EjectionUnsupported);
-        if (AtariCartridgeFunctions.Supports(Kind))
+        if (AtariCartridgeFunctions.Supports(Emulator))
             throw new NotSupportedException(AtariCartridgeErrors.EjectionUnsupported);
-        if (Kind != AtariCoreKind.Hatari && Kind != AtariCoreKind.Atari800)
+        if (Emulator != AtariEmulator.Hatari && Emulator != AtariEmulator.Atari800)
             throw new NotSupportedException(AtariErrorMessages.HatariFloppyRequired);
         RequireCallbacks().DiskControl.Eject();
         AtariMediaRuntimeFunctions.MarkEjected(_mountedMedia, slot);
@@ -230,7 +230,7 @@ internal sealed class AtariExternalCore : IAtariCore
 
     public void SelectDisk(int index)
     {
-        if (Kind != AtariCoreKind.Hatari && Kind != AtariCoreKind.Atari800)
+        if (Emulator != AtariEmulator.Hatari && Emulator != AtariEmulator.Atari800)
             throw new NotSupportedException(AtariErrorMessages.HatariFloppyRequired);
         RequireCallbacks().DiskControl.Select(index);
     }
@@ -244,7 +244,7 @@ internal sealed class AtariExternalCore : IAtariCore
 
     public AtariDiskStatus GetDiskStatus()
     {
-        if (Kind != AtariCoreKind.Hatari && Kind != AtariCoreKind.Atari800)
+        if (Emulator != AtariEmulator.Hatari && Emulator != AtariEmulator.Atari800)
             throw new NotSupportedException(AtariErrorMessages.HatariFloppyRequired);
         return RequireCallbacks().DiskControl.GetStatus();
     }
@@ -257,14 +257,14 @@ internal sealed class AtariExternalCore : IAtariCore
         var exports = RequireExports();
         var size = exports.GetSerializedSize();
         if (size == nuint.Zero || size > AtariConstants.MaximumStateSize)
-            throw new AtariEmulationException(AtariErrorKind.State, AtariErrorCode.StateInvalid,
+            throw new AtariEmulationException(AtariErrorCategory.State, AtariErrorCode.StateInvalid,
                 AtariErrorMessages.StateSizeInvalid);
         var state = GC.AllocateUninitializedArray<byte>(checked((int)size));
         var buffer = Marshal.AllocHGlobal(state.Length);
         try
         {
             if (!exports.Serialize(buffer, size))
-                throw new AtariEmulationException(AtariErrorKind.State, AtariErrorCode.StateInvalid,
+                throw new AtariEmulationException(AtariErrorCategory.State, AtariErrorCode.StateInvalid,
                     AtariErrorMessages.StateSaveFailed);
             Marshal.Copy(buffer, state, AtariConstants.FirstBufferIndex, state.Length);
             return state;
@@ -278,7 +278,7 @@ internal sealed class AtariExternalCore : IAtariCore
     public void LoadState(ReadOnlySpan<byte> state)
     {
         if (state.IsEmpty || state.Length > AtariConstants.MaximumStateSize)
-            throw new AtariEmulationException(AtariErrorKind.State, AtariErrorCode.StateInvalid,
+            throw new AtariEmulationException(AtariErrorCategory.State, AtariErrorCode.StateInvalid,
                 AtariErrorMessages.StateSizeInvalid);
         var bytes = state.ToArray();
         var buffer = Marshal.AllocHGlobal(bytes.Length);
@@ -286,7 +286,7 @@ internal sealed class AtariExternalCore : IAtariCore
         {
             Marshal.Copy(bytes, AtariConstants.FirstBufferIndex, buffer, bytes.Length);
             if (!RequireExports().Unserialize(buffer, (nuint)bytes.Length))
-                throw new AtariEmulationException(AtariErrorKind.State, AtariErrorCode.StateIncompatible,
+                throw new AtariEmulationException(AtariErrorCategory.State, AtariErrorCode.StateIncompatible,
                     AtariErrorMessages.StateLoadFailed);
         }
         finally
@@ -319,10 +319,10 @@ internal sealed class AtariExternalCore : IAtariCore
         var configuration = _configuration ??
             throw new InvalidOperationException(AtariErrorMessages.CoreNotInitialized);
         var exports = RequireExports();
-        var prepared = AtariCartridgeFunctions.Prepare(configuration, media, Kind,
+        var prepared = AtariCartridgeFunctions.Prepare(configuration, media, Emulator,
             _info.NeedsFullPath, _info.Extensions);
         AtariCartridgeFunctions.ValidateNoUnsupportedMetadata(media);
-        foreach (var option in AtariCartridgeFunctions.GetMediaOptions(media, Kind))
+        foreach (var option in AtariCartridgeFunctions.GetMediaOptions(media, Emulator))
             RequireCallbacks().SetOption(option.Key, option.Value);
         var candidate = AtariContentFunctions.Create(prepared.RuntimePath,
             prepared.NeedsFullPath, _info.Extensions);
@@ -337,10 +337,10 @@ internal sealed class AtariExternalCore : IAtariCore
         {
             candidate.Dispose();
             if (previousContent is null || !exports.LoadGame(previousContent.GameInfo))
-                throw new AtariEmulationException(AtariErrorKind.Content, AtariErrorCode.ContentUnsupported,
+                throw new AtariEmulationException(AtariErrorCategory.Content, AtariErrorCode.ContentUnsupported,
                     AtariCartridgeErrors.RollbackFailed);
             _gameLoaded = true;
-            throw new AtariEmulationException(AtariErrorKind.Content, AtariErrorCode.ContentUnsupported,
+            throw new AtariEmulationException(AtariErrorCategory.Content, AtariErrorCode.ContentUnsupported,
                 AtariCartridgeErrors.ReplacementFailed);
         }
 

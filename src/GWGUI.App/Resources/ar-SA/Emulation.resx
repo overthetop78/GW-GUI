@@ -1011,13 +1011,13 @@
   <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
     <value>حدد طراز Jaguar CD لاستخدام أقراص CD.</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cassettes">
+  <data name="Emulation.Storage.Cassettes">
     <value>شريط كاسيت</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cartridges">
+  <data name="Emulation.Storage.Cartridges">
     <value>خرطوشة</value>
   </data>
-  <data name="Emulation.Atari.Storage.CompactDiscs">
+  <data name="Emulation.Storage.CompactDiscs">
     <value>أقراص مضغوطة</value>
   </data>
   <data name="Emulation.Atari.Video.Region">
@@ -1107,8 +1107,8 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Observer</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Observer</value></data>
-  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
-    <value>يتطلب المحاكي وسيطًا قبل تشغيل هذا الجهاز. أدخل قرصًا مرنًا أو قم بإعداد قرص ثابت.</value>
+  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
+    <value>يتطلب المحاكي وسيطًا قبل تشغيل هذا الجهاز. أدخل أو قم بإعداد أحد الوسائط المطلوبة الموضحة أدناه.</value>
   </data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
     <value>تعذر تشغيل الجهاز</value>
@@ -1157,4 +1157,5 @@
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>منخفضة</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>عادية</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>عالية</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>منفذ الخرطوشة</value></data>
 </root>

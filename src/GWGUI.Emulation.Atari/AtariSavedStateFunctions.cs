@@ -11,7 +11,7 @@ internal static class AtariSavedStateFunctions
     internal static AtariSavedStateHeader CreateHeader(AtariMachineConfiguration configuration,
         IAtariCore core, ReadOnlySpan<byte> state) => new(
         AtariStateConstants.CurrentFormatVersion,
-        core.Kind,
+        core.Emulator,
         core.CoreName,
         core.CoreVersion,
         core.CoreSha256,
@@ -25,7 +25,7 @@ internal static class AtariSavedStateFunctions
     {
         if (header.FormatVersion != AtariStateConstants.CurrentFormatVersion)
             throw Invalid(AtariErrorCode.StateIncompatible, AtariStateConstants.UnsupportedFormatError);
-        if (header.Core != core.Kind || !string.Equals(header.CoreName, core.CoreName, StringComparison.Ordinal)
+        if (header.Core != core.Emulator || !string.Equals(header.CoreName, core.CoreName, StringComparison.Ordinal)
             || !string.Equals(header.CoreVersion, core.CoreVersion, StringComparison.Ordinal)
             || !string.Equals(header.CoreSha256, core.CoreSha256, StringComparison.OrdinalIgnoreCase))
             throw Invalid(AtariErrorCode.StateIncompatible, AtariStateConstants.CoreMismatchError);
@@ -47,7 +47,7 @@ internal static class AtariSavedStateFunctions
     }
 
     internal static AtariEmulationException Invalid(AtariErrorCode code, string message,
-        Exception? innerException = null) => new(AtariErrorKind.State, code, message, innerException: innerException);
+        Exception? innerException = null) => new(AtariErrorCategory.State, code, message, innerException: innerException);
 
     internal static string HashBytes(ReadOnlySpan<byte> value) =>
         Convert.ToHexString(SHA256.HashData(value));
@@ -65,7 +65,7 @@ internal static class AtariSavedStateFunctions
             InputFingerprint(configuration.Input),
             configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase)
                 .ToArray(),
-            configuration.Firmwares.OrderBy(firmware => firmware.Kind).ToArray());
+            configuration.Firmwares.OrderBy(firmware => firmware.Category).ToArray());
         return HashBytes(JsonSerializer.SerializeToUtf8Bytes(fingerprint, AtariStateConstants.JsonOptions));
     }
 
@@ -77,13 +77,13 @@ internal static class AtariSavedStateFunctions
         AtariMachineConfiguration configuration)
     {
         var entries = configuration.Firmwares
-            .OrderBy(firmware => firmware.Kind)
+            .OrderBy(firmware => firmware.Category)
             .Select(firmware => new AtariStateContentEntry(AtariStateConstants.FirmwareCategory,
-                firmware.Kind.ToString(), HashPath(firmware.Path)))
+                firmware.Category.ToString(), HashPath(firmware.Path)))
             .Concat(configuration.Media.OrderBy(MediaOrder)
                 .ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase)
                 .Select(media => new AtariStateContentEntry(AtariStateConstants.MediaCategory,
-                    $"{media.Kind}:{media.Slot}:{media.MountOrder}", HashPath(media.Path))))
+                    $"{media.Category}:{media.Slot}:{media.MountOrder}", HashPath(media.Path))))
             .ToArray();
         return entries;
     }

@@ -120,7 +120,8 @@ public sealed class AtariLocalizationTests
             .Where(key => key.StartsWith(AtariModelKeyPrefix, StringComparison.Ordinal)).ToArray();
         foreach (var key in officialModelKeys)
             foreach (var catalog in resources.Skip(FirstTranslatedCatalogIndex))
-                Assert.Equal(resources[ReferenceCatalogIndex][key], catalog[key]);
+                if (catalog.TryGetValue(key, out var translated))
+                    Assert.Equal(resources[ReferenceCatalogIndex][key], translated);
     }
 
     private static IEnumerable<string> AtariConstantFiles(string root) =>

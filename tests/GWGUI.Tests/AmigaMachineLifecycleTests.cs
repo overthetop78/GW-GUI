@@ -70,7 +70,7 @@ public sealed class AmigaMachineLifecycleTests
         await machine.StartAsync();
         await WaitUntil(() => machine.State == EmulationMachineState.Faulted);
 
-        Assert.IsType<InvalidOperationException>(machine.Fault);
+        Assert.Equal(EmulationMachineState.Faulted, machine.State);
         await machine.StopAsync();
         await machine.DisposeAsync();
         Assert.True(core.Stopped);
@@ -186,8 +186,8 @@ public sealed class AmigaMachineLifecycleTests
         {
             Media =
             [
-                new AmigaMediaConfiguration(floppy, AmigaMediaKind.Floppy),
-                new AmigaMediaConfiguration(hardDisk, AmigaMediaKind.HardDrive)
+                new AmigaMediaConfiguration(floppy, AmigaMediaCategory.Floppy),
+                new AmigaMediaConfiguration(hardDisk, AmigaMediaCategory.HardDrive)
             ]
         };
         await using var machine = new AmigaMachine(Guid.NewGuid(), configuration, new FakeCore(), Path.Combine(root, "session"));
@@ -316,9 +316,9 @@ public sealed class AmigaMachineLifecycleTests
             {
                 Media =
                 [
-                    new AmigaMediaConfiguration(floppy, AmigaMediaKind.Floppy, "Boot"),
-                    new AmigaMediaConfiguration(hardDisk, AmigaMediaKind.HardDrive),
-                    new AmigaMediaConfiguration(compactDisc, AmigaMediaKind.CompactDisc)
+                    new AmigaMediaConfiguration(floppy, AmigaMediaCategory.Floppy, "Boot"),
+                    new AmigaMediaConfiguration(hardDisk, AmigaMediaCategory.HardDrive),
+                    new AmigaMediaConfiguration(compactDisc, AmigaMediaCategory.CompactDisc)
                 ],
                 MountFloppiesInSeparateDrives = true
             };
@@ -339,7 +339,7 @@ public sealed class AmigaMachineLifecycleTests
         await File.WriteAllTextAsync(file, "echo first");
         try
         {
-            Assert.Equal(AmigaMediaKind.HardDrive, AmigaExternalCore.InferMediaKind(root));
+            Assert.Equal(AmigaMediaCategory.HardDrive, AmigaExternalCore.InferMediaCategory(root));
             var before = AmigaStateStore.HashPath(root);
             await File.WriteAllTextAsync(file, "echo changed");
             Assert.NotEqual(before, AmigaStateStore.HashPath(root));

@@ -1,16 +1,12 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using GWGUI.App.Constants;
 
 namespace GWGUI.App.Controls;
 
-internal sealed record EmulationSettingsField(string Label, FrameworkElement Control);
-
 internal static partial class EmulationSettingsLayout
 {
-    private const double SettingsFieldLabelWidth = 155;
-    private const double SettingsFieldControlMinimumWidth = 145;
-
     internal static Grid SettingsFields(int columns,
         params (string Label, FrameworkElement Control)[] fields) => SettingsFieldGrid(columns, fields);
 
@@ -22,7 +18,8 @@ internal static partial class EmulationSettingsLayout
         var grid = new Grid { Margin = new Thickness(12, 6, 12, 10) };
         for (var column = 0; column < columns; column++)
         {
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(SettingsFieldLabelWidth) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition
+                { Width = new GridLength(EmulationHardwareSettingsConstants.FieldLabelWidth) });
             grid.ColumnDefinitions.Add(new ColumnDefinition());
         }
         var rowCount = (int)Math.Ceiling(fields.Length / (double)columns);
@@ -42,7 +39,9 @@ internal static partial class EmulationSettingsLayout
             Grid.SetColumn(label, column);
             grid.Children.Add(label);
             var control = fields[index].Control;
-            control.MinWidth = control is CheckBox ? 0 : SettingsFieldControlMinimumWidth;
+            control.MinWidth = control is CheckBox
+                ? 0
+                : EmulationHardwareSettingsConstants.FieldControlMinimumWidth;
             control.Margin = new Thickness(0, 4, 0, 4);
             control.VerticalAlignment = VerticalAlignment.Center;
             Grid.SetRow(control, row);

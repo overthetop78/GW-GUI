@@ -61,7 +61,7 @@ public sealed class SkiaScpRenderer : IScpRenderer
     {
         DrawRecessedBackground(canvas, request.Width, request.Height);
         var tracks = request.Image?.Tracks.Where(track => track.Head == request.Head).OrderBy(track => track.Cylinder).ToArray() ?? [];
-        var outer = ScpMediaGeometry.FluxRadius(request.Width, request.Height, request.Zoom, request.MediaKind);
+        var outer = ScpMediaGeometry.FluxRadius(request.Width, request.Height, request.Zoom, request.MediaCategory);
         var inner = outer * .25f;
         DrawMedia(canvas, request, outer);
         using var disk = new SKPaint { Color = new SKColor(17, 61, 43), IsAntialias = true };
@@ -115,23 +115,23 @@ public sealed class SkiaScpRenderer : IScpRenderer
 
     private static void DrawMedia(SKCanvas canvas, ScpRenderRequest request, float outer)
     {
-        if (request.MediaKind == DiskMediaKind.Unknown) return;
-        switch (request.MediaKind)
+        if (request.MediaCategory == DiskMediaCategory.Unknown) return;
+        switch (request.MediaCategory)
         {
-            case DiskMediaKind.ThreeHalfDd:
+            case DiskMediaCategory.ThreeHalfDd:
                 DrawThreeHalf(canvas, request, outer, new SKColor(48, 91, 145), false);
                 break;
-            case DiskMediaKind.ThreeHalfHd:
+            case DiskMediaCategory.ThreeHalfHd:
                 DrawThreeHalf(canvas, request, outer, new SKColor(198, 191, 169), true);
                 break;
-            case DiskMediaKind.ThreeInch:
+            case DiskMediaCategory.ThreeInch:
                 DrawThreeInch(canvas, request, outer);
                 break;
-            case DiskMediaKind.FiveQuarterDd:
-            case DiskMediaKind.FiveQuarterHd:
+            case DiskMediaCategory.FiveQuarterDd:
+            case DiskMediaCategory.FiveQuarterHd:
                 DrawFlexibleDisk(canvas, request, outer, false);
                 break;
-            case DiskMediaKind.EightInch:
+            case DiskMediaCategory.EightInch:
                 DrawFlexibleDisk(canvas, request, outer, true);
                 break;
         }

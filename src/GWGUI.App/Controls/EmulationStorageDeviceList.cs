@@ -2,32 +2,11 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using GWGUI.App.Constants;
 using GWGUI.App.Localization;
+using GWGUI.Emulation;
 
 namespace GWGUI.App.Controls;
-
-public enum EmulationStorageDeviceType
-{
-    Floppy,
-    HardDisk,
-    CompactDisc,
-    Zip,
-    Tape,
-    Cartridge,
-    Directory
-}
-
-public sealed record EmulationStorageDeviceItem(
-    string Identifier,
-    EmulationStorageDeviceType Type,
-    string Model,
-    string? SupportPath,
-    bool CanRemove = true);
-
-public sealed class EmulationStorageDeviceEventArgs(EmulationStorageDeviceItem device) : EventArgs
-{
-    public EmulationStorageDeviceItem Device { get; } = device;
-}
 
 /// <summary>
 /// Common storage-device list. Machine-family editors provide the supported devices and
@@ -58,15 +37,15 @@ public sealed class EmulationStorageDeviceList : UserControl
         footer.ColumnDefinitions.Add(new ColumnDefinition());
         _add = new Button
         {
-            Content = $"{ControlVisualConstants.AddGlyph}  {LocExtension.Get("Emulation.Storage.Device.Add")}",
-            MinWidth = 180,
+            Content = $"{ControlVisualConstants.AddGlyph}  {LocExtension.Get(EmulationResourceKeys.StorageDeviceAdd)}",
+            MinWidth = EmulationStorageDeviceListConstants.AddButtonMinimumWidth,
             HorizontalAlignment = HorizontalAlignment.Left
         };
         _add.Click += (_, _) => AddRequested?.Invoke(this, EventArgs.Empty);
         footer.Children.Add(_add);
         var hint = new TextBlock
         {
-            Text = LocExtension.Get("Emulation.Storage.Device.CapabilitiesHint"),
+            Text = LocExtension.Get(EmulationResourceKeys.StorageDeviceCapabilitiesHint),
             TextWrapping = TextWrapping.Wrap,
             VerticalAlignment = VerticalAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Right,
@@ -92,11 +71,11 @@ public sealed class EmulationStorageDeviceList : UserControl
     {
         var header = CreateColumns();
         header.Margin = new Thickness(0, 0, 0, 2);
-        AddHeader(header, LocExtension.Get("Emulation.Device.Name.Id"), 0);
-        AddHeader(header, LocExtension.Get("Emulation.Device.Name.Type"), 1);
-        AddHeader(header, LocExtension.Get("Emulation.Model"), 2);
-        AddHeader(header, LocExtension.Get("Emulation.Storage.Media.Associated"), 3);
-        AddHeader(header, LocExtension.Get("Emulation.Input.Actions"), 4);
+        AddHeader(header, LocExtension.Get(EmulationResourceKeys.DeviceIdentifier), 0);
+        AddHeader(header, LocExtension.Get(EmulationResourceKeys.DeviceType), 1);
+        AddHeader(header, LocExtension.Get(EmulationResourceKeys.Model), 2);
+        AddHeader(header, LocExtension.Get(EmulationResourceKeys.StorageAssociatedMedia), 3);
+        AddHeader(header, LocExtension.Get(EmulationResourceKeys.Actions), 4);
         return header;
     }
 
@@ -106,12 +85,12 @@ public sealed class EmulationStorageDeviceList : UserControl
         foreach (var device in _devices)
         {
             var row = CreateColumns();
-            row.MinHeight = 64;
+            row.MinHeight = EmulationStorageDeviceListConstants.RowMinimumHeight;
             row.Children.Add(Cell(device.Identifier, FontWeights.SemiBold));
             AddCell(row, TypeLabel(device.Type), 1);
             AddCell(row, device.Model, 2);
             var support = string.IsNullOrWhiteSpace(device.SupportPath)
-                ? LocExtension.Get("Emulation.Value.NotUsed")
+                ? LocExtension.Get(EmulationResourceKeys.NotUsed)
                 : SupportSummary(device.SupportPath);
             var supportText = Cell(support);
             if (string.IsNullOrWhiteSpace(device.SupportPath))
@@ -127,8 +106,8 @@ public sealed class EmulationStorageDeviceList : UserControl
             };
             var configure = new Button
             {
-                Content = LocExtension.Get("Emulation.Storage.Device.Configure"),
-                MinWidth = 112,
+                Content = LocExtension.Get(EmulationResourceKeys.StorageDeviceConfigure),
+                MinWidth = EmulationStorageDeviceListConstants.ConfigureButtonMinimumWidth,
                 Tag = device
             };
             configure.Click += (_, _) => ConfigureRequested?.Invoke(this, new EmulationStorageDeviceEventArgs(device));
@@ -137,10 +116,10 @@ public sealed class EmulationStorageDeviceList : UserControl
             {
                 Content = ControlVisualConstants.DeleteGlyph,
                 FontFamily = ControlVisualConstants.IconFont,
-                MinWidth = 40,
+                MinWidth = EmulationStorageDeviceListConstants.RemoveButtonMinimumWidth,
                 Padding = new Thickness(8),
                 IsEnabled = device.CanRemove,
-                ToolTip = LocExtension.Get("Common.Delete"),
+                ToolTip = LocExtension.Get(EmulationResourceKeys.Delete),
                 Tag = device
             };
             remove.Click += (_, _) => RemoveRequested?.Invoke(this, new EmulationStorageDeviceEventArgs(device));
@@ -162,11 +141,16 @@ public sealed class EmulationStorageDeviceList : UserControl
     private static Grid CreateColumns()
     {
         var grid = new Grid();
-        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(105) });
-        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(185) });
-        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1.35, GridUnitType.Star) });
-        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1.15, GridUnitType.Star) });
-        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(210) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition
+            { Width = new GridLength(EmulationStorageDeviceListConstants.IdentifierColumnWidth) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition
+            { Width = new GridLength(EmulationStorageDeviceListConstants.TypeColumnWidth) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition
+            { Width = new GridLength(EmulationStorageDeviceListConstants.ModelColumnRatio, GridUnitType.Star) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition
+            { Width = new GridLength(EmulationStorageDeviceListConstants.MediaColumnRatio, GridUnitType.Star) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition
+            { Width = new GridLength(EmulationStorageDeviceListConstants.ActionsColumnWidth) });
         return grid;
     }
 
@@ -193,15 +177,13 @@ public sealed class EmulationStorageDeviceList : UserControl
         Margin = new Thickness(8, 8, 8, 8)
     };
 
-    private static string TypeLabel(EmulationStorageDeviceType type) => type switch
+    private static string TypeLabel(EmulationMediaType type) => type switch
     {
-        EmulationStorageDeviceType.Floppy => LocExtension.Get("Emulation.Storage.Floppy.Device"),
-        EmulationStorageDeviceType.HardDisk => LocExtension.Get("Emulation.Storage.HardDisk.Device"),
-        EmulationStorageDeviceType.CompactDisc => LocExtension.Get("Emulation.Storage.Cd.Device"),
-        EmulationStorageDeviceType.Zip => "ZIP",
-        EmulationStorageDeviceType.Tape => LocExtension.Get("Emulation.Storage.Tape.Device"),
-        EmulationStorageDeviceType.Cartridge => LocExtension.Get(AtariStorageSettingsConstants.CartridgeResource),
-        EmulationStorageDeviceType.Directory => LocExtension.Get(AtariStorageSettingsConstants.DirectoryResource),
+        EmulationMediaType.Floppy => LocExtension.Get(EmulationResourceKeys.FloppyDevice),
+        EmulationMediaType.HardDisk => LocExtension.Get(EmulationResourceKeys.HardDiskDevice),
+        EmulationMediaType.CompactDisc => LocExtension.Get(EmulationResourceKeys.CompactDiscDevice),
+        EmulationMediaType.Cassette => LocExtension.Get(EmulationResourceKeys.CassetteDevice),
+        EmulationMediaType.Cartridge => LocExtension.Get(EmulationResourceKeys.CartridgeDevice),
         _ => type.ToString()
     };
 

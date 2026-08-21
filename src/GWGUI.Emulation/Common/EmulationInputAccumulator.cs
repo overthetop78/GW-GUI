@@ -16,7 +16,9 @@ internal sealed class EmulationInputAccumulator
                 {
                     DeltaX = SaturatingAdd(_current.Pointer.DeltaX, snapshot.Pointer.DeltaX),
                     DeltaY = SaturatingAdd(_current.Pointer.DeltaY, snapshot.Pointer.DeltaY),
-                    Wheel = SaturatingAdd(_current.Pointer.Wheel, snapshot.Pointer.Wheel)
+                    Wheel = SaturatingAdd(_current.Pointer.Wheel, snapshot.Pointer.Wheel),
+                    HorizontalWheel = SaturatingAdd(_current.Pointer.HorizontalWheel,
+                        snapshot.Pointer.HorizontalWheel)
                 }
             };
         }
@@ -33,7 +35,8 @@ internal sealed class EmulationInputAccumulator
                 {
                     DeltaX = EmulationHostProtocolConstants.EmptyPointerDelta,
                     DeltaY = EmulationHostProtocolConstants.EmptyPointerDelta,
-                    Wheel = EmulationHostProtocolConstants.EmptyPointerDelta
+                    Wheel = EmulationHostProtocolConstants.EmptyPointerDelta,
+                    HorizontalWheel = EmulationHostProtocolConstants.EmptyPointerDelta
                 }
             };
             return result;

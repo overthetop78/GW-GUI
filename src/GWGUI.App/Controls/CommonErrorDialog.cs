@@ -3,6 +3,7 @@ using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
+using GWGUI.App.Constants;
 
 namespace GWGUI.App.Controls;
 
@@ -156,10 +157,11 @@ internal sealed class CommonErrorDialog : Window
 
     private static string MediaGlyph(CommonErrorDialogMediaIcon icon) => icon switch
     {
-        CommonErrorDialogMediaIcon.Floppy => AtariMachineViewConstants.FloppyGlyph,
-        CommonErrorDialogMediaIcon.HardDisk => AtariMachineViewConstants.DiskGlyph,
-        CommonErrorDialogMediaIcon.CompactDisc => AtariMachineViewConstants.CompactDiscGlyph,
-        CommonErrorDialogMediaIcon.Cartridge => AtariMachineViewConstants.CartridgeGlyph,
+        CommonErrorDialogMediaIcon.Floppy => MachinePresentationConstants.FloppyGlyph,
+        CommonErrorDialogMediaIcon.HardDisk => MachinePresentationConstants.HardDiskGlyph,
+        CommonErrorDialogMediaIcon.CompactDisc => MachinePresentationConstants.CompactDiscGlyph,
+        CommonErrorDialogMediaIcon.Cartridge => MachinePresentationConstants.CartridgeGlyph,
+        CommonErrorDialogMediaIcon.Cassette => MachinePresentationConstants.CassetteGlyph,
         _ => string.Empty
     };
 }

@@ -9,11 +9,11 @@ internal static class EmulationShortcutFunctions
     {
         var exact = bindings.FirstOrDefault(binding => binding.Chord.Matches(modifiers, pressedKeys));
         if (exact is not null)
-            return new EmulationShortcutMatch(EmulationShortcutMatchKind.Global, exact.Action,
+            return new EmulationShortcutMatch(EmulationShortcutMatchCategory.Global, exact.Action,
                 !activeActions.Contains(exact.Action));
         return bindings.Any(binding => binding.Chord.Modifiers == modifiers && binding.Chord.Contains(source))
-            ? new EmulationShortcutMatch(EmulationShortcutMatchKind.ReservedForGlobal)
-            : new EmulationShortcutMatch(EmulationShortcutMatchKind.None);
+            ? new EmulationShortcutMatch(EmulationShortcutMatchCategory.ReservedForGlobal)
+            : new EmulationShortcutMatch(EmulationShortcutMatchCategory.None);
     }
 
     internal static void ReleaseInactive(ISet<string> activeActions,

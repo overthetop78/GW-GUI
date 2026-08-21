@@ -33,39 +33,39 @@ internal static class AtariControllerFunctions
         return snapshot with { Controllers = controllers };
     }
 
-    internal static IReadOnlySet<AtariPeripheralKind> Peripherals(AtariMachineModel model)
+    internal static IReadOnlySet<AtariPeripheralCategory> Peripherals(AtariMachineModel model)
     {
         if (model == AtariMachineModel.Atari2600)
-            return new HashSet<AtariPeripheralKind>
+            return new HashSet<AtariPeripheralCategory>
             {
-                AtariPeripheralKind.None, AtariPeripheralKind.Automatic, AtariPeripheralKind.Joystick,
-                AtariPeripheralKind.Paddle, AtariPeripheralKind.DrivingController,
-                AtariPeripheralKind.BoosterGrip, AtariPeripheralKind.GenesisController,
-                AtariPeripheralKind.Joy2BPlus
+                AtariPeripheralCategory.None, AtariPeripheralCategory.Automatic, AtariPeripheralCategory.Joystick,
+                AtariPeripheralCategory.Paddle, AtariPeripheralCategory.DrivingController,
+                AtariPeripheralCategory.BoosterGrip, AtariPeripheralCategory.GenesisController,
+                AtariPeripheralCategory.Joy2BPlus
             };
         if (AtariConfigurationFunctions.GetFamily(model) == AtariMachineFamily.St)
-            return new HashSet<AtariPeripheralKind>
+            return new HashSet<AtariPeripheralCategory>
             {
-                AtariPeripheralKind.None, AtariPeripheralKind.Automatic,
-                AtariPeripheralKind.Joystick
+                AtariPeripheralCategory.None, AtariPeripheralCategory.Automatic,
+                AtariPeripheralCategory.Joystick
             };
-        return new HashSet<AtariPeripheralKind>(AtariClassicModelCatalog.Get(model).Ports
+        return new HashSet<AtariPeripheralCategory>(AtariClassicModelCatalog.Get(model).Ports
             .Where(port => port.Capability != AtariClassicPortCapability.Keyboard)
-            .Select(port => FromCapability(port.Capability)).Append(AtariPeripheralKind.None)
-            .Append(AtariPeripheralKind.Automatic));
+            .Select(port => FromCapability(port.Capability)).Append(AtariPeripheralCategory.None)
+            .Append(AtariPeripheralCategory.Automatic));
     }
 
-    private static AtariPeripheralKind FromCapability(AtariClassicPortCapability capability) => capability switch
+    private static AtariPeripheralCategory FromCapability(AtariClassicPortCapability capability) => capability switch
     {
-        AtariClassicPortCapability.Keyboard => AtariPeripheralKind.Keyboard,
-        AtariClassicPortCapability.Joystick => AtariPeripheralKind.Joystick,
-        AtariClassicPortCapability.AnalogJoystick => AtariPeripheralKind.AnalogJoystick,
-        AtariClassicPortCapability.Paddle => AtariPeripheralKind.Paddle,
-        AtariClassicPortCapability.DrivingController => AtariPeripheralKind.DrivingController,
-        AtariClassicPortCapability.NumericKeypad => AtariPeripheralKind.NumericKeypad,
-        AtariClassicPortCapability.LightGun => AtariPeripheralKind.LightGun,
-        AtariClassicPortCapability.ProLineController => AtariPeripheralKind.ProLineController,
-        AtariClassicPortCapability.EnhancedController => AtariPeripheralKind.EnhancedController,
+        AtariClassicPortCapability.Keyboard => AtariPeripheralCategory.Keyboard,
+        AtariClassicPortCapability.Joystick => AtariPeripheralCategory.Joystick,
+        AtariClassicPortCapability.AnalogJoystick => AtariPeripheralCategory.AnalogJoystick,
+        AtariClassicPortCapability.Paddle => AtariPeripheralCategory.Paddle,
+        AtariClassicPortCapability.DrivingController => AtariPeripheralCategory.DrivingController,
+        AtariClassicPortCapability.NumericKeypad => AtariPeripheralCategory.NumericKeypad,
+        AtariClassicPortCapability.LightGun => AtariPeripheralCategory.LightGun,
+        AtariClassicPortCapability.ProLineController => AtariPeripheralCategory.ProLineController,
+        AtariClassicPortCapability.EnhancedController => AtariPeripheralCategory.EnhancedController,
         _ => throw new ArgumentOutOfRangeException(nameof(capability), capability, null)
     };
 }

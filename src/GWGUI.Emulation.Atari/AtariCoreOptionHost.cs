@@ -91,7 +91,7 @@ internal sealed class AtariCoreOptionHost : IDisposable
     internal void SetValue(string key, string value)
     {
         if (!SetValue(key, value, requireAnnouncedKey: true))
-            throw new AtariEmulationException(AtariErrorKind.Option, AtariErrorCode.OptionInvalid,
+            throw new AtariEmulationException(AtariErrorCategory.Option, AtariErrorCode.OptionInvalid,
                 AtariCoreFunctions.CreateInvalidOptionValueMessage(key, value));
     }
 
@@ -123,7 +123,7 @@ internal sealed class AtariCoreOptionHost : IDisposable
             var option = Catalog.FirstOrDefault(item => item.Key.Equals(key, StringComparison.Ordinal));
             if (option is null || option.Values.Count == AtariCoreOptionConstants.NoEntries) continue;
             if (!option.Values.Any(item => item.Value.Equals(_values[key], StringComparison.Ordinal)))
-                throw new AtariEmulationException(AtariErrorKind.Option, AtariErrorCode.OptionInvalid,
+                throw new AtariEmulationException(AtariErrorCategory.Option, AtariErrorCode.OptionInvalid,
                     AtariCoreFunctions.CreateInvalidOptionValueMessage(key, _values[key]));
         }
     }

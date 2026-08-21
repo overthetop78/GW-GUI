@@ -1011,13 +1011,13 @@
   <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
     <value>Valitse Jaguar CD -malli käyttääksesi CD-levyjä.</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cassettes">
+  <data name="Emulation.Storage.Cassettes">
     <value>Kasetti</value>
   </data>
-  <data name="Emulation.Atari.Storage.Cartridges">
+  <data name="Emulation.Storage.Cartridges">
     <value>Pelikasetti</value>
   </data>
-  <data name="Emulation.Atari.Storage.CompactDiscs">
+  <data name="Emulation.Storage.CompactDiscs">
     <value>CD-levyt</value>
   </data>
   <data name="Emulation.Atari.Video.Region">
@@ -1107,8 +1107,8 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Controller</value></data>
-  <data name="Emulation.Atari.Error.ContentRequired" xml:space="preserve">
-    <value>Emulaattori tarvitsee median ennen tämän koneen käynnistämistä. Aseta levyke tai määritä kiintolevy.</value>
+  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
+    <value>Emulaattori tarvitsee median ennen tämän koneen käynnistämistä. Aseta tai määritä jokin alla näytetyistä vaadituista medioista.</value>
   </data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
     <value>Konetta ei voitu käynnistää</value>
@@ -1157,4 +1157,5 @@
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Matala</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normaali</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Korkea</value></data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Kasettipaikka</value></data>
 </root>

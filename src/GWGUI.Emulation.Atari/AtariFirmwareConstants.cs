@@ -25,10 +25,13 @@ public static class AtariFirmwareConstants
     public const string Tos102UnitedStatesMd5 = "c1c57ce48e8ee4135885cee9e63a68a2";
     public const string AtariOsAId = "atari-osa-pal";
     public const string AtariOsANtscId = "atari-osa-ntsc";
+    public const string Atari400OsAId = "atari-400-osa-pal";
+    public const string Atari400OsANtscId = "atari-400-osa-ntsc";
     public const string AtariOsAFileName = "ATARIOSA.ROM";
     public const string AtariOsAMd5 = "eb1f32f5d9f382db1bbfb8d7f9cb343a";
     public const string AtariOsANtscMd5 = "a3c1585b5d19719f8acfa2b093bea75f";
     public const string AtariOsBId = "atari-osb";
+    public const string Atari400OsBId = "atari-400-osb";
     public const string AtariOsBPatchedId = "atari-osb-pc-xformer-patched";
     public const string AtariOsBFileName = "ATARIOSB.ROM";
     public const string AtariOsBMd5 = "4177f386a3bac989a981d3fe3388cb6c";

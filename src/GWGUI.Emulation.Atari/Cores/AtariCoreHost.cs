@@ -51,7 +51,7 @@ public static class AtariCoreHost
                             EnsureCore(core).InsertMedia(ReadMedia(reader));
                             break;
                         case AtariHostCommand.EjectMedia:
-                            EnsureCore(core).EjectMedia((EmulationMediaSlot)reader.ReadInt32());
+                            EnsureCore(core).EjectMedia(EmulationMediaSlot.FromProtocolValue(reader.ReadInt32()));
                             break;
                         case AtariHostCommand.SaveState:
                             AtariCoreHostFunctions.WriteBytes(writer, EnsureCore(core).SaveState());
@@ -66,18 +66,18 @@ public static class AtariCoreHost
                             EnsureCore(core).SelectDisk(reader.ReadInt32());
                             break;
                         case AtariHostCommand.SaveMediaChanges:
-                            EnsureCore(core).SaveMediaChanges((EmulationMediaSlot)reader.ReadInt32());
+                            EnsureCore(core).SaveMediaChanges(EmulationMediaSlot.FromProtocolValue(reader.ReadInt32()));
                             break;
                         case AtariHostCommand.GetDiskStatus:
                             AtariCoreHostFunctions.WriteDiskStatus(writer, EnsureCore(core).GetDiskStatus());
                             break;
                         case AtariHostCommand.HasUnsavedMediaChanges:
                             writer.Write(EnsureCore(core).HasUnsavedMediaChanges(
-                                (EmulationMediaSlot)reader.ReadInt32()));
+                                EmulationMediaSlot.FromProtocolValue(reader.ReadInt32())));
                             break;
                         case AtariHostCommand.SetControllerPortDevice:
                             EnsureCore(core).SetControllerPortDevice(reader.ReadInt32(),
-                                (AtariPeripheralKind)reader.ReadInt32());
+                                (AtariPeripheralCategory)reader.ReadInt32());
                             break;
                         case AtariHostCommand.Dispose:
                             core?.Dispose();
@@ -127,12 +127,12 @@ public static class AtariCoreHost
     {
         core?.Dispose();
         var corePath = reader.ReadString();
-        var kind = (AtariCoreKind)reader.ReadInt32();
+        var emulator = (AtariEmulator)reader.ReadInt32();
         var session = reader.ReadString();
         var saves = AtariCoreHostFunctions.ReadString(reader);
         var configuration = JsonSerializer.Deserialize<AtariMachineConfiguration>(reader.ReadString(),
             AtariCoreHostFunctions.JsonOptions) ?? throw new InvalidDataException(AtariCoreHostErrors.InvalidConfiguration);
-        core = new AtariExternalCore(corePath, kind);
+        core = new AtariExternalCore(corePath, emulator);
         core.Initialize(configuration, session, saves);
         writer.Write(core.CoreSha256);
         writer.Write(core.FramesPerSecond);

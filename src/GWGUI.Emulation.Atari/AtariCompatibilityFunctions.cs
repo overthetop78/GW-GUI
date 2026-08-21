@@ -29,23 +29,23 @@ internal static class AtariCompatibilityFunctions
     internal static AtariOptionRule Hidden(AtariSettingOption option) =>
         new(option, AtariOptionAvailability.Hidden);
 
-    internal static AtariMediaCompatibilityRule Media(AtariMediaKind kind, params EmulationMediaSlot[] slots) =>
-        new(kind, Array.AsReadOnly(slots));
+    internal static AtariMediaCompatibilityRule Media(AtariMediaCategory category, params EmulationMediaSlot[] slots) =>
+        new(category, Array.AsReadOnly(slots));
 
     internal static AtariMediaCompatibilityRule UnavailableMedia(
-        AtariMediaKind kind,
+        AtariMediaCategory category,
         string explanationResourceKey,
         params EmulationMediaSlot[] slots) =>
-        new(kind, Array.AsReadOnly(slots), AtariMediaAvailability.Unavailable, explanationResourceKey);
+        new(category, Array.AsReadOnly(slots), AtariMediaAvailability.Unavailable, explanationResourceKey);
 
     internal static string JoinValues<T>(IEnumerable<T> values) =>
         string.Join(AtariCompatibilityConstants.ForcedValueSeparator, values);
 
-    internal static bool IsFirmwareCompatible(AtariCompatibilityDefinition definition, AtariFirmwareKind kind) =>
-        definition.Firmware.Contains(kind);
+    internal static bool IsFirmwareCompatible(AtariCompatibilityDefinition definition, AtariFirmwareCategory category) =>
+        definition.Firmware.Contains(category);
 
-    internal static bool IsMediaCompatible(AtariCompatibilityDefinition definition, AtariMediaKind kind,
-        EmulationMediaSlot slot) => definition.Media.Any(rule => rule.Kind == kind
+    internal static bool IsMediaCompatible(AtariCompatibilityDefinition definition, AtariMediaCategory category,
+        EmulationMediaSlot slot) => definition.Media.Any(rule => rule.Category == category
             && rule.Availability == AtariMediaAvailability.Available && rule.Slots.Contains(slot));
 
     internal static void Validate(AtariCompatibilityDefinition definition)
@@ -105,12 +105,12 @@ internal static class AtariCompatibilityFunctions
             Editable(AtariSettingOption.MouseSpeed),
             Editable(AtariSettingOption.MouseMappings),
             Editable(AtariSettingOption.ControllerMappings));
-        return NewDefinition(model, AtariCoreKind.Hatari, options, Values(AtariFirmwareKind.Tos),
+        return NewDefinition(model, AtariEmulator.Hatari, options, Values(AtariFirmwareCategory.Tos),
             Values(
-                Media(AtariMediaKind.Floppy, EmulationMediaSlot.Floppy0, EmulationMediaSlot.Floppy1,
+                Media(AtariMediaCategory.Floppy, EmulationMediaSlot.Floppy0, EmulationMediaSlot.Floppy1,
                     EmulationMediaSlot.Floppy2, EmulationMediaSlot.Floppy3),
-                Media(AtariMediaKind.HardDisk, EmulationMediaSlot.HardDisk0),
-                Media(AtariMediaKind.Directory, EmulationMediaSlot.HardDisk0)),
+                Media(AtariMediaCategory.HardDisk, EmulationMediaSlot.HardDisk0),
+                Media(AtariMediaCategory.Directory, EmulationMediaSlot.HardDisk0)),
             AtariCompatibilityConstants.TwoControllerPorts);
     }
 
@@ -158,7 +158,7 @@ internal static class AtariCompatibilityFunctions
             Editable(AtariSettingOption.ControllerMappings));
         var media = hardware.Media.Select(CreateMediaRule).ToList();
         if (model == AtariMachineModel.Jaguar)
-            media.Add(UnavailableMedia(AtariMediaKind.CompactDisc,
+            media.Add(UnavailableMedia(AtariMediaCategory.CompactDisc,
                 AtariCompatibilityConstants.JaguarStandardNoCdResource, EmulationMediaSlot.Cd0));
         var portCount = hardware.Ports.Max(port => port.Count);
         var visibleTabs = EnumValues<AtariSettingsTab>()
@@ -168,18 +168,18 @@ internal static class AtariCompatibilityFunctions
         return NewDefinition(model, hardware.Core, options, hardware.Firmware, media, portCount, visibleTabs);
     }
 
-    private static AtariMediaCompatibilityRule CreateMediaRule(AtariMediaKind kind) => kind switch
+    private static AtariMediaCompatibilityRule CreateMediaRule(AtariMediaCategory category) => category switch
     {
-        AtariMediaKind.Floppy => Media(kind, EmulationMediaSlot.Floppy0, EmulationMediaSlot.Floppy1,
+        AtariMediaCategory.Floppy => Media(category, EmulationMediaSlot.Floppy0, EmulationMediaSlot.Floppy1,
             EmulationMediaSlot.Floppy2, EmulationMediaSlot.Floppy3),
-        AtariMediaKind.Cassette => Media(kind, EmulationMediaSlot.Cassette0),
-        AtariMediaKind.Cartridge => Media(kind, EmulationMediaSlot.Cartridge0),
-        AtariMediaKind.CompactDisc => Media(kind, EmulationMediaSlot.Cd0),
-        _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, AtariErrorMessages.IncompatibleMedia)
+        AtariMediaCategory.Cassette => Media(category, EmulationMediaSlot.Cassette0),
+        AtariMediaCategory.Cartridge => Media(category, EmulationMediaSlot.Cartridge0),
+        AtariMediaCategory.CompactDisc => Media(category, EmulationMediaSlot.Cd0),
+        _ => throw new ArgumentOutOfRangeException(nameof(category), category, AtariErrorMessages.IncompatibleMedia)
     };
 
-    private static AtariCompatibilityDefinition NewDefinition(AtariMachineModel model, AtariCoreKind core,
-        IReadOnlyList<AtariOptionRule> options, IReadOnlyList<AtariFirmwareKind> firmware,
+    private static AtariCompatibilityDefinition NewDefinition(AtariMachineModel model, AtariEmulator core,
+        IReadOnlyList<AtariOptionRule> options, IReadOnlyList<AtariFirmwareCategory> firmware,
         IReadOnlyList<AtariMediaCompatibilityRule> media, int controllerPortCount,
         IReadOnlyList<AtariSettingsTab>? visibleTabs = null)
     {

@@ -35,6 +35,8 @@ internal static class EmulationHostProtocolFunctions
         foreach (var key in input.Keys) writer.Write((int)key);
         writer.Write(input.Pointer.DeltaX); writer.Write(input.Pointer.DeltaY); writer.Write(input.Pointer.Wheel);
         writer.Write(input.Pointer.Left); writer.Write(input.Pointer.Right); writer.Write(input.Pointer.Middle);
+        writer.Write(input.Pointer.ExtendedButton1); writer.Write(input.Pointer.ExtendedButton2);
+        writer.Write(input.Pointer.HorizontalWheel);
         writer.Write(input.Controllers.Count);
         foreach (var controller in input.Controllers)
         {
@@ -52,7 +54,8 @@ internal static class EmulationHostProtocolFunctions
         var keys = new HashSet<EmulationKey>();
         for (var index = 0; index < keyCount; index++) keys.Add((EmulationKey)reader.ReadInt32());
         var pointer = new EmulationPointerState(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(),
-            reader.ReadBoolean(), reader.ReadBoolean(), reader.ReadBoolean());
+            reader.ReadBoolean(), reader.ReadBoolean(), reader.ReadBoolean(), reader.ReadBoolean(),
+            reader.ReadBoolean(), reader.ReadInt32());
         var controllerCount = reader.ReadInt32();
         if (controllerCount is < 0 or > EmulationHostProtocolConstants.MaximumInputControllerCount)
             throw new InvalidDataException($"The {hostName} host input contains an invalid controller count.");

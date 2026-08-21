@@ -7,7 +7,7 @@ public sealed record EmulationInputSnapshot(
 {
     public static EmulationInputSnapshot Empty { get; } = new(
         new HashSet<EmulationKey>(),
-        new EmulationPointerState(0, 0, 0, false, false, false),
+        new EmulationPointerState(0, 0, 0, false, false, false, false, false, 0),
         [
             EmulationControllerState.Empty,
             EmulationControllerState.Empty,

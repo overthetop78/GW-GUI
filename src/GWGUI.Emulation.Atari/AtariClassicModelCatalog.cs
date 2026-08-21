@@ -37,22 +37,22 @@ public static class AtariClassicModelCatalog
             new AtariClassicPortDefinition(AtariClassicPortCapability.Keyboard, AtariClassicModelConstants.OnePort),
             new AtariClassicPortDefinition(AtariClassicPortCapability.Joystick, AtariClassicModelConstants.TwoPorts),
             new AtariClassicPortDefinition(AtariClassicPortCapability.Paddle, AtariClassicModelConstants.TwoPorts));
-    private static readonly IReadOnlyList<AtariFirmwareKind> Atari400And800Firmware =
-        AtariClassicModelFunctions.Values(AtariFirmwareKind.AtariOsA, AtariFirmwareKind.AtariOsB,
-            AtariFirmwareKind.AtariBasic);
-    private static readonly IReadOnlyList<AtariFirmwareKind> Atari400Firmware =
-        AtariClassicModelFunctions.Values(AtariFirmwareKind.AtariSystemOs);
-    private static readonly IReadOnlyList<AtariFirmwareKind> XlXeFirmware =
-        AtariClassicModelFunctions.Values(AtariFirmwareKind.AtariXlOs, AtariFirmwareKind.AtariBasic);
-    private static readonly IReadOnlyList<AtariMediaKind> EightBitMedia =
-        AtariClassicModelFunctions.Values(AtariMediaKind.Floppy, AtariMediaKind.Cassette,
-            AtariMediaKind.Cartridge);
+    private static readonly IReadOnlyList<AtariFirmwareCategory> Atari400And800Firmware =
+        AtariClassicModelFunctions.Values(AtariFirmwareCategory.AtariOsA, AtariFirmwareCategory.AtariOsB,
+            AtariFirmwareCategory.AtariBasic);
+    private static readonly IReadOnlyList<AtariFirmwareCategory> Atari400Firmware =
+        AtariClassicModelFunctions.Values(AtariFirmwareCategory.AtariSystemOs);
+    private static readonly IReadOnlyList<AtariFirmwareCategory> XlXeFirmware =
+        AtariClassicModelFunctions.Values(AtariFirmwareCategory.AtariXlOs, AtariFirmwareCategory.AtariBasic);
+    private static readonly IReadOnlyList<AtariMediaCategory> EightBitMedia =
+        AtariClassicModelFunctions.Values(AtariMediaCategory.Floppy, AtariMediaCategory.Cassette,
+            AtariMediaCategory.Cartridge);
     private static readonly IReadOnlyList<AtariClassicStorageCapability> CartridgeStorage =
         AtariClassicModelFunctions.Values(AtariClassicStorageCapability.Cartridge);
-    private static readonly IReadOnlyList<AtariMediaKind> CartridgeMedia =
-        AtariClassicModelFunctions.Values(AtariMediaKind.Cartridge);
-    private static readonly IReadOnlyList<AtariFirmwareKind> NoFirmware =
-        AtariClassicModelFunctions.Values<AtariFirmwareKind>();
+    private static readonly IReadOnlyList<AtariMediaCategory> CartridgeMedia =
+        AtariClassicModelFunctions.Values(AtariMediaCategory.Cartridge);
+    private static readonly IReadOnlyList<AtariFirmwareCategory> NoFirmware =
+        AtariClassicModelFunctions.Values<AtariFirmwareCategory>();
 
     private static readonly IReadOnlyList<AtariClassicModelDefinition> Definitions =
         AtariClassicModelFunctions.Values(
@@ -79,10 +79,10 @@ public static class AtariClassicModelCatalog
             AtariClassicModelFunctions.CreateEightBit(AtariMachineModel.Xegs, AtariClassicModelConstants.XegsModelId,
                 AtariClassicModelConstants.XegsDisplayNameResource, AtariClassicModelConstants.SixtyFourKibibytes,
                 EightBitCpu, TelevisionRegions, EightBitVideo, PokeyAudio, EightBitStorage, TwoPortComputerPorts,
-                AtariClassicModelFunctions.Values(AtariFirmwareKind.AtariXlOs, AtariFirmwareKind.AtariBasic,
-                    AtariFirmwareKind.AtariXegsBios), EightBitMedia),
+                AtariClassicModelFunctions.Values(AtariFirmwareCategory.AtariXlOs, AtariFirmwareCategory.AtariBasic,
+                    AtariFirmwareCategory.AtariXegsBios), EightBitMedia),
             AtariClassicModelFunctions.Create(AtariMachineModel.Atari5200, AtariClassicModelConstants.Atari5200ModelId,
-                AtariClassicModelConstants.Atari5200DisplayNameResource, AtariCoreKind.Atari800,
+                AtariClassicModelConstants.Atari5200DisplayNameResource, AtariEmulator.Atari800,
                 AtariClassicModelConstants.Atari8BitCpuFrequencyHz, AtariClassicModelConstants.SixteenKibibytes,
                 EightBitCpu, TelevisionRegions, EightBitVideo, PokeyAudio, CartridgeStorage,
                 AtariClassicModelFunctions.Values(
@@ -90,9 +90,9 @@ public static class AtariClassicModelCatalog
                         AtariClassicModelConstants.FourPorts),
                     new AtariClassicPortDefinition(AtariClassicPortCapability.NumericKeypad,
                         AtariClassicModelConstants.FourPorts)),
-                AtariClassicModelFunctions.Values(AtariFirmwareKind.Atari5200Bios), CartridgeMedia),
+                AtariClassicModelFunctions.Values(AtariFirmwareCategory.Atari5200Bios), CartridgeMedia),
             AtariClassicModelFunctions.Create(AtariMachineModel.Atari2600, AtariClassicModelConstants.Atari2600ModelId,
-                AtariClassicModelConstants.Atari2600DisplayNameResource, AtariCoreKind.Stella,
+                AtariClassicModelConstants.Atari2600DisplayNameResource, AtariEmulator.Stella,
                 AtariClassicModelConstants.Atari2600CpuFrequencyHz, AtariClassicModelConstants.OneHundredTwentyEightBytes,
                 Atari2600Cpu, TelevisionRegions,
                 AtariClassicModelFunctions.Values(AtariClassicVideoCapability.Tia),
@@ -106,7 +106,7 @@ public static class AtariClassicModelCatalog
                         AtariClassicModelConstants.TwoPorts)),
                 NoFirmware, CartridgeMedia),
             AtariClassicModelFunctions.Create(AtariMachineModel.Atari7800, AtariClassicModelConstants.Atari7800ModelId,
-                AtariClassicModelConstants.Atari7800DisplayNameResource, AtariCoreKind.ProSystem,
+                AtariClassicModelConstants.Atari7800DisplayNameResource, AtariEmulator.ProSystem,
                 AtariClassicModelConstants.Atari7800CpuFrequencyHz, AtariClassicModelConstants.FourKibibytes,
                 Atari7800Cpu, TelevisionRegions,
                 AtariClassicModelFunctions.Values(AtariClassicVideoCapability.Maria),
@@ -117,9 +117,9 @@ public static class AtariClassicModelCatalog
                         AtariClassicModelConstants.TwoPorts),
                     new AtariClassicPortDefinition(AtariClassicPortCapability.LightGun,
                         AtariClassicModelConstants.TwoPorts)),
-                AtariClassicModelFunctions.Values(AtariFirmwareKind.Atari7800Bios), CartridgeMedia),
+                AtariClassicModelFunctions.Values(AtariFirmwareCategory.Atari7800Bios), CartridgeMedia),
             AtariClassicModelFunctions.Create(AtariMachineModel.Lynx, AtariClassicModelConstants.LynxModelId,
-                AtariClassicModelConstants.LynxDisplayNameResource, AtariCoreKind.BeetleLynx,
+                AtariClassicModelConstants.LynxDisplayNameResource, AtariEmulator.BeetleLynx,
                 AtariClassicModelConstants.LynxCpuFrequencyHz, AtariClassicModelConstants.SixtyFourKibibytes,
                 LynxCpu, RegionFree,
                 AtariClassicModelFunctions.Values(AtariClassicVideoCapability.Suzy, AtariClassicVideoCapability.Mikey),
@@ -127,7 +127,7 @@ public static class AtariClassicModelCatalog
                 AtariClassicModelFunctions.Values(
                     new AtariClassicPortDefinition(AtariClassicPortCapability.EnhancedController,
                         AtariClassicModelConstants.OnePort)),
-                AtariClassicModelFunctions.Values(AtariFirmwareKind.LynxBootRom), CartridgeMedia),
+                AtariClassicModelFunctions.Values(AtariFirmwareCategory.LynxBootRom), CartridgeMedia),
             AtariClassicModelFunctions.CreateJaguar(AtariMachineModel.Jaguar, AtariClassicModelConstants.JaguarModelId,
                 AtariClassicModelConstants.JaguarDisplayNameResource, JaguarCpus, TelevisionRegions,
                 AtariClassicModelFunctions.Values(AtariClassicVideoCapability.Tom),
@@ -142,10 +142,10 @@ public static class AtariClassicModelCatalog
                 AtariClassicModelFunctions.Values(AtariClassicAudioCapability.Jerry),
                 AtariClassicModelFunctions.Values(new AtariClassicPortDefinition(
                     AtariClassicPortCapability.EnhancedController, AtariClassicModelConstants.TwoPorts)),
-                AtariClassicModelFunctions.Values(AtariFirmwareKind.JaguarCdBios),
+                AtariClassicModelFunctions.Values(AtariFirmwareCategory.JaguarCdBios),
                 AtariClassicModelFunctions.Values(AtariClassicStorageCapability.Cartridge,
                     AtariClassicStorageCapability.CompactDisc),
-                AtariClassicModelFunctions.Values(AtariMediaKind.Cartridge, AtariMediaKind.CompactDisc))
+                AtariClassicModelFunctions.Values(AtariMediaCategory.Cartridge, AtariMediaCategory.CompactDisc))
         );
 
     private static readonly IReadOnlyDictionary<AtariMachineModel, AtariClassicModelDefinition> ByModel =

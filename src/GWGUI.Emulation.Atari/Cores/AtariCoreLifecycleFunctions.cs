@@ -6,10 +6,10 @@ internal static class AtariCoreLifecycleFunctions
         AtariMachineConfiguration configuration, nint gameInfo)
     {
         if (gameInfo == nint.Zero && !callbacks.SupportsNoGame)
-            throw new AtariEmulationException(AtariErrorKind.Content, AtariErrorCode.ContentRequired,
+            throw new AtariEmulationException(AtariErrorCategory.Content, AtariErrorCode.ContentRequired,
                 AtariErrorMessages.ContentRequired);
         if (!exports.LoadGame(gameInfo))
-            throw new AtariEmulationException(AtariErrorKind.Content, AtariErrorCode.ContentUnsupported,
+            throw new AtariEmulationException(AtariErrorCategory.Content, AtariErrorCode.ContentUnsupported,
                 AtariErrorMessages.ContentLoadFailed);
         callbacks.ConfigureInput(configuration.Input);
         AtariControllerPortFunctions.Configure(exports, callbacks, configuration);

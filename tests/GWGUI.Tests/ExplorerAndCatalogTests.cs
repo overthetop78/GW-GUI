@@ -56,13 +56,13 @@ public sealed class ExplorerAndCatalogTests : CoreTestBase
         var folderDetails = ExplorerDetailsPresenter.ForItem(new ExplorerContentItem(folder));
 
         Assert.Equal("TEST", diskDetails.Title);
-        Assert.Equal(ExplorerIconKind.DiskImage, diskDetails.IconKind);
+        Assert.Equal(ExplorerIconCategory.DiskImage, diskDetails.IconCategory);
         Assert.Contains(diskDetails.Rows, row => row.Key == "Explorer.FileSystem" && row.Value == "Atari TOS FAT12");
         Assert.Contains(diskDetails.Rows, row => row.Key == "Explorer.System" && row.Value == "Atari ST");
         Assert.Contains(diskDetails.Rows, row => row.Key == "Explorer.Protection" && row.Value == "\u2014");
         Assert.Contains(diskDetails.Rows, row => row.Key == "Explorer.Entries" && row.Value == "2");
         Assert.Equal("README.TXT", fileDetails.Title);
-        Assert.Equal(ExplorerIconKind.Text, fileDetails.IconKind);
+        Assert.Equal(ExplorerIconCategory.Text, fileDetails.IconCategory);
         Assert.Contains(fileDetails.Rows, row => row.Key == "Explorer.Comment" && row.Value == "Test comment");
         Assert.Contains(folderDetails.Rows, row => row.Key == "Explorer.Entries" && row.Value == "1");
     }

@@ -13,7 +13,7 @@ internal static class AtariJaguarCdFunctions
     {
         if (machine.Model != AtariMachineModel.JaguarCd)
             throw new ArgumentException(AtariJaguarCdErrors.ModelRequired, nameof(machine));
-        if (media.Kind != AtariMediaKind.CompactDisc || media.Slot != GWGUI.Emulation.EmulationMediaSlot.Cd0)
+        if (media.Category != AtariMediaCategory.CompactDisc || media.Slot != GWGUI.Emulation.EmulationMediaSlot.Cd0)
             throw new ArgumentException(AtariJaguarCdErrors.CompleteDiscRequired, nameof(media));
         var extension = Path.GetExtension(media.Path);
         var normalizedExtension = extension.TrimStart(AtariConstants.ExtensionPrefix);
@@ -32,12 +32,12 @@ internal static class AtariJaguarCdFunctions
         AtariMachineModel model,
         AtariMediaConfiguration media)
     {
-        if (model != AtariMachineModel.JaguarCd && media.Kind == AtariMediaKind.CompactDisc)
+        if (model != AtariMachineModel.JaguarCd && media.Category == AtariMediaCategory.CompactDisc)
             throw new ArgumentException(AtariJaguarCdErrors.ModelRequired, nameof(media));
     }
 
     internal static AtariEmulationException Unsupported(string message) =>
-        new(AtariErrorKind.Content, AtariErrorCode.ContentUnsupported,
+        new(AtariErrorCategory.Content, AtariErrorCode.ContentUnsupported,
             message);
 
     private static void ValidateCueTracks(string cuePath)
@@ -68,7 +68,7 @@ internal static class AtariJaguarCdFunctions
         }
         catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
         {
-            throw new AtariEmulationException(AtariErrorKind.Content, AtariErrorCode.ContentNotFound,
+            throw new AtariEmulationException(AtariErrorCategory.Content, AtariErrorCode.ContentNotFound,
                 AtariJaguarCdErrors.FileUnreadable,
                 new Dictionary<string, string> { [AtariConstants.PathContextKey] = path }, exception);
         }

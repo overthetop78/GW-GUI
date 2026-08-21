@@ -7,89 +7,13 @@ using GWGUI.App.Services;
 
 namespace GWGUI.App.Controls;
 
-internal sealed record EmulationControllerPortSettings(
-    int Number, ComboBox Type, ComboBox Device, InputBindingEditor Bindings);
-
-internal sealed class EmulationControllerPortEditor
-{
-    internal EmulationControllerPortEditor(int number, InputCaptureSources captureSources,
-        bool prefixKeyboardSource, string actionLabel, string searchLabel)
-    {
-        Number = number;
-        Type = new ComboBox();
-        Device = new ComboBox { DisplayMemberPath = nameof(GameControllerDevice.Name) };
-        Bindings = new InputBindingEditor();
-        Bindings.ConfigurePresentation(actionLabel, searchLabel);
-        Bindings.ConfigureCaptureSources(captureSources, prefixKeyboardSource);
-        Bindings.ControllerCaptured += (_, args) =>
-        {
-            var device = Device.Items.Cast<GameControllerDevice>()
-                .FirstOrDefault(item => item.Id == $"xinput:{args.Port}");
-            if (device is not null) Device.SelectedItem = device;
-        };
-    }
-
-    internal int Number { get; }
-    internal ComboBox Type { get; }
-    internal ComboBox Device { get; }
-    internal InputBindingEditor Bindings { get; }
-    internal int DeadZonePercent { get; set; }
-
-    internal EmulationControllerPortSettings Settings => new(Number, Type, Device, Bindings);
-}
-
-internal sealed class EmulationControllerSettingsSection
-{
-    private TextBlock _detectedControllers = CreateDetectionStatus();
-    private IReadOnlyList<EmulationControllerPortSettings> _ports = [];
-
-    internal static EmulationControllerPortEditor CreatePort(int number,
-        InputCaptureSources captureSources, bool prefixKeyboardSource,
-        string actionLabel, string searchLabel) => new(number, captureSources,
-        prefixKeyboardSource, actionLabel, searchLabel);
-
-    internal UIElement Build(IReadOnlyList<EmulationControllerPortSettings> ports,
-        EmulationSettingsField? behavior = null,
-        string? behaviorTitle = null,
-        string? behaviorGlyph = null)
-    {
-        _ports = ports;
-        _detectedControllers = CreateDetectionStatus();
-        return EmulationSettingsLayout.ControllerSettingsPage(ports, _detectedControllers,
-            DetectAsync, behavior, behaviorTitle, behaviorGlyph);
-    }
-
-    internal UIElement Build(IReadOnlyList<EmulationControllerPortSettings> ports,
-        IReadOnlyList<EmulationSettingsField> behaviors,
-        string? behaviorTitle = null, string? behaviorGlyph = null)
-    {
-        _ports = ports;
-        _detectedControllers = CreateDetectionStatus();
-        return EmulationSettingsLayout.ControllerSettingsPage(ports, _detectedControllers,
-            DetectAsync, behaviors, behaviorTitle, behaviorGlyph);
-    }
-
-    internal Task DetectAsync() => EmulationSettingsLayout.DetectControllersAsync(
-        _ports.Select(port => port.Device).ToArray(), _detectedControllers);
-
-    private static TextBlock CreateDetectionStatus() => new()
-    {
-        Text = LocExtension.Get("Emulation.Controller.NoneDetected"),
-        TextWrapping = TextWrapping.Wrap,
-        VerticalAlignment = VerticalAlignment.Center
-    };
-}
-
 internal static partial class EmulationSettingsLayout
 {
-    private const double ControllerMappingMinimumHeight = 300;
-    private const double ControllerBehaviorWidth = 150;
-
     internal static ScrollViewer ControllerSettingsPage(
         IReadOnlyList<EmulationControllerPortSettings> ports,
         TextBlock detectedControllers,
         Func<Task> detectControllers,
-        EmulationSettingsField? behavior = null,
+        EmulationSettingsControlField? behavior = null,
         string? behaviorTitle = null,
         string? behaviorGlyph = null)
     {
@@ -119,7 +43,7 @@ internal static partial class EmulationSettingsLayout
         var mappingTabs = new TabControl
         {
             Margin = new Thickness(0, 0, behavior is null ? 0 : 8, 0),
-            MinHeight = ControllerMappingMinimumHeight
+            MinHeight = EmulationControllerSettingsConstants.MappingMinimumHeight
         };
         for (var index = 0; index < ports.Count; index++)
         {
@@ -151,9 +75,11 @@ internal static partial class EmulationSettingsLayout
         lower.Children.Add(ActionCard(mappingTabs, LocExtension.Get("Emulation.Controller.Mappings")));
         if (behavior is not null)
         {
+            DetachForReuse(behavior.Control);
             var behaviorGrid = new Grid { Margin = new Thickness(16, 12, 16, 14) };
             behaviorGrid.ColumnDefinitions.Add(new ColumnDefinition());
-            behaviorGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(ControllerBehaviorWidth) });
+            behaviorGrid.ColumnDefinitions.Add(new ColumnDefinition
+                { Width = new GridLength(EmulationControllerSettingsConstants.BehaviorWidth) });
             behaviorGrid.Children.Add(new TextBlock
             {
                 Text = behavior.Label,
@@ -177,7 +103,7 @@ internal static partial class EmulationSettingsLayout
 
     internal static ScrollViewer ControllerSettingsPage(
         IReadOnlyList<EmulationControllerPortSettings> ports, TextBlock detectedControllers,
-        Func<Task> detectControllers, IReadOnlyList<EmulationSettingsField> behaviors,
+        Func<Task> detectControllers, IReadOnlyList<EmulationSettingsControlField> behaviors,
         string? behaviorTitle = null, string? behaviorGlyph = null)
     {
         var panel = new StackPanel();
@@ -186,7 +112,8 @@ internal static partial class EmulationSettingsLayout
             DetachForReuse(behavior.Control);
             var row = new Grid { Margin = new Thickness(0, panel.Children.Count == 0 ? 0 : 10, 0, 0) };
             row.ColumnDefinitions.Add(new ColumnDefinition());
-            row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(ControllerBehaviorWidth) });
+            row.ColumnDefinitions.Add(new ColumnDefinition
+                { Width = new GridLength(EmulationControllerSettingsConstants.BehaviorWidth) });
             var label = new TextBlock
             {
                 Text = behavior.Label,
@@ -205,7 +132,7 @@ internal static partial class EmulationSettingsLayout
             panel.Children.Add(row);
         }
         return ControllerSettingsPage(ports, detectedControllers, detectControllers,
-            new EmulationSettingsField(string.Empty, panel), behaviorTitle, behaviorGlyph);
+            new EmulationSettingsControlField(string.Empty, panel), behaviorTitle, behaviorGlyph);
     }
 
     private static void DetachForReuse(UIElement element)

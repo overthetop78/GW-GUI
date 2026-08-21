@@ -35,7 +35,7 @@ public sealed class AmigaKeyboardMappingTests
     [InlineData(Key.Add, EmulationKey.NumpadPlus)]
     public void TryMapKey_CoversTheAmigaKeyboard(Key input, EmulationKey expected)
     {
-        Assert.True(AmigaKeyMapper.TryMap(input, out var mapped));
+        Assert.True(EmulationKeyMapper.TryMap(input, out var mapped));
         Assert.Equal(expected, mapped);
     }
 }

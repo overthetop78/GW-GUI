@@ -50,7 +50,7 @@ internal static class AtariCoreHostFunctions
 
     internal static AtariHostError CreateError(Exception error) => error is AtariEmulationException structured
         ? new AtariHostError(error.GetType().FullName ?? error.GetType().Name, error.Message,
-            structured.Kind, structured.Code, structured.Context)
+            structured.Category, structured.Code, structured.Context)
         : new AtariHostError(error.GetType().FullName ?? error.GetType().Name, error.Message,
             null, null, new Dictionary<string, string>());
 

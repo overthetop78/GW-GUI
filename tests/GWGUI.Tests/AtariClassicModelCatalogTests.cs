@@ -7,38 +7,38 @@ namespace GWGUI.Tests;
 
 public sealed class AtariClassicModelCatalogTests
 {
-    public static TheoryData<AtariMachineModel, string, AtariCoreKind, long, AtariClassicCpu> Models => new()
+    public static TheoryData<AtariMachineModel, string, AtariEmulator, long, AtariClassicCpu> Models => new()
     {
-        { AtariMachineModel.Atari400, AtariClassicModelConstants.Atari400And800ModelId, AtariCoreKind.Atari800,
+        { AtariMachineModel.Atari400, AtariClassicModelConstants.Atari400And800ModelId, AtariEmulator.Atari800,
             AtariClassicModelConstants.FortyEightKibibytes, AtariClassicCpu.Mos6502B },
-        { AtariMachineModel.Atari800, AtariClassicModelConstants.Atari400And800ModelId, AtariCoreKind.Atari800,
+        { AtariMachineModel.Atari800, AtariClassicModelConstants.Atari400And800ModelId, AtariEmulator.Atari800,
             AtariClassicModelConstants.FortyEightKibibytes, AtariClassicCpu.Mos6502B },
-        { AtariMachineModel.Atari800Xl, AtariClassicModelConstants.Atari800XlModelId, AtariCoreKind.Atari800,
+        { AtariMachineModel.Atari800Xl, AtariClassicModelConstants.Atari800XlModelId, AtariEmulator.Atari800,
             AtariClassicModelConstants.SixtyFourKibibytes, AtariClassicCpu.Mos6502C },
-        { AtariMachineModel.Atari130Xe, AtariClassicModelConstants.Atari130XeModelId, AtariCoreKind.Atari800,
+        { AtariMachineModel.Atari130Xe, AtariClassicModelConstants.Atari130XeModelId, AtariEmulator.Atari800,
             AtariClassicModelConstants.OneHundredTwentyEightKibibytes, AtariClassicCpu.Mos6502C },
-        { AtariMachineModel.XlXe, AtariClassicModelConstants.XlXeModelId, AtariCoreKind.Atari800,
+        { AtariMachineModel.XlXe, AtariClassicModelConstants.XlXeModelId, AtariEmulator.Atari800,
             AtariClassicModelConstants.ThreeHundredTwentyKibibytes, AtariClassicCpu.Mos6502C },
-        { AtariMachineModel.Xegs, AtariClassicModelConstants.XegsModelId, AtariCoreKind.Atari800,
+        { AtariMachineModel.Xegs, AtariClassicModelConstants.XegsModelId, AtariEmulator.Atari800,
             AtariClassicModelConstants.SixtyFourKibibytes, AtariClassicCpu.Mos6502C },
-        { AtariMachineModel.Atari5200, AtariClassicModelConstants.Atari5200ModelId, AtariCoreKind.Atari800,
+        { AtariMachineModel.Atari5200, AtariClassicModelConstants.Atari5200ModelId, AtariEmulator.Atari800,
             AtariClassicModelConstants.SixteenKibibytes, AtariClassicCpu.Mos6502C },
-        { AtariMachineModel.Atari2600, AtariClassicModelConstants.Atari2600ModelId, AtariCoreKind.Stella,
+        { AtariMachineModel.Atari2600, AtariClassicModelConstants.Atari2600ModelId, AtariEmulator.Stella,
             AtariClassicModelConstants.OneHundredTwentyEightBytes, AtariClassicCpu.Mos6507 },
-        { AtariMachineModel.Atari7800, AtariClassicModelConstants.Atari7800ModelId, AtariCoreKind.ProSystem,
+        { AtariMachineModel.Atari7800, AtariClassicModelConstants.Atari7800ModelId, AtariEmulator.ProSystem,
             AtariClassicModelConstants.FourKibibytes, AtariClassicCpu.Sally6502C },
-        { AtariMachineModel.Lynx, AtariClassicModelConstants.LynxModelId, AtariCoreKind.BeetleLynx,
+        { AtariMachineModel.Lynx, AtariClassicModelConstants.LynxModelId, AtariEmulator.BeetleLynx,
             AtariClassicModelConstants.SixtyFourKibibytes, AtariClassicCpu.Wdc65Sc02 },
-        { AtariMachineModel.Jaguar, AtariClassicModelConstants.JaguarModelId, AtariCoreKind.VirtualJaguar,
+        { AtariMachineModel.Jaguar, AtariClassicModelConstants.JaguarModelId, AtariEmulator.VirtualJaguar,
             AtariClassicModelConstants.TwoMibibytes, AtariClassicCpu.Motorola68000 },
-        { AtariMachineModel.JaguarCd, AtariClassicModelConstants.JaguarCdModelId, AtariCoreKind.VirtualJaguar,
+        { AtariMachineModel.JaguarCd, AtariClassicModelConstants.JaguarCdModelId, AtariEmulator.VirtualJaguar,
             AtariClassicModelConstants.TwoMibibytes, AtariClassicCpu.Motorola68000 }
     };
 
     [Theory]
     [MemberData(nameof(Models))]
     public void EveryModelAndVariantHasACompleteDefinition(AtariMachineModel model, string stableModelId,
-        AtariCoreKind core, long memoryBytes, AtariClassicCpu defaultCpu)
+        AtariEmulator core, long memoryBytes, AtariClassicCpu defaultCpu)
     {
         var definition = AtariClassicModelCatalog.Get(model);
 
@@ -62,7 +62,7 @@ public sealed class AtariClassicModelCatalogTests
     [Theory]
     [MemberData(nameof(Models))]
     public void EveryModelAcceptsOnlyItsDeclaredFirmwareAndMedia(AtariMachineModel model, string ignoredModelId,
-        AtariCoreKind ignoredCore, long ignoredMemory, AtariClassicCpu ignoredCpu)
+        AtariEmulator ignoredCore, long ignoredMemory, AtariClassicCpu ignoredCpu)
     {
         var definition = AtariClassicModelCatalog.Get(model);
         Assert.Equal(ignoredModelId, definition.StableModelId);
@@ -79,9 +79,9 @@ public sealed class AtariClassicModelCatalogTests
                 media: [new AtariMediaConfiguration("content.bin", media, GetSlot(media))]);
 
         Assert.Throws<ArgumentException>(() => new AtariMachineConfiguration(model,
-            firmwares: [new AtariFirmwareConfiguration(AtariFirmwareKind.Tos, "tos.img", false)]));
+            firmwares: [new AtariFirmwareConfiguration(AtariFirmwareCategory.Tos, "tos.img", false)]));
         Assert.Throws<ArgumentException>(() => new AtariMachineConfiguration(model,
-            media: [new AtariMediaConfiguration("disk.hd", AtariMediaKind.HardDisk,
+            media: [new AtariMediaConfiguration("disk.hd", AtariMediaCategory.HardDisk,
                 EmulationMediaSlot.HardDisk0)]));
     }
 
@@ -124,12 +124,12 @@ public sealed class AtariClassicModelCatalogTests
         Assert.Throws<ArgumentOutOfRangeException>(() => AtariClassicModelCatalog.Get(AtariMachineModel.St));
     }
 
-    private static EmulationMediaSlot GetSlot(AtariMediaKind media) => media switch
+    private static EmulationMediaSlot GetSlot(AtariMediaCategory media) => media switch
     {
-        AtariMediaKind.Floppy => EmulationMediaSlot.Floppy0,
-        AtariMediaKind.Cassette => EmulationMediaSlot.Cassette0,
-        AtariMediaKind.Cartridge => EmulationMediaSlot.Cartridge0,
-        AtariMediaKind.CompactDisc => EmulationMediaSlot.Cd0,
+        AtariMediaCategory.Floppy => EmulationMediaSlot.Floppy0,
+        AtariMediaCategory.Cassette => EmulationMediaSlot.Cassette0,
+        AtariMediaCategory.Cartridge => EmulationMediaSlot.Cartridge0,
+        AtariMediaCategory.CompactDisc => EmulationMediaSlot.Cd0,
         _ => throw new ArgumentOutOfRangeException(nameof(media), media, null)
     };
 }

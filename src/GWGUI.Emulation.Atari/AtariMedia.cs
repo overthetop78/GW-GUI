@@ -2,40 +2,9 @@ using GWGUI.Emulation;
 
 namespace GWGUI.Emulation.Atari;
 
-public enum AtariMediaKind
-{
-    Floppy,
-    HardDisk,
-    Directory,
-    Cassette,
-    Cartridge,
-    CompactDisc
-}
-
-public enum AtariStorageBus
-{
-    Acsi,
-    Ide,
-    Gemdos
-}
-
-public enum AtariCartridgePlatform
-{
-    EightBitComputer,
-    Atari5200
-}
-
-public enum AtariCartridgeRegion
-{
-    Automatic,
-    Ntsc,
-    Pal,
-    Secam
-}
-
 public sealed record AtariMediaConfiguration(
     string Path,
-    AtariMediaKind Kind,
+    AtariMediaCategory Category,
     EmulationMediaSlot Slot,
     string? Label = null,
     bool IsReadOnly = false,

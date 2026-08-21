@@ -29,11 +29,11 @@ internal static class AtariStateStoreFunctions
         return normalized;
     }
 
-    internal static string GetFileStem(AtariStoredStateKind kind, string name) => kind switch
+    internal static string GetFileStem(AtariStoredStateCategory category, string name) => category switch
     {
-        AtariStoredStateKind.Quick => AtariStateStoreConstants.QuickStateName,
-        AtariStoredStateKind.Named => ValidateStateName(name),
-        _ => throw new ArgumentOutOfRangeException(nameof(kind))
+        AtariStoredStateCategory.Quick => AtariStateStoreConstants.QuickStateName,
+        AtariStoredStateCategory.Named => ValidateStateName(name),
+        _ => throw new ArgumentOutOfRangeException(nameof(category))
     };
 
     internal static void WriteBytesAtomically(string path, byte[] bytes) =>

@@ -1,4 +1,6 @@
-namespace GWGUI.App.Controls;
+using GWGUI.Emulation;
+
+namespace GWGUI.App.Contracts;
 
 internal readonly record struct EmulationMachineTabDefinition(
     EmulationMachineTab Tab,

@@ -1,12 +1,10 @@
 using GWGUI.App.Localization;
+using GWGUI.App.Contracts;
+using GWGUI.App.Enums;
+using GWGUI.App.ViewModels;
 using GWGUI.MediaEngine.Exploration.Results;
 
 namespace GWGUI.App.Controls;
-
-public sealed record ExplorerDetailRow(string Key, string Value, bool IsSyntheticValue = false);
-public sealed record ExplorerDetailsPresentation(string Title, ExplorerIconKind IconKind, IReadOnlyList<ExplorerDetailRow> Rows, bool IsSyntheticTitle = false);
-
-public sealed record ExplorerVolumeNamePresentation(string Text, bool IsSynthetic);
 
 public static class ExplorerDetailsPresenter
 {
@@ -51,20 +49,20 @@ public static class ExplorerDetailsPresenter
             rows.Add(new("Explorer.Entries", ExplorerSection.CountEntries(volume.Entries).ToString()));
             rows.Add(new("Explorer.Warnings", ExplorerIssueBuilder.Build(document).Count.ToString()));
         }
-        return new(volumeName.Text, ExplorerIconKind.DiskImage, rows, volumeName.IsSynthetic);
+        return new(volumeName.Text, ExplorerIconCategory.DiskImage, rows, volumeName.IsSynthetic);
     }
 
     public static ExplorerDetailsPresentation ForItem(ExplorerContentItem item)
     {
         var rows = new List<ExplorerDetailRow>
         {
-            new("Explorer.Type", LocExtension.Get(ExplorerFileIconClassifier.TypeResourceKeyFor(item.IconKind))),
+            new("Explorer.Type", LocExtension.Get(ExplorerFileIconClassifier.TypeResourceKeyFor(item.IconCategory))),
             new("Explorer.Size", item.SizeText),
             new("Explorer.Modified", item.ModifiedText),
             new("Explorer.Comment", string.IsNullOrWhiteSpace(item.Entry.Comment) ? "\u2014" : item.Entry.Comment)
         };
         if (item.Entry.Kind == GWGUI.MediaEngine.FileSystems.FileSystemEntryKind.Directory)
             rows.Add(new("Explorer.Entries", ExplorerSection.CountEntries(item.Entry.Children).ToString()));
-        return new(item.Name, item.IconKind, rows);
+        return new(item.Name, item.IconCategory, rows);
     }
 }

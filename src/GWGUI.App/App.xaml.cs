@@ -9,9 +9,6 @@ using Microsoft.Win32;
 using System.Windows.Threading;
 using GWGUI.App.Services;
 using GWGUI.Infrastructure.HostTools;
-using GWGUI.Emulation.Amiga.Cores;
-using GWGUI.Emulation.Atari.Cores;
-using GWGUI.Emulation.Atari;
 
 namespace GWGUI.App;
 
@@ -20,33 +17,14 @@ public partial class App : Application
     private AppTheme _theme;
     protected override void OnStartup(StartupEventArgs e)
     {
-        if (e.Args is ["--amiga-core-host", var pipeName, var videoMapName])
+        foreach (var module in EmulationModuleRegistry.Modules)
         {
-            AmigaCoreHost.Run(pipeName, videoMapName);
-            Shutdown();
-            return;
-        }
-        if (e.Args is [AtariCoreHostConstants.CommandLineArgument, var atariPipeName, var atariVideoMapName])
-        {
-            AtariCoreHost.Run(atariPipeName, atariVideoMapName);
-            Shutdown();
-            return;
-        }
-        if (e.Args is [AtariCoreOptionProbeConstants.CommandLineArgument, var atariCorePath, var atariCoreKind]
-            && Enum.TryParse<AtariCoreKind>(atariCoreKind, out var parsedAtariCoreKind))
-        {
-            try
+            if (module.TryHandleHostCommand(e.Args, out var exitCode))
             {
-                Console.Out.WriteLine(AtariCoreOptionProbe.Inspect(atariCorePath, parsedAtariCoreKind).Count);
-                Environment.ExitCode = AtariCoreOptionProbeConstants.SuccessExitCode;
+                Environment.ExitCode = exitCode;
+                Shutdown(exitCode);
+                return;
             }
-            catch (Exception error)
-            {
-                Console.Error.WriteLine(AtariCoreOptionProbe.DescribeFailure(error));
-                Environment.ExitCode = AtariCoreOptionProbeConstants.FailureExitCode;
-            }
-            Shutdown(Environment.ExitCode);
-            return;
         }
         DispatcherUnhandledException += OnDispatcherUnhandledException;
         AppDomain.CurrentDomain.UnhandledException += OnDomainUnhandledException;

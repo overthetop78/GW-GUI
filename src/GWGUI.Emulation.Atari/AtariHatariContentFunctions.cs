@@ -13,12 +13,12 @@ internal static class AtariHatariContentFunctions
             throw new InvalidOperationException(AtariHatariContentErrors.MultiplePrimaryContentUnsupported);
         if (media.Length == AtariHatariContentConstants.FirstContentIndex) return null;
         var selected = media[AtariHatariContentConstants.FirstContentIndex];
-        if (selected.Kind == AtariMediaKind.Floppy)
+        if (selected.Category == AtariMediaCategory.Floppy)
         {
             var sessionMedia = AtariSessionMediaFunctions.Prepare(selected, sessionDirectory, supportedExtensions);
             return new AtariHatariContent(selected, sessionMedia.RuntimePath, sessionMedia, null);
         }
-        if (selected.Kind is AtariMediaKind.HardDisk or AtariMediaKind.Directory)
+        if (selected.Category is AtariMediaCategory.HardDisk or AtariMediaCategory.Directory)
         {
             var storage = AtariHatariStorageFunctions.Prepare(configuration.Model, selected, supportedExtensions);
             return new AtariHatariContent(selected, storage.RuntimePath, null, storage);

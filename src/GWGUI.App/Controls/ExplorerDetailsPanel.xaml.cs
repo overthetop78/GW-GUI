@@ -1,8 +1,11 @@
-﻿using System.Windows;
+using System.Windows;
 using GWGUI.MediaEngine.Exploration.Results;
 using System.Windows.Controls;
 using System.Windows.Media;
 using GWGUI.App.Localization;
+using GWGUI.App.Contracts;
+using GWGUI.App.Enums;
+using GWGUI.App.ViewModels;
 
 namespace GWGUI.App.Controls;
 
@@ -28,7 +31,7 @@ public partial class ExplorerDetailsPanel : UserControl
         _document = null;
         _item = null;
         _currentSystem = null;
-        DetailsIcon.Kind = ExplorerIconKind.DiskImage;
+        DetailsIcon.Category = ExplorerIconCategory.DiskImage;
         DetailsTitle.Text = "\u2014";
         DetailsTitle.Foreground = BrushFor(false);
         SetRows([]);
@@ -84,7 +87,7 @@ public partial class ExplorerDetailsPanel : UserControl
 
     private void Apply(ExplorerDetailsPresentation presentation)
     {
-        DetailsIcon.Kind = presentation.IconKind;
+        DetailsIcon.Category = presentation.IconCategory;
         DetailsTitle.Text = presentation.Title;
         DetailsTitle.Foreground = BrushFor(presentation.IsSyntheticTitle);
         SetRows(presentation.Rows.Select(row => ((string?)row.Key, (string?)row.Value, row.IsSyntheticValue)).ToArray());

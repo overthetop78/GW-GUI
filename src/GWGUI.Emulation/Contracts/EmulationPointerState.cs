@@ -6,4 +6,7 @@ public sealed record EmulationPointerState(
     int Wheel,
     bool Left,
     bool Right,
-    bool Middle);
+    bool Middle,
+    bool ExtendedButton1 = false,
+    bool ExtendedButton2 = false,
+    int HorizontalWheel = 0);

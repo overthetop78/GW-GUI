@@ -1,4 +1,4 @@
-﻿using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Exploration.Metadata;
 using System.Buffers.Binary;
@@ -33,15 +33,15 @@ public sealed class DiskImageExplorerTests
     }
 
     [Theory]
-    [InlineData("Drawer", FileSystemEntryKind.Directory, ExplorerFileSystemFamily.Unknown, ExplorerIconKind.Folder)]
-    [InlineData("ReadMe.txt", FileSystemEntryKind.File, ExplorerFileSystemFamily.IbmPc, ExplorerIconKind.Text)]
-    [InlineData("Picture.iff", FileSystemEntryKind.File, ExplorerFileSystemFamily.Amiga, ExplorerIconKind.Image)]
-    [InlineData("Music.mod", FileSystemEntryKind.File, ExplorerFileSystemFamily.Amiga, ExplorerIconKind.Audio)]
-    [InlineData("Files.lha", FileSystemEntryKind.File, ExplorerFileSystemFamily.Amiga, ExplorerIconKind.Archive)]
-    [InlineData("Program.exe", FileSystemEntryKind.File, ExplorerFileSystemFamily.IbmPc, ExplorerIconKind.Program)]
-    [InlineData("Disk.adf", FileSystemEntryKind.File, ExplorerFileSystemFamily.Amiga, ExplorerIconKind.DiskImage)]
-    [InlineData("Alias", FileSystemEntryKind.Link, ExplorerFileSystemFamily.Unknown, ExplorerIconKind.Link)]
-    public void ExplorerUsesDistinctIconsForEntryTypes(string name, FileSystemEntryKind kind, ExplorerFileSystemFamily family, ExplorerIconKind expected)
+    [InlineData("Drawer", FileSystemEntryKind.Directory, ExplorerFileSystemFamily.Unknown, ExplorerIconCategory.Folder)]
+    [InlineData("ReadMe.txt", FileSystemEntryKind.File, ExplorerFileSystemFamily.IbmPc, ExplorerIconCategory.Text)]
+    [InlineData("Picture.iff", FileSystemEntryKind.File, ExplorerFileSystemFamily.Amiga, ExplorerIconCategory.Image)]
+    [InlineData("Music.mod", FileSystemEntryKind.File, ExplorerFileSystemFamily.Amiga, ExplorerIconCategory.Audio)]
+    [InlineData("Files.lha", FileSystemEntryKind.File, ExplorerFileSystemFamily.Amiga, ExplorerIconCategory.Archive)]
+    [InlineData("Program.exe", FileSystemEntryKind.File, ExplorerFileSystemFamily.IbmPc, ExplorerIconCategory.Program)]
+    [InlineData("Disk.adf", FileSystemEntryKind.File, ExplorerFileSystemFamily.Amiga, ExplorerIconCategory.DiskImage)]
+    [InlineData("Alias", FileSystemEntryKind.Link, ExplorerFileSystemFamily.Unknown, ExplorerIconCategory.Link)]
+    public void ExplorerUsesDistinctIconsForEntryTypes(string name, FileSystemEntryKind kind, ExplorerFileSystemFamily family, ExplorerIconCategory expected)
     {
         var entry = new FileSystemEntry(name, kind, 0, null, string.Empty, 0, 0, true, []);
         Assert.Equal(expected, ExplorerFileIconClassifier.IconFor(entry, family));
@@ -53,33 +53,33 @@ public sealed class DiskImageExplorerTests
         var batch = new FileSystemEntry("START.BAT", FileSystemEntryKind.File, 0, null, string.Empty, 0, 0, true, []);
         var atariProgram = new FileSystemEntry("GAME.PRG", FileSystemEntryKind.File, 0, null, string.Empty, 0, 0, true, []);
 
-        Assert.Equal(ExplorerIconKind.Program, ExplorerFileIconClassifier.IconFor(batch, ExplorerFileSystemFamily.IbmPc));
-        Assert.Equal(ExplorerIconKind.File, ExplorerFileIconClassifier.IconFor(batch, ExplorerFileSystemFamily.Amiga));
-        Assert.Equal(ExplorerIconKind.Program, ExplorerFileIconClassifier.IconFor(atariProgram, ExplorerFileSystemFamily.AtariSt));
-        Assert.Equal(ExplorerIconKind.File, ExplorerFileIconClassifier.IconFor(atariProgram, ExplorerFileSystemFamily.IbmPc));
+        Assert.Equal(ExplorerIconCategory.Program, ExplorerFileIconClassifier.IconFor(batch, ExplorerFileSystemFamily.IbmPc));
+        Assert.Equal(ExplorerIconCategory.File, ExplorerFileIconClassifier.IconFor(batch, ExplorerFileSystemFamily.Amiga));
+        Assert.Equal(ExplorerIconCategory.Program, ExplorerFileIconClassifier.IconFor(atariProgram, ExplorerFileSystemFamily.AtariSt));
+        Assert.Equal(ExplorerIconCategory.File, ExplorerFileIconClassifier.IconFor(atariProgram, ExplorerFileSystemFamily.IbmPc));
     }
 
     [Theory]
-    [InlineData(ExplorerFileSystemFamily.AppleDos, "Applesoft BASIC", ExplorerIconKind.Program)]
-    [InlineData(ExplorerFileSystemFamily.ProDos, "Text", ExplorerIconKind.Text)]
-    [InlineData(ExplorerFileSystemFamily.Commodore, "PRG", ExplorerIconKind.Program)]
-    [InlineData(ExplorerFileSystemFamily.Macintosh, "APPL", ExplorerIconKind.Program)]
-    [InlineData(ExplorerFileSystemFamily.Macintosh, "PICT", ExplorerIconKind.Image)]
-    public void NativeCatalogTypesTakePriority(ExplorerFileSystemFamily family, string nativeType, ExplorerIconKind expected)
+    [InlineData(ExplorerFileSystemFamily.AppleDos, "Applesoft BASIC", ExplorerIconCategory.Program)]
+    [InlineData(ExplorerFileSystemFamily.ProDos, "Text", ExplorerIconCategory.Text)]
+    [InlineData(ExplorerFileSystemFamily.Commodore, "PRG", ExplorerIconCategory.Program)]
+    [InlineData(ExplorerFileSystemFamily.Macintosh, "APPL", ExplorerIconCategory.Program)]
+    [InlineData(ExplorerFileSystemFamily.Macintosh, "PICT", ExplorerIconCategory.Image)]
+    public void NativeCatalogTypesTakePriority(ExplorerFileSystemFamily family, string nativeType, ExplorerIconCategory expected)
     {
         var entry = new FileSystemEntry("NO_EXTENSION", FileSystemEntryKind.File, 0, null, nativeType, 0, 0, true, []);
         Assert.Equal(expected, ExplorerFileIconClassifier.IconFor(entry, family));
     }
 
     [Theory]
-    [InlineData(ExplorerIconKind.Text, "Explorer.Type.Text")]
-    [InlineData(ExplorerIconKind.Image, "Explorer.Type.Image")]
-    [InlineData(ExplorerIconKind.Audio, "Explorer.Type.Audio")]
-    [InlineData(ExplorerIconKind.Archive, "Explorer.Type.Archive")]
-    [InlineData(ExplorerIconKind.Program, "Explorer.Type.Program")]
-    [InlineData(ExplorerIconKind.DiskImage, "Explorer.Type.DiskImage")]
-    [InlineData(ExplorerIconKind.File, "Explorer.File")]
-    public void ExplorerTypeMatchesTheDetectedIcon(ExplorerIconKind kind, string expectedResourceKey) => Assert.Equal(expectedResourceKey, ExplorerFileIconClassifier.TypeResourceKeyFor(kind));
+    [InlineData(ExplorerIconCategory.Text, "Explorer.Type.Text")]
+    [InlineData(ExplorerIconCategory.Image, "Explorer.Type.Image")]
+    [InlineData(ExplorerIconCategory.Audio, "Explorer.Type.Audio")]
+    [InlineData(ExplorerIconCategory.Archive, "Explorer.Type.Archive")]
+    [InlineData(ExplorerIconCategory.Program, "Explorer.Type.Program")]
+    [InlineData(ExplorerIconCategory.DiskImage, "Explorer.Type.DiskImage")]
+    [InlineData(ExplorerIconCategory.File, "Explorer.File")]
+    public void ExplorerTypeMatchesTheDetectedIcon(ExplorerIconCategory kind, string expectedResourceKey) => Assert.Equal(expectedResourceKey, ExplorerFileIconClassifier.TypeResourceKeyFor(kind));
 
     [Fact]
     public void ExplorerIssueDialogIncludesFileSystemWarningsBadSectorsAndMissingSectors()

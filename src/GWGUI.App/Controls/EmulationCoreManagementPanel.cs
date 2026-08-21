@@ -1,6 +1,8 @@
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Automation;
 using System.Windows.Media;
+using GWGUI.App.Constants;
 
 namespace GWGUI.App.Controls;
 
@@ -11,7 +13,13 @@ internal sealed class EmulationCoreManagementPanel : UserControl
     internal Button Search { get; } = new() { MinWidth = 130 };
     internal Button Download { get; } = new() { MinWidth = 160, Visibility = Visibility.Collapsed };
     internal Button Cancel { get; } = new() { MinWidth = 100, Visibility = Visibility.Collapsed };
-    internal ProgressBar Progress { get; } = new() { Height = 8, Minimum = 0, Maximum = 1, Visibility = Visibility.Collapsed };
+    internal ProgressBar Progress { get; } = new()
+    {
+        Height = 8,
+        Minimum = EmulationCoreManagementConstants.InitialProgress,
+        Maximum = EmulationCoreManagementConstants.CompletedProgress,
+        Visibility = Visibility.Collapsed
+    };
     internal TextBlock Status { get; } = new() { TextWrapping = TextWrapping.Wrap };
     internal TextBlock RequiredVersion { get; } = new() { TextTrimming = TextTrimming.CharacterEllipsis };
     internal TextBlock LatestVersion { get; } = new() { TextTrimming = TextTrimming.CharacterEllipsis };
@@ -33,10 +41,26 @@ internal sealed class EmulationCoreManagementPanel : UserControl
 
     internal EmulationCoreManagementPanel(Func<string, object[], string> localize)
     {
-        string L(string key, params object[] arguments) => localize(key, arguments);
-        Search.Content = ButtonContent("\uE721", L("Emulation.Core.NameSearch"));
-        Download.Content = ButtonContent("\uE896", L("Emulation.Core.NameDownload"));
-        Cancel.Content = L("Common.Cancel");
+        Search.Content = ButtonContent(EmulationCoreManagementConstants.SearchGlyph,
+            localize(EmulationCoreManagementConstants.SearchResource, []));
+        Download.Content = ButtonContent(EmulationCoreManagementConstants.DownloadGlyph,
+            localize(EmulationCoreManagementConstants.DownloadResource, []));
+        Cancel.Content = localize(EmulationCoreManagementConstants.CancelResource, []);
+        Versions.Name = EmulationCoreManagementConstants.VersionsControlName;
+        Search.Name = EmulationCoreManagementConstants.SearchControlName;
+        Download.Name = EmulationCoreManagementConstants.DownloadControlName;
+        Cancel.Name = EmulationCoreManagementConstants.CancelControlName;
+        Progress.Name = EmulationCoreManagementConstants.ProgressControlName;
+        Status.Name = EmulationCoreManagementConstants.StatusControlName;
+        AutomationProperties.SetName(Versions,
+            localize(EmulationCoreManagementConstants.VersionsFoundResource, [0]));
+        AutomationProperties.SetName(Search, localize(EmulationCoreManagementConstants.SearchResource, []));
+        AutomationProperties.SetName(Download, localize(EmulationCoreManagementConstants.DownloadResource, []));
+        AutomationProperties.SetName(Cancel, localize(EmulationCoreManagementConstants.CancelResource, []));
+        AutomationProperties.SetName(Progress,
+            localize(EmulationCoreManagementConstants.DownloadingResource, [string.Empty]));
+        AutomationProperties.SetName(Status, localize(EmulationCoreManagementConstants.SearchResource, []));
+        AutomationProperties.SetLiveSetting(Status, AutomationLiveSetting.Assertive);
 
         var panel = new Grid { VerticalAlignment = VerticalAlignment.Top };
         panel.RowDefinitions.Add(new RowDefinition { Height = new GridLength(62) });
@@ -55,7 +79,8 @@ internal sealed class EmulationCoreManagementPanel : UserControl
         });
         title.Children.Add(new TextBlock
         {
-            Text = L("Emulation.Core.Emulator"), FontWeight = FontWeights.SemiBold,
+            Text = localize(EmulationCoreManagementConstants.EmulatorResource, []),
+            FontWeight = FontWeights.SemiBold,
             VerticalAlignment = VerticalAlignment.Center
         });
         installedRow.Children.Add(title);
@@ -63,9 +88,10 @@ internal sealed class EmulationCoreManagementPanel : UserControl
         var installedPanel = new StackPanel { VerticalAlignment = VerticalAlignment.Center };
         var installedLabel = new TextBlock
         {
-            Text = L("Emulation.Core.NameProjectVersion"), FontSize = 11, Margin = new Thickness(0, 0, 0, 2)
+            Text = localize(EmulationCoreManagementConstants.ProjectVersionResource, []),
+            FontSize = 11, Margin = new Thickness(0, 0, 0, 2)
         };
-        installedLabel.SetResourceReference(ForegroundProperty, "MutedTextBrush");
+        installedLabel.SetResourceReference(ForegroundProperty, ControlVisualConstants.MutedTextBrushResource);
         installedPanel.Children.Add(installedLabel);
         Installed.VerticalAlignment = VerticalAlignment.Center;
         Installed.FontWeight = FontWeights.SemiBold;
@@ -75,8 +101,8 @@ internal sealed class EmulationCoreManagementPanel : UserControl
             Child = installedPanel, Padding = new Thickness(12, 6, 12, 6), CornerRadius = new CornerRadius(6),
             BorderThickness = new Thickness(1)
         };
-        installedBadge.SetResourceReference(BackgroundProperty, "WindowBrush");
-        installedBadge.SetResourceReference(BorderBrushProperty, "BorderBrush");
+        installedBadge.SetResourceReference(BackgroundProperty, ControlVisualConstants.WindowBrushResource);
+        installedBadge.SetResourceReference(BorderBrushProperty, ControlVisualConstants.BorderBrushResource);
         Grid.SetColumn(installedBadge, 1);
         installedRow.Children.Add(installedBadge);
         Search.Margin = new Thickness(12, 0, 0, 0);
@@ -86,19 +112,19 @@ internal sealed class EmulationCoreManagementPanel : UserControl
 
         var resultHost = new Grid { Margin = new Thickness(16, 4, 16, 2) };
         Prompt.VerticalAlignment = VerticalAlignment.Center;
-        Prompt.SetResourceReference(ForegroundProperty, "MutedTextBrush");
+        Prompt.SetResourceReference(ForegroundProperty, ControlVisualConstants.MutedTextBrushResource);
         var promptContent = new StackPanel { Orientation = Orientation.Horizontal };
         var promptIcon = new TextBlock
         {
             Text = ControlVisualConstants.InformationGlyph, FontFamily = ControlVisualConstants.IconFont,
             FontSize = 17, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 9, 0)
         };
-        promptIcon.SetResourceReference(ForegroundProperty, "AccentBrush");
+        promptIcon.SetResourceReference(ForegroundProperty, ControlVisualConstants.AccentBrushResource);
         promptContent.Children.Add(promptIcon);
         promptContent.Children.Add(Prompt);
         _promptBanner.Child = promptContent;
-        _promptBanner.SetResourceReference(BackgroundProperty, "WindowBrush");
-        _promptBanner.SetResourceReference(BorderBrushProperty, "BorderBrush");
+        _promptBanner.SetResourceReference(BackgroundProperty, ControlVisualConstants.WindowBrushResource);
+        _promptBanner.SetResourceReference(BorderBrushProperty, ControlVisualConstants.BorderBrushResource);
         resultHost.Children.Add(_promptBanner);
 
         Results.RowDefinitions.Add(new RowDefinition { Height = new GridLength(48) });
@@ -120,9 +146,9 @@ internal sealed class EmulationCoreManagementPanel : UserControl
         details.ColumnDefinitions.Add(new ColumnDefinition());
         details.ColumnDefinitions.Add(new ColumnDefinition());
         details.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(220) });
-        details.Children.Add(DetailTile(L("Emulation.Core.NameRequiredVersion"), RequiredVersion,
+        details.Children.Add(DetailTile(localize(EmulationCoreManagementConstants.RequiredVersionResource, []), RequiredVersion,
             new Thickness(0, 0, 5, 0)));
-        var latestTile = DetailTile(L("Emulation.Core.NameLatestVersion"), LatestVersion,
+        var latestTile = DetailTile(localize(EmulationCoreManagementConstants.LatestVersionResource, []), LatestVersion,
             new Thickness(5, 0, 5, 0));
         Grid.SetColumn(latestTile, 1);
         details.Children.Add(latestTile);
@@ -134,8 +160,8 @@ internal sealed class EmulationCoreManagementPanel : UserControl
             Child = FoundCount, CornerRadius = new CornerRadius(6), BorderThickness = new Thickness(1),
             Padding = new Thickness(10, 8, 10, 8), Margin = new Thickness(5, 0, 0, 0)
         };
-        countTile.SetResourceReference(BackgroundProperty, "WindowBrush");
-        countTile.SetResourceReference(BorderBrushProperty, "BorderBrush");
+        countTile.SetResourceReference(BackgroundProperty, ControlVisualConstants.WindowBrushResource);
+        countTile.SetResourceReference(BorderBrushProperty, ControlVisualConstants.BorderBrushResource);
         Grid.SetColumn(countTile, 2);
         details.Children.Add(countTile);
         Grid.SetRow(details, 1);
@@ -156,8 +182,8 @@ internal sealed class EmulationCoreManagementPanel : UserControl
         panel.Children.Add(statusHost);
 
         var card = new Border { Child = panel, CornerRadius = new CornerRadius(9), BorderThickness = new Thickness(1) };
-        card.SetResourceReference(BackgroundProperty, "CardBrush");
-        card.SetResourceReference(BorderBrushProperty, "BorderBrush");
+        card.SetResourceReference(BackgroundProperty, ControlVisualConstants.CardBrushResource);
+        card.SetResourceReference(BorderBrushProperty, ControlVisualConstants.BorderBrushResource);
         Content = card;
     }
 
@@ -176,20 +202,28 @@ internal sealed class EmulationCoreManagementPanel : UserControl
         Download.Visibility = Visibility.Visible;
     }
 
+    internal void HideResults()
+    {
+        Versions.ItemsSource = null;
+        Versions.Visibility = Visibility.Collapsed;
+        Download.Visibility = Visibility.Collapsed;
+        Results.Visibility = Visibility.Hidden;
+    }
+
     internal void SetStatus(string text, bool isError = false)
     {
         Status.Text = text;
         _statusBanner.Visibility = string.IsNullOrWhiteSpace(text) ? Visibility.Collapsed : Visibility.Visible;
         if (isError)
         {
-            _statusBanner.Background = new SolidColorBrush(Color.FromRgb(255, 241, 241));
-            _statusBanner.BorderBrush = new SolidColorBrush(Color.FromRgb(210, 75, 75));
-            Status.Foreground = new SolidColorBrush(Color.FromRgb(150, 25, 25));
+            _statusBanner.Background = new SolidColorBrush(EmulationCoreManagementConstants.ErrorBackground);
+            _statusBanner.BorderBrush = new SolidColorBrush(EmulationCoreManagementConstants.ErrorBorder);
+            Status.Foreground = new SolidColorBrush(EmulationCoreManagementConstants.ErrorText);
             return;
         }
-        _statusBanner.SetResourceReference(BackgroundProperty, "WindowBrush");
-        _statusBanner.SetResourceReference(BorderBrushProperty, "BorderBrush");
-        Status.SetResourceReference(ForegroundProperty, "TextBrush");
+        _statusBanner.SetResourceReference(BackgroundProperty, ControlVisualConstants.WindowBrushResource);
+        _statusBanner.SetResourceReference(BorderBrushProperty, ControlVisualConstants.BorderBrushResource);
+        Status.SetResourceReference(ForegroundProperty, ControlVisualConstants.TextBrushResource);
     }
 
     private static UIElement ButtonContent(string icon, string text)
@@ -212,7 +246,7 @@ internal sealed class EmulationCoreManagementPanel : UserControl
             Text = label, FontSize = 11, Margin = new Thickness(0, 0, 0, 2),
             TextTrimming = TextTrimming.CharacterEllipsis
         };
-        caption.SetResourceReference(ForegroundProperty, "MutedTextBrush");
+        caption.SetResourceReference(ForegroundProperty, ControlVisualConstants.MutedTextBrushResource);
         content.Children.Add(caption);
         value.FontWeight = FontWeights.SemiBold;
         content.Children.Add(value);
@@ -221,8 +255,8 @@ internal sealed class EmulationCoreManagementPanel : UserControl
             Child = content, CornerRadius = new CornerRadius(6), BorderThickness = new Thickness(1),
             Padding = new Thickness(10, 7, 10, 7), Margin = margin
         };
-        tile.SetResourceReference(BackgroundProperty, "WindowBrush");
-        tile.SetResourceReference(BorderBrushProperty, "BorderBrush");
+        tile.SetResourceReference(BackgroundProperty, ControlVisualConstants.WindowBrushResource);
+        tile.SetResourceReference(BorderBrushProperty, ControlVisualConstants.BorderBrushResource);
         return tile;
     }
 }

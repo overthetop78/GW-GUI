@@ -2,7 +2,7 @@ using GWGUI.App.Rendering;
 
 namespace GWGUI.App.Services;
 
-public sealed record DiskVisualizationClassification(string? DecoderId, DiskMediaKind MediaKind);
+public sealed record DiskVisualizationClassification(string? DecoderId, DiskMediaCategory MediaCategory);
 
 public static class DiskVisualizationClassificationPolicy
 {
@@ -30,7 +30,7 @@ public static class DiskVisualizationClassificationPolicy
         bool automaticDetection)
     {
         var decoderId = protectionId ?? ResolveDecoder(machine, automaticDetection);
-        return new(decoderId, ResolveMediaKind(machine, formatId));
+        return new(decoderId, ResolveMediaCategory(machine, formatId));
     }
 
     private static string? ResolveDecoder(string? machine, bool automaticDetection)
@@ -41,17 +41,17 @@ public static class DiskVisualizationClassificationPolicy
             : "iso.mfm";
     }
 
-    private static DiskMediaKind ResolveMediaKind(string? machine, string? formatId)
+    private static DiskMediaCategory ResolveMediaCategory(string? machine, string? formatId)
     {
-        if (string.Equals(machine, "Amstrad", StringComparison.OrdinalIgnoreCase)) return DiskMediaKind.ThreeInch;
-        if (string.Equals(machine, "DEC", StringComparison.OrdinalIgnoreCase)) return DiskMediaKind.EightInch;
+        if (string.Equals(machine, "Amstrad", StringComparison.OrdinalIgnoreCase)) return DiskMediaCategory.ThreeInch;
+        if (string.Equals(machine, "DEC", StringComparison.OrdinalIgnoreCase)) return DiskMediaCategory.EightInch;
 
         var id = formatId?.ToLowerInvariant() ?? string.Empty;
         if (machine is not null && ThreeHalfMachines.Contains(machine))
-            return IsHighDensity(id) ? DiskMediaKind.ThreeHalfHd : DiskMediaKind.ThreeHalfDd;
+            return IsHighDensity(id) ? DiskMediaCategory.ThreeHalfHd : DiskMediaCategory.ThreeHalfDd;
         if (machine is not null && FiveQuarterMachines.Contains(machine))
-            return id.Contains("hd", StringComparison.Ordinal) ? DiskMediaKind.FiveQuarterHd : DiskMediaKind.FiveQuarterDd;
-        return DiskMediaKind.Unknown;
+            return id.Contains("hd", StringComparison.Ordinal) ? DiskMediaCategory.FiveQuarterHd : DiskMediaCategory.FiveQuarterDd;
+        return DiskMediaCategory.Unknown;
     }
 
     private static bool IsHighDensity(string formatId) =>

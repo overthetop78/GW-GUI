@@ -10,8 +10,9 @@ internal static class EmulationShortcutMap
         if (mappings is null || mappings.Count == 0) return new Dictionary<EmulationKey, EmulationKey>();
         var result = new Dictionary<EmulationKey, EmulationKey>();
         foreach (var mapping in mappings)
-            if (Enum.TryParse<EmulationKey>(mapping.Key, true, out var amigaKey) && mapping.Value != EmulationKey.Unknown)
-                result[mapping.Value] = amigaKey;
+            if (Enum.TryParse<EmulationKey>(mapping.Key, true, out var emulationKey) &&
+                mapping.Value != EmulationKey.Unknown)
+                result[mapping.Value] = emulationKey;
         return result;
     }
 
@@ -22,9 +23,9 @@ internal static class EmulationShortcutMap
         var result = new List<KeyboardShortcutBinding>();
         foreach (var mapping in mappings)
         {
-            if (Enum.TryParse<EmulationKey>(mapping.Key, true, out var amigaKey) &&
+            if (Enum.TryParse<EmulationKey>(mapping.Key, true, out var emulationKey) &&
                 KeyboardChord.TryParse(mapping.Value, out var chord))
-                result.Add(new KeyboardShortcutBinding(chord, amigaKey));
+                result.Add(new KeyboardShortcutBinding(chord, emulationKey));
         }
         return result;
     }
@@ -36,6 +37,3 @@ internal static class EmulationShortcutMap
                 ? new GlobalShortcutBinding(mapping.Key, chord) : null)
             .Where(binding => binding is not null).Cast<GlobalShortcutBinding>().ToArray();
 }
-
-internal sealed record KeyboardShortcutBinding(KeyboardChord Chord, EmulationKey AmigaKey);
-internal sealed record GlobalShortcutBinding(string Action, KeyboardChord Chord);

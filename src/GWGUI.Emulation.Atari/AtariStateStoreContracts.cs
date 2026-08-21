@@ -1,6 +1,6 @@
 namespace GWGUI.Emulation.Atari;
 
-public enum AtariStoredStateKind
+public enum AtariStoredStateCategory
 {
     Quick,
     Named
@@ -8,11 +8,11 @@ public enum AtariStoredStateKind
 
 public sealed record AtariStoredStateMetadata(
     string Name,
-    AtariStoredStateKind Kind,
+    AtariStoredStateCategory Category,
     DateTimeOffset CreatedAtUtc,
     string StateFileName,
     string? CaptureFileName,
-    AtariCoreKind Core,
+    AtariEmulator Core,
     string CoreName,
     string CoreVersion,
     AtariMachineModel Model,

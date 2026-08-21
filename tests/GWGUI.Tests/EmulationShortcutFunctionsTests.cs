@@ -17,13 +17,13 @@ public sealed class EmulationShortcutFunctionsTests
         IReadOnlySet<Key> pressed = new HashSet<Key> { Key.R };
         var inactive = EmulationShortcutFunctions.ResolveGlobal(bindings, ModifierKeys.Control, pressed, Key.R,
             new HashSet<string>());
-        Assert.Equal(EmulationShortcutMatchKind.Global, inactive.Kind);
+        Assert.Equal(EmulationShortcutMatchCategory.Global, inactive.Category);
         Assert.Equal(EmulationShortcutActions.HardReset, inactive.Action);
         Assert.True(inactive.ShouldExecute);
 
         var active = EmulationShortcutFunctions.ResolveGlobal(bindings, ModifierKeys.Control, pressed, Key.R,
             new HashSet<string> { EmulationShortcutActions.HardReset });
-        Assert.Equal(EmulationShortcutMatchKind.Global, active.Kind);
+        Assert.Equal(EmulationShortcutMatchCategory.Global, active.Category);
         Assert.False(active.ShouldExecute);
     }
 
@@ -37,7 +37,7 @@ public sealed class EmulationShortcutFunctionsTests
         ];
         var match = EmulationShortcutFunctions.ResolveGlobal(bindings, ModifierKeys.Control,
             new HashSet<Key> { Key.R }, Key.R, new HashSet<string>());
-        Assert.Equal(EmulationShortcutMatchKind.ReservedForGlobal, match.Kind);
+        Assert.Equal(EmulationShortcutMatchCategory.ReservedForGlobal, match.Category);
     }
 
     [Fact]
@@ -66,13 +66,13 @@ public sealed class EmulationShortcutFunctionsTests
 
         var configured = EmulationShortcutFunctions.ResolveGlobal(bindings, ModifierKeys.Control,
             new HashSet<Key> { Key.F8 }, Key.F8, new HashSet<string>());
-        Assert.Equal(EmulationShortcutMatchKind.Global, configured.Kind);
+        Assert.Equal(EmulationShortcutMatchCategory.Global, configured.Category);
         Assert.Equal(EmulationShortcutActions.SoftReset, configured.Action);
         Assert.True(configured.ShouldExecute);
 
         var formerDefault = EmulationShortcutFunctions.ResolveGlobal(bindings,
             ModifierKeys.Control | ModifierKeys.Alt, new HashSet<Key> { Key.R }, Key.R,
             new HashSet<string>());
-        Assert.Equal(EmulationShortcutMatchKind.None, formerDefault.Kind);
+        Assert.Equal(EmulationShortcutMatchCategory.None, formerDefault.Category);
     }
 }

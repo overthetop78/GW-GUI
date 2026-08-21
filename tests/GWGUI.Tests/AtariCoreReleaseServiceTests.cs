@@ -35,13 +35,13 @@ public sealed class AtariCoreReleaseServiceTests
     };
 
     [Theory]
-    [InlineData(AtariCoreKind.Hatari)]
-    [InlineData(AtariCoreKind.Atari800)]
-    [InlineData(AtariCoreKind.Stella)]
-    [InlineData(AtariCoreKind.ProSystem)]
-    [InlineData(AtariCoreKind.BeetleLynx)]
-    [InlineData(AtariCoreKind.VirtualJaguar)]
-    public async Task OfficialSourceReturnsEveryVersionItOffers(AtariCoreKind kind)
+    [InlineData(AtariEmulator.Hatari)]
+    [InlineData(AtariEmulator.Atari800)]
+    [InlineData(AtariEmulator.Stella)]
+    [InlineData(AtariEmulator.ProSystem)]
+    [InlineData(AtariEmulator.BeetleLynx)]
+    [InlineData(AtariEmulator.VirtualJaguar)]
+    public async Task OfficialSourceReturnsEveryVersionItOffers(AtariEmulator kind)
     {
         using var client = new HttpClient(new ReleaseHandler(PublishedUtc, []));
         var service = new AtariCoreReleaseService(client, CreateTemporaryRoot());
@@ -49,7 +49,7 @@ public sealed class AtariCoreReleaseServiceTests
         var releases = await service.GetAvailableAsync(kind);
 
         var release = Assert.Single(releases);
-        Assert.Equal(kind, release.Kind);
+        Assert.Equal(kind, release.Emulator);
         Assert.Equal(PublishedVersion, release.DeclaredVersion);
         Assert.Equal(PublishedUtc, release.PublishedUtc);
         Assert.Equal(AtariCoreCatalog.Get(kind).ArchiveUri, release.DownloadUri);
@@ -62,7 +62,7 @@ public sealed class AtariCoreReleaseServiceTests
         var service = new AtariCoreReleaseService(client, CreateTemporaryRoot());
 
         var error = await Assert.ThrowsAsync<InvalidDataException>(() =>
-            service.GetAvailableAsync(AtariCoreKind.Hatari));
+            service.GetAvailableAsync(AtariEmulator.Hatari));
 
         Assert.Equal(AtariCoreReleaseErrors.MissingPublishedDate, error.Message);
     }
@@ -74,7 +74,7 @@ public sealed class AtariCoreReleaseServiceTests
         var service = new AtariCoreReleaseService(client, CreateTemporaryRoot());
 
         var error = await Assert.ThrowsAsync<HttpRequestException>(() =>
-            service.GetAvailableAsync(AtariCoreKind.Hatari));
+            service.GetAvailableAsync(AtariEmulator.Hatari));
 
         Assert.Equal(HttpStatusCode.ServiceUnavailable, error.StatusCode);
     }
@@ -83,14 +83,14 @@ public sealed class AtariCoreReleaseServiceTests
     public async Task OfferedArchiveInstallsAndReplacesTheSameVersionWithoutDiagnosticBlocking()
     {
         var root = CreateTemporaryRoot();
-        var entry = AtariCoreCatalog.Get(AtariCoreKind.Hatari);
-        var release = CreateRelease(entry.Kind);
+        var entry = AtariCoreCatalog.Get(AtariEmulator.Hatari);
+        var release = CreateRelease(entry.Emulator);
         try
         {
             using (var firstClient = new HttpClient(new ReleaseHandler(PublishedUtc,
                        CreateArchive(entry.DllName, PreviousLibraryContent))))
                 await new AtariCoreReleaseService(firstClient, root).InstallAsync(release);
-            var paths = AtariCoreCatalog.GetInstallationPaths(entry.Kind, root, PublishedVersion);
+            var paths = AtariCoreCatalog.GetInstallationPaths(entry.Emulator, root, PublishedVersion);
             Assert.Equal(PreviousLibraryContent, await File.ReadAllTextAsync(paths.LibraryPath));
 
             var progress = new RecordingProgress();
@@ -124,8 +124,8 @@ public sealed class AtariCoreReleaseServiceTests
     public async Task SelectingAnotherOfferedVersionAtomicallyChangesTheActiveInstallation()
     {
         var root = CreateTemporaryRoot();
-        var entry = AtariCoreCatalog.Get(AtariCoreKind.Hatari);
-        var firstRelease = CreateRelease(entry.Kind);
+        var entry = AtariCoreCatalog.Get(AtariEmulator.Hatari);
+        var firstRelease = CreateRelease(entry.Emulator);
         var secondRelease = firstRelease with
         {
             Id = AtariCoreReleaseConstants.ReleaseIdPrefix + LaterVersion,
@@ -137,14 +137,14 @@ public sealed class AtariCoreReleaseServiceTests
         try
         {
             var firstPaths = await service.InstallAsync(firstRelease);
-            Assert.Equal(firstPaths, await service.GetActiveInstallationAsync(entry.Kind));
+            Assert.Equal(firstPaths, await service.GetActiveInstallationAsync(entry.Emulator));
 
             var secondPaths = await service.InstallAsync(secondRelease);
 
             Assert.NotEqual(firstPaths.VersionDirectory, secondPaths.VersionDirectory);
-            Assert.Equal(secondPaths, await service.GetActiveInstallationAsync(entry.Kind));
+            Assert.Equal(secondPaths, await service.GetActiveInstallationAsync(entry.Emulator));
             using var marker = JsonDocument.Parse(await File.ReadAllTextAsync(
-                AtariCoreCatalog.GetActiveManifestPath(entry.Kind, root)));
+                AtariCoreCatalog.GetActiveManifestPath(entry.Emulator, root)));
             Assert.Equal(LaterVersion, marker.RootElement.GetProperty("releaseVersion").GetString());
         }
         finally
@@ -170,7 +170,7 @@ public sealed class AtariCoreReleaseServiceTests
     public async Task TruncatedArchiveReportsZipCauseAndCleansTemporaryFiles()
     {
         var root = CreateTemporaryRoot();
-        var release = CreateRelease(AtariCoreKind.Hatari);
+        var release = CreateRelease(AtariEmulator.Hatari);
         using var client = new HttpClient(new ReleaseHandler(PublishedUtc, [1, 2, 3]));
         try
         {
@@ -188,14 +188,14 @@ public sealed class AtariCoreReleaseServiceTests
     public async Task ArchiveWithoutExpectedLibraryIsRejectedAndCleaned()
     {
         var root = CreateTemporaryRoot();
-        var release = CreateRelease(AtariCoreKind.Hatari);
+        var release = CreateRelease(AtariEmulator.Hatari);
         using var client = new HttpClient(new ReleaseHandler(PublishedUtc,
             CreateArchive(MissingLibraryName, ReplacementLibraryContent)));
         try
         {
             var error = await Assert.ThrowsAsync<InvalidDataException>(() =>
                 new AtariCoreReleaseService(client, root).InstallAsync(release));
-            Assert.Contains(AtariCoreCatalog.Get(release.Kind).DllName, error.Message, StringComparison.Ordinal);
+            Assert.Contains(AtariCoreCatalog.Get(release.Emulator).DllName, error.Message, StringComparison.Ordinal);
             AssertNoTemporaryFiles(GetVersionDirectory(root, release));
         }
         finally
@@ -208,13 +208,13 @@ public sealed class AtariCoreReleaseServiceTests
     public async Task LockedInstalledLibraryIsNotDamagedAndTemporaryFilesAreCleaned()
     {
         var root = CreateTemporaryRoot();
-        var release = CreateRelease(AtariCoreKind.Hatari);
-        var paths = AtariCoreCatalog.GetInstallationPaths(release.Kind, root, release.DeclaredVersion);
+        var release = CreateRelease(AtariEmulator.Hatari);
+        var paths = AtariCoreCatalog.GetInstallationPaths(release.Emulator, root, release.DeclaredVersion);
         Directory.CreateDirectory(paths.VersionDirectory);
         await File.WriteAllTextAsync(paths.LibraryPath, PreviousLibraryContent);
         await using var locked = new FileStream(paths.LibraryPath, FileMode.Open, FileAccess.Read, FileShare.None);
         using var client = new HttpClient(new ReleaseHandler(PublishedUtc,
-            CreateArchive(AtariCoreCatalog.Get(release.Kind).DllName, ReplacementLibraryContent)));
+            CreateArchive(AtariCoreCatalog.Get(release.Emulator).DllName, ReplacementLibraryContent)));
         try
         {
             await Assert.ThrowsAnyAsync<IOException>(() =>
@@ -233,7 +233,7 @@ public sealed class AtariCoreReleaseServiceTests
     public async Task CancellationCleansDownloadAndExtraction()
     {
         var root = CreateTemporaryRoot();
-        var release = CreateRelease(AtariCoreKind.Hatari);
+        var release = CreateRelease(AtariEmulator.Hatari);
         using var cancellation = new CancellationTokenSource();
         var progress = new CancelingProgress(cancellation);
         using var client = new HttpClient(new ReleaseHandler(PublishedUtc,
@@ -252,7 +252,7 @@ public sealed class AtariCoreReleaseServiceTests
         }
     }
 
-    private static AtariCoreRelease CreateRelease(AtariCoreKind kind) => new(kind,
+    private static AtariCoreRelease CreateRelease(AtariEmulator kind) => new(kind,
         AtariCoreReleaseConstants.ReleaseIdPrefix + PublishedVersion, PublishedVersion,
         AtariCoreCatalog.Get(kind).ArchiveUri, PublishedUtc, null);
 
@@ -269,7 +269,7 @@ public sealed class AtariCoreReleaseServiceTests
     }
 
     private static string GetVersionDirectory(string root, AtariCoreRelease release) =>
-        AtariCoreCatalog.GetInstallationPaths(release.Kind, root, release.DeclaredVersion).VersionDirectory;
+        AtariCoreCatalog.GetInstallationPaths(release.Emulator, root, release.DeclaredVersion).VersionDirectory;
 
     private static async Task<string> ReadLockedFileAsync(FileStream stream)
     {

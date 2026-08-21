@@ -1,6 +1,6 @@
 namespace GWGUI.Emulation.Atari;
 
-public enum AtariErrorKind
+public enum AtariErrorCategory
 {
     Core,
     Firmware,
@@ -27,16 +27,16 @@ public enum AtariErrorCode
 
 public sealed class AtariEmulationException : Exception
 {
-    public AtariEmulationException(AtariErrorKind kind, AtariErrorCode code, string message,
+    public AtariEmulationException(AtariErrorCategory category, AtariErrorCode code, string message,
         IReadOnlyDictionary<string, string>? context = null, Exception? innerException = null)
         : base(message, innerException)
     {
-        Kind = kind;
+        Category = category;
         Code = code;
         Context = context ?? new Dictionary<string, string>();
     }
 
-    public AtariErrorKind Kind { get; }
+    public AtariErrorCategory Category { get; }
     public AtariErrorCode Code { get; }
     public IReadOnlyDictionary<string, string> Context { get; }
 }
