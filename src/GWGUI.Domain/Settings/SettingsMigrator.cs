@@ -1,3 +1,8 @@
+using GWGUI.Domain.Formats;
+using GWGUI.Domain.Settings.Emulation;
+using GWGUI.Domain.Settings.Engines;
+using GWGUI.Domain.Settings.Operations;
+using GWGUI.Domain.Settings.Window;
 namespace GWGUI.Domain.Settings;
 
 public static class SettingsMigrator

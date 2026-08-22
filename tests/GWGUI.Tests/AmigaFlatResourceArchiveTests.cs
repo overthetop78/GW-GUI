@@ -1,9 +1,9 @@
-using System.Buffers.Binary;
-using System.Text;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Amiga.FlatArchive;
 using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.SectorImages;
+using System.Buffers.Binary;
+using System.Text;
 
 namespace GWGUI.Tests;
 

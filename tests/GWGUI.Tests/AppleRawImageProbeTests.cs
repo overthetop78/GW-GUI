@@ -1,11 +1,12 @@
-using System.Buffers.Binary;
 using GWGUI.MediaEngine.FileSystems.Apple.Dos;
 using GWGUI.MediaEngine.FileSystems.Apple.Lisa;
-using GWGUI.MediaEngine.FileSystems.Macintosh;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.FileSystems.Apple.ProDos;
+using GWGUI.MediaEngine.FileSystems.Macintosh;
 using GWGUI.MediaEngine.FileSystems.Sos;
 using GWGUI.MediaEngine.Geometries.Apple;
 using GWGUI.MediaEngine.Recognition.Apple;
+using System.Buffers.Binary;
 
 namespace GWGUI.Tests;
 

@@ -1,9 +1,11 @@
-﻿using System.IO;
-using GWGUI.MediaEngine.Exploration.Scp;
-using System.Runtime.CompilerServices;
+using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Containers.Scp;
-using GWGUI.MediaEngine.Recognition;
+using GWGUI.MediaEngine.Exploration.Scp;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.Recognition.Policies;
+using System.IO;
+using System.Runtime.CompilerServices;
+using GWGUI.MediaEngine.Recognition;
 
 namespace GWGUI.Tests;
 

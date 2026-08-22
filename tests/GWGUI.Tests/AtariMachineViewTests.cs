@@ -1,4 +1,4 @@
-using GWGUI.App.Contracts;
+using GWGUI.App.Contracts.Machine;
 using GWGUI.Emulation;
 
 namespace GWGUI.Tests;

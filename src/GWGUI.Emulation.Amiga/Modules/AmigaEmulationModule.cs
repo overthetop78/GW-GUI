@@ -33,6 +33,8 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
     {
         exitCode = 0;
         if (arguments is not ["--amiga-core-host", var pipeName, var videoMapName]) return false;
+        if (!OperatingSystem.IsWindows())
+            throw new PlatformNotSupportedException();
         AmigaCoreHost.Run(pipeName, videoMapName);
         return true;
     }
@@ -93,13 +95,35 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
         {
             if (value.Key is AmigaSettingsConstants.KickstartPath or AmigaSettingsConstants.ExtendedRomPath
                 or AmigaSettingsConstants.RomKeyPath or AmigaSettingsConstants.AudioEnabled
-                or AmigaSettingsConstants.VideoRenderer) continue;
+                or AmigaSettingsConstants.VideoRenderer or AmigaSettingsConstants.CpuOriginalSpeed
+                or AmigaSettingsConstants.CpuSpeed or AmigaSettingsConstants.AudioOutput
+                or AmigaSettingsConstants.AudioLatency or AmigaSettingsConstants.AudioStereoSeparation
+                or AmigaSettingsConstants.ParallelJoystickAdapter) continue;
             if (value.Value is null) options.Remove(value.Key);
             else options[value.Key] = value.Value;
+        }
+        if (values.TryGetValue("puae_sound_volume_cd", out var cdVolume)
+            && !string.IsNullOrWhiteSpace(cdVolume))
+            options["puae_sound_volume_cd"] = cdVolume.TrimEnd('%') + "%";
+        if (values.GetValueOrDefault(AmigaSettingsConstants.CpuSpeed)?.Split('|') is [var throttle, var multiplier])
+        {
+            options["puae_cpu_throttle"] = throttle;
+            options["puae_cpu_multiplier"] = multiplier;
         }
         var renderer = values.TryGetValue(AmigaSettingsConstants.VideoRenderer, out var rendererValue)
             && Enum.TryParse<EmulationVideoRenderer>(rendererValue, out var selectedRenderer)
                 ? selectedRenderer : amiga.VideoRenderer;
+        var currentAudio = amiga.Audio ?? new AmigaAudioConfiguration();
+        var output = values.GetValueOrDefault(AmigaSettingsConstants.AudioOutput);
+        var latency = int.TryParse(values.GetValueOrDefault(AmigaSettingsConstants.AudioLatency), out var latencyValue)
+            ? latencyValue : currentAudio.LatencyMilliseconds;
+        var stereo = int.TryParse(values.GetValueOrDefault(AmigaSettingsConstants.AudioStereoSeparation),
+            out var stereoValue) ? stereoValue : currentAudio.StereoSeparation;
+        var input = (amiga.Input ?? new AmigaInputConfiguration()) with
+        {
+            ParallelJoystickAdapterEnabled =
+                values.GetValueOrDefault(AmigaSettingsConstants.ParallelJoystickAdapter) == "enabled"
+        };
         return amiga with
         {
             Options = options,
@@ -107,9 +131,22 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
             ExtendedRomPath = values.GetValueOrDefault(AmigaSettingsConstants.ExtendedRomPath),
             RomKeyPath = values.GetValueOrDefault(AmigaSettingsConstants.RomKeyPath),
             AudioEnabled = values.GetValueOrDefault(AmigaSettingsConstants.AudioEnabled) == "enabled",
-            VideoRenderer = renderer
+            Audio = currentAudio with
+            {
+                OutputDeviceId = string.IsNullOrWhiteSpace(output) ? null : output,
+                LatencyMilliseconds = latency,
+                Interpolation = options.GetValueOrDefault("puae_sound_interpol") ?? currentAudio.Interpolation,
+                Filter = options.GetValueOrDefault("puae_sound_filter") ?? currentAudio.Filter,
+                StereoSeparation = stereo
+            },
+            VideoRenderer = renderer,
+            Input = input
         };
     }
+
+    public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) =>
+        AmigaConfigurationSummaryFunctions.Create(configuration as AmigaMachineConfiguration
+            ?? throw new ArgumentException(nameof(configuration)));
 
     public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) =>
         AmigaInputSettingsFunctions.Describe(configuration as AmigaMachineConfiguration
@@ -244,8 +281,11 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
             services.HostExecutablePath,
             () => services.CreateAudioOutput(audio.OutputDeviceId, audio.LatencyMilliseconds),
             value => Path.Combine(services.StatesDirectory, value.Id.ToString("N"), "Saves"));
-        var devices = AmigaStorageSettingsFunctions.Describe(runtime).AvailableDevices;
-        var mounted = EmulationMediaConversionFunctions.ToCommon(runtime.Media ?? []);
+        var storage = AmigaStorageSettingsFunctions.Describe(runtime);
+        var devices = storage.AvailableDevices
+            .Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray();
+        var mounted = EmulationMediaConversionFunctions.ToCommon(
+            AmigaExternalCore.ResolveConfiguredMedia(runtime));
         return new EmulationMachineRuntime(runtime,
             CreateMachineFactory(_engine, runtime, creationContext), devices, mounted,
             AmigaMachineCatalog.All.First(machine => machine.Id == runtime.Model).DisplayResourceKey, true,

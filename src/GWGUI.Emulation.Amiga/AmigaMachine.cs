@@ -76,7 +76,8 @@ internal sealed class AmigaMachine : IEmulatedMachine, IEmulationLifecycle, IEmu
     IReadOnlyList<EmulationMedia> IEmulationMedia.MountedMedia => _mountedCommonMedia.ToArray();
     async ValueTask IEmulationMedia.InsertAsync(EmulationMedia media, CancellationToken cancellationToken)
     {
-        await SelectDiskAsync(media.Slot.Index, cancellationToken).ConfigureAwait(false);
+        if (media.Slot.Index < DiskCount)
+            await SelectDiskAsync(media.Slot.Index, cancellationToken).ConfigureAwait(false);
         await InsertMediaAsync(media.Path, cancellationToken).ConfigureAwait(false);
         var inserted = media with { IsInserted = true };
         _mountedCommonMedia.RemoveAll(item => item.Slot == inserted.Slot);

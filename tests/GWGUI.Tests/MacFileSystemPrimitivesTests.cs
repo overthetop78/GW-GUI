@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 
 namespace GWGUI.Tests;
 

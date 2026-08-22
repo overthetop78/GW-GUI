@@ -1,0 +1,56 @@
+using GWGUI.App.Constants.Controls.Visual;
+using GWGUI.App.Constants.Emulation;
+using GWGUI.App.Contracts.Emulation.Memory;
+using GWGUI.App.Localization.Extensions;
+using System.Windows;
+using System.Windows.Controls;
+
+namespace GWGUI.App.Functions.Views.Emulation.Settings;
+
+internal static partial class EmulationSettingsLayout
+{
+    internal static Grid MemorySettingsPage(EmulationMemorySettingsContent settings)
+    {
+        var mainMemory = new StackPanel();
+        mainMemory.Children.Add(SettingsFieldGrid(settings.MainMemory.Select(field => (field.Label, field.Control)).ToArray()));
+        mainMemory.Children.Add(InformationBanner(settings.MainMemoryHint));
+
+        var mainCard = IconCard(mainMemory, LocExtension.Get("Emulation.Memory.Main"),
+            EmulationMemorySettingsConstants.MainMemoryIcon);
+        Grid root;
+        if (settings.MemoryExtensions.Count == 0)
+        {
+            root = SingleColumnPage(mainCard);
+        }
+        else
+        {
+            var extensions = new StackPanel();
+            extensions.Children.Add(SettingsFieldGrid(settings.MemoryExtensions
+                .Select(field => (field.Label, field.Control)).ToArray()));
+            extensions.Children.Add(InformationBanner(settings.MemoryExtensionsHint));
+            root = TwoColumnPage(mainCard,
+                IconCard(extensions, LocExtension.Get("Emulation.Memory.Extensions"),
+                    EmulationMemorySettingsConstants.MemoryExtensionsIcon));
+        }
+        root.Children.Add(MemorySummaryCard(settings.TotalMemory));
+        return root;
+    }
+
+    private static Border MemorySummaryCard(TextBlock totalMemory)
+    {
+        totalMemory.VerticalAlignment = VerticalAlignment.Center;
+        totalMemory.FontSize = 16;
+        var content = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(14, 10, 14, 10) };
+        var icon = new TextBlock { Text = EmulationMemorySettingsConstants.MainMemoryIcon,
+            FontFamily = ControlVisualConstants.IconFont, FontSize = 22,
+            VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0, 0, 12, 0) };
+        icon.SetResourceReference(TextBlock.ForegroundProperty, "AccentBrush");
+        content.Children.Add(icon);
+        content.Children.Add(totalMemory);
+        var card = new Border { Child = content, Padding = new Thickness(2), Margin = new Thickness(0, 10, 0, 0) };
+        card.SetResourceReference(FrameworkElement.StyleProperty, "Card");
+        Grid.SetRow(card, 1);
+        Grid.SetColumnSpan(card, 2);
+        return card;
+    }
+}

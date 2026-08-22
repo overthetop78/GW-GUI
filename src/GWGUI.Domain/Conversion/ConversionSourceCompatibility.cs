@@ -1,6 +1,5 @@
 using GWGUI.Domain.Formats;
-using GWGUI.Domain.Write;
-
+using GWGUI.Domain.Formats.Detection;
 namespace GWGUI.Domain.Conversion;
 
 public static class ConversionSourceCompatibility

@@ -1,12 +1,12 @@
+using GWGUI.Emulation.Atari;
+using GWGUI.Emulation.Atari.Cores;
+using GWGUI.Emulation.Common;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
 using System.Net.Http;
 using System.Runtime.Versioning;
 using System.Text.Json;
-using GWGUI.Emulation.Atari;
-using GWGUI.Emulation.Atari.Cores;
-using GWGUI.Emulation.Common;
 
 namespace GWGUI.Tests;
 

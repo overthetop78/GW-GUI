@@ -1,10 +1,19 @@
+using GWGUI.App;
+using GWGUI.App.Contracts.Localization;
+using GWGUI.App.Constants.Localization;
+using GWGUI.App.Dictionaries.Localization;
+using GWGUI.App.Functions.Localization;
+using GWGUI.App.Localization.Extensions;
+using GWGUI.App.Localization.Sources;
+using GWGUI.Emulation.Common;
+using GWGUI.MediaEngine.Containers.ImageDisk;
+using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using System.Globalization;
 using System.ComponentModel;
 using System.IO;
-using GWGUI.App.Localization;
 using System.Xml.Linq;
 using System.Text.RegularExpressions;
-using GWGUI.MediaEngine.Decoding;
 
 namespace GWGUI.Tests;
 
@@ -131,7 +140,7 @@ public sealed class LocalizationTests
         {
             var culture = UiLanguageResolver.GetUiCulture(language.Code);
             Assert.Empty(neutral.Where(key => !IsInvariantTechnicalKey(key)).Except(LocExtension.GetDefinedKeys(culture)));
-            foreach (var catalog in LocExtension.CatalogNames)
+            foreach (var catalog in LocalizationCatalogNames.All)
                 Assert.Equal(
                     LocExtension.GetDefinedKeys(catalog, CultureInfo.InvariantCulture).Where(key => !IsInvariantTechnicalKey(key)).Order(),
                     LocExtension.GetDefinedKeys(catalog, culture).Where(key => !IsInvariantTechnicalKey(key)).Order());
@@ -152,7 +161,7 @@ public sealed class LocalizationTests
         var resources = Path.Combine(FindRepositoryRoot(), "src", "GWGUI.App", "Resources");
         var protectedSyntax = new Regex(@"\{[^{}]+\}|--[a-z0-9][a-z0-9-]*|\*\.[^;|\s]+", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
 
-        foreach (var catalog in LocExtension.CatalogNames)
+        foreach (var catalog in LocalizationCatalogNames.All)
         {
             var source = ReadResx(Path.Combine(resources, "en-US", $"{catalog}.resx"));
             foreach (var language in UiLanguageCatalog.Available)

@@ -1,9 +1,9 @@
+using GWGUI.App.Contracts.Input;
+using GWGUI.App.Functions.Emulation.Shortcuts;
+using GWGUI.Emulation;
 using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Input;
-using GWGUI.App.Controls;
-using GWGUI.App.Input;
-using GWGUI.Emulation;
 
 namespace GWGUI.Tests;
 

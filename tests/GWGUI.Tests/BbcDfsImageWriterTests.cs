@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Containers.Acorn.BbcDfs;
 using GWGUI.MediaEngine.Conversion.Acorn;
 using GWGUI.MediaEngine.Definitions;

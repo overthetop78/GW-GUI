@@ -1,10 +1,13 @@
-using System.IO;
+using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Containers.Epson.Raw;
 using GWGUI.MediaEngine.Containers.ImageDisk;
 using GWGUI.MediaEngine.Conversion.Epson;
 using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.Exploration.Scp;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.Geometries.Epson;
 using GWGUI.MediaEngine.SectorImages;
+using System.IO;
 
 namespace GWGUI.Tests;
 

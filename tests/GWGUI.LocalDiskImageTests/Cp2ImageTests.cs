@@ -1,7 +1,10 @@
-﻿using GWGUI.MediaEngine.Exploration;
+using GWGUI.Emulation.Common;
+using GWGUI.MediaEngine.Containers.Cp2;
+using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
+using GWGUI.MediaEngine.SectorImages;
 using System.Buffers.Binary;
 using System.IO;
-using GWGUI.MediaEngine.Containers.Cp2;
 
 namespace GWGUI.Tests;
 

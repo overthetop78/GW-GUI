@@ -1,5 +1,7 @@
+using GWGUI.App.Contracts.Emulation.Settings;
+using GWGUI.App.Enums.Input;
+using GWGUI.App.Views.Controls.Emulation.Options;
 using System.Windows.Controls;
-using GWGUI.App.Controls;
 
 namespace GWGUI.Tests;
 

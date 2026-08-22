@@ -1,7 +1,7 @@
-using System.IO;
 using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Containers.Atari.St;
 using GWGUI.MediaEngine.Definitions;
+using System.IO;
 
 namespace GWGUI.Tests;
 

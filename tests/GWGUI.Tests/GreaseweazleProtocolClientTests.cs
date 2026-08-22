@@ -1,5 +1,5 @@
-using System.Buffers.Binary;
 using GWGUI.Infrastructure.Hardware.Greaseweazle;
+using System.Buffers.Binary;
 
 namespace GWGUI.Tests;
 

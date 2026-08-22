@@ -1,3 +1,5 @@
+using GWGUI.App;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
@@ -131,7 +133,7 @@ public sealed class AtariLocalizationTests
     private static IEnumerable<string> ReferenceResourceDirectories()
     {
         var resources = Path.Combine(FindRepositoryRoot(), "src", "GWGUI.App", ResourceDirectory);
-        yield return resources;
+        yield return Path.Combine(resources, "00-Base");
         yield return Path.Combine(resources, EnglishCulture);
         yield return Path.Combine(resources, FrenchCulture);
     }

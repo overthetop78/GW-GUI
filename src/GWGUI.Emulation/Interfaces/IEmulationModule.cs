@@ -13,6 +13,7 @@ public interface IEmulationModule
     IEmulationConfiguration ChangeMachine(IEmulationConfiguration configuration, string machineId);
     IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration,
         IReadOnlyDictionary<string, string?> values);
+    EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration);
     ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationConfiguration configuration,
         EmulationRuntimeServices services, CancellationToken cancellationToken = default);
     ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(

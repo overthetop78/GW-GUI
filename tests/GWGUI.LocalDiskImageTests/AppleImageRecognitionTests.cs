@@ -1,10 +1,12 @@
-﻿using GWGUI.MediaEngine.Exploration;
-using System.IO;
-using GWGUI.MediaEngine.Containers.Apple.TwoImg;
+using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Containers.Apple;
+using GWGUI.MediaEngine.Containers.Apple.TwoImg;
+using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
 using GWGUI.MediaEngine.SectorImages;
+using System.IO;
 
 namespace GWGUI.Tests;
 

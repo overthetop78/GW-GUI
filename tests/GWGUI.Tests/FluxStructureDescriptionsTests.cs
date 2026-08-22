@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Exploration.Results;
 
 namespace GWGUI.Tests;
 

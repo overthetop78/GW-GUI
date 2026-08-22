@@ -1,8 +1,8 @@
-using System.IO;
-using System.Runtime.InteropServices;
 using GWGUI.Emulation.Amiga;
 using GWGUI.Emulation.Amiga.Cores;
 using GWGUI.Emulation.Common;
+using System.IO;
+using System.Runtime.InteropServices;
 
 namespace GWGUI.Tests;
 

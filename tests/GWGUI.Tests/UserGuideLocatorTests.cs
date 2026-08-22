@@ -1,5 +1,5 @@
+using GWGUI.App.Services.Documentation;
 using System.IO;
-using GWGUI.App.Services;
 
 namespace GWGUI.Tests;
 

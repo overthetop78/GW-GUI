@@ -1,5 +1,7 @@
+using GWGUI.App.Constants.Input.Mouse;
+using GWGUI.App.Functions.Input.Mouse;
+using GWGUI.App.Input.Mouse;
 using System.Windows;
-using GWGUI.App.Input;
 
 namespace GWGUI.Tests;
 

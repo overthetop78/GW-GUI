@@ -1,10 +1,13 @@
-﻿using GWGUI.MediaEngine.Exploration;
-using System.IO;
 using GWGUI.MediaEngine.Containers.Acorn.BbcDfs;
-using GWGUI.MediaEngine.Geometries.Acorn;
+using GWGUI.MediaEngine.Containers.ImageDisk;
 using GWGUI.MediaEngine.Decoding;
+using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
+using GWGUI.MediaEngine.FileSystems.Definitions;
+using GWGUI.MediaEngine.Geometries.Acorn;
 using GWGUI.MediaEngine.Reconstruction.Iso;
 using GWGUI.MediaEngine.SectorImages;
+using System.IO;
 
 namespace GWGUI.Tests;
 

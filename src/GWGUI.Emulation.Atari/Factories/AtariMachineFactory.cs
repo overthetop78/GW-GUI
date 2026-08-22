@@ -9,6 +9,8 @@ internal abstract class AtariMachineFactory(AtariEmulator emulator) : IAtariMach
 
     public IEmulatedMachine Create(AtariMachineConfiguration configuration, AtariMachineCreationContext context)
     {
+        if (!OperatingSystem.IsWindows())
+            throw new PlatformNotSupportedException();
         if (configuration.Core != Emulator)
             throw new ArgumentException(nameof(configuration));
         var machineId = Guid.NewGuid();

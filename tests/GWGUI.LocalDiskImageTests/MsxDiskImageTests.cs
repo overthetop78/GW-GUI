@@ -1,4 +1,5 @@
-﻿using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.FileSystems.Definitions;
 using System.IO;
 using Xunit.Abstractions;
 

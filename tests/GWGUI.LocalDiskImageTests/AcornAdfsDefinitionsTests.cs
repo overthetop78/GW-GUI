@@ -1,10 +1,12 @@
-using System.IO;
+using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.Exploration.Scp;
 using GWGUI.MediaEngine.FileSystems.Acorn;
 using GWGUI.MediaEngine.FileSystems.Acorn.Adfs;
 using GWGUI.MediaEngine.FileSystems.Acorn.FileCore;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
-using GWGUI.MediaEngine.Definitions;
+using System.IO;
 
 namespace GWGUI.Tests;
 

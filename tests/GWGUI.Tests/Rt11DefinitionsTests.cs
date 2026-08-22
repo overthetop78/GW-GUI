@@ -1,7 +1,7 @@
-using System.Buffers.Binary;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Dec.Rt11;
 using GWGUI.MediaEngine.SectorImages;
+using System.Buffers.Binary;
 
 namespace GWGUI.Tests;
 

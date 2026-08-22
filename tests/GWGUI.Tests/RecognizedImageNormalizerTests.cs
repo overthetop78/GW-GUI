@@ -1,14 +1,15 @@
-using System.Buffers.Binary;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration.Interpretation.Normalizers;
 using GWGUI.MediaEngine.Exploration.Interpretation.Policies;
 using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.FileSystems.Fat12;
 using GWGUI.MediaEngine.Geometries.Apple;
 using GWGUI.MediaEngine.Geometries.Msx;
 using GWGUI.MediaEngine.Recognition.Msx;
 using GWGUI.MediaEngine.SectorImages;
+using System.Buffers.Binary;
 
 namespace GWGUI.Tests;
 

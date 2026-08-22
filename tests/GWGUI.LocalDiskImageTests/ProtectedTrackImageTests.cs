@@ -1,8 +1,10 @@
-using System.IO;
+using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Flux;
+using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.TrackImages;
+using System.IO;
 
 namespace GWGUI.Tests;
 

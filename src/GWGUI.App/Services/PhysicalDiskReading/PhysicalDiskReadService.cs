@@ -1,3 +1,6 @@
+using GWGUI.App.Constants.Services.PhysicalDiskReading;
+using GWGUI.App.Contracts.Services.PhysicalDiskReading;
+using GWGUI.App.Enums.Services.PhysicalDiskReading;
 using GWGUI.Infrastructure.Hardware.Greaseweazle;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;

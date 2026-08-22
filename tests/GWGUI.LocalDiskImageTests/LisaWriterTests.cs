@@ -1,12 +1,14 @@
-using System.Buffers.Binary;
-using System.IO;
+using GWGUI.Domain.Formats;
 using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Containers.Apple.DiskCopy;
 using GWGUI.MediaEngine.Conversion.Apple;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Apple.Lisa;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.SectorImages;
+using System.Buffers.Binary;
+using System.IO;
 
 namespace GWGUI.Tests;
 

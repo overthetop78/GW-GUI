@@ -1,9 +1,9 @@
+using GWGUI.Domain.Hardware;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using System.Text;
 using System.Text.RegularExpressions;
-using GWGUI.Domain.Hardware;
 using Microsoft.Win32;
 
 namespace GWGUI.Infrastructure.Hardware;

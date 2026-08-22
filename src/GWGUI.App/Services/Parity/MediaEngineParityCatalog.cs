@@ -1,7 +1,6 @@
 using GWGUI.Domain.Conversion;
 using GWGUI.Domain.Formats;
 using GWGUI.Domain.Parity;
-
 namespace GWGUI.App.Services.Parity;
 
 public static class MediaEngineParityCatalog

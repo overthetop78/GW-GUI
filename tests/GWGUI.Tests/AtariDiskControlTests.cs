@@ -1,8 +1,8 @@
+using GWGUI.Emulation.Atari.Cores;
+using GWGUI.Emulation.Common;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
-using GWGUI.Emulation.Atari.Cores;
-using GWGUI.Emulation.Common;
 
 namespace GWGUI.Tests;
 

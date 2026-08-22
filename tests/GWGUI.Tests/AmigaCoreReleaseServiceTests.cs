@@ -1,8 +1,8 @@
+using GWGUI.Emulation.Amiga;
 using System.IO.Compression;
 using System.IO;
 using System.Net;
 using System.Net.Http;
-using GWGUI.Emulation.Amiga;
 
 namespace GWGUI.Tests;
 

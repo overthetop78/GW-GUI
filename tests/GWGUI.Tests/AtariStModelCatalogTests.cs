@@ -1,6 +1,8 @@
-using System.Globalization;
-using GWGUI.App.Localization;
+using GWGUI.App.Dictionaries.Localization;
+using GWGUI.App.Functions.Localization;
+using GWGUI.App.Localization.Extensions;
 using GWGUI.Emulation.Atari;
+using System.Globalization;
 
 namespace GWGUI.Tests;
 

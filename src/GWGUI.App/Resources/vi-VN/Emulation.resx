@@ -1017,6 +1017,7 @@
   <data name="Emulation.Storage.Cartridges">
     <value>Hộp băng</value>
   </data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Khe cắm hộp băng</value></data>
   <data name="Emulation.Storage.CompactDiscs">
     <value>Đĩa compact</value>
   </data>

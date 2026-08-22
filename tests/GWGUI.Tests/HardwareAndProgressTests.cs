@@ -1,31 +1,33 @@
+using GWGUI.App.Contracts.Progress;
+using GWGUI.App.Services.Hardware;
+using GWGUI.App.Services.Operations;
+using GWGUI.App.ViewModels.Main;
+using GWGUI.App.Views.Controls.Visualization;
+using GWGUI.Domain.Commands;
+using GWGUI.Domain.Commands.Execution;
+using GWGUI.Domain.Commands.Progress;
+using GWGUI.Domain.Formats;
+using GWGUI.Domain.Hardware;
+using GWGUI.Domain.Hardware.Parsing;
+using GWGUI.Domain.Naming;
+using GWGUI.Domain.Profiles;
+using GWGUI.Domain.Settings;
+using GWGUI.Domain.Settings.Hardware;
+using GWGUI.Domain.Settings.Window;
+using GWGUI.Infrastructure.Hardware;
+using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.Exploration.Contracts;
+using GWGUI.MediaEngine.Exploration.Scp;
 using System.IO;
 using GWGUI.MediaEngine.Exploration.Results;
-using GWGUI.Domain.Commands;
-using GWGUI.Domain.Profiles;
 using GWGUI.MediaEngine;
-using GWGUI.MediaEngine.Containers.Scp;
-using GWGUI.Domain.Formats;
-using GWGUI.Domain.Naming;
-using GWGUI.Domain.Hardware;
-using GWGUI.Domain.Conversion;
-using GWGUI.Domain.Read;
-using GWGUI.Domain.Write;
-using GWGUI.Domain.Maintenance;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.Flux;
-using GWGUI.MediaEngine.Exploration;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.Infrastructure.Settings;
-using GWGUI.Infrastructure.Hardware;
-using GWGUI.Domain.Settings;
-using GWGUI.App;
-using GWGUI.App.Controls;
-using GWGUI.App.ViewModels;
-using GWGUI.App.Services;
-using GWGUI.App.Rendering;
-using GWGUI.App.Localization;
 using SkiaSharp;
 using System.Windows;
 using System.Windows.Media;
@@ -328,8 +330,8 @@ public sealed class HardwareAndProgressTests : CoreTestBase
     [Fact]
     public void WindowPlacementRejectsAWindowOutsideAllScreens()
     {
-        var settings = new GWGUI.Domain.Settings.WindowPlacementSettings { Width = 1400, Height = 800, Left = 9000, Top = 9000 };
-        var result = GWGUI.Domain.Settings.WindowPlacementPolicy.Normalize(settings, 1280, 720, 0, 0, 3840, 2160);
+        var settings = new WindowPlacementSettings { Width = 1400, Height = 800, Left = 9000, Top = 9000 };
+        var result = WindowPlacementPolicy.Normalize(settings, 1280, 720, 0, 0, 3840, 2160);
         Assert.Null(result.Left);
         Assert.Null(result.Top);
     }
@@ -337,8 +339,8 @@ public sealed class HardwareAndProgressTests : CoreTestBase
     [Fact]
     public void WindowPlacementKeepsAVisibleSecondaryScreenPosition()
     {
-        var settings = new GWGUI.Domain.Settings.WindowPlacementSettings { Width = 1400, Height = 800, Left = -1500, Top = 120 };
-        var result = GWGUI.Domain.Settings.WindowPlacementPolicy.Normalize(settings, 1280, 720, -1920, 0, 5760, 2160);
+        var settings = new WindowPlacementSettings { Width = 1400, Height = 800, Left = -1500, Top = 120 };
+        var result = WindowPlacementPolicy.Normalize(settings, 1280, 720, -1920, 0, 5760, 2160);
         Assert.Equal(-1500, result.Left);
         Assert.Equal(120, result.Top);
     }
@@ -346,8 +348,8 @@ public sealed class HardwareAndProgressTests : CoreTestBase
     [Fact]
     public void WindowPlacementClampsTheWholeWindowInsideTheVirtualDesktop()
     {
-        var settings = new GWGUI.Domain.Settings.WindowPlacementSettings { Width = 1360, Height = 820, Left = 1200, Top = 700 };
-        var result = GWGUI.Domain.Settings.WindowPlacementPolicy.Normalize(settings, 1280, 720, 0, 0, 2048, 1152);
+        var settings = new WindowPlacementSettings { Width = 1360, Height = 820, Left = 1200, Top = 700 };
+        var result = WindowPlacementPolicy.Normalize(settings, 1280, 720, 0, 0, 2048, 1152);
         Assert.Equal(688, result.Left);
         Assert.Equal(332, result.Top);
     }

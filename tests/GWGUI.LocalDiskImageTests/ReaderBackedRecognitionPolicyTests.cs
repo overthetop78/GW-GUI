@@ -1,10 +1,11 @@
-﻿using System.IO;
+using GWGUI.MediaEngine.Containers.Apple;
 using GWGUI.MediaEngine.Containers.Coherent;
 using GWGUI.MediaEngine.Containers.Dec.Rx02;
-using GWGUI.MediaEngine.Containers.Apple;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.Recognition;
 using GWGUI.MediaEngine.Recognition.Policies;
 using GWGUI.MediaEngine.SectorImages;
+using System.IO;
 
 namespace GWGUI.Tests;
 

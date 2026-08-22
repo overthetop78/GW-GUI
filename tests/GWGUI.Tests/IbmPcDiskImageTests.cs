@@ -1,10 +1,12 @@
-﻿using GWGUI.MediaEngine.Exploration;
-using System.IO;
+using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Containers.Ibm.Raw;
+using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.FileSystems.Fat12;
 using GWGUI.MediaEngine.Geometries.Ibm;
 using GWGUI.MediaEngine.Recognition.Ibm;
 using GWGUI.MediaEngine.SectorImages.Builders;
+using System.IO;
 
 namespace GWGUI.Tests;
 

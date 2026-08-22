@@ -1,3 +1,4 @@
+using GWGUI.App;
 using System.Runtime.ExceptionServices;
 using System.Windows;
 using System.Windows.Threading;
@@ -47,4 +48,5 @@ internal static class WpfTestHost
     }
 
     internal static void Run(Action action) => UiDispatcher.Invoke(action);
+
 }

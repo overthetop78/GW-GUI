@@ -1,7 +1,8 @@
-using GWGUI.App.Services.PhysicalDiskReading;
-using GWGUI.App.ViewModels;
-using GWGUI.MediaEngine.Containers.Scp;
+using GWGUI.App.Functions.Services.PhysicalDiskReading;
+using GWGUI.App.ViewModels.Operations;
 using GWGUI.Domain.Settings;
+using GWGUI.Domain.Settings.Engines;
+using GWGUI.MediaEngine.Containers.Scp;
 
 namespace GWGUI.Tests;
 
@@ -31,7 +32,7 @@ public sealed class InternalPhysicalDiskReadOptionTests
     [InlineData("Unknown", ScpDiskType.Other720)]
     public void CaptureTypeUsesConfiguredDensityWithoutClaimingAFileSystem(string density, ScpDiskType expected)
     {
-        Assert.Equal(expected, ScpCaptureDiskTypePolicy.Resolve(density));
+        Assert.Equal(expected, ScpCaptureDiskTypeFunctions.Resolve(density));
     }
 
     [Fact]

@@ -1,6 +1,6 @@
 using GWGUI.Domain.Commands;
+using GWGUI.Domain.Commands.Options;
 using GWGUI.Domain.Formats;
-
 namespace GWGUI.Domain.Read;
 
 public static class ReadCommandBuilder

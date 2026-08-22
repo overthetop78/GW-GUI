@@ -1,9 +1,7 @@
 using GWGUI.Emulation;
-using System.Runtime.Versioning;
 
 namespace GWGUI.Emulation.Atari;
 
-[SupportedOSPlatform("windows")]
 public sealed class AtariEngine
 {
     private readonly IReadOnlyDictionary<AtariEmulator, IAtariMachineFactory> _factories;

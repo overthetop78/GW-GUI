@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Containers.Adf;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Conversion.Amiga;

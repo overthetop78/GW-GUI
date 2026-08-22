@@ -1,11 +1,13 @@
-using System.IO;
-using System.Text;
 using GWGUI.MediaEngine.Containers.Apple.Nib;
 using GWGUI.MediaEngine.Containers.Apple.Woz;
 using GWGUI.MediaEngine.Decoding.Apple;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.Encoding.BitPacking;
+using GWGUI.MediaEngine.Exploration.Scp;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
+using System.IO;
+using System.Text;
 
 namespace GWGUI.Tests;
 

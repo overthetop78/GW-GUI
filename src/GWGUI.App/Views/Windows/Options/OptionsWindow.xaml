@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="GWGUI.App.Views.Windows.Options.OptionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:l="clr-namespace:GWGUI.App.Localization.Extensions"
+        xmlns:common="clr-namespace:GWGUI.App.Views.Controls.Common" xmlns:options="clr-namespace:GWGUI.App.Views.Controls.Options" xmlns:emulationOptions="clr-namespace:GWGUI.App.Views.Controls.Emulation.Options"
+        Title="{l:Loc Options.Title}" Width="1120" Height="650" MinWidth="980" MinHeight="560"
+        WindowStartupLocation="CenterOwner" ResizeMode="CanResizeWithGrip" Closing="Window_Closing">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TabControl x:Name="Navigation" SelectedIndex="0" AutomationProperties.Name="{l:Loc Options.Title}">
+            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="&#xE713;" Text="{l:Loc Options.General}"/></TabItem.Header>
+                <options:OptionsGeneralSection x:Name="GeneralSection" />
+            </TabItem>
+            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="&#xE9D5;" Text="{l:Loc Options.Logs}"/></TabItem.Header>
+                <options:OptionsLogsSection x:Name="LogsSection" />
+            </TabItem>
+            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="&#xE950;" Text="{l:Loc Options.Hardware}"/></TabItem.Header>
+                <options:OptionsHardwareSection x:Name="HardwareSection" />
+            </TabItem>
+            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="&#xE943;" Text="{l:Loc Options.Engines}"/></TabItem.Header>
+                <options:OptionsEnginesSection x:Name="EnginesSection" />
+            </TabItem>
+            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="&#xE77B;" Text="{l:Loc Options.Profiles}"/></TabItem.Header>
+                <options:OptionsProfilesSection x:Name="ProfilesSection" />
+            </TabItem>
+            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="&#xE7FC;" Text="{l:Loc Tab.Emulation}"/></TabItem.Header>
+                <emulationOptions:OptionsEmulationSection x:Name="EmulationSection" />
+            </TabItem>
+        </TabControl>
+
+        <Button x:Name="CloseButton" Grid.Row="1" HorizontalAlignment="Right" Margin="0,12,0,0" MinWidth="120"
+                Content="{l:Loc Common.Close}" IsDefault="True" Click="Close_Click" />
+    </Grid>
+</Window>

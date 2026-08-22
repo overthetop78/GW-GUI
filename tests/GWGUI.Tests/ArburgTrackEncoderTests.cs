@@ -1,6 +1,8 @@
+using GWGUI.MediaEngine.Containers.ImageDisk;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Encoding;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 
 namespace GWGUI.Tests;
 

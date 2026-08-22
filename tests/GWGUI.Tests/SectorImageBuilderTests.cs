@@ -1,10 +1,12 @@
-using System.IO;
+using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Definitions;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.Geometries.Apple;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.SectorImages.Builders;
 using GWGUI.MediaEngine.SectorImages.Builders.Apple;
+using System.IO;
 
 namespace GWGUI.Tests;
 

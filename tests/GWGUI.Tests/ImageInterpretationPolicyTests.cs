@@ -3,8 +3,9 @@ using GWGUI.MediaEngine.Exploration.Interpretation;
 using GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
 using GWGUI.MediaEngine.Exploration.Interpretation.Definitions;
 using GWGUI.MediaEngine.Exploration.Interpretation.Policies;
-using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.FileSystems;
 
 namespace GWGUI.Tests;
 

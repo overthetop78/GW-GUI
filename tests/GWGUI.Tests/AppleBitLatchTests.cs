@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Decoding.Apple;
+using GWGUI.MediaEngine.Exploration.Scp;
 
 namespace GWGUI.Tests;
 

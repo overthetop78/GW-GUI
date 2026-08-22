@@ -1,11 +1,12 @@
 using GWGUI.MediaEngine.Containers.Scp;
-using System.IO;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Exploration.Scp;
 using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.Recognition.Scp;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.SectorImages.Scp;
+using System.IO;
 
 namespace GWGUI.Tests;
 

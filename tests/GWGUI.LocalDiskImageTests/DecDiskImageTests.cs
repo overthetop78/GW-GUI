@@ -1,5 +1,6 @@
-﻿using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Exploration.Results;
+using GWGUI.MediaEngine.FileSystems.Definitions;
 using System.IO;
 
 namespace GWGUI.Tests;

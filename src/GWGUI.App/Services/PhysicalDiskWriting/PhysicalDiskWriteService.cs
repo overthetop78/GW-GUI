@@ -1,3 +1,7 @@
+using GWGUI.App.Contracts.Services.PhysicalDiskWriting;
+using GWGUI.App.Enums.Services.PhysicalDiskWriting;
+using GWGUI.App.Functions.Services.PhysicalDiskWriting;
+using GWGUI.App.Interfaces.Services.PhysicalDiskWriting;
 using System.IO;
 using GWGUI.Infrastructure.Hardware.Greaseweazle;
 using GWGUI.MediaEngine.Containers.Scp;
@@ -155,9 +159,9 @@ public sealed class PhysicalDiskWriteService(
     {
         var precompensation = ResolvePrecompensation(options.Precompensation, track.Cylinder);
         var source = precompensation > 0
-            ? EncodedTrackPrecompensator.Apply(track.EncodedTrack!, options.PrecompensationEncoding, precompensation)
+            ? EncodedTrackPrecompensationFunctions.Apply(track.EncodedTrack!, options.PrecompensationEncoding, precompensation)
             : track.FluxIntervals;
-        return FluxTimingConverter.ToDeviceTicks(source, track.SourceTickNanoseconds, sampleFrequency);
+        return FluxTimingConversionFunctions.ToDeviceTicks(source, track.SourceTickNanoseconds, sampleFrequency);
     }
 
     private static double ResolvePrecompensation(

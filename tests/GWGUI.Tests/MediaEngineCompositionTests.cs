@@ -1,11 +1,14 @@
-using System.Reflection;
-using GWGUI.MediaEngine.Exploration.Scp;
+using GWGUI.MediaEngine.Containers.ImageDisk;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Exploration.Interpretation;
+using GWGUI.MediaEngine.Exploration.Scp;
 using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.Recognition;
+using GWGUI.MediaEngine.Recognition.Policies;
 using GWGUI.MediaEngine.Recognition.Scp;
+using System.Reflection;
 
 namespace GWGUI.Tests;
 

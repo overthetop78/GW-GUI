@@ -1,11 +1,11 @@
+using GWGUI.Domain.HostTools;
+using GWGUI.Infrastructure.HostTools;
 using System.IO.Compression;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
-using GWGUI.Infrastructure.HostTools;
-using GWGUI.Domain.HostTools;
 
 namespace GWGUI.Tests;
 

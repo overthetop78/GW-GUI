@@ -1,7 +1,24 @@
+using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.FileSystems.Acorn.Adfs;
+using GWGUI.MediaEngine.FileSystems.Acorn.BbcDfs;
+using GWGUI.MediaEngine.FileSystems.Amiga;
+using GWGUI.MediaEngine.FileSystems.Amiga.FlatArchive;
+using GWGUI.MediaEngine.FileSystems.Apple.Dos;
+using GWGUI.MediaEngine.FileSystems.Apple.InformXzip;
+using GWGUI.MediaEngine.FileSystems.Apple.Lisa;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Mfs;
+using GWGUI.MediaEngine.FileSystems.Apple.ProDos;
+using GWGUI.MediaEngine.FileSystems.Atari.Dos;
+using GWGUI.MediaEngine.FileSystems.Coherent;
+using GWGUI.MediaEngine.FileSystems.Commodore.Dos;
+using GWGUI.MediaEngine.FileSystems.Cpm;
+using GWGUI.MediaEngine.FileSystems.Dec.Rt11;
+using GWGUI.MediaEngine.FileSystems.Fat12;
+using GWGUI.MediaEngine.FileSystems.Ucsd;
+using GWGUI.MediaEngine.SectorImages;
 using System.Collections.Frozen;
 using System.IO;
-using GWGUI.MediaEngine.FileSystems;
-using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;
 

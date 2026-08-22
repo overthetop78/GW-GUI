@@ -1,9 +1,11 @@
-using System.Buffers.Binary;
-using System.IO;
+using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Apple.InformXzip;
-
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.SectorImages;
+using System.Buffers.Binary;
+using System.IO;
+
 
 namespace GWGUI.Tests;
 

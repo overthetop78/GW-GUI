@@ -1,7 +1,7 @@
-using System.Windows.Input;
-using GWGUI.App.Input;
-using GWGUI.App.Rendering;
+using GWGUI.App.Functions.Input.Keyboard;
+using GWGUI.App.Functions.Rendering.Emulation;
 using GWGUI.Emulation;
+using System.Windows.Input;
 
 namespace GWGUI.Tests;
 
@@ -14,7 +14,7 @@ public sealed class AmigaKeyboardMappingTests
     public void EmulatorScreen_IsAlwaysFittedToFourThree(double availableWidth, double availableHeight,
         double expectedWidth, double expectedHeight)
     {
-        var size = EmulationVideoLayout.FitFourThree(availableWidth, availableHeight);
+        var size = EmulationVideoLayoutFunctions.FitFourThree(availableWidth, availableHeight);
         Assert.Equal(expectedWidth, size.Width);
         Assert.Equal(expectedHeight, size.Height);
         Assert.Equal(4d / 3d, size.Width / size.Height, 10);

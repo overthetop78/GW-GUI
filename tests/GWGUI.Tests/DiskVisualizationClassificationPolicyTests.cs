@@ -1,6 +1,6 @@
-using GWGUI.App.Rendering;
-using GWGUI.App.Services;
-
+using GWGUI.App.Enums.Rendering.Scp;
+using GWGUI.App.Functions.Services.Visualization;
+using GWGUI.MediaEngine.Exploration.Scp;
 namespace GWGUI.Tests;
 
 public sealed class DiskVisualizationClassificationPolicyTests
@@ -12,7 +12,7 @@ public sealed class DiskVisualizationClassificationPolicyTests
     [InlineData("Amstrad", "iso.mfm", DiskMediaCategory.ThreeInch)]
     public void MachineSelectsDecoderAndMedia(string machine, string decoder, DiskMediaCategory media)
     {
-        var result = DiskVisualizationClassificationPolicy.Resolve(machine, null, null, false);
+        var result = DiskVisualizationClassificationFunctions.Resolve(machine, null, null, false);
 
         Assert.Equal(decoder, result.DecoderId);
         Assert.Equal(media, result.MediaCategory);
@@ -21,7 +21,7 @@ public sealed class DiskVisualizationClassificationPolicyTests
     [Fact]
     public void ProtectionOverridesMachineDecoder()
     {
-        var result = DiskVisualizationClassificationPolicy.Resolve("Apple II", "apple2.appledos.140", "apple2.rwts18", false);
+        var result = DiskVisualizationClassificationFunctions.Resolve("Apple II", "apple2.appledos.140", "apple2.rwts18", false);
 
         Assert.Equal("apple2.rwts18", result.DecoderId);
     }
@@ -29,7 +29,7 @@ public sealed class DiskVisualizationClassificationPolicyTests
     [Fact]
     public void EmptyAutomaticSelectionLeavesDecoderUnforced()
     {
-        var result = DiskVisualizationClassificationPolicy.Resolve(null, null, null, true);
+        var result = DiskVisualizationClassificationFunctions.Resolve(null, null, null, true);
 
         Assert.Null(result.DecoderId);
         Assert.Equal(DiskMediaCategory.Unknown, result.MediaCategory);
@@ -41,7 +41,7 @@ public sealed class DiskVisualizationClassificationPolicyTests
     [InlineData("amiga.amigados_hd")]
     public void HighDensityFormatSelectsHighDensityMedia(string formatId)
     {
-        var result = DiskVisualizationClassificationPolicy.Resolve("IBM PC", formatId, null, false);
+        var result = DiskVisualizationClassificationFunctions.Resolve("IBM PC", formatId, null, false);
 
         Assert.Equal(DiskMediaCategory.ThreeHalfHd, result.MediaCategory);
     }

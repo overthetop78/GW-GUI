@@ -1017,6 +1017,7 @@
   <data name="Emulation.Storage.Cartridges">
     <value>Картридж</value>
   </data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Слот для картриджа</value></data>
   <data name="Emulation.Storage.CompactDiscs">
     <value>Компакт-диски</value>
   </data>

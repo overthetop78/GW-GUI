@@ -1,13 +1,20 @@
+using GWGUI.Domain.Settings;
+using GWGUI.App.Functions.Localization;
+using GWGUI.App.Localization.Extensions;
+using GWGUI.App.Localization.Sources;
+using GWGUI.App.Services.Emulation;
+using GWGUI.App.Services.Logging;
+using GWGUI.App.Services.Storage;
+using GWGUI.App.Services.Theming;
+using GWGUI.App.Views.Windows.Options;
+using GWGUI.App.Views.Windows.Shell;
 using System.Globalization;
 using System.IO;
 using System.Net.Http;
 using System.Windows;
-using GWGUI.App.Localization;
 using GWGUI.Infrastructure.Settings;
-using GWGUI.Domain.Settings;
 using Microsoft.Win32;
 using System.Windows.Threading;
-using GWGUI.App.Services;
 using GWGUI.Infrastructure.HostTools;
 
 namespace GWGUI.App;

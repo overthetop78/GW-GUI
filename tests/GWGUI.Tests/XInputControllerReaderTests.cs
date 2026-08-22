@@ -1,5 +1,4 @@
-using GWGUI.App.Services;
-
+using GWGUI.App.Services.Input;
 namespace GWGUI.Tests;
 
 public sealed class XInputControllerReaderTests

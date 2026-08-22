@@ -1,3 +1,4 @@
+using GWGUI.App.Contracts.Services.PhysicalDiskReading;
 using GWGUI.Infrastructure.Hardware.Greaseweazle;
 
 namespace GWGUI.App.Services.PhysicalDiskReading;

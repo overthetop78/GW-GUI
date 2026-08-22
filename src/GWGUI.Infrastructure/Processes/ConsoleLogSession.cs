@@ -1,5 +1,5 @@
+using GWGUI.Domain.Settings.Logging;
 using System.Text;
-using GWGUI.Domain.Settings;
 
 namespace GWGUI.Infrastructure.Processes;
 

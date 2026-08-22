@@ -1,7 +1,0 @@
-namespace GWGUI.App.Constants;
-
-internal static class EmulationMemorySettingsConstants
-{
-    internal const string MainMemoryIcon = "\uE964";
-    internal const string MemoryExtensionsIcon = "\uE950";
-}

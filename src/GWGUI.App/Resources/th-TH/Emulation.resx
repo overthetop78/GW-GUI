@@ -1017,6 +1017,7 @@
   <data name="Emulation.Storage.Cartridges">
     <value>ตลับเกม</value>
   </data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>ช่องตลับเกม</value></data>
   <data name="Emulation.Storage.CompactDiscs">
     <value>คอมแพกต์ดิสก์</value>
   </data>

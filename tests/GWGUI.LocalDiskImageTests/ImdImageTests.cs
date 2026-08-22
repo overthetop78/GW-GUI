@@ -1,12 +1,15 @@
-﻿using GWGUI.MediaEngine.Visualization;
-using GWGUI.MediaEngine.Exploration;
-using System.IO;
+using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Containers.ImageDisk;
 using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.Exploration.Results;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.Geometries.Epson;
-using GWGUI.MediaEngine.Decoding;
-using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.Reconstruction.Iso;
+using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Visualization;
+using System.IO;
+using GWGUI.MediaEngine.Decoding;
 
 namespace GWGUI.Tests;
 

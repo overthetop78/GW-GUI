@@ -1,4 +1,5 @@
 using GWGUI.Emulation.Atari;
+using GWGUI.MediaEngine.Exploration.Scp;
 
 namespace GWGUI.Tests;
 

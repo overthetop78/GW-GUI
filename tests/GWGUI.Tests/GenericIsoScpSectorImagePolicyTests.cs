@@ -1,6 +1,6 @@
-using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Reconstruction.Iso;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Decoding;
 
 namespace GWGUI.Tests;
 

@@ -1,5 +1,4 @@
 using GWGUI.Domain.Formats;
-
 namespace GWGUI.Domain.Conversion;
 
 internal sealed class ConversionCompatibilityValidator(IImageFormatCatalog catalog)

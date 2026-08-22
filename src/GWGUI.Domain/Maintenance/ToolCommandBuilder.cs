@@ -1,5 +1,6 @@
-using System.Globalization;
 using GWGUI.Domain.Commands;
+using GWGUI.Domain.Commands.Options;
+using System.Globalization;
 
 namespace GWGUI.Domain.Maintenance;
 
@@ -57,7 +58,7 @@ public static class ToolCommandBuilder
     private static List<string> Align(ToolCommandRequest request)
     {
         var tracks = Required(request, "tracks");
-        var options = new List<Read.EnabledOption>
+        var options = new List<EnabledOption>
         {
             new("--tracks", tracks),
             new("--revs", Positive(request, "revs").ToString(CultureInfo.InvariantCulture)),
@@ -81,7 +82,7 @@ public static class ToolCommandBuilder
         return args;
     }
 
-    private static void AddOptional(ToolCommandRequest request, List<Read.EnabledOption> options, string key)
+    private static void AddOptional(ToolCommandRequest request, List<EnabledOption> options, string key)
     {
         if (request.Enabled.Contains(key)) options.Add(new("--" + key, Required(request, key)));
     }

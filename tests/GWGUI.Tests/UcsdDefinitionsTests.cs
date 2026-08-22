@@ -1,5 +1,6 @@
-using GWGUI.MediaEngine.FileSystems.Ucsd;
 using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.Exploration.Scp;
+using GWGUI.MediaEngine.FileSystems.Ucsd;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;

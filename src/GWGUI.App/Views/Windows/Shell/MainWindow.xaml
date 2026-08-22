@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="GWGUI.App.Views.Windows.Shell.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:GWGUI.App" xmlns:common="clr-namespace:GWGUI.App.Views.Controls.Common" xmlns:shell="clr-namespace:GWGUI.App.Views.Controls.Shell" xmlns:read="clr-namespace:GWGUI.App.Views.Controls.Read" xmlns:write="clr-namespace:GWGUI.App.Views.Controls.Write" xmlns:conversion="clr-namespace:GWGUI.App.Views.Controls.Conversion" xmlns:visualization="clr-namespace:GWGUI.App.Views.Controls.Visualization" xmlns:explorer="clr-namespace:GWGUI.App.Views.Controls.Explorer" xmlns:tools="clr-namespace:GWGUI.App.Views.Controls.Tools" xmlns:emulationMachine="clr-namespace:GWGUI.App.Views.Controls.Emulation.Machine" xmlns:l="clr-namespace:GWGUI.App.Localization.Extensions" xmlns:automation="clr-namespace:System.Windows.Automation;assembly=PresentationCore" Title="{l:Loc App.Title}" MinWidth="1280" MinHeight="720" Width="1360" Height="820" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition x:Name="ConsoleRow" Height="190" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <shell:MainMenu x:Name="ApplicationMenu"/>
+        <TabControl x:Name="MainTabs" Grid.Row="1" Margin="16,10,16,0" SelectionChanged="MainTabs_SelectionChanged" AutomationProperties.Name="{l:Loc App.Title}" AutomationProperties.AutomationId="MainTabs">
+            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Read}"><TabItem.Header><common:MainTabHeader Icon="&#xE768;" Text="{l:Loc Tab.Read}"/></TabItem.Header>
+                <read:ReadTabSection x:Name="ReadTabBlock"/>
+            </TabItem>
+            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Write}"><TabItem.Header><common:MainTabHeader Icon="&#xE70F;" Text="{l:Loc Tab.Write}"/></TabItem.Header>
+                <write:WriteTabSection x:Name="WriteTabBlock"/>
+            </TabItem>
+            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Convert}"><TabItem.Header><common:MainTabHeader Icon="&#xE895;" Text="{l:Loc Tab.Convert}"/></TabItem.Header>
+                <conversion:ConversionTabSection x:Name="ConvertTabBlock"/>
+            </TabItem>
+            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Visualize}"><TabItem.Header><common:MainTabHeader Icon="&#xE9D2;" Text="{l:Loc Tab.Visualize}"/></TabItem.Header>
+                <visualization:VisualizerTabSection x:Name="VisualizerTabBlock"/>
+            </TabItem>
+            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Explorer}"><TabItem.Header><common:MainTabHeader Icon="&#xE838;" Text="{l:Loc Tab.Explorer}"/></TabItem.Header>
+                <explorer:ExplorerSection x:Name="DiskExplorer" Margin="16"/>
+            </TabItem>
+            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Tools}"><TabItem.Header><common:MainTabHeader Icon="&#xE90F;" Text="{l:Loc Tab.Tools}"/></TabItem.Header>
+                <tools:ToolsTabSection x:Name="ToolsTabBlock"/>
+            </TabItem>
+            <TabItem Style="{StaticResource MainTabItemStyle}" automation:AutomationProperties.Name="{l:Loc Tab.Emulation}"><TabItem.Header><common:MainTabHeader Icon="&#xE7FC;" Text="{l:Loc Tab.Emulation}"/></TabItem.Header>
+                <emulationMachine:EmulationSection x:Name="EmulationBlock"/>
+            </TabItem>
+        </TabControl>
+        <GridSplitter x:Name="ConsoleSplitter" Grid.Row="2" Height="4" HorizontalAlignment="Stretch" ResizeDirection="Rows" Background="Transparent" BorderThickness="0" />
+        <shell:TerminalSection Grid.Row="3" x:Name="TerminalBlock" Margin="16,8"/>
+        <shell:ApplicationStatusBar x:Name="StatusBarBlock" Grid.Row="4"/>
+    </Grid>
+</Window>

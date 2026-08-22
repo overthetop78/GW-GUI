@@ -1,8 +1,8 @@
-using System.Buffers.Binary;
 using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.FileSystems.Acorn;
 using GWGUI.MediaEngine.FileSystems.Acorn.FileCore;
 using GWGUI.MediaEngine.SectorImages;
+using System.Buffers.Binary;
+using GWGUI.MediaEngine.FileSystems.Acorn;
 
 namespace GWGUI.Tests;
 

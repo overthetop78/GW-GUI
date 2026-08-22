@@ -1,5 +1,4 @@
-using GWGUI.Domain.Write;
-
+using GWGUI.Domain.Formats.Detection;
 namespace GWGUI.Domain.Formats;
 
 public static class GwVisualizationPolicy

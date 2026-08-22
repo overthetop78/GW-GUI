@@ -15,4 +15,5 @@ public sealed record EmulationSettingsField(
     string DisabledValue = "disabled",
     EmulationDefaultFolderCategory? DefaultFolderCategory = null,
     long? NumericValue = null,
-    EmulationSettingsChoiceSource ChoiceSource = EmulationSettingsChoiceSource.Declared);
+    EmulationSettingsChoiceSource ChoiceSource = EmulationSettingsChoiceSource.Declared,
+    bool RefreshSettingsOnChange = false);

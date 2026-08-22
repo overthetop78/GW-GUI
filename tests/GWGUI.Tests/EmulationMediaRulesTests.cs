@@ -1,4 +1,5 @@
 using GWGUI.Emulation;
+using GWGUI.MediaEngine.Containers.ImageDisk;
 
 namespace GWGUI.Tests;
 

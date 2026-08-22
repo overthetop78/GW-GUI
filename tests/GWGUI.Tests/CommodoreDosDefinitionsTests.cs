@@ -1,12 +1,12 @@
-using System.IO;
 using GWGUI.MediaEngine.Containers.Commodore.D64;
 using GWGUI.MediaEngine.Containers.Commodore.D71;
 using GWGUI.MediaEngine.Containers.Commodore.D81;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Commodore.Dos;
-using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.Geometries.Commodore;
+using GWGUI.MediaEngine.Primitives;
 using GWGUI.MediaEngine.SectorImages;
+using System.IO;
 
 namespace GWGUI.Tests;
 

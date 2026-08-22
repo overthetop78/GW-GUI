@@ -1,7 +1,8 @@
-using GWGUI.Domain.Commands;
+using GWGUI.Domain.Commands.Building;
+using GWGUI.Domain.Commands.Execution;
 using GWGUI.Domain.Hardware;
-using GWGUI.Domain.Settings;
-
+using GWGUI.Domain.Hardware.Parsing;
+using GWGUI.Domain.Settings.Hardware;
 namespace GWGUI.Infrastructure.Hardware;
 
 public sealed class GreaseweazleHardwareRegistry(

@@ -1,6 +1,5 @@
 using GWGUI.Domain.Commands;
-using GWGUI.Domain.Read;
-
+using GWGUI.Domain.Commands.Options;
 namespace GWGUI.Domain.Maintenance;
 
 public sealed record EraseRequest(string Executable, IReadOnlyList<EnabledOption> Options, string? Device = null, string? Drive = null, string? ExpertArguments = null);

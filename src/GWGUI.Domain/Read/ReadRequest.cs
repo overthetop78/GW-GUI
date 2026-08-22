@@ -1,8 +1,7 @@
+using GWGUI.Domain.Commands.Options;
 namespace GWGUI.Domain.Read;
 
 public enum ReadResultKind { RawScp, KnownFormat }
-
-public sealed record EnabledOption(string Argument, string? Value = null);
 
 public sealed record ReadRequest(
     string GwExecutable,

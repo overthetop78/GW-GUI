@@ -1017,6 +1017,7 @@
   <data name="Emulation.Storage.Cartridges">
     <value>卡带</value>
   </data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>卡带插槽</value></data>
   <data name="Emulation.Storage.CompactDiscs">
     <value>光盘</value>
   </data>

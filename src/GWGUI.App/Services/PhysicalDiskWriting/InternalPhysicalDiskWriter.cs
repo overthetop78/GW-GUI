@@ -1,3 +1,4 @@
+using GWGUI.App.Contracts.Services.PhysicalDiskWriting;
 using System.IO;
 using GWGUI.Infrastructure.Hardware.Greaseweazle;
 using GWGUI.MediaEngine.Containers.Scp;

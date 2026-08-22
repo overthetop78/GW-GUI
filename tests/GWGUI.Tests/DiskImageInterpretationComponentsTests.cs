@@ -1,13 +1,15 @@
-﻿using System.IO;
-using GWGUI.MediaEngine.Exploration.Metadata;
-using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration.Documents;
 using GWGUI.MediaEngine.Exploration.Interpretation;
 using GWGUI.MediaEngine.Exploration.Interpretation.Contracts;
+using GWGUI.MediaEngine.Exploration.Metadata;
+using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.Exploration.Scoring;
+using GWGUI.MediaEngine.Exploration.Scp;
 using GWGUI.MediaEngine.FileSystems;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.SectorImages;
+using System.IO;
 
 namespace GWGUI.Tests;
 

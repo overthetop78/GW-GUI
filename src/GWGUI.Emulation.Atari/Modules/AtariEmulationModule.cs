@@ -35,6 +35,8 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
         exitCode = 0;
         if (arguments is [AtariCoreHostConstants.CommandLineArgument, var pipeName, var videoMapName])
         {
+            if (!OperatingSystem.IsWindows())
+                throw new PlatformNotSupportedException();
             AtariCoreHost.Run(pipeName, videoMapName);
             return true;
         }
@@ -132,6 +134,10 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
             renderer, folders);
     }
 
+    public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) =>
+        AtariConfigurationSummaryFunctions.Create(configuration as AtariMachineConfiguration
+            ?? throw new ArgumentException(nameof(configuration)));
+
     public EmulationInputSettings DescribeInputSettings(IEmulationConfiguration configuration) =>
         AtariInputSettingsFunctions.Describe(configuration as AtariMachineConfiguration
             ?? throw new ArgumentException(nameof(configuration)));
@@ -151,11 +157,17 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
     private static IReadOnlyList<AtariFirmwareConfiguration> ApplySystemFirmware(
         AtariMachineConfiguration configuration, string? path)
     {
-        if (configuration.Model != AtariMachineModel.Atari400) return configuration.Firmwares;
-        if (string.IsNullOrWhiteSpace(path)) return [];
+        if (string.IsNullOrWhiteSpace(path))
+        {
+            var category = AtariCompatibilityCatalog.Get(configuration.Model).Core == AtariEmulator.Hatari
+                ? AtariFirmwareCategory.Tos : AtariFirmwareCategory.AtariSystemOs;
+            return configuration.Firmwares.Where(item => item.Category != category).ToArray();
+        }
         var scanned = AtariFirmwareScanFunctions.ScanFileAsync(path, configuration.Model, null,
             CancellationToken.None).GetAwaiter().GetResult();
-        return [AtariFirmwareScanFunctions.CreateSelection(scanned)];
+        var selected = AtariFirmwareScanFunctions.CreateSelection(scanned);
+        return configuration.Firmwares.Where(item => item.Category != selected.Category)
+            .Append(selected).ToArray();
     }
 
     public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(
@@ -279,7 +291,9 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
             () => services.CreateAudioOutput(audioDevice, latency),
             value => Path.Combine(services.StatesDirectory, value.Id.ToString("N")));
         var compatibility = AtariCompatibilityCatalog.Get(atari.Model);
-        var devices = AtariStorageSettingsFunctions.Describe(atari).AvailableDevices;
+        var storage = AtariStorageSettingsFunctions.Describe(atari);
+        var devices = storage.AvailableDevices
+            .Where(device => storage.ConfiguredSlots.Contains(device.Slot)).ToArray();
         var mounted = atari.Media.Select(EmulationMediaConversionFunctions.ToCommon)
             .OfType<EmulationMedia>().ToArray();
         return new EmulationMachineRuntime(atari,

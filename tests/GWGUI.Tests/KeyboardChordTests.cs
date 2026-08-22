@@ -1,5 +1,6 @@
+using GWGUI.App.Contracts.Input;
+using GWGUI.App.Functions.Input.Bindings;
 using System.Windows.Input;
-using GWGUI.App.Input;
 
 namespace GWGUI.Tests;
 
@@ -12,7 +13,7 @@ public sealed class KeyboardChordTests
     [InlineData("Win+Shift+X", ModifierKeys.Windows | ModifierKeys.Shift, 1)]
     public void ParsesModifierAndMultiKeyChords(string text, ModifierKeys modifiers, int keyCount)
     {
-        Assert.True(KeyboardChord.TryParse(text, out var chord));
+        Assert.True(KeyboardChordFunctions.TryParse(text, out var chord));
         Assert.Equal(modifiers, chord.Modifiers);
         Assert.Equal(keyCount, chord.Keys.Count);
     }
@@ -26,15 +27,15 @@ public sealed class KeyboardChordTests
     [InlineData("Win+Shift+X")]
     public void RejectsWindowsReservedChords(string text)
     {
-        Assert.True(KeyboardChord.TryParse(text, out var chord));
-        Assert.True(KeyboardChord.IsWindowsReserved(chord));
+        Assert.True(KeyboardChordFunctions.TryParse(text, out var chord));
+        Assert.True(KeyboardChordFunctions.IsWindowsReserved(chord));
     }
 
     [Fact]
     public void MatchesOnlyTheCompleteChord()
     {
-        Assert.True(KeyboardChord.TryParse("F5+F6", out var chord));
-        Assert.False(chord.Matches(ModifierKeys.None, new HashSet<Key> { Key.F5 }));
-        Assert.True(chord.Matches(ModifierKeys.None, new HashSet<Key> { Key.F5, Key.F6 }));
+        Assert.True(KeyboardChordFunctions.TryParse("F5+F6", out var chord));
+        Assert.False(KeyboardChordFunctions.Matches(chord, ModifierKeys.None, new HashSet<Key> { Key.F5 }));
+        Assert.True(KeyboardChordFunctions.Matches(chord, ModifierKeys.None, new HashSet<Key> { Key.F5, Key.F6 }));
     }
 }

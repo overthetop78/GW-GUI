@@ -1,8 +1,8 @@
-using System.Collections.Concurrent;
-using System.IO;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari;
 using GWGUI.Emulation.Atari.Cores;
+using System.Collections.Concurrent;
+using System.IO;
 
 namespace GWGUI.Tests;
 

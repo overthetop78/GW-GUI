@@ -1,14 +1,16 @@
-﻿using GWGUI.MediaEngine.Exploration;
-using GWGUI.MediaEngine.Exploration.Results;
-using System.IO;
-using GWGUI.MediaEngine.FileSystems.Commodore.Dos;
 using GWGUI.MediaEngine.Containers.Commodore;
 using GWGUI.MediaEngine.Containers.Commodore.D64;
 using GWGUI.MediaEngine.Containers.Commodore.D71;
 using GWGUI.MediaEngine.Containers.Commodore.D81;
+using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.Exploration.Results;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
+using GWGUI.MediaEngine.FileSystems.Commodore.Dos;
+using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.Geometries.Commodore;
 using GWGUI.MediaEngine.SectorImages;
 using GWGUI.MediaEngine.SectorImages.Builders;
+using System.IO;
 
 namespace GWGUI.Tests;
 

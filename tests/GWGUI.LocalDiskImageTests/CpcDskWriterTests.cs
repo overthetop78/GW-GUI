@@ -1,8 +1,12 @@
-using System.IO;
+using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
 using GWGUI.MediaEngine.Conversion.Amstrad;
-using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Definitions;
+using GWGUI.MediaEngine.Exploration.Scp;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
+using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.SectorImages;
+using System.IO;
 
 namespace GWGUI.Tests;
 

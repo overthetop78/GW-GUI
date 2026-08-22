@@ -1,7 +1,6 @@
-using System.IO;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari;
-using GWGUI.App.Controls;
+using System.IO;
 
 namespace GWGUI.Tests;
 

@@ -1,7 +1,9 @@
-using GWGUI.App.Services.PhysicalDiskWriting;
-using GWGUI.App.ViewModels;
-using GWGUI.Infrastructure.Hardware.Greaseweazle;
+using GWGUI.App.ViewModels.Operations;
+using GWGUI.App.Functions.Services.PhysicalDiskWriting;
 using GWGUI.Domain.Settings;
+using GWGUI.Domain.Settings.Engines;
+using GWGUI.Infrastructure.Hardware.Greaseweazle;
+using GWGUI.MediaEngine.Exploration.Scp;
 
 namespace GWGUI.Tests;
 
@@ -17,7 +19,7 @@ public sealed class InternalPhysicalDiskWritingTests
         GreaseweazleBusType expectedBus,
         byte expectedUnit)
     {
-        var result = GreaseweazleDriveSelectionPolicy.Resolve(selection);
+        var result = GreaseweazleDriveSelectionFunctions.Resolve(selection);
 
         Assert.Equal(expectedBus, result.BusType);
         Assert.Equal(expectedUnit, result.Unit);

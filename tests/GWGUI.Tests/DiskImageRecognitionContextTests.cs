@@ -1,5 +1,6 @@
-using System.IO;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.Recognition;
+using System.IO;
 
 namespace GWGUI.Tests;
 

@@ -1,9 +1,0 @@
-<UserControl x:Class="GWGUI.App.Controls.ReadFileNameSection" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:l="clr-namespace:GWGUI.App.Localization" xmlns:controls="clr-namespace:GWGUI.App.Controls">
-    <controls:CardSection Padding="12">
-        <StackPanel>
-            <TextBlock Text="{l:Loc Read.FileName}" Margin="0,0,0,5"/>
-            <TextBox x:Name="FileNameInput" Height="42" VerticalContentAlignment="Center" Text="{Binding Read.FileName, UpdateSourceTrigger=PropertyChanged}" AutomationProperties.Name="{l:Loc Read.FileName}"/>
-            <TextBox x:Name="ExtensionText" Visibility="Collapsed" IsReadOnly="True" Text="{l:Loc Read.RawScp}" AutomationProperties.Name="{l:Loc Read.Extension}"/>
-        </StackPanel>
-    </controls:CardSection>
-</UserControl>

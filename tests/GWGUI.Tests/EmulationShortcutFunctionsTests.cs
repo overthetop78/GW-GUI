@@ -1,6 +1,8 @@
-using System.Windows.Input;
-using GWGUI.App.Input;
+using GWGUI.App.Contracts.Input;
+using GWGUI.App.Enums.Emulation.Shortcuts;
+using GWGUI.App.Functions.Emulation.Shortcuts;
 using GWGUI.Emulation;
+using System.Windows.Input;
 
 namespace GWGUI.Tests;
 

@@ -1,3 +1,10 @@
+using GWGUI.Domain.Settings.Emulation;
+using GWGUI.Domain.Settings.Engines;
+using GWGUI.Domain.Settings.Hardware;
+using GWGUI.Domain.Settings.Logging;
+using GWGUI.Domain.Settings.Operations;
+using GWGUI.Domain.Settings.Profiles;
+using GWGUI.Domain.Settings.Window;
 namespace GWGUI.Domain.Settings;
 
 public sealed class AppSettings
@@ -33,14 +40,4 @@ public sealed class AppSettings
     public AdvancedUiSettings Write { get; set; } = new();
     public List<ProfileSettings> Profiles { get; set; } = [];
     public ConversionUiSettings Conversion { get; set; } = new();
-}
-
-public enum EmulationMediaFolderCategory { Floppy, CompactDisc, HardDisk, Cartridge, Cassette }
-
-public sealed class EmulationMediaFolderSettings
-{
-    public string ModuleId { get; set; } = "";
-    public string MachineId { get; set; } = "";
-    public EmulationMediaFolderCategory Category { get; set; }
-    public string Folder { get; set; } = "";
 }

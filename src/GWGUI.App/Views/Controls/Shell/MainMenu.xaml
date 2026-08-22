@@ -1,0 +1,107 @@
+<UserControl x:Class="GWGUI.App.Views.Controls.Shell.MainMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:l="clr-namespace:GWGUI.App.Localization.Extensions">
+    <UserControl.Resources>
+        <Style x:Key="MainMenuSeparator" TargetType="Separator">
+            <Setter Property="Margin" Value="12,4"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Separator">
+                        <Border Height="1" Background="{DynamicResource BorderBrush}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="MainMenuItem" TargetType="MenuItem">
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Padding" Value="12,7"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="MenuItem">
+                        <Grid SnapsToDevicePixels="True">
+                            <Border x:Name="ItemFace" Background="{TemplateBinding Background}" CornerRadius="5" Margin="3,1">
+                                <Grid Margin="{TemplateBinding Padding}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="18"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="18"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ContentPresenter x:Name="IconPresenter" ContentSource="Icon" VerticalAlignment="Center"/>
+                                    <ContentPresenter x:Name="HeaderPresenter" Grid.Column="1" ContentSource="Header" RecognizesAccessKey="True" VerticalAlignment="Center"/>
+                                    <Path x:Name="SubmenuArrow" Grid.Column="2" Width="5" Height="8" HorizontalAlignment="Right" VerticalAlignment="Center"
+                                          Data="M0,0 L4,4 L0,8" Stroke="{TemplateBinding Foreground}" StrokeThickness="1.4" StrokeLineJoin="Round"/>
+                                </Grid>
+                            </Border>
+                            <Popup x:Name="PART_Popup" IsOpen="{TemplateBinding IsSubmenuOpen}" Placement="Right" AllowsTransparency="True" Focusable="False" PopupAnimation="Fade">
+                                <Border Background="{DynamicResource CardBrush}" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="7" Padding="3" MinWidth="220">
+                                    <Border.Effect><DropShadowEffect BlurRadius="12" ShadowDepth="3" Opacity="0.18"/></Border.Effect>
+                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle"/>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Role" Value="TopLevelHeader">
+                                <Setter Property="Padding" Value="11,7"/>
+                                <Setter TargetName="IconPresenter" Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="HeaderPresenter" Property="Grid.Column" Value="0"/>
+                                <Setter TargetName="HeaderPresenter" Property="Grid.ColumnSpan" Value="3"/>
+                                <Setter TargetName="SubmenuArrow" Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="PART_Popup" Property="Placement" Value="Bottom"/>
+                            </Trigger>
+                            <Trigger Property="Role" Value="TopLevelItem">
+                                <Setter Property="Padding" Value="11,7"/>
+                                <Setter TargetName="IconPresenter" Property="Visibility" Value="Collapsed"/>
+                                <Setter TargetName="HeaderPresenter" Property="Grid.Column" Value="0"/>
+                                <Setter TargetName="HeaderPresenter" Property="Grid.ColumnSpan" Value="3"/>
+                                <Setter TargetName="SubmenuArrow" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="Role" Value="SubmenuItem">
+                                <Setter TargetName="SubmenuArrow" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="IsHighlighted" Value="True">
+                                <Setter TargetName="ItemFace" Property="Background" Value="{DynamicResource HoverBrush}"/>
+                            </Trigger>
+                            <Trigger Property="IsSubmenuOpen" Value="True">
+                                <Setter TargetName="ItemFace" Property="Background" Value="{DynamicResource SelectedBrush}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.45"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Menu Background="Transparent" Foreground="{DynamicResource TextBrush}" Padding="3,2">
+        <Menu.Resources>
+            <Style TargetType="MenuItem" BasedOn="{StaticResource MainMenuItem}"/>
+            <Style TargetType="Separator" BasedOn="{StaticResource MainMenuSeparator}"/>
+        </Menu.Resources>
+        <MenuItem x:Name="Options" Header="{l:Loc Menu.Options}">
+            <MenuItem Header="{l:Loc Menu.Preferences}" Click="Preferences_Click"/>
+            <MenuItem Header="{l:Loc Logs.History}" Click="LogHistory_Click"/>
+            <Separator/>
+            <MenuItem Header="{l:Loc Menu.Diagnostics}">
+                <MenuItem Header="{l:Loc Menu.Information}" Tag="info" Click="Tool_Click"/>
+                <MenuItem Header="{l:Loc Menu.Bandwidth}" Tag="bandwidth" Click="Tool_Click"/>
+                <MenuItem Header="{l:Loc Menu.Rpm}" Tag="rpm" Click="Tool_Click"/>
+                <MenuItem Header="{l:Loc Menu.Seek}" Tag="seek" Click="Tool_Click"/>
+                <MenuItem x:Name="Align" Header="{l:Loc Menu.Align}" Tag="align" Click="Tool_Click"/>
+            </MenuItem>
+            <MenuItem Header="{l:Loc Menu.Hardware}">
+                <MenuItem Header="{l:Loc Menu.Pins}" Tag="pin" Click="Tool_Click"/>
+                <MenuItem Header="{l:Loc Menu.Reset}" Tag="reset" Click="Tool_Click"/>
+                <MenuItem Header="{l:Loc Menu.Delays}" Tag="delays" Click="Tool_Click"/>
+                <Separator/>
+                <MenuItem Header="{l:Loc Menu.Firmware}" Tag="update" Click="Tool_Click"/>
+            </MenuItem>
+        </MenuItem>
+        <MenuItem x:Name="Help" Header="{l:Loc Menu.Help}">
+            <MenuItem Header="{l:Loc Menu.Documentation}" Click="Documentation_Click"/>
+            <MenuItem Header="{l:Loc Menu.About}" Click="About_Click"/>
+        </MenuItem>
+    </Menu>
+</UserControl>

@@ -1,6 +1,9 @@
-using GWGUI.MediaEngine.Flux;
+using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Definitions;
+using GWGUI.MediaEngine.Exploration.Results;
+using GWGUI.MediaEngine.Exploration.Scp;
+using GWGUI.MediaEngine.Flux;
 
 namespace GWGUI.Tests;
 

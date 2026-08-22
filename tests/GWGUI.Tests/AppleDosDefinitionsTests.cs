@@ -1,5 +1,8 @@
+using GWGUI.MediaEngine.Containers.ImageDisk;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Apple.Dos;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
+using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.SectorImages;
 
 namespace GWGUI.Tests;

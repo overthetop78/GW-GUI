@@ -1,16 +1,13 @@
+using GWGUI.App;
+using GWGUI.App.ViewModels.Conversion;
+using GWGUI.App.ViewModels.Operations;
+using GWGUI.Domain.Commands.Options;
+using GWGUI.Domain.Conversion;
+using GWGUI.Domain.Formats;
 using System.IO;
 using GWGUI.MediaEngine.Exploration.Results;
-using GWGUI.Domain.Commands;
-using GWGUI.Domain.Profiles;
 using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Containers.Scp;
-using GWGUI.Domain.Formats;
-using GWGUI.Domain.Naming;
-using GWGUI.Domain.Hardware;
-using GWGUI.Domain.Conversion;
-using GWGUI.Domain.Read;
-using GWGUI.Domain.Write;
-using GWGUI.Domain.Maintenance;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Encoding;
@@ -19,13 +16,6 @@ using GWGUI.MediaEngine.Exploration;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.Infrastructure.Hardware;
-using GWGUI.Domain.Settings;
-using GWGUI.App;
-using GWGUI.App.Controls;
-using GWGUI.App.ViewModels;
-using GWGUI.App.Services;
-using GWGUI.App.Rendering;
-using GWGUI.App.Localization;
 using SkiaSharp;
 using System.Windows;
 using System.Windows.Media;
@@ -63,7 +53,7 @@ public sealed class OperationViewModelTests : CoreTestBase
     [Fact]
     public void ReadViewModelBuildsNumericAndAlphabeticTargetsAndAdvancesOnlyWhenRequested()
     {
-        var model = new GWGUI.App.ViewModels.ReadOperationViewModel
+        var model = new ReadOperationViewModel
         {
             Folder = Path.Combine("images", "magazines"),
             FileName = "Tilt",
@@ -86,7 +76,7 @@ public sealed class OperationViewModelTests : CoreTestBase
     [Fact]
     public void ReadViewModelUsesExampleWithoutMutatingAnEmptyName()
     {
-        var model = new GWGUI.App.ViewModels.ReadOperationViewModel { Folder = "images", FileName = "   " };
+        var model = new ReadOperationViewModel { Folder = "images", FileName = "   " };
         Assert.Equal(Path.Combine("images", "Exemple.scp"), model.BuildTarget(".scp", "Exemple"));
         Assert.False(model.TryAdvanceSequence());
         Assert.Equal("   ", model.FileName);

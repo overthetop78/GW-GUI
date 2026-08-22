@@ -1017,6 +1017,7 @@
   <data name="Emulation.Storage.Cartridges">
     <value>Spelkassett</value>
   </data>
+  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Kassettplats</value></data>
   <data name="Emulation.Storage.CompactDiscs">
     <value>CD-skivor</value>
   </data>

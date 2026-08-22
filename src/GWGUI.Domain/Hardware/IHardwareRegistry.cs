@@ -1,5 +1,4 @@
-using GWGUI.Domain.Settings;
-
+using GWGUI.Domain.Settings.Hardware;
 namespace GWGUI.Domain.Hardware;
 
 public sealed record HardwareScanResult(

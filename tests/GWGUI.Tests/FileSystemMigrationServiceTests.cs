@@ -1,4 +1,3 @@
-using System.IO;
 using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Containers.Ibm.Raw;
 using GWGUI.MediaEngine.Definitions;
@@ -6,6 +5,7 @@ using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.FileSystems.Fat12;
 using GWGUI.MediaEngine.Migration;
+using System.IO;
 
 namespace GWGUI.Tests;
 

@@ -1,0 +1,18 @@
+<UserControl x:Class="GWGUI.App.Views.Controls.Write.WriteTabSection" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:common="clr-namespace:GWGUI.App.Views.Controls.Common" xmlns:write="clr-namespace:GWGUI.App.Views.Controls.Write" xmlns:options="clr-namespace:GWGUI.App.Views.Controls.Options" xmlns:l="clr-namespace:GWGUI.App.Localization.Extensions">
+    <Grid>
+        <Grid.RowDefinitions><RowDefinition/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <Grid Margin="16">
+                <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                <write:WriteAdvancedSection x:Name="AdvancedSection" Grid.Row="0"/>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="390"/></Grid.ColumnDefinitions>
+                    <common:PathSection x:Name="SourceSection" Label="{l:Loc Write.Source}" Text="{Binding Write.SourcePath, Mode=TwoWay}" Margin="0,0,6,12"/>
+                    <options:ProfileSection x:Name="ProfileSection" Grid.Column="1" Margin="6,0,0,12"/>
+                </Grid>
+                <write:WriteFormatSection x:Name="FormatSection" Grid.Row="2" Margin="0,0,0,12"/>
+            </Grid>
+        </ScrollViewer>
+        <Button Grid.Row="1" x:Name="ExecuteButton" Content="{l:Loc Common.Execute}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Right" Margin="16,4,16,12" AutomationProperties.AutomationId="WriteExecuteButton"/>
+    </Grid>
+</UserControl>

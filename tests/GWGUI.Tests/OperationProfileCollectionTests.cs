@@ -1,7 +1,6 @@
-using GWGUI.App.Services;
+using GWGUI.App.Services.Profiles;
 using GWGUI.Domain.Profiles;
-using GWGUI.Domain.Settings;
-
+using GWGUI.Domain.Settings.Profiles;
 namespace GWGUI.Tests;
 
 public sealed class OperationProfileCollectionTests

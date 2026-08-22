@@ -16,13 +16,17 @@ internal static class AmigaInputSettingsFunctions
                 .ToDictionary(item => item.Value.ToString(), item => item.Key, StringComparer.Ordinal),
             EmulationInputSource.Mouse | EmulationInputSource.Keyboard);
         var configured = input.ControllerBindings ?? [];
-        var ports = Enumerable.Range(0, model.ControllerPortCount).Select(index =>
+        var portCount = model.ControllerPortCount + (input.ParallelJoystickAdapterEnabled ? 2 : 0);
+        var ports = Enumerable.Range(0, portCount).Select(index =>
         {
             var number = index + 1;
-            var current = configured.FirstOrDefault(item => item.Port == number);
-            var type = current?.Type ?? AmigaControllerCatalog.Default(model);
+            var current = configured.FirstOrDefault(item => item.Port == index);
+            var type = current?.Type ?? (index < model.ControllerPortCount
+                ? AmigaControllerCatalog.Default(model) : AmigaControllerType.Joystick);
+            var choices = index < model.ControllerPortCount
+                ? AmigaControllerCatalog.Types(model) : AmigaControllerCatalog.ParallelPortTypes;
             return new EmulationControllerPort(number,
-                AmigaControllerCatalog.Types(model).Select(Choice).ToArray(), type.ToString(),
+                choices.Select(Choice).ToArray(), type.ToString(),
                 current?.DeviceId,
                 new EmulationInputBindingSet(ControllerDefinitions(type), current?.ButtonMappings
                     ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Controller,
@@ -43,7 +47,7 @@ internal static class AmigaInputSettingsFunctions
             .ToDictionary(item => item.Value, item => Enum.Parse<AmigaMouseAction>(item.Key, true),
                 StringComparer.OrdinalIgnoreCase)
             ?? new Dictionary<string, AmigaMouseAction>();
-        var controllers = settings.ControllerPorts.Select(port => new AmigaControllerBinding(port.Number,
+        var controllers = settings.ControllerPorts.Select(port => new AmigaControllerBinding(port.Number - 1,
             Enum.TryParse<AmigaControllerType>(port.SelectedControllerId, true, out var type)
                 ? type : AmigaControllerType.None, port.PhysicalDeviceId, port.Bindings.Values)).ToArray();
         var input = current with
@@ -53,7 +57,14 @@ internal static class AmigaInputSettingsFunctions
             MouseButtonMappings = mouse,
             ControllerBindings = controllers
         };
-        return configuration with { Input = input };
+        var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>())
+        {
+            ["puae_turbo_fire"] = controllers.Any(binding => binding.ButtonMappings?
+                .Any(item => item.Key == "L2" && !string.IsNullOrWhiteSpace(item.Value)) == true)
+                ? "enabled" : "disabled",
+            ["puae_turbo_fire_button"] = "L2"
+        };
+        return configuration with { Input = input, Options = options };
     }
 
     private static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions()

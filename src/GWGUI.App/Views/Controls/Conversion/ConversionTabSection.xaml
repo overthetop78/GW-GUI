@@ -1,0 +1,22 @@
+<UserControl x:Class="GWGUI.App.Views.Controls.Conversion.ConversionTabSection" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:common="clr-namespace:GWGUI.App.Views.Controls.Common" xmlns:conversion="clr-namespace:GWGUI.App.Views.Controls.Conversion" xmlns:options="clr-namespace:GWGUI.App.Views.Controls.Options" xmlns:l="clr-namespace:GWGUI.App.Localization.Extensions">
+    <Grid>
+        <Grid.RowDefinitions><RowDefinition/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+        <ScrollViewer VerticalScrollBarVisibility="Hidden">
+            <Grid Margin="16">
+                <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                <conversion:ConversionAdvancedSection x:Name="AdvancedSection" Grid.Row="0"/>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="390"/></Grid.ColumnDefinitions>
+                    <common:PathSection x:Name="SourceSection" Label="{l:Loc Conversion.Source}" Text="{Binding Conversion.SourcePath, Mode=TwoWay}" ActionText="{l:Loc Write.VisualizeTracks}" Margin="0,0,6,12"/>
+                    <options:ProfileSection x:Name="ProfileSection" Grid.Column="1" Margin="6,0,0,12"/>
+                </Grid>
+                <conversion:ConversionOutputSection x:Name="OutputSection" Grid.Row="2" Margin="0,0,0,12"/>
+                <conversion:ConversionFormatsSection x:Name="FormatsSection" Grid.Row="3"/>
+            </Grid>
+        </ScrollViewer>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="16,4,16,12">
+            <Button x:Name="MigrationButton" Content="{l:Loc Migration.Open}" AutomationProperties.AutomationId="FileMigrationButton"/>
+            <Button x:Name="ExecuteButton" Content="{l:Loc Common.Execute}" Style="{StaticResource PrimaryButton}" AutomationProperties.AutomationId="ConvertExecuteButton"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

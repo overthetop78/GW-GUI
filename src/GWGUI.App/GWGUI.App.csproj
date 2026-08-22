@@ -50,6 +50,12 @@
       <WithCulture>true</WithCulture>
       <ManifestResourceName>GWGUI.App.Resources.%(Filename).$([System.IO.Path]::GetFileName($([System.IO.Path]::GetDirectoryName('%(Identity)'))))</ManifestResourceName>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\00-Base\*.resx">
+      <Culture></Culture>
+      <WithCulture>false</WithCulture>
+      <ManifestResourceName>GWGUI.App.Resources.%(Filename)</ManifestResourceName>
+      <LogicalName>GWGUI.App.Resources.%(Filename).resources</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

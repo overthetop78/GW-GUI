@@ -1,5 +1,7 @@
-using GWGUI.App.Rendering;
+using GWGUI.App.Constants.Rendering.Emulation;
+using GWGUI.App.Functions.Rendering.Emulation;
 using GWGUI.Emulation;
+using GWGUI.MediaEngine.Exploration.Scp;
 
 namespace GWGUI.Tests;
 
@@ -38,7 +40,7 @@ public sealed class EmulationVideoPixelTests
             EmulationVideoPixelTestConstants.SquareAspectRatio, EmulationVideoPixelTestConstants.FirstSequence,
             TimeSpan.Zero);
 
-        var result = EmulationVideoPixels.ToBgra32(frame);
+        var result = EmulationVideoPixelFunctions.ToBgra32(frame);
 
         Assert.Equal(blue, result[EmulationVideoPixelConstants.BlueByteOffset]);
         Assert.Equal(green, result[EmulationVideoPixelConstants.GreenByteOffset]);

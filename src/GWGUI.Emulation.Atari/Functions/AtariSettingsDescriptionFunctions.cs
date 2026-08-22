@@ -67,12 +67,16 @@ internal static class AtariSettingsDescriptionFunctions
                 Select(AtariConfigurationOptionConstants.MainMemory, EmulationMachineTab.Ram, "main-memory", "Emulation.Memory.Main",
                     Value(configuration, AtariConfigurationOptionConstants.MainMemory,
                         ((long)model.DefaultMainMemoryKib * AtariHardwareSettingsConstants.BytesPerKibibyte).ToString()),
-                    model.MainMemoryKib.Select(AtariHardwareSettingsFunctions.MemoryKib)),
-                Select(AtariSettingsConstants.AlternateMemory, EmulationMachineTab.Ram, "main-memory", "Emulation.Memory.Extensions",
+                    model.MainMemoryKib.Select(AtariHardwareSettingsFunctions.MemoryKib))),
+            Block("extension-memory", EmulationMachineTab.Ram, "Emulation.Memory.Extensions", "\uE964", 1,
+                Select(AtariSettingsConstants.AlternateMemory, EmulationMachineTab.Ram, "extension-memory", "Emulation.Memory.Extensions",
                     Value(configuration, AtariSettingsConstants.AlternateMemory,
                         ((long)model.DefaultAlternateMemoryMib * AtariHardwareSettingsConstants.BytesPerMebibyte).ToString()),
                     model.AlternateMemoryMib.Select(AtariHardwareSettingsFunctions.MemoryMib))),
             Block("firmware", EmulationMachineTab.Rom, "Emulation.Firmware.Rom.System", "\uE8B7", 1,
+                Path(AtariSettingsConstants.SystemFirmware, EmulationMachineTab.Rom, "firmware",
+                    "Emulation.Firmware.Rom.System",
+                    configuration.Firmwares.FirstOrDefault(item => item.Category == AtariFirmwareCategory.Tos)?.Path),
                 Toggle("hatari_fastboot", EmulationMachineTab.Rom, "firmware", "Emulation.Atari.FastBoot",
                     Value(configuration, "hatari_fastboot", "false") == "true", "true", "false")),
             Block("storage-options", EmulationMachineTab.Storage, "Emulation.Storage.Device.List", "\uE7C3", 1,
@@ -80,7 +84,7 @@ internal static class AtariSettingsDescriptionFunctions
                     "storage-options", "Emulation.Storage.ActivityOsd",
                     Value(configuration, AtariMachineOptionConstants.DriveActivity, "false") == "true",
                     "true", "false")),
-            Block("video", EmulationMachineTab.Video, "Emulation.Video.Display", "\uE7F4", 2,
+            Block("video", EmulationMachineTab.Video, "Emulation.Video.Settings.Display", "\uE7F4", 2,
                 Select(AtariVideoAudioSettingsConstants.StandardOption, EmulationMachineTab.Video, "video",
                     "Emulation.Video.Standard", Value(configuration, AtariVideoAudioSettingsConstants.StandardOption,
                         AtariVideoAudioSettingsConstants.Automatic), StStandards(model)),
@@ -117,7 +121,7 @@ internal static class AtariSettingsDescriptionFunctions
                     $"{model.DefaultCpuFrequencyHz / 1_000_000d:0.00} MHz")),
             Block("main-memory", EmulationMachineTab.Ram, "Emulation.Memory.Main", "\uE964", 1,
                 ClassicMemory(configuration, model)),
-            Block("video", EmulationMachineTab.Video, "Emulation.Video.Display", "\uE7F4", 2,
+            Block("video", EmulationMachineTab.Video, "Emulation.Video.Settings.Display", "\uE7F4", 2,
                 Select(AtariConfigurationOptionConstants.VideoStandard, EmulationMachineTab.Video, "video",
                     "Emulation.Video.Standard", Value(configuration, AtariConfigurationOptionConstants.VideoStandard,
                         model.DefaultRegion.ToString()), model.Regions.Select(AtariHardwareSettingsFunctions.ClassicRegion),
@@ -173,7 +177,7 @@ internal static class AtariSettingsDescriptionFunctions
         ICollection<EmulationSettingsBlock> blocks)
     {
         if (!AtariEightBitSettingsCatalog.SupportsComputerOptions(configuration.Model)) return;
-        blocks.Add(Block("video-colors", EmulationMachineTab.Video, "Emulation.Video.Display", "\uE7F4", 2,
+        blocks.Add(Block("video-colors", EmulationMachineTab.Video, "Emulation.Video.Settings.Display", "\uE7F4", 2,
             Select(AtariEightBitSettingsConstants.ArtifactingModeOptionKey, EmulationMachineTab.Video,
                 "video-colors", "Emulation.Atari.Video.Artifacting",
                 Value(configuration, AtariEightBitSettingsConstants.ArtifactingModeOptionKey,
@@ -377,7 +381,8 @@ internal static class AtariSettingsDescriptionFunctions
             value ? enabledValue : disabledValue, EnabledValue: enabledValue, DisabledValue: disabledValue);
 
     private static EmulationSettingsField Path(string id, EmulationMachineTab tab, string block,
-        string label, string? value) => new(id, tab, block, label, EmulationSettingsEditor.Path, value);
+        string label, string? value) => new(id, tab, block, label, EmulationSettingsEditor.Path, value,
+            DefaultFolderCategory: EmulationDefaultFolderCategory.Firmware);
 
     private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block,
         string label, string value, long? numericValue = null) => new(id, tab, block, label,

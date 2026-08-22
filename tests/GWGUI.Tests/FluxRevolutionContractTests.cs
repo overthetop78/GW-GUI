@@ -1,6 +1,7 @@
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Encoding;
+using GWGUI.MediaEngine.Exploration.Scp;
 using GWGUI.MediaEngine.Flux;
 
 namespace GWGUI.Tests;

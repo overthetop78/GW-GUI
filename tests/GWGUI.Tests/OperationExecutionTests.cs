@@ -1,31 +1,36 @@
+using GWGUI.App.Contracts.Services.Dialogs;
+using GWGUI.App.Contracts.ViewModels.Operations;
+using GWGUI.App.Enums.ViewModels.Conversion;
+using GWGUI.App.Enums.ViewModels.Operations;
+using GWGUI.App.Functions.ViewModels.Conversion;
+using GWGUI.App.Presenters.Conversion;
+using GWGUI.App.Presenters.Operations;
+using GWGUI.App.Services.Operations;
+using GWGUI.App.Views.Dialogs.Conversion;
+using GWGUI.Domain.Commands;
+using GWGUI.Domain.Commands.Execution;
+using GWGUI.Domain.Conversion;
+using GWGUI.Domain.Formats;
+using GWGUI.Domain.Formats.Detection;
+using GWGUI.Domain.Hardware;
+using GWGUI.Domain.Naming;
+using GWGUI.Domain.Read;
+using GWGUI.Domain.Settings.Hardware;
+using GWGUI.Domain.Write;
+using GWGUI.Emulation.Common;
+using GWGUI.Infrastructure.Processes;
+using GWGUI.MediaEngine.Exploration.Scp;
 using System.IO;
 using GWGUI.MediaEngine.Exploration.Results;
-using GWGUI.Domain.Commands;
-using GWGUI.Domain.Profiles;
 using GWGUI.MediaEngine;
 using GWGUI.MediaEngine.Containers.Scp;
-using GWGUI.Domain.Formats;
-using GWGUI.Domain.Naming;
-using GWGUI.Domain.Hardware;
-using GWGUI.Domain.Conversion;
-using GWGUI.Domain.Read;
-using GWGUI.Domain.Write;
-using GWGUI.Domain.Maintenance;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Exploration;
-using GWGUI.Infrastructure.Processes;
 using GWGUI.Infrastructure.Settings;
 using GWGUI.Infrastructure.Hardware;
-using GWGUI.Domain.Settings;
-using GWGUI.App;
-using GWGUI.App.Controls;
-using GWGUI.App.ViewModels;
-using GWGUI.App.Services;
-using GWGUI.App.Rendering;
-using GWGUI.App.Localization;
 using SkiaSharp;
 using System.Windows;
 using System.Windows.Media;
@@ -217,7 +222,7 @@ public sealed class OperationExecutionTests : CoreTestBase
             new ConversionConflictDecision(number, ConversionConflictChoice.Number)
         };
 
-        var resolved = ConversionConflictResolver.Apply([untouched, overwrite, skip, number], conflicts, decisions, path => "next-" + path);
+        var resolved = ConversionConflictResolutionFunctions.Apply([untouched, overwrite, skip, number], conflicts, decisions, path => "next-" + path);
 
         Assert.Equal([untouched, overwrite, number with { OutputPath = "next-number.adf" }], resolved);
     }

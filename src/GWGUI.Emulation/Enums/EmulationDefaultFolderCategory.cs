@@ -8,5 +8,6 @@ public enum EmulationDefaultFolderCategory
     Cartridge,
     Cassette,
     State,
-    Capture
+    Capture,
+    Firmware
 }

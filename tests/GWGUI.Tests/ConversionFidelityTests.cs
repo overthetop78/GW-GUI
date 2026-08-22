@@ -1,5 +1,5 @@
 using GWGUI.Domain.Conversion;
-
+using GWGUI.MediaEngine.Exploration.Results;
 namespace GWGUI.Tests;
 
 public sealed class ConversionFidelityTests

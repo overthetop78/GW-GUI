@@ -1,6 +1,9 @@
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.Encoding;
+using GWGUI.MediaEngine.Exploration.Results;
+using GWGUI.MediaEngine.Exploration.Scp;
+using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using GWGUI.MediaEngine.Flux;
 using GWGUI.MediaEngine.Representations.Flux;
 

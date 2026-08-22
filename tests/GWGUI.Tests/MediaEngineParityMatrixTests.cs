@@ -1,8 +1,9 @@
-using GWGUI.App.Services;
+using GWGUI.App.Services.Conversion;
 using GWGUI.App.Services.Parity;
 using GWGUI.Domain.Conversion;
 using GWGUI.Domain.Formats;
 using GWGUI.Domain.Parity;
+using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Exploration.Metadata;
 using GWGUI.MediaEngine.Exploration.Results;
 using GWGUI.MediaEngine.FileSystems;

@@ -1,6 +1,6 @@
 using GWGUI.MediaEngine.Definitions;
-using GWGUI.MediaEngine.FileSystems.Definitions;
 using GWGUI.MediaEngine.FileSystems.Amiga;
+using GWGUI.MediaEngine.FileSystems.Definitions;
 
 namespace GWGUI.Tests;
 

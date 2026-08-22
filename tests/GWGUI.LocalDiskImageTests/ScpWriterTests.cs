@@ -1,8 +1,8 @@
-using System.Buffers.Binary;
-using System.IO;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Encoding;
 using GWGUI.MediaEngine.Flux;
+using System.Buffers.Binary;
+using System.IO;
 
 namespace GWGUI.Tests;
 

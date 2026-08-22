@@ -1,5 +1,4 @@
-using GWGUI.App.Services;
-
+using GWGUI.App.Services.DiskImages;
 namespace GWGUI.Tests;
 
 public sealed class DiskImageCancellationScopeTests

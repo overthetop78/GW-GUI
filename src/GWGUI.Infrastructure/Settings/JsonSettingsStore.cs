@@ -1,5 +1,5 @@
-using System.Text.Json;
 using GWGUI.Domain.Settings;
+using System.Text.Json;
 
 namespace GWGUI.Infrastructure.Settings;
 

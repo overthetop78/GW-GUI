@@ -1,5 +1,5 @@
-using System.IO;
 using GWGUI.Emulation.Atari;
+using System.IO;
 
 namespace GWGUI.Tests;
 

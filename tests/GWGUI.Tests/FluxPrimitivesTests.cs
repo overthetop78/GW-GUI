@@ -1,5 +1,5 @@
-using GWGUI.MediaEngine.Representations.Flux;
 using GWGUI.MediaEngine.Primitives;
+using GWGUI.MediaEngine.Representations.Flux;
 
 namespace GWGUI.Tests;
 

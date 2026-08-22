@@ -1,3 +1,4 @@
+using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Containers.Msx.Raw;
 using GWGUI.MediaEngine.Conversion.Msx;
 using GWGUI.MediaEngine.Definitions;

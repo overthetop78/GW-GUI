@@ -1,11 +1,15 @@
+using GWGUI.App;
+using GWGUI.Emulation;
+using GWGUI.Emulation.Atari;
+using GWGUI.Emulation.Atari.Cores;
+using GWGUI.Emulation.Common;
+using GWGUI.MediaEngine.Exploration.Scp;
 using System.Diagnostics;
 using System.IO;
 using System.IO.MemoryMappedFiles;
 using System.IO.Pipes;
 using System.Runtime.Versioning;
 using System.Runtime.InteropServices;
-using GWGUI.Emulation.Atari;
-using GWGUI.Emulation.Atari.Cores;
 
 namespace GWGUI.Tests;
 

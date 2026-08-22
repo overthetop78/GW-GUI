@@ -1,10 +1,13 @@
-using System.IO;
+using GWGUI.App.Contracts.Services.PhysicalDiskReading;
+using GWGUI.App.Enums.Services.PhysicalDiskReading;
 using GWGUI.App.Services.PhysicalDiskReading;
 using GWGUI.Infrastructure.Hardware.Greaseweazle;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.Exploration.Scp;
 using GWGUI.MediaEngine.Flux;
+using System.IO;
 
 namespace GWGUI.Tests;
 
