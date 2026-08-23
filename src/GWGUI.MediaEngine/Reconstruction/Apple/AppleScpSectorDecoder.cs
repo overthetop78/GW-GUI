@@ -26,6 +26,7 @@ internal sealed class AppleScpSectorDecoder(FluxDecoderRegistry decoders)
         foreach (var track in scp.Tracks)
         {
             cancellationToken.ThrowIfCancellationRequested();
+            if (decoderId == FluxCodecIds.AppleMacGcr && track.Cylinder is < 0 or >= MacintoshGcrGeometry.CylinderCount) continue;
             foreach (var window in ScpTrackDecodeWindowFactory.Create(track))
             {
                 var decoded = decoderId == FluxCodecIds.AppleMacGcr
