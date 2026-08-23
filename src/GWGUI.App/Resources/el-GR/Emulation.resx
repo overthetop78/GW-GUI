@@ -1158,4 +1158,28 @@
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Κανονική</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Υψηλή</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Υποδοχή κασέτας ROM</value></data>
-</root>
+  <data name='Emulation.Media.Insert' xml:space='preserve'>
+    <value>Εισαγωγή μέσου</value>
+  </data>
+  <data name='Emulation.Media.Eject' xml:space='preserve'>
+    <value>Εξαγωγή μέσου</value>
+  </data>
+  <data name="Emulation.Tab.Cpu" xml:space="preserve"><value>CPU</value></data>
+  <data name="Emulation.Tab.Ram" xml:space="preserve"><value>RAM</value></data>
+  <data name="Emulation.Tab.Rom" xml:space="preserve"><value>ROM</value></data>
+  <data name="Emulation.Family.Amiga" xml:space="preserve"><value>Amiga</value></data>
+  <data name="Emulation.Family.Atari" xml:space="preserve"><value>Atari</value></data>
+  <data name="Emulation.Atari.Model.XlXe" xml:space="preserve"><value>Atari XL/XE</value></data>
+  <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
+  <data name="Emulation.Key.AtariHelp" xml:space="preserve"><value>Help</value></data>
+  <data name="Emulation.Key.AtariUndo" xml:space="preserve"><value>Undo</value></data>
+  <data name="Emulation.Amiga.Model.A500" xml:space="preserve"><value>Amiga 500</value></data>
+  <data name="Emulation.Amiga.Model.A500PLUS" xml:space="preserve"><value>Amiga 500 Plus</value></data>
+  <data name="Emulation.Amiga.Model.A600" xml:space="preserve"><value>Amiga 600</value></data>
+  <data name="Emulation.Amiga.Model.A1000" xml:space="preserve"><value>Amiga 1000</value></data>
+  <data name="Emulation.Amiga.Model.A1200" xml:space="preserve"><value>Amiga 1200</value></data>
+  <data name="Emulation.Amiga.Model.A2000" xml:space="preserve"><value>Amiga 2000</value></data>
+  <data name="Emulation.Amiga.Model.A3000" xml:space="preserve"><value>Amiga 3000</value></data>
+  <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Amiga 4000</value></data>
+  <data name="Emulation.Amiga.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
+  <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Amiga CD32</value></data></root>

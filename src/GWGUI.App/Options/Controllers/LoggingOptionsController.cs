@@ -52,9 +52,11 @@ internal sealed class LoggingOptionsController
 
     public void RefreshLocalizedContent()
     {
+        _section.OptionsList.ItemsSource = null;
         Options.Clear();
         foreach (var definition in LogActionDefinitions.All)
             Options.Add(new(definition.Action, _localize(definition.LabelKey), _settings.Logging.GetOrCreate(definition.Action)));
+        _section.OptionsList.ItemsSource = Options;
     }
 
     private async void RowChanged(object sender, RoutedEventArgs e)

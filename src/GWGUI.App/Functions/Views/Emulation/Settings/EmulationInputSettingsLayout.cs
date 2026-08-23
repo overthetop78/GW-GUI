@@ -74,6 +74,10 @@ internal static partial class EmulationSettingsLayout
             Grid.SetColumn(analog, 1);
             settings.Children.Add(analog);
         }
+        else
+        {
+            Grid.SetColumnSpan(mouse, 2);
+        }
         settings.Children.Add(mouse);
 
         var bindings = InputBindings(editor, LocExtension.Get("Emulation.Mouse.Actions"),

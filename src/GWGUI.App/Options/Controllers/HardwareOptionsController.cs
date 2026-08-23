@@ -111,8 +111,10 @@ internal sealed class HardwareOptionsController(
 
     public void RefreshRows()
     {
+        section.Drives.ItemsSource = null;
         rows.Clear();
         foreach (var row in state.CreateRows()) rows.Add(row);
+        section.Drives.ItemsSource = rows;
     }
 
     public void MergeUnconfigured(IReadOnlyList<ControllerSettings> detectedControllers) =>

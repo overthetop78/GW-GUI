@@ -76,17 +76,19 @@ public sealed partial class OptionsEmulationSection : UserControl
 
     internal void RefreshLocalizedContent()
     {
+        var shortcutValues = _shortcuts.Rows.ToDictionary(row => row.Id, row => row.Binding,
+            StringComparer.Ordinal);
         foreach (var (tab, resourceKey) in _localizedTabs)
         {
             var text = LocExtension.Get(resourceKey);
             if (tab.Header is MainTabHeader header) header.Text = text;
         }
         foreach (var section in _moduleSections) section.RefreshLocalizedContent();
-        _generalTab.Content = null;
-        _generalTab.Content = BuildGeneralTab();
-        _shortcutsTab.Content = null;
-        _shortcutsTab.Content = BuildShortcutsTab();
+        _shortcuts.SetRows(GlobalShortcutDefinitions(), shortcutValues);
+        _shortcuts.ConfigurePresentation(LocExtension.Get("Emulation.Input.Actions"),
+            LocExtension.Get("Emulation.Input.Binding.Search"));
         _removeConfiguration.Content = LocExtension.Get("Common.Delete");
         _ = ReloadConfigurationsAsync();
     }
+
 }

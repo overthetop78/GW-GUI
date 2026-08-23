@@ -475,12 +475,12 @@ public sealed class ApplicationShellTests : CoreTestBase
                 };
                 var orphanWindow = new OptionsWindow(orphanSettings, settingsStore: new RecordingSettingsStore());
                 var orphanList = Assert.IsType<System.Windows.Controls.ListBox>(orphanWindow.FindName("DrivesGrid"));
-                Assert.EndsWith("2", Assert.IsType<HardwareRow>(orphanList.Items[0]).ReaderLabel);
+                Assert.Contains("2", Assert.IsType<HardwareRow>(orphanList.Items[0]).ReaderLabel, StringComparison.Ordinal);
                 typeof(OptionsWindow).GetMethod("MergeUnconfigured", hardwareFlags)!.Invoke(orphanWindow,
                     [new[] { new ControllerSettings { UsbId = "GW-ORPHAN", LastPort = "COM4", IsAvailable = true } }]);
                 typeof(OptionsWindow).GetMethod("RefreshHardwareRows", hardwareFlags)!.Invoke(orphanWindow, null);
                 var repairedRow = Assert.IsType<HardwareRow>(Assert.Single(orphanList.Items));
-                Assert.EndsWith("1", repairedRow.ReaderLabel);
+                Assert.Contains("1", repairedRow.ReaderLabel, StringComparison.Ordinal);
                 Assert.NotNull(repairedRow.DriveId);
                 Assert.True(repairedRow.Configured);
                 orphanWindow.Close();

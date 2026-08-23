@@ -60,6 +60,9 @@ internal static class AtariSettingsDescriptionFunctions
                 Select(AtariSettingsConstants.Fpu, EmulationMachineTab.Cpu, "processor", "Emulation.Fpu.Model",
                     Value(configuration, AtariSettingsConstants.Fpu, model.DefaultFpu.ToString()),
                     model.Fpus.Select(AtariHardwareSettingsFunctions.Fpu)),
+                Information(AtariSettingsConstants.CpuOriginalFrequency, EmulationMachineTab.Cpu, "processor",
+                    "Emulation.Cpu.SpeedOriginal",
+                    AtariHardwareSettingsFunctions.FrequencyMhz(model.DefaultCpuFrequencyMhz).InvariantDisplayValue),
                 Select(AtariSettingsConstants.CpuFrequency, EmulationMachineTab.Cpu, "processor", "Emulation.Cpu.Speed",
                     Value(configuration, AtariSettingsConstants.CpuFrequency, model.DefaultCpuFrequencyMhz.ToString()),
                     model.CpuFrequenciesMhz.Select(AtariHardwareSettingsFunctions.FrequencyMhz))),
@@ -117,7 +120,7 @@ internal static class AtariSettingsDescriptionFunctions
                 Select(AtariSettingsConstants.Cpu, EmulationMachineTab.Cpu, "processor", "Emulation.Cpu.Model",
                     Value(configuration, AtariSettingsConstants.Cpu, model.DefaultCpu.ToString()), model.Cpus.Select(value => value.ToString()),
                     isEnabled: model.Cpus.Count > 1),
-                Information(AtariSettingsConstants.CpuFrequency, EmulationMachineTab.Cpu, "processor", "Emulation.Cpu.Speed",
+                Information(AtariSettingsConstants.CpuOriginalFrequency, EmulationMachineTab.Cpu, "processor", "Emulation.Cpu.SpeedOriginal",
                     $"{model.DefaultCpuFrequencyHz / 1_000_000d:0.00} MHz")),
             Block("main-memory", EmulationMachineTab.Ram, "Emulation.Memory.Main", "\uE964", 1,
                 ClassicMemory(configuration, model)),
@@ -272,7 +275,7 @@ internal static class AtariSettingsDescriptionFunctions
             Select(AtariVideoAudioSettingsConstants.AudioOutputOption, EmulationMachineTab.Audio, "audio",
                 "Emulation.Audio.Output", Value(configuration, AtariVideoAudioSettingsConstants.AudioOutputOption,
                     AtariConfigurationOptionConstants.DefaultAudioOutput), DefaultAudioOutput()) with
-                    { ChoiceSource = EmulationSettingsChoiceSource.AudioOutputDevices },
+            { ChoiceSource = EmulationSettingsChoiceSource.AudioOutputDevices },
             Select(AtariVideoAudioSettingsConstants.AudioLatencyOption, EmulationMachineTab.Audio, "audio",
                 "Emulation.Audio.Latency", Value(configuration, AtariVideoAudioSettingsConstants.AudioLatencyOption,
                     AtariConfigurationOptionConstants.DefaultAudioLatencyMilliseconds.ToString()),
@@ -286,16 +289,19 @@ internal static class AtariSettingsDescriptionFunctions
             Toggle(AtariVideoAudioSettingsConstants.FloppySoundOption, EmulationMachineTab.Audio, "audio",
                 "Emulation.Audio.Floppy.Enabled", Value(configuration,
                     AtariVideoAudioSettingsConstants.FloppySoundOption, "true") == "true",
-                "true", "false") with { IsVisible = isHatari },
+                "true", "false") with
+            { IsVisible = isHatari },
             Select(AtariVideoAudioSettingsConstants.FloppySoundVolumeOption, EmulationMachineTab.Audio, "audio",
                 "Emulation.Audio.Floppy.Sound", Value(configuration,
                     AtariVideoAudioSettingsConstants.FloppySoundVolumeOption, "75"),
                 AtariVideoAudioSettingsConstants.FloppySoundVolumesPercent.Select(Percentage))
-                with { IsVisible = isHatari },
+                with
+            { IsVisible = isHatari },
             Toggle(AtariVideoAudioSettingsConstants.PolarizedFilterOption, EmulationMachineTab.Audio, "audio",
                 "Emulation.Audio.PolarizedFilter", Value(configuration,
                     AtariVideoAudioSettingsConstants.PolarizedFilterOption, "false") == "true",
-                "true", "false") with { IsVisible = isHatari });
+                "true", "false") with
+            { IsVisible = isHatari });
 
     private static IReadOnlyList<EmulationSettingsChoice> StStandards(AtariStModelDefinition model)
     {

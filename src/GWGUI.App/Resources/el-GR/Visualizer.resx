@@ -292,4 +292,13 @@ SCP καταχώριση: {2}</value>
   <data name="Visual.DecoderName.micropolis.mfm">
     <value>Micropolis MFM</value>
   </data>
+  <data name="Visual.DecoderName.applelisa.fileware.gcr" xml:space="preserve">
+    <value>Apple Lisa FileWare GCR</value>
+  </data>
+  <data name="Visual.DecoderName.commodore900.gcr" xml:space="preserve">
+    <value>Commodore 900 GCR</value>
+  </data>
+  <data name="Visual.DecoderName.apple2.rwts18" xml:space="preserve">
+    <value>Apple II Brøderbund RWTS18</value>
+  </data>
 </root>

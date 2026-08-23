@@ -123,4 +123,7 @@
   <data name="Explorer.DetectedFormats"><value>Detetado: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>
+  <data name="Explorer.Metadata.None" xml:space="preserve">
+    <value>—</value>
+  </data>
 </root>

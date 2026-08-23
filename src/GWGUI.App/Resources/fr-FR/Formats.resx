@@ -127,7 +127,7 @@
     <value>Commodore 128 — 1581</value>
   </data>
   <data name="Format.acorn.adfs.800">
-    <value>Acorn ADFS — 800 Kio</value>
+    <value>Acorn — ADFS · 800 Kio</value>
   </data>
   <data name="Format.raw.hfe">
     <value>Image de flux HxC</value>
@@ -186,25 +186,124 @@
   <data name="Extension.atr">
     <value>Image disque Atari ATR</value>
   </data>
-
-  <data name="Format.apple2.appledos.140"><value>Apple II DOS 3.3 — 140 KiB</value></data>
-  <data name="Format.apple2.prodos.140"><value>Apple II ProDOS — 140 KiB</value></data>
-  <data name="Format.apple2.prodos.800"><value>Apple II ProDOS — 800 KiB</value></data>
-  <data name="Format.apple3.sos"><value>Apple III SOS — 140 KiB</value></data>
-  <data name="Format.mac.400"><value>Apple Macintosh/Lisa GCR — 400 KiB</value></data>
-  <data name="Format.mac.800"><value>Apple Macintosh GCR — 800 KiB</value></data>
-  <data name="Format.mac.1440"><value>Apple Macintosh MFM — 1.44 MiB</value></data>
-  <data name="Extension.do"><value>DO (Apple DOS)</value></data>
-  <data name="Extension.dsk.apple"><value>DSK (Apple)</value></data>
-  <data name="Extension.po"><value>PO (Apple ProDOS)</value></data>
-  <data name="Extension.2mg"><value>2IMG (Apple)</value></data>
-  <data name="Extension.image.apple"><value>DiskCopy (Apple)</value></data>
-  <data name="Extension.img.apple"><value>IMG (Apple)</value></data>
-  <data name="Detection.AppleDosOrder"><value>Format Apple II DOS reconnu selon la disposition des secteurs.</value></data>
-  <data name="Detection.AppleProDosOrder"><value>Format Apple II ProDOS reconnu selon la disposition des secteurs.</value></data>
-  <data name="Detection.AppleContainer"><value>Conteneur image disque Apple détecté.</value></data>
-  <data name="Classification.Automatic"><value>Détection automatique</value></data>
-  <data name="Classification.Machine"><value>Machine</value></data>
-  <data name="Classification.Format"><value>Format</value></data>
-  <data name="Classification.Protection"><value>Protection</value></data>
+  <data name="Format.apple2.appledos.140">
+    <value>Apple II DOS 3.3 — 140 KiB</value>
+  </data>
+  <data name="Format.apple2.prodos.140">
+    <value>Apple II ProDOS — 140 KiB</value>
+  </data>
+  <data name="Format.apple2.prodos.800">
+    <value>Apple II ProDOS — 800 KiB</value>
+  </data>
+  <data name="Format.apple3.sos">
+    <value>Apple III SOS — 140 KiB</value>
+  </data>
+  <data name="Format.mac.400">
+    <value>Apple Macintosh/Lisa GCR — 400 KiB</value>
+  </data>
+  <data name="Format.mac.800">
+    <value>Apple Macintosh GCR — 800 KiB</value>
+  </data>
+  <data name="Format.mac.1440">
+    <value>Apple Macintosh MFM — 1.44 MiB</value>
+  </data>
+  <data name="Extension.do">
+    <value>DO (Apple DOS)</value>
+  </data>
+  <data name="Extension.dsk.apple">
+    <value>DSK (Apple)</value>
+  </data>
+  <data name="Extension.po">
+    <value>PO (Apple ProDOS)</value>
+  </data>
+  <data name="Extension.2mg">
+    <value>2IMG (Apple)</value>
+  </data>
+  <data name="Extension.image.apple">
+    <value>DiskCopy (Apple)</value>
+  </data>
+  <data name="Extension.img.apple">
+    <value>IMG (Apple)</value>
+  </data>
+  <data name="Detection.AppleDosOrder">
+    <value>Format Apple II DOS reconnu selon la disposition des secteurs.</value>
+  </data>
+  <data name="Detection.AppleProDosOrder">
+    <value>Format Apple II ProDOS reconnu selon la disposition des secteurs.</value>
+  </data>
+  <data name="Detection.AppleContainer">
+    <value>Conteneur image disque Apple détecté.</value>
+  </data>
+  <data name="Classification.Automatic">
+    <value>Détection automatique</value>
+  </data>
+  <data name="Classification.Machine">
+    <value>Machine</value>
+  </data>
+  <data name="Classification.Format">
+    <value>Format</value>
+  </data>
+  <data name="Classification.Protection">
+    <value>Protection</value>
+  </data>
+  <data name="System.atari-8bit" xml:space="preserve">
+    <value>Atari 8-bit</value>
+  </data>
+  <data name="System.acorn-bbc" xml:space="preserve">
+    <value>Acorn / BBC Micro</value>
+  </data>
+  <data name="System.macintosh" xml:space="preserve">
+    <value>Apple Macintosh</value>
+  </data>
+  <data name="System.amstrad" xml:space="preserve">
+    <value>Amstrad</value>
+  </data>
+  <data name="System.ucsd" xml:space="preserve">
+    <value>UCSD p-System</value>
+  </data>
+  <data name="System.msx" xml:space="preserve">
+    <value>MSX</value>
+  </data>
+  <data name="System.epson-qx10" xml:space="preserve">
+    <value>Epson QX-10</value>
+  </data>
+  <data name="System.apple-iii" xml:space="preserve">
+    <value>Apple III</value>
+  </data>
+  <data name="System.atari-st" xml:space="preserve">
+    <value>Atari ST</value>
+  </data>
+  <data name="Format.apple2.rwts18" xml:space="preserve">
+    <value>Apple II Brøderbund RWTS18</value>
+  </data>
+  <data name="System.commodore" xml:space="preserve">
+    <value>Commodore</value>
+  </data>
+  <data name="System.lisa" xml:space="preserve">
+    <value>Apple Lisa</value>
+  </data>
+  <data name="Format.ucsd.ibm.mfm" xml:space="preserve">
+    <value>UCSD p-System — IBM MFM</value>
+  </data>
+  <data name="System.ibm-pc" xml:space="preserve">
+    <value>IBM PC</value>
+  </data>
+  <data name="Extension.woz" xml:space="preserve">
+    <value>WOZ (Apple II)</value>
+  </data>
+  <data name="System.apple-ii" xml:space="preserve">
+    <value>Apple II</value>
+  </data>
+  <data name="Extension.nib" xml:space="preserve">
+    <value>NIB (Apple II)</value>
+  </data>
+  <data name="System.amiga" xml:space="preserve">
+    <value>Amiga</value>
+  </data>
+  <data name="System.dec" xml:space="preserve">
+    <value>DEC</value>
+  </data>
+  <data name="System.coherent" xml:space="preserve">
+    <value>COHERENT</value>
+  </data>
 </root>

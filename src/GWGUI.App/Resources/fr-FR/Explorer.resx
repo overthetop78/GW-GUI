@@ -125,4 +125,7 @@
   <data name="Explorer.DataBlocks"><value>Blocs de données</value></data>
   <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Les Host Tools ne peuvent pas produire une image sectorielle exploitable pour {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Les Host Tools n’ont pas pu décoder l’image au format {0}.</value></data>
+  <data name="Explorer.Metadata.None" xml:space="preserve">
+    <value>—</value>
+  </data>
 </root>

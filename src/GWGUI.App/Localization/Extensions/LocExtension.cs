@@ -2,6 +2,7 @@ using GWGUI.App.Constants.Localization;
 using GWGUI.App.Localization.Sources;
 using System.Globalization;
 using System.Resources;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
 
@@ -14,15 +15,22 @@ public sealed class LocExtension(string key) : MarkupExtension
     public string Key { get; } = key;
 
     public override object ProvideValue(IServiceProvider serviceProvider) =>
-        new Binding($"[{Key}]") { Source = LocalizationSource.Instance, Mode = BindingMode.OneWay }
-            .ProvideValue(serviceProvider);
+        CreateBinding(Key).ProvideValue(serviceProvider);
+
+    public static Binding CreateBinding(string key) =>
+        new(nameof(LocalizationSource.Version))
+        {
+            Source = LocalizationSource.Instance,
+            Mode = BindingMode.OneWay,
+            Converter = new LocalizedValueConverter(key)
+        };
 
     public static string Get(string key, params object[] arguments)
     {
         var value = ResourcesByKey.TryGetValue(key, out var resources)
-            ? resources.GetString(key, CultureInfo.CurrentUICulture) ?? $"[{key}]"
+            ? resources.GetString(key, LocalizationSource.Instance.UiCulture) ?? $"[{key}]"
             : $"[{key}]";
-        return arguments.Length == 0 ? value : string.Format(CultureInfo.CurrentCulture, value, arguments);
+        return arguments.Length == 0 ? value : string.Format(LocalizationSource.Instance.Culture, value, arguments);
     }
 
     public static string GetInvariant(string key) =>
@@ -67,4 +75,12 @@ public sealed class LocExtension(string key) : MarkupExtension
 
     private static ResourceManager CreateResourceManager(string catalog) =>
         new($"GWGUI.App.Resources.{catalog}", typeof(LocExtension).Assembly);
+
+    private sealed class LocalizedValueConverter(string resourceKey) : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) => Get(resourceKey);
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
+            DependencyProperty.UnsetValue;
+    }
 }

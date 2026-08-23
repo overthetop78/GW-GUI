@@ -541,4 +541,10 @@
   <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Amiga 4000</value></data>
   <data name="Emulation.Amiga.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
   <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Amiga CD32</value></data>
+  <data name="Emulation.Media.Insert" xml:space="preserve">
+    <value>Insert media</value>
+  </data>
+  <data name="Emulation.Media.Eject" xml:space="preserve">
+    <value>Eject media</value>
+  </data>
 </root>

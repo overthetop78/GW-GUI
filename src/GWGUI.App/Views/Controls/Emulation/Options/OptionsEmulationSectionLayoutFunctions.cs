@@ -4,6 +4,7 @@ using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Views.Controls.Common;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 
 namespace GWGUI.App.Views.Controls.Emulation.Options;
@@ -16,6 +17,9 @@ public sealed partial class OptionsEmulationSection
             (LocExtension.Get("Emulation.Folder.StorageBase"), FolderControl(_storageFolder)),
             (LocExtension.Get("Emulation.Folder.Capture"), FolderControl(_captureFolder)),
             (LocExtension.Get("Emulation.Folder.State"), FolderControl(_stateFolder)));
+        BindFormLabel(form, 0, "Emulation.Folder.StorageBase");
+        BindFormLabel(form, 1, "Emulation.Folder.Capture");
+        BindFormLabel(form, 2, "Emulation.Folder.State");
         form.Margin = new Thickness(12);
         return EmulationSettingsLayout.ScrollPage(form);
     }
@@ -60,9 +64,17 @@ public sealed partial class OptionsEmulationSection
 
     private Grid FolderControl(TextBox target)
     {
-        var browse = new Button { Content = LocExtension.Get("Common.Browse"), MinWidth = 100 };
+        var browse = new Button { MinWidth = 100 };
+        BindingOperations.SetBinding(browse, ContentControl.ContentProperty,
+            LocExtension.CreateBinding("Common.Browse"));
         browse.Click += async (_, _) => await BrowseFolderAsync(target);
         return PathControl(target, browse);
+    }
+
+    private static void BindFormLabel(Grid form, int row, string resourceKey)
+    {
+        var label = form.Children.OfType<TextBlock>().Single(element => Grid.GetRow(element) == row);
+        BindingOperations.SetBinding(label, TextBlock.TextProperty, LocExtension.CreateBinding(resourceKey));
     }
 
     private static Grid PathControl(TextBox path, Button browse)

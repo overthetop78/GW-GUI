@@ -78,6 +78,7 @@ public partial class App : Application
         CultureInfo.CurrentCulture = culture;
         CultureInfo.CurrentUICulture = uiCulture;
         base.OnStartup(e);
+        LocalizationSource.Instance.SetCultures(culture, uiCulture, refresh: false);
         _theme = settings.Theme;
         ThemeManager.Apply(settings.Theme);
         SystemEvents.UserPreferenceChanged += SystemPreferenceChanged;
@@ -141,7 +142,7 @@ public partial class App : Application
         CultureInfo.DefaultThreadCurrentUICulture = uiCulture;
         CultureInfo.CurrentCulture = culture;
         CultureInfo.CurrentUICulture = uiCulture;
-        LocalizationSource.Instance.Refresh();
+        LocalizationSource.Instance.SetCultures(culture, uiCulture);
         foreach (var window in Windows)
         {
             if (window is MainWindow main) main.RefreshLocalizedContent();

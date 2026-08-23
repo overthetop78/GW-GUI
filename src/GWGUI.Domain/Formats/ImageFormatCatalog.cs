@@ -46,7 +46,7 @@ public sealed class BuiltInImageFormatCatalog : IImageFormatCatalog
             F("mac.400", "Apple Macintosh", "Apple Macintosh/Lisa GCR — 400 KiB", [E(".image", "Extension.image.apple", "Apple DiskCopy image", true), E(".img", "Extension.img.apple", "Apple raw disk image")], true, "MAC-400", ".scp", ".image", ".dc42", ".img", ".hfe"),
             F("mac.800", "Apple Macintosh", "Apple Macintosh GCR — 800 KiB", [E(".image", "Extension.image.apple", "Apple DiskCopy image", true), E(".img", "Extension.img.apple", "Apple raw disk image")], true, "MAC-800", ".scp", ".image", ".dc42", ".img", ".hfe"),
             F("mac.1440", "Apple Macintosh", "Apple Macintosh MFM — 1.44 MiB", [E(".img", "Extension.img.apple", "Apple raw disk image", true), E(".image", "Extension.image.apple", "Apple DiskCopy image")], true, "MAC-1440", ".scp", ".image", ".dc42", ".img", ".hfe"),
-            F("acorn.adfs.800", "Acorn", "Acorn ADFS — 800 KiB", [E(".adf", "Extension.adf.acorn", "Acorn Disk File", true)], true, "ACORN-800", ".scp", ".adf", ".hfe"),
+            F("acorn.adfs.800", "Acorn", "Acorn — ADFS · 800 KiB", [E(".adf", "Extension.adf.acorn", "Acorn Disk File", true)], true, "ACORN-800", ".scp", ".adf", ".hfe"),
             new("acorn.dfs.ss", "Acorn / BBC Micro", "BBC DFS — 100 KiB", [new(".ssd", "SSD", true)], true, Set(".scp", ".ssd", ".img", ".hfe"), "BBC-DFS-SS"),
             new("acorn.dfs.ss80", "Acorn / BBC Micro", "BBC DFS — 200 KiB", [new(".ssd", "SSD", true)], true, Set(".scp", ".ssd", ".img", ".hfe"), "BBC-DFS-SS80"),
             new("acorn.dfs.ds", "Acorn / BBC Micro", "BBC DFS — 200 KiB (DS)", [new(".dsd", "DSD", true)], true, Set(".scp", ".dsd", ".img", ".hfe"), "BBC-DFS-DS"),

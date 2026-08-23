@@ -26,6 +26,7 @@ internal static partial class EmulationSettingsLayout
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
 
         var detection = new Grid { Margin = new Thickness(12, 8, 12, 10) };
         detection.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
@@ -74,10 +75,9 @@ internal static partial class EmulationSettingsLayout
         Grid.SetRow(portCards, 1);
         root.Children.Add(portCards);
 
-        var lower = new Grid();
-        lower.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
-        if (behavior is not null) lower.ColumnDefinitions.Add(new ColumnDefinition());
-        lower.Children.Add(ActionCard(mappingTabs, LocExtension.Get("Emulation.Controller.Mappings")));
+        var mappings = ActionCard(mappingTabs, LocExtension.Get("Emulation.Controller.Mappings"));
+        Grid.SetRow(mappings, 3);
+        root.Children.Add(mappings);
         if (behavior is not null)
         {
             DetachForReuse(behavior.Control);
@@ -96,13 +96,11 @@ internal static partial class EmulationSettingsLayout
             else Grid.SetColumn(behavior.Control, 1);
             behaviorGrid.Children.Add(behavior.Control);
             var behaviorCard = IconCard(behaviorGrid, behaviorTitle ?? string.Empty, behaviorGlyph ?? string.Empty);
-            behaviorCard.Margin = new Thickness(10, 0, 0, 0);
+            behaviorCard.Margin = new Thickness(0, 0, 0, 10);
             behaviorCard.VerticalAlignment = VerticalAlignment.Top;
-            Grid.SetColumn(behaviorCard, 1);
-            lower.Children.Add(behaviorCard);
+            Grid.SetRow(behaviorCard, 2);
+            root.Children.Add(behaviorCard);
         }
-        Grid.SetRow(lower, 2);
-        root.Children.Add(lower);
         return ScrollPage(root);
     }
 

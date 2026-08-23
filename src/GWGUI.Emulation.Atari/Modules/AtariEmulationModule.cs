@@ -115,7 +115,8 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
         foreach (var value in values)
         {
             if (value.Key is AtariSettingsConstants.AudioEnabled or AtariSettingsConstants.VideoRenderer
-                or AtariSettingsConstants.SystemFirmware or AtariSettingsConstants.HardDiskFolder) continue;
+                or AtariSettingsConstants.SystemFirmware or AtariSettingsConstants.HardDiskFolder
+                or AtariSettingsConstants.CpuOriginalFrequency) continue;
             if (value.Value is null) options.Remove(value.Key);
             else options[value.Key] = value.Value;
         }
@@ -263,11 +264,11 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
 
     private static EmulationFirmwareCompatibility ToFirmwareCompatibility(
         AtariFirmwareCompatibility compatibility) => compatibility switch
-    {
-        AtariFirmwareCompatibility.Compatible => EmulationFirmwareCompatibility.Compatible,
-        AtariFirmwareCompatibility.PartiallyCompatible => EmulationFirmwareCompatibility.PartiallyCompatible,
-        _ => EmulationFirmwareCompatibility.Incompatible
-    };
+        {
+            AtariFirmwareCompatibility.Compatible => EmulationFirmwareCompatibility.Compatible,
+            AtariFirmwareCompatibility.PartiallyCompatible => EmulationFirmwareCompatibility.PartiallyCompatible,
+            _ => EmulationFirmwareCompatibility.Incompatible
+        };
 
     public async ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationConfiguration configuration,
         EmulationRuntimeServices services, CancellationToken cancellationToken = default)
