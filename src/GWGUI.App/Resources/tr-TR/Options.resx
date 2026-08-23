@@ -184,4 +184,181 @@
   <data name="Emulation.Model" xml:space="preserve"><value>Model</value></data>
   <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Fareyi yakala</value></data>
   <data name="Emulation.Configuration" xml:space="preserve"><value>Yapı oluşturma</value></data>
+  <data name="Controllers.Title" xml:space="preserve"><value>Kumandalar</value></data>
+  <data name="Controllers.Detect" xml:space="preserve"><value>Kumandaları algıla</value></data>
+  <data name="Controllers.Device" xml:space="preserve"><value>Aygıt</value></data>
+  <data name="Controllers.VisualModel" xml:space="preserve"><value>Model</value></data>
+  <data name="Controllers.NoneDetected" xml:space="preserve"><value>Kumanda algılanmadı</value></data>
+  <data name="Controllers.DetectedCount" xml:space="preserve"><value>{0} kumanda algılandı</value></data>
+  <data name="Controllers.TestRumble" xml:space="preserve"><value>Titreşimi test et</value></data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve">
+    <value>Titreşim gücü</value>
+  </data>
+  <data name="Controllers.LiveInputs" xml:space="preserve"><value>Canlı girişler</value></data>
+  <data name="Controllers.Control" xml:space="preserve"><value>Denetim</value></data>
+  <data name="Controllers.Value" xml:space="preserve"><value>Değer</value></data>
+  <data name="Controllers.Active" xml:space="preserve"><value>Etkin</value></data>
+  <data name="Controllers.Capabilities" xml:space="preserve"><value>Yetenekler</value></data>
+  <data name="Controllers.Identity" xml:space="preserve"><value>Aygıt kimliği</value></data>
+  <data name="Controllers.InputKinds" xml:space="preserve"><value>Giriş türleri</value></data>
+  <data name="Controllers.Controls" xml:space="preserve"><value>Denetimler</value></data>
+  <data name="Controllers.Rumble" xml:space="preserve"><value>Titreşim motorları</value></data>
+  <data name="Controllers.ForceFeedback" xml:space="preserve"><value>Kuvvet geri bildirimi</value></data>
+  <data name="Controllers.Haptics" xml:space="preserve"><value>Dokunsal geri bildirim</value></data>
+  <data name="Controllers.SystemButtons" xml:space="preserve"><value>Sistem düğmeleri</value></data>
+  <data name="Controllers.RawReports" xml:space="preserve"><value>Ham raporlar</value></data>
+  <data name="Controllers.ReportCounts" xml:space="preserve"><value>{0} giriş / {1} çıkış</value></data>
+  <data name="Controllers.GamepadLayout" xml:space="preserve"><value>Kumanda düzeni</value></data>
+  <data name="Controllers.WheelCapabilities" xml:space="preserve"><value>Direksiyon</value></data>
+  <data name="Controllers.WheelDetails" xml:space="preserve"><value>{0:0.#}° · debriyaj={1} · el freni={2} · vites={3}</value></data>
+  <data name="Controllers.GameInputName" xml:space="preserve"><value>GameInput adı</value></data>
+  <data name="Controllers.Revision" xml:space="preserve"><value>Revizyon</value></data>
+  <data name="Controllers.HardwareVersion" xml:space="preserve"><value>Donanım sürümü</value></data>
+  <data name="Controllers.FirmwareVersion" xml:space="preserve"><value>Ürün yazılımı sürümü</value></data>
+  <data name="Controllers.Family" xml:space="preserve"><value>Aile</value></data>
+  <data name="Controllers.Manufacturer" xml:space="preserve"><value>Üretici</value></data>
+  <data name="Controllers.ControlType.Axis" xml:space="preserve"><value>Eksen</value></data>
+  <data name="Controllers.ControlType.Button" xml:space="preserve"><value>Düğme</value></data>
+  <data name="Controllers.ControlType.Switch" xml:space="preserve"><value>Anahtar</value></data>
+  <data name="Controllers.ControlCounts" xml:space="preserve"><value>{0} eksen · {1} düğme · {2} anahtar</value></data>
+  <data name="Controllers.Yes" xml:space="preserve"><value>Evet</value></data>
+  <data name="Controllers.No" xml:space="preserve"><value>Hayır</value></data>
+  <data name="Controllers.None" xml:space="preserve"><value>Yok</value></data>
+  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>Genel kumanda</value></data>
+  <data name="Controllers.Model.XboxSeries" xml:space="preserve"><value>Xbox Series</value></data>
+  <data name="Controllers.Model.XboxRematchCore" xml:space="preserve"><value>Turtle Beach REMATCH Core</value></data>
+  <data name="Controllers.Model.XboxOne" xml:space="preserve"><value>Xbox One</value></data>
+  <data name="Controllers.Model.PlayStation4" xml:space="preserve"><value>PlayStation 4</value></data>
+  <data name="Controllers.Model.PlayStation5" xml:space="preserve"><value>PlayStation 5</value></data>
+  <data name="Controllers.Model.MasterSystem" xml:space="preserve"><value>Master System</value></data>
+  <data name="Controllers.Model.Auto" xml:space="preserve"><value>Otomatik</value></data>
+  <data name="Controllers.Model.MegaDrive3" xml:space="preserve"><value>SEGA Mega Drive 3 düğmeli</value></data>
+  <data name="Controllers.Model.MegaDrive6" xml:space="preserve"><value>SEGA Mega Drive 6 düğmeli</value></data>
+  <data name="Controllers.Model.PlayStation1" xml:space="preserve"><value>PlayStation 1</value></data>
+  <data name="Controllers.Model.PlayStation2" xml:space="preserve"><value>PlayStation 2</value></data>
+  <data name="Controllers.Model.Saturn" xml:space="preserve"><value>Saturn</value></data>
+  <data name="Controllers.Model.Dreamcast" xml:space="preserve"><value>Dreamcast</value></data>
+  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>Direksiyon</value></data>
+  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>Uçuş kolu</value></data>
+  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>Arcade kolu</value></data>
+  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Ham bayt</value></data>
+  <data name="Controllers.AnalogValues" xml:space="preserve"><value>Analog değerler</value></data>
+  <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Kumanda algılama başarısız</value></data>
+  <data name="Controllers.Detecting" xml:space="preserve">
+    <value>Denetleyiciler algılanıyor…</value>
+  </data>
+  <data name="Controllers.ReadFailed" xml:space="preserve"><value>Kumanda okuma başarısız</value></data>
+  <data name="Controllers.TestRunning" xml:space="preserve"><value>Test sürüyor…</value></data>
+  <data name="Controllers.TestFailed" xml:space="preserve"><value>Test başarısız</value></data>
+  <data name="Controllers.TestCompleted" xml:space="preserve"><value>Test tamamlandı</value></data>
+  <data name="Controllers.ExtraControls" xml:space="preserve"><value>Ek denetimler</value></data>
+  <data name="Controllers.HapticEndpoint" xml:space="preserve"><value>Dokunsal ses uç noktası</value></data>
+  <data name="Controllers.HapticLocations" xml:space="preserve"><value>Dokunsal konumlar</value></data>
+  <data name="Controllers.Usage" xml:space="preserve"><value>Kullanım</value></data>
+  <data name="Controllers.WindowsIdentity" xml:space="preserve"><value>Windows aygıt zinciri</value></data>
+  <data name="Controllers.LeftStickX" xml:space="preserve"><value>Sol çubuk X</value></data>
+  <data name="Controllers.LeftStickY" xml:space="preserve"><value>Sol çubuk Y</value></data>
+  <data name="Controllers.RightStickX" xml:space="preserve"><value>Sağ çubuk X</value></data>
+  <data name="Controllers.RightStickY" xml:space="preserve"><value>Sağ çubuk Y</value></data>
+  <data name="Controllers.LeftTrigger" xml:space="preserve"><value>Sol tetik</value></data>
+  <data name="Controllers.RightTrigger" xml:space="preserve"><value>Sağ tetik</value></data>
+  <data name="Controllers.Steering" xml:space="preserve"><value>Direksiyon</value></data>
+  <data name="Controllers.Throttle" xml:space="preserve"><value>Gaz</value></data>
+  <data name="Controllers.Brake" xml:space="preserve"><value>Fren</value></data>
+  <data name="Controllers.Clutch" xml:space="preserve"><value>Debriyaj</value></data>
+  <data name="Controllers.Handbrake" xml:space="preserve"><value>El freni</value></data>
+  <data name="Controllers.Gear" xml:space="preserve"><value>Vites</value></data>
+  <data name="Controllers.Roll" xml:space="preserve"><value>Yalpa</value></data>
+  <data name="Controllers.Pitch" xml:space="preserve"><value>Yunuslama</value></data>
+  <data name="Controllers.Yaw" xml:space="preserve"><value>Sapma</value></data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve">
+    <value>Sensörler</value>
+  </data>
+  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
+    <value>Arayüz gezintisi</value>
+  </data>
+  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
+    <value>Oyun kumandası</value>
+  </data>
+  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
+    <value>Düşük frekans motoru</value>
+  </data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
+    <value>Yüksek frekans motoru</value>
+  </data>
+  <data name="Controllers.Enum.Share" xml:space="preserve">
+    <value>Paylaş</value>
+  </data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve">
+    <value>Doğrusal</value>
+  </data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve">
+    <value>Açısal</value>
+  </data>
+  <data name="Controllers.Enum.Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
+    <value>Sabit</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
+    <value>Rampa</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
+    <value>Sinüs dalgası</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
+    <value>Kare dalga</value>
+  </data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
+    <value>Üçgen dalga</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
+    <value>Yükselen testere dişi</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
+    <value>Düşen testere dişi</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
+    <value>Yay</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
+    <value>Sürtünme</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
+    <value>Sönümleyici</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
+    <value>Atalet</value>
+  </data>
+  <data name="Controllers.Enum.Joystick" xml:space="preserve">
+    <value>Oyun çubuğu</value>
+  </data>
+  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
+    <value>Çok eksenli denetleyici</value>
+  </data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
+    <value>HID kullanımı</value>
+  </data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve">
+    <value>eksenler</value>
+  </data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve">
+    <value>düğmeler</value>
+  </data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
+    <value>Birleştirilmiş</value>
+  </data>
+  <data name="Controllers.Enum.Virtual" xml:space="preserve">
+    <value>Sanal</value>
+  </data>
+  <data name="Controllers.Enum.InputReport" xml:space="preserve">
+    <value>Giriş raporu</value>
+  </data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
+    <value>Çıkış raporu</value>
+  </data>
+  <data name="Controllers.Model.Nintendo64" xml:space="preserve"><value>Nintendo 64</value></data>
+  <data name="Controllers.Model.NintendoEntertainmentSystem" xml:space="preserve"><value>Nintendo Entertainment System (NES)</value></data>
+  <data name="Controllers.Model.SuperNintendo" xml:space="preserve"><value>Super Nintendo</value></data>
 </root>

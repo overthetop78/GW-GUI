@@ -184,4 +184,181 @@
   <data name="Emulation.Model" xml:space="preserve"><value>Model</value></data>
   <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Tangkap mouse</value></data>
   <data name="Emulation.Configuration" xml:space="preserve"><value>Konfigurasi</value></data>
+  <data name="Controllers.Title" xml:space="preserve"><value>Kontroler</value></data>
+  <data name="Controllers.Detect" xml:space="preserve"><value>Deteksi kontroler</value></data>
+  <data name="Controllers.Device" xml:space="preserve"><value>Perangkat</value></data>
+  <data name="Controllers.VisualModel" xml:space="preserve"><value>Model</value></data>
+  <data name="Controllers.NoneDetected" xml:space="preserve"><value>Tidak ada kontroler yang terdeteksi</value></data>
+  <data name="Controllers.DetectedCount" xml:space="preserve"><value>{0} kontroler terdeteksi</value></data>
+  <data name="Controllers.TestRumble" xml:space="preserve"><value>Uji getaran</value></data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve">
+    <value>Kekuatan getaran</value>
+  </data>
+  <data name="Controllers.LiveInputs" xml:space="preserve"><value>Input langsung</value></data>
+  <data name="Controllers.Control" xml:space="preserve"><value>Kontrol</value></data>
+  <data name="Controllers.Value" xml:space="preserve"><value>Nilai</value></data>
+  <data name="Controllers.Active" xml:space="preserve"><value>Aktif</value></data>
+  <data name="Controllers.Capabilities" xml:space="preserve"><value>Kemampuan</value></data>
+  <data name="Controllers.Identity" xml:space="preserve"><value>Identitas perangkat</value></data>
+  <data name="Controllers.InputKinds" xml:space="preserve"><value>Jenis input</value></data>
+  <data name="Controllers.Controls" xml:space="preserve"><value>Kontrol</value></data>
+  <data name="Controllers.Rumble" xml:space="preserve"><value>Motor getar</value></data>
+  <data name="Controllers.ForceFeedback" xml:space="preserve"><value>Umpan balik gaya</value></data>
+  <data name="Controllers.Haptics" xml:space="preserve"><value>Umpan balik haptik</value></data>
+  <data name="Controllers.SystemButtons" xml:space="preserve"><value>Tombol sistem</value></data>
+  <data name="Controllers.RawReports" xml:space="preserve"><value>Laporan mentah</value></data>
+  <data name="Controllers.ReportCounts" xml:space="preserve"><value>{0} input / {1} output</value></data>
+  <data name="Controllers.GamepadLayout" xml:space="preserve"><value>Tata letak gamepad</value></data>
+  <data name="Controllers.WheelCapabilities" xml:space="preserve"><value>Setir</value></data>
+  <data name="Controllers.WheelDetails" xml:space="preserve"><value>{0:0.#}° · kopling={1} · rem tangan={2} · pemindah gigi={3}</value></data>
+  <data name="Controllers.GameInputName" xml:space="preserve"><value>Nama GameInput</value></data>
+  <data name="Controllers.Revision" xml:space="preserve"><value>Revisi</value></data>
+  <data name="Controllers.HardwareVersion" xml:space="preserve"><value>Versi perangkat keras</value></data>
+  <data name="Controllers.FirmwareVersion" xml:space="preserve"><value>Versi firmware</value></data>
+  <data name="Controllers.Family" xml:space="preserve"><value>Keluarga</value></data>
+  <data name="Controllers.Manufacturer" xml:space="preserve"><value>Produsen</value></data>
+  <data name="Controllers.ControlType.Axis" xml:space="preserve"><value>Sumbu</value></data>
+  <data name="Controllers.ControlType.Button" xml:space="preserve"><value>Tombol</value></data>
+  <data name="Controllers.ControlType.Switch" xml:space="preserve"><value>Sakelar</value></data>
+  <data name="Controllers.ControlCounts" xml:space="preserve"><value>{0} sumbu · {1} tombol · {2} sakelar</value></data>
+  <data name="Controllers.Yes" xml:space="preserve"><value>Ya</value></data>
+  <data name="Controllers.No" xml:space="preserve"><value>Tidak</value></data>
+  <data name="Controllers.None" xml:space="preserve"><value>Tidak ada</value></data>
+  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>Gamepad generik</value></data>
+  <data name="Controllers.Model.XboxSeries" xml:space="preserve"><value>Xbox Series</value></data>
+  <data name="Controllers.Model.XboxRematchCore" xml:space="preserve"><value>Turtle Beach REMATCH Core</value></data>
+  <data name="Controllers.Model.XboxOne" xml:space="preserve"><value>Xbox One</value></data>
+  <data name="Controllers.Model.PlayStation4" xml:space="preserve"><value>PlayStation 4</value></data>
+  <data name="Controllers.Model.PlayStation5" xml:space="preserve"><value>PlayStation 5</value></data>
+  <data name="Controllers.Model.MasterSystem" xml:space="preserve"><value>Master System</value></data>
+  <data name="Controllers.Model.Auto" xml:space="preserve"><value>Otomatis</value></data>
+  <data name="Controllers.Model.MegaDrive3" xml:space="preserve"><value>SEGA Mega Drive 3 tombol</value></data>
+  <data name="Controllers.Model.MegaDrive6" xml:space="preserve"><value>SEGA Mega Drive 6 tombol</value></data>
+  <data name="Controllers.Model.PlayStation1" xml:space="preserve"><value>PlayStation 1</value></data>
+  <data name="Controllers.Model.PlayStation2" xml:space="preserve"><value>PlayStation 2</value></data>
+  <data name="Controllers.Model.Saturn" xml:space="preserve"><value>Saturn</value></data>
+  <data name="Controllers.Model.Dreamcast" xml:space="preserve"><value>Dreamcast</value></data>
+  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>Setir</value></data>
+  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>Tongkat penerbangan</value></data>
+  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>Tongkat arcade</value></data>
+  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Byte mentah</value></data>
+  <data name="Controllers.AnalogValues" xml:space="preserve"><value>Nilai analog</value></data>
+  <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Deteksi kontroler gagal</value></data>
+  <data name="Controllers.Detecting" xml:space="preserve">
+    <value>Mendeteksi kontroler…</value>
+  </data>
+  <data name="Controllers.ReadFailed" xml:space="preserve"><value>Pembacaan kontroler gagal</value></data>
+  <data name="Controllers.TestRunning" xml:space="preserve"><value>Pengujian berlangsung…</value></data>
+  <data name="Controllers.TestFailed" xml:space="preserve"><value>Pengujian gagal</value></data>
+  <data name="Controllers.TestCompleted" xml:space="preserve"><value>Pengujian selesai</value></data>
+  <data name="Controllers.ExtraControls" xml:space="preserve"><value>Kontrol tambahan</value></data>
+  <data name="Controllers.HapticEndpoint" xml:space="preserve"><value>Titik akhir audio haptik</value></data>
+  <data name="Controllers.HapticLocations" xml:space="preserve"><value>Lokasi haptik</value></data>
+  <data name="Controllers.Usage" xml:space="preserve"><value>Penggunaan</value></data>
+  <data name="Controllers.WindowsIdentity" xml:space="preserve"><value>Rantai perangkat Windows</value></data>
+  <data name="Controllers.LeftStickX" xml:space="preserve"><value>Stik kiri X</value></data>
+  <data name="Controllers.LeftStickY" xml:space="preserve"><value>Stik kiri Y</value></data>
+  <data name="Controllers.RightStickX" xml:space="preserve"><value>Stik kanan X</value></data>
+  <data name="Controllers.RightStickY" xml:space="preserve"><value>Stik kanan Y</value></data>
+  <data name="Controllers.LeftTrigger" xml:space="preserve"><value>Pelatuk kiri</value></data>
+  <data name="Controllers.RightTrigger" xml:space="preserve"><value>Pelatuk kanan</value></data>
+  <data name="Controllers.Steering" xml:space="preserve"><value>Kemudi</value></data>
+  <data name="Controllers.Throttle" xml:space="preserve"><value>Gas</value></data>
+  <data name="Controllers.Brake" xml:space="preserve"><value>Rem</value></data>
+  <data name="Controllers.Clutch" xml:space="preserve"><value>Kopling</value></data>
+  <data name="Controllers.Handbrake" xml:space="preserve"><value>Rem tangan</value></data>
+  <data name="Controllers.Gear" xml:space="preserve"><value>Gigi</value></data>
+  <data name="Controllers.Roll" xml:space="preserve"><value>Guling</value></data>
+  <data name="Controllers.Pitch" xml:space="preserve"><value>Angguk</value></data>
+  <data name="Controllers.Yaw" xml:space="preserve"><value>Belok</value></data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve">
+    <value>Sensor</value>
+  </data>
+  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
+    <value>Navigasi antarmuka</value>
+  </data>
+  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
+    <value>Gamepad</value>
+  </data>
+  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
+    <value>Motor frekuensi rendah</value>
+  </data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
+    <value>Motor frekuensi tinggi</value>
+  </data>
+  <data name="Controllers.Enum.Share" xml:space="preserve">
+    <value>Bagikan</value>
+  </data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve">
+    <value>Linear</value>
+  </data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve">
+    <value>Sudut</value>
+  </data>
+  <data name="Controllers.Enum.Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
+    <value>Konstan</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
+    <value>Landai</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
+    <value>Gelombang sinus</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
+    <value>Gelombang persegi</value>
+  </data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
+    <value>Gelombang segitiga</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
+    <value>Gigi gergaji naik</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
+    <value>Gigi gergaji turun</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
+    <value>Pegas</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
+    <value>Gesekan</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
+    <value>Peredam</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
+    <value>Inersia</value>
+  </data>
+  <data name="Controllers.Enum.Joystick" xml:space="preserve">
+    <value>Joystick</value>
+  </data>
+  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
+    <value>Pengontrol multi-sumbu</value>
+  </data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
+    <value>Penggunaan HID</value>
+  </data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve">
+    <value>sumbu</value>
+  </data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve">
+    <value>tombol</value>
+  </data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
+    <value>Gabungan</value>
+  </data>
+  <data name="Controllers.Enum.Virtual" xml:space="preserve">
+    <value>Virtual</value>
+  </data>
+  <data name="Controllers.Enum.InputReport" xml:space="preserve">
+    <value>Laporan masukan</value>
+  </data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
+    <value>Laporan keluaran</value>
+  </data>
+  <data name="Controllers.Model.Nintendo64" xml:space="preserve"><value>Nintendo 64</value></data>
+  <data name="Controllers.Model.NintendoEntertainmentSystem" xml:space="preserve"><value>Nintendo Entertainment System (NES)</value></data>
+  <data name="Controllers.Model.SuperNintendo" xml:space="preserve"><value>Super Nintendo</value></data>
 </root>

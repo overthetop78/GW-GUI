@@ -32,10 +32,8 @@ internal static class AtariInputSnapshotFunctions
         foreach (var binding in configuration.Controllers)
         {
             if (binding.Port < 0 || binding.Port >= controllers.Length) continue;
-            var sourcePort = EmulationInputMappingFunctions.ParseControllerPort(binding.DeviceId, binding.Port);
-            var source = sourcePort < withDeadZones.Controllers.Count
-                ? withDeadZones.Controllers[sourcePort]
-                : EmulationControllerState.Empty;
+            var source = EmulationInputMappingFunctions.ResolveController(binding.DeviceId,
+                withDeadZones.Controllers, binding.Port);
             if (binding.Mappings is not { Count: > 0 })
             {
                 controllers[binding.Port] = source;

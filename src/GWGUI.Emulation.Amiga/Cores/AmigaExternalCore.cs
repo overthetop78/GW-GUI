@@ -76,9 +76,9 @@ internal sealed class AmigaExternalCore : IAmigaCore
         foreach (var item in media)
             if (!File.Exists(item.Path) && !Directory.Exists(item.Path))
                 throw new FileNotFoundException("The configured Amiga media image or directory was not found.", item.Path);
-        if (configuration.ExtendedRomPath is not null && !File.Exists(configuration.ExtendedRomPath))
+        if (!string.IsNullOrWhiteSpace(configuration.ExtendedRomPath) && !File.Exists(configuration.ExtendedRomPath))
             throw new FileNotFoundException("The configured Amiga extended ROM was not found.", configuration.ExtendedRomPath);
-        if (configuration.RomKeyPath is not null && !File.Exists(configuration.RomKeyPath))
+        if (!string.IsNullOrWhiteSpace(configuration.RomKeyPath) && !File.Exists(configuration.RomKeyPath))
             throw new FileNotFoundException("The configured Amiga ROM key was not found.", configuration.RomKeyPath);
 
         var sourceCorePath = ResolveCorePath(_corePath);
@@ -104,12 +104,12 @@ internal sealed class AmigaExternalCore : IAmigaCore
             ResolveKickstartFileName(configuration.Model, configuration.KickstartPath));
         File.Copy(configuration.KickstartPath, sessionKickstartPath, true);
 
-        if (configuration.ExtendedRomPath is not null)
+        if (!string.IsNullOrWhiteSpace(configuration.ExtendedRomPath))
         {
             var extendedName = ResolveExtendedRomFileName(configuration.Model, configuration.ExtendedRomPath);
             File.Copy(configuration.ExtendedRomPath, Path.Combine(systemDirectory, extendedName), true);
         }
-        if (configuration.RomKeyPath is not null)
+        if (!string.IsNullOrWhiteSpace(configuration.RomKeyPath))
             File.Copy(configuration.RomKeyPath, Path.Combine(systemDirectory, "rom.key"), true);
 
         var backendModel = AmigaModelCatalog.BackendModelFor(configuration.Model);

@@ -128,8 +128,8 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
         {
             Options = options,
             KickstartPath = values.GetValueOrDefault(AmigaSettingsConstants.KickstartPath) ?? string.Empty,
-            ExtendedRomPath = values.GetValueOrDefault(AmigaSettingsConstants.ExtendedRomPath),
-            RomKeyPath = values.GetValueOrDefault(AmigaSettingsConstants.RomKeyPath),
+            ExtendedRomPath = OptionalPath(values.GetValueOrDefault(AmigaSettingsConstants.ExtendedRomPath)),
+            RomKeyPath = OptionalPath(values.GetValueOrDefault(AmigaSettingsConstants.RomKeyPath)),
             AudioEnabled = values.GetValueOrDefault(AmigaSettingsConstants.AudioEnabled) == "enabled",
             Audio = currentAudio with
             {
@@ -144,6 +144,9 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
         };
     }
 
+    private static string? OptionalPath(string? path) =>
+        string.IsNullOrWhiteSpace(path) ? null : path;
+
     public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) =>
         AmigaConfigurationSummaryFunctions.Create(configuration as AmigaMachineConfiguration
             ?? throw new ArgumentException(nameof(configuration)));
@@ -155,6 +158,11 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
     public IEmulationConfiguration ApplyInputSettings(IEmulationConfiguration configuration,
         EmulationInputSettings settings) => AmigaInputSettingsFunctions.Apply(
         configuration as AmigaMachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
+
+    public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration,
+        CancellationToken cancellationToken = default) => configuration is AmigaMachineConfiguration amiga
+        ? new ValueTask(_store.SaveAsync(amiga, cancellationToken))
+        : ValueTask.FromException(new ArgumentException(nameof(configuration)));
 
     public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration) =>
         AmigaStorageSettingsFunctions.Describe(configuration as AmigaMachineConfiguration

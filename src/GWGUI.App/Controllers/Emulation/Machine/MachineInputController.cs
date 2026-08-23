@@ -6,7 +6,7 @@ using GWGUI.App.Functions.Emulation.Shortcuts;
 using GWGUI.App.Functions.Input.Bindings;
 using GWGUI.App.Functions.Input.Keyboard;
 using GWGUI.App.Input.Mouse;
-using GWGUI.App.Services.Input;
+using GWGUI.App.Services.Input.GameInput;
 using GWGUI.App.Views.Controls.Emulation.Machine;
 using System.Windows;
 using System.Windows.Input;
@@ -253,17 +253,18 @@ internal sealed class MachineInputController : IDisposable
     private void Publish(int deltaX = 0, int deltaY = 0, int wheel = 0, int horizontalWheel = 0)
     {
         if (!_powered || _disposed) return;
-        var pointer = new EmulationPointerState(
-            _pointerCapture.IsCaptured ? deltaX : 0,
-            _pointerCapture.IsCaptured ? deltaY : 0,
-            _pointerCapture.IsCaptured ? wheel : 0,
-            _pointerCapture.IsCaptured && RelativeMouseCapture.IsButtonPressed(WindowsInputMessages.LeftMouseVirtualKey),
-            _pointerCapture.IsCaptured && RelativeMouseCapture.IsButtonPressed(WindowsInputMessages.RightMouseVirtualKey),
-            _pointerCapture.IsCaptured && RelativeMouseCapture.IsButtonPressed(WindowsInputMessages.MiddleMouseVirtualKey),
-            _pointerCapture.IsCaptured && RelativeMouseCapture.IsButtonPressed(WindowsInputMessages.FirstExtendedMouseVirtualKey),
-            _pointerCapture.IsCaptured && RelativeMouseCapture.IsButtonPressed(WindowsInputMessages.SecondExtendedMouseVirtualKey),
-            _pointerCapture.IsCaptured ? horizontalWheel : 0);
-        _machine().Input.SetInput(new EmulationInputSnapshot(_keys, pointer, XInputControllerReader.ReadAll()));
+        var physical = GameInputControllerReader.ReadPhysicalInput();
+        var keys = new HashSet<EmulationKey>(physical.Keys);
+        foreach (var shortcutKey in _pressedShortcutKeys.Values) keys.Add(shortcutKey);
+        var pointer = _pointerCapture.IsCaptured
+            ? physical.Pointer
+            : physical.Pointer with
+            {
+                DeltaX = 0, DeltaY = 0, Wheel = 0, HorizontalWheel = 0,
+                Left = false, Right = false, Middle = false,
+                ExtendedButton1 = false, ExtendedButton2 = false
+            };
+        _machine().Input.SetInput(new EmulationInputSnapshot(keys, pointer, physical.Controllers));
     }
 
     private IntPtr NativeMessage(IntPtr hwnd, int message, IntPtr wParam, IntPtr lParam, ref bool handled)

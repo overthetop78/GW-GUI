@@ -20,9 +20,8 @@ internal sealed class EmulationControllerPortEditor
         Bindings.ControllerCaptured += (_, args) =>
         {
             var device = Device.Items.Cast<GameControllerDevice>()
-                .FirstOrDefault(item => item.Id == $"xinput:{args.Port}")
-                ?? Device.Items.Cast<GameControllerDevice>()
-                    .FirstOrDefault(item => item.Id == $"gamepad:{args.Port}");
+                .FirstOrDefault(item => string.Equals(item.Id, args.DeviceId,
+                    StringComparison.OrdinalIgnoreCase));
             if (device is not null) Device.SelectedItem = device;
         };
     }

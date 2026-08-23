@@ -8,7 +8,7 @@ using GWGUI.App.Functions.Rendering.Emulation;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Presenters.Emulation.Machine;
 using GWGUI.App.Services.Emulation;
-using GWGUI.App.Services.Input;
+using GWGUI.App.Services.Input.GameInput;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -315,6 +315,6 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
             led.Fill = active ? Brushes.LimeGreen : present ? Brushes.ForestGreen : Brushes.Gray;
         }
         _commands.SetInputStatus(_input.IsPointerCaptured,
-            XInputControllerReader.ReadAll().Any(state => state != EmulationControllerState.Empty));
+            GameInputControllerReader.ReadAll().Any(state => state != EmulationControllerState.Empty));
     }
 }

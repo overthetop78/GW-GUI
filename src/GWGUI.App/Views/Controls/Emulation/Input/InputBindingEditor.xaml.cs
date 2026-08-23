@@ -2,6 +2,7 @@ using GWGUI.App.Constants.Input.Controllers;
 using GWGUI.App.Contracts.Input;
 using GWGUI.App.Enums.Input;
 using GWGUI.App.Localization.Extensions;
+using GWGUI.App.Services.Input.GameInput;
 using GWGUI.App.ViewModels.Input;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
@@ -21,11 +22,13 @@ public partial class InputBindingEditor : UserControl
     private InputBindingRow? _captureRow;
     private Button? _captureButton;
     private object? _captureButtonContent;
+    private DateTime _captureDeadlineUtc;
     private ModifierKeys _captureModifiers;
     private InputCaptureSources _captureSources = InputCaptureSources.Keyboard;
     private bool _prefixKeyboardSource;
     private readonly DispatcherTimer _controllerCaptureTimer;
     private IReadOnlyList<EmulationControllerState> _controllerBaseline = [];
+    private IReadOnlyList<GameInputLiveState> _controllerDetailedBaseline = [];
     private IReadOnlySet<string> _reservedBindings = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
     private HwndSource? _windowSource;
 
@@ -42,7 +45,7 @@ public partial class InputBindingEditor : UserControl
             CaptureControllerInput, Dispatcher);
         _controllerCaptureTimer.Stop();
         Loaded += (_, _) => AttachWindowHook();
-        Unloaded += (_, _) => DetachWindowHook();
+        Unloaded += (_, _) => { CancelCapture(); DetachWindowHook(); };
     }
 
     public bool HasErrors => _rows.Any(row => row.State is InputBindingState.Conflict or InputBindingState.Reserved);

@@ -11,13 +11,14 @@ internal static class AmigaStorageSettingsFunctions
             .Select(index => new EmulationMediaDevice(
                 new EmulationMediaSlot(EmulationMediaCategory.FloppyDrive, index),
                 EmulationMediaType.Floppy, [".adf", ".adz", ".dms", ".fdi", ".ipf", ".scp"],
-                IsRemovable: index != 0,
+                IsRemovable: true,
                 DisplayLabel: $"DF{index}:",
-                FloppyOptions: FloppyOptions(configuration, index)))
+                FloppyOptions: FloppyOptions(configuration, index),
+                IsPermanent: index == 0))
             .Concat(model.SupportsHardDrives
                 ? Enumerable.Range(0, model.MaximumHardDrives).Select(index => new EmulationMediaDevice(
                     new EmulationMediaSlot(EmulationMediaCategory.HardDisk, index),
-                    EmulationMediaType.HardDisk, [".hdf", ".hdz"], true,
+                    EmulationMediaType.HardDisk, [".hdf", ".hdz"], false,
                     DisplayLabel: $"DH{index}:")) : [])
             .Concat(model.HasCdDrive
                 ? [new EmulationMediaDevice(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc,

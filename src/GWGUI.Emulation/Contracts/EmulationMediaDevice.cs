@@ -9,4 +9,5 @@ public sealed record EmulationMediaDevice(
     string? DisplayLabel = null,
     FloppyDriveDialogOptions? FloppyOptions = null,
     IReadOnlyList<EmulationSettingsChoice>? InterfaceChoices = null,
-    string? ImageDirectory = null);
+    string? ImageDirectory = null,
+    bool IsPermanent = false);

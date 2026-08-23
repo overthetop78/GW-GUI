@@ -4,7 +4,7 @@ using GWGUI.App.Contracts.Emulation.Controllers;
 using GWGUI.App.Contracts.Emulation.Settings;
 using GWGUI.App.Contracts.Services.Input;
 using GWGUI.App.Localization.Extensions;
-using GWGUI.App.Services.Input;
+using GWGUI.App.Services.Input.GameInput;
 using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Controls;
@@ -23,61 +23,34 @@ internal static partial class EmulationSettingsLayout
         string? behaviorGlyph = null)
     {
         var root = new Grid { Margin = new Thickness(12) };
-        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        root.RowDefinitions.Add(new RowDefinition());
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
 
-        var detection = new Grid { Margin = new Thickness(12, 8, 12, 10) };
-        detection.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-        detection.ColumnDefinitions.Add(new ColumnDefinition());
-        var detectButton = new Button { Content = LocExtension.Get("Emulation.Controller.Detect") };
-        AutomationProperties.SetName(detectButton, LocExtension.Get("Emulation.Controller.Detect"));
-        detectButton.Click += async (_, _) => await detectControllers();
-        detection.Children.Add(detectButton);
-        detectedControllers.Margin = new Thickness(14, 0, 0, 0);
-        detectedControllers.VerticalAlignment = VerticalAlignment.Center;
-        detectedControllers.TextWrapping = TextWrapping.Wrap;
-        Grid.SetColumn(detectedControllers, 1);
-        detection.Children.Add(detectedControllers);
-        root.Children.Add(IconCard(detection, LocExtension.Get("Emulation.Controller.Detected"),
-            ControlVisualConstants.GameControllerGlyph));
-
-        var portCards = new Grid { Margin = new Thickness(0, 10, 0, 10) };
-        portCards.ColumnDefinitions.Add(new ColumnDefinition());
-        portCards.ColumnDefinitions.Add(new ColumnDefinition());
         var mappingTabs = new TabControl
         {
-            Margin = new Thickness(0, 0, behavior is null ? 0 : 8, 0),
             MinHeight = EmulationControllerSettingsConstants.MappingMinimumHeight
         };
-        for (var index = 0; index < ports.Count; index++)
+        foreach (var port in ports)
         {
-            var port = ports[index];
             DetachForReuse(port.Type);
             DetachForReuse(port.Device);
             DetachForReuse(port.Bindings);
-            var row = index / 2;
-            while (portCards.RowDefinitions.Count <= row)
-                portCards.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
             var portLabel = LocExtension.Get("Emulation.Controller.Port", port.Number);
-            var form = SettingsFields(1,
+            var content = new Grid();
+            content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            content.RowDefinitions.Add(new RowDefinition());
+            var selectors = SettingsFields(2,
                 (LocExtension.Get("Emulation.Controller.Type"), port.Type),
                 (LocExtension.Get("Emulation.Controller.Device", port.Number), port.Device));
-            var card = IconCard(form, portLabel, ControlVisualConstants.GameControllerGlyph);
-            card.Margin = new Thickness(index % 2 == 0 ? 0 : 5, row == 0 ? 0 : 10,
-                index % 2 == 0 ? 5 : 0, 0);
-            Grid.SetRow(card, row);
-            Grid.SetColumn(card, index % 2);
-            portCards.Children.Add(card);
-            mappingTabs.Items.Add(new TabItem { Header = portLabel, Content = port.Bindings });
+            selectors.Margin = new Thickness(10, 10, 10, 4);
+            content.Children.Add(selectors);
+            Grid.SetRow(port.Bindings, 1);
+            content.Children.Add(port.Bindings);
+            mappingTabs.Items.Add(new TabItem { Header = portLabel, Content = content });
         }
-        Grid.SetRow(portCards, 1);
-        root.Children.Add(portCards);
-
         var mappings = ActionCard(mappingTabs, LocExtension.Get("Emulation.Controller.Mappings"));
-        Grid.SetRow(mappings, 3);
         root.Children.Add(mappings);
+
         if (behavior is not null)
         {
             DetachForReuse(behavior.Control);
@@ -96,9 +69,8 @@ internal static partial class EmulationSettingsLayout
             else Grid.SetColumn(behavior.Control, 1);
             behaviorGrid.Children.Add(behavior.Control);
             var behaviorCard = IconCard(behaviorGrid, behaviorTitle ?? string.Empty, behaviorGlyph ?? string.Empty);
-            behaviorCard.Margin = new Thickness(0, 0, 0, 10);
-            behaviorCard.VerticalAlignment = VerticalAlignment.Top;
-            Grid.SetRow(behaviorCard, 2);
+            behaviorCard.Margin = new Thickness(0, 10, 0, 0);
+            Grid.SetRow(behaviorCard, 1);
             root.Children.Add(behaviorCard);
         }
         return ScrollPage(root);
@@ -158,8 +130,9 @@ internal static partial class EmulationSettingsLayout
     internal static Task DetectControllersAsync(IReadOnlyList<ComboBox> deviceSelectors,
         TextBlock detectedControllers)
     {
-        var devices = XInputControllerReader.GetConnectedDevices();
-        detectedControllers.Text = devices.Count == 0
+        var devices = GameInputControllerReader.GetConnectedControllerDetailsCached()
+            .Select(device => new GameControllerDevice(device.Id, device.ProductName)).ToArray();
+        detectedControllers.Text = devices.Length == 0
             ? LocExtension.Get("Emulation.Controller.NoneDetected")
             : string.Join(ControlVisualConstants.DetailSeparator, devices.Select(device => device.Name));
         for (var index = 0; index < deviceSelectors.Count; index++)

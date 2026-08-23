@@ -23,6 +23,9 @@ public sealed class EmulationConfigurationSummaryTests
 
         Assert.Single(storage.ConfiguredSlots);
         Assert.Equal(EmulationMediaSlot.Floppy0, storage.ConfiguredSlots[0]);
+        var primaryDrive = storage.AvailableDevices.Single(device => device.Slot == EmulationMediaSlot.Floppy0);
+        Assert.True(primaryDrive.IsRemovable);
+        Assert.True(primaryDrive.IsPermanent);
     }
 
     [Fact]

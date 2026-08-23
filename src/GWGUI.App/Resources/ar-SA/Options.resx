@@ -184,4 +184,181 @@
   <data name="Emulation.Model" xml:space="preserve"><value>النموذج</value></data>
   <data name="Emulation.CaptureMouse" xml:space="preserve"><value>التقاط الماوس</value></data>
   <data name="Emulation.Configuration" xml:space="preserve"><value>التكوين</value></data>
+  <data name="Controllers.Title" xml:space="preserve"><value>وحدات التحكم</value></data>
+  <data name="Controllers.Detect" xml:space="preserve"><value>اكتشاف وحدات التحكم</value></data>
+  <data name="Controllers.Device" xml:space="preserve"><value>الجهاز</value></data>
+  <data name="Controllers.VisualModel" xml:space="preserve"><value>الطراز</value></data>
+  <data name="Controllers.NoneDetected" xml:space="preserve"><value>لم يتم اكتشاف وحدة تحكم</value></data>
+  <data name="Controllers.DetectedCount" xml:space="preserve"><value>تم اكتشاف {0} وحدة تحكم</value></data>
+  <data name="Controllers.TestRumble" xml:space="preserve"><value>اختبار الاهتزاز</value></data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve">
+    <value>قوة الاهتزاز</value>
+  </data>
+  <data name="Controllers.LiveInputs" xml:space="preserve"><value>الإدخالات المباشرة</value></data>
+  <data name="Controllers.Control" xml:space="preserve"><value>عنصر التحكم</value></data>
+  <data name="Controllers.Value" xml:space="preserve"><value>القيمة</value></data>
+  <data name="Controllers.Active" xml:space="preserve"><value>نشط</value></data>
+  <data name="Controllers.Capabilities" xml:space="preserve"><value>الإمكانات</value></data>
+  <data name="Controllers.Identity" xml:space="preserve"><value>هوية الجهاز</value></data>
+  <data name="Controllers.InputKinds" xml:space="preserve"><value>أنواع الإدخال</value></data>
+  <data name="Controllers.Controls" xml:space="preserve"><value>عناصر التحكم</value></data>
+  <data name="Controllers.Rumble" xml:space="preserve"><value>محركات الاهتزاز</value></data>
+  <data name="Controllers.ForceFeedback" xml:space="preserve"><value>رد الفعل بالقوة</value></data>
+  <data name="Controllers.Haptics" xml:space="preserve"><value>الاستجابة اللمسية</value></data>
+  <data name="Controllers.SystemButtons" xml:space="preserve"><value>أزرار النظام</value></data>
+  <data name="Controllers.RawReports" xml:space="preserve"><value>التقارير الخام</value></data>
+  <data name="Controllers.ReportCounts" xml:space="preserve"><value>{0} إدخال / {1} إخراج</value></data>
+  <data name="Controllers.GamepadLayout" xml:space="preserve"><value>تخطيط وحدة التحكم</value></data>
+  <data name="Controllers.WheelCapabilities" xml:space="preserve"><value>عجلة القيادة</value></data>
+  <data name="Controllers.WheelDetails" xml:space="preserve"><value>{0:0.#}° · القابض={1} · فرامل اليد={2} · ناقل الحركة={3}</value></data>
+  <data name="Controllers.GameInputName" xml:space="preserve"><value>اسم GameInput</value></data>
+  <data name="Controllers.Revision" xml:space="preserve"><value>المراجعة</value></data>
+  <data name="Controllers.HardwareVersion" xml:space="preserve"><value>إصدار الجهاز</value></data>
+  <data name="Controllers.FirmwareVersion" xml:space="preserve"><value>إصدار البرنامج الثابت</value></data>
+  <data name="Controllers.Family" xml:space="preserve"><value>العائلة</value></data>
+  <data name="Controllers.Manufacturer" xml:space="preserve"><value>الشركة المصنعة</value></data>
+  <data name="Controllers.ControlType.Axis" xml:space="preserve"><value>المحور</value></data>
+  <data name="Controllers.ControlType.Button" xml:space="preserve"><value>زر</value></data>
+  <data name="Controllers.ControlType.Switch" xml:space="preserve"><value>مفتاح</value></data>
+  <data name="Controllers.ControlCounts" xml:space="preserve"><value>{0} محاور · {1} أزرار · {2} مفاتيح</value></data>
+  <data name="Controllers.Yes" xml:space="preserve"><value>نعم</value></data>
+  <data name="Controllers.No" xml:space="preserve"><value>لا</value></data>
+  <data name="Controllers.None" xml:space="preserve"><value>لا شيء</value></data>
+  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>وحدة تحكم عامة</value></data>
+  <data name="Controllers.Model.XboxSeries" xml:space="preserve"><value>Xbox Series</value></data>
+  <data name="Controllers.Model.XboxRematchCore" xml:space="preserve"><value>Turtle Beach REMATCH Core</value></data>
+  <data name="Controllers.Model.XboxOne" xml:space="preserve"><value>Xbox One</value></data>
+  <data name="Controllers.Model.PlayStation4" xml:space="preserve"><value>PlayStation 4</value></data>
+  <data name="Controllers.Model.PlayStation5" xml:space="preserve"><value>PlayStation 5</value></data>
+  <data name="Controllers.Model.MasterSystem" xml:space="preserve"><value>Master System</value></data>
+  <data name="Controllers.Model.Auto" xml:space="preserve"><value>تلقائي</value></data>
+  <data name="Controllers.Model.MegaDrive3" xml:space="preserve"><value>SEGA Mega Drive بثلاثة أزرار</value></data>
+  <data name="Controllers.Model.MegaDrive6" xml:space="preserve"><value>SEGA Mega Drive بستة أزرار</value></data>
+  <data name="Controllers.Model.PlayStation1" xml:space="preserve"><value>PlayStation 1</value></data>
+  <data name="Controllers.Model.PlayStation2" xml:space="preserve"><value>PlayStation 2</value></data>
+  <data name="Controllers.Model.Saturn" xml:space="preserve"><value>Saturn</value></data>
+  <data name="Controllers.Model.Dreamcast" xml:space="preserve"><value>Dreamcast</value></data>
+  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>عجلة القيادة</value></data>
+  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>عصا الطيران</value></data>
+  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>عصا ألعاب الصالات</value></data>
+  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>بايت خام</value></data>
+  <data name="Controllers.AnalogValues" xml:space="preserve"><value>القيم التناظرية</value></data>
+  <data name="Controllers.DetectionFailed" xml:space="preserve"><value>فشل اكتشاف وحدات التحكم</value></data>
+  <data name="Controllers.Detecting" xml:space="preserve">
+    <value>جارٍ اكتشاف وحدات التحكم…</value>
+  </data>
+  <data name="Controllers.ReadFailed" xml:space="preserve"><value>فشلت قراءة وحدة التحكم</value></data>
+  <data name="Controllers.TestRunning" xml:space="preserve"><value>الاختبار قيد التنفيذ…</value></data>
+  <data name="Controllers.TestFailed" xml:space="preserve"><value>فشل الاختبار</value></data>
+  <data name="Controllers.TestCompleted" xml:space="preserve"><value>اكتمل الاختبار</value></data>
+  <data name="Controllers.ExtraControls" xml:space="preserve"><value>عناصر تحكم إضافية</value></data>
+  <data name="Controllers.HapticEndpoint" xml:space="preserve"><value>نقطة نهاية الصوت اللمسي</value></data>
+  <data name="Controllers.HapticLocations" xml:space="preserve"><value>المواضع اللمسية</value></data>
+  <data name="Controllers.Usage" xml:space="preserve"><value>الاستخدام</value></data>
+  <data name="Controllers.WindowsIdentity" xml:space="preserve"><value>سلسلة أجهزة Windows</value></data>
+  <data name="Controllers.LeftStickX" xml:space="preserve"><value>العصا اليسرى X</value></data>
+  <data name="Controllers.LeftStickY" xml:space="preserve"><value>العصا اليسرى Y</value></data>
+  <data name="Controllers.RightStickX" xml:space="preserve"><value>العصا اليمنى X</value></data>
+  <data name="Controllers.RightStickY" xml:space="preserve"><value>العصا اليمنى Y</value></data>
+  <data name="Controllers.LeftTrigger" xml:space="preserve"><value>الزناد الأيسر</value></data>
+  <data name="Controllers.RightTrigger" xml:space="preserve"><value>الزناد الأيمن</value></data>
+  <data name="Controllers.Steering" xml:space="preserve"><value>التوجيه</value></data>
+  <data name="Controllers.Throttle" xml:space="preserve"><value>دواسة الوقود</value></data>
+  <data name="Controllers.Brake" xml:space="preserve"><value>الفرامل</value></data>
+  <data name="Controllers.Clutch" xml:space="preserve"><value>القابض</value></data>
+  <data name="Controllers.Handbrake" xml:space="preserve"><value>فرامل اليد</value></data>
+  <data name="Controllers.Gear" xml:space="preserve"><value>الترس</value></data>
+  <data name="Controllers.Roll" xml:space="preserve"><value>الالتفاف</value></data>
+  <data name="Controllers.Pitch" xml:space="preserve"><value>الميل</value></data>
+  <data name="Controllers.Yaw" xml:space="preserve"><value>الانحراف</value></data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve">
+    <value>المستشعرات</value>
+  </data>
+  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
+    <value>التنقل في الواجهة</value>
+  </data>
+  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
+    <value>ذراع تحكم</value>
+  </data>
+  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
+    <value>محرك منخفض التردد</value>
+  </data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
+    <value>محرك عالي التردد</value>
+  </data>
+  <data name="Controllers.Enum.Share" xml:space="preserve">
+    <value>مشاركة</value>
+  </data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve">
+    <value>خطي</value>
+  </data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve">
+    <value>زاوي</value>
+  </data>
+  <data name="Controllers.Enum.Normal" xml:space="preserve">
+    <value>عادي</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
+    <value>ثابت</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
+    <value>تدرج</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
+    <value>موجة جيبية</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
+    <value>موجة مربعة</value>
+  </data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
+    <value>موجة مثلثية</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
+    <value>سن منشار صاعد</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
+    <value>سن منشار هابط</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
+    <value>نابض</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
+    <value>احتكاك</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
+    <value>مخمّد</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
+    <value>قصور ذاتي</value>
+  </data>
+  <data name="Controllers.Enum.Joystick" xml:space="preserve">
+    <value>عصا تحكم</value>
+  </data>
+  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
+    <value>وحدة تحكم متعددة المحاور</value>
+  </data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
+    <value>استخدام HID</value>
+  </data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve">
+    <value>محاور</value>
+  </data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve">
+    <value>أزرار</value>
+  </data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
+    <value>مجمّع</value>
+  </data>
+  <data name="Controllers.Enum.Virtual" xml:space="preserve">
+    <value>افتراضي</value>
+  </data>
+  <data name="Controllers.Enum.InputReport" xml:space="preserve">
+    <value>تقرير إدخال</value>
+  </data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
+    <value>تقرير إخراج</value>
+  </data>
+  <data name="Controllers.Model.Nintendo64" xml:space="preserve"><value>Nintendo 64</value></data>
+  <data name="Controllers.Model.NintendoEntertainmentSystem" xml:space="preserve"><value>Nintendo Entertainment System (NES)</value></data>
+  <data name="Controllers.Model.SuperNintendo" xml:space="preserve"><value>Super Nintendo</value></data>
 </root>

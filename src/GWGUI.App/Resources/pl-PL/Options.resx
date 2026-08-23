@@ -184,4 +184,181 @@
   <data name="Emulation.Model" xml:space="preserve"><value>Model</value></data>
   <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Przechwytuj mysz</value></data>
   <data name="Emulation.Configuration" xml:space="preserve"><value>Konfiguracja</value></data>
+  <data name="Controllers.Title" xml:space="preserve"><value>Kontrolery</value></data>
+  <data name="Controllers.Detect" xml:space="preserve"><value>Wykryj kontrolery</value></data>
+  <data name="Controllers.Device" xml:space="preserve"><value>Urządzenie</value></data>
+  <data name="Controllers.VisualModel" xml:space="preserve"><value>Model</value></data>
+  <data name="Controllers.NoneDetected" xml:space="preserve"><value>Nie wykryto kontrolera</value></data>
+  <data name="Controllers.DetectedCount" xml:space="preserve"><value>Wykryto kontrolery: {0}</value></data>
+  <data name="Controllers.TestRumble" xml:space="preserve"><value>Testuj wibracje</value></data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve">
+    <value>Siła wibracji</value>
+  </data>
+  <data name="Controllers.LiveInputs" xml:space="preserve"><value>Wejścia na żywo</value></data>
+  <data name="Controllers.Control" xml:space="preserve"><value>Element sterujący</value></data>
+  <data name="Controllers.Value" xml:space="preserve"><value>Wartość</value></data>
+  <data name="Controllers.Active" xml:space="preserve"><value>Aktywny</value></data>
+  <data name="Controllers.Capabilities" xml:space="preserve"><value>Możliwości</value></data>
+  <data name="Controllers.Identity" xml:space="preserve"><value>Tożsamość urządzenia</value></data>
+  <data name="Controllers.InputKinds" xml:space="preserve"><value>Typy wejścia</value></data>
+  <data name="Controllers.Controls" xml:space="preserve"><value>Elementy sterujące</value></data>
+  <data name="Controllers.Rumble" xml:space="preserve"><value>Silniki wibracyjne</value></data>
+  <data name="Controllers.ForceFeedback" xml:space="preserve"><value>Sprzężenie zwrotne</value></data>
+  <data name="Controllers.Haptics" xml:space="preserve"><value>Wibracje haptyczne</value></data>
+  <data name="Controllers.SystemButtons" xml:space="preserve"><value>Przyciski systemowe</value></data>
+  <data name="Controllers.RawReports" xml:space="preserve"><value>Raporty surowe</value></data>
+  <data name="Controllers.ReportCounts" xml:space="preserve"><value>Wejście: {0} / wyjście: {1}</value></data>
+  <data name="Controllers.GamepadLayout" xml:space="preserve"><value>Układ kontrolera</value></data>
+  <data name="Controllers.WheelCapabilities" xml:space="preserve"><value>Kierownica</value></data>
+  <data name="Controllers.WheelDetails" xml:space="preserve"><value>{0:0.#}° · sprzęgło={1} · hamulec ręczny={2} · zmiana biegów={3}</value></data>
+  <data name="Controllers.GameInputName" xml:space="preserve"><value>Nazwa GameInput</value></data>
+  <data name="Controllers.Revision" xml:space="preserve"><value>Rewizja</value></data>
+  <data name="Controllers.HardwareVersion" xml:space="preserve"><value>Wersja sprzętu</value></data>
+  <data name="Controllers.FirmwareVersion" xml:space="preserve"><value>Wersja oprogramowania układowego</value></data>
+  <data name="Controllers.Family" xml:space="preserve"><value>Rodzina</value></data>
+  <data name="Controllers.Manufacturer" xml:space="preserve"><value>Producent</value></data>
+  <data name="Controllers.ControlType.Axis" xml:space="preserve"><value>Oś</value></data>
+  <data name="Controllers.ControlType.Button" xml:space="preserve"><value>Przycisk</value></data>
+  <data name="Controllers.ControlType.Switch" xml:space="preserve"><value>Przełącznik</value></data>
+  <data name="Controllers.ControlCounts" xml:space="preserve"><value>Osie: {0} · przyciski: {1} · przełączniki: {2}</value></data>
+  <data name="Controllers.Yes" xml:space="preserve"><value>Tak</value></data>
+  <data name="Controllers.No" xml:space="preserve"><value>Nie</value></data>
+  <data name="Controllers.None" xml:space="preserve"><value>Brak</value></data>
+  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>Kontroler ogólny</value></data>
+  <data name="Controllers.Model.XboxSeries" xml:space="preserve"><value>Xbox Series</value></data>
+  <data name="Controllers.Model.XboxRematchCore" xml:space="preserve"><value>Turtle Beach REMATCH Core</value></data>
+  <data name="Controllers.Model.XboxOne" xml:space="preserve"><value>Xbox One</value></data>
+  <data name="Controllers.Model.PlayStation4" xml:space="preserve"><value>PlayStation 4</value></data>
+  <data name="Controllers.Model.PlayStation5" xml:space="preserve"><value>PlayStation 5</value></data>
+  <data name="Controllers.Model.MasterSystem" xml:space="preserve"><value>Master System</value></data>
+  <data name="Controllers.Model.Auto" xml:space="preserve"><value>Automatycznie</value></data>
+  <data name="Controllers.Model.MegaDrive3" xml:space="preserve"><value>SEGA Mega Drive z 3 przyciskami</value></data>
+  <data name="Controllers.Model.MegaDrive6" xml:space="preserve"><value>SEGA Mega Drive z 6 przyciskami</value></data>
+  <data name="Controllers.Model.PlayStation1" xml:space="preserve"><value>PlayStation 1</value></data>
+  <data name="Controllers.Model.PlayStation2" xml:space="preserve"><value>PlayStation 2</value></data>
+  <data name="Controllers.Model.Saturn" xml:space="preserve"><value>Saturn</value></data>
+  <data name="Controllers.Model.Dreamcast" xml:space="preserve"><value>Dreamcast</value></data>
+  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>Kierownica</value></data>
+  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>Drążek lotniczy</value></data>
+  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>Drążek arcade</value></data>
+  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Surowy bajt</value></data>
+  <data name="Controllers.AnalogValues" xml:space="preserve"><value>Wartości analogowe</value></data>
+  <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Nie udało się wykryć kontrolerów</value></data>
+  <data name="Controllers.Detecting" xml:space="preserve">
+    <value>Wykrywanie kontrolerów…</value>
+  </data>
+  <data name="Controllers.ReadFailed" xml:space="preserve"><value>Nie udało się odczytać kontrolera</value></data>
+  <data name="Controllers.TestRunning" xml:space="preserve"><value>Test w toku…</value></data>
+  <data name="Controllers.TestFailed" xml:space="preserve"><value>Test nie powiódł się</value></data>
+  <data name="Controllers.TestCompleted" xml:space="preserve"><value>Test zakończony</value></data>
+  <data name="Controllers.ExtraControls" xml:space="preserve"><value>Dodatkowe elementy sterujące</value></data>
+  <data name="Controllers.HapticEndpoint" xml:space="preserve"><value>Punkt końcowy dźwięku haptycznego</value></data>
+  <data name="Controllers.HapticLocations" xml:space="preserve"><value>Lokalizacje haptyczne</value></data>
+  <data name="Controllers.Usage" xml:space="preserve"><value>Zastosowanie</value></data>
+  <data name="Controllers.WindowsIdentity" xml:space="preserve"><value>Łańcuch urządzeń Windows</value></data>
+  <data name="Controllers.LeftStickX" xml:space="preserve"><value>Lewy drążek X</value></data>
+  <data name="Controllers.LeftStickY" xml:space="preserve"><value>Lewy drążek Y</value></data>
+  <data name="Controllers.RightStickX" xml:space="preserve"><value>Prawy drążek X</value></data>
+  <data name="Controllers.RightStickY" xml:space="preserve"><value>Prawy drążek Y</value></data>
+  <data name="Controllers.LeftTrigger" xml:space="preserve"><value>Lewy spust</value></data>
+  <data name="Controllers.RightTrigger" xml:space="preserve"><value>Prawy spust</value></data>
+  <data name="Controllers.Steering" xml:space="preserve"><value>Kierowanie</value></data>
+  <data name="Controllers.Throttle" xml:space="preserve"><value>Gaz</value></data>
+  <data name="Controllers.Brake" xml:space="preserve"><value>Hamulec</value></data>
+  <data name="Controllers.Clutch" xml:space="preserve"><value>Sprzęgło</value></data>
+  <data name="Controllers.Handbrake" xml:space="preserve"><value>Hamulec ręczny</value></data>
+  <data name="Controllers.Gear" xml:space="preserve"><value>Bieg</value></data>
+  <data name="Controllers.Roll" xml:space="preserve"><value>Przechylenie</value></data>
+  <data name="Controllers.Pitch" xml:space="preserve"><value>Pochylenie</value></data>
+  <data name="Controllers.Yaw" xml:space="preserve"><value>Odchylenie</value></data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve">
+    <value>Czujniki</value>
+  </data>
+  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
+    <value>Nawigacja interfejsu</value>
+  </data>
+  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
+    <value>Kontroler</value>
+  </data>
+  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
+    <value>Silnik niskiej częstotliwości</value>
+  </data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
+    <value>Silnik wysokiej częstotliwości</value>
+  </data>
+  <data name="Controllers.Enum.Share" xml:space="preserve">
+    <value>Udostępnij</value>
+  </data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve">
+    <value>Liniowy</value>
+  </data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve">
+    <value>Kątowy</value>
+  </data>
+  <data name="Controllers.Enum.Normal" xml:space="preserve">
+    <value>Normalny</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
+    <value>Stały</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
+    <value>Narastanie</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
+    <value>Fala sinusoidalna</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
+    <value>Fala prostokątna</value>
+  </data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
+    <value>Fala trójkątna</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
+    <value>Narastający ząb piły</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
+    <value>Opadający ząb piły</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
+    <value>Sprężyna</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
+    <value>Tarcie</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
+    <value>Tłumik</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
+    <value>Bezwładność</value>
+  </data>
+  <data name="Controllers.Enum.Joystick" xml:space="preserve">
+    <value>Joystick</value>
+  </data>
+  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
+    <value>Kontroler wieloosiowy</value>
+  </data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
+    <value>Użycie HID</value>
+  </data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve">
+    <value>osie</value>
+  </data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve">
+    <value>przyciski</value>
+  </data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
+    <value>Zagregowany</value>
+  </data>
+  <data name="Controllers.Enum.Virtual" xml:space="preserve">
+    <value>Wirtualny</value>
+  </data>
+  <data name="Controllers.Enum.InputReport" xml:space="preserve">
+    <value>Raport wejściowy</value>
+  </data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
+    <value>Raport wyjściowy</value>
+  </data>
+  <data name="Controllers.Model.Nintendo64" xml:space="preserve"><value>Nintendo 64</value></data>
+  <data name="Controllers.Model.NintendoEntertainmentSystem" xml:space="preserve"><value>Nintendo Entertainment System (NES)</value></data>
+  <data name="Controllers.Model.SuperNintendo" xml:space="preserve"><value>Super Nintendo</value></data>
 </root>

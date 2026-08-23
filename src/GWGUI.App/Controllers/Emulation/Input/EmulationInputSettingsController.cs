@@ -25,13 +25,24 @@ internal sealed class EmulationInputSettingsController
     private IReadOnlyDictionary<int, EmulationControllerPort> _portDefinitions =
         new Dictionary<int, EmulationControllerPort>();
     private EmulationInputSettings _settings = new(null, null, []);
+    private string? _machineId;
 
     internal EmulationInputSettingsController(IEmulationInputSettingsManager manager) => _manager = manager;
+
+    internal event EventHandler? SettingsChanged;
 
     internal UIElement CreateContent(EmulationMachineTab tab, IEmulationConfiguration configuration,
         IReadOnlyList<EmulationSettingsControlField> fields)
     {
-        _settings = _manager.DescribeInputSettings(configuration);
+        if (!string.Equals(_machineId, configuration.MachineId, StringComparison.Ordinal))
+        {
+            _machineId = configuration.MachineId;
+            _keyboard = null;
+            _mouse = null;
+            _ports = [];
+            _portDefinitions = new Dictionary<int, EmulationControllerPort>();
+            _settings = _manager.DescribeInputSettings(configuration);
+        }
         return tab switch
         {
             EmulationMachineTab.Keyboard => CreateKeyboardView(),
@@ -45,10 +56,13 @@ internal sealed class EmulationInputSettingsController
     {
         var keyboard = ReadKeyboardBindings(_settings.Keyboard, _keyboard);
         var mouse = ReadBindings(_settings.Mouse, _mouse);
-        var ports = _ports.Select(ReadPort).ToArray();
-        return _manager.ApplyInputSettings(configuration,
-            new EmulationInputSettings(keyboard, mouse, ports));
+        var ports = _ports.Count == 0 ? _settings.ControllerPorts : _ports.Select(ReadPort).ToArray();
+        _settings = new EmulationInputSettings(keyboard, mouse, ports);
+        return _manager.ApplyInputSettings(configuration, _settings);
     }
+
+    internal ValueTask SaveAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) =>
+        _manager.SaveInputSettingsAsync(configuration, cancellationToken);
 
     private UIElement CreateKeyboardView()
     {
@@ -76,9 +90,10 @@ internal sealed class EmulationInputSettingsController
         return view;
     }
 
-    private static InputBindingEditor CreateEditor(EmulationInputBindingSet? set)
+    private InputBindingEditor CreateEditor(EmulationInputBindingSet? set)
     {
         var editor = new InputBindingEditor();
+        editor.BindingsChanged += (_, _) => SettingsChanged?.Invoke(this, EventArgs.Empty);
         editor.ConfigurePresentation(LocExtension.Get("Emulation.Input.Actions"),
             LocExtension.Get("Emulation.Input.Binding.Search"));
         if (set is null) return editor;
@@ -87,7 +102,7 @@ internal sealed class EmulationInputSettingsController
         return editor;
     }
 
-    private static EmulationControllerPortEditor CreatePort(EmulationControllerPort port)
+    private EmulationControllerPortEditor CreatePort(EmulationControllerPort port)
     {
         var editor = EmulationControllerSettingsSection.CreatePort(port.Number,
             ToCaptureSources(port.Bindings.Sources), port.Bindings.PrefixKeyboardSource,
@@ -98,10 +113,16 @@ internal sealed class EmulationInputSettingsController
         editor.Type.DisplayMemberPath = nameof(EmulationControllerChoiceView.DisplayName);
         editor.Type.SelectedItem = choices.FirstOrDefault(choice => choice.Choice.Id == port.SelectedControllerId)
             ?? choices.FirstOrDefault();
-        editor.Type.SelectionChanged += (_, _) => UpdateControllerBindings(editor);
+        editor.Type.SelectionChanged += (_, _) =>
+        {
+            UpdateControllerBindings(editor);
+            SettingsChanged?.Invoke(this, EventArgs.Empty);
+        };
         editor.Device.Tag = port.PhysicalDeviceId;
         editor.DeadZonePercent = port.DeadZonePercent;
         editor.Bindings.SetRows(port.Bindings.Definitions, port.Bindings.Values);
+        editor.Bindings.BindingsChanged += (_, _) => SettingsChanged?.Invoke(this, EventArgs.Empty);
+        editor.Device.DropDownClosed += (_, _) => SettingsChanged?.Invoke(this, EventArgs.Empty);
         return editor;
     }
 

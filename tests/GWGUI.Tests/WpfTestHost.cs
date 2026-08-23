@@ -49,4 +49,7 @@ internal static class WpfTestHost
 
     internal static void Run(Action action) => UiDispatcher.Invoke(action);
 
+    internal static void RunAsync(Func<Task> action) =>
+        UiDispatcher.InvokeAsync(action).Task.Unwrap().GetAwaiter().GetResult();
+
 }

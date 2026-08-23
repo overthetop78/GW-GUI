@@ -36,6 +36,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
     private IReadOnlyList<IEmulationConfiguration> _saved = [];
     private IEmulationConfiguration _configuration;
     private bool _loading;
+    private readonly SemaphoreSlim _saveInputGate = new(1, 1);
     private EmulationMachineTab _selectedTab = EmulationMachineTab.General;
 
     internal EmulationModuleSettingsSection(IEmulationModule module)
@@ -55,7 +56,11 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
             _firmwareManagement = new EmulationFirmwareManagementController(firmwareManager,
                 () => _configuration, SetConfiguration);
         if (module is IEmulationInputSettingsManager inputManager)
+        {
             _inputSettings = new EmulationInputSettingsController(inputManager);
+            _inputSettings.SettingsChanged += async (_, _) =>
+                await ExecuteAsync(PersistInputSettingsAsync);
+        }
         if (module is IEmulationStorageSettingsManager storageManager)
             _storageSettings = new EmulationStorageSettingsController(storageManager, DefaultFolder);
         _machines.SelectionChanged += MachineChanged;
@@ -329,6 +334,22 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
         await _module.SaveConfigurationAsync(_configuration);
         ConfigurationSaved?.Invoke(this, new EmulationConfigurationSavedEventArgs(_configuration));
         await ReloadAsync();
+    }
+
+    private async Task PersistInputSettingsAsync()
+    {
+        await _saveInputGate.WaitAsync();
+        try
+        {
+            CaptureEditorValues();
+            if (_inputSettings is not null) await _inputSettings.SaveAsync(_configuration);
+            _saved = _saved.Where(item => item.Id != _configuration.Id).Append(_configuration).ToArray();
+            ConfigurationSaved?.Invoke(this, new EmulationConfigurationSavedEventArgs(_configuration));
+        }
+        finally
+        {
+            _saveInputGate.Release();
+        }
     }
 
     private static string? ReadValue(FrameworkElement control) => control switch

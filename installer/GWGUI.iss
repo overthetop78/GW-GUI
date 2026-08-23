@@ -65,6 +65,7 @@ Source: "{#SourceDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs 
 Source: "..\LICENSE"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\README.md"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Prerequisites\windowsdesktop-runtime-10.0.11-win-x64.exe"; Flags: dontcopy
+Source: "{#SourceDir}\Runtime\GameInputRedist.msi"; Flags: dontcopy
 
 [Icons]
 Name: "{autoprograms}\GW GUI"; Filename: "{app}\gwgui.exe"
@@ -92,6 +93,7 @@ const
   DotNetDesktopRuntimeRegistryKey = 'SOFTWARE\WOW6432Node\dotnet\Setup\InstalledVersions\x64\sharedfx\Microsoft.WindowsDesktop.App';
   DotNetDesktopRuntimeMajorPrefix = '10.';
   DotNetDesktopRuntimeInstaller = 'windowsdesktop-runtime-10.0.11-win-x64.exe';
+  GameInputRuntimeInstaller = 'GameInputRedist.msi';
 
 function DotNetDesktopRuntimeInstalled: Boolean;
 var
@@ -114,6 +116,19 @@ var
   ResultCode: Integer;
 begin
   Result := '';
+
+  ExtractTemporaryFile(GameInputRuntimeInstaller);
+  RuntimeInstallerPath := ExpandConstant('{tmp}\') + GameInputRuntimeInstaller;
+  ResultCode := -1;
+  if (not ShellExec('runas', ExpandConstant('{sys}\msiexec.exe'),
+      '/i "' + RuntimeInstallerPath + '" /quiet /norestart', '', SW_HIDE,
+      ewWaitUntilTerminated, ResultCode)) or
+      ((ResultCode <> 0) and (ResultCode <> 1638) and (ResultCode <> 3010)) then
+  begin
+    Result := SysErrorMessage(ResultCode);
+    Exit;
+  end;
+
   if DotNetDesktopRuntimeInstalled then Exit;
 
   ExtractTemporaryFile(DotNetDesktopRuntimeInstaller);

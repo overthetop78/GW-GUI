@@ -15,10 +15,12 @@ public sealed partial class OptionsEmulationSection
 
     private async Task ReloadConfigurationsAsync()
     {
+        var loaded = await Task.WhenAll(_modules.Select(async module =>
+            (Module: module, Configurations: await Task.Run(async () =>
+                await module.LoadConfigurationsAsync()))));
         _configurations.Clear();
-        foreach (var module in _modules)
+        foreach (var (module, configurations) in loaded)
         {
-            var configurations = await module.LoadConfigurationsAsync();
             foreach (var configuration in configurations)
             {
                 var display = EmulationConfigurationPresenter.DisplayName(module, configuration);

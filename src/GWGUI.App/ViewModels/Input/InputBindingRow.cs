@@ -3,6 +3,8 @@ using GWGUI.App.Contracts.Input;
 using GWGUI.App.Enums.Input;
 using GWGUI.App.Functions.Input.Bindings;
 using GWGUI.App.Localization.Extensions;
+using GWGUI.App.Services.Input.GameInput;
+using GWGUI.Emulation;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -19,7 +21,29 @@ public sealed class InputBindingRow(string id, string label, string binding, str
     public string Id { get; } = id;
     public string Label { get; } = label;
     public string DefaultBinding { get; } = defaultBinding;
-    public string Binding { get => _binding; set { _binding = value; OnChanged(); OnChanged(nameof(BindingParts)); } }
+    public string Binding
+    {
+        get => _binding;
+        set
+        {
+            _binding = value;
+            OnChanged();
+            OnChanged(nameof(BindingParts));
+            OnChanged(nameof(ControllerDeviceName));
+            OnChanged(nameof(ControllerDeviceNameVisibility));
+        }
+    }
+    public string ControllerDeviceName
+    {
+        get
+        {
+            var deviceId = EmulationInputMappingFunctions.ParseControllerDeviceId(_binding);
+            if (string.IsNullOrWhiteSpace(deviceId)) return string.Empty;
+            return GameInputControllerReader.GetControllerName(deviceId) ?? deviceId;
+        }
+    }
+    public Visibility ControllerDeviceNameVisibility => string.IsNullOrWhiteSpace(ControllerDeviceName)
+        ? Visibility.Collapsed : Visibility.Visible;
     public IReadOnlyList<InputBindingPart> BindingParts
     {
         get

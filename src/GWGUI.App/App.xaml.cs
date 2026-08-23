@@ -4,6 +4,7 @@ using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Localization.Sources;
 using GWGUI.App.Services.Emulation;
 using GWGUI.App.Services.Logging;
+using GWGUI.App.Services.Input.GameInput;
 using GWGUI.App.Services.Storage;
 using GWGUI.App.Services.Theming;
 using GWGUI.App.Views.Windows.Options;
@@ -82,6 +83,7 @@ public partial class App : Application
         _theme = settings.Theme;
         ThemeManager.Apply(settings.Theme);
         SystemEvents.UserPreferenceChanged += SystemPreferenceChanged;
+        GameInputControllerSource.Instance.StartMonitoring();
         MainWindow = new MainWindow(null, initialSettings: settings);
         MainWindow.Show();
     }

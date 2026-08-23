@@ -149,6 +149,7 @@ public partial class OptionsWindow : Window
             OptionsSection.Engines => 3,
             OptionsSection.Profiles => 4,
             OptionsSection.Emulation => 5,
+            OptionsSection.Controllers => 6,
             _ => 0
         };
         _initializing = false;
@@ -199,6 +200,7 @@ public partial class OptionsWindow : Window
         _loggingOptionsController.RefreshLocalizedContent();
         _hardwareOptionsController.RefreshRows();
         EmulationSection.RefreshLocalizedContent();
+        ControllersSection.RefreshLocalizedContent();
     }
 
     internal static string RenderTagPattern(string pattern, string name, string family, string format, string extension, DateTime timestamp) =>

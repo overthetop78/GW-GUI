@@ -8,7 +8,8 @@ public static class InputBindingSyntax
 {
     public static string Keyboard(string binding) => InputBindingSyntaxConstants.KeyboardPrefix + binding;
     public static string Mouse(string source) => InputBindingSyntaxConstants.MousePrefix + source;
-    public static string Controller(int port, string source) => $"{InputBindingSyntaxConstants.XInputPrefix}{port}:{source}";
+    public static string Controller(string deviceId, string source) =>
+        $"{InputBindingSyntaxConstants.ControllerPrefix}{deviceId}:{source}";
 
     public static bool TryRemovePrefix(string? binding, string prefix, out string source)
     {

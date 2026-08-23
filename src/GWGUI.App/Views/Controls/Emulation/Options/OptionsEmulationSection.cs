@@ -31,7 +31,10 @@ public sealed partial class OptionsEmulationSection : UserControl
     private readonly TabItem _shortcutsTab;
     private readonly Button _removeConfiguration = new();
     private readonly List<(TabItem Tab, string ResourceKey)> _localizedTabs = [];
-    private readonly List<EmulationModuleSettingsSection> _moduleSections = [];
+    private readonly Dictionary<TabItem, IEmulationModule> _moduleTabs = [];
+    private readonly Dictionary<TabItem, EmulationModuleSettingsSection> _moduleSections = [];
+    private bool _configurationsLoaded;
+    private bool _loadingConfigurations;
 
     public OptionsEmulationSection()
     {
@@ -52,13 +55,13 @@ public sealed partial class OptionsEmulationSection : UserControl
         AddTab(_tabs, "\uE8A5", "Emulation.Configuration", BuildConfigurationsTab());
         foreach (var module in _modules)
         {
-            var section = new EmulationModuleSettingsSection(module);
-            _moduleSections.Add(section);
-            section.ConfigurationSaved += ModuleConfigurationSaved;
-            AddTab(_tabs, "\uE7FC", module.DisplayResourceKey, section);
+            var tab = AddTab(_tabs, "\uE7FC", module.DisplayResourceKey, new Grid());
+            _moduleTabs.Add(tab, module);
         }
+        _tabs.SelectionChanged += ModuleTabSelectionChanged;
         Content = _tabs;
-        Loaded += async (_, _) => await ReloadConfigurationsAsync();
+        Loaded += async (_, _) => await LoadConfigurationsWhenVisibleAsync();
+        IsVisibleChanged += async (_, _) => await LoadConfigurationsWhenVisibleAsync();
     }
 
     public void Configure(AppSettings settings, Func<Task> persistSettings)
@@ -74,6 +77,32 @@ public sealed partial class OptionsEmulationSection : UserControl
         StoragePaths.ConfigureEmulationStateDirectory(settings.EmulationStateFolder);
     }
 
+    private async Task LoadConfigurationsWhenVisibleAsync()
+    {
+        if (!IsLoaded || !IsVisible || _configurationsLoaded || _loadingConfigurations) return;
+        _loadingConfigurations = true;
+        try
+        {
+            await ReloadConfigurationsAsync();
+            _configurationsLoaded = true;
+        }
+        finally { _loadingConfigurations = false; }
+    }
+
+    private void ModuleTabSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (!ReferenceEquals(e.OriginalSource, _tabs)
+            || _tabs.SelectedItem is not TabItem tab
+            || !_moduleTabs.TryGetValue(tab, out var module)
+            || _moduleSections.ContainsKey(tab))
+            return;
+
+        var section = new EmulationModuleSettingsSection(module);
+        section.ConfigurationSaved += ModuleConfigurationSaved;
+        _moduleSections.Add(tab, section);
+        tab.Content = section;
+    }
+
     internal void RefreshLocalizedContent()
     {
         var shortcutValues = _shortcuts.Rows.ToDictionary(row => row.Id, row => row.Binding,
@@ -83,12 +112,12 @@ public sealed partial class OptionsEmulationSection : UserControl
             var text = LocExtension.Get(resourceKey);
             if (tab.Header is MainTabHeader header) header.Text = text;
         }
-        foreach (var section in _moduleSections) section.RefreshLocalizedContent();
+        foreach (var section in _moduleSections.Values) section.RefreshLocalizedContent();
         _shortcuts.SetRows(GlobalShortcutDefinitions(), shortcutValues);
         _shortcuts.ConfigurePresentation(LocExtension.Get("Emulation.Input.Actions"),
             LocExtension.Get("Emulation.Input.Binding.Search"));
         _removeConfiguration.Content = LocExtension.Get("Common.Delete");
-        _ = ReloadConfigurationsAsync();
+        if (_configurationsLoaded) _ = ReloadConfigurationsAsync();
     }
 
 }

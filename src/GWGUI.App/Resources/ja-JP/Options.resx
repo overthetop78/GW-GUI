@@ -184,4 +184,181 @@
   <data name="Emulation.Model" xml:space="preserve"><value>モデル</value></data>
   <data name="Emulation.CaptureMouse" xml:space="preserve"><value>マウスをキャプチャ</value></data>
   <data name="Emulation.Configuration" xml:space="preserve"><value>構成</value></data>
+  <data name="Controllers.Title" xml:space="preserve"><value>コントローラー</value></data>
+  <data name="Controllers.Detect" xml:space="preserve"><value>コントローラーを検出</value></data>
+  <data name="Controllers.Device" xml:space="preserve"><value>デバイス</value></data>
+  <data name="Controllers.VisualModel" xml:space="preserve"><value>モデル</value></data>
+  <data name="Controllers.NoneDetected" xml:space="preserve"><value>コントローラーが検出されません</value></data>
+  <data name="Controllers.DetectedCount" xml:space="preserve"><value>{0} 台のコントローラーを検出</value></data>
+  <data name="Controllers.TestRumble" xml:space="preserve"><value>振動をテスト</value></data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve">
+    <value>振動の強さ</value>
+  </data>
+  <data name="Controllers.LiveInputs" xml:space="preserve"><value>リアルタイム入力</value></data>
+  <data name="Controllers.Control" xml:space="preserve"><value>コントロール</value></data>
+  <data name="Controllers.Value" xml:space="preserve"><value>値</value></data>
+  <data name="Controllers.Active" xml:space="preserve"><value>有効</value></data>
+  <data name="Controllers.Capabilities" xml:space="preserve"><value>機能</value></data>
+  <data name="Controllers.Identity" xml:space="preserve"><value>デバイス識別情報</value></data>
+  <data name="Controllers.InputKinds" xml:space="preserve"><value>入力の種類</value></data>
+  <data name="Controllers.Controls" xml:space="preserve"><value>コントロール</value></data>
+  <data name="Controllers.Rumble" xml:space="preserve"><value>振動モーター</value></data>
+  <data name="Controllers.ForceFeedback" xml:space="preserve"><value>フォースフィードバック</value></data>
+  <data name="Controllers.Haptics" xml:space="preserve"><value>触覚フィードバック</value></data>
+  <data name="Controllers.SystemButtons" xml:space="preserve"><value>システムボタン</value></data>
+  <data name="Controllers.RawReports" xml:space="preserve"><value>生レポート</value></data>
+  <data name="Controllers.ReportCounts" xml:space="preserve"><value>入力 {0} / 出力 {1}</value></data>
+  <data name="Controllers.GamepadLayout" xml:space="preserve"><value>ゲームパッド レイアウト</value></data>
+  <data name="Controllers.WheelCapabilities" xml:space="preserve"><value>ステアリング ホイール</value></data>
+  <data name="Controllers.WheelDetails" xml:space="preserve"><value>{0:0.#}° · クラッチ={1} · ハンドブレーキ={2} · シフター={3}</value></data>
+  <data name="Controllers.GameInputName" xml:space="preserve"><value>GameInput 名</value></data>
+  <data name="Controllers.Revision" xml:space="preserve"><value>リビジョン</value></data>
+  <data name="Controllers.HardwareVersion" xml:space="preserve"><value>ハードウェア バージョン</value></data>
+  <data name="Controllers.FirmwareVersion" xml:space="preserve"><value>ファームウェア バージョン</value></data>
+  <data name="Controllers.Family" xml:space="preserve"><value>ファミリー</value></data>
+  <data name="Controllers.Manufacturer" xml:space="preserve"><value>製造元</value></data>
+  <data name="Controllers.ControlType.Axis" xml:space="preserve"><value>軸</value></data>
+  <data name="Controllers.ControlType.Button" xml:space="preserve"><value>ボタン</value></data>
+  <data name="Controllers.ControlType.Switch" xml:space="preserve"><value>スイッチ</value></data>
+  <data name="Controllers.ControlCounts" xml:space="preserve"><value>軸 {0} · ボタン {1} · スイッチ {2}</value></data>
+  <data name="Controllers.Yes" xml:space="preserve"><value>はい</value></data>
+  <data name="Controllers.No" xml:space="preserve"><value>いいえ</value></data>
+  <data name="Controllers.None" xml:space="preserve"><value>なし</value></data>
+  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>汎用ゲームパッド</value></data>
+  <data name="Controllers.Model.XboxSeries" xml:space="preserve"><value>Xbox Series</value></data>
+  <data name="Controllers.Model.XboxRematchCore" xml:space="preserve"><value>Turtle Beach REMATCH Core</value></data>
+  <data name="Controllers.Model.XboxOne" xml:space="preserve"><value>Xbox One</value></data>
+  <data name="Controllers.Model.PlayStation4" xml:space="preserve"><value>PlayStation 4</value></data>
+  <data name="Controllers.Model.PlayStation5" xml:space="preserve"><value>PlayStation 5</value></data>
+  <data name="Controllers.Model.MasterSystem" xml:space="preserve"><value>Master System</value></data>
+  <data name="Controllers.Model.Auto" xml:space="preserve"><value>自動</value></data>
+  <data name="Controllers.Model.MegaDrive3" xml:space="preserve"><value>SEGA メガドライブ 3ボタン</value></data>
+  <data name="Controllers.Model.MegaDrive6" xml:space="preserve"><value>SEGA メガドライブ 6ボタン</value></data>
+  <data name="Controllers.Model.PlayStation1" xml:space="preserve"><value>PlayStation 1</value></data>
+  <data name="Controllers.Model.PlayStation2" xml:space="preserve"><value>PlayStation 2</value></data>
+  <data name="Controllers.Model.Saturn" xml:space="preserve"><value>Saturn</value></data>
+  <data name="Controllers.Model.Dreamcast" xml:space="preserve"><value>Dreamcast</value></data>
+  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>ステアリング ホイール</value></data>
+  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>フライト スティック</value></data>
+  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>アーケード スティック</value></data>
+  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>生バイト</value></data>
+  <data name="Controllers.AnalogValues" xml:space="preserve"><value>アナログ値</value></data>
+  <data name="Controllers.DetectionFailed" xml:space="preserve"><value>コントローラーの検出に失敗しました</value></data>
+  <data name="Controllers.Detecting" xml:space="preserve">
+    <value>コントローラーを検出中…</value>
+  </data>
+  <data name="Controllers.ReadFailed" xml:space="preserve"><value>コントローラーの読み取りに失敗しました</value></data>
+  <data name="Controllers.TestRunning" xml:space="preserve"><value>テスト中…</value></data>
+  <data name="Controllers.TestFailed" xml:space="preserve"><value>テストに失敗しました</value></data>
+  <data name="Controllers.TestCompleted" xml:space="preserve"><value>テスト完了</value></data>
+  <data name="Controllers.ExtraControls" xml:space="preserve"><value>追加コントロール</value></data>
+  <data name="Controllers.HapticEndpoint" xml:space="preserve"><value>ハプティック音声エンドポイント</value></data>
+  <data name="Controllers.HapticLocations" xml:space="preserve"><value>ハプティック位置</value></data>
+  <data name="Controllers.Usage" xml:space="preserve"><value>用途</value></data>
+  <data name="Controllers.WindowsIdentity" xml:space="preserve"><value>Windows デバイス チェーン</value></data>
+  <data name="Controllers.LeftStickX" xml:space="preserve"><value>左スティック X</value></data>
+  <data name="Controllers.LeftStickY" xml:space="preserve"><value>左スティック Y</value></data>
+  <data name="Controllers.RightStickX" xml:space="preserve"><value>右スティック X</value></data>
+  <data name="Controllers.RightStickY" xml:space="preserve"><value>右スティック Y</value></data>
+  <data name="Controllers.LeftTrigger" xml:space="preserve"><value>左トリガー</value></data>
+  <data name="Controllers.RightTrigger" xml:space="preserve"><value>右トリガー</value></data>
+  <data name="Controllers.Steering" xml:space="preserve"><value>ステアリング</value></data>
+  <data name="Controllers.Throttle" xml:space="preserve"><value>アクセル</value></data>
+  <data name="Controllers.Brake" xml:space="preserve"><value>ブレーキ</value></data>
+  <data name="Controllers.Clutch" xml:space="preserve"><value>クラッチ</value></data>
+  <data name="Controllers.Handbrake" xml:space="preserve"><value>ハンドブレーキ</value></data>
+  <data name="Controllers.Gear" xml:space="preserve"><value>ギア</value></data>
+  <data name="Controllers.Roll" xml:space="preserve"><value>ロール</value></data>
+  <data name="Controllers.Pitch" xml:space="preserve"><value>ピッチ</value></data>
+  <data name="Controllers.Yaw" xml:space="preserve"><value>ヨー</value></data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve">
+    <value>センサー</value>
+  </data>
+  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
+    <value>UI ナビゲーション</value>
+  </data>
+  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
+    <value>ゲームパッド</value>
+  </data>
+  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
+    <value>低周波モーター</value>
+  </data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
+    <value>高周波モーター</value>
+  </data>
+  <data name="Controllers.Enum.Share" xml:space="preserve">
+    <value>共有</value>
+  </data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve">
+    <value>直線</value>
+  </data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve">
+    <value>角度</value>
+  </data>
+  <data name="Controllers.Enum.Normal" xml:space="preserve">
+    <value>法線</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
+    <value>定常</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
+    <value>ランプ</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
+    <value>正弦波</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
+    <value>矩形波</value>
+  </data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
+    <value>三角波</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
+    <value>上昇のこぎり波</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
+    <value>下降のこぎり波</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
+    <value>ばね</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
+    <value>摩擦</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
+    <value>ダンパー</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
+    <value>慣性</value>
+  </data>
+  <data name="Controllers.Enum.Joystick" xml:space="preserve">
+    <value>ジョイスティック</value>
+  </data>
+  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
+    <value>多軸コントローラー</value>
+  </data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
+    <value>HID 用途</value>
+  </data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve">
+    <value>軸</value>
+  </data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve">
+    <value>ボタン</value>
+  </data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
+    <value>集約</value>
+  </data>
+  <data name="Controllers.Enum.Virtual" xml:space="preserve">
+    <value>仮想</value>
+  </data>
+  <data name="Controllers.Enum.InputReport" xml:space="preserve">
+    <value>入力レポート</value>
+  </data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
+    <value>出力レポート</value>
+  </data>
+  <data name="Controllers.Model.Nintendo64" xml:space="preserve"><value>Nintendo 64</value></data>
+  <data name="Controllers.Model.NintendoEntertainmentSystem" xml:space="preserve"><value>Nintendo Entertainment System (NES)</value></data>
+  <data name="Controllers.Model.SuperNintendo" xml:space="preserve"><value>Super Nintendo</value></data>
 </root>

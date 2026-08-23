@@ -7,4 +7,8 @@ public interface IEmulationInputSettingsManager
     IEmulationConfiguration ApplyInputSettings(
         IEmulationConfiguration configuration,
         EmulationInputSettings settings);
+
+    ValueTask SaveInputSettingsAsync(
+        IEmulationConfiguration configuration,
+        CancellationToken cancellationToken = default);
 }

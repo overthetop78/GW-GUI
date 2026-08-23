@@ -31,6 +31,9 @@
             <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="&#xE7FC;" Text="{l:Loc Tab.Emulation}"/></TabItem.Header>
                 <emulationOptions:OptionsEmulationSection x:Name="EmulationSection" />
             </TabItem>
+            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="&#xE7FC;" Text="{l:Loc Controllers.Title}"/></TabItem.Header>
+                <options:OptionsControllersSection x:Name="ControllersSection" />
+            </TabItem>
         </TabControl>
 
         <Button x:Name="CloseButton" Grid.Row="1" HorizontalAlignment="Right" Margin="0,12,0,0" MinWidth="120"

@@ -81,7 +81,8 @@
             <Style TargetType="Separator" BasedOn="{StaticResource MainMenuSeparator}"/>
         </Menu.Resources>
         <MenuItem x:Name="Options" Header="{l:Loc Menu.Options}">
-            <MenuItem Header="{l:Loc Menu.Preferences}" Click="Preferences_Click"/>
+            <MenuItem AutomationProperties.AutomationId="PreferencesMenuItem"
+                      Header="{l:Loc Menu.Preferences}" Click="Preferences_Click"/>
             <MenuItem Header="{l:Loc Logs.History}" Click="LogHistory_Click"/>
             <Separator/>
             <MenuItem Header="{l:Loc Menu.Diagnostics}">

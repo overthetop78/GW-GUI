@@ -5,7 +5,7 @@ using GWGUI.App.Contracts.Input;
 using GWGUI.App.Enums.Input;
 using GWGUI.App.Functions.Input.Bindings;
 using GWGUI.App.Localization.Extensions;
-using GWGUI.App.Services.Input;
+using GWGUI.App.Services.Input.GameInput;
 using GWGUI.App.ViewModels.Input;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,12 +21,14 @@ public partial class InputBindingEditor
     private void AssignClicked(object sender, RoutedEventArgs e)
     {
         if (sender is not Button { Tag: InputBindingRow row } button) return;
+        CancelCapture();
         _captureRow = row;
         _captureButton = button;
         _captureButtonContent = button.Content;
         _capturePressed.Clear();
         _captureOrder.Clear();
         _captureModifiers = ModifierKeys.None;
+        _captureDeadlineUtc = DateTime.UtcNow.AddSeconds(15);
         button.Content = new TextBlock
         {
             Text = LocExtension.Get("Emulation.Input.Press"),
@@ -35,11 +37,11 @@ public partial class InputBindingEditor
             TextWrapping = TextWrapping.NoWrap
         };
         button.Focus();
-        if (_captureSources.HasFlag(InputCaptureSources.Controller))
-        {
-            _controllerBaseline = XInputControllerReader.ReadAll();
-            _controllerCaptureTimer.Start();
-        }
+        _controllerBaseline = _captureSources.HasFlag(InputCaptureSources.Controller)
+            ? GameInputControllerReader.ReadAll() : [];
+        _controllerDetailedBaseline = _captureSources.HasFlag(InputCaptureSources.Controller)
+            ? GameInputControllerReader.ReadAllDetailedStates() : [];
+        _controllerCaptureTimer.Start();
     }
 
     private void CaptureKeyDown(object sender, KeyEventArgs e)
@@ -116,42 +118,121 @@ public partial class InputBindingEditor
 
     private void CaptureControllerInput(object? sender, EventArgs e)
     {
-        if (_captureRow is null || !_captureSources.HasFlag(InputCaptureSources.Controller))
+        if (_captureRow is null)
         {
             _controllerCaptureTimer.Stop();
             return;
         }
-        var states = XInputControllerReader.ReadAll();
-        for (var port = 0; port < states.Count; port++)
+        var remaining = _captureDeadlineUtc - DateTime.UtcNow;
+        if (remaining <= TimeSpan.Zero)
         {
-            var baseline = port < _controllerBaseline.Count ? _controllerBaseline[port].Buttons : 0u;
-            var pressed = states[port].Buttons & ~baseline;
+            CancelCapture();
+            return;
+        }
+        if (_captureButton?.Content is TextBlock prompt)
+            prompt.Text = $"{LocExtension.Get("Emulation.Input.Press")} ({Math.Max(1, (int)Math.Ceiling(remaining.TotalSeconds))} s)";
+        if (!_captureSources.HasFlag(InputCaptureSources.Controller)) return;
+        var states = GameInputControllerReader.ReadAll();
+        foreach (var state in states)
+        {
+            var baselineState = _controllerBaseline.FirstOrDefault(item =>
+                string.Equals(item.DeviceId, state.DeviceId, StringComparison.OrdinalIgnoreCase))
+                ?? EmulationControllerState.Empty;
+            var pressed = state.Buttons & ~baselineState.Buttons;
             if (pressed != 0)
             {
                 var index = Enumerable.Range(0, ControllerInputConstants.ModernButtonSources.Length)
                     .FirstOrDefault(candidate => (pressed & (1u << candidate)) != 0, -1);
                 if (index >= 0)
                 {
-                    _captureRow.Binding = ControllerBinding(port, ControllerInputConstants.ModernButtonSources[index][InputBindingSyntaxConstants.ControllerPrefix.Length..]);
-                    ControllerCaptured?.Invoke(this, new ControllerCapturedEventArgs(port));
+                    var source = ControllerInputConstants.ModernButtonSources[index]
+                        [InputBindingSyntaxConstants.ControllerPrefix.Length..];
+                    _captureRow.Binding = InputBindingSyntax.Controller(state.DeviceId, source);
+                    ControllerCaptured?.Invoke(this, new ControllerCapturedEventArgs(state.DeviceId));
                     FinishCapture();
                     return;
                 }
             }
-
-            var direction = NewlyMovedDirection(states[port], port < _controllerBaseline.Count
-                ? _controllerBaseline[port]
-                : EmulationControllerState.Empty);
+            var generic = state.Controls.FirstOrDefault(control =>
+                !control.Key.StartsWith("Axis", StringComparison.OrdinalIgnoreCase) &&
+                control.Value > .5f && baselineState.Controls.GetValueOrDefault(control.Key) <= .5f);
+            if (!string.IsNullOrWhiteSpace(generic.Key))
+            {
+                _captureRow.Binding = InputBindingSyntax.Controller(state.DeviceId, generic.Key);
+                ControllerCaptured?.Invoke(this, new ControllerCapturedEventArgs(state.DeviceId));
+                FinishCapture();
+                return;
+            }
+            var genericAxis = NewlyMovedGenericAxis(state, baselineState);
+            if (genericAxis is not null)
+            {
+                _captureRow.Binding = InputBindingSyntax.Controller(state.DeviceId, genericAxis);
+                ControllerCaptured?.Invoke(this, new ControllerCapturedEventArgs(state.DeviceId));
+                FinishCapture();
+                return;
+            }
+            var direction = NewlyMovedDirection(state, baselineState);
             if (direction is null) continue;
-            _captureRow.Binding = ControllerBinding(port, direction[InputBindingSyntaxConstants.ControllerPrefix.Length..]);
-            ControllerCaptured?.Invoke(this, new ControllerCapturedEventArgs(port));
+            _captureRow.Binding = InputBindingSyntax.Controller(state.DeviceId,
+                direction[InputBindingSyntaxConstants.ControllerPrefix.Length..]);
+            ControllerCaptured?.Invoke(this, new ControllerCapturedEventArgs(state.DeviceId));
+            FinishCapture();
+            return;
+        }
+        var detailedStates = GameInputControllerReader.ReadAllDetailedStates();
+        foreach (var state in detailedStates)
+        {
+            var baseline = _controllerDetailedBaseline.FirstOrDefault(item =>
+                string.Equals(item.DeviceId, state.DeviceId, StringComparison.OrdinalIgnoreCase))
+                ?? GameInputLiveState.Empty(state.DeviceId);
+            var source = NewlyActivatedDetailedControl(state, baseline);
+            if (source is null) continue;
+            _captureRow.Binding = InputBindingSyntax.Controller(state.DeviceId, source);
+            ControllerCaptured?.Invoke(this, new ControllerCapturedEventArgs(state.DeviceId));
             FinishCapture();
             return;
         }
         _controllerBaseline = states;
+        _controllerDetailedBaseline = detailedStates;
     }
 
-    private static string ControllerBinding(int port, string source) => InputBindingSyntax.Controller(port, source);
+    internal static string? NewlyActivatedDetailedControl(GameInputLiveState current,
+        GameInputLiveState baseline)
+    {
+        var rawController = current.DeviceId.StartsWith("rawgamecontroller:",
+            StringComparison.OrdinalIgnoreCase);
+        foreach (var control in current.Controls.Where(item => item.Type == GameInputControlType.Button))
+        {
+            var previous = baseline.Controls.FirstOrDefault(item =>
+                item.Type == control.Type && item.Index == control.Index)?.Value ?? 0f;
+            if (control.Value >= .5f && previous < .5f)
+                return $"Button{control.Index + (rawController ? 1 : 0)}";
+        }
+        foreach (var control in current.Controls.Where(item => item.Type == GameInputControlType.Axis))
+        {
+            var previous = baseline.Controls.FirstOrDefault(item =>
+                item.Type == control.Type && item.Index == control.Index)?.Value ?? .5f;
+            var delta = control.Value - previous;
+            if (delta >= .35f) return $"Axis{control.Index}Positive";
+            if (delta <= -.35f) return $"Axis{control.Index}Negative";
+        }
+        return null;
+    }
+
+    internal static string? NewlyMovedGenericAxis(EmulationControllerState current,
+        EmulationControllerState baseline)
+    {
+        const float threshold = .35f;
+        foreach (var control in current.Controls.Where(item =>
+                     item.Key.StartsWith("Axis", StringComparison.OrdinalIgnoreCase)))
+        {
+            var previous = baseline.Controls.GetValueOrDefault(control.Key, .5f);
+            var delta = control.Value - previous;
+            if (delta >= threshold) return control.Key + "Positive";
+            if (delta <= -threshold) return control.Key + "Negative";
+        }
+        return null;
+    }
 
     private static string? NewlyMovedDirection(EmulationControllerState current, EmulationControllerState baseline)
     {
@@ -170,6 +251,18 @@ public partial class InputBindingEditor
     private static bool Moved(short current, short baseline, int limit) => limit < 0
         ? current < limit && baseline >= limit
         : current > limit && baseline <= limit;
+
+    private void CancelCapture()
+    {
+        if (_captureButton is not null)
+            _captureButton.Content = _captureButtonContent;
+        _controllerCaptureTimer.Stop();
+        _capturePressed.Clear();
+        _captureOrder.Clear();
+        _captureButtonContent = null;
+        _captureButton = null;
+        _captureRow = null;
+    }
 
     private void FinishCapture()
     {

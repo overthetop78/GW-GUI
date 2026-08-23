@@ -43,6 +43,13 @@ internal static class EmulationHostProtocolFunctions
             writer.Write(controller.Buttons); writer.Write(controller.LeftX); writer.Write(controller.LeftY);
             writer.Write(controller.RightX); writer.Write(controller.RightY);
             writer.Write(controller.LeftTrigger); writer.Write(controller.RightTrigger);
+            writer.Write(controller.DeviceId);
+            writer.Write(controller.Controls.Count);
+            foreach (var control in controller.Controls.OrderBy(item => item.Key, StringComparer.Ordinal))
+            {
+                writer.Write(control.Key);
+                writer.Write(control.Value);
+            }
         }
     }
 
@@ -61,8 +68,20 @@ internal static class EmulationHostProtocolFunctions
             throw new InvalidDataException($"The {hostName} host input contains an invalid controller count.");
         var controllers = new EmulationControllerState[controllerCount];
         for (var index = 0; index < controllerCount; index++)
-            controllers[index] = new EmulationControllerState(reader.ReadUInt32(), reader.ReadInt16(), reader.ReadInt16(),
+        {
+            var controller = new EmulationControllerState(reader.ReadUInt32(), reader.ReadInt16(), reader.ReadInt16(),
                 reader.ReadInt16(), reader.ReadInt16(), reader.ReadInt16(), reader.ReadInt16());
+            var deviceId = reader.ReadString();
+            var controlCount = reader.ReadInt32();
+            if (controlCount is < 0 or > 4096)
+                throw new InvalidDataException($"The {hostName} host input contains an invalid controller control count.");
+            var controls = new Dictionary<string, float>(controlCount, StringComparer.OrdinalIgnoreCase);
+            for (var controlIndex = 0; controlIndex < controlCount; controlIndex++)
+                controls[reader.ReadString()] = reader.ReadSingle();
+            controllers[index] = controlCount == 0
+                ? controller with { DeviceId = deviceId }
+                : controller with { DeviceId = deviceId, Controls = new EmulationControllerControls(controls) };
+        }
         return new EmulationInputSnapshot(keys, pointer, controllers);
     }
 

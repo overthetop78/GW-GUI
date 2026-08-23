@@ -23,7 +23,9 @@ public static class EmulationInputMappingFunctions
             ["R2"] = 13, ["RightTrigger"] = 13,
             ["L3"] = 14, ["LeftStickClick"] = 14,
             ["R3"] = 15, ["RightStickClick"] = 15,
-            ["XboxButton"] = 16
+            ["XboxButton"] = 16, ["Guide"] = 16,
+            ["Share"] = 17, ["PaddleLeft1"] = 18, ["PaddleLeft2"] = 19,
+            ["PaddleRight1"] = 20, ["PaddleRight2"] = 21
         };
 
     public static IReadOnlySet<EmulationKey> MapKeyboard(IReadOnlySet<EmulationKey> keys,
@@ -40,15 +42,38 @@ public static class EmulationInputMappingFunctions
         return result;
     }
 
-    public static int ParseControllerPort(string? deviceId, int fallback) =>
-        deviceId?.StartsWith("xinput:", StringComparison.OrdinalIgnoreCase) == true
-        && int.TryParse(deviceId[7..], out var port) && port is >= 0 and < 4 ? port : fallback;
+    public static string? ParseControllerDeviceId(string? source)
+    {
+        const string prefix = "Controller:";
+        if (string.IsNullOrWhiteSpace(source) ||
+            !source.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)) return null;
+        var controlSeparator = source.LastIndexOf(':');
+        return controlSeparator <= prefix.Length ? null : source[prefix.Length..controlSeparator];
+    }
+
+    public static EmulationControllerState ResolveController(string? deviceId,
+        IReadOnlyList<EmulationControllerState> controllers, int fallbackIndex)
+    {
+        if (!string.IsNullOrWhiteSpace(deviceId))
+        {
+            var match = controllers.FirstOrDefault(controller =>
+                string.Equals(controller.DeviceId, deviceId, StringComparison.OrdinalIgnoreCase));
+            if (match is not null) return match;
+        }
+        return fallbackIndex >= 0 && fallbackIndex < controllers.Count
+            ? controllers[fallbackIndex] : EmulationControllerState.Empty;
+    }
 
     public static bool IsControllerSourcePressed(string source, EmulationControllerState controller)
     {
         var name = source.Split(':', StringSplitOptions.RemoveEmptyEntries).LastOrDefault() ?? string.Empty;
         if (ControllerButtons.TryGetValue(name, out var button))
             return (controller.Buttons & (1u << button)) != 0;
+        if (name.EndsWith("Positive", StringComparison.OrdinalIgnoreCase) &&
+            controller.Controls.TryGetValue(name[..^"Positive".Length], out var positive)) return positive > .75f;
+        if (name.EndsWith("Negative", StringComparison.OrdinalIgnoreCase) &&
+            controller.Controls.TryGetValue(name[..^"Negative".Length], out var negative)) return negative < .25f;
+        if (controller.Controls.TryGetValue(name, out var value)) return value > .5f;
         return name switch
         {
             "LeftStickLeft" => controller.LeftX < -AnalogThreshold,

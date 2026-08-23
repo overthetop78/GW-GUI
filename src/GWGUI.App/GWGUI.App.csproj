@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ApplicationIcon>Assets\app-icon.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AssemblyName>gwgui.app</AssemblyName>
@@ -31,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.GameInput" Version="3.5.268" GeneratePathProperty="true" />
     <PackageReference Include="NAudio" Version="2.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="SkiaSharp.Views.WPF" Version="3.119.4" />
@@ -41,7 +43,11 @@
   <ItemGroup>
     <Content Include="..\..\docs\user-guide\*.pdf" Link="Documentation\user-guide\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="Assets\DiskDefinitions\built-in.cfg" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="$(PkgMicrosoft_GameInput)\redist\GameInputRedist.msi" Link="Runtime\GameInputRedist.msi" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
     <Resource Include="Assets\app-icon.png" />
+    <Resource Include="Assets\Controllers\*.png" />
+    <EmbeddedResource Include="Assets\Input\gamecontrollerdb.txt" LogicalName="GWGUI.App.Assets.Input.gamecontrollerdb.txt" />
+    <None Include="Assets\Input\SDL_GameControllerDB.LICENSE" />
   </ItemGroup>
 
   <ItemGroup>

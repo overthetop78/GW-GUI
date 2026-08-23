@@ -26,7 +26,8 @@ internal static class AtariStorageSettingsFunctions
                     ? FloppyOptions(configuration.Model, configuration.Folders.Floppies) : null,
                 Interfaces(configuration.Model, rule.Category),
                 rule.Category == AtariMediaCategory.HardDisk
-                    ? configuration.Folders.HardDisks : null)))
+                    ? configuration.Folders.HardDisks : null,
+                IsPermanent: AtariStorageConfigurationFunctions.IsPrimaryDevice(configuration.Model, slot))))
             .ToArray();
         var primary = AtariStorageConfigurationFunctions.PrimaryDevice(configuration.Model)?.Slot;
         var configured = configuration.Options

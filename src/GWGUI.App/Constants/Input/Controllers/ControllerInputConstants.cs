@@ -13,6 +13,8 @@ public static class ControllerInputConstants
         "Controller:DPadUp", "Controller:DPadDown", "Controller:DPadLeft", "Controller:DPadRight",
         "Controller:ButtonA", "Controller:ButtonX", "Controller:LeftShoulder", "Controller:RightShoulder",
         "Controller:LeftTrigger", "Controller:RightTrigger", "Controller:LeftStickClick", "Controller:RightStickClick",
-        "Controller:XboxButton"
+        "Controller:XboxButton", "Controller:Share",
+        "Controller:PaddleLeft1", "Controller:PaddleLeft2",
+        "Controller:PaddleRight1", "Controller:PaddleRight2"
     ];
 }

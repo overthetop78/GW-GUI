@@ -184,4 +184,181 @@
   <data name="Emulation.Model" xml:space="preserve"><value>Malli</value></data>
   <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Kaappaa hiiri</value></data>
   <data name="Emulation.Configuration" xml:space="preserve"><value>Asetukset</value></data>
+  <data name="Controllers.Title" xml:space="preserve"><value>Ohjaimet</value></data>
+  <data name="Controllers.Detect" xml:space="preserve"><value>Tunnista ohjaimet</value></data>
+  <data name="Controllers.Device" xml:space="preserve"><value>Laite</value></data>
+  <data name="Controllers.VisualModel" xml:space="preserve"><value>Malli</value></data>
+  <data name="Controllers.NoneDetected" xml:space="preserve"><value>Ohjaimia ei havaittu</value></data>
+  <data name="Controllers.DetectedCount" xml:space="preserve"><value>Havaittu {0} ohjain(ta)</value></data>
+  <data name="Controllers.TestRumble" xml:space="preserve"><value>Testaa värinä</value></data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve">
+    <value>Värinän voimakkuus</value>
+  </data>
+  <data name="Controllers.LiveInputs" xml:space="preserve"><value>Reaaliaikaiset syötteet</value></data>
+  <data name="Controllers.Control" xml:space="preserve"><value>Ohjain</value></data>
+  <data name="Controllers.Value" xml:space="preserve"><value>Arvo</value></data>
+  <data name="Controllers.Active" xml:space="preserve"><value>Aktiivinen</value></data>
+  <data name="Controllers.Capabilities" xml:space="preserve"><value>Ominaisuudet</value></data>
+  <data name="Controllers.Identity" xml:space="preserve"><value>Laitteen tunnistetiedot</value></data>
+  <data name="Controllers.InputKinds" xml:space="preserve"><value>Syötetyypit</value></data>
+  <data name="Controllers.Controls" xml:space="preserve"><value>Ohjaimet</value></data>
+  <data name="Controllers.Rumble" xml:space="preserve"><value>Värinämoottorit</value></data>
+  <data name="Controllers.ForceFeedback" xml:space="preserve"><value>Voimapalaute</value></data>
+  <data name="Controllers.Haptics" xml:space="preserve"><value>Haptiikka</value></data>
+  <data name="Controllers.SystemButtons" xml:space="preserve"><value>Järjestelmäpainikkeet</value></data>
+  <data name="Controllers.RawReports" xml:space="preserve"><value>Raakaraportit</value></data>
+  <data name="Controllers.ReportCounts" xml:space="preserve"><value>{0} tulo / {1} lähtö</value></data>
+  <data name="Controllers.GamepadLayout" xml:space="preserve"><value>Peliohjaimen asettelu</value></data>
+  <data name="Controllers.WheelCapabilities" xml:space="preserve"><value>Ratti</value></data>
+  <data name="Controllers.WheelDetails" xml:space="preserve"><value>{0:0.#}° · kytkin={1} · käsijarru={2} · vaihdekeppi={3}</value></data>
+  <data name="Controllers.GameInputName" xml:space="preserve"><value>GameInput-nimi</value></data>
+  <data name="Controllers.Revision" xml:space="preserve"><value>Versio</value></data>
+  <data name="Controllers.HardwareVersion" xml:space="preserve"><value>Laitteistoversio</value></data>
+  <data name="Controllers.FirmwareVersion" xml:space="preserve"><value>Laiteohjelmistoversio</value></data>
+  <data name="Controllers.Family" xml:space="preserve"><value>Perhe</value></data>
+  <data name="Controllers.Manufacturer" xml:space="preserve"><value>Valmistaja</value></data>
+  <data name="Controllers.ControlType.Axis" xml:space="preserve"><value>Akseli</value></data>
+  <data name="Controllers.ControlType.Button" xml:space="preserve"><value>Painike</value></data>
+  <data name="Controllers.ControlType.Switch" xml:space="preserve"><value>Kytkin</value></data>
+  <data name="Controllers.ControlCounts" xml:space="preserve"><value>{0} akselia · {1} painiketta · {2} kytkintä</value></data>
+  <data name="Controllers.Yes" xml:space="preserve"><value>Kyllä</value></data>
+  <data name="Controllers.No" xml:space="preserve"><value>Ei</value></data>
+  <data name="Controllers.None" xml:space="preserve"><value>Ei mitään</value></data>
+  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>Yleinen peliohjain</value></data>
+  <data name="Controllers.Model.XboxSeries" xml:space="preserve"><value>Xbox Series</value></data>
+  <data name="Controllers.Model.XboxRematchCore" xml:space="preserve"><value>Turtle Beach REMATCH Core</value></data>
+  <data name="Controllers.Model.XboxOne" xml:space="preserve"><value>Xbox One</value></data>
+  <data name="Controllers.Model.PlayStation4" xml:space="preserve"><value>PlayStation 4</value></data>
+  <data name="Controllers.Model.PlayStation5" xml:space="preserve"><value>PlayStation 5</value></data>
+  <data name="Controllers.Model.MasterSystem" xml:space="preserve"><value>Master System</value></data>
+  <data name="Controllers.Model.Auto" xml:space="preserve"><value>Automaattinen</value></data>
+  <data name="Controllers.Model.MegaDrive3" xml:space="preserve"><value>SEGA Mega Drive, 3 painiketta</value></data>
+  <data name="Controllers.Model.MegaDrive6" xml:space="preserve"><value>SEGA Mega Drive, 6 painiketta</value></data>
+  <data name="Controllers.Model.PlayStation1" xml:space="preserve"><value>PlayStation 1</value></data>
+  <data name="Controllers.Model.PlayStation2" xml:space="preserve"><value>PlayStation 2</value></data>
+  <data name="Controllers.Model.Saturn" xml:space="preserve"><value>Saturn</value></data>
+  <data name="Controllers.Model.Dreamcast" xml:space="preserve"><value>Dreamcast</value></data>
+  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>Ratti</value></data>
+  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>Lento-ohjain</value></data>
+  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>Arcade-ohjain</value></data>
+  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Raakatavu</value></data>
+  <data name="Controllers.AnalogValues" xml:space="preserve"><value>Analogiset arvot</value></data>
+  <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Ohjainten tunnistus epäonnistui</value></data>
+  <data name="Controllers.Detecting" xml:space="preserve">
+    <value>Etsitään ohjaimia…</value>
+  </data>
+  <data name="Controllers.ReadFailed" xml:space="preserve"><value>Ohjaimen lukeminen epäonnistui</value></data>
+  <data name="Controllers.TestRunning" xml:space="preserve"><value>Testi käynnissä…</value></data>
+  <data name="Controllers.TestFailed" xml:space="preserve"><value>Testi epäonnistui</value></data>
+  <data name="Controllers.TestCompleted" xml:space="preserve"><value>Testi valmis</value></data>
+  <data name="Controllers.ExtraControls" xml:space="preserve"><value>Lisäohjaimet</value></data>
+  <data name="Controllers.HapticEndpoint" xml:space="preserve"><value>Haptisen äänen päätepiste</value></data>
+  <data name="Controllers.HapticLocations" xml:space="preserve"><value>Haptiset sijainnit</value></data>
+  <data name="Controllers.Usage" xml:space="preserve"><value>Käyttö</value></data>
+  <data name="Controllers.WindowsIdentity" xml:space="preserve"><value>Windows-laiteketju</value></data>
+  <data name="Controllers.LeftStickX" xml:space="preserve"><value>Vasen sauva X</value></data>
+  <data name="Controllers.LeftStickY" xml:space="preserve"><value>Vasen sauva Y</value></data>
+  <data name="Controllers.RightStickX" xml:space="preserve"><value>Oikea sauva X</value></data>
+  <data name="Controllers.RightStickY" xml:space="preserve"><value>Oikea sauva Y</value></data>
+  <data name="Controllers.LeftTrigger" xml:space="preserve"><value>Vasen liipaisin</value></data>
+  <data name="Controllers.RightTrigger" xml:space="preserve"><value>Oikea liipaisin</value></data>
+  <data name="Controllers.Steering" xml:space="preserve"><value>Ohjaus</value></data>
+  <data name="Controllers.Throttle" xml:space="preserve"><value>Kaasu</value></data>
+  <data name="Controllers.Brake" xml:space="preserve"><value>Jarru</value></data>
+  <data name="Controllers.Clutch" xml:space="preserve"><value>Kytkin</value></data>
+  <data name="Controllers.Handbrake" xml:space="preserve"><value>Käsijarru</value></data>
+  <data name="Controllers.Gear" xml:space="preserve"><value>Vaihde</value></data>
+  <data name="Controllers.Roll" xml:space="preserve"><value>Kallistus</value></data>
+  <data name="Controllers.Pitch" xml:space="preserve"><value>Nousukulma</value></data>
+  <data name="Controllers.Yaw" xml:space="preserve"><value>Suunta</value></data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve">
+    <value>Anturit</value>
+  </data>
+  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
+    <value>Käyttöliittymän navigointi</value>
+  </data>
+  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
+    <value>Peliohjain</value>
+  </data>
+  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
+    <value>Matalataajuusmoottori</value>
+  </data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
+    <value>Korkeataajuusmoottori</value>
+  </data>
+  <data name="Controllers.Enum.Share" xml:space="preserve">
+    <value>Jaa</value>
+  </data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve">
+    <value>Lineaarinen</value>
+  </data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve">
+    <value>Kulmallinen</value>
+  </data>
+  <data name="Controllers.Enum.Normal" xml:space="preserve">
+    <value>Normaali</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
+    <value>Vakio</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
+    <value>Ramppi</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
+    <value>Siniaalto</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
+    <value>Kantiaalto</value>
+  </data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
+    <value>Kolmioaalto</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
+    <value>Nouseva sahalaita</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
+    <value>Laskeva sahalaita</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
+    <value>Jousi</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
+    <value>Kitka</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
+    <value>Vaimennin</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
+    <value>Inertia</value>
+  </data>
+  <data name="Controllers.Enum.Joystick" xml:space="preserve">
+    <value>Ohjainsauva</value>
+  </data>
+  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
+    <value>Moniakseliohjain</value>
+  </data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
+    <value>HID-käyttö</value>
+  </data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve">
+    <value>akselit</value>
+  </data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve">
+    <value>painikkeet</value>
+  </data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
+    <value>Koottu</value>
+  </data>
+  <data name="Controllers.Enum.Virtual" xml:space="preserve">
+    <value>Virtuaalinen</value>
+  </data>
+  <data name="Controllers.Enum.InputReport" xml:space="preserve">
+    <value>Syöteraportti</value>
+  </data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
+    <value>Tulosteraportti</value>
+  </data>
+  <data name="Controllers.Model.Nintendo64" xml:space="preserve"><value>Nintendo 64</value></data>
+  <data name="Controllers.Model.NintendoEntertainmentSystem" xml:space="preserve"><value>Nintendo Entertainment System (NES)</value></data>
+  <data name="Controllers.Model.SuperNintendo" xml:space="preserve"><value>Super Nintendo</value></data>
 </root>

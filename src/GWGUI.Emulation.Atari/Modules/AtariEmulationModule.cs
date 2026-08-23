@@ -147,6 +147,11 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
         EmulationInputSettings settings) => AtariInputSettingsFunctions.Apply(
         configuration as AtariMachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
 
+    public ValueTask SaveInputSettingsAsync(IEmulationConfiguration configuration,
+        CancellationToken cancellationToken = default) => configuration is AtariMachineConfiguration atari
+        ? new ValueTask(_store.SaveAsync(atari, cancellationToken))
+        : ValueTask.FromException(new ArgumentException(nameof(configuration)));
+
     public EmulationStorageSettings DescribeStorageSettings(IEmulationConfiguration configuration) =>
         AtariStorageSettingsFunctions.Describe(configuration as AtariMachineConfiguration
             ?? throw new ArgumentException(nameof(configuration)));

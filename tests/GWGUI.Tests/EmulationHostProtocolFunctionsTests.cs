@@ -19,7 +19,15 @@ public sealed class EmulationHostProtocolFunctionsTests
         var input = new EmulationInputSnapshot(
             new HashSet<EmulationKey> { EmulationKey.A, EmulationKey.Return },
             new EmulationPointerState(4, -3, 1, true, false, true),
-            [new EmulationControllerState(7, 1, 2, 3, 4, 5, 6)]);
+            [new EmulationControllerState(7, 1, 2, 3, 4, 5, 6)
+            {
+                DeviceId = "gameinput:device",
+                Controls = new EmulationControllerControls(new Dictionary<string, float>
+                {
+                    ["Axis7"] = .75f,
+                    ["Button32"] = 1f
+                })
+            }]);
 
         var result = RoundTrip(
             writer => EmulationHostProtocolFunctions.WriteInput(writer, input),

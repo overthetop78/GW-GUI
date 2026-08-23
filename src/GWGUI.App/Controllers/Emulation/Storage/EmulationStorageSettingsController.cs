@@ -158,7 +158,7 @@ internal sealed class EmulationStorageSettingsController
             var media = _settings.MountedMedia.FirstOrDefault(item => item.Slot == slot);
             var model = DeviceModel(device, slot);
             return new EmulationStorageDeviceItem(slot, device.DisplayLabel ?? slot.ToString(), device.MediaType,
-                model, media?.Path, device.IsRemovable);
+                model, media?.Path, !device.IsPermanent);
         }).ToArray();
         _view.SetDevices(rows);
         _view.SetCanAdd(_settings.AvailableDevices.Any(device => !_settings.ConfiguredSlots.Contains(device.Slot)));

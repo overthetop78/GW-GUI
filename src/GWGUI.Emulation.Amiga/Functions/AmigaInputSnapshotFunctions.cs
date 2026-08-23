@@ -70,8 +70,7 @@ internal static class AmigaInputSnapshotFunctions
         {
             var binding = bindings?.FirstOrDefault(item => item.Port == port + 1)
                 ?? bindings?.FirstOrDefault(item => item.Port == port);
-            var sourcePort = EmulationInputMappingFunctions.ParseControllerPort(binding?.DeviceId, port);
-            var source = sourcePort < physical.Count ? physical[sourcePort] : EmulationControllerState.Empty;
+            var source = EmulationInputMappingFunctions.ResolveController(binding?.DeviceId, physical, port);
             if (binding?.ButtonMappings is not { Count: > 0 })
             {
                 result[port] = source;
@@ -122,10 +121,9 @@ internal static class AmigaInputSnapshotFunctions
     private static EmulationControllerState ControllerForSource(string source,
         IReadOnlyList<EmulationControllerState> controllers, EmulationControllerState fallback)
     {
-        if (!source.StartsWith("Controller:xinput:", StringComparison.OrdinalIgnoreCase)) return fallback;
-        var segments = source.Split(':', StringSplitOptions.RemoveEmptyEntries);
-        return segments.Length >= 4 && int.TryParse(segments[2], out var port)
-            && port >= 0 && port < controllers.Count ? controllers[port] : fallback;
+        var deviceId = EmulationInputMappingFunctions.ParseControllerDeviceId(source);
+        return deviceId is null ? fallback : controllers.FirstOrDefault(controller =>
+            string.Equals(controller.DeviceId, deviceId, StringComparison.OrdinalIgnoreCase)) ?? fallback;
     }
 
     private static bool TryRemovePrefix(string? value, string prefix, out string source)

@@ -547,4 +547,5 @@
   <data name="Emulation.Media.Eject" xml:space="preserve">
     <value>Eject media</value>
   </data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput could not be initialized. Install or repair the included GameInput runtime.</value></data>
 </root>

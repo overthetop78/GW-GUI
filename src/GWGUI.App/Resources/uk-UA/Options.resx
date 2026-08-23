@@ -184,4 +184,181 @@
   <data name="Emulation.Model" xml:space="preserve"><value>Модель</value></data>
   <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Захоплювати мишу</value></data>
   <data name="Emulation.Configuration" xml:space="preserve"><value>Налаштування</value></data>
+  <data name="Controllers.Title" xml:space="preserve"><value>Контролери</value></data>
+  <data name="Controllers.Detect" xml:space="preserve"><value>Виявити контролери</value></data>
+  <data name="Controllers.Device" xml:space="preserve"><value>Пристрій</value></data>
+  <data name="Controllers.VisualModel" xml:space="preserve"><value>Модель</value></data>
+  <data name="Controllers.NoneDetected" xml:space="preserve"><value>Контролери не виявлено</value></data>
+  <data name="Controllers.DetectedCount" xml:space="preserve"><value>Виявлено контролерів: {0}</value></data>
+  <data name="Controllers.TestRumble" xml:space="preserve"><value>Перевірити вібрацію</value></data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve">
+    <value>Сила вібрації</value>
+  </data>
+  <data name="Controllers.LiveInputs" xml:space="preserve"><value>Входи в реальному часі</value></data>
+  <data name="Controllers.Control" xml:space="preserve"><value>Елемент керування</value></data>
+  <data name="Controllers.Value" xml:space="preserve"><value>Значення</value></data>
+  <data name="Controllers.Active" xml:space="preserve"><value>Активний</value></data>
+  <data name="Controllers.Capabilities" xml:space="preserve"><value>Можливості</value></data>
+  <data name="Controllers.Identity" xml:space="preserve"><value>Ідентифікація пристрою</value></data>
+  <data name="Controllers.InputKinds" xml:space="preserve"><value>Типи вводу</value></data>
+  <data name="Controllers.Controls" xml:space="preserve"><value>Елементи керування</value></data>
+  <data name="Controllers.Rumble" xml:space="preserve"><value>Вібраційні двигуни</value></data>
+  <data name="Controllers.ForceFeedback" xml:space="preserve"><value>Силовий зворотний зв’язок</value></data>
+  <data name="Controllers.Haptics" xml:space="preserve"><value>Тактильний відгук</value></data>
+  <data name="Controllers.SystemButtons" xml:space="preserve"><value>Системні кнопки</value></data>
+  <data name="Controllers.RawReports" xml:space="preserve"><value>Необроблені звіти</value></data>
+  <data name="Controllers.ReportCounts" xml:space="preserve"><value>Вхід: {0} / вихід: {1}</value></data>
+  <data name="Controllers.GamepadLayout" xml:space="preserve"><value>Розкладка геймпада</value></data>
+  <data name="Controllers.WheelCapabilities" xml:space="preserve"><value>Кермо</value></data>
+  <data name="Controllers.WheelDetails" xml:space="preserve"><value>{0:0.#}° · зчеплення={1} · ручне гальмо={2} · перемикач={3}</value></data>
+  <data name="Controllers.GameInputName" xml:space="preserve"><value>Назва GameInput</value></data>
+  <data name="Controllers.Revision" xml:space="preserve"><value>Ревізія</value></data>
+  <data name="Controllers.HardwareVersion" xml:space="preserve"><value>Версія обладнання</value></data>
+  <data name="Controllers.FirmwareVersion" xml:space="preserve"><value>Версія прошивки</value></data>
+  <data name="Controllers.Family" xml:space="preserve"><value>Сімейство</value></data>
+  <data name="Controllers.Manufacturer" xml:space="preserve"><value>Виробник</value></data>
+  <data name="Controllers.ControlType.Axis" xml:space="preserve"><value>Вісь</value></data>
+  <data name="Controllers.ControlType.Button" xml:space="preserve"><value>Кнопка</value></data>
+  <data name="Controllers.ControlType.Switch" xml:space="preserve"><value>Перемикач</value></data>
+  <data name="Controllers.ControlCounts" xml:space="preserve"><value>Осі: {0} · кнопки: {1} · перемикачі: {2}</value></data>
+  <data name="Controllers.Yes" xml:space="preserve"><value>Так</value></data>
+  <data name="Controllers.No" xml:space="preserve"><value>Ні</value></data>
+  <data name="Controllers.None" xml:space="preserve"><value>Немає</value></data>
+  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>Звичайний геймпад</value></data>
+  <data name="Controllers.Model.XboxSeries" xml:space="preserve"><value>Xbox Series</value></data>
+  <data name="Controllers.Model.XboxRematchCore" xml:space="preserve"><value>Turtle Beach REMATCH Core</value></data>
+  <data name="Controllers.Model.XboxOne" xml:space="preserve"><value>Xbox One</value></data>
+  <data name="Controllers.Model.PlayStation4" xml:space="preserve"><value>PlayStation 4</value></data>
+  <data name="Controllers.Model.PlayStation5" xml:space="preserve"><value>PlayStation 5</value></data>
+  <data name="Controllers.Model.MasterSystem" xml:space="preserve"><value>Master System</value></data>
+  <data name="Controllers.Model.Auto" xml:space="preserve"><value>Авто</value></data>
+  <data name="Controllers.Model.MegaDrive3" xml:space="preserve"><value>SEGA Mega Drive, 3 кнопки</value></data>
+  <data name="Controllers.Model.MegaDrive6" xml:space="preserve"><value>SEGA Mega Drive, 6 кнопок</value></data>
+  <data name="Controllers.Model.PlayStation1" xml:space="preserve"><value>PlayStation 1</value></data>
+  <data name="Controllers.Model.PlayStation2" xml:space="preserve"><value>PlayStation 2</value></data>
+  <data name="Controllers.Model.Saturn" xml:space="preserve"><value>Saturn</value></data>
+  <data name="Controllers.Model.Dreamcast" xml:space="preserve"><value>Dreamcast</value></data>
+  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>Кермо</value></data>
+  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>Авіаційний джойстик</value></data>
+  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>Аркадний стік</value></data>
+  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Необроблений байт</value></data>
+  <data name="Controllers.AnalogValues" xml:space="preserve"><value>Аналогові значення</value></data>
+  <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Не вдалося виявити контролери</value></data>
+  <data name="Controllers.Detecting" xml:space="preserve">
+    <value>Виявлення контролерів…</value>
+  </data>
+  <data name="Controllers.ReadFailed" xml:space="preserve"><value>Не вдалося прочитати контролер</value></data>
+  <data name="Controllers.TestRunning" xml:space="preserve"><value>Триває тест…</value></data>
+  <data name="Controllers.TestFailed" xml:space="preserve"><value>Тест не пройдено</value></data>
+  <data name="Controllers.TestCompleted" xml:space="preserve"><value>Тест завершено</value></data>
+  <data name="Controllers.ExtraControls" xml:space="preserve"><value>Додаткові елементи керування</value></data>
+  <data name="Controllers.HapticEndpoint" xml:space="preserve"><value>Кінцева точка тактильного аудіо</value></data>
+  <data name="Controllers.HapticLocations" xml:space="preserve"><value>Розташування тактильної віддачі</value></data>
+  <data name="Controllers.Usage" xml:space="preserve"><value>Використання</value></data>
+  <data name="Controllers.WindowsIdentity" xml:space="preserve"><value>Ланцюжок пристроїв Windows</value></data>
+  <data name="Controllers.LeftStickX" xml:space="preserve"><value>Лівий стік X</value></data>
+  <data name="Controllers.LeftStickY" xml:space="preserve"><value>Лівий стік Y</value></data>
+  <data name="Controllers.RightStickX" xml:space="preserve"><value>Правий стік X</value></data>
+  <data name="Controllers.RightStickY" xml:space="preserve"><value>Правий стік Y</value></data>
+  <data name="Controllers.LeftTrigger" xml:space="preserve"><value>Лівий тригер</value></data>
+  <data name="Controllers.RightTrigger" xml:space="preserve"><value>Правий тригер</value></data>
+  <data name="Controllers.Steering" xml:space="preserve"><value>Керування</value></data>
+  <data name="Controllers.Throttle" xml:space="preserve"><value>Газ</value></data>
+  <data name="Controllers.Brake" xml:space="preserve"><value>Гальмо</value></data>
+  <data name="Controllers.Clutch" xml:space="preserve"><value>Зчеплення</value></data>
+  <data name="Controllers.Handbrake" xml:space="preserve"><value>Ручне гальмо</value></data>
+  <data name="Controllers.Gear" xml:space="preserve"><value>Передача</value></data>
+  <data name="Controllers.Roll" xml:space="preserve"><value>Крен</value></data>
+  <data name="Controllers.Pitch" xml:space="preserve"><value>Тангаж</value></data>
+  <data name="Controllers.Yaw" xml:space="preserve"><value>Рискання</value></data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve">
+    <value>Датчики</value>
+  </data>
+  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
+    <value>Навігація інтерфейсу</value>
+  </data>
+  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
+    <value>Геймпад</value>
+  </data>
+  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
+    <value>Низькочастотний мотор</value>
+  </data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
+    <value>Високочастотний мотор</value>
+  </data>
+  <data name="Controllers.Enum.Share" xml:space="preserve">
+    <value>Поділитися</value>
+  </data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve">
+    <value>Лінійний</value>
+  </data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve">
+    <value>Кутовий</value>
+  </data>
+  <data name="Controllers.Enum.Normal" xml:space="preserve">
+    <value>Нормальний</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
+    <value>Постійний</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
+    <value>Наростання</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
+    <value>Синусоїдальна хвиля</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
+    <value>Прямокутна хвиля</value>
+  </data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
+    <value>Трикутна хвиля</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
+    <value>Висхідна пилкоподібна хвиля</value>
+  </data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
+    <value>Низхідна пилкоподібна хвиля</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
+    <value>Пружина</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
+    <value>Тертя</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
+    <value>Демпфер</value>
+  </data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
+    <value>Інерція</value>
+  </data>
+  <data name="Controllers.Enum.Joystick" xml:space="preserve">
+    <value>Джойстик</value>
+  </data>
+  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
+    <value>Багатовісний контролер</value>
+  </data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
+    <value>Використання HID</value>
+  </data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve">
+    <value>осі</value>
+  </data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve">
+    <value>кнопки</value>
+  </data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
+    <value>Агрегований</value>
+  </data>
+  <data name="Controllers.Enum.Virtual" xml:space="preserve">
+    <value>Віртуальний</value>
+  </data>
+  <data name="Controllers.Enum.InputReport" xml:space="preserve">
+    <value>Вхідний звіт</value>
+  </data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
+    <value>Вихідний звіт</value>
+  </data>
+  <data name="Controllers.Model.Nintendo64" xml:space="preserve"><value>Nintendo 64</value></data>
+  <data name="Controllers.Model.NintendoEntertainmentSystem" xml:space="preserve"><value>Nintendo Entertainment System (NES)</value></data>
+  <data name="Controllers.Model.SuperNintendo" xml:space="preserve"><value>Super Nintendo</value></data>
 </root>

@@ -80,7 +80,7 @@ public sealed class AmigaConfigurationStore
 
     private string? StorePath(string? path)
     {
-        if (string.IsNullOrWhiteSpace(path)) return path;
+        if (string.IsNullOrWhiteSpace(path)) return null;
         var fullPath = Path.GetFullPath(path);
         var relative = Path.GetRelativePath(_pathBase, fullPath);
         if (Path.IsPathFullyQualified(relative)) return fullPath;
@@ -91,7 +91,8 @@ public sealed class AmigaConfigurationStore
 
     private string? ResolvePath(string? path)
     {
-        if (string.IsNullOrWhiteSpace(path) || Path.IsPathFullyQualified(path)) return path;
+        if (string.IsNullOrWhiteSpace(path)) return null;
+        if (Path.IsPathFullyQualified(path)) return path;
         return Path.GetFullPath(Path.Combine(_pathBase, path.Replace('/', Path.DirectorySeparatorChar)));
     }
 }
