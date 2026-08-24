@@ -62,7 +62,7 @@ internal static class AtariSettingsDescriptionFunctions
                     model.Fpus.Select(AtariHardwareSettingsFunctions.Fpu)),
                 Information(AtariSettingsConstants.CpuOriginalFrequency, EmulationMachineTab.Cpu, "processor",
                     "Emulation.Cpu.SpeedOriginal",
-                    AtariHardwareSettingsFunctions.FrequencyMhz(model.DefaultCpuFrequencyMhz).InvariantDisplayValue),
+                    AtariHardwareSettingsFunctions.FrequencyMhz(model.DefaultCpuFrequencyMhz).InvariantDisplayValue!),
                 Select(AtariSettingsConstants.CpuFrequency, EmulationMachineTab.Cpu, "processor", "Emulation.Cpu.Speed",
                     Value(configuration, AtariSettingsConstants.CpuFrequency, model.DefaultCpuFrequencyMhz.ToString()),
                     model.CpuFrequenciesMhz.Select(AtariHardwareSettingsFunctions.FrequencyMhz))),
