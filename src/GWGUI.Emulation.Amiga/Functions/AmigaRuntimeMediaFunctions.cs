@@ -6,31 +6,14 @@ namespace GWGUI.Emulation.Amiga;
 
 public static class AmigaRuntimeMediaFunctions
 {
-    public static async ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media,
-        string conversionDirectory)
-    {
-        var path = await PreparePathAsync(media.Path, conversionDirectory).ConfigureAwait(false);
-        return media with { Path = path };
-    }
+    public static ValueTask<EmulationMedia> PrepareMediaAsync(EmulationMedia media,
+        string conversionDirectory) => ValueTask.FromResult(media);
 
-    public static async Task<AmigaMachineConfiguration> PrepareConfigurationAsync(
-        AmigaMachineConfiguration configuration, string conversionDirectory)
-    {
-        var initial = string.IsNullOrWhiteSpace(configuration.InitialDiskPath)
-            ? configuration.InitialDiskPath
-            : await PreparePathAsync(configuration.InitialDiskPath, conversionDirectory).ConfigureAwait(false);
-        if (configuration.Media is not { Count: > 0 })
-            return configuration with { InitialDiskPath = initial };
-        var media = new List<AmigaMediaConfiguration>(configuration.Media.Count);
-        foreach (var item in configuration.Media)
-            media.Add(item with
-            {
-                Path = await PreparePathAsync(item.Path, conversionDirectory).ConfigureAwait(false)
-            });
-        return configuration with { InitialDiskPath = initial, Media = media };
-    }
+    public static Task<AmigaMachineConfiguration> PrepareConfigurationAsync(
+        AmigaMachineConfiguration configuration, string conversionDirectory) =>
+        Task.FromResult(configuration);
 
-    private static async Task<string> PreparePathAsync(string path, string conversionDirectory)
+    internal static async Task<string> ConvertScpPathAsync(string path, string conversionDirectory)
     {
         if (!Path.GetExtension(path).Equals(".scp", StringComparison.OrdinalIgnoreCase)) return path;
         var info = new FileInfo(path);

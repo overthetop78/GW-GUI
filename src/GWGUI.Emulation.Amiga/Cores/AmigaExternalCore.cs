@@ -39,6 +39,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
     private ExternalCoreApi.GetRegion? _getRegion;
     private ExternalCoreApi.GetMemoryData? _getMemoryData;
     private ExternalCoreApi.GetMemorySize? _getMemorySize;
+    private string? _conversionDirectory;
 
     internal AmigaExternalCore(string? corePath = null) => _corePath = corePath;
 
@@ -69,6 +70,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
 
     public void Initialize(AmigaMachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
+        _conversionDirectory = Path.Combine(sessionDirectory, "ConvertedMedia");
         ArgumentException.ThrowIfNullOrWhiteSpace(configuration.KickstartPath);
         if (!File.Exists(configuration.KickstartPath))
             throw new FileNotFoundException("The configured Amiga Kickstart was not found.", configuration.KickstartPath);
@@ -147,7 +149,11 @@ internal sealed class AmigaExternalCore : IAmigaCore
             {
                 var extension = Path.GetExtension(contentPath).TrimStart('.');
                 if (extension.Length == 0 || !SupportedContentExtensions.Contains(extension))
-                    throw new InvalidDataException($"The Amiga core does not support '.{extension}' content.");
+                {
+                    if (!extension.Equals("scp", StringComparison.OrdinalIgnoreCase))
+                        throw new InvalidDataException($"The Amiga core does not support '.{extension}' content.");
+                    contentPath = ConvertScp(contentPath);
+                }
             }
             Export<ExternalCoreApi.SetEnvironment>("retro_set_environment")(_host.Environment);
             Export<ExternalCoreApi.SetVideo>("retro_set_video_refresh")(_host.Video);
@@ -194,17 +200,9 @@ internal sealed class AmigaExternalCore : IAmigaCore
             }
             else
             {
-                using var path = new ExternalCoreUtf8String(contentPath);
-                var game = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.GameInfo>());
-                try
-                {
-                    Marshal.StructureToPtr(new ExternalCoreApi.GameInfo { Path = path.Pointer }, game, false);
-                    _gameLoaded = loadGame(game);
-                }
-                finally
-                {
-                    Marshal.FreeHGlobal(game);
-                }
+                _gameLoaded = LoadGame(loadGame, contentPath);
+                if (!_gameLoaded && IsScp(contentPath))
+                    _gameLoaded = LoadGame(loadGame, ConvertScp(contentPath));
             }
 
             if (!_gameLoaded) throw new InvalidOperationException("The Amiga core refused the configured content.");
@@ -326,12 +324,39 @@ internal sealed class AmigaExternalCore : IAmigaCore
     {
         if (_host is not null) _host.Input = snapshot;
     }
-    public void InsertMedia(string path) => (_host ?? throw new InvalidOperationException("The Amiga core is not initialized."))
-        .DiskControl.Insert(path);
+    public void InsertMedia(string path)
+    {
+        var diskControl = (_host ?? throw new InvalidOperationException("The Amiga core is not initialized."))
+            .DiskControl;
+        try { diskControl.Insert(path); }
+        catch when (IsScp(path)) { diskControl.Insert(ConvertScp(path)); }
+    }
     public void EjectMedia() => (_host ?? throw new InvalidOperationException("The Amiga core is not initialized."))
         .DiskControl.Eject();
     public void SelectDisk(int index) => (_host ?? throw new InvalidOperationException("The Amiga core is not initialized."))
         .DiskControl.Select(index);
+
+    private static bool LoadGame(ExternalCoreApi.LoadGame loadGame, string path)
+    {
+        using var nativePath = new ExternalCoreUtf8String(path);
+        var game = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.GameInfo>());
+        try
+        {
+            Marshal.StructureToPtr(new ExternalCoreApi.GameInfo { Path = nativePath.Pointer }, game, false);
+            return loadGame(game);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(game);
+        }
+    }
+
+    private string ConvertScp(string path) => AmigaRuntimeMediaFunctions
+        .ConvertScpPathAsync(path, _conversionDirectory ?? throw new InvalidOperationException())
+        .GetAwaiter().GetResult();
+
+    private static bool IsScp(string path) =>
+        Path.GetExtension(path).Equals(".scp", StringComparison.OrdinalIgnoreCase);
 
     public byte[] SaveState()
     {
