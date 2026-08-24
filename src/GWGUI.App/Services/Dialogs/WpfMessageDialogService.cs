@@ -1,5 +1,6 @@
 using GWGUI.App.Enums.Services.Dialogs;
 using GWGUI.App.Interfaces.Services.Dialogs;
+using GWGUI.App.Services.Windows;
 using System.Windows;
 
 namespace GWGUI.App.Services.Dialogs;
@@ -8,7 +9,7 @@ public sealed class WpfMessageDialogService(Window owner) : IMessageDialogServic
 {
     public UserDialogResult Show(string message, string title, UserDialogButtons buttons = UserDialogButtons.Ok, UserDialogIcon icon = UserDialogIcon.None)
     {
-        var result = MessageBox.Show(owner, message, title, buttons switch
+        var result = MessageBox.Show(WpfDialogOwner.Resolve(owner) ?? owner, message, title, buttons switch
         {
             UserDialogButtons.OkCancel => MessageBoxButton.OKCancel,
             UserDialogButtons.YesNo => MessageBoxButton.YesNo,

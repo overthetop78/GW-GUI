@@ -32,6 +32,7 @@ public sealed class FloppyDriveConfigurationDialog : Window
         _options = options;
         Title = $"{LocExtension.Get(EmulationResourceKeys.StorageDeviceConfigure)} {identifier}";
         Owner = Application.Current.Windows.OfType<Window>().FirstOrDefault(window => window.IsActive);
+        ShowInTaskbar = false;
         WindowStartupLocation = WindowStartupLocation.CenterOwner;
         Width = 820;
         SizeToContent = SizeToContent.Height;

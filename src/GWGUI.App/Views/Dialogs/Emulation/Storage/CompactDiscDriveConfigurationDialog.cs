@@ -21,6 +21,7 @@ public sealed class CompactDiscDriveConfigurationDialog : Window
     {
         Title = $"{LocExtension.Get(EmulationResourceKeys.StorageDeviceConfigure)} {identifier}";
         Owner = Application.Current.Windows.OfType<Window>().FirstOrDefault(window => window.IsActive);
+        ShowInTaskbar = false;
         WindowStartupLocation = WindowStartupLocation.CenterOwner;
         Width = 720;
         SizeToContent = SizeToContent.Height;

@@ -43,6 +43,7 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         SupportPath = currentPath;
         Title = $"{LocExtension.Get(EmulationResourceKeys.StorageDeviceConfigure)} {identifier}";
         Owner = Application.Current.Windows.OfType<Window>().FirstOrDefault(window => window.IsActive);
+        ShowInTaskbar = false;
         WindowStartupLocation = WindowStartupLocation.CenterOwner;
         Width = 980;
         Height = 760;

@@ -7,6 +7,7 @@ using GWGUI.App.Services.Logging;
 using GWGUI.App.Services.Input.GameInput;
 using GWGUI.App.Services.Storage;
 using GWGUI.App.Services.Theming;
+using GWGUI.App.Services.Windows;
 using GWGUI.App.Views.Windows.Options;
 using GWGUI.App.Views.Windows.Shell;
 using System.Globalization;
@@ -112,7 +113,8 @@ public partial class App : Application
     {
         var path = ErrorLog.Write(e.Exception, "WPF dispatcher");
         var detail = path is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", path);
-        MessageBox.Show(LocExtension.Get("Error.Unexpected", detail), LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Error);
+        MessageBox.Show(WpfDialogOwner.Resolve(), LocExtension.Get("Error.Unexpected", detail),
+            LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Error);
         e.Handled = true;
     }
 

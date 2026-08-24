@@ -21,8 +21,8 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
         _httpClient = httpClient;
         _coreDirectory = coreDirectory;
         _firmwareDirectory = Path.Combine(pathBase, EmulationPathConstants.RootDirectoryName,
-            EmulationPathConstants.MachinesDirectoryName, EmulationPathConstants.FirmwareDirectoryName,
-            AmigaFirmwareConstants.DirectoryName);
+            EmulationPathConstants.MachinesDirectoryName, AmigaFirmwareConstants.DirectoryName,
+            EmulationPathConstants.FirmwareDirectoryName);
     }
 
     public string Id => "amiga";

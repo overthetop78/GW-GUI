@@ -19,6 +19,7 @@ public sealed class AddStorageDeviceDialog : Window
     {
         Title = LocExtension.Get(EmulationResourceKeys.StorageDeviceAdd);
         Owner = Application.Current.Windows.OfType<Window>().FirstOrDefault(window => window.IsActive);
+        ShowInTaskbar = false;
         WindowStartupLocation = WindowStartupLocation.CenterOwner;
         SizeToContent = SizeToContent.WidthAndHeight;
         ResizeMode = ResizeMode.NoResize;

@@ -2,6 +2,7 @@ using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Constants.Machine;
 using GWGUI.App.Contracts.Dialogs;
 using GWGUI.App.Enums.Dialogs;
+using GWGUI.App.Services.Windows;
 using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Controls;
@@ -91,7 +92,7 @@ internal sealed class CommonErrorDialog : Window
 
     internal static void Show(FrameworkElement owner, CommonErrorDialogContent content)
     {
-        var dialog = new CommonErrorDialog(content) { Owner = Window.GetWindow(owner) };
+        var dialog = new CommonErrorDialog(content) { Owner = WpfDialogOwner.Resolve(owner) };
         dialog.ShowDialog();
     }
 

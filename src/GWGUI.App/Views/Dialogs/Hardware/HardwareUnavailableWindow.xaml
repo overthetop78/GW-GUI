@@ -1,4 +1,4 @@
-<Window x:Class="GWGUI.App.Views.Dialogs.Hardware.HardwareUnavailableWindow"
+<Window ShowInTaskbar="False"  x:Class="GWGUI.App.Views.Dialogs.Hardware.HardwareUnavailableWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:l="clr-namespace:GWGUI.App.Localization.Extensions"

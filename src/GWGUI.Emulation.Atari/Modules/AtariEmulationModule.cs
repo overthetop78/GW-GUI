@@ -21,8 +21,8 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
         _httpClient = httpClient;
         _coreDirectory = coreDirectory;
         _firmwareDirectory = Path.Combine(pathBase, EmulationPathConstants.RootDirectoryName,
-            EmulationPathConstants.MachinesDirectoryName, EmulationPathConstants.FirmwareDirectoryName,
-            AtariFirmwareConstants.DirectoryName);
+            EmulationPathConstants.MachinesDirectoryName, AtariFirmwareConstants.DirectoryName,
+            EmulationPathConstants.FirmwareDirectoryName);
     }
 
     public string Id => "atari";
