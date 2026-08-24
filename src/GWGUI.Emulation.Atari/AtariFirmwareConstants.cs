@@ -7,6 +7,7 @@ public static class AtariFirmwareConstants
     public const int FileBufferSize = 81920;
     public const int DuplicateMinimumCount = 2;
     public const string FirmwareDirectoryName = "Firmware";
+    public const string DirectoryName = "Atari";
     public const string StFamilyDirectoryName = "ST";
     public const string EightBitFamilyDirectoryName = "8Bit";
     public const string Atari5200FamilyDirectoryName = "5200";
