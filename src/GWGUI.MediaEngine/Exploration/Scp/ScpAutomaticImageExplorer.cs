@@ -16,6 +16,7 @@ internal sealed class ScpAutomaticImageExplorer(IScpReader scpReader, ScpCandida
     {
         var scpImage = await scpReader.ReadAsync(path, cancellationToken).ConfigureAwait(false);
         var families = await familyProbe.DetectAsync(path, cancellationToken).ConfigureAwait(false);
+        if (families.Count == 0) return documents.CreateUnknown(path, scpImage);
         var registrations = candidates.Automatic(families);
         var inspections = await Task.WhenAll(registrations.Select(candidate => inspector.InspectAsync(candidate, path, cancellationToken))).ConfigureAwait(false);
         var ranking = ScpCandidateRanker.Rank(inspections);
