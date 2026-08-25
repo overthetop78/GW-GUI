@@ -1,7 +1,6 @@
 using GWGUI.Emulation;
-using GWGUI.Emulation.Amiga.Cores;
 
-namespace GWGUI.Emulation.Amiga;
+namespace GWGUI.Emulation.Amiga.Factories;
 
 internal sealed class PuaeMachineFactory : IAmigaMachineFactory
 {
@@ -10,7 +9,7 @@ internal sealed class PuaeMachineFactory : IAmigaMachineFactory
         var machineId = Guid.NewGuid();
         var core = new AmigaProcessCore(context.HostExecutablePath, context.CorePath);
         return new AmigaMachine(machineId, configuration.EnsureId(), core,
-            Path.Combine(context.SessionsDirectory, machineId.ToString("N")),
+            Path.Combine(context.SessionsDirectory, machineId.ToString(PuaeMachineFactoryConstants.N)),
             configuration.AudioEnabled ? context.AudioOutputFactory?.Invoke() : null,
             context.SaveDirectoryResolver?.Invoke(configuration));
     }

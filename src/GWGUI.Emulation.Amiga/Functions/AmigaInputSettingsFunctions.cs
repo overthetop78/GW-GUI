@@ -1,6 +1,6 @@
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Amiga;
+namespace GWGUI.Emulation.Amiga.Functions;
 
 internal static class AmigaInputSettingsFunctions
 {
@@ -59,10 +59,10 @@ internal static class AmigaInputSettingsFunctions
         };
         var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>())
         {
-            ["puae_turbo_fire"] = controllers.Any(binding => binding.ButtonMappings?
-                .Any(item => item.Key == "L2" && !string.IsNullOrWhiteSpace(item.Value)) == true)
-                ? "enabled" : "disabled",
-            ["puae_turbo_fire_button"] = "L2"
+            [AmigaInputSettingsFunctionsConstants.OptionTurboFire] = controllers.Any(binding => binding.ButtonMappings?
+                .Any(item => item.Key == AmigaInputSettingsFunctionsConstants.L2 && !string.IsNullOrWhiteSpace(item.Value)) == true)
+                ? AmigaInputSettingsFunctionsConstants.Enabled : AmigaInputSettingsFunctionsConstants.Disabled,
+            [AmigaInputSettingsFunctionsConstants.OptionTurboFireButton] = AmigaInputSettingsFunctionsConstants.L2
         };
         return configuration with { Input = input, Options = options };
     }
@@ -71,9 +71,9 @@ internal static class AmigaInputSettingsFunctions
     {
         var keys = Enumerable.Range(1, 10).Select(index => $"F{index}")
             .Select(key => Definition(key, key, key)).ToList();
-        keys.Add(Definition(nameof(EmulationKey.Help), "Emulation.Key.Help", "Insert"));
-        keys.Add(Definition(nameof(EmulationKey.LeftAmiga), "Emulation.Key.LeftAmiga", "PageUp"));
-        keys.Add(Definition(nameof(EmulationKey.RightAmiga), "Emulation.Key.RightAmiga", "PageDown"));
+        keys.Add(Definition(nameof(EmulationKey.Help), AmigaInputSettingsFunctionsConstants.ResourceKeyHelp, AmigaInputSettingsFunctionsConstants.Insert));
+        keys.Add(Definition(nameof(EmulationKey.LeftAmiga), AmigaInputSettingsFunctionsConstants.ResourceKeyLeftAmiga, AmigaInputSettingsFunctionsConstants.PageUp));
+        keys.Add(Definition(nameof(EmulationKey.RightAmiga), AmigaInputSettingsFunctionsConstants.ResourceKeyRightAmiga, AmigaInputSettingsFunctionsConstants.PageDown));
         return keys;
     }
 
@@ -81,12 +81,12 @@ internal static class AmigaInputSettingsFunctions
     {
         var definitions = new List<InputBindingDefinition>
         {
-            Definition(nameof(AmigaMouseAction.LeftButton), "Emulation.Mouse.Button.Left", "Mouse:Left"),
-            Definition(nameof(AmigaMouseAction.RightButton), "Emulation.Mouse.Button.Right", "Mouse:Right")
+            Definition(nameof(AmigaMouseAction.LeftButton), AmigaInputSettingsFunctionsConstants.ResourceMouseButtonLeft, AmigaInputSettingsFunctionsConstants.MouseLeft),
+            Definition(nameof(AmigaMouseAction.RightButton), AmigaInputSettingsFunctionsConstants.ResourceMouseButtonRight, AmigaInputSettingsFunctionsConstants.MouseRight)
         };
         if (model.MouseButtonCount >= 3)
             definitions.Add(Definition(nameof(AmigaMouseAction.MiddleButton),
-                "Emulation.Mouse.Button.Middle", "Mouse:Middle"));
+                AmigaInputSettingsFunctionsConstants.ResourceMouseButtonMiddle, AmigaInputSettingsFunctionsConstants.MouseMiddle));
         return definitions;
     }
 
@@ -95,29 +95,29 @@ internal static class AmigaInputSettingsFunctions
         if (type is AmigaControllerType.None or AmigaControllerType.Keyboard) return [];
         var definitions = new List<InputBindingDefinition>
         {
-            Definition("Up", "Emulation.Controller.Action.Up", string.Empty),
-            Definition("Down", "Emulation.Controller.Action.Down", string.Empty),
-            Definition("Left", "Emulation.Controller.Action.Left", string.Empty),
-            Definition("Right", "Emulation.Controller.Action.Right", string.Empty)
+            Definition(AmigaInputSettingsFunctionsConstants.Up, AmigaInputSettingsFunctionsConstants.ResourceControllerActionUp, string.Empty),
+            Definition(AmigaInputSettingsFunctionsConstants.Down, AmigaInputSettingsFunctionsConstants.ResourceControllerActionDown, string.Empty),
+            Definition(AmigaInputSettingsFunctionsConstants.Left, AmigaInputSettingsFunctionsConstants.ResourceControllerActionLeft, string.Empty),
+            Definition(AmigaInputSettingsFunctionsConstants.Right, AmigaInputSettingsFunctionsConstants.ResourceControllerActionRight, string.Empty)
         };
         if (type == AmigaControllerType.Cd32Pad)
         {
             definitions.AddRange([
-                Definition("B", "Emulation.Amiga.Controller.Cd32.Red", string.Empty),
-                Definition("A", "Emulation.Amiga.Controller.Cd32.Blue", string.Empty),
-                Definition("Y", "Emulation.Amiga.Controller.Cd32.Green", string.Empty),
-                Definition("X", "Emulation.Amiga.Controller.Cd32.Yellow", string.Empty),
-                Definition("L", "Emulation.Amiga.Controller.Cd32.Rewind", string.Empty),
-                Definition("R", "Emulation.Amiga.Controller.Cd32.FastForward", string.Empty),
-                Definition("Start", "Emulation.Amiga.Controller.Cd32.PlayPause", string.Empty)
+                Definition(AmigaInputSettingsFunctionsConstants.B, AmigaInputSettingsFunctionsConstants.ResourceAmigaControllerCd32Red, string.Empty),
+                Definition(AmigaInputSettingsFunctionsConstants.A, AmigaInputSettingsFunctionsConstants.ResourceAmigaControllerCd32Blue, string.Empty),
+                Definition(AmigaInputSettingsFunctionsConstants.Y, AmigaInputSettingsFunctionsConstants.ResourceAmigaControllerCd32Green, string.Empty),
+                Definition(AmigaInputSettingsFunctionsConstants.X, AmigaInputSettingsFunctionsConstants.ResourceAmigaControllerCd32Yellow, string.Empty),
+                Definition(AmigaInputSettingsFunctionsConstants.L, AmigaInputSettingsFunctionsConstants.ResourceAmigaControllerCd32Rewind, string.Empty),
+                Definition(AmigaInputSettingsFunctionsConstants.R, AmigaInputSettingsFunctionsConstants.ResourceAmigaControllerCd32FastForward, string.Empty),
+                Definition(AmigaInputSettingsFunctionsConstants.Start, AmigaInputSettingsFunctionsConstants.ResourceAmigaControllerCd32PlayPause, string.Empty)
             ]);
         }
         else
         {
-            definitions.Add(Definition("B", "Emulation.Controller.Action.Fire1", string.Empty));
-            definitions.Add(Definition("A", "Emulation.Controller.Action.Fire2", string.Empty));
+            definitions.Add(Definition(AmigaInputSettingsFunctionsConstants.B, AmigaInputSettingsFunctionsConstants.ResourceControllerActionFire1, string.Empty));
+            definitions.Add(Definition(AmigaInputSettingsFunctionsConstants.A, AmigaInputSettingsFunctionsConstants.ResourceControllerActionFire2, string.Empty));
         }
-        definitions.Add(Definition("L2", "Emulation.Controller.Action.TurboFire", string.Empty));
+        definitions.Add(Definition(AmigaInputSettingsFunctionsConstants.L2, AmigaInputSettingsFunctionsConstants.ResourceControllerActionTurboFire, string.Empty));
         return definitions;
     }
 
@@ -129,11 +129,11 @@ internal static class AmigaInputSettingsFunctions
 
     private static string ControllerResourceKey(AmigaControllerType type) => type switch
     {
-        AmigaControllerType.Joystick => "Emulation.Amiga.Controller.Joystick",
-        AmigaControllerType.AnalogJoystick => "Emulation.Controller.AnalogJoystick",
-        AmigaControllerType.Cd32Pad => "Emulation.Amiga.Controller.Cd32",
-        AmigaControllerType.Automatic => "Emulation.Controller.Automatic",
-        AmigaControllerType.None => "Emulation.Controller.None",
+        AmigaControllerType.Joystick => AmigaInputSettingsFunctionsConstants.ResourceAmigaControllerJoystick,
+        AmigaControllerType.AnalogJoystick => AmigaInputSettingsFunctionsConstants.ResourceControllerAnalogJoystick,
+        AmigaControllerType.Cd32Pad => AmigaInputSettingsFunctionsConstants.ResourceAmigaControllerCd32,
+        AmigaControllerType.Automatic => AmigaInputSettingsFunctionsConstants.ResourceControllerAutomatic,
+        AmigaControllerType.None => AmigaInputSettingsFunctionsConstants.ResourceControllerNone,
         _ => $"Emulation.Controller.{type}"
     };
 

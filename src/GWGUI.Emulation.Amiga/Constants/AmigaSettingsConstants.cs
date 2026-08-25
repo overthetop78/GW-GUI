@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation.Amiga;
+namespace GWGUI.Emulation.Amiga.Constants;
 
 internal static class AmigaSettingsConstants
 {

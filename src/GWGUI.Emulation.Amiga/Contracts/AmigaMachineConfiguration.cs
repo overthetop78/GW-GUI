@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation.Amiga;
+namespace GWGUI.Emulation.Amiga.Contracts;
 
 public sealed record AmigaMachineConfiguration(
     string Model,
@@ -21,15 +21,15 @@ public sealed record AmigaMachineConfiguration(
     GWGUI.Emulation.Enums.EmulationVideoRenderer VideoRenderer = GWGUI.Emulation.Enums.EmulationVideoRenderer.Direct3D11)
     : GWGUI.Emulation.Interfaces.IEmulationConfiguration
 {
-    public string ModuleId => "amiga";
+    public string ModuleId => AmigaMachineConfigurationConstants.Amiga;
     string GWGUI.Emulation.Interfaces.IEmulationConfiguration.MachineId => Model;
     public static AmigaMachineConfiguration A500(string kickstartPath, string? diskPath = null) =>
-        new("A500", kickstartPath, diskPath, Options: new Dictionary<string, string>
+        new(AmigaMachineConfigurationConstants.A500, kickstartPath, diskPath, Options: new Dictionary<string, string>
         {
-            ["puae_model"] = "A500",
-            ["puae_video_standard"] = "PAL",
-            ["puae_floppy_multidrive"] = "disabled",
-            ["puae_floppy_write_protection"] = "disabled"
+            [AmigaMachineConfigurationConstants.OptionModel] = AmigaMachineConfigurationConstants.A500,
+            [AmigaMachineConfigurationConstants.OptionVideoStandard] = AmigaMachineConfigurationConstants.PAL,
+            [AmigaMachineConfigurationConstants.OptionFloppyMultidrive] = AmigaMachineConfigurationConstants.Disabled,
+            [AmigaMachineConfigurationConstants.OptionFloppyWriteProtection] = AmigaMachineConfigurationConstants.Disabled
         }, Id: Guid.NewGuid());
 
     public AmigaMachineConfiguration EnsureId() => Id == Guid.Empty ? this with { Id = Guid.NewGuid() } : this;

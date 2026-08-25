@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation.Amiga;
+namespace GWGUI.Emulation.Amiga.Dictionaries;
 
 public static class AmigaControllerCatalog
 {

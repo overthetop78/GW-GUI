@@ -6,7 +6,7 @@ using System.IO.MemoryMappedFiles;
 using System.Text.Json;
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Amiga.Cores;
+namespace GWGUI.Emulation.Amiga.Services;
 
 internal sealed class AmigaProcessCore : IAmigaCore
 {
@@ -59,9 +59,9 @@ internal sealed class AmigaProcessCore : IAmigaCore
     public void Initialize(AmigaMachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
-        if (_initialized) throw new InvalidOperationException("The Amiga core process is already initialized.");
+        if (_initialized) throw new InvalidOperationException(AmigaProcessCoreConstants.TheAmigaCoreProcessIsAlreadyInitialized);
         if (!File.Exists(_hostExecutablePath))
-            throw new FileNotFoundException("The GW GUI executable used to host the Amiga core was not found.", _hostExecutablePath);
+            throw new FileNotFoundException(AmigaProcessCoreConstants.TheGWGUIExecutableUsedToHostTheAmigaCoreWasNotFound, _hostExecutablePath);
 
         var pipeName = $"gwgui-amiga-{Guid.NewGuid():N}";
         var videoMapName = $"gwgui-amiga-video-{Guid.NewGuid():N}";
@@ -78,10 +78,10 @@ internal sealed class AmigaProcessCore : IAmigaCore
             CreateNoWindow = true,
             WorkingDirectory = Path.GetDirectoryName(_hostExecutablePath)!
         };
-        startInfo.ArgumentList.Add("--amiga-core-host");
+        startInfo.ArgumentList.Add(AmigaProcessCoreConstants.AmigaCoreHost);
         startInfo.ArgumentList.Add(pipeName);
         startInfo.ArgumentList.Add(videoMapName);
-        _process = Process.Start(startInfo) ?? throw new InvalidOperationException("The Amiga core host process could not be started.");
+        _process = Process.Start(startInfo) ?? throw new InvalidOperationException(AmigaProcessCoreConstants.TheAmigaCoreHostProcessCouldNotBeStarted);
         try
         {
             using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(15));
@@ -120,7 +120,7 @@ internal sealed class AmigaProcessCore : IAmigaCore
         AmigaCoreHostProtocol.WriteInput(_writer!, _input.Consume());
         CompleteRequest();
         LatestVideoFrame = AmigaCoreHostProtocol.ReadSharedFrame(Response,
-            _videoMap ?? throw new InvalidOperationException("The shared Amiga video buffer is unavailable.")) ?? LatestVideoFrame;
+            _videoMap ?? throw new InvalidOperationException(AmigaProcessCoreConstants.TheSharedAmigaVideoBufferIsUnavailable)) ?? LatestVideoFrame;
         foreach (var chunk in AmigaCoreHostProtocol.ReadAudio(Response))
         {
             LatestAudioChunk = chunk;
@@ -218,9 +218,9 @@ internal sealed class AmigaProcessCore : IAmigaCore
     private void Begin(AmigaHostCommand command)
     {
         ObjectDisposedException.ThrowIf(_disposed, this);
-        if (_connectionFailed) throw new InvalidOperationException("The Amiga core process is no longer available.");
+        if (_connectionFailed) throw new InvalidOperationException(AmigaProcessCoreConstants.TheAmigaCoreProcessIsNoLongerAvailable);
         if (command != AmigaHostCommand.Initialize && !_initialized)
-            throw new InvalidOperationException("The Amiga core process is not initialized.");
+            throw new InvalidOperationException(AmigaProcessCoreConstants.TheAmigaCoreProcessIsNotInitialized);
         _writer!.Write((byte)command);
     }
 
@@ -240,7 +240,7 @@ internal sealed class AmigaProcessCore : IAmigaCore
             _connectionFailed = true;
             TerminateProcess();
             throw new InvalidOperationException(timedOut
-                ? "The Amiga core process did not answer within 30 seconds and was stopped."
+                ? AmigaProcessCoreConstants.TheAmigaCoreProcessDidNotAnswerWithin30SecondsAndWasStopped
                 : $"Communication with the Amiga core process failed.{exit}", error);
         }
     }
@@ -270,6 +270,6 @@ internal sealed class AmigaProcessCore : IAmigaCore
         catch (Exception) { }
     }
 
-    private BinaryReader Response => _responseReader ?? throw new InvalidOperationException("The Amiga host response is unavailable.");
+    private BinaryReader Response => _responseReader ?? throw new InvalidOperationException(AmigaProcessCoreConstants.TheAmigaHostResponseIsUnavailable);
 
 }

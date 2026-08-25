@@ -1,6 +1,6 @@
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Amiga.Cores;
+namespace GWGUI.Emulation.Amiga.Services;
 
 internal sealed class AmigaInputAccumulator
 {

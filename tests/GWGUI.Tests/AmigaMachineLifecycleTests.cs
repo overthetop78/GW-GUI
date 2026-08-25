@@ -1,6 +1,5 @@
 using GWGUI.Emulation;
 using GWGUI.Emulation.Amiga;
-using GWGUI.Emulation.Amiga.Cores;
 using System.IO;
 using System.Runtime.InteropServices;
 

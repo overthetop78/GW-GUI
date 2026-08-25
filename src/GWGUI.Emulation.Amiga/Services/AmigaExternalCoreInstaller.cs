@@ -2,12 +2,12 @@ using System.IO.Compression;
 using System.Security.Cryptography;
 using System.Text.Json;
 
-namespace GWGUI.Emulation.Amiga;
+namespace GWGUI.Emulation.Amiga.Services;
 
 public sealed class AmigaExternalCoreInstaller
 {
-    public const string CoreRevision = "96ebfcfc";
-    public const string DownloadUrl = "https://buildbot.libretro.com/nightly/windows/x86_64/latest/puae_libretro.dll.zip";
+    public const string CoreRevision = AmigaExternalCoreInstallerConstants.Value96ebfcfc;
+    public const string DownloadUrl = AmigaExternalCoreInstallerConstants.HttpsBuildbotLibretroComNightlyWindowsX8664LatestPuaeLibretroDllZip;
     private readonly HttpClient _httpClient;
     private readonly string _directory;
 
@@ -17,7 +17,7 @@ public sealed class AmigaExternalCoreInstaller
         _directory = Path.GetFullPath(directory);
     }
 
-    public string LibraryPath => Path.Combine(_directory, "puae_libretro.dll");
+    public string LibraryPath => Path.Combine(_directory, AmigaExternalCoreInstallerConstants.OptionLibretroDll);
 
     public bool IsInstalled
     {
@@ -33,8 +33,8 @@ public sealed class AmigaExternalCoreInstaller
     public async Task<string> InstallAsync(CancellationToken cancellationToken = default)
     {
         Directory.CreateDirectory(_directory);
-        var package = LibraryPath + ".download";
-        var extracted = LibraryPath + ".extract";
+        var package = LibraryPath + AmigaExternalCoreInstallerConstants.Download;
+        var extracted = LibraryPath + AmigaExternalCoreInstallerConstants.Extract;
         try
         {
             using var response = await _httpClient.GetAsync(DownloadUrl, HttpCompletionOption.ResponseHeadersRead,
@@ -48,8 +48,8 @@ public sealed class AmigaExternalCoreInstaller
             using (var archive = ZipFile.OpenRead(package))
             {
                 var entry = archive.Entries.FirstOrDefault(item =>
-                    Path.GetFileName(item.FullName).Equals("puae_libretro.dll", StringComparison.OrdinalIgnoreCase))
-                    ?? throw new InvalidDataException("The official Amiga core archive does not contain puae_libretro.dll.");
+                    Path.GetFileName(item.FullName).Equals(AmigaExternalCoreInstallerConstants.OptionLibretroDll, StringComparison.OrdinalIgnoreCase))
+                    ?? throw new InvalidDataException(AmigaExternalCoreInstallerConstants.TheOfficialAmigaCoreArchiveDoesNotContainPuaeLibretroDll);
                 entry.ExtractToFile(extracted, true);
             }
             AmigaCoreReleaseService.VerifyWindowsX64Library(extracted);
@@ -75,10 +75,10 @@ public sealed class AmigaExternalCoreInstaller
             source,
             librarySize = new FileInfo(libraryPath).Length,
             librarySha256 = sha256,
-            architecture = "x64",
+            architecture = AmigaExternalCoreInstallerConstants.X64,
             installedUtc = DateTimeOffset.UtcNow
         };
-        await File.WriteAllTextAsync(Path.Combine(Path.GetDirectoryName(libraryPath)!, "core.json"),
+        await File.WriteAllTextAsync(Path.Combine(Path.GetDirectoryName(libraryPath)!, AmigaExternalCoreInstallerConstants.CoreJson),
             JsonSerializer.Serialize(manifest, new JsonSerializerOptions { WriteIndented = true }),
             cancellationToken).ConfigureAwait(false);
     }

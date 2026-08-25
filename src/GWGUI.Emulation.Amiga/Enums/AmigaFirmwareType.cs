@@ -1,3 +1,3 @@
-namespace GWGUI.Emulation.Amiga;
+namespace GWGUI.Emulation.Amiga.Enums;
 
 public enum AmigaFirmwareType { Kickstart, ExtendedRom, RomKey, Unknown }

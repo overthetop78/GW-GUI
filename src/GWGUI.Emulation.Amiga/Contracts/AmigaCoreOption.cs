@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation.Amiga;
+namespace GWGUI.Emulation.Amiga.Contracts;
 
 public sealed record AmigaCoreOption(string Key, string Name, string? Description, string? Category,
     string DefaultValue, IReadOnlyList<AmigaCoreOptionValue> Values, bool IsVisible = true);

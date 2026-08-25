@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation.Amiga;
+namespace GWGUI.Emulation.Amiga.Services;
 
 public sealed class AmigaCoreProvider
 {

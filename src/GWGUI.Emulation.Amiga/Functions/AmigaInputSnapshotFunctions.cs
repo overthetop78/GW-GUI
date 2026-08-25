@@ -1,16 +1,16 @@
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Amiga;
+namespace GWGUI.Emulation.Amiga.Functions;
 
 internal static class AmigaInputSnapshotFunctions
 {
     private static readonly IReadOnlyDictionary<string, int> ButtonIndexes =
         new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
         {
-            ["B"] = 0, ["Y"] = 1, ["Select"] = 2, ["Start"] = 3,
-            ["Up"] = 4, ["Down"] = 5, ["Left"] = 6, ["Right"] = 7,
-            ["A"] = 8, ["X"] = 9, ["L"] = 10, ["R"] = 11,
-            ["L2"] = 12, ["R2"] = 13, ["L3"] = 14, ["R3"] = 15
+            [AmigaInputSnapshotFunctionsConstants.B] = 0, [AmigaInputSnapshotFunctionsConstants.Y] = 1, [AmigaInputSnapshotFunctionsConstants.Select] = 2, [AmigaInputSnapshotFunctionsConstants.Start] = 3,
+            [AmigaInputSnapshotFunctionsConstants.Up] = 4, [AmigaInputSnapshotFunctionsConstants.Down] = 5, [AmigaInputSnapshotFunctionsConstants.Left] = 6, [AmigaInputSnapshotFunctionsConstants.Right] = 7,
+            [AmigaInputSnapshotFunctionsConstants.A] = 8, [AmigaInputSnapshotFunctionsConstants.X] = 9, [AmigaInputSnapshotFunctionsConstants.L] = 10, [AmigaInputSnapshotFunctionsConstants.R] = 11,
+            [AmigaInputSnapshotFunctionsConstants.L2] = 12, [AmigaInputSnapshotFunctionsConstants.R2] = 13, [AmigaInputSnapshotFunctionsConstants.L3] = 14, [AmigaInputSnapshotFunctionsConstants.R3] = 15
         };
 
     internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot,
@@ -36,9 +36,9 @@ internal static class AmigaInputSnapshotFunctions
     {
         mappings ??= new Dictionary<string, AmigaMouseAction>(StringComparer.OrdinalIgnoreCase)
         {
-            ["Mouse:Left"] = AmigaMouseAction.LeftButton,
-            ["Mouse:Right"] = AmigaMouseAction.RightButton,
-            ["Mouse:Middle"] = AmigaMouseAction.MiddleButton
+            [AmigaInputSnapshotFunctionsConstants.MouseLeft] = AmigaMouseAction.LeftButton,
+            [AmigaInputSnapshotFunctionsConstants.MouseRight] = AmigaMouseAction.RightButton,
+            [AmigaInputSnapshotFunctionsConstants.MouseMiddle] = AmigaMouseAction.MiddleButton
         };
         var fallbackController = controllers.FirstOrDefault() ?? EmulationControllerState.Empty;
         return pointer with
@@ -95,27 +95,27 @@ internal static class AmigaInputSnapshotFunctions
     private static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) =>
         new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
         {
-            ["Left"] = pointer.Left,
-            ["Right"] = pointer.Right,
-            ["Middle"] = pointer.Middle,
-            ["XButton1"] = pointer.ExtendedButton1,
-            ["XButton2"] = pointer.ExtendedButton2,
-            ["WheelUp"] = pointer.Wheel > 0,
-            ["WheelDown"] = pointer.Wheel < 0,
-            ["WheelLeft"] = pointer.HorizontalWheel < 0,
-            ["WheelRight"] = pointer.HorizontalWheel > 0
+            [AmigaInputSnapshotFunctionsConstants.Left] = pointer.Left,
+            [AmigaInputSnapshotFunctionsConstants.Right] = pointer.Right,
+            [AmigaInputSnapshotFunctionsConstants.Middle] = pointer.Middle,
+            [AmigaInputSnapshotFunctionsConstants.XButton1] = pointer.ExtendedButton1,
+            [AmigaInputSnapshotFunctionsConstants.XButton2] = pointer.ExtendedButton2,
+            [AmigaInputSnapshotFunctionsConstants.WheelUp] = pointer.Wheel > 0,
+            [AmigaInputSnapshotFunctionsConstants.WheelDown] = pointer.Wheel < 0,
+            [AmigaInputSnapshotFunctionsConstants.WheelLeft] = pointer.HorizontalWheel < 0,
+            [AmigaInputSnapshotFunctionsConstants.WheelRight] = pointer.HorizontalWheel > 0
         };
 
     private static bool IsSourcePressed(string sourceName, EmulationControllerState controller,
         IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)
     {
-        if (TryRemovePrefix(sourceName, "Controller:", out var controllerSource))
+        if (TryRemovePrefix(sourceName, AmigaInputSnapshotFunctionsConstants.Controller, out var controllerSource))
             return EmulationInputMappingFunctions.IsControllerSourcePressed(controllerSource, controller);
         if (ButtonIndexes.TryGetValue(sourceName, out var legacyIndex))
             return (controller.Buttons & (1u << legacyIndex)) != 0;
-        if (TryRemovePrefix(sourceName, "Keyboard:", out var keyboardSource)
+        if (TryRemovePrefix(sourceName, AmigaInputSnapshotFunctionsConstants.Keyboard, out var keyboardSource)
             && Enum.TryParse<EmulationKey>(keyboardSource, true, out var key)) return keys.Contains(key);
-        return TryRemovePrefix(sourceName, "Mouse:", out var mouseSource) && mouse.GetValueOrDefault(mouseSource);
+        return TryRemovePrefix(sourceName, AmigaInputSnapshotFunctionsConstants.Mouse, out var mouseSource) && mouse.GetValueOrDefault(mouseSource);
     }
 
     private static EmulationControllerState ControllerForSource(string source,

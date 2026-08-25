@@ -1,6 +1,6 @@
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Amiga;
+namespace GWGUI.Emulation.Amiga.Functions;
 
 internal static class AmigaStorageSettingsFunctions
 {
@@ -10,7 +10,7 @@ internal static class AmigaStorageSettingsFunctions
         var devices = Enumerable.Range(0, model.MaximumFloppyDrives)
             .Select(index => new EmulationMediaDevice(
                 new EmulationMediaSlot(EmulationMediaCategory.FloppyDrive, index),
-                EmulationMediaType.Floppy, [".adf", ".adz", ".dms", ".fdi", ".ipf", ".scp"],
+                EmulationMediaType.Floppy, [AmigaStorageSettingsFunctionsConstants.Adf, AmigaStorageSettingsFunctionsConstants.Adz, AmigaStorageSettingsFunctionsConstants.Dms, AmigaStorageSettingsFunctionsConstants.Fdi, AmigaStorageSettingsFunctionsConstants.Ipf, AmigaStorageSettingsFunctionsConstants.Scp],
                 IsRemovable: true,
                 DisplayLabel: $"DF{index}:",
                 FloppyOptions: FloppyOptions(configuration, index),
@@ -18,19 +18,19 @@ internal static class AmigaStorageSettingsFunctions
             .Concat(model.SupportsHardDrives
                 ? Enumerable.Range(0, model.MaximumHardDrives).Select(index => new EmulationMediaDevice(
                     new EmulationMediaSlot(EmulationMediaCategory.HardDisk, index),
-                    EmulationMediaType.HardDisk, [".hdf", ".hdz"], false,
+                    EmulationMediaType.HardDisk, [AmigaStorageSettingsFunctionsConstants.Hdf, AmigaStorageSettingsFunctionsConstants.Hdz], false,
                     DisplayLabel: $"DH{index}:")) : [])
             .Concat(model.HasCdDrive
                 ? [new EmulationMediaDevice(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc,
-                    [".cue", ".ccd", ".chd", ".nrg", ".mds", ".iso"], DisplayLabel: "CD0:",
+                    [AmigaStorageSettingsFunctionsConstants.Cue, AmigaStorageSettingsFunctionsConstants.Ccd, AmigaStorageSettingsFunctionsConstants.Chd, AmigaStorageSettingsFunctionsConstants.Nrg, AmigaStorageSettingsFunctionsConstants.Mds, AmigaStorageSettingsFunctionsConstants.Iso], DisplayLabel: AmigaStorageSettingsFunctionsConstants.CD0,
                     IsPermanent: true)] : [])
             .ToArray();
         var mounted = EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
         var options = configuration.Options ?? new Dictionary<string, string>();
-        var floppyCount = Count(options, "gwgui_floppy_drive_count",
+        var floppyCount = Count(options, AmigaStorageSettingsFunctionsConstants.GwguiFloppyDriveCount,
             model.HasBuiltInFloppyDrive ? 1 : 0, model.MaximumFloppyDrives);
         var hardDriveCount = model.SupportsHardDrives
-            ? Count(options, "gwgui_hard_drive_count", 0, model.MaximumHardDrives) : 0;
+            ? Count(options, AmigaStorageSettingsFunctionsConstants.GwguiHardDriveCount, 0, model.MaximumHardDrives) : 0;
         var configured = Enumerable.Range(0, floppyCount)
             .Select(index => new EmulationMediaSlot(EmulationMediaCategory.FloppyDrive, index))
             .Concat(Enumerable.Range(0, hardDriveCount)
@@ -51,19 +51,19 @@ internal static class AmigaStorageSettingsFunctions
         EmulationStorageSettings settings)
     {
         var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>());
-        options["gwgui_floppy_drive_count"] = settings.ConfiguredSlots
+        options[AmigaStorageSettingsFunctionsConstants.GwguiFloppyDriveCount] = settings.ConfiguredSlots
             .Count(slot => slot.Category == EmulationMediaCategory.FloppyDrive).ToString();
-        options["gwgui_hard_drive_count"] = settings.ConfiguredSlots
+        options[AmigaStorageSettingsFunctionsConstants.GwguiHardDriveCount] = settings.ConfiguredSlots
             .Count(slot => slot.Category == EmulationMediaCategory.HardDisk).ToString();
-        options["gwgui_cd_drive_enabled"] = settings.ConfiguredSlots.Contains(EmulationMediaSlot.Cd0)
-            ? "enabled" : "disabled";
+        options[AmigaStorageSettingsFunctionsConstants.GwguiCdDriveEnabled] = settings.ConfiguredSlots.Contains(EmulationMediaSlot.Cd0)
+            ? AmigaStorageSettingsFunctionsConstants.Enabled : AmigaStorageSettingsFunctionsConstants.Disabled;
         foreach (var device in settings.DeviceSettings ?? [])
         {
             if (device.Floppy is not { } floppy) continue;
             options[$"gwgui_floppy_drive_model_{device.Slot.Index}"] = floppy.Model;
-            options["puae_floppy_speed"] = floppy.Speed;
-            options["puae_floppy_write_protection"] = floppy.WriteProtected ? "enabled" : "disabled";
-            options["puae_floppy_write_redirect"] = floppy.RedirectWrites ? "enabled" : "disabled";
+            options[AmigaStorageSettingsFunctionsConstants.OptionFloppySpeed] = floppy.Speed;
+            options[AmigaStorageSettingsFunctionsConstants.OptionFloppyWriteProtection] = floppy.WriteProtected ? AmigaStorageSettingsFunctionsConstants.Enabled : AmigaStorageSettingsFunctionsConstants.Disabled;
+            options[AmigaStorageSettingsFunctionsConstants.OptionFloppyWriteRedirect] = floppy.RedirectWrites ? AmigaStorageSettingsFunctionsConstants.Enabled : AmigaStorageSettingsFunctionsConstants.Disabled;
         }
         return configuration with
         {
@@ -83,8 +83,8 @@ internal static class AmigaStorageSettingsFunctions
     {
         var options = configuration.Options ?? new Dictionary<string, string>();
         return new FloppyDriveDialogOptions(
-            [new FloppyDriveModelChoice("35dd", string.Empty, "3.5\" DD", 901_120)],
-            string.Empty, "*.adf;*.adz;*.dms;*.fdi;*.ipf;*.scp", ".adf");
+            [new FloppyDriveModelChoice(AmigaStorageSettingsFunctionsConstants.Value35dd, string.Empty, AmigaStorageSettingsFunctionsConstants.Value35DD, 901_120)],
+            string.Empty, AmigaStorageSettingsFunctionsConstants.AdfAdzDmsFdiIpfScp, AmigaStorageSettingsFunctionsConstants.Adf);
     }
 
     private static EmulationStorageDeviceSettings DeviceSettings(IReadOnlyDictionary<string, string> options,
@@ -93,9 +93,9 @@ internal static class AmigaStorageSettingsFunctions
         if (slot.Category != EmulationMediaCategory.FloppyDrive)
             return new EmulationStorageDeviceSettings(slot);
         return new EmulationStorageDeviceSettings(slot, new FloppyDriveSettings(
-            options.GetValueOrDefault($"gwgui_floppy_drive_model_{slot.Index}") ?? "35dd",
-            options.GetValueOrDefault("puae_floppy_speed") ?? "100",
-            options.GetValueOrDefault("puae_floppy_write_protection") == "enabled",
-            options.GetValueOrDefault("puae_floppy_write_redirect") == "enabled"));
+            options.GetValueOrDefault($"gwgui_floppy_drive_model_{slot.Index}") ?? AmigaStorageSettingsFunctionsConstants.Value35dd,
+            options.GetValueOrDefault(AmigaStorageSettingsFunctionsConstants.OptionFloppySpeed) ?? AmigaStorageSettingsFunctionsConstants.Value100,
+            options.GetValueOrDefault(AmigaStorageSettingsFunctionsConstants.OptionFloppyWriteProtection) == AmigaStorageSettingsFunctionsConstants.Enabled,
+            options.GetValueOrDefault(AmigaStorageSettingsFunctionsConstants.OptionFloppyWriteRedirect) == AmigaStorageSettingsFunctionsConstants.Enabled));
     }
 }

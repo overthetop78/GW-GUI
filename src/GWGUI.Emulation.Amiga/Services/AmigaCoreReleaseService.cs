@@ -2,25 +2,15 @@ using System.IO.Compression;
 using System.Security.Cryptography;
 using System.Text.Json;
 
-namespace GWGUI.Emulation.Amiga;
+namespace GWGUI.Emulation.Amiga.Services;
 
-public sealed record AmigaCoreRelease(
-    string Id,
-    string DisplayName,
-    Uri DownloadUri,
-    DateTimeOffset? PublishedUtc,
-    bool IsRequired,
-    bool IsZip)
-{
-    public override string ToString() => DisplayName;
-}
 
 public sealed class AmigaCoreReleaseService
 {
-    public const string RequiredReleaseId = "validated-96ebfcfc";
-    public const string RequiredDisplayName = "96ebfcfc · 31/07/2026 · GW GUI";
+    public const string RequiredReleaseId = AmigaCoreReleaseServiceConstants.Validated96ebfcfc;
+    public const string RequiredDisplayName = AmigaCoreReleaseServiceConstants.Value96ebfcfc31072026GWGUI;
     public static readonly Uri LatestOfficialUri = new(
-        "https://buildbot.libretro.com/nightly/windows/x86_64/latest/puae_libretro.dll.zip");
+        AmigaCoreReleaseServiceConstants.HttpsBuildbotLibretroComNightlyWindowsX8664LatestPuaeLibretroDllZip);
 
     private readonly HttpClient _httpClient;
     private readonly string _directory;
@@ -31,22 +21,22 @@ public sealed class AmigaCoreReleaseService
         _directory = Path.GetFullPath(directory);
     }
 
-    public string RequiredLibraryPath => Path.Combine(_directory, "puae_libretro.dll");
+    public string RequiredLibraryPath => Path.Combine(_directory, AmigaCoreReleaseServiceConstants.OptionLibretroDll);
 
     public string? GetInstalledVersion()
     {
         if (!File.Exists(RequiredLibraryPath)) return null;
-        var manifestPath = Path.Combine(_directory, "core.json");
-        if (!File.Exists(manifestPath)) return "unknown";
+        var manifestPath = Path.Combine(_directory, AmigaCoreReleaseServiceConstants.CoreJson);
+        if (!File.Exists(manifestPath)) return AmigaCoreReleaseServiceConstants.Unknown;
         try
         {
             using var document = JsonDocument.Parse(File.ReadAllText(manifestPath));
-            return document.RootElement.TryGetProperty("version", out var version)
-                ? version.GetString() ?? "unknown"
-                : "unknown";
+            return document.RootElement.TryGetProperty(AmigaCoreReleaseServiceConstants.Version, out var version)
+                ? version.GetString() ?? AmigaCoreReleaseServiceConstants.Unknown
+                : AmigaCoreReleaseServiceConstants.Unknown;
         }
-        catch (JsonException) { return "unknown"; }
-        catch (IOException) { return "unknown"; }
+        catch (JsonException) { return AmigaCoreReleaseServiceConstants.Unknown; }
+        catch (IOException) { return AmigaCoreReleaseServiceConstants.Unknown; }
     }
 
     public async Task<IReadOnlyList<AmigaCoreRelease>> GetAvailableAsync(
@@ -63,9 +53,9 @@ public sealed class AmigaCoreReleaseService
             cancellationToken).ConfigureAwait(false);
         response.EnsureSuccessStatusCode();
         var published = response.Content.Headers.LastModified ?? response.Headers.Date;
-        var suffix = published?.UtcDateTime.ToString("yyyyMMdd-HHmm") ?? "latest";
+        var suffix = published?.UtcDateTime.ToString(AmigaCoreReleaseServiceConstants.YyyyMMddHHmm) ?? AmigaCoreReleaseServiceConstants.Latest;
         releases.Add(new AmigaCoreRelease($"official-{suffix}",
-            published is null ? "Libretro · latest"
+            published is null ? AmigaCoreReleaseServiceConstants.LibretroLatest
                 : $"{published.Value.LocalDateTime:dd/MM/yyyy HH:mm} · Libretro",
             LatestOfficialUri, published, false, true));
         return releases;
@@ -91,8 +81,8 @@ public sealed class AmigaCoreReleaseService
                 .InstallAsync(cancellationToken).ConfigureAwait(false);
 
         var destination = RequiredLibraryPath;
-        var download = destination + ".download";
-        var extracted = destination + ".extract";
+        var download = destination + AmigaCoreReleaseServiceConstants.Download;
+        var extracted = destination + AmigaCoreReleaseServiceConstants.Extract;
         try
         {
             using var response = await _httpClient.GetAsync(release.DownloadUri,
@@ -118,8 +108,8 @@ public sealed class AmigaCoreReleaseService
             {
                 using var archive = ZipFile.OpenRead(download);
                 var entry = archive.Entries.FirstOrDefault(item =>
-                    Path.GetFileName(item.FullName).Equals("puae_libretro.dll", StringComparison.OrdinalIgnoreCase))
-                    ?? throw new InvalidDataException("The official archive does not contain puae_libretro.dll.");
+                    Path.GetFileName(item.FullName).Equals(AmigaCoreReleaseServiceConstants.OptionLibretroDll, StringComparison.OrdinalIgnoreCase))
+                    ?? throw new InvalidDataException(AmigaCoreReleaseServiceConstants.TheOfficialArchiveDoesNotContainPuaeLibretroDll);
                 entry.ExtractToFile(extracted, true);
             }
             else File.Copy(download, extracted, true);
@@ -144,14 +134,14 @@ public sealed class AmigaCoreReleaseService
         using var stream = File.OpenRead(path);
         using var reader = new BinaryReader(stream);
         if (stream.Length < 0x40 || reader.ReadUInt16() != 0x5A4D)
-            throw new InvalidDataException("The downloaded Amiga core is not a PE file.");
+            throw new InvalidDataException(AmigaCoreReleaseServiceConstants.TheDownloadedAmigaCoreIsNotAPEFile);
         stream.Position = 0x3c;
         var peOffset = reader.ReadInt32();
         if (peOffset < 0x40 || peOffset > stream.Length - 6)
-            throw new InvalidDataException("The downloaded Amiga core has an invalid PE header.");
+            throw new InvalidDataException(AmigaCoreReleaseServiceConstants.TheDownloadedAmigaCoreHasAnInvalidPEHeader);
         stream.Position = peOffset;
         if (reader.ReadUInt32() != 0x00004550 || reader.ReadUInt16() != 0x8664)
-            throw new InvalidDataException("The downloaded Amiga core is not a Windows x64 library.");
+            throw new InvalidDataException(AmigaCoreReleaseServiceConstants.TheDownloadedAmigaCoreIsNotAWindowsX64Library);
     }
 
     private static string Hash(string path)

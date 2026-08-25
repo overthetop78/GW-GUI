@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation.Amiga.Cores;
+namespace GWGUI.Emulation.Amiga.Constants;
 
 internal static class AmigaCoreHostConstants
 {

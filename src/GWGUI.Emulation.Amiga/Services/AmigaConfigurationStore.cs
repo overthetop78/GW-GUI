@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace GWGUI.Emulation.Amiga;
+namespace GWGUI.Emulation.Amiga.Services;
 
 public sealed class AmigaConfigurationStore
 {
@@ -19,8 +19,8 @@ public sealed class AmigaConfigurationStore
         Directory.CreateDirectory(_directory);
         var configurations = new List<AmigaMachineConfiguration>();
         var paths = Directory.EnumerateDirectories(_directory)
-            .Select(directory => Path.Combine(directory, "machine.json"))
-            .Concat(Directory.EnumerateFiles(_directory, "*.json"))
+            .Select(directory => Path.Combine(directory, AmigaConfigurationStoreConstants.MachineJson))
+            .Concat(Directory.EnumerateFiles(_directory, AmigaConfigurationStoreConstants.Json))
             .Where(File.Exists)
             .Order(StringComparer.OrdinalIgnoreCase);
         foreach (var path in paths)
@@ -41,10 +41,10 @@ public sealed class AmigaConfigurationStore
     public async Task SaveAsync(AmigaMachineConfiguration configuration, CancellationToken cancellationToken = default)
     {
         configuration = configuration.EnsureId() with { SchemaVersion = 3 };
-        var machineDirectory = Path.Combine(_directory, configuration.Id.ToString("N"));
+        var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(AmigaConfigurationStoreConstants.N));
         Directory.CreateDirectory(machineDirectory);
-        var target = Path.Combine(machineDirectory, "machine.json");
-        var temporary = target + ".tmp";
+        var target = Path.Combine(machineDirectory, AmigaConfigurationStoreConstants.MachineJson);
+        var temporary = target + AmigaConfigurationStoreConstants.Tmp;
         await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, 4096, true))
             await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken);
         File.Move(temporary, target, true);
@@ -52,7 +52,7 @@ public sealed class AmigaConfigurationStore
 
     public void Delete(Guid id)
     {
-        var target = Path.Combine(_directory, id.ToString("N"));
+        var target = Path.Combine(_directory, id.ToString(AmigaConfigurationStoreConstants.N));
         if (Directory.Exists(target)) Directory.Delete(target, true);
         var legacy = Path.Combine(_directory, $"{id:N}.json");
         if (File.Exists(legacy)) File.Delete(legacy);
@@ -84,7 +84,7 @@ public sealed class AmigaConfigurationStore
         var fullPath = Path.GetFullPath(path);
         var relative = Path.GetRelativePath(_pathBase, fullPath);
         if (Path.IsPathFullyQualified(relative)) return fullPath;
-        if (relative != ".." && !relative.StartsWith(".." + Path.DirectorySeparatorChar, StringComparison.Ordinal))
+        if (relative != AmigaConfigurationStoreConstants.Value && !relative.StartsWith(AmigaConfigurationStoreConstants.Value + Path.DirectorySeparatorChar, StringComparison.Ordinal))
             return relative.Replace(Path.DirectorySeparatorChar, '/');
         return fullPath;
     }

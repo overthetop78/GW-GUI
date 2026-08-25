@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation.Amiga;
+namespace GWGUI.Emulation.Amiga.Contracts;
 
 public sealed record AmigaInputConfiguration(
     IReadOnlyDictionary<string, EmulationKey>? KeyboardMappings = null,

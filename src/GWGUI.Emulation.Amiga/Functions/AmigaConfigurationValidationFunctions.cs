@@ -1,10 +1,10 @@
 using System.Text;
 
-namespace GWGUI.Emulation.Amiga;
+namespace GWGUI.Emulation.Amiga.Functions;
 
 internal static class AmigaConfigurationValidationFunctions
 {
-    private const string EncryptedKickstartHeader = "AMIROMTYPE1";
+    private const string EncryptedKickstartHeader = AmigaConfigurationValidationFunctionsConstants.AMIROMTYPE1;
 
     internal static void ValidateForSave(AmigaMachineConfiguration configuration)
     {

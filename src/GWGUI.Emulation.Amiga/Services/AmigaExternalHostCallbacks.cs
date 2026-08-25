@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Collections.Concurrent;
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Amiga.Cores;
+namespace GWGUI.Emulation.Amiga.Services;
 
 internal sealed class AmigaExternalHostCallbacks : IDisposable
 {
@@ -116,7 +116,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     internal void SetOption(string key, string value)
     {
         if (!OptionCatalog.Any(option => option.Key.Equals(key, StringComparison.Ordinal)))
-            throw new ArgumentOutOfRangeException(nameof(key), key, "Unknown Amiga core option.");
+            throw new ArgumentOutOfRangeException(nameof(key), key, AmigaExternalHostCallbacksConstants.UnknownAmigaCoreOption);
         var option = OptionCatalog.First(item => item.Key.Equals(key, StringComparison.Ordinal));
         if (option.Values.Count > 0 && !option.Values.Any(item => item.Value.Equals(value, StringComparison.Ordinal)))
             throw new ArgumentOutOfRangeException(nameof(value), value, $"Invalid value for Amiga option {key}.");
@@ -346,7 +346,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
     {
         foreach (var key in _configuredOptionKeys)
         {
-            if (key.Equals("puae_kickstart", StringComparison.Ordinal)) continue;
+            if (key.Equals(AmigaExternalHostCallbacksConstants.OptionKickstart, StringComparison.Ordinal)) continue;
             var configuredValue = _options[key];
             var option = OptionCatalog.FirstOrDefault(item => item.Key.Equals(key, StringComparison.Ordinal));
             if (option is null || option.Values.Count == 0) continue;
@@ -360,7 +360,7 @@ internal sealed class AmigaExternalHostCallbacks : IDisposable
         if (data == 0) return false;
         var textPointer = Marshal.ReadIntPtr(data);
         var message = textPointer == 0 ? null : Marshal.PtrToStringUTF8(textPointer);
-        if (!string.IsNullOrWhiteSpace(message)) AddDiagnostic($"[message{(extended ? "-extended" : string.Empty)}] {message}");
+        if (!string.IsNullOrWhiteSpace(message)) AddDiagnostic($"[message{(extended ? AmigaExternalHostCallbacksConstants.Extended : string.Empty)}] {message}");
         return true;
     }
 

@@ -2,26 +2,26 @@ using System.Runtime.InteropServices;
 using GWGUI.Emulation;
 using System.Security.Cryptography;
 
-namespace GWGUI.Emulation.Amiga.Cores;
+namespace GWGUI.Emulation.Amiga.Services;
 
 internal sealed class AmigaExternalCore : IAmigaCore
 {
     private static readonly IReadOnlyDictionary<string, string> KnownKickstartNames =
         new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
-            ["0b8442c311caa54fb12ec88eaaa9facf"] = "kick31034.A1000",
-            ["1fa1f93d3d7b51271dd1356b8b2b45a9"] = "kick32034.A1000",
-            ["85ad74194e87c08904327de1a9443b7a"] = "kick33180.A500",
-            ["82a21c1890cae844b3df741f2762d48d"] = "kick34005.A500",
-            ["dc10d7bdd1b6f450773dfb558477c230"] = "kick37175.A500",
-            ["465646c9b6729f77eea5314d1f057951"] = "kick37350.A600",
-            ["e40a5dfb3d017ba8779faba30cbd1c8e"] = "kick40063.A600",
-            ["b7cc148386aa631136f510cd29e42fc3"] = "kick39106.A1200",
-            ["646773759326fbac3b2311fd8c8793ee"] = "kick40068.A1200",
-            ["9b8bdd5a3fd32c2a5a6f5b1aefc799a5"] = "kick39106.A4000",
-            ["9bdedde6a4f33555b4a270c8ca53297d"] = "kick40068.A4000",
-            ["f2f241bf094168cfb9e7805dc2856433"] = "kick40060.CD32",
-            ["5f8924d013dd57a89cf349f4cdedc6b1"] = "kick40060.CD32"
+            [AmigaExternalCoreConstants.Hash0B8442C311CA] = AmigaExternalCoreConstants.Kick31034A1000,
+            [AmigaExternalCoreConstants.Hash1FA1F93D3D7B] = AmigaExternalCoreConstants.Kick32034A1000,
+            [AmigaExternalCoreConstants.Hash85AD74194E87] = AmigaExternalCoreConstants.Kick33180A500,
+            [AmigaExternalCoreConstants.Hash82A21C1890CA] = AmigaExternalCoreConstants.Kick34005A500,
+            [AmigaExternalCoreConstants.HashDC10D7BDD1B6] = AmigaExternalCoreConstants.Kick37175A500,
+            [AmigaExternalCoreConstants.Hash465646C9B672] = AmigaExternalCoreConstants.Kick37350A600,
+            [AmigaExternalCoreConstants.HashE40A5DFB3D01] = AmigaExternalCoreConstants.Kick40063A600,
+            [AmigaExternalCoreConstants.HashB7CC148386AA] = AmigaExternalCoreConstants.Kick39106A1200,
+            [AmigaExternalCoreConstants.Hash646773759326] = AmigaExternalCoreConstants.Kick40068A1200,
+            [AmigaExternalCoreConstants.Hash9B8BDD5A3FD3] = AmigaExternalCoreConstants.Kick39106A4000,
+            [AmigaExternalCoreConstants.Hash9BDEDDE6A4F3] = AmigaExternalCoreConstants.Kick40068A4000,
+            [AmigaExternalCoreConstants.HashF2F241BF0941] = AmigaExternalCoreConstants.Kick40060CD32,
+            [AmigaExternalCoreConstants.Hash5F8924D013DD] = AmigaExternalCoreConstants.Kick40060CD32
         };
     private readonly string _corePath;
     private ExternalCoreLibrary? _library;
@@ -61,41 +61,41 @@ internal sealed class AmigaExternalCore : IAmigaCore
     public int SampleRate => _host?.SampleRate ?? 44100;
     public int DiskCount => _host?.DiskControl.ImageCount ?? 0;
     public int CurrentDiskIndex => _host?.DiskControl.CurrentIndex ?? -1;
-    internal uint Region => (_getRegion ?? throw new InvalidOperationException("The Amiga core is not initialized."))();
+    internal uint Region => (_getRegion ?? throw new InvalidOperationException(AmigaExternalCoreConstants.TheAmigaCoreIsNotInitialized))();
     internal nuint GetMemorySize(uint id) =>
-        (_getMemorySize ?? throw new InvalidOperationException("The Amiga core is not initialized."))(id);
+        (_getMemorySize ?? throw new InvalidOperationException(AmigaExternalCoreConstants.TheAmigaCoreIsNotInitialized))(id);
     internal nint GetMemoryData(uint id) =>
-        (_getMemoryData ?? throw new InvalidOperationException("The Amiga core is not initialized."))(id);
+        (_getMemoryData ?? throw new InvalidOperationException(AmigaExternalCoreConstants.TheAmigaCoreIsNotInitialized))(id);
 
     public void Initialize(AmigaMachineConfiguration configuration, string sessionDirectory, string? saveDirectory = null)
     {
-        _conversionDirectory = Path.Combine(sessionDirectory, "ConvertedMedia");
+        _conversionDirectory = Path.Combine(sessionDirectory, AmigaExternalCoreConstants.ConvertedMedia);
         ArgumentException.ThrowIfNullOrWhiteSpace(configuration.KickstartPath);
         if (!File.Exists(configuration.KickstartPath))
-            throw new FileNotFoundException("The configured Amiga Kickstart was not found.", configuration.KickstartPath);
+            throw new FileNotFoundException(AmigaExternalCoreConstants.TheConfiguredAmigaKickstartWasNotFound, configuration.KickstartPath);
         var media = ResolveConfiguredMedia(configuration);
         foreach (var item in media)
             if (!File.Exists(item.Path) && !Directory.Exists(item.Path))
-                throw new FileNotFoundException("The configured Amiga media image or directory was not found.", item.Path);
+                throw new FileNotFoundException(AmigaExternalCoreConstants.TheConfiguredAmigaMediaImageOrDirectoryWasNotFound, item.Path);
         if (!string.IsNullOrWhiteSpace(configuration.ExtendedRomPath) && !File.Exists(configuration.ExtendedRomPath))
-            throw new FileNotFoundException("The configured Amiga extended ROM was not found.", configuration.ExtendedRomPath);
+            throw new FileNotFoundException(AmigaExternalCoreConstants.TheConfiguredAmigaExtendedROMWasNotFound, configuration.ExtendedRomPath);
         if (!string.IsNullOrWhiteSpace(configuration.RomKeyPath) && !File.Exists(configuration.RomKeyPath))
-            throw new FileNotFoundException("The configured Amiga ROM key was not found.", configuration.RomKeyPath);
+            throw new FileNotFoundException(AmigaExternalCoreConstants.TheConfiguredAmigaROMKeyWasNotFound, configuration.RomKeyPath);
 
         var sourceCorePath = ResolveCorePath(_corePath);
         using (var coreStream = File.OpenRead(sourceCorePath)) CoreSha256 = Convert.ToHexString(SHA256.HashData(coreStream));
-        var systemDirectory = Path.Combine(sessionDirectory, "System");
+        var systemDirectory = Path.Combine(sessionDirectory, AmigaExternalCoreConstants.System);
         var contentPath = PrepareContentPath(configuration, sessionDirectory, media);
         var contentDirectory = contentPath is null
-            ? Path.Combine(sessionDirectory, "Content")
+            ? Path.Combine(sessionDirectory, AmigaExternalCoreConstants.Content)
             : Path.GetDirectoryName(contentPath)!;
-        saveDirectory = Path.GetFullPath(saveDirectory ?? Path.Combine(sessionDirectory, "Saves"));
+        saveDirectory = Path.GetFullPath(saveDirectory ?? Path.Combine(sessionDirectory, AmigaExternalCoreConstants.Saves));
         Directory.CreateDirectory(systemDirectory);
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);
-        var isolatedCoreDirectory = Path.Combine(sessionDirectory, "Core");
+        var isolatedCoreDirectory = Path.Combine(sessionDirectory, AmigaExternalCoreConstants.Core);
         Directory.CreateDirectory(isolatedCoreDirectory);
-        var corePath = Path.Combine(isolatedCoreDirectory, "puae_libretro.dll");
+        var corePath = Path.Combine(isolatedCoreDirectory, AmigaExternalCoreConstants.OptionLibretroDll);
         File.Copy(sourceCorePath, corePath, true);
 
         // PUAE discovers firmware in the frontend system directory. The
@@ -111,33 +111,33 @@ internal sealed class AmigaExternalCore : IAmigaCore
             File.Copy(configuration.ExtendedRomPath, Path.Combine(systemDirectory, extendedName), true);
         }
         if (!string.IsNullOrWhiteSpace(configuration.RomKeyPath))
-            File.Copy(configuration.RomKeyPath, Path.Combine(systemDirectory, "rom.key"), true);
+            File.Copy(configuration.RomKeyPath, Path.Combine(systemDirectory, AmigaExternalCoreConstants.RomKey), true);
 
         var backendModel = AmigaModelCatalog.BackendModelFor(configuration.Model);
         var options = new Dictionary<string, string>(configuration.Options ?? new Dictionary<string, string>(), StringComparer.Ordinal)
         {
-            ["puae_model"] = backendModel,
-            ["puae_kickstart"] = "auto",
-            ["puae_mapper_select"] = "SWITCH_JOYMOUSE"
+            [AmigaExternalCoreConstants.OptionModel] = backendModel,
+            [AmigaExternalCoreConstants.OptionKickstart] = AmigaExternalCoreConstants.Auto,
+            [AmigaExternalCoreConstants.OptionMapperSelect] = AmigaExternalCoreConstants.SWITCHJOYMOUSE
         };
         var floppyCount = media.Count(item => item.Category == AmigaMediaCategory.Floppy);
         if (floppyCount > 1)
-            options["puae_floppy_multidrive"] = configuration.MountFloppiesInSeparateDrives ? "enabled" : "disabled";
+            options[AmigaExternalCoreConstants.OptionFloppyMultidrive] = configuration.MountFloppiesInSeparateDrives ? AmigaExternalCoreConstants.Enabled : AmigaExternalCoreConstants.Disabled;
         if (floppyCount > 0 && media.Where(item => item.Category == AmigaMediaCategory.Floppy).All(item => item.IsReadOnly))
-            options["puae_floppy_write_protection"] = "enabled";
+            options[AmigaExternalCoreConstants.OptionFloppyWriteProtection] = AmigaExternalCoreConstants.Enabled;
         _host = new AmigaExternalHostCallbacks(systemDirectory, contentDirectory, saveDirectory, options);
 
         try
         {
             _library = new ExternalCoreLibrary(corePath);
-            var apiVersion = Export<ExternalCoreApi.GetApiVersion>("retro_api_version")();
+            var apiVersion = Export<ExternalCoreApi.GetApiVersion>(AmigaExternalCoreConstants.RetroApiVersion)();
             if (apiVersion != 1) throw new NotSupportedException($"The Amiga core uses unsupported API version {apiVersion}.");
-            Export<ExternalCoreApi.GetSystemInfo>("retro_get_system_info")(out var systemInfo);
+            Export<ExternalCoreApi.GetSystemInfo>(AmigaExternalCoreConstants.RetroGetSystemInfo)(out var systemInfo);
             var libraryName = Marshal.PtrToStringUTF8(systemInfo.LibraryName);
-            if (!string.Equals(libraryName, "PUAE", StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(libraryName, AmigaExternalCoreConstants.PUAE, StringComparison.OrdinalIgnoreCase))
                 throw new InvalidDataException($"The selected native library identifies itself as '{libraryName}', not PUAE.");
             if (!systemInfo.NeedFullPath)
-                throw new InvalidDataException("The Amiga core does not request full content paths as required by this host.");
+                throw new InvalidDataException(AmigaExternalCoreConstants.TheAmigaCoreDoesNotRequestFullContentPathsAsRequiredByThisHost);
             CoreName = libraryName!;
             CoreVersion = Marshal.PtrToStringUTF8(systemInfo.LibraryVersion) ?? string.Empty;
             SupportedContentExtensions = (Marshal.PtrToStringUTF8(systemInfo.ValidExtensions) ?? string.Empty)
@@ -149,33 +149,33 @@ internal sealed class AmigaExternalCore : IAmigaCore
                 var extension = Path.GetExtension(contentPath).TrimStart('.');
                 if (extension.Length == 0 || !SupportedContentExtensions.Contains(extension))
                 {
-                    if (!extension.Equals("scp", StringComparison.OrdinalIgnoreCase))
+                    if (!extension.Equals(AmigaExternalCoreConstants.Scp, StringComparison.OrdinalIgnoreCase))
                         throw new InvalidDataException($"The Amiga core does not support '.{extension}' content.");
                     contentPath = ConvertScp(contentPath);
                 }
             }
-            Export<ExternalCoreApi.SetEnvironment>("retro_set_environment")(_host.Environment);
-            Export<ExternalCoreApi.SetVideo>("retro_set_video_refresh")(_host.Video);
-            Export<ExternalCoreApi.SetAudioSample>("retro_set_audio_sample")(_host.AudioSample);
-            Export<ExternalCoreApi.SetAudioBatch>("retro_set_audio_sample_batch")(_host.AudioBatch);
-            Export<ExternalCoreApi.SetInputPoll>("retro_set_input_poll")(_host.InputPoll);
-            Export<ExternalCoreApi.SetInputState>("retro_set_input_state")(_host.InputState);
+            Export<ExternalCoreApi.SetEnvironment>(AmigaExternalCoreConstants.RetroSetEnvironment)(_host.Environment);
+            Export<ExternalCoreApi.SetVideo>(AmigaExternalCoreConstants.RetroSetVideoRefresh)(_host.Video);
+            Export<ExternalCoreApi.SetAudioSample>(AmigaExternalCoreConstants.RetroSetAudioSample)(_host.AudioSample);
+            Export<ExternalCoreApi.SetAudioBatch>(AmigaExternalCoreConstants.RetroSetAudioSampleBatch)(_host.AudioBatch);
+            Export<ExternalCoreApi.SetInputPoll>(AmigaExternalCoreConstants.RetroSetInputPoll)(_host.InputPoll);
+            Export<ExternalCoreApi.SetInputState>(AmigaExternalCoreConstants.RetroSetInputState)(_host.InputState);
 
-            _deinitialize = Export<ExternalCoreApi.VoidCall>("retro_deinit");
-            _unloadGame = Export<ExternalCoreApi.VoidCall>("retro_unload_game");
-            _run = Export<ExternalCoreApi.VoidCall>("retro_run");
-            _reset = Export<ExternalCoreApi.VoidCall>("retro_reset");
-            _getSerializedSize = Export<ExternalCoreApi.GetSerializedSize>("retro_serialize_size");
-            _serialize = Export<ExternalCoreApi.Serialize>("retro_serialize");
-            _unserialize = Export<ExternalCoreApi.Serialize>("retro_unserialize");
-            _getRegion = Export<ExternalCoreApi.GetRegion>("retro_get_region");
-            _getMemoryData = Export<ExternalCoreApi.GetMemoryData>("retro_get_memory_data");
-            _getMemorySize = Export<ExternalCoreApi.GetMemorySize>("retro_get_memory_size");
-            Export<ExternalCoreApi.VoidCall>("retro_init")();
+            _deinitialize = Export<ExternalCoreApi.VoidCall>(AmigaExternalCoreConstants.RetroDeinit);
+            _unloadGame = Export<ExternalCoreApi.VoidCall>(AmigaExternalCoreConstants.RetroUnloadGame);
+            _run = Export<ExternalCoreApi.VoidCall>(AmigaExternalCoreConstants.RetroRun);
+            _reset = Export<ExternalCoreApi.VoidCall>(AmigaExternalCoreConstants.RetroReset);
+            _getSerializedSize = Export<ExternalCoreApi.GetSerializedSize>(AmigaExternalCoreConstants.RetroSerializeSize);
+            _serialize = Export<ExternalCoreApi.Serialize>(AmigaExternalCoreConstants.RetroSerialize);
+            _unserialize = Export<ExternalCoreApi.Serialize>(AmigaExternalCoreConstants.RetroUnserialize);
+            _getRegion = Export<ExternalCoreApi.GetRegion>(AmigaExternalCoreConstants.RetroGetRegion);
+            _getMemoryData = Export<ExternalCoreApi.GetMemoryData>(AmigaExternalCoreConstants.RetroGetMemoryData);
+            _getMemorySize = Export<ExternalCoreApi.GetMemorySize>(AmigaExternalCoreConstants.RetroGetMemorySize);
+            Export<ExternalCoreApi.VoidCall>(AmigaExternalCoreConstants.RetroInit)();
             _initialized = true;
             _host.ValidateConfiguredOptions();
-            var setController = Export<ExternalCoreApi.SetControllerPortDevice>("retro_set_controller_port_device");
-            var defaultController = configuration.Model.Equals("CD32", StringComparison.OrdinalIgnoreCase)
+            var setController = Export<ExternalCoreApi.SetControllerPortDevice>(AmigaExternalCoreConstants.RetroSetControllerPortDevice);
+            var defaultController = configuration.Model.Equals(AmigaExternalCoreConstants.CD32, StringComparison.OrdinalIgnoreCase)
                 ? AmigaControllerType.Cd32Pad
                 : AmigaControllerType.Joystick;
             for (var port = 0; port < 4; port++)
@@ -190,11 +190,11 @@ internal sealed class AmigaExternalCore : IAmigaCore
                 setController((uint)port, ControllerDevice(_host.ControllerPorts, port, controller));
             }
 
-            ExternalCoreApi.LoadGame loadGame = Export<ExternalCoreApi.LoadGame>("retro_load_game");
+            ExternalCoreApi.LoadGame loadGame = Export<ExternalCoreApi.LoadGame>(AmigaExternalCoreConstants.RetroLoadGame);
             if (contentPath is null)
             {
                 if (!_host.SupportsNoGame)
-                    throw new InvalidOperationException("The Amiga core does not support starting without media.");
+                    throw new InvalidOperationException(AmigaExternalCoreConstants.TheAmigaCoreDoesNotSupportStartingWithoutMedia);
                 _gameLoaded = loadGame(0);
             }
             else
@@ -204,8 +204,8 @@ internal sealed class AmigaExternalCore : IAmigaCore
                     _gameLoaded = LoadGame(loadGame, ConvertScp(contentPath));
             }
 
-            if (!_gameLoaded) throw new InvalidOperationException("The Amiga core refused the configured content.");
-            Export<ExternalCoreApi.GetSystemAvInfo>("retro_get_system_av_info")(out var av);
+            if (!_gameLoaded) throw new InvalidOperationException(AmigaExternalCoreConstants.TheAmigaCoreRefusedTheConfiguredContent);
+            Export<ExternalCoreApi.GetSystemAvInfo>(AmigaExternalCoreConstants.RetroGetSystemAvInfo)(out var av);
             _host.ApplyInitialAvInfo(av);
         }
         catch
@@ -215,7 +215,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
         }
     }
 
-    public void RunFrame() => (_run ?? throw new InvalidOperationException("The Amiga core is not initialized."))();
+    public void RunFrame() => (_run ?? throw new InvalidOperationException(AmigaExternalCoreConstants.TheAmigaCoreIsNotInitialized))();
 
     internal static string ResolveKickstartFileName(string model, string sourcePath)
     {
@@ -236,42 +236,42 @@ internal sealed class AmigaExternalCore : IAmigaCore
 
         return model.ToUpperInvariant() switch
         {
-            "A1000" => "kick32034.A1000",
-            "A500PLUS" => "kick37175.A500",
-            "A600" => "kick40063.A600",
-            "A1200" or "A1200OG" => "kick40068.A1200",
-            "A3000" or "A4000" => "kick40068.A4000",
-            "CDTV" => "kick34005.A500",
-            "CD32" or "CD32FR" => "kick40060.CD32",
-            _ => "kick34005.A500"
+            AmigaExternalCoreConstants.A1000 => AmigaExternalCoreConstants.Kick32034A1000,
+            AmigaExternalCoreConstants.A500PLUS => AmigaExternalCoreConstants.Kick37175A500,
+            AmigaExternalCoreConstants.A600 => AmigaExternalCoreConstants.Kick40063A600,
+            AmigaExternalCoreConstants.A1200 or AmigaExternalCoreConstants.A1200OG => AmigaExternalCoreConstants.Kick40068A1200,
+            AmigaExternalCoreConstants.A3000 or AmigaExternalCoreConstants.A4000 => AmigaExternalCoreConstants.Kick40068A4000,
+            AmigaExternalCoreConstants.CDTV => AmigaExternalCoreConstants.Kick34005A500,
+            AmigaExternalCoreConstants.CD32 or AmigaExternalCoreConstants.CD32FR => AmigaExternalCoreConstants.Kick40060CD32,
+            _ => AmigaExternalCoreConstants.Kick34005A500
         };
     }
 
     internal static string ResolveExtendedRomFileName(string model, string sourcePath) =>
         model.ToUpperInvariant() switch
         {
-            "CD32" or "CD32FR" => "kick40060.CD32.ext",
-            "CDTV" => "kick34005.CDTV",
+            AmigaExternalCoreConstants.CD32 or AmigaExternalCoreConstants.CD32FR => AmigaExternalCoreConstants.Kick40060CD32Ext,
+            AmigaExternalCoreConstants.CDTV => AmigaExternalCoreConstants.Kick34005CDTV,
             _ => Path.GetFileName(sourcePath)
         };
 
     private static string ResolveKickstartSuffix(string model, int version, int revision) => (version, revision) switch
     {
-        (31 or 32, 34) => "A1000",
-        (33, 180) or (34, 5) or (37, 175) => "A500",
-        (37, 350) or (40, 63) => "A600",
-        (40, 60) => "CD32",
-        (39, 106) or (40, 68) when model.Equals("A3000", StringComparison.OrdinalIgnoreCase)
-            || model.Equals("A4000", StringComparison.OrdinalIgnoreCase) => "A4000",
-        (39, 106) or (40, 68) => "A1200",
+        (31 or 32, 34) => AmigaExternalCoreConstants.A1000,
+        (33, 180) or (34, 5) or (37, 175) => AmigaExternalCoreConstants.A500,
+        (37, 350) or (40, 63) => AmigaExternalCoreConstants.A600,
+        (40, 60) => AmigaExternalCoreConstants.CD32,
+        (39, 106) or (40, 68) when model.Equals(AmigaExternalCoreConstants.A3000, StringComparison.OrdinalIgnoreCase)
+            || model.Equals(AmigaExternalCoreConstants.A4000, StringComparison.OrdinalIgnoreCase) => AmigaExternalCoreConstants.A4000,
+        (39, 106) or (40, 68) => AmigaExternalCoreConstants.A1200,
         _ => model.ToUpperInvariant() switch
         {
-            "A1000" => "A1000",
-            "A600" => "A600",
-            "A1200" or "A1200OG" => "A1200",
-            "A3000" or "A4000" => "A4000",
-            "CD32" or "CD32FR" => "CD32",
-            _ => "A500"
+            AmigaExternalCoreConstants.A1000 => AmigaExternalCoreConstants.A1000,
+            AmigaExternalCoreConstants.A600 => AmigaExternalCoreConstants.A600,
+            AmigaExternalCoreConstants.A1200 or AmigaExternalCoreConstants.A1200OG => AmigaExternalCoreConstants.A1200,
+            AmigaExternalCoreConstants.A3000 or AmigaExternalCoreConstants.A4000 => AmigaExternalCoreConstants.A4000,
+            AmigaExternalCoreConstants.CD32 or AmigaExternalCoreConstants.CD32FR => AmigaExternalCoreConstants.CD32,
+            _ => AmigaExternalCoreConstants.A500
         }
     };
 
@@ -291,16 +291,16 @@ internal sealed class AmigaExternalCore : IAmigaCore
         var media = resolvedMedia ?? ResolveConfiguredMedia(configuration);
         if (media.Count == 0) return null;
         if (media.Count == 1) return Path.GetFullPath(media[0].Path);
-        if (media.Count > 64) throw new ArgumentOutOfRangeException(nameof(configuration), "An Amiga playlist cannot contain more than 64 media images.");
-        var contentDirectory = Path.Combine(sessionDirectory, "Content");
+        if (media.Count > 64) throw new ArgumentOutOfRangeException(nameof(configuration), AmigaExternalCoreConstants.AnAmigaPlaylistCannotContainMoreThan64MediaImages);
+        var contentDirectory = Path.Combine(sessionDirectory, AmigaExternalCoreConstants.Content);
         Directory.CreateDirectory(contentDirectory);
         var multidrive = configuration.MountFloppiesInSeparateDrives && media.All(item => item.Category == AmigaMediaCategory.Floppy);
         var playlist = Path.Combine(contentDirectory,
-            multidrive ? "GW GUI media (MD).m3u" : "GW GUI media.m3u");
+            multidrive ? AmigaExternalCoreConstants.GWGUIMediaMDM3u : AmigaExternalCoreConstants.GWGUIMediaM3u);
         var lines = media.Select(item =>
         {
             var label = item.Label;
-            if (label?.IndexOfAny(['|', '\r', '\n']) >= 0) throw new InvalidDataException("An Amiga disk label cannot contain a pipe or a line break.");
+            if (label?.IndexOfAny(['|', '\r', '\n']) >= 0) throw new InvalidDataException(AmigaExternalCoreConstants.AnAmigaDiskLabelCannotContainAPipeOrALineBreak);
             var fullPath = Path.GetFullPath(item.Path);
             return string.IsNullOrWhiteSpace(label) ? fullPath : $"{fullPath}|{label}";
         });
@@ -312,27 +312,27 @@ internal sealed class AmigaExternalCore : IAmigaCore
         ? AmigaMediaCategory.HardDrive
         : Path.GetExtension(path).ToLowerInvariant() switch
     {
-        ".hdf" or ".hdz" => AmigaMediaCategory.HardDrive,
-        ".cue" or ".ccd" or ".chd" or ".nrg" or ".mds" or ".iso" => AmigaMediaCategory.CompactDisc,
-        ".lha" or ".slave" or ".info" => AmigaMediaCategory.WhdLoad,
-        ".uae" => AmigaMediaCategory.Configuration,
+        AmigaExternalCoreConstants.Hdf or AmigaExternalCoreConstants.Hdz => AmigaMediaCategory.HardDrive,
+        AmigaExternalCoreConstants.Cue or AmigaExternalCoreConstants.Ccd or AmigaExternalCoreConstants.Chd or AmigaExternalCoreConstants.Nrg or AmigaExternalCoreConstants.Mds or AmigaExternalCoreConstants.Iso => AmigaMediaCategory.CompactDisc,
+        AmigaExternalCoreConstants.Lha or AmigaExternalCoreConstants.Slave or AmigaExternalCoreConstants.Info => AmigaMediaCategory.WhdLoad,
+        AmigaExternalCoreConstants.Uae => AmigaMediaCategory.Configuration,
             _ => AmigaMediaCategory.Floppy
         };
-    public void HardReset() => (_reset ?? throw new InvalidOperationException("The Amiga core is not initialized."))();
+    public void HardReset() => (_reset ?? throw new InvalidOperationException(AmigaExternalCoreConstants.TheAmigaCoreIsNotInitialized))();
     public void SetInput(EmulationInputSnapshot snapshot)
     {
         if (_host is not null) _host.Input = snapshot;
     }
     public void InsertMedia(string path)
     {
-        var diskControl = (_host ?? throw new InvalidOperationException("The Amiga core is not initialized."))
+        var diskControl = (_host ?? throw new InvalidOperationException(AmigaExternalCoreConstants.TheAmigaCoreIsNotInitialized))
             .DiskControl;
         try { diskControl.Insert(path); }
         catch when (IsScp(path)) { diskControl.Insert(ConvertScp(path)); }
     }
-    public void EjectMedia() => (_host ?? throw new InvalidOperationException("The Amiga core is not initialized."))
+    public void EjectMedia() => (_host ?? throw new InvalidOperationException(AmigaExternalCoreConstants.TheAmigaCoreIsNotInitialized))
         .DiskControl.Eject();
-    public void SelectDisk(int index) => (_host ?? throw new InvalidOperationException("The Amiga core is not initialized."))
+    public void SelectDisk(int index) => (_host ?? throw new InvalidOperationException(AmigaExternalCoreConstants.TheAmigaCoreIsNotInitialized))
         .DiskControl.Select(index);
 
     private static bool LoadGame(ExternalCoreApi.LoadGame loadGame, string path)
@@ -355,18 +355,18 @@ internal sealed class AmigaExternalCore : IAmigaCore
         .GetAwaiter().GetResult();
 
     private static bool IsScp(string path) =>
-        Path.GetExtension(path).Equals(".scp", StringComparison.OrdinalIgnoreCase);
+        Path.GetExtension(path).Equals(AmigaExternalCoreConstants.Scp2, StringComparison.OrdinalIgnoreCase);
 
     public byte[] SaveState()
     {
-        var size = (_getSerializedSize ?? throw new InvalidOperationException("The Amiga core is not initialized."))();
+        var size = (_getSerializedSize ?? throw new InvalidOperationException(AmigaExternalCoreConstants.TheAmigaCoreIsNotInitialized))();
         if (size == 0 || size > int.MaxValue) throw new InvalidOperationException($"The Amiga core returned invalid state size {size}.");
         var state = new byte[(int)size];
         var buffer = Marshal.AllocHGlobal(state.Length);
         try
         {
             if (!_serialize!(buffer, size))
-                throw new InvalidOperationException("The Amiga state could not be saved.");
+                throw new InvalidOperationException(AmigaExternalCoreConstants.TheAmigaStateCouldNotBeSaved);
             Marshal.Copy(buffer, state, 0, state.Length);
         }
         finally
@@ -378,14 +378,14 @@ internal sealed class AmigaExternalCore : IAmigaCore
 
     public void LoadState(ReadOnlySpan<byte> state)
     {
-        if (state.IsEmpty) throw new ArgumentException("The Amiga state is empty.", nameof(state));
+        if (state.IsEmpty) throw new ArgumentException(AmigaExternalCoreConstants.TheAmigaStateIsEmpty, nameof(state));
         var bytes = state.ToArray();
         var buffer = Marshal.AllocHGlobal(bytes.Length);
         try
         {
             Marshal.Copy(bytes, 0, buffer, bytes.Length);
             if (!_unserialize!(buffer, (nuint)bytes.Length))
-                throw new InvalidOperationException("The Amiga state could not be restored.");
+                throw new InvalidOperationException(AmigaExternalCoreConstants.TheAmigaStateCouldNotBeRestored);
         }
         finally
         {
@@ -394,7 +394,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
     }
 
     public void SetOption(string key, string value) =>
-        (_host ?? throw new InvalidOperationException("The Amiga core is not initialized.")).SetOption(key, value);
+        (_host ?? throw new InvalidOperationException(AmigaExternalCoreConstants.TheAmigaCoreIsNotInitialized)).SetOption(key, value);
 
     public void Stop()
     {
@@ -403,7 +403,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
     }
 
     private T Export<T>(string name) where T : Delegate =>
-        (_library ?? throw new InvalidOperationException("The Amiga core is not loaded.")).Resolve<T>(name);
+        (_library ?? throw new InvalidOperationException(AmigaExternalCoreConstants.TheAmigaCoreIsNotLoaded)).Resolve<T>(name);
 
     internal static uint ControllerDevice(IReadOnlyList<IReadOnlyList<AmigaControllerDevice>> ports,
         int port, AmigaControllerType controller)
@@ -411,28 +411,28 @@ internal sealed class AmigaExternalCore : IAmigaCore
         if (controller == AmigaControllerType.None) return 0;
         var requestedName = controller switch
         {
-            AmigaControllerType.Automatic => "Automatic",
-            AmigaControllerType.RetroPad => "RetroPad",
-            AmigaControllerType.Cd32Pad => "CD32 Pad",
-            AmigaControllerType.AnalogJoystick => "Analog Joystick",
-            AmigaControllerType.Joystick => "Joystick",
-            AmigaControllerType.Keyboard => "Keyboard",
+            AmigaControllerType.Automatic => AmigaExternalCoreConstants.Automatic,
+            AmigaControllerType.RetroPad => AmigaExternalCoreConstants.RetroPad,
+            AmigaControllerType.Cd32Pad => AmigaExternalCoreConstants.CD32Pad,
+            AmigaControllerType.AnalogJoystick => AmigaExternalCoreConstants.AnalogJoystick,
+            AmigaControllerType.Joystick => AmigaExternalCoreConstants.Joystick,
+            AmigaControllerType.Keyboard => AmigaExternalCoreConstants.Keyboard,
             _ => throw new ArgumentOutOfRangeException(nameof(controller))
         };
         var devices = port < ports.Count ? ports[port] : [];
         var selected = devices.FirstOrDefault(device => device.Name.Equals(requestedName, StringComparison.OrdinalIgnoreCase));
         if (selected is not null) return selected.Id;
         if (controller == AmigaControllerType.Automatic)
-            return devices.FirstOrDefault(device => device.Name.Equals("RetroPad", StringComparison.OrdinalIgnoreCase))?.Id ?? 1;
+            return devices.FirstOrDefault(device => device.Name.Equals(AmigaExternalCoreConstants.RetroPad, StringComparison.OrdinalIgnoreCase))?.Id ?? 1;
         throw new InvalidDataException($"Controller '{requestedName}' is not supported on Amiga port {port + 1}.");
     }
 
     private static string ResolveCorePath(string configuredPath)
     {
         if (!Path.IsPathFullyQualified(configuredPath))
-            throw new ArgumentException("The Amiga core path must be absolute.", nameof(configuredPath));
+            throw new ArgumentException(AmigaExternalCoreConstants.TheAmigaCorePathMustBeAbsolute, nameof(configuredPath));
         if (!File.Exists(configuredPath))
-            throw new FileNotFoundException("AmigaCoreNotFound: the configured Amiga core was not found.", configuredPath);
+            throw new FileNotFoundException(AmigaExternalCoreConstants.AmigaCoreNotFoundTheConfiguredAmigaCoreWasNotFound, configuredPath);
         return configuredPath;
     }
 

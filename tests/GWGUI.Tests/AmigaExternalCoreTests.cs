@@ -1,7 +1,6 @@
 using GWGUI.App;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Amiga;
-using GWGUI.Emulation.Amiga.Cores;
 using System.IO;
 using System.Diagnostics;
 using System.Security.Cryptography;

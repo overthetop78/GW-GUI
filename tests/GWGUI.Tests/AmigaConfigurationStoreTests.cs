@@ -1,5 +1,4 @@
 using GWGUI.Emulation.Amiga;
-using GWGUI.Emulation.Amiga.Cores;
 using System.IO;
 
 namespace GWGUI.Tests;

@@ -1,8 +1,7 @@
 using GWGUI.Emulation;
-using GWGUI.Emulation.Amiga.Cores;
 using System.Collections.Concurrent;
 
-namespace GWGUI.Emulation.Amiga;
+namespace GWGUI.Emulation.Amiga.Services;
 
 internal sealed class AmigaMachine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput,
     IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime
@@ -293,16 +292,16 @@ internal sealed class AmigaMachine : IEmulatedMachine, IEmulationLifecycle, IEmu
             if (saved.Header.FormatVersion is < 1 or > 3 || saved.Header.Model != Configuration.Model
                 || saved.Header.CoreSha256 != _core.CoreSha256
                 || saved.Header.KickstartSha256 != AmigaStateStore.HashFile(Configuration.KickstartPath))
-                throw new InvalidDataException("The Amiga state does not match the running machine.");
+                throw new InvalidDataException(AmigaMachineConstants.TheAmigaStateDoesNotMatchTheRunningMachine);
             if (saved.Header.FormatVersion >= 2
                 && (saved.Header.ExtendedRomSha256 != HashOptionalFile(Configuration.ExtendedRomPath)
                     || saved.Header.RomKeySha256 != HashOptionalFile(Configuration.RomKeyPath)
                     || saved.Header.MediaSha256 != HashOptionalPath(_currentDiskPath)
                     || !OptionsEqual(saved.Header.Options, _currentOptions)))
-                throw new InvalidDataException("The Amiga state firmware, media or options do not match the running machine.");
+                throw new InvalidDataException(AmigaMachineConstants.TheAmigaStateFirmwareMediaOrOptionsDoNotMatchTheRunningMachine);
             if (saved.Header.FormatVersion >= 3
                 && !(saved.Header.MediaSha256s ?? []).SequenceEqual(_mediaPaths.Select(AmigaStateStore.HashPath), StringComparer.OrdinalIgnoreCase))
-                throw new InvalidDataException("The Amiga state media list does not match the running machine.");
+                throw new InvalidDataException(AmigaMachineConstants.TheAmigaStateMediaListDoesNotMatchTheRunningMachine);
             _core.LoadState(saved.State);
         }, cancellationToken);
 
@@ -322,7 +321,7 @@ internal sealed class AmigaMachine : IEmulatedMachine, IEmulationLifecycle, IEmu
     {
         cancellationToken.ThrowIfCancellationRequested();
         if (State is not EmulationMachineState.Running and not EmulationMachineState.Paused)
-            throw new InvalidOperationException("The Amiga machine must be running before changing a floppy.");
+            throw new InvalidOperationException(AmigaMachineConstants.TheAmigaMachineMustBeRunningBeforeChangingAFloppy);
         var completion = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
         _commands.Enqueue(new PendingCommand(action, completion));
         lock (_gate) Monitor.PulseAll(_gate);
@@ -396,7 +395,7 @@ internal sealed class AmigaMachine : IEmulatedMachine, IEmulationLifecycle, IEmu
         }
         catch (Exception error)
         {
-            if (_core.Diagnostics.Count > 0) error.Data["AmigaDiagnostics"] = string.Join(Environment.NewLine, _core.Diagnostics.TakeLast(100));
+            if (_core.Diagnostics.Count > 0) error.Data[AmigaMachineConstants.AmigaDiagnostics] = string.Join(Environment.NewLine, _core.Diagnostics.TakeLast(100));
             _started?.TrySetException(error);
             FailPendingCommands(error);
             lock (_gate) State = EmulationMachineState.Faulted;
@@ -410,7 +409,7 @@ internal sealed class AmigaMachine : IEmulatedMachine, IEmulationLifecycle, IEmu
             }
             try { _audioOutput?.Stop(); }
             catch (Exception) { }
-            FailPendingCommands(new OperationCanceledException("The Amiga machine stopped."));
+            FailPendingCommands(new OperationCanceledException(AmigaMachineConstants.TheAmigaMachineStopped));
             lock (_gate)
                 if (State != EmulationMachineState.Faulted) State = EmulationMachineState.Stopped;
         }

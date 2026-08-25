@@ -2,51 +2,18 @@ using System.IO.Pipes;
 using System.IO.MemoryMappedFiles;
 using System.Runtime.Versioning;
 using System.Text.Json;
-using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Amiga.Cores;
-
-internal enum AmigaHostCommand : byte
-{
-    Initialize = 1, RunFrame, HardReset, Stop, InsertMedia, EjectMedia,
-    SaveState, LoadState, SetOption, SelectDisk, Dispose
-}
-
-internal static class AmigaCoreHostProtocol
-{
-    internal static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
-    internal static void WriteString(BinaryWriter writer, string? value) => EmulationHostProtocolFunctions.WriteString(writer, value);
-    internal static string? ReadString(BinaryReader reader) => EmulationHostProtocolFunctions.ReadString(reader);
-    internal static void WriteBytes(BinaryWriter writer, ReadOnlySpan<byte> bytes) => EmulationHostProtocolFunctions.WriteBytes(writer, bytes);
-    internal static byte[] ReadBytes(BinaryReader reader) =>
-        EmulationHostProtocolFunctions.ReadBytes(reader, AmigaCoreHostConstants.HostName);
-    internal static void WriteInput(BinaryWriter writer, EmulationInputSnapshot input) => EmulationHostProtocolFunctions.WriteInput(writer, input);
-    internal static EmulationInputSnapshot ReadInput(BinaryReader reader) =>
-        EmulationHostProtocolFunctions.ReadInput(reader, AmigaCoreHostConstants.HostName);
-    internal static void WriteFrame(BinaryWriter writer, VideoFrame? frame) => EmulationHostProtocolFunctions.WriteFrame(writer, frame);
-    internal static VideoFrame? ReadFrame(BinaryReader reader) =>
-        EmulationHostProtocolFunctions.ReadFrame(reader, AmigaCoreHostConstants.HostName);
-    internal static void WriteSharedFrame(BinaryWriter writer, VideoFrame? frame, MemoryMappedViewAccessor videoMap) =>
-        EmulationHostProtocolFunctions.WriteSharedFrame(writer, frame, videoMap, AmigaCoreHostConstants.HostName);
-    internal static VideoFrame? ReadSharedFrame(BinaryReader reader, MemoryMappedViewAccessor videoMap) =>
-        EmulationHostProtocolFunctions.ReadSharedFrame(reader, videoMap, AmigaCoreHostConstants.HostName);
-    internal static void WriteAudio(BinaryWriter writer, IReadOnlyList<AudioChunk> chunks) => EmulationHostProtocolFunctions.WriteAudio(writer, chunks);
-    internal static IReadOnlyList<AudioChunk> ReadAudio(BinaryReader reader) =>
-        EmulationHostProtocolFunctions.ReadAudio(reader, AmigaCoreHostConstants.HostName);
-    internal static void WriteLedStates(BinaryWriter writer, IReadOnlyDictionary<int, bool> states) => EmulationHostProtocolFunctions.WriteLedStates(writer, states);
-    internal static IReadOnlyDictionary<int, bool> ReadLedStates(BinaryReader reader) =>
-        EmulationHostProtocolFunctions.ReadLedStates(reader, AmigaCoreHostConstants.HostName);
-}
+namespace GWGUI.Emulation.Amiga.Services;
 
 public static class AmigaCoreHost
 {
-    [SupportedOSPlatform("windows")]
+    [SupportedOSPlatform(AmigaCoreHostValues.Windows)]
     public static void Run(string pipeName, string videoMapName)
     {
         using var videoMemory = MemoryMappedFile.OpenExisting(videoMapName, MemoryMappedFileRights.ReadWrite);
         using var videoMap = videoMemory.CreateViewAccessor(0, EmulationHostProtocolConstants.VideoMapCapacity,
             MemoryMappedFileAccess.ReadWrite);
-        using var pipe = new NamedPipeClientStream(".", pipeName, PipeDirection.InOut, PipeOptions.None);
+        using var pipe = new NamedPipeClientStream(AmigaCoreHostValues.Value, pipeName, PipeDirection.InOut, PipeOptions.None);
         pipe.Connect(15_000);
         using var reader = new BinaryReader(pipe, System.Text.Encoding.UTF8, true);
         using var transportWriter = new BinaryWriter(pipe, System.Text.Encoding.UTF8, true);
@@ -70,7 +37,7 @@ public static class AmigaCoreHost
                         var session = reader.ReadString();
                         var saves = AmigaCoreHostProtocol.ReadString(reader);
                         var configuration = JsonSerializer.Deserialize<AmigaMachineConfiguration>(reader.ReadString(), AmigaCoreHostProtocol.JsonOptions)
-                            ?? throw new InvalidDataException("The Amiga host configuration is invalid.");
+                            ?? throw new InvalidDataException(AmigaCoreHostValues.TheAmigaHostConfigurationIsInvalid);
                         core = new AmigaExternalCore(corePath);
                         core.Initialize(configuration, session, saves);
                         writer.Write(true);
@@ -135,6 +102,6 @@ public static class AmigaCoreHost
         core?.Dispose();
     }
 
-    private static AmigaExternalCore EnsureCore(AmigaExternalCore? core) => core ?? throw new InvalidOperationException("The Amiga host is not initialized.");
+    private static AmigaExternalCore EnsureCore(AmigaExternalCore? core) => core ?? throw new InvalidOperationException(AmigaCoreHostValues.TheAmigaHostIsNotInitialized);
     private static void WriteSuccess(BinaryWriter writer) => writer.Write(true);
 }

@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace GWGUI.Emulation.Amiga.Cores;
+namespace GWGUI.Emulation.Amiga.Services;
 
 internal sealed class AmigaExternalDiskControl
 {
@@ -66,13 +66,13 @@ internal sealed class AmigaExternalDiskControl
         var previousIndex = _getImageIndex!();
         var wasEjected = _getEjectState!();
         if (!wasEjected && !_setEjectState!(true))
-            throw new InvalidOperationException("The Amiga media drive could not be ejected.");
+            throw new InvalidOperationException(AmigaExternalDiskControlConstants.TheAmigaMediaDriveCouldNotBeEjected);
         try
         {
             if (!_setImageIndex!((uint)index))
-                throw new InvalidOperationException("The Amiga core could not select the requested disk.");
+                throw new InvalidOperationException(AmigaExternalDiskControlConstants.TheAmigaCoreCouldNotSelectTheRequestedDisk);
             if (!_setEjectState!(false))
-                throw new InvalidOperationException("The Amiga media drive could not insert the requested image.");
+                throw new InvalidOperationException(AmigaExternalDiskControlConstants.TheAmigaMediaDriveCouldNotInsertTheRequestedImage);
         }
         catch
         {
@@ -104,13 +104,13 @@ internal sealed class AmigaExternalDiskControl
 
     internal void Insert(string path)
     {
-        if (!File.Exists(path) && !Directory.Exists(path)) throw new FileNotFoundException("The Amiga media image or directory was not found.", path);
+        if (!File.Exists(path) && !Directory.Exists(path)) throw new FileNotFoundException(AmigaExternalDiskControlConstants.TheAmigaMediaImageOrDirectoryWasNotFound, path);
         EnsureAvailable();
         var wasEjected = _getEjectState!();
-        if (!wasEjected && !_setEjectState!(true)) throw new InvalidOperationException("The Amiga media drive could not be ejected.");
+        if (!wasEjected && !_setEjectState!(true)) throw new InvalidOperationException(AmigaExternalDiskControlConstants.TheAmigaMediaDriveCouldNotBeEjected);
         var count = _getImageCount!();
         var index = count == 0 ? 0u : Math.Min(_getImageIndex!(), count - 1);
-        if (count == 0 && !_addImage!()) throw new InvalidOperationException("The Amiga core could not create a media slot.");
+        if (count == 0 && !_addImage!()) throw new InvalidOperationException(AmigaExternalDiskControlConstants.TheAmigaCoreCouldNotCreateAMediaSlot);
 
         var nativePath = Marshal.StringToCoTaskMemUTF8(Path.GetFullPath(path));
         var game = Marshal.AllocHGlobal(Marshal.SizeOf<ExternalCoreApi.GameInfo>());
@@ -118,9 +118,9 @@ internal sealed class AmigaExternalDiskControl
         try
         {
             Marshal.StructureToPtr(new ExternalCoreApi.GameInfo { Path = nativePath }, game, false);
-            if (!_replaceImage!(index, game)) throw new InvalidOperationException("The Amiga core refused the media image.");
-            if (!_setImageIndex!(index)) throw new InvalidOperationException("The Amiga core could not select the media image.");
-            if (!_setEjectState!(false)) throw new InvalidOperationException("The Amiga media drive could not insert the image.");
+            if (!_replaceImage!(index, game)) throw new InvalidOperationException(AmigaExternalDiskControlConstants.TheAmigaCoreRefusedTheMediaImage);
+            if (!_setImageIndex!(index)) throw new InvalidOperationException(AmigaExternalDiskControlConstants.TheAmigaCoreCouldNotSelectTheMediaImage);
+            if (!_setEjectState!(false)) throw new InvalidOperationException(AmigaExternalDiskControlConstants.TheAmigaMediaDriveCouldNotInsertTheImage);
             inserted = true;
         }
         finally
@@ -134,17 +134,17 @@ internal sealed class AmigaExternalDiskControl
     internal void Eject()
     {
         EnsureAvailable();
-        if (!_setEjectState!(true)) throw new InvalidOperationException("The Amiga media drive could not be ejected.");
+        if (!_setEjectState!(true)) throw new InvalidOperationException(AmigaExternalDiskControlConstants.TheAmigaMediaDriveCouldNotBeEjected);
     }
 
     private void EnsureAvailable()
     {
-        if (!IsAvailable) throw new InvalidOperationException("The Amiga core has not provided disk control.");
+        if (!IsAvailable) throw new InvalidOperationException(AmigaExternalDiskControlConstants.TheAmigaCoreHasNotProvidedDiskControl);
     }
 
     private static T Delegate<T>(nint pointer) where T : Delegate
     {
-        if (pointer == 0) throw new InvalidOperationException("The Amiga core provided incomplete disk control.");
+        if (pointer == 0) throw new InvalidOperationException(AmigaExternalDiskControlConstants.TheAmigaCoreProvidedIncompleteDiskControl);
         return Marshal.GetDelegateForFunctionPointer<T>(pointer);
     }
 

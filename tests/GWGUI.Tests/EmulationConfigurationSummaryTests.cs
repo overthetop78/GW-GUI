@@ -43,7 +43,7 @@ public sealed class EmulationConfigurationSummaryTests
     {
         var configuration = AmigaMachineConfiguration.A500(string.Empty, "Workbench.adf");
 
-        var media = GWGUI.Emulation.Amiga.Cores.AmigaExternalCore.ResolveConfiguredMedia(configuration);
+        var media = GWGUI.Emulation.Amiga.Services.AmigaExternalCore.ResolveConfiguredMedia(configuration);
 
         var disk = Assert.Single(media);
         Assert.Equal("Workbench.adf", disk.Path);

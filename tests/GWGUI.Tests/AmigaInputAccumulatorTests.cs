@@ -1,5 +1,4 @@
 using GWGUI.Emulation;
-using GWGUI.Emulation.Amiga.Cores;
 using GWGUI.MediaEngine.Exploration.Scp;
 
 namespace GWGUI.Tests;

@@ -1,4 +1,3 @@
-using GWGUI.Emulation.Amiga.Cores;
 using System.Runtime.InteropServices;
 
 namespace GWGUI.Tests;

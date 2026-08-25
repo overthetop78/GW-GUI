@@ -2,7 +2,7 @@ using System.Security.Cryptography;
 using System.Text;
 using GWGUI.MediaEngine.Composition;
 
-namespace GWGUI.Emulation.Amiga;
+namespace GWGUI.Emulation.Amiga.Functions;
 
 public static class AmigaRuntimeMediaFunctions
 {
@@ -15,7 +15,7 @@ public static class AmigaRuntimeMediaFunctions
 
     internal static async Task<string> ConvertScpPathAsync(string path, string conversionDirectory)
     {
-        if (!Path.GetExtension(path).Equals(".scp", StringComparison.OrdinalIgnoreCase)) return path;
+        if (!Path.GetExtension(path).Equals(AmigaRuntimeMediaFunctionsConstants.Scp, StringComparison.OrdinalIgnoreCase)) return path;
         var info = new FileInfo(path);
         var identity = $"{Path.GetFullPath(path)}|{info.Length}|{info.LastWriteTimeUtc.Ticks}";
         var hash = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(identity)))[..16];

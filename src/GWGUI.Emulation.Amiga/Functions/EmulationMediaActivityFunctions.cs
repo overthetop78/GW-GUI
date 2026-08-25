@@ -1,6 +1,6 @@
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Amiga;
+namespace GWGUI.Emulation.Amiga.Functions;
 
 internal static class EmulationMediaActivityFunctions
 {
