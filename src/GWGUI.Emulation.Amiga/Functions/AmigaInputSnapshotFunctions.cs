@@ -19,13 +19,16 @@ internal static class AmigaInputSnapshotFunctions
         configuration ??= new AmigaInputConfiguration();
         var hostKeys = snapshot.Keys;
         var physicalMouse = PhysicalMouse(snapshot.Pointer);
+        var mappedKeys = EmulationInputMappingFunctions.MapKeyboard(hostKeys, configuration.KeyboardMappings);
+        if (controllerPointerSwitchPressed)
+            mappedKeys = new HashSet<EmulationKey>(mappedKeys) { EmulationKey.RightControl };
         return snapshot with
         {
-            Keys = EmulationInputMappingFunctions.MapKeyboard(hostKeys, configuration.KeyboardMappings),
+            Keys = mappedKeys,
             Pointer = MapPointer(snapshot.Pointer, snapshot.Controllers, hostKeys, physicalMouse,
                 configuration.MouseButtonMappings),
             Controllers = MapControllers(snapshot.Controllers, hostKeys, physicalMouse,
-                configuration.ControllerBindings, controllerPointerSwitchPressed)
+                configuration.ControllerBindings)
         };
     }
 
@@ -63,13 +66,12 @@ internal static class AmigaInputSnapshotFunctions
     private static IReadOnlyList<EmulationControllerState> MapControllers(
         IReadOnlyList<EmulationControllerState> physical, IReadOnlySet<EmulationKey> keys,
         IReadOnlyDictionary<string, bool> physicalMouse,
-        IReadOnlyList<AmigaControllerBinding>? bindings, bool controllerPointerSwitchPressed)
+        IReadOnlyList<AmigaControllerBinding>? bindings)
     {
         var result = new EmulationControllerState[4];
         for (var port = 0; port < result.Length; port++)
         {
-            var binding = bindings?.FirstOrDefault(item => item.Port == port + 1)
-                ?? bindings?.FirstOrDefault(item => item.Port == port);
+            var binding = bindings?.FirstOrDefault(item => item.Port == port);
             var source = EmulationInputMappingFunctions.ResolveController(binding?.DeviceId, physical, port);
             if (binding?.ButtonMappings is not { Count: > 0 })
             {
@@ -87,8 +89,6 @@ internal static class AmigaInputSnapshotFunctions
             }
             result[port] = source with { Buttons = buttons };
         }
-        if (controllerPointerSwitchPressed)
-            result[0] = result[0] with { Buttons = result[0].Buttons | (1u << 2) };
         return result;
     }
 

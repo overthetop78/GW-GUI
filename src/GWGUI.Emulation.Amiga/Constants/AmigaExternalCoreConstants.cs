@@ -42,8 +42,8 @@ internal static class AmigaExternalCoreConstants
     internal const string OptionModel = "puae_model";
     internal const string OptionKickstart = "puae_kickstart";
     internal const string Auto = "auto";
-    internal const string OptionMapperSelect = "puae_mapper_select";
-    internal const string SWITCHJOYMOUSE = "SWITCH_JOYMOUSE";
+    internal const string OptionMapperMouseToggle = "puae_mapper_mouse_toggle";
+    internal const string RightControl = "RETROK_RCTRL";
     internal const string OptionFloppyMultidrive = "puae_floppy_multidrive";
     internal const string Enabled = "enabled";
     internal const string Disabled = "disabled";

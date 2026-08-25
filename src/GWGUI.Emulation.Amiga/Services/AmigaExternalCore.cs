@@ -118,7 +118,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
         {
             [AmigaExternalCoreConstants.OptionModel] = backendModel,
             [AmigaExternalCoreConstants.OptionKickstart] = AmigaExternalCoreConstants.Auto,
-            [AmigaExternalCoreConstants.OptionMapperSelect] = AmigaExternalCoreConstants.SWITCHJOYMOUSE
+            [AmigaExternalCoreConstants.OptionMapperMouseToggle] = AmigaExternalCoreConstants.RightControl
         };
         var floppyCount = media.Count(item => item.Category == AmigaMediaCategory.Floppy);
         if (floppyCount > 1)
