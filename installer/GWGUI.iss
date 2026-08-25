@@ -94,6 +94,10 @@ const
   DotNetDesktopRuntimeMajorPrefix = '10.';
   DotNetDesktopRuntimeInstaller = 'windowsdesktop-runtime-10.0.11-win-x64.exe';
   GameInputRuntimeInstaller = 'GameInputRedist.msi';
+  GameInputRuntimeRegistryKey = 'SOFTWARE\Microsoft\GameInput';
+  GameInputRequiredVersion = '3.5.268.0';
+  GameInputRequiredVersionMS = (3 shl 16) or 5;
+  GameInputRequiredVersionLS = (268 shl 16) or 0;
 
 function DotNetDesktopRuntimeInstalled: Boolean;
 var
@@ -110,6 +114,43 @@ begin
     end;
 end;
 
+function GameInputFileSatisfiesMinimum(const FileName: String): Boolean;
+var
+  VersionMS: Cardinal;
+  VersionLS: Cardinal;
+begin
+  Result := GetVersionNumbers(FileName, VersionMS, VersionLS) and
+    ((VersionMS > GameInputRequiredVersionMS) or
+     ((VersionMS = GameInputRequiredVersionMS) and
+      (VersionLS >= GameInputRequiredVersionLS)));
+end;
+
+function GameInputRuntimeSatisfiesMinimum: Boolean;
+var
+  RuntimeDirectory: String;
+begin
+  Result := GameInputFileSatisfiesMinimum(
+    ExpandConstant('{sys}\GameInputRedist.dll'));
+  if Result then Exit;
+
+  { Microsoft writes RedistDir to either registry view depending on the
+    installer. Validate the referenced DLL so stale or older registrations
+    are repaired by the MSI below. }
+  if RegQueryStringValue(HKLM64, GameInputRuntimeRegistryKey, 'RedistDir',
+      RuntimeDirectory) and
+      GameInputFileSatisfiesMinimum(
+        AddBackslash(RuntimeDirectory) + 'GameInputRedist.dll') then
+  begin
+    Result := True;
+    Exit;
+  end;
+
+  Result := RegQueryStringValue(HKLM32, GameInputRuntimeRegistryKey,
+      'RedistDir', RuntimeDirectory) and
+    GameInputFileSatisfiesMinimum(
+      AddBackslash(RuntimeDirectory) + 'GameInputRedist.dll');
+end;
+
 function PrepareToInstall(var NeedsRestart: Boolean): String;
 var
   RuntimeInstallerPath: String;
@@ -117,16 +158,25 @@ var
 begin
   Result := '';
 
-  ExtractTemporaryFile(GameInputRuntimeInstaller);
-  RuntimeInstallerPath := ExpandConstant('{tmp}\') + GameInputRuntimeInstaller;
-  ResultCode := -1;
-  if (not ShellExec('runas', ExpandConstant('{sys}\msiexec.exe'),
-      '/i "' + RuntimeInstallerPath + '" /quiet /norestart', '', SW_HIDE,
-      ewWaitUntilTerminated, ResultCode)) or
-      ((ResultCode <> 0) and (ResultCode <> 1638) and (ResultCode <> 3010)) then
+  if GameInputRuntimeSatisfiesMinimum then
+    Log(Format('Microsoft GameInput Redistributable %s or newer is already ' +
+      'installed; skipping its MSI.', [GameInputRequiredVersion]))
+  else
   begin
-    Result := SysErrorMessage(ResultCode);
-    Exit;
+    ExtractTemporaryFile(GameInputRuntimeInstaller);
+    RuntimeInstallerPath := ExpandConstant('{tmp}\') + GameInputRuntimeInstaller;
+    ResultCode := -1;
+    if not ShellExec('runas', ExpandConstant('{sys}\msiexec.exe'),
+        '/i "' + RuntimeInstallerPath + '" /quiet /norestart /L*V "' +
+          ExpandConstant('{tmp}\GW-GUI-GameInput-install.log') + '"',
+        '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+      Log(Format('Could not start the optional GameInput installer (code %d). ' +
+        'GW GUI installation will continue.', [ResultCode]))
+    else if (ResultCode = 3010) or (ResultCode = 1641) then
+      NeedsRestart := True
+    else if (ResultCode <> 0) and (ResultCode <> 1638) then
+      Log(Format('Optional GameInput installer returned code %d. ' +
+        'GW GUI installation will continue.', [ResultCode]));
   end;
 
   if DotNetDesktopRuntimeInstalled then Exit;

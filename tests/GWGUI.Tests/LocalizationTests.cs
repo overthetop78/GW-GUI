@@ -308,6 +308,21 @@ public sealed class LocalizationTests
             Assert.True(File.Exists(Path.Combine(installerDirectory, declaration.MessagesFile)), $"Missing installer language file: {declaration.MessagesFile}");
     }
 
+    [Fact]
+    public void InstallerSkipsExistingGameInputAndTreatsItsMsiAsOptional()
+    {
+        var repository = FindRepositoryRoot();
+        var script = File.ReadAllText(Path.Combine(repository, "installer", "GWGUI.iss"));
+
+        Assert.Contains("GameInputRequiredVersion = '3.5.268.0'", script, StringComparison.Ordinal);
+        Assert.Contains("if GameInputRuntimeSatisfiesMinimum then", script, StringComparison.Ordinal);
+        Assert.Contains("GetVersionNumbers(FileName, VersionMS, VersionLS)", script, StringComparison.Ordinal);
+        Assert.Contains("VersionLS >= GameInputRequiredVersionLS", script, StringComparison.Ordinal);
+        Assert.Contains("RegQueryStringValue(HKLM64, GameInputRuntimeRegistryKey", script, StringComparison.Ordinal);
+        Assert.Contains("RegQueryStringValue(HKLM32, GameInputRuntimeRegistryKey", script, StringComparison.Ordinal);
+        Assert.Contains("GW GUI installation will continue.", script, StringComparison.Ordinal);
+    }
+
     private static string FindRepositoryRoot()
     {
         var directory = new DirectoryInfo(AppContext.BaseDirectory);
