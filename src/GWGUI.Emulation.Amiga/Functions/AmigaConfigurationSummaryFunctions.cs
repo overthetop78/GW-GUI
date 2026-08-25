@@ -34,7 +34,8 @@ internal static partial class AmigaConfigurationSummaryFunctions
         var hardDriveCount = NumberOption(options, "gwgui_hard_drive_count");
         if (floppyCount > 0) devices.Add($"DF {floppyCount}");
         if (hardDriveCount > 0) devices.Add($"HD {hardDriveCount}");
-        if (Option(options, "gwgui_cd_drive_enabled", "disabled") == "enabled") devices.Add("CD");
+        if (Option(options, "gwgui_cd_drive_enabled", model.HasCdDrive ? "enabled" : "disabled") == "enabled")
+            devices.Add("CD");
         if (devices.Count > 0) details.Add(string.Join(" / ", devices));
 
         details.Add($"Video {Renderer(configuration.VideoRenderer)}");

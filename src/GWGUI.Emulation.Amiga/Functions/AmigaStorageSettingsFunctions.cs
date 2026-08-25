@@ -14,7 +14,7 @@ internal static class AmigaStorageSettingsFunctions
                 IsRemovable: true,
                 DisplayLabel: $"DF{index}:",
                 FloppyOptions: FloppyOptions(configuration, index),
-                IsPermanent: index == 0))
+                IsPermanent: index == 0 && model.HasBuiltInFloppyDrive))
             .Concat(model.SupportsHardDrives
                 ? Enumerable.Range(0, model.MaximumHardDrives).Select(index => new EmulationMediaDevice(
                     new EmulationMediaSlot(EmulationMediaCategory.HardDisk, index),
@@ -22,19 +22,20 @@ internal static class AmigaStorageSettingsFunctions
                     DisplayLabel: $"DH{index}:")) : [])
             .Concat(model.HasCdDrive
                 ? [new EmulationMediaDevice(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc,
-                    [".cue", ".ccd", ".chd", ".nrg", ".mds", ".iso"], DisplayLabel: "CD0:")] : [])
+                    [".cue", ".ccd", ".chd", ".nrg", ".mds", ".iso"], DisplayLabel: "CD0:",
+                    IsPermanent: true)] : [])
             .ToArray();
         var mounted = EmulationMediaConversionFunctions.ToCommon(configuration.Media ?? []);
         var options = configuration.Options ?? new Dictionary<string, string>();
-        var floppyCount = Count(options, "gwgui_floppy_drive_count", 1, model.MaximumFloppyDrives);
+        var floppyCount = Count(options, "gwgui_floppy_drive_count",
+            model.HasBuiltInFloppyDrive ? 1 : 0, model.MaximumFloppyDrives);
         var hardDriveCount = model.SupportsHardDrives
             ? Count(options, "gwgui_hard_drive_count", 0, model.MaximumHardDrives) : 0;
         var configured = Enumerable.Range(0, floppyCount)
             .Select(index => new EmulationMediaSlot(EmulationMediaCategory.FloppyDrive, index))
             .Concat(Enumerable.Range(0, hardDriveCount)
                 .Select(index => new EmulationMediaSlot(EmulationMediaCategory.HardDisk, index)))
-            .Concat(model.HasCdDrive && options.GetValueOrDefault("gwgui_cd_drive_enabled") == "enabled"
-                ? [EmulationMediaSlot.Cd0] : [])
+            .Concat(model.HasCdDrive ? [EmulationMediaSlot.Cd0] : [])
             .Concat(mounted.Select(media => media.Slot))
             .Distinct().ToArray();
         var settings = configured.Select(slot => DeviceSettings(options, slot)).ToArray();

@@ -16,7 +16,8 @@ public sealed record AmigaModel(
     int MaximumHardDrives = 1,
     int MouseButtonCount = 2,
     bool SupportsCd32Controller = false,
-    int ControllerPortCount = 2)
+    int ControllerPortCount = 2,
+    bool HasBuiltInFloppyDrive = true)
 {
     public string DefaultCpu => CpuModels[0];
 }
