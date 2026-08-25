@@ -1,5 +1,4 @@
 using GWGUI.Emulation;
-using GWGUI.Emulation.Atari.Cores;
 using System.IO;
 using System.Runtime.InteropServices;
 

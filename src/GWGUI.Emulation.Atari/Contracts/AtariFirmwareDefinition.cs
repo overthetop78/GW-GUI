@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation.Atari;
+namespace GWGUI.Emulation.Atari.Contracts;
 
 public sealed record AtariFirmwareDefinition(
     string Id, AtariFirmwareCategory? Category, string? Version, string? ExpectedFileName,

@@ -1,6 +1,6 @@
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Atari;
+namespace GWGUI.Emulation.Atari.Contracts;
 
 public sealed record AtariMediaCompatibilityRule(
     AtariMediaCategory Category,

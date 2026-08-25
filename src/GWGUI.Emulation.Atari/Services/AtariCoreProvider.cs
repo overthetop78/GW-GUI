@@ -1,6 +1,5 @@
-using GWGUI.Emulation.Atari.Cores;
 
-namespace GWGUI.Emulation.Atari;
+namespace GWGUI.Emulation.Atari.Services;
 
 public sealed class AtariCoreProvider
 {

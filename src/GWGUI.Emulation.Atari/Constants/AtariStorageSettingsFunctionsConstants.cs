@@ -1,0 +1,51 @@
+namespace GWGUI.Emulation.Atari.Constants;
+
+internal static class AtariStorageSettingsFunctionsConstants
+{
+    internal const string StorageDevice = "storage.device.";
+    internal const string StorageModel = "storage.model.";
+    internal const string StorageSpeed = "storage.speed.";
+    internal const string StorageWriteProtected = "storage.writeProtected.";
+    internal const string StorageRedirectWrites = "storage.redirectWrites.";
+    internal const string StorageInterface = "storage.interface.";
+    internal const string St = ".st";
+    internal const string Msa = ".msa";
+    internal const string Stx = ".stx";
+    internal const string Dim = ".dim";
+    internal const string Ipf = ".ipf";
+    internal const string Scp = ".scp";
+    internal const string Atr = ".atr";
+    internal const string Xfd = ".xfd";
+    internal const string Dcm = ".dcm";
+    internal const string Atx = ".atx";
+    internal const string Img = ".img";
+    internal const string Hdf = ".hdf";
+    internal const string Vhd = ".vhd";
+    internal const string Cas = ".cas";
+    internal const string Car = ".car";
+    internal const string Rom = ".rom";
+    internal const string A26 = ".a26";
+    internal const string A52 = ".a52";
+    internal const string A78 = ".a78";
+    internal const string Lnx = ".lnx";
+    internal const string J64 = ".j64";
+    internal const string Jag = ".jag";
+    internal const string Cue = ".cue";
+    internal const string Chd = ".chd";
+    internal const string Iso = ".iso";
+    internal const string Atarist720 = "atarist.720";
+    internal const string FormatAtarist720 = "Format.atarist.720";
+    internal const string Atarist1440 = "atarist.1440";
+    internal const string FormatAtarist1440 = "Format.atarist.1440";
+    internal const string Atari90 = "atari.90";
+    internal const string FormatAtari90 = "Format.atari.90";
+    internal const string Atari130 = "atari.130";
+    internal const string FormatAtari130 = "Format.atari.130";
+    internal const string Atari180 = "atari.180";
+    internal const string FormatAtari180 = "Format.atari.180";
+    internal const string Acsi = "Acsi";
+    internal const string ACSI = "ACSI";
+    internal const string Ide = "Ide";
+    internal const string IDE = "IDE";
+    internal const string Value100 = "100";
+}

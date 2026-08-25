@@ -1,15 +1,15 @@
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Atari;
+namespace GWGUI.Emulation.Atari.Functions;
 
 internal static class AtariStorageSettingsFunctions
 {
-    private const string DeviceOptionPrefix = "storage.device.";
-    private const string ModelOptionPrefix = "storage.model.";
-    private const string SpeedOptionPrefix = "storage.speed.";
-    private const string WriteProtectedOptionPrefix = "storage.writeProtected.";
-    private const string RedirectWritesOptionPrefix = "storage.redirectWrites.";
-    private const string InterfaceOptionPrefix = "storage.interface.";
+    private const string DeviceOptionPrefix = AtariStorageSettingsFunctionsConstants.StorageDevice;
+    private const string ModelOptionPrefix = AtariStorageSettingsFunctionsConstants.StorageModel;
+    private const string SpeedOptionPrefix = AtariStorageSettingsFunctionsConstants.StorageSpeed;
+    private const string WriteProtectedOptionPrefix = AtariStorageSettingsFunctionsConstants.StorageWriteProtected;
+    private const string RedirectWritesOptionPrefix = AtariStorageSettingsFunctionsConstants.StorageRedirectWrites;
+    private const string InterfaceOptionPrefix = AtariStorageSettingsFunctionsConstants.StorageInterface;
 
     internal static EmulationStorageSettings Describe(AtariMachineConfiguration configuration)
     {
@@ -104,11 +104,11 @@ internal static class AtariStorageSettingsFunctions
 
     private static IReadOnlyList<string> Extensions(AtariMediaCategory category) => category switch
     {
-        AtariMediaCategory.Floppy => [".st", ".msa", ".stx", ".dim", ".ipf", ".scp", ".atr", ".xfd", ".dcm", ".atx"],
-        AtariMediaCategory.HardDisk => [".img", ".hdf", ".vhd"],
-        AtariMediaCategory.Cassette => [".cas"],
-        AtariMediaCategory.Cartridge => [".car", ".rom", ".a26", ".a52", ".a78", ".lnx", ".j64", ".jag"],
-        AtariMediaCategory.CompactDisc => [".cue", ".chd", ".iso"],
+        AtariMediaCategory.Floppy => [AtariStorageSettingsFunctionsConstants.St, AtariStorageSettingsFunctionsConstants.Msa, AtariStorageSettingsFunctionsConstants.Stx, AtariStorageSettingsFunctionsConstants.Dim, AtariStorageSettingsFunctionsConstants.Ipf, AtariStorageSettingsFunctionsConstants.Scp, AtariStorageSettingsFunctionsConstants.Atr, AtariStorageSettingsFunctionsConstants.Xfd, AtariStorageSettingsFunctionsConstants.Dcm, AtariStorageSettingsFunctionsConstants.Atx],
+        AtariMediaCategory.HardDisk => [AtariStorageSettingsFunctionsConstants.Img, AtariStorageSettingsFunctionsConstants.Hdf, AtariStorageSettingsFunctionsConstants.Vhd],
+        AtariMediaCategory.Cassette => [AtariStorageSettingsFunctionsConstants.Cas],
+        AtariMediaCategory.Cartridge => [AtariStorageSettingsFunctionsConstants.Car, AtariStorageSettingsFunctionsConstants.Rom, AtariStorageSettingsFunctionsConstants.A26, AtariStorageSettingsFunctionsConstants.A52, AtariStorageSettingsFunctionsConstants.A78, AtariStorageSettingsFunctionsConstants.Lnx, AtariStorageSettingsFunctionsConstants.J64, AtariStorageSettingsFunctionsConstants.Jag],
+        AtariMediaCategory.CompactDisc => [AtariStorageSettingsFunctionsConstants.Cue, AtariStorageSettingsFunctionsConstants.Chd, AtariStorageSettingsFunctionsConstants.Iso],
         _ => []
     };
 
@@ -119,26 +119,26 @@ internal static class AtariStorageSettingsFunctions
             : EightBitFloppyModels();
         return new FloppyDriveDialogOptions(models, imageDirectory ?? string.Empty,
             string.Join(';', Extensions(AtariMediaCategory.Floppy).Select(extension => $"*{extension}")),
-            AtariStorageConfigurationFunctions.Family(model) == AtariMachineFamily.St ? ".st" : ".atr");
+            AtariStorageConfigurationFunctions.Family(model) == AtariMachineFamily.St ? AtariStorageSettingsFunctionsConstants.St : AtariStorageSettingsFunctionsConstants.Atr);
     }
 
     private static IReadOnlyList<FloppyDriveModelChoice> StFloppyModels(AtariMachineModel model)
     {
         var models = new List<FloppyDriveModelChoice>
         {
-            new("atarist.720", "Format.atarist.720", BlankImageSize: 737_280)
+            new(AtariStorageSettingsFunctionsConstants.Atarist720, AtariStorageSettingsFunctionsConstants.FormatAtarist720, BlankImageSize: 737_280)
         };
         if (AtariStModelCatalog.Get(model).Storage.Contains(AtariStStorageCapability.FloppyHighDensity))
-            models.Add(new FloppyDriveModelChoice("atarist.1440", "Format.atarist.1440",
+            models.Add(new FloppyDriveModelChoice(AtariStorageSettingsFunctionsConstants.Atarist1440, AtariStorageSettingsFunctionsConstants.FormatAtarist1440,
                 BlankImageSize: 1_474_560));
         return models;
     }
 
     private static IReadOnlyList<FloppyDriveModelChoice> EightBitFloppyModels() =>
     [
-        new("atari.90", "Format.atari.90", BlankImageSize: 92_160),
-        new("atari.130", "Format.atari.130", BlankImageSize: 133_120),
-        new("atari.180", "Format.atari.180", BlankImageSize: 184_320)
+        new(AtariStorageSettingsFunctionsConstants.Atari90, AtariStorageSettingsFunctionsConstants.FormatAtari90, BlankImageSize: 92_160),
+        new(AtariStorageSettingsFunctionsConstants.Atari130, AtariStorageSettingsFunctionsConstants.FormatAtari130, BlankImageSize: 133_120),
+        new(AtariStorageSettingsFunctionsConstants.Atari180, AtariStorageSettingsFunctionsConstants.FormatAtari180, BlankImageSize: 184_320)
     ];
 
     private static IReadOnlyList<EmulationSettingsChoice> Interfaces(AtariMachineModel model,
@@ -148,8 +148,8 @@ internal static class AtariStorageSettingsFunctions
             || AtariStorageConfigurationFunctions.Family(model) != AtariMachineFamily.St) return [];
         var storage = AtariStModelCatalog.Get(model).Storage;
         var choices = new List<EmulationSettingsChoice>();
-        if (storage.Contains(AtariStStorageCapability.Acsi)) choices.Add(InvariantChoice("Acsi", "ACSI"));
-        if (storage.Contains(AtariStStorageCapability.Ide)) choices.Add(InvariantChoice("Ide", "IDE"));
+        if (storage.Contains(AtariStStorageCapability.Acsi)) choices.Add(InvariantChoice(AtariStorageSettingsFunctionsConstants.Acsi, AtariStorageSettingsFunctionsConstants.ACSI));
+        if (storage.Contains(AtariStStorageCapability.Ide)) choices.Add(InvariantChoice(AtariStorageSettingsFunctionsConstants.Ide, AtariStorageSettingsFunctionsConstants.IDE));
         return choices;
     }
 
@@ -164,7 +164,7 @@ internal static class AtariStorageSettingsFunctions
             ? new FloppyDriveSettings(
                 Option(configuration, ModelOptionPrefix, slot) ?? FloppyOptions(configuration.Model,
                     configuration.Folders.Floppies).Models[0].Value,
-                Option(configuration, SpeedOptionPrefix, slot) ?? "100",
+                Option(configuration, SpeedOptionPrefix, slot) ?? AtariStorageSettingsFunctionsConstants.Value100,
                 bool.TryParse(Option(configuration, WriteProtectedOptionPrefix, slot), out var protectedValue)
                     && protectedValue,
                 bool.TryParse(Option(configuration, RedirectWritesOptionPrefix, slot), out var redirectValue)

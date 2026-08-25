@@ -1,31 +1,31 @@
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Atari;
+namespace GWGUI.Emulation.Atari.Dictionaries;
 
 public static class AtariModelCatalog
 {
     public static IReadOnlyList<EmulationMachineDefinition> All { get; } =
     [
-        Model(AtariMachineModel.St, "Emulation.Atari.Model.St"),
-        Model(AtariMachineModel.Stf, "Emulation.Atari.Model.Stf"),
-        Model(AtariMachineModel.Stfm, "Emulation.Atari.Model.Stfm"),
-        Model(AtariMachineModel.MegaSt, "Emulation.Atari.Model.MegaSt"),
-        Model(AtariMachineModel.Ste, "Emulation.Atari.Model.Ste"),
-        Model(AtariMachineModel.MegaSte, "Emulation.Atari.Model.MegaSte"),
-        Model(AtariMachineModel.Tt, "Emulation.Atari.Model.Tt"),
-        Model(AtariMachineModel.Falcon, "Emulation.Atari.Model.Falcon"),
-        Model(AtariMachineModel.Atari400, "Emulation.Atari.Model.400"),
-        Model(AtariMachineModel.Atari800, "Emulation.Atari.Model.800"),
-        Model(AtariMachineModel.Atari800Xl, "Emulation.Atari.Model.800Xl"),
-        Model(AtariMachineModel.Atari130Xe, "Emulation.Atari.Model.130Xe"),
-        Model(AtariMachineModel.XlXe, "Emulation.Atari.Model.XlXe"),
-        Model(AtariMachineModel.Xegs, "Emulation.Atari.Model.Xegs"),
-        Model(AtariMachineModel.Atari2600, "Emulation.Atari.Model.2600"),
-        Model(AtariMachineModel.Atari5200, "Emulation.Atari.Model.5200"),
-        Model(AtariMachineModel.Atari7800, "Emulation.Atari.Model.7800"),
-        Model(AtariMachineModel.Lynx, "Emulation.Atari.Model.Lynx"),
-        Model(AtariMachineModel.Jaguar, "Emulation.Atari.Model.Jaguar"),
-        Model(AtariMachineModel.JaguarCd, "Emulation.Atari.Model.JaguarCd")
+        Model(AtariMachineModel.St, AtariModelCatalogConstants.ResourceAtariModelSt),
+        Model(AtariMachineModel.Stf, AtariModelCatalogConstants.ResourceAtariModelStf),
+        Model(AtariMachineModel.Stfm, AtariModelCatalogConstants.ResourceAtariModelStfm),
+        Model(AtariMachineModel.MegaSt, AtariModelCatalogConstants.ResourceAtariModelMegaSt),
+        Model(AtariMachineModel.Ste, AtariModelCatalogConstants.ResourceAtariModelSte),
+        Model(AtariMachineModel.MegaSte, AtariModelCatalogConstants.ResourceAtariModelMegaSte),
+        Model(AtariMachineModel.Tt, AtariModelCatalogConstants.ResourceAtariModelTt),
+        Model(AtariMachineModel.Falcon, AtariModelCatalogConstants.ResourceAtariModelFalcon),
+        Model(AtariMachineModel.Atari400, AtariModelCatalogConstants.ResourceAtariModel400),
+        Model(AtariMachineModel.Atari800, AtariModelCatalogConstants.ResourceAtariModel800),
+        Model(AtariMachineModel.Atari800Xl, AtariModelCatalogConstants.ResourceAtariModel800Xl),
+        Model(AtariMachineModel.Atari130Xe, AtariModelCatalogConstants.ResourceAtariModel130Xe),
+        Model(AtariMachineModel.XlXe, AtariModelCatalogConstants.ResourceAtariModelXlXe),
+        Model(AtariMachineModel.Xegs, AtariModelCatalogConstants.ResourceAtariModelXegs),
+        Model(AtariMachineModel.Atari2600, AtariModelCatalogConstants.ResourceAtariModel2600),
+        Model(AtariMachineModel.Atari5200, AtariModelCatalogConstants.ResourceAtariModel5200),
+        Model(AtariMachineModel.Atari7800, AtariModelCatalogConstants.ResourceAtariModel7800),
+        Model(AtariMachineModel.Lynx, AtariModelCatalogConstants.ResourceAtariModelLynx),
+        Model(AtariMachineModel.Jaguar, AtariModelCatalogConstants.ResourceAtariModelJaguar),
+        Model(AtariMachineModel.JaguarCd, AtariModelCatalogConstants.ResourceAtariModelJaguarCd)
     ];
 
     public static AtariMachineModel Parse(string id) =>

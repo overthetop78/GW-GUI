@@ -1,5 +1,4 @@
 using GWGUI.Emulation.Atari;
-using GWGUI.Emulation.Atari.Cores;
 using GWGUI.MediaEngine.Containers.ImageDisk;
 using System.IO;
 using System.Runtime.InteropServices;

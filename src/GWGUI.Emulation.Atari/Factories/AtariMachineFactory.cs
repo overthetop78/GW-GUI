@@ -1,7 +1,6 @@
 using GWGUI.Emulation;
-using GWGUI.Emulation.Atari.Cores;
 
-namespace GWGUI.Emulation.Atari;
+namespace GWGUI.Emulation.Atari.Factories;
 
 internal abstract class AtariMachineFactory(AtariEmulator emulator) : IAtariMachineFactory
 {
@@ -21,10 +20,3 @@ internal abstract class AtariMachineFactory(AtariEmulator emulator) : IAtariMach
             saveDirectory: context.SaveDirectoryResolver?.Invoke(configuration));
     }
 }
-
-internal sealed class HatariMachineFactory() : AtariMachineFactory(AtariEmulator.Hatari);
-internal sealed class Atari800MachineFactory() : AtariMachineFactory(AtariEmulator.Atari800);
-internal sealed class StellaMachineFactory() : AtariMachineFactory(AtariEmulator.Stella);
-internal sealed class ProSystemMachineFactory() : AtariMachineFactory(AtariEmulator.ProSystem);
-internal sealed class BeetleLynxMachineFactory() : AtariMachineFactory(AtariEmulator.BeetleLynx);
-internal sealed class VirtualJaguarMachineFactory() : AtariMachineFactory(AtariEmulator.VirtualJaguar);

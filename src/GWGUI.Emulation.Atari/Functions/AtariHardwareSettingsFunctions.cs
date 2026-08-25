@@ -1,7 +1,7 @@
 using System.Globalization;
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Atari;
+namespace GWGUI.Emulation.Atari.Functions;
 
 internal static class AtariHardwareSettingsFunctions
 {
@@ -65,19 +65,19 @@ internal static class AtariHardwareSettingsFunctions
 
     private static string Culture(AtariStRegion value) => value switch
     {
-        AtariStRegion.UnitedStates => "en-US",
-        AtariStRegion.Germany => "de-DE",
-        AtariStRegion.France => "fr-FR",
-        AtariStRegion.UnitedKingdom => "en-GB",
-        AtariStRegion.Spain => "es-ES",
-        AtariStRegion.Italy => "it-IT",
-        AtariStRegion.Sweden => "sv-SE",
-        AtariStRegion.Switzerland => "de-CH",
-        AtariStRegion.Finland => "fi-FI",
-        AtariStRegion.Norway => "nb-NO",
-        AtariStRegion.CzechRepublic => "cs-CZ",
-        AtariStRegion.Russia => "ru-RU",
-        AtariStRegion.Greece => "el-GR",
+        AtariStRegion.UnitedStates => AtariHardwareSettingsFunctionsConstants.EnUS,
+        AtariStRegion.Germany => AtariHardwareSettingsFunctionsConstants.DeDE,
+        AtariStRegion.France => AtariHardwareSettingsFunctionsConstants.FrFR,
+        AtariStRegion.UnitedKingdom => AtariHardwareSettingsFunctionsConstants.EnGB,
+        AtariStRegion.Spain => AtariHardwareSettingsFunctionsConstants.EsES,
+        AtariStRegion.Italy => AtariHardwareSettingsFunctionsConstants.ItIT,
+        AtariStRegion.Sweden => AtariHardwareSettingsFunctionsConstants.SvSE,
+        AtariStRegion.Switzerland => AtariHardwareSettingsFunctionsConstants.DeCH,
+        AtariStRegion.Finland => AtariHardwareSettingsFunctionsConstants.FiFI,
+        AtariStRegion.Norway => AtariHardwareSettingsFunctionsConstants.NbNO,
+        AtariStRegion.CzechRepublic => AtariHardwareSettingsFunctionsConstants.CsCZ,
+        AtariStRegion.Russia => AtariHardwareSettingsFunctionsConstants.RuRU,
+        AtariStRegion.Greece => AtariHardwareSettingsFunctionsConstants.ElGR,
         _ => throw new ArgumentOutOfRangeException(nameof(value), value, null)
     };
 }

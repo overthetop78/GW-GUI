@@ -1,20 +1,20 @@
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Atari;
+namespace GWGUI.Emulation.Atari.Functions;
 
 internal static class AtariInputSnapshotFunctions
 {
     private static readonly IReadOnlyDictionary<string, int> CommonButtons =
         new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
         {
-            ["Fire1"] = 0, ["Fire2"] = 8, ["Turbo"] = 9,
-            ["Up"] = 4, ["Down"] = 5, ["Left"] = 6, ["Right"] = 7,
-            ["A"] = 8, ["B"] = 0, ["C"] = 1,
-            ["Pause"] = 2, ["Option"] = 3, ["Option1"] = 10, ["Option2"] = 11,
-            ["Start"] = 3, ["Reset"] = 9,
-            ["Key0"] = 9, ["Key1"] = 10, ["Key2"] = 11, ["Key3"] = 12,
-            ["Key4"] = 13, ["Key5"] = 14, ["Key6"] = 15,
-            ["Star"] = 1, ["Hash"] = 8
+            [AtariInputSnapshotFunctionsConstants.Fire1] = 0, [AtariInputSnapshotFunctionsConstants.Fire2] = 8, [AtariInputSnapshotFunctionsConstants.Turbo] = 9,
+            [AtariInputSnapshotFunctionsConstants.Up] = 4, [AtariInputSnapshotFunctionsConstants.Down] = 5, [AtariInputSnapshotFunctionsConstants.Left] = 6, [AtariInputSnapshotFunctionsConstants.Right] = 7,
+            [AtariInputSnapshotFunctionsConstants.A] = 8, [AtariInputSnapshotFunctionsConstants.B] = 0, [AtariInputSnapshotFunctionsConstants.C] = 1,
+            [AtariInputSnapshotFunctionsConstants.Pause] = 2, [AtariInputSnapshotFunctionsConstants.Option] = 3, [AtariInputSnapshotFunctionsConstants.Option1] = 10, [AtariInputSnapshotFunctionsConstants.Option2] = 11,
+            [AtariInputSnapshotFunctionsConstants.Start] = 3, [AtariInputSnapshotFunctionsConstants.Reset] = 9,
+            [AtariInputSnapshotFunctionsConstants.Key0] = 9, [AtariInputSnapshotFunctionsConstants.Key1] = 10, [AtariInputSnapshotFunctionsConstants.Key2] = 11, [AtariInputSnapshotFunctionsConstants.Key3] = 12,
+            [AtariInputSnapshotFunctionsConstants.Key4] = 13, [AtariInputSnapshotFunctionsConstants.Key5] = 14, [AtariInputSnapshotFunctionsConstants.Key6] = 15,
+            [AtariInputSnapshotFunctionsConstants.Star] = 1, [AtariInputSnapshotFunctionsConstants.Hash] = 8
         };
 
     internal static EmulationInputSnapshot Apply(EmulationInputSnapshot snapshot,
@@ -54,7 +54,7 @@ internal static class AtariInputSnapshotFunctions
     private static bool IsPressed(string sourceName, EmulationControllerState controller,
         IReadOnlySet<EmulationKey> keys)
     {
-        if (sourceName.StartsWith("Keyboard:", StringComparison.OrdinalIgnoreCase)
+        if (sourceName.StartsWith(AtariInputSnapshotFunctionsConstants.Keyboard, StringComparison.OrdinalIgnoreCase)
             && Enum.TryParse<EmulationKey>(sourceName[9..], true, out var key)) return keys.Contains(key);
         return EmulationInputMappingFunctions.IsControllerSourcePressed(sourceName, controller);
     }
@@ -64,14 +64,14 @@ internal static class AtariInputSnapshotFunctions
         if (model == AtariMachineModel.Lynx)
             return action switch
             {
-                "Option1" => 10, "Option2" => 11, "Pause" => 3,
+                AtariInputSnapshotFunctionsConstants.Option1 => 10, AtariInputSnapshotFunctionsConstants.Option2 => 11, AtariInputSnapshotFunctionsConstants.Pause => 3,
                 _ => CommonButtons.GetValueOrDefault(action, -1)
             };
         if (model == AtariMachineModel.Atari5200)
             return action switch
             {
-                "Pause" => 2, "Start" => 3, "Key0" => 10, "Key1" => 11, "Key2" => 12,
-                "Key3" => 13, "Key7" => 14, "Star" => 9, "Hash" => 1,
+                AtariInputSnapshotFunctionsConstants.Pause => 2, AtariInputSnapshotFunctionsConstants.Start => 3, AtariInputSnapshotFunctionsConstants.Key0 => 10, AtariInputSnapshotFunctionsConstants.Key1 => 11, AtariInputSnapshotFunctionsConstants.Key2 => 12,
+                AtariInputSnapshotFunctionsConstants.Key3 => 13, AtariInputSnapshotFunctionsConstants.Key7 => 14, AtariInputSnapshotFunctionsConstants.Star => 9, AtariInputSnapshotFunctionsConstants.Hash => 1,
                 _ => CommonButtons.GetValueOrDefault(action, -1)
             };
         return CommonButtons.GetValueOrDefault(action, -1);

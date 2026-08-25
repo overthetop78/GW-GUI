@@ -1,5 +1,4 @@
 using GWGUI.Emulation.Atari;
-using GWGUI.Emulation.Atari.Cores;
 using System.IO;
 using System.IO.Compression;
 using System.Net;

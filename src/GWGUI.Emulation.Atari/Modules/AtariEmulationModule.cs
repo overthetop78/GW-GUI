@@ -1,7 +1,6 @@
 using GWGUI.Emulation;
-using GWGUI.Emulation.Atari.Cores;
 
-namespace GWGUI.Emulation.Atari;
+namespace GWGUI.Emulation.Atari.Modules;
 
 public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorManager,
     IEmulationFirmwareManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager
@@ -25,8 +24,8 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
             EmulationPathConstants.FirmwareDirectoryName);
     }
 
-    public string Id => "atari";
-    public string DisplayResourceKey => "Emulation.Family.Atari";
+    public string Id => AtariEmulationModuleConstants.Atari;
+    public string DisplayResourceKey => AtariEmulationModuleConstants.ResourceFamilyAtari;
     public IReadOnlyList<EmulationMachineDefinition> Machines => AtariModelCatalog.All;
     public EmulationSettingsVisibility DefaultVisibility { get; } = new(
         Enum.GetValues<EmulationMachineTab>().ToDictionary(tab => tab, _ => true));
@@ -132,7 +131,7 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
         };
         return new AtariMachineConfiguration(atari.Model, firmwares, atari.Media, options, atari.Input,
             atari.Id, atari.SchemaVersion,
-            values.GetValueOrDefault(AtariSettingsConstants.AudioEnabled) == "enabled",
+            values.GetValueOrDefault(AtariSettingsConstants.AudioEnabled) == AtariEmulationModuleConstants.Enabled,
             renderer, folders);
     }
 
@@ -296,7 +295,7 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
         var creationContext = new AtariMachineCreationContext(services.SessionsDirectory, corePath,
             services.HostExecutablePath,
             () => services.CreateAudioOutput(audioDevice, latency),
-            value => Path.Combine(services.StatesDirectory, value.Id.ToString("N")));
+            value => Path.Combine(services.StatesDirectory, value.Id.ToString(AtariEmulationModuleConstants.N)));
         var compatibility = AtariCompatibilityCatalog.Get(atari.Model);
         var storage = AtariStorageSettingsFunctions.Describe(atari);
         var devices = storage.AvailableDevices

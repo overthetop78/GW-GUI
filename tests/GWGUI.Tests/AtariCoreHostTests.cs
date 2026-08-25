@@ -1,7 +1,6 @@
 using GWGUI.App;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari;
-using GWGUI.Emulation.Atari.Cores;
 using GWGUI.MediaEngine.Exploration.Scp;
 using System.Diagnostics;
 using System.IO;

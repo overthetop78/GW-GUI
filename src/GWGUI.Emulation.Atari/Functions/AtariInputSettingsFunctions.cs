@@ -1,6 +1,6 @@
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Atari;
+namespace GWGUI.Emulation.Atari.Functions;
 
 internal static class AtariInputSettingsFunctions
 {
@@ -72,8 +72,8 @@ internal static class AtariInputSettingsFunctions
 
     private static IReadOnlyList<InputBindingDefinition> MouseDefinitions() =>
     [
-        Definition("Left", "Emulation.Mouse.Button.Left", "Mouse:Left"),
-        Definition("Right", "Emulation.Mouse.Button.Right", "Mouse:Right")
+        Definition(AtariInputSettingsFunctionsConstants.Left, AtariInputSettingsFunctionsConstants.ResourceMouseButtonLeft, AtariInputSettingsFunctionsConstants.MouseLeft),
+        Definition(AtariInputSettingsFunctionsConstants.Right, AtariInputSettingsFunctionsConstants.ResourceMouseButtonRight, AtariInputSettingsFunctionsConstants.MouseRight)
     ];
 
     private static IReadOnlyDictionary<string, string> MouseValues(
@@ -128,7 +128,7 @@ internal static class AtariInputSettingsFunctions
         if (peripheral is AtariPeripheralCategory.Paddle or AtariPeripheralCategory.DrivingController
             or AtariPeripheralCategory.LightGun) return AtariControllerConstants.SingleFireActions;
         if (peripheral == AtariPeripheralCategory.BoosterGrip)
-            return AtariControllerConstants.DirectionActions.Concat(["Fire1", "Fire2", "Turbo"]);
+            return AtariControllerConstants.DirectionActions.Concat([AtariInputSettingsFunctionsConstants.Fire1, AtariInputSettingsFunctionsConstants.Fire2, AtariInputSettingsFunctionsConstants.Turbo]);
         if (peripheral == AtariPeripheralCategory.Joy2BPlus)
             return AtariControllerConstants.DirectionActions.Concat(AtariControllerConstants.DualFireActions);
         if (peripheral == AtariPeripheralCategory.GenesisController)
@@ -156,40 +156,40 @@ internal static class AtariInputSettingsFunctions
     private static EmulationControllerChoice Choice(AtariMachineModel model,
         AtariPeripheralCategory category) => new(category.ToString(), category switch
     {
-        AtariPeripheralCategory.None => "Emulation.Controller.None",
-        AtariPeripheralCategory.Automatic => "Emulation.Controller.Automatic",
-        AtariPeripheralCategory.Joystick => "Emulation.Atari.Controller.Joystick",
+        AtariPeripheralCategory.None => AtariInputSettingsFunctionsConstants.ResourceControllerNone,
+        AtariPeripheralCategory.Automatic => AtariInputSettingsFunctionsConstants.ResourceControllerAutomatic,
+        AtariPeripheralCategory.Joystick => AtariInputSettingsFunctionsConstants.ResourceAtariControllerJoystick,
         AtariPeripheralCategory.AnalogJoystick when model == AtariMachineModel.Atari5200
-            => "Emulation.Atari.Controller.Atari5200",
-        AtariPeripheralCategory.AnalogJoystick => "Emulation.Controller.AnalogJoystick",
-        AtariPeripheralCategory.Paddle => "Emulation.Atari.Controller.PaddleControllers",
-        AtariPeripheralCategory.LightGun => "Emulation.Atari.Controller.Xg1LightGun",
+            => AtariInputSettingsFunctionsConstants.ResourceAtariControllerAtari5200,
+        AtariPeripheralCategory.AnalogJoystick => AtariInputSettingsFunctionsConstants.ResourceControllerAnalogJoystick,
+        AtariPeripheralCategory.Paddle => AtariInputSettingsFunctionsConstants.ResourceAtariControllerPaddleControllers,
+        AtariPeripheralCategory.LightGun => AtariInputSettingsFunctionsConstants.ResourceAtariControllerXg1LightGun,
         AtariPeripheralCategory.NumericKeypad when model == AtariMachineModel.Atari5200
-            => "Emulation.Atari.Controller.Atari5200",
-        AtariPeripheralCategory.NumericKeypad => "Emulation.Atari.Controller.NumericKeypad",
-        AtariPeripheralCategory.DrivingController => "Emulation.Atari.Controller.Driving",
-        AtariPeripheralCategory.ProLineController => "Emulation.Atari.Controller.ProLine",
-        AtariPeripheralCategory.BoosterGrip => "Emulation.Atari.Controller.BoosterGrip",
-        AtariPeripheralCategory.GenesisController => "Emulation.Atari.Controller.Genesis",
-        AtariPeripheralCategory.Joy2BPlus => "Emulation.Atari.Controller.Joy2BPlus",
+            => AtariInputSettingsFunctionsConstants.ResourceAtariControllerAtari5200,
+        AtariPeripheralCategory.NumericKeypad => AtariInputSettingsFunctionsConstants.ResourceAtariControllerNumericKeypad,
+        AtariPeripheralCategory.DrivingController => AtariInputSettingsFunctionsConstants.ResourceAtariControllerDriving,
+        AtariPeripheralCategory.ProLineController => AtariInputSettingsFunctionsConstants.ResourceAtariControllerProLine,
+        AtariPeripheralCategory.BoosterGrip => AtariInputSettingsFunctionsConstants.ResourceAtariControllerBoosterGrip,
+        AtariPeripheralCategory.GenesisController => AtariInputSettingsFunctionsConstants.ResourceAtariControllerGenesis,
+        AtariPeripheralCategory.Joy2BPlus => AtariInputSettingsFunctionsConstants.ResourceAtariControllerJoy2BPlus,
         AtariPeripheralCategory.EnhancedController when model == AtariMachineModel.Lynx
-            => "Emulation.Atari.Controller.Lynx",
+            => AtariInputSettingsFunctionsConstants.ResourceAtariControllerLynx,
         AtariPeripheralCategory.EnhancedController when model is AtariMachineModel.Jaguar
-            or AtariMachineModel.JaguarCd => "Emulation.Atari.Controller.Jaguar",
+            or AtariMachineModel.JaguarCd => AtariInputSettingsFunctionsConstants.ResourceAtariControllerJaguar,
         _ => category.ToString()
     });
 
     private static string ActionResourceKey(string action) => action switch
     {
-        "Turbo" => "Emulation.Controller.Action.TurboFire",
+        AtariInputSettingsFunctionsConstants.Turbo => AtariInputSettingsFunctionsConstants.ResourceControllerActionTurboFire,
         _ => $"Emulation.Controller.Action.{action}"
     };
 
     private static string? ActionInvariantValue(string action) => action switch
     {
-        "Up" or "Down" or "Left" or "Right" or "Fire1" or "Fire2" or "Turbo" => null,
-        "Option1" => "Option 1",
-        "Option2" => "Option 2",
+        AtariInputSettingsFunctionsConstants.Up or AtariInputSettingsFunctionsConstants.Down or AtariInputSettingsFunctionsConstants.Left or AtariInputSettingsFunctionsConstants.Right or AtariInputSettingsFunctionsConstants.Fire1 or AtariInputSettingsFunctionsConstants.Fire2 or AtariInputSettingsFunctionsConstants.Turbo => null,
+        AtariInputSettingsFunctionsConstants.Option1 => AtariInputSettingsFunctionsConstants.Option12,
+        AtariInputSettingsFunctionsConstants.Option2 => AtariInputSettingsFunctionsConstants.Option22,
         _ => action
     };
 
@@ -198,9 +198,9 @@ internal static class AtariInputSettingsFunctions
 
     private static string KeyResource(EmulationKey key) => key switch
     {
-        EmulationKey.Help => "Emulation.Key.AtariHelp",
-        EmulationKey.AtariUndo => "Emulation.Key.AtariUndo",
-        EmulationKey.AtariBreak => "Emulation.Key.AtariBreak",
+        EmulationKey.Help => AtariInputSettingsFunctionsConstants.ResourceKeyAtariHelp,
+        EmulationKey.AtariUndo => AtariInputSettingsFunctionsConstants.ResourceKeyAtariUndo,
+        EmulationKey.AtariBreak => AtariInputSettingsFunctionsConstants.ResourceKeyAtariBreak,
         _ => key.ToString()
     };
 

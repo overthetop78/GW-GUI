@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation.Atari;
+namespace GWGUI.Emulation.Atari.Contracts;
 
 internal sealed record AtariStateControllerFingerprint(
     int Port,

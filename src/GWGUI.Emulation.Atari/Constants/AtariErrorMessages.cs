@@ -1,0 +1,50 @@
+namespace GWGUI.Emulation.Atari.Constants;
+
+internal static class AtariErrorMessages
+{
+    internal const string UnknownFirmware = "Unknown Atari firmware definition.";
+    internal const string RequiredFirmwareMissing = "Required Atari firmware '{0}' is not configured for {1}.";
+    internal const string FirmwareFileMissing = "Configured Atari firmware '{0}' was not found: {1}";
+    internal const string FirmwareFileUnreadable = "Configured Atari firmware '{0}' cannot be read: {1}";
+    internal const string FirmwareIdentityAmbiguous = "Configured Atari firmware '{0}' cannot be mapped to an expected core file name: {1}";
+    internal const string FirmwareCannotBeSelected = "The scanned Atari firmware is unreadable, incompatible or has no firmware role.";
+    internal const string DuplicateStModelDefinition = "An Atari ST model is declared more than once.";
+    internal const string UnknownStModel = "The requested Atari model is not part of the ST family.";
+    internal const string DuplicateClassicModelDefinition = "An Atari 8-bit or console model is declared more than once.";
+    internal const string UnknownClassicModel = "The requested Atari model is not part of the 8-bit or console catalog.";
+    internal const string DuplicateCompatibilityDefinition = "An Atari compatibility model is declared more than once.";
+    internal const string UnknownCompatibilityModel = "The requested Atari model has no compatibility definition.";
+    internal const string IncompleteCompatibilityOptions = "An Atari compatibility definition does not declare every option.";
+    internal const string MissingUnavailableExplanation = "A non-editable Atari option requires an explanation resource.";
+    internal const string MissingForcedOptionValue = "A forced Atari option requires a fixed value.";
+    internal const string InvalidCompatibilityControllerCount = "An Atari compatibility definition has an invalid controller count.";
+    internal const string UnsupportedSchema = "The Atari configuration schema is not supported.";
+    internal const string EmptyFirmwarePath = "An Atari firmware path cannot be empty.";
+    internal const string DuplicateFirmware = "An Atari firmware role cannot be configured more than once.";
+    internal const string IncompatibleFirmware = "The Atari firmware is not compatible with the selected machine.";
+    internal const string EmptyMediaPath = "An Atari media path cannot be empty.";
+    internal const string DuplicateMediaSlot = "An Atari media slot cannot be configured more than once.";
+    internal const string IncompatibleMedia = "The Atari media is not compatible with the selected machine.";
+    internal const string InvalidControllerPort = "The Atari controller port is outside the supported range.";
+    internal const string UnsupportedControllerDevice = "The selected Atari controller device is not supported on this port.";
+    internal const string DuplicateControllerPort = "An Atari controller port cannot be configured more than once.";
+    internal const string InvalidControllerDeadZone = "The Atari controller dead zone must be between zero and one hundred percent.";
+    internal const string CorePathMustBeAbsolute = "The Atari core path must be absolute.";
+    internal const string CoreFileMissing = "The configured Atari core was not found.";
+    internal const string CoreExportMissing = "The Atari core is missing a required export.";
+    internal const string CoreApiVersionUnsupported = "The Atari core uses an unsupported API version.";
+    internal const string CoreIdentityMismatch = "The selected Atari core does not identify itself as the expected engine.";
+    internal const string ContentFileMissing = "The configured Atari content was not found.";
+    internal const string ContentExtensionUnsupported = "The configured Atari content extension is not supported by the selected core.";
+    internal const string OptionValueInvalidFormat = "The Atari option '{0}' does not accept value '{1}'.";
+    internal const string CoreAlreadyInitialized = "The Atari core is already initialized.";
+    internal const string CoreNotInitialized = "The Atari core is not initialized.";
+    internal const string ContentLoadFailed = "The Atari core rejected the configured content.";
+    internal const string ContentRequired = "The Atari core requires content before it can start.";
+    internal const string DynamicMediaUnsupported = "Dynamic Atari media control is not initialized yet.";
+    internal const string HatariFloppyRequired = "Hatari disk control accepts floppy media only.";
+    internal const string StateSizeInvalid = "The Atari core reported an invalid saved-state size.";
+    internal const string StateUnavailable = "The Atari core does not provide saved states for the loaded content.";
+    internal const string StateSaveFailed = "The Atari core failed to save its state.";
+    internal const string StateLoadFailed = "The Atari core rejected the saved state.";
+}

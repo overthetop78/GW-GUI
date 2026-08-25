@@ -1,6 +1,6 @@
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Atari;
+namespace GWGUI.Emulation.Atari.Functions;
 
 internal static class AtariSettingsDescriptionFunctions
 {
@@ -25,9 +25,9 @@ internal static class AtariSettingsDescriptionFunctions
                 / AtariMouseSettingsConstants.SpeedStepPercent + 1)
             .Select(value => value * AtariMouseSettingsConstants.SpeedStepPercent)
             .Select(value => new EmulationSettingsChoice(value.ToString(), string.Empty, $"{value} %", value));
-        blocks.Add(Block("mouse", EmulationMachineTab.Mouse, "Emulation.Tab.Mouse", "\uE962", 1,
-            Select(AtariMouseSettingsConstants.SpeedOptionKey, EmulationMachineTab.Mouse, "mouse",
-                "Emulation.Mouse.Speed", Value(configuration, AtariMouseSettingsConstants.SpeedOptionKey,
+        blocks.Add(Block(AtariSettingsDescriptionFunctionsConstants.Mouse, EmulationMachineTab.Mouse, AtariSettingsDescriptionFunctionsConstants.ResourceTabMouse, AtariSettingsDescriptionFunctionsConstants.Value, 1,
+            Select(AtariMouseSettingsConstants.SpeedOptionKey, EmulationMachineTab.Mouse, AtariSettingsDescriptionFunctionsConstants.Mouse,
+                AtariSettingsDescriptionFunctionsConstants.ResourceMouseSpeed, Value(configuration, AtariMouseSettingsConstants.SpeedOptionKey,
                     AtariMouseSettingsConstants.DefaultSpeedPercent.ToString()), choices)));
     }
 
@@ -38,9 +38,9 @@ internal static class AtariSettingsDescriptionFunctions
             || compatibility.Media.Any(rule => rule.Availability == AtariMediaAvailability.Available
                 && rule.Category is AtariMediaCategory.HardDisk or AtariMediaCategory.Directory);
         if (!supportsHardDisk) return;
-        blocks.Add(Block("default-folders", EmulationMachineTab.General, "Emulation.Folder.Default", "\uEDA2", 1,
+        blocks.Add(Block(AtariSettingsDescriptionFunctionsConstants.DefaultFolders, EmulationMachineTab.General, AtariSettingsDescriptionFunctionsConstants.ResourceFolderDefault, AtariSettingsDescriptionFunctionsConstants.Value2, 1,
             new EmulationSettingsField(AtariSettingsConstants.HardDiskFolder, EmulationMachineTab.General,
-                "default-folders", "Emulation.Storage.HardDisk.List", EmulationSettingsEditor.DirectoryPath,
+                AtariSettingsDescriptionFunctionsConstants.DefaultFolders, AtariSettingsDescriptionFunctionsConstants.ResourceStorageHardDiskList, EmulationSettingsEditor.DirectoryPath,
                 configuration.Folders.HardDisks,
                 DefaultFolderCategory: EmulationDefaultFolderCategory.HardDisk)));
     }
@@ -50,61 +50,61 @@ internal static class AtariSettingsDescriptionFunctions
         var model = AtariStModelCatalog.Get(configuration.Model);
         return
         [
-            Block("processor", EmulationMachineTab.Cpu, "Emulation.Cpu.Processor", "\uE950", 2,
-                Select(AtariSettingsConstants.Cpu, EmulationMachineTab.Cpu, "processor", "Emulation.Cpu.Model",
+            Block(AtariSettingsDescriptionFunctionsConstants.Processor, EmulationMachineTab.Cpu, AtariSettingsDescriptionFunctionsConstants.ResourceCpuProcessor, AtariSettingsDescriptionFunctionsConstants.Value3, 2,
+                Select(AtariSettingsConstants.Cpu, EmulationMachineTab.Cpu, AtariSettingsDescriptionFunctionsConstants.Processor, AtariSettingsDescriptionFunctionsConstants.ResourceCpuModel,
                     Value(configuration, AtariSettingsConstants.Cpu, model.DefaultCpu.ToString()),
                     model.Cpus.Select(value => AtariHardwareSettingsFunctions.Invariant(value.ToString(), value.ToString()))),
-                Select(AtariSettingsConstants.CpuPrecision, EmulationMachineTab.Cpu, "processor", "Emulation.Cpu.Precision",
+                Select(AtariSettingsConstants.CpuPrecision, EmulationMachineTab.Cpu, AtariSettingsDescriptionFunctionsConstants.Processor, AtariSettingsDescriptionFunctionsConstants.ResourceCpuPrecision,
                     Value(configuration, AtariSettingsConstants.CpuPrecision, model.DefaultCpuPrecision.ToString()),
                     model.CpuPrecisions.Select(AtariHardwareSettingsFunctions.CpuPrecision)),
-                Select(AtariSettingsConstants.Fpu, EmulationMachineTab.Cpu, "processor", "Emulation.Fpu.Model",
+                Select(AtariSettingsConstants.Fpu, EmulationMachineTab.Cpu, AtariSettingsDescriptionFunctionsConstants.Processor, AtariSettingsDescriptionFunctionsConstants.ResourceFpuModel,
                     Value(configuration, AtariSettingsConstants.Fpu, model.DefaultFpu.ToString()),
                     model.Fpus.Select(AtariHardwareSettingsFunctions.Fpu)),
-                Information(AtariSettingsConstants.CpuOriginalFrequency, EmulationMachineTab.Cpu, "processor",
-                    "Emulation.Cpu.SpeedOriginal",
+                Information(AtariSettingsConstants.CpuOriginalFrequency, EmulationMachineTab.Cpu, AtariSettingsDescriptionFunctionsConstants.Processor,
+                    AtariSettingsDescriptionFunctionsConstants.ResourceCpuSpeedOriginal,
                     AtariHardwareSettingsFunctions.FrequencyMhz(model.DefaultCpuFrequencyMhz).InvariantDisplayValue!),
-                Select(AtariSettingsConstants.CpuFrequency, EmulationMachineTab.Cpu, "processor", "Emulation.Cpu.Speed",
+                Select(AtariSettingsConstants.CpuFrequency, EmulationMachineTab.Cpu, AtariSettingsDescriptionFunctionsConstants.Processor, AtariSettingsDescriptionFunctionsConstants.ResourceCpuSpeed,
                     Value(configuration, AtariSettingsConstants.CpuFrequency, model.DefaultCpuFrequencyMhz.ToString()),
                     model.CpuFrequenciesMhz.Select(AtariHardwareSettingsFunctions.FrequencyMhz))),
-            Block("main-memory", EmulationMachineTab.Ram, "Emulation.Memory.Main", "\uE964", 2,
-                Select(AtariConfigurationOptionConstants.MainMemory, EmulationMachineTab.Ram, "main-memory", "Emulation.Memory.Main",
+            Block(AtariSettingsDescriptionFunctionsConstants.MainMemory, EmulationMachineTab.Ram, AtariSettingsDescriptionFunctionsConstants.ResourceMemoryMain, AtariSettingsDescriptionFunctionsConstants.Value4, 2,
+                Select(AtariConfigurationOptionConstants.MainMemory, EmulationMachineTab.Ram, AtariSettingsDescriptionFunctionsConstants.MainMemory, AtariSettingsDescriptionFunctionsConstants.ResourceMemoryMain,
                     Value(configuration, AtariConfigurationOptionConstants.MainMemory,
                         ((long)model.DefaultMainMemoryKib * AtariHardwareSettingsConstants.BytesPerKibibyte).ToString()),
                     model.MainMemoryKib.Select(AtariHardwareSettingsFunctions.MemoryKib))),
-            Block("extension-memory", EmulationMachineTab.Ram, "Emulation.Memory.Extensions", "\uE964", 1,
-                Select(AtariSettingsConstants.AlternateMemory, EmulationMachineTab.Ram, "extension-memory", "Emulation.Memory.Extensions",
+            Block(AtariSettingsDescriptionFunctionsConstants.ExtensionMemory, EmulationMachineTab.Ram, AtariSettingsDescriptionFunctionsConstants.ResourceMemoryExtensions, AtariSettingsDescriptionFunctionsConstants.Value4, 1,
+                Select(AtariSettingsConstants.AlternateMemory, EmulationMachineTab.Ram, AtariSettingsDescriptionFunctionsConstants.ExtensionMemory, AtariSettingsDescriptionFunctionsConstants.ResourceMemoryExtensions,
                     Value(configuration, AtariSettingsConstants.AlternateMemory,
                         ((long)model.DefaultAlternateMemoryMib * AtariHardwareSettingsConstants.BytesPerMebibyte).ToString()),
                     model.AlternateMemoryMib.Select(AtariHardwareSettingsFunctions.MemoryMib))),
-            Block("firmware", EmulationMachineTab.Rom, "Emulation.Firmware.Rom.System", "\uE8B7", 1,
-                Path(AtariSettingsConstants.SystemFirmware, EmulationMachineTab.Rom, "firmware",
-                    "Emulation.Firmware.Rom.System",
+            Block(AtariSettingsDescriptionFunctionsConstants.Firmware, EmulationMachineTab.Rom, AtariSettingsDescriptionFunctionsConstants.ResourceFirmwareRomSystem, AtariSettingsDescriptionFunctionsConstants.Value5, 1,
+                Path(AtariSettingsConstants.SystemFirmware, EmulationMachineTab.Rom, AtariSettingsDescriptionFunctionsConstants.Firmware,
+                    AtariSettingsDescriptionFunctionsConstants.ResourceFirmwareRomSystem,
                     configuration.Firmwares.FirstOrDefault(item => item.Category == AtariFirmwareCategory.Tos)?.Path),
-                Toggle("hatari_fastboot", EmulationMachineTab.Rom, "firmware", "Emulation.Atari.FastBoot",
-                    Value(configuration, "hatari_fastboot", "false") == "true", "true", "false")),
-            Block("storage-options", EmulationMachineTab.Storage, "Emulation.Storage.Device.List", "\uE7C3", 1,
+                Toggle(AtariSettingsDescriptionFunctionsConstants.HatariFastboot, EmulationMachineTab.Rom, AtariSettingsDescriptionFunctionsConstants.Firmware, AtariSettingsDescriptionFunctionsConstants.ResourceAtariFastBoot,
+                    Value(configuration, AtariSettingsDescriptionFunctionsConstants.HatariFastboot, AtariSettingsDescriptionFunctionsConstants.False) == AtariSettingsDescriptionFunctionsConstants.True, AtariSettingsDescriptionFunctionsConstants.True, AtariSettingsDescriptionFunctionsConstants.False)),
+            Block(AtariSettingsDescriptionFunctionsConstants.StorageOptions, EmulationMachineTab.Storage, AtariSettingsDescriptionFunctionsConstants.ResourceStorageDeviceList, AtariSettingsDescriptionFunctionsConstants.Value6, 1,
                 Toggle(AtariMachineOptionConstants.DriveActivity, EmulationMachineTab.Storage,
-                    "storage-options", "Emulation.Storage.ActivityOsd",
-                    Value(configuration, AtariMachineOptionConstants.DriveActivity, "false") == "true",
-                    "true", "false")),
-            Block("video", EmulationMachineTab.Video, "Emulation.Video.Settings.Display", "\uE7F4", 2,
-                Select(AtariVideoAudioSettingsConstants.StandardOption, EmulationMachineTab.Video, "video",
-                    "Emulation.Video.Standard", Value(configuration, AtariVideoAudioSettingsConstants.StandardOption,
+                    AtariSettingsDescriptionFunctionsConstants.StorageOptions, AtariSettingsDescriptionFunctionsConstants.ResourceStorageActivityOsd,
+                    Value(configuration, AtariMachineOptionConstants.DriveActivity, AtariSettingsDescriptionFunctionsConstants.False) == AtariSettingsDescriptionFunctionsConstants.True,
+                    AtariSettingsDescriptionFunctionsConstants.True, AtariSettingsDescriptionFunctionsConstants.False)),
+            Block(AtariSettingsDescriptionFunctionsConstants.Video, EmulationMachineTab.Video, AtariSettingsDescriptionFunctionsConstants.ResourceVideoSettingsDisplay, AtariSettingsDescriptionFunctionsConstants.Value7, 2,
+                Select(AtariVideoAudioSettingsConstants.StandardOption, EmulationMachineTab.Video, AtariSettingsDescriptionFunctionsConstants.Video,
+                    AtariSettingsDescriptionFunctionsConstants.ResourceVideoStandard, Value(configuration, AtariVideoAudioSettingsConstants.StandardOption,
                         AtariVideoAudioSettingsConstants.Automatic), StStandards(model)),
-                Select(AtariSettingsConstants.Region, EmulationMachineTab.Video, "video", "Emulation.Atari.Video.Region",
+                Select(AtariSettingsConstants.Region, EmulationMachineTab.Video, AtariSettingsDescriptionFunctionsConstants.Video, AtariSettingsDescriptionFunctionsConstants.ResourceAtariVideoRegion,
                     Value(configuration, AtariSettingsConstants.Region, model.DefaultRegion.ToString()),
                     model.Regions.Select(AtariHardwareSettingsFunctions.StRegion)),
-                Select(AtariVideoAudioSettingsConstants.ResolutionOption, EmulationMachineTab.Video, "video",
-                    "Emulation.Video.Resolution", Value(configuration, AtariVideoAudioSettingsConstants.ResolutionOption,
+                Select(AtariVideoAudioSettingsConstants.ResolutionOption, EmulationMachineTab.Video, AtariSettingsDescriptionFunctionsConstants.Video,
+                    AtariSettingsDescriptionFunctionsConstants.ResourceVideoResolution, Value(configuration, AtariVideoAudioSettingsConstants.ResolutionOption,
                         AtariVideoAudioSettingsConstants.Automatic), AutomaticAndNative()),
-                Select(AtariVideoAudioSettingsConstants.AspectRatioOption, EmulationMachineTab.Video, "video",
-                    "Emulation.Video.AspectRatio", Value(configuration, AtariVideoAudioSettingsConstants.AspectRatioOption,
+                Select(AtariVideoAudioSettingsConstants.AspectRatioOption, EmulationMachineTab.Video, AtariSettingsDescriptionFunctionsConstants.Video,
+                    AtariSettingsDescriptionFunctionsConstants.ResourceVideoAspectRatio, Value(configuration, AtariVideoAudioSettingsConstants.AspectRatioOption,
                         AtariVideoAudioSettingsConstants.Automatic), AspectRatios()),
-                Toggle(AtariVideoAudioSettingsConstants.CropOption, EmulationMachineTab.Video, "video",
-                    "Emulation.Video.Crop", Value(configuration, AtariVideoAudioSettingsConstants.CropOption,
+                Toggle(AtariVideoAudioSettingsConstants.CropOption, EmulationMachineTab.Video, AtariSettingsDescriptionFunctionsConstants.Video,
+                    AtariSettingsDescriptionFunctionsConstants.ResourceVideoCrop, Value(configuration, AtariVideoAudioSettingsConstants.CropOption,
                         AtariVideoAudioSettingsConstants.Disabled) == AtariVideoAudioSettingsConstants.Enabled),
-                Select(AtariVideoAudioSettingsConstants.FrameSkipOption, EmulationMachineTab.Video, "video",
-                    "Emulation.Video.FrameSkip", Value(configuration, AtariVideoAudioSettingsConstants.FrameSkipOption,
+                Select(AtariVideoAudioSettingsConstants.FrameSkipOption, EmulationMachineTab.Video, AtariSettingsDescriptionFunctionsConstants.Video,
+                    AtariSettingsDescriptionFunctionsConstants.ResourceVideoFrameSkip, Value(configuration, AtariVideoAudioSettingsConstants.FrameSkipOption,
                         AtariVideoAudioSettingsConstants.MinimumFrameSkip.ToString()), FrameSkips()),
                 Renderer(configuration)),
             Audio(configuration, true)
@@ -116,30 +116,30 @@ internal static class AtariSettingsDescriptionFunctions
         var model = AtariClassicModelCatalog.Get(configuration.Model);
         var blocks = new List<EmulationSettingsBlock>
         {
-            Block("processor", EmulationMachineTab.Cpu, "Emulation.Cpu.Processor", "\uE950", 2,
-                Select(AtariSettingsConstants.Cpu, EmulationMachineTab.Cpu, "processor", "Emulation.Cpu.Model",
+            Block(AtariSettingsDescriptionFunctionsConstants.Processor, EmulationMachineTab.Cpu, AtariSettingsDescriptionFunctionsConstants.ResourceCpuProcessor, AtariSettingsDescriptionFunctionsConstants.Value3, 2,
+                Select(AtariSettingsConstants.Cpu, EmulationMachineTab.Cpu, AtariSettingsDescriptionFunctionsConstants.Processor, AtariSettingsDescriptionFunctionsConstants.ResourceCpuModel,
                     Value(configuration, AtariSettingsConstants.Cpu, model.DefaultCpu.ToString()), model.Cpus.Select(value => value.ToString()),
                     isEnabled: model.Cpus.Count > 1),
-                Information(AtariSettingsConstants.CpuOriginalFrequency, EmulationMachineTab.Cpu, "processor", "Emulation.Cpu.SpeedOriginal",
+                Information(AtariSettingsConstants.CpuOriginalFrequency, EmulationMachineTab.Cpu, AtariSettingsDescriptionFunctionsConstants.Processor, AtariSettingsDescriptionFunctionsConstants.ResourceCpuSpeedOriginal,
                     $"{model.DefaultCpuFrequencyHz / 1_000_000d:0.00} MHz")),
-            Block("main-memory", EmulationMachineTab.Ram, "Emulation.Memory.Main", "\uE964", 1,
+            Block(AtariSettingsDescriptionFunctionsConstants.MainMemory, EmulationMachineTab.Ram, AtariSettingsDescriptionFunctionsConstants.ResourceMemoryMain, AtariSettingsDescriptionFunctionsConstants.Value4, 1,
                 ClassicMemory(configuration, model)),
-            Block("video", EmulationMachineTab.Video, "Emulation.Video.Settings.Display", "\uE7F4", 2,
-                Select(AtariConfigurationOptionConstants.VideoStandard, EmulationMachineTab.Video, "video",
-                    "Emulation.Video.Standard", Value(configuration, AtariConfigurationOptionConstants.VideoStandard,
+            Block(AtariSettingsDescriptionFunctionsConstants.Video, EmulationMachineTab.Video, AtariSettingsDescriptionFunctionsConstants.ResourceVideoSettingsDisplay, AtariSettingsDescriptionFunctionsConstants.Value7, 2,
+                Select(AtariConfigurationOptionConstants.VideoStandard, EmulationMachineTab.Video, AtariSettingsDescriptionFunctionsConstants.Video,
+                    AtariSettingsDescriptionFunctionsConstants.ResourceVideoStandard, Value(configuration, AtariConfigurationOptionConstants.VideoStandard,
                         model.DefaultRegion.ToString()), model.Regions.Select(AtariHardwareSettingsFunctions.ClassicRegion),
                     isEnabled: model.Regions.Count > 1),
-                Select(AtariVideoAudioSettingsConstants.ResolutionOption, EmulationMachineTab.Video, "video",
-                    "Emulation.Video.Resolution", Value(configuration, AtariVideoAudioSettingsConstants.ResolutionOption,
+                Select(AtariVideoAudioSettingsConstants.ResolutionOption, EmulationMachineTab.Video, AtariSettingsDescriptionFunctionsConstants.Video,
+                    AtariSettingsDescriptionFunctionsConstants.ResourceVideoResolution, Value(configuration, AtariVideoAudioSettingsConstants.ResolutionOption,
                         DefaultResolution(configuration.Model)), Resolutions(configuration.Model)),
                 Renderer(configuration)),
             Audio(configuration, false)
         };
         if (configuration.Model == AtariMachineModel.Atari400)
         {
-            blocks.Add(Block("firmware", EmulationMachineTab.Rom, "Emulation.Firmware.Rom.System", "\uE8B7", 1,
-                Path(AtariSettingsConstants.SystemFirmware, EmulationMachineTab.Rom, "firmware",
-                    "Emulation.Firmware.Rom.System", configuration.Firmwares.FirstOrDefault()?.Path)));
+            blocks.Add(Block(AtariSettingsDescriptionFunctionsConstants.Firmware, EmulationMachineTab.Rom, AtariSettingsDescriptionFunctionsConstants.ResourceFirmwareRomSystem, AtariSettingsDescriptionFunctionsConstants.Value5, 1,
+                Path(AtariSettingsConstants.SystemFirmware, EmulationMachineTab.Rom, AtariSettingsDescriptionFunctionsConstants.Firmware,
+                    AtariSettingsDescriptionFunctionsConstants.ResourceFirmwareRomSystem, configuration.Firmwares.FirstOrDefault()?.Path)));
         }
         AddEightBitMemory(configuration, blocks);
         AddEightBitOptions(configuration, blocks);
@@ -151,27 +151,27 @@ internal static class AtariSettingsDescriptionFunctions
         ICollection<EmulationSettingsBlock> blocks)
     {
         if (!AtariEightBitSettingsCatalog.SupportsComputerOptions(configuration.Model)) return;
-        blocks.Add(Block("controller-options", EmulationMachineTab.Controllers,
-            "Emulation.Controller.Tab", "\uE7FC", 2,
+        blocks.Add(Block(AtariSettingsDescriptionFunctionsConstants.ControllerOptions, EmulationMachineTab.Controllers,
+            AtariSettingsDescriptionFunctionsConstants.ResourceControllerTab, AtariSettingsDescriptionFunctionsConstants.Value8, 2,
             Select(AtariEightBitSettingsConstants.PaddleMovementSpeedOptionKey,
-                EmulationMachineTab.Controllers, "controller-options", "Emulation.Atari.Controller.PaddleSpeed",
+                EmulationMachineTab.Controllers, AtariSettingsDescriptionFunctionsConstants.ControllerOptions, AtariSettingsDescriptionFunctionsConstants.ResourceAtariControllerPaddleSpeed,
                 Value(configuration, AtariEightBitSettingsConstants.PaddleMovementSpeedOptionKey,
                     AtariEightBitSettingsConstants.DefaultPaddleMovementSpeed),
                 AtariEightBitSettingsCatalog.PaddleMovementSpeeds),
             Select(AtariEightBitSettingsConstants.AutofireOptionKey,
-                EmulationMachineTab.Controllers, "controller-options", "Emulation.Atari.Controller.Autofire",
+                EmulationMachineTab.Controllers, AtariSettingsDescriptionFunctionsConstants.ControllerOptions, AtariSettingsDescriptionFunctionsConstants.ResourceAtariControllerAutofire,
                 Value(configuration, AtariEightBitSettingsConstants.AutofireOptionKey,
                     AtariEightBitSettingsConstants.Disabled), AtariEightBitSettingsCatalog.AutofireModes),
             Select(AtariEightBitSettingsConstants.ControllerCompatibilityOptionKey,
-                EmulationMachineTab.Controllers, "controller-options", "Emulation.Atari.Controller.Compatibility",
+                EmulationMachineTab.Controllers, AtariSettingsDescriptionFunctionsConstants.ControllerOptions, AtariSettingsDescriptionFunctionsConstants.ResourceAtariControllerCompatibility,
                 Value(configuration, AtariEightBitSettingsConstants.ControllerCompatibilityOptionKey,
                     AtariEightBitSettingsConstants.None), AtariEightBitSettingsCatalog.ControllerCompatibilityModes),
             Select(AtariEightBitSettingsConstants.DigitalSensitivityOptionKey,
-                EmulationMachineTab.Controllers, "controller-options", "Emulation.Atari.Controller.DigitalSensitivity",
+                EmulationMachineTab.Controllers, AtariSettingsDescriptionFunctionsConstants.ControllerOptions, AtariSettingsDescriptionFunctionsConstants.ResourceAtariControllerDigitalSensitivity,
                 Value(configuration, AtariEightBitSettingsConstants.DigitalSensitivityOptionKey,
                     AtariEightBitSettingsConstants.DefaultSensitivity), AtariEightBitSettingsCatalog.Sensitivities),
             Select(AtariEightBitSettingsConstants.AnalogSensitivityOptionKey,
-                EmulationMachineTab.Controllers, "controller-options", "Emulation.Atari.Controller.AnalogSensitivity",
+                EmulationMachineTab.Controllers, AtariSettingsDescriptionFunctionsConstants.ControllerOptions, AtariSettingsDescriptionFunctionsConstants.ResourceAtariControllerAnalogSensitivity,
                 Value(configuration, AtariEightBitSettingsConstants.AnalogSensitivityOptionKey,
                     AtariEightBitSettingsConstants.DefaultSensitivity), AtariEightBitSettingsCatalog.Sensitivities)));
     }
@@ -180,66 +180,66 @@ internal static class AtariSettingsDescriptionFunctions
         ICollection<EmulationSettingsBlock> blocks)
     {
         if (!AtariEightBitSettingsCatalog.SupportsComputerOptions(configuration.Model)) return;
-        blocks.Add(Block("video-colors", EmulationMachineTab.Video, "Emulation.Video.Settings.Display", "\uE7F4", 2,
+        blocks.Add(Block(AtariSettingsDescriptionFunctionsConstants.VideoColors, EmulationMachineTab.Video, AtariSettingsDescriptionFunctionsConstants.ResourceVideoSettingsDisplay, AtariSettingsDescriptionFunctionsConstants.Value7, 2,
             Select(AtariEightBitSettingsConstants.ArtifactingModeOptionKey, EmulationMachineTab.Video,
-                "video-colors", "Emulation.Atari.Video.Artifacting",
+                AtariSettingsDescriptionFunctionsConstants.VideoColors, AtariSettingsDescriptionFunctionsConstants.ResourceAtariVideoArtifacting,
                 Value(configuration, AtariEightBitSettingsConstants.ArtifactingModeOptionKey,
                     AtariEightBitSettingsConstants.None), AtariEightBitSettingsCatalog.ArtifactingModes),
-            Select(AtariEightBitSettingsConstants.ColorHueOptionKey, EmulationMachineTab.Video, "video-colors",
-                "Emulation.Atari.Video.Hue", Value(configuration, AtariEightBitSettingsConstants.ColorHueOptionKey,
+            Select(AtariEightBitSettingsConstants.ColorHueOptionKey, EmulationMachineTab.Video, AtariSettingsDescriptionFunctionsConstants.VideoColors,
+                AtariSettingsDescriptionFunctionsConstants.ResourceAtariVideoHue, Value(configuration, AtariEightBitSettingsConstants.ColorHueOptionKey,
                     AtariEightBitSettingsConstants.DefaultColorAdjustment), AtariEightBitSettingsCatalog.ColorAdjustments),
             Select(AtariEightBitSettingsConstants.ColorSaturationOptionKey, EmulationMachineTab.Video,
-                "video-colors", "Emulation.Atari.Video.Saturation",
+                AtariSettingsDescriptionFunctionsConstants.VideoColors, AtariSettingsDescriptionFunctionsConstants.ResourceAtariVideoSaturation,
                 Value(configuration, AtariEightBitSettingsConstants.ColorSaturationOptionKey,
                     AtariEightBitSettingsConstants.DefaultColorAdjustment), AtariEightBitSettingsCatalog.ColorAdjustments),
             Select(AtariEightBitSettingsConstants.ColorContrastOptionKey, EmulationMachineTab.Video,
-                "video-colors", "Emulation.Atari.Video.Contrast",
+                AtariSettingsDescriptionFunctionsConstants.VideoColors, AtariSettingsDescriptionFunctionsConstants.ResourceAtariVideoContrast,
                 Value(configuration, AtariEightBitSettingsConstants.ColorContrastOptionKey,
                     AtariEightBitSettingsConstants.DefaultColorAdjustment), AtariEightBitSettingsCatalog.ContrastAndBrightness),
             Select(AtariEightBitSettingsConstants.ColorBrightnessOptionKey, EmulationMachineTab.Video,
-                "video-colors", "Emulation.Atari.Video.Brightness",
+                AtariSettingsDescriptionFunctionsConstants.VideoColors, AtariSettingsDescriptionFunctionsConstants.ResourceAtariVideoBrightness,
                 Value(configuration, AtariEightBitSettingsConstants.ColorBrightnessOptionKey,
                     AtariEightBitSettingsConstants.DefaultColorAdjustment), AtariEightBitSettingsCatalog.ContrastAndBrightness),
             Select(AtariEightBitSettingsConstants.ColorGammaOptionKey, EmulationMachineTab.Video,
-                "video-colors", "Emulation.Video.Gamma",
+                AtariSettingsDescriptionFunctionsConstants.VideoColors, AtariSettingsDescriptionFunctionsConstants.ResourceVideoGamma,
                 Value(configuration, AtariEightBitSettingsConstants.ColorGammaOptionKey,
                     AtariEightBitSettingsConstants.DefaultGamma), AtariEightBitSettingsCatalog.GammaValues),
             Select(AtariEightBitSettingsConstants.ColorDelayOptionKey, EmulationMachineTab.Video,
-                "video-colors", "Emulation.Atari.Video.ColorDelay",
+                AtariSettingsDescriptionFunctionsConstants.VideoColors, AtariSettingsDescriptionFunctionsConstants.ResourceAtariVideoColorDelay,
                 Value(configuration, AtariEightBitSettingsConstants.ColorDelayOptionKey,
                     AtariEightBitSettingsConstants.DefaultColorDelay), AtariEightBitSettingsCatalog.ColorDelayValues),
             Select(AtariEightBitSettingsConstants.ExternalPaletteOptionKey, EmulationMachineTab.Video,
-                "video-colors", "Emulation.Atari.Video.ExternalPalette",
+                AtariSettingsDescriptionFunctionsConstants.VideoColors, AtariSettingsDescriptionFunctionsConstants.ResourceAtariVideoExternalPalette,
                 Value(configuration, AtariEightBitSettingsConstants.ExternalPaletteOptionKey,
                     AtariEightBitSettingsConstants.None), AtariEightBitSettingsCatalog.ExternalPalettes)));
-        blocks.Add(Block("pokey", EmulationMachineTab.Audio, "Emulation.Audio", "\uE767", 1,
-            Toggle(AtariEightBitSettingsConstants.PokeyStereoOptionKey, EmulationMachineTab.Audio, "pokey",
-                "Emulation.Atari.Audio.PokeyStereo", Enabled(configuration,
+        blocks.Add(Block(AtariSettingsDescriptionFunctionsConstants.Pokey, EmulationMachineTab.Audio, AtariSettingsDescriptionFunctionsConstants.ResourceAudio, AtariSettingsDescriptionFunctionsConstants.Value9, 1,
+            Toggle(AtariEightBitSettingsConstants.PokeyStereoOptionKey, EmulationMachineTab.Audio, AtariSettingsDescriptionFunctionsConstants.Pokey,
+                AtariSettingsDescriptionFunctionsConstants.ResourceAtariAudioPokeyStereo, Enabled(configuration,
                     AtariEightBitSettingsConstants.PokeyStereoOptionKey))));
-        blocks.Add(Block("storage-options", EmulationMachineTab.Storage, "Emulation.Storage.Device.List", "\uE7C3", 2,
+        blocks.Add(Block(AtariSettingsDescriptionFunctionsConstants.StorageOptions, EmulationMachineTab.Storage, AtariSettingsDescriptionFunctionsConstants.ResourceStorageDeviceList, AtariSettingsDescriptionFunctionsConstants.Value6, 2,
             Toggle(AtariEightBitSettingsConstants.ShowActivityOptionKey, EmulationMachineTab.Storage,
-                "storage-options", "Emulation.Storage.ActivityOsd", Enabled(configuration,
+                AtariSettingsDescriptionFunctionsConstants.StorageOptions, AtariSettingsDescriptionFunctionsConstants.ResourceStorageActivityOsd, Enabled(configuration,
                     AtariEightBitSettingsConstants.ShowActivityOptionKey)),
             Toggle(AtariEightBitSettingsConstants.ShowSpeedOptionKey, EmulationMachineTab.Storage,
-                "storage-options", "Emulation.Atari.Storage.SpeedOsd", Enabled(configuration,
+                AtariSettingsDescriptionFunctionsConstants.StorageOptions, AtariSettingsDescriptionFunctionsConstants.ResourceAtariStorageSpeedOsd, Enabled(configuration,
                     AtariEightBitSettingsConstants.ShowSpeedOptionKey)),
             Toggle(AtariEightBitSettingsConstants.ShowSectorOptionKey, EmulationMachineTab.Storage,
-                "storage-options", "Emulation.Atari.Storage.SectorOsd", Enabled(configuration,
+                AtariSettingsDescriptionFunctionsConstants.StorageOptions, AtariSettingsDescriptionFunctionsConstants.ResourceAtariStorageSectorOsd, Enabled(configuration,
                     AtariEightBitSettingsConstants.ShowSectorOptionKey)),
             Toggle(AtariEightBitSettingsConstants.SioAccelerationOptionKey, EmulationMachineTab.Storage,
-                "storage-options", "Emulation.Atari.Storage.SioAcceleration", Enabled(configuration,
+                AtariSettingsDescriptionFunctionsConstants.StorageOptions, AtariSettingsDescriptionFunctionsConstants.ResourceAtariStorageSioAcceleration, Enabled(configuration,
                     AtariEightBitSettingsConstants.SioAccelerationOptionKey)),
             Toggle(AtariEightBitSettingsConstants.CassetteBootOptionKey, EmulationMachineTab.Storage,
-                "storage-options", "Emulation.Atari.Storage.CassetteBoot", Enabled(configuration,
+                AtariSettingsDescriptionFunctionsConstants.StorageOptions, AtariSettingsDescriptionFunctionsConstants.ResourceAtariStorageCassetteBoot, Enabled(configuration,
                     AtariEightBitSettingsConstants.CassetteBootOptionKey)),
             Toggle(AtariEightBitSettingsConstants.RealTimeClockOptionKey, EmulationMachineTab.Storage,
-                "storage-options", "Emulation.Atari.Storage.RealTimeClock", Enabled(configuration,
+                AtariSettingsDescriptionFunctionsConstants.StorageOptions, AtariSettingsDescriptionFunctionsConstants.ResourceAtariStorageRealTimeClock, Enabled(configuration,
                     AtariEightBitSettingsConstants.RealTimeClockOptionKey)),
             Toggle(AtariEightBitSettingsConstants.PrinterDeviceOptionKey, EmulationMachineTab.Storage,
-                "storage-options", "Emulation.Atari.Storage.PrinterDevice", Enabled(configuration,
+                AtariSettingsDescriptionFunctionsConstants.StorageOptions, AtariSettingsDescriptionFunctionsConstants.ResourceAtariStoragePrinterDevice, Enabled(configuration,
                     AtariEightBitSettingsConstants.PrinterDeviceOptionKey)),
             Toggle(AtariEightBitSettingsConstants.SerialDeviceOptionKey, EmulationMachineTab.Storage,
-                "storage-options", "Emulation.Atari.Storage.SerialDevice", Enabled(configuration,
+                AtariSettingsDescriptionFunctionsConstants.StorageOptions, AtariSettingsDescriptionFunctionsConstants.ResourceAtariStorageSerialDevice, Enabled(configuration,
                     AtariEightBitSettingsConstants.SerialDeviceOptionKey))));
     }
 
@@ -249,81 +249,81 @@ internal static class AtariSettingsDescriptionFunctions
         var mosaic = AtariEightBitSettingsCatalog.Mosaic(configuration.Model);
         var axlon = AtariEightBitSettingsCatalog.Axlon(configuration.Model);
         if (mosaic.Count == 0 && axlon.Count == 0) return;
-        blocks.Add(Block("extension-memory", EmulationMachineTab.Ram, "Emulation.Memory.Extensions", "\uE964", 2,
+        blocks.Add(Block(AtariSettingsDescriptionFunctionsConstants.ExtensionMemory, EmulationMachineTab.Ram, AtariSettingsDescriptionFunctionsConstants.ResourceMemoryExtensions, AtariSettingsDescriptionFunctionsConstants.Value4, 2,
             Select(AtariEightBitSettingsConstants.MosaicMemoryOptionKey, EmulationMachineTab.Ram,
-                "extension-memory", "Emulation.Atari.Memory.Mosaic",
+                AtariSettingsDescriptionFunctionsConstants.ExtensionMemory, AtariSettingsDescriptionFunctionsConstants.ResourceAtariMemoryMosaic,
                 Value(configuration, AtariEightBitSettingsConstants.MosaicMemoryOptionKey,
                     mosaic.FirstOrDefault()?.Value ?? AtariEightBitSettingsConstants.Disabled),
                 mosaic.Select(AtariHardwareSettingsFunctions.Expansion)),
             Select(AtariEightBitSettingsConstants.AxlonMemoryOptionKey, EmulationMachineTab.Ram,
-                "extension-memory", "Emulation.Atari.Memory.Axlon",
+                AtariSettingsDescriptionFunctionsConstants.ExtensionMemory, AtariSettingsDescriptionFunctionsConstants.ResourceAtariMemoryAxlon,
                 Value(configuration, AtariEightBitSettingsConstants.AxlonMemoryOptionKey,
                     axlon.FirstOrDefault()?.Value ?? AtariEightBitSettingsConstants.Disabled),
                 axlon.Select(AtariHardwareSettingsFunctions.Expansion)),
             Toggle(AtariEightBitSettingsConstants.AxlonShadowOptionKey, EmulationMachineTab.Ram,
-                "extension-memory", "Emulation.Atari.Memory.AxlonShadow",
+                AtariSettingsDescriptionFunctionsConstants.ExtensionMemory, AtariSettingsDescriptionFunctionsConstants.ResourceAtariMemoryAxlonShadow,
                 Enabled(configuration, AtariEightBitSettingsConstants.AxlonShadowOptionKey)),
             Toggle(AtariEightBitSettingsConstants.MapRamOptionKey, EmulationMachineTab.Ram,
-                "extension-memory", "Emulation.Atari.Memory.MapRam",
+                AtariSettingsDescriptionFunctionsConstants.ExtensionMemory, AtariSettingsDescriptionFunctionsConstants.ResourceAtariMemoryMapRam,
                 Enabled(configuration, AtariEightBitSettingsConstants.MapRamOptionKey))));
     }
 
     private static EmulationSettingsBlock Audio(AtariMachineConfiguration configuration, bool isHatari) =>
-        Block("audio", EmulationMachineTab.Audio, "Emulation.Audio", "\uE767", 2,
-            Toggle(AtariSettingsConstants.AudioEnabled, EmulationMachineTab.Audio, "audio",
-                "Emulation.Audio.Enabled", configuration.AudioEnabled),
-            Select(AtariVideoAudioSettingsConstants.AudioOutputOption, EmulationMachineTab.Audio, "audio",
-                "Emulation.Audio.Output", Value(configuration, AtariVideoAudioSettingsConstants.AudioOutputOption,
+        Block(AtariSettingsDescriptionFunctionsConstants.Audio, EmulationMachineTab.Audio, AtariSettingsDescriptionFunctionsConstants.ResourceAudio, AtariSettingsDescriptionFunctionsConstants.Value9, 2,
+            Toggle(AtariSettingsConstants.AudioEnabled, EmulationMachineTab.Audio, AtariSettingsDescriptionFunctionsConstants.Audio,
+                AtariSettingsDescriptionFunctionsConstants.ResourceAudioEnabled, configuration.AudioEnabled),
+            Select(AtariVideoAudioSettingsConstants.AudioOutputOption, EmulationMachineTab.Audio, AtariSettingsDescriptionFunctionsConstants.Audio,
+                AtariSettingsDescriptionFunctionsConstants.ResourceAudioOutput, Value(configuration, AtariVideoAudioSettingsConstants.AudioOutputOption,
                     AtariConfigurationOptionConstants.DefaultAudioOutput), DefaultAudioOutput()) with
             { ChoiceSource = EmulationSettingsChoiceSource.AudioOutputDevices },
-            Select(AtariVideoAudioSettingsConstants.AudioLatencyOption, EmulationMachineTab.Audio, "audio",
-                "Emulation.Audio.Latency", Value(configuration, AtariVideoAudioSettingsConstants.AudioLatencyOption,
+            Select(AtariVideoAudioSettingsConstants.AudioLatencyOption, EmulationMachineTab.Audio, AtariSettingsDescriptionFunctionsConstants.Audio,
+                AtariSettingsDescriptionFunctionsConstants.ResourceAudioLatency, Value(configuration, AtariVideoAudioSettingsConstants.AudioLatencyOption,
                     AtariConfigurationOptionConstants.DefaultAudioLatencyMilliseconds.ToString()),
                 AtariVideoAudioSettingsConstants.AudioLatenciesMilliseconds.Select(Milliseconds)),
-            Select(AtariVideoAudioSettingsConstants.AudioVolumeOption, EmulationMachineTab.Audio, "audio",
-                "Explorer.Volume", Value(configuration, AtariVideoAudioSettingsConstants.AudioVolumeOption,
+            Select(AtariVideoAudioSettingsConstants.AudioVolumeOption, EmulationMachineTab.Audio, AtariSettingsDescriptionFunctionsConstants.Audio,
+                AtariSettingsDescriptionFunctionsConstants.ExplorerVolume, Value(configuration, AtariVideoAudioSettingsConstants.AudioVolumeOption,
                     AtariConfigurationOptionConstants.DefaultAudioVolumePercent.ToString()), Percentages(
                         AtariVideoAudioSettingsConstants.MinimumVolumePercent,
                         AtariVideoAudioSettingsConstants.MaximumVolumePercent,
                         AtariVideoAudioSettingsConstants.VolumeStepPercent)),
-            Toggle(AtariVideoAudioSettingsConstants.FloppySoundOption, EmulationMachineTab.Audio, "audio",
-                "Emulation.Audio.Floppy.Enabled", Value(configuration,
-                    AtariVideoAudioSettingsConstants.FloppySoundOption, "true") == "true",
-                "true", "false") with
+            Toggle(AtariVideoAudioSettingsConstants.FloppySoundOption, EmulationMachineTab.Audio, AtariSettingsDescriptionFunctionsConstants.Audio,
+                AtariSettingsDescriptionFunctionsConstants.ResourceAudioFloppyEnabled, Value(configuration,
+                    AtariVideoAudioSettingsConstants.FloppySoundOption, AtariSettingsDescriptionFunctionsConstants.True) == AtariSettingsDescriptionFunctionsConstants.True,
+                AtariSettingsDescriptionFunctionsConstants.True, AtariSettingsDescriptionFunctionsConstants.False) with
             { IsVisible = isHatari },
-            Select(AtariVideoAudioSettingsConstants.FloppySoundVolumeOption, EmulationMachineTab.Audio, "audio",
-                "Emulation.Audio.Floppy.Sound", Value(configuration,
-                    AtariVideoAudioSettingsConstants.FloppySoundVolumeOption, "75"),
+            Select(AtariVideoAudioSettingsConstants.FloppySoundVolumeOption, EmulationMachineTab.Audio, AtariSettingsDescriptionFunctionsConstants.Audio,
+                AtariSettingsDescriptionFunctionsConstants.ResourceAudioFloppySound, Value(configuration,
+                    AtariVideoAudioSettingsConstants.FloppySoundVolumeOption, AtariSettingsDescriptionFunctionsConstants.Value75),
                 AtariVideoAudioSettingsConstants.FloppySoundVolumesPercent.Select(Percentage))
                 with
             { IsVisible = isHatari },
-            Toggle(AtariVideoAudioSettingsConstants.PolarizedFilterOption, EmulationMachineTab.Audio, "audio",
-                "Emulation.Audio.PolarizedFilter", Value(configuration,
-                    AtariVideoAudioSettingsConstants.PolarizedFilterOption, "false") == "true",
-                "true", "false") with
+            Toggle(AtariVideoAudioSettingsConstants.PolarizedFilterOption, EmulationMachineTab.Audio, AtariSettingsDescriptionFunctionsConstants.Audio,
+                AtariSettingsDescriptionFunctionsConstants.ResourceAudioPolarizedFilter, Value(configuration,
+                    AtariVideoAudioSettingsConstants.PolarizedFilterOption, AtariSettingsDescriptionFunctionsConstants.False) == AtariSettingsDescriptionFunctionsConstants.True,
+                AtariSettingsDescriptionFunctionsConstants.True, AtariSettingsDescriptionFunctionsConstants.False) with
             { IsVisible = isHatari });
 
     private static IReadOnlyList<EmulationSettingsChoice> StStandards(AtariStModelDefinition model)
     {
         var choices = new List<EmulationSettingsChoice>
         {
-            new(AtariVideoAudioSettingsConstants.Automatic, "Visual.Automatic")
+            new(AtariVideoAudioSettingsConstants.Automatic, AtariSettingsDescriptionFunctionsConstants.VisualAutomatic)
         };
-        if (model.Video.Contains(AtariStVideoCapability.Pal)) choices.Add(Invariant("PAL"));
-        if (model.Video.Contains(AtariStVideoCapability.Ntsc)) choices.Add(Invariant("NTSC"));
-        if (model.Video.Contains(AtariStVideoCapability.Monochrome)) choices.Add(Invariant("Monochrome"));
+        if (model.Video.Contains(AtariStVideoCapability.Pal)) choices.Add(Invariant(AtariSettingsDescriptionFunctionsConstants.PAL));
+        if (model.Video.Contains(AtariStVideoCapability.Ntsc)) choices.Add(Invariant(AtariSettingsDescriptionFunctionsConstants.NTSC));
+        if (model.Video.Contains(AtariStVideoCapability.Monochrome)) choices.Add(Invariant(AtariSettingsDescriptionFunctionsConstants.Monochrome));
         return choices;
     }
 
     private static IReadOnlyList<EmulationSettingsChoice> AutomaticAndNative() =>
     [
-        new(AtariVideoAudioSettingsConstants.Automatic, "Visual.Automatic"),
+        new(AtariVideoAudioSettingsConstants.Automatic, AtariSettingsDescriptionFunctionsConstants.VisualAutomatic),
         Invariant(AtariVideoAudioSettingsConstants.Native)
     ];
 
     private static IReadOnlyList<EmulationSettingsChoice> AspectRatios() =>
     [
-        new(AtariVideoAudioSettingsConstants.Automatic, "Visual.Automatic"),
+        new(AtariVideoAudioSettingsConstants.Automatic, AtariSettingsDescriptionFunctionsConstants.VisualAutomatic),
         Invariant(AtariVideoAudioSettingsConstants.FourByThree),
         Invariant(AtariVideoAudioSettingsConstants.PixelAspect)
     ];
@@ -332,13 +332,13 @@ internal static class AtariSettingsDescriptionFunctions
         Enumerable.Range(AtariVideoAudioSettingsConstants.MinimumFrameSkip,
                 AtariVideoAudioSettingsConstants.MaximumFrameSkip
                 - AtariVideoAudioSettingsConstants.MinimumFrameSkip + 1)
-            .Select(value => Invariant(value.ToString())).Append(Invariant("10")).ToArray();
+            .Select(value => Invariant(value.ToString())).Append(Invariant(AtariSettingsDescriptionFunctionsConstants.Value10)).ToArray();
 
     private static IReadOnlyList<EmulationSettingsChoice> Resolutions(AtariMachineModel model) =>
         AtariEightBitSettingsCatalog.SupportsComputerOptions(model)
             ? AtariEightBitSettingsCatalog.OriginalComputerResolutions.Select(value =>
                 new EmulationSettingsChoice(value, string.Empty,
-                    value.Replace("x", " × ", StringComparison.Ordinal))).ToArray()
+                    value.Replace(AtariSettingsDescriptionFunctionsConstants.X, AtariSettingsDescriptionFunctionsConstants.Value11, StringComparison.Ordinal))).ToArray()
             : AutomaticAndNative();
 
     private static string DefaultResolution(AtariMachineModel model) =>
@@ -348,7 +348,7 @@ internal static class AtariSettingsDescriptionFunctions
 
     private static IReadOnlyList<EmulationSettingsChoice> DefaultAudioOutput() =>
     [
-        new(AtariConfigurationOptionConstants.DefaultAudioOutput, "Emulation.Audio.DefaultOutput")
+        new(AtariConfigurationOptionConstants.DefaultAudioOutput, AtariSettingsDescriptionFunctionsConstants.ResourceAudioDefaultOutput)
     ];
 
     private static EmulationSettingsChoice Milliseconds(int value) =>
@@ -364,8 +364,8 @@ internal static class AtariSettingsDescriptionFunctions
     private static EmulationSettingsChoice Invariant(string value) => new(value, string.Empty, value);
 
     private static EmulationSettingsField Renderer(AtariMachineConfiguration configuration) =>
-        Select(AtariSettingsConstants.VideoRenderer, EmulationMachineTab.Video, "video",
-            "Emulation.Video.Settings.Rendering", configuration.VideoRenderer.ToString(),
+        Select(AtariSettingsConstants.VideoRenderer, EmulationMachineTab.Video, AtariSettingsDescriptionFunctionsConstants.Video,
+            AtariSettingsDescriptionFunctionsConstants.ResourceVideoSettingsRendering, configuration.VideoRenderer.ToString(),
             Enum.GetNames<EmulationVideoRenderer>());
 
     private static EmulationSettingsBlock Block(string id, EmulationMachineTab tab, string title,
@@ -382,7 +382,7 @@ internal static class AtariSettingsDescriptionFunctions
         new(id, tab, block, label, EmulationSettingsEditor.Selection, value, choices.ToArray(), isEnabled);
 
     private static EmulationSettingsField Toggle(string id, EmulationMachineTab tab, string block,
-        string label, bool value, string enabledValue = "enabled", string disabledValue = "disabled") =>
+        string label, bool value, string enabledValue = AtariSettingsDescriptionFunctionsConstants.Enabled, string disabledValue = AtariSettingsDescriptionFunctionsConstants.Disabled) =>
         new(id, tab, block, label, EmulationSettingsEditor.Toggle,
             value ? enabledValue : disabledValue, EnabledValue: enabledValue, DisabledValue: disabledValue);
 
@@ -405,12 +405,12 @@ internal static class AtariSettingsDescriptionFunctions
     {
         if (configuration.Model != AtariMachineModel.XlXe)
             return Information(AtariConfigurationOptionConstants.MainMemory, EmulationMachineTab.Ram,
-                "main-memory", "Emulation.Memory.Main", AtariHardwareSettingsFunctions.FormatBytes(model.MainMemoryBytes),
+                AtariSettingsDescriptionFunctionsConstants.MainMemory, AtariSettingsDescriptionFunctionsConstants.ResourceMemoryMain, AtariHardwareSettingsFunctions.FormatBytes(model.MainMemoryBytes),
                 model.MainMemoryBytes);
         var choices = new[] { 320L, 576L, 1088L }.Select(value =>
             AtariHardwareSettingsFunctions.MemoryKib((int)value)).ToArray();
-        return Select(AtariConfigurationOptionConstants.MainMemory, EmulationMachineTab.Ram, "main-memory",
-            "Emulation.Memory.Main", Value(configuration, AtariConfigurationOptionConstants.MainMemory,
+        return Select(AtariConfigurationOptionConstants.MainMemory, EmulationMachineTab.Ram, AtariSettingsDescriptionFunctionsConstants.MainMemory,
+            AtariSettingsDescriptionFunctionsConstants.ResourceMemoryMain, Value(configuration, AtariConfigurationOptionConstants.MainMemory,
                 model.MainMemoryBytes.ToString()), choices);
     }
 }

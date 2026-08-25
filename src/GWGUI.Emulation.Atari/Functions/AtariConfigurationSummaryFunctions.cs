@@ -2,7 +2,7 @@ using System.Globalization;
 using System.Security.Cryptography;
 using GWGUI.Emulation;
 
-namespace GWGUI.Emulation.Atari;
+namespace GWGUI.Emulation.Atari.Functions;
 
 internal static class AtariConfigurationSummaryFunctions
 {
@@ -22,16 +22,16 @@ internal static class AtariConfigurationSummaryFunctions
         }
 
         if (configuration.Firmwares.Count > 0)
-            details.Add(string.Join(" + ", configuration.Firmwares.Select(Firmware)));
+            details.Add(string.Join(AtariConfigurationSummaryFunctionsConstants.Value, configuration.Firmwares.Select(Firmware)));
         details.Add($"Core {configuration.Core}");
-        details.Add($"Video {(configuration.VideoRenderer == EmulationVideoRenderer.Direct3D11 ? "D3D11" : configuration.VideoRenderer)}");
-        details.Add(configuration.AudioEnabled ? "Audio On" : "Audio Off");
+        details.Add($"Video {(configuration.VideoRenderer == EmulationVideoRenderer.Direct3D11 ? AtariConfigurationSummaryFunctionsConstants.D3D11 : configuration.VideoRenderer)}");
+        details.Add(configuration.AudioEnabled ? AtariConfigurationSummaryFunctionsConstants.AudioOn : AtariConfigurationSummaryFunctionsConstants.AudioOff);
         return new EmulationConfigurationSummary(model.DisplayResourceKey, details);
     }
 
     private static string Firmware(AtariFirmwareConfiguration firmware)
     {
-        var role = firmware.Category == AtariFirmwareCategory.Tos ? "TOS" : firmware.Category.ToString();
+        var role = firmware.Category == AtariFirmwareCategory.Tos ? AtariConfigurationSummaryFunctionsConstants.TOS : firmware.Category.ToString();
         var version = FirmwareVersion(firmware);
         return $"{role} {(version ?? ShortName(firmware.Path))}";
     }
@@ -63,7 +63,7 @@ internal static class AtariConfigurationSummaryFunctions
     private static string ShortName(string path)
     {
         var name = Path.GetFileNameWithoutExtension(path);
-        return name.Length <= 15 ? name : name[..14] + "…";
+        return name.Length <= 15 ? name : name[..14] + AtariConfigurationSummaryFunctionsConstants.Value2;
     }
     private static long LongOption(IReadOnlyDictionary<string, string> options, string key) =>
         options.TryGetValue(key, out var value) && long.TryParse(value, NumberStyles.Integer,

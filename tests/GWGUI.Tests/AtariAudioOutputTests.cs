@@ -1,6 +1,5 @@
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari;
-using GWGUI.Emulation.Atari.Cores;
 
 namespace GWGUI.Tests;
 
