@@ -4,7 +4,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>gwgui.emulation.amiga</AssemblyName>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Platforms>x64</Platforms>
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
@@ -13,8 +12,4 @@
     <ProjectReference Include="..\GWGUI.Emulation\GWGUI.Emulation.csproj" />
     <ProjectReference Include="..\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
   </ItemGroup>
-  <Target Name="CopyAmigaExternalCore" AfterTargets="Build" Condition="Exists('$(MSBuildThisFileDirectory)..\..\artifacts\ppua\puae_libretro.dll')">
-    <MakeDir Directories="$(OutDir)Emulation" />
-    <Copy SourceFiles="$(MSBuildThisFileDirectory)..\..\artifacts\ppua\puae_libretro.dll" DestinationFolder="$(OutDir)Emulation" SkipUnchangedFiles="true" />
-  </Target>
 </Project>

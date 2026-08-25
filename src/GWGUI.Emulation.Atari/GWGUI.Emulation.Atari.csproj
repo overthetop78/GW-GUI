@@ -4,12 +4,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>gwgui.emulation.atari</AssemblyName>
-    <RootNamespace>GWGUI.Emulation.Atari</RootNamespace>
     <Platforms>x64</Platforms>
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <InternalsVisibleTo Include="GWGUI.Tests" />
     <ProjectReference Include="..\GWGUI.Emulation\GWGUI.Emulation.csproj" />
+    <ProjectReference Include="..\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
   </ItemGroup>
 </Project>

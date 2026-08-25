@@ -280,8 +280,7 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
         var runtime = await AmigaRuntimeMediaFunctions.PrepareConfigurationAsync(amiga,
             services.ConvertedMediaDirectory).ConfigureAwait(false);
         var corePath = await new AmigaCoreProvider(_httpClient, _coreDirectory)
-            .FindInstalledPathAsync(Path.Combine(AppContext.BaseDirectory, "Emulation", "puae_libretro.dll"),
-                cancellationToken).ConfigureAwait(false)
+            .FindInstalledPathAsync(cancellationToken).ConfigureAwait(false)
             ?? throw new EmulationMessageException(new EmulationMessage(
                 EmulationMessageCategory.Emulator, EmulationMessageCode.EmulatorNotInstalled,
                 EmulationMessageSeverity.Error, EmulationMessageTarget.Dialog,

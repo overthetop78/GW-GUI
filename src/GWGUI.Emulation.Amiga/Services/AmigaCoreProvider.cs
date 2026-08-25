@@ -12,12 +12,9 @@ public sealed class AmigaCoreProvider
         _installationDirectory = installationDirectory;
     }
 
-    public Task<string?> FindInstalledPathAsync(string? bundledPath = null,
-        CancellationToken cancellationToken = default)
+    public Task<string?> FindInstalledPathAsync(CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        if (!string.IsNullOrWhiteSpace(bundledPath) && File.Exists(bundledPath))
-            return Task.FromResult<string?>(bundledPath);
         var installer = new AmigaExternalCoreInstaller(_client, _installationDirectory);
         return Task.FromResult<string?>(installer.IsInstalled ? installer.LibraryPath : null);
     }

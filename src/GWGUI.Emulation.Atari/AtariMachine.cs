@@ -364,7 +364,8 @@ internal sealed class AtariMachine : IEmulatedMachine, IEmulationLifecycle, IEmu
     private void ResetCore(string resetType)
     {
         _audio.Reset();
-        _core.SetOption("hatari_reset_type", resetType);
+        if (Configuration.Core == AtariEmulator.Hatari)
+            _core.SetOption("hatari_reset_type", resetType);
         _core.HardReset();
     }
 

@@ -209,7 +209,8 @@ internal sealed class AtariExternalCore : IAtariCore
         }
         else
         {
-            preparedMedia = AtariSessionMediaFunctions.Prepare(media, sessionDirectory, _info.Extensions);
+            preparedMedia = AtariScpMediaFunctions.Prepare(configuration, media, sessionDirectory,
+                _info.Extensions);
         }
         RequireCallbacks().DiskControl.Insert(preparedMedia.RuntimePath);
         AtariMediaRuntimeFunctions.Register(_mountedMedia, media with { IsInserted = true });

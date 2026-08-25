@@ -1,4 +1,4 @@
-﻿using GWGUI.MediaEngine.Containers.Acorn.BbcDfs;
+using GWGUI.MediaEngine.Containers.Acorn.BbcDfs;
 using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
 using GWGUI.MediaEngine.Conversion.Amstrad;
 using GWGUI.MediaEngine.Conversion.Epson;
@@ -184,6 +184,13 @@ public static class MediaEngineFactory
     {
         var scpReader = CreateScpReader();
         return new(new AtariScpSectorImageReader(scpReader, CreateFluxDecoders()), new AtrReader(), new AtrWriter());
+    }
+    /// <summary>Crée le convertisseur temporaire SCP vers ATR ou ST utilisé par l'émulation Atari.</summary>
+    public static AtariScpRuntimeConversionService CreateAtariScpRuntimeConversionService()
+    {
+        var scpReader = CreateScpReader();
+        return new(new AtariScpSectorImageReader(scpReader, CreateFluxDecoders()), new AtrWriter(),
+            new AtariStWriter(new LinearSectorImageWriter()));
     }
     /// <summary>Crée le service de conversion Commodore 1581 avec ses Reader et Writer partagés.</summary>
     public static D81ConversionService CreateD81ConversionService()

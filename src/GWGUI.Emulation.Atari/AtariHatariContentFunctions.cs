@@ -15,7 +15,8 @@ internal static class AtariHatariContentFunctions
         var selected = media[AtariHatariContentConstants.FirstContentIndex];
         if (selected.Category == AtariMediaCategory.Floppy)
         {
-            var sessionMedia = AtariSessionMediaFunctions.Prepare(selected, sessionDirectory, supportedExtensions);
+            var sessionMedia = AtariScpMediaFunctions.Prepare(configuration, selected, sessionDirectory,
+                supportedExtensions);
             return new AtariHatariContent(selected, sessionMedia.RuntimePath, sessionMedia, null);
         }
         if (selected.Category is AtariMediaCategory.HardDisk or AtariMediaCategory.Directory)

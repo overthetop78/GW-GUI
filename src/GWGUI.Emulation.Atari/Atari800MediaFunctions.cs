@@ -11,14 +11,15 @@ internal static class Atari800MediaFunctions
         IReadOnlySet<string> coreExtensions)
     {
         var contentType = Classify(machine.Model, media);
-        ValidateExtension(media, contentType);
+        if (contentType != Atari800ContentType.Floppy || !AtariScpMediaFunctions.IsScp(media.Path))
+            ValidateExtension(media, contentType);
         if (contentType is Atari800ContentType.ComputerCartridge or Atari800ContentType.ConsoleCartridge)
         {
             Cores.AtariContentFunctions.Validate(media.Path, coreExtensions);
             return new Atari800PreparedMedia(media, contentType, Path.GetFullPath(media.Path), null);
         }
 
-        var sessionMedia = AtariSessionMediaFunctions.Prepare(media, sessionDirectory, coreExtensions);
+        var sessionMedia = AtariScpMediaFunctions.Prepare(machine, media, sessionDirectory, coreExtensions);
         return new Atari800PreparedMedia(media, contentType, sessionMedia.RuntimePath, sessionMedia);
     }
 

@@ -24,7 +24,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
             ["f2f241bf094168cfb9e7805dc2856433"] = "kick40060.CD32",
             ["5f8924d013dd57a89cf349f4cdedc6b1"] = "kick40060.CD32"
         };
-    private readonly string? _corePath;
+    private readonly string _corePath;
     private ExternalCoreLibrary? _library;
     private AmigaExternalHostCallbacks? _host;
     private ExternalCoreApi.VoidCall? _deinitialize;
@@ -41,7 +41,7 @@ internal sealed class AmigaExternalCore : IAmigaCore
     private ExternalCoreApi.GetMemorySize? _getMemorySize;
     private string? _conversionDirectory;
 
-    internal AmigaExternalCore(string? corePath = null) => _corePath = corePath;
+    internal AmigaExternalCore(string corePath) => _corePath = corePath;
 
     public VideoFrame? LatestVideoFrame => _host?.LatestVideoFrame;
     public AudioChunk? LatestAudioChunk => _host?.LatestAudioChunk;
@@ -363,10 +363,16 @@ internal sealed class AmigaExternalCore : IAmigaCore
         var size = (_getSerializedSize ?? throw new InvalidOperationException("The Amiga core is not initialized."))();
         if (size == 0 || size > int.MaxValue) throw new InvalidOperationException($"The Amiga core returned invalid state size {size}.");
         var state = new byte[(int)size];
-        unsafe
+        var buffer = Marshal.AllocHGlobal(state.Length);
+        try
         {
-            fixed (byte* pointer = state)
-                if (!_serialize!((nint)pointer, size)) throw new InvalidOperationException("The Amiga state could not be saved.");
+            if (!_serialize!(buffer, size))
+                throw new InvalidOperationException("The Amiga state could not be saved.");
+            Marshal.Copy(buffer, state, 0, state.Length);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(buffer);
         }
         return state;
     }
@@ -374,10 +380,17 @@ internal sealed class AmigaExternalCore : IAmigaCore
     public void LoadState(ReadOnlySpan<byte> state)
     {
         if (state.IsEmpty) throw new ArgumentException("The Amiga state is empty.", nameof(state));
-        unsafe
+        var bytes = state.ToArray();
+        var buffer = Marshal.AllocHGlobal(bytes.Length);
+        try
         {
-            fixed (byte* pointer = state)
-                if (!_unserialize!((nint)pointer, (nuint)state.Length)) throw new InvalidOperationException("The Amiga state could not be restored.");
+            Marshal.Copy(bytes, 0, buffer, bytes.Length);
+            if (!_unserialize!(buffer, (nuint)bytes.Length))
+                throw new InvalidOperationException("The Amiga state could not be restored.");
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(buffer);
         }
     }
 
@@ -415,24 +428,13 @@ internal sealed class AmigaExternalCore : IAmigaCore
         throw new InvalidDataException($"Controller '{requestedName}' is not supported on Amiga port {port + 1}.");
     }
 
-    private static string ResolveCorePath(string? configuredPath)
+    private static string ResolveCorePath(string configuredPath)
     {
-        if (configuredPath is not null)
-        {
-            if (!Path.IsPathFullyQualified(configuredPath))
-                throw new ArgumentException("The Amiga core path must be absolute.", nameof(configuredPath));
-            if (!File.Exists(configuredPath))
-                throw new FileNotFoundException("AmigaCoreNotFound: the configured Amiga core was not found.", configuredPath);
-            return configuredPath;
-        }
-        var candidates = new[]
-        {
-            Path.Combine(AppContext.BaseDirectory, "Emulation", "puae_libretro.dll"),
-            Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "artifacts", "ppua", "puae_libretro.dll")),
-            Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "artifacts", "ppua", "puae_libretro.dll"))
-        };
-        return candidates.FirstOrDefault(path => path is not null && File.Exists(path))
-            ?? throw new FileNotFoundException("The temporary Amiga core puae_libretro.dll was not found.", candidates[1]);
+        if (!Path.IsPathFullyQualified(configuredPath))
+            throw new ArgumentException("The Amiga core path must be absolute.", nameof(configuredPath));
+        if (!File.Exists(configuredPath))
+            throw new FileNotFoundException("AmigaCoreNotFound: the configured Amiga core was not found.", configuredPath);
+        return configuredPath;
     }
 
     public void Dispose()
