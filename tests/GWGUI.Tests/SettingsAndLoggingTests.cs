@@ -47,21 +47,10 @@ public sealed class SettingsAndLoggingTests : CoreTestBase
     }
 
     [Fact]
-    public void LegacyHostToolsFolderMovesToGreaseweazleFolderWithoutExtraNesting()
+    public void HostToolsDirectoryUsesTheRoamingDataDirectory()
     {
-        var directory = Path.Combine(Path.GetTempPath(), "gwgui-host-path-" + Guid.NewGuid().ToString("N"));
-        var legacy = Path.Combine(directory, "host-tools");
-        var preferred = Path.Combine(directory, "Greaseweazle");
-        var executable = Path.Combine(legacy, "1.23", "gw.exe");
-        Directory.CreateDirectory(Path.GetDirectoryName(executable)!);
-        File.WriteAllText(executable, "fake");
-        try
-        {
-            StoragePaths.MigrateHostToolsDirectory(legacy, preferred);
-            Assert.True(File.Exists(Path.Combine(preferred, "1.23", "gw.exe")));
-            Assert.False(Directory.Exists(legacy));
-        }
-        finally { if (Directory.Exists(directory)) Directory.Delete(directory, true); }
+        Assert.Equal(Path.Combine(StoragePaths.DataDirectory, "Greaseweazle"),
+            StoragePaths.HostToolsDirectory);
     }
 
     [Fact]
