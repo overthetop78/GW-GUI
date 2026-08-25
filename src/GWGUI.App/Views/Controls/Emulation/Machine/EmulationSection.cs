@@ -15,6 +15,8 @@ namespace GWGUI.App.Views.Controls.Emulation.Machine;
 
 public sealed partial class EmulationSection : UserControl
 {
+    private readonly ComboBox _module = new()
+        { DisplayMemberPath = nameof(EmulationModuleListItem.DisplayName) };
     private readonly ComboBox _configuration = new()
         { DisplayMemberPath = nameof(EmulationConfigurationListItem.DisplayName) };
     private readonly Button _open = new() { MinWidth = 130 };
@@ -23,6 +25,7 @@ public sealed partial class EmulationSection : UserControl
     private readonly MainTabHeader _welcomeHeader = new();
     private readonly TextBlock _welcomeText = new();
     private readonly IReadOnlyList<IEmulationModule> _modules = EmulationModuleRegistry.Modules;
+    private IReadOnlyList<EmulationConfigurationListItem> _configurations = [];
     private readonly Dictionary<(string ModuleId, Guid Id), TabItem> _openMachines = [];
     private AppSettings _settings = new();
     private Point _tabDragStart;
@@ -32,6 +35,8 @@ public sealed partial class EmulationSection : UserControl
 
     public EmulationSection()
     {
+        AutomationProperties.SetName(_module,
+            LocExtension.Get(ControlVisualConstants.MachinesResource));
         AutomationProperties.SetName(_configuration,
             LocExtension.Get(ControlVisualConstants.ConfigurationResource));
         AutomationProperties.SetName(_open,
@@ -40,6 +45,7 @@ public sealed partial class EmulationSection : UserControl
             LocExtension.Get(ControlVisualConstants.MachinesResource));
         _open.Content = LocExtension.Get(ControlVisualConstants.OpenMachineResource);
         _open.Click += OpenSelectedMachine;
+        _module.SelectionChanged += ModuleSelectionChanged;
         _machines.AllowDrop = true;
         _machines.PreviewMouseLeftButtonDown += MachineTabMouseDown;
         _machines.PreviewMouseMove += MachineTabMouseMove;
@@ -56,6 +62,8 @@ public sealed partial class EmulationSection : UserControl
     {
         var configurationText = LocExtension.Get(ControlVisualConstants.ConfigurationResource);
         _configurationLabel.Text = configurationText;
+        AutomationProperties.SetName(_module,
+            LocExtension.Get(ControlVisualConstants.MachinesResource));
         AutomationProperties.SetName(_configuration, configurationText);
         var openText = LocExtension.Get(ControlVisualConstants.OpenMachineResource);
         _open.Content = openText;

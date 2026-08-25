@@ -24,6 +24,8 @@ public sealed partial class EmulationSection
     public async Task ReloadConfigurationsAsync()
     {
         var selected = _configuration.SelectedItem as EmulationConfigurationListItem;
+        var selectedModuleId = (_module.SelectedItem as EmulationModuleListItem)?.Module.Id
+            ?? selected?.Module.Id;
         var items = new List<EmulationConfigurationListItem>();
         foreach (var module in _modules)
         {
@@ -33,11 +35,38 @@ public sealed partial class EmulationSection
                     EmulationConfigurationPresenter.DisplayName(module, configuration)));
             }
         }
-        _configuration.ItemsSource = items;
-        _configuration.SelectedItem = _configuration.Items.OfType<EmulationConfigurationListItem>()
-            .FirstOrDefault(item => item.Module.Id == selected?.Module.Id
-                && item.Configuration.Id == selected.Configuration.Id)
-            ?? _configuration.Items.OfType<EmulationConfigurationListItem>().FirstOrDefault();
+        _configurations = items;
+        var modules = _modules.Select(module => new EmulationModuleListItem(module,
+            LocExtension.Get(module.DisplayResourceKey))).ToArray();
+        _module.ItemsSource = modules;
+        _module.SelectedItem = modules.FirstOrDefault(item => item.Module.Id == selectedModuleId)
+            ?? modules.FirstOrDefault(item => items.Any(configuration =>
+                configuration.Module.Id == item.Module.Id))
+            ?? modules.FirstOrDefault();
+        RefreshConfigurations(selected?.Configuration.Id);
+    }
+
+    private void ModuleSelectionChanged(object sender, SelectionChangedEventArgs args) =>
+        RefreshConfigurations();
+
+    private void RefreshConfigurations(Guid? selectedConfigurationId = null)
+    {
+        if (_module.SelectedItem is not EmulationModuleListItem selectedModule)
+        {
+            _configuration.ItemsSource = null;
+            _open.IsEnabled = false;
+            return;
+        }
+
+        var selected = _configuration.SelectedItem as EmulationConfigurationListItem;
+        if (selected?.Module.Id == selectedModule.Module.Id)
+            selectedConfigurationId ??= selected.Configuration.Id;
+        var configurations = _configurations.Where(item =>
+            item.Module.Id == selectedModule.Module.Id).ToArray();
+        _configuration.ItemsSource = configurations;
+        _configuration.SelectedItem = configurations.FirstOrDefault(item =>
+                item.Configuration.Id == selectedConfigurationId)
+            ?? configurations.FirstOrDefault();
         _open.IsEnabled = _configuration.SelectedItem is not null;
     }
 

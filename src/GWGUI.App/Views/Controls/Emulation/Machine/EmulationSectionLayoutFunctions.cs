@@ -19,6 +19,7 @@ public sealed partial class EmulationSection
         root.RowDefinitions.Add(new RowDefinition());
         var selector = new Grid { Margin = new Thickness(0, 0, 0, 12) };
         selector.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(150) });
+        selector.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(220) });
         selector.ColumnDefinitions.Add(new ColumnDefinition());
         selector.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         _configurationLabel.Text = LocExtension.Get(ControlVisualConstants.ConfigurationResource);
@@ -26,11 +27,14 @@ public sealed partial class EmulationSection
         _configurationLabel.Margin = new Thickness(0, 5, 12, 5);
         _configurationLabel.FontWeight = FontWeights.SemiBold;
         selector.Children.Add(_configurationLabel);
+        _module.Margin = new Thickness(0, 4, 8, 4);
+        Grid.SetColumn(_module, 1);
+        selector.Children.Add(_module);
         _configuration.Margin = new Thickness(0, 4, 8, 4);
-        Grid.SetColumn(_configuration, 1);
+        Grid.SetColumn(_configuration, 2);
         selector.Children.Add(_configuration);
         _open.Margin = new Thickness(0, 4, 0, 4);
-        Grid.SetColumn(_open, 2);
+        Grid.SetColumn(_open, 3);
         selector.Children.Add(_open);
         var selectorCard = new Border { Child = selector };
         selectorCard.SetResourceReference(StyleProperty, ControlVisualConstants.CardStyleResource);
