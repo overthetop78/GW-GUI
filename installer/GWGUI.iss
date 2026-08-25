@@ -2,10 +2,10 @@
   #define MyAppVersion "0.1.0"
 #endif
 #ifndef SourceDir
-  #define SourceDir "..\artifacts\publish\win-x64"
+  #define SourceDir "..\dist\publish\win-x64"
 #endif
 #ifndef OutputDir
-  #define OutputDir "..\artifacts"
+  #define OutputDir "..\dist"
 #endif
 
 [Setup]

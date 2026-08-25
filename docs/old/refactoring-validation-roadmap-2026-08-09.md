@@ -416,7 +416,7 @@ Resources/Languages/
 
 ### 12.1 Scripts locaux
 
-- [ ] Conserver `scripts/build.ps1` pour le build rapide dans `artifacts/build/GW GUI`.
+- [ ] Conserver `scripts/build.ps1` pour le build rapide dans `dist/build/GW GUI`.
 - [ ] Conserver `scripts/package.ps1` pour la publication complète, le portable, le ZIP, l’installateur et les sommes SHA-256.
 - [ ] Vérifier que les scripts utilisent la même version et les mêmes propriétés de compilation.
 - [ ] Distinguer clairement version produit, numéro de build et révision Git pour EXE et DLL.
@@ -445,7 +445,7 @@ Le dépôt possède déjà `.github/workflows/release.yml`, consacré aux tags e
 - [ ] Étendre les essais de l’installateur au système multilingue selon un échantillon représentatif et les contrôles de ressources complets.
 - [ ] Vérifier ZIP, installateur, SHA-256, lancement, fermeture et sauvegarde des réglages.
 - [ ] Publier la release uniquement après succès de toutes les étapes.
-- [ ] Ne jamais inclure `image_test` ou `validated_images` dans les artifacts.
+- [ ] Ne jamais inclure `image_test` ou `validated_images` dans les paquets produits.
 
 ## 13. Documentation à maintenir pendant les travaux
 

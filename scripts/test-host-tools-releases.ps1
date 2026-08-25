@@ -6,14 +6,14 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
-$artifacts = [IO.Path]::GetFullPath((Join-Path $repository 'artifacts'))
-$artifactsPrefix = $artifacts + [IO.Path]::DirectorySeparatorChar
+$dist = [IO.Path]::GetFullPath((Join-Path $repository 'dist'))
+$distPrefix = $dist + [IO.Path]::DirectorySeparatorChar
 if ([string]::IsNullOrWhiteSpace($WorkingDirectory)) {
-    $WorkingDirectory = Join-Path $artifacts 'host-tools-release-smoke'
+    $WorkingDirectory = Join-Path $dist 'host-tools-release-smoke'
 }
 $working = [IO.Path]::GetFullPath($WorkingDirectory)
-if (-not $working.StartsWith($artifactsPrefix, [StringComparison]::OrdinalIgnoreCase)) {
-    throw 'WorkingDirectory must be located inside the repository artifacts directory.'
+if (-not $working.StartsWith($distPrefix, [StringComparison]::OrdinalIgnoreCase)) {
+    throw 'WorkingDirectory must be located inside the repository dist directory.'
 }
 if (Test-Path -LiteralPath $working) { throw "Host Tools smoke-test directory already exists: $working" }
 

@@ -7,23 +7,23 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
-$artifacts = [IO.Path]::GetFullPath((Join-Path $repository 'artifacts'))
-$artifactsPrefix = $artifacts + [IO.Path]::DirectorySeparatorChar
+$dist = [IO.Path]::GetFullPath((Join-Path $repository 'dist'))
+$distPrefix = $dist + [IO.Path]::DirectorySeparatorChar
 if ([string]::IsNullOrWhiteSpace($CurrentSetupPath)) {
-    $CurrentSetupPath = Join-Path $artifacts "GW-GUI-$CurrentVersion-win-x64-setup.exe"
+    $CurrentSetupPath = Join-Path $dist "GW-GUI-$CurrentVersion-win-x64-setup.exe"
 }
 if ([string]::IsNullOrWhiteSpace($InstallDirectory)) {
-    $InstallDirectory = Join-Path $artifacts 'installer-upgrade-smoke'
+    $InstallDirectory = Join-Path $dist 'installer-upgrade-smoke'
 }
 
 $currentSetup = [IO.Path]::GetFullPath($CurrentSetupPath)
 $destination = [IO.Path]::GetFullPath($InstallDirectory)
-$fixtureDirectory = Join-Path $artifacts 'installer-upgrade-fixture'
-$publishDirectory = Join-Path $artifacts 'publish\win-x64'
+$fixtureDirectory = Join-Path $dist 'installer-upgrade-fixture'
+$publishDirectory = Join-Path $dist 'publish\win-x64'
 $uninstallRegistryPath = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\{7B909A70-92B3-48E5-82CB-51A584ECE231}_is1'
 
-if (-not $destination.StartsWith($artifactsPrefix, [StringComparison]::OrdinalIgnoreCase)) {
-    throw 'InstallDirectory must be located inside the repository artifacts directory.'
+if (-not $destination.StartsWith($distPrefix, [StringComparison]::OrdinalIgnoreCase)) {
+    throw 'InstallDirectory must be located inside the repository dist directory.'
 }
 if (-not (Test-Path -LiteralPath $currentSetup -PathType Leaf)) { throw "Current installer not found: $currentSetup" }
 if (-not (Test-Path -LiteralPath (Join-Path $publishDirectory 'gwgui.exe') -PathType Leaf)) {

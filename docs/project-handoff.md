@@ -184,7 +184,7 @@ Cette séparation existe partiellement. Le prochain grand chantier consiste à l
 
 ### 4.12 Build et distribution
 
-- `scripts/build.ps1` produit le build rapide sous `artifacts/build/GW GUI`.
+- `scripts/build.ps1` produit le build rapide sous `dist/build/GW GUI`.
 - `scripts/package.ps1` produit la publication, la version portable, le ZIP, l’installateur et les SHA-256.
 - L’installateur Inno Setup et le portable ont déjà été construits et testés.
 - `.github/workflows/release.yml` construit les paquets sur tag ou déclenchement manuel.

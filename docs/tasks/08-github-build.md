@@ -64,7 +64,7 @@ Un push, un commit ou une pull request ne déclenche seul ni build, ni snapshot,
 - [ ] Permettre de choisir si la snapshot représente seulement une nouvelle révision ou une nouvelle fonctionnalité, sans saisir de numéro de version.
 - [x] Valider dans le workflow de release l’utilisation d’un runner Windows et de la version .NET du projet.
 - [x] Valider dans le workflow de release la restauration, la compilation Release et les tests compatibles CI.
-- [x] Ne jamais inclure le corpus privé `image_test` dans le workflow ou les artifacts.
+- [x] Ne jamais inclure le corpus privé `image_test` dans le workflow ou les paquets produits.
 - [ ] Restaurer les dépendances une seule fois par run.
 - [ ] Compiler et publier en Release une seule fois, puis réutiliser cette sortie pour tous les fichiers de la snapshot.
 - [ ] Exécuter seulement `GWGUI.Tests` ; conserver `GWGUI.LocalDiskImageTests` hors CI.

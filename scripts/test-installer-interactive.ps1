@@ -7,14 +7,14 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
-$artifacts = [IO.Path]::GetFullPath((Join-Path $repository 'artifacts'))
-$artifactsPrefix = $artifacts + [IO.Path]::DirectorySeparatorChar
-if ([string]::IsNullOrWhiteSpace($SetupPath)) { $SetupPath = Join-Path $artifacts "GW-GUI-$ExpectedVersion-win-x64-setup.exe" }
-if ([string]::IsNullOrWhiteSpace($InstallDirectory)) { $InstallDirectory = Join-Path $artifacts "installer-interactive-$InstallerLanguage" }
+$dist = [IO.Path]::GetFullPath((Join-Path $repository 'dist'))
+$distPrefix = $dist + [IO.Path]::DirectorySeparatorChar
+if ([string]::IsNullOrWhiteSpace($SetupPath)) { $SetupPath = Join-Path $dist "GW-GUI-$ExpectedVersion-win-x64-setup.exe" }
+if ([string]::IsNullOrWhiteSpace($InstallDirectory)) { $InstallDirectory = Join-Path $dist "installer-interactive-$InstallerLanguage" }
 $setup = [IO.Path]::GetFullPath($SetupPath)
 $destination = [IO.Path]::GetFullPath($InstallDirectory)
 $uninstallRegistryPath = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\{7B909A70-92B3-48E5-82CB-51A584ECE231}_is1'
-if (-not $destination.StartsWith($artifactsPrefix, [StringComparison]::OrdinalIgnoreCase)) { throw 'InstallDirectory must be inside artifacts.' }
+if (-not $destination.StartsWith($distPrefix, [StringComparison]::OrdinalIgnoreCase)) { throw 'InstallDirectory must be inside dist.' }
 if (-not (Test-Path -LiteralPath $setup -PathType Leaf)) { throw "Installer not found: $setup" }
 if (Test-Path -LiteralPath $destination) { throw "Interactive-test destination already exists: $destination" }
 if (Test-Path -LiteralPath $uninstallRegistryPath) { throw 'An installed GW GUI registration already exists.' }

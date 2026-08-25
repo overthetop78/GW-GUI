@@ -280,7 +280,7 @@ Cela représente exactement 600 fichiers. L’organisation fonctionnelle est cor
 
 | Fichier | Responsabilité |
 |---|---|
-| `scripts/build.ps1` | build Release rapide vers `artifacts/build/GW GUI` |
+| `scripts/build.ps1` | build Release rapide vers `dist/build/GW GUI` |
 | `scripts/package.ps1` | publish, portable, ZIP, installateur et SHA-256 |
 | `scripts/create-icon.ps1` | génération des icônes |
 | `scripts/google-translate-resx.ps1` | traduction assistée des ressources |

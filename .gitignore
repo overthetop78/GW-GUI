@@ -5,12 +5,11 @@ obj/
 *.user
 *.suo
 TestResults/
-artifacts/
+dist/
 packages/
 *.log
 settings.json
 gw/
-artifacts/
 image_test/
 tmp/
 __pycache__/

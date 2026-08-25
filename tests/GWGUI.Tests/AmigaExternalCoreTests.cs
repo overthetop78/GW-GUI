@@ -73,7 +73,7 @@ public sealed class AmigaExternalCoreTests
     {
         var repository = FindRepositoryRoot();
         var kickstart = Path.Combine(repository, "image_test", "Roms", "Bios", "Kickstart 1.3.rom");
-        var corePath = Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll");
+        var corePath = Path.Combine(repository, "dist", "ppua", "puae_libretro.dll");
         var sessions = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Stress", Guid.NewGuid().ToString("N"));
         var count = int.TryParse(Environment.GetEnvironmentVariable("GWGUI_AMIGA_STRESS_COUNT"), out var requested)
             ? Math.Clamp(requested, 1, 500) : 5;
@@ -130,7 +130,7 @@ public sealed class AmigaExternalCoreTests
         Directory.CreateDirectory(session);
         try
         {
-            using var core = new AmigaExternalCore(Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll"));
+            using var core = new AmigaExternalCore(Path.Combine(repository, "dist", "ppua", "puae_libretro.dll"));
             core.Initialize(new AmigaMachineConfiguration(model, kickstart), session);
             for (var frame = 0; frame < 300; frame++) core.RunFrame();
             Assert.NotNull(core.LatestVideoFrame);
@@ -158,7 +158,7 @@ public sealed class AmigaExternalCoreTests
         Directory.CreateDirectory(session);
         try
         {
-            using var core = new AmigaExternalCore(Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll"));
+            using var core = new AmigaExternalCore(Path.Combine(repository, "dist", "ppua", "puae_libretro.dll"));
             var configuration = AmigaMachineConfiguration.A500(kickstart) with
             {
                 Floppies = [new AmigaFloppyConfiguration(first, "Workbench"), new AmigaFloppyConfiguration(second, "Boot test")]
@@ -194,7 +194,7 @@ public sealed class AmigaExternalCoreTests
         Directory.CreateDirectory(session);
         try
         {
-            using var core = new AmigaExternalCore(Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll"));
+            using var core = new AmigaExternalCore(Path.Combine(repository, "dist", "ppua", "puae_libretro.dll"));
             core.Initialize(AmigaMachineConfiguration.A500(kickstart, workbench), session);
             var sessionKickstart = Path.Combine(session, "System", "kick34005.A500");
             Assert.True(File.Exists(sessionKickstart));
@@ -249,7 +249,7 @@ public sealed class AmigaExternalCoreTests
         Directory.CreateDirectory(session);
         try
         {
-            using var core = new AmigaExternalCore(Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll"));
+            using var core = new AmigaExternalCore(Path.Combine(repository, "dist", "ppua", "puae_libretro.dll"));
             var configuration = AmigaMachineConfiguration.A500(
                 Path.Combine(repository, "image_test", "Roms", "Bios", "Kickstart 1.3.rom")) with
             {
@@ -271,7 +271,7 @@ public sealed class AmigaExternalCoreTests
         var repository = FindRepositoryRoot();
         var kickstart = Path.Combine(repository, "image_test", "Roms", "Bios", "Kickstart 1.3.rom");
         var adf = @"F:\Disquettes\Amiga Workbench\Amiga_Workbench_1.3.3.adf";
-        var corePath = Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll");
+        var corePath = Path.Combine(repository, "dist", "ppua", "puae_libretro.dll");
         var sessions = Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Tests", Guid.NewGuid().ToString("N"));
         var engine = new AmigaEngine();
         var context = CreateContext(sessions, corePath, Path.Combine(AppContext.BaseDirectory, "gwgui.app.exe"));
@@ -319,7 +319,7 @@ public sealed class AmigaExternalCoreTests
         var engine = new AmigaEngine();
         var context = CreateContext(
             Path.Combine(Path.GetTempPath(), "GWGUI-Amiga-Tests", Guid.NewGuid().ToString("N")),
-            Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll"),
+            Path.Combine(repository, "dist", "ppua", "puae_libretro.dll"),
             Path.Combine(AppContext.BaseDirectory, "gwgui.app.exe"), () => output);
         await using var machine = engine.CreateMachine(AmigaMachineConfiguration.A500(
             Path.Combine(repository, "image_test", "Roms", "Bios", "Kickstart 1.3.rom")), context);
@@ -342,7 +342,7 @@ public sealed class AmigaExternalCoreTests
         await File.WriteAllTextAsync(unsupported, "not an Amiga image");
         var engine = new AmigaEngine();
         var context = CreateContext(Path.Combine(root, "Sessions"),
-            Path.Combine(repository, "artifacts", "ppua", "puae_libretro.dll"),
+            Path.Combine(repository, "dist", "ppua", "puae_libretro.dll"),
             Path.Combine(AppContext.BaseDirectory, "gwgui.app.exe"));
         await using var machine = engine.CreateMachine(AmigaMachineConfiguration.A500(
             Path.Combine(repository, "image_test", "Roms", "Bios", "Kickstart 1.3.rom"), unsupported), context);

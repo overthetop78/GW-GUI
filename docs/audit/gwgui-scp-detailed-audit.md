@@ -428,7 +428,7 @@ Le parcours a été vérifié avec la paire déjà classée sous `image_test/val
 - `007 - A View to a Kill (1985)(Domark) [test].scp` ;
 - les fichiers de secteurs source et décodés associés.
 
-L’image n’a pas été déplacée ni modifiée. Une nouvelle conversion de travail a été créée sous `artifacts/understanding-test/amstrad-cpc-converted.scp`.
+L’image n’a pas été déplacée ni modifiée. Une nouvelle conversion de travail a été créée sous `dist/understanding-test/amstrad-cpc-converted.scp`.
 
 ### Lecture et Explorateur
 

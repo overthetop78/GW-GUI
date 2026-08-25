@@ -13,14 +13,14 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
-if ([string]::IsNullOrWhiteSpace($SetupPath)) { $SetupPath = Join-Path $repository 'artifacts\GW-GUI-0.1.0-win-x64-setup.exe' }
-if ([string]::IsNullOrWhiteSpace($InstallDirectory)) { $InstallDirectory = Join-Path $repository 'artifacts\installer-smoke' }
+if ([string]::IsNullOrWhiteSpace($SetupPath)) { $SetupPath = Join-Path $repository 'dist\GW-GUI-0.1.0-win-x64-setup.exe' }
+if ([string]::IsNullOrWhiteSpace($InstallDirectory)) { $InstallDirectory = Join-Path $repository 'dist\installer-smoke' }
 $setup = [IO.Path]::GetFullPath($SetupPath)
 $destination = [IO.Path]::GetFullPath($InstallDirectory)
-$artifactsRoot = [IO.Path]::GetFullPath((Join-Path $repository 'artifacts')) + [IO.Path]::DirectorySeparatorChar
+$distRoot = [IO.Path]::GetFullPath((Join-Path $repository 'dist')) + [IO.Path]::DirectorySeparatorChar
 $uninstallRegistryPath = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\{7B909A70-92B3-48E5-82CB-51A584ECE231}_is1'
-if (-not $destination.StartsWith($artifactsRoot, [StringComparison]::OrdinalIgnoreCase)) {
-    throw 'InstallDirectory must be located inside the repository artifacts directory.'
+if (-not $destination.StartsWith($distRoot, [StringComparison]::OrdinalIgnoreCase)) {
+    throw 'InstallDirectory must be located inside the repository dist directory.'
 }
 if (-not (Test-Path -LiteralPath $setup -PathType Leaf)) { throw "Installer not found: $setup" }
 if (Test-Path -LiteralPath $destination) { throw "Smoke-test destination already exists: $destination" }

@@ -101,7 +101,7 @@ Tout ce qui est affiché sous `src/` ci-dessus correspond à des fichiers source
 
 Le frontend choisit les chemins de ROM et de médias. Il construit `AmigaMachineConfiguration` avec, notamment, `KickstartPath`, `ExtendedRomPath`, `RomKeyPath` et les médias initiaux. `GWGUI.Emulation.Amiga.dll` vérifie les chemins reçus et les transmet au cœur actif ; il ne choisit jamais une ROM à la place du frontend.
 
-Les fichiers temporaires du cœur sont regroupés dans `artifacts/ppua/`. `artifacts/` est déjà ignoré par Git. À l’exécution, la DLL est copiée vers `Emulation/puae_libretro.dll` sous le dossier de sortie. Le dossier `artifacts/ppua/` sera supprimé lorsque le mode d’installation définitif du cœur sera fonctionnel.
+Les fichiers temporaires du cœur sont regroupés dans `dist/ppua/`. `dist/` est déjà ignoré par Git. À l’exécution, la DLL est copiée vers `Emulation/puae_libretro.dll` sous le dossier de sortie. Le dossier `dist/ppua/` sera supprimé lorsque le mode d’installation définitif du cœur sera fonctionnel.
 
 ## Ordre d’exécution obligatoire
 
@@ -154,9 +154,9 @@ Les fichiers temporaires du cœur sont regroupés dans `artifacts/ppua/`. `artif
 
 #### AMI-005 — Épingler le binaire de développement
 
-- [x] Télécharger l’archive officielle contenant `puae_libretro.dll` sous `artifacts/ppua/puae_libretro.dll.zip`.
-- [x] Extraire uniquement `puae_libretro.dll` sous `artifacts/ppua/puae_libretro.dll`.
-- [x] Créer `artifacts/ppua/core.json` avec type de cœur `External`, URL exacte, date du build, taille ZIP, taille DLL, SHA-256 et architecture `x64`.
+- [x] Télécharger l’archive officielle contenant `puae_libretro.dll` sous `dist/ppua/puae_libretro.dll.zip`.
+- [x] Extraire uniquement `puae_libretro.dll` sous `dist/ppua/puae_libretro.dll`.
+- [x] Créer `dist/ppua/core.json` avec type de cœur `External`, URL exacte, date du build, taille ZIP, taille DLL, SHA-256 et architecture `x64`.
 - [x] Ajouter dans `GWGUI.Emulation.Amiga.csproj` une cible `CopyAmigaExternalCore` exécutée après `Build` qui copie la DLL vers `$(OutDir)Emulation/` si elle existe.
 - [x] Ne jamais chercher un cœur dans le `PATH` Windows.
 - [x] Tester que la sortie contient exactement une copie et que le hash correspond au manifeste.

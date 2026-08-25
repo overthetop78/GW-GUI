@@ -43,7 +43,7 @@ Les captures française et anglaise des guides sont contrôlées comme de vérit
 powershell -ExecutionPolicy Bypass -File scripts/test-guide-images.ps1
 ```
 
-Après la création des paquets, le test suivant installe silencieusement l’application dans un dossier isolé sous `artifacts`, contrôle son contenu, sa version et la langue Inno Setup sélectionnée, puis vérifie sa désinstallation complète. Il refuse de démarrer si une installation GW GUI est déjà enregistrée :
+Après la création des paquets, le test suivant installe silencieusement l’application dans un dossier isolé sous `dist`, contrôle son contenu, sa version et la langue Inno Setup sélectionnée, puis vérifie sa désinstallation complète. Il refuse de démarrer si une installation GW GUI est déjà enregistrée :
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts/test-installer.ps1 -InstallerLanguage english
@@ -73,12 +73,6 @@ La compatibilité avec les distributions officielles courante et précédente de
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts/test-host-tools-releases.ps1
-```
-
-Le chargeur, la sélection automatique des décodeurs et le rendu WPF/Skia peuvent être éprouvés sur trois captures physiques SCP publiques : deux disquettes OS-9/CD-i confirmées fonctionnelles et la disquette de démonstration AMOS Professional marquée domaine public. Le script contrôle les tailles, MD5 et SHA-1 publiés par Internet Archive, valide les familles ISO et Amiga, exécute le rendu puis supprime les quelque 105 Mo téléchargés :
-
-```powershell
-powershell -ExecutionPolicy Bypass -File scripts/test-scp-corpus.ps1
 ```
 
 Les tags Git `v*` déclenchent le même processus dans GitHub Actions et publient les trois fichiers de distribution dans une release GitHub.
