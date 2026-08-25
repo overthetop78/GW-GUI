@@ -335,14 +335,14 @@ internal static class AtariSettingsDescriptionFunctions
             .Select(value => Invariant(value.ToString())).Append(Invariant("10")).ToArray();
 
     private static IReadOnlyList<EmulationSettingsChoice> Resolutions(AtariMachineModel model) =>
-        AtariEightBitSettingsCatalog.SupportsOriginalComputerOptions(model)
+        AtariEightBitSettingsCatalog.SupportsComputerOptions(model)
             ? AtariEightBitSettingsCatalog.OriginalComputerResolutions.Select(value =>
                 new EmulationSettingsChoice(value, string.Empty,
                     value.Replace("x", " × ", StringComparison.Ordinal))).ToArray()
             : AutomaticAndNative();
 
     private static string DefaultResolution(AtariMachineModel model) =>
-        AtariEightBitSettingsCatalog.SupportsOriginalComputerOptions(model)
+        AtariEightBitSettingsCatalog.SupportsComputerOptions(model)
             ? AtariEightBitSettingsCatalog.OriginalComputerResolutions[0]
             : AtariVideoAudioSettingsConstants.Automatic;
 

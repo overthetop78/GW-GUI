@@ -6,6 +6,15 @@ public static class AtariEightBitSettingsFunctions
         AtariMachineConfiguration configuration)
     {
         var options = new Dictionary<string, string>(configuration.Options, StringComparer.Ordinal);
+        if (AtariEightBitSettingsCatalog.SupportsComputerOptions(configuration.Model))
+        {
+            Validate(options, AtariConfigurationOptionConstants.VideoResolution,
+                AtariEightBitSettingsCatalog.OriginalComputerResolutions,
+                AtariEightBitSettingsCatalog.OriginalComputerResolutions[0]);
+            SetDefault(options, AtariConfigurationOptionConstants.VideoResolution,
+                AtariEightBitSettingsCatalog.OriginalComputerResolutions[0]);
+        }
+
         if (configuration.Model != AtariMachineModel.Atari400) return options;
 
         foreach (var setting in AtariEightBitSettingsCatalog.NativeSettings.Where(setting =>
@@ -15,9 +24,6 @@ public static class AtariEightBitSettingsFunctions
 
         Validate(options, AtariConfigurationOptionConstants.VideoStandard,
             Enum.GetNames<AtariClassicRegion>(), AtariClassicRegion.Ntsc.ToString());
-        Validate(options, AtariConfigurationOptionConstants.VideoResolution,
-            AtariEightBitSettingsCatalog.OriginalComputerResolutions,
-            AtariEightBitSettingsCatalog.OriginalComputerResolutions[0]);
         Validate(options, AtariEightBitSettingsConstants.ArtifactingModeOptionKey,
             AtariEightBitSettingsCatalog.ArtifactingModes, AtariEightBitSettingsConstants.None);
 
@@ -78,8 +84,6 @@ public static class AtariEightBitSettingsFunctions
             AtariEightBitSettingsConstants.None);
         SetDefault(options, AtariConfigurationOptionConstants.VideoStandard,
             AtariClassicModelCatalog.Get(configuration.Model).DefaultRegion.ToString());
-        SetDefault(options, AtariConfigurationOptionConstants.VideoResolution,
-            AtariEightBitSettingsCatalog.OriginalComputerResolutions[0]);
         SetDefault(options, AtariEightBitSettingsConstants.ArtifactingModeOptionKey,
             AtariEightBitSettingsConstants.None);
         SetDefault(options, AtariEightBitSettingsConstants.PaddleActiveOptionKey,
