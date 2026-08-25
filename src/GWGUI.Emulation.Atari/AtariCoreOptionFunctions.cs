@@ -47,11 +47,11 @@ internal static class AtariCoreOptionFunctions
     {
         if (variables == nint.Zero) return [];
         var result = new List<AtariCoreOption>();
-        var size = Marshal.SizeOf<GWGUI.Emulation.Common.ExternalCoreApi.Variable>();
+        var size = Marshal.SizeOf<GWGUI.Emulation.Interop.ExternalCoreApi.Variable>();
         for (var index = AtariCoreOptionConstants.FirstEntryIndex;
              index < AtariCoreOptionConstants.MaximumDefinitions; index++)
         {
-            var variable = Marshal.PtrToStructure<GWGUI.Emulation.Common.ExternalCoreApi.Variable>(variables + index * size);
+            var variable = Marshal.PtrToStructure<GWGUI.Emulation.Interop.ExternalCoreApi.Variable>(variables + index * size);
             var key = CopyString(variable.Key);
             if (key is null) break;
             var definition = CopyString(variable.Value) ?? string.Empty;

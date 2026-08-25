@@ -99,7 +99,7 @@ internal static class AtariMachineOptionFunctions
         IDictionary<string, string> result)
     {
         var slot = configuration.Media.FirstOrDefault(media => media.Category == AtariMediaCategory.Floppy
-            && media.IsInserted)?.Slot ?? Emulation.EmulationMediaSlot.Floppy0;
+            && media.IsInserted)?.Slot ?? EmulationMediaSlot.Floppy0;
         if (configuration.Options.TryGetValue(AtariMachineOptionConstants.FloppySpeedPrefix + slot, out var speed))
             result[AtariMachineOptionConstants.FastFloppy] = speed == "100" ? "false" : "true";
         if (configuration.Options.TryGetValue(AtariMachineOptionConstants.FloppyWriteProtectionPrefix + slot, out var protection)

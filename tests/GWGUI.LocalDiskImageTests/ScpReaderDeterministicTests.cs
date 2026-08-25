@@ -1,4 +1,3 @@
-using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using System.Buffers.Binary;

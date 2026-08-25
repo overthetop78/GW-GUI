@@ -1,4 +1,3 @@
-using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.Exploration.Scp;

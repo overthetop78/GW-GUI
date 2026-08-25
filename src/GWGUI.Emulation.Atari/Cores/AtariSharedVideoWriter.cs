@@ -1,5 +1,4 @@
 using System.IO.MemoryMappedFiles;
-using GWGUI.Emulation.Common;
 
 namespace GWGUI.Emulation.Atari.Cores;
 

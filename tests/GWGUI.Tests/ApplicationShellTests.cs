@@ -30,7 +30,6 @@ using GWGUI.Domain.Formats;
 using GWGUI.Domain.Profiles;
 using GWGUI.Domain.Settings;
 using GWGUI.Domain.Settings.Hardware;
-using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Exploration.Scp;

@@ -1,6 +1,5 @@
 using System.Runtime.InteropServices;
 using GWGUI.Emulation;
-using GWGUI.Emulation.Common;
 using System.Security.Cryptography;
 
 namespace GWGUI.Emulation.Amiga.Cores;

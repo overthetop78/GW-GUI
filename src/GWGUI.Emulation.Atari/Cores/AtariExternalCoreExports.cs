@@ -1,4 +1,3 @@
-using GWGUI.Emulation.Common;
 
 namespace GWGUI.Emulation.Atari.Cores;
 

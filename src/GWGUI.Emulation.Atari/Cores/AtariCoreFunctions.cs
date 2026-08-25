@@ -1,6 +1,5 @@
 using System.Globalization;
 using System.Runtime.InteropServices;
-using GWGUI.Emulation.Common;
 
 namespace GWGUI.Emulation.Atari.Cores;
 

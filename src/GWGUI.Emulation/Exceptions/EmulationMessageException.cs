@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation;
+namespace GWGUI.Emulation.Exceptions;
 
 public sealed class EmulationMessageException : Exception
 {

@@ -2,7 +2,6 @@ using GWGUI.App;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari;
 using GWGUI.Emulation.Atari.Cores;
-using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Exploration.Scp;
 using System.Diagnostics;
 using System.IO;
@@ -111,7 +110,7 @@ public sealed class AtariCoreHostTests
         Assert.Equal(configuration.Model, restoredConfiguration?.Model);
 
         var media = new AtariMediaConfiguration("game.rom", AtariMediaCategory.Cartridge,
-            GWGUI.Emulation.EmulationMediaSlot.Cartridge0, IsReadOnly: true);
+            GWGUI.Emulation.Contracts.EmulationMediaSlot.Cartridge0, IsReadOnly: true);
         var mediaJson = System.Text.Json.JsonSerializer.Serialize(media, AtariCoreHostFunctions.JsonOptions);
         Assert.Equal(media, System.Text.Json.JsonSerializer.Deserialize<AtariMediaConfiguration>(mediaJson,
             AtariCoreHostFunctions.JsonOptions));
@@ -135,7 +134,7 @@ public sealed class AtariCoreHostTests
         using var stream = new MemoryStream();
         using (var writer = new BinaryWriter(stream, System.Text.Encoding.UTF8, leaveOpen: true))
         {
-            AtariCoreHostFunctions.WriteInput(writer, GWGUI.Emulation.EmulationInputSnapshot.Empty);
+            AtariCoreHostFunctions.WriteInput(writer, GWGUI.Emulation.Contracts.EmulationInputSnapshot.Empty);
             AtariCoreHostFunctions.WriteBytes(writer, [AtariConstants.NativeBooleanTrue]);
             AtariCoreHostFunctions.WriteResponseHeader(writer, AtariHostResponseStatus.Success);
         }
@@ -143,8 +142,8 @@ public sealed class AtariCoreHostTests
         using var reader = new BinaryReader(stream);
         var restoredInput = AtariCoreHostFunctions.ReadInput(reader);
         Assert.Empty(restoredInput.Keys);
-        Assert.Equal(GWGUI.Emulation.EmulationInputSnapshot.Empty.Pointer, restoredInput.Pointer);
-        Assert.Equal(GWGUI.Emulation.EmulationInputSnapshot.Empty.Controllers, restoredInput.Controllers);
+        Assert.Equal(GWGUI.Emulation.Contracts.EmulationInputSnapshot.Empty.Pointer, restoredInput.Pointer);
+        Assert.Equal(GWGUI.Emulation.Contracts.EmulationInputSnapshot.Empty.Controllers, restoredInput.Controllers);
         Assert.Equal(new byte[] { AtariConstants.NativeBooleanTrue }, AtariCoreHostFunctions.ReadBytes(reader));
         Assert.Equal(AtariHostResponseStatus.Success, AtariCoreHostFunctions.ReadResponseHeader(reader));
 
@@ -179,7 +178,7 @@ public sealed class AtariCoreHostTests
         var samples = new short[] { short.MinValue, -1, 0, 1, short.MaxValue, 42 };
         var chunks = new[]
         {
-            new GWGUI.Emulation.AudioChunk(samples, TestSampleRate,
+            new GWGUI.Emulation.Contracts.AudioChunk(samples, TestSampleRate,
                 samples.Length / TestStereoChannelCount, TestFirstSequence,
                 TimeSpan.Zero)
         };
@@ -334,15 +333,15 @@ public sealed class AtariCoreHostTests
         Path.Combine(FindRepositoryRoot(), "tmp", "atari-cores", "atari800.dll"), AtariEmulator.Atari800,
         responseTimeout, cancellationToken);
 
-    private static GWGUI.Emulation.VideoFrame CreateFrame(int width, int height, byte value)
+    private static GWGUI.Emulation.Contracts.VideoFrame CreateFrame(int width, int height, byte value)
     {
         var pitch = width * BytesPerTestPixel;
-        return new GWGUI.Emulation.VideoFrame(Enumerable.Repeat(value, pitch * height).ToArray(), width, height,
-            pitch, GWGUI.Emulation.EmulationPixelFormat.Xrgb8888, default,
+        return new GWGUI.Emulation.Contracts.VideoFrame(Enumerable.Repeat(value, pitch * height).ToArray(), width, height,
+            pitch, GWGUI.Emulation.Enums.EmulationPixelFormat.Xrgb8888, default,
             TestFirstSequence, TimeSpan.Zero);
     }
 
-    private static GWGUI.Emulation.VideoFrame? RoundTripFrame(GWGUI.Emulation.VideoFrame frame,
+    private static GWGUI.Emulation.Contracts.VideoFrame? RoundTripFrame(GWGUI.Emulation.Contracts.VideoFrame frame,
         AtariSharedVideoWriter video, ref MemoryMappedFile? memory, ref MemoryMappedViewAccessor? map,
         ref string? activeName)
     {
@@ -354,7 +353,7 @@ public sealed class AtariCoreHostTests
         return AtariCoreHostFunctions.ReadResizableSharedFrame(reader, ref memory, ref map, ref activeName);
     }
 
-    private static void AssertFrame(GWGUI.Emulation.VideoFrame expected, GWGUI.Emulation.VideoFrame? actual)
+    private static void AssertFrame(GWGUI.Emulation.Contracts.VideoFrame expected, GWGUI.Emulation.Contracts.VideoFrame? actual)
     {
         Assert.NotNull(actual);
         Assert.Equal(expected.Width, actual!.Width);

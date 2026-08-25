@@ -17,7 +17,6 @@ using GWGUI.Domain.Naming;
 using GWGUI.Domain.Read;
 using GWGUI.Domain.Settings.Hardware;
 using GWGUI.Domain.Write;
-using GWGUI.Emulation.Common;
 using GWGUI.Infrastructure.Processes;
 using GWGUI.MediaEngine.Exploration.Scp;
 using System.IO;

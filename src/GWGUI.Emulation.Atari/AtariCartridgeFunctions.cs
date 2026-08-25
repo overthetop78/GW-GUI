@@ -13,7 +13,7 @@ internal static class AtariCartridgeFunctions
     {
         if (!Supports(core)) throw new ArgumentException(AtariCartridgeErrors.UnsupportedCore, nameof(core));
         if (machine.Core != core) throw new ArgumentException(AtariErrorMessages.IncompatibleMedia, nameof(machine));
-        if (media.Category != AtariMediaCategory.Cartridge || media.Slot != GWGUI.Emulation.EmulationMediaSlot.Cartridge0)
+        if (media.Category != AtariMediaCategory.Cartridge || media.Slot != GWGUI.Emulation.Contracts.EmulationMediaSlot.Cartridge0)
             throw new ArgumentException(AtariCartridgeErrors.CartridgeRequired, nameof(media));
 
         var extension = Path.GetExtension(media.Path).TrimStart(AtariConstants.ExtensionPrefix);

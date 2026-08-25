@@ -18,11 +18,11 @@ public sealed record AmigaMachineConfiguration(
     string? ValidatedCoreSha256 = null,
     IReadOnlyList<AmigaMediaConfiguration>? Media = null,
     AmigaAudioConfiguration? Audio = null,
-    GWGUI.Emulation.EmulationVideoRenderer VideoRenderer = GWGUI.Emulation.EmulationVideoRenderer.Direct3D11)
-    : GWGUI.Emulation.IEmulationConfiguration
+    GWGUI.Emulation.Enums.EmulationVideoRenderer VideoRenderer = GWGUI.Emulation.Enums.EmulationVideoRenderer.Direct3D11)
+    : GWGUI.Emulation.Interfaces.IEmulationConfiguration
 {
     public string ModuleId => "amiga";
-    string GWGUI.Emulation.IEmulationConfiguration.MachineId => Model;
+    string GWGUI.Emulation.Interfaces.IEmulationConfiguration.MachineId => Model;
     public static AmigaMachineConfiguration A500(string kickstartPath, string? diskPath = null) =>
         new("A500", kickstartPath, diskPath, Options: new Dictionary<string, string>
         {

@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace GWGUI.Emulation.Common;
+namespace GWGUI.Emulation.Interop;
 
 internal static class ExternalCoreApi
 {

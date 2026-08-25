@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation.Common;
+namespace GWGUI.Emulation.Services;
 
 internal sealed class EmulationInputAccumulator
 {

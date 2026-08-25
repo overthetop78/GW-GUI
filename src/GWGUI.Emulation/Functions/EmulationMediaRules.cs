@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation;
+namespace GWGUI.Emulation.Functions;
 
 public static class EmulationMediaRules
 {
@@ -28,13 +28,17 @@ public static class EmulationMediaRules
         {
             ArgumentException.ThrowIfNullOrWhiteSpace(item.Path);
             if (!IsCompatible(item.Slot, item.Type))
-                throw new ArgumentException($"Media type '{item.Type}' is not compatible with slot '{item.Slot}'.", nameof(media));
+                throw new ArgumentException(string.Format(EmulationMediaErrorMessages.IncompatibleSlotFormat,
+                    item.Type, item.Slot), nameof(media));
             if (!occupied.Add(item.Slot))
-                throw new ArgumentException($"Media slot '{item.Slot}' is occupied more than once.", nameof(media));
+                throw new ArgumentException(string.Format(EmulationMediaErrorMessages.DuplicateSlotFormat, item.Slot),
+                    nameof(media));
             if (RequiresReadOnly(item.Type) && !item.IsReadOnly)
-                throw new ArgumentException($"Media type '{item.Type}' must be read-only.", nameof(media));
+                throw new ArgumentException(string.Format(EmulationMediaErrorMessages.ReadOnlyRequiredFormat, item.Type),
+                    nameof(media));
             if (item.IsInserted is false && !SupportsEjection(item.Type))
-                throw new ArgumentException($"Media type '{item.Type}' cannot remain configured while ejected.", nameof(media));
+                throw new ArgumentException(string.Format(EmulationMediaErrorMessages.EjectedConfigurationUnsupportedFormat,
+                    item.Type), nameof(media));
         }
 
         return media;
@@ -60,7 +64,8 @@ public static class EmulationMediaRules
         if (existing is null)
             return media;
         if (!SupportsEjection(existing.Type))
-            throw new InvalidOperationException($"Media type '{existing.Type}' cannot be ejected.");
+            throw new InvalidOperationException(string.Format(EmulationMediaErrorMessages.EjectionUnsupportedFormat,
+                existing.Type));
 
         return Validate(media.Select(item => item.Slot == slot ? item with { IsInserted = false } : item).ToArray());
     }

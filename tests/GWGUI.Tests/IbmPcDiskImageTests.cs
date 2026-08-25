@@ -1,4 +1,3 @@
-using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Containers.Ibm.Raw;
 using GWGUI.MediaEngine.Exploration;
 using GWGUI.MediaEngine.FileSystems.Definitions;

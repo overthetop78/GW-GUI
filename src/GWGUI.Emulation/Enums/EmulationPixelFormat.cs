@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation;
+namespace GWGUI.Emulation.Enums;
 
 public enum EmulationPixelFormat
 {

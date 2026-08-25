@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation;
+namespace GWGUI.Emulation.Contracts;
 
 public sealed record EmulationSettingsField(
     string Id,
@@ -11,8 +11,8 @@ public sealed record EmulationSettingsField(
     bool IsEnabled = true,
     bool IsVisible = true,
     string? ExplanationResourceKey = null,
-    string EnabledValue = "enabled",
-    string DisabledValue = "disabled",
+    string EnabledValue = EmulationSettingConstants.Enabled,
+    string DisabledValue = EmulationSettingConstants.Disabled,
     EmulationDefaultFolderCategory? DefaultFolderCategory = null,
     long? NumericValue = null,
     EmulationSettingsChoiceSource ChoiceSource = EmulationSettingsChoiceSource.Declared,

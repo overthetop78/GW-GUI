@@ -1,3 +1,3 @@
-namespace GWGUI.Emulation;
+namespace GWGUI.Emulation.Interfaces;
 
 public interface IEmulationMessageContext;

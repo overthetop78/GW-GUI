@@ -1,4 +1,3 @@
-using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Containers.ImageDisk;
 using System.IO;
 using System.Reflection;

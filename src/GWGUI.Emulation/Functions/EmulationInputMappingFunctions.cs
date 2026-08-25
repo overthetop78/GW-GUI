@@ -1,31 +1,49 @@
-namespace GWGUI.Emulation;
+namespace GWGUI.Emulation.Functions;
 
 public static class EmulationInputMappingFunctions
 {
-    private const short AnalogThreshold = 14000;
-
     private static readonly IReadOnlyDictionary<string, int> ControllerButtons =
         new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
         {
-            ["B"] = 0, ["ButtonB"] = 0,
-            ["Y"] = 1, ["ButtonY"] = 1,
-            ["Select"] = 2, ["View"] = 2,
-            ["Start"] = 3, ["Menu"] = 3,
-            ["Up"] = 4, ["DPadUp"] = 4,
-            ["Down"] = 5, ["DPadDown"] = 5,
-            ["Left"] = 6, ["DPadLeft"] = 6,
-            ["Right"] = 7, ["DPadRight"] = 7,
-            ["A"] = 8, ["ButtonA"] = 8,
-            ["X"] = 9, ["ButtonX"] = 9,
-            ["L"] = 10, ["LeftShoulder"] = 10,
-            ["R"] = 11, ["RightShoulder"] = 11,
-            ["L2"] = 12, ["LeftTrigger"] = 12,
-            ["R2"] = 13, ["RightTrigger"] = 13,
-            ["L3"] = 14, ["LeftStickClick"] = 14,
-            ["R3"] = 15, ["RightStickClick"] = 15,
-            ["XboxButton"] = 16, ["Guide"] = 16,
-            ["Share"] = 17, ["PaddleLeft1"] = 18, ["PaddleLeft2"] = 19,
-            ["PaddleRight1"] = 20, ["PaddleRight2"] = 21
+            [EmulationInputMappingConstants.B] = EmulationInputMappingConstants.BIndex,
+            [EmulationInputMappingConstants.ButtonB] = EmulationInputMappingConstants.BIndex,
+            [EmulationInputMappingConstants.Y] = EmulationInputMappingConstants.YIndex,
+            [EmulationInputMappingConstants.ButtonY] = EmulationInputMappingConstants.YIndex,
+            [EmulationInputMappingConstants.Select] = EmulationInputMappingConstants.SelectIndex,
+            [EmulationInputMappingConstants.View] = EmulationInputMappingConstants.SelectIndex,
+            [EmulationInputMappingConstants.Start] = EmulationInputMappingConstants.StartIndex,
+            [EmulationInputMappingConstants.Menu] = EmulationInputMappingConstants.StartIndex,
+            [EmulationInputMappingConstants.Up] = EmulationInputMappingConstants.UpIndex,
+            [EmulationInputMappingConstants.DPadUp] = EmulationInputMappingConstants.UpIndex,
+            [EmulationInputMappingConstants.Down] = EmulationInputMappingConstants.DownIndex,
+            [EmulationInputMappingConstants.DPadDown] = EmulationInputMappingConstants.DownIndex,
+            [EmulationInputMappingConstants.Left] = EmulationInputMappingConstants.LeftIndex,
+            [EmulationInputMappingConstants.DPadLeft] = EmulationInputMappingConstants.LeftIndex,
+            [EmulationInputMappingConstants.Right] = EmulationInputMappingConstants.RightIndex,
+            [EmulationInputMappingConstants.DPadRight] = EmulationInputMappingConstants.RightIndex,
+            [EmulationInputMappingConstants.A] = EmulationInputMappingConstants.AIndex,
+            [EmulationInputMappingConstants.ButtonA] = EmulationInputMappingConstants.AIndex,
+            [EmulationInputMappingConstants.X] = EmulationInputMappingConstants.XIndex,
+            [EmulationInputMappingConstants.ButtonX] = EmulationInputMappingConstants.XIndex,
+            [EmulationInputMappingConstants.L] = EmulationInputMappingConstants.LIndex,
+            [EmulationInputMappingConstants.LeftShoulder] = EmulationInputMappingConstants.LIndex,
+            [EmulationInputMappingConstants.R] = EmulationInputMappingConstants.RIndex,
+            [EmulationInputMappingConstants.RightShoulder] = EmulationInputMappingConstants.RIndex,
+            [EmulationInputMappingConstants.L2] = EmulationInputMappingConstants.L2Index,
+            [EmulationInputMappingConstants.LeftTrigger] = EmulationInputMappingConstants.L2Index,
+            [EmulationInputMappingConstants.R2] = EmulationInputMappingConstants.R2Index,
+            [EmulationInputMappingConstants.RightTrigger] = EmulationInputMappingConstants.R2Index,
+            [EmulationInputMappingConstants.L3] = EmulationInputMappingConstants.L3Index,
+            [EmulationInputMappingConstants.LeftStickClick] = EmulationInputMappingConstants.L3Index,
+            [EmulationInputMappingConstants.R3] = EmulationInputMappingConstants.R3Index,
+            [EmulationInputMappingConstants.RightStickClick] = EmulationInputMappingConstants.R3Index,
+            [EmulationInputMappingConstants.XboxButton] = EmulationInputMappingConstants.GuideIndex,
+            [EmulationInputMappingConstants.Guide] = EmulationInputMappingConstants.GuideIndex,
+            [EmulationInputMappingConstants.Share] = EmulationInputMappingConstants.ShareIndex,
+            [EmulationInputMappingConstants.PaddleLeft1] = EmulationInputMappingConstants.PaddleLeft1Index,
+            [EmulationInputMappingConstants.PaddleLeft2] = EmulationInputMappingConstants.PaddleLeft2Index,
+            [EmulationInputMappingConstants.PaddleRight1] = EmulationInputMappingConstants.PaddleRight1Index,
+            [EmulationInputMappingConstants.PaddleRight2] = EmulationInputMappingConstants.PaddleRight2Index
         };
 
     public static IReadOnlySet<EmulationKey> MapKeyboard(IReadOnlySet<EmulationKey> keys,
@@ -44,11 +62,11 @@ public static class EmulationInputMappingFunctions
 
     public static string? ParseControllerDeviceId(string? source)
     {
-        const string prefix = "Controller:";
         if (string.IsNullOrWhiteSpace(source) ||
-            !source.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)) return null;
-        var controlSeparator = source.LastIndexOf(':');
-        return controlSeparator <= prefix.Length ? null : source[prefix.Length..controlSeparator];
+            !source.StartsWith(EmulationInputMappingConstants.ControllerPrefix, StringComparison.OrdinalIgnoreCase)) return null;
+        var controlSeparator = source.LastIndexOf(EmulationInputMappingConstants.SourceSeparator);
+        return controlSeparator <= EmulationInputMappingConstants.ControllerPrefix.Length ? null
+            : source[EmulationInputMappingConstants.ControllerPrefix.Length..controlSeparator];
     }
 
     public static EmulationControllerState ResolveController(string? deviceId,
@@ -66,24 +84,28 @@ public static class EmulationInputMappingFunctions
 
     public static bool IsControllerSourcePressed(string source, EmulationControllerState controller)
     {
-        var name = source.Split(':', StringSplitOptions.RemoveEmptyEntries).LastOrDefault() ?? string.Empty;
+        var name = source.Split(EmulationInputMappingConstants.SourceSeparator,
+            StringSplitOptions.RemoveEmptyEntries).LastOrDefault() ?? string.Empty;
         if (ControllerButtons.TryGetValue(name, out var button))
             return (controller.Buttons & (1u << button)) != 0;
-        if (name.EndsWith("Positive", StringComparison.OrdinalIgnoreCase) &&
-            controller.Controls.TryGetValue(name[..^"Positive".Length], out var positive)) return positive > .75f;
-        if (name.EndsWith("Negative", StringComparison.OrdinalIgnoreCase) &&
-            controller.Controls.TryGetValue(name[..^"Negative".Length], out var negative)) return negative < .25f;
-        if (controller.Controls.TryGetValue(name, out var value)) return value > .5f;
+        if (name.EndsWith(EmulationInputMappingConstants.PositiveSuffix, StringComparison.OrdinalIgnoreCase) &&
+            controller.Controls.TryGetValue(name[..^EmulationInputMappingConstants.PositiveSuffix.Length],
+                out var positive)) return positive > EmulationInputMappingConstants.PositiveThreshold;
+        if (name.EndsWith(EmulationInputMappingConstants.NegativeSuffix, StringComparison.OrdinalIgnoreCase) &&
+            controller.Controls.TryGetValue(name[..^EmulationInputMappingConstants.NegativeSuffix.Length],
+                out var negative)) return negative < EmulationInputMappingConstants.NegativeThreshold;
+        if (controller.Controls.TryGetValue(name, out var value))
+            return value > EmulationInputMappingConstants.PressedThreshold;
         return name switch
         {
-            "LeftStickLeft" => controller.LeftX < -AnalogThreshold,
-            "LeftStickRight" => controller.LeftX > AnalogThreshold,
-            "LeftStickUp" => controller.LeftY < -AnalogThreshold,
-            "LeftStickDown" => controller.LeftY > AnalogThreshold,
-            "RightStickLeft" => controller.RightX < -AnalogThreshold,
-            "RightStickRight" => controller.RightX > AnalogThreshold,
-            "RightStickUp" => controller.RightY < -AnalogThreshold,
-            "RightStickDown" => controller.RightY > AnalogThreshold,
+            EmulationInputMappingConstants.LeftStickLeft => controller.LeftX < -EmulationInputMappingConstants.AnalogThreshold,
+            EmulationInputMappingConstants.LeftStickRight => controller.LeftX > EmulationInputMappingConstants.AnalogThreshold,
+            EmulationInputMappingConstants.LeftStickUp => controller.LeftY < -EmulationInputMappingConstants.AnalogThreshold,
+            EmulationInputMappingConstants.LeftStickDown => controller.LeftY > EmulationInputMappingConstants.AnalogThreshold,
+            EmulationInputMappingConstants.RightStickLeft => controller.RightX < -EmulationInputMappingConstants.AnalogThreshold,
+            EmulationInputMappingConstants.RightStickRight => controller.RightX > EmulationInputMappingConstants.AnalogThreshold,
+            EmulationInputMappingConstants.RightStickUp => controller.RightY < -EmulationInputMappingConstants.AnalogThreshold,
+            EmulationInputMappingConstants.RightStickDown => controller.RightY > EmulationInputMappingConstants.AnalogThreshold,
             _ => false
         };
     }

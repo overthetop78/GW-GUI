@@ -10,7 +10,6 @@ using GWGUI.Domain.Conversion;
 using GWGUI.Domain.Hardware;
 using GWGUI.Domain.Settings;
 using GWGUI.Domain.Settings.Hardware;
-using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Exploration.Scp;
 using System.IO;

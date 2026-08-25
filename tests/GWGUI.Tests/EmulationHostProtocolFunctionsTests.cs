@@ -1,5 +1,4 @@
 using GWGUI.Emulation;
-using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Exploration.Scp;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using System.IO;

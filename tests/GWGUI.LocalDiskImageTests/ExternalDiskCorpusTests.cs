@@ -1,4 +1,3 @@
-using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Containers.TeleDisk;
 using GWGUI.MediaEngine.Definitions;

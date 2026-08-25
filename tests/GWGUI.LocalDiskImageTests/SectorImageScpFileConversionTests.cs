@@ -1,6 +1,5 @@
 using GWGUI.App.Services.Conversion;
 using GWGUI.Domain.Conversion;
-using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Containers.Adf;
 using GWGUI.MediaEngine.Containers.Scp;

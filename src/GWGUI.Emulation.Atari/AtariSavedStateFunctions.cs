@@ -102,7 +102,7 @@ internal static class AtariSavedStateFunctions
         && !string.IsNullOrWhiteSpace(header.StateSha256);
 
     private static AtariStateInputFingerprint InputFingerprint(AtariInputConfiguration input) => new(
-        (input.KeyboardMappings ?? new Dictionary<string, GWGUI.Emulation.EmulationKey>())
+        (input.KeyboardMappings ?? new Dictionary<string, GWGUI.Emulation.Enums.EmulationKey>())
             .OrderBy(pair => pair.Key, StringComparer.Ordinal)
             .Select(pair => new KeyValuePair<string, string>(pair.Key, pair.Value.ToString()))
             .ToArray(),

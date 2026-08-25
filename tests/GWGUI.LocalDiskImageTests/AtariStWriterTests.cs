@@ -1,4 +1,3 @@
-using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Containers.Atari.Msa;
 using GWGUI.MediaEngine.Containers.Atari.St;

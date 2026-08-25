@@ -1,4 +1,3 @@
-using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Containers.I86f;
 using GWGUI.MediaEngine.Containers.Scp;
 using GWGUI.MediaEngine.Decoding;

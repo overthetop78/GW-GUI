@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation.Common;
+namespace GWGUI.Emulation.Constants;
 
 internal static class ExternalCoreErrorMessages
 {

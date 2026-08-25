@@ -13,7 +13,7 @@ internal static class AtariJaguarCdFunctions
     {
         if (machine.Model != AtariMachineModel.JaguarCd)
             throw new ArgumentException(AtariJaguarCdErrors.ModelRequired, nameof(machine));
-        if (media.Category != AtariMediaCategory.CompactDisc || media.Slot != GWGUI.Emulation.EmulationMediaSlot.Cd0)
+        if (media.Category != AtariMediaCategory.CompactDisc || media.Slot != GWGUI.Emulation.Contracts.EmulationMediaSlot.Cd0)
             throw new ArgumentException(AtariJaguarCdErrors.CompleteDiscRequired, nameof(media));
         var extension = Path.GetExtension(media.Path);
         var normalizedExtension = extension.TrimStart(AtariConstants.ExtensionPrefix);

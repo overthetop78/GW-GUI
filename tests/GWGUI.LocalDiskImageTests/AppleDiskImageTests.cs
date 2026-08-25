@@ -6,7 +6,6 @@ using GWGUI.Domain.Commands.Execution;
 using GWGUI.Domain.Conversion;
 using GWGUI.Domain.Formats;
 using GWGUI.Domain.Formats.Detection;
-using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Composition;
 using GWGUI.MediaEngine.Containers.Apple;
 using GWGUI.MediaEngine.Containers.Scp;

@@ -5,7 +5,6 @@ using System.IO.Pipes;
 using System.IO.MemoryMappedFiles;
 using System.Text.Json;
 using GWGUI.Emulation;
-using GWGUI.Emulation.Common;
 
 namespace GWGUI.Emulation.Amiga.Cores;
 

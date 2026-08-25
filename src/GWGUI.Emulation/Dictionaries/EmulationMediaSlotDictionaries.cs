@@ -1,14 +1,14 @@
-namespace GWGUI.Emulation;
+namespace GWGUI.Emulation.Dictionaries;
 
 internal static class EmulationMediaSlotDictionaries
 {
     internal static IReadOnlyDictionary<string, EmulationMediaCategory> Prefixes { get; } =
         new Dictionary<string, EmulationMediaCategory>(StringComparer.OrdinalIgnoreCase)
         {
-            ["Floppy"] = EmulationMediaCategory.FloppyDrive,
-            ["HardDisk"] = EmulationMediaCategory.HardDisk,
-            ["Cd"] = EmulationMediaCategory.CompactDiscDrive,
-            ["Cartridge"] = EmulationMediaCategory.CartridgeSlot,
-            ["Cassette"] = EmulationMediaCategory.CassetteDrive
+        [EmulationMediaSlotConstants.FloppyPrefix] = EmulationMediaCategory.FloppyDrive,
+        [EmulationMediaSlotConstants.HardDiskPrefix] = EmulationMediaCategory.HardDisk,
+        [EmulationMediaSlotConstants.CompactDiscPrefix] = EmulationMediaCategory.CompactDiscDrive,
+        [EmulationMediaSlotConstants.CartridgePrefix] = EmulationMediaCategory.CartridgeSlot,
+        [EmulationMediaSlotConstants.CassettePrefix] = EmulationMediaCategory.CassetteDrive
         };
 }

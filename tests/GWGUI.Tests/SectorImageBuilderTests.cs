@@ -1,4 +1,3 @@
-using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.Decoding.Definitions;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;

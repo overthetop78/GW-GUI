@@ -1,4 +1,4 @@
-namespace GWGUI.Emulation;
+namespace GWGUI.Emulation.Contracts;
 
 public sealed record EmulationSettingsVisibility(
     IReadOnlyDictionary<EmulationMachineTab, bool> Tabs,

@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace GWGUI.Emulation;
+namespace GWGUI.Emulation.Contracts;
 
 public sealed class EmulationControllerControls : IReadOnlyDictionary<string, float>,
     IEquatable<EmulationControllerControls>

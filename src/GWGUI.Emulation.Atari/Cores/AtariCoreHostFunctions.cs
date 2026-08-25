@@ -4,7 +4,6 @@ using System.Numerics;
 using System.Runtime.Versioning;
 using System.Text.Json;
 using GWGUI.Emulation;
-using GWGUI.Emulation.Common;
 
 namespace GWGUI.Emulation.Atari.Cores;
 

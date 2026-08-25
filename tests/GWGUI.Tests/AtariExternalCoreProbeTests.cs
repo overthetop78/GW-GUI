@@ -1,7 +1,6 @@
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari;
 using GWGUI.Emulation.Atari.Cores;
-using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Containers.ImageDisk;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -246,7 +245,7 @@ public sealed class AtariExternalCoreProbeTests
             using var core = new AtariExternalCore(corePath, AtariEmulator.Atari800);
             var invalidConfiguration = new AtariMachineConfiguration(AtariMachineModel.Atari800,
                 media: [new AtariMediaConfiguration(unsupportedContent, AtariMediaCategory.Cartridge,
-                    GWGUI.Emulation.EmulationMediaSlot.Cartridge0)]);
+                    GWGUI.Emulation.Contracts.EmulationMediaSlot.Cartridge0)]);
 
             var error = Assert.Throws<AtariEmulationException>(() =>
                 core.Initialize(invalidConfiguration, sessionDirectory));

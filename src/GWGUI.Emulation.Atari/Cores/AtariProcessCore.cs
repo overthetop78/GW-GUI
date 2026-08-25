@@ -8,7 +8,6 @@ using System.Text;
 using System.Text.Json;
 using System.Runtime.Versioning;
 using GWGUI.Emulation;
-using GWGUI.Emulation.Common;
 
 namespace GWGUI.Emulation.Atari.Cores;
 

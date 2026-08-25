@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace GWGUI.Emulation;
+namespace GWGUI.Emulation.Functions;
 
 public static class EmulationMediaProtocol
 {
@@ -12,7 +12,7 @@ public static class EmulationMediaProtocol
     public static IReadOnlyList<EmulationMedia> Deserialize(ReadOnlySpan<byte> payload)
     {
         var media = JsonSerializer.Deserialize<EmulationMedia[]>(payload, JsonOptions)
-            ?? throw new InvalidDataException("The emulation media document is empty.");
+            ?? throw new InvalidDataException(EmulationMediaErrorMessages.EmptyDocument);
         return EmulationMediaRules.Validate(media);
     }
 }

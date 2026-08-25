@@ -1,5 +1,4 @@
 using System.Runtime.InteropServices;
-using GWGUI.Emulation.Common;
 
 namespace GWGUI.Emulation.Amiga.Cores;
 

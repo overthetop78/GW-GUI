@@ -2,7 +2,6 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Collections.Concurrent;
 using GWGUI.Emulation;
-using GWGUI.Emulation.Common;
 
 namespace GWGUI.Emulation.Amiga.Cores;
 

@@ -1,7 +1,6 @@
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using GWGUI.Emulation;
-using GWGUI.Emulation.Common;
 
 namespace GWGUI.Emulation.Atari.Cores;
 

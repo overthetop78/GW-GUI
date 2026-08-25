@@ -1,4 +1,3 @@
-using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;
 using System.Buffers.Binary;

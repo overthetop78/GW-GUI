@@ -1,4 +1,3 @@
-using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Containers.Adf;
 using GWGUI.MediaEngine.Conversion.Acorn;
 using GWGUI.MediaEngine.Definitions;

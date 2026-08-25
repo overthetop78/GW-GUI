@@ -1,7 +1,7 @@
 using System.IO.MemoryMappedFiles;
 using System.Runtime.InteropServices;
 
-namespace GWGUI.Emulation.Common;
+namespace GWGUI.Emulation.Functions;
 
 internal static class EmulationHostProtocolFunctions
 {
@@ -23,9 +23,11 @@ internal static class EmulationHostProtocolFunctions
     {
         var length = reader.ReadInt32();
         if (length is < 0 or > EmulationHostProtocolConstants.MaximumBlobLength)
-            throw new InvalidDataException($"The {hostName} host sent invalid binary payload length {length}.");
+            throw new InvalidDataException(string.Format(EmulationHostProtocolConstants.InvalidBinaryPayloadLengthFormat,
+                hostName, length));
         var bytes = reader.ReadBytes(length);
-        if (bytes.Length != length) throw new EndOfStreamException($"The {hostName} host binary payload ended early.");
+        if (bytes.Length != length) throw new EndOfStreamException(string.Format(
+            EmulationHostProtocolConstants.BinaryPayloadEndedEarlyFormat, hostName));
         return bytes;
     }
 
@@ -57,7 +59,7 @@ internal static class EmulationHostProtocolFunctions
     {
         var keyCount = reader.ReadInt32();
         if (keyCount is < 0 or > EmulationHostProtocolConstants.MaximumInputKeyCount)
-            throw new InvalidDataException($"The {hostName} host input contains an invalid key count.");
+            throw new InvalidDataException(string.Format(EmulationHostProtocolConstants.InvalidKeyCountFormat, hostName));
         var keys = new HashSet<EmulationKey>();
         for (var index = 0; index < keyCount; index++) keys.Add((EmulationKey)reader.ReadInt32());
         var pointer = new EmulationPointerState(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(),
@@ -65,7 +67,8 @@ internal static class EmulationHostProtocolFunctions
             reader.ReadBoolean(), reader.ReadInt32());
         var controllerCount = reader.ReadInt32();
         if (controllerCount is < 0 or > EmulationHostProtocolConstants.MaximumInputControllerCount)
-            throw new InvalidDataException($"The {hostName} host input contains an invalid controller count.");
+            throw new InvalidDataException(string.Format(EmulationHostProtocolConstants.InvalidControllerCountFormat,
+                hostName));
         var controllers = new EmulationControllerState[controllerCount];
         for (var index = 0; index < controllerCount; index++)
         {
@@ -73,8 +76,9 @@ internal static class EmulationHostProtocolFunctions
                 reader.ReadInt16(), reader.ReadInt16(), reader.ReadInt16(), reader.ReadInt16());
             var deviceId = reader.ReadString();
             var controlCount = reader.ReadInt32();
-            if (controlCount is < 0 or > 4096)
-                throw new InvalidDataException($"The {hostName} host input contains an invalid controller control count.");
+            if (controlCount is < 0 or > EmulationHostProtocolConstants.MaximumControllerControlCount)
+                throw new InvalidDataException(string.Format(
+                    EmulationHostProtocolConstants.InvalidControllerControlCountFormat, hostName));
             var controls = new Dictionary<string, float>(controlCount, StringComparer.OrdinalIgnoreCase);
             for (var controlIndex = 0; controlIndex < controlCount; controlIndex++)
                 controls[reader.ReadString()] = reader.ReadSingle();
@@ -102,7 +106,7 @@ internal static class EmulationHostProtocolFunctions
         var sequence = reader.ReadInt64(); var timestamp = TimeSpan.FromTicks(reader.ReadInt64());
         var pixels = ReadBytes(reader, hostName);
         if (width <= 0 || height <= 0 || pitch <= 0 || pixels.Length != checked(pitch * height))
-            throw new InvalidDataException($"The {hostName} host sent an invalid video frame.");
+            throw new InvalidDataException(string.Format(EmulationHostProtocolConstants.InvalidVideoFrameFormat, hostName));
         return new VideoFrame(pixels, width, height, pitch, format, aspect, sequence, timestamp);
     }
 
@@ -112,7 +116,8 @@ internal static class EmulationHostProtocolFunctions
         if (frame is null) return;
         var length = frame.Pixels.Length;
         if (length <= 0 || length > EmulationHostProtocolConstants.VideoSlotCapacity)
-            throw new InvalidDataException($"The {hostName} video frame requires {length} bytes; the shared slot supports {EmulationHostProtocolConstants.VideoSlotCapacity}.");
+            throw new InvalidDataException(string.Format(EmulationHostProtocolConstants.InvalidVideoFrameLengthFormat,
+                hostName, length, EmulationHostProtocolConstants.VideoSlotCapacity));
         var slot = (int)(frame.Sequence & (EmulationHostProtocolConstants.VideoSlotCount - 1));
         var pixels = frame.Pixels.ToArray();
         videoMap.WriteArray((long)slot * EmulationHostProtocolConstants.VideoSlotCapacity, pixels, 0, pixels.Length);
@@ -131,10 +136,12 @@ internal static class EmulationHostProtocolFunctions
         if (width <= 0 || height <= 0 || pitch <= 0 || length != checked(pitch * height)
             || slot is < 0 or >= EmulationHostProtocolConstants.VideoSlotCount
             || length > EmulationHostProtocolConstants.VideoSlotCapacity)
-            throw new InvalidDataException($"The {hostName} host sent invalid shared video metadata.");
+            throw new InvalidDataException(string.Format(EmulationHostProtocolConstants.InvalidSharedVideoMetadataFormat,
+                hostName));
         var pixels = GC.AllocateUninitializedArray<byte>(length);
         var read = videoMap.ReadArray((long)slot * EmulationHostProtocolConstants.VideoSlotCapacity, pixels, 0, length);
-        if (read != length) throw new EndOfStreamException($"The {hostName} shared video frame ended early.");
+        if (read != length) throw new EndOfStreamException(string.Format(
+            EmulationHostProtocolConstants.SharedVideoEndedEarlyFormat, hostName));
         return new VideoFrame(pixels, width, height, pitch, format, aspect, sequence, timestamp);
     }
 
@@ -152,7 +159,8 @@ internal static class EmulationHostProtocolFunctions
     {
         var count = reader.ReadInt32();
         if (count is < 0 or > EmulationHostProtocolConstants.MaximumAudioChunkCount)
-            throw new InvalidDataException($"The {hostName} host sent an invalid audio chunk count.");
+            throw new InvalidDataException(string.Format(EmulationHostProtocolConstants.InvalidAudioChunkCountFormat,
+                hostName));
         var chunks = new AudioChunk[count];
         for (var index = 0; index < count; index++)
         {
@@ -160,7 +168,8 @@ internal static class EmulationHostProtocolFunctions
             var sequence = reader.ReadInt64(); var timestamp = TimeSpan.FromTicks(reader.ReadInt64());
             var bytes = ReadBytes(reader, hostName);
             if (bytes.Length % EmulationHostProtocolConstants.BytesPerPcmSample != 0)
-                throw new InvalidDataException($"The {hostName} host sent an invalid PCM payload.");
+                throw new InvalidDataException(string.Format(EmulationHostProtocolConstants.InvalidPcmPayloadFormat,
+                    hostName));
             var samples = new short[bytes.Length / EmulationHostProtocolConstants.BytesPerPcmSample];
             Buffer.BlockCopy(bytes, 0, samples, 0, bytes.Length);
             chunks[index] = new AudioChunk(samples, sampleRate, frameCount, sequence, timestamp);
@@ -182,7 +191,8 @@ internal static class EmulationHostProtocolFunctions
     {
         var count = reader.ReadInt32();
         if (count is < 0 or > EmulationHostProtocolConstants.MaximumLedStateCount)
-            throw new InvalidDataException($"Invalid {hostName} LED state count {count}.");
+            throw new InvalidDataException(string.Format(EmulationHostProtocolConstants.InvalidLedStateCountFormat,
+                hostName, count));
         var states = new Dictionary<int, bool>(count);
         for (var index = 0; index < count; index++) states[reader.ReadInt32()] = reader.ReadBoolean();
         return states;

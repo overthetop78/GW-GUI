@@ -2,7 +2,6 @@ using GWGUI.App;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Amiga;
 using GWGUI.Emulation.Amiga.Cores;
-using GWGUI.Emulation.Common;
 using System.IO;
 using System.Diagnostics;
 using System.Security.Cryptography;
@@ -205,7 +204,7 @@ public sealed class AmigaExternalCoreTests
                     Convert.ToHexString(SHA256.HashData(stream)));
             for (var frame = 0; frame < 1500; frame++) core.RunFrame();
 
-            var video = Assert.IsType<GWGUI.Emulation.VideoFrame>(core.LatestVideoFrame);
+            var video = Assert.IsType<GWGUI.Emulation.Contracts.VideoFrame>(core.LatestVideoFrame);
             Assert.InRange(video.Width, 320, 1920);
             Assert.InRange(video.Height, 200, 1080);
             Assert.True(video.Pixels.Length >= video.Pitch * video.Height);
@@ -292,11 +291,11 @@ public sealed class AmigaExternalCoreTests
         Assert.Contains("iso", first.Runtime.SupportedContentExtensions);
         Assert.Contains("m3u", first.Runtime.SupportedContentExtensions);
         Assert.NotEqual(first.Id, second.Id);
-        Assert.Equal(GWGUI.Emulation.EmulationMachineState.Running, first.State);
-        Assert.Equal(GWGUI.Emulation.EmulationMachineState.Running, second.State);
+        Assert.Equal(GWGUI.Emulation.Enums.EmulationMachineState.Running, first.State);
+        Assert.Equal(GWGUI.Emulation.Enums.EmulationMachineState.Running, second.State);
         await first.Lifecycle.PauseAsync();
-        Assert.Equal(GWGUI.Emulation.EmulationMachineState.Paused, first.State);
-        Assert.Equal(GWGUI.Emulation.EmulationMachineState.Running, second.State);
+        Assert.Equal(GWGUI.Emulation.Enums.EmulationMachineState.Paused, first.State);
+        Assert.Equal(GWGUI.Emulation.Enums.EmulationMachineState.Running, second.State);
         await first.Media.EjectAsync(EmulationMediaSlot.Floppy0);
         var replacement = Path.Combine(repository, "image_test", "validated_images", "Commodore", "Amiga",
             "3.5 pouces DD - AmigaDOS OFS", "Boot-DD-OFS.adf");
@@ -309,8 +308,8 @@ public sealed class AmigaExternalCoreTests
         await first.Lifecycle.ResumeAsync();
         await first.Lifecycle.StopAsync();
         await second.Lifecycle.StopAsync();
-        Assert.Equal(GWGUI.Emulation.EmulationMachineState.Stopped, first.State);
-        Assert.Equal(GWGUI.Emulation.EmulationMachineState.Stopped, second.State);
+        Assert.Equal(GWGUI.Emulation.Enums.EmulationMachineState.Stopped, first.State);
+        Assert.Equal(GWGUI.Emulation.Enums.EmulationMachineState.Stopped, second.State);
     }
 
     [Fact]
@@ -386,9 +385,9 @@ public sealed class AmigaExternalCoreTests
         string hostExecutable, Func<IAudioOutput?>? audioOutputFactory = null) =>
         new(sessions, corePath, hostExecutable, audioOutputFactory, null);
 
-    private static void SaveFrame(GWGUI.Emulation.VideoFrame frame, string path)
+    private static void SaveFrame(GWGUI.Emulation.Contracts.VideoFrame frame, string path)
     {
-        var format = frame.PixelFormat == GWGUI.Emulation.EmulationPixelFormat.Rgb565 ? PixelFormats.Bgr565 : PixelFormats.Bgr32;
+        var format = frame.PixelFormat == GWGUI.Emulation.Enums.EmulationPixelFormat.Rgb565 ? PixelFormats.Bgr565 : PixelFormats.Bgr32;
         var bitmap = BitmapSource.Create(frame.Width, frame.Height, 96, 96, format, null,
             frame.Pixels.ToArray(), frame.Pitch);
         var encoder = new PngBitmapEncoder();

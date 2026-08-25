@@ -1,6 +1,5 @@
 using GWGUI.Domain.Formats;
 using GWGUI.Domain.Formats.Detection;
-using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Containers.Atari.Atr;
 using GWGUI.MediaEngine.Containers.Atari.Msa;
 using GWGUI.MediaEngine.Containers.Atari.St;

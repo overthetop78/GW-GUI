@@ -5,7 +5,6 @@ using GWGUI.App.Dictionaries.Localization;
 using GWGUI.App.Functions.Localization;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Localization.Sources;
-using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Containers.ImageDisk;
 using GWGUI.MediaEngine.Decoding;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;

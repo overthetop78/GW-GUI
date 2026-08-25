@@ -1,4 +1,3 @@
-using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.FileSystems.Apple.InformXzip;
 using GWGUI.MediaEngine.FileSystems.Apple.Macintosh.Hfs;

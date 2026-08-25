@@ -1,7 +1,6 @@
 using GWGUI.App.Enums.Explorer;
 using GWGUI.App.Functions.Explorer;
 using GWGUI.App.Views.Controls.Explorer;
-using GWGUI.Emulation.Common;
 using GWGUI.MediaEngine.Containers.Adf;
 using GWGUI.MediaEngine.Containers.ImageDisk;
 using GWGUI.MediaEngine.Containers.Scp;

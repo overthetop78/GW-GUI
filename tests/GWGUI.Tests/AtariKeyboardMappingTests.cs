@@ -2,7 +2,6 @@ using GWGUI.App.Functions.Input.Keyboard;
 using GWGUI.Emulation;
 using GWGUI.Emulation.Atari;
 using GWGUI.Emulation.Atari.Cores;
-using GWGUI.Emulation.Common;
 using System.Runtime.InteropServices;
 using System.IO;
 using System.Windows.Input;
