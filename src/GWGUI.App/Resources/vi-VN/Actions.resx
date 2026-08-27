@@ -18,6 +18,9 @@
   <data name="Common.Save">
     <value>Cứu</value>
   </data>
+  <data name="Common.Create">
+    <value>Tạo</value>
+  </data>
   <data name="Common.Delete">
     <value>Xóa bỏ</value>
   </data>

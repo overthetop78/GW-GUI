@@ -18,6 +18,9 @@
   <data name="Common.Save">
     <value>保存</value>
   </data>
+  <data name="Common.Create">
+    <value>作成</value>
+  </data>
   <data name="Common.Delete">
     <value>消去</value>
   </data>

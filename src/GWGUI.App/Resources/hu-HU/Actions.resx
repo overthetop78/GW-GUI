@@ -18,6 +18,9 @@
   <data name="Common.Save">
     <value>Megtakarítás</value>
   </data>
+  <data name="Common.Create">
+    <value>Létrehozás</value>
+  </data>
   <data name="Common.Delete">
     <value>Töröl</value>
   </data>

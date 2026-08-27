@@ -376,4 +376,7 @@
   <data name="Controllers.Model.Nintendo64" xml:space="preserve"><value>Nintendo 64</value></data>
   <data name="Controllers.Model.NintendoEntertainmentSystem" xml:space="preserve"><value>Nintendo Entertainment System (NES)</value></data>
   <data name="Controllers.Model.SuperNintendo" xml:space="preserve"><value>Super Nintendo</value></data>
+  <data name="Options.EmulationMachineTitle" xml:space="preserve">
+    <value>{0} — {1} : {2}</value>
+  </data>
 </root>

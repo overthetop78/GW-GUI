@@ -12,7 +12,8 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TabControl x:Name="Navigation" SelectedIndex="0" AutomationProperties.Name="{l:Loc Options.Title}">
+        <TabControl x:Name="Navigation" SelectedIndex="0" AutomationProperties.Name="{l:Loc Options.Title}"
+                    SelectionChanged="Navigation_SelectionChanged">
             <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="&#xE713;" Text="{l:Loc Options.General}"/></TabItem.Header>
                 <options:OptionsGeneralSection x:Name="GeneralSection" />
             </TabItem>

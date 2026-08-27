@@ -13,6 +13,7 @@ using GWGUI.App.Functions.Views.Emulation.Settings;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Presenters.Common;
 using GWGUI.App.Services.Audio;
+using GWGUI.App.Services.Emulation;
 using GWGUI.App.Services.Storage;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,6 +30,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
     private readonly IEmulationModule _module;
     private readonly ComboBox _machines = new() { MinWidth = 300 };
     private readonly Dictionary<string, FrameworkElement> _fieldControls = new(StringComparer.Ordinal);
+    private readonly Dictionary<FrameworkElement, Func<Task>> _userChangeHandlers = [];
     private readonly EmulationEmulatorManagementController? _emulatorManagement;
     private readonly EmulationFirmwareManagementController? _firmwareManagement;
     private readonly EmulationInputSettingsController? _inputSettings;
@@ -45,40 +47,57 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
             ? FlowDirection.RightToLeft
             : FlowDirection.LeftToRight;
         _module = module;
+        _machines.ItemTemplate = EmulationMachineChoiceLayout.CreateTemplate();
         var choices = module.Machines.Select(machine => new EmulationMachineChoice(machine,
-            LocExtension.Get(machine.DisplayResourceKey))).ToArray();
+            LocExtension.Get(machine.DisplayResourceKey), false)).ToArray();
         _machines.ItemsSource = choices;
         _machines.SelectedIndex = 0;
         _configuration = module.CreateConfiguration(choices[0].Definition.Id);
         if (module is IEmulationEmulatorManager manager)
             _emulatorManagement = new EmulationEmulatorManagementController(manager, CurrentMachineId);
         if (module is IEmulationFirmwareManager firmwareManager)
+        {
             _firmwareManagement = new EmulationFirmwareManagementController(firmwareManager,
                 () => _configuration, SetConfiguration);
+            _firmwareManagement.ConfigurationChanged += async (_, _) => await ExecuteUserChangeAsync();
+        }
         if (module is IEmulationInputSettingsManager inputManager)
         {
             _inputSettings = new EmulationInputSettingsController(inputManager);
-            _inputSettings.SettingsChanged += async (_, _) =>
-                await ExecuteAsync(PersistInputSettingsAsync);
+            _inputSettings.SettingsChanged += async (_, _) => await ExecuteUserChangeAsync();
         }
         if (module is IEmulationStorageSettingsManager storageManager)
+        {
             _storageSettings = new EmulationStorageSettingsController(storageManager, DefaultFolder);
+            _storageSettings.SettingsChanged += async (_, _) => await ExecuteUserChangeAsync();
+        }
         _machines.SelectionChanged += MachineChanged;
         Content = BuildEditor();
         Loaded += async (_, _) => await ExecuteAsync(ReloadAsync);
     }
 
     internal event EventHandler<EmulationConfigurationSavedEventArgs>? ConfigurationSaved;
+    internal event EventHandler<EmulationMachineEditingContext>? EditingContextChanged;
+
+    internal Task ReloadWhenOpenedAsync() => ExecuteAsync(ReloadAsync);
 
     private async Task ReloadAsync()
     {
         _saved = await _module.LoadConfigurationsAsync();
+        var machineId = _configuration.MachineId;
         var selected = _saved.FirstOrDefault(item => item.Id == _configuration.Id)
-            ?? _saved.FirstOrDefault(item => item.MachineId == _configuration.MachineId);
-        if (selected is not null) _configuration = selected;
-        SelectMachine(_configuration.MachineId);
+            ?? _saved.FirstOrDefault(item => item.MachineId == machineId);
+        _configuration = selected
+            ?? (EmulationConfigurationDraftStore.TryGet(_module.Id, machineId, out var draft)
+                ? draft : _module.CreateConfiguration(machineId));
+        var choices = _module.Machines.Select(machine => new EmulationMachineChoice(machine,
+            LocExtension.Get(machine.DisplayResourceKey),
+            _saved.Any(configuration => configuration.MachineId == machine.Id))).ToArray();
+        _machines.ItemsSource = choices;
+        SelectMachine(machineId);
         RebuildEditor();
         if (_emulatorManagement is not null) await _emulatorManagement.RefreshAsync();
+        NotifyEditingContextChanged();
     }
 
     private UIElement BuildEditor()
@@ -103,9 +122,11 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
         heading.Children.Add(_machines);
         var save = new Button
         {
-            Content = LocExtension.Get("Common.Save"),
+            Content = LocExtension.Get("Common.Create"),
             MinWidth = 110,
-            HorizontalAlignment = HorizontalAlignment.Right
+            HorizontalAlignment = HorizontalAlignment.Right,
+            Visibility = _saved.Any(configuration => configuration.MachineId == _configuration.MachineId)
+                ? Visibility.Collapsed : Visibility.Visible
         };
         save.Click += async (_, _) => await ExecuteAsync(SaveAsync);
         Grid.SetColumn(save, 2);
@@ -116,10 +137,13 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
     private UIElement BuildMachineTabs()
     {
         _fieldControls.Clear();
+        _userChangeHandlers.Clear();
         var settings = _module.Describe(_configuration.MachineId, _configuration);
-        return EmulationMachineTabs.Create(tab => settings.Visibility.Tabs.GetValueOrDefault(tab)
+        var tabs = EmulationMachineTabs.Create(tab => settings.Visibility.Tabs.GetValueOrDefault(tab)
             ? BuildTab(settings, tab)
             : null, $"{_module.Id}:{_configuration.MachineId}", TabActivatedAsync, _selectedTab);
+        AttachUserChangeHandlers();
+        return tabs;
     }
 
     private UIElement BuildTab(EmulationMachineSettings settings, EmulationMachineTab tab)
@@ -172,6 +196,9 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
             _ => new TextBox { Text = field.Value ?? string.Empty }
         };
         control.IsEnabled = field.IsEnabled;
+        if (field.Editor is (EmulationSettingsEditor.Text or EmulationSettingsEditor.Number
+                or EmulationSettingsEditor.Percentage) && control is TextBox input)
+            input.LostKeyboardFocus += async (_, _) => await ExecuteUserChangeAsync();
         _fieldControls[field.Id] = control;
         return control;
     }
@@ -185,12 +212,15 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
             SelectedItem = choices.FirstOrDefault(choice => choice.Choice.Id == field.Value)
                 ?? choices.FirstOrDefault()
         };
-        if (field.RefreshSettingsOnChange)
-            selection.SelectionChanged += (_, _) =>
+        _userChangeHandlers[selection] = async () =>
+        {
+            if (field.RefreshSettingsOnChange)
             {
                 CaptureEditorValues();
                 RebuildEditor();
-            };
+            }
+            await ExecuteUserChangeAsync();
+        };
         return selection;
     }
 
@@ -211,11 +241,11 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
     private CheckBox CreateToggle(EmulationSettingsField field)
     {
         var toggle = new CheckBox { IsChecked = field.Value == field.EnabledValue, Tag = field };
-        if (field.RefreshSettingsOnChange)
+        _userChangeHandlers[toggle] = async () =>
         {
-            toggle.Checked += (_, _) => RefreshSettingsDescription();
-            toggle.Unchecked += (_, _) => RefreshSettingsDescription();
-        }
+            if (field.RefreshSettingsOnChange) RefreshSettingsDescription();
+            await ExecuteUserChangeAsync();
+        };
         return toggle;
     }
 
@@ -228,8 +258,9 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
     private FrameworkElement CreatePath(EmulationSettingsField field)
     {
         var path = new TextBox { Text = field.Value ?? string.Empty };
+        path.LostKeyboardFocus += async (_, _) => await ExecuteUserChangeAsync();
         var browse = new Button { Content = LocExtension.Get("Common.Browse"), MinWidth = 90 };
-        browse.Click += (_, _) =>
+        browse.Click += async (_, _) =>
         {
             var currentDirectory = File.Exists(path.Text) ? Path.GetDirectoryName(path.Text)
                 : Directory.Exists(path.Text) ? path.Text : null;
@@ -239,7 +270,11 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
                 InitialDirectory = initialDirectory,
                 FileName = File.Exists(path.Text) ? Path.GetFileName(path.Text) : string.Empty
             };
-            if (dialog.ShowDialog() == true) path.Text = dialog.FileName;
+            if (dialog.ShowDialog() == true)
+            {
+                path.Text = dialog.FileName;
+                await ExecuteUserChangeAsync();
+            }
         };
         var row = new Grid();
         row.ColumnDefinitions.Add(new ColumnDefinition());
@@ -255,15 +290,20 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
     {
         var path = new TextBox { Text = string.IsNullOrWhiteSpace(field.Value)
             ? DefaultFolder(field.DefaultFolderCategory) : field.Value };
+        path.LostKeyboardFocus += async (_, _) => await ExecuteUserChangeAsync();
         var browse = new Button
         {
             Content = LocExtension.Get(ControlVisualConstants.BrowseResource),
             MinWidth = 90
         };
-        browse.Click += (_, _) =>
+        browse.Click += async (_, _) =>
         {
             var dialog = new OpenFolderDialog { InitialDirectory = path.Text };
-            if (dialog.ShowDialog() == true) path.Text = dialog.FolderName;
+            if (dialog.ShowDialog() == true)
+            {
+                path.Text = dialog.FolderName;
+                await ExecuteUserChangeAsync();
+            }
         };
         var row = new Grid();
         row.ColumnDefinitions.Add(new ColumnDefinition());
@@ -305,9 +345,11 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
         await ExecuteAsync(async () =>
         {
             _configuration = _saved.FirstOrDefault(item => item.MachineId == selected.Definition.Id)
-                ?? _module.ChangeMachine(_configuration, selected.Definition.Id);
+                ?? (EmulationConfigurationDraftStore.TryGet(_module.Id, selected.Definition.Id, out var draft)
+                    ? draft : _module.CreateConfiguration(selected.Definition.Id));
             RebuildEditor();
             if (_emulatorManagement is not null) await _emulatorManagement.RefreshAsync();
+            NotifyEditingContextChanged();
         });
     }
 
@@ -322,6 +364,30 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
         }
     }
 
+    private Task ExecuteUserChangeAsync() => ExecuteAsync(ApplyUserChangeAsync);
+
+    private async Task ApplyUserChangeAsync()
+    {
+        CaptureEditorValues();
+        if (!_saved.Any(configuration => configuration.MachineId == _configuration.MachineId))
+        {
+            EmulationConfigurationDraftStore.Set(_module.Id, _configuration);
+            return;
+        }
+        await _saveInputGate.WaitAsync();
+        try
+        {
+            CaptureEditorValues();
+            var configuration = _configuration;
+            await _module.SaveConfigurationAsync(configuration);
+            ConfigurationSaved?.Invoke(this, new EmulationConfigurationSavedEventArgs(configuration));
+        }
+        finally
+        {
+            _saveInputGate.Release();
+        }
+    }
+
     private async Task SaveAsync()
     {
         var values = _fieldControls.ToDictionary(item => item.Key, item => ReadValue(item.Value),
@@ -332,24 +398,9 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
         if (_storageSettings is not null)
             _configuration = _storageSettings.Apply(_configuration);
         await _module.SaveConfigurationAsync(_configuration);
+        EmulationConfigurationDraftStore.Remove(_module.Id, _configuration.MachineId);
         ConfigurationSaved?.Invoke(this, new EmulationConfigurationSavedEventArgs(_configuration));
         await ReloadAsync();
-    }
-
-    private async Task PersistInputSettingsAsync()
-    {
-        await _saveInputGate.WaitAsync();
-        try
-        {
-            CaptureEditorValues();
-            if (_inputSettings is not null) await _inputSettings.SaveAsync(_configuration);
-            _saved = _saved.Where(item => item.Id != _configuration.Id).Append(_configuration).ToArray();
-            ConfigurationSaved?.Invoke(this, new EmulationConfigurationSavedEventArgs(_configuration));
-        }
-        finally
-        {
-            _saveInputGate.Release();
-        }
     }
 
     private static string? ReadValue(FrameworkElement control) => control switch
@@ -386,6 +437,14 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
 
     private string CurrentMachineId() => _configuration.MachineId;
 
+    private void NotifyEditingContextChanged()
+    {
+        var machine = (_machines.SelectedItem as EmulationMachineChoice)?.DisplayName
+            ?? _configuration.MachineId;
+        EditingContextChanged?.Invoke(this, new EmulationMachineEditingContext(
+            LocExtension.Get(_module.DisplayResourceKey), machine));
+    }
+
     private Task TabActivatedAsync(EmulationMachineTab tab) =>
         RememberTabAndActivateAsync(tab);
 
@@ -400,12 +459,14 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
     {
         CaptureEditorValues();
         var choices = _module.Machines.Select(machine => new EmulationMachineChoice(machine,
-            LocExtension.Get(machine.DisplayResourceKey))).ToArray();
+            LocExtension.Get(machine.DisplayResourceKey),
+            _saved.Any(configuration => configuration.MachineId == machine.Id))).ToArray();
         _machines.ItemsSource = choices;
         SelectMachine(_configuration.MachineId);
         FlowDirection = CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft
             ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
         RebuildEditor();
+        NotifyEditingContextChanged();
     }
 
     private void CaptureEditorValues()

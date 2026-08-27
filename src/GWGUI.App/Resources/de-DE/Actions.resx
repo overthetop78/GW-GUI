@@ -18,6 +18,9 @@
   <data name="Common.Save">
     <value>Speichern</value>
   </data>
+  <data name="Common.Create">
+    <value>Erstellen</value>
+  </data>
   <data name="Common.Delete">
     <value>Löschen</value>
   </data>

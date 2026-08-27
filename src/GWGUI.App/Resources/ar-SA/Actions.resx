@@ -18,6 +18,9 @@
   <data name="Common.Save">
     <value>يحفظ</value>
   </data>
+  <data name="Common.Create">
+    <value>إنشاء</value>
+  </data>
   <data name="Common.Delete">
     <value>يمسح</value>
   </data>

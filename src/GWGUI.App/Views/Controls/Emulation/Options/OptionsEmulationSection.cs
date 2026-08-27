@@ -1,5 +1,6 @@
 using GWGUI.Domain.Settings;
 using GWGUI.App.Contracts.Emulation.Configurations;
+using GWGUI.App.Contracts.Emulation.Machine;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Services.Emulation;
 using GWGUI.App.Services.Storage;
@@ -16,6 +17,7 @@ namespace GWGUI.App.Views.Controls.Emulation.Options;
 public sealed partial class OptionsEmulationSection : UserControl
 {
     public static event EventHandler<EmulationConfigurationSavedEventArgs>? ConfigurationSaved;
+    internal event Action<EmulationMachineEditingContext?>? EditingContextChanged;
 
     private readonly IReadOnlyList<IEmulationModule> _modules = EmulationModuleRegistry.Modules;
     private readonly ObservableCollection<EmulationConfigurationListItem> _configurations = [];
@@ -89,18 +91,35 @@ public sealed partial class OptionsEmulationSection : UserControl
         finally { _loadingConfigurations = false; }
     }
 
-    private void ModuleTabSelectionChanged(object sender, SelectionChangedEventArgs e)
+    private async void ModuleTabSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (!ReferenceEquals(e.OriginalSource, _tabs)
-            || _tabs.SelectedItem is not TabItem tab
-            || !_moduleTabs.TryGetValue(tab, out var module)
-            || _moduleSections.ContainsKey(tab))
+            || _tabs.SelectedItem is not TabItem tab) return;
+        if (!_moduleTabs.TryGetValue(tab, out var module))
+        {
+            EditingContextChanged?.Invoke(null);
             return;
+        }
 
-        var section = new EmulationModuleSettingsSection(module);
-        section.ConfigurationSaved += ModuleConfigurationSaved;
-        _moduleSections.Add(tab, section);
-        tab.Content = section;
+        if (!_moduleSections.TryGetValue(tab, out var section))
+        {
+            section = new EmulationModuleSettingsSection(module);
+            section.ConfigurationSaved += ModuleConfigurationSaved;
+            section.EditingContextChanged += ModuleEditingContextChanged;
+            _moduleSections.Add(tab, section);
+            tab.Content = section;
+            return;
+        }
+        await section.ReloadWhenOpenedAsync();
+    }
+
+    private void ModuleEditingContextChanged(object? sender, EmulationMachineEditingContext context)
+    {
+        if (sender is not EmulationModuleSettingsSection section
+            || _tabs.SelectedItem is not TabItem tab
+            || !_moduleSections.TryGetValue(tab, out var active)
+            || !ReferenceEquals(active, section)) return;
+        EditingContextChanged?.Invoke(context);
     }
 
     internal void RefreshLocalizedContent()

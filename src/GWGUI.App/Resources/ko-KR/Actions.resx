@@ -18,6 +18,9 @@
   <data name="Common.Save">
     <value>구하다</value>
   </data>
+  <data name="Common.Create">
+    <value>만들기</value>
+  </data>
   <data name="Common.Delete">
     <value>삭제</value>
   </data>

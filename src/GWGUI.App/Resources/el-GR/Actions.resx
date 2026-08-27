@@ -18,6 +18,9 @@
   <data name="Common.Save">
     <value>Εκτός</value>
   </data>
+  <data name="Common.Create">
+    <value>Δημιουργία</value>
+  </data>
   <data name="Common.Delete">
     <value>Διαγράφω</value>
   </data>

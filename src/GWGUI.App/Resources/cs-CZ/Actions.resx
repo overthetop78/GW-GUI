@@ -18,6 +18,9 @@
   <data name="Common.Save">
     <value>Uložit</value>
   </data>
+  <data name="Common.Create">
+    <value>Vytvořit</value>
+  </data>
   <data name="Common.Delete">
     <value>Vymazat</value>
   </data>

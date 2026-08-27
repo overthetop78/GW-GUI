@@ -13,6 +13,8 @@ namespace GWGUI.App.Views.Controls.Emulation.Options;
 
 internal sealed partial class EmulationModuleSettingsSection
 {
+    private bool _applyingSettingsRule;
+
     private UIElement BuildCpuSettingsTab(EmulationMachineSettings settings)
     {
         var fields = VisibleFields(settings, EmulationMachineTab.Cpu);
@@ -94,17 +96,45 @@ internal sealed partial class EmulationModuleSettingsSection
         }
     }
 
-    private static void ApplySettingsRule(EmulationSettingsRule rule, FrameworkElement source,
+    private void ApplySettingsRule(EmulationSettingsRule rule, FrameworkElement source,
         FrameworkElement target, bool sourceChanged)
     {
         var sourceValue = ReadValue(source);
         var targetValue = ReadValue(target);
         if (rule.Category == EmulationSettingsRuleCategory.MutuallyExclusive
             && sourceValue != rule.ComparedValue && targetValue != rule.ComparedValue)
-            SelectValue(sourceChanged ? target : source, rule.ComparedValue);
+        {
+            var wasApplyingRule = _applyingSettingsRule;
+            _applyingSettingsRule = true;
+            try { SelectValue(sourceChanged ? target : source, rule.ComparedValue); }
+            finally { _applyingSettingsRule = wasApplyingRule; }
+        }
         if (rule.Category == EmulationSettingsRuleCategory.VisibleWhenSourceDiffers)
             target.Visibility = sourceValue == rule.ComparedValue
                 ? Visibility.Collapsed : Visibility.Visible;
+    }
+
+    private void AttachUserChangeHandlers()
+    {
+        foreach (var (control, action) in _userChangeHandlers.ToArray())
+        {
+            AttachUserValueChanged(control, action);
+            _userChangeHandlers.Remove(control);
+        }
+    }
+
+    private void AttachUserValueChanged(FrameworkElement control, Func<Task> action)
+    {
+        async void Changed(object? sender, RoutedEventArgs args)
+        {
+            if (!_applyingSettingsRule) await action();
+        }
+        if (control is ComboBox selection) selection.SelectionChanged += Changed;
+        else if (control is CheckBox toggle)
+        {
+            toggle.Checked += Changed;
+            toggle.Unchecked += Changed;
+        }
     }
 
     private static void AttachValueChanged(FrameworkElement control, Action action)

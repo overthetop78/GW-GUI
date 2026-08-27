@@ -18,6 +18,9 @@
   <data name="Common.Save">
     <value>Enregistrer</value>
   </data>
+  <data name="Common.Create">
+    <value>Créer</value>
+  </data>
   <data name="Common.Delete">
     <value>Supprimer</value>
   </data>

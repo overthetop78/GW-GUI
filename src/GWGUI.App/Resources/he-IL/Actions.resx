@@ -18,6 +18,9 @@
   <data name="Common.Save">
     <value>לְהַצִיל</value>
   </data>
+  <data name="Common.Create">
+    <value>יצירה</value>
+  </data>
   <data name="Common.Delete">
     <value>לִמְחוֹק</value>
   </data>

@@ -34,5 +34,8 @@ public sealed partial class OptionsEmulationSection
         if (_configurationList.SelectedItem is not EmulationConfigurationListItem selected) return;
         await selected.Module.DeleteConfigurationAsync(selected.Configuration.Id);
         await ReloadConfigurationsAsync();
+        var section = _moduleSections.FirstOrDefault(item =>
+            ReferenceEquals(_moduleTabs[item.Key], selected.Module)).Value;
+        if (section is not null) await section.ReloadWhenOpenedAsync();
     }
 }

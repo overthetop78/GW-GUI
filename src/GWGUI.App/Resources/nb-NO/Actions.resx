@@ -18,6 +18,9 @@
   <data name="Common.Save">
     <value>Spare</value>
   </data>
+  <data name="Common.Create">
+    <value>Opprett</value>
+  </data>
   <data name="Common.Delete">
     <value>Slett</value>
   </data>

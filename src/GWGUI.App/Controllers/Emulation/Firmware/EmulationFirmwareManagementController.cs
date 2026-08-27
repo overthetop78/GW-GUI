@@ -25,6 +25,8 @@ internal sealed class EmulationFirmwareManagementController
         _setConfiguration = setConfiguration;
     }
 
+    internal event EventHandler? ConfigurationChanged;
+
     internal UIElement CreateView(UIElement configuredFirmware)
     {
         _firmwares = new ListBox();
@@ -69,6 +71,7 @@ internal sealed class EmulationFirmwareManagementController
     {
         if (firmware.Compatibility == EmulationFirmwareCompatibility.Incompatible) return;
         _setConfiguration(_manager.UseFirmware(_getConfiguration(), firmware));
+        ConfigurationChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void UpdateUseButton() => EmulationSettingsLayout.UpdateFirmwareUseButton(_use,

@@ -18,6 +18,9 @@
   <data name="Common.Save">
     <value>Menyimpan</value>
   </data>
+  <data name="Common.Create">
+    <value>Buat</value>
+  </data>
   <data name="Common.Delete">
     <value>Menghapus</value>
   </data>

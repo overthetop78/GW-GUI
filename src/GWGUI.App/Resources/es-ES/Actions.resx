@@ -18,6 +18,9 @@
   <data name="Common.Save">
     <value>Ahorrar</value>
   </data>
+  <data name="Common.Create">
+    <value>Crear</value>
+  </data>
   <data name="Common.Delete">
     <value>Borrar</value>
   </data>

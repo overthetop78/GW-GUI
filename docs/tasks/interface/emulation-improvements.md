@@ -138,8 +138,8 @@ Lorsqu’une machine possédant déjà une configuration est sélectionnée, ses
 
 Le comportement dépend de l’existence de la configuration :
 
-- si la configuration de la machine n’existe pas encore, les changements effectués dans l’interface ne sont pas enregistrés dans un fichier tant que l’utilisateur ne clique pas sur **Créer** ;
-- si l’utilisateur sélectionne une autre machine avant de cliquer sur **Créer**, les valeurs non enregistrées sont abandonnées ;
+- si la configuration de la machine n’existe pas encore, chaque changement effectué par l’utilisateur est conservé dans un brouillon en mémoire pendant toute l’exécution de l’application, sans écrire de fichier tant que l’utilisateur ne clique pas sur **Créer** ;
+- chaque machine sans configuration possède son propre brouillon en mémoire et le conserve lorsque l’utilisateur affiche une autre machine ou ferme puis rouvre la fenêtre **Paramètres** ;
 - après la création, le bouton **Créer** disparaît immédiatement ;
 - si la configuration de cette machine est ensuite supprimée depuis la liste des configurations, le bouton **Créer** réapparaît lorsque cette machine est sélectionnée ;
 - aucune configuration existante n’affiche de bouton **Modifier**, puisque chaque changement est enregistré automatiquement ;
@@ -231,7 +231,7 @@ Si la configuration supprimée était chargée dans l’éditeur de sa marque :
 - les champs reviennent à leurs valeurs de base ;
 - le bouton **Créer** réapparaît puisque cette machine ne possède plus de configuration.
 
-Lorsque l’utilisateur ouvre l’onglet **Général** d’une marque, l’application relit les configurations existantes. La présence du bouton **Créer** dépend donc de l’existence réelle de la configuration de la machine affichée.
+Lorsque l’utilisateur ouvre l’onglet d’une marque, l’application relit les configurations existantes. La présence du bouton **Créer** dépend donc de l’existence réelle de la configuration de la machine affichée.
 
 ### Points restant à décider
 
@@ -500,154 +500,131 @@ Cette checklist détaille uniquement le retour du focus du point 1. Dans l’ord
       - [ ] Exécuter toute la suite tests/GWGUI.Tests/GWGUI.Tests.csproj et corriger uniquement les régressions produites par les fichiers du point 1 avant de cocher cette case.
 ## Checklist détaillée — Point 2 : identification et enregistrement de la machine modifiée
 
-Dans l’ordre général, l’enregistrement automatique de ce point constitue le groupe 1. Son fonctionnement fiable doit donc être réalisé avant le tableau des configurations du point 3. La présentation du sélecteur et la barre de titre sont réalisées après la stabilisation de l’état enregistré ou temporaire dont elles dépendent.
+Cette checklist couvre uniquement les modifications faites par l’utilisateur. Une machine qui possède un fichier est enregistrée directement dans ce fichier. Une machine qui n’en possède pas conserve un brouillon distinct en mémoire pendant toute l’exécution de l’application, jusqu’à l’utilisation du bouton Créer. Les champs de saisie sont pris en compte à la perte du focus ; les sélecteurs, options, cases et actions spécialisées le sont immédiatement.
 
-- [ ] Enregistrement automatique fiable des configurations Amiga et Atari
-  - [ ] Distinguer une configuration enregistrée d’un brouillon non créé
-    - [ ] Centraliser l’état de la machine éditée
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour déterminer l’existence d’une configuration à partir de _saved, du module et de MachineId, sans déduire cet état de la présence visuelle d’un bouton.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour conserver séparément la configuration actuellement affichée et son état enregistré ou temporaire pendant toute la reconstruction des sous-onglets.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour empêcher tout gestionnaire de changement déclenché pendant ReloadAsync, SelectMachine ou RebuildEditor de lancer une sauvegarde.
-    - [ ] Charger la bonne configuration lors du choix d’une machine
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour charger depuis _saved l’unique configuration correspondant à la machine sélectionnée lorsqu’elle existe.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour créer avec IEmulationModule.CreateConfiguration un nouveau brouillon aux valeurs de base lorsqu’aucune configuration n’existe.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour abandonner le brouillon précédent lors d’un changement de machine et ne reporter aucune de ses valeurs sur le nouveau brouillon.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour reconstruire tous les sous-onglets à partir de la configuration chargée et supprimer toute valeur visuelle ou donnée interne provenant de la machine précédente.
-  - [ ] Remplacer le bouton Enregistrer par le bouton Créer réservé aux brouillons
-    - [ ] Ajouter la ressource Common.Create avant de l’utiliser
-      - [ ] Modifier src/GWGUI.App/Resources/00-Base/Actions.resx pour créer la clé Common.Create.
-      - [ ] Modifier src/GWGUI.App/Resources/ar-SA/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/cs-CZ/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/da-DK/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/de-DE/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/el-GR/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/en-US/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/es-ES/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/fi-FI/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/fr-FR/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/he-IL/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/hu-HU/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/id-ID/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/it-IT/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/ja-JP/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/ko-KR/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/nb-NO/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/nl-NL/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/pl-PL/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/pt-BR/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/pt-PT/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/ro-RO/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/ru-RU/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/sv-SE/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/th-TH/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/tr-TR/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/uk-UA/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/vi-VN/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/zh-Hans/Actions.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/zh-Hant/Actions.resx.
-    - [ ] Afficher et exécuter Créer uniquement pour une machine non enregistrée
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour conserver une référence au bouton construit par BuildGeneralHeader et lui affecter Common.Create.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour afficher ce bouton uniquement lorsque la machine sélectionnée ne possède aucune configuration enregistrée.
-      - [ ] Renommer SaveAsync en CreateConfigurationAsync dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs et limiter cette méthode à la création du brouillon actuellement affiché.
-      - [ ] Modifier CreateConfigurationAsync dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour capturer ensemble les champs génériques, le firmware, le stockage et les entrées avant le premier appel à IEmulationModule.SaveConfigurationAsync.
-      - [ ] Modifier CreateConfigurationAsync dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour ajouter la configuration créée à _saved, signaler ConfigurationSaved, reconstruire l’état visuel et faire disparaître Créer immédiatement après une réussite.
-      - [ ] Modifier CreateConfigurationAsync dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour conserver le brouillon et le bouton Créer si l’écriture échoue, sans annoncer la configuration comme existante.
-  - [ ] Créer un seul chemin sérialisé d’enregistrement automatique
-    - [ ] Remplacer les sauvegardes particulières par une sauvegarde commune
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour remplacer _saveInputGate par un verrou commun à toutes les sauvegardes de la configuration affichée.
-      - [ ] Créer dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs une méthode PersistExistingConfigurationAsync qui ne fait aucune écriture lorsque la configuration est encore un brouillon.
-      - [ ] Modifier PersistExistingConfigurationAsync dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour capturer les champs génériques, appliquer les entrées, appliquer le stockage, enregistrer par IEmulationModule.SaveConfigurationAsync, remplacer la version correspondante dans _saved et signaler ConfigurationSaved.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour sérialiser les demandes simultanées et regrouper celles produites par une même action, tout en garantissant que la dernière valeur affichée est celle écrite dans le fichier.
-      - [ ] Supprimer PersistInputSettingsAsync de src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs seulement après avoir raccordé EmulationInputSettingsController.SettingsChanged à PersistExistingConfigurationAsync avec le même comportement fonctionnel.
-      - [ ] Conserver la présentation d’erreur actuelle dans ExecuteAsync et modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour ne mettre à jour _saved et ne signaler ConfigurationSaved qu’après une écriture réussie.
-  - [ ] Raccorder chaque type de champ générique au moment de sauvegarde prévu
-    - [ ] Enregistrer les sélecteurs et cases dès leur changement
-      - [ ] Modifier CreateSelection dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour appeler PersistExistingConfigurationAsync à chaque changement utilisateur, y compris lorsque RefreshSettingsOnChange reconstruit les champs dépendants.
-      - [ ] Modifier CreateToggle dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour appeler PersistExistingConfigurationAsync après le changement et après l’application des règles dépendantes.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleHardwareSettingsSection.cs pour appliquer complètement les règles mutuellement exclusives avant de déclencher une seule sauvegarde contenant toutes les valeurs modifiées par l’action.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleHardwareSettingsSection.cs pour conserver le recalcul immédiat de la RAM totale sans provoquer une écriture supplémentaire.
-    - [ ] Enregistrer les champs de saisie à la perte de focus
-      - [ ] Modifier CreateField dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour raccorder les éditeurs Text, Number et Percentage à PersistExistingConfigurationAsync lors de LostKeyboardFocus.
-      - [ ] Modifier CreatePath dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour sauvegarder à la perte de focus et après la sélection réussie d’un fichier par Parcourir.
-      - [ ] Modifier CreateDirectoryPath dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour sauvegarder à la perte de focus et après la sélection réussie d’un dossier par Parcourir.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour ne lancer aucune sauvegarde lorsque Parcourir est annulé ou lorsque la valeur finale n’a pas changé.
-  - [ ] Raccorder les composants spécialisés à la même sauvegarde
-    - [ ] Enregistrer les changements de firmware
-      - [ ] Ajouter un événement ConfigurationChanged dans src/GWGUI.App/Controllers/Emulation/Firmware/EmulationFirmwareManagementController.cs et le déclencher une seule fois après l’application réussie de Utiliser.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour raccorder cet événement à PersistExistingConfigurationAsync après SetConfiguration, sans écrire un brouillon non créé.
-    - [ ] Enregistrer les changements de stockage
-      - [ ] Ajouter un événement SettingsChanged dans src/GWGUI.App/Controllers/Emulation/Storage/EmulationStorageSettingsController.cs.
-      - [ ] Modifier src/GWGUI.App/Controllers/Emulation/Storage/EmulationStorageSettingsController.cs pour déclencher SettingsChanged une seule fois après l’ajout, la suppression ou la configuration validée d’un lecteur ou de son média.
-      - [ ] Modifier src/GWGUI.App/Controllers/Emulation/Storage/EmulationStorageSettingsController.cs pour ne rien signaler après l’annulation d’une boîte de dialogue ou une action qui ne change aucune donnée.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour appliquer le stockage puis appeler PersistExistingConfigurationAsync lorsqu’il signale une modification.
-    - [ ] Enregistrer les changements de clavier, souris et manettes
-      - [ ] Modifier src/GWGUI.App/Controllers/Emulation/Input/EmulationInputSettingsController.cs pour faire remonter par SettingsChanged le changement du type de périphérique émulé, de la manette physique actuellement affichée et de toute association, sans créer une écriture distincte par ligne lors d’une restauration globale.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour appliquer l’ensemble des entrées puis appeler PersistExistingConfigurationAsync, uniquement si la configuration existe déjà.
-  - [ ] Synchroniser l’éditeur lorsque l’existence de la configuration change ailleurs
-    - [ ] Recharger l’état après création ou suppression
-      - [ ] Modifier ReloadAsync dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour actualiser _saved sans remplacer la machine actuellement affichée par une autre configuration.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour demander au module déjà ouvert de recharger son état après la suppression d’une configuration de ce module, sans provoquer ce rechargement après chaque enregistrement automatique.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour vider la configuration supprimée de la mémoire, reconstruire les valeurs de base de la même machine et faire réapparaître Créer.
-  - [ ] Verrouiller la création et l’enregistrement automatique par des tests
-    - [ ] Créer le fichier de tests avant ses scénarios
-      - [ ] Créer tests/GWGUI.Tests/EmulationModuleSettingsAutoSaveTests.cs.
-    - [ ] Ajouter les scénarios des brouillons et des configurations existantes
-      - [ ] Modifier tests/GWGUI.Tests/EmulationModuleSettingsAutoSaveTests.cs pour vérifier qu’aucun changement générique, firmware, stockage ou entrée n’écrit de fichier avant Créer.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationModuleSettingsAutoSaveTests.cs pour vérifier que changer de machine abandonne toutes les valeurs du brouillon précédent.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationModuleSettingsAutoSaveTests.cs pour vérifier que Créer enregistre tous les sous-onglets, disparaît après réussite et reste visible après échec.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationModuleSettingsAutoSaveTests.cs pour vérifier les sauvegardes des sélecteurs, cases, champs à perte de focus, chemins, firmware, stockage et associations d’entrée.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationModuleSettingsAutoSaveTests.cs pour vérifier qu’une action modifiant plusieurs valeurs produit une configuration finale complète sans écriture intermédiaire incomplète.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationModuleSettingsAutoSaveTests.cs pour vérifier qu’une suppression externe vide l’état chargé et fait réapparaître Créer pour la même machine.
-      - [ ] Exécuter EmulationModuleSettingsAutoSaveTests et la suite GWGUI.Tests, puis corriger uniquement les régressions provoquées par les fichiers modifiés dans ce groupe.
+- [x] Conserver les brouillons des machines non créées pendant l’exécution de l’application
+  - [x] Créer le stockage applicatif avant toute utilisation
+    - [x] Créer le fichier vide src/GWGUI.App/Services/Emulation/EmulationConfigurationDraftStore.cs.
+    - [x] Modifier src/GWGUI.App/Services/Emulation/EmulationConfigurationDraftStore.cs pour conserver en mémoire au plus un IEmulationConfiguration par identifiant de module et identifiant de machine.
+    - [x] Modifier src/GWGUI.App/Services/Emulation/EmulationConfigurationDraftStore.cs pour permettre la lecture, le remplacement et le retrait du brouillon d’une machine sans écrire de fichier.
 
-- [ ] Identification visuelle des machines possédant déjà une configuration
-  - [ ] Porter l’état enregistré dans chaque élément du sélecteur
-    - [ ] Étendre le contrat de présentation avant de modifier son apparence
-      - [ ] Modifier src/GWGUI.App/Contracts/Emulation/Machine/EmulationMachineChoice.cs pour ajouter HasSavedConfiguration sans modifier Definition, DisplayName ni la valeur retournée par ToString.
-      - [ ] Modifier la création des choix dans le constructeur, ReloadAsync et RefreshLocalizedContent de src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour calculer HasSavedConfiguration à partir de _saved.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour reconstruire les choix après une création ou une suppression tout en conservant la même machine affichée.
-  - [ ] Appliquer la même présentation dans la liste ouverte et le champ fermé
-    - [ ] Créer le générateur de présentation avant de l’utiliser
-      - [ ] Créer src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationMachineChoiceTemplateFunctions.cs.
-    - [ ] Construire la présentation validée des machines configurées
-      - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationMachineChoiceTemplateFunctions.cs pour afficher normalement une machine non configurée et appliquer aux machines configurées un fond gris clair, un texte vert forêt et une graisse forte.
-      - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationMachineChoiceTemplateFunctions.cs pour utiliser le même contenu redimensionnable dans la liste déroulante ouverte et dans la zone fermée du ComboBox.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour affecter ce modèle de présentation à _machines sans ajouter l’état au texte ni au libellé de l’onglet.
-  - [ ] Verrouiller l’affichage du sélecteur par des tests
-    - [ ] Créer le fichier de tests avant ses scénarios
-      - [ ] Créer tests/GWGUI.Tests/EmulationMachineChoicePresentationTests.cs.
-    - [ ] Ajouter les scénarios ouvert, fermé, créé et supprimé
-      - [ ] Modifier tests/GWGUI.Tests/EmulationMachineChoicePresentationTests.cs pour vérifier le style normal d’un brouillon et le fond gris clair avec texte vert forêt en gras d’une configuration existante.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationMachineChoicePresentationTests.cs pour vérifier que le rendu configuré est identique lorsque le sélecteur est ouvert ou fermé.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationMachineChoicePresentationTests.cs pour vérifier le changement immédiat d’apparence après Créer et le retour à l’apparence normale après suppression.
-      - [ ] Exécuter EmulationMachineChoicePresentationTests et corriger uniquement les régressions provenant de cette présentation.
+- [x] Traiter chaque modification faite par l’utilisateur
+  - [x] Créer le traitement commun avant de raccorder les contrôles
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour ajouter un traitement commun qui capture dans _configuration les champs génériques, les entrées et le stockage actuellement affichés.
+    - [x] Modifier ce traitement dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour remplacer le brouillon de la machine dans EmulationConfigurationDraftStore lorsqu’aucune configuration enregistrée correspondante n’existe.
+    - [x] Modifier ce traitement dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour appeler IEmulationModule.SaveConfigurationAsync et signaler ConfigurationSaved lorsque la configuration de la machine existe déjà.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour utiliser le sémaphore existant lors des écritures déclenchées par l’utilisateur et écrire la dernière modification reçue après une écriture déjà en cours.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour exécuter ce traitement par ExecuteAsync afin d’afficher une erreur lorsqu’une écriture échoue.
+  - [x] Raccorder les sélecteurs, options et cases
+    - [x] Modifier CreateSelection dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour appeler le traitement commun immédiatement après un changement effectué par l’utilisateur.
+    - [x] Modifier CreateToggle dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour appeler le traitement commun immédiatement après un changement effectué par l’utilisateur.
+    - [x] Modifier CreateSelection et CreateToggle dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour différer le raccordement de leurs gestionnaires utilisateur et y terminer CaptureEditorValues ainsi que la reconstruction demandée par RefreshSettingsOnChange avant l’appel au traitement commun.
+    - [x] Modifier ApplySettingsRules dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleHardwareSettingsSection.cs pour raccorder ensuite les gestionnaires utilisateur différés, terminer les règles existantes avant leur appel au traitement commun et ne pas traiter séparément les changements de contrôle produits par ces règles.
+  - [x] Raccorder les champs de saisie
+    - [x] Modifier CreateField dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour appeler le traitement commun à la perte du focus des éditeurs Text, Number et Percentage.
+    - [x] Modifier CreatePath dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour appeler le traitement commun à la perte du focus du chemin saisi et immédiatement après la sélection réussie d’un fichier.
+    - [x] Modifier CreateDirectoryPath dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour appeler le traitement commun à la perte du focus du chemin saisi et immédiatement après la sélection réussie d’un dossier.
+  - [x] Raccorder les actions spécialisées
+    - [x] Ajouter ConfigurationChanged dans src/GWGUI.App/Controllers/Emulation/Firmware/EmulationFirmwareManagementController.cs et le déclencher immédiatement après qu’un utilisateur a appliqué un firmware compatible avec Utiliser.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour appeler le traitement commun lorsque EmulationFirmwareManagementController signale ConfigurationChanged.
+    - [x] Ajouter SettingsChanged dans src/GWGUI.App/Controllers/Emulation/Storage/EmulationStorageSettingsController.cs et le déclencher immédiatement après qu’un utilisateur a ajouté, supprimé ou configuré un lecteur ou son média.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour appeler le traitement commun lorsque EmulationStorageSettingsController signale SettingsChanged.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour remplacer la sauvegarde particulière des entrées par le traitement commun lorsque EmulationInputSettingsController signale SettingsChanged.
 
-- [ ] Barre de titre indiquant la marque et la machine réellement modifiées
-  - [ ] Faire remonter le contexte d’édition jusqu’à la fenêtre Options
-    - [ ] Créer le contrat du contexte avant les événements qui l’utilisent
-      - [ ] Créer src/GWGUI.App/Contracts/Emulation/Machine/EmulationMachineEditingContext.cs avec le nom localisé de la marque et le nom localisé de la machine.
-    - [ ] Signaler le contexte depuis l’éditeur de marque
-      - [ ] Ajouter un événement EditingContextChanged dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs et l’émettre après ReloadAsync, chaque changement de machine et RefreshLocalizedContent.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour construire le contexte avec le libellé localisé du module et DisplayName de la machine, indépendamment du sous-onglet Général, CPU, RAM, ROM, Vidéo, Audio, Stockage, Clavier, Souris ou Manettes affiché.
-    - [ ] Transmettre uniquement le contexte de l’onglet de marque actif
-      - [ ] Ajouter un événement EditingContextChanged dans src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs et y transmettre le contexte de la section Amiga ou Atari actuellement ouverte.
-      - [ ] Modifier ModuleTabSelectionChanged dans src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs pour publier un contexte vide dans Général, Raccourcis ou Configuration, et le contexte courant uniquement dans un onglet de marque.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs pour ignorer les événements provenant d’une section de marque qui n’est plus l’onglet actif.
-  - [ ] Mettre à jour le titre sans modifier les onglets
-    - [ ] Raccorder la navigation générale de la fenêtre
-      - [ ] Modifier src/GWGUI.App/Views/Windows/Options/OptionsWindow.xaml pour raccorder SelectionChanged du TabControl Navigation au recalcul du titre.
-      - [ ] Modifier src/GWGUI.App/Views/Windows/Options/OptionsWindow.xaml.cs pour écouter OptionsEmulationSection.EditingContextChanged et mémoriser le contexte actif.
-      - [ ] Modifier src/GWGUI.App/Views/Windows/Options/OptionsWindow.xaml.cs pour afficher le titre localisé Options seul lorsque l’onglet principal n’est pas Émulation, lorsque Général, Raccourcis ou Configuration est ouvert, ou lorsqu’aucun contexte de machine n’existe.
-      - [ ] Modifier src/GWGUI.App/Views/Windows/Options/OptionsWindow.xaml.cs pour construire Options — Amiga : Amiga 500, ou son équivalent Atari, à partir du titre Options et des deux noms localisés existants lorsque l’éditeur d’une machine est actif.
-      - [ ] Modifier RefreshLocalizedContent dans src/GWGUI.App/Views/Windows/Options/OptionsWindow.xaml.cs pour recalculer immédiatement ce titre après un changement de langue sans modifier les libellés des TabItem dans src/GWGUI.App/Views/Windows/Options/OptionsWindow.xaml, src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs ou src/GWGUI.App/Functions/Views/Emulation/Machine/EmulationMachineTabs.cs.
-  - [ ] Verrouiller le titre par des tests
-    - [ ] Créer le fichier de tests avant ses scénarios
-      - [ ] Créer tests/GWGUI.Tests/OptionsWindowEmulationTitleTests.cs.
-    - [ ] Ajouter les scénarios de navigation et de localisation
-      - [ ] Modifier tests/GWGUI.Tests/OptionsWindowEmulationTitleTests.cs pour vérifier Options dans tous les onglets principaux autres qu’Émulation et dans Général, Raccourcis ou Configuration de la partie Émulation.
-      - [ ] Modifier tests/GWGUI.Tests/OptionsWindowEmulationTitleTests.cs pour vérifier le format Options — Amiga : Amiga 500 et le format Atari correspondant dans tous les sous-onglets d’une machine.
-      - [ ] Modifier tests/GWGUI.Tests/OptionsWindowEmulationTitleTests.cs pour vérifier la mise à jour lors du changement de machine, de marque et de langue sans ajouter ces informations au texte des onglets.
-      - [ ] Exécuter OptionsWindowEmulationTitleTests et la suite GWGUI.Tests, puis corriger uniquement les régressions provoquées par les fichiers du titre.
+- [x] Charger, créer et supprimer les configurations sans perdre les brouillons
+  - [x] Charger la machine demandée depuis la bonne source
+    - [x] Modifier ReloadAsync dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour afficher la configuration enregistrée de cette machine lorsqu’elle existe, sinon son brouillon applicatif lorsqu’il existe, sinon les valeurs de base créées par le module.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour ajouter ReloadWhenOpenedAsync qui exécute ReloadAsync par ExecuteAsync et conserve la présentation d’erreur existante.
+    - [x] Modifier ModuleTabSelectionChanged dans src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs pour appeler ReloadWhenOpenedAsync chaque fois que l’utilisateur rouvre un onglet Amiga ou Atari dont la section existe déjà, en conservant le chargement initial par Loaded lors de sa première ouverture.
+    - [x] Modifier MachineChanged dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour afficher la configuration enregistrée, le brouillon applicatif ou les valeurs de base de la machine choisie sans réutiliser les valeurs d’une autre machine.
+  - [x] Disposer de Common.Create avant de modifier le bouton existant
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/00-Base/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/ar-SA/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/cs-CZ/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/da-DK/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/de-DE/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/el-GR/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/en-US/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/es-ES/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/fi-FI/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/fr-FR/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/he-IL/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/hu-HU/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/id-ID/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/it-IT/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/ja-JP/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/ko-KR/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/nb-NO/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/nl-NL/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/pl-PL/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/pt-BR/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/pt-PT/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/ro-RO/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/ru-RU/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/sv-SE/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/th-TH/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/tr-TR/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/uk-UA/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/vi-VN/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/zh-Hans/Actions.resx.
+    - [x] Conserver Common.Create dans src/GWGUI.App/Resources/zh-Hant/Actions.resx.
+  - [x] Utiliser le bouton existant uniquement lorsque la configuration n’existe pas
+    - [x] Modifier BuildGeneralHeader dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour conserver le bouton local existant, lui affecter Common.Create et le masquer lorsque les configurations chargées contiennent la machine affichée.
+    - [x] Modifier SaveAsync dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour retirer le brouillon correspondant uniquement après la réussite de SaveConfigurationAsync, signaler ConfigurationSaved et reconstruire l’éditeur afin de masquer Créer.
+  - [x] Revenir à une machine non créée après sa suppression
+    - [x] Modifier DeleteSelectedConfigurationAsync dans src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour demander à la section déjà créée du même module de recharger ses configurations après la suppression réussie.
+
+- [x] Distinguer visuellement les machines possédant une configuration
+  - [x] Porter l’existence de la configuration dans chaque choix
+    - [x] Modifier src/GWGUI.App/Contracts/Emulation/Machine/EmulationMachineChoice.cs pour ajouter l’état enregistré de Definition sans modifier DisplayName ni ToString.
+    - [x] Modifier la création des choix dans le constructeur, ReloadAsync et RefreshLocalizedContent de src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour établir cet état uniquement depuis les configurations chargées du module.
+  - [x] Construire la présentation commune du sélecteur
+    - [x] Créer le fichier vide src/GWGUI.App/Constants/Controls/Visual/EmulationMachineChoiceVisualConstants.cs.
+    - [x] Modifier src/GWGUI.App/Constants/Controls/Visual/EmulationMachineChoiceVisualConstants.cs pour définir les couleurs du fond gris clair et du texte vert forêt.
+    - [x] Créer le fichier vide src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationMachineChoiceLayout.cs.
+    - [x] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationMachineChoiceLayout.cs pour créer le DataTemplate qui affiche normalement une machine non créée et applique le fond gris clair, le texte vert forêt et la graisse forte à une machine configurée.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour affecter ce DataTemplate à _machines dans la liste ouverte et dans la sélection fermée.
+
+- [x] Afficher la marque et la machine modifiées dans le titre de Paramètres
+  - [x] Ajouter le format localisé du titre avant son utilisation
+    - [x] Modifier src/GWGUI.App/Resources/00-Base/Options.resx pour créer Options.EmulationMachineTitle avec les paramètres du titre Paramètres, de la marque et de la machine.
+    - [x] Modifier src/GWGUI.App/Resources/ar-SA/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/cs-CZ/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/da-DK/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/de-DE/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/el-GR/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/en-US/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/es-ES/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/fi-FI/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/fr-FR/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/he-IL/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/hu-HU/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/id-ID/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/it-IT/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/ja-JP/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/ko-KR/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/nb-NO/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/nl-NL/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/pl-PL/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/pt-BR/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/pt-PT/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/ro-RO/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/ru-RU/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/sv-SE/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/th-TH/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/tr-TR/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/uk-UA/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/vi-VN/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/zh-Hans/Options.resx pour ajouter Options.EmulationMachineTitle.
+    - [x] Modifier src/GWGUI.App/Resources/zh-Hant/Options.resx pour ajouter Options.EmulationMachineTitle.
+  - [x] Faire remonter la machine affichée jusqu’à Paramètres
+    - [x] Créer le fichier vide src/GWGUI.App/Contracts/Emulation/Machine/EmulationMachineEditingContext.cs.
+    - [x] Modifier src/GWGUI.App/Contracts/Emulation/Machine/EmulationMachineEditingContext.cs pour porter le nom localisé du module et le DisplayName de la machine affichée.
+    - [x] Ajouter EditingContextChanged dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs et le déclencher après ReloadAsync, MachineChanged et RefreshLocalizedContent.
+    - [x] Ajouter EditingContextChanged dans src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs pour transmettre le contexte de la section Amiga ou Atari active et l’absence de contexte dans Général, Raccourcis et Configuration.
+  - [x] Modifier uniquement le titre de la fenêtre
+    - [x] Modifier src/GWGUI.App/Views/Windows/Options/OptionsWindow.xaml et src/GWGUI.App/Views/Windows/Options/OptionsWindow.xaml.cs pour raccorder SelectionChanged de Navigation, écouter EditingContextChanged, afficher Options.Title seul hors de l’éditeur d’une machine et afficher Options.EmulationMachineTitle dans tous les sous-onglets de cette machine.
+    - [x] Modifier RefreshLocalizedContent dans src/GWGUI.App/Views/Windows/Options/OptionsWindow.xaml.cs pour recalculer le titre après un changement de langue sans modifier le texte des onglets.
 ## Checklist détaillée — Point 3 : tableau des configurations
 
 Dans l’ordre général, ce point constitue le groupe 2. Il utilise l’état fiable des configurations établi au point 2 et doit être terminé avant le retour automatique du focus du point 1. Le tableau n’a aucun état de sélection : seules la marque du filtre, l’action crayon, le double-clic et l’action poubelle produisent un changement.

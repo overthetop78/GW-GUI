@@ -18,6 +18,9 @@
   <data name="Common.Save">
     <value>Tallentaa</value>
   </data>
+  <data name="Common.Create">
+    <value>Luo</value>
+  </data>
   <data name="Common.Delete">
     <value>Poistaa</value>
   </data>

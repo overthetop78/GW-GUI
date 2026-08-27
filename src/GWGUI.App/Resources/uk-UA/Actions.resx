@@ -18,6 +18,9 @@
   <data name="Common.Save">
     <value>зберегти</value>
   </data>
+  <data name="Common.Create">
+    <value>Створити</value>
+  </data>
   <data name="Common.Delete">
     <value>Видалити</value>
   </data>

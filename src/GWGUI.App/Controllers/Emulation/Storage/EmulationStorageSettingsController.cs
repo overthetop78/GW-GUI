@@ -25,6 +25,8 @@ internal sealed class EmulationStorageSettingsController
         _defaultFolder = defaultFolder;
     }
 
+    internal event EventHandler? SettingsChanged;
+
     internal UIElement CreateContent(IEmulationConfiguration configuration)
     {
         _view = new EmulationStorageDeviceList();
@@ -59,6 +61,7 @@ internal sealed class EmulationStorageSettingsController
             DeviceSettings = deviceSettings
         };
         Rebuild();
+        SettingsChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void RemoveDevice(object? sender, EmulationStorageDeviceEventArgs args)
@@ -71,6 +74,7 @@ internal sealed class EmulationStorageSettingsController
             DeviceSettings = (_settings.DeviceSettings ?? []).Where(item => item.Slot != device.Slot).ToArray()
         };
         Rebuild();
+        SettingsChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void ConfigureDevice(object? sender, EmulationStorageDeviceEventArgs args)
@@ -102,6 +106,7 @@ internal sealed class EmulationStorageSettingsController
             MountedMedia = _settings.MountedMedia.Where(item => item.Slot != device.Slot).Append(media).ToArray()
         };
         Rebuild();
+        SettingsChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void ConfigureHardDisk(EmulationMediaDevice device)
@@ -118,6 +123,7 @@ internal sealed class EmulationStorageSettingsController
             MountedMedia = _settings.MountedMedia.Where(item => item.Slot != device.Slot).Append(media).ToArray()
         };
         Rebuild();
+        SettingsChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private string MediaDirectory(EmulationMediaType type) => _defaultFolder(type switch
@@ -141,6 +147,7 @@ internal sealed class EmulationStorageSettingsController
             .Append(new EmulationStorageDeviceSettings(device.Slot, dialog.Settings)).ToArray();
         _settings = _settings with { DeviceSettings = settings };
         Rebuild();
+        SettingsChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private bool TryFind(EmulationStorageDeviceItem item, out EmulationMediaDevice device)

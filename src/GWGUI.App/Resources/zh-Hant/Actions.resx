@@ -18,6 +18,9 @@
   <data name="Common.Save">
     <value>節省</value>
   </data>
+  <data name="Common.Create">
+    <value>建立</value>
+  </data>
   <data name="Common.Delete">
     <value>刪除</value>
   </data>

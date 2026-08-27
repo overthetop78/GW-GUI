@@ -2,6 +2,7 @@ using GWGUI.Domain.Hardware;
 using GWGUI.Domain.HostTools;
 using GWGUI.Domain.Settings;
 using GWGUI.Domain.Settings.Hardware;
+using GWGUI.App.Contracts.Emulation.Machine;
 using GWGUI.App.Enums.Services.Navigation;
 using GWGUI.App.Functions.Options.Tags;
 using GWGUI.App.Localization.Extensions;
@@ -72,6 +73,7 @@ public partial class OptionsWindow : Window
     private readonly SemaphoreSlim _saveLock = new(1, 1);
     private bool _closingAfterSave;
     private bool _closeInProgress;
+    private EmulationMachineEditingContext? _emulationEditingContext;
     public ObservableCollection<HardwareRow> Hardware { get; } = [];
     public ObservableCollection<ProfileOptionRow> ReadProfiles => _profileOptionsController.Read;
     public ObservableCollection<ProfileOptionRow> WriteProfiles => _profileOptionsController.Write;
@@ -164,7 +166,29 @@ public partial class OptionsWindow : Window
         HardwareSection.SaveDriveRequested += SaveHardwareRow_Click;
         HardwareSection.ForgetDriveRequested += ForgetHardwareRow_Click;
         HardwareSection.AutoSaveTextEditingFinished += AutoSaveText_LostKeyboardFocus;
+        EmulationSection.EditingContextChanged += EmulationEditingContextChanged;
 
+    }
+
+    private void EmulationEditingContextChanged(EmulationMachineEditingContext? context)
+    {
+        _emulationEditingContext = context;
+        UpdateTitle();
+    }
+
+    private void Navigation_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (ReferenceEquals(e.OriginalSource, Navigation)) UpdateTitle();
+    }
+
+    private void UpdateTitle()
+    {
+        var title = LocExtension.Get("Options.Title");
+        Title = ReferenceEquals(Navigation.SelectedContent, EmulationSection)
+            && _emulationEditingContext is { } context
+            ? LocExtension.Get("Options.EmulationMachineTitle", title,
+                context.ModuleDisplayName, context.MachineDisplayName)
+            : title;
     }
 
     private void RegisterSectionNames()
@@ -201,6 +225,7 @@ public partial class OptionsWindow : Window
         _hardwareOptionsController.RefreshRows();
         EmulationSection.RefreshLocalizedContent();
         ControllersSection.RefreshLocalizedContent();
+        UpdateTitle();
     }
 
     internal static string RenderTagPattern(string pattern, string name, string family, string format, string extension, DateTime timestamp) =>

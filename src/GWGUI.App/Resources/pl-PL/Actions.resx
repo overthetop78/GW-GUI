@@ -18,6 +18,9 @@
   <data name="Common.Save">
     <value>Ratować</value>
   </data>
+  <data name="Common.Create">
+    <value>Utwórz</value>
+  </data>
   <data name="Common.Delete">
     <value>Usuwać</value>
   </data>

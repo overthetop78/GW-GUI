@@ -18,6 +18,9 @@
   <data name="Common.Save">
     <value>บันทึก</value>
   </data>
+  <data name="Common.Create">
+    <value>สร้าง</value>
+  </data>
   <data name="Common.Delete">
     <value>ลบ</value>
   </data>
