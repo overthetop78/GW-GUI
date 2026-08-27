@@ -40,12 +40,12 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         _video = new MachineVideoPresenter(_view, options.Machine, options.VideoRenderer);
         _video.FramePresented += FramePresented;
         _session.MachineChanged += MachineChanged;
+        _input = new MachineInputController(_view, _video.InputView, _video.InputHandle,
+            () => _session.Machine, options.GlobalShortcuts, ExecuteShortcutAsync, options.IsActive);
         _commands = new MachineCommandBar(_view.Toolbar, CreateActions(), options.GlobalShortcuts,
-            options.ShowError);
+            options.ShowError, _input.RestoreFocus);
         _commands.SetSavedStateAvailability(options.Machine.SavedStates.IsSupported,
             File.Exists(options.QuickStatePath));
-        _input = new MachineInputController(_view, _video.InputView, _video.InputHandle,
-            () => _session.Machine, options.GlobalShortcuts, ExecuteShortcutAsync);
         _video.SurfaceChanged += VideoSurfaceChanged;
         _commands.RendererStatus.Text = MachinePresentationFunctions.RendererName(_video.Renderer);
         _commands.SetPowered(false);
@@ -103,8 +103,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         _input.SetPowered(_session.IsPowered);
         _commands.SetPowered(_session.IsPowered);
         _video.SetVisible(_session.IsPowered);
-        if (_session.IsPowered) _video.InputView.Focus();
-        else _commands.Status.Text = string.Empty;
+        if (!_session.IsPowered) _commands.Status.Text = string.Empty;
     }
 
     private Task HardResetAsync()
@@ -185,7 +184,6 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         _fullscreenWindow.ContentRendered += FullscreenContentRendered;
         _fullscreenWindow.Show();
         _fullscreenWindow.Activate();
-        _video.InputView.Focus();
         _input.CompleteHostTransition();
     }
 
@@ -202,7 +200,6 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         _view.DisplayHost.Children.Add(_view.Screen);
         _video.SetDisplayHost(_view.DisplayHost);
         if (window.IsVisible) window.Close();
-        _video.InputView.Focus();
         _input.CompleteHostTransition();
     }
 
@@ -211,7 +208,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
     private void FullscreenContentRendered(object? sender, EventArgs args)
     {
         _video.FitScreen();
-        _video.InputView.Focus();
+        _input.RestoreFocus();
     }
 
     private void MachineChanged(object? sender, IEmulatedMachine machine)
@@ -233,7 +230,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
                 DeviceGlyph(device.MediaType), device.IsRemovable, mounted is not null,
                 device.IsRemovable ? () => InsertMediaAsync(device) : null,
                 device.IsRemovable && mounted is not null ? () => EjectMediaAsync(device) : null);
-        }), _options.ShowError);
+        }), _options.ShowError, _input.RestoreFocus);
     }
 
     private async Task InsertMediaAsync(EmulationMediaDevice device)
@@ -296,6 +293,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
             }
         }
         catch (Exception error) { _options.ShowError(error); }
+        finally { _input.RestoreFocus(); }
     }
 
     private void FramePresented(object? sender, VideoFrame frame)

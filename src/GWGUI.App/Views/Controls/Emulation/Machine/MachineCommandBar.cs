@@ -23,13 +23,16 @@ internal sealed class MachineCommandBar
     private readonly Button _quickSave;
     private readonly Button _quickLoad;
     private readonly Button? _controllerPointer;
+    private readonly Action _restoreFocus;
     private bool _powered;
     private bool _supportsSavedStates;
     private bool _quickStateAvailable;
 
     internal MachineCommandBar(DockPanel host, MachineCommandActions actions,
-        IReadOnlyList<GlobalShortcutBinding> shortcuts, Action<Exception> showError)
+        IReadOnlyList<GlobalShortcutBinding> shortcuts, Action<Exception> showError,
+        Action restoreFocus)
     {
+        _restoreFocus = restoreFocus;
         _power = Command(MachineCommandGlyphConstants.Power, EmulationResourceKeys.Power,
             actions.TogglePower, showError, false);
         _power.Foreground = Brushes.LimeGreen;
@@ -198,9 +201,10 @@ internal sealed class MachineCommandBar
         VerticalAlignment = VerticalAlignment.Center
     };
 
-    private static async Task RunAsync(Func<Task> action, Action<Exception> showError)
+    private async Task RunAsync(Func<Task> action, Action<Exception> showError)
     {
         try { await action(); }
         catch (Exception error) { showError(error); }
+        finally { _restoreFocus(); }
     }
 }

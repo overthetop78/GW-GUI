@@ -25,7 +25,8 @@ public sealed partial class EmulationSection
                 Path.Combine(moduleRoot, "Converted"),
                 Environment.ProcessPath!,
                 (device, latency) => new WasapiAudioOutput(device, latency)));
-        var view = new MachineController(new MachineControllerOptions(
+        MachineController? view = null;
+        view = new MachineController(new MachineControllerOptions(
             runtime.CreateMachine(runtime.MountedMedia), runtime.CreateMachine,
             runtime.MediaDevices, runtime.MountedMedia, runtime.Configuration.VideoRenderer,
             EmulationShortcutMap.GlobalShortcuts(_settings.EmulationShortcuts),
@@ -37,6 +38,7 @@ public sealed partial class EmulationSection
             runtime.SupportsPointerCapture,
             device => InitialMediaDirectory(selected, device),
             (device, directory) => RememberMediaDirectory(selected, device, directory),
+            () => ReferenceEquals(_machines.SelectedContent, view),
             runtime.PrepareMediaAsync));
         await AddMachineAsync(selected, runtime, view, view.StopAsync);
     }

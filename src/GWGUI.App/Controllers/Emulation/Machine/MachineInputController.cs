@@ -23,6 +23,7 @@ internal sealed class MachineInputController : IDisposable
     private readonly Func<IEmulatedMachine> _machine;
     private readonly IReadOnlyList<GlobalShortcutBinding> _globalShortcuts;
     private readonly Func<string, Task> _executeShortcut;
+    private readonly Func<bool> _isActive;
     private readonly IReadOnlyList<KeyboardShortcutBinding> _keyboardShortcuts;
     private readonly RelativeMouseCapture _pointerCapture = new();
     private readonly HashSet<EmulationKey> _keys = [];
@@ -43,7 +44,7 @@ internal sealed class MachineInputController : IDisposable
 
     internal MachineInputController(MachineView view, FrameworkElement inputView, IntPtr inputHandle,
         Func<IEmulatedMachine> machine, IReadOnlyList<GlobalShortcutBinding> globalShortcuts,
-        Func<string, Task> executeShortcut)
+        Func<string, Task> executeShortcut, Func<bool> isActive)
     {
         _view = view;
         _inputView = inputView;
@@ -51,8 +52,10 @@ internal sealed class MachineInputController : IDisposable
         _machine = machine;
         _globalShortcuts = globalShortcuts;
         _executeShortcut = executeShortcut;
+        _isActive = isActive;
         _keyboardShortcuts = EmulationShortcutMap.KeyboardShortcuts(machine().Input.KeyboardBindings);
         Attach();
+        _view.DisplayHost.MouseLeftButtonDown += DisplayHostMouseLeftButtonDown;
         _timer.Tick += TimerTick;
         _view.Loaded += ViewLoaded;
         _view.Unloaded += ViewUnloaded;
@@ -84,6 +87,12 @@ internal sealed class MachineInputController : IDisposable
         Attach();
     }
 
+    internal void RestoreFocus()
+    {
+        if (!_powered || !_isActive()) return;
+        RelativeMouseCapture.Focus(_inputView, _inputHandle);
+    }
+
     internal void ReleasePointer() => _pointerCapture.Release(_inputView, _inputHandle);
 
     internal void BeginHostTransition()
@@ -100,7 +109,7 @@ internal sealed class MachineInputController : IDisposable
             _restorePointerAfterHostTransition = false;
             _hostTransition = false;
             if (!_powered || _disposed) return;
-            RelativeMouseCapture.Focus(_inputView, _inputHandle);
+            RestoreFocus();
             if (restorePointer)
                 _pointerCapture.Capture(_inputView, _view.Screen, _inputHandle);
         });
@@ -113,6 +122,7 @@ internal sealed class MachineInputController : IDisposable
         _timer.Tick -= TimerTick;
         _view.Loaded -= ViewLoaded;
         _view.Unloaded -= ViewUnloaded;
+        _view.DisplayHost.MouseLeftButtonDown -= DisplayHostMouseLeftButtonDown;
         DetachWindowHook();
         Detach();
         _disposed = true;
@@ -194,6 +204,11 @@ internal sealed class MachineInputController : IDisposable
         _keys.Remove(key);
         Publish();
         return true;
+    }
+
+    private void DisplayHostMouseLeftButtonDown(object sender, MouseButtonEventArgs args)
+    {
+        if (ReferenceEquals(args.OriginalSource, _view.DisplayHost)) RestoreFocus();
     }
 
     private void MouseDown(object sender, MouseButtonEventArgs args)

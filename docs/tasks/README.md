@@ -1,18 +1,21 @@
-# Ordre obligatoire des travaux
+# Tâches de GW GUI
 
-Les règles permanentes sont dans [rules.md](../rules.md). Le présent dossier ne contient que des tâches.
+Ce dossier contient uniquement les travaux restant à exécuter ou les feuilles de suivi encore actives. Les règles permanentes se trouvent dans [project/rules.md](../project/rules.md).
 
-L’ordre ci-dessous reprend l’ordre demandé. Il ne doit pas être réorganisé sans décision explicite de l’utilisateur.
+## Qualité générale
 
-1. [Auditer tout le code](01-full-code-audit.md).
-2. [Refactoriser et découper tout le code](02-full-refactoring.md).
-3. [Centraliser constantes et textes techniques](03-constants-and-text.md).
-4. [Structurer enums, modèles de données et contrats](04-models-and-contracts.md).
-5. [Séparer les fonctions et services](05-functions-and-services.md).
-6. [Réorganiser toutes les traductions](06-localization.md).
-7. [Contrôler l’interface, la robustesse et la maintenance](07-ui-robustness-maintenance.md).
-8. [Créer le workflow GitHub de build](08-github-build.md).
-9. [Valider toutes les images puis le matériel réel](09-final-validation.md), toujours en dernier.
-10. [Refactoriser les contrôles de l’application](10-app-controls-refactoring.md).
+1. [Qualité et refactorisation du code](code-quality.md)
+2. [Versionnement et publication](release.md)
+3. [Validation finale des images et du matériel](validation.md), toujours en dernier pour ce parcours.
 
-Chaque document contient ses propres tâches et sous-tâches. La fréquence des commits et des pushes suit exactement la section Git de [rules.md](../rules.md).
+## Émulation
+
+- [Amiga](emulation/amiga.md)
+- [Atari](emulation/atari.md)
+- [GameInput](emulation/gameinput.md)
+
+## Interface d’émulation
+
+- [Améliorations de l’interface d’émulation](interface/emulation-improvements.md)
+
+Chaque document conserve son propre ordre d’exécution. Une case est cochée immédiatement après la réalisation et la vérification de l’action correspondante.

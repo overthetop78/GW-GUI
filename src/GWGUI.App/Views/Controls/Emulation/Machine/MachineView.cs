@@ -116,14 +116,17 @@ internal sealed class MachineView : UserControl
         VideoHost.Children.Add(view);
     }
 
-    internal void SetDevices(IEnumerable<MachineViewDevice> devices, Action<Exception> showError)
+    internal void SetDevices(IEnumerable<MachineViewDevice> devices, Action<Exception> showError,
+        Action restoreFocus)
     {
         DeviceStrip.Children.Clear();
         _deviceLeds.Clear();
-        foreach (var device in devices) DeviceStrip.Children.Add(DeviceItem(device, showError));
+        foreach (var device in devices)
+            DeviceStrip.Children.Add(DeviceItem(device, showError, restoreFocus));
     }
 
-    private FrameworkElement DeviceItem(MachineViewDevice device, Action<Exception> showError)
+    private FrameworkElement DeviceItem(MachineViewDevice device, Action<Exception> showError,
+        Action restoreFocus)
     {
         var panel = new StackPanel
         {
@@ -173,7 +176,7 @@ internal sealed class MachineView : UserControl
             }
         };
         if (device.Removable && device.Insert is not null)
-            open.Click += async (_, _) => await RunAsync(device.Insert, showError);
+            open.Click += async (_, _) => await RunAsync(device.Insert, showError, restoreFocus);
         panel.Children.Add(open);
 
         if (device.Removable && device.Eject is not null)
@@ -196,7 +199,7 @@ internal sealed class MachineView : UserControl
                 IsEnabled = device.Present
             };
             eject.SetResourceReference(StyleProperty, "StatusIconButton");
-            eject.Click += async (_, _) => await RunAsync(device.Eject, showError);
+            eject.Click += async (_, _) => await RunAsync(device.Eject, showError, restoreFocus);
             panel.Children.Add(eject);
         }
 
@@ -210,9 +213,11 @@ internal sealed class MachineView : UserControl
         };
     }
 
-    private static async Task RunAsync(Func<Task> action, Action<Exception> showError)
+    private static async Task RunAsync(Func<Task> action, Action<Exception> showError,
+        Action restoreFocus)
     {
         try { await action(); }
         catch (Exception error) { showError(error); }
+        finally { restoreFocus(); }
     }
 }

@@ -17,5 +17,6 @@ internal sealed record MachineControllerOptions(
     bool SupportsPointerCapture,
     Func<EmulationMediaDevice, string?> InitialMediaDirectory,
     Action<EmulationMediaDevice, string> RememberMediaDirectory,
+    Func<bool> IsActive,
     Func<EmulationMedia, CancellationToken, ValueTask<EmulationMedia>>? PrepareMediaAsync = null,
     Func<Task>? SwitchControllerPointer = null);

@@ -1,58 +1,40 @@
-# GW GUI — Documentation actuelle
+# Documentation de GW GUI
 
-Cette documentation décrit l’état actuel, les décisions confirmées et l’ordre des travaux. Les documents placés dans [`old`](old/README.md) sont historiques et ne servent plus de référence actuelle.
+La documentation est organisée par responsabilité. Les règles, les décisions, l’architecture, les références techniques, l’interface et les tâches restent séparées.
 
-## Règles et ordre de travail
+## Projet
 
-- [Règles permanentes](rules.md) — règles de décision, code, documentation, corpus et Git ; aucune case à cocher.
-- [Ordre obligatoire des tâches](tasks/README.md) — index des phases à réaliser dans l’ordre demandé.
+- [Règles permanentes](project/rules.md)
+- [Décisions produit et explications confirmées](project/decisions.md)
 
-## État et décisions
+## Architecture actuelle
 
-- [État du projet pour reprendre une nouvelle discussion](project-handoff.md)
-- [Décisions produit et interface](decisions.md)
-- [Questions et réponses confirmées](questions-and-answers.md)
-- [Architecture technique actuelle](architecture.md)
-- [Version, build et révision](versioning.md)
-- [Audit complet du code](audit/README.md)
+- [Vue d’ensemble](architecture/overview.md)
+- [Architecture modulaire de l’émulation](architecture/emulation.md)
+- [Médias et images de disquette](architecture/media.md)
+- [Versionnement et compilation](architecture/versioning.md)
 
-## Tâches détaillées
+## Références techniques
 
-1. [Audit complet de tout le code](tasks/01-full-code-audit.md)
-2. [Refactorisation et découpage de tout le code](tasks/02-full-refactoring.md)
-3. [Constantes et textes techniques](tasks/03-constants-and-text.md)
-4. [Enums, modèles de données et contrats](tasks/04-models-and-contracts.md)
-5. [Fonctions et services](tasks/05-functions-and-services.md)
-6. [Réorganisation des traductions](tasks/06-localization.md)
-7. [Interface, robustesse et maintenance](tasks/07-ui-robustness-maintenance.md)
-8. [Workflow GitHub de build](tasks/08-github-build.md)
-9. [Validation finale des images et du matériel](tasks/09-final-validation.md)
+- [Machines et composants d’émulation](reference/emulation-machines.md)
+- [Cœurs Atari Libretro](reference/atari-libretro.md)
+- [GameInput](reference/gameinput.md)
+- [Formats de médias et couverture SCP](reference/media-formats.md)
 
-## Spécifications de l’interface
+## Interface
 
-- [Spécification visuelle générale](ui/visual-specification.md)
-- [Fenêtre principale et navigation](ui/main-window.md)
-- [Onglet Lecture](ui/read.md)
-- [Onglet Écriture](ui/write.md)
-- [Onglet Conversion](ui/convert.md)
-- [Visualisateur et Explorateur](ui/visualizer-explorer.md)
-- [Options, matériel et diagnostics](ui/options.md)
+- [Vue générale](ui/overview.md)
+- [Lecture, écriture et conversion](ui/operations.md)
+- [Visualisation, exploration et paramètres](ui/tools-and-settings.md)
 
-## Références techniques et couverture
+## Travaux à réaliser
 
-- [Référentiel technique pour l’émulation](emulation.md)
-- [Émulation Amiga — PUAE et Libretro](emulation-amiga.md)
-- [Émulation Atari ST/STE/TT/Falcon — Hatari et Libretro](emulation-atari.md)
-- [Familles et formats d’images](Liste-imagesdisk.md)
-- [Couverture des commandes Greaseweazle](gw-command-coverage.md)
-- [Couverture des décodeurs et encodeurs de flux](scp-decoder-coverage.md)
-- [Références des décodeurs](scp-decoder-references.md)
+- [Index des tâches](tasks/README.md)
 
-## Guides
+## Évolutions différées
 
-- [Guide utilisateur français](user-guide.fr.md)
-- [English user guide](user-guide.en.md)
+- [Modules d’émulation chargeables](future/emulation-plugins.md)
 
-## Règle de lecture
+## Guide utilisateur
 
-En cas de contradiction, la décision la plus récente de l’utilisateur prévaut. Une ambiguïté n’autorise pas à inventer un comportement : elle doit être signalée avant réalisation.
+Le dossier [user-guide](user-guide/fr-FR.md) est géré séparément et n’est pas modifié lors du rangement de la documentation technique.
