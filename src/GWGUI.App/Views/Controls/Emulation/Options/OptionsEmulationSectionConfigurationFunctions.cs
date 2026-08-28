@@ -1,7 +1,9 @@
+using GWGUI.App.Constants.Emulation.Errors;
+using GWGUI.App.Presenters.Common;
 using GWGUI.App.Contracts.Emulation.Configurations;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Presenters.Emulation.Configurations;
-using GWGUI.Emulation;
+using System.Windows;
 
 namespace GWGUI.App.Views.Controls.Emulation.Options;
 
@@ -18,24 +20,77 @@ public sealed partial class OptionsEmulationSection
         var loaded = await Task.WhenAll(_modules.Select(async module =>
             (Module: module, Configurations: await Task.Run(async () =>
                 await module.LoadConfigurationsAsync()))));
-        _configurations.Clear();
-        foreach (var (module, configurations) in loaded)
+        _configurationRows = EmulationConfigurationTablePresenter.CreateRows(
+            loaded.SelectMany(item => item.Configurations.Select(configuration =>
+                (item.Module, Configuration: configuration))));
+        RebuildConfigurationBrands();
+        FilterConfigurationTable();
+    }
+
+    private async Task DeleteConfigurationAsync(EmulationConfigurationTableRow row)
+    {
+        var answer = MessageBox.Show(
+            string.Format(
+                LocExtension.Get("Emulation.Configuration.DeleteConfirm"),
+                LocExtension.Get(row.Module.DisplayResourceKey),
+                row.MachineName),
+            LocExtension.Get("Common.Delete"),
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Warning);
+        if (answer != MessageBoxResult.Yes)
+            return;
+
+        try
         {
-            foreach (var configuration in configurations)
-            {
-                var display = EmulationConfigurationPresenter.DisplayName(module, configuration);
-                _configurations.Add(new EmulationConfigurationListItem(module, configuration, display));
-            }
+            await row.Module.DeleteConfigurationAsync(row.Configuration.Id);
+            await ReloadConfigurationsAsync();
+            var section = _moduleSections.FirstOrDefault(item =>
+                ReferenceEquals(_moduleTabs[item.Key], row.Module)).Value;
+            if (section is not null)
+                await section.ReloadAfterConfigurationDeletedAsync(
+                    row.Configuration.Id,
+                    row.Configuration.MachineId);
+        }
+        catch (Exception error)
+        {
+            ControlErrorPresenter.ShowEmulation(
+                this,
+                error,
+                ControlErrorContexts.EmulationConfigurationManagement,
+                LocExtension.Get(row.Module.DisplayResourceKey));
         }
     }
 
-    private async Task DeleteSelectedConfigurationAsync()
+    private async Task EditConfigurationAsync(EmulationConfigurationTableRow row)
     {
-        if (_configurationList.SelectedItem is not EmulationConfigurationListItem selected) return;
-        await selected.Module.DeleteConfigurationAsync(selected.Configuration.Id);
-        await ReloadConfigurationsAsync();
-        var section = _moduleSections.FirstOrDefault(item =>
-            ReferenceEquals(_moduleTabs[item.Key], selected.Module)).Value;
-        if (section is not null) await section.ReloadWhenOpenedAsync();
+        var section = GetOrCreateModuleSection(row.Module);
+        await section.EditConfigurationAsync(row.Configuration);
+        _tabs.SelectedItem = _moduleTabs.First(entry =>
+            ReferenceEquals(entry.Value, row.Module)).Key;
     }
+
+    private void FilterConfigurationTable()
+    {
+        var selectedModule = (_configurationBrand.SelectedItem as EmulationModuleListItem)?.Module;
+        _configurationTable.SetRows(selectedModule is null
+            ? []
+            : _configurationRows.Where(row => ReferenceEquals(row.Module, selectedModule)).ToArray());
+    }
+
+    private void RebuildConfigurationBrands()
+    {
+        var selectedModule = (_configurationBrand.SelectedItem as EmulationModuleListItem)?.Module;
+        _configurationBrand.ItemsSource = _configurationBrands;
+        _configurationBrand.DisplayMemberPath = nameof(EmulationModuleListItem.DisplayName);
+        _configurationBrands.Clear();
+        foreach (var module in _modules.Where(module =>
+                     _configurationRows.Any(row => ReferenceEquals(row.Module, module))))
+            _configurationBrands.Add(new EmulationModuleListItem(
+                module, LocExtension.Get(module.DisplayResourceKey)));
+        _configurationBrand.SelectedItem = selectedModule is null
+            ? null
+            : _configurationBrands.FirstOrDefault(item =>
+                ReferenceEquals(item.Module, selectedModule));
+    }
+
 }

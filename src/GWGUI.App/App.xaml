@@ -18,6 +18,7 @@
         <SolidColorBrush x:Key="StatusBrush" Color="White"/>
         <Style TargetType="Window"><Setter Property="Background" Value="{DynamicResource WindowBrush}"/><Setter Property="Foreground" Value="{DynamicResource TextBrush}"/><Setter Property="FontFamily" Value="Segoe UI"/><Setter Property="FontSize" Value="14"/><EventSetter Event="Loaded" Handler="Window_Loaded"/></Style>
         <Style TargetType="TextBlock"><Setter Property="Foreground" Value="{DynamicResource TextBrush}"/></Style>
+        <Style x:Key="TableHeaderText" TargetType="TextBlock"><Setter Property="FontWeight" Value="SemiBold"/><Setter Property="VerticalAlignment" Value="Center"/><Setter Property="Margin" Value="14,0"/></Style>
         <Style TargetType="Label"><Setter Property="Foreground" Value="{DynamicResource TextBrush}"/></Style>
         <Style TargetType="CheckBox"><Setter Property="Foreground" Value="{DynamicResource TextBrush}"/></Style>
         <Style TargetType="RadioButton"><Setter Property="Foreground" Value="{DynamicResource TextBrush}"/></Style>

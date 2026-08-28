@@ -1183,4 +1183,11 @@
   <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Amiga 4000</value></data>
   <data name="Emulation.Amiga.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
   <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Amiga CD32</value></data>  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Impossibile inizializzare GameInput. Installa o ripara il runtime GameInput incluso.</value></data>
+  <data name="Emulation.Configuration.Brand"><value>Marca</value></data>
+  <data name="Emulation.Configuration.Machine"><value>Macchina</value></data>
+  <data name="Emulation.Configuration.TotalRam"><value>RAM totale</value></data>
+  <data name="Emulation.Configuration.Readers"><value>Unità</value></data>
+  <data name="Emulation.Configuration.Peripherals"><value>Periferiche</value></data>
+  <data name="Emulation.Configuration.Actions"><value>Azioni</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>Eliminare la configurazione {0} {1}?</value></data>
 </root>

@@ -1183,4 +1183,11 @@
   <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Amiga 4000</value></data>
   <data name="Emulation.Amiga.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
   <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Amiga CD32</value></data>  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Không thể khởi tạo GameInput. Hãy cài đặt hoặc sửa chữa runtime GameInput đi kèm.</value></data>
+  <data name="Emulation.Configuration.Brand"><value>Thương hiệu</value></data>
+  <data name="Emulation.Configuration.Machine"><value>Máy</value></data>
+  <data name="Emulation.Configuration.TotalRam"><value>Tổng RAM</value></data>
+  <data name="Emulation.Configuration.Readers"><value>Ổ đĩa</value></data>
+  <data name="Emulation.Configuration.Peripherals"><value>Thiết bị ngoại vi</value></data>
+  <data name="Emulation.Configuration.Actions"><value>Hành động</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>Xóa cấu hình {0} {1}?</value></data>
 </root>

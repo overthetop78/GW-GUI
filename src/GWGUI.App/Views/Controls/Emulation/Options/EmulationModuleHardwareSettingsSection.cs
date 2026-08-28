@@ -2,6 +2,7 @@ using GWGUI.App.Contracts.Emulation.Machine;
 using GWGUI.App.Contracts.Emulation.Memory;
 using GWGUI.App.Contracts.Emulation.Settings;
 using GWGUI.App.Contracts.Views.Emulation.Settings;
+using GWGUI.App.Constants.Emulation;
 using GWGUI.App.Functions.Views.Emulation.Settings;
 using GWGUI.App.Localization.Extensions;
 using System.Windows;
@@ -18,7 +19,7 @@ internal sealed partial class EmulationModuleSettingsSection
     private UIElement BuildCpuSettingsTab(EmulationMachineSettings settings)
     {
         var fields = VisibleFields(settings, EmulationMachineTab.Cpu);
-        var cpu = FieldByLabel(fields, "Emulation.Cpu.Model");
+        var cpu = FieldByLabel(fields, EmulationHardwareSettingsConstants.CpuModelResourceKey);
         if (cpu is null) return BuildGenericSettingsTab(settings, EmulationMachineTab.Cpu);
         var speed = FieldByLabel(fields, "Emulation.Cpu.Speed");
         var originalSpeedField = FieldByLabel(fields, "Emulation.Cpu.SpeedOriginal");
@@ -27,8 +28,9 @@ internal sealed partial class EmulationModuleSettingsSection
         var cpuControl = CreateField(cpu);
         var speedControl = speed is null ? null : CreateField(speed);
         var machineName = (_machines.SelectedItem as EmulationMachineChoice)?.DisplayName ?? settings.MachineId;
-        var cpuName = DisplayValue(cpu);
-        var originalSpeed = originalSpeedField is null ? string.Empty : DisplayValue(originalSpeedField);
+        var cpuName = EmulationSettingsValuePresentationFunctions.DisplayValue(cpu);
+        var originalSpeed = originalSpeedField is null ? string.Empty
+            : EmulationSettingsValuePresentationFunctions.DisplayValue(originalSpeedField);
         var page = EmulationSettingsLayout.CpuSettingsPage(new EmulationCpuSettingsContent(
             cpuControl,
             new TextBlock { Text = string.Join(" · ", new[] { machineName, cpuName, originalSpeed }
@@ -163,37 +165,19 @@ internal sealed partial class EmulationModuleSettingsSection
     private static EmulationSettingsField? FieldByLabel(IEnumerable<EmulationSettingsField> fields,
         string resourceKey) => fields.FirstOrDefault(field => field.LabelResourceKey == resourceKey);
 
-    private static string DisplayValue(EmulationSettingsField field)
-    {
-        var choice = field.Choices?.FirstOrDefault(value => value.Id == field.Value)
-            ?? field.Choices?.FirstOrDefault();
-        return choice?.InvariantDisplayValue ?? (choice is null ? field.Value ?? string.Empty
-            : LocExtension.Get(choice.DisplayResourceKey));
-    }
-
-    private static long DefaultNumericValue(EmulationSettingsField field)
-    {
-        if (field.Editor == EmulationSettingsEditor.Information
-            && field.NumericValue is { } information) return information;
-        return field.Choices?.FirstOrDefault(choice => choice.Id == field.Value)?.NumericValue ?? 0;
-    }
-
     private long SelectedNumericValue(EmulationSettingsField field)
     {
         if (_fieldControls.TryGetValue(field.Id, out var control)
             && control is ComboBox { SelectedItem: EmulationSettingsChoiceView selected })
             return selected.Choice.NumericValue ?? 0;
-        return DefaultNumericValue(field);
+        return EmulationSettingsValuePresentationFunctions.DefaultNumericValue(field);
     }
 
     private void UpdateMemoryTotal(IEnumerable<EmulationSettingsField> fields, TextBlock total)
     {
         var bytes = fields.Sum(SelectedNumericValue);
-        var formatted = FormatMemorySize(bytes);
+        var formatted = EmulationSettingsValuePresentationFunctions.FormatMemorySize(bytes);
         total.Text = LocExtension.Get("Emulation.Memory.TotalConfigured", formatted.Value, formatted.Unit);
     }
 
-    private static (string Value, string Unit) FormatMemorySize(long bytes) => bytes >= 1024 * 1024
-        ? ($"{bytes / (1024d * 1024d):0.##}", "MiB")
-        : bytes >= 1024 ? ($"{bytes / 1024d:0.##}", "KiB") : (bytes.ToString(), "B");
 }

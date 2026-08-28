@@ -1183,4 +1183,11 @@
   <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Amiga 4000</value></data>
   <data name="Emulation.Amiga.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
   <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Amiga CD32</value></data>  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput을 초기화할 수 없습니다. 포함된 GameInput 런타임을 설치하거나 복구하세요.</value></data>
+  <data name="Emulation.Configuration.Brand"><value>브랜드</value></data>
+  <data name="Emulation.Configuration.Machine"><value>머신</value></data>
+  <data name="Emulation.Configuration.TotalRam"><value>총 RAM</value></data>
+  <data name="Emulation.Configuration.Readers"><value>드라이브</value></data>
+  <data name="Emulation.Configuration.Peripherals"><value>주변 장치</value></data>
+  <data name="Emulation.Configuration.Actions"><value>작업</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>{0} {1} 구성을 삭제하시겠습니까?</value></data>
 </root>

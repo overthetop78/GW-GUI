@@ -1,4 +1,3 @@
-using GWGUI.App.Contracts.Emulation.Configurations;
 using GWGUI.App.Functions.Views.Emulation.Settings;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Views.Controls.Common;
@@ -38,29 +37,26 @@ public sealed partial class OptionsEmulationSection
 
     private Grid BuildConfigurationsTab()
     {
-        _configurationList.ItemsSource = _configurations;
-        _configurationList.DisplayMemberPath = nameof(EmulationConfigurationListItem.DisplayName);
-        _configurationList.HorizontalContentAlignment = HorizontalAlignment.Stretch;
-        ScrollViewer.SetVerticalScrollBarVisibility(_configurationList, ScrollBarVisibility.Auto);
-        _removeConfiguration.Content = LocExtension.Get("Common.Delete");
-        _removeConfiguration.MinWidth = 110;
-        _removeConfiguration.IsEnabled = false;
-        _removeConfiguration.HorizontalAlignment = HorizontalAlignment.Right;
-        _removeConfiguration.Margin = new Thickness(0, 10, 0, 0);
-        var remove = _removeConfiguration;
-        remove.Click -= RemoveConfiguration;
-        remove.Click += RemoveConfiguration;
+        _configurationBrandLabel.Text = LocExtension.Get("Emulation.Configuration.Brand");
+        _configurationBrand.MinWidth = 300;
+
+        var filter = new Grid { Margin = new Thickness(0, 0, 0, 12) };
+        filter.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        filter.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(300) });
+        _configurationBrandLabel.VerticalAlignment = VerticalAlignment.Center;
+        _configurationBrandLabel.Margin = new Thickness(0, 0, 12, 0);
+        filter.Children.Add(_configurationBrandLabel);
+        Grid.SetColumn(_configurationBrand, 1);
+        filter.Children.Add(_configurationBrand);
+
         var content = new Grid { Margin = new Thickness(12) };
-        content.RowDefinitions.Add(new RowDefinition());
         content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        content.Children.Add(_configurationList);
-        Grid.SetRow(remove, 1);
-        content.Children.Add(remove);
+        content.RowDefinitions.Add(new RowDefinition());
+        content.Children.Add(filter);
+        Grid.SetRow(_configurationTable, 1);
+        content.Children.Add(_configurationTable);
         return content;
     }
-
-    private async void RemoveConfiguration(object sender, RoutedEventArgs e) =>
-        await DeleteSelectedConfigurationAsync();
 
     private Grid FolderControl(TextBox target)
     {

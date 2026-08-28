@@ -2,6 +2,7 @@ using GWGUI.Domain.Settings;
 using GWGUI.App.Contracts.Emulation.Configurations;
 using GWGUI.App.Contracts.Emulation.Machine;
 using GWGUI.App.Localization.Extensions;
+using GWGUI.App.Presenters.Emulation.Configurations;
 using GWGUI.App.Services.Emulation;
 using GWGUI.App.Services.Storage;
 using GWGUI.App.Views.Controls.Emulation.Input;
@@ -20,8 +21,11 @@ public sealed partial class OptionsEmulationSection : UserControl
     internal event Action<EmulationMachineEditingContext?>? EditingContextChanged;
 
     private readonly IReadOnlyList<IEmulationModule> _modules = EmulationModuleRegistry.Modules;
-    private readonly ObservableCollection<EmulationConfigurationListItem> _configurations = [];
-    private readonly ListBox _configurationList = new() { MinWidth = 360 };
+    private readonly TextBlock _configurationBrandLabel = new();
+    private readonly ComboBox _configurationBrand = new();
+    private readonly ObservableCollection<EmulationModuleListItem> _configurationBrands = [];
+    private IReadOnlyList<EmulationConfigurationTableRow> _configurationRows = [];
+    private readonly EmulationConfigurationTable _configurationTable = new();
     private readonly InputBindingEditor _shortcuts = new();
     private readonly TextBox _storageFolder = new();
     private readonly TextBox _captureFolder = new();
@@ -31,7 +35,6 @@ public sealed partial class OptionsEmulationSection : UserControl
     private readonly TabControl _tabs;
     private readonly TabItem _generalTab;
     private readonly TabItem _shortcutsTab;
-    private readonly Button _removeConfiguration = new();
     private readonly List<(TabItem Tab, string ResourceKey)> _localizedTabs = [];
     private readonly Dictionary<TabItem, IEmulationModule> _moduleTabs = [];
     private readonly Dictionary<TabItem, EmulationModuleSettingsSection> _moduleSections = [];
@@ -47,11 +50,12 @@ public sealed partial class OptionsEmulationSection : UserControl
             VerticalContentAlignment = VerticalAlignment.Stretch
         };
         _shortcuts.BindingsChanged += async (_, _) => await SaveShortcutsAsync();
+        _configurationBrand.SelectionChanged += (_, _) => FilterConfigurationTable();
+        _configurationTable.EditRequested += async row => await EditConfigurationAsync(row);
+        _configurationTable.DeleteRequested += async row => await DeleteConfigurationAsync(row);
         _storageFolder.LostKeyboardFocus += async (_, _) => await SaveFoldersAsync();
         _captureFolder.LostKeyboardFocus += async (_, _) => await SaveFoldersAsync();
         _stateFolder.LostKeyboardFocus += async (_, _) => await SaveFoldersAsync();
-        _configurationList.SelectionChanged += (_, _) =>
-            _removeConfiguration.IsEnabled = _configurationList.SelectedItem is EmulationConfigurationListItem;
         _generalTab = AddTab(_tabs, "\uE713", "Emulation.Tab.General", BuildGeneralTab());
         _shortcutsTab = AddTab(_tabs, "\uE765", "Emulation.Tab.Shortcuts", BuildShortcutsTab());
         AddTab(_tabs, "\uE8A5", "Emulation.Configuration", BuildConfigurationsTab());
@@ -101,16 +105,26 @@ public sealed partial class OptionsEmulationSection : UserControl
             return;
         }
 
-        if (!_moduleSections.TryGetValue(tab, out var section))
-        {
-            section = new EmulationModuleSettingsSection(module);
-            section.ConfigurationSaved += ModuleConfigurationSaved;
-            section.EditingContextChanged += ModuleEditingContextChanged;
-            _moduleSections.Add(tab, section);
-            tab.Content = section;
+        var sectionAlreadyExists = _moduleSections.ContainsKey(tab);
+        var section = GetOrCreateModuleSection(module);
+        if (!sectionAlreadyExists)
             return;
-        }
+
         await section.ReloadWhenOpenedAsync();
+    }
+
+    private EmulationModuleSettingsSection GetOrCreateModuleSection(IEmulationModule module)
+    {
+        var tab = _moduleTabs.First(entry => ReferenceEquals(entry.Value, module)).Key;
+        if (_moduleSections.TryGetValue(tab, out var section))
+            return section;
+
+        section = new EmulationModuleSettingsSection(module);
+        section.ConfigurationSaved += ModuleConfigurationSaved;
+        section.EditingContextChanged += ModuleEditingContextChanged;
+        _moduleSections.Add(tab, section);
+        tab.Content = section;
+        return section;
     }
 
     private void ModuleEditingContextChanged(object? sender, EmulationMachineEditingContext context)
@@ -135,8 +149,16 @@ public sealed partial class OptionsEmulationSection : UserControl
         _shortcuts.SetRows(GlobalShortcutDefinitions(), shortcutValues);
         _shortcuts.ConfigurePresentation(LocExtension.Get("Emulation.Input.Actions"),
             LocExtension.Get("Emulation.Input.Binding.Search"));
-        _removeConfiguration.Content = LocExtension.Get("Common.Delete");
-        if (_configurationsLoaded) _ = ReloadConfigurationsAsync();
+        _configurationBrandLabel.Text = LocExtension.Get("Emulation.Configuration.Brand");
+        _configurationTable.RefreshLocalizedContent();
+        if (_configurationsLoaded)
+        {
+            _configurationRows = EmulationConfigurationTablePresenter.CreateRows(
+                _configurationRows.Select(row => (row.Module, row.Configuration)));
+            RebuildConfigurationBrands();
+            FilterConfigurationTable();
+            _ = ReloadConfigurationsAsync();
+        }
     }
 
 }

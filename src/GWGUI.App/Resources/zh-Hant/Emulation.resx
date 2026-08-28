@@ -1183,4 +1183,11 @@
   <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Amiga 4000</value></data>
   <data name="Emulation.Amiga.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
   <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Amiga CD32</value></data>  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>無法初始化 GameInput。請安裝或修復隨附的 GameInput 執行階段。</value></data>
+  <data name="Emulation.Configuration.Brand"><value>品牌</value></data>
+  <data name="Emulation.Configuration.Machine"><value>機器</value></data>
+  <data name="Emulation.Configuration.TotalRam"><value>RAM 總量</value></data>
+  <data name="Emulation.Configuration.Readers"><value>磁碟機</value></data>
+  <data name="Emulation.Configuration.Peripherals"><value>周邊裝置</value></data>
+  <data name="Emulation.Configuration.Actions"><value>操作</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>要刪除 {0} {1} 設定嗎？</value></data>
 </root>

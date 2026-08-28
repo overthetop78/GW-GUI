@@ -7,6 +7,7 @@ internal static class ControlVisualConstants
     internal const int DisplayIdentifierLength = 8;
     internal const string IdentifierFormat = "N";
     internal const string IconFontName = "Segoe MDL2 Assets";
+    internal const string EditGlyph = "\uE70F";
     internal const string DeleteGlyph = "\uE74D";
     internal const string InformationGlyph = "\uE946";
     internal const string GameControllerGlyph = "\uE7FC";

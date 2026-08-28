@@ -1183,4 +1183,11 @@
   <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Amiga 4000</value></data>
   <data name="Emulation.Amiga.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
   <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Amiga CD32</value></data>  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput se nepodařilo inicializovat. Nainstalujte nebo opravte přiložené běhové prostředí GameInput.</value></data>
+  <data name="Emulation.Configuration.Brand"><value>Značka</value></data>
+  <data name="Emulation.Configuration.Machine"><value>Počítač</value></data>
+  <data name="Emulation.Configuration.TotalRam"><value>Celková RAM</value></data>
+  <data name="Emulation.Configuration.Readers"><value>Jednotky</value></data>
+  <data name="Emulation.Configuration.Peripherals"><value>Periferie</value></data>
+  <data name="Emulation.Configuration.Actions"><value>Akce</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>Odstranit konfiguraci {0} {1}?</value></data>
 </root>

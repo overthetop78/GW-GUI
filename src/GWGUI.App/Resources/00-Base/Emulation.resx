@@ -548,4 +548,11 @@
     <value>Eject media</value>
   </data>
   <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput could not be initialized. Install or repair the included GameInput runtime.</value></data>
+  <data name="Emulation.Configuration.Brand"><value>Brand</value></data>
+  <data name="Emulation.Configuration.Machine"><value>Machine</value></data>
+  <data name="Emulation.Configuration.TotalRam"><value>Total RAM</value></data>
+  <data name="Emulation.Configuration.Readers"><value>Drives</value></data>
+  <data name="Emulation.Configuration.Peripherals"><value>Peripherals</value></data>
+  <data name="Emulation.Configuration.Actions"><value>Actions</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>Delete the {0} {1} configuration?</value></data>
 </root>

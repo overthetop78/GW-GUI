@@ -627,182 +627,154 @@ Cette checklist couvre uniquement les modifications faites par l’utilisateur. 
     - [x] Modifier RefreshLocalizedContent dans src/GWGUI.App/Views/Windows/Options/OptionsWindow.xaml.cs pour recalculer le titre après un changement de langue sans modifier le texte des onglets.
 ## Checklist détaillée — Point 3 : tableau des configurations
 
-Dans l’ordre général, ce point constitue le groupe 2. Il utilise l’état fiable des configurations établi au point 2 et doit être terminé avant le retour automatique du focus du point 1. Le tableau n’a aucun état de sélection : seules la marque du filtre, l’action crayon, le double-clic et l’action poubelle produisent un changement.
+Dans l’ordre général, ce point constitue le groupe 2. Il utilise l’état fiable des configurations établi au point 2 et doit être terminé avant le retour automatique du focus du point 1. La présentation textuelle actuelle est remplacée par un tableau sans sélection de ligne. Seuls le filtre de marque, le crayon, le double-clic et la poubelle produisent une action.
 
-- [ ] Données structurées des lignes de configuration
-  - [ ] Déplacer les fonctions de présentation déjà utilisées avant de les réemployer
-    - [ ] Créer le fichier commun avant d’y copier les fonctions
-      - [ ] Créer src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationSettingsValuePresentationFunctions.cs.
-    - [ ] Copier les fonctions sans changer leur résultat
-      - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationSettingsValuePresentationFunctions.cs pour y copier DisplayValue, DefaultNumericValue et FormatMemorySize depuis src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleHardwareSettingsSection.cs avec exactement les mêmes formats, valeurs de repli et règles de localisation.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleHardwareSettingsSection.cs pour appeler les fonctions copiées tout en laissant provisoirement les anciennes fonctions privées en place.
-      - [ ] Exécuter les tests matériels et la suite GWGUI.Tests afin de vérifier que les onglets CPU et RAM affichent strictement les mêmes valeurs après le raccordement.
-      - [ ] Supprimer DisplayValue, DefaultNumericValue et FormatMemorySize de src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleHardwareSettingsSection.cs uniquement après la vérification du comportement déplacé.
-  - [ ] Centraliser les glyphes déjà utilisés avant de les afficher dans le tableau
-    - [ ] Déplacer le glyphe du clavier sans changer les onglets existants
-      - [ ] Modifier src/GWGUI.App/Constants/Emulation/EmulationInputSettingsConstants.cs pour ajouter KeyboardIcon avec la valeur actuelle du glyphe Clavier.
-      - [ ] Modifier src/GWGUI.App/Constants/Emulation/EmulationMachineTabConstants.cs pour remplacer uniquement la valeur littérale du glyphe Clavier par EmulationInputSettingsConstants.KeyboardIcon.
-      - [ ] Exécuter OptionsControllersTabPlacementTests et les tests visuels existants avant de réutiliser KeyboardIcon dans le tableau.
-    - [ ] Ajouter le glyphe d’action manquant
-      - [ ] Modifier src/GWGUI.App/Constants/Controls/Visual/ControlVisualConstants.cs pour ajouter EditGlyph destiné au bouton crayon, sans modifier DeleteGlyph ni les boutons qui l’utilisent déjà.
-  - [ ] Créer le contrat propre au tableau sans modifier la liste utilisée pour lancer les machines
-    - [ ] Créer le fichier de ligne avant le présentateur
-      - [ ] Créer src/GWGUI.App/Contracts/Emulation/Configurations/EmulationConfigurationTableRow.cs.
-    - [ ] Définir uniquement les données des colonnes validées
-      - [ ] Modifier src/GWGUI.App/Contracts/Emulation/Configurations/EmulationConfigurationTableRow.cs pour porter le module, la configuration, le nom localisé de la machine, le CPU, la RAM totale, les icônes de lecteurs et les icônes de périphériques.
-      - [ ] Modifier src/GWGUI.App/Contracts/Emulation/Configurations/EmulationConfigurationTableRow.cs pour définir un élément d’icône contenant le glyphe et son nom accessible, afin de répéter réellement une icône par lecteur ou périphérique, sans modifier src/GWGUI.App/Contracts/Emulation/Configurations/EmulationConfigurationListItem.cs utilisé pour lancer les machines.
-  - [ ] Construire les lignes à partir des contrats structurés existants
-    - [ ] Créer le présentateur avant de remplir le tableau
-      - [ ] Créer src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs.
-    - [ ] Produire Machine, CPU et RAM totale sans analyser le résumé textuel
-      - [ ] Modifier src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs pour obtenir le nom localisé de la machine depuis sa définition et sa clé de ressource existantes.
-      - [ ] Modifier src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs pour obtenir le CPU depuis le champ structuré de l’onglet CPU renvoyé par IEmulationModule.Describe et le formater avec EmulationSettingsValuePresentationFunctions.
-      - [ ] Modifier src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs pour additionner les valeurs numériques structurées des champs RAM visibles et formater le total avec EmulationSettingsValuePresentationFunctions.
-      - [ ] Modifier src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs pour laisser CPU ou RAM vide uniquement lorsque le module ne fournit réellement aucune donnée correspondante.
-    - [ ] Produire une icône par lecteur configuré
-      - [ ] Modifier src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs pour appeler IEmulationStorageSettingsManager.DescribeStorageSettings lorsque le module fournit ce service.
-      - [ ] Modifier src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs pour parcourir ConfiguredSlots, retrouver chaque périphérique dans AvailableDevices et produire une icône pour chaque occurrence configurée.
-      - [ ] Modifier src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs pour réutiliser les glyphes disquette, disque dur, CD, cassette et cartouche de src/GWGUI.App/Constants/Machine/MachinePresentationConstants.cs selon EmulationMediaType.
-    - [ ] Produire une icône par périphérique d’entrée existant ou défini
-      - [ ] Modifier src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs pour appeler IEmulationInputSettingsManager.DescribeInputSettings lorsque le module fournit ce service.
-      - [ ] Modifier src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs pour produire une icône Clavier lorsque Keyboard existe et une icône Souris lorsque Mouse existe.
-      - [ ] Modifier src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs pour produire une icône distincte pour chaque port dont SelectedControllerId n’est pas None, en utilisant le glyphe clavier ou souris lorsque ce type est explicitement sélectionné et le glyphe manette pour les autres types.
-      - [ ] Modifier src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs pour utiliser le libellé déjà traduit du type sélectionné comme nom accessible de l’icône, sans ajouter d’infobulle de port.
-    - [ ] Exclure les informations refusées et classer les lignes
-      - [ ] Modifier src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs pour ne produire aucun identifiant technique, ROM, moteur vidéo, format vidéo, état audio ou bouton de lancement.
-      - [ ] Modifier src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs pour classer les lignes par nom de machine avec la comparaison alphabétique de la langue affichée.
-  - [ ] Verrouiller la production des lignes par des tests
-    - [ ] Créer le fichier de tests avant ses scénarios
-      - [ ] Créer tests/GWGUI.Tests/EmulationConfigurationTablePresenterTests.cs.
-    - [ ] Ajouter les scénarios des colonnes structurées
-      - [ ] Modifier tests/GWGUI.Tests/EmulationConfigurationTablePresenterTests.cs pour vérifier le nom, le CPU et la RAM totale des configurations Amiga et Atari.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationConfigurationTablePresenterTests.cs pour vérifier qu’un lecteur configuré produit exactement une icône et que deux lecteurs du même type produisent deux icônes.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationConfigurationTablePresenterTests.cs pour vérifier les icônes clavier, souris et chaque port manette ou joystick configuré.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationConfigurationTablePresenterTests.cs pour vérifier l’absence d’identifiant, ROM, vidéo, audio et action de lancement dans le contrat de ligne.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationConfigurationTablePresenterTests.cs pour vérifier le classement alphabétique localisé des machines.
-      - [ ] Exécuter EmulationConfigurationTablePresenterTests et la suite GWGUI.Tests, puis corriger uniquement les régressions provoquées par les données du tableau.
+- [x] Préparer les fonctions de présentation communes
+  - [x] Créer le fichier commun avant d’y déplacer les fonctions
+    - [x] Créer src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationSettingsValuePresentationFunctions.cs vide.
+  - [x] Déplacer entièrement chaque fonction avant de passer à la suivante
+    - [x] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationSettingsValuePresentationFunctions.cs et src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleHardwareSettingsSection.cs pour déplacer DisplayValue dans le fichier commun avec exactement les mêmes choix, valeurs de repli et règles de localisation, remplacer ses appels puis supprimer immédiatement sa définition privée d’origine.
+    - [x] Modifier src/GWGUI.App/Contracts/Emulation/Machine/EmulationMachineEditingContext.cs pour remplacer le record qui hérite de EventArgs par une classe sealed conservant le même constructeur et les mêmes propriétés ModuleDisplayName et MachineDisplayName.
+    - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier le déplacement complet de DisplayValue.
+    - [x] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationSettingsValuePresentationFunctions.cs et src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleHardwareSettingsSection.cs pour déplacer DefaultNumericValue dans le fichier commun avec exactement les mêmes sources numériques et la même valeur de repli, remplacer son appel puis supprimer immédiatement sa définition privée d’origine.
+    - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier le déplacement complet de DefaultNumericValue.
+    - [x] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationSettingsValuePresentationFunctions.cs et src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleHardwareSettingsSection.cs pour déplacer FormatMemorySize dans le fichier commun avec exactement les mêmes seuils, formats et unités, remplacer son appel puis supprimer immédiatement sa définition privée d’origine.
+    - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier le déplacement complet de FormatMemorySize.
 
-- [ ] Tableau non sélectionnable et filtre par marque
-  - [ ] Ajouter les traductions propres au tableau avant de construire ses en-têtes
-    - [ ] Créer les clés communes dans la ressource de base
-      - [ ] Modifier src/GWGUI.App/Resources/00-Base/Emulation.resx pour créer Emulation.Configuration.Brand, Emulation.Configuration.Readers, Emulation.Configuration.Peripherals et Emulation.Configuration.DeleteConfirm.
-    - [ ] Traduire les quatre clés dans toutes les langues existantes
-      - [ ] Modifier src/GWGUI.App/Resources/ar-SA/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/cs-CZ/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/da-DK/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/de-DE/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/el-GR/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/en-US/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/es-ES/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/fi-FI/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/fr-FR/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/he-IL/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/hu-HU/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/id-ID/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/it-IT/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/ja-JP/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/ko-KR/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/nb-NO/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/nl-NL/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/pl-PL/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/pt-BR/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/pt-PT/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/ro-RO/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/ru-RU/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/sv-SE/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/th-TH/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/tr-TR/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/uk-UA/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/vi-VN/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/zh-Hans/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/zh-Hant/Emulation.resx.
-  - [ ] Créer un véritable tableau sans modèle de sélection de ligne
-    - [ ] Créer le contrôle avant de remplacer la liste existante
-      - [ ] Créer src/GWGUI.App/Views/Controls/Emulation/Options/EmulationConfigurationTable.cs.
-    - [ ] Construire les en-têtes et les lignes avec les styles existants
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationConfigurationTable.cs pour créer les colonnes Machine, CPU, RAM totale, Lecteurs, Périphériques et Actions dans cet ordre.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationConfigurationTable.cs pour utiliser un ItemsControl dans un ScrollViewer et ne créer ni SelectedItem, ni SelectedIndex, ni état visuel de ligne sélectionnée.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationConfigurationTable.cs pour utiliser les ressources TableHeaderText, CardBrush et BorderBrush existantes afin d’obtenir des en-têtes et séparations cohérents avec les autres tableaux.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationConfigurationTable.cs pour afficher chaque liste d’icônes dans la cellule correspondante sans ajouter de nombre, de texte permanent ou d’infobulle de port.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationConfigurationTable.cs pour créer dans Actions un bouton crayon utilisant Common.Modify et un bouton poubelle utilisant Common.Delete.
-    - [ ] Exposer uniquement les actions autorisées par une ligne
-      - [ ] Ajouter EditRequested et DeleteRequested dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationConfigurationTable.cs en transmettant directement EmulationConfigurationTableRow.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationConfigurationTable.cs pour déclencher EditRequested sur un double-clic de ligne ou sur le bouton crayon avec exactement le même chemin interne.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationConfigurationTable.cs pour empêcher un double-clic sur le bouton poubelle de remonter jusqu’à l’action Modifier.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationConfigurationTable.cs pour ne déclencher aucune action lors d’un simple clic ailleurs dans la ligne.
-  - [ ] Ajouter le filtre contenant uniquement les marques configurées
-    - [ ] Préparer les champs de la section avant le nouveau contenu
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs pour ajouter un ComboBox de marque, une collection de EmulationModuleListItem et une instance de EmulationConfigurationTable sans retirer encore _configurationList ni _removeConfiguration.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs pour raccorder SelectionChanged du ComboBox à une méthode qui filtre les lignes sans sélectionner une ligne du tableau.
-    - [ ] Construire la page Configuration avec le filtre et le nouveau tableau
-      - [ ] Modifier BuildConfigurationsTab dans src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionLayoutFunctions.cs pour placer le libellé Marque et son ComboBox au-dessus du nouveau tableau.
-      - [ ] Modifier BuildConfigurationsTab dans src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionLayoutFunctions.cs pour ajouter le nouveau tableau tout en laissant provisoirement l’ancienne liste hors de la zone visible jusqu’à la validation des nouvelles actions.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour construire les lignes par EmulationConfigurationTablePresenter après chaque chargement.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour alimenter le ComboBox uniquement avec les modules possédant au moins une configuration.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour afficher uniquement les lignes de la marque choisie et garder le tableau vide lorsqu’aucune marque n’est choisie.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour préserver la marque choisie pendant un rechargement si elle existe encore, sans choisir automatiquement une autre marque si elle a disparu.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour laisser le ComboBox et le tableau vides lorsqu’aucune configuration n’existe.
-    - [ ] Retirer l’ancienne liste seulement après le raccordement complet
-      - [ ] Exécuter les tests du tableau avec le nouveau contrôle actif et vérifier que les actions Modifier et Supprimer atteignent la configuration exacte sans dépendre d’une sélection.
-      - [ ] Supprimer _configurationList, _removeConfiguration et leur gestionnaire SelectionChanged de src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs après cette vérification.
-      - [ ] Supprimer l’ancien ListBox, le bouton Supprimer global et RemoveConfiguration de src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionLayoutFunctions.cs après cette vérification.
-      - [ ] Supprimer DeleteSelectedConfigurationAsync de src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs uniquement après le raccordement de la suppression directe par ligne.
-  - [ ] Actualiser les textes après un changement de langue
-    - [ ] Recréer les présentations localisées sans perdre le filtre
-      - [ ] Modifier RefreshLocalizedContent dans src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs pour actualiser le libellé Marque, les en-têtes, les boutons et les noms accessibles des icônes.
-      - [ ] Modifier RefreshLocalizedContent dans src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs pour reconstruire les lignes localisées en conservant la marque actuellement choisie lorsqu’elle existe encore.
+- [x] Préparer les constantes et le style déjà utilisés
+  - [x] Déplacer le glyphe du clavier vers sa portée commune
+    - [x] Modifier src/GWGUI.App/Constants/Emulation/EmulationInputSettingsConstants.cs et src/GWGUI.App/Constants/Emulation/EmulationMachineTabConstants.cs pour déplacer la valeur U+E765 dans KeyboardIcon, remplacer immédiatement la valeur littérale de l’onglet Clavier puis ne conserver qu’une seule définition du glyphe.
+    - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier le déplacement du glyphe Clavier.
+  - [x] Ajouter le glyphe de modification manquant
+    - [x] Modifier src/GWGUI.App/Constants/Controls/Visual/ControlVisualConstants.cs pour ajouter EditGlyph avec la valeur U+E70F déjà utilisée par l’action de modification, sans modifier DeleteGlyph.
+    - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier EditGlyph.
+  - [x] Déplacer le style d’en-tête vers les ressources globales
+    - [x] Modifier src/GWGUI.App/App.xaml et src/GWGUI.App/Views/Controls/Emulation/Input/InputBindingEditor.xaml pour déplacer TableHeaderText dans Application.Resources avec FontWeight à SemiBold, VerticalAlignment à Center et Margin à 14,0, laisser InputBindingEditor utiliser la ressource déplacée puis supprimer immédiatement sa déclaration locale.
+    - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier le déplacement complet de TableHeaderText.
 
-- [ ] Ouverture de la configuration par le crayon ou le double-clic
-  - [ ] Extraire la création différée d’un éditeur de marque avant de la réutiliser
-    - [ ] Déplacer le code existant sans en changer le fonctionnement
-      - [ ] Créer dans src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs une méthode GetOrCreateModuleSection qui reprend exactement la création de EmulationModuleSettingsSection, l’abonnement à ConfigurationSaved, l’ajout dans _moduleSections et l’affectation à TabItem.Content.
-      - [ ] Modifier ModuleTabSelectionChanged dans src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs pour appeler GetOrCreateModuleSection et vérifier que l’ouverture manuelle des onglets Amiga et Atari reste identique.
-      - [ ] Supprimer de ModuleTabSelectionChanged dans src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs l’ancien bloc de création seulement après cette vérification.
-  - [ ] Fournir une entrée explicite dans l’éditeur pour la configuration choisie
-    - [ ] Charger toute la configuration et revenir à Général
-      - [ ] Ajouter EditConfigurationAsync dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs avec le module et IEmulationConfiguration attendus.
-      - [ ] Modifier EditConfigurationAsync dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour actualiser _saved, affecter la configuration complète, sélectionner sa machine et fixer _selectedTab à EmulationMachineTab.General avant RebuildEditor.
-      - [ ] Modifier EditConfigurationAsync dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour remplir dès la reconstruction les champs de tous les sous-onglets à partir de la même configuration, sans lancer la machine.
-  - [ ] Raccorder les deux gestes à la même méthode d’ouverture
-    - [ ] Créer un chemin unique depuis le tableau
-      - [ ] Ajouter EditConfigurationAsync dans src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs avec EmulationConfigurationTableRow comme paramètre.
-      - [ ] Modifier cette méthode dans src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour sélectionner le TabItem de row.Module, obtenir sa section par GetOrCreateModuleSection et appeler son EditConfigurationAsync.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs pour raccorder l’unique événement EditRequested du tableau à cette méthode, de sorte que le crayon et le double-clic ne puissent pas diverger.
+- [x] Ajouter les textes visibles du nouveau tableau
+  - [x] Créer les ressources de base
+    - [x] Modifier src/GWGUI.App/Resources/00-Base/Emulation.resx pour créer Emulation.Configuration.Brand, Emulation.Configuration.Machine, Emulation.Configuration.TotalRam, Emulation.Configuration.Readers, Emulation.Configuration.Peripherals, Emulation.Configuration.Actions et Emulation.Configuration.DeleteConfirm ; DeleteConfirm reçoit uniquement la marque et la machine.
+  - [x] Ajouter les sept ressources dans toutes les langues prises en charge
+    - [x] Modifier src/GWGUI.App/Resources/ar-SA/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/cs-CZ/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/da-DK/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/de-DE/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/el-GR/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/en-US/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/es-ES/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/fi-FI/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/fr-FR/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/he-IL/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/hu-HU/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/id-ID/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/it-IT/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/ja-JP/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/ko-KR/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/nb-NO/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/nl-NL/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/pl-PL/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/pt-BR/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/pt-PT/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/ro-RO/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/ru-RU/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/sv-SE/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/th-TH/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/tr-TR/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/uk-UA/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/vi-VN/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/zh-Hans/Emulation.resx.
+    - [x] Modifier src/GWGUI.App/Resources/zh-Hant/Emulation.resx.
+    - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier toutes les ressources ajoutées.
 
-- [ ] Suppression directe et confirmée d’une configuration
-  - [ ] Identifier exactement la configuration sans utiliser de ligne sélectionnée
-    - [ ] Créer le chemin de suppression par ligne
-      - [ ] Ajouter DeleteConfigurationAsync dans src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs avec EmulationConfigurationTableRow comme paramètre.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs pour raccorder DeleteRequested du tableau à DeleteConfigurationAsync sans écrire row dans un SelectedItem temporaire.
-  - [ ] Demander Oui ou Non avec un récapitulatif minimal
-    - [ ] Afficher seulement ce qui identifie sans ambiguïté la configuration
-      - [ ] Modifier DeleteConfigurationAsync dans src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour ouvrir une boîte Oui/Non utilisant Emulation.Configuration.DeleteConfirm avec le nom localisé de la marque et de la machine.
-      - [ ] Modifier DeleteConfigurationAsync dans src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour ne pas afficher l’identifiant, les ROM, les lecteurs, les périphériques, la vidéo ou l’audio dans cette confirmation.
-      - [ ] Modifier DeleteConfigurationAsync dans src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour ne rien supprimer et ne rien recharger lorsque la réponse est Non.
-  - [ ] Supprimer puis remettre l’interface dans l’état exact attendu
-    - [ ] Exécuter la suppression seulement après confirmation
-      - [ ] Modifier DeleteConfigurationAsync dans src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour appeler row.Module.DeleteConfigurationAsync avec row.Configuration.Id uniquement après Oui.
-      - [ ] Modifier DeleteConfigurationAsync dans src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour présenter toute erreur avec ControlErrorPresenter et conserver la ligne lorsque la suppression échoue.
-    - [ ] Actualiser le filtre, le tableau et l’éditeur chargé
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour recharger les configurations après une réussite et conserver la marque choisie si elle possède encore au moins une configuration.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour vider le choix de marque et le tableau si la dernière configuration de la marque affichée vient d’être supprimée, sans sélectionner une autre marque disponible.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour demander à la EmulationModuleSettingsSection correspondante de retirer la configuration supprimée de _saved et de la mémoire si elle y était chargée.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour reconstruire dans ce cas les valeurs de base de la même machine et faire réapparaître Créer conformément au point 2.
-  - [ ] Verrouiller les interactions et la suppression par des tests
-    - [ ] Créer le fichier de tests avant ses scénarios
-      - [ ] Créer tests/GWGUI.Tests/OptionsEmulationConfigurationTableTests.cs.
-    - [ ] Ajouter les scénarios du filtre et de l’absence de sélection
-      - [ ] Modifier tests/GWGUI.Tests/OptionsEmulationConfigurationTableTests.cs pour vérifier que le filtre contient uniquement les marques possédant une configuration et que le tableau contient leurs machines par ordre alphabétique.
-      - [ ] Modifier tests/GWGUI.Tests/OptionsEmulationConfigurationTableTests.cs pour vérifier qu’un clic simple ne sélectionne rien et ne déclenche aucune action.
-      - [ ] Modifier tests/GWGUI.Tests/OptionsEmulationConfigurationTableTests.cs pour vérifier que le crayon et le double-clic appellent la même méthode avec la même configuration.
-      - [ ] Modifier tests/GWGUI.Tests/OptionsEmulationConfigurationTableTests.cs pour vérifier l’ouverture de la bonne marque dans Général avec toute la configuration chargée et sans lancement de machine.
-    - [ ] Ajouter les scénarios de confirmation et de remise à zéro
-      - [ ] Modifier tests/GWGUI.Tests/OptionsEmulationConfigurationTableTests.cs pour vérifier que Non conserve la configuration et que Oui supprime uniquement l’identifiant transmis par la ligne.
-      - [ ] Modifier tests/GWGUI.Tests/OptionsEmulationConfigurationTableTests.cs pour vérifier le contenu minimal marque-machine de la confirmation.
-      - [ ] Modifier tests/GWGUI.Tests/OptionsEmulationConfigurationTableTests.cs pour vérifier la conservation du filtre tant que la marque possède une ligne et sa remise à vide après suppression de sa dernière ligne.
-      - [ ] Modifier tests/GWGUI.Tests/OptionsEmulationConfigurationTableTests.cs pour vérifier qu’aucune autre marque n’est sélectionnée automatiquement après cette suppression.
-      - [ ] Modifier tests/GWGUI.Tests/OptionsEmulationConfigurationTableTests.cs pour vérifier la remise à zéro de l’éditeur chargé et la réapparition de Créer.
-      - [ ] Exécuter OptionsEmulationConfigurationTableTests et la suite GWGUI.Tests, puis corriger uniquement les régressions provoquées par le nouveau tableau.
+- [x] Créer les données structurées des lignes
+  - [x] Créer le contrat avant son contenu
+    - [x] Créer src/GWGUI.App/Contracts/Emulation/Configurations/EmulationConfigurationTableRow.cs vide.
+  - [x] Définir uniquement les données nécessaires aux colonnes et aux actions
+    - [x] Modifier src/GWGUI.App/Contracts/Emulation/Configurations/EmulationConfigurationTableRow.cs pour porter IEmulationModule, IEmulationConfiguration, le nom localisé de la machine, le CPU, la RAM totale, la liste des glyphes de lecteurs et la liste des glyphes de périphériques.
+  - [x] Créer le présentateur avant son contenu
+    - [x] Créer src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs vide.
+  - [x] Produire Machine, CPU et RAM totale depuis les données structurées
+    - [x] Modifier src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs pour créer une ligne depuis IEmulationModule et IEmulationConfiguration, retrouver la machine dans IEmulationModule.Machines et localiser sa DisplayResourceKey sans analyser EmulationConfigurationSummary ni le DisplayName textuel existant.
+    - [x] Modifier src/GWGUI.App/Constants/Emulation/EmulationHardwareSettingsConstants.cs et src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleHardwareSettingsSection.cs pour déplacer la clé existante Emulation.Cpu.Model dans CpuModelResourceKey, remplacer immédiatement son utilisation actuelle puis ne conserver qu’une seule définition de cette valeur.
+    - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier le déplacement de CpuModelResourceKey.
+    - [x] Modifier src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs pour obtenir le CPU depuis le champ visible Emulation.Cpu.Model de l’onglet CPU renvoyé par IEmulationModule.Describe et le formater avec EmulationSettingsValuePresentationFunctions.DisplayValue.
+    - [x] Modifier src/GWGUI.App/Constants/Emulation/EmulationMemorySettingsConstants.cs pour ajouter ValueUnitSeparator avec un espace unique destiné à séparer la valeur de RAM de son unité dans le tableau.
+    - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier ValueUnitSeparator.
+    - [x] Modifier src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs pour additionner les valeurs numériques des champs visibles de l’onglet RAM avec EmulationSettingsValuePresentationFunctions.DefaultNumericValue, formater le total avec FormatMemorySize et laisser CPU ou RAM vide uniquement en l’absence réelle de donnée correspondante.
+  - [x] Produire exactement une icône par lecteur configuré
+    - [x] Modifier src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs pour appeler IEmulationStorageSettingsManager.DescribeStorageSettings lorsque le module fournit ce service, parcourir ConfiguredSlots, retrouver chaque périphérique par EmulationMediaSlot dans AvailableDevices et produire un glyphe par occurrence avec FloppyGlyph, HardDiskGlyph, CompactDiscGlyph, CassetteGlyph ou CartridgeGlyph selon EmulationMediaType.
+  - [x] Produire exactement une icône par périphérique configuré
+    - [x] Modifier src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs pour appeler IEmulationInputSettingsManager.DescribeInputSettings lorsque le module fournit ce service, ajouter KeyboardIcon lorsque Keyboard existe et MouseIcon lorsque Mouse existe.
+    - [x] Modifier src/GWGUI.App/Constants/Emulation/EmulationInputSettingsConstants.cs pour ajouter NoneControllerResourceKey avec Emulation.Controller.None, KeyboardControllerId avec Keyboard et MouseControllerId avec Mouse afin d’identifier les choix de port sans valeur brute.
+    - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier les identifiants de contrôleur.
+    - [x] Modifier src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs pour résoudre chaque SelectedControllerId dans ControllerChoices, ignorer le choix dont la ressource est Emulation.Controller.None et ajouter pour chaque autre port le glyphe clavier, souris ou manette correspondant au choix.
+  - [x] Classer et limiter les lignes
+    - [x] Modifier src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs pour classer les lignes par nom de machine avec StringComparer.CurrentCulture et ne produire aucun identifiant technique affichable, ROM, moteur vidéo, format vidéo, état audio ou action de lancement.
+    - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier le contrat et le présentateur.
+
+- [x] Créer le tableau sans mécanisme de sélection
+  - [x] Créer le contrôle avant son contenu
+    - [x] Créer src/GWGUI.App/Views/Controls/Emulation/Options/EmulationConfigurationTable.cs vide.
+  - [x] Construire les six colonnes et les lignes
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationConfigurationTable.cs pour recevoir des EmulationConfigurationTableRow, utiliser un ItemsControl dans un ScrollViewer et ne créer ni SelectedItem, ni SelectedIndex, ni état visuel de sélection.
+    - [x] Créer src/GWGUI.App/Constants/Emulation/EmulationConfigurationTableConstants.cs vide.
+    - [x] Modifier src/GWGUI.App/Constants/Emulation/EmulationConfigurationTableConstants.cs pour définir dans l’ordre les six clés d’en-tête, TableHeaderTextStyleResource, CellMargin, HeaderSeparatorThickness et RowSeparatorThickness avec les valeurs déjà utilisées par les tableaux existants.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationConfigurationTable.cs pour créer dans l’ordre Machine, CPU, RAM totale, Lecteurs, Périphériques et Actions en utilisant les ressources Emulation.Configuration correspondantes, Emulation.Tab.Cpu, TableHeaderText, CardBrush et BorderBrush.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationConfigurationTable.cs pour afficher Machine, CPU et RAM totale, puis chaque glyphe de lecteur et de périphérique séparément sans nombre, texte permanent, infobulle de port ni information supplémentaire.
+  - [x] Ajouter uniquement les trois interactions autorisées
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationConfigurationTable.cs pour ajouter EditRequested et DeleteRequested en transmettant directement la EmulationConfigurationTableRow concernée.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationConfigurationTable.cs pour créer le bouton crayon avec EditGlyph et le bouton poubelle avec DeleteGlyph dans la colonne Actions.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationConfigurationTable.cs pour envoyer le bouton crayon et le double-clic de ligne vers le même chemin interne qui déclenche EditRequested.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationConfigurationTable.cs pour traiter l’action du bouton poubelle avant DeleteRequested afin qu’un double-clic sur ce bouton ne remonte jamais vers EditRequested.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationConfigurationTable.cs pour ne déclencher aucune action lors d’un simple clic ailleurs dans une ligne.
+  - [x] Actualiser les textes du contrôle
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationConfigurationTable.cs pour ajouter RefreshLocalizedContent et y reconstruire les six en-têtes avec les ressources de la langue active.
+    - [x] Modifier src/GWGUI.App/Constants/Emulation/EmulationConfigurationTableConstants.cs pour définir CellMargin avec les quatre côtés attendus par Thickness.
+    - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier le contrôle avant son raccordement.
+
+- [x] Préparer l’ouverture complète d’une configuration
+  - [x] Déplacer entièrement la création différée d’une section de marque
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs pour déplacer le bloc de création de EmulationModuleSettingsSection depuis ModuleTabSelectionChanged vers GetOrCreateModuleSection, conserver les abonnements ConfigurationSaved et EditingContextChanged, l’ajout dans _moduleSections et l’affectation à TabItem.Content, remplacer immédiatement l’ancien bloc par l’appel à la méthode puis supprimer le bloc d’origine.
+    - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier que l’ouverture manuelle des onglets de marque utilise GetOrCreateModuleSection et conserve ReloadWhenOpenedAsync.
+  - [x] Ajouter l’ouverture explicite de la configuration choisie
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour ajouter EditConfigurationAsync recevant IEmulationConfiguration, recharger _saved, retenir exactement la configuration transmise, sélectionner sa machine, fixer _selectedTab à EmulationMachineTab.General, reconstruire tous les sous-onglets et actualiser l’état de l’émulateur installé sans lancer la machine.
+    - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier l’entrée explicite de l’éditeur.
+  - [x] Ajouter la remise à zéro après une suppression
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour ajouter ReloadAfterConfigurationDeletedAsync recevant l’identifiant et la machine supprimés, retirer le brouillon de cette machine uniquement si l’identifiant supprimé est actuellement chargé, puis réutiliser ReloadAsync afin de recharger _saved, reconstruire les valeurs de base de cette machine et faire réapparaître Créer.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour typer configurationId en Guid comme IEmulationConfiguration.Id.
+    - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier la remise à zéro ciblée.
+
+- [x] Préparer le nouveau contenu avant de remplacer l’ancienne liste
+  - [x] Ajouter les champs du filtre et du tableau
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs pour ajouter le TextBlock du libellé Marque, le ComboBox de marque, la collection de EmulationModuleListItem des marques configurées, la liste complète de EmulationConfigurationTableRow et EmulationConfigurationTable sans supprimer encore _configurations, _configurationList ni _removeConfiguration.
+  - [x] Alimenter le filtre et le tableau pendant le chargement existant
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour construire les nouvelles lignes avec EmulationConfigurationTablePresenter après chaque chargement tout en continuant provisoirement d’alimenter _configurations.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour reconstruire la liste des marques avec uniquement les modules possédant au moins une configuration, conserver la marque choisie si elle existe encore et laisser le ComboBox sans sélection si elle a disparu ou si aucune configuration n’existe.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour afficher uniquement les lignes de la marque choisie et laisser le tableau vide sans marque choisie.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs pour raccorder SelectionChanged du ComboBox à ce filtrage sans créer de sélection dans le tableau.
+    - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier les données du nouveau contenu.
+  - [x] Raccorder l’ouverture de ligne
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour ajouter EditConfigurationAsync recevant EmulationConfigurationTableRow, obtenir la section de row.Module par GetOrCreateModuleSection, appeler son EditConfigurationAsync avec row.Configuration puis sélectionner le TabItem correspondant une fois la configuration chargée.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs pour raccorder EditRequested du tableau à cette méthode unique afin que le crayon et le double-clic ne puissent pas diverger.
+    - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier le raccordement de l’ouverture.
+  - [x] Raccorder la suppression de ligne
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour ajouter DeleteConfigurationAsync recevant EmulationConfigurationTableRow et ouvrir une MessageBox Oui/Non utilisant Common.Delete comme titre et Emulation.Configuration.DeleteConfirm comme message avec uniquement la marque localisée et la machine localisée.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour ne rien supprimer ni recharger lorsque la réponse n’est pas Oui, appeler row.Module.DeleteConfigurationAsync avec row.Configuration.Id uniquement après Oui et présenter toute erreur avec ControlErrorPresenter sans retirer la ligne lorsque la suppression échoue.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour recharger après une suppression réussie, conserver la marque tant qu’elle possède une ligne, laisser le ComboBox et le tableau sans sélection après sa dernière ligne sans choisir une autre marque, puis appeler ReloadAfterConfigurationDeletedAsync sur la section correspondante lorsqu’elle existe déjà.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs pour raccorder DeleteRequested à DeleteConfigurationAsync sans utiliser SelectedItem.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs pour importer System.Windows utilisé par la MessageBox de confirmation.
+    - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier le raccordement de la suppression.
+  - [x] Raccorder l’actualisation localisée
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs pour importer EmulationConfigurationTablePresenter utilisé par RefreshLocalizedContent.
+    - [x] Modifier RefreshLocalizedContent dans src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs pour actualiser le libellé Marque, appeler EmulationConfigurationTable.RefreshLocalizedContent et reconstruire les marques et les lignes localisées en conservant la marque choisie si elle existe encore sans en sélectionner une autre.
+    - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier l’actualisation localisée du nouveau contenu.
+
+- [x] Remplacer définitivement l’ancienne liste par le nouveau contenu
+  - [x] Effectuer le remplacement complet dans une seule tâche
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionLayoutFunctions.cs, src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs et src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs pour ajouter le libellé Marque, son ComboBox et EmulationConfigurationTable dans BuildConfigurationsTab, puis supprimer immédiatement l’ancienne ListBox, le bouton Supprimer global, RemoveConfiguration, DeleteSelectedConfigurationAsync, l’alimentation de _configurations, les champs _configurations, _configurationList et _removeConfiguration, leur gestionnaire SelectionChanged, l’ancienne actualisation de Common.Delete et les directives using devenues inutiles.
+    - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier le remplacement complet et la suppression de tout le fonctionnement fondé sur une ligne sélectionnée.
+
 ## Checklist détaillée — Point 4 : aides contextuelles sur les champs
 
 Cette checklist correspond au groupe 5 de l’ordre général de réalisation. Elle concerne uniquement les champs des éditeurs de machine Amiga et Atari dont le libellé ne suffit pas à comprendre le rôle, les choix ou les conséquences. Elle ne crée aucune aide sur les boutons ni sur les titres de groupes. Le choix exact des champs est écrit et validé avant toute création de texte ou de clé de ressource.

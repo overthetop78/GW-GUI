@@ -81,6 +81,28 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
 
     internal Task ReloadWhenOpenedAsync() => ExecuteAsync(ReloadAsync);
 
+    internal async Task ReloadAfterConfigurationDeletedAsync(
+        Guid configurationId,
+        string machineId)
+    {
+        if (_configuration.Id == configurationId)
+            EmulationConfigurationDraftStore.Remove(_module.Id, machineId);
+
+        await ReloadAsync();
+    }
+
+    internal async Task EditConfigurationAsync(IEmulationConfiguration configuration)
+    {
+        _saved = await _module.LoadConfigurationsAsync();
+        _configuration = configuration;
+        SelectMachine(configuration.MachineId);
+        _selectedTab = EmulationMachineTab.General;
+        RebuildEditor();
+        if (_emulatorManagement is not null)
+            await _emulatorManagement.RefreshAsync();
+        NotifyEditingContextChanged();
+    }
+
     private async Task ReloadAsync()
     {
         _saved = await _module.LoadConfigurationsAsync();

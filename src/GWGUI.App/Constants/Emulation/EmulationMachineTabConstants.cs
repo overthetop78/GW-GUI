@@ -18,7 +18,7 @@ internal static class EmulationMachineTabConstants
         new(EmulationMachineTab.Video, "\uE7F4", "Emulation.Tab.Video"),
         new(EmulationMachineTab.Audio, "\uE767", "Emulation.Tab.Audio"),
         new(EmulationMachineTab.Storage, "\uEDA2", "Emulation.Tab.Storage"),
-        new(EmulationMachineTab.Keyboard, "\uE765", "Emulation.Tab.Keyboard"),
+        new(EmulationMachineTab.Keyboard, EmulationInputSettingsConstants.KeyboardIcon, "Emulation.Tab.Keyboard"),
         new(EmulationMachineTab.Mouse, "\uE962", "Emulation.Tab.Mouse"),
         new(EmulationMachineTab.Controllers, "\uE7FC", "Emulation.Controller.Tab")
     ];
