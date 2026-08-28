@@ -1190,4 +1190,7 @@
   <data name="Emulation.Configuration.Peripherals"><value>Perifériák</value></data>
   <data name="Emulation.Configuration.Actions"><value>Műveletek</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>Törli a(z) {0} {1} konfigurációt?</value></data>
+  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
+    <value>Kickstart</value>
+  </data>
 </root>

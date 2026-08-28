@@ -45,7 +45,7 @@ internal static class AmigaSettingsDescriptionFunctions
                             .Select(MemoryMibChoice)
                         : new[] { AmigaSettingsDescriptionFunctionsConstants.Value0 }.Select(MemoryMibChoice))),
             Block(AmigaSettingsDescriptionFunctionsConstants.Firmware, EmulationMachineTab.Rom, AmigaSettingsDescriptionFunctionsConstants.ResourceFirmwareRomSystem, AmigaSettingsDescriptionFunctionsConstants.Value3, 1,
-                Path(AmigaSettingsConstants.KickstartPath, AmigaSettingsDescriptionFunctionsConstants.Kickstart, configuration.KickstartPath),
+                Path(AmigaSettingsConstants.KickstartPath, AmigaSettingsDescriptionFunctionsConstants.ResourceFirmwareRomKickstart, configuration.KickstartPath),
                 Path(AmigaSettingsConstants.ExtendedRomPath, AmigaSettingsDescriptionFunctionsConstants.ResourceFirmwareRomExtended, configuration.ExtendedRomPath),
                 Path(AmigaSettingsConstants.RomKeyPath, AmigaSettingsDescriptionFunctionsConstants.ResourceFirmwareRomKey, configuration.RomKeyPath)),
             Block(AmigaSettingsDescriptionFunctionsConstants.Display, EmulationMachineTab.Video, AmigaSettingsDescriptionFunctionsConstants.ResourceVideoSettingsDisplay, AmigaSettingsDescriptionFunctionsConstants.Value5, 2,

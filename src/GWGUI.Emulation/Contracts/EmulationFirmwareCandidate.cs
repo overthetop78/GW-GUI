@@ -5,4 +5,5 @@ public sealed record EmulationFirmwareCandidate(
     string Path,
     string DisplayName,
     string? Version,
-    EmulationFirmwareCompatibility Compatibility);
+    EmulationFirmwareCompatibility Compatibility,
+    string? DestinationFieldId = null);

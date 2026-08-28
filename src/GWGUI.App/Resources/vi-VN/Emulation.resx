@@ -1190,4 +1190,7 @@
   <data name="Emulation.Configuration.Peripherals"><value>Thiết bị ngoại vi</value></data>
   <data name="Emulation.Configuration.Actions"><value>Hành động</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>Xóa cấu hình {0} {1}?</value></data>
+  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
+    <value>Kickstart</value>
+  </data>
 </root>

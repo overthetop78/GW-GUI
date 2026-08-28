@@ -1,5 +1,6 @@
 using GWGUI.App.Contracts.Emulation.Firmware;
 using GWGUI.App.Functions.Views.Emulation.Settings;
+using GWGUI.App.Localization.Extensions;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
@@ -11,15 +12,17 @@ namespace GWGUI.App.Controllers.Emulation.Firmware;
 
 internal sealed class EmulationFirmwareManagementController
 {
+    private readonly IEmulationModule _module;
     private readonly IEmulationFirmwareManager _manager;
     private readonly Func<IEmulationConfiguration> _getConfiguration;
     private readonly Action<IEmulationConfiguration> _setConfiguration;
     private ListBox _firmwares = null!;
     private Button _use = null!;
 
-    internal EmulationFirmwareManagementController(IEmulationFirmwareManager manager,
+    internal EmulationFirmwareManagementController(IEmulationModule module, IEmulationFirmwareManager manager,
         Func<IEmulationConfiguration> getConfiguration, Action<IEmulationConfiguration> setConfiguration)
     {
+        _module = module;
         _manager = manager;
         _getConfiguration = getConfiguration;
         _setConfiguration = setConfiguration;
@@ -40,19 +43,26 @@ internal sealed class EmulationFirmwareManagementController
     internal async Task RefreshAsync()
     {
         var configuration = _getConfiguration();
+        var settingsFields = _module.Describe(configuration.MachineId, configuration).Blocks
+            .SelectMany(block => block.Fields).ToArray();
         var entries = await _manager.ScanFirmwareAsync(configuration.MachineId, configuration);
         _firmwares.Items.Clear();
         foreach (var firmware in entries
                      .OrderBy(item => EmulationSettingsLayout.FirmwareCompatibilityOrder(item.Compatibility))
                      .ThenBy(item => item.DisplayName, StringComparer.CurrentCultureIgnoreCase))
         {
+            var destinationField = settingsFields.FirstOrDefault(field =>
+                string.Equals(field.Id, firmware.DestinationFieldId, StringComparison.Ordinal));
+            var destination = destinationField is null
+                ? string.Empty
+                : LocExtension.Get(destinationField.LabelResourceKey);
             _firmwares.Items.Add(new ListBoxItem
             {
                 Tag = firmware,
                 Padding = new Thickness(0),
                 HorizontalContentAlignment = HorizontalAlignment.Stretch,
                 Content = EmulationSettingsLayout.FirmwareRow(firmware.DisplayName, firmware.Version,
-                    firmware.Compatibility, firmware.Path)
+                    firmware.Compatibility, firmware.Path, destination)
             });
         }
         UpdateUseButton();

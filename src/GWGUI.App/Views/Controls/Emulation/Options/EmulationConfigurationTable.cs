@@ -105,13 +105,20 @@ internal sealed class EmulationConfigurationTable : UserControl
             Margin = EmulationConfigurationTableConstants.CellMargin,
             VerticalAlignment = VerticalAlignment.Center
         };
+        var hasPreviousGlyph = false;
         foreach (var glyph in glyphs)
+        {
             panel.Children.Add(new TextBlock
             {
                 Text = glyph,
                 FontFamily = ControlVisualConstants.IconFont,
-                VerticalAlignment = VerticalAlignment.Center
+                VerticalAlignment = VerticalAlignment.Center,
+                Margin = hasPreviousGlyph
+                    ? EmulationConfigurationTableConstants.GlyphSpacingMargin
+                    : default
             });
+            hasPreviousGlyph = true;
+        }
         return panel;
     }
 

@@ -282,7 +282,7 @@ La destination est affichée sous la forme d’un nom simple, dans le même styl
 
 Le texte doit reprendre directement le libellé déjà traduit du champ cible, par exemple **Kickstart** ou **ROM étendue**. Il ne faut pas créer une nouvelle traduction uniquement pour cette colonne.
 
-La longueur affichée est limitée. Si le libellé est trop long, il est tronqué avec une ellipse. Le nombre maximal exact de caractères et la position de cette nouvelle colonne par rapport à la compatibilité restent à fixer avant l’implémentation ; aucune valeur ni position ne doit être choisie sans validation.
+La longueur affichée est limitée à 20 caractères, ellipse comprise. Si le libellé est trop long, il est tronqué avec une ellipse. La colonne **Destination** est placée après la colonne indiquant la compatibilité.
 
 Si aucune destination ne peut être déterminée pour la machine affichée, la cellule reste vide.
 
@@ -625,6 +625,23 @@ Cette checklist couvre uniquement les modifications faites par l’utilisateur. 
   - [x] Modifier uniquement le titre de la fenêtre
     - [x] Modifier src/GWGUI.App/Views/Windows/Options/OptionsWindow.xaml et src/GWGUI.App/Views/Windows/Options/OptionsWindow.xaml.cs pour raccorder SelectionChanged de Navigation, écouter EditingContextChanged, afficher Options.Title seul hors de l’éditeur d’une machine et afficher Options.EmulationMachineTitle dans tous les sous-onglets de cette machine.
     - [x] Modifier RefreshLocalizedContent dans src/GWGUI.App/Views/Windows/Options/OptionsWindow.xaml.cs pour recalculer le titre après un changement de langue sans modifier le texte des onglets.
+
+- [x] Corriger la présentation des machines possédant une configuration
+  - [x] Modifier docs/tasks/interface/emulation-improvements.md pour inscrire, avant toute correction, la fermeture de l’instance ouverte, la correction des couleurs sur toute la ligne et toute la sélection fermée, la compilation, la vérification visuelle puis la fermeture.
+  - [x] Fermer l’instance de GW GUI actuellement ouverte avant de modifier les fichiers utilisés par l’application.
+  - [x] Modifier docs/tasks/interface/emulation-improvements.md pour inscrire le déplacement préalable de la palette Compatible vers les constantes visuelles communes et sa compilation avant sa réutilisation par le sélecteur de machines.
+  - [x] Modifier src/GWGUI.App/Constants/Controls/Visual/ControlVisualConstants.cs et src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationFirmwareSettingsLayout.cs pour déplacer les trois couleurs existantes de l’état Compatible vers les constantes visuelles communes, remplacer immédiatement leurs anciennes valeurs locales et conserver exactement le rendu du badge.
+  - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier uniquement le déplacement de la palette Compatible.
+  - [x] Modifier src/GWGUI.App/Constants/Controls/Visual/EmulationMachineChoiceVisualConstants.cs pour remplacer le gris par le fond vert clair, le texte vert et la bordure verte de la palette Compatible commune.
+  - [x] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationMachineChoiceLayout.cs pour retirer le fond limité au texte, conserver le texte en gras pour une machine configurée et créer les styles qui appliquent le fond, le texte et la bordure à toute la ligne déroulée ainsi qu’à toute la sélection fermée.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour appliquer au ComboBox des machines les deux styles créés, sans modifier sa sélection ni son fonctionnement.
+  - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par cette correction visuelle.
+  - [x] Modifier docs/tasks/interface/emulation-improvements.md après la première vérification visuelle pour inscrire la correction de la liaison de l’état configuré au contexte de données réel de chaque ComboBoxItem avant de relancer l’application.
+  - [x] Modifier CreateItemContainerStyle dans src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationMachineChoiceLayout.cs pour lier directement HasSavedConfiguration depuis EmulationMachineChoice au lieu de rechercher Content.HasSavedConfiguration sur cet objet.
+  - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par cette correction de liaison.
+  - [x] Exécuter GW GUI avec dotnet run --project src/GWGUI.App/GWGUI.App.csproj --no-build et vérifier que chaque machine configurée colore toute sa ligne et toute la sélection fermée en vert clair, sans rectangle gris limité au texte, tandis qu’une machine non configurée conserve la présentation normale.
+  - [x] Fermer l’instance de GW GUI utilisée pour cette vérification.
+
 ## Checklist détaillée — Point 3 : tableau des configurations
 
 Dans l’ordre général, ce point constitue le groupe 2. Il utilise l’état fiable des configurations établi au point 2 et doit être terminé avant le retour automatique du focus du point 1. La présentation textuelle actuelle est remplacée par un tableau sans sélection de ligne. Seuls le filtre de marque, le crayon, le double-clic et la poubelle produisent une action.
@@ -775,1023 +792,304 @@ Dans l’ordre général, ce point constitue le groupe 2. Il utilise l’état f
     - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionLayoutFunctions.cs, src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs et src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs pour ajouter le libellé Marque, son ComboBox et EmulationConfigurationTable dans BuildConfigurationsTab, puis supprimer immédiatement l’ancienne ListBox, le bouton Supprimer global, RemoveConfiguration, DeleteSelectedConfigurationAsync, l’alimentation de _configurations, les champs _configurations, _configurationList et _removeConfiguration, leur gestionnaire SelectionChanged, l’ancienne actualisation de Common.Delete et les directives using devenues inutiles.
     - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier le remplacement complet et la suppression de tout le fonctionnement fondé sur une ligne sélectionnée.
 
-## Checklist détaillée — Point 4 : aides contextuelles sur les champs
+- [x] Espacer uniformément les icônes des lecteurs et des périphériques
+  - [x] Modifier docs/tasks/interface/emulation-improvements.md pour inscrire, avant toute correction, l’ajout d’un espacement commun de 8 pixels, son application aux deux colonnes, la compilation, la vérification visuelle puis la fermeture.
+  - [x] Modifier src/GWGUI.App/Constants/Emulation/EmulationConfigurationTableConstants.cs pour ajouter un espacement horizontal de 8 pixels entre deux icônes d’une même cellule.
+  - [x] Modifier GlyphCell dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationConfigurationTable.cs pour appliquer cet espacement entre les icônes sans marge extérieure supplémentaire, afin que Lecteurs et Périphériques utilisent exactement la même règle.
+  - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par cet espacement.
+  - [x] Exécuter GW GUI avec dotnet run --project src/GWGUI.App/GWGUI.App.csproj --no-build et vérifier dans le tableau Configuration que toutes les icônes multiples de Lecteurs et de Périphériques possèdent le même espacement, sans modifier le nombre ni l’ordre des icônes.
+  - [x] Fermer l’instance de GW GUI utilisée pour cette vérification.
 
-Cette checklist correspond au groupe 5 de l’ordre général de réalisation. Elle concerne uniquement les champs des éditeurs de machine Amiga et Atari dont le libellé ne suffit pas à comprendre le rôle, les choix ou les conséquences. Elle ne crée aucune aide sur les boutons ni sur les titres de groupes. Le choix exact des champs est écrit et validé avant toute création de texte ou de clé de ressource.
+## Checklist détaillée — Point 4 : destination des ROM détectées
 
-- [ ] Définition exacte des champs qui recevront une aide
-  - [ ] Établir l’inventaire depuis les champs réellement affichés par les machines Amiga et Atari
-    - [ ] Inscrire l’inventaire dans le document avant de modifier les contrats
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md pour ajouter, à la section 4, un tableau recensant les champs visibles produits par src/GWGUI.Emulation.Amiga/Functions/AmigaSettingsDescriptionFunctions.cs et src/GWGUI.Emulation.Atari/Functions/AtariSettingsDescriptionFunctions.cs pour tous les modèles pris en charge.
-      - [ ] Modifier ce tableau dans AMELIORATIONS_INTERFACE_EMULATION.md pour ajouter les champs fixes construits directement par src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs et src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationControllerSettingsLayout.cs, sans y ajouter les boutons, les titres de cartes, les titres d’onglets, les colonnes de tableaux ni les actions d’association.
-      - [ ] Modifier ce tableau dans AMELIORATIONS_INTERFACE_EMULATION.md pour indiquer, pour chaque champ, son identifiant ou sa clé de libellé, les machines et onglets où il apparaît, et uniquement l’un des deux états « aide nécessaire » ou « aucune aide ».
-    - [ ] Figer le contenu fonctionnel des aides avant de créer leurs ressources
-      - [ ] Modifier le tableau de AMELIORATIONS_INTERFACE_EMULATION.md après validation pour conserver uniquement les champs approuvés comme nécessitant une aide et ne pas déduire de nouveaux champs à partir de préférences techniques.
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md pour écrire, face à chaque champ approuvé, le texte court d’une seule ligne destiné au survol et le texte concis destiné au clic.
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md pour faire décrire au texte au clic le rôle du champ, ses choix disponibles et leurs différences utiles sans ajouter de long paragraphe, de documentation générale ou d’information sans rapport avec le champ.
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md pour identifier explicitement les champs fixes qui doivent disparaître dans un point ultérieur et ne pas leur créer provisoirement une aide, uniquement lorsque cette suppression a déjà été validée.
+Cette checklist réalise la demande fonctionnelle décrite dans la section 5. Elle conserve la liste et le bouton Utiliser existants. La destination affichée provient du même identifiant de champ que celui consommé par Utiliser ; l’application ne maintient aucune seconde correspondance.
 
-- [ ] Transport des deux aides depuis la description de la machine jusqu’à l’interface
-  - [ ] Étendre le contrat commun sans confondre les explications de compatibilité Atari
-    - [ ] Ajouter la seconde clé d’aide au contrat avant de l’utiliser
-      - [ ] Modifier src/GWGUI.Emulation/Contracts/EmulationSettingsField.cs pour conserver ExplanationResourceKey comme clé de l’aide courte et ajouter DetailedExplanationResourceKey comme clé distincte de l’aide concise au clic, sans modifier les propriétés homonymes indépendantes de src/GWGUI.Emulation.Atari/Contracts/AtariOptionRule.cs, src/GWGUI.Emulation.Atari/Contracts/AtariMediaCompatibilityRule.cs et src/GWGUI.Emulation.Atari/Contracts/AtariHardwareField.cs.
-    - [ ] Étendre le champ de contrôle utilisé par les mises en page
-      - [ ] Modifier src/GWGUI.App/Contracts/Emulation/Settings/EmulationSettingsControlField.cs pour ajouter les deux textes localisés optionnels ShortHelp et DetailedHelp après Label et Control, sans modifier le comportement des constructions qui ne fournissent aucune aide.
-      - [ ] Modifier src/GWGUI.App/Contracts/Views/Emulation/Settings/EmulationCpuSettingsContent.cs pour transporter des EmulationSettingsControlField pour le modèle de CPU, la précision, le FPU, la vitesse d’origine et la vitesse réglable, tout en conservant séparément le résumé actuel du processeur.
-  - [ ] Créer un seul chemin de conversion pour tous les champs décrits par un module
-    - [ ] Ajouter le convertisseur commun avant de remplacer les constructions existantes
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour ajouter CreateControlField, qui crée le contrôle existant par CreateField, localise LabelResourceKey, localise les deux clés d’aide seulement lorsqu’elles sont renseignées et retourne un EmulationSettingsControlField.
-      - [ ] Modifier CreateControlField dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour laisser ShortHelp et DetailedHelp tous les deux vides lorsqu’aucune aide n’a été validée pour le champ.
-    - [ ] Faire passer les formulaires génériques par le convertisseur commun
-      - [ ] Modifier AddBlocks dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour produire ses champs avec CreateControlField sans changer l’ordre, les blocs, le nombre de colonnes, la visibilité ni les contrôles actuels.
-      - [ ] Vérifier avec les tests des éditeurs Amiga et Atari que les onglets Général, ROM, Vidéo, Audio et les options d’émulateur de Stockage conservent exactement leurs champs et leur ordre après ce raccordement.
-    - [ ] Faire passer CPU et RAM par le même convertisseur
-      - [ ] Modifier BuildCpuSettingsTab dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleHardwareSettingsSection.cs pour construire le contenu de chaque champ CPU avec CreateControlField sans changer le résumé, les choix ni les règles existantes.
-      - [ ] Modifier BuildMemorySettingsTab dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleHardwareSettingsSection.cs pour remplacer les constructions directes de EmulationSettingsControlField par CreateControlField sans changer le calcul de RAM totale.
-      - [ ] Vérifier avec les tests des éditeurs Amiga et Atari que les valeurs, états activés, visibilités conditionnelles et totaux CPU/RAM restent identiques avant de retirer toute ancienne construction devenue inutilisée.
-    - [ ] Faire passer Souris et Manettes par le même convertisseur
-      - [ ] Modifier BuildInputSettingsTab dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleInputSettingsSection.cs pour produire les champs décrits par le module avec CreateControlField sans modifier les associations d’entrée ni leur enregistrement.
-      - [ ] Modifier src/GWGUI.App/Controllers/Emulation/Input/EmulationInputSettingsController.cs et src/GWGUI.App/Contracts/Emulation/Controllers/EmulationControllerPortSettings.cs uniquement pour transporter les deux aides des champs fixes approuvés dans l’inventaire, sans ajouter d’aide à un sélecteur exclu ou destiné à être retiré.
-      - [ ] Vérifier avec les tests d’entrée existants que clavier, souris, trackball, manettes et joysticks conservent leurs sources de capture et leurs associations après ce raccordement.
+- [x] Inscrire les deux décisions d’affichage encore manquantes avant de modifier le code
+  - [x] Modifier docs/tasks/interface/emulation-improvements.md, dans la section 5, pour remplacer le nombre maximal de caractères restant à fixer par la valeur validée et préciser si l’ellipse est comprise dans cette limite.
+  - [x] Modifier docs/tasks/interface/emulation-improvements.md, dans la section 5, pour inscrire la position validée de Destination par rapport au nom de la ROM et à Compatibilité.
 
-- [ ] Contrôle réutilisable du libellé et de son icône d’information
-  - [ ] Créer le contrôle avant de remplacer les TextBlock de libellé
-    - [ ] Créer le fichier du contrôle commun
-      - [ ] Créer src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSettingsFieldLabel.cs.
-    - [ ] Reproduire d’abord le libellé existant sans aide
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSettingsFieldLabel.cs pour afficher le texte avec le même alignement et la même gestion du retour à la ligne que le libellé fourni par la mise en page appelante.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSettingsFieldLabel.cs pour ne créer aucune icône lorsque ShortHelp et DetailedHelp sont absents et conserver ainsi l’affichage actuel des champs sans aide.
-    - [ ] Ajouter l’icône toujours visible uniquement aux champs approuvés
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSettingsFieldLabel.cs pour placer immédiatement après le texte une icône utilisant ControlVisualConstants.InformationGlyph lorsque les deux aides sont présentes.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSettingsFieldLabel.cs pour rendre cliquable uniquement la surface visible normale de l’icône, sans marge transparente ni zone invisible agrandie.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSettingsFieldLabel.cs pour conserver l’icône visible en permanence et ne pas conditionner son affichage au survol ou au focus.
-  - [ ] Afficher l’aide courte exactement pendant le survol
-    - [ ] Utiliser l’infobulle du contrôle commun
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSettingsFieldLabel.cs pour affecter ShortHelp à l’infobulle de l’icône et empêcher le retour à la ligne ou le défilement de cette aide d’une seule ligne.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSettingsFieldLabel.cs pour laisser WPF fermer l’infobulle dès la fin du survol sans la transformer en aide persistante.
-  - [ ] Afficher l’aide concise au clic sous forme de post-it
-    - [ ] Construire le post-it dans le même contrôle réutilisable
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSettingsFieldLabel.cs pour créer un Popup ancré à l’icône, contenant le nom du champ et DetailedHelp dans une présentation compacte de type post-it.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSettingsFieldLabel.cs pour limiter la taille du post-it et n’activer un ScrollViewer que lorsque le texte concis dépasse réellement l’espace disponible.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSettingsFieldLabel.cs pour ne pas ajouter de longs paragraphes, de liste de documentation ou de commandes supplémentaires autour du texte fourni par la ressource.
-    - [ ] Fermer le post-it sur la prochaine action demandée
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSettingsFieldLabel.cs pour fermer le post-it sur n’importe quelle touche clavier reçue par la fenêtre qui le contient.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSettingsFieldLabel.cs pour fermer le post-it sur le clic suivant, y compris hors du contrôle, sans que le clic d’ouverture le ferme immédiatement.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSettingsFieldLabel.cs pour détacher les gestionnaires de fenêtre lors de la fermeture et de Unloaded afin de ne conserver ni fenêtre ni éditeur en mémoire.
+- [x] Faire porter la destination par le résultat commun du scan
+  - [x] Modifier src/GWGUI.Emulation/Contracts/EmulationFirmwareCandidate.cs pour ajouter l’identifiant optionnel du champ de destination à la ROM détectée.
+  - [x] Modifier ScanFirmwareAsync dans src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModule.cs pour renseigner cet identifiant depuis le type déjà obtenu par AmigaFirmwareCatalog, avec KickstartPath, ExtendedRomPath ou RomKeyPath, et le laisser vide lorsqu’aucun de ces champs ne correspond.
+  - [x] Modifier UseFirmware dans src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModule.cs pour utiliser l’identifiant porté par EmulationFirmwareCandidate afin de choisir le champ à remplacer et supprimer la seconde inspection actuellement réalisée uniquement pour retrouver cette destination.
+  - [x] Modifier ScanFirmwareAsync dans src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs pour renseigner SystemFirmware lorsque la ROM détectée possède une destination pour la machine affichée et laisser l’identifiant vide sinon.
+  - [x] Modifier UseFirmware dans src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs pour vérifier et consommer ce même identifiant avant d’appliquer la sélection Atari existante, sans ajouter une autre table de routage.
+  - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs provoquées par l’ajout de la destination au contrat commun.
 
-- [ ] Utilisation du contrôle commun dans toutes les mises en page concernées
-  - [ ] Ajouter le nouveau chemin sans casser les formulaires sans aide
-    - [ ] Faire accepter les champs enrichis par les deux grilles communes
-      - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationSettingsLayout.cs pour ajouter une surcharge de CompactForm acceptant des EmulationSettingsControlField et créant chaque libellé avec EmulationSettingsFieldLabel.
-      - [ ] Modifier l’ancienne surcharge de CompactForm dans src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationSettingsLayout.cs pour déléguer à la nouvelle avec des aides vides, afin que l’onglet Général d’Émulation hors éditeur de machine conserve son fonctionnement actuel.
-      - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationHardwareSettingsLayout.cs pour faire accepter des EmulationSettingsControlField par SettingsFields et SettingsFieldGrid sans changer les largeurs, marges, colonnes ni contrôles.
-      - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationHardwareSettingsLayout.cs pour lier la visibilité de tout EmulationSettingsFieldLabel à celle du contrôle correspondant, afin que le texte et l’icône disparaissent ensemble.
-      - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationHardwareSettingsLayout.cs pour ajouter une surcharge sans aide déléguant au nouveau chemin pour les appelants hors du périmètre Amiga/Atari.
-  - [ ] Adapter les présentations spécialisées après la disponibilité du chemin commun
-    - [ ] Utiliser le libellé commun dans CPU et RAM
-      - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationCpuSettingsLayout.cs pour consommer les EmulationSettingsControlField du contrat CPU et afficher leurs libellés par SettingsFieldGrid sans modifier les trois cartes Processeur, Compatibilité et Accélération.
-      - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationMemorySettingsLayout.cs pour transmettre directement les EmulationSettingsControlField à SettingsFieldGrid sans perdre leurs aides ni modifier les cadres RAM principale, extensions et total.
-    - [ ] Utiliser le libellé commun dans Souris et Manettes
-      - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationInputSettingsLayout.cs pour transmettre directement les EmulationSettingsControlField de la souris et des options analogiques à SettingsFields sans les réduire à Label et Control.
-      - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationControllerSettingsLayout.cs pour transmettre directement les EmulationSettingsControlField des comportements de manette à SettingsFields sans modifier les tableaux d’associations.
-      - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationControllerSettingsLayout.cs pour utiliser EmulationSettingsFieldLabel sur les seuls sélecteurs fixes approuvés dans l’inventaire et ne pas ajouter d’icône aux titres, aux ports, aux boutons Assigner ou aux lignes d’action.
+- [x] Transmettre le module nécessaire à la résolution du libellé
+  - [x] Modifier le constructeur de src/GWGUI.App/Controllers/Emulation/Firmware/EmulationFirmwareManagementController.cs pour recevoir le IEmulationModule déjà détenu par EmulationModuleSettingsSection.
+  - [x] Modifier docs/tasks/interface/emulation-improvements.md pour placer le raccordement de EmulationModuleSettingsSection avant l’utilisation du nouveau constructeur et réunir dans une seule tâche la résolution et la transmission du libellé après l’extension de FirmwareRow.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour transmettre _module à EmulationFirmwareManagementController sans changer les raccordements de ConfigurationChanged.
+  - [x] Modifier docs/tasks/interface/emulation-improvements.md pour renommer ce groupe selon les actions qu’il contient maintenant, avant de le cocher.
 
+- [x] Ajouter la cellule informative à la ligne existante
+  - [x] Modifier src/GWGUI.App/Constants/Emulation/EmulationFirmwareSettingsConstants.cs pour ajouter la limite de caractères validée et uniquement les dimensions nécessaires à la colonne validée.
+  - [x] Modifier FirmwareRow dans src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationFirmwareSettingsLayout.cs pour recevoir le libellé de destination, le limiter avec une ellipse selon la décision inscrite et l’afficher comme texte simple à la position validée, dans la présentation de la compatibilité existante.
+  - [x] Modifier RefreshAsync dans src/GWGUI.App/Controllers/Emulation/Firmware/EmulationFirmwareManagementController.cs pour rechercher DestinationFieldId dans les champs retournés par IEmulationModule.Describe pour la machine et la configuration affichées, localiser directement LabelResourceKey, transmettre ce texte à FirmwareRow et transmettre un texte vide si l’identifiant est absent ou introuvable, sans modifier le nom, la version, la compatibilité, le chemin ou l’ordre des ROM.
+  - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par la nouvelle cellule.
 
-- [ ] Textes courts et concis dans toutes les langues prises en charge
-  - [ ] Créer les clés approuvées dans la ressource de base avant les traductions
-    - [ ] Ajouter chaque paire de textes validée au catalogue neutre
-      - [ ] Modifier src/GWGUI.App/Resources/00-Base/Emulation.resx pour créer, pour chaque champ approuvé, une clé d’aide courte et une clé d’aide concise correspondant exactement aux deux textes validés dans AMELIORATIONS_INTERFACE_EMULATION.md.
-      - [ ] Modifier src/GWGUI.App/Resources/00-Base/Emulation.resx pour garantir que chaque aide courte tient sur une seule ligne et que chaque aide au clic reste courte, claire et limitée au rôle, aux choix et aux différences utiles du champ.
-  - [ ] Traduire chaque paire sans écrire de texte dans le code
-    - [ ] Ajouter les clés dans chaque catalogue de langue existant
-      - [ ] Modifier src/GWGUI.App/Resources/ar-SA/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/cs-CZ/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/da-DK/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/de-DE/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/el-GR/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/en-US/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/es-ES/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/fi-FI/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/fr-FR/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/he-IL/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/hu-HU/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/id-ID/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/it-IT/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/ja-JP/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/ko-KR/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/nb-NO/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/nl-NL/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/pl-PL/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/pt-BR/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/pt-PT/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/ro-RO/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/ru-RU/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/sv-SE/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/th-TH/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/tr-TR/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/uk-UA/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/vi-VN/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/zh-Hans/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/zh-Hant/Emulation.resx.
-  - [ ] Affecter uniquement les paires validées aux champs correspondants
-    - [ ] Raccorder les clés Amiga après leur création dans tous les catalogues
-      - [ ] Modifier src/GWGUI.Emulation.Amiga/Functions/AmigaSettingsDescriptionFunctions.cs pour renseigner ExplanationResourceKey et DetailedExplanationResourceKey uniquement sur les champs Amiga approuvés dans l’inventaire et laisser les deux propriétés vides pour tous les autres champs.
-    - [ ] Raccorder les clés Atari après leur création dans tous les catalogues
-      - [ ] Modifier src/GWGUI.Emulation.Atari/Functions/AtariSettingsDescriptionFunctions.cs pour renseigner ExplanationResourceKey et DetailedExplanationResourceKey uniquement sur les champs Atari approuvés dans l’inventaire, laisser les deux propriétés vides pour tous les autres champs et ne pas réutiliser les explications des règles de compatibilité Atari.
-    - [ ] Raccorder les éventuels champs fixes approuvés
-      - [ ] Modifier uniquement les constructeurs identifiés dans le tableau de AMELIORATIONS_INTERFACE_EMULATION.md pour fournir les deux clés aux champs fixes approuvés, sans généraliser l’icône à tous les libellés de l’application.
+- [x] Corriger les écarts constatés dans l’affichage réel avant de reprendre la vérification
+  - [x] Modifier docs/tasks/interface/emulation-improvements.md pour inscrire, avant toute correction, la correction du libellé Kickstart, de la présentation et de la largeur de Destination, la compilation puis la reprise de la vérification dans une nouvelle exécution.
+  - [x] Modifier src/GWGUI.App/Resources/00-Base/Emulation.resx et chaque src/GWGUI.App/Resources/<langue>/Emulation.resx pour ajouter une clé de ressource Kickstart dont la valeur visible reste Kickstart dans toutes les langues prises en charge.
+  - [x] Modifier src/GWGUI.Emulation.Amiga/Constants/AmigaSettingsDescriptionFunctionsConstants.cs et src/GWGUI.Emulation.Amiga/Functions/AmigaSettingsDescriptionFunctions.cs pour remplacer le texte brut Kickstart utilisé comme LabelResourceKey par la nouvelle clé de ressource, afin que le champ existant et Destination affichent tous deux Kickstart sans crochets.
+  - [x] Modifier src/GWGUI.App/Constants/Emulation/EmulationFirmwareSettingsConstants.cs pour remplacer la largeur de Destination copiée depuis Compatibilité par uniquement l’identifiant de groupe nécessaire à une largeur partagée calculée depuis le contenu.
+  - [x] Modifier docs/tasks/interface/emulation-improvements.md pour inscrire la copie préalable de la construction du badge Compatibilité dans une fonction commune et sa compilation avant le remplacement de l’ancien bloc.
+  - [x] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationFirmwareSettingsLayout.cs pour copier la construction actuelle du Border de Compatibilité dans une fonction FirmwareBadge recevant le texte et les couleurs, sans retirer ni remplacer le bloc existant.
+  - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier uniquement l’ajout de FirmwareBadge avant son utilisation.
+  - [x] Modifier FirmwareSettingsPage et FirmwareRow dans src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationFirmwareSettingsLayout.cs pour partager automatiquement la largeur de Destination entre les lignes, rendre au nom de ROM l’espace restant, remplacer le bloc Compatibilité par FirmwareBadge puis afficher Destination avec la même fonction et les couleurs de compatibilité de la ligne.
+  - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par ces corrections d’affichage.
 
-- [ ] Vérification fonctionnelle, visuelle et multilingue des aides
-  - [ ] Verrouiller le comportement du contrôle commun par des tests WPF
-    - [ ] Créer le fichier de tests avant ses scénarios
-      - [ ] Créer tests/GWGUI.Tests/EmulationSettingsFieldHelpTests.cs.
-    - [ ] Ajouter les scénarios de visibilité et de survol
-      - [ ] Modifier tests/GWGUI.Tests/EmulationSettingsFieldHelpTests.cs pour vérifier qu’un champ sans paire d’aides n’affiche aucune icône et qu’un champ possédant les deux aides affiche toujours l’icône immédiatement après son libellé.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationSettingsFieldHelpTests.cs pour vérifier que l’infobulle contient uniquement l’aide courte d’une ligne et disparaît après le survol.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationSettingsFieldHelpTests.cs pour vérifier que la visibilité conditionnelle d’un contrôle masque également son libellé et son icône.
-    - [ ] Ajouter les scénarios du post-it
-      - [ ] Modifier tests/GWGUI.Tests/EmulationSettingsFieldHelpTests.cs pour vérifier qu’un clic sur l’icône ouvre un seul post-it avec le nom du champ et l’aide concise, sans fermer ce post-it pendant le clic d’ouverture.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationSettingsFieldHelpTests.cs pour vérifier que toute touche clavier ferme le post-it.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationSettingsFieldHelpTests.cs pour vérifier que le clic suivant ferme le post-it, qu’il provienne du contrôle ou d’une autre zone de la fenêtre.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationSettingsFieldHelpTests.cs pour vérifier que les gestionnaires de fenêtre sont détachés après fermeture ou déchargement du contrôle.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationSettingsFieldHelpTests.cs pour vérifier que le défilement du post-it reste désactivé lorsque le texte tient et devient disponible uniquement lorsqu’il dépasse la taille maximale.
-  - [ ] Verrouiller l’exhaustivité du catalogue approuvé
-    - [ ] Créer le fichier de tests du catalogue avant ses scénarios
-      - [ ] Créer tests/GWGUI.Tests/EmulationSettingsHelpCatalogTests.cs.
-    - [ ] Vérifier les paires et le périmètre Amiga/Atari
-      - [ ] Modifier tests/GWGUI.Tests/EmulationSettingsHelpCatalogTests.cs pour parcourir les descriptions de tous les modèles Amiga et Atari et vérifier qu’un champ possède soit les deux clés d’aide, soit aucune des deux.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationSettingsHelpCatalogTests.cs pour comparer les champs portant une aide à l’inventaire approuvé de AMELIORATIONS_INTERFACE_EMULATION.md et détecter toute aide ajoutée ou oubliée.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationSettingsHelpCatalogTests.cs pour vérifier que toutes les clés courtes et détaillées existent dans le catalogue Emulation et que les aides courtes ne contiennent aucun retour à la ligne.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationSettingsHelpCatalogTests.cs pour vérifier les onglets génériques, CPU, RAM, Souris et Manettes afin qu’ils transmettent les deux textes jusqu’au EmulationSettingsFieldLabel correspondant.
-  - [ ] Vérifier toutes les traductions et l’actualisation de langue
-    - [ ] Compléter les contrôles de localisation existants
-      - [ ] Modifier tests/GWGUI.Tests/LocalizationTests.cs pour vérifier que chaque paire d’aide de 00-Base/Emulation.resx existe dans les 29 catalogues traduits, en conservant le contrôle d’égalité des clés déjà présent.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationSettingsFieldHelpTests.cs pour changer la langue, reconstruire l’éditeur par RefreshLocalizedContent et vérifier que le libellé, l’infobulle et le post-it utilisent tous la nouvelle langue.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationSettingsFieldHelpTests.cs pour vérifier l’ancrage et la lecture du post-it dans une langue de droite à gauche sans modifier le comportement des champs.
-  - [ ] Valider l’ensemble sans corriger d’autres comportements par préférence
-    - [ ] Exécuter les tests ciblés puis la suite complète
-      - [ ] Exécuter EmulationSettingsFieldHelpTests, EmulationSettingsHelpCatalogTests et LocalizationTests, puis corriger uniquement les erreurs introduites par les aides contextuelles.
-      - [ ] Exécuter la suite GWGUI.Tests et corriger uniquement les régressions causées par le transport des métadonnées, le nouveau libellé ou les ressources d’aide.
-      - [ ] Vérifier manuellement dans les éditeurs Amiga et Atari que l’icône reste visible, que le survol tient sur une ligne, que le clic ouvre le post-it, que toute touche ou le clic suivant le ferme, et qu’aucune icône n’apparaît sur un bouton ou un titre.
-## Checklist détaillée — Point 5 : destination des ROM détectées
+- [x] Corriger la largeur des deux badges après le constat visuel
+  - [x] Modifier docs/tasks/interface/emulation-improvements.md pour inscrire la fermeture de l’instance affichée, la largeur identique de Compatibilité et Destination, leur alignement à droite avec un petit espacement, l’espace restant réservé au nom, la compilation et la nouvelle vérification visuelle.
+  - [x] Fermer l’instance de GW GUI utilisée pour constater cette disposition.
+  - [x] Modifier src/GWGUI.App/Constants/Emulation/EmulationFirmwareSettingsConstants.cs pour remplacer les largeurs distinctes de Compatibilité et Destination par un seul groupe de largeur partagée entre les deux badges et ajouter uniquement l’espacement validé entre eux.
+  - [x] Modifier FirmwareRow et FirmwareBadge dans src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationFirmwareSettingsLayout.cs pour laisser la colonne du nom prendre tout l’espace restant, placer à droite deux colonnes automatiques dans le même groupe de largeur, étirer et centrer chaque badge dans sa colonne et conserver le petit espacement entre eux.
+  - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par cette disposition.
+  - [x] Exécuter GW GUI avec dotnet run --project src/GWGUI.App/GWGUI.App.csproj --no-build et ouvrir Options > Émulation > Amiga > ROM.
+  - [x] Capturer uniquement la fenêtre Options et vérifier que le nom de ROM utilise l’espace restant tandis que Compatibilité et Destination ont exactement la même largeur, restent à droite et sont séparées par un petit espace.
+  - [x] Fermer l’instance de GW GUI utilisée pour cette vérification visuelle.
+- [x] Restaurer le libellé Atari et supprimer le redimensionnement de la fenêtre Options
+  - [x] Modifier docs/tasks/interface/emulation-improvements.md pour inscrire la fermeture de l’instance affichée, la restauration immédiate du libellé Atari, la désactivation du redimensionnement, la compilation et la vérification visuelle.
+  - [x] Fermer l’instance de GW GUI affichée pendant ce constat.
+  - [x] Restaurer dans src/GWGUI.App/Resources/fr-FR/Emulation.resx la valeur exacte ROM système pour Emulation.Firmware.Rom.System.
+  - [x] Modifier src/GWGUI.App/Views/Windows/Options/OptionsWindow.xaml pour remplacer ResizeMode=CanResizeWithGrip par ResizeMode=NoResize sans modifier Width, Height, MinWidth ni MinHeight.
+  - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par ces deux corrections.
+  - [x] Exécuter GW GUI avec dotnet run --project src/GWGUI.App/GWGUI.App.csproj --no-build, ouvrir Options > Émulation > Atari > ROM et vérifier que le titre et le champ affichent de nouveau ROM système et que la fenêtre ne possède plus de poignée ni de commande de redimensionnement.
+  - [x] Fermer l’instance de GW GUI utilisée pour cette vérification.
+- [x] Restaurer l’identification TOS dans le nom des ROM Atari reconnues
+  - [x] Modifier docs/tasks/interface/emulation-improvements.md pour inscrire le préfixe TOS devant la version d’une ROM TOS reconnue, la conservation du nom complet pour une ROM non reconnue, la compilation et la vérification visuelle dans l’application.
+  - [x] Modifier ScanFirmwareAsync dans src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs pour afficher TOS suivi de la version lorsqu’une ROM TOS est reconnue et conserver Path.GetFileName(scanned.Path) lorsqu’elle n’est pas reconnue.
+  - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par cette modification.
+  - [x] Exécuter GW GUI avec dotnet run --project src/GWGUI.App/GWGUI.App.csproj --no-build, ouvrir Options > Émulation > Atari > ROM et vérifier que les quatre ROM reconnues affichent TOS devant leur version au lieu du seul numéro.
+  - [x] Fermer l’instance de GW GUI utilisée pour cette vérification.
+- [x] Vérifier le fonctionnement demandé avant de terminer le point
+  - [x] Modifier docs/tasks/interface/emulation-improvements.md avant la nouvelle exécution pour séparer chaque cas vérifié, inscrire les fichiers et le libellé temporaires nécessaires aux données absentes, puis inscrire leur suppression ou restauration et la compilation finale.
+  - [x] Modifier docs/tasks/interface/emulation-improvements.md pour remplacer les fausses données de vérification prévues par les vraies données retrouvées : C:/Users/overt/Downloads/Recalbox_10.0.8_BIOS_Pack/rom.key et les quatre ROM TOS déjà présentes dans %APPDATA%/GW GUI/Emulation/Machines/Atari/Firmware/ST.
+  - [x] Copier temporairement la vraie clé C:/Users/overt/Downloads/Recalbox_10.0.8_BIOS_Pack/rom.key vers %APPDATA%/GW GUI/Emulation/Machines/Amiga/Firmware/rom.key, uniquement si la cible n’existe pas, afin que le scan Amiga puisse la détecter sans modifier le fichier source.
+  - [x] Modifier temporairement uniquement la valeur de Emulation.Firmware.Rom.System dans src/GWGUI.App/Resources/fr-FR/Emulation.resx de ROM système vers ROM système particulièrement longue pour vérifier la limite de 20 caractères et l’ellipse, sans modifier sa clé.
+  - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore afin d’intégrer uniquement le libellé temporaire nécessaire à cette vérification.
+  - [x] Exécuter GW GUI avec dotnet run --project src/GWGUI.App/GWGUI.App.csproj --no-build et ouvrir Options > Émulation.
+  - [x] Vérifier dans Amiga > ROM qu’une Kickstart affiche Kickstart après Compatibilité, sans crochets, et que Utiliser renseigne le champ Kickstart sur une machine sans configuration enregistrée.
+  - [x] Vérifier dans une machine Amiga CDTV ou CD32 qu’une ROM étendue réelle affiche ROM étendue après Compatibilité et correspond au champ ROM étendue.
+  - [x] Vérifier dans une machine Amiga sans configuration enregistrée que rom.key affiche Clé ROM après Compatibilité et que Utiliser renseigne le champ Clé ROM.
+  - [x] Vérifier dans une machine Atari ST sans configuration enregistrée qu’une des quatre vraies ROM TOS compatibles affiche le libellé système tronqué à 20 caractères avec une ellipse après Compatibilité et que Utiliser renseigne le champ système.
+  - [x] Vérifier dans la même machine Atari ST que toute vraie ROM TOS incompatible laisse Destination vide et Utiliser désactivé lorsqu’elle est sélectionnée ; si les quatre ROM possèdent une destination pour le modèle affiché, constater explicitement que ce cas ne peut pas être vérifié avec les données réelles au lieu de fabriquer une ROM.
+  - [x] Dans la même exécution, vérifier que les badges Destination utilisent la même présentation et les mêmes couleurs que Compatibilité, que le nom et la version des ROM disposent de l’espace restant, et que la sélection et le bouton Utiliser conservent leur comportement.
+  - [x] Fermer l’instance de GW GUI utilisée pour cette vérification.
+  - [x] Supprimer uniquement la copie temporaire %APPDATA%/GW GUI/Emulation/Machines/Amiga/Firmware/rom.key créée pour cette vérification, sans modifier la vraie clé source ni les ROM Atari existantes.
+  - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore pour vérifier l’état final après suppression de tous les artefacts temporaires.
 
-Cette checklist correspond au groupe 4 de l’ordre général de réalisation. Elle ajoute uniquement une information de destination à chaque ROM détectée pour la machine actuellement affichée. Le routage devient une donnée commune employée à la fois par la ligne informative et par le bouton Utiliser ; aucune seconde table de correspondance n’est ajoutée dans l’interface.
+## Checklist détaillée — Point 5 : aides contextuelles sur les champs
 
-- [ ] Paramètres d’affichage restant à valider avant le code
-  - [ ] Inscrire les deux valeurs manquantes dans le document
-    - [ ] Fixer la limite de caractères sans l’inventer pendant l’implémentation
-      - [ ] Modifier la section 5 de AMELIORATIONS_INTERFACE_EMULATION.md pour remplacer la mention du nombre maximal restant à fixer par la valeur validée, en précisant que l’ellipse fait partie de cette limite.
-    - [ ] Fixer la position de la destination dans la ligne existante
-      - [ ] Modifier la section 5 de AMELIORATIONS_INTERFACE_EMULATION.md pour indiquer la position validée de la destination par rapport au nom de la ROM et à la compatibilité, sans ajouter d’en-tête ou de texte permanent non demandé.
+Cette checklist réalise la demande fonctionnelle décrite dans la section 4. Les aides concernent uniquement les champs explicitement validés dans les éditeurs Amiga et Atari. ExplanationResourceKey devient la clé de l’aide courte ; une seconde clé distincte transporte l’aide concise au clic.
 
-- [ ] Source unique du champ de destination utilisée par les modules
-  - [ ] Transporter l’identifiant du champ cible avec chaque ROM détectée
-    - [ ] Étendre le contrat avant de modifier les scanners
-      - [ ] Modifier src/GWGUI.Emulation/Contracts/EmulationFirmwareCandidate.cs pour ajouter DestinationFieldId comme valeur optionnelle après les cinq données existantes, sans changer leur ordre, et laisser cette valeur vide lorsqu’aucun champ ne peut être déterminé pour la machine ayant produit le candidat.
-  - [ ] Extraire le routage Amiga actuellement contenu dans Utiliser
-    - [ ] Ajouter une fonction commune de type de ROM vers identifiant de champ
-      - [ ] Modifier src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModule.cs pour ajouter une fonction unique qui associe AmigaFirmwareType.Kickstart à AmigaSettingsConstants.KickstartPath, AmigaFirmwareType.ExtendedRom à AmigaSettingsConstants.ExtendedRomPath et AmigaFirmwareType.RomKey à AmigaSettingsConstants.RomKeyPath.
-      - [ ] Modifier cette fonction dans src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModule.cs pour retourner une destination vide pour AmigaFirmwareType.Unknown et toute valeur sans champ pris en charge.
-    - [ ] Renseigner le candidat depuis le résultat déjà obtenu par le scan
-      - [ ] Modifier ScanFirmwareAsync dans src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModule.cs pour affecter DestinationFieldId à partir du AmigaFirmwareType déjà fourni par AmigaFirmwareCatalog.Scan, sans inspecter une seconde fois le fichier pour construire la ligne.
-    - [ ] Faire utiliser exactement la même fonction au bouton Utiliser
-      - [ ] Modifier UseFirmware dans src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModule.cs pour conserver l’inspection actuelle du fichier au moment de l’utilisation, appeler la même fonction de routage avec le type alors constaté et modifier uniquement le chemin correspondant à cet identifiant.
-      - [ ] Modifier UseFirmware dans src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModule.cs pour refuser une destination vide et conserver l’erreur actuelle pour une ROM qui n’est plus utilisable, sans choisir un champ par défaut.
-      - [ ] Modifier UseFirmware dans src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModule.cs pour ne jamais employer le texte affiché, le nom du fichier ou le libellé traduit afin de décider entre Kickstart, ROM étendue et Clé ROM.
-  - [ ] Extraire le routage Atari actuellement contenu dans Utiliser
-    - [ ] Ajouter une fonction commune du résultat de scan vers l’identifiant du champ système
-      - [ ] Modifier src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs pour ajouter une fonction unique qui retourne AtariSettingsConstants.SystemFirmware uniquement lorsque le AtariScannedFirmware peut être transformé en sélection pour la machine courante.
-      - [ ] Modifier cette fonction dans src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs pour retourner une destination vide lorsque la ROM est inconnue sans définition exploitable, illisible, incompatible, intégrée ou non utilisée.
-    - [ ] Renseigner le candidat depuis le scan déjà exécuté
-      - [ ] Modifier ScanFirmwareAsync dans src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs pour affecter DestinationFieldId à partir du AtariScannedFirmware déjà obtenu pour le modèle courant, sans créer une correspondance par nom de modèle dans l’application.
-    - [ ] Faire utiliser exactement la même fonction au bouton Utiliser
-      - [ ] Modifier UseFirmware dans src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs pour conserver le nouveau scan de contrôle effectué au moment de l’utilisation, obtenir l’identifiant par la même fonction puis créer la sélection Atari uniquement lorsque cet identifiant est AtariSettingsConstants.SystemFirmware.
-      - [ ] Modifier UseFirmware dans src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs pour conserver le remplacement par catégorie déjà réalisé dans Firmwares et ne modifier aucune autre donnée de AtariMachineConfiguration.
-      - [ ] Modifier UseFirmware dans src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs pour ne jamais déduire la destination depuis DisplayName, Version, le nom du fichier ou le texte localisé.
+- [ ] Fixer le périmètre et le contenu avant de créer l’interface
+  - [ ] Modifier docs/tasks/interface/emulation-improvements.md, dans la section 4, pour ajouter un tableau des champs visibles provenant de src/GWGUI.Emulation.Amiga/Functions/AmigaSettingsDescriptionFunctions.cs, src/GWGUI.Emulation.Atari/Functions/AtariSettingsDescriptionFunctions.cs et des champs fixes construits par l’application, en excluant les boutons et titres.
+  - [ ] Modifier le tableau de la section 4 dans docs/tasks/interface/emulation-improvements.md pour marquer uniquement les champs dont le libellé ne suffit pas, après validation de leur présence ou de leur absence d’aide ; ne pas prévoir d’aide pour le sélecteur de périphérique physique dont la suppression est demandée au point 6.
+  - [ ] Modifier le tableau de la section 4 dans docs/tasks/interface/emulation-improvements.md pour inscrire, pour chaque champ retenu, la clé d’aide courte, son texte d’une ligne, la clé d’aide concise et son texte expliquant uniquement le rôle, les choix et leurs différences utiles.
+  - [ ] Modifier la section 4 dans docs/tasks/interface/emulation-improvements.md pour inscrire la présentation validée du post-it, notamment ses dimensions maximales, son placement et ses couleurs, afin qu’aucune valeur visuelle ne soit choisie pendant l’implémentation.
 
-- [ ] Résolution du libellé traduit pour la seule machine affichée
-  - [ ] Retrouver le champ cible dans la description courante du module
-    - [ ] Ajouter le résolveur dans l’éditeur qui possède déjà la machine et sa configuration
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour ajouter une méthode qui reçoit DestinationFieldId et recherche exactement ce Id parmi les blocs et champs visibles retournés par _module.Describe pour _configuration.MachineId et _configuration.
-      - [ ] Modifier cette méthode dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour retourner LocExtension.Get du LabelResourceKey du champ trouvé, afin de reprendre Kickstart, ROM étendue, Clé ROM ou ROM système sans créer une traduction réservée à la colonne.
-      - [ ] Modifier cette méthode dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour retourner une chaîne vide lorsque DestinationFieldId est vide, lorsque le champ n’existe pas dans la description courante ou lorsque son bloc, son onglet ou le champ lui-même n’est pas visible.
-      - [ ] Modifier cette méthode dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour ne consulter aucune autre machine ni aucune autre marque après l’échec de la recherche dans la configuration affichée.
-  - [ ] Fournir ce résolveur au contrôleur ROM sans déplacer la logique de machine
-    - [ ] Étendre le constructeur avant de l’utiliser pendant le rafraîchissement
-      - [ ] Modifier src/GWGUI.App/Controllers/Emulation/Firmware/EmulationFirmwareManagementController.cs pour recevoir et conserver une fonction résolvant un identifiant de champ en libellé pour la configuration courante.
-      - [ ] Modifier la création de EmulationFirmwareManagementController dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour lui transmettre la méthode commune de résolution sans lui transmettre la liste de toutes les machines.
-    - [ ] Résoudre chaque cellule pendant la construction de la liste
-      - [ ] Modifier RefreshAsync dans src/GWGUI.App/Controllers/Emulation/Firmware/EmulationFirmwareManagementController.cs pour résoudre le libellé à partir de firmware.DestinationFieldId et le transmettre à la ligne de cette même ROM.
-      - [ ] Modifier RefreshAsync dans src/GWGUI.App/Controllers/Emulation/Firmware/EmulationFirmwareManagementController.cs pour transmettre une valeur vide lorsque le résolveur ne trouve pas le champ, sans masquer la ROM ni modifier sa compatibilité.
+- [ ] Étendre les contrats communs avant de modifier les mises en page
+  - [ ] Modifier src/GWGUI.Emulation/Contracts/EmulationSettingsField.cs pour conserver ExplanationResourceKey comme clé optionnelle de l’aide courte et ajouter DetailedExplanationResourceKey comme clé optionnelle de l’aide concise.
+  - [ ] Modifier src/GWGUI.App/Contracts/Emulation/Settings/EmulationSettingsControlField.cs pour transporter le libellé, le contrôle, l’aide courte localisée et l’aide concise localisée, tout en autorisant l’absence des deux aides.
+  - [ ] Modifier src/GWGUI.App/Contracts/Views/Emulation/Settings/EmulationCpuSettingsContent.cs pour transporter des EmulationSettingsControlField pour les champs CPU actuellement séparés, sans intégrer le résumé du processeur à un champ d’aide.
+  - [ ] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs provoquées par l’extension de ces contrats.
 
-- [ ] Colonne informative dans la ligne des ROM détectées
-  - [ ] Préparer les dimensions après validation des paramètres
-    - [ ] Ajouter uniquement les constantes nécessaires à la nouvelle cellule
-      - [ ] Modifier src/GWGUI.App/Constants/Emulation/EmulationFirmwareSettingsConstants.cs pour ajouter uniquement la limite de caractères validée et la largeur réservée à la destination, calculée pour conserver lisibles l’identité de la ROM et la compatibilité dans la largeur actuelle, sans changer FirmwareCompatibilityColumnWidth ni FirmwareRowMinimumHeight.
-  - [ ] Préserver d’abord exactement le badge de compatibilité existant
-    - [ ] Extraire sa construction avant d’ajouter le second badge
-      - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationFirmwareSettingsLayout.cs pour extraire dans une fonction commune la bordure, le rayon, les marges, le padding et l’alignement actuellement créés directement pour le badge de compatibilité.
-      - [ ] Modifier FirmwareRow dans src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationFirmwareSettingsLayout.cs pour appeler cette fonction avec les couleurs retournées par FirmwareBadgeColors, sans changer le texte, les couleurs, la largeur ou la position actuels de la compatibilité.
-      - [ ] Supprimer de FirmwareRow dans src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationFirmwareSettingsLayout.cs l’ancienne construction directe du badge seulement après avoir raccordé et vérifié la fonction commune.
-  - [ ] Ajouter la destination à la position validée
-    - [ ] Étendre la ligne avec une valeur purement affichée
-      - [ ] Modifier la signature de FirmwareRow dans src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationFirmwareSettingsLayout.cs pour recevoir le libellé de destination déjà résolu, sans recevoir IEmulationConfiguration, IEmulationModule ou une liste de machines.
-      - [ ] Modifier la grille de FirmwareRow dans src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationFirmwareSettingsLayout.cs pour ajouter la colonne à la position inscrite dans la section 5 et conserver les colonnes existantes dans leur ordre relatif.
-      - [ ] Modifier FirmwareRow dans src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationFirmwareSettingsLayout.cs pour afficher la destination avec la même forme, les mêmes dimensions verticales et la même présentation simple que le badge de compatibilité, en utilisant les couleurs neutres existantes de l’interface plutôt qu’une nouvelle signification colorée.
-      - [ ] Modifier FirmwareRow dans src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationFirmwareSettingsLayout.cs pour créer une cellule vide lorsque le libellé de destination est vide, sans texte de remplacement, icône, tiret ou avertissement.
-    - [ ] Appliquer la limite de caractères et l’ellipse
-      - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationFirmwareSettingsLayout.cs pour limiter le libellé au nombre de caractères validé et terminer le texte tronqué par une ellipse comprise dans cette limite.
-      - [ ] Modifier le TextBlock de destination dans src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationFirmwareSettingsLayout.cs pour appliquer également TextTrimming.CharacterEllipsis si la largeur disponible devient inférieure à la largeur réservée, sans ajouter de défilement horizontal.
-      - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationFirmwareSettingsLayout.cs pour ne pas ajouter d’infobulle, de clic, de menu ou d’action à la cellule informative.
-  - [ ] Raccorder le contrôleur à la nouvelle signature
-    - [ ] Transmettre la destination sans modifier l’objet sélectionné
-      - [ ] Modifier RefreshAsync dans src/GWGUI.App/Controllers/Emulation/Firmware/EmulationFirmwareManagementController.cs pour appeler FirmwareRow avec le libellé de destination en plus du nom, de la version, de la compatibilité et du chemin déjà transmis, tout en gardant EmulationFirmwareCandidate comme unique Tag du ListBoxItem.
+- [ ] Créer le libellé réutilisable avant de remplacer les libellés actuels
+  - [ ] Créer le fichier vide src/GWGUI.App/Constants/Emulation/EmulationSettingsFieldHelpConstants.cs.
+  - [ ] Modifier src/GWGUI.App/Constants/Emulation/EmulationSettingsFieldHelpConstants.cs pour définir uniquement les dimensions, espacements et couleurs validés du post-it.
+  - [ ] Créer le fichier vide src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSettingsFieldLabel.cs.
+  - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSettingsFieldLabel.cs pour reproduire le TextBlock actuel lorsque les deux aides sont absentes et ne créer aucune icône dans ce cas.
+  - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSettingsFieldLabel.cs pour afficher immédiatement après le libellé une icône permanente utilisant ControlVisualConstants.InformationGlyph lorsque les deux aides sont présentes, avec uniquement sa taille visible comme zone cliquable.
+  - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSettingsFieldLabel.cs pour affecter l’aide courte à une infobulle sans retour à la ligne ni défilement, visible seulement pendant le survol.
+  - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSettingsFieldLabel.cs pour ouvrir au clic un Popup de type post-it contenant le libellé et l’aide concise, selon les valeurs validées, et activer le défilement uniquement lorsque le contenu dépasse ses dimensions maximales.
+  - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationSettingsFieldLabel.cs pour fermer ce Popup sur toute touche ou sur le clic suivant, sans le fermer pendant le clic d’ouverture, puis détacher tous ses gestionnaires lors de la fermeture et de Unloaded.
+  - [ ] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par ce contrôle.
 
-- [ ] Conservation exacte du comportement de sélection et d’utilisation
-  - [ ] Laisser la destination strictement informative
-    - [ ] Empêcher la cellule d’introduire une nouvelle action
-      - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationFirmwareSettingsLayout.cs pour que la destination ne possède aucun gestionnaire de clic et laisse le ListBoxItem parent conserver son comportement normal de sélection.
-      - [ ] Modifier src/GWGUI.App/Controllers/Emulation/Firmware/EmulationFirmwareManagementController.cs pour ne jamais appeler UseFirmware depuis la construction, l’affichage ou le clic de la cellule de destination.
+- [ ] Faire passer les champs décrits par les modules par un seul chemin
+  - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour ajouter CreateControlField, qui crée le contrôle existant, localise LabelResourceKey et les deux clés d’aide lorsqu’elles existent, puis retourne EmulationSettingsControlField.
+  - [ ] Modifier AddBlocks dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour utiliser CreateControlField sans modifier l’ordre, les colonnes, la visibilité ou les contrôles des blocs.
+  - [ ] Modifier BuildCpuSettingsTab et BuildMemorySettingsTab dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleHardwareSettingsSection.cs pour utiliser CreateControlField sans modifier les choix, les règles, les résumés ni le calcul de RAM totale.
+  - [ ] Modifier BuildInputSettingsTab dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleInputSettingsSection.cs pour utiliser CreateControlField sans modifier les associations ni leur enregistrement.
 
-  - [ ] Actualiser la destination avec le contexte déjà utilisé par la liste
-    - [ ] Recalculer l’affichage lors des rafraîchissements existants
-      - [ ] Modifier RefreshAsync dans src/GWGUI.App/Controllers/Emulation/Firmware/EmulationFirmwareManagementController.cs pour reconstruire les cellules de destination après un changement de machine, de configuration ou de langue par le même chemin qui reconstruit déjà la liste des ROM.
-      - [ ] Modifier RefreshLocalizedContent dans src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour conserver le rechargement de l’onglet ROM avec la configuration affichée et ne pas mémoriser un libellé traduit provenant de la langue précédente.
+- [ ] Remplacer les libellés des mises en page par le contrôle commun
+  - [ ] Modifier CompactForm dans src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationSettingsLayout.cs pour recevoir des EmulationSettingsControlField et construire leurs libellés avec EmulationSettingsFieldLabel, puis conserver une surcharge sans aide pour les appelants hors des éditeurs de machine.
+  - [ ] Modifier SettingsFields et SettingsFieldGrid dans src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationHardwareSettingsLayout.cs pour recevoir des EmulationSettingsControlField, utiliser EmulationSettingsFieldLabel et lier sa visibilité à celle du contrôle correspondant.
+  - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationCpuSettingsLayout.cs pour consommer les EmulationSettingsControlField de EmulationCpuSettingsContent sans modifier les cartes Processeur, Compatibilité et Accélération.
+  - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationMemorySettingsLayout.cs pour transmettre les EmulationSettingsControlField sans perdre les aides ni modifier les cadres de mémoire.
+  - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationInputSettingsLayout.cs pour transmettre les EmulationSettingsControlField de la souris et des options analogiques sans modifier les tableaux d’associations.
+  - [ ] Modifier docs/tasks/interface/emulation-improvements.md après validation du tableau pour ajouter à cet emplacement une sous-tâche distincte, nommant son fichier, pour chaque champ fixe approuvé qui ne passe pas encore par EmulationSettingsControlField ; n’effectuer aucune modification de ce champ avant l’ajout de sa sous-tâche.
+  - [ ] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs provoquées par le remplacement des libellés.
 
-- [ ] Tests du routage partagé, de l’affichage et des non-régressions
-  - [ ] Verrouiller les destinations produites par Amiga et Atari
-    - [ ] Compléter les tests de module existants
-      - [ ] Modifier tests/GWGUI.Tests/EmulationModuleFirmwareTests.cs pour vérifier que les candidats Kickstart, ROM étendue et Clé ROM reçoivent respectivement les identifiants AmigaSettingsConstants.KickstartPath, ExtendedRomPath et RomKeyPath, et qu’une ROM Amiga inconnue reçoit une destination vide.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationModuleFirmwareTests.cs pour vérifier qu’une ROM Atari sélectionnable pour la machine testée reçoit AtariSettingsConstants.SystemFirmware et qu’une ROM incompatible ou sans définition exploitable reçoit une destination vide.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationModuleFirmwareTests.cs pour vérifier que UseFirmware modifie exactement le champ annoncé par DestinationFieldId et laisse inchangés les autres chemins ROM ou catégories de firmware.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationModuleFirmwareTests.cs pour remplacer le contenu d’un fichier après son scan et vérifier que UseFirmware conserve sa validation actuelle au moment du clic au lieu de faire confiance à une destination devenue périmée.
-  - [ ] Verrouiller la résolution du libellé de la machine affichée
-    - [ ] Créer le fichier de tests du résolveur avant ses scénarios
-      - [ ] Créer tests/GWGUI.Tests/EmulationFirmwareDestinationTests.cs.
-    - [ ] Ajouter les scénarios de machine, de visibilité et de langue
-      - [ ] Modifier tests/GWGUI.Tests/EmulationFirmwareDestinationTests.cs pour vérifier que chaque identifiant Amiga retrouve le LabelResourceKey du champ correspondant dans la description de la machine affichée.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationFirmwareDestinationTests.cs pour vérifier que AtariSettingsConstants.SystemFirmware retrouve uniquement le champ ROM système de l’Atari affiché.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationFirmwareDestinationTests.cs pour vérifier qu’un identifiant absent, un champ masqué ou une destination vide produit une cellule vide sans rechercher une autre machine.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationFirmwareDestinationTests.cs pour vérifier en français et en anglais que la cellule reprend exactement LocExtension.Get du LabelResourceKey du champ, sans clé de traduction propre à la destination.
-  - [ ] Verrouiller la nouvelle cellule et sa limite
-    - [ ] Ajouter les tests WPF de la ligne dans le même fichier
-      - [ ] Modifier tests/GWGUI.Tests/EmulationFirmwareDestinationTests.cs pour vérifier le nombre et l’ordre validé des colonnes de FirmwareRow, ainsi que la présence simultanée de l’identité, de la destination et de la compatibilité.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationFirmwareDestinationTests.cs pour vérifier que le badge de compatibilité conserve son texte, ses couleurs et ses dimensions après l’extraction de sa construction.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationFirmwareDestinationTests.cs pour vérifier qu’un libellé court reste intact, qu’un libellé dépassant la limite validée se termine par une ellipse dans cette limite et qu’une destination absente laisse la cellule vide.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationFirmwareDestinationTests.cs pour vérifier que la cellule ne possède aucun gestionnaire d’action, que son clic sélectionne seulement le ListBoxItem parent, que UpdateUseButton dépend toujours uniquement de Compatibility et que UseSelected transmet toujours le candidat stocké dans Tag.
-  - [ ] Vérifier le bouton Utiliser et l’ensemble de l’application
-    - [ ] Exécuter les tests ciblés puis la suite complète
-      - [ ] Exécuter EmulationModuleFirmwareTests et EmulationFirmwareDestinationTests, puis corriger uniquement les erreurs introduites par la destination partagée ou son affichage.
-      - [ ] Exécuter la suite GWGUI.Tests et corriger uniquement les régressions provoquées par DestinationFieldId, le résolveur de libellé ou la nouvelle colonne.
-      - [ ] Vérifier manuellement avec une machine Amiga et une machine Atari que chaque ROM affiche le champ réellement modifié par Utiliser, que les ROM sans destination gardent une cellule vide et que les autres machines ne sont jamais mentionnées.
+- [ ] Ajouter les paires de textes validées dans toutes les ressources avant de les utiliser
+  - [ ] Modifier src/GWGUI.App/Resources/00-Base/Emulation.resx pour ajouter exactement les clés et textes validés dans le tableau de la section 4.
+      - [ ] Modifier src/GWGUI.App/Resources/ar-SA/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/cs-CZ/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/da-DK/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/de-DE/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/el-GR/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/en-US/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/es-ES/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/fi-FI/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/fr-FR/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/he-IL/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/hu-HU/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/id-ID/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/it-IT/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/ja-JP/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/ko-KR/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/nb-NO/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/nl-NL/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/pl-PL/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/pt-BR/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/pt-PT/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/ro-RO/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/ru-RU/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/sv-SE/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/th-TH/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/tr-TR/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/uk-UA/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/vi-VN/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/zh-Hans/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+      - [ ] Modifier src/GWGUI.App/Resources/zh-Hant/Emulation.resx pour ajouter exactement les mêmes clés avec les deux textes traduits.
+  - [ ] Modifier src/GWGUI.Emulation.Amiga/Functions/AmigaSettingsDescriptionFunctions.cs pour affecter les deux clés uniquement aux champs Amiga approuvés dans le tableau.
+  - [ ] Modifier src/GWGUI.Emulation.Atari/Functions/AtariSettingsDescriptionFunctions.cs pour affecter les deux clés uniquement aux champs Atari approuvés dans le tableau, sans réutiliser les explications de compatibilité propres à Atari.
+  - [ ] Réaliser dans l’ordre chaque sous-tâche de champ fixe ajoutée à docs/tasks/interface/emulation-improvements.md afin de transporter exactement les deux clés approuvées, sans étendre l’aide à un autre élément.
+
+- [ ] Vérifier les ressources et le comportement avant de terminer le point
+  - [ ] Exécuter un contrôle de parité des clés d’aide entre src/GWGUI.App/Resources/00-Base/Emulation.resx et les 29 fichiers de langue, puis corriger uniquement les clés absentes ou supplémentaires créées par ce point.
+  - [ ] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par les ressources et les clés d’aide.
+  - [ ] Exécuter GW GUI avec dotnet run --project src/GWGUI.App/GWGUI.App.csproj --no-build et vérifier chaque champ approuvé dans les onglets Amiga et Atari : icône toujours visible, aide courte d’une ligne au survol et post-it au clic.
+  - [ ] Dans la même exécution, vérifier qu’une touche et le clic suivant ferment le post-it, que le défilement n’apparaît qu’en cas de dépassement et qu’aucune icône n’est présente sur un bouton ou un titre.
+  - [ ] Dans la même exécution, vérifier au minimum le français, l’anglais et une langue de droite à gauche, puis vérifier que le changement de langue actualise le libellé, l’infobulle et le post-it.
+  - [ ] Fermer l’instance de GW GUI utilisée pour cette vérification.
+
 ## Checklist détaillée — Point 6 : associations et visualisation des manettes et joysticks
 
-- [ ] Sécurisation du visualiseur et de l’éditeur d’associations existants
-  - [ ] Verrouiller le rendu actuel avant de déplacer sa définition
-    - [ ] Compléter les tests d’images et de coordonnées existants
-      - [ ] Modifier tests/GWGUI.Tests/ControllerVisualizationTests.cs pour enregistrer le modèle, l’image, les dimensions normalisées et les zones actuellement utilisées par chacun des profils physiques déjà pris en charge.
-      - [ ] Modifier tests/GWGUI.Tests/ControllerVisualizationTests.cs pour vérifier que chaque valeur de ControllerVisualModel conserve son image actuelle pendant la migration vers les profils de rendu communs.
-      - [ ] Modifier tests/GWGUI.Tests/ControllerSignalVisualizationTests.cs pour vérifier séparément les états neutre et appuyé des boutons numériques ainsi que les valeurs minimales, intermédiaires et maximales des axes et des gâchettes analogiques.
-      - [ ] Modifier tests/GWGUI.Tests/ControllerSignalVisualizationTests.cs pour vérifier que plusieurs boutons et axes actifs au même instant sont tous dessinés dans une seule image.
-  - [ ] Verrouiller la capture actuelle avant de partager son point d’entrée
-    - [ ] Étendre les scénarios de capture sans modifier leur fonctionnement
-      - [ ] Modifier tests/GWGUI.Tests/InputBindingEditorCaptureTests.cs pour vérifier que le bouton Assigner lance toujours la capture du clavier, de la souris et de n’importe quelle manette autorisée par les sources configurées.
-      - [ ] Modifier tests/GWGUI.Tests/InputBindingEditorCaptureTests.cs pour vérifier que la capture d’une manette enregistre son identifiant dans l’association sans exiger qu’elle ait été choisie dans un sélecteur global.
-      - [ ] Modifier tests/GWGUI.Tests/InputBindingEditorCaptureTests.cs pour vérifier que la fin, l’annulation et le délai maximal de capture restent identiques lorsque son déclenchement sera partagé avec le visuel.
-  - [ ] Consigner les correspondances réellement exposées par les émulateurs
-    - [ ] Ajouter au document la table de travail qui empêchera la création de périphériques inutilisés
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md pour ajouter, à partir de AmigaInputSettingsFunctions.ControllerDefinitions et des listes Amiga déjà existantes, les identifiants exacts des périphériques proposés, leurs commandes et leur machine d’utilisation, sans ajouter de périphérique historique absent de l’application.
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md pour ajouter, à partir de AtariInputSettingsFunctions.ControllerDefinitions, ControllerActions et des listes Atari déjà existantes, les identifiants exacts des périphériques proposés, leurs commandes et leur machine d’utilisation, sans ajouter de périphérique historique absent de l’application.
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md pour marquer dans cette table uniquement les périphériques basiques dont l’image doit être réalisée pendant le point 6 et laisser les autres comme évolutions futures.
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md pour faire valider le traitement visuel de Automatique, Aucun et Clavier avant d’ajouter un profil ou une image pour ces choix.
+Cette checklist adapte le ControllerVisualizer déjà utilisé dans l’onglet général Manettes. Elle ne crée aucun second visualiseur. Les identifiants des périphériques émulés et de leurs commandes restent ceux fournis par AmigaInputSettingsFunctions et AtariInputSettingsFunctions.
 
-- [ ] Transformation du visualiseur existant en moteur commun piloté par des profils
-  - [ ] Créer les contrats de description avant d’y déplacer les coordonnées
-    - [ ] Créer les fichiers des profils de rendu communs
-      - [ ] Créer src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkProfile.cs pour décrire l’image, ses limites normalisées et ses zones interactives sans dépendre d’un périphérique physique ou émulé.
-      - [ ] Créer src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualZone.cs pour décrire l’identifiant de commande, la position, la taille, la forme et le comportement numérique ou analogique d’une zone en pourcentages de l’image concernée.
-      - [ ] Créer src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualState.cs pour porter simultanément les valeurs de toutes les commandes visibles sans conserver leur état dans l’image ou dans le profil.
-      - [ ] Créer src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerOverlayRenderer.cs pour dessiner et tester les zones d’un ControllerArtworkProfile avec un ControllerVisualState.
-  - [ ] Déplacer les descriptions physiques sans changer leur rendu
-    - [ ] Copier les données actuellement codées dans les méthodes spécialisées
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs pour associer à chaque ControllerVisualModel un ControllerArtworkProfile contenant d’abord exactement son image et ses coordonnées actuelles.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualizer.Artwork.cs pour faire dessiner un profil physique par ControllerOverlayRenderer tout en conservant les formes, les seuils et les halos actuels à cette étape.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualInput.cs pour produire un ControllerVisualState équivalent à partir de GameInputLiveState, y compris lorsque plusieurs commandes sont actives.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualizer.cs pour accepter le profil et l’état communs tout en maintenant temporairement Model et State pour l’onglet général Manettes.
-      - [ ] Modifier tests/GWGUI.Tests/ControllerVisualizationTests.cs pour comparer le rendu de chaque profil migré à sa référence verrouillée avant de retirer ses anciennes coordonnées.
-    - [ ] Retirer les coordonnées dupliquées seulement après le passage au moteur commun
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualizer.Artwork.cs pour supprimer les coordonnées et les branchements remplacés uniquement lorsque les dix-neuf profils physiques passent par ControllerArtworkCatalog et leurs tests.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualizer.Modern.cs pour conserver seulement le dessin de secours réellement utilisé quand aucune image n’est disponible, sans recréer les profils déplacés.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualizer.Retro.cs pour conserver seulement le dessin de secours réellement utilisé quand aucune image n’est disponible, sans recréer les profils déplacés.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualizer.Special.cs pour conserver seulement le dessin de secours réellement utilisé quand aucune image n’est disponible, sans recréer les profils déplacés.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Options/OptionsControllersSection.xaml.cs pour alimenter le même ControllerVisualizer avec le profil physique et l’adaptateur communs, sans créer un second visualiseur.
-      - [ ] Modifier tests/GWGUI.Tests/ControllerVisualizationTests.cs et tests/GWGUI.Tests/ControllerSignalVisualizationTests.cs pour vérifier que l’onglet général Manettes conserve tous ses modèles et tous ses signaux après le retrait des anciens chemins de rendu.
-- [ ] Lecture commune des associations provenant de toutes les sources autorisées
-  - [ ] Centraliser la valeur d’une association avant de retirer le périphérique global
-    - [ ] Créer le fichier de tests du résolveur avant ses scénarios
-      - [ ] Créer tests/GWGUI.Tests/EmulationInputMappingTests.cs.
-    - [ ] Étendre le résolveur partagé d’entrée
-      - [ ] Modifier src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs pour lire une association clavier, souris ou contrôleur dans un EmulationInputSnapshot et retourner sa valeur normalisée en plus de son état appuyé.
-      - [ ] Modifier src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs pour résoudre un identifiant réel inclus dans l’association vers cette manette précise, un indice numérique existant vers la manette correspondante et une association sans identifiant vers toute manette qui fournit la commande.
-      - [ ] Modifier src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs pour combiner les valeurs de plusieurs manettes sans empêcher deux manettes, le clavier, la souris ou un autre périphérique autorisé d’activer simultanément des commandes différentes.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationInputMappingTests.cs pour couvrir les associations clavier, boutons et molette de souris, contrôleur identifié, contrôleur indexé, contrôleur non identifié et plusieurs sources actives simultanément.
-  - [ ] Faire utiliser le même résolveur par Amiga et Atari
-    - [ ] Remplacer les décisions fondées sur DeviceId sans changer les commandes émulées
-      - [ ] Modifier src/GWGUI.Emulation.Amiga/Functions/AmigaInputSnapshotFunctions.cs pour évaluer chaque association par EmulationInputMappingFunctions au lieu de choisir d’abord une unique manette avec AmigaControllerBinding.DeviceId.
-      - [ ] Modifier src/GWGUI.Emulation.Atari/Functions/AtariInputSnapshotFunctions.cs pour évaluer chaque association par EmulationInputMappingFunctions au lieu de choisir d’abord une unique manette avec AtariControllerBinding.DeviceId.
-      - [ ] Modifier tests/GWGUI.Tests/AmigaControllerMappingTests.cs pour vérifier qu’un même port accepte des associations issues de plusieurs manettes, du clavier et de la souris sans sélection physique préalable.
-      - [ ] Modifier tests/GWGUI.Tests/AtariControllerMappingTests.cs pour vérifier qu’un même port accepte des associations issues de plusieurs manettes, du clavier et de la souris sans sélection physique préalable.
-      - [ ] Modifier tests/GWGUI.Tests/AmigaControllerMappingTests.cs et tests/GWGUI.Tests/AtariControllerMappingTests.cs pour vérifier que les associations numériques par port déjà enregistrées conservent leur comportement multijoueur.
-    - [ ] Autoriser la souris dans l’éditeur des commandes de périphérique
-      - [ ] Modifier src/GWGUI.Emulation.Amiga/Functions/AmigaInputSettingsFunctions.cs pour inclure EmulationInputSource.Mouse dans les sources des associations de périphériques qui utilisent l’éditeur commun, sans modifier les commandes proposées par ControllerDefinitions.
-      - [ ] Modifier src/GWGUI.Emulation.Atari/Functions/AtariInputSettingsFunctions.cs pour inclure EmulationInputSource.Mouse dans les sources des associations de périphériques qui utilisent l’éditeur commun, sans modifier les commandes proposées par ControllerDefinitions.
-      - [ ] Modifier tests/GWGUI.Tests/InputBindingEditorCaptureTests.cs pour vérifier qu’une association Amiga ou Atari peut être capturée depuis un clic, une molette ou un autre signal de souris pris en charge.
+- [ ] Inscrire les décisions et l’inventaire nécessaires avant de créer des images ou des zones
+  - [ ] Modifier docs/tasks/interface/emulation-improvements.md, dans la section 6, pour ajouter un tableau de toutes les valeurs EmulationControllerChoice réellement produites par src/GWGUI.Emulation.Amiga/Functions/AmigaInputSettingsFunctions.cs et src/GWGUI.Emulation.Atari/Functions/AtariInputSettingsFunctions.cs, avec les machines concernées et leurs InputBindingDefinition.
+  - [ ] Modifier le tableau de la section 6 dans docs/tasks/interface/emulation-improvements.md après validation pour identifier les périphériques basiques à réaliser maintenant et laisser les autres comme ajouts ultérieurs, sans inventer de périphérique absent des deux listes.
+  - [ ] Modifier ce tableau pour inscrire, pour chaque périphérique basique validé, le nom exact de l’image à placer dans src/GWGUI.App/Assets/Controllers, sa source ou son mode de création, son droit de redistribution et les zones associées aux identifiants de commandes existants.
+  - [ ] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire le seuil analogique par défaut validé pour le visualiseur général et décider explicitement si le visualiseur d’un port réutilise DeadZonePercent de ce port.
+  - [ ] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire les dimensions minimale et maximale validées du bloc visuel à droite du tableau.
 
-- [ ] Retrait du sélecteur physique inutile sans casser les anciennes configurations
-  - [ ] Retirer le contrôle de l’éditeur après le basculement du routage
-    - [ ] Modifier les objets d’interface qui transportent encore Device
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/EmulationControllerPortEditor.cs pour retirer la ComboBox Device et l’abonnement ControllerCaptured qui sélectionne automatiquement une manette physique.
-      - [ ] Modifier src/GWGUI.App/Contracts/Emulation/Settings/EmulationControllerPortSettings.cs pour retirer la ComboBox Device du contrat utilisé par la disposition.
-      - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationControllerSettingsLayout.cs pour retirer le champ « Périphérique de la manette 1 », les autres champs équivalents et les paramètres devenus inutiles de détection des manettes.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationControllerSettingsSection.cs pour ne plus détecter ni injecter une liste de manettes physiques dans chaque port.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationControllerSettingsLayoutTests.cs pour vérifier que chaque port affiche son type émulé et ses associations, mais aucun sélecteur préalable de manette physique.
-  - [ ] Préserver les fichiers existants sans continuer à utiliser leur sélection globale
-    - [ ] Maintenir la compatibilité de lecture et d’écriture
-      - [ ] Modifier src/GWGUI.App/Controllers/Emulation/Input/EmulationInputSettingsController.cs pour ne plus lire un choix Device depuis l’interface et conserver la valeur PhysicalDeviceId déjà chargée lors d’un enregistrement, sans l’utiliser pour choisir les sources.
-      - [ ] Modifier tests/GWGUI.Tests/AmigaConfigurationStoreTests.cs et tests/GWGUI.Tests/AtariConfigurationStoreTests.cs pour vérifier que PhysicalDeviceId, AmigaControllerBinding.DeviceId et AtariControllerBinding.DeviceId restent relus et réécrits pour la compatibilité des anciens fichiers sans redevenir une restriction d'entrée.
+- [ ] Séparer l’état visuel des données GameInput sans changer le visualiseur général
+  - [ ] Créer le fichier vide src/GWGUI.App/Contracts/Input/ControllerVisualState.cs.
+  - [ ] Modifier src/GWGUI.App/Contracts/Input/ControllerVisualState.cs pour transporter simultanément les valeurs numériques et les états actifs nécessaires aux zones, sans contenir de contrôle WPF.
+  - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualInput.cs pour convertir GameInputLiveState vers ControllerVisualState et lire ensuite uniquement cet état commun.
+  - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualizer.cs pour conserver les propriétés publiques Model et State de l’onglet général, convertir State par ControllerVisualInput et permettre à l’éditeur d’émulation de fournir directement un ControllerVisualState.
+  - [ ] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par la séparation de l’état visuel.
+  - [ ] Exécuter GW GUI avec dotnet run --project src/GWGUI.App/GWGUI.App.csproj --no-build et vérifier que l’onglet général Manettes conserve ses modèles et ses appuis.
+  - [ ] Fermer l’instance de GW GUI utilisée pour cette vérification.
 
-- [ ] Catalogue des représentations émulées réellement retenues
-  - [ ] Valider les fichiers nécessaires avant de créer les images
-    - [ ] Créer le fichier de tests du catalogue avant ses scénarios
-      - [ ] Créer tests/GWGUI.Tests/EmulatedControllerArtworkCatalogTests.cs.
-    - [ ] Créer le manifeste vérifiable à partir de la table approuvée
-      - [ ] Créer src/GWGUI.App/Views/Controls/Options/ControllerVisualization/EmulatedControllerArtworkCatalog.cs pour indexer un profil par module, machine et identifiant de périphérique, car un même identifiant peut représenter des appareils différents selon la machine.
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md pour inscrire dans la checklist, avant leur création, le chemin exact de chaque image basique approuvée, son périphérique, ses machines compatibles et les identifiants de commandes placés dessus.
-      - [ ] Modifier tests/GWGUI.Tests/EmulatedControllerArtworkCatalogTests.cs pour comparer le manifeste aux listes déjà retournées par les modules et refuser un profil déclaré pour un périphérique absent de ces listes.
-  - [ ] Créer uniquement les images approuvées dans la table
-    - [ ] Créer le dossier d'images avant son premier fichier
-      - [ ] Créer le dossier src/GWGUI.App/Assets/Controllers/Emulated.
-    - [ ] Ajouter chaque représentation réaliste avant son profil exécutable
-      - [ ] Créer chaque fichier inscrit et validé dans AMELIORATIONS_INTERFACE_EMULATION.md sous src/GWGUI.App/Assets/Controllers/Emulated avec une vue de face, un fond transparent et un cadrage permettant de réduire l’image sans déplacer ses commandes.
-      - [ ] Modifier src/GWGUI.App/GWGUI.App.csproj pour embarquer les fichiers de src/GWGUI.App/Assets/Controllers/Emulated seulement après la création du premier fichier réel.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/EmulatedControllerArtworkCatalog.cs après chaque image pour ajouter ses zones avec leurs positions propres en pourcentages, sans reprendre les positions d’une autre image.
-      - [ ] Modifier tests/GWGUI.Tests/EmulatedControllerArtworkCatalogTests.cs après chaque profil pour vérifier que son fichier existe, que son fond contient de la transparence, que toutes ses zones restent dans l’image et que chaque identifiant de zone appartient aux définitions de la machine concernée.
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md après la validation visuelle de chaque image pour cocher seulement son fichier, son profil et ses zones réellement acceptés.
-- [ ] Intégration du visuel à droite du tableau de chaque port
-  - [ ] Créer le suivi en direct avant de construire le panneau
-    - [ ] Créer le fichier de tests du moniteur avant ses scénarios
-      - [ ] Créer tests/GWGUI.Tests/EmulationBindingLiveMonitorTests.cs.
-    - [ ] Créer le composant qui transforme les entrées physiques en état visuel
-      - [ ] Créer src/GWGUI.App/Views/Controls/Emulation/Input/EmulationBindingLiveMonitor.cs pour lire GameInputControllerReader.ReadPhysicalInput, évaluer toutes les associations du port par EmulationInputMappingFunctions et produire un ControllerVisualState commun.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/EmulationBindingLiveMonitor.cs pour conserver simultanément tous les boutons, directions, axes, touches du clavier, actions de souris, trackball et autres sources prises en charge qui sont actifs pendant la même lecture.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/EmulationBindingLiveMonitor.cs pour ne surveiller que le port visible, démarrer lors du chargement du panneau et arrêter son temporisateur lors de son masquage ou de son déchargement.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationBindingLiveMonitorTests.cs pour vérifier les appuis simultanés, le changement de port visible, l’arrêt du suivi hors écran et l’absence d’état permanent après modification d’une association.
-  - [ ] Construire une disposition stable autour du tableau existant
-    - [ ] Ajouter un seul visualiseur au port actuellement affiché
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/EmulationControllerPortEditor.cs pour posséder un ControllerVisualizer commun, un EmulationBindingLiveMonitor et le profil correspondant au module, à la machine et au type émulé du port.
-      - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationControllerSettingsLayout.cs pour placer le tableau à gauche et le bloc du visualiseur à droite dans le contenu de chaque onglet de port.
-      - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationControllerSettingsLayout.cs pour garder la largeur utile du tableau et celle du bloc visuel lorsque la fenêtre le permet, laisser le défilement dans le tableau et empêcher le visuel de défiler avec ses lignes.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualizer.cs pour réduire uniformément seulement l’image à l’intérieur de son bloc quand l’espace disponible diminue, sans modifier les pourcentages de ses zones.
-      - [ ] Modifier src/GWGUI.App/Controllers/Emulation/Input/EmulationInputSettingsController.cs pour fournir au port le module, la machine et le type sélectionné puis actualiser le profil après un changement de type avec le même chemin qui actualise déjà les définitions du tableau.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationControllerSettingsLayoutTests.cs pour vérifier qu’un seul visuel est affiché dans le port actif, qu’il reste à côté du tableau pendant son défilement et qu’un changement de port ou de type charge le profil correspondant.
-  - [ ] Réduire la colonne État sans perdre son information
-    - [ ] Conserver uniquement l’icône déjà compréhensible
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/InputBindingEditor.xaml pour réduire la largeur de la colonne État, conserver son icône et retirer seulement le texte visible « Valide », « Conflit », « Réservé » ou « Non assigné » de chaque ligne.
-      - [ ] Modifier src/GWGUI.App/ViewModels/Input/InputBindingRow.cs pour conserver StateText comme information accessible ou infobulle de l’icône sans le réafficher dans la cellule.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationControllerSettingsLayoutTests.cs pour vérifier que l’icône, sa couleur et son texte accessible changent toujours avec l’état tandis que le texte n’occupe plus une colonne visible.
+- [ ] Décrire les images et zones en pourcentage dans le visualiseur existant
+  - [ ] Créer le fichier vide src/GWGUI.App/Enums/Input/ControllerVisualZoneShape.cs.
+  - [ ] Modifier src/GWGUI.App/Enums/Input/ControllerVisualZoneShape.cs pour déclarer uniquement les formes effectivement validées dans le tableau de la section 6.
+  - [ ] Créer le fichier vide src/GWGUI.App/Contracts/Input/ControllerVisualZone.cs.
+  - [ ] Modifier src/GWGUI.App/Contracts/Input/ControllerVisualZone.cs pour porter l’identifiant de commande, la forme et les coordonnées en pourcentage propres à l’image.
+  - [ ] Créer le fichier vide src/GWGUI.App/Contracts/Input/ControllerArtworkProfile.cs.
+  - [ ] Modifier src/GWGUI.App/Contracts/Input/ControllerArtworkProfile.cs pour porter l’image et la liste de ControllerVisualZone sans dupliquer le rendu.
+  - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs pour résoudre un profil de périphérique émulé depuis l’identifiant du module, de la machine et du EmulationControllerChoice, tout en conservant le catalogue des ControllerVisualModel actuels.
+  - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualizer.cs pour afficher un ControllerArtworkProfile avec le même calcul de redimensionnement que les images existantes et exposer le survol et le clic de ses zones.
+  - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualizer.Artwork.cs pour dessiner les halos des profils avec les fonctions communes déjà utilisées par les modèles généraux et aligner les zones depuis leurs pourcentages.
+  - [ ] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par les profils et zones.
 
-- [ ] Capture d’une association depuis la représentation virtuelle
-  - [ ] Partager le déclenchement actuel avant d’ajouter le clic sur l’image
-    - [ ] Extraire un unique début de capture
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/InputBindingEditorCaptureFunctions.cs pour extraire d’AssignClicked une méthode qui reçoit l’identifiant de commande, retrouve sa ligne, la rend visible et lance exactement la capture actuelle.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/InputBindingEditorCaptureFunctions.cs pour faire appeler cette même méthode par le bouton Assigner, sans modifier son texte, son délai, son annulation ni ses sources.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/InputBindingEditor.xaml.cs pour exposer au visualiseur une méthode de capture par identifiant de commande sans exposer les détails du temporisateur.
-      - [ ] Modifier tests/GWGUI.Tests/InputBindingEditorCaptureTests.cs pour vérifier que le bouton et l’appel par identifiant sélectionnent la même ligne et produisent exactement la même association pour chaque source autorisée.
-  - [ ] Relier les zones de l’image à leur ligne et à la capture
-    - [ ] Ajouter le survol puis le clic simple
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualizer.cs et src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerOverlayRenderer.cs pour détecter la zone normalisée sous la souris et afficher un petit halo, ou le changement de couleur validé du halo, tant que la souris reste dessus.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualizer.cs pour émettre au clic simple l’identifiant exact de la commande de la zone sans attendre un double-clic et sans afficher de bouton supplémentaire sur l’image.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/EmulationControllerPortEditor.cs pour transmettre cet identifiant à InputBindingEditor, sélectionner la ligne correspondante et démarrer immédiatement sa capture.
-      - [ ] Modifier tests/GWGUI.Tests/ControllerVisualizationTests.cs pour vérifier le hit-test après redimensionnement, le halo de survol et l’identifiant émis par chaque zone cliquée.
-      - [ ] Modifier tests/GWGUI.Tests/InputBindingEditorCaptureTests.cs pour vérifier qu'un clic sur une zone accepte ensuite une touche de clavier, un signal de souris pris en charge et un bouton de n'importe quelle manette, sans présélection physique.
-- [ ] Refonte partagée des halos et des commandes analogiques
-  - [ ] Valider le rendu commun avant de remplacer les halos actuels
-    - [ ] Produire des comparaisons visibles et consigner le choix retenu
-      - [ ] Modifier tests/GWGUI.Tests/ControllerSignalVisualizationTests.cs pour générer une planche comparant sur plusieurs images physiques et émulées le halo neutre, le survol, l’appui numérique, le stick de manette, le manche de joystick et la gâchette aux valeurs testées.
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md après présentation de cette planche pour inscrire uniquement la forme, la couleur et l’opacité effectivement validées, sans considérer le recouvrement de l’image comme une erreur.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerOverlayRenderer.cs pour appliquer le halo numérique validé à la place des halos blancs généraux existants, sans ajouter de bordure, de couleur d’accent ou d’agrandissement non validé.
-  - [ ] Remplacer le trait et le point du stick de manette
-    - [ ] Déplacer un halo rond selon les deux axes
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerOverlayRenderer.cs pour dessiner sur un stick de manette un halo rond centré au repos puis déplacé proportionnellement dans la direction réellement fournie par ses axes.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualizer.Artwork.cs pour retirer le trait et le petit point analogiques seulement après que tous les profils physiques utilisent le halo rond commun.
-      - [ ] Modifier tests/GWGUI.Tests/ControllerSignalVisualizationTests.cs pour vérifier le centre, les directions cardinales, les diagonales et plusieurs amplitudes sans jamais produire l’ancien trait avec point.
-  - [ ] Unifier le principe du manche de joystick et de la gâchette
-    - [ ] Créer une extension de halo ancrée au centre
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerOverlayRenderer.cs pour étendre progressivement un halo depuis le centre selon une direction et une amplitude fournies par le profil.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualZone.cs pour permettre au manche de joystick de fournir sa direction réelle et à la gâchette de fixer cette direction vers le bas avec la pression comme amplitude.
-      - [ ] Modifier tests/GWGUI.Tests/ControllerSignalVisualizationTests.cs pour vérifier qu’un manche étend le halo du centre vers toutes ses directions et qu’une gâchette utilise le même calcul du centre vers le bas.
-  - [ ] Déterminer puis appliquer le seuil avant tout changement visuel
-    - [ ] Comparer plusieurs valeurs sans inventer le pourcentage final
-      - [ ] Modifier tests/GWGUI.Tests/ControllerSignalVisualizationTests.cs pour générer une planche de seuils avec plusieurs pourcentages et plusieurs amplitudes proches du repos sur les périphériques physiques disponibles pendant la vérification.
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md après les essais pour inscrire le pourcentage commun retenu, les appareils essayés et le fait que la zone morte propre à une machine ou à un port reste prioritaire lorsqu’elle existe.
-      - [ ] Modifier src/GWGUI.Emulation/Contracts/EmulationControllerPort.cs pour distinguer explicitement une zone morte configurée d’une absence de réglage, sans modifier la valeur fonctionnelle déjà utilisée par Atari.
-      - [ ] Modifier src/GWGUI.Emulation.Atari/Functions/AtariInputSettingsFunctions.cs pour marquer le DeadZonePercent existant comme réglage configuré et src/GWGUI.Emulation.Amiga/Functions/AmigaInputSettingsFunctions.cs pour laisser le visualiseur utiliser le seuil commun tant qu’aucun réglage machine n’existe.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/EmulationBindingLiveMonitor.cs pour appliquer d’abord la zone morte configurée du port, sinon le seuil commun validé, avant de produire un changement visuel analogique.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualInput.cs pour appliquer le même seuil commun validé dans le visualiseur général Manettes.
-      - [ ] Modifier tests/GWGUI.Tests/ControllerSignalVisualizationTests.cs et tests/GWGUI.Tests/EmulationBindingLiveMonitorTests.cs pour vérifier qu’aucun halo ne bouge sous le seuil, que le premier changement apparaît au seuil validé et que la zone morte du port est prioritaire.
+- [ ] Ajouter une image réaliste validée pour chaque périphérique basique
+  - [ ] Ajouter dans cette checklist, avant toute création, une sous-tâche Créer distincte donnant le chemin exact de chaque image validée dans le tableau de la section 6.
+  - [ ] Réaliser ensuite chaque sous-tâche ajoutée dans l’ordre pour créer uniquement l’image correspondante, vue de face et avec fond transparent, puis vérifier sa correspondance avec le périphérique avant de cocher sa création.
+  - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs après la création de chaque image pour ajouter uniquement son profil validé et ses zones, puis vérifier l’alignement de chaque zone à plusieurs tailles.
+  - [ ] Vérifier que src/GWGUI.App/GWGUI.App.csproj continue d’embarquer toutes les images ajoutées par son motif Assets\Controllers\*.png sans ajouter une seconde règle de ressources.
 
-- [ ] Validation complète du point 6 sur Amiga, Atari et le visualiseur général
-  - [ ] Vérifier les profils contre les commandes réellement affichées
-    - [ ] Compléter les contrôles automatiques du catalogue
-      - [ ] Modifier tests/GWGUI.Tests/EmulatedControllerArtworkCatalogTests.cs pour parcourir chaque machine Amiga et Atari, demander ses périphériques existants et vérifier que chaque profil basique approuvé référence uniquement les commandes affichées par son InputBindingEditor.
-      - [ ] Modifier tests/GWGUI.Tests/EmulatedControllerArtworkCatalogTests.cs pour vérifier que les variantes partageant un identifiant mais pas une forme utilisent des clés module-machine-périphérique distinctes.
-      - [ ] Modifier tests/GWGUI.Tests/EmulatedControllerArtworkCatalogTests.cs pour vérifier qu’un périphérique non encore illustré ne provoque ni image incorrecte ni réutilisation automatique d’un autre profil.
-  - [ ] Vérifier les interactions complètes de chaque port
-    - [ ] Ajouter les scénarios WPF de bout en bout
-      - [ ] Modifier tests/GWGUI.Tests/EmulationControllerSettingsLayoutTests.cs pour ouvrir successivement plusieurs ports Amiga et Atari et vérifier que le visuel, le tableau et le moniteur correspondent toujours au port actuellement ouvert.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationControllerSettingsLayoutTests.cs pour vérifier que le tableau garde sa place, que seul son contenu défile, que le bloc visuel reste fixe et que seule son image réduit sa taille lorsque la largeur disponible baisse.
-      - [ ] Modifier tests/GWGUI.Tests/InputBindingEditorCaptureTests.cs pour cliquer chaque type de zone virtuelle, capturer plusieurs catégories de sources et vérifier que la ligne, l’association enregistrée et le halo en direct correspondent à la même commande.
-      - [ ] Modifier tests/GWGUI.Tests/InputBindingEditorCaptureTests.cs pour vérifier qu’une manette déconnectée conserve l’affichage technique existant et retrouve son nom selon le comportement actuel après reconnexion et retour dans l’onglet.
-  - [ ] Exécuter les validations ciblées puis générales
-    - [ ] Corriger uniquement les régressions provoquées par le point 6
-      - [ ] Exécuter ControllerVisualizationTests, ControllerSignalVisualizationTests, InputBindingEditorCaptureTests, EmulationBindingLiveMonitorTests, EmulatedControllerArtworkCatalogTests et EmulationControllerSettingsLayoutTests, puis corriger uniquement les erreurs introduites par le moteur commun, le visuel émulé ou la capture partagée.
-      - [ ] Exécuter AmigaControllerMappingTests, AtariControllerMappingTests, AmigaConfigurationStoreTests et AtariConfigurationStoreTests, puis corriger uniquement les régressions provoquées par la résolution par association ou le retrait du sélecteur physique.
-      - [ ] Exécuter la suite GWGUI.Tests et corriger uniquement les régressions causées par les fichiers et comportements modifiés dans cette checklist.
-      - [ ] Vérifier manuellement un joystick Amiga, une manette CD32 et les périphériques Atari basiques approuvés avec plusieurs touches ou boutons maintenus, les axes proches du repos, les changements de port, le défilement du tableau et la capture déclenchée depuis l’image.
-      - [ ] Vérifier manuellement dans l’onglet général Manettes que les images physiques, les appuis simultanés et les nouveaux halos utilisent bien le même moteur sans copie du visualiseur.
+- [ ] Retirer le choix global du périphérique physique sans perdre les configurations existantes
+  - [ ] Modifier src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs pour exposer la valeur d’une source de manette identifiée et faire conserver à IsControllerSourcePressed ses résultats actuels en utilisant cette valeur.
+  - [ ] Modifier src/GWGUI.Emulation.Atari/Functions/AtariInputSnapshotFunctions.cs pour résoudre, pour chaque association, l’identifiant de périphérique inclus dans sa source et conserver DeviceId enregistré comme repli pour les anciennes associations.
+  - [ ] Modifier src/GWGUI.Emulation.Atari/Functions/AtariInputSnapshotFunctions.cs pour accepter les sources clavier et souris déjà représentées dans EmulationInputSnapshot, comme le chemin Amiga, sans modifier les commandes cibles.
+  - [ ] Modifier src/GWGUI.Emulation.Amiga/Functions/AmigaInputSnapshotFunctions.cs uniquement pour faire passer ses sources de manette par la valeur commune ajoutée, en conservant la résolution par association, les sources clavier et souris et le repli DeviceId existants.
+  - [ ] Modifier src/GWGUI.Emulation.Amiga/Functions/AmigaInputSettingsFunctions.cs pour autoriser la souris parmi les sources capturables des ports Amiga, sans modifier les types de périphériques émulés.
+  - [ ] Modifier src/GWGUI.Emulation.Atari/Functions/AtariInputSettingsFunctions.cs pour autoriser la souris parmi les sources capturables des ports Atari, sans modifier les types de périphériques émulés.
+  - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/EmulationControllerPortEditor.cs pour supprimer le ComboBox Device et son choix automatique après capture, tout en conservant la valeur PhysicalDeviceId déjà enregistrée comme donnée de compatibilité non modifiable.
+  - [ ] Modifier src/GWGUI.App/Contracts/Emulation/Controllers/EmulationControllerPortSettings.cs pour retirer le contrôle Device et conserver uniquement les éléments encore affichés.
+  - [ ] Modifier src/GWGUI.App/Controllers/Emulation/Input/EmulationInputSettingsController.cs pour ne plus remplir ni enregistrer un sélecteur physique, préserver PhysicalDeviceId d’une configuration existante et laisser chaque nouvelle association conserver sa propre source.
+  - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationControllerSettingsSection.cs pour supprimer la détection et la sélection globales devenues inutilisées.
+  - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationControllerSettingsLayout.cs pour retirer le champ Périphérique du port et conserver le choix du type de périphérique émulé.
+  - [ ] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs provoquées par ce retrait et l’élargissement des sources.
+
+- [ ] Placer le visualiseur à droite du tableau du port actif
+  - [ ] Modifier src/GWGUI.App/Constants/Emulation/EmulationControllerSettingsConstants.cs pour ajouter uniquement les dimensions validées du bloc visuel et la largeur nécessaire à l’icône de la colonne État.
+  - [ ] Modifier src/GWGUI.App/Contracts/Emulation/Controllers/EmulationControllerPortSettings.cs pour transporter le ControllerVisualizer du port avec son type et son InputBindingEditor.
+  - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/EmulationControllerPortEditor.cs pour créer un seul ControllerVisualizer par port et lui affecter le profil correspondant au type émulé sélectionné.
+  - [ ] Modifier UpdateControllerBindings dans src/GWGUI.App/Controllers/Emulation/Input/EmulationInputSettingsController.cs pour changer ensemble les lignes et le profil lorsqu’un type de périphérique émulé est choisi.
+  - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationControllerSettingsLayout.cs pour placer le tableau à gauche et le visualiseur du même port à droite, conserver ce visualiseur hors du défilement vertical du tableau et ne réduire que l’image lorsque la largeur disponible diminue.
+  - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/InputBindingEditor.xaml pour réduire la colonne État à son icône, retirer uniquement StateText de la ligne et conserver les boutons Assigner et Supprimer.
+  - [ ] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par cette disposition.
+
+- [ ] Relier les associations et la représentation sans créer un second chemin de capture
+  - [ ] Créer le fichier vide src/GWGUI.App/Controllers/Emulation/Input/EmulationBindingVisualizationController.cs.
+  - [ ] Modifier src/GWGUI.App/Controllers/Emulation/Input/EmulationBindingVisualizationController.cs pour lire les associations courantes de InputBindingEditor, les états clavier, souris et GameInput disponibles et produire un ControllerVisualState contenant tous les appuis simultanés.
+  - [ ] Modifier src/GWGUI.App/Controllers/Emulation/Input/EmulationBindingVisualizationController.cs pour appliquer le seuil ou DeadZonePercent validé avant de transmettre une valeur analogique et revenir à l’état neutre sous ce seuil.
+  - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/InputBindingEditor.xaml.cs pour exposer une opération commune qui sélectionne une ligne par son identifiant et démarre sa capture.
+  - [ ] Modifier AssignClicked dans src/GWGUI.App/Views/Controls/Emulation/Input/InputBindingEditorCaptureFunctions.cs pour appeler cette opération commune sans changer les sources ni le délai de capture.
+  - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/EmulationControllerPortEditor.cs pour raccorder le clic d’une zone du ControllerVisualizer à la même opération commune et ne créer ni double-clic ni bouton supplémentaire.
+  - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/EmulationControllerPortEditor.cs pour démarrer et arrêter EmulationBindingVisualizationController avec le chargement et le déchargement du port, sans laisser de temporisateur ou de gestionnaire attaché.
+  - [ ] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par la visualisation en direct et le clic des zones.
+
+- [ ] Refaire la surimpression analogique dans le système commun
+  - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualizer.Artwork.cs pour remplacer le trait terminé par un point des sticks par un rond partant du centre et se déplaçant selon la direction et l’inclinaison.
+  - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualizer.Artwork.cs pour faire partir le halo des joysticks à manche du centre et l’allonger selon leur direction et leur valeur.
+  - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualizer.Artwork.cs pour faire partir le halo des gâchettes du centre et l’allonger vers le bas selon leur pression.
+  - [ ] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par les trois rendus analogiques.
+  - [ ] Exécuter GW GUI avec dotnet run --project src/GWGUI.App/GWGUI.App.csproj --no-build et vérifier ces trois rendus avec plusieurs périphériques physiques ; ne cocher cette tâche que lorsque la forme est validée.
+  - [ ] Modifier docs/tasks/interface/emulation-improvements.md, dans la section 6, pour inscrire la forme précise validée pendant cette vérification.
+  - [ ] Fermer l’instance de GW GUI utilisée pour cette vérification.
+
+- [ ] Vérifier tout le point dans l’application
+  - [ ] Exécuter GW GUI avec dotnet run --project src/GWGUI.App/GWGUI.App.csproj --no-build et vérifier successivement chaque périphérique basique validé dans chaque port Amiga et Atari où il est proposé.
+  - [ ] Dans la même exécution, vérifier que le changement d’onglet de port affiche un seul tableau avec son seul visuel, que le visuel reste fixe pendant le défilement et que le tableau ne rétrécit pas lorsque la fenêtre se resserre.
+  - [ ] Dans la même exécution, vérifier simultanément des associations provenant de plusieurs manettes, du clavier, de la souris et d’un périphérique déconnecté, sans sélection préalable d’un périphérique physique.
+  - [ ] Dans la même exécution, vérifier qu’un clic sur chaque zone sélectionne la bonne ligne et démarre la même capture que Assigner, puis vérifier que la modification d’association ne laisse aucun halo permanent.
+  - [ ] Dans la même exécution, vérifier une configuration ancienne contenant PhysicalDeviceId afin de confirmer que son repli continue à fonctionner alors que le champ n’est plus affiché.
+  - [ ] Dans la même exécution, revenir à l’onglet général Manettes et vérifier que le visualiseur existant utilise toujours ses modèles et bénéficie du nouveau rendu analogique commun.
+  - [ ] Fermer l’instance de GW GUI utilisée pour cette vérification.
 
 ## Checklist détaillée — Point 7 : recherche et architecture des filtres vidéo
 
-- [ ] Catalogue vérifié des traitements vidéo envisageables
-  - [ ] Créer le document de recherche avant d’y inscrire les effets
-    - [ ] Créer le fichier de catalogue
-      - [ ] Créer docs/EMULATION_VIDEO_FILTER_CATALOG.md.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md pour ajouter les sections Sources, Licence, Famille, Effet, Paramètres, Combinaisons, Coût, Backends et Décision, sans déclarer encore de filtre retenu.
-  - [ ] Inventorier les collections officielles et chaque dépendance réellement examinée
-    - [ ] Ajouter les sources et leur portée exacte dans le catalogue
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md pour référencer la documentation officielle des shaders Libretro, le dépôt libretro/slang-shaders, sa spécification Slang et le dépôt libretro/common-shaders avec leur URL directe et leur date de consultation.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md pour inventorier les familles disponibles utiles à GW GUI, notamment mise à l’échelle, netteté et défloutage, anti-aliasing, scanlines, CRT, LCD, masque, courbure, moiré, glow, traitement du dithering, désentrelacement et traitements analogiques, sans considérer cette liste comme une sélection.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md pour décrire les capacités nécessaires à chaque candidat : nombre de passes, textures intermédiaires, historique d’images, textures LUT, taille de sortie, filtrage du sampler, paramètres exposés et dépendances incluses.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md pour relever la licence dans chaque fichier de shader, préréglage, include et texture dont une reprise est envisagée, sans attribuer automatiquement une licence unique à toute la collection Libretro.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md pour classer chaque candidat entre référence visuelle seulement, reproduction à écrire dans GW GUI, reprise directe compatible avec la licence du projet, reprise imposant des obligations supplémentaires et candidat à exclure.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md pour conserver RGB, composite, S-Video, RF, PAL et NTSC comme options d’émulateur lorsqu’ils sont déjà fournis par celui-ci et ne classer un effet inspiré d’un signal parmi les traitements GW GUI que s’il est distinct et explicitement validé.
-  - [ ] Inventorier les effets déjà exposés par les émulateurs de GW GUI
-    - [ ] Écrire le résultat de l’inventaire dans le même catalogue
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md à partir de src/GWGUI.Emulation.Amiga/Functions/AmigaSettingsDescriptionFunctions.cs pour lister les réglages vidéo Amiga déjà transmis à l’émulateur et les exclure des doublons GW GUI.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md à partir de src/GWGUI.Emulation.Atari/Functions/AtariSettingsDescriptionFunctions.cs et des catalogues Atari utilisés par chaque famille pour lister les réglages déjà transmis aux émulateurs et les exclure des doublons GW GUI.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md pour identifier séparément les réglages généraux d’image demandés — luminosité, contraste, gamma, saturation et netteté — qui seront appliqués hors émulateur.
-  - [ ] Construire les familles logiques et la matrice de compatibilité avant l’interface
-    - [ ] Inscrire toutes les combinaisons à faire valider
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md pour regrouper les effets qui représentent des choix exclusifs d’une même fonction, sans autoriser simultanément deux facteurs d’un même algorithme d’agrandissement ou deux technologies d’écran incompatibles.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md pour lister séparément les effets complémentaires susceptibles d’être cumulés, comme un rendu CRT et des scanlines, sans valider automatiquement toutes les combinaisons possibles.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md pour établir une matrice symétrique indiquant pour chaque paire : compatible, incompatible, dépendante d’un ordre précis ou encore à mesurer.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md pour définir l’ordre de traitement proposé uniquement pour les combinaisons techniquement justifiées et laisser les autres ordres non retenus.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md après validation pour marquer les effets de la première implémentation, leurs présélections de base et les réglages modifiables, sans créer les autres effets.
+Ce point produit la recherche et les décisions d’architecture demandées. Il ne crée aucun filtre, shader, réglage de configuration ou contrôle d’interface avant validation du catalogue et de l’architecture.
 
-- [ ] Audit écrit des quatre chemins de rendu actuels
-  - [ ] Consigner les formats et responsabilités avant de choisir l’architecture
-    - [ ] Ajouter la section d’architecture actuelle au catalogue
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md à partir de src/GWGUI.Emulation/Contracts/VideoFrame.cs pour documenter les formats de pixels, le pitch, le rapport d’aspect, la séquence et le timestamp disponibles à l’entrée du rendu.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md à partir de src/GWGUI.App/Presenters/Emulation/Machine/MachineVideoPresenter.cs pour documenter la remise de la dernière image, le repli automatique vers WPF, le changement de surface et le calcul actuel de la fréquence d’images.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md à partir de src/GWGUI.App/Rendering/Emulation/Surfaces/WpfVideoSurface.cs pour documenter la conversion BGRA32 et l’écriture directe dans le WriteableBitmap.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md à partir de src/GWGUI.App/Rendering/Emulation/Surfaces/OpenGlVideoSurface.cs pour documenter le contexte WGL, glDrawPixels, l’absence actuelle de texture et l’absence de chaîne de shaders.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md à partir de src/GWGUI.App/Rendering/Emulation/Surfaces/VeldridVideoSurface.cs pour documenter la texture source, le quad, le shader actuel, la pipeline commune Direct3D 11/Vulkan et la recréation des ressources quand la taille change.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md pour noter que Snapshot contient actuellement les pixels sources dans les trois surfaces et qu’aucun changement vers une capture filtrée ne sera réalisé sans validation séparée.
-  - [ ] Établir la matrice des possibilités par backend
-    - [ ] Ajouter les capacités et les lacunes sans promettre un résultat identique non testé
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md pour indiquer, effet par effet, si WPF, OpenGL, Direct3D 11 et Vulkan peuvent exécuter le traitement sur GPU, sur CPU, avec plusieurs passes, avec historique et avec LUT dans l’architecture actuelle ou après une évolution identifiée.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md pour distinguer un même réglage logique commun de ses implémentations propres aux backends et ne pas imposer un processeur CPU unique avant toutes les surfaces.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md pour définir les règles de repli à faire valider lorsqu’un backend ne peut pas exécuter un effet : effet désactivé, traitement CPU accepté ou changement de moteur explicitement demandé, sans choisir silencieusement à la place de l’utilisateur.
+- [ ] Créer le document de recherche avant d’y inscrire des résultats
+  - [ ] Créer le fichier vide docs/reference/emulation-video-filters.md.
+  - [ ] Modifier docs/reference/emulation-video-filters.md pour décrire le périmètre, distinguer les filtres réalisés par GW GUI des options de signal fournies par les émulateurs et reprendre les questions encore ouvertes de la section Filtres vidéo.
 
-- [ ] Essais mesurés avant le choix des implémentations de backend
-  - [ ] Créer le fichier de tests de capacité avant ses scénarios
-    - [ ] Créer le banc d’essai vidéo
-      - [ ] Créer tests/GWGUI.Tests/EmulationVideoBackendCapabilityTests.cs.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoBackendCapabilityTests.cs pour produire dans le test une mire BGRA32 commune, sans ajouter de fichier binaire de référence avant d’en avoir besoin.
-  - [ ] Mesurer les chemins actuels sans les remplacer pendant l’essai
-    - [ ] Ajouter les scénarios de surface et écrire leurs résultats dans le catalogue
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoBackendCapabilityTests.cs pour présenter la même mire non filtrée avec WpfVideoSurface, OpenGlVideoSurface et VeldridVideoSurface en Direct3D 11 puis Vulkan, et vérifier les dimensions, le rapport d’aspect et le repli déjà géré par MachineVideoPresenter.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoBackendCapabilityTests.cs pour mesurer séparément le coût de conversion BGRA32, le transfert de texture et la présentation d’une image aux résolutions réellement utilisées par les machines existantes.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoBackendCapabilityTests.cs pour essayer un réglage général simple, un passage à texture intermédiaire et une chaîne de deux passages dans chaque backend uniquement lorsque le chemin actuel le permet.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoBackendCapabilityTests.cs pour rendre explicite l’impossibilité actuelle de la chaîne OpenGL tant que glDrawPixels n’a pas été remplacé, au lieu de déclarer ce backend compatible sans preuve.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md avec les résultats mesurés, les appareils graphiques et pilotes essayés, le coût par backend et les limites observées dans les essais précédents.
-  - [ ] Valider l’architecture de WPF et d’OpenGL avant les modifications de production
-    - [ ] Inscrire le choix puis détailler uniquement la branche retenue
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md pour comparer, d’après les essais, le traitement CPU et les possibilités WPF réellement utilisables, puis inscrire l’option retenue pour WPF avec ses limites.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md pour comparer le remplacement de glDrawPixels par un quad texturé OpenGL et toute solution commune réellement prouvée par les essais, puis inscrire l’option retenue pour OpenGL.
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md après validation de ces deux choix pour ajouter sous ce point les fichiers exacts à créer ou modifier pour les backends WPF et OpenGL retenus, avant toute modification de leur code de production.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoBackendCapabilityTests.cs pour transformer les essais retenus en tests de non-régression et retirer uniquement les branches expérimentales explicitement refusées.
+- [ ] Établir le catalogue depuis les sources de référence
+  - [ ] Modifier docs/reference/emulation-video-filters.md à partir de la documentation officielle Libretro et des catalogues officiels slang-shaders et common-shaders pour recenser les familles de filtres, notamment CRT, scanlines, LCD et moiré horizontal ou vertical, avec un lien vers chaque source consultée.
+  - [ ] Modifier docs/reference/emulation-video-filters.md pour inscrire, pour chaque filtre ou famille, son effet, ses réglages utiles, ses dépendances éventuelles, ses combinaisons connues et son statut de licence ; ne recopier aucun code de shader dont la licence n’autorise pas clairement l’usage retenu.
+  - [ ] Modifier docs/reference/emulation-video-filters.md après examen des moteurs Amiga et Atari utilisés par le projet pour séparer leurs options RGB, composite, S-Video, RF, PAL, NTSC ou équivalentes des effets propres à GW GUI.
+  - [ ] Modifier docs/reference/emulation-video-filters.md pour inclure les filtres utiles aux futures machines sans limiter le catalogue aux capacités Amiga et Atari actuelles.
 
-- [ ] Contrats communs de configuration vidéo par machine
-  - [ ] Créer les valeurs persistantes avant les catalogues d’exécution
-    - [ ] Créer les fichiers des trois contrats communs
-      - [ ] Créer src/GWGUI.Emulation/Contracts/EmulationVideoProcessingConfiguration.cs.
-      - [ ] Modifier src/GWGUI.Emulation/Contracts/EmulationVideoProcessingConfiguration.cs pour porter les réglages généraux, les fonctionnalités configurées et leur ordre validé sans dépendre d’Amiga, d’Atari ou d’un backend graphique.
-      - [ ] Créer src/GWGUI.Emulation/Contracts/EmulationVideoFeatureConfiguration.cs.
-      - [ ] Modifier src/GWGUI.Emulation/Contracts/EmulationVideoFeatureConfiguration.cs pour enregistrer l’identifiant stable d’une fonctionnalité, son activation, sa présélection éventuelle et uniquement ses paramètres validés.
-      - [ ] Créer src/GWGUI.Emulation/Contracts/EmulationImageAdjustmentConfiguration.cs.
-      - [ ] Modifier src/GWGUI.Emulation/Contracts/EmulationImageAdjustmentConfiguration.cs pour définir luminosité, contraste, saturation et netteté neutres à 0, leurs bornes -10 à +10 et le gamma selon la représentation validée dans docs/EMULATION_VIDEO_FILTER_CATALOG.md.
-  - [ ] Ajouter la configuration commune aux deux formats de machine
-    - [ ] Étendre l’interface puis les contrats concrets
-      - [ ] Modifier src/GWGUI.Emulation/Interfaces/IEmulationConfiguration.cs pour exposer une EmulationVideoProcessingConfiguration commune en plus du moteur de rendu déjà enregistré.
-      - [ ] Modifier src/GWGUI.Emulation.Amiga/Contracts/AmigaMachineConfiguration.cs pour enregistrer la configuration vidéo commune avec des valeurs neutres lorsque la propriété est absente.
-      - [ ] Modifier src/GWGUI.Emulation.Atari/Contracts/AtariMachineConfiguration.cs pour enregistrer la même configuration commune sans créer une variante Atari des effets.
-  - [ ] Migrer les anciens fichiers sans modifier leurs autres réglages
-    - [ ] Mettre à jour les versions et les documents de stockage
-      - [ ] Modifier src/GWGUI.Emulation.Amiga/Services/AmigaConfigurationStore.cs et src/GWGUI.Emulation.Amiga/Contracts/AmigaMachineConfiguration.cs pour accepter les versions actuelles, enregistrer la prochaine version de schéma disponible et ajouter uniquement une configuration vidéo neutre aux anciens fichiers.
-      - [ ] Modifier src/GWGUI.Emulation.Atari/Constants/AtariConstants.cs pour augmenter CurrentConfigurationSchemaVersion d’une version au moment de cette migration.
-      - [ ] Modifier src/GWGUI.Emulation.Atari/Contracts/AtariConfigurationDocument.cs et src/GWGUI.Emulation.Atari/Functions/AtariConfigurationStoreFunctions.cs pour sérialiser et restaurer EmulationVideoProcessingConfiguration.
-      - [ ] Modifier src/GWGUI.Emulation.Atari/Functions/AtariConfigurationMigrationFunctions.cs pour migrer explicitement le schéma précédent vers la nouvelle version avec une configuration vidéo neutre, sans modifier les firmwares, médias, options, entrées, dossiers, audio ni moteur de rendu.
-  - [ ] Verrouiller les valeurs et migrations avant le moteur de filtres
-    - [ ] Créer le fichier de tests commun avant ses scénarios
-      - [ ] Créer tests/GWGUI.Tests/EmulationVideoProcessingConfigurationTests.cs.
-    - [ ] Ajouter les scénarios communs, Amiga et Atari
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoProcessingConfigurationTests.cs pour vérifier les valeurs neutres, les bornes validées, les identifiants de fonctionnalités, les paramètres et l’ordre sérialisé.
-      - [ ] Modifier tests/GWGUI.Tests/AmigaConfigurationStoreTests.cs pour vérifier le chargement d’un fichier du schéma précédent, l’ajout neutre et le cycle chargement-enregistrement sans perte des autres données.
-      - [ ] Modifier tests/GWGUI.Tests/AtariConfigurationStoreTests.cs pour vérifier la migration explicite du schéma précédent et le même cycle sans perte.
+- [ ] Comparer le catalogue aux quatre surfaces de rendu actuelles
+  - [ ] Modifier docs/reference/emulation-video-filters.md après examen de src/GWGUI.App/Interfaces/Rendering/Emulation/IEmulationVideoSurface.cs, src/GWGUI.App/Presenters/Emulation/Machine/MachineVideoPresenter.cs, src/GWGUI.App/Rendering/Emulation/Surfaces/WpfVideoSurface.cs, src/GWGUI.App/Rendering/Emulation/Surfaces/OpenGlVideoSurface.cs et src/GWGUI.App/Rendering/Emulation/Surfaces/VeldridVideoSurface.cs pour décrire où les pixels sont disponibles et où un traitement commun peut être appliqué.
+  - [ ] Modifier docs/reference/emulation-video-filters.md pour comparer WPF, OpenGL, Direct3D 11 et Vulkan pour chaque famille de filtre, indiquer ce qui peut partager une définition et ce qui exige une implémentation de backend, sans choisir silencieusement de supprimer un renderer.
+  - [ ] Modifier docs/reference/emulation-video-filters.md pour décrire l’effet du traitement envisagé sur Snapshot, le rapport d’aspect, le redimensionnement, le repli actuel vers WPF et l’application immédiate à une instance ouverte.
 
-- [ ] Graphe logique partagé sans imposer une implémentation graphique unique
-  - [ ] Créer les descriptions d’effet à partir de la sélection validée
-    - [ ] Créer les fichiers du catalogue d’exécution
-      - [ ] Créer src/GWGUI.App/Contracts/Rendering/Emulation/VideoFilters/EmulationVideoEffectDefinition.cs.
-      - [ ] Modifier src/GWGUI.App/Contracts/Rendering/Emulation/VideoFilters/EmulationVideoEffectDefinition.cs pour décrire l’identifiant, les paramètres, les valeurs par défaut, les dépendances, les incompatibilités et les capacités nécessaires d’un effet retenu.
-      - [ ] Créer src/GWGUI.App/Contracts/Rendering/Emulation/VideoFilters/EmulationVideoPassDefinition.cs.
-      - [ ] Modifier src/GWGUI.App/Contracts/Rendering/Emulation/VideoFilters/EmulationVideoPassDefinition.cs pour décrire une passe, ses entrées, sa taille de sortie, son sampler, son historique et ses textures auxiliaires sans contenir de ressource propre à une machine.
-      - [ ] Créer src/GWGUI.App/Rendering/Emulation/VideoFilters/EmulationVideoEffectCatalog.cs.
-      - [ ] Modifier src/GWGUI.App/Rendering/Emulation/VideoFilters/EmulationVideoEffectCatalog.cs pour n’inscrire que les effets marqués comme retenus dans docs/EMULATION_VIDEO_FILTER_CATALOG.md.
-      - [ ] Créer src/GWGUI.App/Rendering/Emulation/VideoFilters/EmulationVideoFilterGraphBuilder.cs.
-      - [ ] Modifier src/GWGUI.App/Rendering/Emulation/VideoFilters/EmulationVideoFilterGraphBuilder.cs pour valider la configuration, ordonner les passes compatibles et produire le même graphe logique pour tous les backends capables de l’exécuter.
-  - [ ] Centraliser les incompatibilités utilisées par l’interface et le rendu
-    - [ ] Ajouter une seule validation du graphe
-      - [ ] Créer src/GWGUI.App/Rendering/Emulation/VideoFilters/EmulationVideoConfigurationValidator.cs.
-      - [ ] Modifier src/GWGUI.App/Rendering/Emulation/VideoFilters/EmulationVideoConfigurationValidator.cs pour retourner les fonctionnalités incompatibles, les paramètres hors bornes et les capacités absentes du backend actif.
-      - [ ] Modifier src/GWGUI.App/Rendering/Emulation/VideoFilters/EmulationVideoFilterGraphBuilder.cs pour refuser un graphe invalide par cette validation sans désactiver silencieusement un autre effet.
-      - [ ] Créer tests/GWGUI.Tests/EmulationVideoFilterGraphTests.cs avant d’y ajouter les scénarios du graphe.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoFilterGraphTests.cs pour vérifier les effets seuls, les combinaisons validées, l’ordre des passes, les incompatibilités symétriques, les dépendances et les capacités de backend.
-- [ ] Exécution des graphes dans les surfaces vidéo
-  - [ ] Créer l’interface de backend avant les implémentations
-    - [ ] Créer les contrats d’exécution et de capacité
-      - [ ] Créer src/GWGUI.App/Interfaces/Rendering/Emulation/VideoFilters/IEmulationVideoFilterBackend.cs.
-      - [ ] Modifier src/GWGUI.App/Interfaces/Rendering/Emulation/VideoFilters/IEmulationVideoFilterBackend.cs pour configurer un graphe validé, présenter une VideoFrame et libérer toutes ses ressources.
-      - [ ] Créer src/GWGUI.App/Contracts/Rendering/Emulation/VideoFilters/EmulationVideoBackendCapabilities.cs.
-      - [ ] Modifier src/GWGUI.App/Contracts/Rendering/Emulation/VideoFilters/EmulationVideoBackendCapabilities.cs pour déclarer les passes, l’historique, les LUT, les formats, les tailles et les types de sampler réellement pris en charge.
-      - [ ] Modifier src/GWGUI.App/Interfaces/Rendering/Emulation/IEmulationVideoSurface.cs pour recevoir une EmulationVideoProcessingConfiguration et exposer ses capacités sans déplacer la réception de VideoFrame hors de la surface.
-  - [ ] Préparer les ressources retenues sans reprendre un shader non validé
-    - [ ] Créer les emplacements avant le premier fichier de production
-      - [ ] Créer le dossier src/GWGUI.App/Assets/VideoFilters/Shaders.
-      - [ ] Créer le dossier src/GWGUI.App/Assets/VideoFilters/Textures seulement si le premier effet retenu dépend réellement d’une LUT ou d’une texture auxiliaire.
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md après la sélection des effets pour inscrire, avant leur création, le chemin exact de chaque shader, include, préréglage et texture à ajouter ainsi que sa source et sa licence vérifiées.
-      - [ ] Créer THIRD-PARTY-NOTICES.md seulement si le premier fichier tiers directement repris exige une notice dans le projet.
-      - [ ] Modifier THIRD-PARTY-NOTICES.md pour inscrire la provenance, l’auteur, la licence et les mentions exigées avant d’intégrer chaque fichier concerné.
-      - [ ] Ajouter dans AMELIORATIONS_INTERFACE_EMULATION.md, pour chaque ressource retenue, une action Créer avec son chemin exact puis une action Modifier distincte décrivant son contenu, avant d’exécuter ces deux actions.
-      - [ ] Modifier src/GWGUI.App/GWGUI.App.csproj après la création du premier fichier pour embarquer seulement les shaders, includes et textures réellement utilisés et leur notice éventuelle.
-  - [ ] Étendre la surface Veldrid commune à Direct3D 11 et Vulkan
-    - [ ] Créer l’exécuteur Veldrid avant de déplacer le shader actuel
-      - [ ] Créer src/GWGUI.App/Rendering/Emulation/VideoFilters/VeldridVideoFilterBackend.cs.
-      - [ ] Modifier src/GWGUI.App/Rendering/Emulation/VideoFilters/VeldridVideoFilterBackend.cs pour compiler les passes retenues avec Veldrid.SPIRV, créer leurs pipelines, textures intermédiaires, samplers, buffers de paramètres et ressources auxiliaires.
-      - [ ] Modifier src/GWGUI.App/Rendering/Emulation/Surfaces/VeldridVideoSurface.cs pour copier d’abord son quad, sa texture source et son passage actuel vers VeldridVideoFilterBackend en conservant exactement le rendu non filtré.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoBackendCapabilityTests.cs pour vérifier le passage neutre Direct3D 11 et Vulkan avant de retirer les ressources correspondantes de VeldridVideoSurface.
-      - [ ] Modifier src/GWGUI.App/Rendering/Emulation/Surfaces/VeldridVideoSurface.cs pour retirer son ancien pipeline interne seulement après que VeldridVideoFilterBackend présente correctement le passage neutre sur les deux backends.
-    - [ ] Ajouter les passes retenues après le passage neutre
-      - [ ] Modifier src/GWGUI.App/Rendering/Emulation/VideoFilters/VeldridVideoFilterBackend.cs pour allouer et réutiliser les textures intermédiaires selon le graphe, puis les recréer uniquement lors d’un changement de dimensions ou de graphe qui le nécessite.
-      - [ ] Modifier src/GWGUI.App/Rendering/Emulation/VideoFilters/VeldridVideoFilterBackend.cs pour fournir aux shaders les tailles source et sortie, le numéro et le temps de l’image, les paramètres utilisateur, les historiques et les LUT uniquement lorsque la définition de passe les demande.
-      - [ ] Modifier src/GWGUI.App/Rendering/Emulation/VideoFilters/VeldridVideoFilterBackend.cs pour appliquer la dernière passe au framebuffer de la swapchain et conserver le noir hors de l’image ajustée au rapport d’aspect.
-      - [ ] Modifier src/GWGUI.App/Rendering/Emulation/Surfaces/VeldridVideoSurface.cs pour transmettre les changements de configuration au backend sans recréer le GraphicsDevice lorsque les capacités et les ressources existantes le permettent.
-  - [ ] Réaliser uniquement les branches WPF et OpenGL validées par les essais
-    - [ ] Exécuter les tâches exactes ajoutées après la décision technique
-      - [ ] Modifier les fichiers WPF inscrits précédemment dans AMELIORATIONS_INTERFACE_EMULATION.md pour exécuter le graphe avec l’approche validée et conserver WpfVideoSurface comme repli fonctionnel.
-      - [ ] Modifier les fichiers OpenGL inscrits précédemment dans AMELIORATIONS_INTERFACE_EMULATION.md pour remplacer d’abord glDrawPixels par le chemin neutre validé, vérifier le même affichage, puis ajouter les passes sans supprimer l’ancien chemin avant cette vérification.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoBackendCapabilityTests.cs pour vérifier les capacités réellement annoncées par WPF et OpenGL et refuser un effet qui exige une capacité absente.
-  - [ ] Conserver le repli et les changements de moteur
-    - [ ] Transmettre la configuration aux surfaces successives
-      - [ ] Modifier src/GWGUI.App/Factories/Rendering/Emulation/EmulationVideoSurfaceFactory.cs pour construire chaque surface avec ses capacités et son backend de filtres validé.
-      - [ ] Modifier src/GWGUI.App/Presenters/Emulation/Machine/MachineVideoPresenter.cs pour conserver la configuration vidéo courante, l’appliquer à la nouvelle surface lors d’un changement de moteur et l’appliquer également à WPF lors du repli après erreur.
-      - [ ] Modifier src/GWGUI.App/Presenters/Emulation/Machine/MachineVideoPresenter.cs pour laisser Snapshot représenter les pixels sources comme aujourd’hui jusqu’à une décision explicite concernant les captures filtrées.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoBackendCapabilityTests.cs pour vérifier qu’un changement Direct3D 11, Vulkan, OpenGL ou WPF ne perd pas la configuration et qu’un repli n’active jamais silencieusement un effet non pris en charge.
+- [ ] Faire valider les groupes, compatibilités et réglages avant l’architecture définitive
+  - [ ] Modifier docs/reference/emulation-video-filters.md pour proposer, à partir du catalogue établi, les groupes logiques, les combinaisons compatibles et les incompatibilités nécessitant la confirmation décrite dans la demande.
+  - [ ] Modifier docs/reference/emulation-video-filters.md pour proposer les présélections et les réglages propres à chaque fonctionnalité, sans dupliquer luminosité, contraste, gamma, saturation et netteté.
+  - [ ] Modifier docs/tasks/interface/emulation-improvements.md après validation pour inscrire la plage et la valeur neutre du gamma ainsi que la liste validée des groupes, compatibilités, présélections et réglages.
 
-- [ ] Réglages généraux et effets retenus
-  - [ ] Implémenter d’abord un passage entièrement neutre
-    - [ ] Ajouter les réglages toujours disponibles sans altérer l’image par défaut
-      - [ ] Modifier src/GWGUI.App/Rendering/Emulation/VideoFilters/EmulationVideoEffectCatalog.cs pour déclarer le traitement commun de luminosité, contraste, gamma, saturation et netteté avec les valeurs neutres et les bornes validées.
-      - [ ] Exécuter les actions Modifier ajoutées précédemment dans AMELIORATIONS_INTERFACE_EMULATION.md pour les fichiers exacts du traitement général, puis implémenter les cinq réglages dans l’ordre validé sans reproduire une option interne de l’émulateur.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoFilterGraphTests.cs pour vérifier qu’une configuration entièrement neutre conserve chaque pixel de la mire et que les valeurs positives et négatives agissent uniquement sur le réglage demandé.
-  - [ ] Ajouter chaque famille retenue dans l’ordre du catalogue
-    - [ ] Terminer un effet avant de commencer le suivant
-      - [ ] Modifier src/GWGUI.App/Rendering/Emulation/VideoFilters/EmulationVideoEffectCatalog.cs pour ajouter un effet retenu seulement après la création de toutes ses passes et ressources validées.
-      - [ ] Modifier le backend concerné dans src/GWGUI.App/Rendering/Emulation/VideoFilters après chaque nouvel effet pour prendre en charge ses capacités sans recopier sa définition logique dans chaque surface.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoFilterGraphTests.cs et tests/GWGUI.Tests/EmulationVideoBackendCapabilityTests.cs après chaque effet pour vérifier ses paramètres, sa valeur neutre, ses passes, ses combinaisons autorisées et ses backends réellement pris en charge.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md après chaque effet terminé pour enregistrer son état réel, son coût mesuré et les écarts éventuels entre backends avant de cocher sa famille.
-- [ ] Interface commune dans l’onglet Vidéo de la machine
-  - [ ] Valider les derniers textes et formats avant les ressources
-    - [ ] Inscrire les choix manquants dans le document principal
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md pour inscrire les deux titres retenus pour distinguer les options commandant l’émulateur et les traitements appliqués hors émulateur, sans utiliser comme titres définitifs les formulations déjà refusées.
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md pour inscrire la représentation, la valeur neutre, les bornes et le pas retenus pour le gamma à partir de l’implémentation validée.
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md pour inscrire les libellés courts retenus pour la liste des fonctionnalités, l’activation, les présélections et la confirmation d’incompatibilité.
-  - [ ] Créer le gestionnaire commun avant le contrôle WPF
-    - [ ] Créer les fichiers de gestion de configuration vidéo
-      - [ ] Créer src/GWGUI.Emulation/Interfaces/IEmulationVideoProcessingSettingsManager.cs.
-      - [ ] Modifier src/GWGUI.Emulation/Interfaces/IEmulationVideoProcessingSettingsManager.cs pour remplacer la configuration vidéo commune dans une IEmulationConfiguration sans exposer ses types Amiga ou Atari à l’application.
-      - [ ] Modifier src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModule.cs pour implémenter IEmulationVideoProcessingSettingsManager en remplaçant uniquement EmulationVideoProcessingConfiguration.
-      - [ ] Modifier src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs pour implémenter le même contrat sans recopier les définitions d’effets.
-      - [ ] Créer src/GWGUI.App/Controllers/Emulation/Options/EmulationVideoProcessingSettingsController.cs.
-      - [ ] Modifier src/GWGUI.App/Controllers/Emulation/Options/EmulationVideoProcessingSettingsController.cs pour charger la configuration, valider les changements avec EmulationVideoConfigurationValidator, demander confirmation en cas d’incompatibilité et produire la configuration modifiée.
-  - [ ] Créer le contrôle commun avant de l’insérer dans les onglets
-    - [ ] Construire la liste, le panneau et les réglages permanents
-      - [ ] Créer src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVideoProcessingSettingsControl.cs.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVideoProcessingSettingsControl.cs pour afficher la grande liste des fonctionnalités retenues et le panneau de la fonctionnalité actuellement choisie sans activer celle-ci par sa seule sélection.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVideoProcessingSettingsControl.cs pour afficher dans le panneau l’activation, les présélections validées et seulement les paramètres de cette fonctionnalité.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVideoProcessingSettingsControl.cs pour garder toujours visibles luminosité, contraste, gamma, saturation et netteté, initialisés à leur valeur neutre et réglables dans leurs bornes validées.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVideoProcessingSettingsControl.cs pour utiliser les aides courtes et détaillées du système créé au point 4 sur les champs techniques qui ne sont pas compréhensibles par leur nom seul.
-      - [ ] Modifier src/GWGUI.App/Controllers/Emulation/Options/EmulationVideoProcessingSettingsController.cs pour ne désactiver les fonctionnalités incompatibles qu’après une réponse Oui à la confirmation et conserver exactement la combinaison précédente après Non.
-  - [ ] Séparer les réglages selon le code qu’ils commandent
-    - [ ] Étendre les blocs de description avant de modifier leur disposition
-      - [ ] Créer src/GWGUI.Emulation/Enums/EmulationSettingsProcessingScope.cs.
-      - [ ] Modifier src/GWGUI.Emulation/Enums/EmulationSettingsProcessingScope.cs pour distinguer un réglage transmis à l’émulateur d’un traitement exécuté hors émulateur.
-      - [ ] Modifier src/GWGUI.Emulation/Contracts/EmulationSettingsBlock.cs pour porter EmulationSettingsProcessingScope avec la portée émulateur comme valeur compatible avec les descriptions existantes.
-      - [ ] Modifier src/GWGUI.Emulation.Amiga/Functions/AmigaSettingsDescriptionFunctions.cs pour marquer les blocs Vidéo et Audio existants d’après le code qu’ils commandent, sans déplacer ni renommer leurs champs.
-      - [ ] Modifier src/GWGUI.Emulation.Atari/Functions/AtariSettingsDescriptionFunctions.cs pour effectuer le même classement sur chaque famille Atari sans créer de cadre vide.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour regrouper visuellement les blocs Vidéo et Audio par portée avec les titres validés, et n’afficher deux cadres que lorsque les deux portées contiennent réellement des réglages.
-  - [ ] Insérer le contrôle uniquement dans Vidéo
-    - [ ] Raccorder l’éditeur de machine au gestionnaire commun
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour créer EmulationVideoProcessingSettingsController uniquement si le module implémente IEmulationVideoProcessingSettingsManager.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour ajouter EmulationVideoProcessingSettingsControl dans le cadre hors émulateur de l’onglet Vidéo et ne l’ajouter ni dans Général, ni dans l’écran d’émulation, ni dans un autre onglet.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour faire passer chaque changement vidéo par le chemin d’enregistrement automatique créé au point 2 lorsque la configuration existe et ne rien écrire tant que la machine n’a pas été créée.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour reconstruire le contrôle avec la configuration de la machine nouvellement chargée sans conserver les effets de la machine précédente.
-
-- [ ] Ressources et aides dans toutes les langues existantes
-  - [ ] Créer les clés validées dans la ressource neutre avant leurs traductions
-    - [ ] Ajouter tous les textes du point 7 à la base
-      - [ ] Modifier src/GWGUI.App/Resources/00-Base/Emulation.resx pour ajouter les titres validés, les libellés des réglages généraux, les fonctionnalités et présélections retenues, la confirmation d’incompatibilité ainsi que les aides courtes et détaillées des champs concernés.
-  - [ ] Traduire les mêmes clés sans ajouter de texte directement dans le code
-    - [ ] Modifier chaque catalogue de langue existant
-      - [ ] Modifier src/GWGUI.App/Resources/ar-SA/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/cs-CZ/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/da-DK/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/de-DE/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/el-GR/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/en-US/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/es-ES/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/fi-FI/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/fr-FR/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/he-IL/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/hu-HU/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/id-ID/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/it-IT/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/ja-JP/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/ko-KR/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/nb-NO/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/nl-NL/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/pl-PL/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/pt-BR/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/pt-PT/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/ro-RO/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/ru-RU/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/sv-SE/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/th-TH/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/tr-TR/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/uk-UA/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/vi-VN/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/zh-Hans/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/zh-Hant/Emulation.resx.
-- [ ] Enregistrement immédiat et application à l’instance correspondante
-  - [ ] Fournir la configuration enregistrée lors de l’ouverture d’une machine
-    - [ ] Étendre les options avant le constructeur du présentateur
-      - [ ] Modifier src/GWGUI.App/Contracts/Machine/MachineControllerOptions.cs pour transporter EmulationVideoProcessingConfiguration avec VideoRenderer.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionMachineFunctions.cs pour fournir à chaque nouvelle instance les traitements enregistrés dans sa propre configuration.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/MachineController.cs pour transmettre cette configuration à MachineVideoPresenter lors de sa création.
-      - [ ] Modifier src/GWGUI.App/Presenters/Emulation/Machine/MachineVideoPresenter.cs pour appliquer la configuration à la surface avant de présenter sa première image.
-  - [ ] Appliquer en direct uniquement les traitements hors émulateur
-    - [ ] Raccorder l’événement de sauvegarde à la bonne machine ouverte
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs pour transmettre la nouvelle EmulationVideoProcessingConfiguration uniquement au MachineController dont le ModuleId et l’Id correspondent à la configuration sauvegardée.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/MachineController.cs pour ajouter ApplyVideoProcessingConfiguration et transmettre le changement au présentateur sans redémarrer, réinitialiser ou appeler l’émulateur.
-      - [ ] Modifier src/GWGUI.App/Presenters/Emulation/Machine/MachineVideoPresenter.cs pour reconfigurer la surface active sur le thread d’interface et présenter les images suivantes avec le nouveau graphe.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs pour laisser les autres modifications internes à l’émulateur suivre leur comportement actuel et ne pas leur appliquer le direct prévu uniquement pour les traitements externes.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs pour ne faire aucune application en direct lorsqu’aucune instance correspondante n’est ouverte, la configuration sauvegardée étant alors utilisée au prochain démarrage.
-  - [ ] Conserver les réglages pendant les changements de surface
-    - [ ] Vérifier toutes les transitions déjà possibles
-      - [ ] Modifier src/GWGUI.App/Presenters/Emulation/Machine/MachineVideoPresenter.cs pour réappliquer la dernière configuration après ApplyVideoRenderer, une recréation de taille ou un repli WPF, sans réinitialiser les valeurs choisies dans l’éditeur.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/MachineController.cs pour ne jamais envoyer la configuration d’une autre machine lorsqu’un autre onglet devient actif.
-
-- [ ] Tests fonctionnels, visuels, de licence et de performances
-  - [ ] Verrouiller l’interface et la confirmation des incompatibilités
-    - [ ] Créer le fichier de tests WPF avant ses scénarios
-      - [ ] Créer tests/GWGUI.Tests/EmulationVideoProcessingSettingsTests.cs.
-    - [ ] Ajouter les scénarios de l’éditeur commun
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoProcessingSettingsTests.cs pour vérifier que le contrôle apparaît seulement dans Vidéo, que les réglages généraux restent visibles et que la sélection d’une fonctionnalité affiche son panneau sans l’activer.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoProcessingSettingsTests.cs pour vérifier les présélections, les paramètres, les valeurs neutres et la reconstruction complète après changement de machine.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoProcessingSettingsTests.cs pour vérifier que Oui désactive exactement les fonctionnalités incompatibles annoncées et que Non ne modifie aucune activation.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoProcessingSettingsTests.cs pour vérifier qu’une configuration existante est sauvegardée à chaque changement et qu’un brouillon non créé n’écrit aucun fichier.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoProcessingSettingsTests.cs pour vérifier la séparation des blocs Vidéo et Audio selon EmulationSettingsProcessingScope sans afficher un cadre vide.
-  - [ ] Verrouiller l’application en direct et l’isolation des instances
-    - [ ] Créer le fichier de tests avant ses scénarios
-      - [ ] Créer tests/GWGUI.Tests/EmulationVideoLiveUpdateTests.cs.
-    - [ ] Ajouter les scénarios de machine ouverte et fermée
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoLiveUpdateTests.cs pour vérifier qu’un changement hors émulateur reconfigure l’instance correspondante sans recréer sa machine.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoLiveUpdateTests.cs pour vérifier qu’aucune autre configuration ou instance ouverte ne reçoit le changement.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoLiveUpdateTests.cs pour vérifier qu’une machine fermée utilise les valeurs sauvegardées à son prochain démarrage.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoLiveUpdateTests.cs pour vérifier que les options internes à l’émulateur ne sont pas appliquées en direct par ce nouveau chemin.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoLiveUpdateTests.cs pour vérifier la conservation de la configuration après changement de backend et repli vers WPF.
-  - [ ] Vérifier chaque effet avec des images de référence approuvées
-    - [ ] Créer le fichier de tests et le dossier avant les références
-      - [ ] Créer tests/GWGUI.Tests/EmulationVideoRenderingTests.cs.
-      - [ ] Créer le dossier tests/GWGUI.Tests/Fixtures/VideoFilters.
-    - [ ] Ajouter les références seulement après validation visuelle
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md pour inscrire le chemin exact de chaque image de référence approuvée avant sa création dans tests/GWGUI.Tests/Fixtures/VideoFilters.
-      - [ ] Créer chaque image de référence inscrite avec la mire, l’effet, la présélection, les paramètres, la taille d’entrée et la taille de sortie indiqués dans son nom ou son manifeste.
-      - [ ] Modifier tests/GWGUI.Tests/GWGUI.Tests.csproj après la première image pour copier uniquement les références effectivement créées dans le répertoire de tests.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoRenderingTests.cs pour comparer la sortie neutre pixel à pixel et les effets à leur référence avec la tolérance validée pour chaque backend, sans exiger arbitrairement des pixels identiques entre API graphiques différentes.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoRenderingTests.cs pour vérifier les tailles variables, les rapports d’aspect, les changements de résolution, les combinaisons retenues et plusieurs images consécutives pour les effets utilisant l’historique.
-  - [ ] Vérifier la traçabilité de chaque ressource tierce
-    - [ ] Créer le test de correspondance des licences
-      - [ ] Créer tests/GWGUI.Tests/EmulationVideoAssetLicenseTests.cs.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoAssetLicenseTests.cs pour vérifier que chaque shader, include, préréglage et texture directement repris possède une entrée source-licence dans docs/EMULATION_VIDEO_FILTER_CATALOG.md et, lorsqu’elle est exigée, dans THIRD-PARTY-NOTICES.md.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoAssetLicenseTests.cs pour échouer si un fichier embarqué n’est référencé par aucun effet de production ou si un effet référence une ressource absente.
-  - [ ] Mesurer le coût réel avant d’accepter chaque présélection
-    - [ ] Ajouter les mesures au banc d’essai existant
-      - [ ] Modifier tests/GWGUI.Tests/EmulationVideoBackendCapabilityTests.cs pour mesurer le temps CPU, le temps de présentation, les allocations, les recréations de ressources et la mémoire intermédiaire de chaque présélection retenue aux résolutions validées.
-      - [ ] Modifier docs/EMULATION_VIDEO_FILTER_CATALOG.md pour inscrire les résultats et les limites acceptées après essai, sans inventer un budget identique pour toutes les machines et toutes les cartes graphiques.
-      - [ ] Modifier src/GWGUI.App/Rendering/Emulation/VideoFilters/EmulationVideoEffectCatalog.cs pour marquer indisponible sur un backend uniquement un effet dont les capacités ou limites validées ne sont réellement pas respectées.
-  - [ ] Exécuter la validation complète sans corriger autre chose par préférence
-    - [ ] Exécuter les tests ciblés puis toute la suite
-      - [ ] Exécuter EmulationVideoProcessingConfigurationTests, EmulationVideoFilterGraphTests, EmulationVideoBackendCapabilityTests, EmulationVideoProcessingSettingsTests, EmulationVideoLiveUpdateTests, EmulationVideoRenderingTests et EmulationVideoAssetLicenseTests, puis corriger uniquement les erreurs introduites par le point 7.
-      - [ ] Exécuter AmigaConfigurationStoreTests et AtariConfigurationStoreTests, puis corriger uniquement les régressions provoquées par la nouvelle configuration vidéo ou sa migration.
-      - [ ] Exécuter la suite GWGUI.Tests et corriger uniquement les régressions causées par les fichiers modifiés dans cette checklist.
-      - [ ] Vérifier manuellement sur une machine Amiga et une machine Atari les valeurs neutres, plusieurs présélections retenues, une combinaison compatible, le refus puis l’acceptation d’une incompatibilité, l’enregistrement immédiat et l’application en direct.
-      - [ ] Vérifier manuellement Direct3D 11, Vulkan, OpenGL et WPF selon leurs capacités validées, puis confirmer que le rendu sans effet, le changement de moteur, le repli et la capture d’écran conservent leur comportement décidé.
+- [ ] Inscrire l’architecture validée sans commencer son implémentation
+  - [ ] Modifier docs/architecture/emulation.md pour décrire la séparation validée entre configuration commune, catalogue de filtres, chaîne de traitement et implémentations propres aux backends.
+  - [ ] Modifier docs/architecture/emulation.md pour décrire l’enregistrement par configuration de machine, l’application immédiate à la seule instance correspondante et l’utilisation au prochain démarrage lorsqu’aucune instance n’est ouverte.
+  - [ ] Modifier docs/architecture/emulation.md pour décrire l’emplacement unique des contrôles dans l’onglet Vidéo, la séparation visuelle avec les options internes de l’émulateur et le maintien permanent des cinq réglages généraux.
+  - [ ] Modifier docs/tasks/interface/emulation-improvements.md pour ajouter, seulement après validation de cette architecture, une future checklist d’implémentation donnant les fichiers et actions réellement retenus ; ne créer ni contrat, ni shader, ni contrôle avant cette validation.
 
 ## Checklist détaillée — Point 8 : habillages d’écran en plein écran
 
-Cette fonctionnalité reste une évolution différée. Sa checklist peut être préparée, mais aucune image ni aucun code d’habillage ne doit être réalisé avant une décision explicite de commencer ce point.
+La section Idée future : habillages d’écran indique explicitement que cette fonction ne doit pas être réalisée maintenant. Aucune tâche de code, d’image, de configuration, de test ou de traduction n’est donc autorisée dans l’état actuel du document.
 
-- [ ] Catalogue validé des habillages réellement retenus
-  - [ ] Créer le document de catalogue avant toute recherche d’image
-    - [ ] Créer le fichier puis sa structure
-      - [ ] Créer docs/EMULATION_SCREEN_SKIN_CATALOG.md.
-      - [ ] Modifier docs/EMULATION_SCREEN_SKIN_CATALOG.md pour ajouter les sections Module, Machine, Variante, Type de matériel, Image, Source, Licence, Dimensions, Rectangle d’écran, Mode de cadrage, État et Décision, sans inscrire encore d’habillage retenu.
-  - [ ] Définir le périmètre initial sans ajouter d’animations
-    - [ ] Inscrire les règles validées dans le catalogue
-      - [ ] Modifier docs/EMULATION_SCREEN_SKIN_CATALOG.md pour réserver les téléviseurs et écrans d’ordinateur aux ordinateurs et consoles de salon et réserver à chaque console portable son propre boîtier ou son propre contour d’écran.
-      - [ ] Modifier docs/EMULATION_SCREEN_SKIN_CATALOG.md pour permettre plusieurs variantes d’une machine lorsqu’elle a réellement existé sous plusieurs modèles ou couleurs, notamment une variante matérielle ou colorée distincte par identifiant.
-      - [ ] Modifier docs/EMULATION_SCREEN_SKIN_CATALOG.md pour limiter la première version à une image décorative et exclure les boutons pressés, voyants, animations et zones interactives jusqu’à une évolution explicitement validée.
-      - [ ] Modifier docs/EMULATION_SCREEN_SKIN_CATALOG.md pour limiter la première version au plein écran et conserver le mode fenêtré comme évolution ultérieure non implémentée.
-      - [ ] Modifier docs/EMULATION_SCREEN_SKIN_CATALOG.md pour préciser que le plein écran classique reste disponible et inchangé lorsque l’habillage est désactivé.
-  - [ ] Définir le cadrage de chaque type d’habillage
-    - [ ] Consigner les modes à comparer puis le choix retenu
-      - [ ] Modifier docs/EMULATION_SCREEN_SKIN_CATALOG.md pour comparer l’affichage de l’image entière et le recadrage autorisé autour de l’écran sans en faire automatiquement deux options utilisateur.
-      - [ ] Modifier docs/EMULATION_SCREEN_SKIN_CATALOG.md pour imposer que l’écran émulé reste entièrement visible, correctement proportionné et sans déformation, même lorsqu’une partie extérieure du boîtier est coupée.
-      - [ ] Modifier docs/EMULATION_SCREEN_SKIN_CATALOG.md pour autoriser une console portable à n’afficher que le contour de son écran lorsque son boîtier complet ne peut pas être cadré correctement.
-      - [ ] Modifier docs/EMULATION_SCREEN_SKIN_CATALOG.md pour définir, après comparaison visuelle, le mode de cadrage retenu séparément pour chaque variante au lieu d’appliquer le même choix à toutes les images.
-  - [ ] Déterminer les comportements encore non validés avant l’interface
-    - [ ] Écrire les décisions manquantes dans le document principal
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md pour inscrire si un changement d’habillage pendant qu’une instance est déjà en plein écran doit être appliqué immédiatement ou seulement lors de la prochaine entrée en plein écran.
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md pour inscrire l’affichage retenu dans l’onglet Vidéo lorsqu’aucun habillage n’existe pour la machine : contrôle masqué ou contrôle désactivé avec une information courte.
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md pour inscrire le repli retenu lorsqu’une variante enregistrée n’existe plus ou ne peut pas être chargée, sans choisir silencieusement ce comportement pendant le code.
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md pour confirmer que la capture d’écran reste limitée à l’image émulée ou, si un autre comportement est demandé, ajouter celui-ci comme évolution séparée avant de modifier MachineVideoPresenter.Snapshot.
+- [ ] Autoriser explicitement le démarrage de cette idée future avant toute autre action
+  - [ ] Modifier docs/tasks/interface/emulation-improvements.md, dans la section Idée future : habillages d’écran, uniquement après une décision explicite de réalisation, pour inscrire que le point 8 peut commencer et conserver la date de cette décision.
 
-- [ ] Sources, licences et préparation des images approuvées
-  - [ ] Vérifier le droit d’utilisation avant de créer un fichier dans le projet
-    - [ ] Documenter chaque source retenue dans le catalogue
-      - [ ] Modifier docs/EMULATION_SCREEN_SKIN_CATALOG.md pour enregistrer l’URL directe, l’auteur, la licence ou l’autorisation et la date de consultation de chaque image candidate.
-      - [ ] Modifier docs/EMULATION_SCREEN_SKIN_CATALOG.md pour refuser comme ressource de production une image simplement trouvée sur Internet lorsque son droit de modification et de redistribution n’est pas établi.
-      - [ ] Modifier docs/EMULATION_SCREEN_SKIN_CATALOG.md pour distinguer les images réutilisables, les images servant seulement de référence pour créer une nouvelle ressource et les images refusées.
-      - [ ] Créer THIRD-PARTY-NOTICES.md s’il n’existe pas encore et si la première ressource tierce retenue exige une notice dans le projet.
-      - [ ] Modifier THIRD-PARTY-NOTICES.md pour ajouter les mentions obligatoires avant l’intégration de chaque image concernée.
-  - [ ] Valider les chemins exacts avant la création des ressources
-    - [ ] Ajouter au document une action séparée pour chaque fichier retenu
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md pour inscrire, avant sa création, le chemin exact de chaque image sous src/GWGUI.App/Assets/Emulation/ScreenSkins/{module}/{machine}, son identifiant de variante, sa source et sa licence.
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md pour ajouter après chaque action Créer une action Modifier distincte décrivant le détourage, la transparence, le cadrage et les corrections réellement nécessaires à cette image.
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md pour inscrire le chemin exact du manifeste associé à chaque image avant de créer ce manifeste.
-  - [ ] Créer les dossiers uniquement pour les variantes approuvées
-    - [ ] Préparer l’arborescence avant son premier fichier
-      - [ ] Créer le dossier src/GWGUI.App/Assets/Emulation/ScreenSkins seulement après la validation du premier habillage.
-      - [ ] Créer sous src/GWGUI.App/Assets/Emulation/ScreenSkins le dossier exact du module inscrit auparavant dans AMELIORATIONS_INTERFACE_EMULATION.md.
-      - [ ] Créer sous le dossier du module le dossier exact de la machine inscrit auparavant dans AMELIORATIONS_INTERFACE_EMULATION.md avant de créer sa première variante.
-  - [ ] Produire chaque image sans modifier les autres variantes
-    - [ ] Exécuter les actions validées image par image
-      - [ ] Exécuter pour chaque variante les actions Créer puis Modifier ajoutées auparavant dans AMELIORATIONS_INTERFACE_EMULATION.md, avec une vue adaptée au plein écran, un fond transparent si nécessaire et sans élément interactif ajouté.
-      - [ ] Modifier docs/EMULATION_SCREEN_SKIN_CATALOG.md après chaque vérification visuelle pour enregistrer les dimensions finales de l’image, son rectangle d’écran normalisé et son mode de cadrage validé.
-      - [ ] Modifier src/GWGUI.App/GWGUI.App.csproj après la création de la première variante pour embarquer uniquement les images et manifestes réellement retenus sous Assets/Emulation/ScreenSkins.
-
-- [ ] Configuration persistante de l’habillage par machine
-  - [ ] Créer le contrat commun avant de modifier Amiga et Atari
-    - [ ] Créer puis remplir le fichier de configuration
-      - [ ] Créer src/GWGUI.Emulation/Contracts/EmulationScreenSkinConfiguration.cs.
-      - [ ] Modifier src/GWGUI.Emulation/Contracts/EmulationScreenSkinConfiguration.cs pour enregistrer uniquement l’activation et l’identifiant de variante, avec l’habillage désactivé par défaut.
-  - [ ] Exposer la même configuration aux deux familles
-    - [ ] Étendre les contrats sans créer de réglages propres à une marque
-      - [ ] Modifier src/GWGUI.Emulation/Interfaces/IEmulationConfiguration.cs pour exposer EmulationScreenSkinConfiguration.
-      - [ ] Modifier src/GWGUI.Emulation.Amiga/Contracts/AmigaMachineConfiguration.cs pour enregistrer EmulationScreenSkinConfiguration sans changer les autres réglages vidéo.
-      - [ ] Modifier src/GWGUI.Emulation.Atari/Contracts/AtariMachineConfiguration.cs pour enregistrer la même configuration commune sans recopier le catalogue d’habillages.
-  - [ ] Migrer les fichiers existants vers une valeur désactivée
-    - [ ] Augmenter chaque schéma au moment réel de l’implémentation
-      - [ ] Modifier src/GWGUI.Emulation.Amiga/Services/AmigaConfigurationStore.cs et src/GWGUI.Emulation.Amiga/Contracts/AmigaMachineConfiguration.cs pour accepter les schémas déjà pris en charge, enregistrer la prochaine version disponible et ajouter uniquement un habillage désactivé aux anciens fichiers.
-      - [ ] Modifier src/GWGUI.Emulation.Atari/Constants/AtariConstants.cs pour augmenter CurrentConfigurationSchemaVersion d’une version après celle utilisée par le point 7.
-      - [ ] Modifier src/GWGUI.Emulation.Atari/Contracts/AtariConfigurationDocument.cs et src/GWGUI.Emulation.Atari/Functions/AtariConfigurationStoreFunctions.cs pour sérialiser et restaurer EmulationScreenSkinConfiguration.
-      - [ ] Modifier src/GWGUI.Emulation.Atari/Functions/AtariConfigurationMigrationFunctions.cs pour migrer explicitement le schéma précédent avec l’habillage désactivé sans modifier les autres données.
-  - [ ] Verrouiller la configuration avant le catalogue d’images
-    - [ ] Créer le fichier de tests avant ses scénarios
-      - [ ] Créer tests/GWGUI.Tests/EmulationScreenSkinConfigurationTests.cs.
-    - [ ] Ajouter les scénarios de valeur, migration et isolation
-      - [ ] Modifier tests/GWGUI.Tests/EmulationScreenSkinConfigurationTests.cs pour vérifier la valeur désactivée, l’activation, l’identifiant de variante et l’indépendance de deux configurations de machines.
-      - [ ] Modifier tests/GWGUI.Tests/AmigaConfigurationStoreTests.cs pour vérifier la migration du schéma précédent et le cycle chargement-enregistrement de l’habillage sans perte des autres données.
-      - [ ] Modifier tests/GWGUI.Tests/AtariConfigurationStoreTests.cs pour vérifier la migration explicite équivalente côté Atari.
-
-- [ ] Définitions et catalogue commun des variantes disponibles
-  - [ ] Créer les contrats d’image avant de charger les manifestes
-    - [ ] Créer puis remplir la définition normalisée
-      - [ ] Créer src/GWGUI.App/Contracts/Emulation/ScreenSkins/EmulationScreenSkinDefinition.cs.
-      - [ ] Modifier src/GWGUI.App/Contracts/Emulation/ScreenSkins/EmulationScreenSkinDefinition.cs pour décrire le module, la machine, la variante, la clé de libellé, l’image, le rectangle d’écran normalisé et uniquement le mode de cadrage validé dans le catalogue.
-      - [ ] Créer src/GWGUI.App/Enums/EmulationScreenSkinLayoutMode.cs.
-      - [ ] Modifier src/GWGUI.App/Enums/EmulationScreenSkinLayoutMode.cs pour déclarer seulement les modes de cadrage effectivement retenus après les comparaisons, sans ajouter d’options inutilisées.
-  - [ ] Créer le chargeur avant d’enregistrer une variante
-    - [ ] Créer puis remplir le catalogue partagé
-      - [ ] Créer src/GWGUI.App/Services/Emulation/ScreenSkins/EmulationScreenSkinCatalog.cs.
-      - [ ] Modifier src/GWGUI.App/Services/Emulation/ScreenSkins/EmulationScreenSkinCatalog.cs pour charger les manifestes embarqués, valider les coordonnées normalisées et indexer chaque variante par module, machine et identifiant.
-      - [ ] Modifier src/GWGUI.App/Services/Emulation/ScreenSkins/EmulationScreenSkinCatalog.cs pour retourner uniquement les variantes de la machine demandée et ne jamais proposer un téléviseur, un écran ou une console portable appartenant à une autre machine.
-      - [ ] Modifier src/GWGUI.App/Services/Emulation/ScreenSkins/EmulationScreenSkinCatalog.cs pour charger et mettre en cache l’image WPF sans conserver de verrou sur un fichier externe.
-      - [ ] Modifier src/GWGUI.App/Services/Emulation/ScreenSkins/EmulationScreenSkinCatalog.cs pour appliquer exactement le repli validé lorsqu’une image, un manifeste ou une variante enregistrée est absent ou invalide.
-  - [ ] Ajouter chaque manifeste seulement après son image
-    - [ ] Exécuter les créations dans l’ordre inscrit dans le document
-      - [ ] Créer chaque manifeste au chemin exact ajouté auparavant dans AMELIORATIONS_INTERFACE_EMULATION.md seulement après l’existence de son image approuvée.
-      - [ ] Modifier chaque manifeste créé pour inscrire l’identifiant, la clé de libellé, le chemin de l’image, le rectangle d’écran normalisé et le mode de cadrage mesurés pour cette variante précise.
-      - [ ] Modifier docs/EMULATION_SCREEN_SKIN_CATALOG.md pour marquer la variante disponible seulement après le chargement réussi de son image et de son manifeste par EmulationScreenSkinCatalog.
-  - [ ] Vérifier le catalogue avant la composition plein écran
-    - [ ] Créer le fichier de tests avant ses scénarios
-      - [ ] Créer tests/GWGUI.Tests/EmulationScreenSkinCatalogTests.cs.
-    - [ ] Ajouter les scénarios de correspondance et de ressources
-      - [ ] Modifier tests/GWGUI.Tests/EmulationScreenSkinCatalogTests.cs pour vérifier que chaque manifeste possède une image, une clé unique, une machine existante et un rectangle d’écran entièrement compris entre 0 et 1.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationScreenSkinCatalogTests.cs pour vérifier qu’une variante n’est retournée que pour son module et sa machine et que les différentes couleurs ou modèles restent des choix distincts.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationScreenSkinCatalogTests.cs pour vérifier le comportement validé d’une image absente, d’un manifeste invalide et d’un identifiant enregistré devenu inconnu.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationScreenSkinCatalogTests.cs pour vérifier la transparence réellement requise, les dimensions et la correspondance entre le rectangle déclaré et l’ouverture approuvée de chaque image.
-- [ ] Extraction du plein écran classique avant l’ajout des images
-  - [ ] Verrouiller le comportement actuel avant son déplacement
-    - [ ] Créer le fichier de tests du plein écran avant ses scénarios
-      - [ ] Créer tests/GWGUI.Tests/EmulationFullscreenHostTests.cs.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationFullscreenHostTests.cs pour vérifier la fenêtre noire maximisée, le déplacement de MachineView.Screen, SetDisplayHost, le retour dans MachineView.DisplayHost, le focus et les appels BeginHostTransition puis CompleteHostTransition.
-  - [ ] Créer l’hôte réutilisable sans modifier l’apparence classique
-    - [ ] Créer puis remplir le contrôle de plein écran
-      - [ ] Créer src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationFullscreenHost.cs.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationFullscreenHost.cs pour reproduire d’abord le Grid noir étiré actuel et exposer un ScreenSlot occupant toute sa surface lorsque aucun habillage n’est fourni.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/MachineController.cs pour créer EmulationFullscreenHost à la place du Grid actuel, déplacer MachineView.Screen dans son ScreenSlot et fournir ce slot à MachineVideoPresenter.SetDisplayHost.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationFullscreenHostTests.cs pour comparer le mode sans habillage au comportement verrouillé avant de retirer le champ Grid devenu inutile.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/MachineController.cs pour retirer uniquement l’ancien code de création du Grid noir après réussite des tests du nouvel hôte.
-
-- [ ] Calcul commun du placement de l’habillage et de l’écran
-  - [ ] Créer les contrats de géométrie avant le calcul
-    - [ ] Créer puis remplir les fichiers de disposition
-      - [ ] Créer src/GWGUI.App/Contracts/Emulation/ScreenSkins/EmulationScreenSkinLayout.cs.
-      - [ ] Modifier src/GWGUI.App/Contracts/Emulation/ScreenSkins/EmulationScreenSkinLayout.cs pour retourner le rectangle final de l’image décorative et le rectangle final du ScreenSlot dans les coordonnées du plein écran.
-      - [ ] Créer src/GWGUI.App/Functions/Rendering/Emulation/EmulationScreenSkinLayoutFunctions.cs.
-      - [ ] Modifier src/GWGUI.App/Functions/Rendering/Emulation/EmulationScreenSkinLayoutFunctions.cs pour calculer les deux rectangles à partir de la fenêtre, des dimensions de l’image, du rectangle normalisé et du mode de cadrage validé.
-  - [ ] Garantir l’intégrité de l’écran pour tous les formats
-    - [ ] Ajouter les contraintes au calcul partagé
-      - [ ] Modifier src/GWGUI.App/Functions/Rendering/Emulation/EmulationScreenSkinLayoutFunctions.cs pour conserver les proportions de l’image d’habillage sans l’étirer indépendamment sur les deux axes.
-      - [ ] Modifier src/GWGUI.App/Functions/Rendering/Emulation/EmulationScreenSkinLayoutFunctions.cs pour maintenir le ScreenSlot entièrement dans la zone visible, même lorsqu’une partie extérieure de l’habillage est recadrée.
-      - [ ] Modifier src/GWGUI.App/Functions/Rendering/Emulation/EmulationScreenSkinLayoutFunctions.cs pour laisser EmulationVideoLayoutFunctions.Fit conserver le rapport d’aspect réel de l’image émulée à l’intérieur du ScreenSlot.
-      - [ ] Modifier src/GWGUI.App/Functions/Rendering/Emulation/EmulationScreenSkinLayoutFunctions.cs pour retourner une disposition invalide plutôt que des dimensions négatives, infinies ou un écran placé hors de la fenêtre lorsqu’un manifeste est incorrect.
-  - [ ] Verrouiller les modes validés et les cas de recadrage
-    - [ ] Créer le fichier de tests de géométrie avant ses scénarios
-      - [ ] Créer tests/GWGUI.Tests/EmulationScreenSkinLayoutTests.cs.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationScreenSkinLayoutTests.cs pour vérifier chaque mode validé avec des fenêtres 4:3, 16:9, ultra-larges et verticales ainsi qu’avec plusieurs facteurs DPI.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationScreenSkinLayoutTests.cs pour vérifier une télévision ou un écran d’ordinateur entièrement visible, un boîtier portable partiellement coupé et un contour d’écran portable.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationScreenSkinLayoutTests.cs pour vérifier que le ScreenSlot reste toujours entier, que l’image décorative garde ses proportions et que l’image émulée n’est jamais déformée.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationScreenSkinLayoutTests.cs pour vérifier le refus des coordonnées invalides et l’application du repli décidé dans le catalogue.
-
-- [ ] Composition décorative dans le plein écran uniquement
-  - [ ] Ajouter l’image autour du ScreenSlot après le mode classique
-    - [ ] Étendre l’hôte sans superposer de contrôle interactif
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationFullscreenHost.cs pour charger l’image fournie par EmulationScreenSkinCatalog, l’afficher dans son rectangle calculé et placer ScreenSlot dans l’ouverture déclarée.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationFullscreenHost.cs pour recalculer les rectangles après changement de taille, de DPI ou de variante sans retirer la surface vidéo de ScreenSlot.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationFullscreenHost.cs pour rendre l’image décorative non interactive et ne créer aucune zone de bouton, de voyant ou d’animation dans cette première version.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationFullscreenHost.cs pour afficher le fond noir classique autour des zones non couvertes par l’image.
-  - [ ] Préserver la surface et les traitements vidéo existants
-    - [ ] Raccorder le présentateur uniquement au nouveau slot
-      - [ ] Modifier src/GWGUI.App/Presenters/Emulation/Machine/MachineVideoPresenter.cs pour ajuster MachineView.Screen dans EmulationFullscreenHost.ScreenSlot et continuer à présenter la même surface WPF, OpenGL, Direct3D 11 ou Vulkan.
-      - [ ] Modifier src/GWGUI.App/Presenters/Emulation/Machine/MachineVideoPresenter.cs pour appliquer les filtres du point 7 uniquement à l’image émulée dans ScreenSlot et jamais à l’image décorative.
-      - [ ] Modifier src/GWGUI.App/Presenters/Emulation/Machine/MachineVideoPresenter.cs pour conserver Snapshot limité au comportement validé avant le début du point 8.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationFullscreenHostTests.cs pour vérifier qu’un changement de backend ou de filtre ne recrée pas l’habillage, ne déplace pas ScreenSlot et n’applique aucun filtre à l’image décorative.
-  - [ ] Préserver le focus et la capture de souris
-    - [ ] Raccorder le fond décoratif au comportement validé au point 1
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationFullscreenHost.cs pour transmettre un clic sur l’habillage ou le fond à l’opération commune qui redonne le focus à l’émulation sans capturer la souris.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/MachineController.cs pour conserver BeginHostTransition, CompleteHostTransition, le focus après ContentRendered et le retour du focus après la fermeture du plein écran.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationFullscreenHostTests.cs pour vérifier qu’un clic décoratif redonne le focus sans capture, qu’un clic dans ScreenSlot conserve le comportement de l’écran et que F12 ou la fermeture de la fenêtre libère toujours correctement la souris.
-  - [ ] Laisser le mode fenêtré strictement inchangé
-    - [ ] Maintenir l’habillage hors de MachineView.DisplayHost
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/MachineController.cs pour ne créer EmulationFullscreenHost qu’à l’entrée en plein écran et replacer MachineView.Screen directement dans MachineView.DisplayHost à la sortie.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationFullscreenHostTests.cs pour vérifier que l’activation d’un habillage enregistré ne change ni la zone grise, ni la taille, ni la hiérarchie visuelle du mode fenêtré.
-- [ ] Choix de l’habillage dans l’onglet Vidéo
-  - [ ] Créer le gestionnaire commun avant l’interface
-    - [ ] Créer puis remplir le contrat de remplacement
-      - [ ] Créer src/GWGUI.Emulation/Interfaces/IEmulationScreenSkinSettingsManager.cs.
-      - [ ] Modifier src/GWGUI.Emulation/Interfaces/IEmulationScreenSkinSettingsManager.cs pour remplacer EmulationScreenSkinConfiguration dans une IEmulationConfiguration sans exposer les contrats Amiga ou Atari à l’application.
-      - [ ] Modifier src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModule.cs pour implémenter IEmulationScreenSkinSettingsManager en remplaçant uniquement la configuration d’habillage.
-      - [ ] Modifier src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs pour implémenter le même contrat sans recopier les variantes disponibles.
-  - [ ] Créer le contrôleur avant le contrôle WPF
-    - [ ] Créer puis remplir le gestionnaire de choix
-      - [ ] Créer src/GWGUI.App/Controllers/Emulation/Options/EmulationScreenSkinSettingsController.cs.
-      - [ ] Modifier src/GWGUI.App/Controllers/Emulation/Options/EmulationScreenSkinSettingsController.cs pour demander au catalogue uniquement les variantes du module et de la machine affichés, charger le choix enregistré et produire une nouvelle EmulationScreenSkinConfiguration.
-      - [ ] Modifier src/GWGUI.App/Controllers/Emulation/Options/EmulationScreenSkinSettingsController.cs pour appliquer exactement le comportement validé lorsqu’aucune variante n’existe ou lorsque le choix enregistré est introuvable.
-  - [ ] Créer l’interface sans ajouter de fonctions non demandées
-    - [ ] Créer puis remplir le contrôle commun
-      - [ ] Créer src/GWGUI.App/Views/Controls/Emulation/Options/EmulationScreenSkinSettingsControl.cs.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationScreenSkinSettingsControl.cs pour afficher uniquement l’activation de l’habillage et la liste des variantes disponibles pour la machine.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationScreenSkinSettingsControl.cs pour conserver le choix désactivé comme plein écran classique et ne pas ajouter de prévisualisation, d’éditeur d’image, de bouton virtuel ou d’option fenêtrée non demandés.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationScreenSkinSettingsControl.cs pour utiliser le comportement validé dans AMELIORATIONS_INTERFACE_EMULATION.md lorsqu’aucun habillage n’est disponible.
-  - [ ] Insérer le contrôle uniquement dans les réglages vidéo hors émulateur
-    - [ ] Raccorder l’éditeur de machine au chemin automatique existant
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour créer le contrôle seulement dans l’onglet Vidéo et dans le cadre hors émulateur établi au point 7.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour reconstruire les variantes après un changement de marque ou de machine sans conserver le choix visuel de la machine précédente.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour enregistrer immédiatement l’activation ou la variante par le chemin créé au point 2 lorsqu’une configuration existe et ne rien écrire pour un brouillon non créé.
-
-- [ ] Ressources multilingues des contrôles et variantes
-  - [ ] Créer les clés neutres avant les traductions
-    - [ ] Ajouter uniquement les textes effectivement utilisés
-      - [ ] Modifier src/GWGUI.App/Resources/00-Base/Emulation.resx pour ajouter les libellés validés de l’activation, de la variante, de l’absence éventuelle d’habillage et chaque clé de variante présente dans un manifeste approuvé.
-  - [ ] Traduire les mêmes clés dans toutes les langues existantes
-    - [ ] Modifier chaque catalogue sans écrire de libellé dans le code ou le manifeste
-      - [ ] Modifier src/GWGUI.App/Resources/ar-SA/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/cs-CZ/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/da-DK/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/de-DE/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/el-GR/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/en-US/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/es-ES/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/fi-FI/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/fr-FR/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/he-IL/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/hu-HU/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/id-ID/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/it-IT/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/ja-JP/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/ko-KR/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/nb-NO/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/nl-NL/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/pl-PL/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/pt-BR/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/pt-PT/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/ro-RO/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/ru-RU/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/sv-SE/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/th-TH/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/tr-TR/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/uk-UA/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/vi-VN/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/zh-Hans/Emulation.resx.
-      - [ ] Modifier src/GWGUI.App/Resources/zh-Hant/Emulation.resx.
-
-- [ ] Transmission de la configuration à la bonne instance
-  - [ ] Fournir le contexte complet lors de l’ouverture
-    - [ ] Étendre les options avant MachineController
-      - [ ] Modifier src/GWGUI.App/Contracts/Machine/MachineControllerOptions.cs pour transporter le ModuleId, le MachineId et EmulationScreenSkinConfiguration avec les autres réglages de présentation.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionMachineFunctions.cs pour fournir ces trois valeurs depuis la configuration réellement ouverte.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/MachineController.cs pour résoudre la variante par EmulationScreenSkinCatalog à l’entrée en plein écran et utiliser le mode classique lorsque l’option est désactivée.
-  - [ ] Appliquer une sauvegarde uniquement à l’instance correspondante
-    - [ ] Raccorder l’événement sans appeler l’émulateur
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs pour transmettre le nouveau choix uniquement au MachineController possédant le même ModuleId et le même Id de configuration.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/MachineController.cs pour mémoriser le nouveau choix sans redémarrer, réinitialiser ou modifier la machine émulée.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/MachineController.cs pour appliquer le choix immédiatement ou à la prochaine entrée en plein écran selon la décision inscrite avant l’implémentation.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/MachineController.cs pour conserver le plein écran classique ou appliquer l’autre repli explicitement validé si la variante choisie ne peut pas être résolue.
-      - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs pour laisser une configuration sans instance ouverte utiliser simplement son choix enregistré au prochain démarrage.
-
-- [ ] Tests de l’interface, du plein écran, des ressources et des non-régressions
-  - [ ] Verrouiller le choix enregistré dans l’onglet Vidéo
-    - [ ] Créer le fichier de tests WPF avant ses scénarios
-      - [ ] Créer tests/GWGUI.Tests/EmulationScreenSkinSettingsTests.cs.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationScreenSkinSettingsTests.cs pour vérifier l’affichage uniquement dans Vidéo, l’activation, la désactivation, les variantes propres à la machine et le comportement validé lorsqu’aucune variante n’existe.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationScreenSkinSettingsTests.cs pour vérifier l’enregistrement immédiat d’une configuration existante, l’absence d’écriture d’un brouillon et la remise à zéro visuelle après changement de machine.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationScreenSkinSettingsTests.cs pour vérifier que chaque libellé provient des ressources et change avec la langue sans modifier l’identifiant enregistré.
-  - [ ] Vérifier les images, manifestes et licences embarqués
-    - [ ] Créer le fichier de contrôle des ressources
-      - [ ] Créer tests/GWGUI.Tests/EmulationScreenSkinAssetTests.cs.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationScreenSkinAssetTests.cs pour vérifier que chaque image embarquée possède un manifeste, une entrée dans docs/EMULATION_SCREEN_SKIN_CATALOG.md et une source dont le statut autorise réellement la redistribution.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationScreenSkinAssetTests.cs pour vérifier la présence dans THIRD-PARTY-NOTICES.md lorsque la licence l’exige et refuser les fichiers non utilisés par le catalogue.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationScreenSkinAssetTests.cs pour vérifier les dimensions, le canal alpha lorsqu’il est requis et l’absence de manifeste pointant hors du dossier autorisé de sa machine.
-  - [ ] Créer les références visuelles seulement après approbation des variantes
-    - [ ] Préparer le fichier de tests et son dossier avant les images
-      - [ ] Créer tests/GWGUI.Tests/EmulationScreenSkinRenderingTests.cs.
-      - [ ] Créer le dossier tests/GWGUI.Tests/Fixtures/ScreenSkins.
-      - [ ] Modifier AMELIORATIONS_INTERFACE_EMULATION.md pour inscrire le chemin exact de chaque capture de référence approuvée avant sa création dans tests/GWGUI.Tests/Fixtures/ScreenSkins.
-      - [ ] Créer chaque référence inscrite avec la variante, la résolution de fenêtre, le facteur DPI et le rapport d’aspect vidéo indiqués dans son nom ou son manifeste de test.
-      - [ ] Modifier tests/GWGUI.Tests/GWGUI.Tests.csproj après la première référence pour copier uniquement les images de test réellement créées.
-    - [ ] Comparer la composition sans imposer une taille unique
-      - [ ] Modifier tests/GWGUI.Tests/EmulationScreenSkinRenderingTests.cs pour comparer le mode classique et chaque variante approuvée aux références correspondant à plusieurs formats d’écran.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationScreenSkinRenderingTests.cs pour vérifier visuellement et géométriquement que la totalité de l’écran émulé reste dans l’ouverture, que le boîtier peut être recadré comme validé et qu’aucune déformation n’est introduite.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationScreenSkinRenderingTests.cs pour vérifier qu’aucun bouton, voyant, halo ou animation n’apparaît dans cette première version décorative.
-  - [ ] Vérifier le cycle complet d’entrée et de sortie du plein écran
-    - [ ] Compléter les scénarios de l’hôte partagé
-      - [ ] Modifier tests/GWGUI.Tests/EmulationFullscreenHostTests.cs pour entrer et sortir plusieurs fois avec l’habillage désactivé, activé, changé et devenu indisponible selon le repli validé.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationFullscreenHostTests.cs pour vérifier la conservation du focus, de la libération de souris, de la machine en cours, du backend, des filtres et du rapport d’aspect après chaque transition.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationFullscreenHostTests.cs pour vérifier que deux instances ouvertes utilisent chacune uniquement l’habillage de leur propre configuration.
-      - [ ] Modifier tests/GWGUI.Tests/EmulationFullscreenHostTests.cs pour vérifier qu’une fermeture directe de la fenêtre plein écran replace toujours MachineView.Screen dans son hôte fenêtré et libère les références à l’image décorative.
-  - [ ] Mesurer le coût sans ajouter d’optimisation non justifiée
-    - [ ] Ajouter les contrôles de chargement et de mémoire
-      - [ ] Modifier tests/GWGUI.Tests/EmulationScreenSkinAssetTests.cs pour mesurer le décodage initial, vérifier le cache par variante et vérifier qu’un changement répété n’accumule ni BitmapImage ni gestionnaire d’événement inutilisé.
-      - [ ] Modifier docs/EMULATION_SCREEN_SKIN_CATALOG.md pour inscrire les dimensions et le coût mémoire réels de chaque image approuvée et réduire une ressource seulement lorsqu’une mesure montre qu’elle est inutilement grande.
-  - [ ] Exécuter la validation complète sans réaliser les évolutions futures
-    - [ ] Exécuter les tests ciblés puis toute la suite
-      - [ ] Exécuter EmulationScreenSkinConfigurationTests, EmulationScreenSkinCatalogTests, EmulationScreenSkinLayoutTests, EmulationScreenSkinSettingsTests, EmulationScreenSkinAssetTests, EmulationScreenSkinRenderingTests et EmulationFullscreenHostTests, puis corriger uniquement les erreurs introduites par le point 8.
-      - [ ] Exécuter AmigaConfigurationStoreTests et AtariConfigurationStoreTests, puis corriger uniquement les régressions provoquées par la configuration d’habillage et sa migration.
-      - [ ] Exécuter les tests du focus, de la souris, des surfaces vidéo et des filtres du point 7, puis corriger uniquement les régressions provoquées par le nouvel hôte plein écran.
-      - [ ] Exécuter la suite GWGUI.Tests et corriger uniquement les régressions causées par les fichiers modifiés dans cette checklist.
-      - [ ] Vérifier manuellement le plein écran classique, une télévision ou un écran d’ordinateur approuvé et une console portable approuvée sur plusieurs rapports d’écran, avec tous les backends disponibles.
-      - [ ] Vérifier manuellement que le mode fenêtré n’affiche jamais l’habillage, que les clics décoratifs rendent le focus sans capturer la souris et que les boutons, LED et animations restent absents.
+- [ ] Compléter les décisions encore ouvertes avant d’écrire une checklist d’implémentation
+  - [ ] Modifier docs/tasks/interface/emulation-improvements.md après l’autorisation pour inscrire les décisions validées concernant le mode fenêtré, les variantes initiales, les images à produire ou rechercher, leur redistribution, le recadrage autorisé et le comportement lorsqu’un habillage manque.
+  - [ ] Modifier docs/tasks/interface/emulation-improvements.md après ces décisions pour remplacer le présent bloc par une checklist d’implémentation fondée sur les fichiers alors réellement présents, sans anticiper maintenant une architecture, des actifs ou des comportements non validés.

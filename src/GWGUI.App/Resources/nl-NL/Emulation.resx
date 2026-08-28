@@ -1190,4 +1190,7 @@
   <data name="Emulation.Configuration.Peripherals"><value>Randapparaten</value></data>
   <data name="Emulation.Configuration.Actions"><value>Acties</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>Configuratie {0} {1} verwijderen?</value></data>
+  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
+    <value>Kickstart</value>
+  </data>
 </root>

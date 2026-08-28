@@ -1190,4 +1190,7 @@
   <data name="Emulation.Configuration.Peripherals"><value>ציוד היקפי</value></data>
   <data name="Emulation.Configuration.Actions"><value>פעולות</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>למחוק את תצורת {0} {1}?</value></data>
+  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
+    <value>Kickstart</value>
+  </data>
 </root>

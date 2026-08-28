@@ -1190,4 +1190,7 @@
   <data name="Emulation.Configuration.Peripherals"><value>Periferal</value></data>
   <data name="Emulation.Configuration.Actions"><value>Tindakan</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>Hapus konfigurasi {0} {1}?</value></data>
+  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
+    <value>Kickstart</value>
+  </data>
 </root>

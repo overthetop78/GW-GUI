@@ -1190,4 +1190,7 @@
   <data name="Emulation.Configuration.Peripherals"><value>อุปกรณ์ต่อพ่วง</value></data>
   <data name="Emulation.Configuration.Actions"><value>การดำเนินการ</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>ลบการกำหนดค่า {0} {1} หรือไม่</value></data>
+  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
+    <value>Kickstart</value>
+  </data>
 </root>

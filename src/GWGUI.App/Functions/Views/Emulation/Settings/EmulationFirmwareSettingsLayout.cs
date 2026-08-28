@@ -3,6 +3,7 @@ using GWGUI.App.Constants.Emulation;
 using GWGUI.App.Contracts.Emulation.Firmware;
 using GWGUI.App.Factories.Views.Common;
 using GWGUI.App.Localization.Extensions;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -18,6 +19,7 @@ internal static partial class EmulationSettingsLayout
         settings.DetectedFirmware.MinWidth = 360;
         settings.DetectedFirmware.BorderThickness = new Thickness(0);
         settings.DetectedFirmware.HorizontalContentAlignment = HorizontalAlignment.Stretch;
+        Grid.SetIsSharedSizeScope(settings.DetectedFirmware, true);
         ScrollViewer.SetHorizontalScrollBarVisibility(settings.DetectedFirmware, ScrollBarVisibility.Disabled);
         ScrollViewer.SetVerticalScrollBarVisibility(settings.DetectedFirmware, ScrollBarVisibility.Auto);
 
@@ -49,7 +51,7 @@ internal static partial class EmulationSettingsLayout
     }
 
     internal static Grid FirmwareRow(string name, string? version,
-        EmulationFirmwareCompatibility compatibility, string? sourcePath = null)
+        EmulationFirmwareCompatibility compatibility, string? sourcePath = null, string destination = "")
     {
         var grid = new Grid { MinHeight = EmulationFirmwareSettingsConstants.FirmwareRowMinimumHeight,
             Margin = new Thickness(8, 2, 8, 2) };
@@ -57,7 +59,15 @@ internal static partial class EmulationSettingsLayout
             { Width = new GridLength(EmulationFirmwareSettingsConstants.FirmwareIconColumnWidth) });
         grid.ColumnDefinitions.Add(new ColumnDefinition());
         grid.ColumnDefinitions.Add(new ColumnDefinition
-            { Width = new GridLength(EmulationFirmwareSettingsConstants.FirmwareCompatibilityColumnWidth) });
+        {
+            Width = GridLength.Auto,
+            SharedSizeGroup = EmulationFirmwareSettingsConstants.FirmwareBadgeSharedSizeGroup
+        });
+        grid.ColumnDefinitions.Add(new ColumnDefinition
+        {
+            Width = GridLength.Auto,
+            SharedSizeGroup = EmulationFirmwareSettingsConstants.FirmwareBadgeSharedSizeGroup
+        });
 
         grid.Children.Add(new TextBlock { Text = EmulationFirmwareSettingsConstants.FirmwareIcon,
             FontFamily = ControlVisualConstants.IconFont, FontSize = 22,
@@ -75,14 +85,49 @@ internal static partial class EmulationSettingsLayout
         Grid.SetColumn(identity, 1); grid.Children.Add(identity);
 
         var colors = FirmwareBadgeColors(compatibility);
-        var badge = new Border { Child = new TextBlock { Text = colors.Text, Foreground = colors.Foreground,
-                VerticalAlignment = VerticalAlignment.Center }, Background = colors.Background, BorderBrush = colors.Border,
-            BorderThickness = new Thickness(1), CornerRadius = new CornerRadius(6), Padding = new Thickness(10, 5, 10, 5),
-            HorizontalAlignment = HorizontalAlignment.Left, VerticalAlignment = VerticalAlignment.Center,
-            Margin = new Thickness(8, 0, 8, 0) };
+        var badge = FirmwareBadge(colors.Text, colors);
         Grid.SetColumn(badge, 2); grid.Children.Add(badge);
 
+        if (!string.IsNullOrWhiteSpace(destination))
+        {
+            var destinationBadge = FirmwareBadge(LimitFirmwareDestination(destination), colors);
+            Grid.SetColumn(destinationBadge, 3);
+            grid.Children.Add(destinationBadge);
+        }
+
         return grid;
+    }
+
+    private static Border FirmwareBadge(string text,
+        (string Text, Brush Foreground, Brush Background, Brush Border) colors) => new()
+    {
+        Child = new TextBlock
+        {
+            Text = text,
+            Foreground = colors.Foreground,
+            VerticalAlignment = VerticalAlignment.Center,
+            HorizontalAlignment = HorizontalAlignment.Center
+        },
+        Background = colors.Background,
+        BorderBrush = colors.Border,
+        BorderThickness = new Thickness(1),
+        CornerRadius = new CornerRadius(6),
+        Padding = new Thickness(10, 5, 10, 5),
+        HorizontalAlignment = HorizontalAlignment.Stretch,
+        VerticalAlignment = VerticalAlignment.Center,
+        Margin = new Thickness(EmulationFirmwareSettingsConstants.FirmwareBadgeSpacing / 2, 0,
+            EmulationFirmwareSettingsConstants.FirmwareBadgeSpacing / 2, 0)
+    };
+
+    private static string LimitFirmwareDestination(string destination)
+    {
+        var characterIndexes = StringInfo.ParseCombiningCharacters(destination);
+        if (characterIndexes.Length <= EmulationFirmwareSettingsConstants.FirmwareDestinationMaximumLength)
+            return destination;
+        var retainedCharacters = EmulationFirmwareSettingsConstants.FirmwareDestinationMaximumLength -
+                                 EmulationFirmwareSettingsConstants.FirmwareDestinationEllipsis.Length;
+        return destination[..characterIndexes[retainedCharacters]] +
+               EmulationFirmwareSettingsConstants.FirmwareDestinationEllipsis;
     }
 
     internal static int FirmwareCompatibilityOrder(EmulationFirmwareCompatibility compatibility) => compatibility switch
@@ -105,8 +150,10 @@ internal static partial class EmulationSettingsLayout
                 (LocExtension.Get("Emulation.Firmware.Official"), new SolidColorBrush(Color.FromRgb(31, 87, 142)),
                     new SolidColorBrush(Color.FromRgb(230, 242, 255)), new SolidColorBrush(Color.FromRgb(130, 181, 230))),
             EmulationFirmwareCompatibility.Compatible =>
-                (LocExtension.Get("Emulation.Cpu.Compatibility.Compatible"), new SolidColorBrush(Color.FromRgb(31, 111, 58)),
-                    new SolidColorBrush(Color.FromRgb(231, 247, 235)), new SolidColorBrush(Color.FromRgb(146, 211, 159))),
+                (LocExtension.Get("Emulation.Cpu.Compatibility.Compatible"),
+                    new SolidColorBrush(ControlVisualConstants.CompatibleForegroundColor),
+                    new SolidColorBrush(ControlVisualConstants.CompatibleBackgroundColor),
+                    new SolidColorBrush(ControlVisualConstants.CompatibleBorderColor)),
             EmulationFirmwareCompatibility.PartiallyCompatible =>
                 (LocExtension.Get("Emulation.Firmware.PartiallyCompatible"), new SolidColorBrush(Color.FromRgb(133, 85, 8)),
                     new SolidColorBrush(Color.FromRgb(255, 246, 218)), new SolidColorBrush(Color.FromRgb(234, 187, 91))),

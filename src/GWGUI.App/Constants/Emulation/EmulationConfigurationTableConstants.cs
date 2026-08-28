@@ -17,6 +17,7 @@ internal static class EmulationConfigurationTableConstants
     ];
 
     internal static Thickness CellMargin { get; } = new(14, 8, 14, 8);
+    internal static Thickness GlyphSpacingMargin { get; } = new(8, 0, 0, 0);
     internal static Thickness HeaderSeparatorThickness { get; } = new(1, 0, 0, 0);
     internal static Thickness RowSeparatorThickness { get; } = new(0, 1, 0, 0);
 }

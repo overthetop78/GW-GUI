@@ -239,7 +239,13 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
         var entries = new AmigaFirmwareCatalog(GetFirmwareDirectory(machineId)).Scan()
             .Select(firmware => new EmulationFirmwareCandidate(firmware.Sha256, firmware.Path,
                 firmware.Name ?? Path.GetFileName(firmware.Path), firmware.Version,
-                FirmwareCompatibility(firmware, machineId))).ToArray();
+                FirmwareCompatibility(firmware, machineId), firmware.Type switch
+                {
+                    AmigaFirmwareType.Kickstart => AmigaSettingsConstants.KickstartPath,
+                    AmigaFirmwareType.ExtendedRom => AmigaSettingsConstants.ExtendedRomPath,
+                    AmigaFirmwareType.RomKey => AmigaSettingsConstants.RomKeyPath,
+                    _ => null
+                })).ToArray();
         return ValueTask.FromResult<IReadOnlyList<EmulationFirmwareCandidate>>(entries);
     }
 
@@ -248,12 +254,11 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
     {
         var amiga = configuration as AmigaMachineConfiguration
             ?? throw new ArgumentException(nameof(configuration));
-        var inspected = AmigaFirmwareCatalog.Inspect(firmware.Path);
-        return inspected.Type switch
+        return firmware.DestinationFieldId switch
         {
-            AmigaFirmwareType.Kickstart => amiga with { KickstartPath = inspected.Path },
-            AmigaFirmwareType.ExtendedRom => amiga with { ExtendedRomPath = inspected.Path },
-            AmigaFirmwareType.RomKey => amiga with { RomKeyPath = inspected.Path },
+            AmigaSettingsConstants.KickstartPath => amiga with { KickstartPath = firmware.Path },
+            AmigaSettingsConstants.ExtendedRomPath => amiga with { ExtendedRomPath = firmware.Path },
+            AmigaSettingsConstants.RomKeyPath => amiga with { RomKeyPath = firmware.Path },
             _ => throw new InvalidOperationException(nameof(firmware))
         };
     }

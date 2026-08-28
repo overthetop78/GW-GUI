@@ -47,6 +47,8 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
             ? FlowDirection.RightToLeft
             : FlowDirection.LeftToRight;
         _module = module;
+        _machines.Style = EmulationMachineChoiceLayout.CreateComboBoxStyle();
+        _machines.ItemContainerStyle = EmulationMachineChoiceLayout.CreateItemContainerStyle();
         _machines.ItemTemplate = EmulationMachineChoiceLayout.CreateTemplate();
         var choices = module.Machines.Select(machine => new EmulationMachineChoice(machine,
             LocExtension.Get(machine.DisplayResourceKey), false)).ToArray();
@@ -57,7 +59,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
             _emulatorManagement = new EmulationEmulatorManagementController(manager, CurrentMachineId);
         if (module is IEmulationFirmwareManager firmwareManager)
         {
-            _firmwareManagement = new EmulationFirmwareManagementController(firmwareManager,
+            _firmwareManagement = new EmulationFirmwareManagementController(_module, firmwareManager,
                 () => _configuration, SetConfiguration);
             _firmwareManagement.ConfigurationChanged += async (_, _) => await ExecuteUserChangeAsync();
         }

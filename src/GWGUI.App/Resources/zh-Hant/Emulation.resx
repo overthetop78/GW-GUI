@@ -1190,4 +1190,7 @@
   <data name="Emulation.Configuration.Peripherals"><value>周邊裝置</value></data>
   <data name="Emulation.Configuration.Actions"><value>操作</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>要刪除 {0} {1} 設定嗎？</value></data>
+  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
+    <value>Kickstart</value>
+  </data>
 </root>

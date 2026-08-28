@@ -34,5 +34,8 @@ internal static class ControlVisualConstants
     internal const string CloseResource = "Common.Close";
     internal const string BrowseResource = "Common.Browse";
 
+    internal static Color CompatibleForegroundColor { get; } = Color.FromRgb(31, 111, 58);
+    internal static Color CompatibleBackgroundColor { get; } = Color.FromRgb(231, 247, 235);
+    internal static Color CompatibleBorderColor { get; } = Color.FromRgb(146, 211, 159);
     internal static FontFamily IconFont { get; } = new(IconFontName);
 }

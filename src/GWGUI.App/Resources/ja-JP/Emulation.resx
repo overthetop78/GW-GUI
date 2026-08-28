@@ -1190,4 +1190,7 @@
   <data name="Emulation.Configuration.Peripherals"><value>周辺機器</value></data>
   <data name="Emulation.Configuration.Actions"><value>操作</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>{0} {1} の構成を削除しますか？</value></data>
+  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
+    <value>Kickstart</value>
+  </data>
 </root>

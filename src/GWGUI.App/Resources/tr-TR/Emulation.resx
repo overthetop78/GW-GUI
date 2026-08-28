@@ -1190,4 +1190,7 @@
   <data name="Emulation.Configuration.Peripherals"><value>Çevre birimleri</value></data>
   <data name="Emulation.Configuration.Actions"><value>Eylemler</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>{0} {1} yapılandırması silinsin mi?</value></data>
+  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
+    <value>Kickstart</value>
+  </data>
 </root>

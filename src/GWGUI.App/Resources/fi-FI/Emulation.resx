@@ -1190,4 +1190,7 @@
   <data name="Emulation.Configuration.Peripherals"><value>Oheislaitteet</value></data>
   <data name="Emulation.Configuration.Actions"><value>Toiminnot</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>Poistetaanko kokoonpano {0} {1}?</value></data>
+  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
+    <value>Kickstart</value>
+  </data>
 </root>

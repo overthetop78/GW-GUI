@@ -247,9 +247,15 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
         {
             var scanned = await AtariFirmwareScanFunctions.ScanFileAsync(path, atari.Model, null,
                 cancellationToken).ConfigureAwait(false);
-            var name = scanned.Definition?.Version ?? Path.GetFileName(scanned.Path);
+            var name = scanned.Definition?.Category == AtariFirmwareCategory.Tos
+                ? $"{AtariConfigurationSummaryFunctionsConstants.TOS} {scanned.Definition.Version}"
+                : Path.GetFileName(scanned.Path);
+            var compatibility = ToFirmwareCompatibility(scanned.Compatibility);
             entries.Add(new EmulationFirmwareCandidate(scanned.Md5 ?? scanned.Path, scanned.Path, name, null,
-                ToFirmwareCompatibility(scanned.Compatibility)));
+                compatibility, compatibility == EmulationFirmwareCompatibility.Incompatible ||
+                               scanned.Definition?.Category is null
+                    ? null
+                    : AtariSettingsConstants.SystemFirmware));
         }
         return entries;
     }
@@ -259,6 +265,8 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
     {
         var atari = configuration as AtariMachineConfiguration
             ?? throw new ArgumentException(nameof(configuration));
+        if (firmware.DestinationFieldId != AtariSettingsConstants.SystemFirmware)
+            throw new InvalidOperationException(nameof(firmware));
         var scanned = AtariFirmwareScanFunctions.ScanFileAsync(firmware.Path, atari.Model, null,
             CancellationToken.None).GetAwaiter().GetResult();
         var selected = AtariFirmwareScanFunctions.CreateSelection(scanned);

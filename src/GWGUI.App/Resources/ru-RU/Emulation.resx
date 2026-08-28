@@ -1190,4 +1190,7 @@
   <data name="Emulation.Configuration.Peripherals"><value>Периферия</value></data>
   <data name="Emulation.Configuration.Actions"><value>Действия</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>Удалить конфигурацию {0} {1}?</value></data>
+  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
+    <value>Kickstart</value>
+  </data>
 </root>

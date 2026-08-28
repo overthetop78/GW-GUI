@@ -45,7 +45,7 @@ internal static class AmigaSettingsDescriptionFunctionsConstants
     internal const string Firmware = "firmware";
     internal const string ResourceFirmwareRomSystem = "Emulation.Firmware.Rom.System";
     internal const string Value3 = "\uE8B7";
-    internal const string Kickstart = "Kickstart";
+    internal const string ResourceFirmwareRomKickstart = "Emulation.Firmware.Rom.Kickstart";
     internal const string ResourceFirmwareRomExtended = "Emulation.Firmware.Rom.Extended";
     internal const string ResourceFirmwareRomKey = "Emulation.Firmware.Rom.Key";
     internal const string Display = "display";

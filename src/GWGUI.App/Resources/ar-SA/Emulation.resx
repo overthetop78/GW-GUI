@@ -1190,4 +1190,7 @@
   <data name="Emulation.Configuration.Peripherals"><value>الأجهزة الطرفية</value></data>
   <data name="Emulation.Configuration.Actions"><value>الإجراءات</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>هل تريد حذف تكوين {0} {1}؟</value></data>
+  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
+    <value>Kickstart</value>
+  </data>
 </root>
