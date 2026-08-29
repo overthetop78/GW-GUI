@@ -115,63 +115,6 @@ SCP 条目：{2}</value>
   <data name="Visual.IntegrityUnavailable">
     <value>不可用</value>
   </data>
-  <data name="Visual.DecoderName.iso.mfm">
-    <value>ISO MFM (Atari ST / IBM PC)</value>
-  </data>
-  <data name="Visual.DecoderName.iso.fm">
-    <value>ISO FM（单一密度）</value>
-  </data>
-  <data name="Visual.DecoderName.amiga.mfm">
-    <value>Amiga MFM</value>
-  </data>
-  <data name="Visual.DecoderName.apple2.gcr">
-    <value>Apple II GCR</value>
-  </data>
-  <data name="Visual.DecoderName.applemac.gcr">
-    <value>Apple Macintosh GCR</value>
-  </data>
-  <data name="Visual.DecoderName.commodore.gcr">
-    <value>Commodore GCR</value>
-  </data>
-  <data name="Visual.DecoderName.membrain.mfm">
-    <value>Membrain MFM</value>
-  </data>
-  <data name="Visual.DecoderName.aed6200p.mfm">
-    <value>AED 6200P MFM</value>
-  </data>
-  <data name="Visual.DecoderName.qdmo5.mfm">
-    <value>QD MO5 MFM</value>
-  </data>
-  <data name="Visual.DecoderName.centurion.mfm">
-    <value>Centurion MFM</value>
-  </data>
-  <data name="Visual.DecoderName.northstar.mfm">
-    <value>NorthStar 硬扇区 MFM</value>
-  </data>
-  <data name="Visual.DecoderName.heathkit.fm">
-    <value>Heathkit 硬扇区 FM</value>
-  </data>
-  <data name="Visual.DecoderName.micraln.fm">
-    <value>Micral N 硬扇区 FM</value>
-  </data>
-  <data name="Visual.DecoderName.emu.fm">
-    <value>E-mu Emulator FM</value>
-  </data>
-  <data name="Visual.DecoderName.tycom.fm">
-    <value>TYCOM FM</value>
-  </data>
-  <data name="Visual.DecoderName.dec.rx02">
-    <value>DEC RX02 米²FM</value>
-  </data>
-  <data name="Visual.DecoderName.arburg">
-    <value>Arburg 系统/数据</value>
-  </data>
-  <data name="Visual.DecoderName.victor9k.gcr">
-    <value>Victor 9000 GCR</value>
-  </data>
-  <data name="Visual.DecoderName.raw">
-    <value>原焊剂</value>
-  </data>
   <data name="Visual.StructureKind.Sync">
     <value>同步</value>
   </data>
@@ -210,9 +153,6 @@ SCP 条目：{2}</value>
   </data>
   <data name="Visual.OpenFilter">
     <value>SuperCard Pro 捕获 (*.scp)|*.scp|所有文件|*.*</value>
-  </data>
-  <data name="Visual.Integrity.Crc">
-    <value>CRC</value>
   </data>
   <data name="Visual.Integrity.Checksum">
     <value>校验和</value>
@@ -256,12 +196,6 @@ SCP 条目：{2}</value>
   <data name="Visual.TransitionsUnit">
     <value>跃迁</value>
   </data>
-  <data name="Visual.NumberPrefix">
-    <value>#</value>
-  </data>
-  <data name="Visual.ValueSeparator">
-    <value>·</value>
-  </data>
   <data name="Visual.OpenImage">
     <value>打开磁盘映像...</value>
   </data>
@@ -282,23 +216,5 @@ SCP 条目：{2}</value>
   </data>
   <data name="Visual.AverageDuration">
     <value>平均持续时间</value>
-  </data>
-  <data name="Visual.DecoderName.hp.mmfm">
-    <value>HP MMFM</value>
-  </data>
-  <data name="Visual.DecoderName.datageneral.fm">
-    <value>Data General 2F</value>
-  </data>
-  <data name="Visual.DecoderName.micropolis.mfm">
-    <value>Micropolis MFM</value>
-  </data>
-  <data name="Visual.DecoderName.applelisa.fileware.gcr" xml:space="preserve">
-    <value>Apple Lisa FileWare GCR</value>
-  </data>
-  <data name="Visual.DecoderName.commodore900.gcr" xml:space="preserve">
-    <value>Commodore 900 GCR</value>
-  </data>
-  <data name="Visual.DecoderName.apple2.rwts18" xml:space="preserve">
-    <value>Apple II Brøderbund RWTS18</value>
   </data>
 </root>

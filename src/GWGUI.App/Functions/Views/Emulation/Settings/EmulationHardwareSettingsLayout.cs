@@ -1,4 +1,6 @@
 using GWGUI.App.Constants.Emulation;
+using GWGUI.App.Contracts.Emulation.Settings;
+using GWGUI.App.Views.Controls.Emulation.Options;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -8,12 +10,16 @@ namespace GWGUI.App.Functions.Views.Emulation.Settings;
 internal static partial class EmulationSettingsLayout
 {
     internal static Grid SettingsFields(int columns,
-        params (string Label, FrameworkElement Control)[] fields) => SettingsFieldGrid(columns, fields);
+        params EmulationSettingsControlField[] fields) => SettingsFieldGrid(columns, fields);
 
-    private static Grid SettingsFieldGrid(params (string Label, FrameworkElement Control)[] fields) =>
+    internal static Grid SettingsFields(int columns,
+        params (string Label, FrameworkElement Control)[] fields) => SettingsFieldGrid(columns,
+        fields.Select(field => new EmulationSettingsControlField(field.Label, field.Control)).ToArray());
+
+    private static Grid SettingsFieldGrid(params EmulationSettingsControlField[] fields) =>
         SettingsFieldGrid(1, fields);
 
-    private static Grid SettingsFieldGrid(int columns, params (string Label, FrameworkElement Control)[] fields)
+    private static Grid SettingsFieldGrid(int columns, params EmulationSettingsControlField[] fields)
     {
         var grid = new Grid { Margin = new Thickness(12, 6, 12, 10) };
         for (var column = 0; column < columns; column++)
@@ -28,17 +34,21 @@ internal static partial class EmulationSettingsLayout
         {
             var row = index / columns;
             var column = index % columns * 2;
-            var label = new TextBlock { Text = fields[index].Label, VerticalAlignment = VerticalAlignment.Center,
-                Margin = new Thickness(column == 0 ? 0 : 18, 8, 10, 8), TextWrapping = TextWrapping.Wrap };
+            var field = fields[index];
+            var label = new EmulationSettingsFieldLabel(field.Label, field.Explanation,
+                field.DetailedExplanation, field.Control)
+            {
+                Margin = new Thickness(column == 0 ? 0 : 18, 8, 10, 8)
+            };
             label.SetBinding(UIElement.VisibilityProperty, new Binding(nameof(UIElement.Visibility))
             {
-                Source = fields[index].Control,
+                Source = field.Control,
                 Mode = BindingMode.OneWay
             });
             Grid.SetRow(label, row);
             Grid.SetColumn(label, column);
             grid.Children.Add(label);
-            var control = fields[index].Control;
+            var control = field.Control;
             control.MinWidth = control is CheckBox
                 ? 0
                 : EmulationHardwareSettingsConstants.FieldControlMinimumWidth;

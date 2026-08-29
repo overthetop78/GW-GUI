@@ -1,12 +1,12 @@
-using System.Windows;
 using System.Windows.Controls;
+using GWGUI.App.Contracts.Emulation.Settings;
 
 namespace GWGUI.App.Contracts.Views.Emulation.Settings;
 
 internal sealed record EmulationCpuSettingsContent(
-    FrameworkElement CpuModel,
+    EmulationSettingsControlField CpuModel,
     TextBlock CpuSummary,
-    FrameworkElement? Precision,
-    FrameworkElement? Fpu,
-    TextBlock OriginalSpeed,
-    FrameworkElement? CpuSpeed);
+    EmulationSettingsControlField? Precision,
+    EmulationSettingsControlField? Fpu,
+    EmulationSettingsControlField OriginalSpeed,
+    EmulationSettingsControlField? CpuSpeed);

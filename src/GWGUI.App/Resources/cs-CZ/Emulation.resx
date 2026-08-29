@@ -126,15 +126,6 @@
   <data name="Emulation.Cpu.Compatibility">
     <value>Cycle-compatible CPU</value>
   </data>
-  <data name="Emulation.Memory.Chip">
-    <value>Chip RAM</value>
-  </data>
-  <data name="Emulation.Memory.Slow">
-    <value>Slow RAM</value>
-  </data>
-  <data name="Emulation.Memory.Fast">
-    <value>Fast RAM</value>
-  </data>
   <data name="Emulation.Memory.Z3">
     <value>Zorro III RAM</value>
   </data>
@@ -248,9 +239,6 @@
   </data>
   <data name="Emulation.Storage.HardDisk.DriveCount">
     <value>Počet pevných disků</value>
-  </data>
-  <data name="Emulation.Fpu.Model">
-    <value>FPU</value>
   </data>
   <data name="Emulation.Cpu.Speed">
     <value>CPU speed</value>
@@ -864,12 +852,6 @@
   <data name="Emulation.Storage.Geometry.Sectors">
     <value>Sektory</value>
   </data>
-  <data name="Emulation.Storage.Unit.MiB">
-    <value>MiB</value>
-  </data>
-  <data name="Emulation.Storage.Unit.GiB">
-    <value>GiB</value>
-  </data>
   <data name="Emulation.Controller.Action.Up">
     <value>Nahoru</value>
   </data>
@@ -909,14 +891,8 @@
   <data name="Emulation.Amiga.Controller.Cd32.PlayPause">
     <value>CD32 přehrát / pozastavit</value>
   </data>
-  <data name="Emulation.Amiga.Controller.Joystick">
-    <value>Joystick Amiga</value>
-  </data>
   <data name="Emulation.Controller.AnalogJoystick">
     <value>Analogový joystick</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32">
-    <value>Ovladač CD32</value>
   </data>
   <data name="Emulation.Mouse.Wheel.Up">
     <value>Kolečko myši nahoru</value>
@@ -929,63 +905,6 @@
   </data>
   <data name="Emulation.Mouse.Wheel.Right">
     <value>Kolečko myši doprava</value>
-  </data>
-  <data name="Emulation.Atari.Model.St" xml:space="preserve">
-    <value>Atari ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stf" xml:space="preserve">
-    <value>Atari STF</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stfm" xml:space="preserve">
-    <value>Atari STFM</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSt" xml:space="preserve">
-    <value>Atari Mega ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Ste" xml:space="preserve">
-    <value>Atari STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSte" xml:space="preserve">
-    <value>Atari Mega STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Tt" xml:space="preserve">
-    <value>Atari TT</value>
-  </data>
-  <data name="Emulation.Atari.Model.Falcon" xml:space="preserve">
-    <value>Atari Falcon</value>
-  </data>
-  <data name="Emulation.Atari.Model.400" xml:space="preserve">
-    <value>Atari 400</value>
-  </data>
-  <data name="Emulation.Atari.Model.800" xml:space="preserve">
-    <value>Atari 800</value>
-  </data>
-  <data name="Emulation.Atari.Model.800Xl" xml:space="preserve">
-    <value>Atari 800XL</value>
-  </data>
-  <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
-    <value>Atari 130XE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
-    <value>Atari XEGS</value>
-  </data>
-  <data name="Emulation.Atari.Model.5200" xml:space="preserve">
-    <value>Atari 5200</value>
-  </data>
-  <data name="Emulation.Atari.Model.2600" xml:space="preserve">
-    <value>Atari 2600</value>
-  </data>
-  <data name="Emulation.Atari.Model.7800" xml:space="preserve">
-    <value>Atari 7800</value>
-  </data>
-  <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
-    <value>Atari Lynx</value>
-  </data>
-  <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
-    <value>Atari Jaguar</value>
-  </data>
-  <data name="Emulation.Atari.Model.JaguarCd" xml:space="preserve">
-    <value>Atari Jaguar CD</value>
   </data>
   <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve">
     <value>Tato hodnota je určena zvoleným modelem.</value>
@@ -1089,24 +1008,11 @@
   <data name="Emulation.Atari.Storage.MediaFilter" xml:space="preserve">
     <value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Všechny soubory|*.*</value>
   </data>
-  <data name="Emulation.Atari.Controller.Joystick">
-    <value>Joystick Atari</value>
-  </data>
-<data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Paddle Controllers</value></data>
-<data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 Light Gun</value></data>
-<data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>Atari Driving Controller</value></data>
-  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
-  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
-  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar Controller</value></data>
   <data name="Emulation.Controller.Automatic"><value>Automatický</value></data>
   <data name="Emulation.Controller.None"><value>Žádná</value></data>
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Paralelní čtyřhranný adaptér joystick</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Přepnout joystick / myš</value></data>
   <data name="Emulation.Atari.Controller.NumericKeypad"><value>Číselná klávesnice</value></data>
-  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
-  <data name="Emulation.Atari.Controller.Genesis"><value>Name</value></data>
-  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B + Controller</value></data>
   <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
     <value>Emulátor před zapnutím tohoto stroje vyžaduje médium. Vložte nebo nastavte jedno z požadovaných médií uvedených níže.</value>
   </data>
@@ -1126,7 +1032,6 @@
   <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Rozšíření paměti Mosaic</value></data>
   <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Rozšíření paměti Axlon</value></data>
   <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Stín banky Axlon $0F</value></data>
-  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
   <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>Stereo POKEY</value></data>
   <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Artefakty ve vysokém rozlišení</value></data>
   <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>Zrychlení SIO</value></data>
@@ -1164,25 +1069,10 @@
   <data name='Emulation.Media.Eject' xml:space='preserve'>
     <value>Vysunout médium</value>
   </data>
-  <data name="Emulation.Tab.Cpu" xml:space="preserve"><value>CPU</value></data>
-  <data name="Emulation.Tab.Ram" xml:space="preserve"><value>RAM</value></data>
-  <data name="Emulation.Tab.Rom" xml:space="preserve"><value>ROM</value></data>
-  <data name="Emulation.Family.Amiga" xml:space="preserve"><value>Amiga</value></data>
-  <data name="Emulation.Family.Atari" xml:space="preserve"><value>Atari</value></data>
-  <data name="Emulation.Atari.Model.XlXe" xml:space="preserve"><value>Atari XL/XE</value></data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
   <data name="Emulation.Key.AtariHelp" xml:space="preserve"><value>Help</value></data>
   <data name="Emulation.Key.AtariUndo" xml:space="preserve"><value>Undo</value></data>
-  <data name="Emulation.Amiga.Model.A500" xml:space="preserve"><value>Amiga 500</value></data>
-  <data name="Emulation.Amiga.Model.A500PLUS" xml:space="preserve"><value>Amiga 500 Plus</value></data>
-  <data name="Emulation.Amiga.Model.A600" xml:space="preserve"><value>Amiga 600</value></data>
-  <data name="Emulation.Amiga.Model.A1000" xml:space="preserve"><value>Amiga 1000</value></data>
-  <data name="Emulation.Amiga.Model.A1200" xml:space="preserve"><value>Amiga 1200</value></data>
-  <data name="Emulation.Amiga.Model.A2000" xml:space="preserve"><value>Amiga 2000</value></data>
-  <data name="Emulation.Amiga.Model.A3000" xml:space="preserve"><value>Amiga 3000</value></data>
-  <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Amiga 4000</value></data>
-  <data name="Emulation.Amiga.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
-  <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Amiga CD32</value></data>  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput se nepodařilo inicializovat. Nainstalujte nebo opravte přiložené běhové prostředí GameInput.</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput se nepodařilo inicializovat. Nainstalujte nebo opravte přiložené běhové prostředí GameInput.</value></data>
   <data name="Emulation.Configuration.Brand"><value>Značka</value></data>
   <data name="Emulation.Configuration.Machine"><value>Počítač</value></data>
   <data name="Emulation.Configuration.TotalRam"><value>Celková RAM</value></data>
@@ -1190,7 +1080,110 @@
   <data name="Emulation.Configuration.Peripherals"><value>Periferie</value></data>
   <data name="Emulation.Configuration.Actions"><value>Akce</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>Odstranit konfiguraci {0} {1}?</value></data>
-  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
-    <value>Kickstart</value>
-  </data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short"><value>Tiché prázdné diskety</value></data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed"><value>Ztiší zvuk emulovaného pohonu, když není vložen žádný disk. Zaškrtněte tuto volbu, aby se zachoval planý mechanický hluk.</value></data>
+  <data name="Emulation.Help.Audio.Filter.Short"><value>Vybrat analogové audio filtrování</value></data>
+  <data name="Emulation.Help.Audio.Filter.Detailed"><value>Vybere, jak je reprodukován původní analogový audio filtr. Emulovaný následuje chování hardwaru. Ostatní volby nutí filtr k zapnutí nebo vypnutí.</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Short"><value>Povolit polarizovaný audio filtr</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Detailed"><value>Aplikuje polarizovaný filtr na generovaný audio signál. Umožní reprodukovat filtrovaný zvuk. Vypněte to, aby to udrželo nefiltrovaný signál.</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Short"><value>Vybrat interpolaci zvuku</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Detailed"><value>Vybere způsob výpočtu zvukových vzorků mezi generovanými body vzorku. Vysoce kvalitní metody produkují hladší zvuk, ale vyžadují větší zpracování.</value></data>
+  <data name="Emulation.Help.Audio.Latency.Short"><value>Nastavit latenci zvuku</value></data>
+  <data name="Emulation.Help.Audio.Latency.Detailed"><value>Nastaví dobu trvání zvukového bufferu. Krátší pufr snižuje zpoždění, ale může způsobit praskání. Delší nárazník zlepšuje stabilitu, ale zvyšuje zpoždění.</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Short"><value>Povolit duální POKEY stereo</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed"><value>Přidá druhou emulaci POKEY čip produkující stereo zvuk. Povolit tuto volbu pouze pro software, který podporuje duální POKEY audio.</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Short"><value>Set stereo separace</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Detailed"><value>Nastaví oddělení mezi levým a pravým kanálem. Nižší hodnota spojuje kanály dohromady. Vyšší hodnota je drží dál od sebe.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short"><value>Vyberte sadu disketového pohonu</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed"><value>Vybere sadu vzorků pro mechanické zvuky emulovaných disků. Nemění chování mechaniky ani data z disku.</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Short"><value>Vyberte model zvukového filtru</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed"><value>Vybere odpověď hardwarového filtru pro emulaci. Auto sleduje vybraný model stroje. Konkrétní volba vždy použije tuto odezvu filtru.</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Short"><value>Povolit dva další joystick porty</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Detailed"><value>Emuluje rovnoběžní- port adaptér, který přidává dva joystick porty. Povolit pro software, který podporuje čtyři současně přehrávače.</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Short"><value>Nastavit pulzní interval turba</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Detailed"><value>Nastaví čas mezi automatickými tlačítky vyráběnými turbem. Krátký interval způsobuje rychlejší opakovaný výstřel.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Short"><value>Vyberte režim kompatibility regulátoru</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed"><value>Vybere speciální řídící mapování, jako je dual- stick ovládání, vyměněné porty, nebo Joy2B+. Zvolte Žádný udržet standardní port mapování.</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Short"><value>Nastavit analogovou vstupní citlivost</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed"><value>Nastaví, jak silně analogový vstup reaguje na pohyb. Vyšší hodnota vytváří větší odezvu ze stejného fyzického pohybu.</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Short"><value>Nastavit citlivost digitálního vstupu</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed"><value>Nastaví, jak rychle digitální směr dosáhne plného pohybu. Vyšší hodnota dělá změny směru dosáhnout jejich maximální rychleji.</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Short"><value>Vyberte režim autofire</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed"><value>Poškozený vypne autopalbu. Na tlačítku se opakuje oheň, když je přiřazené tlačítko drženo. Pořád opakuje palbu.</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Short"><value>Nastavit rychlost pohybu pádla</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Detailed"><value>Nastaví, jak rychle digitální vstup pohne emulovaným pádlem. Nižší hodnota se pohybuje pomaleji. Vyšší hodnota to posune rychleji.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Short"><value>Vyberte FPU</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed"><value>Vybere plovoucí-bodovou jednotku použitou pro plovoucí-bodové instrukce. Zvolte Žádný zakázat FPU. Dostupné modely závisí na vybraných CPU.</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Short"><value>Vybrat CPU přesnost emulace</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Detailed"><value>Vybere si, jak blízko CPU Načasování následuje původní hardware. Přesnější režimy mohou zlepšit kompatibilitu, ale mohou vyžadovat další zpracování.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Short"><value>Nastavit emulaci CPU rychlost</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed"><value>Nastaví frekvenci procesoru použitou emulovaným strojem. Původní rychlost zachovává hardwarové načasování. Vyšší hodnoty zrychlují CPU- omezený software.</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short"><value>Pomocí analogových tyčí pro ovládání myši</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Detailed"><value>Umožňuje analogové osy joysticku pohybovat emulovaným ukazatelem myši. Povolit, když fyzická analogová hůl by měla ovládat ukazovátko.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Short"><value>Nastavit analogovou rychlost myši</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed"><value>Nastaví rychlost ukazovátka, když analogová hůl ovládá emulovanou myš. Vyšší hodnota posune ukazatel dále pro stejný pohyb holí.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Short"><value>Nastavit analogovou myš mrtvou zónu</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed"><value>Ignores malé analog- stick pohyby kolem středu při ovládání myši. Zvyšte hodnotu, pokud se ukazatel pohybuje při uvolnění hole.</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Short"><value>Povolit Axlon $0F stínová banka</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed"><value>Zrcadla Axlon Kontrolní banka na adrese $0F. Povolit pouze pro software nebo rozšíření paměti, které používají tuto dodatečnou adresu.</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short"><value>Nastavení Axlon Rozšiřující paměť</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed"><value>Nastaví množství převedených bank Axlon paměť. Poškozený odstraňuje expanzi. Ostatní možnosti poskytují vybranou paměťovou kapacitu.</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short"><value>Nastavení Mosaic Rozšiřující paměť</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed"><value>Nastaví množství převedených bank Mosaic paměť. Poškozený odstraňuje expanzi. Ostatní možnosti poskytují vybranou paměťovou kapacitu.</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short"><value>Nastavit další rozšiřující paměť</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed"><value>Nastaví množství další rozšiřující paměti podporované zvoleným strojem. Zvolte Žádný pro použití pouze nakonfigurované hlavní paměti.</value></data>
+  <data name="Emulation.Help.Memory.Fast.Short"><value>Nastavení Fast RAM velikost</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed"><value>Nastaví množství Fast RAM dostupné přímo CPU. Dodatečné Fast RAM může pomoci kompatibilní software, ale změní emulované konfigurace hardwaru.</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short"><value>Povolit MapRAM</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Detailed"><value>Umožňuje kompatibilní software k zapsání mapy RAM do systému ROM adresa. Tato volba je k dispozici pouze na modelech strojů, které podporují MapRAM.</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short"><value>Nastavení Zorro III RAM velikost</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed"><value>Nastaví částku 32bitu Fast RAM propojené pomocí Zorro III Autobus. Používejte jej pouze s kompatibilními 32bitovými stroji a softwarem.</value></data>
+  <data name="Emulation.Help.Memory.Slow.Short"><value>Nastavení Slow RAM velikost</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed"><value>Nastaví množství Slow RAM v oblasti rozšiřující se padací dveře. Tato paměť je pomalejší než Fast RAM a používá jiný rozsah adres hardwaru.</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Short"><value>Vyberte ROM dešifrovací klíč</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Detailed"><value>Vybere klíčový soubor používaný k dešifrování licencovaného šifrovaného ROM obrázek. Zanechte toto pole prázdné, když zvolíte ROM není zašifrovaná.</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Short"><value>Povolit rychlé spuštění</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Detailed"><value>Přeskoky vybrané inicializace hardwaru zpoždění zkrátit spuštění. Zakázat tuto volbu, pokud software vyžaduje původní startovací sekvenci.</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Short"><value>Vybrat rozšířené ROM</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed"><value>Vybere sekundární firmware ROM požadované některými modely strojů. Zanechte toto pole prázdné, pokud zvolený model nepoužívá rozšířené ROM.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Short"><value>Povolit zrychlené SIO převody</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed"><value>Zrychluje kompatibilní převody přes sériovou vstupní / výstupní sběrnici. Zakázat tuto volbu, když software závisí na původním načasování přenosu.</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short"><value>Povolit spuštění kazety</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Detailed"><value>Díky tomu se emulovaný stroj snaží spustit z připojeného kazetového obrazu. Vypnout tuto volbu při spuštění z jiného zařízení.</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Short"><value>Povolit R-Time 8 hodiny</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Detailed"><value>Emuláty a emuláty R-Time 8 Real-time hodiny tak kompatibilní software může číst aktuální datum a čas.</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Short"><value>Povolit P: tiskárna</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed"><value>Dělá emulovaný P: tiskárenské zařízení dostupné pro software. Vypněte tuto volbu, pokud není emulace printer- zařízení potřebná.</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Short"><value>Povolit R: sériové zařízení</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed"><value>Dělá emulovaný R: sériové zařízení dostupné pro software. Vypněte tuto volbu, pokud není emulace sériového zařízení potřebná.</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Short"><value>Vyberte barevný artfakting s vysokým rozlišením</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Detailed"><value>Vybere, jak modely s vysokým rozlišením produkují barvy komposite- video. Nic nezničí barvy artefaktů. Ostatní režimy reprodukují různé palety nebo čipové chování.</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Short"><value>Vybrat načasování bliteru</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Detailed"><value>Vybere, zda operace bliteru skončí okamžitě, nebo následuje emulované načasování hardwaru. Okamžitý režim je rychlejší, ale méně přesný.</value></data>
+  <data name="Emulation.Help.Video.HzChange.Short"><value>Povolit změny rychlosti obnovení výstupu</value></data>
+  <data name="Emulation.Help.Video.HzChange.Detailed"><value>Umožňuje obnovení frekvence výstupu sledovat změny v emulovaném video režimu. Uzamčeno udržuje aktuální rychlost obnovení výstupu.</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Short"><value>Vybrat detaily detekce kolizí</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Detailed"><value>Vybere, které sprite a herní pole kolize jsou vypočteny. Více kompletní detekce zlepšuje kompatibilitu, ale vyžaduje větší zpracování.</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Short"><value>Snížit prokládané zobrazení blikání</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed"><value>Sníží blikání v prokládané video výstupu. Povolit pro vytrvalější obraz. Zakázat to zachovat původní prokládané zobrazení chování.</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Short"><value>Vyberte zobrazený poměr stran</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Detailed"><value>Vybere si, jak je emulovaný obraz zmenšen vodorovně a svisle. Auto sleduje emulovaný výstup. Pevná volba síly, které zobrazují tvar.</value></data>
+  <data name="Emulation.Help.Video.Gamma.Short"><value>Upravit obrázek gama</value></data>
+  <data name="Emulation.Help.Video.Gamma.Detailed"><value>Změny jasu midtons bez přímé změny černé a bílé úrovně. Nižší hodnoty tmavě tóny. Vyšší hodnoty je rozjasní.</value></data>
+  <data name="Emulation.Help.Video.LineMode.Short"><value>Vyberte režim video linky</value></data>
+  <data name="Emulation.Help.Video.LineMode.Detailed"><value>Vybere, jak se zobrazují vertikální linky videa. Automaticky následuje emulovaný režim. Jiné volby vynutit jednotlivé linky, zdvojnásobit linky, nebo scanlines, pokud jsou k dispozici.</value></data>
+  <data name="Emulation.Help.Video.Standard.Short"><value>Vyberte video standard</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed"><value>Vybere emulované televizní načasování, např. PAL nebo NTSC. To ovlivňuje obnovovací rychlost, hardwarové načasování a kompatibilitu software.</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Short"><value>Vyberte vnější barevnou paletu</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Detailed"><value>Vybere předem definovanou barevnou paletu namísto barev generovaných ze současného nastavení videa. Vyberte Žádný použít vygenerované barvy.</value></data>
+  <data name="Emulation.Help.Video.Colors.Short"><value>Vybrat hloubku barev výstupu</value></data>
+  <data name="Emulation.Help.Video.Colors.Detailed"><value>Vybere barevnou hloubku použitou k vykreslování obrazu. 24-bit udržuje více barevných detailů. 16-bit používá menší rozsah barev.</value></data>
+  <data name="Emulation.Help.Video.Region.Short"><value>Vyberte oblast hardwaru</value></data>
+  <data name="Emulation.Help.Video.Region.Detailed"><value>Vybere regionální načasování použité emulovaným strojem. Volba může ovlivnit frekvenci videa, CPU načasování a kompatibilní firmware.</value></data>
+  <data name="Emulation.Help.Video.Rendering.Short"><value>Vyberte nosiče videa</value></data>
+  <data name="Emulation.Help.Video.Rendering.Detailed"><value>Vybere grafický backend použitý k nakreslení emulovaného displeje. Dostupné přenašeči se mohou lišit ve výkonu a kompatibilitě s hostitelským systémem.</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Short"><value>Upravit GTIA barevné zpoždění</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Nastaví GTIA zpoždění barevné fáze použité k reprodukci barev. Výchozí používá standardní hodnotu. Číselné volby posunou výsledné odstíny.</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Short"><value>Nastavení přeskočení rámu</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Nastaví, kolik zobrazovacích rámů je vynecháno. Zakázané nakreslí každý snímek. Vyšší hodnoty snižují ztvárnění práce, ale zmenšují pohyb.</value></data>
 </root>

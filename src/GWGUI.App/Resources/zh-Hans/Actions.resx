@@ -57,24 +57,6 @@
   <data name="Common.Export">
     <value>出口</value>
   </data>
-  <data name="Common.SaveIcon">
-    <value>💾</value>
-  </data>
-  <data name="Common.TrashIcon">
-    <value>🗑</value>
-  </data>
-  <data name="Icon.Save">
-    <value></value>
-  </data>
-  <data name="Icon.Reset">
-    <value></value>
-  </data>
-  <data name="Icon.Copy">
-    <value></value>
-  </data>
-  <data name="Icon.Console">
-    <value></value>
-  </data>
   <data name="Common.New"><value>新建</value></data>
   <data name="Common.Refresh"><value>刷新</value></data>
   <data name="Common.OpenFolder"><value>打开文件夹</value></data>

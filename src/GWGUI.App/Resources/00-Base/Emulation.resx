@@ -558,4 +558,110 @@
   <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
     <value>Kickstart</value>
   </data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short" xml:space="preserve"><value>Silence empty floppy drives</value></data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed" xml:space="preserve"><value>Silences the emulated drive sound while no disk is inserted. Disable this option to keep the idle mechanical noise.</value></data>
+  <data name="Emulation.Help.Audio.Filter.Short" xml:space="preserve"><value>Select analog audio filtering</value></data>
+  <data name="Emulation.Help.Audio.Filter.Detailed" xml:space="preserve"><value>Selects how the original analog audio filter is reproduced. Emulated follows the hardware behavior. The other choices force the filter on or off.</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Short" xml:space="preserve"><value>Enable the polarized audio filter</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Detailed" xml:space="preserve"><value>Applies the polarized filter to the generated audio signal. Enable it to reproduce the filtered sound. Disable it to keep the unfiltered signal.</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Short" xml:space="preserve"><value>Select audio interpolation</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Detailed" xml:space="preserve"><value>Selects how audio samples are calculated between generated sample points. Higher-quality methods produce smoother sound but require more processing.</value></data>
+  <data name="Emulation.Help.Audio.Latency.Short" xml:space="preserve"><value>Set audio latency</value></data>
+  <data name="Emulation.Help.Audio.Latency.Detailed" xml:space="preserve"><value>Sets the duration of the audio buffer. A shorter buffer reduces delay but can cause crackling. A longer buffer improves stability but increases delay.</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Short" xml:space="preserve"><value>Enable dual POKEY stereo</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed" xml:space="preserve"><value>Adds a second emulated POKEY chip to produce stereo sound. Enable this option only for software that supports dual POKEY audio.</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Short" xml:space="preserve"><value>Set stereo separation</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Detailed" xml:space="preserve"><value>Sets the separation between the left and right channels. A lower value mixes the channels together. A higher value keeps them farther apart.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short" xml:space="preserve"><value>Select the floppy drive sound set</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed" xml:space="preserve"><value>Selects the sample set used for the mechanical sounds of emulated floppy drives. It does not change drive behavior or disk data.</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Short" xml:space="preserve"><value>Select the audio filter model</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed" xml:space="preserve"><value>Selects the hardware filter response to emulate. Auto follows the selected machine model. A specific choice always uses that filter response.</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Short" xml:space="preserve"><value>Enable two additional joystick ports</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Detailed" xml:space="preserve"><value>Emulates a parallel-port adapter that adds two joystick ports. Enable it for software that supports four simultaneous players.</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Short" xml:space="preserve"><value>Set the turbo pulse interval</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Detailed" xml:space="preserve"><value>Sets the time between automatic button presses produced by turbo. A shorter interval produces faster repeated firing.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Short" xml:space="preserve"><value>Select a controller compatibility mode</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed" xml:space="preserve"><value>Selects a special controller mapping, such as dual-stick control, swapped ports, or Joy2B+. Choose None to keep the standard port mapping.</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Short" xml:space="preserve"><value>Set analog input sensitivity</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed" xml:space="preserve"><value>Sets how strongly an analog input responds to movement. A higher value produces a larger response from the same physical movement.</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Short" xml:space="preserve"><value>Set digital input sensitivity</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed" xml:space="preserve"><value>Sets how quickly a digital direction reaches full movement. A higher value makes direction changes reach their maximum more quickly.</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Short" xml:space="preserve"><value>Select the autofire mode</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed" xml:space="preserve"><value>Disabled turns autofire off. On button repeats fire while the assigned button is held. Always repeats fire continuously.</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Short" xml:space="preserve"><value>Set paddle movement speed</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Detailed" xml:space="preserve"><value>Sets how quickly digital input moves an emulated paddle. A lower value moves it more slowly. A higher value moves it more quickly.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Short" xml:space="preserve"><value>Select the FPU</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed" xml:space="preserve"><value>Selects the floating-point unit used for floating-point instructions. Choose None to disable the FPU. Available models depend on the selected CPU.</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Short" xml:space="preserve"><value>Select CPU emulation accuracy</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Detailed" xml:space="preserve"><value>Selects how closely CPU timing follows the original hardware. More accurate modes can improve compatibility but may require more processing.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Short" xml:space="preserve"><value>Set the emulated CPU speed</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed" xml:space="preserve"><value>Sets the processor frequency used by the emulated machine. The original speed preserves hardware timing. Higher values accelerate CPU-limited software.</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short" xml:space="preserve"><value>Use analog sticks to control the mouse</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Detailed" xml:space="preserve"><value>Allows analog joystick axes to move the emulated mouse pointer. Enable it when a physical analog stick should control the pointer.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Short" xml:space="preserve"><value>Set analog mouse speed</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed" xml:space="preserve"><value>Sets pointer speed when an analog stick controls the emulated mouse. A higher value moves the pointer farther for the same stick movement.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Short" xml:space="preserve"><value>Set the analog mouse dead zone</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed" xml:space="preserve"><value>Ignores small analog-stick movements around the center while controlling the mouse. Increase the value if the pointer moves while the stick is released.</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Short" xml:space="preserve"><value>Enable the Axlon $0F shadow bank</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed" xml:space="preserve"><value>Mirrors the Axlon control bank at address $0F. Enable it only for software or memory expansions that use this additional address.</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short" xml:space="preserve"><value>Set Axlon expansion memory</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed" xml:space="preserve"><value>Sets the amount of bank-switched Axlon memory. Disabled removes the expansion. The other choices provide the selected memory capacity.</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short" xml:space="preserve"><value>Set Mosaic expansion memory</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed" xml:space="preserve"><value>Sets the amount of bank-switched Mosaic memory. Disabled removes the expansion. The other choices provide the selected memory capacity.</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short" xml:space="preserve"><value>Set additional expansion memory</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed" xml:space="preserve"><value>Sets the amount of additional expansion memory supported by the selected machine. Choose None to use only the configured main memory.</value></data>
+  <data name="Emulation.Help.Memory.Fast.Short" xml:space="preserve"><value>Set Fast RAM size</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed" xml:space="preserve"><value>Sets the amount of Fast RAM available directly to the CPU. Additional Fast RAM can help compatible software but changes the emulated hardware configuration.</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short" xml:space="preserve"><value>Enable MapRAM</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Detailed" xml:space="preserve"><value>Allows compatible software to map writable RAM into the system ROM address area. This option is available only on machine models that support MapRAM.</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short" xml:space="preserve"><value>Set Zorro III RAM size</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed" xml:space="preserve"><value>Sets the amount of 32-bit Fast RAM connected through the Zorro III bus. Use it only with compatible 32-bit machines and software.</value></data>
+  <data name="Emulation.Help.Memory.Slow.Short" xml:space="preserve"><value>Set Slow RAM size</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed" xml:space="preserve"><value>Sets the amount of Slow RAM in the trapdoor expansion area. This memory is slower than Fast RAM and uses a different hardware address range.</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Short" xml:space="preserve"><value>Select the ROM decryption key</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Detailed" xml:space="preserve"><value>Selects the key file used to decrypt a licensed encrypted ROM image. Leave this field empty when the selected ROM is not encrypted.</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Short" xml:space="preserve"><value>Enable fast startup</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Detailed" xml:space="preserve"><value>Skips selected hardware initialization delays to shorten startup. Disable this option when software requires the original startup sequence.</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Short" xml:space="preserve"><value>Select an extended ROM</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed" xml:space="preserve"><value>Selects the secondary firmware ROM required by some machine models. Leave this field empty when the selected model does not use an extended ROM.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Short" xml:space="preserve"><value>Enable accelerated SIO transfers</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed" xml:space="preserve"><value>Speeds up compatible transfers through the serial input/output bus. Disable this option when software depends on the original transfer timing.</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short" xml:space="preserve"><value>Enable cassette startup</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Detailed" xml:space="preserve"><value>Makes the emulated machine try to start from the attached cassette image. Disable this option when starting from another device.</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Short" xml:space="preserve"><value>Enable the R-Time 8 clock</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Detailed" xml:space="preserve"><value>Emulates an R-Time 8 real-time clock so compatible software can read the current date and time.</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Short" xml:space="preserve"><value>Enable the P: printer device</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed" xml:space="preserve"><value>Makes the emulated P: printer device available to software. Disable this option when printer-device emulation is not needed.</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Short" xml:space="preserve"><value>Enable the R: serial device</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed" xml:space="preserve"><value>Makes the emulated R: serial device available to software. Disable this option when serial-device emulation is not needed.</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Short" xml:space="preserve"><value>Select high-resolution color artifacting</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Detailed" xml:space="preserve"><value>Selects how high-resolution patterns produce composite-video colors. None disables artifact colors. The other modes reproduce different palettes or chip behavior.</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Short" xml:space="preserve"><value>Select blitter timing</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Detailed" xml:space="preserve"><value>Selects whether blitter operations finish immediately or follow emulated hardware timing. Immediate mode is faster but less timing-accurate.</value></data>
+  <data name="Emulation.Help.Video.HzChange.Short" xml:space="preserve"><value>Allow output refresh-rate changes</value></data>
+  <data name="Emulation.Help.Video.HzChange.Detailed" xml:space="preserve"><value>Allows the output refresh rate to follow changes in the emulated video mode. Locked keeps the current output refresh rate.</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Short" xml:space="preserve"><value>Select collision detection detail</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Detailed" xml:space="preserve"><value>Selects which sprite and playfield collisions are calculated. More complete detection improves compatibility but requires more processing.</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Short" xml:space="preserve"><value>Reduce interlaced display flicker</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed" xml:space="preserve"><value>Reduces flicker in interlaced video output. Enable it for a steadier image. Disable it to preserve the original interlaced display behavior.</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Short" xml:space="preserve"><value>Select the displayed aspect ratio</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Detailed" xml:space="preserve"><value>Selects how the emulated image is scaled horizontally and vertically. Auto follows the emulated output. A fixed choice forces that display shape.</value></data>
+  <data name="Emulation.Help.Video.Gamma.Short" xml:space="preserve"><value>Adjust image gamma</value></data>
+  <data name="Emulation.Help.Video.Gamma.Detailed" xml:space="preserve"><value>Changes the brightness of midtones without directly changing the black and white levels. Lower values darken midtones. Higher values brighten them.</value></data>
+  <data name="Emulation.Help.Video.LineMode.Short" xml:space="preserve"><value>Select the video line mode</value></data>
+  <data name="Emulation.Help.Video.LineMode.Detailed" xml:space="preserve"><value>Selects how vertical video lines are displayed. Auto follows the emulated mode. Other choices force single lines, doubled lines, or scanlines when available.</value></data>
+  <data name="Emulation.Help.Video.Standard.Short" xml:space="preserve"><value>Select the video standard</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed" xml:space="preserve"><value>Selects the emulated television timing, such as PAL or NTSC. This affects refresh rate, hardware timing, and software compatibility.</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Short" xml:space="preserve"><value>Select an external color palette</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Detailed" xml:space="preserve"><value>Selects a predefined color palette instead of colors generated from the current video settings. Choose None to use the generated colors.</value></data>
+  <data name="Emulation.Help.Video.Colors.Short" xml:space="preserve"><value>Select output color depth</value></data>
+  <data name="Emulation.Help.Video.Colors.Detailed" xml:space="preserve"><value>Selects the color depth used to render the image. 24-bit keeps more color detail. 16-bit uses a smaller range of colors.</value></data>
+  <data name="Emulation.Help.Video.Region.Short" xml:space="preserve"><value>Select the hardware region</value></data>
+  <data name="Emulation.Help.Video.Region.Detailed" xml:space="preserve"><value>Selects the regional timing used by the emulated machine. The choice can affect video frequency, CPU timing, and compatible firmware.</value></data>
+  <data name="Emulation.Help.Video.Rendering.Short" xml:space="preserve"><value>Select the video renderer</value></data>
+  <data name="Emulation.Help.Video.Rendering.Detailed" xml:space="preserve"><value>Selects the graphics backend used to draw the emulated display. Available renderers can differ in performance and compatibility with the host system.</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Short" xml:space="preserve"><value>Adjust GTIA color delay</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>Sets the GTIA color phase delay used to reproduce colors. Default uses the standard value. Numeric choices shift the resulting hues.</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>Set frame skipping</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>Sets how many display frames are omitted. Disabled draws every frame. Higher values reduce rendering work but make motion less smooth.</value></data>
 </root>

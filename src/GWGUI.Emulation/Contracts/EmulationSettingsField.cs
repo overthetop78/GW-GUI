@@ -11,6 +11,7 @@ public sealed record EmulationSettingsField(
     bool IsEnabled = true,
     bool IsVisible = true,
     string? ExplanationResourceKey = null,
+    string? DetailedExplanationResourceKey = null,
     string EnabledValue = EmulationSettingConstants.Enabled,
     string DisabledValue = EmulationSettingConstants.Disabled,
     EmulationDefaultFolderCategory? DefaultFolderCategory = null,

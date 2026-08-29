@@ -57,24 +57,6 @@
   <data name="Common.Export">
     <value>Εξαγωγή</value>
   </data>
-  <data name="Common.SaveIcon">
-    <value>💾</value>
-  </data>
-  <data name="Common.TrashIcon">
-    <value>🗑</value>
-  </data>
-  <data name="Icon.Save">
-    <value></value>
-  </data>
-  <data name="Icon.Reset">
-    <value></value>
-  </data>
-  <data name="Icon.Copy">
-    <value></value>
-  </data>
-  <data name="Icon.Console">
-    <value></value>
-  </data>
   <data name="Common.New"><value>Νέο</value></data>
   <data name="Common.Refresh"><value>Ανανέωση</value></data>
   <data name="Common.OpenFolder"><value>Άνοιγμα φακέλου</value></data>

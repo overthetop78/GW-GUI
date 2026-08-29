@@ -126,15 +126,6 @@
   <data name="Emulation.Cpu.Compatibility">
     <value>CPU tương thích từng chu kỳ</value>
   </data>
-  <data name="Emulation.Memory.Chip">
-    <value>Chip RAM</value>
-  </data>
-  <data name="Emulation.Memory.Slow">
-    <value>Slow RAM</value>
-  </data>
-  <data name="Emulation.Memory.Fast">
-    <value>Fast RAM</value>
-  </data>
   <data name="Emulation.Memory.Z3">
     <value>RAM Zorro III</value>
   </data>
@@ -248,9 +239,6 @@
   </data>
   <data name="Emulation.Storage.HardDisk.DriveCount">
     <value>Số ổ đĩa cứng</value>
-  </data>
-  <data name="Emulation.Fpu.Model">
-    <value>FPU</value>
   </data>
   <data name="Emulation.Cpu.Speed">
     <value>Tốc độ CPU</value>
@@ -864,12 +852,6 @@
   <data name="Emulation.Storage.Geometry.Sectors">
     <value>Cung</value>
   </data>
-  <data name="Emulation.Storage.Unit.MiB">
-    <value>MiB</value>
-  </data>
-  <data name="Emulation.Storage.Unit.GiB">
-    <value>GiB</value>
-  </data>
   <data name="Emulation.Controller.Action.Up">
     <value>Lên</value>
   </data>
@@ -909,14 +891,8 @@
   <data name="Emulation.Amiga.Controller.Cd32.PlayPause">
     <value>CD32 phát / tạm dừng</value>
   </data>
-  <data name="Emulation.Amiga.Controller.Joystick">
-    <value>Cần điều khiển Amiga</value>
-  </data>
   <data name="Emulation.Controller.AnalogJoystick">
     <value>Cần điều khiển analog</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32">
-    <value>Tay cầm CD32</value>
   </data>
   <data name="Emulation.Mouse.Wheel.Up">
     <value>Con lăn chuột lên</value>
@@ -929,63 +905,6 @@
   </data>
   <data name="Emulation.Mouse.Wheel.Right">
     <value>Con lăn chuột sang phải</value>
-  </data>
-  <data name="Emulation.Atari.Model.St" xml:space="preserve">
-    <value>Atari ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stf" xml:space="preserve">
-    <value>Atari STF</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stfm" xml:space="preserve">
-    <value>Atari STFM</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSt" xml:space="preserve">
-    <value>Atari Mega ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Ste" xml:space="preserve">
-    <value>Atari STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSte" xml:space="preserve">
-    <value>Atari Mega STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Tt" xml:space="preserve">
-    <value>Atari TT</value>
-  </data>
-  <data name="Emulation.Atari.Model.Falcon" xml:space="preserve">
-    <value>Atari Falcon</value>
-  </data>
-  <data name="Emulation.Atari.Model.400" xml:space="preserve">
-    <value>Atari 400</value>
-  </data>
-  <data name="Emulation.Atari.Model.800" xml:space="preserve">
-    <value>Atari 800</value>
-  </data>
-  <data name="Emulation.Atari.Model.800Xl" xml:space="preserve">
-    <value>Atari 800XL</value>
-  </data>
-  <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
-    <value>Atari 130XE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
-    <value>Atari XEGS</value>
-  </data>
-  <data name="Emulation.Atari.Model.5200" xml:space="preserve">
-    <value>Atari 5200</value>
-  </data>
-  <data name="Emulation.Atari.Model.2600" xml:space="preserve">
-    <value>Atari 2600</value>
-  </data>
-  <data name="Emulation.Atari.Model.7800" xml:space="preserve">
-    <value>Atari 7800</value>
-  </data>
-  <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
-    <value>Atari Lynx</value>
-  </data>
-  <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
-    <value>Atari Jaguar</value>
-  </data>
-  <data name="Emulation.Atari.Model.JaguarCd" xml:space="preserve">
-    <value>Atari Jaguar CD</value>
   </data>
   <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve">
     <value>Giá trị này được xác định bởi mô hình đã chọn.</value>
@@ -1090,24 +1009,11 @@
   <data name="Emulation.Atari.Storage.MediaFilter" xml:space="preserve">
     <value>Truyền thông Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Mọi tập tin|*.*</value>
   </data>
-  <data name="Emulation.Atari.Controller.Joystick">
-    <value>Cần điều khiển Atari</value>
-  </data>
-<data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Paddle Controllers</value></data>
-<data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 Light Gun</value></data>
-<data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>Atari Driving Controller</value></data>
-  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
-  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
-  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar Controller</value></data>
   <data name="Emulation.Controller.Automatic"><value>Tự động</value></data>
   <data name="Emulation.Controller.None"><value>Không có</value></data>
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Trình điều chỉnh cần điều khiển bốn người chơi song song</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Name</value></data>
   <data name="Emulation.Atari.Controller.NumericKeypad"><value>Name</value></data>
-  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
-  <data name="Emulation.Atari.Controller.Genesis"><value>Điều khiển Sega Genesis</value></data>
-  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Điều khiển</value></data>
   <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
     <value>Trình giả lập cần có phương tiện trước khi có thể bật máy này. Hãy đưa đĩa mềm vào hoặc cấu hình ổ đĩa cứng.</value>
   </data>
@@ -1127,7 +1033,6 @@
   <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Mở rộng bộ nhớ Mosaic</value></data>
   <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Mở rộng bộ nhớ Axlon</value></data>
   <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Bóng ngân hàng Axlon $0F</value></data>
-  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
   <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>POKEY âm thanh nổi</value></data>
   <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Nhiễu màu độ phân giải cao</value></data>
   <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>Tăng tốc SIO</value></data>
@@ -1164,25 +1069,10 @@
   <data name='Emulation.Media.Eject' xml:space='preserve'>
     <value>Tháo phương tiện</value>
   </data>
-  <data name="Emulation.Tab.Cpu" xml:space="preserve"><value>CPU</value></data>
-  <data name="Emulation.Tab.Ram" xml:space="preserve"><value>RAM</value></data>
-  <data name="Emulation.Tab.Rom" xml:space="preserve"><value>ROM</value></data>
-  <data name="Emulation.Family.Amiga" xml:space="preserve"><value>Amiga</value></data>
-  <data name="Emulation.Family.Atari" xml:space="preserve"><value>Atari</value></data>
-  <data name="Emulation.Atari.Model.XlXe" xml:space="preserve"><value>Atari XL/XE</value></data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
   <data name="Emulation.Key.AtariHelp" xml:space="preserve"><value>Help</value></data>
   <data name="Emulation.Key.AtariUndo" xml:space="preserve"><value>Undo</value></data>
-  <data name="Emulation.Amiga.Model.A500" xml:space="preserve"><value>Amiga 500</value></data>
-  <data name="Emulation.Amiga.Model.A500PLUS" xml:space="preserve"><value>Amiga 500 Plus</value></data>
-  <data name="Emulation.Amiga.Model.A600" xml:space="preserve"><value>Amiga 600</value></data>
-  <data name="Emulation.Amiga.Model.A1000" xml:space="preserve"><value>Amiga 1000</value></data>
-  <data name="Emulation.Amiga.Model.A1200" xml:space="preserve"><value>Amiga 1200</value></data>
-  <data name="Emulation.Amiga.Model.A2000" xml:space="preserve"><value>Amiga 2000</value></data>
-  <data name="Emulation.Amiga.Model.A3000" xml:space="preserve"><value>Amiga 3000</value></data>
-  <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Amiga 4000</value></data>
-  <data name="Emulation.Amiga.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
-  <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Amiga CD32</value></data>  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Không thể khởi tạo GameInput. Hãy cài đặt hoặc sửa chữa runtime GameInput đi kèm.</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Không thể khởi tạo GameInput. Hãy cài đặt hoặc sửa chữa runtime GameInput đi kèm.</value></data>
   <data name="Emulation.Configuration.Brand"><value>Thương hiệu</value></data>
   <data name="Emulation.Configuration.Machine"><value>Máy</value></data>
   <data name="Emulation.Configuration.TotalRam"><value>Tổng RAM</value></data>
@@ -1190,7 +1080,110 @@
   <data name="Emulation.Configuration.Peripherals"><value>Thiết bị ngoại vi</value></data>
   <data name="Emulation.Configuration.Actions"><value>Hành động</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>Xóa cấu hình {0} {1}?</value></data>
-  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
-    <value>Kickstart</value>
-  </data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short"><value>Name</value></data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed"><value>Làm yên lặng tiếng ổ đĩa mô phỏng trong khi không cho vào đĩa. Tắt tùy chọn này để giữ nhiễu cơ chế không hoạt động.</value></data>
+  <data name="Emulation.Help.Audio.Filter.Short"><value>Chọn bộ lọc âm thanh tương tự</value></data>
+  <data name="Emulation.Help.Audio.Filter.Detailed"><value>Chọn cách bộ lọc âm thanh gốc được sao lưu. Kết hợp theo hành vi phần cứng. Những lựa chọn khác ép bộ lọc bật hay tắt.</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Short"><value>Kích hoạt bộ lọc âm thanh phân cực</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Detailed"><value>Phù hợp với bộ lọc phân cực để tạo ra tín hiệu âm thanh. Bật nó để sao chép lại âm thanh đã lọc. Tắt nó để giữ tín hiệu chưa lọc.</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Short"><value>Chọn độ phân giải âm thanh</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Detailed"><value>Chọn cách tính các mẫu âm thanh giữa các điểm mẫu được tạo ra. Phương pháp chất lượng cao tạo ra âm thanh mịn hơn nhưng yêu cầu xử lý nhiều hơn.</value></data>
+  <data name="Emulation.Help.Audio.Latency.Short"><value>Đặt tần số âm thanh</value></data>
+  <data name="Emulation.Help.Audio.Latency.Detailed"><value>Đặt thời gian của bộ đệm âm thanh. Một bộ đệm ngắn hơn làm giảm sự chậm trễ nhưng có thể gây ra sự rạn nứt. Bộ đệm dài hơn cải thiện sự ổn định nhưng làm tăng sự chậm trễ.</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Short"><value>Bật cả hai POKEY stereo</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed"><value>Thêm một sự bắt chước thứ hai POKEY Chip để tạo ra âm thanh stereo. Bật tùy chọn này chỉ cho phần mềm hỗ trợ nhị phân POKEY âm thanh.</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Short"><value>Đặt tách âm thanh</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Detailed"><value>Đặt sự phân cách giữa kênh trái và kênh bên phải. Giá trị thấp hơn trộn các kênh lại với nhau. Một giá trị cao hơn giữ chúng cách xa nhau hơn.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short"><value>Chọn bộ âm thanh ổ đĩa mềm</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed"><value>Chọn tập mẫu dùng cho âm thanh cơ học của ổ đĩa mềm mô phỏng. Nó không thay đổi hành vi ổ đĩa hay dữ liệu đĩa.</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Short"><value>Chọn mô hình lọc âm thanh</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed"><value>Chọn phản ứng bộ lọc phần cứng để mô phỏng. Tự động theo mô hình máy được chọn. Một lựa chọn cụ thể luôn sử dụng phản ứng lọc đó.</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Short"><value>Kích hoạt hai cổng bổ sung cần điều khiển</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Detailed"><value>Tính ra một người thích nghi xuất khẩu song song có thêm hai cổng cần điều khiển. Bật nó cho phần mềm hỗ trợ bốn người chơi đồng thời.</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Short"><value>Đặt khoảng cách xung tốc</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Detailed"><value>Đặt thời gian giữa các nút tự động được tạo ra bởi máy gia tốc. Một khoảng thời gian ngắn hơn tạo ra tiếng súng liên tục nhanh hơn.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Short"><value>Chọn chế độ tương thích điều khiển</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed"><value>Chọn một bản đồ điều khiển đặc biệt, chẳng hạn như điều khiển song đũa, cổng trao đổi, hoặc Joy2B+Chọn Không để giữ bản đồ cổng chuẩn.</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Short"><value>Đặt độ nhạy tương tự đầu vào</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed"><value>Đặt độ mạnh của một đầu vào tương tự phản ứng với chuyển động. Một giá trị cao hơn tạo ra một phản ứng lớn hơn từ cùng một chuyển động vật lý.</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Short"><value>Đặt độ nhạy nhập kỹ thuật số</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed"><value>Thiết lập độ nhanh của một hướng số đạt đầy đủ chuyển động. Một giá trị cao hơn sẽ thay đổi hướng nhanh hơn.</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Short"><value>Chọn chế độ tự động lửa</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed"><value>Tắt tự động bắn. Khi bấm nút, nó sẽ tiếp tục bắn khi phím đã được bấm. Luôn bắn liên tục.</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Short"><value>Đặt tốc độ chuyển động chèo</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Detailed"><value>Đặt cách di chuyển nhanh nhất của đầu vào số Giá trị thấp hơn di chuyển chậm hơn. Một giá trị cao hơn di chuyển nhanh hơn.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Short"><value>Chọn FPU</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed"><value>Chọn một điểm nổi dùng cho điểm nổi. Chọn Không để tắt FPU.. Mô hình sẵn sàng phụ thuộc vào điều đã chọn CPU.</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Short"><value>Chọn CPU Độ chính xác bộ mô phỏng</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Detailed"><value>Chọn gần thế nào CPU Thời gian theo sau phần cứng gốc. Các chế độ chính xác hơn có thể cải thiện sự tương thích nhưng có thể đòi hỏi xử lý nhiều hơn.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Short"><value>Đặt sự bắt chước CPU Tốc độ</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed"><value>Đặt tần số xử lý được dùng bởi máy mô phỏng. Tốc độ ban đầu bảo tồn phần cứng thời gian. Giá trị cao hơn tăng tốc CPU- Phần mềm giới hạn.</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short"><value>Dùng thanh tương tự để điều khiển con chuột</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Detailed"><value>Cho phép trục cần điều khiển tương tự di chuyển con trỏ chuột mô phỏng. Bật nó khi một cây gậy tương tự vật lý nên điều khiển con trỏ.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Short"><value>Đặt tốc độ tương tự như chuột</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed"><value>Đặt tốc độ con trỏ khi một thanh tương tự điều khiển con chuột đã mô phỏng. Một giá trị cao hơn sẽ di chuyển con trỏ xa hơn cho cùng một chuyển động.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Short"><value>Đặt vùng chết tương tự của chuột</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed"><value>Bỏ qua những chuyển động tương tự nhỏ xung quanh trung tâm trong khi điều khiển con chuột. Tăng giá trị nếu con trỏ di chuyển trong khi cây gậy được thả ra.</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Short"><value>Bật Axlon $0F ngân hàng bóng</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed"><value>Phản chiếu Axlon điều khiển ngân hàng tại địa chỉ $0FHãy bật tùy chọn này chỉ cho phép mở rộng phần mềm hay bộ nhớ dùng địa chỉ thêm này.</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short"><value>Đặt Axlon Bộ nhớ mở rộng</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed"><value>Đặt số tiền bị cướp ngân hàng Axlon trí nhớ. Tắt bỏ việc mở rộng. Các lựa chọn khác cung cấp khả năng bộ nhớ đã chọn.</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short"><value>Đặt Mosaic Bộ nhớ mở rộng</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed"><value>Đặt số tiền bị cướp ngân hàng Mosaic trí nhớ. Tắt bỏ việc mở rộng. Các lựa chọn khác cung cấp khả năng bộ nhớ đã chọn.</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short"><value>Đặt bộ nhớ mở rộng bổ sung</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed"><value>Đặt số lượng bộ nhớ mở rộng thêm được máy đã chọn hỗ trợ. Chọn Không dùng bộ nhớ chính đã cấu hình.</value></data>
+  <data name="Emulation.Help.Memory.Fast.Short"><value>Đặt Fast RAM Cỡ</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed"><value>Đặt số lượng Fast RAM hiện có trực tiếp đến CPUCộng Fast RAM có thể giúp tương thích với phần mềm nhưng thay đổi cấu hình phần cứng mô phỏng.</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short"><value>Bật MapRAM</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Detailed"><value>Cho phép phần mềm tương thích với bản đồ RAM vào hệ thống ROM Khu vực địa chỉ. Tùy chọn này chỉ sẵn sàng trên mô hình máy hỗ trợ MapRAM.</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short"><value>Đặt Zorro III RAM Cỡ</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed"><value>Đặt số lượng 32- bit Fast RAM đã kết nối qua các Zorro III Xe buýt. Dùng nó chỉ với 32 bit máy và phần mềm tương thích.</value></data>
+  <data name="Emulation.Help.Memory.Slow.Short"><value>Đặt Slow RAM Cỡ</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed"><value>Đặt số lượng Slow RAM trong khu vực mở rộng cửa sập. Bộ nhớ này chậm hơn Fast RAM và sử dụng phạm vi địa chỉ phần cứng khác nhau.</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Short"><value>Chọn ROM Phím giải mã</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Detailed"><value>Chọn tập tin khóa dùng để giải mã một tập tin đã được cấp phép ROM hình ảnh. Để ô này trống khi chọn ROM chưa được mã hóa.</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Short"><value>Bật chạy nhanh</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Detailed"><value>Nhảy qua đã chọn phần cứng bị hoãn để khởi chạy lại. Tắt tùy chọn này khi phần mềm cần thiết trình tự khởi chạy.</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Short"><value>Chọn phần mở rộng ROM</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed"><value>Chọn phần mềm phụ ROM yêu cầu bởi một số mô hình máy móc. Để ô này trống khi mô hình đã chọn không sử dụng mở rộng ROM.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Short"><value>Bật tăng tốc SIO Truyền:</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed"><value>Tốc độ chuyển đổi tương thích qua xe buýt đầu vào/ra hàng loạt. Tắt tùy chọn này khi phần mềm phụ thuộc vào thời gian truyền.</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short"><value>Bật khởi chạy băng</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Detailed"><value>Làm cho máy mô phỏng cố gắng bắt đầu từ hình ảnh được gắn vào. Tắt tùy chọn này khi chạy từ thiết bị khác.</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Short"><value>Bật R-Time 8 đồng hồ</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Detailed"><value>Tính toán một R-Time 8 Đồng hồ thời gian thực để phần mềm tương thích có thể đọc ngày giờ hiện tại.</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Short"><value>Bật P: Thiết bị máy in</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed"><value>Làm cho người bị bắt chước P: Thiết bị máy in sẵn sàng cho phần mềm. Tắt tùy chọn này nếu không cần thiết khả năng xác thực máy in.</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Short"><value>Bật R: Thiết bị nối tiếp</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed"><value>Làm cho người bị bắt chước R: Thiết bị nối tiếp sẵn sàng cho phần mềm. Tắt tùy chọn này khi không cần thiết xác nhận hàng loạt.</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Short"><value>Chọn tạo mẫu màu phân giải cao</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Detailed"><value>Chọn cách mà các mô hình độ phân giải cao tạo ra màu sắc tổng hợp. Không ai vô hiệu hóa màu sắc đồ tạo tác. Các chế độ khác tái tạo bảng màu khác nhau hoặc hành vi chip.</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Short"><value>Chọn thời gian blitter</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Detailed"><value>Chọn nếu thao tác blitter hoàn tất ngay lập tức hoặc theo thời gian phần cứng đã bắt chước. Chế độ lập tức nhanh hơn nhưng ít chính xác hơn.</value></data>
+  <data name="Emulation.Help.Video.HzChange.Short"><value>Cho phép các thay đổi độ tươi đầu ra</value></data>
+  <data name="Emulation.Help.Video.HzChange.Detailed"><value>Cho phép tốc độ cập nhật kết xuất theo các thay đổi trong chế độ video đã mô phỏng. Đã khóa giữ tốc độ cập nhật kết xuất hiện thời.</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Short"><value>Chọn chi tiết phát hiện va chạm</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Detailed"><value>Chọn những vụ va chạm ở sân chơi. Phát hiện đầy đủ hơn cải thiện sự tương thích nhưng đòi hỏi nhiều xử lý hơn.</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Short"><value>Giảm bộ bật/tắt màn hình</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed"><value>Giảm sự nhấp nháy trong kết xuất video có dây. Bật nó với ảnh riêng. Tắt nó để bảo tồn hành vi hiển thị có dây gốc.</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Short"><value>Chọn tỷ lệ hình thể hiển thị</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Detailed"><value>Chọn cách co dãn ảnh mô phỏng theo chiều ngang và dọc. Tự động theo kết xuất đã mô phỏng. Một lực lựa chọn cố định có hình dạng.</value></data>
+  <data name="Emulation.Help.Video.Gamma.Short"><value>Điều chỉnh gamma của ảnh</value></data>
+  <data name="Emulation.Help.Video.Gamma.Detailed"><value>Thay đổi độ sáng của các miton mà không thay đổi trực tiếp mức độ đen trắng. Giá trị thấp hơn là Dark mitons. Những giá trị cao hơn làm chúng sáng lên.</value></data>
+  <data name="Emulation.Help.Video.LineMode.Short"><value>Chọn chế độ dòng phim</value></data>
+  <data name="Emulation.Help.Video.LineMode.Detailed"><value>Chọn cách hiển thị đường dọc. Tự động theo chế độ mô phỏng. Những sự lựa chọn khác buộc một đường thẳng, hai đường thẳng, hoặc đường scanlines khi có thể.</value></data>
+  <data name="Emulation.Help.Video.Standard.Short"><value>Chọn tiêu chuẩn phim ảnh</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed"><value>Chọn thời điểm cho truyền hình mô phỏng, như PAL hay NTSC. tác động đến tốc độ cập nhật, thời gian phần cứng và tương thích với phần mềm.</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Short"><value>Chọn bảng màu bên ngoài</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Detailed"><value>Chọn bảng màu đã định sẵn thay vì màu được tạo ra từ thiết lập ảnh động hiện thời. Chọn Không dùng màu đã tạo.</value></data>
+  <data name="Emulation.Help.Video.Colors.Short"><value>Chọn độ sâu màu xuất</value></data>
+  <data name="Emulation.Help.Video.Colors.Detailed"><value>Chọn độ sâu màu dùng để vẽ ảnh. 24-bit giữ cho nhiều màu sắc chi tiết hơn. 16-bit sử dụng một dải màu nhỏ hơn.</value></data>
+  <data name="Emulation.Help.Video.Region.Short"><value>Chọn vùng phần cứng</value></data>
+  <data name="Emulation.Help.Video.Region.Detailed"><value>Chọn thời gian vùng dùng bởi máy mô phỏng. Lựa chọn có thể ảnh hưởng đến tần số video, CPU Thời gian và phần mềm tương thích.</value></data>
+  <data name="Emulation.Help.Video.Rendering.Short"><value>Chọn bộ làm phim</value></data>
+  <data name="Emulation.Help.Video.Rendering.Detailed"><value>Chọn hậu phương đồ hoạ dùng để vẽ màn hình mô phỏng. Những người làm ra có thể khác nhau về hiệu suất và tương thích với hệ thống máy.</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Short"><value>Điều chỉnh GTIA Trễ màu</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Đặt GTIA Trễ màu dùng để sinh sản màu. Mặc định dùng giá trị chuẩn. Sự lựa chọn số thay đổi màu sắc.</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Short"><value>Đặt bỏ qua khung</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Đặt số khung hiển thị bị bỏ qua. Tắt mọi khung hình. Giá trị cao hơn giảm việc vẽ nhưng làm cho chuyển động ít mịn hơn.</value></data>
 </root>

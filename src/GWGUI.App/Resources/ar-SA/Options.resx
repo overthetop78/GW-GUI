@@ -138,9 +138,6 @@
   <data name="Options.NextTagExample">
     <value>المثال التالي</value>
   </data>
-  <data name="Options.NextTagExampleIcon">
-    <value>↻</value>
-  </data>
   <data name="Options.TagPatternPreview">
     <value>مثال: {0}</value>
   </data>
@@ -167,9 +164,6 @@
   </data>
   <data name="Options.LogMaximumSize">
     <value>الحد الأقصى للحجم</value>
-  </data>
-  <data name="Options.Kilobytes">
-    <value>KiB</value>
   </data>
   <data name="Options.KeepLogArchives">
     <value>الاحتفاظ بالسجلات السابقة</value>
@@ -225,19 +219,7 @@
   <data name="Controllers.No" xml:space="preserve"><value>لا</value></data>
   <data name="Controllers.None" xml:space="preserve"><value>لا شيء</value></data>
   <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>وحدة تحكم عامة</value></data>
-  <data name="Controllers.Model.XboxSeries" xml:space="preserve"><value>Xbox Series</value></data>
-  <data name="Controllers.Model.XboxRematchCore" xml:space="preserve"><value>Turtle Beach REMATCH Core</value></data>
-  <data name="Controllers.Model.XboxOne" xml:space="preserve"><value>Xbox One</value></data>
-  <data name="Controllers.Model.PlayStation4" xml:space="preserve"><value>PlayStation 4</value></data>
-  <data name="Controllers.Model.PlayStation5" xml:space="preserve"><value>PlayStation 5</value></data>
-  <data name="Controllers.Model.MasterSystem" xml:space="preserve"><value>Master System</value></data>
   <data name="Controllers.Model.Auto" xml:space="preserve"><value>تلقائي</value></data>
-  <data name="Controllers.Model.MegaDrive3" xml:space="preserve"><value>SEGA Mega Drive بثلاثة أزرار</value></data>
-  <data name="Controllers.Model.MegaDrive6" xml:space="preserve"><value>SEGA Mega Drive بستة أزرار</value></data>
-  <data name="Controllers.Model.PlayStation1" xml:space="preserve"><value>PlayStation 1</value></data>
-  <data name="Controllers.Model.PlayStation2" xml:space="preserve"><value>PlayStation 2</value></data>
-  <data name="Controllers.Model.Saturn" xml:space="preserve"><value>Saturn</value></data>
-  <data name="Controllers.Model.Dreamcast" xml:space="preserve"><value>Dreamcast</value></data>
   <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>عجلة القيادة</value></data>
   <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>عصا الطيران</value></data>
   <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>عصا ألعاب الصالات</value></data>
@@ -357,11 +339,5 @@
   </data>
   <data name="Controllers.Enum.OutputReport" xml:space="preserve">
     <value>تقرير إخراج</value>
-  </data>
-  <data name="Controllers.Model.Nintendo64" xml:space="preserve"><value>Nintendo 64</value></data>
-  <data name="Controllers.Model.NintendoEntertainmentSystem" xml:space="preserve"><value>Nintendo Entertainment System (NES)</value></data>
-  <data name="Controllers.Model.SuperNintendo" xml:space="preserve"><value>Super Nintendo</value></data>
-  <data name="Options.EmulationMachineTitle" xml:space="preserve">
-    <value>{0} — {1} : {2}</value>
   </data>
 </root>

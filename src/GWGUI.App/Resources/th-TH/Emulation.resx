@@ -126,15 +126,6 @@
   <data name="Emulation.Cpu.Compatibility">
     <value>Cycle-compatible CPU</value>
   </data>
-  <data name="Emulation.Memory.Chip">
-    <value>Chip RAM</value>
-  </data>
-  <data name="Emulation.Memory.Slow">
-    <value>Slow RAM</value>
-  </data>
-  <data name="Emulation.Memory.Fast">
-    <value>Fast RAM</value>
-  </data>
   <data name="Emulation.Memory.Z3">
     <value>Zorro III RAM</value>
   </data>
@@ -248,9 +239,6 @@
   </data>
   <data name="Emulation.Storage.HardDisk.DriveCount">
     <value>จำนวนฮาร์ดดิสก์</value>
-  </data>
-  <data name="Emulation.Fpu.Model">
-    <value>FPU</value>
   </data>
   <data name="Emulation.Cpu.Speed">
     <value>CPU speed</value>
@@ -864,12 +852,6 @@
   <data name="Emulation.Storage.Geometry.Sectors">
     <value>เซกเตอร์</value>
   </data>
-  <data name="Emulation.Storage.Unit.MiB">
-    <value>MiB</value>
-  </data>
-  <data name="Emulation.Storage.Unit.GiB">
-    <value>GiB</value>
-  </data>
   <data name="Emulation.Controller.Action.Up">
     <value>ขึ้น</value>
   </data>
@@ -909,14 +891,8 @@
   <data name="Emulation.Amiga.Controller.Cd32.PlayPause">
     <value>CD32 เล่น / หยุดชั่วคราว</value>
   </data>
-  <data name="Emulation.Amiga.Controller.Joystick">
-    <value>จอยสติ๊ก Amiga</value>
-  </data>
   <data name="Emulation.Controller.AnalogJoystick">
     <value>จอยสติ๊กแอนะล็อก</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32">
-    <value>ตัวควบคุม CD32</value>
   </data>
   <data name="Emulation.Mouse.Wheel.Up">
     <value>ล้อเมาส์ขึ้น</value>
@@ -929,63 +905,6 @@
   </data>
   <data name="Emulation.Mouse.Wheel.Right">
     <value>ล้อเมาส์ไปทางขวา</value>
-  </data>
-  <data name="Emulation.Atari.Model.St" xml:space="preserve">
-    <value>Atari ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stf" xml:space="preserve">
-    <value>Atari STF</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stfm" xml:space="preserve">
-    <value>Atari STFM</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSt" xml:space="preserve">
-    <value>Atari Mega ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Ste" xml:space="preserve">
-    <value>Atari STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSte" xml:space="preserve">
-    <value>Atari Mega STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Tt" xml:space="preserve">
-    <value>Atari TT</value>
-  </data>
-  <data name="Emulation.Atari.Model.Falcon" xml:space="preserve">
-    <value>Atari Falcon</value>
-  </data>
-  <data name="Emulation.Atari.Model.400" xml:space="preserve">
-    <value>Atari 400</value>
-  </data>
-  <data name="Emulation.Atari.Model.800" xml:space="preserve">
-    <value>Atari 800</value>
-  </data>
-  <data name="Emulation.Atari.Model.800Xl" xml:space="preserve">
-    <value>Atari 800XL</value>
-  </data>
-  <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
-    <value>Atari 130XE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
-    <value>Atari XEGS</value>
-  </data>
-  <data name="Emulation.Atari.Model.5200" xml:space="preserve">
-    <value>Atari 5200</value>
-  </data>
-  <data name="Emulation.Atari.Model.2600" xml:space="preserve">
-    <value>Atari 2600</value>
-  </data>
-  <data name="Emulation.Atari.Model.7800" xml:space="preserve">
-    <value>Atari 7800</value>
-  </data>
-  <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
-    <value>Atari Lynx</value>
-  </data>
-  <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
-    <value>Atari Jaguar</value>
-  </data>
-  <data name="Emulation.Atari.Model.JaguarCd" xml:space="preserve">
-    <value>Atari Jaguar CD</value>
   </data>
   <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve">
     <value>ค่านี้จะถูกกําหนดโดยโมเดลที่เลือกไว้</value>
@@ -1090,24 +1009,11 @@
   <data name="Emulation.Atari.Storage.MediaFilter" xml:space="preserve">
     <value>สื่อ Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|ไฟล์ทั้งหมด|*.*</value>
   </data>
-  <data name="Emulation.Atari.Controller.Joystick">
-    <value>จอยสติ๊ก Atari</value>
-  </data>
-<data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Paddle Controllers</value></data>
-<data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 Light Gun</value></data>
-<data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>Atari Driving Controller</value></data>
-  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
-  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
-  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar Controller</value></data>
   <data name="Emulation.Controller.Automatic"><value>อัตโนมัติ</value></data>
   <data name="Emulation.Controller.None"><value>ไม่มี</value></data>
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>ตัวปรับแท่งควบคุมสี่เล่นด้านขนาน</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>สลับแท่งควบคุม/ เล็ก</value></data>
   <data name="Emulation.Atari.Controller.NumericKeypad"><value>ปุ่มพิมพ์ตัวเลข</value></data>
-  <data name="Emulation.Atari.Controller.BoosterGrip"><value>แอตาริ บูสเตอร์ กริป</value></data>
-  <data name="Emulation.Atari.Controller.Genesis"><value>เซกา เยเน ซิศ</value></data>
-  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari จอย 2B+ Controller</value></data>
   <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
     <value>โปรแกรมจำลองต้องมีสื่อก่อนจึงจะเปิดเครื่องนี้ได้ โปรดใส่ฟลอปปีดิสก์หรือตั้งค่าฮาร์ดดิสก์</value>
   </data>
@@ -1127,7 +1033,6 @@
   <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>ส่วนขยายหน่วยความจำ Mosaic</value></data>
   <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>ส่วนขยายหน่วยความจำ Axlon</value></data>
   <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>เงาแบงก์ Axlon $0F</value></data>
-  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
   <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>POKEY สเตอริโอ</value></data>
   <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>อาร์ติแฟกต์ความละเอียดสูง</value></data>
   <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>การเร่ง SIO</value></data>
@@ -1164,25 +1069,10 @@
   <data name='Emulation.Media.Eject' xml:space='preserve'>
     <value>นำสื่อออก</value>
   </data>
-  <data name="Emulation.Tab.Cpu" xml:space="preserve"><value>CPU</value></data>
-  <data name="Emulation.Tab.Ram" xml:space="preserve"><value>RAM</value></data>
-  <data name="Emulation.Tab.Rom" xml:space="preserve"><value>ROM</value></data>
-  <data name="Emulation.Family.Amiga" xml:space="preserve"><value>Amiga</value></data>
-  <data name="Emulation.Family.Atari" xml:space="preserve"><value>Atari</value></data>
-  <data name="Emulation.Atari.Model.XlXe" xml:space="preserve"><value>Atari XL/XE</value></data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
   <data name="Emulation.Key.AtariHelp" xml:space="preserve"><value>Help</value></data>
   <data name="Emulation.Key.AtariUndo" xml:space="preserve"><value>Undo</value></data>
-  <data name="Emulation.Amiga.Model.A500" xml:space="preserve"><value>Amiga 500</value></data>
-  <data name="Emulation.Amiga.Model.A500PLUS" xml:space="preserve"><value>Amiga 500 Plus</value></data>
-  <data name="Emulation.Amiga.Model.A600" xml:space="preserve"><value>Amiga 600</value></data>
-  <data name="Emulation.Amiga.Model.A1000" xml:space="preserve"><value>Amiga 1000</value></data>
-  <data name="Emulation.Amiga.Model.A1200" xml:space="preserve"><value>Amiga 1200</value></data>
-  <data name="Emulation.Amiga.Model.A2000" xml:space="preserve"><value>Amiga 2000</value></data>
-  <data name="Emulation.Amiga.Model.A3000" xml:space="preserve"><value>Amiga 3000</value></data>
-  <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Amiga 4000</value></data>
-  <data name="Emulation.Amiga.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
-  <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Amiga CD32</value></data>  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>ไม่สามารถเริ่มต้น GameInput ได้ โปรดติดตั้งหรือซ่อมแซมรันไทม์ GameInput ที่ให้มา</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>ไม่สามารถเริ่มต้น GameInput ได้ โปรดติดตั้งหรือซ่อมแซมรันไทม์ GameInput ที่ให้มา</value></data>
   <data name="Emulation.Configuration.Brand"><value>ยี่ห้อ</value></data>
   <data name="Emulation.Configuration.Machine"><value>เครื่อง</value></data>
   <data name="Emulation.Configuration.TotalRam"><value>RAM ทั้งหมด</value></data>
@@ -1190,7 +1080,110 @@
   <data name="Emulation.Configuration.Peripherals"><value>อุปกรณ์ต่อพ่วง</value></data>
   <data name="Emulation.Configuration.Actions"><value>การดำเนินการ</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>ลบการกำหนดค่า {0} {1} หรือไม่</value></data>
-  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
-    <value>Kickstart</value>
-  </data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short"><value>ไม่มีแผ่นฟลอปปี้</value></data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed"><value>ปิดเสียงไดรฟ์ที่เลียนแบบขณะที่ไม่มีแผ่นถูกแทรก ปิดการใช้งานตัวเลือกนี้เพื่อให้เสียงเครื่องทํางานว่าง</value></data>
+  <data name="Emulation.Help.Audio.Filter.Short"><value>เลือกการกรองเสียงแบบอนาล็อก</value></data>
+  <data name="Emulation.Help.Audio.Filter.Detailed"><value>เลือกวิธีการทําซ้ําตัวกรองเสียงแบบแอปพลิเคชันดั้งเดิม การจําลองตามพฤติกรรมของฮาร์ดแวร์ ตัวเลือกอื่นบังคับให้กรองหรือปิด</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Short"><value>เปิดใช้การกรองเสียงแบบขั้ว</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Detailed"><value>เชื่อมต่อตัวกรองขั้วกับสัญญาณเสียง เปิดใช้การทําซ้ําเสียงที่กรองแล้ว ปิดการใช้งานเพื่อให้สัญญาณไม่ถูกกรอง</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Short"><value>เลือกการเพิ่มเสียง</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Detailed"><value>เลือกวิธีคํานวณตัวอย่างเสียงระหว่างค่าตัวอย่างที่สร้างมา วิธีที่มีคุณภาพสูง จะทําให้เกิดเสียงที่เรียบกว่า แต่ต้องใช้กระบวนการประมวลผลมากขึ้น</value></data>
+  <data name="Emulation.Help.Audio.Latency.Short"><value>ตั้งค่าความหน่วงเสียง</value></data>
+  <data name="Emulation.Help.Audio.Latency.Detailed"><value>ตั้งค่าความยาวของตลับเสียง การ ทํา ความ สะอาด อย่าง สั้น ๆ ช่วย ให้ ช้า ลง แต่ อาจ ทํา ให้ แตก ได้. การ บัฟเฟอร์ ที่ ยาว กว่า ทํา ให้ ความ มั่นคง ดี ขึ้น แต่ ทํา ให้ ช้า ลง.</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Short"><value>เปิดใช้การจับคู่คู่ POKEY สเตริโอ</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed"><value>เพิ่มตัวจําลองตัวที่สอง POKEY ชิปผลิตเสียงสเตอริโอ เปิดใช้ตัวเลือกนี้ เฉพาะโปรแกรมที่สนับสนุนการจับคู่คู่ POKEY เสียง</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Short"><value>ตั้งค่าการแยกสเตอริโอ</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Detailed"><value>ตั้งค่าแยกระหว่างช่องด้านซ้ายและด้านขวา ค่าที่ต่ํากว่าจะรวมช่องเข้าด้วยกัน ค่าที่สูงขึ้นทําให้พวกเขาห่างไกล</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short"><value>เลือกการตั้งค่าเสียงจากแผ่นฟลอปปี้</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed"><value>เลือกชุดตัวอย่างที่จะใช้สําหรับเสียงกลไกของไดรฟ์ฟลอปปี ไม่สามารถเปลี่ยนพฤติกรรมหรือข้อมูลดิสก์</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Short"><value>เลือกรุ่นตัวกรองเสียง</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed"><value>เลือกการตอบสนองจากตัวกรองฮาร์ดแวร์ไปยัง Magnatune ออโต้ตามโมเดลเครื่องจักรที่เลือกไว้ ตัวเลือกเฉพาะมักใช้การตอบสนองจากตัวกรองเสมอ</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Short"><value>เปิดใช้งานพอร์ตแท่งควบคุมเพิ่มเติม 2 ตัว</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Detailed"><value>จําลองการปรับปรุงพอร์ตคู่ขนาน ที่เพิ่มสองพอร์ต เปิดใช้งานมันสําหรับโปรแกรมที่รองรับเครื่องเล่นแบบรวม 4 ตัว</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Short"><value>ตั้งค่าช่วงจังหวะของตัวประมวลผล</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Detailed"><value>ตั้งค่าเวลาระหว่างการกดปุ่มพิมพ์อัตโนมัติที่ผลิตโดยเทอร์โบ ช่วง เวลา สั้น ๆ ทํา ให้ เกิด การ ยิง ซ้ํา ได้ เร็ว ขึ้น.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Short"><value>เลือกโหมดความเข้ากันได้กับตัวควบคุม</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed"><value>เลือกผังควบคุมพิเศษ เช่น การควบคุมคู่, เปลี่ยนพอร์ต หรือ Joy2B+คลิกที่ตําแหน่งพอร์ตมาตรฐาน</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Short"><value>ตั้งค่าความไวชัตเตอร์แบบย่อ</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed"><value>ตั้งค่าว่า การป้อนข้อมูลแบบอนาล็อก ตอบสนองต่อการเคลื่อนไหว ค่า ที่ สูง กว่า ทํา ให้ มี การ ตอบ สนอง มาก ขึ้น จาก การ เคลื่อน ไหว ทาง กายภาพ อย่าง เดียว กัน.</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Short"><value>ตั้งค่าความไวชัตเตอร์ดิจิทัล</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed"><value>ตั้งค่าวิธีที่รวดเร็วทิศทางดิจิทัลถึงการเคลื่อนไหวเต็มรูปแบบ ค่าที่สูงขึ้นจะทําให้การเปลี่ยนแปลงทิศทาง ไปถึงจุดสูงสุดเร็วขึ้น</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Short"><value>เลือกโหมดยิงอัตโนมัติ</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed"><value>ปิดการใช้งานจะเปิดไฟอัตโนมัติ กดปุ่มซ้ําขณะกดปุ่มที่กําหนดให้ยิง ยิงซ้ําอย่างต่อเนื่อง</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Short"><value>ตั้งค่าความเร็วการเคลื่อนแบบพาย</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Detailed"><value>ตั้งค่าว่าจะให้การป้อนข้อมูลดิจิทัลเคลื่อนที่เร็วแค่ไหน โดยมีแถบเลื่อนแบบย่อ ค่าที่ต่ํากว่าย้ายมันช้ากว่า ค่าที่สูงขึ้นย้ายได้เร็วขึ้น</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Short"><value>เลือก FPU</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed"><value>เลือกหน่วยชี้ลอยที่ใช้สําหรับคําแนะนําชี้ลอย เลือกไม่ปิดการใช้ FPUแบบจําลองที่มีอยู่ขึ้นอยู่กับการเลือก CPU.</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Short"><value>เลือก CPU ความแม่นยําของการปั๊ม</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Detailed"><value>เลือกวิธีอย่างใกล้ชิด CPU เวลาตามอุปกรณ์เดิม วิธี การ ที่ ถูก ต้อง กว่า สามารถ ปรับ ปรุง ความ เข้า กัน ได้ แต่ อาจ ต้อง ใช้ วิธี การ มาก กว่า.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Short"><value>ตั้งค่าการคัดลอก CPU ความเร็ว</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed"><value>ตั้งค่าความถี่ของตัวประมวลผลที่ถูกใช้โดยเครื่องจําลอง ความเร็วเดิมรักษาเวลาฮาร์ดแวร์ ค่าที่สูงกว่าเร่ง CPU- ซอฟต์แวร์ที่ถูกจํากัด</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short"><value>ใช้แท่งแอนาล็อกเพื่อควบคุมเมาส์</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Detailed"><value>อนุญาตให้เคลื่อนตัวชี้ของเมาส์แบบเคลื่อนไหวได้ เปิดใช้งานเมื่อแท่งแอ็คชั่นทางกายภาพ ควรควบคุมตัวชี้</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Short"><value>ตั้งค่าความเร็วหน้าต่างผุด</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed"><value>ตั้งค่าความเร็วพอยท์เตอร์เมื่อแท่งแอ็คชั่นควบคุมเมาส์เลียนแบบ ค่าที่สูงขึ้น จะเลื่อนพอยท์เตอร์ไปไกลสําหรับการเคลื่อนไหวแท่งเดียวกัน</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Short"><value>ตั้งค่าพื้นที่ตายของเมาส์แบบรวม</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed"><value>ไม่สนใจการเคลื่อนไหวเล็ก ๆ น้อย ๆ ที่คล้ายคลึงรอบศูนย์ ในขณะที่ควบคุมเมาส์ เพิ่มค่า หากตัวชี้เคลื่อนขณะปล่อยแท่งเสียง</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Short"><value>เปิดใช้งาน Axlon $0F ธนาคารเงา</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed"><value>กระจก Axlon ควบคุมธนาคารตามที่อยู่ $0Fเปิดใช้งานมันเฉพาะกับโปรแกรมหรือหน่วยความจําที่ขยายตัวเท่านั้น ซึ่งจะใช้ที่อยู่เพิ่มเติมนี้</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short"><value>ตั้งค่า Axlon เพิ่มหน่วยความจํา</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed"><value>ตั้งค่าปริมาณของธนาคารที่สะกดได้ Axlon ความทรงจํา ปิดการใช้งานจะลบการขยาย ตัวเลือกอื่น ๆ ให้ความจุในหน่วยความจําที่เลือก</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short"><value>ตั้งค่า Mosaic เพิ่มหน่วยความจํา</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed"><value>ตั้งค่าปริมาณของธนาคารที่สะกดได้ Mosaic ความทรงจํา ปิดการใช้งานจะลบการขยาย ตัวเลือกอื่น ๆ ให้ความจุในหน่วยความจําที่เลือก</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short"><value>ตั้งค่าหน่วยความจําเพิ่มเติม</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed"><value>ตั้งค่าปริมาณหน่วยความจําสําหรับขยายที่รองรับโดยเครื่องที่เลือกไว้ เลือกไม่ใช้เฉพาะหน่วยความจําหลักที่ถูกปรับแต่งเท่านั้น</value></data>
+  <data name="Emulation.Help.Memory.Fast.Short"><value>ตั้งค่า Fast RAM ขนาด</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed"><value>ตั้งค่าปริมาณ Fast RAM เข้าถึงได้โดยตรง CPUเพิ่มเติม Fast RAM สามารถช่วยให้เข้ากันได้กับซอฟต์แวร์ แต่เปลี่ยนแปลงการปรับแต่งฮาร์ดแวร์แบบเลียนแบบ</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short"><value>เปิด MapRAM</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Detailed"><value>อนุญาตให้ใช้ซอฟต์แวร์ที่เข้ากันได้กับแผนที่เขียนได้ RAM เข้าสู่ระบบ ROM ที่อยู่ ตัวเลือกนี้จะปรากฎบนโมเดลเครื่องเท่านั้น MapRAM.</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short"><value>ตั้งค่า Zorro III RAM ขนาด</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed"><value>ตั้งค่าปริมาณ 32 บิต Fast RAM เชื่อมต่อผ่าน Zorro III รถบัส ใช้มันกับเครื่องจักร 32 บิต และซอฟท์แวร์</value></data>
+  <data name="Emulation.Help.Memory.Slow.Short"><value>ตั้งค่า Slow RAM ขนาด</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed"><value>ตั้งค่าปริมาณ Slow RAM ในพื้นที่ขยายประตูกับดัก หน่วยความจํานี้ช้ากว่า Fast RAM และใช้ช่วงที่อยู่อื่น</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Short"><value>เลือก ROM กุญแจถอดรหัส</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Detailed"><value>เลือกแฟ้มกุญแจที่จะใช้ถอดรหัสจดหมายที่ถูกเข้ารหัสไว้ ROM ภาพ ทิ้งช่องข้อมูลนี้ให้ว่างไว้เมื่อเลือกไว้ ROM ไม่ได้เข้ารหัส</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Short"><value>เปิดใช้การเริ่มทํางานอย่างรวดเร็ว</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Detailed"><value>ข้ามฮาร์ดแวร์ที่เลือกไป หน่วงเวลาการเริ่มการทํางานแบบย่อ ปิดการใช้งานตัวเลือกนี้ เมื่อโปรแกรมต้องการลําดับเริ่มต้น</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Short"><value>เลือกขยาย ROM</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed"><value>เลือกเครื่องแม่ข่ายตัวที่สอง ROM ต้องสร้างเครื่องจักรจําลอง ทิ้งช่องข้อมูลนี้ให้ว่างไว้ เมื่อรุ่นที่เลือกไว้ไม่ได้ใช้ขยาย ROM.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Short"><value>เปิดใช้การเร่งความเร็ว SIO การถ่ายโอน</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed"><value>เร่งการโอนข้อมูลที่เข้ากันได้ ผ่านรถบัส ปิดการใช้งานตัวเลือกนี้ เมื่อโปรแกรมขึ้นอยู่กับเวลาทําการย้ายดั้งเดิม</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short"><value>เปิดใช้การเริ่มเทป</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Detailed"><value>ทําให้เครื่องจักรจําลองพยายามเริ่มต้นจากภาพจากเทปที่แนบมา ปิดการใช้งานตัวเลือกนี้ เมื่อมีการเริ่มใช้งานอุปกรณ์อื่น</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Short"><value>เปิดใช้งาน R-Time 8 นาฬิกา</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Detailed"><value>จําลอง R-Time 8 เวลาจริงเพื่อให้ซอฟต์แวร์ที่เข้ากันได้ สามารถอ่านวันที่และเวลาปัจจุบันได้</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Short"><value>เปิดใช้งาน P: อุปกรณ์เครื่องพิมพ์</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed"><value>ทําให้เลียนแบบ P: อุปกรณ์เครื่องพิมพ์ใช้ได้กับซอฟต์แวร์ ปิดการใช้งานตัวเลือกนี้เมื่อไม่ต้องการการจําลองเครื่องพิมพ์</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Short"><value>เปิดใช้งาน R: อุปกรณ์อนุกรม</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed"><value>ทําให้เลียนแบบ R: อุปกรณ์อนุกรมใช้ได้กับซอฟต์แวร์ ปิดการใช้งานตัวเลือกนี้ เมื่อไม่ต้องการการจําลองโปรแกรมลูกแบบอนุกรม</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Short"><value>เลือกสิ่งประดิษฐ์ปรับสีสูง</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Detailed"><value>เลือกรูปแบบการชดเชยสูง ทําให้เกิดสีคอมโพสิท-วิเดโอ ไม่มีใครปิดการใช้สีวัตถุ ส่วนอีกโหมดหนึ่งก็ผลิตจานสี หรือพฤติกรรมชิปที่ต่างกัน</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Short"><value>เลือกการจับเวลาของ blitz</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Detailed"><value>เลือกว่าปฏิบัติการ blitter จะเสร็จสิ้นในทันที หรือทําตามเวลาฮาร์ดแวร์ที่เลียนแบบ โหมดการเข้าจังหวะเร็วกว่า แต่เวลาถูกน้อยกว่า</value></data>
+  <data name="Emulation.Help.Video.HzChange.Short"><value>อนุญาตให้แสดงผลเปลี่ยนอัตราการรีเฟรช</value></data>
+  <data name="Emulation.Help.Video.HzChange.Detailed"><value>อนุญาตให้ทําการปรับปรุงค่าการแสดงผลตามการเปลี่ยนแปลงในโหมดวิดีโอแบบย่อ ล็อคให้คงอัตราการรีเฟรชการแสดงผลในปัจจุบันไว้</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Short"><value>เลือกรายละเอียดของการชน</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Detailed"><value>เลือกว่า Spirt และการเล่นชนกันแบบไหน การตรวจสอบที่สมบูรณ์มากขึ้น จะช่วยให้เข้ากันได้ แต่ต้องประมวลผลมากขึ้น</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Short"><value>ลดการกระพริบของการแสดงผลแบบทับกัน</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed"><value>ลดการกระพริบในการแสดงผลวิดีโอแบบทับกัน เปิดใช้ตัวเลือกนี้ เพื่อให้มีการแทนที่รูปภาพ ปิดการใช้งานมันเพื่อรักษาพฤติกรรมการแสดงผลแบบทับตัวดั้งเดิม</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Short"><value>เลือกสัดส่วนของภาพที่แสดง</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Detailed"><value>เลือกวิธีปรับขนาดภาพแบบย่อทางแนวนอนและทางแนวตั้ง ผ่านการแสดงผลแบบย่ออัตโนมัติ พลังที่คงที่ที่แสดงรูปร่าง</value></data>
+  <data name="Emulation.Help.Video.Gamma.Short"><value>ปรับค่าแกมม่าของภาพ</value></data>
+  <data name="Emulation.Help.Video.Gamma.Detailed"><value>เปลี่ยนความสว่างของมิดตัน โดยไม่เปลี่ยนระดับสีดําและขาวโดยตรง ค่าระดับมืดลง ค่าที่สูงกว่าทําให้สว่างขึ้น</value></data>
+  <data name="Emulation.Help.Video.LineMode.Short"><value>เลือกโหมดบรรทัดวิดีโอ</value></data>
+  <data name="Emulation.Help.Video.LineMode.Detailed"><value>เลือกว่าจะให้แสดงเส้นวีดิทัศน์ทางแนวตั้งอย่างไร ผ่านโหมดเลียนแบบอัตโนมัติ การ เลือก อื่น ๆ ทํา ให้ มี เส้น เดี่ยว, เส้น คู่, หรือ เส้น สแกน เมื่อ มี.</value></data>
+  <data name="Emulation.Help.Video.Standard.Short"><value>เลือกมาตรฐานวิดีโอ</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed"><value>เลือกเวลาโทรทัศน์เลียนแบบ เช่น PAL หรือ NTSCนี่ส่งผลกระทบต่ออัตราการรีเฟรช, การจับเวลาฮาร์ดแวร์ และความเข้ากันได้ของซอฟต์แวร์</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Short"><value>เลือกจานสีภายนอก</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Detailed"><value>เลือกจานสีที่กําหนดไว้ล่วงหน้า แทนที่จะใช้สีที่ถูกสร้างจากค่าวิดีโอปัจจุบัน ไม่ให้ใช้สีที่สร้างมา</value></data>
+  <data name="Emulation.Help.Video.Colors.Short"><value>เลือกความลึกสีผลลัพธ์</value></data>
+  <data name="Emulation.Help.Video.Colors.Detailed"><value>ปรับตั้งค่าความลึกสีของภาพได้ที่นี่ 24-bit รักษารายละเอียดสี 16-bit ใช้ช่วงของสีที่เล็กกว่า</value></data>
+  <data name="Emulation.Help.Video.Region.Short"><value>เลือกขอบเขตฮาร์ดแวร์</value></data>
+  <data name="Emulation.Help.Video.Region.Detailed"><value>เลือกเวลาท้องถิ่นที่ใช้โดยเครื่องจําลอง ตัวเลือกมีผลต่อความถี่วิดีโอ CPU เวลา และ ความเข้ากันได้</value></data>
+  <data name="Emulation.Help.Video.Rendering.Short"><value>เลือกตัวแสดงวิดีโอ</value></data>
+  <data name="Emulation.Help.Video.Rendering.Detailed"><value>เลือกแบ็คเอนต์เอกสารกราฟิกที่จะใช้วาดการแสดงผลแบบย่อ ผู้ แปล ที่ มี อยู่ อาจ มี ความ แตก ต่าง กัน ใน เรื่อง ประสิทธิภาพ และ เข้า กัน ได้ กับ ระบบ ของ เจ้า ภาพ.</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Short"><value>ปรับขนาด GTIA หน่วงเวลาสี</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>ตั้งค่า GTIA ช่วงของสีที่จะใช้ทําซ้ําสี ค่าปริยาย ใช้ค่ามาตรฐาน ค่าตัวเลือกเปลี่ยนความเข้มสี</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Short"><value>ตั้งค่าการข้ามเฟรมภาพ</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>ตั้งค่าจํานวนเฟรมการแสดงผลที่ถูกละทิ้ง ปิดการใช้งาน จะวาดทุกเฟรม ค่าที่สูงกว่าลดการทํางานการแสดงผล แต่ทําให้การเคลื่อนไหวราบรื่นน้อยลง</value></data>
 </root>

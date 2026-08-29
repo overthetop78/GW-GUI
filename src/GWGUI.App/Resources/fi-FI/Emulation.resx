@@ -126,15 +126,6 @@
   <data name="Emulation.Cpu.Compatibility">
     <value>Cycle-compatible CPU</value>
   </data>
-  <data name="Emulation.Memory.Chip">
-    <value>Chip RAM</value>
-  </data>
-  <data name="Emulation.Memory.Slow">
-    <value>Slow RAM</value>
-  </data>
-  <data name="Emulation.Memory.Fast">
-    <value>Fast RAM</value>
-  </data>
   <data name="Emulation.Memory.Z3">
     <value>Zorro III RAM</value>
   </data>
@@ -248,9 +239,6 @@
   </data>
   <data name="Emulation.Storage.HardDisk.DriveCount">
     <value>Kiintolevyjen määrä</value>
-  </data>
-  <data name="Emulation.Fpu.Model">
-    <value>FPU</value>
   </data>
   <data name="Emulation.Cpu.Speed">
     <value>CPU speed</value>
@@ -864,12 +852,6 @@
   <data name="Emulation.Storage.Geometry.Sectors">
     <value>Sektorit</value>
   </data>
-  <data name="Emulation.Storage.Unit.MiB">
-    <value>MiB</value>
-  </data>
-  <data name="Emulation.Storage.Unit.GiB">
-    <value>GiB</value>
-  </data>
   <data name="Emulation.Controller.Action.Up">
     <value>Ylös</value>
   </data>
@@ -909,14 +891,8 @@
   <data name="Emulation.Amiga.Controller.Cd32.PlayPause">
     <value>CD32 toisto / tauko</value>
   </data>
-  <data name="Emulation.Amiga.Controller.Joystick">
-    <value>Amiga-ohjain</value>
-  </data>
   <data name="Emulation.Controller.AnalogJoystick">
     <value>Analoginen ohjain</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32">
-    <value>CD32-ohjain</value>
   </data>
   <data name="Emulation.Mouse.Wheel.Up">
     <value>Hiiren rulla ylös</value>
@@ -929,63 +905,6 @@
   </data>
   <data name="Emulation.Mouse.Wheel.Right">
     <value>Hiiren rulla oikealle</value>
-  </data>
-  <data name="Emulation.Atari.Model.St" xml:space="preserve">
-    <value>Atari ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stf" xml:space="preserve">
-    <value>Atari STF</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stfm" xml:space="preserve">
-    <value>Atari STFM</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSt" xml:space="preserve">
-    <value>Atari Mega ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Ste" xml:space="preserve">
-    <value>Atari STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSte" xml:space="preserve">
-    <value>Atari Mega STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Tt" xml:space="preserve">
-    <value>Atari TT</value>
-  </data>
-  <data name="Emulation.Atari.Model.Falcon" xml:space="preserve">
-    <value>Atari Falcon</value>
-  </data>
-  <data name="Emulation.Atari.Model.400" xml:space="preserve">
-    <value>Atari 400</value>
-  </data>
-  <data name="Emulation.Atari.Model.800" xml:space="preserve">
-    <value>Atari 800</value>
-  </data>
-  <data name="Emulation.Atari.Model.800Xl" xml:space="preserve">
-    <value>Atari 800XL</value>
-  </data>
-  <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
-    <value>Atari 130XE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
-    <value>Atari XEGS</value>
-  </data>
-  <data name="Emulation.Atari.Model.5200" xml:space="preserve">
-    <value>Atari 5200</value>
-  </data>
-  <data name="Emulation.Atari.Model.2600" xml:space="preserve">
-    <value>Atari 2600</value>
-  </data>
-  <data name="Emulation.Atari.Model.7800" xml:space="preserve">
-    <value>Atari 7800</value>
-  </data>
-  <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
-    <value>Atari Lynx</value>
-  </data>
-  <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
-    <value>Atari Jaguar</value>
-  </data>
-  <data name="Emulation.Atari.Model.JaguarCd" xml:space="preserve">
-    <value>Atari Jaguar CD</value>
   </data>
   <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve">
     <value>Tämä arvo määräytyy valitun mallin mukaan.</value>
@@ -1089,24 +1008,11 @@
   <data name="Emulation.Atari.Storage.MediaFilter" xml:space="preserve">
     <value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Kaikki tiedostot|*.*</value>
   </data>
-  <data name="Emulation.Atari.Controller.Joystick">
-    <value>Atari-ohjainsauva</value>
-  </data>
-<data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Paddle Controllers</value></data>
-<data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 Light Gun</value></data>
-<data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>Atari Driving Controller</value></data>
-  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
-  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
-  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar Controller</value></data>
   <data name="Emulation.Controller.Automatic"><value>Automaattinen</value></data>
   <data name="Emulation.Controller.None"><value>Ei mitään</value></data>
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Rinnakkainen neljän pelaajan joystick adapteri</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Vaihda joystick/hiiri</value></data>
   <data name="Emulation.Atari.Controller.NumericKeypad"><value>Näppäimistö</value></data>
-  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
-  <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
-  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Controller</value></data>
   <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
     <value>Emulaattori tarvitsee median ennen tämän koneen käynnistämistä. Aseta tai määritä jokin alla näytetyistä vaadituista medioista.</value>
   </data>
@@ -1126,7 +1032,6 @@
   <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Mosaic-muistilaajennus</value></data>
   <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Axlon-muistilaajennus</value></data>
   <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Axlon $0F -pankin varjostus</value></data>
-  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
   <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>Stereo POKEY</value></data>
   <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Korkean tarkkuuden artefaktit</value></data>
   <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>SIO-kiihdytys</value></data>
@@ -1164,25 +1069,10 @@
   <data name='Emulation.Media.Eject' xml:space='preserve'>
     <value>Poista media</value>
   </data>
-  <data name="Emulation.Tab.Cpu" xml:space="preserve"><value>CPU</value></data>
-  <data name="Emulation.Tab.Ram" xml:space="preserve"><value>RAM</value></data>
-  <data name="Emulation.Tab.Rom" xml:space="preserve"><value>ROM</value></data>
-  <data name="Emulation.Family.Amiga" xml:space="preserve"><value>Amiga</value></data>
-  <data name="Emulation.Family.Atari" xml:space="preserve"><value>Atari</value></data>
-  <data name="Emulation.Atari.Model.XlXe" xml:space="preserve"><value>Atari XL/XE</value></data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
   <data name="Emulation.Key.AtariHelp" xml:space="preserve"><value>Help</value></data>
   <data name="Emulation.Key.AtariUndo" xml:space="preserve"><value>Undo</value></data>
-  <data name="Emulation.Amiga.Model.A500" xml:space="preserve"><value>Amiga 500</value></data>
-  <data name="Emulation.Amiga.Model.A500PLUS" xml:space="preserve"><value>Amiga 500 Plus</value></data>
-  <data name="Emulation.Amiga.Model.A600" xml:space="preserve"><value>Amiga 600</value></data>
-  <data name="Emulation.Amiga.Model.A1000" xml:space="preserve"><value>Amiga 1000</value></data>
-  <data name="Emulation.Amiga.Model.A1200" xml:space="preserve"><value>Amiga 1200</value></data>
-  <data name="Emulation.Amiga.Model.A2000" xml:space="preserve"><value>Amiga 2000</value></data>
-  <data name="Emulation.Amiga.Model.A3000" xml:space="preserve"><value>Amiga 3000</value></data>
-  <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Amiga 4000</value></data>
-  <data name="Emulation.Amiga.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
-  <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Amiga CD32</value></data>  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInputia ei voitu alustaa. Asenna tai korjaa mukana toimitettu GameInput-ajonaikainen ympäristö.</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInputia ei voitu alustaa. Asenna tai korjaa mukana toimitettu GameInput-ajonaikainen ympäristö.</value></data>
   <data name="Emulation.Configuration.Brand"><value>Merkki</value></data>
   <data name="Emulation.Configuration.Machine"><value>Kone</value></data>
   <data name="Emulation.Configuration.TotalRam"><value>RAM yhteensä</value></data>
@@ -1190,7 +1080,110 @@
   <data name="Emulation.Configuration.Peripherals"><value>Oheislaitteet</value></data>
   <data name="Emulation.Configuration.Actions"><value>Toiminnot</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>Poistetaanko kokoonpano {0} {1}?</value></data>
-  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
-    <value>Kickstart</value>
-  </data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short"><value>Hiljaiset tyhjät levyasemat</value></data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed"><value>Ota osaa emuloituun asemaan, kun levyä ei ole asetettu. Poista käytöstä tämä vaihtoehto pitääksesi joutokäynnin mekaaninen melu.</value></data>
+  <data name="Emulation.Help.Audio.Filter.Short"><value>Valitse analoginen äänisuodatin</value></data>
+  <data name="Emulation.Help.Audio.Filter.Detailed"><value>Valitsee, miten alkuperäinen analoginen äänisuodatin toistetaan. Emuloitu noudattaa laitteiston käyttäytymistä. Muut vaihtoehdot pakottavat suodattimen päälle tai pois.</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Short"><value>Käytä polarisoitua äänisuodatinta</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Detailed"><value>Koskee polarisoitua suodatinta syntyneeseen äänisignaaliin. Käytetään suodatettua ääntä. Sammuta se pitääksesi suodattamattoman signaalin.</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Short"><value>Valitse äänen interpolointi</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Detailed"><value>Valitsee, miten ääninäytteet lasketaan luotujen näytepisteiden välillä. Korkeammat laatumenetelmät tuottavat sujuvampaa ääntä, mutta vaativat enemmän käsittelyä.</value></data>
+  <data name="Emulation.Help.Audio.Latency.Short"><value>Aseta äänen viive</value></data>
+  <data name="Emulation.Help.Audio.Latency.Detailed"><value>Asettaa äänipuskurin keston. Lyhyempi puskuri vähentää viivettä, mutta voi aiheuttaa crackling. Pidempi puskuri parantaa vakautta, mutta lisää viivettä.</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Short"><value>Ota käyttöön kaksi POKEY stereot</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed"><value>Lisää toisen emulgoidun POKEY siru tuottaa stereoääntä. Käytä tätä vaihtoehtoa vain ohjelmistoille, jotka tukevat kahta POKEY ääni.</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Short"><value>Aseta stereot</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Detailed"><value>Asettaa eron vasemman ja oikean kanavien välillä. Alempi arvo sekoittaa kanavat yhteen. Korkeampi arvo pitää heidät kauempana toisistaan.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short"><value>Valitse levykeaseman ääniasetukset</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed"><value>Valitsee näytesarjan, jota käytetään emulgoitujen levykelevyjen mekaanisiin ääniin. Se ei muuta aseman käyttäytymistä tai levyn tietoja.</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Short"><value>Valitse äänisuodatinmalli</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed"><value>Valitsee laitteiston suodattimen vasteen jäljitellä. Auto noudattaa valittua konemallia. Erityinen valinta käyttää aina tätä suodatinvastetta.</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Short"><value>Ota käyttöön kaksi uutta joystick-porttia</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Detailed"><value>Emuloi rinnakkaisporttisovitinta, joka lisää kaksi joystick-porttia. Ota käyttöön ohjelmisto, joka tukee neljää samanaikaista pelaajaa.</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Short"><value>Aseta turbopulssiväli</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Detailed"><value>Asettaa aika välillä automaattinen painikkeen puristimet tuotettu turbo. Lyhyempi aika johtaa nopeampaan toistuvaan tulitukseen.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Short"><value>Valitse ohjaimen yhteensopivuustila</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed"><value>Valitsee erityisen ohjaimen kartoituksen, kuten kaksitahtiohjauksen, vaihtoporttien tai Joy2B+. Valitse Ei mitään säilyttää standardi sataman kartoitus.</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Short"><value>Aseta analoginen syöttöherkkyys</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed"><value>Asettaa, kuinka vahvasti analoginen syöte vastaa liikkeeseen. Korkeampi arvo tuottaa suuremman vasteen samasta fyysisestä liikkeestä.</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Short"><value>Aseta digitaalinen syöttöherkkyys</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed"><value>Asettaa kuinka nopeasti digitaalinen suunta saavuttaa täyden liikkeen. Suurempi arvo tekee suunnanmuutokset saavuttaa suurin nopeammin.</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Short"><value>Valitse automaattisen tulituksen tila</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed"><value>-Ei käy. Painike toistaa tulituksen, kun asetettua painiketta pidetään. Toistaa tulta jatkuvasti.</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Short"><value>Aseta melon liikenopeus</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Detailed"><value>Asettaa kuinka nopeasti digitaalinen syöte liikkuu emuloitu mela. Alempi arvo liikuttaa sitä hitaammin. Korkeampi arvo liikuttaa sitä nopeammin.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Short"><value>Valitse FPU</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed"><value>Valitsee uimispisteohjeissa käytettävän liukulukuyksikön. Valitse Ei mitään poistaaksesi käytöstä FPUKäytettävissä olevat mallit riippuvat valituista CPU.</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Short"><value>Valitse CPU emulgointitarkkuus</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Detailed"><value>Valitsee kuinka lähellä CPU ajoitus seuraa alkuperäistä laitteistoa. Tarkemmilla toimintamuodoilla voidaan parantaa yhteensopivuutta, mutta ne voivat vaatia enemmän käsittelyä.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Short"><value>Aseta emulgoitu CPU nopeus</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed"><value>Asettaa emulgoidun koneen käyttämän prosessoritaajuuden. Alkuperäinen nopeus säilyttää laitteiston ajoituksen. Suuremmat arvot kiihtyvät CPU- Rajoitettu ohjelmisto.</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short"><value>Käytä analogisia tikkuja ohjataksesi hiirtä</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Detailed"><value>Antaa analogisen joystickin akselien siirtää emuloitua hiiren osoitinta. Ota se käyttöön, kun fyysinen analoginen tikku pitäisi ohjata osoitin.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Short"><value>Aseta analoginen hiiren nopeus</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed"><value>Asettaa osoitinnopeuden, kun analoginen tikku ohjaa emuloitua hiirtä. Korkeampi arvo siirtää osoitinta pidemmälle samalle kepin liikkeelle.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Short"><value>Aseta analoginen hiiren kuollut alue</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed"><value>Ohittaa pieniä analogi-tikku liikkeitä ympäri keskustaa ja hallita hiirtä. Lisää arvoa, jos osoitin liikkuu, kun tikku vapautetaan.</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Short"><value>Käytä Axlon $0F varjopankki</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed"><value>Peilee Axlon valvontapankki osoitteessa $0F. Käytä sitä vain ohjelmistoja tai muistilaajennuksia, jotka käyttävät tätä lisäosoitetta.</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short"><value>Aseta Axlon laajennusmuisti</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed"><value>Asettaa pankin vaihtaman määrän Axlon Muisti. Pois käytöstä poistaa laajennuksen. Muut valinnat tarjoavat valitun muistikapasiteetin.</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short"><value>Aseta Mosaic laajennusmuisti</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed"><value>Asettaa pankin vaihtaman määrän Mosaic Muisti. Pois käytöstä poistaa laajennuksen. Muut valinnat tarjoavat valitun muistikapasiteetin.</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short"><value>Aseta lisälaajennusmuisti</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed"><value>Asettaa valitun koneen tukeman lisälaajennusmuistin määrän. Valitse Ei mitään käyttääksesi vain määritettyä päämuistia.</value></data>
+  <data name="Emulation.Help.Memory.Fast.Short"><value>Aseta Fast RAM koko</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed"><value>Asettaa määrän Fast RAM saatavilla suoraan CPU. Fast RAM voi auttaa yhteensopivia ohjelmistoja, mutta muuttaa emulgoitua laitteistoa.</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short"><value>Käytä MapRAM</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Detailed"><value>Sallii yhteensopivan ohjelmiston kartoittaa kirjoitettava RAM järjestelmään ROM osoitealue. Tämä vaihtoehto on saatavilla vain konemalleilla, jotka tukevat MapRAM.</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short"><value>Aseta Zorro III RAM koko</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed"><value>Asettaa 32-bittisen määrän Fast RAM yhdistetty Zorro III Bussi. Käytä sitä vain 32-bittisten koneiden ja ohjelmistojen kanssa.</value></data>
+  <data name="Emulation.Help.Memory.Slow.Short"><value>Aseta Slow RAM koko</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed"><value>Asettaa määrän Slow RAM Lukon laajennusalueella. Tämä muisti on hitaampi kuin Fast RAM ja käyttää eri laitteiston osoitealue.</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Short"><value>Valitse ROM Salauksen purkuavain</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Detailed"><value>Valitsee avaintiedoston, jota käytetään lisensoidun salatun salauksen purkamiseen ROM Kuva. Jätä tämä kenttä tyhjäksi, kun valittu ROM ei ole salattu.</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Short"><value>Ota käyttöön nopea käynnistys</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Detailed"><value>Ohittaa valitun laitteiston alustuksen viiveet käynnistyksen lyhentämiseksi. Poista tämä asetus käytöstä, kun ohjelmisto vaatii alkuperäisen käynnistysjakson.</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Short"><value>Valitse laajennettu ROM</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed"><value>Valitsee toissijaisen firmwaren ROM Tarvitaan joitakin konemalleja. Jätä tämä kenttä tyhjäksi, kun valittu malli ei käytä laajennettua ROM.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Short"><value>Käytä nopeutettua SIO siirrot</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed"><value>Nopeuttaa yhteensopivia siirtoja sarjasyöte-/tuotosbussin kautta. Poista tämä asetus käytöstä, kun ohjelmisto riippuu alkuperäisestä siirtoajankohdasta.</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short"><value>Ota käyttöön kasettikäynnistys</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Detailed"><value>Saa emuloitu kone yrittää aloittaa liitteenä kasetin kuva. Poista tämä asetus käytöstä, kun aloitat toisesta laitteesta.</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Short"><value>Käytä R-Time 8 kello</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Detailed"><value>Emuloi R-Time 8 reaaliaikainen kello niin yhteensopiva ohjelmisto voi lukea nykyisen päivämäärän ja ajan.</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Short"><value>Käytä P: tulostinlaite</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed"><value>Tekee emulgoitu P: tulostinlaite saatavilla ohjelmisto. Poista tämä asetus käytöstä, kun tulostimen ja laitteen emulointia ei tarvita.</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Short"><value>Käytä R: sarjalaite</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed"><value>Tekee emulgoitu R: ohjelmistojen käytettävissä oleva sarjalaite. Poista tämä asetus käytöstä, kun sarjalaitteen emulointia ei tarvita.</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Short"><value>Valitse korkean resoluution väri artifactor</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Detailed"><value>Valitsee kuinka korkean resoluution kuviot tuottavat komposiitti-video värejä. Mikään ei poista esineen värejä. Muut tilat tuottavat erilaisia paletteja tai sirun käyttäytymistä.</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Short"><value>Valitse blitter- ajoitus</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Detailed"><value>Valitsee, onko blitter toiminnot lopettaa välittömästi tai seurata emuloitu laitteiston ajoitus. Välitön tila on nopeampi, mutta vähemmän ajoitus-tarkka.</value></data>
+  <data name="Emulation.Help.Video.HzChange.Short"><value>Salli ulostulon päivitysnopeuden muutokset</value></data>
+  <data name="Emulation.Help.Video.HzChange.Detailed"><value>Sallii lähdön päivitysnopeuden seurata muutoksia emulgoidussa videotilassa. Lukittu pitää lähdön virkistysnopeuden.</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Short"><value>Valitse törmäyshavaintoa koskeva tieto</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Detailed"><value>Valitsijat, jotka sprite ja leikkikenttätörmäykset lasketaan. Täydellisempi havaitseminen parantaa yhteensopivuutta, mutta vaatii enemmän käsittelyä.</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Short"><value>Vähennä päällekkäistä näytön välähdystä</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed"><value>Vähentää välkkymistä. Käytä sitä vakaampaa kuvaa varten. Poista se säilyttää alkuperäinen interlaced näyttö käyttäytymistä.</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Short"><value>Valitse näkyvä kuvasuhde</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Detailed"><value>Valitsee, miten emulgoitu kuva on skaalattu vaaka-ja pystysuunnassa. Auto seuraa emuloitua ulostuloa. Kiinteä valinta voimia, jotka näyttävät muodon.</value></data>
+  <data name="Emulation.Help.Video.Gamma.Short"><value>Säädä kuva gamma</value></data>
+  <data name="Emulation.Help.Video.Gamma.Detailed"><value>Muuttaa kirkkautta midtones muuttamatta suoraan mustaa ja valkoista tasoa. Alemmat arvot tummentavat midtoneja. Suuremmat arvot kirkastavat niitä.</value></data>
+  <data name="Emulation.Help.Video.LineMode.Short"><value>Valitse videorivitila</value></data>
+  <data name="Emulation.Help.Video.LineMode.Detailed"><value>Valitsee kuinka pystysuorat videolinjat näytetään. Auto seuraa emuloitua tilaa. Muut valinnat pakottavat yksittäisiä linjoja, tuplaviivat, tai skannauslinjat, jos saatavilla.</value></data>
+  <data name="Emulation.Help.Video.Standard.Short"><value>Valitse videostandardi</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed"><value>Valitsee emulgoidun television ajoituksen, kuten PAL tai NTSC. Tämä vaikuttaa virkistysnopeus, laitteiston ajoitus, ja ohjelmistojen yhteensopivuus.</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Short"><value>Valitse ulkoinen väripaletti</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Detailed"><value>Valitsee ennalta määritellyn väripaletin nykyisten videoasetusten sijaan. Valitse Ei mitään käyttää luotuja värejä.</value></data>
+  <data name="Emulation.Help.Video.Colors.Short"><value>Valitse tulosteen värisyvyys</value></data>
+  <data name="Emulation.Help.Video.Colors.Detailed"><value>Valitsee kuvan muuntamiseen käytettävän värisyvyyden. 24-bit Pitää enemmän värillisiä yksityiskohtia. 16-bit käyttää pienempi valikoima värejä.</value></data>
+  <data name="Emulation.Help.Video.Region.Short"><value>Valitse laitteistoalue</value></data>
+  <data name="Emulation.Help.Video.Region.Detailed"><value>Valitsee emulgoidun koneen käyttämän alueellisen ajan. Valinta voi vaikuttaa videotaajuus, CPU ajoitus, ja yhteensopiva firmware.</value></data>
+  <data name="Emulation.Help.Video.Rendering.Short"><value>Valitse videonrenderi</value></data>
+  <data name="Emulation.Help.Video.Rendering.Detailed"><value>Valitsee emulgoidun näytön piirtämiseen käytettävän grafiikan taustaosan. Käytettävissä olevat renderöinnit voivat vaihdella suorituskyvyssä ja yhteensopivuudessa isäntäjärjestelmän kanssa.</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Short"><value>Säädä GTIA Väriviivästys</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Asettaa GTIA värivaiheviive, jota käytetään värien jäljentämiseen. Oletus käyttää standardiarvoa. Numeerinen valinta siirtää tuloksena sävyjä.</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Short"><value>Aseta kehys hypätä</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Asettaa, kuinka monta näyttöruutua jätetään pois. -Ei. Korkeammat arvot vähentävät renderöintiä, mutta tekevät liikkeestä vähemmän sujuvaa.</value></data>
 </root>

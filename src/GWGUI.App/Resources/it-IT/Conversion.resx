@@ -138,17 +138,6 @@
   <data name="Migration.Loss.ModifiedDate"><value>The modification date will not be preserved.</value></data>
   <data name="Migration.Loss.Comment"><value>The comment will not be preserved.</value></data>
   <data name="Migration.Loss.Attributes"><value>The source attributes will not be preserved.</value></data>
-  <data name="Migration.Target.Amiga880"><value>AmigaDOS FFS — 880 KiB</value></data>
-  <data name="Migration.Target.Atari720"><value>Atari ST FAT12 — 720 KiB</value></data>
-  <data name="Migration.Target.Ibm720"><value>IBM PC FAT12 — 720 KiB</value></data>
-  <data name="Migration.Target.Msx720"><value>MSX FAT12 — 720 KiB</value></data>
-  <data name="Migration.Target.AppleDos140"><value>Apple DOS 3.3 — 140 KiB</value></data>
-  <data name="Migration.Target.ProDos140"><value>Apple ProDOS — 140 KiB</value></data>
-  <data name="Migration.Target.ProDos800"><value>Apple ProDOS — 800 KiB</value></data>
-  <data name="Migration.Target.Sos800"><value>Apple SOS — 800 KiB</value></data>
-  <data name="Migration.Target.Commodore1541"><value>Commodore DOS 1541 — D64</value></data>
-  <data name="Migration.Target.Commodore1571"><value>Commodore DOS 1571 — D71</value></data>
-  <data name="Migration.Target.Commodore1581"><value>Commodore DOS 1581 — D81</value></data>
   <data name="Migration.OverwriteConfirm"><value>The destination image already exists. Replace it? {0}</value></data>
   <data name="Migration.SourceDestinationSame"><value>The destination image cannot replace the source image.</value></data>
   <data name="Conversion.Fidelity.SectorData"><value>sector data; protections not preserved</value></data>

@@ -126,15 +126,6 @@
   <data name="Emulation.Cpu.Compatibility">
     <value>Cycluscompatibele CPU</value>
   </data>
-  <data name="Emulation.Memory.Chip">
-    <value>Chip RAM</value>
-  </data>
-  <data name="Emulation.Memory.Slow">
-    <value>Slow RAM</value>
-  </data>
-  <data name="Emulation.Memory.Fast">
-    <value>Fast RAM</value>
-  </data>
   <data name="Emulation.Memory.Z3">
     <value>Zorro III RAM</value>
   </data>
@@ -248,9 +239,6 @@
   </data>
   <data name="Emulation.Storage.HardDisk.DriveCount">
     <value>Aantal harde schijven</value>
-  </data>
-  <data name="Emulation.Fpu.Model">
-    <value>FPU</value>
   </data>
   <data name="Emulation.Cpu.Speed">
     <value>CPU-snelheid</value>
@@ -864,12 +852,6 @@
   <data name="Emulation.Storage.Geometry.Sectors">
     <value>Sectoren</value>
   </data>
-  <data name="Emulation.Storage.Unit.MiB">
-    <value>MiB</value>
-  </data>
-  <data name="Emulation.Storage.Unit.GiB">
-    <value>GiB</value>
-  </data>
   <data name="Emulation.Controller.Action.Up">
     <value>Omhoog</value>
   </data>
@@ -909,14 +891,8 @@
   <data name="Emulation.Amiga.Controller.Cd32.PlayPause">
     <value>CD32 afspelen / pauzeren</value>
   </data>
-  <data name="Emulation.Amiga.Controller.Joystick">
-    <value>Amiga-joystick</value>
-  </data>
   <data name="Emulation.Controller.AnalogJoystick">
     <value>Analoge joystick</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32">
-    <value>CD32-controller</value>
   </data>
   <data name="Emulation.Mouse.Wheel.Up">
     <value>Muiswiel omhoog</value>
@@ -929,63 +905,6 @@
   </data>
   <data name="Emulation.Mouse.Wheel.Right">
     <value>Muiswiel naar rechts</value>
-  </data>
-  <data name="Emulation.Atari.Model.St" xml:space="preserve">
-    <value>Atari ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stf" xml:space="preserve">
-    <value>Atari STF</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stfm" xml:space="preserve">
-    <value>Atari STFM</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSt" xml:space="preserve">
-    <value>Atari Mega ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Ste" xml:space="preserve">
-    <value>Atari STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSte" xml:space="preserve">
-    <value>Atari Mega STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Tt" xml:space="preserve">
-    <value>Atari TT</value>
-  </data>
-  <data name="Emulation.Atari.Model.Falcon" xml:space="preserve">
-    <value>Atari Falcon</value>
-  </data>
-  <data name="Emulation.Atari.Model.400" xml:space="preserve">
-    <value>Atari 400</value>
-  </data>
-  <data name="Emulation.Atari.Model.800" xml:space="preserve">
-    <value>Atari 800</value>
-  </data>
-  <data name="Emulation.Atari.Model.800Xl" xml:space="preserve">
-    <value>Atari 800XL</value>
-  </data>
-  <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
-    <value>Atari 130XE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
-    <value>Atari XEGS</value>
-  </data>
-  <data name="Emulation.Atari.Model.5200" xml:space="preserve">
-    <value>Atari 5200</value>
-  </data>
-  <data name="Emulation.Atari.Model.2600" xml:space="preserve">
-    <value>Atari 2600</value>
-  </data>
-  <data name="Emulation.Atari.Model.7800" xml:space="preserve">
-    <value>Atari 7800</value>
-  </data>
-  <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
-    <value>Atari Lynx</value>
-  </data>
-  <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
-    <value>Atari Jaguar</value>
-  </data>
-  <data name="Emulation.Atari.Model.JaguarCd" xml:space="preserve">
-    <value>Atari Jaguar CD</value>
   </data>
   <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve">
     <value>Deze waarde wordt bepaald door het geselecteerde model.</value>
@@ -1089,24 +1008,11 @@
   <data name="Emulation.Atari.Storage.MediaFilter" xml:space="preserve">
     <value>Atari-media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Alle bestanden|*.*</value>
   </data>
-  <data name="Emulation.Atari.Controller.Joystick">
-    <value>Atari-joystick</value>
-  </data>
-<data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Paddle Controllers</value></data>
-<data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 Light Gun</value></data>
-<data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>Atari Driving Controller</value></data>
-  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
-  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
-  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar Controller</value></data>
   <data name="Emulation.Controller.Automatic"><value>Automatisch</value></data>
   <data name="Emulation.Controller.None"><value>Geen</value></data>
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Parallelle joystickadapter met vier spelers</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Joystick/muis wisselen</value></data>
   <data name="Emulation.Atari.Controller.NumericKeypad"><value>Numeriek toetsenbord</value></data>
-  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
-  <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
-  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Controller</value></data>
   <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
     <value>De emulator heeft een medium nodig voordat deze machine kan worden ingeschakeld. Plaats of configureer een van de vereiste media die hieronder worden weergegeven.</value>
   </data>
@@ -1126,7 +1032,6 @@
   <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Mosaic-geheugenuitbreiding</value></data>
   <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Axlon-geheugenuitbreiding</value></data>
   <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Axlon $0F-bankschaduw</value></data>
-  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
   <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>Stereo-POKEY</value></data>
   <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Artefacten met hoge resolutie</value></data>
   <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>SIO-versnelling</value></data>
@@ -1164,25 +1069,10 @@
   <data name='Emulation.Media.Eject' xml:space='preserve'>
     <value>Medium uitwerpen</value>
   </data>
-  <data name="Emulation.Tab.Cpu" xml:space="preserve"><value>CPU</value></data>
-  <data name="Emulation.Tab.Ram" xml:space="preserve"><value>RAM</value></data>
-  <data name="Emulation.Tab.Rom" xml:space="preserve"><value>ROM</value></data>
-  <data name="Emulation.Family.Amiga" xml:space="preserve"><value>Amiga</value></data>
-  <data name="Emulation.Family.Atari" xml:space="preserve"><value>Atari</value></data>
-  <data name="Emulation.Atari.Model.XlXe" xml:space="preserve"><value>Atari XL/XE</value></data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
   <data name="Emulation.Key.AtariHelp" xml:space="preserve"><value>Help</value></data>
   <data name="Emulation.Key.AtariUndo" xml:space="preserve"><value>Undo</value></data>
-  <data name="Emulation.Amiga.Model.A500" xml:space="preserve"><value>Amiga 500</value></data>
-  <data name="Emulation.Amiga.Model.A500PLUS" xml:space="preserve"><value>Amiga 500 Plus</value></data>
-  <data name="Emulation.Amiga.Model.A600" xml:space="preserve"><value>Amiga 600</value></data>
-  <data name="Emulation.Amiga.Model.A1000" xml:space="preserve"><value>Amiga 1000</value></data>
-  <data name="Emulation.Amiga.Model.A1200" xml:space="preserve"><value>Amiga 1200</value></data>
-  <data name="Emulation.Amiga.Model.A2000" xml:space="preserve"><value>Amiga 2000</value></data>
-  <data name="Emulation.Amiga.Model.A3000" xml:space="preserve"><value>Amiga 3000</value></data>
-  <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Amiga 4000</value></data>
-  <data name="Emulation.Amiga.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
-  <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Amiga CD32</value></data>  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput kon niet worden geïnitialiseerd. Installeer of herstel de meegeleverde GameInput-runtime.</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput kon niet worden geïnitialiseerd. Installeer of herstel de meegeleverde GameInput-runtime.</value></data>
   <data name="Emulation.Configuration.Brand"><value>Merk</value></data>
   <data name="Emulation.Configuration.Machine"><value>Machine</value></data>
   <data name="Emulation.Configuration.TotalRam"><value>Totaal RAM</value></data>
@@ -1190,7 +1080,110 @@
   <data name="Emulation.Configuration.Peripherals"><value>Randapparaten</value></data>
   <data name="Emulation.Configuration.Actions"><value>Acties</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>Configuratie {0} {1} verwijderen?</value></data>
-  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
-    <value>Kickstart</value>
-  </data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short"><value>Stilte lege floppy stations</value></data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed"><value>Stilt het emuleerde schijfgeluid terwijl er geen schijf wordt ingevoegd. Schakel deze optie uit om het stationaire mechanische geluid te behouden.</value></data>
+  <data name="Emulation.Help.Audio.Filter.Short"><value>Analoge audiofiltering selecteren</value></data>
+  <data name="Emulation.Help.Audio.Filter.Detailed"><value>Selecteer hoe het originele analoge audiofilter wordt gereproduceerd. Emulated volgt het hardwaregedrag. De andere keuzes dwingen het filter aan of uit.</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Short"><value>Het gepolariseerde audiofilter inschakelen</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Detailed"><value>Past het gepolariseerde filter toe op het gegenereerde audiosignaal. Activeer het om het gefilterde geluid te reproduceren. Schakel het uit om het ongefilterde signaal te behouden.</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Short"><value>Selecteer audio-interpolatie</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Detailed"><value>Bepaalt hoe audiomonsters worden berekend tussen gegenereerde monsterpunten. Hogere kwaliteit methoden produceren soepeler geluid, maar vereisen meer verwerking.</value></data>
+  <data name="Emulation.Help.Audio.Latency.Short"><value>Geluidslatentie instellen</value></data>
+  <data name="Emulation.Help.Audio.Latency.Detailed"><value>Stelt de duur van de audiobuffer in. Een kortere buffer vermindert de vertraging maar kan kraken veroorzaken. Een langere buffer verbetert de stabiliteit maar verhoogt de vertraging.</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Short"><value>Dubbel inschakelen POKEY stereo</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed"><value>Voegt een tweede navolging toe POKEY chip om stereogeluid te produceren. Schakel deze optie alleen in voor software die dual ondersteunt POKEY audio.</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Short"><value>Stereoscheiding instellen</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Detailed"><value>Stelt de scheiding in tussen de linker en rechter kanalen. Een lagere waarde mengt de kanalen samen. Een hogere waarde houdt ze verder uit elkaar.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short"><value>Selecteer de diskette drive soundset</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed"><value>Selecteer de sample set gebruikt voor de mechanische geluiden van emuleerde floppy drives. Het verandert geen schijfgedrag of schijfgegevens.</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Short"><value>Selecteer het audiofiltermodel</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed"><value>Selecteer het antwoord van het hardwarefilter om te emuleren. Auto volgt het geselecteerde machinemodel. Een specifieke keuze maakt altijd gebruik van die filterrespons.</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Short"><value>Twee extra joystick poorten inschakelen</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Detailed"><value>Emuleert een parallelpoortadapter die twee joystickpoorten toevoegt. Schakel het in voor software die vier gelijktijdige spelers ondersteunt.</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Short"><value>Stel het turbopulsinterval in</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Detailed"><value>Stelt de tijd in tussen automatische drukknoppen geproduceerd door turbo. Een kortere interval zorgt voor sneller herhaald afvuren.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Short"><value>Selecteer een compatibiliteitsmodus voor controller</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed"><value>Selecteer een speciale controller mapping, zoals dual-stick control, swapped poorten, of Joy2B+. Kies Geen om de standaard port mapping te behouden.</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Short"><value>Analoge invoergevoeligheid instellen</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed"><value>Stelt in hoe sterk een analoge invoer reageert op beweging. Een hogere waarde geeft een grotere respons van dezelfde fysieke beweging.</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Short"><value>Digitale ingangsgevoeligheid instellen</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed"><value>Stelt in hoe snel een digitale richting volledige beweging bereikt. Een hogere waarde zorgt ervoor dat richtingsveranderingen sneller hun maximum bereiken.</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Short"><value>Selecteer de autobrandmodus</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed"><value>Gehandicapten zetten autobrand uit. Op de knop herhaalt brand terwijl de toegewezen knop wordt vastgehouden. Herhaalt altijd continu vuur.</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Short"><value>Paddle-bewegingssnelheid instellen</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Detailed"><value>Stelt in hoe snel digitale invoer een geëmulgeerde paddle beweegt. Een lagere waarde beweegt het langzamer. Een hogere waarde beweegt het sneller.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Short"><value>Selecteer de FPU</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed"><value>Selecteer de floating-point unit gebruikt voor floating-point instructies. Kies Geen om het uitschakelen van de FPU. Beschikbare modellen zijn afhankelijk van de geselecteerde CPU.</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Short"><value>Selecteren CPU nauwkeurigheid van de emulatie</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Detailed"><value>Selecteer hoe nauw CPU timing volgt de originele hardware. Meer nauwkeurige modi kunnen de compatibiliteit verbeteren, maar kunnen meer verwerking vereisen.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Short"><value>Stel het emuleerde in CPU snelheid</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed"><value>Stelt de processorfrequentie in die door de emuleerde machine wordt gebruikt. De originele snelheid behoudt hardware timing. Hogere waarden versnellen CPU- beperkte software.</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short"><value>Gebruik analoge sticks om de muis te bedienen</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Detailed"><value>Hiermee kan analoge joystick assen de geëmulleerde muisaanwijzer verplaatsen. Schakel het in wanneer een fysieke analoge stick de pointer moet controleren.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Short"><value>Analoge muissnelheid instellen</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed"><value>Stelt de pointersnelheid in wanneer een analoge stick de geëmuleerde muis bestuurt. Een hogere waarde beweegt de pointer verder voor dezelfde stick beweging.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Short"><value>De analoge muis dode zone instellen</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed"><value>negeert kleine analoge-stick bewegingen rond het centrum terwijl de controle van de muis. Verhoog de waarde als de pointer beweegt terwijl de stick wordt vrijgegeven.</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Short"><value>Inschakelen van de Axlon $0F schaduwbank</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed"><value>Spiegels de Axlon controlebank op adres $0F. Schakel het alleen in voor software- of geheugenuitbreidingen die dit extra adres gebruiken.</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short"><value>Instellen Axlon uitbreidingsgeheugen</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed"><value>Stelt het bedrag van de bank-geschakeld Axlon geheugen. Uitgeschakeld verwijdert de uitbreiding. De andere keuzes bieden de geselecteerde geheugencapaciteit.</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short"><value>Instellen Mosaic uitbreidingsgeheugen</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed"><value>Stelt het bedrag van de bank-geschakeld Mosaic geheugen. Uitgeschakeld verwijdert de uitbreiding. De andere keuzes bieden de geselecteerde geheugencapaciteit.</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short"><value>Extra uitbreidingsgeheugen instellen</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed"><value>Stelt de hoeveelheid extra uitbreidingsgeheugen in die door de geselecteerde machine wordt ondersteund. Kies Geen om alleen het geconfigureerde hoofdgeheugen te gebruiken.</value></data>
+  <data name="Emulation.Help.Memory.Fast.Short"><value>Instellen Fast RAM grootte</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed"><value>Stelt het bedrag van Fast RAM rechtstreeks ter beschikking van de CPU. Aanvullende Fast RAM kan compatibele software helpen, maar verandert de emuleerde hardware configuratie.</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short"><value>Inschakelen MapRAM</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Detailed"><value>Laat compatibele software toe om schrijfbare kaart RAM in het systeem ROM adres gebied. Deze optie is alleen beschikbaar op machine modellen die ondersteunen MapRAM.</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short"><value>Instellen Zorro III RAM grootte</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed"><value>Stelt het bedrag in van 32-bit Fast RAM verbonden door de Zorro III De bus. Gebruik het alleen met compatibele 32-bits machines en software.</value></data>
+  <data name="Emulation.Help.Memory.Slow.Short"><value>Instellen Slow RAM grootte</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed"><value>Stelt het bedrag van Slow RAM in het uitbreidingsgebied van het luik. Dit geheugen is langzamer dan Fast RAM en gebruikt een ander hardware adresbereik.</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Short"><value>Selecteer de ROM decryptiesleutel</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Detailed"><value>Selecteer het sleutelbestand om een versleutelde licentie te decoderen ROM afbeelding. Dit veld leeg laten wanneer de geselecteerde ROM is niet gecodeerd.</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Short"><value>Snel opstarten inschakelen</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Detailed"><value>Skipt geselecteerde hardware initialisatie vertragingen om het opstarten te verkorten. Schakel deze optie uit wanneer software de originele opstartreeks vereist.</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Short"><value>Selecteer een uitgebreide ROM</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed"><value>Selecteer de secundaire firmware ROM vereist door sommige machinemodellen. Dit veld leeg laten wanneer het geselecteerde model geen extender gebruikt ROM.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Short"><value>Versneld inschakelen SIO overdrachten</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed"><value>Versnelt compatibele transfers via de seriële input/output bus. Schakel deze optie uit wanneer software afhankelijk is van de oorspronkelijke overdracht timing.</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short"><value>Opstarten van cassette inschakelen</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Detailed"><value>Maakt de emuleerde machine proberen te starten vanaf de bijgevoegde cassette afbeelding. Schakel deze optie uit bij het starten vanaf een ander apparaat.</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Short"><value>Inschakelen van de R-Time 8 klok</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Detailed"><value>Emuleert een R-Time 8 real-time klok zodat compatibele software de huidige datum en tijd kan lezen.</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Short"><value>Inschakelen van de P: printerapparaat</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed"><value>Maakt de emuleerde P: printer apparaat beschikbaar voor software. Schakel deze optie uit wanneer printer-apparaat emulatie niet nodig is.</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Short"><value>Inschakelen van de R: serieel apparaat</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed"><value>Maakt de emuleerde R: seriële apparaat beschikbaar voor software. Schakel deze optie uit wanneer emulatie van seriële apparaten niet nodig is.</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Short"><value>Selecteer hoge-resolutie kleur artifacting</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Detailed"><value>Selecteer hoe hoge-resolutie patronen composiet-video kleuren produceren. Geen schakelt artefact kleuren uit. De andere modi reproduceren verschillende paletten of chipgedrag.</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Short"><value>Selecteer blitter timing</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Detailed"><value>Selecteer of de blitterbewerkingen onmiddellijk voltooid zijn of volg de emuleerde hardware timing. Onmiddellijke modus is sneller, maar minder timing nauwkeurig.</value></data>
+  <data name="Emulation.Help.Video.HzChange.Short"><value>Verversen van uitvoer toestaan</value></data>
+  <data name="Emulation.Help.Video.HzChange.Detailed"><value>Hiermee kan de uitvoerverversingssnelheid wijzigingen in de geëmuleerde videomodus volgen. Vergrendeld houdt de huidige output refresh rate.</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Short"><value>Selecteer botsdetectie detail</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Detailed"><value>Selecteer welke sprite en playfield botsingen worden berekend. Meer volledige detectie verbetert de compatibiliteit, maar vereist meer verwerking.</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Short"><value>Verminder interlaced display flicker</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed"><value>Vermindert flicker in interlaced video output. Schakel het in voor een stabieler beeld. Schakel het uit om het originele interlaced displaygedrag te behouden.</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Short"><value>Selecteer de getoonde beeldverhouding</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Detailed"><value>Selecteer hoe de emuleerde afbeelding horizontaal en verticaal wordt geschaald. Automatisch volgt de geëmulgeerde uitvoer. Een vaste keuzekrachten die vorm geven.</value></data>
+  <data name="Emulation.Help.Video.Gamma.Short"><value>Afbeelding gamma aanpassen</value></data>
+  <data name="Emulation.Help.Video.Gamma.Detailed"><value>Verandert de helderheid van de middentonen zonder direct de zwart-wit niveaus te veranderen. Lagere waarden donkere middentonen. Hogere waarden verlichten ze.</value></data>
+  <data name="Emulation.Help.Video.LineMode.Short"><value>Selecteer de videoregelmodus</value></data>
+  <data name="Emulation.Help.Video.LineMode.Detailed"><value>Selecteer hoe verticale videolijnen worden weergegeven. Automatisch volgt de geëmulgeerde modus. Andere keuzes dwingen enkele lijnen, dubbele lijnen, of scanlijnen wanneer beschikbaar.</value></data>
+  <data name="Emulation.Help.Video.Standard.Short"><value>Selecteer de videostandaard</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed"><value>Selecteert de emuleerde televisie timing, zoals PAL of NTSC. Dit beïnvloedt refresh rate, hardware timing, en software compatibiliteit.</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Short"><value>Selecteer een extern kleurenpalet</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Detailed"><value>Selecteer een voorgedefinieerd kleurenpalet in plaats van kleuren gegenereerd uit de huidige video-instellingen. Kies Geen om de gegenereerde kleuren te gebruiken.</value></data>
+  <data name="Emulation.Help.Video.Colors.Short"><value>Kleurdiepte selecteren</value></data>
+  <data name="Emulation.Help.Video.Colors.Detailed"><value>Selecteer de kleurdiepte die gebruikt wordt om de afbeelding weer te geven. 24-bit houdt meer kleur detail. 16-bit gebruikt een kleiner aantal kleuren.</value></data>
+  <data name="Emulation.Help.Video.Region.Short"><value>Selecteer het hardwaregebied</value></data>
+  <data name="Emulation.Help.Video.Region.Detailed"><value>Selecteer de regionale timing gebruikt door de emuleerde machine. De keuze kan de videofrequentie beïnvloeden, CPU timing, en compatibele firmware.</value></data>
+  <data name="Emulation.Help.Video.Rendering.Short"><value>Selecteer de video renderer</value></data>
+  <data name="Emulation.Help.Video.Rendering.Detailed"><value>Selecteer de grafische backend die gebruikt wordt om het emuleerde display te tekenen. Beschikbare renders kunnen verschillen in prestaties en compatibiliteit met het hostsysteem.</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Short"><value>Aanpassen GTIA kleurvertraging</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Stelt de GTIA kleur fase vertraging gebruikt om kleuren te reproduceren. Standaard gebruikt de standaard waarde. Numerieke keuzes verschuiven de resulterende tinten.</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Short"><value>Frame overslaan instellen</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Stelt in hoeveel weergaveframes worden weggelaten. Uitgeschakeld trekt elk frame. Hogere waarden verminderen het renderingswerk maar maken beweging minder glad.</value></data>
 </root>

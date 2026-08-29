@@ -126,15 +126,6 @@
   <data name="Emulation.Cpu.Compatibility">
     <value>Cycle-compatible CPU</value>
   </data>
-  <data name="Emulation.Memory.Chip">
-    <value>Chip RAM</value>
-  </data>
-  <data name="Emulation.Memory.Slow">
-    <value>Slow RAM</value>
-  </data>
-  <data name="Emulation.Memory.Fast">
-    <value>Fast RAM</value>
-  </data>
   <data name="Emulation.Memory.Z3">
     <value>Zorro III RAM</value>
   </data>
@@ -248,9 +239,6 @@
   </data>
   <data name="Emulation.Storage.HardDisk.DriveCount">
     <value>Αριθμός σκληρών δίσκων</value>
-  </data>
-  <data name="Emulation.Fpu.Model">
-    <value>FPU</value>
   </data>
   <data name="Emulation.Cpu.Speed">
     <value>CPU speed</value>
@@ -864,12 +852,6 @@
   <data name="Emulation.Storage.Geometry.Sectors">
     <value>Τομείς</value>
   </data>
-  <data name="Emulation.Storage.Unit.MiB">
-    <value>MiB</value>
-  </data>
-  <data name="Emulation.Storage.Unit.GiB">
-    <value>GiB</value>
-  </data>
   <data name="Emulation.Controller.Action.Up">
     <value>Πάνω</value>
   </data>
@@ -909,14 +891,8 @@
   <data name="Emulation.Amiga.Controller.Cd32.PlayPause">
     <value>CD32 αναπαραγωγή / παύση</value>
   </data>
-  <data name="Emulation.Amiga.Controller.Joystick">
-    <value>Χειριστήριο Amiga</value>
-  </data>
   <data name="Emulation.Controller.AnalogJoystick">
     <value>Αναλογικό χειριστήριο</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32">
-    <value>Χειριστήριο CD32</value>
   </data>
   <data name="Emulation.Mouse.Wheel.Up">
     <value>Τροχός ποντικιού πάνω</value>
@@ -929,63 +905,6 @@
   </data>
   <data name="Emulation.Mouse.Wheel.Right">
     <value>Τροχός ποντικιού δεξιά</value>
-  </data>
-  <data name="Emulation.Atari.Model.St" xml:space="preserve">
-    <value>Atari ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stf" xml:space="preserve">
-    <value>Atari STF</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stfm" xml:space="preserve">
-    <value>Atari STFM</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSt" xml:space="preserve">
-    <value>Atari Mega ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Ste" xml:space="preserve">
-    <value>Atari STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSte" xml:space="preserve">
-    <value>Atari Mega STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Tt" xml:space="preserve">
-    <value>Atari TT</value>
-  </data>
-  <data name="Emulation.Atari.Model.Falcon" xml:space="preserve">
-    <value>Atari Falcon</value>
-  </data>
-  <data name="Emulation.Atari.Model.400" xml:space="preserve">
-    <value>Atari 400</value>
-  </data>
-  <data name="Emulation.Atari.Model.800" xml:space="preserve">
-    <value>Atari 800</value>
-  </data>
-  <data name="Emulation.Atari.Model.800Xl" xml:space="preserve">
-    <value>Atari 800XL</value>
-  </data>
-  <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
-    <value>Atari 130XE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
-    <value>Atari XEGS</value>
-  </data>
-  <data name="Emulation.Atari.Model.5200" xml:space="preserve">
-    <value>Atari 5200</value>
-  </data>
-  <data name="Emulation.Atari.Model.2600" xml:space="preserve">
-    <value>Atari 2600</value>
-  </data>
-  <data name="Emulation.Atari.Model.7800" xml:space="preserve">
-    <value>Atari 7800</value>
-  </data>
-  <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
-    <value>Atari Lynx</value>
-  </data>
-  <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
-    <value>Atari Jaguar</value>
-  </data>
-  <data name="Emulation.Atari.Model.JaguarCd" xml:space="preserve">
-    <value>Atari Jaguar CD</value>
   </data>
   <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve">
     <value>Η τιμή αυτή καθορίζεται από το επιλεγμένο μοντέλο.</value>
@@ -1089,24 +1008,11 @@
   <data name="Emulation.Atari.Storage.MediaFilter" xml:space="preserve">
     <value>Μέσα Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Όλα τα αρχεία|*.*</value>
   </data>
-  <data name="Emulation.Atari.Controller.Joystick">
-    <value>Χειριστήριο Atari</value>
-  </data>
-<data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Paddle Controllers</value></data>
-<data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 Light Gun</value></data>
-<data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>Atari Driving Controller</value></data>
-  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
-  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
-  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar Controller</value></data>
   <data name="Emulation.Controller.Automatic"><value>Αυτόματο</value></data>
   <data name="Emulation.Controller.None"><value>Καμία</value></data>
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Παράλληλος προσαρμοστής μοχλός τεσσάρων παικτών</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Εναλλαγή χειριστήριο/ποντίκι</value></data>
   <data name="Emulation.Atari.Controller.NumericKeypad"><value>Αριθμητικό πληκτρολόγιο</value></data>
-  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Ατάρι Booster Grip</value></data>
-  <data name="Emulation.Atari.Controller.Genesis"><value>Ελεγκτής Γένεσης Sega</value></data>
-  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ ελεγκτής</value></data>
   <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
     <value>Ο εξομοιωτής απαιτεί ένα μέσο πριν ενεργοποιηθεί αυτό το μηχάνημα. Εισαγάγετε ή ρυθμίστε ένα από τα απαιτούμενα μέσα που εμφανίζονται παρακάτω.</value>
   </data>
@@ -1126,7 +1032,6 @@
   <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Επέκταση μνήμης Mosaic</value></data>
   <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Επέκταση μνήμης Axlon</value></data>
   <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Σκιά τράπεζας Axlon $0F</value></data>
-  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
   <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>Στερεοφωνικό POKEY</value></data>
   <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Τεχνουργήματα υψηλής ανάλυσης</value></data>
   <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>Επιτάχυνση SIO</value></data>
@@ -1164,25 +1069,10 @@
   <data name='Emulation.Media.Eject' xml:space='preserve'>
     <value>Εξαγωγή μέσου</value>
   </data>
-  <data name="Emulation.Tab.Cpu" xml:space="preserve"><value>CPU</value></data>
-  <data name="Emulation.Tab.Ram" xml:space="preserve"><value>RAM</value></data>
-  <data name="Emulation.Tab.Rom" xml:space="preserve"><value>ROM</value></data>
-  <data name="Emulation.Family.Amiga" xml:space="preserve"><value>Amiga</value></data>
-  <data name="Emulation.Family.Atari" xml:space="preserve"><value>Atari</value></data>
-  <data name="Emulation.Atari.Model.XlXe" xml:space="preserve"><value>Atari XL/XE</value></data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
   <data name="Emulation.Key.AtariHelp" xml:space="preserve"><value>Help</value></data>
   <data name="Emulation.Key.AtariUndo" xml:space="preserve"><value>Undo</value></data>
-  <data name="Emulation.Amiga.Model.A500" xml:space="preserve"><value>Amiga 500</value></data>
-  <data name="Emulation.Amiga.Model.A500PLUS" xml:space="preserve"><value>Amiga 500 Plus</value></data>
-  <data name="Emulation.Amiga.Model.A600" xml:space="preserve"><value>Amiga 600</value></data>
-  <data name="Emulation.Amiga.Model.A1000" xml:space="preserve"><value>Amiga 1000</value></data>
-  <data name="Emulation.Amiga.Model.A1200" xml:space="preserve"><value>Amiga 1200</value></data>
-  <data name="Emulation.Amiga.Model.A2000" xml:space="preserve"><value>Amiga 2000</value></data>
-  <data name="Emulation.Amiga.Model.A3000" xml:space="preserve"><value>Amiga 3000</value></data>
-  <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Amiga 4000</value></data>
-  <data name="Emulation.Amiga.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
-  <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Amiga CD32</value></data>  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Δεν ήταν δυνατή η αρχικοποίηση του GameInput. Εγκαταστήστε ή επιδιορθώστε το παρεχόμενο περιβάλλον εκτέλεσης GameInput.</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Δεν ήταν δυνατή η αρχικοποίηση του GameInput. Εγκαταστήστε ή επιδιορθώστε το παρεχόμενο περιβάλλον εκτέλεσης GameInput.</value></data>
   <data name="Emulation.Configuration.Brand"><value>Μάρκα</value></data>
   <data name="Emulation.Configuration.Machine"><value>Μηχάνημα</value></data>
   <data name="Emulation.Configuration.TotalRam"><value>Συνολική RAM</value></data>
@@ -1190,7 +1080,110 @@
   <data name="Emulation.Configuration.Peripherals"><value>Περιφερειακά</value></data>
   <data name="Emulation.Configuration.Actions"><value>Ενέργειες</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>Διαγραφή της διαμόρφωσης {0} {1};</value></data>
-  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
-    <value>Kickstart</value>
-  </data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short"><value>Σιωπή άδειες δισκέτες</value></data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed"><value>Σιωπάει τον μιμούμενο ήχο κίνησης ενώ δεν εισάγεται δίσκος. Απενεργοποίηση αυτής της επιλογής για τη διατήρηση του μηχανικού θορύβου σε αδράνεια.</value></data>
+  <data name="Emulation.Help.Audio.Filter.Short"><value>Επιλογή αναλογικού φιλτραρίσματος ήχου</value></data>
+  <data name="Emulation.Help.Audio.Filter.Detailed"><value>Επιλέγει πώς αναπαράγεται το αρχικό αναλογικό φίλτρο ήχου. Προσομοίωση ακολουθεί τη συμπεριφορά υλικού. Οι άλλες επιλογές αναγκάζουν το φίλτρο να ενεργοποιηθεί ή να απενεργοποιηθεί.</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Short"><value>Ενεργοποίηση του πολωμένου φίλτρου ήχου</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Detailed"><value>Εφαρμόζει το πολωμένο φίλτρο στο παραγόμενο ηχητικό σήμα. Ενεργοποιήστε το για την αναπαραγωγή του φιλτραρισμένου ήχου. Απενεργοποιήστε το για να κρατήσετε το αφιλτράριστο σήμα.</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Short"><value>Επιλέξτε παρεμβολή ήχου</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Detailed"><value>Επιλέγει τον τρόπο υπολογισμού των δειγμάτων ήχου μεταξύ των παραγόμενων σημείων δειγματοληψίας. Υψηλότερης ποιότητας μέθοδοι παράγουν ομαλότερο ήχο, αλλά απαιτούν περισσότερη επεξεργασία.</value></data>
+  <data name="Emulation.Help.Audio.Latency.Short"><value>Ορισμός λανθάνουσας λειτουργίας ήχου</value></data>
+  <data name="Emulation.Help.Audio.Latency.Detailed"><value>Ορίζει τη διάρκεια του ρυθμιστή ήχου. Ένα μικρότερο ρυθμιστικό διάλυμα μειώνει την καθυστέρηση, αλλά μπορεί να προκαλέσει κράξιμο. Ένα μεγαλύτερο απόθεμα ασφαλείας βελτιώνει τη σταθερότητα, αλλά αυξάνει την καθυστέρηση.</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Short"><value>Ενεργοποίηση διπλής POKEY στερεοφωνικό</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed"><value>Προσθέτει ένα δεύτερο εικονιζόμενο POKEY τσιπ για την παραγωγή στερεοφωνικού ήχου. Ενεργοποιήστε αυτή την επιλογή μόνο για το λογισμικό που υποστηρίζει διπλό POKEY Ήχος.</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Short"><value>Ορισμός στερεοφωνικού διαχωρισμού</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Detailed"><value>Ρυθμίζει τον διαχωρισμό μεταξύ αριστερών και δεξιών καναλιών. Μια χαμηλότερη τιμή αναμιγνύει τα κανάλια μαζί. Μια υψηλότερη αξία τους κρατά πιο μακριά.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short"><value>Επιλέξτε το σύνολο ήχου της δισκέτας</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed"><value>Επιλέγει το σύνολο δειγμάτων που χρησιμοποιείται για τους μηχανικούς ήχους των όμοιων δισκετών. Δεν αλλάζει συμπεριφορά κίνησης ή δεδομένα δίσκων.</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Short"><value>Επιλέξτε το μοντέλο φίλτρου ήχου</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed"><value>Επιλέγει την απόκριση φίλτρου υλικού για να μιμηθεί. Αυτόματο ακολουθεί το επιλεγμένο μοντέλο μηχανής. Μια συγκεκριμένη επιλογή χρησιμοποιεί πάντα αυτή την απόκριση φίλτρου.</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Short"><value>Ενεργοποίηση δύο πρόσθετων θυρών joystick</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Detailed"><value>Προσομοιάζει έναν παράλληλο προσαρμογέα θύρας που προσθέτει δύο θύρες joystick. Ενεργοποιήστε το για το λογισμικό που υποστηρίζει τέσσερις ταυτόχρονους παίκτες.</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Short"><value>Ορισμός του διαστήματος παλμών turbo</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Detailed"><value>Καθορίζει το χρόνο μεταξύ αυτόματων πιέσεων κουμπιών που παράγονται από turbo. Ένα μικρότερο διάστημα παράγει ταχύτερη επαναλαμβανόμενη βολή.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Short"><value>Επιλέξτε μια λειτουργία συμβατότητας ελεγκτή</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed"><value>Επιλογή ειδικής χαρτογράφησης του ελεγκτή, όπως έλεγχος διπλής ράβδου, θύρες που ανταλλάσσονται, ή Joy2B+. Επιλέξτε Κανένα για να κρατήσει την τυπική χαρτογράφηση θύρας.</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Short"><value>Ορισμός αναλογικής ευαισθησίας εισόδου</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed"><value>Ορίζει πόσο έντονα μια αναλογική είσοδος ανταποκρίνεται στην κίνηση. Μια υψηλότερη αξία παράγει μια μεγαλύτερη απόκριση από την ίδια φυσική κίνηση.</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Short"><value>Ορισμός ψηφιακής ευαισθησίας εισόδου</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed"><value>Ορίζει πόσο γρήγορα μια ψηφιακή κατεύθυνση φτάνει στην πλήρη κίνηση. Μια υψηλότερη τιμή κάνει τις αλλαγές κατεύθυνσης να φτάσουν στο μέγιστο πιο γρήγορα.</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Short"><value>Επιλέξτε τη λειτουργία αυτόματης φωτιάς</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed"><value>Απενεργοποίηση σβήνει την αυτόματη φωτιά. Στο κουμπί επαναλαμβάνεται η φωτιά ενώ το καθορισμένο κουμπί διατηρείται. Πάντα επαναλαμβάνει τη φωτιά συνεχώς.</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Short"><value>Ορισμός ταχύτητας κίνησης κουπί</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Detailed"><value>Ορίζει πόσο γρήγορα η ψηφιακή είσοδος μετακινεί ένα μιμούμενο κουπί. Μια χαμηλότερη τιμή το μετακινεί πιο αργά. Μια υψηλότερη αξία κινείται πιο γρήγορα.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Short"><value>Επιλέξτε το FPU</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed"><value>Επιλογή της μονάδας κινητής υποδιαστολής που χρησιμοποιείται για οδηγίες κινητής υποδιαστολής. Επιλογή κανενός για απενεργοποίηση FPU. Τα διαθέσιμα μοντέλα εξαρτώνται από το επιλεγμένο CPU.</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Short"><value>Επιλογή CPU ακρίβεια εξομοίωσης</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Detailed"><value>Επιλογή του πόσο στενά CPU ο συγχρονισμός ακολουθεί το αρχικό υλικό. Πιο ακριβείς τρόποι μπορούν να βελτιώσουν τη συμβατότητα αλλά μπορεί να απαιτούν περισσότερη επεξεργασία.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Short"><value>Ορισμός του εικονιζόμενου CPU ταχύτητα</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed"><value>Ρυθμίζει τη συχνότητα του επεξεργαστή που χρησιμοποιείται από το προσομοιωμένο μηχάνημα. Η αρχική ταχύτητα διατηρεί τον συγχρονισμό υλικού. Οι υψηλότερες τιμές επιταχύνονται CPU- Περιορισμένο λογισμικό.</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short"><value>Χρήση αναλογικών ραβδιών για τον έλεγχο του ποντικιού</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Detailed"><value>Επιτρέπει αναλογικούς άξονες joystick για να μετακινήσετε το εικονιζόμενο δείκτη του ποντικιού. Ενεργοποιήστε το όταν ένα φυσικό αναλογικό ραβδί θα πρέπει να ελέγχει τον δείκτη.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Short"><value>Ορισμός αναλογικής ταχύτητας ποντικιού</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed"><value>Ρυθμίζει την ταχύτητα του δείκτη όταν ένα αναλογικό ραβδί ελέγχει το μιμούμενο ποντίκι. Μια υψηλότερη τιμή μετακινεί το δείκτη μακρύτερα για την ίδια κίνηση ραβδί.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Short"><value>Ορισμός της αναλογικής νεκρής ζώνης ποντικιού</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed"><value>Αγνοεί μικρές αναλογικές κινήσεις-stick γύρω από το κέντρο, ενώ ελέγχει το ποντίκι. Αυξήστε την τιμή αν ο δείκτης κινείται ενώ το ραβδί απελευθερώνεται.</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Short"><value>Ενεργοποίηση του Axlon $0F σκιώδης τράπεζα</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed"><value>Καθρέφτες Axlon τράπεζα ελέγχου στη διεύθυνση $0F. Ενεργοποιήστε το μόνο για το λογισμικό ή τις επεκτάσεις μνήμης που χρησιμοποιούν αυτή την πρόσθετη διεύθυνση.</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short"><value>Ορισμός Axlon μνήμη επέκτασης</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed"><value>Καθορίζει το ποσό της bank-switched Axlon μνήμη. Αναπηρία αφαιρεί την επέκταση. Οι άλλες επιλογές παρέχουν την επιλεγμένη ικανότητα μνήμης.</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short"><value>Ορισμός Mosaic μνήμη επέκτασης</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed"><value>Καθορίζει το ποσό της bank-switched Mosaic μνήμη. Αναπηρία αφαιρεί την επέκταση. Οι άλλες επιλογές παρέχουν την επιλεγμένη ικανότητα μνήμης.</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short"><value>Ορισμός πρόσθετης μνήμης επέκτασης</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed"><value>Ορίζει το ποσό της πρόσθετης μνήμης επέκτασης που υποστηρίζεται από την επιλεγμένη μηχανή. Επιλέξτε Κανένα για χρήση μόνο της ρυθμισμένης κύριας μνήμης.</value></data>
+  <data name="Emulation.Help.Memory.Fast.Short"><value>Ορισμός Fast RAM μέγεθος</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed"><value>Καθορίζει το ποσό Fast RAM Διατίθεται απευθείας στην CPU. Επιπλέον Fast RAM μπορεί να βοηθήσει συμβατό λογισμικό, αλλά αλλάζει την εικονιζόμενη διαμόρφωση υλικού.</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short"><value>Ενεργοποίηση MapRAM</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Detailed"><value>Επιτρέπει συμβατό λογισμικό για τη χαρτογράφηση εγγράψιμων RAM στο σύστημα ROM περιοχή διεύθυνσης. Αυτή η επιλογή είναι διαθέσιμη μόνο σε μοντέλα μηχανών που υποστηρίζουν MapRAM.</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short"><value>Ορισμός Zorro III RAM μέγεθος</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed"><value>Καθορίζει το ποσό των 32 bit Fast RAM συνδέεται μέσω του Zorro III λεωφορείο. Χρησιμοποιήστε το μόνο με συμβατές μηχανές 32-bit και λογισμικό.</value></data>
+  <data name="Emulation.Help.Memory.Slow.Short"><value>Ορισμός Slow RAM μέγεθος</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed"><value>Καθορίζει το ποσό Slow RAM στην περιοχή διαστολής καταπακτών. Αυτή η μνήμη είναι πιο αργή από ό, τι Fast RAM και χρησιμοποιεί διαφορετική σειρά διευθύνσεων υλικού.</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Short"><value>Επιλέξτε το ROM κλειδί αποκρυπτογράφησης</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Detailed"><value>Επιλογή του αρχείου κλειδιού που χρησιμοποιείται για την αποκρυπτογράφηση μιας κρυπτογραφημένης άδειας ROM εικόνα. Αφήστε αυτό το πεδίο κενό όταν το επιλεγμένο ROM δεν είναι κρυπτογραφημένο.</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Short"><value>Ενεργοποίηση γρήγορης εκκίνησης</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Detailed"><value>Παράλειψη επιλεγμένων καθυστερήσεων αρχικοποίησης υλικού για να συντομεύσετε την εκκίνηση. Απενεργοποίηση αυτής της επιλογής όταν το λογισμικό απαιτεί την αρχική ακολουθία εκκίνησης.</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Short"><value>Επιλέξτε ένα εκτεταμένο ROM</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed"><value>Επιλογή του δευτερεύοντος firmware ROM απαιτείται από ορισμένα μοντέλα μηχανών. Αφήστε αυτό το πεδίο κενό όταν το επιλεγμένο μοντέλο δεν χρησιμοποιεί ένα εκτεταμένο ROM.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Short"><value>Ενεργοποίηση επιτάχυνσης SIO μεταφορές</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed"><value>Επιταχύνει συμβατές μεταφορές μέσω του σειριακού λεωφορείου εισόδου/εξόδου. Απενεργοποίηση αυτής της επιλογής όταν το λογισμικό εξαρτάται από τον αρχικό χρόνο μεταφοράς.</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short"><value>Ενεργοποίηση εκκίνησης κασέτας</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Detailed"><value>Κάνει τη μηχανή που μιμείται να προσπαθήσει να ξεκινήσει από τη συνημμένη εικόνα κασέτας. Απενεργοποίηση αυτής της επιλογής κατά την εκκίνηση από άλλη συσκευή.</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Short"><value>Ενεργοποίηση του R-Time 8 ρολόι</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Detailed"><value>Προσομοίωση R-Time 8 ρολόι σε πραγματικό χρόνο ώστε συμβατό λογισμικό μπορεί να διαβάσει την τρέχουσα ημερομηνία και ώρα.</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Short"><value>Ενεργοποίηση του P: συσκευή εκτυπωτή</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed"><value>Κάνει τους μιμούμενους P: συσκευή εκτυπωτή διαθέσιμη στο λογισμικό. Απενεργοποίηση αυτής της επιλογής όταν δεν χρειάζεται εξομοίωση εκτυπωτή-συσκευής.</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Short"><value>Ενεργοποίηση του R: σειριακή συσκευή</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed"><value>Κάνει τους μιμούμενους R: σειριακή συσκευή διαθέσιμη στο λογισμικό. Απενεργοποίηση αυτής της επιλογής όταν δεν χρειάζεται μίμηση κατά συρροή συσκευών.</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Short"><value>Επιλογή υψηλής ανάλυσης χρωματικών τεχνουργημάτων</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Detailed"><value>Επιλέγει πώς τα σχέδια υψηλής ανάλυσης παράγουν σύνθετα-video χρώματα. Κανείς δεν απενεργοποιεί τα χρώματα τεχνουργημάτων. Οι άλλοι τρόποι αναπαράγουν διαφορετικές παλέτες ή συμπεριφορά τσιπ.</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Short"><value>Επιλογή συγχρονισμού blitter</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Detailed"><value>Επιλέγει αν οι λειτουργίες blitter τελειώνουν αμέσως ή ακολουθούν συγχρονισμό εικονιζόμενου υλικού. Η άμεση λειτουργία είναι ταχύτερη αλλά λιγότερο χρονοβόρα.</value></data>
+  <data name="Emulation.Help.Video.HzChange.Short"><value>Επίτρεψε αλλαγές ρυθμού ανανέωσης εξόδου</value></data>
+  <data name="Emulation.Help.Video.HzChange.Detailed"><value>Επιτρέπει στο ρυθμό ανανέωσης εξόδου να ακολουθήσει αλλαγές στη λειτουργία εικονιδίων που προσομοιώνονται. Κλειδωμένο διατηρεί το τρέχον ρυθμό ανανέωσης εξόδου.</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Short"><value>Επιλογή λεπτομέρειας ανίχνευσης σύγκρουσης</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Detailed"><value>Επιλέξτε ποιες συγκρούσεις sprite και playfield υπολογίζονται. Πιο πλήρης ανίχνευση βελτιώνει τη συμβατότητα αλλά απαιτεί περισσότερη επεξεργασία.</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Short"><value>Μείωση τρεμοπαιχνιδιών με παρεμβαλλόμενη οθόνη</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed"><value>Μειώνει το τρεμοπαίζει στην παρεμβαλλόμενη έξοδο βίντεο. Ενεργοποιήστε το για μια πιο σταθερή εικόνα. Απενεργοποίησε το για να διατηρήσει την πρωτότυπη συνυφασμένη συμπεριφορά της οθόνης.</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Short"><value>Επιλέξτε την εμφανιζόμενη αναλογία διαστάσεων</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Detailed"><value>Επιλέγει τον τρόπο με τον οποίο η εικόνα που μιμείται κλιμακώνεται οριζόντια και κατακόρυφα. Αυτόματο ακολουθεί την εικονιζόμενη έξοδο. Μια σταθερή επιλογή αναγκάζει το σχήμα της οθόνης.</value></data>
+  <data name="Emulation.Help.Video.Gamma.Short"><value>Προσαρμογή εικόνας γάμμα</value></data>
+  <data name="Emulation.Help.Video.Gamma.Detailed"><value>Αλλάζει τη φωτεινότητα των μεσαίων τόνων χωρίς να αλλάζει άμεσα τα επίπεδα του μαύρου και του λευκού. Χαμηλότερες τιμές σκοτειναίνουν τους μέσους τόνους. Υψηλότερες αξίες τους φωτίζουν.</value></data>
+  <data name="Emulation.Help.Video.LineMode.Short"><value>Επιλέξτε τη λειτουργία γραμμής βίντεο</value></data>
+  <data name="Emulation.Help.Video.LineMode.Detailed"><value>Επιλέγει πώς εμφανίζονται κάθετες γραμμές βίντεο. Αυτόματο ακολουθεί τη λειτουργία προσομοίωσης. Άλλες επιλογές επιβάλλουν μονές γραμμές, διπλασιάζονται γραμμές, ή γραμμές σάρωσης όταν είναι διαθέσιμες.</value></data>
+  <data name="Emulation.Help.Video.Standard.Short"><value>Επιλέξτε το πρότυπο βίντεο</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed"><value>Επιλέγει την εικονιζόμενη ώρα τηλεόρασης, όπως PAL ή NTSC. Αυτό επηρεάζει το ρυθμό ανανέωσης, το συγχρονισμό υλικού και τη συμβατότητα του λογισμικού.</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Short"><value>Επιλέξτε μια εξωτερική παλέτα χρωμάτων</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Detailed"><value>Επιλέγει μια προκαθορισμένη παλέτα χρωμάτων αντί των χρωμάτων που δημιουργούνται από τις τρέχουσες ρυθμίσεις βίντεο. Επιλέξτε Κανένα για να χρησιμοποιήσετε τα δημιουργημένα χρώματα.</value></data>
+  <data name="Emulation.Help.Video.Colors.Short"><value>Επιλογή βάθους χρώματος εξόδου</value></data>
+  <data name="Emulation.Help.Video.Colors.Detailed"><value>Επιλέγει το βάθος χρώματος που χρησιμοποιείται για την απόδοση της εικόνας. 24-bit κρατάει περισσότερες λεπτομέρειες χρώματος. 16-bit χρησιμοποιεί μια μικρότερη γκάμα χρωμάτων.</value></data>
+  <data name="Emulation.Help.Video.Region.Short"><value>Επιλέξτε την περιοχή υλικού</value></data>
+  <data name="Emulation.Help.Video.Region.Detailed"><value>Επιλέγει τον περιφερειακό συγχρονισμό που χρησιμοποιείται από την προσομοιωμένη μηχανή. Η επιλογή μπορεί να επηρεάσει τη συχνότητα βίντεο, CPU χρονοδιάγραμμα, και συμβατό firmware.</value></data>
+  <data name="Emulation.Help.Video.Rendering.Short"><value>Επιλέξτε τον εξυπηρετητή βίντεο</value></data>
+  <data name="Emulation.Help.Video.Rendering.Detailed"><value>Επιλέγει το σύστημα υποστήριξης γραφικών που χρησιμοποιείται για τη σχεδίαση της εικονιζόμενης οθόνης. Οι διαθέσιμοι αποδότες μπορούν να διαφέρουν ως προς την απόδοση και τη συμβατότητα με το σύστημα υποδοχής.</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Short"><value>Adjust GTIA καθυστέρηση χρώματος</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Ορίζει το GTIA καθυστέρηση φάσης χρώματος που χρησιμοποιείται για την αναπαραγωγή χρωμάτων. Το προκαθορισμένο χρησιμοποιεί την τυπική τιμή. Οι αριθμητικές επιλογές μετατοπίζουν τις προκύπτουσες αποχρώσεις.</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Short"><value>Ορισμός παρακάμψεων καρέ</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Ορίζει πόσα πλαίσια οθόνης παραλείπονται. Αναπηρία τραβά κάθε πλαίσιο. Υψηλότερες τιμές μειώνουν την απόδοση εργασίας αλλά κάνουν την κίνηση λιγότερο ομαλή.</value></data>
 </root>

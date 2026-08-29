@@ -126,15 +126,6 @@
   <data name="Emulation.Cpu.Compatibility">
     <value>Cykelkompatibel CPU</value>
   </data>
-  <data name="Emulation.Memory.Chip">
-    <value>Chip RAM</value>
-  </data>
-  <data name="Emulation.Memory.Slow">
-    <value>Slow RAM</value>
-  </data>
-  <data name="Emulation.Memory.Fast">
-    <value>Fast RAM</value>
-  </data>
   <data name="Emulation.Memory.Z3">
     <value>Zorro III RAM</value>
   </data>
@@ -248,9 +239,6 @@
   </data>
   <data name="Emulation.Storage.HardDisk.DriveCount">
     <value>Antal hårddiskar</value>
-  </data>
-  <data name="Emulation.Fpu.Model">
-    <value>FPU</value>
   </data>
   <data name="Emulation.Cpu.Speed">
     <value>CPU-hastighet</value>
@@ -864,12 +852,6 @@
   <data name="Emulation.Storage.Geometry.Sectors">
     <value>Sektorer</value>
   </data>
-  <data name="Emulation.Storage.Unit.MiB">
-    <value>MiB</value>
-  </data>
-  <data name="Emulation.Storage.Unit.GiB">
-    <value>GiB</value>
-  </data>
   <data name="Emulation.Controller.Action.Up">
     <value>Upp</value>
   </data>
@@ -909,14 +891,8 @@
   <data name="Emulation.Amiga.Controller.Cd32.PlayPause">
     <value>CD32 spela / pausa</value>
   </data>
-  <data name="Emulation.Amiga.Controller.Joystick">
-    <value>Amiga-styrspak</value>
-  </data>
   <data name="Emulation.Controller.AnalogJoystick">
     <value>Analog styrspak</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32">
-    <value>CD32-handkontroll</value>
   </data>
   <data name="Emulation.Mouse.Wheel.Up">
     <value>Mushjul upp</value>
@@ -929,63 +905,6 @@
   </data>
   <data name="Emulation.Mouse.Wheel.Right">
     <value>Mushjul åt höger</value>
-  </data>
-  <data name="Emulation.Atari.Model.St" xml:space="preserve">
-    <value>Atari ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stf" xml:space="preserve">
-    <value>Atari STF</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stfm" xml:space="preserve">
-    <value>Atari STFM</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSt" xml:space="preserve">
-    <value>Atari Mega ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Ste" xml:space="preserve">
-    <value>Atari STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSte" xml:space="preserve">
-    <value>Atari Mega STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Tt" xml:space="preserve">
-    <value>Atari TT</value>
-  </data>
-  <data name="Emulation.Atari.Model.Falcon" xml:space="preserve">
-    <value>Atari Falcon</value>
-  </data>
-  <data name="Emulation.Atari.Model.400" xml:space="preserve">
-    <value>Atari 400</value>
-  </data>
-  <data name="Emulation.Atari.Model.800" xml:space="preserve">
-    <value>Atari 800</value>
-  </data>
-  <data name="Emulation.Atari.Model.800Xl" xml:space="preserve">
-    <value>Atari 800XL</value>
-  </data>
-  <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
-    <value>Atari 130XE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
-    <value>Atari XEGS</value>
-  </data>
-  <data name="Emulation.Atari.Model.5200" xml:space="preserve">
-    <value>Atari 5200</value>
-  </data>
-  <data name="Emulation.Atari.Model.2600" xml:space="preserve">
-    <value>Atari 2600</value>
-  </data>
-  <data name="Emulation.Atari.Model.7800" xml:space="preserve">
-    <value>Atari 7800</value>
-  </data>
-  <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
-    <value>Atari Lynx</value>
-  </data>
-  <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
-    <value>Atari Jaguar</value>
-  </data>
-  <data name="Emulation.Atari.Model.JaguarCd" xml:space="preserve">
-    <value>Atari Jaguar CD</value>
   </data>
   <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve">
     <value>Detta värde bestäms av den valda modellen.</value>
@@ -1090,24 +1009,11 @@
   <data name="Emulation.Atari.Storage.MediaFilter" xml:space="preserve">
     <value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Alla filer|*.*</value>
   </data>
-  <data name="Emulation.Atari.Controller.Joystick">
-    <value>Atari-styrspak</value>
-  </data>
-<data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Paddle Controllers</value></data>
-<data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 Light Gun</value></data>
-<data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>Atari Driving Controller</value></data>
-  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
-  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
-  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar Controller</value></data>
   <data name="Emulation.Controller.Automatic"><value>Automatisk</value></data>
   <data name="Emulation.Controller.None"><value>Ingen</value></data>
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Parallel Four-player joystick adapter</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Switch joystick/mouse</value></data>
   <data name="Emulation.Atari.Controller.NumericKeypad"><value>Numerisk keypad</value></data>
-  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
-  <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
-  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Controller</value></data>
   <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
     <value>Emulatorn kräver ett medium innan den här maskinen kan startas. Sätt in en diskett eller konfigurera en hårddisk.</value>
   </data>
@@ -1127,7 +1033,6 @@
   <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Mosaic-minnesutökning</value></data>
   <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Axlon-minnesutökning</value></data>
   <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Axlon $0F-bankskugga</value></data>
-  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
   <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>Stereo-POKEY</value></data>
   <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Högupplösta artefakter</value></data>
   <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>SIO-acceleration</value></data>
@@ -1164,25 +1069,10 @@
   <data name='Emulation.Media.Eject' xml:space='preserve'>
     <value>Mata ut media</value>
   </data>
-  <data name="Emulation.Tab.Cpu" xml:space="preserve"><value>CPU</value></data>
-  <data name="Emulation.Tab.Ram" xml:space="preserve"><value>RAM</value></data>
-  <data name="Emulation.Tab.Rom" xml:space="preserve"><value>ROM</value></data>
-  <data name="Emulation.Family.Amiga" xml:space="preserve"><value>Amiga</value></data>
-  <data name="Emulation.Family.Atari" xml:space="preserve"><value>Atari</value></data>
-  <data name="Emulation.Atari.Model.XlXe" xml:space="preserve"><value>Atari XL/XE</value></data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
   <data name="Emulation.Key.AtariHelp" xml:space="preserve"><value>Help</value></data>
   <data name="Emulation.Key.AtariUndo" xml:space="preserve"><value>Undo</value></data>
-  <data name="Emulation.Amiga.Model.A500" xml:space="preserve"><value>Amiga 500</value></data>
-  <data name="Emulation.Amiga.Model.A500PLUS" xml:space="preserve"><value>Amiga 500 Plus</value></data>
-  <data name="Emulation.Amiga.Model.A600" xml:space="preserve"><value>Amiga 600</value></data>
-  <data name="Emulation.Amiga.Model.A1000" xml:space="preserve"><value>Amiga 1000</value></data>
-  <data name="Emulation.Amiga.Model.A1200" xml:space="preserve"><value>Amiga 1200</value></data>
-  <data name="Emulation.Amiga.Model.A2000" xml:space="preserve"><value>Amiga 2000</value></data>
-  <data name="Emulation.Amiga.Model.A3000" xml:space="preserve"><value>Amiga 3000</value></data>
-  <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Amiga 4000</value></data>
-  <data name="Emulation.Amiga.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
-  <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Amiga CD32</value></data>  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput kunde inte initieras. Installera eller reparera den medföljande GameInput-körningen.</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput kunde inte initieras. Installera eller reparera den medföljande GameInput-körningen.</value></data>
   <data name="Emulation.Configuration.Brand"><value>Märke</value></data>
   <data name="Emulation.Configuration.Machine"><value>Maskin</value></data>
   <data name="Emulation.Configuration.TotalRam"><value>Totalt RAM-minne</value></data>
@@ -1190,7 +1080,110 @@
   <data name="Emulation.Configuration.Peripherals"><value>Kringutrustning</value></data>
   <data name="Emulation.Configuration.Actions"><value>Åtgärder</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>Ta bort konfigurationen {0} {1}?</value></data>
-  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
-    <value>Kickstart</value>
-  </data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short"><value>Tyst tomma floppy enheter</value></data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed"><value>Tystnader emulerade enhetsljud medan ingen disk infogas. Inaktivera det här alternativet för att hålla det tomma mekaniska ljudet.</value></data>
+  <data name="Emulation.Help.Audio.Filter.Short"><value>Välj analog ljudfiltrering</value></data>
+  <data name="Emulation.Help.Audio.Filter.Detailed"><value>Väljer hur det ursprungliga analoga ljudfiltret reproduceras. Emulated följer hårdvarubeteende. De andra valen tvingar filtret på eller av.</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Short"><value>Möjliggöra det polariserade ljudfiltret</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Detailed"><value>Applicerar det polariserade filtret till den genererade ljudsignalen. Gör det möjligt att reproducera det filtrerade ljudet. Inaktivera det för att hålla den ofiltrerade signalen.</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Short"><value>Välj audio interpolation</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Detailed"><value>Väljer hur ljudprover beräknas mellan genererade provpunkter. Högre kvalitetsmetoder producerar mjukare ljud men kräver mer bearbetning.</value></data>
+  <data name="Emulation.Help.Audio.Latency.Short"><value>Ställ in ljud latens</value></data>
+  <data name="Emulation.Help.Audio.Latency.Detailed"><value>Anger varaktigheten av ljudbufferten. En kortare buffert minskar fördröjningen men kan orsaka sprickbildning. En längre buffert förbättrar stabiliteten men ökar fördröjningen.</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Short"><value>Aktivera Dual POKEY stereo</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed"><value>Lägger till en andra emulerad POKEY chip för att producera stereo ljud. Aktivera detta alternativ endast för programvara som stöder dubbla POKEY ljud.</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Short"><value>Ställ stereo separation</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Detailed"><value>Ställ in separationen mellan vänster och höger kanaler. Ett lägre värde blandar kanalerna tillsammans. Ett högre värde håller dem längre ifrån varandra.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short"><value>Välj floppy drive sound set</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed"><value>Väljer provet som används för de mekaniska ljuden av emulerade floppy-enheter. Det ändrar inte drivbeteende eller diskdata.</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Short"><value>Välj ljudfiltermodellen</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed"><value>Väljer hårdvarufiltersvaret för att efterlikna. Auto följer den valda maskinmodellen. Ett specifikt val använder alltid filtretsvaret.</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Short"><value>Möjliggöra ytterligare två joystick-portar</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Detailed"><value>Emulerar en parallellport adapter som lägger till två joystick portar. Möjliggöra det för programvara som stöder fyra samtidiga spelare.</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Short"><value>Ställ turbopulsintervall</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Detailed"><value>Ställ in tiden mellan automatiska knapptryckningar som produceras av turbo. Ett kortare intervall producerar snabbare upprepade skjutningar.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Short"><value>Välj ett styrkompatibilitetsläge</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed"><value>Väljer en särskild kontroller kartläggning, såsom dubbelstick kontroll, bytte portar, eller Joy2B+Välj Ingen för att hålla standardportkartläggningen.</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Short"><value>Ange analog input känslighet</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed"><value>Anger hur starkt en analog ingång svarar på rörelse. Ett högre värde ger ett större svar från samma fysiska rörelse.</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Short"><value>Ställ in digital input känslighet</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed"><value>Anger hur snabbt en digital riktning når full rörelse. Ett högre värde gör att riktningsförändringar når sitt maximum snabbare.</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Short"><value>Välj autofire läge</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed"><value>Inaktiverad stänger autofire av. På knappen upprepar brand medan den tilldelade knappen hålls. upprepar alltid eld kontinuerligt.</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Short"><value>Ställ paddle rörelse hastighet</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Detailed"><value>Anger hur snabbt digital ingång flyttar en emulerad paddla. Ett lägre värde rör det långsammare. Ett högre värde rör det snabbare.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Short"><value>Välj det FPU</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed"><value>Välj den flytande punktenhet som används för flytande punkt instruktioner. Välj ingen att inaktivera FPUTillgängliga modeller beror på de valda CPU.</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Short"><value>Välj Välj CPU emulerings noggrannhet</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Detailed"><value>Väljer hur nära CPU Timing följer den ursprungliga hårdvaran. Mer exakta lägen kan förbättra kompatibiliteten men kan kräva mer bearbetning.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Short"><value>Ställ in de emulerade CPU hastighet</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed"><value>Anger processorfrekvensen som används av den emulerade maskinen. Den ursprungliga hastigheten bevarar hårdvarutid. Högre värden accelererar CPUBegränsad programvara.</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short"><value>Använd analoga pinnar för att kontrollera musen</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Detailed"><value>Tillåter analog joystick axlar för att flytta den emulerade muspekaren. Möjliggöra det när en fysisk analog pinne bör kontrollera pekaren.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Short"><value>Ställ in analog mushastighet</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed"><value>Ställ in pekare hastighet när en analog pinne styr den emulerade musen. Ett högre värde flyttar pekaren längre för samma stick rörelse.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Short"><value>Ställ in den analoga musen döda zonen</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed"><value>Ignorerar små analog-stick rörelser runt centrum samtidigt som man kontrollerar musen. Öka värdet om pekaren rör sig medan pinnen släpps.</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Short"><value>Aktivera Axlon $0F Skuggbank</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed"><value>Speglar Axlon kontrollbank på adress $0FAktivera det endast för mjukvaru- eller minnesexpansioner som använder denna ytterligare adress.</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short"><value>Set Axlon expansionsminnet</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed"><value>Ställ in mängden bankväxlade Axlon minne. Inaktiverad tar bort expansionen. De andra valen ger den valda minneskapaciteten.</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short"><value>Set Mosaic expansionsminnet</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed"><value>Ställ in mängden bankväxlade Mosaic minne. Inaktiverad tar bort expansionen. De andra valen ger den valda minneskapaciteten.</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short"><value>Ställ in ytterligare expansion minne</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed"><value>Anger mängden ytterligare expansionsminne som stöds av den valda maskinen. Välj Ingen att använda endast det konfigurerade huvudminnet.</value></data>
+  <data name="Emulation.Help.Memory.Fast.Short"><value>Set Fast RAM storlek storlek storlek storlek storlek storlek</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed"><value>Anger mängden Fast RAM tillgänglig direkt till CPUYtterligare Fast RAM kan hjälpa kompatibel programvara men ändrar den emulerade hårdvarukonfigurationen.</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short"><value>Aktivera MapRAM</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Detailed"><value>Tillåter kompatibel programvara för att kartlägga skrivbara RAM in i systemet ROM adressområde. Detta alternativ är endast tillgängligt på maskinmodeller som stöder MapRAM.</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short"><value>Set Zorro III RAM storlek storlek storlek storlek storlek storlek</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed"><value>Anger mängden 32-bitars Fast RAM ansluten genom Zorro III buss. Använd den endast med kompatibla 32-bitars maskiner och programvara.</value></data>
+  <data name="Emulation.Help.Memory.Slow.Short"><value>Set Slow RAM storlek storlek storlek storlek storlek storlek</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed"><value>Anger mängden Slow RAM i trapdoor expansionsområdet. Detta minne är långsammare än Fast RAM och använder ett annat hårdvaruadressområde.</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Short"><value>Välj det ROM Decryption Key</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Detailed"><value>Väljer den nyckelfil som används för att dekryptera en licensierad krypterad ROM Bild. Lämna detta fält tomt när det valda ROM är inte krypterad.</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Short"><value>Aktivera snabb start</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Detailed"><value>Skips valda hårdvaruinitiering förseningar för att förkorta start. Inaktivera detta alternativ när programvara kräver den ursprungliga startsekvensen.</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Short"><value>Välj en utökad ROM</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed"><value>Väljer den sekundära firmware ROM krävs av vissa maskinmodeller. Lämna detta fält tomt när den valda modellen inte använder en utökad ROM.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Short"><value>Aktivera accelererad SIO Överföringar</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed"><value>Snabbar upp kompatibla överföringar genom serieinmatnings-/utgångsbussen. Inaktivera det här alternativet när programvaran beror på den ursprungliga överföringstiden.</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short"><value>Aktivera Cassette Startup</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Detailed"><value>Gör den emulerade maskinen försöker starta från den bifogade kassettbilden. Inaktivera det här alternativet när du börjar från en annan enhet.</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Short"><value>Aktivera R-Time 8 Klockan</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Detailed"><value>Emulerar en R-Time 8 realtidsklocka så kompatibel programvara kan läsa aktuellt datum och tid.</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Short"><value>Aktivera P: printer device</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed"><value>Gör de emulerade P: skrivarenhet tillgänglig för programvara. Inaktivera detta alternativ när tryck-enhet emulering inte behövs.</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Short"><value>Aktivera R: Serial enhet</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed"><value>Gör de emulerade R: seriell enhet tillgänglig för programvara. Inaktivera detta alternativ när seriell enhet emulering inte behövs.</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Short"><value>Välj högupplöst färg artefaktering</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Detailed"><value>Väljer hur högupplösta mönster producerar komposit-video färger. Ingen inaktiverar artefaktfärger. De andra lägena reproducerar olika paletter eller chip beteende.</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Short"><value>Välj blitter timing</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Detailed"><value>Väljer om blitter-operationer slutar omedelbart eller följer emulerad hårdvarutid. Omedelbart läge är snabbare men mindre timing-accurate.</value></data>
+  <data name="Emulation.Help.Video.HzChange.Short"><value>Tillåt output refresh-rate förändringar</value></data>
+  <data name="Emulation.Help.Video.HzChange.Detailed"><value>Tillåter utgångsuppdateringsfrekvensen att följa ändringar i det emulerade videoläget. Locked håller den nuvarande output refresh rate.</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Short"><value>Välj kollisionsdetektering detaljer</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Detailed"><value>Väljer vilka sprit och playfield kollisioner beräknas. Mer fullständig upptäckt förbättrar kompatibiliteten men kräver mer bearbetning.</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Short"><value>Minska interlaced display flicker</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed"><value>Minskar flimmer i interlaced videoutgång. Aktivera den för en stadigare bild. Inaktivera det för att bevara det ursprungliga interlaced displaybeteende.</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Short"><value>Välj det visade bildförhållandet</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Detailed"><value>Väljer hur den emulerade bilden skalas horisontellt och vertikalt. Auto följer den emulerade produktionen. En fast val krafter som visar form.</value></data>
+  <data name="Emulation.Help.Video.Gamma.Short"><value>Justera bild gamma</value></data>
+  <data name="Emulation.Help.Video.Gamma.Detailed"><value>Förändrar midtonens ljusstyrka utan att direkt ändra de svarta och vita nivåerna. Lägre värden mörka midtoner. Högre värden lyser upp dem.</value></data>
+  <data name="Emulation.Help.Video.LineMode.Short"><value>Välj video line mode</value></data>
+  <data name="Emulation.Help.Video.LineMode.Detailed"><value>Väljer hur vertikala videolinjer visas. Auto följer det emulerade läget. Andra val tvingar enskilda linjer, fördubblade linjer eller skanliner när de är tillgängliga.</value></data>
+  <data name="Emulation.Help.Video.Standard.Short"><value>Välj videostandard</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed"><value>Väljer den emulerade TV-timingen, till exempel PAL eller NTSCDetta påverkar uppfriskande hastighet, hårdvarutid och mjukvarukompatibilitet.</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Short"><value>Välj en extern färgpalett</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Detailed"><value>Väljer en fördefinierad färgpalett istället för färger som genereras från de aktuella videoinställningarna. Välj Ingen att använda de genererade färgerna.</value></data>
+  <data name="Emulation.Help.Video.Colors.Short"><value>Välj utdata färgdjup</value></data>
+  <data name="Emulation.Help.Video.Colors.Detailed"><value>Väljer färgdjupet som används för att göra bilden. 24-bit Håller mer färg detalj. 16-bit använder ett mindre utbud av färger.</value></data>
+  <data name="Emulation.Help.Video.Region.Short"><value>Välj hårdvaruregionen</value></data>
+  <data name="Emulation.Help.Video.Region.Detailed"><value>Väljer den regionala tidpunkt som används av den emulerade maskinen. Valet kan påverka videofrekvensen, CPU timing och kompatibel firmware.</value></data>
+  <data name="Emulation.Help.Video.Rendering.Short"><value>Välj video renderer</value></data>
+  <data name="Emulation.Help.Video.Rendering.Detailed"><value>Välj den grafikbackend som används för att dra den emulerade displayen. Tillgängliga givare kan skilja sig i prestanda och kompatibilitet med värdsystemet.</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Short"><value>Justera GTIA Färgfördröjning</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Ställ in GTIA färgfasfördröjning som används för att reproducera färger. Standard använder standardvärdet. Numeriska val flyttar de resulterande nyanserna.</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Short"><value>Set ram hopping</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Anger hur många displayramar utelämnas. Funktionshindrade drar varje ram. Högre värden minskar rendering arbete men gör rörelse mindre smidig.</value></data>
 </root>

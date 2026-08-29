@@ -126,15 +126,6 @@
   <data name="Emulation.Cpu.Compatibility">
     <value>Cycle-compatible CPU</value>
   </data>
-  <data name="Emulation.Memory.Chip">
-    <value>Chip RAM</value>
-  </data>
-  <data name="Emulation.Memory.Slow">
-    <value>Slow RAM</value>
-  </data>
-  <data name="Emulation.Memory.Fast">
-    <value>Fast RAM</value>
-  </data>
   <data name="Emulation.Memory.Z3">
     <value>Zorro III RAM</value>
   </data>
@@ -248,9 +239,6 @@
   </data>
   <data name="Emulation.Storage.HardDisk.DriveCount">
     <value>Merevlemezek száma</value>
-  </data>
-  <data name="Emulation.Fpu.Model">
-    <value>FPU</value>
   </data>
   <data name="Emulation.Cpu.Speed">
     <value>CPU speed</value>
@@ -864,12 +852,6 @@
   <data name="Emulation.Storage.Geometry.Sectors">
     <value>Szektorok</value>
   </data>
-  <data name="Emulation.Storage.Unit.MiB">
-    <value>MiB</value>
-  </data>
-  <data name="Emulation.Storage.Unit.GiB">
-    <value>GiB</value>
-  </data>
   <data name="Emulation.Controller.Action.Up">
     <value>Fel</value>
   </data>
@@ -909,14 +891,8 @@
   <data name="Emulation.Amiga.Controller.Cd32.PlayPause">
     <value>CD32 lejátszás / szünet</value>
   </data>
-  <data name="Emulation.Amiga.Controller.Joystick">
-    <value>Amiga botkormány</value>
-  </data>
   <data name="Emulation.Controller.AnalogJoystick">
     <value>Analóg botkormány</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32">
-    <value>CD32 vezérlő</value>
   </data>
   <data name="Emulation.Mouse.Wheel.Up">
     <value>Egérgörgő fel</value>
@@ -929,63 +905,6 @@
   </data>
   <data name="Emulation.Mouse.Wheel.Right">
     <value>Egérgörgő jobbra</value>
-  </data>
-  <data name="Emulation.Atari.Model.St" xml:space="preserve">
-    <value>Atari ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stf" xml:space="preserve">
-    <value>Atari STF</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stfm" xml:space="preserve">
-    <value>Atari STFM</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSt" xml:space="preserve">
-    <value>Atari Mega ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Ste" xml:space="preserve">
-    <value>Atari STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSte" xml:space="preserve">
-    <value>Atari Mega STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Tt" xml:space="preserve">
-    <value>Atari TT</value>
-  </data>
-  <data name="Emulation.Atari.Model.Falcon" xml:space="preserve">
-    <value>Atari Falcon</value>
-  </data>
-  <data name="Emulation.Atari.Model.400" xml:space="preserve">
-    <value>Atari 400</value>
-  </data>
-  <data name="Emulation.Atari.Model.800" xml:space="preserve">
-    <value>Atari 800</value>
-  </data>
-  <data name="Emulation.Atari.Model.800Xl" xml:space="preserve">
-    <value>Atari 800XL</value>
-  </data>
-  <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
-    <value>Atari 130XE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
-    <value>Atari XEGS</value>
-  </data>
-  <data name="Emulation.Atari.Model.5200" xml:space="preserve">
-    <value>Atari 5200</value>
-  </data>
-  <data name="Emulation.Atari.Model.2600" xml:space="preserve">
-    <value>Atari 2600</value>
-  </data>
-  <data name="Emulation.Atari.Model.7800" xml:space="preserve">
-    <value>Atari 7800</value>
-  </data>
-  <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
-    <value>Atari Lynx</value>
-  </data>
-  <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
-    <value>Atari Jaguar</value>
-  </data>
-  <data name="Emulation.Atari.Model.JaguarCd" xml:space="preserve">
-    <value>Atari Jaguar CD</value>
   </data>
   <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve">
     <value>Ezt az értéket a kiválasztott modell határozza meg.</value>
@@ -1089,24 +1008,11 @@
   <data name="Emulation.Atari.Storage.MediaFilter" xml:space="preserve">
     <value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Minden fájl|*.*</value>
   </data>
-  <data name="Emulation.Atari.Controller.Joystick">
-    <value>Atari joystick</value>
-  </data>
-<data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Paddle Controllers</value></data>
-<data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 Light Gun</value></data>
-<data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>Atari Driving Controller</value></data>
-  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
-  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
-  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar Controller</value></data>
   <data name="Emulation.Controller.Automatic"><value>Automatikus</value></data>
   <data name="Emulation.Controller.None"><value>Nincs</value></data>
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Párhuzamos négyjátékos joystick adapter</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Joystick / egér kapcsolása</value></data>
   <data name="Emulation.Atari.Controller.NumericKeypad"><value>Numerikus billentyűzet</value></data>
-  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
-  <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
-  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B + vezérlő</value></data>
   <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
     <value>Az emulátornak adathordozóra van szüksége a gép bekapcsolása előtt. Helyezze be vagy állítsa be az alább látható szükséges adathordozók egyikét.</value>
   </data>
@@ -1126,7 +1032,6 @@
   <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Mosaic memóriabővítés</value></data>
   <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Axlon memóriabővítés</value></data>
   <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Axlon $0F bankárnyék</value></data>
-  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
   <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>Sztereó POKEY</value></data>
   <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Nagy felbontású színműtermékek</value></data>
   <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>SIO-gyorsítás</value></data>
@@ -1164,25 +1069,10 @@
   <data name='Emulation.Media.Eject' xml:space='preserve'>
     <value>Adathordozó kiadása</value>
   </data>
-  <data name="Emulation.Tab.Cpu" xml:space="preserve"><value>CPU</value></data>
-  <data name="Emulation.Tab.Ram" xml:space="preserve"><value>RAM</value></data>
-  <data name="Emulation.Tab.Rom" xml:space="preserve"><value>ROM</value></data>
-  <data name="Emulation.Family.Amiga" xml:space="preserve"><value>Amiga</value></data>
-  <data name="Emulation.Family.Atari" xml:space="preserve"><value>Atari</value></data>
-  <data name="Emulation.Atari.Model.XlXe" xml:space="preserve"><value>Atari XL/XE</value></data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
   <data name="Emulation.Key.AtariHelp" xml:space="preserve"><value>Help</value></data>
   <data name="Emulation.Key.AtariUndo" xml:space="preserve"><value>Undo</value></data>
-  <data name="Emulation.Amiga.Model.A500" xml:space="preserve"><value>Amiga 500</value></data>
-  <data name="Emulation.Amiga.Model.A500PLUS" xml:space="preserve"><value>Amiga 500 Plus</value></data>
-  <data name="Emulation.Amiga.Model.A600" xml:space="preserve"><value>Amiga 600</value></data>
-  <data name="Emulation.Amiga.Model.A1000" xml:space="preserve"><value>Amiga 1000</value></data>
-  <data name="Emulation.Amiga.Model.A1200" xml:space="preserve"><value>Amiga 1200</value></data>
-  <data name="Emulation.Amiga.Model.A2000" xml:space="preserve"><value>Amiga 2000</value></data>
-  <data name="Emulation.Amiga.Model.A3000" xml:space="preserve"><value>Amiga 3000</value></data>
-  <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Amiga 4000</value></data>
-  <data name="Emulation.Amiga.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
-  <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Amiga CD32</value></data>  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>A GameInput inicializálása nem sikerült. Telepítse vagy javítsa a mellékelt GameInput futtatókörnyezetet.</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>A GameInput inicializálása nem sikerült. Telepítse vagy javítsa a mellékelt GameInput futtatókörnyezetet.</value></data>
   <data name="Emulation.Configuration.Brand"><value>Márka</value></data>
   <data name="Emulation.Configuration.Machine"><value>Gép</value></data>
   <data name="Emulation.Configuration.TotalRam"><value>Összes RAM</value></data>
@@ -1190,7 +1080,110 @@
   <data name="Emulation.Configuration.Peripherals"><value>Perifériák</value></data>
   <data name="Emulation.Configuration.Actions"><value>Műveletek</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>Törli a(z) {0} {1} konfigurációt?</value></data>
-  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
-    <value>Kickstart</value>
-  </data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short"><value>Csendes üres floppy meghajtók</value></data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed"><value>Elhallgattatja az emulált meghajtó hangot, amíg nincs behelyezve lemez. Ha kikapcsolja ezt az opciót, az üresjárati mechanikus zaj marad.</value></data>
+  <data name="Emulation.Help.Audio.Filter.Short"><value>Analóg hangszűrés kiválasztása</value></data>
+  <data name="Emulation.Help.Audio.Filter.Detailed"><value>Megválasztja, hogy az eredeti analóg audió szűrő reprodukálódik. Emulált követi a hardver viselkedés. A másik lehetőség a szűrő be- vagy kikapcsolását.</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Short"><value>A polarizált hangszűrő engedélyezése</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Detailed"><value>A polarizált szűrőt alkalmazza a generált hangjelzésre. Engedélyezze a szűrt hang reprodukálását. Kikapcsolom a szűretlen jelet.</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Short"><value>Hanginterpoláció kiválasztása</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Detailed"><value>Válassza ki, hogyan számítják ki az audió mintákat a kapott mintavételi pontok között. A minőségi módszerek simább hangot adnak, de több feldolgozást igényelnek.</value></data>
+  <data name="Emulation.Help.Audio.Latency.Short"><value>Hangkésleltetés beállítása</value></data>
+  <data name="Emulation.Help.Audio.Latency.Detailed"><value>Beállítja a hangpuffer időtartamát. A rövidebb puffer csökkenti a késést, de ropogást okozhat. A hosszabb puffer javítja a stabilitást, de növeli a késést.</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Short"><value>Kétszeres engedélyezése POKEY sztereó</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed"><value>Egy második emulált POKEY chip a sztereó hanghoz. Ezt az opciót csak a kettős felhasználású szoftverek esetén lehet megadni POKEY audio.</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Short"><value>A sztereó szétválasztása</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Detailed"><value>Beállítja a bal és a jobb csatornák elválasztását. Az alacsonyabb érték összekeveri a csatornákat. A magasabb érték távol tartja őket egymástól.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short"><value>Válassza ki a floppy meghajtó hangkészletet</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed"><value>Kiválasztja az emulált floppy meghajtók mechanikus hangjához használt mintakészletet. Nem változtatja meg a meghajtó viselkedését vagy a lemez adatait.</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Short"><value>Válassza ki a hangszűrő modellt</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed"><value>Kiválasztja a hardverszűrő válaszát, hogy modellezze. Auto követi a kiválasztott gépmodellt. Egy adott választás mindig ezt a szűrőválaszt használja.</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Short"><value>Két további joystick port engedélyezése</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Detailed"><value>Emulál egy parallel-port adaptert, amely két joystick portot ad hozzá. Engedélyezze a négy egyidejű játékost támogató szoftvert.</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Short"><value>A turbóimpulzus-intervallum beállítása</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Detailed"><value>Beállítja az időt a turbó által gyártott automata gombnyomás között. A rövidebb intervallum gyorsabb ismétlődő tüzelést eredményez.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Short"><value>A vezérlő kompatibilitási módjának kiválasztása</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed"><value>Kiválaszt egy speciális vezérlő feltérképezést, például dual- stick vezérlést, cserélt portokat, vagy Joy2B+. Válassza ki None tartani a standard port térképezés.</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Short"><value>Analóg beviteli érzékenység beállítása</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed"><value>Beállítja, hogy az analóg bemenet milyen erősen reagál a mozgásra. Egy magasabb érték nagyobb választ ad ugyanarra a fizikai mozgásra.</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Short"><value>Digitális bemeneti érzékenység beállítása</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed"><value>Beállítja, hogy a digitális irány milyen gyorsan éri el a teljes mozgást. A magasabb érték miatt az irányváltozások gyorsabban érik el a maximumot.</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Short"><value>Válassza ki az autofire módot</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed"><value>A fogyatékos kikapcsolja az autós tüzet. A gomb ismétlődik tüzet, miközben a kijelölt gombot tartja. Mindig ismétlődik a tűz.</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Short"><value>Az evezés sebességének beállítása</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Detailed"><value>Beállítja, hogy a digitális bemenet milyen gyorsan mozgatja az emulált lapátot. Egy alacsonyabb érték lassabban mozgatja. A magasabb érték gyorsabban mozgatja.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Short"><value>Válassza ki a FPU</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed"><value>Kiválasztja a lebegőpontos egységet, amelyet a lebegőpontos utasításokhoz használnak. Nem lehet letiltani FPU. A rendelkezésre álló modellek függnek a kiválasztott CPU.</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Short"><value>Kijelölés CPU emulációs pontosság</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Detailed"><value>Milyen szoros CPU az időzítés követi az eredeti hardvert. Pontosabb módozatok javíthatják a kompatibilitást, de több feldolgozást igényelhetnek.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Short"><value>Beállítás CPU sebesség</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed"><value>Beállítja az emulált gép processzorfrekvenciáját. Az eredeti sebesség megőrzi a hardver időzítését. Magasabb értékek gyorsulnak CPU- korlátozott szoftver.</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short"><value>Az analóg pálcikák használata az egérrel</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Detailed"><value>Lehetővé teszi analóg joystick tengelyek mozgatni az emulált egér mutató. Engedélyezze, ha egy fizikai analóg bot kell irányítani a mutató.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Short"><value>Az analóg egér sebességének beállítása</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed"><value>Beállítja a mutató sebességét, amikor egy analóg bot irányítja az emulált egeret. A magasabb érték tovább mozgatja a mutatót ugyanannak a botmozgásnak.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Short"><value>Az analóg egér holtzóna beállítása</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed"><value>Ignores kis analog- stick mozog a központ körül, miközben irányítja az egeret. Növelje az értéket, ha a mutató mozog, amíg a bot szabadul.</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Short"><value>A Axlon $0F árnyékbank</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed"><value>Tükrözi a Axlon az ellenőrző bank címe $0F. Engedélyezze, hogy csak a szoftver vagy memória bővítések, amelyek ezt a kiegészítő címet.</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short"><value>Beállítás Axlon bővítési memória</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed"><value>Beállítja a bankváltások összegét Axlon memória. A fogyatékos eltávolítja a terjeszkedést. A többi lehetőség biztosítja a kiválasztott memória kapacitást.</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short"><value>Beállítás Mosaic bővítési memória</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed"><value>Beállítja a bankváltások összegét Mosaic memória. A fogyatékos eltávolítja a terjeszkedést. A többi lehetőség biztosítja a kiválasztott memória kapacitást.</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short"><value>További bővítési memória beállítása</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed"><value>Beállítja a kiválasztott gép által támogatott további bővítési memória mennyiségét. Válassza ki None-t, hogy csak a beállított főmemóriát használja.</value></data>
+  <data name="Emulation.Help.Memory.Fast.Short"><value>Beállítás Fast RAM méret</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed"><value>Beállítja a Fast RAM közvetlenül a CPU. Kiegészítő Fast RAM tud segíteni kompatibilis szoftver, de megváltoztatja az emulált hardver konfiguráció.</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short"><value>Beállítás MapRAM</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Detailed"><value>Kompatibilis szoftver az írható térképhez RAM a rendszerbe ROM cím terület. Ez az opció csak a támogató gépmodelleken érhető el MapRAM.</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short"><value>Beállítás Zorro III RAM méret</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed"><value>A 32 bites összeg beállítása Fast RAM csatlakoztatva a Zorro III Busszal. Használja csak kompatibilis 32 bites gépek és szoftverek.</value></data>
+  <data name="Emulation.Help.Memory.Slow.Short"><value>Beállítás Slow RAM méret</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed"><value>Beállítja a Slow RAM A csapóajtó tágulási területén. Ez az emlék lassabb, mint Fast RAM és más hardveres címtartományt használ.</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Short"><value>Válassza ki a ROM dekódolási kulcs</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Detailed"><value>A titkosított titkosítás dekódolásához használt kulcsfájl kiválasztása ROM kép. Ezt a mezőt üresen hagyja, ha a kijelölt ROM nincs kódolva.</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Short"><value>Gyors indítás engedélyezése</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Detailed"><value>Kihagyja a kiválasztott hardverinicializálási késéseket, hogy lerövidítse az indítást. Ezt az opciót akkor kell kikapcsolni, ha a szoftverhez az eredeti indítási folyamat szükséges.</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Short"><value>Válassza ki a kiterjesztett ROM</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed"><value>A másodlagos firmware kiválasztása ROM néhány gépmodell igényli. Ezt a mezőt üresen hagyjuk, ha a kiválasztott modell nem használ kiterjesztett ROM.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Short"><value>Gyorsulás engedélyezése SIO átcsoportosítások</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed"><value>Felgyorsítja a kompatibilis transzfereket a soros bemeneti / kimeneti buszon keresztül. Ha a szoftver az eredeti átvitel időzítésétől függ, akkor kapcsolja ki ezt az opciót.</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short"><value>A kazetta indításának engedélyezése</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Detailed"><value>Az emulált gép megpróbálja elindítani a csatolt kazetta képet. Távolítsa el ezt az opciót, ha egy másik eszközről indul.</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Short"><value>A R-Time 8 óra</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Detailed"><value>Emulál R-Time 8 real-time óra így kompatibilis szoftver tudja olvasni az aktuális dátum és idő.</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Short"><value>A P: nyomtatóeszköz</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed"><value>Mágneses P: a szoftver rendelkezésére álló nyomtató. Ha a printer- eszköz emulációja nem szükséges, akkor állítsa le ezt az opciót.</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Short"><value>A R: soros eszköz</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed"><value>Mágneses R: a szoftver rendelkezésére álló soros eszköz. Ha a sorozatos eszköz emulációja nem szükséges, akkor állítsa le ezt az opciót.</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Short"><value>Válassza ki a nagyfelbontású szín ábrázolását</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Detailed"><value>Kiválasztja, hogy a nagy felbontású minták hogyan alkotnak kompozit-video színeket. Egyik sem cáfolja a műtárgy színét. A többi mód különböző palettákat vagy chip viselkedést reprodukál.</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Short"><value>Válassza ki a Blitter időzítését</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Detailed"><value>Válassza ki, hogy a blitter műveletek azonnal befejeződnek-e, vagy kövessék az emulált hardver időzítését. Az azonnali üzemmód gyorsabb, de kevésbé pontos.</value></data>
+  <data name="Emulation.Help.Video.HzChange.Short"><value>A kimeneti frissítési sebesség változásainak engedélyezése</value></data>
+  <data name="Emulation.Help.Video.HzChange.Detailed"><value>Lehetővé teszi, hogy a kimeneti frissítési sebesség kövesse a változásokat az emulált videó módban. Zárolt tartja az aktuális kimeneti frissítési sebesség.</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Short"><value>Válassza ki az ütközés észlelésének részleteit</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Detailed"><value>Kiszámítják a sprite és a playfield ütközések kiválasztását. A teljesebb felismerés javítja a kompatibilitást, de több feldolgozást igényel.</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Short"><value>Az interlaced kijelző villogásának csökkentése</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed"><value>Csökkenti a villogást az interlaced videó kimeneten. Engedélyezd a merevebb képet. Kikapcsolom, hogy megőrizzem az eredeti interlaced kijelző viselkedést.</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Short"><value>Válassza ki a megjelenített képarányt</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Detailed"><value>Kiválasztja, hogy az emulált képet vízszintesen és függőlegesen kell méretezni. Auto követi az emulált kimenetet. Egy fix választás kényszeríti az alakzatot.</value></data>
+  <data name="Emulation.Help.Video.Gamma.Short"><value>A gamma kép beállítása</value></data>
+  <data name="Emulation.Help.Video.Gamma.Detailed"><value>Megváltoztatja a fényerő a középhangok, anélkül, hogy közvetlenül megváltoztatja a fekete-fehér szinten. Az alsó értékek sötétebbek. A magasabb értékek felvidítják őket.</value></data>
+  <data name="Emulation.Help.Video.LineMode.Short"><value>Válassza ki a videovonal módot</value></data>
+  <data name="Emulation.Help.Video.LineMode.Detailed"><value>Válassza ki, hogyan jelenik meg a függőleges videó vonalak. Auto követi az emulált üzemmódot. Más választási kényszert egyetlen sor, dupla vonalak, vagy scanline, ha rendelkezésre áll.</value></data>
+  <data name="Emulation.Help.Video.Standard.Short"><value>Válassza ki a videó szabványt</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed"><value>Kiválasztja az emulált televíziós időzítést, például PAL vagy NTSC. Ez befolyásolja a frissítési sebesség, hardver időzítés, és a szoftver kompatibilitás.</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Short"><value>Külső színpaletta kiválasztása</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Detailed"><value>Kiválaszt egy előre meghatározott színpaletta helyett színek generált jelenlegi videó beállítások. Válasszon egyet a generált színek használatához.</value></data>
+  <data name="Emulation.Help.Video.Colors.Short"><value>A kimeneti színmélység kiválasztása</value></data>
+  <data name="Emulation.Help.Video.Colors.Detailed"><value>Kiválasztja a kép készítéséhez használt színmélységet. 24-bit több színt tart meg. 16-bit kisebb színválasztékot használ.</value></data>
+  <data name="Emulation.Help.Video.Region.Short"><value>Válassza ki a hardver régiót</value></data>
+  <data name="Emulation.Help.Video.Region.Detailed"><value>Kiválasztja az emulált gép által használt regionális időzítést. A választás befolyásolhatja a videó frekvenciáját, CPU időzítése és kompatibilis firmware.</value></data>
+  <data name="Emulation.Help.Video.Rendering.Short"><value>Válassza ki a video renderert</value></data>
+  <data name="Emulation.Help.Video.Rendering.Detailed"><value>Kiválasztja az emulált kijelző rajzolásához használt grafikus hátteret. A rendelkezésre álló megbízók eltérő teljesítményt és kompatibilitást mutatnak a fogadó rendszerrel.</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Short"><value>Beállítás GTIA színkésleltetés</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Beállítja a GTIA színfázis késleltetés használt reprodukálni színek. Az alapértelmezés a standard értéket használja. Numerikus választás eltolja az ebből eredő árnyalatok.</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Short"><value>A képkockaugrás beállítása</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Beállítja, hogy hány kijelzőkeret maradt ki. A letiltott minden képkockát megrajzol. A magasabb értékek csökkentik a renderelés munkáját, de a mozgás kevésbé sima.</value></data>
 </root>

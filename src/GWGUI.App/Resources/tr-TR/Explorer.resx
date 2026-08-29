@@ -117,13 +117,8 @@
   <data name="Explorer.CustomSectorLoader"><value>Özel sektör yükleyici</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Özel sektör yükleyici — dosya kataloğu yok</value></data>
   <data name="Explorer.Content.crack-the-company"><value>The Company tarafından crack</value></data>
-  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
-  <data name="Explorer.Content.compression-atn-imploder"><value>ATN! (File Imploder)</value></data>
   <data name="Explorer.DataBlocks"><value>Veri blokları</value></data>
   <data name="Explorer.DetectedFormats"><value>Algılandı: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>
-  <data name="Explorer.Metadata.None" xml:space="preserve">
-    <value>—</value>
-  </data>
 </root>

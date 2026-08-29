@@ -4,6 +4,43 @@ namespace GWGUI.Emulation.Amiga.Functions;
 
 internal static class AmigaSettingsDescriptionFunctions
 {
+    private static readonly IReadOnlyDictionary<string, string> FieldHelpResources =
+        new Dictionary<string, string>(StringComparer.Ordinal)
+        {
+            [AmigaSettingsDescriptionFunctionsConstants.OptionFpuModel] = "Emulation.Help.Cpu.FpuModel",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionCpuCompatibility] = "Emulation.Help.Cpu.Precision",
+            [AmigaSettingsConstants.CpuSpeed] = "Emulation.Help.Cpu.Speed",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionBogomemSize] = "Emulation.Help.Memory.Slow",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionFastmemSize] = "Emulation.Help.Memory.Fast",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionZ3memSize] = "Emulation.Help.Memory.Z3",
+            [AmigaSettingsConstants.ExtendedRomPath] = "Emulation.Help.Firmware.ExtendedRom",
+            [AmigaSettingsConstants.RomKeyPath] = "Emulation.Help.Firmware.RomKey",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionVideoStandard] = "Emulation.Help.Video.Standard",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionVideoAspect] = "Emulation.Help.Video.AspectRatio",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionVideoVresolution] = "Emulation.Help.Video.LineMode",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionVideoAllowHzChange] = "Emulation.Help.Video.HzChange",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionGfxFramerate] = "Emulation.Help.Video.FrameSkip",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionGfxColors] = "Emulation.Help.Video.Colors",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionGfxGamma] = "Emulation.Help.Video.Gamma",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionImmediateBlits] = "Emulation.Help.Video.ImmediateBlits",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionCollisionLevel] = "Emulation.Help.Video.CollisionLevel",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionGfxFlickerfixer] = "Emulation.Help.Video.FlickerFixer",
+            [AmigaSettingsConstants.VideoRenderer] = "Emulation.Help.Video.Rendering",
+            [AmigaSettingsConstants.AudioLatency] = "Emulation.Help.Audio.Latency",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionSoundInterpol] = "Emulation.Help.Audio.Interpolation",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionSoundFilter] = "Emulation.Help.Audio.Filter",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionSoundFilterType] = "Emulation.Help.Audio.FilterType",
+            [AmigaSettingsConstants.AudioStereoSeparation] = "Emulation.Help.Audio.StereoSeparation",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionFloppySoundType] = "Emulation.Help.Audio.Floppy.SoundType",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionFloppySoundEmptyMute] = "Emulation.Help.Audio.Floppy.MuteEmpty",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionAnalogmouse] = "Emulation.Help.Mouse.Analog",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionAnalogmouseDeadzone] = "Emulation.Help.Mouse.AnalogDeadzone",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionAnalogmouseSpeed] = "Emulation.Help.Mouse.AnalogSpeed",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionAnalogmouseSpeedRight] = "Emulation.Help.Mouse.AnalogSpeed",
+            [AmigaSettingsDescriptionFunctionsConstants.OptionTurboPulse] = "Emulation.Help.Controller.TurboPulse",
+            [AmigaSettingsConstants.ParallelJoystickAdapter] = "Emulation.Help.Controller.ParallelAdapter"
+        };
+
     internal static IReadOnlyList<EmulationSettingsBlock> Create(AmigaModel model,
         AmigaMachineConfiguration configuration)
     {
@@ -146,21 +183,27 @@ internal static class AmigaSettingsDescriptionFunctions
         string label, string value, IEnumerable<EmulationSettingsChoice> choices, bool isEnabled = true,
         bool refreshSettingsOnChange = false) =>
         new(id, tab, block, label, EmulationSettingsEditor.Selection, value,
-            choices.ToArray(), IsEnabled: isEnabled, RefreshSettingsOnChange: refreshSettingsOnChange);
+            choices.ToArray(), IsEnabled: isEnabled, ExplanationResourceKey: ShortHelp(id),
+            DetailedExplanationResourceKey: DetailedHelp(id), RefreshSettingsOnChange: refreshSettingsOnChange);
 
     private static EmulationSettingsField Information(string id, EmulationMachineTab tab, string block,
-        string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value);
+        string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Information, value,
+            ExplanationResourceKey: ShortHelp(id), DetailedExplanationResourceKey: DetailedHelp(id));
 
     private static EmulationSettingsField Toggle(string id, EmulationMachineTab tab, string block,
         string label, bool value, bool refreshSettingsOnChange = false) =>
         new(id, tab, block, label, EmulationSettingsEditor.Toggle,
-            value ? AmigaSettingsDescriptionFunctionsConstants.Enabled : AmigaSettingsDescriptionFunctionsConstants.Disabled, RefreshSettingsOnChange: refreshSettingsOnChange);
+            value ? AmigaSettingsDescriptionFunctionsConstants.Enabled : AmigaSettingsDescriptionFunctionsConstants.Disabled,
+            ExplanationResourceKey: ShortHelp(id), DetailedExplanationResourceKey: DetailedHelp(id),
+            RefreshSettingsOnChange: refreshSettingsOnChange);
 
     private static EmulationSettingsField Number(string id, EmulationMachineTab tab, string block,
-        string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Number, value);
+        string label, string value) => new(id, tab, block, label, EmulationSettingsEditor.Number, value,
+            ExplanationResourceKey: ShortHelp(id), DetailedExplanationResourceKey: DetailedHelp(id));
 
     private static EmulationSettingsField Path(string id, string label, string? value) =>
         new(id, EmulationMachineTab.Rom, AmigaSettingsDescriptionFunctionsConstants.Firmware, label, EmulationSettingsEditor.Path, value,
+            ExplanationResourceKey: ShortHelp(id), DetailedExplanationResourceKey: DetailedHelp(id),
             DefaultFolderCategory: EmulationDefaultFolderCategory.Firmware);
 
     private static EmulationSettingsField AudioOutput(string? value) => new(
@@ -168,6 +211,12 @@ internal static class AmigaSettingsDescriptionFunctions
         EmulationSettingsEditor.Selection, value ?? string.Empty,
         [new EmulationSettingsChoice(string.Empty, AmigaSettingsDescriptionFunctionsConstants.ResourceAudioDefaultOutput)],
         ChoiceSource: EmulationSettingsChoiceSource.AudioOutputDevices);
+
+    private static string? ShortHelp(string id) => FieldHelpResources.TryGetValue(id, out var resource)
+        ? resource + ".Short" : null;
+
+    private static string? DetailedHelp(string id) => FieldHelpResources.TryGetValue(id, out var resource)
+        ? resource + ".Detailed" : null;
 
     private static string Value(IReadOnlyDictionary<string, string> values, string key, string fallback) =>
         values.GetValueOrDefault(key) ?? fallback;

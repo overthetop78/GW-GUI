@@ -126,15 +126,6 @@
   <data name="Emulation.Cpu.Compatibility">
     <value>Поциклово совместимый ЦП</value>
   </data>
-  <data name="Emulation.Memory.Chip">
-    <value>Chip RAM</value>
-  </data>
-  <data name="Emulation.Memory.Slow">
-    <value>Slow RAM</value>
-  </data>
-  <data name="Emulation.Memory.Fast">
-    <value>Fast RAM</value>
-  </data>
   <data name="Emulation.Memory.Z3">
     <value>ОЗУ Zorro III</value>
   </data>
@@ -248,9 +239,6 @@
   </data>
   <data name="Emulation.Storage.HardDisk.DriveCount">
     <value>Количество жёстких дисков</value>
-  </data>
-  <data name="Emulation.Fpu.Model">
-    <value>FPU</value>
   </data>
   <data name="Emulation.Cpu.Speed">
     <value>Скорость ЦП</value>
@@ -864,12 +852,6 @@
   <data name="Emulation.Storage.Geometry.Sectors">
     <value>Секторы</value>
   </data>
-  <data name="Emulation.Storage.Unit.MiB">
-    <value>МиБ</value>
-  </data>
-  <data name="Emulation.Storage.Unit.GiB">
-    <value>ГиБ</value>
-  </data>
   <data name="Emulation.Controller.Action.Up">
     <value>Вверх</value>
   </data>
@@ -909,14 +891,8 @@
   <data name="Emulation.Amiga.Controller.Cd32.PlayPause">
     <value>CD32 воспроизведение / пауза</value>
   </data>
-  <data name="Emulation.Amiga.Controller.Joystick">
-    <value>Джойстик Amiga</value>
-  </data>
   <data name="Emulation.Controller.AnalogJoystick">
     <value>Аналоговый джойстик</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32">
-    <value>Контроллер CD32</value>
   </data>
   <data name="Emulation.Mouse.Wheel.Up">
     <value>Колесо мыши вверх</value>
@@ -929,63 +905,6 @@
   </data>
   <data name="Emulation.Mouse.Wheel.Right">
     <value>Колесо мыши вправо</value>
-  </data>
-  <data name="Emulation.Atari.Model.St" xml:space="preserve">
-    <value>Atari ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stf" xml:space="preserve">
-    <value>Atari STF</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stfm" xml:space="preserve">
-    <value>Atari STFM</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSt" xml:space="preserve">
-    <value>Atari Mega ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Ste" xml:space="preserve">
-    <value>Atari STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSte" xml:space="preserve">
-    <value>Atari Mega STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Tt" xml:space="preserve">
-    <value>Atari TT</value>
-  </data>
-  <data name="Emulation.Atari.Model.Falcon" xml:space="preserve">
-    <value>Atari Falcon</value>
-  </data>
-  <data name="Emulation.Atari.Model.400" xml:space="preserve">
-    <value>Atari 400</value>
-  </data>
-  <data name="Emulation.Atari.Model.800" xml:space="preserve">
-    <value>Atari 800</value>
-  </data>
-  <data name="Emulation.Atari.Model.800Xl" xml:space="preserve">
-    <value>Atari 800XL</value>
-  </data>
-  <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
-    <value>Atari 130XE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
-    <value>Atari XEGS</value>
-  </data>
-  <data name="Emulation.Atari.Model.5200" xml:space="preserve">
-    <value>Atari 5200</value>
-  </data>
-  <data name="Emulation.Atari.Model.2600" xml:space="preserve">
-    <value>Atari 2600</value>
-  </data>
-  <data name="Emulation.Atari.Model.7800" xml:space="preserve">
-    <value>Atari 7800</value>
-  </data>
-  <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
-    <value>Atari Lynx</value>
-  </data>
-  <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
-    <value>Atari Jaguar</value>
-  </data>
-  <data name="Emulation.Atari.Model.JaguarCd" xml:space="preserve">
-    <value>Atari Jaguar CD</value>
   </data>
   <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve">
     <value>Это значение определяется выбранной моделью.</value>
@@ -1090,24 +1009,11 @@
   <data name="Emulation.Atari.Storage.MediaFilter" xml:space="preserve">
     <value>СМИ Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Все файлы|*.*</value>
   </data>
-  <data name="Emulation.Atari.Controller.Joystick">
-    <value>Джойстик Atari</value>
-  </data>
-<data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Paddle Controllers</value></data>
-<data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 Light Gun</value></data>
-<data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>Atari Driving Controller</value></data>
-  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
-  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
-  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar Controller</value></data>
   <data name="Emulation.Controller.Automatic"><value>Автоматический</value></data>
   <data name="Emulation.Controller.None"><value>Нет</value></data>
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Параллельный четырехпользовательский адаптер джойстика</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Переключить джойстик/мышь</value></data>
   <data name="Emulation.Atari.Controller.NumericKeypad"><value>Числовая клавиатура</value></data>
-  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
-  <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
-  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Контроллер Atari Joy 2B+</value></data>
   <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
     <value>Перед включением этой машины эмулятору требуется носитель. Вставьте дискету или настройте жёсткий диск.</value>
   </data>
@@ -1127,7 +1033,6 @@
   <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Расширение памяти Mosaic</value></data>
   <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Расширение памяти Axlon</value></data>
   <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Теневая копия банка Axlon $0F</value></data>
-  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
   <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>Стерео POKEY</value></data>
   <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Артефакты высокого разрешения</value></data>
   <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>Ускорение SIO</value></data>
@@ -1164,25 +1069,10 @@
   <data name='Emulation.Media.Eject' xml:space='preserve'>
     <value>Извлечь носитель</value>
   </data>
-  <data name="Emulation.Tab.Cpu" xml:space="preserve"><value>CPU</value></data>
-  <data name="Emulation.Tab.Ram" xml:space="preserve"><value>RAM</value></data>
-  <data name="Emulation.Tab.Rom" xml:space="preserve"><value>ROM</value></data>
-  <data name="Emulation.Family.Amiga" xml:space="preserve"><value>Amiga</value></data>
-  <data name="Emulation.Family.Atari" xml:space="preserve"><value>Atari</value></data>
-  <data name="Emulation.Atari.Model.XlXe" xml:space="preserve"><value>Atari XL/XE</value></data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
   <data name="Emulation.Key.AtariHelp" xml:space="preserve"><value>Help</value></data>
   <data name="Emulation.Key.AtariUndo" xml:space="preserve"><value>Undo</value></data>
-  <data name="Emulation.Amiga.Model.A500" xml:space="preserve"><value>Amiga 500</value></data>
-  <data name="Emulation.Amiga.Model.A500PLUS" xml:space="preserve"><value>Amiga 500 Plus</value></data>
-  <data name="Emulation.Amiga.Model.A600" xml:space="preserve"><value>Amiga 600</value></data>
-  <data name="Emulation.Amiga.Model.A1000" xml:space="preserve"><value>Amiga 1000</value></data>
-  <data name="Emulation.Amiga.Model.A1200" xml:space="preserve"><value>Amiga 1200</value></data>
-  <data name="Emulation.Amiga.Model.A2000" xml:space="preserve"><value>Amiga 2000</value></data>
-  <data name="Emulation.Amiga.Model.A3000" xml:space="preserve"><value>Amiga 3000</value></data>
-  <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Amiga 4000</value></data>
-  <data name="Emulation.Amiga.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
-  <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Amiga CD32</value></data>  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Не удалось инициализировать GameInput. Установите или восстановите входящую в комплект среду выполнения GameInput.</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Не удалось инициализировать GameInput. Установите или восстановите входящую в комплект среду выполнения GameInput.</value></data>
   <data name="Emulation.Configuration.Brand"><value>Марка</value></data>
   <data name="Emulation.Configuration.Machine"><value>Машина</value></data>
   <data name="Emulation.Configuration.TotalRam"><value>Всего ОЗУ</value></data>
@@ -1190,7 +1080,110 @@
   <data name="Emulation.Configuration.Peripherals"><value>Периферия</value></data>
   <data name="Emulation.Configuration.Actions"><value>Действия</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>Удалить конфигурацию {0} {1}?</value></data>
-  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
-    <value>Kickstart</value>
-  </data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short"><value>Молчание пустых дискет</value></data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed"><value>Молчит эмулированный звук диска, пока не вставлен диск. Отключите эту опцию, чтобы сохранить неработающий механический шум.</value></data>
+  <data name="Emulation.Help.Audio.Filter.Short"><value>Выберите аналоговую аудиофильтрацию</value></data>
+  <data name="Emulation.Help.Audio.Filter.Detailed"><value>Выберите, как воспроизводится оригинальный аналоговый аудиофильтр. Эмуляция следует за аппаратным поведением. Другие варианты заставляют фильтр включаться или выключаться.</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Short"><value>Включите поляризованный аудиофильтр</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Detailed"><value>Применяет поляризованный фильтр к генерируемому звуковому сигналу. Позволяет воспроизводить фильтрованный звук. Отключите его, чтобы сохранить нефильтрованный сигнал.</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Short"><value>Выберите аудио интерполяцию</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Detailed"><value>Выбирает, как вычисляются аудиообразцы между сгенерированными точками выборки. Более качественные методы производят более плавный звук, но требуют большей обработки.</value></data>
+  <data name="Emulation.Help.Audio.Latency.Short"><value>Установите задержку звука</value></data>
+  <data name="Emulation.Help.Audio.Latency.Detailed"><value>Устанавливает продолжительность аудио буфера. Более короткий буфер уменьшает задержку, но может вызвать треск. Более длинный буфер улучшает стабильность, но увеличивает задержку.</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Short"><value>Включить двойной POKEY стержень</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed"><value>Добавить вторую эмулированную POKEY чип для создания стереозвука. Включите эту опцию только для программного обеспечения, поддерживающего двойное программное обеспечение. POKEY Аудио.</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Short"><value>Установить стереораздел</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Detailed"><value>Устанавливает разделение между левым и правым каналами. Более низкое значение смешивает каналы. Более высокая ценность держит их дальше друг от друга.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short"><value>Выберите Floppy drive sound set</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed"><value>Выбирает набор образцов, используемый для механических звуков эмулируемых дискет. Он не изменяет поведение диска или дисковых данных.</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Short"><value>Выберите модель аудиофильтра</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed"><value>Выбирает ответ аппаратного фильтра для эмуляции. Авто следует выбранной модели машины. Конкретный выбор всегда использует этот фильтр.</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Short"><value>Включите два дополнительных порта джойстика</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Detailed"><value>Имитирует адаптер параллельного порта, который добавляет два порта джойстика. Включите его для программного обеспечения, которое поддерживает четыре одновременных игрока.</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Short"><value>Установите интервал турбоимпульса</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Detailed"><value>Устанавливает время между автоматическими нажатиями кнопок, производимыми турбо. Более короткий интервал приводит к более быстрому повторному выстрелу.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Short"><value>Выберите режим совместимости контроллера</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed"><value>Выберите специальное картографирование контроллера, такое как управление с двумя палками, сменные порты или Joy2B+Выберите «Никто», чтобы сохранить стандартное отображение портов.</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Short"><value>Установить чувствительность аналогового входа</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed"><value>Устанавливает, насколько сильно аналоговый вход реагирует на движение. Более высокое значение вызывает больший отклик от того же физического движения.</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Short"><value>Настройка цифровой входной чувствительности</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed"><value>Устанавливает, как быстро цифровое направление достигает полного движения. Более высокое значение заставляет изменения направления достигать максимума быстрее.</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Short"><value>Выберите режим автопожара</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed"><value>Инвалид выключает автопожар. На кнопке повторяется огонь, пока назначенная кнопка удерживается. Огонь повторяется постоянно.</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Short"><value>Скорость движения весла</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Detailed"><value>Устанавливает, как быстро цифровой вход перемещает эмулируемое весло. Более низкое значение движется медленнее. Более высокое значение перемещает его быстрее.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Short"><value>Выберите FPU</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed"><value>Выберите блок с плавающей точкой, используемый для инструкций с плавающей точкой. Не выбирай никого, чтобы отключить FPUДоступные модели зависят от выбранных CPU.</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Short"><value>Выбрать CPU точность эмуляции</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Detailed"><value>Выберите, насколько близко CPU Время следует за оригинальным оборудованием. Более точные режимы могут улучшить совместимость, но могут потребовать большей обработки.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Short"><value>Установите эмулированный CPU скорость</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed"><value>Устанавливает частоту процессора, используемую эмулируемой машиной. Оригинальная скорость сохраняет аппаратное время. Более высокие значения ускоряют CPUОграниченное программное обеспечение.</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short"><value>Используйте аналоговые палочки для управления мышью</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Detailed"><value>Позволяет аналоговым топорам джойстика перемещать эмулированный указатель мыши. Включите его, когда физическая аналоговая палочка должна контролировать указатель.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Short"><value>Установить аналоговую скорость мыши</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed"><value>Устанавливает скорость указателя, когда аналоговая палочка управляет эмулированной мышью. Более высокое значение перемещает указатель дальше для того же движения палки.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Short"><value>Установите аналоговые мертвые зоны мыши</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed"><value>Игнорирует небольшие аналоговые движения вокруг центра, управляя мышью. Увеличьте значение, если указатель перемещается во время выпуска палки.</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Short"><value>Позволить Axlon $0F Теневой банк</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed"><value>Зеркала, Axlon Контрольный банк по адресу $0FВключите его только для программного обеспечения или расширения памяти, которые используют этот дополнительный адрес.</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short"><value>Настройка Axlon расширение памяти</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed"><value>Устанавливает сумму выключенного банка Axlon память. Инвалид удаляет расширение. Другие варианты обеспечивают выбранную емкость памяти.</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short"><value>Настройка Mosaic расширение памяти</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed"><value>Устанавливает сумму выключенного банка Mosaic память. Инвалид удаляет расширение. Другие варианты обеспечивают выбранную емкость памяти.</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short"><value>Настройка дополнительной памяти расширения</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed"><value>Устанавливает объем дополнительной памяти расширения, поддерживаемой выбранной машиной. Не используйте только настроенную основную память.</value></data>
+  <data name="Emulation.Help.Memory.Fast.Short"><value>Настройка Fast RAM размер</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed"><value>Устанавливает количество Fast RAM Доступно непосредственно для CPUДополнительная Fast RAM Может помочь совместимое программное обеспечение, но изменяет эмулированную конфигурацию оборудования.</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short"><value>допускать MapRAM</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Detailed"><value>Позволяет совместимому программному обеспечению отображать RAM В систему ROM адресная область. Эта опция доступна только на моделях машин, которые поддерживают MapRAM.</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short"><value>Настройка Zorro III RAM размер</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed"><value>Устанавливает количество 32-битных Fast RAM подключенный через Zorro III Автобус. Используйте его только с совместимыми 32-разрядными машинами и программным обеспечением.</value></data>
+  <data name="Emulation.Help.Memory.Slow.Short"><value>Настройка Slow RAM размер</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed"><value>Устанавливает количество Slow RAM В зоне расширения Ловушки. Эта память медленнее, чем Fast RAM и использует другой диапазон адресов аппаратного обеспечения.</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Short"><value>Выберите ROM ключ расшифровки</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Detailed"><value>Выбирает ключевой файл, используемый для расшифровки лицензионного зашифрованного ROM Изображение. Оставьте это поле пустым, когда выбранный ROM Он не зашифрован.</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Short"><value>Быстрый запуск</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Detailed"><value>Skips выбрал задержки инициализации оборудования, чтобы сократить запуск. Отключите эту опцию, когда программное обеспечение требует оригинальной последовательности запуска.</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Short"><value>Выберите расширенный ROM</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed"><value>Выберите вторичную прошивку ROM Этого требуют некоторые модели машин. Оставьте это поле пустым, если выбранная модель не использует расширенное поле. ROM.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Short"><value>Возможность ускоренного SIO переводы</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed"><value>Ускоряет совместимые передачи через последовательную шину ввода/вывода. Отключите эту опцию, когда программное обеспечение зависит от первоначального времени передачи.</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short"><value>Включить кассетный стартап</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Detailed"><value>Заставляет эмулированную машину попытаться начать с прикрепленного кассетного изображения. Отключите эту опцию при запуске с другого устройства.</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Short"><value>Позволить R-Time 8 часы</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Detailed"><value>эмулировать a R-Time 8 Часы в реальном времени, поэтому совместимое программное обеспечение может считывать текущую дату и время.</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Short"><value>Позволить P: устройство печати</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed"><value>делает эмулируемый P: Устройство принтера доступно для программного обеспечения. Отключите эту опцию, когда эмуляция принтера-устройства не требуется.</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Short"><value>Позволить R: серийное устройство</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed"><value>делает эмулируемый R: Серийное устройство доступно программному обеспечению. Отключите эту опцию, когда эмуляция серийного устройства не требуется.</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Short"><value>Выберите цветное артефактирование высокого разрешения</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Detailed"><value>Выберите, как узоры с высоким разрешением производят композиционные цвета. Никто не отключает цвета артефактов. Другие режимы воспроизводят различные палитры или поведение чипа.</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Short"><value>Выберите время бриттера</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Detailed"><value>Выберите, заканчиваются ли операции немедленно или следуйте за эмулированным аппаратным временем. Немедленный режим быстрее, но менее точный по времени.</value></data>
+  <data name="Emulation.Help.Video.HzChange.Short"><value>Разрешить изменения частоты обновления выходных данных</value></data>
+  <data name="Emulation.Help.Video.HzChange.Detailed"><value>Позволяет частоте обновления вывода следить за изменениями в эмулируемом видеорежиме. Locked сохраняет текущую скорость обновления продукта.</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Short"><value>Выберите пункт обнаружения столкновения</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Detailed"><value>Выберите, какие столкновения спрайт и игровое поле вычисляются. Более полное обнаружение улучшает совместимость, но требует большей обработки.</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Short"><value>Уменьшить переплетение дисплея</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed"><value>Уменьшает мерцание в переплетенном видеовыходе. Включите его для более устойчивого изображения. Отключите его, чтобы сохранить оригинальное переплетенное поведение дисплея.</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Short"><value>Выберите отображаемое соотношение сторон</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Detailed"><value>Выберите, как эмулируемое изображение масштабируется горизонтально и вертикально. Авто следует за эмулированным выходом. Фиксированные силы выбора, которые отображают форму.</value></data>
+  <data name="Emulation.Help.Video.Gamma.Short"><value>Настройка изображения гамма</value></data>
+  <data name="Emulation.Help.Video.Gamma.Detailed"><value>Изменяет яркость полутонов без непосредственного изменения черно-белого уровня. Более низкие значения затемняют полутоны. Высшие ценности их осветляют.</value></data>
+  <data name="Emulation.Help.Video.LineMode.Short"><value>Выберите режим видеолинии</value></data>
+  <data name="Emulation.Help.Video.LineMode.Detailed"><value>Выберите, как отображаются вертикальные видеолинии. Авто следует за эмулированным режимом. Другие варианты заставляют одиночные линии, двойные линии или сканирующие линии, когда они доступны.</value></data>
+  <data name="Emulation.Help.Video.Standard.Short"><value>Выберите стандарт видео</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed"><value>Выберите эмулируемое телевизионное время, такое как PAL или NTSCЭто влияет на частоту обновления, время аппаратного обеспечения и совместимость программного обеспечения.</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Short"><value>Выберите внешнюю цветовую палитру</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Detailed"><value>Выберите предопределенную цветовую палитру вместо цветов, генерируемых из текущих настроек видео. Не используйте генерируемые цвета.</value></data>
+  <data name="Emulation.Help.Video.Colors.Short"><value>Выберите цветовую глубину</value></data>
+  <data name="Emulation.Help.Video.Colors.Detailed"><value>Выберите глубину цвета, используемую для визуализации изображения. 24-bit Сохраняет больше деталей цвета. 16-bit Использует меньший диапазон цветов.</value></data>
+  <data name="Emulation.Help.Video.Region.Short"><value>Выберите область аппаратного обеспечения</value></data>
+  <data name="Emulation.Help.Video.Region.Detailed"><value>Выбирает региональное время, используемое эмулируемой машиной. Выбор может повлиять на частоту видео. CPU Время и совместимая прошивка.</value></data>
+  <data name="Emulation.Help.Video.Rendering.Short"><value>Выберите видеорендерер</value></data>
+  <data name="Emulation.Help.Video.Rendering.Detailed"><value>Выбирает графический бэкэнд, используемый для рисования эмулированного дисплея. Доступные рендереры могут отличаться производительностью и совместимостью с хост-системой.</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Short"><value>отрегулировать GTIA Цветовая задержка</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Устанавливает GTIA Задержка цветовой фазы используется для воспроизведения цветов. По умолчанию используется стандартное значение. Числовой выбор смещает полученные оттенки.</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Short"><value>Пропуск рамок</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Установите, сколько кадров дисплея опущено. Инвалид рисует каждый кадр. Более высокие значения уменьшают работу рендеринга, но делают движение менее плавным.</value></data>
 </root>

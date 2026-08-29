@@ -12,9 +12,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.Title">
-    <value>GW GUI</value>
-  </data>
   <data name="App.GwNotConfigured">
     <value>Greaseweazle Työkaluja ei ole määritetty. Avaa Valinnat → Asetukset.</value>
   </data>
@@ -83,8 +80,5 @@
   </data>
   <data name="Status.Cancelled">
     <value>Peruutettu</value>
-  </data>
-  <data name="Terminal.Prompt">
-    <value>&gt;</value>
   </data>
 </root>

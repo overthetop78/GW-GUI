@@ -12,9 +12,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.Title">
-    <value>GW GUI</value>
-  </data>
   <data name="App.GwNotConfigured">
     <value>Greaseweazle 工具未配置。打开选项 → 首选项。</value>
   </data>
@@ -83,8 +80,5 @@
   </data>
   <data name="Status.Cancelled">
     <value>取消</value>
-  </data>
-  <data name="Terminal.Prompt">
-    <value>&gt;</value>
   </data>
 </root>

@@ -25,8 +25,8 @@ internal sealed partial class EmulationModuleSettingsSection
         var originalSpeedField = FieldByLabel(fields, "Emulation.Cpu.SpeedOriginal");
         var precision = FieldByLabel(fields, "Emulation.Cpu.Precision");
         var fpu = FieldByLabel(fields, "Emulation.Fpu.Model");
-        var cpuControl = CreateField(cpu);
-        var speedControl = speed is null ? null : CreateField(speed);
+        var cpuControl = CreateControlField(cpu);
+        var speedControl = speed is null ? null : CreateControlField(speed);
         var machineName = (_machines.SelectedItem as EmulationMachineChoice)?.DisplayName ?? settings.MachineId;
         var cpuName = EmulationSettingsValuePresentationFunctions.DisplayValue(cpu);
         var originalSpeed = originalSpeedField is null ? string.Empty
@@ -35,9 +35,12 @@ internal sealed partial class EmulationModuleSettingsSection
             cpuControl,
             new TextBlock { Text = string.Join(" · ", new[] { machineName, cpuName, originalSpeed }
                 .Where(value => !string.IsNullOrWhiteSpace(value))) },
-            precision is null ? null : CreateField(precision),
-            fpu is null ? null : CreateField(fpu),
-            new TextBlock { Text = originalSpeed },
+            precision is null ? null : CreateControlField(precision),
+            fpu is null ? null : CreateControlField(fpu),
+            originalSpeedField is null
+                ? new EmulationSettingsControlField(LocExtension.Get("Emulation.Cpu.SpeedOriginal"),
+                    new TextBlock { Text = originalSpeed })
+                : CreateControlField(originalSpeedField),
             speed is { IsEnabled: true } ? speedControl : null));
         ApplySettingsRules(settings);
         return EmulationSettingsLayout.ScrollPage(page);
@@ -52,10 +55,8 @@ internal sealed partial class EmulationModuleSettingsSection
         if (mainFields.Length == 0) return BuildGenericSettingsTab(settings, EmulationMachineTab.Ram);
         var extensionFields = memoryBlocks.Where(block => block.TitleResourceKey != "Emulation.Memory.Main")
             .SelectMany(block => block.Fields).Where(field => field.IsVisible).ToArray();
-        var mainControls = mainFields.Select(field =>
-            new EmulationSettingsControlField(LocExtension.Get(field.LabelResourceKey), CreateField(field))).ToArray();
-        var extensionControls = extensionFields.Select(field =>
-            new EmulationSettingsControlField(LocExtension.Get(field.LabelResourceKey), CreateField(field))).ToArray();
+        var mainControls = mainFields.Select(CreateControlField).ToArray();
+        var extensionControls = extensionFields.Select(CreateControlField).ToArray();
         var fields = mainFields.Concat(extensionFields).ToArray();
         var machineName = (_machines.SelectedItem as EmulationMachineChoice)?.DisplayName ?? settings.MachineId;
         var total = new TextBlock();

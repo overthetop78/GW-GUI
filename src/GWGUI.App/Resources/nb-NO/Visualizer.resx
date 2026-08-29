@@ -115,63 +115,6 @@ Ingen data</value>
   <data name="Visual.IntegrityUnavailable">
     <value>utilgjengelig</value>
   </data>
-  <data name="Visual.DecoderName.iso.mfm">
-    <value>ISO MFM (Atari ST / IBM PC)</value>
-  </data>
-  <data name="Visual.DecoderName.iso.fm">
-    <value>ISO FM (enkel tetthet)</value>
-  </data>
-  <data name="Visual.DecoderName.amiga.mfm">
-    <value>Amiga MFM</value>
-  </data>
-  <data name="Visual.DecoderName.apple2.gcr">
-    <value>Apple II GCR</value>
-  </data>
-  <data name="Visual.DecoderName.applemac.gcr">
-    <value>Apple Macintosh GCR</value>
-  </data>
-  <data name="Visual.DecoderName.commodore.gcr">
-    <value>Commodore GCR</value>
-  </data>
-  <data name="Visual.DecoderName.membrain.mfm">
-    <value>Membrain MFM</value>
-  </data>
-  <data name="Visual.DecoderName.aed6200p.mfm">
-    <value>AED 6200P MFM</value>
-  </data>
-  <data name="Visual.DecoderName.qdmo5.mfm">
-    <value>QD MO5 MFM</value>
-  </data>
-  <data name="Visual.DecoderName.centurion.mfm">
-    <value>Centurion MFM</value>
-  </data>
-  <data name="Visual.DecoderName.northstar.mfm">
-    <value>NorthStar hardsektorert MFM</value>
-  </data>
-  <data name="Visual.DecoderName.heathkit.fm">
-    <value>Heathkit hardsektorert FM</value>
-  </data>
-  <data name="Visual.DecoderName.micraln.fm">
-    <value>Micral N hardsektorert FM</value>
-  </data>
-  <data name="Visual.DecoderName.emu.fm">
-    <value>E-mu Emulator FM</value>
-  </data>
-  <data name="Visual.DecoderName.tycom.fm">
-    <value>TYCOM FM</value>
-  </data>
-  <data name="Visual.DecoderName.dec.rx02">
-    <value>DEC RX02 M²FM</value>
-  </data>
-  <data name="Visual.DecoderName.arburg">
-    <value>Arburg system/data</value>
-  </data>
-  <data name="Visual.DecoderName.victor9k.gcr">
-    <value>Victor 9000 GCR</value>
-  </data>
-  <data name="Visual.DecoderName.raw">
-    <value>Rå fluks</value>
-  </data>
   <data name="Visual.StructureKind.Sync">
     <value>Synkronisering</value>
   </data>
@@ -210,9 +153,6 @@ Ingen data</value>
   </data>
   <data name="Visual.OpenFilter">
     <value>SuperCard Pro fangst (*.scp)|*.scp|Alle filer|*.*</value>
-  </data>
-  <data name="Visual.Integrity.Crc">
-    <value>CRC</value>
   </data>
   <data name="Visual.Integrity.Checksum">
     <value>Sjekksum</value>
@@ -256,12 +196,6 @@ Ingen data</value>
   <data name="Visual.TransitionsUnit">
     <value>overganger</value>
   </data>
-  <data name="Visual.NumberPrefix">
-    <value>#</value>
-  </data>
-  <data name="Visual.ValueSeparator">
-    <value>·</value>
-  </data>
   <data name="Visual.OpenImage">
     <value>Åpne et diskbilde...</value>
   </data>
@@ -282,23 +216,5 @@ Ingen data</value>
   </data>
   <data name="Visual.AverageDuration">
     <value>Gjennomsnittlig varighet</value>
-  </data>
-  <data name="Visual.DecoderName.hp.mmfm">
-    <value>HP MMFM</value>
-  </data>
-  <data name="Visual.DecoderName.datageneral.fm">
-    <value>Data General 2F</value>
-  </data>
-  <data name="Visual.DecoderName.micropolis.mfm">
-    <value>Micropolis MFM</value>
-  </data>
-  <data name="Visual.DecoderName.applelisa.fileware.gcr" xml:space="preserve">
-    <value>Apple Lisa FileWare GCR</value>
-  </data>
-  <data name="Visual.DecoderName.commodore900.gcr" xml:space="preserve">
-    <value>Commodore 900 GCR</value>
-  </data>
-  <data name="Visual.DecoderName.apple2.rwts18" xml:space="preserve">
-    <value>Apple II Brøderbund RWTS18</value>
   </data>
 </root>

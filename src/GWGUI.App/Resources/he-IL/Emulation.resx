@@ -126,15 +126,6 @@
   <data name="Emulation.Cpu.Compatibility">
     <value>Cycle-compatible CPU</value>
   </data>
-  <data name="Emulation.Memory.Chip">
-    <value>Chip RAM</value>
-  </data>
-  <data name="Emulation.Memory.Slow">
-    <value>Slow RAM</value>
-  </data>
-  <data name="Emulation.Memory.Fast">
-    <value>Fast RAM</value>
-  </data>
   <data name="Emulation.Memory.Z3">
     <value>Zorro III RAM</value>
   </data>
@@ -248,9 +239,6 @@
   </data>
   <data name="Emulation.Storage.HardDisk.DriveCount">
     <value>מספר כוננים קשיחים</value>
-  </data>
-  <data name="Emulation.Fpu.Model">
-    <value>FPU</value>
   </data>
   <data name="Emulation.Cpu.Speed">
     <value>CPU speed</value>
@@ -864,12 +852,6 @@
   <data name="Emulation.Storage.Geometry.Sectors">
     <value>מקטעים</value>
   </data>
-  <data name="Emulation.Storage.Unit.MiB">
-    <value>MiB</value>
-  </data>
-  <data name="Emulation.Storage.Unit.GiB">
-    <value>GiB</value>
-  </data>
   <data name="Emulation.Controller.Action.Up">
     <value>למעלה</value>
   </data>
@@ -909,14 +891,8 @@
   <data name="Emulation.Amiga.Controller.Cd32.PlayPause">
     <value>CD32 הפעלה / השהיה</value>
   </data>
-  <data name="Emulation.Amiga.Controller.Joystick">
-    <value>ג׳ויסטיק Amiga</value>
-  </data>
   <data name="Emulation.Controller.AnalogJoystick">
     <value>ג׳ויסטיק אנלוגי</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32">
-    <value>בקר CD32</value>
   </data>
   <data name="Emulation.Mouse.Wheel.Up">
     <value>גלגלת עכבר למעלה</value>
@@ -929,63 +905,6 @@
   </data>
   <data name="Emulation.Mouse.Wheel.Right">
     <value>גלגלת עכבר ימינה</value>
-  </data>
-  <data name="Emulation.Atari.Model.St" xml:space="preserve">
-    <value>Atari ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stf" xml:space="preserve">
-    <value>Atari STF</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stfm" xml:space="preserve">
-    <value>Atari STFM</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSt" xml:space="preserve">
-    <value>Atari Mega ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Ste" xml:space="preserve">
-    <value>Atari STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSte" xml:space="preserve">
-    <value>Atari Mega STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Tt" xml:space="preserve">
-    <value>Atari TT</value>
-  </data>
-  <data name="Emulation.Atari.Model.Falcon" xml:space="preserve">
-    <value>Atari Falcon</value>
-  </data>
-  <data name="Emulation.Atari.Model.400" xml:space="preserve">
-    <value>Atari 400</value>
-  </data>
-  <data name="Emulation.Atari.Model.800" xml:space="preserve">
-    <value>Atari 800</value>
-  </data>
-  <data name="Emulation.Atari.Model.800Xl" xml:space="preserve">
-    <value>Atari 800XL</value>
-  </data>
-  <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
-    <value>Atari 130XE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
-    <value>Atari XEGS</value>
-  </data>
-  <data name="Emulation.Atari.Model.5200" xml:space="preserve">
-    <value>Atari 5200</value>
-  </data>
-  <data name="Emulation.Atari.Model.2600" xml:space="preserve">
-    <value>Atari 2600</value>
-  </data>
-  <data name="Emulation.Atari.Model.7800" xml:space="preserve">
-    <value>Atari 7800</value>
-  </data>
-  <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
-    <value>Atari Lynx</value>
-  </data>
-  <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
-    <value>Atari Jaguar</value>
-  </data>
-  <data name="Emulation.Atari.Model.JaguarCd" xml:space="preserve">
-    <value>Atari Jaguar CD</value>
   </data>
   <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve">
     <value>ערך זה נקבע על ידי המודל שנבחר.</value>
@@ -1089,24 +1008,11 @@
   <data name="Emulation.Atari.Storage.MediaFilter" xml:space="preserve">
     <value>מדיית Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|כל הקבצים|*.*</value>
   </data>
-  <data name="Emulation.Atari.Controller.Joystick">
-    <value>ג'ויסטיק Atari</value>
-  </data>
-<data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Paddle Controllers</value></data>
-<data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 Light Gun</value></data>
-<data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>Atari Driving Controller</value></data>
-  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
-  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
-  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar Controller</value></data>
   <data name="Emulation.Controller.Automatic"><value>אוֹטוֹמָטִי</value></data>
   <data name="Emulation.Controller.None"><value>ללא</value></data>
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>המונחים: four-player joystick Fiter</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Switch joystick/mouse</value></data>
   <data name="Emulation.Atari.Controller.NumericKeypad"><value>המונחים: keypad</value></data>
-  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
-  <data name="Emulation.Atari.Controller.Genesis"><value>המפקח Sega Genesis</value></data>
-  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Controller</value></data>
   <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
     <value>האמולטור דורש מדיה לפני שניתן להפעיל מכונה זו. הכנס או הגדר אחד מאמצעי המדיה הנדרשים המוצגים להלן.</value>
   </data>
@@ -1126,7 +1032,6 @@
   <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>הרחבת זיכרון Mosaic</value></data>
   <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>הרחבת זיכרון Axlon</value></data>
   <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>צל בנק Axlon $0F</value></data>
-  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
   <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>POKEY סטריאו</value></data>
   <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>ארטיפקטים ברזולוציה גבוהה</value></data>
   <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>האצת SIO</value></data>
@@ -1164,25 +1069,10 @@
   <data name='Emulation.Media.Eject' xml:space='preserve'>
     <value>הוצא מדיה</value>
   </data>
-  <data name="Emulation.Tab.Cpu" xml:space="preserve"><value>CPU</value></data>
-  <data name="Emulation.Tab.Ram" xml:space="preserve"><value>RAM</value></data>
-  <data name="Emulation.Tab.Rom" xml:space="preserve"><value>ROM</value></data>
-  <data name="Emulation.Family.Amiga" xml:space="preserve"><value>Amiga</value></data>
-  <data name="Emulation.Family.Atari" xml:space="preserve"><value>Atari</value></data>
-  <data name="Emulation.Atari.Model.XlXe" xml:space="preserve"><value>Atari XL/XE</value></data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
   <data name="Emulation.Key.AtariHelp" xml:space="preserve"><value>Help</value></data>
   <data name="Emulation.Key.AtariUndo" xml:space="preserve"><value>Undo</value></data>
-  <data name="Emulation.Amiga.Model.A500" xml:space="preserve"><value>Amiga 500</value></data>
-  <data name="Emulation.Amiga.Model.A500PLUS" xml:space="preserve"><value>Amiga 500 Plus</value></data>
-  <data name="Emulation.Amiga.Model.A600" xml:space="preserve"><value>Amiga 600</value></data>
-  <data name="Emulation.Amiga.Model.A1000" xml:space="preserve"><value>Amiga 1000</value></data>
-  <data name="Emulation.Amiga.Model.A1200" xml:space="preserve"><value>Amiga 1200</value></data>
-  <data name="Emulation.Amiga.Model.A2000" xml:space="preserve"><value>Amiga 2000</value></data>
-  <data name="Emulation.Amiga.Model.A3000" xml:space="preserve"><value>Amiga 3000</value></data>
-  <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Amiga 4000</value></data>
-  <data name="Emulation.Amiga.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
-  <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Amiga CD32</value></data>  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>לא ניתן היה לאתחל את GameInput. התקן או תקן את סביבת הריצה המצורפת של GameInput.</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>לא ניתן היה לאתחל את GameInput. התקן או תקן את סביבת הריצה המצורפת של GameInput.</value></data>
   <data name="Emulation.Configuration.Brand"><value>מותג</value></data>
   <data name="Emulation.Configuration.Machine"><value>מכונה</value></data>
   <data name="Emulation.Configuration.TotalRam"><value>סך זיכרון RAM</value></data>
@@ -1190,7 +1080,110 @@
   <data name="Emulation.Configuration.Peripherals"><value>ציוד היקפי</value></data>
   <data name="Emulation.Configuration.Actions"><value>פעולות</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>למחוק את תצורת {0} {1}?</value></data>
-  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
-    <value>Kickstart</value>
-  </data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short"><value>דחפורים ריקים</value></data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed"><value>להשתיק את צליל הכונן הגנוב בזמן שאף דיסק לא מוכנס. אפשרות זו לשמור על רעש מכני idle.</value></data>
+  <data name="Emulation.Help.Audio.Filter.Short"><value>מסנן אודיו אנלוגי</value></data>
+  <data name="Emulation.Help.Audio.Filter.Detailed"><value>בחר כיצד מסנן אודיו אנלוגי המקורי משוכפל.  Em בעקבות התנהגות החומרה. הבחירות האחרות מכריחות את המסנן או כבוי.</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Short"><value>ניתן לסנן אודיו מקוטב</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Detailed"><value>תואם את המסנן המקוטב לאות אודיו שנוצר. ניתן לשחזר את הצליל המסנן. אכזב אותו לשמור את האות הלא משוחד.</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Short"><value>עקבו אחרי Audio Inpolation</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Detailed"><value>בחר כיצד דגימות אודיו מחושבות בין נקודות דגימה שנוצרו. שיטות באיכות גבוהה יותר לייצר צליל חלק יותר אך דורשות עיבוד נוסף.</value></data>
+  <data name="Emulation.Help.Audio.Latency.Short"><value>המונחים: latency</value></data>
+  <data name="Emulation.Help.Audio.Latency.Detailed"><value>קבע את משך buffer אודיו. buffer קצר יותר מקטין את העיכוב אבל יכול לגרום סדקים. חיץ ארוך יותר משפר את היציבות אך מגביר את העיכוב.</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Short"><value>המונחים: POKEY stereo</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed"><value>הוסף חיקוי שני POKEY שבב לייצור צליל סטריאו אפשרות זו רק עבור תוכנה התומכת POKEY אודיו.</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Short"><value>המונחים: stereoהפרדה</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Detailed"><value>הגדר את ההפרדה בין הימין לשמאל. ערך נמוך יותר משלב את הערוצים ביחד. ערך גבוה יותר מרחיק אותם רחוק יותר.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short"><value>בחרו את ה-Foppy Drive</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed"><value>בחר את הדגימה שנקבעה עבור הצלילים המכניים של כוננים מפוסקים. זה לא משנה התנהגות כונן או נתוני דיסק.</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Short"><value>בחר מודל סינון אודיו</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed"><value>בחר את התגובה מסנן חומרה לחקות. רכב עוקב אחר מודל המכונה שנבחר. בחירה מסוימת תמיד משתמשת בתגובת סינון זו.</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Short"><value>שני נמלי שמחה נוספים</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Detailed"><value>מאמצת מתאם מקביל שמוסיפה שני נמלי שמחה. ניתן להשתמש בתוכנה התומכת בארבעה שחקנים במקביל.</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Short"><value>הגדר את מרווח הדופק</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Detailed"><value>הגדר את הזמן בין הודעות כפתור אוטומטי המיוצר על ידי turbo. מרווח קצר יותר מייצר ירי חוזר יותר.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Short"><value>בחירת מצב תאימות בקר</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed"><value>בחר מיפוי בקר מיוחד, כגון שליטה כפולה, החלפת נמלים, או Joy2B+בחר אף אחד לא לשמור את מיפוי הנמל הסטנדרטי.</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Short"><value>קביעת רגישות קלט</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed"><value>הגדר כמה חזק קלט אנלוגי מגיב לתנועה. ערך גבוה יותר מייצר תגובה גדולה יותר מאותה תנועה פיזית.</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Short"><value>קביעת רגישות קלט דיגיטלית</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed"><value>קבע כמה מהר הכיוון הדיגיטלי מגיע לתנועה מלאה. ערך גבוה יותר הופך את השינויים בכיוון למקסימום מהר יותר.</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Short"><value>בחירת מצב האש</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed"><value>נכה מכבה את הפסקת האש. על הכפתור חוזר באש בעוד הכפתור המוקצה מוחזק. תמיד חוזר באש כל הזמן.</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Short"><value>הגדרת מהירות התנועה</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Detailed"><value>הגדר כמה מהר קלט דיגיטלי מניע מרופד חיקוי. ערך נמוך יותר מניע אותו לאט יותר. ערך גבוה יותר מניע אותו מהר יותר.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Short"><value>בחר את FPU</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed"><value>בחר את יחידת הצף המשמשת להוראות נקודת צף. בחר אף אחד לא להשבית את FPUמודלים זמינים תלויים בבחירת CPU.</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Short"><value>בחר בחר CPU דיוק</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Detailed"><value>בחר כמה מקרוב CPU התזמון עוקב אחר החומרה המקורית. מצבים מדויקים יותר יכולים לשפר תאימות אך עשויים לדרוש עיבוד נוסף.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Short"><value>הגדר את החיקוי CPU מהירות המהירות</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed"><value>הגדר את תדירות המעבד המשמש את המכונה חיקוי. המהירות המקורית שומרת על תזמון החומרה. ערכים גבוהים יותר להאיץ CPUתוכנה מוגבלת</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short"><value>השתמש מקלות אנלוגיים כדי לשלוט בעכבר</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Detailed"><value>מאפשר צירי שמחה אנלוגיים להזיז את מצביע העכבר הגנוב. לאפשר לו כאשר מקל אנלוגי פיזי צריך לשלוט על הנקודה.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Short"><value>מהירות עכבר אנלוגי</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed"><value>קביעת מהירות נקודה כאשר מקל אנלוגי שולט העכבר הגנוב. ערך גבוה יותר מניע את הנקודה הרבה יותר רחוק עבור אותה תנועת מקל.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Short"><value>הגדר את אזור העכבר האנלוגי</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed"><value>להתעלם מתנועות אנלוגיות קטנות ברחבי המרכז תוך שליטה על העכבר. להגדיל את הערך אם המצביע נע בזמן המקל שוחרר.</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Short"><value>לאפשר Axlon $0F בנק הצללים</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed"><value>מראות Axlon שליטה בבנק בכתובת $0Fלאפשר זאת רק להפצת תוכנה או זיכרון שמשתמשים בכתובת נוספת זו.</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short"><value>Set Axlon הרחבת הזיכרון</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed"><value>הגדר את כמות הבנק Axlon זיכרון. מוגבלות מורידה את ההתרחבות. הבחירות האחרות מספקות את יכולת הזיכרון שנבחרה.</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short"><value>Set Mosaic הרחבת הזיכרון</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed"><value>הגדר את כמות הבנק Mosaic זיכרון. מוגבלות מורידה את ההתרחבות. הבחירות האחרות מספקות את יכולת הזיכרון שנבחרה.</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short"><value>הגדרת זיכרון הרחבה נוסף</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed"><value>הגדר את כמות זיכרון ההתרחבות הנוסף נתמך על ידי המכונה שנבחרה. אל תבחרו להשתמש רק בזיכרון הראשי מוגדר.</value></data>
+  <data name="Emulation.Help.Memory.Fast.Short"><value>Set Fast RAM גודל</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed"><value>הגדר את כמות Fast RAM זמין ישירות CPUעוד Fast RAM יכול לעזור תוכנה תואמים אבל לשנות את תצורת חומרה חיקוי.</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short"><value>אפשרות MapRAM</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Detailed"><value>מאפשר תוכנה תואמת למפות RAM לתוך המערכת ROM כתובת האזור אפשרות זו זמינה רק במודלים ממוחשבים התומכים MapRAM.</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short"><value>Set Zorro III RAM גודל</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed"><value>כמות 32 סיביות Fast RAM מחובר דרך Zorro III אוטובוס השתמש בו רק עם מכונות ותוכנות של 32 סיביות.</value></data>
+  <data name="Emulation.Help.Memory.Slow.Short"><value>Set Slow RAM גודל</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed"><value>הגדר את כמות Slow RAM באזור התרחבות המלכודת. הזיכרון איטי יותר מאשר Fast RAM ומשתמש במגוון כתובת חומרה שונה.</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Short"><value>בחר את ROM מפתח</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Detailed"><value>בחר את קובץ המפתח המשמש כדי לפענח מוצפן מורשה ROM תמונה השאירו את השדה ריק כאשר נבחר ROM זה לא מוצפן.</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Short"><value>סטארט-אפ מהיר</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Detailed"><value>דלג על עיכובים ראשוניים חומרה נבחרים כדי לקצר את ההפעלה. אפשרות זו כאשר תוכנה דורשת את רצף ההפעלה המקורי.</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Short"><value>בחר הרחבה ROM</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed"><value>בחר את הקושחה המשנית ROM נדרש על ידי כמה דגמי מכונה. השאירו את השדה ריק כאשר המודל שנבחר אינו משתמש מורחב ROM.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Short"><value>להאיץ SIO העברות</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed"><value>מהירות מעלה העברות תואמות באמצעות אוטובוס קלט / ספארי. אפשרות זו כאשר התוכנה תלויה בתזמון ההעברה המקורי.</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short"><value>תגית: casette Startup</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Detailed"><value>הופך את המכונה המוטבעת מנסה להתחיל מהתמונה המצורפת. ניתן להבחין באפשרות זו בעת החל ממכשיר אחר.</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Short"><value>לאפשר R-Time 8 שעון השעון</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Detailed"><value>משערים R-Time 8 השעון בזמן אמת, כך תוכנה תואמת יכולה לקרוא את התאריך והשעה הנוכחיים.</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Short"><value>לאפשר P: מדפסת</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed"><value>עושה את החיקוי P: מכשיר המדפסת זמין לתוכנה. ניתן להבחין באפשרות זו כאשר חיקוי מדפסת-דטרי אינו נחוץ.</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Short"><value>לאפשר R: מכשיר סדרתי</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed"><value>עושה את החיקוי R: מכשיר סדרתי זמין לתוכנה. ניתן להבחין באפשרות זו כאשר חיקוי הסידורי אינו נחוץ.</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Short"><value>צבע ברזולוציה גבוהה</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Detailed"><value>בחר כיצד דפוסים ברזולוציה גבוהה מייצרים צבעים מורכבים. אין צבעים של חפצים. מצבים אחרים משכפלים צבעים שונים או התנהגות שבב.</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Short"><value>תזמון blitter</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Detailed"><value>בחר אם פעולות blitter לסיים מיד או לעקוב אחר תזמון חומרה חיקוי. מצב מיידי הוא מהיר יותר אבל פחות תזמון.</value></data>
+  <data name="Emulation.Help.Video.HzChange.Short"><value>לאפשר שינויים רעננים</value></data>
+  <data name="Emulation.Help.Video.HzChange.Detailed"><value>מאפשר את קצב רענון הפלט לעקוב אחר שינויים במצב וידאו חיקוי. נעול שומר על קצב הרענון הנוכחי.</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Short"><value>פרטי זיהוי התנגשות נבחרים</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Detailed"><value>בוחרים שהתנגשות ספירט וכדורסל מחושבות. גילוי מלא יותר משפר תאימות, אך דורש עיבוד נוסף.</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Short"><value>צמצם את התצוגה המשולבת flicker</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed"><value>מצמצם את flicker בהפקת וידאו ממוזגת. אפשר לתת את זה לדימוי יציב יותר. ניתן להבחין בכך כדי לשמר את התנהגות התצוגה המשולבת המקורית.</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Short"><value>בחר את יחס ההיבט המוצג</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Detailed"><value>בחר כיצד התמונה חיקוי הוא בקנה מידה אופקי אנכי. אוטומטי עוקב אחר הפלט הגנוב. כוחות בחירה קבועים המציגים צורה.</value></data>
+  <data name="Emulation.Help.Video.Gamma.Short"><value>צילום: gamma</value></data>
+  <data name="Emulation.Help.Video.Gamma.Detailed"><value>לשנות את הבהירות של החצות מבלי לשנות ישירות את הרמות השחורות והלבן. ערכים נמוכים יותר מנחשים באמצעונים. ערכים גבוהים יותר מזהירים אותם.</value></data>
+  <data name="Emulation.Help.Video.LineMode.Short"><value>בחירת מצב וידאו</value></data>
+  <data name="Emulation.Help.Video.LineMode.Detailed"><value>בחר כיצד מוצגים קווי וידאו אנכיים. אוטומטי עוקב אחר מצב החיקוי. אפשרויות אחרות לכפות קווים בודדים, קווים כפולים, או קווי סריקה כאשר הם זמינים.</value></data>
+  <data name="Emulation.Help.Video.Standard.Short"><value>בחר תקן וידאו</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed"><value>בחר את תזמון הטלוויזיה הגנוב, כגון PAL או NTSCזה משפיע על קצב רענון, תזמון חומרה, תאימות תוכנה.</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Short"><value>בחרו צבעים חיצוניים</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Detailed"><value>בחר צבעים מוגדרים מראש במקום צבעים שנוצרו מהגדרות הוידאו הנוכחיות. אל תבחרו להשתמש בצבעים שנוצרו.</value></data>
+  <data name="Emulation.Help.Video.Colors.Short"><value>עומק צבע הפלט</value></data>
+  <data name="Emulation.Help.Video.Colors.Detailed"><value>בחר את עומק הצבע המשמש כדי להפוך את התמונה. 24-bit שמור יותר פרטי צבע. 16-bit משתמשים במגוון צבעים קטן יותר.</value></data>
+  <data name="Emulation.Help.Video.Region.Short"><value>בחר אזור החומרה</value></data>
+  <data name="Emulation.Help.Video.Region.Detailed"><value>בחר את התזמון האזורי המשמש את המכונה המיושמת. הבחירה יכולה להשפיע על תדירות הוידאו, CPU תזמון, וקושחה מתאימה.</value></data>
+  <data name="Emulation.Help.Video.Rendering.Short"><value>בחרו את Videoer</value></data>
+  <data name="Emulation.Help.Video.Rendering.Detailed"><value>בחר את הגרפיקה backend המשמש לצייר את התצוגה חיקוי. גורמים זמינים יכולים להיות שונים בביצועים והתאמה עם מערכת המארחת.</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Short"><value>הסתגלות GTIA עיכוב צבע</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>המונחים: GTIA עיכוב שלב הצבעים המשמש להתרבות צבעים. Default משתמשת בערך הסטנדרטי. אפשרויות נומרניות משנות את הצבעים וכתוצאה מכך.</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Short"><value>המונחים:</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>הגדר כמה מסגרות תצוגה מושמטות. מוגבלות שואבת כל מסגרת. ערכים גבוהים יותר להפחית את העבודה אבל לעשות פחות חלקה.</value></data>
 </root>

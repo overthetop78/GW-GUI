@@ -1,4 +1,6 @@
 using GWGUI.App.Constants.Controls.Visual;
+using GWGUI.App.Contracts.Emulation.Settings;
+using GWGUI.App.Views.Controls.Emulation.Options;
 using GWGUI.App.Factories.Views.Common;
 using System.Windows;
 using System.Windows.Automation;
@@ -51,7 +53,7 @@ internal static partial class EmulationSettingsLayout
         return grid;
     }
 
-    internal static Grid CompactForm(int columns, params (string Label, FrameworkElement Control)[] fields)
+    internal static Grid CompactForm(int columns, params EmulationSettingsControlField[] fields)
     {
         var form = new Grid { Margin = new Thickness(10) };
         for (var column = 0; column < columns; column++)
@@ -65,17 +67,25 @@ internal static partial class EmulationSettingsLayout
         {
             var row = index / columns;
             var column = (index % columns) * 2;
-            var label = new TextBlock { Text = fields[index].Label, VerticalAlignment = VerticalAlignment.Center,
-                Margin = new Thickness(column == 0 ? 0 : 18, 7, 10, 7), TextWrapping = TextWrapping.Wrap };
+            var field = fields[index];
+            var label = new EmulationSettingsFieldLabel(field.Label, field.Explanation,
+                field.DetailedExplanation, field.Control)
+            {
+                Margin = new Thickness(column == 0 ? 0 : 18, 7, 10, 7)
+            };
             Grid.SetRow(label, row); Grid.SetColumn(label, column); form.Children.Add(label);
-            var control = fields[index].Control;
-            AutomationProperties.SetName(control, fields[index].Label);
+            var control = field.Control;
+            AutomationProperties.SetName(control, field.Label);
             control.Margin = new Thickness(0, 4, 0, 4);
             control.VerticalAlignment = VerticalAlignment.Center;
             Grid.SetRow(control, row); Grid.SetColumn(control, column + 1); form.Children.Add(control);
         }
         return form;
     }
+
+    internal static Grid CompactForm(int columns, params (string Label, FrameworkElement Control)[] fields) =>
+        CompactForm(columns, fields.Select(field =>
+            new EmulationSettingsControlField(field.Label, field.Control)).ToArray());
 
     internal static Border IconCard(UIElement child, string title, string icon) =>
         HeaderCard(child, title, new TextBlock { Text = icon, FontFamily = ControlVisualConstants.IconFont,
@@ -133,6 +143,12 @@ internal static partial class EmulationSettingsLayout
         while (source is not null && !ReferenceEquals(source, page))
         {
             if (source is ScrollViewer nested) return nested;
+            if (source is ContentElement content)
+            {
+                source = ContentOperations.GetParent(content)
+                    ?? (content as FrameworkContentElement)?.Parent;
+                continue;
+            }
             source = VisualTreeHelper.GetParent(source);
         }
         return null;

@@ -117,13 +117,8 @@
   <data name="Explorer.CustomSectorLoader"><value>自定义扇区加载器</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>自定义加载器 — 无文件目录</value></data>
   <data name="Explorer.Content.crack-the-company"><value>The Company 破解版</value></data>
-  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
-  <data name="Explorer.Content.compression-atn-imploder"><value>ATN! (File Imploder)</value></data>
   <data name="Explorer.DataBlocks"><value>数据块</value></data>
   <data name="Explorer.DetectedFormats"><value>检测到：{0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>
-  <data name="Explorer.Metadata.None" xml:space="preserve">
-    <value>—</value>
-  </data>
 </root>

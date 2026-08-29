@@ -61,14 +61,12 @@ internal static partial class EmulationSettingsLayout
         settings.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         settings.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
 
-        var mouse = IconCard(SettingsFields(1,
-                mouseFields.Select(field => (field.Label, field.Control)).ToArray()),
+        var mouse = IconCard(SettingsFields(1, mouseFields.ToArray()),
             LocExtension.Get("Emulation.Tab.Mouse"), EmulationInputSettingsConstants.MouseIcon);
         mouse.Margin = new Thickness(0, 0, 5, 0);
         if (analogFields is not null && analogFields.Count > 0)
         {
-            var analog = IconCard(SettingsFields(1,
-                    analogFields.Select(field => (field.Label, field.Control)).ToArray()),
+            var analog = IconCard(SettingsFields(1, analogFields.ToArray()),
                 LocExtension.Get("Emulation.Mouse.Analog"), EmulationInputSettingsConstants.ControllerIcon);
             analog.Margin = new Thickness(5, 0, 0, 0);
             Grid.SetColumn(analog, 1);

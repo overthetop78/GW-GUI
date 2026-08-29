@@ -126,15 +126,6 @@
   <data name="Emulation.Cpu.Compatibility">
     <value>Cycle-compatible CPU</value>
   </data>
-  <data name="Emulation.Memory.Chip">
-    <value>Chip RAM</value>
-  </data>
-  <data name="Emulation.Memory.Slow">
-    <value>Slow RAM</value>
-  </data>
-  <data name="Emulation.Memory.Fast">
-    <value>Fast RAM</value>
-  </data>
   <data name="Emulation.Memory.Z3">
     <value>Zorro III RAM</value>
   </data>
@@ -248,9 +239,6 @@
   </data>
   <data name="Emulation.Storage.HardDisk.DriveCount">
     <value>Număr de discuri fixe</value>
-  </data>
-  <data name="Emulation.Fpu.Model">
-    <value>FPU</value>
   </data>
   <data name="Emulation.Cpu.Speed">
     <value>CPU speed</value>
@@ -864,12 +852,6 @@
   <data name="Emulation.Storage.Geometry.Sectors">
     <value>Sectoare</value>
   </data>
-  <data name="Emulation.Storage.Unit.MiB">
-    <value>MiB</value>
-  </data>
-  <data name="Emulation.Storage.Unit.GiB">
-    <value>GiB</value>
-  </data>
   <data name="Emulation.Controller.Action.Up">
     <value>Sus</value>
   </data>
@@ -909,14 +891,8 @@
   <data name="Emulation.Amiga.Controller.Cd32.PlayPause">
     <value>Redare / pauză CD32</value>
   </data>
-  <data name="Emulation.Amiga.Controller.Joystick">
-    <value>Joystick Amiga</value>
-  </data>
   <data name="Emulation.Controller.AnalogJoystick">
     <value>Joystick analogic</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32">
-    <value>Controler CD32</value>
   </data>
   <data name="Emulation.Mouse.Wheel.Up">
     <value>Rotița mouse-ului în sus</value>
@@ -929,63 +905,6 @@
   </data>
   <data name="Emulation.Mouse.Wheel.Right">
     <value>Rotița mouse-ului la dreapta</value>
-  </data>
-  <data name="Emulation.Atari.Model.St" xml:space="preserve">
-    <value>Atari ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stf" xml:space="preserve">
-    <value>Atari STF</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stfm" xml:space="preserve">
-    <value>Atari STFM</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSt" xml:space="preserve">
-    <value>Atari Mega ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Ste" xml:space="preserve">
-    <value>Atari STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSte" xml:space="preserve">
-    <value>Atari Mega STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Tt" xml:space="preserve">
-    <value>Atari TT</value>
-  </data>
-  <data name="Emulation.Atari.Model.Falcon" xml:space="preserve">
-    <value>Atari Falcon</value>
-  </data>
-  <data name="Emulation.Atari.Model.400" xml:space="preserve">
-    <value>Atari 400</value>
-  </data>
-  <data name="Emulation.Atari.Model.800" xml:space="preserve">
-    <value>Atari 800</value>
-  </data>
-  <data name="Emulation.Atari.Model.800Xl" xml:space="preserve">
-    <value>Atari 800XL</value>
-  </data>
-  <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
-    <value>Atari 130XE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
-    <value>Atari XEGS</value>
-  </data>
-  <data name="Emulation.Atari.Model.5200" xml:space="preserve">
-    <value>Atari 5200</value>
-  </data>
-  <data name="Emulation.Atari.Model.2600" xml:space="preserve">
-    <value>Atari 2600</value>
-  </data>
-  <data name="Emulation.Atari.Model.7800" xml:space="preserve">
-    <value>Atari 7800</value>
-  </data>
-  <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
-    <value>Atari Lynx</value>
-  </data>
-  <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
-    <value>Atari Jaguar</value>
-  </data>
-  <data name="Emulation.Atari.Model.JaguarCd" xml:space="preserve">
-    <value>Atari Jaguar CD</value>
   </data>
   <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve">
     <value>Această valoare este determinată de modelul selectat.</value>
@@ -1089,24 +1008,11 @@
   <data name="Emulation.Atari.Storage.MediaFilter" xml:space="preserve">
     <value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Toate fișierele|*.*</value>
   </data>
-  <data name="Emulation.Atari.Controller.Joystick">
-    <value>Joystick Atari</value>
-  </data>
-<data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Paddle Controllers</value></data>
-<data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 Light Gun</value></data>
-<data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>Atari Driving Controller</value></data>
-  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
-  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
-  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar Controller</value></data>
   <data name="Emulation.Controller.Automatic"><value>Automat</value></data>
   <data name="Emulation.Controller.None"><value>Niciuna</value></data>
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Adaptor paralel pentru joystick cu patru jucători</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Schimbă joystick/șoarece</value></data>
   <data name="Emulation.Atari.Controller.NumericKeypad"><value>Tastatură numerică</value></data>
-  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
-  <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
-  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Controller</value></data>
   <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
     <value>Emulatorul necesită un suport înainte ca această mașină să poată fi pornită. Introduceți sau configurați unul dintre suporturile necesare afișate mai jos.</value>
   </data>
@@ -1126,7 +1032,6 @@
   <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Extensie de memorie Mosaic</value></data>
   <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Extensie de memorie Axlon</value></data>
   <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Umbră banc Axlon $0F</value></data>
-  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
   <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>POKEY stereo</value></data>
   <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Artefacte de înaltă rezoluție</value></data>
   <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>Accelerare SIO</value></data>
@@ -1164,25 +1069,10 @@
   <data name='Emulation.Media.Eject' xml:space='preserve'>
     <value>Scoateți suportul</value>
   </data>
-  <data name="Emulation.Tab.Cpu" xml:space="preserve"><value>CPU</value></data>
-  <data name="Emulation.Tab.Ram" xml:space="preserve"><value>RAM</value></data>
-  <data name="Emulation.Tab.Rom" xml:space="preserve"><value>ROM</value></data>
-  <data name="Emulation.Family.Amiga" xml:space="preserve"><value>Amiga</value></data>
-  <data name="Emulation.Family.Atari" xml:space="preserve"><value>Atari</value></data>
-  <data name="Emulation.Atari.Model.XlXe" xml:space="preserve"><value>Atari XL/XE</value></data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
   <data name="Emulation.Key.AtariHelp" xml:space="preserve"><value>Help</value></data>
   <data name="Emulation.Key.AtariUndo" xml:space="preserve"><value>Undo</value></data>
-  <data name="Emulation.Amiga.Model.A500" xml:space="preserve"><value>Amiga 500</value></data>
-  <data name="Emulation.Amiga.Model.A500PLUS" xml:space="preserve"><value>Amiga 500 Plus</value></data>
-  <data name="Emulation.Amiga.Model.A600" xml:space="preserve"><value>Amiga 600</value></data>
-  <data name="Emulation.Amiga.Model.A1000" xml:space="preserve"><value>Amiga 1000</value></data>
-  <data name="Emulation.Amiga.Model.A1200" xml:space="preserve"><value>Amiga 1200</value></data>
-  <data name="Emulation.Amiga.Model.A2000" xml:space="preserve"><value>Amiga 2000</value></data>
-  <data name="Emulation.Amiga.Model.A3000" xml:space="preserve"><value>Amiga 3000</value></data>
-  <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Amiga 4000</value></data>
-  <data name="Emulation.Amiga.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
-  <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Amiga CD32</value></data>  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput nu a putut fi inițializat. Instalați sau reparați runtime-ul GameInput inclus.</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput nu a putut fi inițializat. Instalați sau reparați runtime-ul GameInput inclus.</value></data>
   <data name="Emulation.Configuration.Brand"><value>Marcă</value></data>
   <data name="Emulation.Configuration.Machine"><value>Mașină</value></data>
   <data name="Emulation.Configuration.TotalRam"><value>RAM totală</value></data>
@@ -1190,7 +1080,110 @@
   <data name="Emulation.Configuration.Peripherals"><value>Periferice</value></data>
   <data name="Emulation.Configuration.Actions"><value>Acțiuni</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>Ștergeți configurația {0} {1}?</value></data>
-  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
-    <value>Kickstart</value>
-  </data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short"><value>Tăcere drive-uri floppy goale</value></data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed"><value>Tăceți sunetul de unitate emulat în timp ce nu se introduce nici un disc. Dezactivează această opțiune pentru a menține zgomotul mecanic inactiv.</value></data>
+  <data name="Emulation.Help.Audio.Filter.Short"><value>Alegeți filtrarea audio analogică</value></data>
+  <data name="Emulation.Help.Audio.Filter.Detailed"><value>Selectează modul în care este reprodus filtrul audio analog original. Emulat urmează comportamentul hardware. Celelalte alegeri forţează filtrul să funcţioneze sau să se oprească.</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Short"><value>Activează filtrul audio polarizat</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Detailed"><value>Se aplică filtrul polarizat la semnalul audio generat. Activați-l pentru a reproduce sunetul filtrat. Dezactivează-l pentru a păstra semnalul nefiltrat.</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Short"><value>Alegeți interpolarea audio</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Detailed"><value>Selectează modul în care probele audio sunt calculate între punctele de eșantionare generate. Metodele de calitate superioară produc un sunet mai fin, dar necesită mai multă prelucrare.</value></data>
+  <data name="Emulation.Help.Audio.Latency.Short"><value>Stabilește latența audio</value></data>
+  <data name="Emulation.Help.Audio.Latency.Detailed"><value>Setează durata tamponului audio. Un tampon mai scurt reduce întârzierea, dar poate provoca trosnituri. Un tampon mai lung îmbunătățește stabilitatea, dar crește întârzierea.</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Short"><value>Activează dual POKEY stereo</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed"><value>Adaugă un al doilea emulat POKEY cip pentru a produce sunet stereo. Activează această opțiune numai pentru software-ul care suportă dual POKEY audio.</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Short"><value>Setează separarea stereo</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Detailed"><value>Setează separarea dintre canalele stânga şi dreapta. O valoare mai mică amestecă canalele împreună. O valoare mai mare îi ţine departe.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short"><value>Alegeți setul de sunet al motorului floppy</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed"><value>Selectează setul de probe utilizat pentru sunetele mecanice ale dischetelor emulate. Nu schimbă comportamentul sau datele de pe disc.</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Short"><value>Alegeți modelul filtrului audio</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed"><value>Selectează răspunsul filtrului hardware pentru a emula. Auto urmează modelul de mașină selectat. O alegere specifică utilizează întotdeauna acest răspuns la filtru.</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Short"><value>Activează două porturi joystick suplimentare</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Detailed"><value>Emulează un adaptor paralel care adaugă două porturi joystick. Activați-l pentru software-ul care suportă patru jucători simultane.</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Short"><value>Setează intervalul pulsului turbo</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Detailed"><value>Setează timpul dintre presele automate produse de turbo. Un interval mai scurt produce o tragere mai rapidă.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Short"><value>Alegeți un mod de compatibilitate controler</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed"><value>Selectează o cartografiere specială a controlerului, cum ar fi controlul dual-stick, porturile schimbate sau Joy2B+. Alegeți Nici unul pentru a menține cartografierea standard a portului.</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Short"><value>Stabilește sensibilitatea de intrare analogică</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed"><value>Setează cât de puternic răspunde o intrare analogică la mișcare. O valoare mai mare produce un răspuns mai mare din aceeași mișcare fizică.</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Short"><value>Setează sensibilitatea la intrare digitală</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed"><value>Setează cât de repede o direcție digitală ajunge la mișcare completă. O valoare mai mare face schimbările de direcţie să ajungă la maxim mai repede.</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Short"><value>Alegeți modul de aprindere automată</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed"><value>Dezactivează focul automat. Pe buton se repetă focul în timp ce butonul alocat este ținut. Întotdeauna repetă focul continuu.</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Short"><value>Setează viteza de mișcare a vâslelor</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Detailed"><value>Setează cât de repede intră digital o vâslă emulată. O valoare mai mică o mişcă mai încet. O valoare mai mare o mişcă mai repede.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Short"><value>Alegeți FPU</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed"><value>Selectează unitatea de punct plutitor utilizată pentru instrucțiuni cu punct plutitor. @ info: whatsthis FPU. Modelele disponibile depind de cele selectate CPU.</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Short"><value>Alegeți CPU precizie de emulare</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Detailed"><value>Selectează cât de aproape CPU calendarul urmează hardware-ul original. Modurile mai precise pot îmbunătăți compatibilitatea, dar pot necesita mai multă prelucrare.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Short"><value>Setează emulat CPU viteză</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed"><value>Setează frecvența procesorului utilizată de mașina emulată. Viteza originală păstrează sincronizarea hardware. Valori mai mari accelerează CPU- Program limitat.</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short"><value>Foloseste stick-uri analogice pentru a controla mouse-ul</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Detailed"><value>Permite analog joystick axe pentru a muta indicatorul mouse-ului emulat. Activați-l atunci când un stick analog fizic ar trebui să controleze indicatorul.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Short"><value>Setează viteza analogică a mouse-ului</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed"><value>Setează viteza indicator atunci când un stick analog controlează mouse-ul emulat. O valoare mai mare mută indicatorul mai departe pentru aceeași mișcare băț.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Short"><value>Setează zona moartă a mouse-ului analogic</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed"><value>Ignoră mici mișcări analogice-stick în jurul centrului în timp ce controlează mouse-ul. Măreşte valoarea dacă indicatorul se mişcă în timp ce stick-ul este eliberat.</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Short"><value>Activează Axlon $0F banca umbra</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed"><value>Oglinzile Axlon banca de control la adresa $0F. Activați-l doar pentru software-ul sau expansiunea memoriei care utilizează această adresă suplimentară.</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short"><value>Stabilește Axlon memorie de expansiune</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed"><value>@ info: whatsthis Axlon memorie. Dezactivat elimină expansiunea. Celelalte opțiuni oferă capacitatea de memorie selectată.</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short"><value>Stabilește Mosaic memorie de expansiune</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed"><value>@ info: whatsthis Mosaic memorie. Dezactivat elimină expansiunea. Celelalte opțiuni oferă capacitatea de memorie selectată.</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short"><value>Setează memoria de expansiune suplimentară</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed"><value>Setează cantitatea de memorie suplimentară de expansiune susținută de mașina selectată. Alegeți niciunul pentru a utiliza numai memoria principală configurată.</value></data>
+  <data name="Emulation.Help.Memory.Fast.Short"><value>Stabilește Fast RAM dimensiune</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed"><value>Setează cantitatea de Fast RAM disponibilă direct CPU. Suplimentar Fast RAM poate ajuta software-ul compatibil, dar modifica configurarea hardware-ului emulat.</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short"><value>Activează MapRAM</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Detailed"><value>Permite software-ului compatibil pentru a cartografia writable RAM în sistem ROM zona adresei. Această opțiune este disponibilă numai pe modele de mașini care suportă MapRAM.</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short"><value>Stabilește Zorro III RAM dimensiune</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed"><value>Setează cantitatea de 32 biți Fast RAM conectate prin intermediul Zorro III Autobuz. Utilizați-l numai cu mașini și software compatibile de 32 de biți.</value></data>
+  <data name="Emulation.Help.Memory.Slow.Short"><value>Stabilește Slow RAM dimensiune</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed"><value>Setează cantitatea de Slow RAM în zona de expansiune trapă. Această memorie este mai lentă decât Fast RAM și utilizează o gamă diferită de adrese hardware.</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Short"><value>Alegeți ROM tasta de decriptare</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Detailed"><value>Selectează fișierul cheie folosit pentru a decripta un licență criptat ROM imagine. Lăsați acest câmp gol atunci când este selectat ROM nu este criptat.</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Short"><value>Activează pornirea rapidă</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Detailed"><value>Skings selectat hardware inițializare întârzieri pentru a scurta pornirea. Dezactivează această opțiune atunci când software-ul necesită secvența originală de pornire.</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Short"><value>Alegeți o extensie ROM</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed"><value>Selectează firmware-ul secundar ROM impuse de unele modele de mașini. Lăsați acest câmp gol atunci când modelul selectat nu utilizează o extensie ROM.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Short"><value>Activează accelerat SIO transferuri</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed"><value>Accelerează transferurile compatibile prin intermediul autobuzului de intrare/ieșire serial. Dezactivează această opțiune atunci când software-ul depinde de calendarul de transfer original.</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short"><value>Activează pornirea casetei</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Detailed"><value>Face mașina emulată să încerce să pornească de la imaginea casetei atașate. Dezactivează această opțiune la pornirea de la alt dispozitiv.</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Short"><value>Activează R-Time 8 ceas</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Detailed"><value>Emulează R-Time 8 ceas în timp real, astfel încât software-ul compatibil poate citi data și ora curentă.</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Short"><value>Activează P: dispozitiv imprimantă</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed"><value>Face emulat P: dispozitiv de imprimantă disponibil pentru software. Dezactivează această opțiune atunci când nu este necesară emulare a dispozitivului de imprimantă.</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Short"><value>Activează R: dispozitiv serial</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed"><value>Face emulat R: dispozitiv serial disponibil pentru software. Dezactivează această opțiune atunci când nu este necesară emularea dispozitivului serial.</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Short"><value>Alegeți artifactarea culorii de înaltă rezoluție</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Detailed"><value>Selectează modul în care modelele de înaltă rezoluție produc culori compozite-video. Nimeni nu dezactivează culorile artefactului. Celelalte moduri reproduc diferite palete sau comportament de cip.</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Short"><value>Alegeți sincronizarea clichetului</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Detailed"><value>Selectează dacă operațiunile de agitare se termină imediat sau urmează calendarul hardware emulat. Modul imediat este mai rapid, dar mai puțin timp-acuratețe.</value></data>
+  <data name="Emulation.Help.Video.HzChange.Short"><value>Permite modificări ale ratei de reîmprospătare a producției</value></data>
+  <data name="Emulation.Help.Video.HzChange.Detailed"><value>Permite ratei de reîmprospătare a ieșirii să urmeze modificările din modul video emulat. Blocat păstrează rata curentă de reîmprospătare ieșire.</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Short"><value>Selectați detalii privind detectarea coliziunii</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Detailed"><value>Selectați care sunt calculate coliziunile sprite și playfield. Detectarea mai completă îmbunătățește compatibilitatea, dar necesită mai multă prelucrare.</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Short"><value>Reduceți pâlpâirea ecranului interlatat</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed"><value>Reduce pâlpâirea în ieșire video interconectat. Activează-l pentru o imagine mai stabilă. Dezactivează-l pentru a păstra comportamentul original interlatat de afișare.</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Short"><value>Alegeți raportul de aspect afișat</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Detailed"><value>Selectează modul în care imaginea emulată este scalată orizontal și vertical. Auto urmăreşte ieşirea emulată. O alegere fixă forţe care afişează forma.</value></data>
+  <data name="Emulation.Help.Video.Gamma.Short"><value>Ajustează imaginea gamma</value></data>
+  <data name="Emulation.Help.Video.Gamma.Detailed"><value>Schimbă strălucirea tonurilor medii fără a schimba direct nivelul alb-negru. Valori mai mici tonuri de mijloc întunecate. Valorile mai mari le luminează.</value></data>
+  <data name="Emulation.Help.Video.LineMode.Short"><value>Alegeți modul liniei video</value></data>
+  <data name="Emulation.Help.Video.LineMode.Detailed"><value>Selectează modul în care sunt afișate liniile video verticale. Auto urmează modul emulat. Alte opțiuni forțează linii unice, linii duble sau linii scanate atunci când sunt disponibile.</value></data>
+  <data name="Emulation.Help.Video.Standard.Short"><value>Selectează standardul video</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed"><value>Selectează calendarul de televiziune emulat, cum ar fi PAL sau NTSCAcest lucru afectează rata de reîmprospătare, calendarul hardware, și compatibilitatea software-ului.</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Short"><value>Alegeți o paleta de culori externă</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Detailed"><value>Selectează o paletă de culori predefinită în loc de culori generate din setările video curente. Alegeți niciunul pentru a utiliza culorile generate.</value></data>
+  <data name="Emulation.Help.Video.Colors.Short"><value>Alegeți adâncimea culorii de ieșire</value></data>
+  <data name="Emulation.Help.Video.Colors.Detailed"><value>Selectează adâncimea de culoare folosită pentru a reda imaginea. 24-bit păstrează mai multe detalii de culoare. 16-bit foloseşte o gamă mai mică de culori.</value></data>
+  <data name="Emulation.Help.Video.Region.Short"><value>Alegeți regiunea hardware</value></data>
+  <data name="Emulation.Help.Video.Region.Detailed"><value>Selectează calendarul regional folosit de maşina emulată. Alegerea poate afecta frecvența video, CPU sincronizare, și firmware compatibil.</value></data>
+  <data name="Emulation.Help.Video.Rendering.Short"><value>Alegeți randatorul video</value></data>
+  <data name="Emulation.Help.Video.Rendering.Detailed"><value>Selectează suportul grafic folosit pentru a desena ecranul emulat. Madeerii disponibili pot diferi în performanţă şi compatibilitate cu sistemul gazdă.</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Short"><value>Ajustează GTIA întârziere a culorii</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Setează GTIA întârziat faza de culoare folosit pentru a reproduce culori. Implicit folosește valoarea standard. Alegerile numerice schimbă nuanţele rezultate.</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Short"><value>@ info: whatsthis</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Setează câte rame de afișare sunt omise. Dezactivează fiecare cadru. Valorile mai mari reduc munca de redare, dar fac mişcarea mai puţin lină.</value></data>
 </root>

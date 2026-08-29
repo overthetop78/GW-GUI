@@ -126,15 +126,6 @@
   <data name="Emulation.Cpu.Compatibility">
     <value>CPU kompatibel per siklus</value>
   </data>
-  <data name="Emulation.Memory.Chip">
-    <value>Chip RAM</value>
-  </data>
-  <data name="Emulation.Memory.Slow">
-    <value>Slow RAM</value>
-  </data>
-  <data name="Emulation.Memory.Fast">
-    <value>Fast RAM</value>
-  </data>
   <data name="Emulation.Memory.Z3">
     <value>RAM Zorro III</value>
   </data>
@@ -248,9 +239,6 @@
   </data>
   <data name="Emulation.Storage.HardDisk.DriveCount">
     <value>Jumlah hard disk</value>
-  </data>
-  <data name="Emulation.Fpu.Model">
-    <value>FPU</value>
   </data>
   <data name="Emulation.Cpu.Speed">
     <value>Kecepatan CPU</value>
@@ -864,12 +852,6 @@
   <data name="Emulation.Storage.Geometry.Sectors">
     <value>Sektor</value>
   </data>
-  <data name="Emulation.Storage.Unit.MiB">
-    <value>MiB</value>
-  </data>
-  <data name="Emulation.Storage.Unit.GiB">
-    <value>GiB</value>
-  </data>
   <data name="Emulation.Controller.Action.Up">
     <value>Atas</value>
   </data>
@@ -909,14 +891,8 @@
   <data name="Emulation.Amiga.Controller.Cd32.PlayPause">
     <value>CD32 putar / jeda</value>
   </data>
-  <data name="Emulation.Amiga.Controller.Joystick">
-    <value>Joystick Amiga</value>
-  </data>
   <data name="Emulation.Controller.AnalogJoystick">
     <value>Joystick analog</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32">
-    <value>Pengontrol CD32</value>
   </data>
   <data name="Emulation.Mouse.Wheel.Up">
     <value>Roda tetikus ke atas</value>
@@ -929,63 +905,6 @@
   </data>
   <data name="Emulation.Mouse.Wheel.Right">
     <value>Roda tetikus ke kanan</value>
-  </data>
-  <data name="Emulation.Atari.Model.St" xml:space="preserve">
-    <value>Atari ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stf" xml:space="preserve">
-    <value>Atari STF</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stfm" xml:space="preserve">
-    <value>Atari STFM</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSt" xml:space="preserve">
-    <value>Atari Mega ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Ste" xml:space="preserve">
-    <value>Atari STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSte" xml:space="preserve">
-    <value>Atari Mega STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Tt" xml:space="preserve">
-    <value>Atari TT</value>
-  </data>
-  <data name="Emulation.Atari.Model.Falcon" xml:space="preserve">
-    <value>Atari Falcon</value>
-  </data>
-  <data name="Emulation.Atari.Model.400" xml:space="preserve">
-    <value>Atari 400</value>
-  </data>
-  <data name="Emulation.Atari.Model.800" xml:space="preserve">
-    <value>Atari 800</value>
-  </data>
-  <data name="Emulation.Atari.Model.800Xl" xml:space="preserve">
-    <value>Atari 800XL</value>
-  </data>
-  <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
-    <value>Atari 130XE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
-    <value>Atari XEGS</value>
-  </data>
-  <data name="Emulation.Atari.Model.5200" xml:space="preserve">
-    <value>Atari 5200</value>
-  </data>
-  <data name="Emulation.Atari.Model.2600" xml:space="preserve">
-    <value>Atari 2600</value>
-  </data>
-  <data name="Emulation.Atari.Model.7800" xml:space="preserve">
-    <value>Atari 7800</value>
-  </data>
-  <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
-    <value>Atari Lynx</value>
-  </data>
-  <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
-    <value>Atari Jaguar</value>
-  </data>
-  <data name="Emulation.Atari.Model.JaguarCd" xml:space="preserve">
-    <value>Atari Jaguar CD</value>
   </data>
   <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve">
     <value>Nilai ini ditentukan oleh model yang dipilih.</value>
@@ -1089,24 +1008,11 @@
   <data name="Emulation.Atari.Storage.MediaFilter" xml:space="preserve">
     <value>Media Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Semua berkas|*.*</value>
   </data>
-  <data name="Emulation.Atari.Controller.Joystick">
-    <value>Joystick Atari</value>
-  </data>
-<data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Paddle Controllers</value></data>
-<data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 Light Gun</value></data>
-<data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>Atari Driving Controller</value></data>
-  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
-  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
-  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar Controller</value></data>
   <data name="Emulation.Controller.Automatic"><value>Otomatis</value></data>
   <data name="Emulation.Controller.None"><value>Tidak ada</value></data>
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Adaptor joystick paralel empat pemain</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Tukar joystick / mouse</value></data>
   <data name="Emulation.Atari.Controller.NumericKeypad"><value>keypad numerik</value></data>
-  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Grip Atari Booster</value></data>
-  <data name="Emulation.Atari.Controller.Genesis"><value>Pengontrol Kejadian Sega</value></data>
-  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B + Controller</value></data>
   <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
     <value>Emulator memerlukan media sebelum mesin ini dapat dinyalakan. Masukkan atau konfigurasikan salah satu media yang diperlukan yang ditampilkan di bawah.</value>
   </data>
@@ -1126,7 +1032,6 @@
   <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Ekspansi memori Mosaic</value></data>
   <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Ekspansi memori Axlon</value></data>
   <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Bayangan bank Axlon $0F</value></data>
-  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
   <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>POKEY stereo</value></data>
   <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Artefak resolusi tinggi</value></data>
   <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>Akselerasi SIO</value></data>
@@ -1164,25 +1069,10 @@
   <data name='Emulation.Media.Eject' xml:space='preserve'>
     <value>Keluarkan media</value>
   </data>
-  <data name="Emulation.Tab.Cpu" xml:space="preserve"><value>CPU</value></data>
-  <data name="Emulation.Tab.Ram" xml:space="preserve"><value>RAM</value></data>
-  <data name="Emulation.Tab.Rom" xml:space="preserve"><value>ROM</value></data>
-  <data name="Emulation.Family.Amiga" xml:space="preserve"><value>Amiga</value></data>
-  <data name="Emulation.Family.Atari" xml:space="preserve"><value>Atari</value></data>
-  <data name="Emulation.Atari.Model.XlXe" xml:space="preserve"><value>Atari XL/XE</value></data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
   <data name="Emulation.Key.AtariHelp" xml:space="preserve"><value>Help</value></data>
   <data name="Emulation.Key.AtariUndo" xml:space="preserve"><value>Undo</value></data>
-  <data name="Emulation.Amiga.Model.A500" xml:space="preserve"><value>Amiga 500</value></data>
-  <data name="Emulation.Amiga.Model.A500PLUS" xml:space="preserve"><value>Amiga 500 Plus</value></data>
-  <data name="Emulation.Amiga.Model.A600" xml:space="preserve"><value>Amiga 600</value></data>
-  <data name="Emulation.Amiga.Model.A1000" xml:space="preserve"><value>Amiga 1000</value></data>
-  <data name="Emulation.Amiga.Model.A1200" xml:space="preserve"><value>Amiga 1200</value></data>
-  <data name="Emulation.Amiga.Model.A2000" xml:space="preserve"><value>Amiga 2000</value></data>
-  <data name="Emulation.Amiga.Model.A3000" xml:space="preserve"><value>Amiga 3000</value></data>
-  <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Amiga 4000</value></data>
-  <data name="Emulation.Amiga.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
-  <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Amiga CD32</value></data>  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput tidak dapat diinisialisasi. Instal atau perbaiki runtime GameInput yang disertakan.</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput tidak dapat diinisialisasi. Instal atau perbaiki runtime GameInput yang disertakan.</value></data>
   <data name="Emulation.Configuration.Brand"><value>Merek</value></data>
   <data name="Emulation.Configuration.Machine"><value>Mesin</value></data>
   <data name="Emulation.Configuration.TotalRam"><value>Total RAM</value></data>
@@ -1190,7 +1080,110 @@
   <data name="Emulation.Configuration.Peripherals"><value>Periferal</value></data>
   <data name="Emulation.Configuration.Actions"><value>Tindakan</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>Hapus konfigurasi {0} {1}?</value></data>
-  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
-    <value>Kickstart</value>
-  </data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short"><value>Kandar floppy kosong diam</value></data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed"><value>Keheningan suara drive yang digandakan ketika tidak ada disk dimasukkan. Nonaktifkan opsi ini untuk menjaga kebisingan mekanis yang menganggur.</value></data>
+  <data name="Emulation.Help.Audio.Filter.Short"><value>Pilih penyaringan audio analog</value></data>
+  <data name="Emulation.Help.Audio.Filter.Detailed"><value>Memilih bagaimana filter audio analog asli direproduksi. Emulasi mengikuti perilaku perangkat keras. Pilihan lain memaksa filter hidup atau mati.</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Short"><value>Aktifkan filter audio polarisasi</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Detailed"><value>layers-action Aktifkan untuk mereproduksi suara yang disaring. Menonaktifkan untuk menjaga tidak disaring sinyal.</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Short"><value>Pilih interpolasi audio</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Detailed"><value>Memilih bagaimana sampel audio dihitung antara titik sampel yang dihasilkan. Metode kualitas tertinggi menghasilkan suara halus tapi membutuhkan lebih banyak proses.</value></data>
+  <data name="Emulation.Help.Audio.Latency.Short"><value>Atur latensi audio</value></data>
+  <data name="Emulation.Help.Audio.Latency.Detailed"><value>Tata durasi buffer audio. Buffer yang lebih pendek mengurangi penundaan tapi bisa menyebabkan keretakan. Buffer yang lebih lama meningkatkan stabilitas tapi meningkatkan penundaan.</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Short"><value>Aktifkan dual POKEY stereo</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed"><value>Tambahkan timulasi kedua POKEY chip untuk menghasilkan suara stereo. Aktifkan opsi ini hanya untuk perangkat lunak yang mendukung dual POKEY audio.</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Short"><value>Set pemisahan stereo</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Detailed"><value>Mengatur pemisahan antara saluran kiri dan kanan. Sebuah nilai yang lebih rendah bercampur saluran bersama-sama. Nilai yang lebih tinggi membuat mereka jauh terpisah.</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short"><value>Pilih set suara kandar floppy</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed"><value>Memilih sampel yang digunakan untuk suara mekanis dari emulasi floppy drive. Ini tidak mengubah perilaku drive atau data disk.</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Short"><value>Pilih model penyaring audio</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed"><value>Memilih respon filter perangkat keras terhadap emulasi. Otomatis mengikuti model mesin yang dipilih. Pilihan khusus selalu menggunakan jawaban filter.</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Short"><value>Aktifkan dua port joystick tambahan</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Detailed"><value>Emulasi adaptor paralel-port yang menambahkan dua port joystick. Aktifkan untuk perangkat lunak yang mendukung empat pemain simultan.</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Short"><value>Set interval pulse turbo</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Detailed"><value>Mengatur waktu antara tombol otomatis menekan yang dihasilkan oleh turbo. Sebuah interval pendek menghasilkan tembakan berulang lebih cepat.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Short"><value>Pilih mode kompatibilitas pengontrol</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed"><value>Memilih pemetaan pengendali khusus, seperti dual- stick kontrol, port swap, atau Joy2B+. Pilih Tidak ada untuk menjaga standar pemetaan port.</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Short"><value>Set sensitivitas masukan analog</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed"><value>Mengatur seberapa kuat masukan analog menanggapi gerakan. Nilai yang lebih tinggi menghasilkan respon yang lebih besar dari gerakan fisik yang sama.</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Short"><value>Set sensitivitas masukan digital</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed"><value>Mengatur seberapa cepat arah digital mencapai gerakan penuh. Nilai yang lebih tinggi membuat perubahan arah mencapai maksimum mereka lebih cepat.</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Short"><value>Pilih mode api otomatis</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed"><value>Dinonaktifkan mematikan api otomatis. Pada tombol mengulangi tembakan sementara tombol yang diberikan ditahan. Selalu mengulangi api terus menerus.</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Short"><value>Mengatur kecepatan gerakan dayung</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Detailed"><value>Mengatur seberapa cepat masukan digital bergerak dalam bentuk dayung. Nilai yang lebih rendah bergerak lebih lambat. Nilai yang lebih tinggi bergerak lebih cepat.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Short"><value>Pilih FPU</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed"><value>Memilih floating-point unit digunakan untuk floating-point instruksi. Pilih Tak Ada untuk menonaktifkan FPUModel tersedia bergantung pada yang dipilih CPU.</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Short"><value>Pilih CPU akurasi emulasi</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Detailed"><value>Memilih seberapa dekat CPU Waktu mengikuti perangkat keras asli. Mode yang lebih akurat dapat meningkatkan kompatibilitas tetapi mungkin memerlukan lebih banyak proses.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Short"><value>Atur emulasi CPU kecepatan</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed"><value>Mengatur frekuensi prosesor yang digunakan oleh mesin yang direkayasa. Kecepatan asli mempertahankan waktu perangkat keras. Nilai lebih tinggi mempercepat CPU-perangkat lunak terbatas.</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short"><value>Gunakan batang analog untuk mengendalikan tetikus</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Detailed"><value>Memungkinkan sumbu joystick analog untuk memindahkan penunjuk tetikus yang tergandakan. Aktifkan saat batang analog fisik harus mengendalikan pointer.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Short"><value>Atur kecepatan tetikus analog</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed"><value>Tata kecepatan penunjuk ketika suatu batang analog mengontrol tetikus yang tergandakan. Nilai yang lebih tinggi bergerak pointer lebih jauh untuk gerakan tongkat yang sama.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Short"><value>Set zona mati tetikus analog</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed"><value>Mengabaikan gerakan analog kecil-tongkat di sekitar pusat saat mengendalikan tetikus. Tingkatkan nilai jika pointer bergerak ketika tongkat dilepaskan.</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Short"><value>Aktifkan Axlon $0F bank bayangan</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed"><value>Cermin Axlon kontrol bank di alamat $0F. Aktifkan hanya untuk perangkat lunak atau ekspansi memori yang menggunakan alamat tambahan ini.</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short"><value>Set Axlon memori ekspansi</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed"><value>Tata jumlah bank- switched Axlon memori. Dinonaktifkan menghapus ekspansi. Pilihan lain memberikan kapasitas memori yang dipilih.</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short"><value>Set Mosaic memori ekspansi</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed"><value>Tata jumlah bank- switched Mosaic memori. Dinonaktifkan menghapus ekspansi. Pilihan lain memberikan kapasitas memori yang dipilih.</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short"><value>Set memori ekspansi tambahan</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed"><value>Tata jumlah memori ekspansi tambahan yang didukung oleh mesin yang dipilih. Pilih Tak Ada untuk menggunakan hanya memori utama yang dikonfigurasi.</value></data>
+  <data name="Emulation.Help.Memory.Fast.Short"><value>Set Fast RAM ukuran</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed"><value>Tata jumlah Fast RAM tersedia langsung ke CPU. Tambahan Fast RAM dapat membantu software yang kompatibel tetapi mengubah konfigurasi perangkat keras yang tergandakan.</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short"><value>Aktifkan MapRAM</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Detailed"><value>Memungkinkan perangkat lunak yang kompatibel untuk memetakan yang dapat ditulisi RAM ke dalam sistem ROM area alamat. Opsi ini hanya tersedia pada model mesin yang mendukung MapRAM.</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short"><value>Set Zorro III RAM ukuran</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed"><value>Tata jumlah 32- bit Fast RAM tersambung melalui Zorro III bus. Gunakan hanya dengan mesin 32bit dan perangkat lunak yang kompatibel.</value></data>
+  <data name="Emulation.Help.Memory.Slow.Short"><value>Set Slow RAM ukuran</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed"><value>Tata jumlah Slow RAM di area perluasan pintu jebakan. Memori ini lebih lambat dari Fast RAM dan menggunakan jangkauan alamat perangkat keras yang berbeda.</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Short"><value>Pilih ROM kunci dekripsi</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Detailed"><value>Memilih berkas kunci yang dipakai untuk mendekripsi enkripsi yang berlisensi ROM gambar. Biarkan field ini kosong ketika yang dipilih ROM tidak dienkripsi.</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Short"><value>Aktifkan startup cepat</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Detailed"><value>Melewatkan penundaan inisialisasi perangkat keras yang dipilih ke awal yang singkat. Nonaktifkan opsi ini ketika perangkat lunak memerlukan urutan awal.</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Short"><value>Pilih ekstensi ROM</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed"><value>Memilih firmware sekunder ROM dibutuhkan oleh beberapa model mesin. Biarkan bidang ini kosong ketika model yang dipilih tidak menggunakan ekstensi ROM.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Short"><value>Aktifkan dipercepat SIO transfer</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed"><value>Menyebarkan transfer yang kompatibel melalui bus masukan / keluaran seri. Nonaktifkan opsi ini ketika perangkat lunak tergantung pada waktu transfer asli.</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short"><value>Aktifkan startup kaset</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Detailed"><value>Membuat mesin beremulasi mencoba untuk memulai dari gambar kaset yang terpasang. Nonaktifkan opsi ini ketika dimulai dari perangkat lain.</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Short"><value>Aktifkan R-Time 8 jam</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Detailed"><value>Emulasi R-Time 8 real-time clock sehingga kompatibel perangkat lunak dapat membaca tanggal dan waktu saat ini.</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Short"><value>Aktifkan P: Perangkat pencetak</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed"><value>Membuat emulasi P: Perangkat pencetak tersedia untuk perangkat lunak. Nonaktifkan opsi ini ketika emulasi perangkat printer- tidak diperlukan.</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Short"><value>Aktifkan R: perangkat serial</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed"><value>Membuat emulasi R: perangkat seri yang tersedia untuk perangkat lunak. Nonaktifkan opsi ini ketika emulasi perangkat serial- tidak diperlukan.</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Short"><value>Pilih warna artifacting high-resolusi</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Detailed"><value>Memilih bagaimana pola resolusi tinggi menghasilkan komposit-video warna. Tidak ada yang mematikan warna artefak. Modes lain mereproduksi palet yang berbeda atau chip perilaku.</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Short"><value>Pilih waktu yang lebih terang</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Detailed"><value>Memilih apakah operasi blitter selesai segera atau mengikuti emulasi waktu perangkat keras. Modus langsung lebih cepat tapi kurang waktu - akurat.</value></data>
+  <data name="Emulation.Help.Video.HzChange.Short"><value>Ijinkan perubahan tingkat -keluaran</value></data>
+  <data name="Emulation.Help.Video.HzChange.Detailed"><value>Memungkinkan laju refresh keluaran untuk mengikuti perubahan dalam mode video yang termodifikasi. Terkunci menjaga tingkat penyegaran keluaran saat ini.</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Short"><value>Pilih rincian deteksi tabrakan</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Detailed"><value>Memilih mana yang sprite dan playfield tabrakan dihitung. Lebih lengkap deteksi meningkatkan kompatibilitas tetapi membutuhkan lebih banyak proses.</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Short"><value>Kurangi kedipan tampilan interlaced</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed"><value>Reduces flicker in interlaced video output. Aktifkan untuk gambar steader. Menonaktifkan untuk melestarikan perilaku tampilan interlaced asli.</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Short"><value>Pilih rasio aspek yang ditampilkan</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Detailed"><value>Memilih bagaimana gambar yang beremulasi skala horizontal dan vertikal. Auto mengikuti keluaran yang digandakan. Sebuah kekuatan pilihan tetap yang menampilkan bentuk.</value></data>
+  <data name="Emulation.Help.Video.Gamma.Short"><value>Atur gambar gamma</value></data>
+  <data name="Emulation.Help.Video.Gamma.Detailed"><value>Mengubah kecerahan nada tengah tanpa mengubah tingkat hitam dan putih secara langsung. Nilai bawah tengah nada hitam. Nilai yang lebih tinggi mencerahkan mereka.</value></data>
+  <data name="Emulation.Help.Video.LineMode.Short"><value>Pilih mode baris video</value></data>
+  <data name="Emulation.Help.Video.LineMode.Detailed"><value>Memilih bagaimana garis video vertikal ditampilkan. Auto mengikuti mode yang diemulasi. Pilihan lain memaksa baris tunggal, dua kali lipat, atau scanlines ketika tersedia.</value></data>
+  <data name="Emulation.Help.Video.Standard.Short"><value>Pilih standar video</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed"><value>Memilih waktu televisi yang terukur, seperti PAL atau NTSCIni mempengaruhi tingkat penyegaran, waktu perangkat keras, dan kompatibilitas perangkat lunak.</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Short"><value>Pilih palet warna eksternal</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Detailed"><value>Memilih palet warna yang sudah ditentukan daripada warna yang dihasilkan dari pengaturan video saat ini. Tak ada yang memakai warna yang dihasilkan.</value></data>
+  <data name="Emulation.Help.Video.Colors.Short"><value>Pilih kedalaman warna keluaran</value></data>
+  <data name="Emulation.Help.Video.Colors.Detailed"><value>Memilih kedalaman warna yang dipakai untuk membuat gambar. 24-bit menjaga lebih detail warna. 16-bit menggunakan kisaran warna yang lebih kecil.</value></data>
+  <data name="Emulation.Help.Video.Region.Short"><value>Pilih daerah perangkat keras</value></data>
+  <data name="Emulation.Help.Video.Region.Detailed"><value>Memilih waktu regional yang digunakan oleh mesin yang diemulasi. Pilihan dapat mempengaruhi frekuensi video, CPU Waktu, dan firmware kompatibel.</value></data>
+  <data name="Emulation.Help.Video.Rendering.Short"><value>Pilih perender video</value></data>
+  <data name="Emulation.Help.Video.Rendering.Detailed"><value>Memilih backend grafis yang dipakai untuk menggambar tampilan yang telah ditiru. Penyewa tersedia dapat berbeda dalam kinerja dan kompatibilitas dengan sistem host.</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Short"><value>Atur GTIA delay warna</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Mengatur GTIA delay fase warna digunakan untuk mereproduksi warna. Baku menggunakan nilai standar. Pilihan numerik mengubah warna yang dihasilkan.</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Short"><value>Set frame skipping</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Mengatur berapa banyak frame layar yang dihilangkan. Dinonaktifkan menarik setiap frame. Nilai yang lebih tinggi mengurangi render bekerja tapi membuat gerak kurang halus.</value></data>
 </root>

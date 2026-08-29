@@ -117,13 +117,8 @@
   <data name="Explorer.CustomSectorLoader"><value>טוען סקטורים מותאם</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>טוען מותאם — אין קטלוג קבצים</value></data>
   <data name="Explorer.Content.crack-the-company"><value>Crack על ידי The Company</value></data>
-  <data name="Explorer.Content.compression-fire"><value>FIRE</value></data>
-  <data name="Explorer.Content.compression-atn-imploder"><value>ATN! (File Imploder)</value></data>
   <data name="Explorer.DataBlocks"><value>בלוקי נתונים</value></data>
   <data name="Explorer.DetectedFormats"><value>זוהה: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>
-  <data name="Explorer.Metadata.None" xml:space="preserve">
-    <value>—</value>
-  </data>
 </root>

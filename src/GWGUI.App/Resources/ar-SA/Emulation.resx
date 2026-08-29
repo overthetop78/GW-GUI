@@ -126,15 +126,6 @@
   <data name="Emulation.Cpu.Compatibility">
     <value>Cycle-compatible CPU</value>
   </data>
-  <data name="Emulation.Memory.Chip">
-    <value>Chip RAM</value>
-  </data>
-  <data name="Emulation.Memory.Slow">
-    <value>Slow RAM</value>
-  </data>
-  <data name="Emulation.Memory.Fast">
-    <value>Fast RAM</value>
-  </data>
   <data name="Emulation.Memory.Z3">
     <value>Zorro III RAM</value>
   </data>
@@ -248,9 +239,6 @@
   </data>
   <data name="Emulation.Storage.HardDisk.DriveCount">
     <value>عدد الأقراص الصلبة</value>
-  </data>
-  <data name="Emulation.Fpu.Model">
-    <value>FPU</value>
   </data>
   <data name="Emulation.Cpu.Speed">
     <value>CPU speed</value>
@@ -864,12 +852,6 @@
   <data name="Emulation.Storage.Geometry.Sectors">
     <value>القطاعات</value>
   </data>
-  <data name="Emulation.Storage.Unit.MiB">
-    <value>م.ب</value>
-  </data>
-  <data name="Emulation.Storage.Unit.GiB">
-    <value>ج.ب</value>
-  </data>
   <data name="Emulation.Controller.Action.Up">
     <value>أعلى</value>
   </data>
@@ -909,14 +891,8 @@
   <data name="Emulation.Amiga.Controller.Cd32.PlayPause">
     <value>تشغيل / إيقاف مؤقت CD32</value>
   </data>
-  <data name="Emulation.Amiga.Controller.Joystick">
-    <value>عصا تحكم Amiga</value>
-  </data>
   <data name="Emulation.Controller.AnalogJoystick">
     <value>عصا تحكم تناظرية</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32">
-    <value>وحدة تحكم CD32</value>
   </data>
   <data name="Emulation.Mouse.Wheel.Up">
     <value>عجلة الماوس لأعلى</value>
@@ -929,63 +905,6 @@
   </data>
   <data name="Emulation.Mouse.Wheel.Right">
     <value>عجلة الماوس لليمين</value>
-  </data>
-  <data name="Emulation.Atari.Model.St" xml:space="preserve">
-    <value>Atari ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stf" xml:space="preserve">
-    <value>Atari STF</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stfm" xml:space="preserve">
-    <value>Atari STFM</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSt" xml:space="preserve">
-    <value>Atari Mega ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Ste" xml:space="preserve">
-    <value>Atari STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSte" xml:space="preserve">
-    <value>Atari Mega STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Tt" xml:space="preserve">
-    <value>Atari TT</value>
-  </data>
-  <data name="Emulation.Atari.Model.Falcon" xml:space="preserve">
-    <value>Atari Falcon</value>
-  </data>
-  <data name="Emulation.Atari.Model.400" xml:space="preserve">
-    <value>Atari 400</value>
-  </data>
-  <data name="Emulation.Atari.Model.800" xml:space="preserve">
-    <value>Atari 800</value>
-  </data>
-  <data name="Emulation.Atari.Model.800Xl" xml:space="preserve">
-    <value>Atari 800XL</value>
-  </data>
-  <data name="Emulation.Atari.Model.130Xe" xml:space="preserve">
-    <value>Atari 130XE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Xegs" xml:space="preserve">
-    <value>Atari XEGS</value>
-  </data>
-  <data name="Emulation.Atari.Model.5200" xml:space="preserve">
-    <value>Atari 5200</value>
-  </data>
-  <data name="Emulation.Atari.Model.2600" xml:space="preserve">
-    <value>Atari 2600</value>
-  </data>
-  <data name="Emulation.Atari.Model.7800" xml:space="preserve">
-    <value>Atari 7800</value>
-  </data>
-  <data name="Emulation.Atari.Model.Lynx" xml:space="preserve">
-    <value>Atari Lynx</value>
-  </data>
-  <data name="Emulation.Atari.Model.Jaguar" xml:space="preserve">
-    <value>Atari Jaguar</value>
-  </data>
-  <data name="Emulation.Atari.Model.JaguarCd" xml:space="preserve">
-    <value>Atari Jaguar CD</value>
   </data>
   <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve">
     <value>وتحدد هذه القيمة النموذج المختار.</value>
@@ -1089,24 +1008,11 @@
   <data name="Emulation.Atari.Storage.MediaFilter" xml:space="preserve">
     <value>وسائط Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|كل الملفات|*.*</value>
   </data>
-  <data name="Emulation.Atari.Controller.Joystick">
-    <value>عصا تحكم Atari</value>
-  </data>
-<data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Paddle Controllers</value></data>
-<data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 Light Gun</value></data>
-<data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>Atari Driving Controller</value></data>
-  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
-  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
-  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar Controller</value></data>
   <data name="Emulation.Controller.Automatic"><value>تلقائي</value></data>
   <data name="Emulation.Controller.None"><value>لا شيء</value></data>
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>مُكيّف حشرة مُتطوّرة</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>بدل الفرح/الموت</value></data>
   <data name="Emulation.Atari.Controller.NumericKeypad"><value>لوحة مفاتيح رقمية</value></data>
-  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
-  <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Observer</value></data>
-  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Observer</value></data>
   <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
     <value>يتطلب المحاكي وسيطًا قبل تشغيل هذا الجهاز. أدخل أو قم بإعداد أحد الوسائط المطلوبة الموضحة أدناه.</value>
   </data>
@@ -1126,7 +1032,6 @@
   <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>توسعة ذاكرة Mosaic</value></data>
   <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>توسعة ذاكرة Axlon</value></data>
   <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>ظل بنك Axlon $0F</value></data>
-  <data name="Emulation.Atari.Memory.MapRam" xml:space="preserve"><value>MapRAM</value></data>
   <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>POKEY ستيريو</value></data>
   <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>تشوهات الدقة العالية</value></data>
   <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>تسريع SIO</value></data>
@@ -1164,25 +1069,10 @@
   <data name='Emulation.Media.Eject' xml:space='preserve'>
     <value>إخراج الوسيط</value>
   </data>
-  <data name="Emulation.Tab.Cpu" xml:space="preserve"><value>CPU</value></data>
-  <data name="Emulation.Tab.Ram" xml:space="preserve"><value>RAM</value></data>
-  <data name="Emulation.Tab.Rom" xml:space="preserve"><value>ROM</value></data>
-  <data name="Emulation.Family.Amiga" xml:space="preserve"><value>Amiga</value></data>
-  <data name="Emulation.Family.Atari" xml:space="preserve"><value>Atari</value></data>
-  <data name="Emulation.Atari.Model.XlXe" xml:space="preserve"><value>Atari XL/XE</value></data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
   <data name="Emulation.Key.AtariHelp" xml:space="preserve"><value>Help</value></data>
   <data name="Emulation.Key.AtariUndo" xml:space="preserve"><value>Undo</value></data>
-  <data name="Emulation.Amiga.Model.A500" xml:space="preserve"><value>Amiga 500</value></data>
-  <data name="Emulation.Amiga.Model.A500PLUS" xml:space="preserve"><value>Amiga 500 Plus</value></data>
-  <data name="Emulation.Amiga.Model.A600" xml:space="preserve"><value>Amiga 600</value></data>
-  <data name="Emulation.Amiga.Model.A1000" xml:space="preserve"><value>Amiga 1000</value></data>
-  <data name="Emulation.Amiga.Model.A1200" xml:space="preserve"><value>Amiga 1200</value></data>
-  <data name="Emulation.Amiga.Model.A2000" xml:space="preserve"><value>Amiga 2000</value></data>
-  <data name="Emulation.Amiga.Model.A3000" xml:space="preserve"><value>Amiga 3000</value></data>
-  <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Amiga 4000</value></data>
-  <data name="Emulation.Amiga.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
-  <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Amiga CD32</value></data>  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>تعذرت تهيئة GameInput. ثبّت بيئة تشغيل GameInput المضمّنة أو أصلحها.</value></data>
+  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>تعذرت تهيئة GameInput. ثبّت بيئة تشغيل GameInput المضمّنة أو أصلحها.</value></data>
   <data name="Emulation.Configuration.Brand"><value>العلامة التجارية</value></data>
   <data name="Emulation.Configuration.Machine"><value>الجهاز</value></data>
   <data name="Emulation.Configuration.TotalRam"><value>إجمالي ذاكرة RAM</value></data>
@@ -1190,7 +1080,110 @@
   <data name="Emulation.Configuration.Peripherals"><value>الأجهزة الطرفية</value></data>
   <data name="Emulation.Configuration.Actions"><value>الإجراءات</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>هل تريد حذف تكوين {0} {1}؟</value></data>
-  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
-    <value>Kickstart</value>
-  </data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short"><value>صمت فارغ</value></data>
+  <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed"><value>يصمت صوت القرص المضغوط بينما لا يوجد قرص ألغي هذا الخيار لإبقاء الضوضاء الميكانيكية العالقة</value></data>
+  <data name="Emulation.Help.Audio.Filter.Short"><value>مرشحات صوتية مختارة</value></data>
+  <data name="Emulation.Help.Audio.Filter.Detailed"><value>يَختارُ كَمْ المرشّحُ الصوتيِ المُدوّنِ الأصليِ مُستنسخُ. محاكاة تتبع سلوك الأجهزة الإختيارات الأخرى تُجبر المُرشّح على أَو خارج.</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Short"><value>تمكين المرشح الصوتي المستقطب</value></data>
+  <data name="Emulation.Help.Audio.PolarizedFilter.Detailed"><value>يُطبّقُ المرشّحَ القطبي إلى الإشارةِ السمعيةِ المُتولدةِ. يُمكّنها من استنساخ الصوت المُلتوي. عطلها للحفاظ على الإشارة التي لم يتم اختراقها</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Short"><value>الإنتربول الصوتي المختار</value></data>
+  <data name="Emulation.Help.Audio.Interpolation.Detailed"><value>يختار كيفية حساب العينات الصوتية بين نقاط العينة المتولدة. وتنتج الطرق العالية الجودة صوتاً أكثر سلاسة ولكنها تتطلب مزيداً من المعالجة.</value></data>
+  <data name="Emulation.Help.Audio.Latency.Short"><value>وضع البطاقات السمعية</value></data>
+  <data name="Emulation.Help.Audio.Latency.Detailed"><value>يحدد مدة الحاجز الصوتي العازل الأقصر يقلل من التأخير ولكن يمكن أن يسبب التشقق. ويؤدي وجود عازل أطول إلى تحسين الاستقرار ولكنه يزيد من التأخير.</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Short"><value>ازدواجية POKEY stereo</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed"><value>يضاف مؤلف ثاني POKEY رقاقة لإنتاج صوت ستريو إتاحة هذا الخيار فقط للبرامجيات التي تدعم ازدواجية POKEY الصوت</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Short"><value>إنهاء الخدمة</value></data>
+  <data name="Emulation.Help.Audio.StereoSeparation.Detailed"><value>يحدد الفصل بين القنوات اليسرى واليمين انخفاض القيمة يخلط بين القنوات ارتفاع القيمة يبقيهم بعيدين</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short"><value>إختاروا صوت القرص الصلب</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed"><value>يُختار العينة المُستخدمة للأصوات الميكانيكية من الأقراص الصلبة إنه لا يغير سلوك الأقراص أو بيانات الأقراص</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Short"><value>اختيار نموذج مرشح الصوت</value></data>
+  <data name="Emulation.Help.Audio.FilterType.Detailed"><value>يَختارُ إستجابةَ تصفيةِ الأجهزةِ إلى emulate. آلي يتبع نموذج الآلة المختار خيار محدد دائماً يستخدم رد التصفية</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Short"><value>تمكين ميناءين إضافيين من ألعاب الفرح</value></data>
+  <data name="Emulation.Help.Controller.ParallelAdapter.Detailed"><value>يَضِعُ a مُكيّف مُتوازي الذي يَضِعُ موانئَ مرحَينَ. تمكنها من البرامج التي تدعم أربعة لاعبين متزامنين</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Short"><value>وضع نبضات توربو</value></data>
+  <data name="Emulation.Help.Controller.TurboPulse.Detailed"><value>يحدد الوقت بين الزر التلقائي الذي ينتجه توربو إن فترات زمنية أقصر تنتج إطلاق نار متكرر أسرع.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Short"><value>اختيار طريقة توافق المتحكم</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed"><value>يُختار رسماً لمراقبين خاصين، من قبيل المراقبة ذات المعايير المزدوجة، أو الموانئ المبادلة، أو Joy2B+- اختيار لا شيء للحفاظ على رسم الخرائط الموحدة للميناء.</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Short"><value>وضع حساسية للمدخلات</value></data>
+  <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed"><value>يحدد مدى استجابة المدخلات المشابهة للحركة. وتنتج قيمة أعلى استجابة أكبر من الحركة البدنية نفسها.</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Short"><value>حساسية المدخلات الرقمية</value></data>
+  <data name="Emulation.Help.Controller.DigitalSensitivity.Detailed"><value>يحدد مدى سرعة وصول الاتجاه الرقمي إلى الحركة الكاملة. ارتفاع القيمة يجعل التغييرات في الاتجاه تصل إلى أقصى حد لها بسرعة أكبر.</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Short"><value>اختيار طريقة إطلاق النار</value></data>
+  <data name="Emulation.Help.Controller.Autofire.Detailed"><value>المعاقين يطفئون إطلاق النار على الزرّ يُكرّرُ النار بينما الزرّ المُخصّص يُحْمَلُ. دائماً ما يُكرر إطلاق النار باستمرار</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Short"><value>سرعة الحركة</value></data>
+  <data name="Emulation.Help.Controller.PaddleSpeed.Detailed"><value>يُحدّدُ كَمْ سرعة مدخلاتِ رقميةِ يَتحرّكُ a مُحاكاة. انخفاض القيمة يحركها ببطء أكبر ارتفاع القيمة يتحرك بسرعة أكبر</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Short"><value>اختيار FPU</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed"><value>يُختار وحدة النقط العائمة المستخدمة لتعليمات النقاط العائمة. اختر لا شيء لتعطيل FPUوتعتمد النماذج المتاحة على النماذج المختارة CPU.</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Short"><value>مختارة CPU دقة الاختبار</value></data>
+  <data name="Emulation.Help.Cpu.Precision.Detailed"><value>يَختارُ كَمْ عن كثب CPU التوقيت يتبع الأجهزة الأصلية ويمكن أن تؤدي أساليب أكثر دقة إلى تحسين التوافق، ولكنها قد تتطلب المزيد من المعالجة.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Short"><value>جهزوا المحاكاة CPU السرعة</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed"><value>يُحدّد تواتر المُعالجة الذي تستخدمه الآلة المُخصّصة. السرعة الأصلية تحافظ على توقيت المعدات ارتفاع القيم CPUبرمجيات محدودة</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Short"><value>استعمل عصا الاعتذار للسيطرة على الفأر</value></data>
+  <data name="Emulation.Help.Mouse.Analog.Detailed"><value>يَتْركُ فؤوسَ البهجةَ التناظريةَ لتَحَرُّك مُحدّدِ الفأرِ. قابله عندما يتحكم في المرشد</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Short"><value>تحديد سرعة الفأر</value></data>
+  <data name="Emulation.Help.Mouse.AnalogSpeed.Detailed"><value>تضبط السرعة عندما تتحكم عصا التناظر في الفأر قيمة أعلى تُحرّكُ النقطةَ أبعد للحركةِ نفسهاِ.</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Short"><value>جهزوا المنطقة الميتة</value></data>
+  <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed"><value>الحركات المشابهة الصغيرة حول المركز بينما تتحكم في الفأر زيادة القيمة إذا تحرك المؤشر بينما يتم إطلاق العصا</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Short"><value>تمكين Axlon $0F مصرف الظل</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed"><value>المرآة Axlon مصرف التحكم في العنوان $0F- لا يمكن استخدامها إلا للبرمجيات أو التوسع في الذاكرة التي تستخدم هذا العنوان الإضافي.</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Short"><value>المجموعة Axlon التوسع في الذاكرة</value></data>
+  <data name="Emulation.Help.Memory.Axlon.Detailed"><value>يُحدِّدُ كميةَ مَنْ يُغْرَفُ المصرف Axlon ذاكرة المعاقين يزيلون التوسع والخيارات الأخرى توفر القدرة المختارة على الذاكرة.</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Short"><value>المجموعة Mosaic التوسع في الذاكرة</value></data>
+  <data name="Emulation.Help.Memory.Mosaic.Detailed"><value>يُحدِّدُ كميةَ مَنْ يُغْرَفُ المصرف Mosaic ذاكرة المعاقين يزيلون التوسع والخيارات الأخرى توفر القدرة المختارة على الذاكرة.</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Short"><value>وضع المزيد من ذكريات التوسع</value></data>
+  <data name="Emulation.Help.Memory.Extensions.Detailed"><value>يُحدِّد كمية الذاكرة التوسعية الإضافية التي تدعمها الآلة المختارة. اختر لا أحد ليستخدم فقط الذاكرة الرئيسية المكوّنة</value></data>
+  <data name="Emulation.Help.Memory.Fast.Short"><value>المجموعة Fast RAM الحجم</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed"><value>يحدد مبلغ Fast RAM متاحة مباشرة CPUإضافة Fast RAM يمكن أن يساعد على برمجيات متوافقة ولكن يغير تشكيلة المعدات المحتوية.</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short"><value>التمكين MapRAM</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Detailed"><value>إتاحة برمجيات متوافقة لرسم الخرائط RAM داخل النظام ROM منطقة العنوان هذا الخيار متاح فقط على نماذج الآلات التي تدعم MapRAM.</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short"><value>المجموعة Zorro III RAM الحجم</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed"><value>يحدد مبلغ 32 طناً Fast RAM متصل من خلال Zorro III حافلة استخدمه فقط مع ماكينات وبرمجيات متوافقة من 32 بيت</value></data>
+  <data name="Emulation.Help.Memory.Slow.Short"><value>المجموعة Slow RAM الحجم</value></data>
+  <data name="Emulation.Help.Memory.Slow.Detailed"><value>يحدد مبلغ Slow RAM في منطقة التوسيع هذه الذكرى أبطأ من Fast RAM ويستخدم نطاق مختلف من عنوان الأجهزة</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Short"><value>اختيار ROM مفتاح فك التشفير</value></data>
+  <data name="Emulation.Help.Firmware.RomKey.Detailed"><value>يبيع الملف الرئيسي المستخدم لفك شفرة مشفرة مرخصة ROM صورة إترك هذا الحقل فارغاً عندما يُختار ROM ليس مشفرة</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Short"><value>البداية السريعة</value></data>
+  <data name="Emulation.Help.Firmware.FastBoot.Detailed"><value>وينتقى عدد من التأخيرات في إدخال المعدات لتقليص بدء التشغيل. استبعد هذا الخيار عندما يتطلب البرنامج تسلسل البدء الأصلي.</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Short"><value>اختيار تمديد ROM</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed"><value>يبيع البرمجيات الثانوية ROM مطلوبة من بعض نماذج الآلات إترك هذا المجال فارغاً عندما لا يستخدم النموذج المختار ROM.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Short"><value>التعجيل SIO التحويلات</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed"><value>يعجل بعمليات نقل متوافقة من خلال المدخلات المتسلسلة/ حافلة النواتج. Disable this option when software depends on the original transfer timing.</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short"><value>بدء تشغيل الكاسيت</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Detailed"><value>يجعل الآلة المحاكاة تحاول أن تبدأ من صورة كاسيت المرفقة. فك هذا الخيار عندما يبدأ من جهاز آخر</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Short"><value>تمكين R-Time 8 الساعة</value></data>
+  <data name="Emulation.Help.Storage.RealTimeClock.Detailed"><value>يُحاكي R-Time 8 ساعـة الزمن الحقيقي بحيث يمكن للبرمجيات المتوافقة أن تقرأ التاريخ والزمان الحاليين</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Short"><value>تمكين P: جهاز طابعة</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed"><value>تجعل من المحاكاة P: جهاز الطباعة متاح للبرمجيات Disable this option when printeder-device emulation is not needed.</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Short"><value>تمكين R: جهاز متسلسل</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed"><value>تجعل من المحاكاة R: جهاز متسلسل متاح للبرمجيات Disable this option when sequence-device emulation is not needed.</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Short"><value>اختيار اللون العالي الاستبانة</value></data>
+  <data name="Emulation.Help.Video.Artifacting.Detailed"><value>يَختارُ كَمْ أنماطَ الاستبانة العاليةِ تُنتجُ الألوانَ المركبَةِ. لا ألوان مصنوعة الأشكال الأخرى تُنتج شلالات مختلفة أو سلوك رقائق.</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Short"><value>توقيت النباتات المختارة</value></data>
+  <data name="Emulation.Help.Video.ImmediateBlits.Detailed"><value>يُختار ما إذا كانت عمليات المزلاج تُنجز على الفور أو تتبع توقيت المعدات المعهود. الطريقة الفورية أسرع ولكن أقل دقة التوقيت.</value></data>
+  <data name="Emulation.Help.Video.HzChange.Short"><value>السماح بإدخال تغييرات على أسعار الصرف الجديدة</value></data>
+  <data name="Emulation.Help.Video.HzChange.Detailed"><value>ويسمح معدل تجديد الناتج باتباع التغييرات في طريقة الفيديو المصاغة. القفل يبقي معدل تجديد الناتج الحالي.</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Short"><value>تفاصيل الكشف عن الاصطدام</value></data>
+  <data name="Emulation.Help.Video.CollisionLevel.Detailed"><value>تُحسب الإختيارات التي تُصوّر و تصادم حقول اللعب. والكشف الأكثر اكتمالا يؤدي إلى تحسين التوافق مع أنه يتطلب المزيد من المعالجة.</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Short"><value>خفض ملصقات العرض المتقطعة</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed"><value>يخفض الملصقات في إنتاج الفيديو المتقاطع. إجعله من أجل صورة ثابتة ألغيه للحفاظ على سلوك العرض المتشابك الأصلي</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Short"><value>اختيار نسبة الجانب المظهر</value></data>
+  <data name="Emulation.Help.Video.AspectRatio.Detailed"><value>يُختار كيف تُقَدَّم الصورة المُحتَزَمة أفقياً ورأسياً. ويتبع نظام التشغيل الآلي الناتج الموضوع. خيار ثابت يقوى على شكل العرض</value></data>
+  <data name="Emulation.Help.Video.Gamma.Short"><value>فقط صورة جاما</value></data>
+  <data name="Emulation.Help.Video.Gamma.Detailed"><value>يغيّر إشراق "الوسطون" بدون تغيير مباشر للمستويات السوداء والبيضاء القيم السفلى تُظلم المُنتصف القيم العليا تشرقهم</value></data>
+  <data name="Emulation.Help.Video.LineMode.Short"><value>اختيار طريقة خط الفيديو</value></data>
+  <data name="Emulation.Help.Video.LineMode.Detailed"><value>يَختارُ كَمْ خطوط الفيديو الرأسيةِ تُعرضُ. (أوتو) يتبع الطريقة المحاكاة وهناك خيارات أخرى تفرض خطوطاً واحدة، أو تضاعف خطوطها، أو تمسحها عند توافرها.</value></data>
+  <data name="Emulation.Help.Video.Standard.Short"><value>اختيار معيار الفيديو</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed"><value>يُختار توقيت التليفزيون المحوسب، مثل PAL أو NTSCويؤثر ذلك على معدل التجديد وتوقيت المعدات وتوافق البرامجيات.</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Short"><value>نختار شطيرة اللون الخارجية</value></data>
+  <data name="Emulation.Help.Video.ExternalPalette.Detailed"><value>يَختارُ a لون مُحدّد سلفاً بدلاً مِنْ الألوانِ المُتولدة مِنْ الفيديو الحالي. اختر لا أحد ليستخدم الألوان المولدة</value></data>
+  <data name="Emulation.Help.Video.Colors.Short"><value>عمق لون النواتج المختارة</value></data>
+  <data name="Emulation.Help.Video.Colors.Detailed"><value>يَختارُ عمقَ اللونَ المستخدمَ لإصْدار الصورةِ. 24-bit يحتفظ بمزيد من التفاصيل 16-bit تستخدم مجموعة أصغر من الألوان</value></data>
+  <data name="Emulation.Help.Video.Region.Short"><value>اختيار منطقة المعدات</value></data>
+  <data name="Emulation.Help.Video.Region.Detailed"><value>يُختار التوقيت الإقليمي الذي تستخدمه الآلة المحاكاة. الخيار يمكن أن يؤثر على تردد الفيديو CPU التوقيت و البرمجيات المتوافقة</value></data>
+  <data name="Emulation.Help.Video.Rendering.Short"><value>اختيار صانع الفيديو</value></data>
+  <data name="Emulation.Help.Video.Rendering.Detailed"><value>يَختارُ مُدَوّلَ الرسوماتِ كَانَ يَسْحبُ العرضَ المُحتَرَض. ويمكن أن يتفاوت الأداء والتوافق مع النظام المضيف.</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Short"><value>عادل GTIA التأخير</value></data>
+  <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>يحدد GTIA التأخّر في مرحلة اللون يُستخدم لإعادة إنتاج الألوان ويستخدم التقصير القيمة القياسية. خيارات عديدة تُغيّر الأقفال الناتجة</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Short"><value>تخطي الإطار</value></data>
+  <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>يحدد عدد أطر العرض التي تم إغفالها المعاقين يرسمون كل إطار فالقيم العليا تقلل من أداء العمل ولكنها تقلل من سلاسة الحركة.</value></data>
 </root>

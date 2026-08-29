@@ -57,24 +57,6 @@
   <data name="Common.Export">
     <value>Експорт</value>
   </data>
-  <data name="Common.SaveIcon">
-    <value>💾</value>
-  </data>
-  <data name="Common.TrashIcon">
-    <value>🗑</value>
-  </data>
-  <data name="Icon.Save">
-    <value></value>
-  </data>
-  <data name="Icon.Reset">
-    <value></value>
-  </data>
-  <data name="Icon.Copy">
-    <value></value>
-  </data>
-  <data name="Icon.Console">
-    <value></value>
-  </data>
   <data name="Common.New"><value>Новий</value></data>
   <data name="Common.Refresh"><value>Оновити</value></data>
   <data name="Common.OpenFolder"><value>Відкрити папку</value></data>

@@ -195,13 +195,24 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
         foreach (var block in settings.Blocks.Where(block => block.Tab == tab && block.IsVisible))
         {
             var fields = block.Fields.Where(field => field.IsVisible)
-                .Select(field => (LocExtension.Get(field.LabelResourceKey), CreateField(field))).ToArray();
+                .Select(CreateControlField).ToArray();
             if (fields.Length == 0) continue;
             var form = EmulationSettingsLayout.CompactForm(Math.Max(1, block.Columns), fields);
             panel.Children.Add(EmulationSettingsLayout.IconCard(form,
                 LocExtension.Get(block.TitleResourceKey), block.Icon ?? "\uE713"));
         }
     }
+
+    private EmulationSettingsControlField CreateControlField(EmulationSettingsField field) =>
+        new(
+            LocExtension.Get(field.LabelResourceKey),
+            CreateField(field),
+            field.ExplanationResourceKey is null
+                ? null
+                : LocExtension.Get(field.ExplanationResourceKey),
+            field.DetailedExplanationResourceKey is null
+                ? null
+                : LocExtension.Get(field.DetailedExplanationResourceKey));
 
     private FrameworkElement CreateField(EmulationSettingsField field)
     {
