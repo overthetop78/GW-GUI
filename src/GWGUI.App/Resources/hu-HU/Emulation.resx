@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Beállítja a GTIA színfázis késleltetés használt reprodukálni színek. Az alapértelmezés a standard értéket használja. Numerikus választás eltolja az ebből eredő árnyalatok.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>A képkockaugrás beállítása</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Beállítja, hogy hány kijelzőkeret maradt ki. A letiltott minden képkockát megrajzol. A magasabb értékek csökkentik a renderelés munkáját, de a mozgás kevésbé sima.</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>Megjelenés</value>
+  </data>
 </root>

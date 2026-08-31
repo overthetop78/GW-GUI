@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Ustawia GTIA opóźnienie fazy kolorów używane do odtworzenia kolorów. Domyślnie używa wartości standardowej. Wybór numeryczny przesuwa wynikające z niego odcienie.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>Ustaw przeskakiwanie ramki</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Ustawia ile klatek wyświetlanych jest pominiętych. Niepełnosprawni rysują każdą ramę. Wyższe wartości redukują pracę renderowania, ale sprawiają, że ruch jest mniej gładki.</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>Wygląd</value>
+  </data>
 </root>

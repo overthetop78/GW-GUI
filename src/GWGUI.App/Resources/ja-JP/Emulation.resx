@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>設定する GTIA 色相遅延で色を再現しました。 デフォルトでは標準値を使用します。 数値的な選択肢は、結果のヒューズをシフトします。</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>セットフレームのスキッピング</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>ディスプレイフレーム数を省略する方法を設定します。 障害者はすべてのフレームを描画します。 より高い値がレンダリング作業を削減するが、動きを少なくする。</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>外観</value>
+  </data>
 </root>

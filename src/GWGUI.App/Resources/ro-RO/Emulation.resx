@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Setează GTIA întârziat faza de culoare folosit pentru a reproduce culori. Implicit folosește valoarea standard. Alegerile numerice schimbă nuanţele rezultate.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>@ info: whatsthis</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Setează câte rame de afișare sunt omise. Dezactivează fiecare cadru. Valorile mai mari reduc munca de redare, dar fac mişcarea mai puţin lină.</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>Aspect</value>
+  </data>
 </root>

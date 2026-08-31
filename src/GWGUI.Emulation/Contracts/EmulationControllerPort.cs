@@ -6,4 +6,5 @@ public sealed record EmulationControllerPort(
     string SelectedControllerId,
     string? PhysicalDeviceId,
     EmulationInputBindingSet Bindings,
-    int DeadZonePercent = 0);
+    int DeadZonePercent = 0,
+    string? VisualId = null);

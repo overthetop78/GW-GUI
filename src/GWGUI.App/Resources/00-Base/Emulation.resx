@@ -664,4 +664,64 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>Sets the GTIA color phase delay used to reproduce colors. Default uses the standard value. Numeric choices shift the resulting hues.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>Set frame skipping</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>Sets how many display frames are omitted. Disabled draws every frame. Higher values reduce rendering work but make motion less smooth.</value></data>
+  <data name="Emulation.Controller.Visual.Model.quickshot" xml:space="preserve">
+    <value>QuickShot</value>
+  </data>
+  <data name="Emulation.Controller.Visual.Model.quickshot-deluxe" xml:space="preserve">
+    <value>QuickShot Deluxe</value>
+  </data>
+  <data name="Emulation.Controller.Visual.Model.quickshot-ii-turbo" xml:space="preserve">
+    <value>QuickShot II Turbo</value>
+  </data>
+  <data name="Emulation.Controller.Visual.Model.competition-pro-5000" xml:space="preserve">
+    <value>Competition Pro 5000</value>
+  </data>
+  <data name="Emulation.Controller.Visual.Model.zipstik-super-pro" xml:space="preserve">
+    <value>Zipstik Super Pro</value>
+  </data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand" xml:space="preserve">
+    <value>Konix Speedking (left-hand)</value>
+  </data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand" xml:space="preserve">
+    <value>Konix Speedking (right-hand)</value>
+  </data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-analog" xml:space="preserve">
+    <value>Konix Speedking Analog</value>
+  </data>
+  <data name="Emulation.Controller.Visual.Model.suncom-tac-2" xml:space="preserve">
+    <value>Suncom TAC-2</value>
+  </data>
+  <data name="Emulation.Controller.Visual.Model.powerplay-cruiser" xml:space="preserve">
+    <value>Powerplay Cruiser</value>
+  </data>
+  <data name="Emulation.Controller.Visual.Model.suzo-the-arcade-turbo" xml:space="preserve">
+    <value>Suzo The Arcade Turbo</value>
+  </data>
+  <data name="Emulation.Controller.Visual.Model.commodore-cd32" xml:space="preserve">
+    <value>Commodore CD32</value>
+  </data>
+  <data name="Emulation.Controller.Visual.Model.competition-pro-cd32" xml:space="preserve">
+    <value>Competition Pro CD32</value>
+  </data>
+  <data name="Emulation.Controller.Visual.Model.atari-cx40" xml:space="preserve">
+    <value>Atari CX40</value>
+  </data>
+  <data name="Emulation.Controller.Visual.Model.atari-5200-controller" xml:space="preserve">
+    <value>Atari 5200 Controller</value>
+  </data>
+  <data name="Emulation.Controller.Visual.Model.atari-7800-pro-line-cx24" xml:space="preserve">
+    <value>Atari 7800 Pro-Line CX24</value>
+  </data>
+  <data name="Emulation.Controller.Visual.Model.atari-7800-control-pad-europe" xml:space="preserve">
+    <value>Atari 7800 Control Pad (Europe)</value>
+  </data>
+  <data name="Emulation.Controller.Visual.Model.atari-jaguar-controller" xml:space="preserve">
+    <value>Atari Jaguar Controller</value>
+  </data>
+  <data name="Emulation.Controller.Visual.Model.atari-jaguar-pro-controller" xml:space="preserve">
+    <value>Atari Jaguar Pro Controller</value>
+  </data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>Visual</value>
+  </data>
 </root>

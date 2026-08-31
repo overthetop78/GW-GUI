@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Setter GTIA fargefaseforsinkelse som brukes til å reprodusere farger. Standard bruker standardverdien. Numeriske valg skifter de resulterende nyansene.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>Sett rammehopping</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Angi hvor mange visningsrammer som er utelatt. Deaktivert trekker hver ramme. Høyere verdier reduserer gjengivelsesarbeidet, men gjør bevegelsen mindre glatt.</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>Utseende</value>
+  </data>
 </root>

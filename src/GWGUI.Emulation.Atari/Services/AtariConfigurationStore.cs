@@ -6,6 +6,7 @@ public sealed class AtariConfigurationStore
 {
     private readonly string _directory;
     private readonly string _pathBase;
+    private static readonly SemaphoreSlim SaveGate = new(1, 1);
     private int _activeLoads;
 
     public AtariConfigurationStore(string directory, string? pathBase = null)
@@ -55,12 +56,20 @@ public sealed class AtariConfigurationStore
         CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(configuration);
-        var document = AtariConfigurationStoreFunctions.ToDocument(configuration, _pathBase);
-        var machineDirectory = Path.Combine(_directory,
-            configuration.Id.ToString(AtariConfigurationStoreConstants.MachineIdentifierFormat));
-        await AtariConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(
-            Path.Combine(machineDirectory, AtariConfigurationStoreConstants.MachineFileName), document,
-            cancellationToken).ConfigureAwait(false);
+        await SaveGate.WaitAsync(cancellationToken).ConfigureAwait(false);
+        try
+        {
+            var document = AtariConfigurationStoreFunctions.ToDocument(configuration, _pathBase);
+            var machineDirectory = Path.Combine(_directory,
+                configuration.Id.ToString(AtariConfigurationStoreConstants.MachineIdentifierFormat));
+            await AtariConfigurationStoreFunctions.WriteDocumentAtomicallyAsync(
+                Path.Combine(machineDirectory, AtariConfigurationStoreConstants.MachineFileName), document,
+                cancellationToken).ConfigureAwait(false);
+        }
+        finally
+        {
+            SaveGate.Release();
+        }
     }
 
     public void Delete(Guid id)

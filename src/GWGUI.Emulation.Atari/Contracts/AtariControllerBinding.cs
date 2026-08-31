@@ -5,4 +5,5 @@ public sealed record AtariControllerBinding(
     AtariPeripheralCategory Peripheral,
     string? DeviceId = null,
     IReadOnlyDictionary<string, string>? Mappings = null,
-    int DeadZonePercent = AtariControllerConstants.DefaultDeadZonePercent);
+    int DeadZonePercent = AtariControllerConstants.DefaultDeadZonePercent,
+    string? VisualId = null);

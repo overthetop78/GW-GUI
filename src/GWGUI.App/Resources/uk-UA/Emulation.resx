@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Комплекти GTIA Затримка фази кольорової фази, що використовується для відтворення кольорів. За замовчуванням використовується стандартне значення. Чисельні вибірки зміщують отриманий відтінок.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>Набори рам</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Налаштовує, як багато кадрів відображення вдається. Вимкнено малювати кожну раму. Більші значення знижують роботу, але роблять рух менш гладким.</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>Вигляд</value>
+  </data>
 </root>

@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Nastaví GTIA zpoždění barevné fáze použité k reprodukci barev. Výchozí používá standardní hodnotu. Číselné volby posunou výsledné odstíny.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>Nastavení přeskočení rámu</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Nastaví, kolik zobrazovacích rámů je vynecháno. Zakázané nakreslí každý snímek. Vyšší hodnoty snižují ztvárnění práce, ale zmenšují pohyb.</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>Vzhled</value>
+  </data>
 </root>

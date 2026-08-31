@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>يحدد GTIA التأخّر في مرحلة اللون يُستخدم لإعادة إنتاج الألوان ويستخدم التقصير القيمة القياسية. خيارات عديدة تُغيّر الأقفال الناتجة</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>تخطي الإطار</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>يحدد عدد أطر العرض التي تم إغفالها المعاقين يرسمون كل إطار فالقيم العليا تقلل من أداء العمل ولكنها تقلل من سلاسة الحركة.</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>المظهر</value>
+  </data>
 </root>

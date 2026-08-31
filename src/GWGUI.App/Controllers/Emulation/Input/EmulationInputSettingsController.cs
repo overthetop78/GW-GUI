@@ -1,7 +1,6 @@
 using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Contracts.Emulation.Controllers;
 using GWGUI.App.Contracts.Emulation.Settings;
-using GWGUI.App.Contracts.Services.Input;
 using GWGUI.App.Enums.Input;
 using GWGUI.App.Functions.Input.Bindings;
 using GWGUI.App.Functions.Input.Keyboard;
@@ -9,6 +8,7 @@ using GWGUI.App.Functions.Views.Emulation.Settings;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Views.Controls.Emulation.Input;
 using GWGUI.App.Views.Controls.Emulation.Options;
+using GWGUI.App.Views.Controls.Options.ControllerVisualization;
 using System.Windows;
 using System.Windows.Controls;
 using GWGUI.Emulation;
@@ -18,6 +18,7 @@ namespace GWGUI.App.Controllers.Emulation.Input;
 
 internal sealed class EmulationInputSettingsController
 {
+    private const string ControllerVisualResourceKeyPrefix = "Emulation.Controller.Visual.Model.";
     private readonly IEmulationInputSettingsManager _manager;
     private InputBindingEditor? _keyboard;
     private InputBindingEditor? _mouse;
@@ -25,6 +26,7 @@ internal sealed class EmulationInputSettingsController
     private IReadOnlyDictionary<int, EmulationControllerPort> _portDefinitions =
         new Dictionary<int, EmulationControllerPort>();
     private EmulationInputSettings _settings = new(null, null, []);
+    private string? _moduleId;
     private string? _machineId;
 
     internal EmulationInputSettingsController(IEmulationInputSettingsManager manager) => _manager = manager;
@@ -34,8 +36,10 @@ internal sealed class EmulationInputSettingsController
     internal UIElement CreateContent(EmulationMachineTab tab, IEmulationConfiguration configuration,
         IReadOnlyList<EmulationSettingsControlField> fields)
     {
-        if (!string.Equals(_machineId, configuration.MachineId, StringComparison.Ordinal))
+        if (!string.Equals(_moduleId, configuration.ModuleId, StringComparison.Ordinal)
+            || !string.Equals(_machineId, configuration.MachineId, StringComparison.Ordinal))
         {
+            _moduleId = configuration.ModuleId;
             _machineId = configuration.MachineId;
             _keyboard = null;
             _mouse = null;
@@ -86,7 +90,6 @@ internal sealed class EmulationInputSettingsController
             ? section.Build(_ports.Select(port => port.Settings).ToArray())
             : section.Build(_ports.Select(port => port.Settings).ToArray(), fields,
                 LocExtension.Get("Emulation.Input.Behavior"), ControlVisualConstants.GameControllerGlyph);
-        _ = section.DetectAsync();
         return view;
     }
 
@@ -106,32 +109,81 @@ internal sealed class EmulationInputSettingsController
     {
         var editor = EmulationControllerSettingsSection.CreatePort(port.Number,
             ToCaptureSources(port.Bindings.Sources), port.Bindings.PrefixKeyboardSource,
-            LocExtension.Get("Emulation.Input.Actions"), LocExtension.Get("Emulation.Input.Binding.Search"));
+            LocExtension.Get("Emulation.Input.Actions"),
+            LocExtension.Get("Emulation.Input.Binding.Search"),
+            _moduleId ?? string.Empty, _machineId ?? string.Empty);
         var choices = port.ControllerChoices.Select(choice => new EmulationControllerChoiceView(choice,
             choice.InvariantDisplayValue ?? LocExtension.Get(choice.DisplayResourceKey))).ToArray();
         editor.Type.ItemsSource = choices;
         editor.Type.DisplayMemberPath = nameof(EmulationControllerChoiceView.DisplayName);
         editor.Type.SelectedItem = choices.FirstOrDefault(choice => choice.Choice.Id == port.SelectedControllerId)
             ?? choices.FirstOrDefault();
-        editor.Type.SelectionChanged += (_, _) =>
-        {
-            UpdateControllerBindings(editor);
-            SettingsChanged?.Invoke(this, EventArgs.Empty);
-        };
-        editor.Device.Tag = port.PhysicalDeviceId;
+        editor.PhysicalDeviceId = port.PhysicalDeviceId;
         editor.DeadZonePercent = port.DeadZonePercent;
         editor.Bindings.SetRows(port.Bindings.Definitions, port.Bindings.Values);
+        UpdateControllerBindings(editor, port.VisualId, preserveCurrentBindings: true);
+        editor.Type.SelectionChanged += (_, _) =>
+        {
+            UpdateControllerBindings(editor, preserveCurrentBindings: false);
+            SettingsChanged?.Invoke(this, EventArgs.Empty);
+        };
+        editor.Visual.SelectionChanged += (_, _) =>
+        {
+            UpdateControllerVisualProfile(editor);
+            SettingsChanged?.Invoke(this, EventArgs.Empty);
+        };
         editor.Bindings.BindingsChanged += (_, _) => SettingsChanged?.Invoke(this, EventArgs.Empty);
-        editor.Device.DropDownClosed += (_, _) => SettingsChanged?.Invoke(this, EventArgs.Empty);
         return editor;
     }
 
-    private static void UpdateControllerBindings(EmulationControllerPortEditor editor)
+    private static void UpdateControllerBindings(
+        EmulationControllerPortEditor editor,
+        string? preferredVisualId = null,
+        bool preserveCurrentBindings = true)
     {
         if (editor.Type.SelectedItem is not EmulationControllerChoiceView selected
             || selected.Choice.BindingDefinitions is null) return;
-        var current = editor.Bindings.Rows.ToDictionary(row => row.Id, row => row.Binding, StringComparer.Ordinal);
+        var current = preserveCurrentBindings
+            ? editor.Bindings.Rows.ToDictionary(row => row.Id, row => row.Binding, StringComparer.Ordinal)
+            : new Dictionary<string, string>(StringComparer.Ordinal);
         editor.Bindings.SetRows(selected.Choice.BindingDefinitions, current);
+        UpdateControllerVisuals(editor, preferredVisualId);
+        UpdateControllerVisualProfile(editor);
+    }
+
+    private static void UpdateControllerVisuals(
+        EmulationControllerPortEditor editor,
+        string? preferredVisualId = null)
+    {
+        var selectedChoice = (editor.Type.SelectedItem as EmulationControllerChoiceView)?.Choice;
+        var profiles = ControllerArtworkCatalog.AvailableProfiles(selectedChoice?.CompatibleVisualIds);
+        var choices = profiles.Select(profile => new KeyValuePair<string, string>(
+            profile.VisualId,
+            LocExtension.Get(ControllerVisualResourceKeyPrefix + profile.VisualId))).ToArray();
+        editor.Visual.ItemsSource = choices;
+
+        var visualId = preferredVisualId;
+        if (string.IsNullOrWhiteSpace(visualId)
+            || choices.All(choice => !string.Equals(choice.Key, visualId, StringComparison.Ordinal)))
+            visualId = choices.Any(choice => string.Equals(
+                    choice.Key, selectedChoice?.DefaultVisualId, StringComparison.Ordinal))
+                ? selectedChoice?.DefaultVisualId
+                : choices.FirstOrDefault().Key;
+
+        editor.Visual.SelectedValue = visualId;
+        editor.Visual.IsEnabled = choices.Length > 1;
+    }
+
+    private static void UpdateControllerVisualProfile(EmulationControllerPortEditor editor)
+    {
+        var selectedChoice = (editor.Type.SelectedItem as EmulationControllerChoiceView)?.Choice;
+        if (editor.SelectedVisualId is { } visualId
+            && ControllerArtworkCatalog.TryGetProfile(visualId, out var profile))
+        {
+            editor.SetVisualProfile(profile, selectedChoice?.VisualCommandIds);
+            return;
+        }
+        editor.SetVisualProfile(null, selectedChoice?.VisualCommandIds);
     }
 
     private static EmulationInputBindingSet? ReadBindings(EmulationInputBindingSet? original,
@@ -161,7 +213,6 @@ internal sealed class EmulationInputSettingsController
         var original = _portDefinitions[editor.Number];
         var selected = (editor.Type.SelectedItem as EmulationControllerChoiceView)?.Choice;
         var choice = selected?.Id ?? string.Empty;
-        var device = (editor.Device.SelectedItem as GameControllerDevice)?.Id ?? editor.Device.Tag as string;
         var bindings = original.Bindings with
         {
             Definitions = selected?.BindingDefinitions ?? original.Bindings.Definitions,
@@ -170,9 +221,10 @@ internal sealed class EmulationInputSettingsController
         return original with
         {
             SelectedControllerId = choice,
-            PhysicalDeviceId = device,
+            PhysicalDeviceId = editor.PhysicalDeviceId,
             Bindings = bindings,
-            DeadZonePercent = editor.DeadZonePercent
+            DeadZonePercent = editor.DeadZonePercent,
+            VisualId = editor.SelectedVisualId
         };
     }
 

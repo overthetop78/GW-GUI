@@ -1,16 +1,18 @@
+using GWGUI.Emulation.Constants;
+
 namespace GWGUI.Emulation.Atari.Constants;
 
 internal static class AtariInputSettingsFunctionsConstants
 {
-    internal const string Left = "Left";
+    internal const string Left = EmulationControllerCommandIds.Left;
     internal const string ResourceMouseButtonLeft = "Emulation.Mouse.Button.Left";
     internal const string MouseLeft = "Mouse:Left";
-    internal const string Right = "Right";
+    internal const string Right = EmulationControllerCommandIds.Right;
     internal const string ResourceMouseButtonRight = "Emulation.Mouse.Button.Right";
     internal const string MouseRight = "Mouse:Right";
-    internal const string Fire1 = "Fire1";
-    internal const string Fire2 = "Fire2";
-    internal const string Turbo = "Turbo";
+    internal const string Fire1 = EmulationControllerCommandIds.Fire1;
+    internal const string Fire2 = EmulationControllerCommandIds.Fire2;
+    internal const string Turbo = EmulationControllerCommandIds.Turbo;
     internal const string ResourceControllerNone = "Emulation.Controller.None";
     internal const string ResourceControllerAutomatic = "Emulation.Controller.Automatic";
     internal const string ResourceAtariControllerJoystick = "Emulation.Atari.Controller.Joystick";
@@ -27,11 +29,11 @@ internal static class AtariInputSettingsFunctionsConstants
     internal const string ResourceAtariControllerLynx = "Emulation.Atari.Controller.Lynx";
     internal const string ResourceAtariControllerJaguar = "Emulation.Atari.Controller.Jaguar";
     internal const string ResourceControllerActionTurboFire = "Emulation.Controller.Action.TurboFire";
-    internal const string Up = "Up";
-    internal const string Down = "Down";
-    internal const string Option1 = "Option1";
+    internal const string Up = EmulationControllerCommandIds.Up;
+    internal const string Down = EmulationControllerCommandIds.Down;
+    internal const string Option1 = EmulationControllerCommandIds.Option1;
     internal const string Option12 = "Option 1";
-    internal const string Option2 = "Option2";
+    internal const string Option2 = EmulationControllerCommandIds.Option2;
     internal const string Option22 = "Option 2";
     internal const string ResourceKeyAtariHelp = "Emulation.Key.AtariHelp";
     internal const string ResourceKeyAtariUndo = "Emulation.Key.AtariUndo";

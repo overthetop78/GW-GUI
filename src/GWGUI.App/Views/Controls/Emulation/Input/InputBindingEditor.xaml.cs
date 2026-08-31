@@ -76,6 +76,17 @@ public partial class InputBindingEditor : UserControl
         ValidateBindings();
     }
 
+    internal bool SelectAndStartCapture(string bindingId, Button? button = null)
+    {
+        var row = _rows.FirstOrDefault(item =>
+            string.Equals(item.Id, bindingId, StringComparison.Ordinal));
+        if (row is null) return false;
+        BindingsList.SelectedItem = row;
+        BindingsList.ScrollIntoView(row);
+        BeginCapture(row, button);
+        return true;
+    }
+
     public void SetReservedBindings(IEnumerable<string> bindings)
     {
         _reservedBindings = bindings.Where(value => !string.IsNullOrWhiteSpace(value))

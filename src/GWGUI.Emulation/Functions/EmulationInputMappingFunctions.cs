@@ -82,31 +82,55 @@ public static class EmulationInputMappingFunctions
             ? controllers[fallbackIndex] : EmulationControllerState.Empty;
     }
 
-    public static bool IsControllerSourcePressed(string source, EmulationControllerState controller)
+    public static float ControllerSourceValue(string source, EmulationControllerState controller)
     {
-        var name = source.Split(EmulationInputMappingConstants.SourceSeparator,
-            StringSplitOptions.RemoveEmptyEntries).LastOrDefault() ?? string.Empty;
+        var name = SourceControlName(source);
         if (ControllerButtons.TryGetValue(name, out var button))
-            return (controller.Buttons & (1u << button)) != 0;
-        if (name.EndsWith(EmulationInputMappingConstants.PositiveSuffix, StringComparison.OrdinalIgnoreCase) &&
-            controller.Controls.TryGetValue(name[..^EmulationInputMappingConstants.PositiveSuffix.Length],
-                out var positive)) return positive > EmulationInputMappingConstants.PositiveThreshold;
-        if (name.EndsWith(EmulationInputMappingConstants.NegativeSuffix, StringComparison.OrdinalIgnoreCase) &&
-            controller.Controls.TryGetValue(name[..^EmulationInputMappingConstants.NegativeSuffix.Length],
-                out var negative)) return negative < EmulationInputMappingConstants.NegativeThreshold;
-        if (controller.Controls.TryGetValue(name, out var value))
-            return value > EmulationInputMappingConstants.PressedThreshold;
+            return (controller.Buttons & (1u << button)) != 0 ? 1f : 0f;
+        if (name.EndsWith(EmulationInputMappingConstants.PositiveSuffix, StringComparison.OrdinalIgnoreCase)
+            && controller.Controls.TryGetValue(
+                name[..^EmulationInputMappingConstants.PositiveSuffix.Length], out var positive))
+            return positive;
+        if (name.EndsWith(EmulationInputMappingConstants.NegativeSuffix, StringComparison.OrdinalIgnoreCase)
+            && controller.Controls.TryGetValue(
+                name[..^EmulationInputMappingConstants.NegativeSuffix.Length], out var negative))
+            return -negative;
+        if (controller.Controls.TryGetValue(name, out var value)) return value;
         return name switch
         {
-            EmulationInputMappingConstants.LeftStickLeft => controller.LeftX < -EmulationInputMappingConstants.AnalogThreshold,
-            EmulationInputMappingConstants.LeftStickRight => controller.LeftX > EmulationInputMappingConstants.AnalogThreshold,
-            EmulationInputMappingConstants.LeftStickUp => controller.LeftY < -EmulationInputMappingConstants.AnalogThreshold,
-            EmulationInputMappingConstants.LeftStickDown => controller.LeftY > EmulationInputMappingConstants.AnalogThreshold,
-            EmulationInputMappingConstants.RightStickLeft => controller.RightX < -EmulationInputMappingConstants.AnalogThreshold,
-            EmulationInputMappingConstants.RightStickRight => controller.RightX > EmulationInputMappingConstants.AnalogThreshold,
-            EmulationInputMappingConstants.RightStickUp => controller.RightY < -EmulationInputMappingConstants.AnalogThreshold,
-            EmulationInputMappingConstants.RightStickDown => controller.RightY > EmulationInputMappingConstants.AnalogThreshold,
-            _ => false
+            EmulationInputMappingConstants.LeftStickLeft => -controller.LeftX,
+            EmulationInputMappingConstants.LeftStickRight => controller.LeftX,
+            EmulationInputMappingConstants.LeftStickUp => -controller.LeftY,
+            EmulationInputMappingConstants.LeftStickDown => controller.LeftY,
+            EmulationInputMappingConstants.RightStickLeft => -controller.RightX,
+            EmulationInputMappingConstants.RightStickRight => controller.RightX,
+            EmulationInputMappingConstants.RightStickUp => -controller.RightY,
+            EmulationInputMappingConstants.RightStickDown => controller.RightY,
+            _ => 0f
         };
     }
+
+    public static bool IsControllerSourcePressed(string source, EmulationControllerState controller) =>
+        IsControllerSourcePressed(source, controller, ControllerSourceValue(source, controller));
+
+    public static bool IsControllerSourcePressed(
+        string source,
+        EmulationControllerState controller,
+        float value)
+    {
+        var name = SourceControlName(source);
+        if (ControllerButtons.ContainsKey(name))
+            return value > EmulationInputMappingConstants.PressedThreshold;
+        if (name.EndsWith(EmulationInputMappingConstants.PositiveSuffix, StringComparison.OrdinalIgnoreCase))
+            return value > EmulationInputMappingConstants.PositiveThreshold;
+        if (name.EndsWith(EmulationInputMappingConstants.NegativeSuffix, StringComparison.OrdinalIgnoreCase))
+            return value > -EmulationInputMappingConstants.NegativeThreshold;
+        if (controller.Controls.ContainsKey(name))
+            return value > EmulationInputMappingConstants.PressedThreshold;
+        return value > EmulationInputMappingConstants.AnalogThreshold;
+    }
+
+    private static string SourceControlName(string source) =>
+        source.Split(EmulationInputMappingConstants.SourceSeparator,
+            StringSplitOptions.RemoveEmptyEntries).LastOrDefault() ?? string.Empty;
 }

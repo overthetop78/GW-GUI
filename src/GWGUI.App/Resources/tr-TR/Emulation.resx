@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Setleri ayarlar GTIA Renk aşaması gecikme renkleri yeniden üretmek için kullanılır. Varsayılan olarak standart değeri kullanır. Numeric seçimler sonucu hues değiştiriyor.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>Set çerçeve atping</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Birçok görüntü çerçevelerinin nasıl kurtarıldığını ayarlar. Engelli her çerçeveyi çizer. Daha yüksek değerler işleme çalışmasını azaltır, ancak daha az düzgün hareket eder.</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>Görünüm</value>
+  </data>
 </root>

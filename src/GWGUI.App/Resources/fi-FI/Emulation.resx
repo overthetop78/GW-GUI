@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Asettaa GTIA värivaiheviive, jota käytetään värien jäljentämiseen. Oletus käyttää standardiarvoa. Numeerinen valinta siirtää tuloksena sävyjä.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>Aseta kehys hypätä</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Asettaa, kuinka monta näyttöruutua jätetään pois. -Ei. Korkeammat arvot vähentävät renderöintiä, mutta tekevät liikkeestä vähemmän sujuvaa.</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>Ulkoasu</value>
+  </data>
 </root>

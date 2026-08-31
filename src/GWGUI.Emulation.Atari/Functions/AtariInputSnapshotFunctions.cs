@@ -43,7 +43,10 @@ internal static class AtariInputSnapshotFunctions
             foreach (var mapping in binding.Mappings)
             {
                 var target = ResolveButton(model, mapping.Key);
-                if (target >= 0 && IsPressed(mapping.Value, source, withDeadZones.Keys))
+                var mappingController = ControllerForSource(
+                    mapping.Value, withDeadZones.Controllers, source);
+                if (target >= 0 && IsPressed(mapping.Value, mappingController,
+                        withDeadZones.Keys, withDeadZones.Pointer))
                     buttons |= 1u << target;
             }
             controllers[binding.Port] = source with { Buttons = buttons };
@@ -52,11 +55,51 @@ internal static class AtariInputSnapshotFunctions
     }
 
     private static bool IsPressed(string sourceName, EmulationControllerState controller,
-        IReadOnlySet<EmulationKey> keys)
+        IReadOnlySet<EmulationKey> keys, EmulationPointerState pointer)
     {
-        if (sourceName.StartsWith(AtariInputSnapshotFunctionsConstants.Keyboard, StringComparison.OrdinalIgnoreCase)
-            && Enum.TryParse<EmulationKey>(sourceName[9..], true, out var key)) return keys.Contains(key);
+        if (TryRemovePrefix(sourceName, AtariInputSnapshotFunctionsConstants.Keyboard,
+                out var keyboardSource)
+            && Enum.TryParse<EmulationKey>(keyboardSource, true, out var key))
+            return keys.Contains(key);
+        if (TryRemovePrefix(sourceName, AtariInputSnapshotFunctionsConstants.Mouse,
+                out var mouseSource))
+            return PhysicalMouse(pointer).GetValueOrDefault(mouseSource);
         return EmulationInputMappingFunctions.IsControllerSourcePressed(sourceName, controller);
+    }
+
+    private static IReadOnlyDictionary<string, bool> PhysicalMouse(EmulationPointerState pointer) =>
+        new Dictionary<string, bool>(StringComparer.OrdinalIgnoreCase)
+        {
+            [AtariInputSnapshotFunctionsConstants.Left] = pointer.Left,
+            [AtariInputSnapshotFunctionsConstants.Right] = pointer.Right,
+            [AtariInputSnapshotFunctionsConstants.Middle] = pointer.Middle,
+            [AtariInputSnapshotFunctionsConstants.XButton1] = pointer.ExtendedButton1,
+            [AtariInputSnapshotFunctionsConstants.XButton2] = pointer.ExtendedButton2,
+            [AtariInputSnapshotFunctionsConstants.WheelUp] = pointer.Wheel > 0,
+            [AtariInputSnapshotFunctionsConstants.WheelDown] = pointer.Wheel < 0,
+            [AtariInputSnapshotFunctionsConstants.WheelLeft] = pointer.HorizontalWheel < 0,
+            [AtariInputSnapshotFunctionsConstants.WheelRight] = pointer.HorizontalWheel > 0
+        };
+
+    private static bool TryRemovePrefix(string? value, string prefix, out string source)
+    {
+        source = string.Empty;
+        if (string.IsNullOrWhiteSpace(value)
+            || !value.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+            return false;
+        source = value[prefix.Length..];
+        return source.Length > 0;
+    }
+
+    private static EmulationControllerState ControllerForSource(
+        string source,
+        IReadOnlyList<EmulationControllerState> controllers,
+        EmulationControllerState fallback)
+    {
+        var deviceId = EmulationInputMappingFunctions.ParseControllerDeviceId(source);
+        return deviceId is null ? fallback : controllers.FirstOrDefault(controller =>
+            string.Equals(controller.DeviceId, deviceId, StringComparison.OrdinalIgnoreCase))
+            ?? fallback;
     }
 
     private static int ResolveButton(AtariMachineModel model, string action)

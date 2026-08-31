@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Define o GTIA atraso de fase de cor usado para reproduzir cores. O padrão usa o valor padrão. As escolhas numéricas mudam as tonalidades resultantes.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>Definir o salto de quadros</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Define quantas molduras são omitidas. Os deficientes desenham todos os quadros. Valores mais elevados reduzem o trabalho de renderização, mas tornam o movimento menos suave.</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>Visual</value>
+  </data>
 </root>

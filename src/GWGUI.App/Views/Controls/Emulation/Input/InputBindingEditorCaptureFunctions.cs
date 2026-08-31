@@ -20,23 +20,35 @@ public partial class InputBindingEditor
 {
     private void AssignClicked(object sender, RoutedEventArgs e)
     {
-        if (sender is not Button { Tag: InputBindingRow row } button) return;
+        if (sender is Button { Tag: InputBindingRow row } button)
+            SelectAndStartCapture(row.Id, button);
+    }
+
+    private void BeginCapture(InputBindingRow row, Button? button)
+    {
         CancelCapture();
         _captureRow = row;
         _captureButton = button;
-        _captureButtonContent = button.Content;
+        _captureButtonContent = button?.Content;
         _capturePressed.Clear();
         _captureOrder.Clear();
         _captureModifiers = ModifierKeys.None;
         _captureDeadlineUtc = DateTime.UtcNow.AddSeconds(15);
-        button.Content = new TextBlock
+        if (button is not null)
         {
-            Text = LocExtension.Get("Emulation.Input.Press"),
-            FontSize = 11,
-            TextAlignment = TextAlignment.Center,
-            TextWrapping = TextWrapping.NoWrap
-        };
-        button.Focus();
+            button.Content = new TextBlock
+            {
+                Text = LocExtension.Get("Emulation.Input.Press"),
+                FontSize = 11,
+                TextAlignment = TextAlignment.Center,
+                TextWrapping = TextWrapping.NoWrap
+            };
+            button.Focus();
+        }
+        else
+        {
+            BindingsList.Focus();
+        }
         _controllerBaseline = _captureSources.HasFlag(InputCaptureSources.Controller)
             ? GameInputControllerReader.ReadAll() : [];
         _controllerDetailedBaseline = _captureSources.HasFlag(InputCaptureSources.Controller)

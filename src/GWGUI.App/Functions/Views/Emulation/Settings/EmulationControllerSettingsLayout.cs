@@ -1,12 +1,8 @@
-using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Constants.Emulation;
 using GWGUI.App.Contracts.Emulation.Controllers;
 using GWGUI.App.Contracts.Emulation.Settings;
-using GWGUI.App.Contracts.Services.Input;
 using GWGUI.App.Localization.Extensions;
-using GWGUI.App.Services.Input.GameInput;
 using System.Windows;
-using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Data;
 
@@ -16,8 +12,6 @@ internal static partial class EmulationSettingsLayout
 {
     internal static ScrollViewer ControllerSettingsPage(
         IReadOnlyList<EmulationControllerPortSettings> ports,
-        TextBlock detectedControllers,
-        Func<Task> detectControllers,
         EmulationSettingsControlField? behavior = null,
         string? behaviorTitle = null,
         string? behaviorGlyph = null)
@@ -28,12 +22,13 @@ internal static partial class EmulationSettingsLayout
 
         var mappingTabs = new TabControl
         {
-            MinHeight = EmulationControllerSettingsConstants.MappingMinimumHeight
+            Height = EmulationControllerSettingsConstants.MappingHeight
         };
         foreach (var port in ports)
         {
             DetachForReuse(port.Type);
-            DetachForReuse(port.Device);
+            DetachForReuse(port.Visual);
+            DetachForReuse(port.Visualizer);
             DetachForReuse(port.Bindings);
             var portLabel = LocExtension.Get("Emulation.Controller.Port", port.Number);
             var content = new Grid();
@@ -41,11 +36,23 @@ internal static partial class EmulationSettingsLayout
             content.RowDefinitions.Add(new RowDefinition());
             var selectors = SettingsFields(2,
                 (LocExtension.Get("Emulation.Controller.Type"), port.Type),
-                (LocExtension.Get("Emulation.Controller.Device", port.Number), port.Device));
+                (LocExtension.Get("Emulation.Controller.Visual"), port.Visual));
             selectors.Margin = new Thickness(10, 10, 10, 4);
             content.Children.Add(selectors);
-            Grid.SetRow(port.Bindings, 1);
-            content.Children.Add(port.Bindings);
+            var portContent = new Grid { ClipToBounds = true };
+            portContent.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(3, GridUnitType.Star) });
+            portContent.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
+            port.Bindings.HorizontalAlignment = HorizontalAlignment.Stretch;
+            portContent.Children.Add(port.Bindings);
+            port.Visualizer.MinWidth = 0;
+            port.Visualizer.HorizontalAlignment = HorizontalAlignment.Stretch;
+            port.Visualizer.VerticalAlignment = VerticalAlignment.Stretch;
+            port.Visualizer.Margin = new Thickness(8, 4, 10, 8);
+            port.Visualizer.ClipToBounds = true;
+            Grid.SetColumn(port.Visualizer, 1);
+            portContent.Children.Add(port.Visualizer);
+            Grid.SetRow(portContent, 1);
+            content.Children.Add(portContent);
             mappingTabs.Items.Add(new TabItem { Header = portLabel, Content = content });
         }
         var mappings = ActionCard(mappingTabs, LocExtension.Get("Emulation.Controller.Mappings"));
@@ -77,8 +84,8 @@ internal static partial class EmulationSettingsLayout
     }
 
     internal static ScrollViewer ControllerSettingsPage(
-        IReadOnlyList<EmulationControllerPortSettings> ports, TextBlock detectedControllers,
-        Func<Task> detectControllers, IReadOnlyList<EmulationSettingsControlField> behaviors,
+        IReadOnlyList<EmulationControllerPortSettings> ports,
+        IReadOnlyList<EmulationSettingsControlField> behaviors,
         string? behaviorTitle = null, string? behaviorGlyph = null)
     {
         var panel = new StackPanel();
@@ -106,7 +113,7 @@ internal static partial class EmulationSettingsLayout
             row.Children.Add(behavior.Control);
             panel.Children.Add(row);
         }
-        return ControllerSettingsPage(ports, detectedControllers, detectControllers,
+        return ControllerSettingsPage(ports,
             new EmulationSettingsControlField(string.Empty, panel), behaviorTitle, behaviorGlyph);
     }
 
@@ -127,23 +134,4 @@ internal static partial class EmulationSettingsLayout
         }
     }
 
-    internal static Task DetectControllersAsync(IReadOnlyList<ComboBox> deviceSelectors,
-        TextBlock detectedControllers)
-    {
-        var devices = GameInputControllerReader.GetConnectedControllerDetailsCached()
-            .Select(device => new GameControllerDevice(device.Id, device.ProductName)).ToArray();
-        detectedControllers.Text = devices.Length == 0
-            ? LocExtension.Get("Emulation.Controller.NoneDetected")
-            : string.Join(ControlVisualConstants.DetailSeparator, devices.Select(device => device.Name));
-        for (var index = 0; index < deviceSelectors.Count; index++)
-        {
-            var selector = deviceSelectors[index];
-            var selectedId = (selector.SelectedItem as GameControllerDevice)?.Id ?? selector.Tag as string;
-            selector.ItemsSource = devices;
-            selector.SelectedItem = devices.FirstOrDefault(device => device.Id == selectedId)
-                ?? devices.ElementAtOrDefault(index);
-            selector.Tag = null;
-        }
-        return Task.CompletedTask;
-    }
 }

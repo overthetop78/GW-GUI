@@ -1,9 +1,11 @@
+using GWGUI.Emulation.Constants;
+
 namespace GWGUI.Emulation.Amiga.Constants;
 
 internal static class AmigaInputSettingsFunctionsConstants
 {
     internal const string OptionTurboFire = "puae_turbo_fire";
-    internal const string L2 = "L2";
+    internal const string L2 = EmulationControllerCommandIds.L2;
     internal const string Enabled = "enabled";
     internal const string Disabled = "disabled";
     internal const string OptionTurboFireButton = "puae_turbo_fire_button";
@@ -19,27 +21,27 @@ internal static class AmigaInputSettingsFunctionsConstants
     internal const string MouseRight = "Mouse:Right";
     internal const string ResourceMouseButtonMiddle = "Emulation.Mouse.Button.Middle";
     internal const string MouseMiddle = "Mouse:Middle";
-    internal const string Up = "Up";
+    internal const string Up = EmulationControllerCommandIds.Up;
     internal const string ResourceControllerActionUp = "Emulation.Controller.Action.Up";
-    internal const string Down = "Down";
+    internal const string Down = EmulationControllerCommandIds.Down;
     internal const string ResourceControllerActionDown = "Emulation.Controller.Action.Down";
-    internal const string Left = "Left";
+    internal const string Left = EmulationControllerCommandIds.Left;
     internal const string ResourceControllerActionLeft = "Emulation.Controller.Action.Left";
-    internal const string Right = "Right";
+    internal const string Right = EmulationControllerCommandIds.Right;
     internal const string ResourceControllerActionRight = "Emulation.Controller.Action.Right";
-    internal const string B = "B";
+    internal const string B = EmulationControllerCommandIds.B;
     internal const string ResourceAmigaControllerCd32Red = "Emulation.Amiga.Controller.Cd32.Red";
-    internal const string A = "A";
+    internal const string A = EmulationControllerCommandIds.A;
     internal const string ResourceAmigaControllerCd32Blue = "Emulation.Amiga.Controller.Cd32.Blue";
-    internal const string Y = "Y";
+    internal const string Y = EmulationControllerCommandIds.Y;
     internal const string ResourceAmigaControllerCd32Green = "Emulation.Amiga.Controller.Cd32.Green";
-    internal const string X = "X";
+    internal const string X = EmulationControllerCommandIds.X;
     internal const string ResourceAmigaControllerCd32Yellow = "Emulation.Amiga.Controller.Cd32.Yellow";
-    internal const string L = "L";
+    internal const string L = EmulationControllerCommandIds.L;
     internal const string ResourceAmigaControllerCd32Rewind = "Emulation.Amiga.Controller.Cd32.Rewind";
-    internal const string R = "R";
+    internal const string R = EmulationControllerCommandIds.R;
     internal const string ResourceAmigaControllerCd32FastForward = "Emulation.Amiga.Controller.Cd32.FastForward";
-    internal const string Start = "Start";
+    internal const string Start = EmulationControllerCommandIds.Start;
     internal const string ResourceAmigaControllerCd32PlayPause = "Emulation.Amiga.Controller.Cd32.PlayPause";
     internal const string ResourceControllerActionFire1 = "Emulation.Controller.Action.Fire1";
     internal const string ResourceControllerActionFire2 = "Emulation.Controller.Action.Fire2";

@@ -584,4 +584,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Règle le déphasage des couleurs du GTIA utilisé pour reproduire les teintes. La valeur par défaut utilise le réglage normal. Les valeurs numériques décalent les teintes obtenues.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>Régler le saut d’images</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Règle le nombre d’images d’affichage omises. Le mode désactivé affiche chaque image. Les valeurs élevées réduisent le travail de rendu, mais rendent les mouvements moins fluides.</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>Visuel</value>
+  </data>
 </root>

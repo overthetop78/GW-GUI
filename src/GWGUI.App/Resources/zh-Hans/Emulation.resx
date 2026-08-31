@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>设置 GTIA 用于复制颜色的相相延迟 。 默认使用标准值 。 数字选择会改变结果的颜色</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>设置框架跳过</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>设定省略多少个显示框 。 已禁用 。 更高的值减少渲染工作,但使运动更不平滑.</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>外观</value>
+  </data>
 </root>

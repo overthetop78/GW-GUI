@@ -1,4 +1,6 @@
 using GWGUI.Emulation;
+using GWGUI.Emulation.Constants;
+using GWGUI.Emulation.Enums;
 
 namespace GWGUI.Emulation.Amiga.Functions;
 
@@ -29,8 +31,8 @@ internal static class AmigaInputSettingsFunctions
                 choices.Select(Choice).ToArray(), type.ToString(),
                 current?.DeviceId,
                 new EmulationInputBindingSet(ControllerDefinitions(type), current?.ButtonMappings
-                    ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Controller,
-                    true));
+                    ?? new Dictionary<string, string>(), EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller,
+                    true), VisualId: current?.VisualId);
         }).ToArray();
         return new EmulationInputSettings(keyboard, mouse, ports);
     }
@@ -49,7 +51,8 @@ internal static class AmigaInputSettingsFunctions
             ?? new Dictionary<string, AmigaMouseAction>();
         var controllers = settings.ControllerPorts.Select(port => new AmigaControllerBinding(port.Number - 1,
             Enum.TryParse<AmigaControllerType>(port.SelectedControllerId, true, out var type)
-                ? type : AmigaControllerType.None, port.PhysicalDeviceId, port.Bindings.Values)).ToArray();
+                ? type : AmigaControllerType.None, port.PhysicalDeviceId, port.Bindings.Values,
+            port.VisualId)).ToArray();
         var input = current with
         {
             KeyboardBindings = keyboard,
@@ -125,7 +128,73 @@ internal static class AmigaInputSettingsFunctions
         new(id, resourceKey, defaultBinding, resourceKey.Contains('.') ? null : resourceKey);
 
     private static EmulationControllerChoice Choice(AmigaControllerType type) =>
-        new(type.ToString(), ControllerResourceKey(type), BindingDefinitions: ControllerDefinitions(type));
+        new(type.ToString(), ControllerResourceKey(type),
+            BindingDefinitions: ControllerDefinitions(type),
+            CompatibleVisualIds: CompatibleVisualIds(type),
+            DefaultVisualId: DefaultVisualId(type),
+            VisualCommandIds: VisualCommandIds(type));
+
+    private static IReadOnlyList<string>? CompatibleVisualIds(AmigaControllerType type) => type switch
+    {
+        AmigaControllerType.Joystick =>
+        [
+            EmulationControllerVisualIds.QuickShot,
+            EmulationControllerVisualIds.QuickShotDeluxe,
+            EmulationControllerVisualIds.QuickShotIiTurbo,
+            EmulationControllerVisualIds.CompetitionPro5000,
+            EmulationControllerVisualIds.ZipstikSuperPro,
+            EmulationControllerVisualIds.KonixSpeedkingLeftHand,
+            EmulationControllerVisualIds.KonixSpeedkingRightHand,
+            EmulationControllerVisualIds.SuncomTac2,
+            EmulationControllerVisualIds.PowerplayCruiser,
+            EmulationControllerVisualIds.SuzoTheArcadeTurbo,
+            EmulationControllerVisualIds.AdvancedGravisGamepad
+        ],
+        AmigaControllerType.AnalogJoystick => [EmulationControllerVisualIds.KonixSpeedkingAnalog],
+        AmigaControllerType.Cd32Pad =>
+            [EmulationControllerVisualIds.CommodoreCd32, EmulationControllerVisualIds.CompetitionProCd32],
+        _ => null
+    };
+
+    private static string? DefaultVisualId(AmigaControllerType type) => type switch
+    {
+        AmigaControllerType.Joystick => EmulationControllerVisualIds.QuickShot,
+        AmigaControllerType.AnalogJoystick => EmulationControllerVisualIds.KonixSpeedkingAnalog,
+        AmigaControllerType.Cd32Pad => EmulationControllerVisualIds.CommodoreCd32,
+        _ => null
+    };
+
+    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>? VisualCommandIds(
+        AmigaControllerType type) => type switch
+    {
+        AmigaControllerType.Joystick or AmigaControllerType.AnalogJoystick =>
+            new Dictionary<EmulationControllerVisualControl, string>
+            {
+                [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
+                [EmulationControllerVisualControl.DirectionDown] = EmulationControllerCommandIds.Down,
+                [EmulationControllerVisualControl.DirectionLeft] = EmulationControllerCommandIds.Left,
+                [EmulationControllerVisualControl.DirectionRight] = EmulationControllerCommandIds.Right,
+                [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.B,
+                [EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.A,
+                [EmulationControllerVisualControl.Turbo] = EmulationControllerCommandIds.L2
+            },
+        AmigaControllerType.Cd32Pad => new Dictionary<EmulationControllerVisualControl, string>
+        {
+            [EmulationControllerVisualControl.DirectionUp] = EmulationControllerCommandIds.Up,
+            [EmulationControllerVisualControl.DirectionDown] = EmulationControllerCommandIds.Down,
+            [EmulationControllerVisualControl.DirectionLeft] = EmulationControllerCommandIds.Left,
+            [EmulationControllerVisualControl.DirectionRight] = EmulationControllerCommandIds.Right,
+            [EmulationControllerVisualControl.PrimaryAction] = EmulationControllerCommandIds.B,
+            [EmulationControllerVisualControl.SecondaryAction] = EmulationControllerCommandIds.A,
+            [EmulationControllerVisualControl.TertiaryAction] = EmulationControllerCommandIds.Y,
+            [EmulationControllerVisualControl.QuaternaryAction] = EmulationControllerCommandIds.X,
+            [EmulationControllerVisualControl.LeftShoulder] = EmulationControllerCommandIds.L,
+            [EmulationControllerVisualControl.RightShoulder] = EmulationControllerCommandIds.R,
+            [EmulationControllerVisualControl.Start] = EmulationControllerCommandIds.Start,
+            [EmulationControllerVisualControl.Turbo] = EmulationControllerCommandIds.L2
+        },
+        _ => null
+    };
 
     private static string ControllerResourceKey(AmigaControllerType type) => type switch
     {

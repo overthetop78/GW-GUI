@@ -4,9 +4,12 @@ namespace GWGUI.Emulation.Amiga.Services;
 
 public sealed class AmigaConfigurationStore
 {
+    private const string SaveMutexName = @"Local\GWGUI.AmigaConfigurationStore.Save";
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web) { WriteIndented = true };
     private readonly string _directory;
     private readonly string _pathBase;
+    private static readonly SemaphoreSlim SaveGate = new(1, 1);
+    private static readonly Mutex SaveMutex = new(false, SaveMutexName);
 
     public AmigaConfigurationStore(string directory, string? pathBase = null)
     {
@@ -27,7 +30,8 @@ public sealed class AmigaConfigurationStore
         {
             try
             {
-                await using var stream = File.OpenRead(path);
+                await using var stream = new FileStream(path, FileMode.Open, FileAccess.Read,
+                    FileShare.ReadWrite | FileShare.Delete, 4096, FileOptions.Asynchronous);
                 var configuration = await JsonSerializer.DeserializeAsync<AmigaMachineConfiguration>(stream, JsonOptions, cancellationToken);
                 if (configuration is not null && configuration.SchemaVersion is > 0 and <= 3)
                     configurations.Add(ResolvePaths(configuration.EnsureId()));
@@ -40,14 +44,74 @@ public sealed class AmigaConfigurationStore
 
     public async Task SaveAsync(AmigaMachineConfiguration configuration, CancellationToken cancellationToken = default)
     {
-        configuration = configuration.EnsureId() with { SchemaVersion = 3 };
-        var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(AmigaConfigurationStoreConstants.N));
-        Directory.CreateDirectory(machineDirectory);
-        var target = Path.Combine(machineDirectory, AmigaConfigurationStoreConstants.MachineJson);
-        var temporary = target + AmigaConfigurationStoreConstants.Tmp;
-        await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, 4096, true))
-            await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken);
-        File.Move(temporary, target, true);
+        await SaveGate.WaitAsync(cancellationToken).ConfigureAwait(false);
+        string? temporary = null;
+        try
+        {
+            configuration = configuration.EnsureId() with { SchemaVersion = 3 };
+            var machineDirectory = Path.Combine(_directory, configuration.Id.ToString(AmigaConfigurationStoreConstants.N));
+            Directory.CreateDirectory(machineDirectory);
+            var target = Path.Combine(machineDirectory, AmigaConfigurationStoreConstants.MachineJson);
+            temporary = target + "." + Guid.NewGuid().ToString(AmigaConfigurationStoreConstants.N)
+                + AmigaConfigurationStoreConstants.Tmp;
+            await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, 4096, true))
+                await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken)
+                    .ConfigureAwait(false);
+            ReplaceFile(temporary, target);
+        }
+        finally
+        {
+            if (temporary is not null && File.Exists(temporary)) File.Delete(temporary);
+            SaveGate.Release();
+        }
+    }
+
+    private static void ReplaceFile(string source, string target)
+    {
+        var lockTaken = false;
+        try
+        {
+            try
+            {
+                SaveMutex.WaitOne();
+                lockTaken = true;
+            }
+            catch (AbandonedMutexException)
+            {
+                lockTaken = true;
+            }
+            for (var attempt = 0; attempt < AmigaConfigurationStoreConstants.ReplacementRetryCount; attempt++)
+            {
+                try
+                {
+                    File.Move(source, target, true);
+                    return;
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    if (attempt + 1 >= AmigaConfigurationStoreConstants.ReplacementRetryCount) break;
+                    Thread.Sleep(AmigaConfigurationStoreConstants.ReplacementRetryDelayMilliseconds * (attempt + 1));
+                }
+                catch (IOException)
+                {
+                    if (attempt + 1 >= AmigaConfigurationStoreConstants.ReplacementRetryCount) break;
+                    Thread.Sleep(AmigaConfigurationStoreConstants.ReplacementRetryDelayMilliseconds * (attempt + 1));
+                }
+            }
+
+            using (var input = new FileStream(source, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var output = new FileStream(target, FileMode.Create, FileAccess.Write,
+                       FileShare.ReadWrite, 4096, FileOptions.WriteThrough))
+            {
+                input.CopyTo(output);
+                output.Flush(flushToDisk: true);
+            }
+            File.Delete(source);
+        }
+        finally
+        {
+            if (lockTaken) SaveMutex.ReleaseMutex();
+        }
     }
 
     public void Delete(Guid id)

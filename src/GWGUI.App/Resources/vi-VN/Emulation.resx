@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Đặt GTIA Trễ màu dùng để sinh sản màu. Mặc định dùng giá trị chuẩn. Sự lựa chọn số thay đổi màu sắc.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>Đặt bỏ qua khung</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Đặt số khung hiển thị bị bỏ qua. Tắt mọi khung hình. Giá trị cao hơn giảm việc vẽ nhưng làm cho chuyển động ít mịn hơn.</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>Giao diện</value>
+  </data>
 </root>

@@ -1,4 +1,6 @@
 using GWGUI.Emulation;
+using GWGUI.Emulation.Constants;
+using GWGUI.Emulation.Enums;
 
 namespace GWGUI.Emulation.Atari.Functions;
 
@@ -25,10 +27,11 @@ internal static class AtariInputSettingsFunctions
             return new EmulationControllerPort(number,
                 Peripherals(configuration.Model).Select(item => Choice(configuration.Model, item)).ToArray(),
                 peripheral.ToString(), current?.DeviceId,
-                new EmulationInputBindingSet(ControllerDefinitions(configuration.Model, peripheral, number),
+                new EmulationInputBindingSet(ControllerDefinitions(configuration.Model, peripheral),
                     current?.Mappings ?? new Dictionary<string, string>(),
-                    EmulationInputSource.Keyboard | EmulationInputSource.Controller, true),
-                current?.DeadZonePercent ?? AtariControllerConstants.DefaultDeadZonePercent);
+                    EmulationInputSource.Keyboard | EmulationInputSource.Mouse | EmulationInputSource.Controller, true),
+                current?.DeadZonePercent ?? AtariControllerConstants.DefaultDeadZonePercent,
+                current?.VisualId);
         }).ToArray();
         return new EmulationInputSettings(keyboard, mouse, ports);
     }
@@ -44,7 +47,7 @@ internal static class AtariInputSettingsFunctions
         var controllers = settings.ControllerPorts.Select(port => new AtariControllerBinding(port.Number - 1,
             Enum.TryParse<AtariPeripheralCategory>(port.SelectedControllerId, true, out var peripheral)
                 ? peripheral : AtariPeripheralCategory.None, port.PhysicalDeviceId, port.Bindings.Values,
-            port.DeadZonePercent)).ToArray();
+            port.DeadZonePercent, port.VisualId)).ToArray();
         var options = configuration.Options
             .Where(item => !item.Key.StartsWith(AtariMouseSettingsConstants.MappingOptionPrefix,
                 StringComparison.Ordinal))
@@ -108,12 +111,11 @@ internal static class AtariInputSettingsFunctions
     }
 
     private static IReadOnlyList<InputBindingDefinition> ControllerDefinitions(AtariMachineModel model,
-        AtariPeripheralCategory peripheral, int port)
+        AtariPeripheralCategory peripheral)
     {
         var actions = ControllerActions(model, peripheral);
         return actions.Select(action => Definition(action, ActionResourceKey(action),
-            AtariControllerConstants.DefaultSources.TryGetValue(action, out var source)
-                ? $"Controller:{port - 1}:{source}" : string.Empty, ActionInvariantValue(action))).ToArray();
+            string.Empty, ActionInvariantValue(action))).ToArray();
     }
 
     private static IEnumerable<string> ControllerActions(AtariMachineModel model,
@@ -153,7 +155,8 @@ internal static class AtariInputSettingsFunctions
         _ => AtariPeripheralCategory.Joystick
     };
 
-    private static EmulationControllerChoice Choice(AtariMachineModel model,
+    private static EmulationControllerChoice Choice(
+        AtariMachineModel model,
         AtariPeripheralCategory category) => new(category.ToString(), category switch
     {
         AtariPeripheralCategory.None => AtariInputSettingsFunctionsConstants.ResourceControllerNone,
@@ -177,7 +180,137 @@ internal static class AtariInputSettingsFunctions
         AtariPeripheralCategory.EnhancedController when model is AtariMachineModel.Jaguar
             or AtariMachineModel.JaguarCd => AtariInputSettingsFunctionsConstants.ResourceAtariControllerJaguar,
         _ => category.ToString()
-    });
+    },
+        BindingDefinitions: ControllerDefinitions(model, category),
+        CompatibleVisualIds: CompatibleVisualIds(model, category),
+        DefaultVisualId: DefaultVisualId(model, category),
+        VisualCommandIds: VisualCommandIds(model, category));
+
+    private static IReadOnlyList<string>? CompatibleVisualIds(
+        AtariMachineModel model,
+        AtariPeripheralCategory category) => category switch
+    {
+        AtariPeripheralCategory.Joystick when model == AtariMachineModel.Atari2600 =>
+            [EmulationControllerVisualIds.AtariCx40],
+        AtariPeripheralCategory.Joystick =>
+        [
+            EmulationControllerVisualIds.QuickShot,
+            EmulationControllerVisualIds.QuickShotDeluxe,
+            EmulationControllerVisualIds.QuickShotIiTurbo,
+            EmulationControllerVisualIds.CompetitionPro5000,
+            EmulationControllerVisualIds.ZipstikSuperPro,
+            EmulationControllerVisualIds.KonixSpeedkingLeftHand,
+            EmulationControllerVisualIds.KonixSpeedkingRightHand,
+            EmulationControllerVisualIds.SuncomTac2,
+            EmulationControllerVisualIds.PowerplayCruiser,
+            EmulationControllerVisualIds.SuzoTheArcadeTurbo,
+            EmulationControllerVisualIds.AdvancedGravisGamepad,
+            EmulationControllerVisualIds.AtariCx40
+        ],
+        AtariPeripheralCategory.AnalogJoystick when model == AtariMachineModel.Atari5200 =>
+            [EmulationControllerVisualIds.Atari5200Controller],
+        AtariPeripheralCategory.Paddle => [EmulationControllerVisualIds.AtariPaddle],
+        AtariPeripheralCategory.DrivingController =>
+            [EmulationControllerVisualIds.Atari2600DrivingController],
+        AtariPeripheralCategory.BoosterGrip => [EmulationControllerVisualIds.AtariBoosterGrip],
+        AtariPeripheralCategory.Joy2BPlus => [EmulationControllerVisualIds.AtariJoy2BPlus],
+        AtariPeripheralCategory.ProLineController =>
+            [EmulationControllerVisualIds.Atari7800ProLineCx24,
+                EmulationControllerVisualIds.Atari7800ControlPadEurope],
+        AtariPeripheralCategory.LightGun => [EmulationControllerVisualIds.AtariXg1LightGun],
+        AtariPeripheralCategory.EnhancedController when model == AtariMachineModel.Lynx =>
+            [EmulationControllerVisualIds.AtariLynx, EmulationControllerVisualIds.AtariLynxIi],
+        AtariPeripheralCategory.EnhancedController when model is AtariMachineModel.Jaguar
+            or AtariMachineModel.JaguarCd =>
+            [EmulationControllerVisualIds.AtariJaguarController,
+                EmulationControllerVisualIds.AtariJaguarProController],
+        _ => null
+    };
+
+    private static string? DefaultVisualId(
+        AtariMachineModel model,
+        AtariPeripheralCategory category) => category switch
+    {
+        AtariPeripheralCategory.Joystick when model == AtariMachineModel.Atari2600 =>
+            EmulationControllerVisualIds.AtariCx40,
+        AtariPeripheralCategory.Joystick => EmulationControllerVisualIds.QuickShot,
+        AtariPeripheralCategory.ProLineController when model == AtariMachineModel.Atari7800 =>
+            EmulationControllerVisualIds.Atari7800ControlPadEurope,
+        _ => CompatibleVisualIds(model, category)?.FirstOrDefault()
+    };
+
+    private static IReadOnlyDictionary<EmulationControllerVisualControl, string>? VisualCommandIds(
+        AtariMachineModel model,
+        AtariPeripheralCategory category)
+    {
+        if (category is AtariPeripheralCategory.None or AtariPeripheralCategory.Automatic)
+            return null;
+
+        var actions = ControllerActions(model, category).ToHashSet(StringComparer.Ordinal);
+        var result = new Dictionary<EmulationControllerVisualControl, string>();
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.DirectionUp,
+            EmulationControllerCommandIds.Up);
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.DirectionDown,
+            EmulationControllerCommandIds.Down);
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.DirectionLeft,
+            EmulationControllerCommandIds.Left);
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.DirectionRight,
+            EmulationControllerCommandIds.Right);
+
+        var jaguar = model is AtariMachineModel.Jaguar or AtariMachineModel.JaguarCd;
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.PrimaryAction,
+            jaguar ? EmulationControllerCommandIds.A : EmulationControllerCommandIds.Fire1);
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.SecondaryAction,
+            jaguar ? EmulationControllerCommandIds.B : EmulationControllerCommandIds.Fire2);
+        if (jaguar)
+            AddVisualCommand(result, actions, EmulationControllerVisualControl.TertiaryAction,
+                EmulationControllerCommandIds.C);
+
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.Turbo,
+            EmulationControllerCommandIds.Turbo);
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.Start,
+            EmulationControllerCommandIds.Start);
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.Pause,
+            EmulationControllerCommandIds.Pause);
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.Reset,
+            EmulationControllerCommandIds.Reset);
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.Option,
+            EmulationControllerCommandIds.Option);
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.Key0,
+            EmulationControllerCommandIds.Key0);
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.Key1,
+            EmulationControllerCommandIds.Key1);
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.Key2,
+            EmulationControllerCommandIds.Key2);
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.Key3,
+            EmulationControllerCommandIds.Key3);
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.Key4,
+            EmulationControllerCommandIds.Key4);
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.Key5,
+            EmulationControllerCommandIds.Key5);
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.Key6,
+            EmulationControllerCommandIds.Key6);
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.Key7,
+            EmulationControllerCommandIds.Key7);
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.Key8,
+            EmulationControllerCommandIds.Key8);
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.Key9,
+            EmulationControllerCommandIds.Key9);
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.KeyStar,
+            EmulationControllerCommandIds.Star);
+        AddVisualCommand(result, actions, EmulationControllerVisualControl.KeyHash,
+            EmulationControllerCommandIds.Hash);
+        return result;
+    }
+
+    private static void AddVisualCommand(
+        IDictionary<EmulationControllerVisualControl, string> result,
+        IReadOnlySet<string> actions,
+        EmulationControllerVisualControl control,
+        string commandId)
+    {
+        if (actions.Contains(commandId)) result[control] = commandId;
+    }
 
     private static string ActionResourceKey(string action) => action switch
     {

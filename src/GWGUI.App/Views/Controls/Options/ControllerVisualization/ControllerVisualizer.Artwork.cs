@@ -1,4 +1,8 @@
+using GWGUI.App.Contracts.Input;
+using GWGUI.App.Enums.Input;
 using GWGUI.App.Services.Input.GameInput;
+using GWGUI.App.Views.Controls.Options.ControllerVisualization;
+using GWGUI.Emulation.Enums;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -70,6 +74,114 @@ public sealed partial class ControllerVisualizer
         return true;
     }
 
+    private void DrawArtworkProfileOverlays(
+        DrawingContext dc,
+        ControllerArtworkProfile profile,
+        Rect artworkBounds)
+    {
+        var joystickZone = profile.Zones.FirstOrDefault(zone =>
+            zone.Shape == ControllerVisualZoneShape.JoystickDirection && HasVisualCommand(zone.Control));
+        if (joystickZone is not null)
+            DrawArtworkProfileJoystick(dc, ZoneBounds(artworkBounds, joystickZone));
+
+        foreach (var zone in profile.Zones)
+        {
+            if (zone.Shape == ControllerVisualZoneShape.JoystickDirection
+                || !HasVisualCommand(zone.Control)) continue;
+            var hovered = HoveredVisualControl == zone.Control;
+            var value = Math.Max(VisualZoneValue(zone.Control), hovered ? 1f : 0f);
+            if (value <= .01f) continue;
+
+            var bounds = ZoneBounds(artworkBounds, zone);
+            switch (zone.Shape)
+            {
+                case ControllerVisualZoneShape.Ellipse:
+                    DrawArtworkHalo(
+                        dc,
+                        new Point(bounds.X + bounds.Width / 2d, bounds.Y + bounds.Height / 2d),
+                        Math.Min(bounds.Width, bounds.Height) / 2d,
+                        active: true);
+                    break;
+                case ControllerVisualZoneShape.DirectionalPad:
+                    DrawArtworkDirection(dc, DirectionZoneBounds(bounds, zone.Control), active: true);
+                    break;
+                default:
+                    DrawArtworkDirection(dc, bounds, active: true);
+                    break;
+            }
+        }
+    }
+
+    private void DrawArtworkProfileJoystick(DrawingContext dc, Rect bounds)
+    {
+        var left = Math.Max(VisualZoneValue(EmulationControllerVisualControl.DirectionLeft),
+            HoveredVisualControl == EmulationControllerVisualControl.DirectionLeft ? 1f : 0f);
+        var right = Math.Max(VisualZoneValue(EmulationControllerVisualControl.DirectionRight),
+            HoveredVisualControl == EmulationControllerVisualControl.DirectionRight ? 1f : 0f);
+        var up = Math.Max(VisualZoneValue(EmulationControllerVisualControl.DirectionUp),
+            HoveredVisualControl == EmulationControllerVisualControl.DirectionUp ? 1f : 0f);
+        var down = Math.Max(VisualZoneValue(EmulationControllerVisualControl.DirectionDown),
+            HoveredVisualControl == EmulationControllerVisualControl.DirectionDown ? 1f : 0f);
+        var x = Math.Clamp(right - left, -1f, 1f);
+        var y = Math.Clamp(down - up, -1f, 1f);
+        if (Math.Abs(x) <= .01f && Math.Abs(y) <= .01f) return;
+
+        var size = Math.Min(bounds.Width, bounds.Height);
+        var movement = size * .2d;
+        var center = new Point(
+            bounds.X + bounds.Width / 2d + x * movement,
+            bounds.Y + bounds.Height / 2d + y * movement);
+        var radius = Math.Max(6d, size * .2d);
+        dc.DrawEllipse(PressedFill(), new Pen(PressedStrong(), Math.Max(1.5d, size * .025d)),
+            center, radius, radius);
+    }
+
+    private float VisualZoneValue(EmulationControllerVisualControl control)
+    {
+        if (_visualCommandIds is null
+            || !_visualCommandIds.TryGetValue(control, out var commandId))
+            return 0f;
+        return Math.Clamp(
+            Math.Abs(_visualState?.EmulatedCommandValue(commandId) ?? 0f),
+            0f,
+            1f);
+    }
+
+    private static Rect DirectionZoneBounds(
+        Rect bounds,
+        EmulationControllerVisualControl control)
+    {
+        var horizontalWidth = bounds.Width * .44d;
+        var horizontalHeight = bounds.Height * .18d;
+        var verticalWidth = bounds.Width * .18d;
+        var verticalHeight = bounds.Height * .44d;
+        return control switch
+        {
+            EmulationControllerVisualControl.DirectionUp => new Rect(
+                bounds.X + (bounds.Width - verticalWidth) / 2d,
+                bounds.Y,
+                verticalWidth,
+                verticalHeight),
+            EmulationControllerVisualControl.DirectionDown => new Rect(
+                bounds.X + (bounds.Width - verticalWidth) / 2d,
+                bounds.Bottom - verticalHeight,
+                verticalWidth,
+                verticalHeight),
+            EmulationControllerVisualControl.DirectionLeft => new Rect(
+                bounds.X,
+                bounds.Y + (bounds.Height - horizontalHeight) / 2d,
+                horizontalWidth,
+                horizontalHeight),
+            EmulationControllerVisualControl.DirectionRight => new Rect(
+                bounds.Right - horizontalWidth,
+                bounds.Y + (bounds.Height - horizontalHeight) / 2d,
+                horizontalWidth,
+                horizontalHeight),
+            _ => bounds
+        };
+    }
+
+
     private static Rect FitArtworkBounds(ImageSource artwork)
     {
         var sourceWidth = artwork is BitmapSource bitmap ? bitmap.PixelWidth : artwork.Width;
@@ -78,6 +190,16 @@ public sealed partial class ControllerVisualizer
         var width = sourceWidth * scale;
         var height = sourceHeight * scale;
         return new Rect((620d - width) / 2d, (320d - height) / 2d, width, height);
+    }
+
+    private static Rect FitArtworkProfileBounds(ImageSource artwork)
+    {
+        var sourceWidth = artwork is BitmapSource bitmap ? bitmap.PixelWidth : artwork.Width;
+        var sourceHeight = artwork is BitmapSource source ? source.PixelHeight : artwork.Height;
+        var scale = Math.Min(580d / sourceWidth, 480d / sourceHeight);
+        var width = sourceWidth * scale;
+        var height = sourceHeight * scale;
+        return new Rect((620d - width) / 2d, (520d - height) / 2d, width, height);
     }
 
     private static Point At(Rect bounds, double x, double y) =>
@@ -439,27 +561,34 @@ public sealed partial class ControllerVisualizer
                 Radius(bounds, .070), Radius(bounds, .160)), 5, 5);
     }
 
-    private void DrawArtworkStick(DrawingContext dc, Point center, float x, float y, bool pressed, double radius)
+    private void DrawArtworkStick(
+        DrawingContext dc,
+        Point center,
+        float x,
+        float y,
+        bool pressed,
+        double radius)
     {
         var movedAxis = Math.Abs(x) > .03f || Math.Abs(y) > .03f;
         if (!pressed && !movedAxis) return;
-        var moved = new Point(center.X + x * 10, center.Y + y * 10);
-        if (pressed) DrawArtworkHalo(dc, center, radius, true);
-        if (movedAxis)
-        {
-            dc.DrawLine(new Pen(PressedStrong(), 1.5), center, moved);
-            dc.DrawEllipse(PressedStrong(), null, moved, 4.5, 4.5);
-        }
+        if (pressed) DrawArtworkHalo(dc, center, radius, active: true);
+        if (!movedAxis) return;
+
+        var movementRadius = radius * .65d;
+        var moved = new Point(
+            center.X + Math.Clamp(x, -1f, 1f) * movementRadius,
+            center.Y + Math.Clamp(y, -1f, 1f) * movementRadius);
+        var indicatorRadius = Math.Max(6d, radius * .55d);
+        dc.DrawEllipse(PressedFill(), new Pen(PressedStrong(), Math.Max(1.5d, radius * .08d)),
+            moved, indicatorRadius, indicatorRadius);
     }
 
     private static void DrawArtworkHalo(DrawingContext dc, Point center, double radius, bool active)
     {
         if (!active) return;
-        var contained = Math.Max(2, radius * .82);
-        dc.DrawEllipse(PressedFill(), null, center, contained, contained);
-        var shine = Math.Max(1.5, radius * .16);
-        dc.DrawEllipse(PressedStrong(), null,
-            new Point(center.X - radius * .18, center.Y - radius * .18), shine, shine);
+        var contained = Math.Max(2d, radius * .82d);
+        dc.DrawEllipse(PressedFill(), new Pen(PressedStrong(), Math.Max(1.25d, radius * .08d)),
+            center, contained, contained);
     }
 
     private static void DrawArtworkDirection(DrawingContext dc, Rect bounds, bool active)
@@ -467,14 +596,21 @@ public sealed partial class ControllerVisualizer
         if (!active) return;
         var inset = new Rect(bounds.X + 2, bounds.Y + 2,
             Math.Max(1, bounds.Width - 4), Math.Max(1, bounds.Height - 4));
-        dc.DrawRoundedRectangle(PressedFill(), null, inset, 3, 3);
+        var corner = Math.Max(3d, Math.Min(inset.Width, inset.Height) * .3d);
+        dc.DrawRoundedRectangle(PressedFill(), new Pen(PressedStrong(), 1.5d),
+            inset, corner, corner);
     }
 
     private static void DrawArtworkTrigger(DrawingContext dc, Rect bounds, float value)
     {
         if (value <= .01f) return;
-        var active = new Rect(bounds.X, bounds.Y,
-            bounds.Width * Math.Clamp(value, 0f, 1f), bounds.Height);
+        var amount = Math.Clamp(value, 0f, 1f);
+        var centerY = bounds.Y + bounds.Height / 2d;
+        var active = new Rect(
+            bounds.X,
+            centerY,
+            bounds.Width,
+            Math.Max(1d, bounds.Height * .5d * amount));
         dc.DrawRoundedRectangle(PressedFill(), null, active, 4, 4);
     }
 

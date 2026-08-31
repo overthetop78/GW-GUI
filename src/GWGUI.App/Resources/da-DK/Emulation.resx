@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Indstiller GTIA farve fase forsinkelse bruges til at reproducere farver. Standard bruger standardværdien. Numeriske valg skifter de resulterende nuancer.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>Indstil frame skipping</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Sætter hvor mange skærmrammer der udelades. Handicappede trækker hver ramme. Højere værdier reducerer rendering arbejde, men gøre bevægelse mindre glat.</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>Udseende</value>
+  </data>
 </root>

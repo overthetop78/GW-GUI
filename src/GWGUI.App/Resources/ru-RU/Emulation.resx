@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Устанавливает GTIA Задержка цветовой фазы используется для воспроизведения цветов. По умолчанию используется стандартное значение. Числовой выбор смещает полученные оттенки.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>Пропуск рамок</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Установите, сколько кадров дисплея опущено. Инвалид рисует каждый кадр. Более высокие значения уменьшают работу рендеринга, но делают движение менее плавным.</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>Внешний вид</value>
+  </data>
 </root>

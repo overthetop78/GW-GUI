@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Ορίζει το GTIA καθυστέρηση φάσης χρώματος που χρησιμοποιείται για την αναπαραγωγή χρωμάτων. Το προκαθορισμένο χρησιμοποιεί την τυπική τιμή. Οι αριθμητικές επιλογές μετατοπίζουν τις προκύπτουσες αποχρώσεις.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>Ορισμός παρακάμψεων καρέ</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Ορίζει πόσα πλαίσια οθόνης παραλείπονται. Αναπηρία τραβά κάθε πλαίσιο. Υψηλότερες τιμές μειώνουν την απόδοση εργασίας αλλά κάνουν την κίνηση λιγότερο ομαλή.</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>Εμφάνιση</value>
+  </data>
 </root>

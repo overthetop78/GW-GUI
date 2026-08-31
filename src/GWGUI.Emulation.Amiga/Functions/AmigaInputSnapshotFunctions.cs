@@ -109,8 +109,14 @@ internal static class AmigaInputSnapshotFunctions
     private static bool IsSourcePressed(string sourceName, EmulationControllerState controller,
         IReadOnlySet<EmulationKey> keys, IReadOnlyDictionary<string, bool> mouse)
     {
-        if (TryRemovePrefix(sourceName, AmigaInputSnapshotFunctionsConstants.Controller, out var controllerSource))
-            return EmulationInputMappingFunctions.IsControllerSourcePressed(controllerSource, controller);
+        if (TryRemovePrefix(sourceName, AmigaInputSnapshotFunctionsConstants.Controller,
+                out var controllerSource))
+        {
+            var value = EmulationInputMappingFunctions.ControllerSourceValue(
+                controllerSource, controller);
+            return EmulationInputMappingFunctions.IsControllerSourcePressed(
+                controllerSource, controller, value);
+        }
         if (ButtonIndexes.TryGetValue(sourceName, out var legacyIndex))
             return (controller.Buttons & (1u << legacyIndex)) != 0;
         if (TryRemovePrefix(sourceName, AmigaInputSnapshotFunctionsConstants.Keyboard, out var keyboardSource)

@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Setzt die GTIA Farbphasenverzögerung zur Wiedergabe von Farben. Default verwendet den Standardwert. Numerische Entscheidungen verschieben die resultierenden Farbtöne.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>Set frame skipping</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Legt fest, wie viele Anzeigerahmen weggelassen werden. Disabled zeichnet jeden Frame. Höhere Werte reduzieren die Renderarbeit, machen die Bewegung jedoch weniger glatt.</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>Darstellung</value>
+  </data>
 </root>

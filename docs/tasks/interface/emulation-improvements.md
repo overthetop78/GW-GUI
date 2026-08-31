@@ -409,6 +409,20 @@ Les ports sont déjà présentés dans des onglets distincts et un seul tableau 
 
 Le visuel affiché à droite correspond donc simplement au périphérique du port actuellement ouvert. Lorsque l’utilisateur change d’onglet de port, le tableau et le visuel correspondant à ce port sont affichés ensemble. Plusieurs représentations ne doivent pas être affichées simultanément.
 
+### Choix et enregistrement du visuel
+
+Le type de périphérique émulé et son visuel sont deux choix distincts. Le type est la valeur fournie par la DLL d’émulation, par exemple `Joystick`, `Cd32Pad` ou `None`. Pour le port actuellement ouvert, l’utilisateur peut choisir un visuel parmi les modèles matériels déclarés compatibles avec le module, la machine et ce type.
+
+Le changement de visuel ne modifie ni le type de périphérique émulé, ni ses associations. Le visuel choisi est enregistré avec la configuration du port de la machine par le même enregistrement automatique que les autres réglages. Tant qu’aucune configuration n’a encore été enregistrée, le choix reste porté par l’état d’édition courant.
+
+Un même modèle matériel n’existe qu’une fois dans le catalogue et peut être proposé à plusieurs ordinateurs lorsque ce modèle a réellement existé pour eux. Une compatibilité technique seule ne suffit pas pour proposer le visuel d’une manette propre à une autre console ou famille de machines.
+
+Les DLL d’émulation déclarent les VisualId compatibles avec chacun de leurs types et le VisualId utilisé par défaut. Elles peuvent déjà déclarer des VisualId dont l’image n’existe pas encore. L’application croise cette déclaration avec les profils réellement disponibles dans son catalogue et n’affiche dans le sélecteur que ceux dont l’image et les zones existent effectivement.
+
+Lorsqu’une console ou un ordinateur possède un contrôleur de base propre à sa machine, ce modèle est le visuel par défaut. Les modules Amiga et Atari ne possédant pas un unique joystick de base commun à leurs machines, leur type `Joystick` utilise le QuickShot comme visuel par défaut. Les visuels Mega Drive peuvent être renseignés pour un futur module Mega Drive, mais ne sont pas proposés actuellement comme visuels d’une console absente.
+
+Les noms de produits et de modèles, tels que `Competition Pro 5000`, ne sont pas traduits. Ils sont conservés dans les ressources générales `00-Base` et ne sont pas recopiés dans les fichiers propres aux langues.
+
 ### Périphériques à représenter
 
 Pour commencer, il faut réaliser les images des périphériques basiques déjà reconnus par les émulateurs. La liste de ces périphériques existe déjà dans l’application et doit être utilisée directement.
@@ -417,32 +431,440 @@ Des représentations supplémentaires pourront être ajoutées plus tard.
 
 #### Inventaire réel des périphériques émulés
 
-Cet inventaire reprend uniquement les valeurs de `EmulationControllerChoice` effectivement produites par `AmigaInputSettingsFunctions` et `AtariInputSettingsFunctions`. Dans la colonne des commandes, chaque définition est écrite sous la forme `identifiant / clé de ressource / association par défaut / valeur invariante`. `—` signifie une chaîne vide ou une valeur nulle. Pour les associations Atari, `{port}` désigne l’index du port, qui commence à zéro.
+Cet inventaire reprend uniquement les valeurs de `EmulationControllerChoice` effectivement produites par `AmigaInputSettingsFunctions` et `AtariInputSettingsFunctions`. Dans la colonne des commandes, chaque définition est écrite sous la forme `identifiant / clé de ressource / association par défaut / valeur invariante`. `—` signifie une chaîne vide ou une valeur nulle. Les DLL ne choisissent aucune touche ni aucun bouton physique par défaut : toutes les associations sont vides jusqu’à une affectation explicite de l’utilisateur.
 
-| Module | `EmulationControllerChoice.Id` | Machines et ports concernés | `InputBindingDefinition` produites |
-| --- | --- | --- | --- |
-| Amiga | `Joystick` | Tous les modèles Amiga, ports standards ; tous les modèles avec adaptateur parallèle activé, ports parallèles | `Up / Emulation.Controller.Action.Up / — / —` ; `Down / Emulation.Controller.Action.Down / — / —` ; `Left / Emulation.Controller.Action.Left / — / —` ; `Right / Emulation.Controller.Action.Right / — / —` ; `B / Emulation.Controller.Action.Fire1 / — / —` ; `A / Emulation.Controller.Action.Fire2 / — / —` ; `L2 / Emulation.Controller.Action.TurboFire / — / —` |
-| Amiga | `AnalogJoystick` | Tous les modèles Amiga, ports standards | Mêmes définitions que `Joystick` |
-| Amiga | `Cd32Pad` | Amiga CD32, ports standards | `Up / Emulation.Controller.Action.Up / — / —` ; `Down / Emulation.Controller.Action.Down / — / —` ; `Left / Emulation.Controller.Action.Left / — / —` ; `Right / Emulation.Controller.Action.Right / — / —` ; `B / Emulation.Amiga.Controller.Cd32.Red / — / —` ; `A / Emulation.Amiga.Controller.Cd32.Blue / — / —` ; `Y / Emulation.Amiga.Controller.Cd32.Green / — / —` ; `X / Emulation.Amiga.Controller.Cd32.Yellow / — / —` ; `L / Emulation.Amiga.Controller.Cd32.Rewind / — / —` ; `R / Emulation.Amiga.Controller.Cd32.FastForward / — / —` ; `Start / Emulation.Amiga.Controller.Cd32.PlayPause / — / —` ; `L2 / Emulation.Controller.Action.TurboFire / — / —` |
-| Amiga | `None` | Tous les modèles Amiga, ports standards et ports parallèles | Aucune définition |
-| Atari | `Joystick` | Atari ST, STF, STFM, Mega ST, STE, Mega STE, TT et Falcon | `Up / Emulation.Controller.Action.Up / Controller:{port}:DPadUp / —` ; `Down / Emulation.Controller.Action.Down / Controller:{port}:DPadDown / —` ; `Left / Emulation.Controller.Action.Left / Controller:{port}:DPadLeft / —` ; `Right / Emulation.Controller.Action.Right / Controller:{port}:DPadRight / —` ; `Fire1 / Emulation.Controller.Action.Fire1 / Controller:{port}:ButtonA / —` ; `Turbo / Emulation.Controller.Action.TurboFire / Controller:{port}:ButtonX / —` |
-| Atari | `Joystick` | Atari 400, 800, 800XL, 130XE, XEGS, XL/XE et 2600 | Définitions `Up`, `Down`, `Left`, `Right` et `Fire1` de la ligne précédente, avec les mêmes associations par défaut |
-| Atari | `AnalogJoystick` | Atari 5200 | `Up`, `Down`, `Left`, `Right`, `Fire1` et `Fire2` avec les clés `Emulation.Controller.Action.{identifiant}` et les associations par défaut `DPadUp`, `DPadDown`, `DPadLeft`, `DPadRight`, `ButtonA` et `ButtonB` ; `Start / Emulation.Controller.Action.Start / Controller:{port}:Menu / Start` ; `Pause / Emulation.Controller.Action.Pause / — / Pause` ; `Reset / Emulation.Controller.Action.Reset / Controller:{port}:View / Reset` ; `Key0` à `Key9`, `Star` et `Hash / Emulation.Controller.Action.{identifiant} / — / {identifiant}` |
-| Atari | `Paddle` | Atari 400, 800, 800XL, 130XE, XEGS, XL/XE et 2600 | `Fire1 / Emulation.Controller.Action.Fire1 / Controller:{port}:ButtonA / —` |
-| Atari | `DrivingController` | Atari 2600 | `Fire1 / Emulation.Controller.Action.Fire1 / Controller:{port}:ButtonA / —` |
-| Atari | `BoosterGrip` | Atari 2600 | `Up`, `Down`, `Left`, `Right`, `Fire1` et `Fire2` avec les clés et associations par défaut déjà détaillées ; `Turbo / Emulation.Controller.Action.TurboFire / Controller:{port}:ButtonX / —` |
-| Atari | `GenesisController` | Atari 2600 | `Up`, `Down`, `Left`, `Right` et `Fire1` avec les clés et associations par défaut déjà détaillées |
-| Atari | `Joy2BPlus` | Atari 2600 | `Up`, `Down`, `Left`, `Right`, `Fire1` et `Fire2` avec les clés et associations par défaut déjà détaillées |
-| Atari | `ProLineController` | Atari 7800 | `Up`, `Down`, `Left`, `Right`, `Fire1` et `Fire2` avec les clés et associations par défaut déjà détaillées |
-| Atari | `LightGun` | Atari 7800 | `Fire1 / Emulation.Controller.Action.Fire1 / Controller:{port}:ButtonA / —` |
-| Atari | `EnhancedController` | Atari Lynx | `Up`, `Down`, `Left`, `Right`, `Fire1` et `Fire2` avec les clés et associations par défaut déjà détaillées ; `Option1 / Emulation.Controller.Action.Option1 / Controller:{port}:LeftShoulder / Option 1` ; `Option2 / Emulation.Controller.Action.Option2 / Controller:{port}:RightShoulder / Option 2` ; `Pause / Emulation.Controller.Action.Pause / Controller:{port}:Menu / Pause` |
-| Atari | `EnhancedController` | Atari Jaguar et Jaguar CD | `Up`, `Down`, `Left` et `Right` avec les clés et associations par défaut déjà détaillées ; `A / Emulation.Controller.Action.A / Controller:{port}:ButtonA / A` ; `B / Emulation.Controller.Action.B / Controller:{port}:ButtonB / B` ; `C / Emulation.Controller.Action.C / Controller:{port}:ButtonX / C` ; `Option / Emulation.Controller.Action.Option / Controller:{port}:View / Option` ; `Pause / Emulation.Controller.Action.Pause / Controller:{port}:Menu / Pause` ; `Key0` à `Key9`, `Star` et `Hash / Emulation.Controller.Action.{identifiant} / — / {identifiant}` |
-| Atari | `None` | Tous les modèles Atari | Aucune définition |
+| Module | `EmulationControllerChoice.Id` | Réalisation | Machines et ports concernés | `InputBindingDefinition` produites |
+| --- | --- | --- | --- | --- |
+| Amiga | `Joystick` | Maintenant — image présente | Tous les modèles Amiga, ports standards ; tous les modèles avec adaptateur parallèle activé, ports parallèles | `Up / Emulation.Controller.Action.Up / — / —` ; `Down / Emulation.Controller.Action.Down / — / —` ; `Left / Emulation.Controller.Action.Left / — / —` ; `Right / Emulation.Controller.Action.Right / — / —` ; `B / Emulation.Controller.Action.Fire1 / — / —` ; `A / Emulation.Controller.Action.Fire2 / — / —` ; `L2 / Emulation.Controller.Action.TurboFire / — / —` |
+| Amiga | `AnalogJoystick` | Maintenant — image présente | Tous les modèles Amiga, ports standards | Mêmes définitions que `Joystick` |
+| Amiga | `Cd32Pad` | Maintenant — image présente | Amiga CD32, ports standards | `Up / Emulation.Controller.Action.Up / — / —` ; `Down / Emulation.Controller.Action.Down / — / —` ; `Left / Emulation.Controller.Action.Left / — / —` ; `Right / Emulation.Controller.Action.Right / — / —` ; `B / Emulation.Amiga.Controller.Cd32.Red / — / —` ; `A / Emulation.Amiga.Controller.Cd32.Blue / — / —` ; `Y / Emulation.Amiga.Controller.Cd32.Green / — / —` ; `X / Emulation.Amiga.Controller.Cd32.Yellow / — / —` ; `L / Emulation.Amiga.Controller.Cd32.Rewind / — / —` ; `R / Emulation.Amiga.Controller.Cd32.FastForward / — / —` ; `Start / Emulation.Amiga.Controller.Cd32.PlayPause / — / —` ; `L2 / Emulation.Controller.Action.TurboFire / — / —` |
+| Amiga | `None` | Sans représentation | Tous les modèles Amiga, ports standards et ports parallèles | Aucune définition |
+| Atari | `Joystick` | Maintenant — image présente | Atari ST, STF, STFM, Mega ST, STE, Mega STE, TT et Falcon | `Up / Emulation.Controller.Action.Up / — / —` ; `Down / Emulation.Controller.Action.Down / — / —` ; `Left / Emulation.Controller.Action.Left / — / —` ; `Right / Emulation.Controller.Action.Right / — / —` ; `Fire1 / Emulation.Controller.Action.Fire1 / — / —` ; `Turbo / Emulation.Controller.Action.TurboFire / — / —` |
+| Atari | `Joystick` | Maintenant — image présente | Atari 400, 800, 800XL, 130XE, XEGS, XL/XE et 2600 | Définitions `Up`, `Down`, `Left`, `Right` et `Fire1` de la ligne précédente, avec les mêmes associations par défaut |
+| Atari | `AnalogJoystick` | Maintenant — image présente | Atari 5200 | `Up`, `Down`, `Left`, `Right`, `Fire1` et `Fire2` avec les clés `Emulation.Controller.Action.{identifiant}` et les associations par défaut `DPadUp`, `DPadDown`, `DPadLeft`, `DPadRight`, `ButtonA` et `ButtonB` ; `Start / Emulation.Controller.Action.Start / — / Start` ; `Pause / Emulation.Controller.Action.Pause / — / Pause` ; `Reset / Emulation.Controller.Action.Reset / — / Reset` ; `Key0` à `Key9`, `Star` et `Hash / Emulation.Controller.Action.{identifiant} / — / {identifiant}` |
+| Atari | `Paddle` | Ajout ultérieur — image manquante | Atari 400, 800, 800XL, 130XE, XEGS, XL/XE et 2600 | `Fire1 / Emulation.Controller.Action.Fire1 / — / —` |
+| Atari | `DrivingController` | Ajout ultérieur — image manquante | Atari 2600 | `Fire1 / Emulation.Controller.Action.Fire1 / — / —` |
+| Atari | `BoosterGrip` | Ajout ultérieur — image manquante | Atari 2600 | `Up`, `Down`, `Left`, `Right`, `Fire1` et `Fire2` avec les clés et associations par défaut déjà détaillées ; `Turbo / Emulation.Controller.Action.TurboFire / — / —` |
+| Atari | `GenesisController` | Sans représentation actuelle — le visuel Mega Drive reste réservé à un futur module Mega Drive | Atari 2600 | `Up`, `Down`, `Left`, `Right` et `Fire1` avec les clés et associations par défaut déjà détaillées |
+| Atari | `Joy2BPlus` | Ajout ultérieur — image manquante | Atari 2600 | `Up`, `Down`, `Left`, `Right`, `Fire1` et `Fire2` avec les clés et associations par défaut déjà détaillées |
+| Atari | `ProLineController` | Maintenant — image présente | Atari 7800 | `Up`, `Down`, `Left`, `Right`, `Fire1` et `Fire2` avec les clés et associations par défaut déjà détaillées |
+| Atari | `LightGun` | Ajout ultérieur — image manquante | Atari 7800 | `Fire1 / Emulation.Controller.Action.Fire1 / — / —` |
+| Atari | `EnhancedController` | Ajout ultérieur — image manquante | Atari Lynx | `Up`, `Down`, `Left`, `Right`, `Fire1` et `Fire2` avec les clés et associations par défaut déjà détaillées ; `Option1 / Emulation.Controller.Action.Option1 / — / Option 1` ; `Option2 / Emulation.Controller.Action.Option2 / — / Option 2` ; `Pause / Emulation.Controller.Action.Pause / — / Pause` |
+| Atari | `EnhancedController` | Maintenant — image présente | Atari Jaguar et Jaguar CD | `Up`, `Down`, `Left` et `Right` avec les clés et associations par défaut déjà détaillées ; `A / Emulation.Controller.Action.A / — / A` ; `B / Emulation.Controller.Action.B / — / B` ; `C / Emulation.Controller.Action.C / — / C` ; `Option / Emulation.Controller.Action.Option / — / Option` ; `Pause / Emulation.Controller.Action.Pause / — / Pause` ; `Key0` à `Key9`, `Star` et `Hash / Emulation.Controller.Action.{identifiant} / — / {identifiant}` |
+| Atari | `None` | Sans représentation | Tous les modèles Atari | Aucune définition |
+
+#### Visuels déclarés par les DLL
+
+Les listes suivantes sont déclarées par les DLL d’émulation. L’application n’affiche dans le sélecteur que les VisualId possédant effectivement un profil dans son catalogue.
+
+| Module et choix | VisualId compatibles déclarés | VisualId par défaut |
+| --- | --- | --- |
+| Amiga `Joystick` | `quickshot`, `quickshot-deluxe`, `quickshot-ii-turbo`, `competition-pro-5000`, `zipstik-super-pro`, `konix-speedking-left-hand`, `konix-speedking-right-hand`, `suncom-tac-2`, `powerplay-cruiser`, `suzo-the-arcade-turbo`, `advanced-gravis-gamepad` | `quickshot` |
+| Amiga `AnalogJoystick` | `konix-speedking-analog` | `konix-speedking-analog` |
+| Amiga `Cd32Pad` | `commodore-cd32`, `competition-pro-cd32` | `commodore-cd32` |
+| Amiga `None` | — | — |
+| Atari 2600 `Joystick` | `atari-cx40` | `atari-cx40` |
+| Autres ordinateurs Atari `Joystick` | `quickshot`, `quickshot-deluxe`, `quickshot-ii-turbo`, `competition-pro-5000`, `zipstik-super-pro`, `konix-speedking-left-hand`, `konix-speedking-right-hand`, `suncom-tac-2`, `powerplay-cruiser`, `suzo-the-arcade-turbo`, `advanced-gravis-gamepad`, `atari-cx40` | `quickshot` |
+| Atari 5200 `AnalogJoystick` | `atari-5200-controller` | `atari-5200-controller` |
+| Atari `Paddle` | `atari-paddle` | `atari-paddle` |
+| Atari 2600 `DrivingController` | `atari-2600-driving-controller` | `atari-2600-driving-controller` |
+| Atari 2600 `BoosterGrip` | `atari-booster-grip` | `atari-booster-grip` |
+| Atari 2600 `GenesisController` | — | — |
+| Atari 2600 `Joy2BPlus` | `atari-joy2b-plus` | `atari-joy2b-plus` |
+| Atari 7800 `ProLineController` | `atari-7800-control-pad-europe`, `atari-7800-pro-line-cx24` | `atari-7800-control-pad-europe` |
+| Atari 7800 `LightGun` | `atari-xg-1-light-gun` | `atari-xg-1-light-gun` |
+| Atari Lynx `EnhancedController` | `atari-lynx`, `atari-lynx-ii` | `atari-lynx` |
+| Atari Jaguar et Jaguar CD `EnhancedController` | `atari-jaguar-controller`, `atari-jaguar-pro-controller` | `atari-jaguar-controller` |
+| Atari `None` | — | — |
+
+`mega-drive-3` reste enregistré dans le catalogue général pour un futur module Mega Drive, mais aucune DLL de console Mega Drive actuellement disponible ne peut encore le déclarer comme visuel de port.
+
+#### Profils dont l’image existe déjà dans l’application
+
+| VisualId | Modèle matériel | Image |
+| --- | --- | --- |
+| `quickshot` | QuickShot | `quickshot.png` |
+| `quickshot-deluxe` | QuickShot Deluxe | `quickshot-deluxe.png` |
+| `quickshot-ii-turbo` | QuickShot II Turbo | `quickshot-ii-turbo.png` |
+| `competition-pro-5000` | Competition Pro 5000 | `competition-pro-5000.png` |
+| `zipstik-super-pro` | Zipstik Super Pro | `zipstik-super-pro.png` |
+| `konix-speedking-left-hand` | Konix Speedking, modèle pour gaucher | `konix-speedking-left-hand.png` |
+| `konix-speedking-right-hand` | Konix Speedking, modèle pour droitier | `konix-speedking-right-hand.png` |
+| `konix-speedking-analog` | Konix Speedking analogique | `konix-speedking-analog.png` |
+| `suncom-tac-2` | Suncom TAC-2 | `suncom-tac-2.png` |
+| `powerplay-cruiser` | Powerplay Cruiser | `powerplay-cruiser.png` |
+| `suzo-the-arcade-turbo` | Suzo The Arcade Turbo | `suzo-the-arcade-turbo.png` |
+
+| `commodore-cd32` | Manette Commodore CD32 | `commodore-cd32.png` |
+| `competition-pro-cd32` | Competition Pro CD32 | `competition-pro-cd32.png` |
+| `atari-cx40` | Atari CX40 | `atari-cx40.png` |
+| `atari-5200-controller` | Contrôleur Atari 5200 | `atari-5200-controller.png` |
+| `atari-7800-pro-line-cx24` | Atari 7800 Pro-Line CX24 | `atari-7800-pro-line-cx24.png` |
+| `atari-7800-control-pad-europe` | Atari 7800 Control Pad européen | `atari-7800-control-pad-europe.png` |
+| `atari-jaguar-controller` | Manette Atari Jaguar | `atari-jaguar-controller.png` |
+| `atari-jaguar-pro-controller` | Manette Atari Jaguar Pro | `atari-jaguar-pro-controller.png` |
+
+
+Le fichier `advanced-gravis-gamepad.png` présent dans le dossier ne reproduit pas le modèle matériel exact : sa commande directionnelle n’a pas la croix violette de l’Advanced Gravis GamePad. Aucun profil ni aucune zone ne lui sont associés. Le VisualId peut rester déclaré par les DLL pour une utilisation future, mais l’application l’exclut du sélecteur tant qu’une image conforme et ses zones n’ont pas été validées.
+
+#### Correspondance des rôles visuels avec les commandes des DLL
+
+Les noms de la colonne **Rôle visuel** sont les valeurs typées communes utilisées par les profils d’image. La colonne **Identifiant de commande DLL** reprend exclusivement un identifiant présent dans les `InputBindingDefinition` de la ligne concernée. Une ligne absente signifie que la zone correspondante du profil reste inactive pour ce choix.
+
+| Module, machines et choix | Rôle visuel | Identifiant de commande DLL |
+| --- | --- | --- |
+| Amiga, tous les modèles, `Joystick` | `DirectionUp`, `DirectionDown`, `DirectionLeft`, `DirectionRight` | `Up`, `Down`, `Left`, `Right` |
+| Amiga, tous les modèles, `Joystick` | `PrimaryAction`, `SecondaryAction`, `Turbo` | `B`, `A`, `L2` |
+| Amiga, tous les modèles, `AnalogJoystick` | `DirectionUp`, `DirectionDown`, `DirectionLeft`, `DirectionRight` | `Up`, `Down`, `Left`, `Right` |
+| Amiga, tous les modèles, `AnalogJoystick` | `PrimaryAction`, `SecondaryAction`, `Turbo` | `B`, `A`, `L2` |
+| Amiga CD32, `Cd32Pad` | `DirectionUp`, `DirectionDown`, `DirectionLeft`, `DirectionRight` | `Up`, `Down`, `Left`, `Right` |
+| Amiga CD32, `Cd32Pad` | `PrimaryAction`, `SecondaryAction`, `TertiaryAction`, `QuaternaryAction` | `B`, `A`, `Y`, `X` |
+| Amiga CD32, `Cd32Pad` | `LeftShoulder`, `RightShoulder`, `Start`, `Turbo` | `L`, `R`, `Start`, `L2` |
+| Atari ST/STF/STFM/Mega ST/STE/Mega STE/TT/Falcon, `Joystick` | `DirectionUp`, `DirectionDown`, `DirectionLeft`, `DirectionRight` | `Up`, `Down`, `Left`, `Right` |
+| Atari ST/STF/STFM/Mega ST/STE/Mega STE/TT/Falcon, `Joystick` | `PrimaryAction`, `Turbo` | `Fire1`, `Turbo` |
+| Atari 400/800/800XL/130XE/XEGS/XL-XE/2600, `Joystick` | `DirectionUp`, `DirectionDown`, `DirectionLeft`, `DirectionRight`, `PrimaryAction` | `Up`, `Down`, `Left`, `Right`, `Fire1` |
+| Atari 5200, `AnalogJoystick` | `DirectionUp`, `DirectionDown`, `DirectionLeft`, `DirectionRight` | `Up`, `Down`, `Left`, `Right` |
+| Atari 5200, `AnalogJoystick` | `PrimaryAction`, `SecondaryAction`, `Start`, `Pause`, `Reset` | `Fire1`, `Fire2`, `Start`, `Pause`, `Reset` |
+| Atari 5200, `AnalogJoystick` | `Key0` à `Key9`, `KeyStar`, `KeyHash` | `Key0` à `Key9`, `Star`, `Hash` |
+| Atari 400/800/800XL/130XE/XEGS/XL-XE/2600, `Paddle` | `PrimaryAction` | `Fire1` |
+| Atari 2600, `DrivingController` | `PrimaryAction` | `Fire1` |
+| Atari 2600, `BoosterGrip` | `DirectionUp`, `DirectionDown`, `DirectionLeft`, `DirectionRight` | `Up`, `Down`, `Left`, `Right` |
+| Atari 2600, `BoosterGrip` | `PrimaryAction`, `SecondaryAction`, `Turbo` | `Fire1`, `Fire2`, `Turbo` |
+| Atari 2600, `GenesisController` | `DirectionUp`, `DirectionDown`, `DirectionLeft`, `DirectionRight`, `PrimaryAction` | `Up`, `Down`, `Left`, `Right`, `Fire1` |
+| Atari 2600, `Joy2BPlus` | `DirectionUp`, `DirectionDown`, `DirectionLeft`, `DirectionRight` | `Up`, `Down`, `Left`, `Right` |
+| Atari 2600, `Joy2BPlus` | `PrimaryAction`, `SecondaryAction` | `Fire1`, `Fire2` |
+| Atari 7800, `ProLineController` | `DirectionUp`, `DirectionDown`, `DirectionLeft`, `DirectionRight` | `Up`, `Down`, `Left`, `Right` |
+| Atari 7800, `ProLineController` | `PrimaryAction`, `SecondaryAction` | `Fire1`, `Fire2` |
+| Atari 7800, `LightGun` | `PrimaryAction` | `Fire1` |
+| Atari Lynx, `EnhancedController` | `DirectionUp`, `DirectionDown`, `DirectionLeft`, `DirectionRight` | `Up`, `Down`, `Left`, `Right` |
+| Atari Lynx, `EnhancedController` | `PrimaryAction`, `SecondaryAction`, `Option1`, `Option2`, `Pause` | `Fire1`, `Fire2`, `Option1`, `Option2`, `Pause` |
+| Atari Jaguar/Jaguar CD, `EnhancedController` | `DirectionUp`, `DirectionDown`, `DirectionLeft`, `DirectionRight` | `Up`, `Down`, `Left`, `Right` |
+| Atari Jaguar/Jaguar CD, `EnhancedController` | `PrimaryAction`, `SecondaryAction`, `TertiaryAction`, `Option`, `Pause` | `A`, `B`, `C`, `Option`, `Pause` |
+| Atari Jaguar/Jaguar CD, `EnhancedController` | `Key0` à `Key9`, `KeyStar`, `KeyHash` | `Key0` à `Key9`, `Star`, `Hash` |
+| Amiga ou Atari, `None` | — | — |
+
+
+#### Zones du profil `quickshot`
+
+Les coordonnées sont exprimées en pourcentage de l’image `quickshot.png`, mesurée sur 924 × 898 pixels. Les quatre zones directionnelles partagent l’emprise de la tête du joystick ; le rôle indique le secteur actif et permet au rendu commun de combiner les directions simultanées. La zone du bouton rouge est prioritaire au survol et au clic lorsqu’elle recouvre cette emprise.
+
+| Rôle visuel | Forme | X | Y | Largeur | Hauteur |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `DirectionUp` | `JoystickDirection` | 22,6 % | 0,0 % | 54,0 % | 52,6 % |
+| `DirectionDown` | `JoystickDirection` | 22,6 % | 0,0 % | 54,0 % | 52,6 % |
+| `DirectionLeft` | `JoystickDirection` | 22,6 % | 0,0 % | 54,0 % | 52,6 % |
+| `DirectionRight` | `JoystickDirection` | 22,6 % | 0,0 % | 54,0 % | 52,6 % |
+| `PrimaryAction` | `RoundedRectangle` | 43,8 % | 4,3 % | 13,4 % | 28,0 % |
+
+
+#### Zones du profil `quickshot-deluxe`
+
+Les coordonnées sont exprimées en pourcentage de l’image `quickshot-deluxe.png`, mesurée sur 820 × 832 pixels. Les quatre directions partagent l’emprise de la tête du joystick. Le bouton rouge central correspond à l’action principale ; les deux boutons bleus correspondent à l’action secondaire et au turbo.
+
+| Rôle visuel | Forme | X | Y | Largeur | Hauteur |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `DirectionUp` | `JoystickDirection` | 6,0 % | 0,0 % | 88,4 % | 49,2 % |
+| `DirectionDown` | `JoystickDirection` | 6,0 % | 0,0 % | 88,4 % | 49,2 % |
+| `DirectionLeft` | `JoystickDirection` | 6,0 % | 0,0 % | 88,4 % | 49,2 % |
+| `DirectionRight` | `JoystickDirection` | 6,0 % | 0,0 % | 88,4 % | 49,2 % |
+| `PrimaryAction` | `RoundedRectangle` | 37,4 % | 6,7 % | 24,4 % | 14,5 % |
+| `SecondaryAction` | `RoundedRectangle` | 15,6 % | 7,5 % | 14,4 % | 11,7 % |
+| `Turbo` | `RoundedRectangle` | 69,3 % | 7,6 % | 14,6 % | 11,5 % |
+
+
+#### Zones du profil `quickshot-ii-turbo`
+
+Les coordonnées sont exprimées en pourcentage de l’image `quickshot-ii-turbo.png`, mesurée sur 810 × 877 pixels. Le profil comporte la tête directionnelle centrale et son bouton rouge visible. Aucune zone `Turbo` séparée n’est ajoutée, car aucune commande de turbo distincte n’est visible sur cette image.
+
+| Rôle visuel | Forme | X | Y | Largeur | Hauteur |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `DirectionUp` | `JoystickDirection` | 33,3 % | 8,9 % | 33,4 % | 61,8 % |
+| `DirectionDown` | `JoystickDirection` | 33,3 % | 8,9 % | 33,4 % | 61,8 % |
+| `DirectionLeft` | `JoystickDirection` | 33,3 % | 8,9 % | 33,4 % | 61,8 % |
+| `DirectionRight` | `JoystickDirection` | 33,3 % | 8,9 % | 33,4 % | 61,8 % |
+| `PrimaryAction` | `RoundedRectangle` | 39,9 % | 15,6 % | 20,0 % | 41,4 % |
+
+
+#### Zones du profil `competition-pro-5000`
+
+Les coordonnées sont exprimées en pourcentage de l’image `competition-pro-5000.png`, mesurée sur 726 × 1045 pixels. La boule centrale porte les quatre directions. Le bouton rouge gauche correspond à l’action principale et le bouton rouge droit à l’action secondaire.
+
+| Rôle visuel | Forme | X | Y | Largeur | Hauteur |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `DirectionUp` | `JoystickDirection` | 22,5 % | 38,0 % | 54,7 % | 39,1 % |
+| `DirectionDown` | `JoystickDirection` | 22,5 % | 38,0 % | 54,7 % | 39,1 % |
+| `DirectionLeft` | `JoystickDirection` | 22,5 % | 38,0 % | 54,7 % | 39,1 % |
+| `DirectionRight` | `JoystickDirection` | 22,5 % | 38,0 % | 54,7 % | 39,1 % |
+| `PrimaryAction` | `Ellipse` | 5,8 % | 3,3 % | 30,9 % | 23,1 % |
+| `SecondaryAction` | `Ellipse` | 63,9 % | 3,3 % | 31,0 % | 23,3 % |
+
+
+#### Zones du profil `zipstik-super-pro`
+
+Les coordonnées sont exprimées en pourcentage de l’image `zipstik-super-pro.png`, mesurée sur 700 × 947 pixels. La commande centrale porte les quatre directions. Le bouton jaune gauche correspond à l’action principale et le bouton jaune droit à l’action secondaire.
+
+| Rôle visuel | Forme | X | Y | Largeur | Hauteur |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `DirectionUp` | `JoystickDirection` | 22,1 % | 39,7 % | 56,1 % | 41,9 % |
+| `DirectionDown` | `JoystickDirection` | 22,1 % | 39,7 % | 56,1 % | 41,9 % |
+| `DirectionLeft` | `JoystickDirection` | 22,1 % | 39,7 % | 56,1 % | 41,9 % |
+| `DirectionRight` | `JoystickDirection` | 22,1 % | 39,7 % | 56,1 % | 41,9 % |
+| `PrimaryAction` | `RoundedRectangle` | 7,4 % | 5,1 % | 21,9 % | 16,8 % |
+| `SecondaryAction` | `RoundedRectangle` | 71,0 % | 5,1 % | 21,7 % | 16,8 % |
+
+
+#### Zones du profil `konix-speedking-left-hand`
+
+Les coordonnées sont exprimées en pourcentage de l’image `konix-speedking-left-hand.png`, mesurée sur 554 × 1041 pixels. Seule la commande directionnelle visible du dessus possède des zones. Les gâchettes latérales non visibles ne reçoivent pas de fausse zone.
+
+| Rôle visuel | Forme | X | Y | Largeur | Hauteur |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `DirectionUp` | `JoystickDirection` | 30,7 % | 12,0 % | 41,0 % | 23,8 % |
+| `DirectionDown` | `JoystickDirection` | 30,7 % | 12,0 % | 41,0 % | 23,8 % |
+| `DirectionLeft` | `JoystickDirection` | 30,7 % | 12,0 % | 41,0 % | 23,8 % |
+| `DirectionRight` | `JoystickDirection` | 30,7 % | 12,0 % | 41,0 % | 23,8 % |
+
+#### Zones du profil `konix-speedking-right-hand`
+
+Les coordonnées sont exprimées en pourcentage de l’image `konix-speedking-right-hand.png`, mesurée sur 584 × 1041 pixels. Seule la commande directionnelle visible du dessus possède des zones. Les gâchettes latérales non visibles ne reçoivent pas de fausse zone.
+
+| Rôle visuel | Forme | X | Y | Largeur | Hauteur |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `DirectionUp` | `JoystickDirection` | 27,1 % | 12,0 % | 44,0 % | 23,8 % |
+| `DirectionDown` | `JoystickDirection` | 27,1 % | 12,0 % | 44,0 % | 23,8 % |
+| `DirectionLeft` | `JoystickDirection` | 27,1 % | 12,0 % | 44,0 % | 23,8 % |
+| `DirectionRight` | `JoystickDirection` | 27,1 % | 12,0 % | 44,0 % | 23,8 % |
+
+
+#### Zones du profil `konix-speedking-analog`
+
+Les coordonnées sont exprimées en pourcentage de l’image `konix-speedking-analog.png`, mesurée sur 1290 × 1219 pixels. La boule centrale porte les directions analogiques. Les boutons `A` et `B` correspondent aux actions principale et secondaire. Le réglage `ADJ CENTRE` et l’interrupteur `CENTRE RETURN` n’ont pas de zone, car ils ne correspondent à aucune `InputBindingDefinition` du choix.
+
+| Rôle visuel | Forme | X | Y | Largeur | Hauteur |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `DirectionUp` | `JoystickDirection` | 25,0 % | 17,1 % | 50,0 % | 53,4 % |
+| `DirectionDown` | `JoystickDirection` | 25,0 % | 17,1 % | 50,0 % | 53,4 % |
+| `DirectionLeft` | `JoystickDirection` | 25,0 % | 17,1 % | 50,0 % | 53,4 % |
+| `DirectionRight` | `JoystickDirection` | 25,0 % | 17,1 % | 50,0 % | 53,4 % |
+| `PrimaryAction` | `Ellipse` | 12,9 % | 74,0 % | 14,3 % | 15,0 % |
+| `SecondaryAction` | `Ellipse` | 73,4 % | 74,0 % | 14,0 % | 15,0 % |
+
+
+#### Zones du profil `suncom-tac-2`
+
+Les coordonnées sont exprimées en pourcentage de l’image `suncom-tac-2.png`, mesurée sur 1290 × 1219 pixels. La boule centrale porte les quatre directions. Le bouton rouge gauche correspond à l’action principale et le bouton rouge droit à l’action secondaire.
+
+| Rôle visuel | Forme | X | Y | Largeur | Hauteur |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `DirectionUp` | `JoystickDirection` | 37,2 % | 32,2 % | 25,0 % | 26,0 % |
+| `DirectionDown` | `JoystickDirection` | 37,2 % | 32,2 % | 25,0 % | 26,0 % |
+| `DirectionLeft` | `JoystickDirection` | 37,2 % | 32,2 % | 25,0 % | 26,0 % |
+| `DirectionRight` | `JoystickDirection` | 37,2 % | 32,2 % | 25,0 % | 26,0 % |
+| `PrimaryAction` | `Ellipse` | 13,6 % | 67,4 % | 16,4 % | 18,3 % |
+| `SecondaryAction` | `Ellipse` | 69,4 % | 67,4 % | 16,8 % | 18,3 % |
+
+
+#### Zones du profil `powerplay-cruiser`
+
+Les coordonnées sont exprimées en pourcentage de l’image `powerplay-cruiser.png`, mesurée sur 1199 × 1312 pixels. La commande centrale porte les quatre directions. Le bouton jaune gauche correspond à l’action principale et le bouton jaune droit à l’action secondaire.
+
+| Rôle visuel | Forme | X | Y | Largeur | Hauteur |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `DirectionUp` | `JoystickDirection` | 29,8 % | 10,6 % | 41,4 % | 39,3 % |
+| `DirectionDown` | `JoystickDirection` | 29,8 % | 10,6 % | 41,4 % | 39,3 % |
+| `DirectionLeft` | `JoystickDirection` | 29,8 % | 10,6 % | 41,4 % | 39,3 % |
+| `DirectionRight` | `JoystickDirection` | 29,8 % | 10,6 % | 41,4 % | 39,3 % |
+| `PrimaryAction` | `Ellipse` | 14,8 % | 64,9 % | 19,2 % | 17,8 % |
+| `SecondaryAction` | `Ellipse` | 67,8 % | 65,0 % | 18,9 % | 17,8 % |
+
+
+#### Zones du profil `suzo-the-arcade-turbo`
+
+Les coordonnées sont exprimées en pourcentage de l’image `suzo-the-arcade-turbo.png`, mesurée sur 1254 × 1254 pixels. La commande noire centrale porte les quatre directions, son bouton rouge correspond à l’action principale et la commande rouge séparée en bas correspond au turbo.
+
+| Rôle visuel | Forme | X | Y | Largeur | Hauteur |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `DirectionUp` | `JoystickDirection` | 34,4 % | 20,4 % | 30,8 % | 32,5 % |
+| `DirectionDown` | `JoystickDirection` | 34,4 % | 20,4 % | 30,8 % | 32,5 % |
+| `DirectionLeft` | `JoystickDirection` | 34,4 % | 20,4 % | 30,8 % | 32,5 % |
+| `DirectionRight` | `JoystickDirection` | 34,4 % | 20,4 % | 30,8 % | 32,5 % |
+| `PrimaryAction` | `Ellipse` | 43,1 % | 30,0 % | 13,2 % | 13,4 % |
+| `Turbo` | `RoundedRectangle` | 39,9 % | 81,2 % | 20,0 % | 9,3 % |
+
+
+#### Zones du profil `commodore-cd32`
+
+Les coordonnées sont exprimées en pourcentage de l’image `commodore-cd32.png`, mesurée sur 1534 × 603 pixels. Le disque gauche porte les quatre directions. Les actions principale à quaternaire suivent les boutons rouge, bleu, vert et jaune. Les commandes supérieures correspondent au rembobinage et à l’avance rapide ; le bouton noir central correspond à lecture-pause. Aucune zone `Turbo` distincte n’est ajoutée.
+
+| Rôle visuel | Forme | X | Y | Largeur | Hauteur |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `DirectionUp` | `DirectionalPad` | 5,9 % | 24,0 % | 13,7 % | 34,0 % |
+| `DirectionDown` | `DirectionalPad` | 5,9 % | 24,0 % | 13,7 % | 34,0 % |
+| `DirectionLeft` | `DirectionalPad` | 5,9 % | 24,0 % | 13,7 % | 34,0 % |
+| `DirectionRight` | `DirectionalPad` | 5,9 % | 24,0 % | 13,7 % | 34,0 % |
+| `PrimaryAction` | `Ellipse` | 80,2 % | 47,8 % | 6,6 % | 16,6 % |
+| `SecondaryAction` | `Ellipse` | 88,8 % | 44,6 % | 6,7 % | 16,7 % |
+| `TertiaryAction` | `Ellipse` | 78,7 % | 26,5 % | 6,5 % | 16,4 % |
+| `QuaternaryAction` | `Ellipse` | 87,2 % | 23,4 % | 6,6 % | 16,4 % |
+| `LeftShoulder` | `RoundedRectangle` | 10,9 % | 0,0 % | 13,0 % | 2,7 % |
+| `RightShoulder` | `RoundedRectangle` | 76,1 % | 0,0 % | 11,0 % | 2,7 % |
+| `Start` | `RoundedRectangle` | 59,0 % | 67,5 % | 9,8 % | 7,1 % |
+
+
+#### Zones du profil `competition-pro-cd32`
+
+Les coordonnées sont exprimées en pourcentage de l’image `competition-pro-cd32.png`, mesurée sur 1568 × 807 pixels. Le disque gauche porte les directions. Les quatre boutons gris portant les symboles rouge, bleu, vert et jaune correspondent aux actions principale à quaternaire. Les palettes supérieures correspondent aux épaules gauche et droite. Les deux boutons argentés de lecture-pause portent tous deux le rôle `Start`. Le sélecteur supérieur situé sous `OFF / TURBO / AUTO` porte le rôle `Turbo`. Les autres curseurs de réglage n’ont pas de zone.
+
+| Rôle visuel | Forme | X | Y | Largeur | Hauteur |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `DirectionUp` | `DirectionalPad` | 7,3 % | 25,8 % | 25,1 % | 52,4 % |
+| `DirectionDown` | `DirectionalPad` | 7,3 % | 25,8 % | 25,1 % | 52,4 % |
+| `DirectionLeft` | `DirectionalPad` | 7,3 % | 25,8 % | 25,1 % | 52,4 % |
+| `DirectionRight` | `DirectionalPad` | 7,3 % | 25,8 % | 25,1 % | 52,4 % |
+| `PrimaryAction` | `Ellipse` | 74,2 % | 63,4 % | 7,7 % | 15,0 % |
+| `SecondaryAction` | `Ellipse` | 84,5 % | 53,7 % | 7,7 % | 14,7 % |
+| `TertiaryAction` | `Ellipse` | 69,5 % | 43,0 % | 7,4 % | 15,2 % |
+| `QuaternaryAction` | `Ellipse` | 80,0 % | 33,6 % | 7,7 % | 14,5 % |
+| `LeftShoulder` | `RoundedRectangle` | 6,5 % | 4,5 % | 19,0 % | 22,5 % |
+| `RightShoulder` | `RoundedRectangle` | 74,5 % | 4,5 % | 19,0 % | 22,5 % |
+| `Start` | `RoundedRectangle` | 39,2 % | 63,1 % | 6,1 % | 8,1 % |
+| `Start` | `RoundedRectangle` | 48,5 % | 63,1 % | 6,1 % | 8,1 % |
+| `Turbo` | `RoundedRectangle` | 55,2 % | 23,0 % | 6,6 % | 5,3 % |
+
+
+#### Zones du profil `atari-cx40`
+
+Les coordonnées sont exprimées en pourcentage de l’image `atari-cx40.png`, mesurée sur 1254 × 1254 pixels. La commande centrale porte les quatre directions et l’unique bouton rouge correspond à l’action principale.
+
+| Rôle visuel | Forme | X | Y | Largeur | Hauteur |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `DirectionUp` | `JoystickDirection` | 26,6 % | 28,1 % | 46,3 % | 44,6 % |
+| `DirectionDown` | `JoystickDirection` | 26,6 % | 28,1 % | 46,3 % | 44,6 % |
+| `DirectionLeft` | `JoystickDirection` | 26,6 % | 28,1 % | 46,3 % | 44,6 % |
+| `DirectionRight` | `JoystickDirection` | 26,6 % | 28,1 % | 46,3 % | 44,6 % |
+| `PrimaryAction` | `Ellipse` | 15,8 % | 14,4 % | 14,5 % | 14,4 % |
+
+
+#### Zones du profil `atari-5200-controller`
+
+Les coordonnées sont exprimées en pourcentage de l’image `atari-5200-controller.png`, mesurée sur 858 × 1832 pixels. Le joystick central porte les directions analogiques. Les boutons latéraux supérieurs gauche et droit portent tous deux l’action principale ; les boutons latéraux inférieurs portent tous deux l’action secondaire. Les trois boutons système et les douze touches du clavier reprennent exactement les rôles déclarés pour le 5200.
+
+| Rôle visuel | Forme | X | Y | Largeur | Hauteur |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `DirectionUp` | `JoystickDirection` | 23,9 % | 17,1 % | 51,9 % | 24,0 % |
+| `DirectionDown` | `JoystickDirection` | 23,9 % | 17,1 % | 51,9 % | 24,0 % |
+| `DirectionLeft` | `JoystickDirection` | 23,9 % | 17,1 % | 51,9 % | 24,0 % |
+| `DirectionRight` | `JoystickDirection` | 23,9 % | 17,1 % | 51,9 % | 24,0 % |
+| `PrimaryAction` | `RoundedRectangle` | 13,4 % | 10,6 % | 3,6 % | 7,9 % |
+| `PrimaryAction` | `RoundedRectangle` | 82,3 % | 10,6 % | 3,3 % | 7,9 % |
+| `SecondaryAction` | `RoundedRectangle` | 13,4 % | 19,2 % | 3,6 % | 7,5 % |
+| `SecondaryAction` | `RoundedRectangle` | 82,3 % | 19,2 % | 3,3 % | 7,5 % |
+| `Start` | `RoundedRectangle` | 25,1 % | 8,4 % | 13,5 % | 4,6 % |
+| `Pause` | `RoundedRectangle` | 43,5 % | 8,4 % | 13,6 % | 4,6 % |
+| `Reset` | `RoundedRectangle` | 61,5 % | 8,4 % | 13,6 % | 4,6 % |
+| `Key1` | `RoundedRectangle` | 27,9 % | 57,3 % | 13,0 % | 5,4 % |
+| `Key2` | `RoundedRectangle` | 43,0 % | 57,3 % | 13,2 % | 5,4 % |
+| `Key3` | `RoundedRectangle` | 60,6 % | 57,3 % | 13,2 % | 5,4 % |
+| `Key4` | `RoundedRectangle` | 27,9 % | 63,3 % | 13,0 % | 5,4 % |
+| `Key5` | `RoundedRectangle` | 43,0 % | 63,3 % | 13,2 % | 5,4 % |
+| `Key6` | `RoundedRectangle` | 60,6 % | 63,3 % | 13,2 % | 5,4 % |
+| `Key7` | `RoundedRectangle` | 27,9 % | 70,8 % | 13,0 % | 5,4 % |
+| `Key8` | `RoundedRectangle` | 43,0 % | 70,8 % | 13,2 % | 5,4 % |
+| `Key9` | `RoundedRectangle` | 60,6 % | 70,8 % | 13,2 % | 5,4 % |
+| `KeyStar` | `RoundedRectangle` | 27,9 % | 78,3 % | 13,0 % | 5,4 % |
+| `Key0` | `RoundedRectangle` | 43,0 % | 78,3 % | 13,2 % | 5,4 % |
+| `KeyHash` | `RoundedRectangle` | 60,6 % | 78,3 % | 13,2 % | 5,4 % |
+
+
+#### Zones du profil `atari-7800-pro-line-cx24`
+
+Les coordonnées sont exprimées en pourcentage de l’image `atari-7800-pro-line-cx24.png`, mesurée sur 1023 × 1537 pixels. La commande centrale porte les quatre directions. Le bouton latéral rouge gauche correspond à l’action principale et le bouton latéral rouge droit à l’action secondaire.
+
+| Rôle visuel | Forme | X | Y | Largeur | Hauteur |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `DirectionUp` | `JoystickDirection` | 36,8 % | 27,4 % | 25,7 % | 18,4 % |
+| `DirectionDown` | `JoystickDirection` | 36,8 % | 27,4 % | 25,7 % | 18,4 % |
+| `DirectionLeft` | `JoystickDirection` | 36,8 % | 27,4 % | 25,7 % | 18,4 % |
+| `DirectionRight` | `JoystickDirection` | 36,8 % | 27,4 % | 25,7 % | 18,4 % |
+| `PrimaryAction` | `RoundedRectangle` | 26,2 % | 11,9 % | 6,8 % | 16,9 % |
+| `SecondaryAction` | `RoundedRectangle` | 66,2 % | 11,7 % | 6,5 % | 17,0 % |
+
+
+#### Zones du profil `atari-7800-control-pad-europe`
+
+Les coordonnées sont exprimées en pourcentage de l’image `atari-7800-control-pad-europe.png`, mesurée sur 1518 × 1036 pixels. La croix gauche porte les quatre directions. Le bouton rouge `1` correspond à l’action principale et le bouton rouge `2` à l’action secondaire.
+
+| Rôle visuel | Forme | X | Y | Largeur | Hauteur |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `DirectionUp` | `DirectionalPad` | 14,8 % | 17,0 % | 19,4 % | 29,9 % |
+| `DirectionDown` | `DirectionalPad` | 14,8 % | 17,0 % | 19,4 % | 29,9 % |
+| `DirectionLeft` | `DirectionalPad` | 14,8 % | 17,0 % | 19,4 % | 29,9 % |
+| `DirectionRight` | `DirectionalPad` | 14,8 % | 17,0 % | 19,4 % | 29,9 % |
+| `PrimaryAction` | `Ellipse` | 46,4 % | 51,4 % | 10,3 % | 16,0 % |
+| `SecondaryAction` | `Ellipse` | 64,8 % | 51,4 % | 10,3 % | 16,0 % |
+
+
+#### Zones du profil `atari-jaguar-controller`
+
+Les coordonnées sont exprimées en pourcentage de l’image `atari-jaguar-controller.png`, mesurée sur 1402 × 1122 pixels. La croix gauche porte les directions. Les boutons `A`, `B`, `C`, `Pause`, `Option` et les douze touches du clavier correspondent directement aux rôles déclarés pour la Jaguar.
+
+| Rôle visuel | Forme | X | Y | Largeur | Hauteur |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `DirectionUp` | `DirectionalPad` | 17,5 % | 16,9 % | 19,3 % | 23,4 % |
+| `DirectionDown` | `DirectionalPad` | 17,5 % | 16,9 % | 19,3 % | 23,4 % |
+| `DirectionLeft` | `DirectionalPad` | 17,5 % | 16,9 % | 19,3 % | 23,4 % |
+| `DirectionRight` | `DirectionalPad` | 17,5 % | 16,9 % | 19,3 % | 23,4 % |
+| `PrimaryAction` | `RoundedRectangle` | 71,8 % | 14,6 % | 10,7 % | 10,9 % |
+| `SecondaryAction` | `RoundedRectangle` | 65,6 % | 23,5 % | 10,5 % | 10,6 % |
+| `TertiaryAction` | `RoundedRectangle` | 59,2 % | 32,7 % | 11,1 % | 10,4 % |
+| `Pause` | `RoundedRectangle` | 42,4 % | 32,6 % | 5,1 % | 7,4 % |
+| `Option` | `RoundedRectangle` | 49,0 % | 32,6 % | 4,8 % | 7,4 % |
+| `Key1` | `RoundedRectangle` | 35,3 % | 55,1 % | 7,8 % | 4,0 % |
+| `Key2` | `RoundedRectangle` | 46,2 % | 55,1 % | 7,6 % | 4,0 % |
+| `Key3` | `RoundedRectangle` | 56,8 % | 55,1 % | 7,7 % | 4,0 % |
+| `Key4` | `RoundedRectangle` | 35,3 % | 63,6 % | 7,8 % | 4,0 % |
+| `Key5` | `RoundedRectangle` | 46,2 % | 63,6 % | 7,6 % | 4,0 % |
+| `Key6` | `RoundedRectangle` | 56,8 % | 63,6 % | 7,7 % | 4,0 % |
+| `Key7` | `RoundedRectangle` | 35,3 % | 72,3 % | 7,8 % | 4,0 % |
+| `Key8` | `RoundedRectangle` | 46,2 % | 72,3 % | 7,6 % | 4,0 % |
+| `Key9` | `RoundedRectangle` | 56,8 % | 72,3 % | 7,7 % | 4,0 % |
+| `KeyStar` | `RoundedRectangle` | 35,3 % | 80,7 % | 7,8 % | 4,1 % |
+| `Key0` | `RoundedRectangle` | 46,2 % | 80,7 % | 7,6 % | 4,1 % |
+| `KeyHash` | `RoundedRectangle` | 56,8 % | 80,7 % | 7,7 % | 4,1 % |
+
+
+#### Zones du profil `atari-jaguar-pro-controller`
+
+Les coordonnées sont exprimées en pourcentage de l’image `atari-jaguar-pro-controller.png`, mesurée sur 1337 × 1176 pixels. Seules les commandes produites par la DLL Jaguar actuelle possèdent une zone : directions, `A`, `B`, `C`, `Pause`, `Option` et clavier. Les commandes `X`, `Y`, `Z`, `L` et `R` visibles sur ce modèle Pro restent sans zone.
+
+| Rôle visuel | Forme | X | Y | Largeur | Hauteur |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `DirectionUp` | `DirectionalPad` | 22,0 % | 25,4 % | 14,8 % | 17,3 % |
+| `DirectionDown` | `DirectionalPad` | 22,0 % | 25,4 % | 14,8 % | 17,3 % |
+| `DirectionLeft` | `DirectionalPad` | 22,0 % | 25,4 % | 14,8 % | 17,3 % |
+| `DirectionRight` | `DirectionalPad` | 22,0 % | 25,4 % | 14,8 % | 17,3 % |
+| `PrimaryAction` | `Ellipse` | 73,2 % | 26,0 % | 6,7 % | 7,7 % |
+| `SecondaryAction` | `Ellipse` | 66,7 % | 31,7 % | 6,4 % | 7,1 % |
+| `TertiaryAction` | `Ellipse` | 61,3 % | 38,2 % | 6,2 % | 7,1 % |
+| `Pause` | `RoundedRectangle` | 42,7 % | 36,2 % | 4,3 % | 4,9 % |
+| `Option` | `RoundedRectangle` | 48,2 % | 36,2 % | 4,5 % | 4,9 % |
+| `Key1` | `RoundedRectangle` | 36,6 % | 53,7 % | 5,8 % | 2,5 % |
+| `Key2` | `RoundedRectangle` | 46,5 % | 53,7 % | 5,6 % | 2,5 % |
+| `Key3` | `RoundedRectangle` | 56,1 % | 53,7 % | 5,8 % | 2,5 % |
+| `Key4` | `RoundedRectangle` | 36,6 % | 60,5 % | 5,8 % | 2,5 % |
+| `Key5` | `RoundedRectangle` | 46,5 % | 60,5 % | 5,6 % | 2,5 % |
+| `Key6` | `RoundedRectangle` | 56,1 % | 60,5 % | 5,8 % | 2,5 % |
+| `Key7` | `RoundedRectangle` | 36,6 % | 67,4 % | 5,8 % | 2,6 % |
+| `Key8` | `RoundedRectangle` | 46,5 % | 67,4 % | 5,6 % | 2,6 % |
+| `Key9` | `RoundedRectangle` | 56,1 % | 67,4 % | 5,8 % | 2,6 % |
+| `KeyStar` | `RoundedRectangle` | 36,6 % | 74,4 % | 5,8 % | 2,5 % |
+| `Key0` | `RoundedRectangle` | 46,5 % | 74,4 % | 5,6 % | 2,5 % |
+| `KeyHash` | `RoundedRectangle` | 56,1 % | 74,4 % | 5,8 % | 2,5 % |
 
 Chaque représentation doit être :
 
 - réaliste ;
-- vue de face ;
+- vue du dessus dans son sens normal d’utilisation ;
 - correctement réalisée, et non remplacée par un dessin générique de mauvaise qualité ;
 - fournie avec un fond transparent ;
 - accompagnée de zones de surimpression correctement placées sur ses directions, boutons et autres commandes ;
@@ -453,6 +875,10 @@ Chaque représentation doit être :
 Le système de représentation déjà utilisé dans l’onglet général **Manettes** doit être repris et adapté. Il ne faut pas en créer une copie indépendante pour les périphériques émulés.
 
 Chaque image possède sa propre définition des positions, dimensions et formes de ses zones, puisque les commandes ne se trouvent pas au même endroit d’un périphérique à l’autre. Ces coordonnées propres à l’image sont exprimées en pourcentage par rapport à celle-ci afin de rester correctement alignées lorsque l’image est redimensionnée dans son bloc.
+
+Pour un port donné, seules les zones correspondant aux `InputBindingDefinition` produites par la DLL pour le type de périphérique émulé sont actives, survolables et cliquables. Les commandes supplémentaires éventuellement visibles sur l’image ne créent aucune commande que l’émulateur ne gère pas.
+
+Un profil d’image ne contient pas directement les identifiants de commandes propres à Amiga, Atari ou à un autre module. Il décrit ses zones avec des rôles visuels neutres et typés. Chaque DLL associe elle-même ces rôles aux identifiants exacts de ses `InputBindingDefinition` pour chaque `EmulationControllerChoice`. L’application active une zone uniquement lorsque cette association existe et que l’identifiant associé fait partie des définitions du choix courant. Ainsi, un même profil QuickShot reste unique tout en utilisant `B` sur Amiga et `Fire1` sur Atari pour son bouton principal, sans chaîne de commande propre à un module dans le catalogue de l’application.
 
 Les différences portent principalement sur les images utilisées, les commandes représentées et la taille disponible.
 
@@ -1116,33 +1542,77 @@ Cette checklist adapte le ControllerVisualizer déjà utilisé dans l’onglet g
 
 - [x] Inscrire les décisions et l’inventaire nécessaires avant de créer des images ou des zones
   - [x] Modifier docs/tasks/interface/emulation-improvements.md, dans la section 6, pour ajouter un tableau de toutes les valeurs EmulationControllerChoice réellement produites par src/GWGUI.Emulation.Amiga/Functions/AmigaInputSettingsFunctions.cs et src/GWGUI.Emulation.Atari/Functions/AtariInputSettingsFunctions.cs, avec les machines concernées et leurs InputBindingDefinition.
-  - [ ] Modifier le tableau de la section 6 dans docs/tasks/interface/emulation-improvements.md après validation pour identifier les périphériques basiques à réaliser maintenant et laisser les autres comme ajouts ultérieurs, sans inventer de périphérique absent des deux listes.
-  - [ ] Modifier ce tableau pour inscrire, pour chaque périphérique basique validé, le nom exact de l’image à placer dans src/GWGUI.App/Assets/Controllers, sa source ou son mode de création, son droit de redistribution et les zones associées aux identifiants de commandes existants.
-  - [ ] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire le seuil analogique par défaut validé pour le visualiseur général et décider explicitement si le visualiseur d’un port réutilise DeadZonePercent de ce port.
-  - [ ] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire les dimensions minimale et maximale validées du bloc visuel à droite du tableau.
+  - [x] Modifier le tableau de la section 6 dans docs/tasks/interface/emulation-improvements.md après validation pour identifier les périphériques basiques à réaliser maintenant et laisser les autres comme ajouts ultérieurs, sans inventer de périphérique absent des deux listes.
+  - [x] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire, pour chaque périphérique réellement produit par une DLL, les VisualId compatibles, le VisualId par défaut et, lorsqu’il existe déjà, le nom exact de l’image présente dans src/GWGUI.App/Assets/Controllers avec son modèle matériel.
+  - [x] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour préciser que les profils portent des rôles visuels neutres et typés, puis que chaque DLL associe ces rôles uniquement aux identifiants de commandes de ses propres InputBindingDefinition.
+  - [x] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire séparément, pour chaque EmulationControllerChoice réellement produit, la correspondance entre ses rôles visuels et les identifiants exacts de commandes produits par sa DLL.
+  - [x] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire séparément les zones du profil `quickshot` en pourcentage et avec leur rôle visuel typé.
+  - [x] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire séparément les zones du profil `quickshot-deluxe` en pourcentage et avec leur rôle visuel typé.
+  - [x] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire séparément les zones du profil `quickshot-ii-turbo` en pourcentage et avec leur rôle visuel typé.
+  - [x] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire séparément les zones du profil `competition-pro-5000` en pourcentage et avec leur rôle visuel typé.
+  - [x] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire séparément les zones du profil `zipstik-super-pro` en pourcentage et avec leur rôle visuel typé.
+  - [x] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire séparément les zones des profils `konix-speedking-left-hand` et `konix-speedking-right-hand` en pourcentage et avec leur rôle visuel typé.
+  - [x] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire séparément les zones du profil `konix-speedking-analog` en pourcentage et avec leur rôle visuel typé.
+  - [x] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire séparément les zones du profil `suncom-tac-2` en pourcentage et avec leur rôle visuel typé.
+  - [x] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire séparément les zones du profil `powerplay-cruiser` en pourcentage et avec leur rôle visuel typé.
+  - [x] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire séparément les zones du profil `suzo-the-arcade-turbo` en pourcentage et avec leur rôle visuel typé.
+  - [x] Inspecter src/GWGUI.App/Assets/Controllers/advanced-gravis-gamepad.png, inscrire dans la section 6 son exclusion des profils disponibles tant que le modèle exact n’est pas remplacé et validé, et ne créer aucune zone pour l’image non conforme.
+  - [x] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire séparément les zones du profil `commodore-cd32` en pourcentage et avec leur rôle visuel typé.
+  - [x] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire séparément les zones du profil `competition-pro-cd32` en pourcentage et avec leur rôle visuel typé.
+  - [x] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire séparément les zones du profil `atari-cx40` en pourcentage et avec leur rôle visuel typé.
+  - [x] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire séparément les zones du profil `atari-5200-controller` en pourcentage et avec leur rôle visuel typé.
+  - [x] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire séparément les zones du profil `atari-7800-pro-line-cx24` en pourcentage et avec leur rôle visuel typé.
+  - [x] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire séparément les zones du profil `atari-7800-control-pad-europe` en pourcentage et avec leur rôle visuel typé.
+  - [x] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire séparément les zones du profil `atari-jaguar-controller` en pourcentage et avec leur rôle visuel typé.
+  - [x] Modifier la section 6 dans docs/tasks/interface/emulation-improvements.md pour inscrire séparément les zones du profil `atari-jaguar-pro-controller` en pourcentage et avec leur rôle visuel typé.
 
-- [ ] Séparer l’état visuel des données GameInput sans changer le visualiseur général
-  - [ ] Créer le fichier vide src/GWGUI.App/Contracts/Input/ControllerVisualState.cs.
-  - [ ] Modifier src/GWGUI.App/Contracts/Input/ControllerVisualState.cs pour transporter simultanément les valeurs numériques et les états actifs nécessaires aux zones, sans contenir de contrôle WPF.
-  - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualInput.cs pour convertir GameInputLiveState vers ControllerVisualState et lire ensuite uniquement cet état commun.
-  - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualizer.cs pour conserver les propriétés publiques Model et State de l’onglet général, convertir State par ControllerVisualInput et permettre à l’éditeur d’émulation de fournir directement un ControllerVisualState.
-  - [ ] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par la séparation de l’état visuel.
-  - [ ] Exécuter GW GUI avec dotnet run --project src/GWGUI.App/GWGUI.App.csproj --no-build et vérifier que l’onglet général Manettes conserve ses modèles et ses appuis.
-  - [ ] Fermer l’instance de GW GUI utilisée pour cette vérification.
+- [x] Séparer l’état visuel des données GameInput sans changer le visualiseur général
+  - [x] Créer le fichier vide src/GWGUI.App/Enums/Input/ControllerVisualControl.cs.
+  - [x] Modifier src/GWGUI.App/Enums/Input/ControllerVisualControl.cs pour déclarer uniquement les contrôles généraux effectivement consommés par le ControllerVisualizer existant, sans nom écrit en chaîne brute.
+  - [x] Créer le fichier vide src/GWGUI.App/Contracts/Input/ControllerVisualState.cs.
+  - [x] Modifier src/GWGUI.App/Contracts/Input/ControllerVisualState.cs pour transporter par des propriétés typées les valeurs numériques et les états actifs du visualiseur général, ainsi que les valeurs des commandes émulées indexées uniquement par les identifiants fournis par les profils et les InputBindingDefinition, sans contrôle WPF ni nom d’axe écrit en chaîne brute.
+  - [x] Modifier src/GWGUI.App/Contracts/Input/ControllerVisualState.cs pour distinguer les états standard des états résolus par libellé, mémoriser la présence des états Gamepad, volant, vol et arcade, et transporter la première direction de commutateur afin de préserver les priorités et replis actuels.
+  - [x] Compléter src/GWGUI.App/Enums/Input/ControllerVisualControl.cs et src/GWGUI.App/Contracts/Input/ControllerVisualState.cs avec les commandes C/Z et un ensemble de directions du premier commutateur afin de conserver les diagonales sans dépendre des enums GameInput.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualInput.cs pour convertir GameInputLiveState vers ControllerVisualState, préserver exactement les priorités et replis actuels entre états standard et contrôles bruts, puis lire uniquement les propriétés typées de cet état commun.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualizer.cs pour conserver sans changement les propriétés Model et State de l’onglet général, convertir State par ControllerVisualInput et permettre à l’éditeur d’émulation de fournir directement un ControllerVisualState sans remplacer le chemin existant.
+  - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par la séparation de l’état visuel.
+- [x] Décrire les images et zones en pourcentage dans le visualiseur existant
+  - [x] Créer le fichier vide src/GWGUI.Emulation/Enums/EmulationControllerVisualControl.cs.
+  - [x] Modifier src/GWGUI.Emulation/Enums/EmulationControllerVisualControl.cs pour déclarer uniquement les rôles visuels neutres utilisés par les profils validés, sans identifiant de module ni texte affiché.
+  - [x] Créer le fichier vide src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs.
+  - [x] Modifier src/GWGUI.Emulation/Constants/EmulationControllerVisualIds.cs pour centraliser les VisualId neutres des modèles matériels, y compris ceux préparés pour de futurs modules, sans nom de module ni texte affiché.
+  - [x] Modifier src/GWGUI.Emulation/Contracts/EmulationControllerChoice.cs pour transporter la liste des VisualId compatibles déclarée par la DLL, son VisualId par défaut et la correspondance typée entre rôles visuels et identifiants de ses InputBindingDefinition, sans dépendre de WPF ni de l’existence d’une image dans l’application.
+  - [x] Créer le fichier vide src/GWGUI.Emulation/Constants/EmulationControllerCommandIds.cs.
+  - [x] Modifier src/GWGUI.Emulation/Constants/EmulationControllerCommandIds.cs pour centraliser uniquement les identifiants de commandes communs réellement utilisés par les profils, sans texte visible ni identifiant de module.
+  - [x] Modifier src/GWGUI.Emulation.Amiga/Constants/AmigaInputSettingsFunctionsConstants.cs, src/GWGUI.Emulation.Atari/Constants/AtariInputSettingsFunctionsConstants.cs et src/GWGUI.Emulation.Atari/Constants/AtariControllerConstants.cs pour réutiliser les constantes communes correspondant exactement à leurs valeurs actuelles, sans modifier les InputBindingDefinition produites.
+  - [x] Modifier src/GWGUI.Emulation.Amiga/Functions/AmigaInputSettingsFunctions.cs et src/GWGUI.Emulation.Atari/Functions/AtariInputSettingsFunctions.cs pour déclarer les VisualId compatibles et la correspondance entre rôles visuels et commandes de chaque EmulationControllerChoice réellement produit, utiliser QuickShot par défaut pour leurs types Joystick et ne pas déclarer un visuel propre à une console absente.
+  - [x] Créer le fichier vide src/GWGUI.App/Enums/Input/ControllerVisualZoneShape.cs.
+  - [x] Modifier src/GWGUI.App/Enums/Input/ControllerVisualZoneShape.cs pour déclarer uniquement les formes effectivement validées dans le tableau de la section 6.
+  - [x] Créer le fichier vide src/GWGUI.App/Contracts/Input/ControllerVisualZone.cs.
+  - [x] Modifier src/GWGUI.App/Contracts/Input/ControllerVisualZone.cs pour porter un EmulationControllerVisualControl neutre, la forme et les coordonnées en pourcentage propres à l’image, sans identifiant de commande propre à un module.
+  - [x] Créer le fichier vide src/GWGUI.App/Contracts/Input/ControllerArtworkProfile.cs.
+  - [x] Modifier src/GWGUI.App/Contracts/Input/ControllerArtworkProfile.cs pour porter l’image et la liste de ControllerVisualZone sans dupliquer le rendu.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs pour conserver le catalogue des ControllerVisualModel actuels, exposer les profils réellement disponibles par VisualId et retourner uniquement l’intersection entre ce catalogue et les VisualId compatibles déclarés par la DLL.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualizer.cs pour afficher un ControllerArtworkProfile avec le même calcul de redimensionnement que les images existantes et exposer le survol et le clic de ses zones.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualizer.Artwork.cs pour dessiner les halos des profils avec les fonctions communes déjà utilisées par les modèles généraux et aligner les zones depuis leurs pourcentages.
+  - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par les profils et zones.
 
-- [ ] Décrire les images et zones en pourcentage dans le visualiseur existant
-  - [ ] Créer le fichier vide src/GWGUI.App/Enums/Input/ControllerVisualZoneShape.cs.
-  - [ ] Modifier src/GWGUI.App/Enums/Input/ControllerVisualZoneShape.cs pour déclarer uniquement les formes effectivement validées dans le tableau de la section 6.
-  - [ ] Créer le fichier vide src/GWGUI.App/Contracts/Input/ControllerVisualZone.cs.
-  - [ ] Modifier src/GWGUI.App/Contracts/Input/ControllerVisualZone.cs pour porter l’identifiant de commande, la forme et les coordonnées en pourcentage propres à l’image.
-  - [ ] Créer le fichier vide src/GWGUI.App/Contracts/Input/ControllerArtworkProfile.cs.
-  - [ ] Modifier src/GWGUI.App/Contracts/Input/ControllerArtworkProfile.cs pour porter l’image et la liste de ControllerVisualZone sans dupliquer le rendu.
-  - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs pour résoudre un profil de périphérique émulé depuis l’identifiant du module, de la machine et du EmulationControllerChoice, tout en conservant le catalogue des ControllerVisualModel actuels.
-  - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualizer.cs pour afficher un ControllerArtworkProfile avec le même calcul de redimensionnement que les images existantes et exposer le survol et le clic de ses zones.
-  - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualizer.Artwork.cs pour dessiner les halos des profils avec les fonctions communes déjà utilisées par les modèles généraux et aligner les zones depuis leurs pourcentages.
-  - [ ] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par les profils et zones.
+- [x] Enregistrer le choix du visuel de chaque port sans modifier le périphérique émulé
+  - [x] Modifier src/GWGUI.Emulation/Contracts/EmulationControllerPort.cs pour transporter un VisualId facultatif après les données existantes, sans modifier leur ordre ni leur valeur.
+  - [x] Modifier src/GWGUI.Emulation.Amiga/Contracts/AmigaControllerBinding.cs et src/GWGUI.Emulation.Atari/Contracts/AtariControllerBinding.cs pour enregistrer un VisualId facultatif à la fin de chaque contrat afin que les anciennes configurations restent lisibles.
+  - [x] Modifier src/GWGUI.Emulation.Amiga/Functions/AmigaInputSettingsFunctions.cs et src/GWGUI.Emulation.Atari/Functions/AtariInputSettingsFunctions.cs pour transporter VisualId entre la configuration du module et EmulationControllerPort sans modifier le type, DeviceId, les associations ni DeadZonePercent.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/EmulationControllerPortEditor.cs pour créer le sélecteur de visuel du port et conserver séparément le type émulé, le VisualId sélectionné et les associations.
+  - [x] Modifier src/GWGUI.App/Contracts/Emulation/Controllers/EmulationControllerPortSettings.cs pour transporter le sélecteur de visuel avec les contrôles du port.
+  - [x] Modifier src/GWGUI.App/Controllers/Emulation/Input/EmulationInputSettingsController.cs pour remplir le sélecteur avec l’intersection des VisualId compatibles déclarés par la DLL et des profils présents dans ControllerArtworkCatalog, restaurer le VisualId enregistré ou le défaut déclaré par la DLL, conserver le choix dans l’état d’édition courant et le transmettre à Apply sans modifier les associations.
+  - [x] Modifier src/GWGUI.App/Resources/00-Base/Emulation.resx pour ajouter les noms invariants des modèles matériels disponibles, sans les ajouter aux fichiers de langues.
+  - [x] Modifier src/GWGUI.App/Resources/00-Base/Emulation.resx et tous les fichiers src/GWGUI.App/Resources/*/Emulation.resx pris en charge pour ajouter uniquement le libellé traduisible du sélecteur de visuel.
+  - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par le transport et l’enregistrement du VisualId.
 
-- [ ] Ajouter une image réaliste validée pour chaque périphérique basique
+### Backlog non bloquant — visuels matériels supplémentaires
+
+Les tâches d’images ci-dessous sont conservées pour la reprise ultérieure de la bibliothèque de périphériques. Elles ne font pas partie de l’ordre d’exécution actuel du point 6, qui utilise uniquement les images déjà présentes et validées.
+
+- [ ] Ajouter une image réaliste validée pour chaque périphérique supplémentaire
   - [x] Ajouter dans cette checklist, avant toute création, une sous-tâche Créer distincte donnant le chemin exact de chaque image validée dans le tableau de la section 6.
   - [ ] Réaliser ensuite chaque sous-tâche ajoutée dans l’ordre pour créer uniquement l’image correspondante à partir d’une vraie photographie du modèle exact, vue du dessus dans son sens normal d’utilisation et avec fond transparent ; conserver exactement la forme, les proportions, les couleurs, les boutons, la marque, le logo et les inscriptions visibles du modèle, sans rendre le câble nécessaire, puis vérifier sa correspondance avec le périphérique avant de cocher sa création.
   - [x] Créer une prévisualisation de src/GWGUI.App/Assets/Controllers/competition-pro-5000.png à partir d’une vraie photographie du Competition Pro 5000 noir et rouge, sans l’ajouter au catalogue avant sa validation.
@@ -1309,44 +1779,55 @@ Cette checklist adapte le ControllerVisualizer déjà utilisé dans l’onglet g
   - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerArtworkCatalog.cs après la création de chaque image pour ajouter uniquement son profil validé et ses zones, puis vérifier l’alignement de chaque zone à plusieurs tailles.
   - [ ] Vérifier que src/GWGUI.App/GWGUI.App.csproj continue d’embarquer toutes les images ajoutées par son motif Assets\Controllers\*.png sans ajouter une seconde règle de ressources.
 
-- [ ] Retirer le choix global du périphérique physique sans perdre les configurations existantes
-  - [ ] Modifier src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs pour exposer la valeur d’une source de manette identifiée et faire conserver à IsControllerSourcePressed ses résultats actuels en utilisant cette valeur.
-  - [ ] Modifier src/GWGUI.Emulation.Atari/Functions/AtariInputSnapshotFunctions.cs pour résoudre, pour chaque association, l’identifiant de périphérique inclus dans sa source et conserver DeviceId enregistré comme repli pour les anciennes associations.
-  - [ ] Modifier src/GWGUI.Emulation.Atari/Functions/AtariInputSnapshotFunctions.cs pour accepter les sources clavier et souris déjà représentées dans EmulationInputSnapshot, comme le chemin Amiga, sans modifier les commandes cibles.
-  - [ ] Modifier src/GWGUI.Emulation.Amiga/Functions/AmigaInputSnapshotFunctions.cs uniquement pour faire passer ses sources de manette par la valeur commune ajoutée, en conservant la résolution par association, les sources clavier et souris et le repli DeviceId existants.
-  - [ ] Modifier src/GWGUI.Emulation.Amiga/Functions/AmigaInputSettingsFunctions.cs pour autoriser la souris parmi les sources capturables des ports Amiga, sans modifier les types de périphériques émulés.
-  - [ ] Modifier src/GWGUI.Emulation.Atari/Functions/AtariInputSettingsFunctions.cs pour autoriser la souris parmi les sources capturables des ports Atari, sans modifier les types de périphériques émulés.
-  - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/EmulationControllerPortEditor.cs pour supprimer le ComboBox Device et son choix automatique après capture, tout en conservant la valeur PhysicalDeviceId déjà enregistrée comme donnée de compatibilité non modifiable.
-  - [ ] Modifier src/GWGUI.App/Contracts/Emulation/Controllers/EmulationControllerPortSettings.cs pour retirer le contrôle Device et conserver uniquement les éléments encore affichés.
-  - [ ] Modifier src/GWGUI.App/Controllers/Emulation/Input/EmulationInputSettingsController.cs pour ne plus remplir ni enregistrer un sélecteur physique, préserver PhysicalDeviceId d’une configuration existante et laisser chaque nouvelle association conserver sa propre source.
-  - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationControllerSettingsSection.cs pour supprimer la détection et la sélection globales devenues inutilisées.
-  - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationControllerSettingsLayout.cs pour retirer le champ Périphérique du port et conserver le choix du type de périphérique émulé.
-  - [ ] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs provoquées par ce retrait et l’élargissement des sources.
+- [x] Retirer le choix global du périphérique physique sans perdre les configurations existantes
+  - [x] Modifier src/GWGUI.Emulation/Functions/EmulationInputMappingFunctions.cs pour exposer la valeur d’une source de manette identifiée et faire conserver à IsControllerSourcePressed ses résultats actuels en utilisant cette valeur.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Functions/AtariInputSnapshotFunctions.cs pour résoudre, pour chaque association, l’identifiant de périphérique inclus dans sa source et conserver DeviceId enregistré comme repli pour les anciennes associations.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Functions/AtariInputSnapshotFunctions.cs pour accepter les sources clavier et souris déjà représentées dans EmulationInputSnapshot, comme le chemin Amiga, sans modifier les commandes cibles.
+  - [x] Modifier src/GWGUI.Emulation.Amiga/Functions/AmigaInputSnapshotFunctions.cs uniquement pour faire passer ses sources de manette par la valeur commune ajoutée, en conservant la résolution par association, les sources clavier et souris et le repli DeviceId existants.
+  - [x] Modifier src/GWGUI.Emulation.Amiga/Functions/AmigaInputSettingsFunctions.cs pour autoriser la souris parmi les sources capturables des ports Amiga, sans modifier les types de périphériques émulés.
+  - [x] Modifier src/GWGUI.Emulation.Atari/Functions/AtariInputSettingsFunctions.cs pour autoriser la souris parmi les sources capturables des ports Atari, sans modifier les types de périphériques émulés.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/EmulationControllerPortEditor.cs pour supprimer le ComboBox Device et son choix automatique après capture, tout en conservant la valeur PhysicalDeviceId déjà enregistrée comme donnée de compatibilité non modifiable.
+  - [x] Modifier src/GWGUI.App/Contracts/Emulation/Controllers/EmulationControllerPortSettings.cs pour retirer le contrôle Device et conserver uniquement les éléments encore affichés.
+  - [x] Modifier src/GWGUI.App/Controllers/Emulation/Input/EmulationInputSettingsController.cs pour ne plus remplir ni enregistrer un sélecteur physique, préserver PhysicalDeviceId d’une configuration existante et laisser chaque nouvelle association conserver sa propre source.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationControllerSettingsSection.cs pour supprimer la détection et la sélection globales devenues inutilisées.
+  - [x] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationControllerSettingsLayout.cs pour retirer le champ Périphérique du port et conserver le choix du type de périphérique émulé.
+  - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs provoquées par ce retrait et l’élargissement des sources.
 
-- [ ] Placer le visualiseur à droite du tableau du port actif
-  - [ ] Modifier src/GWGUI.App/Constants/Emulation/EmulationControllerSettingsConstants.cs pour ajouter uniquement les dimensions validées du bloc visuel et la largeur nécessaire à l’icône de la colonne État.
-  - [ ] Modifier src/GWGUI.App/Contracts/Emulation/Controllers/EmulationControllerPortSettings.cs pour transporter le ControllerVisualizer du port avec son type et son InputBindingEditor.
-  - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/EmulationControllerPortEditor.cs pour créer un seul ControllerVisualizer par port et lui affecter le profil correspondant au type émulé sélectionné.
-  - [ ] Modifier UpdateControllerBindings dans src/GWGUI.App/Controllers/Emulation/Input/EmulationInputSettingsController.cs pour changer ensemble les lignes et le profil lorsqu’un type de périphérique émulé est choisi.
-  - [ ] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationControllerSettingsLayout.cs pour placer le tableau à gauche et le visualiseur du même port à droite, conserver ce visualiseur hors du défilement vertical du tableau et ne réduire que l’image lorsque la largeur disponible diminue.
-  - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/InputBindingEditor.xaml pour réduire la colonne État à son icône, retirer uniquement StateText de la ligne et conserver les boutons Assigner et Supprimer.
-  - [ ] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par cette disposition.
+- [x] Placer le visualiseur à droite du tableau du port actif
+  - [x] Modifier src/GWGUI.App/Constants/Emulation/EmulationControllerSettingsConstants.cs pour ajouter uniquement la largeur nécessaire à l’icône de la colonne État, sans créer de dimensions propres à une copie du visualiseur.
+  - [x] Modifier src/GWGUI.App/Contracts/Emulation/Controllers/EmulationControllerPortSettings.cs pour transporter le ControllerVisualizer du port avec son type et son InputBindingEditor.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/EmulationControllerPortEditor.cs pour créer un seul ControllerVisualizer par port et lui affecter le profil correspondant au type émulé sélectionné.
+  - [x] Modifier src/GWGUI.App/Controllers/Emulation/Input/EmulationInputSettingsController.cs pour conserver ModuleId et MachineId de la configuration courante et les transmettre à chaque EmulationControllerPortEditor sans les déduire d’un libellé affiché.
+  - [x] Modifier UpdateControllerBindings dans src/GWGUI.App/Controllers/Emulation/Input/EmulationInputSettingsController.cs pour changer ensemble les lignes et le profil lorsqu’un type de périphérique émulé est choisi.
+  - [x] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationControllerSettingsLayout.cs pour réutiliser le ControllerVisualizer commun à droite du tableau du même port, le conserver hors du défilement vertical et le contraindre à l’espace restant afin qu’il ne dépasse pas, sans réduire le tableau ni créer un second bloc visuel.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/InputBindingEditor.xaml pour réduire la colonne État à son icône, retirer uniquement StateText de la ligne et conserver les boutons Assigner et Supprimer.
+  - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par cette disposition.
 
-- [ ] Relier les associations et la représentation sans créer un second chemin de capture
-  - [ ] Créer le fichier vide src/GWGUI.App/Controllers/Emulation/Input/EmulationBindingVisualizationController.cs.
-  - [ ] Modifier src/GWGUI.App/Controllers/Emulation/Input/EmulationBindingVisualizationController.cs pour lire les associations courantes de InputBindingEditor, les états clavier, souris et GameInput disponibles et produire un ControllerVisualState contenant tous les appuis simultanés.
-  - [ ] Modifier src/GWGUI.App/Controllers/Emulation/Input/EmulationBindingVisualizationController.cs pour appliquer le seuil ou DeadZonePercent validé avant de transmettre une valeur analogique et revenir à l’état neutre sous ce seuil.
-  - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/InputBindingEditor.xaml.cs pour exposer une opération commune qui sélectionne une ligne par son identifiant et démarre sa capture.
-  - [ ] Modifier AssignClicked dans src/GWGUI.App/Views/Controls/Emulation/Input/InputBindingEditorCaptureFunctions.cs pour appeler cette opération commune sans changer les sources ni le délai de capture.
-  - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/EmulationControllerPortEditor.cs pour raccorder le clic d’une zone du ControllerVisualizer à la même opération commune et ne créer ni double-clic ni bouton supplémentaire.
-  - [ ] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/EmulationControllerPortEditor.cs pour démarrer et arrêter EmulationBindingVisualizationController avec le chargement et le déchargement du port, sans laisser de temporisateur ou de gestionnaire attaché.
-  - [ ] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par la visualisation en direct et le clic des zones.
+- [x] Relier les associations et la représentation sans créer un second chemin de capture
+  - [x] Créer le fichier vide src/GWGUI.App/Controllers/Emulation/Input/EmulationBindingVisualizationController.cs.
+  - [x] Modifier src/GWGUI.App/Controllers/Emulation/Input/EmulationBindingVisualizationController.cs pour lire les associations courantes de InputBindingEditor, les états clavier, souris et GameInput disponibles et produire un ControllerVisualState contenant tous les appuis simultanés.
+  - [x] Reporter l’application d’un seuil ou de DeadZonePercent dans EmulationBindingVisualizationController tant que le choix entre réglage général, émulateur ou machine n’est pas validé ; transmettre entre-temps les valeurs analogiques brutes sans inventer de règle.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/InputBindingEditor.xaml.cs pour exposer une opération commune qui sélectionne une ligne par son identifiant et démarre sa capture.
+  - [x] Modifier AssignClicked dans src/GWGUI.App/Views/Controls/Emulation/Input/InputBindingEditorCaptureFunctions.cs pour appeler cette opération commune sans changer les sources ni le délai de capture.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/EmulationControllerPortEditor.cs pour raccorder le clic d’une zone du ControllerVisualizer à la même opération commune et ne créer ni double-clic ni bouton supplémentaire.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Input/EmulationControllerPortEditor.cs pour démarrer et arrêter EmulationBindingVisualizationController avec le chargement et le déchargement du port, sans laisser de temporisateur ou de gestionnaire attaché.
+  - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par la visualisation en direct et le clic des zones.
+
+- [ ] Corriger les régressions constatées pendant la validation du point 6
+  - [ ] Sérialiser les sauvegardes automatiques Amiga et Atari afin d’empêcher toute collision sur leur fichier temporaire lors d’un changement de type, notamment vers Aucune.
+  - [ ] Supprimer toute association physique générique fournie par les DLL et ne pas recycler les associations de l’ancien type lors d’un changement de type.
+  - [ ] Limiter l’Atari 2600 au visuel CX40 et utiliser le Control Pad européen comme visuel par défaut de l’Atari 7800.
+  - [ ] Conserver le tableau et le visualiseur à dimensions fixes, faire défiler uniquement les lignes du tableau et garder le visualiseur visible à droite.
+  - [ ] Rendre les listes de types et de visuels défilantes, puis élargir la colonne État sans couper son icône.
+  - [ ] Agrandir l’image dans son espace fixe sans déformer son rapport d’aspect.
+  - [ ] Refaire les surimpressions communes sans point blanc ni barre de manche et compléter les zones de boutons des deux Konix Speedking.
+  - [ ] Construire avec scripts/build.ps1 -Configuration Debug puis relancer le binaire Debug pour vérifier les huit défauts signalés.
 
 - [ ] Refaire la surimpression analogique dans le système commun
-  - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualizer.Artwork.cs pour remplacer le trait terminé par un point des sticks par un rond partant du centre et se déplaçant selon la direction et l’inclinaison.
-  - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualizer.Artwork.cs pour faire partir le halo des joysticks à manche du centre et l’allonger selon leur direction et leur valeur.
-  - [ ] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualizer.Artwork.cs pour faire partir le halo des gâchettes du centre et l’allonger vers le bas selon leur pression.
-  - [ ] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par les trois rendus analogiques.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualizer.Artwork.cs pour remplacer le trait terminé par un point des sticks par un rond partant du centre et se déplaçant selon la direction et l’inclinaison.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualizer.Artwork.cs pour faire partir le halo des joysticks à manche du centre et l’allonger selon leur direction et leur valeur.
+  - [x] Modifier src/GWGUI.App/Views/Controls/Options/ControllerVisualization/ControllerVisualizer.Artwork.cs pour faire partir le halo des gâchettes du centre et l’allonger vers le bas selon leur pression.
+  - [x] Compiler src/GWGUI.App/GWGUI.App.csproj avec dotnet build --no-restore et corriger uniquement les erreurs introduites par les trois rendus analogiques.
   - [ ] Exécuter GW GUI avec dotnet run --project src/GWGUI.App/GWGUI.App.csproj --no-build et vérifier ces trois rendus avec plusieurs périphériques physiques ; ne cocher cette tâche que lorsque la forme est validée.
   - [ ] Modifier docs/tasks/interface/emulation-improvements.md, dans la section 6, pour inscrire la forme précise validée pendant cette vérification.
   - [ ] Fermer l’instance de GW GUI utilisée pour cette vérification.

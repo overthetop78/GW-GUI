@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Mengatur GTIA delay fase warna digunakan untuk mereproduksi warna. Baku menggunakan nilai standar. Pilihan numerik mengubah warna yang dihasilkan.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>Set frame skipping</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Mengatur berapa banyak frame layar yang dihilangkan. Dinonaktifkan menarik setiap frame. Nilai yang lebih tinggi mengurangi render bekerja tapi membuat gerak kurang halus.</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>Tampilan</value>
+  </data>
 </root>

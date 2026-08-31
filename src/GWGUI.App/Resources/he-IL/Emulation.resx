@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>המונחים: GTIA עיכוב שלב הצבעים המשמש להתרבות צבעים. Default משתמשת בערך הסטנדרטי. אפשרויות נומרניות משנות את הצבעים וכתוצאה מכך.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>המונחים:</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>הגדר כמה מסגרות תצוגה מושמטות. מוגבלות שואבת כל מסגרת. ערכים גבוהים יותר להפחית את העבודה אבל לעשות פחות חלקה.</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>מראה</value>
+  </data>
 </root>

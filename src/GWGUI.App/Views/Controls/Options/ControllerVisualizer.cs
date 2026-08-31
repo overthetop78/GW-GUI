@@ -1,5 +1,8 @@
+using GWGUI.App.Contracts.Input;
+using GWGUI.App.Enums.Input;
 using GWGUI.App.Services.Input.GameInput;
 using GWGUI.App.Views.Controls.Options.ControllerVisualization;
+using GWGUI.Emulation.Enums;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Media;
@@ -17,23 +20,71 @@ public sealed partial class ControllerVisualizer : FrameworkElement
     internal GameInputLiveState? State
     {
         get => _state;
-        set { _state = value; InvalidateVisual(); }
+        set
+        {
+            _state = value;
+            _visualState = null;
+            InvalidateVisual();
+        }
     }
+
+    internal ControllerVisualState? VisualState
+    {
+        get => _visualState;
+        set
+        {
+            _visualState = value;
+            InvalidateVisual();
+        }
+    }
+
+    internal ControllerArtworkProfile? ArtworkProfile
+    {
+        get => _artworkProfile;
+        set
+        {
+            _artworkProfile = value;
+            HoveredVisualControl = null;
+            InvalidateVisual();
+        }
+    }
+
+    internal IReadOnlyDictionary<EmulationControllerVisualControl, string>? VisualCommandIds
+    {
+        get => _visualCommandIds;
+        set
+        {
+            _visualCommandIds = value;
+            HoveredVisualControl = null;
+            InvalidateVisual();
+        }
+    }
+
+    internal EmulationControllerVisualControl? HoveredVisualControl { get; private set; }
+
+    internal event Action<EmulationControllerVisualControl>? VisualZoneClicked;
 
     private ControllerVisualModel _model;
     private GameInputLiveState? _state;
-    private ControllerVisualInput Input => new(_state);
+    private ControllerVisualState? _visualState;
+    private ControllerArtworkProfile? _artworkProfile;
+    private IReadOnlyDictionary<EmulationControllerVisualControl, string>? _visualCommandIds;
+    private ControllerVisualInput Input =>
+        _visualState is null ? new ControllerVisualInput(_state) : new ControllerVisualInput(_visualState);
 
     protected override void OnRender(DrawingContext drawingContext)
     {
         base.OnRender(drawingContext);
-        var width = Math.Max(1, ActualWidth);
-        var height = Math.Max(1, ActualHeight);
-        var scale = Math.Min(width / 620d, height / 320d);
-        var offsetX = (width - 620d * scale) / 2d;
-        var offsetY = (height - 320d * scale) / 2d;
+        var (scale, offsetX, offsetY) = CalculateLayout();
         drawingContext.PushTransform(new TranslateTransform(offsetX, offsetY));
         drawingContext.PushTransform(new ScaleTransform(scale, scale));
+        if (ArtworkProfile is { } profile)
+        {
+            DrawArtworkProfile(drawingContext, profile);
+            drawingContext.Pop();
+            drawingContext.Pop();
+            return;
+        }
         if (DrawArtworkController(drawingContext))
         {
             drawingContext.Pop();
@@ -61,6 +112,114 @@ public sealed partial class ControllerVisualizer : FrameworkElement
         }
         drawingContext.Pop();
         drawingContext.Pop();
+    }
+
+    protected override void OnMouseMove(System.Windows.Input.MouseEventArgs e)
+    {
+        base.OnMouseMove(e);
+        UpdateHoveredVisualControl(e.GetPosition(this));
+    }
+
+    protected override void OnMouseLeave(System.Windows.Input.MouseEventArgs e)
+    {
+        base.OnMouseLeave(e);
+        SetHoveredVisualControl(null);
+    }
+
+    protected override void OnMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs e)
+    {
+        base.OnMouseLeftButtonDown(e);
+        var zone = HitTestVisualZone(e.GetPosition(this));
+        if (zone is null) return;
+        e.Handled = true;
+        Focus();
+        VisualZoneClicked?.Invoke(zone.Control);
+    }
+
+    private void DrawArtworkProfile(DrawingContext drawingContext, ControllerArtworkProfile profile)
+    {
+        var bounds = FitArtworkProfileBounds(profile.Artwork);
+        drawingContext.DrawImage(profile.Artwork, bounds);
+        DrawArtworkProfileOverlays(drawingContext, profile, bounds);
+    }
+
+    private void UpdateHoveredVisualControl(Point position) =>
+        SetHoveredVisualControl(HitTestVisualZone(position)?.Control);
+
+    private void SetHoveredVisualControl(EmulationControllerVisualControl? control)
+    {
+        if (HoveredVisualControl == control) return;
+        HoveredVisualControl = control;
+        Cursor = control is null ? null : System.Windows.Input.Cursors.Hand;
+        InvalidateVisual();
+    }
+
+    private ControllerVisualZone? HitTestVisualZone(Point position)
+    {
+        if (ArtworkProfile is not { } profile) return null;
+        var (scale, offsetX, offsetY) = CalculateLayout();
+        var point = new Point((position.X - offsetX) / scale, (position.Y - offsetY) / scale);
+        var artworkBounds = FitArtworkProfileBounds(profile.Artwork);
+        for (var index = profile.Zones.Count - 1; index >= 0; index--)
+        {
+            var zone = profile.Zones[index];
+            if (!HasVisualCommand(zone.Control)) continue;
+            var bounds = ZoneBounds(artworkBounds, zone);
+            if (Contains(zone, bounds, point)) return zone;
+        }
+        return null;
+    }
+
+    private bool HasVisualCommand(EmulationControllerVisualControl control) =>
+        _visualCommandIds?.ContainsKey(control) == true;
+
+    private static Rect ZoneBounds(Rect artworkBounds, ControllerVisualZone zone) =>
+        new(
+            artworkBounds.X + artworkBounds.Width * zone.XPercent / 100d,
+            artworkBounds.Y + artworkBounds.Height * zone.YPercent / 100d,
+            artworkBounds.Width * zone.WidthPercent / 100d,
+            artworkBounds.Height * zone.HeightPercent / 100d);
+
+    private static bool Contains(ControllerVisualZone zone, Rect bounds, Point point)
+    {
+        if (!bounds.Contains(point)) return false;
+        if (zone.Shape is ControllerVisualZoneShape.DirectionalPad
+            or ControllerVisualZoneShape.JoystickDirection)
+            return MatchesDirectionSector(zone.Control, bounds, point);
+        if (zone.Shape != ControllerVisualZoneShape.Ellipse) return true;
+
+        var radiusX = bounds.Width / 2d;
+        var radiusY = bounds.Height / 2d;
+        if (radiusX <= 0d || radiusY <= 0d) return false;
+        var dx = (point.X - (bounds.X + radiusX)) / radiusX;
+        var dy = (point.Y - (bounds.Y + radiusY)) / radiusY;
+        return dx * dx + dy * dy <= 1d;
+    }
+
+    private static bool MatchesDirectionSector(
+        EmulationControllerVisualControl control,
+        Rect bounds,
+        Point point)
+    {
+        var dx = point.X - (bounds.X + bounds.Width / 2d);
+        var dy = point.Y - (bounds.Y + bounds.Height / 2d);
+        if (Math.Abs(dx) < double.Epsilon && Math.Abs(dy) < double.Epsilon) return false;
+        if (Math.Abs(dx) > Math.Abs(dy))
+            return dx < 0d
+                ? control == EmulationControllerVisualControl.DirectionLeft
+                : control == EmulationControllerVisualControl.DirectionRight;
+        return dy < 0d
+            ? control == EmulationControllerVisualControl.DirectionUp
+            : control == EmulationControllerVisualControl.DirectionDown;
+    }
+
+    private (double Scale, double OffsetX, double OffsetY) CalculateLayout()
+    {
+        var width = Math.Max(1, ActualWidth);
+        var height = Math.Max(1, ActualHeight);
+        var canvasHeight = ArtworkProfile is null ? 320d : 520d;
+        var scale = Math.Min(width / 620d, height / canvasHeight);
+        return (scale, (width - 620d * scale) / 2d, (height - canvasHeight * scale) / 2d);
     }
 
     internal ControllerVisualSnapshot GetSnapshotForTest()

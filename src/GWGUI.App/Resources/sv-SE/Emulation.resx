@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Ställ in GTIA färgfasfördröjning som används för att reproducera färger. Standard använder standardvärdet. Numeriska val flyttar de resulterande nyanserna.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>Set ram hopping</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Anger hur många displayramar utelämnas. Funktionshindrade drar varje ram. Högre värden minskar rendering arbete men gör rörelse mindre smidig.</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>Utseende</value>
+  </data>
 </root>

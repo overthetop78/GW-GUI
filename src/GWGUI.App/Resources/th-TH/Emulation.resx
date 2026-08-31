@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>ตั้งค่า GTIA ช่วงของสีที่จะใช้ทําซ้ําสี ค่าปริยาย ใช้ค่ามาตรฐาน ค่าตัวเลือกเปลี่ยนความเข้มสี</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>ตั้งค่าการข้ามเฟรมภาพ</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>ตั้งค่าจํานวนเฟรมการแสดงผลที่ถูกละทิ้ง ปิดการใช้งาน จะวาดทุกเฟรม ค่าที่สูงกว่าลดการทํางานการแสดงผล แต่ทําให้การเคลื่อนไหวราบรื่นน้อยลง</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>รูปลักษณ์</value>
+  </data>
 </root>

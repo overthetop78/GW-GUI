@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>설정하기 GTIA 색상 단계 지연 재현 색상에 사용. 기본값은 표준 값을 사용합니다. 숫자 선택은 결과 줄을 이동.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>프레임 건너뛰기</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>얼마나 많은 디스플레이 프레임이 omitted 설정. Disabled는 각 구조를 그립니다. 높은 값은 렌더링 작업을 감소하지만 모션을 덜 부드럽게 만듭니다.</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>모양</value>
+  </data>
 </root>

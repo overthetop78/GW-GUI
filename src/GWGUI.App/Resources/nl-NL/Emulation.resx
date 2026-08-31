@@ -1186,4 +1186,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Stelt de GTIA kleur fase vertraging gebruikt om kleuren te reproduceren. Standaard gebruikt de standaard waarde. Numerieke keuzes verschuiven de resulterende tinten.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>Frame overslaan instellen</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Stelt in hoeveel weergaveframes worden weggelaten. Uitgeschakeld trekt elk frame. Hogere waarden verminderen het renderingswerk maar maken beweging minder glad.</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve">
+    <value>Uiterlijk</value>
+  </data>
 </root>
