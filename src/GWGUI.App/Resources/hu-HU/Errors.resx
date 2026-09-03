@@ -34,4 +34,23 @@
     <value>A teljes jelentést a következő helyre mentettük:
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>A távoli szolgáltatás nem válaszolt, mielőtt a kapcsolat időzített. Ellenőrizze a hálózati kapcsolatot, és próbálja újra.</value></data>
+  <data name="Error.Description.NetworkDns"><value>A távoli szolgáltatás címét nem sikerült megoldani. Ellenőrizze a hálózati vagy DNS beállításokat, és próbálja újra.</value></data>
+  <data name="Error.Description.NetworkRefused"><value>A távoli szolgáltatás visszautasította a kapcsolatot. Lehet, hogy nem elérhető vagy blokkolható.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>A távoli szolgáltatást nem sikerült elérni. Ellenőrizze az internet, tűzfal, VPN vagy proxy beállításokat, és próbálja újra.</value></data>
+  <data name="Error.Description.HttpStatus"><value>A távoli szolgáltatás HTTP státuszt adott vissza {0}. Próbáld meg később.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>A művelet nem ért véget a megadott időn belül. Próbáld újra.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>A műveletet törölték, mielőtt befejezték volna.</value></data>
+  <data name="Error.Description.AccessDenied"><value>A GW GUI nem férhet hozzá a kért fájlhoz, mappához vagy eszközhöz.</value></data>
+  <data name="Error.Description.FileNotFound"><value>A szükséges fájl nem található: {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>A szükséges mappa nem található.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>A kért meghajtó nem áll rendelkezésre.</value></data>
+  <data name="Error.Description.PathTooLong"><value>A kijelölt út túl hosszú.</value></data>
+  <data name="Error.Description.DiskFull"><value>Nincs elég szabad lemezterület a művelet befejezéséhez.</value></data>
+  <data name="Error.Description.InvalidData"><value>A kijelölt adat vagy fájl érvénytelen, hiányos vagy hibás.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>Az egyik megadott érték érvénytelen. Tekintse át a beállításokat, és próbálja újra.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>A művelet nem fejezhető be a jelenlegi alkalmazási állapotban.</value></data>
+  <data name="Error.Description.NotSupported"><value>Ezt a műveletet nem támogatja a kijelölt fájl, eszköz vagy platform.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>Nincs elég memória a művelet befejezéséhez.</value></data>
+  <data name="Error.Description.Unexpected"><value>A GW GUI váratlan problémával szembesült, amikor ezt az akciót végezte.</value></data>
 </root>

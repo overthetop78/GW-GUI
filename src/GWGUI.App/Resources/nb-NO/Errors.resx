@@ -34,4 +34,23 @@
     <value>Hele rapporten ble lagret til:
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>Den eksterne tjenesten responderte ikke før tilkoblingen utløpt. Sjekk nettverkstilkoblingen og prøv igjen.</value></data>
+  <data name="Error.Description.NetworkDns"><value>Den eksterne tjenesteadressen kunne ikke løses. Sjekk nettverks- eller DNS-innstillingene og prøv på nytt.</value></data>
+  <data name="Error.Description.NetworkRefused"><value>Fjerntjenesten nektet tilkoblingen. Det kan være utilgjengelig eller blokkert.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>Fjerntjenesten kunne ikke nås. Sjekk Internett-tilkoblingen, brannmuren, VPN eller proxyinnstillingene og prøv igjen.</value></data>
+  <data name="Error.Description.HttpStatus"><value>Fjerntjenesten returnerte HTTP-status {0}. Prøv igjen senere.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>Operasjonen var ikke ferdig innen den tillatte tiden. Prøv igjen.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>Operasjonen ble avlyst før den var ferdig.</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI har ikke tillatelse til å få tilgang til den ønskede filen, mappen eller enheten.</value></data>
+  <data name="Error.Description.FileNotFound"><value>Den nødvendige filen ble ikke funnet: {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>Den nødvendige mappen ble ikke funnet.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>Den etterspurte stasjonen er ikke tilgjengelig.</value></data>
+  <data name="Error.Description.PathTooLong"><value>Den valgte banen er for lang.</value></data>
+  <data name="Error.Description.DiskFull"><value>Det er ikke nok ledig diskplass til å fullføre operasjonen.</value></data>
+  <data name="Error.Description.InvalidData"><value>De valgte dataene eller filen er ugyldig, ufullstendig eller ødelagt.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>En av verdiene er ugyldige. Se på innstillingene og prøv igjen.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>Operasjonen kan ikke gjennomføres i den aktuelle søknadstilstanden.</value></data>
+  <data name="Error.Description.NotSupported"><value>Denne operasjonen støttes ikke av den valgte filen, enheten eller plattformen.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>Det er ikke nok tilgjengelig minne til å fullføre operasjonen.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI møtte et uventet problem mens du utførte denne handlingen.</value></data>
 </root>

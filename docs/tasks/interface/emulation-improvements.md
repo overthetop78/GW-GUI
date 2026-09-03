@@ -1845,31 +1845,1177 @@ Les tâches d’images ci-dessous sont conservées pour la reprise ultérieure d
 
 Ce point produit la recherche et les décisions d’architecture demandées. Il ne crée aucun filtre, shader, réglage de configuration ou contrôle d’interface avant validation du catalogue et de l’architecture.
 
-- [ ] Créer le document de recherche avant d’y inscrire des résultats
-  - [ ] Créer le fichier vide docs/reference/emulation-video-filters.md.
-  - [ ] Modifier docs/reference/emulation-video-filters.md pour décrire le périmètre, distinguer les filtres réalisés par GW GUI des options de signal fournies par les émulateurs et reprendre les questions encore ouvertes de la section Filtres vidéo.
+### Décisions validées
 
-- [ ] Établir le catalogue depuis les sources de référence
-  - [ ] Modifier docs/reference/emulation-video-filters.md à partir de la documentation officielle Libretro et des catalogues officiels slang-shaders et common-shaders pour recenser les familles de filtres, notamment CRT, scanlines, LCD et moiré horizontal ou vertical, avec un lien vers chaque source consultée.
-  - [ ] Modifier docs/reference/emulation-video-filters.md pour inscrire, pour chaque filtre ou famille, son effet, ses réglages utiles, ses dépendances éventuelles, ses combinaisons connues et son statut de licence ; ne recopier aucun code de shader dont la licence n’autorise pas clairement l’usage retenu.
-  - [ ] Modifier docs/reference/emulation-video-filters.md après examen des moteurs Amiga et Atari utilisés par le projet pour séparer leurs options RGB, composite, S-Video, RF, PAL, NTSC ou équivalentes des effets propres à GW GUI.
-  - [ ] Modifier docs/reference/emulation-video-filters.md pour inclure les filtres utiles aux futures machines sans limiter le catalogue aux capacités Amiga et Atari actuelles.
+- Les cinq réglages généraux restent toujours visibles : luminosité, contraste, gamma, saturation et netteté.
+- Le gamma GW GUI utilise la plage -10 à +10, la valeur 0 est neutre et `exposant = 2^(-valeur / 10)` ; une valeur positive éclaircit les tons moyens et une valeur négative les assombrit.
+- Snapshot contient la sortie finale des traitements GW GUI, avant tout futur bezel, cadre ou habillage externe ; la capture correspond ainsi à l’image visible dans la zone d’émulation sur les quatre renderers.
+- L’échantillonnage utilise un sélecteur unique et une seule méthode active.
+- La technologie d’affichage utilise un sélecteur unique : **Normal**, **CRT**, **Écran à pixels fixes**, **Plasma** ou **Écran vectoriel**. Le panneau de paramètres change avec ce choix.
+- CRT utilise un sous-choix couleur ou monochrome vert, ambre, blanc ou gris, avec palettes prédéfinies et future teinte personnalisée. Scanlines et trame/moiré volontaire appartiennent uniquement au panneau CRT.
+- Écran à pixels fixes utilise un sous-choix LCD, LCD rétroéclairé par LED ou OLED. Les réglages communs restent partagés ; un réglage propre n’apparaît que s’il produit une différence visible réelle.
+- La rémanence et le temps de réponse des pixels appartiennent au panneau Écran à pixels fixes. Le désentrelacement reste un traitement indépendant ou une option interne du moteur.
+- Plasma et Écran vectoriel seront réalisés après le premier socle, mais font partie de la cible complète.
+- Les scalers, la restauration, les traitements temporels, VFD, matrices LED ou de points, segments, papier électronique, projection, simulations de signal et effets stylistiques restent dans le catalogue pour les étapes ultérieures.
+- Toutes les technologies validées seront réalisées pas à pas ; aucune ne doit être retirée de la checklist parce qu’elle est planifiée plus tard.
+- Les douze présélections initiales sont Normal, CRT Arcade couleur, CRT Téléviseur couleur, CRT Monochrome vert, ambre et blanc, LCD couleur, LCD monochrome, LCD rétroéclairé LED, OLED, Plasma et Écran vectoriel ; leurs identifiants et valeurs exactes sont définis dans docs/reference/emulation-video-filters.md.
+- Les intensités vidéo utilisent `0..100` et les durées temporelles utilisent `0..1000 ms` ; une rémanence sans suffixe `ms` est une intensité.
 
-- [ ] Comparer le catalogue aux quatre surfaces de rendu actuelles
-  - [ ] Modifier docs/reference/emulation-video-filters.md après examen de src/GWGUI.App/Interfaces/Rendering/Emulation/IEmulationVideoSurface.cs, src/GWGUI.App/Presenters/Emulation/Machine/MachineVideoPresenter.cs, src/GWGUI.App/Rendering/Emulation/Surfaces/WpfVideoSurface.cs, src/GWGUI.App/Rendering/Emulation/Surfaces/OpenGlVideoSurface.cs et src/GWGUI.App/Rendering/Emulation/Surfaces/VeldridVideoSurface.cs pour décrire où les pixels sont disponibles et où un traitement commun peut être appliqué.
-  - [ ] Modifier docs/reference/emulation-video-filters.md pour comparer WPF, OpenGL, Direct3D 11 et Vulkan pour chaque famille de filtre, indiquer ce qui peut partager une définition et ce qui exige une implémentation de backend, sans choisir silencieusement de supprimer un renderer.
-  - [ ] Modifier docs/reference/emulation-video-filters.md pour décrire l’effet du traitement envisagé sur Snapshot, le rapport d’aspect, le redimensionnement, le repli actuel vers WPF et l’application immédiate à une instance ouverte.
+### Journal des décisions autonomes
 
-- [ ] Faire valider les groupes, compatibilités et réglages avant l’architecture définitive
-  - [ ] Modifier docs/reference/emulation-video-filters.md pour proposer, à partir du catalogue établi, les groupes logiques, les combinaisons compatibles et les incompatibilités nécessitant la confirmation décrite dans la demande.
-  - [ ] Modifier docs/reference/emulation-video-filters.md pour proposer les présélections et les réglages propres à chaque fonctionnalité, sans dupliquer luminosité, contraste, gamma, saturation et netteté.
-  - [ ] Modifier docs/tasks/interface/emulation-improvements.md après validation pour inscrire la plage et la valeur neutre du gamma ainsi que la liste validée des groupes, compatibilités, présélections et réglages.
+Ce journal conserve les questions qui auraient pu bloquer l’avancement. Les numéros de ligne sont
+ceux relevés au moment de la décision ; les titres de section restent les repères durables si une
+modification ultérieure décale ces lignes.
 
-- [ ] Inscrire l’architecture validée sans commencer son implémentation
-  - [ ] Modifier docs/architecture/emulation.md pour décrire la séparation validée entre configuration commune, catalogue de filtres, chaîne de traitement et implémentations propres aux backends.
-  - [ ] Modifier docs/architecture/emulation.md pour décrire l’enregistrement par configuration de machine, l’application immédiate à la seule instance correspondante et l’utilisation au prochain démarrage lorsqu’aucune instance n’est ouverte.
-  - [ ] Modifier docs/architecture/emulation.md pour décrire l’emplacement unique des contrôles dans l’onglet Vidéo, la séparation visuelle avec les options internes de l’émulateur et le maintien permanent des cinq réglages généraux.
-  - [ ] Modifier docs/tasks/interface/emulation-improvements.md pour ajouter, seulement après validation de cette architecture, une future checklist d’implémentation donnant les fichiers et actions réellement retenus ; ne créer ni contrat, ni shader, ni contrôle avant cette validation.
+- **2026-09-01 — Gamma**
+  - Question : quelle plage, quelle valeur neutre et quelle conversion utiliser pour le gamma ?
+  - Décision : utiliser la plage `-10..+10`, avec `0` neutre, et convertir la valeur affichée par
+    `exposant = 2^(-valeur / 10)` ; une valeur positive éclaircit les tons moyens.
+  - Motif : cette échelle symétrique est cohérente avec les autres réglages généraux et conserve une
+    conversion exponentielle explicite, stable et réversible autour de la valeur neutre.
+  - Modifications : `docs/reference/emulation-video-filters.md`, section `Gamma retenu`, lignes
+    304 à 313 ; `docs/tasks/interface/emulation-improvements.md`, section `Décisions validées`, ligne
+    1851. Ces valeurs restent révisables avant la création du contrat correspondant.
+
+- **2026-09-01 — Contenu de Snapshot**
+  - Question : Snapshot doit-il enregistrer l’image brute émise par le moteur ou l’image après les
+    traitements vidéo de GW GUI ?
+  - Décision : enregistrer la sortie finale des traitements GW GUI, avant tout bezel, cadre ou autre
+    habillage externe futur ; la capture correspond à l’image visible dans la zone d’émulation.
+  - Motif : un utilisateur attend d’une capture qu’elle reproduise le rendu qu’il a configuré. La
+    frontière avant habillage conserve une image propre à l’émulation et évite de figer une future
+    présentation de fenêtre dans le fichier capturé.
+  - Modifications : `docs/reference/emulation-video-filters.md`, section `Snapshot`, lignes 168 à
+    179 ; `docs/architecture/emulation.md`, section `Snapshot`, lignes 545 à 552 ;
+    `docs/tasks/interface/emulation-improvements.md`, section `Décisions validées`, ligne 1852.
+    Les surfaces actuelles concernées sont `WpfVideoSurface`, `OpenGlVideoSurface` et
+    `VeldridVideoSurface` ; leur code n’est pas modifié par cette tâche documentaire.
+
+- **2026-09-01 — Présélections vidéo initiales**
+  - Question : quels noms, identifiants persistants, contenus et valeurs exactes fournir pour les
+    premières présélections ?
+  - Décision : fournir douze présélections couvrant Normal, deux CRT couleur, trois CRT
+    monochromes, quatre écrans à pixels fixes, Plasma et Écran vectoriel. Les réglages généraux
+    utilisent `-10..+10`, les intensités `0..100` et les durées des millisecondes ; le tableau de
+    référence fixe chaque valeur et chaque identifiant persistant.
+  - Motif : cette sélection couvre chaque technologie et chaque sous-choix déjà retenus sans créer
+    de panneau supplémentaire. Les unités normalisées gardent les presets indépendants du shader ou
+    du backend qui réalisera l’effet.
+  - Modifications : `docs/reference/emulation-video-filters.md`, section `Présélections`, lignes 299
+    à 330 ; `docs/tasks/interface/emulation-improvements.md`, section `Décisions validées`, ligne
+    1861. Aucune constante ni ressource traduite n’est créée pendant cette tâche documentaire.
+
+- **2026-09-01 — Bornes des valeurs temporelles**
+  - Question : quelle borne commune utiliser pour les durées exprimées en millisecondes, et comment
+    les distinguer des intensités de rémanence ?
+  - Décision : borner les durées à `0..1000 ms` et conserver les intensités, y compris la rémanence
+    sans suffixe `ms`, dans `0..100`.
+  - Motif : une seconde couvre les temps de réponse et historiques visés tout en empêchant une
+    configuration déraisonnable ; des unités distinctes évitent qu’un preset mélange durée et force.
+  - Modifications : `docs/reference/emulation-video-filters.md`, section `Présélections`, lignes 303
+    à 306 ; `docs/tasks/interface/emulation-improvements.md`, section `Décisions validées`, ligne
+    1862 ; le code correspondant sera centralisé dans `EmulationVideoProcessingLimits.cs`.
+
+- **2026-09-01 — Application immuable de la configuration vidéo commune**
+  - Question : comment le panneau commun peut-il remplacer `VideoProcessing` dans une configuration
+    immuable sans connaître `AmigaMachineConfiguration` ou `AtariMachineConfiguration` ?
+  - Décision : ajouter `ApplyVideoProcessing` au contrat `IEmulationModule`, puis laisser chaque
+    module spécialisé produire sa propre nouvelle configuration typée.
+  - Motif : App reste indépendante des familles et ne sérialise pas une configuration en JSON pour
+    la modifier ; chaque bibliothèque conserve la responsabilité de son type concret.
+  - Modifications : `src/GWGUI.Emulation/Interfaces/IEmulationModule.cs`,
+    `src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModule.cs`,
+    `src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs`, puis raccordement dans
+    `src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs`.
+
+- **2026-09-01 — Catalogue neutre utilisé par Argos**
+  - Question : comment exécuter la commande Argos imposée alors que le script cherche
+    `Resources/Emulation.resx`, fichier absent du dépôt ?
+  - Décision : corriger le script pour cibler `Resources/00-Base/<catalogue>`, qui est le catalogue
+    neutre déclaré par `GWGUI.App.csproj`, sans changer sa syntaxe de commande.
+  - Motif : la commande documentée reste identique et chaque clé continue d’être ajoutée par Argos
+    dans le catalogue neutre, en-US et toutes les cultures prises en charge.
+  - Modifications : `scripts/translate-resx-argos.py`, fonction `main`, avant tout ajout de clé vidéo.
+
+- **2026-09-01 — Ordre de propagation de la configuration vidéo**
+  - Question : comment `MachineVideoPresenter` peut-il réappliquer la configuration courante lors
+    d’un changement ou d’un repli de surface alors que `IEmulationVideoSurface` ne sait pas encore
+    la recevoir ?
+  - Décision : ajouter avant la propagation deux tâches atomiques donnant aux surfaces un contrat
+    de configuration et un stockage normalisé sans effet visuel, puis exécuter la propagation dans
+    l’ordre surface, presenter, controller et instance ciblée.
+  - Motif : chaque dépendance précède ainsi son utilisation ; la future chaîne de traitement
+    consommera ce contrat déjà présent sans modifier le rendu pendant cette étape.
+  - Modifications : checklist `Appliquer les changements à la seule instance correspondante`, puis
+    `IEmulationVideoSurface` et les trois surfaces de rendu.
+
+- **2026-09-01 — Configuration vidéo initiale du controller**
+  - Question : d’où `MachineController` reçoit-il la configuration vidéo initiale alors que
+    `MachineControllerOptions.Machine` est une instance `IEmulatedMachine` sans paramètres persistés ?
+  - Décision : ajouter la configuration commune à `MachineControllerOptions` et la fournir depuis
+    `EmulationMachineRuntime.Configuration` au même endroit que `VideoRenderer`.
+  - Motif : le controller reçoit ainsi un instantané cohérent de la configuration persistée sans
+    ajouter de réglage d’interface au contrat de la machine émulée.
+  - Modifications : `MachineControllerOptions.cs` et `EmulationSectionMachineFunctions.cs` avant
+    la tâche `MachineController.cs`.
+
+- **2026-09-01 — Confirmation des technologies d’écran incompatibles**
+  - Question : comment tester la confirmation exigée alors que le panneau remplace actuellement la
+    technologie active sans consulter le catalogue d’incompatibilités ?
+  - Décision : demander confirmation uniquement lors du passage direct d’une technologie simulée
+    non normale à une autre technologie simulée incompatible ; Normal reste une activation ou une
+    désactivation sans avertissement.
+  - Motif : le sélecteur garantit déjà l’exclusivité, mais un remplacement CRT vers LCD, Plasma ou
+    Vector peut surprendre ; une fonction de confirmation injectable rend ce choix testable.
+  - Modifications : `EmulationVideoProcessingSettingsSection.cs` avant ses tests comportementaux.
+
+- **2026-09-01 — Couture de test du ciblage d’une instance**
+  - Question : comment vérifier le ciblage d’une seule instance sans construire une fenêtre complète
+    et une machine émulée réelle autour du gestionnaire privé `ConfigurationSaved` ?
+  - Décision : extraire une fonction interne générique qui recherche exactement la clé
+    `(ModuleId, ConfigurationId)` et applique une action au seul élément trouvé ; le gestionnaire
+    continuera de contrôler que le contenu trouvé est un `MachineController`.
+  - Motif : le test couvre la règle de sélection indépendamment du démarrage d’un moteur, tandis
+    que le chemin de production conserve son dictionnaire et son type concret.
+  - Modifications : nouveau fichier de fonctions sous
+    `Functions/Views/Emulation/Machine`, puis utilisation dans
+    `EmulationSectionConfigurationFunctions.cs`.
+
+- **2026-09-01 — Couture de test brouillon ou autosauvegarde**
+  - Question : comment tester la décision de persistance vidéo sans charger les styles globaux de
+    toute la fenêtre d’options dans le runner WPF ?
+  - Décision : extraire la seule décision « stocker le brouillon si la machine n’a aucune
+    configuration, sinon sauvegarder » dans une fonction interne appelée par
+    `EmulationModuleSettingsSection`.
+  - Motif : le test vérifie la vraie règle de production sans dépendre des ressources visuelles du
+    sélecteur de machine ; le verrou et la notification restent dans le contrôle.
+  - Modifications : nouveau fichier sous `Functions/Views/Emulation/Settings`, puis raccordement
+    dans `EmulationModuleSettingsSection.cs`.
+
+- **2026-09-01 — Préservation vidéo dans les reconstructions Atari**
+  - Question : les reconstructions explicites de `AtariMachineConfiguration` conservent-elles le
+    nouveau dernier membre `VideoProcessing` après une modification sans rapport avec la vidéo ?
+  - Décision : transmettre explicitement la configuration vidéo dans les chemins firmware, média,
+    entrée, stockage et configuration courante utilisée par les états sauvegardés, puis ajouter un
+    test de non-régression.
+  - Motif : le paramètre facultatif masque l’oubli à la compilation et réinitialise silencieusement
+    les filtres ; les opérations non vidéo doivent conserver la valeur enregistrée.
+  - Modifications : fichiers Atari concernés et `EmulationVideoConfigurationTests.cs` avant la
+    création de la chaîne de traitement.
+
+- **2026-09-01 — Exécuteur neutre avant la fabrique de chaînes**
+  - Question : quel exécuteur la fabrique peut-elle sélectionner alors qu’aucune implémentation de
+    `IEmulationVideoProcessingPipeline` ne précède sa tâche ?
+  - Décision : créer un exécuteur pass-through commun portant le renderer demandé et retournant la
+    trame inchangée après validation des tailles ; les groupes CPU, OpenGL et Veldrid le remplaceront
+    ensuite progressivement.
+  - Motif : la fabrique a une dépendance concrète, la chaîne vide reste vérifiable et aucun effet
+    Normal n’est implémenté prématurément.
+  - Modifications : nouveau fichier sous `Rendering/Emulation/Processing` avant la fabrique.
+
+- **2026-09-01 — Chemin commun entre traitement et Snapshot**
+  - Question : comment démontrer que les trois familles de surface capturent bien la sortie traitée
+    alors qu’elles dupliquent encore l’appel de chaîne puis la conversion BGRA ?
+  - Décision : extraire une fonction commune retournant la `VideoFrame` traitée et ses pixels
+    BGRA, puis l’utiliser dans WPF, OpenGL et Veldrid avant affichage et mise à jour de Snapshot.
+  - Motif : le test peut couvrir le point commun aux quatre renderers, et aucune surface ne peut
+    capturer par mégarde la trame brute après l’introduction d’un effet.
+  - Modifications : nouveau fichier sous `Functions/Rendering/Emulation`, raccordement des trois
+    surfaces, puis test Snapshot.
+
+- **2026-09-01 — Injection déterministe du pipeline WPF pour Snapshot**
+  - Question : comment prouver que `WpfVideoSurface.Snapshot` reçoit une trame modifiée par la
+    chaîne plutôt que la source brute, sans implémenter prématurément un effet Normal ?
+  - Décision : permettre au constructeur interne WPF de recevoir facultativement un pipeline de
+    test, tout en conservant la création WPF neutre par défaut utilisée par la fabrique.
+  - Motif : un double déterministe peut remplacer la trame, puis le test lit les pixels réels de
+    Snapshot ; OpenGL et Veldrid partagent déjà la même fonction en amont.
+  - Modifications : `WpfVideoSurface.cs` avant le test Snapshot.
+
+- **2026-09-01 — Conversions CPU des cinq réglages généraux**
+  - Question : quelles conversions exactes appliquer à luminosité, contraste, saturation et netteté,
+    dont seule la plage était validée ?
+  - Décision : traiter en lumière linéaire, dans l’ordre luminosité, contraste, gamma, saturation et
+    netteté ; utiliser respectivement un décalage `valeur / 20`, un contraste
+    `2^(valeur / 5)` autour de 0,18, le gamma validé, une saturation `1 + valeur / 10` autour de
+    la luminance Rec. 709, puis un masque flou ou un lissage 3×3 de force absolue `valeur / 10`.
+  - Motif : les conversions sont symétriques autour de 0, bornées, testables et n’ajoutent aucune
+    dépendance à un shader tiers.
+  - Modifications : `docs/reference/emulation-video-filters.md` avant l’exécution CPU.
+
+- **2026-09-01 — Validation visuelle CRT sans médias propriétaires**
+  - Question : comment vérifier les présélections CRT sur Amiga et Atari lorsque le workspace ne
+    contient ni ROM, ni disque, ni configuration de machine exécutable ?
+  - Décision : utiliser deux mires déterministes distinctes, portant les rapports logiques Amiga et
+    Atari, puis présenter les cinq présélections CRT dans les surfaces WPF, OpenGL, Direct3D 11 et
+    Vulkan. Vérifier automatiquement que chaque rendu est non noir et distinct, produire une
+    planche par renderer et inspecter visuellement les quatre planches. Cette validation ne prétend
+    pas qu’une ROM Amiga ou Atari absente a été lancée.
+  - Motif : les filtres de GW GUI reçoivent une `VideoFrame` après le moteur et ne dépendent pas du
+    contenu propriétaire qui l’a produite. Les mires couvrent les couleurs, gradients, diagonales et
+    damiers nécessaires pour voir palettes, masque, scanlines, courbure, halo et vignettage.
+  - Modifications : `tests/GWGUI.Tests/EmulationVideoProcessingPipelineTests.cs` et planches
+    générées dans `artifacts/crt-validation` ; ordre des colonnes : Arcade couleur, Téléviseur
+    couleur, vert, ambre, blanc ; lignes : Amiga puis Atari.
+
+- **2026-09-02 — Paramètres exacts du modèle Plasma**
+  - Question : quelles conversions appliquer aux cellules, à la diffusion, au tramage temporel et à
+    la rémanence avant d’écrire leur référence CPU ?
+  - Décision : utiliser quatre intensités `0..100` neutres à zéro ; cellules RGB avec atténuation
+    maximale de `35 %` et interstice maximal de `20 %`, tramage Bayer 4×4 séquencé d’amplitude
+    maximale `4 %`, diffusion 3×3 maximale `50 %`, puis rémanence maximale sur une unique image
+    précédente pondérée par l’intensité.
+  - Motif : ces formules originales sont bornées, déterministes et portables dans les shaders, sans
+    dépendance de licence tierce ni historique non borné.
+  - Modifications : `docs/reference/emulation-video-filters.md`, section `Plasma` ; la définition
+    existante `EmulationPlasmaVideoConfiguration` conserve ses quatre champs validés.
+
+- **2026-09-02 — Approximation raster de l’écran vectoriel**
+  - Question : comment définir lignes, halo et persistance sans primitives vectorielles fournies par
+    les moteurs actuels ?
+  - Décision : utiliser le gradient Sobel de luminance linéaire, un seuil `0..1` avec transition
+    `0,10`, un renforcement de ligne `0..100`, un halo 3×3 maximal `50 %` et une persistance sur une
+    seule image précédente pondérée par `0..100`.
+  - Motif : cette approximation conserve explicitement son origine raster, reste déterministe et
+    portable, et ne revendique pas la précision d’un moteur transmettant des primitives.
+  - Modifications : `docs/reference/emulation-video-filters.md`, section
+    `Écran vectoriel — approximation raster`.
+
+- **2026-09-02 — Variante xBR intégrable**
+  - Question : quelle variante, quelle source et quelle licence retenir pour le premier scaler pixel
+    art sans casser les quatre renderers ni les échelles non entières ?
+  - Décision : adapter le niveau 1 mono-passe de `xbr-lv3.glsl` de Hyllian, avec ses constantes
+    publiées (`Y=48`, transition de coin `1,10..1,90`) et une sélection déterministe du coin au poids
+    maximal ; le choix `xBR` rejoint le sélecteur d’échantillonnage existant.
+  - Motif : le fichier de référence porte explicitement la licence MIT, la variante reste symétrique,
+    bornée et portable en CPU, GLSL 1.20 et shader Veldrid, sans runtime ni texture Libretro.
+  - Modifications : `docs/reference/emulation-video-filters.md`, section
+    `xBR — niveau 1 mono-passe`, et `THIRD-PARTY-NOTICES.md`.
+
+- **2026-09-02 — xBRZ sans contamination GPL**
+  - Question : comment proposer xBRZ alors que le fichier Libretro de référence attribue cette
+    partie à un code GPL-3.0 dont l’exception de liaison vise MAME seulement ?
+  - Décision : ne copier aucun code xBRZ et développer une formule originale 3×3, documentée sous
+    `xBRZ — réimplémentation compatible avec la licence MIT de GW GUI`, exécutée par la référence CPU
+    commune dans les quatre surfaces.
+  - Motif : la séparation protège la licence MIT du projet, donne un résultat strictement identique
+    sur tous les backends et évite d’alourdir encore les shaders monolithiques.
+  - Modifications : `docs/reference/emulation-video-filters.md`, modèle commun, référence CPU,
+    surfaces et tests dédiés.
+
+- **2026-09-02 — Source HQx permissive**
+  - Question : quelle implémentation HQx peut être adaptée sans LUT externe ni licence incompatible ?
+  - Décision : adapter le noyau HQ2x mono-passe de mGBA (`hq2x.fs`), sous MIT, dans la référence CPU
+    commune et conserver ses seuils, motifs et poids.
+  - Motif : cette source est explicite, autonome et compatible avec la licence MIT de GW GUI ; le
+    repli commun garantit l’identité des quatre surfaces.
+  - Modifications : référence, notice tierce, modèle, pipeline, surfaces et tests HQx.
+
+- **2026-09-02 — Adaptation portable de ScaleFX**
+  - Question : faut-il intégrer les cinq passes GPU de ScaleFX séparément dans chacun des quatre
+    renderers, ou conserver une référence unique malgré son coût CPU ?
+  - Décision : adapter la chaîne MIT officielle de Sp00kyFox en une reconstruction CPU 3× à palette
+    préservée, puis présenter son résultat par une copie neutre dans les quatre surfaces.
+  - Motif : la source et ses cinq passes sont explicitement MIT, mais les pipelines WPF, OpenGL et
+    Veldrid n’exposent pas le même mécanisme de textures intermédiaires ; la référence commune évite
+    des résultats différents et reste cohérente avec les replis xBRZ et HQx déjà validés.
+  - Modifications réalisées : `docs/reference/emulation-video-filters.md:416` (source, licence et
+    comportement), `THIRD-PARTY-NOTICES.md:25` (notice MIT),
+    `EmulationVideoSampling.cs:12` et `EmulationResourceKeys.cs:55` (modèle et constante), les 30
+    fichiers `Resources/*/Emulation.resx` aux lignes finales `682`, `819` ou `1284` via Argos,
+    `CpuScaleFxVideoScaler.cs:1` et `CpuEmulationVideoProcessingPipeline.cs:332` (traitement),
+    `OpenGlVideoSurface.cs:122` et `VeldridVideoSurface.cs:89` (repli commun), puis
+    `EmulationVideoProcessingPipelineTests.cs:196`, `:260`, `:957` et `:1059` (couverture).
+
+- **2026-09-02 — ScaleNx sans reprise du shader GPL**
+  - Question : peut-on intégrer le shader Scale3x officiel alors que son en-tête impose la GNU GPL ?
+  - Décision : ne copier aucun code du shader et réimplémenter indépendamment les règles publiques
+    de Scale2x/Scale3x dans la référence CPU commune, sous la licence MIT du projet.
+  - Motif : les règles de voisinage sont simples et vérifiables, tandis qu’une copie du fichier GPL
+    serait incompatible avec la politique de licence déjà validée ; le repli commun maintient la
+    même image sur les quatre surfaces.
+  - Modifications réalisées : `docs/reference/emulation-video-filters.md:438`,
+    `EmulationVideoSampling.cs:13`, `EmulationResourceKeys.cs:56`, les 30 ressources
+    `Emulation.resx` via Argos, `CpuScaleNxVideoScaler.cs:1`,
+    `CpuEmulationVideoProcessingPipeline.cs:339`, `OpenGlVideoSurface.cs:122`,
+    `VeldridVideoSurface.cs:89`, puis `EmulationVideoProcessingPipelineTests.cs:197`, `:265`,
+    `:963` et `:1095`.
+
+- **2026-09-02 — SABR sans reprise du shader GPL**
+  - Question : la variante SABR v3.0 peut-elle être intégrée directement au projet MIT ?
+  - Décision : ne copier aucun élément de la source GPL-2.0-or-later et développer un scaler
+    original à interpolation diagonale, documenté sous la licence MIT de GW GUI.
+  - Motif : l’en-tête de la source est sans ambiguïté ; un noyau CPU commun à voisinage 3×3 permet
+    néanmoins de fournir l’effet anti-crénelé attendu et une sortie identique sur les quatre
+    renderers sans contamination de licence.
+  - Modifications réalisées : `docs/reference/emulation-video-filters.md:456`,
+    `EmulationVideoSampling.cs:14`, `EmulationResourceKeys.cs:57`, les 30 ressources
+    `Emulation.resx` via Argos, `CpuSabrVideoScaler.cs:1`,
+    `CpuEmulationVideoProcessingPipeline.cs:346`, `OpenGlVideoSurface.cs:122`,
+    `VeldridVideoSurface.cs:89`, puis `EmulationVideoProcessingPipelineTests.cs:198`, `:270`,
+    `:969` et `:1134`.
+
+- **2026-09-02 — Dé-dithering indépendant avant scaler**
+  - Question : un dé-dithering GW GUI duplique-t-il une option Amiga/Atari, et quelle première
+    variante possède une licence compatible et un comportement borné ?
+  - Décision : aucun doublon n’existe dans les deux modules ; adapter le détecteur de damiers MIT de
+    Hyllian dans une passe CPU commune, avec une intensité `0..100` et valeur neutre `0`.
+  - Motif : le motif en damier est vérifiable sans heuristique temporelle, la source est explicitement
+    MIT et l’exécution avant scaler empêche que le redimensionnement masque le motif original.
+  - Modifications réalisées : `docs/reference/emulation-video-filters.md:476`,
+    `THIRD-PARTY-NOTICES.md:47`, `EmulationImageRestorationConfiguration.cs:1`,
+    `EmulationVideoProcessingConfiguration.cs:11`,
+    `EmulationVideoProcessingConfigurationFunctions.cs:17`,
+    `EmulationVideoProcessingCatalog.cs:13`, `EmulationResourceKeys.cs:40`, les 30 ressources
+    `Emulation.resx` via Argos, `EmulationVideoProcessingSettingsSection.cs:113`,
+    `EmulationImageRestorationFunctions.cs:1`, `CpuEmulationVideoProcessingPipeline.cs:47`,
+    `OpenGlVideoSurface.cs:23`, `VeldridVideoSurface.cs:44`, puis les tests de configuration,
+    panneau et pipeline aux lignes `33`, `43`, `327` et `1210` de leurs fichiers respectifs.
+
+- **2026-09-02 — Débruitage bilatéral original avant scaler**
+  - Question : un débruitage GW GUI duplique-t-il une option Amiga/Atari, et la passe bilatérale
+    Libretro peut-elle être intégrée directement au projet MIT ?
+  - Décision : aucun doublon n’existe dans les deux modules ; ne reprendre aucun code du shader
+    bilatéral GPL-2.0-or-later et développer une passe bilatérale 3×3 originale, avec intensité
+    `0..100`, valeur neutre `0`, après le dé-dithering et avant le scaler.
+  - Motif : la pondération spatiale et colorimétrique réduit les petites variations d’un aplat sans
+    mélanger les deux côtés d’un contour marqué ; elle reste distincte de la reconnaissance des
+    damiers et donne un résultat déterministe commun aux quatre renderers.
+  - Modifications réalisées : `docs/reference/emulation-video-filters.md:497`,
+    `EmulationImageRestorationConfiguration.cs:7`,
+    `EmulationVideoProcessingConfigurationFunctions.cs:27`,
+    `EmulationVideoProcessingCatalog.cs:14`, `EmulationResourceKeys.cs:83`, les 30 ressources
+    `Emulation.resx` via Argos (`00-Base/Emulation.resx:824`, correction française validée à
+    `fr-FR/Emulation.resx:687`), `EmulationVideoProcessingSettingsSection.cs:120`,
+    `EmulationImageRestorationFunctions.cs:53`, `CpuEmulationVideoProcessingPipeline.cs:49`,
+    `OpenGlVideoSurface.cs:126`, `VeldridVideoSurface.cs:93`, puis les tests de configuration,
+    panneau et pipeline aux lignes `33`, `44`, `374` et `1292` de leurs fichiers respectifs.
+  - Vérifications terminées avant cochage : tests ciblés `3/3`, équivalence renderer `4/4`, suite
+    vidéo/configuration/interface/localisation `105/105`, compilation GWGUI.App sans avertissement
+    ni erreur et `git diff --check` sans erreur.
+
+- **2026-09-02 — Réduction des bandes originale sans grain**
+  - Question : la réduction des bandes du catalogue duplique-t-elle une option Amiga/Atari, et la
+    source Libretro peut-elle être reprise dans le projet MIT ?
+  - Décision : aucun doublon n’existe dans les modules ; ne reprendre aucun code de la source
+    GPL/LGPL issue de mpv et créer une reconstruction déterministe des faibles marches, avec
+    intensité `0..100`, valeur neutre `0`, après débruitage et avant scaler.
+  - Motif : la sélection d’une direction de gradient cohérente lisse les transitions quantifiées,
+    tout en rejetant les pics locaux comme bruit et les grands écarts comme contours ; aucun grain
+    pseudo-aléatoire n’est ajouté.
+  - Modifications réalisées : `docs/reference/emulation-video-filters.md:520`,
+    `EmulationImageRestorationConfiguration.cs:8`,
+    `EmulationVideoProcessingConfigurationFunctions.cs:28`,
+    `EmulationVideoProcessingCatalog.cs:15`, `EmulationResourceKeys.cs:84`, les 30 ressources
+    `Emulation.resx` via Argos (`00-Base/Emulation.resx:825`, `fr-FR/Emulation.resx:688`),
+    `EmulationVideoProcessingSettingsSection.cs:123`,
+    `EmulationImageRestorationFunctions.cs:98`, `CpuEmulationVideoProcessingPipeline.cs:51`,
+    `OpenGlVideoSurface.cs:127`, `VeldridVideoSurface.cs:94`, puis les tests de configuration,
+    panneau et pipeline aux lignes `33`, `45`, `421` et `1371` de leurs fichiers respectifs.
+  - Vérifications terminées avant cochage : tests ciblés `3/3`, équivalence renderer `4/4`, suite
+    vidéo/configuration/interface/localisation `110/110`, compilation GWGUI.App sans avertissement
+    ni erreur et `git diff --check` sans erreur.
+
+- **2026-09-02 — Netteté avancée distincte sous le nom Récupération de détails**
+  - Question : comment proposer une netteté avancée sans dupliquer le réglage général déjà présent ?
+  - Décision : conserver `Netteté` comme ajustement global `-10..+10` après mise à l’échelle, et
+    ajouter `Récupération de détails` comme restauration positive `0..100`, neutre à `0`, à la
+    résolution source avant scaler ; aucun moteur Amiga/Atari n’expose cette fonction.
+  - Motif : la passe renforce uniquement le résidu de micro-détail, réduit progressivement sa force
+    près des contours marqués et borne la sortie autour des extrema locaux ; elle ne sert ni à
+    flouter, ni à régler la netteté finale du modèle d’affichage.
+  - Modifications réalisées : `docs/reference/emulation-video-filters.md:541`,
+    `EmulationImageRestorationConfiguration.cs:9`,
+    `EmulationVideoProcessingConfigurationFunctions.cs:29`,
+    `EmulationVideoProcessingCatalog.cs:16`, `EmulationResourceKeys.cs:85`, les 30 ressources
+    `Emulation.resx` via Argos (`00-Base/Emulation.resx:826`, correction française validée à
+    `fr-FR/Emulation.resx:689`), `EmulationVideoProcessingSettingsSection.cs:126`,
+    `EmulationImageRestorationFunctions.cs:142`, `CpuEmulationVideoProcessingPipeline.cs:53`,
+    `OpenGlVideoSurface.cs:128`, `VeldridVideoSurface.cs:95`, puis les tests de configuration,
+    panneau et pipeline aux lignes `34`, `46`, `468` et `1451` de leurs fichiers respectifs.
+  - Vérifications terminées avant cochage : tests ciblés `3/3`, équivalence renderer `4/4`, suite
+    vidéo/configuration/interface/localisation `115/115`, compilation GWGUI.App sans avertissement
+    ni erreur et `git diff --check` sans erreur.
+
+- **2026-09-02 — Désentrelacement spatial avec champ explicite**
+  - Question : comment désentrelacer sans métadonnée d’entrelacement ou de dominance de champ, et
+    sans dupliquer une option moteur ?
+  - Décision : aucun doublon n’existe dans les modules Amiga/Atari ; proposer un select
+    `Désactivé`, `Bob — lignes paires`, `Bob — lignes impaires` et `Fusion verticale`, sans
+    détection automatique ni historique implicite.
+  - Motif : le choix explicite évite de prétendre connaître le champ dominant ; Bob reconstruit les
+    lignes manquantes depuis le champ conservé, tandis que Fusion réduit le peigne par pondération
+    verticale au prix d’un adoucissement documenté. Le mode désactivé reste strictement neutre.
+  - Modifications réalisées : `docs/reference/emulation-video-filters.md:562`,
+    `EmulationDeinterlacingMode.cs:3`, `EmulationImageRestorationConfiguration.cs:11`,
+    `EmulationVideoProcessingConfigurationFunctions.cs:30`,
+    `EmulationVideoProcessingCatalog.cs:17`, `EmulationResourceKeys.cs:86`, les cinq clés dans les
+    30 ressources `Emulation.resx` via Argos (`00-Base/Emulation.resx:827`, corrections françaises
+    validées à `fr-FR/Emulation.resx:690`), `EmulationVideoProcessingSettingsSection.cs:129`,
+    `EmulationImageRestorationFunctions.cs:11`, `CpuEmulationVideoProcessingPipeline.cs:47`,
+    `OpenGlVideoSurface.cs:129`, `VeldridVideoSurface.cs:96`, puis les tests de configuration,
+    panneau et pipeline aux lignes `34`, `47`, `515` et `1531` de leurs fichiers respectifs.
+  - Vérifications terminées avant cochage : tests ciblés `3/3`, équivalence renderer `4/4`, suite
+    vidéo/configuration/interface/localisation `120/120`, compilation GWGUI.App sans avertissement
+    ni erreur et `git diff --check` sans erreur.
+
+- **2026-09-02 — Audit des incompatibilités des filtres indépendants**
+  - Question : quelles combinaisons exigent une nouvelle confirmation Oui/Non ?
+  - Décision : aucune incompatibilité interne n’existe parmi les filtres implémentés ; ne créer
+    aucune boîte inutile. Les scalers sont exclusifs par leur select unique et les cinq restaurations
+    sont composables dans un ordre fixe. La confirmation existante reste réservée au remplacement
+    d’une technologie d’affichage active.
+  - Motif : un test exécute simultanément toutes les restaurations avec chacun des dix scalers sans
+    effacer de valeur ; le test d’interface vérifie désormais qu’un refus de remplacement conserve
+    l’intégralité de la configuration, y compris scaler et restaurations.
+  - Modifications réalisées : `docs/reference/emulation-video-filters.md:614`,
+    `EmulationVideoProcessingPipelineTests.cs:1563` et
+    `EmulationVideoSettingsSectionTests.cs:224`.
+  - Vérifications terminées avant cochage : tests ciblés `2/2`, suite
+    vidéo/configuration/interface/localisation `121/121`, compilation GWGUI.App sans avertissement
+    ni erreur et `git diff --check` sans erreur.
+
+- **2026-09-02 — Validation visuelle consolidée des filtres avancés**
+  - Question : comment laisser une preuve visuelle comparable de chaque scaler et restauration sur
+    les quatre renderers malgré leurs tailles natives différentes hors écran ?
+  - Décision : produire une image déterministe contenant damier, bandes, bruit, micro-détail,
+    entrelacement et diagonales ; générer douze cellules (témoin, six scalers, cinq restaurations),
+    vérifier que chaque cellule active diffère du témoin, puis écrire une planche PNG par renderer.
+  - Motif : les tests dédiés assurent déjà l’équivalence fonctionnelle 4/4 ; les planches natives
+    complètent cette preuve sans comparer abusivement WPF 598×48 aux hôtes GPU 1510×88. OpenGL,
+    Direct3D 11 et Vulkan produisent exactement le même PNG et le même SHA-256.
+  - Modifications réalisées : `EmulationVideoProcessingPipelineTests.cs:635`, image source à
+    `:1784`, écriture PNG généralisée à `:1837` et racine du dépôt à `:1875`. Artefacts :
+    `artifacts/advanced-filter-validation/advanced-wpf.png`, `advanced-opengl.png`,
+    `advanced-direct3d11.png` et `advanced-vulkan.png`.
+  - Vérifications terminées avant cochage : planche ciblée `1/1`, suite finale
+    vidéo/configuration/interface/localisation `122/122`, compilation GWGUI.App sans avertissement
+    ni erreur et `git diff --check` sans erreur.
+
+- **2026-09-02 — VFD comme technologie d’affichage spécialisée**
+  - Question : quels paramètres VFD peuvent être simulés honnêtement depuis une frame raster sans
+    machine actuelle fournissant les segments physiques ?
+  - Décision : ajouter VFD comme technologie exclusive avec phosphore bleu, vert, ambre ou rouge,
+    intensité `70`, halo `25` et persistance `20` par défaut, les trois intensités restant réglables
+    sur `0..100`.
+  - Motif : les documents constructeur Noritake confirment l’émission par phosphore, les couleurs et
+    la luminance ; la passe est explicitement une approximation raster monochrome avec halo 3×3 et
+    historique borné, sans code ni actif tiers.
+  - Modifications réalisées : `docs/reference/emulation-video-filters.md:602`,
+    `EmulationVideoDisplayTechnology.cs:10`, `EmulationVfdColor.cs:3`,
+    `EmulationVfdVideoConfiguration.cs:5`, `EmulationVideoProcessingConfiguration.cs:16`,
+    `EmulationVideoProcessingConfigurationFunctions.cs:84`,
+    `EmulationVideoProcessingCatalog.cs:57`, `EmulationResourceKeys.cs:49`, les neuf clés dans les
+    30 ressources `Emulation.resx` via Argos (`00-Base/Emulation.resx:832`, corrections françaises
+    à `fr-FR/Emulation.resx:695`), `EmulationVideoProcessingSettingsSection.cs:302`,
+    `CpuVfdVideoProcessingPasses.cs:6`, `CpuEmulationVideoProcessingPipeline.cs:216`,
+    `OpenGlVideoSurface.cs:130`, `VeldridVideoSurface.cs:97`, puis les tests aux lignes `195`,
+    `1669`, `39` et `35` de leurs fichiers respectifs.
+  - Vérifications terminées avant cochage : ciblage VFD et matrice quatre renderers `4/4`,
+    configuration/localisation/interface `18/18`, compilation GWGUI.App sans avertissement ni
+    erreur et `git diff --check` sans erreur.
+
+- **2026-09-02 — Matrice LED comme technologie d’affichage spécialisée**
+  - Question : comment distinguer une matrice LED du LCD rétroéclairé par LED déjà présent sans
+    prétendre disposer de la géométrie physique de la machine émulée ?
+  - Décision : ajouter une technologie exclusive `Matrice LED`, avec select RGB, rouge, vert, ambre,
+    bleu ou blanc, puis taille des cellules `35`, espacement `30`, diffusion `20` et luminosité `75`
+    par défaut ; tous les réglages numériques sont bornés à `0..100`.
+  - Motif : les guides matériels Adafruit confirment les panneaux à pas distincts et l’effet d’une
+    plaque diffusante. La passe est donc explicitement une approximation raster par cellules de
+    `2..8` pixels, masque circulaire, espace sombre et diffusion, sans code ni actif tiers.
+  - Compatibilité : technologie exclusive des autres affichages, mais compatible avec chaque scaler,
+    restauration et réglage général. WPF utilise le pipeline CPU commun ; OpenGL, Direct3D 11 et
+    Vulkan utilisent son repli CPU déterministe.
+  - Modifications réalisées : `docs/reference/emulation-video-filters.md`,
+    `EmulationVideoDisplayTechnology.cs:11`, `EmulationLedMatrixColor.cs:3`,
+    `EmulationLedMatrixVideoConfiguration.cs:5`, `EmulationVideoProcessingConfiguration.cs:17`,
+    `EmulationVideoProcessingConfigurationFunctions.cs:18`,
+    `EmulationVideoProcessingCatalog.cs:61`, `EmulationResourceKeys.cs:50`, les douze clés dans les
+    30 ressources `Emulation.resx` via Argos (corrections françaises à
+    `fr-FR/Emulation.resx:704`), `EmulationVideoProcessingSettingsSection.cs:319`,
+    `CpuLedMatrixVideoProcessingPasses.cs:6`, `CpuEmulationVideoProcessingPipeline.cs:318`,
+    `OpenGlVideoSurface.cs:130`, `VeldridVideoSurface.cs:97`, puis les tests aux lignes `41`, `207`,
+    `1714` et `37` de leurs fichiers respectifs.
+  - Vérifications terminées avant cochage : ciblage normalisation/persistance/interface/localisation,
+    rendu LED et matrice quatre renderers `7/7`, classes complètes configuration/localisation/interface
+    `18/18`, compilation GWGUI.App sans avertissement ni erreur et `git diff --check` sans erreur.
+
+- **2026-09-02 — Matrice de points distincte de la matrice LED et des segments**
+  - Question : quels paramètres permettent une simulation utile depuis une frame raster sans
+    confondre matrice de points LCD, matrice LED et futur affichage à segments ?
+  - Décision : ajouter une technologie exclusive `Matrice de points` avec palettes LCD vert, LCD
+    gris, ambre ou bleu, forme ronde ou carrée, taille `55`, contraste `70` et réponse `120 ms` par
+    défaut. Taille et contraste utilisent `0..100`, la réponse `0..1000 ms`.
+  - Motif : les références Crystalfontz et Newhaven confirment la matrice LCD et une taille de point
+    matérielle. La passe originale moyenne la luminance par cellule, masque chaque point et interpole
+    fond/encre ; un historique séparé applique la réponse exponentielle, sans actif ni code tiers.
+  - Compatibilité : technologie exclusive des autres affichages, compatible avec tous les scalers,
+    restaurations et réglages généraux ; repli CPU commun déterministe pour WPF, OpenGL, Direct3D 11
+    et Vulkan.
+  - Modifications réalisées : `docs/reference/emulation-video-filters.md`,
+    `EmulationVideoDisplayTechnology.cs:12`, `EmulationDotMatrixPalette.cs:3`,
+    `EmulationDotMatrixShape.cs:3`, `EmulationDotMatrixVideoConfiguration.cs:5`,
+    `EmulationVideoProcessingConfiguration.cs:18`,
+    `EmulationVideoProcessingConfigurationFunctions.cs:19`,
+    `EmulationVideoProcessingCatalog.cs:66`, `EmulationResourceKeys.cs`, les douze clés dans les
+    30 ressources `Emulation.resx` via Argos (corrections françaises à
+    `fr-FR/Emulation.resx:716`), `EmulationVideoProcessingSettingsSection.cs:339`,
+    `CpuDotMatrixVideoProcessingPasses.cs:6`, `CpuEmulationVideoProcessingPipeline.cs:255`,
+    `OpenGlVideoSurface.cs:132`, `VeldridVideoSurface.cs:99`, puis les tests aux lignes `43`, `221`,
+    `1768` et `39` de leurs fichiers respectifs.
+  - Vérifications terminées avant cochage : ciblage normalisation/persistance/interface/localisation,
+    rendu spatial/temporel et matrice quatre renderers `7/7`, classes complètes
+    configuration/localisation/interface `18/18`, compilation GWGUI.App sans avertissement ni erreur
+    et `git diff --check` sans erreur.
+
+- **2026-09-02 — Affichages à 7, 14 et 16 segments**
+  - Question : comment rendre un affichage à segments depuis une frame raster sans prétendre décoder
+    les chiffres ou caractères propres à une machine ?
+  - Décision : ajouter une technologie exclusive avec dispositions 7, 14 ou 16 segments, couleurs
+    rouge, verte, ambre, bleue ou blanche, épaisseur `55`, contraste `80`, halo `20` et réponse
+    `30 ms` par défaut ; les trois intensités utilisent `0..100` et la réponse `0..1000 ms`.
+  - Motif : les fiches Broadcom confirment les géométries sept et quatorze segments, l’émission LED
+    uniforme et l’intérêt d’une surface contrastée. La passe reste une approximation raster
+    géométrique, complétée par seize segments, sans décodage sémantique ni actif ou code tiers.
+  - Compatibilité : technologie exclusive des autres affichages, compatible avec tous les scalers,
+    restaurations et réglages généraux ; historique de réponse séparé et repli CPU commun
+    déterministe pour WPF, OpenGL, Direct3D 11 et Vulkan.
+  - Modifications réalisées : `docs/reference/emulation-video-filters.md`,
+    `EmulationVideoDisplayTechnology.cs:13`, `EmulationSegmentDisplayLayout.cs:3`,
+    `EmulationSegmentDisplayColor.cs:3`, `EmulationSegmentDisplayVideoConfiguration.cs:5`,
+    `EmulationVideoProcessingConfiguration.cs:19`,
+    `EmulationVideoProcessingConfigurationFunctions.cs:20`,
+    `EmulationVideoProcessingCatalog.cs:71`, `EmulationResourceKeys.cs`, les quinze clés dans les
+    30 ressources `Emulation.resx` via Argos (corrections françaises à
+    `fr-FR/Emulation.resx:728`), `EmulationVideoProcessingSettingsSection.cs:363`,
+    `CpuSegmentDisplayVideoProcessingPasses.cs:6`, `CpuEmulationVideoProcessingPipeline.cs:298`,
+    `OpenGlVideoSurface.cs:133`, `VeldridVideoSurface.cs:100`, puis les tests aux lignes `45`, `235`,
+    `1839` et `41` de leurs fichiers respectifs.
+  - Vérifications terminées avant cochage : ciblage normalisation/persistance/interface/localisation,
+    géométrie/couleurs/halo/réponse et matrice quatre renderers `7/7`, classes complètes
+    configuration/localisation/interface `18/18`, compilation GWGUI.App sans avertissement ni erreur
+    et `git diff --check` sans erreur.
+
+- **2026-09-02 — Papier électronique à palette et historique dédiés**
+  - Question : quels paramètres rendent le papier électronique utile sans le réduire à un simple
+    filtre niveaux de gris ni dupliquer la réponse LCD ?
+  - Décision : ajouter une technologie exclusive avec modes monochrome, seize niveaux de gris ou
+    4096 couleurs, contraste `70`, tramage `35`, rafraîchissement `500 ms` et image fantôme `20` par
+    défaut ; les intensités utilisent `0..100` et le rafraîchissement `0..1000 ms`.
+  - Motif : E Ink documente seize gris, 4096 couleurs, le tramage, les vitesses de rafraîchissement et
+    le ghosting. La passe originale quantifie avec une matrice Bayer et utilise un historique propre,
+    sans code ni actif tiers.
+  - Compatibilité : technologie exclusive des autres affichages, compatible avec tous les scalers,
+    restaurations et réglages généraux ; repli CPU commun déterministe pour WPF, OpenGL,
+    Direct3D 11 et Vulkan.
+  - Modifications réalisées : `docs/reference/emulation-video-filters.md`,
+    `EmulationVideoDisplayTechnology.cs:14`, `EmulationEPaperColorMode.cs:3`,
+    `EmulationEPaperVideoConfiguration.cs:5`, `EmulationVideoProcessingConfiguration.cs:20`,
+    `EmulationVideoProcessingConfigurationFunctions.cs:22`,
+    `EmulationVideoProcessingCatalog.cs:77`, `EmulationResourceKeys.cs`, les neuf clés dans les
+    30 ressources `Emulation.resx` via Argos (corrections françaises à
+    `fr-FR/Emulation.resx:743`), `EmulationVideoProcessingSettingsSection.cs:392`,
+    `CpuEPaperVideoProcessingPasses.cs:6`, `CpuEmulationVideoProcessingPipeline.cs:341`,
+    `OpenGlVideoSurface.cs:134`, `VeldridVideoSurface.cs:101`, puis les tests aux lignes `48`, `249`,
+    `1911` et `43` de leurs fichiers respectifs.
+  - Vérifications terminées avant cochage : ciblage normalisation/persistance/interface/localisation,
+    modes/contraste/tramage/rafraîchissement/ghosting et matrice quatre renderers `7/7`, classes
+    complètes configuration/localisation/interface `18/18`, compilation GWGUI.App sans avertissement
+    ni erreur et `git diff --check` sans erreur.
+
+- **2026-09-02 — Projection à traitement optique raster**
+  - Question : la projection apporte-t-elle un rendu distinct des technologies d’écran déjà
+    présentes, et quels réglages peuvent rester compréhensibles et bornés ?
+  - Décision : ajouter une technologie exclusive avec flou optique `20`, diffusion lumineuse `15`,
+    texture de toile `10` et convergence RGB `5` par défaut, chaque intensité étant réglable sur
+    `0..100`. La convergence translate le rouge et le bleu autour du vert jusqu’à trois pixels.
+  - Motif : la documentation Epson distingue l’alignement des panneaux rouge et bleu sur le vert et
+    l’influence de la surface de projection. Une passe originale reproduit ces propriétés sans code,
+    shader ni actif tiers ; elle reste sous licence MIT.
+  - Compatibilité : technologie exclusive des autres affichages, compatible avec tous les scalers,
+    restaurations et réglages généraux ; traitement spatial sans historique, avec repli CPU commun
+    déterministe pour WPF, OpenGL, Direct3D 11 et Vulkan.
+  - Modifications réalisées : `docs/reference/emulation-video-filters.md`,
+    `EmulationVideoDisplayTechnology.cs:15`, `EmulationProjectionVideoConfiguration.cs:3`,
+    `EmulationVideoProcessingConfiguration.cs:21`,
+    `EmulationVideoProcessingConfigurationFunctions.cs:23`,
+    `EmulationVideoProcessingCatalog.cs:82`, `EmulationResourceKeys.cs:54`, les cinq clés dans les
+    30 ressources `Emulation.resx` via Argos (corrections françaises dans `fr-FR/Emulation.resx`),
+    `EmulationVideoProcessingSettingsSection.cs:414`,
+    `CpuProjectionVideoProcessingPasses.cs:5`, `CpuEmulationVideoProcessingPipeline.cs:475`,
+    `OpenGlVideoSurface.cs:135`, `VeldridVideoSurface.cs:102`, puis les tests de configuration,
+    interface et rendu, dont `EmulationVideoProcessingPipelineTests.cs:1973`.
+  - Vérifications terminées avant cochage : ciblage normalisation/persistance/interface/localisation,
+    flou/diffusion/texture/convergence et matrice quatre renderers `7/7`, classes complètes
+    configuration/localisation/interface `18/18`, compilation GWGUI.App sans avertissement ni erreur
+    et `git diff --check` sans erreur.
+
+- **2026-09-02 — Rémanence générale indépendante des technologies d’écran**
+  - Question : comment proposer une traînée lumineuse générale sans confondre son intensité avec le
+    temps de réponse ou la persistance interne des LCD/OLED et autres affichages spécialisés ?
+  - Décision : ajouter un contrat temporel indépendant et un panneau permanent. `Rémanence générale`
+    utilise une intensité `0..100`, neutre et initialisée à `0`, puis conserve par maximum une part de
+    l’unique frame précédente ; aucune durée en millisecondes n’est introduite.
+  - Motif : la spécification slang valide le besoin architectural d’un historique de frames, sans que
+    GW GUI ne reprenne de shader ni de code tiers. L’algorithme original, sous MIT, possède son propre
+    historique et intervient après les réponses propres aux technologies d’écran.
+  - Compatibilité : compatible avec toutes les technologies, scalers, restaurations et réglages
+    généraux ; une valeur nulle, une première frame, un changement de taille, une séquence non
+    croissante ou la destruction du pipeline réinitialisent l’historique. Les quatre renderers
+    utilisent le pipeline CPU commun lorsque l’effet est actif.
+  - Modifications réalisées : `docs/reference/emulation-video-filters.md`,
+    `EmulationTemporalVideoConfiguration.cs:3`, `EmulationVideoProcessingConfiguration.cs`,
+    `EmulationVideoProcessingConfigurationFunctions.cs:41`,
+    `EmulationVideoProcessingCatalog.cs:18`, `EmulationResourceKeys.cs:94`, les deux clés dans les
+    30 ressources `Emulation.resx` via Argos (correction française à `fr-FR/Emulation.resx:758`),
+    `EmulationVideoProcessingSettingsSection.cs:138`,
+    `CpuEmulationVideoProcessingPipeline.cs:389`, `OpenGlVideoSurface.cs:130`,
+    `VeldridVideoSurface.cs:97`, puis les tests aux lignes `35`, `60`, `275` et `1977` de leurs
+    fichiers respectifs.
+  - Vérifications terminées avant cochage : normalisation/persistances Amiga et Atari/interface/effet
+    et remises à zéro ciblés `5/5`, matrice quatre renderers `1/1`, classes complètes
+    configuration/interface `16/16` et localisation `2/2`, compilation GWGUI.App sans avertissement
+    ni erreur ; contrôle final de format réalisé séparément juste avant cochage.
+
+- **2026-09-02 — Flou de mouvement limité à la frame précédente**
+  - Question : comment différencier le flou de mouvement de la rémanence générale déjà cumulative ?
+  - Décision : ajouter une intensité indépendante `0..100`, neutre et initialisée à `0`, qui mélange
+    la frame courante avec la précédente puis mémorise la frame courante non mélangée. L’effet reste
+    donc limité à une seule frame.
+  - Motif : l’historique de frames prévu par la spécification slang convient à l’architecture, mais
+    l’algorithme est original, sous MIT, sans code, shader, coefficient ni actif tiers.
+  - Compatibilité : compatible avec toutes les technologies et tous les traitements indépendants ;
+    historique séparé réinitialisé à la première frame, à zéro, au redimensionnement, en cas de
+    séquence non croissante ou à la destruction. Il précède la rémanence générale dans la chaîne.
+  - Modifications réalisées : `docs/reference/emulation-video-filters.md`,
+    `EmulationTemporalVideoConfiguration.cs:5`,
+    `EmulationVideoProcessingConfigurationFunctions.cs:44`,
+    `EmulationVideoProcessingCatalog.cs:19`, `EmulationResourceKeys.cs:95`, la clé ajoutée aux
+    30 ressources `Emulation.resx` via Argos, `EmulationVideoProcessingSettingsSection.cs:144`,
+    `CpuEmulationVideoProcessingPipeline.cs`, `OpenGlVideoSurface.cs:131`,
+    `VeldridVideoSurface.cs:98`, puis les tests aux lignes `35`, `61`, `279` et `2023` de leurs
+    fichiers respectifs.
+  - Vérifications terminées avant cochage : normalisation/persistances/interface/localisation/effet
+    ciblés `7/7`, matrice quatre renderers `1/1`, classes complètes configuration/localisation/interface
+    `18/18` ; compilation et contrôle de format finaux réalisés juste avant cochage.
+
+- **2026-09-02 — Scintillement modulé distinct des images noires**
+  - Question : comment rendre le scintillement visible sans anticiper ni dupliquer l’insertion
+    d’images noires prévue par une autre tâche ?
+  - Décision : ajouter une intensité indépendante `0..100`, neutre et initialisée à `0`. Les frames
+    impaires sont atténuées jusqu’à `50 %`, les frames paires restent intactes ; aucune frame n’est
+    supprimée, même à l’intensité maximale.
+  - Motif : la modulation par `VideoFrame.Sequence` est déterministe, ne requiert aucun historique et
+    constitue une formule originale sous MIT, sans code, shader, coefficient ni actif tiers.
+  - Compatibilité : compatible avec toutes les technologies, scalers, restaurations et effets
+    temporels ; elle intervient avant le flou de mouvement et la rémanence générale. Les quatre
+    renderers utilisent le pipeline CPU commun lorsque l’effet est actif.
+  - Modifications réalisées : `docs/reference/emulation-video-filters.md`,
+    `EmulationTemporalVideoConfiguration.cs`,
+    `EmulationVideoProcessingConfigurationFunctions.cs`,
+    `EmulationVideoProcessingCatalog.cs`, `EmulationResourceKeys.cs`, la clé dans les 30 ressources
+    `Emulation.resx` via Argos (correction française en `Scintillement`),
+    `EmulationVideoProcessingSettingsSection.cs`, `CpuEmulationVideoProcessingPipeline.cs`,
+    `OpenGlVideoSurface.cs`, `VeldridVideoSurface.cs`, puis les tests de configuration, interface,
+    alternance bornée et matrice quatre renderers.
+  - Vérifications terminées avant cochage : ciblage configuration/persistances/interface/localisation
+    et rendu `7/7`, matrice quatre renderers `1/1`, classes complètes
+    configuration/localisation/interface `18/18` ; compilation et contrôle de format finaux réalisés
+    juste avant cochage.
+
+- **2026-09-02 — Entrelacement simulé séparé du désentrelacement**
+  - Question : comment ajouter un effet entrelacé sans le confondre avec la correction de sources
+    entrelacées déjà placée dans la restauration ?
+  - Décision : ajouter une intensité indépendante `0..100`, neutre et initialisée à `0`, qui atténue
+    alternativement les lignes paires et impaires selon `VideoFrame.Sequence`, avec un plancher de
+    `25 %` à l’intensité maximale.
+  - Motif : l’effet agit après le rendu pour créer volontairement des champs alternés, tandis que le
+    désentrelacement agit avant redimensionnement sur une source existante. La formule est originale,
+    déterministe, sans historique ni actif tiers, sous MIT.
+  - Compatibilité : compatible avec toutes les technologies, scalers, restaurations et autres effets
+    temporels ; le repli CPU commun garantit le même résultat sur les quatre renderers.
+  - Modifications réalisées : `docs/reference/emulation-video-filters.md`, le contrat temporel, sa
+    normalisation et son catalogue, la constante de localisation, la clé générée par Argos dans les
+    30 ressources `Emulation.resx`, le panneau temporel, le pipeline CPU, les replis OpenGL/Veldrid,
+    puis les tests de bornage, persistance, interface, alternance des champs et quatre renderers.
+  - Vérifications terminées avant cochage : ciblage configuration/persistances/interface/localisation
+    et rendu `7/7`, matrice quatre renderers `1/1`, classes complètes
+    configuration/localisation/interface `18/18` ; compilation et contrôle de format finaux réalisés
+    juste avant cochage.
+
+- **2026-09-02 — Insertion d’images noires appliquée en dernier**
+  - Question : comment garantir que cette option reste différente du scintillement et qu’un autre
+    traitement temporel ne rééclaire pas la frame noire ?
+  - Décision : ajouter un interrupteur indépendant, désactivé par défaut, qui conserve les séquences
+    paires et met entièrement à noir les séquences impaires. La passe est la dernière de la chaîne.
+  - Motif : l’alternance déterministe par `VideoFrame.Sequence` ne demande aucun historique et la
+    position finale préserve la sémantique BFI. La formule originale reste sous MIT sans actif tiers.
+  - Compatibilité : compatible avec toutes les technologies, scalers, restaurations et effets
+    temporels ; distincte du scintillement qui conserve au moins la moitié de la lumière. Les quatre
+    renderers utilisent le pipeline CPU commun lorsque l’option est active.
+  - Modifications réalisées : `docs/reference/emulation-video-filters.md`, le contrat temporel et son
+    catalogue, la constante de localisation, la clé générée par Argos dans les 30 ressources
+    `Emulation.resx` avec correction française, le panneau temporel, le pipeline CPU, les replis
+    OpenGL/Veldrid, puis les tests de persistance, interface, ordre final et quatre renderers.
+  - Vérifications terminées avant cochage : ciblage persistances/interface/localisation/rendu `6/6`,
+    matrice quatre renderers `1/1`, classes complètes configuration/localisation/interface `18/18` ;
+    compilation et contrôle de format finaux réalisés juste avant cochage.
+
+- **2026-09-02 — Simulation composite GW GUI sans duplication moteur**
+  - Question : l’effet composite peut-il être proposé sans recréer les normes, timings ou artefacts
+    déjà produits par PUAE, Hatari ou Atari800 ?
+  - Décision : créer un panneau permanent `Simulations de signal` et une intensité composite
+    `0..100`, neutre à `0`, qui agit uniquement sur le `VideoFrame` déjà produit. Les options moteur
+    PAL/NTSC, fréquence, région et artifacting ne sont ni lues, ni écrites, ni remplacées.
+  - Motif : le catalogue common-shaders confirme la famille visuelle, tandis que l’audit des moteurs
+    réserve la génération du signal à l’émulateur. La passe originale limite la chrominance, adoucit
+    la luminance horizontalement et ajoute une faible alternance de phase ; elle reste sous MIT sans
+    reprise de code ou d’actif tiers.
+  - Compatibilité : compatible avec toutes les technologies et traitements ; placée après restauration
+    et avant scaler. WPF, OpenGL, Direct3D 11 et Vulkan partagent le repli CPU déterministe lorsqu’elle
+    est active.
+  - Modifications réalisées : `docs/reference/emulation-video-filters.md`,
+    `EmulationSignalSimulationConfiguration.cs`, le contrat vidéo principal, sa normalisation et le
+    catalogue, les constantes de localisation, deux clés générées via Argos dans les 30 ressources,
+    le panneau permanent, `CpuCompositeVideoProcessingPasses.cs`, le pipeline CPU, les replis
+    OpenGL/Veldrid, puis les tests de bornage, persistance, interface, phases composite et renderers.
+  - Vérifications terminées avant cochage : ciblage configuration/persistances/interface/localisation
+    et rendu `7/7`, matrice quatre renderers `1/1`, classes complètes
+    configuration/localisation/interface `18/18` ; compilation et contrôle de format finaux réalisés
+    juste avant cochage.
+
+- **2026-09-02 — Simulation S-Video GW GUI à luminance séparée**
+  - Question : comment rendre S-Video distinct de composite sans recréer une option de connectique du
+    moteur ?
+  - Décision : ajouter une intensité post-traitement `0..100`, neutre à `0`, qui préserve la luminance
+    linéaire et ne lisse que la chrominance horizontale à hauteur maximale de `12 %`, sans phase ni
+    dot crawl.
+  - Motif : cette séparation reproduit la différence visuelle utile avec composite tout en agissant
+    uniquement sur le `VideoFrame`. La passe originale reste sous MIT sans reprise tierce.
+  - Compatibilité : compatible avec toutes les technologies et traitements ; les simulations
+    explicitement demandées peuvent se composer, mais aucune norme, région, fréquence ou option
+    d’artifacting du moteur n’est lue ou modifiée. Repli CPU commun sur les quatre renderers.
+  - Modifications réalisées : référence, contrat et normalisation des simulations, catalogue et
+    localisation, clé Argos dans 30 ressources, panneau, `CpuSVideoVideoProcessingPasses.cs`, pipeline,
+    replis GPU, tests de persistance/interface, indépendance de séquence et luminance linéaire.
+  - Vérifications terminées avant cochage : après correction du test pour mesurer la lumière linéaire,
+    ciblage S-Video vert, matrice quatre renderers `1/1`, classes complètes
+    configuration/localisation/interface `18/18` ; compilation et format vérifiés juste avant cochage.
+
+- **2026-09-02 — Simulation RF GW GUI déterministe**
+  - Question : comment évoquer une transmission RF sans toucher au tuner, à la fréquence ou à la
+    région du moteur ?
+  - Décision : ajouter une intensité post-traitement `0..100`, neutre à `0`, qui adoucit
+    horizontalement l’image puis ajoute un bruit commun borné à `±8 %`, déterminé par position et
+    numéro de frame.
+  - Motif : cette dégradation reste visuelle et reproductible, sans état global, tout en étant
+    distincte de composite et S-Video. La passe originale reste sous MIT sans reprise tierce.
+  - Compatibilité : compatible avec toutes les technologies et traitements ; aucune option moteur
+    n’est lue ou modifiée. Repli CPU commun sur WPF, OpenGL, Direct3D 11 et Vulkan.
+  - Modifications réalisées : référence, contrat/normalisation/catalogue/localisation RF, clé Argos
+    dans 30 ressources, panneau, `CpuRfVideoProcessingPasses.cs`, pipeline, replis GPU et tests de
+    persistance/interface, déterminisme, changement de séquence et renderers.
+  - Vérifications terminées avant cochage : ciblage RF `7/7`, matrice quatre renderers `1/1`, classes
+    complètes configuration/localisation/interface `18/18` ; compilation et format vérifiés juste
+    avant cochage.
+
+- **2026-09-02 — Simulation PAL GW GUI sans changement de norme**
+  - Question : comment évoquer PAL sans modifier le standard ou les timings déjà gérés par le moteur ?
+  - Décision : intensité post-traitement `0..100`, neutre à `0`, mélange chromatique vertical borné
+    et faible phase alternée `±2,5 %` selon la parité des lignes, indépendante de la séquence.
+  - Motif : l’effet reste uniquement visuel ; la norme, la région et la fréquence demeurent des
+    options moteur. Passe originale MIT sans reprise tierce.
+  - Compatibilité : toutes technologies et traitements, repli CPU commun sur les quatre renderers.
+  - Modifications : référence, contrat/normalisation/catalogue/localisation PAL, clé Argos dans
+    30 ressources, panneau, `CpuPalVideoProcessingPasses.cs`, pipeline, replis GPU et tests.
+  - Vérifications : ciblage PAL `7/7`, matrice quatre renderers `1/1`, classes complètes
+    configuration/localisation/interface `18/18` ; compilation et format vérifiés avant cochage.
+
+- **2026-09-02 — Simulation NTSC GW GUI sans changement de norme**
+  - Question : comment évoquer NTSC sans modifier standard, fréquence, région ou timing du moteur ?
+  - Décision : intensité post-traitement `0..100`, neutre à `0`, avec léger mélange de luminance,
+    retard chromatique horizontal et phase de teinte à trois états reproductible par séquence.
+  - Motif : l’effet reste visuel et explicitement nommé ; passe originale MIT sans reprise tierce.
+  - Compatibilité : toutes technologies et traitements, repli CPU commun sur les quatre renderers,
+    aucune option moteur lue ou modifiée.
+  - Modifications : référence, contrat/normalisation/catalogue/localisation NTSC, clé Argos dans
+    30 ressources avec correction française, panneau, `CpuNtscVideoProcessingPasses.cs`, pipeline,
+    replis GPU et tests de déterminisme, phase et renderers.
+  - Vérifications : ciblage NTSC `7/7`, matrice quatre renderers `1/1`, classes complètes
+    configuration/localisation/interface `18/18` ; compilation et format vérifiés avant cochage.
+
+- **2026-09-02 — Grain stylistique distinct du bruit RF**
+  - Question : comment ajouter du grain sans réutiliser ni confondre le bruit de transmission RF ?
+  - Décision : nouveau contrat et panneau `Effets stylistiques`, intensité `0..100` neutre à `0`,
+    bruit monochrome déterministe borné à `±7 %` et appliqué à la résolution de sortie.
+  - Motif : RF reste une dégradation du signal avant scaler ; le grain est un effet final fin. Passe
+    originale MIT sans code, texture ou actif tiers.
+  - Compatibilité : toutes technologies et traitements, repli CPU commun sur les quatre renderers.
+  - Modifications : référence, contrat stylistique, configuration/normalisation/catalogue,
+    localisation et deux clés Argos dans 30 ressources avec correction française, panneau,
+    `CpuGrainVideoProcessingPasses.cs`, pipeline, replis GPU et tests.
+  - Vérifications : ciblage grain `7/7`, matrice quatre renderers `1/1`, classes complètes
+    configuration/localisation/interface `18/18` ; compilation et format vérifiés avant cochage.
+
+- **2026-09-02 — VHS déterministe à la résolution de sortie**
+  - Question : quels défauts VHS restent distincts du grain et des simulations de signal ?
+  - Décision : intensité `0..100` neutre à `0`, décalage par ligne jusqu’à trois pixels, bavure rouge
+    et bleue jusqu’à `45 %`, et atténuation déterministe d’une ligne sur dix-sept.
+  - Motif : effet stylistique final original MIT, sans code ni actif tiers.
+  - Compatibilité : toutes technologies et traitements ; repli CPU commun aux quatre renderers.
+  - Modifications : référence, contrat/normalisation/catalogue/localisation VHS, clé Argos dans
+    30 ressources, panneau, `CpuVhsVideoProcessingPasses.cs`, pipeline, replis GPU et tests.
+  - Vérifications : test VHS corrigé pour comparer les lignes en excluant alpha et tenir compte du
+    transfert sRGB, matrice quatre renderers `1/1`, classes complètes `18/18` ; build et format avant coche.
+
+- **2026-09-02 — Aberration chromatique spatiale et déterministe**
+  - Question : quelle séparation RGB reste lisible sans devenir une seconde simulation de signal ?
+  - Décision : intensité `0..100` neutre à `0`, rouge et bleu décalés en sens opposés jusqu’à
+    trois pixels avec interpolation, vert conservé et bords pincés.
+  - Motif : effet stylistique final original MIT, sans code, shader, texture ni actif tiers.
+  - Compatibilité : toutes technologies et traitements ; après VHS, avant grain et effets
+    temporels ; repli CPU commun aux quatre renderers.
+  - Modifications : référence, contrat/normalisation/catalogue/localisation, clé Argos dans
+    30 ressources, panneau, `CpuChromaticAberrationVideoProcessingPasses.cs`, pipeline, replis GPU
+    et tests.
+  - Vérifications : test dédié `1/1`, matrice quatre renderers `1/1`, classes complètes
+    configuration/localisation/UI `18/18` ; build et format avant coche.
+
+- **2026-09-02 — Bloom borné des hautes lumières**
+  - Question : comment proposer un bloom général sans dupliquer les halos propres aux technologies ?
+  - Décision : intensité `0..100` neutre à `0`, seuil linéaire à `60 %`, diffusion dans un
+    rayon de deux pixels et réaddition bornée à `35 %`.
+  - Motif : effet stylistique final original MIT, sans code, shader, texture ni actif tiers.
+  - Compatibilité : toutes technologies et traitements ; les halos CRT, vectoriel et VFD restent
+    des paramètres distincts ; repli CPU commun aux quatre renderers.
+  - Modifications : référence, contrat/normalisation/catalogue/localisation Bloom, clé Argos dans
+    30 ressources, panneau, `CpuBloomVideoProcessingPasses.cs`, pipeline, replis GPU et tests.
+  - Vérifications : test dédié `1/1`, matrice quatre renderers `1/1`, classes complètes
+    configuration/localisation/UI `18/18` ; build et format avant coche.
+
+- **2026-09-02 — Sépia progressif en lumière linéaire**
+  - Question : quelle transformation sépia reste progressive et préserve un état réellement neutre ?
+  - Décision : intensité `0..100` neutre à `0`, luminance Rec. 709 puis cible chaude
+    `1,07 / 0,93 / 0,74`, mélangée à la couleur source et bornée.
+  - Motif : effet stylistique final original MIT, sans code, shader, texture ni actif tiers.
+  - Compatibilité : toutes technologies et traitements ; les niveaux de gris appliqués ensuite
+    retirent explicitement la teinte ; repli CPU commun aux quatre renderers.
+  - Modifications : référence, contrat/normalisation/catalogue/localisation Sépia, clé Argos dans
+    30 ressources, panneau, `CpuSepiaVideoProcessingPasses.cs`, pipeline, replis GPU et tests.
+  - Vérifications : test dédié `1/1`, matrice quatre renderers `1/1`, classes complètes
+    configuration/localisation/UI `18/18` ; build et format avant coche.
+
+- **2026-09-02 — Niveaux de gris progressifs par luminance**
+  - Question : comment distinguer l’effet global des palettes et modes monochromes des écrans ?
+  - Décision : intensité `0..100` neutre à `0`, luminance linéaire Rec. 709 mélangée aux trois
+    composantes ; à `100`, RGB sont égaux sans modifier la technologie choisie.
+  - Motif : effet stylistique final original MIT, sans code, shader, texture ni actif tiers.
+  - Compatibilité : toutes technologies et traitements ; après sépia, dont la teinte est retirée
+    à intensité maximale ; repli CPU commun aux quatre renderers.
+  - Modifications : référence, contrat/normalisation/catalogue/localisation Grayscale, clé Argos
+    dans 30 ressources avec correction française « Niveaux de gris », panneau,
+    `CpuGrayscaleVideoProcessingPasses.cs`, pipeline, replis GPU et tests.
+  - Vérifications : test dédié `1/1`, matrice quatre renderers `1/1`, classes complètes
+    configuration/localisation/UI `18/18` ; build et format avant coche.
+
+- **2026-09-02 — Validation réelle finale du point 7**
+  - Question : comment couvrir rapidement les transitions d’affichage sans confondre les options
+    natives des moteurs avec les traitements communs de GW GUI ?
+  - Décision : utiliser une seule instance Debug, conserver les réglages dans leurs configurations
+    Amiga et Atari respectives, puis compléter l’observation réelle Direct3D 11 par la matrice
+    automatisée des quatre renderers et du repli WPF.
+  - Modifications vérifiées : configurations Amiga `be1c4348b0a84927b53a29e940251e6f`
+    et Atari `6c532ba3b52f451680029fa836a020fc`; aucune modification de code supplémentaire.
+  - Vérifications : même PID `12004` pour Amiga et Atari ; technologies CRT et Plasma persistées
+    séparément ; Amiga 1200 ouvert en Direct3D 11 ; redimensionnement et plein écran fonctionnels ;
+    matrices WPF/OpenGL/Direct3D 11/Vulkan et repli WPF couvertes par les tests ciblés ; fermeture
+    propre ; journal d’erreurs inchangé à `13 227` octets ; suite finale `145/145` réussie.
+
+- [x] Créer le document de recherche avant d’y inscrire des résultats
+  - [x] Créer le fichier vide docs/reference/emulation-video-filters.md.
+  - [x] Modifier docs/reference/emulation-video-filters.md pour décrire le périmètre, distinguer les filtres réalisés par GW GUI des options de signal fournies par les émulateurs et reprendre les questions encore ouvertes de la section Filtres vidéo.
+
+- [x] Établir le catalogue depuis les sources de référence
+  - [x] Modifier docs/reference/emulation-video-filters.md à partir de la documentation officielle Libretro et des catalogues officiels slang-shaders et common-shaders pour recenser les familles de filtres, notamment CRT, scanlines, LCD et moiré horizontal ou vertical, avec un lien vers chaque source consultée.
+  - [x] Modifier docs/reference/emulation-video-filters.md pour inscrire, pour chaque filtre ou famille, son effet, ses réglages utiles, ses dépendances éventuelles, ses combinaisons connues et son statut de licence ; ne recopier aucun code de shader dont la licence n’autorise pas clairement l’usage retenu.
+  - [x] Modifier docs/reference/emulation-video-filters.md après examen des moteurs Amiga et Atari utilisés par le projet pour séparer leurs options RGB, composite, S-Video, RF, PAL, NTSC ou équivalentes des effets propres à GW GUI.
+  - [x] Modifier docs/reference/emulation-video-filters.md pour inclure les filtres utiles aux futures machines sans limiter le catalogue aux capacités Amiga et Atari actuelles.
+
+- [x] Comparer le catalogue aux quatre surfaces de rendu actuelles
+  - [x] Modifier docs/reference/emulation-video-filters.md après examen de src/GWGUI.App/Interfaces/Rendering/Emulation/IEmulationVideoSurface.cs, src/GWGUI.App/Presenters/Emulation/Machine/MachineVideoPresenter.cs, src/GWGUI.App/Rendering/Emulation/Surfaces/WpfVideoSurface.cs, src/GWGUI.App/Rendering/Emulation/Surfaces/OpenGlVideoSurface.cs et src/GWGUI.App/Rendering/Emulation/Surfaces/VeldridVideoSurface.cs pour décrire où les pixels sont disponibles et où un traitement commun peut être appliqué.
+  - [x] Modifier docs/reference/emulation-video-filters.md pour comparer WPF, OpenGL, Direct3D 11 et Vulkan pour chaque famille de filtre, indiquer ce qui peut partager une définition et ce qui exige une implémentation de backend, sans choisir silencieusement de supprimer un renderer.
+  - [x] Modifier docs/reference/emulation-video-filters.md pour décrire l’effet du traitement envisagé sur Snapshot, le rapport d’aspect, le redimensionnement, le repli actuel vers WPF et l’application immédiate à une instance ouverte.
+
+- [x] Valider les groupes, compatibilités et réglages avant l’architecture définitive
+  - [x] Modifier docs/reference/emulation-video-filters.md pour proposer, à partir du catalogue établi, les groupes logiques, les combinaisons compatibles et les incompatibilités nécessitant la confirmation décrite dans la demande.
+  - [x] Modifier docs/reference/emulation-video-filters.md pour proposer les présélections et les réglages propres à chaque fonctionnalité, sans dupliquer luminosité, contraste, gamma, saturation et netteté.
+  - [x] Modifier docs/reference/emulation-video-filters.md après validation pour remplacer les propositions par les technologies, sous-choix, compatibilités et familles ultérieures retenus.
+  - [x] Modifier docs/tasks/interface/emulation-improvements.md pour inscrire toutes les décisions fonctionnelles déjà validées sans marquer comme validés le gamma, Snapshot ou les valeurs exactes des présélections.
+  - [x] Déterminer la plage, la valeur neutre et la conversion du gamma, puis modifier docs/reference/emulation-video-filters.md et la section Filtres vidéo du présent document avec la décision exacte.
+  - [x] Déterminer si Snapshot contient l’image traitée ou l’image brute, puis inscrire cette décision dans docs/reference/emulation-video-filters.md et docs/architecture/emulation.md.
+  - [x] Déterminer le nom, le contenu et les valeurs exactes des présélections avant de créer leurs constantes ou leurs ressources.
+
+- [x] Inscrire l’architecture validée sans commencer son implémentation
+  - [x] Modifier docs/architecture/emulation.md pour décrire la séparation validée entre configuration commune, catalogue de filtres, chaîne de traitement et implémentations propres aux backends.
+  - [x] Modifier docs/architecture/emulation.md pour décrire l’enregistrement par configuration de machine, l’application immédiate à la seule instance correspondante et l’utilisation au prochain démarrage lorsqu’aucune instance n’est ouverte.
+  - [x] Modifier docs/architecture/emulation.md pour décrire l’emplacement unique des contrôles dans l’onglet Vidéo, la séparation visuelle avec les options internes de l’émulateur et le maintien permanent des cinq réglages généraux.
+  - [x] Modifier docs/tasks/interface/emulation-improvements.md pour ajouter la checklist d’implémentation progressive donnant les fichiers et actions retenus ; ne créer ni contrat, ni shader, ni contrôle pendant cette seule tâche documentaire.
+
+### Checklist d’implémentation progressive — socle validé, à exécuter tâche par tâche
+
+Chaque dernière case ci-dessous est une modification atomique. Elle doit laisser le projet compilable, être vérifiée, puis être cochée avant la suivante. Les shaders Libretro restent uniquement des références tant que la licence du fichier exact et de toutes ses dépendances n’est pas inscrite dans docs/reference/emulation-video-filters.md.
+
+- [x] Auditer la checklist avant de commencer le code
+  - [x] Vérifier les dossiers de responsabilités, les projets, les surfaces, les configurations, les tests et le script de traduction réellement présents dans le dépôt.
+  - [x] Ajouter les tâches atomiques oubliées pour les types communs, les fonctions, les présélections, Snapshot, Argos et leurs tests sans déplacer de responsabilité vers un mauvais projet.
+  - [x] Relire la checklist corrigée, vérifier que chaque dépendance précède son utilisation et qu’aucun groupe parent n’est coché avant ses enfants.
+
+- [x] Créer le modèle commun de configuration avant toute interface ou tout shader
+  - [x] Créer les enums communs un par un
+    - [x] Créer le fichier vide src/GWGUI.Emulation/Enums/EmulationVideoDisplayTechnology.cs.
+    - [x] Modifier src/GWGUI.Emulation/Enums/EmulationVideoDisplayTechnology.cs pour déclarer uniquement Normal, Crt, FixedPixel, Plasma et Vector, sans texte visible ni valeur propre à un moteur.
+    - [x] Créer le fichier vide src/GWGUI.Emulation/Enums/EmulationVideoSampling.cs.
+    - [x] Modifier src/GWGUI.Emulation/Enums/EmulationVideoSampling.cs pour déclarer uniquement Nearest, Bilinear, SharpBilinear et Bicubic, sans ajouter les scalers avancés dans ce sélecteur.
+    - [x] Créer le fichier vide src/GWGUI.Emulation/Enums/EmulationCrtColorMode.cs.
+    - [x] Modifier src/GWGUI.Emulation/Enums/EmulationCrtColorMode.cs pour déclarer Color, Green, Amber, White, Gray et Custom sans texte visible.
+    - [x] Créer le fichier vide src/GWGUI.Emulation/Enums/EmulationFixedPixelTechnology.cs.
+    - [x] Modifier src/GWGUI.Emulation/Enums/EmulationFixedPixelTechnology.cs pour déclarer Lcd, LedBacklitLcd et Oled sans dupliquer les réglages communs.
+    - [x] Créer le fichier vide src/GWGUI.Emulation/Enums/EmulationCrtMask.cs.
+    - [x] Modifier src/GWGUI.Emulation/Enums/EmulationCrtMask.cs pour déclarer None, ApertureGrille, ShadowMask et SlotMask sans texte visible.
+    - [x] Créer le fichier vide src/GWGUI.Emulation/Enums/EmulationPatternOrientation.cs.
+    - [x] Modifier src/GWGUI.Emulation/Enums/EmulationPatternOrientation.cs pour déclarer Horizontal et Vertical et le réutiliser pour scanlines et trame volontaire.
+    - [x] Créer le fichier vide src/GWGUI.Emulation/Enums/EmulationSubpixelLayout.cs.
+    - [x] Modifier src/GWGUI.Emulation/Enums/EmulationSubpixelLayout.cs pour déclarer Monochrome, Rgb et Bgr sans dépendance graphique.
+    - [x] Créer le fichier vide src/GWGUI.Emulation/Enums/EmulationVideoPreset.cs.
+    - [x] Modifier src/GWGUI.Emulation/Enums/EmulationVideoPreset.cs avec exactement Normal, CrtArcadeColor, CrtTelevisionColor, CrtGreen, CrtAmber, CrtWhite, LcdColor, LcdMonochrome, LedBacklitLcd, Oled, Plasma et Vector.
+  - [x] Créer les constantes communes avant les contrats qui les consomment
+    - [x] Créer le fichier vide src/GWGUI.Emulation/Constants/EmulationVideoProcessingLimits.cs.
+    - [x] Modifier src/GWGUI.Emulation/Constants/EmulationVideoProcessingLimits.cs avec `-10..+10` pour les cinq réglages généraux, `0..100` pour les intensités et des bornes temporelles explicites en millisecondes, sans valeur de preset.
+    - [x] Créer le fichier vide src/GWGUI.Emulation/Constants/EmulationVideoProcessingDefaults.cs.
+    - [x] Modifier src/GWGUI.Emulation/Constants/EmulationVideoProcessingDefaults.cs avec les seules valeurs neutres communes, sans enum, fonction, dictionnaire ni texte visible.
+  - [x] Créer les contrats sérialisables un par un
+    - [x] Créer le fichier vide src/GWGUI.Emulation/Contracts/EmulationImageAdjustments.cs.
+    - [x] Modifier src/GWGUI.Emulation/Contracts/EmulationImageAdjustments.cs pour transporter les cinq valeurs générales avec leurs valeurs neutres validées, sans conversion graphique.
+    - [x] Créer le fichier vide src/GWGUI.Emulation/Contracts/EmulationCrtVideoConfiguration.cs.
+    - [x] Modifier src/GWGUI.Emulation/Contracts/EmulationCrtVideoConfiguration.cs pour transporter couleur/palette, faisceau, masque, géométrie, scanlines et trame volontaire, sans shader ni ressource WPF.
+    - [x] Créer le fichier vide src/GWGUI.Emulation/Contracts/EmulationFixedPixelVideoConfiguration.cs.
+    - [x] Modifier src/GWGUI.Emulation/Contracts/EmulationFixedPixelVideoConfiguration.cs pour transporter technologie, grille, sous-pixels et réponse temporelle, avec valeurs propres facultatives.
+    - [x] Créer le fichier vide src/GWGUI.Emulation/Contracts/EmulationPlasmaVideoConfiguration.cs.
+    - [x] Modifier src/GWGUI.Emulation/Contracts/EmulationPlasmaVideoConfiguration.cs pour transporter uniquement les paramètres Plasma validés à cette étape.
+    - [x] Créer le fichier vide src/GWGUI.Emulation/Contracts/EmulationVectorVideoConfiguration.cs.
+    - [x] Modifier src/GWGUI.Emulation/Contracts/EmulationVectorVideoConfiguration.cs pour transporter uniquement les paramètres de ligne, halo et persistance validés à cette étape.
+    - [x] Créer le fichier vide src/GWGUI.Emulation/Contracts/EmulationVideoProcessingConfiguration.cs.
+    - [x] Modifier src/GWGUI.Emulation/Contracts/EmulationVideoProcessingConfiguration.cs pour agréger technologie, échantillonnage, réglages généraux et configurations propres, avec Normal et valeurs neutres par défaut.
+  - [x] Créer les fonctions communes séparément des contrats et du catalogue
+    - [x] Créer le fichier vide src/GWGUI.Emulation/Functions/EmulationImageAdjustmentFunctions.cs.
+    - [x] Modifier src/GWGUI.Emulation/Functions/EmulationImageAdjustmentFunctions.cs pour borner les cinq réglages et convertir uniquement le gamma par `2^(-valeur / 10)`, sans traiter de pixels.
+    - [x] Créer le fichier vide src/GWGUI.Emulation/Functions/EmulationVideoProcessingConfigurationFunctions.cs.
+    - [x] Modifier src/GWGUI.Emulation/Functions/EmulationVideoProcessingConfigurationFunctions.cs pour normaliser et valider une configuration sérialisée, créer des sous-configurations neutres manquantes et ne dépendre d’aucun renderer.
+  - [x] Exposer et enregistrer le contrat commun sans casser les anciennes configurations
+    - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationConfiguration.cs pour exposer EmulationVideoProcessingConfiguration en plus de VideoRenderer.
+    - [x] Modifier src/GWGUI.Emulation.Amiga/Contracts/AmigaMachineConfiguration.cs pour porter le nouveau contrat facultatif et produire les valeurs neutres lorsqu’il est absent d’un ancien JSON.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Contracts/AtariMachineConfiguration.cs avec exactement la même règle de compatibilité ascendante.
+    - [x] Modifier src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModule.cs et src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs pour préserver la configuration vidéo commune dans ApplySettings sans transformer les options natives des moteurs.
+    - [x] Modifier src/GWGUI.Emulation.Atari/Contracts/AtariConfigurationDocument.cs pour transporter facultativement EmulationVideoProcessingConfiguration en dernier, afin que le JSON du schéma courant dépourvu de ce membre reste lisible.
+    - [x] Modifier src/GWGUI.Emulation.Amiga/Services/AmigaConfigurationStore.cs, src/GWGUI.Emulation.Atari/Services/AtariConfigurationStore.cs et src/GWGUI.Emulation.Atari/Functions/AtariConfigurationStoreFunctions.cs uniquement si leur sérialisation explicite exige le nouveau membre ; ne pas ajouter de migration lorsque la désérialisation facultative suffit.
+    - [x] Créer le fichier vide tests/GWGUI.Tests/EmulationVideoConfigurationTests.cs.
+    - [x] Modifier tests/GWGUI.Tests/EmulationVideoConfigurationTests.cs pour vérifier valeurs neutres, sérialisation aller-retour Amiga/Atari et lecture d’anciens documents sans propriété vidéo commune.
+    - [x] Exécuter uniquement tests/GWGUI.Tests/EmulationVideoConfigurationTests.cs, puis compiler src/GWGUI.Emulation/GWGUI.Emulation.csproj, src/GWGUI.Emulation.Amiga/GWGUI.Emulation.Amiga.csproj et src/GWGUI.Emulation.Atari/GWGUI.Emulation.Atari.csproj avec --no-restore.
+
+- [x] Construire l’interface commune et son enregistrement immédiat avant les effets
+  - [x] Créer le catalogue et le panneau sans texte brut
+    - [x] Créer le fichier vide src/GWGUI.Emulation/Dictionaries/EmulationVideoProcessingCatalog.cs.
+    - [x] Modifier src/GWGUI.Emulation/Dictionaries/EmulationVideoProcessingCatalog.cs pour décrire technologies, sous-choix, paramètres, valeurs neutres, dépendances et compatibilités avec uniquement des identifiants et clés de ressources, puis associer les douze EmulationVideoPreset à des configurations complètes conformes au tableau validé.
+    - [x] Créer le fichier vide src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVideoProcessingSettingsSection.cs.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVideoProcessingSettingsSection.cs pour créer les deux sélecteurs, le panneau conditionnel et les cinq réglages permanents, sans logique Amiga ou Atari.
+    - [x] Modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationVideoSettingsLayout.cs pour séparer visuellement les options natives du moteur et les traitements GW GUI, sans ajouter ces contrôles ailleurs.
+    - [x] Modifier src/GWGUI.Emulation/Interfaces/IEmulationModule.cs pour appliquer une EmulationVideoProcessingConfiguration commune à une configuration immuable sans exposer son type spécialisé à App.
+    - [x] Modifier src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModule.cs et src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs pour implémenter ApplyVideoProcessing en conservant toutes les autres valeurs de la configuration typée.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs pour utiliser le panneau commun dans l’onglet Vidéo de chaque module et transmettre ses changements au chemin d’enregistrement automatique existant.
+  - [x] Ajouter et vérifier tous les textes avant la validation visuelle
+    - [x] Modifier src/GWGUI.App/Constants/Localization/EmulationResourceKeys.cs pour ajouter une constante par libellé de technologie, paramètre, incompatibilité, limitation et présélection, sans texte traduit.
+    - [x] Modifier scripts/translate-resx-argos.py pour écrire le catalogue neutre dans src/GWGUI.App/Resources/00-Base tout en conservant la commande documentée et les catalogues de culture existants.
+    - [x] Ajouter dans src/GWGUI.App/Resources/00-Base/Emulation.resx toutes les clés neutres des technologies, paramètres, incompatibilités, présélections validées et limitations de backend.
+    - [x] Pour chaque nouvelle clé, exécuter `python scripts/translate-resx-argos.py Emulation.resx <clé> "<texte anglais>"` afin d’ajouter la base, en-US et toutes les traductions ; ne pas remplir manuellement les catalogues à la place d’Argos.
+    - [x] Relire les sorties Argos dans tous les catalogues src/GWGUI.App/Resources/*/Emulation.resx, corriger seulement les traductions manifestement erronées et vérifier qu’aucun texte brut n’est ajouté au code.
+    - [x] Créer le fichier vide tests/GWGUI.Tests/EmulationVideoLocalizationTests.cs.
+    - [x] Modifier tests/GWGUI.Tests/EmulationVideoLocalizationTests.cs pour vérifier la présence de chaque clé dans toutes les langues et le remplacement immédiat des textes du panneau lors d’un changement de langue.
+  - [x] Appliquer les changements à la seule instance correspondante
+    - [x] Modifier src/GWGUI.App/Interfaces/Rendering/Emulation/IEmulationVideoSurface.cs pour recevoir une EmulationVideoProcessingConfiguration normalisée, sans encore modifier les pixels.
+    - [x] Modifier src/GWGUI.App/Rendering/Emulation/Surfaces/WpfVideoSurface.cs, src/GWGUI.App/Rendering/Emulation/Surfaces/OpenGlVideoSurface.cs et src/GWGUI.App/Rendering/Emulation/Surfaces/VeldridVideoSurface.cs pour conserver la configuration reçue sans changer le rendu actuel.
+    - [x] Modifier src/GWGUI.App/Presenters/Emulation/Machine/MachineVideoPresenter.cs pour conserver la configuration courante et la réappliquer lors d’un changement ou d’un repli de surface.
+    - [x] Modifier src/GWGUI.App/Contracts/Machine/MachineControllerOptions.cs et src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionMachineFunctions.cs pour transmettre la configuration vidéo initiale enregistrée avec VideoRenderer lors de la création du controller.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/MachineController.cs pour transmettre la nouvelle configuration à MachineVideoPresenter sans recréer IEmulatedMachine.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs pour transmettre la configuration vidéo commune avec VideoRenderer à l’unique MachineController ciblé par ModuleId et ConfigurationId.
+    - [x] Créer le fichier vide tests/GWGUI.Tests/EmulationVideoSettingsSectionTests.cs.
+    - [x] Modifier src/GWGUI.App/Views/Controls/Emulation/Options/EmulationVideoProcessingSettingsSection.cs pour confirmer un remplacement direct entre deux technologies simulées incompatibles, sans avertissement pour activer ou désactiver Normal, avec une fonction de confirmation injectable pour les tests.
+    - [x] Créer puis modifier src/GWGUI.App/Functions/Views/Emulation/Machine/EmulationOpenMachineConfigurationFunctions.cs et raccorder EmulationSectionConfigurationFunctions.cs afin d’exposer une sélection générique testable par ModuleId et ConfigurationId sans construire de machine réelle.
+    - [x] Créer puis modifier src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationConfigurationPersistenceFunctions.cs et raccorder EmulationModuleSettingsSection.cs afin de rendre testable la décision brouillon ou autosauvegarde sans charger la fenêtre d’options.
+    - [x] Modifier tests/GWGUI.Tests/EmulationVideoSettingsSectionTests.cs pour vérifier affichage conditionnel, cinq réglages permanents, brouillons, enregistrement automatique, confirmation des incompatibilités et ciblage d’une seule instance.
+    - [x] Exécuter uniquement tests/GWGUI.Tests/EmulationVideoSettingsSectionTests.cs, puis compiler src/GWGUI.App/GWGUI.App.csproj avec --no-restore.
+
+- [ ] Reprendre l'ergonomie des réglages vidéo après validation visuelle
+  - [x] Supprimer la confirmation lors d'un changement de technologie d'affichage et vérifier que la nouvelle valeur s'applique immédiatement.
+  - [x] Réunir Affichage et le bloc Rendu, Échantillonnage et Technologie d'affichage dans un même onglet, côte à côte et de manière équilibrée.
+  - [x] Remplacer le placement adaptatif irrégulier par une grille stable de deux colonnes pour tous les blocs vidéo.
+  - [x] Limiter globalement tous les sélecteurs de l'application à cinq éléments visibles, puis afficher un défilement vertical.
+  - [x] Organiser Image, Restauration, Mouvement, Signal et Effets dans des onglets localisés, nommer l'onglet technologique d'après la technologie choisie et conserver l'onglet actif lors d'une reconstruction.
+  - [x] Remplacer le libellé utilisateur « Plus proche voisin » par « Normal » dans toutes les langues avec Argos.
+  - [x] Encadrer séparément les paramètres d'affichage de l'émulateur et le traitement vidéo GW GUI dans l'onglet Affichage.
+  - [x] Regrouper les réglages permanents dans les seuls onglets Image et Effets, avec des cadres internes pour restauration, mouvement, signal et style.
+  - [x] Appliquer un changement de traitement vidéo sans recalcul synchrone immédiat sur le thread de l'interface.
+  - [x] Supprimer les allocations par pixel des échantillonneurs pixel-art et vérifier leur temps d'exécution sur une sortie de grande taille.
+  - [x] Encoder et écrire les captures PNG hors du thread de l'interface sans perdre la frame capturée.
+  - [x] Traiter les replis CPU et la génération de Snapshot hors du thread de l'interface, en abandonnant les frames intermédiaires lorsqu'une plus récente est disponible.
+  - [ ] Refaire l’architecture et les rendus des filtres vidéo
+    - [x] Renommer les classes et fichiers Cpu… par filtre fonctionnel en Filter…, notamment FilterBloom, FilterXbr, FilterXbrz, FilterHqx, FilterScaleFx, FilterScaleNx et FilterSabr.
+    - [x] Extraire Normal, Bilinéaire, Bilinéaire net, Bicubique, xBR, xBRZ, HQx, ScaleFX, ScaleNx et SABR dans un fichier propre à chaque filtre, avec ses variantes CPU, OpenGL et Vulkan/Direct3D lorsque nécessaires.
+    - [x] Réduire OpenGlVideoProcessingProgram et VeldridVideoProcessingShaders à la composition des modules et au seul répartiteur sélectionné par EmulationVideoSampling.
+    - [ ] Corriger Bilinéaire net, Bicubique, xBR, xBRZ, HQx, ScaleFX, ScaleNx et SABR afin que chaque rendu GPU soit visuellement conforme et significativement distinct sur une image pixel-art réelle.
+    - [x] Ajouter HQ2x, HQ3x, HQ4x, 2xSaI, Super 2xSaI, Super Eagle, EPX / Scale2x, JINC2 et Lanczos dans le même sélecteur, rangés dans un ordre logique.
+    - [x] Traduire chaque nouveau libellé dans toutes les langues prises en charge.
+    - [ ] Remplacer le test de simples hash par des mesures visuelles ciblées des contours, diagonales, aplats et niveaux de flou, puis valider OpenGL, Direct3D11 et Vulkan.
+    - [ ] Exécuter les tests vidéo et de localisation, puis scripts/build.ps1 -Configuration Debug avant de cocher ce groupe.
+    - [x] Présenter Luminosité, Contraste, Gamma, Saturation et Netteté sous forme de cinq curseurs verticaux compacts dans l’onglet Image.
+    - [x] Isoler tout le bloc d’interface dans EmulationImageParametersSettingsBlock.cs, sans conserver sa construction dans la section vidéo monolithique.
+    - [x] Séparer chaque paramètre dans son fichier Video…ParameterFunctions.cs, avec sa fonction logicielle et sa fonction shader partagée par OpenGL, Direct3D11 et Vulkan.
+    - [x] Renommer les anciens effets Cpu… en Filter… et réserver Software… au pipeline et au worker de repli, afin que les noms décrivent la responsabilité plutôt que le processeur utilisé.
+    - [x] Isoler l’interface de restauration dans EmulationImageRestorationSettingsBlock.cs et la placer à côté des paramètres d’image dans un cadre de même niveau.
+    - [x] Présenter Débruitage, Réduction des bandes et Détails fins sous forme de trois curseurs verticaux compacts, puis renommer le libellé utilisateur « Récupération de détails » en « Détails fins » dans toutes les langues.
+    - [x] Corriger le libellé utilisateur « Dédithering » en « Détramage » et remplacer son intensité continue par exactement quatre niveaux localisés : Aucun, Léger, Moyen et Fort, mappés sur 0, 33, 67 et 100, tous contenus dans la largeur disponible et accompagnés de quatre graduations visibles.
+    - [x] Réduire le désentrelacement à un sélecteur compact de 220 pixels au lieu de lui attribuer toute la largeur du cadre.
+    - [x] Renforcer les traitements GPU de restauration : reconnaissance de damier pour le détramage, débruitage bilatéral 3 × 3, réduction directionnelle des bandes et récupération bornée des détails fins, sans limitation artificielle à 25 ou 30 %.
+    - [x] Ajouter les tests de disposition, des quatre niveaux de détramage, de conservation des changements combinés, de localisation et de compilation/rendu des shaders sur WPF, OpenGL, Direct3D11 et Vulkan.
+    - [x] Isoler le bloc des effets temporels dans EmulationTemporalEffectsSettingsBlock.cs et chaque traitement dans FilterGeneralPersistence.cs, FilterMotionBlur.cs, FilterFlicker.cs, FilterInterlacing.cs et FilterBlackFrameInsertion.cs.
+    - [x] Remplacer l’intensité d’entrelacement par une activation binaire et conserver un réglage séparé de visibilité des trames.
+    - [x] Appliquer l’entrelacement sur les lignes de la frame source de chaque émulateur avant agrandissement, sans dépendre d’une machine ni de la résolution physique de l’écran.
+    - [x] Cadencer le scintillement et l’insertion d’images noires sur la parité des frames sources : 25 images atténuées/noires sur 50 en PAL et 30 sur 60 en NTSC.
+    - [x] Vérifier la compilation des shaders, les rendus GPU, la localisation et les contrôles temporels par des tests Debug ciblés.  - [ ] Vérifier qu'aucune barre de défilement n'est visible à la taille normale, qu'elle reste disponible si la fenêtre est réduite, contrôler le build Debug et terminer le groupe seulement après validation.
+
+- [ ] Découpler entièrement la présentation vidéo des DLL d'émulation avant d'ajouter de nouveaux émulateurs
+  - Constat : `VideoRenderer` et `VideoProcessing` sont actuellement transportés dans `IEmulationConfiguration`, puis recopiés et sauvegardés par Amiga et Atari. Les cœurs ne consomment pas ces réglages pour produire leurs frames ; ils servent uniquement ensuite à GW GUI pour choisir la surface et traiter l'image. Cette dépendance oblige donc inutilement chaque DLL d'émulation à connaître et préserver des données appartenant à l'interface hôte.
+  - Cible : une DLL d'émulation ne doit exposer que la vidéo brute nécessaire à l'émulation (`VideoFrame`, dimensions, format de pixels, ratio, horodatage et informations natives réellement produites par le cœur). Le renderer, l'échantillonnage, la technologie d'affichage simulée, les corrections d'image et les effets doivent appartenir à GW GUI ou à une bibliothèque de présentation indépendante qui n'est référencée par aucune DLL d'émulation.
+  - [ ] Inventorier chaque champ vidéo et classer explicitement les réglages en deux groupes : réglages qui modifient réellement la machine ou le signal brut émulé, à conserver dans le module concerné, et réglages de renderer/post-traitement, à déplacer dans la couche hôte.
+  - [ ] Créer un contrat hôte unique, par exemple `EmulationVideoPresentationProfile`, regroupant au minimum le renderer et `EmulationVideoProcessingConfiguration`, dans `GWGUI.App` ou dans une bibliothèque de présentation dédiée située au-dessus des DLL d'émulation.
+  - [ ] Créer un stockage hôte générique des profils vidéo, indexé par `(ModuleId, ConfigurationId)`, afin de conserver des réglages différents pour chaque instance sans ajouter de propriété dans les configurations Amiga, Atari ou celles des futurs émulateurs.
+  - [ ] Définir le cycle de vie du profil hôte : création avec valeurs par défaut, chargement avant construction de la surface, application immédiate à `IEmulationVideoSurface`, copie lors de la duplication d'une configuration et suppression lors de la suppression définitive de celle-ci.
+  - [ ] Modifier les presenters et contrôleurs de GW GUI pour lire et enregistrer directement ce profil, puis appeler la surface vidéo, sans passer par `IEmulationModule.ApplyVideoProcessing` ni reconstruire `IEmulationConfiguration`.
+  - [ ] Retirer `VideoProcessing` de `IEmulationConfiguration` et `ApplyVideoProcessing` de `IEmulationModule`, puis supprimer leurs implémentations Amiga/Atari et tous les passages artificiels de cette valeur dans les fonctions d'entrée, de stockage, de firmware, de média et dans les services de machine.
+  - [ ] Sortir également `VideoRenderer` des configurations propres aux émulateurs s'il reste confirmé qu'il ne modifie jamais le cœur ; le conserver dans le même profil hôte pour que le choix WPF/OpenGL/Direct3D11/Vulkan ne nécessite aucune modification des modules.
+  - [ ] Préparer une migration ascendante des configurations existantes : détecter les anciens champs `videoRenderer` et `videoProcessing` dans les JSON Amiga et Atari, les importer une seule fois dans le stockage hôte, préserver les valeurs non neutres, puis tolérer les anciens champs lors des lectures ultérieures.
+  - [ ] Prévoir une stratégie de reprise en cas de migration interrompue : écriture atomique du profil hôte avant suppression ou ignorance des anciennes données, migration idempotente et journalisation exploitable sans bloquer le démarrage.
+  - [ ] Remplacer l'asymétrie actuelle des copies de configurations par des mises à jour propres à chaque domaine : Amiga peut garder ses `with`; Atari doit utiliser `with`, des propriétés `init` ou une fonction de copie centralisée pour ses seules données d'émulation, sans constructeur positionnel fragile à mettre à jour pour chaque nouveau champ.
+  - [ ] Déplacer hors des modules les choix et libellés de renderer actuellement produits par `AmigaSettingsDescriptionFunctions` et `AtariSettingsDescriptionFunctions`, ainsi que leur présence dans les résumés de configuration ; l'interface hôte doit fournir ce bloc de manière identique à tous les émulateurs.
+  - [ ] Retirer `VideoRenderer` des empreintes de compatibilité des sauvegardes d'état, notamment `AtariStateConfigurationFingerprint`, car un changement de backend de présentation ne modifie pas l'état de la machine émulée ; ajouter un test garantissant qu'un état reste chargeable après changement de renderer ou de filtre.
+  - [ ] Ajouter un faux module d'émulation minimal ne référençant aucun type de présentation et vérifier qu'il bénéficie automatiquement du choix du renderer et de tous les traitements vidéo fournis par GW GUI.
+  - [ ] Tester l'isolation par instance, la persistance après redémarrage, les changements d'entrée/stockage/firmware/média, la duplication, la suppression, la migration Amiga/Atari et l'absence de dépendance des projets `GWGUI.Emulation*` vers les types de présentation.
+  - [ ] Mettre à jour `docs/architecture/emulation.md` avec la direction des dépendances et la règle obligatoire pour les futurs modules : produire une frame brute, ne jamais stocker ni appliquer les effets de présentation de GW GUI.
+  - [ ] Exécuter les tests de migration, de configuration et de rendu, puis `scripts/build.ps1 -Configuration Debug` avant de retirer l'ancien chemin et de cocher ce groupe.
+- [x] Préserver la configuration vidéo dans toutes les reconstructions Atari
+  - [x] Modifier src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs, src/GWGUI.Emulation.Atari/Functions/AtariInputSettingsFunctions.cs, src/GWGUI.Emulation.Atari/Functions/AtariStorageSettingsFunctions.cs et src/GWGUI.Emulation.Atari/Services/AtariMachine.cs pour conserver VideoProcessing dans chaque reconstruction non vidéo.
+  - [x] Modifier tests/GWGUI.Tests/EmulationVideoConfigurationTests.cs pour vérifier qu’une reconstruction Atari non vidéo conserve une configuration vidéo non neutre.
+  - [x] Exécuter uniquement tests/GWGUI.Tests/EmulationVideoConfigurationTests.cs, puis compiler src/GWGUI.Emulation.Atari/GWGUI.Emulation.Atari.csproj avec --no-restore.
+
+- [x] Créer la chaîne de traitement sans effet avant d’implémenter Normal
+  - [x] Créer le fichier vide src/GWGUI.App/Interfaces/Rendering/Emulation/IEmulationVideoProcessingPipeline.cs.
+  - [x] Modifier src/GWGUI.App/Interfaces/Rendering/Emulation/IEmulationVideoProcessingPipeline.cs pour recevoir configuration, frame, tailles source/sortie et produire la sortie du backend sans dépendre d’une famille de machine.
+  - [x] Créer le fichier vide src/GWGUI.App/Factories/Rendering/Emulation/EmulationVideoProcessingPipelineFactory.cs.
+  - [x] Créer puis modifier src/GWGUI.App/Rendering/Emulation/Processing/PassthroughEmulationVideoProcessingPipeline.cs pour implémenter le contrat avec le renderer demandé, valider les tailles positives et retourner exactement la frame reçue.
+  - [x] Modifier src/GWGUI.App/Factories/Rendering/Emulation/EmulationVideoProcessingPipelineFactory.cs pour choisir uniquement l’exécuteur correspondant au renderer déjà sélectionné.
+  - [x] Modifier src/GWGUI.App/Interfaces/Rendering/Emulation/IEmulationVideoSurface.cs pour préciser que Snapshot expose la sortie traitée avant tout habillage externe, conformément à la décision validée, et raccorder le contrat de configuration déjà présent à la chaîne.
+  - [x] Modifier src/GWGUI.App/Rendering/Emulation/Surfaces/WpfVideoSurface.cs, src/GWGUI.App/Rendering/Emulation/Surfaces/OpenGlVideoSurface.cs et src/GWGUI.App/Rendering/Emulation/Surfaces/VeldridVideoSurface.cs pour raccorder une chaîne vide qui reproduit exactement le rendu actuel.
+  - [x] Créer le fichier vide tests/GWGUI.Tests/EmulationVideoProcessingPipelineTests.cs.
+  - [x] Modifier tests/GWGUI.Tests/EmulationVideoProcessingPipelineTests.cs pour vérifier qu’une chaîne Normal neutre préserve pixels, rapport d’aspect, redimensionnement et repli WPF.
+  - [x] Créer puis modifier src/GWGUI.App/Functions/Rendering/Emulation/EmulationVideoSurfaceFrameFunctions.cs et raccorder les trois surfaces afin que l’affichage et Snapshot consomment ensemble la frame traitée et sa conversion BGRA commune.
+  - [x] Modifier src/GWGUI.App/Rendering/Emulation/Surfaces/WpfVideoSurface.cs pour accepter facultativement un IEmulationVideoProcessingPipeline interne dans les tests tout en conservant la fabrique WPF neutre par défaut.
+  - [x] Ajouter dans tests/GWGUI.Tests/EmulationVideoProcessingPipelineTests.cs un test vérifiant que Snapshot reçoit la sortie après traitements GW GUI et avant tout habillage, sur le chemin commun utilisé par WPF, OpenGL et Veldrid.
+  - [x] Exécuter uniquement tests/GWGUI.Tests/EmulationVideoProcessingPipelineTests.cs, puis compiler src/GWGUI.App/GWGUI.App.csproj avec --no-restore.
+
+- [x] Implémenter le premier socle Normal sur les quatre renderers
+  - [x] Modifier docs/reference/emulation-video-filters.md pour fixer l’ordre et les conversions CPU exactes de luminosité, contraste, gamma, saturation et netteté, avec 0 strictement neutre.
+  - [x] Créer l’exécution CPU de référence pour luminosité, contraste, gamma validé, saturation et netteté, avec conversions sRGB/linéaire testées.
+  - [x] Ajouter le sélecteur nearest, bilinéaire, sharp-bilinear et bicubique dans l’exécution CPU/WPF avec comportement stable aux échelles non entières.
+  - [x] Remplacer dans src/GWGUI.App/Rendering/Emulation/Surfaces/VeldridVideoSurface.cs le shader de copie fixe par la première chaîne portable commune Direct3D 11/Vulkan et ses buffers de paramètres.
+  - [x] Remplacer dans src/GWGUI.App/Rendering/Emulation/Surfaces/OpenGlVideoSurface.cs `glDrawPixels` par texture, quad et programme GLSL capables d’exécuter les mêmes réglages et méthodes d’échantillonnage.
+  - [x] Ajouter aux tests de pipeline des images déterministes couvrant chaque valeur neutre, les bornes validées et l’équivalence tolérée entre CPU, Direct3D 11, Vulkan et OpenGL.
+  - [x] Exécuter les tests ciblés, compiler GWGUI.App sans restauration, puis vérifier Normal dans l’application avec les quatre renderers avant de cocher le groupe.
+
+- [x] Implémenter CRT après validation de ses paramètres exacts et des licences
+  - [x] Implémenter couleur et monochrome vert, ambre, blanc, gris et personnalisé dans la définition commune et l’exécution CPU de référence.
+  - [x] Implémenter faisceau, masque, halo, courbure et vignettage dans des passes composables sans reprendre de code dont la licence n’est pas validée.
+  - [x] Implémenter les scanlines horizontales et verticales uniquement dans le panneau CRT avec intensité, épaisseur, phase et compensation.
+  - [x] Implémenter la trame volontaire horizontale et verticale uniquement dans CRT, séparément de la réduction du moiré accidentel.
+  - [x] Porter les mêmes passes vers Veldrid et OpenGL, avec repli CPU/WPF et construction atomique en cas d’erreur.
+  - [x] Ajouter des tests déterministes pour chaque sous-choix CRT, compatibilité, valeur neutre, redimensionnement et changement en direct.
+  - [x] Vérifier visuellement chaque présélection CRT validée sur Amiga et Atari avec WPF, OpenGL, Direct3D 11 et Vulkan avant de cocher le groupe.
+
+- [x] Implémenter les écrans à pixels fixes après CRT
+  - [x] Implémenter le panneau partagé et le sous-choix LCD, LCD/LED ou OLED sans panneaux principaux dupliqués.
+  - [x] Implémenter grille, sous-pixels, ordre des couleurs, netteté et paramètres communs dans l’exécution CPU de référence.
+  - [x] Ajouter uniquement les paramètres conditionnels dont une différence LCD/LED/OLED a été documentée et validée.
+  - [x] Implémenter rémanence et temps de réponse avec historique borné, sans les présenter comme désentrelacement.
+  - [x] Porter les passes vers Veldrid et OpenGL, ajouter les tests déterministes et vérifier les quatre renderers avant de cocher le groupe.
+
+- [x] Implémenter Plasma après les écrans à pixels fixes
+  - [x] Faire valider les paramètres exacts de cellules, diffusion, tramage temporel et rémanence, puis les inscrire dans docs/reference/emulation-video-filters.md.
+  - [x] Compléter EmulationPlasmaVideoConfiguration, le catalogue, les ressources et le panneau conditionnel sans modifier les autres technologies.
+  - [x] Implémenter la référence CPU, puis les passes Veldrid et OpenGL avec les mêmes valeurs.
+  - [x] Ajouter les tests déterministes et vérifier Plasma avec les quatre renderers avant de cocher le groupe.
+
+- [x] Implémenter l’écran vectoriel après Plasma
+  - [x] Faire valider l’approximation raster, les paramètres de lignes, halo et persistance, puis les inscrire dans docs/reference/emulation-video-filters.md.
+  - [x] Compléter EmulationVectorVideoConfiguration, le catalogue, les ressources et le panneau conditionnel sans prétendre recevoir des primitives vectorielles du moteur.
+  - [x] Implémenter la détection/renforcement de lignes et la persistance dans la référence CPU, puis dans Veldrid et OpenGL.
+  - [x] Ajouter les tests déterministes et vérifier l’écran vectoriel avec les quatre renderers avant de cocher le groupe.
+
+- [x] Ajouter les filtres indépendants avancés un groupe à la fois
+  - [x] Faire valider xBR, inscrire sa source et sa licence dans docs/reference/emulation-video-filters.md, puis l’implémenter et le vérifier seul dans les quatre renderers.
+  - [x] Faire valider xBRZ, inscrire sa source et sa licence dans docs/reference/emulation-video-filters.md, puis l’implémenter et le vérifier seul dans les quatre renderers.
+  - [x] Faire valider HQx, inscrire sa source et sa licence dans docs/reference/emulation-video-filters.md, puis l’implémenter et le vérifier seul dans les quatre renderers.
+  - [x] Faire valider ScaleFX, inscrire sa source et sa licence dans docs/reference/emulation-video-filters.md, puis l’implémenter et le vérifier seul dans les quatre renderers.
+  - [x] Faire valider ScaleNx, inscrire sa source et sa licence dans docs/reference/emulation-video-filters.md, puis l’implémenter et le vérifier seul dans les quatre renderers.
+  - [x] Faire valider SABR, inscrire sa source et sa licence dans docs/reference/emulation-video-filters.md, puis l’implémenter et le vérifier seul dans les quatre renderers.
+  - [x] Faire valider le dé-dithering, vérifier qu’il ne duplique aucun traitement moteur, puis l’implémenter et le tester seul.
+  - [x] Faire valider le débruitage, vérifier qu’il ne duplique aucun traitement moteur, puis l’implémenter et le tester seul.
+  - [x] Faire valider la réduction des bandes, vérifier qu’elle ne duplique aucun traitement moteur, puis l’implémenter et la tester seule.
+  - [x] Faire valider la netteté avancée sans dupliquer le réglage général, puis l’implémenter et la tester seule.
+  - [x] Faire valider le désentrelacement GW GUI, vérifier qu’il ne duplique aucun traitement moteur, puis l’implémenter et le tester seul.
+  - [x] Faire confirmer toute incompatibilité entre filtres indépendants avant d’ajouter sa boîte Oui/Non et vérifier que Non ne modifie aucune valeur.
+  - [x] Ajouter les tests et validations visuelles propres à chaque filtre avant de cocher sa tâche individuelle.
+
+- [x] Traiter le catalogue ultérieur sans regrouper plusieurs effets dans une seule modification
+  - [x] Préparer puis implémenter VFD lorsqu’une machine prise en charge le nécessite.
+  - [x] Préparer puis implémenter la matrice LED lorsqu’une machine prise en charge le nécessite.
+  - [x] Préparer puis implémenter la matrice de points lorsqu’une machine prise en charge le nécessite.
+  - [x] Préparer puis implémenter les affichages à segments lorsqu’une machine prise en charge le nécessite.
+  - [x] Préparer puis implémenter le papier électronique après validation de son utilité et de ses paramètres.
+  - [x] Préparer puis implémenter la projection après validation de son utilité et de ses paramètres.
+  - [x] Préparer puis implémenter la rémanence générale sans la confondre avec la réponse des écrans à pixels fixes.
+  - [x] Préparer puis implémenter le flou de mouvement.
+  - [x] Préparer puis implémenter le scintillement.
+  - [x] Préparer puis implémenter l’entrelacement.
+  - [x] Préparer puis implémenter l’insertion d’images noires.
+  - [x] Préparer puis implémenter la simulation composite comme effet explicitement nommé, uniquement si elle ne duplique pas une option du moteur ciblé.
+  - [x] Préparer puis implémenter la simulation S-Video comme effet explicitement nommé, uniquement si elle ne duplique pas une option du moteur ciblé.
+  - [x] Préparer puis implémenter la simulation RF comme effet explicitement nommé, uniquement si elle ne duplique pas une option du moteur ciblé.
+  - [x] Préparer puis implémenter la simulation PAL comme effet explicitement nommé, uniquement si elle ne duplique pas une option du moteur ciblé.
+  - [x] Préparer puis implémenter la simulation NTSC comme effet explicitement nommé, uniquement si elle ne duplique pas une option du moteur ciblé.
+  - [x] Préparer puis implémenter le grain.
+  - [x] Préparer puis implémenter l’effet VHS.
+  - [x] Préparer puis implémenter l’aberration chromatique.
+  - [x] Préparer puis implémenter le bloom.
+  - [x] Préparer puis implémenter le sépia.
+  - [x] Préparer puis implémenter les niveaux de gris.
+  - [x] Pour chaque tâche, inscrire d’abord sources, licence, paramètres, compatibilités et tests dans docs/reference/emulation-video-filters.md, puis vérifier les quatre renderers avant de la cocher.
+
+- [x] Terminer la validation globale du point 7 après toutes les étapes retenues
+  - [x] Exécuter tous les tests vidéo ciblés et corriger uniquement les régressions du point 7.
+  - [x] Exécuter toute la suite tests/GWGUI.Tests/GWGUI.Tests.csproj et corriger uniquement les régressions du point 7.
+  - [x] Exécuter scripts/build.ps1 -Configuration Debug et vérifier qu’aucun avertissement nouveau n’est introduit.
+  - [x] Dans une seule exécution réelle, vérifier Amiga et Atari, l’enregistrement par machine, l’application à la seule instance ouverte, le prochain démarrage sans instance, les quatre renderers, le redimensionnement, le plein écran et le repli WPF.
+  - [x] Dans la même exécution, vérifier que les options natives des moteurs restent séparées, que les cinq réglages généraux restent visibles et que les panneaux conditionnels n’apparaissent que pour la technologie choisie.
+  - [x] Fermer l’instance utilisée pour la validation et vérifier les journaux d’erreurs avant de cocher le groupe.
 
 ## Checklist détaillée — Point 8 : habillages d’écran en plein écran
 

@@ -34,4 +34,23 @@
     <value>Raportul complet a fost salvat pe:
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>Serviciul de la distanţă nu a răspuns înainte ca conexiunea să se fi terminat. Verificați conexiunea de rețea și încercați din nou.</value></data>
+  <data name="Error.Description.NetworkDns"><value>Adresa de serviciu de la distanță nu a putut fi rezolvată. Verificați setările rețelei sau DNS și încercați din nou.</value></data>
+  <data name="Error.Description.NetworkRefused"><value>Serviciul de la distanţă a refuzat conexiunea. Acesta poate fi indisponibil sau blocat.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>Serviciul de la distanță nu a putut fi atins. Verificați conexiunea la internet, firewall, VPN, sau setările proxy și încercați din nou.</value></data>
+  <data name="Error.Description.HttpStatus"><value>Serviciul de la distanţă a returnat statusul HTTP {0}. Încearcă mai târziu.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>Operaţiunea nu s-a încheiat în timpul acordat. Încearcă din nou.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>Operaţiunea a fost anulată înainte să se termine.</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI nu are permisiunea de a accesa fișierul, dosarul sau dispozitivul solicitat.</value></data>
+  <data name="Error.Description.FileNotFound"><value>Fișierul necesar nu a putut fi găsit: {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>Dosarul necesar nu a putut fi găsit.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>Drive-ul solicitat nu este disponibil.</value></data>
+  <data name="Error.Description.PathTooLong"><value>Calea selectată este prea lungă.</value></data>
+  <data name="Error.Description.DiskFull"><value>Nu există suficient spațiu liber pe disc pentru a finaliza operațiunea.</value></data>
+  <data name="Error.Description.InvalidData"><value>Datele selectate sau fișierul este invalid, incomplet sau corupt.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>Una dintre valorile furnizate este invalidă. Revizuiți setările și încercați din nou.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>Operațiunea nu poate fi finalizată în starea actuală de aplicare.</value></data>
+  <data name="Error.Description.NotSupported"><value>Această operațiune nu este susținută de fișierul, dispozitivul sau platforma selectată.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>Nu este suficientă memorie disponibilă pentru a finaliza operaţiunea.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI a întâmpinat o problemă neașteptată în timpul efectuării acestei acțiuni.</value></data>
 </root>

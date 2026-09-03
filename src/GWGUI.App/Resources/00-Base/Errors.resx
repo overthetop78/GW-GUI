@@ -34,4 +34,23 @@
     <value>The full report was saved to:
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>The remote service did not respond before the connection timed out. Check the network connection and try again.</value></data>
+  <data name="Error.Description.NetworkDns"><value>The remote service address could not be resolved. Check the network or DNS settings and try again.</value></data>
+  <data name="Error.Description.NetworkRefused"><value>The remote service refused the connection. It may be unavailable or blocked.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>The remote service could not be reached. Check the Internet connection, firewall, VPN, or proxy settings and try again.</value></data>
+  <data name="Error.Description.HttpStatus"><value>The remote service returned HTTP status {0}. Try again later.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>The operation did not finish within the allowed time. Try again.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>The operation was cancelled before it finished.</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI does not have permission to access the requested file, folder, or device.</value></data>
+  <data name="Error.Description.FileNotFound"><value>The required file could not be found: {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>The required folder could not be found.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>The requested drive is not available.</value></data>
+  <data name="Error.Description.PathTooLong"><value>The selected path is too long.</value></data>
+  <data name="Error.Description.DiskFull"><value>There is not enough free disk space to complete the operation.</value></data>
+  <data name="Error.Description.InvalidData"><value>The selected data or file is invalid, incomplete, or corrupted.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>One of the supplied values is invalid. Review the settings and try again.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>The operation cannot be completed in the current application state.</value></data>
+  <data name="Error.Description.NotSupported"><value>This operation is not supported by the selected file, device, or platform.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>There is not enough available memory to complete the operation.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI encountered an unexpected problem while performing this action.</value></data>
 </root>

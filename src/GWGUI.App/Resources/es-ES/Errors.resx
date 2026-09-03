@@ -34,4 +34,23 @@
     <value>El informe completo se guardó en:
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>El servicio remoto no respondió antes de la conexión programada. Revise la conexión de red e inténtelo de nuevo.</value></data>
+  <data name="Error.Description.NetworkDns"><value>La dirección de servicio remota no puede resolverse. Compruebe la configuración de red o DNS e inténtelo de nuevo.</value></data>
+  <data name="Error.Description.NetworkRefused"><value>El servicio remoto rechazó la conexión. Puede que no esté disponible o bloqueada.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>No se pudo llegar al servicio remoto. Comprueba la conexión a Internet, firewall, VPN o configuración de proxy y prueba de nuevo.</value></data>
+  <data name="Error.Description.HttpStatus"><value>El servicio remoto devolvió el estado HTTP {0}. Inténtalo de nuevo más tarde.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>La operación no terminó dentro del tiempo permitido. Prueba otra vez.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>La operación fue cancelada antes de que terminara.</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI no tiene permiso para acceder al archivo, carpeta o dispositivo solicitado.</value></data>
+  <data name="Error.Description.FileNotFound"><value>El archivo requerido no se pudo encontrar: {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>No se pudo encontrar la carpeta requerida.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>La unidad solicitada no está disponible.</value></data>
+  <data name="Error.Description.PathTooLong"><value>El camino seleccionado es demasiado largo.</value></data>
+  <data name="Error.Description.DiskFull"><value>No hay suficiente espacio de disco libre para completar la operación.</value></data>
+  <data name="Error.Description.InvalidData"><value>Los datos o archivos seleccionados son inválidos, incompletos o dañados.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>Uno de los valores suministrados es inválido. Revisa la configuración e intenta de nuevo.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>La operación no puede completarse en el estado de aplicación actual.</value></data>
+  <data name="Error.Description.NotSupported"><value>Esta operación no es compatible con el archivo, dispositivo o plataforma seleccionado.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>No hay suficiente memoria disponible para completar la operación.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI encontró un problema inesperado mientras realizaba esta acción.</value></data>
 </root>

@@ -34,4 +34,23 @@
     <value>完全なレポートは次の場所に保存されました。
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>接続がタイムアウトする前にリモートサービスが応答しませんでした。 ネットワーク接続をチェックしてもう一度お試しください。</value></data>
+  <data name="Error.Description.NetworkDns"><value>リモートサービスアドレスは解決できませんでした。 ネットワークまたはDNSの設定を確認し、もう一度お試しください。</value></data>
+  <data name="Error.Description.NetworkRefused"><value>リモートサービスは接続を拒否しました。 利用不可、ブロック不可</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>リモートサービスは到達できませんでした。 インターネット接続、ファイアウォール、VPN、プロキシ設定をチェックし、もう一度お試しください。</value></data>
+  <data name="Error.Description.HttpStatus"><value>リモートサービスは HTTP ステータス {0} を返します。 もう一度お試しください。</value></data>
+  <data name="Error.Description.OperationTimeout"><value>運転は許された時間内に終了しなかった。 もう一度お試しください。</value></data>
+  <data name="Error.Description.OperationCancelled"><value>作業は終了前に中止となりました。</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI は、要求されたファイル、フォルダ、またはデバイスにアクセスする許可はありません。</value></data>
+  <data name="Error.Description.FileNotFound"><value>必須ファイルが見つかりませんでした: {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>必要なフォルダが見つかりませんでした。</value></data>
+  <data name="Error.Description.DriveNotFound"><value>リクエストされたドライブは利用できません。</value></data>
+  <data name="Error.Description.PathTooLong"><value>選択したパスが長すぎる。</value></data>
+  <data name="Error.Description.DiskFull"><value>操作を完了するのに十分な空きディスク容量はありません。</value></data>
+  <data name="Error.Description.InvalidData"><value>選択したデータまたはファイルが無効、不完全、または破損しています。</value></data>
+  <data name="Error.Description.InvalidArgument"><value>提供された値の1つは無効です。 設定を確認し、もう一度お試しください。</value></data>
+  <data name="Error.Description.InvalidOperation"><value>現行のアプリケーション状態での動作は完了できません。</value></data>
+  <data name="Error.Description.NotSupported"><value>選択したファイル、デバイス、プラットフォームではこの操作はサポートされません。</value></data>
+  <data name="Error.Description.OutOfMemory"><value>操作を完了するのに十分なメモリはありません。</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUIは、このアクションを実行しながら予期しない問題に遭遇しました。</value></data>
 </root>

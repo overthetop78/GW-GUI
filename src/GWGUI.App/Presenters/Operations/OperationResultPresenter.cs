@@ -2,6 +2,7 @@ using GWGUI.Domain.Commands.Execution;
 using GWGUI.App.Contracts.ViewModels.Operations;
 using GWGUI.App.Enums.ViewModels.Operations;
 using GWGUI.App.Localization.Extensions;
+using GWGUI.App.Functions.Localization;
 using GWGUI.App.Services.Logging;
 
 namespace GWGUI.App.Presenters.Operations;
@@ -43,10 +44,8 @@ public sealed class OperationResultPresenter
 
     private static OperationResultPresentation Error(Exception error)
     {
-        var path = ErrorLog.Write(error, "Running Greaseweazle operation");
-        var detail = path is null
-            ? LocExtension.Get("Common.Unknown")
-            : LocExtension.Get("Error.LogSaved", path);
+        ErrorLog.Write(error, "Running Greaseweazle operation");
+        var detail = ExceptionDescriptionFunctions.Describe(error);
         return new(OperationResultState.Error, [new("Error.Unexpected", [detail])]);
     }
 }

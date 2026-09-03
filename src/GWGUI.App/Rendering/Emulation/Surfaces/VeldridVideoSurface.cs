@@ -1,5 +1,8 @@
 using GWGUI.App.Functions.Rendering.Emulation;
+using GWGUI.App.Factories.Rendering.Emulation;
 using GWGUI.App.Interfaces.Rendering.Emulation;
+using GWGUI.App.Rendering.Emulation.Processing;
+using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
@@ -15,11 +18,15 @@ namespace GWGUI.App.Rendering.Emulation.Surfaces;
 internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
 {
     private readonly GraphicsBackend _backend;
+    private readonly object _deviceGate = new();
     private IntPtr _hwnd;
     private GraphicsDevice? _device;
     private DeviceBuffer? _vertexBuffer;
+    private DeviceBuffer? _parameterBuffer;
     private Texture? _texture;
     private TextureView? _textureView;
+    private Texture? _historyTexture;
+    private TextureView? _historyTextureView;
     private ResourceLayout? _layout;
     private ResourceSet? _set;
     private Pipeline? _pipeline;
@@ -27,21 +34,46 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
     private Shader[]? _shaders;
     private int _width;
     private int _height;
+    private GWGUI.Emulation.Enums.EmulationVideoSampling _sampling;
     private uint _swapchainWidth;
     private uint _swapchainHeight;
+    private bool _hasHistory;
+    private TimeSpan _historyTimestamp;
+    private long _historySequence;
     private WriteableBitmap? _snapshot;
+    private VideoFrame? _snapshotSourceFrame;
+    private EmulationVideoProcessingSize _snapshotOutputSize;
+    private EmulationVideoProcessingConfiguration _snapshotConfiguration =
+        EmulationVideoProcessingConfigurationFunctions.Normalize(null);
+    private readonly IEmulationVideoProcessingPipeline _videoProcessingPipeline;
+    private readonly SoftwareEmulationVideoProcessingPipeline _snapshotPipeline = new();
+    private EmulationVideoProcessingConfiguration _videoProcessing =
+        EmulationVideoProcessingConfigurationFunctions.Normalize(null);
 
     internal VeldridVideoSurface(GraphicsBackend backend)
     {
         _backend = backend;
+        _videoProcessingPipeline = EmulationVideoProcessingPipelineFactory.Create(
+            backend == GraphicsBackend.Vulkan
+                ? EmulationVideoRenderer.Vulkan : EmulationVideoRenderer.Direct3D11);
         Focusable = true;
     }
 
     public FrameworkElement View => this;
-    public BitmapSource? Snapshot => _snapshot;
+    public BitmapSource? Snapshot => EnsureSnapshot();
     public EmulationVideoRenderer Renderer => _backend == GraphicsBackend.Vulkan
         ? EmulationVideoRenderer.Vulkan : EmulationVideoRenderer.Direct3D11;
     public IntPtr InputHandle => _hwnd;
+    public EmulationVideoProcessingConfiguration VideoProcessing => _videoProcessing;
+    public Task<BitmapSource?> CaptureSnapshotAsync() =>
+        EmulationVideoSnapshotFunctions.CreateAsync(_snapshotSourceFrame,
+            _snapshotConfiguration, _snapshotOutputSize);
+
+    public void SetVideoProcessing(EmulationVideoProcessingConfiguration configuration)
+    {
+        _videoProcessing = EmulationVideoProcessingConfigurationFunctions.Normalize(configuration);
+        _snapshot = null;
+    }
 
     protected override HandleRef BuildWindowCore(HandleRef hwndParent)
     {
@@ -56,16 +88,56 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
     protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
     {
         base.OnRenderSizeChanged(sizeInfo);
-        ResizeSwapchainToClient();
+        lock (_deviceGate) ResizeSwapchainToClient();
     }
 
     public void Present(VideoFrame frame)
     {
+        lock (_deviceGate) PresentCore(frame);
+    }
+
+    private void PresentCore(VideoFrame frame)
+    {
         if (_hwnd == IntPtr.Zero) return;
-        EnsureDevice(frame.Width, frame.Height);
+        var clientSize = NativeVideoWindowFunctions.GetClientSize(_hwnd);
+        var outputSize = new EmulationVideoProcessingSize(
+            Math.Max(1, clientSize.Width), Math.Max(1, clientSize.Height));
+        var processed = frame;
+        byte[]? convertedPixels = null;
+        ReadOnlySpan<byte> pixels;
+        if (frame.PixelFormat == EmulationPixelFormat.Xrgb8888
+            && frame.Pitch == checked(frame.Width * 4))
+            pixels = frame.Pixels.Span;
+        else
+        {
+            convertedPixels = EmulationVideoPixelFunctions.ToBgra32(frame);
+            pixels = convertedPixels;
+        }
+        EnsureDevice(processed.Width, processed.Height, _videoProcessing.Sampling);
         ResizeSwapchainToClient();
-        var pixels = EmulationVideoPixelFunctions.ToBgra32(frame);
-        _device!.UpdateTexture(_texture!, pixels, 0, 0, 0, (uint)frame.Width, (uint)frame.Height, 1, 0, 0);
+        _device!.UpdateTexture(_texture!, pixels, 0, 0, 0,
+            (uint)processed.Width, (uint)processed.Height, 1, 0, 0);
+        var gpuConfiguration = _videoProcessing;
+        var fixedPixel = gpuConfiguration.DisplayTechnology
+            == EmulationVideoDisplayTechnology.FixedPixel;
+        var plasma = gpuConfiguration.DisplayTechnology == EmulationVideoDisplayTechnology.Plasma;
+        var vector = gpuConfiguration.DisplayTechnology == EmulationVideoDisplayTechnology.Vector;
+        var segmentDisplay = gpuConfiguration.DisplayTechnology
+            == EmulationVideoDisplayTechnology.SegmentDisplay;
+        var temporalDisplay = fixedPixel || plasma || vector || segmentDisplay
+            || gpuConfiguration.DisplayTechnology is EmulationVideoDisplayTechnology.Vfd
+                or EmulationVideoDisplayTechnology.DotMatrix or EmulationVideoDisplayTechnology.EPaper
+            || gpuConfiguration.Temporal.GeneralPersistence > 0
+            || gpuConfiguration.Temporal.MotionBlur > 0;
+        var hasHistory = temporalDisplay && _hasHistory
+            && (fixedPixel || segmentDisplay ? frame.Timestamp >= _historyTimestamp
+                : frame.Sequence >= _historySequence);
+        var elapsedMilliseconds = hasHistory
+            ? (frame.Timestamp - _historyTimestamp).TotalMilliseconds : 0;
+        _device.UpdateBuffer(_parameterBuffer!, 0, Parameters(
+            gpuConfiguration, processed.Width, processed.Height,
+            Math.Max(1, clientSize.Width), Math.Max(1, clientSize.Height),
+            hasHistory, elapsedMilliseconds, frame.Sequence));
         _commands!.Begin();
         _commands.SetFramebuffer(_device.MainSwapchain.Framebuffer);
         _commands.ClearColorTarget(0, RgbaFloat.Black);
@@ -76,10 +148,27 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
         _commands.End();
         _device.SubmitCommands(_commands);
         _device.SwapBuffers(_device.MainSwapchain);
-        UpdateSnapshot(pixels, frame.Width, frame.Height);
+        if (temporalDisplay)
+        {
+            _device.UpdateTexture(_historyTexture!, pixels, 0, 0, 0,
+                (uint)processed.Width, (uint)processed.Height, 1, 0, 0);
+            _hasHistory = true;
+            _historyTimestamp = frame.Timestamp;
+            _historySequence = frame.Sequence;
+        }
+        else
+        {
+            _hasHistory = false;
+            _historyTimestamp = TimeSpan.Zero;
+            _historySequence = 0;
+        }
+        _snapshotSourceFrame = frame;
+        _snapshotOutputSize = outputSize;
+        _snapshotConfiguration = _videoProcessing;
+        _snapshot = null;
     }
 
-    private void EnsureDevice(int width, int height)
+    private void EnsureDevice(int width, int height, GWGUI.Emulation.Enums.EmulationVideoSampling sampling)
     {
         if (_device is null)
         {
@@ -95,36 +184,97 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
                 : GraphicsDevice.CreateD3D11(options, swapchain);
             _commands = _device.ResourceFactory.CreateCommandList();
         }
-        if (_texture is not null && _width == width && _height == height) return;
-        DisposeFrameResources();
-        _width = width; _height = height;
+        if (_texture is not null && _width == width && _height == height && _sampling == sampling) return;
         var factory = _device.ResourceFactory;
-        _texture = factory.CreateTexture(TextureDescription.Texture2D((uint)width, (uint)height, 1, 1,
-            Veldrid.PixelFormat.B8_G8_R8_A8_UNorm, TextureUsage.Sampled));
-        _textureView = factory.CreateTextureView(_texture);
-        _layout = factory.CreateResourceLayout(new ResourceLayoutDescription(
-            new ResourceLayoutElementDescription("Source", ResourceKind.TextureReadOnly, ShaderStages.Fragment),
-            new ResourceLayoutElementDescription("Sampler", ResourceKind.Sampler, ShaderStages.Fragment)));
-        _set = factory.CreateResourceSet(new ResourceSetDescription(_layout, _textureView, _device.PointSampler));
-        var vertices = new[]
+        Texture? texture = null;
+        TextureView? textureView = null;
+        Texture? historyTexture = null;
+        TextureView? historyTextureView = null;
+        DeviceBuffer? parameterBuffer = null;
+        ResourceLayout? layout = null;
+        ResourceSet? set = null;
+        DeviceBuffer? vertexBuffer = null;
+        Shader[]? shaders = null;
+        Pipeline? pipeline = null;
+        try
         {
-            new Vertex(-1, -1, 0, 1), new Vertex(-1, 1, 0, 0),
-            new Vertex(1, -1, 1, 1), new Vertex(1, 1, 1, 0)
-        };
-        _vertexBuffer = factory.CreateBuffer(new BufferDescription((uint)(vertices.Length * Marshal.SizeOf<Vertex>()), BufferUsage.VertexBuffer));
-        _device.UpdateBuffer(_vertexBuffer, 0, vertices);
-        const string vertex = "#version 450\nlayout(location=0) in vec2 Position; layout(location=1) in vec2 TexCoord; layout(location=0) out vec2 fsin_TexCoord; void main(){ gl_Position=vec4(Position,0,1); fsin_TexCoord=TexCoord; }";
-        const string fragment = "#version 450\nlayout(set=0,binding=0) uniform texture2D Source; layout(set=0,binding=1) uniform sampler SourceSampler; layout(location=0) in vec2 fsin_TexCoord; layout(location=0) out vec4 fsout_Color; void main(){ fsout_Color=texture(sampler2D(Source,SourceSampler),fsin_TexCoord); }";
-        _shaders = factory.CreateFromSpirv(
-            new ShaderDescription(ShaderStages.Vertex, Encoding.UTF8.GetBytes(vertex), "main"),
-            new ShaderDescription(ShaderStages.Fragment, Encoding.UTF8.GetBytes(fragment), "main"));
-        var shaderSet = new ShaderSetDescription(
-            [new VertexLayoutDescription(new VertexElementDescription("Position", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float2),
-                new VertexElementDescription("TexCoord", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float2))], _shaders);
-        _pipeline = factory.CreateGraphicsPipeline(new GraphicsPipelineDescription(
-            BlendStateDescription.SingleOverrideBlend, DepthStencilStateDescription.Disabled,
-            RasterizerStateDescription.CullNone, PrimitiveTopology.TriangleStrip, shaderSet,
-            [_layout], _device.MainSwapchain.Framebuffer.OutputDescription));
+            texture = factory.CreateTexture(TextureDescription.Texture2D((uint)width,
+                (uint)height, 1, 1, Veldrid.PixelFormat.B8_G8_R8_A8_UNorm,
+                TextureUsage.Sampled));
+            textureView = factory.CreateTextureView(texture);
+            historyTexture = factory.CreateTexture(TextureDescription.Texture2D((uint)width,
+                (uint)height, 1, 1, Veldrid.PixelFormat.B8_G8_R8_A8_UNorm,
+                TextureUsage.Sampled));
+            historyTextureView = factory.CreateTextureView(historyTexture);
+            parameterBuffer = factory.CreateBuffer(new BufferDescription(
+                (uint)Marshal.SizeOf<VideoParameters>(), BufferUsage.UniformBuffer));
+            layout = factory.CreateResourceLayout(new ResourceLayoutDescription(
+                new ResourceLayoutElementDescription("VideoParameters",
+                    ResourceKind.UniformBuffer, ShaderStages.Fragment),
+                new ResourceLayoutElementDescription("Source",
+                    ResourceKind.TextureReadOnly, ShaderStages.Fragment),
+                new ResourceLayoutElementDescription("History",
+                    ResourceKind.TextureReadOnly, ShaderStages.Fragment),
+                new ResourceLayoutElementDescription("PointSampler",
+                    ResourceKind.Sampler, ShaderStages.Fragment),
+                new ResourceLayoutElementDescription("LinearSampler",
+                    ResourceKind.Sampler, ShaderStages.Fragment)));
+            set = factory.CreateResourceSet(new ResourceSetDescription(
+                layout, parameterBuffer, textureView, historyTextureView,
+                _device.PointSampler, _device.LinearSampler));
+            var vertices = new[]
+            {
+                new Vertex(-1, -1, 0, 1), new Vertex(-1, 1, 0, 0),
+                new Vertex(1, -1, 1, 1), new Vertex(1, 1, 1, 0)
+            };
+            vertexBuffer = factory.CreateBuffer(new BufferDescription(
+                (uint)(vertices.Length * Marshal.SizeOf<Vertex>()), BufferUsage.VertexBuffer));
+            _device.UpdateBuffer(vertexBuffer, 0, vertices);
+            shaders = factory.CreateFromSpirv(
+                new ShaderDescription(ShaderStages.Vertex,
+                    Encoding.UTF8.GetBytes(VeldridVideoProcessingShaders.Vertex), "main"),
+                new ShaderDescription(ShaderStages.Fragment,
+                    Encoding.UTF8.GetBytes(VeldridVideoProcessingShaders.Fragment(sampling)), "main"));
+            var shaderSet = new ShaderSetDescription(
+                [new VertexLayoutDescription(
+                    new VertexElementDescription("Position", VertexElementSemantic.TextureCoordinate,
+                        VertexElementFormat.Float2),
+                    new VertexElementDescription("TexCoord", VertexElementSemantic.TextureCoordinate,
+                        VertexElementFormat.Float2))], shaders);
+            pipeline = factory.CreateGraphicsPipeline(new GraphicsPipelineDescription(
+                BlendStateDescription.SingleOverrideBlend, DepthStencilStateDescription.Disabled,
+                RasterizerStateDescription.CullNone, PrimitiveTopology.TriangleStrip, shaderSet,
+                [layout], _device.MainSwapchain.Framebuffer.OutputDescription));
+
+            DisposeFrameResources();
+            _texture = texture; texture = null;
+            _textureView = textureView; textureView = null;
+            _historyTexture = historyTexture; historyTexture = null;
+            _historyTextureView = historyTextureView; historyTextureView = null;
+            _parameterBuffer = parameterBuffer; parameterBuffer = null;
+            _layout = layout; layout = null;
+            _set = set; set = null;
+            _vertexBuffer = vertexBuffer; vertexBuffer = null;
+            _shaders = shaders; shaders = null;
+            _pipeline = pipeline; pipeline = null;
+            _width = width; _height = height; _sampling = sampling;
+            _hasHistory = false;
+            _historyTimestamp = TimeSpan.Zero;
+            _historySequence = 0;
+        }
+        finally
+        {
+            pipeline?.Dispose();
+            set?.Dispose();
+            layout?.Dispose();
+            parameterBuffer?.Dispose();
+            textureView?.Dispose();
+            texture?.Dispose();
+            historyTextureView?.Dispose();
+            historyTexture?.Dispose();
+            vertexBuffer?.Dispose();
+            if (shaders is not null) foreach (var shader in shaders) shader.Dispose();
+        }
     }
 
     private void ResizeSwapchainToClient()
@@ -135,6 +285,18 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
         _device.ResizeMainWindow((uint)clientSize.Width, (uint)clientSize.Height);
         _swapchainWidth = (uint)clientSize.Width;
         _swapchainHeight = (uint)clientSize.Height;
+    }
+
+    private BitmapSource? EnsureSnapshot()
+    {
+        if (_snapshot is not null) return _snapshot;
+        var frame = _snapshotSourceFrame;
+        if (frame is null) return null;
+        var snapshotFrame = _snapshotPipeline.Process(_snapshotConfiguration, frame,
+            new EmulationVideoProcessingSize(frame.Width, frame.Height), _snapshotOutputSize);
+        UpdateSnapshot(EmulationVideoPixelFunctions.ToBgra32(snapshotFrame),
+            snapshotFrame.Width, snapshotFrame.Height);
+        return _snapshot;
     }
 
     private void UpdateSnapshot(byte[] pixels, int width, int height)
@@ -149,15 +311,23 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
         _pipeline?.Dispose(); _pipeline = null;
         _set?.Dispose(); _set = null;
         _layout?.Dispose(); _layout = null;
+        _parameterBuffer?.Dispose(); _parameterBuffer = null;
         _textureView?.Dispose(); _textureView = null;
         _texture?.Dispose(); _texture = null;
+        _historyTextureView?.Dispose(); _historyTextureView = null;
+        _historyTexture?.Dispose(); _historyTexture = null;
         _vertexBuffer?.Dispose(); _vertexBuffer = null;
         if (_shaders is not null) foreach (var shader in _shaders) shader.Dispose();
         _shaders = null;
+        _hasHistory = false;
+        _historyTimestamp = TimeSpan.Zero;
+        _historySequence = 0;
     }
 
     public new void Dispose()
     {
+        _videoProcessingPipeline.Dispose();
+        _snapshotPipeline.Dispose();
         DisposeFrameResources();
         _commands?.Dispose();
         _device?.Dispose();
@@ -166,4 +336,87 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
 
     [StructLayout(LayoutKind.Sequential)]
     private readonly record struct Vertex(float X, float Y, float U, float V);
+
+    [StructLayout(LayoutKind.Sequential)]
+    private readonly record struct VideoParameters(
+        Vector4 Adjustments,
+        Vector4 Processing,
+        Vector4 Output,
+        Vector4 CrtDisplay,
+        Vector4 CrtBeam,
+        Vector4 CrtOptical,
+        Vector4 CrtGeometry,
+        Vector4 CrtScanlines,
+        Vector4 CrtPattern,
+        Vector4 CrtPatternIntensity,
+        Vector4 FixedDisplay,
+        Vector4 FixedSpatial,
+        Vector4 FixedTechnology,
+        Vector4 FixedTemporal,
+        Vector4 PlasmaEffect,
+        Vector4 PlasmaTemporal,
+        Vector4 VectorEffect,
+        Vector4 VectorTemporal,
+        Vector4 Restoration,
+        Vector4 SegmentDisplay,
+        Vector4 SegmentTemporal,
+        Vector4 General,
+        Vector4 Restoration2,
+        Vector4 Temporal,
+        Vector4 Signal,
+        Vector4 Signal2,
+        Vector4 Stylistic,
+        Vector4 Stylistic2,
+        Vector4 Vfd,
+        Vector4 LedMatrix,
+        Vector4 DotMatrix,
+        Vector4 EPaper,
+        Vector4 Projection);
+
+    private static VideoParameters Parameters(EmulationVideoProcessingConfiguration configuration,
+        int sourceWidth, int sourceHeight, int outputWidth, int outputHeight,
+        bool hasHistory, double elapsedMilliseconds, long sequence)
+    {
+        var adjustments = configuration.Adjustments;
+        var crt = CrtVideoShaderParameters.From(configuration);
+        var fixedPixel = FixedPixelVideoShaderParameters.From(
+            configuration, hasHistory, elapsedMilliseconds);
+        var plasma = PlasmaVideoShaderParameters.From(configuration, hasHistory, sequence);
+        var vector = VectorVideoShaderParameters.From(configuration, hasHistory);
+        return new VideoParameters(
+            new Vector4(
+                adjustments.Brightness / 20f,
+                MathF.Pow(2f, adjustments.Contrast / 5f),
+                (float)EmulationImageAdjustmentFunctions.GammaExponent(adjustments.Gamma),
+                1f + adjustments.Saturation / 10f),
+            new Vector4(adjustments.Sharpness / 10f, (float)configuration.Sampling,
+                sourceWidth, sourceHeight),
+            new Vector4(outputWidth, outputHeight, (float)elapsedMilliseconds, 0f),
+            crt.Display, crt.Beam, crt.Optical, crt.Geometry, crt.Scanlines,
+            crt.Pattern, crt.PatternIntensity,
+            fixedPixel.Display, fixedPixel.Spatial, fixedPixel.Technology,
+            fixedPixel.Temporal, plasma.Effect, plasma.Temporal,
+            vector.Effect, vector.Temporal,
+            new Vector4(configuration.Restoration.DetailRecovery / 100f, 0f, 0f, 0f),
+            new Vector4(configuration.SegmentDisplay.Thickness / 100f,
+                configuration.SegmentDisplay.Contrast / 100f,
+                configuration.SegmentDisplay.Glow / 100f,
+                (float)configuration.SegmentDisplay.Layout),
+            new Vector4(configuration.DisplayTechnology
+                    == EmulationVideoDisplayTechnology.SegmentDisplay ? 1f : 0f,
+                (float)configuration.SegmentDisplay.Color,
+                configuration.SegmentDisplay.ResponseTimeMilliseconds, hasHistory ? 1f : 0f),
+            new Vector4((float)configuration.DisplayTechnology, hasHistory ? 1f : 0f, sequence % 4096, (float)elapsedMilliseconds),
+            new Vector4(configuration.Restoration.Dedithering / 100f, configuration.Restoration.Denoising / 100f, configuration.Restoration.Debanding / 100f, (float)configuration.Restoration.Deinterlacing),
+            new Vector4(configuration.Temporal.GeneralPersistence / 100f, configuration.Temporal.MotionBlur / 100f, configuration.Temporal.Flicker / 100f, configuration.Temporal.Interlacing > 0 ? 1f : 0f),
+            new Vector4(configuration.SignalSimulation.Composite / 100f, configuration.SignalSimulation.SVideo / 100f, configuration.SignalSimulation.Rf / 100f, configuration.SignalSimulation.Pal / 100f),
+            new Vector4(configuration.SignalSimulation.Ntsc / 100f, configuration.Temporal.BlackFrameInsertion ? 1f : 0f, configuration.Temporal.InterlacingVisibility / 100f, 0f),
+            new Vector4(configuration.Stylistic.Grain / 100f, configuration.Stylistic.Vhs / 100f, configuration.Stylistic.ChromaticAberration / 100f, configuration.Stylistic.Bloom / 100f),
+            new Vector4(configuration.Stylistic.Sepia / 100f, configuration.Stylistic.Grayscale / 100f, 0f, 0f),
+            new Vector4((float)configuration.Vfd.Color, configuration.Vfd.PhosphorIntensity / 100f, configuration.Vfd.HaloIntensity / 100f, configuration.Vfd.PersistenceIntensity / 100f),
+            new Vector4((float)configuration.LedMatrix.Color, configuration.LedMatrix.CellSize / 100f, Math.Max(configuration.LedMatrix.CellGap, configuration.LedMatrix.Diffusion) / 100f, configuration.LedMatrix.Brightness / 100f),
+            new Vector4((float)configuration.DotMatrix.Palette, (float)configuration.DotMatrix.Shape, configuration.DotMatrix.DotSize / 100f, configuration.DotMatrix.Contrast / 100f),
+            new Vector4((float)configuration.EPaper.ColorMode, configuration.EPaper.Contrast / 100f, configuration.EPaper.Dithering / 100f, configuration.EPaper.Ghosting / 100f),
+            new Vector4(configuration.Projection.OpticalBlur / 100f, configuration.Projection.Diffusion / 100f, configuration.Projection.ScreenTexture / 100f, configuration.Projection.Convergence / 100f));
+    }
 }

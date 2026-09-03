@@ -1,0 +1,7 @@
+namespace GWGUI.App.Rendering.Emulation.Processing;
+internal static class FilterEpxScale2x
+{
+    internal static void Sample(float[] source,int width,int height,float x,float y,Span<float> result)=>FilterScaleNx.Sample(source,width,height,x,y,2f,2f,result);
+    internal const string OpenGlShader="""vec4 epxScale2xSample(vec2 uv){vec2 p=uv*Processing.zw,b=floor(p),f=floor(clamp(fract(p)*2.0,0.0,1.0));vec3 u=xbrPointAt(b,vec2(0.0,-1.0)),l=xbrPointAt(b,vec2(-1.0,0.0)),c=xbrPointAt(b,vec2(0.0)),r=xbrPointAt(b,vec2(1.0,0.0)),d=xbrPointAt(b,vec2(0.0,1.0));if(!advancedSame(u,d)&&!advancedSame(l,r)){if(f.x<.5&&f.y<.5&&advancedSame(l,u))c=l;else if(f.x>.5&&f.y<.5&&advancedSame(u,r))c=r;else if(f.x<.5&&f.y>.5&&advancedSame(l,d))c=l;else if(f.x>.5&&f.y>.5&&advancedSame(d,r))c=r;}return vec4(c,1.0);}""";
+    internal const string VeldridShader="""vec3 epxScale2xSampleCompact(vec2 uv){ivec2 size=textureSize(sampler2D(Source,PointSampler),0);vec2 p=uv*vec2(size),f=floor(clamp(fract(p)*2.0,0.0,1.0));ivec2 b=ivec2(floor(p));vec3 u=filterPointAt(b+ivec2(0,-1)),l=filterPointAt(b+ivec2(-1,0)),c=filterPointAt(b),r=filterPointAt(b+ivec2(1,0)),d=filterPointAt(b+ivec2(0,1));if(filterColorDistance(u,d)>=.035&&filterColorDistance(l,r)>=.035){if(f.x<.5&&f.y<.5&&filterColorDistance(l,u)<.035)c=l;else if(f.x>.5&&f.y<.5&&filterColorDistance(u,r)<.035)c=r;else if(f.x<.5&&f.y>.5&&filterColorDistance(l,d)<.035)c=l;else if(f.x>.5&&f.y>.5&&filterColorDistance(d,r)<.035)c=r;}return c;}""";
+}

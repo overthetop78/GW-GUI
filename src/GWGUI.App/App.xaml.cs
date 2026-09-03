@@ -111,8 +111,8 @@ public partial class App : Application
 
     private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
     {
-        var path = ErrorLog.Write(e.Exception, "WPF dispatcher");
-        var detail = path is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", path);
+        ErrorLog.Write(e.Exception, "WPF dispatcher");
+        var detail = ExceptionDescriptionFunctions.Describe(e.Exception);
         MessageBox.Show(WpfDialogOwner.Resolve(), LocExtension.Get("Error.Unexpected", detail),
             LocExtension.Get("Error.Title"), MessageBoxButton.OK, MessageBoxImage.Error);
         e.Handled = true;

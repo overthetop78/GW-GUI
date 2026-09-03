@@ -132,7 +132,17 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
         return new AtariMachineConfiguration(atari.Model, firmwares, atari.Media, options, atari.Input,
             atari.Id, atari.SchemaVersion,
             values.GetValueOrDefault(AtariSettingsConstants.AudioEnabled) == AtariEmulationModuleConstants.Enabled,
-            renderer, folders);
+            renderer, folders, atari.VideoProcessing);
+    }
+
+    public IEmulationConfiguration ApplyVideoProcessing(IEmulationConfiguration configuration,
+        EmulationVideoProcessingConfiguration videoProcessing)
+    {
+        if (configuration is not AtariMachineConfiguration atari)
+            throw new ArgumentException(nameof(configuration));
+        return new AtariMachineConfiguration(atari.Model, atari.Firmwares, atari.Media, atari.Options,
+            atari.Input, atari.Id, atari.SchemaVersion, atari.AudioEnabled, atari.VideoRenderer,
+            atari.Folders, EmulationVideoProcessingConfigurationFunctions.Normalize(videoProcessing));
     }
 
     public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) =>
@@ -272,7 +282,8 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
         var selected = AtariFirmwareScanFunctions.CreateSelection(scanned);
         var configured = atari.Firmwares.Where(item => item.Category != selected.Category).Append(selected).ToArray();
         return new AtariMachineConfiguration(atari.Model, configured, atari.Media, atari.Options, atari.Input,
-            atari.Id, atari.SchemaVersion, atari.AudioEnabled, atari.VideoRenderer, atari.Folders);
+            atari.Id, atari.SchemaVersion, atari.AudioEnabled, atari.VideoRenderer, atari.Folders,
+            atari.VideoProcessing);
     }
 
     private static EmulationFirmwareCompatibility ToFirmwareCompatibility(
@@ -329,7 +340,8 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
             configuration.Media)).ToArray();
         return new AtariMachineConfiguration(configuration.Model, configuration.Firmwares, converted,
             configuration.Options, configuration.Input, configuration.Id, configuration.SchemaVersion,
-            configuration.AudioEnabled, configuration.VideoRenderer, configuration.Folders);
+            configuration.AudioEnabled, configuration.VideoRenderer, configuration.Folders,
+            configuration.VideoProcessing);
     }
 
 }

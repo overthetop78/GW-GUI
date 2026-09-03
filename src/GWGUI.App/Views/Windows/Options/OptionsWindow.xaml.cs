@@ -6,6 +6,7 @@ using GWGUI.App.Contracts.Emulation.Machine;
 using GWGUI.App.Enums.Services.Navigation;
 using GWGUI.App.Functions.Options.Tags;
 using GWGUI.App.Localization.Extensions;
+using GWGUI.App.Functions.Localization;
 using GWGUI.App.Options.Controllers;
 using GWGUI.App.Options.States;
 using GWGUI.App.Services.Logging;
@@ -288,8 +289,8 @@ public partial class OptionsWindow : Window
 
     private void ShowLoggedError(Exception exception, string context, string titleKey, MessageBoxImage icon)
     {
-        var path = ErrorLog.Write(exception, context);
-        var detail = path is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", path);
+        ErrorLog.Write(exception, context);
+        var detail = ExceptionDescriptionFunctions.Describe(exception);
         MessageBox.Show(this, LocExtension.Get("Error.Unexpected", detail), LocExtension.Get(titleKey), MessageBoxButton.OK, icon);
     }
 
@@ -305,8 +306,8 @@ public partial class OptionsWindow : Window
         try { await PersistSettingsAsync().ConfigureAwait(false); }
         catch (Exception exception)
         {
-            var path = ErrorLog.Write(exception, "Saving Options while closing");
-            var detail = path is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", path);
+            ErrorLog.Write(exception, "Saving Options while closing");
+            var detail = ExceptionDescriptionFunctions.Describe(exception);
             try
             {
                 if (!Dispatcher.HasShutdownStarted && !Dispatcher.HasShutdownFinished)

@@ -37,7 +37,8 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         _options = options;
         _audioMuted = options.Machine.Audio.IsMuted;
         _session = new MachineSession(options.Machine, options.MachineFactory, options.MountedMedia);
-        _video = new MachineVideoPresenter(_view, options.Machine, options.VideoRenderer);
+        _video = new MachineVideoPresenter(_view, options.Machine, options.VideoRenderer,
+            options.VideoProcessing);
         _video.FramePresented += FramePresented;
         _session.MachineChanged += MachineChanged;
         _input = new MachineInputController(_view, _video.InputView, _video.InputHandle,
@@ -74,6 +75,13 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
     {
         _video.SetRenderer(renderer);
         _commands.RendererStatus.Text = MachinePresentationFunctions.RendererName(_video.Renderer);
+    }
+
+    internal void ApplyVideoConfiguration(EmulationVideoRenderer renderer,
+        EmulationVideoProcessingConfiguration videoProcessing)
+    {
+        _video.SetVideoProcessing(videoProcessing);
+        ApplyVideoRenderer(renderer);
     }
 
     public async ValueTask DisposeAsync() => await StopAsync();
@@ -144,13 +152,15 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         await _session.Machine.SavedStates.LoadAsync(_options.QuickStatePath);
     }
 
-    private Task CaptureScreenAsync()
+    private async Task CaptureScreenAsync()
     {
-        var snapshot = _video.Snapshot
+        var snapshot = await _video.CaptureSnapshotAsync()
             ?? throw new InvalidOperationException(LocExtension.Get("Emulation.Shortcut.Unavailable"));
-        var path = MachineCaptureFunctions.Save(snapshot, _options.CaptureFolder, DateTime.Now);
+        var capture = snapshot.Clone();
+        capture.Freeze();
+        var path = await Task.Run(() => MachineCaptureFunctions.Save(
+            capture, _options.CaptureFolder, DateTime.Now));
         _commands.Status.Text = Path.GetFileName(path);
-        return Task.CompletedTask;
     }
 
     private Task ToggleFullscreenAsync()

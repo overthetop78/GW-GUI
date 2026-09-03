@@ -34,4 +34,23 @@
     <value>הדוח המלא נשמר ב:
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>השירות המרוחק לא הגיב לפני שהקשר יצא. בדוק את חיבור הרשת ולנסות שוב.</value></data>
+  <data name="Error.Description.NetworkDns"><value>לא ניתן לפתור את כתובת השירות מרחוק. בדוק את הגדרות הרשת או ה- DNS ולנסות שוב.</value></data>
+  <data name="Error.Description.NetworkRefused"><value>השירות המרוחק סירב לקשר. זה יכול להיות לא זמין או חסום.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>לא ניתן להגיע לשירות המרוחק. בדוק את חיבור האינטרנט, חומת אש, VPN או הגדרות Proxy ולנסות שוב.</value></data>
+  <data name="Error.Description.HttpStatus"><value>השירות המרוחק חזר לסטטוס HTTP {0} נסה שוב אחר כך.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>המבצע לא הסתיים בזמן המותר. נסה שוב.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>המבצע בוטל לפני שהוא הסתיים.</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI אין רשות לגשת לקובץ המבוקש, התיקיה או המכשיר.</value></data>
+  <data name="Error.Description.FileNotFound"><value>לא ניתן למצוא את הקובץ הנדרש: {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>לא ניתן למצוא את התיקיה הנדרשת.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>הכונן המבוקש אינו זמין.</value></data>
+  <data name="Error.Description.PathTooLong"><value>הדרך הנבחרת ארוכה מדי.</value></data>
+  <data name="Error.Description.DiskFull"><value>אין מספיק שטח דיסק חופשי להשלמת המבצע.</value></data>
+  <data name="Error.Description.InvalidData"><value>הנתונים או הקובץ שנבחרו אינם חוקיים, לא שלמים או מושחתים.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>אחד הערכים המוצעים הוא בלתי חוקי. בדוק את ההגדרות ולנסות שוב.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>לא ניתן להשלים את הפעולה במצב היישום הנוכחי.</value></data>
+  <data name="Error.Description.NotSupported"><value>פעולה זו אינה נתמכת על ידי הקובץ שנבחר, המכשיר או הפלטפורמה.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>אין מספיק זיכרון זמין כדי להשלים את הפעולה.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI נתקל בבעיה בלתי צפויה בעת ביצוע פעולה זו.</value></data>
 </root>

@@ -34,4 +34,23 @@
     <value>Báo cáo đầy đủ đã được lưu vào:
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>Dịch vụ từ xa không đáp ứng trước khi kết nối quá giờ. Kiểm tra kết nối mạng rồi thử lại.</value></data>
+  <data name="Error.Description.NetworkDns"><value>Không thể giải quyết địa chỉ dịch vụ từ xa. Kiểm tra mạng hay thiết lập DNS rồi thử lại.</value></data>
+  <data name="Error.Description.NetworkRefused"><value>Dịch vụ từ xa đã từ chối kết nối. Có thể nó không sẵn sàng hoặc bị chặn.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>Không thể đến được dịch vụ từ xa. Kiểm tra kết nối Internet, tường lửa, VPN, hoặc thiết lập ủy nhiệm rồi thử lại.</value></data>
+  <data name="Error.Description.HttpStatus"><value>Dịch vụ từ xa đã trả lại trạng thái HTTP. Hãy thử lại sau.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>Cuộc phẫu thuật không hoàn tất trong thời gian cho phép. Thử lại đi.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>Chiến dịch bị hủy bỏ trước khi nó kết thúc.</value></data>
+  <data name="Error.Description.AccessDenied"><value>Giao diện đồ hoạ GW không có quyền truy cập tập tin, thư mục hay thiết bị đã yêu cầu.</value></data>
+  <data name="Error.Description.FileNotFound"><value>Không tìm thấy tập tin cần thiết:{0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>Không tìm thấy thư mục cần thiết.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>Không có ổ đĩa đã yêu cầu.</value></data>
+  <data name="Error.Description.PathTooLong"><value>Con đường đã chọn quá dài.</value></data>
+  <data name="Error.Description.DiskFull"><value>Không đủ dung lượng đĩa miễn phí để hoàn thành thao tác này.</value></data>
+  <data name="Error.Description.InvalidData"><value>Dữ liệu hay tập tin đã chọn không hợp lệ, không đầy đủ hoặc bị hỏng.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>Một trong những giá trị đã cung cấp không hợp lệ. Xem lại thiết lập và thử lại.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>Thao tác này không thể hoàn tất trong tình trạng ứng dụng hiện thời.</value></data>
+  <data name="Error.Description.NotSupported"><value>Thao tác này không được hỗ trợ bởi tập tin, thiết bị hoặc nền tảng đã chọn.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>Không có đủ bộ nhớ để hoàn thành thao tác này.</value></data>
+  <data name="Error.Description.Unexpected"><value>Giao diện đồ hoạ GW gặp một vấn đề bất ngờ trong khi thực hiện hành động này.</value></data>
 </root>

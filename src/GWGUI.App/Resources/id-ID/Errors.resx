@@ -34,4 +34,23 @@
     <value>Laporan lengkap disimpan ke:
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>Layanan jarak jauh tak menjawab sebelum koneksi habis. Periksa koneksi jaringan dan coba lagi.</value></data>
+  <data name="Error.Description.NetworkDns"><value>Alamat layanan jarak jauh tak dapat diselesaikan. Periksa pengaturan jaringan atau DNS dan coba lagi.</value></data>
+  <data name="Error.Description.NetworkRefused"><value>Layanan jarak jauh menolak koneksi. Mungkin tidak tersedia atau diblokir.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>Layanan jarak jauh tak dapat dicapai. Periksa koneksi Internet, firewall, VPN, atau pengaturan proxy dan coba lagi.</value></data>
+  <data name="Error.Description.HttpStatus"><value>Layanan jarak jauh mengembalikan status HTTP {0}. Coba lagi nanti.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>Operasi tidak selesai dalam waktu yang diizinkan. Coba lagi.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>Operasi dibatalkan sebelum selesai.</value></data>
+  <data name="Error.Description.AccessDenied"><value>GUI GW tidak memiliki izin untuk mengakses berkas, folder, atau perangkat yang diminta.</value></data>
+  <data name="Error.Description.FileNotFound"><value>Berkas yang diperlukan tak dapat ditemukan: {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>Folder yang diperlukan tidak dapat ditemukan.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>Kandar yang diminta tidak tersedia.</value></data>
+  <data name="Error.Description.PathTooLong"><value>Path yang dipilih terlalu panjang.</value></data>
+  <data name="Error.Description.DiskFull"><value>Tidak cukup ruang disk gratis untuk menyelesaikan operasi.</value></data>
+  <data name="Error.Description.InvalidData"><value>Data atau berkas yang dipilih tak valid, tak lengkap, atau rusak.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>Salah satu nilai yang diberikan tidak valid. Tinjau pengaturan dan coba lagi.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>Operasi tidak dapat diselesaikan dalam keadaan aplikasi saat ini.</value></data>
+  <data name="Error.Description.NotSupported"><value>Operasi ini tidak didukung oleh berkas, perangkat, atau platform yang dipilih.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>Tidak cukup memori yang tersedia untuk menyelesaikan operasi.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI menghadapi masalah tak terduga saat melakukan aksi ini.</value></data>
 </root>

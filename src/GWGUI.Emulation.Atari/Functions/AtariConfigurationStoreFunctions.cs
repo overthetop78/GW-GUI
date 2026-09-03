@@ -22,7 +22,8 @@ internal static class AtariConfigurationStoreFunctions
         configuration.Input,
         StoreFolders(configuration.Folders, pathBase),
         configuration.AudioEnabled,
-        configuration.VideoRenderer);
+        configuration.VideoRenderer,
+        configuration.VideoProcessing);
 
     internal static AtariMachineConfiguration FromDocument(AtariConfigurationDocument document,
         string pathBase)
@@ -49,7 +50,8 @@ internal static class AtariConfigurationStoreFunctions
             AtariConstants.CurrentConfigurationSchemaVersion,
             document.AudioEnabled,
             document.VideoRenderer,
-            ResolveFolders(document.Folders, pathBase));
+            ResolveFolders(document.Folders, pathBase),
+            document.VideoProcessing);
     }
 
     internal static string? StorePath(string? path, string pathBase)

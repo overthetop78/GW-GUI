@@ -16,6 +16,7 @@ using GWGUI.App.Functions.Services.PhysicalDiskReading;
 using GWGUI.App.Functions.Services.PhysicalDiskWriting;
 using GWGUI.App.Interfaces.Services.Dialogs;
 using GWGUI.App.Localization.Extensions;
+using GWGUI.App.Functions.Localization;
 using GWGUI.App.Services.DiskImages;
 using GWGUI.App.Services.Logging;
 using GWGUI.App.Services.Operations;
@@ -458,8 +459,8 @@ internal sealed class ReadTabController(
             operation.AppendText(Environment.NewLine + LocExtension.Get("Read.CancelledFileDeleted", target) + Environment.NewLine);
             return;
         }
-        var logPath = ErrorLog.Write(deletionError, logContext);
-        var detail = logPath is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", logPath);
+        ErrorLog.Write(deletionError, logContext);
+        var detail = ExceptionDescriptionFunctions.Describe(deletionError);
         var message = LocExtension.Get("Read.CancelledFileDeleteFailed", target, detail);
         operation.AppendText(Environment.NewLine + message + Environment.NewLine);
         if (showDialog) dialogs.Show(message, LocExtension.Get("Read.Title"), icon: UserDialogIcon.Warning);
@@ -470,8 +471,8 @@ internal sealed class ReadTabController(
         try { await diskImageWorkspace.AnalyzeAsync(path); }
         catch (Exception exception) when (exception is InvalidDataException or NotSupportedException)
         {
-            var logPath = ErrorLog.Write(exception, $"Analyzing completed disk read: {path}");
-            var detail = logPath is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", logPath);
+            ErrorLog.Write(exception, $"Analyzing completed disk read: {path}");
+            var detail = ExceptionDescriptionFunctions.Describe(exception);
             operation.AppendText(Environment.NewLine);
             operation.AppendText(LocExtension.Get("Error.Unexpected", detail));
             operation.AppendText(Environment.NewLine);
@@ -493,8 +494,8 @@ internal sealed class ReadTabController(
         }
         catch (Exception exception)
         {
-            var logPath = ErrorLog.Write(exception, "Reading SCP summary");
-            var detail = logPath is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", logPath);
+            ErrorLog.Write(exception, "Reading SCP summary");
+            var detail = ExceptionDescriptionFunctions.Describe(exception);
             view.CompletionBlock.SummaryTextBlock.Text = LocExtension.Get("Read.ScpSummaryUnavailable", detail);
             operation.AppendText(Environment.NewLine + LocExtension.Get("Read.ScpSummaryUnavailable", detail) + Environment.NewLine);
         }

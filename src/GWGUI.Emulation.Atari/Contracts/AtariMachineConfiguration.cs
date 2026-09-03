@@ -14,7 +14,8 @@ public sealed record AtariMachineConfiguration : IEmulationConfiguration
         int schemaVersion = AtariConstants.CurrentConfigurationSchemaVersion,
         bool audioEnabled = true,
         EmulationVideoRenderer videoRenderer = EmulationVideoRenderer.Direct3D11,
-        AtariFolderConfiguration? folders = null)
+        AtariFolderConfiguration? folders = null,
+        EmulationVideoProcessingConfiguration? videoProcessing = null)
     {
         Model = model;
         Family = AtariConfigurationFunctions.GetFamily(model);
@@ -28,6 +29,7 @@ public sealed record AtariMachineConfiguration : IEmulationConfiguration
         AudioEnabled = audioEnabled;
         VideoRenderer = videoRenderer;
         Folders = folders ?? new AtariFolderConfiguration();
+        VideoProcessing = EmulationVideoProcessingConfigurationFunctions.Normalize(videoProcessing);
         AtariConfigurationFunctions.Validate(SchemaVersion, Model, Firmwares, Media, Input);
     }
 
@@ -45,4 +47,5 @@ public sealed record AtariMachineConfiguration : IEmulationConfiguration
     public bool AudioEnabled { get; }
     public EmulationVideoRenderer VideoRenderer { get; }
     public AtariFolderConfiguration Folders { get; }
+    public EmulationVideoProcessingConfiguration VideoProcessing { get; }
 }

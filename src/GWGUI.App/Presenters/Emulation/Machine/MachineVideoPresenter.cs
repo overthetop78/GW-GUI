@@ -15,18 +15,33 @@ internal sealed class MachineVideoPresenter : IDisposable
     private FrameworkElement _displayHost;
     private IEmulatedMachine _machine;
     private IEmulationVideoSurface _surface;
+    private EmulationVideoProcessingConfiguration _videoProcessing;
     private int _framePending;
+    private int _uiFramePending;
     private int _framesInWindow;
     private long _frameWindowStarted = Stopwatch.GetTimestamp();
+    private long _lastUiFrameNotification;
     private double _measuredFramesPerSecond;
+    private readonly object _surfaceGate = new();
+    private readonly object _gpuFrameGate = new();
+    private readonly AutoResetEvent _gpuFrameAvailable = new(false);
+    private readonly CancellationTokenSource _gpuWorkerCancellation = new();
+    private readonly Task _gpuWorker;
+    private VideoFrame? _pendingGpuFrame;
+    private VideoFrame? _latestCompletedFrame;
+    private bool _disposed;
 
     internal MachineVideoPresenter(MachineView view, IEmulatedMachine machine,
-        EmulationVideoRenderer renderer)
+        EmulationVideoRenderer renderer,
+        EmulationVideoProcessingConfiguration? videoProcessing = null)
     {
         _view = view;
         _displayHost = view.DisplayHost;
         _machine = machine;
+        _videoProcessing = EmulationVideoProcessingConfigurationFunctions.Normalize(videoProcessing);
         _surface = CreateSurface(renderer);
+        _gpuWorker = Task.Factory.StartNew(ProcessGpuFrames, CancellationToken.None,
+            TaskCreationOptions.LongRunning, TaskScheduler.Default);
         _view.SetVideoView(_surface.View);
         _displayHost.SizeChanged += DisplayHostSizeChanged;
         _machine.Video.FrameReady += VideoFrameReady;
@@ -36,7 +51,10 @@ internal sealed class MachineVideoPresenter : IDisposable
     internal FrameworkElement InputView => _surface.View;
     internal IntPtr InputHandle => _surface.InputHandle;
     internal EmulationVideoRenderer Renderer => _surface.Renderer;
+    internal EmulationVideoProcessingConfiguration VideoProcessing => _videoProcessing;
     internal System.Windows.Media.Imaging.BitmapSource? Snapshot => _surface.Snapshot;
+    internal Task<System.Windows.Media.Imaging.BitmapSource?> CaptureSnapshotAsync() =>
+        _surface.CaptureSnapshotAsync();
     internal double MeasuredFramesPerSecond => _measuredFramesPerSecond;
     internal event EventHandler<VideoFrame>? FramePresented;
     internal event EventHandler? SurfaceChanged;
@@ -54,12 +72,24 @@ internal sealed class MachineVideoPresenter : IDisposable
     {
         if (_surface.Renderer == renderer) return;
         var replacement = CreateSurface(renderer);
-        var previous = _surface;
-        _surface = replacement;
+        IEmulationVideoSurface previous;
+        lock (_surfaceGate)
+        {
+            previous = _surface;
+            _surface = replacement;
+        }
         _view.SetVideoView(replacement.View);
         previous.Dispose();
         SurfaceChanged?.Invoke(this, EventArgs.Empty);
-        if (_machine.Video.LatestFrame is { } frame) Present(frame);
+        if (_machine.Video.LatestFrame is { } frame) QueueFrame(frame);
+    }
+
+    internal void SetVideoProcessing(EmulationVideoProcessingConfiguration configuration)
+    {
+        var normalized = EmulationVideoProcessingConfigurationFunctions.Normalize(configuration);
+        if (_videoProcessing == normalized) return;
+        _videoProcessing = normalized;
+        _surface.SetVideoProcessing(normalized);
     }
 
     internal void SetVisible(bool visible) =>
@@ -81,8 +111,10 @@ internal sealed class MachineVideoPresenter : IDisposable
         var fitted = EmulationVideoLayoutFunctions.Fit(_displayHost.ActualWidth,
             _displayHost.ActualHeight, (float)ratio);
         if (fitted.IsEmpty) return;
-        _view.Screen.Width = fitted.Width;
-        _view.Screen.Height = fitted.Height;
+        if (double.IsNaN(_view.Screen.Width) || Math.Abs(_view.Screen.Width - fitted.Width) >= 0.5d)
+            _view.Screen.Width = fitted.Width;
+        if (double.IsNaN(_view.Screen.Height) || Math.Abs(_view.Screen.Height - fitted.Height) >= 0.5d)
+            _view.Screen.Height = fitted.Height;
     }
 
     internal void ResetFrameRate()
@@ -96,7 +128,15 @@ internal sealed class MachineVideoPresenter : IDisposable
     {
         _machine.Video.FrameReady -= VideoFrameReady;
         _displayHost.SizeChanged -= DisplayHostSizeChanged;
-        _surface.Dispose();
+        _disposed = true;
+        lock (_gpuFrameGate) _pendingGpuFrame = null;
+        _gpuWorkerCancellation.Cancel();
+        _gpuFrameAvailable.Set();
+        try { _gpuWorker.GetAwaiter().GetResult(); }
+        catch (OperationCanceledException) { }
+        lock (_surfaceGate) _surface.Dispose();
+        _gpuWorkerCancellation.Dispose();
+        _gpuFrameAvailable.Dispose();
     }
 
     private void DisplayHostSizeChanged(object sender, SizeChangedEventArgs args) => FitScreen();
@@ -104,29 +144,100 @@ internal sealed class MachineVideoPresenter : IDisposable
     private void VideoFrameReady(object? sender, VideoFrame frame)
     {
         Interlocked.Increment(ref _framesInWindow);
-        if (Interlocked.Exchange(ref _framePending, MachinePresentationConstants.ActiveFramePending)
-            != MachinePresentationConstants.InactiveFramePending) return;
-        _view.Dispatcher.BeginInvoke(() =>
+        QueueFrame(_machine.Video.LatestFrame ?? frame);
+    }
+    private void QueueFrame(VideoFrame frame)
+    {
+        if (_disposed) return;
+        if (_surface.Renderer == EmulationVideoRenderer.Wpf)
         {
-            try { Present(_machine.Video.LatestFrame ?? frame); }
-            finally
+            if (Interlocked.Exchange(ref _framePending, MachinePresentationConstants.ActiveFramePending)
+                != MachinePresentationConstants.InactiveFramePending) return;
+            _view.Dispatcher.BeginInvoke(() =>
             {
-                Interlocked.Exchange(ref _framePending, MachinePresentationConstants.InactiveFramePending);
-            }
-        });
+                try { PresentOnUi(_machine.Video.LatestFrame ?? frame); }
+                finally { Interlocked.Exchange(ref _framePending, MachinePresentationConstants.InactiveFramePending); }
+            });
+            return;
+        }
+        lock (_gpuFrameGate) _pendingGpuFrame = frame;
+        _gpuFrameAvailable.Set();
     }
 
-    private void Present(VideoFrame frame)
+    private void ProcessGpuFrames()
     {
-        try { _surface.Present(frame); }
-        catch when (_surface.Renderer != EmulationVideoRenderer.Wpf)
+        while (true)
         {
-            SetRenderer(EmulationVideoRenderer.Wpf);
-            _surface.Present(frame);
+            _gpuFrameAvailable.WaitOne();
+            if (_gpuWorkerCancellation.IsCancellationRequested) return;
+            while (true)
+            {
+                VideoFrame? frame;
+                lock (_gpuFrameGate)
+                {
+                    frame = _pendingGpuFrame;
+                    _pendingGpuFrame = null;
+                }
+                if (frame is null) break;
+                Exception? error = null;
+                try { lock (_surfaceGate) _surface.Present(frame); }
+                catch (Exception exception) { error = exception; }
+                if (error is not null)
+                {
+                    _view.Dispatcher.BeginInvoke(() => FallbackAfterGpuFailure(frame));
+                    lock (_gpuFrameGate) _pendingGpuFrame = null;
+                    break;
+                }
+                NotifyFrameCompleted(frame);
+            }
         }
+    }
+
+    private void PresentOnUi(VideoFrame frame)
+    {
+        lock (_surfaceGate) _surface.Present(frame);
+        NotifyFrameCompleted(frame);
+    }
+
+    private void FallbackAfterGpuFailure(VideoFrame frame)
+    {
+        if (_disposed) return;
+        SetRenderer(EmulationVideoRenderer.Wpf);
+        PresentOnUi(frame);
+    }
+
+    private void FrameCompleted(VideoFrame frame)
+    {
+        if (_disposed) return;
         UpdateFrameRate();
         FitScreen(frame.AspectRatio);
         FramePresented?.Invoke(this, frame);
+    }
+    private void NotifyFrameCompleted(VideoFrame frame)
+    {
+        Interlocked.Exchange(ref _latestCompletedFrame, frame);
+        var now = Stopwatch.GetTimestamp();
+        var previous = Interlocked.Read(ref _lastUiFrameNotification);
+        if (previous != 0 && Stopwatch.GetElapsedTime(previous, now)
+                < TimeSpan.FromMilliseconds(MachinePresentationConstants.UiFrameNotificationMilliseconds))
+            return;
+        if (_view.Dispatcher.CheckAccess())
+        {
+            Interlocked.Exchange(ref _lastUiFrameNotification, now);
+            FrameCompleted(Interlocked.Exchange(ref _latestCompletedFrame, null) ?? frame);
+            return;
+        }
+        if (Interlocked.CompareExchange(ref _uiFramePending, 1, 0) != 0) return;
+        Interlocked.Exchange(ref _lastUiFrameNotification, now);
+        _view.Dispatcher.BeginInvoke(() =>
+        {
+            try
+            {
+                var latest = Interlocked.Exchange(ref _latestCompletedFrame, null);
+                if (latest is not null) FrameCompleted(latest);
+            }
+            finally { Interlocked.Exchange(ref _uiFramePending, 0); }
+        });
     }
 
     private void UpdateFrameRate()
@@ -140,12 +251,15 @@ internal sealed class MachineVideoPresenter : IDisposable
         _frameWindowStarted = now;
     }
 
-    private static IEmulationVideoSurface CreateSurface(EmulationVideoRenderer renderer)
+    private IEmulationVideoSurface CreateSurface(EmulationVideoRenderer renderer)
     {
-        try { return EmulationVideoSurfaceFactory.Create(renderer); }
+        IEmulationVideoSurface surface;
+        try { surface = EmulationVideoSurfaceFactory.Create(renderer); }
         catch when (renderer != EmulationVideoRenderer.Wpf)
         {
-            return EmulationVideoSurfaceFactory.Create(EmulationVideoRenderer.Wpf);
+            surface = EmulationVideoSurfaceFactory.Create(EmulationVideoRenderer.Wpf);
         }
+        surface.SetVideoProcessing(_videoProcessing);
+        return surface;
     }
 }

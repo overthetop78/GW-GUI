@@ -9,6 +9,7 @@ internal sealed record MachineControllerOptions(
     IReadOnlyList<EmulationMediaDevice> MediaDevices,
     IReadOnlyList<EmulationMedia> MountedMedia,
     EmulationVideoRenderer VideoRenderer,
+    EmulationVideoProcessingConfiguration VideoProcessing,
     IReadOnlyList<GlobalShortcutBinding> GlobalShortcuts,
     string QuickStatePath,
     string CaptureFolder,

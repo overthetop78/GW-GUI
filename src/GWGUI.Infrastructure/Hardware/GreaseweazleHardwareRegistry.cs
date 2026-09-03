@@ -3,6 +3,7 @@ using GWGUI.Domain.Commands.Execution;
 using GWGUI.Domain.Hardware;
 using GWGUI.Domain.Hardware.Parsing;
 using GWGUI.Domain.Settings.Hardware;
+using GWGUI.Infrastructure.Functions.Hardware;
 namespace GWGUI.Infrastructure.Hardware;
 
 public sealed class GreaseweazleHardwareRegistry(
@@ -25,8 +26,8 @@ public sealed class GreaseweazleHardwareRegistry(
         {
             cancellationToken.ThrowIfCancellationRequested();
             var result = await runner.RunAsync(commandBuilder.BuildInfo(new(executable, serial.Port)), cancellationToken: cancellationToken);
-            if (!result.IsSuccess) continue;
             var parsed = GwInfoParser.Parse(string.Join(Environment.NewLine, result.Output.Select(line => line.Text)));
+            if (!GreaseweazleHardwareScanFunctions.CanUseInfo(result, parsed, serial)) continue;
             var confirmedSerial = NullIfWhiteSpace(parsed.SerialNumber) ?? serial.UsbSerialNumber;
             var usbId = confirmedSerial ?? serial.StableId;
             var controller = controllers.FirstOrDefault(item => Matches(item, serial, confirmedSerial));

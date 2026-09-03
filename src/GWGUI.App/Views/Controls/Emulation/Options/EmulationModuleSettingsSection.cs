@@ -1,9 +1,11 @@
 using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Constants.Emulation.Errors;
+using GWGUI.App.Constants.Localization;
 using GWGUI.App.Constants.Storage;
 using GWGUI.App.Contracts.Emulation.Configurations;
 using GWGUI.App.Contracts.Emulation.Machine;
 using GWGUI.App.Contracts.Emulation.Settings;
+using GWGUI.App.Contracts.Views.Emulation.Settings;
 using GWGUI.App.Controllers.Emulation.Firmware;
 using GWGUI.App.Controllers.Emulation.Input;
 using GWGUI.App.Controllers.Emulation.Options;
@@ -29,6 +31,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
 {
     private readonly IEmulationModule _module;
     private readonly ComboBox _machines = new() { MinWidth = 300 };
+    private readonly EmulationVideoProcessingSettingsSection _videoProcessing = new();
     private readonly Dictionary<string, FrameworkElement> _fieldControls = new(StringComparer.Ordinal);
     private readonly Dictionary<FrameworkElement, Func<Task>> _userChangeHandlers = [];
     private readonly EmulationEmulatorManagementController? _emulatorManagement;
@@ -74,6 +77,12 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
             _storageSettings.SettingsChanged += async (_, _) => await ExecuteUserChangeAsync();
         }
         _machines.SelectionChanged += MachineChanged;
+        _videoProcessing.ConfigurationChanged += async (_, _) =>
+        {
+            _configuration = _module.ApplyVideoProcessing(_configuration,
+                _videoProcessing.Configuration);
+            await ExecuteUserChangeAsync();
+        };
         Content = BuildEditor();
         Loaded += async (_, _) => await ExecuteAsync(ReloadAsync);
     }
@@ -174,6 +183,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
     {
         if (tab == EmulationMachineTab.Cpu) return BuildCpuSettingsTab(settings);
         if (tab == EmulationMachineTab.Ram) return BuildMemorySettingsTab(settings);
+        if (tab == EmulationMachineTab.Video) return BuildVideoSettingsTab(settings);
         if (tab is (EmulationMachineTab.Keyboard or EmulationMachineTab.Mouse
             or EmulationMachineTab.Controllers) && _inputSettings is not null)
             return BuildInputSettingsTab(settings, tab);
@@ -189,6 +199,31 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
             return _firmwareManagement.CreateView(panel);
         return EmulationSettingsLayout.ScrollPage(panel);
     }
+
+    private UIElement BuildVideoSettingsTab(EmulationMachineSettings settings)
+    {
+        const string rendererResourceKey = EmulationResourceKeys.VideoRenderingSettings;
+        var fields = settings.Blocks
+            .Where(block => block.Tab == EmulationMachineTab.Video && block.IsVisible)
+            .SelectMany(block => block.Fields)
+            .Where(field => field.IsVisible)
+            .ToArray();
+        var display = fields.Where(field => field.LabelResourceKey != rendererResourceKey)
+            .Select(CreateVideoSettingsField).ToArray();
+        var rendering = fields.Where(field => field.LabelResourceKey == rendererResourceKey)
+            .Select(CreateVideoSettingsField).ToArray();
+        var rendererChoice = rendering.Length == 0
+            ? null
+            : EmulationSettingsLayout.VideoSettingsChoice(rendering[0]);
+        _videoProcessing.SetConfiguration(_configuration.VideoProcessing,
+            EmulationSettingsLayout.VideoSettingsFields(display), rendererChoice);
+        ApplySettingsRules(settings);
+        return EmulationSettingsLayout.VideoSettingsPage(_videoProcessing);
+    }
+
+    private EmulationVideoSettingsField CreateVideoSettingsField(EmulationSettingsField field) =>
+        new(LocExtension.Get(field.LabelResourceKey), CreateField(field),
+            IsTrailingCheckBox: field.Editor == EmulationSettingsEditor.Toggle);
 
     private void AddBlocks(Panel panel, EmulationMachineSettings settings, EmulationMachineTab tab)
     {
@@ -406,7 +441,8 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
         CaptureEditorValues();
         if (!_saved.Any(configuration => configuration.MachineId == _configuration.MachineId))
         {
-            EmulationConfigurationDraftStore.Set(_module.Id, _configuration);
+            await EmulationConfigurationPersistenceFunctions.PersistAsync(
+                _module, _configuration, hasSavedConfiguration: false);
             return;
         }
         await _saveInputGate.WaitAsync();
@@ -414,8 +450,10 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
         {
             CaptureEditorValues();
             var configuration = _configuration;
-            await _module.SaveConfigurationAsync(configuration);
-            ConfigurationSaved?.Invoke(this, new EmulationConfigurationSavedEventArgs(configuration));
+            if (await EmulationConfigurationPersistenceFunctions.PersistAsync(
+                    _module, configuration, hasSavedConfiguration: true))
+                ConfigurationSaved?.Invoke(this,
+                    new EmulationConfigurationSavedEventArgs(configuration));
         }
         finally
         {
@@ -458,8 +496,8 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
 
     private void RebuildEditor()
     {
-        if (_machines.Parent is Panel parent)
-            parent.Children.Remove(_machines);
+        EmulationSettingsLayout.DetachReusableElement(_machines);
+        EmulationSettingsLayout.DetachReusableElement(_videoProcessing);
         Content = null;
         Content = BuildEditor();
     }

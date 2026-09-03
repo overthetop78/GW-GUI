@@ -34,4 +34,23 @@
     <value>Het volledige rapport is opgeslagen in:
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>De remote service reageerde niet voordat de verbinding was uitgeschakeld. Controleer de netwerkverbinding en probeer het opnieuw.</value></data>
+  <data name="Error.Description.NetworkDns"><value>Het remote service adres kon niet worden opgelost. Controleer de netwerk- of DNS-instellingen en probeer het opnieuw.</value></data>
+  <data name="Error.Description.NetworkRefused"><value>De remote service weigerde de verbinding. Het kan niet beschikbaar of geblokkeerd zijn.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>De remote service kon niet worden bereikt. Controleer de internetverbinding, firewall, VPN of proxy-instellingen en probeer het opnieuw.</value></data>
+  <data name="Error.Description.HttpStatus"><value>De remote service gaf HTTP status {0} terug. Probeer het later nog eens.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>De operatie eindigde niet binnen de toegestane tijd. Probeer het nog eens.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>De operatie werd geannuleerd voordat het af was.</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI heeft geen rechten om toegang te krijgen tot het gevraagde bestand, map of apparaat.</value></data>
+  <data name="Error.Description.FileNotFound"><value>Het vereiste bestand kon niet gevonden worden: {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>De gewenste map kon niet gevonden worden.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>De gevraagde schijf is niet beschikbaar.</value></data>
+  <data name="Error.Description.PathTooLong"><value>Het geselecteerde pad is te lang.</value></data>
+  <data name="Error.Description.DiskFull"><value>Er is niet genoeg vrije schijfruimte om de operatie te voltooien.</value></data>
+  <data name="Error.Description.InvalidData"><value>De geselecteerde gegevens of bestand is ongeldig, onvolledig of beschadigd.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>Een van de opgegeven waarden is ongeldig. Bekijk de instellingen en probeer het opnieuw.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>De bewerking kan niet worden voltooid in de huidige toepassingstoestand.</value></data>
+  <data name="Error.Description.NotSupported"><value>Deze bewerking wordt niet ondersteund door het geselecteerde bestand, apparaat of platform.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>Er is niet genoeg geheugen om de operatie te voltooien.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI kwam tijdens het uitvoeren van deze actie een onverwacht probleem tegen.</value></data>
 </root>

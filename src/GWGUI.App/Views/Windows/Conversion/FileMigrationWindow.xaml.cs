@@ -1,6 +1,7 @@
 using GWGUI.App.Enums.Services.Dialogs;
 using GWGUI.App.Interfaces.Services.Dialogs;
 using GWGUI.App.Localization.Extensions;
+using GWGUI.App.Functions.Localization;
 using GWGUI.App.Services.Conversion;
 using GWGUI.App.Services.Dialogs;
 using GWGUI.App.Services.Logging;
@@ -173,8 +174,8 @@ public partial class FileMigrationWindow : Window
 
     private static string LoggedErrorText(Exception exception, string context, string messageKey)
     {
-        var path = ErrorLog.Write(exception, context);
-        var detail = path is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", path);
+        ErrorLog.Write(exception, context);
+        var detail = ExceptionDescriptionFunctions.Describe(exception);
         return LocExtension.Get(messageKey, detail);
     }
 }

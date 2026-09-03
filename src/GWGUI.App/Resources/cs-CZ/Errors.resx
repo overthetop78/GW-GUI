@@ -34,4 +34,23 @@
     <value>Celý přehled byl uložen do:
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>Vzdálená služba nereagovala dříve, než došlo k přerušení spojení. Zkontrolujte síťové připojení a zkuste to znovu.</value></data>
+  <data name="Error.Description.NetworkDns"><value>Adresa vzdálené služby nemohla být vyřešena. Zkontrolujte nastavení sítě nebo DNS a zkuste to znovu.</value></data>
+  <data name="Error.Description.NetworkRefused"><value>Vzdálená služba odmítla připojení. Může být nedostupný nebo zablokovaný.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>Vzdálená služba nebyla dosažena. Zkontrolujte připojení k internetu, firewall, VPN nebo nastavení proxy a zkuste to znovu.</value></data>
+  <data name="Error.Description.HttpStatus"><value>Vzdálená služba vrátila HTTP status {0}. Zkuste to později.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>Operace neskončila v povoleném čase. Zkus to znovu.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>Operace byla zrušena, než skončila.</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI nemá oprávnění k přístupu k požadovanému souboru, složce nebo zařízení.</value></data>
+  <data name="Error.Description.FileNotFound"><value>Požadovaný soubor nebyl nalezen: {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>Požadovaná složka nebyla nalezena.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>Požadovaná jednotka není k dispozici.</value></data>
+  <data name="Error.Description.PathTooLong"><value>Zvolená cesta je příliš dlouhá.</value></data>
+  <data name="Error.Description.DiskFull"><value>K dokončení operace není dostatek volného místa na disku.</value></data>
+  <data name="Error.Description.InvalidData"><value>Vybraná data nebo soubor jsou neplatné, neúplné nebo poškozené.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>Jedna z dodaných hodnot je neplatná. Zkontrolujte nastavení a zkuste to znovu.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>Operace nemůže být dokončena v aktuálním stavu aplikace.</value></data>
+  <data name="Error.Description.NotSupported"><value>Tuto operaci nepodporuje vybraný soubor, zařízení ani platforma.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>K dokončení operace není dostatek dostupné paměti.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI narazila na neočekávaný problém při provádění této akce.</value></data>
 </root>

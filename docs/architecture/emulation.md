@@ -498,6 +498,108 @@ App applique ensuite le tri commun et construit la liste graphique. La biblioth�
 
 Le bouton commun **Utiliser** transmet à la bibliothèque associée à l'onglet la ROM sélectionnée et l'identifiant de la machine ciblée. La bibliothèque détermine l'emplacement correspondant à ce type de ROM — ROM système, ROM étendue, clé ROM ou autre emplacement déclaré — puis renvoie à App la configuration mise à jour. App actualise les contrôles communs avec ces données et ne contient aucune règle Atari, Amiga ou propre à une autre famille pour choisir l'emplacement.
 
+### 7.3 Traitements vidéo communs de GW GUI
+
+Les traitements vidéo réalisés après la production d’une `VideoFrame` sont communs à toutes les
+familles de machines. Ils ne sont pas décrits ni exécutés séparément par
+`GWGUI.Emulation.Amiga`, `GWGUI.Emulation.Atari` ou une future bibliothèque spécialisée.
+
+La séparation obligatoire est la suivante :
+
+```text
+GWGUI.Emulation
+    → contrats sérialisables de configuration vidéo
+    → identifiants, valeurs neutres, groupes et compatibilités
+    → aucune dépendance vers WPF, Veldrid, OpenGL ou un langage de shader
+
+GWGUI.Emulation.xxx
+    → porte la configuration commune dans chaque configuration de machine
+    → conserve séparément les options vidéo natives de son émulateur
+    → ne traduit pas une option PAL, NTSC, composite, RF ou équivalente en filtre GW GUI
+
+GWGUI.App
+    → construit l’interface commune de l’onglet Vidéo
+    → compose la chaîne de traitement à partir de la configuration
+    → exécute cette chaîne dans WPF/CPU, OpenGL ou Veldrid
+    → applique immédiatement une nouvelle configuration à l’instance ciblée
+```
+
+Le catalogue commun décrit les technologies d’affichage, les fonctionnalités, leurs paramètres,
+leurs valeurs neutres, leurs dépendances et leurs incompatibilités. Les textes visibles ne se
+trouvent pas dans ce catalogue : il transporte uniquement des clés de ressources traduites par
+App. Les algorithmes, shaders, pipelines, textures temporaires et objets graphiques restent dans
+App.
+
+La chaîne reçoit une image commune et l’ordonne ainsi : normalisation de la source, restauration
+éventuelle, mise à l’échelle, technologie d’affichage, réglages généraux, puis sortie. Une étape
+déclare son espace de couleur, ses besoins en textures intermédiaires et son éventuel historique de
+trames. Une même définition de chaîne est utilisée par les quatre renderers ; seuls les exécuteurs
+et ressources propres au backend diffèrent.
+
+Direct3D 11 et Vulkan partagent l’exécution Veldrid et les définitions portables de shaders.
+OpenGL conserve son renderer et exécute la même chaîne avec textures, quad, programmes et
+framebuffers OpenGL. WPF conserve son rôle de renderer et de repli au moyen d’une exécution CPU de
+référence pour toutes les fonctionnalités déclarées compatibles. Aucun renderer ne peut être
+supprimé, changé ou privé silencieusement d’une fonctionnalité.
+
+#### Snapshot
+
+`Snapshot` représente la sortie finale de la chaîne de traitements GW GUI, avant tout habillage
+externe futur comme un bezel ou un cadre. Il produit ainsi la même image que celle visible dans la
+zone d’émulation, quelle que soit la surface WPF, OpenGL, Direct3D 11 ou Vulkan utilisée. Une surface
+GPU effectue la lecture de sa ressource de sortie à la demande ou réutilise une copie lisible ; elle
+ne provoque pas une lecture GPU systématique à chaque trame uniquement pour préparer une capture.
+
+#### Enregistrement et application aux instances
+
+La configuration des traitements appartient à la configuration de chaque machine. Elle n’est ni
+globale, ni partagée comme objet mutable entre Amiga, Atari ou plusieurs instances ouvertes. Les
+valeurs absentes d’une ancienne configuration prennent les valeurs neutres sans migration
+destructive.
+
+Lorsqu’une configuration existante est modifiée, App l’enregistre selon le mécanisme automatique
+déjà utilisé par l’éditeur, puis cible l’onglet ouvert par le couple
+`(ModuleId, ConfigurationId)`. Seule cette instance reçoit la nouvelle configuration vidéo. Une
+modification d’un paramètre numérique met à jour les constantes de la chaîne sans recréer la
+machine. Une modification structurelle construit une nouvelle chaîne de façon atomique ; l’ancienne
+reste active si la construction échoue.
+
+Si aucune instance correspondante n’est ouverte, aucune chaîne d’exécution n’est créée. Les valeurs
+enregistrées sont simplement relues et appliquées lors de la prochaine création de cette machine.
+Un post-traitement GW GUI ne demande jamais à l’Engine de recréer l’instance émulée.
+
+Une erreur de compilation ou d’exécution d’un traitement ne modifie pas les valeurs enregistrées.
+Le repli actuel vers WPF reçoit la même configuration. Une limitation de backend est déclarée et
+présentée par un texte localisé ; elle ne provoque pas la disparition silencieuse d’un réglage.
+
+#### Interface de l’onglet Vidéo
+
+Les contrôles des traitements GW GUI existent uniquement dans le sous-onglet **Vidéo** de la
+configuration de machine. Ils sont visuellement séparés des options internes de l’émulateur. Ils ne
+sont ajoutés ni dans la barre d’outils de l’instance, ni dans les options générales de l’application,
+ni dans une page propre à Amiga ou Atari.
+
+Luminosité, contraste, gamma, saturation et netteté restent visibles en permanence. Un sélecteur
+unique choisit l’échantillonnage. Un autre sélecteur unique choisit la technologie d’affichage :
+Normal, CRT, écran à pixels fixes, Plasma ou Écran vectoriel. Le panneau placé sous ce second
+sélecteur affiche uniquement les paramètres de la technologie choisie.
+
+CRT contient son rendu couleur ou monochrome, ses palettes, son faisceau, son masque, sa géométrie,
+ses scanlines et sa trame volontaire. L’écran à pixels fixes contient son sous-choix LCD, LCD/LED ou
+OLED et partage les réglages communs, avec des paramètres conditionnels uniquement lorsqu’ils ont un
+effet visuel propre. Plasma et Écran vectoriel possèdent chacun leur panneau. Les autres familles du
+catalogue sont ajoutées progressivement sans créer une nouvelle page de configuration.
+
+Le choix principal d’une technologie remplace naturellement la technologie précédente et ne demande
+pas de confirmation. Une confirmation Oui/Non est utilisée uniquement lorsqu’une fonctionnalité
+indépendante activée doit désactiver une autre fonctionnalité indépendante incompatible. En cas de
+refus, toutes les valeurs restent inchangées.
+
+Les présélections appliquent un ensemble de valeurs aux mêmes contrats ; elles ne constituent pas
+un second format de configuration et ne gardent pas de dépendance vers un fichier Libretro. Toute
+valeur modifiée est enregistrée immédiatement et transmise à la seule instance ouverte
+correspondante.
+
 ## 8. Migration du code existant
 
 À la fin de la réorganisation, aucun fichier propre à Amiga ou Atari ne doit rester dans `GWGUI.App`, hormis les raccordements explicites nécessaires aux bibliothèques référencées.

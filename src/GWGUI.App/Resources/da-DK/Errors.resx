@@ -34,4 +34,23 @@
     <value>Den fulde rapport blev gemt på:
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>Fjernbetjeningen reagerede ikke før forbindelsen timede ud. Tjek netværksforbindelsen og prøv igen.</value></data>
+  <data name="Error.Description.NetworkDns"><value>Den eksterne serviceadresse kunne ikke løses. Tjek netværkets eller DNS-indstillingerne og prøv igen.</value></data>
+  <data name="Error.Description.NetworkRefused"><value>Fjernbetjeningen afslog forbindelsen. Den kan være utilgængelig eller blokeret.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>Fjernbetjeningen kunne ikke nås. Tjek internetforbindelsen, firewall, VPN eller proxyindstillinger og prøv igen.</value></data>
+  <data name="Error.Description.HttpStatus"><value>Fjernbetjeningen returnerede HTTP status {0}. Prøv igen senere.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>Operationen sluttede ikke inden for den tilladte tid. Prøv igen.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>Operationen blev aflyst, før den blev afsluttet.</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI har ikke tilladelse til at få adgang til den ønskede fil, mappe eller enhed.</value></data>
+  <data name="Error.Description.FileNotFound"><value>Den ønskede fil kunne ikke findes: {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>Den krævede mappe kunne ikke findes.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>Det ønskede drev er ikke tilgængeligt.</value></data>
+  <data name="Error.Description.PathTooLong"><value>Den valgte sti er for lang.</value></data>
+  <data name="Error.Description.DiskFull"><value>Der er ikke nok ledig diskplads til at fuldføre operationen.</value></data>
+  <data name="Error.Description.InvalidData"><value>De valgte data eller filer er ugyldige, ufuldstændige eller beskadigede.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>En af de leverede værdier er ugyldig. Gennemgå indstillingerne og prøv igen.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>Operationen kan ikke afsluttes i den aktuelle ansøgningstilstand.</value></data>
+  <data name="Error.Description.NotSupported"><value>Denne operation understøttes ikke af den valgte fil, enhed eller platform.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>Der er ikke nok hukommelse til at fuldføre operationen.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI stødte på et uventet problem under udførelsen af denne handling.</value></data>
 </root>

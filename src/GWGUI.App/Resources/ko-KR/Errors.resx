@@ -34,4 +34,23 @@
     <value>전체 보고서는 다음 위치에 저장되었습니다.
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>원격 서비스는 연결이 중단되기 전에 응답하지 않았습니다. 네트워크 연결을 확인하고 다시 시도하십시오.</value></data>
+  <data name="Error.Description.NetworkDns"><value>원격 서비스 주소는 해결되지 않을 수 있었습니다. 네트워크 또는 DNS 설정을 확인하고 다시 시도하십시오.</value></data>
+  <data name="Error.Description.NetworkRefused"><value>원격 서비스는 연결을 거부합니다. 사용할 수 없거나 차단 될 수 있습니다.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>원격 서비스는 도달 할 수 없습니다. 인터넷 연결, 방화벽, VPN 또는 프록시 설정을 확인하고 다시 시도하십시오.</value></data>
+  <data name="Error.Description.HttpStatus"><value>원격 서비스 반환 HTTP 상태 {0}. 나중에 다시 시도하십시오.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>가동은 허용한 시간 안에 완료하지 않았습니다. 다시 시도하십시오.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>작업이 완료되기 전에 취소되었습니다.</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI는 요청된 파일, 폴더, 또는 장치에 액세스할 권한을 부여하지 않습니다.</value></data>
+  <data name="Error.Description.FileNotFound"><value>필요한 파일은 찾을 수 없습니다 : {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>필요한 폴더는 찾을 수 없습니다.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>요청된 드라이브는 사용할 수 없습니다.</value></data>
+  <data name="Error.Description.PathTooLong"><value>선택된 경로는 너무 길다.</value></data>
+  <data name="Error.Description.DiskFull"><value>가동을 완료하는 충분한 자유로운 디스크 공간이 없습니다.</value></data>
+  <data name="Error.Description.InvalidData"><value>선택된 데이터 또는 파일은 무효, 불완전, 또는 손상됩니다.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>공급된 값 중 하나는 유효하지 않습니다. 설정을 검토하고 다시 시도.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>가동은 현재 신청 국가에서 완료될 수 없습니다.</value></data>
+  <data name="Error.Description.NotSupported"><value>이 작업은 선택한 파일, 장치 또는 플랫폼에 의해 지원되지 않습니다.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>가동을 완료하는 충분한 유효한 기억이 없습니다.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI는 이 동작을 수행하는 동안 예상치 못한 문제가 발생했습니다.</value></data>
 </root>

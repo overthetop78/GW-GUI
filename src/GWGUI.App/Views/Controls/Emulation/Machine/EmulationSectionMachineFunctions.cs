@@ -29,6 +29,7 @@ public sealed partial class EmulationSection
         view = new MachineController(new MachineControllerOptions(
             runtime.CreateMachine(runtime.MountedMedia), runtime.CreateMachine,
             runtime.MediaDevices, runtime.MountedMedia, runtime.Configuration.VideoRenderer,
+            runtime.Configuration.VideoProcessing,
             EmulationShortcutMap.GlobalShortcuts(_settings.EmulationShortcuts),
             Path.Combine(_settings.EmulationStateFolder,
                 $"{selected.Module.Id}-{selected.Configuration.Id:N}.gwas"),

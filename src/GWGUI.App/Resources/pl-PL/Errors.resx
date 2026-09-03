@@ -34,4 +34,23 @@
     <value>Pełny raport został zapisany w:
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>Usługa zdalna nie odpowiadała przed zakończeniem połączenia. Sprawdź połączenie sieciowe i spróbuj ponownie.</value></data>
+  <data name="Error.Description.NetworkDns"><value>Adres zdalnej obsługi nie mógł zostać rozwiązany. Sprawdź ustawienia sieci lub DNS i spróbuj ponownie.</value></data>
+  <data name="Error.Description.NetworkRefused"><value>Pilot odmówił połączenia. Może być niedostępny lub zablokowany.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>Nie udało się dotrzeć do zdalnej obsługi. Sprawdź połączenie internetowe, firewall, VPN lub ustawienia proxy i spróbuj ponownie.</value></data>
+  <data name="Error.Description.HttpStatus"><value>Zdalna usługa zwróciła status HTTP {0}. Spróbuj później.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>Operacja nie zakończyła się w wyznaczonym czasie. Spróbuj jeszcze raz.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>Operacja została odwołana przed zakończeniem.</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI nie ma prawa dostępu do żądanego pliku, folderu lub urządzenia.</value></data>
+  <data name="Error.Description.FileNotFound"><value>Nie można znaleźć wymaganego pliku: {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>Nie można znaleźć wymaganego folderu.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>Wymagany dysk nie jest dostępny.</value></data>
+  <data name="Error.Description.PathTooLong"><value>Wybrana ścieżka jest zbyt długa.</value></data>
+  <data name="Error.Description.DiskFull"><value>Nie ma wystarczająco wolnego miejsca na dysku, aby zakończyć operację.</value></data>
+  <data name="Error.Description.InvalidData"><value>Wybrane dane lub plik są nieprawidłowe, niekompletne lub uszkodzone.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>Jedna z podanych wartości jest niepoprawna. Przejrzyj ustawienia i spróbuj ponownie.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>Operacja nie może być zakończona w bieżącym stanie aplikacji.</value></data>
+  <data name="Error.Description.NotSupported"><value>Ta operacja nie jest obsługiwana przez wybrany plik, urządzenie lub platformę.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>Nie ma wystarczającej ilości dostępnej pamięci, aby zakończyć operację.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI napotkał nieoczekiwany problem podczas wykonywania tej akcji.</value></data>
 </root>

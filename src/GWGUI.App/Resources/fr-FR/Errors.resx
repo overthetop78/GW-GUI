@@ -34,4 +34,23 @@
     <value>Le rapport complet a été enregistré dans :
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>Le service distant n'a pas répondu avant l'expiration du délai de connexion. Vérifiez la connexion réseau, puis réessayez.</value></data>
+  <data name="Error.Description.NetworkDns"><value>L'adresse du service distant n'a pas pu être résolue. Vérifiez les paramètres réseau ou DNS, puis réessayez.</value></data>
+  <data name="Error.Description.NetworkRefused"><value>Le service distant a refusé la connexion. Il est peut-être indisponible ou bloqué.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>Le service distant est inaccessible. Vérifiez la connexion Internet, le pare-feu, le VPN ou les paramètres du proxy, puis réessayez.</value></data>
+  <data name="Error.Description.HttpStatus"><value>Le service distant a renvoyé l'état HTTP {0}. Réessayez plus tard.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>L'opération n'a pas pu se terminer dans le délai imparti. Réessayez.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>L'opération a été annulée avant sa fin.</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI n'est pas autorisé à accéder au fichier, au dossier ou au périphérique demandé.</value></data>
+  <data name="Error.Description.FileNotFound"><value>Le fichier requis est introuvable : {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>Le dossier requis est introuvable.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>Le lecteur demandé n'est pas disponible.</value></data>
+  <data name="Error.Description.PathTooLong"><value>Le chemin sélectionné est trop long.</value></data>
+  <data name="Error.Description.DiskFull"><value>Il n'y a pas assez d'espace libre pour terminer l'opération.</value></data>
+  <data name="Error.Description.InvalidData"><value>Les données ou le fichier sélectionné sont invalides, incomplets ou corrompus.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>L'une des valeurs fournies est invalide. Vérifiez les paramètres, puis réessayez.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>L'opération ne peut pas être effectuée dans l'état actuel de l'application.</value></data>
+  <data name="Error.Description.NotSupported"><value>Cette opération n'est pas prise en charge par le fichier, le périphérique ou la plateforme sélectionnée.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>Il n'y a pas assez de mémoire disponible pour terminer l'opération.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI a rencontré un problème inattendu pendant l'exécution de cette action.</value></data>
 </root>

@@ -34,4 +34,23 @@
     <value>Der vollständige Bericht wurde gespeichert unter:
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>Der Remotedienst reagierte nicht, bevor die Verbindung ausging. Überprüfen Sie die Netzwerkverbindung und versuchen Sie es erneut.</value></data>
+  <data name="Error.Description.NetworkDns"><value>Die Remotedienstadresse konnte nicht aufgelöst werden. Überprüfen Sie die Netzwerk- oder DNS-Einstellungen und versuchen Sie es erneut.</value></data>
+  <data name="Error.Description.NetworkRefused"><value>Der Ferndienst verweigerte die Verbindung. Es kann nicht verfügbar oder blockiert sein.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>Der Remote-Service konnte nicht erreicht werden. Überprüfen sie die internetverbindung, firewall, vpn oder proxy-einstellungen und versuchen sie es erneut.</value></data>
+  <data name="Error.Description.HttpStatus"><value>Der Remotedienst gab den HTTP-Status zurück. Versuchen Sie es später noch einmal.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>Die Operation endete nicht innerhalb der erlaubten Zeit. Versuchen Sie es noch einmal.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>Die Operation wurde abgesagt, bevor sie beendet wurde.</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI hat keine Berechtigung zum Zugriff auf die angeforderte Datei, den Ordner oder das Gerät.</value></data>
+  <data name="Error.Description.FileNotFound"><value>Die erforderliche Datei konnte nicht gefunden werden: {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>Der erforderliche Ordner konnte nicht gefunden werden.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>Das angeforderte Laufwerk ist nicht verfügbar.</value></data>
+  <data name="Error.Description.PathTooLong"><value>Der gewählte Pfad ist zu lang.</value></data>
+  <data name="Error.Description.DiskFull"><value>Es gibt nicht genug freien Speicherplatz, um den Vorgang abzuschließen.</value></data>
+  <data name="Error.Description.InvalidData"><value>Die ausgewählten Daten oder Dateien sind ungültig, unvollständig oder beschädigt.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>Einer der angegebenen Werte ist ungültig. Überprüfen Sie die Einstellungen und versuchen Sie es erneut.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>Der Vorgang kann im aktuellen Anwendungszustand nicht abgeschlossen werden.</value></data>
+  <data name="Error.Description.NotSupported"><value>Dieser Vorgang wird von der ausgewählten Datei, dem Gerät oder der Plattform nicht unterstützt.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>Es ist nicht genug Speicher verfügbar, um die Operation abzuschließen.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI stieß bei der Durchführung dieser Aktion auf ein unerwartetes Problem.</value></data>
 </root>

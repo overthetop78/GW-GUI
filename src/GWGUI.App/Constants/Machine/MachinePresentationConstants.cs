@@ -20,5 +20,6 @@ internal static class MachinePresentationConstants
     internal const int InactiveFramePending = 0;
     internal const int ActiveFramePending = 1;
     internal const int FrameRateWindowSeconds = 1;
+    internal const int UiFrameNotificationMilliseconds = 100;
     internal const int FirstDuplicateSuffix = 2;
 }

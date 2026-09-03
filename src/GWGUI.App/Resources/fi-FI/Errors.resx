@@ -34,4 +34,23 @@
     <value>Koko raportti tallennettiin osoitteeseen:
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>Kaukopalvelu ei vastannut ennen yhteyden sulkemista. Tarkista verkkoyhteys ja yritä uudelleen.</value></data>
+  <data name="Error.Description.NetworkDns"><value>Etäpalvelun osoitetta ei voitu ratkaista. Tarkista verkko- tai DNS-asetukset ja yritä uudelleen.</value></data>
+  <data name="Error.Description.NetworkRefused"><value>Kaukopalvelu kielsi yhteyden. Se voi olla käytettävissä tai estetty.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>Kaukopalveluun ei päästy. Tarkista Internet-yhteys, palomuuri, VPN tai välityspalvelimen asetukset ja yritä uudelleen.</value></data>
+  <data name="Error.Description.HttpStatus"><value>Etäpalvelu palautti HTTP- tilan {0}. Yritä uudelleen myöhemmin.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>Operaatio ei päättynyt määräajassa. Yritä uudelleen.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>Operaatio peruttiin ennen sen päättymistä.</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW-käyttöliittymällä ei ole lupaa käyttää pyydettyä tiedostoa, kansiota tai laitetta.</value></data>
+  <data name="Error.Description.FileNotFound"><value>Tarvittavaa tiedostoa ei löytynyt: {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>Tarvittavaa kansiota ei löytynyt.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>Pyydetty asema ei ole käytettävissä.</value></data>
+  <data name="Error.Description.PathTooLong"><value>Valittu polku on liian pitkä.</value></data>
+  <data name="Error.Description.DiskFull"><value>Ei ole tarpeeksi vapaata levytilaa loppuun operaation.</value></data>
+  <data name="Error.Description.InvalidData"><value>Valittu data tai tiedosto on virheellinen, puutteellinen tai viallinen.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>Yksi toimitetuista arvoista on virheellinen. Tarkista asetukset ja yritä uudelleen.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>Operaatiota ei voida toteuttaa nykyisessä hakemusvaltiossa.</value></data>
+  <data name="Error.Description.NotSupported"><value>Valittu tiedosto, laite tai alusta ei tue tätä toimintoa.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>Ei ole riittävästi muistia loppuun operaation.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW-käyttöliittymä kohtasi odottamattoman ongelman suorittaessaan tätä toimintoa.</value></data>
 </root>

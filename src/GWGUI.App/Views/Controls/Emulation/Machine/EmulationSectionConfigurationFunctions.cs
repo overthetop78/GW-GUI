@@ -1,6 +1,7 @@
 using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Constants.Emulation.Errors;
 using GWGUI.App.Contracts.Emulation.Configurations;
+using GWGUI.App.Functions.Views.Emulation.Machine;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Presenters.Common;
 using GWGUI.App.Presenters.Emulation.Configurations;
@@ -15,10 +16,13 @@ public sealed partial class EmulationSection
     private async void ConfigurationSaved(object? sender, EmulationConfigurationSavedEventArgs args)
     {
         await ReloadConfigurationsAsync();
-        if (_openMachines.TryGetValue(
-                (args.Configuration.ModuleId, args.Configuration.Id), out var tab)
-            && tab.Content is MachineController view)
-            view.ApplyVideoRenderer(args.Configuration.VideoRenderer);
+        EmulationOpenMachineConfigurationFunctions.TryApply(_openMachines,
+            args.Configuration.ModuleId, args.Configuration.Id, tab =>
+            {
+                if (tab.Content is MachineController view)
+                    view.ApplyVideoConfiguration(args.Configuration.VideoRenderer,
+                        args.Configuration.VideoProcessing);
+            });
     }
 
     public async Task ReloadConfigurationsAsync()

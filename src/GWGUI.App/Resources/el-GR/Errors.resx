@@ -34,4 +34,23 @@
     <value>Η πλήρης αναφορά αποθηκεύτηκε στη διεύθυνση:
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>Η απομακρυσμένη υπηρεσία δεν ανταποκρίθηκε πριν λήξει ο χρόνος σύνδεσης. Ελέγξτε τη σύνδεση δικτύου και προσπαθήστε ξανά.</value></data>
+  <data name="Error.Description.NetworkDns"><value>Η διεύθυνση απομακρυσμένης υπηρεσίας δεν μπορούσε να επιλυθεί. Ελέγξτε τις ρυθμίσεις δικτύου ή DNS και προσπαθήστε ξανά.</value></data>
+  <data name="Error.Description.NetworkRefused"><value>Η απομακρυσμένη υπηρεσία αρνήθηκε τη σύνδεση. Μπορεί να μην είναι διαθέσιμη ή να είναι μπλοκαρισμένη.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>Δεν ήταν δυνατή η πρόσβαση στην απομακρυσμένη υπηρεσία. Ελέγξτε τη σύνδεση στο Διαδίκτυο, το τείχος προστασίας, VPN, ή τις ρυθμίσεις διαμεσολαβητή και προσπαθήστε ξανά.</value></data>
+  <data name="Error.Description.HttpStatus"><value>Η απομακρυσμένη υπηρεσία επέστρεψε κατάσταση HTTP {0}. Προσπάθησε ξανά αργότερα.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>Η επέμβαση δεν τελείωσε εντός του επιτρεπόμενου χρόνου. Προσπάθησε ξανά.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>Η επιχείρηση ακυρώθηκε πριν τελειώσει.</value></data>
+  <data name="Error.Description.AccessDenied"><value>Το GW GUI δεν έχει άδεια πρόσβασης στο ζητούμενο αρχείο, φάκελο ή συσκευή.</value></data>
+  <data name="Error.Description.FileNotFound"><value>Το απαιτούμενο αρχείο δε βρέθηκε: {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>Ο απαιτούμενος φάκελος δε βρέθηκε.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>Η ζητούμενη κίνηση δεν είναι διαθέσιμη.</value></data>
+  <data name="Error.Description.PathTooLong"><value>Η επιλεγμένη διαδρομή είναι πολύ μεγάλη.</value></data>
+  <data name="Error.Description.DiskFull"><value>Δεν υπάρχει αρκετός ελεύθερος χώρος για να ολοκληρωθεί η λειτουργία.</value></data>
+  <data name="Error.Description.InvalidData"><value>Τα επιλεγμένα δεδομένα ή αρχείο είναι άκυρα, ελλιπή ή αλλοιωμένα.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>Μία από τις παρεχόμενες τιμές είναι άκυρη. Επανεξέτασε τις ρυθμίσεις και προσπάθησε ξανά.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>Η λειτουργία δεν μπορεί να ολοκληρωθεί στην τρέχουσα κατάσταση εφαρμογής.</value></data>
+  <data name="Error.Description.NotSupported"><value>Αυτή η λειτουργία δεν υποστηρίζεται από το επιλεγμένο αρχείο, συσκευή ή πλατφόρμα.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>Δεν υπάρχει αρκετή διαθέσιμη μνήμη για να ολοκληρωθεί η λειτουργία.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI συνάντησε ένα απροσδόκητο πρόβλημα κατά την εκτέλεση αυτής της δράσης.</value></data>
 </root>

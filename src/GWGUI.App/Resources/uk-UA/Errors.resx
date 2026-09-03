@@ -34,4 +34,23 @@
     <value>Повний звіт було збережено в:
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>Віддалений сервіс не відповідав перед підключенням. Перевірити підключення мережі і спробувати знову.</value></data>
+  <data name="Error.Description.NetworkDns"><value>Адреса віддаленого сервісу не можна вирішити. Перевірити мережу або налаштування DNS і спробувати знову.</value></data>
+  <data name="Error.Description.NetworkRefused"><value>Відхилено віддалене обслуговування. Це може бути недоступний або заблокований.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>Не вдалося досягнути віддаленого сервісу. Перевірте підключення до Інтернету, брандмауер, VPN або проксі налаштування і спробуйте знову.</value></data>
+  <data name="Error.Description.HttpStatus"><value>Віддалене обслуговування повернуло статус HTTP {0}. Спробуйте ще раз.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>Операція не закінчилася протягом дозволеного часу. Спробуйте ще раз.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>Після завершення операції було скасовано.</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI не має дозволу на доступ до запитуваного файлу, папки або пристрою.</value></data>
+  <data name="Error.Description.FileNotFound"><value>Необхідний файл не знайдено: {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>Не знайдено необхідної папки.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>За бажанням диск не доступний.</value></data>
+  <data name="Error.Description.PathTooLong"><value>Вибраний шлях занадто довгий.</value></data>
+  <data name="Error.Description.DiskFull"><value>Не вистачає вільного дискового простору для завершення роботи.</value></data>
+  <data name="Error.Description.InvalidData"><value>Вибрані дані або файл недійсні, неповні або пошкоджені.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>Однією з поданих значень є недійсним. Перегляньте налаштування та спробуйте знову.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>Операція не може бути завершена в поточному стані.</value></data>
+  <data name="Error.Description.NotSupported"><value>Ця операція не підтримується вибраним файлом, пристроєм або платформою.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>Для завершення операції не вистачає пам'яті.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI зіткнувся з несподіваною проблемою під час виконання цієї дії.</value></data>
 </root>

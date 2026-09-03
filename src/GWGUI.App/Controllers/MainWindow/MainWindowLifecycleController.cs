@@ -5,6 +5,7 @@ using GWGUI.App.Enums.Services.Navigation;
 using GWGUI.App.Interfaces.Services.Dialogs;
 using GWGUI.App.Interfaces.Services.Navigation;
 using GWGUI.App.Localization.Extensions;
+using GWGUI.App.Functions.Localization;
 using GWGUI.App.Services.DiskImages;
 using GWGUI.App.Services.Hardware;
 using GWGUI.App.Services.Logging;
@@ -122,8 +123,8 @@ internal sealed class MainWindowLifecycleController(
             {
                 foreach (var controller in settings().Controllers) controller.IsAvailable = false;
                 refreshHardware(); await settingsStore.SaveAsync(settings());
-                var path = ErrorLog.Write(exception, "Checking configured hardware at startup");
-                var detail = path is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", path);
+                ErrorLog.Write(exception, "Checking configured hardware at startup");
+                var detail = ExceptionDescriptionFunctions.Describe(exception);
                 dialogs.Show(LocExtension.Get("Hardware.StartupCheckFailed", detail), LocExtension.Get("Hardware.StartupTitle"), icon: UserDialogIcon.Warning);
                 check = new(true, settings().Controllers.ToArray(), []);
             }
@@ -171,8 +172,8 @@ internal sealed class MainWindowLifecycleController(
             {
                 if (failure is not null)
                 {
-                    var logPath = ErrorLog.Write(failure, "Saving application settings");
-                    var detail = logPath is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", logPath);
+                    ErrorLog.Write(failure, "Saving application settings");
+                    var detail = ExceptionDescriptionFunctions.Describe(failure);
                     dialogs.Show(LocExtension.Get("App.SettingsSaveFailed", detail), LocExtension.Get("App.Title"), icon: UserDialogIcon.Warning);
                 }
                 settingsSaveInProgress = false; closeAfterSettingsSave = true; window.Close();

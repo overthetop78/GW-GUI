@@ -141,9 +141,19 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
                 StereoSeparation = stereo
             },
             VideoRenderer = renderer,
+            VideoProcessing = EmulationVideoProcessingConfigurationFunctions.Normalize(amiga.VideoProcessing),
             Input = input
         };
     }
+
+    public IEmulationConfiguration ApplyVideoProcessing(IEmulationConfiguration configuration,
+        EmulationVideoProcessingConfiguration videoProcessing) =>
+        configuration is AmigaMachineConfiguration amiga
+            ? amiga with
+            {
+                VideoProcessing = EmulationVideoProcessingConfigurationFunctions.Normalize(videoProcessing)
+            }
+            : throw new ArgumentException(nameof(configuration));
 
     private static string? OptionalPath(string? path) =>
         string.IsNullOrWhiteSpace(path) ? null : path;

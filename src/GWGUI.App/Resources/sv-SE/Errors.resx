@@ -34,4 +34,23 @@
     <value>Hela rapporten sparades till:
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>Fjärrtjänsten svarade inte innan anslutningen gick ut. Kontrollera nätverksanslutningen och försök igen.</value></data>
+  <data name="Error.Description.NetworkDns"><value>Fjärrtjänsten kunde inte lösas. Kontrollera nätverks- eller DNS-inställningarna och försök igen.</value></data>
+  <data name="Error.Description.NetworkRefused"><value>Fjärrtjänsten vägrade anslutningen. Det kan vara otillgängligt eller blockerat.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>Fjärrtjänsten kunde inte nås. Kontrollera Internetanslutningen, brandväggen, VPN eller proxyinställningarna och försök igen.</value></data>
+  <data name="Error.Description.HttpStatus"><value>Fjärrtjänsten returnerade HTTP status {0}. Försök igen senare.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>Operationen avslutades inte inom den tillåtna tiden. Försök igen.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>Operationen avbröts innan den avslutades.</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI har inte tillstånd att komma åt den begärda filen, mappen eller enheten.</value></data>
+  <data name="Error.Description.FileNotFound"><value>Den nödvändiga filen kunde inte hittas: {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>Den nödvändiga mappen kunde inte hittas.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>Den begärda enheten är inte tillgänglig.</value></data>
+  <data name="Error.Description.PathTooLong"><value>Den valda vägen är för lång.</value></data>
+  <data name="Error.Description.DiskFull"><value>Det finns inte tillräckligt med ledigt diskutrymme för att slutföra operationen.</value></data>
+  <data name="Error.Description.InvalidData"><value>Den valda data eller filen är ogiltig, ofullständig eller skadad.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>En av de levererade värdena är ogiltig. Granska inställningarna och försök igen.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>Verksamheten kan inte slutföras i det aktuella ansökningstillståndet.</value></data>
+  <data name="Error.Description.NotSupported"><value>Denna operation stöds inte av den valda filen, enheten eller plattformen.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>Det finns inte tillräckligt med tillgängligt minne för att slutföra operationen.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI stötte på ett oväntat problem samtidigt som man utför denna åtgärd.</value></data>
 </root>

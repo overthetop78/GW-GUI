@@ -1,3 +1,5 @@
+using GWGUI.App.Constants.Localization;
+using GWGUI.App.Constants.Views.Emulation;
 using GWGUI.App.Contracts.Views.Emulation.Settings;
 using GWGUI.App.Localization.Extensions;
 using System.Windows;
@@ -9,20 +11,15 @@ internal static partial class EmulationSettingsLayout
 {
     private const int VideoSettingsColumnCount = 2;
 
-    internal static ScrollViewer VideoSettingsPage(UIElement displaySettings, UIElement renderingSettings,
-        Border? additionalSettings = null)
+    internal static FrameworkElement VideoSettingsPage(FrameworkElement content) => content;
+
+    internal static FrameworkElement VideoSettingsChoice(EmulationVideoSettingsField field)
     {
-        var page = TwoColumnPage(
-            ActionCard(displaySettings, LocExtension.Get("Emulation.Video.Settings.Display")),
-            ActionCard(renderingSettings, LocExtension.Get("Emulation.Video.Settings.Rendering")));
-        if (additionalSettings is not null)
-        {
-            additionalSettings.Margin = new Thickness(0, 10, 0, 0);
-            Grid.SetRow(additionalSettings, 1);
-            Grid.SetColumnSpan(additionalSettings, 2);
-            page.Children.Add(additionalSettings);
-        }
-        return ScrollPage(page);
+        var tile = field.IsTrailingCheckBox && field.Control is CheckBox checkBox
+            ? TrailingCheckBoxTile(field.Label, checkBox)
+            : LabeledSettingsTile(field.Label, field.Control);
+        tile.Margin = new Thickness(0, 3, 0, 9);
+        return tile;
     }
 
     internal static Grid VideoSettingsFields(params EmulationVideoSettingsField[] fields)

@@ -560,6 +560,12 @@ Ces tâches viennent après le refactor principal et avant la validation finale 
 
 ### 7.3 Erreurs, journaux et persistance
 
+- [x] Recenser les dialogues et états visibles qui présentaient le chemin du journal comme seule explication.
+- [x] Centraliser l'interprétation des exceptions courantes sans exposer leur message technique non traduit.
+- [x] Décrire les erreurs réseau, HTTP, disque, fichiers, permissions, données et état de l'application dans la langue sélectionnée.
+- [x] Générer les 19 descriptions dans les 29 cultures distribuées avec Argos et vérifier leurs placeholders.
+- [x] Tester en français le délai de connexion réseau et le fichier absent, sans mention du journal.
+- [x] Terminer le groupe « descriptions localisées des erreurs ».
 - [ ] Localiser tous les messages utilisateur et conserver le détail technique dans les journaux.
 - [ ] Remplacer la boîte d’erreur d’un format simplement non reconnu par l’état d’interface prévu.
 - [ ] Vérifier un journal par action, rotation, archivage et ouverture du dossier Logs.

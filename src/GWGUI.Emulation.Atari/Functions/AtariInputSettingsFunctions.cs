@@ -58,7 +58,8 @@ internal static class AtariInputSettingsFunctions
         var input = current with { KeyboardMappings = keyboard, Controllers = controllers };
         return new AtariMachineConfiguration(configuration.Model, configuration.Firmwares, configuration.Media,
             options, input, configuration.Id, configuration.SchemaVersion,
-            configuration.AudioEnabled, configuration.VideoRenderer, configuration.Folders);
+            configuration.AudioEnabled, configuration.VideoRenderer, configuration.Folders,
+            configuration.VideoProcessing);
     }
 
     private static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(AtariMachineModel model)

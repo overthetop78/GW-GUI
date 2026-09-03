@@ -34,4 +34,23 @@
     <value>تم حفظ التقرير الكامل في:
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>The remote service did not respond before the connection timed out. تحقق من اتصال الشبكة وحاول مرة أخرى</value></data>
+  <data name="Error.Description.NetworkDns"><value>ولا يمكن حل عنوان الخدمة عن بعد. تحققي من الشبكة أو من مواقع الحمض النووي وحاولي مرة أخرى</value></data>
+  <data name="Error.Description.NetworkRefused"><value>ورفضت الدائرة النائية الاتصال. قد يكون غير متاح أو محاصر.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>ولا يمكن الوصول إلى الخدمة النائية. تحقق من وصلة الإنترنت، و جدران النار، وشبكة الإنترنت، أو الأماكن العميلة، ومحاولة مرة أخرى.</value></data>
+  <data name="Error.Description.HttpStatus"><value>The remote service returned HTTP status {0}. حاول مرة أخرى لاحقا.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>ولم تنتهي العملية في غضون الوقت المسموح به. حاول مرة أخرى</value></data>
+  <data name="Error.Description.OperationCancelled"><value>ألغيت العملية قبل أن تنتهي</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI does not have permission to access the requested file, folder, or tool.</value></data>
+  <data name="Error.Description.FileNotFound"><value>The required file could not be found: {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>ولا يمكن العثور على الملف المطلوب.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>القرص المطلوب غير متاح.</value></data>
+  <data name="Error.Description.PathTooLong"><value>الطريق المختار طويل جداً</value></data>
+  <data name="Error.Description.DiskFull"><value>ليس هناك مساحة كافية من الأقراص المجانية لإكمال العملية</value></data>
+  <data name="Error.Description.InvalidData"><value>البيانات أو الملفات المختارة غير صحيحة أو غير كاملة أو مفسدة.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>وأحد القيم الموردة غير صحيح. راجعي البيئات وحاولي مجدداً</value></data>
+  <data name="Error.Description.InvalidOperation"><value>ولا يمكن إنجاز العملية في حالة التطبيق الحالية.</value></data>
+  <data name="Error.Description.NotSupported"><value>ولا يدعم هذه العملية الملف أو الجهاز أو المنصة المختارة.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>لا توجد ذاكرة كافية لإكمال العملية</value></data>
+  <data name="Error.Description.Unexpected"><value>وواجهت المنظمة مشكلة غير متوقعة أثناء القيام بهذا العمل.</value></data>
 </root>

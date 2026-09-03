@@ -34,4 +34,23 @@
     <value>完整报告保存至：
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>远程服务在连接超时前没有响应. 检查网络连接并再次尝试 。</value></data>
+  <data name="Error.Description.NetworkDns"><value>远程服务地址无法解决 。 检查网络或 DNS 设置并再次尝试 。</value></data>
+  <data name="Error.Description.NetworkRefused"><value>远程服务拒绝连接. 它可能无法使用或被屏蔽。</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>远程服务无法到达 。 检查互联网连接,防火墙,VPN,或代理设置,再试一次.</value></data>
+  <data name="Error.Description.HttpStatus"><value>远程服务返回了 HTTP 状态{0} 。 待会再试</value></data>
+  <data name="Error.Description.OperationTimeout"><value>行动没有在允许的时间内完成。 再试一次</value></data>
+  <data name="Error.Description.OperationCancelled"><value>行动在完成前被取消.</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI 无权访问请求的文件,文件夹,或设备.</value></data>
+  <data name="Error.Description.FileNotFound"><value>找不到所需的文件 : {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>找不到所需的文件夹 。</value></data>
+  <data name="Error.Description.DriveNotFound"><value>请求的驱动器不可用 。</value></data>
+  <data name="Error.Description.PathTooLong"><value>所选路径太长 。</value></data>
+  <data name="Error.Description.DiskFull"><value>没有足够的自由磁盘空间来完成操作.</value></data>
+  <data name="Error.Description.InvalidData"><value>所选数据或文件无效、不完整或已损坏。</value></data>
+  <data name="Error.Description.InvalidArgument"><value>提供的值之一无效 。 审查设置并再次尝试 。</value></data>
+  <data name="Error.Description.InvalidOperation"><value>操作无法在当前应用状态下完成 。</value></data>
+  <data name="Error.Description.NotSupported"><value>此操作不为所选文件、 设备或平台所支持 。</value></data>
+  <data name="Error.Description.OutOfMemory"><value>没有足够的内存来完成操作.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI 在进行此动作时遇到了出乎意料的问题.</value></data>
 </root>

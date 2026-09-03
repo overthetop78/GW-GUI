@@ -265,7 +265,7 @@ internal sealed class AtariMachine : IEmulatedMachine, IEmulationLifecycle, IEmu
     private AtariMachineConfiguration CurrentConfiguration() => new(Configuration.Model,
         Configuration.Firmwares, _mountedMedia.ToArray(), Configuration.Options, Configuration.Input,
         Configuration.Id, Configuration.SchemaVersion, Configuration.AudioEnabled,
-        Configuration.VideoRenderer, Configuration.Folders);
+        Configuration.VideoRenderer, Configuration.Folders, Configuration.VideoProcessing);
 
     private ValueTask QueueCommand(Action action, CancellationToken cancellationToken)
     {

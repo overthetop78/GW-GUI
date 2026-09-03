@@ -1,6 +1,7 @@
 using GWGUI.App.Constants.Presenters.Common;
 using GWGUI.App.Contracts.Dialogs;
 using GWGUI.App.Enums.Dialogs;
+using GWGUI.App.Functions.Localization;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Services.Logging;
 using GWGUI.App.Views.Dialogs.Common;
@@ -15,11 +16,9 @@ internal static class ControlErrorPresenter
 {
     internal static string Describe(Exception error, string context)
     {
-        var logPath = ErrorLog.Write(error, context);
-        var detail = logPath is null
-            ? LocExtension.Get(ControlErrorPresenterConstants.UnknownResource)
-            : LocExtension.Get(ControlErrorPresenterConstants.LogSavedResource, logPath);
-        return LocExtension.Get(ControlErrorPresenterConstants.UnexpectedResource, detail);
+        ErrorLog.Write(error, context);
+        return LocExtension.Get(ControlErrorPresenterConstants.UnexpectedResource,
+            ExceptionDescriptionFunctions.Describe(error));
     }
 
     internal static void ShowUnexpected(FrameworkElement owner, Exception error, string context, string title) =>
@@ -136,22 +135,14 @@ internal static class ControlErrorPresenter
 
     internal static string DescribeDetailed(Exception error, string description, string context)
     {
-        var logPath = ErrorLog.Write(error, context);
-        if (logPath is null) return description;
-        return description + Environment.NewLine + Environment.NewLine
-            + LocExtension.Get(ControlErrorPresenterConstants.LogSavedResource, logPath);
+        ErrorLog.Write(error, context);
+        return description;
     }
 
     internal static void ShowDetailed(FrameworkElement owner, Exception error, string description,
         string context, string title, IReadOnlyList<CommonErrorDialogDetail>? details = null,
-        IReadOnlyList<CommonErrorDialogMediaIcon>? mediaIcons = null, bool showLogPath = true) =>
+        IReadOnlyList<CommonErrorDialogMediaIcon>? mediaIcons = null) =>
         CommonErrorDialog.Show(owner, new CommonErrorDialogContent(title,
-            showLogPath ? DescribeDetailed(error, description, context) : LogWithoutPath(error, description, context),
+            DescribeDetailed(error, description, context),
             CommonErrorDialog.ErrorIcon, Brushes.Firebrick, details, mediaIcons));
-
-    private static string LogWithoutPath(Exception error, string description, string context)
-    {
-        ErrorLog.Write(error, context);
-        return description;
-    }
 }

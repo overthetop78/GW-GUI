@@ -14,6 +14,7 @@ using GWGUI.App.Enums.Services.Dialogs;
 using GWGUI.App.Interfaces.Services.Dialogs;
 using GWGUI.App.Interfaces.Services.Navigation;
 using GWGUI.App.Localization.Extensions;
+using GWGUI.App.Functions.Localization;
 using GWGUI.App.Presenters.Conversion;
 using GWGUI.App.Services.Dialogs;
 using GWGUI.App.Services.DiskImages;
@@ -627,10 +628,8 @@ public partial class MainWindow : Window
 
     private void AppendAnalysisFailure(Exception exception, string context)
     {
-        var logPath = ErrorLog.Write(exception, context);
-        var detail = logPath is null
-            ? LocExtension.Get("Common.Unknown")
-            : LocExtension.Get("Error.LogSaved", logPath);
+        ErrorLog.Write(exception, context);
+        var detail = ExceptionDescriptionFunctions.Describe(exception);
         _operation.AppendText(Environment.NewLine);
         _operation.AppendText(LocExtension.Get("Error.Unexpected", detail));
         _operation.AppendText(Environment.NewLine);
@@ -695,8 +694,8 @@ public partial class MainWindow : Window
 
     private void ShowLoggedError(Exception exception, string context, string titleKey, string messageKey = "Error.Unexpected")
     {
-        var path = ErrorLog.Write(exception, context);
-        var detail = path is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", path);
+        ErrorLog.Write(exception, context);
+        var detail = ExceptionDescriptionFunctions.Describe(exception);
         _dialogs.Show(LocExtension.Get(messageKey, detail), LocExtension.Get(titleKey), icon: UserDialogIcon.Error);
     }
 

@@ -34,4 +34,23 @@
     <value>Полный отчет сохранен по адресу:
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>Удаленная служба не ответила до того, как соединение отключилось. Проверьте сетевое соединение и попробуйте еще раз.</value></data>
+  <data name="Error.Description.NetworkDns"><value>Адрес удаленной службы не может быть решен. Проверьте настройки сети или DNS и попробуйте снова.</value></data>
+  <data name="Error.Description.NetworkRefused"><value>Удаленный сервис отказался от подключения. Он может быть недоступен или заблокирован.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>До удаленной службы добраться не удалось. Проверьте подключение к Интернету, брандмауэр, VPN или настройки прокси и попробуйте еще раз.</value></data>
+  <data name="Error.Description.HttpStatus"><value>Удаленный сервис возвращает статус HTTP {0}. Попробуй позже.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>Операция не завершилась в течение разрешенного времени. Попробуй снова.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>Операция была отменена до ее завершения.</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI не имеет права доступа к запрашиваемому файлу, папке или устройству.</value></data>
+  <data name="Error.Description.FileNotFound"><value>Невозможно найти нужный файл: {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>Необходимую папку найти не удалось.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>Запрошенный диск недоступен.</value></data>
+  <data name="Error.Description.PathTooLong"><value>Выбранный путь слишком длинный.</value></data>
+  <data name="Error.Description.DiskFull"><value>Свободного дискового пространства для завершения операции недостаточно.</value></data>
+  <data name="Error.Description.InvalidData"><value>Выбранные данные или файл являются недействительными, неполными или поврежденными.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>Одно из предложенных значений является недействительным. Просмотрите настройки и попробуйте еще раз.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>Операция не может быть завершена в текущем состоянии приложения.</value></data>
+  <data name="Error.Description.NotSupported"><value>Эта операция не поддерживается выбранным файлом, устройством или платформой.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>Не хватает памяти для завершения операции.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI столкнулся с неожиданной проблемой при выполнении этого действия.</value></data>
 </root>

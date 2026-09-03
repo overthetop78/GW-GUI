@@ -53,6 +53,22 @@ internal static partial class EmulationSettingsLayout
         return grid;
     }
 
+    internal static void DetachReusableElement(FrameworkElement element)
+    {
+        switch (element.Parent)
+        {
+            case Panel panel:
+                panel.Children.Remove(element);
+                break;
+            case Decorator decorator when ReferenceEquals(decorator.Child, element):
+                decorator.Child = null;
+                break;
+            case ContentControl content when ReferenceEquals(content.Content, element):
+                content.Content = null;
+                break;
+        }
+    }
+
     internal static Grid CompactForm(int columns, params EmulationSettingsControlField[] fields)
     {
         var form = new Grid { Margin = new Thickness(10) };

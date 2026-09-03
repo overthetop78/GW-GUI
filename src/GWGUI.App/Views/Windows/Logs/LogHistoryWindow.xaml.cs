@@ -1,4 +1,5 @@
 using GWGUI.App.Localization.Extensions;
+using GWGUI.App.Functions.Localization;
 using GWGUI.App.Services.Logging;
 using System.IO;
 using System.Windows;
@@ -26,8 +27,8 @@ public partial class LogHistoryWindow : Window
         try { content = await File.ReadAllTextAsync(file.FullName).ConfigureAwait(false); canExport = true; }
         catch (IOException exception)
         {
-            var path = ErrorLog.Write(exception, "Reading log history");
-            var detail = path is null ? LocExtension.Get("Common.Unknown") : LocExtension.Get("Error.LogSaved", path);
+            ErrorLog.Write(exception, "Reading log history");
+            var detail = ExceptionDescriptionFunctions.Describe(exception);
             content = LocExtension.Get("Error.Unexpected", detail);
         }
         if (Dispatcher.HasShutdownStarted || Dispatcher.HasShutdownFinished) return;

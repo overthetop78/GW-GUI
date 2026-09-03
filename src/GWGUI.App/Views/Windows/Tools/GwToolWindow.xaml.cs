@@ -3,6 +3,7 @@ using GWGUI.Domain.Commands.Building;
 using GWGUI.Domain.Commands.Execution;
 using GWGUI.Domain.Hardware.Parsing;
 using GWGUI.App.Localization.Extensions;
+using GWGUI.App.Functions.Localization;
 using GWGUI.App.Services.Logging;
 using System.Windows;
 using System.Windows.Automation;
@@ -128,8 +129,8 @@ public partial class GwToolWindow : Window
         }
         catch (Exception exception)
         {
-            var path = ErrorLog.Write(exception, $"Running GW tool '{_verb}'");
-            var detail = path is null ? L("Common.Unknown") : LocExtension.Get("Error.LogSaved", path);
+            ErrorLog.Write(exception, $"Running GW tool '{_verb}'");
+            var detail = ExceptionDescriptionFunctions.Describe(exception);
             Summary.Text = LocExtension.Get("Error.Unexpected", detail);
             if (_consoleLog is not null) await _consoleLog.AppendAsync(Summary.Text);
         }

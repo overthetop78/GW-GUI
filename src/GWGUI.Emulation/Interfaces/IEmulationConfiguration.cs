@@ -6,4 +6,5 @@ public interface IEmulationConfiguration
     Guid Id { get; }
     string MachineId { get; }
     EmulationVideoRenderer VideoRenderer { get; }
+    EmulationVideoProcessingConfiguration VideoProcessing => new();
 }

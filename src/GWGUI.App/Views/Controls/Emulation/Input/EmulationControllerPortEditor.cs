@@ -1,4 +1,3 @@
-using GWGUI.App.Constants.Emulation;
 using GWGUI.App.Controllers.Emulation.Input;
 using GWGUI.App.Contracts.Emulation.Controllers;
 using GWGUI.App.Contracts.Input;
@@ -22,13 +21,9 @@ internal sealed class EmulationControllerPortEditor
         Number = number;
         ModuleId = moduleId;
         MachineId = machineId;
-        Type = new ComboBox
-        {
-            MaxDropDownHeight = EmulationControllerSettingsConstants.SelectorDropDownMaximumHeight
-        };
+        Type = new ComboBox();
         Visual = new ComboBox
         {
-            MaxDropDownHeight = EmulationControllerSettingsConstants.SelectorDropDownMaximumHeight,
             DisplayMemberPath = nameof(KeyValuePair<string, string>.Value),
             SelectedValuePath = nameof(KeyValuePair<string, string>.Key)
         };

@@ -34,4 +34,23 @@
     <value>Raporun tamamı şuraya kaydedildi:
 {0}</value>
   </data>
+  <data name="Error.Description.NetworkTimeout"><value>Uzak servis bağlantı zamanından önce cevap vermedi. Ağ bağlantısını kontrol edin ve tekrar deneyin.</value></data>
+  <data name="Error.Description.NetworkDns"><value>Uzak servis adresi çözülmedi. Ağ veya DNS ayarlarını kontrol edin ve tekrar deneyin.</value></data>
+  <data name="Error.Description.NetworkRefused"><value>Uzak servis bağlantıyı reddetti. Yok veya bloke edilebilir olabilir.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>Uzak servis ulaşılamadı. İnternet bağlantısı, güvenlik duvarı, VPN veya proxy ayarlarını kontrol edin ve tekrar deneyin.</value></data>
+  <data name="Error.Description.HttpStatus"><value>Uzak servis HTTP statüsüne geri döndü {0 The Daha sonra tekrar deneyin.</value></data>
+  <data name="Error.Description.OperationTimeout"><value>Operasyon izin verilen süre içinde bitirmedi. Tekrar deneyin.</value></data>
+  <data name="Error.Description.OperationCancelled"><value>Operasyon bitmeden önce iptal edildi.</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI talep edilen dosyaya, klasöre veya cihaza erişmek için izin verilmez.</value></data>
+  <data name="Error.Description.FileNotFound"><value>Gerekli dosya bulunamadı: {0}</value></data>
+  <data name="Error.Description.DirectoryNotFound"><value>Gerekli klasör bulunamadı.</value></data>
+  <data name="Error.Description.DriveNotFound"><value>Talep edilen sürücü mevcut değildir.</value></data>
+  <data name="Error.Description.PathTooLong"><value>Seçilen yol çok uzun.</value></data>
+  <data name="Error.Description.DiskFull"><value>Operasyonu tamamlamak için yeterli ücretsiz disk alanı yoktur.</value></data>
+  <data name="Error.Description.InvalidData"><value>Seçilen veriler veya dosya geçersiz, eksik veya bozulmuştur.</value></data>
+  <data name="Error.Description.InvalidArgument"><value>Elde edilen değerlerden biri geçersizdir. Ayarları gözden geçirin ve tekrar deneyin.</value></data>
+  <data name="Error.Description.InvalidOperation"><value>Operasyon mevcut uygulama durumunda tamamlanamaz.</value></data>
+  <data name="Error.Description.NotSupported"><value>Bu işlem seçilmiş dosya, cihaz veya platform tarafından desteklenmemektedir.</value></data>
+  <data name="Error.Description.OutOfMemory"><value>Operasyonu tamamlamak için yeterli bellek yoktur.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI bu eylemi yaparken beklenmedik bir problemle karşılaştı.</value></data>
 </root>
