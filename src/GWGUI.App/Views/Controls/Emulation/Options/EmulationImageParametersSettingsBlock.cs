@@ -14,9 +14,8 @@ namespace GWGUI.App.Views.Controls.Emulation.Options;
 internal static class EmulationImageParametersSettingsBlock
 {
     internal static FrameworkElement Create(EmulationImageAdjustments adjustments,
-        Action<EmulationImageAdjustments> changed)
+        Action<Func<EmulationImageAdjustments, EmulationImageAdjustments>> changed)
     {
-        var current = adjustments;
         var block = new StackPanel { Margin = new Thickness(0, 0, 0, 12) };
         block.Children.Add(new TextBlock
         {
@@ -26,23 +25,18 @@ internal static class EmulationImageParametersSettingsBlock
         });
         var sliders = new UniformGrid { Columns = 5, HorizontalAlignment = HorizontalAlignment.Stretch };
         sliders.Children.Add(VerticalSlider(EmulationVideoProcessingCatalog.Brightness,
-            adjustments.Brightness, value => Publish(current with { Brightness = value })));
+            adjustments.Brightness, value => changed(current => current with { Brightness = value })));
         sliders.Children.Add(VerticalSlider(EmulationVideoProcessingCatalog.Contrast,
-            adjustments.Contrast, value => Publish(current with { Contrast = value })));
+            adjustments.Contrast, value => changed(current => current with { Contrast = value })));
         sliders.Children.Add(VerticalSlider(EmulationVideoProcessingCatalog.Gamma,
-            adjustments.Gamma, value => Publish(current with { Gamma = value })));
+            adjustments.Gamma, value => changed(current => current with { Gamma = value })));
         sliders.Children.Add(VerticalSlider(EmulationVideoProcessingCatalog.Saturation,
-            adjustments.Saturation, value => Publish(current with { Saturation = value })));
+            adjustments.Saturation, value => changed(current => current with { Saturation = value })));
         sliders.Children.Add(VerticalSlider(EmulationVideoProcessingCatalog.Sharpness,
-            adjustments.Sharpness, value => Publish(current with { Sharpness = value })));
+            adjustments.Sharpness, value => changed(current => current with { Sharpness = value })));
         block.Children.Add(sliders);
         return block;
 
-        void Publish(EmulationImageAdjustments value)
-        {
-            current = value;
-            changed(value);
-        }
     }
 
     private static FrameworkElement VerticalSlider(string id, int value, Action<int> changed)

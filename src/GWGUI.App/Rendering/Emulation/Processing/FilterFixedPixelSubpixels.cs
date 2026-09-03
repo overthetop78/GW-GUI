@@ -5,13 +5,15 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 internal static class FilterFixedPixelSubpixels
 {
     internal const string Shader = """
-        vec3 filterFixedPixelSubpixels(vec3 color,vec2 fraction,float subpixelLayout,vec3 tint)
+        vec3 filterFixedPixelSubpixels(vec3 color,vec2 fraction,float subpixelLayout,vec3 tint,float intensity,float pixelScale)
         {
             int mode=int(subpixelLayout+.5);
             if(mode==0)return dot(color,vec3(.2126,.7152,.0722))*tint;
+            float strength=intensity*smoothstep(2.25,3.0,pixelScale);
+            if(strength<=0.0)return color;
             int selected=int(floor(min(2.0,fraction.x*3.0)));
             if(mode==2)selected=2-selected;
-            for(int channel=0;channel<3;channel++)if(channel!=selected)color[channel]*=.58;
+            for(int channel=0;channel<3;channel++)if(channel!=selected)color[channel]*=1.0-.42*strength;
             return color;
         }
         """;
@@ -21,7 +23,7 @@ internal static class FilterFixedPixelSubpixels
     private const float BlueLuminance = 0.0722f;
 
     internal static void Apply(float[] colors, int sourceWidth, int outputWidth, int outputHeight,
-        EmulationSubpixelLayout layout, EmulationMonochromePalette palette)
+        EmulationSubpixelLayout layout, EmulationMonochromePalette palette, int intensitySetting)
     {
         if (layout == EmulationSubpixelLayout.Monochrome)
         {
@@ -37,8 +39,11 @@ internal static class FilterFixedPixelSubpixels
             return;
         }
 
+        var outputScale = outputWidth / (float)sourceWidth;
+        var strength = intensitySetting / 100f * SmoothStep(2.25f, 3f, outputScale);
+        if (strength <= 0f) return;
         var scaleX = sourceWidth / (float)outputWidth;
-        const float attenuation = 0.42f;
+        var attenuation = 0.42f * strength;
         for (var y = 0; y < outputHeight; y++)
         for (var x = 0; x < outputWidth; x++)
         {
@@ -49,6 +54,12 @@ internal static class FilterFixedPixelSubpixels
             for (var channel = 0; channel < 3; channel++)
                 if (channel != selected) colors[index + channel] *= 1f - attenuation;
         }
+    }
+
+    private static float SmoothStep(float start, float end, float value)
+    {
+        var amount = Math.Clamp((value - start) / (end - start), 0f, 1f);
+        return amount * amount * (3f - 2f * amount);
     }
 
     internal static (float Red, float Green, float Blue) Tint(EmulationMonochromePalette palette)

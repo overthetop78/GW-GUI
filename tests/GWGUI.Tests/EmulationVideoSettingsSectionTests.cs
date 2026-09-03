@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 using GWGUI.App.Functions.Views.Emulation.Machine;
 using GWGUI.App.Functions.Views.Emulation.Settings;
 using GWGUI.App.Contracts.Views.Emulation.Settings;
@@ -500,6 +501,138 @@ public sealed class EmulationVideoSettingsSectionTests
         });
     }
 
+    [Fact]
+    public void SliderAppliesDuringDragAndRequestsSaveOnlyWhenReleased()
+    {
+        RunSta(() =>
+        {
+            var panel = new EmulationVideoProcessingSettingsSection();
+            var applied = 0;
+            var saves = 0;
+            panel.ConfigurationChanged += (_, _) => applied++;
+            panel.ConfigurationSaveRequested += (_, _) => saves++;
+            var slider = FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.Brightness);
+
+            slider.RaiseEvent(new MouseButtonEventArgs(
+                Mouse.PrimaryDevice, Environment.TickCount, MouseButton.Left)
+            {
+                RoutedEvent = UIElement.PreviewMouseLeftButtonDownEvent
+            });
+            slider.Value = 4;
+
+            Assert.Equal(4, panel.Configuration.Adjustments.Brightness);
+            Assert.Equal(1, applied);
+            Assert.Equal(0, saves);
+
+            slider.RaiseEvent(new MouseButtonEventArgs(
+                Mouse.PrimaryDevice, Environment.TickCount, MouseButton.Left)
+            {
+                RoutedEvent = UIElement.PreviewMouseLeftButtonUpEvent
+            });
+            Assert.Equal(1, saves);
+        });
+    }
+    [Fact]
+    public void FixedPixelSlidersPreserveEarlierChanges()
+    {
+        RunSta(() =>
+        {
+            var panel = new EmulationVideoProcessingSettingsSection();
+            panel.SetConfiguration(new EmulationVideoProcessingConfiguration
+            {
+                DisplayTechnology = EmulationVideoDisplayTechnology.FixedPixel
+            });
+            var grid = FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.FixedPixelGridIntensity);
+            var backlight = FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.FixedPixelBacklight);
+            var halo = FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.FixedPixelBacklightBleed);
+
+            grid.Value = 73;
+            backlight.Value = 19;
+            halo.Value = 84;
+
+            Assert.Equal(73, panel.Configuration.FixedPixel.GridIntensity);
+            Assert.Equal(19, panel.Configuration.FixedPixel.BacklightIntensity);
+            Assert.Equal(84, panel.Configuration.FixedPixel.BacklightBleedIntensity);
+        });
+    }
+    [Fact]
+    public void EverySpecializedDisplayPanelPreservesEarlierControlChanges()
+    {
+        RunSta(() =>
+        {
+            var panel = new EmulationVideoProcessingSettingsSection();
+
+            panel.SetConfiguration(new EmulationVideoProcessingConfiguration
+            {
+                DisplayTechnology = EmulationVideoDisplayTechnology.Vfd
+            });
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.VfdPhosphorIntensity).Value = 31;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.VfdHaloIntensity).Value = 72;
+            Assert.Equal(31, panel.Configuration.Vfd.PhosphorIntensity);
+            Assert.Equal(72, panel.Configuration.Vfd.HaloIntensity);
+
+            panel.SetConfiguration(new EmulationVideoProcessingConfiguration
+            {
+                DisplayTechnology = EmulationVideoDisplayTechnology.LedMatrix
+            });
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.LedMatrixCellSize).Value = 32;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.LedMatrixDiffusion).Value = 73;
+            Assert.Equal(32, panel.Configuration.LedMatrix.CellSize);
+            Assert.Equal(73, panel.Configuration.LedMatrix.Diffusion);
+
+            panel.SetConfiguration(new EmulationVideoProcessingConfiguration
+            {
+                DisplayTechnology = EmulationVideoDisplayTechnology.DotMatrix
+            });
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.DotMatrixDotSize).Value = 33;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.DotMatrixContrast).Value = 74;
+            Assert.Equal(33, panel.Configuration.DotMatrix.DotSize);
+            Assert.Equal(74, panel.Configuration.DotMatrix.Contrast);
+
+            panel.SetConfiguration(new EmulationVideoProcessingConfiguration
+            {
+                DisplayTechnology = EmulationVideoDisplayTechnology.SegmentDisplay
+            });
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.SegmentDisplayThickness).Value = 34;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.SegmentDisplayGlow).Value = 75;
+            Assert.Equal(34, panel.Configuration.SegmentDisplay.Thickness);
+            Assert.Equal(75, panel.Configuration.SegmentDisplay.Glow);
+
+            panel.SetConfiguration(new EmulationVideoProcessingConfiguration
+            {
+                DisplayTechnology = EmulationVideoDisplayTechnology.EPaper
+            });
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.EPaperContrast).Value = 35;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.EPaperGhosting).Value = 76;
+            Assert.Equal(35, panel.Configuration.EPaper.Contrast);
+            Assert.Equal(76, panel.Configuration.EPaper.Ghosting);
+
+            panel.SetConfiguration(new EmulationVideoProcessingConfiguration
+            {
+                DisplayTechnology = EmulationVideoDisplayTechnology.Projection
+            });
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.ProjectionOpticalBlur).Value = 36;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.ProjectionConvergence).Value = 77;
+            Assert.Equal(36, panel.Configuration.Projection.OpticalBlur);
+            Assert.Equal(77, panel.Configuration.Projection.Convergence);
+        });
+    }
     [Fact]
     public void PlasmaPanelContainsOnlyItsFourDocumentedParameters()
     {

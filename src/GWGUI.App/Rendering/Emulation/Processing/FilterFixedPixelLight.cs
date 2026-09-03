@@ -13,8 +13,9 @@ internal static class FilterFixedPixelLight
             var localLight = bleed > 0f ? BrightNeighbourhood(original, width, height, x, y) : 0f;
             for (var channel = 0; channel < 3; channel++)
             {
-                var lit = colors[index + channel] * (gainMinimum + intensity * gainRange);
-                var halo = MathF.Max(0f, localLight - colors[index + channel]) * bleed;
+                var lit = colors[index + channel] * (gainMinimum + MathF.Pow(intensity, 0.8f) * gainRange);
+                var highlight = Math.Clamp((localLight - 0.45f) / 0.55f, 0f, 1f);
+                var halo = MathF.Max(0f, localLight - colors[index + channel]) * bleed * highlight;
                 colors[index + channel] = Math.Clamp(blackFloor + (lit + halo) * (1f - blackFloor), 0f, 1f);
             }
         }

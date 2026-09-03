@@ -79,14 +79,13 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
         }
         _machines.SelectionChanged += MachineChanged;
         _videoProcessing.ConfigurationChanged += (_, _) =>
-        {
             _configuration = _module.ApplyVideoProcessing(_configuration,
                 _videoProcessing.Configuration);
+        _videoProcessing.ConfigurationSaveRequested += (_, _) =>
             _videoSaveDebouncer.Schedule(ApplyUserChangeAsync, error =>
                 ControlErrorPresenter.ShowEmulation(this, error,
                     ControlErrorContexts.EmulationConfigurationManagement,
                     LocExtension.Get(_module.DisplayResourceKey)));
-        };
         Content = BuildEditor();
         Loaded += async (_, _) => await ExecuteAsync(ReloadAsync);
         Unloaded += (_, _) => _videoSaveDebouncer.Dispose();

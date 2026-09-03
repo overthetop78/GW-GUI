@@ -1310,6 +1310,8 @@ public sealed class EmulationVideoProcessingPipelineTests
                 new EmulationVideoProcessingSize(13, 9)));
 
         var neutral = Process(new EmulationFixedPixelVideoConfiguration());
+        var neutralBgr = Process(new EmulationFixedPixelVideoConfiguration(
+            Subpixels: EmulationSubpixelLayout.Bgr));
         var rgb = Process(new EmulationFixedPixelVideoConfiguration(
             Subpixels: EmulationSubpixelLayout.Rgb, GridIntensity: 70, PixelGap: 40));
         var rgbRepeated = Process(new EmulationFixedPixelVideoConfiguration(
@@ -1325,6 +1327,7 @@ public sealed class EmulationVideoProcessingPipelineTests
             Subpixels: EmulationSubpixelLayout.Rgb, GridIntensity: 70, PixelGap: 40), 10);
 
         Assert.Equal(rgb, rgbRepeated);
+        Assert.Equal(neutral, neutralBgr);
         Assert.False(neutral.SequenceEqual(rgb));
         Assert.False(rgb.SequenceEqual(bgr));
         Assert.False(monochrome.SequenceEqual(customBlue));

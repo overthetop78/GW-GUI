@@ -22,6 +22,8 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
     private FrameworkElement? _displaySettings;
     private FrameworkElement? _rendererChoice;
     private bool _loading;
+    private Slider? _activeSliderEdit;
+    private bool _sliderSavePending;
     private string _selectedSettingsTab = DisplayTab;
 
     private const string DisplayTab = "Display";
@@ -39,6 +41,7 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
     }
 
     internal event EventHandler? ConfigurationChanged;
+    internal event EventHandler? ConfigurationSaveRequested;
 
     internal EmulationVideoProcessingConfiguration Configuration => _configuration;
 
@@ -104,6 +107,7 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
                 _selectedSettingsTab = (string)selected.Tag;
             };
             Content = tabs;
+            TrackSliderEdits(tabs);
             tabs.Loaded += (_, _) =>
             {
                 foreach (var item in tabs.Items.Cast<TabItem>())
@@ -137,8 +141,8 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
     }
 
     private FrameworkElement CreateImageGroups() => SideBySideGroups(
-        FramedSection(EmulationImageParametersSettingsBlock.Create(_configuration.Adjustments, SetAdjustments)),
-        FramedSection(EmulationImageRestorationSettingsBlock.Create(_configuration.Restoration, SetRestoration)));
+        FramedSection(EmulationImageParametersSettingsBlock.Create(_configuration.Adjustments, update => SetAdjustments(update(_configuration.Adjustments)))),
+        FramedSection(EmulationImageRestorationSettingsBlock.Create(_configuration.Restoration, update => SetRestoration(update(_configuration.Restoration)))));
 
     private FrameworkElement CreateEffectGroups()
     {
@@ -148,7 +152,7 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
         grid.ColumnDefinitions.Add(new ColumnDefinition());
         var groups = new[]
         {
-            FramedSection(EmulationTemporalEffectsSettingsBlock.Create(_configuration.Temporal, SetTemporal)),
+            FramedSection(EmulationTemporalEffectsSettingsBlock.Create(_configuration.Temporal, update => SetTemporal(update(_configuration.Temporal)))),
             FramedSection(CreateSignalSimulation()),
             FramedSection(CreateStylistic())
         };
@@ -436,7 +440,7 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
 
     private FrameworkElement CreateFixedPixelPanel() =>
         EmulationFixedPixelSettingsBlock.Create(_configuration.FixedPixel,
-            SetFixedPixel, RebuildContent);
+            update => SetFixedPixel(update(_configuration.FixedPixel)), RebuildContent);
 
     private FrameworkElement CreatePlasmaPanel()
     {
@@ -476,13 +480,13 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
         var panel = Section(EmulationResourceKeys.VideoTechnologyVfd);
         panel.Children.Add(ChoiceField(EmulationResourceKeys.VideoParameterVfdColor,
             EmulationVideoProcessingCatalog.VfdColorResourceKeys, vfd.Color,
-            value => SetVfd(vfd with { Color = value }), EmulationVideoProcessingCatalog.VfdColor));
+            value => SetVfd(_configuration.Vfd with { Color = value }), EmulationVideoProcessingCatalog.VfdColor));
         AddIntensity(panel, EmulationVideoProcessingCatalog.VfdPhosphorIntensity,
-            vfd.PhosphorIntensity, value => SetVfd(vfd with { PhosphorIntensity = value }));
+            vfd.PhosphorIntensity, value => SetVfd(_configuration.Vfd with { PhosphorIntensity = value }));
         AddIntensity(panel, EmulationVideoProcessingCatalog.VfdHaloIntensity,
-            vfd.HaloIntensity, value => SetVfd(vfd with { HaloIntensity = value }));
+            vfd.HaloIntensity, value => SetVfd(_configuration.Vfd with { HaloIntensity = value }));
         AddIntensity(panel, EmulationVideoProcessingCatalog.VfdPersistence,
-            vfd.PersistenceIntensity, value => SetVfd(vfd with { PersistenceIntensity = value }));
+            vfd.PersistenceIntensity, value => SetVfd(_configuration.Vfd with { PersistenceIntensity = value }));
         return panel;
     }
 
@@ -492,16 +496,16 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
         var panel = Section(EmulationResourceKeys.VideoTechnologyLedMatrix);
         panel.Children.Add(ChoiceField(EmulationResourceKeys.VideoParameterLedMatrixColor,
             EmulationVideoProcessingCatalog.LedMatrixColorResourceKeys, ledMatrix.Color,
-            value => SetLedMatrix(ledMatrix with { Color = value }),
+            value => SetLedMatrix(_configuration.LedMatrix with { Color = value }),
             EmulationVideoProcessingCatalog.LedMatrixColor));
         AddIntensity(panel, EmulationVideoProcessingCatalog.LedMatrixCellSize,
-            ledMatrix.CellSize, value => SetLedMatrix(ledMatrix with { CellSize = value }));
+            ledMatrix.CellSize, value => SetLedMatrix(_configuration.LedMatrix with { CellSize = value }));
         AddIntensity(panel, EmulationVideoProcessingCatalog.LedMatrixCellGap,
-            ledMatrix.CellGap, value => SetLedMatrix(ledMatrix with { CellGap = value }));
+            ledMatrix.CellGap, value => SetLedMatrix(_configuration.LedMatrix with { CellGap = value }));
         AddIntensity(panel, EmulationVideoProcessingCatalog.LedMatrixDiffusion,
-            ledMatrix.Diffusion, value => SetLedMatrix(ledMatrix with { Diffusion = value }));
+            ledMatrix.Diffusion, value => SetLedMatrix(_configuration.LedMatrix with { Diffusion = value }));
         AddIntensity(panel, EmulationVideoProcessingCatalog.LedMatrixBrightness,
-            ledMatrix.Brightness, value => SetLedMatrix(ledMatrix with { Brightness = value }));
+            ledMatrix.Brightness, value => SetLedMatrix(_configuration.LedMatrix with { Brightness = value }));
         return panel;
     }
 
@@ -511,20 +515,20 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
         var panel = Section(EmulationResourceKeys.VideoTechnologyDotMatrix);
         panel.Children.Add(ChoiceField(EmulationResourceKeys.VideoParameterDotMatrixPalette,
             EmulationVideoProcessingCatalog.DotMatrixPaletteResourceKeys, dotMatrix.Palette,
-            value => SetDotMatrix(dotMatrix with { Palette = value }),
+            value => SetDotMatrix(_configuration.DotMatrix with { Palette = value }),
             EmulationVideoProcessingCatalog.DotMatrixPalette));
         panel.Children.Add(ChoiceField(EmulationResourceKeys.VideoParameterDotMatrixShape,
             EmulationVideoProcessingCatalog.DotMatrixShapeResourceKeys, dotMatrix.Shape,
-            value => SetDotMatrix(dotMatrix with { Shape = value }),
+            value => SetDotMatrix(_configuration.DotMatrix with { Shape = value }),
             EmulationVideoProcessingCatalog.DotMatrixShape));
         AddIntensity(panel, EmulationVideoProcessingCatalog.DotMatrixDotSize,
-            dotMatrix.DotSize, value => SetDotMatrix(dotMatrix with { DotSize = value }));
+            dotMatrix.DotSize, value => SetDotMatrix(_configuration.DotMatrix with { DotSize = value }));
         AddIntensity(panel, EmulationVideoProcessingCatalog.DotMatrixContrast,
-            dotMatrix.Contrast, value => SetDotMatrix(dotMatrix with { Contrast = value }));
+            dotMatrix.Contrast, value => SetDotMatrix(_configuration.DotMatrix with { Contrast = value }));
         AddSlider(panel, EmulationVideoProcessingCatalog.DotMatrixResponseTime,
             dotMatrix.ResponseTimeMilliseconds, EmulationVideoProcessingLimits.DurationMinimumMilliseconds,
             EmulationVideoProcessingLimits.DurationMaximumMilliseconds,
-            value => SetDotMatrix(dotMatrix with { ResponseTimeMilliseconds = value }));
+            value => SetDotMatrix(_configuration.DotMatrix with { ResponseTimeMilliseconds = value }));
         return panel;
     }
 
@@ -534,25 +538,25 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
         var panel = Section(EmulationResourceKeys.VideoTechnologySegmentDisplay);
         panel.Children.Add(ChoiceField(EmulationResourceKeys.VideoParameterSegmentDisplayLayout,
             EmulationVideoProcessingCatalog.SegmentDisplayLayoutResourceKeys, segmentDisplay.Layout,
-            value => SetSegmentDisplay(segmentDisplay with { Layout = value }),
+            value => SetSegmentDisplay(_configuration.SegmentDisplay with { Layout = value }),
             EmulationVideoProcessingCatalog.SegmentDisplayLayout));
         panel.Children.Add(ChoiceField(EmulationResourceKeys.VideoParameterSegmentDisplayColor,
             EmulationVideoProcessingCatalog.SegmentDisplayColorResourceKeys, segmentDisplay.Color,
-            value => SetSegmentDisplay(segmentDisplay with { Color = value }),
+            value => SetSegmentDisplay(_configuration.SegmentDisplay with { Color = value }),
             EmulationVideoProcessingCatalog.SegmentDisplayColor));
         AddIntensity(panel, EmulationVideoProcessingCatalog.SegmentDisplayThickness,
             segmentDisplay.Thickness,
-            value => SetSegmentDisplay(segmentDisplay with { Thickness = value }));
+            value => SetSegmentDisplay(_configuration.SegmentDisplay with { Thickness = value }));
         AddIntensity(panel, EmulationVideoProcessingCatalog.SegmentDisplayContrast,
             segmentDisplay.Contrast,
-            value => SetSegmentDisplay(segmentDisplay with { Contrast = value }));
+            value => SetSegmentDisplay(_configuration.SegmentDisplay with { Contrast = value }));
         AddIntensity(panel, EmulationVideoProcessingCatalog.SegmentDisplayGlow,
-            segmentDisplay.Glow, value => SetSegmentDisplay(segmentDisplay with { Glow = value }));
+            segmentDisplay.Glow, value => SetSegmentDisplay(_configuration.SegmentDisplay with { Glow = value }));
         AddSlider(panel, EmulationVideoProcessingCatalog.SegmentDisplayResponseTime,
             segmentDisplay.ResponseTimeMilliseconds,
             EmulationVideoProcessingLimits.DurationMinimumMilliseconds,
             EmulationVideoProcessingLimits.DurationMaximumMilliseconds,
-            value => SetSegmentDisplay(segmentDisplay with { ResponseTimeMilliseconds = value }));
+            value => SetSegmentDisplay(_configuration.SegmentDisplay with { ResponseTimeMilliseconds = value }));
         return panel;
     }
 
@@ -562,18 +566,18 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
         var panel = Section(EmulationResourceKeys.VideoTechnologyEPaper);
         panel.Children.Add(ChoiceField(EmulationResourceKeys.VideoParameterEPaperColorMode,
             EmulationVideoProcessingCatalog.EPaperColorModeResourceKeys, ePaper.ColorMode,
-            value => SetEPaper(ePaper with { ColorMode = value }),
+            value => SetEPaper(_configuration.EPaper with { ColorMode = value }),
             EmulationVideoProcessingCatalog.EPaperColorMode));
         AddIntensity(panel, EmulationVideoProcessingCatalog.EPaperContrast,
-            ePaper.Contrast, value => SetEPaper(ePaper with { Contrast = value }));
+            ePaper.Contrast, value => SetEPaper(_configuration.EPaper with { Contrast = value }));
         AddIntensity(panel, EmulationVideoProcessingCatalog.EPaperDithering,
-            ePaper.Dithering, value => SetEPaper(ePaper with { Dithering = value }));
+            ePaper.Dithering, value => SetEPaper(_configuration.EPaper with { Dithering = value }));
         AddSlider(panel, EmulationVideoProcessingCatalog.EPaperRefreshTime,
             ePaper.RefreshTimeMilliseconds, EmulationVideoProcessingLimits.DurationMinimumMilliseconds,
             EmulationVideoProcessingLimits.DurationMaximumMilliseconds,
-            value => SetEPaper(ePaper with { RefreshTimeMilliseconds = value }));
+            value => SetEPaper(_configuration.EPaper with { RefreshTimeMilliseconds = value }));
         AddIntensity(panel, EmulationVideoProcessingCatalog.EPaperGhosting,
-            ePaper.Ghosting, value => SetEPaper(ePaper with { Ghosting = value }));
+            ePaper.Ghosting, value => SetEPaper(_configuration.EPaper with { Ghosting = value }));
         return panel;
     }
 
@@ -583,15 +587,15 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
         var panel = Section(EmulationResourceKeys.VideoTechnologyProjection);
         AddIntensity(panel, EmulationVideoProcessingCatalog.ProjectionOpticalBlur,
             projection.OpticalBlur,
-            value => SetProjection(projection with { OpticalBlur = value }));
+            value => SetProjection(_configuration.Projection with { OpticalBlur = value }));
         AddIntensity(panel, EmulationVideoProcessingCatalog.ProjectionDiffusion,
-            projection.Diffusion, value => SetProjection(projection with { Diffusion = value }));
+            projection.Diffusion, value => SetProjection(_configuration.Projection with { Diffusion = value }));
         AddIntensity(panel, EmulationVideoProcessingCatalog.ProjectionScreenTexture,
             projection.ScreenTexture,
-            value => SetProjection(projection with { ScreenTexture = value }));
+            value => SetProjection(_configuration.Projection with { ScreenTexture = value }));
         AddIntensity(panel, EmulationVideoProcessingCatalog.ProjectionConvergence,
             projection.Convergence,
-            value => SetProjection(projection with { Convergence = value }));
+            value => SetProjection(_configuration.Projection with { Convergence = value }));
         return panel;
     }
 
@@ -782,6 +786,43 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
         if (_loading) return;
         _configuration = EmulationVideoProcessingConfigurationFunctions.Normalize(update(_configuration));
         ConfigurationChanged?.Invoke(this, EventArgs.Empty);
+        if (_activeSliderEdit is null)
+            ConfigurationSaveRequested?.Invoke(this, EventArgs.Empty);
+        else
+            _sliderSavePending = true;
+    }
+
+    private void TrackSliderEdits(DependencyObject root)
+    {
+        foreach (var slider in Descendants(root).OfType<Slider>())
+        {
+            slider.PreviewMouseLeftButtonDown += (_, _) =>
+            {
+                _activeSliderEdit = slider;
+                _sliderSavePending = false;
+            };
+            slider.PreviewMouseLeftButtonUp += (_, _) => CompleteSliderEdit(slider);
+            slider.LostMouseCapture += (_, _) => CompleteSliderEdit(slider);
+        }
+    }
+
+    private void CompleteSliderEdit(Slider slider)
+    {
+        if (!ReferenceEquals(_activeSliderEdit, slider)) return;
+        _activeSliderEdit = null;
+        if (!_sliderSavePending) return;
+        _sliderSavePending = false;
+        ConfigurationSaveRequested?.Invoke(this, EventArgs.Empty);
+    }
+
+    private static IEnumerable<DependencyObject> Descendants(DependencyObject root)
+    {
+        foreach (var child in LogicalTreeHelper.GetChildren(root).OfType<DependencyObject>())
+        {
+            yield return child;
+            foreach (var descendant in Descendants(child))
+                yield return descendant;
+        }
     }
 
     private sealed record Choice<T>(T Value, string DisplayName) where T : struct, Enum;

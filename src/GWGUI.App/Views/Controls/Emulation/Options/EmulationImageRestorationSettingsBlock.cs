@@ -17,9 +17,8 @@ internal static class EmulationImageRestorationSettingsBlock
     private static readonly int[] DeditheringValues = [0, 33, 67, 100];
 
     internal static FrameworkElement Create(EmulationImageRestorationConfiguration restoration,
-        Action<EmulationImageRestorationConfiguration> changed)
+        Action<Func<EmulationImageRestorationConfiguration, EmulationImageRestorationConfiguration>> changed)
     {
-        var current = restoration;
         var block = new StackPanel { Margin = new Thickness(0, 0, 0, 12) };
         block.Children.Add(new TextBlock
         {
@@ -30,11 +29,11 @@ internal static class EmulationImageRestorationSettingsBlock
 
         var continuous = new UniformGrid { Columns = 3 };
         continuous.Children.Add(VerticalIntensity(EmulationVideoProcessingCatalog.Denoising,
-            restoration.Denoising, value => Publish(current with { Denoising = value })));
+            restoration.Denoising, value => changed(current => current with { Denoising = value })));
         continuous.Children.Add(VerticalIntensity(EmulationVideoProcessingCatalog.Debanding,
-            restoration.Debanding, value => Publish(current with { Debanding = value })));
+            restoration.Debanding, value => changed(current => current with { Debanding = value })));
         continuous.Children.Add(VerticalIntensity(EmulationVideoProcessingCatalog.DetailRecovery,
-            restoration.DetailRecovery, value => Publish(current with { DetailRecovery = value }),
+            restoration.DetailRecovery, value => changed(current => current with { DetailRecovery = value }),
             EmulationResourceKeys.VideoParameterFineDetails));
         block.Children.Add(continuous);
 
@@ -42,21 +41,16 @@ internal static class EmulationImageRestorationSettingsBlock
         choices.ColumnDefinitions.Add(new ColumnDefinition());
         choices.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         var dedithering = Dedithering(restoration.Dedithering,
-            value => Publish(current with { Dedithering = value }));
+            value => changed(current => current with { Dedithering = value }));
         dedithering.Margin = new Thickness(0, 0, 18, 0);
         choices.Children.Add(dedithering);
         var deinterlacing = Deinterlacing(restoration.Deinterlacing,
-            value => Publish(current with { Deinterlacing = value }));
+            value => changed(current => current with { Deinterlacing = value }));
         Grid.SetColumn(deinterlacing, 1);
         choices.Children.Add(deinterlacing);
         block.Children.Add(choices);
         return block;
 
-        void Publish(EmulationImageRestorationConfiguration value)
-        {
-            current = value;
-            changed(value);
-        }
     }
 
     private static FrameworkElement VerticalIntensity(string id, int value, Action<int> changed,

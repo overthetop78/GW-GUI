@@ -3,14 +3,15 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 internal static class FilterFixedPixelGrid
 {
     internal const string Shader = """
-        vec3 filterFixedPixelGrid(vec3 color,vec2 fraction,float intensity,float gap)
+        vec3 filterFixedPixelGrid(vec3 color,vec2 fraction,float intensity,float gap,vec2 pixelScale)
         {
             if(intensity<=0.0||gap<=0.0)return color;
-            float halfGap=.03+gap*.43;
-            float edge=min(min(fraction.x,1.0-fraction.x),min(fraction.y,1.0-fraction.y));
-            float softness=max(.025,halfGap*.22);
-            float coverage=1.0-smoothstep(max(0.0,halfGap-softness),halfGap,edge);
-            return color*(1.0-intensity*.92*coverage);
+            vec2 scale=max(pixelScale,vec2(1.0));
+            float halfGap=gap*.16;
+            vec2 edge=min(fraction,vec2(1.0)-fraction);
+            vec2 coverage=clamp((vec2(halfGap)+.5/scale-edge)*scale,vec2(0.0),vec2(1.0));
+            float grid=1.0-(1.0-coverage.x)*(1.0-coverage.y);
+            return color*(1.0-intensity*.75*grid);
         }
         """;
 
@@ -21,19 +22,21 @@ internal static class FilterFixedPixelGrid
             return;
 
         var intensity = intensitySetting / 100f;
-        var halfGap = 0.03f + gapSetting / 100f * 0.43f;
-        var softness = MathF.Max(0.025f, halfGap * 0.22f);
-        var scaleX = sourceWidth / (float)outputWidth;
-        var scaleY = sourceHeight / (float)outputHeight;
+        var halfGap = gapSetting / 100f * 0.16f;
+        var pixelScaleX = MathF.Max(1f, outputWidth / (float)sourceWidth);
+        var pixelScaleY = MathF.Max(1f, outputHeight / (float)sourceHeight);
+        var sourcePerOutputX = sourceWidth / (float)outputWidth;
+        var sourcePerOutputY = sourceHeight / (float)outputHeight;
         for (var y = 0; y < outputHeight; y++)
         {
-            var fy = Fraction((y + 0.5f) * scaleY);
+            var fy = Fraction((y + 0.5f) * sourcePerOutputY);
+            var coverageY = Coverage(fy, halfGap, pixelScaleY);
             for (var x = 0; x < outputWidth; x++)
             {
-                var fx = Fraction((x + 0.5f) * scaleX);
-                var edge = Math.Min(Math.Min(fx, 1f - fx), Math.Min(fy, 1f - fy));
-                var coverage = 1f - SmoothStep(halfGap - softness, halfGap, edge);
-                var factor = 1f - intensity * 0.92f * coverage;
+                var fx = Fraction((x + 0.5f) * sourcePerOutputX);
+                var coverageX = Coverage(fx, halfGap, pixelScaleX);
+                var coverage = 1f - (1f - coverageX) * (1f - coverageY);
+                var factor = 1f - intensity * 0.75f * coverage;
                 var index = (y * outputWidth + x) * 3;
                 colors[index] *= factor;
                 colors[index + 1] *= factor;
@@ -42,11 +45,11 @@ internal static class FilterFixedPixelGrid
         }
     }
 
-    private static float Fraction(float value) => value - MathF.Floor(value);
-
-    private static float SmoothStep(float start, float end, float value)
+    private static float Coverage(float fraction, float halfGap, float pixelScale)
     {
-        var t = Math.Clamp((value - start) / MathF.Max(end - start, float.Epsilon), 0f, 1f);
-        return t * t * (3f - 2f * t);
+        var edge = MathF.Min(fraction, 1f - fraction);
+        return Math.Clamp((halfGap + 0.5f / pixelScale - edge) * pixelScale, 0f, 1f);
     }
+
+    private static float Fraction(float value) => value - MathF.Floor(value);
 }

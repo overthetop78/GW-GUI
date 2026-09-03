@@ -392,8 +392,10 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
         vec3 fixedPixel(vec3 color, vec2 uv)
         {
             vec2 fraction=fract(uv*Processing.zw);
-            color=filterFixedPixelSubpixels(color,fraction,FixedDisplay.z,FixedSpatial.yzw);
-            color=filterFixedPixelGrid(color,fraction,FixedDisplay.w,FixedSpatial.x);
+            color=filterFixedPixelSubpixels(color,fraction,FixedDisplay.z,FixedSpatial.yzw,
+                FixedDisplay.w,Output.x/max(Processing.z,1.0));
+            color=filterFixedPixelGrid(color,fraction,FixedDisplay.w,FixedSpatial.x,
+                Output.xy/max(Processing.zw,vec2(1.0)));
             int technology=int(FixedDisplay.y+.5);
             if(technology<2)
             {

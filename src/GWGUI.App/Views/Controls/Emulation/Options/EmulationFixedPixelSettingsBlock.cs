@@ -14,16 +14,10 @@ namespace GWGUI.App.Views.Controls.Emulation.Options;
 internal static class EmulationFixedPixelSettingsBlock
 {
     internal static FrameworkElement Create(EmulationFixedPixelVideoConfiguration value,
-        Action<EmulationFixedPixelVideoConfiguration> changed, Action rebuild)
+        Action<Func<EmulationFixedPixelVideoConfiguration,
+            EmulationFixedPixelVideoConfiguration>> changed, Action rebuild)
     {
         var root = new StackPanel { Margin = new Thickness(0, 0, 0, 12) };
-        root.Children.Add(new TextBlock
-        {
-            Text = LocExtension.Get("Emulation.Video.Technology.FixedPixel"),
-            FontWeight = FontWeights.SemiBold,
-            Margin = new Thickness(0, 0, 0, 8)
-        });
-
         var groups = new Grid();
         groups.ColumnDefinitions.Add(new ColumnDefinition());
         groups.ColumnDefinitions.Add(new ColumnDefinition());
@@ -35,41 +29,41 @@ internal static class EmulationFixedPixelSettingsBlock
             EmulationVideoProcessingCatalog.FixedPixelTechnologyResourceKeys, value.Technology,
             technology =>
             {
-                changed(value with { Technology = technology });
+                changed(current => current with { Technology = technology });
                 rebuild();
             }));
         screen.Children.Add(Choice(EmulationVideoProcessingCatalog.FixedPixelSubpixels,
             EmulationVideoProcessingCatalog.SubpixelLayoutResourceKeys, value.Subpixels,
             subpixels =>
             {
-                changed(value with { Subpixels = subpixels });
+                changed(current => current with { Subpixels = subpixels });
                 rebuild();
             }));
         if (value.Subpixels == EmulationSubpixelLayout.Monochrome)
             screen.Children.Add(Choice(EmulationVideoProcessingCatalog.FixedPixelMonochromeColor,
                 EmulationVideoProcessingCatalog.MonochromePaletteResourceKeys,
                 value.MonochromePalette,
-                palette => changed(value with { MonochromePalette = palette, MonochromeColorArgb = null })));
-        AddGroup(groups, screen, EmulationVideoProcessingCatalog.FixedPixelTechnology, 0, 0);
+                palette => changed(current => current with { MonochromePalette = palette, MonochromeColorArgb = null })));
+        AddGroup(groups, screen, 0, 0);
 
         var structure = new StackPanel();
         structure.Children.Add(Slider(EmulationVideoProcessingCatalog.FixedPixelGridIntensity,
             value.GridIntensity, 0, 100,
-            number => changed(value with { GridIntensity = number })));
+            number => changed(current => current with { GridIntensity = number })));
         structure.Children.Add(Slider(EmulationVideoProcessingCatalog.FixedPixelPixelGap,
             value.PixelGap, 0, 100,
-            number => changed(value with { PixelGap = number })));
-        AddGroup(groups, structure, EmulationVideoProcessingCatalog.FixedPixelGridIntensity, 0, 1);
+            number => changed(current => current with { PixelGap = number })));
+        AddGroup(groups, structure, 0, 1);
 
         var light = new StackPanel();
         if (value.Technology != EmulationFixedPixelTechnology.Oled)
         {
             light.Children.Add(Slider(EmulationVideoProcessingCatalog.FixedPixelBacklight,
                 value.BacklightIntensity ?? (value.Technology == EmulationFixedPixelTechnology.Lcd ? 65 : 80),
-                0, 100, number => changed(value with { BacklightIntensity = number })));
+                0, 100, number => changed(current => current with { BacklightIntensity = number })));
             light.Children.Add(Slider(EmulationVideoProcessingCatalog.FixedPixelBacklightBleed,
                 value.BacklightBleedIntensity, 0, 100,
-                number => changed(value with { BacklightBleedIntensity = number })));
+                number => changed(current => current with { BacklightBleedIntensity = number })));
         }
         light.Children.Add(Slider(EmulationVideoProcessingCatalog.FixedPixelBlackDepth,
             value.BlackDepth ?? value.Technology switch
@@ -77,38 +71,29 @@ internal static class EmulationFixedPixelSettingsBlock
                 EmulationFixedPixelTechnology.Lcd => 35,
                 EmulationFixedPixelTechnology.LedBacklitLcd => 55,
                 _ => 100
-            }, 0, 100, number => changed(value with { BlackDepth = number })));
-        AddGroup(groups, light, value.Technology == EmulationFixedPixelTechnology.Oled
-            ? EmulationVideoProcessingCatalog.FixedPixelBlackDepth
-            : EmulationVideoProcessingCatalog.FixedPixelBacklight, 1, 0);
+            }, 0, 100, number => changed(current => current with { BlackDepth = number })));
+        AddGroup(groups, light, 1, 0);
 
         var temporal = new StackPanel();
         temporal.Children.Add(Slider(EmulationVideoProcessingCatalog.FixedPixelResponseTime,
             value.ResponseTimeMilliseconds, EmulationVideoProcessingLimits.DurationMinimumMilliseconds,
             EmulationVideoProcessingLimits.DurationMaximumMilliseconds,
-            number => changed(value with { ResponseTimeMilliseconds = number })));
+            number => changed(current => current with { ResponseTimeMilliseconds = number })));
         temporal.Children.Add(Slider(EmulationVideoProcessingCatalog.FixedPixelPersistence,
             value.PersistenceIntensity, 0, 100,
-            number => changed(value with { PersistenceIntensity = number })));
-        AddGroup(groups, temporal, EmulationVideoProcessingCatalog.FixedPixelResponseTime, 1, 1);
+            number => changed(current => current with { PersistenceIntensity = number })));
+        AddGroup(groups, temporal, 1, 1);
 
         root.Children.Add(groups);
         return root;
     }
 
-    private static void AddGroup(Grid grid, FrameworkElement content, string titleId, int row, int column)
+    private static void AddGroup(Grid grid, FrameworkElement content, int row, int column)
     {
-        var panel = new StackPanel();
-        panel.Children.Add(new TextBlock
-        {
-            Text = LocExtension.Get(EmulationVideoProcessingCatalog.ParameterResourceKeys[titleId]),
-            FontWeight = FontWeights.SemiBold,
-            Margin = new Thickness(0, 0, 0, 8)
-        });
-        panel.Children.Add(content);
+
         var card = new Border
         {
-            Child = panel,
+            Child = content,
             Margin = new Thickness(column == 0 ? 0 : 6, row == 0 ? 0 : 6,
                 column == 0 ? 6 : 0, row == 0 ? 6 : 0)
         };

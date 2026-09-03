@@ -14,9 +14,8 @@ namespace GWGUI.App.Views.Controls.Emulation.Options;
 internal static class EmulationTemporalEffectsSettingsBlock
 {
     internal static FrameworkElement Create(EmulationTemporalVideoConfiguration temporal,
-        Action<EmulationTemporalVideoConfiguration> changed)
+        Action<Func<EmulationTemporalVideoConfiguration, EmulationTemporalVideoConfiguration>> changed)
     {
-        var current = temporal;
         var block = new StackPanel { Margin = new Thickness(0, 0, 0, 12) };
         block.Children.Add(new TextBlock
         {
@@ -29,15 +28,15 @@ internal static class EmulationTemporalEffectsSettingsBlock
         continuous.Children.Add(HorizontalIntensity(
             EmulationVideoProcessingCatalog.GeneralPersistence,
             temporal.GeneralPersistence,
-            value => Publish(current with { GeneralPersistence = value })));
+            value => changed(current => current with { GeneralPersistence = value })));
         continuous.Children.Add(HorizontalIntensity(
             EmulationVideoProcessingCatalog.MotionBlur,
             temporal.MotionBlur,
-            value => Publish(current with { MotionBlur = value })));
+            value => changed(current => current with { MotionBlur = value })));
         continuous.Children.Add(HorizontalIntensity(
             EmulationVideoProcessingCatalog.Flicker,
             temporal.Flicker,
-            value => Publish(current with { Flicker = value })));
+            value => changed(current => current with { Flicker = value })));
         block.Children.Add(continuous);
 
         var choices = new StackPanel { Margin = new Thickness(0, 12, 0, 0) };
@@ -48,17 +47,17 @@ internal static class EmulationTemporalEffectsSettingsBlock
         var visibility = HorizontalIntensity(
             EmulationVideoProcessingCatalog.InterlacingVisibility,
             temporal.InterlacingVisibility,
-            value => Publish(current with { InterlacingVisibility = value }));
+            value => changed(current => current with { InterlacingVisibility = value }));
         visibility.IsEnabled = interlacingToggle.IsChecked == true;
         interlacingToggle.Checked += (_, _) =>
         {
             visibility.IsEnabled = true;
-            Publish(current with { Interlacing = 100 });
+            changed(current => current with { Interlacing = 100 });
         };
         interlacingToggle.Unchecked += (_, _) =>
         {
             visibility.IsEnabled = false;
-            Publish(current with { Interlacing = 0 });
+            changed(current => current with { Interlacing = 0 });
         };
         interlacing.Children.Add(interlacingToggle);
         interlacing.Children.Add(visibility);
@@ -68,19 +67,14 @@ internal static class EmulationTemporalEffectsSettingsBlock
         var blackFrameToggle = Toggle(EmulationVideoProcessingCatalog.BlackFrameInsertion,
             temporal.BlackFrameInsertion);
         blackFrameToggle.Checked += (_, _) =>
-            Publish(current with { BlackFrameInsertion = true });
+            changed(current => current with { BlackFrameInsertion = true });
         blackFrameToggle.Unchecked += (_, _) =>
-            Publish(current with { BlackFrameInsertion = false });
+            changed(current => current with { BlackFrameInsertion = false });
         blackFrames.Children.Add(blackFrameToggle);
         choices.Children.Add(blackFrames);
         block.Children.Add(choices);
         return block;
 
-        void Publish(EmulationTemporalVideoConfiguration value)
-        {
-            current = value;
-            changed(value);
-        }
     }
 
     private static FrameworkElement HorizontalIntensity(string id, int value, Action<int> changed)
