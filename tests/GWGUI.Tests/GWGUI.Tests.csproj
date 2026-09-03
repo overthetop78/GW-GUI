@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
-    <VSTestTestCaseFilter>Category!=LocalAssets</VSTestTestCaseFilter>
+    <VSTestTestCaseFilter>(Category!=LocalAssets)&amp;(Category!=GpuExhaustive)</VSTestTestCaseFilter>
   </PropertyGroup>
 
   <ItemGroup>

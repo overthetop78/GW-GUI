@@ -1050,6 +1050,19 @@ choisir une nouvelle technologie remplace naturellement l’ancienne. Une confir
 uniquement lorsqu’une fonctionnalité indépendante nouvellement activée doit désactiver une autre
 fonction indépendante déjà active.
 
+### Niveaux de validation
+
+La suite normale exclut les scénarios marqués `GpuExhaustive` : elle vérifie les contrats, les algorithmes CPU, la configuration, l’interface et les chemins de rendu représentatifs sans recompiler chaque variante de shader sur chaque backend. Elle se lance avec :
+
+```powershell
+dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj -c Debug
+```
+
+La matrice complète multi-filtres et multi-rendus reste disponible avant une livraison ou après une modification des shaders :
+
+```powershell
+dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj -c Debug --filter Category=GpuExhaustive
+```
 ### Tests du catalogue ultérieur
 
 Chaque entrée possède un test CPU isolé dans

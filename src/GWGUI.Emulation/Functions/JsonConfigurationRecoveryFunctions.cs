@@ -38,7 +38,7 @@ public static partial class JsonConfigurationRecoveryFunctions
         try
         {
             await File.WriteAllTextAsync(temporary, json, cancellationToken).ConfigureAwait(false);
-            File.Move(temporary, path, true);
+            ConfigurationFileAccessFunctions.ReplaceFile(temporary, path);
         }
         finally
         {

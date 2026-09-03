@@ -13,7 +13,7 @@
 
 ## Projets de validation
 
-- `GWGUI.Tests` est conservé dans la solution, mais ne contient actuellement que son projet : sa suite de tests devra être recréée explicitement avant d’être appelée par un script ou un workflow.
+- `GWGUI.Tests` contient la suite rapide par défaut et une catégorie `GpuExhaustive` séparée pour les matrices complètes de shaders et de moteurs de rendu.
 - `GWGUI.LocalDiskImageTests` reste un outil local séparé de la solution principale pour les contrôles utilisant le corpus privé.
 
 ## Dépendances entre projets

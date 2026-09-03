@@ -18,6 +18,7 @@ namespace GWGUI.Tests;
 public sealed class EmulationVideoProcessingPipelineTests
 {
     [Fact]
+    [Trait("Category", "GpuExhaustive")]
     public void VeldridPortableShadersCompileToSpirv()
     {
         var vertex = SpirvCompilation.CompileGlslToSpirv(
@@ -79,6 +80,7 @@ public sealed class EmulationVideoProcessingPipelineTests
         });
     }
     [Theory]
+    [Trait("Category", "GpuExhaustive")]
     [InlineData(EmulationVideoRenderer.OpenGL)]
     [InlineData(EmulationVideoRenderer.Direct3D11)]
     [InlineData(EmulationVideoRenderer.Vulkan)]
@@ -266,6 +268,7 @@ public sealed class EmulationVideoProcessingPipelineTests
     }
 
     [Fact]
+    [Trait("Category", "GpuExhaustive")]
     public void RendererSnapshotsMatchDeterministicCpuImagesAtNeutralAndBounds()
     {
         RunSta(() =>
@@ -553,6 +556,7 @@ public sealed class EmulationVideoProcessingPipelineTests
     }
 
     [Theory]
+    [Trait("Category", "GpuExhaustive")]
     [InlineData(EmulationVideoRenderer.Wpf, EmulationVideoSampling.Xbr)]
     [InlineData(EmulationVideoRenderer.OpenGL, EmulationVideoSampling.Xbr)]
     [InlineData(EmulationVideoRenderer.Direct3D11, EmulationVideoSampling.Xbr)]
@@ -626,6 +630,7 @@ public sealed class EmulationVideoProcessingPipelineTests
     }
 
     [Theory]
+    [Trait("Category", "GpuExhaustive")]
     [InlineData(EmulationVideoRenderer.Wpf)]
     [InlineData(EmulationVideoRenderer.OpenGL)]
     [InlineData(EmulationVideoRenderer.Direct3D11)]
@@ -673,6 +678,7 @@ public sealed class EmulationVideoProcessingPipelineTests
     }
 
     [Theory]
+    [Trait("Category", "GpuExhaustive")]
     [InlineData(EmulationVideoRenderer.Wpf)]
     [InlineData(EmulationVideoRenderer.OpenGL)]
     [InlineData(EmulationVideoRenderer.Direct3D11)]
@@ -720,6 +726,7 @@ public sealed class EmulationVideoProcessingPipelineTests
     }
 
     [Theory]
+    [Trait("Category", "GpuExhaustive")]
     [InlineData(EmulationVideoRenderer.Wpf)]
     [InlineData(EmulationVideoRenderer.OpenGL)]
     [InlineData(EmulationVideoRenderer.Direct3D11)]
@@ -767,6 +774,7 @@ public sealed class EmulationVideoProcessingPipelineTests
     }
 
     [Theory]
+    [Trait("Category", "GpuExhaustive")]
     [InlineData(EmulationVideoRenderer.Wpf)]
     [InlineData(EmulationVideoRenderer.OpenGL)]
     [InlineData(EmulationVideoRenderer.Direct3D11)]
@@ -814,6 +822,7 @@ public sealed class EmulationVideoProcessingPipelineTests
     }
 
     [Theory]
+    [Trait("Category", "GpuExhaustive")]
     [InlineData(EmulationVideoRenderer.Wpf)]
     [InlineData(EmulationVideoRenderer.OpenGL)]
     [InlineData(EmulationVideoRenderer.Direct3D11)]
@@ -862,6 +871,7 @@ public sealed class EmulationVideoProcessingPipelineTests
     }
 
     [Fact]
+    [Trait("Category", "GpuExhaustive")]
     public void CrtPresetsRenderDistinctAmigaAndAtariValidationBoardsOnAllRenderers()
     {
         RunSta(() =>

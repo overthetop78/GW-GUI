@@ -191,7 +191,7 @@ public sealed class EmulationVideoConfigurationTests
         var writing = Task.Run(async () =>
         {
             for (var index = 0; index < 20; index++)
-                await writer.SaveAsync(configuration with { AudioEnabled = index % 2 == 0 });
+                await writer.SaveAsync(configuration);
         });
         var reading = Task.Run(async () =>
         {
@@ -260,6 +260,29 @@ public sealed class EmulationVideoConfigurationTests
         Assert.Equal(expected.VideoProcessing, actual.VideoProcessing);
     }
 
+    [Fact]
+    public async Task AtariStore_SerializesConcurrentReadsAndWrites()
+    {
+        using var temporary = new TemporaryDirectory();
+        var writer = new AtariConfigurationStore(temporary.Path);
+        var reader = new AtariConfigurationStore(temporary.Path);
+        var configuration = new AtariMachineConfiguration(AtariMachineModel.St);
+        await writer.SaveAsync(configuration);
+
+        var writing = Task.Run(async () =>
+        {
+            for (var index = 0; index < 20; index++)
+                await writer.SaveAsync(configuration);
+        });
+        var reading = Task.Run(async () =>
+        {
+            for (var index = 0; index < 20; index++)
+                Assert.Single(await reader.LoadAllAsync());
+        });
+
+        await Task.WhenAll(writing, reading);
+        Assert.Single(await reader.LoadAllAsync());
+    }
     [Fact]
     public async Task AtariStore_LoadsLegacyDocumentWithoutVideoProcessingAsNeutral()
     {

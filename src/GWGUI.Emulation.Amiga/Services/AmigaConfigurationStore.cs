@@ -5,12 +5,10 @@ namespace GWGUI.Emulation.Amiga.Services;
 
 public sealed class AmigaConfigurationStore
 {
-    private const string SaveMutexName = @"Local\GWGUI.AmigaConfigurationStore.Save";
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web) { WriteIndented = true };
     private readonly string _directory;
     private readonly string _pathBase;
     private static readonly SemaphoreSlim SaveGate = new(1, 1);
-    private static readonly Mutex SaveMutex = new(false, SaveMutexName);
 
     public AmigaConfigurationStore(string directory, string? pathBase = null)
     {
@@ -32,7 +30,7 @@ public sealed class AmigaConfigurationStore
             try
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                var json = ReadAllText(path);
+                var json = ConfigurationFileAccessFunctions.ReadAllText(path);
                 var configuration = JsonConfigurationRecoveryFunctions
                     .DeserializeRemovingInvalidProperties(json, root =>
                         root.Deserialize<AmigaMachineConfiguration>(JsonOptions)
@@ -65,81 +63,14 @@ public sealed class AmigaConfigurationStore
             await using (var stream = new FileStream(temporary, FileMode.Create, FileAccess.Write, FileShare.None, 4096, true))
                 await JsonSerializer.SerializeAsync(stream, StorePaths(configuration), JsonOptions, cancellationToken)
                     .ConfigureAwait(false);
-            ReplaceFile(temporary, target);
+            ConfigurationFileAccessFunctions.ReplaceFile(temporary, target,
+                AmigaConfigurationStoreConstants.ReplacementRetryCount,
+                AmigaConfigurationStoreConstants.ReplacementRetryDelayMilliseconds);
         }
         finally
         {
             if (temporary is not null && File.Exists(temporary)) File.Delete(temporary);
             SaveGate.Release();
-        }
-    }
-
-    private static string ReadAllText(string path)
-    {
-        var lockTaken = false;
-        try
-        {
-            try
-            {
-                SaveMutex.WaitOne();
-                lockTaken = true;
-            }
-            catch (AbandonedMutexException)
-            {
-                lockTaken = true;
-            }
-            return File.ReadAllText(path);
-        }
-        finally
-        {
-            if (lockTaken) SaveMutex.ReleaseMutex();
-        }
-    }
-    private static void ReplaceFile(string source, string target)
-    {
-        var lockTaken = false;
-        try
-        {
-            try
-            {
-                SaveMutex.WaitOne();
-                lockTaken = true;
-            }
-            catch (AbandonedMutexException)
-            {
-                lockTaken = true;
-            }
-            for (var attempt = 0; attempt < AmigaConfigurationStoreConstants.ReplacementRetryCount; attempt++)
-            {
-                try
-                {
-                    File.Move(source, target, true);
-                    return;
-                }
-                catch (UnauthorizedAccessException)
-                {
-                    if (attempt + 1 >= AmigaConfigurationStoreConstants.ReplacementRetryCount) break;
-                    Thread.Sleep(AmigaConfigurationStoreConstants.ReplacementRetryDelayMilliseconds * (attempt + 1));
-                }
-                catch (IOException)
-                {
-                    if (attempt + 1 >= AmigaConfigurationStoreConstants.ReplacementRetryCount) break;
-                    Thread.Sleep(AmigaConfigurationStoreConstants.ReplacementRetryDelayMilliseconds * (attempt + 1));
-                }
-            }
-
-            using (var input = new FileStream(source, FileMode.Open, FileAccess.Read, FileShare.Read))
-            using (var output = new FileStream(target, FileMode.Create, FileAccess.Write,
-                       FileShare.ReadWrite, 4096, FileOptions.WriteThrough))
-            {
-                input.CopyTo(output);
-                output.Flush(flushToDisk: true);
-            }
-            File.Delete(source);
-        }
-        finally
-        {
-            if (lockTaken) SaveMutex.ReleaseMutex();
         }
     }
 

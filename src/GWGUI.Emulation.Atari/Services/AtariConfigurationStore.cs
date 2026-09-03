@@ -32,7 +32,7 @@ public sealed class AtariConfigurationStore
                 cancellationToken.ThrowIfCancellationRequested();
                 try
                 {
-                    var json = await File.ReadAllTextAsync(path, cancellationToken).ConfigureAwait(false);
+                    var json = ConfigurationFileAccessFunctions.ReadAllText(path);
                     var document = JsonConfigurationRecoveryFunctions
                         .DeserializeRemovingInvalidProperties(json,
                             AtariConfigurationMigrationFunctions.MigrateToCurrent,

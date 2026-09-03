@@ -1,4 +1,5 @@
 using System.Text.Json;
+using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Emulation.Atari.Functions;
 
@@ -78,7 +79,8 @@ internal static class AtariConfigurationStoreFunctions
     {
         var fullPath = Path.GetFullPath(path);
         Directory.CreateDirectory(Path.GetDirectoryName(fullPath)!);
-        var temporaryPath = fullPath + AtariConfigurationStoreConstants.TemporaryFileSuffix;
+        var temporaryPath = fullPath + "." + Guid.NewGuid().ToString("N")
+            + AtariConfigurationStoreConstants.TemporaryFileSuffix;
         try
         {
             await using (var stream = new FileStream(temporaryPath, FileMode.Create, FileAccess.Write,
@@ -89,8 +91,7 @@ internal static class AtariConfigurationStoreFunctions
                     cancellationToken).ConfigureAwait(false);
                 await stream.FlushAsync(cancellationToken).ConfigureAwait(false);
             }
-            if (File.Exists(fullPath)) File.Replace(temporaryPath, fullPath, destinationBackupFileName: null);
-            else File.Move(temporaryPath, fullPath);
+            ConfigurationFileAccessFunctions.ReplaceFile(temporaryPath, fullPath);
         }
         finally
         {
