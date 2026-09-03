@@ -1,6 +1,8 @@
 using GWGUI.App.Constants.Rendering.Emulation;
 using GWGUI.App.Functions.Rendering.Emulation;
 using GWGUI.App.Interfaces.Rendering.Emulation;
+using GWGUI.Emulation.Contracts;
+using GWGUI.Emulation.Enums;
 
 namespace GWGUI.App.Rendering.Emulation.Processing;
 
@@ -39,6 +41,9 @@ internal sealed class SoftwareEmulationVideoProcessingPipeline : IEmulationVideo
     private TimeSpan _ePaperHistoryTimestamp;
     private readonly FilterGeneralPersistence _generalPersistence = new();
     private readonly FilterMotionBlur _motionBlur = new();
+    private readonly FilterInterlacing _interlacing = new();
+    private TimeSpan _signalTimestamp;
+    private long _signalSequence;
 
     public EmulationVideoRenderer Renderer => EmulationVideoRenderer.Wpf;
 
@@ -80,18 +85,13 @@ internal sealed class SoftwareEmulationVideoProcessingPipeline : IEmulationVideo
             normalized.Restoration.Debanding);
         EmulationImageRestorationFunctions.ApplyDetailRecovery(linear, frame.Width, frame.Height,
             normalized.Restoration.DetailRecovery);
-        FilterInterlacing.Apply(linear, frame.Width, frame.Height, frame.Sequence,
+        _interlacing.ApplyFieldWeave(linear, frame.Width, frame.Height, frame.Sequence,
             normalized.Temporal.Interlacing > 0, normalized.Temporal.InterlacingVisibility);
-        FilterComposite.Apply(linear, frame.Width, frame.Height, frame.Sequence,
-            normalized.SignalSimulation.Composite);
-        FilterSVideo.Apply(linear, frame.Width, frame.Height,
-            normalized.SignalSimulation.SVideo);
-        FilterRf.Apply(linear, frame.Width, frame.Height, frame.Sequence,
-            normalized.SignalSimulation.Rf);
-        FilterPal.Apply(linear, frame.Width, frame.Height,
-            normalized.SignalSimulation.Pal);
-        FilterNtsc.Apply(linear, frame.Width, frame.Height, frame.Sequence,
-            normalized.SignalSimulation.Ntsc);
+        var signalStandard = ResolveSignalStandard(frame, normalized.SignalSimulation.Standard);
+        ApplySignalConnection(linear, frame.Width, frame.Height, frame.Sequence,
+            normalized.SignalSimulation, signalStandard);
+        ApplySignalStandard(linear, frame.Width, frame.Height, normalized.SignalSimulation,
+            signalStandard);
         linear = Resample(linear, frame.Width, frame.Height,
             outputSize.Width, outputSize.Height, normalized.Sampling);
         VideoBrightnessParameterFunctions.Apply(linear, normalized.Adjustments.Brightness);
@@ -109,7 +109,6 @@ internal sealed class SoftwareEmulationVideoProcessingPipeline : IEmulationVideo
         FilterBloom.Apply(linear, outputSize.Width, outputSize.Height,
             normalized.Stylistic.Bloom);
         FilterSepia.Apply(linear, normalized.Stylistic.Sepia);
-        FilterGrayscale.Apply(linear, normalized.Stylistic.Grayscale);
         FilterGrain.Apply(linear, outputSize.Width, outputSize.Height,
             frame.Sequence, normalized.Stylistic.Grain);
         ApplyFixedPixelTemporal(normalized, linear, outputSize.Width, outputSize.Height,
@@ -142,6 +141,64 @@ internal sealed class SoftwareEmulationVideoProcessingPipeline : IEmulationVideo
             Pitch = checked(outputSize.Width * EmulationVideoPixelConstants.BytesPerBgraPixel),
             PixelFormat = EmulationPixelFormat.Xrgb8888
         };
+    }
+
+    private static void ApplySignalConnection(float[] colors, int width, int height, long sequence,
+        EmulationSignalSimulationConfiguration signal, EmulationSignalStandard standard)
+    {
+        switch (signal.Connection)
+        {
+            case EmulationSignalConnection.None:
+                break;
+            case EmulationSignalConnection.RgbScart:
+                SignalConnectionRgbScart.Apply(colors, width, height, signal.ConnectionIntensity);
+                break;
+            case EmulationSignalConnection.Component:
+                SignalConnectionComponent.Apply(colors, width, height, signal.ConnectionIntensity);
+                break;
+            case EmulationSignalConnection.SVideo:
+                SignalConnectionSVideo.Apply(colors, width, height, signal.ConnectionIntensity);
+                break;
+            case EmulationSignalConnection.Composite:
+                SignalConnectionComposite.Apply(colors, width, height, sequence,
+                    signal.ConnectionIntensity);
+                break;
+            case EmulationSignalConnection.Rf:
+                SignalConnectionRf.Apply(colors, width, height, sequence,
+                    signal.ConnectionIntensity, standard);
+                break;
+        }
+    }
+
+    private void ApplySignalStandard(float[] colors, int width, int height,
+        EmulationSignalSimulationConfiguration signal, EmulationSignalStandard standard)
+    {
+        switch (standard)
+        {
+            case EmulationSignalStandard.Pal:
+                SignalStandardPal.Apply(colors, width, height, signal.StandardIntensity);
+                break;
+            case EmulationSignalStandard.Ntsc:
+                SignalStandardNtsc.Apply(colors, width, height, signal.StandardIntensity);
+                break;
+            case EmulationSignalStandard.Secam:
+                SignalStandardSecam.Apply(colors, width, height, signal.StandardIntensity);
+                break;
+        }
+    }
+
+    private EmulationSignalStandard ResolveSignalStandard(VideoFrame frame,
+        EmulationSignalStandard standard)
+    {
+        if (standard == EmulationSignalStandard.Automatic)
+        {
+            var elapsed = frame.Sequence > _signalSequence
+                ? (frame.Timestamp - _signalTimestamp).TotalMilliseconds : 0;
+            standard = elapsed > 18.2 ? EmulationSignalStandard.Pal : EmulationSignalStandard.Ntsc;
+        }
+        _signalTimestamp = frame.Timestamp;
+        _signalSequence = frame.Sequence;
+        return standard;
     }
 
     internal static float SrgbToLinear(float value)
@@ -515,7 +572,8 @@ internal sealed class SoftwareEmulationVideoProcessingPipeline : IEmulationVideo
                 colors[index + 2] = luminance * tint.Blue;
             }
         }
-        FilterCrt.Apply(colors, outputWidth, outputHeight, configuration.Crt);
+        FilterCrt.Apply(colors, outputWidth, outputHeight, sourceWidth, sourceHeight,
+            configuration.Crt);
     }
 
     private static (float Red, float Green, float Blue) CrtTint(
@@ -527,7 +585,6 @@ internal sealed class SoftwareEmulationVideoProcessingPipeline : IEmulationVideo
             EmulationCrtColorMode.Amber => 0xFFFFB000u,
             EmulationCrtColorMode.White => 0xFFFFFFFFu,
             EmulationCrtColorMode.Gray => 0xFFB0B0B0u,
-            EmulationCrtColorMode.Custom => configuration.CustomColorArgb ?? 0xFFFFFFFFu,
             _ => 0xFFFFFFFFu
         };
         return (

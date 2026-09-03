@@ -2889,9 +2889,12 @@ Chaque dernière case ci-dessous est une modification atomique. Elle doit laisse
     - [x] Ajouter les tests de disposition, des quatre niveaux de détramage, de conservation des changements combinés, de localisation et de compilation/rendu des shaders sur WPF, OpenGL, Direct3D11 et Vulkan.
     - [x] Isoler le bloc des effets temporels dans EmulationTemporalEffectsSettingsBlock.cs et chaque traitement dans FilterGeneralPersistence.cs, FilterMotionBlur.cs, FilterFlicker.cs, FilterInterlacing.cs et FilterBlackFrameInsertion.cs.
     - [x] Remplacer l’intensité d’entrelacement par une activation binaire et conserver un réglage séparé de visibilité des trames.
-    - [x] Appliquer l’entrelacement sur les lignes de la frame source de chaque émulateur avant agrandissement, sans dépendre d’une machine ni de la résolution physique de l’écran.
-    - [x] Cadencer le scintillement et l’insertion d’images noires sur la parité des frames sources : 25 images atténuées/noires sur 50 en PAL et 30 sur 60 en NTSC.
-    - [x] Vérifier la compilation des shaders, les rendus GPU, la localisation et les contrôles temporels par des tests Debug ciblés.  - [ ] Vérifier qu'aucune barre de défilement n'est visible à la taille normale, qu'elle reste disponible si la fenêtre est réduite, contrôler le build Debug et terminer le groupe seulement après validation.
+    - [x] Appliquer l’entrelacement temporel sur les lignes de deux frames source consécutives avant agrandissement, à 50 champs/s en PAL et 60 champs/s en NTSC lorsque le moteur produit ces cadences.
+    - [x] Cadencer le scintillement et l’insertion d’images noires sur la parité des frames source et les appliquer directement dans le pipeline de chaque renderer.
+    - [x] Vérifier la compilation des shaders, les rendus GPU, la localisation et les contrôles temporels par des tests Debug ciblés.
+    - [x] Remplacer les cinq intensités cumulables de signal par une liaison exclusive (`RGB/Péritel`, composante, S-Video, composite ou RF), une norme exclusive (`Automatique`, PAL, NTSC ou SECAM) et une intensité commune par famille.
+    - [x] Supprimer le bruit artificiel des normes PAL et NTSC, réserver le bruit animé à RF et réunir chaque fonction CPU et shader dans son fichier `SignalConnection…` ou `SignalStandard…` propre.
+    - [ ] Vérifier qu'aucune barre de défilement n'est visible à la taille normale, qu'elle reste disponible si la fenêtre est réduite, contrôler le build Debug et terminer le groupe seulement après validation.
 
 - [ ] Découpler entièrement la présentation vidéo des DLL d'émulation avant d'ajouter de nouveaux émulateurs
   - Constat : `VideoRenderer` et `VideoProcessing` sont actuellement transportés dans `IEmulationConfiguration`, puis recopiés et sauvegardés par Amiga et Atari. Les cœurs ne consomment pas ces réglages pour produire leurs frames ; ils servent uniquement ensuite à GW GUI pour choisir la surface et traiter l'image. Cette dépendance oblige donc inutilement chaque DLL d'émulation à connaître et préserver des données appartenant à l'interface hôte.

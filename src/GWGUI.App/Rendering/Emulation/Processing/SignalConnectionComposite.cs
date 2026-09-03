@@ -1,7 +1,20 @@
 namespace GWGUI.App.Rendering.Emulation.Processing;
 
-internal static class FilterComposite
+internal static class SignalConnectionComposite
 {
+    internal const string Shader = """
+        vec3 signalConnectionComposite(vec3 color,vec3 left,vec3 right,float amount,float phase)
+        {
+            float y=dot(color,vec3(.299,.587,.114));
+            float ly=dot(left,vec3(.299,.587,.114)),ry=dot(right,vec3(.299,.587,.114));
+            vec3 chroma=color-vec3(y),lc=left-vec3(ly),rc=right-vec3(ry);
+            y=mix(y,(ly+y*2.0+ry)*.25,amount*.42);
+            chroma=mix(chroma,(lc+rc)*.5,amount*.82);
+            float crawl=phase*amount*.10;
+            return clamp(vec3(y)+chroma+vec3(crawl,-crawl*.30,-crawl),0.0,1.0);
+        }
+        """;
+
     public static void Apply(float[] colors, int width, int height, long sequence, int intensity)
     {
         if (intensity <= 0 || width < 2) return;
@@ -42,10 +55,10 @@ internal static class FilterComposite
                 - source[center + 2] * 0.322f;
             var originalQ = source[center] * 0.211f - source[center + 1] * 0.523f
                 + source[center + 2] * 0.312f;
-            var crawl = (((x + y + sequence) & 1) == 0 ? 1f : -1f) * amount * 0.025f;
-            var yValue = Lerp(originalY, luminance, amount * 0.45f);
-            var iValue = Lerp(originalI, inPhase, amount) + crawl;
-            var qValue = Lerp(originalQ, quadrature, amount) - crawl;
+            var crawl = (((x + y + sequence) & 1) == 0 ? 1f : -1f) * amount * 0.10f;
+            var yValue = Lerp(originalY, luminance, amount * 0.62f);
+            var iValue = Lerp(originalI, inPhase, amount * 0.92f) + crawl;
+            var qValue = Lerp(originalQ, quadrature, amount * 0.92f) - crawl;
             colors[center] = Math.Clamp(yValue + 0.956f * iValue + 0.621f * qValue, 0f, 1f);
             colors[center + 1] = Math.Clamp(yValue - 0.272f * iValue - 0.647f * qValue, 0f, 1f);
             colors[center + 2] = Math.Clamp(yValue - 1.106f * iValue + 1.703f * qValue, 0f, 1f);

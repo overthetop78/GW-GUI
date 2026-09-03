@@ -2,14 +2,28 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 
 internal static class FilterBloom
 {
-    private const int Radius = 2;
-    private const float Threshold = 0.6f;
+    internal const string Shader = """
+        vec3 bloomLight(vec3 color)
+        {
+            float luminance=dot(color,vec3(.2126,.7152,.0722));
+            return color*smoothstep(.58,.92,luminance);
+        }
+        vec3 filterBloom(vec3 color,vec3 a,vec3 b,vec3 c,vec3 d,vec3 e,vec3 f,vec3 g,vec3 h,float amount)
+        {
+            vec3 halo=(bloomLight(a)+bloomLight(b)+bloomLight(c)+bloomLight(d)
+                +bloomLight(e)+bloomLight(f)+bloomLight(g)+bloomLight(h))*.125;
+            return clamp(color+halo*amount*.72,0.0,1.0);
+        }
+        """;
+
+    private const int Radius = 4;
+    private const float Threshold = 0.58f;
 
     public static void Apply(float[] colors, int width, int height, int intensity)
     {
         if (intensity <= 0 || width < 1 || height < 1) return;
         var source = colors.ToArray();
-        var amount = intensity / 100f * 0.35f;
+        var amount = intensity / 100f * 0.72f;
         for (var y = 0; y < height; y++)
         {
             for (var x = 0; x < width; x++)

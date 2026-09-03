@@ -1,4 +1,5 @@
 using System.Text.Json;
+using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Emulation.Atari.Services;
 
@@ -31,12 +32,14 @@ public sealed class AtariConfigurationStore
                 cancellationToken.ThrowIfCancellationRequested();
                 try
                 {
-                    await using var stream = new FileStream(path, FileMode.Open, FileAccess.Read,
-                        FileShare.ReadWrite | FileShare.Delete, AtariConfigurationStoreConstants.WriteBufferSize,
-                        FileOptions.Asynchronous);
-                    using var json = await JsonDocument.ParseAsync(stream, cancellationToken: cancellationToken)
-                        .ConfigureAwait(false);
-                    var document = AtariConfigurationMigrationFunctions.MigrateToCurrent(json.RootElement);
+                    var json = await File.ReadAllTextAsync(path, cancellationToken).ConfigureAwait(false);
+                    var document = JsonConfigurationRecoveryFunctions
+                        .DeserializeRemovingInvalidProperties(json,
+                            AtariConfigurationMigrationFunctions.MigrateToCurrent,
+                            out var repairedJson);
+                    if (!string.Equals(json, repairedJson, StringComparison.Ordinal))
+                        await JsonConfigurationRecoveryFunctions.WriteAtomicallyAsync(path, repairedJson,
+                            cancellationToken).ConfigureAwait(false);
                     configurations.Add(AtariConfigurationStoreFunctions.FromDocument(document, _pathBase));
                 }
                 catch (JsonException) { }

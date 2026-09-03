@@ -6,6 +6,5 @@ public enum EmulationCrtColorMode
     Green,
     Amber,
     White,
-    Gray,
-    Custom
+    Gray
 }

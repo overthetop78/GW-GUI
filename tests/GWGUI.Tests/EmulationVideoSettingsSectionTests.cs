@@ -86,17 +86,12 @@ public sealed class EmulationVideoSettingsSectionTests
                 EmulationVideoProcessingCatalog.Flicker,
                 EmulationVideoProcessingCatalog.Interlacing,
                 EmulationVideoProcessingCatalog.BlackFrameInsertion,
-                EmulationVideoProcessingCatalog.CompositeSimulation,
-                EmulationVideoProcessingCatalog.SVideoSimulation,
-                EmulationVideoProcessingCatalog.RfSimulation,
-                EmulationVideoProcessingCatalog.PalSimulation,
-                EmulationVideoProcessingCatalog.NtscSimulation,
+                EmulationVideoProcessingCatalog.SignalConnection,
                 EmulationVideoProcessingCatalog.Grain,
                 EmulationVideoProcessingCatalog.Vhs,
                 EmulationVideoProcessingCatalog.ChromaticAberration,
                 EmulationVideoProcessingCatalog.Bloom,
-                EmulationVideoProcessingCatalog.Sepia,
-                EmulationVideoProcessingCatalog.Grayscale
+                EmulationVideoProcessingCatalog.Sepia
             };
 
             foreach (var technology in Enum.GetValues<EmulationVideoDisplayTechnology>())
@@ -211,7 +206,65 @@ public sealed class EmulationVideoSettingsSectionTests
         });
     }
     [Fact]
-    public void TemporalEffectsUseThreeVerticalIntensitiesAndSeparateInterlacingControls()
+    public void SignalPanelUsesOneConnectionAndOneStandardWithSharedIntensities()
+    {
+        RunSta(() =>
+        {
+            var panel = new EmulationVideoProcessingSettingsSection();
+            panel.SetConfiguration(new EmulationVideoProcessingConfiguration
+            {
+                SignalSimulation = new(EmulationSignalConnection.SVideo, 35,
+                    EmulationSignalStandard.Pal, 45)
+            });
+
+            var connection = FindByAutomationId<ComboBox>(panel,
+                EmulationVideoProcessingCatalog.SignalConnection);
+            var connectionIntensity = FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.SignalConnectionIntensity);
+            var standard = FindByAutomationId<ComboBox>(panel,
+                EmulationVideoProcessingCatalog.SignalStandard);
+            var standardIntensity = FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.SignalStandardIntensity);
+
+            Assert.Equal(6, connection.Items.Count);
+            Assert.Equal(4, standard.Items.Count);
+            Assert.Equal(35, connectionIntensity.Value);
+            Assert.Equal(45, standardIntensity.Value);
+            connection.SelectedIndex = (int)EmulationSignalConnection.Rf;
+            Assert.Equal(EmulationSignalConnection.Rf,
+                panel.Configuration.SignalSimulation.Connection);
+            standard = FindByAutomationId<ComboBox>(panel,
+                EmulationVideoProcessingCatalog.SignalStandard);
+            standard.SelectedIndex = (int)EmulationSignalStandard.Secam;
+            Assert.Equal(EmulationSignalStandard.Secam,
+                panel.Configuration.SignalSimulation.Standard);
+        });
+    }
+
+    [Fact]
+    public void SignalPanelHidesDependentControlsWhenConnectionIsNone()
+    {
+        RunSta(() =>
+        {
+            var panel = new EmulationVideoProcessingSettingsSection();
+            panel.SetConfiguration(new EmulationVideoProcessingConfiguration
+            {
+                SignalSimulation = new(EmulationSignalConnection.None, 80,
+                    EmulationSignalStandard.Secam, 70)
+            });
+
+            var identifiers = AutomationIds(panel);
+            Assert.Contains(EmulationVideoProcessingCatalog.SignalConnection, identifiers);
+            Assert.DoesNotContain(EmulationVideoProcessingCatalog.SignalConnectionIntensity,
+                identifiers);
+            Assert.DoesNotContain(EmulationVideoProcessingCatalog.SignalStandard, identifiers);
+            Assert.DoesNotContain(EmulationVideoProcessingCatalog.SignalStandardIntensity,
+                identifiers);
+        });
+    }
+
+    [Fact]
+    public void TemporalEffectsUseThreeHorizontalIntensitiesAndSeparateInterlacingControls()
     {
         RunSta(() =>
         {
@@ -231,8 +284,8 @@ public sealed class EmulationVideoSettingsSectionTests
             }.Select(id => FindByAutomationId<Slider>(panel, id)).ToArray();
             Assert.All(continuous, slider =>
             {
-                Assert.Equal(Orientation.Vertical, slider.Orientation);
-                Assert.Equal(140, slider.Height);
+                Assert.Equal(Orientation.Horizontal, slider.Orientation);
+                Assert.Equal(0, slider.MinWidth);
             });
 
             var interlacing = FindByAutomationId<CheckBox>(panel,

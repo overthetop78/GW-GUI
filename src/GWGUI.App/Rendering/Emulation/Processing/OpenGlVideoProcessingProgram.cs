@@ -152,10 +152,14 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
         Set(_generalLocation, new((float)configuration.DisplayTechnology, hasHistory ? 1f : 0f, sequence % 4096, (float)elapsedMilliseconds));
         Set(_restorationLocation, new(configuration.Restoration.Dedithering / 100f, configuration.Restoration.Denoising / 100f, configuration.Restoration.Debanding / 100f, (float)configuration.Restoration.Deinterlacing));
         Set(_temporalLocation, new(configuration.Temporal.GeneralPersistence / 100f, configuration.Temporal.MotionBlur / 100f, configuration.Temporal.Flicker / 100f, configuration.Temporal.Interlacing > 0 ? 1f : 0f));
-        Set(_signalLocation, new(configuration.SignalSimulation.Composite / 100f, configuration.SignalSimulation.SVideo / 100f, configuration.SignalSimulation.Rf / 100f, configuration.SignalSimulation.Pal / 100f));
-        Set(_signal2Location, new(configuration.SignalSimulation.Ntsc / 100f, configuration.Temporal.BlackFrameInsertion ? 1f : 0f, configuration.Temporal.InterlacingVisibility / 100f, 0f));
+        Set(_signalLocation, new((float)configuration.SignalSimulation.Connection,
+            configuration.SignalSimulation.ConnectionIntensity / 100f,
+            (float)configuration.SignalSimulation.Standard,
+            configuration.SignalSimulation.StandardIntensity / 100f));
+        Set(_signal2Location, new(0f, configuration.Temporal.BlackFrameInsertion ? 1f : 0f,
+            configuration.Temporal.InterlacingVisibility / 100f, 0f));
         Set(_stylisticLocation, new(configuration.Stylistic.Grain / 100f, configuration.Stylistic.Vhs / 100f, configuration.Stylistic.ChromaticAberration / 100f, configuration.Stylistic.Bloom / 100f));
-        Set(_stylistic2Location, new(configuration.Stylistic.Sepia / 100f, configuration.Stylistic.Grayscale / 100f, configuration.Restoration.DetailRecovery / 100f, 0f));
+        Set(_stylistic2Location, new(configuration.Stylistic.Sepia ? 1f : 0f, 0f, configuration.Restoration.DetailRecovery / 100f, 0f));
         Set(_vfdLocation, new((float)configuration.Vfd.Color, configuration.Vfd.PhosphorIntensity / 100f, configuration.Vfd.HaloIntensity / 100f, configuration.Vfd.PersistenceIntensity / 100f));
         Set(_ledMatrixLocation, new((float)configuration.LedMatrix.Color, configuration.LedMatrix.CellSize / 100f, Math.Max(configuration.LedMatrix.CellGap, configuration.LedMatrix.Diffusion) / 100f, configuration.LedMatrix.Brightness / 100f));
         Set(_dotMatrixLocation, new((float)configuration.DotMatrix.Palette, (float)configuration.DotMatrix.Shape, configuration.DotMatrix.DotSize / 100f, configuration.DotMatrix.Contrast / 100f));
@@ -361,8 +365,10 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
         vec2 crtUv(vec2 uv)
         {
             vec2 normalized = uv * 2.0 - 1.0;
-            float curvature = CrtGeometry.x * 0.18;
-            return (normalized * (1.0 + curvature * normalized.yx * normalized.yx) + 1.0) * 0.5;
+            normalized.x *= 1.0 + CrtGeometry.x * 0.28 * normalized.y * normalized.y
+                + CrtGeometry.z * 0.22 * normalized.y;
+            normalized.y *= 1.0 + CrtGeometry.y * 0.28 * normalized.x * normalized.x;
+            return (normalized + 1.0) * 0.5;
         }
 
         vec3 crtBase(vec2 uv)
@@ -500,7 +506,7 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
 
         float vectorEmission(vec2 uv)
         {
-            vec2 stepSize = 1.0 / max(Output.xy, vec2(1.0));
+            vec2 stepSize = 1.0 / max(Processing.zw, vec2(1.0));
             float topLeft = vectorLuminance(uv + vec2(-1.0, -1.0) * stepSize);
             float top = vectorLuminance(uv + vec2(0.0, -1.0) * stepSize);
             float topRight = vectorLuminance(uv + vec2(1.0, -1.0) * stepSize);
@@ -562,11 +568,11 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
                     neighborhood += crtBase(uv + vec2(float(x), float(y)) * stepSize);
             neighborhood /= 9.0;
             vec3 color = mix(source, vertical, CrtBeam.y * 0.45);
-            color = mix(color, neighborhood, CrtBeam.w * 0.35);
+            color = mix(color, neighborhood, CrtBeam.w * 0.72);
             color = clamp(color * (1.0 + CrtBeam.z * 0.5)
-                + neighborhood * CrtOptical.x * 0.5, 0.0, 1.0);
+                + max(neighborhood-vec3(.35),vec3(0.0)) * CrtOptical.x * 0.85, 0.0, 1.0);
 
-            vec2 pixel = floor(originalUv * Output.xy);
+            vec2 pixel = floor(originalUv * Processing.zw);
             int mask = int(CrtOptical.y + 0.5);
             if (mask != 0 && CrtOptical.w > 0.0)
             {
@@ -575,7 +581,7 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
                 if (subpixelLayout == 2) selected = 2 - selected;
                 if (mask == 2) selected = int(mod(float(selected) + mod(pixel.y, 2.0), 3.0));
                 bool slotGap = mask == 3 && int(mod(pixel.y, 4.0)) == 3;
-                float strength = CrtOptical.w * 0.75;
+                float strength = CrtOptical.w * 0.88;
                 for (int channel = 0; channel < 3; channel++)
                 {
                     float attenuation = slotGap || (selected >= 0 && channel != selected)
@@ -586,29 +592,32 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
                 }
             }
 
-            if (CrtGeometry.z > 0.5 && CrtScanlines.x > 0.0)
+            if (CrtPatternIntensity.y > 0.5 && CrtScanlines.x > 0.0)
             {
-                float coordinate = CrtGeometry.w < 0.5 ? pixel.y : pixel.x;
-                float wave = 0.5 + 0.5 * cos(3.14159265
-                    * (coordinate + 0.25 + CrtScanlines.z * 2.0));
-                float exponent = mix(8.0, 0.5, CrtScanlines.y);
-                float compensation = 1.0 + CrtScanlines.w * CrtScanlines.x * 0.5;
-                color *= (1.0 - CrtScanlines.x * pow(wave, exponent)) * compensation;
+                float coordinate = CrtPatternIntensity.z < 0.5
+                    ? originalUv.y * Processing.w : originalUv.x * Processing.z;
+                float gapStart = mix(.47,.18,CrtScanlines.y);
+                float cycle=fract((coordinate+CrtScanlines.z*.25)*.5);
+                float distanceFromBeam=min(abs(cycle-.25),1.0-abs(cycle-.25));
+                float gap=smoothstep(gapStart,min(.5,gapStart+.055),distanceFromBeam);
+                float coverage = 1.0-gapStart*2.0;
+                float compensation = 1.0+CrtScanlines.w*CrtScanlines.x*coverage*.45;
+                color *= (1.0-CrtScanlines.x*gap*.94)*compensation;
             }
 
             if (CrtPattern.x > 0.5 && CrtPatternIntensity.x > 0.0)
             {
                 float coordinate = CrtPattern.y < 0.5 ? pixel.y : pixel.x;
-                float axisLength = CrtPattern.y < 0.5 ? Output.y : Output.x;
+                float axisLength = CrtPattern.y < 0.5 ? Processing.w : Processing.z;
                 float cycles = 1.0 + CrtPattern.z * 31.0;
                 float wave = 0.5 + 0.5 * cos(6.2831853 * (coordinate + 0.5)
                     * cycles / axisLength + CrtPattern.w * 6.2831853);
-                color *= 1.0 - CrtPatternIntensity.x * 0.5 * wave;
+                color *= 1.0 - CrtPatternIntensity.x * 0.85 * wave;
             }
 
             vec2 normalized = originalUv * 2.0 - 1.0;
             float radius = clamp(dot(normalized, normalized) * 0.5, 0.0, 1.0);
-            color *= 1.0 - CrtGeometry.y * 0.75 * pow(radius, 1.5);
+            color *= 1.0 - CrtGeometry.w * 0.92 * pow(radius, 1.5);
             return clamp(color, 0.0, 1.0);
         }
 
@@ -681,7 +690,39 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
             return clamp(color,0.0,1.0);
         }
         vec3 extraDisplay(vec3 color,vec2 uv){int t=int(General.x+.5);vec2 p=floor(uv*Output.xy);if(t==5){int x=int(Vfd.x+.5);vec3 k=x==1?vec3(.05,1.0,.12):x==2?vec3(1.0,.45,.02):x==3?vec3(1.0,.04,.02):vec3(.05,.45,1.0);color=k*dot(color,vec3(.2126,.7152,.0722))*(.5+Vfd.y);}else if(t==6){float z=max(2.0,2.0+LedMatrix.y*10.0);vec2 q=fract(p/z)-.5;color*=smoothstep(.5,.5-LedMatrix.z*.35,max(abs(q.x),abs(q.y)))*(.5+LedMatrix.w);}else if(t==7){vec2 q=fract(p/vec2(6.0,8.0))-.5;float d=int(DotMatrix.y+.5)==0?length(q):max(abs(q.x),abs(q.y));color*=smoothstep(.5,.5-DotMatrix.z*.45,d)*(.5+DotMatrix.w);}else if(t==8){vec2 q=fract(p/vec2(8.0,12.0))-.5;float bars=min(abs(q.x),min(abs(q.y),abs(q.x+q.y)*.7));color=vec3(1.0,.05,.02)*dot(color,vec3(.2126,.7152,.0722))*smoothstep(.18,.04,bars);}else if(t==9){float y=dot(color,vec3(.2126,.7152,.0722)),n=int(EPaper.x+.5)==0?1.0:15.0;y=floor(y*n+extraHash(p)*EPaper.z)/max(n,1.0);color=int(EPaper.x+.5)==2?mix(vec3(y),color,.45):vec3(y);color=mix(vec3(.92),color,.4+EPaper.y*.6);}else if(t==10){vec2 s=1.0/max(Output.xy,vec2(1.0));color=mix(color,(extraRaw(uv-s)+extraRaw(uv+s))*.5,Projection.x*.55+Projection.y*.25);color*=1.0-(extraHash(p)-.5)*Projection.z*.12;}return clamp(color,0.0,1.0);}
-        vec3 postColor(vec3 color,vec2 uv){vec2 s=1.0/max(Output.xy,vec2(1.0));float q=max(max(Signal.x,Signal.y),Signal.z);vec3 b=extraRaw(uv-vec2(s.x*(1.0+q*3.0),0.0));color=mix(color,vec3(b.r,color.g,b.b),q*.45);color+=vec3((extraHash(floor(uv*Output.xy))-.5)*max(Signal.w,Signal2.x)*.08);if(Stylistic.z>0.0){float o=Stylistic.z*s.x*5.0;color.r=extraRaw(uv+vec2(o,0.0)).r;color.b=extraRaw(uv-vec2(o,0.0)).b;}color+=vec3((extraHash(uv*Output.xy)-.5)*Stylistic.x*.16);color=mix(color,extraRaw(uv+vec2(sin(uv.y*80.0)*s.x*4.0,0.0)),Stylistic.y*.35);color+=extraRaw(uv)*Stylistic.w*.25;float g=dot(color,vec3(.2126,.7152,.0722));color=mix(color,vec3(g),Stylistic2.y);vec3 e=vec3(dot(color,vec3(.393,.769,.189)),dot(color,vec3(.349,.686,.168)),dot(color,vec3(.272,.534,.131)));return clamp(mix(color,e,Stylistic2.x),0.0,1.0);}
+        """ + SignalConnectionRgbScart.Shader + SignalConnectionComponent.Shader
+        + SignalConnectionSVideo.Shader + SignalConnectionComposite.Shader
+        + SignalConnectionRf.Shader + SignalStandardPal.Shader + SignalStandardNtsc.Shader
+        + SignalStandardSecam.Shader + FilterGrain.Shader + FilterVhs.Shader
+        + FilterChromaticAberration.Shader + FilterBloom.Shader + FilterSepia.Shader + """
+        vec3 signalEffects(vec3 color,vec2 uv)
+        {
+            vec2 stepSize=1.0/max(Processing.zw,vec2(1.0));
+            vec3 left=extraRaw(uv-vec2(stepSize.x,0.0)),right=extraRaw(uv+vec2(stepSize.x,0.0));
+            vec3 up=extraRaw(uv-vec2(0.0,stepSize.y)),down=extraRaw(uv+vec2(0.0,stepSize.y));
+            int connection=int(Signal.x+.5);float amount=Signal.y;
+            int standard=int(Signal.z+.5);if(standard==0)standard=General.w>18.2?1:2;
+            float phase=mod(floor(uv.x*Processing.z)+floor(uv.y*Processing.w)+General.z,2.0)*2.0-1.0;
+            if(connection==1)color=signalConnectionRgbScart(color,left,amount);
+            else if(connection==2)color=signalConnectionComponent(color,left,right,amount);
+            else if(connection==3)color=signalConnectionSVideo(color,left,right,amount);
+            else if(connection==4)color=signalConnectionComposite(color,left,right,amount,phase);
+            else if(connection==5)color=signalConnectionRf(color,left,right,amount,extraHash(floor(uv*Output.xy))-.5,float(standard),floor(uv.y*Processing.w));
+            if(standard==1)color=signalStandardPal(color,mod(floor(uv.y*Processing.w),2.0)<.5?down:up,Signal.w);
+            else if(standard==2)color=signalStandardNtsc(color,left,Signal.w);
+            else if(standard==3)color=signalStandardSecam(color,up,Signal.w,floor(uv.y*Processing.w));
+            return color;
+        }
+        vec3 postColor(vec3 color,vec2 uv)
+        {
+            color=signalEffects(color,uv);vec2 s=1.0/max(Output.xy,vec2(1.0));
+            if(Stylistic.y>0.0){float n=extraHash(floor(uv*Output.xy)+General.z)-.5;float w=(sin(uv.y*Processing.w*.071+General.z*.31)*4.0+n*4.0)*Stylistic.y;vec2 q=uv+vec2(w*s.x,0.0);color=filterVhs(color,extraRaw(q),extraRaw(q-vec2(s.x*2.0,0.0)),extraRaw(q+vec2(s.x*2.0,0.0)),Stylistic.y,n,floor(uv.y*Processing.w),uv.y);}
+            if(Stylistic.z>0.0){float o=Stylistic.z*s.x*7.0;color=filterChromaticAberration(extraRaw(uv+vec2(o,0.0)),color,extraRaw(uv-vec2(o,0.0)));}
+            if(Stylistic.w>0.0)color=filterBloom(color,extraRaw(uv+vec2(s.x*2.0,0.0)),extraRaw(uv-vec2(s.x*2.0,0.0)),extraRaw(uv+vec2(0.0,s.y*2.0)),extraRaw(uv-vec2(0.0,s.y*2.0)),extraRaw(uv+vec2(s.x*5.0,0.0)),extraRaw(uv-vec2(s.x*5.0,0.0)),extraRaw(uv+vec2(0.0,s.y*5.0)),extraRaw(uv-vec2(0.0,s.y*5.0)),Stylistic.w);
+            color=filterSepia(color,Stylistic2.x);
+            color=filterGrain(color,Stylistic.x,extraHash(floor(uv*Output.xy)+General.z)*2.0-1.0);
+            return clamp(color,0.0,1.0);
+        }
         """ + FilterGeneralPersistence.Shader + FilterMotionBlur.Shader
         + FilterFlicker.Shader + FilterInterlacing.Shader
         + FilterBlackFrameInsertion.Shader + """
@@ -689,14 +730,13 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
         {
             vec3 center=extraDisplay(restoreColor(crtPixel(TextureCoordinate),TextureCoordinate),TextureCoordinate);
             center=postColor(center,TextureCoordinate);
-            center=filterInterlacing(center,TextureCoordinate,Processing.w,General.z,Temporal.w,Signal2.z);
+            vec2 historyUv=clamp(TextureCoordinate,.5/Processing.zw,1.0-.5/Processing.zw);
+            vec3 previous=extraDisplay(adjustColor(texture2D(History,historyUv).rgb),TextureCoordinate);
+            previous=postColor(previous,TextureCoordinate);
+            center=filterInterlacing(center,previous,TextureCoordinate,Processing.w,General.z,Temporal.w,Signal2.z,General.y);
             center=filterFlicker(center,General.z,Temporal.z);
             if(General.y>.5)
             {
-                vec2 historyUv=clamp(TextureCoordinate,.5/Processing.zw,1.0-.5/Processing.zw);
-                vec3 previous=extraDisplay(adjustColor(texture2D(History,historyUv).rgb),TextureCoordinate);
-                previous=postColor(previous,TextureCoordinate);
-                previous=filterInterlacing(previous,TextureCoordinate,Processing.w,General.z-1.0,Temporal.w,Signal2.z);
                 previous=filterFlicker(previous,General.z-1.0,Temporal.z);
                 center=filterMotionBlur(center,previous,Temporal.y);
                 center=filterGeneralPersistence(center,previous,Temporal.x);

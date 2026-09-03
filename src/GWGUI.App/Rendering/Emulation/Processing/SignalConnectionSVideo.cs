@@ -1,12 +1,17 @@
 namespace GWGUI.App.Rendering.Emulation.Processing;
 
-internal static class FilterSVideo
+internal static class SignalConnectionSVideo
 {
+    internal const string Shader = """
+        vec3 signalConnectionSVideo(vec3 color,vec3 left,vec3 right,float amount)
+        { return signalConnectionComponent(color,left,right,amount*(.52/.34)); }
+        """;
+
     public static void Apply(float[] colors, int width, int height, int intensity)
     {
         if (intensity <= 0 || width < 2) return;
         var source = colors.ToArray();
-        var amount = intensity / 100f * 0.12f;
+        var amount = intensity / 100f * 0.52f;
         for (var y = 0; y < height; y++)
         for (var x = 0; x < width; x++)
         {

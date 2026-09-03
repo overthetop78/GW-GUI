@@ -2,11 +2,16 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 
 internal static class FilterChromaticAberration
 {
+    internal const string Shader = """
+        vec3 filterChromaticAberration(vec3 redSample,vec3 color,vec3 blueSample)
+        { return vec3(redSample.r,color.g,blueSample.b); }
+        """;
+
     public static void Apply(float[] colors, int width, int height, int intensity)
     {
         if (intensity <= 0 || width < 2) return;
         var source = colors.ToArray();
-        var offset = intensity / 100f * 3f;
+        var offset = intensity / 100f * 7f;
         for (var y = 0; y < height; y++)
         {
             for (var x = 0; x < width; x++)

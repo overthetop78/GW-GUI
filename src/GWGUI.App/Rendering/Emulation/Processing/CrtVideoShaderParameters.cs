@@ -24,14 +24,17 @@ internal readonly record struct CrtVideoShaderParameters(
             new Vector4(tint.Z, Ratio(crt.BeamWidth), Ratio(crt.BeamIntensity),
                 Ratio(crt.BeamDiffusion)),
             new Vector4(Ratio(crt.HaloIntensity), (float)crt.Mask,
-                (float)crt.MaskSubpixels, Ratio(crt.MaskIntensity)),
-            new Vector4(Ratio(crt.Curvature), Ratio(crt.Vignette),
-                crt.ScanlinesEnabled ? 1f : 0f, (float)crt.ScanlineOrientation),
+                (float)(crt.ColorMode == EmulationCrtColorMode.Color
+                    ? crt.MaskSubpixels : EmulationSubpixelLayout.Monochrome),
+                Ratio(crt.MaskIntensity)),
+            new Vector4(SignedRatio(crt.HorizontalCurvature), SignedRatio(crt.VerticalCurvature),
+                SignedRatio(crt.Trapezoid), Ratio(crt.Vignette)),
             new Vector4(Ratio(crt.ScanlineIntensity), Ratio(crt.ScanlineThickness),
-                Ratio(crt.ScanlinePhase), Ratio(crt.ScanlineCompensation)),
+                (float)crt.ScanlinePhase, Ratio(crt.ScanlineCompensation)),
             new Vector4(crt.PatternEnabled ? 1f : 0f, (float)crt.PatternOrientation,
                 Ratio(crt.PatternFrequency), Ratio(crt.PatternPhase)),
-            new Vector4(Ratio(crt.PatternIntensity), 0f, 0f, 0f));
+            new Vector4(Ratio(crt.PatternIntensity), crt.ScanlinesEnabled ? 1f : 0f,
+                (float)crt.ScanlineOrientation, 0f));
     }
 
     private static Vector3 LinearTint(EmulationCrtVideoConfiguration configuration)
@@ -42,7 +45,6 @@ internal readonly record struct CrtVideoShaderParameters(
             EmulationCrtColorMode.Amber => 0xFFFFB000u,
             EmulationCrtColorMode.White => 0xFFFFFFFFu,
             EmulationCrtColorMode.Gray => 0xFFB0B0B0u,
-            EmulationCrtColorMode.Custom => configuration.CustomColorArgb ?? 0xFFFFFFFFu,
             _ => 0xFFFFFFFFu
         };
         return new Vector3(
@@ -52,4 +54,5 @@ internal readonly record struct CrtVideoShaderParameters(
     }
 
     private static float Ratio(int value) => value / 100f;
+    private static float SignedRatio(int value) => value / 100f;
 }

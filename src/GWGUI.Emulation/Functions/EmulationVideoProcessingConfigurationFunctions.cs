@@ -51,11 +51,12 @@ public static class EmulationVideoProcessingConfigurationFunctions
             },
             SignalSimulation = signalSimulation with
             {
-                Composite = Intensity(signalSimulation.Composite),
-                SVideo = Intensity(signalSimulation.SVideo),
-                Rf = Intensity(signalSimulation.Rf),
-                Pal = Intensity(signalSimulation.Pal),
-                Ntsc = Intensity(signalSimulation.Ntsc)
+                Connection = DefinedOrDefault(signalSimulation.Connection,
+                    EmulationSignalConnection.None),
+                ConnectionIntensity = Intensity(signalSimulation.ConnectionIntensity),
+                Standard = DefinedOrDefault(signalSimulation.Standard,
+                    EmulationSignalStandard.Automatic),
+                StandardIntensity = Intensity(signalSimulation.StandardIntensity)
             },
             Stylistic = stylistic with
             {
@@ -63,8 +64,7 @@ public static class EmulationVideoProcessingConfigurationFunctions
                 Vhs = Intensity(stylistic.Vhs),
                 ChromaticAberration = Intensity(stylistic.ChromaticAberration),
                 Bloom = Intensity(stylistic.Bloom),
-                Sepia = Intensity(stylistic.Sepia),
-                Grayscale = Intensity(stylistic.Grayscale)
+                Sepia = stylistic.Sepia
             },
             Crt = crt with
             {
@@ -76,13 +76,16 @@ public static class EmulationVideoProcessingConfigurationFunctions
                 Mask = DefinedOrDefault(crt.Mask, EmulationCrtMask.None),
                 MaskSubpixels = DefinedOrDefault(crt.MaskSubpixels, EmulationSubpixelLayout.Rgb),
                 MaskIntensity = Intensity(crt.MaskIntensity),
-                Curvature = Intensity(crt.Curvature),
+                HorizontalCurvature = SignedIntensity(crt.HorizontalCurvature),
+                VerticalCurvature = SignedIntensity(crt.VerticalCurvature),
+                Trapezoid = SignedIntensity(crt.Trapezoid),
                 Vignette = Intensity(crt.Vignette),
                 ScanlineOrientation = DefinedOrDefault(crt.ScanlineOrientation,
                     EmulationPatternOrientation.Horizontal),
                 ScanlineIntensity = Intensity(crt.ScanlineIntensity),
                 ScanlineThickness = Intensity(crt.ScanlineThickness),
-                ScanlinePhase = Intensity(crt.ScanlinePhase),
+                ScanlinePhase = DefinedOrDefault(crt.ScanlinePhase,
+                    EmulationScanlinePhase.Zero),
                 ScanlineCompensation = Intensity(crt.ScanlineCompensation),
                 PatternOrientation = DefinedOrDefault(crt.PatternOrientation,
                     EmulationPatternOrientation.Horizontal),
@@ -165,6 +168,8 @@ public static class EmulationVideoProcessingConfigurationFunctions
             }
         };
     }
+
+    private static int SignedIntensity(int value) => Math.Clamp(value, -100, 100);
 
     private static int Intensity(int value) => Math.Clamp(value,
         EmulationVideoProcessingLimits.IntensityMinimum,

@@ -61,6 +61,11 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
 
     private void RebuildContent()
     {
+        var offsets = (Content as TabControl)?.Items.Cast<TabItem>()
+            .Where(item => item.Content is ScrollViewer)
+            .ToDictionary(item => (string)item.Tag,
+                item => ((ScrollViewer)item.Content).VerticalOffset, StringComparer.Ordinal)
+            ?? new Dictionary<string, double>(StringComparer.Ordinal);
         _loading = true;
         try
         {
@@ -99,6 +104,13 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
                 _selectedSettingsTab = (string)selected.Tag;
             };
             Content = tabs;
+            tabs.Loaded += (_, _) =>
+            {
+                foreach (var item in tabs.Items.Cast<TabItem>())
+                    if (item.Content is ScrollViewer scroller
+                        && offsets.TryGetValue((string)item.Tag, out var offset))
+                        scroller.ScrollToVerticalOffset(offset);
+            };
         }
         finally
         {
@@ -184,24 +196,31 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
     private FrameworkElement CreateSignalSimulation()
     {
         var panel = Section(EmulationResourceKeys.VideoSignalSimulationSettings);
-        AddIntensity(panel, EmulationVideoProcessingCatalog.CompositeSimulation,
-            _configuration.SignalSimulation.Composite,
-            value => SetSignalSimulation(_configuration.SignalSimulation with
+        panel.Children.Add(ChoiceField(ParameterKey(EmulationVideoProcessingCatalog.SignalConnection),
+            EmulationVideoProcessingCatalog.SignalConnectionResourceKeys,
+            _configuration.SignalSimulation.Connection, value =>
             {
-                Composite = value
-            }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.SVideoSimulation,
-            _configuration.SignalSimulation.SVideo,
-            value => SetSignalSimulation(_configuration.SignalSimulation with { SVideo = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.RfSimulation,
-            _configuration.SignalSimulation.Rf,
-            value => SetSignalSimulation(_configuration.SignalSimulation with { Rf = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.PalSimulation,
-            _configuration.SignalSimulation.Pal,
-            value => SetSignalSimulation(_configuration.SignalSimulation with { Pal = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.NtscSimulation,
-            _configuration.SignalSimulation.Ntsc,
-            value => SetSignalSimulation(_configuration.SignalSimulation with { Ntsc = value }));
+                SetSignalSimulation(_configuration.SignalSimulation with { Connection = value });
+                RebuildContent();
+            }, EmulationVideoProcessingCatalog.SignalConnection));
+        if (_configuration.SignalSimulation.Connection != EmulationSignalConnection.None)
+        {
+            AddIntensity(panel, EmulationVideoProcessingCatalog.SignalConnectionIntensity,
+                _configuration.SignalSimulation.ConnectionIntensity,
+                value => SetSignalSimulation(_configuration.SignalSimulation with
+                { ConnectionIntensity = value }));
+            panel.Children.Add(ChoiceField(ParameterKey(EmulationVideoProcessingCatalog.SignalStandard),
+                EmulationVideoProcessingCatalog.SignalStandardResourceKeys,
+                _configuration.SignalSimulation.Standard, value =>
+                {
+                    SetSignalSimulation(_configuration.SignalSimulation with { Standard = value });
+                    RebuildContent();
+                }, EmulationVideoProcessingCatalog.SignalStandard));
+            AddIntensity(panel, EmulationVideoProcessingCatalog.SignalStandardIntensity,
+                _configuration.SignalSimulation.StandardIntensity,
+                value => SetSignalSimulation(_configuration.SignalSimulation with
+                { StandardIntensity = value }));
+        }
         return panel;
     }
 
@@ -217,11 +236,8 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
             value => SetStylistic(_configuration.Stylistic with { ChromaticAberration = value }));
         AddIntensity(panel, EmulationVideoProcessingCatalog.Bloom, _configuration.Stylistic.Bloom,
             value => SetStylistic(_configuration.Stylistic with { Bloom = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.Sepia, _configuration.Stylistic.Sepia,
+        AddToggle(panel, EmulationVideoProcessingCatalog.Sepia, _configuration.Stylistic.Sepia,
             value => SetStylistic(_configuration.Stylistic with { Sepia = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.Grayscale,
-            _configuration.Stylistic.Grayscale,
-            value => SetStylistic(_configuration.Stylistic with { Grayscale = value }));
         return panel;
     }
 
@@ -321,48 +337,68 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
     {
         var crt = _configuration.Crt;
         var panel = Section(EmulationResourceKeys.VideoTechnologyCrt);
-        panel.Children.Add(ChoiceField(ParameterKey(EmulationVideoProcessingCatalog.CrtColorMode),
+        var color = new StackPanel();
+        color.Children.Add(ChoiceField(ParameterKey(EmulationVideoProcessingCatalog.CrtColorMode),
             EmulationVideoProcessingCatalog.CrtColorModeResourceKeys, crt.ColorMode, value =>
             {
                 SetCrt(_configuration.Crt with { ColorMode = value });
                 RebuildContent();
             }, EmulationVideoProcessingCatalog.CrtColorMode));
-        if (crt.ColorMode == EmulationCrtColorMode.Custom)
-            AddArgb(panel, EmulationVideoProcessingCatalog.CrtCustomColor, crt.CustomColorArgb,
-                value => SetCrt(_configuration.Crt with { CustomColorArgb = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.CrtBeamWidth, crt.BeamWidth,
+        panel.Children.Add(FramedGroup("Emulation.Video.Crt.Group.Color", color));
+        var beam = new StackPanel();
+        AddIntensity(beam, EmulationVideoProcessingCatalog.CrtBeamWidth, crt.BeamWidth,
             value => SetCrt(_configuration.Crt with { BeamWidth = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.CrtBeamIntensity, crt.BeamIntensity,
+        AddIntensity(beam, EmulationVideoProcessingCatalog.CrtBeamIntensity, crt.BeamIntensity,
             value => SetCrt(_configuration.Crt with { BeamIntensity = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.CrtBeamDiffusion, crt.BeamDiffusion,
+        AddIntensity(beam, EmulationVideoProcessingCatalog.CrtBeamDiffusion, crt.BeamDiffusion,
             value => SetCrt(_configuration.Crt with { BeamDiffusion = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.CrtHaloIntensity, crt.HaloIntensity,
+        AddIntensity(beam, EmulationVideoProcessingCatalog.CrtHaloIntensity, crt.HaloIntensity,
             value => SetCrt(_configuration.Crt with { HaloIntensity = value }));
-        panel.Children.Add(ChoiceField(ParameterKey(EmulationVideoProcessingCatalog.CrtMask),
+        panel.Children.Add(FramedGroup("Emulation.Video.Crt.Group.Beam", beam));
+        var mask = new StackPanel();
+        mask.Children.Add(ChoiceField(ParameterKey(EmulationVideoProcessingCatalog.CrtMask),
             EmulationVideoProcessingCatalog.CrtMaskResourceKeys, crt.Mask,
-            value => SetCrt(_configuration.Crt with { Mask = value }), EmulationVideoProcessingCatalog.CrtMask));
-        panel.Children.Add(ChoiceField(ParameterKey(EmulationVideoProcessingCatalog.CrtMaskSubpixels),
+            value => { SetCrt(_configuration.Crt with { Mask = value }); RebuildContent(); },
+            EmulationVideoProcessingCatalog.CrtMask));
+        if (crt.Mask != EmulationCrtMask.None)
+        {
+        if (crt.ColorMode == EmulationCrtColorMode.Color)
+        mask.Children.Add(ChoiceField(ParameterKey(EmulationVideoProcessingCatalog.CrtMaskSubpixels),
             EmulationVideoProcessingCatalog.SubpixelLayoutResourceKeys, crt.MaskSubpixels,
             value => SetCrt(_configuration.Crt with { MaskSubpixels = value }),
             EmulationVideoProcessingCatalog.CrtMaskSubpixels));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.CrtMaskIntensity, crt.MaskIntensity,
+        AddIntensity(mask, EmulationVideoProcessingCatalog.CrtMaskIntensity, crt.MaskIntensity,
             value => SetCrt(_configuration.Crt with { MaskIntensity = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.CrtCurvature, crt.Curvature,
-            value => SetCrt(_configuration.Crt with { Curvature = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.CrtVignette, crt.Vignette,
+        }
+        panel.Children.Add(FramedGroup("Emulation.Video.Crt.Group.Mask", mask));
+        var geometry = new StackPanel();
+        AddSlider(geometry, EmulationVideoProcessingCatalog.CrtHorizontalCurvature,
+            crt.HorizontalCurvature, -100, 100,
+            value => SetCrt(_configuration.Crt with { HorizontalCurvature = value }));
+        AddSlider(geometry, EmulationVideoProcessingCatalog.CrtVerticalCurvature,
+            crt.VerticalCurvature, -100, 100,
+            value => SetCrt(_configuration.Crt with { VerticalCurvature = value }));
+        AddSlider(geometry, EmulationVideoProcessingCatalog.CrtTrapezoid, crt.Trapezoid, -100, 100,
+            value => SetCrt(_configuration.Crt with { Trapezoid = value }));
+        AddIntensity(geometry, EmulationVideoProcessingCatalog.CrtVignette, crt.Vignette,
             value => SetCrt(_configuration.Crt with { Vignette = value }));
-        AddToggle(panel, EmulationVideoProcessingCatalog.CrtScanlinesEnabled, crt.ScanlinesEnabled, value =>
+        panel.Children.Add(FramedGroup("Emulation.Video.Crt.Group.Geometry", geometry));
+        var scanlines = new StackPanel();
+        AddToggle(scanlines, EmulationVideoProcessingCatalog.CrtScanlinesEnabled, crt.ScanlinesEnabled, value =>
         {
             SetCrt(_configuration.Crt with { ScanlinesEnabled = value });
             RebuildContent();
         });
-        if (crt.ScanlinesEnabled) AddScanlineFields(panel, crt);
-        AddToggle(panel, EmulationVideoProcessingCatalog.CrtPatternEnabled, crt.PatternEnabled, value =>
+        if (crt.ScanlinesEnabled) AddScanlineFields(scanlines, crt);
+        panel.Children.Add(FramedGroup("Emulation.Video.Crt.Group.Scanlines", scanlines));
+        var pattern = new StackPanel();
+        AddToggle(pattern, EmulationVideoProcessingCatalog.CrtPatternEnabled, crt.PatternEnabled, value =>
         {
             SetCrt(_configuration.Crt with { PatternEnabled = value });
             RebuildContent();
         });
-        if (crt.PatternEnabled) AddPatternFields(panel, crt);
+        if (crt.PatternEnabled) AddPatternFields(pattern, crt);
+        panel.Children.Add(FramedGroup("Emulation.Video.Crt.Group.Interference", pattern));
         return panel;
     }
 
@@ -376,8 +412,10 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
             value => SetCrt(_configuration.Crt with { ScanlineIntensity = value }));
         AddIntensity(panel, EmulationVideoProcessingCatalog.CrtScanlineThickness, crt.ScanlineThickness,
             value => SetCrt(_configuration.Crt with { ScanlineThickness = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.CrtScanlinePhase, crt.ScanlinePhase,
-            value => SetCrt(_configuration.Crt with { ScanlinePhase = value }));
+        panel.Children.Add(ChoiceField(ParameterKey(EmulationVideoProcessingCatalog.CrtScanlinePhase),
+            EmulationVideoProcessingCatalog.ScanlinePhaseResourceKeys, crt.ScanlinePhase,
+            value => SetCrt(_configuration.Crt with { ScanlinePhase = value }),
+            EmulationVideoProcessingCatalog.CrtScanlinePhase));
         AddIntensity(panel, EmulationVideoProcessingCatalog.CrtScanlineCompensation, crt.ScanlineCompensation,
             value => SetCrt(_configuration.Crt with { ScanlineCompensation = value }));
     }

@@ -102,12 +102,11 @@ Ce catalogue est extensible et ne promet pas que toutes les familles seront livr
 | Simulation RF GW GUI | perte de netteté et bruit de transmission | post-traitement explicite ; ne modifie aucune option moteur | implémentation originale GW GUI, MIT |
 | Simulation PAL GW GUI | alternance de phase et mélange chromatique vertical | post-traitement explicite ; ne change pas la norme moteur | implémentation originale GW GUI, MIT |
 | Simulation NTSC GW GUI | retard chromatique horizontal et phase de teinte | post-traitement explicite ; ne change pas la norme moteur | implémentation originale GW GUI, MIT |
-| Grain | bruit fin monochrome variant par frame, intensité | effet stylistique indépendant, distinct du bruit RF | implémentation originale GW GUI, MIT |
-| VHS | instabilité horizontale, bavure chromatique et pertes de ligne | effet stylistique déterministe à la résolution de sortie | implémentation originale GW GUI, MIT |
+| Grain analogique | bruit fin monochrome modulé par la luminance, intensité | effet stylistique indépendant, distinct du bruit RF | implémentation originale GW GUI, MIT |
+| VHS | instabilité, perte de bande passante, retard chromatique, tracking et commutation des têtes | effet stylistique déterministe à la résolution de sortie | implémentation originale GW GUI, MIT |
 | Aberration chromatique | décalage opposé des composantes rouge et bleue, intensité | effet stylistique spatial à la résolution de sortie | implémentation originale GW GUI, MIT |
-| Bloom | extraction et diffusion bornée des hautes lumières, intensité | effet stylistique global, distinct des halos propres aux technologies | implémentation originale GW GUI, MIT |
-| Sépia | conversion progressive vers une teinte chaude dérivée de la luminance | effet colorimétrique à la résolution de sortie | implémentation originale GW GUI, MIT |
-| Niveaux de gris | conversion progressive par luminance Rec. 709, intensité | effet colorimétrique global, distinct des palettes d’affichage | implémentation originale GW GUI, MIT |
+| Halo lumineux | extraction et diffusion bornée des hautes lumières, intensité | effet stylistique global, distinct des halos propres aux technologies | implémentation originale GW GUI, MIT |
+| Sépia | conversion activable vers une teinte brun chaud | effet colorimétrique à la résolution de sortie | implémentation originale GW GUI, MIT |
 
 Les familles créatives `film`, `HDR`, `waterpaint` ou `cel` montrent l’intérêt d’un catalogue
 extensible, mais ne sont pas retenues pour la première proposition de fidélité d’affichage.
@@ -781,19 +780,16 @@ générale et après les traitements propres à l’affichage. Elle est compatib
 technologies, scalers, restaurations et réglages généraux. WPF utilise le pipeline CPU commun ;
 OpenGL, Direct3D 11 et Vulkan utilisent le même repli CPU déterministe lorsqu’elle est active.
 
-#### Insertion d’images noires — alternance finale
+#### Insertion d’images noires — passe finale du renderer
 
 `Insertion d’images noires` est un interrupteur indépendant, désactivé par défaut, dans le panneau
-permanent `Effets temporels`. Lorsque l’option est active, les séquences impaires sont remplacées par
-du noir et les séquences paires restent affichées. À la différence du scintillement, aucune lumière
-n’est conservée sur la frame supprimée.
+permanent `Effets temporels`. Les séquences impaires sont remplacées par du noir et les séquences
+paires restent affichées. WPF exécute cette passe dans son pipeline logiciel ; OpenGL, Direct3D 11 et
+Vulkan l’exécutent directement dans leur shader fragment final, sans masque WPF ni changement de
+visibilité de la surface native.
 
-La passe originale et déterministe utilise seulement `VideoFrame.Sequence`, ne conserve aucun
-historique, n’intègre aucun code, shader, coefficient ou actif tiers et reste sous licence MIT. Elle
-est appliquée en dernier, après l’entrelacement, le scintillement, le flou de mouvement et la
-rémanence générale, afin qu’aucun de ces effets ne rééclaire une frame noire. Elle est compatible
-avec toutes les technologies, scalers, restaurations et réglages généraux. WPF utilise le pipeline CPU
-commun ; OpenGL, Direct3D 11 et Vulkan utilisent le même repli CPU déterministe lorsqu’elle est active.
+La passe utilise `VideoFrame.Sequence`, n’intègre aucun code ou actif tiers et reste sous licence MIT.
+Elle intervient après les autres effets temporels afin qu’aucun traitement ne rééclaire la frame noire.
 
 #### Simulation composite GW GUI — post-traitement explicite
 
@@ -803,8 +799,8 @@ haut confirment que norme vidéo, timing et artifacting restent des choix des mo
 servent uniquement à délimiter l’effet : aucun code, shader, coefficient ni actif tiers n’est repris.
 La passe originale GW GUI reste sous licence MIT.
 
-`Simulation composite` est une intensité indépendante `0..100`, neutre et initialisée à `0`, dans le
-panneau permanent `Simulations de signal`. Elle traite seulement le `VideoFrame` déjà produit : elle
+`Composite` est un choix exclusif du sélecteur de liaison, contrôlé par l’unique intensité de
+dégradation. Il traite seulement le `VideoFrame` déjà produit : il
 ne change ni PAL/NTSC, ni fréquence, ni région, ni artifacting Atari800. Elle convertit localement les
 couleurs linéaires en luminance et deux composantes chromatiques, conserve davantage de détail de
 luminance que de chrominance, puis reconstruit RGB avec une faible alternance de phase déterministe
@@ -814,8 +810,8 @@ La passe intervient après la restauration mais avant le scaler et la technologi
 est compatible avec toutes les technologies, scalers, restaurations, réglages généraux et effets
 temporels. L’utilisateur peut donc la combiner à une option moteur, mais elle ne la remplace ni ne la
 modifie : l’une construit la sortie émulée, l’autre simule explicitement une dégradation après sortie.
-WPF utilise le pipeline CPU commun ; OpenGL, Direct3D 11 et Vulkan utilisent le même repli CPU
-déterministe lorsqu’elle est active.
+WPF utilise la fonction CPU du fichier `SignalConnectionComposite.cs` ; OpenGL, Direct3D 11 et
+Vulkan utilisent directement la fonction shader définie dans ce même fichier.
 
 #### Simulation S-Video GW GUI — luminance séparée
 
@@ -823,17 +819,23 @@ Le catalogue common-shaders sert à confirmer la famille de simulations analogiq
 Hatari et Atari800 conserve toutes les options matérielles dans les moteurs. Aucun code, shader,
 coefficient ni actif tiers n’est repris ; la passe originale GW GUI reste sous licence MIT.
 
-`Simulation S-Video` est une intensité `0..100`, neutre et initialisée à `0`, dans le panneau
-permanent `Simulations de signal`. La passe conserve la luminance linéaire du pixel central et mélange
+`S-Video` est un choix exclusif du sélecteur de liaison. La passe conserve la luminance linéaire du pixel central et mélange
 seulement les deux composantes chromatiques avec leurs voisines horizontales, au maximum à `12 %`.
 Elle ne dépend pas de la séquence et n’ajoute ni alternance de phase ni dot crawl, ce qui la rend
 visuellement et techniquement distincte de la simulation composite.
 
 Comme composite, elle agit après restauration et avant scaler sans lire ni modifier les normes,
 timings, régions ou artifacting des moteurs. Elle se combine avec toutes les technologies et tous les
-traitements indépendants. Si composite et S-Video sont tous deux non nuls, les deux post-traitements
-explicitement demandés sont appliqués dans cet ordre ; aucune option moteur n’est changée. WPF utilise
-le pipeline CPU commun ; OpenGL, Direct3D 11 et Vulkan utilisent le même repli CPU déterministe.
+traitements indépendants. Il ne peut plus être cumulé avec composite, RF, composante ou RGB/Péritel.
+WPF utilise `SignalConnectionSVideo.cs` côté CPU ; les trois renderers natifs utilisent son shader.
+
+#### Liaisons RGB/Péritel et composante
+
+`RGB (Péritel/SCART)` représente la meilleure liaison analogique proposée : son intensité applique
+seulement une très faible limitation horizontale, bornée à `4 %`. `Composante (YPbPr)` conserve la
+luminance mais réduit davantage la bande passante chromatique, jusqu’à `18 %`. Ces deux choix sont
+exclusifs des liaisons S-Video, composite et RF. Leurs implémentations CPU et shader résident
+respectivement dans `SignalConnectionRgbScart.cs` et `SignalConnectionComponent.cs`.
 
 #### Grain — bruit stylistique fin
 
@@ -929,14 +931,13 @@ Les documentations PUAE, Hatari et Atari800 citées plus haut réservent la norm
 moteur ; le catalogue common-shaders confirme seulement la famille visuelle. Aucun code, shader,
 coefficient ni actif tiers n’est repris. La passe originale GW GUI reste sous licence MIT.
 
-`Simulation PAL` est une intensité `0..100`, neutre et initialisée à `0`. Elle conserve la luminance,
+`PAL` est un choix exclusif du sélecteur de norme. Il conserve la luminance,
 mélange les composantes chromatiques de chaque ligne avec la ligne voisine à `28 %` et `36 %` au
-maximum, puis ajoute à la seconde composante une faible phase de `±2,5 %` alternée selon la parité de
-ligne. Elle ne dépend pas de la séquence et ne change ni standard, fréquence, région ni timing moteur.
+maximum. Il n’ajoute aucun bruit ni phase colorée artificielle et ne dépend pas de la séquence.
 
 La passe intervient après RF et avant scaler. Elle se combine avec toutes les technologies et tous
 les traitements explicites. WPF utilise le pipeline CPU commun ; OpenGL, Direct3D 11 et Vulkan
-utilisent le même repli CPU déterministe.
+utilisent directement le shader de `SignalStandardPal.cs`.
 
 #### Simulation NTSC GW GUI — retard chromatique et phase
 
@@ -944,14 +945,20 @@ Les documentations PUAE, Hatari et Atari800 réservent la norme NTSC, la fréque
 moteur ; common-shaders confirme seulement la famille visuelle. Aucun code, shader, coefficient ni
 actif tiers n’est repris. La passe originale GW GUI reste sous licence MIT.
 
-`Simulation NTSC` est une intensité `0..100`, neutre et initialisée à `0`. Elle mélange la luminance
+`NTSC` est un choix exclusif du sélecteur de norme. Il mélange la luminance
 avec le pixel horizontal précédent jusqu’à `12 %`, retarde les deux composantes chromatiques jusqu’à
-`48 %` et `58 %`, puis ajoute une faible phase de teinte à trois états, bornée à `±1,8 %` et
-déterminée par position et `VideoFrame.Sequence`. La même séquence reste reproductible.
+`48 %` et `58 %`, puis applique une dérive de teinte stable. Il n’ajoute aucun bruit dépendant de la frame.
 
 La passe intervient après PAL et avant scaler. Elle ne change ni standard, fréquence, région, timing
-ni option moteur et se combine avec toutes les technologies et traitements explicites. WPF utilise
-le pipeline CPU commun ; OpenGL, Direct3D 11 et Vulkan utilisent le même repli CPU déterministe.
+ni option moteur. WPF et les trois renderers natifs utilisent respectivement la fonction CPU et le
+shader de `SignalStandardNtsc.cs`.
+
+#### SECAM — chrominance séquentielle par ligne
+
+`SECAM` est le troisième choix explicite de norme. Une composante de différence de couleur sur deux
+est reprise de la ligne précédente, en alternance, sans bruit RF. Le traitement CPU et son shader sont
+réunis dans `SignalStandardSecam.cs`. Le mode `Automatique` choisit PAL au voisinage de 50 Hz et NTSC
+au voisinage de 60 Hz à partir des horodatages de frames, sans modifier la norme interne du moteur.
 
 #### Simulation RF GW GUI — transmission bruitée
 
@@ -959,29 +966,30 @@ Le catalogue common-shaders confirme la famille des dégradations analogiques ; 
 conserve fréquence, région, norme et tout éventuel tuner dans l’émulateur. Aucun code, shader,
 coefficient ni actif tiers n’est repris. La passe originale GW GUI reste sous licence MIT.
 
-`Simulation RF` est une intensité `0..100`, neutre et initialisée à `0`, dans `Simulations de signal`.
+`RF` est un choix exclusif du sélecteur de liaison, contrôlé par son unique intensité.
 Elle mélange horizontalement chaque composante avec ses voisines jusqu’à `65 %`, puis ajoute un bruit
 commun aux trois composantes, borné à `±8 %`. Le bruit est un hachage déterministe de la position et
 de `VideoFrame.Sequence` : une même frame donne le même résultat, une nouvelle séquence change la
 trame de bruit sans générateur global ni état caché.
 
-La passe intervient après composite et S-Video, avant scaler et affichage. Elle ne modifie aucune
-option du moteur et se combine avec toutes les technologies et traitements indépendants. WPF utilise
-le pipeline CPU commun ; OpenGL, Direct3D 11 et Vulkan utilisent le même repli CPU déterministe.
+Elle ne se cumule plus avec une autre liaison. WPF utilise la fonction CPU de
+`SignalConnectionRf.cs`; OpenGL, Direct3D 11 et Vulkan utilisent directement son shader.
 
 #### Entrelacement simulé — champs alternés
 
-`Entrelacement` est une intensité indépendante `0..100`, neutre et initialisée à `0`, dans le panneau
-permanent `Effets temporels`. La parité de `VideoFrame.Sequence` choisit le champ inactif : les lignes
-paires et impaires sont donc atténuées à tour de rôle. Leur facteur vaut
-`1 - intensité × 0,0075`, soit au minimum `25 %` à l’intensité maximale.
+`Entrelacement` est une activation indépendante dans le panneau permanent `Effets temporels`, avec
+une visibilité des trames réglable de `0..100`. La parité de `VideoFrame.Sequence` choisit le champ
+temporel à conserver. Les lignes de l’autre parité proviennent de la frame précédente et sont
+mélangées avec la frame courante selon la visibilité demandée, puis atténuées jusqu’à `35 %` pour que
+les deux champs restent perceptibles même dans une zone statique. La première frame et toute rupture
+de taille ou de séquence réinitialisent l’historique sans assombrir l’image.
 
 Cet effet crée volontairement une apparence entrelacée après le rendu ; il est distinct du select de
 désentrelacement de la restauration, qui corrige une source déjà entrelacée avant redimensionnement.
-La formule originale est déterministe, sans historique, code, shader, coefficient ni actif tiers, et
-reste sous MIT. Elle précède le flou de mouvement et la rémanence générale, se combine avec toutes les
-technologies, scalers, restaurations et réglages généraux. WPF utilise le pipeline CPU commun ;
-OpenGL, Direct3D 11 et Vulkan utilisent le même repli CPU déterministe lorsqu’elle est active.
+La formule originale est déterministe, avec un historique borné à une frame, sans code ni actif tiers,
+et reste sous MIT. Elle est calculée à la fréquence des frames source, soit 50 champs par seconde en
+PAL et 60 en NTSC lorsque le moteur produit ces cadences. Elle précède le flou de mouvement et la
+rémanence générale et se combine avec toutes les technologies, scalers, restaurations et réglages.
 
 #### Scintillement — modulation sans frame noire
 
@@ -1061,13 +1069,14 @@ neutre. Les scénarios dédiés sont :
 | Rémanence générale | `GeneralPersistenceIsIndependentAndResetsOnSequenceOrSizeChanges` |
 | Flou de mouvement | `MotionBlurBlendsOnlyThePreviousFrameAndResetsOnSequenceChanges` |
 | Scintillement | `FlickerDimsOddFramesWithoutReplacingThemWithBlackFrames` |
-| Entrelacement | `InterlacingAlternatesAttenuatedFieldsAndRemainsDistinctFromDeinterlacing` |
-| Insertion d’images noires | `BlackFrameInsertionKeepsEvenFramesAndBlacksOddFramesAfterOtherEffects` |
+| Entrelacement | `InterlacingWeavesAlternatingFieldsFromConsecutiveSourceFrames` |
+| Insertion d’images noires | `BlackFrameInsertionBlacksOddFramesAfterOtherEffects` |
+| RGB/Péritel, composante et SECAM | `AdditionalSignalChoicesProduceDistinctBoundedResults` |
 | Composite | `CompositeSimulationBlursChromaAndUsesSequenceWithoutChangingSignalOptions` |
 | S-Video | `SVideoSimulationPreservesLuminanceAndHasNoSequencePhase` |
 | RF | `RfSimulationAddsBoundedSequenceDependentNoiseAndBlur` |
 | PAL | `PalSimulationAlternatesLineChromaWithoutDependingOnFrameSequence` |
-| NTSC | `NtscSimulationDelaysChromaAndUsesARepeatableFramePhase` |
+| NTSC | `NtscSimulationDelaysChromaWithoutAddingFrameNoise` |
 | Grain | `GrainIsFineBoundedRepeatableAndChangesWithSequence` |
 | VHS | `VhsProducesRepeatableLineJitterChromaBleedAndDropouts` |
 | Aberration chromatique | `ChromaticAberrationSeparatesRedAndBlueDeterministically` |
@@ -1181,6 +1190,19 @@ Chaque étape doit compiler, posséder ses tests ciblés et être validée dans 
 avant la suivante. Une fonctionnalité dont la licence, le comportement ou les paramètres exacts ne
 sont pas encore validés reste bloquée à l’intérieur de son étape sans empêcher la préparation des
 étapes suivantes.
+
+### Révision des effets stylistiques
+
+Les effets stylistiques exécutent directement leur fonction shader sur OpenGL, Direct3D 11 et
+Vulkan. Chaque fichier `FilterGrain.cs`, `FilterVhs.cs`, `FilterChromaticAberration.cs`,
+`FilterBloom.cs` et `FilterSepia.cs` contient son shader GPU et son repli CPU.
+
+Le grain analogique est monochrome, limité à `4,5 %` et modulé par la luminance. VHS combine
+instabilité horizontale, bande passante réduite, retard de chrominance, désaturation, pertes de
+ligne et commutation des têtes. L’aberration chromatique atteint sept pixels. Le halo lumineux
+diffuse seulement les hautes lumières. Sépia est un interrupteur produisant une teinte brun chaud.
+Le niveau de gris générique est supprimé car il doublonnait la saturation ; les quantifications
+monochromes restent propres aux technologies d’affichage spécialisées, notamment l’e-paper.
 
 ### Décisions encore ouvertes
 

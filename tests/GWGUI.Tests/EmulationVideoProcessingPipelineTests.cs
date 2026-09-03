@@ -222,7 +222,7 @@ public sealed class EmulationVideoProcessingPipelineTests
                         BeamWidth: 30, BeamIntensity: 40, BeamDiffusion: 20,
                         HaloIntensity: 25, Mask: EmulationCrtMask.SlotMask,
                         MaskSubpixels: EmulationSubpixelLayout.Bgr, MaskIntensity: 35,
-                        Curvature: 10, Vignette: 15, ScanlinesEnabled: true,
+                        HorizontalCurvature: 10, VerticalCurvature: 10, Vignette: 15, ScanlinesEnabled: true,
                         ScanlineIntensity: 40, ScanlineThickness: 50,
                         ScanlineCompensation: 20, PatternEnabled: true,
                         PatternFrequency: 15, PatternPhase: 20, PatternIntensity: 10)
@@ -295,9 +295,9 @@ public sealed class EmulationVideoProcessingPipelineTests
                     Crt = new EmulationCrtVideoConfiguration(EmulationCrtColorMode.Green,
                         BeamWidth: 45, BeamIntensity: 35, BeamDiffusion: 20,
                         HaloIntensity: 30, Mask: EmulationCrtMask.ShadowMask,
-                        MaskIntensity: 40, Curvature: 12, Vignette: 15,
+                        MaskIntensity: 40, HorizontalCurvature: 12, VerticalCurvature: 12, Vignette: 15,
                         ScanlinesEnabled: true, ScanlineIntensity: 35,
-                        ScanlineThickness: 50, ScanlinePhase: 10,
+                        ScanlineThickness: 50, ScanlinePhase: EmulationScanlinePhase.Quarter,
                         ScanlineCompensation: 20, PatternEnabled: true,
                         PatternFrequency: 18, PatternPhase: 25, PatternIntensity: 12)
                 },
@@ -454,23 +454,25 @@ public sealed class EmulationVideoProcessingPipelineTests
                 },
                 new EmulationVideoProcessingConfiguration
                 {
-                    SignalSimulation = new EmulationSignalSimulationConfiguration(Composite: 100)
+                    SignalSimulation = new(EmulationSignalConnection.Composite, 100)
                 },
                 new EmulationVideoProcessingConfiguration
                 {
-                    SignalSimulation = new EmulationSignalSimulationConfiguration(SVideo: 100)
+                    SignalSimulation = new(EmulationSignalConnection.SVideo, 100)
                 },
                 new EmulationVideoProcessingConfiguration
                 {
-                    SignalSimulation = new EmulationSignalSimulationConfiguration(Rf: 100)
+                    SignalSimulation = new(EmulationSignalConnection.Rf, 100)
                 },
                 new EmulationVideoProcessingConfiguration
                 {
-                    SignalSimulation = new EmulationSignalSimulationConfiguration(Pal: 100)
+                    SignalSimulation = new(Standard: EmulationSignalStandard.Pal,
+                        StandardIntensity: 100)
                 },
                 new EmulationVideoProcessingConfiguration
                 {
-                    SignalSimulation = new EmulationSignalSimulationConfiguration(Ntsc: 100)
+                    SignalSimulation = new(Standard: EmulationSignalStandard.Ntsc,
+                        StandardIntensity: 100)
                 },
                 new EmulationVideoProcessingConfiguration
                 {
@@ -491,11 +493,7 @@ public sealed class EmulationVideoProcessingPipelineTests
                 },
                 new EmulationVideoProcessingConfiguration
                 {
-                    Stylistic = new EmulationStylisticVideoConfiguration(Sepia: 100)
-                },
-                new EmulationVideoProcessingConfiguration
-                {
-                    Stylistic = new EmulationStylisticVideoConfiguration(Grayscale: 100)
+                    Stylistic = new EmulationStylisticVideoConfiguration(Sepia: true)
                 }
             }.Concat(Enum.GetValues<EmulationVideoSampling>()
                 .Where(sampling => sampling is not EmulationVideoSampling.Xbr
@@ -1057,12 +1055,12 @@ public sealed class EmulationVideoProcessingPipelineTests
             EmulationPixelFormat.Xrgb8888, 1f, 1, TimeSpan.Zero);
         using var pipeline = new SoftwareEmulationVideoProcessingPipeline();
 
-        byte[] Process(EmulationCrtColorMode mode, uint? custom = null)
+        byte[] Process(EmulationCrtColorMode mode)
         {
             var output = pipeline.Process(new EmulationVideoProcessingConfiguration
             {
                 DisplayTechnology = EmulationVideoDisplayTechnology.Crt,
-                Crt = new EmulationCrtVideoConfiguration(mode, custom)
+                Crt = new EmulationCrtVideoConfiguration(mode)
             }, frame, new EmulationVideoProcessingSize(1, 1),
                 new EmulationVideoProcessingSize(1, 1));
             return EmulationVideoPixelFunctions.ToBgra32(output);
@@ -1073,8 +1071,6 @@ public sealed class EmulationVideoProcessingPipelineTests
         var amber = Process(EmulationCrtColorMode.Amber);
         var white = Process(EmulationCrtColorMode.White);
         var gray = Process(EmulationCrtColorMode.Gray);
-        var customBlue = Process(EmulationCrtColorMode.Custom, 0xFF0000FFu);
-        var customFallback = Process(EmulationCrtColorMode.Custom);
 
         Assert.Equal(new byte[] { 50, 100, 200 }, color[..3]);
         Assert.True(green[1] > green[2] && green[1] > green[0]);
@@ -1084,8 +1080,6 @@ public sealed class EmulationVideoProcessingPipelineTests
         Assert.Equal(gray[0], gray[1]);
         Assert.Equal(gray[1], gray[2]);
         Assert.True(gray[0] < white[0]);
-        Assert.True(customBlue[0] > customBlue[1] && customBlue[0] > customBlue[2]);
-        Assert.Equal(white[..3], customFallback[..3]);
     }
 
     [Fact]
@@ -1122,7 +1116,7 @@ public sealed class EmulationVideoProcessingPipelineTests
             new EmulationCrtVideoConfiguration(HaloIntensity: 100),
             new EmulationCrtVideoConfiguration(Mask: EmulationCrtMask.ApertureGrille,
                 MaskIntensity: 100),
-            new EmulationCrtVideoConfiguration(Curvature: 100),
+            new EmulationCrtVideoConfiguration(HorizontalCurvature: 100, VerticalCurvature: 100),
             new EmulationCrtVideoConfiguration(Vignette: 100)
         }.Select(Process).ToArray();
         Assert.All(individual, output => Assert.False(neutral.SequenceEqual(output)));
@@ -1130,7 +1124,7 @@ public sealed class EmulationVideoProcessingPipelineTests
         var combined = Process(new EmulationCrtVideoConfiguration(BeamWidth: 45,
             BeamIntensity: 50, BeamDiffusion: 30, HaloIntensity: 40,
             Mask: EmulationCrtMask.SlotMask, MaskSubpixels: EmulationSubpixelLayout.Bgr,
-            MaskIntensity: 55, Curvature: 25, Vignette: 35));
+            MaskIntensity: 55, HorizontalCurvature: 25, VerticalCurvature: 25, Vignette: 35));
         Assert.All(individual, output => Assert.False(combined.SequenceEqual(output)));
     }
 
@@ -1149,7 +1143,7 @@ public sealed class EmulationVideoProcessingPipelineTests
                 DisplayTechnology = EmulationVideoDisplayTechnology.Crt,
                 Crt = crt
             }, frame, new EmulationVideoProcessingSize(4, 4),
-                new EmulationVideoProcessingSize(4, 4)));
+                new EmulationVideoProcessingSize(8, 8)));
 
         var neutral = Process(new EmulationCrtVideoConfiguration(
             ScanlinesEnabled: true, ScanlineIntensity: 0));
@@ -1162,16 +1156,16 @@ public sealed class EmulationVideoProcessingPipelineTests
             ScanlinesEnabled: true, ScanlineIntensity: 60, ScanlineThickness: 90));
         var phased = Process(new EmulationCrtVideoConfiguration(
             ScanlinesEnabled: true, ScanlineIntensity: 60, ScanlineThickness: 40,
-            ScanlinePhase: 25));
+            ScanlinePhase: EmulationScanlinePhase.Quarter));
         var compensated = Process(new EmulationCrtVideoConfiguration(
             ScanlinesEnabled: true, ScanlineIntensity: 60, ScanlineThickness: 40,
             ScanlineCompensation: 100));
 
         Assert.Equal(pixels[0], neutral[0]);
         Assert.Equal(horizontal[0], horizontal[4]);
-        Assert.NotEqual(horizontal[0], horizontal[16]);
-        Assert.Equal(vertical[0], vertical[16]);
-        Assert.NotEqual(vertical[0], vertical[4]);
+        Assert.NotEqual(horizontal[0], horizontal[64]);
+        Assert.Equal(vertical[0], vertical[64]);
+        Assert.NotEqual(vertical[0], vertical[8]);
         Assert.False(horizontal.SequenceEqual(thick));
         Assert.False(horizontal.SequenceEqual(phased));
         Assert.True(compensated.Sum(value => (long)value) > horizontal.Sum(value => (long)value));
@@ -1263,7 +1257,8 @@ public sealed class EmulationVideoProcessingPipelineTests
             Sampling = EmulationVideoSampling.Bicubic,
             DisplayTechnology = EmulationVideoDisplayTechnology.Crt,
             Crt = new EmulationCrtVideoConfiguration(EmulationCrtColorMode.Green,
-                BeamWidth: 35, HaloIntensity: 25, Curvature: 20, Vignette: 15,
+                BeamWidth: 35, HaloIntensity: 25, HorizontalCurvature: 20,
+                VerticalCurvature: 20, Vignette: 15,
                 ScanlinesEnabled: true, ScanlineIntensity: 30, ScanlineThickness: 55)
         };
         var sourceSize = new EmulationVideoProcessingSize(4, 3);
@@ -2323,56 +2318,55 @@ public sealed class EmulationVideoProcessingPipelineTests
     }
 
     [Fact]
-    public void InterlacingAlternatesAttenuatedFieldsAndRemainsDistinctFromDeinterlacing()
+    public void InterlacingWeavesAlternatingFieldsFromConsecutiveSourceFrames()
     {
-        var pixels = Enumerable.Repeat(new byte[] { 255, 255, 255, 0 }, 8)
-            .SelectMany(pixel => pixel).ToArray();
-        byte[] Render(long sequence) {
-            using var pipeline = new SoftwareEmulationVideoProcessingPipeline();
-            return EmulationVideoPixelFunctions.ToBgra32(pipeline.Process(
+        static VideoFrame Frame(byte[] values, long sequence) => new(
+            values.SelectMany(value => new byte[] { value, value, value, 0 }).ToArray(),
+            1, 4, 4, EmulationPixelFormat.Xrgb8888, 0.25f, sequence, TimeSpan.Zero);
+        using var pipeline = new SoftwareEmulationVideoProcessingPipeline();
+        byte[] Render(byte[] values, long sequence) =>
+            EmulationVideoPixelFunctions.ToBgra32(pipeline.Process(
                 new EmulationVideoProcessingConfiguration
                 {
-                    Temporal = new EmulationTemporalVideoConfiguration(Interlacing: 100)
-                }, new VideoFrame(pixels, 2, 4, 8, EmulationPixelFormat.Xrgb8888, 0.5f,
-                    sequence, TimeSpan.Zero), new(2, 4), new(2, 4)));
-        }
-        var odd = Render(1);
-        var even = Render(2);
-        Assert.False(odd.SequenceEqual(even));
-        for (var y = 0; y < 4; y++)
-        {
-            var oddValue = odd[y * 8];
-            var evenValue = even[y * 8];
-            Assert.Equal(y % 2 == 0, oddValue > evenValue);
-            Assert.NotEqual((byte)0, Math.Min(oddValue, evenValue));
-        }
+                    Temporal = new EmulationTemporalVideoConfiguration(
+                        Interlacing: 100, InterlacingVisibility: 100)
+                }, Frame(values, sequence), new(1, 4), new(1, 4)));
+
+        Assert.Equal(new byte[] { 10, 20, 30, 40 },
+            Render(new byte[] { 10, 20, 30, 40 }, 1).Chunk(4).Select(pixel => pixel[0]));
+        Assert.Equal(new byte[] { 6, 110, 23, 130 },
+            Render(new byte[] { 100, 110, 120, 130 }, 2).Chunk(4).Select(pixel => pixel[0]));
+        Assert.Equal(new byte[] { 200, 90, 220, 106 },
+            Render(new byte[] { 200, 210, 220, 230 }, 3).Chunk(4).Select(pixel => pixel[0]));
     }
 
     [Fact]
     public void InterlacingUsesEmulatedSourceLinesBeforeScaling()
     {
-        var pixels = Enumerable.Repeat(new byte[] { 255, 255, 255, 0 }, 6)
-            .SelectMany(pixel => pixel).ToArray();
+        static VideoFrame Frame(byte value, long sequence) => new(
+            Enumerable.Repeat(new byte[] { value, value, value, 0 }, 6)
+                .SelectMany(pixel => pixel).ToArray(),
+            2, 3, 8, EmulationPixelFormat.Xrgb8888, 2f / 3f,
+            sequence, TimeSpan.FromMilliseconds(sequence * 20));
         using var pipeline = new SoftwareEmulationVideoProcessingPipeline();
+        var configuration = new EmulationVideoProcessingConfiguration
+        {
+            Temporal = new EmulationTemporalVideoConfiguration(
+                Interlacing: 100, InterlacingVisibility: 100)
+        };
+        _ = pipeline.Process(configuration, Frame(40, 1), new(2, 3), new(4, 6));
         var result = EmulationVideoPixelFunctions.ToBgra32(pipeline.Process(
-            new EmulationVideoProcessingConfiguration
-            {
-                Temporal = new EmulationTemporalVideoConfiguration(
-                    Interlacing: 100, InterlacingVisibility: 100)
-            },
-            new VideoFrame(pixels, 2, 3, 8, EmulationPixelFormat.Xrgb8888,
-                2f / 3f, 2, TimeSpan.FromMilliseconds(20)),
-            new(2, 3), new(4, 6)));
+            configuration, Frame(200, 2), new(2, 3), new(4, 6)));
 
         for (var outputY = 0; outputY < 6; outputY++)
         {
-            var expected = outputY is 0 or 1 or 4 or 5 ? (byte)0 : (byte)255;
+            var expected = outputY is 0 or 1 or 4 or 5 ? (byte)31 : (byte)200;
             for (var outputX = 0; outputX < 4; outputX++)
                 Assert.Equal(expected, result[(outputY * 4 + outputX) * 4]);
         }
     }
     [Fact]
-    public void BlackFrameInsertionKeepsEvenFramesAndBlacksOddFramesAfterOtherEffects()
+    public void BlackFrameInsertionBlacksOddFramesAfterOtherEffects()
     {
         var pixels = Enumerable.Repeat(new byte[] { 255, 255, 255, 0 }, 4)
             .SelectMany(pixel => pixel).ToArray();
@@ -2393,6 +2387,35 @@ public sealed class EmulationVideoProcessingPipelineTests
     }
 
     [Fact]
+    public void AdditionalSignalChoicesProduceDistinctBoundedResults()
+    {
+        var pixels = Enumerable.Range(0, 8 * 6).SelectMany(index => new byte[]
+        {
+            (byte)(index * 17 % 256), (byte)(index * 43 % 256),
+            (byte)(index * 79 % 256), 0
+        }).ToArray();
+        byte[] Render(EmulationSignalSimulationConfiguration signal)
+        {
+            using var pipeline = new SoftwareEmulationVideoProcessingPipeline();
+            return EmulationVideoPixelFunctions.ToBgra32(pipeline.Process(
+                new EmulationVideoProcessingConfiguration { SignalSimulation = signal },
+                new VideoFrame(pixels, 8, 6, 32, EmulationPixelFormat.Xrgb8888, 4f / 3f,
+                    1, TimeSpan.FromMilliseconds(20)), new(8, 6), new(8, 6)));
+        }
+        var neutral = Render(new());
+        var rgb = Render(new(EmulationSignalConnection.RgbScart, 100));
+        var component = Render(new(EmulationSignalConnection.Component, 100));
+        var secam = Render(new(Standard: EmulationSignalStandard.Secam,
+            StandardIntensity: 100));
+
+        Assert.False(neutral.SequenceEqual(rgb));
+        Assert.False(rgb.SequenceEqual(component));
+        Assert.False(component.SequenceEqual(secam));
+        Assert.All(new[] { rgb, component, secam }.SelectMany(image => image),
+            value => Assert.InRange(value, byte.MinValue, byte.MaxValue));
+    }
+
+    [Fact]
     public void CompositeSimulationBlursChromaAndUsesSequenceWithoutChangingSignalOptions()
     {
         var pixels = Enumerable.Range(0, 12 * 4).SelectMany(index => new byte[]
@@ -2405,7 +2428,7 @@ public sealed class EmulationVideoProcessingPipelineTests
             return EmulationVideoPixelFunctions.ToBgra32(pipeline.Process(
                 new EmulationVideoProcessingConfiguration
                 {
-                    SignalSimulation = new EmulationSignalSimulationConfiguration(intensity)
+                    SignalSimulation = new(EmulationSignalConnection.Composite, intensity)
                 }, new VideoFrame(pixels, 12, 4, 48, EmulationPixelFormat.Xrgb8888, 3f,
                     sequence, TimeSpan.Zero), new(12, 4), new(12, 4)));
         }
@@ -2431,7 +2454,7 @@ public sealed class EmulationVideoProcessingPipelineTests
             return EmulationVideoPixelFunctions.ToBgra32(pipeline.Process(
                 new EmulationVideoProcessingConfiguration
                 {
-                    SignalSimulation = new EmulationSignalSimulationConfiguration(SVideo: intensity)
+                    SignalSimulation = new(EmulationSignalConnection.SVideo, intensity)
                 }, new VideoFrame(pixels, 12, 4, 48, EmulationPixelFormat.Xrgb8888, 3f,
                     sequence, TimeSpan.Zero), new(12, 4), new(12, 4)));
         }
@@ -2468,7 +2491,7 @@ public sealed class EmulationVideoProcessingPipelineTests
             return EmulationVideoPixelFunctions.ToBgra32(pipeline.Process(
                 new EmulationVideoProcessingConfiguration
                 {
-                    SignalSimulation = new EmulationSignalSimulationConfiguration(Rf: intensity)
+                    SignalSimulation = new(EmulationSignalConnection.Rf, intensity)
                 }, new VideoFrame(pixels, 16, 8, 64, EmulationPixelFormat.Xrgb8888, 2f,
                     sequence, TimeSpan.Zero), new(16, 8), new(16, 8)));
         }
@@ -2494,7 +2517,8 @@ public sealed class EmulationVideoProcessingPipelineTests
             return EmulationVideoPixelFunctions.ToBgra32(pipeline.Process(
                 new EmulationVideoProcessingConfiguration
                 {
-                    SignalSimulation = new EmulationSignalSimulationConfiguration(Pal: intensity)
+                    SignalSimulation = new(Standard: EmulationSignalStandard.Pal,
+                        StandardIntensity: intensity)
                 }, new VideoFrame(pixels, 8, 8, 32, EmulationPixelFormat.Xrgb8888, 1f,
                     sequence, TimeSpan.Zero), new(8, 8), new(8, 8)));
         }
@@ -2507,7 +2531,7 @@ public sealed class EmulationVideoProcessingPipelineTests
     }
 
     [Fact]
-    public void NtscSimulationDelaysChromaAndUsesARepeatableFramePhase()
+    public void NtscSimulationDelaysChromaWithoutAddingFrameNoise()
     {
         var pixels = Enumerable.Range(0, 12 * 6).SelectMany(index => new byte[]
         {
@@ -2519,7 +2543,8 @@ public sealed class EmulationVideoProcessingPipelineTests
             return EmulationVideoPixelFunctions.ToBgra32(pipeline.Process(
                 new EmulationVideoProcessingConfiguration
                 {
-                    SignalSimulation = new EmulationSignalSimulationConfiguration(Ntsc: intensity)
+                    SignalSimulation = new(Standard: EmulationSignalStandard.Ntsc,
+                        StandardIntensity: intensity)
                 }, new VideoFrame(pixels, 12, 6, 48, EmulationPixelFormat.Xrgb8888, 2f,
                     sequence, TimeSpan.Zero), new(12, 6), new(12, 6)));
         }
@@ -2529,7 +2554,7 @@ public sealed class EmulationVideoProcessingPipelineTests
         var next = Render(100, 2);
         Assert.False(neutral.SequenceEqual(first));
         Assert.Equal(first, repeat);
-        Assert.False(first.SequenceEqual(next));
+        Assert.Equal(first, next);
     }
 
     [Fact]
@@ -2617,8 +2642,8 @@ public sealed class EmulationVideoProcessingPipelineTests
     [Fact]
     public void BloomSpreadsOnlyHighlightsAndIsSequenceIndependent()
     {
-        var pixels = new byte[9 * 9 * 4];
-        var center = (4 * 9 + 4) * 4;
+        var pixels = new byte[11 * 11 * 4];
+        var center = (5 * 11 + 5) * 4;
         pixels[center] = 255;
         pixels[center + 1] = 255;
         pixels[center + 2] = 255;
@@ -2629,70 +2654,42 @@ public sealed class EmulationVideoProcessingPipelineTests
                 new EmulationVideoProcessingConfiguration
                 {
                     Stylistic = new EmulationStylisticVideoConfiguration(Bloom: intensity)
-                }, new VideoFrame(pixels, 9, 9, 36, EmulationPixelFormat.Xrgb8888,
-                    1f, sequence, TimeSpan.Zero), new(9, 9), new(9, 9)));
+                }, new VideoFrame(pixels, 11, 11, 44, EmulationPixelFormat.Xrgb8888,
+                    1f, sequence, TimeSpan.Zero), new(11, 11), new(11, 11)));
         }
 
         var neutral = Render(0, 1);
         var first = Render(100, 1);
         Assert.False(neutral.SequenceEqual(first));
         Assert.Equal(first, Render(100, 2));
-        var neighbor = (4 * 9 + 3) * 4;
+        var neighbor = (5 * 11 + 4) * 4;
         Assert.Equal((byte)0, neutral[neighbor]);
         Assert.True(first[neighbor] > 0);
         Assert.Equal((byte)0, first[0]);
     }
 
     [Fact]
-    public void SepiaWarmsLuminanceProgressivelyAndIsSequenceIndependent()
+    public void SepiaProducesWarmBrownColorAndIsSequenceIndependent()
     {
         var pixels = Enumerable.Repeat(new byte[] { 128, 128, 128, 0 }, 4)
             .SelectMany(pixel => pixel).ToArray();
-        byte[] Render(int intensity, long sequence)
+        byte[] Render(bool enabled, long sequence)
         {
             using var pipeline = new SoftwareEmulationVideoProcessingPipeline();
             return EmulationVideoPixelFunctions.ToBgra32(pipeline.Process(
                 new EmulationVideoProcessingConfiguration
                 {
-                    Stylistic = new EmulationStylisticVideoConfiguration(Sepia: intensity)
+                    Stylistic = new EmulationStylisticVideoConfiguration(Sepia: enabled)
                 }, new VideoFrame(pixels, 4, 1, 16, EmulationPixelFormat.Xrgb8888,
                     4f, sequence, TimeSpan.Zero), new(4, 1), new(4, 1)));
         }
 
-        var neutral = Render(0, 1);
-        var half = Render(50, 1);
-        var full = Render(100, 1);
-        Assert.False(neutral.SequenceEqual(half));
-        Assert.False(half.SequenceEqual(full));
-        Assert.Equal(full, Render(100, 2));
+        var neutral = Render(false, 1);
+        var full = Render(true, 1);
+        Assert.False(neutral.SequenceEqual(full));
+        Assert.Equal(full, Render(true, 2));
         Assert.True(full[2] > full[1]);
         Assert.True(full[1] > full[0]);
-    }
-
-    [Fact]
-    public void GrayscaleConvergesChannelsProgressivelyAndIsSequenceIndependent()
-    {
-        var pixels = Enumerable.Repeat(new byte[] { 30, 90, 220, 0 }, 4)
-            .SelectMany(pixel => pixel).ToArray();
-        byte[] Render(int intensity, long sequence)
-        {
-            using var pipeline = new SoftwareEmulationVideoProcessingPipeline();
-            return EmulationVideoPixelFunctions.ToBgra32(pipeline.Process(
-                new EmulationVideoProcessingConfiguration
-                {
-                    Stylistic = new EmulationStylisticVideoConfiguration(Grayscale: intensity)
-                }, new VideoFrame(pixels, 4, 1, 16, EmulationPixelFormat.Xrgb8888,
-                    4f, sequence, TimeSpan.Zero), new(4, 1), new(4, 1)));
-        }
-
-        var neutral = Render(0, 1);
-        var half = Render(50, 1);
-        var full = Render(100, 1);
-        Assert.False(neutral.SequenceEqual(half));
-        Assert.False(half.SequenceEqual(full));
-        Assert.Equal(full, Render(100, 2));
-        Assert.Equal(full[0], full[1]);
-        Assert.Equal(full[1], full[2]);
     }
 
     [Fact]

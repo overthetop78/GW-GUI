@@ -115,26 +115,35 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
             && Enum.TryParse<EmulationVideoRenderer>(rendererValue, out var selectedRenderer)
                 ? selectedRenderer : amiga.VideoRenderer;
         var currentAudio = amiga.Audio ?? new AmigaAudioConfiguration();
-        var output = values.GetValueOrDefault(AmigaSettingsConstants.AudioOutput);
+        var hasOutput = values.TryGetValue(AmigaSettingsConstants.AudioOutput, out var output);
         var latency = int.TryParse(values.GetValueOrDefault(AmigaSettingsConstants.AudioLatency), out var latencyValue)
             ? latencyValue : currentAudio.LatencyMilliseconds;
         var stereo = int.TryParse(values.GetValueOrDefault(AmigaSettingsConstants.AudioStereoSeparation),
             out var stereoValue) ? stereoValue : currentAudio.StereoSeparation;
-        var input = (amiga.Input ?? new AmigaInputConfiguration()) with
+        var currentInput = amiga.Input ?? new AmigaInputConfiguration();
+        var input = currentInput with
         {
-            ParallelJoystickAdapterEnabled =
-                values.GetValueOrDefault(AmigaSettingsConstants.ParallelJoystickAdapter) == AmigaEmulationModuleConstants.Enabled
+            ParallelJoystickAdapterEnabled = values.TryGetValue(
+                AmigaSettingsConstants.ParallelJoystickAdapter, out var parallelJoystickAdapter)
+                    ? parallelJoystickAdapter == AmigaEmulationModuleConstants.Enabled
+                    : currentInput.ParallelJoystickAdapterEnabled
         };
         return amiga with
         {
             Options = options,
-            KickstartPath = values.GetValueOrDefault(AmigaSettingsConstants.KickstartPath) ?? string.Empty,
-            ExtendedRomPath = OptionalPath(values.GetValueOrDefault(AmigaSettingsConstants.ExtendedRomPath)),
-            RomKeyPath = OptionalPath(values.GetValueOrDefault(AmigaSettingsConstants.RomKeyPath)),
-            AudioEnabled = values.GetValueOrDefault(AmigaSettingsConstants.AudioEnabled) == AmigaEmulationModuleConstants.Enabled,
+            KickstartPath = values.TryGetValue(AmigaSettingsConstants.KickstartPath, out var kickstartPath)
+                ? kickstartPath ?? string.Empty : amiga.KickstartPath,
+            ExtendedRomPath = values.TryGetValue(AmigaSettingsConstants.ExtendedRomPath, out var extendedRomPath)
+                ? OptionalPath(extendedRomPath) : amiga.ExtendedRomPath,
+            RomKeyPath = values.TryGetValue(AmigaSettingsConstants.RomKeyPath, out var romKeyPath)
+                ? OptionalPath(romKeyPath) : amiga.RomKeyPath,
+            AudioEnabled = values.TryGetValue(AmigaSettingsConstants.AudioEnabled, out var audioEnabled)
+                ? audioEnabled == AmigaEmulationModuleConstants.Enabled : amiga.AudioEnabled,
             Audio = currentAudio with
             {
-                OutputDeviceId = string.IsNullOrWhiteSpace(output) ? null : output,
+                OutputDeviceId = hasOutput
+                    ? string.IsNullOrWhiteSpace(output) ? null : output
+                    : currentAudio.OutputDeviceId,
                 LatencyMilliseconds = latency,
                 Interpolation = options.GetValueOrDefault(AmigaEmulationModuleConstants.OptionSoundInterpol) ?? currentAudio.Interpolation,
                 Filter = options.GetValueOrDefault(AmigaEmulationModuleConstants.OptionSoundFilter) ?? currentAudio.Filter,

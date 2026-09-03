@@ -181,7 +181,7 @@ internal static class VeldridVideoProcessingShaders
             return videoSharpnessParameter(c,axial,Parameters.Processing.x);
         }
         vec3 displayEffect(vec3 c,vec2 uv){int t=int(Parameters.General.x+.5);vec2 p=floor(uv*Parameters.Output.xy),l=fract(uv*Parameters.Processing.zw);
-            if(t==1){vec2 q=uv*2.0-1.0;c*=1.0-Parameters.CrtGeometry.y*.75*pow(clamp(dot(q,q)*.5,0.0,1.0),1.5);if(Parameters.CrtGeometry.z>.5){float a=Parameters.CrtGeometry.w<.5?p.y:p.x;c*=1.0-Parameters.CrtScanlines.x*pow(.5+.5*cos(3.14159265*(a+.25+Parameters.CrtScanlines.z*2.0)),mix(8.0,.5,Parameters.CrtScanlines.y));}c*=1.0+Parameters.CrtBeam.z*.35;}
+            if(t==1){vec2 q=uv*2.0-1.0;q.x*=1.0+Parameters.CrtGeometry.x*.28*q.y*q.y+Parameters.CrtGeometry.z*.22*q.y;q.y*=1.0+Parameters.CrtGeometry.y*.28*q.x*q.x;vec2 wuv=(q+1.0)*.5;if(any(lessThan(wuv,vec2(0)))||any(greaterThan(wuv,vec2(1))))return vec3(0);vec2 ss=1.0/max(Parameters.Processing.zw,vec2(1));vec3 src=raw(wuv),v=(raw(wuv-vec2(0,ss.y))+raw(wuv+vec2(0,ss.y)))*.5,n=(raw(wuv-ss)+raw(wuv+ss)+raw(wuv+vec2(ss.x,-ss.y))+raw(wuv+vec2(-ss.x,ss.y))+src*5.0)/9.0;c=mix(src,v,Parameters.CrtBeam.y*.45);c=mix(c,n,Parameters.CrtBeam.w*.72);c=clamp(c*(1.0+Parameters.CrtBeam.z*.5)+max(n-vec3(.35),vec3(0))*Parameters.CrtOptical.x*.85,0.0,1.0);if(Parameters.CrtDisplay.y>.5){float lum=dot(c,vec3(.2126,.7152,.0722));c=lum*vec3(Parameters.CrtDisplay.zw,Parameters.CrtBeam.x);}p=floor(uv*Parameters.Processing.zw);int mask=int(Parameters.CrtOptical.y+.5),subpixelLayout=int(Parameters.CrtOptical.z+.5);if(mask!=0&&Parameters.CrtOptical.w>0){int selected=subpixelLayout==0?-1:int(mod(p.x,3.0));if(subpixelLayout==2)selected=2-selected;if(mask==2)selected=int(mod(float(selected)+mod(p.y,2.0),3.0));bool gap=mask==3&&int(mod(p.y,4.0))==3;float strength=Parameters.CrtOptical.w*.88;for(int channel=0;channel<3;channel++){float attenuation=gap||(selected>=0&&channel!=selected)?strength:strength*.12;if(subpixelLayout==0)attenuation=int(mod(p.x+p.y,2.0))==0?strength*.1:strength;c[channel]*=1.0-attenuation;}}if(Parameters.CrtPatternIntensity.y>.5&&Parameters.CrtScanlines.x>0){float a=Parameters.CrtPatternIntensity.z<.5?uv.y*Parameters.Processing.w:uv.x*Parameters.Processing.z,gapStart=mix(.47,.18,Parameters.CrtScanlines.y),cycle=fract((a+Parameters.CrtScanlines.z*.25)*.5),distanceFromBeam=min(abs(cycle-.25),1.0-abs(cycle-.25)),gap=smoothstep(gapStart,min(.5,gapStart+.055),distanceFromBeam),coverage=1.0-gapStart*2.0,comp=1.0+Parameters.CrtScanlines.w*Parameters.CrtScanlines.x*coverage*.45;c*=(1.0-Parameters.CrtScanlines.x*gap*.94)*comp;}if(Parameters.CrtPattern.x>.5&&Parameters.CrtPatternIntensity.x>0){float a=Parameters.CrtPattern.y<.5?p.y:p.x,len=Parameters.CrtPattern.y<.5?Parameters.Processing.w:Parameters.Processing.z,cycles=1.0+Parameters.CrtPattern.z*31.0,w=.5+.5*cos(6.2831853*(a+.5)*cycles/len+Parameters.CrtPattern.w*6.2831853);c*=1.0-Parameters.CrtPatternIntensity.x*.85*w;}float radius=clamp(dot(uv*2.0-1.0,uv*2.0-1.0)*.5,0.0,1.0);c*=1.0-Parameters.CrtGeometry.w*.92*pow(radius,1.5);}
             else if(t==2){float g=Parameters.FixedSpatial.x*.45,e=min(min(l.x,1.0-l.x),min(l.y,1.0-l.y));if(e<g)c*=1.0-Parameters.FixedDisplay.w*(1.0-e/max(g,.001));int s=min(2,int(l.x*3.0));if(int(Parameters.FixedDisplay.z+.5)==2)s=2-s;for(int x=0;x<3;x++)if(x!=s)c[x]*=1.0-Parameters.FixedDisplay.w*.35;}
             else if(t==3){int s=min(2,int(l.x*3.0));for(int x=0;x<3;x++)if(x!=s)c[x]*=1.0-Parameters.PlasmaEffect.y*.35;c+=vec3((hash(p)-.5)*Parameters.PlasmaEffect.w*.08);}
             else if(t==4){vec2 s=1.0/max(Parameters.Output.xy,vec2(1));float x=length(raw(uv+vec2(s.x,0))-raw(uv-vec2(s.x,0))),y=length(raw(uv+vec2(0,s.y))-raw(uv-vec2(0,s.y)));c+=vec3(smoothstep(Parameters.VectorEffect.y,Parameters.VectorEffect.y+.1,length(vec2(x,y)))*Parameters.VectorEffect.z*(1.0+Parameters.VectorEffect.w*.5));}
@@ -190,7 +190,39 @@ internal static class VeldridVideoProcessingShaders
             else if(t==7){vec2 q=fract(p/vec2(6,8))-.5;float d=int(Parameters.DotMatrix.y+.5)==0?length(q):max(abs(q.x),abs(q.y));c*=smoothstep(.5,.5-Parameters.DotMatrix.z*.45,d)*(.5+Parameters.DotMatrix.w);}
             else if(t==8)c=mapSegments(c,uv);else if(t==9){float y=dot(c,vec3(.2126,.7152,.0722)),n=int(Parameters.EPaper.x+.5)==0?1.0:15.0;y=floor(y*n+hash(p)*Parameters.EPaper.z)/max(n,1.0);c=int(Parameters.EPaper.x+.5)==2?mix(vec3(y),c,.45):vec3(y);c=mix(vec3(.92),c,.4+Parameters.EPaper.y*.6);}
             else if(t==10){vec2 s=1.0/max(Parameters.Output.xy,vec2(1));c=mix(c,(raw(uv-s)+raw(uv+s))*.5,Parameters.Projection.x*.55+Parameters.Projection.y*.25);c*=1.0-(hash(p)-.5)*Parameters.Projection.z*.12;}return clamp(c,0.0,1.0);}
-        vec3 postEffect(vec3 c,vec2 uv){vec2 s=1.0/max(Parameters.Output.xy,vec2(1));float q=max(max(Parameters.Signal.x,Parameters.Signal.y),Parameters.Signal.z);vec3 b=raw(uv-vec2(s.x*(1.0+q*3.0),0));c=mix(c,vec3(b.r,c.g,b.b),q*.45);c+=vec3((hash(floor(uv*Parameters.Output.xy))-.5)*max(Parameters.Signal.w,Parameters.Signal2.x)*.08);if(Parameters.Stylistic.z>0){float o=Parameters.Stylistic.z*s.x*5.0;c.r=raw(uv+vec2(o,0)).r;c.b=raw(uv-vec2(o,0)).b;}c+=vec3((hash(uv*Parameters.Output.xy)-.5)*Parameters.Stylistic.x*.16);c=mix(c,raw(uv+vec2(sin(uv.y*80.0)*s.x*4.0,0)),Parameters.Stylistic.y*.35);c+=raw(uv)*Parameters.Stylistic.w*.25;float g=dot(c,vec3(.2126,.7152,.0722));c=mix(c,vec3(g),Parameters.Stylistic2.y);vec3 e=vec3(dot(c,vec3(.393,.769,.189)),dot(c,vec3(.349,.686,.168)),dot(c,vec3(.272,.534,.131)));return clamp(mix(c,e,Parameters.Stylistic2.x),0.0,1.0);}
+        """ + SignalConnectionRgbScart.Shader + SignalConnectionComponent.Shader
+        + SignalConnectionSVideo.Shader + SignalConnectionComposite.Shader
+        + SignalConnectionRf.Shader + SignalStandardPal.Shader + SignalStandardNtsc.Shader
+        + SignalStandardSecam.Shader + FilterGrain.Shader + FilterVhs.Shader
+        + FilterChromaticAberration.Shader + FilterBloom.Shader + FilterSepia.Shader + """
+        vec3 signalEffects(vec3 color,vec2 uv)
+        {
+            vec2 stepSize=1.0/max(Parameters.Processing.zw,vec2(1.0));
+            vec3 left=raw(uv-vec2(stepSize.x,0.0)),right=raw(uv+vec2(stepSize.x,0.0));
+            vec3 up=raw(uv-vec2(0.0,stepSize.y)),down=raw(uv+vec2(0.0,stepSize.y));
+            int connection=int(Parameters.Signal.x+.5);float amount=Parameters.Signal.y;
+            int standard=int(Parameters.Signal.z+.5);if(standard==0)standard=Parameters.General.w>18.2?1:2;
+            float phase=mod(floor(uv.x*Parameters.Processing.z)+floor(uv.y*Parameters.Processing.w)+Parameters.General.z,2.0)*2.0-1.0;
+            if(connection==1)color=signalConnectionRgbScart(color,left,amount);
+            else if(connection==2)color=signalConnectionComponent(color,left,right,amount);
+            else if(connection==3)color=signalConnectionSVideo(color,left,right,amount);
+            else if(connection==4)color=signalConnectionComposite(color,left,right,amount,phase);
+            else if(connection==5)color=signalConnectionRf(color,left,right,amount,hash(floor(uv*Parameters.Output.xy))-.5,float(standard),floor(uv.y*Parameters.Processing.w));
+            if(standard==1)color=signalStandardPal(color,mod(floor(uv.y*Parameters.Processing.w),2.0)<.5?down:up,Parameters.Signal.w);
+            else if(standard==2)color=signalStandardNtsc(color,left,Parameters.Signal.w);
+            else if(standard==3)color=signalStandardSecam(color,up,Parameters.Signal.w,floor(uv.y*Parameters.Processing.w));
+            return color;
+        }
+        vec3 postEffect(vec3 c,vec2 uv)
+        {
+            c=signalEffects(c,uv);vec2 s=1.0/max(Parameters.Output.xy,vec2(1));
+            if(Parameters.Stylistic.y>0.0){float n=hash(floor(uv*Parameters.Output.xy)+Parameters.General.z)-.5;float w=(sin(uv.y*Parameters.Processing.w*.071+Parameters.General.z*.31)*4.0+n*4.0)*Parameters.Stylistic.y;vec2 q=uv+vec2(w*s.x,0);c=filterVhs(c,raw(q),raw(q-vec2(s.x*2.0,0)),raw(q+vec2(s.x*2.0,0)),Parameters.Stylistic.y,n,floor(uv.y*Parameters.Processing.w),uv.y);}
+            if(Parameters.Stylistic.z>0.0){float o=Parameters.Stylistic.z*s.x*7.0;c=filterChromaticAberration(raw(uv+vec2(o,0)),c,raw(uv-vec2(o,0)));}
+            if(Parameters.Stylistic.w>0.0)c=filterBloom(c,raw(uv+vec2(s.x*2.0,0)),raw(uv-vec2(s.x*2.0,0)),raw(uv+vec2(0,s.y*2.0)),raw(uv-vec2(0,s.y*2.0)),raw(uv+vec2(s.x*5.0,0)),raw(uv-vec2(s.x*5.0,0)),raw(uv+vec2(0,s.y*5.0)),raw(uv-vec2(0,s.y*5.0)),Parameters.Stylistic.w);
+            c=filterSepia(c,Parameters.Stylistic2.x);
+            c=filterGrain(c,Parameters.Stylistic.x,hash(floor(uv*Parameters.Output.xy)+Parameters.General.z)*2.0-1.0);
+            return clamp(c,0.0,1.0);
+        }
         """ + FilterGeneralPersistence.Shader + FilterMotionBlur.Shader
         + FilterFlicker.Shader + FilterInterlacing.Shader
         + FilterBlackFrameInsertion.Shader + """
@@ -198,15 +230,14 @@ internal static class VeldridVideoProcessingShaders
         {
             vec3 c=displayEffect(restored(fsin_TexCoord),fsin_TexCoord);
             c=clamp(postEffect(c,fsin_TexCoord),0.0,1.0);
-            c=filterInterlacing(c,fsin_TexCoord,Parameters.Processing.w,Parameters.General.z,Parameters.Temporal.w,Parameters.Signal2.z);
+            vec2 size=vec2(textureSize(sampler2D(History,LinearSampler),0));
+            vec2 historyUv=clamp(fsin_TexCoord,.5/size,1.0-.5/size);
+            vec3 previous=displayEffect(adjust(texture(sampler2D(History,LinearSampler),historyUv).rgb),fsin_TexCoord);
+            previous=clamp(postEffect(previous,fsin_TexCoord),0.0,1.0);
+            c=filterInterlacing(c,previous,fsin_TexCoord,Parameters.Processing.w,Parameters.General.z,Parameters.Temporal.w,Parameters.Signal2.z,Parameters.General.y);
             c=filterFlicker(c,Parameters.General.z,Parameters.Temporal.z);
             if(Parameters.General.y>.5)
             {
-                vec2 size=vec2(textureSize(sampler2D(History,LinearSampler),0));
-                vec2 historyUv=clamp(fsin_TexCoord,.5/size,1.0-.5/size);
-                vec3 previous=displayEffect(adjust(texture(sampler2D(History,LinearSampler),historyUv).rgb),fsin_TexCoord);
-                previous=clamp(postEffect(previous,fsin_TexCoord),0.0,1.0);
-                previous=filterInterlacing(previous,fsin_TexCoord,Parameters.Processing.w,Parameters.General.z-1.0,Parameters.Temporal.w,Parameters.Signal2.z);
                 previous=filterFlicker(previous,Parameters.General.z-1.0,Parameters.Temporal.z);
                 c=filterMotionBlur(c,previous,Parameters.Temporal.y);
                 c=filterGeneralPersistence(c,previous,Parameters.Temporal.x);

@@ -5,38 +5,47 @@ namespace GWGUI.App.Rendering.Emulation.Processing;
 
 internal static class FilterCrt
 {
-    public static void Apply(float[] colors, int width, int height,
+    public static void Apply(float[] colors, int width, int height, int sourceWidth, int sourceHeight,
         EmulationCrtVideoConfiguration configuration)
     {
-        ApplyCurvature(colors, width, height, configuration.Curvature);
+        ApplyGeometry(colors, width, height, configuration.HorizontalCurvature,
+            configuration.VerticalCurvature, configuration.Trapezoid);
         ApplyBeam(colors, width, height, configuration.BeamWidth,
             configuration.BeamIntensity, configuration.BeamDiffusion);
         ApplyHalo(colors, width, height, configuration.HaloIntensity);
-        ApplyMask(colors, width, height, configuration.Mask,
-            configuration.MaskSubpixels, configuration.MaskIntensity);
-        ApplyScanlines(colors, width, height, configuration.ScanlinesEnabled,
+        ApplyMask(colors, width, height, sourceWidth, sourceHeight, configuration.Mask,
+            configuration.ColorMode == EmulationCrtColorMode.Color
+                ? configuration.MaskSubpixels : EmulationSubpixelLayout.Monochrome,
+            configuration.MaskIntensity);
+        ApplyScanlines(colors, width, height, sourceWidth, sourceHeight,
+            configuration.ScanlinesEnabled,
             configuration.ScanlineOrientation, configuration.ScanlineIntensity,
             configuration.ScanlineThickness, configuration.ScanlinePhase,
             configuration.ScanlineCompensation);
-        ApplyPattern(colors, width, height, configuration.PatternEnabled,
+        ApplyPattern(colors, width, height, sourceWidth, sourceHeight, configuration.PatternEnabled,
             configuration.PatternOrientation, configuration.PatternFrequency,
             configuration.PatternPhase, configuration.PatternIntensity);
         ApplyVignette(colors, width, height, configuration.Vignette);
     }
 
-    internal static void ApplyCurvature(float[] colors, int width, int height, int setting)
+    internal static void ApplyGeometry(float[] colors, int width, int height,
+        int horizontalSetting, int verticalSetting, int trapezoidSetting)
     {
-        if (setting == 0 || width < 2 || height < 2) return;
+        if ((horizontalSetting == 0 && verticalSetting == 0 && trapezoidSetting == 0)
+            || width < 2 || height < 2) return;
         var source = colors.ToArray();
-        var curvature = setting / 100f * 0.18f;
+        var horizontal = horizontalSetting / 100f * 0.28f;
+        var vertical = verticalSetting / 100f * 0.28f;
+        var trapezoid = trapezoidSetting / 100f * 0.22f;
         for (var y = 0; y < height; y++)
         {
             var normalizedY = 2f * (y + 0.5f) / height - 1f;
             for (var x = 0; x < width; x++)
             {
                 var normalizedX = 2f * (x + 0.5f) / width - 1f;
-                var warpedX = normalizedX * (1f + curvature * normalizedY * normalizedY);
-                var warpedY = normalizedY * (1f + curvature * normalizedX * normalizedX);
+                var warpedX = normalizedX * (1f + horizontal * normalizedY * normalizedY
+                    + trapezoid * normalizedY);
+                var warpedY = normalizedY * (1f + vertical * normalizedX * normalizedX);
                 var output = (y * width + x) * 3;
                 if (MathF.Abs(warpedX) > 1f || MathF.Abs(warpedY) > 1f)
                 {
@@ -58,7 +67,7 @@ internal static class FilterCrt
         if (widthSetting == 0 && intensitySetting == 0 && diffusionSetting == 0) return;
         var source = colors.ToArray();
         var verticalMix = widthSetting / 100f * 0.45f;
-        var diffusionMix = diffusionSetting / 100f * 0.35f;
+        var diffusionMix = diffusionSetting / 100f * 0.72f;
         var gain = 1f + intensitySetting / 100f * 0.5f;
         for (var y = 0; y < height; y++)
         for (var x = 0; x < width; x++)
@@ -78,18 +87,19 @@ internal static class FilterCrt
     {
         if (setting == 0) return;
         var source = colors.ToArray();
-        var strength = setting / 100f * 0.5f;
+        var strength = setting / 100f * 0.85f;
         for (var y = 0; y < height; y++)
         for (var x = 0; x < width; x++)
         for (var channel = 0; channel < 3; channel++)
         {
             var index = (y * width + x) * 3 + channel;
-            colors[index] = Math.Clamp(source[index]
-                + Neighborhood(source, width, height, x, y, channel) * strength, 0f, 1f);
+            var glow = Math.Max(0f, Neighborhood(source, width, height, x, y, channel) - 0.35f);
+            colors[index] = Math.Clamp(source[index] + glow * strength, 0f, 1f);
         }
     }
 
     internal static void ApplyMask(float[] colors, int width, int height,
+        int sourceWidth, int sourceHeight,
         EmulationCrtMask mask, EmulationSubpixelLayout layout, int setting)
     {
         if (mask == EmulationCrtMask.None || setting == 0) return;
@@ -97,17 +107,19 @@ internal static class FilterCrt
         for (var y = 0; y < height; y++)
         for (var x = 0; x < width; x++)
         {
+            var maskX = x * sourceWidth / Math.Max(1, width);
+            var maskY = y * sourceHeight / Math.Max(1, height);
             var selected = layout == EmulationSubpixelLayout.Monochrome
                 ? -1
-                : (layout == EmulationSubpixelLayout.Bgr ? 2 - x % 3 : x % 3);
-            if (mask == EmulationCrtMask.ShadowMask) selected = (selected + y % 2) % 3;
-            var slotGap = mask == EmulationCrtMask.SlotMask && y % 4 == 3;
+                : (layout == EmulationSubpixelLayout.Bgr ? 2 - maskX % 3 : maskX % 3);
+            if (mask == EmulationCrtMask.ShadowMask) selected = (selected + maskY % 2) % 3;
+            var slotGap = mask == EmulationCrtMask.SlotMask && maskY % 4 == 3;
             for (var channel = 0; channel < 3; channel++)
             {
                 var attenuation = slotGap || (selected >= 0 && channel != selected)
                     ? strength : strength * 0.18f;
                 if (layout == EmulationSubpixelLayout.Monochrome)
-                    attenuation = ((x + y) & 1) == 0 ? strength * 0.18f : strength;
+                    attenuation = ((maskX + maskY) & 1) == 0 ? strength * 0.10f : strength;
                 var index = (y * width + x) * 3 + channel;
                 colors[index] *= 1f - attenuation;
             }
@@ -117,7 +129,7 @@ internal static class FilterCrt
     internal static void ApplyVignette(float[] colors, int width, int height, int setting)
     {
         if (setting == 0) return;
-        var strength = setting / 100f * 0.75f;
+        var strength = setting / 100f * 0.92f;
         for (var y = 0; y < height; y++)
         {
             var normalizedY = 2f * (y + 0.5f) / height - 1f;
@@ -135,21 +147,32 @@ internal static class FilterCrt
         }
     }
 
-    internal static void ApplyScanlines(float[] colors, int width, int height, bool enabled,
-        EmulationPatternOrientation orientation, int intensitySetting, int thicknessSetting,
-        int phaseSetting, int compensationSetting)
+    internal static void ApplyScanlines(float[] colors, int width, int height,
+        int sourceWidth, int sourceHeight, bool enabled, EmulationPatternOrientation orientation,
+        int intensitySetting, int thicknessSetting, EmulationScanlinePhase phaseSetting,
+        int compensationSetting)
     {
         if (!enabled || intensitySetting == 0) return;
         var intensity = intensitySetting / 100f;
-        var exponent = Lerp(8f, 0.5f, thicknessSetting / 100f);
-        var phase = phaseSetting / 50f;
-        var compensation = 1f + compensationSetting / 100f * intensity * 0.5f;
+        var thickness = thicknessSetting / 100f;
+        var phase = (int)phaseSetting * 0.25f;
+        var gapStart = Lerp(0.47f, 0.18f, thickness);
+        var gapCoverage = 1f - gapStart * 2f;
+        var compensation = 1f + compensationSetting / 100f * intensity
+            * gapCoverage * 0.45f;
         for (var y = 0; y < height; y++)
         for (var x = 0; x < width; x++)
         {
-            var coordinate = orientation == EmulationPatternOrientation.Horizontal ? y : x;
-            var wave = 0.5f + 0.5f * MathF.Cos(MathF.PI * (coordinate + 0.25f + phase));
-            var factor = (1f - intensity * MathF.Pow(wave, exponent)) * compensation;
+            var coordinate = orientation == EmulationPatternOrientation.Horizontal
+                ? (y + 0.5f) * sourceHeight / Math.Max(1f, height)
+                : (x + 0.5f) * sourceWidth / Math.Max(1f, width);
+            var cycle = (coordinate + phase) * 0.5f;
+            cycle -= MathF.Floor(cycle);
+            var distanceFromBeam = MathF.Abs(cycle - 0.25f);
+            distanceFromBeam = Math.Min(distanceFromBeam, 1f - distanceFromBeam);
+            var gap = SmoothStep(gapStart, Math.Min(0.5f, gapStart + 0.055f),
+                distanceFromBeam);
+            var factor = (1f - intensity * gap * 0.94f) * compensation;
             var index = (y * width + x) * 3;
             colors[index] = Math.Clamp(colors[index] * factor, 0f, 1f);
             colors[index + 1] = Math.Clamp(colors[index + 1] * factor, 0f, 1f);
@@ -157,19 +180,23 @@ internal static class FilterCrt
         }
     }
 
-    internal static void ApplyPattern(float[] colors, int width, int height, bool enabled,
+    internal static void ApplyPattern(float[] colors, int width, int height,
+        int sourceWidth, int sourceHeight, bool enabled,
         EmulationPatternOrientation orientation, int frequencySetting, int phaseSetting,
         int intensitySetting)
     {
         if (!enabled || intensitySetting == 0) return;
-        var axisLength = orientation == EmulationPatternOrientation.Horizontal ? height : width;
+        var axisLength = orientation == EmulationPatternOrientation.Horizontal
+            ? sourceHeight : sourceWidth;
         var cycles = 1f + frequencySetting / 100f * 31f;
         var phase = phaseSetting / 100f * 2f * MathF.PI;
-        var intensity = intensitySetting / 100f * 0.5f;
+        var intensity = intensitySetting / 100f * 0.85f;
         for (var y = 0; y < height; y++)
         for (var x = 0; x < width; x++)
         {
-            var coordinate = orientation == EmulationPatternOrientation.Horizontal ? y : x;
+            var coordinate = orientation == EmulationPatternOrientation.Horizontal
+                ? y * sourceHeight / Math.Max(1f, height)
+                : x * sourceWidth / Math.Max(1f, width);
             var wave = 0.5f + 0.5f * MathF.Cos(2f * MathF.PI
                 * (coordinate + 0.5f) * cycles / axisLength + phase);
             var factor = 1f - intensity * wave;
@@ -209,4 +236,10 @@ internal static class FilterCrt
 
     private static float Lerp(float first, float second, float amount) =>
         first + (second - first) * amount;
+
+    private static float SmoothStep(float edge0, float edge1, float value)
+    {
+        var amount = Math.Clamp((value - edge0) / Math.Max(0.0001f, edge1 - edge0), 0f, 1f);
+        return amount * amount * (3f - 2f * amount);
+    }
 }

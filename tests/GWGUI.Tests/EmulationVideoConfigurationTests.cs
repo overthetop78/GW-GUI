@@ -1,7 +1,9 @@
 using System.IO;
+using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using GWGUI.Emulation.Amiga.Contracts;
+using GWGUI.Emulation.Amiga.Modules;
 using GWGUI.Emulation.Amiga.Services;
 using GWGUI.Emulation.Atari.Contracts;
 using GWGUI.Emulation.Atari.Enums;
@@ -15,6 +17,37 @@ namespace GWGUI.Tests;
 
 public sealed class EmulationVideoConfigurationTests
 {
+    [Fact]
+    public void AmigaPartialSettingsPreserveValuesOwnedByOtherTabs()
+    {
+        using var temporary = new TemporaryDirectory();
+        using var httpClient = new HttpClient();
+        var module = new AmigaEmulationModule(temporary.Path, temporary.Path, httpClient,
+            temporary.Path);
+        var expected = AmigaMachineConfiguration.A500("kick.rom") with
+        {
+            ExtendedRomPath = "extended.rom",
+            RomKeyPath = "rom.key",
+            AudioEnabled = false,
+            Audio = new AmigaAudioConfiguration(OutputDeviceId: "device"),
+            Input = new AmigaInputConfiguration(ParallelJoystickAdapterEnabled: true)
+        };
+
+        var actual = Assert.IsType<AmigaMachineConfiguration>(module.ApplySettings(expected,
+            new Dictionary<string, string?>
+            {
+                ["gfx_scanlines"] = "25"
+            }));
+
+        Assert.Equal(expected.KickstartPath, actual.KickstartPath);
+        Assert.Equal(expected.ExtendedRomPath, actual.ExtendedRomPath);
+        Assert.Equal(expected.RomKeyPath, actual.RomKeyPath);
+        Assert.Equal(expected.AudioEnabled, actual.AudioEnabled);
+        Assert.Equal(expected.Audio.OutputDeviceId, actual.Audio!.OutputDeviceId);
+        Assert.Equal(expected.Input.ParallelJoystickAdapterEnabled,
+            actual.Input!.ParallelJoystickAdapterEnabled);
+    }
+
     [Fact]
     public void Normalize_ReturnsNeutralDefaultsAndClampsInvalidValues()
     {
@@ -34,9 +67,10 @@ public sealed class EmulationVideoConfigurationTests
                 DetailRecovery: -2, Deinterlacing: (EmulationDeinterlacingMode)999),
             Temporal = new(GeneralPersistence: 101, MotionBlur: -1, Flicker: 102,
                 Interlacing: -2, InterlacingVisibility: 102),
-            SignalSimulation = new(Composite: 101, SVideo: -1, Rf: 102, Pal: -2, Ntsc: 103),
+            SignalSimulation = new((EmulationSignalConnection)999, 101,
+                (EmulationSignalStandard)999, 103),
             Stylistic = new(Grain: 101, Vhs: -1, ChromaticAberration: 102, Bloom: -2,
-                Sepia: 103, Grayscale: -3),
+                Sepia: true),
             Crt = new(BeamIntensity: 101, ScanlineIntensity: -1),
             FixedPixel = new(ResponseTimeMilliseconds: 1001),
             Plasma = new(Diffusion: 101),
@@ -69,17 +103,15 @@ public sealed class EmulationVideoConfigurationTests
         Assert.Equal(100, normalized.Temporal.Flicker);
         Assert.Equal(0, normalized.Temporal.Interlacing);
         Assert.Equal(100, normalized.Temporal.InterlacingVisibility);
-        Assert.Equal(100, normalized.SignalSimulation.Composite);
-        Assert.Equal(0, normalized.SignalSimulation.SVideo);
-        Assert.Equal(100, normalized.SignalSimulation.Rf);
-        Assert.Equal(0, normalized.SignalSimulation.Pal);
-        Assert.Equal(100, normalized.SignalSimulation.Ntsc);
+        Assert.Equal(EmulationSignalConnection.None, normalized.SignalSimulation.Connection);
+        Assert.Equal(100, normalized.SignalSimulation.ConnectionIntensity);
+        Assert.Equal(EmulationSignalStandard.Automatic, normalized.SignalSimulation.Standard);
+        Assert.Equal(100, normalized.SignalSimulation.StandardIntensity);
         Assert.Equal(100, normalized.Stylistic.Grain);
         Assert.Equal(0, normalized.Stylistic.Vhs);
         Assert.Equal(100, normalized.Stylistic.ChromaticAberration);
         Assert.Equal(0, normalized.Stylistic.Bloom);
-        Assert.Equal(100, normalized.Stylistic.Sepia);
-        Assert.Equal(0, normalized.Stylistic.Grayscale);
+        Assert.True(normalized.Stylistic.Sepia);
         Assert.Equal(100, normalized.Crt.BeamIntensity);
         Assert.Equal(0, normalized.Crt.ScanlineIntensity);
         Assert.Equal(1000, normalized.FixedPixel.ResponseTimeMilliseconds);
@@ -148,6 +180,34 @@ public sealed class EmulationVideoConfigurationTests
     }
 
     [Fact]
+    public async Task AmigaStore_RemovesOnlyAnIncompatibleOptionalPropertyAndLoadsConfiguration()
+    {
+        using var temporary = new TemporaryDirectory();
+        var store = new AmigaConfigurationStore(temporary.Path);
+        await store.SaveAsync(AmigaMachineConfiguration.A500(
+            System.IO.Path.Combine(temporary.Path, "kick.rom")) with
+        {
+            Model = "A600",
+            VideoProcessing = SampleVideo()
+        });
+        var path = SingleMachineDocument(temporary.Path);
+        var json = JsonNode.Parse(await File.ReadAllTextAsync(path))!.AsObject();
+        json["videoProcessing"]!["stylistic"]!["sepia"] = 0;
+        await File.WriteAllTextAsync(path, json.ToJsonString(new JsonSerializerOptions
+        {
+            WriteIndented = true
+        }));
+
+        var actual = Assert.Single(await store.LoadAllAsync());
+        var repaired = JsonNode.Parse(await File.ReadAllTextAsync(path))!.AsObject();
+
+        Assert.Equal("A600", actual.Model);
+        Assert.False(actual.VideoProcessing!.Stylistic.Sepia);
+        Assert.Null(repaired["videoProcessing"]!["stylistic"]!["sepia"]);
+        Assert.NotNull(repaired["videoProcessing"]!["stylistic"]!["grain"]);
+    }
+
+    [Fact]
     public async Task AtariStore_RoundTripsVideoProcessing()
     {
         using var temporary = new TemporaryDirectory();
@@ -197,9 +257,10 @@ public sealed class EmulationVideoConfigurationTests
             Deinterlacing: EmulationDeinterlacingMode.BobOddLines),
         Temporal = new(GeneralPersistence: 38, MotionBlur: 47, Flicker: 56, Interlacing: 65,
             BlackFrameInsertion: true),
-        SignalSimulation = new(Composite: 74, SVideo: 83, Rf: 92, Pal: 63, Ntsc: 52),
-        Stylistic = new(Grain: 41, Vhs: 32, ChromaticAberration: 23, Bloom: 14, Sepia: 35,
-            Grayscale: 26),
+        SignalSimulation = new(EmulationSignalConnection.Rf, 92,
+            EmulationSignalStandard.Pal, 63),
+        Stylistic = new(Grain: 41, Vhs: 32, ChromaticAberration: 23, Bloom: 14,
+            Sepia: true),
         Crt = new(EmulationCrtColorMode.Amber, BeamWidth: 42, BeamIntensity: 77,
             HaloIntensity: 31, Mask: EmulationCrtMask.SlotMask, MaskIntensity: 64,
             ScanlinesEnabled: true, ScanlineIntensity: 53),

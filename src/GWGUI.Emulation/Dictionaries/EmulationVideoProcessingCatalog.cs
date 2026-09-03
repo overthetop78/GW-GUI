@@ -21,19 +21,16 @@ public static class EmulationVideoProcessingCatalog
     public const string Interlacing = nameof(Interlacing);
     public const string InterlacingVisibility = nameof(InterlacingVisibility);
     public const string BlackFrameInsertion = nameof(BlackFrameInsertion);
-    public const string CompositeSimulation = nameof(CompositeSimulation);
-    public const string SVideoSimulation = nameof(SVideoSimulation);
-    public const string RfSimulation = nameof(RfSimulation);
-    public const string PalSimulation = nameof(PalSimulation);
-    public const string NtscSimulation = nameof(NtscSimulation);
+    public const string SignalConnection = nameof(SignalConnection);
+    public const string SignalConnectionIntensity = nameof(SignalConnectionIntensity);
+    public const string SignalStandard = nameof(SignalStandard);
+    public const string SignalStandardIntensity = nameof(SignalStandardIntensity);
     public const string Grain = nameof(Grain);
     public const string Vhs = nameof(Vhs);
     public const string ChromaticAberration = nameof(ChromaticAberration);
     public const string Bloom = nameof(Bloom);
     public const string Sepia = nameof(Sepia);
-    public const string Grayscale = nameof(Grayscale);
     public const string CrtColorMode = nameof(CrtColorMode);
-    public const string CrtCustomColor = nameof(CrtCustomColor);
     public const string CrtBeamWidth = nameof(CrtBeamWidth);
     public const string CrtBeamIntensity = nameof(CrtBeamIntensity);
     public const string CrtBeamDiffusion = nameof(CrtBeamDiffusion);
@@ -41,7 +38,9 @@ public static class EmulationVideoProcessingCatalog
     public const string CrtMask = nameof(CrtMask);
     public const string CrtMaskSubpixels = nameof(CrtMaskSubpixels);
     public const string CrtMaskIntensity = nameof(CrtMaskIntensity);
-    public const string CrtCurvature = nameof(CrtCurvature);
+    public const string CrtHorizontalCurvature = nameof(CrtHorizontalCurvature);
+    public const string CrtVerticalCurvature = nameof(CrtVerticalCurvature);
+    public const string CrtTrapezoid = nameof(CrtTrapezoid);
     public const string CrtVignette = nameof(CrtVignette);
     public const string CrtScanlinesEnabled = nameof(CrtScanlinesEnabled);
     public const string CrtScanlineOrientation = nameof(CrtScanlineOrientation);
@@ -110,19 +109,15 @@ public static class EmulationVideoProcessingCatalog
         DetailRecovery,
         Deinterlacing, GeneralPersistence, MotionBlur, Flicker, Interlacing,
         InterlacingVisibility, BlackFrameInsertion,
-        CompositeSimulation,
-        SVideoSimulation,
-        RfSimulation,
-        PalSimulation,
-        NtscSimulation,
+        SignalConnection, SignalConnectionIntensity, SignalStandard, SignalStandardIntensity,
         Grain,
         Vhs,
         ChromaticAberration,
         Bloom,
         Sepia,
-        Grayscale,
-        CrtColorMode, CrtCustomColor, CrtBeamWidth, CrtBeamIntensity, CrtBeamDiffusion,
-        CrtHaloIntensity, CrtMask, CrtMaskSubpixels, CrtMaskIntensity, CrtCurvature, CrtVignette,
+        CrtColorMode, CrtBeamWidth, CrtBeamIntensity, CrtBeamDiffusion,
+        CrtHaloIntensity, CrtMask, CrtMaskSubpixels, CrtMaskIntensity,
+        CrtHorizontalCurvature, CrtVerticalCurvature, CrtTrapezoid, CrtVignette,
         CrtScanlinesEnabled, CrtScanlineOrientation, CrtScanlineIntensity, CrtScanlineThickness,
         CrtScanlinePhase, CrtScanlineCompensation, CrtPatternEnabled, CrtPatternOrientation,
         CrtPatternFrequency, CrtPatternPhase, CrtPatternIntensity,
@@ -179,6 +174,9 @@ public static class EmulationVideoProcessingCatalog
     public static IReadOnlyDictionary<EmulationPatternOrientation, string> PatternOrientationResourceKeys { get; }
         = ResourceKeys("Orientation", Enum.GetValues<EmulationPatternOrientation>());
 
+    public static IReadOnlyDictionary<EmulationScanlinePhase, string> ScanlinePhaseResourceKeys { get; }
+        = ResourceKeys("Crt.ScanlinePhase", Enum.GetValues<EmulationScanlinePhase>());
+
     public static IReadOnlyDictionary<EmulationSubpixelLayout, string> SubpixelLayoutResourceKeys { get; }
         = ResourceKeys("Subpixels", Enum.GetValues<EmulationSubpixelLayout>());
 
@@ -187,6 +185,12 @@ public static class EmulationVideoProcessingCatalog
 
     public static IReadOnlyDictionary<EmulationVideoPreset, string> PresetResourceKeys { get; }
         = ResourceKeys("Preset", Enum.GetValues<EmulationVideoPreset>());
+
+    public static IReadOnlyDictionary<EmulationSignalConnection, string> SignalConnectionResourceKeys { get; }
+        = ResourceKeys("Signal.Connection", Enum.GetValues<EmulationSignalConnection>());
+
+    public static IReadOnlyDictionary<EmulationSignalStandard, string> SignalStandardResourceKeys { get; }
+        = ResourceKeys("Signal.Standard", Enum.GetValues<EmulationSignalStandard>());
 
     public static IReadOnlyDictionary<EmulationVfdColor, string> VfdColorResourceKeys { get; }
         = ResourceKeys("Vfd.Color", Enum.GetValues<EmulationVfdColor>());
@@ -224,24 +228,24 @@ public static class EmulationVideoProcessingCatalog
             [Interlacing] = 0,
             [InterlacingVisibility] = 50,
             [BlackFrameInsertion] = false,
-            [CompositeSimulation] = 0,
-            [SVideoSimulation] = 0,
-            [RfSimulation] = 0,
-            [PalSimulation] = 0,
-            [NtscSimulation] = 0,
+            [SignalConnection] = EmulationSignalConnection.None,
+            [SignalConnectionIntensity] = 0,
+            [SignalStandard] = EmulationSignalStandard.Automatic,
+            [SignalStandardIntensity] = 0,
             [Grain] = 0,
             [Vhs] = 0,
             [ChromaticAberration] = 0,
             [Bloom] = 0,
-            [Sepia] = 0,
-            [Grayscale] = 0,
-            [CrtColorMode] = EmulationCrtColorMode.Color, [CrtCustomColor] = null,
+            [Sepia] = false,
+            [CrtColorMode] = EmulationCrtColorMode.Color,
             [CrtBeamWidth] = 0, [CrtBeamIntensity] = 0, [CrtBeamDiffusion] = 0,
             [CrtHaloIntensity] = 0, [CrtMask] = EmulationCrtMask.None,
             [CrtMaskSubpixels] = EmulationSubpixelLayout.Rgb, [CrtMaskIntensity] = 0,
-            [CrtCurvature] = 0, [CrtVignette] = 0, [CrtScanlinesEnabled] = false,
+            [CrtHorizontalCurvature] = 0, [CrtVerticalCurvature] = 0, [CrtTrapezoid] = 0,
+            [CrtVignette] = 0, [CrtScanlinesEnabled] = false,
             [CrtScanlineOrientation] = EmulationPatternOrientation.Horizontal,
-            [CrtScanlineIntensity] = 0, [CrtScanlineThickness] = 0, [CrtScanlinePhase] = 0,
+            [CrtScanlineIntensity] = 0, [CrtScanlineThickness] = 0,
+            [CrtScanlinePhase] = EmulationScanlinePhase.Zero,
             [CrtScanlineCompensation] = 0, [CrtPatternEnabled] = false,
             [CrtPatternOrientation] = EmulationPatternOrientation.Horizontal,
             [CrtPatternFrequency] = 0, [CrtPatternPhase] = 0, [CrtPatternIntensity] = 0,
@@ -275,7 +279,6 @@ public static class EmulationVideoProcessingCatalog
     public static IReadOnlyDictionary<string, string> RequiredParameters { get; } =
         new Dictionary<string, string>(StringComparer.Ordinal)
         {
-            [CrtCustomColor] = CrtColorMode,
             [CrtScanlineOrientation] = CrtScanlinesEnabled,
             [CrtScanlineIntensity] = CrtScanlinesEnabled,
             [CrtScanlineThickness] = CrtScanlinesEnabled,
@@ -291,7 +294,6 @@ public static class EmulationVideoProcessingCatalog
     public static IReadOnlyDictionary<string, object> RequiredParameterValues { get; } =
         new Dictionary<string, object>(StringComparer.Ordinal)
         {
-            [CrtCustomColor] = EmulationCrtColorMode.Custom,
             [CrtScanlineOrientation] = true,
             [CrtScanlineIntensity] = true,
             [CrtScanlineThickness] = true,
@@ -396,7 +398,8 @@ public static class EmulationVideoProcessingCatalog
             DisplayTechnology = EmulationVideoDisplayTechnology.Crt,
             Sampling = sampling,
             Crt = new(ColorMode: color, BeamIntensity: beam, HaloIntensity: halo, Mask: mask,
-                MaskIntensity: maskIntensity, Curvature: curvature, Vignette: vignette,
+                MaskIntensity: maskIntensity, HorizontalCurvature: curvature,
+                VerticalCurvature: curvature, Vignette: vignette,
                 ScanlinesEnabled: true, ScanlineIntensity: scanlineIntensity,
                 ScanlineThickness: scanlineThickness)
         };

@@ -1,8 +1,19 @@
 namespace GWGUI.App.Rendering.Emulation.Processing;
 
-internal static class FilterNtsc
+internal static class SignalStandardNtsc
 {
-    public static void Apply(float[] colors, int width, int height, long sequence, int intensity)
+    internal const string Shader = """
+        vec3 signalStandardNtsc(vec3 color,vec3 left,float amount)
+        {
+            vec3 mixed=signalConnectionComponent(color,left,left,min(1.0,amount*3.0));
+            float y=dot(mixed,vec3(.299,.587,.114));
+            vec2 c=vec2(dot(mixed,vec3(.596,-.274,-.322)),dot(mixed,vec3(.211,-.523,.312)));
+            float error=amount*.12; c=vec2(c.x-c.y*error,c.y+c.x*error);
+            return clamp(vec3(y+.956*c.x+.621*c.y,y-.272*c.x-.647*c.y,y-1.106*c.x+1.703*c.y),0.0,1.0);
+        }
+        """;
+
+    public static void Apply(float[] colors, int width, int height, int intensity)
     {
         if (intensity <= 0 || width < 2) return;
         var source = colors.ToArray();
@@ -14,12 +25,13 @@ internal static class FilterNtsc
             var delayed = (y * width + Math.Max(0, x - 1)) * 3;
             Components(source, center, out var luminance, out var inPhase, out var quadrature);
             Components(source, delayed, out var delayedY, out var delayedI, out var delayedQ);
-            luminance += (delayedY - luminance) * amount * 0.12f;
-            inPhase += (delayedI - inPhase) * amount * 0.48f;
-            quadrature += (delayedQ - quadrature) * amount * 0.58f;
-            var phase = ((x + y * 2L + sequence) % 3L - 1L) * amount * 0.018f;
-            inPhase += phase;
-            quadrature -= phase * 0.6f;
+            luminance += (delayedY - luminance) * amount * 0.24f;
+            inPhase += (delayedI - inPhase) * amount * 0.72f;
+            quadrature += (delayedQ - quadrature) * amount * 0.84f;
+            var hueError = amount * 0.12f;
+            var rotatedI = inPhase - quadrature * hueError;
+            quadrature += inPhase * hueError;
+            inPhase = rotatedI;
             colors[center] = Math.Clamp(luminance + 0.956f * inPhase + 0.621f * quadrature, 0f, 1f);
             colors[center + 1] = Math.Clamp(luminance - 0.272f * inPhase - 0.647f * quadrature, 0f, 1f);
             colors[center + 2] = Math.Clamp(luminance - 1.106f * inPhase + 1.703f * quadrature, 0f, 1f);

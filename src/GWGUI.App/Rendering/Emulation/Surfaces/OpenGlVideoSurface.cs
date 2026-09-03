@@ -146,7 +146,9 @@ internal sealed class OpenGlVideoSurface : HwndHost, IEmulationVideoSurface
         var fixedPixel = gpuConfiguration.DisplayTechnology == EmulationVideoDisplayTechnology.FixedPixel;
         var temporalDisplay = gpuConfiguration.DisplayTechnology != EmulationVideoDisplayTechnology.Normal
             || gpuConfiguration.Temporal.GeneralPersistence > 0
-            || gpuConfiguration.Temporal.MotionBlur > 0;
+            || gpuConfiguration.Temporal.MotionBlur > 0
+            || gpuConfiguration.Temporal.Interlacing > 0
+            || gpuConfiguration.SignalSimulation.StandardIntensity > 0;
         var hasHistory = temporalDisplay && _hasHistory
             && _historyWidth == processed.Width && _historyHeight == processed.Height
             && (fixedPixel ? frame.Timestamp >= _historyTimestamp : frame.Sequence >= _historySequence);

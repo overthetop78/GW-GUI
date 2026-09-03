@@ -128,7 +128,9 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
             || gpuConfiguration.DisplayTechnology is EmulationVideoDisplayTechnology.Vfd
                 or EmulationVideoDisplayTechnology.DotMatrix or EmulationVideoDisplayTechnology.EPaper
             || gpuConfiguration.Temporal.GeneralPersistence > 0
-            || gpuConfiguration.Temporal.MotionBlur > 0;
+            || gpuConfiguration.Temporal.MotionBlur > 0
+            || gpuConfiguration.Temporal.Interlacing > 0
+            || gpuConfiguration.SignalSimulation.StandardIntensity > 0;
         var hasHistory = temporalDisplay && _hasHistory
             && (fixedPixel || segmentDisplay ? frame.Timestamp >= _historyTimestamp
                 : frame.Sequence >= _historySequence);
@@ -409,10 +411,14 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
             new Vector4((float)configuration.DisplayTechnology, hasHistory ? 1f : 0f, sequence % 4096, (float)elapsedMilliseconds),
             new Vector4(configuration.Restoration.Dedithering / 100f, configuration.Restoration.Denoising / 100f, configuration.Restoration.Debanding / 100f, (float)configuration.Restoration.Deinterlacing),
             new Vector4(configuration.Temporal.GeneralPersistence / 100f, configuration.Temporal.MotionBlur / 100f, configuration.Temporal.Flicker / 100f, configuration.Temporal.Interlacing > 0 ? 1f : 0f),
-            new Vector4(configuration.SignalSimulation.Composite / 100f, configuration.SignalSimulation.SVideo / 100f, configuration.SignalSimulation.Rf / 100f, configuration.SignalSimulation.Pal / 100f),
-            new Vector4(configuration.SignalSimulation.Ntsc / 100f, configuration.Temporal.BlackFrameInsertion ? 1f : 0f, configuration.Temporal.InterlacingVisibility / 100f, 0f),
+            new Vector4((float)configuration.SignalSimulation.Connection,
+                configuration.SignalSimulation.ConnectionIntensity / 100f,
+                (float)configuration.SignalSimulation.Standard,
+                configuration.SignalSimulation.StandardIntensity / 100f),
+            new Vector4(0f, configuration.Temporal.BlackFrameInsertion ? 1f : 0f,
+                configuration.Temporal.InterlacingVisibility / 100f, 0f),
             new Vector4(configuration.Stylistic.Grain / 100f, configuration.Stylistic.Vhs / 100f, configuration.Stylistic.ChromaticAberration / 100f, configuration.Stylistic.Bloom / 100f),
-            new Vector4(configuration.Stylistic.Sepia / 100f, configuration.Stylistic.Grayscale / 100f, 0f, 0f),
+            new Vector4(configuration.Stylistic.Sepia ? 1f : 0f, 0f, 0f, 0f),
             new Vector4((float)configuration.Vfd.Color, configuration.Vfd.PhosphorIntensity / 100f, configuration.Vfd.HaloIntensity / 100f, configuration.Vfd.PersistenceIntensity / 100f),
             new Vector4((float)configuration.LedMatrix.Color, configuration.LedMatrix.CellSize / 100f, Math.Max(configuration.LedMatrix.CellGap, configuration.LedMatrix.Diffusion) / 100f, configuration.LedMatrix.Brightness / 100f),
             new Vector4((float)configuration.DotMatrix.Palette, (float)configuration.DotMatrix.Shape, configuration.DotMatrix.DotSize / 100f, configuration.DotMatrix.Contrast / 100f),

@@ -25,35 +25,24 @@ internal static class EmulationTemporalEffectsSettingsBlock
             Margin = new Thickness(0, 0, 0, 12)
         });
 
-        var continuous = new UniformGrid { Columns = 3 };
-        continuous.Children.Add(VerticalIntensity(
+        var continuous = new StackPanel();
+        continuous.Children.Add(HorizontalIntensity(
             EmulationVideoProcessingCatalog.GeneralPersistence,
             temporal.GeneralPersistence,
             value => Publish(current with { GeneralPersistence = value })));
-        continuous.Children.Add(VerticalIntensity(
+        continuous.Children.Add(HorizontalIntensity(
             EmulationVideoProcessingCatalog.MotionBlur,
             temporal.MotionBlur,
             value => Publish(current with { MotionBlur = value })));
-        continuous.Children.Add(VerticalIntensity(
+        continuous.Children.Add(HorizontalIntensity(
             EmulationVideoProcessingCatalog.Flicker,
             temporal.Flicker,
             value => Publish(current with { Flicker = value })));
         block.Children.Add(continuous);
-        block.Children.Add(new TextBlock
-        {
-            Text = LocExtension.Get(EmulationResourceKeys.VideoTemporalCadenceAutomatic),
-            FontSize = 11,
-            Foreground = SystemColors.GrayTextBrush,
-            TextAlignment = TextAlignment.Center,
-            TextWrapping = TextWrapping.Wrap,
-            Margin = new Thickness(0, 8, 0, 12)
-        });
 
-        var choices = new Grid();
-        choices.ColumnDefinitions.Add(new ColumnDefinition());
-        choices.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        var choices = new StackPanel { Margin = new Thickness(0, 12, 0, 0) };
 
-        var interlacing = new StackPanel { Margin = new Thickness(0, 0, 16, 0) };
+        var interlacing = new StackPanel();
         var interlacingToggle = Toggle(EmulationVideoProcessingCatalog.Interlacing,
             temporal.Interlacing > 0);
         var visibility = HorizontalIntensity(
@@ -75,7 +64,7 @@ internal static class EmulationTemporalEffectsSettingsBlock
         interlacing.Children.Add(visibility);
         choices.Children.Add(interlacing);
 
-        var blackFrames = new StackPanel { Width = 150 };
+        var blackFrames = new StackPanel { Margin = new Thickness(0, 12, 0, 0) };
         var blackFrameToggle = Toggle(EmulationVideoProcessingCatalog.BlackFrameInsertion,
             temporal.BlackFrameInsertion);
         blackFrameToggle.Checked += (_, _) =>
@@ -83,15 +72,6 @@ internal static class EmulationTemporalEffectsSettingsBlock
         blackFrameToggle.Unchecked += (_, _) =>
             Publish(current with { BlackFrameInsertion = false });
         blackFrames.Children.Add(blackFrameToggle);
-        blackFrames.Children.Add(new TextBlock
-        {
-            Text = LocExtension.Get(EmulationResourceKeys.VideoBlackFrameCadence),
-            FontSize = 11,
-            Foreground = SystemColors.GrayTextBrush,
-            TextWrapping = TextWrapping.Wrap,
-            Margin = new Thickness(22, 4, 0, 0)
-        });
-        Grid.SetColumn(blackFrames, 1);
         choices.Children.Add(blackFrames);
         block.Children.Add(choices);
         return block;
@@ -103,38 +83,28 @@ internal static class EmulationTemporalEffectsSettingsBlock
         }
     }
 
-    private static FrameworkElement VerticalIntensity(string id, int value, Action<int> changed)
-    {
-        var column = new StackPanel
-        {
-            HorizontalAlignment = HorizontalAlignment.Center,
-            Margin = new Thickness(5, 0, 5, 0)
-        };
-        column.Children.Add(Label(id, TextAlignment.Center));
-        var slider = IntensitySlider(id, value, changed);
-        slider.Orientation = Orientation.Vertical;
-        slider.Height = 140;
-        slider.HorizontalAlignment = HorizontalAlignment.Center;
-        column.Children.Add(slider);
-        column.Children.Add(Value(value, slider));
-        return column;
-    }
-
     private static FrameworkElement HorizontalIntensity(string id, int value, Action<int> changed)
     {
-        var panel = new StackPanel { Margin = new Thickness(22, 8, 0, 0) };
-        panel.Children.Add(Label(id, TextAlignment.Left));
-        var row = new Grid();
-        row.ColumnDefinitions.Add(new ColumnDefinition());
+        var row = new Grid { Margin = new Thickness(0, 4, 0, 4) };
+        row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
         row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        row.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        row.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        var label = Label(id, TextAlignment.Left);
+        label.VerticalAlignment = VerticalAlignment.Center;
+        Grid.SetColumnSpan(label, 2);
+        row.Children.Add(label);
         var slider = IntensitySlider(id, value, changed);
-        slider.Margin = new Thickness(0, 3, 10, 0);
+        slider.Margin = new Thickness(0, 2, 10, 0);
+        Grid.SetRow(slider, 1);
         row.Children.Add(slider);
         var displayedValue = Value(value, slider);
+        displayedValue.VerticalAlignment = VerticalAlignment.Center;
+        displayedValue.Margin = new Thickness(0);
+        Grid.SetRow(displayedValue, 1);
         Grid.SetColumn(displayedValue, 1);
         row.Children.Add(displayedValue);
-        panel.Children.Add(row);
-        return panel;
+        return row;
     }
 
     private static Slider IntensitySlider(string id, int value, Action<int> changed)
@@ -160,7 +130,7 @@ internal static class EmulationTemporalEffectsSettingsBlock
             MinWidth = 30,
             TextAlignment = TextAlignment.Center,
             HorizontalAlignment = HorizontalAlignment.Center,
-            Margin = new Thickness(0, 6, 0, 0)
+            Margin = new Thickness(0)
         };
         slider.ValueChanged += (_, _) =>
             value.Text = ((int)slider.Value).ToString(CultureInfo.CurrentCulture);

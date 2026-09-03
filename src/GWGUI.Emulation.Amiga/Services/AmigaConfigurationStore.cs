@@ -1,4 +1,5 @@
 using System.Text.Json;
+using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Emulation.Amiga.Services;
 
@@ -30,9 +31,15 @@ public sealed class AmigaConfigurationStore
         {
             try
             {
-                await using var stream = new FileStream(path, FileMode.Open, FileAccess.Read,
-                    FileShare.ReadWrite | FileShare.Delete, 4096, FileOptions.Asynchronous);
-                var configuration = await JsonSerializer.DeserializeAsync<AmigaMachineConfiguration>(stream, JsonOptions, cancellationToken);
+                var json = await File.ReadAllTextAsync(path, cancellationToken).ConfigureAwait(false);
+                var configuration = JsonConfigurationRecoveryFunctions
+                    .DeserializeRemovingInvalidProperties(json, root =>
+                        root.Deserialize<AmigaMachineConfiguration>(JsonOptions)
+                        ?? throw new JsonException("The Amiga configuration is empty."),
+                        out var repairedJson);
+                if (!string.Equals(json, repairedJson, StringComparison.Ordinal))
+                    await JsonConfigurationRecoveryFunctions.WriteAtomicallyAsync(path, repairedJson,
+                        cancellationToken).ConfigureAwait(false);
                 if (configuration is not null && configuration.SchemaVersion is > 0 and <= 3)
                     configurations.Add(ResolvePaths(configuration.EnsureId()));
             }

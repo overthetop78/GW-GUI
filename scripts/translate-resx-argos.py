@@ -8,7 +8,8 @@ import re
 from pathlib import Path
 from xml.sax.saxutils import escape
 
-from argostranslate import translate
+from argostranslate import package
+import ctranslate2
 
 
 LANGUAGE_CODES = {
@@ -44,21 +45,30 @@ def main() -> None:
     parser.add_argument("resource")
     parser.add_argument("key")
     parser.add_argument("english")
+    parser.add_argument("--entry", nargs=2, action="append", default=[],
+        metavar=("KEY", "ENGLISH"), help="add another key in the same model-loading pass")
     parser.add_argument("--replace", action="store_true",
         help="replace the value when the key already exists")
     args = parser.parse_args()
     root = Path("src/GWGUI.App/Resources")
-    insert(root / "00-Base" / args.resource, args.key, args.english, args.replace)
-    insert(root / "en-US" / args.resource, args.key, args.english, args.replace)
-    installed = {language.code: language for language in translate.get_installed_languages()}
-    source = installed["en"]
+    entries = [(args.key, args.english), *[tuple(entry) for entry in args.entry]]
+    for key, english in entries:
+        insert(root / "00-Base" / args.resource, key, english, args.replace)
+        insert(root / "en-US" / args.resource, key, english, args.replace)
+    packages = {(item.from_code, item.to_code): item
+        for item in package.get_installed_packages() if item.type == "translate"}
     for culture, language_code in LANGUAGE_CODES.items():
-        destination = installed[language_code]
-        translation = source.get_translation(destination)
-        if translation is None:
+        installed_package = packages.get(("en", language_code))
+        if installed_package is None:
             raise RuntimeError(f"Missing Argos model en -> {language_code}")
-        value = translation.translate(args.english).strip()
-        insert(root / culture / args.resource, args.key, value, args.replace)
+        translator = ctranslate2.Translator(str(installed_package.package_path / "model"))
+        tokenizer = installed_package.tokenizer
+        source_tokens = [tokenizer.encode(english) for _, english in entries]
+        results = translator.translate_batch(source_tokens, beam_size=1)
+        translated_values = [tokenizer.decode(result.hypotheses[0]).strip()
+            for result in results]
+        for (key, _), value in zip(entries, translated_values):
+            insert(root / culture / args.resource, key, value, args.replace)
         print(culture, flush=True)
 
 
