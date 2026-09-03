@@ -782,7 +782,7 @@
   <data name="Emulation.Video.Parameter.CrtPatternIntensity"><value>Pattern intensity</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelTechnology"><value>Fixed-pixel technology</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelSubpixels"><value>Subpixel layout</value></data>
-  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Monochrome color (ARGB)</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Monochrome color</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelGridIntensity"><value>Pixel grid intensity</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPixelGap"><value>Inter-pixel gap</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelResponseTime"><value>Response time (ms)</value></data>
@@ -952,4 +952,5 @@
   <data name="Emulation.Video.Crt.ScanlinePhase.Quarter"><value>Phase 1/4</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>Phase 1/2</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>Phase 3/4</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>Backlight bleed</value></data>
 </root>

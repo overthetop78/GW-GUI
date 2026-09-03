@@ -1063,10 +1063,10 @@
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>عادية</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>عالية</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>منفذ الخرطوشة</value></data>
-  <data name='Emulation.Media.Insert' xml:space='preserve'>
+  <data name="Emulation.Media.Insert" xml:space="preserve">
     <value>إدخال وسيط</value>
   </data>
-  <data name='Emulation.Media.Eject' xml:space='preserve'>
+  <data name="Emulation.Media.Eject" xml:space="preserve">
     <value>إخراج الوسيط</value>
   </data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
@@ -1231,7 +1231,7 @@
   <data name="Emulation.Video.Parameter.FixedPixelBacklight"><value>كثافة الضوء الخلفي</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBlackDepth"><value>العمق الأسود</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelGridIntensity"><value>كثافة شبكات البريد</value></data>
-  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>لون مونوكروم (ARGB)</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>لون مونوكروم</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPersistence"><value>الثبات</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPixelGap"><value>الفجوة بين البريد</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelResponseTime"><value>وقت الاستجابة</value></data>
@@ -1417,4 +1417,5 @@
   <data name="Emulation.Video.Crt.ScanlinePhase.Quarter"><value>المرحلة 1/4</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>المرحلة 1/2</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>المرحلة 3/4</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>نزيف في الضوء الخلفي</value></data>
 </root>

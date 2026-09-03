@@ -1063,10 +1063,10 @@
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Низкое</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Нормальное</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Высокое</value></data>
-  <data name='Emulation.Media.Insert' xml:space='preserve'>
+  <data name="Emulation.Media.Insert" xml:space="preserve">
     <value>Вставить носитель</value>
   </data>
-  <data name='Emulation.Media.Eject' xml:space='preserve'>
+  <data name="Emulation.Media.Eject" xml:space="preserve">
     <value>Извлечь носитель</value>
   </data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
@@ -1231,7 +1231,7 @@
   <data name="Emulation.Video.Parameter.FixedPixelBacklight"><value>Интенсивность освещения</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBlackDepth"><value>Черная глубина</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelGridIntensity"><value>Интенсивность сетки пикселей</value></data>
-  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Монохромный цвет (ARGB)</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Монохромный цвет</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPersistence"><value>настойчивость</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPixelGap"><value>Межпиксельный разрыв</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelResponseTime"><value>Время отклика (мс)</value></data>
@@ -1417,4 +1417,5 @@
   <data name="Emulation.Video.Crt.ScanlinePhase.Quarter"><value>Фаза 1/4</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>Фаза 1/2</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>Фаза 3/4</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>Проблемное кровотечение</value></data>
 </root>

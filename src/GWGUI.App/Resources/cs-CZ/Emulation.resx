@@ -1063,10 +1063,10 @@
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normální</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Vysoká</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Slot pro kazetu ROM</value></data>
-  <data name='Emulation.Media.Insert' xml:space='preserve'>
+  <data name="Emulation.Media.Insert" xml:space="preserve">
     <value>Vložit médium</value>
   </data>
-  <data name='Emulation.Media.Eject' xml:space='preserve'>
+  <data name="Emulation.Media.Eject" xml:space="preserve">
     <value>Vysunout médium</value>
   </data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
@@ -1231,7 +1231,7 @@
   <data name="Emulation.Video.Parameter.FixedPixelBacklight"><value>Intenzita podsvícení</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBlackDepth"><value>Černá hloubka</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelGridIntensity"><value>Intenzita pixelské mřížky</value></data>
-  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Monochromní barva (ARGB)</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Monochromní barva</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPersistence"><value>Vytrvalost</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPixelGap"><value>Mezera mezi pixely</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelResponseTime"><value>Doba odezvy (ms)</value></data>
@@ -1417,4 +1417,5 @@
   <data name="Emulation.Video.Crt.ScanlinePhase.Quarter"><value>Fáze 1 / 4</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>Fáze 1 / 2</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>Fáze 3 / 4</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>Krvácení zezadu</value></data>
 </root>

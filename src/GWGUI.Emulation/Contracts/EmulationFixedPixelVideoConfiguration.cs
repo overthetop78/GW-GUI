@@ -12,4 +12,6 @@ public sealed record EmulationFixedPixelVideoConfiguration(
     int ResponseTimeMilliseconds = EmulationVideoProcessingDefaults.DurationMilliseconds,
     int PersistenceIntensity = EmulationVideoProcessingDefaults.Intensity,
     int? BacklightIntensity = null,
-    int? BlackDepth = null);
+    int? BlackDepth = null,
+    EmulationMonochromePalette MonochromePalette = EmulationMonochromePalette.Green,
+    int BacklightBleedIntensity = 25);

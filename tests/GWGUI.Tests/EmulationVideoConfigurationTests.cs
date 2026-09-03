@@ -150,6 +150,21 @@ public sealed class EmulationVideoConfigurationTests
     }
 
     [Fact]
+    public void FixedPixelLegacyArgbMigratesToTheNearestNamedPalette()
+    {
+        var normalized = EmulationVideoProcessingConfigurationFunctions.Normalize(new()
+        {
+            DisplayTechnology = EmulationVideoDisplayTechnology.FixedPixel,
+            FixedPixel = new(Subpixels: EmulationSubpixelLayout.Monochrome,
+                MonochromeColorArgb: 0xFF0060FF)
+        });
+
+        Assert.Equal(EmulationMonochromePalette.Blue,
+            normalized.FixedPixel.MonochromePalette);
+        Assert.Null(normalized.FixedPixel.MonochromeColorArgb);
+    }
+
+    [Fact]
     public async Task AmigaStore_RoundTripsVideoProcessing()
     {
         using var temporary = new TemporaryDirectory();
@@ -163,6 +178,30 @@ public sealed class EmulationVideoConfigurationTests
         Assert.Equal(expected.VideoProcessing, actual.VideoProcessing);
     }
 
+    [Fact]
+    public async Task AmigaStore_SerializesConcurrentReadsAndWrites()
+    {
+        using var temporary = new TemporaryDirectory();
+        var writer = new AmigaConfigurationStore(temporary.Path);
+        var reader = new AmigaConfigurationStore(temporary.Path);
+        var configuration = AmigaMachineConfiguration.A500(
+            System.IO.Path.Combine(temporary.Path, "kick.rom"));
+        await writer.SaveAsync(configuration);
+
+        var writing = Task.Run(async () =>
+        {
+            for (var index = 0; index < 20; index++)
+                await writer.SaveAsync(configuration with { AudioEnabled = index % 2 == 0 });
+        });
+        var reading = Task.Run(async () =>
+        {
+            for (var index = 0; index < 20; index++)
+                Assert.Single(await reader.LoadAllAsync());
+        });
+
+        await Task.WhenAll(writing, reading);
+        Assert.Single(await reader.LoadAllAsync());
+    }
     [Fact]
     public async Task AmigaStore_LoadsLegacyDocumentWithoutVideoProcessingAsNeutral()
     {

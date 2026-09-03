@@ -1063,10 +1063,10 @@
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normale</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Alta</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Slot cartuccia</value></data>
-  <data name='Emulation.Media.Insert' xml:space='preserve'>
+  <data name="Emulation.Media.Insert" xml:space="preserve">
     <value>Inserisci supporto</value>
   </data>
-  <data name='Emulation.Media.Eject' xml:space='preserve'>
+  <data name="Emulation.Media.Eject" xml:space="preserve">
     <value>Espelli supporto</value>
   </data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
@@ -1231,7 +1231,7 @@
   <data name="Emulation.Video.Parameter.FixedPixelBacklight"><value>Intensità della retroilluminazione</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBlackDepth"><value>Profondità nera</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelGridIntensity"><value>Intensità della griglia pixel</value></data>
-  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Colore monocromatico (ARGB)</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Colore monocromatico</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPersistence"><value>Persistenza</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPixelGap"><value>Inter-pixel gap</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelResponseTime"><value>Tempo di risposta (ms)</value></data>
@@ -1417,4 +1417,5 @@
   <data name="Emulation.Video.Crt.ScanlinePhase.Quarter"><value>Fase 1/4</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>Fase 1/2</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>Fase 3/4</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>Emorragia della luce</value></data>
 </root>

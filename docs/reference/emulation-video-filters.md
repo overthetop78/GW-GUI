@@ -299,26 +299,26 @@ technologie et les réglages communs. Un paramètre conditionnel n’est ajouté
 différence visuelle réelle, par exemple le rétroéclairage LCD/LED ou le niveau de noir OLED. Si une
 technologie ne justifie aucun réglage propre, elle reste une présélection du panneau commun.
 
-La référence CPU place la matrice dans les coordonnées des pixels source après redimensionnement :
-l’espace inter-pixels vaut `0..45 %` de chaque côté d’une cellule et la grille atténue cet espace de
-`0..100 %`. Les sous-pixels divisent chaque cellule en trois bandes ; RGB et BGR inversent leur
-ordre et atténuent les deux autres composantes jusqu’à `35 %`, pondérés par l’intensité de grille.
-Le mode monochrome calcule la luminance Rec. 709 linéaire et applique la teinte choisie ; sans teinte
-personnalisée, il utilise `#8FAA6A`. La netteté reste l’unique réglage général et s’exécute après ce
-modèle d’écran : aucun second réglage de netteté n’est ajouté au panneau pixels fixes. Une intensité
-de grille nulle neutralise la grille et les bandes RGB/BGR ; un espace nul neutralise les seuls
-interstices. Les coordonnées restent stables aux échelles non entières.
+La référence CPU et les shaders placent la matrice dans les coordonnées logiques de la frame
+émulée (Processing.zw) et non dans celles des pixels physiques de l’écran. Le redimensionnement
+ne change donc ni le nombre de cellules simulées ni leur phase. L’espace inter-pixels règle la
+largeur géométrique de l’interstice ; l’intensité de grille règle séparément son obscurcissement,
+avec des bords adoucis pour éviter une grille dure. Les sous-pixels RGB et BGR divisent chaque
+cellule en trois bandes et inversent leur ordre avec une atténuation de 42 %, indépendamment de la
+grille. Le mode monochrome calcule la luminance Rec. 709 linéaire et propose une palette explicite
+vert, gris, ambre, bleu ou blanc ; aucune saisie ARGB n’est présentée à l’utilisateur.
 
-Sur GPU, la netteté générale calcule son voisinage sur l’image ajustée avant le modèle d’écran, puis
-combine ce résultat avec le pixel du modèle. Cela évite que le compilateur déroule neuf fois les
-passes de diffusion ou de halo ; à `0`, valeur utilisée par les présélections, aucun voisinage
-supplémentaire n’est évalué. La référence CPU conserve son ordre séquentiel exact.
-
-Les paramètres conditionnels initiaux restent limités à ceux dont la différence est visible et
-validée. Pour LCD et LCD/LED, un rétroéclairage présent applique un gain linéaire de `0,5..1` ; une
-valeur absente est neutre. OLED ignore ce champ même s’il provient d’un ancien fichier. La profondeur
-du noir présente ajoute un plancher linéaire allant de `0,12` à `0` lorsque sa valeur passe de
-`0..100` ; absente, elle est neutre. Aucun autre réglage propre à LCD, LCD/LED ou OLED n’est ajouté.
+Les trois technologies emploient des modèles distincts. Le LCD transmissif conserve un plancher
+noir gris, un rétroéclairage diffus et un halo doux. Le LCD rétroéclairé par LED possède un plancher
+plus bas, une luminance de pointe supérieure et un halo local plus marqué autour des zones
+lumineuses. L’OLED est émissif : il n’expose aucun rétroéclairage, garde le plancher noir le plus
+bas, applique une courbe de contraste propre et ne diffuse pas les zones lumineuses. Le curseur de
+profondeur des noirs contrôle le plancher propre à chaque technologie ; les valeurs absentes des
+anciens fichiers sont résolues en valeurs caractéristiques (LCD 35, LCD/LED 55, OLED 100). Le
+rétroéclairage est résolu à 65 pour LCD et 80 pour LCD/LED lorsqu’un ancien fichier ne contient pas
+la valeur. Le halo de rétroéclairage est une passe bornée fondée sur les quatre cellules voisines
+et vaut 25 par défaut. Ces opérations existent dans la référence CPU, OpenGL et le shader portable
+Vulkan/Direct3D 11.
 
 La rémanence et le temps de réponse sont placés dans ce panneau. Le désentrelacement n’est pas une
 option LCD : il reste un traitement indépendant, ou une option interne du moteur lorsque celui-ci

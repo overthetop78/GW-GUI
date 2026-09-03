@@ -1063,10 +1063,10 @@
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normaali</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Korkea</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Kasettipaikka</value></data>
-  <data name='Emulation.Media.Insert' xml:space='preserve'>
+  <data name="Emulation.Media.Insert" xml:space="preserve">
     <value>Aseta media</value>
   </data>
-  <data name='Emulation.Media.Eject' xml:space='preserve'>
+  <data name="Emulation.Media.Eject" xml:space="preserve">
     <value>Poista media</value>
   </data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
@@ -1231,7 +1231,7 @@
   <data name="Emulation.Video.Parameter.FixedPixelBacklight"><value>Taustavalon voimakkuus</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBlackDepth"><value>Musta syvyys</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelGridIntensity"><value>Pikselin ruudukkointensiteetti</value></data>
-  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Yksivärinen (ARGB)</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Yksivärinen</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPersistence"><value>Pysyvyys</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPixelGap"><value>Pixelin välinen väli</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelResponseTime"><value>Vasteaika (ms)</value></data>
@@ -1417,4 +1417,5 @@
   <data name="Emulation.Video.Crt.ScanlinePhase.Quarter"><value>Vaihe 1/4</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>Vaihe 1/2</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>Vaihe 3/4</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>Takavalon vuoto</value></data>
 </root>

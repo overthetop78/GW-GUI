@@ -1063,10 +1063,10 @@
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>低</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>正常</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>高</value></data>
-  <data name='Emulation.Media.Insert' xml:space='preserve'>
+  <data name="Emulation.Media.Insert" xml:space="preserve">
     <value>插入媒体</value>
   </data>
-  <data name='Emulation.Media.Eject' xml:space='preserve'>
+  <data name="Emulation.Media.Eject" xml:space="preserve">
     <value>弹出媒体</value>
   </data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
@@ -1231,7 +1231,7 @@
   <data name="Emulation.Video.Parameter.FixedPixelBacklight"><value>背光强度</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBlackDepth"><value>黑色深度</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelGridIntensity"><value>像素网格强度</value></data>
-  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>单色 (ARGB)</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>单色</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPersistence"><value>持久性</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPixelGap"><value>像素间隙</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelResponseTime"><value>答复时间(毫秒)</value></data>
@@ -1417,4 +1417,5 @@
   <data name="Emulation.Video.Crt.ScanlinePhase.Quarter"><value>第1/4阶段</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>第1/2阶段</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>第3/4阶段</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>后光会流血</value></data>
 </root>

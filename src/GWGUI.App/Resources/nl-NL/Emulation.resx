@@ -1063,10 +1063,10 @@
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normaal</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Hoog</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Cartridgesleuf</value></data>
-  <data name='Emulation.Media.Insert' xml:space='preserve'>
+  <data name="Emulation.Media.Insert" xml:space="preserve">
     <value>Medium plaatsen</value>
   </data>
-  <data name='Emulation.Media.Eject' xml:space='preserve'>
+  <data name="Emulation.Media.Eject" xml:space="preserve">
     <value>Medium uitwerpen</value>
   </data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
@@ -1231,7 +1231,7 @@
   <data name="Emulation.Video.Parameter.FixedPixelBacklight"><value>Backlight intensiteit</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBlackDepth"><value>Zwarte diepte</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelGridIntensity"><value>Pixelnetintensiteit</value></data>
-  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Monochrome kleur (ARGB)</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Monochrome kleur</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPersistence"><value>Persistentie</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPixelGap"><value>Interpixelkloof</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelResponseTime"><value>Responstijd (ms)</value></data>
@@ -1417,4 +1417,5 @@
   <data name="Emulation.Video.Crt.ScanlinePhase.Quarter"><value>Fase 1/4</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>Fase 1/2</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>Fase 3/4</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>Bloeding in de achtergrondverlichting</value></data>
 </root>

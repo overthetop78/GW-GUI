@@ -489,11 +489,10 @@ public sealed class EmulationVideoSettingsSectionTests
                     id == EmulationVideoProcessingCatalog.FixedPixelTechnology);
                 Assert.Contains(EmulationVideoProcessingCatalog.FixedPixelGridIntensity, ids);
                 Assert.Contains(EmulationVideoProcessingCatalog.FixedPixelBlackDepth, ids);
-                Assert.Contains(EmulationVideoProcessingCatalog.FixedPixelBlackDepth + "Enabled", ids);
                 Assert.Equal(technology != EmulationFixedPixelTechnology.Oled,
                     ids.Contains(EmulationVideoProcessingCatalog.FixedPixelBacklight));
                 Assert.Equal(technology != EmulationFixedPixelTechnology.Oled,
-                    ids.Contains(EmulationVideoProcessingCatalog.FixedPixelBacklight + "Enabled"));
+                    ids.Contains(EmulationVideoProcessingCatalog.FixedPixelBacklightBleed));
                 Assert.DoesNotContain(EmulationVideoProcessingCatalog.CrtBeamWidth, ids);
                 Assert.DoesNotContain(EmulationVideoProcessingCatalog.PlasmaCellStructure, ids);
                 Assert.DoesNotContain(EmulationVideoProcessingCatalog.VectorLineThreshold, ids);

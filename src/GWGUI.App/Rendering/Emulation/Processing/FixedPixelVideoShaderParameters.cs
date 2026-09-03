@@ -16,7 +16,7 @@ internal readonly record struct FixedPixelVideoShaderParameters(
         double elapsedMilliseconds = 0)
     {
         var fixedPixel = configuration.FixedPixel;
-        var tint = LinearTint(fixedPixel.MonochromeColorArgb ?? 0xFF8FAA6Au);
+        var tint = FilterFixedPixelSubpixels.Tint(fixedPixel.MonochromePalette);
         return new FixedPixelVideoShaderParameters(
             new Vector4(
                 configuration.DisplayTechnology == EmulationVideoDisplayTechnology.FixedPixel
@@ -24,19 +24,23 @@ internal readonly record struct FixedPixelVideoShaderParameters(
                 (float)fixedPixel.Technology,
                 (float)fixedPixel.Subpixels,
                 fixedPixel.GridIntensity / 100f),
-            new Vector4(fixedPixel.PixelGap / 100f, tint.X, tint.Y, tint.Z),
-            new Vector4(OptionalRatio(fixedPixel.BacklightIntensity),
-                OptionalRatio(fixedPixel.BlackDepth), 0f, 0f),
+            new Vector4(fixedPixel.PixelGap / 100f, tint.Red, tint.Green, tint.Blue),
+            new Vector4(ResolvedBacklight(fixedPixel),
+                ResolvedBlackDepth(fixedPixel), fixedPixel.BacklightBleedIntensity / 100f, 0f),
             new Vector4(fixedPixel.ResponseTimeMilliseconds,
                 fixedPixel.PersistenceIntensity / 100f,
                 hasHistory ? 1f : 0f,
                 (float)Math.Max(0, elapsedMilliseconds)));
     }
 
-    private static Vector3 LinearTint(uint argb) => new(
-        SoftwareEmulationVideoProcessingPipeline.SrgbToLinear(((argb >> 16) & 0xff) / 255f),
-        SoftwareEmulationVideoProcessingPipeline.SrgbToLinear(((argb >> 8) & 0xff) / 255f),
-        SoftwareEmulationVideoProcessingPipeline.SrgbToLinear((argb & 0xff) / 255f));
+    private static float ResolvedBacklight(EmulationFixedPixelVideoConfiguration value) =>
+        (value.BacklightIntensity ?? (value.Technology == EmulationFixedPixelTechnology.Lcd ? 65 : 80)) / 100f;
 
-    private static float OptionalRatio(int? value) => value is null ? -1f : value.Value / 100f;
+    private static float ResolvedBlackDepth(EmulationFixedPixelVideoConfiguration value) =>
+        (value.BlackDepth ?? value.Technology switch
+        {
+            EmulationFixedPixelTechnology.Lcd => 35,
+            EmulationFixedPixelTechnology.LedBacklitLcd => 55,
+            _ => 100
+        }) / 100f;
 }

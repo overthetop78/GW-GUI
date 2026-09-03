@@ -1063,10 +1063,10 @@
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Låg</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normal</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Hög</value></data>
-  <data name='Emulation.Media.Insert' xml:space='preserve'>
+  <data name="Emulation.Media.Insert" xml:space="preserve">
     <value>Sätt i media</value>
   </data>
-  <data name='Emulation.Media.Eject' xml:space='preserve'>
+  <data name="Emulation.Media.Eject" xml:space="preserve">
     <value>Mata ut media</value>
   </data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
@@ -1231,7 +1231,7 @@
   <data name="Emulation.Video.Parameter.FixedPixelBacklight"><value>Backlight Intensity</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBlackDepth"><value>Svart djup</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelGridIntensity"><value>Pixel elnät intensitet</value></data>
-  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Monokrom färg (ARGB)</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Monokrom färg</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPersistence"><value>Persistens</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPixelGap"><value>Interpixel gap</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelResponseTime"><value>Svarstid (ms)</value></data>
@@ -1417,4 +1417,5 @@
   <data name="Emulation.Video.Crt.ScanlinePhase.Quarter"><value>Fas 1/4</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>Fas 1/2</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>Fas 3/4</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>Backlight blödning</value></data>
 </root>

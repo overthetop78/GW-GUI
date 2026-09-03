@@ -434,49 +434,9 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
             value => SetCrt(_configuration.Crt with { PatternIntensity = value }));
     }
 
-    private FrameworkElement CreateFixedPixelPanel()
-    {
-        var fixedPixel = _configuration.FixedPixel;
-        var panel = Section(EmulationResourceKeys.VideoTechnologyFixedPixel);
-        panel.Children.Add(ChoiceField(ParameterKey(EmulationVideoProcessingCatalog.FixedPixelTechnology),
-            EmulationVideoProcessingCatalog.FixedPixelTechnologyResourceKeys, fixedPixel.Technology,
-            value =>
-            {
-                SetFixedPixel(_configuration.FixedPixel with { Technology = value });
-                RebuildContent();
-            }, EmulationVideoProcessingCatalog.FixedPixelTechnology));
-        panel.Children.Add(ChoiceField(ParameterKey(EmulationVideoProcessingCatalog.FixedPixelSubpixels),
-            EmulationVideoProcessingCatalog.SubpixelLayoutResourceKeys, fixedPixel.Subpixels,
-            value =>
-            {
-                SetFixedPixel(_configuration.FixedPixel with { Subpixels = value });
-                RebuildContent();
-            }, EmulationVideoProcessingCatalog.FixedPixelSubpixels));
-        if (fixedPixel.Subpixels == EmulationSubpixelLayout.Monochrome)
-            AddArgb(panel, EmulationVideoProcessingCatalog.FixedPixelMonochromeColor,
-                fixedPixel.MonochromeColorArgb,
-                value => SetFixedPixel(_configuration.FixedPixel with { MonochromeColorArgb = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.FixedPixelGridIntensity,
-            fixedPixel.GridIntensity, value => SetFixedPixel(_configuration.FixedPixel with { GridIntensity = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.FixedPixelPixelGap,
-            fixedPixel.PixelGap, value => SetFixedPixel(_configuration.FixedPixel with { PixelGap = value }));
-        AddSlider(panel, EmulationVideoProcessingCatalog.FixedPixelResponseTime,
-            fixedPixel.ResponseTimeMilliseconds,
-            EmulationVideoProcessingLimits.DurationMinimumMilliseconds,
-            EmulationVideoProcessingLimits.DurationMaximumMilliseconds,
-            value => SetFixedPixel(_configuration.FixedPixel with { ResponseTimeMilliseconds = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.FixedPixelPersistence,
-            fixedPixel.PersistenceIntensity,
-            value => SetFixedPixel(_configuration.FixedPixel with { PersistenceIntensity = value }));
-        if (fixedPixel.Technology is EmulationFixedPixelTechnology.Lcd
-            or EmulationFixedPixelTechnology.LedBacklitLcd)
-            AddOptionalIntensity(panel, EmulationVideoProcessingCatalog.FixedPixelBacklight,
-                fixedPixel.BacklightIntensity,
-                value => SetFixedPixel(_configuration.FixedPixel with { BacklightIntensity = value }));
-        AddOptionalIntensity(panel, EmulationVideoProcessingCatalog.FixedPixelBlackDepth,
-            fixedPixel.BlackDepth, value => SetFixedPixel(_configuration.FixedPixel with { BlackDepth = value }));
-        return panel;
-    }
+    private FrameworkElement CreateFixedPixelPanel() =>
+        EmulationFixedPixelSettingsBlock.Create(_configuration.FixedPixel,
+            SetFixedPixel, RebuildContent);
 
     private FrameworkElement CreatePlasmaPanel()
     {

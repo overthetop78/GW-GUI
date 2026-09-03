@@ -1063,10 +1063,10 @@
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>보통</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>높음</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>카트리지 슬롯</value></data>
-  <data name='Emulation.Media.Insert' xml:space='preserve'>
+  <data name="Emulation.Media.Insert" xml:space="preserve">
     <value>미디어 삽입</value>
   </data>
-  <data name='Emulation.Media.Eject' xml:space='preserve'>
+  <data name="Emulation.Media.Eject" xml:space="preserve">
     <value>미디어 꺼내기</value>
   </data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
@@ -1231,7 +1231,7 @@
   <data name="Emulation.Video.Parameter.FixedPixelBacklight"><value>백라이트 강도</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBlackDepth"><value>검정 깊이</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelGridIntensity"><value>픽셀 그리드 강도</value></data>
-  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>모노크롬 색깔 (ARGB)</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>모노크롬 색깔</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPersistence"><value>회사 소개</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPixelGap"><value>인터 픽셀 간격</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelResponseTime"><value>응답 시간 (ms)</value></data>
@@ -1417,4 +1417,5 @@
   <data name="Emulation.Video.Crt.ScanlinePhase.Quarter"><value>단계 1/4</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>단계 1/2</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>단계 3/4</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>백라이트 bleed</value></data>
 </root>

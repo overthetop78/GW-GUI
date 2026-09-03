@@ -386,55 +386,40 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
             return crtPalette(center);
         }
 
+        """ + FilterFixedPixelSubpixels.Shader + FilterFixedPixelGrid.Shader
+        + FilterLcdDisplay.Shader + FilterLedBacklitLcdDisplay.Shader + FilterOledDisplay.Shader
+        + FilterFixedPixelResponse.Shader + FilterFixedPixelPersistence.Shader + """
         vec3 fixedPixel(vec3 color, vec2 uv)
         {
-            vec2 sourcePosition = uv * Processing.zw;
-            vec2 fraction = fract(sourcePosition);
-            int subpixels = int(FixedDisplay.z + 0.5);
-            if (subpixels == 0)
+            vec2 fraction=fract(uv*Processing.zw);
+            color=filterFixedPixelSubpixels(color,fraction,FixedDisplay.z,FixedSpatial.yzw);
+            color=filterFixedPixelGrid(color,fraction,FixedDisplay.w,FixedSpatial.x);
+            int technology=int(FixedDisplay.y+.5);
+            if(technology<2)
             {
-                float luminance = dot(color, vec3(0.2126, 0.7152, 0.0722));
-                color = luminance * FixedSpatial.yzw;
+                vec2 stepSize=1.0/max(Processing.zw,vec2(1.0));
+                vec3 neighbour=(adjustColor(sampleConfigured(uv-vec2(stepSize.x,0.0)).rgb)
+                    +adjustColor(sampleConfigured(uv+vec2(stepSize.x,0.0)).rgb)
+                    +adjustColor(sampleConfigured(uv-vec2(0.0,stepSize.y)).rgb)
+                    +adjustColor(sampleConfigured(uv+vec2(0.0,stepSize.y)).rgb))*.25;
+                float light=max(neighbour.r,max(neighbour.g,neighbour.b));
+                color=technology==0
+                    ?filterLcdDisplay(color,FixedTechnology.x,FixedTechnology.y,FixedTechnology.z,light)
+                    :filterLedBacklitLcdDisplay(color,FixedTechnology.x,FixedTechnology.y,FixedTechnology.z,light);
             }
-            else if (FixedDisplay.w > 0.0)
-            {
-                int selected = int(floor(min(2.0, fraction.x * 3.0)));
-                if (subpixels == 2) selected = 2 - selected;
-                float attenuation = FixedDisplay.w * 0.35;
-                for (int channel = 0; channel < 3; channel++)
-                    if (channel != selected) color[channel] *= 1.0 - attenuation;
-            }
-
-            float halfGap = FixedSpatial.x * 0.45;
-            if (FixedDisplay.w > 0.0 && halfGap > 0.0)
-            {
-                vec2 distanceToEdge = min(fraction, 1.0 - fraction);
-                float edge = min(distanceToEdge.x, distanceToEdge.y);
-                if (edge < halfGap)
-                    color *= 1.0 - FixedDisplay.w * (1.0 - edge / halfGap);
-            }
-
-            if (FixedDisplay.y < 1.5 && FixedTechnology.x >= 0.0)
-                color *= 0.5 + FixedTechnology.x * 0.5;
-            if (FixedTechnology.y >= 0.0)
-            {
-                float blackFloor = (1.0 - FixedTechnology.y) * 0.12;
-                color = vec3(blackFloor) + color * (1.0 - blackFloor);
-            }
-            return clamp(color, 0.0, 1.0);
+            else color=filterOledDisplay(color,FixedTechnology.y);
+            return clamp(color,0.0,1.0);
         }
 
         vec3 fixedPixelWithHistory(vec3 color, vec2 uv)
         {
-            color = fixedPixel(color, uv);
-            if (FixedTemporal.z < 0.5) return color;
-            vec3 previous = texture2D(History,
-                clamp(uv, 0.5 / Processing.zw, 1.0 - 0.5 / Processing.zw)).rgb;
-            previous = fixedPixel(adjustColor(previous), uv);
-            float response = FixedTemporal.x <= 0.0 ? 1.0
-                : 1.0 - exp(-FixedTemporal.w / FixedTemporal.x);
-            color = mix(previous, color, response);
-            return clamp(max(color, previous * FixedTemporal.y), 0.0, 1.0);
+            color=fixedPixel(color,uv);
+            if(FixedTemporal.z<.5)return color;
+            vec3 previous=texture2D(History,
+                clamp(uv,.5/Processing.zw,1.0-.5/Processing.zw)).rgb;
+            previous=fixedPixel(adjustColor(previous),uv);
+            color=filterFixedPixelResponse(previous,color,FixedTemporal.x,FixedTemporal.w);
+            return filterFixedPixelPersistence(color,previous,FixedTemporal.y);
         }
 
         float plasmaBayer(vec2 pixel)

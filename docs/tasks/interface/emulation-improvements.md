@@ -2959,6 +2959,15 @@ Chaque dernière case ci-dessous est une modification atomique. Elle doit laisse
   - [x] Ajouter uniquement les paramètres conditionnels dont une différence LCD/LED/OLED a été documentée et validée.
   - [x] Implémenter rémanence et temps de réponse avec historique borné, sans les présenter comme désentrelacement.
   - [x] Porter les passes vers Veldrid et OpenGL, ajouter les tests déterministes et vérifier les quatre renderers avant de cocher le groupe.
+  - [x] Reprendre le modèle après la validation visuelle signalant des contrôles sans effet.
+    - [x] Extraire l’interface dans EmulationFixedPixelSettingsBlock.cs et regrouper type d’écran, structure des pixels, lumière/contraste et réponse temporelle dans quatre cartes qui restent dans la largeur disponible.
+    - [x] Remplacer la saisie ARGB du monochrome par la palette commune vert, gris, ambre, bleu et blanc, en réutilisant les traductions existantes.
+    - [x] Séparer grille, sous-pixels, lumière commune, LCD, LCD rétroéclairé LED, OLED, temps de réponse et persistance dans des fichiers Filter… propres à leur responsabilité.
+    - [x] Calculer grille et sous-pixels dans les coordonnées de la frame fournie par l’émulateur, indépendamment de la définition physique de l’écran.
+    - [x] Donner à LCD, LCD/LED et OLED des courbes différentes de rétroéclairage, plancher noir, halo local et contraste, sans afficher de rétroéclairage pour OLED.
+    - [x] Raccorder temps de réponse et persistance au chemin Vulkan/Direct3D 11, où leurs paramètres étaient transmis mais non consommés.
+    - [x] Regrouper les changements rapides des contrôles vidéo avant autosauvegarde et sérialiser la lecture/remplacement de machine.json entre instances.
+    - [x] Ajouter les tests de distinction des technologies, palette monochrome, disposition conditionnelle, compilation SPIR-V, OpenGL, Direct3D 11 et concurrence de sauvegarde.
 
 - [x] Implémenter Plasma après les écrans à pixels fixes
   - [x] Faire valider les paramètres exacts de cellules, diffusion, tramage temporel et rémanence, puis les inscrire dans docs/reference/emulation-video-filters.md.

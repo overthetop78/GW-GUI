@@ -1063,10 +1063,10 @@
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normal</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Høj</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Kassetteport</value></data>
-  <data name='Emulation.Media.Insert' xml:space='preserve'>
+  <data name="Emulation.Media.Insert" xml:space="preserve">
     <value>Indsæt medie</value>
   </data>
-  <data name='Emulation.Media.Eject' xml:space='preserve'>
+  <data name="Emulation.Media.Eject" xml:space="preserve">
     <value>Skub medie ud</value>
   </data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
@@ -1231,7 +1231,7 @@
   <data name="Emulation.Video.Parameter.FixedPixelBacklight"><value>Baglysstyrke</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBlackDepth"><value>Sort dybde</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelGridIntensity"><value>Pixel gitterintensitet</value></data>
-  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Monokrom farve (ARGB)</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Monokrom farve</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPersistence"><value>Persistens</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPixelGap"><value>Inter- pixelmellemrum</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelResponseTime"><value>Responstid (ms)</value></data>
@@ -1417,4 +1417,5 @@
   <data name="Emulation.Video.Crt.ScanlinePhase.Quarter"><value>Fase 1 / 4</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>Fase 1 / 2</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>Fase 3 / 4</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>Blødning af baglyslygter</value></data>
 </root>

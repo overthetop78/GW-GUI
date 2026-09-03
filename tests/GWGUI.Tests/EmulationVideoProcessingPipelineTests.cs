@@ -1310,7 +1310,7 @@ public sealed class EmulationVideoProcessingPipelineTests
             Subpixels: EmulationSubpixelLayout.Monochrome));
         var customBlue = Process(new EmulationFixedPixelVideoConfiguration(
             Subpixels: EmulationSubpixelLayout.Monochrome,
-            MonochromeColorArgb: 0xFF0000FFu));
+            MonochromePalette: EmulationMonochromePalette.Blue));
         var sharp = Process(new EmulationFixedPixelVideoConfiguration(
             Subpixels: EmulationSubpixelLayout.Rgb, GridIntensity: 70, PixelGap: 40), 10);
 
@@ -1353,8 +1353,8 @@ public sealed class EmulationVideoProcessingPipelineTests
             .SequenceEqual(Process(EmulationFixedPixelTechnology.Oled, null, 100)));
         Assert.False(Process(EmulationFixedPixelTechnology.Lcd, null, 0)
             .SequenceEqual(Process(EmulationFixedPixelTechnology.Lcd, null, 100)));
-        Assert.Equal(Process(EmulationFixedPixelTechnology.Lcd, null, null),
-            Process(EmulationFixedPixelTechnology.LedBacklitLcd, null, null));
+        Assert.False(Process(EmulationFixedPixelTechnology.Lcd, null, null)
+            .SequenceEqual(Process(EmulationFixedPixelTechnology.LedBacklitLcd, null, null)));
     }
 
     [Fact]
@@ -1369,6 +1369,9 @@ public sealed class EmulationVideoProcessingPipelineTests
             {
                 DisplayTechnology = EmulationVideoDisplayTechnology.FixedPixel,
                 FixedPixel = new EmulationFixedPixelVideoConfiguration(
+                    Technology: EmulationFixedPixelTechnology.Oled,
+                    Subpixels: EmulationSubpixelLayout.Monochrome,
+                    MonochromePalette: EmulationMonochromePalette.White,
                     ResponseTimeMilliseconds: response, PersistenceIntensity: persistence)
             };
         static byte Channel(SoftwareEmulationVideoProcessingPipeline pipeline,

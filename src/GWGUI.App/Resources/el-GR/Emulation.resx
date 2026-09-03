@@ -1063,10 +1063,10 @@
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Κανονική</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Υψηλή</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Υποδοχή κασέτας ROM</value></data>
-  <data name='Emulation.Media.Insert' xml:space='preserve'>
+  <data name="Emulation.Media.Insert" xml:space="preserve">
     <value>Εισαγωγή μέσου</value>
   </data>
-  <data name='Emulation.Media.Eject' xml:space='preserve'>
+  <data name="Emulation.Media.Eject" xml:space="preserve">
     <value>Εξαγωγή μέσου</value>
   </data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
@@ -1231,7 +1231,7 @@
   <data name="Emulation.Video.Parameter.FixedPixelBacklight"><value>Ένταση οπισθοφωτισμού</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBlackDepth"><value>Βάθος μαύρου</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelGridIntensity"><value>Ένταση καννάβου εικονοστοιχείου</value></data>
-  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Μονόχρωμο χρώμα (ARGB)</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Μονόχρωμο χρώμα</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPersistence"><value>Επιμονή</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPixelGap"><value>Διάκενο μεταξύ pixel</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelResponseTime"><value>Χρόνος απόκρισης (ms)</value></data>
@@ -1417,4 +1417,5 @@
   <data name="Emulation.Video.Crt.ScanlinePhase.Quarter"><value>Φάση 1/4</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>Φάση 1/2</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>Φάση 3/ 4</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>Αιμορραγία από το πίσω φανάρι</value></data>
 </root>

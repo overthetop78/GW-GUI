@@ -31,7 +31,8 @@ public sealed class AmigaConfigurationStore
         {
             try
             {
-                var json = await File.ReadAllTextAsync(path, cancellationToken).ConfigureAwait(false);
+                cancellationToken.ThrowIfCancellationRequested();
+                var json = ReadAllText(path);
                 var configuration = JsonConfigurationRecoveryFunctions
                     .DeserializeRemovingInvalidProperties(json, root =>
                         root.Deserialize<AmigaMachineConfiguration>(JsonOptions)
@@ -73,6 +74,27 @@ public sealed class AmigaConfigurationStore
         }
     }
 
+    private static string ReadAllText(string path)
+    {
+        var lockTaken = false;
+        try
+        {
+            try
+            {
+                SaveMutex.WaitOne();
+                lockTaken = true;
+            }
+            catch (AbandonedMutexException)
+            {
+                lockTaken = true;
+            }
+            return File.ReadAllText(path);
+        }
+        finally
+        {
+            if (lockTaken) SaveMutex.ReleaseMutex();
+        }
+    }
     private static void ReplaceFile(string source, string target)
     {
         var lockTaken = false;

@@ -61,6 +61,7 @@ public static class EmulationVideoProcessingCatalog
     public const string FixedPixelResponseTime = nameof(FixedPixelResponseTime);
     public const string FixedPixelPersistence = nameof(FixedPixelPersistence);
     public const string FixedPixelBacklight = nameof(FixedPixelBacklight);
+    public const string FixedPixelBacklightBleed = nameof(FixedPixelBacklightBleed);
     public const string FixedPixelBlackDepth = nameof(FixedPixelBlackDepth);
     public const string PlasmaCellStructure = nameof(PlasmaCellStructure);
     public const string PlasmaDiffusion = nameof(PlasmaDiffusion);
@@ -123,7 +124,7 @@ public static class EmulationVideoProcessingCatalog
         CrtPatternFrequency, CrtPatternPhase, CrtPatternIntensity,
         FixedPixelTechnology, FixedPixelSubpixels, FixedPixelMonochromeColor,
         FixedPixelGridIntensity, FixedPixelPixelGap, FixedPixelResponseTime,
-        FixedPixelPersistence, FixedPixelBacklight, FixedPixelBlackDepth,
+        FixedPixelPersistence, FixedPixelBacklight, FixedPixelBacklightBleed, FixedPixelBlackDepth,
         PlasmaCellStructure, PlasmaDiffusion, PlasmaTemporalDithering, PlasmaPersistence,
         VectorLineThreshold, VectorLineIntensity, VectorHaloIntensity, VectorPersistence,
         VfdColor, VfdPhosphorIntensity, VfdHaloIntensity, VfdPersistence,
@@ -182,6 +183,16 @@ public static class EmulationVideoProcessingCatalog
 
     public static IReadOnlyDictionary<EmulationFixedPixelTechnology, string> FixedPixelTechnologyResourceKeys { get; }
         = ResourceKeys("FixedPixel.Technology", Enum.GetValues<EmulationFixedPixelTechnology>());
+
+    public static IReadOnlyDictionary<EmulationMonochromePalette, string> MonochromePaletteResourceKeys { get; }
+        = new Dictionary<EmulationMonochromePalette, string>
+        {
+            [EmulationMonochromePalette.Green] = "Emulation.Video.DotMatrix.Palette.Green",
+            [EmulationMonochromePalette.Gray] = "Emulation.Video.DotMatrix.Palette.Gray",
+            [EmulationMonochromePalette.Amber] = "Emulation.Video.DotMatrix.Palette.Amber",
+            [EmulationMonochromePalette.Blue] = "Emulation.Video.DotMatrix.Palette.Blue",
+            [EmulationMonochromePalette.White] = "Emulation.Video.SegmentDisplay.Color.White"
+        };
 
     public static IReadOnlyDictionary<EmulationVideoPreset, string> PresetResourceKeys { get; }
         = ResourceKeys("Preset", Enum.GetValues<EmulationVideoPreset>());
@@ -250,9 +261,9 @@ public static class EmulationVideoProcessingCatalog
             [CrtPatternOrientation] = EmulationPatternOrientation.Horizontal,
             [CrtPatternFrequency] = 0, [CrtPatternPhase] = 0, [CrtPatternIntensity] = 0,
             [FixedPixelTechnology] = EmulationFixedPixelTechnology.Lcd,
-            [FixedPixelSubpixels] = EmulationSubpixelLayout.Rgb, [FixedPixelMonochromeColor] = null,
+            [FixedPixelSubpixels] = EmulationSubpixelLayout.Rgb, [FixedPixelMonochromeColor] = EmulationMonochromePalette.Green,
             [FixedPixelGridIntensity] = 0, [FixedPixelPixelGap] = 0, [FixedPixelResponseTime] = 0,
-            [FixedPixelPersistence] = 0, [FixedPixelBacklight] = null, [FixedPixelBlackDepth] = null,
+            [FixedPixelPersistence] = 0, [FixedPixelBacklight] = null, [FixedPixelBacklightBleed] = 25, [FixedPixelBlackDepth] = null,
             [PlasmaCellStructure] = 0, [PlasmaDiffusion] = 0, [PlasmaTemporalDithering] = 0,
             [PlasmaPersistence] = 0, [VectorLineThreshold] = 0, [VectorLineIntensity] = 0,
             [VectorHaloIntensity] = 0, [VectorPersistence] = 0,

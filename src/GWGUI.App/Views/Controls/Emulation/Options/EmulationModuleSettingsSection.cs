@@ -42,6 +42,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
     private IEmulationConfiguration _configuration;
     private bool _loading;
     private readonly SemaphoreSlim _saveInputGate = new(1, 1);
+    private readonly EmulationConfigurationSaveDebouncer _videoSaveDebouncer = new();
     private EmulationMachineTab _selectedTab = EmulationMachineTab.General;
 
     internal EmulationModuleSettingsSection(IEmulationModule module)
@@ -77,14 +78,18 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
             _storageSettings.SettingsChanged += async (_, _) => await ExecuteUserChangeAsync();
         }
         _machines.SelectionChanged += MachineChanged;
-        _videoProcessing.ConfigurationChanged += async (_, _) =>
+        _videoProcessing.ConfigurationChanged += (_, _) =>
         {
             _configuration = _module.ApplyVideoProcessing(_configuration,
                 _videoProcessing.Configuration);
-            await ExecuteUserChangeAsync();
+            _videoSaveDebouncer.Schedule(ApplyUserChangeAsync, error =>
+                ControlErrorPresenter.ShowEmulation(this, error,
+                    ControlErrorContexts.EmulationConfigurationManagement,
+                    LocExtension.Get(_module.DisplayResourceKey)));
         };
         Content = BuildEditor();
         Loaded += async (_, _) => await ExecuteAsync(ReloadAsync);
+        Unloaded += (_, _) => _videoSaveDebouncer.Dispose();
     }
 
     internal event EventHandler<EmulationConfigurationSavedEventArgs>? ConfigurationSaved;

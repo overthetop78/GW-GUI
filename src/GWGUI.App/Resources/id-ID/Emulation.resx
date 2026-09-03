@@ -1063,10 +1063,10 @@
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normal</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Tinggi</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Slot kartrid</value></data>
-  <data name='Emulation.Media.Insert' xml:space='preserve'>
+  <data name="Emulation.Media.Insert" xml:space="preserve">
     <value>Masukkan media</value>
   </data>
-  <data name='Emulation.Media.Eject' xml:space='preserve'>
+  <data name="Emulation.Media.Eject" xml:space="preserve">
     <value>Keluarkan media</value>
   </data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
@@ -1231,7 +1231,7 @@
   <data name="Emulation.Video.Parameter.FixedPixelBacklight"><value>Intensitas cahaya latar</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBlackDepth"><value>Kedalaman hitam</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelGridIntensity"><value>Intensitas kisi piksel</value></data>
-  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Warna monokrom (ARGB)</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Warna monokrom</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPersistence"><value>Kegigihan</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPixelGap"><value>Celah inter- piksel</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelResponseTime"><value>Waktu respon (ms)</value></data>
@@ -1417,4 +1417,5 @@
   <data name="Emulation.Video.Crt.ScanlinePhase.Quarter"><value>Tahap 1 / 4</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>Tahap 1 / 2</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>Tahap 3 / 4</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>Backlight berdarah</value></data>
 </root>

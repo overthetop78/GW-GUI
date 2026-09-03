@@ -1063,10 +1063,10 @@
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normal</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Alta</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Ranura de cartucho</value></data>
-  <data name='Emulation.Media.Insert' xml:space='preserve'>
+  <data name="Emulation.Media.Insert" xml:space="preserve">
     <value>Insertar medio</value>
   </data>
-  <data name='Emulation.Media.Eject' xml:space='preserve'>
+  <data name="Emulation.Media.Eject" xml:space="preserve">
     <value>Expulsar medio</value>
   </data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
@@ -1231,7 +1231,7 @@
   <data name="Emulation.Video.Parameter.FixedPixelBacklight"><value>Intensidad de retroiluminación</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBlackDepth"><value>Profundidad negra</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelGridIntensity"><value>Intensidad de la red de píxel</value></data>
-  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Color monocromo (ARGB)</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Color monocromo</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPersistence"><value>Persistencia</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPixelGap"><value>Inter-pixel gap</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelResponseTime"><value>Tiempo de respuesta (ms)</value></data>
@@ -1417,4 +1417,5 @@
   <data name="Emulation.Video.Crt.ScanlinePhase.Quarter"><value>Fase 1/4</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>Fase 1/2</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>Fase 3/4</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>Desolación de la luz trasera</value></data>
 </root>

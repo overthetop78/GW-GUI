@@ -1063,10 +1063,10 @@
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normál</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Magas</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Kazettafoglalat</value></data>
-  <data name='Emulation.Media.Insert' xml:space='preserve'>
+  <data name="Emulation.Media.Insert" xml:space="preserve">
     <value>Adathordozó behelyezése</value>
   </data>
-  <data name='Emulation.Media.Eject' xml:space='preserve'>
+  <data name="Emulation.Media.Eject" xml:space="preserve">
     <value>Adathordozó kiadása</value>
   </data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
@@ -1231,7 +1231,7 @@
   <data name="Emulation.Video.Parameter.FixedPixelBacklight"><value>Háttérvilágítás intenzitása</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBlackDepth"><value>Fekete mélység</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelGridIntensity"><value>Pixel-rács intenzitása</value></data>
-  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Monokróm szín (ARGB)</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Monokróm szín</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPersistence"><value>Perzisztencia</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPixelGap"><value>Inter- pixel rés</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelResponseTime"><value>Válaszidő (ms)</value></data>
@@ -1417,4 +1417,5 @@
   <data name="Emulation.Video.Crt.ScanlinePhase.Quarter"><value>1 / 4. fázis</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>1 / 2. fázis</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>3 / 4. fázis</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>Hátsó fényvérzés</value></data>
 </root>

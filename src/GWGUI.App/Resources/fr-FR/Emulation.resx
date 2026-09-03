@@ -381,12 +381,12 @@
   <data name="Emulation.Mouse.Wheel.Left"><value>Molette vers la gauche</value></data>
   <data name="Emulation.Mouse.Wheel.Right"><value>Molette vers la droite</value></data>
   <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>Cette valeur est déterminée par le modèle sélectionné.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve"><value>Aucun FPU compatible n&#x27;est disponible pour ce modèle.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>Aucune autre mémoire n&#x27;est disponible pour ce modèle.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>Ce modèle n&#x27;a pas de firmware configurable.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>Ce modèle n&#x27;a pas de clavier.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>Ce modèle n&#x27;a pas de souris.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Ce modèle n&#x27;a pas de support de stockage.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve"><value>Aucun FPU compatible n'est disponible pour ce modèle.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>Aucune autre mémoire n'est disponible pour ce modèle.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>Ce modèle n'a pas de firmware configurable.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>Ce modèle n'a pas de clavier.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>Ce modèle n'a pas de souris.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Ce modèle n'a pas de support de stockage.</value></data>
   <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve"><value>Sélectionnez le modèle Jaguar CD pour utiliser un disque CD.</value></data>
   <data name="Emulation.Storage.Cassettes"><value>Cassette</value></data>
   <data name="Emulation.Storage.Cartridges"><value>Cartouche</value></data>
@@ -461,10 +461,10 @@
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normale</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Haute</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Emplacement cartouche</value></data>
-  <data name='Emulation.Media.Insert' xml:space='preserve'>
+  <data name="Emulation.Media.Insert" xml:space="preserve">
     <value>Insérer un support</value>
   </data>
-  <data name='Emulation.Media.Eject' xml:space='preserve'>
+  <data name="Emulation.Media.Eject" xml:space="preserve">
     <value>Éjecter le support</value>
   </data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
@@ -629,7 +629,7 @@
   <data name="Emulation.Video.Parameter.FixedPixelBacklight"><value>Intensité du rétroéclairage</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBlackDepth"><value>Profondeur des noirs</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelGridIntensity"><value>Intensité de la grille des pixels</value></data>
-  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Couleur monochrome (ARGB)</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Couleur monochrome</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPersistence"><value>Persistance</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPixelGap"><value>Écart interpixels</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelResponseTime"><value>Temps de réponse (ms)</value></data>
@@ -815,4 +815,5 @@
   <data name="Emulation.Video.Crt.ScanlinePhase.Quarter"><value>Phase 1/4</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>Phase 1/2</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>Phase 3/4</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>Halo du rétroéclairage</value></data>
 </root>

@@ -1063,10 +1063,10 @@
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normal</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Hoch</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Steckmodulschacht</value></data>
-  <data name='Emulation.Media.Insert' xml:space='preserve'>
+  <data name="Emulation.Media.Insert" xml:space="preserve">
     <value>Medium einlegen</value>
   </data>
-  <data name='Emulation.Media.Eject' xml:space='preserve'>
+  <data name="Emulation.Media.Eject" xml:space="preserve">
     <value>Medium auswerfen</value>
   </data>
   <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
@@ -1231,7 +1231,7 @@
   <data name="Emulation.Video.Parameter.FixedPixelBacklight"><value>Hintergrundlichtintensität</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBlackDepth"><value>Schwarze Tiefe</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelGridIntensity"><value>Pixelgitterintensität</value></data>
-  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Einfarbige Farbe (ARGB)</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelMonochromeColor"><value>Einfarbige Farbe</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPersistence"><value>Persistenz</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPixelGap"><value>Zwischenpixellücke</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelResponseTime"><value>Ansprechzeit (ms)</value></data>
@@ -1417,4 +1417,5 @@
   <data name="Emulation.Video.Crt.ScanlinePhase.Quarter"><value>Phase 1/4</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>Phase 1/2</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>Phase 3/4</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>Hintergrundbeleuchtungsblutung</value></data>
 </root>

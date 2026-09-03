@@ -246,15 +246,15 @@ internal sealed class SoftwareEmulationVideoProcessingPipeline : IEmulationVideo
         {
             var elapsedMilliseconds = Math.Max(0.001,
                 (timestamp - _historyTimestamp).TotalMilliseconds);
-            var responseMilliseconds = configuration.FixedPixel.ResponseTimeMilliseconds;
-            var response = responseMilliseconds == 0 ? 1f : (float)(1d
-                - Math.Exp(-elapsedMilliseconds / responseMilliseconds));
-            var persistence = configuration.FixedPixel.PersistenceIntensity / 100f;
+            var response = FilterFixedPixelResponse.BlendFactor(
+                configuration.FixedPixel.ResponseTimeMilliseconds, elapsedMilliseconds);
             for (var index = 0; index < colors.Length; index++)
             {
-                var responded = Lerp(_fixedPixelHistory![index], colors[index], response);
-                colors[index] = Math.Clamp(Math.Max(responded,
-                    _fixedPixelHistory[index] * persistence), 0f, 1f);
+                var responded = FilterFixedPixelResponse.Apply(
+                    _fixedPixelHistory![index], colors[index], response);
+                colors[index] = FilterFixedPixelPersistence.Apply(
+                    responded, _fixedPixelHistory[index],
+                    configuration.FixedPixel.PersistenceIntensity);
             }
         }
 
