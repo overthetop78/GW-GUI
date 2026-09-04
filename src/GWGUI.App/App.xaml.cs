@@ -96,6 +96,7 @@ public partial class App : Application
 
     protected override void OnExit(ExitEventArgs e)
     {
+        GameInputControllerSource.Instance.StopMonitoring();
         SystemEvents.UserPreferenceChanged -= SystemPreferenceChanged;
         DispatcherUnhandledException -= OnDispatcherUnhandledException;
         AppDomain.CurrentDomain.UnhandledException -= OnDomainUnhandledException;

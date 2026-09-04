@@ -12,1027 +12,248 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Emulation.Tab.Machines">
-    <value>Stroje</value>
-  </data>
-  <data name="Emulation.Core.Name">
-    <value>Jádro</value>
-  </data>
-  <data name="Emulation.Core.NameManagerTitle">
-    <value>Emulační jádro {0}</value>
-  </data>
-  <data name="Emulation.Core.NameManagerDescription">
-    <value>Knihovna zůstává mimo GW GUI. Vybraná verze nahradí aktuálně nainstalovanou verzi.</value>
-  </data>
-  <data name="Emulation.Core.NameRequiredVersion">
-    <value>Verze vyžadovaná GW GUI</value>
-  </data>
-  <data name="Emulation.Core.NameLatestVersion">
-    <value>Nejnovější dostupná oficiální verze</value>
-  </data>
-  <data name="Emulation.Core.NameProjectVersion">
-    <value>Aktuálně nainstalovaná verze</value>
-  </data>
-  <data name="Emulation.Core.NameSearchPrompt">
-    <value>Kliknutím na Hledat se dotážete oficiálního serveru Libretro.</value>
-  </data>
-  <data name="Emulation.Core.NameSearch">
-    <value>Hledat verze</value>
-  </data>
-  <data name="Emulation.Core.NameDownload">
-    <value>Stáhnout a nahradit</value>
-  </data>
-  <data name="Emulation.Core.NameSearching">
-    <value>Hledání dostupných verzí…</value>
-  </data>
-  <data name="Emulation.Core.NameNoneFound">
-    <value>Nebyla nalezena žádná oficiální verze.</value>
-  </data>
-  <data name="Emulation.Core.NameVersionsFound">
-    <value>Počet dostupných verzí: {0}.</value>
-  </data>
-  <data name="Emulation.Core.NameDownloading">
-    <value>Stahování {0}…</value>
-  </data>
-  <data name="Emulation.Core.NameInstalledPath">
-    <value>Nainstalovaná verze: {0}</value>
-  </data>
-  <data name="Emulation.Core.NameInstalled">
-    <value>{0} · nainstalováno</value>
-  </data>
-  <data name="Emulation.Core.NameNotInstalled">
-    <value>Není nainstalována žádná verze</value>
-  </data>
-  <data name="Emulation.Machine.Open">
-    <value>Otevřít</value>
-  </data>
-  <data name="Emulation.Tab.Welcome">
-    <value>Vítejte</value>
-  </data>
-  <data name="Emulation.Welcome.Text">
-    <value>Vyberte nahoře uložený stroj a klikněte na Otevřít. Každý spuštěný stroj se zobrazí na vlastní kartě.</value>
-  </data>
-  <data name="Emulation.Configuration.Description">
-    <value>Zde můžete vytvářet, vybírat, upravovat nebo odstraňovat uložené konfigurace. Vybranou konfiguraci upravíte na kartě {0}.</value>
-  </data>
-  <data name="Emulation.Tab.General">
-    <value>Obecné</value>
-  </data>
-  <data name="Emulation.Tab.Video">
-    <value>Video</value>
-  </data>
-  <data name="Emulation.Tab.Storage">
-    <value>Úložiště</value>
-  </data>
-  <data name="Emulation.Tab.Keyboard">
-    <value>Klávesnice</value>
-  </data>
-  <data name="Emulation.Tab.Mouse">
-    <value>Myš</value>
-  </data>
-  <data name="Emulation.Controller.Tab">
-    <value>Ovladače</value>
-  </data>
-  <data name="Emulation.Tab.Advanced">
-    <value>Pokročilé</value>
-  </data>
-  <data name="Emulation.Device.Name.Id">
-    <value>Identifikátor zařízení</value>
-  </data>
-  <data name="Emulation.Controller.Device">
-    <value>Zařízení ovladače {0}</value>
-  </data>
-  <data name="Emulation.Keyboard.SystemKey">
-    <value>Klávesa {0}</value>
-  </data>
-  <data name="Emulation.Keyboard.HostKey">
-    <value>Klávesa hostitele</value>
-  </data>
-  <data name="Emulation.Cpu.Summary">
-    <value>Procesor: {0}</value>
-  </data>
-  <data name="Emulation.Memory.Summary">
-    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
-  </data>
-  <data name="Emulation.Video.Summary">
-    <value>Video čipová sada: {0}</value>
-  </data>
-  <data name="Emulation.Cpu.Model">
-    <value>CPU model</value>
-  </data>
-  <data name="Emulation.Cpu.Multiplier">
-    <value>CPU multiplier</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility">
-    <value>Cycle-compatible CPU</value>
-  </data>
-  <data name="Emulation.Memory.Z3">
-    <value>Zorro III RAM</value>
-  </data>
-  <data name="Emulation.Video.Standard">
-    <value>Video standard</value>
-  </data>
-  <data name="Emulation.Video.Resolution">
-    <value>Resolution</value>
-  </data>
-  <data name="Emulation.Video.AspectRatio">
-    <value>Aspect ratio</value>
-  </data>
-  <data name="Emulation.Video.Crop">
-    <value>Crop borders</value>
-  </data>
-  <data name="Emulation.Video.FlickerFixer">
-    <value>Flicker fixer</value>
-  </data>
-  <data name="Emulation.Audio.Enabled">
-    <value>Enable audio</value>
-  </data>
-  <data name="Emulation.Audio.Output">
-    <value>Audio output</value>
-  </data>
-  <data name="Emulation.Audio.Latency">
-    <value>Latency (ms)</value>
-  </data>
-  <data name="Emulation.Audio.Interpolation">
-    <value>Interpolation</value>
-  </data>
-  <data name="Emulation.Audio.Filter">
-    <value>Amiga audio filter</value>
-  </data>
-  <data name="Emulation.Audio.StereoSeparation">
-    <value>Stereo separation (%)</value>
-  </data>
-  <data name="Emulation.Audio.Input">
-    <value>Audio input</value>
-  </data>
-  <data name="Emulation.Audio.InputUnavailable">
-    <value>This Amiga core does not expose an audio input.</value>
-  </data>
-  <data name="Emulation.Audio.DefaultOutput">
-    <value>Windows default output</value>
-  </data>
-  <data name="Emulation.Storage.Media.Add">
-    <value>Add media</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Create">
-    <value>Create hard disk</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Size">
-    <value>Hard-disk size (MiB)</value>
-  </data>
-  <data name="Emulation.Storage.Media.None">
-    <value>No media. Add a floppy, hard disk or CD supported by the selected model.</value>
-  </data>
-  <data name="Emulation.Storage.ReadOnly">
-    <value>Read-only</value>
-  </data>
-  <data name="Emulation.Amiga.Storage.MediaFilter">
-    <value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Filter">
-    <value>Amiga hard disk|*.hdf|All files|*.*</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.NotSupported">
-    <value>The selected model does not support a hard disk.</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.TooManyDrives">
-    <value>This model accepts at most {0} floppy drive(s).</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.TooManyDrives">
-    <value>This model accepts at most {0} hard disk(s).</value>
-  </data>
-  <data name="Emulation.Storage.Cd.NotSupported">
-    <value>The selected model does not support a CD drive.</value>
-  </data>
-  <data name="Emulation.Keyboard.Mapping.Duplicate">
-    <value>Two Amiga keys use the same PC key. Resolve the red mappings before saving.</value>
-  </data>
-  <data name="Emulation.Mouse.ReleaseKey">
-    <value>Release-capture key</value>
-  </data>
-  <data name="Emulation.Mouse.Button.Left">
-    <value>Left mouse button</value>
-  </data>
-  <data name="Emulation.Mouse.Button.Right">
-    <value>Right mouse button</value>
-  </data>
-  <data name="Emulation.Mouse.Button.Middle">
-    <value>Middle mouse button</value>
-  </data>
-  <data name="Emulation.Controller.Detect">
-    <value>Detect controllers</value>
-  </data>
-  <data name="Emulation.Controller.EmulatedAction">
-    <value>Amiga action</value>
-  </data>
-  <data name="Emulation.Controller.PhysicalControl">
-    <value>Keyboard, mouse or controller control</value>
-  </data>
-  <data name="Emulation.Amiga.Chipset.Name">
-    <value>Čipová sada</value>
-  </data>
-  <data name="Emulation.Storage.Cd.Drive">
-    <value>Jednotka CD</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.DriveCount">
-    <value>Počet disketových jednotek</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.DriveCount">
-    <value>Počet pevných disků</value>
-  </data>
-  <data name="Emulation.Cpu.Speed">
-    <value>CPU speed</value>
-  </data>
-  <data name="Emulation.Cpu.SpeedOriginal">
-    <value>Original speed</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility.Normal">
-    <value>Normal</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility.Compatible">
-    <value>Compatible</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility.Memory">
-    <value>Memory compatible</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility.Exact">
-    <value>Cycle exact</value>
-  </data>
-  <data name="Emulation.Fpu.Integrated">
-    <value>Integrated FPU</value>
-  </data>
-  <data name="Emulation.Value.Enabled">
-    <value>Enabled</value>
-  </data>
-  <data name="Emulation.Value.Disabled">
-    <value>Disabled</value>
-  </data>
-  <data name="Emulation.Value.Minimum">
-    <value>Minimum</value>
-  </data>
-  <data name="Emulation.Value.VerySmall">
-    <value>Very small</value>
-  </data>
-  <data name="Emulation.Value.Small">
-    <value>Small</value>
-  </data>
-  <data name="Emulation.Value.Medium">
-    <value>Medium</value>
-  </data>
-  <data name="Emulation.Value.Large">
-    <value>Large</value>
-  </data>
-  <data name="Emulation.Value.VeryLarge">
-    <value>Very large</value>
-  </data>
-  <data name="Emulation.Value.Maximum">
-    <value>Maximum</value>
-  </data>
-  <data name="Emulation.State.Locked">
-    <value>Locked</value>
-  </data>
-  <data name="Emulation.State.Immediate">
-    <value>Immediate</value>
-  </data>
-  <data name="Emulation.State.Waiting">
-    <value>Waiting</value>
-  </data>
-  <data name="Emulation.Value.Standard">
-    <value>Standard</value>
-  </data>
-  <data name="Emulation.Value.Enhanced">
-    <value>Enhanced</value>
-  </data>
-  <data name="Emulation.Value.Internal">
-    <value>Internal</value>
-  </data>
-  <data name="Emulation.Value.Loud">
-    <value>Loud</value>
-  </data>
-  <data name="Emulation.Video.Resolution.AutoLow">
-    <value>Automatic low resolution</value>
-  </data>
-  <data name="Emulation.Video.Resolution.AutoSuperHigh">
-    <value>Automatic super-high resolution</value>
-  </data>
-  <data name="Emulation.Video.Resolution.Low">
-    <value>Low resolution</value>
-  </data>
-  <data name="Emulation.Video.Resolution.High">
-    <value>High resolution</value>
-  </data>
-  <data name="Emulation.Video.Resolution.SuperHigh">
-    <value>Super-high resolution</value>
-  </data>
-  <data name="Emulation.Video.LineMode">
-    <value>Line mode</value>
-  </data>
-  <data name="Emulation.Video.HzChange">
-    <value>Refresh-rate changes</value>
-  </data>
-  <data name="Emulation.Video.FrameSkip">
-    <value>Frame skip</value>
-  </data>
-  <data name="Emulation.Video.Colors">
-    <value>Color depth</value>
-  </data>
-  <data name="Emulation.Video.Gamma">
-    <value>Gamma</value>
-  </data>
-  <data name="Emulation.State.ImmediateBlits">
-    <value>Blitter operation</value>
-  </data>
-  <data name="Emulation.Video.Collision.Level">
-    <value>Collision detection</value>
-  </data>
-  <data name="Emulation.Video.LineMode.Single">
-    <value>Single scan</value>
-  </data>
-  <data name="Emulation.Video.LineMode.Double">
-    <value>Double scan</value>
-  </data>
-  <data name="Emulation.Video.Collision.Sprites">
-    <value>Sprites</value>
-  </data>
-  <data name="Emulation.Video.Collision.Playfields">
-    <value>Playfields</value>
-  </data>
-  <data name="Emulation.Video.Collision.Full">
-    <value>Full</value>
-  </data>
-  <data name="Emulation.Audio.Interpolation.Anti">
-    <value>Anti interpolation</value>
-  </data>
-  <data name="Emulation.Audio.Filter.Emulated">
-    <value>Emulated</value>
-  </data>
-  <data name="Emulation.Audio.FilterType">
-    <value>Filter type</value>
-  </data>
-  <data name="Emulation.Audio.Floppy.Sound">
-    <value>Floppy-drive sound volume</value>
-  </data>
-  <data name="Emulation.Audio.Floppy.SoundType">
-    <value>Floppy-drive sound type</value>
-  </data>
-  <data name="Emulation.Audio.Floppy.MuteEmpty">
-    <value>Mute empty drives</value>
-  </data>
-  <data name="Emulation.Audio.Cd.Volume">
-    <value>CD audio volume</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.Speed">
-    <value>Floppy-drive speed</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.WriteProtection">
-    <value>Write-protect floppy images</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.WriteRedirect">
-    <value>Redirect floppy writes</value>
-  </data>
-  <data name="Emulation.Storage.Cd.Speed">
-    <value>CD speed</value>
-  </data>
-  <data name="Emulation.Keyboard.PassThrough">
-    <value>Physical keyboard pass-through</value>
-  </data>
-  <data name="Emulation.Mouse.Physical">
-    <value>Physical mouse</value>
-  </data>
-  <data name="Emulation.Mouse.PhysicalDouble">
-    <value>Double movement</value>
-  </data>
-  <data name="Emulation.Mouse.Speed">
-    <value>Mouse speed</value>
-  </data>
-  <data name="Emulation.Mouse.Analog">
-    <value>Analog sticks controlling the mouse</value>
-  </data>
-  <data name="Emulation.Mouse.AnalogDeadzone">
-    <value>Analog-stick dead zone</value>
-  </data>
-  <data name="Emulation.Mouse.AnalogSpeed">
-    <value>Analog-stick mouse speed</value>
-  </data>
-  <data name="Emulation.Controller.Stick.Left">
-    <value>Left stick</value>
-  </data>
-  <data name="Emulation.Controller.Stick.Right">
-    <value>Right stick</value>
-  </data>
-  <data name="Emulation.Controller.Stick.Both">
-    <value>Both sticks</value>
-  </data>
-  <data name="Emulation.Controller.Action.TurboFire">
-    <value>Turbo fire</value>
-  </data>
-  <data name="Emulation.Controller.Turbo.Button">
-    <value>Turbo button</value>
-  </data>
-  <data name="Emulation.Controller.Turbo.Pulse">
-    <value>Turbo pulse</value>
-  </data>
-  <data name="Emulation.Controller.PortOrder">
-    <value>Controller port order</value>
-  </data>
-  <data name="Emulation.Core.Emulator">
-    <value>Emulátor</value>
-  </data>
-  <data name="Emulation.Folder.StorageBase">
-    <value>Sdílená složka úložiště emulátorů</value>
-  </data>
-  <data name="Emulation.Folder.StorageBaseDescription">
-    <value>Pevné disky se automaticky organizují do HDD\Amiga, HDD\Atari a složek budoucích systémů.</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Add">
-    <value>Přidat existující pevný disk</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.List">
-    <value>Pevné disky</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.None">
-    <value>K tomuto stroji není připojen žádný pevný disk.</value>
-  </data>
-  <data name="Emulation.Keyboard.Priority.Hint">
-    <value>Vyhrazené klávesové zkratky</value>
-  </data>
-  <data name="Emulation.Keyboard.Priority.Description">
-    <value>Klávesové zkratky GW GUI a Windows zůstávají aktivní a stroj je nezachytává.</value>
-  </data>
-  <data name="Emulation.Input.Behavior">
-    <value>Chování</value>
-  </data>
-  <data name="Emulation.Input.Assign">
-    <value>Přiřadit...</value>
-  </data>
-  <data name="Emulation.Input.Actions">
-    <value>Akce</value>
-  </data>
-  <data name="Emulation.Input.Press">
-    <value>Stiskněte klávesu...</value>
-  </data>
-  <data name="Emulation.Folder.CreateStorage">
-    <value>Automaticky vytvářet chybějící podsložky</value>
-  </data>
-  <data name="Emulation.Folder.Common">
-    <value>Sdílené složky</value>
-  </data>
-  <data name="Emulation.Input.SharedDescription">
-    <value>Detekce zařízení je společná, ale přiřazení se ukládají samostatně v každé konfiguraci stroje.</value>
-  </data>
-  <data name="Emulation.Input.Test">
-    <value>Otestovat vstupy</value>
-  </data>
-  <data name="Emulation.Input.SharedDevices">
-    <value>Sdílená vstupní zařízení</value>
-  </data>
-  <data name="Emulation.Folder.Capture">
-    <value>Složka snímků</value>
-  </data>
-  <data name="Emulation.Folder.State">
-    <value>Složka uložených stavů</value>
-  </data>
-  <data name="Emulation.Folder.Default">
-    <value>Výchozí složky</value>
-  </data>
-  <data name="Emulation.Controller.NoneDetected">
-    <value>Nebyl zjištěn žádný ovladač</value>
-  </data>
-  <data name="Emulation.Input.TestPrompt">
-    <value>Stisknutím klávesy nebo tlačítka myši otestujte detekci.</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.List">
-    <value>Diskety</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.Extended">
-    <value>Rozšířená ROM</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.Key">
-    <value>Klíč ROM</value>
-  </data>
-  <data name="Emulation.Cpu.Processor">
-    <value>Procesor</value>
-  </data>
-  <data name="Emulation.Cpu.Precision">
-    <value>Přesnost</value>
-  </data>
-  <data name="Emulation.Cpu.Acceleration">
-    <value>Akcelerace</value>
-  </data>
-  <data name="Emulation.Memory.Main">
-    <value>Hlavní paměť</value>
-  </data>
-  <data name="Emulation.Memory.Extensions">
-    <value>Rozšíření paměti</value>
-  </data>
-  <data name="Emulation.Memory.None">
-    <value>Žádná</value>
-  </data>
-  <data name="Emulation.Memory.CompatibleWithModel">
-    <value>Konfigurace paměti je kompatibilní s {0}.</value>
-  </data>
-  <data name="Emulation.Memory.ExtensionsCompatibleWithModel">
-    <value>Rozšíření paměti jsou kompatibilní s {0}.</value>
-  </data>
-  <data name="Emulation.Memory.Z3UnavailableForModel">
-    <value>Paměť Zorro III není u modelu {0} dostupná.</value>
-  </data>
-  <data name="Emulation.Memory.TotalConfigured">
-    <value>Celková nakonfigurovaná paměť: {0} {1}</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.System">
-    <value>Systémová ROM</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.Detected">
-    <value>Nalezené ROM</value>
-  </data>
-  <data name="Emulation.Firmware.Use">
-    <value>Použít</value>
-  </data>
-  <data name="Emulation.Value.NotUsed">
-    <value>Nepoužívá se</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.OpenFolder">
-    <value>Otevřít složku ROM</value>
-  </data>
-  <data name="Emulation.Firmware.PartiallyCompatible">
-    <value>Částečně kompatibilní</value>
-  </data>
-  <data name="Emulation.Firmware.Official">
-    <value>Oficiální</value>
-  </data>
-  <data name="Emulation.Firmware.Incompatible">
-    <value>Nekompatibilní</value>
-  </data>
-  <data name="Emulation.Video.Settings.Display">
-    <value>Zobrazení</value>
-  </data>
-  <data name="Emulation.Video.Settings.Rendering">
-    <value>Vykreslování</value>
-  </data>
-  <data name="Emulation.Amiga.Chipset.NameCompatibility">
-    <value>Kompatibilita čipové sady</value>
-  </data>
-  <data name="Emulation.Audio.Device">
-    <value>Zařízení</value>
-  </data>
-  <data name="Emulation.Audio.LatencyLabel">
-    <value>Latence</value>
-  </data>
-  <data name="Emulation.Audio.Quality">
-    <value>Kvalita</value>
-  </data>
-  <data name="Emulation.Audio.Drives">
-    <value>Jednotky</value>
-  </data>
-  <data name="Emulation.Device.Name.Type">
-    <value>Typ</value>
-  </data>
-  <data name="Emulation.Storage.Device.Add">
-    <value>Přidat úložné zařízení</value>
-  </data>
-  <data name="Emulation.Amiga.Storage.Floppy.Dd">
-    <value>Amiga 3,5 palce DD · 880 KiB</value>
-  </data>
-  <data name="Emulation.Amiga.Storage.Floppy.Hd">
-    <value>Amiga 3,5 palce HD · 1,76 MiB</value>
-  </data>
-  <data name="Emulation.Storage.Media.Associated">
-    <value>Připojené médium</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Automatic">
-    <value>Geometrii disku určí emulátor automaticky.</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.BlankCreated">
-    <value>Prázdný obraz diskety byl vytvořen: {0}</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.BlankHint">
-    <value>Soubor bude vytvořen prázdný. Poté jej musíte v emulovaném počítači rozdělit a naformátovat.</value>
-  </data>
-  <data name="Emulation.Storage.Cd.Writer">
-    <value>Vypalovačka CD</value>
-  </data>
-  <data name="Emulation.Storage.Cd.WriterHint">
-    <value>Prázdný disk lze vytvořit jen tehdy, když vybraný počítač a emulátor podporují zápis.</value>
-  </data>
-  <data name="Emulation.Storage.Cd.Device">
-    <value>Jednotka CD-ROM</value>
-  </data>
-  <data name="Emulation.Storage.Device.Configure">
-    <value>Nastavit</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.CreateBlank">
-    <value>Vytvořit prázdnou disketu</value>
-  </data>
-  <data name="Emulation.Storage.Disk.Image">
-    <value>Obraz disku</value>
-  </data>
-  <data name="Emulation.Storage.Disk.ImageRequired">
-    <value>Vyberte existující obraz disku.</value>
-  </data>
-  <data name="Emulation.Storage.Disk.ExistingHint">
-    <value>Vybraný soubor bude připojen k této virtuální jednotce.</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.Device">
-    <value>Disketová jednotka</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.ImageFilter">
-    <value>Obraz diskety Amiga|*.adf|Všechny soubory|*.*</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Device">
-    <value>Pevný disk</value>
-  </data>
-  <data name="Emulation.Storage.Device.Interface">
-    <value>Rozhraní</value>
-  </data>
-  <data name="Emulation.Storage.File.Preallocate">
-    <value>Předalokovat soubor</value>
-  </data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint">
-    <value>Diskety a CD se vkládají nebo mění ve spuštěném počítači.</value>
-  </data>
-  <data name="Emulation.Storage.Media.Remove">
-    <value>Odebrat médium</value>
-  </data>
-  <data name="Emulation.Storage.Disk.ReplaceExisting">
-    <value>Obraz disku již existuje: {0}\nChcete jej nahradit?</value>
-  </data>
-  <data name="Emulation.Storage.Device.CapabilitiesHint">
-    <value>Dostupné typy, modely a identifikátory závisí na vybraném počítači.</value>
-  </data>
-  <data name="Emulation.Storage.Tape.Device">
-    <value>Pásková jednotka</value>
-  </data>
-  <data name="Emulation.Storage.Disk.Use">
-    <value>Použít disk</value>
-  </data>
-  <data name="Emulation.Storage.Disk.UseExisting">
-    <value>Použít existující disk</value>
-  </data>
-  <data name="Emulation.Storage.ModifyInGeneral">
-    <value>Upravit v části Obecné</value>
-  </data>
-  <data name="Emulation.Storage.Device.NoneAvailable">
-    <value>Pro tento počítač není k dispozici žádné další úložné zařízení.</value>
-  </data>
-  <data name="Emulation.Storage.Device.List">
-    <value>Úložná zařízení</value>
-  </data>
-  <data name="Emulation.Input.Binding.RestoreDefaults">
-    <value>Obnovit výchozí hodnoty</value>
-  </data>
-  <data name="Emulation.Input.Binding.ClearConflicts">
-    <value>Vymazat konflikty</value>
-  </data>
-  <data name="Emulation.Keyboard.EmulatedKey">
-    <value>Klávesa stroje</value>
-  </data>
-  <data name="Emulation.Input.Binding.Label">
-    <value>Přiřazení</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelState">
-    <value>Stav</value>
-  </data>
-  <data name="Emulation.Input.Binding.Search">
-    <value>Hledat klávesu nebo přiřazení</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelLegend">
-    <value>Platné: jedinečné přiřazení · Konflikt: přiřazení použito vícekrát · Vyhrazené: zkratka Windows nebo GW GUI</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelValid">
-    <value>Platné</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelConflict">
-    <value>Konflikt</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelReserved">
-    <value>Vyhrazené</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelUnassigned">
-    <value>Nepřiřazeno</value>
-  </data>
-  <data name="Emulation.Shortcut.Global">
-    <value>Zkratky emulace</value>
-  </data>
-  <data name="Emulation.Tab.Shortcuts">
-    <value>Zkratky</value>
-  </data>
-  <data name="Emulation.Shortcut.ReleaseMouse">
-    <value>Uvolnit myš</value>
-  </data>
-  <data name="Emulation.Shortcut.PauseResume">
-    <value>Pozastavit / pokračovat</value>
-  </data>
-  <data name="Emulation.Shortcut.Fullscreen">
-    <value>Celá obrazovka / okno</value>
-  </data>
-  <data name="Emulation.Shortcut.Power">
-    <value>Zapnout / vypnout</value>
-  </data>
-  <data name="Emulation.Shortcut.SoftReset">
-    <value>Měkký restart</value>
-  </data>
-  <data name="Emulation.Shortcut.HardReset">
-    <value>Tvrdý restart</value>
-  </data>
-  <data name="Emulation.Shortcut.QuickSave">
-    <value>Rychlé uložení stavu</value>
-  </data>
-  <data name="Emulation.Shortcut.QuickLoad">
-    <value>Rychlé načtení stavu</value>
-  </data>
-  <data name="Emulation.Shortcut.Screenshot">
-    <value>Snímek obrazovky</value>
-  </data>
-  <data name="Emulation.Shortcut.Mute">
-    <value>Ztlumit aktivní stroj</value>
-  </data>
-  <data name="Emulation.Shortcut.FastForward">
-    <value>Rychlý posun při držení</value>
-  </data>
-  <data name="Emulation.Shortcut.InsertMedia">
-    <value>Vložit nebo nahradit médium</value>
-  </data>
-  <data name="Emulation.Shortcut.EjectMedia">
-    <value>Vysunout médium</value>
-  </data>
-  <data name="Emulation.Shortcut.NextMedia">
-    <value>Další médium</value>
-  </data>
-  <data name="Emulation.Key.Help">
-    <value>Nápověda</value>
-  </data>
-  <data name="Emulation.Key.LeftAmiga">
-    <value>Levá Amiga</value>
-  </data>
-  <data name="Emulation.Key.RightAmiga">
-    <value>Pravá Amiga</value>
-  </data>
-  <data name="Emulation.Keyboard.SpecialKeysOnlyHint">
-    <value>Písmena, číslice a běžné modifikační klávesy se přenášejí přímo. Zde je třeba přiřadit pouze funkční a speciální klávesy Amigy.</value>
-  </data>
-  <data name="Emulation.Shortcut.Unavailable">
-    <value>Tato akce zatím není aktuálním emulátorem podporována.</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Allocation">
-    <value>Přidělení</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.AutomaticProfile">
-    <value>Automatická geometrie</value>
-  </data>
-  <data name="Emulation.Storage.Media.Blank">
-    <value>Prázdné médium</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.BytesPerSector">
-    <value>Bajtů na sektor</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.CalculatedCapacity">
-    <value>Vypočtená kapacita: {0}</value>
-  </data>
-  <data name="Emulation.Controller.Mappings">
-    <value>Mapování ovladače</value>
-  </data>
-  <data name="Emulation.Controller.Port">
-    <value>Port {0}</value>
-  </data>
-  <data name="Emulation.Controller.Type">
-    <value>Typ ovladače</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.CustomSize">
-    <value>Vlastní velikost</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Cylinders">
-    <value>Cylindry</value>
-  </data>
-  <data name="Emulation.Storage.File.DestinationFolder">
-    <value>Cílová složka</value>
-  </data>
-  <data name="Emulation.Controller.Detected">
-    <value>Zjištěné ovladače</value>
-  </data>
-  <data name="Emulation.Device.Name">
-    <value>Zařízení</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Label">
-    <value>Geometrie disku (CHS)</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.SizeProfile">
-    <value>Profil velikosti</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.Drive">
-    <value>Disketová jednotka</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Heads">
-    <value>Hlavy</value>
-  </data>
-  <data name="Emulation.Input.Capture.Hint">
-    <value>Klikněte na Přiřadit a potom použijte klávesu, tlačítko myši nebo tlačítko ovladače.</value>
-  </data>
-  <data name="Emulation.Storage.Disk.InvalidSize">
-    <value>Velikost nebo geometrie disku není platná.</value>
-  </data>
-  <data name="Emulation.Mouse.Actions">
-    <value>Akce myši</value>
-  </data>
-  <data name="Emulation.Mouse.Button.4">
-    <value>Tlačítko myši 4</value>
-  </data>
-  <data name="Emulation.Mouse.Button.5">
-    <value>Tlačítko myši 5</value>
-  </data>
-  <data name="Emulation.Mouse.Capture.Title">
-    <value>Zachytávání myši</value>
-  </data>
-  <data name="Emulation.Storage.File.PreallocationHint">
-    <value>Okamžitě rezervuje fyzické místo; jinak se obraz zvětšuje při zápisu dat.</value>
-  </data>
-  <data name="Emulation.Controller.SearchBinding">
-    <value>Hledat akci nebo vstup</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Sectors">
-    <value>Sektory</value>
-  </data>
-  <data name="Emulation.Controller.Action.Up">
-    <value>Nahoru</value>
-  </data>
-  <data name="Emulation.Controller.Action.Down">
-    <value>Dolů</value>
-  </data>
-  <data name="Emulation.Controller.Action.Left">
-    <value>Vlevo</value>
-  </data>
-  <data name="Emulation.Controller.Action.Right">
-    <value>Vpravo</value>
-  </data>
-  <data name="Emulation.Controller.Action.Fire1">
-    <value>Tlačítko střelby 1</value>
-  </data>
-  <data name="Emulation.Controller.Action.Fire2">
-    <value>Tlačítko střelby 2</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Red">
-    <value>Červené tlačítko CD32</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Blue">
-    <value>Modré tlačítko CD32</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Green">
-    <value>Zelené tlačítko CD32</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Yellow">
-    <value>Žluté tlačítko CD32</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Rewind">
-    <value>CD32 převinout zpět</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.FastForward">
-    <value>CD32 převinout vpřed</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.PlayPause">
-    <value>CD32 přehrát / pozastavit</value>
-  </data>
-  <data name="Emulation.Controller.AnalogJoystick">
-    <value>Analogový joystick</value>
-  </data>
-  <data name="Emulation.Mouse.Wheel.Up">
-    <value>Kolečko myši nahoru</value>
-  </data>
-  <data name="Emulation.Mouse.Wheel.Down">
-    <value>Kolečko myši dolů</value>
-  </data>
-  <data name="Emulation.Mouse.Wheel.Left">
-    <value>Kolečko myši doleva</value>
-  </data>
-  <data name="Emulation.Mouse.Wheel.Right">
-    <value>Kolečko myši doprava</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve">
-    <value>Tato hodnota je určena zvoleným modelem.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve">
-    <value>Pro tento model není k dispozici kompatibilní FPU.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve">
-    <value>Pro tento model není dostupná žádná alternativní paměť.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve">
-    <value>Tento model nemá konfigurovatelný firmware.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve">
-    <value>Tento model nemá klávesnici.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve">
-    <value>Tento model nemá myš.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve">
-    <value>Tento model nemá žádná paměťová média.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
-    <value>Chcete-li používat disky CD, vyberte model Jaguar CD.</value>
-  </data>
-  <data name="Emulation.Storage.Cassettes">
-    <value>Kazeta</value>
-  </data>
-  <data name="Emulation.Storage.Cartridges">
-    <value>Kazeta ROM</value>
-  </data>
-  <data name="Emulation.Storage.CompactDiscs">
-    <value>Kompaktní disky</value>
-  </data>
-  <data name="Emulation.Atari.Video.Region">
-    <value>Oblast</value>
-  </data>
-  <data name="Emulation.Atari.Firmware.Multilingual">
-    <value>Vícejazyčné</value>
-  </data>
-  <data name="Emulation.Atari.Video.RegionFree">
-    <value>Bez regionu</value>
-  </data>
-  <data name="Emulation.Tab.Audio" xml:space="preserve">
-    <value>Audio</value>
-  </data>
-  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve">
-    <value>Požadované jádro Atari nebylo nalezeno.</value>
-  </data>
-  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve">
-    <value>Zvolené jádro Atari nebylo možné načíst.</value>
-  </data>
-  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve">
-    <value>Chybí požadovaný firmware Atari.</value>
-  </data>
-  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve">
-    <value>Atari firmware je neplatný nebo nekompatibilní.</value>
-  </data>
-  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve">
-    <value>Nakonfigurovaná média Atari nebyla nalezena.</value>
-  </data>
-  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve">
-    <value>Nakonfigurovaná média nejsou podporována tímto zařízením Atari.</value>
-  </data>
-  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve">
-    <value>Možnost Atari má neplatnou hodnotu.</value>
-  </data>
-  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve">
-    <value>Komunikace s hostitelem Atari selhala.</value>
-  </data>
-  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve">
-    <value>Uložený stav Atari je neplatný.</value>
-  </data>
-  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve">
-    <value>Uložený stav Atari je neslučitelný se stávajícím strojem.</value>
-  </data>
-  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve">
-    <value>Nastala neočekávaná chyba emulace Atari.</value>
-  </data>
-  <data name="Emulation.Atari.Error.Details" xml:space="preserve">
-    <value>Podrobnosti: {0}</value>
-  </data>
-  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve">
-    <value>Aktivní konfiguraci Atari nelze změnit nebo smazat.</value>
-  </data>
-  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve">
-    <value>Požadovaný firmware Atari '{0}' není konfigurován pro{1}.</value>
-  </data>
-  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve">
-    <value>Konfigurovaný firmware Atari '{0}' nebyl nalezen: {1}</value>
-  </data>
-  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve">
-    <value>Konfigurovaná média Atari nebyla nalezena: {0}</value>
-  </data>
-  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve">
-    <value>Spustitelná cesta Atari je nedostupná.</value>
-  </data>
-  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve">
-    <value>Jádro Atari '{0}' není instalováno.</value>
-  </data>
-  <data name="Emulation.Atari.Storage.MediaFilter" xml:space="preserve">
-    <value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Všechny soubory|*.*</value>
-  </data>
+  <data name="Emulation.Tab.Machines"><value>Stroje</value></data>
+  <data name="Emulation.Core.Name"><value>Jádro</value></data>
+  <data name="Emulation.Core.NameManagerTitle"><value>Emulační jádro {0}</value></data>
+  <data name="Emulation.Core.NameManagerDescription"><value>Knihovna zůstává mimo GW GUI. Vybraná verze nahradí aktuálně nainstalovanou verzi.</value></data>
+  <data name="Emulation.Core.NameRequiredVersion"><value>Verze vyžadovaná GW GUI</value></data>
+  <data name="Emulation.Core.NameLatestVersion"><value>Nejnovější dostupná oficiální verze</value></data>
+  <data name="Emulation.Core.NameProjectVersion"><value>Aktuálně nainstalovaná verze</value></data>
+  <data name="Emulation.Core.NameSearchPrompt"><value>Kliknutím na Hledat se dotážete oficiálního serveru Libretro.</value></data>
+  <data name="Emulation.Core.NameSearch"><value>Hledat verze</value></data>
+  <data name="Emulation.Core.NameDownload"><value>Stáhnout a nahradit</value></data>
+  <data name="Emulation.Core.NameSearching"><value>Hledání dostupných verzí…</value></data>
+  <data name="Emulation.Core.NameNoneFound"><value>Nebyla nalezena žádná oficiální verze.</value></data>
+  <data name="Emulation.Core.NameVersionsFound"><value>{0} verze (verze) k dispozici.</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>Stahování {0}…</value></data>
+  <data name="Emulation.Core.NameInstalledPath"><value>Nainstalovaná verze: {0}</value></data>
+  <data name="Emulation.Core.NameInstalled"><value>{0} · nainstalováno</value></data>
+  <data name="Emulation.Core.NameNotInstalled"><value>Není nainstalována žádná verze</value></data>
+  <data name="Emulation.Machine.Open"><value>Otevřít</value></data>
+  <data name="Emulation.Tab.Welcome"><value>Vítejte</value></data>
+  <data name="Emulation.Welcome.Text"><value>Vyberte nahoře uložený stroj a klikněte na Otevřít. Každý spuštěný stroj se zobrazí na vlastní kartě.</value></data>
+  <data name="Emulation.Configuration.Description"><value>Vytvořit, vybrat, upravit nebo smazat uložené konfigurace stroje zde. Vyberte {0} záložka pro úpravu vybrané konfigurace.</value></data>
+  <data name="Emulation.Tab.General"><value>Obecné</value></data>
+<data name="Emulation.Tab.Storage"><value>Úložiště</value></data>
+  <data name="Emulation.Tab.Keyboard"><value>Klávesnice</value></data>
+  <data name="Emulation.Tab.Mouse"><value>Myš</value></data>
+  <data name="Emulation.Controller.Tab"><value>Ovladače</value></data>
+  <data name="Emulation.Tab.Advanced"><value>Pokročilé</value></data>
+  <data name="Emulation.Device.Name.Id"><value>Identifikátor zařízení</value></data>
+  <data name="Emulation.Controller.Device"><value>Zařízení ovladače {0}</value></data>
+  <data name="Emulation.Keyboard.SystemKey"><value>Klávesa {0}</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Klávesa hostitele</value></data>
+  <data name="Emulation.Cpu.Summary"><value>Procesor: {0}</value></data>
+<data name="Emulation.Video.Summary"><value>Video čipová sada: {0}</value></data>
+<data name="Emulation.Amiga.Chipset.Name"><value>Čipová sada</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>Jednotka CD</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>Počet disketových jednotek</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>Počet pevných disků</value></data>
+<data name="Emulation.Core.Emulator"><value>Emulátor</value></data>
+  <data name="Emulation.Folder.StorageBase"><value>Sdílená složka úložiště emulátorů</value></data>
+  <data name="Emulation.Folder.StorageBaseDescription"><value>Pevné disky se automaticky organizují do HDD\Amiga, HDD\Atari a složek budoucích systémů.</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>Přidat existující pevný disk</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>Pevné disky</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>K tomuto stroji není připojen žádný pevný disk.</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Vyhrazené klávesové zkratky</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>Klávesové zkratky GW GUI a Windows zůstávají aktivní a stroj je nezachytává.</value></data>
+  <data name="Emulation.Input.Behavior"><value>Chování</value></data>
+  <data name="Emulation.Input.Assign"><value>Přiřadit...</value></data>
+  <data name="Emulation.Input.Actions"><value>Akce</value></data>
+  <data name="Emulation.Input.Press"><value>Stiskněte klávesu...</value></data>
+  <data name="Emulation.Folder.CreateStorage"><value>Automaticky vytvářet chybějící podsložky</value></data>
+  <data name="Emulation.Folder.Common"><value>Sdílené složky</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>Detekce zařízení je společná, ale přiřazení se ukládají samostatně v každé konfiguraci stroje.</value></data>
+  <data name="Emulation.Input.Test"><value>Otestovat vstupy</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>Sdílená vstupní zařízení</value></data>
+  <data name="Emulation.Folder.Capture"><value>Složka snímků</value></data>
+  <data name="Emulation.Folder.State"><value>Složka uložených stavů</value></data>
+  <data name="Emulation.Folder.Default"><value>Výchozí složky</value></data>
+  <data name="Emulation.Controller.NoneDetected"><value>Nebyl zjištěn žádný ovladač</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>Stisknutím klávesy nebo tlačítka myši otestujte detekci.</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>Diskety</value></data>
+  <data name="Emulation.Firmware.Rom.Extended"><value>Rozšířená ROM</value></data>
+  <data name="Emulation.Firmware.Rom.Key"><value>Klíč ROM</value></data>
+  <data name="Emulation.Cpu.Processor"><value>Procesor</value></data>
+  <data name="Emulation.Cpu.Precision"><value>Přesnost</value></data>
+  <data name="Emulation.Cpu.Acceleration"><value>Akcelerace</value></data>
+  <data name="Emulation.Memory.Main"><value>Hlavní paměť</value></data>
+  <data name="Emulation.Memory.Extensions"><value>Rozšíření paměti</value></data>
+  <data name="Emulation.Memory.None"><value>Žádná</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>Konfigurace paměti je kompatibilní s {0}.</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Rozšíření paměti jsou kompatibilní s {0}.</value></data>
+  <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM není k dispozici na {0}.</value></data>
+  <data name="Emulation.Memory.TotalConfigured"><value>Celková nakonfigurovaná paměť: {0} {1}</value></data>
+  <data name="Emulation.Firmware.Rom.System"><value>Systémová ROM</value></data>
+  <data name="Emulation.Firmware.Rom.Detected"><value>detekované ROM</value></data>
+  <data name="Emulation.Firmware.Use"><value>Použít</value></data>
+  <data name="Emulation.Value.NotUsed"><value>Nepoužívá se</value></data>
+  <data name="Emulation.Firmware.Rom.OpenFolder"><value>Otevřít složku ROM</value></data>
+  <data name="Emulation.Firmware.PartiallyCompatible"><value>Částečně kompatibilní</value></data>
+  <data name="Emulation.Firmware.Official"><value>Oficiální</value></data>
+  <data name="Emulation.Firmware.Incompatible"><value>Nekompatibilní</value></data>
+  <data name="Emulation.Video.Settings.Display"><value>Zobrazení</value></data>
+  <data name="Emulation.Video.Settings.Rendering"><value>Vykreslování</value></data>
+  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Kompatibilita čipové sady</value></data>
+  <data name="Emulation.Audio.Device"><value>Zařízení</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>Latence</value></data>
+  <data name="Emulation.Audio.Quality"><value>Kvalita</value></data>
+  <data name="Emulation.Audio.Drives"><value>Jednotky</value></data>
+  <data name="Emulation.Device.Name.Type"><value>Typ</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>Přidat úložné zařízení</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3,5 palce DD · 880 KiB</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3,5 palce HD · 1,76 MiB</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>Připojené médium</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>Geometrii disku určí emulátor automaticky.</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>Prázdný obraz diskety byl vytvořen: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>Soubor bude vytvořen prázdný. Poté jej musíte v emulovaném počítači rozdělit a naformátovat.</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>Vypalovačka CD</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>Prázdný disk lze vytvořit jen tehdy, když vybraný počítač a emulátor podporují zápis.</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>Jednotka CD-ROM</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>Nastavit</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>Vytvořit prázdnou disketu</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>Obraz disku</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>Vyberte existující obraz disku.</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>Vybraný soubor bude připojen k této virtuální jednotce.</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>Disketová jednotka</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>Obraz diskety Amiga|*.adf|Všechny soubory|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>Pevný disk</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>Rozhraní</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>Předalokovat soubor</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>z běžícího stroje se vloží nebo nahradí disketa a CD.</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>Odebrat médium</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Obraz disku již existuje: {0}\nChcete jej nahradit?</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Dostupné typy, modely a identifikátory závisí na vybraném počítači.</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>Pásková jednotka</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>Použít disk</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>Použít existující disk</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>Upravit v části Obecné</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>Pro tento počítač není k dispozici žádné další úložné zařízení.</value></data>
+  <data name="Emulation.Storage.Device.List"><value>Úložná zařízení</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>Obnovit výchozí hodnoty</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>Vymazat konflikty</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Klávesa stroje</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>Přiřazení</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>Stav</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>Hledat klávesu nebo přiřazení</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>Platné: jedinečné přiřazení · Konflikt: přiřazení použito vícekrát · Vyhrazené: zkratka Windows nebo GW GUI</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>Platné</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>Konflikt</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>Vyhrazené</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>Nepřiřazeno</value></data>
+  <data name="Emulation.Shortcut.Global"><value>Zkratky emulace</value></data>
+  <data name="Emulation.Tab.Shortcuts"><value>Zkratky</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Uvolnit myš</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Pozastavit / pokračovat</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Celá obrazovka / okno</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Zapnout / vypnout</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>Měkký restart</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Tvrdý restart</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Rychlé uložení stavu</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Rychlé načtení stavu</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Snímek obrazovky</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Ztlumit aktivní stroj</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Rychlý posun při držení</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Vložit nebo nahradit médium</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Vysunout médium</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Další médium</value></data>
+  <data name="Emulation.Key.Help"><value>Nápověda</value></data>
+  <data name="Emulation.Key.LeftAmiga"><value>Levá Amiga</value></data>
+  <data name="Emulation.Key.RightAmiga"><value>Pravá Amiga</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Písmena, číslice a běžné modifikační klávesy se přenášejí přímo. Zde je třeba přiřadit pouze funkční a speciální klávesy Amigy.</value></data>
+  <data name="Emulation.Shortcut.Unavailable"><value>Tato akce zatím není aktuálním emulátorem podporována.</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>Přidělení</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>Automatická geometrie</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>Prázdné médium</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>Bajtů na sektor</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>Vypočtená kapacita: {0}</value></data>
+  <data name="Emulation.Controller.Mappings"><value>Mapování ovladače</value></data>
+<data name="Emulation.Controller.Type"><value>Typ ovladače</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>Vlastní velikost</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>Cylindry</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>Cílová složka</value></data>
+  <data name="Emulation.Controller.Detected"><value>Zjištěné ovladače</value></data>
+  <data name="Emulation.Device.Name"><value>Zařízení</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>Geometrie disku (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>Profil velikosti</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>Disketová jednotka</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>Hlavy</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>Klikněte na Přiřadit a potom použijte klávesu, tlačítko myši nebo tlačítko ovladače.</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>Velikost nebo geometrie disku není platná.</value></data>
+  <data name="Emulation.Mouse.Actions"><value>Akce myši</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>Tlačítko myši 4</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>Tlačítko myši 5</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>Zachytávání myši</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>Okamžitě rezervuje fyzické místo; jinak se obraz zvětšuje při zápisu dat.</value></data>
+  <data name="Emulation.Controller.SearchBinding"><value>Hledat akci nebo vstup</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>Sektory</value></data>
+  <data name="Emulation.Controller.Action.Up"><value>Nahoru</value></data>
+  <data name="Emulation.Controller.Action.Down"><value>Dolů</value></data>
+  <data name="Emulation.Controller.Action.Left"><value>Vlevo</value></data>
+  <data name="Emulation.Controller.Action.Right"><value>Vpravo</value></data>
+  <data name="Emulation.Controller.Action.Fire1"><value>Tlačítko střelby 1</value></data>
+  <data name="Emulation.Controller.Action.Fire2"><value>Tlačítko střelby 2</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>Červené tlačítko CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>Modré tlačítko CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>Zelené tlačítko CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>Žluté tlačítko CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 převinout zpět</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 převinout vpřed</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 přehrát / pozastavit</value></data>
+  <data name="Emulation.Controller.AnalogJoystick"><value>Analogový joystick</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>Kolečko myši nahoru</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>Kolečko myši dolů</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>Kolečko myši doleva</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>Kolečko myši doprava</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>Tato hodnota je určena zvoleným modelem.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>Není kompatibilní FPU je k dispozici pro tento model.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>Pro tento model není dostupná žádná alternativní paměť.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>Tento model nemá konfigurovatelný firmware.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>Tento model nemá klávesnici.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>Tento model nemá myš.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Tento model nemá žádná paměťová média.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Vyberte jaguár CD model pro použití CD média.</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>Kazeta</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>Nátěr</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>Kompaktní disky</value></data>
+  <data name="Emulation.Atari.Video.Region"><value>Oblast</value></data>
+  <data name="Emulation.Atari.Firmware.Multilingual"><value>Vícejazyčné</value></data>
+  <data name="Emulation.Atari.Video.RegionFree"><value>Bez regionu</value></data>
+<data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>Požadované jádro Atari nebylo nalezeno.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>Zvolené jádro Atari nebylo možné načíst.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>Chybí požadovaný firmware Atari.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>Atari firmware je neplatný nebo nekompatibilní.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>Nakonfigurovaná média Atari nebyla nalezena.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>Nakonfigurovaná média nejsou podporována tímto zařízením Atari.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>Možnost Atari má neplatnou hodnotu.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>Komunikace s hostitelem Atari selhala.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>Uložený stav Atari je neplatný.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>Uložený stav Atari je neslučitelný se stávajícím strojem.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>Nastala neočekávaná chyba emulace Atari.</value></data>
+  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>Podrobnosti: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>Aktivní konfiguraci Atari nelze změnit nebo smazat.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve"><value>Požadovaný firmware Atari '{0}' není konfigurován pro{1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>Konfigurovaný firmware Atari '{0}' nebyl nalezen: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>Konfigurovaná média Atari nebyla nalezena: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>Spustitelná cesta Atari je nedostupná.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>Jádro Atari '{0}' není instalováno.</value></data>
+  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari média|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Všechny soubory|*.*</value></data>
   <data name="Emulation.Controller.Automatic"><value>Automatický</value></data>
   <data name="Emulation.Controller.None"><value>Žádná</value></data>
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Paralelní čtyřhranný adaptér joystick</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Přepnout joystick / myš</value></data>
   <data name="Emulation.Atari.Controller.NumericKeypad"><value>Číselná klávesnice</value></data>
-  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
-    <value>Emulátor před zapnutím tohoto stroje vyžaduje médium. Vložte nebo nastavte jedno z požadovaných médií uvedených níže.</value>
-  </data>
-  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
-    <value>Stroj nelze zapnout</value>
-  </data>
-  <data name="Emulation.Error.Machine" xml:space="preserve">
-    <value>Stroj</value>
-  </data>
-  <data name="Emulation.Error.RequiredMedia" xml:space="preserve">
-    <value>Požadovaná média</value>
-  </data>
+  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve"><value>Emulátor před zapnutím tohoto stroje vyžaduje médium. Vložte nebo nastavte jedno z požadovaných médií uvedených níže.</value></data>
+  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve"><value>Stroj nelze zapnout</value></data>
+  <data name="Emulation.Error.Machine" xml:space="preserve"><value>Stroj</value></data>
+  <data name="Emulation.Error.RequiredMedia" xml:space="preserve"><value>Požadovaná média</value></data>
   <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Rychlé spuštění</value></data>
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Zvuk disketové mechaniky</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Polarizovaný zvukový filtr</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Zobrazit aktivitu jednotek na obrazovce emulátoru</value></data>
-  <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Rozšíření paměti Mosaic</value></data>
-  <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Rozšíření paměti Axlon</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic"><value>Mozaika RAM rozšíření</value></data>
+  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM rozšíření</value></data>
   <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Stín banky Axlon $0F</value></data>
-  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>Stereo POKEY</value></data>
   <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Artefakty ve vysokém rozlišení</value></data>
   <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>Zrychlení SIO</value></data>
   <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Spustit z kazety</value></data>
@@ -1062,24 +283,17 @@
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Nízká</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normální</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Vysoká</value></data>
-  <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Slot pro kazetu ROM</value></data>
-  <data name="Emulation.Media.Insert" xml:space="preserve">
-    <value>Vložit médium</value>
-  </data>
-  <data name="Emulation.Media.Eject" xml:space="preserve">
-    <value>Vysunout médium</value>
-  </data>
-  <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
-  <data name="Emulation.Key.AtariHelp" xml:space="preserve"><value>Help</value></data>
-  <data name="Emulation.Key.AtariUndo" xml:space="preserve"><value>Undo</value></data>
-  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput se nepodařilo inicializovat. Nainstalujte nebo opravte přiložené běhové prostředí GameInput.</value></data>
+  <data name="Emulation.Storage.Cartridge.Device"><value>Rozhraní náplně</value></data>
+  <data name="Emulation.Media.Insert" xml:space="preserve"><value>Vložit médium</value></data>
+  <data name="Emulation.Media.Eject" xml:space="preserve"><value>Vysunout médium</value></data>
+<data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput se nepodařilo inicializovat. Nainstalujte nebo opravte přiložené běhové prostředí GameInput.</value></data>
   <data name="Emulation.Configuration.Brand"><value>Značka</value></data>
   <data name="Emulation.Configuration.Machine"><value>Počítač</value></data>
   <data name="Emulation.Configuration.TotalRam"><value>Celková RAM</value></data>
   <data name="Emulation.Configuration.Readers"><value>Jednotky</value></data>
   <data name="Emulation.Configuration.Peripherals"><value>Periferie</value></data>
   <data name="Emulation.Configuration.Actions"><value>Akce</value></data>
-  <data name="Emulation.Configuration.DeleteConfirm"><value>Odstranit konfiguraci {0} {1}?</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>Smazat {0} {1} konfigurace?</value></data>
   <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short"><value>Tiché prázdné diskety</value></data>
   <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed"><value>Ztiší zvuk emulovaného pohonu, když není vložen žádný disk. Zaškrtněte tuto volbu, aby se zachoval planý mechanický hluk.</value></data>
   <data name="Emulation.Help.Audio.Filter.Short"><value>Vybrat analogové audio filtrování</value></data>
@@ -1117,7 +331,7 @@
   <data name="Emulation.Help.Cpu.Precision.Short"><value>Vybrat CPU přesnost emulace</value></data>
   <data name="Emulation.Help.Cpu.Precision.Detailed"><value>Vybere si, jak blízko CPU Načasování následuje původní hardware. Přesnější režimy mohou zlepšit kompatibilitu, ale mohou vyžadovat další zpracování.</value></data>
   <data name="Emulation.Help.Cpu.Speed.Short"><value>Nastavit emulaci CPU rychlost</value></data>
-  <data name="Emulation.Help.Cpu.Speed.Detailed"><value>Nastaví frekvenci procesoru použitou emulovaným strojem. Původní rychlost zachovává hardwarové načasování. Vyšší hodnoty zrychlují CPU- omezený software.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed"><value>Nastaví frekvenci procesoru, kterou používá emulovaný stroj. Původní rychlost zachovává načasování hardwaru. Vyšší hodnoty zrychlují CPU- omezený software.</value></data>
   <data name="Emulation.Help.Mouse.Analog.Short"><value>Pomocí analogových tyčí pro ovládání myši</value></data>
   <data name="Emulation.Help.Mouse.Analog.Detailed"><value>Umožňuje analogové osy joysticku pohybovat emulovaným ukazatelem myši. Povolit, když fyzická analogová hůl by měla ovládat ukazovátko.</value></data>
   <data name="Emulation.Help.Mouse.AnalogSpeed.Short"><value>Nastavit analogovou rychlost myši</value></data>
@@ -1186,9 +400,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Nastaví GTIA zpoždění barevné fáze použité k reprodukci barev. Výchozí používá standardní hodnotu. Číselné volby posunou výsledné odstíny.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>Nastavení přeskočení rámu</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Nastaví, kolik zobrazovacích rámů je vynecháno. Zakázané nakreslí každý snímek. Vyšší hodnoty snižují ztvárnění práce, ale zmenšují pohyb.</value></data>
-  <data name="Emulation.Controller.Visual" xml:space="preserve">
-    <value>Vzhled</value>
-  </data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Vzhled</value></data>
   <data name="Emulation.Video.Compatibility.ExclusiveDisplayTechnology"><value>V současné době může být aktivní pouze jedna zobrazovací technologie.</value></data>
   <data name="Emulation.Video.Crt.Color.Amber"><value>Monochromní jantar</value></data>
   <data name="Emulation.Video.Crt.Color.Color"><value>Barva</value></data>
@@ -1200,10 +412,8 @@
   <data name="Emulation.Video.Crt.Mask.None"><value>Žádné</value></data>
   <data name="Emulation.Video.Crt.Mask.ShadowMask"><value>Stínová maska</value></data>
   <data name="Emulation.Video.Crt.Mask.SlotMask"><value>Plastová maska</value></data>
-  <data name="Emulation.Video.FixedPixel.Technology.Lcd"><value>LCD</value></data>
-  <data name="Emulation.Video.FixedPixel.Technology.LedBacklitLcd"><value>LED-backlit LCD</value></data>
-  <data name="Emulation.Video.FixedPixel.Technology.Oled"><value>OLED</value></data>
-  <data name="Emulation.Video.Limitation.UnsupportedBackend"><value>Toto nastavení není podporováno zvoleným vykreslovacím backendem.</value></data>
+<data name="Emulation.Video.FixedPixel.Technology.LedBacklitLcd"><value>LED-podsvícený LCD</value></data>
+<data name="Emulation.Video.Limitation.UnsupportedBackend"><value>Toto nastavení není podporováno zvoleným vykreslovacím backendem.</value></data>
   <data name="Emulation.Video.Orientation.Horizontal"><value>Horizontální</value></data>
   <data name="Emulation.Video.Orientation.Vertical"><value>Vertikální</value></data>
   <data name="Emulation.Video.Parameter.Brightness"><value>jasnost</value></data>
@@ -1227,7 +437,6 @@
   <data name="Emulation.Video.Parameter.CrtScanlinePhase"><value>Scanline fáze</value></data>
   <data name="Emulation.Video.Parameter.CrtScanlinesEnabled"><value>Skenery</value></data>
   <data name="Emulation.Video.Parameter.CrtScanlineThickness"><value>Tloušťka scanlinu</value></data>
-  <data name="Emulation.Video.Parameter.CrtVignette"><value>Vignette</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBacklight"><value>Intenzita podsvícení</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBlackDepth"><value>Černá hloubka</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelGridIntensity"><value>Intenzita pixelské mřížky</value></data>
@@ -1237,7 +446,6 @@
   <data name="Emulation.Video.Parameter.FixedPixelResponseTime"><value>Doba odezvy (ms)</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelSubpixels"><value>Rozvržení podpixelů</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelTechnology"><value>Technologie Fixed- pixelu</value></data>
-  <data name="Emulation.Video.Parameter.Gamma"><value>Gamma</value></data>
   <data name="Emulation.Video.Parameter.PlasmaCellStructure"><value>Struktura buněk</value></data>
   <data name="Emulation.Video.Parameter.PlasmaDiffusion"><value>Difuze světla</value></data>
   <data name="Emulation.Video.Parameter.PlasmaPersistence"><value>Vytrvalost</value></data>
@@ -1248,6 +456,8 @@
   <data name="Emulation.Video.Parameter.VectorLineIntensity"><value>Intenzita tratě</value></data>
   <data name="Emulation.Video.Parameter.VectorLineThreshold"><value>Prahová hodnota tratě</value></data>
   <data name="Emulation.Video.Parameter.VectorPersistence"><value>Vytrvalost</value></data>
+  <data name="Emulation.Video.Vector.Group.Drawing"><value>Detekce a vykreslení</value></data>
+  <data name="Emulation.Video.Vector.Group.Glow"><value>Záře a dosvit</value></data>
   <data name="Emulation.Video.Preset.CrtAmber"><value>CRT - jantarový monochrom</value></data>
   <data name="Emulation.Video.Preset.CrtArcadeColor"><value>CRT - Barevná pasáž</value></data>
   <data name="Emulation.Video.Preset.CrtGreen"><value>CRT - Zelený monochrom</value></data>
@@ -1255,68 +465,49 @@
   <data name="Emulation.Video.Preset.CrtWhite"><value>CRT - bílý monochrom</value></data>
   <data name="Emulation.Video.Preset.LcdColor"><value>Barva LCD</value></data>
   <data name="Emulation.Video.Preset.LcdMonochrome"><value>Monochromní LCD</value></data>
-  <data name="Emulation.Video.Preset.LedBacklitLcd"><value>LED-backlit LCD</value></data>
+  <data name="Emulation.Video.Preset.LedBacklitLcd"><value>LED-podsvícený LCD</value></data>
   <data name="Emulation.Video.Preset.Normal"><value>Normální</value></data>
-  <data name="Emulation.Video.Preset.Oled"><value>OLED</value></data>
-  <data name="Emulation.Video.Preset.Plasma"><value>Plazma</value></data>
+<data name="Emulation.Video.Preset.Plasma"><value>Plazma</value></data>
   <data name="Emulation.Video.Preset.Vector"><value>Vektorové zobrazení</value></data>
   <data name="Emulation.Video.Sampling"><value>Výběr vzorku</value></data>
-  <data name="Emulation.Video.Sampling.Bicubic"><value>Bicubic</value></data>
-  <data name="Emulation.Video.Sampling.Bilinear"><value>Bilinear</value></data>
+  <data name="Emulation.Video.Sampling.Bicubic"><value>Bikubic</value></data>
   <data name="Emulation.Video.Sampling.Nearest"><value>Normální</value></data>
   <data name="Emulation.Video.Sampling.SharpBilinear"><value>Ostré bilineární</value></data>
   <data name="Emulation.Video.Settings.General"><value>Obecné úpravy obrazu</value></data>
   <data name="Emulation.Video.Settings.GwGuiProcessing"><value>Zpracování videa GW GUI</value></data>
-  <data name="Emulation.Video.Subpixels.Bgr"><value>BGR</value></data>
-  <data name="Emulation.Video.Subpixels.Monochrome"><value>Monochromní</value></data>
-  <data name="Emulation.Video.Subpixels.Rgb"><value>RGB</value></data>
-  <data name="Emulation.Video.Technology"><value>Technologie zobrazení</value></data>
-  <data name="Emulation.Video.Technology.Crt"><value>CRT</value></data>
-  <data name="Emulation.Video.Technology.FixedPixel"><value>LCD / LED / OLED</value></data>
+<data name="Emulation.Video.Subpixels.Monochrome"><value>Monochromní</value></data>
+<data name="Emulation.Video.Technology"><value>Technologie zobrazení</value></data>
   <data name="Emulation.Video.Technology.Normal"><value>Normální</value></data>
   <data name="Emulation.Video.Technology.Plasma"><value>Plazma</value></data>
   <data name="Emulation.Video.Technology.Vector"><value>Vektor</value></data>
-  <data name="Emulation.Video.Sampling.Xbr"><value>xBR</value></data>
-  <data name="Emulation.Video.Sampling.Xbrz"><value>xBRZ</value></data>
-  <data name="Emulation.Video.Sampling.Hqx"><value>HQx</value></data>
-  <data name="Emulation.Video.Sampling.ScaleFx"><value>ScaleFX</value></data>
-  <data name="Emulation.Video.Sampling.ScaleNx"><value>ScaleNx</value></data>
-  <data name="Emulation.Video.Sampling.Sabr"><value>SABR</value></data>
-  <data name="Emulation.Video.Settings.Restoration"><value>Obnova obrázků</value></data>
+<data name="Emulation.Video.Settings.Restoration"><value>Obnova obrázků</value></data>
   <data name="Emulation.Video.Parameter.Dedithering"><value>Odstranění ditheringu</value></data>
   <data name="Emulation.Video.Parameter.Denoising"><value>Denoizace</value></data>
   <data name="Emulation.Video.Parameter.Debanding"><value>Redukce při vykládce</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>Obnovení detailů</value></data>
-  <data name="Emulation.Video.Parameter.Deinterlacing"><value>Deinterlacing</value></data>
   <data name="Emulation.Video.Deinterlacing.Off"><value>Vypnout</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Bob - i řádky</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob - liché řádky</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Vertikální směs</value></data>
-  <data name="Emulation.Video.Technology.Vfd"><value>VFD</value></data>
-  <data name="Emulation.Video.Vfd.Color.Blue"><value>Modrá</value></data>
+<data name="Emulation.Video.Vfd.Color.Blue"><value>Modrá</value></data>
   <data name="Emulation.Video.Vfd.Color.Green"><value>Zelená</value></data>
-  <data name="Emulation.Video.Vfd.Color.Amber"><value>Amber</value></data>
   <data name="Emulation.Video.Vfd.Color.Red"><value>Červená</value></data>
   <data name="Emulation.Video.Parameter.VfdColor"><value>Barva fosforu</value></data>
   <data name="Emulation.Video.Parameter.VfdPhosphorIntensity"><value>Intenzita fosforu</value></data>
-  <data name="Emulation.Video.Parameter.VfdHaloIntensity"><value>VFD halo</value></data>
-  <data name="Emulation.Video.Parameter.VfdPersistence"><value>Přetrvávání VFD</value></data>
+  <data name="Emulation.Video.Parameter.VfdPersistence"><value>Trvání perzistence (ms)</value></data>
   <data name="Emulation.Video.Technology.LedMatrix"><value>LED matrice</value></data>
-  <data name="Emulation.Video.LedMatrix.Color.Rgb"><value>RGB</value></data>
-  <data name="Emulation.Video.LedMatrix.Color.Red"><value>Červená</value></data>
+<data name="Emulation.Video.LedMatrix.Color.Red"><value>Červená</value></data>
   <data name="Emulation.Video.LedMatrix.Color.Green"><value>Zelená</value></data>
-  <data name="Emulation.Video.LedMatrix.Color.Amber"><value>Amber</value></data>
   <data name="Emulation.Video.LedMatrix.Color.Blue"><value>Modrá</value></data>
   <data name="Emulation.Video.LedMatrix.Color.White"><value>Bílá</value></data>
   <data name="Emulation.Video.Parameter.LedMatrixColor"><value>Barva LED</value></data>
   <data name="Emulation.Video.Parameter.LedMatrixCellSize"><value>Velikost LED buněk</value></data>
   <data name="Emulation.Video.Parameter.LedMatrixCellGap"><value>Rozchod LED buněk</value></data>
-  <data name="Emulation.Video.Parameter.LedMatrixDiffusion"><value>LED difuze</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixDiffusion"><value>Intenzita záře</value></data>
   <data name="Emulation.Video.Parameter.LedMatrixBrightness"><value>LED jas</value></data>
-  <data name="Emulation.Video.Technology.DotMatrix"><value>Dot matrix</value></data>
+  <data name="Emulation.Video.Technology.DotMatrix"><value>Matrix Dot</value></data>
   <data name="Emulation.Video.DotMatrix.Palette.Green"><value>Zelený LCD</value></data>
-  <data name="Emulation.Video.DotMatrix.Palette.Gray"><value>Gray LCD</value></data>
-  <data name="Emulation.Video.DotMatrix.Palette.Amber"><value>Amber</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Gray"><value>Šedá LCD</value></data>
   <data name="Emulation.Video.DotMatrix.Palette.Blue"><value>Modrá</value></data>
   <data name="Emulation.Video.DotMatrix.Shape.Round"><value>Kulaté</value></data>
   <data name="Emulation.Video.DotMatrix.Shape.Square"><value>Náměstí</value></data>
@@ -1331,7 +522,6 @@
   <data name="Emulation.Video.SegmentDisplay.Layout.Sixteen"><value>16 segmentů</value></data>
   <data name="Emulation.Video.SegmentDisplay.Color.Red"><value>Červená</value></data>
   <data name="Emulation.Video.SegmentDisplay.Color.Green"><value>Zelená</value></data>
-  <data name="Emulation.Video.SegmentDisplay.Color.Amber"><value>Amber</value></data>
   <data name="Emulation.Video.SegmentDisplay.Color.Blue"><value>Modrá</value></data>
   <data name="Emulation.Video.SegmentDisplay.Color.White"><value>Bílá</value></data>
   <data name="Emulation.Video.Parameter.SegmentDisplayLayout"><value>Rozvržení segmentů</value></data>
@@ -1348,7 +538,6 @@
   <data name="Emulation.Video.Parameter.EPaperContrast"><value>Elektronický kontrast papíru</value></data>
   <data name="Emulation.Video.Parameter.EPaperDithering"><value>Zpracování elektronických papírů</value></data>
   <data name="Emulation.Video.Parameter.EPaperRefreshTime"><value>Obnovený čas (ms)</value></data>
-  <data name="Emulation.Video.Parameter.EPaperGhosting"><value>Ghosting</value></data>
   <data name="Emulation.Video.Technology.Projection"><value>Promítání</value></data>
   <data name="Emulation.Video.Parameter.ProjectionOpticalBlur"><value>Optické rozostření</value></data>
   <data name="Emulation.Video.Parameter.ProjectionDiffusion"><value>Difuze světla</value></data>
@@ -1363,10 +552,8 @@
   <data name="Emulation.Video.Settings.SignalSimulation"><value>Simulace signálu</value></data>
   <data name="Emulation.Video.Settings.Stylistic"><value>Stylistické účinky</value></data>
   <data name="Emulation.Video.Parameter.Grain"><value>Analogová zrna</value></data>
-  <data name="Emulation.Video.Parameter.Vhs"><value>VHS</value></data>
-  <data name="Emulation.Video.Parameter.ChromaticAberration"><value>Chromatické aberace</value></data>
+<data name="Emulation.Video.Parameter.ChromaticAberration"><value>Chromatické aberace</value></data>
   <data name="Emulation.Video.Parameter.Bloom"><value>Světlý květ</value></data>
-  <data name="Emulation.Video.Parameter.Sepia"><value>Sepia</value></data>
   <data name="Emulation.Video.Tab.Display"><value>Zobrazit</value></data>
   <data name="Emulation.Video.Tab.Rendering"><value>Překládání</value></data>
   <data name="Emulation.Video.Tab.Technology"><value>Technologie</value></data>
@@ -1375,15 +562,7 @@
   <data name="Emulation.Video.Tab.Motion"><value>Návrh</value></data>
   <data name="Emulation.Video.Tab.Signal"><value>Signál</value></data>
   <data name="Emulation.Video.Tab.Effects"><value>Účinky</value></data>
-  <data name="Emulation.Video.Sampling.Hq2x"><value>HQ2x</value></data>
-  <data name="Emulation.Video.Sampling.Hq3x"><value>HQ3x</value></data>
-  <data name="Emulation.Video.Sampling.Hq4x"><value>HQ4x</value></data>
-  <data name="Emulation.Video.Sampling.TwoXSai"><value>2xSaI</value></data>
-  <data name="Emulation.Video.Sampling.SuperTwoXSai"><value>Super 2xSaI</value></data>
-  <data name="Emulation.Video.Sampling.SuperEagle"><value>Super Eagle</value></data>
-  <data name="Emulation.Video.Sampling.EpxScale2x"><value>EPX / Scale2x</value></data>
-  <data name="Emulation.Video.Sampling.Jinc2"><value>JINC2</value></data>
-  <data name="Emulation.Video.Sampling.Lanczos"><value>Lanczos</value></data>  <data name="Emulation.Video.Parameter.FineDetails"><value>Jemné detaily</value></data>
+<data name="Emulation.Video.Parameter.FineDetails"><value>Jemné detaily</value></data>
   <data name="Emulation.Video.Restoration.Level.None"><value>Žádné</value></data>
   <data name="Emulation.Video.Restoration.Level.Light"><value>Lehké</value></data>
   <data name="Emulation.Video.Restoration.Level.Medium"><value>Střední</value></data>
@@ -1394,19 +573,12 @@
   <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>Rozklad spoje</value></data>
   <data name="Emulation.Video.Parameter.SignalStandard"><value>Barevný standard</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>Standardní intenzita účinku</value></data>
-  <data name="Emulation.Video.Signal.Connection.RgbScart"><value>RGB (SCART)</value></data>
-  <data name="Emulation.Video.Signal.Connection.Component"><value>Součást (YPbPr)</value></data>
-  <data name="Emulation.Video.Signal.Connection.SVideo"><value>S-Video</value></data>
-  <data name="Emulation.Video.Signal.Connection.Composite"><value>Composite</value></data>
-  <data name="Emulation.Video.Signal.Connection.Rf"><value>RF</value></data>
-  <data name="Emulation.Video.Signal.Standard.Automatic"><value>Automatické</value></data>
-  <data name="Emulation.Video.Signal.Standard.Pal"><value>PAL</value></data>
-  <data name="Emulation.Video.Signal.Standard.Ntsc"><value>NTSC</value></data>
-  <data name="Emulation.Video.Signal.Standard.Secam"><value>SECAM</value></data>
-  <data name="Emulation.Video.Signal.Connection.None"><value>Žádné</value></data>
+<data name="Emulation.Video.Signal.Connection.Component"><value>Součást (YPbPr)</value></data>
+<data name="Emulation.Video.Signal.Connection.Composite"><value>Kompozitní</value></data>
+<data name="Emulation.Video.Signal.Standard.Automatic"><value>Automatické</value></data>
+<data name="Emulation.Video.Signal.Connection.None"><value>Žádné</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>Horizontální zakřivení</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>Vertikální zakřivení</value></data>
-  <data name="Emulation.Video.Parameter.CrtTrapezoid"><value>Trapezoid</value></data>
   <data name="Emulation.Video.Crt.Group.Color"><value>Barva fosforu</value></data>
   <data name="Emulation.Video.Crt.Group.Beam"><value>Elektronový paprsek</value></data>
   <data name="Emulation.Video.Crt.Group.Mask"><value>Fosforeční maska</value></data>
@@ -1418,4 +590,140 @@
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>Fáze 1 / 2</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>Fáze 3 / 4</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>Krvácení zezadu</value></data>
+  <data name="Emulation.Video.Parameter.VfdEmissionThreshold"><value>Práh emise</value></data>
+  <data name="Emulation.Video.Parameter.VfdGlassDarkening"><value>Ztmavení kouřového skla</value></data>
+  <data name="Emulation.Video.Parameter.VfdStructure"><value>Struktura anod</value></data>
+  <data name="Emulation.Video.Parameter.VfdCellSize"><value>Velikost buněk</value></data>
+  <data name="Emulation.Video.Parameter.VfdCellGap"><value>Mezera mezi buňkami</value></data>
+  <data name="Emulation.Video.Parameter.VfdHaloRadius"><value>Poloměr záře</value></data>
+  <data name="Emulation.Video.Vfd.Structure.Graphic"><value>Grafická</value></data>
+  <data name="Emulation.Video.Vfd.Structure.DotMatrix"><value>Bodová matice</value></data>
+  <data name="Emulation.Video.Vfd.Group.PhosphorAndGlass"><value>Luminofor a sklo</value></data>
+  <data name="Emulation.Video.Vfd.Group.Anodes"><value>Struktura anod</value></data>
+  <data name="Emulation.Video.Vfd.Group.GlowAndResponse"><value>Záře a odezva</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaBlackDepth"><value>Černá hloubka</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaPhosphorIntensity"><value>Intenzita fosforu</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaGammaResponse"><value>Gama odezva</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaAutomaticBrightnessLimiter"><value>Automatický omezovač jasu</value></data>
+  <data name="Emulation.Video.Plasma.Group.PanelAndCells"><value>Panel a buňky</value></data>
+  <data name="Emulation.Video.Plasma.Group.Phosphors"><value>Fosfory</value></data>
+  <data name="Emulation.Video.Plasma.Group.Light"><value>Řízení světla</value></data>
+  <data name="Emulation.Video.Plasma.Group.Temporal"><value>Časová odpověď</value></data>
+  <data name="Emulation.Video.Parameter.VectorBeamWidth"><value>Šířka paprsku</value></data>
+  <data name="Emulation.Video.Parameter.VectorBeamFocus"><value>Zaostření paprsku</value></data>
+  <data name="Emulation.Video.Parameter.VectorPhosphorColor"><value>Barva fosforu</value></data>
+  <data name="Emulation.Video.Parameter.VectorHaloRadius"><value>Poloměr</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixShape"><value>Tvar LED</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixHaloRadius"><value>Poloměr záře</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixBlackDepth"><value>Hloubka černé</value></data>
+  <data name="Emulation.Video.LedMatrix.Shape.Round"><value>Kulatý</value></data>
+  <data name="Emulation.Video.LedMatrix.Shape.Square"><value>Čtvercový</value></data>
+  <data name="Emulation.Video.LedMatrix.Group.Structure"><value>Struktura matice</value></data>
+  <data name="Emulation.Video.LedMatrix.Group.Emission"><value>Vyzařování světla</value></data>
+  <data name="Emulation.Memory.Summary"><value>Chip RAM: {0} KiB\ nSlow RAM: {1} KiB\ nFast RAM: {2} MiB</value></data>
+  <data name="Emulation.Cpu.Model"><value>Model CPU</value></data>
+  <data name="Emulation.Cpu.Multiplier"><value>Násobitel CPU</value></data>
+  <data name="Emulation.Cpu.Compatibility"><value>Cycle- kompatibilní CPU</value></data>
+  <data name="Emulation.Memory.Slow"><value>Pomalý RAM</value></data>
+  <data name="Emulation.Memory.Fast"><value>Rychlé RAM</value></data>
+  <data name="Emulation.Video.Resolution"><value>Usnesení</value></data>
+  <data name="Emulation.Video.AspectRatio"><value>Poměr stran</value></data>
+  <data name="Emulation.Video.Crop"><value>Obilné hranice</value></data>
+  <data name="Emulation.Video.FlickerFixer"><value>Zařízení pro navíjení</value></data>
+  <data name="Emulation.Audio.Enabled"><value>Povolit audio</value></data>
+  <data name="Emulation.Audio.Output"><value>Audio výstup</value></data>
+  <data name="Emulation.Audio.Latency"><value>Postoj Evropského parlamentu ze dne 16. prosince2016 (dosud nezveřejněný v Úředním věstníku) a rozhodnutí Rady ze dne 15. prosince2016.</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>Interpolace</value></data>
+  <data name="Emulation.Audio.Filter"><value>Amiga audio filtr</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>Oddělování stereoskopických vlastností (%)</value></data>
+  <data name="Emulation.Audio.Input"><value>Audio vstup</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>Toto Amiga jádro neodhaluje audio vstup.</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Výchozí výstup Windows</value></data>
+  <data name="Emulation.Storage.Media.Add"><value>Přidat média</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>Vytvořit pevný disk</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>Velikost pevného disku (MiB)</value></data>
+  <data name="Emulation.Storage.Media.None"><value>Bez médií. Přidejte disketu, pevný disk nebo CD podporované zvoleným modelem.</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>Pouze pro čtení</value></data>
+  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Všechny soubory|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>Amiga hard disk|*.hdf|Všechny soubory|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.NotSupported"><value>Zvolený model nepodporuje pevný disk.</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>Tento model přijímá maximálně {0} mechanika / mechaniky.</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>Tento model přijímá maximálně {0} pevný disk (disky).</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>Zvolený model nepodporuje CD disk.</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>Dva Amiga klíče používají stejné PC klíč. Před uložením vyřešte červené mapování.</value></data>
+  <data name="Emulation.Mouse.ReleaseKey"><value>Klíč pro zachytávání</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>Levé tlačítko myši</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>Pravé tlačítko myši</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>Střední tlačítko myši</value></data>
+  <data name="Emulation.Controller.Detect"><value>Detect regulátory</value></data>
+  <data name="Emulation.Controller.EmulatedAction"><value>Akce Amiga</value></data>
+  <data name="Emulation.Controller.PhysicalControl"><value>Ovládání klávesnice, myši nebo regulátoru</value></data>
+  <data name="Emulation.Cpu.Speed"><value>Rychlost CPU</value></data>
+  <data name="Emulation.Cpu.SpeedOriginal"><value>Původní rychlost</value></data>
+  <data name="Emulation.Cpu.Compatibility.Normal"><value>Normální</value></data>
+  <data name="Emulation.Cpu.Compatibility.Compatible"><value>Kompatibilní</value></data>
+  <data name="Emulation.Cpu.Compatibility.Memory"><value>Kompatibilní s pamětí</value></data>
+  <data name="Emulation.Cpu.Compatibility.Exact"><value>Přesný cyklus</value></data>
+  <data name="Emulation.Fpu.Integrated"><value>Integrovaný FPU</value></data>
+  <data name="Emulation.Value.Enabled"><value>Povoleno</value></data>
+  <data name="Emulation.Value.Disabled"><value>Zakázáno</value></data>
+  <data name="Emulation.Value.Minimum"><value>Minimální</value></data>
+  <data name="Emulation.Value.VerySmall"><value>Velmi malé</value></data>
+  <data name="Emulation.Value.Small"><value>Malé</value></data>
+  <data name="Emulation.Value.Medium"><value>Střední</value></data>
+  <data name="Emulation.Value.Large"><value>Velké</value></data>
+  <data name="Emulation.Value.VeryLarge"><value>Velmi velké</value></data>
+  <data name="Emulation.Value.Maximum"><value>Maximální</value></data>
+  <data name="Emulation.State.Locked"><value>Zamčeno</value></data>
+  <data name="Emulation.State.Immediate"><value>Okamžitý</value></data>
+  <data name="Emulation.State.Waiting"><value>Čekání</value></data>
+  <data name="Emulation.Value.Standard"><value>Standardní</value></data>
+  <data name="Emulation.Value.Enhanced"><value>Vylepšená</value></data>
+  <data name="Emulation.Value.Internal"><value>Vnitřní</value></data>
+  <data name="Emulation.Value.Loud"><value>Hlasitý</value></data>
+  <data name="Emulation.Video.Resolution.AutoLow"><value>Automatické nízké rozlišení</value></data>
+  <data name="Emulation.Video.Resolution.AutoSuperHigh"><value>Automatické supervysoké rozlišení</value></data>
+  <data name="Emulation.Video.Resolution.Low"><value>Nízké rozlišení</value></data>
+  <data name="Emulation.Video.Resolution.High"><value>Vysoké rozlišení</value></data>
+  <data name="Emulation.Video.Resolution.SuperHigh"><value>Super- vysoké rozlišení</value></data>
+  <data name="Emulation.Video.LineMode"><value>Traťový režim</value></data>
+  <data name="Emulation.Video.HzChange"><value>Změny v obnově</value></data>
+  <data name="Emulation.Video.FrameSkip"><value>Přeskočení rámu</value></data>
+  <data name="Emulation.Video.Colors"><value>Hloubka barev</value></data>
+  <data name="Emulation.State.ImmediateBlits"><value>Provoz bleskového zařízení</value></data>
+  <data name="Emulation.Video.Collision.Level"><value>Zjištění kolize</value></data>
+  <data name="Emulation.Video.LineMode.Single"><value>Jednoduchý sken</value></data>
+  <data name="Emulation.Video.LineMode.Double"><value>Dvojitý sken</value></data>
+  <data name="Emulation.Video.Collision.Sprites"><value>Šprot obecný</value></data>
+  <data name="Emulation.Video.Collision.Playfields"><value>Hrací pole</value></data>
+  <data name="Emulation.Video.Collision.Full"><value>Plnononosný</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>Protiinterpolace</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>Emulované</value></data>
+  <data name="Emulation.Audio.FilterType"><value>Typ filtru</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>Objem zvuku floppy- pohonu</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>Typ zvuku floppy- drive</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>Ztlumit prázdné mechaniky</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>Zvukový zvuk CD</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Rychlost floppy- pohonu</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>Write- protect floppy images</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Přesměrovat floppy píše</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>Rychlost CD</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Fyzická klávesnice průchod</value></data>
+  <data name="Emulation.Mouse.Physical"><value>Myš</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>Dvojitý pohyb</value></data>
+  <data name="Emulation.Mouse.Speed"><value>Rychlost myši</value></data>
+  <data name="Emulation.Mouse.Analog"><value>Analogové hole ovládající myš</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>Analog- stick dead zone</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>Analog- stick rychlost myši</value></data>
+  <data name="Emulation.Controller.Stick.Left"><value>Levá tyč</value></data>
+  <data name="Emulation.Controller.Stick.Right"><value>Pravá tyč</value></data>
+  <data name="Emulation.Controller.Stick.Both"><value>Obě tyčinky</value></data>
+  <data name="Emulation.Controller.Action.TurboFire"><value>Turbo oheň</value></data>
+  <data name="Emulation.Controller.Turbo.Button"><value>Turbo tlačítko</value></data>
+  <data name="Emulation.Controller.Turbo.Pulse"><value>Turbo pulz</value></data>
+  <data name="Emulation.Controller.PortOrder"><value>Řád portu kontroléra</value></data>
+  <data name="Emulation.Controller.Port"><value>Přístav {0}</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32"><value>CD32 regulátor</value></data>
+  <data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Pádlové kontrolory</value></data>
+  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro- Line Joystick</value></data>
 </root>

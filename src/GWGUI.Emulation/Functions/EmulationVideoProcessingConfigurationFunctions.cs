@@ -116,21 +116,36 @@ public static class EmulationVideoProcessingConfigurationFunctions
                 CellStructure = Intensity(plasma.CellStructure),
                 Diffusion = Intensity(plasma.Diffusion),
                 TemporalDithering = Intensity(plasma.TemporalDithering),
-                PersistenceIntensity = Intensity(plasma.PersistenceIntensity)
+                PersistenceIntensity = Intensity(plasma.PersistenceIntensity),
+                BlackDepth = Intensity(plasma.BlackDepth),
+                PhosphorIntensity = Intensity(plasma.PhosphorIntensity),
+                GammaResponse = Intensity(plasma.GammaResponse),
+                AutomaticBrightnessLimiter = Intensity(plasma.AutomaticBrightnessLimiter)
             },
             Vector = vector with
             {
                 LineThreshold = Intensity(vector.LineThreshold),
                 LineIntensity = Intensity(vector.LineIntensity),
+                BeamWidth = Intensity(vector.BeamWidth),
+                BeamFocus = Intensity(vector.BeamFocus),
+                PhosphorColor = DefinedOrDefault(vector.PhosphorColor,
+                    EmulationCrtColorMode.Color),
                 HaloIntensity = Intensity(vector.HaloIntensity),
+                HaloRadius = Intensity(vector.HaloRadius),
                 PersistenceIntensity = Intensity(vector.PersistenceIntensity)
             },
             Vfd = vfd with
             {
                 Color = DefinedOrDefault(vfd.Color, EmulationVfdColor.Blue),
                 PhosphorIntensity = Intensity(vfd.PhosphorIntensity),
+                EmissionThreshold = Intensity(vfd.EmissionThreshold),
+                GlassDarkening = Intensity(vfd.GlassDarkening),
+                Structure = DefinedOrDefault(vfd.Structure, EmulationVfdStructure.Graphic),
+                CellSize = Intensity(vfd.CellSize),
+                CellGap = Intensity(vfd.CellGap),
                 HaloIntensity = Intensity(vfd.HaloIntensity),
-                PersistenceIntensity = Intensity(vfd.PersistenceIntensity)
+                HaloRadius = Intensity(vfd.HaloRadius),
+                PersistenceMilliseconds = Duration(vfd.PersistenceMilliseconds)
             },
             LedMatrix = ledMatrix with
             {
@@ -138,7 +153,10 @@ public static class EmulationVideoProcessingConfigurationFunctions
                 CellSize = Intensity(ledMatrix.CellSize),
                 CellGap = Intensity(ledMatrix.CellGap),
                 Diffusion = Intensity(ledMatrix.Diffusion),
-                Brightness = Intensity(ledMatrix.Brightness)
+                Brightness = Intensity(ledMatrix.Brightness),
+                Shape = DefinedOrDefault(ledMatrix.Shape, EmulationLedMatrixShape.Round),
+                HaloRadius = Intensity(ledMatrix.HaloRadius),
+                BlackDepth = Intensity(ledMatrix.BlackDepth)
             },
             DotMatrix = dotMatrix with
             {

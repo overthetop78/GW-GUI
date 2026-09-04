@@ -1,17 +1,21 @@
-using GWGUI.Emulation.Contracts;
-
 namespace GWGUI.App.Rendering.Emulation.Processing;
 
-internal static class FilterVector
+internal static class FilterVectorLineDetection
 {
+    internal const string Shader = """
+        float filterVectorLineDetection(float gradientX,float gradientY,float threshold)
+        {
+            float magnitude=clamp(length(vec2(gradientX,gradientY))/4.0,0.0,1.0);
+            return smoothstep(threshold,min(1.0,threshold+0.10),magnitude);
+        }
+        """;
+
     private const float RedLuminance = 0.2126f;
     private const float GreenLuminance = 0.7152f;
     private const float BlueLuminance = 0.0722f;
 
-    internal static void Apply(float[] colors, int width, int height,
-        EmulationVectorVideoConfiguration configuration)
+    internal static float[] Detect(float[] colors, int width, int height, int setting)
     {
-        if (configuration.LineIntensity == 0) return;
         var luminance = new float[width * height];
         for (var pixel = 0; pixel < luminance.Length; pixel++)
         {
@@ -21,8 +25,7 @@ internal static class FilterVector
                 + colors[index + 2] * BlueLuminance;
         }
         var emission = new float[width * height];
-        var threshold = configuration.LineThreshold / 100f;
-        var intensity = configuration.LineIntensity / 100f;
+        var threshold = setting / 100f;
         for (var y = 0; y < height; y++)
         for (var x = 0; x < width; x++)
         {
@@ -40,30 +43,10 @@ internal static class FilterVector
                 + Sample(luminance, width, height, x + 1, y + 1);
             var magnitude = Math.Clamp(MathF.Sqrt(
                 gradientX * gradientX + gradientY * gradientY) / 4f, 0f, 1f);
-            var line = SmoothStep(threshold, Math.Min(1f, threshold + 0.1f), magnitude)
-                * intensity;
-            emission[y * width + x] = line;
-            var index = (y * width + x) * 3;
-            colors[index] += (1f - colors[index]) * line;
-            colors[index + 1] += (1f - colors[index + 1]) * line;
-            colors[index + 2] += (1f - colors[index + 2]) * line;
+            emission[y * width + x] = SmoothStep(threshold,
+                Math.Min(1f, threshold + 0.1f), magnitude);
         }
-
-        if (configuration.HaloIntensity == 0) return;
-        var halo = configuration.HaloIntensity / 100f * 0.5f;
-        for (var y = 0; y < height; y++)
-        for (var x = 0; x < width; x++)
-        {
-            var average = 0f;
-            for (var offsetY = -1; offsetY <= 1; offsetY++)
-            for (var offsetX = -1; offsetX <= 1; offsetX++)
-                average += Sample(emission, width, height, x + offsetX, y + offsetY);
-            var light = average / 9f * halo;
-            var index = (y * width + x) * 3;
-            colors[index] = Math.Clamp(colors[index] + light, 0f, 1f);
-            colors[index + 1] = Math.Clamp(colors[index + 1] + light, 0f, 1f);
-            colors[index + 2] = Math.Clamp(colors[index + 2] + light, 0f, 1f);
-        }
+        return emission;
     }
 
     private static float Sample(float[] values, int width, int height, int x, int y) =>

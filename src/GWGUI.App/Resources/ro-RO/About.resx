@@ -12,16 +12,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="About.Description">
-    <value>O interfață Windows modernă pentru citirea, scrierea, conversia și inspectarea dischetelor cu Greaseweazle.</value>
-  </data>
-  <data name="About.License">
-    <value>Software cu sursă deschisă — MIT Licență</value>
-  </data>
-  <data name="About.Version">
-    <value>Versiunea {0}</value>
-  </data>
-  <data name="About.Components">
-    <value>Versiuni componente</value>
-  </data>
+  <data name="About.Description"><value>O interfață Windows modernă pentru citirea, scrierea, conversia și inspectarea dischetelor cu Greaseweazle.</value></data>
+  <data name="About.License"><value>Software cu sursă deschisă — MIT Licență</value></data>
+  <data name="About.Version"><value>Versiunea {0}</value></data>
+  <data name="About.Components"><value>Versiuni componente</value></data>
 </root>

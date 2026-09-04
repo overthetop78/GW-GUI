@@ -12,16 +12,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="About.Description">
-    <value>Сучасний інтерфейс Windows для читання, запису, конвертації та перевірки дискет за допомогою Greaseweazle.</value>
-  </data>
-  <data name="About.License">
-    <value>Програмне забезпечення з відкритим кодом — Ліцензія MIT</value>
-  </data>
-  <data name="About.Version">
-    <value>Версія {0}</value>
-  </data>
-  <data name="About.Components">
-    <value>Версії компонентів</value>
-  </data>
+  <data name="About.Description"><value>Сучасний інтерфейс Windows для читання, запису, конвертації та перевірки дискет за допомогою Greaseweazle.</value></data>
+  <data name="About.License"><value>Програмне забезпечення з відкритим кодом — Ліцензія MIT</value></data>
+  <data name="About.Version"><value>Версія {0}</value></data>
+  <data name="About.Components"><value>Версії компонентів</value></data>
 </root>

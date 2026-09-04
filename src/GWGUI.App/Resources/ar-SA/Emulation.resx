@@ -12,1025 +12,250 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Emulation.Tab.Machines">
-    <value>الأجهزة</value>
-  </data>
-  <data name="Emulation.Core.Name">
-    <value>النواة</value>
-  </data>
-  <data name="Emulation.Core.NameManagerTitle">
-    <value>نواة محاكاة {0}</value>
-  </data>
-  <data name="Emulation.Core.NameManagerDescription">
-    <value>تظل المكتبة خارج GW GUI. يحل الإصدار المحدد محل الإصدار المثبت حاليًا.</value>
-  </data>
-  <data name="Emulation.Core.NameRequiredVersion">
-    <value>الإصدار المطلوب من GW GUI</value>
-  </data>
-  <data name="Emulation.Core.NameLatestVersion">
-    <value>أحدث إصدار رسمي متاح</value>
-  </data>
-  <data name="Emulation.Core.NameProjectVersion">
-    <value>الإصدار المثبت حاليًا</value>
-  </data>
-  <data name="Emulation.Core.NameSearchPrompt">
-    <value>انقر فوق بحث للاستعلام من خادم Libretro الرسمي.</value>
-  </data>
-  <data name="Emulation.Core.NameSearch">
-    <value>البحث عن الإصدارات</value>
-  </data>
-  <data name="Emulation.Core.NameDownload">
-    <value>تنزيل واستبدال</value>
-  </data>
-  <data name="Emulation.Core.NameSearching">
-    <value>جارٍ البحث عن الإصدارات المتاحة…</value>
-  </data>
-  <data name="Emulation.Core.NameNoneFound">
-    <value>لم يتم العثور على إصدار رسمي.</value>
-  </data>
-  <data name="Emulation.Core.NameVersionsFound">
-    <value>يتوفر {0} إصدار.</value>
-  </data>
-  <data name="Emulation.Core.NameDownloading">
-    <value>جارٍ تنزيل {0}…</value>
-  </data>
-  <data name="Emulation.Core.NameInstalledPath">
-    <value>الإصدار المثبت: {0}</value>
-  </data>
-  <data name="Emulation.Core.NameInstalled">
-    <value>{0} · مثبت</value>
-  </data>
-  <data name="Emulation.Core.NameNotInstalled">
-    <value>لا يوجد إصدار مثبت</value>
-  </data>
-  <data name="Emulation.Machine.Open">
-    <value>فتح</value>
-  </data>
-  <data name="Emulation.Tab.Welcome">
-    <value>مرحبًا</value>
-  </data>
-  <data name="Emulation.Welcome.Text">
-    <value>حدد جهازًا محفوظًا أعلاه وانقر فوق فتح. يظهر كل جهاز قيد التشغيل في علامة تبويب منفصلة.</value>
-  </data>
-  <data name="Emulation.Configuration.Description">
-    <value>يمكنك هنا إنشاء التكوينات المحفوظة أو تحديدها أو تعديلها أو حذفها. حدد علامة تبويب {0} لتحرير التكوين المحدد.</value>
-  </data>
-  <data name="Emulation.Tab.General">
-    <value>عام</value>
-  </data>
-  <data name="Emulation.Tab.Video">
-    <value>فيديو</value>
-  </data>
-  <data name="Emulation.Tab.Storage">
-    <value>التخزين</value>
-  </data>
-  <data name="Emulation.Tab.Keyboard">
-    <value>لوحة المفاتيح</value>
-  </data>
-  <data name="Emulation.Tab.Mouse">
-    <value>الماوس</value>
-  </data>
-  <data name="Emulation.Controller.Tab">
-    <value>وحدات التحكم</value>
-  </data>
-  <data name="Emulation.Tab.Advanced">
-    <value>متقدم</value>
-  </data>
-  <data name="Emulation.Device.Name.Id">
-    <value>معرّف الجهاز</value>
-  </data>
-  <data name="Emulation.Controller.Device">
-    <value>جهاز وحدة التحكم {0}</value>
-  </data>
-  <data name="Emulation.Keyboard.SystemKey">
-    <value>مفتاح {0}</value>
-  </data>
-  <data name="Emulation.Keyboard.HostKey">
-    <value>مفتاح المضيف</value>
-  </data>
-  <data name="Emulation.Cpu.Summary">
-    <value>المعالج: {0}</value>
-  </data>
-  <data name="Emulation.Memory.Summary">
-    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
-  </data>
-  <data name="Emulation.Video.Summary">
-    <value>مجموعة شرائح الفيديو: {0}</value>
-  </data>
-  <data name="Emulation.Cpu.Model">
-    <value>CPU model</value>
-  </data>
-  <data name="Emulation.Cpu.Multiplier">
-    <value>CPU multiplier</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility">
-    <value>Cycle-compatible CPU</value>
-  </data>
-  <data name="Emulation.Memory.Z3">
-    <value>Zorro III RAM</value>
-  </data>
-  <data name="Emulation.Video.Standard">
-    <value>Video standard</value>
-  </data>
-  <data name="Emulation.Video.Resolution">
-    <value>Resolution</value>
-  </data>
-  <data name="Emulation.Video.AspectRatio">
-    <value>Aspect ratio</value>
-  </data>
-  <data name="Emulation.Video.Crop">
-    <value>Crop borders</value>
-  </data>
-  <data name="Emulation.Video.FlickerFixer">
-    <value>Flicker fixer</value>
-  </data>
-  <data name="Emulation.Audio.Enabled">
-    <value>Enable audio</value>
-  </data>
-  <data name="Emulation.Audio.Output">
-    <value>Audio output</value>
-  </data>
-  <data name="Emulation.Audio.Latency">
-    <value>Latency (ms)</value>
-  </data>
-  <data name="Emulation.Audio.Interpolation">
-    <value>Interpolation</value>
-  </data>
-  <data name="Emulation.Audio.Filter">
-    <value>Amiga audio filter</value>
-  </data>
-  <data name="Emulation.Audio.StereoSeparation">
-    <value>Stereo separation (%)</value>
-  </data>
-  <data name="Emulation.Audio.Input">
-    <value>Audio input</value>
-  </data>
-  <data name="Emulation.Audio.InputUnavailable">
-    <value>This Amiga core does not expose an audio input.</value>
-  </data>
-  <data name="Emulation.Audio.DefaultOutput">
-    <value>Windows default output</value>
-  </data>
-  <data name="Emulation.Storage.Media.Add">
-    <value>Add media</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Create">
-    <value>Create hard disk</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Size">
-    <value>Hard-disk size (MiB)</value>
-  </data>
-  <data name="Emulation.Storage.Media.None">
-    <value>No media. Add a floppy, hard disk or CD supported by the selected model.</value>
-  </data>
-  <data name="Emulation.Storage.ReadOnly">
-    <value>Read-only</value>
-  </data>
-  <data name="Emulation.Amiga.Storage.MediaFilter">
-    <value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Filter">
-    <value>Amiga hard disk|*.hdf|All files|*.*</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.NotSupported">
-    <value>The selected model does not support a hard disk.</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.TooManyDrives">
-    <value>This model accepts at most {0} floppy drive(s).</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.TooManyDrives">
-    <value>This model accepts at most {0} hard disk(s).</value>
-  </data>
-  <data name="Emulation.Storage.Cd.NotSupported">
-    <value>The selected model does not support a CD drive.</value>
-  </data>
-  <data name="Emulation.Keyboard.Mapping.Duplicate">
-    <value>Two Amiga keys use the same PC key. Resolve the red mappings before saving.</value>
-  </data>
-  <data name="Emulation.Mouse.ReleaseKey">
-    <value>Release-capture key</value>
-  </data>
-  <data name="Emulation.Mouse.Button.Left">
-    <value>Left mouse button</value>
-  </data>
-  <data name="Emulation.Mouse.Button.Right">
-    <value>Right mouse button</value>
-  </data>
-  <data name="Emulation.Mouse.Button.Middle">
-    <value>Middle mouse button</value>
-  </data>
-  <data name="Emulation.Controller.Detect">
-    <value>Detect controllers</value>
-  </data>
-  <data name="Emulation.Controller.EmulatedAction">
-    <value>Amiga action</value>
-  </data>
-  <data name="Emulation.Controller.PhysicalControl">
-    <value>Keyboard, mouse or controller control</value>
-  </data>
-  <data name="Emulation.Amiga.Chipset.Name">
-    <value>مجموعة الشرائح</value>
-  </data>
-  <data name="Emulation.Storage.Cd.Drive">
-    <value>محرك أقراص CD</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.DriveCount">
-    <value>عدد محركات الأقراص المرنة</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.DriveCount">
-    <value>عدد الأقراص الصلبة</value>
-  </data>
-  <data name="Emulation.Cpu.Speed">
-    <value>CPU speed</value>
-  </data>
-  <data name="Emulation.Cpu.SpeedOriginal">
-    <value>Original speed</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility.Normal">
-    <value>Normal</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility.Compatible">
-    <value>Compatible</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility.Memory">
-    <value>Memory compatible</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility.Exact">
-    <value>Cycle exact</value>
-  </data>
-  <data name="Emulation.Fpu.Integrated">
-    <value>Integrated FPU</value>
-  </data>
-  <data name="Emulation.Value.Enabled">
-    <value>Enabled</value>
-  </data>
-  <data name="Emulation.Value.Disabled">
-    <value>Disabled</value>
-  </data>
-  <data name="Emulation.Value.Minimum">
-    <value>Minimum</value>
-  </data>
-  <data name="Emulation.Value.VerySmall">
-    <value>Very small</value>
-  </data>
-  <data name="Emulation.Value.Small">
-    <value>Small</value>
-  </data>
-  <data name="Emulation.Value.Medium">
-    <value>Medium</value>
-  </data>
-  <data name="Emulation.Value.Large">
-    <value>Large</value>
-  </data>
-  <data name="Emulation.Value.VeryLarge">
-    <value>Very large</value>
-  </data>
-  <data name="Emulation.Value.Maximum">
-    <value>Maximum</value>
-  </data>
-  <data name="Emulation.State.Locked">
-    <value>Locked</value>
-  </data>
-  <data name="Emulation.State.Immediate">
-    <value>Immediate</value>
-  </data>
-  <data name="Emulation.State.Waiting">
-    <value>Waiting</value>
-  </data>
-  <data name="Emulation.Value.Standard">
-    <value>Standard</value>
-  </data>
-  <data name="Emulation.Value.Enhanced">
-    <value>Enhanced</value>
-  </data>
-  <data name="Emulation.Value.Internal">
-    <value>Internal</value>
-  </data>
-  <data name="Emulation.Value.Loud">
-    <value>Loud</value>
-  </data>
-  <data name="Emulation.Video.Resolution.AutoLow">
-    <value>Automatic low resolution</value>
-  </data>
-  <data name="Emulation.Video.Resolution.AutoSuperHigh">
-    <value>Automatic super-high resolution</value>
-  </data>
-  <data name="Emulation.Video.Resolution.Low">
-    <value>Low resolution</value>
-  </data>
-  <data name="Emulation.Video.Resolution.High">
-    <value>High resolution</value>
-  </data>
-  <data name="Emulation.Video.Resolution.SuperHigh">
-    <value>Super-high resolution</value>
-  </data>
-  <data name="Emulation.Video.LineMode">
-    <value>Line mode</value>
-  </data>
-  <data name="Emulation.Video.HzChange">
-    <value>Refresh-rate changes</value>
-  </data>
-  <data name="Emulation.Video.FrameSkip">
-    <value>Frame skip</value>
-  </data>
-  <data name="Emulation.Video.Colors">
-    <value>Color depth</value>
-  </data>
-  <data name="Emulation.Video.Gamma">
-    <value>Gamma</value>
-  </data>
-  <data name="Emulation.State.ImmediateBlits">
-    <value>Blitter operation</value>
-  </data>
-  <data name="Emulation.Video.Collision.Level">
-    <value>Collision detection</value>
-  </data>
-  <data name="Emulation.Video.LineMode.Single">
-    <value>Single scan</value>
-  </data>
-  <data name="Emulation.Video.LineMode.Double">
-    <value>Double scan</value>
-  </data>
-  <data name="Emulation.Video.Collision.Sprites">
-    <value>Sprites</value>
-  </data>
-  <data name="Emulation.Video.Collision.Playfields">
-    <value>Playfields</value>
-  </data>
-  <data name="Emulation.Video.Collision.Full">
-    <value>Full</value>
-  </data>
-  <data name="Emulation.Audio.Interpolation.Anti">
-    <value>Anti interpolation</value>
-  </data>
-  <data name="Emulation.Audio.Filter.Emulated">
-    <value>Emulated</value>
-  </data>
-  <data name="Emulation.Audio.FilterType">
-    <value>Filter type</value>
-  </data>
-  <data name="Emulation.Audio.Floppy.Sound">
-    <value>Floppy-drive sound volume</value>
-  </data>
-  <data name="Emulation.Audio.Floppy.SoundType">
-    <value>Floppy-drive sound type</value>
-  </data>
-  <data name="Emulation.Audio.Floppy.MuteEmpty">
-    <value>Mute empty drives</value>
-  </data>
-  <data name="Emulation.Audio.Cd.Volume">
-    <value>CD audio volume</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.Speed">
-    <value>Floppy-drive speed</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.WriteProtection">
-    <value>Write-protect floppy images</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.WriteRedirect">
-    <value>Redirect floppy writes</value>
-  </data>
-  <data name="Emulation.Storage.Cd.Speed">
-    <value>CD speed</value>
-  </data>
-  <data name="Emulation.Keyboard.PassThrough">
-    <value>Physical keyboard pass-through</value>
-  </data>
-  <data name="Emulation.Mouse.Physical">
-    <value>Physical mouse</value>
-  </data>
-  <data name="Emulation.Mouse.PhysicalDouble">
-    <value>Double movement</value>
-  </data>
-  <data name="Emulation.Mouse.Speed">
-    <value>Mouse speed</value>
-  </data>
-  <data name="Emulation.Mouse.Analog">
-    <value>Analog sticks controlling the mouse</value>
-  </data>
-  <data name="Emulation.Mouse.AnalogDeadzone">
-    <value>Analog-stick dead zone</value>
-  </data>
-  <data name="Emulation.Mouse.AnalogSpeed">
-    <value>Analog-stick mouse speed</value>
-  </data>
-  <data name="Emulation.Controller.Stick.Left">
-    <value>Left stick</value>
-  </data>
-  <data name="Emulation.Controller.Stick.Right">
-    <value>Right stick</value>
-  </data>
-  <data name="Emulation.Controller.Stick.Both">
-    <value>Both sticks</value>
-  </data>
-  <data name="Emulation.Controller.Action.TurboFire">
-    <value>Turbo fire</value>
-  </data>
-  <data name="Emulation.Controller.Turbo.Button">
-    <value>Turbo button</value>
-  </data>
-  <data name="Emulation.Controller.Turbo.Pulse">
-    <value>Turbo pulse</value>
-  </data>
-  <data name="Emulation.Controller.PortOrder">
-    <value>Controller port order</value>
-  </data>
-  <data name="Emulation.Core.Emulator">
-    <value>المحاكي</value>
-  </data>
-  <data name="Emulation.Folder.StorageBase">
-    <value>مجلد التخزين المشترك للمحاكاة</value>
-  </data>
-  <data name="Emulation.Folder.StorageBaseDescription">
-    <value>تُنظَّم الأقراص الصلبة تلقائيًا في HDD\Amiga وHDD\Atari ومجلدات الأنظمة المستقبلية.</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Add">
-    <value>إضافة قرص صلب موجود</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.List">
-    <value>الأقراص الصلبة</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.None">
-    <value>لا يوجد قرص صلب مرتبط بهذا الجهاز.</value>
-  </data>
-  <data name="Emulation.Keyboard.Priority.Hint">
-    <value>اختصارات محجوزة</value>
-  </data>
-  <data name="Emulation.Keyboard.Priority.Description">
-    <value>تظل اختصارات GW GUI وWindows نشطة ولا يلتقطها الجهاز.</value>
-  </data>
-  <data name="Emulation.Input.Behavior">
-    <value>السلوك</value>
-  </data>
-  <data name="Emulation.Input.Assign">
-    <value>تعيين...</value>
-  </data>
-  <data name="Emulation.Input.Actions">
-    <value>الإجراءات</value>
-  </data>
-  <data name="Emulation.Input.Press">
-    <value>اضغط مفتاحًا...</value>
-  </data>
-  <data name="Emulation.Folder.CreateStorage">
-    <value>إنشاء المجلدات الفرعية المفقودة تلقائيًا</value>
-  </data>
-  <data name="Emulation.Folder.Common">
-    <value>المجلدات المشتركة</value>
-  </data>
-  <data name="Emulation.Input.SharedDescription">
-    <value>اكتشاف الأجهزة مشترك، بينما تُحفظ التعيينات بشكل منفصل في كل تكوين جهاز.</value>
-  </data>
-  <data name="Emulation.Input.Test">
-    <value>اختبار الإدخال</value>
-  </data>
-  <data name="Emulation.Input.SharedDevices">
-    <value>أجهزة الإدخال المشتركة</value>
-  </data>
-  <data name="Emulation.Folder.Capture">
-    <value>مجلد اللقطات</value>
-  </data>
-  <data name="Emulation.Folder.State">
-    <value>مجلد الحالات المحفوظة</value>
-  </data>
-  <data name="Emulation.Folder.Default">
-    <value>المجلدات الافتراضية</value>
-  </data>
-  <data name="Emulation.Controller.NoneDetected">
-    <value>لم يتم اكتشاف وحدة تحكم</value>
-  </data>
-  <data name="Emulation.Input.TestPrompt">
-    <value>اضغط مفتاحًا أو زر ماوس لاختبار اكتشافه.</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.List">
-    <value>الأقراص المرنة</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.Extended">
-    <value>ROM موسعة</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.Key">
-    <value>مفتاح ROM</value>
-  </data>
-  <data name="Emulation.Cpu.Processor">
-    <value>المعالج</value>
-  </data>
-  <data name="Emulation.Cpu.Precision">
-    <value>الدقة</value>
-  </data>
-  <data name="Emulation.Cpu.Acceleration">
-    <value>التسريع</value>
-  </data>
-  <data name="Emulation.Memory.Main">
-    <value>الذاكرة الرئيسية</value>
-  </data>
-  <data name="Emulation.Memory.Extensions">
-    <value>توسعات الذاكرة</value>
-  </data>
-  <data name="Emulation.Memory.None">
-    <value>لا شيء</value>
-  </data>
-  <data name="Emulation.Memory.CompatibleWithModel">
-    <value>إعداد الذاكرة متوافق مع {0}.</value>
-  </data>
-  <data name="Emulation.Memory.ExtensionsCompatibleWithModel">
-    <value>توسعات الذاكرة متوافقة مع {0}.</value>
-  </data>
-  <data name="Emulation.Memory.Z3UnavailableForModel">
-    <value>ذاكرة Zorro III غير متاحة على {0}.</value>
-  </data>
-  <data name="Emulation.Memory.TotalConfigured">
-    <value>إجمالي الذاكرة المعدّة: {0} {1}</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.System">
-    <value>ذاكرة ROM للنظام</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.Detected">
-    <value>ملفات ROM المكتشفة</value>
-  </data>
-  <data name="Emulation.Firmware.Use">
-    <value>استخدام</value>
-  </data>
-  <data name="Emulation.Value.NotUsed">
-    <value>غير مستخدمة</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.OpenFolder">
-    <value>فتح مجلد ROM</value>
-  </data>
-  <data name="Emulation.Firmware.PartiallyCompatible">
-    <value>متوافقة جزئيًا</value>
-  </data>
-  <data name="Emulation.Firmware.Official">
-    <value>رسمي</value>
-  </data>
-  <data name="Emulation.Firmware.Incompatible">
-    <value>غير متوافق</value>
-  </data>
-  <data name="Emulation.Video.Settings.Display">
-    <value>العرض</value>
-  </data>
-  <data name="Emulation.Video.Settings.Rendering">
-    <value>التصيير</value>
-  </data>
-  <data name="Emulation.Amiga.Chipset.NameCompatibility">
-    <value>توافق مجموعة الشرائح</value>
-  </data>
-  <data name="Emulation.Audio.Device">
-    <value>الجهاز</value>
-  </data>
-  <data name="Emulation.Audio.LatencyLabel">
-    <value>زمن الاستجابة</value>
-  </data>
-  <data name="Emulation.Audio.Quality">
-    <value>الجودة</value>
-  </data>
-  <data name="Emulation.Audio.Drives">
-    <value>محركات الأقراص</value>
-  </data>
-  <data name="Emulation.Device.Name.Type">
-    <value>النوع</value>
-  </data>
-  <data name="Emulation.Storage.Device.Add">
-    <value>إضافة جهاز تخزين</value>
-  </data>
-  <data name="Emulation.Amiga.Storage.Floppy.Dd">
-    <value>قرص Amiga ‏3.5 بوصة DD · ‏880 KiB</value>
-  </data>
-  <data name="Emulation.Amiga.Storage.Floppy.Hd">
-    <value>قرص Amiga ‏3.5 بوصة HD · ‏1.76 MiB</value>
-  </data>
-  <data name="Emulation.Storage.Media.Associated">
-    <value>الوسيط المرتبط</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Automatic">
-    <value>يحدد المحاكي هندسة القرص تلقائيًا.</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.BlankCreated">
-    <value>تم إنشاء صورة القرص المرن الفارغة: {0}</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.BlankHint">
-    <value>سيُنشأ الملف فارغًا، ثم يجب تقسيمه وتهيئته في الجهاز المُحاكى.</value>
-  </data>
-  <data name="Emulation.Storage.Cd.Writer">
-    <value>ناسخ أقراص مضغوطة</value>
-  </data>
-  <data name="Emulation.Storage.Cd.WriterHint">
-    <value>لا يمكن إنشاء قرص فارغ إلا إذا كان الجهاز والمحاكي المحددان يدعمان الكتابة.</value>
-  </data>
-  <data name="Emulation.Storage.Cd.Device">
-    <value>محرك أقراص مضغوطة</value>
-  </data>
-  <data name="Emulation.Storage.Device.Configure">
-    <value>تكوين</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.CreateBlank">
-    <value>إنشاء قرص مرن فارغ</value>
-  </data>
-  <data name="Emulation.Storage.Disk.Image">
-    <value>صورة القرص</value>
-  </data>
-  <data name="Emulation.Storage.Disk.ImageRequired">
-    <value>حدد صورة قرص موجودة.</value>
-  </data>
-  <data name="Emulation.Storage.Disk.ExistingHint">
-    <value>سيتم إرفاق الملف المحدد بمحرك الأقراص الافتراضي هذا.</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.Device">
-    <value>محرك أقراص مرنة</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.ImageFilter">
-    <value>صورة قرص Amiga مرن|*.adf|كل الملفات|*.*</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Device">
-    <value>قرص صلب</value>
-  </data>
-  <data name="Emulation.Storage.Device.Interface">
-    <value>الواجهة</value>
-  </data>
-  <data name="Emulation.Storage.File.Preallocate">
-    <value>تخصيص الملف مسبقًا</value>
-  </data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint">
-    <value>تُدرج الأقراص المرنة والمضغوطة أو تُستبدل من الجهاز قيد التشغيل.</value>
-  </data>
-  <data name="Emulation.Storage.Media.Remove">
-    <value>إزالة الوسيط</value>
-  </data>
-  <data name="Emulation.Storage.Disk.ReplaceExisting">
-    <value>صورة القرص موجودة بالفعل: {0}\nهل تريد استبدالها؟</value>
-  </data>
-  <data name="Emulation.Storage.Device.CapabilitiesHint">
-    <value>تعتمد الأنواع والطرازات والمعرفات المتاحة على الجهاز المحدد.</value>
-  </data>
-  <data name="Emulation.Storage.Tape.Device">
-    <value>محرك أشرطة</value>
-  </data>
-  <data name="Emulation.Storage.Disk.Use">
-    <value>استخدام القرص</value>
-  </data>
-  <data name="Emulation.Storage.Disk.UseExisting">
-    <value>استخدام قرص موجود</value>
-  </data>
-  <data name="Emulation.Storage.ModifyInGeneral">
-    <value>تعديل في عام</value>
-  </data>
-  <data name="Emulation.Storage.Device.NoneAvailable">
-    <value>لا يتوفر جهاز تخزين إضافي لهذا الجهاز.</value>
-  </data>
-  <data name="Emulation.Storage.Device.List">
-    <value>أجهزة التخزين</value>
-  </data>
-  <data name="Emulation.Input.Binding.RestoreDefaults">
-    <value>استعادة الإعدادات الافتراضية</value>
-  </data>
-  <data name="Emulation.Input.Binding.ClearConflicts">
-    <value>مسح التعارضات</value>
-  </data>
-  <data name="Emulation.Keyboard.EmulatedKey">
-    <value>مفتاح الجهاز</value>
-  </data>
-  <data name="Emulation.Input.Binding.Label">
-    <value>التعيين</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelState">
-    <value>الحالة</value>
-  </data>
-  <data name="Emulation.Input.Binding.Search">
-    <value>البحث عن مفتاح أو تعيين</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelLegend">
-    <value>صالح: تعيين فريد · تعارض: التعيين مستخدم عدة مرات · محجوز: اختصار Windows أو GW GUI</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelValid">
-    <value>صالح</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelConflict">
-    <value>تعارض</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelReserved">
-    <value>محجوز</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelUnassigned">
-    <value>غير معيّن</value>
-  </data>
-  <data name="Emulation.Shortcut.Global">
-    <value>اختصارات المحاكاة</value>
-  </data>
-  <data name="Emulation.Tab.Shortcuts">
-    <value>اختصارات</value>
-  </data>
-  <data name="Emulation.Shortcut.ReleaseMouse">
-    <value>تحرير الماوس</value>
-  </data>
-  <data name="Emulation.Shortcut.PauseResume">
-    <value>إيقاف مؤقت / متابعة</value>
-  </data>
-  <data name="Emulation.Shortcut.Fullscreen">
-    <value>ملء الشاشة / نافذة</value>
-  </data>
-  <data name="Emulation.Shortcut.Power">
-    <value>تشغيل / إيقاف</value>
-  </data>
-  <data name="Emulation.Shortcut.SoftReset">
-    <value>إعادة ضبط بسيطة</value>
-  </data>
-  <data name="Emulation.Shortcut.HardReset">
-    <value>إعادة ضبط كاملة</value>
-  </data>
-  <data name="Emulation.Shortcut.QuickSave">
-    <value>حفظ سريع للحالة</value>
-  </data>
-  <data name="Emulation.Shortcut.QuickLoad">
-    <value>تحميل سريع للحالة</value>
-  </data>
-  <data name="Emulation.Shortcut.Screenshot">
-    <value>لقطة شاشة</value>
-  </data>
-  <data name="Emulation.Shortcut.Mute">
-    <value>كتم الجهاز النشط</value>
-  </data>
-  <data name="Emulation.Shortcut.FastForward">
-    <value>تقديم سريع أثناء الضغط</value>
-  </data>
-  <data name="Emulation.Shortcut.InsertMedia">
-    <value>إدراج الوسائط أو استبدالها</value>
-  </data>
-  <data name="Emulation.Shortcut.EjectMedia">
-    <value>إخراج الوسائط</value>
-  </data>
-  <data name="Emulation.Shortcut.NextMedia">
-    <value>الوسائط التالية</value>
-  </data>
-  <data name="Emulation.Key.Help">
-    <value>تعليمات</value>
-  </data>
-  <data name="Emulation.Key.LeftAmiga">
-    <value>Amiga الأيسر</value>
-  </data>
-  <data name="Emulation.Key.RightAmiga">
-    <value>Amiga الأيمن</value>
-  </data>
-  <data name="Emulation.Keyboard.SpecialKeysOnlyHint">
-    <value>تُنقل الأحرف والأرقام ومفاتيح التعديل العادية مباشرة. يجب تعيين مفاتيح الوظائف والمفاتيح الخاصة بـ Amiga فقط هنا.</value>
-  </data>
-  <data name="Emulation.Shortcut.Unavailable">
-    <value>هذا الإجراء غير متوفر بعد في المحاكي الحالي.</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Allocation">
-    <value>التخصيص</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.AutomaticProfile">
-    <value>هندسة تلقائية</value>
-  </data>
-  <data name="Emulation.Storage.Media.Blank">
-    <value>وسيط فارغ</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.BytesPerSector">
-    <value>بايت لكل قطاع</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.CalculatedCapacity">
-    <value>السعة المحسوبة: {0}</value>
-  </data>
-  <data name="Emulation.Controller.Mappings">
-    <value>تعيينات وحدة التحكم</value>
-  </data>
-  <data name="Emulation.Controller.Port">
-    <value>المنفذ {0}</value>
-  </data>
-  <data name="Emulation.Controller.Type">
-    <value>نوع وحدة التحكم</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.CustomSize">
-    <value>حجم مخصص</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Cylinders">
-    <value>الأسطوانات</value>
-  </data>
-  <data name="Emulation.Storage.File.DestinationFolder">
-    <value>مجلد الوجهة</value>
-  </data>
-  <data name="Emulation.Controller.Detected">
-    <value>وحدات التحكم المكتشفة</value>
-  </data>
-  <data name="Emulation.Device.Name">
-    <value>الجهاز</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Label">
-    <value>هندسة القرص (CHS)</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.SizeProfile">
-    <value>ملف تعريف الحجم</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.Drive">
-    <value>محرك الأقراص المرنة</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Heads">
-    <value>الرؤوس</value>
-  </data>
-  <data name="Emulation.Input.Capture.Hint">
-    <value>اضغط «تعيين»، ثم استخدم مفتاح لوحة المفاتيح أو زر الماوس أو زر وحدة التحكم.</value>
-  </data>
-  <data name="Emulation.Storage.Disk.InvalidSize">
-    <value>حجم القرص أو هندسته غير صالحين.</value>
-  </data>
-  <data name="Emulation.Mouse.Actions">
-    <value>إجراءات الماوس</value>
-  </data>
-  <data name="Emulation.Mouse.Button.4">
-    <value>زر الماوس 4</value>
-  </data>
-  <data name="Emulation.Mouse.Button.5">
-    <value>زر الماوس 5</value>
-  </data>
-  <data name="Emulation.Mouse.Capture.Title">
-    <value>التقاط الماوس</value>
-  </data>
-  <data name="Emulation.Storage.File.PreallocationHint">
-    <value>يحجز مساحة القرص الفعلية فورًا؛ وإلا فستزداد الصورة مع كتابة البيانات.</value>
-  </data>
-  <data name="Emulation.Controller.SearchBinding">
-    <value>البحث عن إجراء أو إدخال</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Sectors">
-    <value>القطاعات</value>
-  </data>
-  <data name="Emulation.Controller.Action.Up">
-    <value>أعلى</value>
-  </data>
-  <data name="Emulation.Controller.Action.Down">
-    <value>أسفل</value>
-  </data>
-  <data name="Emulation.Controller.Action.Left">
-    <value>يسار</value>
-  </data>
-  <data name="Emulation.Controller.Action.Right">
-    <value>يمين</value>
-  </data>
-  <data name="Emulation.Controller.Action.Fire1">
-    <value>زر إطلاق 1</value>
-  </data>
-  <data name="Emulation.Controller.Action.Fire2">
-    <value>زر إطلاق 2</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Red">
-    <value>زر CD32 الأحمر</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Blue">
-    <value>زر CD32 الأزرق</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Green">
-    <value>زر CD32 الأخضر</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Yellow">
-    <value>زر CD32 الأصفر</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Rewind">
-    <value>إرجاع CD32</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.FastForward">
-    <value>تقديم CD32</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.PlayPause">
-    <value>تشغيل / إيقاف مؤقت CD32</value>
-  </data>
-  <data name="Emulation.Controller.AnalogJoystick">
-    <value>عصا تحكم تناظرية</value>
-  </data>
-  <data name="Emulation.Mouse.Wheel.Up">
-    <value>عجلة الماوس لأعلى</value>
-  </data>
-  <data name="Emulation.Mouse.Wheel.Down">
-    <value>عجلة الماوس لأسفل</value>
-  </data>
-  <data name="Emulation.Mouse.Wheel.Left">
-    <value>عجلة الماوس لليسار</value>
-  </data>
-  <data name="Emulation.Mouse.Wheel.Right">
-    <value>عجلة الماوس لليمين</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve">
-    <value>وتحدد هذه القيمة النموذج المختار.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve">
-    <value>ولا توجد وحدة متوافقة من وحدات الشرطة الاتحادية متاحة لهذا النموذج.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve">
-    <value>لا توجد ذاكرة بديلة لهذا النموذج.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve">
-    <value>هذا النموذج ليس لديه برمجيات قابلة للتشكيل</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve">
-    <value>هذا النموذج ليس لديه لوحة مفاتيح</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve">
-    <value>هذا النموذج ليس لديه فأر</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve">
-    <value>هذا النموذج ليس لديه وسائل تخزين</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
-    <value>حدد طراز Jaguar CD لاستخدام أقراص CD.</value>
-  </data>
-  <data name="Emulation.Storage.Cassettes">
-    <value>شريط كاسيت</value>
-  </data>
-  <data name="Emulation.Storage.Cartridges">
-    <value>خرطوشة</value>
-  </data>
-  <data name="Emulation.Storage.CompactDiscs">
-    <value>أقراص مضغوطة</value>
-  </data>
-  <data name="Emulation.Atari.Video.Region">
-    <value>المنطقة</value>
-  </data>
-  <data name="Emulation.Atari.Firmware.Multilingual">
-    <value>متعدد اللغات</value>
-  </data>
-  <data name="Emulation.Atari.Video.RegionFree">
-    <value>بلا منطقة</value>
-  </data>
-  <data name="Emulation.Tab.Audio" xml:space="preserve">
-    <value>الصوت</value>
-  </data>
-  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve">
-    <value>لم يتم العثور على نواة Atari المطلوبة.</value>
-  </data>
-  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve">
-    <value>تعذر تحميل نواة Atari المحددة.</value>
-  </data>
-  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve">
-    <value>برنامج Atari الثابت المطلوب مفقود.</value>
-  </data>
-  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve">
-    <value>أحد برامج Atari الثابتة غير صالح أو غير متوافق.</value>
-  </data>
-  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve">
-    <value>لم يتم العثور على وسائط Atari المكوّنة.</value>
-  </data>
-  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve">
-    <value>الوسائط المكوّنة غير مدعومة بواسطة جهاز Atari هذا.</value>
-  </data>
-  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve">
-    <value>يحتوي أحد خيارات Atari على قيمة غير صالحة.</value>
-  </data>
-  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve">
-    <value>فشل الاتصال بمضيف Atari.</value>
-  </data>
-  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve">
-    <value>حالة Atari المحفوظة غير صالحة.</value>
-  </data>
-  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve">
-    <value>حالة Atari المحفوظة غير متوافقة مع الجهاز الحالي.</value>
-  </data>
-  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve">
-    <value>حدث خطأ غير متوقع في محاكاة Atari.</value>
-  </data>
-  <data name="Emulation.Atari.Error.Details" xml:space="preserve">
-    <value>التفاصيل: {0}</value>
-  </data>
-  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve">
-    <value>لا يمكن تعديل تكوين Atari النشط أو حذفه.</value>
-  </data>
-  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve">
-    <value>لم يتم تكوين برنامج Atari الثابت المطلوب '{0}' لـ {1}.</value>
-  </data>
-  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve">
-    <value>لم يتم العثور على برنامج Atari الثابت المكوّن '{0}': {1}</value>
-  </data>
-  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve">
-    <value>لم يتم العثور على وسائط Atari المكوّنة: {0}</value>
-  </data>
-  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve">
-    <value>مسار الملف التنفيذي لمضيف Atari غير متاح.</value>
-  </data>
-  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve">
-    <value>لم يتم تثبيت نواة Atari '{0}'.</value>
-  </data>
-  <data name="Emulation.Atari.Storage.MediaFilter" xml:space="preserve">
-    <value>وسائط Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|كل الملفات|*.*</value>
-  </data>
+  <data name="Emulation.Tab.Machines"><value>الأجهزة</value></data>
+  <data name="Emulation.Core.Name"><value>النواة</value></data>
+  <data name="Emulation.Core.NameManagerTitle"><value>نواة محاكاة {0}</value></data>
+  <data name="Emulation.Core.NameManagerDescription"><value>تظل المكتبة خارج GW GUI. يحل الإصدار المحدد محل الإصدار المثبت حاليًا.</value></data>
+  <data name="Emulation.Core.NameRequiredVersion"><value>الإصدار المطلوب من GW GUI</value></data>
+  <data name="Emulation.Core.NameLatestVersion"><value>أحدث إصدار رسمي متاح</value></data>
+  <data name="Emulation.Core.NameProjectVersion"><value>الإصدار المثبت حاليًا</value></data>
+  <data name="Emulation.Core.NameSearchPrompt"><value>انقر فوق بحث للاستعلام من خادم Libretro الرسمي.</value></data>
+  <data name="Emulation.Core.NameSearch"><value>البحث عن الإصدارات</value></data>
+  <data name="Emulation.Core.NameDownload"><value>تنزيل واستبدال</value></data>
+  <data name="Emulation.Core.NameSearching"><value>جارٍ البحث عن الإصدارات المتاحة…</value></data>
+  <data name="Emulation.Core.NameNoneFound"><value>لم يتم العثور على إصدار رسمي.</value></data>
+  <data name="Emulation.Core.NameVersionsFound"><value>يتوفر {0} إصدار.</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>جارٍ تنزيل {0}…</value></data>
+  <data name="Emulation.Core.NameInstalledPath"><value>الإصدار المثبت: {0}</value></data>
+  <data name="Emulation.Core.NameInstalled"><value>{0} · مثبت</value></data>
+  <data name="Emulation.Core.NameNotInstalled"><value>لا يوجد إصدار مثبت</value></data>
+  <data name="Emulation.Machine.Open"><value>فتح</value></data>
+  <data name="Emulation.Tab.Welcome"><value>مرحبًا</value></data>
+  <data name="Emulation.Welcome.Text"><value>حدد جهازًا محفوظًا أعلاه وانقر فوق فتح. يظهر كل جهاز قيد التشغيل في علامة تبويب منفصلة.</value></data>
+  <data name="Emulation.Configuration.Description"><value>يمكنك هنا إنشاء التكوينات المحفوظة أو تحديدها أو تعديلها أو حذفها. حدد علامة تبويب {0} لتحرير التكوين المحدد.</value></data>
+  <data name="Emulation.Tab.General"><value>عام</value></data>
+  <data name="Emulation.Tab.Video"><value>فيديو</value></data>
+  <data name="Emulation.Tab.Storage"><value>التخزين</value></data>
+  <data name="Emulation.Tab.Keyboard"><value>لوحة المفاتيح</value></data>
+  <data name="Emulation.Tab.Mouse"><value>الماوس</value></data>
+  <data name="Emulation.Controller.Tab"><value>وحدات التحكم</value></data>
+  <data name="Emulation.Tab.Advanced"><value>متقدم</value></data>
+  <data name="Emulation.Device.Name.Id"><value>معرّف الجهاز</value></data>
+  <data name="Emulation.Controller.Device"><value>جهاز وحدة التحكم {0}</value></data>
+  <data name="Emulation.Keyboard.SystemKey"><value>مفتاح {0}</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>مفتاح المضيف</value></data>
+  <data name="Emulation.Cpu.Summary"><value>المعالج: {0}</value></data>
+<data name="Emulation.Video.Summary"><value>مجموعة شرائح الفيديو: {0}</value></data>
+<data name="Emulation.Amiga.Chipset.Name"><value>مجموعة الشرائح</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>محرك أقراص CD</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>عدد محركات الأقراص المرنة</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>عدد الأقراص الصلبة</value></data>
+<data name="Emulation.Core.Emulator"><value>المحاكي</value></data>
+  <data name="Emulation.Folder.StorageBase"><value>مجلد التخزين المشترك للمحاكاة</value></data>
+  <data name="Emulation.Folder.StorageBaseDescription"><value>تُنظَّم الأقراص الصلبة تلقائيًا في HDD\Amiga وHDD\Atari ومجلدات الأنظمة المستقبلية.</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>إضافة قرص صلب موجود</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>الأقراص الصلبة</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>لا يوجد قرص صلب مرتبط بهذا الجهاز.</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>اختصارات محجوزة</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>تظل اختصارات GW GUI وWindows نشطة ولا يلتقطها الجهاز.</value></data>
+  <data name="Emulation.Input.Behavior"><value>السلوك</value></data>
+  <data name="Emulation.Input.Assign"><value>تعيين...</value></data>
+  <data name="Emulation.Input.Actions"><value>الإجراءات</value></data>
+  <data name="Emulation.Input.Press"><value>اضغط مفتاحًا...</value></data>
+  <data name="Emulation.Folder.CreateStorage"><value>إنشاء المجلدات الفرعية المفقودة تلقائيًا</value></data>
+  <data name="Emulation.Folder.Common"><value>المجلدات المشتركة</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>اكتشاف الأجهزة مشترك، بينما تُحفظ التعيينات بشكل منفصل في كل تكوين جهاز.</value></data>
+  <data name="Emulation.Input.Test"><value>اختبار الإدخال</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>أجهزة الإدخال المشتركة</value></data>
+  <data name="Emulation.Folder.Capture"><value>مجلد اللقطات</value></data>
+  <data name="Emulation.Folder.State"><value>مجلد الحالات المحفوظة</value></data>
+  <data name="Emulation.Folder.Default"><value>المجلدات الافتراضية</value></data>
+  <data name="Emulation.Controller.NoneDetected"><value>لم يتم اكتشاف وحدة تحكم</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>اضغط مفتاحًا أو زر ماوس لاختبار اكتشافه.</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>الأقراص المرنة</value></data>
+  <data name="Emulation.Firmware.Rom.Extended"><value>ROM موسعة</value></data>
+  <data name="Emulation.Firmware.Rom.Key"><value>مفتاح ROM</value></data>
+  <data name="Emulation.Cpu.Processor"><value>المعالج</value></data>
+  <data name="Emulation.Cpu.Precision"><value>الدقة</value></data>
+  <data name="Emulation.Cpu.Acceleration"><value>التسريع</value></data>
+  <data name="Emulation.Memory.Main"><value>الذاكرة الرئيسية</value></data>
+  <data name="Emulation.Memory.Extensions"><value>توسعات الذاكرة</value></data>
+  <data name="Emulation.Memory.None"><value>لا شيء</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>إعداد الذاكرة متوافق مع {0}.</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>توسعات الذاكرة متوافقة مع {0}.</value></data>
+  <data name="Emulation.Memory.Z3UnavailableForModel"><value>زورو III RAM غير متاحة على الموقع الشبكي: {0}.</value></data>
+  <data name="Emulation.Memory.TotalConfigured"><value>إجمالي الذاكرة المعدّة: {0} {1}</value></data>
+  <data name="Emulation.Firmware.Rom.System"><value>ذاكرة ROM للنظام</value></data>
+  <data name="Emulation.Firmware.Rom.Detected"><value>أقراص مدمجة مُحَقَّلة</value></data>
+  <data name="Emulation.Firmware.Use"><value>استخدام</value></data>
+  <data name="Emulation.Value.NotUsed"><value>غير مستخدمة</value></data>
+  <data name="Emulation.Firmware.Rom.OpenFolder"><value>فتح مجلد ROM</value></data>
+  <data name="Emulation.Firmware.PartiallyCompatible"><value>متوافقة جزئيًا</value></data>
+  <data name="Emulation.Firmware.Official"><value>رسمي</value></data>
+  <data name="Emulation.Firmware.Incompatible"><value>غير متوافق</value></data>
+  <data name="Emulation.Video.Settings.Display"><value>العرض</value></data>
+  <data name="Emulation.Video.Settings.Rendering"><value>التصيير</value></data>
+  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>توافق مجموعة الشرائح</value></data>
+  <data name="Emulation.Audio.Device"><value>الجهاز</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>زمن الاستجابة</value></data>
+  <data name="Emulation.Audio.Quality"><value>الجودة</value></data>
+  <data name="Emulation.Audio.Drives"><value>محركات الأقراص</value></data>
+  <data name="Emulation.Device.Name.Type"><value>النوع</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>إضافة جهاز تخزين</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>قرص Amiga ‏3.5 بوصة DD · ‏880 KiB</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>قرص Amiga ‏3.5 بوصة HD · ‏1.76 MiB</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>الوسيط المرتبط</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>يحدد المحاكي هندسة القرص تلقائيًا.</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>تم إنشاء صورة القرص المرن الفارغة: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>سيُنشأ الملف فارغًا، ثم يجب تقسيمه وتهيئته في الجهاز المُحاكى.</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>CD كاتب</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>لا يمكن إنشاء قرص فارغ إلا إذا كان الجهاز والمحاكي المحددان يدعمان الكتابة.</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>CD-ROM محرك الأقراص</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>تكوين</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>إنشاء قرص مرن فارغ</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>صورة القرص</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>حدد صورة قرص موجودة.</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>سيتم إرفاق الملف المحدد بمحرك الأقراص الافتراضي هذا.</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>محرك أقراص مرنة</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>صورة قرص Amiga مرن|*.adf|كل الملفات|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>قرص صلب</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>الواجهة</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>تخصيص الملف مسبقًا</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>تُدرج الأقراص المرنة والمضغوطة أو تُستبدل من الجهاز قيد التشغيل.</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>إزالة الوسيط</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>صورة القرص موجودة بالفعل: {0}\nهل تريد استبدالها؟</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>تعتمد الأنواع والطرازات والمعرفات المتاحة على الجهاز المحدد.</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>محرك أشرطة</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>استخدام القرص</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>استخدام قرص موجود</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>تعديل في عام</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>لا يتوفر جهاز تخزين إضافي لهذا الجهاز.</value></data>
+  <data name="Emulation.Storage.Device.List"><value>أجهزة التخزين</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>استعادة الإعدادات الافتراضية</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>مسح التعارضات</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>مفتاح الجهاز</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>التعيين</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>الحالة</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>البحث عن مفتاح أو تعيين</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>صالح: تعيين فريد · تعارض: التعيين مستخدم عدة مرات · محجوز: اختصار Windows أو GW GUI</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>صالح</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>تعارض</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>محجوز</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>غير معيّن</value></data>
+  <data name="Emulation.Shortcut.Global"><value>اختصارات المحاكاة</value></data>
+  <data name="Emulation.Tab.Shortcuts"><value>اختصارات</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>تحرير الماوس</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>إيقاف مؤقت / متابعة</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>ملء الشاشة / نافذة</value></data>
+  <data name="Emulation.Shortcut.Power"><value>تشغيل / إيقاف</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>إعادة ضبط بسيطة</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>إعادة ضبط كاملة</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>حفظ سريع للحالة</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>تحميل سريع للحالة</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>لقطة شاشة</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>كتم الجهاز النشط</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>تقديم سريع أثناء الضغط</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>إدراج الوسائط أو استبدالها</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>إخراج الوسائط</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>الوسائط التالية</value></data>
+  <data name="Emulation.Key.Help"><value>تعليمات</value></data>
+  <data name="Emulation.Key.LeftAmiga"><value>Amiga الأيسر</value></data>
+  <data name="Emulation.Key.RightAmiga"><value>Amiga الأيمن</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>تُنقل الأحرف والأرقام ومفاتيح التعديل العادية مباشرة. يجب تعيين مفاتيح الوظائف والمفاتيح الخاصة بـ Amiga فقط هنا.</value></data>
+  <data name="Emulation.Shortcut.Unavailable"><value>هذا الإجراء غير متوفر بعد في المحاكي الحالي.</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>التخصيص</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>هندسة تلقائية</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>وسيط فارغ</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>بايت لكل قطاع</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>السعة المحسوبة: {0}</value></data>
+  <data name="Emulation.Controller.Mappings"><value>تعيينات وحدة التحكم</value></data>
+  <data name="Emulation.Controller.Port"><value>المنفذ {0}</value></data>
+  <data name="Emulation.Controller.Type"><value>نوع وحدة التحكم</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>حجم مخصص</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>الأسطوانات</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>مجلد الوجهة</value></data>
+  <data name="Emulation.Controller.Detected"><value>وحدات التحكم المكتشفة</value></data>
+  <data name="Emulation.Device.Name"><value>الجهاز</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>هندسة القرص (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>ملف تعريف الحجم</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>محرك الأقراص المرنة</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>الرؤوس</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>اضغط «تعيين»، ثم استخدم مفتاح لوحة المفاتيح أو زر الماوس أو زر وحدة التحكم.</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>حجم القرص أو هندسته غير صالحين.</value></data>
+  <data name="Emulation.Mouse.Actions"><value>إجراءات الماوس</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>زر الماوس 4</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>زر الماوس 5</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>التقاط الماوس</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>يحجز مساحة القرص الفعلية فورًا؛ وإلا فستزداد الصورة مع كتابة البيانات.</value></data>
+  <data name="Emulation.Controller.SearchBinding"><value>البحث عن إجراء أو إدخال</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>القطاعات</value></data>
+  <data name="Emulation.Controller.Action.Up"><value>أعلى</value></data>
+  <data name="Emulation.Controller.Action.Down"><value>أسفل</value></data>
+  <data name="Emulation.Controller.Action.Left"><value>يسار</value></data>
+  <data name="Emulation.Controller.Action.Right"><value>يمين</value></data>
+  <data name="Emulation.Controller.Action.Fire1"><value>زر إطلاق 1</value></data>
+  <data name="Emulation.Controller.Action.Fire2"><value>زر إطلاق 2</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>زر CD32 الأحمر</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>زر CD32 الأزرق</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>زر CD32 الأخضر</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>زر CD32 الأصفر</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>إرجاع CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>تقديم CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>تشغيل / إيقاف مؤقت CD32</value></data>
+  <data name="Emulation.Controller.AnalogJoystick"><value>عصا تحكم تناظرية</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>عجلة الماوس لأعلى</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>عجلة الماوس لأسفل</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>عجلة الماوس لليسار</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>عجلة الماوس لليمين</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>وتحدد هذه القيمة النموذج المختار.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>لا متوافقة FPU متاحة لهذا النموذج.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>لا توجد ذاكرة بديلة لهذا النموذج.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>هذا النموذج ليس لديه برمجيات قابلة للتشكيل</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>هذا النموذج ليس لديه لوحة مفاتيح</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>هذا النموذج ليس لديه فأر</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>هذا النموذج ليس لديه وسائل تخزين</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>اختيار الجاغور CD نموذج لاستخدام CD وسائط الإعلام.</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>شريط كاسيت</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>خرطوشة</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>أقراص مضغوطة</value></data>
+  <data name="Emulation.Atari.Video.Region"><value>المنطقة</value></data>
+  <data name="Emulation.Atari.Firmware.Multilingual"><value>متعدد اللغات</value></data>
+  <data name="Emulation.Atari.Video.RegionFree"><value>بلا منطقة</value></data>
+  <data name="Emulation.Tab.Audio" xml:space="preserve"><value>الصوت</value></data>
+  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>لم يتم العثور على نواة Atari المطلوبة.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>تعذر تحميل نواة Atari المحددة.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>برنامج Atari الثابت المطلوب مفقود.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>أحد برامج Atari الثابتة غير صالح أو غير متوافق.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>لم يتم العثور على وسائط Atari المكوّنة.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>الوسائط المكوّنة غير مدعومة بواسطة جهاز Atari هذا.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>يحتوي أحد خيارات Atari على قيمة غير صالحة.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>فشل الاتصال بمضيف Atari.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>حالة Atari المحفوظة غير صالحة.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>حالة Atari المحفوظة غير متوافقة مع الجهاز الحالي.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>حدث خطأ غير متوقع في محاكاة Atari.</value></data>
+  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>التفاصيل: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>لا يمكن تعديل تكوين Atari النشط أو حذفه.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve"><value>لم يتم تكوين برنامج Atari الثابت المطلوب '{0}' لـ {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>لم يتم العثور على برنامج Atari الثابت المكوّن '{0}': {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>لم يتم العثور على وسائط Atari المكوّنة: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>مسار الملف التنفيذي لمضيف Atari غير متاح.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>لم يتم تثبيت نواة Atari '{0}'.</value></data>
+  <data name="Emulation.Atari.Storage.MediaFilter"><value>وسائط الإعلام في أتاري|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|جميع الملفات|*.*</value></data>
   <data name="Emulation.Controller.Automatic"><value>تلقائي</value></data>
   <data name="Emulation.Controller.None"><value>لا شيء</value></data>
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>مُكيّف حشرة مُتطوّرة</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>بدل الفرح/الموت</value></data>
   <data name="Emulation.Atari.Controller.NumericKeypad"><value>لوحة مفاتيح رقمية</value></data>
-  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
-    <value>يتطلب المحاكي وسيطًا قبل تشغيل هذا الجهاز. أدخل أو قم بإعداد أحد الوسائط المطلوبة الموضحة أدناه.</value>
-  </data>
-  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
-    <value>تعذر تشغيل الجهاز</value>
-  </data>
-  <data name="Emulation.Error.Machine" xml:space="preserve">
-    <value>الجهاز</value>
-  </data>
-  <data name="Emulation.Error.RequiredMedia" xml:space="preserve">
-    <value>الوسائط المطلوبة</value>
-  </data>
+  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve"><value>يتطلب المحاكي وسيطًا قبل تشغيل هذا الجهاز. أدخل أو قم بإعداد أحد الوسائط المطلوبة الموضحة أدناه.</value></data>
+  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve"><value>تعذر تشغيل الجهاز</value></data>
+  <data name="Emulation.Error.Machine" xml:space="preserve"><value>الجهاز</value></data>
+  <data name="Emulation.Error.RequiredMedia" xml:space="preserve"><value>الوسائط المطلوبة</value></data>
   <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>تمهيد سريع</value></data>
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>صوت محرك الأقراص المرنة</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>مرشح صوت مستقطب</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>إظهار نشاط محركات الأقراص على شاشة المحاكي</value></data>
-  <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>توسعة ذاكرة Mosaic</value></data>
-  <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>توسعة ذاكرة Axlon</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic"><value>موسي RAM توسيع</value></data>
+  <data name="Emulation.Atari.Memory.Axlon"><value>أكسلون RAM توسيع</value></data>
   <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>ظل بنك Axlon $0F</value></data>
   <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>POKEY ستيريو</value></data>
   <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>تشوهات الدقة العالية</value></data>
@@ -1063,16 +288,9 @@
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>عادية</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>عالية</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>منفذ الخرطوشة</value></data>
-  <data name="Emulation.Media.Insert" xml:space="preserve">
-    <value>إدخال وسيط</value>
-  </data>
-  <data name="Emulation.Media.Eject" xml:space="preserve">
-    <value>إخراج الوسيط</value>
-  </data>
-  <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
-  <data name="Emulation.Key.AtariHelp" xml:space="preserve"><value>Help</value></data>
-  <data name="Emulation.Key.AtariUndo" xml:space="preserve"><value>Undo</value></data>
-  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>تعذرت تهيئة GameInput. ثبّت بيئة تشغيل GameInput المضمّنة أو أصلحها.</value></data>
+  <data name="Emulation.Media.Insert" xml:space="preserve"><value>إدخال وسيط</value></data>
+  <data name="Emulation.Media.Eject" xml:space="preserve"><value>إخراج الوسيط</value></data>
+<data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>تعذرت تهيئة GameInput. ثبّت بيئة تشغيل GameInput المضمّنة أو أصلحها.</value></data>
   <data name="Emulation.Configuration.Brand"><value>العلامة التجارية</value></data>
   <data name="Emulation.Configuration.Machine"><value>الجهاز</value></data>
   <data name="Emulation.Configuration.TotalRam"><value>إجمالي ذاكرة RAM</value></data>
@@ -1103,7 +321,7 @@
   <data name="Emulation.Help.Controller.TurboPulse.Short"><value>وضع نبضات توربو</value></data>
   <data name="Emulation.Help.Controller.TurboPulse.Detailed"><value>يحدد الوقت بين الزر التلقائي الذي ينتجه توربو إن فترات زمنية أقصر تنتج إطلاق نار متكرر أسرع.</value></data>
   <data name="Emulation.Help.Controller.Compatibility.Short"><value>اختيار طريقة توافق المتحكم</value></data>
-  <data name="Emulation.Help.Controller.Compatibility.Detailed"><value>يُختار رسماً لمراقبين خاصين، من قبيل المراقبة ذات المعايير المزدوجة، أو الموانئ المبادلة، أو Joy2B+- اختيار لا شيء للحفاظ على رسم الخرائط الموحدة للميناء.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed"><value>تختار رسماً لجهاز مراقبة خاص، مثل التحكم بالزئبق المزدوج، أو الموانئ المبادلة، أو جوي(2)B+. لا تختار أي شيء لإبقاء خريطة الموانئ الموحدة.</value></data>
   <data name="Emulation.Help.Controller.AnalogSensitivity.Short"><value>وضع حساسية للمدخلات</value></data>
   <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed"><value>يحدد مدى استجابة المدخلات المشابهة للحركة. وتنتج قيمة أعلى استجابة أكبر من الحركة البدنية نفسها.</value></data>
   <data name="Emulation.Help.Controller.DigitalSensitivity.Short"><value>حساسية المدخلات الرقمية</value></data>
@@ -1113,7 +331,7 @@
   <data name="Emulation.Help.Controller.PaddleSpeed.Short"><value>سرعة الحركة</value></data>
   <data name="Emulation.Help.Controller.PaddleSpeed.Detailed"><value>يُحدّدُ كَمْ سرعة مدخلاتِ رقميةِ يَتحرّكُ a مُحاكاة. انخفاض القيمة يحركها ببطء أكبر ارتفاع القيمة يتحرك بسرعة أكبر</value></data>
   <data name="Emulation.Help.Cpu.FpuModel.Short"><value>اختيار FPU</value></data>
-  <data name="Emulation.Help.Cpu.FpuModel.Detailed"><value>يُختار وحدة النقط العائمة المستخدمة لتعليمات النقاط العائمة. اختر لا شيء لتعطيل FPUوتعتمد النماذج المتاحة على النماذج المختارة CPU.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed"><value>تختار وحدة النقاط العائمة المستخدمة في التعليمات العائمة، ولا تختار أي شيء لتعطيل FPU. النماذج المتاحة تعتمد على المختارين CPU.</value></data>
   <data name="Emulation.Help.Cpu.Precision.Short"><value>مختارة CPU دقة الاختبار</value></data>
   <data name="Emulation.Help.Cpu.Precision.Detailed"><value>يَختارُ كَمْ عن كثب CPU التوقيت يتبع الأجهزة الأصلية ويمكن أن تؤدي أساليب أكثر دقة إلى تحسين التوافق، ولكنها قد تتطلب المزيد من المعالجة.</value></data>
   <data name="Emulation.Help.Cpu.Speed.Short"><value>جهزوا المحاكاة CPU السرعة</value></data>
@@ -1125,7 +343,7 @@
   <data name="Emulation.Help.Mouse.AnalogDeadzone.Short"><value>جهزوا المنطقة الميتة</value></data>
   <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed"><value>الحركات المشابهة الصغيرة حول المركز بينما تتحكم في الفأر زيادة القيمة إذا تحرك المؤشر بينما يتم إطلاق العصا</value></data>
   <data name="Emulation.Help.Memory.AxlonShadow.Short"><value>تمكين Axlon $0F مصرف الظل</value></data>
-  <data name="Emulation.Help.Memory.AxlonShadow.Detailed"><value>المرآة Axlon مصرف التحكم في العنوان $0F- لا يمكن استخدامها إلا للبرمجيات أو التوسع في الذاكرة التي تستخدم هذا العنوان الإضافي.</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed"><value>مراير مصرف أكسلون للتحكم في عنوان 0F. لا يمكن استخدامها إلا في البرامجيات أو التوسعات في الذاكرة التي تستخدم هذا العنوان الإضافي.</value></data>
   <data name="Emulation.Help.Memory.Axlon.Short"><value>المجموعة Axlon التوسع في الذاكرة</value></data>
   <data name="Emulation.Help.Memory.Axlon.Detailed"><value>يُحدِّدُ كميةَ مَنْ يُغْرَفُ المصرف Axlon ذاكرة المعاقين يزيلون التوسع والخيارات الأخرى توفر القدرة المختارة على الذاكرة.</value></data>
   <data name="Emulation.Help.Memory.Mosaic.Short"><value>المجموعة Mosaic التوسع في الذاكرة</value></data>
@@ -1133,7 +351,7 @@
   <data name="Emulation.Help.Memory.Extensions.Short"><value>وضع المزيد من ذكريات التوسع</value></data>
   <data name="Emulation.Help.Memory.Extensions.Detailed"><value>يُحدِّد كمية الذاكرة التوسعية الإضافية التي تدعمها الآلة المختارة. اختر لا أحد ليستخدم فقط الذاكرة الرئيسية المكوّنة</value></data>
   <data name="Emulation.Help.Memory.Fast.Short"><value>المجموعة Fast RAM الحجم</value></data>
-  <data name="Emulation.Help.Memory.Fast.Detailed"><value>يحدد مبلغ Fast RAM متاحة مباشرة CPUإضافة Fast RAM يمكن أن يساعد على برمجيات متوافقة ولكن يغير تشكيلة المعدات المحتوية.</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed"><value>تحدد كمية العجلة RAM متاحة مباشرة أمام CPU. ملصق إضافي على وجه السرعة RAM يمكن أن تساعد على برمجيات متوافقة، ولكن تغير تشكيلة المعدات المحتوية على مواد.</value></data>
   <data name="Emulation.Help.Memory.MapRam.Short"><value>التمكين MapRAM</value></data>
   <data name="Emulation.Help.Memory.MapRam.Detailed"><value>إتاحة برمجيات متوافقة لرسم الخرائط RAM داخل النظام ROM منطقة العنوان هذا الخيار متاح فقط على نماذج الآلات التي تدعم MapRAM.</value></data>
   <data name="Emulation.Help.Memory.Z3.Short"><value>المجموعة Zorro III RAM الحجم</value></data>
@@ -1147,15 +365,15 @@
   <data name="Emulation.Help.Firmware.ExtendedRom.Short"><value>اختيار تمديد ROM</value></data>
   <data name="Emulation.Help.Firmware.ExtendedRom.Detailed"><value>يبيع البرمجيات الثانوية ROM مطلوبة من بعض نماذج الآلات إترك هذا المجال فارغاً عندما لا يستخدم النموذج المختار ROM.</value></data>
   <data name="Emulation.Help.Storage.SioAcceleration.Short"><value>التعجيل SIO التحويلات</value></data>
-  <data name="Emulation.Help.Storage.SioAcceleration.Detailed"><value>يعجل بعمليات نقل متوافقة من خلال المدخلات المتسلسلة/ حافلة النواتج. Disable this option when software depends on the original transfer timing.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed"><value>تسرع في عمليات نقل متوافقة من خلال حافلة المدخلات/النواتج المتسلسلة، وتختلف هذه الخيارات عندما تعتمد البرامجيات على توقيت التحويل الأصلي.</value></data>
   <data name="Emulation.Help.Storage.CassetteBoot.Short"><value>بدء تشغيل الكاسيت</value></data>
   <data name="Emulation.Help.Storage.CassetteBoot.Detailed"><value>يجعل الآلة المحاكاة تحاول أن تبدأ من صورة كاسيت المرفقة. فك هذا الخيار عندما يبدأ من جهاز آخر</value></data>
   <data name="Emulation.Help.Storage.RealTimeClock.Short"><value>تمكين R-Time 8 الساعة</value></data>
   <data name="Emulation.Help.Storage.RealTimeClock.Detailed"><value>يُحاكي R-Time 8 ساعـة الزمن الحقيقي بحيث يمكن للبرمجيات المتوافقة أن تقرأ التاريخ والزمان الحاليين</value></data>
   <data name="Emulation.Help.Storage.PrinterDevice.Short"><value>تمكين P: جهاز طابعة</value></data>
-  <data name="Emulation.Help.Storage.PrinterDevice.Detailed"><value>تجعل من المحاكاة P: جهاز الطباعة متاح للبرمجيات Disable this option when printeder-device emulation is not needed.</value></data>
+  <data name="Emulation.Help.Storage.PrinterDevice.Detailed"><value>تتيح أجهزة الطباعة المحتوية على حرف P: أجهزة الطباعة للبرامجيات، وتلغي هذا الخيار عندما لا تكون هناك حاجة إلى طباعة - مقياس.</value></data>
   <data name="Emulation.Help.Storage.SerialDevice.Short"><value>تمكين R: جهاز متسلسل</value></data>
-  <data name="Emulation.Help.Storage.SerialDevice.Detailed"><value>تجعل من المحاكاة R: جهاز متسلسل متاح للبرمجيات Disable this option when sequence-device emulation is not needed.</value></data>
+  <data name="Emulation.Help.Storage.SerialDevice.Detailed"><value>تتيح أجهزة التعقب المحتوية على حرف R: جهاز متسلسل للبرمجيات، وتستبعد هذا الخيار عندما لا تكون هناك حاجة إلى الرفع التسلسلي.</value></data>
   <data name="Emulation.Help.Video.Artifacting.Short"><value>اختيار اللون العالي الاستبانة</value></data>
   <data name="Emulation.Help.Video.Artifacting.Detailed"><value>يَختارُ كَمْ أنماطَ الاستبانة العاليةِ تُنتجُ الألوانَ المركبَةِ. لا ألوان مصنوعة الأشكال الأخرى تُنتج شلالات مختلفة أو سلوك رقائق.</value></data>
   <data name="Emulation.Help.Video.ImmediateBlits.Short"><value>توقيت النباتات المختارة</value></data>
@@ -1173,7 +391,7 @@
   <data name="Emulation.Help.Video.LineMode.Short"><value>اختيار طريقة خط الفيديو</value></data>
   <data name="Emulation.Help.Video.LineMode.Detailed"><value>يَختارُ كَمْ خطوط الفيديو الرأسيةِ تُعرضُ. (أوتو) يتبع الطريقة المحاكاة وهناك خيارات أخرى تفرض خطوطاً واحدة، أو تضاعف خطوطها، أو تمسحها عند توافرها.</value></data>
   <data name="Emulation.Help.Video.Standard.Short"><value>اختيار معيار الفيديو</value></data>
-  <data name="Emulation.Help.Video.Standard.Detailed"><value>يُختار توقيت التليفزيون المحوسب، مثل PAL أو NTSCويؤثر ذلك على معدل التجديد وتوقيت المعدات وتوافق البرامجيات.</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed"><value>تختار توقيت التلفزيون المطبعي، مثل PAL أو NTSC. يؤثر ذلك على معدل التجديد، وتوقيت المعدات، وتوافق البرامجيات.</value></data>
   <data name="Emulation.Help.Video.ExternalPalette.Short"><value>نختار شطيرة اللون الخارجية</value></data>
   <data name="Emulation.Help.Video.ExternalPalette.Detailed"><value>يَختارُ a لون مُحدّد سلفاً بدلاً مِنْ الألوانِ المُتولدة مِنْ الفيديو الحالي. اختر لا أحد ليستخدم الألوان المولدة</value></data>
   <data name="Emulation.Help.Video.Colors.Short"><value>عمق لون النواتج المختارة</value></data>
@@ -1186,31 +404,26 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>يحدد GTIA التأخّر في مرحلة اللون يُستخدم لإعادة إنتاج الألوان ويستخدم التقصير القيمة القياسية. خيارات عديدة تُغيّر الأقفال الناتجة</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>تخطي الإطار</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>يحدد عدد أطر العرض التي تم إغفالها المعاقين يرسمون كل إطار فالقيم العليا تقلل من أداء العمل ولكنها تقلل من سلاسة الحركة.</value></data>
-  <data name="Emulation.Controller.Visual" xml:space="preserve">
-    <value>المظهر</value>
-  </data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>المظهر</value></data>
   <data name="Emulation.Video.Compatibility.ExclusiveDisplayTechnology"><value>تكنولوجيا عرض واحدة فقط يمكن أن تكون نشطة في وقت واحد.</value></data>
   <data name="Emulation.Video.Crt.Color.Amber"><value>منشور أمبير</value></data>
-  <data name="Emulation.Video.Crt.Color.Color"><value>Color</value></data>
+  <data name="Emulation.Video.Crt.Color.Color"><value>كولور</value></data>
   <data name="Emulation.Video.Crt.Color.Custom"><value>الاحتكار العرفي</value></data>
   <data name="Emulation.Video.Crt.Color.Gray"><value>مونوكروم رمادي</value></data>
-  <data name="Emulation.Video.Crt.Color.Green"><value>Monochrome green</value></data>
+  <data name="Emulation.Video.Crt.Color.Green"><value>مونوكروم الخضراء</value></data>
   <data name="Emulation.Video.Crt.Color.White"><value>مونيكروم أبيض</value></data>
   <data name="Emulation.Video.Crt.Mask.ApertureGrille"><value>مدفعية من طراز Aperture</value></data>
   <data name="Emulation.Video.Crt.Mask.None"><value>لا</value></data>
   <data name="Emulation.Video.Crt.Mask.ShadowMask"><value>قناع الظلال</value></data>
   <data name="Emulation.Video.Crt.Mask.SlotMask"><value>قناع الطيار</value></data>
-  <data name="Emulation.Video.FixedPixel.Technology.Lcd"><value>LCD</value></data>
-  <data name="Emulation.Video.FixedPixel.Technology.LedBacklitLcd"><value>LED-backlit LCD</value></data>
-  <data name="Emulation.Video.FixedPixel.Technology.Oled"><value>OLED</value></data>
-  <data name="Emulation.Video.Limitation.UnsupportedBackend"><value>ولا يدعم هذا الإطار الداعم المختار.</value></data>
-  <data name="Emulation.Video.Orientation.Horizontal"><value>Horizontal</value></data>
+<data name="Emulation.Video.Limitation.UnsupportedBackend"><value>ولا يدعم هذا الإطار الداعم المختار.</value></data>
+  <data name="Emulation.Video.Orientation.Horizontal"><value>هوريزونتال</value></data>
   <data name="Emulation.Video.Orientation.Vertical"><value>كتابي</value></data>
   <data name="Emulation.Video.Parameter.Brightness"><value>الصدق</value></data>
-  <data name="Emulation.Video.Parameter.Contrast"><value>Contrast</value></data>
-  <data name="Emulation.Video.Parameter.CrtBeamDiffusion"><value>Beam diffusion</value></data>
+  <data name="Emulation.Video.Parameter.Contrast"><value>كونتراست</value></data>
+  <data name="Emulation.Video.Parameter.CrtBeamDiffusion"><value>نشرة لحم البقر</value></data>
   <data name="Emulation.Video.Parameter.CrtBeamIntensity"><value>كثافة الجسم</value></data>
-  <data name="Emulation.Video.Parameter.CrtBeamWidth"><value>Beam width</value></data>
+  <data name="Emulation.Video.Parameter.CrtBeamWidth"><value>عرض الحزمة</value></data>
   <data name="Emulation.Video.Parameter.CrtColorMode"><value>طريقة اللون</value></data>
   <data name="Emulation.Video.Parameter.CrtHaloIntensity"><value>كثافة الهالو</value></data>
   <data name="Emulation.Video.Parameter.CrtMask"><value>قناع الفوسفور</value></data>
@@ -1221,13 +434,13 @@
   <data name="Emulation.Video.Parameter.CrtPatternIntensity"><value>شدة البراءات</value></data>
   <data name="Emulation.Video.Parameter.CrtPatternOrientation"><value>توجه أنماط السلوك</value></data>
   <data name="Emulation.Video.Parameter.CrtPatternPhase"><value>المرحلة التجريبية</value></data>
-  <data name="Emulation.Video.Parameter.CrtScanlineCompensation"><value>Scanline brightness compensation</value></data>
+  <data name="Emulation.Video.Parameter.CrtScanlineCompensation"><value>تعويضات الذكاء في الشوارع</value></data>
   <data name="Emulation.Video.Parameter.CrtScanlineIntensity"><value>كثافة المسح</value></data>
   <data name="Emulation.Video.Parameter.CrtScanlineOrientation"><value>توجه المسح</value></data>
   <data name="Emulation.Video.Parameter.CrtScanlinePhase"><value>مرحلة المسح</value></data>
-  <data name="Emulation.Video.Parameter.CrtScanlinesEnabled"><value>Scanlines</value></data>
+  <data name="Emulation.Video.Parameter.CrtScanlinesEnabled"><value>خطوط المسح</value></data>
   <data name="Emulation.Video.Parameter.CrtScanlineThickness"><value>سماكة الشحوم</value></data>
-  <data name="Emulation.Video.Parameter.CrtVignette"><value>Vignette</value></data>
+  <data name="Emulation.Video.Parameter.CrtVignette"><value>فينييت</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBacklight"><value>كثافة الضوء الخلفي</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBlackDepth"><value>العمق الأسود</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelGridIntensity"><value>كثافة شبكات البريد</value></data>
@@ -1235,7 +448,7 @@
   <data name="Emulation.Video.Parameter.FixedPixelPersistence"><value>الثبات</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelPixelGap"><value>الفجوة بين البريد</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelResponseTime"><value>وقت الاستجابة</value></data>
-  <data name="Emulation.Video.Parameter.FixedPixelSubpixels"><value>Subpixel layout</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelSubpixels"><value>مخططات فرعية</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelTechnology"><value>تكنولوجيا مكدسة</value></data>
   <data name="Emulation.Video.Parameter.Gamma"><value>غاما</value></data>
   <data name="Emulation.Video.Parameter.PlasmaCellStructure"><value>هيكل الخلايا</value></data>
@@ -1248,80 +461,68 @@
   <data name="Emulation.Video.Parameter.VectorLineIntensity"><value>شدة الخط</value></data>
   <data name="Emulation.Video.Parameter.VectorLineThreshold"><value>عتبة الخط</value></data>
   <data name="Emulation.Video.Parameter.VectorPersistence"><value>الثبات</value></data>
-  <data name="Emulation.Video.Preset.CrtAmber"><value>CRT — Amber monochrome</value></data>
+  <data name="Emulation.Video.Vector.Group.Drawing"><value>الكشف والرسم</value></data>
+  <data name="Emulation.Video.Vector.Group.Glow"><value>التوهج والاستمرار</value></data>
+  <data name="Emulation.Video.Preset.CrtAmber"><value>CRT - Amber monochrome</value></data>
   <data name="Emulation.Video.Preset.CrtArcadeColor"><value>CRT - Color arcade</value></data>
-  <data name="Emulation.Video.Preset.CrtGreen"><value>CRT — Green monochrome</value></data>
-  <data name="Emulation.Video.Preset.CrtTelevisionColor"><value>CRT - Color TV</value></data>
+  <data name="Emulation.Video.Preset.CrtGreen"><value>CRT - Green monochrome</value></data>
+  <data name="Emulation.Video.Preset.CrtTelevisionColor"><value>CRT - التلفزيون البارد</value></data>
   <data name="Emulation.Video.Preset.CrtWhite"><value>CRT - White monochrome</value></data>
-  <data name="Emulation.Video.Preset.LcdColor"><value>Color LCD</value></data>
-  <data name="Emulation.Video.Preset.LcdMonochrome"><value>Monochrome LCD</value></data>
-  <data name="Emulation.Video.Preset.LedBacklitLcd"><value>LED-backlit LCD</value></data>
+  <data name="Emulation.Video.Preset.LcdColor"><value>كولور LCD</value></data>
+  <data name="Emulation.Video.Preset.LcdMonochrome"><value>مونيكروم LCD</value></data>
+  <data name="Emulation.Video.Preset.LedBacklitLcd"><value>شاشة LCD بإضاءة خلفية LED</value></data>
   <data name="Emulation.Video.Preset.Normal"><value>المعيار</value></data>
-  <data name="Emulation.Video.Preset.Oled"><value>OLED</value></data>
-  <data name="Emulation.Video.Preset.Plasma"><value>Plasma</value></data>
   <data name="Emulation.Video.Preset.Vector"><value>عرض ناقلات</value></data>
   <data name="Emulation.Video.Sampling"><value>أخذ العينات</value></data>
-  <data name="Emulation.Video.Sampling.Bicubic"><value>Bicubic</value></data>
-  <data name="Emulation.Video.Sampling.Bilinear"><value>Bilinear</value></data>
+  <data name="Emulation.Video.Sampling.Bicubic"><value>بيكوبيتش</value></data>
+  <data name="Emulation.Video.Sampling.Bilinear"><value>ثنائي الخطية</value></data>
   <data name="Emulation.Video.Sampling.Nearest"><value>المعيار</value></data>
   <data name="Emulation.Video.Sampling.SharpBilinear"><value>ترشيح ثنائي خطي حاد</value></data>
   <data name="Emulation.Video.Settings.General"><value>تسويات الصور العامة</value></data>
   <data name="Emulation.Video.Settings.GwGuiProcessing"><value>GW GUI processing video</value></data>
-  <data name="Emulation.Video.Subpixels.Bgr"><value>BGR</value></data>
-  <data name="Emulation.Video.Subpixels.Monochrome"><value>Monochrome</value></data>
-  <data name="Emulation.Video.Subpixels.Rgb"><value>RGB</value></data>
-  <data name="Emulation.Video.Technology"><value>تسخير التكنولوجيا</value></data>
-  <data name="Emulation.Video.Technology.Crt"><value>CRT</value></data>
-  <data name="Emulation.Video.Technology.FixedPixel"><value>LCD/ LED/ OLED</value></data>
+<data name="Emulation.Video.Technology"><value>تسخير التكنولوجيا</value></data>
+<data name="Emulation.Video.Technology.FixedPixel"><value>LCD/ LED/ OLED</value></data>
   <data name="Emulation.Video.Technology.Normal"><value>المعيار</value></data>
-  <data name="Emulation.Video.Technology.Plasma"><value>Plasma</value></data>
+  <data name="Emulation.Video.Technology.Plasma"><value>بلاسما</value></data>
   <data name="Emulation.Video.Technology.Vector"><value>ناقل</value></data>
-  <data name="Emulation.Video.Sampling.Xbr"><value>XBR</value></data>
-  <data name="Emulation.Video.Sampling.Xbrz"><value>XBRZ</value></data>
-  <data name="Emulation.Video.Sampling.Hqx"><value>HQx</value></data>
-  <data name="Emulation.Video.Sampling.ScaleFx"><value>ScaleFX</value></data>
-  <data name="Emulation.Video.Sampling.ScaleNx"><value>ScaleNx</value></data>
-  <data name="Emulation.Video.Sampling.Sabr"><value>SABR</value></data>
-  <data name="Emulation.Video.Settings.Restoration"><value>ترميم الصور</value></data>
+<data name="Emulation.Video.Settings.Restoration"><value>ترميم الصور</value></data>
   <data name="Emulation.Video.Parameter.Dedithering"><value>إزالة التنقيط</value></data>
   <data name="Emulation.Video.Parameter.Denoising"><value>إعلان</value></data>
   <data name="Emulation.Video.Parameter.Debanding"><value>تخفيض الحظر</value></data>
   <data name="Emulation.Video.Parameter.DetailRecovery"><value>استرداد التفاصيل</value></data>
-  <data name="Emulation.Video.Parameter.Deinterlacing"><value>Deinterlacing</value></data>
+  <data name="Emulation.Video.Parameter.Deinterlacing"><value>إزالة التداخل</value></data>
   <data name="Emulation.Video.Deinterlacing.Off"><value>قبالة</value></data>
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>(بوب) حتى الخطوط</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>(بوب) خطوط غريبة</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>الخلل الرأسي</value></data>
-  <data name="Emulation.Video.Technology.Vfd"><value>VFD</value></data>
-  <data name="Emulation.Video.Vfd.Color.Blue"><value>الأزرق</value></data>
+<data name="Emulation.Video.Vfd.Color.Blue"><value>الأزرق</value></data>
   <data name="Emulation.Video.Vfd.Color.Green"><value>الأخضر</value></data>
-  <data name="Emulation.Video.Vfd.Color.Amber"><value>Amber</value></data>
+  <data name="Emulation.Video.Vfd.Color.Amber"><value>أمبر</value></data>
   <data name="Emulation.Video.Vfd.Color.Red"><value>أحمر</value></data>
   <data name="Emulation.Video.Parameter.VfdColor"><value>لون الفوسفور</value></data>
   <data name="Emulation.Video.Parameter.VfdPhosphorIntensity"><value>كثافة الفوسفور</value></data>
-  <data name="Emulation.Video.Parameter.VfdHaloIntensity"><value>VFD halo</value></data>
-  <data name="Emulation.Video.Parameter.VfdPersistence"><value>VFD persistent</value></data>
+  <data name="Emulation.Video.Parameter.VfdHaloIntensity"><value>هالة VFD</value></data>
+  <data name="Emulation.Video.Parameter.VfdPersistence"><value>مدة الدوام (م)</value></data>
   <data name="Emulation.Video.Technology.LedMatrix"><value>مصفوفة LED</value></data>
-  <data name="Emulation.Video.LedMatrix.Color.Rgb"><value>RGB</value></data>
-  <data name="Emulation.Video.LedMatrix.Color.Red"><value>أحمر</value></data>
+<data name="Emulation.Video.LedMatrix.Color.Red"><value>أحمر</value></data>
   <data name="Emulation.Video.LedMatrix.Color.Green"><value>الأخضر</value></data>
-  <data name="Emulation.Video.LedMatrix.Color.Amber"><value>Amber</value></data>
+  <data name="Emulation.Video.LedMatrix.Color.Amber"><value>أمبر</value></data>
   <data name="Emulation.Video.LedMatrix.Color.Blue"><value>الأزرق</value></data>
   <data name="Emulation.Video.LedMatrix.Color.White"><value>أبيض</value></data>
-  <data name="Emulation.Video.Parameter.LedMatrixColor"><value>اللون الأحمر</value></data>
-  <data name="Emulation.Video.Parameter.LedMatrixCellSize"><value>LED cell size</value></data>
-  <data name="Emulation.Video.Parameter.LedMatrixCellGap"><value>Spacing cell</value></data>
-  <data name="Emulation.Video.Parameter.LedMatrixDiffusion"><value>LED diffusion</value></data>
-  <data name="Emulation.Video.Parameter.LedMatrixBrightness"><value>LED brightness</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixColor"><value>LED اللون</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixCellSize"><value>LED حجم الخلية</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixCellGap"><value>LED مباعدة الخلايا</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixDiffusion"><value>شدة الهالة</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixBrightness"><value>LED اللاصقة</value></data>
   <data name="Emulation.Video.Technology.DotMatrix"><value>مصفوفة دوت</value></data>
-  <data name="Emulation.Video.DotMatrix.Palette.Green"><value>Green LCD</value></data>
-  <data name="Emulation.Video.DotMatrix.Palette.Gray"><value>Gray LCD</value></data>
-  <data name="Emulation.Video.DotMatrix.Palette.Amber"><value>Amber</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Green"><value>الجرين LCD</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Gray"><value>غرامي LCD</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Amber"><value>أمبر</value></data>
   <data name="Emulation.Video.DotMatrix.Palette.Blue"><value>الأزرق</value></data>
   <data name="Emulation.Video.DotMatrix.Shape.Round"><value>الجولة</value></data>
-  <data name="Emulation.Video.DotMatrix.Shape.Square"><value>Square</value></data>
+  <data name="Emulation.Video.DotMatrix.Shape.Square"><value>مربع</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixPalette"><value>مصفوفة النخيل</value></data>
-  <data name="Emulation.Video.Parameter.DotMatrixShape"><value>Dot shape</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixShape"><value>الشكل</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixDotSize"><value>حجم Dot</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixContrast"><value>تناقض</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixResponseTime"><value>وقت الاستجابة</value></data>
@@ -1331,7 +532,7 @@
   <data name="Emulation.Video.SegmentDisplay.Layout.Sixteen"><value>16 قطاعا</value></data>
   <data name="Emulation.Video.SegmentDisplay.Color.Red"><value>أحمر</value></data>
   <data name="Emulation.Video.SegmentDisplay.Color.Green"><value>الأخضر</value></data>
-  <data name="Emulation.Video.SegmentDisplay.Color.Amber"><value>Amber</value></data>
+  <data name="Emulation.Video.SegmentDisplay.Color.Amber"><value>أمبر</value></data>
   <data name="Emulation.Video.SegmentDisplay.Color.Blue"><value>الأزرق</value></data>
   <data name="Emulation.Video.SegmentDisplay.Color.White"><value>أبيض</value></data>
   <data name="Emulation.Video.Parameter.SegmentDisplayLayout"><value>مخطط الجزء</value></data>
@@ -1341,7 +542,7 @@
   <data name="Emulation.Video.Parameter.SegmentDisplayGlow"><value>توهج الجزء</value></data>
   <data name="Emulation.Video.Parameter.SegmentDisplayResponseTime"><value>وقت الاستجابة الجزئية</value></data>
   <data name="Emulation.Video.Technology.EPaper"><value>ورقة إلكترونية</value></data>
-  <data name="Emulation.Video.EPaper.ColorMode.Monochrome"><value>Monochrome</value></data>
+  <data name="Emulation.Video.EPaper.ColorMode.Monochrome"><value>مونوكروم</value></data>
   <data name="Emulation.Video.EPaper.ColorMode.Grayscale16"><value>16 مستوى رمادي</value></data>
   <data name="Emulation.Video.EPaper.ColorMode.Color4096"><value>4096 ألوان</value></data>
   <data name="Emulation.Video.Parameter.EPaperColorMode"><value>نموذج الورق الإلكتروني</value></data>
@@ -1353,18 +554,17 @@
   <data name="Emulation.Video.Parameter.ProjectionOpticalBlur"><value>ضبابية المعارضة</value></data>
   <data name="Emulation.Video.Parameter.ProjectionDiffusion"><value>انتشار الضوء</value></data>
   <data name="Emulation.Video.Parameter.ProjectionScreenTexture"><value>النسيج الحرفي</value></data>
-  <data name="Emulation.Video.Parameter.ProjectionConvergence"><value>تقارب النتائج</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionConvergence"><value>RGB التقارب</value></data>
   <data name="Emulation.Video.Settings.Temporal"><value>الآثار المؤقتة</value></data>
   <data name="Emulation.Video.Parameter.GeneralPersistence"><value>الثبات العام</value></data>
-  <data name="Emulation.Video.Parameter.MotionBlur"><value>Motion blur</value></data>
+  <data name="Emulation.Video.Parameter.MotionBlur"><value>عدم وضوح الحركة</value></data>
   <data name="Emulation.Video.Parameter.Flicker"><value>الكثافة</value></data>
   <data name="Emulation.Video.Parameter.Interlacing"><value>الترابط</value></data>
   <data name="Emulation.Video.Parameter.BlackFrameInsertion"><value>الإطار الأسود</value></data>
   <data name="Emulation.Video.Settings.SignalSimulation"><value>محاكاة الإشارات</value></data>
   <data name="Emulation.Video.Settings.Stylistic"><value>الآثار الافتراضية</value></data>
   <data name="Emulation.Video.Parameter.Grain"><value>الحبوب الشهيرة</value></data>
-  <data name="Emulation.Video.Parameter.Vhs"><value>VHS</value></data>
-  <data name="Emulation.Video.Parameter.ChromaticAberration"><value>الانحراف المزمن</value></data>
+<data name="Emulation.Video.Parameter.ChromaticAberration"><value>الانحراف المزمن</value></data>
   <data name="Emulation.Video.Parameter.Bloom"><value>زهرة خفيفة</value></data>
   <data name="Emulation.Video.Parameter.Sepia"><value>سيبيا</value></data>
   <data name="Emulation.Video.Tab.Display"><value>التلاعب</value></data>
@@ -1372,18 +572,10 @@
   <data name="Emulation.Video.Tab.Technology"><value>التكنولوجيا</value></data>
   <data name="Emulation.Video.Tab.Image"><value>الصورة</value></data>
   <data name="Emulation.Video.Tab.Restoration"><value>الاستعادة</value></data>
-  <data name="Emulation.Video.Tab.Motion"><value>Motion</value></data>
+  <data name="Emulation.Video.Tab.Motion"><value>الحركة</value></data>
   <data name="Emulation.Video.Tab.Signal"><value>الإشارة</value></data>
   <data name="Emulation.Video.Tab.Effects"><value>الآثار</value></data>
-  <data name="Emulation.Video.Sampling.Hq2x"><value>HQ2x</value></data>
-  <data name="Emulation.Video.Sampling.Hq3x"><value>HQ3x</value></data>
-  <data name="Emulation.Video.Sampling.Hq4x"><value>HQ4x</value></data>
-  <data name="Emulation.Video.Sampling.TwoXSai"><value>2xSaI</value></data>
-  <data name="Emulation.Video.Sampling.SuperTwoXSai"><value>Super 2xSaI</value></data>
-  <data name="Emulation.Video.Sampling.SuperEagle"><value>Super Eagle</value></data>
-  <data name="Emulation.Video.Sampling.EpxScale2x"><value>EPX / Scale2x</value></data>
-  <data name="Emulation.Video.Sampling.Jinc2"><value>JINC2</value></data>
-  <data name="Emulation.Video.Sampling.Lanczos"><value>Lanczos</value></data>  <data name="Emulation.Video.Parameter.FineDetails"><value>التفاصيل الدقيقة</value></data>
+<data name="Emulation.Video.Parameter.FineDetails"><value>التفاصيل الدقيقة</value></data>
   <data name="Emulation.Video.Restoration.Level.None"><value>بدون</value></data>
   <data name="Emulation.Video.Restoration.Level.Light"><value>خفيف</value></data>
   <data name="Emulation.Video.Restoration.Level.Medium"><value>متوسط</value></data>
@@ -1394,28 +586,173 @@
   <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>تدهور السلوك</value></data>
   <data name="Emulation.Video.Parameter.SignalStandard"><value>معيار الكول</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>كثافة التأثيرات القياسية</value></data>
-  <data name="Emulation.Video.Signal.Connection.RgbScart"><value>RGB (SCART)</value></data>
-  <data name="Emulation.Video.Signal.Connection.Component"><value>العنصر (YPbr)</value></data>
-  <data name="Emulation.Video.Signal.Connection.SVideo"><value>S-Video</value></data>
-  <data name="Emulation.Video.Signal.Connection.Composite"><value>Composite</value></data>
-  <data name="Emulation.Video.Signal.Connection.Rf"><value>RF</value></data>
-  <data name="Emulation.Video.Signal.Standard.Automatic"><value>الآلية</value></data>
-  <data name="Emulation.Video.Signal.Standard.Pal"><value>PAL</value></data>
-  <data name="Emulation.Video.Signal.Standard.Ntsc"><value>NTSC</value></data>
-  <data name="Emulation.Video.Signal.Standard.Secam"><value>SECAM</value></data>
-  <data name="Emulation.Video.Signal.Connection.None"><value>لا</value></data>
+<data name="Emulation.Video.Signal.Connection.Component"><value>العنصر (YPbr)</value></data>
+<data name="Emulation.Video.Signal.Standard.Automatic"><value>الآلية</value></data>
+<data name="Emulation.Video.Signal.Connection.None"><value>لا</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>الاختناق الأفقي</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>التمزق الرأسي</value></data>
-  <data name="Emulation.Video.Parameter.CrtTrapezoid"><value>Trapezoid</value></data>
+  <data name="Emulation.Video.Parameter.CrtTrapezoid"><value>تريبزويد</value></data>
   <data name="Emulation.Video.Crt.Group.Color"><value>لون الفوسفور</value></data>
-  <data name="Emulation.Video.Crt.Group.Beam"><value>Electron beam</value></data>
+  <data name="Emulation.Video.Crt.Group.Beam"><value>حزمة الإلكترونات</value></data>
   <data name="Emulation.Video.Crt.Group.Mask"><value>قناع الفوسفور</value></data>
   <data name="Emulation.Video.Crt.Group.Geometry"><value>قياس هندسي مُستقطع</value></data>
-  <data name="Emulation.Video.Crt.Group.Scanlines"><value>Scanlines</value></data>
+  <data name="Emulation.Video.Crt.Group.Scanlines"><value>خطوط المسح</value></data>
   <data name="Emulation.Video.Crt.Group.Interference"><value>التحاور والماوري</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.Zero"><value>المرحلة صفر</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.Quarter"><value>المرحلة 1/4</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>المرحلة 1/2</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>المرحلة 3/4</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>نزيف في الضوء الخلفي</value></data>
+  <data name="Emulation.Video.Parameter.VfdEmissionThreshold"><value>عتبة الانبعاث</value></data>
+  <data name="Emulation.Video.Parameter.VfdGlassDarkening"><value>تعتيم الزجاج المدخن</value></data>
+  <data name="Emulation.Video.Parameter.VfdStructure"><value>بنية الأنودات</value></data>
+  <data name="Emulation.Video.Parameter.VfdCellSize"><value>حجم الخلايا</value></data>
+  <data name="Emulation.Video.Parameter.VfdCellGap"><value>تباعد الخلايا</value></data>
+  <data name="Emulation.Video.Parameter.VfdHaloRadius"><value>نصف قطر الهالة</value></data>
+  <data name="Emulation.Video.Vfd.Structure.Graphic"><value>رسومي</value></data>
+  <data name="Emulation.Video.Vfd.Structure.DotMatrix"><value>مصفوفة نقطية</value></data>
+  <data name="Emulation.Video.Vfd.Group.PhosphorAndGlass"><value>الفوسفور والزجاج</value></data>
+  <data name="Emulation.Video.Vfd.Group.Anodes"><value>بنية الأنودات</value></data>
+  <data name="Emulation.Video.Vfd.Group.GlowAndResponse"><value>التوهج والاستجابة</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaBlackDepth"><value>عمق أسود</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaPhosphorIntensity"><value>كثافة الفوسفور</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaGammaResponse"><value>الاستجابة في غاما</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaAutomaticBrightnessLimiter"><value>الحد من اللامع الآلي</value></data>
+  <data name="Emulation.Video.Plasma.Group.PanelAndCells"><value>الفريق والخلايا</value></data>
+  <data name="Emulation.Video.Plasma.Group.Phosphors"><value>فوسفور</value></data>
+  <data name="Emulation.Video.Plasma.Group.Light"><value>إدارة الضوء</value></data>
+  <data name="Emulation.Video.Plasma.Group.Temporal"><value>الاستجابة المؤقتة</value></data>
+  <data name="Emulation.Video.Parameter.VectorBeamWidth"><value>عرض الحزمة</value></data>
+  <data name="Emulation.Video.Parameter.VectorBeamFocus"><value>التركيز على خطة العمل</value></data>
+  <data name="Emulation.Video.Parameter.VectorPhosphorColor"><value>لون الفوسفور</value></data>
+  <data name="Emulation.Video.Parameter.VectorHaloRadius"><value>نصف قطر هالو</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixShape"><value>شكل LED</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixHaloRadius"><value>نصف قطر الهالة</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixBlackDepth"><value>عمق اللون الأسود</value></data>
+  <data name="Emulation.Video.LedMatrix.Shape.Round"><value>دائرية</value></data>
+  <data name="Emulation.Video.LedMatrix.Shape.Square"><value>مربعة</value></data>
+  <data name="Emulation.Video.LedMatrix.Group.Structure"><value>بنية المصفوفة</value></data>
+  <data name="Emulation.Video.LedMatrix.Group.Emission"><value>انبعاث الضوء</value></data>
+  <data name="Emulation.Memory.Summary"><value>شيب RAM: {0} كيب/نسلوف RAM: {1} كيب/ن فاست RAM: {2} MiB</value></data>
+  <data name="Emulation.Cpu.Model"><value>CPU نموذج</value></data>
+  <data name="Emulation.Cpu.Multiplier"><value>CPU مضاعف</value></data>
+  <data name="Emulation.Cpu.Compatibility"><value>قابلة للمقارنة CPU</value></data>
+  <data name="Emulation.Memory.Chip"><value>شيب RAM</value></data>
+  <data name="Emulation.Memory.Slow"><value>بطيئة حركة RAM</value></data>
+  <data name="Emulation.Memory.Fast"><value>سريعة RAM</value></data>
+<data name="Emulation.Video.Standard"><value>معيار الفيديو</value></data>
+  <data name="Emulation.Video.Resolution"><value>القرار</value></data>
+  <data name="Emulation.Video.AspectRatio"><value>نسبة المشتبه فيهم</value></data>
+  <data name="Emulation.Video.Crop"><value>حدود المحاصيل</value></data>
+  <data name="Emulation.Video.FlickerFixer"><value>معالجات لطائرات</value></data>
+  <data name="Emulation.Audio.Enabled"><value>الصوت المتاح</value></data>
+  <data name="Emulation.Audio.Output"><value>الناتج الفوق الصوتي</value></data>
+  <data name="Emulation.Audio.Latency"><value>درجة الحرارة (م)</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>الإنتربول</value></data>
+  <data name="Emulation.Audio.Filter"><value>مرشح صوتي لصوت أميغا</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>فصل البذور (%)</value></data>
+  <data name="Emulation.Audio.Input"><value>مدخلات الصوت</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>هذا النواة الأميجا لا تكشف عن مدخل صوتي</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>ناتج التخلف عن الدفع</value></data>
+  <data name="Emulation.Storage.Media.Add"><value>وسائط الإعلام</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>إنشاء قرص صلب</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>حجم الأقراص الصلبة (MiB)</value></data>
+  <data name="Emulation.Storage.Media.None"><value>لا توجد وسائل إعلام، إضافة قرص صلب أو قرص صلب CD مدعومة بنموذج منتقاة.</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>القراءة فقط</value></data>
+  <data name="Emulation.Amiga.Storage.MediaFilter"><value>وسائط الإعلام في أميغا|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|جميع الملفات|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>قرص صلب من طراز Amiga|*.hdf|جميع الملفات|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.NotSupported"><value>النموذج المختار لا يدعم قرص صلب</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>هذا النموذج يقبل على الأكثر {0} قناص مُنقّد (قناص)</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>هذا النموذج يقبل على الأكثر {0} قرص صلب.</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>لا يدعم النموذج المختار CD قُد</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>يستخدم مفتاحان من طراز Amiga نفس PC مفتاح، حلّ الخرائط الحمراء قبل الادخار</value></data>
+  <data name="Emulation.Mouse.ReleaseKey"><value>مفتاح كبش إطلاق</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>زر الفأر الأيسر</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>زر الفأر</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>زر الفأر الأوسط</value></data>
+  <data name="Emulation.Controller.Detect"><value>متحكمون مفصّلون</value></data>
+  <data name="Emulation.Controller.EmulatedAction"><value>العمل في مجال مكافحة الألغام</value></data>
+  <data name="Emulation.Controller.PhysicalControl"><value>لوحة المفاتيح، أو الفأر أو المكافحة</value></data>
+  <data name="Emulation.Cpu.Speed"><value>CPU سرعة</value></data>
+  <data name="Emulation.Cpu.SpeedOriginal"><value>السرعة الأصلية</value></data>
+  <data name="Emulation.Cpu.Compatibility.Normal"><value>المعيار</value></data>
+  <data name="Emulation.Cpu.Compatibility.Compatible"><value>مقارن</value></data>
+  <data name="Emulation.Cpu.Compatibility.Memory"><value>الذاكرة المتوافقة</value></data>
+  <data name="Emulation.Cpu.Compatibility.Exact"><value>"السيّارة"</value></data>
+  <data name="Emulation.Fpu.Integrated"><value>وحدة متكاملة لبرمجيات FPU</value></data>
+  <data name="Emulation.Value.Enabled"><value>التمكين</value></data>
+  <data name="Emulation.Value.Disabled"><value>المعوقين</value></data>
+  <data name="Emulation.Value.Minimum"><value>الحد الأدنى</value></data>
+  <data name="Emulation.Value.VerySmall"><value>صغيرة جدا</value></data>
+  <data name="Emulation.Value.Small"><value>صغيرة</value></data>
+  <data name="Emulation.Value.Medium"><value>متوسطة</value></data>
+  <data name="Emulation.Value.Large"><value>لامع</value></data>
+  <data name="Emulation.Value.VeryLarge"><value>كبير جدا</value></data>
+  <data name="Emulation.Value.Maximum"><value>الحد الأقصى</value></data>
+  <data name="Emulation.State.Locked"><value>مقفلة</value></data>
+  <data name="Emulation.State.Immediate"><value>فوراً</value></data>
+  <data name="Emulation.State.Waiting"><value>الانتظار</value></data>
+  <data name="Emulation.Value.Standard"><value>المعيار</value></data>
+  <data name="Emulation.Value.Enhanced"><value>المعزَّز</value></data>
+  <data name="Emulation.Value.Internal"><value>داخلي</value></data>
+  <data name="Emulation.Value.Loud"><value>بصوت عال</value></data>
+  <data name="Emulation.Video.Resolution.AutoLow"><value>القرار المنخفض آليا</value></data>
+  <data name="Emulation.Video.Resolution.AutoSuperHigh"><value>القرار الآلي فوق العالي</value></data>
+  <data name="Emulation.Video.Resolution.Low"><value>قرار منخفض</value></data>
+  <data name="Emulation.Video.Resolution.High"><value>قرار عال</value></data>
+  <data name="Emulation.Video.Resolution.SuperHigh"><value>قرار رفيع المستوى</value></data>
+  <data name="Emulation.Video.LineMode"><value>نمط الخط</value></data>
+  <data name="Emulation.Video.HzChange"><value>التغييرات في معدلات التجديد</value></data>
+  <data name="Emulation.Video.FrameSkip"><value>تخطيتُ الصبغة</value></data>
+  <data name="Emulation.Video.Colors"><value>العمق البارد</value></data>
+  <data name="Emulation.Video.Gamma"><value>غاما</value></data>
+  <data name="Emulation.State.ImmediateBlits"><value>عملية بليتر</value></data>
+  <data name="Emulation.Video.Collision.Level"><value>الكشف عن الاصطدام</value></data>
+  <data name="Emulation.Video.LineMode.Single"><value>مسح واحد</value></data>
+  <data name="Emulation.Video.LineMode.Double"><value>فحص مزدوج</value></data>
+  <data name="Emulation.Video.Collision.Sprites"><value>المنافق</value></data>
+  <data name="Emulation.Video.Collision.Playfields"><value>بلايفيلد</value></data>
+  <data name="Emulation.Video.Collision.Full"><value>كاملة</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>مكافحة الاستنباط</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>مستنسخة</value></data>
+  <data name="Emulation.Audio.FilterType"><value>نوع المصور</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>صوت الطلقات الخافتة</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>نوع صوت الطلقات الخافتة</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>محركات فارغة</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>CD الصوت</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>سرعة العجلات</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>صور مُنعّة وقاية من الكتاب</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>إعادة توجيه كتابات النبات</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>سرعة CD</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>لوح مفاتيح الفيزيائية</value></data>
+  <data name="Emulation.Mouse.Physical"><value>الفأر الفيزيائي</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>حركة مزدوجة</value></data>
+  <data name="Emulation.Mouse.Speed"><value>سرعة الإستخدام</value></data>
+  <data name="Emulation.Mouse.Analog"><value>عصا الأنالو تتحكم في الفأر</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>منطقة الموتى</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>سرعة الفأر</value></data>
+  <data name="Emulation.Controller.Stick.Left"><value>عصا يسار</value></data>
+  <data name="Emulation.Controller.Stick.Right"><value>عصا الحقن</value></data>
+  <data name="Emulation.Controller.Stick.Both"><value>كلتا العصيان</value></data>
+  <data name="Emulation.Controller.Action.TurboFire"><value>حريق توربو</value></data>
+  <data name="Emulation.Controller.Turbo.Button"><value>زر توربو</value></data>
+  <data name="Emulation.Controller.Turbo.Pulse"><value>نبضات توربو</value></data>
+  <data name="Emulation.Controller.PortOrder"><value>المراقب المالي</value></data>
+  <data name="Emulation.Amiga.Controller.Joystick"><value>Amiga funstick</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32"><value>متحكم في الوثيقة CD32</value></data>
+  <data name="Emulation.Atari.Controller.Joystick"><value>Atari funstick</value></data>
+  <data name="Emulation.Atari.Controller.PaddleControllers"><value>مراقبو أطاري بادلو</value></data>
+  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 خفيفة</value></data>
+  <data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200</value></data>
+  <data name="Emulation.Atari.Controller.Driving"><value>المراقب المالي ل Atari</value></data>
+  <data name="Emulation.Atari.Controller.ProLine"><value>أتاري برو - لين جوستيك</value></data>
+  <data name="Emulation.Atari.Controller.Lynx"><value>أتاري لينكس</value></data>
+  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar</value></data>
+  <data name="Emulation.Atari.Controller.BoosterGrip"><value>أتاري بوستر غريب</value></data>
+  <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesisالمراقب المالي</value></data>
+  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Observer</value></data>
+  <data name="Emulation.Video.Subpixels.Monochrome"><value>مونوكروم</value></data>
+  <data name="Emulation.Video.FixedPixel.Technology.LedBacklitLcd"><value>شاشة LCD بإضاءة خلفية LED</value></data>
+  <data name="Emulation.Video.Preset.Plasma"><value>بلاسما</value></data>
+  <data name="Emulation.Video.Signal.Connection.Composite"><value>مركبة</value></data>
 </root>

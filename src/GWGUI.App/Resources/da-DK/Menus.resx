@@ -12,73 +12,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options">
-    <value>_Valgmuligheder</value>
-  </data>
-  <data name="Menu.Preferences">
-    <value>Præferencer...</value>
-  </data>
-  <data name="Menu.Diagnostics">
-    <value>Diagnostik</value>
-  </data>
-  <data name="Menu.Information">
-    <value>Information</value>
-  </data>
-  <data name="Menu.Bandwidth">
-    <value>USB båndbredde</value>
-  </data>
-  <data name="Menu.Rpm">
-    <value>RPM hastighed</value>
-  </data>
-  <data name="Menu.Seek">
-    <value>Søg hoved...</value>
-  </data>
-  <data name="Menu.Hardware">
-    <value>Hardware</value>
-  </data>
-  <data name="Menu.Pins">
-    <value>Pins...</value>
-  </data>
-  <data name="Menu.Reset">
-    <value>Nulstil</value>
-  </data>
-  <data name="Menu.Delays">
-    <value>Forsinkelser...</value>
-  </data>
-  <data name="Menu.Firmware">
-    <value>Firmware...</value>
-  </data>
-  <data name="Menu.Help">
-    <value>_Hjælp</value>
-  </data>
-  <data name="Menu.Documentation">
-    <value>Dokumentation</value>
-  </data>
-  <data name="Menu.About">
-    <value>Om</value>
-  </data>
-  <data name="Tab.Read">
-    <value>Læse</value>
-  </data>
-  <data name="Tab.Write">
-    <value>Skrive</value>
-  </data>
-  <data name="Tab.Convert">
-    <value>Omdannelse</value>
-  </data>
-  <data name="Tab.Visualize">
-    <value>Visualisering</value>
-  </data>
-  <data name="Tab.Tools">
-    <value>Værktøjer</value>
-  </data>
-  <data name="Menu.Align">
-    <value>Drevjustering...</value>
-  </data>
-  <data name="Tab.Explorer">
-    <value>Diskstifinder</value>
-  </data>
-  <data name="Tab.Emulation">
-    <value>Emulering</value>
-  </data>
+  <data name="Menu.Options"><value>_Valgmuligheder</value></data>
+  <data name="Menu.Preferences"><value>Præferencer...</value></data>
+  <data name="Menu.Diagnostics"><value>Diagnostik</value></data>
+<data name="Menu.Bandwidth"><value>USB båndbredde</value></data>
+  <data name="Menu.Rpm"><value>RPM hastighed</value></data>
+  <data name="Menu.Seek"><value>Søg hoved...</value></data>
+<data name="Menu.Pins"><value>Pins...</value></data>
+  <data name="Menu.Reset"><value>Nulstil</value></data>
+  <data name="Menu.Delays"><value>Forsinkelser...</value></data>
+  <data name="Menu.Firmware"><value>Firmware...</value></data>
+  <data name="Menu.Help"><value>_Hjælp</value></data>
+  <data name="Menu.Documentation"><value>Dokumentation</value></data>
+  <data name="Menu.About"><value>Om</value></data>
+  <data name="Tab.Read"><value>Læse</value></data>
+  <data name="Tab.Write"><value>Skrive</value></data>
+  <data name="Tab.Convert"><value>Omdannelse</value></data>
+  <data name="Tab.Visualize"><value>Visualisering</value></data>
+  <data name="Tab.Tools"><value>Værktøjer</value></data>
+  <data name="Menu.Align"><value>Drevjustering...</value></data>
+  <data name="Tab.Explorer"><value>Diskstifinder</value></data>
+  <data name="Tab.Emulation"><value>Emulering</value></data>
+  <data name="Menu.Information"><value>Oplysninger</value></data>
 </root>

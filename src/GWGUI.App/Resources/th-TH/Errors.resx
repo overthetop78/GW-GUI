@@ -12,36 +12,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.SettingsSaveFailed">
-    <value>ไม่สามารถบันทึกการตั้งค่าได้
-
-{0}</value>
-  </data>
-  <data name="Error.Title">
-    <value>GW GUI ผิดพลาด</value>
-  </data>
-  <data name="Error.Unexpected">
-    <value>ข้อผิดพลาดที่ไม่คาดคิดถูกดักจับ
-
-{0}</value>
-  </data>
-  <data name="Error.SaveFailed">
-    <value>ไม่สามารถบันทึกการตั้งค่าได้ หน้าต่างจะยังคงปิดอยู่
-
-{0}</value>
-  </data>
-  <data name="Error.LogSaved">
-    <value>รายงานฉบับเต็มถูกบันทึกไว้ที่:
-{0}</value>
-  </data>
+  <data name="App.SettingsSaveFailed"><value>ไม่สามารถบันทึกการตั้งค่าได้&#xA;&#xA;{0}</value></data>
+  <data name="Error.Title"><value>GW GUI ผิดพลาด</value></data>
+  <data name="Error.Unexpected"><value>ข้อผิดพลาดที่ไม่คาดคิดถูกดักจับ&#xA;&#xA;{0}</value></data>
+  <data name="Error.SaveFailed"><value>ไม่สามารถบันทึกการตั้งค่าได้ หน้าต่างจะยังคงปิดอยู่&#xA;&#xA;{0}</value></data>
+  <data name="Error.LogSaved"><value>รายงานฉบับเต็มถูกบันทึกไว้ที่:&#xA;{0}</value></data>
   <data name="Error.Description.NetworkTimeout"><value>บริการปลายทางไม่ตอบสนองก่อนการเชื่อมต่อหมดเวลา โปรดตรวจสอบการเชื่อมต่อเครือข่ายแล้วลองใหม่อีกครั้ง</value></data>
   <data name="Error.Description.NetworkDns"><value>ไม่สามารถแก้ไขที่อยู่บริการทางไกลได้ โปรดตรวจสอบการตั้งค่าเครือข่ายหรือ DNS แล้วลองใหม่อีกครั้ง</value></data>
   <data name="Error.Description.NetworkRefused"><value>บริการปลายทางปฏิเสธการเชื่อมต่อ อาจไม่มีหรือถูกปิดกั้น</value></data>
   <data name="Error.Description.NetworkUnavailable"><value>ไม่สามารถเรียกบริการทางไกลได้ โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ต, ไฟร์วอลล์, VPN หรือการตั้งค่าพร็อกซี แล้วลองใหม่อีกครั้ง</value></data>
-  <data name="Error.Description.HttpStatus"><value>Comment=บริการทางไกลDescription=สถานะ {0}Name ลองใหม่ทีหลัง</value></data>
+  <data name="Error.Description.HttpStatus"><value>เครือข่ายทางไกลได้ส่งกลับมา HTTP status {0}. ลองใหม่ภายหลัง</value></data>
   <data name="Error.Description.OperationTimeout"><value>ปฏิบัติการไม่เสร็จสิ้นภายในเวลาที่อนุญาต ลองอีกที</value></data>
   <data name="Error.Description.OperationCancelled"><value>ปฏิบัติการถูกยกเลิก ก่อนจะเสร็จสิ้น</value></data>
-  <data name="Error.Description.AccessDenied"><value>GWGIF ไม่ได้รับอนุญาตให้เข้าใช้งานแฟ้มที่ร้องขอมา, โฟลเดอร์, หรืออุปกรณ์</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI ไม่ได้รับอนุญาตให้เข้าใช้งานแฟ้มที่ร้องขอ, โฟลเดอร์, หรืออุปกรณ์</value></data>
   <data name="Error.Description.FileNotFound"><value>ไม่พบแฟ้มที่ต้องการ: {0}</value></data>
   <data name="Error.Description.DirectoryNotFound"><value>ไม่พบโฟลเดอร์ที่ต้องการ</value></data>
   <data name="Error.Description.DriveNotFound"><value>ไม่มีไดรว์ที่ร้องขอมา</value></data>
@@ -52,5 +35,5 @@
   <data name="Error.Description.InvalidOperation"><value>ปฏิบัติการไม่สามารถเสร็จสมบูรณ์ได้ในสถานะโปรแกรมปัจจุบันได้</value></data>
   <data name="Error.Description.NotSupported"><value>ปฏิบัติการนี้ไม่รองรับโดยแฟ้ม, อุปกรณ์, หรือแพลตฟอร์มที่เลือกไว้</value></data>
   <data name="Error.Description.OutOfMemory"><value>มีหน่วยความจําไม่พอที่จะให้ปฏิบัติการนี้เสร็จสมบูรณ์</value></data>
-  <data name="Error.Description.Unexpected"><value>GWIF พบปัญหาที่ไม่คาดฝันขณะทําการกระทํานี้</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI เกิดปัญหาที่ไม่คาดคิดขึ้นในระหว่างทําการกระทํานี้</value></data>
 </root>

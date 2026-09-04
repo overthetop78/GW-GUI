@@ -12,118 +12,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Advanced">
-    <value>詳細設定</value>
-  </data>
-  <data name="Common.ExpertArguments">
-    <value>専門家の議論</value>
-  </data>
-  <data name="Common.ExpertArgumentsTip">
-    <value>引数は、引用符の検証後に記述されたとおりに渡されます。</value>
-  </data>
-  <data name="Advanced.SeekRetries">
-    <value>再試行をシークする</value>
-  </data>
-  <data name="Advanced.FakeIndex">
-    <value>偽のインデックス</value>
-  </data>
-  <data name="Advanced.HardSectors">
-    <value>ハードセクター</value>
-  </data>
-  <data name="Advanced.Reverse">
-    <value>リバーストラックデータ</value>
-  </data>
-  <data name="Advanced.AdjustSpeed">
-    <value>速度を調整する</value>
-  </data>
-  <data name="Advanced.Pll">
-    <value>PLL オーバーライド</value>
-  </data>
-  <data name="Advanced.DensityPin">
-    <value>密度ピン 2</value>
-  </data>
-  <data name="Advanced.Tg43">
-    <value>TG43 を生成する</value>
-  </data>
-  <data name="Advanced.PreErase">
-    <value>トラックの事前消去</value>
-  </data>
-  <data name="Advanced.Precomp">
-    <value>書き込みプリコンペンセーション</value>
-  </data>
-  <data name="Advanced.OutputTracks">
-    <value>出力トラック</value>
-  </data>
-  <data name="Advanced.DiskDefs">
-    <value>カスタムディスク定義</value>
-  </data>
-  <data name="Advanced.DiskDefsFilter">
-    <value>Greaseweazle ディスク定義 (*.cfg)|*.cfg|すべてのファイル|*.*</value>
-  </data>
-  <data name="Advanced.DiskDefsMissing">
-    <value>選択したディスク定義ファイルは存在しません。</value>
-  </data>
-  <data name="Advanced.Invalid">
-    <value>詳細設定が無効です: {0}</value>
-  </data>
-  <data name="Advanced.TrackSpecTip">
-    <value>トラックの指定。たとえば、c=0-79:h=0-1、c=0-79/2:h=0、または c=0-79:h=0-1:hswap です。</value>
-  </data>
-  <data name="Advanced.SpeedTip">
-    <value>正の速度または周期。たとえば、300rpm、200ms、200000us、または 200000000ns。</value>
-  </data>
-  <data name="Advanced.PllTip">
-    <value>コロンで区切られた PLL パラメータ (例: period=5:phase=60 または period=5:phase=60:lowpass=2)。</value>
-  </data>
-  <data name="Advanced.PrecompTip">
-    <value>事前補償を書き込みます (例: type=mfm:40=125)。タイプ: mfm、fm、gcr。値はナノ秒単位です。</value>
-  </data>
-  <data name="Advanced.DiskDefsTip">
-    <value>カスタム diskdefs.cfg ファイルを使用して、Greaseweazle 形式定義を追加またはオーバーライドします。</value>
-  </data>
-  <data name="Advanced.RevsTip">
-    <value>--revs: トラックごとに読み取られた回転数。例: --revs 5.</value>
-  </data>
-  <data name="Advanced.RetriesTip">
-    <value>--retries: エラー後の追加試行。例: --retries 3.</value>
-  </data>
-  <data name="Advanced.TracksTip">
-    <value>--tracks: シリンダー、ヘッド、またはステップを制限します。例: --tracks c=0-79:h=0-1。</value>
-  </data>
-  <data name="Advanced.SeekRetriesTip">
-    <value>--seek-retries: ヘッドを移動した後の追加の試行。例: --seek-retries 2.</value>
-  </data>
-  <data name="Advanced.FakeIndexTip">
-    <value>--fake-index: インデックス信号なしでドライブのタイミングインデックスを作成します。例: --fake-index 300rpm。</value>
-  </data>
-  <data name="Advanced.HardSectorsTip">
-    <value>--hard-sectors: ハード セクタ化されたディスクを処理します。 --fake-index とは互換性がありません。</value>
-  </data>
-  <data name="Advanced.ReverseTip">
-    <value>--reverse: フリッピー メディアまたは配線のトラック データを反転します。</value>
-  </data>
-  <data name="Advanced.AdjustSpeedTip">
-    <value>--adjust-speed: データのタイミングを再スケールします。例: --adjust-speed 300rpm。</value>
-  </data>
-  <data name="Advanced.PllOptionTip">
-    <value>--pll: クロック回復ループを構成します。例: --pll 期間=5:フェーズ=60。</value>
-  </data>
-  <data name="Advanced.DenselTip">
-    <value>--densel: 密度選択ピンを強制的にハイまたはローにします。例: --densel H.</value>
-  </data>
-  <data name="Advanced.Tg43Tip">
-    <value>--gen-tg43: 必要なドライブに対して TG43 信号を生成します。 --densel とは互換性がありません。</value>
-  </data>
-  <data name="Advanced.EraseEmptyTip">
-    <value>--erase-empty: ソース画像にデータが含まれていないトラックを消去します。</value>
-  </data>
-  <data name="Advanced.PreEraseTip">
-    <value>--pre-erase: 各トラックを書き込む前に消去してください。</value>
-  </data>
-  <data name="Advanced.PrecompOptionTip">
-    <value>--precomp: 書き込みプリコンペンセーションを適用します。例: --precomp タイプ=mfm:40=125。</value>
-  </data>
-  <data name="Advanced.OutputTracksTip">
-    <value>--out-tracks: 出力イメージ内のトラックを再マップします。例: --out-tracks c=0-79:h=0-1。</value>
-  </data>
+  <data name="Common.Advanced"><value>詳細設定</value></data>
+  <data name="Common.ExpertArguments"><value>専門家の議論</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>引数は、引用符の検証後に記述されたとおりに渡されます。</value></data>
+  <data name="Advanced.SeekRetries"><value>再試行をシークする</value></data>
+  <data name="Advanced.FakeIndex"><value>偽のインデックス</value></data>
+  <data name="Advanced.HardSectors"><value>ハードセクター</value></data>
+  <data name="Advanced.Reverse"><value>リバーストラックデータ</value></data>
+  <data name="Advanced.AdjustSpeed"><value>速度を調整する</value></data>
+  <data name="Advanced.Pll"><value>PLL オーバーライド</value></data>
+  <data name="Advanced.DensityPin"><value>密度ピン 2</value></data>
+  <data name="Advanced.Tg43"><value>TG43 を生成する</value></data>
+  <data name="Advanced.PreErase"><value>トラックの事前消去</value></data>
+  <data name="Advanced.Precomp"><value>書き込みプリコンペンセーション</value></data>
+  <data name="Advanced.OutputTracks"><value>出力トラック</value></data>
+  <data name="Advanced.DiskDefs"><value>カスタムディスク定義</value></data>
+  <data name="Advanced.DiskDefsFilter"><value>Greaseweazle ディスク定義 (*.cfg)|*.cfg|すべてのファイル|*.*</value></data>
+  <data name="Advanced.DiskDefsMissing"><value>選択したディスク定義ファイルは存在しません。</value></data>
+  <data name="Advanced.Invalid"><value>詳細設定が無効です: {0}</value></data>
+  <data name="Advanced.TrackSpecTip"><value>トラックの指定。たとえば、c=0-79:h=0-1、c=0-79/2:h=0、または c=0-79:h=0-1:hswap です。</value></data>
+  <data name="Advanced.SpeedTip"><value>正の速度または周期。たとえば、300rpm、200ms、200000us、または 200000000ns。</value></data>
+  <data name="Advanced.PllTip"><value>コロンで区切られた PLL パラメータ (例: period=5:phase=60 または period=5:phase=60:lowpass=2)。</value></data>
+  <data name="Advanced.PrecompTip"><value>事前補償を書き込みます (例: type=mfm:40=125)。タイプ: mfm、fm、gcr。値はナノ秒単位です。</value></data>
+  <data name="Advanced.DiskDefsTip"><value>カスタム diskdefs.cfg ファイルを使用して、Greaseweazle 形式定義を追加またはオーバーライドします。</value></data>
+  <data name="Advanced.RevsTip"><value>--revs: トラックごとに読み取られた回転数。例: --revs 5.</value></data>
+  <data name="Advanced.RetriesTip"><value>--retries: エラー後の追加試行。例: --retries 3.</value></data>
+  <data name="Advanced.TracksTip"><value>--tracks: シリンダー、ヘッド、またはステップを制限します。例: --tracks c=0-79:h=0-1。</value></data>
+  <data name="Advanced.SeekRetriesTip"><value>--seek-retries: ヘッドを移動した後の追加の試行。例: --seek-retries 2.</value></data>
+  <data name="Advanced.FakeIndexTip"><value>--fake-index: インデックス信号なしでドライブのタイミングインデックスを作成します。例: --fake-index 300rpm。</value></data>
+  <data name="Advanced.HardSectorsTip"><value>--hard-sectors: ハード セクタ化されたディスクを処理します。 --fake-index とは互換性がありません。</value></data>
+  <data name="Advanced.ReverseTip"><value>--reverse: フリッピー メディアまたは配線のトラック データを反転します。</value></data>
+  <data name="Advanced.AdjustSpeedTip"><value>--adjust-speed: データのタイミングを再スケールします。例: --adjust-speed 300rpm。</value></data>
+  <data name="Advanced.PllOptionTip"><value>--pll: クロック回復ループを構成します。例: --pll 期間=5:フェーズ=60。</value></data>
+  <data name="Advanced.DenselTip"><value>--densel: 密度選択ピンを強制的にハイまたはローにします。例: --densel H.</value></data>
+  <data name="Advanced.Tg43Tip"><value>--gen-tg43: 必要なドライブに対して TG43 信号を生成します。 --densel とは互換性がありません。</value></data>
+  <data name="Advanced.EraseEmptyTip"><value>--erase-empty: ソース画像にデータが含まれていないトラックを消去します。</value></data>
+  <data name="Advanced.PreEraseTip"><value>--pre-erase: 各トラックを書き込む前に消去してください。</value></data>
+  <data name="Advanced.PrecompOptionTip"><value>--precomp: 書き込みプリコンペンセーションを適用します。例: --precomp タイプ=mfm:40=125。</value></data>
+  <data name="Advanced.OutputTracksTip"><value>--out-tracks: 出力イメージ内のトラックを再マップします。例: --out-tracks c=0-79:h=0-1。</value></data>
 </root>

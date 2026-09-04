@@ -12,140 +12,78 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Conflict.Title">
-    <value>Existující soubory</value>
-  </data>
-  <data name="Conflict.Heading">
-    <value>Některé soubory již existují</value>
-  </data>
-  <data name="Conflict.Help">
-    <value>Vyberte akci pro každý soubor nebo použijte stejnou akci pro všechny soubory.</value>
-  </data>
-  <data name="Conflict.File">
-    <value>Soubor</value>
-  </data>
-  <data name="Conflict.Action">
-    <value>Akce</value>
-  </data>
-  <data name="Conflict.Overwrite">
-    <value>Přepsat</value>
-  </data>
-  <data name="Conflict.Skip">
-    <value>Přeskočit</value>
-  </data>
-  <data name="Conflict.Number">
-    <value>Použijte další číslo</value>
-  </data>
-  <data name="Conflict.AllOverwrite">
-    <value>Přepsat vše</value>
-  </data>
-  <data name="Conflict.AllSkip">
-    <value>Přeskočit vše</value>
-  </data>
-  <data name="Conflict.AllNumber">
-    <value>Očíslujte všechny</value>
-  </data>
-  <data name="Conversion.Title">
-    <value>Konverze</value>
-  </data>
-  <data name="Conversion.SelectOutput">
-    <value>Vyberte alespoň jeden výstupní formát.</value>
-  </data>
-  <data name="Conversion.SourceAmbiguous">
-    <value>Nejednoznačný zdroj</value>
-  </data>
-  <data name="Conversion.Summary">
-    <value>Shrnutí: {0} se podařilo, {1} se nezdařilo.</value>
-  </data>
-  <data name="Conversion.Failures">
-    <value>Selhání: {0}</value>
-  </data>
-  <data name="Conversion.Source">
-    <value>Zdroj</value>
-  </data>
-  <data name="Conversion.OutputNames">
-    <value>Jména výstupů</value>
-  </data>
-  <data name="Conversion.AddTags">
-    <value>Přidejte značky</value>
-  </data>
-  <data name="Conversion.Selected">
-    <value>Vybraný</value>
-  </data>
-  <data name="Conversion.CommonFormats">
-    <value>Běžné formáty</value>
-  </data>
-  <data name="Conversion.ShowRare">
-    <value>Zobrazit zřídka používané formáty</value>
-  </data>
-  <data name="Conversion.LimitTracks">
-    <value>Omezit stopy</value>
-  </data>
-  <data name="Conversion.SourceRequired">
-    <value>Vyberte existující zdrojový obrázek.</value>
-  </data>
-  <data name="Conversion.NameRequired">
-    <value>Zadejte názvy výstupních souborů.</value>
-  </data>
-  <data name="Conversion.CheckOutput">
-    <value>Zkontrolujte alespoň jeden výstupní formát.</value>
-  </data>
-  <data name="Conversion.More">
-    <value>(+ {0} konverzí)</value>
-  </data>
-  <data name="Conversion.DefaultExtensionTip">
-    <value>Není zaškrtnuto žádné rozšíření: Ve výchozím nastavení se používá {0}.</value>
-  </data>
-  <data name="Conversion.Incompatible">
-    <value>{0} není kompatibilní s tímto zdrojem.</value>
-  </data>
-  <data name="Conversion.NoAvailableOutputName">
-    <value>Nebyl nalezen žádný dostupný výstupní název souboru.</value>
-  </data>
-  <data name="Conversion.ReconstructedFlux">
-    <value>rekonstruovaný tok</value>
-  </data>
-  <data name="Migration.Open"><value>File migration...</value></data>
-  <data name="Migration.Title"><value>File migration</value></data>
-  <data name="Migration.Heading"><value>Migrate files to another file system</value></data>
-  <data name="Migration.Source"><value>Source image</value></data>
-  <data name="Migration.NoSource"><value>Select an image containing a recognized file system.</value></data>
-  <data name="Migration.Destination"><value>Destination file system and format</value></data>
-  <data name="Migration.Output"><value>Destination image</value></data>
-  <data name="Migration.Compatibility"><value>Compatibility and losses</value></data>
-  <data name="Migration.Waiting"><value>Select a source and a destination.</value></data>
-  <data name="Migration.Severity"><value>Severity</value></data>
-  <data name="Migration.Path"><value>Source path</value></data>
-  <data name="Migration.Description"><value>Description</value></data>
-  <data name="Migration.AcceptLosses"><value>Accept the listed metadata losses</value></data>
-  <data name="Migration.Execute"><value>Migrate files</value></data>
-  <data name="Migration.Blocking"><value>Blocking</value></data>
-  <data name="Migration.MetadataLoss"><value>Metadata loss</value></data>
-  <data name="Migration.SourceSummary"><value>Volume: {0} — File system: {1} — Root entries: {2}</value></data>
-  <data name="Migration.SourceFailed"><value>Unable to prepare the migration: {0}</value></data>
-  <data name="Migration.Completed"><value>The destination image was created: {0}</value></data>
-  <data name="Migration.Failed"><value>Migration failed: {0}</value></data>
-  <data name="Migration.Incompatible"><value>Incompatible: correct the blocking losses before migration.</value></data>
-  <data name="Migration.CompatibleWithLosses"><value>Compatible after accepting the listed metadata losses.</value></data>
-  <data name="Migration.Compatible"><value>Compatible: no loss detected.</value></data>
-  <data name="Migration.Loss.MissingContent"><value>File content is unavailable.</value></data>
-  <data name="Migration.Loss.UnsupportedEntryKind"><value>This entry type is not supported by the destination.</value></data>
-  <data name="Migration.Loss.InvalidName"><value>The name is not valid for the destination.</value></data>
-  <data name="Migration.Loss.NameTooLong"><value>The name is too long for the destination.</value></data>
-  <data name="Migration.Loss.NameCollision"><value>Several entries would have the same destination name.</value></data>
-  <data name="Migration.Loss.FileTooLarge"><value>The file is too large for the destination.</value></data>
-  <data name="Migration.Loss.InvalidMetadata"><value>The source metadata is invalid.</value></data>
-  <data name="Migration.Loss.ModifiedDate"><value>The modification date will not be preserved.</value></data>
-  <data name="Migration.Loss.Comment"><value>The comment will not be preserved.</value></data>
-  <data name="Migration.Loss.Attributes"><value>The source attributes will not be preserved.</value></data>
-  <data name="Migration.OverwriteConfirm"><value>The destination image already exists. Replace it? {0}</value></data>
-  <data name="Migration.SourceDestinationSame"><value>The destination image cannot replace the source image.</value></data>
-  <data name="Conversion.Fidelity.SectorData"><value>sector data; protections not preserved</value></data>
-  <data name="Conversion.Fidelity.ReconstructedTracks"><value>reconstructed tracks; original flux not preserved</value></data>
-  <data name="Conversion.Fidelity.PreservedFlux"><value>original flux preserved</value></data>
-  <data name="Conversion.EngineExternal" xml:space="preserve"><value>Host Tools: converting {0}.</value></data>
-  <data name="Conversion.EngineInternalStart" xml:space="preserve"><value>Internal engine: converting {0} to {1}.</value></data>
-  <data name="Conversion.EngineInternalComplete" xml:space="preserve"><value>Internal conversion completed: {0}.</value></data>
-  <data name="Conversion.EngineInternalUnavailable" xml:space="preserve"><value>The internal engine does not support this conversion: {0}.</value></data>
-  <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Internal conversion failed for {0}: {1}</value></data>
+  <data name="Conflict.Title"><value>Existující soubory</value></data>
+  <data name="Conflict.Heading"><value>Některé soubory již existují</value></data>
+  <data name="Conflict.Help"><value>Vyberte akci pro každý soubor nebo použijte stejnou akci pro všechny soubory.</value></data>
+  <data name="Conflict.File"><value>Soubor</value></data>
+  <data name="Conflict.Action"><value>Akce</value></data>
+  <data name="Conflict.Overwrite"><value>Přepsat</value></data>
+  <data name="Conflict.Skip"><value>Přeskočit</value></data>
+  <data name="Conflict.Number"><value>Použijte další číslo</value></data>
+  <data name="Conflict.AllOverwrite"><value>Přepsat vše</value></data>
+  <data name="Conflict.AllSkip"><value>Přeskočit vše</value></data>
+  <data name="Conflict.AllNumber"><value>Očíslujte všechny</value></data>
+  <data name="Conversion.Title"><value>Konverze</value></data>
+  <data name="Conversion.SelectOutput"><value>Vyberte alespoň jeden výstupní formát.</value></data>
+  <data name="Conversion.SourceAmbiguous"><value>Nejednoznačný zdroj</value></data>
+  <data name="Conversion.Summary"><value>Shrnutí: {0} se podařilo, {1} se nezdařilo.</value></data>
+  <data name="Conversion.Failures"><value>Selhání: {0}</value></data>
+  <data name="Conversion.Source"><value>Zdroj</value></data>
+  <data name="Conversion.OutputNames"><value>Jména výstupů</value></data>
+  <data name="Conversion.AddTags"><value>Přidejte značky</value></data>
+  <data name="Conversion.Selected"><value>Vybraný</value></data>
+  <data name="Conversion.CommonFormats"><value>Běžné formáty</value></data>
+  <data name="Conversion.ShowRare"><value>Zobrazit zřídka používané formáty</value></data>
+  <data name="Conversion.LimitTracks"><value>Omezit stopy</value></data>
+  <data name="Conversion.SourceRequired"><value>Vyberte existující zdrojový obrázek.</value></data>
+  <data name="Conversion.NameRequired"><value>Zadejte názvy výstupních souborů.</value></data>
+  <data name="Conversion.CheckOutput"><value>Zkontrolujte alespoň jeden výstupní formát.</value></data>
+  <data name="Conversion.More"><value>(+ {0} konverzí)</value></data>
+  <data name="Conversion.DefaultExtensionTip"><value>Žádné rozšíření není kontrolováno: {0} používá se ve výchozím nastavení.</value></data>
+  <data name="Conversion.Incompatible"><value>{0} není kompatibilní s tímto zdrojem.</value></data>
+  <data name="Conversion.NoAvailableOutputName"><value>Nebyl nalezen žádný dostupný výstupní název souboru.</value></data>
+  <data name="Conversion.ReconstructedFlux"><value>rekonstruovaný tok</value></data>
+  <data name="Migration.Open"><value>Přechod souborů...</value></data>
+  <data name="Migration.Title"><value>Přechod souborů</value></data>
+  <data name="Migration.Heading"><value>Přemisťovat soubory do jiného souborového systému</value></data>
+  <data name="Migration.Source"><value>Zdroj</value></data>
+  <data name="Migration.NoSource"><value>Vyberte obrázek obsahující rozpoznávaný souborový systém.</value></data>
+  <data name="Migration.Destination"><value>Systém a formát souborů určení</value></data>
+  <data name="Migration.Output"><value>Obrázek místa určení</value></data>
+  <data name="Migration.Compatibility"><value>Slučitelnost a ztráty</value></data>
+  <data name="Migration.Waiting"><value>Vyberte zdroj a cíl.</value></data>
+  <data name="Migration.Severity"><value>Závažnost</value></data>
+  <data name="Migration.Path"><value>Cesta zdroje</value></data>
+  <data name="Migration.Description"><value>Popis</value></data>
+  <data name="Migration.AcceptLosses"><value>Přijmout ztráty uvedených metadat</value></data>
+  <data name="Migration.Execute"><value>Přemístit soubory</value></data>
+  <data name="Migration.Blocking"><value>Blokování</value></data>
+  <data name="Migration.MetadataLoss"><value>Ztráta metadat</value></data>
+  <data name="Migration.SourceSummary"><value>Objem: {0} - Souborový systém: {1} - Root entry: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>Nelze připravit migraci: {0}</value></data>
+  <data name="Migration.Completed"><value>Cílový obrázek byl vytvořen: {0}</value></data>
+  <data name="Migration.Failed"><value>Migrace selhala: {0}</value></data>
+  <data name="Migration.Incompatible"><value>Nekompatibilní: před migrací napravte blokovací ztráty.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>Kompatibilní po přijetí uvedených ztrát metadat.</value></data>
+  <data name="Migration.Compatible"><value>Kompatibilní: žádná zjištěná ztráta.</value></data>
+  <data name="Migration.Loss.MissingContent"><value>Obsah souboru není k dispozici.</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>Tento typ záznamu není podporován cílovou oblastí.</value></data>
+  <data name="Migration.Loss.InvalidName"><value>Název není platný pro místo určení.</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>Jméno je příliš dlouhé na cíl.</value></data>
+  <data name="Migration.Loss.NameCollision"><value>Několik záznamů by mělo stejný název místa určení.</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>Soubor je příliš velký pro cíl.</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>Zdrojová metadata jsou neplatná.</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>Datum změny nebude zachováno.</value></data>
+  <data name="Migration.Loss.Comment"><value>Tato poznámka nebude zachována.</value></data>
+  <data name="Migration.Loss.Attributes"><value>Atributy zdroje nebudou zachovány.</value></data>
+  <data name="Migration.OverwriteConfirm"><value>Cílový obrázek už existuje. {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>Cílový obrázek nemůže nahradit zdrojový obrázek.</value></data>
+  <data name="Conversion.Fidelity.SectorData"><value>údaje o odvětví; ochrana není zachována</value></data>
+  <data name="Conversion.Fidelity.ReconstructedTracks"><value>rekonstruované koleje; nekonzervovaný původní tok</value></data>
+  <data name="Conversion.Fidelity.PreservedFlux"><value>zachován původní tok</value></data>
+  <data name="Conversion.EngineExternal"><value>Hostitelské nástroje: konvertování {0}.</value></data>
+  <data name="Conversion.EngineInternalStart"><value>Vnitřní motor: konverzní {0} do {1}.</value></data>
+  <data name="Conversion.EngineInternalComplete"><value>Interní převod dokončen: {0}.</value></data>
+  <data name="Conversion.EngineInternalUnavailable"><value>Vnitřní motor nepodporuje tuto konverzi: {0}.</value></data>
+  <data name="Conversion.EngineInternalFailed"><value>Interní konverze selhala {0}: {1}</value></data>
 </root>

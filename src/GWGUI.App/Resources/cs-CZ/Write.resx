@@ -12,63 +12,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Write.Title">
-    <value>Napsat</value>
-  </data>
-  <data name="Write.SelectSource">
-    <value>Vyberte existující zdrojový obrázek.</value>
-  </data>
-  <data name="Write.Ambiguous">
-    <value>Formát je nejednoznačný. Explicitně vyberte kompatibilní formát.</value>
-  </data>
-  <data name="Write.VerifyOff">
-    <value>Ověřování po zápisu je zakázáno.</value>
-  </data>
-  <data name="Write.VerifyOn">
-    <value>Ověření po zápisu je povoleno.</value>
-  </data>
-  <data name="Write.ConfirmTitle">
-    <value>Potvrďte zápis</value>
-  </data>
-  <data name="Write.Confirm">
-    <value>Obrázek: {0}
-Formát: {1}
-Disk: {2}
-{3}
-
-Zapsat tento obrázek na disk?</value>
-  </data>
-  <data name="Write.Source">
-    <value>Zdrojový obrázek</value>
-  </data>
-  <data name="Write.Detected">
-    <value>Zjištěný formát</value>
-  </data>
-  <data name="Write.ChooseImage">
-    <value>Vyberte obrázek.</value>
-  </data>
-  <data name="Write.NoVerify">
-    <value>Zakázat ověřování po zápisu</value>
-  </data>
-  <data name="Write.NoVerifyTip">
-    <value>Přidá --no-verify. Disk nebude znovu načten pro potvrzení zápisu.</value>
-  </data>
-  <data name="Write.EraseEmpty">
-    <value>Vymažte prázdné stopy</value>
-  </data>
-  <data name="Write.VisualizeTracks">
-    <value>Vizualizujte stopy</value>
-  </data>
-  <data name="Write.VisualizeFormatRequired">
-    <value>Před zobrazením jeho stop vyberte formát disku.</value>
-  </data>
+  <data name="Write.Title"><value>Napsat</value></data>
+  <data name="Write.SelectSource"><value>Vyberte existující zdrojový obrázek.</value></data>
+  <data name="Write.Ambiguous"><value>Formát je nejednoznačný. Explicitně vyberte kompatibilní formát.</value></data>
+  <data name="Write.VerifyOff"><value>Ověřování po zápisu je zakázáno.</value></data>
+  <data name="Write.VerifyOn"><value>Ověření po zápisu je povoleno.</value></data>
+  <data name="Write.ConfirmTitle"><value>Potvrďte zápis</value></data>
+  <data name="Write.Confirm"><value>Obrázek: {0}&#xA;Formát: {1}&#xA;Disk: {2}&#xA;{3}&#xA;&#xA;Zapsat tento obrázek na disk?</value></data>
+  <data name="Write.Source"><value>Zdrojový obrázek</value></data>
+  <data name="Write.Detected"><value>Zjištěný formát</value></data>
+  <data name="Write.ChooseImage"><value>Vyberte obrázek.</value></data>
+  <data name="Write.NoVerify"><value>Zakázat ověřování po zápisu</value></data>
+  <data name="Write.NoVerifyTip"><value>Přidá --no-verify. Disk nebude znovu načten pro potvrzení zápisu.</value></data>
+  <data name="Write.EraseEmpty"><value>Vymažte prázdné stopy</value></data>
+  <data name="Write.VisualizeTracks"><value>Vizualizujte stopy</value></data>
+  <data name="Write.VisualizeFormatRequired"><value>Před zobrazením jeho stop vyberte formát disku.</value></data>
   <data name="Write.InternalWriter" xml:space="preserve"><value>Interní zápis (experimentální)</value></data>
   <data name="Write.InternalWriterTip" xml:space="preserve"><value>Zapisuje přímo interním jádrem bez gw.exe.</value></data>
   <data name="Write.InternalPreview" xml:space="preserve"><value>Interní zápis GW GUI: {0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Některé vybrané pokročilé volby zatím interní zápis nepodporuje.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Interní ověření zatím není dostupné. Zapněte „Neověřovat“.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Stopa {0}, strana {1}: {2}</value></data>
-  <data name="Write.InternalFailureReason">
-    <value>Interní zápis se nezdařil.</value>
-  </data>
+  <data name="Write.InternalFailureReason"><value>Interní zápis se nezdařil.</value></data>
 </root>

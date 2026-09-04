@@ -79,8 +79,8 @@ Ce catalogue est extensible et ne promet pas que toutes les familles seront livr
 | CRT — géométrie | courbure, coins, vignette, overscan visuel | préserve le rapport logique ; peut accentuer le moiré | `crt-geom` est GPL-2.0-or-later |
 | Écran à pixels fixes | sous-choix LCD, LCD/LED ou OLED ; couleur ou palette monochrome, grille, sous-pixels, espace inter-pixels, ordre RGB/BGR, noir, rétroéclairage et réponse | exclusif du CRT, Plasma et Vectoriel ; paramètres propres affichés seulement s’ils produisent une différence réelle | licences hétérogènes dans `handheld` |
 | Plasma | cellules, diffusion, tramage temporel et rémanence | technologie principale exclusive ; historique nécessaire au temporel | à développer dans GW GUI après validation des paramètres |
-| Écran vectoriel | renforcement des lignes, halo et persistance | approximation raster exclusive des autres technologies ; historique nécessaire | à développer dans GW GUI tant que le moteur ne fournit pas de primitives vectorielles |
-| VFD | phosphores lumineux, couleur, halo et persistance | affichage spécialisé à ajouter lorsqu’une machine le demande | à développer dans GW GUI |
+| Écran vectoriel | détection des lignes, largeur et focalisation du faisceau, couleur des phosphores, intensité et rayon du halo, persistance | approximation raster exclusive des autres technologies ; historique nécessaire | implémentation raster originale GW GUI tant que le moteur ne fournit pas de primitives vectorielles |
+| VFD | phosphores lumineux, seuil d’émission, verre fumé, structure des anodes, halo et persistance | approximation raster spécialisée et exclusive ; historique nécessaire | implémentation raster originale GW GUI, MIT |
 | Matrice LED | cellules LED, espacement, diffusion et couleur | technologie spécialisée exclusive, compatible avec scaler, restauration et réglages généraux | implémentation raster originale GW GUI, MIT |
 | Matrice de points | palette, forme et taille des points, contraste et réponse | technologie spécialisée exclusive ; compatible avec scaler, restauration et réglages généraux | implémentation raster originale GW GUI, MIT |
 | Affichage à segments | disposition 7/14/16, teinte, épaisseur, contraste, halo et réponse | technologie spécialisée exclusive ; compatible avec scaler, restauration et réglages généraux | implémentation raster originale GW GUI, MIT |
@@ -239,7 +239,7 @@ sélecteur affiche uniquement les paramètres de la technologie choisie :
 | CRT | rendu couleur ou monochrome, faisceau, masque, halo, courbure, vignettage, scanlines et trame/moiré volontaire |
 | Écran à pixels fixes | technologie LCD, LCD rétroéclairé par LED ou OLED ; grille, sous-pixels, netteté et réponse temporelle partagées, avec paramètres particuliers seulement lorsqu’ils produisent une différence visible |
 | Plasma | structure des cellules, diffusion, tramage temporel et rémanence |
-| Écran vectoriel | lignes lumineuses, halo et persistance ; approximation depuis la `VideoFrame` raster tant qu’aucun moteur ne fournit de primitives vectorielles |
+| Écran vectoriel | lignes lumineuses, largeur et focalisation du faisceau, phosphores source/verts/ambres/blancs/gris, intensité et rayon du halo, persistance ; approximation depuis la `VideoFrame` raster tant qu’aucun moteur ne fournit de primitives vectorielles |
 
 Toutes ces technologies font partie de la cible. Elles seront réalisées pas à pas et non dans une
 seule modification.
@@ -340,14 +340,30 @@ sa taille ne correspond plus. WPF conserve l’unique image linéaire précéden
 
 ### Plasma
 
-Plasma utilise quatre intensités `0..100`, toutes strictement neutres à `0`, dans l’ordre cellules,
-tramage temporel, diffusion puis rémanence. La structure de cellules divise chaque pixel source en
-trois bandes RGB et atténue les deux composantes non sélectionnées jusqu’à `35 %`, tout en ajoutant
-un interstice de cellule jusqu’à `20 %`. La diffusion mélange la couleur avec une moyenne 3×3
-jusqu’à `50 %`. Le tramage temporel utilise une matrice de Bayer 4×4, décalée par `VideoFrame.Sequence`,
-et ajoute ou retire au maximum `4 %` en lumière linéaire ; il est déterministe pour une même image et
-une même séquence. La rémanence conserve jusqu’à `intensité / 100` de l’unique image linéaire
-précédente, par maximum de composante. Un changement de taille, un recul de séquence ou la sortie de
+Plasma utilise huit intensités `0..100`, toutes strictement neutres à `0` : structure des cellules,
+profondeur des noirs, intensité des phosphores, réponse gamma, tramage temporel, diffusion et
+persistance, plus un limiteur automatique de luminosité. Tous les motifs spatiaux sont calculés dans les
+coordonnées de la vidéo fournie par l’émulateur. La structure représente les limites des cellules et,
+uniquement lorsque l’agrandissement permet réellement de les résoudre, leurs trois sous-cellules RGB.
+Une intégration analytique atténue progressivement le motif sous environ trois pixels de sortie par
+pixel émulé afin d’éviter les grandes bandes colorées et le moiré.
+
+La profondeur des noirs atténue uniquement les faibles luminances, sans écraser les couleurs
+claires. La réponse gamma assombrit progressivement les tons moyens selon la réponse non linéaire
+du panneau. L’intensité des phosphores augmente séparément la saturation et l’émission des hautes
+lumières. Ces trois transformations sont appliquées avant la structure, le tramage et la diffusion.
+Le limiteur mesure la luminance moyenne de l’image entière et réduit progressivement la puissance
+globale lorsque la surface claire augmente ; il ne se contente donc pas d’assombrir localement les
+pixels déjà lumineux.
+
+Le tramage temporel ne superpose plus un bruit à l’image : une matrice de Bayer 4×4, décalée par
+`VideoFrame.Sequence`, choisit le niveau supérieur ou inférieur d’une quantification allant
+progressivement de 8 à 5 bits. Il agit surtout sur les dégradés et reste déterministe pour une même
+image et une même séquence. La diffusion est un halo additif limité aux émissions lumineuses ; elle
+échantillonne deux rayons exprimés en pixels émulés, au lieu de flouter uniformément l’image.
+La rémanence conserve le maximum de l’émission courante et d’un historique décroissant, avec une
+rétention bornée à `94 %` même lorsque le curseur vaut `100`, pour rendre une traînée visible sans
+figer définitivement les pixels. Un changement de taille, un recul de séquence ou la sortie de
 Plasma réinitialise cet historique borné. Ces formules sont originales et ne reprennent aucun code,
 table ou texture d’un shader tiers.
 
@@ -358,9 +374,14 @@ primitives vectorielles d’origine. La référence calcule un gradient Sobel 3�
 Rec. 709 linéaire, divise sa magnitude par `4` puis la borne à `0..1`. Le seuil visible `0..100`
 devient `0..1` ; une transition lissée de largeur `0,10` évite un bord binaire. L’intensité des lignes
 `0..100` ajoute cette réponse aux composantes existantes jusqu’à leur maximum, sans effacer la
-couleur raster. Le halo ajoute jusqu’à `50 %` de la moyenne 3×3 de l’image renforcée. La persistance
+couleur raster. La largeur du faisceau élargit l’émission détectée dans les coordonnées de la vidéo
+émulée ; sa focalisation va d’un faisceau diffus à `0` au tracé net à `100`. Le mode de
+phosphore conserve les couleurs de la source ou convertit la luminance en vert, ambre, blanc ou gris.
+Le halo ajoute jusqu’à `50 %` des émissions voisines et son rayon réglable couvre de un à six pixels
+de la vidéo émulée. La persistance
 conserve jusqu’à `intensité / 100` de l’unique image linéaire précédente par maximum de composante.
-L’ordre est détection/renforcement, halo, persistance ; intensité des lignes, halo et persistance à
+L’ordre est détection, largeur, focalisation, renforcement, halo, couleur des phosphores puis
+persistance ; largeur, intensité des lignes, halo et persistance à
 zéro sont strictement neutres. Taille différente, recul de séquence ou sortie du mode vectoriel
 réinitialisent l’historique. Ces formules sont originales et sans code de shader tiers.
 
@@ -624,17 +645,20 @@ qui confirme plusieurs phosphores et leurs luminosités relatives. Ces documents
 le comportement visuel ; aucun code ou actif tiers n’est incorporé et la passe reste sous MIT.
 
 VFD est une technologie d’affichage exclusive de Normal, CRT, écran à pixels fixes, Plasma et
-Vectoriel. Son panneau propose un select de phosphore `Bleu`, `Vert`, `Ambre` ou `Rouge`, puis
-`Intensité du phosphore`, `Halo VFD` et `Persistance VFD`, tous bornés à `0..100`. Les valeurs
-initiales lors du choix de VFD sont respectivement bleu, `70`, `25` et `20`, afin que le mode soit
-immédiatement visible.
+Vectoriel. Son panneau est séparé en trois cartes : `Phosphore et verre`, `Structure des anodes` et
+`Lueur et réponse`. Il propose un phosphore bleu, vert, ambre ou rouge ; l’intensité, le seuil
+d’émission et l’assombrissement du verre fumé ; une structure graphique ou en matrice de points avec
+taille et espacement des cellules ; puis l’intensité et le rayon du halo et une durée de persistance
+de `0..1000 ms`.
 
 Comme les moteurs actuels fournissent uniquement une image raster et non les segments, grilles ou
-anodes physiques, la passe convertit la luminance source en émission monochrome teintée, ajoute un
-halo 3×3 borné et conserve une fraction maximale de la frame précédente pour la persistance. Cette
-approximation est compatible avec tous les scalers, restaurations et réglages généraux. Elle utilise
-la référence CPU commune avec repli déclaré sur OpenGL, Direct3D 11 et Vulkan ; les quatre
-renderers produisent la même image à taille de snapshot identique.
+anodes physiques, la passe sépare d’abord les zones éteintes des zones émissives par un seuil doux.
+Elle assombrit les zones éteintes comme derrière un verre fumé, applique éventuellement un masque de
+cellules dans les coordonnées de la vidéo émulée, puis ajoute le phosphore et un halo dont le rayon
+vaut de un à six pixels émulés. La persistance utilise une décroissance exponentielle fondée sur le
+temps entre deux images ; `0 ms` est strictement neutre. CPU/WPF, OpenGL, Direct3D 11 et Vulkan
+appliquent les mêmes paramètres, sans utiliser la résolution physique du moniteur pour les cellules
+ou le halo.
 
 #### Matrice LED — cellules raster auto-lumineuses
 
@@ -646,17 +670,19 @@ explique l’emploi d’une plaque diffusante pour réduire les reflets de la gr
 visuel. Ces sources servent uniquement à définir les caractéristiques ; aucun code, shader, image ou
 autre actif tiers n’est incorporé. La passe originale GW GUI reste sous licence MIT.
 
-`Matrice LED` est une technologie exclusive des autres technologies d’affichage. Son panneau
-conditionnel propose un select `RGB`, `Rouge`, `Vert`, `Ambre`, `Bleu` ou `Blanc`, puis `Taille des
-cellules LED`, `Espacement des cellules LED`, `Diffusion LED` et `Luminosité LED`. Les quatre
-intensités sont bornées à `0..100` et valent initialement `35`, `30`, `20` et `75`.
+`Matrice LED` est une technologie exclusive des autres technologies d’affichage. Son interface est
+répartie en deux cartes. `Structure de la matrice` contient la forme ronde ou carrée, la taille des
+cellules et leur espacement. `Émission lumineuse` contient la couleur RGB, rouge, verte, ambre,
+bleue ou blanche, la luminosité, l’intensité et le rayon du halo ainsi que la profondeur des noirs.
+Tous les réglages numériques sont bornés à `0..100`.
 
-La passe regroupe la frame redimensionnée en cellules de `2..8` pixels selon la taille choisie,
-calcule la couleur moyenne de chaque cellule, applique un masque circulaire avec espace sombre et
-diffusion bornée, puis conserve la couleur RGB ou transforme la luminance selon la teinte
-monochrome. Elle se combine avec tous les scalers, restaurations et réglages généraux. WPF utilise
-directement le pipeline CPU commun ; OpenGL, Direct3D 11 et Vulkan déclarent le même repli CPU, ce
-qui garantit le même traitement déterministe sur les quatre renderers.
+La passe construit une grille régulière dans les coordonnées de la vidéo émulée, avec un pas de un
+à huit pixels source. La couleur représentative de chaque cellule est calculée avant l’application
+du masque rond ou carré. L’espacement agit uniquement sur la surface lumineuse ; l’intensité et le
+rayon du halo restent indépendants. La luminosité peut éteindre complètement les LED, tandis que la
+profondeur des noirs règle seulement le panneau inactif. RGB conserve les couleurs et les modes
+monochromes utilisent la luminance teintée. CPU/WPF, OpenGL, Direct3D 11 et Vulkan suivent ces mêmes
+règles sans employer les pixels physiques du moniteur pour définir la matrice.
 
 #### Matrice de points — LCD raster à points discrets
 
@@ -1074,7 +1100,7 @@ neutre. Les scénarios dédiés sont :
 | Entrée | Test isolé |
 |---|---|
 | VFD | `VfdColorsHaloAndPersistenceAreDistinctAndBounded` |
-| Matrice LED | `LedMatrixColorsCellsGapDiffusionAndBrightnessAreDistinctAndBounded` |
+| Matrice LED | `LedMatrixOptionsAreIndependentDistinctAndBounded` |
 | Matrice de points | `DotMatrixPalettesShapesContrastAndResponseAreDistinctAndBounded` |
 | Affichage à segments | `SegmentDisplayLayoutsColorsGeometryGlowAndResponseAreDistinctAndBounded` |
 | Papier électronique | `EPaperModesContrastDitheringRefreshAndGhostingAreDistinctAndBounded` |

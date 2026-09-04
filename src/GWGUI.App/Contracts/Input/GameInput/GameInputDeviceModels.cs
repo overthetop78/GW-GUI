@@ -5,6 +5,8 @@ internal enum ControllerVisualModel
     GenericGamepad,
     XboxSeries,
     XboxOne,
+    Xbox360,
+    Xbox360White,
     XboxRematchCore,
     PlayStation4,
     PlayStation5,

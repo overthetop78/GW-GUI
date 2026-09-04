@@ -26,6 +26,30 @@ function New-GwGuiBuild {
     $staging = Join-Path $buildRoot ".staging\$BuildConfiguration"
     $applicationPublish = Join-Path $staging 'application'
 
+    $runningExecutable = Join-Path $output 'gwgui.exe'
+    if (Test-Path -LiteralPath $runningExecutable -PathType Leaf) {
+        $resolvedExecutable = [IO.Path]::GetFullPath($runningExecutable)
+        $runningProcesses = @(Get-Process -ErrorAction SilentlyContinue | Where-Object {
+            try { [string]::Equals($_.Path, $resolvedExecutable, [StringComparison]::OrdinalIgnoreCase) }
+            catch { $false }
+        })
+        foreach ($process in $runningProcesses) {
+            $null = $process.CloseMainWindow()
+            if (-not $process.WaitForExit(3000)) {
+                Stop-Process -Id $process.Id -Force
+                $null = $process.WaitForExit(3000)
+            }
+        }
+        $stillRunning = @(Get-Process -ErrorAction SilentlyContinue | Where-Object {
+            try { [string]::Equals($_.Path, $resolvedExecutable, [StringComparison]::OrdinalIgnoreCase) }
+            catch { $false }
+        })
+        if ($stillRunning.Count -gt 0) {
+            $identifiers = $stillRunning.Id -join ', '
+            throw "GW GUI Debug is still running (PID: $identifiers). Close it before rebuilding."
+        }
+    }
+
     foreach ($target in @($output, $staging)) {
         if (Test-Path -LiteralPath $target) { Remove-Item -LiteralPath $target -Recurse -Force }
     }

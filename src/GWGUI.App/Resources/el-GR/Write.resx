@@ -12,63 +12,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Write.Title">
-    <value>Γράφω</value>
-  </data>
-  <data name="Write.SelectSource">
-    <value>Επιλέξτε μια υπάρχουσα εικόνα πηγής.</value>
-  </data>
-  <data name="Write.Ambiguous">
-    <value>Η μορφή είναι διφορούμενη. Επιλέξτε ρητά μια συμβατή μορφή.</value>
-  </data>
-  <data name="Write.VerifyOff">
-    <value>Η επαλήθευση μετά την εγγραφή είναι απενεργοποιημένη.</value>
-  </data>
-  <data name="Write.VerifyOn">
-    <value>Η επαλήθευση μετά την εγγραφή είναι ενεργοποιημένη.</value>
-  </data>
-  <data name="Write.ConfirmTitle">
-    <value>Επιβεβαίωση εγγραφής</value>
-  </data>
-  <data name="Write.Confirm">
-    <value>Εικόνα: {0}
-Μορφή: {1}
-Οδήγηση: {2}
-{3}
-
-Να γραφεί αυτή η εικόνα στο δίσκο;</value>
-  </data>
-  <data name="Write.Source">
-    <value>Πηγή εικόνας</value>
-  </data>
-  <data name="Write.Detected">
-    <value>Εντοπίστηκε μορφή</value>
-  </data>
-  <data name="Write.ChooseImage">
-    <value>Επιλέξτε μια εικόνα.</value>
-  </data>
-  <data name="Write.NoVerify">
-    <value>Απενεργοποιήστε την επαλήθευση μετά την εγγραφή</value>
-  </data>
-  <data name="Write.NoVerifyTip">
-    <value>Προσθέτει --no-verify. Ο δίσκος δεν θα ξαναδιαβαστεί για να επιβεβαιωθεί η εγγραφή.</value>
-  </data>
-  <data name="Write.EraseEmpty">
-    <value>Διαγραφή κενών κομματιών</value>
-  </data>
-  <data name="Write.VisualizeTracks">
-    <value>Οπτικοποιήστε τα κομμάτια</value>
-  </data>
-  <data name="Write.VisualizeFormatRequired">
-    <value>Επιλέξτε τη μορφή του δίσκου πριν οπτικοποιήσετε τα κομμάτια του.</value>
-  </data>
+  <data name="Write.Title"><value>Γράφω</value></data>
+  <data name="Write.SelectSource"><value>Επιλέξτε μια υπάρχουσα εικόνα πηγής.</value></data>
+  <data name="Write.Ambiguous"><value>Η μορφή είναι διφορούμενη. Επιλέξτε ρητά μια συμβατή μορφή.</value></data>
+  <data name="Write.VerifyOff"><value>Η επαλήθευση μετά την εγγραφή είναι απενεργοποιημένη.</value></data>
+  <data name="Write.VerifyOn"><value>Η επαλήθευση μετά την εγγραφή είναι ενεργοποιημένη.</value></data>
+  <data name="Write.ConfirmTitle"><value>Επιβεβαίωση εγγραφής</value></data>
+  <data name="Write.Confirm"><value>Εικόνα: {0}&#xA;Μορφή: {1}&#xA;Οδήγηση: {2}&#xA;{3}&#xA;&#xA;Να γραφεί αυτή η εικόνα στο δίσκο;</value></data>
+  <data name="Write.Source"><value>Πηγή εικόνας</value></data>
+  <data name="Write.Detected"><value>Εντοπίστηκε μορφή</value></data>
+  <data name="Write.ChooseImage"><value>Επιλέξτε μια εικόνα.</value></data>
+  <data name="Write.NoVerify"><value>Απενεργοποιήστε την επαλήθευση μετά την εγγραφή</value></data>
+  <data name="Write.NoVerifyTip"><value>Προσθέτει --no-verify. Ο δίσκος δεν θα ξαναδιαβαστεί για να επιβεβαιωθεί η εγγραφή.</value></data>
+  <data name="Write.EraseEmpty"><value>Διαγραφή κενών κομματιών</value></data>
+  <data name="Write.VisualizeTracks"><value>Οπτικοποιήστε τα κομμάτια</value></data>
+  <data name="Write.VisualizeFormatRequired"><value>Επιλέξτε τη μορφή του δίσκου πριν οπτικοποιήσετε τα κομμάτια του.</value></data>
   <data name="Write.InternalWriter" xml:space="preserve"><value>Εσωτερική εγγραφή (πειραματική)</value></data>
   <data name="Write.InternalWriterTip" xml:space="preserve"><value>Γράφει απευθείας με την εσωτερική μηχανή χωρίς gw.exe.</value></data>
   <data name="Write.InternalPreview" xml:space="preserve"><value>Εσωτερική εγγραφή GW GUI: {0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Μία ή περισσότερες σύνθετες επιλογές δεν υποστηρίζονται ακόμη.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Η εσωτερική επαλήθευση δεν είναι ακόμη διαθέσιμη. Ενεργοποιήστε το «Χωρίς επαλήθευση».</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Ίχνος {0}, πλευρά {1}: {2}</value></data>
-  <data name="Write.InternalFailureReason">
-    <value>Η εσωτερική εγγραφή απέτυχε.</value>
-  </data>
+  <data name="Write.InternalFailureReason"><value>Η εσωτερική εγγραφή απέτυχε.</value></data>
 </root>

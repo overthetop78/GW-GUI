@@ -12,165 +12,56 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Options.Title">
-    <value>ตัวเลือก</value>
-  </data>
-  <data name="Options.General">
-    <value>ทั่วไป</value>
-  </data>
-  <data name="Options.Tools">
-    <value>Greaseweazle เครื่องมือ</value>
-  </data>
-  <data name="Options.Hardware">
-    <value>คอนโทรลเลอร์และไดรฟ์</value>
-  </data>
-  <data name="Options.Profiles">
-    <value>โปรไฟล์</value>
-  </data>
-  <data name="Options.ImagesFolder">
-    <value>โฟลเดอร์ดิสก์อิมเมจเริ่มต้น</value>
-  </data>
-  <data name="Options.Language">
-    <value>ภาษา</value>
-  </data>
-  <data name="Options.Theme">
-    <value>ธีม</value>
-  </data>
-  <data name="Theme.System">
-    <value>ระบบ</value>
-  </data>
-  <data name="Theme.Light">
-    <value>แสงสว่าง</value>
-  </data>
-  <data name="Theme.Dark">
-    <value>มืด</value>
-  </data>
-  <data name="Options.GwPath">
-    <value>เส้นทางสู่ gw.exe</value>
-  </data>
-  <data name="Options.ToolsHelp">
-    <value>หากเครื่องมือหายไป Assistant จะเสนอให้ดาวน์โหลดหรือเลือกการติดตั้งที่มีอยู่ จะมีการแจ้งอัพเดตเท่านั้น</value>
-  </data>
-  <data name="Options.HardwarePersistence">
-    <value>การตั้งค่าฮาร์ดแวร์จะยังคงถูกจัดเก็บไว้เมื่อถอดไดรฟ์ออก</value>
-  </data>
-  <data name="Options.ExecutableFilter">
-    <value>Greaseweazle (gw.exe)|gw.exe|ปฏิบัติการได้ (*.exe)|*.exe</value>
-  </data>
-  <data name="Options.RemoveHardware">
-    <value>ลบคอนโทรลเลอร์ที่เก็บไว้นี้และไดรฟ์ทั้งหมดออกหรือไม่</value>
-  </data>
-  <data name="Options.HardwareTitle">
-    <value>ฮาร์ดแวร์</value>
-  </data>
-  <data name="Options.UseConversionTags">
-    <value>ใช้แท็กในชื่อไฟล์การแปลง</value>
-  </data>
-  <data name="Options.TagPreset">
-    <value>ที่ตั้งไว้ล่วงหน้า</value>
-  </data>
-  <data name="Options.TagPresetFamily">
-    <value>เฉพาะครอบครัวเท่านั้น</value>
-  </data>
-  <data name="Options.TagPresetFormat">
-    <value>รูปแบบเท่านั้น</value>
-  </data>
-  <data name="Options.TagPresetFamilyFormat">
-    <value>ครอบครัวและรูปแบบ</value>
-  </data>
-  <data name="Options.TagPresetFamilyExtension">
-    <value>ครอบครัวและการขยาย</value>
-  </data>
-  <data name="Options.TagPresetDetailed">
-    <value>ครอบครัว รูปแบบ และนามสกุล</value>
-  </data>
-  <data name="Options.TagPattern">
-    <value>รูปแบบแท็ก Conversion</value>
-  </data>
-  <data name="Options.TagVariablesTitle">
-    <value>ตัวแปรที่มีอยู่</value>
-  </data>
-  <data name="Options.TagVariableName">
-    <value>ชื่อไฟล์ต้นฉบับ</value>
-  </data>
-  <data name="Options.TagVariableFamily">
-    <value>ครอบครัว: พีซี, เซนต์, AMIGA…</value>
-  </data>
-  <data name="Options.TagVariableFormat">
-    <value>รูปแบบ: 720, 1440, DD...</value>
-  </data>
-  <data name="Options.TagVariableExtension">
-    <value>ส่วนขยาย: IMA, ST, ADF…</value>
-  </data>
-  <data name="Options.TagVariableDateIso">
-    <value>วันที่: 2026-08-06</value>
-  </data>
-  <data name="Options.TagVariableDateCompact">
-    <value>วันที่: 20260806</value>
-  </data>
-  <data name="Options.TagVariableDateLocal">
-    <value>วันที่: 06-08-2026</value>
-  </data>
-  <data name="Options.TagVariableTimeFull">
-    <value>เวลา: 14-35-42</value>
-  </data>
-  <data name="Options.TagVariableTimeCompact">
-    <value>เวลา: 143542</value>
-  </data>
-  <data name="Options.TagVariableTimeShort">
-    <value>เวลา: 14-35 น</value>
-  </data>
-  <data name="Options.TagPatternHelp">
-    <value>{NAME} — ชื่อไฟล์ต้นฉบับ
-{FAMILY} — ตระกูลเครื่องจักร (PC, ST, AMIGA…)
-{FORMAT} — รูปแบบหรือเรขาคณิต (720, 1440, DD…)
-{EXTENSION} — ส่วนขยายเอาต์พุต (IMA, ST, ADF…)
-{DATE:YYYY-MM-DD} — วันที่ 06-08-2026
-{DATE:YYYYMMDD} — วันที่ 20260806
-{DATE:DD-MM-YYYY} — วันที่ 06-08-2026
-{TIME:HH-MM-SS} — เวลา 14-35-42
-{TIME:HHMMSS} — เวลา 143542
-{TIME:HH-MM} — เวลา 14-35</value>
-  </data>
-  <data name="Options.RecentTagPatterns">
-    <value>รูปแบบที่กำหนดเองล่าสุด</value>
-  </data>
-  <data name="Options.NextTagExample">
-    <value>ตัวอย่างถัดไป</value>
-  </data>
-  <data name="Options.TagPatternPreview">
-    <value>ตัวอย่าง: {0}</value>
-  </data>
-  <data name="Options.TagPatternInvalid">
-    <value>รูปแบบแท็กต้องมี {tag}</value>
-  </data>
-  <data name="Options.EnableLogs">
-    <value>บันทึกบันทึก</value>
-  </data>
-  <data name="Options.Logs">
-    <value>บันทึก</value>
-  </data>
-  <data name="Options.LogsDescription">
-    <value>แต่ละการกระทำมีไฟล์ของตัวเองในโฟลเดอร์ GW GUI Logs</value>
-  </data>
-  <data name="Options.LogActionErase">
-    <value>ลบ</value>
-  </data>
-  <data name="Options.LogActionClean">
-    <value>ทำความสะอาดหัว</value>
-  </data>
-  <data name="Options.OpenLogsFolder">
-    <value>เปิดโฟลเดอร์</value>
-  </data>
-  <data name="Options.LogMaximumSize">
-    <value>ขนาดสูงสุด</value>
-  </data>
-  <data name="Options.KeepLogArchives">
-    <value>เก็บบันทึกก่อนหน้า</value>
-  </data>
-  <data name="Options.LogUnlimitedHint">
-    <value>0 = ไม่จำกัด</value>
-  </data>
+  <data name="Options.Title"><value>ตัวเลือก</value></data>
+  <data name="Options.General"><value>ทั่วไป</value></data>
+  <data name="Options.Tools"><value>Greaseweazle เครื่องมือ</value></data>
+  <data name="Options.Hardware"><value>คอนโทรลเลอร์และไดรฟ์</value></data>
+  <data name="Options.Profiles"><value>โปรไฟล์</value></data>
+  <data name="Options.ImagesFolder"><value>โฟลเดอร์ดิสก์อิมเมจเริ่มต้น</value></data>
+  <data name="Options.Language"><value>ภาษา</value></data>
+  <data name="Options.Theme"><value>ธีม</value></data>
+  <data name="Theme.System"><value>ระบบ</value></data>
+  <data name="Theme.Light"><value>แสงสว่าง</value></data>
+  <data name="Theme.Dark"><value>มืด</value></data>
+  <data name="Options.GwPath"><value>เส้นทางสู่ gw.exe</value></data>
+  <data name="Options.ToolsHelp"><value>หากเครื่องมือหายไป Assistant จะเสนอให้ดาวน์โหลดหรือเลือกการติดตั้งที่มีอยู่ จะมีการแจ้งอัพเดตเท่านั้น</value></data>
+  <data name="Options.HardwarePersistence"><value>การตั้งค่าฮาร์ดแวร์จะยังคงถูกจัดเก็บไว้เมื่อถอดไดรฟ์ออก</value></data>
+  <data name="Options.ExecutableFilter"><value>Greaseweazle (gw.exe)|gw.exe|ไม่สามารถประมวลผลได้ (Scord Active transfer corder) (Scorder transfer).*.exe)|*.exe</value></data>
+  <data name="Options.RemoveHardware"><value>ลบคอนโทรลเลอร์ที่เก็บไว้นี้และไดรฟ์ทั้งหมดออกหรือไม่</value></data>
+  <data name="Options.HardwareTitle"><value>ฮาร์ดแวร์</value></data>
+  <data name="Options.UseConversionTags"><value>ใช้แท็กในชื่อไฟล์การแปลง</value></data>
+  <data name="Options.TagPreset"><value>ที่ตั้งไว้ล่วงหน้า</value></data>
+  <data name="Options.TagPresetFamily"><value>เฉพาะครอบครัวเท่านั้น</value></data>
+  <data name="Options.TagPresetFormat"><value>รูปแบบเท่านั้น</value></data>
+  <data name="Options.TagPresetFamilyFormat"><value>ครอบครัวและรูปแบบ</value></data>
+  <data name="Options.TagPresetFamilyExtension"><value>ครอบครัวและการขยาย</value></data>
+  <data name="Options.TagPresetDetailed"><value>ครอบครัว รูปแบบ และนามสกุล</value></data>
+  <data name="Options.TagPattern"><value>รูปแบบแท็ก Conversion</value></data>
+  <data name="Options.TagVariablesTitle"><value>ตัวแปรที่มีอยู่</value></data>
+  <data name="Options.TagVariableName"><value>ชื่อไฟล์ต้นฉบับ</value></data>
+  <data name="Options.TagVariableFamily"><value>ตระกูล: PC. ST. AMIGA...</value></data>
+  <data name="Options.TagVariableFormat"><value>รูปแบบ: 720, 1440 DD...</value></data>
+  <data name="Options.TagVariableExtension"><value>ส่วนขยาย: IMA, ST, ADF…</value></data>
+  <data name="Options.TagVariableDateIso"><value>วันที่: 2026-08-06</value></data>
+  <data name="Options.TagVariableDateCompact"><value>วันที่: 20260806</value></data>
+  <data name="Options.TagVariableDateLocal"><value>วันที่: 06-08-2026</value></data>
+  <data name="Options.TagVariableTimeFull"><value>เวลา: 14-35-42</value></data>
+  <data name="Options.TagVariableTimeCompact"><value>เวลา: 143542</value></data>
+  <data name="Options.TagVariableTimeShort"><value>เวลา: 14-35 น</value></data>
+  <data name="Options.TagPatternHelp"><value>{NAME} — ชื่อแฟ้มต้นฉบับ&#xA;{FAMILY} สกุลเครื่อง (CPE)PC. ST. AMIGA...)&#xA;{FORMAT} — รูปแบบหรือเรขาคณิต (20,4040, 1440) DD...)&#xA;{EXTENSION} — ส่วนขยายการแสดงผล (Show)IMA. ST. ADF...)&#xA;{DATE:YYYY-MM-DD} — วันที่ 2026-08-06&#xA;{DATE:YYYYMMDD} — วัน ที่ 20260806&#xA;{DATE:DD-MM-YYYY} — วัน 06-08-2026&#xA;{TIME:HH-MM-SS} — เวลา 14-35-42&#xA;{TIME:HHMMSS} — เวลา 143542&#xA;{TIME:HH-MM} — เวลา 14-35</value></data>
+  <data name="Options.RecentTagPatterns"><value>รูปแบบที่กำหนดเองล่าสุด</value></data>
+  <data name="Options.NextTagExample"><value>ตัวอย่างถัดไป</value></data>
+  <data name="Options.TagPatternPreview"><value>ตัวอย่าง: {0}</value></data>
+  <data name="Options.TagPatternInvalid"><value>รูปแบบแท็กต้องบรรจุ {tag}.</value></data>
+  <data name="Options.EnableLogs"><value>บันทึกบันทึก</value></data>
+  <data name="Options.Logs"><value>บันทึก</value></data>
+  <data name="Options.LogsDescription"><value>แต่ละการกระทำมีไฟล์ของตัวเองในโฟลเดอร์ GW GUI Logs</value></data>
+  <data name="Options.LogActionErase"><value>ลบ</value></data>
+  <data name="Options.LogActionClean"><value>ทำความสะอาดหัว</value></data>
+  <data name="Options.OpenLogsFolder"><value>เปิดโฟลเดอร์</value></data>
+  <data name="Options.LogMaximumSize"><value>ขนาดสูงสุด</value></data>
+  <data name="Options.KeepLogArchives"><value>เก็บบันทึกก่อนหน้า</value></data>
+  <data name="Options.LogUnlimitedHint"><value>0 = ไม่จำกัด</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>เอนจิน</value></data>
   <data name="Engines.Description" xml:space="preserve"><value>เลือกเอนจินที่ใช้สำหรับแต่ละการทำงานแยกกัน</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>เอนจินภายในของ GW GUI</value></data>
@@ -185,9 +76,7 @@
   <data name="Controllers.NoneDetected" xml:space="preserve"><value>ไม่พบคอนโทรลเลอร์</value></data>
   <data name="Controllers.DetectedCount" xml:space="preserve"><value>ตรวจพบคอนโทรลเลอร์ {0} ตัว</value></data>
   <data name="Controllers.TestRumble" xml:space="preserve"><value>ทดสอบการสั่น</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve">
-    <value>ความแรงการสั่น</value>
-  </data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>ความแรงการสั่น</value></data>
   <data name="Controllers.LiveInputs" xml:space="preserve"><value>อินพุตแบบเรียลไทม์</value></data>
   <data name="Controllers.Control" xml:space="preserve"><value>ตัวควบคุม</value></data>
   <data name="Controllers.Value" xml:space="preserve"><value>ค่า</value></data>
@@ -218,17 +107,10 @@
   <data name="Controllers.Yes" xml:space="preserve"><value>ใช่</value></data>
   <data name="Controllers.No" xml:space="preserve"><value>ไม่</value></data>
   <data name="Controllers.None" xml:space="preserve"><value>ไม่มี</value></data>
-  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>เกมแพดทั่วไป</value></data>
-  <data name="Controllers.Model.Auto" xml:space="preserve"><value>อัตโนมัติ</value></data>
-  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>พวงมาลัย</value></data>
-  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>ก้านบังคับการบิน</value></data>
-  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>ก้านอาร์เคด</value></data>
-  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>ไบต์ดิบ</value></data>
+<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>ไบต์ดิบ</value></data>
   <data name="Controllers.AnalogValues" xml:space="preserve"><value>ค่าแอนะล็อก</value></data>
   <data name="Controllers.DetectionFailed" xml:space="preserve"><value>ตรวจหาคอนโทรลเลอร์ไม่สำเร็จ</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve">
-    <value>กำลังตรวจหาคอนโทรลเลอร์…</value>
-  </data>
+  <data name="Controllers.Detecting" xml:space="preserve"><value>กำลังตรวจหาคอนโทรลเลอร์…</value></data>
   <data name="Controllers.ReadFailed" xml:space="preserve"><value>อ่านคอนโทรลเลอร์ไม่สำเร็จ</value></data>
   <data name="Controllers.TestRunning" xml:space="preserve"><value>กำลังทดสอบ…</value></data>
   <data name="Controllers.TestFailed" xml:space="preserve"><value>การทดสอบล้มเหลว</value></data>
@@ -253,91 +135,53 @@
   <data name="Controllers.Roll" xml:space="preserve"><value>การหมุน</value></data>
   <data name="Controllers.Pitch" xml:space="preserve"><value>การก้มเงย</value></data>
   <data name="Controllers.Yaw" xml:space="preserve"><value>การหัน</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve">
-    <value>เซ็นเซอร์</value>
-  </data>
-  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
-    <value>การนำทางส่วนติดต่อ</value>
-  </data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
-    <value>เกมแพด</value>
-  </data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
-    <value>มอเตอร์ความถี่ต่ำ</value>
-  </data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
-    <value>มอเตอร์ความถี่สูง</value>
-  </data>
-  <data name="Controllers.Enum.Share" xml:space="preserve">
-    <value>แชร์</value>
-  </data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve">
-    <value>เชิงเส้น</value>
-  </data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve">
-    <value>เชิงมุม</value>
-  </data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve">
-    <value>ปกติ</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
-    <value>คงที่</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
-    <value>ทางลาด</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
-    <value>คลื่นไซน์</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
-    <value>คลื่นสี่เหลี่ยม</value>
-  </data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
-    <value>คลื่นสามเหลี่ยม</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
-    <value>ฟันเลื่อยขาขึ้น</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
-    <value>ฟันเลื่อยขาลง</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
-    <value>สปริง</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
-    <value>แรงเสียดทาน</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
-    <value>แดมเปอร์</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
-    <value>ความเฉื่อย</value>
-  </data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve">
-    <value>จอยสติ๊ก</value>
-  </data>
-  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
-    <value>ตัวควบคุมหลายแกน</value>
-  </data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
-    <value>การใช้งาน HID</value>
-  </data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve">
-    <value>แกน</value>
-  </data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve">
-    <value>ปุ่ม</value>
-  </data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
-    <value>รวม</value>
-  </data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve">
-    <value>เสมือน</value>
-  </data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve">
-    <value>รายงานอินพุต</value>
-  </data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
-    <value>รายงานเอาต์พุต</value>
-  </data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>เซ็นเซอร์</value></data>
+  <data name="Controllers.Enum.UiNavigation"><value>UI การนําทาง</value></data>
+  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>เกมแพด</value></data>
+  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>มอเตอร์ความถี่ต่ำ</value></data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>มอเตอร์ความถี่สูง</value></data>
+  <data name="Controllers.Enum.Share" xml:space="preserve"><value>แชร์</value></data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>เชิงเส้น</value></data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>เชิงมุม</value></data>
+  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>ปกติ</value></data>
+  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>คงที่</value></data>
+  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>ทางลาด</value></data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>คลื่นไซน์</value></data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>คลื่นสี่เหลี่ยม</value></data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>คลื่นสามเหลี่ยม</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>ฟันเลื่อยขาขึ้น</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>ฟันเลื่อยขาลง</value></data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>สปริง</value></data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>แรงเสียดทาน</value></data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>แดมเปอร์</value></data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>ความเฉื่อย</value></data>
+  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>จอยสติ๊ก</value></data>
+  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>ตัวควบคุมหลายแกน</value></data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>การใช้งาน HID</value></data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>แกน</value></data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>ปุ่ม</value></data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>รวม</value></data>
+  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>เสมือน</value></data>
+  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>รายงานอินพุต</value></data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>รายงานเอาต์พุต</value></data>
+<data name="Emulation.InitialDisk"><value>เริ่มงานดิสก์</value></data>
+  <data name="Emulation.Audio"><value>เสียง</value></data>
+  <data name="Emulation.Controller"><value>ตัวควบคุม {0}</value></data>
+  <data name="Emulation.Core.NameOptions"><value>ตัวเลือกของแกนหลัก</value></data>
+  <data name="Emulation.MultiDrive"><value>เมานท์แผ่น 4 แผ่นแรกใน DF0- สืบค้นเมื่อ 3 ปีก่อนDF3</value></data>
+  <data name="Emulation.DiskNumber"><value>ดิสก์ {0}</value></data>
+  <data name="Emulation.LoadOptions"><value>โหลดตัวเลือกที่มี</value></data>
+  <data name="Emulation.Configurations"><value>การปรับแต่ง</value></data>
+  <data name="Emulation.Firmware"><value>แม่ข่าย</value></data>
+  <data name="Emulation.ReleaseMouse"><value>ปล่อยเมาส์</value></data>
+  <data name="Emulation.DeleteConfirm"><value>ลบการปรับแต่ง Amiga นี้หรือไม่?</value></data>
+  <data name="Emulation.ModelRequired"><value>จําเป็นต้องสร้างโมเดลอะมิกา</value></data>
+  <data name="Emulation.KickstartRequired"><value>ต้องใช้เส้นทางของคิกเริรต์</value></data>
+  <data name="Emulation.FileRequired"><value>เส้นทางของเครื่องคอมไพล์ไม่มีความต้องการ</value></data>
+  <data name="Emulation.FileMissing"><value>แฟ้มที่เลือกไว้ยังไม่มีอยู่</value></data>
+<data name="Options.EmulationMachineTitle"><value>{0} - {1} สืบค้นเมื่อ 5 July 2015. {2}</value></data>
+  <data name="Controllers.AnalogDeadZones"><value>เขตอันตราย</value></data>
+  <data name="Controllers.StickDeadZone"><value>ไม้บรรทัด</value></data>
+  <data name="Controllers.TriggerDeadZone"><value>ตัวกระตุ้น</value></data>
+  <data name="Controllers.OuterDeadZone"><value>เขตเวลาที่ใกล้หมด</value></data>
 </root>

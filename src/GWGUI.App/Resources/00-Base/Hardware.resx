@@ -12,148 +12,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Hardware.Port" xml:space="preserve">
-    <value>Port</value>
-  </data>
-  <data name="Hardware.UsbId" xml:space="preserve">
-    <value>USB identifier</value>
-  </data>
-  <data name="Hardware.Drive" xml:space="preserve">
-    <value>Drive</value>
-  </data>
-  <data name="Hardware.Available" xml:space="preserve">
-    <value>Available</value>
-  </data>
-  <data name="Hardware.Scan" xml:space="preserve">
-    <value>Scan</value>
-  </data>
-  <data name="Hardware.AddDrive" xml:space="preserve">
-    <value>Add a drive…</value>
-  </data>
-  <data name="Hardware.NoDrive" xml:space="preserve">
-    <value>No drive defined</value>
-  </data>
-  <data name="Hardware.EditorTitle" xml:space="preserve">
-    <value>Define a drive</value>
-  </data>
-  <data name="Hardware.Controller" xml:space="preserve">
-    <value>Greaseweazle controller</value>
-  </data>
-  <data name="Hardware.GwSelection" xml:space="preserve">
-    <value>Selection passed to gw</value>
-  </data>
-  <data name="Hardware.PhysicalSize" xml:space="preserve">
-    <value>Physical size</value>
-  </data>
-  <data name="Hardware.SizeShort" xml:space="preserve">
-    <value>Size</value>
-  </data>
-  <data name="Hardware.DensityShort" xml:space="preserve">
-    <value>Density</value>
-  </data>
-  <data name="Hardware.SpeedShort" xml:space="preserve">
-    <value>Speed</value>
-  </data>
-  <data name="Hardware.AvailableState" xml:space="preserve">
-    <value>Available</value>
-  </data>
-  <data name="Hardware.UnavailableState" xml:space="preserve">
-    <value>Unavailable</value>
-  </data>
-  <data name="Hardware.DensityDescription" xml:space="preserve">
-    <value>Drive density (description only)</value>
-  </data>
-  <data name="Hardware.SpeedDescription" xml:space="preserve">
-    <value>Nominal speed (description only)</value>
-  </data>
-  <data name="Hardware.NotConfigured">
-    <value>Controller not configured</value>
-  </data>
-  <data name="Hardware.Disconnected">
-    <value>disconnected</value>
-  </data>
-  <data name="Hardware.SelectedDisconnected">
-    <value>The selected drive is disconnected. Reconnect it or scan again in Options → Controllers and drives.</value>
-  </data>
-  <data name="Hardware.DriveLabel">
-    <value>{0}-inch · {1} · {2} · {3}</value>
-  </data>
-  <data name="Hardware.DriveDialogTitle">
-    <value>Drive</value>
-  </data>
-  <data name="Hardware.ControllerRequired">
-    <value>Scan or add a Greaseweazle controller first.</value>
-  </data>
-  <data name="Hardware.Description">
-    <value>{0}-inch · {1} · selection {2}{3}</value>
-  </data>
-  <data name="Hardware.ScanTitle">
-    <value>Scan</value>
-  </data>
-  <data name="Hardware.GwRequired">
-    <value>Select or download gw.exe below first.</value>
-  </data>
-  <data name="Hardware.StartupTitle">
-    <value>Hardware check</value>
-  </data>
-  <data name="Hardware.StartupMissing">
-    <value>Configured hardware could not be found</value>
-  </data>
-  <data name="Hardware.StartupExplanation">
-    <value>The configuration is preserved, but its drives will remain unavailable until their Greaseweazle is found again.</value>
-  </data>
-  <data name="Hardware.StartupMissingList">
-    <value>Missing Greaseweazle controllers</value>
-  </data>
-  <data name="Hardware.StartupRetry">
-    <value>Search again</value>
-  </data>
-  <data name="Hardware.StartupSettings">
-    <value>Hardware settings</value>
-  </data>
-  <data name="Hardware.StartupContinue">
-    <value>Continue without this drive</value>
-  </data>
-  <data name="Hardware.StartupCheckFailed">
-    <value>The hardware check failed: {0}</value>
-  </data>
-  <data name="Hardware.NewDetectedTitle">
-    <value>New Greaseweazle detected</value>
-  </data>
-  <data name="Hardware.NewDetected">
-    <value>{0} was detected on {1}. Do you want to configure its drive now?</value>
-  </data>
-  <data name="Hardware.ConfigurationState">
-    <value>Configuration</value>
-  </data>
-  <data name="Hardware.Configured">
-    <value>Configured</value>
-  </data>
-  <data name="Hardware.NotConfiguredState">
-    <value>Detected, not configured</value>
-  </data>
-  <data name="Hardware.Configure">
-    <value>Configure</value>
-  </data>
-  <data name="Hardware.ReaderNumber">
-    <value>Drive {0}</value>
-  </data>
-  <data name="Hardware.DriveChoice">
-    <value>Drive {0} · {1}″ · {2} · {3}</value>
-  </data>
-  <data name="Hardware.Forget">
-    <value>Forget</value>
-  </data>
-  <data name="Hardware.ForgetConfirm">
-    <value>Do you really want to forget this drive or device?</value>
-  </data>
-  <data name="Hardware.ForgetLastConfirm">
-    <value>This is the last configured drive for this Greaseweazle. Do you want to forget both the drive and the Greaseweazle?</value>
-  </data>
-  <data name="Hardware.SelectController">
-    <value>Select a row belonging to the relevant Greaseweazle first.</value>
-  </data>
-  <data name="Hardware.MaximumDrives">
-    <value>At most two drives can be assigned automatically to this Greaseweazle (A and B).</value>
-  </data>
+  <data name="Hardware.Port" xml:space="preserve"><value>Port</value></data>
+  <data name="Hardware.UsbId" xml:space="preserve"><value>USB identifier</value></data>
+  <data name="Hardware.Drive" xml:space="preserve"><value>Drive</value></data>
+  <data name="Hardware.Available" xml:space="preserve"><value>Available</value></data>
+  <data name="Hardware.Scan" xml:space="preserve"><value>Scan</value></data>
+  <data name="Hardware.AddDrive" xml:space="preserve"><value>Add a drive…</value></data>
+  <data name="Hardware.NoDrive" xml:space="preserve"><value>No drive defined</value></data>
+  <data name="Hardware.EditorTitle" xml:space="preserve"><value>Define a drive</value></data>
+  <data name="Hardware.Controller" xml:space="preserve"><value>Greaseweazle controller</value></data>
+  <data name="Hardware.GwSelection" xml:space="preserve"><value>Selection passed to gw</value></data>
+  <data name="Hardware.PhysicalSize" xml:space="preserve"><value>Physical size</value></data>
+  <data name="Hardware.SizeShort" xml:space="preserve"><value>Size</value></data>
+  <data name="Hardware.DensityShort" xml:space="preserve"><value>Density</value></data>
+  <data name="Hardware.SpeedShort" xml:space="preserve"><value>Speed</value></data>
+  <data name="Hardware.AvailableState" xml:space="preserve"><value>Available</value></data>
+  <data name="Hardware.UnavailableState" xml:space="preserve"><value>Unavailable</value></data>
+  <data name="Hardware.DensityDescription" xml:space="preserve"><value>Drive density (description only)</value></data>
+  <data name="Hardware.SpeedDescription" xml:space="preserve"><value>Nominal speed (description only)</value></data>
+  <data name="Hardware.NotConfigured"><value>Controller not configured</value></data>
+  <data name="Hardware.Disconnected"><value>disconnected</value></data>
+  <data name="Hardware.SelectedDisconnected"><value>The selected drive is disconnected. Reconnect it or scan again in Options → Controllers and drives.</value></data>
+  <data name="Hardware.DriveLabel"><value>{0}-inch · {1} · {2} · {3}</value></data>
+  <data name="Hardware.DriveDialogTitle"><value>Drive</value></data>
+  <data name="Hardware.ControllerRequired"><value>Scan or add a Greaseweazle controller first.</value></data>
+  <data name="Hardware.Description"><value>{0}-inch · {1} · selection {2}{3}</value></data>
+  <data name="Hardware.ScanTitle"><value>Scan</value></data>
+  <data name="Hardware.GwRequired"><value>Select or download gw.exe below first.</value></data>
+  <data name="Hardware.StartupTitle"><value>Hardware check</value></data>
+  <data name="Hardware.StartupMissing"><value>Configured hardware could not be found</value></data>
+  <data name="Hardware.StartupExplanation"><value>The configuration is preserved, but its drives will remain unavailable until their Greaseweazle is found again.</value></data>
+  <data name="Hardware.StartupMissingList"><value>Missing Greaseweazle controllers</value></data>
+  <data name="Hardware.StartupRetry"><value>Search again</value></data>
+  <data name="Hardware.StartupSettings"><value>Hardware settings</value></data>
+  <data name="Hardware.StartupContinue"><value>Continue without this drive</value></data>
+  <data name="Hardware.StartupCheckFailed"><value>The hardware check failed: {0}</value></data>
+  <data name="Hardware.NewDetectedTitle"><value>New Greaseweazle detected</value></data>
+  <data name="Hardware.NewDetected"><value>{0} was detected on {1}. Do you want to configure its drive now?</value></data>
+  <data name="Hardware.ConfigurationState"><value>Configuration</value></data>
+  <data name="Hardware.Configured"><value>Configured</value></data>
+  <data name="Hardware.NotConfiguredState"><value>Detected, not configured</value></data>
+  <data name="Hardware.Configure"><value>Configure</value></data>
+  <data name="Hardware.ReaderNumber"><value>Drive {0}</value></data>
+  <data name="Hardware.DriveChoice"><value>Drive {0} · {1}″ · {2} · {3}</value></data>
+  <data name="Hardware.Forget"><value>Forget</value></data>
+  <data name="Hardware.ForgetConfirm"><value>Do you really want to forget this drive or device?</value></data>
+  <data name="Hardware.ForgetLastConfirm"><value>This is the last configured drive for this Greaseweazle. Do you want to forget both the drive and the Greaseweazle?</value></data>
+  <data name="Hardware.SelectController"><value>Select a row belonging to the relevant Greaseweazle first.</value></data>
+  <data name="Hardware.MaximumDrives"><value>At most two drives can be assigned automatically to this Greaseweazle (A and B).</value></data>
 </root>

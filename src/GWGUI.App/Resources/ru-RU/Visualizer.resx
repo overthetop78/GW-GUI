@@ -12,209 +12,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Visual.Decoder">
-    <value>Декодер</value>
-  </data>
-  <data name="Visual.LinkZoom">
-    <value>Увеличение ссылки</value>
-  </data>
-  <data name="Visual.OpenScp">
-    <value>Откройте файл SCP…</value>
-  </data>
-  <data name="Visual.NoFile">
-    <value>Файл SCP не открыт</value>
-  </data>
-  <data name="Visual.Waiting">
-    <value>Ожидание файла</value>
-  </data>
-  <data name="Visual.Inspector">
-    <value>Инспектор</value>
-  </data>
-  <data name="Visual.SelectTrack">
-    <value>Выберите трек.</value>
-  </data>
-  <data name="Visual.Controls">
-    <value>Щелкните: выберите · Колесо: масштабирование · Щелкните правой кнопкой мыши: панорамирование</value>
-  </data>
-  <data name="Visual.NormalFlux">
-    <value>Нормальный поток</value>
-  </data>
-  <data name="Visual.ShortTransition">
-    <value>Короткий переход</value>
-  </data>
-  <data name="Visual.LongTransition">
-    <value>Длинный переход/аномалия</value>
-  </data>
-  <data name="Visual.Loading">
-    <value>Чтение файла…</value>
-  </data>
-  <data name="Visual.Invalid">
-    <value>Неверный файл</value>
-  </data>
-  <data name="Visual.Title">
-    <value>SCP визуализация</value>
-  </data>
-  <data name="Visual.ChecksumValid">
-    <value>действительный</value>
-  </data>
-  <data name="Visual.ChecksumInvalid">
-    <value>неверный</value>
-  </data>
-  <data name="Visual.Summary">
-    <value>SCP {0} · {1} треков · {2} оборотов · {3} разрешение нс · {4} контрольная сумма</value>
-  </data>
-  <data name="Visual.Revolution">
-    <value>Революция {0}: переходы {1:N0} · {2:F2} мс · {3:F2} RPM</value>
-  </data>
-  <data name="Visual.Analysis">
-    <value>Расшифровка: {0}
-Уверенность: {1:P0}
-Предполагаемая ячейка: {2:F1} тиков
-Структуры: {3}</value>
-  </data>
-  <data name="Visual.Track">
-    <value>Сторона: {0}
-Трек: {1}
-SCP запись: {2}</value>
-  </data>
-  <data name="Visual.SideNoData">
-    <value>Сторона {0}
-Нет данных</value>
-  </data>
-  <data name="Visual.TrackTooltip">
-    <value>Сторона {0} · Трек {1}
-{2} революции(й)</value>
-  </data>
-  <data name="Visual.Automatic">
-    <value>Автоматический</value>
-  </data>
-  <data name="Visual.StructureHeader">
-    <value>Заголовок/адрес</value>
-  </data>
-  <data name="Visual.StructureData">
-    <value>Декодированные данные</value>
-  </data>
-  <data name="Visual.StructureAnomaly">
-    <value>Удалено/аномалия</value>
-  </data>
-  <data name="Visual.AnalysedRevolution">
-    <value>Анализ на основе революции {0}.</value>
-  </data>
-  <data name="Visual.BitOffset">
-    <value>бит {0:N0}</value>
-  </data>
-  <data name="Visual.SectorDetail">
-    <value>Сектор C{0} H{1} R{2} · {3} байт · {4} {5}</value>
-  </data>
-  <data name="Visual.CrcValid">
-    <value>действительный</value>
-  </data>
-  <data name="Visual.CrcInvalid">
-    <value>неверный</value>
-  </data>
-  <data name="Visual.IntegrityUnavailable">
-    <value>недоступен</value>
-  </data>
-  <data name="Visual.StructureKind.Sync">
-    <value>Синхронизация</value>
-  </data>
-  <data name="Visual.StructureKind.IdAddressMark">
-    <value>Заголовок сектора</value>
-  </data>
-  <data name="Visual.StructureKind.DataAddressMark">
-    <value>Данные сектора</value>
-  </data>
-  <data name="Visual.StructureKind.DeletedDataAddressMark">
-    <value>Удаленные данные сектора</value>
-  </data>
-  <data name="Visual.StructureKind.AmigaSync">
-    <value>Amiga синхронизация</value>
-  </data>
-  <data name="Visual.StructureKind.AppleAddress">
-    <value>Пролог адреса Apple</value>
-  </data>
-  <data name="Visual.StructureKind.AppleData">
-    <value>Пролог данных Apple</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreSync">
-    <value>Commodore синхронизация</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreHeader">
-    <value>Commodore заголовок</value>
-  </data>
-  <data name="Visual.StructureKind.FormatHeader">
-    <value>Форматировать заголовок</value>
-  </data>
-  <data name="Visual.StructureKind.FormatData">
-    <value>Форматировать данные</value>
-  </data>
-  <data name="Visual.StructureKind.TimingAnomaly">
-    <value>Аномалия времени</value>
-  </data>
-  <data name="Visual.OpenFilter">
-    <value>SuperCard Pro захват (*.scp)|*.scp|Все файлы|*.*</value>
-  </data>
-  <data name="Visual.Integrity.Checksum">
-    <value>Контрольная сумма</value>
-  </data>
-  <data name="Visual.Side">
-    <value>Сторона {0}</value>
-  </data>
-  <data name="Visual.AnalysingTrack">
-    <value>Анализ дорожки {0}/{1}…</value>
-  </data>
-  <data name="Visual.SideLabel">
-    <value>Сторона</value>
-  </data>
-  <data name="Visual.TrackLabel">
-    <value>Отслеживать</value>
-  </data>
-  <data name="Visual.ScpEntryLabel">
-    <value>SCP запись</value>
-  </data>
-  <data name="Visual.RevolutionsTitle">
-    <value>Революции</value>
-  </data>
-  <data name="Visual.AnalysisTitle">
-    <value>Анализ</value>
-  </data>
-  <data name="Visual.ConfidenceLabel">
-    <value>Уверенность</value>
-  </data>
-  <data name="Visual.CellLabel">
-    <value>Предполагаемая ячейка</value>
-  </data>
-  <data name="Visual.StructuresLabel">
-    <value>Структуры</value>
-  </data>
-  <data name="Visual.StructuresTitle">
-    <value>Обнаруженные структуры</value>
-  </data>
-  <data name="Visual.SectorsTitle">
-    <value>Секторы</value>
-  </data>
-  <data name="Visual.TransitionsUnit">
-    <value>переходы</value>
-  </data>
-  <data name="Visual.OpenImage">
-    <value>Откройте образ диска…</value>
-  </data>
-  <data name="Visual.DetachInspector">
-    <value>Отсоединить инспектора</value>
-  </data>
-  <data name="Visual.AttachInspector">
-    <value>Прикрепите инспектора</value>
-  </data>
-  <data name="Visual.SummaryTab">
-    <value>Краткое содержание</value>
-  </data>
-  <data name="Visual.FormatDetected">
-    <value>Обнаружен формат</value>
-  </data>
-  <data name="Visual.AverageRpm">
-    <value>Средняя частота вращения</value>
-  </data>
-  <data name="Visual.AverageDuration">
-    <value>Средняя продолжительность</value>
-  </data>
+  <data name="Visual.Decoder"><value>Декодер</value></data>
+  <data name="Visual.LinkZoom"><value>Увеличение ссылки</value></data>
+  <data name="Visual.OpenScp"><value>Откройте файл SCP…</value></data>
+  <data name="Visual.NoFile"><value>Файл SCP не открыт</value></data>
+  <data name="Visual.Waiting"><value>Ожидание файла</value></data>
+  <data name="Visual.Inspector"><value>Инспектор</value></data>
+  <data name="Visual.SelectTrack"><value>Выберите трек.</value></data>
+  <data name="Visual.Controls"><value>Щелкните: выберите · Колесо: масштабирование · Щелкните правой кнопкой мыши: панорамирование</value></data>
+  <data name="Visual.NormalFlux"><value>Нормальный поток</value></data>
+  <data name="Visual.ShortTransition"><value>Короткий переход</value></data>
+  <data name="Visual.LongTransition"><value>Длинный переход/аномалия</value></data>
+  <data name="Visual.Loading"><value>Чтение файла…</value></data>
+  <data name="Visual.Invalid"><value>Неверный файл</value></data>
+  <data name="Visual.Title"><value>SCP визуализация</value></data>
+  <data name="Visual.ChecksumValid"><value>действительный</value></data>
+  <data name="Visual.ChecksumInvalid"><value>неверный</value></data>
+  <data name="Visual.Summary"><value>SCP {0} · {1} треков · {2} оборотов · {3} разрешение нс · {4} контрольная сумма</value></data>
+  <data name="Visual.Revolution"><value>Революция {0}: переходы {1:N0} · {2:F2} мс · {3:F2} RPM</value></data>
+  <data name="Visual.Analysis"><value>Расшифровка: {0}&#xA;Уверенность: {1:P0}&#xA;Предполагаемая ячейка: {2:F1} тиков&#xA;Структуры: {3}</value></data>
+  <data name="Visual.Track"><value>Сторона: {0}&#xA;Трек: {1}&#xA;SCP запись: {2}</value></data>
+  <data name="Visual.SideNoData"><value>Сторона {0}&#xA;Нет данных</value></data>
+  <data name="Visual.TrackTooltip"><value>Сторона {0} · Трек {1}&#xA;{2} революции(й)</value></data>
+  <data name="Visual.Automatic"><value>Автоматический</value></data>
+  <data name="Visual.StructureHeader"><value>Заголовок/адрес</value></data>
+  <data name="Visual.StructureData"><value>Декодированные данные</value></data>
+  <data name="Visual.StructureAnomaly"><value>Удалено/аномалия</value></data>
+  <data name="Visual.AnalysedRevolution"><value>Анализ на основе революции {0}.</value></data>
+  <data name="Visual.BitOffset"><value>бит {0:N0}</value></data>
+  <data name="Visual.SectorDetail"><value>Сектор C{0} H{1} R{2} · {3} байт · {4} {5}</value></data>
+  <data name="Visual.CrcValid"><value>действительный</value></data>
+  <data name="Visual.CrcInvalid"><value>неверный</value></data>
+  <data name="Visual.IntegrityUnavailable"><value>недоступен</value></data>
+  <data name="Visual.StructureKind.Sync"><value>Синхронизация</value></data>
+  <data name="Visual.StructureKind.IdAddressMark"><value>Заголовок сектора</value></data>
+  <data name="Visual.StructureKind.DataAddressMark"><value>Данные сектора</value></data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark"><value>Удаленные данные сектора</value></data>
+  <data name="Visual.StructureKind.AmigaSync"><value>Amiga синхронизация</value></data>
+  <data name="Visual.StructureKind.AppleAddress"><value>Пролог адреса Apple</value></data>
+  <data name="Visual.StructureKind.AppleData"><value>Пролог данных Apple</value></data>
+  <data name="Visual.StructureKind.CommodoreSync"><value>Commodore синхронизация</value></data>
+  <data name="Visual.StructureKind.CommodoreHeader"><value>Commodore заголовок</value></data>
+  <data name="Visual.StructureKind.FormatHeader"><value>Форматировать заголовок</value></data>
+  <data name="Visual.StructureKind.FormatData"><value>Форматировать данные</value></data>
+  <data name="Visual.StructureKind.TimingAnomaly"><value>Аномалия времени</value></data>
+  <data name="Visual.OpenFilter"><value>SuperCard Pro захват (*.scp)|*.scp|Все файлы|*.*</value></data>
+  <data name="Visual.Integrity.Checksum"><value>Контрольная сумма</value></data>
+  <data name="Visual.Side"><value>Сторона {0}</value></data>
+  <data name="Visual.AnalysingTrack"><value>Анализ дорожки {0}/{1}…</value></data>
+  <data name="Visual.SideLabel"><value>Сторона</value></data>
+  <data name="Visual.TrackLabel"><value>Отслеживать</value></data>
+  <data name="Visual.ScpEntryLabel"><value>SCP запись</value></data>
+  <data name="Visual.RevolutionsTitle"><value>Революции</value></data>
+  <data name="Visual.AnalysisTitle"><value>Анализ</value></data>
+  <data name="Visual.ConfidenceLabel"><value>Уверенность</value></data>
+  <data name="Visual.CellLabel"><value>Предполагаемая ячейка</value></data>
+  <data name="Visual.StructuresLabel"><value>Структуры</value></data>
+  <data name="Visual.StructuresTitle"><value>Обнаруженные структуры</value></data>
+  <data name="Visual.SectorsTitle"><value>Секторы</value></data>
+  <data name="Visual.TransitionsUnit"><value>переходы</value></data>
+  <data name="Visual.OpenImage"><value>Откройте образ диска…</value></data>
+  <data name="Visual.DetachInspector"><value>Отсоединить инспектора</value></data>
+  <data name="Visual.AttachInspector"><value>Прикрепите инспектора</value></data>
+  <data name="Visual.SummaryTab"><value>Краткое содержание</value></data>
+  <data name="Visual.FormatDetected"><value>Обнаружен формат</value></data>
+  <data name="Visual.AverageRpm"><value>Средний RPM</value></data>
+  <data name="Visual.AverageDuration"><value>Средняя продолжительность</value></data>
 </root>

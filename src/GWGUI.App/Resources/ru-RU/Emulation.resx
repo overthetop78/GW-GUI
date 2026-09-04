@@ -12,1026 +12,353 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Emulation.Tab.Machines">
-    <value>Машины</value>
-  </data>
-  <data name="Emulation.Core.Name">
-    <value>Ядро</value>
-  </data>
-  <data name="Emulation.Core.NameManagerTitle">
-    <value>Ядро эмуляции {0}</value>
-  </data>
-  <data name="Emulation.Core.NameManagerDescription">
-    <value>Библиотека остаётся вне GW GUI. Выбранная версия заменяет установленную сейчас.</value>
-  </data>
-  <data name="Emulation.Core.NameRequiredVersion">
-    <value>Версия, требуемая GW GUI</value>
-  </data>
-  <data name="Emulation.Core.NameLatestVersion">
-    <value>Последняя доступная официальная версия</value>
-  </data>
-  <data name="Emulation.Core.NameProjectVersion">
-    <value>Установленная сейчас версия</value>
-  </data>
-  <data name="Emulation.Core.NameSearchPrompt">
-    <value>Нажмите «Поиск», чтобы обратиться к официальному серверу Libretro.</value>
-  </data>
-  <data name="Emulation.Core.NameSearch">
-    <value>Найти версии</value>
-  </data>
-  <data name="Emulation.Core.NameDownload">
-    <value>Скачать и заменить</value>
-  </data>
-  <data name="Emulation.Core.NameSearching">
-    <value>Поиск доступных версий…</value>
-  </data>
-  <data name="Emulation.Core.NameNoneFound">
-    <value>Официальная версия не найдена.</value>
-  </data>
-  <data name="Emulation.Core.NameVersionsFound">
-    <value>Доступно версий: {0}.</value>
-  </data>
-  <data name="Emulation.Core.NameDownloading">
-    <value>Загрузка {0}…</value>
-  </data>
-  <data name="Emulation.Core.NameInstalledPath">
-    <value>Установленная версия: {0}</value>
-  </data>
-  <data name="Emulation.Core.NameInstalled">
-    <value>{0} · установлена</value>
-  </data>
-  <data name="Emulation.Core.NameNotInstalled">
-    <value>Версия не установлена</value>
-  </data>
-  <data name="Emulation.Machine.Open">
-    <value>Открыть</value>
-  </data>
-  <data name="Emulation.Tab.Welcome">
-    <value>Добро пожаловать</value>
-  </data>
-  <data name="Emulation.Welcome.Text">
-    <value>Выберите выше сохранённую машину и нажмите «Открыть». Каждая запущенная машина появится на отдельной вкладке.</value>
-  </data>
-  <data name="Emulation.Configuration.Description">
-    <value>Здесь можно создавать, выбирать, изменять и удалять сохранённые конфигурации. Для изменения выбранной конфигурации откройте вкладку {0}.</value>
-  </data>
-  <data name="Emulation.Tab.General">
-    <value>Общие</value>
-  </data>
-  <data name="Emulation.Tab.Video">
-    <value>Видео</value>
-  </data>
-  <data name="Emulation.Tab.Storage">
-    <value>Хранилище</value>
-  </data>
-  <data name="Emulation.Tab.Keyboard">
-    <value>Клавиатура</value>
-  </data>
-  <data name="Emulation.Tab.Mouse">
-    <value>Мышь</value>
-  </data>
-  <data name="Emulation.Controller.Tab">
-    <value>Контроллеры</value>
-  </data>
-  <data name="Emulation.Tab.Advanced">
-    <value>Дополнительно</value>
-  </data>
-  <data name="Emulation.Device.Name.Id">
-    <value>Идентификатор устройства</value>
-  </data>
-  <data name="Emulation.Controller.Device">
-    <value>Устройство контроллера {0}</value>
-  </data>
-  <data name="Emulation.Keyboard.SystemKey">
-    <value>Клавиша {0}</value>
-  </data>
-  <data name="Emulation.Keyboard.HostKey">
-    <value>Клавиша хоста</value>
-  </data>
-  <data name="Emulation.Cpu.Summary">
-    <value>Процессор: {0}</value>
-  </data>
-  <data name="Emulation.Memory.Summary">
-    <value>Chip RAM: {0} КиБ\nSlow RAM: {1} КиБ\nFast RAM: {2} МиБ</value>
-  </data>
-  <data name="Emulation.Video.Summary">
-    <value>Видеочипсет: {0}</value>
-  </data>
-  <data name="Emulation.Cpu.Model">
-    <value>Модель ЦП</value>
-  </data>
-  <data name="Emulation.Cpu.Multiplier">
-    <value>Множитель ЦП</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility">
-    <value>Поциклово совместимый ЦП</value>
-  </data>
-  <data name="Emulation.Memory.Z3">
-    <value>ОЗУ Zorro III</value>
-  </data>
-  <data name="Emulation.Video.Standard">
-    <value>Видеостандарт</value>
-  </data>
-  <data name="Emulation.Video.Resolution">
-    <value>Разрешение</value>
-  </data>
-  <data name="Emulation.Video.AspectRatio">
-    <value>Соотношение сторон</value>
-  </data>
-  <data name="Emulation.Video.Crop">
-    <value>Обрезка границ</value>
-  </data>
-  <data name="Emulation.Video.FlickerFixer">
-    <value>Устранение мерцания</value>
-  </data>
-  <data name="Emulation.Audio.Enabled">
-    <value>Включить звук</value>
-  </data>
-  <data name="Emulation.Audio.Output">
-    <value>Аудиовыход</value>
-  </data>
-  <data name="Emulation.Audio.Latency">
-    <value>Задержка (мс)</value>
-  </data>
-  <data name="Emulation.Audio.Interpolation">
-    <value>Интерполяция</value>
-  </data>
-  <data name="Emulation.Audio.Filter">
-    <value>Аудиофильтр Amiga</value>
-  </data>
-  <data name="Emulation.Audio.StereoSeparation">
-    <value>Разделение стереоканалов (%)</value>
-  </data>
-  <data name="Emulation.Audio.Input">
-    <value>Аудиовход</value>
-  </data>
-  <data name="Emulation.Audio.InputUnavailable">
-    <value>Это ядро Amiga не предоставляет аудиовход.</value>
-  </data>
-  <data name="Emulation.Audio.DefaultOutput">
-    <value>Выход Windows по умолчанию</value>
-  </data>
-  <data name="Emulation.Storage.Media.Add">
-    <value>Добавить носитель</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Create">
-    <value>Создать жёсткий диск</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Size">
-    <value>Размер жёсткого диска (MiB)</value>
-  </data>
-  <data name="Emulation.Storage.Media.None">
-    <value>Нет носителей. Добавьте дискету, жёсткий диск или CD, поддерживаемые выбранной моделью.</value>
-  </data>
-  <data name="Emulation.Storage.ReadOnly">
-    <value>Только чтение</value>
-  </data>
-  <data name="Emulation.Amiga.Storage.MediaFilter">
-    <value>Носители Amiga|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Все файлы|*.*</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Filter">
-    <value>Жёсткий диск Amiga|*.hdf|Все файлы|*.*</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.NotSupported">
-    <value>Выбранная модель не поддерживает жёсткий диск.</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.TooManyDrives">
-    <value>Эта модель поддерживает не более {0} дисководов.</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.TooManyDrives">
-    <value>Эта модель поддерживает не более {0} жёстких дисков.</value>
-  </data>
-  <data name="Emulation.Storage.Cd.NotSupported">
-    <value>Выбранная модель не поддерживает CD-привод.</value>
-  </data>
-  <data name="Emulation.Keyboard.Mapping.Duplicate">
-    <value>Две клавиши Amiga используют одну клавишу ПК. Исправьте красные назначения перед сохранением.</value>
-  </data>
-  <data name="Emulation.Mouse.ReleaseKey">
-    <value>Клавиша освобождения мыши</value>
-  </data>
-  <data name="Emulation.Mouse.Button.Left">
-    <value>Левая кнопка мыши</value>
-  </data>
-  <data name="Emulation.Mouse.Button.Right">
-    <value>Правая кнопка мыши</value>
-  </data>
-  <data name="Emulation.Mouse.Button.Middle">
-    <value>Средняя кнопка мыши</value>
-  </data>
-  <data name="Emulation.Controller.Detect">
-    <value>Обнаружить контроллеры</value>
-  </data>
-  <data name="Emulation.Controller.EmulatedAction">
-    <value>Действие Amiga</value>
-  </data>
-  <data name="Emulation.Controller.PhysicalControl">
-    <value>Ввод с клавиатуры, мыши или контроллера</value>
-  </data>
-  <data name="Emulation.Amiga.Chipset.Name">
-    <value>Набор микросхем</value>
-  </data>
-  <data name="Emulation.Storage.Cd.Drive">
-    <value>Привод CD</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.DriveCount">
-    <value>Количество дисководов</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.DriveCount">
-    <value>Количество жёстких дисков</value>
-  </data>
-  <data name="Emulation.Cpu.Speed">
-    <value>Скорость ЦП</value>
-  </data>
-  <data name="Emulation.Cpu.SpeedOriginal">
-    <value>Исходная скорость</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility.Normal">
-    <value>Обычная</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility.Compatible">
-    <value>Совместимая</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility.Memory">
-    <value>Совместимая с памятью</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility.Exact">
-    <value>Точная по циклам</value>
-  </data>
-  <data name="Emulation.Fpu.Integrated">
-    <value>Встроенный FPU</value>
-  </data>
-  <data name="Emulation.Value.Enabled">
-    <value>Включено</value>
-  </data>
-  <data name="Emulation.Value.Disabled">
-    <value>Отключено</value>
-  </data>
-  <data name="Emulation.Value.Minimum">
-    <value>Минимум</value>
-  </data>
-  <data name="Emulation.Value.VerySmall">
-    <value>Очень маленький</value>
-  </data>
-  <data name="Emulation.Value.Small">
-    <value>Маленький</value>
-  </data>
-  <data name="Emulation.Value.Medium">
-    <value>Средний</value>
-  </data>
-  <data name="Emulation.Value.Large">
-    <value>Большой</value>
-  </data>
-  <data name="Emulation.Value.VeryLarge">
-    <value>Очень большой</value>
-  </data>
-  <data name="Emulation.Value.Maximum">
-    <value>Максимум</value>
-  </data>
-  <data name="Emulation.State.Locked">
-    <value>Заблокировано</value>
-  </data>
-  <data name="Emulation.State.Immediate">
-    <value>Немедленно</value>
-  </data>
-  <data name="Emulation.State.Waiting">
-    <value>С ожиданием</value>
-  </data>
-  <data name="Emulation.Value.Standard">
-    <value>Стандартный</value>
-  </data>
-  <data name="Emulation.Value.Enhanced">
-    <value>Улучшенный</value>
-  </data>
-  <data name="Emulation.Value.Internal">
-    <value>Внутренний</value>
-  </data>
-  <data name="Emulation.Value.Loud">
-    <value>Громкий</value>
-  </data>
-  <data name="Emulation.Video.Resolution.AutoLow">
-    <value>Автоматическое низкое разрешение</value>
-  </data>
-  <data name="Emulation.Video.Resolution.AutoSuperHigh">
-    <value>Автоматическое сверхвысокое разрешение</value>
-  </data>
-  <data name="Emulation.Video.Resolution.Low">
-    <value>Низкое разрешение</value>
-  </data>
-  <data name="Emulation.Video.Resolution.High">
-    <value>Высокое разрешение</value>
-  </data>
-  <data name="Emulation.Video.Resolution.SuperHigh">
-    <value>Сверхвысокое разрешение</value>
-  </data>
-  <data name="Emulation.Video.LineMode">
-    <value>Режим строк</value>
-  </data>
-  <data name="Emulation.Video.HzChange">
-    <value>Изменение частоты обновления</value>
-  </data>
-  <data name="Emulation.Video.FrameSkip">
-    <value>Пропуск кадров</value>
-  </data>
-  <data name="Emulation.Video.Colors">
-    <value>Глубина цвета</value>
-  </data>
-  <data name="Emulation.Video.Gamma">
-    <value>Гамма</value>
-  </data>
-  <data name="Emulation.State.ImmediateBlits">
-    <value>Работа блиттера</value>
-  </data>
-  <data name="Emulation.Video.Collision.Level">
-    <value>Обнаружение столкновений</value>
-  </data>
-  <data name="Emulation.Video.LineMode.Single">
-    <value>Одинарная развёртка</value>
-  </data>
-  <data name="Emulation.Video.LineMode.Double">
-    <value>Двойная развёртка</value>
-  </data>
-  <data name="Emulation.Video.Collision.Sprites">
-    <value>Спрайты</value>
-  </data>
-  <data name="Emulation.Video.Collision.Playfields">
-    <value>Игровые поля</value>
-  </data>
-  <data name="Emulation.Video.Collision.Full">
-    <value>Полное</value>
-  </data>
-  <data name="Emulation.Audio.Interpolation.Anti">
-    <value>Антиинтерполяция</value>
-  </data>
-  <data name="Emulation.Audio.Filter.Emulated">
-    <value>Эмулируемый</value>
-  </data>
-  <data name="Emulation.Audio.FilterType">
-    <value>Тип фильтра</value>
-  </data>
-  <data name="Emulation.Audio.Floppy.Sound">
-    <value>Громкость звука дисковода</value>
-  </data>
-  <data name="Emulation.Audio.Floppy.SoundType">
-    <value>Тип звука дисковода</value>
-  </data>
-  <data name="Emulation.Audio.Floppy.MuteEmpty">
-    <value>Заглушать пустые дисководы</value>
-  </data>
-  <data name="Emulation.Audio.Cd.Volume">
-    <value>Громкость CD-аудио</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.Speed">
-    <value>Скорость дисковода</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.WriteProtection">
-    <value>Защита образов дискет от записи</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.WriteRedirect">
-    <value>Перенаправление записи на дискету</value>
-  </data>
-  <data name="Emulation.Storage.Cd.Speed">
-    <value>Скорость CD</value>
-  </data>
-  <data name="Emulation.Keyboard.PassThrough">
-    <value>Сквозная передача физической клавиатуры</value>
-  </data>
-  <data name="Emulation.Mouse.Physical">
-    <value>Физическая мышь</value>
-  </data>
-  <data name="Emulation.Mouse.PhysicalDouble">
-    <value>Двойное перемещение</value>
-  </data>
-  <data name="Emulation.Mouse.Speed">
-    <value>Скорость мыши</value>
-  </data>
-  <data name="Emulation.Mouse.Analog">
-    <value>Аналоговые стики для управления мышью</value>
-  </data>
-  <data name="Emulation.Mouse.AnalogDeadzone">
-    <value>Мёртвая зона аналоговых стиков</value>
-  </data>
-  <data name="Emulation.Mouse.AnalogSpeed">
-    <value>Скорость мыши от аналогового стика</value>
-  </data>
-  <data name="Emulation.Controller.Stick.Left">
-    <value>Левый стик</value>
-  </data>
-  <data name="Emulation.Controller.Stick.Right">
-    <value>Правый стик</value>
-  </data>
-  <data name="Emulation.Controller.Stick.Both">
-    <value>Оба стика</value>
-  </data>
-  <data name="Emulation.Controller.Action.TurboFire">
-    <value>Турбоогонь</value>
-  </data>
-  <data name="Emulation.Controller.Turbo.Button">
-    <value>Кнопка турбо</value>
-  </data>
-  <data name="Emulation.Controller.Turbo.Pulse">
-    <value>Импульс турбо</value>
-  </data>
-  <data name="Emulation.Controller.PortOrder">
-    <value>Порядок портов контроллеров</value>
-  </data>
-  <data name="Emulation.Core.Emulator">
-    <value>Эмулятор</value>
-  </data>
-  <data name="Emulation.Folder.StorageBase">
-    <value>Общая папка хранения эмуляторов</value>
-  </data>
-  <data name="Emulation.Folder.StorageBaseDescription">
-    <value>Жёсткие диски автоматически размещаются в HDD\Amiga, HDD\Atari и папках будущих систем.</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Add">
-    <value>Добавить существующий жёсткий диск</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.List">
-    <value>Жёсткие диски</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.None">
-    <value>К этой машине не подключён жёсткий диск.</value>
-  </data>
-  <data name="Emulation.Keyboard.Priority.Hint">
-    <value>Зарезервированные сочетания клавиш</value>
-  </data>
-  <data name="Emulation.Keyboard.Priority.Description">
-    <value>Сочетания клавиш GW GUI и Windows остаются активными и не перехватываются машиной.</value>
-  </data>
-  <data name="Emulation.Input.Behavior">
-    <value>Поведение</value>
-  </data>
-  <data name="Emulation.Input.Assign">
-    <value>Назначить...</value>
-  </data>
-  <data name="Emulation.Input.Actions">
-    <value>Действия</value>
-  </data>
-  <data name="Emulation.Input.Press">
-    <value>Нажмите клавишу...</value>
-  </data>
-  <data name="Emulation.Folder.CreateStorage">
-    <value>Автоматически создавать недостающие подпапки</value>
-  </data>
-  <data name="Emulation.Folder.Common">
-    <value>Общие папки</value>
-  </data>
-  <data name="Emulation.Input.SharedDescription">
-    <value>Обнаружение устройств общее, а назначения сохраняются отдельно в каждой конфигурации машины.</value>
-  </data>
-  <data name="Emulation.Input.Test">
-    <value>Проверить ввод</value>
-  </data>
-  <data name="Emulation.Input.SharedDevices">
-    <value>Общие устройства ввода</value>
-  </data>
-  <data name="Emulation.Folder.Capture">
-    <value>Папка снимков</value>
-  </data>
-  <data name="Emulation.Folder.State">
-    <value>Папка сохранённых состояний</value>
-  </data>
-  <data name="Emulation.Folder.Default">
-    <value>Папки по умолчанию</value>
-  </data>
-  <data name="Emulation.Controller.NoneDetected">
-    <value>Контроллер не обнаружен</value>
-  </data>
-  <data name="Emulation.Input.TestPrompt">
-    <value>Нажмите клавишу или кнопку мыши, чтобы проверить обнаружение.</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.List">
-    <value>Дискеты</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.Extended">
-    <value>Расширенная ROM</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.Key">
-    <value>Ключ ROM</value>
-  </data>
-  <data name="Emulation.Cpu.Processor">
-    <value>Процессор</value>
-  </data>
-  <data name="Emulation.Cpu.Precision">
-    <value>Точность</value>
-  </data>
-  <data name="Emulation.Cpu.Acceleration">
-    <value>Ускорение</value>
-  </data>
-  <data name="Emulation.Memory.Main">
-    <value>Основная память</value>
-  </data>
-  <data name="Emulation.Memory.Extensions">
-    <value>Расширения памяти</value>
-  </data>
-  <data name="Emulation.Memory.None">
-    <value>Нет</value>
-  </data>
-  <data name="Emulation.Memory.CompatibleWithModel">
-    <value>Конфигурация памяти совместима с {0}.</value>
-  </data>
-  <data name="Emulation.Memory.ExtensionsCompatibleWithModel">
-    <value>Расширения памяти совместимы с {0}.</value>
-  </data>
-  <data name="Emulation.Memory.Z3UnavailableForModel">
-    <value>ОЗУ Zorro III недоступно на {0}.</value>
-  </data>
-  <data name="Emulation.Memory.TotalConfigured">
-    <value>Всего настроено памяти: {0} {1}</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.System">
-    <value>Системная ПЗУ</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.Detected">
-    <value>Обнаруженные ПЗУ</value>
-  </data>
-  <data name="Emulation.Firmware.Use">
-    <value>Использовать</value>
-  </data>
-  <data name="Emulation.Value.NotUsed">
-    <value>Не используется</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.OpenFolder">
-    <value>Открыть папку ПЗУ</value>
-  </data>
-  <data name="Emulation.Firmware.PartiallyCompatible">
-    <value>Частично совместима</value>
-  </data>
-  <data name="Emulation.Firmware.Official">
-    <value>Официальная</value>
-  </data>
-  <data name="Emulation.Firmware.Incompatible">
-    <value>Несовместима</value>
-  </data>
-  <data name="Emulation.Video.Settings.Display">
-    <value>Отображение</value>
-  </data>
-  <data name="Emulation.Video.Settings.Rendering">
-    <value>Рендеринг</value>
-  </data>
-  <data name="Emulation.Amiga.Chipset.NameCompatibility">
-    <value>Совместимость чипсета</value>
-  </data>
-  <data name="Emulation.Audio.Device">
-    <value>Устройство</value>
-  </data>
-  <data name="Emulation.Audio.LatencyLabel">
-    <value>Задержка</value>
-  </data>
-  <data name="Emulation.Audio.Quality">
-    <value>Качество</value>
-  </data>
-  <data name="Emulation.Audio.Drives">
-    <value>Приводы</value>
-  </data>
-  <data name="Emulation.Device.Name.Type">
-    <value>Тип</value>
-  </data>
-  <data name="Emulation.Storage.Device.Add">
-    <value>Добавить устройство хранения</value>
-  </data>
-  <data name="Emulation.Amiga.Storage.Floppy.Dd">
-    <value>Amiga 3,5 дюйма DD · 880 КиБ</value>
-  </data>
-  <data name="Emulation.Amiga.Storage.Floppy.Hd">
-    <value>Amiga 3,5 дюйма HD · 1,76 МиБ</value>
-  </data>
-  <data name="Emulation.Storage.Media.Associated">
-    <value>Связанный носитель</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Automatic">
-    <value>Геометрия диска определяется эмулятором автоматически.</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.BlankCreated">
-    <value>Создан пустой образ дискеты: {0}</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.BlankHint">
-    <value>Файл будет создан пустым, после чего его нужно разбить на разделы и отформатировать в эмулируемой машине.</value>
-  </data>
-  <data name="Emulation.Storage.Cd.Writer">
-    <value>Пишущий CD-привод</value>
-  </data>
-  <data name="Emulation.Storage.Cd.WriterHint">
-    <value>Пустой диск можно создать, только если выбранная машина и эмулятор поддерживают запись.</value>
-  </data>
-  <data name="Emulation.Storage.Cd.Device">
-    <value>Привод CD-ROM</value>
-  </data>
-  <data name="Emulation.Storage.Device.Configure">
-    <value>Настроить</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.CreateBlank">
-    <value>Создать пустую дискету</value>
-  </data>
-  <data name="Emulation.Storage.Disk.Image">
-    <value>Образ диска</value>
-  </data>
-  <data name="Emulation.Storage.Disk.ImageRequired">
-    <value>Выберите существующий образ диска.</value>
-  </data>
-  <data name="Emulation.Storage.Disk.ExistingHint">
-    <value>Выбранный файл будет подключен к этому виртуальному приводу.</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.Device">
-    <value>Дисковод</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.ImageFilter">
-    <value>Образ дискеты Amiga|*.adf|Все файлы|*.*</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Device">
-    <value>Жесткий диск</value>
-  </data>
-  <data name="Emulation.Storage.Device.Interface">
-    <value>Интерфейс</value>
-  </data>
-  <data name="Emulation.Storage.File.Preallocate">
-    <value>Предварительно выделить файл</value>
-  </data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint">
-    <value>Дискеты и CD вставляются или заменяются в запущенной машине.</value>
-  </data>
-  <data name="Emulation.Storage.Media.Remove">
-    <value>Извлечь носитель</value>
-  </data>
-  <data name="Emulation.Storage.Disk.ReplaceExisting">
-    <value>Образ диска уже существует: {0}\nЗаменить его?</value>
-  </data>
-  <data name="Emulation.Storage.Device.CapabilitiesHint">
-    <value>Доступные типы, модели и идентификаторы зависят от выбранной машины.</value>
-  </data>
-  <data name="Emulation.Storage.Tape.Device">
-    <value>Ленточный накопитель</value>
-  </data>
-  <data name="Emulation.Storage.Disk.Use">
-    <value>Использовать диск</value>
-  </data>
-  <data name="Emulation.Storage.Disk.UseExisting">
-    <value>Использовать существующий диск</value>
-  </data>
-  <data name="Emulation.Storage.ModifyInGeneral">
-    <value>Изменить в разделе «Общие»</value>
-  </data>
-  <data name="Emulation.Storage.Device.NoneAvailable">
-    <value>Для этой машины нет дополнительных устройств хранения.</value>
-  </data>
-  <data name="Emulation.Storage.Device.List">
-    <value>Устройства хранения</value>
-  </data>
-  <data name="Emulation.Input.Binding.RestoreDefaults">
-    <value>Восстановить значения по умолчанию</value>
-  </data>
-  <data name="Emulation.Input.Binding.ClearConflicts">
-    <value>Очистить конфликты</value>
-  </data>
-  <data name="Emulation.Keyboard.EmulatedKey">
-    <value>Клавиша машины</value>
-  </data>
-  <data name="Emulation.Input.Binding.Label">
-    <value>Назначение</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelState">
-    <value>Состояние</value>
-  </data>
-  <data name="Emulation.Input.Binding.Search">
-    <value>Поиск клавиши или назначения</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelLegend">
-    <value>Допустимо: уникальное назначение · Конфликт: назначение используется несколько раз · Зарезервировано: сочетание Windows или GW GUI</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelValid">
-    <value>Допустимо</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelConflict">
-    <value>Конфликт</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelReserved">
-    <value>Зарезервировано</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelUnassigned">
-    <value>Не назначено</value>
-  </data>
-  <data name="Emulation.Shortcut.Global">
-    <value>Сочетания эмуляции</value>
-  </data>
-  <data name="Emulation.Tab.Shortcuts">
-    <value>Горячие клавиши</value>
-  </data>
-  <data name="Emulation.Shortcut.ReleaseMouse">
-    <value>Освободить мышь</value>
-  </data>
-  <data name="Emulation.Shortcut.PauseResume">
-    <value>Пауза / продолжить</value>
-  </data>
-  <data name="Emulation.Shortcut.Fullscreen">
-    <value>Полный экран / окно</value>
-  </data>
-  <data name="Emulation.Shortcut.Power">
-    <value>Включить / выключить</value>
-  </data>
-  <data name="Emulation.Shortcut.SoftReset">
-    <value>Мягкая перезагрузка</value>
-  </data>
-  <data name="Emulation.Shortcut.HardReset">
-    <value>Жёсткая перезагрузка</value>
-  </data>
-  <data name="Emulation.Shortcut.QuickSave">
-    <value>Быстрое сохранение состояния</value>
-  </data>
-  <data name="Emulation.Shortcut.QuickLoad">
-    <value>Быстрая загрузка состояния</value>
-  </data>
-  <data name="Emulation.Shortcut.Screenshot">
-    <value>Снимок экрана</value>
-  </data>
-  <data name="Emulation.Shortcut.Mute">
-    <value>Отключить звук активной машины</value>
-  </data>
-  <data name="Emulation.Shortcut.FastForward">
-    <value>Ускорение при удержании</value>
-  </data>
-  <data name="Emulation.Shortcut.InsertMedia">
-    <value>Вставить или заменить носитель</value>
-  </data>
-  <data name="Emulation.Shortcut.EjectMedia">
-    <value>Извлечь носитель</value>
-  </data>
-  <data name="Emulation.Shortcut.NextMedia">
-    <value>Следующий носитель</value>
-  </data>
-  <data name="Emulation.Key.Help">
-    <value>Справка</value>
-  </data>
-  <data name="Emulation.Key.LeftAmiga">
-    <value>Левая Amiga</value>
-  </data>
-  <data name="Emulation.Key.RightAmiga">
-    <value>Правая Amiga</value>
-  </data>
-  <data name="Emulation.Keyboard.SpecialKeysOnlyHint">
-    <value>Буквы, цифры и обычные клавиши-модификаторы передаются напрямую. Здесь назначаются только функциональные и специальные клавиши Amiga.</value>
-  </data>
-  <data name="Emulation.Shortcut.Unavailable">
-    <value>Это действие пока не поддерживается текущим эмулятором.</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Allocation">
-    <value>Выделение места</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.AutomaticProfile">
-    <value>Автоматическая геометрия</value>
-  </data>
-  <data name="Emulation.Storage.Media.Blank">
-    <value>Пустой носитель</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.BytesPerSector">
-    <value>Байт на сектор</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.CalculatedCapacity">
-    <value>Расчётная ёмкость: {0}</value>
-  </data>
-  <data name="Emulation.Controller.Mappings">
-    <value>Назначения контроллера</value>
-  </data>
-  <data name="Emulation.Controller.Port">
-    <value>Порт {0}</value>
-  </data>
-  <data name="Emulation.Controller.Type">
-    <value>Тип контроллера</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.CustomSize">
-    <value>Другой размер</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Cylinders">
-    <value>Цилиндры</value>
-  </data>
-  <data name="Emulation.Storage.File.DestinationFolder">
-    <value>Папка назначения</value>
-  </data>
-  <data name="Emulation.Controller.Detected">
-    <value>Обнаруженные контроллеры</value>
-  </data>
-  <data name="Emulation.Device.Name">
-    <value>Устройство</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Label">
-    <value>Геометрия диска (CHS)</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.SizeProfile">
-    <value>Профиль размера</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.Drive">
-    <value>Дисковод</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Heads">
-    <value>Головки</value>
-  </data>
-  <data name="Emulation.Input.Capture.Hint">
-    <value>Нажмите «Назначить», затем клавишу, кнопку мыши или контроллера.</value>
-  </data>
-  <data name="Emulation.Storage.Disk.InvalidSize">
-    <value>Недопустимый размер диска или геометрия.</value>
-  </data>
-  <data name="Emulation.Mouse.Actions">
-    <value>Действия мыши</value>
-  </data>
-  <data name="Emulation.Mouse.Button.4">
-    <value>Кнопка мыши 4</value>
-  </data>
-  <data name="Emulation.Mouse.Button.5">
-    <value>Кнопка мыши 5</value>
-  </data>
-  <data name="Emulation.Mouse.Capture.Title">
-    <value>Захват мыши</value>
-  </data>
-  <data name="Emulation.Storage.File.PreallocationHint">
-    <value>Сразу резервирует физическое место; иначе образ растёт по мере записи.</value>
-  </data>
-  <data name="Emulation.Controller.SearchBinding">
-    <value>Поиск действия или ввода</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Sectors">
-    <value>Секторы</value>
-  </data>
-  <data name="Emulation.Controller.Action.Up">
-    <value>Вверх</value>
-  </data>
-  <data name="Emulation.Controller.Action.Down">
-    <value>Вниз</value>
-  </data>
-  <data name="Emulation.Controller.Action.Left">
-    <value>Влево</value>
-  </data>
-  <data name="Emulation.Controller.Action.Right">
-    <value>Вправо</value>
-  </data>
-  <data name="Emulation.Controller.Action.Fire1">
-    <value>Кнопка огня 1</value>
-  </data>
-  <data name="Emulation.Controller.Action.Fire2">
-    <value>Кнопка огня 2</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Red">
-    <value>Красная кнопка CD32</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Blue">
-    <value>Синяя кнопка CD32</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Green">
-    <value>Зелёная кнопка CD32</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Yellow">
-    <value>Жёлтая кнопка CD32</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Rewind">
-    <value>CD32 перемотка назад</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.FastForward">
-    <value>CD32 перемотка вперёд</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.PlayPause">
-    <value>CD32 воспроизведение / пауза</value>
-  </data>
-  <data name="Emulation.Controller.AnalogJoystick">
-    <value>Аналоговый джойстик</value>
-  </data>
-  <data name="Emulation.Mouse.Wheel.Up">
-    <value>Колесо мыши вверх</value>
-  </data>
-  <data name="Emulation.Mouse.Wheel.Down">
-    <value>Колесо мыши вниз</value>
-  </data>
-  <data name="Emulation.Mouse.Wheel.Left">
-    <value>Колесо мыши влево</value>
-  </data>
-  <data name="Emulation.Mouse.Wheel.Right">
-    <value>Колесо мыши вправо</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve">
-    <value>Это значение определяется выбранной моделью.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve">
-    <value>Для этой модели не существует совместимого FPU.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve">
-    <value>Альтернативной памяти для этой модели нет.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve">
-    <value>Эта модель не имеет настраиваемой прошивки.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve">
-    <value>У этой модели нет клавиатуры.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve">
-    <value>У этой модели нет мыши.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve">
-    <value>Эта модель не имеет носителей информации.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
-    <value>Выберите модель Jaguar CD, чтобы использовать компакт-диски.</value>
-  </data>
-  <data name="Emulation.Storage.Cassettes">
-    <value>Кассета</value>
-  </data>
-  <data name="Emulation.Storage.Cartridges">
-    <value>Картридж</value>
-  </data>
+  <data name="Emulation.Tab.Machines"><value>Машины</value></data>
+  <data name="Emulation.Core.Name"><value>Ядро</value></data>
+  <data name="Emulation.Core.NameManagerTitle"><value>Ядро эмуляции {0}</value></data>
+  <data name="Emulation.Core.NameManagerDescription"><value>Библиотека остаётся вне GW GUI. Выбранная версия заменяет установленную сейчас.</value></data>
+  <data name="Emulation.Core.NameRequiredVersion"><value>Версия, требуемая GW GUI</value></data>
+  <data name="Emulation.Core.NameLatestVersion"><value>Последняя доступная официальная версия</value></data>
+  <data name="Emulation.Core.NameProjectVersion"><value>Установленная сейчас версия</value></data>
+  <data name="Emulation.Core.NameSearchPrompt"><value>Нажмите «Поиск», чтобы обратиться к официальному серверу Libretro.</value></data>
+  <data name="Emulation.Core.NameSearch"><value>Найти версии</value></data>
+  <data name="Emulation.Core.NameDownload"><value>Скачать и заменить</value></data>
+  <data name="Emulation.Core.NameSearching"><value>Поиск доступных версий…</value></data>
+  <data name="Emulation.Core.NameNoneFound"><value>Официальная версия не найдена.</value></data>
+  <data name="Emulation.Core.NameVersionsFound"><value>{0} версия(ы) доступна.</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>Загрузка {0}…</value></data>
+  <data name="Emulation.Core.NameInstalledPath"><value>Установленная версия: {0}</value></data>
+  <data name="Emulation.Core.NameInstalled"><value>{0} · установлена</value></data>
+  <data name="Emulation.Core.NameNotInstalled"><value>Версия не установлена</value></data>
+  <data name="Emulation.Machine.Open"><value>Открыть</value></data>
+  <data name="Emulation.Tab.Welcome"><value>Добро пожаловать</value></data>
+  <data name="Emulation.Welcome.Text"><value>Выберите выше сохранённую машину и нажмите «Открыть». Каждая запущенная машина появится на отдельной вкладке.</value></data>
+  <data name="Emulation.Configuration.Description"><value>Создайте, выберите, измените или удалите сохраненные конфигурации машины здесь. {0} вкладка для редактирования выбранной конфигурации.</value></data>
+  <data name="Emulation.Tab.General"><value>Общие</value></data>
+  <data name="Emulation.Tab.Video"><value>Видео</value></data>
+  <data name="Emulation.Tab.Storage"><value>Хранилище</value></data>
+  <data name="Emulation.Tab.Keyboard"><value>Клавиатура</value></data>
+  <data name="Emulation.Tab.Mouse"><value>Мышь</value></data>
+  <data name="Emulation.Controller.Tab"><value>Контроллеры</value></data>
+  <data name="Emulation.Tab.Advanced"><value>Дополнительно</value></data>
+  <data name="Emulation.Device.Name.Id"><value>Идентификатор устройства</value></data>
+  <data name="Emulation.Controller.Device"><value>Устройство контроллера {0}</value></data>
+  <data name="Emulation.Keyboard.SystemKey"><value>Клавиша {0}</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Клавиша хоста</value></data>
+  <data name="Emulation.Cpu.Summary"><value>Процессор: {0}</value></data>
+  <data name="Emulation.Memory.Summary"><value>Chip RAM: {0} КиБ\nSlow RAM: {1} КиБ\nFast RAM: {2} МиБ</value></data>
+  <data name="Emulation.Video.Summary"><value>Видеочипсет: {0}</value></data>
+  <data name="Emulation.Cpu.Model"><value>CPU модель</value></data>
+  <data name="Emulation.Cpu.Multiplier"><value>CPU мультипликатор</value></data>
+  <data name="Emulation.Cpu.Compatibility"><value>Cycle-совместимая CPU</value></data>
+<data name="Emulation.Video.Standard"><value>Видеостандарт</value></data>
+  <data name="Emulation.Video.Resolution"><value>Разрешение</value></data>
+  <data name="Emulation.Video.AspectRatio"><value>Соотношение сторон</value></data>
+  <data name="Emulation.Video.Crop"><value>Обрезка границ</value></data>
+  <data name="Emulation.Video.FlickerFixer"><value>Устранение мерцания</value></data>
+  <data name="Emulation.Audio.Enabled"><value>Включить звук</value></data>
+  <data name="Emulation.Audio.Output"><value>Аудиовыход</value></data>
+  <data name="Emulation.Audio.Latency"><value>Задержка (мс)</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>Интерполяция</value></data>
+  <data name="Emulation.Audio.Filter"><value>Аудиофильтр Amiga</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>Разделение стереоканалов (%)</value></data>
+  <data name="Emulation.Audio.Input"><value>Аудиовход</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>Это ядро Amiga не предоставляет аудиовход.</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Выход Windows по умолчанию</value></data>
+  <data name="Emulation.Storage.Media.Add"><value>Добавить носитель</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>Создать жёсткий диск</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>Размер жёсткого диска (MiB)</value></data>
+  <data name="Emulation.Storage.Media.None"><value>Нет носителей. Добавьте дискету, жёсткий диск или CD, поддерживаемые выбранной моделью.</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>Только чтение</value></data>
+  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga Media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|все файлы|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>Жёсткий диск Amiga|*.hdf|Все файлы|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.NotSupported"><value>Выбранная модель не поддерживает жёсткий диск.</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>Эта модель поддерживает не более {0} дисководов.</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>Эта модель поддерживает не более {0} жёстких дисков.</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>выбранная модель не поддерживает CD Drive.</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>две клавиши Amiga используют один и тот же PC ключ. Решите красные отображения перед сохранением.</value></data>
+  <data name="Emulation.Mouse.ReleaseKey"><value>Клавиша освобождения мыши</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>Левая кнопка мыши</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>Правая кнопка мыши</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>Средняя кнопка мыши</value></data>
+  <data name="Emulation.Controller.Detect"><value>Обнаружить контроллеры</value></data>
+  <data name="Emulation.Controller.EmulatedAction"><value>Действие Amiga</value></data>
+  <data name="Emulation.Controller.PhysicalControl"><value>Ввод с клавиатуры, мыши или контроллера</value></data>
+  <data name="Emulation.Amiga.Chipset.Name"><value>Набор микросхем</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>Привод CD</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>Количество дисководов</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>Количество жёстких дисков</value></data>
+  <data name="Emulation.Cpu.Speed"><value>CPU скорость</value></data>
+  <data name="Emulation.Cpu.SpeedOriginal"><value>Исходная скорость</value></data>
+  <data name="Emulation.Cpu.Compatibility.Normal"><value>Обычная</value></data>
+  <data name="Emulation.Cpu.Compatibility.Compatible"><value>Совместимая</value></data>
+  <data name="Emulation.Cpu.Compatibility.Memory"><value>Совместимая с памятью</value></data>
+  <data name="Emulation.Cpu.Compatibility.Exact"><value>Точная по циклам</value></data>
+  <data name="Emulation.Fpu.Integrated"><value>Встроенный FPU</value></data>
+  <data name="Emulation.Value.Enabled"><value>Включено</value></data>
+  <data name="Emulation.Value.Disabled"><value>Отключено</value></data>
+  <data name="Emulation.Value.Minimum"><value>Минимум</value></data>
+  <data name="Emulation.Value.VerySmall"><value>Очень маленький</value></data>
+  <data name="Emulation.Value.Small"><value>Маленький</value></data>
+  <data name="Emulation.Value.Medium"><value>Средний</value></data>
+  <data name="Emulation.Value.Large"><value>Большой</value></data>
+  <data name="Emulation.Value.VeryLarge"><value>Очень большой</value></data>
+  <data name="Emulation.Value.Maximum"><value>Максимум</value></data>
+  <data name="Emulation.State.Locked"><value>Заблокировано</value></data>
+  <data name="Emulation.State.Immediate"><value>Немедленно</value></data>
+  <data name="Emulation.State.Waiting"><value>С ожиданием</value></data>
+  <data name="Emulation.Value.Standard"><value>Стандартный</value></data>
+  <data name="Emulation.Value.Enhanced"><value>Улучшенный</value></data>
+  <data name="Emulation.Value.Internal"><value>Внутренний</value></data>
+  <data name="Emulation.Value.Loud"><value>Громкий</value></data>
+  <data name="Emulation.Video.Resolution.AutoLow"><value>Автоматическое низкое разрешение</value></data>
+  <data name="Emulation.Video.Resolution.AutoSuperHigh"><value>Автоматическое сверхвысокое разрешение</value></data>
+  <data name="Emulation.Video.Resolution.Low"><value>Низкое разрешение</value></data>
+  <data name="Emulation.Video.Resolution.High"><value>Высокое разрешение</value></data>
+  <data name="Emulation.Video.Resolution.SuperHigh"><value>Сверхвысокое разрешение</value></data>
+  <data name="Emulation.Video.LineMode"><value>Режим строк</value></data>
+  <data name="Emulation.Video.HzChange"><value>Изменение частоты обновления</value></data>
+  <data name="Emulation.Video.FrameSkip"><value>Пропуск кадров</value></data>
+  <data name="Emulation.Video.Colors"><value>Глубина цвета</value></data>
+  <data name="Emulation.Video.Gamma"><value>Гамма</value></data>
+  <data name="Emulation.State.ImmediateBlits"><value>Работа блиттера</value></data>
+  <data name="Emulation.Video.Collision.Level"><value>Обнаружение столкновений</value></data>
+  <data name="Emulation.Video.LineMode.Single"><value>Одинарная развёртка</value></data>
+  <data name="Emulation.Video.LineMode.Double"><value>Двойная развёртка</value></data>
+  <data name="Emulation.Video.Collision.Sprites"><value>Спрайты</value></data>
+  <data name="Emulation.Video.Collision.Playfields"><value>Игровые поля</value></data>
+  <data name="Emulation.Video.Collision.Full"><value>Полное</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>Антиинтерполяция</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>Эмулируемый</value></data>
+  <data name="Emulation.Audio.FilterType"><value>Тип фильтра</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>Громкость звука дисковода</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>Тип звука дисковода</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>Заглушать пустые дисководы</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>CD аудиообъем</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Скорость дисковода</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>Защита образов дискет от записи</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Перенаправление записи на дискету</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>Скорость CD</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Сквозная передача физической клавиатуры</value></data>
+  <data name="Emulation.Mouse.Physical"><value>Физическая мышь</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>Двойное перемещение</value></data>
+  <data name="Emulation.Mouse.Speed"><value>Скорость мыши</value></data>
+  <data name="Emulation.Mouse.Analog"><value>Аналоговые стики для управления мышью</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>Мёртвая зона аналоговых стиков</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>Скорость мыши от аналогового стика</value></data>
+  <data name="Emulation.Controller.Stick.Left"><value>Левый стик</value></data>
+  <data name="Emulation.Controller.Stick.Right"><value>Правый стик</value></data>
+  <data name="Emulation.Controller.Stick.Both"><value>Оба стика</value></data>
+  <data name="Emulation.Controller.Action.TurboFire"><value>Турбоогонь</value></data>
+  <data name="Emulation.Controller.Turbo.Button"><value>Кнопка турбо</value></data>
+  <data name="Emulation.Controller.Turbo.Pulse"><value>Импульс турбо</value></data>
+  <data name="Emulation.Controller.PortOrder"><value>Порядок портов контроллеров</value></data>
+  <data name="Emulation.Core.Emulator"><value>Эмулятор</value></data>
+  <data name="Emulation.Folder.StorageBase"><value>Общая папка хранения эмуляторов</value></data>
+  <data name="Emulation.Folder.StorageBaseDescription"><value>Жёсткие диски автоматически размещаются в HDD\Amiga, HDD\Atari и папках будущих систем.</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>Добавить существующий жёсткий диск</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>Жёсткие диски</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>К этой машине не подключён жёсткий диск.</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Зарезервированные сочетания клавиш</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>Сочетания клавиш GW GUI и Windows остаются активными и не перехватываются машиной.</value></data>
+  <data name="Emulation.Input.Behavior"><value>Поведение</value></data>
+  <data name="Emulation.Input.Assign"><value>Назначить...</value></data>
+  <data name="Emulation.Input.Actions"><value>Действия</value></data>
+  <data name="Emulation.Input.Press"><value>Нажмите клавишу...</value></data>
+  <data name="Emulation.Folder.CreateStorage"><value>Автоматически создавать недостающие подпапки</value></data>
+  <data name="Emulation.Folder.Common"><value>Общие папки</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>Обнаружение устройств общее, а назначения сохраняются отдельно в каждой конфигурации машины.</value></data>
+  <data name="Emulation.Input.Test"><value>Проверить ввод</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>Общие устройства ввода</value></data>
+  <data name="Emulation.Folder.Capture"><value>Папка снимков</value></data>
+  <data name="Emulation.Folder.State"><value>Папка сохранённых состояний</value></data>
+  <data name="Emulation.Folder.Default"><value>Папки по умолчанию</value></data>
+  <data name="Emulation.Controller.NoneDetected"><value>Контроллер не обнаружен</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>Нажмите клавишу или кнопку мыши, чтобы проверить обнаружение.</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>Дискеты</value></data>
+  <data name="Emulation.Firmware.Rom.Extended"><value>Расширенная ROM</value></data>
+  <data name="Emulation.Firmware.Rom.Key"><value>Ключ ROM</value></data>
+  <data name="Emulation.Cpu.Processor"><value>Процессор</value></data>
+  <data name="Emulation.Cpu.Precision"><value>Точность</value></data>
+  <data name="Emulation.Cpu.Acceleration"><value>Ускорение</value></data>
+  <data name="Emulation.Memory.Main"><value>Основная память</value></data>
+  <data name="Emulation.Memory.Extensions"><value>Расширения памяти</value></data>
+  <data name="Emulation.Memory.None"><value>Нет</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>Конфигурация памяти совместима с {0}.</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Расширения памяти совместимы с {0}.</value></data>
+  <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM недоступна на {0}.</value></data>
+  <data name="Emulation.Memory.TotalConfigured"><value>Всего настроено памяти: {0} {1}</value></data>
+  <data name="Emulation.Firmware.Rom.System"><value>Система ROM</value></data>
+  <data name="Emulation.Firmware.Rom.Detected"><value>Обнаруженные ПЗУ</value></data>
+  <data name="Emulation.Firmware.Use"><value>Использовать</value></data>
+  <data name="Emulation.Value.NotUsed"><value>Не используется</value></data>
+  <data name="Emulation.Firmware.Rom.OpenFolder"><value>Открытый ROM папка</value></data>
+  <data name="Emulation.Firmware.PartiallyCompatible"><value>Частично совместима</value></data>
+  <data name="Emulation.Firmware.Official"><value>Официальная</value></data>
+  <data name="Emulation.Firmware.Incompatible"><value>Несовместима</value></data>
+  <data name="Emulation.Video.Settings.Display"><value>Отображение</value></data>
+  <data name="Emulation.Video.Settings.Rendering"><value>Рендеринг</value></data>
+  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Совместимость чипсета</value></data>
+  <data name="Emulation.Audio.Device"><value>Устройство</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>Задержка</value></data>
+  <data name="Emulation.Audio.Quality"><value>Качество</value></data>
+  <data name="Emulation.Audio.Drives"><value>Приводы</value></data>
+  <data name="Emulation.Device.Name.Type"><value>Тип</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>Добавить устройство хранения</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3,5 дюйма DD · 880 КиБ</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3,5 дюйма HD · 1,76 МиБ</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>Связанный носитель</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>Геометрия диска определяется эмулятором автоматически.</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>Создан пустой образ дискеты: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>Файл будет создан пустым, после чего его нужно разбить на разделы и отформатировать в эмулируемой машине.</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>CD писатель</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>Пустой диск можно создать, только если выбранная машина и эмулятор поддерживают запись.</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>Привод CD-ROM</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>Настроить</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>Создать пустую дискету</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>Образ диска</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>Выберите существующий образ диска.</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>Выбранный файл будет подключен к этому виртуальному приводу.</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>Дисковод</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>Образ дискеты Amiga|*.adf|Все файлы|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>Жесткий диск</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>Интерфейс</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>Предварительно выделить файл</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Floppies и CD вставляются или заменяются с запущенной машины.</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>Извлечь носитель</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Образ диска уже существует: {0}\nЗаменить его?</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Доступные типы, модели и идентификаторы зависят от выбранной машины.</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>Ленточный накопитель</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>Использовать диск</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>Использовать существующий диск</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>Изменить в разделе «Общие»</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>Для этой машины нет дополнительных устройств хранения.</value></data>
+  <data name="Emulation.Storage.Device.List"><value>Устройства хранения</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>Восстановить значения по умолчанию</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>Очистить конфликты</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Клавиша машины</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>Назначение</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>Состояние</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>Поиск клавиши или назначения</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>Допустимо: уникальное назначение · Конфликт: назначение используется несколько раз · Зарезервировано: сочетание Windows или GW GUI</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>Допустимо</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>Конфликт</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>Зарезервировано</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>Не назначено</value></data>
+  <data name="Emulation.Shortcut.Global"><value>Сочетания эмуляции</value></data>
+  <data name="Emulation.Tab.Shortcuts"><value>Горячие клавиши</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Освободить мышь</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Пауза / продолжить</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Полный экран / окно</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Включить / выключить</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>Мягкая перезагрузка</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Жёсткая перезагрузка</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Быстрое сохранение состояния</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Быстрая загрузка состояния</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Снимок экрана</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Отключить звук активной машины</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Ускорение при удержании</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Вставить или заменить носитель</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Извлечь носитель</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Следующий носитель</value></data>
+  <data name="Emulation.Key.Help"><value>Справка</value></data>
+  <data name="Emulation.Key.LeftAmiga"><value>Левая Amiga</value></data>
+  <data name="Emulation.Key.RightAmiga"><value>Правая Amiga</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Буквы, цифры и обычные клавиши-модификаторы передаются напрямую. Здесь назначаются только функциональные и специальные клавиши Amiga.</value></data>
+  <data name="Emulation.Shortcut.Unavailable"><value>Это действие пока не поддерживается текущим эмулятором.</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>Выделение места</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>Автоматическая геометрия</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>Пустой носитель</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>Байт на сектор</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>Расчётная ёмкость: {0}</value></data>
+  <data name="Emulation.Controller.Mappings"><value>Назначения контроллера</value></data>
+  <data name="Emulation.Controller.Port"><value>Порт {0}</value></data>
+  <data name="Emulation.Controller.Type"><value>Тип контроллера</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>Другой размер</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>Цилиндры</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>Папка назначения</value></data>
+  <data name="Emulation.Controller.Detected"><value>Обнаруженные контроллеры</value></data>
+  <data name="Emulation.Device.Name"><value>Устройство</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>Геометрия диска (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>Профиль размера</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>Дисковод</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>Головки</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>Нажмите «Назначить», затем клавишу, кнопку мыши или контроллера.</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>Недопустимый размер диска или геометрия.</value></data>
+  <data name="Emulation.Mouse.Actions"><value>Действия мыши</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>Кнопка мыши 4</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>Кнопка мыши 5</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>Захват мыши</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>Сразу резервирует физическое место; иначе образ растёт по мере записи.</value></data>
+  <data name="Emulation.Controller.SearchBinding"><value>Поиск действия или ввода</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>Секторы</value></data>
+  <data name="Emulation.Controller.Action.Up"><value>Вверх</value></data>
+  <data name="Emulation.Controller.Action.Down"><value>Вниз</value></data>
+  <data name="Emulation.Controller.Action.Left"><value>Влево</value></data>
+  <data name="Emulation.Controller.Action.Right"><value>Вправо</value></data>
+  <data name="Emulation.Controller.Action.Fire1"><value>Кнопка огня 1</value></data>
+  <data name="Emulation.Controller.Action.Fire2"><value>Кнопка огня 2</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>Красная кнопка CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>Синяя кнопка CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>Зелёная кнопка CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>Жёлтая кнопка CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 перемотка назад</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 перемотка вперёд</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 воспроизведение / пауза</value></data>
+  <data name="Emulation.Controller.AnalogJoystick"><value>Аналоговый джойстик</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>Колесо мыши вверх</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>Колесо мыши вниз</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>Колесо мыши влево</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>Колесо мыши вправо</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>Это значение определяется выбранной моделью.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>Нет совместимости FPU доступна для этой модели.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>Альтернативной памяти для этой модели нет.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>Эта модель не имеет настраиваемой прошивки.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>У этой модели нет клавиатуры.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>У этой модели нет мыши.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Эта модель не имеет носителей информации.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Выберите Jaguar CD модель для использования CD медиа.</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>Кассета</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>Картридж</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Слот для картриджа</value></data>
-  <data name="Emulation.Storage.CompactDiscs">
-    <value>Компакт-диски</value>
-  </data>
-  <data name="Emulation.Atari.Video.Region">
-    <value>Регион</value>
-  </data>
-  <data name="Emulation.Atari.Firmware.Multilingual">
-    <value>Многоязычный</value>
-  </data>
-  <data name="Emulation.Atari.Video.RegionFree">
-    <value>Без региона</value>
-  </data>
-  <data name="Emulation.Tab.Audio" xml:space="preserve">
-    <value>Аудио</value>
-  </data>
-  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve">
-    <value>Требуемое ядро Atari не найдено.</value>
-  </data>
-  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve">
-    <value>Выбранное ядро Atari не могло быть загружено.</value>
-  </data>
-  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve">
-    <value>Необходимая прошивка Atari отсутствует.</value>
-  </data>
-  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve">
-    <value>Прошивка Atari является недействительной или несовместимой.</value>
-  </data>
-  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve">
-    <value>Настроенные СМИ Atari не найдены.</value>
-  </data>
-  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve">
-    <value>Настроенные носители не поддерживаются этой машиной Atari.</value>
-  </data>
-  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve">
-    <value>Опцион Atari имеет недействительное значение.</value>
-  </data>
-  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve">
-    <value>Связь с хозяином Atari не удалась.</value>
-  </data>
-  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve">
-    <value>Государство Атари недействительно.</value>
-  </data>
-  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve">
-    <value>Сохраненное состояние Atari несовместимо с текущей машиной.</value>
-  </data>
-  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve">
-    <value>Неожиданная ошибка эмуляции Atari.</value>
-  </data>
-  <data name="Emulation.Atari.Error.Details" xml:space="preserve">
-    <value>Подробности: {0}</value>
-  </data>
-  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve">
-    <value>Активная конфигурация Atari не может быть изменена или удалена.</value>
-  </data>
-  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve">
-    <value>Требуемая прошивка Atari '{0}' не сконфигурирована для {1}.</value>
-  </data>
-  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve">
-    <value>Прошивка Atari «{0}» не найдена: {1}</value>
-  </data>
-  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve">
-    <value>Настроенных носителей Atari обнаружено не было: {0}</value>
-  </data>
-  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve">
-    <value>Исполняемый путь хоста Atari недоступен.</value>
-  </data>
-  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve">
-    <value>Ядро Atari '{0}' не установлено.</value>
-  </data>
-  <data name="Emulation.Atari.Storage.MediaFilter" xml:space="preserve">
-    <value>СМИ Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Все файлы|*.*</value>
-  </data>
+  <data name="Emulation.Storage.CompactDiscs"><value>Компакт-диски</value></data>
+  <data name="Emulation.Atari.Video.Region"><value>Регион</value></data>
+  <data name="Emulation.Atari.Firmware.Multilingual"><value>Многоязычный</value></data>
+  <data name="Emulation.Atari.Video.RegionFree"><value>Без региона</value></data>
+  <data name="Emulation.Tab.Audio" xml:space="preserve"><value>Аудио</value></data>
+  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>Требуемое ядро Atari не найдено.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>Выбранное ядро Atari не могло быть загружено.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>Необходимая прошивка Atari отсутствует.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>Прошивка Atari является недействительной или несовместимой.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>Настроенные СМИ Atari не найдены.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>Настроенные носители не поддерживаются этой машиной Atari.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>Опцион Atari имеет недействительное значение.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>Связь с хозяином Atari не удалась.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>Государство Атари недействительно.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>Сохраненное состояние Atari несовместимо с текущей машиной.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>Неожиданная ошибка эмуляции Atari.</value></data>
+  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>Подробности: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>Активная конфигурация Atari не может быть изменена или удалена.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve"><value>Требуемая прошивка Atari '{0}' не сконфигурирована для {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>Прошивка Atari «{0}» не найдена: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>Настроенных носителей Atari обнаружено не было: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>Исполняемый путь хоста Atari недоступен.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>Ядро Atari '{0}' не установлено.</value></data>
+  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari Media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|все файлы|*.*</value></data>
   <data name="Emulation.Controller.Automatic"><value>Автоматический</value></data>
   <data name="Emulation.Controller.None"><value>Нет</value></data>
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Параллельный четырехпользовательский адаптер джойстика</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Переключить джойстик/мышь</value></data>
   <data name="Emulation.Atari.Controller.NumericKeypad"><value>Числовая клавиатура</value></data>
-  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
-    <value>Перед включением этой машины эмулятору требуется носитель. Вставьте дискету или настройте жёсткий диск.</value>
-  </data>
-  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
-    <value>Не удалось включить машину</value>
-  </data>
-  <data name="Emulation.Error.Machine" xml:space="preserve">
-    <value>Машина</value>
-  </data>
-  <data name="Emulation.Error.RequiredMedia" xml:space="preserve">
-    <value>Необходимые носители</value>
-  </data>
+  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve"><value>Перед включением этой машины эмулятору требуется носитель. Вставьте дискету или настройте жёсткий диск.</value></data>
+  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve"><value>Не удалось включить машину</value></data>
+  <data name="Emulation.Error.Machine" xml:space="preserve"><value>Машина</value></data>
+  <data name="Emulation.Error.RequiredMedia" xml:space="preserve"><value>Необходимые носители</value></data>
   <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Быстрая загрузка</value></data>
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Звук дисковода</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Поляризованный аудиофильтр</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Показывать активность дисководов на экране эмулятора</value></data>
-  <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Расширение памяти Mosaic</value></data>
-  <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Расширение памяти Axlon</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic"><value>Mosaic RAM расширение</value></data>
+  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM расширение</value></data>
   <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Теневая копия банка Axlon $0F</value></data>
   <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>Стерео POKEY</value></data>
   <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Артефакты высокого разрешения</value></data>
@@ -1063,23 +390,16 @@
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Низкое</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Нормальное</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Высокое</value></data>
-  <data name="Emulation.Media.Insert" xml:space="preserve">
-    <value>Вставить носитель</value>
-  </data>
-  <data name="Emulation.Media.Eject" xml:space="preserve">
-    <value>Извлечь носитель</value>
-  </data>
-  <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
-  <data name="Emulation.Key.AtariHelp" xml:space="preserve"><value>Help</value></data>
-  <data name="Emulation.Key.AtariUndo" xml:space="preserve"><value>Undo</value></data>
-  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Не удалось инициализировать GameInput. Установите или восстановите входящую в комплект среду выполнения GameInput.</value></data>
+  <data name="Emulation.Media.Insert" xml:space="preserve"><value>Вставить носитель</value></data>
+  <data name="Emulation.Media.Eject" xml:space="preserve"><value>Извлечь носитель</value></data>
+<data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Не удалось инициализировать GameInput. Установите или восстановите входящую в комплект среду выполнения GameInput.</value></data>
   <data name="Emulation.Configuration.Brand"><value>Марка</value></data>
   <data name="Emulation.Configuration.Machine"><value>Машина</value></data>
-  <data name="Emulation.Configuration.TotalRam"><value>Всего ОЗУ</value></data>
+  <data name="Emulation.Configuration.TotalRam"><value>Интерфейс: Total RAM</value></data>
   <data name="Emulation.Configuration.Readers"><value>Накопители</value></data>
   <data name="Emulation.Configuration.Peripherals"><value>Периферия</value></data>
   <data name="Emulation.Configuration.Actions"><value>Действия</value></data>
-  <data name="Emulation.Configuration.DeleteConfirm"><value>Удалить конфигурацию {0} {1}?</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>Удалить {0} {1} конфигурация?</value></data>
   <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short"><value>Молчание пустых дискет</value></data>
   <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed"><value>Молчит эмулированный звук диска, пока не вставлен диск. Отключите эту опцию, чтобы сохранить неработающий механический шум.</value></data>
   <data name="Emulation.Help.Audio.Filter.Short"><value>Выберите аналоговую аудиофильтрацию</value></data>
@@ -1094,7 +414,7 @@
   <data name="Emulation.Help.Audio.PokeyStereo.Detailed"><value>Добавить вторую эмулированную POKEY чип для создания стереозвука. Включите эту опцию только для программного обеспечения, поддерживающего двойное программное обеспечение. POKEY Аудио.</value></data>
   <data name="Emulation.Help.Audio.StereoSeparation.Short"><value>Установить стереораздел</value></data>
   <data name="Emulation.Help.Audio.StereoSeparation.Detailed"><value>Устанавливает разделение между левым и правым каналами. Более низкое значение смешивает каналы. Более высокая ценность держит их дальше друг от друга.</value></data>
-  <data name="Emulation.Help.Audio.Floppy.SoundType.Short"><value>Выберите Floppy drive sound set</value></data>
+  <data name="Emulation.Help.Audio.Floppy.SoundType.Short"><value>Выберите набор звуков дискеты</value></data>
   <data name="Emulation.Help.Audio.Floppy.SoundType.Detailed"><value>Выбирает набор образцов, используемый для механических звуков эмулируемых дискет. Он не изменяет поведение диска или дисковых данных.</value></data>
   <data name="Emulation.Help.Audio.FilterType.Short"><value>Выберите модель аудиофильтра</value></data>
   <data name="Emulation.Help.Audio.FilterType.Detailed"><value>Выбирает ответ аппаратного фильтра для эмуляции. Авто следует выбранной модели машины. Конкретный выбор всегда использует этот фильтр.</value></data>
@@ -1103,7 +423,7 @@
   <data name="Emulation.Help.Controller.TurboPulse.Short"><value>Установите интервал турбоимпульса</value></data>
   <data name="Emulation.Help.Controller.TurboPulse.Detailed"><value>Устанавливает время между автоматическими нажатиями кнопок, производимыми турбо. Более короткий интервал приводит к более быстрому повторному выстрелу.</value></data>
   <data name="Emulation.Help.Controller.Compatibility.Short"><value>Выберите режим совместимости контроллера</value></data>
-  <data name="Emulation.Help.Controller.Compatibility.Detailed"><value>Выберите специальное картографирование контроллера, такое как управление с двумя палками, сменные порты или Joy2B+Выберите «Никто», чтобы сохранить стандартное отображение портов.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed"><value>Выбирает специальное отображение контроллера, такое как управление с двумя галочками, порты с заменой или Joy2B+. Выберите «Никто», чтобы сохранить стандартное отображение портов.</value></data>
   <data name="Emulation.Help.Controller.AnalogSensitivity.Short"><value>Установить чувствительность аналогового входа</value></data>
   <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed"><value>Устанавливает, насколько сильно аналоговый вход реагирует на движение. Более высокое значение вызывает больший отклик от того же физического движения.</value></data>
   <data name="Emulation.Help.Controller.DigitalSensitivity.Short"><value>Настройка цифровой входной чувствительности</value></data>
@@ -1113,7 +433,7 @@
   <data name="Emulation.Help.Controller.PaddleSpeed.Short"><value>Скорость движения весла</value></data>
   <data name="Emulation.Help.Controller.PaddleSpeed.Detailed"><value>Устанавливает, как быстро цифровой вход перемещает эмулируемое весло. Более низкое значение движется медленнее. Более высокое значение перемещает его быстрее.</value></data>
   <data name="Emulation.Help.Cpu.FpuModel.Short"><value>Выберите FPU</value></data>
-  <data name="Emulation.Help.Cpu.FpuModel.Detailed"><value>Выберите блок с плавающей точкой, используемый для инструкций с плавающей точкой. Не выбирай никого, чтобы отключить FPUДоступные модели зависят от выбранных CPU.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed"><value>Выберите блок с плавающей точкой, используемый для инструкций с плавающей точкой. Выберите «Никто», чтобы отключить FPU. доступные модели зависят от выбранного CPU.</value></data>
   <data name="Emulation.Help.Cpu.Precision.Short"><value>Выбрать CPU точность эмуляции</value></data>
   <data name="Emulation.Help.Cpu.Precision.Detailed"><value>Выберите, насколько близко CPU Время следует за оригинальным оборудованием. Более точные режимы могут улучшить совместимость, но могут потребовать большей обработки.</value></data>
   <data name="Emulation.Help.Cpu.Speed.Short"><value>Установите эмулированный CPU скорость</value></data>
@@ -1125,7 +445,7 @@
   <data name="Emulation.Help.Mouse.AnalogDeadzone.Short"><value>Установите аналоговые мертвые зоны мыши</value></data>
   <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed"><value>Игнорирует небольшие аналоговые движения вокруг центра, управляя мышью. Увеличьте значение, если указатель перемещается во время выпуска палки.</value></data>
   <data name="Emulation.Help.Memory.AxlonShadow.Short"><value>Позволить Axlon $0F Теневой банк</value></data>
-  <data name="Emulation.Help.Memory.AxlonShadow.Detailed"><value>Зеркала, Axlon Контрольный банк по адресу $0FВключите его только для программного обеспечения или расширения памяти, которые используют этот дополнительный адрес.</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed"><value>Зеркала банка управления Axlon по адресу $0F. Включите ее только для расширения программного обеспечения или памяти, которые используют этот дополнительный адрес.</value></data>
   <data name="Emulation.Help.Memory.Axlon.Short"><value>Настройка Axlon расширение памяти</value></data>
   <data name="Emulation.Help.Memory.Axlon.Detailed"><value>Устанавливает сумму выключенного банка Axlon память. Инвалид удаляет расширение. Другие варианты обеспечивают выбранную емкость памяти.</value></data>
   <data name="Emulation.Help.Memory.Mosaic.Short"><value>Настройка Mosaic расширение памяти</value></data>
@@ -1133,7 +453,7 @@
   <data name="Emulation.Help.Memory.Extensions.Short"><value>Настройка дополнительной памяти расширения</value></data>
   <data name="Emulation.Help.Memory.Extensions.Detailed"><value>Устанавливает объем дополнительной памяти расширения, поддерживаемой выбранной машиной. Не используйте только настроенную основную память.</value></data>
   <data name="Emulation.Help.Memory.Fast.Short"><value>Настройка Fast RAM размер</value></data>
-  <data name="Emulation.Help.Memory.Fast.Detailed"><value>Устанавливает количество Fast RAM Доступно непосредственно для CPUДополнительная Fast RAM Может помочь совместимое программное обеспечение, но изменяет эмулированную конфигурацию оборудования.</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed"><value>устанавливает количество Fast RAM доступна непосредственно для CPU. дополнительный быстрый RAM может помочь совместимому программному обеспечению, но изменяет эмулированную конфигурацию оборудования.</value></data>
   <data name="Emulation.Help.Memory.MapRam.Short"><value>допускать MapRAM</value></data>
   <data name="Emulation.Help.Memory.MapRam.Detailed"><value>Позволяет совместимому программному обеспечению отображать RAM В систему ROM адресная область. Эта опция доступна только на моделях машин, которые поддерживают MapRAM.</value></data>
   <data name="Emulation.Help.Memory.Z3.Short"><value>Настройка Zorro III RAM размер</value></data>
@@ -1173,7 +493,7 @@
   <data name="Emulation.Help.Video.LineMode.Short"><value>Выберите режим видеолинии</value></data>
   <data name="Emulation.Help.Video.LineMode.Detailed"><value>Выберите, как отображаются вертикальные видеолинии. Авто следует за эмулированным режимом. Другие варианты заставляют одиночные линии, двойные линии или сканирующие линии, когда они доступны.</value></data>
   <data name="Emulation.Help.Video.Standard.Short"><value>Выберите стандарт видео</value></data>
-  <data name="Emulation.Help.Video.Standard.Detailed"><value>Выберите эмулируемое телевизионное время, такое как PAL или NTSCЭто влияет на частоту обновления, время аппаратного обеспечения и совместимость программного обеспечения.</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed"><value>выбирает эмулируемое телевизионное время, например: PAL или NTSC. это влияет на частоту обновления, время аппаратного обеспечения и совместимость программного обеспечения.</value></data>
   <data name="Emulation.Help.Video.ExternalPalette.Short"><value>Выберите внешнюю цветовую палитру</value></data>
   <data name="Emulation.Help.Video.ExternalPalette.Detailed"><value>Выберите предопределенную цветовую палитру вместо цветов, генерируемых из текущих настроек видео. Не используйте генерируемые цвета.</value></data>
   <data name="Emulation.Help.Video.Colors.Short"><value>Выберите цветовую глубину</value></data>
@@ -1186,9 +506,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Устанавливает GTIA Задержка цветовой фазы используется для воспроизведения цветов. По умолчанию используется стандартное значение. Числовой выбор смещает полученные оттенки.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>Пропуск рамок</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Установите, сколько кадров дисплея опущено. Инвалид рисует каждый кадр. Более высокие значения уменьшают работу рендеринга, но делают движение менее плавным.</value></data>
-  <data name="Emulation.Controller.Visual" xml:space="preserve">
-    <value>Внешний вид</value>
-  </data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Внешний вид</value></data>
   <data name="Emulation.Video.Compatibility.ExclusiveDisplayTechnology"><value>Только одна технология отображения может быть активна одновременно.</value></data>
   <data name="Emulation.Video.Crt.Color.Amber"><value>Монохромный янтарь</value></data>
   <data name="Emulation.Video.Crt.Color.Color"><value>цвет</value></data>
@@ -1200,10 +518,8 @@
   <data name="Emulation.Video.Crt.Mask.None"><value>Никто</value></data>
   <data name="Emulation.Video.Crt.Mask.ShadowMask"><value>Теневая маска</value></data>
   <data name="Emulation.Video.Crt.Mask.SlotMask"><value>Слот-маска</value></data>
-  <data name="Emulation.Video.FixedPixel.Technology.Lcd"><value>LCD</value></data>
-  <data name="Emulation.Video.FixedPixel.Technology.LedBacklitLcd"><value>LED-backlit LCD</value></data>
-  <data name="Emulation.Video.FixedPixel.Technology.Oled"><value>OLED</value></data>
-  <data name="Emulation.Video.Limitation.UnsupportedBackend"><value>Эта настройка не поддерживается выбранным рендеринговым бэкэндом.</value></data>
+  <data name="Emulation.Video.FixedPixel.Technology.LedBacklitLcd"><value>ЖК-дисплей со светодиодной подсветкой</value></data>
+<data name="Emulation.Video.Limitation.UnsupportedBackend"><value>Эта настройка не поддерживается выбранным рендеринговым бэкэндом.</value></data>
   <data name="Emulation.Video.Orientation.Horizontal"><value>горизонтальный</value></data>
   <data name="Emulation.Video.Orientation.Vertical"><value>вертикальный</value></data>
   <data name="Emulation.Video.Parameter.Brightness"><value>Яркость</value></data>
@@ -1248,6 +564,8 @@
   <data name="Emulation.Video.Parameter.VectorLineIntensity"><value>Интенсивность линии</value></data>
   <data name="Emulation.Video.Parameter.VectorLineThreshold"><value>Линейный порог</value></data>
   <data name="Emulation.Video.Parameter.VectorPersistence"><value>настойчивость</value></data>
+  <data name="Emulation.Video.Vector.Group.Drawing"><value>Обнаружение и отрисовка</value></data>
+  <data name="Emulation.Video.Vector.Group.Glow"><value>Свечение и послесвечение</value></data>
   <data name="Emulation.Video.Preset.CrtAmber"><value>CRT — монохром янтаря</value></data>
   <data name="Emulation.Video.Preset.CrtArcadeColor"><value>CRT — цветная аркада</value></data>
   <data name="Emulation.Video.Preset.CrtGreen"><value>CRT - зеленый монохром</value></data>
@@ -1255,10 +573,9 @@
   <data name="Emulation.Video.Preset.CrtWhite"><value>CRT — белый монохром</value></data>
   <data name="Emulation.Video.Preset.LcdColor"><value>Цветной LCD</value></data>
   <data name="Emulation.Video.Preset.LcdMonochrome"><value>Монохромный LCD</value></data>
-  <data name="Emulation.Video.Preset.LedBacklitLcd"><value>LED-backlit LCD</value></data>
+  <data name="Emulation.Video.Preset.LedBacklitLcd"><value>ЖК-дисплей со светодиодной подсветкой</value></data>
   <data name="Emulation.Video.Preset.Normal"><value>нормальный</value></data>
-  <data name="Emulation.Video.Preset.Oled"><value>OLED</value></data>
-  <data name="Emulation.Video.Preset.Plasma"><value>плазма</value></data>
+<data name="Emulation.Video.Preset.Plasma"><value>плазма</value></data>
   <data name="Emulation.Video.Preset.Vector"><value>Векторный дисплей</value></data>
   <data name="Emulation.Video.Sampling"><value>отбор проб</value></data>
   <data name="Emulation.Video.Sampling.Bicubic"><value>бикубик</value></data>
@@ -1267,22 +584,12 @@
   <data name="Emulation.Video.Sampling.SharpBilinear"><value>Чёткая билинейная</value></data>
   <data name="Emulation.Video.Settings.General"><value>Общие корректировки изображения</value></data>
   <data name="Emulation.Video.Settings.GwGuiProcessing"><value>GW GUI видеообработка</value></data>
-  <data name="Emulation.Video.Subpixels.Bgr"><value>BGR</value></data>
-  <data name="Emulation.Video.Subpixels.Monochrome"><value>монохромный</value></data>
-  <data name="Emulation.Video.Subpixels.Rgb"><value>RGB</value></data>
-  <data name="Emulation.Video.Technology"><value>Технология отображения</value></data>
-  <data name="Emulation.Video.Technology.Crt"><value>CRT</value></data>
-  <data name="Emulation.Video.Technology.FixedPixel"><value>LCD / LED / OLED</value></data>
+<data name="Emulation.Video.Subpixels.Monochrome"><value>монохромный</value></data>
+<data name="Emulation.Video.Technology"><value>Технология отображения</value></data>
   <data name="Emulation.Video.Technology.Normal"><value>нормальный</value></data>
   <data name="Emulation.Video.Technology.Plasma"><value>плазма</value></data>
   <data name="Emulation.Video.Technology.Vector"><value>вектор</value></data>
-  <data name="Emulation.Video.Sampling.Xbr"><value>xbr</value></data>
-  <data name="Emulation.Video.Sampling.Xbrz"><value>xBRZ</value></data>
-  <data name="Emulation.Video.Sampling.Hqx"><value>HQx</value></data>
-  <data name="Emulation.Video.Sampling.ScaleFx"><value>ScaleFX</value></data>
-  <data name="Emulation.Video.Sampling.ScaleNx"><value>ScaleNx</value></data>
-  <data name="Emulation.Video.Sampling.Sabr"><value>САБР</value></data>
-  <data name="Emulation.Video.Settings.Restoration"><value>Восстановление изображения</value></data>
+<data name="Emulation.Video.Settings.Restoration"><value>Восстановление изображения</value></data>
   <data name="Emulation.Video.Parameter.Dedithering"><value>Устранение дизеринга</value></data>
   <data name="Emulation.Video.Parameter.Denoising"><value>оскорблять</value></data>
   <data name="Emulation.Video.Parameter.Debanding"><value>Сокращение бандажей</value></data>
@@ -1292,27 +599,25 @@
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Боб, даже линии</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Боб - странные линии</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Вертикальная смесь</value></data>
-  <data name="Emulation.Video.Technology.Vfd"><value>VFD</value></data>
-  <data name="Emulation.Video.Vfd.Color.Blue"><value>голубой</value></data>
+<data name="Emulation.Video.Vfd.Color.Blue"><value>голубой</value></data>
   <data name="Emulation.Video.Vfd.Color.Green"><value>зеленый</value></data>
   <data name="Emulation.Video.Vfd.Color.Amber"><value>Эмбер</value></data>
   <data name="Emulation.Video.Vfd.Color.Red"><value>красный</value></data>
   <data name="Emulation.Video.Parameter.VfdColor"><value>Фосфорный цвет</value></data>
   <data name="Emulation.Video.Parameter.VfdPhosphorIntensity"><value>Интенсивность фосфора</value></data>
-  <data name="Emulation.Video.Parameter.VfdHaloIntensity"><value>Гало ВФД</value></data>
-  <data name="Emulation.Video.Parameter.VfdPersistence"><value>Устойчивость VFD</value></data>
-  <data name="Emulation.Video.Technology.LedMatrix"><value>Светодиодная матрица</value></data>
-  <data name="Emulation.Video.LedMatrix.Color.Rgb"><value>RGB</value></data>
-  <data name="Emulation.Video.LedMatrix.Color.Red"><value>красный</value></data>
+  <data name="Emulation.Video.Parameter.VfdHaloIntensity"><value>Ореол VFD</value></data>
+  <data name="Emulation.Video.Parameter.VfdPersistence"><value>Продолжительность (ms)</value></data>
+  <data name="Emulation.Video.Technology.LedMatrix"><value>LED Матрица</value></data>
+<data name="Emulation.Video.LedMatrix.Color.Red"><value>красный</value></data>
   <data name="Emulation.Video.LedMatrix.Color.Green"><value>зеленый</value></data>
   <data name="Emulation.Video.LedMatrix.Color.Amber"><value>Эмбер</value></data>
   <data name="Emulation.Video.LedMatrix.Color.Blue"><value>голубой</value></data>
   <data name="Emulation.Video.LedMatrix.Color.White"><value>белый</value></data>
-  <data name="Emulation.Video.Parameter.LedMatrixColor"><value>светодиодный цвет</value></data>
-  <data name="Emulation.Video.Parameter.LedMatrixCellSize"><value>Размер светодиодной ячейки</value></data>
-  <data name="Emulation.Video.Parameter.LedMatrixCellGap"><value>Расстояние между светодиодными ячейками</value></data>
-  <data name="Emulation.Video.Parameter.LedMatrixDiffusion"><value>светодиодная диффузия</value></data>
-  <data name="Emulation.Video.Parameter.LedMatrixBrightness"><value>Светодиодная яркость</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixColor"><value>LED цвет</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixCellSize"><value>LED размер ячейки</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixCellGap"><value>LED Cell Spage</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixDiffusion"><value>Интенсивность ореола</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixBrightness"><value>LED яркость</value></data>
   <data name="Emulation.Video.Technology.DotMatrix"><value>Точка матрицы</value></data>
   <data name="Emulation.Video.DotMatrix.Palette.Green"><value>Зеленый LCD</value></data>
   <data name="Emulation.Video.DotMatrix.Palette.Gray"><value>Серый LCD</value></data>
@@ -1363,8 +668,7 @@
   <data name="Emulation.Video.Settings.SignalSimulation"><value>Симуляция сигналов</value></data>
   <data name="Emulation.Video.Settings.Stylistic"><value>Стилистические эффекты</value></data>
   <data name="Emulation.Video.Parameter.Grain"><value>Аналоговое зерно</value></data>
-  <data name="Emulation.Video.Parameter.Vhs"><value>VHS</value></data>
-  <data name="Emulation.Video.Parameter.ChromaticAberration"><value>Хроматическая аберрация</value></data>
+<data name="Emulation.Video.Parameter.ChromaticAberration"><value>Хроматическая аберрация</value></data>
   <data name="Emulation.Video.Parameter.Bloom"><value>Световое цвести</value></data>
   <data name="Emulation.Video.Parameter.Sepia"><value>Сепия</value></data>
   <data name="Emulation.Video.Tab.Display"><value>дисплей</value></data>
@@ -1375,15 +679,7 @@
   <data name="Emulation.Video.Tab.Motion"><value>Движение</value></data>
   <data name="Emulation.Video.Tab.Signal"><value>сигнал</value></data>
   <data name="Emulation.Video.Tab.Effects"><value>последствия</value></data>
-  <data name="Emulation.Video.Sampling.Hq2x"><value>HQ2x</value></data>
-  <data name="Emulation.Video.Sampling.Hq3x"><value>HQ3x</value></data>
-  <data name="Emulation.Video.Sampling.Hq4x"><value>HQ4x</value></data>
-  <data name="Emulation.Video.Sampling.TwoXSai"><value>2xSaI</value></data>
-  <data name="Emulation.Video.Sampling.SuperTwoXSai"><value>Super 2xSaI</value></data>
-  <data name="Emulation.Video.Sampling.SuperEagle"><value>Super Eagle</value></data>
-  <data name="Emulation.Video.Sampling.EpxScale2x"><value>EPX / Scale2x</value></data>
-  <data name="Emulation.Video.Sampling.Jinc2"><value>JINC2</value></data>
-  <data name="Emulation.Video.Sampling.Lanczos"><value>Lanczos</value></data>  <data name="Emulation.Video.Parameter.FineDetails"><value>Мелкие детали</value></data>
+<data name="Emulation.Video.Parameter.FineDetails"><value>Мелкие детали</value></data>
   <data name="Emulation.Video.Restoration.Level.None"><value>Нет</value></data>
   <data name="Emulation.Video.Restoration.Level.Light"><value>Слабое</value></data>
   <data name="Emulation.Video.Restoration.Level.Medium"><value>Среднее</value></data>
@@ -1394,16 +690,10 @@
   <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>Деградация соединений</value></data>
   <data name="Emulation.Video.Parameter.SignalStandard"><value>Цветовой стандарт</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>Стандартная интенсивность эффекта</value></data>
-  <data name="Emulation.Video.Signal.Connection.RgbScart"><value>RGB (SCART)</value></data>
-  <data name="Emulation.Video.Signal.Connection.Component"><value>Компонент (YPbPr)</value></data>
-  <data name="Emulation.Video.Signal.Connection.SVideo"><value>S-Video</value></data>
-  <data name="Emulation.Video.Signal.Connection.Composite"><value>Composite</value></data>
-  <data name="Emulation.Video.Signal.Connection.Rf"><value>RF</value></data>
-  <data name="Emulation.Video.Signal.Standard.Automatic"><value>автоматический</value></data>
-  <data name="Emulation.Video.Signal.Standard.Pal"><value>PAL</value></data>
-  <data name="Emulation.Video.Signal.Standard.Ntsc"><value>NTSC</value></data>
-  <data name="Emulation.Video.Signal.Standard.Secam"><value>SECAM</value></data>
-  <data name="Emulation.Video.Signal.Connection.None"><value>Ни одного</value></data>
+<data name="Emulation.Video.Signal.Connection.Component"><value>Компонент (YPbPr)</value></data>
+<data name="Emulation.Video.Signal.Connection.Composite"><value>композитный</value></data>
+<data name="Emulation.Video.Signal.Standard.Automatic"><value>автоматический</value></data>
+<data name="Emulation.Video.Signal.Connection.None"><value>Ни одного</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>Горизонтальная кривизна</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>Вертикальная кривизна</value></data>
   <data name="Emulation.Video.Parameter.CrtTrapezoid"><value>трапезоид</value></data>
@@ -1418,4 +708,46 @@
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>Фаза 1/2</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>Фаза 3/4</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>Проблемное кровотечение</value></data>
+  <data name="Emulation.Video.Parameter.VfdEmissionThreshold"><value>Порог свечения</value></data>
+  <data name="Emulation.Video.Parameter.VfdGlassDarkening"><value>Затемнение дымчатого стекла</value></data>
+  <data name="Emulation.Video.Parameter.VfdStructure"><value>Структура анодов</value></data>
+  <data name="Emulation.Video.Parameter.VfdCellSize"><value>Размер ячеек</value></data>
+  <data name="Emulation.Video.Parameter.VfdCellGap"><value>Интервал ячеек</value></data>
+  <data name="Emulation.Video.Parameter.VfdHaloRadius"><value>Радиус ореола</value></data>
+  <data name="Emulation.Video.Vfd.Structure.Graphic"><value>Графический</value></data>
+  <data name="Emulation.Video.Vfd.Structure.DotMatrix"><value>Точечная матрица</value></data>
+  <data name="Emulation.Video.Vfd.Group.PhosphorAndGlass"><value>Люминофор и стекло</value></data>
+  <data name="Emulation.Video.Vfd.Group.Anodes"><value>Структура анодов</value></data>
+  <data name="Emulation.Video.Vfd.Group.GlowAndResponse"><value>Свечение и отклик</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaBlackDepth"><value>Черная глубина</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaPhosphorIntensity"><value>Интенсивность фосфора</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaGammaResponse"><value>Гамма-ответ</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaAutomaticBrightnessLimiter"><value>Автоматический ограничитель яркости</value></data>
+  <data name="Emulation.Video.Plasma.Group.PanelAndCells"><value>Панель и ячейки</value></data>
+  <data name="Emulation.Video.Plasma.Group.Phosphors"><value>Фосфоры</value></data>
+  <data name="Emulation.Video.Plasma.Group.Light"><value>Управление светом</value></data>
+  <data name="Emulation.Video.Plasma.Group.Temporal"><value>Временное реагирование</value></data>
+  <data name="Emulation.Video.Parameter.VectorBeamWidth"><value>Ширина луча</value></data>
+  <data name="Emulation.Video.Parameter.VectorBeamFocus"><value>Фокусировка луча</value></data>
+  <data name="Emulation.Video.Parameter.VectorPhosphorColor"><value>Цвет фосфора</value></data>
+  <data name="Emulation.Video.Parameter.VectorHaloRadius"><value>радиусом валу</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixShape"><value>LED форма</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixHaloRadius"><value>Радиус ореола</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixBlackDepth"><value>Глубина чёрного</value></data>
+  <data name="Emulation.Video.LedMatrix.Shape.Round"><value>Круглая</value></data>
+  <data name="Emulation.Video.LedMatrix.Shape.Square"><value>Квадратная</value></data>
+  <data name="Emulation.Video.LedMatrix.Group.Structure"><value>Структура матрицы</value></data>
+  <data name="Emulation.Video.LedMatrix.Group.Emission"><value>Световое излучение</value></data>
+  <data name="Emulation.Memory.Chip"><value>Чип RAM</value></data>
+  <data name="Emulation.Memory.Slow"><value>Медленная RAM</value></data>
+  <data name="Emulation.Memory.Fast"><value>Быстрая RAM</value></data>
+  <data name="Emulation.Amiga.Controller.Joystick"><value>Амига джойстик</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32"><value>CD32 контроллер</value></data>
+  <data name="Emulation.Atari.Controller.Joystick"><value>Атари джойстик</value></data>
+  <data name="Emulation.Atari.Controller.PaddleControllers"><value>Контроллеры Atari Paddle</value></data>
+  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Легкий пистолет XG-1</value></data>
+  <data name="Emulation.Atari.Controller.Atari5200"><value>Контроллер Atari 5200</value></data>
+  <data name="Emulation.Atari.Controller.Driving"><value>Контроллер вождения Atari</value></data>
+  <data name="Emulation.Atari.Controller.Jaguar"><value>Контроллер Jaguar Atari</value></data>
+  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Контроллер</value></data>
 </root>

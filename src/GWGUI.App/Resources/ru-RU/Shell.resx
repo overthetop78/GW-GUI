@@ -12,73 +12,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.GwNotConfigured">
-    <value>Greaseweazle Инструменты не настроены. Откройте «Параметры» → «Настройки».</value>
-  </data>
-  <data name="App.OperationRunningClose">
-    <value>Идет операция. Остановить это и закрыть GW GUI?</value>
-  </data>
-  <data name="Operation.Finished">
-    <value>Завершено: код {0}, продолжительность {1}.</value>
-  </data>
-  <data name="Operation.Succeeded">
-    <value>Команда выполнена успешно.</value>
-  </data>
-  <data name="Operation.Cancelled">
-    <value>Команда отменена.</value>
-  </data>
-  <data name="Operation.ExitCode">
-    <value>Команда завершилась кодом {0}.</value>
-  </data>
-  <data name="Common.Console">
-    <value>Консоль</value>
-  </data>
-  <data name="Common.Command">
-    <value>Команда</value>
-  </data>
-  <data name="Status.FaceTrackProgress">
-    <value>Сторона {0}: путь {1} — {2}/{3}.</value>
-  </data>
-  <data name="Status.Ready">
-    <value>GW GUI готов.</value>
-  </data>
-  <data name="Status.DefaultProfile">
-    <value>Профиль: По умолчанию</value>
-  </data>
-  <data name="Operation.StopTitle">
-    <value>Остановить операцию</value>
-  </data>
-  <data name="Operation.StopConfirm">
-    <value>Остановить текущую операцию Greaseweazle?</value>
-  </data>
-  <data name="Operation.Busy">
-    <value>Команда Greaseweazle уже запущена. Подождите, пока он завершится или остановится, прежде чем открывать этот инструмент.</value>
-  </data>
-  <data name="Status.Profile">
-    <value>Профиль: {0}</value>
-  </data>
-  <data name="Status.TrackProgress">
-    <value>Путь {0}, сторона {1} — {2}/{3}</value>
-  </data>
-  <data name="Status.TrackUnknown">
-    <value>Трек {0}, сторона {1} — {2} обработана</value>
-  </data>
-  <data name="Operation.Error">
-    <value>Ошибка: {0}</value>
-  </data>
-  <data name="Status.ReadyShort">
-    <value>Готовый</value>
-  </data>
-  <data name="Status.Running">
-    <value>Бег</value>
-  </data>
-  <data name="Status.Success">
-    <value>Успех</value>
-  </data>
-  <data name="Status.Error">
-    <value>Ошибка</value>
-  </data>
-  <data name="Status.Cancelled">
-    <value>Отменено</value>
-  </data>
+  <data name="App.GwNotConfigured"><value>Greaseweazle Инструменты не настроены. Откройте «Параметры» → «Настройки».</value></data>
+  <data name="App.OperationRunningClose"><value>Идет операция. Остановить это и закрыть GW GUI?</value></data>
+  <data name="Operation.Finished"><value>Завершено: код {0}, продолжительность {1}.</value></data>
+  <data name="Operation.Succeeded"><value>Команда выполнена успешно.</value></data>
+  <data name="Operation.Cancelled"><value>Команда отменена.</value></data>
+  <data name="Operation.ExitCode"><value>Команда завершилась кодом {0}.</value></data>
+  <data name="Common.Console"><value>Консоль</value></data>
+  <data name="Common.Command"><value>Команда</value></data>
+  <data name="Status.FaceTrackProgress"><value>Сторона {0}: трек {1} - {2}/{3}</value></data>
+  <data name="Status.Ready"><value>GW GUI готов.</value></data>
+  <data name="Status.DefaultProfile"><value>Профиль: По умолчанию</value></data>
+  <data name="Operation.StopTitle"><value>Остановить операцию</value></data>
+  <data name="Operation.StopConfirm"><value>Остановить текущую операцию Greaseweazle?</value></data>
+  <data name="Operation.Busy"><value>Команда Greaseweazle уже запущена. Подождите, пока он завершится или остановится, прежде чем открывать этот инструмент.</value></data>
+  <data name="Status.Profile"><value>Профиль: {0}</value></data>
+  <data name="Status.TrackProgress"><value>Путь {0}, сторона {1} — {2}/{3}</value></data>
+  <data name="Status.TrackUnknown"><value>Трек {0}, сторона {1} — {2} обработана</value></data>
+  <data name="Operation.Error"><value>Ошибка: {0}</value></data>
+  <data name="Status.ReadyShort"><value>Готовый</value></data>
+  <data name="Status.Running"><value>Бег</value></data>
+  <data name="Status.Success"><value>Успех</value></data>
+  <data name="Status.Error"><value>Ошибка</value></data>
+  <data name="Status.Cancelled"><value>Отменено</value></data>
 </root>

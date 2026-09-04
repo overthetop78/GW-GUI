@@ -12,33 +12,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.SettingsSaveFailed">
-    <value>Einstellungen konnten nicht gespeichert werden.
-
-{0}</value>
-  </data>
-  <data name="Error.Title">
-    <value>GW GUI-Fehler</value>
-  </data>
-  <data name="Error.Unexpected">
-    <value>Ein unerwarteter Fehler wurde abgefangen.
-
-{0}</value>
-  </data>
-  <data name="Error.SaveFailed">
-    <value>Die Einstellungen konnten nicht gespeichert werden. Das Fenster wird trotzdem geschlossen.
-
-{0}</value>
-  </data>
-  <data name="Error.LogSaved">
-    <value>Der vollständige Bericht wurde gespeichert unter:
-{0}</value>
-  </data>
+  <data name="App.SettingsSaveFailed"><value>Einstellungen konnten nicht gespeichert werden.&#xA;&#xA;{0}</value></data>
+  <data name="Error.Title"><value>GW GUI-Fehler</value></data>
+  <data name="Error.Unexpected"><value>Ein unerwarteter Fehler wurde abgefangen.&#xA;&#xA;{0}</value></data>
+  <data name="Error.SaveFailed"><value>Die Einstellungen konnten nicht gespeichert werden. Das Fenster wird trotzdem geschlossen.&#xA;&#xA;{0}</value></data>
+  <data name="Error.LogSaved"><value>Der vollständige Bericht wurde gespeichert unter:&#xA;{0}</value></data>
   <data name="Error.Description.NetworkTimeout"><value>Der Remotedienst reagierte nicht, bevor die Verbindung ausging. Überprüfen Sie die Netzwerkverbindung und versuchen Sie es erneut.</value></data>
   <data name="Error.Description.NetworkDns"><value>Die Remotedienstadresse konnte nicht aufgelöst werden. Überprüfen Sie die Netzwerk- oder DNS-Einstellungen und versuchen Sie es erneut.</value></data>
   <data name="Error.Description.NetworkRefused"><value>Der Ferndienst verweigerte die Verbindung. Es kann nicht verfügbar oder blockiert sein.</value></data>
-  <data name="Error.Description.NetworkUnavailable"><value>Der Remote-Service konnte nicht erreicht werden. Überprüfen sie die internetverbindung, firewall, vpn oder proxy-einstellungen und versuchen sie es erneut.</value></data>
-  <data name="Error.Description.HttpStatus"><value>Der Remotedienst gab den HTTP-Status zurück. Versuchen Sie es später noch einmal.</value></data>
+  <data name="Error.Description.NetworkUnavailable"><value>Der Remote-Service konnte nicht erreicht werden. VPNoder proxy-einstellungen und versuchen sie es erneut.</value></data>
+  <data name="Error.Description.HttpStatus"><value>Der Remotedienst zurückgegeben HTTP Status {0}. Versuchen Sie es später noch einmal.</value></data>
   <data name="Error.Description.OperationTimeout"><value>Die Operation endete nicht innerhalb der erlaubten Zeit. Versuchen Sie es noch einmal.</value></data>
   <data name="Error.Description.OperationCancelled"><value>Die Operation wurde abgesagt, bevor sie beendet wurde.</value></data>
   <data name="Error.Description.AccessDenied"><value>GW GUI hat keine Berechtigung zum Zugriff auf die angeforderte Datei, den Ordner oder das Gerät.</value></data>

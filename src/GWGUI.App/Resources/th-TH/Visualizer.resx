@@ -12,209 +12,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Visual.Decoder">
-    <value>ตัวถอดรหัส</value>
-  </data>
-  <data name="Visual.LinkZoom">
-    <value>ลิงค์ซูม.</value>
-  </data>
-  <data name="Visual.OpenScp">
-    <value>เปิดไฟล์ SCP...</value>
-  </data>
-  <data name="Visual.NoFile">
-    <value>ไม่มีไฟล์ SCP เปิดอยู่</value>
-  </data>
-  <data name="Visual.Waiting">
-    <value>กำลังรอไฟล์</value>
-  </data>
-  <data name="Visual.Inspector">
-    <value>สารวัตร</value>
-  </data>
-  <data name="Visual.SelectTrack">
-    <value>เลือกแทร็ก</value>
-  </data>
-  <data name="Visual.Controls">
-    <value>คลิก: เลือก · วงล้อ: ซูม · คลิกขวา: เลื่อน</value>
-  </data>
-  <data name="Visual.NormalFlux">
-    <value>ฟลักซ์ปกติ</value>
-  </data>
-  <data name="Visual.ShortTransition">
-    <value>การเปลี่ยนแปลงระยะสั้น</value>
-  </data>
-  <data name="Visual.LongTransition">
-    <value>การเปลี่ยนแปลงที่ยาวนาน/ความผิดปกติ</value>
-  </data>
-  <data name="Visual.Loading">
-    <value>กำลังอ่านไฟล์...</value>
-  </data>
-  <data name="Visual.Invalid">
-    <value>ไฟล์ไม่ถูกต้อง</value>
-  </data>
-  <data name="Visual.Title">
-    <value>SCP การสร้างภาพ</value>
-  </data>
-  <data name="Visual.ChecksumValid">
-    <value>ถูกต้อง</value>
-  </data>
-  <data name="Visual.ChecksumInvalid">
-    <value>ไม่ถูกต้อง</value>
-  </data>
-  <data name="Visual.Summary">
-    <value>SCP {0} · {1} แทร็ก · {2} การปฏิวัติ · ความละเอียด {3} ns · {4} การตรวจสอบ</value>
-  </data>
-  <data name="Visual.Revolution">
-    <value>การปฏิวัติ {0}: {1:N0} การเปลี่ยนภาพ · {2:F2} ms · {3:F2} RPM</value>
-  </data>
-  <data name="Visual.Analysis">
-    <value>ถอดรหัส: {0}
-ความมั่นใจ: {1:P0}
-เซลล์โดยประมาณ: {2:F1} ติ๊ก
-โครงสร้าง: {3}</value>
-  </data>
-  <data name="Visual.Track">
-    <value>ด้านข้าง: {0}
-ติดตาม: {1}
-SCP รายการ: {2}</value>
-  </data>
-  <data name="Visual.SideNoData">
-    <value>ด้านข้าง {0}
-ไม่มีข้อมูล</value>
-  </data>
-  <data name="Visual.TrackTooltip">
-    <value>ด้านข้าง {0} · ติดตาม {1}
-{2} การปฏิวัติ</value>
-  </data>
-  <data name="Visual.Automatic">
-    <value>อัตโนมัติ</value>
-  </data>
-  <data name="Visual.StructureHeader">
-    <value>ส่วนหัว/ที่อยู่</value>
-  </data>
-  <data name="Visual.StructureData">
-    <value>ข้อมูลที่ถอดรหัส</value>
-  </data>
-  <data name="Visual.StructureAnomaly">
-    <value>ลบแล้ว/ผิดปกติ</value>
-  </data>
-  <data name="Visual.AnalysedRevolution">
-    <value>การวิเคราะห์ตามการปฏิวัติ {0}</value>
-  </data>
-  <data name="Visual.BitOffset">
-    <value>บิต {0:N0}</value>
-  </data>
-  <data name="Visual.SectorDetail">
-    <value>เซกเตอร์ C{0} H{1} R{2} · {3} ไบต์ · {4} {5}</value>
-  </data>
-  <data name="Visual.CrcValid">
-    <value>ถูกต้อง</value>
-  </data>
-  <data name="Visual.CrcInvalid">
-    <value>ไม่ถูกต้อง</value>
-  </data>
-  <data name="Visual.IntegrityUnavailable">
-    <value>ไม่พร้อมใช้งาน</value>
-  </data>
-  <data name="Visual.StructureKind.Sync">
-    <value>การซิงโครไนซ์</value>
-  </data>
-  <data name="Visual.StructureKind.IdAddressMark">
-    <value>ส่วนหัวของภาค</value>
-  </data>
-  <data name="Visual.StructureKind.DataAddressMark">
-    <value>ข้อมูลภาคส่วน</value>
-  </data>
-  <data name="Visual.StructureKind.DeletedDataAddressMark">
-    <value>ข้อมูลเซกเตอร์ที่ถูกลบ</value>
-  </data>
-  <data name="Visual.StructureKind.AmigaSync">
-    <value>Amiga การซิงโครไนซ์</value>
-  </data>
-  <data name="Visual.StructureKind.AppleAddress">
-    <value>อารัมภบทที่อยู่ของ Apple</value>
-  </data>
-  <data name="Visual.StructureKind.AppleData">
-    <value>ข้อมูลอารัมภบทของ Apple</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreSync">
-    <value>Commodore การซิงโครไนซ์</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreHeader">
-    <value>Commodore ส่วนหัว</value>
-  </data>
-  <data name="Visual.StructureKind.FormatHeader">
-    <value>จัดรูปแบบส่วนหัว</value>
-  </data>
-  <data name="Visual.StructureKind.FormatData">
-    <value>จัดรูปแบบข้อมูล</value>
-  </data>
-  <data name="Visual.StructureKind.TimingAnomaly">
-    <value>ความผิดปกติของเวลา</value>
-  </data>
-  <data name="Visual.OpenFilter">
-    <value>SuperCard Pro จับภาพ (*.scp)|*.scp|ไฟล์ทั้งหมด|*.*</value>
-  </data>
-  <data name="Visual.Integrity.Checksum">
-    <value>เช็คซัม</value>
-  </data>
-  <data name="Visual.Side">
-    <value>ด้านข้าง {0}</value>
-  </data>
-  <data name="Visual.AnalysingTrack">
-    <value>กำลังวิเคราะห์แทร็ก {0}/{1}…</value>
-  </data>
-  <data name="Visual.SideLabel">
-    <value>ด้านข้าง</value>
-  </data>
-  <data name="Visual.TrackLabel">
-    <value>ติดตาม</value>
-  </data>
-  <data name="Visual.ScpEntryLabel">
-    <value>SCP รายการ</value>
-  </data>
-  <data name="Visual.RevolutionsTitle">
-    <value>การปฏิวัติ</value>
-  </data>
-  <data name="Visual.AnalysisTitle">
-    <value>การวิเคราะห์</value>
-  </data>
-  <data name="Visual.ConfidenceLabel">
-    <value>ความมั่นใจ</value>
-  </data>
-  <data name="Visual.CellLabel">
-    <value>เซลล์โดยประมาณ</value>
-  </data>
-  <data name="Visual.StructuresLabel">
-    <value>โครงสร้าง</value>
-  </data>
-  <data name="Visual.StructuresTitle">
-    <value>โครงสร้างที่ตรวจพบ</value>
-  </data>
-  <data name="Visual.SectorsTitle">
-    <value>ภาคส่วน</value>
-  </data>
-  <data name="Visual.TransitionsUnit">
-    <value>การเปลี่ยนภาพ</value>
-  </data>
-  <data name="Visual.OpenImage">
-    <value>เปิดดิสก์อิมเมจ...</value>
-  </data>
-  <data name="Visual.DetachInspector">
-    <value>ถอดผู้ตรวจสอบออก</value>
-  </data>
-  <data name="Visual.AttachInspector">
-    <value>ติดผู้ตรวจสอบ</value>
-  </data>
-  <data name="Visual.SummaryTab">
-    <value>สรุป</value>
-  </data>
-  <data name="Visual.FormatDetected">
-    <value>ตรวจพบรูปแบบ</value>
-  </data>
-  <data name="Visual.AverageRpm">
-    <value>รอบต่อนาทีเฉลี่ย</value>
-  </data>
-  <data name="Visual.AverageDuration">
-    <value>ระยะเวลาเฉลี่ย</value>
-  </data>
+  <data name="Visual.Decoder"><value>ตัวถอดรหัส</value></data>
+  <data name="Visual.LinkZoom"><value>ลิงค์ซูม.</value></data>
+  <data name="Visual.OpenScp"><value>เปิด SCP แฟ้ม...</value></data>
+  <data name="Visual.NoFile"><value>ไม่มีไฟล์ SCP เปิดอยู่</value></data>
+  <data name="Visual.Waiting"><value>กำลังรอไฟล์</value></data>
+  <data name="Visual.Inspector"><value>สารวัตร</value></data>
+  <data name="Visual.SelectTrack"><value>เลือกแทร็ก</value></data>
+  <data name="Visual.Controls"><value>คลิก: เลือก · วงล้อ: ซูม · คลิกขวา: เลื่อน</value></data>
+  <data name="Visual.NormalFlux"><value>ฟลักซ์ปกติ</value></data>
+  <data name="Visual.ShortTransition"><value>การเปลี่ยนแปลงระยะสั้น</value></data>
+  <data name="Visual.LongTransition"><value>การเปลี่ยนแปลงที่ยาวนาน/ความผิดปกติ</value></data>
+  <data name="Visual.Loading"><value>กำลังอ่านไฟล์...</value></data>
+  <data name="Visual.Invalid"><value>ไฟล์ไม่ถูกต้อง</value></data>
+  <data name="Visual.Title"><value>SCP การสร้างภาพ</value></data>
+  <data name="Visual.ChecksumValid"><value>ถูกต้อง</value></data>
+  <data name="Visual.ChecksumInvalid"><value>ไม่ถูกต้อง</value></data>
+  <data name="Visual.Summary"><value>SCP {0} · {1} แทร็ก · {2} การปฏิวัติ · ความละเอียด {3} ns · {4} การตรวจสอบ</value></data>
+  <data name="Visual.Revolution"><value>การปฏิวัติ {0}: {1:N0} การเปลี่ยนภาพ · {2:F2} ms · {3:F2} RPM</value></data>
+  <data name="Visual.Analysis"><value>ถอดรหัส: {0}&#xA;ความมั่นใจ: {1:P0}&#xA;เซลล์โดยประมาณ: {2:F1} ติ๊ก&#xA;โครงสร้าง: {3}</value></data>
+  <data name="Visual.Track"><value>ด้านข้าง: {0}&#xA;ติดตาม: {1}&#xA;SCP รายการ: {2}</value></data>
+  <data name="Visual.SideNoData"><value>ด้านข้าง {0}&#xA;ไม่มีข้อมูล</value></data>
+  <data name="Visual.TrackTooltip"><value>ด้านข้าง {0} · ติดตาม {1}&#xA;{2} การปฏิวัติ</value></data>
+  <data name="Visual.Automatic"><value>อัตโนมัติ</value></data>
+  <data name="Visual.StructureHeader"><value>ส่วนหัว/ที่อยู่</value></data>
+  <data name="Visual.StructureData"><value>ข้อมูลที่ถอดรหัส</value></data>
+  <data name="Visual.StructureAnomaly"><value>ลบแล้ว/ผิดปกติ</value></data>
+  <data name="Visual.AnalysedRevolution"><value>วิเคราะห์พื้นฐานจากการปฏิวัติ {0}.</value></data>
+  <data name="Visual.BitOffset"><value>บิต {0:N0}</value></data>
+  <data name="Visual.SectorDetail"><value>เซกเตอร์ C{0} H{1} R{2} · {3} ไบต์ · {4} {5}</value></data>
+  <data name="Visual.CrcValid"><value>ถูกต้อง</value></data>
+  <data name="Visual.CrcInvalid"><value>ไม่ถูกต้อง</value></data>
+  <data name="Visual.IntegrityUnavailable"><value>ไม่พร้อมใช้งาน</value></data>
+  <data name="Visual.StructureKind.Sync"><value>การซิงโครไนซ์</value></data>
+  <data name="Visual.StructureKind.IdAddressMark"><value>ส่วนหัวของภาค</value></data>
+  <data name="Visual.StructureKind.DataAddressMark"><value>ข้อมูลภาคส่วน</value></data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark"><value>ข้อมูลเซกเตอร์ที่ถูกลบ</value></data>
+  <data name="Visual.StructureKind.AmigaSync"><value>Amiga การซิงโครไนซ์</value></data>
+  <data name="Visual.StructureKind.AppleAddress"><value>อารัมภบทที่อยู่ของ Apple</value></data>
+  <data name="Visual.StructureKind.AppleData"><value>ข้อมูลอารัมภบทของ Apple</value></data>
+  <data name="Visual.StructureKind.CommodoreSync"><value>Commodore การซิงโครไนซ์</value></data>
+  <data name="Visual.StructureKind.CommodoreHeader"><value>Commodore ส่วนหัว</value></data>
+  <data name="Visual.StructureKind.FormatHeader"><value>จัดรูปแบบส่วนหัว</value></data>
+  <data name="Visual.StructureKind.FormatData"><value>จัดรูปแบบข้อมูล</value></data>
+  <data name="Visual.StructureKind.TimingAnomaly"><value>ความผิดปกติของเวลา</value></data>
+  <data name="Visual.OpenFilter"><value>SuperCard Pro จับภาพ (*.scp)|*.scp|ไฟล์ทั้งหมด|*.*</value></data>
+  <data name="Visual.Integrity.Checksum"><value>เช็คซัม</value></data>
+  <data name="Visual.Side"><value>ด้านข้าง {0}</value></data>
+  <data name="Visual.AnalysingTrack"><value>กำลังวิเคราะห์แทร็ก {0}/{1}…</value></data>
+  <data name="Visual.SideLabel"><value>ด้านข้าง</value></data>
+  <data name="Visual.TrackLabel"><value>ติดตาม</value></data>
+  <data name="Visual.ScpEntryLabel"><value>SCP รายการ</value></data>
+  <data name="Visual.RevolutionsTitle"><value>การปฏิวัติ</value></data>
+  <data name="Visual.AnalysisTitle"><value>การวิเคราะห์</value></data>
+  <data name="Visual.ConfidenceLabel"><value>ความมั่นใจ</value></data>
+  <data name="Visual.CellLabel"><value>เซลล์โดยประมาณ</value></data>
+  <data name="Visual.StructuresLabel"><value>โครงสร้าง</value></data>
+  <data name="Visual.StructuresTitle"><value>โครงสร้างที่ตรวจพบ</value></data>
+  <data name="Visual.SectorsTitle"><value>ภาคส่วน</value></data>
+  <data name="Visual.TransitionsUnit"><value>การเปลี่ยนภาพ</value></data>
+  <data name="Visual.OpenImage"><value>เปิดดิสก์อิมเมจ...</value></data>
+  <data name="Visual.DetachInspector"><value>ถอดผู้ตรวจสอบออก</value></data>
+  <data name="Visual.AttachInspector"><value>ติดผู้ตรวจสอบ</value></data>
+  <data name="Visual.SummaryTab"><value>สรุป</value></data>
+  <data name="Visual.FormatDetected"><value>ตรวจพบรูปแบบ</value></data>
+  <data name="Visual.AverageRpm"><value>ค่าเฉลี่ย RPM</value></data>
+  <data name="Visual.AverageDuration"><value>ระยะเวลาเฉลี่ย</value></data>
 </root>

@@ -12,67 +12,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Detection.Ambiguous">
-    <value>格式不明确</value>
-  </data>
-  <data name="Detection.RawScp">
-    <value>已识别原始 SCP 捕获。</value>
-  </data>
-  <data name="Detection.AmigaSize">
-    <value>Amiga 格式根据文件大小识别。</value>
-  </data>
-  <data name="Detection.AcornSize">
-    <value>Acorn 格式根据文件大小识别。</value>
-  </data>
-  <data name="Detection.AtariUnknownSize">
-    <value>该尺寸与已知的 Atari ST 配置文件不匹配。</value>
-  </data>
-  <data name="Detection.AtariSize">
-    <value>Atari ST 从文件大小识别的几何形状。</value>
-  </data>
-  <data name="Detection.MsaInferred">
-    <value>Atari MSA 容器已识别；如有必要，确认几何形状。</value>
-  </data>
-  <data name="Detection.IbmAmbiguous">
-    <value>仅扩展无法确定 IBM PC 几何形状。</value>
-  </data>
-  <data name="Detection.IbmSize">
-    <value>IBM PC 从文件大小识别的几何形状。</value>
-  </data>
-  <data name="Detection.ExtensionInferred">
-    <value>从扩展名推断出的格式。</value>
-  </data>
-  <data name="Detection.Multiple">
-    <value>可以采用多种格式；明确选择一个。</value>
-  </data>
-  <data name="Format.raw.scp">
-    <value>原始通量图像</value>
-  </data>
-  <data name="Format.raw.hfe">
-    <value>HxC 通量图像</value>
-  </data>
-  <data name="Common.DiskImageFilter">
-    <value>磁盘映像|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|所有文件|*.*</value>
-  </data>
-  <data name="Detection.AppleDosOrder">
-    <value>已根据扇区顺序识别 Apple II DOS 格式。</value>
-  </data>
-  <data name="Detection.AppleProDosOrder">
-    <value>已根据扇区顺序识别 Apple II ProDOS 格式。</value>
-  </data>
-  <data name="Detection.AppleContainer">
-    <value>已检测到 Apple 磁盘映像容器。</value>
-  </data>
-  <data name="Classification.Automatic">
-    <value>自动检测</value>
-  </data>
-  <data name="Classification.Machine">
-    <value>计算机</value>
-  </data>
-  <data name="Classification.Format">
-    <value>格式</value>
-  </data>
-  <data name="Classification.Protection">
-    <value>保护</value>
-  </data>
+  <data name="Detection.Ambiguous"><value>格式不明确</value></data>
+  <data name="Detection.RawScp"><value>已识别原始 SCP 捕获。</value></data>
+  <data name="Detection.AmigaSize"><value>Amiga 格式根据文件大小识别。</value></data>
+  <data name="Detection.AcornSize"><value>Acorn 格式根据文件大小识别。</value></data>
+  <data name="Detection.AtariUnknownSize"><value>该尺寸与已知的 Atari ST 配置文件不匹配。</value></data>
+  <data name="Detection.AtariSize"><value>Atari ST 从文件大小识别的几何形状。</value></data>
+  <data name="Detection.MsaInferred"><value>Atari MSA 容器已识别；如有必要，确认几何形状。</value></data>
+  <data name="Detection.IbmAmbiguous"><value>仅扩展无法确定 IBM PC 几何形状。</value></data>
+  <data name="Detection.IbmSize"><value>IBM PC 从文件大小识别的几何形状。</value></data>
+  <data name="Detection.ExtensionInferred"><value>从扩展名推断出的格式。</value></data>
+  <data name="Detection.Multiple"><value>可以采用多种格式；明确选择一个。</value></data>
+  <data name="Format.raw.scp"><value>原始通量图像</value></data>
+  <data name="Common.DiskImageFilter"><value>磁盘图像|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|所有文件|*.*</value></data>
+  <data name="Detection.AppleDosOrder"><value>已根据扇区顺序识别 Apple II DOS 格式。</value></data>
+  <data name="Detection.AppleProDosOrder"><value>已根据扇区顺序识别 Apple II ProDOS 格式。</value></data>
+  <data name="Detection.AppleContainer"><value>已检测到 Apple 磁盘映像容器。</value></data>
+  <data name="Classification.Automatic"><value>自动检测</value></data>
+  <data name="Classification.Machine"><value>计算机</value></data>
+  <data name="Classification.Format"><value>格式</value></data>
+  <data name="Classification.Protection"><value>保护</value></data>
 </root>

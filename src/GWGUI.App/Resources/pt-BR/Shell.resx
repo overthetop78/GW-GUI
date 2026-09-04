@@ -12,73 +12,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.GwNotConfigured">
-    <value>Greaseweazle As ferramentas não estão configuradas. Abra Opções → Preferências.</value>
-  </data>
-  <data name="App.OperationRunningClose">
-    <value>Uma operação está em execução. Pare e feche GW GUI?</value>
-  </data>
-  <data name="Operation.Finished">
-    <value>Concluído: código {0}, duração {1}.</value>
-  </data>
-  <data name="Operation.Succeeded">
-    <value>Comando concluído com sucesso.</value>
-  </data>
-  <data name="Operation.Cancelled">
-    <value>Comando cancelado.</value>
-  </data>
-  <data name="Operation.ExitCode">
-    <value>O comando terminou com o código {0}.</value>
-  </data>
-  <data name="Common.Console">
-    <value>Console</value>
-  </data>
-  <data name="Common.Command">
-    <value>Comando</value>
-  </data>
-  <data name="Status.FaceTrackProgress">
-    <value>Lado {0}: trilha {1} — {2}/{3}</value>
-  </data>
-  <data name="Status.Ready">
-    <value>GW GUI pronto.</value>
-  </data>
-  <data name="Status.DefaultProfile">
-    <value>Perfil: Padrão</value>
-  </data>
-  <data name="Operation.StopTitle">
-    <value>Parar operação</value>
-  </data>
-  <data name="Operation.StopConfirm">
-    <value>Interromper a operação Greaseweazle atual?</value>
-  </data>
-  <data name="Operation.Busy">
-    <value>Um comando Greaseweazle já está em execução. Espere que termine ou pare antes de abrir esta ferramenta.</value>
-  </data>
-  <data name="Status.Profile">
-    <value>Perfil: {0}</value>
-  </data>
-  <data name="Status.TrackProgress">
-    <value>Trilha {0}, lado {1} — {2}/{3}</value>
-  </data>
-  <data name="Status.TrackUnknown">
-    <value>Rastreamento {0}, lado {1} — {2} processado</value>
-  </data>
-  <data name="Operation.Error">
-    <value>Erro: {0}</value>
-  </data>
-  <data name="Status.ReadyShort">
-    <value>Preparar</value>
-  </data>
-  <data name="Status.Running">
-    <value>Correndo</value>
-  </data>
-  <data name="Status.Success">
-    <value>Sucesso</value>
-  </data>
-  <data name="Status.Error">
-    <value>Erro</value>
-  </data>
-  <data name="Status.Cancelled">
-    <value>Cancelado</value>
-  </data>
+  <data name="App.GwNotConfigured"><value>Greaseweazle As ferramentas não estão configuradas. Abra Opções → Preferências.</value></data>
+  <data name="App.OperationRunningClose"><value>Uma operação está em execução. Pare e feche GW GUI?</value></data>
+  <data name="Operation.Finished"><value>Concluído: código {0}, duração {1}.</value></data>
+  <data name="Operation.Succeeded"><value>Comando concluído com sucesso.</value></data>
+  <data name="Operation.Cancelled"><value>Comando cancelado.</value></data>
+  <data name="Operation.ExitCode"><value>O comando terminou com o código {0}.</value></data>
+<data name="Common.Command"><value>Comando</value></data>
+  <data name="Status.FaceTrackProgress"><value>Lado {0}: trilha {1} — {2}/{3}</value></data>
+  <data name="Status.Ready"><value>GW GUI pronto.</value></data>
+  <data name="Status.DefaultProfile"><value>Perfil: Padrão</value></data>
+  <data name="Operation.StopTitle"><value>Parar operação</value></data>
+  <data name="Operation.StopConfirm"><value>Interromper a operação Greaseweazle atual?</value></data>
+  <data name="Operation.Busy"><value>Um comando Greaseweazle já está em execução. Espere que termine ou pare antes de abrir esta ferramenta.</value></data>
+  <data name="Status.Profile"><value>Perfil: {0}</value></data>
+  <data name="Status.TrackProgress"><value>Trilha {0}, lado {1} — {2}/{3}</value></data>
+  <data name="Status.TrackUnknown"><value>Rastreamento {0}, lado {1} — {2} processado</value></data>
+  <data name="Operation.Error"><value>Erro: {0}</value></data>
+  <data name="Status.ReadyShort"><value>Preparar</value></data>
+  <data name="Status.Running"><value>Correndo</value></data>
+  <data name="Status.Success"><value>Sucesso</value></data>
+  <data name="Status.Error"><value>Erro</value></data>
+  <data name="Status.Cancelled"><value>Cancelado</value></data>
+<data name="Common.Console"><value>Consola</value></data>
 </root>

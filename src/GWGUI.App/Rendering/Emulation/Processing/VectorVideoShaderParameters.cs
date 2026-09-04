@@ -4,7 +4,8 @@ using GWGUI.Emulation.Enums;
 
 namespace GWGUI.App.Rendering.Emulation.Processing;
 
-internal readonly record struct VectorVideoShaderParameters(Vector4 Effect, Vector4 Temporal)
+internal readonly record struct VectorVideoShaderParameters(
+    Vector4 Effect, Vector4 Temporal, Vector4 Display)
 {
     internal static VectorVideoShaderParameters From(
         EmulationVideoProcessingConfiguration configuration,
@@ -16,6 +17,8 @@ internal readonly record struct VectorVideoShaderParameters(Vector4 Effect, Vect
                 ? 1f : 0f, vector.LineThreshold / 100f,
                 vector.LineIntensity / 100f, vector.HaloIntensity / 100f),
             new Vector4(vector.PersistenceIntensity / 100f,
-                hasHistory ? 1f : 0f, 0f, 0f));
+                hasHistory ? 1f : 0f, 0f, 0f),
+            new Vector4(vector.BeamWidth / 100f, vector.BeamFocus / 100f,
+                (float)vector.PhosphorColor, vector.HaloRadius / 100f));
     }
 }

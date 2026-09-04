@@ -15,18 +15,10 @@ internal sealed class SoftwareEmulationVideoProcessingPipeline : IEmulationVideo
     private int _historyWidth;
     private int _historyHeight;
     private TimeSpan _historyTimestamp;
-    private float[]? _plasmaHistory;
-    private int _plasmaHistoryWidth;
-    private int _plasmaHistoryHeight;
-    private long _plasmaHistorySequence;
     private float[]? _vectorHistory;
     private int _vectorHistoryWidth;
     private int _vectorHistoryHeight;
     private long _vectorHistorySequence;
-    private float[]? _vfdHistory;
-    private int _vfdHistoryWidth;
-    private int _vfdHistoryHeight;
-    private long _vfdHistorySequence;
     private float[]? _dotMatrixHistory;
     private int _dotMatrixHistoryWidth;
     private int _dotMatrixHistoryHeight;
@@ -42,6 +34,8 @@ internal sealed class SoftwareEmulationVideoProcessingPipeline : IEmulationVideo
     private readonly FilterGeneralPersistence _generalPersistence = new();
     private readonly FilterMotionBlur _motionBlur = new();
     private readonly FilterInterlacing _interlacing = new();
+    private readonly FilterPlasmaPersistence _plasmaPersistence = new();
+    private readonly FilterVfdPersistence _vfdPersistence = new();
     private TimeSpan _signalTimestamp;
     private long _signalSequence;
 
@@ -62,9 +56,9 @@ internal sealed class SoftwareEmulationVideoProcessingPipeline : IEmulationVideo
             && normalized.DisplayTechnology == EmulationVideoDisplayTechnology.Normal)
         {
             ResetHistory();
-            ResetPlasmaHistory();
+            _plasmaPersistence.Reset();
             ResetVectorHistory();
-            ResetVfdHistory();
+            _vfdPersistence.Reset();
             ResetDotMatrixHistory();
             ResetSegmentDisplayHistory();
             ResetEPaperHistory();
@@ -113,12 +107,18 @@ internal sealed class SoftwareEmulationVideoProcessingPipeline : IEmulationVideo
             frame.Sequence, normalized.Stylistic.Grain);
         ApplyFixedPixelTemporal(normalized, linear, outputSize.Width, outputSize.Height,
             frame.Timestamp);
-        ApplyPlasmaTemporal(normalized, linear, outputSize.Width, outputSize.Height,
-            frame.Sequence);
+        if (normalized.DisplayTechnology == EmulationVideoDisplayTechnology.Plasma)
+            _plasmaPersistence.Apply(linear, outputSize.Width, outputSize.Height,
+                frame.Sequence, normalized.Plasma.PersistenceIntensity);
+        else
+            _plasmaPersistence.Reset();
         ApplyVectorTemporal(normalized, linear, outputSize.Width, outputSize.Height,
             frame.Sequence);
-        ApplyVfdTemporal(normalized, linear, outputSize.Width, outputSize.Height,
-            frame.Sequence);
+        if (normalized.DisplayTechnology == EmulationVideoDisplayTechnology.Vfd)
+            _vfdPersistence.Apply(linear, outputSize.Width, outputSize.Height,
+                frame.Timestamp, normalized.Vfd.PersistenceMilliseconds);
+        else
+            _vfdPersistence.Reset();
         ApplyDotMatrixTemporal(normalized, linear, outputSize.Width, outputSize.Height,
             frame.Timestamp);
         ApplySegmentDisplayTemporal(normalized, linear, outputSize.Width, outputSize.Height,
@@ -220,9 +220,9 @@ internal sealed class SoftwareEmulationVideoProcessingPipeline : IEmulationVideo
     public void Dispose()
     {
         ResetHistory();
-        ResetPlasmaHistory();
+        _plasmaPersistence.Reset();
         ResetVectorHistory();
-        ResetVfdHistory();
+        _vfdPersistence.Reset();
         ResetDotMatrixHistory();
         ResetSegmentDisplayHistory();
         ResetEPaperHistory();
@@ -272,37 +272,6 @@ internal sealed class SoftwareEmulationVideoProcessingPipeline : IEmulationVideo
         _historyTimestamp = TimeSpan.Zero;
     }
 
-    private void ApplyPlasmaTemporal(EmulationVideoProcessingConfiguration configuration,
-        float[] colors, int width, int height, long sequence)
-    {
-        if (configuration.DisplayTechnology != EmulationVideoDisplayTechnology.Plasma)
-        {
-            ResetPlasmaHistory();
-            return;
-        }
-        var compatibleHistory = _plasmaHistory is not null
-            && _plasmaHistoryWidth == width && _plasmaHistoryHeight == height
-            && sequence >= _plasmaHistorySequence;
-        if (compatibleHistory)
-        {
-            var persistence = configuration.Plasma.PersistenceIntensity / 100f;
-            for (var index = 0; index < colors.Length; index++)
-                colors[index] = Math.Max(colors[index], _plasmaHistory![index] * persistence);
-        }
-        _plasmaHistory = colors.ToArray();
-        _plasmaHistoryWidth = width;
-        _plasmaHistoryHeight = height;
-        _plasmaHistorySequence = sequence;
-    }
-
-    private void ResetPlasmaHistory()
-    {
-        _plasmaHistory = null;
-        _plasmaHistoryWidth = 0;
-        _plasmaHistoryHeight = 0;
-        _plasmaHistorySequence = 0;
-    }
-
     private void ApplyVectorTemporal(EmulationVideoProcessingConfiguration configuration,
         float[] colors, int width, int height, long sequence)
     {
@@ -315,11 +284,8 @@ internal sealed class SoftwareEmulationVideoProcessingPipeline : IEmulationVideo
             && _vectorHistoryWidth == width && _vectorHistoryHeight == height
             && sequence >= _vectorHistorySequence;
         if (compatibleHistory)
-        {
-            var persistence = configuration.Vector.PersistenceIntensity / 100f;
-            for (var index = 0; index < colors.Length; index++)
-                colors[index] = Math.Max(colors[index], _vectorHistory![index] * persistence);
-        }
+            FilterVectorPersistence.Apply(colors, _vectorHistory!,
+                configuration.Vector.PersistenceIntensity);
         _vectorHistory = colors.ToArray();
         _vectorHistoryWidth = width;
         _vectorHistoryHeight = height;
@@ -332,37 +298,6 @@ internal sealed class SoftwareEmulationVideoProcessingPipeline : IEmulationVideo
         _vectorHistoryWidth = 0;
         _vectorHistoryHeight = 0;
         _vectorHistorySequence = 0;
-    }
-
-    private void ApplyVfdTemporal(EmulationVideoProcessingConfiguration configuration,
-        float[] colors, int width, int height, long sequence)
-    {
-        if (configuration.DisplayTechnology != EmulationVideoDisplayTechnology.Vfd)
-        {
-            ResetVfdHistory();
-            return;
-        }
-        var compatibleHistory = _vfdHistory is not null
-            && _vfdHistoryWidth == width && _vfdHistoryHeight == height
-            && sequence >= _vfdHistorySequence;
-        if (compatibleHistory)
-        {
-            var persistence = configuration.Vfd.PersistenceIntensity / 100f;
-            for (var index = 0; index < colors.Length; index++)
-                colors[index] = Math.Max(colors[index], _vfdHistory![index] * persistence);
-        }
-        _vfdHistory = colors.ToArray();
-        _vfdHistoryWidth = width;
-        _vfdHistoryHeight = height;
-        _vfdHistorySequence = sequence;
-    }
-
-    private void ResetVfdHistory()
-    {
-        _vfdHistory = null;
-        _vfdHistoryWidth = 0;
-        _vfdHistoryHeight = 0;
-        _vfdHistorySequence = 0;
     }
 
     private void ApplyDotMatrixTemporal(EmulationVideoProcessingConfiguration configuration,
@@ -511,26 +446,61 @@ internal sealed class SoftwareEmulationVideoProcessingPipeline : IEmulationVideo
         }
         if (configuration.DisplayTechnology == EmulationVideoDisplayTechnology.Plasma)
         {
-            FilterPlasma.Apply(colors, sourceWidth, sourceHeight,
-                outputWidth, outputHeight, sequence, configuration.Plasma);
+            var plasma = configuration.Plasma;
+            FilterPlasmaBlackDepth.Apply(colors, plasma.BlackDepth);
+            FilterPlasmaGammaResponse.Apply(colors, plasma.GammaResponse);
+            FilterPlasmaPhosphorIntensity.Apply(colors, plasma.PhosphorIntensity);
+            FilterPlasmaAutomaticBrightnessLimiter.Apply(colors,
+                plasma.AutomaticBrightnessLimiter);
+            FilterPlasmaCellStructure.Apply(colors, sourceWidth, sourceHeight,
+                outputWidth, outputHeight, plasma.CellStructure);
+            FilterPlasmaTemporalDithering.Apply(colors, outputWidth, outputHeight,
+                sequence, plasma.TemporalDithering);
+            FilterPlasmaLightDiffusion.Apply(colors, sourceWidth, sourceHeight,
+                outputWidth, outputHeight, plasma.Diffusion);
             return;
         }
         if (configuration.DisplayTechnology == EmulationVideoDisplayTechnology.Vector)
         {
-            FilterVector.Apply(colors, outputWidth, outputHeight,
-                configuration.Vector);
+            var vector = configuration.Vector;
+            if (vector.LineIntensity > 0)
+            {
+                var emission = FilterVectorLineDetection.Detect(colors, outputWidth,
+                    outputHeight, vector.LineThreshold);
+                emission = FilterVectorBeamWidth.Apply(emission, outputWidth, outputHeight,
+                    vector.BeamWidth);
+                emission = FilterVectorBeamFocus.Apply(emission, outputWidth, outputHeight,
+                    vector.BeamFocus);
+                FilterVectorLineIntensity.Apply(colors, emission, vector.LineIntensity);
+                FilterVectorHalo.Apply(colors, emission, outputWidth, outputHeight,
+                    vector.LineIntensity, vector.HaloIntensity, vector.HaloRadius);
+                FilterVectorPhosphorColor.Apply(colors, vector.PhosphorColor);
+            }
             return;
         }
         if (configuration.DisplayTechnology == EmulationVideoDisplayTechnology.Vfd)
         {
-            FilterVfd.Apply(colors, outputWidth, outputHeight,
-                configuration.Vfd);
+            var vfd = configuration.Vfd;
+            var emission = FilterVfdEmissionThreshold.Extract(colors, vfd.EmissionThreshold);
+            FilterVfdCellStructure.Apply(emission, outputWidth, outputHeight,
+                sourceWidth, sourceHeight, vfd.Structure, vfd.CellSize, vfd.CellGap);
+            FilterVfdPhosphorIntensity.Apply(emission, vfd.PhosphorIntensity);
+            var halo = FilterVfdHalo.Create(emission, outputWidth, outputHeight,
+                sourceWidth, sourceHeight, vfd.HaloRadius, vfd.HaloIntensity);
+            FilterVfdGlass.Apply(colors, vfd.GlassDarkening);
+            FilterVfdPhosphorColor.Apply(colors, emission, halo, vfd.Color);
             return;
         }
         if (configuration.DisplayTechnology == EmulationVideoDisplayTechnology.LedMatrix)
         {
-            FilterLedMatrix.Apply(colors, outputWidth, outputHeight,
-                configuration.LedMatrix);
+            var ledMatrix = configuration.LedMatrix;
+            var cells = FilterLedMatrixCellStructure.Create(colors, sourceWidth,
+                sourceHeight, outputWidth, outputHeight, ledMatrix.CellSize,
+                ledMatrix.CellGap, ledMatrix.Shape, ledMatrix.HaloRadius);
+            FilterLedMatrixColor.Apply(cells.Emission, ledMatrix.Color);
+            FilterLedMatrixBrightness.Apply(cells.Emission, ledMatrix.Brightness);
+            FilterLedMatrixBlackDepth.Compose(colors, cells, ledMatrix.Diffusion,
+                ledMatrix.BlackDepth);
             return;
         }
         if (configuration.DisplayTechnology == EmulationVideoDisplayTechnology.DotMatrix)

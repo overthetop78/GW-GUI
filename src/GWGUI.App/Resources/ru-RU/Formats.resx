@@ -12,67 +12,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Detection.Ambiguous">
-    <value>Неоднозначный формат</value>
-  </data>
-  <data name="Detection.RawScp">
-    <value>Необработанный захват SCP распознан.</value>
-  </data>
-  <data name="Detection.AmigaSize">
-    <value>Формат Amiga распознается по размеру файла.</value>
-  </data>
-  <data name="Detection.AcornSize">
-    <value>Формат Acorn распознается по размеру файла.</value>
-  </data>
-  <data name="Detection.AtariUnknownSize">
-    <value>Размер не соответствует известному профилю Atari ST.</value>
-  </data>
-  <data name="Detection.AtariSize">
-    <value>Геометрия Atari ST распознается по размеру файла.</value>
-  </data>
-  <data name="Detection.MsaInferred">
-    <value>Контейнер Atari MSA распознан; при необходимости подтвердите геометрию.</value>
-  </data>
-  <data name="Detection.IbmAmbiguous">
-    <value>Само по себе расширение не может определить геометрию IBM PC.</value>
-  </data>
-  <data name="Detection.IbmSize">
-    <value>Геометрия IBM PC распознается по размеру файла.</value>
-  </data>
-  <data name="Detection.ExtensionInferred">
-    <value>Формат, полученный из расширения.</value>
-  </data>
-  <data name="Detection.Multiple">
-    <value>Возможны несколько форматов; выберите один явно.</value>
-  </data>
-  <data name="Format.raw.scp">
-    <value>Необработанное изображение флюса</value>
-  </data>
-  <data name="Format.raw.hfe">
-    <value>HxC изображение потока</value>
-  </data>
-  <data name="Common.DiskImageFilter">
-    <value>Образы дисков|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Все файлы|*.*</value>
-  </data>
-  <data name="Detection.AppleDosOrder">
-    <value>Формат Apple II DOS определён по порядку секторов.</value>
-  </data>
-  <data name="Detection.AppleProDosOrder">
-    <value>Формат Apple II ProDOS определён по порядку секторов.</value>
-  </data>
-  <data name="Detection.AppleContainer">
-    <value>Обнаружен контейнер образа диска Apple.</value>
-  </data>
-  <data name="Classification.Automatic">
-    <value>Автоматическое определение</value>
-  </data>
-  <data name="Classification.Machine">
-    <value>Компьютер</value>
-  </data>
-  <data name="Classification.Format">
-    <value>Формат</value>
-  </data>
-  <data name="Classification.Protection">
-    <value>Защита</value>
-  </data>
+  <data name="Detection.Ambiguous"><value>Неоднозначный формат</value></data>
+  <data name="Detection.RawScp"><value>Необработанный захват SCP распознан.</value></data>
+  <data name="Detection.AmigaSize"><value>Формат Amiga распознается по размеру файла.</value></data>
+  <data name="Detection.AcornSize"><value>Формат Acorn распознается по размеру файла.</value></data>
+  <data name="Detection.AtariUnknownSize"><value>размер не соответствует известному Atari ST профиль.</value></data>
+  <data name="Detection.AtariSize"><value>Геометрия Atari ST распознается по размеру файла.</value></data>
+  <data name="Detection.MsaInferred"><value>Контейнер Atari MSA распознан; при необходимости подтвердите геометрию.</value></data>
+  <data name="Detection.IbmAmbiguous"><value>расширение само по себе не может определить IBM PC геометрия.</value></data>
+  <data name="Detection.IbmSize"><value>Геометрия IBM PC распознается по размеру файла.</value></data>
+  <data name="Detection.ExtensionInferred"><value>Формат, полученный из расширения.</value></data>
+  <data name="Detection.Multiple"><value>Возможны несколько форматов; выберите один явно.</value></data>
+  <data name="Format.raw.scp"><value>Необработанное изображение флюса</value></data>
+  <data name="Common.DiskImageFilter"><value>Disk Images|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|все файлы|*.*</value></data>
+  <data name="Detection.AppleDosOrder"><value>Формат Apple II DOS определён по порядку секторов.</value></data>
+  <data name="Detection.AppleProDosOrder"><value>Формат Apple II ProDOS определён по порядку секторов.</value></data>
+  <data name="Detection.AppleContainer"><value>Обнаружен контейнер образа диска Apple.</value></data>
+  <data name="Classification.Automatic"><value>Автоматическое определение</value></data>
+  <data name="Classification.Machine"><value>Компьютер</value></data>
+  <data name="Classification.Format"><value>Формат</value></data>
+  <data name="Classification.Protection"><value>Защита</value></data>
 </root>

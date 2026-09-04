@@ -12,10 +12,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Logs.ExportFilter">
-    <value>Text log (*.txt)|*.txt|All files|*.*</value>
-  </data>
-  <data name="Logs.History">
-    <value>Operation history</value>
-  </data>
 </root>

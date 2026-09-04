@@ -12,165 +12,56 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Options.Title">
-    <value>Opciók</value>
-  </data>
-  <data name="Options.General">
-    <value>Általános</value>
-  </data>
-  <data name="Options.Tools">
-    <value>Greaseweazle Eszközök</value>
-  </data>
-  <data name="Options.Hardware">
-    <value>Vezérlők és meghajtók</value>
-  </data>
-  <data name="Options.Profiles">
-    <value>Profilok</value>
-  </data>
-  <data name="Options.ImagesFolder">
-    <value>Alapértelmezett lemezkép mappa</value>
-  </data>
-  <data name="Options.Language">
-    <value>Nyelv</value>
-  </data>
-  <data name="Options.Theme">
-    <value>Téma</value>
-  </data>
-  <data name="Theme.System">
-    <value>Rendszer</value>
-  </data>
-  <data name="Theme.Light">
-    <value>Fény</value>
-  </data>
-  <data name="Theme.Dark">
-    <value>Sötét</value>
-  </data>
-  <data name="Options.GwPath">
-    <value>Útvonal ide: gw.exe</value>
-  </data>
-  <data name="Options.ToolsHelp">
-    <value>Ha az eszközök hiányoznak, az asszisztens felajánlja azok letöltését vagy egy meglévő telepítés kiválasztását. A frissítéseket csak bejelentik.</value>
-  </data>
-  <data name="Options.HardwarePersistence">
-    <value>A hardverbeállítások tárolva maradnak, ha a meghajtót leválasztják.</value>
-  </data>
-  <data name="Options.ExecutableFilter">
-    <value>Greaseweazle (gw.exe)|gw.exe|Futtatható (*.exe)|*.exe</value>
-  </data>
-  <data name="Options.RemoveHardware">
-    <value>Eltávolítja ezt a tárolt vezérlőt és az összes meghajtót?</value>
-  </data>
-  <data name="Options.HardwareTitle">
-    <value>Hardver</value>
-  </data>
-  <data name="Options.UseConversionTags">
-    <value>Használjon címkéket a konverziós fájlnevekben</value>
-  </data>
-  <data name="Options.TagPreset">
-    <value>Előre beállított</value>
-  </data>
-  <data name="Options.TagPresetFamily">
-    <value>Csak család</value>
-  </data>
-  <data name="Options.TagPresetFormat">
-    <value>Csak formátum</value>
-  </data>
-  <data name="Options.TagPresetFamilyFormat">
-    <value>Család és forma</value>
-  </data>
-  <data name="Options.TagPresetFamilyExtension">
-    <value>Család és kiterjedés</value>
-  </data>
-  <data name="Options.TagPresetDetailed">
-    <value>Család, formátum és kiterjesztés</value>
-  </data>
-  <data name="Options.TagPattern">
-    <value>Konverziós címke minta</value>
-  </data>
-  <data name="Options.TagVariablesTitle">
-    <value>Elérhető változók</value>
-  </data>
-  <data name="Options.TagVariableName">
-    <value>Forrásfájlnév</value>
-  </data>
-  <data name="Options.TagVariableFamily">
-    <value>Család: PC, ST, AMIGA…</value>
-  </data>
-  <data name="Options.TagVariableFormat">
-    <value>Formátum: 720, 1440, DD…</value>
-  </data>
-  <data name="Options.TagVariableExtension">
-    <value>Kiterjesztés: IMA, ST, ADF…</value>
-  </data>
-  <data name="Options.TagVariableDateIso">
-    <value>Időpont: 2026-08-06</value>
-  </data>
-  <data name="Options.TagVariableDateCompact">
-    <value>Dátum: 20260806</value>
-  </data>
-  <data name="Options.TagVariableDateLocal">
-    <value>Időpont: 2026-08-06</value>
-  </data>
-  <data name="Options.TagVariableTimeFull">
-    <value>Időpont: 14-35-42</value>
-  </data>
-  <data name="Options.TagVariableTimeCompact">
-    <value>Időpont: 143542</value>
-  </data>
-  <data name="Options.TagVariableTimeShort">
-    <value>Időpont: 14-35</value>
-  </data>
-  <data name="Options.TagPatternHelp">
-    <value>{NAME} – forrásfájlnév
-{FAMILY} — gépcsalád (PC, ST, AMIGA…)
-{FORMAT} — formátum vagy geometria (720, 1440, DD…)
-{EXTENSION} – kimeneti kiterjesztés (IMA, ST, ADF…)
-{DATE:YYYY-MM-DD} — dátum 2026-08-06
-{DATE:YYYYMMDD} – dátum: 20260806
-{DATE:DD-MM-YYYY} — dátum 2026-08-06
-{TIME:HH-MM-SS} — idő 14-35-42
-{TIME:HHMMSS} — idő: 143542
-{TIME:HH-MM} — idő 14-35</value>
-  </data>
-  <data name="Options.RecentTagPatterns">
-    <value>Legutóbbi egyedi minták</value>
-  </data>
-  <data name="Options.NextTagExample">
-    <value>Következő példa</value>
-  </data>
-  <data name="Options.TagPatternPreview">
-    <value>Példa: {0}</value>
-  </data>
-  <data name="Options.TagPatternInvalid">
-    <value>A címkemintának tartalmaznia kell a {tag} értéket.</value>
-  </data>
-  <data name="Options.EnableLogs">
-    <value>Mentse el a naplókat</value>
-  </data>
-  <data name="Options.Logs">
-    <value>Naplók</value>
-  </data>
-  <data name="Options.LogsDescription">
-    <value>Minden műveletnek saját fájlja van a GW GUI Naplók mappában.</value>
-  </data>
-  <data name="Options.LogActionErase">
-    <value>Törlés</value>
-  </data>
-  <data name="Options.LogActionClean">
-    <value>Tiszta fejek</value>
-  </data>
-  <data name="Options.OpenLogsFolder">
-    <value>Nyissa meg a mappát</value>
-  </data>
-  <data name="Options.LogMaximumSize">
-    <value>Maximális méret</value>
-  </data>
-  <data name="Options.KeepLogArchives">
-    <value>Tartsa meg a korábbi naplókat</value>
-  </data>
-  <data name="Options.LogUnlimitedHint">
-    <value>0 = korlátlan</value>
-  </data>
+  <data name="Options.Title"><value>Opciók</value></data>
+  <data name="Options.General"><value>Általános</value></data>
+  <data name="Options.Tools"><value>Greaseweazle Eszközök</value></data>
+  <data name="Options.Hardware"><value>Vezérlők és meghajtók</value></data>
+  <data name="Options.Profiles"><value>Profilok</value></data>
+  <data name="Options.ImagesFolder"><value>Alapértelmezett lemezkép mappa</value></data>
+  <data name="Options.Language"><value>Nyelv</value></data>
+  <data name="Options.Theme"><value>Téma</value></data>
+  <data name="Theme.System"><value>Rendszer</value></data>
+  <data name="Theme.Light"><value>Fény</value></data>
+  <data name="Theme.Dark"><value>Sötét</value></data>
+  <data name="Options.GwPath"><value>Útvonal ide: gw.exe</value></data>
+  <data name="Options.ToolsHelp"><value>Ha az eszközök hiányoznak, az asszisztens felajánlja azok letöltését vagy egy meglévő telepítés kiválasztását. A frissítéseket csak bejelentik.</value></data>
+  <data name="Options.HardwarePersistence"><value>A hardverbeállítások tárolva maradnak, ha a meghajtót leválasztják.</value></data>
+  <data name="Options.ExecutableFilter"><value>Gasseweuzle (gw.exe)|gw.exe|végrehajtható (*.exe)|*.exe</value></data>
+  <data name="Options.RemoveHardware"><value>Eltávolítja ezt a tárolt vezérlőt és az összes meghajtót?</value></data>
+  <data name="Options.HardwareTitle"><value>Hardver</value></data>
+  <data name="Options.UseConversionTags"><value>Használjon címkéket a konverziós fájlnevekben</value></data>
+  <data name="Options.TagPreset"><value>Előre beállított</value></data>
+  <data name="Options.TagPresetFamily"><value>Csak család</value></data>
+  <data name="Options.TagPresetFormat"><value>Csak formátum</value></data>
+  <data name="Options.TagPresetFamilyFormat"><value>Család és forma</value></data>
+  <data name="Options.TagPresetFamilyExtension"><value>Család és kiterjedés</value></data>
+  <data name="Options.TagPresetDetailed"><value>Család, formátum és kiterjesztés</value></data>
+  <data name="Options.TagPattern"><value>Konverziós címke minta</value></data>
+  <data name="Options.TagVariablesTitle"><value>Elérhető változók</value></data>
+  <data name="Options.TagVariableName"><value>Forrásfájlnév</value></data>
+  <data name="Options.TagVariableFamily"><value>Család: PC, ST, AMIGA…</value></data>
+  <data name="Options.TagVariableFormat"><value>Formátum: 720, 1440, DD…</value></data>
+  <data name="Options.TagVariableExtension"><value>Kiterjesztés: IMA, ST, ADF…</value></data>
+  <data name="Options.TagVariableDateIso"><value>Időpont: 2026-08-06</value></data>
+  <data name="Options.TagVariableDateCompact"><value>Dátum: 20260806</value></data>
+  <data name="Options.TagVariableDateLocal"><value>Időpont: 2026-08-06</value></data>
+  <data name="Options.TagVariableTimeFull"><value>Időpont: 14-35-42</value></data>
+  <data name="Options.TagVariableTimeCompact"><value>Időpont: 143542</value></data>
+  <data name="Options.TagVariableTimeShort"><value>Időpont: 14-35</value></data>
+  <data name="Options.TagPatternHelp"><value>{NAME} - forrásfájlnév&#xA;{FAMILY} - gépcsalád (PC, ST, AMIGA...)&#xA;{FORMAT} - formátum vagy geometria (720, 1440, DD...)&#xA;{EXTENSION} - kimeneti kiterjesztés (IMA, ST, ADF...)&#xA;{DATE:YYYY-MM-DD} - date 2026- 08- 06&#xA;{DATE:YYYYMMDD} - date 20260806&#xA;{DATE:DD-MM-YYYY} - dátum 06- 08- 2026&#xA;{TIME:HH-MM-SS} - idő 14- 35- 42&#xA;{TIME:HHMMSS} - idő 143542&#xA;{TIME:HH-MM} - 14- 35</value></data>
+  <data name="Options.RecentTagPatterns"><value>Legutóbbi egyedi minták</value></data>
+  <data name="Options.NextTagExample"><value>Következő példa</value></data>
+  <data name="Options.TagPatternPreview"><value>Példa: {0}</value></data>
+  <data name="Options.TagPatternInvalid"><value>A címke mintájának tartalmaznia kell {tag}.</value></data>
+  <data name="Options.EnableLogs"><value>Mentse el a naplókat</value></data>
+  <data name="Options.Logs"><value>Naplók</value></data>
+  <data name="Options.LogsDescription"><value>Minden műveletnek saját fájlja van a GW GUI Naplók mappában.</value></data>
+  <data name="Options.LogActionErase"><value>Törlés</value></data>
+  <data name="Options.LogActionClean"><value>Tiszta fejek</value></data>
+  <data name="Options.OpenLogsFolder"><value>Nyissa meg a mappát</value></data>
+  <data name="Options.LogMaximumSize"><value>Maximális méret</value></data>
+  <data name="Options.KeepLogArchives"><value>Tartsa meg a korábbi naplókat</value></data>
+  <data name="Options.LogUnlimitedHint"><value>0 = korlátlan</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>Motorok</value></data>
   <data name="Engines.Description" xml:space="preserve"><value>Minden művelethez külön válassza ki a használt motort.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>A GW GUI belső motorja</value></data>
@@ -185,9 +76,7 @@
   <data name="Controllers.NoneDetected" xml:space="preserve"><value>Nem található vezérlő</value></data>
   <data name="Controllers.DetectedCount" xml:space="preserve"><value>{0} vezérlő észlelve</value></data>
   <data name="Controllers.TestRumble" xml:space="preserve"><value>Rezgés tesztelése</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve">
-    <value>Rezgés erőssége</value>
-  </data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>Rezgés erőssége</value></data>
   <data name="Controllers.LiveInputs" xml:space="preserve"><value>Élő bemenetek</value></data>
   <data name="Controllers.Control" xml:space="preserve"><value>Vezérlőelem</value></data>
   <data name="Controllers.Value" xml:space="preserve"><value>Érték</value></data>
@@ -218,17 +107,10 @@
   <data name="Controllers.Yes" xml:space="preserve"><value>Igen</value></data>
   <data name="Controllers.No" xml:space="preserve"><value>Nem</value></data>
   <data name="Controllers.None" xml:space="preserve"><value>Nincs</value></data>
-  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>Általános gamepad</value></data>
-  <data name="Controllers.Model.Auto" xml:space="preserve"><value>Automatikus</value></data>
-  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>Kormánykerék</value></data>
-  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>Repülőbot</value></data>
-  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>Arcade bot</value></data>
-  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Nyers bájt</value></data>
+<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Nyers bájt</value></data>
   <data name="Controllers.AnalogValues" xml:space="preserve"><value>Analóg értékek</value></data>
   <data name="Controllers.DetectionFailed" xml:space="preserve"><value>A vezérlők észlelése sikertelen</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve">
-    <value>Vezérlők észlelése…</value>
-  </data>
+  <data name="Controllers.Detecting" xml:space="preserve"><value>Vezérlők észlelése…</value></data>
   <data name="Controllers.ReadFailed" xml:space="preserve"><value>A vezérlő olvasása sikertelen</value></data>
   <data name="Controllers.TestRunning" xml:space="preserve"><value>Teszt folyamatban…</value></data>
   <data name="Controllers.TestFailed" xml:space="preserve"><value>A teszt sikertelen</value></data>
@@ -253,91 +135,52 @@
   <data name="Controllers.Roll" xml:space="preserve"><value>Dőlés</value></data>
   <data name="Controllers.Pitch" xml:space="preserve"><value>Bólintás</value></data>
   <data name="Controllers.Yaw" xml:space="preserve"><value>Elfordulás</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve">
-    <value>Érzékelők</value>
-  </data>
-  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
-    <value>Felületnavigáció</value>
-  </data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
-    <value>Játékvezérlő</value>
-  </data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
-    <value>Alacsony frekvenciájú motor</value>
-  </data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
-    <value>Magas frekvenciájú motor</value>
-  </data>
-  <data name="Controllers.Enum.Share" xml:space="preserve">
-    <value>Megosztás</value>
-  </data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve">
-    <value>Lineáris</value>
-  </data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve">
-    <value>Szögirányú</value>
-  </data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve">
-    <value>Normál</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
-    <value>Állandó</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
-    <value>Felfutás</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
-    <value>Szinuszhullám</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
-    <value>Négyszöghullám</value>
-  </data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
-    <value>Háromszöghullám</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
-    <value>Emelkedő fűrészfog</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
-    <value>Csökkenő fűrészfog</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
-    <value>Rugó</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
-    <value>Súrlódás</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
-    <value>Csillapító</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
-    <value>Tehetetlenség</value>
-  </data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve">
-    <value>Botkormány</value>
-  </data>
-  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
-    <value>Többtengelyes vezérlő</value>
-  </data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
-    <value>HID-használat</value>
-  </data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve">
-    <value>tengelyek</value>
-  </data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve">
-    <value>gombok</value>
-  </data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
-    <value>Összesített</value>
-  </data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve">
-    <value>Virtuális</value>
-  </data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve">
-    <value>Bemeneti jelentés</value>
-  </data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
-    <value>Kimeneti jelentés</value>
-  </data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Érzékelők</value></data>
+  <data name="Controllers.Enum.UiNavigation"><value>UI navigáció</value></data>
+  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>Játékvezérlő</value></data>
+  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Alacsony frekvenciájú motor</value></data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Magas frekvenciájú motor</value></data>
+  <data name="Controllers.Enum.Share" xml:space="preserve"><value>Megosztás</value></data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Lineáris</value></data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Szögirányú</value></data>
+  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>Normál</value></data>
+  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Állandó</value></data>
+  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Felfutás</value></data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Szinuszhullám</value></data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>Négyszöghullám</value></data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>Háromszöghullám</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>Emelkedő fűrészfog</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>Csökkenő fűrészfog</value></data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>Rugó</value></data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Súrlódás</value></data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Csillapító</value></data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Tehetetlenség</value></data>
+  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Botkormány</value></data>
+  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Többtengelyes vezérlő</value></data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID-használat</value></data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>tengelyek</value></data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>gombok</value></data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Összesített</value></data>
+  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>Virtuális</value></data>
+  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Bemeneti jelentés</value></data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Kimeneti jelentés</value></data>
+<data name="Emulation.InitialDisk"><value>Kezdőlemez</value></data>
+  <data name="Emulation.Audio"><value>Hang</value></data>
+  <data name="Emulation.Controller"><value>Vezérlő {0}</value></data>
+  <data name="Emulation.Core.NameOptions"><value>Alapopciók</value></data>
+  <data name="Emulation.MultiDrive"><value>Az első négy lemez csatlakoztatása DF0-DF3</value></data>
+  <data name="Emulation.DiskNumber"><value>Lemez {0}</value></data>
+  <data name="Emulation.LoadOptions"><value>A rendelkezésre álló lehetőségek betöltése</value></data>
+  <data name="Emulation.Configurations"><value>Beállítások</value></data>
+  <data name="Emulation.Firmware"><value>A "Sor" kifejezés a "Típus" vagy "Típus" jelölést jelenti.</value></data>
+  <data name="Emulation.ReleaseMouse"><value>Egér kilövése</value></data>
+  <data name="Emulation.DeleteConfirm"><value>Törölje ezt az Amiga konfigurációt?</value></data>
+  <data name="Emulation.ModelRequired"><value>Amiga modell szükséges.</value></data>
+  <data name="Emulation.KickstartRequired"><value>Kickstart-ösvény szükséges.</value></data>
+  <data name="Emulation.FileRequired"><value>A szükséges firmware útvonal üres.</value></data>
+  <data name="Emulation.FileMissing"><value>A kijelölt fájl nem létezik.</value></data>
+<data name="Options.EmulationMachineTitle"><value>{0} - {1} : {2}</value></data>
+  <data name="Controllers.AnalogDeadZones"><value>Az analóg halott zónák</value></data>
+  <data name="Controllers.TriggerDeadZone"><value>Rugók</value></data>
+  <data name="Controllers.OuterDeadZone"><value>Külső holtzóna</value></data>
 </root>

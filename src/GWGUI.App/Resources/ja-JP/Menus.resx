@@ -12,73 +12,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options">
-    <value>_オプション</value>
-  </data>
-  <data name="Menu.Preferences">
-    <value>設定…</value>
-  </data>
-  <data name="Menu.Diagnostics">
-    <value>診断</value>
-  </data>
-  <data name="Menu.Information">
-    <value>情報</value>
-  </data>
-  <data name="Menu.Bandwidth">
-    <value>USB 帯域幅</value>
-  </data>
-  <data name="Menu.Rpm">
-    <value>RPM 速度</value>
-  </data>
-  <data name="Menu.Seek">
-    <value>頭を求めて…</value>
-  </data>
-  <data name="Menu.Hardware">
-    <value>ハードウェア</value>
-  </data>
-  <data name="Menu.Pins">
-    <value>ピン…</value>
-  </data>
-  <data name="Menu.Reset">
-    <value>リセット</value>
-  </data>
-  <data name="Menu.Delays">
-    <value>遅延…</value>
-  </data>
-  <data name="Menu.Firmware">
-    <value>ファームウェア…</value>
-  </data>
-  <data name="Menu.Help">
-    <value>_ヘルプ</value>
-  </data>
-  <data name="Menu.Documentation">
-    <value>ドキュメント</value>
-  </data>
-  <data name="Menu.About">
-    <value>について</value>
-  </data>
-  <data name="Tab.Read">
-    <value>読む</value>
-  </data>
-  <data name="Tab.Write">
-    <value>書く</value>
-  </data>
-  <data name="Tab.Convert">
-    <value>変換</value>
-  </data>
-  <data name="Tab.Visualize">
-    <value>視覚化</value>
-  </data>
-  <data name="Tab.Tools">
-    <value>ツール</value>
-  </data>
-  <data name="Menu.Align">
-    <value>ドライブのアライメント…</value>
-  </data>
-  <data name="Tab.Explorer">
-    <value>ディスク エクスプローラー</value>
-  </data>
-  <data name="Tab.Emulation">
-    <value>エミュレーション</value>
-  </data>
+  <data name="Menu.Options"><value>_オプション</value></data>
+  <data name="Menu.Preferences"><value>設定…</value></data>
+  <data name="Menu.Diagnostics"><value>診断</value></data>
+  <data name="Menu.Information"><value>情報</value></data>
+  <data name="Menu.Bandwidth"><value>USB 帯域幅</value></data>
+  <data name="Menu.Rpm"><value>RPM 速度</value></data>
+  <data name="Menu.Seek"><value>頭を求めて…</value></data>
+  <data name="Menu.Hardware"><value>ハードウェア</value></data>
+  <data name="Menu.Pins"><value>ピン…</value></data>
+  <data name="Menu.Reset"><value>リセット</value></data>
+  <data name="Menu.Delays"><value>遅延…</value></data>
+  <data name="Menu.Firmware"><value>ファームウェア…</value></data>
+  <data name="Menu.Help"><value>_ヘルプ</value></data>
+  <data name="Menu.Documentation"><value>ドキュメント</value></data>
+  <data name="Menu.About"><value>について</value></data>
+  <data name="Tab.Read"><value>読む</value></data>
+  <data name="Tab.Write"><value>書く</value></data>
+  <data name="Tab.Convert"><value>変換</value></data>
+  <data name="Tab.Visualize"><value>視覚化</value></data>
+  <data name="Tab.Tools"><value>ツール</value></data>
+  <data name="Menu.Align"><value>ドライブのアライメント…</value></data>
+  <data name="Tab.Explorer"><value>ディスク エクスプローラー</value></data>
+  <data name="Tab.Emulation"><value>エミュレーション</value></data>
 </root>

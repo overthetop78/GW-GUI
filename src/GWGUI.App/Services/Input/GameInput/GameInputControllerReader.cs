@@ -1,5 +1,6 @@
 using GWGUI.App.Contracts.Services.Input;
 using GWGUI.Emulation;
+using GWGUI.App.Functions.Input.Controllers;
 using GWGUI.App.Functions.Input.Keyboard;
 using System.Windows.Input;
 using System.Runtime.InteropServices;
@@ -58,6 +59,20 @@ internal static class GameInputControllerReader
         Worker.Post(EnsureInitialized);
     }
 
+    internal static void StopMonitoring()
+    {
+        RawGameControllerFallback.StopMonitoring();
+        Worker.Invoke(() =>
+        {
+            lock (Sync)
+            {
+                Shutdown();
+                _initialized = false;
+                InitializationFailed = false;
+            }
+        });
+    }
+
     internal static IReadOnlyList<GameInputDeviceDescriptor> GetConnectedControllerDetailsCached()
     {
         GameInputDeviceDescriptor[] gameInput;
@@ -79,7 +94,8 @@ internal static class GameInputControllerReader
             descriptors = entries.Select(entry => entry.Descriptor).ToArray();
             gameInput = entries.Select(Read).ToArray();
         }
-        return gameInput.Concat(RawGameControllerFallback.ReadAll(descriptors)).ToArray();
+        return gameInput.Concat(RawGameControllerFallback.ReadAll(descriptors))
+            .Select(ControllerAnalogDeadZoneFunctions.ApplyConfigured).ToArray();
     });
 
     internal static IReadOnlyList<GameControllerDevice> GetConnectedDevices() => Worker.Invoke(() =>
@@ -98,11 +114,14 @@ internal static class GameInputControllerReader
     internal static GameInputLiveState ReadDetailedState(string deviceId) => Worker.Invoke(() =>
     {
         EnsureInitialized();
+        GameInputLiveState state;
         lock (Sync)
             if (Devices.TryGetValue(deviceId, out var entry) && entry.IsController)
-                return ReadDetailed(entry);
-        return RawGameControllerFallback.TryReadDetailed(deviceId, out var state)
-            ? state : GameInputLiveState.Empty(deviceId);
+                state = ReadDetailed(entry);
+            else
+                state = RawGameControllerFallback.TryReadDetailed(deviceId, out var fallback)
+                    ? fallback : GameInputLiveState.Empty(deviceId);
+        return ControllerAnalogDeadZoneFunctions.ApplyConfigured(state);
     });
 
     internal static IReadOnlyList<GameInputLiveState> ReadAllDetailedStates() => Worker.Invoke(() =>
@@ -124,7 +143,7 @@ internal static class GameInputControllerReader
             if (RawGameControllerFallback.TryReadDetailed(descriptor.Id, out var state))
                 result.Add(state);
         }
-        return result;
+        return result.Select(ControllerAnalogDeadZoneFunctions.ApplyConfigured).ToArray();
     });
 
     internal static string? GetControllerName(string deviceId)
@@ -245,7 +264,8 @@ internal static class GameInputControllerReader
                 .OrderBy(entry => entry.Id, StringComparer.Ordinal).ToArray();
             var descriptors = entries.Select(entry => entry.Descriptor).ToArray();
             var controllers = entries.Select(Read)
-                .Concat(RawGameControllerFallback.ReadAll(descriptors)).ToArray();
+                .Concat(RawGameControllerFallback.ReadAll(descriptors))
+                .Select(ControllerAnalogDeadZoneFunctions.ApplyConfigured).ToArray();
             return new GameInputPhysicalState(keys, pointer, controllers);
         }
     });
@@ -308,6 +328,7 @@ internal static class GameInputControllerReader
                     InitializationFailed = true;
                     return;
                 }
+                _gameInput.SetFocusPolicy(GameInputFocusPolicy.ExclusiveForegroundGuideButton);
                 foreach (var filter in DeviceCallbackFilters)
                 {
                     result = _gameInput.RegisterDeviceCallback(null, filter,

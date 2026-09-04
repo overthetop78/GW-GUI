@@ -19,6 +19,15 @@ internal static class RawGameControllerFallback
         RawGameController.RawGameControllerRemoved += ControllerChanged;
     }
 
+    internal static void StopMonitoring()
+    {
+        if (!_monitoring) return;
+        RawGameController.RawGameControllerAdded -= ControllerChanged;
+        RawGameController.RawGameControllerRemoved -= ControllerChanged;
+        lock (Sync) _devices = [];
+        _monitoring = false;
+    }
+
     internal static void RefreshOnUiThread()
     {
         var dispatcher = Application.Current?.Dispatcher;

@@ -12,127 +12,45 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Read.Title">
-    <value>Læse</value>
-  </data>
-  <data name="Read.NameRequired">
-    <value>Indtast et filnavn.</value>
-  </data>
-  <data name="Read.TypeRequired">
-    <value>Vælg en kompatibel billedtype.</value>
-  </data>
-  <data name="Read.FileExistsTitle">
-    <value>Eksisterende fil</value>
-  </data>
-  <data name="Read.FileExists">
-    <value>Denne fil findes allerede.</value>
-  </data>
-  <data name="Read.ConflictPath">
-    <value>Eksisterende fil</value>
-  </data>
-  <data name="Read.ConflictOverwrite">
-    <value>Overskriv</value>
-  </data>
-  <data name="Read.ConflictNextNumber">
-    <value>Brug det næste tal</value>
-  </data>
-  <data name="Read.ConflictEditName">
-    <value>Lad mig redigere navnet</value>
-  </data>
-  <data name="Read.ImageToCreate">
-    <value>Billede til at oprette</value>
-  </data>
-  <data name="Read.Extension">
-    <value>Forlængelse</value>
-  </data>
-  <data name="Read.RawScp">
-    <value>Råbillede (SCP)</value>
-  </data>
-  <data name="Read.KnownFormat">
-    <value>Kendt diskformat</value>
-  </data>
-  <data name="Read.FileName">
-    <value>Filnavn</value>
-  </data>
-  <data name="Read.Folder">
-    <value>Folder</value>
-  </data>
-  <data name="Read.Revolutions">
-    <value>Omdrejninger pr. spor</value>
-  </data>
-  <data name="Read.Retries">
-    <value>Forsøg igen</value>
-  </data>
-  <data name="Read.Tracks">
-    <value>Spor/sider</value>
-  </data>
-  <data name="Read.AutoNumber">
-    <value>Automatisk tal vellykkede læsninger</value>
-  </data>
-  <data name="Read.Digits">
-    <value>Cifre</value>
-  </data>
-  <data name="Read.Letters">
-    <value>Breve</value>
-  </data>
-  <data name="Read.Next">
-    <value>Næste:</value>
-  </data>
-  <data name="Read.OpenVisualize">
-    <value>Åbn i Visualisering</value>
-  </data>
-  <data name="Read.ScpFinished">
-    <value>SCP-optagelsen er fuldført. Du kan analysere det uden at afbryde dit arbejde.</value>
-  </data>
-  <data name="Read.ScpSummaryTitle">
-    <value>Endeligt SCP resultat:</value>
-  </data>
-  <data name="Read.ScpTracksSummary">
-    <value>Spor: {0} gode, {1} mangler eller er ugyldige ({2} cylindre, {3} sider).</value>
-  </data>
-  <data name="Read.ScpTechnicalSummary">
-    <value>Omdrejninger: {0} · Opløsning: {1} ns · Størrelse: {2:N0} bytes · Kontrolsum: {3}.</value>
-  </data>
-  <data name="Read.ScpOutputFile">
-    <value>Fil: {0}</value>
-  </data>
-  <data name="Read.ScpSummaryUnavailable">
-    <value>SCP oversigt utilgængelig: {0}</value>
-  </data>
-  <data name="Read.ScpBannerSummary">
-    <value>{0} gode spor · {1} mangler eller er ugyldige · {2} cylindre · {3} sider · {4} omdrejninger · {5:N0} bytes · {6} kontrolsum</value>
-  </data>
-  <data name="Read.ChooseType">
-    <value>Vælg en billedtype</value>
-  </data>
-  <data name="Read.DestinationFolder">
-    <value>Destinationsmappe</value>
-  </data>
-  <data name="Read.CancelledFileDeleted">
-    <value>Læsning annulleret: Den ufuldstændige fil blev slettet: {0}</value>
-  </data>
-  <data name="Read.CancelledFileDeleteFailed">
-    <value>Læsningen blev annulleret, men den ufuldstændige fil kunne ikke slettes: {0} — {1}</value>
-  </data>
-  <data name="Read.OpenExplore">
-    <value>Gennemse filer</value>
-  </data>
-  <data name="Read.InternalReader">
-    <value>Intern fysisk disklæsning (eksperimentel)</value>
-  </data>
-  <data name="Read.InternalReaderTip">
-    <value>Læser flux direkte via Greaseweazle-protokollen; gw.exe forbliver standard.</value>
-  </data>
-  <data name="Read.InternalPreview">
-    <value>Intern fysisk disklæsning til {0}</value>
-  </data>
-  <data name="Read.InternalRawScpOnly">
-    <value>Intern læsning opretter i øjeblikket kun rå SCP-images.</value>
-  </data>
-  <data name="Read.InternalUnsupportedOptions">
-    <value>Nogle aktiverede indstillinger understøttes endnu ikke af den interne læser.</value>
-  </data>
-  <data name="Read.InternalInvalidOptions">
-    <value>Indstillingerne for intern læsning er ugyldige.</value>
-  </data>
+  <data name="Read.Title"><value>Læse</value></data>
+  <data name="Read.NameRequired"><value>Indtast et filnavn.</value></data>
+  <data name="Read.TypeRequired"><value>Vælg en kompatibel billedtype.</value></data>
+  <data name="Read.FileExistsTitle"><value>Eksisterende fil</value></data>
+  <data name="Read.FileExists"><value>Denne fil findes allerede.</value></data>
+  <data name="Read.ConflictPath"><value>Eksisterende fil</value></data>
+  <data name="Read.ConflictOverwrite"><value>Overskriv</value></data>
+  <data name="Read.ConflictNextNumber"><value>Brug det næste tal</value></data>
+  <data name="Read.ConflictEditName"><value>Lad mig redigere navnet</value></data>
+  <data name="Read.ImageToCreate"><value>Billede til at oprette</value></data>
+  <data name="Read.Extension"><value>Forlængelse</value></data>
+  <data name="Read.RawScp"><value>Råbillede (SCP)</value></data>
+  <data name="Read.KnownFormat"><value>Kendt diskformat</value></data>
+  <data name="Read.FileName"><value>Filnavn</value></data>
+<data name="Read.Revolutions"><value>Omdrejninger pr. spor</value></data>
+  <data name="Read.Retries"><value>Forsøg igen</value></data>
+  <data name="Read.Tracks"><value>Spor/sider</value></data>
+  <data name="Read.AutoNumber"><value>Automatisk tal vellykkede læsninger</value></data>
+  <data name="Read.Digits"><value>Cifre</value></data>
+  <data name="Read.Letters"><value>Breve</value></data>
+  <data name="Read.Next"><value>Næste:</value></data>
+  <data name="Read.OpenVisualize"><value>Åbn i Visualisering</value></data>
+  <data name="Read.ScpFinished"><value>SCP-optagelsen er fuldført. Du kan analysere det uden at afbryde dit arbejde.</value></data>
+  <data name="Read.ScpSummaryTitle"><value>Endeligt SCP resultat:</value></data>
+  <data name="Read.ScpTracksSummary"><value>Spor: {0} gode, {1} mangler eller er ugyldige ({2} cylindre, {3} sider).</value></data>
+  <data name="Read.ScpTechnicalSummary"><value>Omdrejninger: {0} · Opløsning: {1} ns · Størrelse: {2:N0} bytes · Kontrolsum: {3}.</value></data>
+  <data name="Read.ScpOutputFile"><value>Fil: {0}</value></data>
+  <data name="Read.ScpSummaryUnavailable"><value>SCP oversigt utilgængelig: {0}</value></data>
+  <data name="Read.ScpBannerSummary"><value>{0} gode spor · {1} mangler eller er ugyldige · {2} cylindre · {3} sider · {4} omdrejninger · {5:N0} bytes · {6} kontrolsum</value></data>
+  <data name="Read.ChooseType"><value>Vælg en billedtype</value></data>
+  <data name="Read.DestinationFolder"><value>Destinationsmappe</value></data>
+  <data name="Read.CancelledFileDeleted"><value>Læsning annulleret: Den ufuldstændige fil blev slettet: {0}</value></data>
+  <data name="Read.CancelledFileDeleteFailed"><value>Læsningen blev annulleret, men den ufuldstændige fil kunne ikke slettes: {0} — {1}</value></data>
+  <data name="Read.OpenExplore"><value>Gennemse filer</value></data>
+  <data name="Read.InternalReader"><value>Intern fysisk disklæsning (eksperimentel)</value></data>
+  <data name="Read.InternalReaderTip"><value>Læser flux direkte via Greaseweazle-protokollen; gw.exe forbliver standard.</value></data>
+  <data name="Read.InternalPreview"><value>Intern fysisk disklæsning til {0}</value></data>
+  <data name="Read.InternalRawScpOnly"><value>Intern læsning opretter i øjeblikket kun rå SCP-images.</value></data>
+  <data name="Read.InternalUnsupportedOptions"><value>Nogle aktiverede indstillinger understøttes endnu ikke af den interne læser.</value></data>
+  <data name="Read.InternalInvalidOptions"><value>Indstillingerne for intern læsning er ugyldige.</value></data>
+  <data name="Read.Folder"><value>Mappe</value></data>
 </root>

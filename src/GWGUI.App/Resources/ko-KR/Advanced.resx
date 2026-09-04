@@ -12,118 +12,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Advanced">
-    <value>고급 설정</value>
-  </data>
-  <data name="Common.ExpertArguments">
-    <value>전문가의 주장</value>
-  </data>
-  <data name="Common.ExpertArgumentsTip">
-    <value>인수는 인용 검증 후 작성된 대로 전달됩니다.</value>
-  </data>
-  <data name="Advanced.SeekRetries">
-    <value>재시도 탐색</value>
-  </data>
-  <data name="Advanced.FakeIndex">
-    <value>가짜 인덱스</value>
-  </data>
-  <data name="Advanced.HardSectors">
-    <value>하드 섹터</value>
-  </data>
-  <data name="Advanced.Reverse">
-    <value>역방향 트랙 데이터</value>
-  </data>
-  <data name="Advanced.AdjustSpeed">
-    <value>속도 조정</value>
-  </data>
-  <data name="Advanced.Pll">
-    <value>PLL 재정의</value>
-  </data>
-  <data name="Advanced.DensityPin">
-    <value>밀도 핀 2</value>
-  </data>
-  <data name="Advanced.Tg43">
-    <value>TG43 생성</value>
-  </data>
-  <data name="Advanced.PreErase">
-    <value>트랙 사전 삭제</value>
-  </data>
-  <data name="Advanced.Precomp">
-    <value>사전 보상 쓰기</value>
-  </data>
-  <data name="Advanced.OutputTracks">
-    <value>출력 트랙</value>
-  </data>
-  <data name="Advanced.DiskDefs">
-    <value>커스텀 디스크 정의</value>
-  </data>
-  <data name="Advanced.DiskDefsFilter">
-    <value>Greaseweazle 디스크 정의(*.cfg)|*.cfg|모든 파일|*.*</value>
-  </data>
-  <data name="Advanced.DiskDefsMissing">
-    <value>선택한 디스크 정의 파일이 존재하지 않습니다.</value>
-  </data>
-  <data name="Advanced.Invalid">
-    <value>고급 설정이 잘못되었습니다: {0}</value>
-  </data>
-  <data name="Advanced.TrackSpecTip">
-    <value>추적 지정(예: c=0-79:h=0-1, c=0-79/2:h=0 또는 c=0-79:h=0-1:hswap)</value>
-  </data>
-  <data name="Advanced.SpeedTip">
-    <value>양의 속도 또는 기간(예: 300rpm, 200ms, 200000us 또는 200000000ns)</value>
-  </data>
-  <data name="Advanced.PllTip">
-    <value>PLL 매개변수는 콜론으로 구분됩니다(예: period=5:phase=60 또는 period=5:phase=60:lowpass=2).</value>
-  </data>
-  <data name="Advanced.PrecompTip">
-    <value>사전 보상을 작성합니다(예: type=mfm:40=125). 유형: mfm, fm, gcr; 값은 나노초 단위입니다.</value>
-  </data>
-  <data name="Advanced.DiskDefsTip">
-    <value>사용자 정의 diskdefs.cfg 파일을 사용하여 Greaseweazle 형식 정의를 추가하거나 재정의합니다.</value>
-  </data>
-  <data name="Advanced.RevsTip">
-    <value>--revs: 트랙당 읽은 회전 수입니다. 예: --revs 5.</value>
-  </data>
-  <data name="Advanced.RetriesTip">
-    <value>--retries: 오류 후 추가 시도. 예: --retries 3.</value>
-  </data>
-  <data name="Advanced.TracksTip">
-    <value>--tracks: 실린더, 헤드 또는 스테핑을 제한합니다. 예: --tracks c=0-79:h=0-1.</value>
-  </data>
-  <data name="Advanced.SeekRetriesTip">
-    <value>--seek-retries: 머리를 움직인 후 추가 시도합니다. 예: --seek-retries 2.</value>
-  </data>
-  <data name="Advanced.FakeIndexTip">
-    <value>--fake-index: 인덱스 신호 없이 드라이브에 대한 시간별 인덱스를 생성합니다. 예: --fake-index 300rpm.</value>
-  </data>
-  <data name="Advanced.HardSectorsTip">
-    <value>--hard-sectors: 하드 섹터 디스크를 처리합니다. --fake-index과(와) 호환되지 않습니다.</value>
-  </data>
-  <data name="Advanced.ReverseTip">
-    <value>--reverse: 플리피 미디어 또는 배선에 대한 역추적 데이터입니다.</value>
-  </data>
-  <data name="Advanced.AdjustSpeedTip">
-    <value>--adjust-speed: 데이터 타이밍을 재조정합니다. 예: --adjust-speed 300rpm.</value>
-  </data>
-  <data name="Advanced.PllOptionTip">
-    <value>--pll: 클럭 복구 루프를 구성합니다. 예: --pll 기간=5:단계=60.</value>
-  </data>
-  <data name="Advanced.DenselTip">
-    <value>--densel: 밀도 선택 핀을 높거나 낮게 강제합니다. 예: --densel H.</value>
-  </data>
-  <data name="Advanced.Tg43Tip">
-    <value>--gen-tg43: 필요한 드라이브에 대해 TG43 신호를 생성합니다. --densel와 호환되지 않습니다.</value>
-  </data>
-  <data name="Advanced.EraseEmptyTip">
-    <value>--erase-empty: 소스 이미지에 데이터가 포함되지 않은 트랙을 삭제합니다.</value>
-  </data>
-  <data name="Advanced.PreEraseTip">
-    <value>--pre-erase: 쓰기 전에 각 트랙을 삭제합니다.</value>
-  </data>
-  <data name="Advanced.PrecompOptionTip">
-    <value>--precomp: 쓰기 사전 보상을 적용합니다. 예: --precomp 유형=mfm:40=125.</value>
-  </data>
-  <data name="Advanced.OutputTracksTip">
-    <value>--out-tracks: 출력 이미지의 트랙을 다시 매핑합니다. 예: --out-tracks c=0-79:h=0-1.</value>
-  </data>
+  <data name="Common.Advanced"><value>고급 설정</value></data>
+  <data name="Common.ExpertArguments"><value>전문가의 주장</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>인수는 인용 검증 후 작성된 대로 전달됩니다.</value></data>
+  <data name="Advanced.SeekRetries"><value>재시도 탐색</value></data>
+  <data name="Advanced.FakeIndex"><value>가짜 인덱스</value></data>
+  <data name="Advanced.HardSectors"><value>하드 섹터</value></data>
+  <data name="Advanced.Reverse"><value>역방향 트랙 데이터</value></data>
+  <data name="Advanced.AdjustSpeed"><value>속도 조정</value></data>
+  <data name="Advanced.Pll"><value>PLL 재정의</value></data>
+  <data name="Advanced.DensityPin"><value>밀도 핀 2</value></data>
+  <data name="Advanced.Tg43"><value>TG43 생성</value></data>
+  <data name="Advanced.PreErase"><value>트랙 사전 삭제</value></data>
+  <data name="Advanced.Precomp"><value>사전 보상 쓰기</value></data>
+  <data name="Advanced.OutputTracks"><value>출력 트랙</value></data>
+  <data name="Advanced.DiskDefs"><value>커스텀 디스크 정의</value></data>
+  <data name="Advanced.DiskDefsFilter"><value>Greaseweazle 디스크 정의(*.cfg)|*.cfg|모든 파일|*.*</value></data>
+  <data name="Advanced.DiskDefsMissing"><value>선택한 디스크 정의 파일이 존재하지 않습니다.</value></data>
+  <data name="Advanced.Invalid"><value>고급 설정이 잘못되었습니다: {0}</value></data>
+  <data name="Advanced.TrackSpecTip"><value>추적 지정(예: c=0-79:h=0-1, c=0-79/2:h=0 또는 c=0-79:h=0-1:hswap)</value></data>
+  <data name="Advanced.SpeedTip"><value>양의 속도 또는 기간(예: 300rpm, 200ms, 200000us 또는 200000000ns)</value></data>
+  <data name="Advanced.PllTip"><value>PLL 매개변수는 콜론으로 구분됩니다(예: period=5:phase=60 또는 period=5:phase=60:lowpass=2).</value></data>
+  <data name="Advanced.PrecompTip"><value>사전 보상을 작성합니다(예: type=mfm:40=125). 유형: mfm, fm, gcr; 값은 나노초 단위입니다.</value></data>
+  <data name="Advanced.DiskDefsTip"><value>사용자 정의 diskdefs.cfg 파일을 사용하여 Greaseweazle 형식 정의를 추가하거나 재정의합니다.</value></data>
+  <data name="Advanced.RevsTip"><value>--revs: 트랙당 읽은 회전 수입니다. 예: --revs 5.</value></data>
+  <data name="Advanced.RetriesTip"><value>--retries: 오류 후 추가 시도. 예: --retries 3.</value></data>
+  <data name="Advanced.TracksTip"><value>--tracks: 실린더, 헤드 또는 스테핑을 제한합니다. 예: --tracks c=0-79:h=0-1.</value></data>
+  <data name="Advanced.SeekRetriesTip"><value>--seek-retries: 머리를 움직인 후 추가 시도합니다. 예: --seek-retries 2.</value></data>
+  <data name="Advanced.FakeIndexTip"><value>--fake-index: 인덱스 신호 없이 드라이브에 대한 시간별 인덱스를 생성합니다. 예: --fake-index 300rpm.</value></data>
+  <data name="Advanced.HardSectorsTip"><value>--hard-sectors: 하드 섹터 디스크를 처리합니다. --fake-index과(와) 호환되지 않습니다.</value></data>
+  <data name="Advanced.ReverseTip"><value>--reverse: 플리피 미디어 또는 배선에 대한 역추적 데이터입니다.</value></data>
+  <data name="Advanced.AdjustSpeedTip"><value>--adjust-speed: 데이터 타이밍을 재조정합니다. 예: --adjust-speed 300rpm.</value></data>
+  <data name="Advanced.PllOptionTip"><value>--pll: 클럭 복구 루프를 구성합니다. 예: --pll 기간=5:단계=60.</value></data>
+  <data name="Advanced.DenselTip"><value>--densel: 밀도 선택 핀을 높거나 낮게 강제합니다. 예: --densel H.</value></data>
+  <data name="Advanced.Tg43Tip"><value>--gen-tg43: 필요한 드라이브에 대해 TG43 신호를 생성합니다. --densel와 호환되지 않습니다.</value></data>
+  <data name="Advanced.EraseEmptyTip"><value>--erase-empty: 소스 이미지에 데이터가 포함되지 않은 트랙을 삭제합니다.</value></data>
+  <data name="Advanced.PreEraseTip"><value>--pre-erase: 쓰기 전에 각 트랙을 삭제합니다.</value></data>
+  <data name="Advanced.PrecompOptionTip"><value>--precomp: 쓰기 사전 보상을 적용합니다. 예: --precomp 유형=mfm:40=125.</value></data>
+  <data name="Advanced.OutputTracksTip"><value>--out-tracks: 출력 이미지의 트랙을 다시 매핑합니다. 예: --out-tracks c=0-79:h=0-1.</value></data>
 </root>

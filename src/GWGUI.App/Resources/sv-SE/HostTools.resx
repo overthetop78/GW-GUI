@@ -12,40 +12,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="HostTools.Detect">
-    <value>Hitta gw.exe</value>
-  </data>
-  <data name="HostTools.Check">
-    <value>Sök efter uppdateringar</value>
-  </data>
-  <data name="HostTools.Download">
-    <value>Ladda ner senaste versionen</value>
-  </data>
-  <data name="HostTools.Rollback">
-    <value>Använd föregående sökväg</value>
-  </data>
-  <data name="HostTools.None">
-    <value>Ingen installation upptäckt.</value>
-  </data>
-  <data name="HostTools.Detected">
-    <value>Upptäckt: {0}</value>
-  </data>
-  <data name="HostTools.Latest">
-    <value>Senaste tillgängliga versionen: {0}</value>
-  </data>
-  <data name="HostTools.Installed">
-    <value>Version {0} installerad.</value>
-  </data>
-  <data name="HostTools.DownloadConfirm">
-    <value>Ladda ner och installera Greaseweazle Host Tools {0} för Windows x64?</value>
-  </data>
-  <data name="HostTools.Title">
-    <value>Greaseweazle Värdverktyg</value>
-  </data>
-  <data name="HostTools.NoPrevious">
-    <value>Ingen giltig tidigare sökväg lagras.</value>
-  </data>
-  <data name="HostTools.UpdateAvailable">
-    <value>Värdverktyg {0} tillgängliga</value>
-  </data>
+  <data name="HostTools.Detect"><value>Hitta gw.exe</value></data>
+  <data name="HostTools.Check"><value>Sök efter uppdateringar</value></data>
+  <data name="HostTools.Download"><value>Ladda ner senaste versionen</value></data>
+  <data name="HostTools.Rollback"><value>Använd föregående sökväg</value></data>
+  <data name="HostTools.None"><value>Ingen installation upptäckt.</value></data>
+  <data name="HostTools.Detected"><value>Upptäckt: {0}</value></data>
+  <data name="HostTools.Latest"><value>Senaste tillgängliga versionen: {0}</value></data>
+  <data name="HostTools.Installed"><value>Version {0} installerad.</value></data>
+  <data name="HostTools.DownloadConfirm"><value>Ladda ner och installera Greaseweazle Host Tools {0} för Windows x64?</value></data>
+  <data name="HostTools.Title"><value>Greaseweazle Värdverktyg</value></data>
+  <data name="HostTools.NoPrevious"><value>Ingen giltig tidigare sökväg lagras.</value></data>
+  <data name="HostTools.UpdateAvailable"><value>Värdverktyg {0} tillgängliga</value></data>
 </root>

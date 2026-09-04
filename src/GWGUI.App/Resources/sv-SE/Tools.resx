@@ -12,163 +12,54 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Tool.Ready">
-    <value>Redo att utföra.</value>
-  </data>
-  <data name="Tool.RawOutput">
-    <value>Rå utgång</value>
-  </data>
-  <data name="Maintenance.EraseTitle">
-    <value>Bekräfta radering</value>
-  </data>
-  <data name="Maintenance.EraseConfirm">
-    <value>Vill du radera all data på den insatta disken permanent?</value>
-  </data>
-  <data name="Maintenance.CleanTitle">
-    <value>Rengör huvuden</value>
-  </data>
-  <data name="Maintenance.CleanConfirm">
-    <value>Bekräfta att en rengöringsskiva är isatt. Använd aldrig en datadisk.</value>
-  </data>
-  <data name="Tools.Erase">
-    <value>Radera en disk</value>
-  </data>
-  <data name="Tools.EraseWarning">
-    <value>All data på disken kommer att förstöras.</value>
-  </data>
-  <data name="Tools.LimitTracks">
-    <value>Begränsa spår</value>
-  </data>
-  <data name="Tools.Revolutions">
-    <value>Revolutioner</value>
-  </data>
-  <data name="Tools.Clean">
-    <value>Rengör huvuden</value>
-  </data>
-  <data name="Tools.CleanWarning">
-    <value>Sätt i en rengöringsskiva, aldrig en skiva som innehåller data.</value>
-  </data>
-  <data name="Tools.Cylinders">
-    <value>Cylindrar</value>
-  </data>
-  <data name="Tools.Passes">
-    <value>Passerar</value>
-  </data>
-  <data name="Tools.Linger">
-    <value>Längd per cylinder (ms)</value>
-  </data>
-  <data name="Tool.Field.Measurements">
-    <value>Antal mätningar</value>
-  </data>
-  <data name="Tool.Field.Cylinder">
-    <value>Cylinder</value>
-  </data>
-  <data name="Tool.Field.Extreme">
-    <value>Tillåt extrema cylindrar</value>
-  </data>
-  <data name="Tool.Field.MotorOn">
-    <value>Håll motorn aktiv</value>
-  </data>
-  <data name="Tool.Field.Pin">
-    <value>Pin (8, 26 eller 28)</value>
-  </data>
-  <data name="Tool.Field.SetPin">
-    <value>Byt stift</value>
-  </data>
-  <data name="Tool.Field.High">
-    <value>Hög nivå</value>
-  </data>
-  <data name="Tool.Field.Select">
-    <value>Urval (µs)</value>
-  </data>
-  <data name="Tool.Field.Step">
-    <value>Huvudsteg (µs)</value>
-  </data>
-  <data name="Tool.Field.Settle">
-    <value>Avgör (ms)</value>
-  </data>
-  <data name="Tool.Field.Motor">
-    <value>Motor (ms)</value>
-  </data>
-  <data name="Tool.Field.Watchdog">
-    <value>Avmarkera automatiskt (ms)</value>
-  </data>
-  <data name="Tool.Field.PreWrite">
-    <value>Före skrivning (µs)</value>
-  </data>
-  <data name="Tool.Field.PostWrite">
-    <value>Efter skrivning (µs)</value>
-  </data>
-  <data name="Tool.Field.IndexMask">
-    <value>Indexmask (µs)</value>
-  </data>
-  <data name="Tool.Field.Bootloader">
-    <value>Uppdatera bootloader (risk)</value>
-  </data>
-  <data name="Tool.BootloaderWarning">
-    <value>Att uppdatera bootloadern är en avancerad operation som kan göra kontrollern oanvändbar om den avbryts. Fortsätta?</value>
-  </data>
-  <data name="Tool.ControllerFallback">
-    <value>Kontroller</value>
-  </data>
-  <data name="Tool.FirmwareUnknown">
-    <value>Okänd firmware</value>
-  </data>
-  <data name="Tool.PortUnknown">
-    <value>Okänd port</value>
-  </data>
-  <data name="Tool.NetworkWarning">
-    <value>Den lokala informationen är giltig; bara nätverkskontrollen misslyckades.</value>
-  </data>
-  <data name="Tool.Running">
-    <value>Kommandot körs...</value>
-  </data>
-  <data name="Tool.Title.Info">
-    <value>Controllerinformation</value>
-  </data>
-  <data name="Tool.Title.Bandwidth">
-    <value>USB bandbredd</value>
-  </data>
-  <data name="Tool.Title.Rpm">
-    <value>Körhastighet</value>
-  </data>
-  <data name="Tool.Title.Seek">
-    <value>Sök huvud</value>
-  </data>
-  <data name="Tool.Title.Pin">
-    <value>Hårdvarustift</value>
-  </data>
-  <data name="Tool.Title.Reset">
-    <value>Återställ styrenheten</value>
-  </data>
-  <data name="Tool.Title.Delays">
-    <value>Förseningar</value>
-  </data>
-  <data name="Tool.Title.Update">
-    <value>Firmware</value>
-  </data>
-  <data name="Tool.InvalidParameters">
-    <value>Ogiltiga parametrar</value>
-  </data>
-  <data name="Tool.InvalidParametersHelp">
-    <value>Kontrollera de markerade kommandoparametrarna innan du kör.</value>
-  </data>
-  <data name="Tool.BootloaderTitle">
-    <value>Bootloader-läge</value>
-  </data>
-  <data name="Tool.Title.Align">
-    <value>Diagnostik för drivinriktning</value>
-  </data>
-  <data name="Tool.Field.AlignTracks">
-    <value>Alternerande spår (krävs)</value>
-  </data>
-  <data name="Tool.Field.AlignReads">
-    <value>Antal läsningar</value>
-  </data>
-  <data name="Tool.Field.AlignFormat">
-    <value>Avkodningsformat</value>
-  </data>
-  <data name="Tool.Field.AlignRaw">
-    <value>Läs råflöde (--raw)</value>
-  </data>
+  <data name="Tool.Ready"><value>Redo att utföra.</value></data>
+  <data name="Tool.RawOutput"><value>Rå utgång</value></data>
+  <data name="Maintenance.EraseTitle"><value>Bekräfta radering</value></data>
+  <data name="Maintenance.EraseConfirm"><value>Vill du radera all data på den insatta disken permanent?</value></data>
+  <data name="Maintenance.CleanTitle"><value>Rengör huvuden</value></data>
+  <data name="Maintenance.CleanConfirm"><value>Bekräfta att en rengöringsskiva är isatt. Använd aldrig en datadisk.</value></data>
+  <data name="Tools.Erase"><value>Radera en disk</value></data>
+  <data name="Tools.EraseWarning"><value>All data på disken kommer att förstöras.</value></data>
+  <data name="Tools.LimitTracks"><value>Begränsa spår</value></data>
+  <data name="Tools.Revolutions"><value>Revolutioner</value></data>
+  <data name="Tools.Clean"><value>Rengör huvuden</value></data>
+  <data name="Tools.CleanWarning"><value>Sätt i en rengöringsskiva, aldrig en skiva som innehåller data.</value></data>
+  <data name="Tools.Cylinders"><value>Cylindrar</value></data>
+  <data name="Tools.Passes"><value>Passerar</value></data>
+  <data name="Tools.Linger"><value>Längd per cylinder (ms)</value></data>
+  <data name="Tool.Field.Measurements"><value>Antal mätningar</value></data>
+<data name="Tool.Field.Extreme"><value>Tillåt extrema cylindrar</value></data>
+  <data name="Tool.Field.MotorOn"><value>Håll motorn aktiv</value></data>
+  <data name="Tool.Field.Pin"><value>Pin (8, 26 eller 28)</value></data>
+  <data name="Tool.Field.SetPin"><value>Byt stift</value></data>
+  <data name="Tool.Field.High"><value>Hög nivå</value></data>
+  <data name="Tool.Field.Select"><value>Urval (µs)</value></data>
+  <data name="Tool.Field.Step"><value>Huvudsteg (µs)</value></data>
+  <data name="Tool.Field.Settle"><value>Avgör (ms)</value></data>
+<data name="Tool.Field.Watchdog"><value>Avmarkera automatiskt (ms)</value></data>
+  <data name="Tool.Field.PreWrite"><value>Före skrivning (µs)</value></data>
+  <data name="Tool.Field.PostWrite"><value>Efter skrivning (µs)</value></data>
+  <data name="Tool.Field.IndexMask"><value>Indexmask (µs)</value></data>
+  <data name="Tool.Field.Bootloader"><value>Uppdatera bootloader (risk)</value></data>
+  <data name="Tool.BootloaderWarning"><value>Att uppdatera bootloadern är en avancerad operation som kan göra kontrollern oanvändbar om den avbryts. Fortsätta?</value></data>
+  <data name="Tool.ControllerFallback"><value>Kontroller</value></data>
+  <data name="Tool.FirmwareUnknown"><value>Okänd firmware</value></data>
+  <data name="Tool.PortUnknown"><value>Okänd port</value></data>
+  <data name="Tool.NetworkWarning"><value>Den lokala informationen är giltig; bara nätverkskontrollen misslyckades.</value></data>
+  <data name="Tool.Running"><value>Kommandot körs...</value></data>
+  <data name="Tool.Title.Info"><value>Controllerinformation</value></data>
+  <data name="Tool.Title.Bandwidth"><value>USB bandbredd</value></data>
+  <data name="Tool.Title.Rpm"><value>Körhastighet</value></data>
+  <data name="Tool.Title.Seek"><value>Sök huvud</value></data>
+  <data name="Tool.Title.Pin"><value>Hårdvarustift</value></data>
+  <data name="Tool.Title.Reset"><value>Återställ styrenheten</value></data>
+  <data name="Tool.Title.Delays"><value>Förseningar</value></data>
+<data name="Tool.InvalidParameters"><value>Ogiltiga parametrar</value></data>
+  <data name="Tool.InvalidParametersHelp"><value>Kontrollera de markerade kommandoparametrarna innan du kör.</value></data>
+  <data name="Tool.BootloaderTitle"><value>Bootloader-läge</value></data>
+  <data name="Tool.Title.Align"><value>Diagnostik för drivinriktning</value></data>
+  <data name="Tool.Field.AlignTracks"><value>Alternerande spår (krävs)</value></data>
+  <data name="Tool.Field.AlignReads"><value>Antal läsningar</value></data>
+  <data name="Tool.Field.AlignFormat"><value>Avkodningsformat</value></data>
+  <data name="Tool.Field.AlignRaw"><value>Läs råflöde (--raw)</value></data>
 </root>

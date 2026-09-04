@@ -12,102 +12,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Image">
-    <value>Levykuva</value>
-  </data>
-  <data name="Explorer.Format">
-    <value>Muoto</value>
-  </data>
-  <data name="Explorer.OpenImage">
-    <value>Avaa levykuva…</value>
-  </data>
-  <data name="Explorer.Automatic">
-    <value>Automaattinen tunnistus</value>
-  </data>
-  <data name="Explorer.Volume">
-    <value>Taltio</value>
-  </data>
-  <data name="Explorer.FileSystem">
-    <value>Tiedostojärjestelmä</value>
-  </data>
-  <data name="Explorer.Capacity">
-    <value>Kapasiteetti</value>
-  </data>
-  <data name="Explorer.Free">
-    <value>Vapaa tila</value>
-  </data>
-  <data name="Explorer.Entries">
-    <value>Kohteet</value>
-  </data>
-  <data name="Explorer.SelectEntry">
-    <value>Valitse tiedosto tai kansio.</value>
-  </data>
-  <data name="Explorer.Size">
-    <value>Koko</value>
-  </data>
-  <data name="Explorer.Modified">
-    <value>Muokattu</value>
-  </data>
-  <data name="Explorer.Comment">
-    <value>Kommentti</value>
-  </data>
-  <data name="Explorer.Warnings">
-    <value>Varoitukset</value>
-  </data>
-  <data name="Explorer.Directory">
-    <value>Kansio</value>
-  </data>
-  <data name="Explorer.File">
-    <value>Tiedosto</value>
-  </data>
-  <data name="Explorer.Link">
-    <value>Linkki</value>
-  </data>
-  <data name="Explorer.Unknown">
-    <value>Tuntematon</value>
-  </data>
-  <data name="Explorer.Unnamed">
-    <value>Nimetön taltio</value>
-  </data>
-  <data name="Explorer.LoadFailed">
-    <value>Levykuvaa ei voi avata: {0}</value>
-  </data>
-  <data name="Explorer.Loading">
-    <value>Luetaan levykuvaa…</value>
-  </data>
-  <data name="Explorer.ReadDisk">
-    <value>Lue levyke</value>
-  </data>
-  <data name="Explorer.Name">
-    <value>Nimi</value>
-  </data>
-  <data name="Explorer.Type">
-    <value>Tyyppi</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirmTitle">
-    <value>Lue levyke</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirm">
-    <value>Onko levyke asetettu valittuun asemaan ({0}) ja valmis luettavaksi?</value>
-  </data>
-  <data name="Explorer.Type.Text">
-    <value>Tekstitiedosto</value>
-  </data>
-  <data name="Explorer.Type.Image">
-    <value>Kuva</value>
-  </data>
-  <data name="Explorer.Type.Audio">
-    <value>Äänitiedosto</value>
-  </data>
-  <data name="Explorer.Type.Archive">
-    <value>Arkisto</value>
-  </data>
-  <data name="Explorer.Type.Program">
-    <value>Ohjelma</value>
-  </data>
-  <data name="Explorer.Type.DiskImage">
-    <value>Levykuva</value>
-  </data>
+  <data name="Explorer.Image"><value>Levykuva</value></data>
+  <data name="Explorer.Format"><value>Muoto</value></data>
+  <data name="Explorer.OpenImage"><value>Avaa levykuva…</value></data>
+  <data name="Explorer.Automatic"><value>Automaattinen tunnistus</value></data>
+  <data name="Explorer.Volume"><value>Taltio</value></data>
+  <data name="Explorer.FileSystem"><value>Tiedostojärjestelmä</value></data>
+  <data name="Explorer.Capacity"><value>Kapasiteetti</value></data>
+  <data name="Explorer.Free"><value>Vapaa tila</value></data>
+  <data name="Explorer.Entries"><value>Kohteet</value></data>
+  <data name="Explorer.SelectEntry"><value>Valitse tiedosto tai kansio.</value></data>
+  <data name="Explorer.Size"><value>Koko</value></data>
+  <data name="Explorer.Modified"><value>Muokattu</value></data>
+  <data name="Explorer.Comment"><value>Kommentti</value></data>
+  <data name="Explorer.Warnings"><value>Varoitukset</value></data>
+  <data name="Explorer.Directory"><value>Kansio</value></data>
+  <data name="Explorer.File"><value>Tiedosto</value></data>
+  <data name="Explorer.Link"><value>Linkki</value></data>
+  <data name="Explorer.Unknown"><value>Tuntematon</value></data>
+  <data name="Explorer.Unnamed"><value>Nimetön taltio</value></data>
+  <data name="Explorer.LoadFailed"><value>Levykuvaa ei voi avata: {0}</value></data>
+  <data name="Explorer.Loading"><value>Luetaan levykuvaa…</value></data>
+  <data name="Explorer.ReadDisk"><value>Lue levyke</value></data>
+  <data name="Explorer.Name"><value>Nimi</value></data>
+  <data name="Explorer.Type"><value>Tyyppi</value></data>
+  <data name="Explorer.ReadDiskConfirmTitle"><value>Lue levyke</value></data>
+  <data name="Explorer.ReadDiskConfirm"><value>Onko levyke asetettu valittuun asemaan ({0}) ja valmis luettavaksi?</value></data>
+  <data name="Explorer.Type.Text"><value>Tekstitiedosto</value></data>
+  <data name="Explorer.Type.Image"><value>Kuva</value></data>
+  <data name="Explorer.Type.Audio"><value>Äänitiedosto</value></data>
+  <data name="Explorer.Type.Archive"><value>Arkisto</value></data>
+  <data name="Explorer.Type.Program"><value>Ohjelma</value></data>
+  <data name="Explorer.Type.DiskImage"><value>Levykuva</value></data>
   <data name="Explorer.System"><value>Järjestelmä</value></data>
   <data name="Explorer.Protection"><value>Suojaus</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Fyysiset sektorit — tiedostojärjestelmää ei tunnistettu</value></data>
@@ -119,6 +55,6 @@
   <data name="Explorer.Content.crack-the-company"><value>The Companyn crack</value></data>
   <data name="Explorer.DataBlocks"><value>Datalohkot</value></data>
   <data name="Explorer.DetectedFormats"><value>Tunnistettu: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable"><value>Host Tools ei voi tuottaa tutkittavaa alan kuvaa {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed"><value>Host Tools ei voinut purkaa kuvaa nimellä {0}.</value></data>
 </root>

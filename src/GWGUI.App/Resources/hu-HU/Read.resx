@@ -12,127 +12,45 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Read.Title">
-    <value>Olvas</value>
-  </data>
-  <data name="Read.NameRequired">
-    <value>Adjon meg egy fájlnevet.</value>
-  </data>
-  <data name="Read.TypeRequired">
-    <value>Válasszon kompatibilis képtípust.</value>
-  </data>
-  <data name="Read.FileExistsTitle">
-    <value>Meglévő fájl</value>
-  </data>
-  <data name="Read.FileExists">
-    <value>Ez a fájl már létezik.</value>
-  </data>
-  <data name="Read.ConflictPath">
-    <value>Meglévő fájl</value>
-  </data>
-  <data name="Read.ConflictOverwrite">
-    <value>Átír</value>
-  </data>
-  <data name="Read.ConflictNextNumber">
-    <value>Használja a következő számot</value>
-  </data>
-  <data name="Read.ConflictEditName">
-    <value>Hadd módosítsam a nevet</value>
-  </data>
-  <data name="Read.ImageToCreate">
-    <value>Létrehozandó kép</value>
-  </data>
-  <data name="Read.Extension">
-    <value>Kiterjesztés</value>
-  </data>
-  <data name="Read.RawScp">
-    <value>Nyers kép (SCP)</value>
-  </data>
-  <data name="Read.KnownFormat">
-    <value>Ismert lemezformátum</value>
-  </data>
-  <data name="Read.FileName">
-    <value>Fájlnév</value>
-  </data>
-  <data name="Read.Folder">
-    <value>Mappa</value>
-  </data>
-  <data name="Read.Revolutions">
-    <value>Fordulatszám sávonként</value>
-  </data>
-  <data name="Read.Retries">
-    <value>Újrapróbálkozások</value>
-  </data>
-  <data name="Read.Tracks">
-    <value>Vágányok/oldalak</value>
-  </data>
-  <data name="Read.AutoNumber">
-    <value>A sikeres olvasások automatikus számozása</value>
-  </data>
-  <data name="Read.Digits">
-    <value>Számjegyek</value>
-  </data>
-  <data name="Read.Letters">
-    <value>Levelek</value>
-  </data>
-  <data name="Read.Next">
-    <value>Következő:</value>
-  </data>
-  <data name="Read.OpenVisualize">
-    <value>Megnyitás a Vizualizációban</value>
-  </data>
-  <data name="Read.ScpFinished">
-    <value>A SCP rögzítése befejeződött. A munka megszakítása nélkül elemezheti.</value>
-  </data>
-  <data name="Read.ScpSummaryTitle">
-    <value>Végső SCP eredmény:</value>
-  </data>
-  <data name="Read.ScpTracksSummary">
-    <value>Vágányok: {0} jó, {1} hiányzik vagy érvénytelen ({2} henger, {3} oldal).</value>
-  </data>
-  <data name="Read.ScpTechnicalSummary">
-    <value>Fordulatok: {0} · Felbontás: {1} ns · Méret: {2:N0} bájt · Ellenőrző összeg: {3}.</value>
-  </data>
-  <data name="Read.ScpOutputFile">
-    <value>Fájl: {0}</value>
-  </data>
-  <data name="Read.ScpSummaryUnavailable">
-    <value>SCP összefoglaló nem érhető el: {0}</value>
-  </data>
-  <data name="Read.ScpBannerSummary">
-    <value>{0} jó sávok · {1} hiányzik vagy érvénytelen · {2} henger · {3} oldal · {4} fordulat · {5:N0} bájt · {6} ellenőrző összeg</value>
-  </data>
-  <data name="Read.ChooseType">
-    <value>Válasszon egy képtípust</value>
-  </data>
-  <data name="Read.DestinationFolder">
-    <value>Cél mappa</value>
-  </data>
-  <data name="Read.CancelledFileDeleted">
-    <value>Olvasás megszakítva: A hiányos fájlt törölték: {0}</value>
-  </data>
-  <data name="Read.CancelledFileDeleteFailed">
-    <value>Az olvasás megszakítva, de a hiányos fájl nem törölhető: {0} — {1}</value>
-  </data>
-  <data name="Read.OpenExplore">
-    <value>Fájlok böngészése</value>
-  </data>
-  <data name="Read.InternalReader">
-    <value>Belső fizikai lemezolvasás (kísérleti)</value>
-  </data>
-  <data name="Read.InternalReaderTip">
-    <value>Közvetlenül a Greaseweazle protokollal olvassa a fluxust; a gw.exe marad az alapértelmezett.</value>
-  </data>
-  <data name="Read.InternalPreview">
-    <value>Belső fizikai lemezolvasás ide: {0}</value>
-  </data>
-  <data name="Read.InternalRawScpOnly">
-    <value>A belső olvasás jelenleg csak nyers SCP-képeket készít.</value>
-  </data>
-  <data name="Read.InternalUnsupportedOptions">
-    <value>A belső olvasó néhány engedélyezett beállítást még nem támogat.</value>
-  </data>
-  <data name="Read.InternalInvalidOptions">
-    <value>A belső olvasási beállítások érvénytelenek.</value>
-  </data>
+  <data name="Read.Title"><value>Olvas</value></data>
+  <data name="Read.NameRequired"><value>Adjon meg egy fájlnevet.</value></data>
+  <data name="Read.TypeRequired"><value>Válasszon kompatibilis képtípust.</value></data>
+  <data name="Read.FileExistsTitle"><value>Meglévő fájl</value></data>
+  <data name="Read.FileExists"><value>Ez a fájl már létezik.</value></data>
+  <data name="Read.ConflictPath"><value>Meglévő fájl</value></data>
+  <data name="Read.ConflictOverwrite"><value>Átír</value></data>
+  <data name="Read.ConflictNextNumber"><value>Használja a következő számot</value></data>
+  <data name="Read.ConflictEditName"><value>Hadd módosítsam a nevet</value></data>
+  <data name="Read.ImageToCreate"><value>Létrehozandó kép</value></data>
+  <data name="Read.Extension"><value>Kiterjesztés</value></data>
+  <data name="Read.RawScp"><value>Nyers kép (SCP)</value></data>
+  <data name="Read.KnownFormat"><value>Ismert lemezformátum</value></data>
+  <data name="Read.FileName"><value>Fájlnév</value></data>
+  <data name="Read.Folder"><value>Mappa</value></data>
+  <data name="Read.Revolutions"><value>Fordulatszám sávonként</value></data>
+  <data name="Read.Retries"><value>Újrapróbálkozások</value></data>
+  <data name="Read.Tracks"><value>Vágányok/oldalak</value></data>
+  <data name="Read.AutoNumber"><value>A sikeres olvasások automatikus számozása</value></data>
+  <data name="Read.Digits"><value>Számjegyek</value></data>
+  <data name="Read.Letters"><value>Levelek</value></data>
+  <data name="Read.Next"><value>Következő:</value></data>
+  <data name="Read.OpenVisualize"><value>Megnyitás a Vizualizációban</value></data>
+  <data name="Read.ScpFinished"><value>A SCP rögzítése befejeződött. A munka megszakítása nélkül elemezheti.</value></data>
+  <data name="Read.ScpSummaryTitle"><value>Végső SCP eredmény:</value></data>
+  <data name="Read.ScpTracksSummary"><value>Vágányok: {0} jó, {1} hiányzik vagy érvénytelen ({2} henger, {3} oldal).</value></data>
+  <data name="Read.ScpTechnicalSummary"><value>Fordulatok: {0} · Felbontás: {1} ns · Méret: {2:N0} bájt · Ellenőrző összeg: {3}.</value></data>
+  <data name="Read.ScpOutputFile"><value>Fájl: {0}</value></data>
+  <data name="Read.ScpSummaryUnavailable"><value>SCP összefoglaló nem érhető el: {0}</value></data>
+  <data name="Read.ScpBannerSummary"><value>{0} jó sávok · {1} hiányzik vagy érvénytelen · {2} henger · {3} oldal · {4} fordulat · {5:N0} bájt · {6} ellenőrző összeg</value></data>
+  <data name="Read.ChooseType"><value>Válasszon egy képtípust</value></data>
+  <data name="Read.DestinationFolder"><value>Cél mappa</value></data>
+  <data name="Read.CancelledFileDeleted"><value>Olvasás megszakítva: A hiányos fájlt törölték: {0}</value></data>
+  <data name="Read.CancelledFileDeleteFailed"><value>Az olvasás megszakítva, de a hiányos fájl nem törölhető: {0} — {1}</value></data>
+  <data name="Read.OpenExplore"><value>Fájlok böngészése</value></data>
+  <data name="Read.InternalReader"><value>Belső fizikai lemezolvasás (kísérleti)</value></data>
+  <data name="Read.InternalReaderTip"><value>Közvetlenül a Greaseweazle protokollal olvassa a fluxust; a gw.exe marad az alapértelmezett.</value></data>
+  <data name="Read.InternalPreview"><value>Belső fizikai lemezolvasás ide: {0}</value></data>
+  <data name="Read.InternalRawScpOnly"><value>A belső olvasás jelenleg csak nyers SCP-képeket készít.</value></data>
+  <data name="Read.InternalUnsupportedOptions"><value>A belső olvasó néhány engedélyezett beállítást még nem támogat.</value></data>
+  <data name="Read.InternalInvalidOptions"><value>A belső olvasási beállítások érvénytelenek.</value></data>
 </root>

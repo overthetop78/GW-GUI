@@ -12,40 +12,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="HostTools.Detect">
-    <value>Εύρεση gw.exe</value>
-  </data>
-  <data name="HostTools.Check">
-    <value>Ελέγξτε για ενημερώσεις</value>
-  </data>
-  <data name="HostTools.Download">
-    <value>Κατεβάστε την τελευταία έκδοση</value>
-  </data>
-  <data name="HostTools.Rollback">
-    <value>Χρησιμοποιήστε την προηγούμενη διαδρομή</value>
-  </data>
-  <data name="HostTools.None">
-    <value>Δεν εντοπίστηκε εγκατάσταση.</value>
-  </data>
-  <data name="HostTools.Detected">
-    <value>Εντοπίστηκε: {0}</value>
-  </data>
-  <data name="HostTools.Latest">
-    <value>Τελευταία διαθέσιμη έκδοση: {0}</value>
-  </data>
-  <data name="HostTools.Installed">
-    <value>Η έκδοση {0} έχει εγκατασταθεί.</value>
-  </data>
-  <data name="HostTools.DownloadConfirm">
-    <value>Λήψη και εγκατάσταση του Greaseweazle Host Tools {0} για Windows x64;</value>
-  </data>
-  <data name="HostTools.Title">
-    <value>Greaseweazle Εργαλεία κεντρικού υπολογιστή</value>
-  </data>
-  <data name="HostTools.NoPrevious">
-    <value>Δεν έχει αποθηκευτεί έγκυρη προηγούμενη διαδρομή.</value>
-  </data>
-  <data name="HostTools.UpdateAvailable">
-    <value>Διαθέσιμα Εργαλεία κεντρικού υπολογιστή {0}</value>
-  </data>
+  <data name="HostTools.Detect"><value>Εύρεση gw.exe</value></data>
+  <data name="HostTools.Check"><value>Ελέγξτε για ενημερώσεις</value></data>
+  <data name="HostTools.Download"><value>Κατεβάστε την τελευταία έκδοση</value></data>
+  <data name="HostTools.Rollback"><value>Χρησιμοποιήστε την προηγούμενη διαδρομή</value></data>
+  <data name="HostTools.None"><value>Δεν εντοπίστηκε εγκατάσταση.</value></data>
+  <data name="HostTools.Detected"><value>Εντοπίστηκε: {0}</value></data>
+  <data name="HostTools.Latest"><value>Τελευταία διαθέσιμη έκδοση: {0}</value></data>
+  <data name="HostTools.Installed"><value>Η έκδοση {0} έχει εγκατασταθεί.</value></data>
+  <data name="HostTools.DownloadConfirm"><value>Λήψη και εγκατάσταση του Greaseweazle Host Tools {0} για Windows x64;</value></data>
+  <data name="HostTools.Title"><value>Greaseweazle Εργαλεία κεντρικού υπολογιστή</value></data>
+  <data name="HostTools.NoPrevious"><value>Δεν έχει αποθηκευτεί έγκυρη προηγούμενη διαδρομή.</value></data>
+  <data name="HostTools.UpdateAvailable"><value>Διαθέσιμα Εργαλεία κεντρικού υπολογιστή {0}</value></data>
 </root>

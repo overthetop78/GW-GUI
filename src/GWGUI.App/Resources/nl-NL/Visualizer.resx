@@ -12,209 +12,68 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Visual.Decoder">
-    <value>Decoder</value>
-  </data>
-  <data name="Visual.LinkZoom">
-    <value>Zoomlink koppelen</value>
-  </data>
-  <data name="Visual.OpenScp">
-    <value>Open een SCP-bestand…</value>
-  </data>
-  <data name="Visual.NoFile">
-    <value>Geen SCP bestand geopend</value>
-  </data>
-  <data name="Visual.Waiting">
-    <value>Wachten op een bestand</value>
-  </data>
-  <data name="Visual.Inspector">
-    <value>Inspecteur</value>
-  </data>
-  <data name="Visual.SelectTrack">
-    <value>Selecteer een nummer.</value>
-  </data>
-  <data name="Visual.Controls">
-    <value>Klik: selecteren · Wiel: zoomen · Klik met de rechtermuisknop: pannen</value>
-  </data>
-  <data name="Visual.NormalFlux">
-    <value>Normale flux</value>
-  </data>
-  <data name="Visual.ShortTransition">
-    <value>Korte overgang</value>
-  </data>
-  <data name="Visual.LongTransition">
-    <value>Lange overgang/anomalie</value>
-  </data>
-  <data name="Visual.Loading">
-    <value>Bestand lezen…</value>
-  </data>
-  <data name="Visual.Invalid">
-    <value>Ongeldig bestand</value>
-  </data>
-  <data name="Visual.Title">
-    <value>SCP visualisatie</value>
-  </data>
-  <data name="Visual.ChecksumValid">
-    <value>geldig</value>
-  </data>
-  <data name="Visual.ChecksumInvalid">
-    <value>ongeldig</value>
-  </data>
-  <data name="Visual.Summary">
-    <value>SCP {0} · {1} tracks · {2} revolutie(s) · {3} ns resolutie · {4} checksum</value>
-  </data>
-  <data name="Visual.Revolution">
-    <value>Revolutie {0}: {1:N0} overgangen · {2:F2} ms · {3:F2} RPM</value>
-  </data>
-  <data name="Visual.Analysis">
-    <value>Decodering: {0}
-Vertrouwen: {1:P0}
-Geschatte cel: {2:F1} ticks
-Structuren: {3}</value>
-  </data>
-  <data name="Visual.Track">
-    <value>Zijde: {0}
-Volg: {1}
-SCP invoer: {2}</value>
-  </data>
-  <data name="Visual.SideNoData">
-    <value>Zijkant {0}
-Geen gegevens</value>
-  </data>
-  <data name="Visual.TrackTooltip">
-    <value>Zijkant {0} · Spoor {1}
-{2} revolutie(s)</value>
-  </data>
-  <data name="Visual.Automatic">
-    <value>Automatisch</value>
-  </data>
-  <data name="Visual.StructureHeader">
-    <value>Kop/adres</value>
-  </data>
-  <data name="Visual.StructureData">
-    <value>Gedecodeerde gegevens</value>
-  </data>
-  <data name="Visual.StructureAnomaly">
-    <value>Verwijderd/afwijking</value>
-  </data>
-  <data name="Visual.AnalysedRevolution">
-    <value>Analyse gebaseerd op revolutie {0}.</value>
-  </data>
-  <data name="Visual.BitOffset">
-    <value>beetje {0:N0}</value>
-  </data>
-  <data name="Visual.SectorDetail">
-    <value>Sector C{0} H{1} R{2} · {3} bytes · {4} {5}</value>
-  </data>
-  <data name="Visual.CrcValid">
-    <value>geldig</value>
-  </data>
-  <data name="Visual.CrcInvalid">
-    <value>ongeldig</value>
-  </data>
-  <data name="Visual.IntegrityUnavailable">
-    <value>niet beschikbaar</value>
-  </data>
-  <data name="Visual.StructureKind.Sync">
-    <value>Synchronisatie</value>
-  </data>
-  <data name="Visual.StructureKind.IdAddressMark">
-    <value>Sectorkop</value>
-  </data>
-  <data name="Visual.StructureKind.DataAddressMark">
-    <value>Sectorgegevens</value>
-  </data>
-  <data name="Visual.StructureKind.DeletedDataAddressMark">
-    <value>Sectorgegevens verwijderd</value>
-  </data>
-  <data name="Visual.StructureKind.AmigaSync">
-    <value>Amiga synchronisatie</value>
-  </data>
-  <data name="Visual.StructureKind.AppleAddress">
-    <value>Proloog van Apple</value>
-  </data>
-  <data name="Visual.StructureKind.AppleData">
-    <value>Apple data-proloog</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreSync">
-    <value>Commodore synchronisatie</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreHeader">
-    <value>Commodore koptekst</value>
-  </data>
-  <data name="Visual.StructureKind.FormatHeader">
-    <value>Koptekst opmaken</value>
-  </data>
-  <data name="Visual.StructureKind.FormatData">
-    <value>Gegevens opmaken</value>
-  </data>
-  <data name="Visual.StructureKind.TimingAnomaly">
-    <value>Timingafwijking</value>
-  </data>
-  <data name="Visual.OpenFilter">
-    <value>SuperCard Pro vastleggen (*.scp)|*.scp|Alle bestanden|*.*</value>
-  </data>
-  <data name="Visual.Integrity.Checksum">
-    <value>Controlesom</value>
-  </data>
-  <data name="Visual.Side">
-    <value>Zijkant {0}</value>
-  </data>
-  <data name="Visual.AnalysingTrack">
-    <value>Track {0}/{1}… analyseren</value>
-  </data>
-  <data name="Visual.SideLabel">
-    <value>Kant</value>
-  </data>
-  <data name="Visual.TrackLabel">
-    <value>Spoor</value>
-  </data>
-  <data name="Visual.ScpEntryLabel">
-    <value>SCP invoer</value>
-  </data>
-  <data name="Visual.RevolutionsTitle">
-    <value>Revoluties</value>
-  </data>
-  <data name="Visual.AnalysisTitle">
-    <value>Analyse</value>
-  </data>
-  <data name="Visual.ConfidenceLabel">
-    <value>Vertrouwen</value>
-  </data>
-  <data name="Visual.CellLabel">
-    <value>Geschatte cel</value>
-  </data>
-  <data name="Visual.StructuresLabel">
-    <value>Structuren</value>
-  </data>
-  <data name="Visual.StructuresTitle">
-    <value>Gedetecteerde structuren</value>
-  </data>
-  <data name="Visual.SectorsTitle">
-    <value>Sectoren</value>
-  </data>
-  <data name="Visual.TransitionsUnit">
-    <value>overgangen</value>
-  </data>
-  <data name="Visual.OpenImage">
-    <value>Een schijfkopie openen…</value>
-  </data>
-  <data name="Visual.DetachInspector">
-    <value>Maak de inspecteur los</value>
-  </data>
-  <data name="Visual.AttachInspector">
-    <value>Bevestig de inspecteur</value>
-  </data>
-  <data name="Visual.SummaryTab">
-    <value>Samenvatting</value>
-  </data>
-  <data name="Visual.FormatDetected">
-    <value>Formaat gedetecteerd</value>
-  </data>
-  <data name="Visual.AverageRpm">
-    <value>Gemiddeld toerental</value>
-  </data>
-  <data name="Visual.AverageDuration">
-    <value>Gemiddelde duur</value>
-  </data>
+<data name="Visual.LinkZoom"><value>Zoomlink koppelen</value></data>
+  <data name="Visual.OpenScp"><value>Open een SCP-bestand…</value></data>
+  <data name="Visual.NoFile"><value>Geen SCP bestand geopend</value></data>
+  <data name="Visual.Waiting"><value>Wachten op een bestand</value></data>
+  <data name="Visual.Inspector"><value>Inspecteur</value></data>
+  <data name="Visual.SelectTrack"><value>Selecteer een nummer.</value></data>
+  <data name="Visual.Controls"><value>Klik: selecteren · Wiel: zoomen · Klik met de rechtermuisknop: pannen</value></data>
+  <data name="Visual.NormalFlux"><value>Normale flux</value></data>
+  <data name="Visual.ShortTransition"><value>Korte overgang</value></data>
+  <data name="Visual.LongTransition"><value>Lange overgang/anomalie</value></data>
+  <data name="Visual.Loading"><value>Bestand lezen…</value></data>
+  <data name="Visual.Invalid"><value>Ongeldig bestand</value></data>
+  <data name="Visual.Title"><value>SCP visualisatie</value></data>
+  <data name="Visual.ChecksumValid"><value>geldig</value></data>
+  <data name="Visual.ChecksumInvalid"><value>ongeldig</value></data>
+  <data name="Visual.Summary"><value>SCP {0} · {1} tracks · {2} revolutie(s) · {3} ns resolutie · {4} checksum</value></data>
+  <data name="Visual.Revolution"><value>Revolutie {0}: {1:N0} overgangen · {2:F2} ms · {3:F2} RPM</value></data>
+  <data name="Visual.Analysis"><value>Decodering: {0}&#xA;Vertrouwen: {1:P0}&#xA;Geschatte cel: {2:F1} ticks&#xA;Structuren: {3}</value></data>
+  <data name="Visual.Track"><value>Zijde: {0}&#xA;Volg: {1}&#xA;SCP invoer: {2}</value></data>
+  <data name="Visual.SideNoData"><value>Zijkant {0}&#xA;Geen gegevens</value></data>
+  <data name="Visual.TrackTooltip"><value>Zijkant {0} · Spoor {1}&#xA;{2} revolutie(s)</value></data>
+  <data name="Visual.Automatic"><value>Automatisch</value></data>
+  <data name="Visual.StructureHeader"><value>Kop/adres</value></data>
+  <data name="Visual.StructureData"><value>Gedecodeerde gegevens</value></data>
+  <data name="Visual.StructureAnomaly"><value>Verwijderd/afwijking</value></data>
+  <data name="Visual.AnalysedRevolution"><value>Analyse gebaseerd op revolutie {0}.</value></data>
+  <data name="Visual.BitOffset"><value>beetje {0:N0}</value></data>
+<data name="Visual.CrcValid"><value>geldig</value></data>
+  <data name="Visual.CrcInvalid"><value>ongeldig</value></data>
+  <data name="Visual.IntegrityUnavailable"><value>niet beschikbaar</value></data>
+  <data name="Visual.StructureKind.Sync"><value>Synchronisatie</value></data>
+  <data name="Visual.StructureKind.IdAddressMark"><value>Sectorkop</value></data>
+  <data name="Visual.StructureKind.DataAddressMark"><value>Sectorgegevens</value></data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark"><value>Sectorgegevens verwijderd</value></data>
+  <data name="Visual.StructureKind.AmigaSync"><value>Amiga synchronisatie</value></data>
+  <data name="Visual.StructureKind.AppleAddress"><value>Proloog van Apple</value></data>
+  <data name="Visual.StructureKind.AppleData"><value>Apple data-proloog</value></data>
+  <data name="Visual.StructureKind.CommodoreSync"><value>Commodore synchronisatie</value></data>
+  <data name="Visual.StructureKind.CommodoreHeader"><value>Commodore koptekst</value></data>
+  <data name="Visual.StructureKind.FormatHeader"><value>Koptekst opmaken</value></data>
+  <data name="Visual.StructureKind.FormatData"><value>Gegevens opmaken</value></data>
+  <data name="Visual.StructureKind.TimingAnomaly"><value>Timingafwijking</value></data>
+  <data name="Visual.OpenFilter"><value>SuperCard Pro vastleggen (*.scp)|*.scp|Alle bestanden|*.*</value></data>
+  <data name="Visual.Integrity.Checksum"><value>Controlesom</value></data>
+  <data name="Visual.Side"><value>Zijkant {0}</value></data>
+  <data name="Visual.AnalysingTrack"><value>Track {0}/{1}… analyseren</value></data>
+  <data name="Visual.SideLabel"><value>Kant</value></data>
+  <data name="Visual.TrackLabel"><value>Spoor</value></data>
+  <data name="Visual.ScpEntryLabel"><value>SCP invoer</value></data>
+  <data name="Visual.RevolutionsTitle"><value>Revoluties</value></data>
+  <data name="Visual.AnalysisTitle"><value>Analyse</value></data>
+  <data name="Visual.ConfidenceLabel"><value>Vertrouwen</value></data>
+  <data name="Visual.CellLabel"><value>Geschatte cel</value></data>
+  <data name="Visual.StructuresLabel"><value>Structuren</value></data>
+  <data name="Visual.StructuresTitle"><value>Gedetecteerde structuren</value></data>
+  <data name="Visual.SectorsTitle"><value>Sectoren</value></data>
+  <data name="Visual.TransitionsUnit"><value>overgangen</value></data>
+  <data name="Visual.OpenImage"><value>Een schijfkopie openen…</value></data>
+  <data name="Visual.DetachInspector"><value>Maak de inspecteur los</value></data>
+  <data name="Visual.AttachInspector"><value>Bevestig de inspecteur</value></data>
+  <data name="Visual.SummaryTab"><value>Samenvatting</value></data>
+  <data name="Visual.FormatDetected"><value>Formaat gedetecteerd</value></data>
+  <data name="Visual.AverageRpm"><value>gemiddeld RPM</value></data>
+  <data name="Visual.AverageDuration"><value>Gemiddelde duur</value></data>
 </root>

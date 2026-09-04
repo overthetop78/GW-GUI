@@ -12,40 +12,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="HostTools.Detect">
-    <value>gw.exe'ı bul</value>
-  </data>
-  <data name="HostTools.Check">
-    <value>Güncellemeleri kontrol edin</value>
-  </data>
-  <data name="HostTools.Download">
-    <value>En son sürümü indirin</value>
-  </data>
-  <data name="HostTools.Rollback">
-    <value>Önceki yolu kullan</value>
-  </data>
-  <data name="HostTools.None">
-    <value>Kurulum algılanmadı.</value>
-  </data>
-  <data name="HostTools.Detected">
-    <value>Algılandı: {0}</value>
-  </data>
-  <data name="HostTools.Latest">
-    <value>Mevcut en son sürüm: {0}</value>
-  </data>
-  <data name="HostTools.Installed">
-    <value>Sürüm {0} yüklü.</value>
-  </data>
-  <data name="HostTools.DownloadConfirm">
-    <value>Windows x64 için Greaseweazle Ana Bilgisayar Araçları {0} indirilip kurulsun mu?</value>
-  </data>
-  <data name="HostTools.Title">
-    <value>Greaseweazle Ana Bilgisayar Araçları</value>
-  </data>
-  <data name="HostTools.NoPrevious">
-    <value>Geçerli bir önceki yol depolanmadı.</value>
-  </data>
-  <data name="HostTools.UpdateAvailable">
-    <value>Ana Bilgisayar Araçları {0} mevcut</value>
-  </data>
+  <data name="HostTools.Detect"><value>gw.exe'ı bul</value></data>
+  <data name="HostTools.Check"><value>Güncellemeleri kontrol edin</value></data>
+  <data name="HostTools.Download"><value>En son sürümü indirin</value></data>
+  <data name="HostTools.Rollback"><value>Önceki yolu kullan</value></data>
+  <data name="HostTools.None"><value>Kurulum algılanmadı.</value></data>
+  <data name="HostTools.Detected"><value>Algılandı: {0}</value></data>
+  <data name="HostTools.Latest"><value>Mevcut en son sürüm: {0}</value></data>
+  <data name="HostTools.Installed"><value>Sürüm {0} yüklü.</value></data>
+  <data name="HostTools.DownloadConfirm"><value>Windows x64 için Greaseweazle Ana Bilgisayar Araçları {0} indirilip kurulsun mu?</value></data>
+  <data name="HostTools.Title"><value>Greaseweazle Ana Bilgisayar Araçları</value></data>
+  <data name="HostTools.NoPrevious"><value>Geçerli bir önceki yol depolanmadı.</value></data>
+  <data name="HostTools.UpdateAvailable"><value>Ana Bilgisayar Araçları {0} mevcut</value></data>
 </root>

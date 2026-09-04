@@ -12,63 +12,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Write.Title">
-    <value>Kirjoittaa</value>
-  </data>
-  <data name="Write.SelectSource">
-    <value>Valitse olemassa oleva lähdekuva.</value>
-  </data>
-  <data name="Write.Ambiguous">
-    <value>Muoto on epäselvä. Valitse selkeästi yhteensopiva muoto.</value>
-  </data>
-  <data name="Write.VerifyOff">
-    <value>Vahvistus kirjoittamisen jälkeen on poistettu käytöstä.</value>
-  </data>
-  <data name="Write.VerifyOn">
-    <value>Vahvistus kirjoittamisen jälkeen on käytössä.</value>
-  </data>
-  <data name="Write.ConfirmTitle">
-    <value>Vahvista kirjoittaminen</value>
-  </data>
-  <data name="Write.Confirm">
-    <value>Kuva: {0}
-Muoto: {1}
-Ajaa: {2}
-{3}
-
-Kirjoita tämä kuva levylle?</value>
-  </data>
-  <data name="Write.Source">
-    <value>Lähdekuva</value>
-  </data>
-  <data name="Write.Detected">
-    <value>Havaittu muoto</value>
-  </data>
-  <data name="Write.ChooseImage">
-    <value>Valitse kuva.</value>
-  </data>
-  <data name="Write.NoVerify">
-    <value>Poista vahvistus käytöstä kirjoittamisen jälkeen</value>
-  </data>
-  <data name="Write.NoVerifyTip">
-    <value>Lisää --no-verify. Levyä ei lueta uudelleen kirjoittamisen vahvistamiseksi.</value>
-  </data>
-  <data name="Write.EraseEmpty">
-    <value>Poista tyhjät raidat</value>
-  </data>
-  <data name="Write.VisualizeTracks">
-    <value>Visualisoi jäljet</value>
-  </data>
-  <data name="Write.VisualizeFormatRequired">
-    <value>Valitse levyn muoto ennen sen kappaleiden visualisointia.</value>
-  </data>
+  <data name="Write.Title"><value>Kirjoittaa</value></data>
+  <data name="Write.SelectSource"><value>Valitse olemassa oleva lähdekuva.</value></data>
+  <data name="Write.Ambiguous"><value>Muoto on epäselvä. Valitse selkeästi yhteensopiva muoto.</value></data>
+  <data name="Write.VerifyOff"><value>Vahvistus kirjoittamisen jälkeen on poistettu käytöstä.</value></data>
+  <data name="Write.VerifyOn"><value>Vahvistus kirjoittamisen jälkeen on käytössä.</value></data>
+  <data name="Write.ConfirmTitle"><value>Vahvista kirjoittaminen</value></data>
+  <data name="Write.Confirm"><value>Kuva: {0}&#xA;Muoto: {1}&#xA;Ajaa: {2}&#xA;{3}&#xA;&#xA;Kirjoita tämä kuva levylle?</value></data>
+  <data name="Write.Source"><value>Lähdekuva</value></data>
+  <data name="Write.Detected"><value>Havaittu muoto</value></data>
+  <data name="Write.ChooseImage"><value>Valitse kuva.</value></data>
+  <data name="Write.NoVerify"><value>Poista vahvistus käytöstä kirjoittamisen jälkeen</value></data>
+  <data name="Write.NoVerifyTip"><value>Lisää --no-verify. Levyä ei lueta uudelleen kirjoittamisen vahvistamiseksi.</value></data>
+  <data name="Write.EraseEmpty"><value>Poista tyhjät raidat</value></data>
+  <data name="Write.VisualizeTracks"><value>Visualisoi jäljet</value></data>
+  <data name="Write.VisualizeFormatRequired"><value>Valitse levyn muoto ennen sen kappaleiden visualisointia.</value></data>
   <data name="Write.InternalWriter" xml:space="preserve"><value>Sisäinen kirjoitus (kokeellinen)</value></data>
   <data name="Write.InternalWriterTip" xml:space="preserve"><value>Kirjoittaa suoraan sisäisellä moottorilla ilman gw.exe:tä.</value></data>
   <data name="Write.InternalPreview" xml:space="preserve"><value>GW GUI:n sisäinen kirjoitus: {0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Yhtä tai useampaa lisäasetusta ei vielä tueta.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Sisäinen tarkistus ei ole vielä käytettävissä. Valitse ”Älä tarkista”.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Raita {0}, puoli {1}: {2}</value></data>
-  <data name="Write.InternalFailureReason">
-    <value>Sisäinen kirjoitus epäonnistui.</value>
-  </data>
+  <data name="Write.InternalFailureReason"><value>Sisäinen kirjoitus epäonnistui.</value></data>
 </root>

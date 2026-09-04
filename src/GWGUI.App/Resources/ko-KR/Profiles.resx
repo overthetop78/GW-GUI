@@ -12,52 +12,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Profiles.ByOperation">
-    <value>작업별 프로필</value>
-  </data>
-  <data name="Profiles.Tab">
-    <value>꼬리표</value>
-  </data>
-  <data name="Profiles.Name">
-    <value>이름</value>
-  </data>
-  <data name="Profiles.System">
-    <value>체계</value>
-  </data>
-  <data name="Profiles.Rename">
-    <value>이름 바꾸기…</value>
-  </data>
-  <data name="Profile.SaveTitle">
-    <value>프로필 저장</value>
-  </data>
-  <data name="Profile.Name">
-    <value>프로필 이름</value>
-  </data>
-  <data name="Profile.NameRequired">
-    <value>이름을 입력하세요.</value>
-  </data>
-  <data name="Profile.Title">
-    <value>윤곽</value>
-  </data>
-  <data name="Common.Profile">
-    <value>윤곽</value>
-  </data>
-  <data name="Profile.Default">
-    <value>기본</value>
-  </data>
-  <data name="Profile.SystemRename">
-    <value>기본 프로필은 영구적이며 이름을 바꿀 수 없습니다.</value>
-  </data>
-  <data name="Profile.SystemDelete">
-    <value>기본 프로필은 영구적이며 삭제할 수 없습니다.</value>
-  </data>
-  <data name="Profile.DuplicateName">
-    <value>이 탭의 프로필에는 이미 이 이름이 있습니다.</value>
-  </data>
-  <data name="Profile.Replace">
-    <value>이 프로필은 이미 존재합니다. 교체하시겠습니까?</value>
-  </data>
-  <data name="Profile.DeleteConfirm">
-    <value>'{0}' 프로필을 삭제하시겠습니까?</value>
-  </data>
+  <data name="Profiles.ByOperation"><value>작업별 프로필</value></data>
+  <data name="Profiles.Tab"><value>꼬리표</value></data>
+  <data name="Profiles.Name"><value>이름</value></data>
+  <data name="Profiles.System"><value>체계</value></data>
+  <data name="Profiles.Rename"><value>이름 바꾸기…</value></data>
+  <data name="Profile.SaveTitle"><value>프로필 저장</value></data>
+  <data name="Profile.Name"><value>프로필 이름</value></data>
+  <data name="Profile.NameRequired"><value>이름을 입력하세요.</value></data>
+  <data name="Profile.Title"><value>윤곽</value></data>
+  <data name="Common.Profile"><value>윤곽</value></data>
+  <data name="Profile.Default"><value>기본</value></data>
+  <data name="Profile.SystemRename"><value>기본 프로필은 영구적이며 이름을 바꿀 수 없습니다.</value></data>
+  <data name="Profile.SystemDelete"><value>기본 프로필은 영구적이며 삭제할 수 없습니다.</value></data>
+  <data name="Profile.DuplicateName"><value>이 탭의 프로필에는 이미 이 이름이 있습니다.</value></data>
+  <data name="Profile.Replace"><value>이 프로필은 이미 존재합니다. 교체하시겠습니까?</value></data>
+  <data name="Profile.DeleteConfirm"><value>'{0}' 프로필을 삭제하시겠습니까?</value></data>
 </root>

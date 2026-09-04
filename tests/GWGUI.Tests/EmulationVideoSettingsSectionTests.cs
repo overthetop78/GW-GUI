@@ -573,9 +573,27 @@ public sealed class EmulationVideoSettingsSectionTests
             FindByAutomationId<Slider>(panel,
                 EmulationVideoProcessingCatalog.VfdPhosphorIntensity).Value = 31;
             FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.VfdEmissionThreshold).Value = 42;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.VfdGlassDarkening).Value = 81;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.VfdCellSize).Value = 53;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.VfdCellGap).Value = 24;
+            FindByAutomationId<Slider>(panel,
                 EmulationVideoProcessingCatalog.VfdHaloIntensity).Value = 72;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.VfdHaloRadius).Value = 63;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.VfdPersistence).Value = 240;
             Assert.Equal(31, panel.Configuration.Vfd.PhosphorIntensity);
+            Assert.Equal(42, panel.Configuration.Vfd.EmissionThreshold);
+            Assert.Equal(81, panel.Configuration.Vfd.GlassDarkening);
+            Assert.Equal(53, panel.Configuration.Vfd.CellSize);
+            Assert.Equal(24, panel.Configuration.Vfd.CellGap);
             Assert.Equal(72, panel.Configuration.Vfd.HaloIntensity);
+            Assert.Equal(63, panel.Configuration.Vfd.HaloRadius);
+            Assert.Equal(240, panel.Configuration.Vfd.PersistenceMilliseconds);
 
             panel.SetConfiguration(new EmulationVideoProcessingConfiguration
             {
@@ -585,8 +603,14 @@ public sealed class EmulationVideoSettingsSectionTests
                 EmulationVideoProcessingCatalog.LedMatrixCellSize).Value = 32;
             FindByAutomationId<Slider>(panel,
                 EmulationVideoProcessingCatalog.LedMatrixDiffusion).Value = 73;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.LedMatrixHaloRadius).Value = 61;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.LedMatrixBlackDepth).Value = 84;
             Assert.Equal(32, panel.Configuration.LedMatrix.CellSize);
             Assert.Equal(73, panel.Configuration.LedMatrix.Diffusion);
+            Assert.Equal(61, panel.Configuration.LedMatrix.HaloRadius);
+            Assert.Equal(84, panel.Configuration.LedMatrix.BlackDepth);
 
             panel.SetConfiguration(new EmulationVideoProcessingConfiguration
             {
@@ -634,14 +658,16 @@ public sealed class EmulationVideoSettingsSectionTests
         });
     }
     [Fact]
-    public void PlasmaPanelContainsOnlyItsFourDocumentedParameters()
+    public void PlasmaPanelContainsOnlyItsDocumentedParameters()
     {
         RunSta(() =>
         {
             var panel = new EmulationVideoProcessingSettingsSection();
             var plasma = new EmulationPlasmaVideoConfiguration(
                 CellStructure: 21, Diffusion: 32,
-                TemporalDithering: 43, PersistenceIntensity: 54);
+                TemporalDithering: 43, PersistenceIntensity: 54,
+                BlackDepth: 65, PhosphorIntensity: 76, GammaResponse: 87,
+                AutomaticBrightnessLimiter: 98);
             panel.SetConfiguration(new EmulationVideoProcessingConfiguration
             {
                 DisplayTechnology = EmulationVideoDisplayTechnology.Plasma,
@@ -653,6 +679,11 @@ public sealed class EmulationVideoSettingsSectionTests
             Assert.Contains(EmulationVideoProcessingCatalog.PlasmaDiffusion, ids);
             Assert.Contains(EmulationVideoProcessingCatalog.PlasmaTemporalDithering, ids);
             Assert.Contains(EmulationVideoProcessingCatalog.PlasmaPersistence, ids);
+            Assert.Contains(EmulationVideoProcessingCatalog.PlasmaBlackDepth, ids);
+            Assert.Contains(EmulationVideoProcessingCatalog.PlasmaPhosphorIntensity, ids);
+            Assert.Contains(EmulationVideoProcessingCatalog.PlasmaGammaResponse, ids);
+            Assert.Contains(
+                EmulationVideoProcessingCatalog.PlasmaAutomaticBrightnessLimiter, ids);
             Assert.DoesNotContain(EmulationVideoProcessingCatalog.CrtBeamWidth, ids);
             Assert.DoesNotContain(EmulationVideoProcessingCatalog.FixedPixelGridIntensity, ids);
             Assert.DoesNotContain(EmulationVideoProcessingCatalog.VectorLineThreshold, ids);
@@ -667,8 +698,9 @@ public sealed class EmulationVideoSettingsSectionTests
         {
             var panel = new EmulationVideoProcessingSettingsSection();
             var vector = new EmulationVectorVideoConfiguration(
-                LineThreshold: 25, LineIntensity: 50,
-                HaloIntensity: 40, PersistenceIntensity: 30);
+                LineThreshold: 25, LineIntensity: 50, BeamWidth: 35,
+                BeamFocus: 70, PhosphorColor: EmulationCrtColorMode.Amber,
+                HaloIntensity: 40, HaloRadius: 55, PersistenceIntensity: 30);
             panel.SetConfiguration(new EmulationVideoProcessingConfiguration
             {
                 DisplayTechnology = EmulationVideoDisplayTechnology.Vector,
@@ -678,7 +710,11 @@ public sealed class EmulationVideoSettingsSectionTests
 
             Assert.Contains(EmulationVideoProcessingCatalog.VectorLineThreshold, ids);
             Assert.Contains(EmulationVideoProcessingCatalog.VectorLineIntensity, ids);
+            Assert.Contains(EmulationVideoProcessingCatalog.VectorBeamWidth, ids);
+            Assert.Contains(EmulationVideoProcessingCatalog.VectorBeamFocus, ids);
+            Assert.Contains(EmulationVideoProcessingCatalog.VectorPhosphorColor, ids);
             Assert.Contains(EmulationVideoProcessingCatalog.VectorHaloIntensity, ids);
+            Assert.Contains(EmulationVideoProcessingCatalog.VectorHaloRadius, ids);
             Assert.Contains(EmulationVideoProcessingCatalog.VectorPersistence, ids);
             Assert.DoesNotContain(EmulationVideoProcessingCatalog.CrtBeamWidth, ids);
             Assert.DoesNotContain(EmulationVideoProcessingCatalog.FixedPixelGridIntensity, ids);

@@ -12,209 +12,69 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Visual.Decoder">
-    <value>Kod çözücü</value>
-  </data>
-  <data name="Visual.LinkZoom">
-    <value>Bağlantı yakınlaştırma</value>
-  </data>
-  <data name="Visual.OpenScp">
-    <value>Bir SCP dosyasını açın…</value>
-  </data>
-  <data name="Visual.NoFile">
-    <value>SCP dosyası açık değil</value>
-  </data>
-  <data name="Visual.Waiting">
-    <value>Bir dosya bekleniyor</value>
-  </data>
-  <data name="Visual.Inspector">
-    <value>Müfettiş</value>
-  </data>
-  <data name="Visual.SelectTrack">
-    <value>Bir parça seçin.</value>
-  </data>
-  <data name="Visual.Controls">
-    <value>Tıklayın: seçin · Tekerlek: yakınlaştırın · Sağ tıklayın: yatay kaydırın</value>
-  </data>
-  <data name="Visual.NormalFlux">
-    <value>Normal akı</value>
-  </data>
-  <data name="Visual.ShortTransition">
-    <value>Kısa geçiş</value>
-  </data>
-  <data name="Visual.LongTransition">
-    <value>Uzun geçiş/anomali</value>
-  </data>
-  <data name="Visual.Loading">
-    <value>Dosya okunuyor…</value>
-  </data>
-  <data name="Visual.Invalid">
-    <value>Geçersiz dosya</value>
-  </data>
-  <data name="Visual.Title">
-    <value>SCP görselleştirme</value>
-  </data>
-  <data name="Visual.ChecksumValid">
-    <value>geçerli</value>
-  </data>
-  <data name="Visual.ChecksumInvalid">
-    <value>geçersiz</value>
-  </data>
-  <data name="Visual.Summary">
-    <value>SCP {0} · {1} parçalar · {2} devirler · {3} ns çözünürlük · {4} sağlama toplamı</value>
-  </data>
-  <data name="Visual.Revolution">
-    <value>Devrim {0}: {1:N0} geçişler · {2:F2} ms · {3:F2} RPM</value>
-  </data>
-  <data name="Visual.Analysis">
-    <value>Kod çözme: {0}
-Güven: {1:P0}
-Tahmini hücre: {2:F1} onay işareti
-Yapılar: {3}</value>
-  </data>
-  <data name="Visual.Track">
-    <value>Yan: {0}
-Parça: {1}
-SCP girişi: {2}</value>
-  </data>
-  <data name="Visual.SideNoData">
-    <value>Taraf {0}
-Veri yok</value>
-  </data>
-  <data name="Visual.TrackTooltip">
-    <value>Taraf {0} · Parça {1}
-{2} devrim(ler)</value>
-  </data>
-  <data name="Visual.Automatic">
-    <value>Otomatik</value>
-  </data>
-  <data name="Visual.StructureHeader">
-    <value>Başlık/adres</value>
-  </data>
-  <data name="Visual.StructureData">
-    <value>Kodu çözülmüş veriler</value>
-  </data>
-  <data name="Visual.StructureAnomaly">
-    <value>Silindi/anormallik</value>
-  </data>
-  <data name="Visual.AnalysedRevolution">
-    <value>Devrime dayalı analiz {0}.</value>
-  </data>
-  <data name="Visual.BitOffset">
-    <value>bit {0:N0}</value>
-  </data>
-  <data name="Visual.SectorDetail">
-    <value>Sektör C{0} H{1} R{2} · {3} bayt · {4} {5}</value>
-  </data>
-  <data name="Visual.CrcValid">
-    <value>geçerli</value>
-  </data>
-  <data name="Visual.CrcInvalid">
-    <value>geçersiz</value>
-  </data>
-  <data name="Visual.IntegrityUnavailable">
-    <value>müsait değil</value>
-  </data>
-  <data name="Visual.StructureKind.Sync">
-    <value>Senkronizasyon</value>
-  </data>
-  <data name="Visual.StructureKind.IdAddressMark">
-    <value>Sektör başlığı</value>
-  </data>
-  <data name="Visual.StructureKind.DataAddressMark">
-    <value>Sektör verileri</value>
-  </data>
-  <data name="Visual.StructureKind.DeletedDataAddressMark">
-    <value>Silinen sektör verileri</value>
-  </data>
-  <data name="Visual.StructureKind.AmigaSync">
-    <value>Amiga senkronizasyon</value>
-  </data>
-  <data name="Visual.StructureKind.AppleAddress">
-    <value>Apple adresi önsözü</value>
-  </data>
-  <data name="Visual.StructureKind.AppleData">
-    <value>Apple veri önsözü</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreSync">
-    <value>Commodore senkronizasyon</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreHeader">
-    <value>Commodore başlığı</value>
-  </data>
-  <data name="Visual.StructureKind.FormatHeader">
-    <value>Başlığı biçimlendir</value>
-  </data>
-  <data name="Visual.StructureKind.FormatData">
-    <value>Verileri biçimlendir</value>
-  </data>
-  <data name="Visual.StructureKind.TimingAnomaly">
-    <value>Zamanlama anormalliği</value>
-  </data>
-  <data name="Visual.OpenFilter">
-    <value>SuperCard Pro yakalama (*.scp)|*.scp|Tüm dosyalar|*.*</value>
-  </data>
-  <data name="Visual.Integrity.Checksum">
-    <value>Sağlama toplamı</value>
-  </data>
-  <data name="Visual.Side">
-    <value>Taraf {0}</value>
-  </data>
-  <data name="Visual.AnalysingTrack">
-    <value>{0}/{1} parçası analiz ediliyor…</value>
-  </data>
-  <data name="Visual.SideLabel">
-    <value>Taraf</value>
-  </data>
-  <data name="Visual.TrackLabel">
-    <value>İzlemek</value>
-  </data>
-  <data name="Visual.ScpEntryLabel">
-    <value>SCP girişi</value>
-  </data>
-  <data name="Visual.RevolutionsTitle">
-    <value>Devrimler</value>
-  </data>
-  <data name="Visual.AnalysisTitle">
-    <value>Analiz</value>
-  </data>
-  <data name="Visual.ConfidenceLabel">
-    <value>Kendinden emin</value>
-  </data>
-  <data name="Visual.CellLabel">
-    <value>Tahmini hücre</value>
-  </data>
-  <data name="Visual.StructuresLabel">
-    <value>Yapılar</value>
-  </data>
-  <data name="Visual.StructuresTitle">
-    <value>Tespit edilen yapılar</value>
-  </data>
-  <data name="Visual.SectorsTitle">
-    <value>Sektörler</value>
-  </data>
-  <data name="Visual.TransitionsUnit">
-    <value>geçişler</value>
-  </data>
-  <data name="Visual.OpenImage">
-    <value>Bir disk görüntüsünü açın…</value>
-  </data>
-  <data name="Visual.DetachInspector">
-    <value>Müfettişi ayırın</value>
-  </data>
-  <data name="Visual.AttachInspector">
-    <value>Müfettişi bağlayın</value>
-  </data>
-  <data name="Visual.SummaryTab">
-    <value>Özet</value>
-  </data>
-  <data name="Visual.FormatDetected">
-    <value>Biçim algılandı</value>
-  </data>
-  <data name="Visual.AverageRpm">
-    <value>Ortalama BGBG</value>
-  </data>
-  <data name="Visual.AverageDuration">
-    <value>Ortalama süre</value>
-  </data>
+  <data name="Visual.Decoder"><value>Kod çözücü</value></data>
+  <data name="Visual.LinkZoom"><value>Bağlantı yakınlaştırma</value></data>
+  <data name="Visual.OpenScp"><value>Bir SCP dosyasını açın…</value></data>
+  <data name="Visual.NoFile"><value>SCP dosyası açık değil</value></data>
+  <data name="Visual.Waiting"><value>Bir dosya bekleniyor</value></data>
+  <data name="Visual.Inspector"><value>Müfettiş</value></data>
+  <data name="Visual.SelectTrack"><value>Bir parça seçin.</value></data>
+  <data name="Visual.Controls"><value>Tıklayın: seçin · Tekerlek: yakınlaştırın · Sağ tıklayın: yatay kaydırın</value></data>
+  <data name="Visual.NormalFlux"><value>Normal akı</value></data>
+  <data name="Visual.ShortTransition"><value>Kısa geçiş</value></data>
+  <data name="Visual.LongTransition"><value>Uzun geçiş/anomali</value></data>
+  <data name="Visual.Loading"><value>Dosya okunuyor…</value></data>
+  <data name="Visual.Invalid"><value>Geçersiz dosya</value></data>
+  <data name="Visual.Title"><value>SCP görselleştirme</value></data>
+  <data name="Visual.ChecksumValid"><value>geçerli</value></data>
+  <data name="Visual.ChecksumInvalid"><value>geçersiz</value></data>
+  <data name="Visual.Summary"><value>SCP {0} · {1} parçalar · {2} devirler · {3} ns çözünürlük · {4} sağlama toplamı</value></data>
+  <data name="Visual.Revolution"><value>Devrim {0}: {1:N0} geçişler · {2:F2} ms · {3:F2} RPM</value></data>
+  <data name="Visual.Analysis"><value>Kod çözme: {0}&#xA;Güven: {1:P0}&#xA;Tahmini hücre: {2:F1} onay işareti&#xA;Yapılar: {3}</value></data>
+  <data name="Visual.Track"><value>Yan: {0}&#xA;Parça: {1}&#xA;SCP girişi: {2}</value></data>
+  <data name="Visual.SideNoData"><value>Taraf {0}&#xA;Veri yok</value></data>
+  <data name="Visual.TrackTooltip"><value>Taraf {0} · Parça {1}&#xA;{2} devrim(ler)</value></data>
+  <data name="Visual.Automatic"><value>Otomatik</value></data>
+  <data name="Visual.StructureHeader"><value>Başlık/adres</value></data>
+  <data name="Visual.StructureData"><value>Kodu çözülmüş veriler</value></data>
+  <data name="Visual.StructureAnomaly"><value>Silindi/anormallik</value></data>
+  <data name="Visual.AnalysedRevolution"><value>Devrime dayalı analiz {0}.</value></data>
+<data name="Visual.SectorDetail"><value>Sektör C{0} H{1} R{2} · {3} bayt · {4} {5}</value></data>
+  <data name="Visual.CrcValid"><value>geçerli</value></data>
+  <data name="Visual.CrcInvalid"><value>geçersiz</value></data>
+  <data name="Visual.IntegrityUnavailable"><value>müsait değil</value></data>
+  <data name="Visual.StructureKind.Sync"><value>Senkronizasyon</value></data>
+  <data name="Visual.StructureKind.IdAddressMark"><value>Sektör başlığı</value></data>
+  <data name="Visual.StructureKind.DataAddressMark"><value>Sektör verileri</value></data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark"><value>Silinen sektör verileri</value></data>
+  <data name="Visual.StructureKind.AmigaSync"><value>Amiga senkronizasyon</value></data>
+  <data name="Visual.StructureKind.AppleAddress"><value>Apple adresi önsözü</value></data>
+  <data name="Visual.StructureKind.AppleData"><value>Apple veri önsözü</value></data>
+  <data name="Visual.StructureKind.CommodoreSync"><value>Commodore senkronizasyon</value></data>
+  <data name="Visual.StructureKind.CommodoreHeader"><value>Commodore başlığı</value></data>
+  <data name="Visual.StructureKind.FormatHeader"><value>Başlığı biçimlendir</value></data>
+  <data name="Visual.StructureKind.FormatData"><value>Verileri biçimlendir</value></data>
+  <data name="Visual.StructureKind.TimingAnomaly"><value>Zamanlama anormalliği</value></data>
+  <data name="Visual.OpenFilter"><value>SuperCard Pro yakalama (*.scp)|*.scp|Tüm dosyalar|*.*</value></data>
+  <data name="Visual.Integrity.Checksum"><value>Sağlama toplamı</value></data>
+  <data name="Visual.Side"><value>Taraf {0}</value></data>
+  <data name="Visual.SideLabel"><value>Taraf</value></data>
+  <data name="Visual.TrackLabel"><value>İzlemek</value></data>
+  <data name="Visual.ScpEntryLabel"><value>SCP girişi</value></data>
+  <data name="Visual.RevolutionsTitle"><value>Devrimler</value></data>
+  <data name="Visual.AnalysisTitle"><value>Analiz</value></data>
+  <data name="Visual.ConfidenceLabel"><value>Kendinden emin</value></data>
+  <data name="Visual.CellLabel"><value>Tahmini hücre</value></data>
+  <data name="Visual.StructuresLabel"><value>Yapılar</value></data>
+  <data name="Visual.StructuresTitle"><value>Tespit edilen yapılar</value></data>
+  <data name="Visual.SectorsTitle"><value>Sektörler</value></data>
+  <data name="Visual.TransitionsUnit"><value>geçişler</value></data>
+  <data name="Visual.OpenImage"><value>Bir disk görüntüsünü açın…</value></data>
+  <data name="Visual.DetachInspector"><value>Müfettişi ayırın</value></data>
+  <data name="Visual.AttachInspector"><value>Müfettişi bağlayın</value></data>
+  <data name="Visual.SummaryTab"><value>Özet</value></data>
+  <data name="Visual.FormatDetected"><value>Biçim algılandı</value></data>
+  <data name="Visual.AverageRpm"><value>Ortalama RPM</value></data>
+  <data name="Visual.AverageDuration"><value>Ortalama süre</value></data>
+  <data name="Visual.BitOffset"><value>biraz biraz biraz biraz {0:N0}</value></data>
 </root>

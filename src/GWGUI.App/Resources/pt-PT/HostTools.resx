@@ -12,40 +12,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="HostTools.Detect">
-    <value>Encontre gw.exe</value>
-  </data>
-  <data name="HostTools.Check">
-    <value>Procurar atualizações</value>
-  </data>
-  <data name="HostTools.Download">
-    <value>Transferir a versão mais recente</value>
-  </data>
-  <data name="HostTools.Rollback">
-    <value>Utilizar o caminho anterior</value>
-  </data>
-  <data name="HostTools.None">
-    <value>Nenhuma instalação detetada.</value>
-  </data>
-  <data name="HostTools.Detected">
-    <value>Detetado: {0}</value>
-  </data>
-  <data name="HostTools.Latest">
-    <value>Última versão disponível: {0}</value>
-  </data>
-  <data name="HostTools.Installed">
-    <value>Versão {0} instalada.</value>
-  </data>
-  <data name="HostTools.DownloadConfirm">
-    <value>Descarregue e instale o Greaseweazle Host Tools {0} para Windows x64?</value>
-  </data>
-  <data name="HostTools.Title">
-    <value>Greaseweazle Ferramentas de alojamento</value>
-  </data>
-  <data name="HostTools.NoPrevious">
-    <value>Nenhum caminho anterior válido é armazenado.</value>
-  </data>
-  <data name="HostTools.UpdateAvailable">
-    <value>Ferramentas de host {0} disponíveis</value>
-  </data>
+  <data name="HostTools.Detect"><value>Encontre gw.exe</value></data>
+  <data name="HostTools.Check"><value>Procurar atualizações</value></data>
+  <data name="HostTools.Download"><value>Transferir a versão mais recente</value></data>
+  <data name="HostTools.Rollback"><value>Utilizar o caminho anterior</value></data>
+  <data name="HostTools.None"><value>Nenhuma instalação detetada.</value></data>
+  <data name="HostTools.Detected"><value>Detetado: {0}</value></data>
+  <data name="HostTools.Latest"><value>Última versão disponível: {0}</value></data>
+  <data name="HostTools.Installed"><value>Versão {0} instalada.</value></data>
+  <data name="HostTools.DownloadConfirm"><value>Descarregue e instale o Greaseweazle Host Tools {0} para Windows x64?</value></data>
+  <data name="HostTools.Title"><value>Greaseweazle Ferramentas de alojamento</value></data>
+  <data name="HostTools.NoPrevious"><value>Nenhum caminho anterior válido é armazenado.</value></data>
+  <data name="HostTools.UpdateAvailable"><value>Ferramentas de host {0} disponíveis</value></data>
 </root>

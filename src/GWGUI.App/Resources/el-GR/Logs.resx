@@ -12,10 +12,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Logs.ExportFilter">
-    <value>Αρχείο καταγραφής κειμένου (*.txt)|*.txt|Όλα τα αρχεία|*.*</value>
-  </data>
-  <data name="Logs.History">
-    <value>Ιστορικό λειτουργίας</value>
-  </data>
+  <data name="Logs.ExportFilter"><value>Αρχείο καταγραφής κειμένου (*.txt)|*.txt|Όλα τα αρχεία|*.*</value></data>
+  <data name="Logs.History"><value>Ιστορικό λειτουργίας</value></data>
 </root>

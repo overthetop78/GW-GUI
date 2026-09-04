@@ -12,118 +12,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Advanced">
-    <value>Erweiterte Einstellungen</value>
-  </data>
-  <data name="Common.ExpertArguments">
-    <value>Expertenargumente</value>
-  </data>
-  <data name="Common.ExpertArgumentsTip">
-    <value>Argumente werden nach der Zitatvalidierung wie geschrieben übergeben.</value>
-  </data>
-  <data name="Advanced.SeekRetries">
-    <value>Versuchen Sie es erneut</value>
-  </data>
-  <data name="Advanced.FakeIndex">
-    <value>Gefälschter Index</value>
-  </data>
-  <data name="Advanced.HardSectors">
-    <value>Harte Sektoren</value>
-  </data>
-  <data name="Advanced.Reverse">
-    <value>Trackdaten umkehren</value>
-  </data>
-  <data name="Advanced.AdjustSpeed">
-    <value>Geschwindigkeit anpassen</value>
-  </data>
-  <data name="Advanced.Pll">
-    <value>PLL überschreiben</value>
-  </data>
-  <data name="Advanced.DensityPin">
-    <value>Dichtestift 2</value>
-  </data>
-  <data name="Advanced.Tg43">
-    <value>Generieren Sie TG43</value>
-  </data>
-  <data name="Advanced.PreErase">
-    <value>Titel vorab löschen</value>
-  </data>
-  <data name="Advanced.Precomp">
-    <value>Schreiben Sie die Vorkompensation</value>
-  </data>
-  <data name="Advanced.OutputTracks">
-    <value>Ausgabespuren</value>
-  </data>
-  <data name="Advanced.DiskDefs">
-    <value>Benutzerdefinierte Festplattendefinitionen</value>
-  </data>
-  <data name="Advanced.DiskDefsFilter">
-    <value>Greaseweazle Festplattendefinitionen (*.cfg)|*.cfg|Alle Dateien|*.*</value>
-  </data>
-  <data name="Advanced.DiskDefsMissing">
-    <value>Die ausgewählte Festplattendefinitionsdatei ist nicht vorhanden.</value>
-  </data>
-  <data name="Advanced.Invalid">
-    <value>Eine erweiterte Einstellung ist ungültig: {0}</value>
-  </data>
-  <data name="Advanced.TrackSpecTip">
-    <value>Spurspezifikation, zum Beispiel c=0-79:h=0-1, c=0-79/2:h=0 oder c=0-79:h=0-1:hswap.</value>
-  </data>
-  <data name="Advanced.SpeedTip">
-    <value>Positive Geschwindigkeit oder Periode, zum Beispiel 300 U/min, 200 ms, 200000 us oder 200000000 ns.</value>
-  </data>
-  <data name="Advanced.PllTip">
-    <value>PLL Parameter durch Doppelpunkte getrennt, zum Beispiel period=5:phase=60 oder period=5:phase=60:lowpass=2.</value>
-  </data>
-  <data name="Advanced.PrecompTip">
-    <value>Schreiben Sie eine Vorkompensation, zum Beispiel type=mfm:40=125. Typen: mfm, fm, gcr; Die Werte sind in Nanosekunden angegeben.</value>
-  </data>
-  <data name="Advanced.DiskDefsTip">
-    <value>Verwenden Sie eine benutzerdefinierte diskdefs.cfg-Datei, um Greaseweazle-Formatdefinitionen hinzuzufügen oder zu überschreiben.</value>
-  </data>
-  <data name="Advanced.RevsTip">
-    <value>--revs: Anzahl der pro Spur gelesenen Umdrehungen. Beispiel: --revs 5.</value>
-  </data>
-  <data name="Advanced.RetriesTip">
-    <value>--retries: Weitere Versuche nach einem Fehler. Beispiel: --retries 3.</value>
-  </data>
-  <data name="Advanced.TracksTip">
-    <value>--tracks: Zylinder, Köpfe oder Schritte begrenzen. Beispiel: --tracks c=0-79:h=0-1.</value>
-  </data>
-  <data name="Advanced.SeekRetriesTip">
-    <value>--seek-retries: Weitere Versuche nach Kopfbewegung. Beispiel: --seek-retries 2.</value>
-  </data>
-  <data name="Advanced.FakeIndexTip">
-    <value>--fake-index: Erstellen Sie einen zeitgesteuerten Index für ein Laufwerk ohne Indexsignal. Beispiel: --fake-index 300 U/min.</value>
-  </data>
-  <data name="Advanced.HardSectorsTip">
-    <value>--hard-sectors: Behandelt eine festsektorierte Festplatte. Inkompatibel mit --fake-index.</value>
-  </data>
-  <data name="Advanced.ReverseTip">
-    <value>--reverse: Spurdaten für umgedrehte Medien oder Verkabelung umkehren.</value>
-  </data>
-  <data name="Advanced.AdjustSpeedTip">
-    <value>--adjust-speed: Daten-Timing neu skalieren. Beispiel: --adjust-speed 300 U/min.</value>
-  </data>
-  <data name="Advanced.PllOptionTip">
-    <value>--pll: Konfigurieren Sie die Taktwiederherstellungsschleife. Beispiel: --pll period=5:phase=60.</value>
-  </data>
-  <data name="Advanced.DenselTip">
-    <value>--densel: Erzwingt, dass der Dichteauswahlstift hoch oder niedrig ist. Beispiel: --densel H.</value>
-  </data>
-  <data name="Advanced.Tg43Tip">
-    <value>--gen-tg43: Generieren Sie das TG43-Signal für Laufwerke, die es benötigen. Inkompatibel mit --densel.</value>
-  </data>
-  <data name="Advanced.EraseEmptyTip">
-    <value>--erase-empty: Titel löschen, für die das Quellbild keine Daten enthält.</value>
-  </data>
-  <data name="Advanced.PreEraseTip">
-    <value>--pre-erase: Löschen Sie jeden Titel, bevor Sie ihn schreiben.</value>
-  </data>
-  <data name="Advanced.PrecompOptionTip">
-    <value>--precomp: Schreibvorkompensation anwenden. Beispiel: --precomp type=mfm:40=125.</value>
-  </data>
-  <data name="Advanced.OutputTracksTip">
-    <value>--out-tracks: Spuren im Ausgabebild neu zuordnen. Beispiel: --out-tracks c=0-79:h=0-1.</value>
-  </data>
+  <data name="Common.Advanced"><value>Erweiterte Einstellungen</value></data>
+  <data name="Common.ExpertArguments"><value>Expertenargumente</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>Argumente werden nach der Zitatvalidierung wie geschrieben übergeben.</value></data>
+  <data name="Advanced.SeekRetries"><value>Versuchen Sie es erneut</value></data>
+  <data name="Advanced.FakeIndex"><value>Gefälschter Index</value></data>
+  <data name="Advanced.HardSectors"><value>Harte Sektoren</value></data>
+  <data name="Advanced.Reverse"><value>Trackdaten umkehren</value></data>
+  <data name="Advanced.AdjustSpeed"><value>Geschwindigkeit anpassen</value></data>
+  <data name="Advanced.Pll"><value>PLL überschreiben</value></data>
+  <data name="Advanced.DensityPin"><value>Dichtestift 2</value></data>
+  <data name="Advanced.Tg43"><value>Generieren Sie TG43</value></data>
+  <data name="Advanced.PreErase"><value>Titel vorab löschen</value></data>
+  <data name="Advanced.Precomp"><value>Schreiben Sie die Vorkompensation</value></data>
+  <data name="Advanced.OutputTracks"><value>Ausgabespuren</value></data>
+  <data name="Advanced.DiskDefs"><value>Benutzerdefinierte Festplattendefinitionen</value></data>
+  <data name="Advanced.DiskDefsFilter"><value>Greaseweazle Festplattendefinitionen (*.cfg)|*.cfg|Alle Dateien|*.*</value></data>
+  <data name="Advanced.DiskDefsMissing"><value>Die ausgewählte Festplattendefinitionsdatei ist nicht vorhanden.</value></data>
+  <data name="Advanced.Invalid"><value>Eine erweiterte Einstellung ist ungültig: {0}</value></data>
+  <data name="Advanced.TrackSpecTip"><value>Spurspezifikation, zum Beispiel c=0-79:h=0-1, c=0-79/2:h=0 oder c=0-79:h=0-1:hswap.</value></data>
+  <data name="Advanced.SpeedTip"><value>Positive Geschwindigkeit oder Periode, zum Beispiel 300 U/min, 200 ms, 200000 us oder 200000000 ns.</value></data>
+  <data name="Advanced.PllTip"><value>PLL Parameter durch Doppelpunkte getrennt, zum Beispiel period=5:phase=60 oder period=5:phase=60:lowpass=2.</value></data>
+  <data name="Advanced.PrecompTip"><value>Schreiben Sie eine Vorkompensation, zum Beispiel type=mfm:40=125. Typen: mfm, fm, gcr; Die Werte sind in Nanosekunden angegeben.</value></data>
+  <data name="Advanced.DiskDefsTip"><value>Verwenden Sie eine benutzerdefinierte diskdefs.cfg-Datei, um Greaseweazle-Formatdefinitionen hinzuzufügen oder zu überschreiben.</value></data>
+  <data name="Advanced.RevsTip"><value>--revs: Anzahl der pro Spur gelesenen Umdrehungen. Beispiel: --revs 5.</value></data>
+  <data name="Advanced.RetriesTip"><value>--retries: Weitere Versuche nach einem Fehler. Beispiel: --retries 3.</value></data>
+  <data name="Advanced.TracksTip"><value>--tracks: Zylinder, Köpfe oder Schritte begrenzen. Beispiel: --tracks c=0-79:h=0-1.</value></data>
+  <data name="Advanced.SeekRetriesTip"><value>--seek-retries: Weitere Versuche nach Kopfbewegung. Beispiel: --seek-retries 2.</value></data>
+  <data name="Advanced.FakeIndexTip"><value>--fake-index: Erstellen Sie einen zeitgesteuerten Index für ein Laufwerk ohne Indexsignal. Beispiel: --fake-index 300 U/min.</value></data>
+  <data name="Advanced.HardSectorsTip"><value>--hard-sectors: Behandelt eine festsektorierte Festplatte. Inkompatibel mit --fake-index.</value></data>
+  <data name="Advanced.ReverseTip"><value>--reverse: Spurdaten für umgedrehte Medien oder Verkabelung umkehren.</value></data>
+  <data name="Advanced.AdjustSpeedTip"><value>--adjust-speed: Daten-Timing neu skalieren. Beispiel: --adjust-speed 300 U/min.</value></data>
+  <data name="Advanced.PllOptionTip"><value>--pll: Konfigurieren Sie die Taktwiederherstellungsschleife. Beispiel: --pll period=5:phase=60.</value></data>
+  <data name="Advanced.DenselTip"><value>--densel: Erzwingt, dass der Dichteauswahlstift hoch oder niedrig ist. Beispiel: --densel H.</value></data>
+  <data name="Advanced.Tg43Tip"><value>--gen-tg43: Generieren Sie das TG43-Signal für Laufwerke, die es benötigen. Inkompatibel mit --densel.</value></data>
+  <data name="Advanced.EraseEmptyTip"><value>--erase-empty: Titel löschen, für die das Quellbild keine Daten enthält.</value></data>
+  <data name="Advanced.PreEraseTip"><value>--pre-erase: Löschen Sie jeden Titel, bevor Sie ihn schreiben.</value></data>
+  <data name="Advanced.PrecompOptionTip"><value>--precomp: Schreibvorkompensation anwenden. Beispiel: --precomp type=mfm:40=125.</value></data>
+  <data name="Advanced.OutputTracksTip"><value>--out-tracks: Spuren im Ausgabebild neu zuordnen. Beispiel: --out-tracks c=0-79:h=0-1.</value></data>
 </root>

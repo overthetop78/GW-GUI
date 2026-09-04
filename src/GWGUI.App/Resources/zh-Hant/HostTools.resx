@@ -12,40 +12,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="HostTools.Detect">
-    <value>查找 gw.exe</value>
-  </data>
-  <data name="HostTools.Check">
-    <value>檢查更新</value>
-  </data>
-  <data name="HostTools.Download">
-    <value>下載最新版本</value>
-  </data>
-  <data name="HostTools.Rollback">
-    <value>使用之前的路徑</value>
-  </data>
-  <data name="HostTools.None">
-    <value>未偵測到安裝。</value>
-  </data>
-  <data name="HostTools.Detected">
-    <value>偵測到：{0}</value>
-  </data>
-  <data name="HostTools.Latest">
-    <value>最新可用版本：{0}</value>
-  </data>
-  <data name="HostTools.Installed">
-    <value>安裝版本 {0}。</value>
-  </data>
-  <data name="HostTools.DownloadConfirm">
-    <value>下載並安裝適用於 Windows x64 的 Greaseweazle 主機工具 {0}？</value>
-  </data>
-  <data name="HostTools.Title">
-    <value>Greaseweazle 主機工具</value>
-  </data>
-  <data name="HostTools.NoPrevious">
-    <value>沒有儲存有效的先前路徑。</value>
-  </data>
-  <data name="HostTools.UpdateAvailable">
-    <value>主機工具 {0} 可用</value>
-  </data>
+  <data name="HostTools.Detect"><value>查找 gw.exe</value></data>
+  <data name="HostTools.Check"><value>檢查更新</value></data>
+  <data name="HostTools.Download"><value>下載最新版本</value></data>
+  <data name="HostTools.Rollback"><value>使用之前的路徑</value></data>
+  <data name="HostTools.None"><value>未偵測到安裝。</value></data>
+  <data name="HostTools.Detected"><value>偵測到：{0}</value></data>
+  <data name="HostTools.Latest"><value>最新可用版本：{0}</value></data>
+  <data name="HostTools.Installed"><value>安裝版本 {0}。</value></data>
+  <data name="HostTools.DownloadConfirm"><value>下載並安裝適用於 Windows x64 的 Greaseweazle 主機工具 {0}？</value></data>
+  <data name="HostTools.Title"><value>Greaseweazle 主機工具</value></data>
+  <data name="HostTools.NoPrevious"><value>沒有儲存有效的先前路徑。</value></data>
+  <data name="HostTools.UpdateAvailable"><value>主機工具 {0} 可用</value></data>
 </root>

@@ -12,172 +12,60 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Warning.InvalidChecksum">
-    <value>Rootblok {0} heeft een ongeldige controlesom.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryNesting">
-    <value>De limiet voor het nesten van mappen is bereikt.</value>
-  </data>
-  <data name="Explorer.Warning.InvalidDirectoryChain">
-    <value>Ongeldige of cyclische mapketen in blok {0}.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryEntryMissing">
-    <value>Directory-invoerblok {0} ontbreekt.</value>
-  </data>
-  <data name="Explorer.Warning.AmigaExtension">
-    <value>{0}: Ongeldig bestandsextensieblok {1}.</value>
-  </data>
-  <data name="Explorer.Warning.AmigaBlock">
-    <value>{0}: De AmigaDOS {1} ({2}) ontbreekt.</value>
-  </data>
-  <data name="Explorer.Warning.FileDataMissing">
-    <value>Bestandsgegevensblok {0} ontbreekt.</value>
-  </data>
-  <data name="Explorer.Warning.OfsType">
-    <value>OFS-gegevensblok {0} heeft een onverwacht type.</value>
-  </data>
-  <data name="Explorer.Warning.BitmapMissing">
-    <value>Bitmapblok {0} ontbreekt.</value>
-  </data>
-  <data name="Explorer.Warning.BitmapChecksum">
-    <value>Bitmapblok {0} heeft een ongeldige controlesom.</value>
-  </data>
-  <data name="Explorer.Warning.CpmAllocation">
-    <value>{0}: CP/M-toewijzingsblok {1} bevindt zich buiten het beeld.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDirectoryCyclic">
-    <value>Cyclische CBM DOS-directoryketen op {0}/{1}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDirectoryMissing">
-    <value>CBM DOS-directorysector {0}/{1} ontbreekt.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDataCyclic">
-    <value>{0}: Cyclische gegevensketen op {1}/{2}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDataMissing">
-    <value>{0}: Gegevenssector {1}/{2} ontbreekt.</value>
-  </data>
-  <data name="Explorer.Warning.CbmCapacity">
-    <value>{0}: bestandsketen overschrijdt afbeeldingscapaciteit.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdDirectoryMissing">
-    <value>Een of meer UCSD-directoryblokken ontbreken.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdEntry">
-    <value>UCSD-directory-item {0} heeft een ongeldige of lege naam.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdRange">
-    <value>{0}: ongeldig blokbereik {1}..{2}.</value>
-  </data>
-  <data name="Explorer.Warning.DataBlocksMissing">
-    <value>{0}: een of meerdere datablokken ontbreken.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdCount">
-    <value>De UCSD-directory declareert {0} bestanden, maar er zijn {1} geldige vermeldingen gevonden.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentInodeZero">
-    <value>{0}: Ongeldige COHERENTE inode 0.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentInodeOutside">
-    <value>{0}: COHERENTE inode {1} bevindt zich buiten het beeld.</value>
-  </data>
-  <data name="Explorer.Warning.FileTooLarge">
-    <value>{0}: Het bestand is te groot.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentBlock">
-    <value>{0}: COHERENT blok {1} bevindt zich buiten het beeld.</value>
-  </data>
-  <data name="Explorer.Warning.BytesUnread">
-    <value>{0}: {1} byte(s) konden niet worden gelezen.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentIndirect">
-    <value>{0}: indirect COHERENT blok {1} bevindt zich buiten het beeld.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11SegmentMissing">
-    <value>RT-11-directorysegment {0} ontbreekt.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11EntrySize">
-    <value>RT-11-directorysegment {0} heeft een ongeldige invoergrootte.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11EmptyName">
-    <value>RT-11-invoer op blok {0} heeft een lege naam.</value>
-  </data>
-  <data name="Explorer.Warning.ProDosNesting">
-    <value>De limiet voor het nesten van de ProDOS-directory is bereikt.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryBlockCyclic">
-    <value>Directoryblok {0} ontbreekt of is cyclisch.</value>
-  </data>
-  <data name="Explorer.Warning.MasterIndexMissing">
-    <value>{0}: hoofdindexblok {1} ontbreekt.</value>
-  </data>
-  <data name="Explorer.Warning.DataBlockMissing">
-    <value>{0}: datablok {1} ontbreekt.</value>
-  </data>
-  <data name="Explorer.Warning.IndexBlockMissing">
-    <value>{0}: indexblok {1} ontbreekt.</value>
-  </data>
-  <data name="Explorer.Warning.CatalogMissing">
-    <value>Catalogussector T{0} S{1} ontbreekt of is cyclisch.</value>
-  </data>
-  <data name="Explorer.Warning.CatalogSize">
-    <value>{0}: catalogusgrootte is inconsistent.</value>
-  </data>
-  <data name="Explorer.Warning.TrackSectorList">
-    <value>{0}: T/S-lijst T{1} S{2} ontbreekt of is cyclisch.</value>
-  </data>
-  <data name="Explorer.Warning.TrackSectorData">
-    <value>{0}: datasector T{1} S{2} ontbreekt.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryBlockMissing">
-    <value>Directoryblok {0} ontbreekt.</value>
-  </data>
-  <data name="Explorer.Warning.MfsEntry">
-    <value>Ongeldige MFS-directoryvermelding in blok {0}.</value>
-  </data>
-  <data name="Explorer.Warning.ResourceFork">
-    <value>{0}: metadata van de bronvork zijn inconsistent.</value>
-  </data>
-  <data name="Explorer.Warning.MfsChain">
-    <value>{0}: ongeldige MFS-toewijzingsketen.</value>
-  </data>
-  <data name="Explorer.Warning.BlockMissing">
-    <value>{0}: blok {1} ontbreekt.</value>
-  </data>
-  <data name="Explorer.Warning.BbcSector">
-    <value>{0}: datasector {1} ontbreekt.</value>
-  </data>
-  <data name="Explorer.Warning.HfsCatalog">
-    <value>De HFS-catalogus bevat geen leesbare bladrecords.</value>
-  </data>
-  <data name="Explorer.Warning.HfsDirectory">
-    <value>Cyclische HFS-directory #{0}.</value>
-  </data>
-  <data name="Explorer.Warning.HfsBlock">
-    <value>{0}: HFS-blok {1} ontbreekt.</value>
-  </data>
-  <data name="Explorer.Warning.HfsExtents">
-    <value>{0}: er zijn aanvullende HFS-extensies vereist of er ontbreken gegevens.</value>
-  </data>
-  <data name="Explorer.Warning.FatNesting">
-    <value>De nestlimiet voor de FAT-directory is bereikt.</value>
-  </data>
-  <data name="Explorer.Warning.FatChain">
-    <value>{0}: ongeldige of cyclische FAT-keten in cluster {1}.</value>
-  </data>
-  <data name="Explorer.Warning.SectorMissing">
-    <value>Sector {0} ontbreekt.</value>
-  </data>
-  <data name="Explorer.Warning.LisaCatalog">
-    <value>De Lisa-cataloguspagina's ontbreken; bestandsnamen werden alleen hersteld van paginatags.</value>
-  </data>
-  <data name="Explorer.Warning.AtariDirectory">
-    <value>Directorysector {0} ontbreekt.</value>
-  </data>
-  <data name="Explorer.Warning.AtariData">
-    <value>{0}: ongeldige of ontbrekende Atari DOS-gegevenssector.</value>
-  </data>
-  <data name="Explorer.Warning.AtariOwner">
-    <value>Sector {0} hoort bij bestand {1}, verwacht {2}.</value>
-  </data>
+  <data name="Explorer.Warning.InvalidChecksum"><value>Rootblok {0} heeft een ongeldige controlesom.</value></data>
+  <data name="Explorer.Warning.DirectoryNesting"><value>De limiet voor het nesten van mappen is bereikt.</value></data>
+  <data name="Explorer.Warning.InvalidDirectoryChain"><value>Ongeldige of cyclische mapketen in blok {0}.</value></data>
+  <data name="Explorer.Warning.DirectoryEntryMissing"><value>Directory-invoerblok {0} ontbreekt.</value></data>
+  <data name="Explorer.Warning.AmigaExtension"><value>{0}: Ongeldig bestandsextensieblok {1}.</value></data>
+  <data name="Explorer.Warning.AmigaBlock"><value>{0}: De AmigaDOS {1} ({2}) ontbreekt.</value></data>
+  <data name="Explorer.Warning.FileDataMissing"><value>Bestandsgegevensblok {0} ontbreekt.</value></data>
+  <data name="Explorer.Warning.OfsType"><value>OFS-gegevensblok {0} heeft een onverwacht type.</value></data>
+  <data name="Explorer.Warning.BitmapMissing"><value>Bitmapblok {0} ontbreekt.</value></data>
+  <data name="Explorer.Warning.BitmapChecksum"><value>Bitmapblok {0} heeft een ongeldige controlesom.</value></data>
+  <data name="Explorer.Warning.CpmAllocation"><value>{0}: CP/M-toewijzingsblok {1} bevindt zich buiten het beeld.</value></data>
+  <data name="Explorer.Warning.CbmDirectoryCyclic"><value>Cyclische CBM DOS-directoryketen op {0}/{1}.</value></data>
+  <data name="Explorer.Warning.CbmDirectoryMissing"><value>CBM DOS-directorysector {0}/{1} ontbreekt.</value></data>
+  <data name="Explorer.Warning.CbmDataCyclic"><value>{0}: Cyclische gegevensketen op {1}/{2}.</value></data>
+  <data name="Explorer.Warning.CbmDataMissing"><value>{0}: Gegevenssector {1}/{2} ontbreekt.</value></data>
+  <data name="Explorer.Warning.CbmCapacity"><value>{0}: bestandsketen overschrijdt afbeeldingscapaciteit.</value></data>
+  <data name="Explorer.Warning.UcsdDirectoryMissing"><value>Een of meer UCSD-directoryblokken ontbreken.</value></data>
+  <data name="Explorer.Warning.UcsdEntry"><value>UCSD-directory-item {0} heeft een ongeldige of lege naam.</value></data>
+  <data name="Explorer.Warning.UcsdRange"><value>{0}: ongeldig blokbereik {1}..{2}.</value></data>
+  <data name="Explorer.Warning.DataBlocksMissing"><value>{0}: een of meerdere datablokken ontbreken.</value></data>
+  <data name="Explorer.Warning.UcsdCount"><value>De UCSD-directory declareert {0} bestanden, maar er zijn {1} geldige vermeldingen gevonden.</value></data>
+  <data name="Explorer.Warning.CoherentInodeZero"><value>{0}: Ongeldig COHERENT inode 0.</value></data>
+  <data name="Explorer.Warning.CoherentInodeOutside"><value>{0}: COHERENT inode {1} is buiten de afbeelding.</value></data>
+  <data name="Explorer.Warning.FileTooLarge"><value>{0}: Het bestand is te groot.</value></data>
+  <data name="Explorer.Warning.CoherentBlock"><value>{0}: COHERENT blok {1} bevindt zich buiten het beeld.</value></data>
+  <data name="Explorer.Warning.BytesUnread"><value>{0}: {1} byte(s) konden niet worden gelezen.</value></data>
+  <data name="Explorer.Warning.CoherentIndirect"><value>{0}: indirect COHERENT blok {1} bevindt zich buiten het beeld.</value></data>
+  <data name="Explorer.Warning.Rt11SegmentMissing"><value>RT-11-directorysegment {0} ontbreekt.</value></data>
+  <data name="Explorer.Warning.Rt11EntrySize"><value>RT-11-directorysegment {0} heeft een ongeldige invoergrootte.</value></data>
+  <data name="Explorer.Warning.Rt11EmptyName"><value>RT-11-invoer op blok {0} heeft een lege naam.</value></data>
+  <data name="Explorer.Warning.ProDosNesting"><value>De limiet voor het nesten van de ProDOS-directory is bereikt.</value></data>
+  <data name="Explorer.Warning.DirectoryBlockCyclic"><value>Directoryblok {0} ontbreekt of is cyclisch.</value></data>
+  <data name="Explorer.Warning.MasterIndexMissing"><value>{0}: hoofdindexblok {1} ontbreekt.</value></data>
+  <data name="Explorer.Warning.DataBlockMissing"><value>{0}: datablok {1} ontbreekt.</value></data>
+  <data name="Explorer.Warning.IndexBlockMissing"><value>{0}: indexblok {1} ontbreekt.</value></data>
+  <data name="Explorer.Warning.CatalogMissing"><value>Catalogussector T{0} S{1} ontbreekt of is cyclisch.</value></data>
+  <data name="Explorer.Warning.CatalogSize"><value>{0}: catalogusgrootte is inconsistent.</value></data>
+  <data name="Explorer.Warning.TrackSectorList"><value>{0}: T/S-lijst T{1} S{2} ontbreekt of is cyclisch.</value></data>
+  <data name="Explorer.Warning.TrackSectorData"><value>{0}: datasector T{1} S{2} ontbreekt.</value></data>
+  <data name="Explorer.Warning.DirectoryBlockMissing"><value>Directoryblok {0} ontbreekt.</value></data>
+  <data name="Explorer.Warning.MfsEntry"><value>Ongeldige MFS-directoryvermelding in blok {0}.</value></data>
+  <data name="Explorer.Warning.ResourceFork"><value>{0}: metadata van de bronvork zijn inconsistent.</value></data>
+  <data name="Explorer.Warning.MfsChain"><value>{0}: ongeldige MFS-toewijzingsketen.</value></data>
+  <data name="Explorer.Warning.BlockMissing"><value>{0}: blok {1} ontbreekt.</value></data>
+  <data name="Explorer.Warning.BbcSector"><value>{0}: datasector {1} ontbreekt.</value></data>
+  <data name="Explorer.Warning.HfsCatalog"><value>De HFS-catalogus bevat geen leesbare bladrecords.</value></data>
+  <data name="Explorer.Warning.HfsDirectory"><value>Cyclische HFS-directory #{0}.</value></data>
+  <data name="Explorer.Warning.HfsBlock"><value>{0}: HFS-blok {1} ontbreekt.</value></data>
+  <data name="Explorer.Warning.HfsExtents"><value>{0}: er zijn aanvullende HFS-extensies vereist of er ontbreken gegevens.</value></data>
+  <data name="Explorer.Warning.FatNesting"><value>De nestlimiet voor de FAT-directory is bereikt.</value></data>
+  <data name="Explorer.Warning.FatChain"><value>{0}: ongeldige of cyclische FAT-keten in cluster {1}.</value></data>
+  <data name="Explorer.Warning.SectorMissing"><value>Sector {0} ontbreekt.</value></data>
+  <data name="Explorer.Warning.LisaCatalog"><value>De Lisa-cataloguspagina's ontbreken; bestandsnamen werden alleen hersteld van paginatags.</value></data>
+  <data name="Explorer.Warning.AtariDirectory"><value>Directorysector {0} ontbreekt.</value></data>
+  <data name="Explorer.Warning.AtariData"><value>{0}: ongeldige of ontbrekende Atari DOS-gegevenssector.</value></data>
+  <data name="Explorer.Warning.AtariOwner"><value>Sector {0} hoort bij bestand {1}, verwacht {2}.</value></data>
 </root>

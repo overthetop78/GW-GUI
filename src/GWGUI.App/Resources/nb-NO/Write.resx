@@ -12,63 +12,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Write.Title">
-    <value>Skrive</value>
-  </data>
-  <data name="Write.SelectSource">
-    <value>Velg et eksisterende kildebilde.</value>
-  </data>
-  <data name="Write.Ambiguous">
-    <value>Formatet er tvetydig. Velg eksplisitt et kompatibelt format.</value>
-  </data>
-  <data name="Write.VerifyOff">
-    <value>Bekreftelse etter skriving er deaktivert.</value>
-  </data>
-  <data name="Write.VerifyOn">
-    <value>Verifisering etter skriving er aktivert.</value>
-  </data>
-  <data name="Write.ConfirmTitle">
-    <value>Bekreft skriving</value>
-  </data>
-  <data name="Write.Confirm">
-    <value>Bilde: {0}
-Format: {1}
-Stasjon: {2}
-{3}
-
-Vil du skrive dette bildet til disk?</value>
-  </data>
-  <data name="Write.Source">
-    <value>Kildebilde</value>
-  </data>
-  <data name="Write.Detected">
-    <value>Oppdaget format</value>
-  </data>
-  <data name="Write.ChooseImage">
-    <value>Velg et bilde.</value>
-  </data>
-  <data name="Write.NoVerify">
-    <value>Deaktiver verifisering etter skriving</value>
-  </data>
-  <data name="Write.NoVerifyTip">
-    <value>Legger til --no-verify. Disken vil ikke leses på nytt for å bekrefte skrivingen.</value>
-  </data>
-  <data name="Write.EraseEmpty">
-    <value>Slett tomme spor</value>
-  </data>
-  <data name="Write.VisualizeTracks">
-    <value>Visualiser spor</value>
-  </data>
-  <data name="Write.VisualizeFormatRequired">
-    <value>Velg diskformatet før du visualiserer sporene.</value>
-  </data>
+  <data name="Write.Title"><value>Skrive</value></data>
+  <data name="Write.SelectSource"><value>Velg et eksisterende kildebilde.</value></data>
+  <data name="Write.Ambiguous"><value>Formatet er tvetydig. Velg eksplisitt et kompatibelt format.</value></data>
+  <data name="Write.VerifyOff"><value>Bekreftelse etter skriving er deaktivert.</value></data>
+  <data name="Write.VerifyOn"><value>Verifisering etter skriving er aktivert.</value></data>
+  <data name="Write.ConfirmTitle"><value>Bekreft skriving</value></data>
+  <data name="Write.Confirm"><value>Bilde: {0}&#xA;Format: {1}&#xA;Stasjon: {2}&#xA;{3}&#xA;&#xA;Vil du skrive dette bildet til disk?</value></data>
+  <data name="Write.Source"><value>Kildebilde</value></data>
+  <data name="Write.Detected"><value>Oppdaget format</value></data>
+  <data name="Write.ChooseImage"><value>Velg et bilde.</value></data>
+  <data name="Write.NoVerify"><value>Deaktiver verifisering etter skriving</value></data>
+  <data name="Write.NoVerifyTip"><value>Legger til --no-verify. Disken vil ikke leses på nytt for å bekrefte skrivingen.</value></data>
+  <data name="Write.EraseEmpty"><value>Slett tomme spor</value></data>
+  <data name="Write.VisualizeTracks"><value>Visualiser spor</value></data>
+  <data name="Write.VisualizeFormatRequired"><value>Velg diskformatet før du visualiserer sporene.</value></data>
   <data name="Write.InternalWriter" xml:space="preserve"><value>Intern skriving (eksperimentell)</value></data>
   <data name="Write.InternalWriterTip" xml:space="preserve"><value>Skriver direkte med den interne motoren uten gw.exe.</value></data>
   <data name="Write.InternalPreview" xml:space="preserve"><value>Intern GW GUI-skriving: {0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Ett eller flere valgte avanserte alternativer støttes ikke ennå.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Intern verifisering er ikke tilgjengelig ennå. Aktiver «Ikke verifiser».</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Spor {0}, side {1}: {2}</value></data>
-  <data name="Write.InternalFailureReason">
-    <value>Intern skriving mislyktes.</value>
-  </data>
+  <data name="Write.InternalFailureReason"><value>Intern skriving mislyktes.</value></data>
 </root>

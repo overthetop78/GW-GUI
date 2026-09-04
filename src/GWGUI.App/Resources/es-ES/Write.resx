@@ -12,63 +12,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Write.Title">
-    <value>Escribir</value>
-  </data>
-  <data name="Write.SelectSource">
-    <value>Elija una imagen de origen existente.</value>
-  </data>
-  <data name="Write.Ambiguous">
-    <value>El formato es ambiguo. Elija explícitamente un formato compatible.</value>
-  </data>
-  <data name="Write.VerifyOff">
-    <value>La verificación después de la escritura está deshabilitada.</value>
-  </data>
-  <data name="Write.VerifyOn">
-    <value>La verificación después de la escritura está habilitada.</value>
-  </data>
-  <data name="Write.ConfirmTitle">
-    <value>Confirmar escribir</value>
-  </data>
-  <data name="Write.Confirm">
-    <value>Imagen: {0}
-Formato: {1}
-Unidad: {2}
-{3}
-
-¿Escribir esta imagen en el disco?</value>
-  </data>
-  <data name="Write.Source">
-    <value>Imagen fuente</value>
-  </data>
-  <data name="Write.Detected">
-    <value>Formato detectado</value>
-  </data>
-  <data name="Write.ChooseImage">
-    <value>Elige una imagen.</value>
-  </data>
-  <data name="Write.NoVerify">
-    <value>Deshabilitar la verificación después de escribir</value>
-  </data>
-  <data name="Write.NoVerifyTip">
-    <value>Agrega --no-verify. El disco no se volverá a leer para confirmar la escritura.</value>
-  </data>
-  <data name="Write.EraseEmpty">
-    <value>Borrar pistas vacías</value>
-  </data>
-  <data name="Write.VisualizeTracks">
-    <value>Visualizar pistas</value>
-  </data>
-  <data name="Write.VisualizeFormatRequired">
-    <value>Seleccione el formato del disco antes de visualizar sus pistas.</value>
-  </data>
+  <data name="Write.Title"><value>Escribir</value></data>
+  <data name="Write.SelectSource"><value>Elija una imagen de origen existente.</value></data>
+  <data name="Write.Ambiguous"><value>El formato es ambiguo. Elija explícitamente un formato compatible.</value></data>
+  <data name="Write.VerifyOff"><value>La verificación después de la escritura está deshabilitada.</value></data>
+  <data name="Write.VerifyOn"><value>La verificación después de la escritura está habilitada.</value></data>
+  <data name="Write.ConfirmTitle"><value>Confirmar escribir</value></data>
+  <data name="Write.Confirm"><value>Imagen: {0}&#xA;Formato: {1}&#xA;Unidad: {2}&#xA;{3}&#xA;&#xA;¿Escribir esta imagen en el disco?</value></data>
+  <data name="Write.Source"><value>Imagen fuente</value></data>
+  <data name="Write.Detected"><value>Formato detectado</value></data>
+  <data name="Write.ChooseImage"><value>Elige una imagen.</value></data>
+  <data name="Write.NoVerify"><value>Deshabilitar la verificación después de escribir</value></data>
+  <data name="Write.NoVerifyTip"><value>Agrega --no-verify. El disco no se volverá a leer para confirmar la escritura.</value></data>
+  <data name="Write.EraseEmpty"><value>Borrar pistas vacías</value></data>
+  <data name="Write.VisualizeTracks"><value>Visualizar pistas</value></data>
+  <data name="Write.VisualizeFormatRequired"><value>Seleccione el formato del disco antes de visualizar sus pistas.</value></data>
   <data name="Write.InternalWriter" xml:space="preserve"><value>Escritura interna (experimental)</value></data>
   <data name="Write.InternalWriterTip" xml:space="preserve"><value>Escribe directamente con el motor interno sin gw.exe.</value></data>
   <data name="Write.InternalPreview" xml:space="preserve"><value>Escritura interna de GW GUI: {0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Una o más opciones avanzadas seleccionadas aún no son compatibles con la escritura interna.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>La verificación interna aún no está disponible. Active «No verificar».</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Pista {0}, cara {1}: {2}</value></data>
-  <data name="Write.InternalFailureReason">
-    <value>La escritura interna ha fallado.</value>
-  </data>
+  <data name="Write.InternalFailureReason"><value>La escritura interna ha fallado.</value></data>
 </root>

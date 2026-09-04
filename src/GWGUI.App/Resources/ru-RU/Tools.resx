@@ -12,163 +12,57 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Tool.Ready">
-    <value>Готов к исполнению.</value>
-  </data>
-  <data name="Tool.RawOutput">
-    <value>Необработанный результат</value>
-  </data>
-  <data name="Maintenance.EraseTitle">
-    <value>Подтвердить удаление</value>
-  </data>
-  <data name="Maintenance.EraseConfirm">
-    <value>Безвозвратно стереть все данные на вставленном диске?</value>
-  </data>
-  <data name="Maintenance.CleanTitle">
-    <value>Чистые головы</value>
-  </data>
-  <data name="Maintenance.CleanConfirm">
-    <value>Убедитесь, что чистящий диск вставлен. Никогда не используйте диск с данными.</value>
-  </data>
-  <data name="Tools.Erase">
-    <value>Стереть диск</value>
-  </data>
-  <data name="Tools.EraseWarning">
-    <value>Все данные на диске будут уничтожены.</value>
-  </data>
-  <data name="Tools.LimitTracks">
-    <value>Ограничить треки</value>
-  </data>
-  <data name="Tools.Revolutions">
-    <value>Революции</value>
-  </data>
-  <data name="Tools.Clean">
-    <value>Чистые головы</value>
-  </data>
-  <data name="Tools.CleanWarning">
-    <value>Вставьте чистящий диск, а не диск с данными.</value>
-  </data>
-  <data name="Tools.Cylinders">
-    <value>Цилиндры</value>
-  </data>
-  <data name="Tools.Passes">
-    <value>Проходит</value>
-  </data>
-  <data name="Tools.Linger">
-    <value>Продолжительность на цилиндр (мс)</value>
-  </data>
-  <data name="Tool.Field.Measurements">
-    <value>Количество измерений</value>
-  </data>
-  <data name="Tool.Field.Cylinder">
-    <value>Цилиндр</value>
-  </data>
-  <data name="Tool.Field.Extreme">
-    <value>Разрешить крайние цилиндры</value>
-  </data>
-  <data name="Tool.Field.MotorOn">
-    <value>Держите мотор активным</value>
-  </data>
-  <data name="Tool.Field.Pin">
-    <value>Контакт (8, 26 или 28)</value>
-  </data>
-  <data name="Tool.Field.SetPin">
-    <value>Сменить пин-код</value>
-  </data>
-  <data name="Tool.Field.High">
-    <value>Высокий уровень</value>
-  </data>
-  <data name="Tool.Field.Select">
-    <value>Выбор (мкс)</value>
-  </data>
-  <data name="Tool.Field.Step">
-    <value>Шаг головы (мкс)</value>
-  </data>
-  <data name="Tool.Field.Settle">
-    <value>Расчет (мс)</value>
-  </data>
-  <data name="Tool.Field.Motor">
-    <value>Мотор (мс)</value>
-  </data>
-  <data name="Tool.Field.Watchdog">
-    <value>Автоматическая отмена выбора (мс)</value>
-  </data>
-  <data name="Tool.Field.PreWrite">
-    <value>До записи (мкс)</value>
-  </data>
-  <data name="Tool.Field.PostWrite">
-    <value>После записи (мкс)</value>
-  </data>
-  <data name="Tool.Field.IndexMask">
-    <value>Индексная маска (мкс)</value>
-  </data>
-  <data name="Tool.Field.Bootloader">
-    <value>Обновить загрузчик (рискованно)</value>
-  </data>
-  <data name="Tool.BootloaderWarning">
-    <value>Обновление загрузчика — это сложная операция, прерывание которой может привести к невозможности использования контроллера. Продолжать?</value>
-  </data>
-  <data name="Tool.ControllerFallback">
-    <value>Контроллер</value>
-  </data>
-  <data name="Tool.FirmwareUnknown">
-    <value>Неизвестная прошивка</value>
-  </data>
-  <data name="Tool.PortUnknown">
-    <value>Неизвестный порт</value>
-  </data>
-  <data name="Tool.NetworkWarning">
-    <value>Местная информация действительна; только проверка сети не удалась.</value>
-  </data>
-  <data name="Tool.Running">
-    <value>Команда выполняется…</value>
-  </data>
-  <data name="Tool.Title.Info">
-    <value>Информация о контроллере</value>
-  </data>
-  <data name="Tool.Title.Bandwidth">
-    <value>USB пропускная способность</value>
-  </data>
-  <data name="Tool.Title.Rpm">
-    <value>Скорость движения</value>
-  </data>
-  <data name="Tool.Title.Seek">
-    <value>Ищи голову</value>
-  </data>
-  <data name="Tool.Title.Pin">
-    <value>Аппаратные контакты</value>
-  </data>
-  <data name="Tool.Title.Reset">
-    <value>Сброс контроллера</value>
-  </data>
-  <data name="Tool.Title.Delays">
-    <value>Задержки</value>
-  </data>
-  <data name="Tool.Title.Update">
-    <value>Прошивка</value>
-  </data>
-  <data name="Tool.InvalidParameters">
-    <value>Неверные параметры</value>
-  </data>
-  <data name="Tool.InvalidParametersHelp">
-    <value>Перед выполнением проверьте выделенные параметры команды.</value>
-  </data>
-  <data name="Tool.BootloaderTitle">
-    <value>Режим загрузчика</value>
-  </data>
-  <data name="Tool.Title.Align">
-    <value>Диагностика центровки привода</value>
-  </data>
-  <data name="Tool.Field.AlignTracks">
-    <value>Альтернативные треки (обязательно)</value>
-  </data>
-  <data name="Tool.Field.AlignReads">
-    <value>Количество чтений</value>
-  </data>
-  <data name="Tool.Field.AlignFormat">
-    <value>Формат декодирования</value>
-  </data>
-  <data name="Tool.Field.AlignRaw">
-    <value>Чтение необработанного флюса (--raw)</value>
-  </data>
+  <data name="Tool.Ready"><value>Готов к исполнению.</value></data>
+  <data name="Tool.RawOutput"><value>Необработанный результат</value></data>
+  <data name="Maintenance.EraseTitle"><value>Подтвердить удаление</value></data>
+  <data name="Maintenance.EraseConfirm"><value>Безвозвратно стереть все данные на вставленном диске?</value></data>
+  <data name="Maintenance.CleanTitle"><value>Чистые головы</value></data>
+  <data name="Maintenance.CleanConfirm"><value>Убедитесь, что чистящий диск вставлен. Никогда не используйте диск с данными.</value></data>
+  <data name="Tools.Erase"><value>Стереть диск</value></data>
+  <data name="Tools.EraseWarning"><value>Все данные на диске будут уничтожены.</value></data>
+  <data name="Tools.LimitTracks"><value>Ограничить треки</value></data>
+  <data name="Tools.Revolutions"><value>Революции</value></data>
+  <data name="Tools.Clean"><value>Чистые головы</value></data>
+  <data name="Tools.CleanWarning"><value>Вставьте чистящий диск, а не диск с данными.</value></data>
+  <data name="Tools.Cylinders"><value>Цилиндры</value></data>
+  <data name="Tools.Passes"><value>Проходит</value></data>
+  <data name="Tools.Linger"><value>Продолжительность на цилиндр (мс)</value></data>
+  <data name="Tool.Field.Measurements"><value>Количество измерений</value></data>
+  <data name="Tool.Field.Cylinder"><value>Цилиндр</value></data>
+  <data name="Tool.Field.Extreme"><value>Разрешить крайние цилиндры</value></data>
+  <data name="Tool.Field.MotorOn"><value>Держите мотор активным</value></data>
+  <data name="Tool.Field.Pin"><value>Контакт (8, 26 или 28)</value></data>
+  <data name="Tool.Field.SetPin"><value>Сменить пин-код</value></data>
+  <data name="Tool.Field.High"><value>Высокий уровень</value></data>
+  <data name="Tool.Field.Select"><value>Выбор (мкс)</value></data>
+  <data name="Tool.Field.Step"><value>Шаг головы (мкс)</value></data>
+  <data name="Tool.Field.Settle"><value>Расчет (мс)</value></data>
+  <data name="Tool.Field.Motor"><value>Мотор (мс)</value></data>
+  <data name="Tool.Field.Watchdog"><value>Автоматическая отмена выбора (мс)</value></data>
+  <data name="Tool.Field.PreWrite"><value>До записи (мкс)</value></data>
+  <data name="Tool.Field.PostWrite"><value>После записи (мкс)</value></data>
+  <data name="Tool.Field.IndexMask"><value>Индексная маска (мкс)</value></data>
+  <data name="Tool.Field.Bootloader"><value>Обновить загрузчик (рискованно)</value></data>
+  <data name="Tool.BootloaderWarning"><value>Обновление загрузчика — это сложная операция, прерывание которой может привести к невозможности использования контроллера. Продолжать?</value></data>
+  <data name="Tool.ControllerFallback"><value>Контроллер</value></data>
+  <data name="Tool.FirmwareUnknown"><value>Неизвестная прошивка</value></data>
+  <data name="Tool.PortUnknown"><value>Неизвестный порт</value></data>
+  <data name="Tool.NetworkWarning"><value>Местная информация действительна; только проверка сети не удалась.</value></data>
+  <data name="Tool.Running"><value>Команда выполняется…</value></data>
+  <data name="Tool.Title.Info"><value>Информация о контроллере</value></data>
+  <data name="Tool.Title.Bandwidth"><value>USB пропускная способность</value></data>
+  <data name="Tool.Title.Rpm"><value>Скорость движения</value></data>
+  <data name="Tool.Title.Seek"><value>Ищи голову</value></data>
+  <data name="Tool.Title.Pin"><value>Аппаратные контакты</value></data>
+  <data name="Tool.Title.Reset"><value>Сброс контроллера</value></data>
+  <data name="Tool.Title.Delays"><value>Задержки</value></data>
+  <data name="Tool.Title.Update"><value>Прошивка</value></data>
+  <data name="Tool.InvalidParameters"><value>Неверные параметры</value></data>
+  <data name="Tool.InvalidParametersHelp"><value>Перед выполнением проверьте выделенные параметры команды.</value></data>
+  <data name="Tool.BootloaderTitle"><value>Режим загрузчика</value></data>
+  <data name="Tool.Title.Align"><value>Диагностика центровки привода</value></data>
+  <data name="Tool.Field.AlignTracks"><value>Альтернативные треки (обязательно)</value></data>
+  <data name="Tool.Field.AlignReads"><value>Количество чтений</value></data>
+  <data name="Tool.Field.AlignFormat"><value>Формат декодирования</value></data>
+  <data name="Tool.Field.AlignRaw"><value>Чтение необработанного флюса (--raw)</value></data>
 </root>

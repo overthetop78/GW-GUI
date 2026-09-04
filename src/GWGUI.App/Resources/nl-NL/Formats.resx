@@ -12,67 +12,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Detection.Ambiguous">
-    <value>Dubbelzinnig formaat</value>
-  </data>
-  <data name="Detection.RawScp">
-    <value>Ruwe SCP-opname herkend.</value>
-  </data>
-  <data name="Detection.AmigaSize">
-    <value>Amiga-indeling herkend aan de hand van de bestandsgrootte.</value>
-  </data>
-  <data name="Detection.AcornSize">
-    <value>Acorn-indeling herkend aan de hand van de bestandsgrootte.</value>
-  </data>
-  <data name="Detection.AtariUnknownSize">
-    <value>De maat komt niet overeen met een bekend Atari ST profiel.</value>
-  </data>
-  <data name="Detection.AtariSize">
-    <value>Atari ST geometrie herkend op basis van bestandsgrootte.</value>
-  </data>
-  <data name="Detection.MsaInferred">
-    <value>Atari MSA container herkend; bevestig indien nodig de geometrie.</value>
-  </data>
-  <data name="Detection.IbmAmbiguous">
-    <value>De extensie alleen kan de IBM PC-geometrie niet bepalen.</value>
-  </data>
-  <data name="Detection.IbmSize">
-    <value>IBM PC geometrie herkend op basis van bestandsgrootte.</value>
-  </data>
-  <data name="Detection.ExtensionInferred">
-    <value>Formaat afgeleid van de extensie.</value>
-  </data>
-  <data name="Detection.Multiple">
-    <value>Er zijn meerdere formaten mogelijk; kies er expliciet één.</value>
-  </data>
-  <data name="Format.raw.scp">
-    <value>Ruw fluxbeeld</value>
-  </data>
-  <data name="Format.raw.hfe">
-    <value>HxC fluxafbeelding</value>
-  </data>
-  <data name="Common.DiskImageFilter">
-    <value>Schijfkopieën|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Alle bestanden|*.*</value>
-  </data>
-  <data name="Detection.AppleDosOrder">
-    <value>Apple II DOS-indeling herkend aan de sectorvolgorde.</value>
-  </data>
-  <data name="Detection.AppleProDosOrder">
-    <value>Apple II ProDOS-indeling herkend aan de sectorvolgorde.</value>
-  </data>
-  <data name="Detection.AppleContainer">
-    <value>Apple-schijfkopiecontainer gedetecteerd.</value>
-  </data>
-  <data name="Classification.Automatic">
-    <value>Automatische detectie</value>
-  </data>
-  <data name="Classification.Machine">
-    <value>Computer</value>
-  </data>
-  <data name="Classification.Format">
-    <value>Formaat</value>
-  </data>
-  <data name="Classification.Protection">
-    <value>Beveiliging</value>
-  </data>
+  <data name="Detection.Ambiguous"><value>Dubbelzinnig formaat</value></data>
+  <data name="Detection.RawScp"><value>Ruwe SCP-opname herkend.</value></data>
+  <data name="Detection.AmigaSize"><value>Amiga-indeling herkend aan de hand van de bestandsgrootte.</value></data>
+  <data name="Detection.AcornSize"><value>Acorn-indeling herkend aan de hand van de bestandsgrootte.</value></data>
+  <data name="Detection.AtariUnknownSize"><value>De maat komt niet overeen met een bekend Atari ST profiel.</value></data>
+  <data name="Detection.AtariSize"><value>Atari ST geometrie herkend op basis van bestandsgrootte.</value></data>
+  <data name="Detection.MsaInferred"><value>Atari MSA container herkend; bevestig indien nodig de geometrie.</value></data>
+  <data name="Detection.IbmAmbiguous"><value>De extensie alleen kan de IBM PC-geometrie niet bepalen.</value></data>
+  <data name="Detection.IbmSize"><value>IBM PC geometrie herkend op basis van bestandsgrootte.</value></data>
+  <data name="Detection.ExtensionInferred"><value>Formaat afgeleid van de extensie.</value></data>
+  <data name="Detection.Multiple"><value>Er zijn meerdere formaten mogelijk; kies er expliciet één.</value></data>
+  <data name="Format.raw.scp"><value>Ruw fluxbeeld</value></data>
+  <data name="Common.DiskImageFilter"><value>Schijfafbeeldingen|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Alle bestanden|*.*</value></data>
+  <data name="Detection.AppleDosOrder"><value>Apple II DOS-indeling herkend aan de sectorvolgorde.</value></data>
+  <data name="Detection.AppleProDosOrder"><value>Apple II ProDOS-indeling herkend aan de sectorvolgorde.</value></data>
+  <data name="Detection.AppleContainer"><value>Apple-schijfkopiecontainer gedetecteerd.</value></data>
+  <data name="Classification.Automatic"><value>Automatische detectie</value></data>
+  <data name="Classification.Machine"><value>Computer</value></data>
+  <data name="Classification.Format"><value>Formaat</value></data>
+  <data name="Classification.Protection"><value>Beveiliging</value></data>
 </root>

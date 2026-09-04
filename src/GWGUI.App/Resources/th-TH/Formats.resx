@@ -12,67 +12,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Detection.Ambiguous">
-    <value>รูปแบบที่ไม่ชัดเจน</value>
-  </data>
-  <data name="Detection.RawScp">
-    <value>ตรวจพบการบันทึกแบบ Raw SCP แล้ว</value>
-  </data>
-  <data name="Detection.AmigaSize">
-    <value>Amiga รูปแบบที่รับรู้จากขนาดไฟล์</value>
-  </data>
-  <data name="Detection.AcornSize">
-    <value>Acorn รูปแบบที่รับรู้จากขนาดไฟล์</value>
-  </data>
-  <data name="Detection.AtariUnknownSize">
-    <value>ขนาดไม่ตรงกับโปรไฟล์ Atari ST ที่รู้จัก</value>
-  </data>
-  <data name="Detection.AtariSize">
-    <value>Atari ST เรขาคณิตได้รับการยอมรับจากขนาดไฟล์</value>
-  </data>
-  <data name="Detection.MsaInferred">
-    <value>รู้จักคอนเทนเนอร์ Atari MSA; ยืนยันรูปทรงเรขาคณิตหากจำเป็น</value>
-  </data>
-  <data name="Detection.IbmAmbiguous">
-    <value>ส่วนขยายเพียงอย่างเดียวไม่สามารถกำหนดเรขาคณิต IBM PC ได้</value>
-  </data>
-  <data name="Detection.IbmSize">
-    <value>IBM PC เรขาคณิตได้รับการยอมรับจากขนาดไฟล์</value>
-  </data>
-  <data name="Detection.ExtensionInferred">
-    <value>รูปแบบอนุมานจากส่วนขยาย</value>
-  </data>
-  <data name="Detection.Multiple">
-    <value>สามารถทำได้หลายรูปแบบ เลือกอย่างใดอย่างหนึ่งอย่างชัดเจน</value>
-  </data>
-  <data name="Format.raw.scp">
-    <value>ภาพฟลักซ์ดิบ</value>
-  </data>
-  <data name="Format.raw.hfe">
-    <value>HxC ภาพฟลักซ์</value>
-  </data>
-  <data name="Common.DiskImageFilter">
-    <value>ดิสก์อิมเมจ|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|ไฟล์ทั้งหมด|*.*</value>
-  </data>
-  <data name="Detection.AppleDosOrder">
-    <value>ระบุรูปแบบ Apple II DOS จากลำดับเซกเตอร์แล้ว</value>
-  </data>
-  <data name="Detection.AppleProDosOrder">
-    <value>ระบุรูปแบบ Apple II ProDOS จากลำดับเซกเตอร์แล้ว</value>
-  </data>
-  <data name="Detection.AppleContainer">
-    <value>ตรวจพบคอนเทนเนอร์อิมเมจดิสก์ Apple</value>
-  </data>
-  <data name="Classification.Automatic">
-    <value>ตรวจหาอัตโนมัติ</value>
-  </data>
-  <data name="Classification.Machine">
-    <value>คอมพิวเตอร์</value>
-  </data>
-  <data name="Classification.Format">
-    <value>รูปแบบ</value>
-  </data>
-  <data name="Classification.Protection">
-    <value>การป้องกัน</value>
-  </data>
+  <data name="Detection.Ambiguous"><value>รูปแบบที่ไม่ชัดเจน</value></data>
+  <data name="Detection.RawScp"><value>ตรวจพบการบันทึกแบบ Raw SCP แล้ว</value></data>
+  <data name="Detection.AmigaSize"><value>Amiga รูปแบบที่รับรู้จากขนาดไฟล์</value></data>
+  <data name="Detection.AcornSize"><value>Acorn รูปแบบที่รับรู้จากขนาดไฟล์</value></data>
+  <data name="Detection.AtariUnknownSize"><value>ขนาดไม่ตรงกับโปรไฟล์ Atari ST ที่รู้จัก</value></data>
+  <data name="Detection.AtariSize"><value>Atari ST เรขาคณิตได้รับการยอมรับจากขนาดไฟล์</value></data>
+  <data name="Detection.MsaInferred"><value>รู้จักคอนเทนเนอร์ Atari MSA; ยืนยันรูปทรงเรขาคณิตหากจำเป็น</value></data>
+  <data name="Detection.IbmAmbiguous"><value>ส่วนขยายเพียงอย่างเดียวไม่สามารถกำหนดเรขาคณิต IBM PC ได้</value></data>
+  <data name="Detection.IbmSize"><value>IBM PC เรขาคณิตได้รับการยอมรับจากขนาดไฟล์</value></data>
+  <data name="Detection.ExtensionInferred"><value>รูปแบบอนุมานจากส่วนขยาย</value></data>
+  <data name="Detection.Multiple"><value>สามารถทำได้หลายรูปแบบ เลือกอย่างใดอย่างหนึ่งอย่างชัดเจน</value></data>
+  <data name="Format.raw.scp"><value>ภาพฟลักซ์ดิบ</value></data>
+  <data name="Common.DiskImageFilter"><value>ภาพบนดิสก์|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|ทุกแฟ้ม|*.*</value></data>
+  <data name="Detection.AppleDosOrder"><value>ระบุรูปแบบ Apple II DOS จากลำดับเซกเตอร์แล้ว</value></data>
+  <data name="Detection.AppleProDosOrder"><value>ระบุรูปแบบ Apple II ProDOS จากลำดับเซกเตอร์แล้ว</value></data>
+  <data name="Detection.AppleContainer"><value>ตรวจพบคอนเทนเนอร์อิมเมจดิสก์ Apple</value></data>
+  <data name="Classification.Automatic"><value>ตรวจหาอัตโนมัติ</value></data>
+  <data name="Classification.Machine"><value>คอมพิวเตอร์</value></data>
+  <data name="Classification.Format"><value>รูปแบบ</value></data>
+  <data name="Classification.Protection"><value>การป้องกัน</value></data>
 </root>

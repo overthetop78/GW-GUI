@@ -12,51 +12,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Cancel">
-    <value>Zrušit</value>
-  </data>
-  <data name="Common.Save">
-    <value>Uložit</value>
-  </data>
-  <data name="Common.Create">
-    <value>Vytvořit</value>
-  </data>
-  <data name="Common.Delete">
-    <value>Vymazat</value>
-  </data>
-  <data name="Common.Browse">
-    <value>Prohlížet…</value>
-  </data>
-  <data name="Common.Choose">
-    <value>Vybrat…</value>
-  </data>
-  <data name="Common.Close">
-    <value>Blízko</value>
-  </data>
-  <data name="Common.Execute">
-    <value>Vykonat</value>
-  </data>
-  <data name="Common.Stop">
-    <value>Zastávka</value>
-  </data>
-  <data name="Common.Continue">
-    <value>Pokračovat</value>
-  </data>
-  <data name="Common.Reset">
-    <value>Resetovat</value>
-  </data>
-  <data name="Common.Copy">
-    <value>Kopie</value>
-  </data>
-  <data name="Common.Modify">
-    <value>Upravit</value>
-  </data>
-  <data name="Common.Hide">
-    <value>Skrýt</value>
-  </data>
-  <data name="Common.Export">
-    <value>Vývozní</value>
-  </data>
+  <data name="Common.Cancel"><value>Zrušit</value></data>
+  <data name="Common.Save"><value>Uložit</value></data>
+  <data name="Common.Create"><value>Vytvořit</value></data>
+  <data name="Common.Delete"><value>Vymazat</value></data>
+  <data name="Common.Browse"><value>Prohlížet…</value></data>
+  <data name="Common.Choose"><value>Vybrat…</value></data>
+  <data name="Common.Close"><value>Blízko</value></data>
+  <data name="Common.Execute"><value>Vykonat</value></data>
+  <data name="Common.Stop"><value>Zastávka</value></data>
+  <data name="Common.Continue"><value>Pokračovat</value></data>
+  <data name="Common.Reset"><value>Resetovat</value></data>
+  <data name="Common.Copy"><value>Kopie</value></data>
+  <data name="Common.Modify"><value>Upravit</value></data>
+  <data name="Common.Hide"><value>Skrýt</value></data>
+  <data name="Common.Export"><value>Vývozní</value></data>
   <data name="Common.New"><value>Nový</value></data>
   <data name="Common.Refresh"><value>Obnovit</value></data>
   <data name="Common.OpenFolder"><value>Otevřít složku</value></data>

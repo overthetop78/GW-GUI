@@ -12,73 +12,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options">
-    <value>_选项</value>
-  </data>
-  <data name="Menu.Preferences">
-    <value>偏好设置...</value>
-  </data>
-  <data name="Menu.Diagnostics">
-    <value>诊断</value>
-  </data>
-  <data name="Menu.Information">
-    <value>信息</value>
-  </data>
-  <data name="Menu.Bandwidth">
-    <value>USB 带宽</value>
-  </data>
-  <data name="Menu.Rpm">
-    <value>RPM 速度</value>
-  </data>
-  <data name="Menu.Seek">
-    <value>求头...</value>
-  </data>
-  <data name="Menu.Hardware">
-    <value>硬件</value>
-  </data>
-  <data name="Menu.Pins">
-    <value>针脚…</value>
-  </data>
-  <data name="Menu.Reset">
-    <value>重置</value>
-  </data>
-  <data name="Menu.Delays">
-    <value>延误……</value>
-  </data>
-  <data name="Menu.Firmware">
-    <value>固件…</value>
-  </data>
-  <data name="Menu.Help">
-    <value>_帮助</value>
-  </data>
-  <data name="Menu.Documentation">
-    <value>文档</value>
-  </data>
-  <data name="Menu.About">
-    <value>关于</value>
-  </data>
-  <data name="Tab.Read">
-    <value>读</value>
-  </data>
-  <data name="Tab.Write">
-    <value>写</value>
-  </data>
-  <data name="Tab.Convert">
-    <value>转换</value>
-  </data>
-  <data name="Tab.Visualize">
-    <value>可视化</value>
-  </data>
-  <data name="Tab.Tools">
-    <value>工具</value>
-  </data>
-  <data name="Menu.Align">
-    <value>驱动器对准...</value>
-  </data>
-  <data name="Tab.Explorer">
-    <value>磁盘资源管理器</value>
-  </data>
-  <data name="Tab.Emulation">
-    <value>模拟</value>
-  </data>
+  <data name="Menu.Options"><value>_选项</value></data>
+  <data name="Menu.Preferences"><value>偏好设置...</value></data>
+  <data name="Menu.Diagnostics"><value>诊断</value></data>
+  <data name="Menu.Information"><value>信息</value></data>
+  <data name="Menu.Bandwidth"><value>USB 带宽</value></data>
+  <data name="Menu.Rpm"><value>RPM 速度</value></data>
+  <data name="Menu.Seek"><value>求头...</value></data>
+  <data name="Menu.Hardware"><value>硬件</value></data>
+  <data name="Menu.Pins"><value>针脚…</value></data>
+  <data name="Menu.Reset"><value>重置</value></data>
+  <data name="Menu.Delays"><value>延误……</value></data>
+  <data name="Menu.Firmware"><value>固件…</value></data>
+  <data name="Menu.Help"><value>_帮助</value></data>
+  <data name="Menu.Documentation"><value>文档</value></data>
+  <data name="Menu.About"><value>关于</value></data>
+  <data name="Tab.Read"><value>读</value></data>
+  <data name="Tab.Write"><value>写</value></data>
+  <data name="Tab.Convert"><value>转换</value></data>
+  <data name="Tab.Visualize"><value>可视化</value></data>
+  <data name="Tab.Tools"><value>工具</value></data>
+  <data name="Menu.Align"><value>驱动器对准...</value></data>
+  <data name="Tab.Explorer"><value>磁盘资源管理器</value></data>
+  <data name="Tab.Emulation"><value>模拟</value></data>
 </root>

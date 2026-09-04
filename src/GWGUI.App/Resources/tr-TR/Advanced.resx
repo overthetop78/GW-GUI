@@ -12,118 +12,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Advanced">
-    <value>Gelişmiş ayarlar</value>
-  </data>
-  <data name="Common.ExpertArguments">
-    <value>Uzman argümanları</value>
-  </data>
-  <data name="Common.ExpertArgumentsTip">
-    <value>Argümanlar, teklif doğrulamasından sonra yazıldığı gibi iletilir.</value>
-  </data>
-  <data name="Advanced.SeekRetries">
-    <value>Yeniden deneme ara</value>
-  </data>
-  <data name="Advanced.FakeIndex">
-    <value>Sahte endeks</value>
-  </data>
-  <data name="Advanced.HardSectors">
-    <value>Sert sektörler</value>
-  </data>
-  <data name="Advanced.Reverse">
-    <value>Verileri ters çevir</value>
-  </data>
-  <data name="Advanced.AdjustSpeed">
-    <value>Hızı ayarlayın</value>
-  </data>
-  <data name="Advanced.Pll">
-    <value>PLL geçersiz kılma</value>
-  </data>
-  <data name="Advanced.DensityPin">
-    <value>Yoğunluk pimi 2</value>
-  </data>
-  <data name="Advanced.Tg43">
-    <value>TG43 oluştur</value>
-  </data>
-  <data name="Advanced.PreErase">
-    <value>Parçaları önceden sil</value>
-  </data>
-  <data name="Advanced.Precomp">
-    <value>Ön tazminat yaz</value>
-  </data>
-  <data name="Advanced.OutputTracks">
-    <value>Çıkış parçaları</value>
-  </data>
-  <data name="Advanced.DiskDefs">
-    <value>Özel disk tanımları</value>
-  </data>
-  <data name="Advanced.DiskDefsFilter">
-    <value>Greaseweazle disk tanımları (*.cfg)|*.cfg|Tüm dosyalar|*.*</value>
-  </data>
-  <data name="Advanced.DiskDefsMissing">
-    <value>Seçilen disk tanımları dosyası mevcut değil.</value>
-  </data>
-  <data name="Advanced.Invalid">
-    <value>Gelişmiş bir ayar geçersiz: {0}</value>
-  </data>
-  <data name="Advanced.TrackSpecTip">
-    <value>İzleme spesifikasyonu, örneğin c=0-79:h=0-1, c=0-79/2:h=0 veya c=0-79:h=0-1:hswap.</value>
-  </data>
-  <data name="Advanced.SpeedTip">
-    <value>Pozitif hız veya süre; örneğin 300rpm, 200ms, 200000us veya 200000000ns.</value>
-  </data>
-  <data name="Advanced.PllTip">
-    <value>PLL iki nokta üst üste ile ayrılmış parametreler; örneğin dönem=5:faz=60 veya dönem=5:faz=60:düşük geçiş=2.</value>
-  </data>
-  <data name="Advanced.PrecompTip">
-    <value>Ön telafiyi yazın, örneğin type=mfm:40=125. Türler: mfm, fm, gcr; değerler nanosaniye cinsindendir.</value>
-  </data>
-  <data name="Advanced.DiskDefsTip">
-    <value>Greaseweazle biçim tanımlarını eklemek veya geçersiz kılmak için özel bir diskdefs.cfg dosyası kullanın.</value>
-  </data>
-  <data name="Advanced.RevsTip">
-    <value>--revs: Parça başına okunan devir sayısı. Örnek: --revs 5.</value>
-  </data>
-  <data name="Advanced.RetriesTip">
-    <value>--retries: Bir hatadan sonra ek denemeler. Örnek: --retries 3.</value>
-  </data>
-  <data name="Advanced.TracksTip">
-    <value>--tracks: Silindirleri, kafaları veya adımları sınırlayın. Örnek: --tracks c=0-79:h=0-1.</value>
-  </data>
-  <data name="Advanced.SeekRetriesTip">
-    <value>--seek-retries: Kafayı hareket ettirdikten sonra ek denemeler. Örnek: --seek-retries 2.</value>
-  </data>
-  <data name="Advanced.FakeIndexTip">
-    <value>--fake-index: İndeks sinyali olmayan bir sürücü için zamanlı indeks oluşturun. Örnek: --fake-index 300rpm.</value>
-  </data>
-  <data name="Advanced.HardSectorsTip">
-    <value>--hard-sectors: Sabit kesimli bir diski kullanın. --fake-index ile uyumsuz.</value>
-  </data>
-  <data name="Advanced.ReverseTip">
-    <value>--reverse: Flippy medya veya kablolama için ters izleme verileri.</value>
-  </data>
-  <data name="Advanced.AdjustSpeedTip">
-    <value>--adjust-speed: Veri zamanlamasını yeniden ölçeklendirin. Örnek: --adjust-speed 300rpm.</value>
-  </data>
-  <data name="Advanced.PllOptionTip">
-    <value>--pll: Saat kurtarma döngüsünü yapılandırın. Örnek: --pll dönem=5:faz=60.</value>
-  </data>
-  <data name="Advanced.DenselTip">
-    <value>--densel: Yoğunluk seçme pinini yüksek veya düşük seviyeye zorlayın. Örnek: --densel H.</value>
-  </data>
-  <data name="Advanced.Tg43Tip">
-    <value>--gen-tg43: Gereken sürücüler için TG43 sinyalini oluşturun. --densel ile uyumsuz.</value>
-  </data>
-  <data name="Advanced.EraseEmptyTip">
-    <value>--erase-empty: Kaynak görüntünün veri içermediği parçaları silin.</value>
-  </data>
-  <data name="Advanced.PreEraseTip">
-    <value>--pre-erase: Yazmadan önce her parçayı silin.</value>
-  </data>
-  <data name="Advanced.PrecompOptionTip">
-    <value>--precomp: Yazma ön telafisini uygulayın. Örnek: --precomp type=mfm:40=125.</value>
-  </data>
-  <data name="Advanced.OutputTracksTip">
-    <value>--out-tracks: Çıktı görüntüsündeki parçaları yeniden eşleyin. Örnek: --out-tracks c=0-79:h=0-1.</value>
-  </data>
+  <data name="Common.Advanced"><value>Gelişmiş ayarlar</value></data>
+  <data name="Common.ExpertArguments"><value>Uzman argümanları</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>Argümanlar, teklif doğrulamasından sonra yazıldığı gibi iletilir.</value></data>
+  <data name="Advanced.SeekRetries"><value>Yeniden deneme ara</value></data>
+  <data name="Advanced.FakeIndex"><value>Sahte endeks</value></data>
+  <data name="Advanced.HardSectors"><value>Sert sektörler</value></data>
+  <data name="Advanced.Reverse"><value>Verileri ters çevir</value></data>
+  <data name="Advanced.AdjustSpeed"><value>Hızı ayarlayın</value></data>
+  <data name="Advanced.Pll"><value>PLL geçersiz kılma</value></data>
+  <data name="Advanced.DensityPin"><value>Yoğunluk pimi 2</value></data>
+  <data name="Advanced.Tg43"><value>TG43 oluştur</value></data>
+  <data name="Advanced.PreErase"><value>Parçaları önceden sil</value></data>
+  <data name="Advanced.Precomp"><value>Ön tazminat yaz</value></data>
+  <data name="Advanced.OutputTracks"><value>Çıkış parçaları</value></data>
+  <data name="Advanced.DiskDefs"><value>Özel disk tanımları</value></data>
+  <data name="Advanced.DiskDefsFilter"><value>Greaseweazle disk tanımları (*.cfg)|*.cfg|Tüm dosyalar|*.*</value></data>
+  <data name="Advanced.DiskDefsMissing"><value>Seçilen disk tanımları dosyası mevcut değil.</value></data>
+  <data name="Advanced.Invalid"><value>Gelişmiş bir ayar geçersiz: {0}</value></data>
+  <data name="Advanced.TrackSpecTip"><value>İzleme spesifikasyonu, örneğin c=0-79:h=0-1, c=0-79/2:h=0 veya c=0-79:h=0-1:hswap.</value></data>
+  <data name="Advanced.SpeedTip"><value>Pozitif hız veya süre; örneğin 300rpm, 200ms, 200000us veya 200000000ns.</value></data>
+  <data name="Advanced.PllTip"><value>PLL iki nokta üst üste ile ayrılmış parametreler; örneğin dönem=5:faz=60 veya dönem=5:faz=60:düşük geçiş=2.</value></data>
+  <data name="Advanced.PrecompTip"><value>Ön telafiyi yazın, örneğin type=mfm:40=125. Türler: mfm, fm, gcr; değerler nanosaniye cinsindendir.</value></data>
+  <data name="Advanced.DiskDefsTip"><value>Greaseweazle biçim tanımlarını eklemek veya geçersiz kılmak için özel bir diskdefs.cfg dosyası kullanın.</value></data>
+  <data name="Advanced.RevsTip"><value>--revs: Parça başına okunan devir sayısı. Örnek: --revs 5.</value></data>
+  <data name="Advanced.RetriesTip"><value>--retries: Bir hatadan sonra ek denemeler. Örnek: --retries 3.</value></data>
+  <data name="Advanced.TracksTip"><value>--tracks: Silindirleri, kafaları veya adımları sınırlayın. Örnek: --tracks c=0-79:h=0-1.</value></data>
+  <data name="Advanced.SeekRetriesTip"><value>--seek-retries: Kafayı hareket ettirdikten sonra ek denemeler. Örnek: --seek-retries 2.</value></data>
+  <data name="Advanced.FakeIndexTip"><value>--fake-index: İndeks sinyali olmayan bir sürücü için zamanlı indeks oluşturun. Örnek: --fake-index 300rpm.</value></data>
+  <data name="Advanced.HardSectorsTip"><value>--hard-sectors: Sabit kesimli bir diski kullanın. --fake-index ile uyumsuz.</value></data>
+  <data name="Advanced.ReverseTip"><value>--reverse: Flippy medya veya kablolama için ters izleme verileri.</value></data>
+  <data name="Advanced.AdjustSpeedTip"><value>--adjust-speed: Veri zamanlamasını yeniden ölçeklendirin. Örnek: --adjust-speed 300rpm.</value></data>
+  <data name="Advanced.PllOptionTip"><value>--pll: Saat kurtarma döngüsünü yapılandırın. Örnek: --pll dönem=5:faz=60.</value></data>
+  <data name="Advanced.DenselTip"><value>--densel: Yoğunluk seçme pinini yüksek veya düşük seviyeye zorlayın. Örnek: --densel H.</value></data>
+  <data name="Advanced.Tg43Tip"><value>--gen-tg43: Gereken sürücüler için TG43 sinyalini oluşturun. --densel ile uyumsuz.</value></data>
+  <data name="Advanced.EraseEmptyTip"><value>--erase-empty: Kaynak görüntünün veri içermediği parçaları silin.</value></data>
+  <data name="Advanced.PreEraseTip"><value>--pre-erase: Yazmadan önce her parçayı silin.</value></data>
+  <data name="Advanced.PrecompOptionTip"><value>--precomp: Yazma ön telafisini uygulayın. Örnek: --precomp type=mfm:40=125.</value></data>
+  <data name="Advanced.OutputTracksTip"><value>--out-tracks: Çıktı görüntüsündeki parçaları yeniden eşleyin. Örnek: --out-tracks c=0-79:h=0-1.</value></data>
 </root>

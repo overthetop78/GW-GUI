@@ -12,148 +12,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Hardware.Port">
-    <value>港口</value>
-  </data>
-  <data name="Hardware.UsbId">
-    <value>USB 标识符</value>
-  </data>
-  <data name="Hardware.Drive">
-    <value>驾驶</value>
-  </data>
-  <data name="Hardware.Available">
-    <value>可用的</value>
-  </data>
-  <data name="Hardware.Scan">
-    <value>扫描</value>
-  </data>
-  <data name="Hardware.AddDrive">
-    <value>添加驱动器...</value>
-  </data>
-  <data name="Hardware.NoDrive">
-    <value>未定义驱动器</value>
-  </data>
-  <data name="Hardware.EditorTitle">
-    <value>定义一个驱动器</value>
-  </data>
-  <data name="Hardware.Controller">
-    <value>Greaseweazle 控制器</value>
-  </data>
-  <data name="Hardware.GwSelection">
-    <value>选择传递给 gw</value>
-  </data>
-  <data name="Hardware.PhysicalSize">
-    <value>物理尺寸</value>
-  </data>
-  <data name="Hardware.SizeShort">
-    <value>尺寸</value>
-  </data>
-  <data name="Hardware.DensityShort">
-    <value>密度</value>
-  </data>
-  <data name="Hardware.SpeedShort">
-    <value>速度</value>
-  </data>
-  <data name="Hardware.AvailableState">
-    <value>可用的</value>
-  </data>
-  <data name="Hardware.UnavailableState">
-    <value>不可用</value>
-  </data>
-  <data name="Hardware.DensityDescription">
-    <value>驱动器密度（仅描述）</value>
-  </data>
-  <data name="Hardware.SpeedDescription">
-    <value>标称速度（仅描述）</value>
-  </data>
-  <data name="Hardware.NotConfigured">
-    <value>控制器未配置</value>
-  </data>
-  <data name="Hardware.Disconnected">
-    <value>断开连接</value>
-  </data>
-  <data name="Hardware.SelectedDisconnected">
-    <value>所选驱动器已断开连接。重新连接或在选项 → 控制器和驱动器中再次扫描。</value>
-  </data>
-  <data name="Hardware.DriveLabel">
-    <value>{0}-英寸 · {1} · {2} · {3}</value>
-  </data>
-  <data name="Hardware.DriveDialogTitle">
-    <value>驾驶</value>
-  </data>
-  <data name="Hardware.ControllerRequired">
-    <value>首先扫描或添加 Greaseweazle 控制器。</value>
-  </data>
-  <data name="Hardware.Description">
-    <value>{0}-英寸 · {1} · 选择 {2}{3}</value>
-  </data>
-  <data name="Hardware.ScanTitle">
-    <value>扫描</value>
-  </data>
-  <data name="Hardware.GwRequired">
-    <value>首先选择或下载下面的gw.exe。</value>
-  </data>
-  <data name="Hardware.StartupTitle">
-    <value>硬件检查</value>
-  </data>
-  <data name="Hardware.StartupMissing">
-    <value>找不到已配置的硬件</value>
-  </data>
-  <data name="Hardware.StartupExplanation">
-    <value>配置将被保留，但其驱动器将保持不可用，直到再次找到其 Greaseweazle 为止。</value>
-  </data>
-  <data name="Hardware.StartupMissingList">
-    <value>缺少 Greaseweazle 控制器</value>
-  </data>
-  <data name="Hardware.StartupRetry">
-    <value>再次搜索</value>
-  </data>
-  <data name="Hardware.StartupSettings">
-    <value>硬件设置</value>
-  </data>
-  <data name="Hardware.StartupContinue">
-    <value>不使用此驱动器继续</value>
-  </data>
-  <data name="Hardware.StartupCheckFailed">
-    <value>硬件检查失败：{0}</value>
-  </data>
-  <data name="Hardware.NewDetectedTitle">
-    <value>检测到新的 Greaseweazle</value>
-  </data>
-  <data name="Hardware.NewDetected">
-    <value>在 {1} 上检测到 {0}。您想现在配置其驱动器吗？</value>
-  </data>
-  <data name="Hardware.ConfigurationState">
-    <value>配置</value>
-  </data>
-  <data name="Hardware.Configured">
-    <value>已配置</value>
-  </data>
-  <data name="Hardware.NotConfiguredState">
-    <value>已检测到，未配置</value>
-  </data>
-  <data name="Hardware.Configure">
-    <value>配置</value>
-  </data>
-  <data name="Hardware.ReaderNumber">
-    <value>驱动器 {0}</value>
-  </data>
-  <data name="Hardware.DriveChoice">
-    <value>驱动器 {0} · {1}″ · {2} · {3}</value>
-  </data>
-  <data name="Hardware.Forget">
-    <value>忘记</value>
-  </data>
-  <data name="Hardware.ForgetConfirm">
-    <value>您真的想忘记这个驱动器或设备吗？</value>
-  </data>
-  <data name="Hardware.ForgetLastConfirm">
-    <value>这是为此 Greaseweazle 最后配置的驱动器。您想同时忘记驱动器和 Greaseweazle 吗？</value>
-  </data>
-  <data name="Hardware.SelectController">
-    <value>首先选择属于相关 Greaseweazle 的行。</value>
-  </data>
-  <data name="Hardware.MaximumDrives">
-    <value>最多可以将两个驱动器自动分配给该 Greaseweazle（A 和 B）。</value>
-  </data>
+  <data name="Hardware.Port"><value>港口</value></data>
+  <data name="Hardware.UsbId"><value>USB 标识符</value></data>
+  <data name="Hardware.Drive"><value>驾驶</value></data>
+  <data name="Hardware.Available"><value>可用的</value></data>
+  <data name="Hardware.Scan"><value>扫描</value></data>
+  <data name="Hardware.AddDrive"><value>添加驱动器...</value></data>
+  <data name="Hardware.NoDrive"><value>未定义驱动器</value></data>
+  <data name="Hardware.EditorTitle"><value>定义一个驱动器</value></data>
+  <data name="Hardware.Controller"><value>Greaseweazle 控制器</value></data>
+  <data name="Hardware.GwSelection"><value>选择传递给 gw</value></data>
+  <data name="Hardware.PhysicalSize"><value>物理尺寸</value></data>
+  <data name="Hardware.SizeShort"><value>尺寸</value></data>
+  <data name="Hardware.DensityShort"><value>密度</value></data>
+  <data name="Hardware.SpeedShort"><value>速度</value></data>
+  <data name="Hardware.AvailableState"><value>可用的</value></data>
+  <data name="Hardware.UnavailableState"><value>不可用</value></data>
+  <data name="Hardware.DensityDescription"><value>驱动器密度（仅描述）</value></data>
+  <data name="Hardware.SpeedDescription"><value>标称速度（仅描述）</value></data>
+  <data name="Hardware.NotConfigured"><value>控制器未配置</value></data>
+  <data name="Hardware.Disconnected"><value>断开连接</value></data>
+  <data name="Hardware.SelectedDisconnected"><value>所选驱动器已断开连接。重新连接或在选项 → 控制器和驱动器中再次扫描。</value></data>
+  <data name="Hardware.DriveLabel"><value>{0}-英寸 · {1} · {2} · {3}</value></data>
+  <data name="Hardware.DriveDialogTitle"><value>驾驶</value></data>
+  <data name="Hardware.ControllerRequired"><value>首先扫描或添加 Greaseweazle 控制器。</value></data>
+  <data name="Hardware.Description"><value>{0}-英寸 · {1} · 选择 {2}{3}</value></data>
+  <data name="Hardware.ScanTitle"><value>扫描</value></data>
+  <data name="Hardware.GwRequired"><value>首先选择或下载下面的gw.exe。</value></data>
+  <data name="Hardware.StartupTitle"><value>硬件检查</value></data>
+  <data name="Hardware.StartupMissing"><value>找不到已配置的硬件</value></data>
+  <data name="Hardware.StartupExplanation"><value>配置将被保留，但其驱动器将保持不可用，直到再次找到其 Greaseweazle 为止。</value></data>
+  <data name="Hardware.StartupMissingList"><value>缺少 Greaseweazle 控制器</value></data>
+  <data name="Hardware.StartupRetry"><value>再次搜索</value></data>
+  <data name="Hardware.StartupSettings"><value>硬件设置</value></data>
+  <data name="Hardware.StartupContinue"><value>不使用此驱动器继续</value></data>
+  <data name="Hardware.StartupCheckFailed"><value>硬件检查失败：{0}</value></data>
+  <data name="Hardware.NewDetectedTitle"><value>检测到新的 Greaseweazle</value></data>
+  <data name="Hardware.NewDetected"><value>{0} 检测到于 {1}. 您现在想要配置它的驱动器吗 ?</value></data>
+  <data name="Hardware.ConfigurationState"><value>配置</value></data>
+  <data name="Hardware.Configured"><value>已配置</value></data>
+  <data name="Hardware.NotConfiguredState"><value>已检测到，未配置</value></data>
+  <data name="Hardware.Configure"><value>配置</value></data>
+  <data name="Hardware.ReaderNumber"><value>驱动器 {0}</value></data>
+  <data name="Hardware.DriveChoice"><value>驱动器 {0} · {1}″ · {2} · {3}</value></data>
+  <data name="Hardware.Forget"><value>忘记</value></data>
+  <data name="Hardware.ForgetConfirm"><value>您真的想忘记这个驱动器或设备吗？</value></data>
+  <data name="Hardware.ForgetLastConfirm"><value>这是为此 Greaseweazle 最后配置的驱动器。您想同时忘记驱动器和 Greaseweazle 吗？</value></data>
+  <data name="Hardware.SelectController"><value>首先选择属于相关 Greaseweazle 的行。</value></data>
+  <data name="Hardware.MaximumDrives"><value>最多可以将两个驱动器自动分配给该 Greaseweazle（A 和 B）。</value></data>
 </root>

@@ -12,67 +12,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Detection.Ambiguous">
-    <value>Kétértelmű formátum</value>
-  </data>
-  <data name="Detection.RawScp">
-    <value>Nyers SCP rögzítés felismerve.</value>
-  </data>
-  <data name="Detection.AmigaSize">
-    <value>A fájlméretből felismert Amiga formátum.</value>
-  </data>
-  <data name="Detection.AcornSize">
-    <value>A fájlméretből felismert Acorn formátum.</value>
-  </data>
-  <data name="Detection.AtariUnknownSize">
-    <value>A méret nem egyezik egy ismert Atari ST profillal.</value>
-  </data>
-  <data name="Detection.AtariSize">
-    <value>Atari ST geometria felismerve a fájl méretéből.</value>
-  </data>
-  <data name="Detection.MsaInferred">
-    <value>Atari MSA konténer felismerve; szükség esetén erősítse meg a geometriát.</value>
-  </data>
-  <data name="Detection.IbmAmbiguous">
-    <value>A kiterjesztés önmagában nem tudja meghatározni a IBM PC geometriát.</value>
-  </data>
-  <data name="Detection.IbmSize">
-    <value>IBM PC geometria felismerve a fájl méretéből.</value>
-  </data>
-  <data name="Detection.ExtensionInferred">
-    <value>A kiterjesztésből kikövetkeztetett formátum.</value>
-  </data>
-  <data name="Detection.Multiple">
-    <value>Számos formátum lehetséges; kifejezetten válasszon egyet.</value>
-  </data>
-  <data name="Format.raw.scp">
-    <value>Nyers fluxus kép</value>
-  </data>
-  <data name="Format.raw.hfe">
-    <value>HxC fluxuskép</value>
-  </data>
-  <data name="Common.DiskImageFilter">
-    <value>Lemezképek|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Minden fájl|*.*</value>
-  </data>
-  <data name="Detection.AppleDosOrder">
-    <value>Az Apple II DOS formátum a szektorsorrend alapján felismerve.</value>
-  </data>
-  <data name="Detection.AppleProDosOrder">
-    <value>Az Apple II ProDOS formátum a szektorsorrend alapján felismerve.</value>
-  </data>
-  <data name="Detection.AppleContainer">
-    <value>Apple lemezkép-tároló észlelve.</value>
-  </data>
-  <data name="Classification.Automatic">
-    <value>Automatikus felismerés</value>
-  </data>
-  <data name="Classification.Machine">
-    <value>Számítógép</value>
-  </data>
-  <data name="Classification.Format">
-    <value>Formátum</value>
-  </data>
-  <data name="Classification.Protection">
-    <value>Védelem</value>
-  </data>
+  <data name="Detection.Ambiguous"><value>Kétértelmű formátum</value></data>
+  <data name="Detection.RawScp"><value>Nyers SCP rögzítés felismerve.</value></data>
+  <data name="Detection.AmigaSize"><value>A fájlméretből felismert Amiga formátum.</value></data>
+  <data name="Detection.AcornSize"><value>A fájlméretből felismert Acorn formátum.</value></data>
+  <data name="Detection.AtariUnknownSize"><value>A méret nem egyezik egy ismert Atari ST profillal.</value></data>
+  <data name="Detection.AtariSize"><value>Atari ST geometria felismerve a fájl méretéből.</value></data>
+  <data name="Detection.MsaInferred"><value>Atari MSA konténer felismerve; szükség esetén erősítse meg a geometriát.</value></data>
+  <data name="Detection.IbmAmbiguous"><value>A kiterjesztés önmagában nem tudja meghatározni a IBM PC geometriát.</value></data>
+  <data name="Detection.IbmSize"><value>IBM PC geometria felismerve a fájl méretéből.</value></data>
+  <data name="Detection.ExtensionInferred"><value>A kiterjesztésből kikövetkeztetett formátum.</value></data>
+  <data name="Detection.Multiple"><value>Számos formátum lehetséges; kifejezetten válasszon egyet.</value></data>
+  <data name="Format.raw.scp"><value>Nyers fluxus kép</value></data>
+  <data name="Common.DiskImageFilter"><value>Lemezképek|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Minden fájl|*.*</value></data>
+  <data name="Detection.AppleDosOrder"><value>Az Apple II DOS formátum a szektorsorrend alapján felismerve.</value></data>
+  <data name="Detection.AppleProDosOrder"><value>Az Apple II ProDOS formátum a szektorsorrend alapján felismerve.</value></data>
+  <data name="Detection.AppleContainer"><value>Apple lemezkép-tároló észlelve.</value></data>
+  <data name="Classification.Automatic"><value>Automatikus felismerés</value></data>
+  <data name="Classification.Machine"><value>Számítógép</value></data>
+  <data name="Classification.Format"><value>Formátum</value></data>
+  <data name="Classification.Protection"><value>Védelem</value></data>
 </root>

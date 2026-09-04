@@ -12,140 +12,76 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Conflict.Title">
-    <value>File yang ada</value>
-  </data>
-  <data name="Conflict.Heading">
-    <value>Beberapa file sudah ada</value>
-  </data>
-  <data name="Conflict.Help">
-    <value>Pilih tindakan untuk setiap file atau terapkan tindakan yang sama ke semua file.</value>
-  </data>
-  <data name="Conflict.File">
-    <value>Mengajukan</value>
-  </data>
-  <data name="Conflict.Action">
-    <value>Tindakan</value>
-  </data>
-  <data name="Conflict.Overwrite">
-    <value>Timpa</value>
-  </data>
-  <data name="Conflict.Skip">
-    <value>Melewati</value>
-  </data>
-  <data name="Conflict.Number">
-    <value>Gunakan nomor berikutnya</value>
-  </data>
-  <data name="Conflict.AllOverwrite">
-    <value>Timpa semuanya</value>
-  </data>
-  <data name="Conflict.AllSkip">
-    <value>Lewati semuanya</value>
-  </data>
-  <data name="Conflict.AllNumber">
-    <value>Nomor semua</value>
-  </data>
-  <data name="Conversion.Title">
-    <value>Konversi</value>
-  </data>
-  <data name="Conversion.SelectOutput">
-    <value>Pilih setidaknya satu format keluaran.</value>
-  </data>
-  <data name="Conversion.SourceAmbiguous">
-    <value>Sumber yang ambigu</value>
-  </data>
-  <data name="Conversion.Summary">
-    <value>Ringkasan: {0} berhasil, {1} gagal.</value>
-  </data>
-  <data name="Conversion.Failures">
-    <value>Kegagalan: {0}</value>
-  </data>
-  <data name="Conversion.Source">
-    <value>Sumber</value>
-  </data>
-  <data name="Conversion.OutputNames">
-    <value>Nama keluaran</value>
-  </data>
-  <data name="Conversion.AddTags">
-    <value>Tambahkan tag</value>
-  </data>
-  <data name="Conversion.Selected">
-    <value>Terpilih</value>
-  </data>
-  <data name="Conversion.CommonFormats">
-    <value>Format umum</value>
-  </data>
-  <data name="Conversion.ShowRare">
-    <value>Tampilkan format yang jarang digunakan</value>
-  </data>
-  <data name="Conversion.LimitTracks">
-    <value>Batasi trek</value>
-  </data>
-  <data name="Conversion.SourceRequired">
-    <value>Pilih gambar sumber yang ada.</value>
-  </data>
-  <data name="Conversion.NameRequired">
-    <value>Masukkan nama file keluaran.</value>
-  </data>
-  <data name="Conversion.CheckOutput">
-    <value>Periksa setidaknya satu format keluaran.</value>
-  </data>
-  <data name="Conversion.More">
-    <value>(+ {0} konversi)</value>
-  </data>
-  <data name="Conversion.DefaultExtensionTip">
-    <value>Tidak ada ekstensi yang dicentang: {0} digunakan secara default.</value>
-  </data>
-  <data name="Conversion.Incompatible">
-    <value>{0} tidak kompatibel dengan sumber ini.</value>
-  </data>
-  <data name="Conversion.NoAvailableOutputName">
-    <value>Tidak ada nama file keluaran yang tersedia yang dapat ditemukan.</value>
-  </data>
-  <data name="Conversion.ReconstructedFlux">
-    <value>fluks yang direkonstruksi</value>
-  </data>
-  <data name="Migration.Open"><value>File migration...</value></data>
-  <data name="Migration.Title"><value>File migration</value></data>
-  <data name="Migration.Heading"><value>Migrate files to another file system</value></data>
-  <data name="Migration.Source"><value>Source image</value></data>
-  <data name="Migration.NoSource"><value>Select an image containing a recognized file system.</value></data>
-  <data name="Migration.Destination"><value>Destination file system and format</value></data>
-  <data name="Migration.Output"><value>Destination image</value></data>
-  <data name="Migration.Compatibility"><value>Compatibility and losses</value></data>
-  <data name="Migration.Waiting"><value>Select a source and a destination.</value></data>
-  <data name="Migration.Severity"><value>Severity</value></data>
-  <data name="Migration.Path"><value>Source path</value></data>
-  <data name="Migration.Description"><value>Description</value></data>
-  <data name="Migration.AcceptLosses"><value>Accept the listed metadata losses</value></data>
-  <data name="Migration.Execute"><value>Migrate files</value></data>
-  <data name="Migration.Blocking"><value>Blocking</value></data>
-  <data name="Migration.MetadataLoss"><value>Metadata loss</value></data>
-  <data name="Migration.SourceSummary"><value>Volume: {0} — File system: {1} — Root entries: {2}</value></data>
-  <data name="Migration.SourceFailed"><value>Unable to prepare the migration: {0}</value></data>
-  <data name="Migration.Completed"><value>The destination image was created: {0}</value></data>
-  <data name="Migration.Failed"><value>Migration failed: {0}</value></data>
-  <data name="Migration.Incompatible"><value>Incompatible: correct the blocking losses before migration.</value></data>
-  <data name="Migration.CompatibleWithLosses"><value>Compatible after accepting the listed metadata losses.</value></data>
-  <data name="Migration.Compatible"><value>Compatible: no loss detected.</value></data>
-  <data name="Migration.Loss.MissingContent"><value>File content is unavailable.</value></data>
-  <data name="Migration.Loss.UnsupportedEntryKind"><value>This entry type is not supported by the destination.</value></data>
-  <data name="Migration.Loss.InvalidName"><value>The name is not valid for the destination.</value></data>
-  <data name="Migration.Loss.NameTooLong"><value>The name is too long for the destination.</value></data>
-  <data name="Migration.Loss.NameCollision"><value>Several entries would have the same destination name.</value></data>
-  <data name="Migration.Loss.FileTooLarge"><value>The file is too large for the destination.</value></data>
-  <data name="Migration.Loss.InvalidMetadata"><value>The source metadata is invalid.</value></data>
-  <data name="Migration.Loss.ModifiedDate"><value>The modification date will not be preserved.</value></data>
-  <data name="Migration.Loss.Comment"><value>The comment will not be preserved.</value></data>
-  <data name="Migration.Loss.Attributes"><value>The source attributes will not be preserved.</value></data>
-  <data name="Migration.OverwriteConfirm"><value>The destination image already exists. Replace it? {0}</value></data>
-  <data name="Migration.SourceDestinationSame"><value>The destination image cannot replace the source image.</value></data>
-  <data name="Conversion.Fidelity.SectorData"><value>sector data; protections not preserved</value></data>
-  <data name="Conversion.Fidelity.ReconstructedTracks"><value>reconstructed tracks; original flux not preserved</value></data>
-  <data name="Conversion.Fidelity.PreservedFlux"><value>original flux preserved</value></data>
-  <data name="Conversion.EngineExternal" xml:space="preserve"><value>Host Tools: converting {0}.</value></data>
-  <data name="Conversion.EngineInternalStart" xml:space="preserve"><value>Internal engine: converting {0} to {1}.</value></data>
-  <data name="Conversion.EngineInternalComplete" xml:space="preserve"><value>Internal conversion completed: {0}.</value></data>
-  <data name="Conversion.EngineInternalUnavailable" xml:space="preserve"><value>The internal engine does not support this conversion: {0}.</value></data>
-  <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Internal conversion failed for {0}: {1}</value></data>
+  <data name="Conflict.Title"><value>File yang ada</value></data>
+  <data name="Conflict.Heading"><value>Beberapa file sudah ada</value></data>
+  <data name="Conflict.Help"><value>Pilih tindakan untuk setiap file atau terapkan tindakan yang sama ke semua file.</value></data>
+  <data name="Conflict.File"><value>Mengajukan</value></data>
+  <data name="Conflict.Action"><value>Tindakan</value></data>
+  <data name="Conflict.Overwrite"><value>Timpa</value></data>
+  <data name="Conflict.Skip"><value>Melewati</value></data>
+  <data name="Conflict.Number"><value>Gunakan nomor berikutnya</value></data>
+  <data name="Conflict.AllOverwrite"><value>Timpa semuanya</value></data>
+  <data name="Conflict.AllSkip"><value>Lewati semuanya</value></data>
+  <data name="Conflict.AllNumber"><value>Nomor semua</value></data>
+  <data name="Conversion.Title"><value>Konversi</value></data>
+  <data name="Conversion.SelectOutput"><value>Pilih setidaknya satu format keluaran.</value></data>
+  <data name="Conversion.SourceAmbiguous"><value>Sumber yang ambigu</value></data>
+  <data name="Conversion.Summary"><value>Ringkasan: {0} berhasil, {1} gagal.</value></data>
+  <data name="Conversion.Failures"><value>Kegagalan: {0}</value></data>
+  <data name="Conversion.Source"><value>Sumber</value></data>
+  <data name="Conversion.OutputNames"><value>Nama keluaran</value></data>
+  <data name="Conversion.AddTags"><value>Tambahkan tag</value></data>
+  <data name="Conversion.Selected"><value>Terpilih</value></data>
+  <data name="Conversion.CommonFormats"><value>Format umum</value></data>
+  <data name="Conversion.ShowRare"><value>Tampilkan format yang jarang digunakan</value></data>
+  <data name="Conversion.LimitTracks"><value>Batasi trek</value></data>
+  <data name="Conversion.SourceRequired"><value>Pilih gambar sumber yang ada.</value></data>
+  <data name="Conversion.NameRequired"><value>Masukkan nama file keluaran.</value></data>
+  <data name="Conversion.CheckOutput"><value>Periksa setidaknya satu format keluaran.</value></data>
+  <data name="Conversion.More"><value>(+ {0} konversi)</value></data>
+  <data name="Conversion.DefaultExtensionTip"><value>Tidak ada ekstensi yang dicentang: {0} digunakan secara default.</value></data>
+  <data name="Conversion.Incompatible"><value>{0} tidak kompatibel dengan sumber ini.</value></data>
+  <data name="Conversion.NoAvailableOutputName"><value>Tidak ada nama file keluaran yang tersedia yang dapat ditemukan.</value></data>
+  <data name="Conversion.ReconstructedFlux"><value>fluks yang direkonstruksi</value></data>
+  <data name="Migration.Open"><value>Migrasi berkas...</value></data>
+  <data name="Migration.Title"><value>Migrasi berkas</value></data>
+  <data name="Migration.Heading"><value>Migrasikan berkas ke sistem berkas lain</value></data>
+  <data name="Migration.Source"><value>Citra sumber</value></data>
+  <data name="Migration.NoSource"><value>Pilih sebuah gambar yang memuat sebuah sistem berkas yang dikenali.</value></data>
+  <data name="Migration.Destination"><value>Format dan sistem berkas tujuan</value></data>
+  <data name="Migration.Output"><value>Gambar tujuan</value></data>
+  <data name="Migration.Compatibility"><value>Kompatibilitas dan kerugian</value></data>
+  <data name="Migration.Waiting"><value>Pilih suatu sumber dan suatu tujuan.</value></data>
+  <data name="Migration.Path"><value>Lokasi sumber</value></data>
+  <data name="Migration.Description"><value>Deskripsi</value></data>
+  <data name="Migration.AcceptLosses"><value>Menerima kerugian metadata yang terdaftar</value></data>
+  <data name="Migration.Execute"><value>Berkas migrasikan</value></data>
+  <data name="Migration.MetadataLoss"><value>Kehilangan metadata</value></data>
+  <data name="Migration.SourceSummary"><value>Volume: {0} - Sistem berkas: {1} - Masukan root: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>Tidak dapat mempersiapkan migrasi: {0}</value></data>
+  <data name="Migration.Completed"><value>Gambar tujuan dibuat: {0}</value></data>
+  <data name="Migration.Failed"><value>Migrasi gagal: {0}</value></data>
+  <data name="Migration.Incompatible"><value>Tidak kompatibel: memperbaiki kerugian pemblokiran sebelum migrasi.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>Kompatibel setelah menerima kerugian metadata terdaftar.</value></data>
+  <data name="Migration.Compatible"><value>Kompatibel: tidak ada kehilangan terdeteksi.</value></data>
+  <data name="Migration.Loss.MissingContent"><value>Isi berkas tidak tersedia.</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>Jenis entri ini tidak didukung oleh tujuan.</value></data>
+  <data name="Migration.Loss.InvalidName"><value>Nama tidak valid untuk tujuan.</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>Nama terlalu panjang untuk tujuan.</value></data>
+  <data name="Migration.Loss.NameCollision"><value>Beberapa entri akan memiliki nama tujuan yang sama.</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>Berkas terlalu besar untuk tujuan.</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>Metadata sumber tidak valid.</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>Tanggal modifikasi tidak akan dipertahankan.</value></data>
+  <data name="Migration.Loss.Comment"><value>Komentar tidak akan dipertahankan.</value></data>
+  <data name="Migration.Loss.Attributes"><value>Atribut sumber tidak akan dipertahankan.</value></data>
+  <data name="Migration.OverwriteConfirm"><value>Gambar tujuan sudah ada. Ganti? {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>Gambar tujuan tidak dapat menggantikan gambar sumber.</value></data>
+  <data name="Conversion.Fidelity.SectorData"><value>data sektor; proteksi tidak diawetkan</value></data>
+  <data name="Conversion.Fidelity.ReconstructedTracks"><value>trek rekonstruksi; asli flux tidak diawetkan</value></data>
+  <data name="Conversion.Fidelity.PreservedFlux"><value>asli flux diawetkan</value></data>
+  <data name="Conversion.EngineExternal"><value>Perkakas Host: mengubah {0}.</value></data>
+  <data name="Conversion.EngineInternalStart"><value>Mesin internal: mengubah {0} ke {1}.</value></data>
+  <data name="Conversion.EngineInternalComplete"><value>Konversi internal selesai: {0}.</value></data>
+  <data name="Conversion.EngineInternalUnavailable"><value>Mesin internal tidak mendukung konversi ini: {0}.</value></data>
+  <data name="Conversion.EngineInternalFailed"><value>Konversi internal gagal untuk {0}: {1}</value></data>
 </root>

@@ -7,6 +7,8 @@ internal sealed class GameInputControllerSource : IGameInputControllerSource
 
     public void StartMonitoring() => GameInputControllerReader.StartMonitoring();
 
+    internal void StopMonitoring() => GameInputControllerReader.StopMonitoring();
+
     public IReadOnlyList<GameInputDeviceDescriptor> GetConnectedDevices() =>
         GameInputControllerReader.GetConnectedControllerDetailsCached();
 

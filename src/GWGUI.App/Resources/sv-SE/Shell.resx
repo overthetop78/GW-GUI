@@ -12,73 +12,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.GwNotConfigured">
-    <value>Greaseweazle Verktyg är inte konfigurerade. Öppna Alternativ → Inställningar.</value>
-  </data>
-  <data name="App.OperationRunningClose">
-    <value>En operation pågår. Stoppa det och stänga GW GUI?</value>
-  </data>
-  <data name="Operation.Finished">
-    <value>Färdig: kod {0}, varaktighet {1}.</value>
-  </data>
-  <data name="Operation.Succeeded">
-    <value>Kommandot har slutförts.</value>
-  </data>
-  <data name="Operation.Cancelled">
-    <value>Kommandot avbröts.</value>
-  </data>
-  <data name="Operation.ExitCode">
-    <value>Kommandot slutade med koden {0}.</value>
-  </data>
-  <data name="Common.Console">
-    <value>Trösta</value>
-  </data>
-  <data name="Common.Command">
-    <value>Kommando</value>
-  </data>
-  <data name="Status.FaceTrackProgress">
-    <value>Sida {0}: spår {1} — {2}/{3}</value>
-  </data>
-  <data name="Status.Ready">
-    <value>GW GUI redo.</value>
-  </data>
-  <data name="Status.DefaultProfile">
-    <value>Profil: Standard</value>
-  </data>
-  <data name="Operation.StopTitle">
-    <value>Stoppa driften</value>
-  </data>
-  <data name="Operation.StopConfirm">
-    <value>Vill du stoppa den aktuella Greaseweazle-operationen?</value>
-  </data>
-  <data name="Operation.Busy">
-    <value>Ett Greaseweazle-kommando körs redan. Vänta tills det är klart eller stoppa det innan du öppnar det här verktyget.</value>
-  </data>
-  <data name="Status.Profile">
-    <value>Profil: {0}</value>
-  </data>
-  <data name="Status.TrackProgress">
-    <value>Spår {0}, sida {1} — {2}/{3}</value>
-  </data>
-  <data name="Status.TrackUnknown">
-    <value>Spår {0}, sida {1} — {2} bearbetad</value>
-  </data>
-  <data name="Operation.Error">
-    <value>Fel: {0}</value>
-  </data>
-  <data name="Status.ReadyShort">
-    <value>Redo</value>
-  </data>
-  <data name="Status.Running">
-    <value>Spring</value>
-  </data>
-  <data name="Status.Success">
-    <value>Framgång</value>
-  </data>
-  <data name="Status.Error">
-    <value>Fel</value>
-  </data>
-  <data name="Status.Cancelled">
-    <value>Avbruten</value>
-  </data>
+  <data name="App.GwNotConfigured"><value>Greaseweazle Verktyg är inte konfigurerade. Öppna Alternativ → Inställningar.</value></data>
+  <data name="App.OperationRunningClose"><value>En operation pågår. Stoppa det och stänga GW GUI?</value></data>
+  <data name="Operation.Finished"><value>Färdig: kod {0}, varaktighet {1}.</value></data>
+  <data name="Operation.Succeeded"><value>Kommandot har slutförts.</value></data>
+  <data name="Operation.Cancelled"><value>Kommandot avbröts.</value></data>
+  <data name="Operation.ExitCode"><value>Kommandot slutade med koden {0}.</value></data>
+  <data name="Common.Console"><value>Trösta</value></data>
+  <data name="Common.Command"><value>Kommando</value></data>
+  <data name="Status.FaceTrackProgress"><value>Sida {0}: spår {1} — {2}/{3}</value></data>
+  <data name="Status.Ready"><value>GW GUI redo.</value></data>
+  <data name="Status.DefaultProfile"><value>Profil: Standard</value></data>
+  <data name="Operation.StopTitle"><value>Stoppa driften</value></data>
+  <data name="Operation.StopConfirm"><value>Vill du stoppa den aktuella Greaseweazle-operationen?</value></data>
+  <data name="Operation.Busy"><value>Ett Greaseweazle-kommando körs redan. Vänta tills det är klart eller stoppa det innan du öppnar det här verktyget.</value></data>
+  <data name="Status.Profile"><value>Profil: {0}</value></data>
+  <data name="Status.TrackProgress"><value>Spår {0}, sida {1} — {2}/{3}</value></data>
+  <data name="Status.TrackUnknown"><value>Spår {0}, sida {1} — {2} bearbetad</value></data>
+  <data name="Operation.Error"><value>Fel: {0}</value></data>
+  <data name="Status.ReadyShort"><value>Redo</value></data>
+  <data name="Status.Running"><value>Spring</value></data>
+  <data name="Status.Success"><value>Framgång</value></data>
+  <data name="Status.Error"><value>Fel</value></data>
+  <data name="Status.Cancelled"><value>Avbruten</value></data>
 </root>

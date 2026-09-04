@@ -12,67 +12,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Detection.Ambiguous">
-    <value>định dạng không rõ ràng</value>
-  </data>
-  <data name="Detection.RawScp">
-    <value>Đã nhận dạng bản chụp thô SCP.</value>
-  </data>
-  <data name="Detection.AmigaSize">
-    <value>Định dạng Amiga được nhận dạng từ kích thước tệp.</value>
-  </data>
-  <data name="Detection.AcornSize">
-    <value>Định dạng Acorn được nhận dạng từ kích thước tệp.</value>
-  </data>
-  <data name="Detection.AtariUnknownSize">
-    <value>Kích thước không khớp với hồ sơ Atari ST đã biết.</value>
-  </data>
-  <data name="Detection.AtariSize">
-    <value>Atari ST hình học được nhận dạng từ kích thước tệp.</value>
-  </data>
-  <data name="Detection.MsaInferred">
-    <value>Vùng chứa Atari MSA được công nhận; xác nhận hình học nếu cần thiết.</value>
-  </data>
-  <data name="Detection.IbmAmbiguous">
-    <value>Riêng phần mở rộng không thể xác định hình học IBM PC.</value>
-  </data>
-  <data name="Detection.IbmSize">
-    <value>IBM PC hình học được nhận dạng từ kích thước tệp.</value>
-  </data>
-  <data name="Detection.ExtensionInferred">
-    <value>Định dạng được suy ra từ phần mở rộng.</value>
-  </data>
-  <data name="Detection.Multiple">
-    <value>Có thể có một số định dạng; chọn một cách rõ ràng.</value>
-  </data>
-  <data name="Format.raw.scp">
-    <value>Hình ảnh thông lượng thô</value>
-  </data>
-  <data name="Format.raw.hfe">
-    <value>HxC hình ảnh thông lượng</value>
-  </data>
-  <data name="Common.DiskImageFilter">
-    <value>Ảnh đĩa|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Tất cả các tệp|*.*</value>
-  </data>
-  <data name="Detection.AppleDosOrder">
-    <value>Đã nhận dạng định dạng Apple II DOS từ thứ tự sector.</value>
-  </data>
-  <data name="Detection.AppleProDosOrder">
-    <value>Đã nhận dạng định dạng Apple II ProDOS từ thứ tự sector.</value>
-  </data>
-  <data name="Detection.AppleContainer">
-    <value>Đã phát hiện vùng chứa ảnh đĩa Apple.</value>
-  </data>
-  <data name="Classification.Automatic">
-    <value>Tự động nhận diện</value>
-  </data>
-  <data name="Classification.Machine">
-    <value>Máy tính</value>
-  </data>
-  <data name="Classification.Format">
-    <value>Định dạng</value>
-  </data>
-  <data name="Classification.Protection">
-    <value>Bảo vệ</value>
-  </data>
+  <data name="Detection.Ambiguous"><value>định dạng không rõ ràng</value></data>
+  <data name="Detection.RawScp"><value>Raw SCP thu được.</value></data>
+  <data name="Detection.AmigaSize"><value>Định dạng Amiga được nhận dạng từ kích thước tệp.</value></data>
+  <data name="Detection.AcornSize"><value>Định dạng Acorn được nhận dạng từ kích thước tệp.</value></data>
+  <data name="Detection.AtariUnknownSize"><value>Kích thước không khớp với hồ sơ Atari ST đã biết.</value></data>
+  <data name="Detection.AtariSize"><value>Atari ST hình học được nhận dạng từ kích thước tệp.</value></data>
+  <data name="Detection.MsaInferred"><value>Vùng chứa Atari MSA được công nhận; xác nhận hình học nếu cần thiết.</value></data>
+  <data name="Detection.IbmAmbiguous"><value>chỉ phần mở rộng không thể xác định được IBM PC hình học.</value></data>
+  <data name="Detection.IbmSize"><value>IBM PC hình học được nhận dạng từ kích thước tệp.</value></data>
+  <data name="Detection.ExtensionInferred"><value>Định dạng được suy ra từ phần mở rộng.</value></data>
+  <data name="Detection.Multiple"><value>Có thể có một số định dạng; chọn một cách rõ ràng.</value></data>
+  <data name="Format.raw.scp"><value>Hình ảnh thông lượng thô</value></data>
+  <data name="Common.DiskImageFilter"><value>ảnh đĩa|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Mọi tập tin|*.*</value></data>
+  <data name="Detection.AppleDosOrder"><value>Đã nhận dạng định dạng Apple II DOS từ thứ tự sector.</value></data>
+  <data name="Detection.AppleProDosOrder"><value>Đã nhận dạng định dạng Apple II ProDOS từ thứ tự sector.</value></data>
+  <data name="Detection.AppleContainer"><value>Đã phát hiện vùng chứa ảnh đĩa Apple.</value></data>
+  <data name="Classification.Automatic"><value>Tự động nhận diện</value></data>
+  <data name="Classification.Machine"><value>Máy tính</value></data>
+  <data name="Classification.Format"><value>Định dạng</value></data>
+  <data name="Classification.Protection"><value>Bảo vệ</value></data>
 </root>

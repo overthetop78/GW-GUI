@@ -12,52 +12,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Profiles.ByOperation">
-    <value>Profiilit toiminnan mukaan</value>
-  </data>
-  <data name="Profiles.Tab">
-    <value>Tab</value>
-  </data>
-  <data name="Profiles.Name">
-    <value>Nimi</value>
-  </data>
-  <data name="Profiles.System">
-    <value>Järjestelmä</value>
-  </data>
-  <data name="Profiles.Rename">
-    <value>Nimeä uudelleen…</value>
-  </data>
-  <data name="Profile.SaveTitle">
-    <value>Tallenna profiili</value>
-  </data>
-  <data name="Profile.Name">
-    <value>Profiilin nimi</value>
-  </data>
-  <data name="Profile.NameRequired">
-    <value>Kirjoita nimi.</value>
-  </data>
-  <data name="Profile.Title">
-    <value>Profiili</value>
-  </data>
-  <data name="Common.Profile">
-    <value>Profiili</value>
-  </data>
-  <data name="Profile.Default">
-    <value>Oletus</value>
-  </data>
-  <data name="Profile.SystemRename">
-    <value>Oletusprofiili on pysyvä, eikä sitä voi nimetä uudelleen.</value>
-  </data>
-  <data name="Profile.SystemDelete">
-    <value>Oletusprofiili on pysyvä, eikä sitä voi poistaa.</value>
-  </data>
-  <data name="Profile.DuplicateName">
-    <value>Tämän välilehden profiililla on jo tämä nimi.</value>
-  </data>
-  <data name="Profile.Replace">
-    <value>Tämä profiili on jo olemassa. Vaihda se?</value>
-  </data>
-  <data name="Profile.DeleteConfirm">
-    <value>Poistetaanko profiili "{0}"?</value>
-  </data>
+  <data name="Profiles.ByOperation"><value>Profiilit toiminnan mukaan</value></data>
+<data name="Profiles.Name"><value>Nimi</value></data>
+  <data name="Profiles.System"><value>Järjestelmä</value></data>
+  <data name="Profiles.Rename"><value>Nimeä uudelleen…</value></data>
+  <data name="Profile.SaveTitle"><value>Tallenna profiili</value></data>
+  <data name="Profile.Name"><value>Profiilin nimi</value></data>
+  <data name="Profile.NameRequired"><value>Kirjoita nimi.</value></data>
+  <data name="Profile.Title"><value>Profiili</value></data>
+  <data name="Common.Profile"><value>Profiili</value></data>
+  <data name="Profile.Default"><value>Oletus</value></data>
+  <data name="Profile.SystemRename"><value>Oletusprofiili on pysyvä, eikä sitä voi nimetä uudelleen.</value></data>
+  <data name="Profile.SystemDelete"><value>Oletusprofiili on pysyvä, eikä sitä voi poistaa.</value></data>
+  <data name="Profile.DuplicateName"><value>Tämän välilehden profiililla on jo tämä nimi.</value></data>
+  <data name="Profile.Replace"><value>Tämä profiili on jo olemassa. Vaihda se?</value></data>
+  <data name="Profile.DeleteConfirm"><value>Poistetaanko profiili "{0}"?</value></data>
+  <data name="Profiles.Tab"><value>Välilehti</value></data>
 </root>

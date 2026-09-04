@@ -12,52 +12,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Profiles.ByOperation">
-    <value>Profili per operazione</value>
-  </data>
-  <data name="Profiles.Tab">
-    <value>Tab</value>
-  </data>
-  <data name="Profiles.Name">
-    <value>Nome</value>
-  </data>
-  <data name="Profiles.System">
-    <value>Sistema</value>
-  </data>
-  <data name="Profiles.Rename">
-    <value>Rinominare…</value>
-  </data>
-  <data name="Profile.SaveTitle">
-    <value>Salva profilo</value>
-  </data>
-  <data name="Profile.Name">
-    <value>Nome del profilo</value>
-  </data>
-  <data name="Profile.NameRequired">
-    <value>Inserisci un nome.</value>
-  </data>
-  <data name="Profile.Title">
-    <value>Profilo</value>
-  </data>
-  <data name="Common.Profile">
-    <value>Profilo</value>
-  </data>
-  <data name="Profile.Default">
-    <value>Predefinito</value>
-  </data>
-  <data name="Profile.SystemRename">
-    <value>Il profilo predefinito è permanente e non può essere rinominato.</value>
-  </data>
-  <data name="Profile.SystemDelete">
-    <value>Il profilo predefinito è permanente e non può essere eliminato.</value>
-  </data>
-  <data name="Profile.DuplicateName">
-    <value>Un profilo in questa scheda ha già questo nome.</value>
-  </data>
-  <data name="Profile.Replace">
-    <value>Questo profilo esiste già. Sostituirlo?</value>
-  </data>
-  <data name="Profile.DeleteConfirm">
-    <value>Eliminare il profilo "{0}"?</value>
-  </data>
+  <data name="Profiles.ByOperation"><value>Profili per operazione</value></data>
+<data name="Profiles.Name"><value>Nome</value></data>
+  <data name="Profiles.System"><value>Sistema</value></data>
+  <data name="Profiles.Rename"><value>Rinominare…</value></data>
+  <data name="Profile.SaveTitle"><value>Salva profilo</value></data>
+  <data name="Profile.Name"><value>Nome del profilo</value></data>
+  <data name="Profile.NameRequired"><value>Inserisci un nome.</value></data>
+  <data name="Profile.Title"><value>Profilo</value></data>
+  <data name="Common.Profile"><value>Profilo</value></data>
+  <data name="Profile.Default"><value>Predefinito</value></data>
+  <data name="Profile.SystemRename"><value>Il profilo predefinito è permanente e non può essere rinominato.</value></data>
+  <data name="Profile.SystemDelete"><value>Il profilo predefinito è permanente e non può essere eliminato.</value></data>
+  <data name="Profile.DuplicateName"><value>Un profilo in questa scheda ha già questo nome.</value></data>
+  <data name="Profile.Replace"><value>Questo profilo esiste già. Sostituirlo?</value></data>
+  <data name="Profile.DeleteConfirm"><value>Eliminare il profilo "{0}"?</value></data>
+  <data name="Profiles.Tab"><value>Scheda</value></data>
 </root>

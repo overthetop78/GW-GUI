@@ -12,298 +12,102 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Detection.Ambiguous">
-    <value>Ambiguous format</value>
-  </data>
-  <data name="Detection.RawScp">
-    <value>Raw SCP capture recognized.</value>
-  </data>
-  <data name="Detection.AmigaSize">
-    <value>Amiga format recognized from file size.</value>
-  </data>
-  <data name="Detection.AcornSize">
-    <value>Acorn format recognized from file size.</value>
-  </data>
-  <data name="Detection.AtariUnknownSize">
-    <value>The size does not match a known Atari ST profile.</value>
-  </data>
-  <data name="Detection.AtariSize">
-    <value>Atari ST geometry recognized from file size.</value>
-  </data>
-  <data name="Detection.MsaInferred">
-    <value>Atari MSA container recognized; confirm the geometry if necessary.</value>
-  </data>
-  <data name="Detection.IbmAmbiguous">
-    <value>The extension alone cannot determine the IBM PC geometry.</value>
-  </data>
-  <data name="Detection.IbmSize">
-    <value>IBM PC geometry recognized from file size.</value>
-  </data>
-  <data name="Detection.ExtensionInferred">
-    <value>Format inferred from the extension.</value>
-  </data>
-  <data name="Detection.Multiple">
-    <value>Several formats are possible; choose one explicitly.</value>
-  </data>
-  <data name="Format.raw.scp">
-    <value>Raw flux image</value>
-  </data>
-  <data name="Format.amiga.amigados">
-    <value>AmigaDOS — 880 KiB</value>
-  </data>
-  <data name="Format.amiga.amigados_hd">
-    <value>AmigaDOS HD — 1.76 MiB</value>
-  </data>
-  <data name="Format.atarist.180">
-    <value>Atari ST — 180 KiB</value>
-  </data>
-  <data name="Format.atarist.360">
-    <value>Atari ST — 360 KiB</value>
-  </data>
-  <data name="Format.atarist.400">
-    <value>Atari ST — 400 KiB</value>
-  </data>
-  <data name="Format.atarist.440">
-    <value>Atari ST — 440 KiB</value>
-  </data>
-  <data name="Format.atarist.720">
-    <value>Atari ST — 720 KiB</value>
-  </data>
-  <data name="Format.atarist.800">
-    <value>Atari ST — 800 KiB</value>
-  </data>
-  <data name="Format.atarist.810">
-    <value>Atari ST — 810 KiB</value>
-  </data>
-  <data name="Format.atarist.880">
-    <value>Atari ST — 880 KiB</value>
-  </data>
-  <data name="Format.atarist.1440">
-    <value>Atari ST — 1.44 MiB</value>
-  </data>
-  <data name="Format.ibm.160">
-    <value>IBM PC — 160 KiB</value>
-  </data>
-  <data name="Format.ibm.180">
-    <value>IBM PC — 180 KiB</value>
-  </data>
-  <data name="Format.ibm.320">
-    <value>IBM PC — 320 KiB</value>
-  </data>
-  <data name="Format.ibm.360">
-    <value>IBM PC — 360 KiB</value>
-  </data>
-  <data name="Format.ibm.720">
-    <value>IBM PC — 720 KiB</value>
-  </data>
-  <data name="Format.ibm.800">
-    <value>IBM PC — 800 KiB</value>
-  </data>
-  <data name="Format.ibm.1200">
-    <value>IBM PC — 1.2 MiB</value>
-  </data>
-  <data name="Format.ibm.1440">
-    <value>IBM PC — 1.44 MiB</value>
-  </data>
-  <data name="Format.ibm.1680">
-    <value>IBM PC — 1.68 MiB</value>
-  </data>
-  <data name="Format.ibm.dmf">
-    <value>IBM PC — DMF 1.68 MiB</value>
-  </data>
-  <data name="Format.ibm.2880">
-    <value>IBM PC — 2.88 MiB</value>
-  </data>
-  <data name="Format.ibm.scan">
-    <value>IBM PC — FM/MFM scan</value>
-  </data>
-  <data name="Format.commodore.1541">
-    <value>Commodore 64 — 1541</value>
-  </data>
-  <data name="Format.commodore.1571">
-    <value>Commodore 128 — 1571</value>
-  </data>
-  <data name="Format.commodore.1581">
-    <value>Commodore 128 — 1581</value>
-  </data>
-  <data name="Format.acorn.adfs.800">
-    <value>Acorn — ADFS · 800 KiB</value>
-  </data>
-  <data name="Format.raw.hfe">
-    <value>HxC flux image</value>
-  </data>
-  <data name="Extension.ima">
-    <value>IMA disk image</value>
-  </data>
-  <data name="Extension.img">
-    <value>IMG disk image</value>
-  </data>
-  <data name="Extension.scp">
-    <value>SuperCard Pro</value>
-  </data>
-  <data name="Extension.adf.amiga">
-    <value>Amiga Disk File</value>
-  </data>
-  <data name="Extension.adf.acorn">
-    <value>Acorn Disk File</value>
-  </data>
-  <data name="Extension.st">
-    <value>Atari ST image</value>
-  </data>
-  <data name="Extension.msa">
-    <value>Magic Shadow Archiver</value>
-  </data>
-  <data name="Extension.d64">
-    <value>Commodore D64 image</value>
-  </data>
-  <data name="Extension.d71">
-    <value>Commodore D71 image</value>
-  </data>
-  <data name="Extension.d81">
-    <value>Commodore D81 image</value>
-  </data>
-  <data name="Extension.hfe">
-    <value>HxC Floppy Emulator</value>
-  </data>
-  <data name="Format.apple2.appledos.113">
-    <value>Apple II DOS 3.2 — 113 KiB</value>
-  </data>
-  <data name="Extension.d13">
-    <value>D13 (Apple DOS 3.2)</value>
-  </data>
-  <data name="Common.DiskImageFilter">
-    <value>Disk images|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|All files|*.*</value>
-  </data>
-  <data name="Format.atari.90">
-    <value>Atari 8-bit — 90 KiB</value>
-  </data>
-  <data name="Format.atari.130">
-    <value>Atari 8-bit — 130 KiB</value>
-  </data>
-  <data name="Format.atari.180">
-    <value>Atari 8-bit — 180 KiB</value>
-  </data>
-  <data name="Extension.atr">
-    <value>Atari ATR disk image</value>
-  </data>
-  <data name="Format.apple2.appledos.140">
-    <value>Apple II DOS 3.3 — 140 KiB</value>
-  </data>
-  <data name="Format.apple2.prodos.140">
-    <value>Apple II ProDOS — 140 KiB</value>
-  </data>
-  <data name="Format.apple2.prodos.800">
-    <value>Apple II ProDOS — 800 KiB</value>
-  </data>
-  <data name="Format.apple3.sos">
-    <value>Apple III SOS — 140 KiB</value>
-  </data>
-  <data name="Format.mac.400">
-    <value>Apple Macintosh/Lisa GCR — 400 KiB</value>
-  </data>
-  <data name="Format.mac.800">
-    <value>Apple Macintosh GCR — 800 KiB</value>
-  </data>
-  <data name="Format.mac.1440">
-    <value>Apple Macintosh MFM — 1.44 MiB</value>
-  </data>
-  <data name="Extension.do">
-    <value>DO (Apple DOS)</value>
-  </data>
-  <data name="Extension.dsk.apple">
-    <value>DSK (Apple)</value>
-  </data>
-  <data name="Extension.po">
-    <value>PO (Apple ProDOS)</value>
-  </data>
-  <data name="Extension.2mg">
-    <value>2IMG (Apple)</value>
-  </data>
-  <data name="Extension.image.apple">
-    <value>DiskCopy (Apple)</value>
-  </data>
-  <data name="Extension.img.apple">
-    <value>IMG (Apple)</value>
-  </data>
-  <data name="Detection.AppleDosOrder">
-    <value>Apple II DOS format identified from sector order.</value>
-  </data>
-  <data name="Detection.AppleProDosOrder">
-    <value>Apple II ProDOS format identified from sector order.</value>
-  </data>
-  <data name="Detection.AppleContainer">
-    <value>Apple disk-image container detected.</value>
-  </data>
-  <data name="Format.apple2.rwts18">
-    <value>Apple II Brøderbund RWTS18</value>
-  </data>
-  <data name="Extension.nib">
-    <value>NIB (Apple II)</value>
-  </data>
-  <data name="Extension.woz">
-    <value>WOZ (Apple II)</value>
-  </data>
-  <data name="Classification.Automatic">
-    <value>Automatic detection</value>
-  </data>
-  <data name="Classification.Machine">
-    <value>Machine</value>
-  </data>
-  <data name="Classification.Format">
-    <value>Format</value>
-  </data>
-  <data name="Classification.Protection">
-    <value>Protection</value>
-  </data>
-  <data name="Format.ucsd.ibm.mfm">
-    <value>UCSD p-System — IBM MFM</value>
-  </data>
-  <data name="System.apple-ii">
-    <value>Apple II</value>
-  </data>
-  <data name="System.apple-iii">
-    <value>Apple III</value>
-  </data>
-  <data name="System.macintosh">
-    <value>Apple Macintosh</value>
-  </data>
-  <data name="System.lisa">
-    <value>Apple Lisa</value>
-  </data>
-  <data name="System.amiga">
-    <value>Amiga</value>
-  </data>
-  <data name="System.atari-st">
-    <value>Atari ST</value>
-  </data>
-  <data name="System.atari-8bit">
-    <value>Atari 8-bit</value>
-  </data>
-  <data name="System.ibm-pc">
-    <value>IBM PC</value>
-  </data>
-  <data name="System.commodore">
-    <value>Commodore</value>
-  </data>
-  <data name="System.amstrad">
-    <value>Amstrad</value>
-  </data>
-  <data name="System.acorn-bbc">
-    <value>Acorn / BBC Micro</value>
-  </data>
-  <data name="System.epson-qx10">
-    <value>Epson QX-10</value>
-  </data>
-  <data name="System.msx">
-    <value>MSX</value>
-  </data>
-  <data name="System.dec">
-    <value>DEC</value>
-  </data>
-  <data name="System.coherent">
-    <value>COHERENT</value>
-  </data>
-  <data name="System.ucsd">
-    <value>UCSD p-System</value>
-  </data>
+  <data name="Detection.Ambiguous"><value>Ambiguous format</value></data>
+  <data name="Detection.RawScp"><value>Raw SCP capture recognized.</value></data>
+  <data name="Detection.AmigaSize"><value>Amiga format recognized from file size.</value></data>
+  <data name="Detection.AcornSize"><value>Acorn format recognized from file size.</value></data>
+  <data name="Detection.AtariUnknownSize"><value>The size does not match a known Atari ST profile.</value></data>
+  <data name="Detection.AtariSize"><value>Atari ST geometry recognized from file size.</value></data>
+  <data name="Detection.MsaInferred"><value>Atari MSA container recognized; confirm the geometry if necessary.</value></data>
+  <data name="Detection.IbmAmbiguous"><value>The extension alone cannot determine the IBM PC geometry.</value></data>
+  <data name="Detection.IbmSize"><value>IBM PC geometry recognized from file size.</value></data>
+  <data name="Detection.ExtensionInferred"><value>Format inferred from the extension.</value></data>
+  <data name="Detection.Multiple"><value>Several formats are possible; choose one explicitly.</value></data>
+  <data name="Format.raw.scp"><value>Raw flux image</value></data>
+  <data name="Format.amiga.amigados"><value>AmigaDOS — 880 KiB</value></data>
+  <data name="Format.amiga.amigados_hd"><value>AmigaDOS HD — 1.76 MiB</value></data>
+  <data name="Format.atarist.180"><value>Atari ST — 180 KiB</value></data>
+  <data name="Format.atarist.360"><value>Atari ST — 360 KiB</value></data>
+  <data name="Format.atarist.400"><value>Atari ST — 400 KiB</value></data>
+  <data name="Format.atarist.440"><value>Atari ST — 440 KiB</value></data>
+  <data name="Format.atarist.720"><value>Atari ST — 720 KiB</value></data>
+  <data name="Format.atarist.800"><value>Atari ST — 800 KiB</value></data>
+  <data name="Format.atarist.810"><value>Atari ST — 810 KiB</value></data>
+  <data name="Format.atarist.880"><value>Atari ST — 880 KiB</value></data>
+  <data name="Format.atarist.1440"><value>Atari ST — 1.44 MiB</value></data>
+  <data name="Format.ibm.160"><value>IBM PC — 160 KiB</value></data>
+  <data name="Format.ibm.180"><value>IBM PC — 180 KiB</value></data>
+  <data name="Format.ibm.320"><value>IBM PC — 320 KiB</value></data>
+  <data name="Format.ibm.360"><value>IBM PC — 360 KiB</value></data>
+  <data name="Format.ibm.720"><value>IBM PC — 720 KiB</value></data>
+  <data name="Format.ibm.800"><value>IBM PC — 800 KiB</value></data>
+  <data name="Format.ibm.1200"><value>IBM PC — 1.2 MiB</value></data>
+  <data name="Format.ibm.1440"><value>IBM PC — 1.44 MiB</value></data>
+  <data name="Format.ibm.1680"><value>IBM PC — 1.68 MiB</value></data>
+  <data name="Format.ibm.dmf"><value>IBM PC — DMF 1.68 MiB</value></data>
+  <data name="Format.ibm.2880"><value>IBM PC — 2.88 MiB</value></data>
+  <data name="Format.ibm.scan"><value>IBM PC — FM/MFM scan</value></data>
+  <data name="Format.commodore.1541"><value>Commodore 64 — 1541</value></data>
+  <data name="Format.commodore.1571"><value>Commodore 128 — 1571</value></data>
+  <data name="Format.commodore.1581"><value>Commodore 128 — 1581</value></data>
+  <data name="Format.acorn.adfs.800"><value>Acorn — ADFS · 800 KiB</value></data>
+  <data name="Format.raw.hfe"><value>HxC flux image</value></data>
+  <data name="Extension.ima"><value>IMA disk image</value></data>
+  <data name="Extension.img"><value>IMG disk image</value></data>
+  <data name="Extension.scp"><value>SuperCard Pro</value></data>
+  <data name="Extension.adf.amiga"><value>Amiga Disk File</value></data>
+  <data name="Extension.adf.acorn"><value>Acorn Disk File</value></data>
+  <data name="Extension.st"><value>Atari ST image</value></data>
+  <data name="Extension.msa"><value>Magic Shadow Archiver</value></data>
+  <data name="Extension.d64"><value>Commodore D64 image</value></data>
+  <data name="Extension.d71"><value>Commodore D71 image</value></data>
+  <data name="Extension.d81"><value>Commodore D81 image</value></data>
+  <data name="Extension.hfe"><value>HxC Floppy Emulator</value></data>
+  <data name="Format.apple2.appledos.113"><value>Apple II DOS 3.2 — 113 KiB</value></data>
+  <data name="Extension.d13"><value>D13 (Apple DOS 3.2)</value></data>
+  <data name="Common.DiskImageFilter"><value>Disk images|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|All files|*.*</value></data>
+  <data name="Format.atari.90"><value>Atari 8-bit — 90 KiB</value></data>
+  <data name="Format.atari.130"><value>Atari 8-bit — 130 KiB</value></data>
+  <data name="Format.atari.180"><value>Atari 8-bit — 180 KiB</value></data>
+  <data name="Extension.atr"><value>Atari ATR disk image</value></data>
+  <data name="Format.apple2.appledos.140"><value>Apple II DOS 3.3 — 140 KiB</value></data>
+  <data name="Format.apple2.prodos.140"><value>Apple II ProDOS — 140 KiB</value></data>
+  <data name="Format.apple2.prodos.800"><value>Apple II ProDOS — 800 KiB</value></data>
+  <data name="Format.apple3.sos"><value>Apple III SOS — 140 KiB</value></data>
+  <data name="Format.mac.400"><value>Apple Macintosh/Lisa GCR — 400 KiB</value></data>
+  <data name="Format.mac.800"><value>Apple Macintosh GCR — 800 KiB</value></data>
+  <data name="Format.mac.1440"><value>Apple Macintosh MFM — 1.44 MiB</value></data>
+  <data name="Extension.do"><value>DO (Apple DOS)</value></data>
+  <data name="Extension.dsk.apple"><value>DSK (Apple)</value></data>
+  <data name="Extension.po"><value>PO (Apple ProDOS)</value></data>
+  <data name="Extension.2mg"><value>2IMG (Apple)</value></data>
+  <data name="Extension.image.apple"><value>DiskCopy (Apple)</value></data>
+  <data name="Extension.img.apple"><value>IMG (Apple)</value></data>
+  <data name="Detection.AppleDosOrder"><value>Apple II DOS format identified from sector order.</value></data>
+  <data name="Detection.AppleProDosOrder"><value>Apple II ProDOS format identified from sector order.</value></data>
+  <data name="Detection.AppleContainer"><value>Apple disk-image container detected.</value></data>
+  <data name="Format.apple2.rwts18"><value>Apple II Brøderbund RWTS18</value></data>
+  <data name="Extension.nib"><value>NIB (Apple II)</value></data>
+  <data name="Extension.woz"><value>WOZ (Apple II)</value></data>
+  <data name="Classification.Automatic"><value>Automatic detection</value></data>
+  <data name="Classification.Machine"><value>Machine</value></data>
+  <data name="Classification.Format"><value>Format</value></data>
+  <data name="Classification.Protection"><value>Protection</value></data>
+  <data name="Format.ucsd.ibm.mfm"><value>UCSD p-System — IBM MFM</value></data>
+  <data name="System.apple-ii"><value>Apple II</value></data>
+  <data name="System.apple-iii"><value>Apple III</value></data>
+  <data name="System.macintosh"><value>Apple Macintosh</value></data>
+  <data name="System.lisa"><value>Apple Lisa</value></data>
+  <data name="System.amiga"><value>Amiga</value></data>
+  <data name="System.atari-st"><value>Atari ST</value></data>
+  <data name="System.atari-8bit"><value>Atari 8-bit</value></data>
+  <data name="System.ibm-pc"><value>IBM PC</value></data>
+  <data name="System.commodore"><value>Commodore</value></data>
+  <data name="System.amstrad"><value>Amstrad</value></data>
+  <data name="System.acorn-bbc"><value>Acorn / BBC Micro</value></data>
+  <data name="System.epson-qx10"><value>Epson QX-10</value></data>
+  <data name="System.msx"><value>MSX</value></data>
+  <data name="System.dec"><value>DEC</value></data>
+  <data name="System.coherent"><value>COHERENT</value></data>
+  <data name="System.ucsd"><value>UCSD p-System</value></data>
 </root>

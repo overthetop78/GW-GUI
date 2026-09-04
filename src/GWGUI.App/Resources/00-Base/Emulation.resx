@@ -12,120 +12,44 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Emulation.Tab.Machines">
-    <value>Machines</value>
-  </data>
-  <data name="Emulation.Core.Name">
-    <value>Core</value>
-  </data>
-  <data name="Emulation.Core.NameManagerTitle">
-    <value>{0} emulation core</value>
-  </data>
-  <data name="Emulation.Core.NameManagerDescription">
-    <value>The library remains external to GW GUI. The selected version replaces the currently installed version.</value>
-  </data>
-  <data name="Emulation.Core.NameRequiredVersion">
-    <value>Version required by GW GUI</value>
-  </data>
-  <data name="Emulation.Core.NameLatestVersion">
-    <value>Latest official version available</value>
-  </data>
-  <data name="Emulation.Core.NameProjectVersion">
-    <value>Currently installed version</value>
-  </data>
-  <data name="Emulation.Core.NameSearchPrompt">
-    <value>Click Search to query the official Libretro server.</value>
-  </data>
-  <data name="Emulation.Core.NameSearch">
-    <value>Search versions</value>
-  </data>
-  <data name="Emulation.Core.NameDownload">
-    <value>Download and replace</value>
-  </data>
-  <data name="Emulation.Core.NameSearching">
-    <value>Searching available versions…</value>
-  </data>
-  <data name="Emulation.Core.NameNoneFound">
-    <value>No official version found.</value>
-  </data>
-  <data name="Emulation.Core.NameVersionsFound">
-    <value>{0} version(s) available.</value>
-  </data>
-  <data name="Emulation.Core.NameDownloading">
-    <value>Downloading {0}…</value>
-  </data>
-  <data name="Emulation.Core.NameInstalledPath">
-    <value>Installed version: {0}</value>
-  </data>
-  <data name="Emulation.Core.NameInstalled">
-    <value>{0} · installed</value>
-  </data>
-  <data name="Emulation.Core.NameNotInstalled">
-    <value>No version installed</value>
-  </data>
-  <data name="Emulation.Machine.Open">
-    <value>Open</value>
-  </data>
-  <data name="Emulation.Tab.Welcome">
-    <value>Welcome</value>
-  </data>
-  <data name="Emulation.Welcome.Text">
-    <value>Select a saved machine above and click Open. Each running machine appears in its own tab.</value>
-  </data>
-  <data name="Emulation.Configuration.Description">
-    <value>Create, select, modify or delete saved machine configurations here. Select the {0} tab to edit the selected configuration.</value>
-  </data>
-  <data name="Emulation.Tab.General">
-    <value>General</value>
-  </data>
-  <data name="Emulation.Tab.Cpu">
-    <value>CPU</value>
-  </data>
-  <data name="Emulation.Tab.Ram">
-    <value>RAM</value>
-  </data>
-  <data name="Emulation.Tab.Rom">
-    <value>ROM</value>
-  </data>
-  <data name="Emulation.Tab.Video">
-    <value>Video</value>
-  </data>
-  <data name="Emulation.Tab.Storage">
-    <value>Storage</value>
-  </data>
-  <data name="Emulation.Tab.Keyboard">
-    <value>Keyboard</value>
-  </data>
-  <data name="Emulation.Tab.Mouse">
-    <value>Mouse</value>
-  </data>
-  <data name="Emulation.Controller.Tab">
-    <value>Controllers</value>
-  </data>
-  <data name="Emulation.Tab.Advanced">
-    <value>Advanced</value>
-  </data>
-  <data name="Emulation.Device.Name.Id">
-    <value>Device identifier</value>
-  </data>
-  <data name="Emulation.Controller.Device">
-    <value>Controller {0} device</value>
-  </data>
-  <data name="Emulation.Keyboard.SystemKey">
-    <value>{0} key</value>
-  </data>
-  <data name="Emulation.Keyboard.HostKey">
-    <value>Host key</value>
-  </data>
-  <data name="Emulation.Cpu.Summary">
-    <value>Processor: {0}</value>
-  </data>
-  <data name="Emulation.Memory.Summary">
-    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
-  </data>
-  <data name="Emulation.Video.Summary">
-    <value>Video chipset: {0}</value>
-  </data>
+  <data name="Emulation.Tab.Machines"><value>Machines</value></data>
+  <data name="Emulation.Core.Name"><value>Core</value></data>
+  <data name="Emulation.Core.NameManagerTitle"><value>{0} emulation core</value></data>
+  <data name="Emulation.Core.NameManagerDescription"><value>The library remains external to GW GUI. The selected version replaces the currently installed version.</value></data>
+  <data name="Emulation.Core.NameRequiredVersion"><value>Version required by GW GUI</value></data>
+  <data name="Emulation.Core.NameLatestVersion"><value>Latest official version available</value></data>
+  <data name="Emulation.Core.NameProjectVersion"><value>Currently installed version</value></data>
+  <data name="Emulation.Core.NameSearchPrompt"><value>Click Search to query the official Libretro server.</value></data>
+  <data name="Emulation.Core.NameSearch"><value>Search versions</value></data>
+  <data name="Emulation.Core.NameDownload"><value>Download and replace</value></data>
+  <data name="Emulation.Core.NameSearching"><value>Searching available versions…</value></data>
+  <data name="Emulation.Core.NameNoneFound"><value>No official version found.</value></data>
+  <data name="Emulation.Core.NameVersionsFound"><value>{0} version(s) available.</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>Downloading {0}…</value></data>
+  <data name="Emulation.Core.NameInstalledPath"><value>Installed version: {0}</value></data>
+  <data name="Emulation.Core.NameInstalled"><value>{0} · installed</value></data>
+  <data name="Emulation.Core.NameNotInstalled"><value>No version installed</value></data>
+  <data name="Emulation.Machine.Open"><value>Open</value></data>
+  <data name="Emulation.Tab.Welcome"><value>Welcome</value></data>
+  <data name="Emulation.Welcome.Text"><value>Select a saved machine above and click Open. Each running machine appears in its own tab.</value></data>
+  <data name="Emulation.Configuration.Description"><value>Create, select, modify or delete saved machine configurations here. Select the {0} tab to edit the selected configuration.</value></data>
+  <data name="Emulation.Tab.General"><value>General</value></data>
+  <data name="Emulation.Tab.Cpu"><value>CPU</value></data>
+  <data name="Emulation.Tab.Ram"><value>RAM</value></data>
+  <data name="Emulation.Tab.Rom"><value>ROM</value></data>
+  <data name="Emulation.Tab.Video"><value>Video</value></data>
+  <data name="Emulation.Tab.Storage"><value>Storage</value></data>
+  <data name="Emulation.Tab.Keyboard"><value>Keyboard</value></data>
+  <data name="Emulation.Tab.Mouse"><value>Mouse</value></data>
+  <data name="Emulation.Controller.Tab"><value>Controllers</value></data>
+  <data name="Emulation.Tab.Advanced"><value>Advanced</value></data>
+  <data name="Emulation.Device.Name.Id"><value>Device identifier</value></data>
+  <data name="Emulation.Controller.Device"><value>Controller {0} device</value></data>
+  <data name="Emulation.Keyboard.SystemKey"><value>{0} key</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Host key</value></data>
+  <data name="Emulation.Cpu.Summary"><value>Processor: {0}</value></data>
+  <data name="Emulation.Memory.Summary"><value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value></data>
+  <data name="Emulation.Video.Summary"><value>Video chipset: {0}</value></data>
   <data name="Emulation.Cpu.Model"><value>CPU model</value></data>
   <data name="Emulation.Cpu.Multiplier"><value>CPU multiplier</value></data>
   <data name="Emulation.Cpu.Compatibility"><value>Cycle-compatible CPU</value></data>
@@ -408,30 +332,14 @@
   <data name="Emulation.Mouse.Wheel.Down"><value>Mouse wheel down</value></data>
   <data name="Emulation.Mouse.Wheel.Left"><value>Mouse wheel left</value></data>
   <data name="Emulation.Mouse.Wheel.Right"><value>Mouse wheel right</value></data>
-  <data name="Emulation.Atari.Model.St" xml:space="preserve">
-    <value>Atari ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stf" xml:space="preserve">
-    <value>Atari STF</value>
-  </data>
-  <data name="Emulation.Atari.Model.Stfm" xml:space="preserve">
-    <value>Atari STFM</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSt" xml:space="preserve">
-    <value>Atari Mega ST</value>
-  </data>
-  <data name="Emulation.Atari.Model.Ste" xml:space="preserve">
-    <value>Atari STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.MegaSte" xml:space="preserve">
-    <value>Atari Mega STE</value>
-  </data>
-  <data name="Emulation.Atari.Model.Tt" xml:space="preserve">
-    <value>Atari TT</value>
-  </data>
-  <data name="Emulation.Atari.Model.Falcon" xml:space="preserve">
-    <value>Atari Falcon</value>
-  </data>
+  <data name="Emulation.Atari.Model.St" xml:space="preserve"><value>Atari ST</value></data>
+  <data name="Emulation.Atari.Model.Stf" xml:space="preserve"><value>Atari STF</value></data>
+  <data name="Emulation.Atari.Model.Stfm" xml:space="preserve"><value>Atari STFM</value></data>
+  <data name="Emulation.Atari.Model.MegaSt" xml:space="preserve"><value>Atari Mega ST</value></data>
+  <data name="Emulation.Atari.Model.Ste" xml:space="preserve"><value>Atari STE</value></data>
+  <data name="Emulation.Atari.Model.MegaSte" xml:space="preserve"><value>Atari Mega STE</value></data>
+  <data name="Emulation.Atari.Model.Tt" xml:space="preserve"><value>Atari TT</value></data>
+  <data name="Emulation.Atari.Model.Falcon" xml:space="preserve"><value>Atari Falcon</value></data>
   <data name="Emulation.Atari.Model.400" xml:space="preserve"><value>Atari 400</value></data>
   <data name="Emulation.Atari.Model.800" xml:space="preserve"><value>Atari 800</value></data>
   <data name="Emulation.Atari.Model.800Xl" xml:space="preserve"><value>Atari 800XL</value></data>
@@ -541,12 +449,8 @@
   <data name="Emulation.Amiga.Model.A4000" xml:space="preserve"><value>Amiga 4000</value></data>
   <data name="Emulation.Amiga.Model.CDTV" xml:space="preserve"><value>Commodore CDTV</value></data>
   <data name="Emulation.Amiga.Model.CD32" xml:space="preserve"><value>Amiga CD32</value></data>
-  <data name="Emulation.Media.Insert" xml:space="preserve">
-    <value>Insert media</value>
-  </data>
-  <data name="Emulation.Media.Eject" xml:space="preserve">
-    <value>Eject media</value>
-  </data>
+  <data name="Emulation.Media.Insert" xml:space="preserve"><value>Insert media</value></data>
+  <data name="Emulation.Media.Eject" xml:space="preserve"><value>Eject media</value></data>
   <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput could not be initialized. Install or repair the included GameInput runtime.</value></data>
   <data name="Emulation.Configuration.Brand"><value>Brand</value></data>
   <data name="Emulation.Configuration.Machine"><value>Machine</value></data>
@@ -555,9 +459,7 @@
   <data name="Emulation.Configuration.Peripherals"><value>Peripherals</value></data>
   <data name="Emulation.Configuration.Actions"><value>Actions</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>Delete the {0} {1} configuration?</value></data>
-  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve">
-    <value>Kickstart</value>
-  </data>
+  <data name="Emulation.Firmware.Rom.Kickstart" xml:space="preserve"><value>Kickstart</value></data>
   <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short" xml:space="preserve"><value>Silence empty floppy drives</value></data>
   <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed" xml:space="preserve"><value>Silences the emulated drive sound while no disk is inserted. Disable this option to keep the idle mechanical noise.</value></data>
   <data name="Emulation.Help.Audio.Filter.Short" xml:space="preserve"><value>Select analog audio filtering</value></data>
@@ -664,66 +566,26 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed" xml:space="preserve"><value>Sets the GTIA color phase delay used to reproduce colors. Default uses the standard value. Numeric choices shift the resulting hues.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short" xml:space="preserve"><value>Set frame skipping</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed" xml:space="preserve"><value>Sets how many display frames are omitted. Disabled draws every frame. Higher values reduce rendering work but make motion less smooth.</value></data>
-  <data name="Emulation.Controller.Visual.Model.quickshot" xml:space="preserve">
-    <value>QuickShot</value>
-  </data>
-  <data name="Emulation.Controller.Visual.Model.quickshot-deluxe" xml:space="preserve">
-    <value>QuickShot Deluxe</value>
-  </data>
-  <data name="Emulation.Controller.Visual.Model.quickshot-ii-turbo" xml:space="preserve">
-    <value>QuickShot II Turbo</value>
-  </data>
-  <data name="Emulation.Controller.Visual.Model.competition-pro-5000" xml:space="preserve">
-    <value>Competition Pro 5000</value>
-  </data>
-  <data name="Emulation.Controller.Visual.Model.zipstik-super-pro" xml:space="preserve">
-    <value>Zipstik Super Pro</value>
-  </data>
-  <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand" xml:space="preserve">
-    <value>Konix Speedking (left-hand)</value>
-  </data>
-  <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand" xml:space="preserve">
-    <value>Konix Speedking (right-hand)</value>
-  </data>
-  <data name="Emulation.Controller.Visual.Model.konix-speedking-analog" xml:space="preserve">
-    <value>Konix Speedking Analog</value>
-  </data>
-  <data name="Emulation.Controller.Visual.Model.suncom-tac-2" xml:space="preserve">
-    <value>Suncom TAC-2</value>
-  </data>
-  <data name="Emulation.Controller.Visual.Model.powerplay-cruiser" xml:space="preserve">
-    <value>Powerplay Cruiser</value>
-  </data>
-  <data name="Emulation.Controller.Visual.Model.suzo-the-arcade-turbo" xml:space="preserve">
-    <value>Suzo The Arcade Turbo</value>
-  </data>
-  <data name="Emulation.Controller.Visual.Model.commodore-cd32" xml:space="preserve">
-    <value>Commodore CD32</value>
-  </data>
-  <data name="Emulation.Controller.Visual.Model.competition-pro-cd32" xml:space="preserve">
-    <value>Competition Pro CD32</value>
-  </data>
-  <data name="Emulation.Controller.Visual.Model.atari-cx40" xml:space="preserve">
-    <value>Atari CX40</value>
-  </data>
-  <data name="Emulation.Controller.Visual.Model.atari-5200-controller" xml:space="preserve">
-    <value>Atari 5200 Controller</value>
-  </data>
-  <data name="Emulation.Controller.Visual.Model.atari-7800-pro-line-cx24" xml:space="preserve">
-    <value>Atari 7800 Pro-Line CX24</value>
-  </data>
-  <data name="Emulation.Controller.Visual.Model.atari-7800-control-pad-europe" xml:space="preserve">
-    <value>Atari 7800 Control Pad (Europe)</value>
-  </data>
-  <data name="Emulation.Controller.Visual.Model.atari-jaguar-controller" xml:space="preserve">
-    <value>Atari Jaguar Controller</value>
-  </data>
-  <data name="Emulation.Controller.Visual.Model.atari-jaguar-pro-controller" xml:space="preserve">
-    <value>Atari Jaguar Pro Controller</value>
-  </data>
-  <data name="Emulation.Controller.Visual" xml:space="preserve">
-    <value>Visual</value>
-  </data>
+  <data name="Emulation.Controller.Visual.Model.quickshot" xml:space="preserve"><value>QuickShot</value></data>
+  <data name="Emulation.Controller.Visual.Model.quickshot-deluxe" xml:space="preserve"><value>QuickShot Deluxe</value></data>
+  <data name="Emulation.Controller.Visual.Model.quickshot-ii-turbo" xml:space="preserve"><value>QuickShot II Turbo</value></data>
+  <data name="Emulation.Controller.Visual.Model.competition-pro-5000" xml:space="preserve"><value>Competition Pro 5000</value></data>
+  <data name="Emulation.Controller.Visual.Model.zipstik-super-pro" xml:space="preserve"><value>Zipstik Super Pro</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-left-hand" xml:space="preserve"><value>Konix Speedking (left-hand)</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-right-hand" xml:space="preserve"><value>Konix Speedking (right-hand)</value></data>
+  <data name="Emulation.Controller.Visual.Model.konix-speedking-analog" xml:space="preserve"><value>Konix Speedking Analog</value></data>
+  <data name="Emulation.Controller.Visual.Model.suncom-tac-2" xml:space="preserve"><value>Suncom TAC-2</value></data>
+  <data name="Emulation.Controller.Visual.Model.powerplay-cruiser" xml:space="preserve"><value>Powerplay Cruiser</value></data>
+  <data name="Emulation.Controller.Visual.Model.suzo-the-arcade-turbo" xml:space="preserve"><value>Suzo The Arcade Turbo</value></data>
+  <data name="Emulation.Controller.Visual.Model.commodore-cd32" xml:space="preserve"><value>Commodore CD32</value></data>
+  <data name="Emulation.Controller.Visual.Model.competition-pro-cd32" xml:space="preserve"><value>Competition Pro CD32</value></data>
+  <data name="Emulation.Controller.Visual.Model.atari-cx40" xml:space="preserve"><value>Atari CX40</value></data>
+  <data name="Emulation.Controller.Visual.Model.atari-5200-controller" xml:space="preserve"><value>Atari 5200 Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.atari-7800-pro-line-cx24" xml:space="preserve"><value>Atari 7800 Pro-Line CX24</value></data>
+  <data name="Emulation.Controller.Visual.Model.atari-7800-control-pad-europe" xml:space="preserve"><value>Atari 7800 Control Pad (Europe)</value></data>
+  <data name="Emulation.Controller.Visual.Model.atari-jaguar-controller" xml:space="preserve"><value>Atari Jaguar Controller</value></data>
+  <data name="Emulation.Controller.Visual.Model.atari-jaguar-pro-controller" xml:space="preserve"><value>Atari Jaguar Pro Controller</value></data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Visual</value></data>
   <data name="Emulation.Video.Sampling"><value>Sampling</value></data>
   <data name="Emulation.Video.Technology"><value>Display technology</value></data>
   <data name="Emulation.Video.Settings.General"><value>General image adjustments</value></data>
@@ -792,11 +654,25 @@
   <data name="Emulation.Video.Parameter.PlasmaCellStructure"><value>Cell structure</value></data>
   <data name="Emulation.Video.Parameter.PlasmaDiffusion"><value>Light diffusion</value></data>
   <data name="Emulation.Video.Parameter.PlasmaTemporalDithering"><value>Temporal dithering</value></data>
+  <data name="Emulation.Video.Plasma.Group.PanelAndCells"><value>Panel and cells</value></data>
+  <data name="Emulation.Video.Plasma.Group.Phosphors"><value>Phosphors</value></data>
+  <data name="Emulation.Video.Plasma.Group.Light"><value>Light management</value></data>
+  <data name="Emulation.Video.Plasma.Group.Temporal"><value>Temporal response</value></data>
   <data name="Emulation.Video.Parameter.PlasmaPersistence"><value>Persistence</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaBlackDepth"><value>Black depth</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaPhosphorIntensity"><value>Phosphor intensity</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaGammaResponse"><value>Gamma response</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaAutomaticBrightnessLimiter"><value>Automatic brightness limiter</value></data>
   <data name="Emulation.Video.Parameter.VectorLineThreshold"><value>Line threshold</value></data>
   <data name="Emulation.Video.Parameter.VectorLineIntensity"><value>Line intensity</value></data>
   <data name="Emulation.Video.Parameter.VectorHaloIntensity"><value>Halo intensity</value></data>
+  <data name="Emulation.Video.Parameter.VectorHaloRadius"><value>Halo radius</value></data>
+  <data name="Emulation.Video.Parameter.VectorBeamWidth"><value>Beam width</value></data>
+  <data name="Emulation.Video.Parameter.VectorBeamFocus"><value>Beam focus</value></data>
+  <data name="Emulation.Video.Parameter.VectorPhosphorColor"><value>Phosphor color</value></data>
   <data name="Emulation.Video.Parameter.VectorPersistence"><value>Persistence</value></data>
+  <data name="Emulation.Video.Vector.Group.Drawing"><value>Detection and drawing</value></data>
+  <data name="Emulation.Video.Vector.Group.Glow"><value>Glow and persistence</value></data>
   <data name="Emulation.Video.Compatibility.ExclusiveDisplayTechnology"><value>Only one display technology can be active at a time.</value></data>
   <data name="Emulation.Video.Limitation.UnsupportedBackend"><value>This setting is not supported by the selected rendering backend.</value></data>
   <data name="Emulation.Video.Preset.Normal"><value>Normal</value></data>
@@ -835,7 +711,18 @@
   <data name="Emulation.Video.Parameter.VfdColor"><value>Phosphor color</value></data>
   <data name="Emulation.Video.Parameter.VfdPhosphorIntensity"><value>Phosphor intensity</value></data>
   <data name="Emulation.Video.Parameter.VfdHaloIntensity"><value>VFD halo</value></data>
-  <data name="Emulation.Video.Parameter.VfdPersistence"><value>VFD persistence</value></data>
+  <data name="Emulation.Video.Parameter.VfdPersistence"><value>Persistence duration (ms)</value></data>
+  <data name="Emulation.Video.Parameter.VfdEmissionThreshold"><value>Emission threshold</value></data>
+  <data name="Emulation.Video.Parameter.VfdGlassDarkening"><value>Smoked-glass darkening</value></data>
+  <data name="Emulation.Video.Parameter.VfdStructure"><value>Anode structure</value></data>
+  <data name="Emulation.Video.Parameter.VfdCellSize"><value>Cell size</value></data>
+  <data name="Emulation.Video.Parameter.VfdCellGap"><value>Cell gap</value></data>
+  <data name="Emulation.Video.Parameter.VfdHaloRadius"><value>Halo radius</value></data>
+  <data name="Emulation.Video.Vfd.Structure.Graphic"><value>Graphic</value></data>
+  <data name="Emulation.Video.Vfd.Structure.DotMatrix"><value>Dot matrix</value></data>
+  <data name="Emulation.Video.Vfd.Group.PhosphorAndGlass"><value>Phosphor and glass</value></data>
+  <data name="Emulation.Video.Vfd.Group.Anodes"><value>Anode structure</value></data>
+  <data name="Emulation.Video.Vfd.Group.GlowAndResponse"><value>Glow and response</value></data>
   <data name="Emulation.Video.Technology.LedMatrix"><value>LED matrix</value></data>
   <data name="Emulation.Video.LedMatrix.Color.Rgb"><value>RGB</value></data>
   <data name="Emulation.Video.LedMatrix.Color.Red"><value>Red</value></data>
@@ -846,7 +733,7 @@
   <data name="Emulation.Video.Parameter.LedMatrixColor"><value>LED color</value></data>
   <data name="Emulation.Video.Parameter.LedMatrixCellSize"><value>LED cell size</value></data>
   <data name="Emulation.Video.Parameter.LedMatrixCellGap"><value>LED cell spacing</value></data>
-  <data name="Emulation.Video.Parameter.LedMatrixDiffusion"><value>LED diffusion</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixDiffusion"><value>Halo intensity</value></data>
   <data name="Emulation.Video.Parameter.LedMatrixBrightness"><value>LED brightness</value></data>
   <data name="Emulation.Video.Technology.DotMatrix"><value>Dot matrix</value></data>
   <data name="Emulation.Video.DotMatrix.Palette.Green"><value>Green LCD</value></data>
@@ -918,7 +805,7 @@
   <data name="Emulation.Video.Sampling.SuperEagle"><value>Super Eagle</value></data>
   <data name="Emulation.Video.Sampling.EpxScale2x"><value>EPX / Scale2x</value></data>
   <data name="Emulation.Video.Sampling.Jinc2"><value>JINC2</value></data>
-  <data name="Emulation.Video.Sampling.Lanczos"><value>Lanczos</value></data>  <data name="Emulation.Video.Parameter.FineDetails"><value>Fine details</value></data>
+  <data name="Emulation.Video.Sampling.Lanczos"><value>Lanczos</value></data>NoneNoneNoneNoneNoneNoneNone<data name="Emulation.Video.Parameter.FineDetails"><value>Fine details</value></data>
   <data name="Emulation.Video.Restoration.Level.None"><value>None</value></data>
   <data name="Emulation.Video.Restoration.Level.Light"><value>Light</value></data>
   <data name="Emulation.Video.Restoration.Level.Medium"><value>Medium</value></data>
@@ -953,4 +840,11 @@
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>Phase 1/2</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>Phase 3/4</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>Backlight bleed</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixShape"><value>LED shape</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixHaloRadius"><value>Halo radius</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixBlackDepth"><value>Black depth</value></data>
+  <data name="Emulation.Video.LedMatrix.Shape.Round"><value>Round</value></data>
+  <data name="Emulation.Video.LedMatrix.Shape.Square"><value>Square</value></data>
+  <data name="Emulation.Video.LedMatrix.Group.Structure"><value>Matrix structure</value></data>
+  <data name="Emulation.Video.LedMatrix.Group.Emission"><value>Light emission</value></data>
 </root>

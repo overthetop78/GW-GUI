@@ -12,118 +12,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Advanced">
-    <value>進階設定</value>
-  </data>
-  <data name="Common.ExpertArguments">
-    <value>專家論證</value>
-  </data>
-  <data name="Common.ExpertArgumentsTip">
-    <value>參數在引用驗證後按寫入方式傳遞。</value>
-  </data>
-  <data name="Advanced.SeekRetries">
-    <value>尋求重試</value>
-  </data>
-  <data name="Advanced.FakeIndex">
-    <value>假索引</value>
-  </data>
-  <data name="Advanced.HardSectors">
-    <value>硬扇區</value>
-  </data>
-  <data name="Advanced.Reverse">
-    <value>反向追蹤數據</value>
-  </data>
-  <data name="Advanced.AdjustSpeed">
-    <value>調整速度</value>
-  </data>
-  <data name="Advanced.Pll">
-    <value>PLL 覆蓋</value>
-  </data>
-  <data name="Advanced.DensityPin">
-    <value>密度針 2</value>
-  </data>
-  <data name="Advanced.Tg43">
-    <value>生成 TG43</value>
-  </data>
-  <data name="Advanced.PreErase">
-    <value>預先擦除曲目</value>
-  </data>
-  <data name="Advanced.Precomp">
-    <value>寫入預補償</value>
-  </data>
-  <data name="Advanced.OutputTracks">
-    <value>輸出曲目</value>
-  </data>
-  <data name="Advanced.DiskDefs">
-    <value>自訂磁碟定義</value>
-  </data>
-  <data name="Advanced.DiskDefsFilter">
-    <value>Greaseweazle 磁碟定義 (*.cfg)|*.cfg|所有檔案|*.*</value>
-  </data>
-  <data name="Advanced.DiskDefsMissing">
-    <value>所選磁碟定義檔不存在。</value>
-  </data>
-  <data name="Advanced.Invalid">
-    <value>進階設定無效：{0}</value>
-  </data>
-  <data name="Advanced.TrackSpecTip">
-    <value>軌道規範，例如 c=0-79:h=0-1、c=0-79/2:h=0 或 c=0-79:h=0-1:hswap。</value>
-  </data>
-  <data name="Advanced.SpeedTip">
-    <value>正速度或週期，例如 300rpm、200ms、200000us 或 200000000ns。</value>
-  </data>
-  <data name="Advanced.PllTip">
-    <value>PLL 參數以冒號分隔，例如 period=5:phase=60 或 period=5:phase=60:lowpass=2。</value>
-  </data>
-  <data name="Advanced.PrecompTip">
-    <value>寫入預補償，例如 type=mfm:40=125。類型：mfm、fm、gcr；值以奈秒為單位。</value>
-  </data>
-  <data name="Advanced.DiskDefsTip">
-    <value>使用自訂 diskdefs.cfg 檔案新增或覆寫 Greaseweazle 格式定義。</value>
-  </data>
-  <data name="Advanced.RevsTip">
-    <value>--revs：每磁軌讀取的轉數。範例：--revs 5。</value>
-  </data>
-  <data name="Advanced.RetriesTip">
-    <value>--retries：發生錯誤後的額外嘗試。例：--retries 3.</value>
-  </data>
-  <data name="Advanced.TracksTip">
-    <value>--tracks：限制柱面、磁頭或步進。範例：--tracks c=0-79:h=0-1。</value>
-  </data>
-  <data name="Advanced.SeekRetriesTip">
-    <value>--seek-retries：移動頭部後的額外嘗試。範例：--seek-retries 2。</value>
-  </data>
-  <data name="Advanced.FakeIndexTip">
-    <value>--fake-index：為沒有索引訊號的磁碟機建立定時索引。範例：--fake-index 300rpm。</value>
-  </data>
-  <data name="Advanced.HardSectorsTip">
-    <value>--hard-sectors：處理硬磁區磁碟。與 --fake-index 不相容。</value>
-  </data>
-  <data name="Advanced.ReverseTip">
-    <value>--reverse：翻轉介質或接線的反向磁軌資料。</value>
-  </data>
-  <data name="Advanced.AdjustSpeedTip">
-    <value>--adjust-speed：重新調整資料時序。範例：--adjust-speed 300rpm。</value>
-  </data>
-  <data name="Advanced.PllOptionTip">
-    <value>--pll：配置時脈恢復環路。範例：--pll period=5:phase=60。</value>
-  </data>
-  <data name="Advanced.DenselTip">
-    <value>--densel：強制密度選擇引腳為高電位或低電位。例：--densel H.</value>
-  </data>
-  <data name="Advanced.Tg43Tip">
-    <value>--gen-tg43：為需要的磁碟機產生 TG43 訊號。與 --densel 不相容。</value>
-  </data>
-  <data name="Advanced.EraseEmptyTip">
-    <value>--erase-empty：擦除來源影像不包含資料的軌道。</value>
-  </data>
-  <data name="Advanced.PreEraseTip">
-    <value>--pre-erase：在寫入之前擦除每個磁軌。</value>
-  </data>
-  <data name="Advanced.PrecompOptionTip">
-    <value>--precomp：應用寫入預補償。範例：--precomp 類型=mfm:40=125。</value>
-  </data>
-  <data name="Advanced.OutputTracksTip">
-    <value>--out-tracks：重新映射輸出影像中的軌道。範例：--out-tracks c=0-79:h=0-1。</value>
-  </data>
+  <data name="Common.Advanced"><value>進階設定</value></data>
+  <data name="Common.ExpertArguments"><value>專家論證</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>參數在引用驗證後按寫入方式傳遞。</value></data>
+  <data name="Advanced.SeekRetries"><value>尋求重試</value></data>
+  <data name="Advanced.FakeIndex"><value>假索引</value></data>
+  <data name="Advanced.HardSectors"><value>硬扇區</value></data>
+  <data name="Advanced.Reverse"><value>反向追蹤數據</value></data>
+  <data name="Advanced.AdjustSpeed"><value>調整速度</value></data>
+  <data name="Advanced.Pll"><value>PLL 覆蓋</value></data>
+  <data name="Advanced.DensityPin"><value>密度針 2</value></data>
+  <data name="Advanced.Tg43"><value>生成 TG43</value></data>
+  <data name="Advanced.PreErase"><value>預先擦除曲目</value></data>
+  <data name="Advanced.Precomp"><value>寫入預補償</value></data>
+  <data name="Advanced.OutputTracks"><value>輸出曲目</value></data>
+  <data name="Advanced.DiskDefs"><value>自訂磁碟定義</value></data>
+  <data name="Advanced.DiskDefsFilter"><value>Greaseweazle 磁碟定義 (*.cfg)|*.cfg|所有檔案|*.*</value></data>
+  <data name="Advanced.DiskDefsMissing"><value>所選磁碟定義檔不存在。</value></data>
+  <data name="Advanced.Invalid"><value>進階設定無效：{0}</value></data>
+  <data name="Advanced.TrackSpecTip"><value>軌道規範，例如 c=0-79:h=0-1、c=0-79/2:h=0 或 c=0-79:h=0-1:hswap。</value></data>
+  <data name="Advanced.SpeedTip"><value>正速度或週期，例如 300rpm、200ms、200000us 或 200000000ns。</value></data>
+  <data name="Advanced.PllTip"><value>PLL 參數以冒號分隔，例如 period=5:phase=60 或 period=5:phase=60:lowpass=2。</value></data>
+  <data name="Advanced.PrecompTip"><value>寫入預補償，例如 type=mfm:40=125。類型：mfm、fm、gcr；值以奈秒為單位。</value></data>
+  <data name="Advanced.DiskDefsTip"><value>使用自訂 diskdefs.cfg 檔案新增或覆寫 Greaseweazle 格式定義。</value></data>
+  <data name="Advanced.RevsTip"><value>--revs：每磁軌讀取的轉數。範例：--revs 5。</value></data>
+  <data name="Advanced.RetriesTip"><value>--retries：發生錯誤後的額外嘗試。例：--retries 3.</value></data>
+  <data name="Advanced.TracksTip"><value>--tracks：限制柱面、磁頭或步進。範例：--tracks c=0-79:h=0-1。</value></data>
+  <data name="Advanced.SeekRetriesTip"><value>--seek-retries：移動頭部後的額外嘗試。範例：--seek-retries 2。</value></data>
+  <data name="Advanced.FakeIndexTip"><value>--fake-index：為沒有索引訊號的磁碟機建立定時索引。範例：--fake-index 300rpm。</value></data>
+  <data name="Advanced.HardSectorsTip"><value>--hard-sectors：處理硬磁區磁碟。與 --fake-index 不相容。</value></data>
+  <data name="Advanced.ReverseTip"><value>--reverse：翻轉介質或接線的反向磁軌資料。</value></data>
+  <data name="Advanced.AdjustSpeedTip"><value>--adjust-speed：重新調整資料時序。範例：--adjust-speed 300rpm。</value></data>
+  <data name="Advanced.PllOptionTip"><value>--pll：配置時脈恢復環路。範例：--pll period=5:phase=60。</value></data>
+  <data name="Advanced.DenselTip"><value>--densel：強制密度選擇引腳為高電位或低電位。例：--densel H.</value></data>
+  <data name="Advanced.Tg43Tip"><value>--gen-tg43：為需要的磁碟機產生 TG43 訊號。與 --densel 不相容。</value></data>
+  <data name="Advanced.EraseEmptyTip"><value>--erase-empty：擦除來源影像不包含資料的軌道。</value></data>
+  <data name="Advanced.PreEraseTip"><value>--pre-erase：在寫入之前擦除每個磁軌。</value></data>
+  <data name="Advanced.PrecompOptionTip"><value>--precomp：應用寫入預補償。範例：--precomp 類型=mfm:40=125。</value></data>
+  <data name="Advanced.OutputTracksTip"><value>--out-tracks：重新映射輸出影像中的軌道。範例：--out-tracks c=0-79:h=0-1。</value></data>
 </root>

@@ -12,209 +12,69 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Visual.Decoder">
-    <value>Dekoder</value>
-  </data>
-  <data name="Visual.LinkZoom">
-    <value>Zoom łącza</value>
-  </data>
-  <data name="Visual.OpenScp">
-    <value>Otwórz plik SCP…</value>
-  </data>
-  <data name="Visual.NoFile">
-    <value>Żaden plik SCP nie jest otwarty</value>
-  </data>
-  <data name="Visual.Waiting">
-    <value>Czekam na plik</value>
-  </data>
-  <data name="Visual.Inspector">
-    <value>Inspektor</value>
-  </data>
-  <data name="Visual.SelectTrack">
-    <value>Wybierz utwór.</value>
-  </data>
-  <data name="Visual.Controls">
-    <value>Kliknij: wybierz · Koło: powiększenie · Kliknij prawym przyciskiem myszy: przesuwanie</value>
-  </data>
-  <data name="Visual.NormalFlux">
-    <value>Normalny strumień</value>
-  </data>
-  <data name="Visual.ShortTransition">
-    <value>Krótkie przejście</value>
-  </data>
-  <data name="Visual.LongTransition">
-    <value>Długie przejście/anomalia</value>
-  </data>
-  <data name="Visual.Loading">
-    <value>Czytanie pliku…</value>
-  </data>
-  <data name="Visual.Invalid">
-    <value>Nieprawidłowy plik</value>
-  </data>
-  <data name="Visual.Title">
-    <value>SCP wizualizacja</value>
-  </data>
-  <data name="Visual.ChecksumValid">
-    <value>ważny</value>
-  </data>
-  <data name="Visual.ChecksumInvalid">
-    <value>nieważny</value>
-  </data>
-  <data name="Visual.Summary">
-    <value>SCP {0} · {1} ścieżki · {2} obrót(y) · {3} rozdzielczość ns · {4} suma kontrolna</value>
-  </data>
-  <data name="Visual.Revolution">
-    <value>Rewolucja {0}: {1:N0} przejścia · {2:F2} ms · {3:F2} RPM</value>
-  </data>
-  <data name="Visual.Analysis">
-    <value>Dekodowanie: {0}
-Pewność: {1:P0}
-Szacowana komórka: {2:F1} znaczników
-Struktury: {3}</value>
-  </data>
-  <data name="Visual.Track">
-    <value>Strona: {0}
-Utwór: {1}
-SCP wpis: {2}</value>
-  </data>
-  <data name="Visual.SideNoData">
-    <value>Strona {0}
-Brak danych</value>
-  </data>
-  <data name="Visual.TrackTooltip">
-    <value>Strona {0} · Ścieżka {1}
-{2} obrót(y)</value>
-  </data>
-  <data name="Visual.Automatic">
-    <value>Automatyczny</value>
-  </data>
-  <data name="Visual.StructureHeader">
-    <value>Nagłówek/adres</value>
-  </data>
-  <data name="Visual.StructureData">
-    <value>Zdekodowane dane</value>
-  </data>
-  <data name="Visual.StructureAnomaly">
-    <value>Usunięto/anomalię</value>
-  </data>
-  <data name="Visual.AnalysedRevolution">
-    <value>Analiza oparta na rewolucji {0}.</value>
-  </data>
-  <data name="Visual.BitOffset">
-    <value>bit {0:N0}</value>
-  </data>
-  <data name="Visual.SectorDetail">
-    <value>Sektor C{0} H{1} R{2} · {3} bajtów · {4} {5}</value>
-  </data>
-  <data name="Visual.CrcValid">
-    <value>ważny</value>
-  </data>
-  <data name="Visual.CrcInvalid">
-    <value>nieważny</value>
-  </data>
-  <data name="Visual.IntegrityUnavailable">
-    <value>nie płynny</value>
-  </data>
-  <data name="Visual.StructureKind.Sync">
-    <value>Synchronizacja</value>
-  </data>
-  <data name="Visual.StructureKind.IdAddressMark">
-    <value>Nagłówek sektora</value>
-  </data>
-  <data name="Visual.StructureKind.DataAddressMark">
-    <value>Dane sektorowe</value>
-  </data>
-  <data name="Visual.StructureKind.DeletedDataAddressMark">
-    <value>Usunięte dane sektora</value>
-  </data>
-  <data name="Visual.StructureKind.AmigaSync">
-    <value>Synchronizacja Amiga</value>
-  </data>
-  <data name="Visual.StructureKind.AppleAddress">
-    <value>Prolog adresu Apple</value>
-  </data>
-  <data name="Visual.StructureKind.AppleData">
-    <value>Prolog dotyczący danych Apple</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreSync">
-    <value>Synchronizacja Commodore</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreHeader">
-    <value>Nagłówek Commodore</value>
-  </data>
-  <data name="Visual.StructureKind.FormatHeader">
-    <value>Formatuj nagłówek</value>
-  </data>
-  <data name="Visual.StructureKind.FormatData">
-    <value>Formatuj dane</value>
-  </data>
-  <data name="Visual.StructureKind.TimingAnomaly">
-    <value>Anomalia czasowa</value>
-  </data>
-  <data name="Visual.OpenFilter">
-    <value>SuperCard Pro przechwytywanie (*.scp)|*.scp|Wszystkie pliki|*.*</value>
-  </data>
-  <data name="Visual.Integrity.Checksum">
-    <value>Suma kontrolna</value>
-  </data>
-  <data name="Visual.Side">
-    <value>Strona {0}</value>
-  </data>
-  <data name="Visual.AnalysingTrack">
-    <value>Analizuję utwór {0}/{1}…</value>
-  </data>
-  <data name="Visual.SideLabel">
-    <value>Strona</value>
-  </data>
-  <data name="Visual.TrackLabel">
-    <value>Ścieżka</value>
-  </data>
-  <data name="Visual.ScpEntryLabel">
-    <value>SCP wpis</value>
-  </data>
-  <data name="Visual.RevolutionsTitle">
-    <value>Rewolucje</value>
-  </data>
-  <data name="Visual.AnalysisTitle">
-    <value>Analiza</value>
-  </data>
-  <data name="Visual.ConfidenceLabel">
-    <value>Zaufanie</value>
-  </data>
-  <data name="Visual.CellLabel">
-    <value>Szacunkowa komórka</value>
-  </data>
-  <data name="Visual.StructuresLabel">
-    <value>Struktury</value>
-  </data>
-  <data name="Visual.StructuresTitle">
-    <value>Wykryte struktury</value>
-  </data>
-  <data name="Visual.SectorsTitle">
-    <value>Sektory</value>
-  </data>
-  <data name="Visual.TransitionsUnit">
-    <value>przejścia</value>
-  </data>
-  <data name="Visual.OpenImage">
-    <value>Otwórz obraz dysku…</value>
-  </data>
-  <data name="Visual.DetachInspector">
-    <value>Odłącz inspektora</value>
-  </data>
-  <data name="Visual.AttachInspector">
-    <value>Dołącz inspektora</value>
-  </data>
-  <data name="Visual.SummaryTab">
-    <value>Streszczenie</value>
-  </data>
-  <data name="Visual.FormatDetected">
-    <value>Wykryto format</value>
-  </data>
-  <data name="Visual.AverageRpm">
-    <value>Średnie obroty</value>
-  </data>
-  <data name="Visual.AverageDuration">
-    <value>Średni czas trwania</value>
-  </data>
+  <data name="Visual.Decoder"><value>Dekoder</value></data>
+  <data name="Visual.LinkZoom"><value>Zoom łącza</value></data>
+  <data name="Visual.OpenScp"><value>Otwórz plik SCP…</value></data>
+  <data name="Visual.NoFile"><value>Żaden plik SCP nie jest otwarty</value></data>
+  <data name="Visual.Waiting"><value>Czekam na plik</value></data>
+  <data name="Visual.Inspector"><value>Inspektor</value></data>
+  <data name="Visual.SelectTrack"><value>Wybierz utwór.</value></data>
+  <data name="Visual.Controls"><value>Kliknij: wybierz · Koło: powiększenie · Kliknij prawym przyciskiem myszy: przesuwanie</value></data>
+  <data name="Visual.NormalFlux"><value>Normalny strumień</value></data>
+  <data name="Visual.ShortTransition"><value>Krótkie przejście</value></data>
+  <data name="Visual.LongTransition"><value>Długie przejście/anomalia</value></data>
+  <data name="Visual.Loading"><value>Czytanie pliku…</value></data>
+  <data name="Visual.Invalid"><value>Nieprawidłowy plik</value></data>
+  <data name="Visual.Title"><value>SCP wizualizacja</value></data>
+  <data name="Visual.ChecksumValid"><value>ważny</value></data>
+  <data name="Visual.ChecksumInvalid"><value>nieważny</value></data>
+  <data name="Visual.Summary"><value>SCP {0} · {1} ścieżki · {2} obrót(y) · {3} rozdzielczość ns · {4} suma kontrolna</value></data>
+  <data name="Visual.Revolution"><value>Rewolucja {0}: {1:N0} przejścia · {2:F2} ms · {3:F2} RPM</value></data>
+  <data name="Visual.Analysis"><value>Dekodowanie: {0}&#xA;Pewność: {1:P0}&#xA;Szacowana komórka: {2:F1} znaczników&#xA;Struktury: {3}</value></data>
+  <data name="Visual.Track"><value>Strona: {0}&#xA;Utwór: {1}&#xA;SCP wpis: {2}</value></data>
+  <data name="Visual.SideNoData"><value>Strona {0}&#xA;Brak danych</value></data>
+  <data name="Visual.TrackTooltip"><value>Strona {0} · Ścieżka {1}&#xA;{2} obrót(y)</value></data>
+  <data name="Visual.Automatic"><value>Automatyczny</value></data>
+  <data name="Visual.StructureHeader"><value>Nagłówek/adres</value></data>
+  <data name="Visual.StructureData"><value>Zdekodowane dane</value></data>
+  <data name="Visual.StructureAnomaly"><value>Usunięto/anomalię</value></data>
+  <data name="Visual.AnalysedRevolution"><value>Analiza oparta na rewolucji {0}.</value></data>
+<data name="Visual.SectorDetail"><value>Sektor C{0} H{1} R{2} · {3} bajtów · {4} {5}</value></data>
+  <data name="Visual.CrcValid"><value>ważny</value></data>
+  <data name="Visual.CrcInvalid"><value>nieważny</value></data>
+  <data name="Visual.IntegrityUnavailable"><value>nie płynny</value></data>
+  <data name="Visual.StructureKind.Sync"><value>Synchronizacja</value></data>
+  <data name="Visual.StructureKind.IdAddressMark"><value>Nagłówek sektora</value></data>
+  <data name="Visual.StructureKind.DataAddressMark"><value>Dane sektorowe</value></data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark"><value>Usunięte dane sektora</value></data>
+  <data name="Visual.StructureKind.AmigaSync"><value>Synchronizacja Amiga</value></data>
+  <data name="Visual.StructureKind.AppleAddress"><value>Prolog adresu Apple</value></data>
+  <data name="Visual.StructureKind.AppleData"><value>Prolog dotyczący danych Apple</value></data>
+  <data name="Visual.StructureKind.CommodoreSync"><value>Synchronizacja Commodore</value></data>
+  <data name="Visual.StructureKind.CommodoreHeader"><value>Nagłówek Commodore</value></data>
+  <data name="Visual.StructureKind.FormatHeader"><value>Formatuj nagłówek</value></data>
+  <data name="Visual.StructureKind.FormatData"><value>Formatuj dane</value></data>
+  <data name="Visual.StructureKind.TimingAnomaly"><value>Anomalia czasowa</value></data>
+  <data name="Visual.OpenFilter"><value>SuperCard Pro przechwytywanie (*.scp)|*.scp|Wszystkie pliki|*.*</value></data>
+  <data name="Visual.Integrity.Checksum"><value>Suma kontrolna</value></data>
+  <data name="Visual.Side"><value>Strona {0}</value></data>
+  <data name="Visual.AnalysingTrack"><value>Analizuję utwór {0}/{1}…</value></data>
+  <data name="Visual.SideLabel"><value>Strona</value></data>
+  <data name="Visual.TrackLabel"><value>Ścieżka</value></data>
+  <data name="Visual.ScpEntryLabel"><value>SCP wpis</value></data>
+  <data name="Visual.RevolutionsTitle"><value>Rewolucje</value></data>
+  <data name="Visual.AnalysisTitle"><value>Analiza</value></data>
+  <data name="Visual.ConfidenceLabel"><value>Zaufanie</value></data>
+  <data name="Visual.CellLabel"><value>Szacunkowa komórka</value></data>
+  <data name="Visual.StructuresLabel"><value>Struktury</value></data>
+  <data name="Visual.StructuresTitle"><value>Wykryte struktury</value></data>
+  <data name="Visual.SectorsTitle"><value>Sektory</value></data>
+  <data name="Visual.TransitionsUnit"><value>przejścia</value></data>
+  <data name="Visual.OpenImage"><value>Otwórz obraz dysku…</value></data>
+  <data name="Visual.DetachInspector"><value>Odłącz inspektora</value></data>
+  <data name="Visual.AttachInspector"><value>Dołącz inspektora</value></data>
+  <data name="Visual.SummaryTab"><value>Streszczenie</value></data>
+  <data name="Visual.FormatDetected"><value>Wykryto format</value></data>
+  <data name="Visual.AverageRpm"><value>średnia RPM</value></data>
+  <data name="Visual.AverageDuration"><value>Średni czas trwania</value></data>
 </root>

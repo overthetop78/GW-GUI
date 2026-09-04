@@ -12,172 +12,60 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Warning.InvalidChecksum">
-    <value>Kořenový blok {0} má neplatný kontrolní součet.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryNesting">
-    <value>Bylo dosaženo limitu vnoření adresáře.</value>
-  </data>
-  <data name="Explorer.Warning.InvalidDirectoryChain">
-    <value>Neplatný nebo cyklický adresářový řetězec v bloku {0}.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryEntryMissing">
-    <value>Chybí blok záznamu adresáře {0}.</value>
-  </data>
-  <data name="Explorer.Warning.AmigaExtension">
-    <value>{0}: Neplatný blok přípony souboru {1}.</value>
-  </data>
-  <data name="Explorer.Warning.AmigaBlock">
-    <value>{0}: Chybí AmigaDOS {1} ({2}).</value>
-  </data>
-  <data name="Explorer.Warning.FileDataMissing">
-    <value>Chybí blok dat souboru {0}.</value>
-  </data>
-  <data name="Explorer.Warning.OfsType">
-    <value>Datový blok OFS {0} má neočekávaný typ.</value>
-  </data>
-  <data name="Explorer.Warning.BitmapMissing">
-    <value>Chybí bitmapový blok {0}.</value>
-  </data>
-  <data name="Explorer.Warning.BitmapChecksum">
-    <value>Bitmapový blok {0} má neplatný kontrolní součet.</value>
-  </data>
-  <data name="Explorer.Warning.CpmAllocation">
-    <value>{0}: Blok alokace CP/M {1} je mimo obraz.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDirectoryCyclic">
-    <value>Cyklický řetězec adresářů CBM DOS na {0}/{1}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDirectoryMissing">
-    <value>Chybí sektor adresáře CBM DOS {0}/{1}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDataCyclic">
-    <value>{0}: Cyklický datový řetězec na {1}/{2}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDataMissing">
-    <value>{0}: Chybí datový sektor {1}/{2}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmCapacity">
-    <value>{0}: souborový řetězec překračuje kapacitu obrazu.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdDirectoryMissing">
-    <value>Chybí jeden nebo více bloků adresáře UCSD.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdEntry">
-    <value>Položka adresáře UCSD {0} má neplatný nebo prázdný název.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdRange">
-    <value>{0}: neplatný rozsah bloku {1}...{2}.</value>
-  </data>
-  <data name="Explorer.Warning.DataBlocksMissing">
-    <value>{0}: chybí jeden nebo více datových bloků.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdCount">
-    <value>Adresář UCSD deklaruje {0} souborů, ale bylo nalezeno {1} platných položek.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentInodeZero">
-    <value>{0}: Neplatný COHERENT inode 0.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentInodeOutside">
-    <value>{0}: COHERENT inode {1} je mimo obrázek.</value>
-  </data>
-  <data name="Explorer.Warning.FileTooLarge">
-    <value>{0}: Soubor je příliš velký.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentBlock">
-    <value>{0}: KOHERENTNÍ blok {1} je mimo obrázek.</value>
-  </data>
-  <data name="Explorer.Warning.BytesUnread">
-    <value>{0}: {1} bajtů nelze přečíst.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentIndirect">
-    <value>{0}: nepřímý KOHERENTNÍ blok {1} je mimo obrázek.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11SegmentMissing">
-    <value>Chybí segment adresáře RT-11 {0}.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11EntrySize">
-    <value>Segment adresáře RT-11 {0} má neplatnou velikost položky.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11EmptyName">
-    <value>Záznam RT-11 v bloku {0} má prázdný název.</value>
-  </data>
-  <data name="Explorer.Warning.ProDosNesting">
-    <value>Bylo dosaženo limitu vnořování adresářů ProDOS.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryBlockCyclic">
-    <value>Blok adresáře {0} chybí nebo je cyklický.</value>
-  </data>
-  <data name="Explorer.Warning.MasterIndexMissing">
-    <value>{0}: chybí hlavní indexový blok {1}.</value>
-  </data>
-  <data name="Explorer.Warning.DataBlockMissing">
-    <value>{0}: chybí datový blok {1}.</value>
-  </data>
-  <data name="Explorer.Warning.IndexBlockMissing">
-    <value>{0}: chybí blok indexu {1}.</value>
-  </data>
-  <data name="Explorer.Warning.CatalogMissing">
-    <value>Sektor katalogu T{0} S{1} chybí nebo je cyklický.</value>
-  </data>
-  <data name="Explorer.Warning.CatalogSize">
-    <value>{0}: velikost katalogu je nekonzistentní.</value>
-  </data>
-  <data name="Explorer.Warning.TrackSectorList">
-    <value>{0}: Seznam T/S T{1} S{2} chybí nebo je cyklický.</value>
-  </data>
-  <data name="Explorer.Warning.TrackSectorData">
-    <value>{0}: chybí datový sektor T{1} S{2}.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryBlockMissing">
-    <value>Chybí blok adresáře {0}.</value>
-  </data>
-  <data name="Explorer.Warning.MfsEntry">
-    <value>Neplatná položka adresáře MFS v bloku {0}.</value>
-  </data>
-  <data name="Explorer.Warning.ResourceFork">
-    <value>{0}: metadata rozvětvení prostředků jsou nekonzistentní.</value>
-  </data>
-  <data name="Explorer.Warning.MfsChain">
-    <value>{0}: neplatný alokační řetězec MFS.</value>
-  </data>
-  <data name="Explorer.Warning.BlockMissing">
-    <value>{0}: chybí blok {1}.</value>
-  </data>
-  <data name="Explorer.Warning.BbcSector">
-    <value>{0}: chybí datový sektor {1}.</value>
-  </data>
-  <data name="Explorer.Warning.HfsCatalog">
-    <value>Katalog HFS neobsahuje žádné čitelné záznamy listů.</value>
-  </data>
-  <data name="Explorer.Warning.HfsDirectory">
-    <value>Cyklický adresář HFS #{0}.</value>
-  </data>
-  <data name="Explorer.Warning.HfsBlock">
-    <value>{0}: Chybí blok HFS {1}.</value>
-  </data>
-  <data name="Explorer.Warning.HfsExtents">
-    <value>{0}: jsou vyžadovány další oblasti HFS nebo chybí data.</value>
-  </data>
-  <data name="Explorer.Warning.FatNesting">
-    <value>Bylo dosaženo limitu vnořování adresářů FAT.</value>
-  </data>
-  <data name="Explorer.Warning.FatChain">
-    <value>{0}: Neplatný nebo cyklický řetězec FAT v clusteru {1}.</value>
-  </data>
-  <data name="Explorer.Warning.SectorMissing">
-    <value>Chybí sektor {0}.</value>
-  </data>
-  <data name="Explorer.Warning.LisaCatalog">
-    <value>Stránky katalogu Lisa chybí; názvy souborů byly obnoveny pouze ze značek stránek.</value>
-  </data>
-  <data name="Explorer.Warning.AtariDirectory">
-    <value>Chybí sektor adresáře {0}.</value>
-  </data>
-  <data name="Explorer.Warning.AtariData">
-    <value>{0}: neplatný nebo chybějící datový sektor Atari DOS.</value>
-  </data>
-  <data name="Explorer.Warning.AtariOwner">
-    <value>Sektor {0} patří do souboru {1}, očekává se {2}.</value>
-  </data>
+  <data name="Explorer.Warning.InvalidChecksum"><value>Kořenový blok {0} má neplatný kontrolní součet.</value></data>
+  <data name="Explorer.Warning.DirectoryNesting"><value>Bylo dosaženo limitu vnoření adresáře.</value></data>
+  <data name="Explorer.Warning.InvalidDirectoryChain"><value>Neplatný nebo cyklický adresářový řetězec v bloku {0}.</value></data>
+  <data name="Explorer.Warning.DirectoryEntryMissing"><value>Záznamník pro vstup do adresáře {0} chybí.</value></data>
+  <data name="Explorer.Warning.AmigaExtension"><value>{0}: Neplatný blok přípony souboru {1}.</value></data>
+  <data name="Explorer.Warning.AmigaBlock"><value>{0}: Chybí AmigaDOS {1} ({2}).</value></data>
+  <data name="Explorer.Warning.FileDataMissing"><value>Datový blok souboru {0} chybí.</value></data>
+  <data name="Explorer.Warning.OfsType"><value>Datový blok OFS {0} má neočekávaný typ.</value></data>
+  <data name="Explorer.Warning.BitmapMissing"><value>Bitmapový blok {0} chybí.</value></data>
+  <data name="Explorer.Warning.BitmapChecksum"><value>Bitmapový blok {0} má neplatný kontrolní součet.</value></data>
+  <data name="Explorer.Warning.CpmAllocation"><value>{0}: Blok alokace CP/M {1} je mimo obraz.</value></data>
+  <data name="Explorer.Warning.CbmDirectoryCyclic"><value>Cyklický řetězec adresářů CBM DOS na {0}/{1}.</value></data>
+  <data name="Explorer.Warning.CbmDirectoryMissing"><value>CBM DOS adresářový sektor {0}/{1} chybí.</value></data>
+  <data name="Explorer.Warning.CbmDataCyclic"><value>{0}: Cyklický datový řetězec na {1}/{2}.</value></data>
+  <data name="Explorer.Warning.CbmDataMissing"><value>{0}: Sektor dat {1}/{2} chybí.</value></data>
+  <data name="Explorer.Warning.CbmCapacity"><value>{0}: souborový řetězec překračuje kapacitu obrazu.</value></data>
+  <data name="Explorer.Warning.UcsdDirectoryMissing"><value>jeden nebo více UCSD chybí bloky adresářů.</value></data>
+  <data name="Explorer.Warning.UcsdEntry"><value>Položka adresáře UCSD {0} má neplatný nebo prázdný název.</value></data>
+  <data name="Explorer.Warning.UcsdRange"><value>{0}: neplatný rozsah bloků {1}..{2}.</value></data>
+  <data name="Explorer.Warning.DataBlocksMissing"><value>{0}: chybí jeden nebo více datových bloků.</value></data>
+  <data name="Explorer.Warning.UcsdCount"><value>Adresář UCSD deklaruje {0} souborů, ale bylo nalezeno {1} platných položek.</value></data>
+  <data name="Explorer.Warning.CoherentInodeZero"><value>{0}: Neplatný COHERENT inode 0.</value></data>
+  <data name="Explorer.Warning.CoherentInodeOutside"><value>{0}: COHERENT inode {1} je mimo obrázek.</value></data>
+  <data name="Explorer.Warning.FileTooLarge"><value>{0}: Soubor je příliš velký.</value></data>
+  <data name="Explorer.Warning.CoherentBlock"><value>{0}: COHERENT blok {1} je mimo obrázek.</value></data>
+  <data name="Explorer.Warning.BytesUnread"><value>{0}: {1} bajtů nelze přečíst.</value></data>
+  <data name="Explorer.Warning.CoherentIndirect"><value>{0}: nepřímý COHERENT blok {1} je mimo obrázek.</value></data>
+  <data name="Explorer.Warning.Rt11SegmentMissing"><value>RT-11 segment adresáře {0} chybí.</value></data>
+  <data name="Explorer.Warning.Rt11EntrySize"><value>Segment adresáře RT-11 {0} má neplatnou velikost položky.</value></data>
+  <data name="Explorer.Warning.Rt11EmptyName"><value>Záznam RT-11 v bloku {0} má prázdný název.</value></data>
+  <data name="Explorer.Warning.ProDosNesting"><value>Bylo dosaženo limitu vnořování adresářů ProDOS.</value></data>
+  <data name="Explorer.Warning.DirectoryBlockCyclic"><value>Blok adresáře {0} chybí nebo je cyklický.</value></data>
+  <data name="Explorer.Warning.MasterIndexMissing"><value>{0}: hlavní blok indexu {1} chybí.</value></data>
+  <data name="Explorer.Warning.DataBlockMissing"><value>{0}: datový blok {1} chybí.</value></data>
+  <data name="Explorer.Warning.IndexBlockMissing"><value>{0}: blok indexu {1} chybí.</value></data>
+  <data name="Explorer.Warning.CatalogMissing"><value>Sektor katalogu T{0} S{1} chybí nebo je cyklický.</value></data>
+  <data name="Explorer.Warning.CatalogSize"><value>{0}: velikost katalogu je nekonzistentní.</value></data>
+  <data name="Explorer.Warning.TrackSectorList"><value>{0}: Seznam T/S T{1} S{2} chybí nebo je cyklický.</value></data>
+  <data name="Explorer.Warning.TrackSectorData"><value>{0}: datový sektor T{1} S{2} chybí.</value></data>
+  <data name="Explorer.Warning.DirectoryBlockMissing"><value>Adresář {0} chybí.</value></data>
+  <data name="Explorer.Warning.MfsEntry"><value>Neplatná položka adresáře MFS v bloku {0}.</value></data>
+  <data name="Explorer.Warning.ResourceFork"><value>{0}: metadata rozvětvení prostředků jsou nekonzistentní.</value></data>
+  <data name="Explorer.Warning.MfsChain"><value>{0}: neplatný MFS řetězec přidělování.</value></data>
+  <data name="Explorer.Warning.BlockMissing"><value>{0}: blok {1} chybí.</value></data>
+  <data name="Explorer.Warning.BbcSector"><value>{0}: datový sektor {1} chybí.</value></data>
+  <data name="Explorer.Warning.HfsCatalog"><value>Katalog HFS neobsahuje žádné čitelné záznamy listů.</value></data>
+  <data name="Explorer.Warning.HfsDirectory"><value>Cyklický adresář HFS #{0}.</value></data>
+  <data name="Explorer.Warning.HfsBlock"><value>{0}: HFS blok {1} chybí.</value></data>
+  <data name="Explorer.Warning.HfsExtents"><value>{0}: jsou vyžadovány další oblasti HFS nebo chybí data.</value></data>
+  <data name="Explorer.Warning.FatNesting"><value>V FAT bylo dosaženo hranice hnízdění adresářů.</value></data>
+  <data name="Explorer.Warning.FatChain"><value>{0}: Neplatný nebo cyklický řetězec FAT v clusteru {1}.</value></data>
+  <data name="Explorer.Warning.SectorMissing"><value>Sektor {0} chybí.</value></data>
+  <data name="Explorer.Warning.LisaCatalog"><value>Stránky katalogu Lisa chybí; názvy souborů byly obnoveny pouze ze značek stránek.</value></data>
+  <data name="Explorer.Warning.AtariDirectory"><value>Sektor adresáře {0} chybí.</value></data>
+  <data name="Explorer.Warning.AtariData"><value>{0}: neplatný nebo chybí Atari DOS datový sektor.</value></data>
+  <data name="Explorer.Warning.AtariOwner"><value>Sektor {0} patří do souboru {1}, očekává se {2}.</value></data>
 </root>

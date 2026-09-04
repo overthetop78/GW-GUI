@@ -12,118 +12,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Advanced">
-    <value>Setări avansate</value>
-  </data>
-  <data name="Common.ExpertArguments">
-    <value>Argumentele experților</value>
-  </data>
-  <data name="Common.ExpertArgumentsTip">
-    <value>Argumentele sunt transmise așa cum sunt scrise după validarea citatului.</value>
-  </data>
-  <data name="Advanced.SeekRetries">
-    <value>Căutați reîncercări</value>
-  </data>
-  <data name="Advanced.FakeIndex">
-    <value>Index fals</value>
-  </data>
-  <data name="Advanced.HardSectors">
-    <value>Sectoare dure</value>
-  </data>
-  <data name="Advanced.Reverse">
-    <value>Date de mers invers</value>
-  </data>
-  <data name="Advanced.AdjustSpeed">
-    <value>Reglați viteza</value>
-  </data>
-  <data name="Advanced.Pll">
-    <value>PLL anulează</value>
-  </data>
-  <data name="Advanced.DensityPin">
-    <value>Pin de densitate 2</value>
-  </data>
-  <data name="Advanced.Tg43">
-    <value>Generați TG43</value>
-  </data>
-  <data name="Advanced.PreErase">
-    <value>Pre-sterge melodiile</value>
-  </data>
-  <data name="Advanced.Precomp">
-    <value>Scrie precompensarea</value>
-  </data>
-  <data name="Advanced.OutputTracks">
-    <value>Piesele de ieșire</value>
-  </data>
-  <data name="Advanced.DiskDefs">
-    <value>Definiții de disc personalizate</value>
-  </data>
-  <data name="Advanced.DiskDefsFilter">
-    <value>Greaseweazle definiții disc (*.cfg)|*.cfg|Toate fișierele|*.*</value>
-  </data>
-  <data name="Advanced.DiskDefsMissing">
-    <value>Fișierul de definiții disc selectat nu există.</value>
-  </data>
-  <data name="Advanced.Invalid">
-    <value>O setare avansată este nevalidă: {0}</value>
-  </data>
-  <data name="Advanced.TrackSpecTip">
-    <value>Specificația pistei, de exemplu c=0-79:h=0-1, c=0-79/2:h=0 sau c=0-79:h=0-1:hswap.</value>
-  </data>
-  <data name="Advanced.SpeedTip">
-    <value>Viteză sau perioadă pozitivă, de exemplu 300rpm, 200ms, 200000us sau 200000000ns.</value>
-  </data>
-  <data name="Advanced.PllTip">
-    <value>PLL parametri separați prin două puncte, de exemplu period=5:phase=60 sau period=5:phase=60:lowpass=2.</value>
-  </data>
-  <data name="Advanced.PrecompTip">
-    <value>Scrieți precompensarea, de exemplu tip=mfm:40=125. Tipuri: mfm, fm, gcr; valorile sunt în nanosecunde.</value>
-  </data>
-  <data name="Advanced.DiskDefsTip">
-    <value>Utilizați un fișier diskdefs.cfg personalizat pentru a adăuga sau a înlocui definițiile formatului Greaseweazle.</value>
-  </data>
-  <data name="Advanced.RevsTip">
-    <value>--revs: Numărul de rotații citite pe pistă. Exemplu: --revs 5.</value>
-  </data>
-  <data name="Advanced.RetriesTip">
-    <value>--retries: încercări suplimentare după o eroare. Exemplu: --retries 3.</value>
-  </data>
-  <data name="Advanced.TracksTip">
-    <value>--tracks: Limitați cilindri, capete sau trepte. Exemplu: --tracks c=0-79:h=0-1.</value>
-  </data>
-  <data name="Advanced.SeekRetriesTip">
-    <value>--seek-retries: Încercări suplimentare după mutarea capului. Exemplu: --seek-retries 2.</value>
-  </data>
-  <data name="Advanced.FakeIndexTip">
-    <value>--fake-index: Creați un index temporizat pentru o unitate fără semnal de index. Exemplu: --fake-index 300rpm.</value>
-  </data>
-  <data name="Advanced.HardSectorsTip">
-    <value>--hard-sectors: Gestionați un disc dur. Incompatibil cu --fake-index.</value>
-  </data>
-  <data name="Advanced.ReverseTip">
-    <value>--reverse: date de traseu invers pentru medii flippy sau cablare.</value>
-  </data>
-  <data name="Advanced.AdjustSpeedTip">
-    <value>--adjust-speed: Redimensionați sincronizarea datelor. Exemplu: --adjust-speed 300rpm.</value>
-  </data>
-  <data name="Advanced.PllOptionTip">
-    <value>--pll: Configurați bucla de recuperare a ceasului. Exemplu: --pll period=5:phase=60.</value>
-  </data>
-  <data name="Advanced.DenselTip">
-    <value>--densel: Forțați pinul de selectare a densității ridicat sau scăzut. Exemplu: --densel H.</value>
-  </data>
-  <data name="Advanced.Tg43Tip">
-    <value>--gen-tg43: Generați semnalul TG43 pentru unitățile care îl necesită. Incompatibil cu --densel.</value>
-  </data>
-  <data name="Advanced.EraseEmptyTip">
-    <value>--erase-empty: Ștergeți piesele pentru care imaginea sursă nu conține date.</value>
-  </data>
-  <data name="Advanced.PreEraseTip">
-    <value>--pre-erase: Ștergeți fiecare piesă înainte de a o scrie.</value>
-  </data>
-  <data name="Advanced.PrecompOptionTip">
-    <value>--precomp: Aplică precompensarea scrisă. Exemplu: --precomp tip=mfm:40=125.</value>
-  </data>
-  <data name="Advanced.OutputTracksTip">
-    <value>--out-tracks: Remapează piesele din imaginea de ieșire. Exemplu: --out-tracks c=0-79:h=0-1.</value>
-  </data>
+  <data name="Common.Advanced"><value>Setări avansate</value></data>
+  <data name="Common.ExpertArguments"><value>Argumentele experților</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>Argumentele sunt transmise așa cum sunt scrise după validarea citatului.</value></data>
+  <data name="Advanced.SeekRetries"><value>Căutați reîncercări</value></data>
+  <data name="Advanced.FakeIndex"><value>Index fals</value></data>
+  <data name="Advanced.HardSectors"><value>Sectoare dure</value></data>
+  <data name="Advanced.Reverse"><value>Date de mers invers</value></data>
+  <data name="Advanced.AdjustSpeed"><value>Reglați viteza</value></data>
+  <data name="Advanced.Pll"><value>PLL anulează</value></data>
+  <data name="Advanced.DensityPin"><value>Pin de densitate 2</value></data>
+  <data name="Advanced.Tg43"><value>Generați TG43</value></data>
+  <data name="Advanced.PreErase"><value>Pre-sterge melodiile</value></data>
+  <data name="Advanced.Precomp"><value>Scrie precompensarea</value></data>
+  <data name="Advanced.OutputTracks"><value>Piesele de ieșire</value></data>
+  <data name="Advanced.DiskDefs"><value>Definiții de disc personalizate</value></data>
+  <data name="Advanced.DiskDefsFilter"><value>Greaseweazle definiții disc (*.cfg)|*.cfg|Toate fișierele|*.*</value></data>
+  <data name="Advanced.DiskDefsMissing"><value>Fișierul de definiții disc selectat nu există.</value></data>
+  <data name="Advanced.Invalid"><value>O setare avansată este nevalidă: {0}</value></data>
+  <data name="Advanced.TrackSpecTip"><value>Specificația pistei, de exemplu c=0-79:h=0-1, c=0-79/2:h=0 sau c=0-79:h=0-1:hswap.</value></data>
+  <data name="Advanced.SpeedTip"><value>Viteză sau perioadă pozitivă, de exemplu 300rpm, 200ms, 200000us sau 200000000ns.</value></data>
+  <data name="Advanced.PllTip"><value>PLL parametri separați prin două puncte, de exemplu period=5:phase=60 sau period=5:phase=60:lowpass=2.</value></data>
+  <data name="Advanced.PrecompTip"><value>Scrieți precompensarea, de exemplu tip=mfm:40=125. Tipuri: mfm, fm, gcr; valorile sunt în nanosecunde.</value></data>
+  <data name="Advanced.DiskDefsTip"><value>Utilizați un fișier diskdefs.cfg personalizat pentru a adăuga sau a înlocui definițiile formatului Greaseweazle.</value></data>
+  <data name="Advanced.RevsTip"><value>--revs: Numărul de rotații citite pe pistă. Exemplu: --revs 5.</value></data>
+  <data name="Advanced.RetriesTip"><value>--retries: încercări suplimentare după o eroare. Exemplu: --retries 3.</value></data>
+  <data name="Advanced.TracksTip"><value>--tracks: Limitați cilindri, capete sau trepte. Exemplu: --tracks c=0-79:h=0-1.</value></data>
+  <data name="Advanced.SeekRetriesTip"><value>--seek-retries: Încercări suplimentare după mutarea capului. Exemplu: --seek-retries 2.</value></data>
+  <data name="Advanced.FakeIndexTip"><value>--fake-index: Creați un index temporizat pentru o unitate fără semnal de index. Exemplu: --fake-index 300rpm.</value></data>
+  <data name="Advanced.HardSectorsTip"><value>--hard-sectors: Gestionați un disc dur. Incompatibil cu --fake-index.</value></data>
+  <data name="Advanced.ReverseTip"><value>--reverse: date de traseu invers pentru medii flippy sau cablare.</value></data>
+  <data name="Advanced.AdjustSpeedTip"><value>--adjust-speed: Redimensionați sincronizarea datelor. Exemplu: --adjust-speed 300rpm.</value></data>
+  <data name="Advanced.PllOptionTip"><value>--pll: Configurați bucla de recuperare a ceasului. Exemplu: --pll period=5:phase=60.</value></data>
+  <data name="Advanced.DenselTip"><value>--densel: Forțați pinul de selectare a densității ridicat sau scăzut. Exemplu: --densel H.</value></data>
+  <data name="Advanced.Tg43Tip"><value>--gen-tg43: Generați semnalul TG43 pentru unitățile care îl necesită. Incompatibil cu --densel.</value></data>
+  <data name="Advanced.EraseEmptyTip"><value>--erase-empty: Ștergeți piesele pentru care imaginea sursă nu conține date.</value></data>
+  <data name="Advanced.PreEraseTip"><value>--pre-erase: Ștergeți fiecare piesă înainte de a o scrie.</value></data>
+  <data name="Advanced.PrecompOptionTip"><value>--precomp: Aplică precompensarea scrisă. Exemplu: --precomp tip=mfm:40=125.</value></data>
+  <data name="Advanced.OutputTracksTip"><value>--out-tracks: Remapează piesele din imaginea de ieșire. Exemplu: --out-tracks c=0-79:h=0-1.</value></data>
 </root>

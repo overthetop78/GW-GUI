@@ -12,51 +12,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Cancel">
-    <value>Anulować</value>
-  </data>
-  <data name="Common.Save">
-    <value>Ratować</value>
-  </data>
-  <data name="Common.Create">
-    <value>Utwórz</value>
-  </data>
-  <data name="Common.Delete">
-    <value>Usuwać</value>
-  </data>
-  <data name="Common.Browse">
-    <value>Przeglądać…</value>
-  </data>
-  <data name="Common.Choose">
-    <value>Wybierać…</value>
-  </data>
-  <data name="Common.Close">
-    <value>Zamknąć</value>
-  </data>
-  <data name="Common.Execute">
-    <value>Wykonać</value>
-  </data>
-  <data name="Common.Stop">
-    <value>Zatrzymywać się</value>
-  </data>
-  <data name="Common.Continue">
-    <value>Kontynuować</value>
-  </data>
-  <data name="Common.Reset">
-    <value>Nastawić</value>
-  </data>
-  <data name="Common.Copy">
-    <value>Kopia</value>
-  </data>
-  <data name="Common.Modify">
-    <value>Modyfikować</value>
-  </data>
-  <data name="Common.Hide">
-    <value>Ukrywać</value>
-  </data>
-  <data name="Common.Export">
-    <value>Eksport</value>
-  </data>
+  <data name="Common.Cancel"><value>Anulować</value></data>
+  <data name="Common.Save"><value>Ratować</value></data>
+  <data name="Common.Create"><value>Utwórz</value></data>
+  <data name="Common.Delete"><value>Usuwać</value></data>
+  <data name="Common.Browse"><value>Przeglądać…</value></data>
+  <data name="Common.Choose"><value>Wybierać…</value></data>
+  <data name="Common.Close"><value>Zamknąć</value></data>
+  <data name="Common.Execute"><value>Wykonać</value></data>
+  <data name="Common.Stop"><value>Zatrzymywać się</value></data>
+  <data name="Common.Continue"><value>Kontynuować</value></data>
+  <data name="Common.Reset"><value>Nastawić</value></data>
+  <data name="Common.Copy"><value>Kopia</value></data>
+  <data name="Common.Modify"><value>Modyfikować</value></data>
+  <data name="Common.Hide"><value>Ukrywać</value></data>
+  <data name="Common.Export"><value>Eksport</value></data>
   <data name="Common.New"><value>Nowy</value></data>
   <data name="Common.Refresh"><value>Odśwież</value></data>
   <data name="Common.OpenFolder"><value>Otwórz folder</value></data>

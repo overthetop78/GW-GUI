@@ -12,148 +12,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Hardware.Port">
-    <value>נָמָל</value>
-  </data>
-  <data name="Hardware.UsbId">
-    <value>מזהה USB</value>
-  </data>
-  <data name="Hardware.Drive">
-    <value>לִנְהוֹג</value>
-  </data>
-  <data name="Hardware.Available">
-    <value>זָמִין</value>
-  </data>
-  <data name="Hardware.Scan">
-    <value>לִסְרוֹק</value>
-  </data>
-  <data name="Hardware.AddDrive">
-    <value>הוסף כונן...</value>
-  </data>
-  <data name="Hardware.NoDrive">
-    <value>לא הוגדר כונן</value>
-  </data>
-  <data name="Hardware.EditorTitle">
-    <value>הגדר כונן</value>
-  </data>
-  <data name="Hardware.Controller">
-    <value>בקר Greaseweazle</value>
-  </data>
-  <data name="Hardware.GwSelection">
-    <value>הבחירה הועברה ל-gw</value>
-  </data>
-  <data name="Hardware.PhysicalSize">
-    <value>גודל פיזי</value>
-  </data>
-  <data name="Hardware.SizeShort">
-    <value>גוֹדֶל</value>
-  </data>
-  <data name="Hardware.DensityShort">
-    <value>צְפִיפוּת</value>
-  </data>
-  <data name="Hardware.SpeedShort">
-    <value>מְהִירוּת</value>
-  </data>
-  <data name="Hardware.AvailableState">
-    <value>זָמִין</value>
-  </data>
-  <data name="Hardware.UnavailableState">
-    <value>לא זמין</value>
-  </data>
-  <data name="Hardware.DensityDescription">
-    <value>צפיפות כונן (תיאור בלבד)</value>
-  </data>
-  <data name="Hardware.SpeedDescription">
-    <value>מהירות נומינלית (תיאור בלבד)</value>
-  </data>
-  <data name="Hardware.NotConfigured">
-    <value>הבקר לא מוגדר</value>
-  </data>
-  <data name="Hardware.Disconnected">
-    <value>מְנוּתָק</value>
-  </data>
-  <data name="Hardware.SelectedDisconnected">
-    <value>הכונן שנבחר מנותק. חבר אותו מחדש או סרוק שוב באפשרויות ← בקרים וכוננים.</value>
-  </data>
-  <data name="Hardware.DriveLabel">
-    <value>{0} אינץ' · {1} · {2} · {3}</value>
-  </data>
-  <data name="Hardware.DriveDialogTitle">
-    <value>לִנְהוֹג</value>
-  </data>
-  <data name="Hardware.ControllerRequired">
-    <value>תחילה סרוק או הוסף בקר Greaseweazle.</value>
-  </data>
-  <data name="Hardware.Description">
-    <value>{0} אינץ' · {1} · מבחר {2}{3}</value>
-  </data>
-  <data name="Hardware.ScanTitle">
-    <value>לִסְרוֹק</value>
-  </data>
-  <data name="Hardware.GwRequired">
-    <value>תחילה בחר או הורד את gw.exe למטה.</value>
-  </data>
-  <data name="Hardware.StartupTitle">
-    <value>בדיקת חומרה</value>
-  </data>
-  <data name="Hardware.StartupMissing">
-    <value>לא ניתן למצוא חומרה שהוגדרה</value>
-  </data>
-  <data name="Hardware.StartupExplanation">
-    <value>התצורה נשמרת, אך הכוננים שלה יישארו לא זמינים עד שה-Greaseweazle שלהם יימצא שוב.</value>
-  </data>
-  <data name="Hardware.StartupMissingList">
-    <value>חסרים בקרי Greaseweazle</value>
-  </data>
-  <data name="Hardware.StartupRetry">
-    <value>חפש שוב</value>
-  </data>
-  <data name="Hardware.StartupSettings">
-    <value>הגדרות חומרה</value>
-  </data>
-  <data name="Hardware.StartupContinue">
-    <value>המשך בלי הכונן הזה</value>
-  </data>
-  <data name="Hardware.StartupCheckFailed">
-    <value>בדיקת החומרה נכשלה: {0}</value>
-  </data>
-  <data name="Hardware.NewDetectedTitle">
-    <value>זוהה Greaseweazle חדש</value>
-  </data>
-  <data name="Hardware.NewDetected">
-    <value>{0} זוהה ב-{1}. האם אתה רוצה להגדיר את הכונן שלו עכשיו?</value>
-  </data>
-  <data name="Hardware.ConfigurationState">
-    <value>תְצוּרָה</value>
-  </data>
-  <data name="Hardware.Configured">
-    <value>מוגדר</value>
-  </data>
-  <data name="Hardware.NotConfiguredState">
-    <value>זוהה, לא מוגדר</value>
-  </data>
-  <data name="Hardware.Configure">
-    <value>הגדר</value>
-  </data>
-  <data name="Hardware.ReaderNumber">
-    <value>כונן {0}</value>
-  </data>
-  <data name="Hardware.DriveChoice">
-    <value>כונן {0} · {1}″ · {2} · {3}</value>
-  </data>
-  <data name="Hardware.Forget">
-    <value>לִשְׁכּוֹחַ</value>
-  </data>
-  <data name="Hardware.ForgetConfirm">
-    <value>האם אתה באמת רוצה לשכוח את הכונן או המכשיר הזה?</value>
-  </data>
-  <data name="Hardware.ForgetLastConfirm">
-    <value>זהו הכונן האחרון שהוגדר עבור Greaseweazle זה. האם אתה רוצה לשכוח גם את הכונן וגם את ה-Greaseweazle?</value>
-  </data>
-  <data name="Hardware.SelectController">
-    <value>בחר תחילה שורה השייכת ל-Greaseweazle הרלוונטי.</value>
-  </data>
-  <data name="Hardware.MaximumDrives">
-    <value>לכל היותר ניתן להקצות שני כוננים באופן אוטומטי ל-Greaseweazle הזה (A ו-B).</value>
-  </data>
+  <data name="Hardware.Port"><value>נָמָל</value></data>
+  <data name="Hardware.UsbId"><value>מזהה USB</value></data>
+  <data name="Hardware.Drive"><value>לִנְהוֹג</value></data>
+  <data name="Hardware.Available"><value>זָמִין</value></data>
+  <data name="Hardware.Scan"><value>לִסְרוֹק</value></data>
+  <data name="Hardware.AddDrive"><value>הוסף כונן...</value></data>
+  <data name="Hardware.NoDrive"><value>לא הוגדר כונן</value></data>
+  <data name="Hardware.EditorTitle"><value>הגדר כונן</value></data>
+  <data name="Hardware.Controller"><value>בקר Greaseweazle</value></data>
+  <data name="Hardware.GwSelection"><value>הבחירה הועברה ל-gw</value></data>
+  <data name="Hardware.PhysicalSize"><value>גודל פיזי</value></data>
+  <data name="Hardware.SizeShort"><value>גוֹדֶל</value></data>
+  <data name="Hardware.DensityShort"><value>צְפִיפוּת</value></data>
+  <data name="Hardware.SpeedShort"><value>מְהִירוּת</value></data>
+  <data name="Hardware.AvailableState"><value>זָמִין</value></data>
+  <data name="Hardware.UnavailableState"><value>לא זמין</value></data>
+  <data name="Hardware.DensityDescription"><value>צפיפות כונן (תיאור בלבד)</value></data>
+  <data name="Hardware.SpeedDescription"><value>מהירות נומינלית (תיאור בלבד)</value></data>
+  <data name="Hardware.NotConfigured"><value>הבקר לא מוגדר</value></data>
+  <data name="Hardware.Disconnected"><value>מְנוּתָק</value></data>
+  <data name="Hardware.SelectedDisconnected"><value>הכונן שנבחר מנותק. חבר אותו מחדש או סרוק שוב באפשרויות ← בקרים וכוננים.</value></data>
+  <data name="Hardware.DriveLabel"><value>{0} אינץ' · {1} · {2} · {3}</value></data>
+  <data name="Hardware.DriveDialogTitle"><value>לִנְהוֹג</value></data>
+  <data name="Hardware.ControllerRequired"><value>תחילה סרוק או הוסף בקר Greaseweazle.</value></data>
+  <data name="Hardware.Description"><value>{0} אינץ' · {1} · מבחר {2}{3}</value></data>
+  <data name="Hardware.ScanTitle"><value>לִסְרוֹק</value></data>
+  <data name="Hardware.GwRequired"><value>תחילה בחר או הורד את gw.exe למטה.</value></data>
+  <data name="Hardware.StartupTitle"><value>בדיקת חומרה</value></data>
+  <data name="Hardware.StartupMissing"><value>לא ניתן למצוא חומרה שהוגדרה</value></data>
+  <data name="Hardware.StartupExplanation"><value>התצורה נשמרת, אך הכוננים שלה יישארו לא זמינים עד שה-Greaseweazle שלהם יימצא שוב.</value></data>
+  <data name="Hardware.StartupMissingList"><value>חסרים בקרי Greaseweazle</value></data>
+  <data name="Hardware.StartupRetry"><value>חפש שוב</value></data>
+  <data name="Hardware.StartupSettings"><value>הגדרות חומרה</value></data>
+  <data name="Hardware.StartupContinue"><value>המשך בלי הכונן הזה</value></data>
+  <data name="Hardware.StartupCheckFailed"><value>בדיקת החומרה נכשלה: {0}</value></data>
+  <data name="Hardware.NewDetectedTitle"><value>זוהה Greaseweazle חדש</value></data>
+  <data name="Hardware.NewDetected"><value>{0} זוהה ב-{1}. האם אתה רוצה להגדיר את הכונן שלו עכשיו?</value></data>
+  <data name="Hardware.ConfigurationState"><value>תְצוּרָה</value></data>
+  <data name="Hardware.Configured"><value>מוגדר</value></data>
+  <data name="Hardware.NotConfiguredState"><value>זוהה, לא מוגדר</value></data>
+  <data name="Hardware.Configure"><value>הגדר</value></data>
+  <data name="Hardware.ReaderNumber"><value>כונן {0}</value></data>
+  <data name="Hardware.DriveChoice"><value>כונן {0} · {1}″ · {2} · {3}</value></data>
+  <data name="Hardware.Forget"><value>לִשְׁכּוֹחַ</value></data>
+  <data name="Hardware.ForgetConfirm"><value>האם אתה באמת רוצה לשכוח את הכונן או המכשיר הזה?</value></data>
+  <data name="Hardware.ForgetLastConfirm"><value>זהו הכונן האחרון שהוגדר עבור Greaseweazle זה. האם אתה רוצה לשכוח גם את הכונן וגם את ה-Greaseweazle?</value></data>
+  <data name="Hardware.SelectController"><value>בחר תחילה שורה השייכת ל-Greaseweazle הרלוונטי.</value></data>
+  <data name="Hardware.MaximumDrives"><value>לכל היותר ניתן להקצות שני כוננים באופן אוטומטי ל-Greaseweazle הזה (A ו-B).</value></data>
 </root>

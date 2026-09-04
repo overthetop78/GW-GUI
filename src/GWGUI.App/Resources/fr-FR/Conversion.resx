@@ -12,99 +12,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Conflict.Title">
-    <value>Fichiers existants</value>
-  </data>
-  <data name="Conflict.Heading">
-    <value>Certains fichiers existent déjà</value>
-  </data>
-  <data name="Conflict.Help">
-    <value>Choisissez une action pour chaque fichier ou appliquez la même action à tous.</value>
-  </data>
-  <data name="Conflict.File">
-    <value>Fichier</value>
-  </data>
-  <data name="Conflict.Action">
-    <value>Action</value>
-  </data>
-  <data name="Conflict.Overwrite">
-    <value>Écraser</value>
-  </data>
-  <data name="Conflict.Skip">
-    <value>Ignorer</value>
-  </data>
-  <data name="Conflict.Number">
-    <value>Prendre le numéro suivant</value>
-  </data>
-  <data name="Conflict.AllOverwrite">
-    <value>Tout écraser</value>
-  </data>
-  <data name="Conflict.AllSkip">
-    <value>Tout ignorer</value>
-  </data>
-  <data name="Conflict.AllNumber">
-    <value>Tout numéroter</value>
-  </data>
-  <data name="Conversion.Title">
-    <value>Conversion</value>
-  </data>
-  <data name="Conversion.SelectOutput">
-    <value>Sélectionnez au moins un format de sortie.</value>
-  </data>
-  <data name="Conversion.SourceAmbiguous">
-    <value>Source ambiguë</value>
-  </data>
-  <data name="Conversion.Summary">
-    <value>Bilan : {0} réussie(s), {1} échec(s).</value>
-  </data>
-  <data name="Conversion.Failures">
-    <value> Échecs : {0}</value>
-  </data>
-  <data name="Conversion.Source">
-    <value>Source</value>
-  </data>
-  <data name="Conversion.OutputNames">
-    <value>Nom des sorties</value>
-  </data>
-  <data name="Conversion.AddTags">
-    <value>Ajouter des tags</value>
-  </data>
-  <data name="Conversion.Selected">
-    <value>Sélections</value>
-  </data>
-  <data name="Conversion.CommonFormats">
-    <value>Formats courants</value>
-  </data>
-  <data name="Conversion.ShowRare">
-    <value>Afficher les formats rarement utilisés</value>
-  </data>
-  <data name="Conversion.LimitTracks">
-    <value>Limiter les pistes</value>
-  </data>
-  <data name="Conversion.SourceRequired">
-    <value>Choisissez une image source existante.</value>
-  </data>
-  <data name="Conversion.NameRequired">
-    <value>Indiquez le nom des fichiers de sortie.</value>
-  </data>
-  <data name="Conversion.CheckOutput">
-    <value>Cochez au moins un format de sortie.</value>
-  </data>
-  <data name="Conversion.More">
-    <value> (+ {0} conversion(s))</value>
-  </data>
-  <data name="Conversion.DefaultExtensionTip">
-    <value>Aucune extension cochée : {0} est utilisée par défaut.</value>
-  </data>
-  <data name="Conversion.Incompatible">
-    <value>{0} n’est pas compatible avec cette source.</value>
-  </data>
-  <data name="Conversion.NoAvailableOutputName">
-    <value>Impossible de trouver un nom de sortie disponible.</value>
-  </data>
-  <data name="Conversion.ReconstructedFlux">
-    <value>flux reconstruit</value>
-  </data>
+  <data name="Conflict.Title"><value>Fichiers existants</value></data>
+  <data name="Conflict.Heading"><value>Certains fichiers existent déjà</value></data>
+  <data name="Conflict.Help"><value>Choisissez une action pour chaque fichier ou appliquez la même action à tous.</value></data>
+  <data name="Conflict.File"><value>Fichier</value></data>
+<data name="Conflict.Overwrite"><value>Écraser</value></data>
+  <data name="Conflict.Skip"><value>Ignorer</value></data>
+  <data name="Conflict.Number"><value>Prendre le numéro suivant</value></data>
+  <data name="Conflict.AllOverwrite"><value>Tout écraser</value></data>
+  <data name="Conflict.AllSkip"><value>Tout ignorer</value></data>
+  <data name="Conflict.AllNumber"><value>Tout numéroter</value></data>
+<data name="Conversion.SelectOutput"><value>Sélectionnez au moins un format de sortie.</value></data>
+  <data name="Conversion.SourceAmbiguous"><value>Source ambiguë</value></data>
+  <data name="Conversion.Summary"><value>Bilan : {0} réussie(s), {1} échec(s).</value></data>
+  <data name="Conversion.Failures"><value> Échecs : {0}</value></data>
+<data name="Conversion.OutputNames"><value>Nom des sorties</value></data>
+  <data name="Conversion.AddTags"><value>Ajouter des tags</value></data>
+  <data name="Conversion.Selected"><value>Sélections</value></data>
+  <data name="Conversion.CommonFormats"><value>Formats courants</value></data>
+  <data name="Conversion.ShowRare"><value>Afficher les formats rarement utilisés</value></data>
+  <data name="Conversion.LimitTracks"><value>Limiter les pistes</value></data>
+  <data name="Conversion.SourceRequired"><value>Choisissez une image source existante.</value></data>
+  <data name="Conversion.NameRequired"><value>Indiquez le nom des fichiers de sortie.</value></data>
+  <data name="Conversion.CheckOutput"><value>Cochez au moins un format de sortie.</value></data>
+<data name="Conversion.DefaultExtensionTip"><value>Aucune extension cochée : {0} est utilisée par défaut.</value></data>
+  <data name="Conversion.Incompatible"><value>{0} n’est pas compatible avec cette source.</value></data>
+  <data name="Conversion.NoAvailableOutputName"><value>Impossible de trouver un nom de sortie disponible.</value></data>
+  <data name="Conversion.ReconstructedFlux"><value>flux reconstruit</value></data>
   <data name="Migration.Open"><value>Migration de fichiers...</value></data>
   <data name="Migration.Title"><value>Migration de fichiers</value></data>
   <data name="Migration.Heading"><value>Migrer les fichiers vers un autre système de fichiers</value></data>
@@ -116,7 +50,7 @@
   <data name="Migration.Waiting"><value>Sélectionnez une source et une destination.</value></data>
   <data name="Migration.Severity"><value>Gravité</value></data>
   <data name="Migration.Path"><value>Chemin source</value></data>
-  <data name="Migration.Description"><value>Description</value></data>
+  <data name="Migration.Description"><value>Désignation des marchandises</value></data>
   <data name="Migration.AcceptLosses"><value>Accepter les pertes de métadonnées indiquées</value></data>
   <data name="Migration.Execute"><value>Migrer les fichiers</value></data>
   <data name="Migration.Blocking"><value>Bloquant</value></data>
@@ -147,5 +81,7 @@
   <data name="Conversion.EngineInternalStart" xml:space="preserve"><value>Moteur interne : conversion de {0} vers {1}.</value></data>
   <data name="Conversion.EngineInternalComplete" xml:space="preserve"><value>Conversion interne terminée : {0}.</value></data>
   <data name="Conversion.EngineInternalUnavailable" xml:space="preserve"><value>Le moteur interne ne prend pas en charge cette conversion : {0}.</value></data>
-  <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Échec de la conversion interne {0} : {1}</value></data>
+  <data name="Conversion.EngineInternalFailed"><value>La conversion interne a échoué pour {0}: {1}</value></data>
+  <data name="Conflict.Action"><value>Décision</value></data>
+  <data name="Conversion.More"><value> ( ) {0} conversion(s)</value></data>
 </root>

@@ -12,118 +12,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Advanced">
-    <value>الإعدادات المتقدمة</value>
-  </data>
-  <data name="Common.ExpertArguments">
-    <value>حجج الخبراء</value>
-  </data>
-  <data name="Common.ExpertArgumentsTip">
-    <value>يتم تمرير الوسائط كما هي مكتوبة بعد التحقق من صحة الاقتباس.</value>
-  </data>
-  <data name="Advanced.SeekRetries">
-    <value>تسعى إلى إعادة المحاولة</value>
-  </data>
-  <data name="Advanced.FakeIndex">
-    <value>مؤشر وهمي</value>
-  </data>
-  <data name="Advanced.HardSectors">
-    <value>القطاعات الصعبة</value>
-  </data>
-  <data name="Advanced.Reverse">
-    <value>عكس بيانات المسار</value>
-  </data>
-  <data name="Advanced.AdjustSpeed">
-    <value>ضبط السرعة</value>
-  </data>
-  <data name="Advanced.Pll">
-    <value>PLL تجاوز</value>
-  </data>
-  <data name="Advanced.DensityPin">
-    <value>دبوس الكثافة 2</value>
-  </data>
-  <data name="Advanced.Tg43">
-    <value>توليد TG43</value>
-  </data>
-  <data name="Advanced.PreErase">
-    <value>مسح المسارات مسبقًا</value>
-  </data>
-  <data name="Advanced.Precomp">
-    <value>اكتب التعويض المسبق</value>
-  </data>
-  <data name="Advanced.OutputTracks">
-    <value>مسارات الإخراج</value>
-  </data>
-  <data name="Advanced.DiskDefs">
-    <value>تعريفات القرص المخصصة</value>
-  </data>
-  <data name="Advanced.DiskDefsFilter">
-    <value>Greaseweazle تعريفات القرص (*.cfg)|*.cfg|كافة الملفات|*.*</value>
-  </data>
-  <data name="Advanced.DiskDefsMissing">
-    <value>ملف تعريفات القرص المحدد غير موجود.</value>
-  </data>
-  <data name="Advanced.Invalid">
-    <value>الإعداد المتقدم غير صالح: {0}</value>
-  </data>
-  <data name="Advanced.TrackSpecTip">
-    <value>مواصفات المسار، على سبيل المثال c=0-79:h=0-1، c=0-79/2:h=0، أو c=0-79:h=0-1:hswap.</value>
-  </data>
-  <data name="Advanced.SpeedTip">
-    <value>السرعة أو الفترة الإيجابية، على سبيل المثال 300 دورة في الدقيقة، أو 200 مللي ثانية، أو 200000us، أو 200000000ns.</value>
-  </data>
-  <data name="Advanced.PllTip">
-    <value>معلمات PLL مفصولة بنقطتين، على سبيل المثال، الفترة=5:phase=60 أو الفترة=5:phase=60:lowpass=2.</value>
-  </data>
-  <data name="Advanced.PrecompTip">
-    <value>اكتب التعويض المسبق، على سبيل المثال اكتب=mfm:40=125. الأنواع: mfm، fm، gcr؛ القيم في نانو ثانية.</value>
-  </data>
-  <data name="Advanced.DiskDefsTip">
-    <value>استخدم ملف diskdefs.cfg مخصص لإضافة أو تجاوز تعريفات تنسيق Greaseweazle.</value>
-  </data>
-  <data name="Advanced.RevsTip">
-    <value>--revs: عدد الثورات المقروءة لكل مسار. مثال: --revs 5.</value>
-  </data>
-  <data name="Advanced.RetriesTip">
-    <value>--retries: محاولات إضافية بعد حدوث خطأ. مثال: --retries 3.</value>
-  </data>
-  <data name="Advanced.TracksTip">
-    <value>--tracks: الحد من الأسطوانات أو الرؤوس أو الخطوات. مثال: --tracks ج=0-79:ح=0-1.</value>
-  </data>
-  <data name="Advanced.SeekRetriesTip">
-    <value>--seek-retries: محاولات إضافية بعد تحريك الرأس. مثال: --seek-retries 2.</value>
-  </data>
-  <data name="Advanced.FakeIndexTip">
-    <value>--fake-index: إنشاء فهرس موقوت لمحرك أقراص بدون إشارة فهرس. مثال: --fake-index 300 دورة في الدقيقة.</value>
-  </data>
-  <data name="Advanced.HardSectorsTip">
-    <value>--hard-sectors: التعامل مع القرص الصلب. غير متوافق مع --fake-index.</value>
-  </data>
-  <data name="Advanced.ReverseTip">
-    <value>--reverse: عكس بيانات المسار للوسائط أو الأسلاك المتقلبة.</value>
-  </data>
-  <data name="Advanced.AdjustSpeedTip">
-    <value>--adjust-speed: إعادة قياس توقيت البيانات. مثال: --adjust-speed 300 دورة في الدقيقة.</value>
-  </data>
-  <data name="Advanced.PllOptionTip">
-    <value>--pll: قم بتكوين حلقة استرداد الساعة. مثال: --pll الفترة=5:المرحلة=60.</value>
-  </data>
-  <data name="Advanced.DenselTip">
-    <value>--densel: قم بفرض دبوس تحديد الكثافة على مستوى عالٍ أو منخفض. مثال: --densel ح.</value>
-  </data>
-  <data name="Advanced.Tg43Tip">
-    <value>--gen-tg43: قم بإنشاء إشارة TG43 لمحركات الأقراص التي تتطلب ذلك. غير متوافق مع --densel.</value>
-  </data>
-  <data name="Advanced.EraseEmptyTip">
-    <value>--erase-empty: مسح المسارات التي لا تحتوي الصورة المصدر على بيانات لها.</value>
-  </data>
-  <data name="Advanced.PreEraseTip">
-    <value>--pre-erase: امسح كل مسار قبل كتابته.</value>
-  </data>
-  <data name="Advanced.PrecompOptionTip">
-    <value>--precomp: تطبيق التعويض المسبق للكتابة. مثال: --precomp النوع=mfm:40=125.</value>
-  </data>
-  <data name="Advanced.OutputTracksTip">
-    <value>--out-tracks: إعادة تعيين المسارات في الصورة الناتجة. مثال: --out-tracks ج=0-79:ح=0-1.</value>
-  </data>
+  <data name="Common.Advanced"><value>الإعدادات المتقدمة</value></data>
+  <data name="Common.ExpertArguments"><value>حجج الخبراء</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>يتم تمرير الوسائط كما هي مكتوبة بعد التحقق من صحة الاقتباس.</value></data>
+  <data name="Advanced.SeekRetries"><value>تسعى إلى إعادة المحاولة</value></data>
+  <data name="Advanced.FakeIndex"><value>مؤشر وهمي</value></data>
+  <data name="Advanced.HardSectors"><value>القطاعات الصعبة</value></data>
+  <data name="Advanced.Reverse"><value>عكس بيانات المسار</value></data>
+  <data name="Advanced.AdjustSpeed"><value>ضبط السرعة</value></data>
+  <data name="Advanced.Pll"><value>PLL تجاوز</value></data>
+  <data name="Advanced.DensityPin"><value>دبوس الكثافة 2</value></data>
+  <data name="Advanced.Tg43"><value>توليد TG43</value></data>
+  <data name="Advanced.PreErase"><value>مسح المسارات مسبقًا</value></data>
+  <data name="Advanced.Precomp"><value>اكتب التعويض المسبق</value></data>
+  <data name="Advanced.OutputTracks"><value>مسارات الإخراج</value></data>
+  <data name="Advanced.DiskDefs"><value>تعريفات القرص المخصصة</value></data>
+  <data name="Advanced.DiskDefsFilter"><value>Greaseweazle تعريفات القرص (*.cfg)|*.cfg|كافة الملفات|*.*</value></data>
+  <data name="Advanced.DiskDefsMissing"><value>ملف تعريفات القرص المحدد غير موجود.</value></data>
+  <data name="Advanced.Invalid"><value>الإعداد المتقدم غير صالح: {0}</value></data>
+  <data name="Advanced.TrackSpecTip"><value>مواصفات المسار، على سبيل المثال c=0-79:h=0-1، c=0-79/2:h=0، أو c=0-79:h=0-1:hswap.</value></data>
+  <data name="Advanced.SpeedTip"><value>السرعة أو الفترة الإيجابية، على سبيل المثال 300 دورة في الدقيقة، أو 200 مللي ثانية، أو 200000us، أو 200000000ns.</value></data>
+  <data name="Advanced.PllTip"><value>معلمات PLL مفصولة بنقطتين، على سبيل المثال، الفترة=5:phase=60 أو الفترة=5:phase=60:lowpass=2.</value></data>
+  <data name="Advanced.PrecompTip"><value>اكتب التعويض المسبق، على سبيل المثال اكتب=mfm:40=125. الأنواع: mfm، fm، gcr؛ القيم في نانو ثانية.</value></data>
+  <data name="Advanced.DiskDefsTip"><value>استخدم ملف diskdefs.cfg مخصص لإضافة أو تجاوز تعريفات تنسيق Greaseweazle.</value></data>
+  <data name="Advanced.RevsTip"><value>--revs: عدد الثورات المقروءة لكل مسار. مثال: --revs 5.</value></data>
+  <data name="Advanced.RetriesTip"><value>--retries: محاولات إضافية بعد حدوث خطأ. مثال: --retries 3.</value></data>
+  <data name="Advanced.TracksTip"><value>--tracks: الحد من الأسطوانات أو الرؤوس أو الخطوات. مثال: --tracks ج=0-79:ح=0-1.</value></data>
+  <data name="Advanced.SeekRetriesTip"><value>--seek-retries: محاولات إضافية بعد تحريك الرأس. مثال: --seek-retries 2.</value></data>
+  <data name="Advanced.FakeIndexTip"><value>--fake-index: إنشاء فهرس موقوت لمحرك أقراص بدون إشارة فهرس. مثال: --fake-index 300 دورة في الدقيقة.</value></data>
+  <data name="Advanced.HardSectorsTip"><value>--hard-sectors: التعامل مع القرص الصلب. غير متوافق مع --fake-index.</value></data>
+  <data name="Advanced.ReverseTip"><value>--reverse: عكس بيانات المسار للوسائط أو الأسلاك المتقلبة.</value></data>
+  <data name="Advanced.AdjustSpeedTip"><value>--adjust-speed: إعادة قياس توقيت البيانات. مثال: --adjust-speed 300 دورة في الدقيقة.</value></data>
+  <data name="Advanced.PllOptionTip"><value>--pll: قم بتكوين حلقة استرداد الساعة. مثال: --pll الفترة=5:المرحلة=60.</value></data>
+  <data name="Advanced.DenselTip"><value>- مزيل: قوة دبوس حشرات الكثافة عالية أو منخفضة. H.</value></data>
+  <data name="Advanced.Tg43Tip"><value>--gen-tg43: قم بإنشاء إشارة TG43 لمحركات الأقراص التي تتطلب ذلك. غير متوافق مع --densel.</value></data>
+  <data name="Advanced.EraseEmptyTip"><value>--erase-empty: مسح المسارات التي لا تحتوي الصورة المصدر على بيانات لها.</value></data>
+  <data name="Advanced.PreEraseTip"><value>--pre-erase: امسح كل مسار قبل كتابته.</value></data>
+  <data name="Advanced.PrecompOptionTip"><value>--precomp: تطبيق التعويض المسبق للكتابة. مثال: --precomp النوع=mfm:40=125.</value></data>
+  <data name="Advanced.OutputTracksTip"><value>--out-tracks: إعادة تعيين المسارات في الصورة الناتجة. مثال: --out-tracks ج=0-79:ح=0-1.</value></data>
 </root>

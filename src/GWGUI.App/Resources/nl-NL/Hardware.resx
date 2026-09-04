@@ -12,148 +12,51 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Hardware.Port">
-    <value>Haven</value>
-  </data>
-  <data name="Hardware.UsbId">
-    <value>USB identificatie</value>
-  </data>
-  <data name="Hardware.Drive">
-    <value>Drijfveer</value>
-  </data>
-  <data name="Hardware.Available">
-    <value>Beschikbaar</value>
-  </data>
-  <data name="Hardware.Scan">
-    <value>Scannen</value>
-  </data>
-  <data name="Hardware.AddDrive">
-    <value>Een schijf toevoegen…</value>
-  </data>
-  <data name="Hardware.NoDrive">
-    <value>Geen schijf gedefinieerd</value>
-  </data>
-  <data name="Hardware.EditorTitle">
-    <value>Definieer een schijf</value>
-  </data>
-  <data name="Hardware.Controller">
-    <value>Greaseweazle regelaar</value>
-  </data>
-  <data name="Hardware.GwSelection">
-    <value>Selectie doorgegeven aan g</value>
-  </data>
-  <data name="Hardware.PhysicalSize">
-    <value>Fysieke grootte</value>
-  </data>
-  <data name="Hardware.SizeShort">
-    <value>Maat</value>
-  </data>
-  <data name="Hardware.DensityShort">
-    <value>Dikte</value>
-  </data>
-  <data name="Hardware.SpeedShort">
-    <value>Snelheid</value>
-  </data>
-  <data name="Hardware.AvailableState">
-    <value>Beschikbaar</value>
-  </data>
-  <data name="Hardware.UnavailableState">
-    <value>Niet beschikbaar</value>
-  </data>
-  <data name="Hardware.DensityDescription">
-    <value>Drive-dichtheid (alleen beschrijving)</value>
-  </data>
-  <data name="Hardware.SpeedDescription">
-    <value>Nominale snelheid (alleen beschrijving)</value>
-  </data>
-  <data name="Hardware.NotConfigured">
-    <value>Controller niet geconfigureerd</value>
-  </data>
-  <data name="Hardware.Disconnected">
-    <value>losgekoppeld</value>
-  </data>
-  <data name="Hardware.SelectedDisconnected">
-    <value>De geselecteerde schijf is losgekoppeld. Sluit hem opnieuw aan of scan opnieuw in Opties → Controllers en schijven.</value>
-  </data>
-  <data name="Hardware.DriveLabel">
-    <value>{0}-inch · {1} · {2} · {3}</value>
-  </data>
-  <data name="Hardware.DriveDialogTitle">
-    <value>Drijfveer</value>
-  </data>
-  <data name="Hardware.ControllerRequired">
-    <value>Scan of voeg eerst een Greaseweazle-controller toe.</value>
-  </data>
-  <data name="Hardware.Description">
-    <value>{0}-inch · {1} · selectie {2}{3}</value>
-  </data>
-  <data name="Hardware.ScanTitle">
-    <value>Scannen</value>
-  </data>
-  <data name="Hardware.GwRequired">
-    <value>Selecteer of download eerst gw.exe hieronder.</value>
-  </data>
-  <data name="Hardware.StartupTitle">
-    <value>Hardwarecontrole</value>
-  </data>
-  <data name="Hardware.StartupMissing">
-    <value>Geconfigureerde hardware kan niet worden gevonden</value>
-  </data>
-  <data name="Hardware.StartupExplanation">
-    <value>De configuratie blijft behouden, maar de bijbehorende schijven blijven onbeschikbaar totdat hun Greaseweazle opnieuw wordt gevonden.</value>
-  </data>
-  <data name="Hardware.StartupMissingList">
-    <value>Ontbrekende Greaseweazle-controllers</value>
-  </data>
-  <data name="Hardware.StartupRetry">
-    <value>Zoek opnieuw</value>
-  </data>
-  <data name="Hardware.StartupSettings">
-    <value>Hardware-instellingen</value>
-  </data>
-  <data name="Hardware.StartupContinue">
-    <value>Ga verder zonder deze rit</value>
-  </data>
-  <data name="Hardware.StartupCheckFailed">
-    <value>De hardwarecontrole is mislukt: {0}</value>
-  </data>
-  <data name="Hardware.NewDetectedTitle">
-    <value>Nieuwe Greaseweazle gedetecteerd</value>
-  </data>
-  <data name="Hardware.NewDetected">
-    <value>{0} is gedetecteerd op {1}. Wilt u de schijf nu configureren?</value>
-  </data>
-  <data name="Hardware.ConfigurationState">
-    <value>Configuratie</value>
-  </data>
-  <data name="Hardware.Configured">
-    <value>Geconfigureerd</value>
-  </data>
-  <data name="Hardware.NotConfiguredState">
-    <value>Gedetecteerd, niet geconfigureerd</value>
-  </data>
-  <data name="Hardware.Configure">
-    <value>Configureer</value>
-  </data>
-  <data name="Hardware.ReaderNumber">
-    <value>Rijd {0}</value>
-  </data>
-  <data name="Hardware.DriveChoice">
-    <value>Aandrijving {0} · {1}″ · {2} · {3}</value>
-  </data>
-  <data name="Hardware.Forget">
-    <value>Vergeten</value>
-  </data>
-  <data name="Hardware.ForgetConfirm">
-    <value>Wil je deze schijf of dit apparaat echt vergeten?</value>
-  </data>
-  <data name="Hardware.ForgetLastConfirm">
-    <value>Dit is de laatst geconfigureerde schijf voor deze Greaseweazle. Wilt u zowel de schijf als de Greaseweazle vergeten?</value>
-  </data>
-  <data name="Hardware.SelectController">
-    <value>Selecteer eerst een rij die bij de relevante Greaseweazle hoort.</value>
-  </data>
-  <data name="Hardware.MaximumDrives">
-    <value>Aan deze Greaseweazle kunnen maximaal twee schijven automatisch worden toegewezen (A en B).</value>
-  </data>
+  <data name="Hardware.Port"><value>Haven</value></data>
+  <data name="Hardware.UsbId"><value>USB identificatie</value></data>
+  <data name="Hardware.Drive"><value>Drijfveer</value></data>
+  <data name="Hardware.Available"><value>Beschikbaar</value></data>
+  <data name="Hardware.Scan"><value>Scannen</value></data>
+  <data name="Hardware.AddDrive"><value>Een schijf toevoegen…</value></data>
+  <data name="Hardware.NoDrive"><value>Geen schijf gedefinieerd</value></data>
+  <data name="Hardware.EditorTitle"><value>Definieer een schijf</value></data>
+  <data name="Hardware.Controller"><value>Greaseweazle regelaar</value></data>
+  <data name="Hardware.GwSelection"><value>Selectie doorgegeven aan g</value></data>
+  <data name="Hardware.PhysicalSize"><value>Fysieke grootte</value></data>
+  <data name="Hardware.SizeShort"><value>Maat</value></data>
+  <data name="Hardware.DensityShort"><value>Dikte</value></data>
+  <data name="Hardware.SpeedShort"><value>Snelheid</value></data>
+  <data name="Hardware.AvailableState"><value>Beschikbaar</value></data>
+  <data name="Hardware.UnavailableState"><value>Niet beschikbaar</value></data>
+  <data name="Hardware.DensityDescription"><value>Drive-dichtheid (alleen beschrijving)</value></data>
+  <data name="Hardware.SpeedDescription"><value>Nominale snelheid (alleen beschrijving)</value></data>
+  <data name="Hardware.NotConfigured"><value>Controller niet geconfigureerd</value></data>
+  <data name="Hardware.Disconnected"><value>losgekoppeld</value></data>
+  <data name="Hardware.SelectedDisconnected"><value>De geselecteerde schijf is losgekoppeld. Sluit hem opnieuw aan of scan opnieuw in Opties → Controllers en schijven.</value></data>
+<data name="Hardware.DriveDialogTitle"><value>Drijfveer</value></data>
+  <data name="Hardware.ControllerRequired"><value>Scan of voeg eerst een Greaseweazle-controller toe.</value></data>
+  <data name="Hardware.Description"><value>{0}-inch · {1} · selectie {2}{3}</value></data>
+  <data name="Hardware.ScanTitle"><value>Scannen</value></data>
+  <data name="Hardware.GwRequired"><value>Selecteer of download eerst gw.exe hieronder.</value></data>
+  <data name="Hardware.StartupTitle"><value>Hardwarecontrole</value></data>
+  <data name="Hardware.StartupMissing"><value>Geconfigureerde hardware kan niet worden gevonden</value></data>
+  <data name="Hardware.StartupExplanation"><value>De configuratie blijft behouden, maar de bijbehorende schijven blijven onbeschikbaar totdat hun Greaseweazle opnieuw wordt gevonden.</value></data>
+  <data name="Hardware.StartupMissingList"><value>Ontbrekende Greaseweazle-controllers</value></data>
+  <data name="Hardware.StartupRetry"><value>Zoek opnieuw</value></data>
+  <data name="Hardware.StartupSettings"><value>Hardware-instellingen</value></data>
+  <data name="Hardware.StartupContinue"><value>Ga verder zonder deze rit</value></data>
+  <data name="Hardware.StartupCheckFailed"><value>De hardwarecontrole is mislukt: {0}</value></data>
+  <data name="Hardware.NewDetectedTitle"><value>Nieuwe Greaseweazle gedetecteerd</value></data>
+  <data name="Hardware.NewDetected"><value>{0} is gedetecteerd op {1}. Wilt u de schijf nu configureren?</value></data>
+  <data name="Hardware.ConfigurationState"><value>Configuratie</value></data>
+  <data name="Hardware.Configured"><value>Geconfigureerd</value></data>
+  <data name="Hardware.NotConfiguredState"><value>Gedetecteerd, niet geconfigureerd</value></data>
+  <data name="Hardware.Configure"><value>Configureer</value></data>
+  <data name="Hardware.ReaderNumber"><value>Rijd {0}</value></data>
+  <data name="Hardware.DriveChoice"><value>Aandrijving {0} · {1}″ · {2} · {3}</value></data>
+  <data name="Hardware.Forget"><value>Vergeten</value></data>
+  <data name="Hardware.ForgetConfirm"><value>Wil je deze schijf of dit apparaat echt vergeten?</value></data>
+  <data name="Hardware.ForgetLastConfirm"><value>Dit is de laatst geconfigureerde schijf voor deze Greaseweazle. Wilt u zowel de schijf als de Greaseweazle vergeten?</value></data>
+  <data name="Hardware.SelectController"><value>Selecteer eerst een rij die bij de relevante Greaseweazle hoort.</value></data>
+  <data name="Hardware.MaximumDrives"><value>Aan deze Greaseweazle kunnen maximaal twee schijven automatisch worden toegewezen (A en B).</value></data>
 </root>

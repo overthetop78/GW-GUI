@@ -73,12 +73,17 @@ public sealed class EmulationVideoConfigurationTests
                 Sepia: true),
             Crt = new(BeamIntensity: 101, ScanlineIntensity: -1),
             FixedPixel = new(ResponseTimeMilliseconds: 1001),
-            Plasma = new(Diffusion: 101),
+            Plasma = new(Diffusion: 101, BlackDepth: -1,
+                PhosphorIntensity: 102, GammaResponse: -2,
+                AutomaticBrightnessLimiter: 103),
             Vector = new(LineIntensity: -1),
             Vfd = new((EmulationVfdColor)999, PhosphorIntensity: 101,
-                HaloIntensity: -1, PersistenceIntensity: 102),
+                EmissionThreshold: -1, GlassDarkening: 102,
+                Structure: (EmulationVfdStructure)999, CellSize: 103, CellGap: -2,
+                HaloIntensity: -1, HaloRadius: 104, PersistenceMilliseconds: 1001),
             LedMatrix = new((EmulationLedMatrixColor)999, CellSize: 101, CellGap: -1,
-                Diffusion: 102, Brightness: -2),
+                Diffusion: 102, Brightness: -2, Shape: (EmulationLedMatrixShape)999,
+                HaloRadius: 103, BlackDepth: -3),
             DotMatrix = new((EmulationDotMatrixPalette)999, (EmulationDotMatrixShape)999,
                 DotSize: 101, Contrast: -1, ResponseTimeMilliseconds: 1001),
             SegmentDisplay = new((EmulationSegmentDisplayLayout)999,
@@ -116,16 +121,29 @@ public sealed class EmulationVideoConfigurationTests
         Assert.Equal(0, normalized.Crt.ScanlineIntensity);
         Assert.Equal(1000, normalized.FixedPixel.ResponseTimeMilliseconds);
         Assert.Equal(100, normalized.Plasma.Diffusion);
+        Assert.Equal(0, normalized.Plasma.BlackDepth);
+        Assert.Equal(100, normalized.Plasma.PhosphorIntensity);
+        Assert.Equal(0, normalized.Plasma.GammaResponse);
+        Assert.Equal(100, normalized.Plasma.AutomaticBrightnessLimiter);
         Assert.Equal(0, normalized.Vector.LineIntensity);
         Assert.Equal(EmulationVfdColor.Blue, normalized.Vfd.Color);
         Assert.Equal(100, normalized.Vfd.PhosphorIntensity);
+        Assert.Equal(0, normalized.Vfd.EmissionThreshold);
+        Assert.Equal(100, normalized.Vfd.GlassDarkening);
+        Assert.Equal(EmulationVfdStructure.Graphic, normalized.Vfd.Structure);
+        Assert.Equal(100, normalized.Vfd.CellSize);
+        Assert.Equal(0, normalized.Vfd.CellGap);
         Assert.Equal(0, normalized.Vfd.HaloIntensity);
-        Assert.Equal(100, normalized.Vfd.PersistenceIntensity);
+        Assert.Equal(100, normalized.Vfd.HaloRadius);
+        Assert.Equal(1000, normalized.Vfd.PersistenceMilliseconds);
         Assert.Equal(EmulationLedMatrixColor.Rgb, normalized.LedMatrix.Color);
         Assert.Equal(100, normalized.LedMatrix.CellSize);
         Assert.Equal(0, normalized.LedMatrix.CellGap);
         Assert.Equal(100, normalized.LedMatrix.Diffusion);
         Assert.Equal(0, normalized.LedMatrix.Brightness);
+        Assert.Equal(EmulationLedMatrixShape.Round, normalized.LedMatrix.Shape);
+        Assert.Equal(100, normalized.LedMatrix.HaloRadius);
+        Assert.Equal(0, normalized.LedMatrix.BlackDepth);
         Assert.Equal(EmulationDotMatrixPalette.Green, normalized.DotMatrix.Palette);
         Assert.Equal(EmulationDotMatrixShape.Round, normalized.DotMatrix.Shape);
         Assert.Equal(100, normalized.DotMatrix.DotSize);
@@ -329,13 +347,18 @@ public sealed class EmulationVideoConfigurationTests
         FixedPixel = new(EmulationFixedPixelTechnology.Oled, EmulationSubpixelLayout.Bgr,
             GridIntensity: 21, ResponseTimeMilliseconds: 17, BlackDepth: 83),
         Plasma = new(CellStructure: 18, Diffusion: 27, TemporalDithering: 36,
-            PersistenceIntensity: 45),
-        Vector = new(LineThreshold: 12, LineIntensity: 91, HaloIntensity: 48,
-            PersistenceIntensity: 34),
+            PersistenceIntensity: 45, BlackDepth: 54, PhosphorIntensity: 63,
+            GammaResponse: 72, AutomaticBrightnessLimiter: 81),
+        Vector = new(LineThreshold: 12, LineIntensity: 91, BeamWidth: 58,
+            BeamFocus: 67, PhosphorColor: EmulationCrtColorMode.Green,
+            HaloIntensity: 48, HaloRadius: 29, PersistenceIntensity: 34),
         Vfd = new(EmulationVfdColor.Green, PhosphorIntensity: 72,
-            HaloIntensity: 31, PersistenceIntensity: 26),
+            EmissionThreshold: 23, GlassDarkening: 64,
+            Structure: EmulationVfdStructure.DotMatrix, CellSize: 55, CellGap: 17,
+            HaloIntensity: 31, HaloRadius: 42, PersistenceMilliseconds: 126),
         LedMatrix = new(EmulationLedMatrixColor.Amber, CellSize: 44, CellGap: 33,
-            Diffusion: 22, Brightness: 88),
+            Diffusion: 22, Brightness: 88, Shape: EmulationLedMatrixShape.Square,
+            HaloRadius: 37, BlackDepth: 92),
         DotMatrix = new(EmulationDotMatrixPalette.Blue, EmulationDotMatrixShape.Square,
             DotSize: 66, Contrast: 77, ResponseTimeMilliseconds: 145),
         SegmentDisplay = new(EmulationSegmentDisplayLayout.Fourteen,

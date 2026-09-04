@@ -12,33 +12,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.SettingsSaveFailed">
-    <value>Instellingen konden niet worden opgeslagen.
-
-{0}</value>
-  </data>
-  <data name="Error.Title">
-    <value>GW GUI fout</value>
-  </data>
-  <data name="Error.Unexpected">
-    <value>Er is een onverwachte fout onderschept.
-
-{0}</value>
-  </data>
-  <data name="Error.SaveFailed">
-    <value>De instellingen konden niet worden opgeslagen. Het venster gaat nog steeds dicht.
-
-{0}</value>
-  </data>
-  <data name="Error.LogSaved">
-    <value>Het volledige rapport is opgeslagen in:
-{0}</value>
-  </data>
+  <data name="App.SettingsSaveFailed"><value>Instellingen konden niet worden opgeslagen.&#xA;&#xA;{0}</value></data>
+  <data name="Error.Title"><value>GW GUI fout</value></data>
+  <data name="Error.Unexpected"><value>Er is een onverwachte fout onderschept.&#xA;&#xA;{0}</value></data>
+  <data name="Error.SaveFailed"><value>De instellingen konden niet worden opgeslagen. Het venster gaat nog steeds dicht.&#xA;&#xA;{0}</value></data>
+  <data name="Error.LogSaved"><value>Het volledige rapport is opgeslagen in:&#xA;{0}</value></data>
   <data name="Error.Description.NetworkTimeout"><value>De remote service reageerde niet voordat de verbinding was uitgeschakeld. Controleer de netwerkverbinding en probeer het opnieuw.</value></data>
   <data name="Error.Description.NetworkDns"><value>Het remote service adres kon niet worden opgelost. Controleer de netwerk- of DNS-instellingen en probeer het opnieuw.</value></data>
   <data name="Error.Description.NetworkRefused"><value>De remote service weigerde de verbinding. Het kan niet beschikbaar of geblokkeerd zijn.</value></data>
   <data name="Error.Description.NetworkUnavailable"><value>De remote service kon niet worden bereikt. Controleer de internetverbinding, firewall, VPN of proxy-instellingen en probeer het opnieuw.</value></data>
-  <data name="Error.Description.HttpStatus"><value>De remote service gaf HTTP status {0} terug. Probeer het later nog eens.</value></data>
+  <data name="Error.Description.HttpStatus"><value>De remote service is teruggekomen HTTP status {0}. Probeer het later nog eens.</value></data>
   <data name="Error.Description.OperationTimeout"><value>De operatie eindigde niet binnen de toegestane tijd. Probeer het nog eens.</value></data>
   <data name="Error.Description.OperationCancelled"><value>De operatie werd geannuleerd voordat het af was.</value></data>
   <data name="Error.Description.AccessDenied"><value>GW GUI heeft geen rechten om toegang te krijgen tot het gevraagde bestand, map of apparaat.</value></data>

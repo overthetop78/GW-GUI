@@ -12,51 +12,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Cancel">
-    <value>ยกเลิก</value>
-  </data>
-  <data name="Common.Save">
-    <value>บันทึก</value>
-  </data>
-  <data name="Common.Create">
-    <value>สร้าง</value>
-  </data>
-  <data name="Common.Delete">
-    <value>ลบ</value>
-  </data>
-  <data name="Common.Browse">
-    <value>เรียกดู...</value>
-  </data>
-  <data name="Common.Choose">
-    <value>เลือก…</value>
-  </data>
-  <data name="Common.Close">
-    <value>ปิด</value>
-  </data>
-  <data name="Common.Execute">
-    <value>ดำเนินการ</value>
-  </data>
-  <data name="Common.Stop">
-    <value>หยุด</value>
-  </data>
-  <data name="Common.Continue">
-    <value>ดำเนินการต่อ</value>
-  </data>
-  <data name="Common.Reset">
-    <value>รีเซ็ต</value>
-  </data>
-  <data name="Common.Copy">
-    <value>สำเนา</value>
-  </data>
-  <data name="Common.Modify">
-    <value>แก้ไข</value>
-  </data>
-  <data name="Common.Hide">
-    <value>ซ่อน</value>
-  </data>
-  <data name="Common.Export">
-    <value>ส่งออก</value>
-  </data>
+  <data name="Common.Cancel"><value>ยกเลิก</value></data>
+  <data name="Common.Save"><value>บันทึก</value></data>
+  <data name="Common.Create"><value>สร้าง</value></data>
+  <data name="Common.Delete"><value>ลบ</value></data>
+  <data name="Common.Browse"><value>เรียกดู...</value></data>
+  <data name="Common.Choose"><value>เลือก…</value></data>
+  <data name="Common.Close"><value>ปิด</value></data>
+  <data name="Common.Execute"><value>ดำเนินการ</value></data>
+  <data name="Common.Stop"><value>หยุด</value></data>
+  <data name="Common.Continue"><value>ดำเนินการต่อ</value></data>
+  <data name="Common.Reset"><value>รีเซ็ต</value></data>
+  <data name="Common.Copy"><value>สำเนา</value></data>
+  <data name="Common.Modify"><value>แก้ไข</value></data>
+  <data name="Common.Hide"><value>ซ่อน</value></data>
+  <data name="Common.Export"><value>ส่งออก</value></data>
   <data name="Common.New"><value>ใหม่</value></data>
   <data name="Common.Refresh"><value>รีเฟรช</value></data>
   <data name="Common.OpenFolder"><value>เปิดโฟลเดอร์</value></data>

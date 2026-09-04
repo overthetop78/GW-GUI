@@ -12,127 +12,45 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Read.Title">
-    <value>Lesen</value>
-  </data>
-  <data name="Read.NameRequired">
-    <value>Geben Sie einen Dateinamen ein.</value>
-  </data>
-  <data name="Read.TypeRequired">
-    <value>Wählen Sie einen kompatiblen Bildtyp.</value>
-  </data>
-  <data name="Read.FileExistsTitle">
-    <value>Vorhandene Datei</value>
-  </data>
-  <data name="Read.FileExists">
-    <value>Diese Datei existiert bereits.</value>
-  </data>
-  <data name="Read.ConflictPath">
-    <value>Vorhandene Datei</value>
-  </data>
-  <data name="Read.ConflictOverwrite">
-    <value>Überschreiben</value>
-  </data>
-  <data name="Read.ConflictNextNumber">
-    <value>Verwenden Sie die nächste Nummer</value>
-  </data>
-  <data name="Read.ConflictEditName">
-    <value>Lassen Sie mich den Namen bearbeiten</value>
-  </data>
-  <data name="Read.ImageToCreate">
-    <value>Bild zum Erstellen</value>
-  </data>
-  <data name="Read.Extension">
-    <value>Verlängerung</value>
-  </data>
-  <data name="Read.RawScp">
-    <value>Rohbild (SCP)</value>
-  </data>
-  <data name="Read.KnownFormat">
-    <value>Bekanntes Festplattenformat</value>
-  </data>
-  <data name="Read.FileName">
-    <value>Dateiname</value>
-  </data>
-  <data name="Read.Folder">
-    <value>Ordner</value>
-  </data>
-  <data name="Read.Revolutions">
-    <value>Umdrehungen pro Spur</value>
-  </data>
-  <data name="Read.Retries">
-    <value>Wiederholungen</value>
-  </data>
-  <data name="Read.Tracks">
-    <value>Titel/Seiten</value>
-  </data>
-  <data name="Read.AutoNumber">
-    <value>Erfolgreiche Lesevorgänge automatisch nummerieren</value>
-  </data>
-  <data name="Read.Digits">
-    <value>Ziffern</value>
-  </data>
-  <data name="Read.Letters">
-    <value>Briefe</value>
-  </data>
-  <data name="Read.Next">
-    <value>Nächste:</value>
-  </data>
-  <data name="Read.OpenVisualize">
-    <value>In Visualisierung öffnen</value>
-  </data>
-  <data name="Read.ScpFinished">
-    <value>Die SCP-Erfassung ist abgeschlossen. Sie können es analysieren, ohne Ihre Arbeit zu unterbrechen.</value>
-  </data>
-  <data name="Read.ScpSummaryTitle">
-    <value>Endgültiges SCP-Ergebnis:</value>
-  </data>
-  <data name="Read.ScpTracksSummary">
-    <value>Spuren: {0} gut, {1} fehlt oder ungültig ({2} Zylinder, {3} Seiten).</value>
-  </data>
-  <data name="Read.ScpTechnicalSummary">
-    <value>Umdrehungen: {0} · Auflösung: {1} ns · Größe: {2:N0} Bytes · Prüfsumme: {3}.</value>
-  </data>
-  <data name="Read.ScpOutputFile">
-    <value>Datei: {0}</value>
-  </data>
-  <data name="Read.ScpSummaryUnavailable">
-    <value>SCP Zusammenfassung nicht verfügbar: {0}</value>
-  </data>
-  <data name="Read.ScpBannerSummary">
-    <value>{0} gute Spuren · {1} fehlen oder ungültig · {2} Zylinder · {3} Seiten · {4} Umdrehungen · {5:N0} Bytes · {6} Prüfsumme</value>
-  </data>
-  <data name="Read.ChooseType">
-    <value>Wählen Sie einen Bildtyp</value>
-  </data>
-  <data name="Read.DestinationFolder">
-    <value>Zielordner</value>
-  </data>
-  <data name="Read.CancelledFileDeleted">
-    <value>Lesen abgebrochen: Die unvollständige Datei wurde gelöscht: {0}</value>
-  </data>
-  <data name="Read.CancelledFileDeleteFailed">
-    <value>Der Lesevorgang wurde abgebrochen, aber die unvollständige Datei konnte nicht gelöscht werden: {0} – {1}</value>
-  </data>
-  <data name="Read.OpenExplore">
-    <value>Dateien durchsuchen</value>
-  </data>
-  <data name="Read.InternalReader">
-    <value>Interne physische Datenträgerlesung (experimentell)</value>
-  </data>
-  <data name="Read.InternalReaderTip">
-    <value>Liest den Fluss direkt über das Greaseweazle-Protokoll; gw.exe bleibt die Standardeinstellung.</value>
-  </data>
-  <data name="Read.InternalPreview">
-    <value>Interne physische Datenträgerlesung nach {0}</value>
-  </data>
-  <data name="Read.InternalRawScpOnly">
-    <value>Die interne Lesefunktion erstellt derzeit nur rohe SCP-Abbilder.</value>
-  </data>
-  <data name="Read.InternalUnsupportedOptions">
-    <value>Einige aktivierte Optionen werden vom internen Leser noch nicht unterstützt.</value>
-  </data>
-  <data name="Read.InternalInvalidOptions">
-    <value>Die internen Leseeinstellungen sind ungültig.</value>
-  </data>
+  <data name="Read.Title"><value>Lesen</value></data>
+  <data name="Read.NameRequired"><value>Geben Sie einen Dateinamen ein.</value></data>
+  <data name="Read.TypeRequired"><value>Wählen Sie einen kompatiblen Bildtyp.</value></data>
+  <data name="Read.FileExistsTitle"><value>Vorhandene Datei</value></data>
+  <data name="Read.FileExists"><value>Diese Datei existiert bereits.</value></data>
+  <data name="Read.ConflictPath"><value>Vorhandene Datei</value></data>
+  <data name="Read.ConflictOverwrite"><value>Überschreiben</value></data>
+  <data name="Read.ConflictNextNumber"><value>Verwenden Sie die nächste Nummer</value></data>
+  <data name="Read.ConflictEditName"><value>Lassen Sie mich den Namen bearbeiten</value></data>
+  <data name="Read.ImageToCreate"><value>Bild zum Erstellen</value></data>
+  <data name="Read.Extension"><value>Verlängerung</value></data>
+  <data name="Read.RawScp"><value>Rohbild (SCP)</value></data>
+  <data name="Read.KnownFormat"><value>Bekanntes Festplattenformat</value></data>
+  <data name="Read.FileName"><value>Dateiname</value></data>
+  <data name="Read.Folder"><value>Ordner</value></data>
+  <data name="Read.Revolutions"><value>Umdrehungen pro Spur</value></data>
+  <data name="Read.Retries"><value>Wiederholungen</value></data>
+  <data name="Read.Tracks"><value>Titel/Seiten</value></data>
+  <data name="Read.AutoNumber"><value>Erfolgreiche Lesevorgänge automatisch nummerieren</value></data>
+  <data name="Read.Digits"><value>Ziffern</value></data>
+  <data name="Read.Letters"><value>Briefe</value></data>
+  <data name="Read.Next"><value>Nächste:</value></data>
+  <data name="Read.OpenVisualize"><value>In Visualisierung öffnen</value></data>
+  <data name="Read.ScpFinished"><value>Die SCP-Erfassung ist abgeschlossen. Sie können es analysieren, ohne Ihre Arbeit zu unterbrechen.</value></data>
+  <data name="Read.ScpSummaryTitle"><value>Endgültiges SCP-Ergebnis:</value></data>
+  <data name="Read.ScpTracksSummary"><value>Spuren: {0} gut, {1} fehlt oder ungültig ({2} Zylinder, {3} Seiten).</value></data>
+  <data name="Read.ScpTechnicalSummary"><value>Umdrehungen: {0} · Auflösung: {1} ns · Größe: {2:N0} Bytes · Prüfsumme: {3}.</value></data>
+  <data name="Read.ScpOutputFile"><value>Datei: {0}</value></data>
+  <data name="Read.ScpSummaryUnavailable"><value>SCP Zusammenfassung nicht verfügbar: {0}</value></data>
+  <data name="Read.ScpBannerSummary"><value>{0} gute Spuren · {1} fehlen oder ungültig · {2} Zylinder · {3} Seiten · {4} Umdrehungen · {5:N0} Bytes · {6} Prüfsumme</value></data>
+  <data name="Read.ChooseType"><value>Wählen Sie einen Bildtyp</value></data>
+  <data name="Read.DestinationFolder"><value>Zielordner</value></data>
+  <data name="Read.CancelledFileDeleted"><value>Lesen abgebrochen: Die unvollständige Datei wurde gelöscht: {0}</value></data>
+  <data name="Read.CancelledFileDeleteFailed"><value>Der Lesevorgang wurde abgebrochen, aber die unvollständige Datei konnte nicht gelöscht werden: {0} – {1}</value></data>
+  <data name="Read.OpenExplore"><value>Dateien durchsuchen</value></data>
+  <data name="Read.InternalReader"><value>Interne physische Datenträgerlesung (experimentell)</value></data>
+  <data name="Read.InternalReaderTip"><value>Liest den Fluss direkt über das Greaseweazle-Protokoll; gw.exe bleibt die Standardeinstellung.</value></data>
+  <data name="Read.InternalPreview"><value>Interne physische Datenträgerlesung nach {0}</value></data>
+  <data name="Read.InternalRawScpOnly"><value>Die interne Lesefunktion erstellt derzeit nur rohe SCP-Abbilder.</value></data>
+  <data name="Read.InternalUnsupportedOptions"><value>Einige aktivierte Optionen werden vom internen Leser noch nicht unterstützt.</value></data>
+  <data name="Read.InternalInvalidOptions"><value>Die internen Leseeinstellungen sind ungültig.</value></data>
 </root>

@@ -12,209 +12,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Visual.Decoder">
-    <value>מפענח</value>
-  </data>
-  <data name="Visual.LinkZoom">
-    <value>זום קישור</value>
-  </data>
-  <data name="Visual.OpenScp">
-    <value>פתח קובץ SCP...</value>
-  </data>
-  <data name="Visual.NoFile">
-    <value>לא פתוח קובץ SCP</value>
-  </data>
-  <data name="Visual.Waiting">
-    <value>מחכה לקובץ</value>
-  </data>
-  <data name="Visual.Inspector">
-    <value>מְפַקֵחַ</value>
-  </data>
-  <data name="Visual.SelectTrack">
-    <value>בחר רצועה.</value>
-  </data>
-  <data name="Visual.Controls">
-    <value>לחץ: בחר · גלגל: זום · קליק ימני: פאזה</value>
-  </data>
-  <data name="Visual.NormalFlux">
-    <value>שטף רגיל</value>
-  </data>
-  <data name="Visual.ShortTransition">
-    <value>מעבר קצר</value>
-  </data>
-  <data name="Visual.LongTransition">
-    <value>מעבר ארוך / אנומליה</value>
-  </data>
-  <data name="Visual.Loading">
-    <value>קורא קובץ...</value>
-  </data>
-  <data name="Visual.Invalid">
-    <value>קובץ לא חוקי</value>
-  </data>
-  <data name="Visual.Title">
-    <value>SCP הדמיה</value>
-  </data>
-  <data name="Visual.ChecksumValid">
-    <value>תָקֵף</value>
-  </data>
-  <data name="Visual.ChecksumInvalid">
-    <value>לֹא בְּתוֹקֶף</value>
-  </data>
-  <data name="Visual.Summary">
-    <value>SCP {0} · {1} רצועות · {2} סיבוב(ים) · {3} ns רזולוציה · {4} סכום ביקורת</value>
-  </data>
-  <data name="Visual.Revolution">
-    <value>מהפכה {0}: מעברים {1:N0} · {2:F2} אלפיות השנייה · {3:F2} RPM</value>
-  </data>
-  <data name="Visual.Analysis">
-    <value>פענוח: {0}
-ביטחון עצמי: {1:P0}
-תא משוער: {2:F1} תקתוקים
-מבנים: {3}</value>
-  </data>
-  <data name="Visual.Track">
-    <value>צד: {0}
-מסלול: {1}
-ערך SCP: {2}</value>
-  </data>
-  <data name="Visual.SideNoData">
-    <value>צד {0}
-אין נתונים</value>
-  </data>
-  <data name="Visual.TrackTooltip">
-    <value>צד {0} · מסלול {1}
-{2} מהפכות</value>
-  </data>
-  <data name="Visual.Automatic">
-    <value>אוֹטוֹמָטִי</value>
-  </data>
-  <data name="Visual.StructureHeader">
-    <value>כותרת/כתובת</value>
-  </data>
-  <data name="Visual.StructureData">
-    <value>נתונים מפוענחים</value>
-  </data>
-  <data name="Visual.StructureAnomaly">
-    <value>נמחק/חריגה</value>
-  </data>
-  <data name="Visual.AnalysedRevolution">
-    <value>ניתוח מבוסס על מהפכה {0}.</value>
-  </data>
-  <data name="Visual.BitOffset">
-    <value>ביט {0:N0}</value>
-  </data>
-  <data name="Visual.SectorDetail">
-    <value>מגזר C{0} H{1} R{2} · {3} בתים · {4} {5}</value>
-  </data>
-  <data name="Visual.CrcValid">
-    <value>תָקֵף</value>
-  </data>
-  <data name="Visual.CrcInvalid">
-    <value>לֹא בְּתוֹקֶף</value>
-  </data>
-  <data name="Visual.IntegrityUnavailable">
-    <value>לא זמין</value>
-  </data>
-  <data name="Visual.StructureKind.Sync">
-    <value>סִנכְּרוּן</value>
-  </data>
-  <data name="Visual.StructureKind.IdAddressMark">
-    <value>כותרת מגזר</value>
-  </data>
-  <data name="Visual.StructureKind.DataAddressMark">
-    <value>נתוני מגזר</value>
-  </data>
-  <data name="Visual.StructureKind.DeletedDataAddressMark">
-    <value>נתוני מגזר נמחקו</value>
-  </data>
-  <data name="Visual.StructureKind.AmigaSync">
-    <value>Amiga סנכרון</value>
-  </data>
-  <data name="Visual.StructureKind.AppleAddress">
-    <value>פרולוג כתובת אפל</value>
-  </data>
-  <data name="Visual.StructureKind.AppleData">
-    <value>פרולוג נתונים של אפל</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreSync">
-    <value>Commodore סנכרון</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreHeader">
-    <value>כותרת Commodore</value>
-  </data>
-  <data name="Visual.StructureKind.FormatHeader">
-    <value>עיצוב כותרת</value>
-  </data>
-  <data name="Visual.StructureKind.FormatData">
-    <value>פורמט נתונים</value>
-  </data>
-  <data name="Visual.StructureKind.TimingAnomaly">
-    <value>חריגה בתזמון</value>
-  </data>
-  <data name="Visual.OpenFilter">
-    <value>SuperCard Pro לכידה (*.scp)|*.scp|כל הקבצים|*.*</value>
-  </data>
-  <data name="Visual.Integrity.Checksum">
-    <value>סכום בדיקה</value>
-  </data>
-  <data name="Visual.Side">
-    <value>צד {0}</value>
-  </data>
-  <data name="Visual.AnalysingTrack">
-    <value>מנתח את המסלול {0}/{1}...</value>
-  </data>
-  <data name="Visual.SideLabel">
-    <value>צַד</value>
-  </data>
-  <data name="Visual.TrackLabel">
-    <value>מַסלוּל</value>
-  </data>
-  <data name="Visual.ScpEntryLabel">
-    <value>ערך SCP</value>
-  </data>
-  <data name="Visual.RevolutionsTitle">
-    <value>מהפכות</value>
-  </data>
-  <data name="Visual.AnalysisTitle">
-    <value>אָנָלִיזָה</value>
-  </data>
-  <data name="Visual.ConfidenceLabel">
-    <value>אֵמוּן</value>
-  </data>
-  <data name="Visual.CellLabel">
-    <value>תא משוער</value>
-  </data>
-  <data name="Visual.StructuresLabel">
-    <value>מבנים</value>
-  </data>
-  <data name="Visual.StructuresTitle">
-    <value>מבנים שזוהו</value>
-  </data>
-  <data name="Visual.SectorsTitle">
-    <value>מגזרים</value>
-  </data>
-  <data name="Visual.TransitionsUnit">
-    <value>מעברים</value>
-  </data>
-  <data name="Visual.OpenImage">
-    <value>פתח תמונת דיסק...</value>
-  </data>
-  <data name="Visual.DetachInspector">
-    <value>נתק את המפקח</value>
-  </data>
-  <data name="Visual.AttachInspector">
-    <value>צרף את המפקח</value>
-  </data>
-  <data name="Visual.SummaryTab">
-    <value>תַקצִיר</value>
-  </data>
-  <data name="Visual.FormatDetected">
-    <value>פורמט זוהה</value>
-  </data>
-  <data name="Visual.AverageRpm">
-    <value>סל"ד ממוצע</value>
-  </data>
-  <data name="Visual.AverageDuration">
-    <value>משך זמן ממוצע</value>
-  </data>
+  <data name="Visual.Decoder"><value>מפענח</value></data>
+  <data name="Visual.LinkZoom"><value>זום קישור</value></data>
+  <data name="Visual.OpenScp"><value>Open a SCP קובץ</value></data>
+  <data name="Visual.NoFile"><value>לא פתוח קובץ SCP</value></data>
+  <data name="Visual.Waiting"><value>מחכה לקובץ</value></data>
+  <data name="Visual.Inspector"><value>מְפַקֵחַ</value></data>
+  <data name="Visual.SelectTrack"><value>בחר רצועה.</value></data>
+  <data name="Visual.Controls"><value>לחץ: בחר · גלגל: זום · קליק ימני: פאזה</value></data>
+  <data name="Visual.NormalFlux"><value>שטף רגיל</value></data>
+  <data name="Visual.ShortTransition"><value>מעבר קצר</value></data>
+  <data name="Visual.LongTransition"><value>מעבר ארוך / אנומליה</value></data>
+  <data name="Visual.Loading"><value>קורא קובץ...</value></data>
+  <data name="Visual.Invalid"><value>קובץ לא חוקי</value></data>
+  <data name="Visual.Title"><value>SCP הדמיה</value></data>
+  <data name="Visual.ChecksumValid"><value>תָקֵף</value></data>
+  <data name="Visual.ChecksumInvalid"><value>לֹא בְּתוֹקֶף</value></data>
+  <data name="Visual.Summary"><value>SCP {0} · {1} רצועות · {2} סיבוב(ים) · {3} ns רזולוציה · {4} סכום ביקורת</value></data>
+  <data name="Visual.Revolution"><value>מהפכה {0}: מעברים {1:N0} · {2:F2} אלפיות השנייה · {3:F2} RPM</value></data>
+  <data name="Visual.Analysis"><value>פענוח: {0}&#xA;ביטחון עצמי: {1:P0}&#xA;תא משוער: {2:F1} תקתוקים&#xA;מבנים: {3}</value></data>
+  <data name="Visual.Track"><value>צד: {0}&#xA;מסלול: {1}&#xA;ערך SCP: {2}</value></data>
+  <data name="Visual.SideNoData"><value>צד {0}&#xA;אין נתונים</value></data>
+  <data name="Visual.TrackTooltip"><value>צד {0} · מסלול {1}&#xA;{2} מהפכות</value></data>
+  <data name="Visual.Automatic"><value>אוֹטוֹמָטִי</value></data>
+  <data name="Visual.StructureHeader"><value>כותרת/כתובת</value></data>
+  <data name="Visual.StructureData"><value>נתונים מפוענחים</value></data>
+  <data name="Visual.StructureAnomaly"><value>נמחק/חריגה</value></data>
+  <data name="Visual.AnalysedRevolution"><value>ניתוח מבוסס על מהפכה {0}.</value></data>
+  <data name="Visual.BitOffset"><value>ביט {0:N0}</value></data>
+  <data name="Visual.SectorDetail"><value>מגזר C{0} H{1} R{2} · {3} בתים · {4} {5}</value></data>
+  <data name="Visual.CrcValid"><value>תָקֵף</value></data>
+  <data name="Visual.CrcInvalid"><value>לֹא בְּתוֹקֶף</value></data>
+  <data name="Visual.IntegrityUnavailable"><value>לא זמין</value></data>
+  <data name="Visual.StructureKind.Sync"><value>סִנכְּרוּן</value></data>
+  <data name="Visual.StructureKind.IdAddressMark"><value>כותרת מגזר</value></data>
+  <data name="Visual.StructureKind.DataAddressMark"><value>נתוני מגזר</value></data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark"><value>נתוני מגזר נמחקו</value></data>
+  <data name="Visual.StructureKind.AmigaSync"><value>Amiga סנכרון</value></data>
+  <data name="Visual.StructureKind.AppleAddress"><value>פרולוג כתובת אפל</value></data>
+  <data name="Visual.StructureKind.AppleData"><value>פרולוג נתונים של אפל</value></data>
+  <data name="Visual.StructureKind.CommodoreSync"><value>Commodore סנכרון</value></data>
+  <data name="Visual.StructureKind.CommodoreHeader"><value>כותרת Commodore</value></data>
+  <data name="Visual.StructureKind.FormatHeader"><value>עיצוב כותרת</value></data>
+  <data name="Visual.StructureKind.FormatData"><value>פורמט נתונים</value></data>
+  <data name="Visual.StructureKind.TimingAnomaly"><value>חריגה בתזמון</value></data>
+  <data name="Visual.OpenFilter"><value>SuperCard Pro לכידה (*.scp)|*.scp|כל הקבצים|*.*</value></data>
+  <data name="Visual.Integrity.Checksum"><value>סכום בדיקה</value></data>
+  <data name="Visual.Side"><value>צד {0}</value></data>
+  <data name="Visual.AnalysingTrack"><value>Analysing track {0}/ /{1}…</value></data>
+  <data name="Visual.SideLabel"><value>צַד</value></data>
+  <data name="Visual.TrackLabel"><value>מַסלוּל</value></data>
+  <data name="Visual.ScpEntryLabel"><value>ערך SCP</value></data>
+  <data name="Visual.RevolutionsTitle"><value>מהפכות</value></data>
+  <data name="Visual.AnalysisTitle"><value>אָנָלִיזָה</value></data>
+  <data name="Visual.ConfidenceLabel"><value>אֵמוּן</value></data>
+  <data name="Visual.CellLabel"><value>תא משוער</value></data>
+  <data name="Visual.StructuresLabel"><value>מבנים</value></data>
+  <data name="Visual.StructuresTitle"><value>מבנים שזוהו</value></data>
+  <data name="Visual.SectorsTitle"><value>מגזרים</value></data>
+  <data name="Visual.TransitionsUnit"><value>מעברים</value></data>
+  <data name="Visual.OpenImage"><value>פתח תמונת דיסק...</value></data>
+  <data name="Visual.DetachInspector"><value>נתק את המפקח</value></data>
+  <data name="Visual.AttachInspector"><value>צרף את המפקח</value></data>
+  <data name="Visual.SummaryTab"><value>תַקצִיר</value></data>
+  <data name="Visual.FormatDetected"><value>פורמט זוהה</value></data>
+  <data name="Visual.AverageRpm"><value>ממוצע RPM</value></data>
+  <data name="Visual.AverageDuration"><value>משך זמן ממוצע</value></data>
 </root>

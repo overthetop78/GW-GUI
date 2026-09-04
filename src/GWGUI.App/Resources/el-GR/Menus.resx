@@ -12,73 +12,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options">
-    <value>_Επιλογές</value>
-  </data>
-  <data name="Menu.Preferences">
-    <value>Προτιμήσεις…</value>
-  </data>
-  <data name="Menu.Diagnostics">
-    <value>Διαγνωστικά</value>
-  </data>
-  <data name="Menu.Information">
-    <value>Πληροφορίες</value>
-  </data>
-  <data name="Menu.Bandwidth">
-    <value>USB εύρος ζώνης</value>
-  </data>
-  <data name="Menu.Rpm">
-    <value>RPM ταχύτητα</value>
-  </data>
-  <data name="Menu.Seek">
-    <value>Ψάξε το κεφάλι…</value>
-  </data>
-  <data name="Menu.Hardware">
-    <value>Μηχανήματα υπολογιστών</value>
-  </data>
-  <data name="Menu.Pins">
-    <value>Καρφίτσες…</value>
-  </data>
-  <data name="Menu.Reset">
-    <value>Επαναφορά</value>
-  </data>
-  <data name="Menu.Delays">
-    <value>Καθυστερήσεις…</value>
-  </data>
-  <data name="Menu.Firmware">
-    <value>Υλικολογισμικό…</value>
-  </data>
-  <data name="Menu.Help">
-    <value>_Βοήθεια</value>
-  </data>
-  <data name="Menu.Documentation">
-    <value>Απόδειξη με έγγραφα</value>
-  </data>
-  <data name="Menu.About">
-    <value>Για</value>
-  </data>
-  <data name="Tab.Read">
-    <value>Ανάγνωση</value>
-  </data>
-  <data name="Tab.Write">
-    <value>Γράφω</value>
-  </data>
-  <data name="Tab.Convert">
-    <value>Μετατροπή</value>
-  </data>
-  <data name="Tab.Visualize">
-    <value>Οραματισμός</value>
-  </data>
-  <data name="Tab.Tools">
-    <value>Εργαλεία</value>
-  </data>
-  <data name="Menu.Align">
-    <value>Ευθυγράμμιση κίνησης…</value>
-  </data>
-  <data name="Tab.Explorer">
-    <value>Εξερεύνηση δίσκου</value>
-  </data>
-  <data name="Tab.Emulation">
-    <value>Εξομοίωση</value>
-  </data>
+  <data name="Menu.Options"><value>_Επιλογές</value></data>
+  <data name="Menu.Preferences"><value>Προτιμήσεις…</value></data>
+  <data name="Menu.Diagnostics"><value>Διαγνωστικά</value></data>
+  <data name="Menu.Information"><value>Πληροφορίες</value></data>
+  <data name="Menu.Bandwidth"><value>USB εύρος ζώνης</value></data>
+  <data name="Menu.Rpm"><value>RPM ταχύτητα</value></data>
+  <data name="Menu.Seek"><value>Ψάξε το κεφάλι…</value></data>
+  <data name="Menu.Hardware"><value>Μηχανήματα υπολογιστών</value></data>
+  <data name="Menu.Pins"><value>Καρφίτσες…</value></data>
+  <data name="Menu.Reset"><value>Επαναφορά</value></data>
+  <data name="Menu.Delays"><value>Καθυστερήσεις…</value></data>
+  <data name="Menu.Firmware"><value>Υλικολογισμικό…</value></data>
+  <data name="Menu.Help"><value>_Βοήθεια</value></data>
+  <data name="Menu.Documentation"><value>Απόδειξη με έγγραφα</value></data>
+  <data name="Menu.About"><value>Για</value></data>
+  <data name="Tab.Read"><value>Ανάγνωση</value></data>
+  <data name="Tab.Write"><value>Γράφω</value></data>
+  <data name="Tab.Convert"><value>Μετατροπή</value></data>
+  <data name="Tab.Visualize"><value>Οραματισμός</value></data>
+  <data name="Tab.Tools"><value>Εργαλεία</value></data>
+  <data name="Menu.Align"><value>Ευθυγράμμιση κίνησης…</value></data>
+  <data name="Tab.Explorer"><value>Εξερεύνηση δίσκου</value></data>
+  <data name="Tab.Emulation"><value>Εξομοίωση</value></data>
 </root>

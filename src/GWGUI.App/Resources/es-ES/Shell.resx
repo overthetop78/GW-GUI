@@ -12,73 +12,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.GwNotConfigured">
-    <value>Greaseweazle Herramientas no está configurada. Abra Opciones → Preferencias.</value>
-  </data>
-  <data name="App.OperationRunningClose">
-    <value>Se está ejecutando una operación. ¿Detenerlo y cerrar GW GUI?</value>
-  </data>
-  <data name="Operation.Finished">
-    <value>Finalizado: código {0}, duración {1}.</value>
-  </data>
-  <data name="Operation.Succeeded">
-    <value>El comando se completó con éxito.</value>
-  </data>
-  <data name="Operation.Cancelled">
-    <value>Comando cancelado.</value>
-  </data>
-  <data name="Operation.ExitCode">
-    <value>El comando terminó con el código {0}.</value>
-  </data>
-  <data name="Common.Console">
-    <value>Consola</value>
-  </data>
-  <data name="Common.Command">
-    <value>Dominio</value>
-  </data>
-  <data name="Status.FaceTrackProgress">
-    <value>Lado {0}: vía {1} — {2}/{3}</value>
-  </data>
-  <data name="Status.Ready">
-    <value>GW GUI listo.</value>
-  </data>
-  <data name="Status.DefaultProfile">
-    <value>Perfil: Predeterminado</value>
-  </data>
-  <data name="Operation.StopTitle">
-    <value>Detener la operación</value>
-  </data>
-  <data name="Operation.StopConfirm">
-    <value>¿Detener la operación Greaseweazle actual?</value>
-  </data>
-  <data name="Operation.Busy">
-    <value>Ya se está ejecutando un comando Greaseweazle. Espere a que termine o se detenga antes de abrir esta herramienta.</value>
-  </data>
-  <data name="Status.Profile">
-    <value>Perfil: {0}</value>
-  </data>
-  <data name="Status.TrackProgress">
-    <value>Vía {0}, lado {1} — {2}/{3}</value>
-  </data>
-  <data name="Status.TrackUnknown">
-    <value>Pista {0}, lado {1} — {2} procesado</value>
-  </data>
-  <data name="Operation.Error">
-    <value>Error: {0}</value>
-  </data>
-  <data name="Status.ReadyShort">
-    <value>Listo</value>
-  </data>
-  <data name="Status.Running">
-    <value>Correr</value>
-  </data>
-  <data name="Status.Success">
-    <value>Éxito</value>
-  </data>
-  <data name="Status.Error">
-    <value>Error</value>
-  </data>
-  <data name="Status.Cancelled">
-    <value>Cancelado</value>
-  </data>
+  <data name="App.GwNotConfigured"><value>Greaseweazle Herramientas no está configurada. Abra Opciones → Preferencias.</value></data>
+  <data name="App.OperationRunningClose"><value>Se está ejecutando una operación. ¿Detenerlo y cerrar GW GUI?</value></data>
+  <data name="Operation.Finished"><value>Finalizado: código {0}, duración {1}.</value></data>
+  <data name="Operation.Succeeded"><value>El comando se completó con éxito.</value></data>
+  <data name="Operation.Cancelled"><value>Comando cancelado.</value></data>
+  <data name="Operation.ExitCode"><value>El comando terminó con el código {0}.</value></data>
+  <data name="Common.Console"><value>Consola</value></data>
+  <data name="Common.Command"><value>Dominio</value></data>
+  <data name="Status.FaceTrackProgress"><value>Lado {0}: vía {1} — {2}/{3}</value></data>
+  <data name="Status.Ready"><value>GW GUI listo.</value></data>
+  <data name="Status.DefaultProfile"><value>Perfil: Predeterminado</value></data>
+  <data name="Operation.StopTitle"><value>Detener la operación</value></data>
+  <data name="Operation.StopConfirm"><value>¿Detener la operación Greaseweazle actual?</value></data>
+  <data name="Operation.Busy"><value>Ya se está ejecutando un comando Greaseweazle. Espere a que termine o se detenga antes de abrir esta herramienta.</value></data>
+  <data name="Status.Profile"><value>Perfil: {0}</value></data>
+  <data name="Status.TrackProgress"><value>Vía {0}, lado {1} — {2}/{3}</value></data>
+  <data name="Status.TrackUnknown"><value>Pista {0}, lado {1} — {2} procesado</value></data>
+<data name="Status.ReadyShort"><value>Listo</value></data>
+  <data name="Status.Running"><value>Correr</value></data>
+  <data name="Status.Success"><value>Éxito</value></data>
+<data name="Status.Cancelled"><value>Cancelado</value></data>
 </root>

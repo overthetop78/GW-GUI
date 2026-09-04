@@ -87,7 +87,12 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
                 AutomationProperties.SetAutomationId(technology, "VideoTechnologyParameters");
                 tabs.Items.Add(Tab(TechnologyTab,
                     EmulationVideoProcessingCatalog.DisplayTechnologyResourceKeys[
-                        _configuration.DisplayTechnology], technology));
+                        _configuration.DisplayTechnology], technology,
+                    frameContent: _configuration.DisplayTechnology is not
+                        (EmulationVideoDisplayTechnology.Plasma or
+                         EmulationVideoDisplayTechnology.FixedPixel or
+                         EmulationVideoDisplayTechnology.Vector or
+                         EmulationVideoDisplayTechnology.Vfd)));
             }
             tabs.Items.Add(Tab(ImageTab, EmulationResourceKeys.VideoTabImage,
                 CreateImageGroups(),
@@ -442,72 +447,21 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
         EmulationFixedPixelSettingsBlock.Create(_configuration.FixedPixel,
             update => SetFixedPixel(update(_configuration.FixedPixel)), RebuildContent);
 
-    private FrameworkElement CreatePlasmaPanel()
-    {
-        var plasma = _configuration.Plasma;
-        var panel = Section(EmulationResourceKeys.VideoTechnologyPlasma);
-        AddIntensity(panel, EmulationVideoProcessingCatalog.PlasmaCellStructure, plasma.CellStructure,
-            value => SetPlasma(_configuration.Plasma with { CellStructure = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.PlasmaDiffusion, plasma.Diffusion,
-            value => SetPlasma(_configuration.Plasma with { Diffusion = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.PlasmaTemporalDithering,
-            plasma.TemporalDithering, value => SetPlasma(_configuration.Plasma with { TemporalDithering = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.PlasmaPersistence,
-            plasma.PersistenceIntensity,
-            value => SetPlasma(_configuration.Plasma with { PersistenceIntensity = value }));
-        return panel;
-    }
+    private FrameworkElement CreatePlasmaPanel() =>
+        EmulationPlasmaSettingsBlock.Create(_configuration.Plasma,
+            update => SetPlasma(update(_configuration.Plasma)));
 
-    private FrameworkElement CreateVectorPanel()
-    {
-        var vector = _configuration.Vector;
-        var panel = Section(EmulationResourceKeys.VideoTechnologyVector);
-        AddIntensity(panel, EmulationVideoProcessingCatalog.VectorLineThreshold, vector.LineThreshold,
-            value => SetVector(_configuration.Vector with { LineThreshold = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.VectorLineIntensity, vector.LineIntensity,
-            value => SetVector(_configuration.Vector with { LineIntensity = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.VectorHaloIntensity, vector.HaloIntensity,
-            value => SetVector(_configuration.Vector with { HaloIntensity = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.VectorPersistence,
-            vector.PersistenceIntensity,
-            value => SetVector(_configuration.Vector with { PersistenceIntensity = value }));
-        return panel;
-    }
+    private FrameworkElement CreateVectorPanel() =>
+        EmulationVectorSettingsBlock.Create(_configuration.Vector,
+            update => SetVector(update(_configuration.Vector)));
 
-    private FrameworkElement CreateVfdPanel()
-    {
-        var vfd = _configuration.Vfd;
-        var panel = Section(EmulationResourceKeys.VideoTechnologyVfd);
-        panel.Children.Add(ChoiceField(EmulationResourceKeys.VideoParameterVfdColor,
-            EmulationVideoProcessingCatalog.VfdColorResourceKeys, vfd.Color,
-            value => SetVfd(_configuration.Vfd with { Color = value }), EmulationVideoProcessingCatalog.VfdColor));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.VfdPhosphorIntensity,
-            vfd.PhosphorIntensity, value => SetVfd(_configuration.Vfd with { PhosphorIntensity = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.VfdHaloIntensity,
-            vfd.HaloIntensity, value => SetVfd(_configuration.Vfd with { HaloIntensity = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.VfdPersistence,
-            vfd.PersistenceIntensity, value => SetVfd(_configuration.Vfd with { PersistenceIntensity = value }));
-        return panel;
-    }
+    private FrameworkElement CreateVfdPanel() =>
+        EmulationVfdSettingsBlock.Create(_configuration.Vfd,
+            update => SetVfd(update(_configuration.Vfd)), RebuildContent);
 
-    private FrameworkElement CreateLedMatrixPanel()
-    {
-        var ledMatrix = _configuration.LedMatrix;
-        var panel = Section(EmulationResourceKeys.VideoTechnologyLedMatrix);
-        panel.Children.Add(ChoiceField(EmulationResourceKeys.VideoParameterLedMatrixColor,
-            EmulationVideoProcessingCatalog.LedMatrixColorResourceKeys, ledMatrix.Color,
-            value => SetLedMatrix(_configuration.LedMatrix with { Color = value }),
-            EmulationVideoProcessingCatalog.LedMatrixColor));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.LedMatrixCellSize,
-            ledMatrix.CellSize, value => SetLedMatrix(_configuration.LedMatrix with { CellSize = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.LedMatrixCellGap,
-            ledMatrix.CellGap, value => SetLedMatrix(_configuration.LedMatrix with { CellGap = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.LedMatrixDiffusion,
-            ledMatrix.Diffusion, value => SetLedMatrix(_configuration.LedMatrix with { Diffusion = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.LedMatrixBrightness,
-            ledMatrix.Brightness, value => SetLedMatrix(_configuration.LedMatrix with { Brightness = value }));
-        return panel;
-    }
+    private FrameworkElement CreateLedMatrixPanel() =>
+        EmulationLedMatrixSettingsBlock.Create(_configuration.LedMatrix,
+            update => SetLedMatrix(update(_configuration.LedMatrix)));
 
     private FrameworkElement CreateDotMatrixPanel()
     {

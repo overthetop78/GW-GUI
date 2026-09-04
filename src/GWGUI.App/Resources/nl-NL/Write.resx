@@ -12,63 +12,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Write.Title">
-    <value>Schrijven</value>
-  </data>
-  <data name="Write.SelectSource">
-    <value>Kies een bestaande bronafbeelding.</value>
-  </data>
-  <data name="Write.Ambiguous">
-    <value>Het formaat is dubbelzinnig. Kies expliciet een compatibel formaat.</value>
-  </data>
-  <data name="Write.VerifyOff">
-    <value>Verificatie na schrijven is uitgeschakeld.</value>
-  </data>
-  <data name="Write.VerifyOn">
-    <value>Verificatie na schrijven is ingeschakeld.</value>
-  </data>
-  <data name="Write.ConfirmTitle">
-    <value>Bevestig schrijven</value>
-  </data>
-  <data name="Write.Confirm">
-    <value>Afbeelding: {0}
-Formaat: {1}
-Aandrijving: {2}
-{3}
-
-Deze afbeelding naar schijf schrijven?</value>
-  </data>
-  <data name="Write.Source">
-    <value>Bron afbeelding</value>
-  </data>
-  <data name="Write.Detected">
-    <value>Gedetecteerd formaat</value>
-  </data>
-  <data name="Write.ChooseImage">
-    <value>Kies een afbeelding.</value>
-  </data>
-  <data name="Write.NoVerify">
-    <value>Schakel verificatie uit na schrijven</value>
-  </data>
-  <data name="Write.NoVerifyTip">
-    <value>Voegt --no-verify toe. De schijf wordt niet opnieuw gelezen om het schrijven te bevestigen.</value>
-  </data>
-  <data name="Write.EraseEmpty">
-    <value>Wis lege nummers</value>
-  </data>
-  <data name="Write.VisualizeTracks">
-    <value>Visualiseer sporen</value>
-  </data>
-  <data name="Write.VisualizeFormatRequired">
-    <value>Selecteer het schijfformaat voordat u de tracks visualiseert.</value>
-  </data>
+  <data name="Write.Title"><value>Schrijven</value></data>
+  <data name="Write.SelectSource"><value>Kies een bestaande bronafbeelding.</value></data>
+  <data name="Write.Ambiguous"><value>Het formaat is dubbelzinnig. Kies expliciet een compatibel formaat.</value></data>
+  <data name="Write.VerifyOff"><value>Verificatie na schrijven is uitgeschakeld.</value></data>
+  <data name="Write.VerifyOn"><value>Verificatie na schrijven is ingeschakeld.</value></data>
+  <data name="Write.ConfirmTitle"><value>Bevestig schrijven</value></data>
+  <data name="Write.Confirm"><value>Afbeelding: {0}&#xA;Formaat: {1}&#xA;Aandrijving: {2}&#xA;{3}&#xA;&#xA;Deze afbeelding naar schijf schrijven?</value></data>
+  <data name="Write.Source"><value>Bron afbeelding</value></data>
+  <data name="Write.Detected"><value>Gedetecteerd formaat</value></data>
+  <data name="Write.ChooseImage"><value>Kies een afbeelding.</value></data>
+  <data name="Write.NoVerify"><value>Schakel verificatie uit na schrijven</value></data>
+  <data name="Write.NoVerifyTip"><value>Voegt --no-verify toe. De schijf wordt niet opnieuw gelezen om het schrijven te bevestigen.</value></data>
+  <data name="Write.EraseEmpty"><value>Wis lege nummers</value></data>
+  <data name="Write.VisualizeTracks"><value>Visualiseer sporen</value></data>
+  <data name="Write.VisualizeFormatRequired"><value>Selecteer het schijfformaat voordat u de tracks visualiseert.</value></data>
   <data name="Write.InternalWriter" xml:space="preserve"><value>Intern schrijven (experimenteel)</value></data>
   <data name="Write.InternalWriterTip" xml:space="preserve"><value>Schrijft rechtstreeks met de interne engine zonder gw.exe.</value></data>
   <data name="Write.InternalPreview" xml:space="preserve"><value>Interne GW GUI-schrijfactie: {0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Een of meer geselecteerde geavanceerde opties worden nog niet ondersteund.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Interne verificatie is nog niet beschikbaar. Schakel ‘Niet verifiëren’ in.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Spoor {0}, zijde {1}: {2}</value></data>
-  <data name="Write.InternalFailureReason">
-    <value>Intern schrijven is mislukt.</value>
-  </data>
+  <data name="Write.InternalFailureReason"><value>Intern schrijven is mislukt.</value></data>
 </root>

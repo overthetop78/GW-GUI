@@ -12,165 +12,56 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Options.Title">
-    <value>Параметры</value>
-  </data>
-  <data name="Options.General">
-    <value>Общий</value>
-  </data>
-  <data name="Options.Tools">
-    <value>Greaseweazle Инструменты</value>
-  </data>
-  <data name="Options.Hardware">
-    <value>Контроллеры и приводы</value>
-  </data>
-  <data name="Options.Profiles">
-    <value>Профили</value>
-  </data>
-  <data name="Options.ImagesFolder">
-    <value>Папка образа диска по умолчанию</value>
-  </data>
-  <data name="Options.Language">
-    <value>Язык</value>
-  </data>
-  <data name="Options.Theme">
-    <value>Тема</value>
-  </data>
-  <data name="Theme.System">
-    <value>Система</value>
-  </data>
-  <data name="Theme.Light">
-    <value>Свет</value>
-  </data>
-  <data name="Theme.Dark">
-    <value>Темный</value>
-  </data>
-  <data name="Options.GwPath">
-    <value>Путь к gw.exe</value>
-  </data>
-  <data name="Options.ToolsHelp">
-    <value>Если инструменты отсутствуют, помощник предложит их скачать или выбрать существующую установку. Обновления только анонсируются.</value>
-  </data>
-  <data name="Options.HardwarePersistence">
-    <value>Настройки оборудования сохраняются при отключении диска.</value>
-  </data>
-  <data name="Options.ExecutableFilter">
-    <value>Greaseweazle (gw.exe)|gw.exe|Исполняемый файл (*.exe)|*.exe</value>
-  </data>
-  <data name="Options.RemoveHardware">
-    <value>Удалить этот сохраненный контроллер и все его диски?</value>
-  </data>
-  <data name="Options.HardwareTitle">
-    <value>Аппаратное обеспечение</value>
-  </data>
-  <data name="Options.UseConversionTags">
-    <value>Используйте теги в именах файлов конвертации</value>
-  </data>
-  <data name="Options.TagPreset">
-    <value>Предустановка</value>
-  </data>
-  <data name="Options.TagPresetFamily">
-    <value>Только семья</value>
-  </data>
-  <data name="Options.TagPresetFormat">
-    <value>Только формат</value>
-  </data>
-  <data name="Options.TagPresetFamilyFormat">
-    <value>Семья и формат</value>
-  </data>
-  <data name="Options.TagPresetFamilyExtension">
-    <value>Семья и расширение</value>
-  </data>
-  <data name="Options.TagPresetDetailed">
-    <value>Семейство, формат и расширение</value>
-  </data>
-  <data name="Options.TagPattern">
-    <value>Шаблон тега конверсии</value>
-  </data>
-  <data name="Options.TagVariablesTitle">
-    <value>Доступные переменные</value>
-  </data>
-  <data name="Options.TagVariableName">
-    <value>Имя исходного файла</value>
-  </data>
-  <data name="Options.TagVariableFamily">
-    <value>Семья: ПК, ST, AMIGA…</value>
-  </data>
-  <data name="Options.TagVariableFormat">
-    <value>Формат: 720, 1440, DD…</value>
-  </data>
-  <data name="Options.TagVariableExtension">
-    <value>Расширение: IMA, ST, ADF…</value>
-  </data>
-  <data name="Options.TagVariableDateIso">
-    <value>Дата: 6 августа 2026 г.</value>
-  </data>
-  <data name="Options.TagVariableDateCompact">
-    <value>Дата: 20260806</value>
-  </data>
-  <data name="Options.TagVariableDateLocal">
-    <value>Дата: 08.06.2026</value>
-  </data>
-  <data name="Options.TagVariableTimeFull">
-    <value>Время: 14-35-42</value>
-  </data>
-  <data name="Options.TagVariableTimeCompact">
-    <value>Время: 143542</value>
-  </data>
-  <data name="Options.TagVariableTimeShort">
-    <value>Время: 14-35</value>
-  </data>
-  <data name="Options.TagPatternHelp">
-    <value>{NAME} — имя исходного файла
-{FAMILY} — семейство машин (PC, ST, AMIGA…)
-{FORMAT} — формат или геометрия (720, 1440, DD…)
-{EXTENSION} — расширение вывода (IMA, ST, ADF…)
-{DATE:YYYY-MM-DD} — дата 6 августа 2026 г.
-{DATE:YYYYMMDD} — дата 20260806
-{DATE:DD-MM-YYYY} — дата 08.06.2026
-{TIME:HH-MM-SS} — время 14-35-42
-{TIME:HHMMSS} — время 143542
-{TIME:HH-MM} — время 14-35</value>
-  </data>
-  <data name="Options.RecentTagPatterns">
-    <value>Последние пользовательские шаблоны</value>
-  </data>
-  <data name="Options.NextTagExample">
-    <value>Следующий пример</value>
-  </data>
-  <data name="Options.TagPatternPreview">
-    <value>Пример: {0}</value>
-  </data>
-  <data name="Options.TagPatternInvalid">
-    <value>Шаблон тега должен содержать {tag}.</value>
-  </data>
-  <data name="Options.EnableLogs">
-    <value>Сохранение журналов</value>
-  </data>
-  <data name="Options.Logs">
-    <value>Журналы</value>
-  </data>
-  <data name="Options.LogsDescription">
-    <value>Каждое действие имеет собственный файл в папке GW GUI Logs.</value>
-  </data>
-  <data name="Options.LogActionErase">
-    <value>Стереть</value>
-  </data>
-  <data name="Options.LogActionClean">
-    <value>Чистые головы</value>
-  </data>
-  <data name="Options.OpenLogsFolder">
-    <value>Открыть папку</value>
-  </data>
-  <data name="Options.LogMaximumSize">
-    <value>Максимальный размер</value>
-  </data>
-  <data name="Options.KeepLogArchives">
-    <value>Сохраняйте предыдущие журналы</value>
-  </data>
-  <data name="Options.LogUnlimitedHint">
-    <value>0 = неограниченно</value>
-  </data>
+  <data name="Options.Title"><value>Параметры</value></data>
+  <data name="Options.General"><value>Общий</value></data>
+  <data name="Options.Tools"><value>Greaseweazle Инструменты</value></data>
+  <data name="Options.Hardware"><value>Контроллеры и приводы</value></data>
+  <data name="Options.Profiles"><value>Профили</value></data>
+  <data name="Options.ImagesFolder"><value>Папка образа диска по умолчанию</value></data>
+  <data name="Options.Language"><value>Язык</value></data>
+  <data name="Options.Theme"><value>Тема</value></data>
+  <data name="Theme.System"><value>Система</value></data>
+  <data name="Theme.Light"><value>Свет</value></data>
+  <data name="Theme.Dark"><value>Темный</value></data>
+  <data name="Options.GwPath"><value>Путь к gw.exe</value></data>
+  <data name="Options.ToolsHelp"><value>Если инструменты отсутствуют, помощник предложит их скачать или выбрать существующую установку. Обновления только анонсируются.</value></data>
+  <data name="Options.HardwarePersistence"><value>Настройки оборудования сохраняются при отключении диска.</value></data>
+  <data name="Options.ExecutableFilter"><value>Greaseweazle (gw.exe)|gw.exe|Executable (исполняемый)*.exe)|*.exe</value></data>
+  <data name="Options.RemoveHardware"><value>Удалить этот сохраненный контроллер и все его диски?</value></data>
+  <data name="Options.HardwareTitle"><value>Аппаратное обеспечение</value></data>
+  <data name="Options.UseConversionTags"><value>Используйте теги в именах файлов конвертации</value></data>
+  <data name="Options.TagPreset"><value>Предустановка</value></data>
+  <data name="Options.TagPresetFamily"><value>Только семья</value></data>
+  <data name="Options.TagPresetFormat"><value>Только формат</value></data>
+  <data name="Options.TagPresetFamilyFormat"><value>Семья и формат</value></data>
+  <data name="Options.TagPresetFamilyExtension"><value>Семья и расширение</value></data>
+  <data name="Options.TagPresetDetailed"><value>Семейство, формат и расширение</value></data>
+  <data name="Options.TagPattern"><value>Шаблон тега конверсии</value></data>
+  <data name="Options.TagVariablesTitle"><value>Доступные переменные</value></data>
+  <data name="Options.TagVariableName"><value>Имя исходного файла</value></data>
+  <data name="Options.TagVariableFamily"><value>Семья: PC, ST, AMIGA...</value></data>
+  <data name="Options.TagVariableFormat"><value>Формат: 720, 1440, DD…</value></data>
+  <data name="Options.TagVariableExtension"><value>Расширение: IMA, ST, ADF…</value></data>
+  <data name="Options.TagVariableDateIso"><value>Дата: 6 августа 2026 г.</value></data>
+  <data name="Options.TagVariableDateCompact"><value>Дата: 20260806</value></data>
+  <data name="Options.TagVariableDateLocal"><value>Дата: 08.06.2026</value></data>
+  <data name="Options.TagVariableTimeFull"><value>Время: 14-35-42</value></data>
+  <data name="Options.TagVariableTimeCompact"><value>Время: 143542</value></data>
+  <data name="Options.TagVariableTimeShort"><value>Время: 14-35</value></data>
+  <data name="Options.TagPatternHelp"><value>{NAME} — имя исходного файла&#xA;{FAMILY} семейство машин (Machine Family)PC, ST, AMIGA...&#xA;{FORMAT} формат или геометрия (720, 1440) DD...&#xA;{EXTENSION} - расширение вывода (IMA, ST, ADF...&#xA;{DATE:YYYY-MM-DD} — дата 2026-08-06&#xA;{DATE:YYYYMMDD} — дата 20260806&#xA;{DATE:DD-MM-YYYY} — дата 06-08-2026&#xA;{TIME:HH-MM-SS} - время 14-35-42&#xA;{TIME:HHMMSS} время 143542&#xA;{TIME:HH-MM} — время 14-35</value></data>
+  <data name="Options.RecentTagPatterns"><value>Последние пользовательские шаблоны</value></data>
+  <data name="Options.NextTagExample"><value>Следующий пример</value></data>
+  <data name="Options.TagPatternPreview"><value>Пример: {0}</value></data>
+  <data name="Options.TagPatternInvalid"><value>Шаблон тега должен содержать {tag}.</value></data>
+  <data name="Options.EnableLogs"><value>Сохранение журналов</value></data>
+  <data name="Options.Logs"><value>Журналы</value></data>
+  <data name="Options.LogsDescription"><value>Каждое действие имеет собственный файл в папке GW GUI Logs.</value></data>
+  <data name="Options.LogActionErase"><value>Стереть</value></data>
+  <data name="Options.LogActionClean"><value>Чистые головы</value></data>
+  <data name="Options.OpenLogsFolder"><value>Открыть папку</value></data>
+  <data name="Options.LogMaximumSize"><value>Максимальный размер</value></data>
+  <data name="Options.KeepLogArchives"><value>Сохраняйте предыдущие журналы</value></data>
+  <data name="Options.LogUnlimitedHint"><value>0 = неограниченно</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>Движки</value></data>
   <data name="Engines.Description" xml:space="preserve"><value>Независимо выберите движок для каждой операции.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>Внутренний движок GW GUI</value></data>
@@ -185,9 +76,7 @@
   <data name="Controllers.NoneDetected" xml:space="preserve"><value>Контроллеры не обнаружены</value></data>
   <data name="Controllers.DetectedCount" xml:space="preserve"><value>Обнаружено контроллеров: {0}</value></data>
   <data name="Controllers.TestRumble" xml:space="preserve"><value>Проверить вибрацию</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve">
-    <value>Сила вибрации</value>
-  </data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>Сила вибрации</value></data>
   <data name="Controllers.LiveInputs" xml:space="preserve"><value>Входы в реальном времени</value></data>
   <data name="Controllers.Control" xml:space="preserve"><value>Элемент управления</value></data>
   <data name="Controllers.Value" xml:space="preserve"><value>Значение</value></data>
@@ -218,17 +107,10 @@
   <data name="Controllers.Yes" xml:space="preserve"><value>Да</value></data>
   <data name="Controllers.No" xml:space="preserve"><value>Нет</value></data>
   <data name="Controllers.None" xml:space="preserve"><value>Нет</value></data>
-  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>Обычный геймпад</value></data>
-  <data name="Controllers.Model.Auto" xml:space="preserve"><value>Авто</value></data>
-  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>Руль</value></data>
-  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>Авиационный джойстик</value></data>
-  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>Аркадный стик</value></data>
-  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Необработанный байт</value></data>
+<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Необработанный байт</value></data>
   <data name="Controllers.AnalogValues" xml:space="preserve"><value>Аналоговые значения</value></data>
   <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Не удалось обнаружить контроллеры</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve">
-    <value>Поиск контроллеров…</value>
-  </data>
+  <data name="Controllers.Detecting" xml:space="preserve"><value>Поиск контроллеров…</value></data>
   <data name="Controllers.ReadFailed" xml:space="preserve"><value>Не удалось прочитать контроллер</value></data>
   <data name="Controllers.TestRunning" xml:space="preserve"><value>Выполняется тест…</value></data>
   <data name="Controllers.TestFailed" xml:space="preserve"><value>Тест не пройден</value></data>
@@ -253,91 +135,53 @@
   <data name="Controllers.Roll" xml:space="preserve"><value>Крен</value></data>
   <data name="Controllers.Pitch" xml:space="preserve"><value>Тангаж</value></data>
   <data name="Controllers.Yaw" xml:space="preserve"><value>Рыскание</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve">
-    <value>Датчики</value>
-  </data>
-  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
-    <value>Навигация интерфейса</value>
-  </data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
-    <value>Геймпад</value>
-  </data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
-    <value>Низкочастотный мотор</value>
-  </data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
-    <value>Высокочастотный мотор</value>
-  </data>
-  <data name="Controllers.Enum.Share" xml:space="preserve">
-    <value>Поделиться</value>
-  </data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve">
-    <value>Линейный</value>
-  </data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve">
-    <value>Угловой</value>
-  </data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve">
-    <value>Нормальный</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
-    <value>Постоянный</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
-    <value>Нарастание</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
-    <value>Синусоидальная волна</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
-    <value>Прямоугольная волна</value>
-  </data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
-    <value>Треугольная волна</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
-    <value>Восходящая пилообразная волна</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
-    <value>Нисходящая пилообразная волна</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
-    <value>Пружина</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
-    <value>Трение</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
-    <value>Демпфер</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
-    <value>Инерция</value>
-  </data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve">
-    <value>Джойстик</value>
-  </data>
-  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
-    <value>Многоосевой контроллер</value>
-  </data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
-    <value>Использование HID</value>
-  </data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve">
-    <value>оси</value>
-  </data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve">
-    <value>кнопки</value>
-  </data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
-    <value>Агрегированный</value>
-  </data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve">
-    <value>Виртуальный</value>
-  </data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve">
-    <value>Входной отчёт</value>
-  </data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
-    <value>Выходной отчёт</value>
-  </data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Датчики</value></data>
+  <data name="Controllers.Enum.UiNavigation"><value>UI навигация</value></data>
+  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>Геймпад</value></data>
+  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Низкочастотный мотор</value></data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Высокочастотный мотор</value></data>
+  <data name="Controllers.Enum.Share" xml:space="preserve"><value>Поделиться</value></data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Линейный</value></data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Угловой</value></data>
+  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>Нормальный</value></data>
+  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Постоянный</value></data>
+  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Нарастание</value></data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Синусоидальная волна</value></data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>Прямоугольная волна</value></data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>Треугольная волна</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>Восходящая пилообразная волна</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>Нисходящая пилообразная волна</value></data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>Пружина</value></data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Трение</value></data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Демпфер</value></data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Инерция</value></data>
+  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Джойстик</value></data>
+  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Многоосевой контроллер</value></data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>Использование HID</value></data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>оси</value></data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>кнопки</value></data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Агрегированный</value></data>
+  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>Виртуальный</value></data>
+  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Входной отчёт</value></data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Выходной отчёт</value></data>
+<data name="Emulation.InitialDisk"><value>Первоначальный диск</value></data>
+  <data name="Emulation.Audio"><value>Аудио</value></data>
+  <data name="Emulation.Controller"><value>Контроллер {0}</value></data>
+  <data name="Emulation.Core.NameOptions"><value>Основные варианты</value></data>
+  <data name="Emulation.MultiDrive"><value>нажмите первые четыре диска DF0-DF3</value></data>
+  <data name="Emulation.DiskNumber"><value>Диск {0}</value></data>
+  <data name="Emulation.LoadOptions"><value>Доступные варианты загрузки</value></data>
+  <data name="Emulation.Configurations"><value>Конфигурации</value></data>
+  <data name="Emulation.Firmware"><value>Прошивка</value></data>
+  <data name="Emulation.ReleaseMouse"><value>Выпустить мышь</value></data>
+  <data name="Emulation.DeleteConfirm"><value>Удалить эту конфигурацию Amiga?</value></data>
+  <data name="Emulation.ModelRequired"><value>Требуется модель Amiga.</value></data>
+  <data name="Emulation.KickstartRequired"><value>Требуется путь Kickstart.</value></data>
+  <data name="Emulation.FileRequired"><value>Требуемый путь прошивки пуст.</value></data>
+  <data name="Emulation.FileMissing"><value>Выбранного файла не существует.</value></data>
+<data name="Options.EmulationMachineTitle"><value>{0} - {1} : {2}</value></data>
+  <data name="Controllers.AnalogDeadZones"><value>Аналоговые мертвые зоны</value></data>
+  <data name="Controllers.StickDeadZone"><value>палки</value></data>
+  <data name="Controllers.TriggerDeadZone"><value>триггеры</value></data>
+  <data name="Controllers.OuterDeadZone"><value>Внешняя мертвая зона</value></data>
 </root>

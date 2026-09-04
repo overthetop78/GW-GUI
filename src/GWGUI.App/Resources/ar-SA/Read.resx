@@ -12,127 +12,45 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Read.Title">
-    <value>يقرأ</value>
-  </data>
-  <data name="Read.NameRequired">
-    <value>أدخل اسم الملف.</value>
-  </data>
-  <data name="Read.TypeRequired">
-    <value>اختر نوع صورة متوافق.</value>
-  </data>
-  <data name="Read.FileExistsTitle">
-    <value>الملف الموجود</value>
-  </data>
-  <data name="Read.FileExists">
-    <value>هذا الملف موجود بالفعل.</value>
-  </data>
-  <data name="Read.ConflictPath">
-    <value>الملف الموجود</value>
-  </data>
-  <data name="Read.ConflictOverwrite">
-    <value>الكتابة فوق</value>
-  </data>
-  <data name="Read.ConflictNextNumber">
-    <value>استخدم الرقم التالي</value>
-  </data>
-  <data name="Read.ConflictEditName">
-    <value>اسمحوا لي أن تعديل الاسم</value>
-  </data>
-  <data name="Read.ImageToCreate">
-    <value>صورة للإنشاء</value>
-  </data>
-  <data name="Read.Extension">
-    <value>امتداد</value>
-  </data>
-  <data name="Read.RawScp">
-    <value>صورة أولية (SCP)</value>
-  </data>
-  <data name="Read.KnownFormat">
-    <value>تنسيق القرص المعروف</value>
-  </data>
-  <data name="Read.FileName">
-    <value>اسم الملف</value>
-  </data>
-  <data name="Read.Folder">
-    <value>مجلد</value>
-  </data>
-  <data name="Read.Revolutions">
-    <value>الثورات لكل مسار</value>
-  </data>
-  <data name="Read.Retries">
-    <value>إعادة المحاولة</value>
-  </data>
-  <data name="Read.Tracks">
-    <value>المسارات/الجوانب</value>
-  </data>
-  <data name="Read.AutoNumber">
-    <value>عدد القراءات الناجحة تلقائيًا</value>
-  </data>
-  <data name="Read.Digits">
-    <value>أرقام</value>
-  </data>
-  <data name="Read.Letters">
-    <value>رسائل</value>
-  </data>
-  <data name="Read.Next">
-    <value>التالي:</value>
-  </data>
-  <data name="Read.OpenVisualize">
-    <value>فتح في التصور</value>
-  </data>
-  <data name="Read.ScpFinished">
-    <value>اكتمل التقاط SCP. يمكنك تحليله دون مقاطعة عملك.</value>
-  </data>
-  <data name="Read.ScpSummaryTitle">
-    <value>النتيجة النهائية SCP:</value>
-  </data>
-  <data name="Read.ScpTracksSummary">
-    <value>المسارات: {0} جيدة، {1} مفقودة أو غير صالحة ({2} أسطوانات، {3} جوانب).</value>
-  </data>
-  <data name="Read.ScpTechnicalSummary">
-    <value>الثورات: {0} · الدقة: {1} ns · الحجم: {2:N0} بايت · المجموع الاختباري: {3}.</value>
-  </data>
-  <data name="Read.ScpOutputFile">
-    <value>الملف: {0}</value>
-  </data>
-  <data name="Read.ScpSummaryUnavailable">
-    <value>SCP الملخص غير متاح: {0}</value>
-  </data>
-  <data name="Read.ScpBannerSummary">
-    <value>{0} مسارات جيدة · {1} مفقودة أو غير صالحة · {2} أسطوانات · {3} جوانب · {4} دورة (دورات) · {5:N0} بايت · {6} المجموع الاختباري</value>
-  </data>
-  <data name="Read.ChooseType">
-    <value>اختر نوع الصورة</value>
-  </data>
-  <data name="Read.DestinationFolder">
-    <value>المجلد الوجهة</value>
-  </data>
-  <data name="Read.CancelledFileDeleted">
-    <value>تم إلغاء القراءة: تم حذف الملف غير المكتمل: {0}</value>
-  </data>
-  <data name="Read.CancelledFileDeleteFailed">
-    <value>تم إلغاء القراءة، ولكن لا يمكن حذف الملف غير المكتمل: {0} — {1}</value>
-  </data>
-  <data name="Read.OpenExplore">
-    <value>استعراض الملفات</value>
-  </data>
-  <data name="Read.InternalReader">
-    <value>قراءة القرص الفعلي داخليًا (تجريبي)</value>
-  </data>
-  <data name="Read.InternalReaderTip">
-    <value>يقرأ التدفق مباشرة عبر بروتوكول Greaseweazle؛ ويظل gw.exe هو الافتراضي.</value>
-  </data>
-  <data name="Read.InternalPreview">
-    <value>قراءة القرص الفعلي داخليًا إلى {0}</value>
-  </data>
-  <data name="Read.InternalRawScpOnly">
-    <value>تنشئ القراءة الداخلية حاليًا صور SCP خام فقط.</value>
-  </data>
-  <data name="Read.InternalUnsupportedOptions">
-    <value>بعض الخيارات المفعلة غير مدعومة بعد في القارئ الداخلي.</value>
-  </data>
-  <data name="Read.InternalInvalidOptions">
-    <value>إعدادات القراءة الداخلية غير صالحة.</value>
-  </data>
+  <data name="Read.Title"><value>يقرأ</value></data>
+  <data name="Read.NameRequired"><value>أدخل اسم الملف.</value></data>
+  <data name="Read.TypeRequired"><value>اختر نوع صورة متوافق.</value></data>
+  <data name="Read.FileExistsTitle"><value>الملف الموجود</value></data>
+  <data name="Read.FileExists"><value>هذا الملف موجود بالفعل.</value></data>
+  <data name="Read.ConflictPath"><value>الملف الموجود</value></data>
+  <data name="Read.ConflictOverwrite"><value>الكتابة فوق</value></data>
+  <data name="Read.ConflictNextNumber"><value>استخدم الرقم التالي</value></data>
+  <data name="Read.ConflictEditName"><value>اسمحوا لي أن تعديل الاسم</value></data>
+  <data name="Read.ImageToCreate"><value>صورة للإنشاء</value></data>
+  <data name="Read.Extension"><value>امتداد</value></data>
+  <data name="Read.RawScp"><value>صورة أولية (SCP)</value></data>
+  <data name="Read.KnownFormat"><value>تنسيق القرص المعروف</value></data>
+  <data name="Read.FileName"><value>اسم الملف</value></data>
+  <data name="Read.Folder"><value>مجلد</value></data>
+  <data name="Read.Revolutions"><value>الثورات لكل مسار</value></data>
+  <data name="Read.Retries"><value>إعادة المحاولة</value></data>
+  <data name="Read.Tracks"><value>المسارات/الجوانب</value></data>
+  <data name="Read.AutoNumber"><value>عدد القراءات الناجحة تلقائيًا</value></data>
+  <data name="Read.Digits"><value>أرقام</value></data>
+  <data name="Read.Letters"><value>رسائل</value></data>
+  <data name="Read.Next"><value>التالي:</value></data>
+  <data name="Read.OpenVisualize"><value>فتح في التصور</value></data>
+  <data name="Read.ScpFinished"><value>The SCP الإمساك مكتمل يمكنك تحليله بدون مقاطعه عملك</value></data>
+  <data name="Read.ScpSummaryTitle"><value>النتيجة النهائية SCP:</value></data>
+  <data name="Read.ScpTracksSummary"><value>المسارات: {0} جيدة، {1} مفقودة أو غير صالحة ({2} أسطوانات، {3} جوانب).</value></data>
+  <data name="Read.ScpTechnicalSummary"><value>الثورات: {0} · الدقة: {1} ns · الحجم: {2:N0} بايت · المجموع الاختباري: {3}.</value></data>
+  <data name="Read.ScpOutputFile"><value>الملف: {0}</value></data>
+  <data name="Read.ScpSummaryUnavailable"><value>SCP الملخص غير متاح: {0}</value></data>
+  <data name="Read.ScpBannerSummary"><value>{0} مسارات جيدة · {1} مفقودة أو غير صالحة · {2} أسطوانات · {3} جوانب · {4} دورة (دورات) · {5:N0} بايت · {6} المجموع الاختباري</value></data>
+  <data name="Read.ChooseType"><value>اختر نوع الصورة</value></data>
+  <data name="Read.DestinationFolder"><value>المجلد الوجهة</value></data>
+  <data name="Read.CancelledFileDeleted"><value>تم إلغاء القراءة: تم حذف الملف غير المكتمل: {0}</value></data>
+  <data name="Read.CancelledFileDeleteFailed"><value>تم إلغاء القراءة، ولكن لا يمكن حذف الملف غير المكتمل: {0} — {1}</value></data>
+  <data name="Read.OpenExplore"><value>استعراض الملفات</value></data>
+  <data name="Read.InternalReader"><value>قراءة القرص الفعلي داخليًا (تجريبي)</value></data>
+  <data name="Read.InternalReaderTip"><value>يقرأ التدفق مباشرة عبر بروتوكول Greaseweazle؛ ويظل gw.exe هو الافتراضي.</value></data>
+  <data name="Read.InternalPreview"><value>قراءة القرص الفعلي داخليًا إلى {0}</value></data>
+  <data name="Read.InternalRawScpOnly"><value>تنشئ القراءة الداخلية حاليًا صور SCP خام فقط.</value></data>
+  <data name="Read.InternalUnsupportedOptions"><value>بعض الخيارات المفعلة غير مدعومة بعد في القارئ الداخلي.</value></data>
+  <data name="Read.InternalInvalidOptions"><value>إعدادات القراءة الداخلية غير صالحة.</value></data>
 </root>

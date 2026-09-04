@@ -12,102 +12,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Image">
-    <value>תמונת דיסק</value>
-  </data>
-  <data name="Explorer.Format">
-    <value>תבנית</value>
-  </data>
-  <data name="Explorer.OpenImage">
-    <value>פתיחת תמונה…</value>
-  </data>
-  <data name="Explorer.Automatic">
-    <value>זיהוי אוטומטי</value>
-  </data>
-  <data name="Explorer.Volume">
-    <value>אמצעי אחסון</value>
-  </data>
-  <data name="Explorer.FileSystem">
-    <value>מערכת קבצים</value>
-  </data>
-  <data name="Explorer.Capacity">
-    <value>קיבולת</value>
-  </data>
-  <data name="Explorer.Free">
-    <value>שטח פנוי</value>
-  </data>
-  <data name="Explorer.Entries">
-    <value>פריטים</value>
-  </data>
-  <data name="Explorer.SelectEntry">
-    <value>בחר קובץ או תיקייה.</value>
-  </data>
-  <data name="Explorer.Size">
-    <value>גודל</value>
-  </data>
-  <data name="Explorer.Modified">
-    <value>שונה</value>
-  </data>
-  <data name="Explorer.Comment">
-    <value>הערה</value>
-  </data>
-  <data name="Explorer.Warnings">
-    <value>אזהרות</value>
-  </data>
-  <data name="Explorer.Directory">
-    <value>תיקייה</value>
-  </data>
-  <data name="Explorer.File">
-    <value>קובץ</value>
-  </data>
-  <data name="Explorer.Link">
-    <value>קישור</value>
-  </data>
-  <data name="Explorer.Unknown">
-    <value>לא ידוע</value>
-  </data>
-  <data name="Explorer.Unnamed">
-    <value>אמצעי אחסון ללא שם</value>
-  </data>
-  <data name="Explorer.LoadFailed">
-    <value>לא ניתן לפתוח תמונה זו: {0}</value>
-  </data>
-  <data name="Explorer.Loading">
-    <value>תמונת הדיסק נקראת…</value>
-  </data>
-  <data name="Explorer.ReadDisk">
-    <value>קריאת הדיסקט</value>
-  </data>
-  <data name="Explorer.Name">
-    <value>שם</value>
-  </data>
-  <data name="Explorer.Type">
-    <value>סוג</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirmTitle">
-    <value>קריאת דיסקט</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirm">
-    <value>האם הדיסקט נמצא בכונן שנבחר כעת ({0}) ומוכן לקריאה?</value>
-  </data>
-  <data name="Explorer.Type.Text">
-    <value>קובץ טקסט</value>
-  </data>
-  <data name="Explorer.Type.Image">
-    <value>תמונה</value>
-  </data>
-  <data name="Explorer.Type.Audio">
-    <value>קובץ שמע</value>
-  </data>
-  <data name="Explorer.Type.Archive">
-    <value>ארכיון</value>
-  </data>
-  <data name="Explorer.Type.Program">
-    <value>תוכנית</value>
-  </data>
-  <data name="Explorer.Type.DiskImage">
-    <value>תמונת דיסק</value>
-  </data>
+  <data name="Explorer.Image"><value>תמונת דיסק</value></data>
+  <data name="Explorer.Format"><value>תבנית</value></data>
+  <data name="Explorer.OpenImage"><value>פתיחת תמונה…</value></data>
+  <data name="Explorer.Automatic"><value>זיהוי אוטומטי</value></data>
+  <data name="Explorer.Volume"><value>אמצעי אחסון</value></data>
+  <data name="Explorer.FileSystem"><value>מערכת קבצים</value></data>
+  <data name="Explorer.Capacity"><value>קיבולת</value></data>
+  <data name="Explorer.Free"><value>שטח פנוי</value></data>
+  <data name="Explorer.Entries"><value>פריטים</value></data>
+  <data name="Explorer.SelectEntry"><value>בחר קובץ או תיקייה.</value></data>
+  <data name="Explorer.Size"><value>גודל</value></data>
+  <data name="Explorer.Modified"><value>שונה</value></data>
+  <data name="Explorer.Comment"><value>הערה</value></data>
+  <data name="Explorer.Warnings"><value>אזהרות</value></data>
+  <data name="Explorer.Directory"><value>תיקייה</value></data>
+  <data name="Explorer.File"><value>קובץ</value></data>
+  <data name="Explorer.Link"><value>קישור</value></data>
+  <data name="Explorer.Unknown"><value>לא ידוע</value></data>
+  <data name="Explorer.Unnamed"><value>אמצעי אחסון ללא שם</value></data>
+  <data name="Explorer.LoadFailed"><value>לא ניתן לפתוח תמונה זו: {0}</value></data>
+  <data name="Explorer.Loading"><value>תמונת הדיסק נקראת…</value></data>
+  <data name="Explorer.ReadDisk"><value>קריאת הדיסקט</value></data>
+  <data name="Explorer.Name"><value>שם</value></data>
+  <data name="Explorer.Type"><value>סוג</value></data>
+  <data name="Explorer.ReadDiskConfirmTitle"><value>קריאת דיסקט</value></data>
+  <data name="Explorer.ReadDiskConfirm"><value>האם הדיסקט נמצא בכונן שנבחר כעת ({0}) ומוכן לקריאה?</value></data>
+  <data name="Explorer.Type.Text"><value>קובץ טקסט</value></data>
+  <data name="Explorer.Type.Image"><value>תמונה</value></data>
+  <data name="Explorer.Type.Audio"><value>קובץ שמע</value></data>
+  <data name="Explorer.Type.Archive"><value>ארכיון</value></data>
+  <data name="Explorer.Type.Program"><value>תוכנית</value></data>
+  <data name="Explorer.Type.DiskImage"><value>תמונת דיסק</value></data>
   <data name="Explorer.System"><value>מערכת</value></data>
   <data name="Explorer.Protection"><value>הגנה</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>סקטורים פיזיים — לא זוהתה מערכת קבצים</value></data>
@@ -119,6 +55,6 @@
   <data name="Explorer.Content.crack-the-company"><value>Crack על ידי The Company</value></data>
   <data name="Explorer.DataBlocks"><value>בלוקי נתונים</value></data>
   <data name="Explorer.DetectedFormats"><value>זוהה: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable"><value>כלי מארח לא יכולים לייצר תמונה של מגזר בלתי מוסבר {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed"><value>כלי מארח לא יכלו לפענח את התמונה כמו {0}.</value></data>
 </root>

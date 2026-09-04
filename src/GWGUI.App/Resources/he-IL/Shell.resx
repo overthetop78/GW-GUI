@@ -12,73 +12,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.GwNotConfigured">
-    <value>Greaseweazle הכלים אינם מוגדרים. פתח את אפשרויות ← העדפות.</value>
-  </data>
-  <data name="App.OperationRunningClose">
-    <value>פועלת פעולה. לעצור את זה ולסגור את GW GUI?</value>
-  </data>
-  <data name="Operation.Finished">
-    <value>הסתיים: קוד {0}, משך {1}.</value>
-  </data>
-  <data name="Operation.Succeeded">
-    <value>הפקודה הושלמה בהצלחה.</value>
-  </data>
-  <data name="Operation.Cancelled">
-    <value>הפקודה בוטלה.</value>
-  </data>
-  <data name="Operation.ExitCode">
-    <value>הפקודה הסתיימה בקוד {0}.</value>
-  </data>
-  <data name="Common.Console">
-    <value>לְנַחֵם</value>
-  </data>
-  <data name="Common.Command">
-    <value>פְּקוּדָה</value>
-  </data>
-  <data name="Status.FaceTrackProgress">
-    <value>צד {0}: מסלול {1} — {2}/{3}</value>
-  </data>
-  <data name="Status.Ready">
-    <value>GW GUI מוכן.</value>
-  </data>
-  <data name="Status.DefaultProfile">
-    <value>פרופיל: ברירת מחדל</value>
-  </data>
-  <data name="Operation.StopTitle">
-    <value>עצור את הפעולה</value>
-  </data>
-  <data name="Operation.StopConfirm">
-    <value>לעצור את פעולת Greaseweazle הנוכחית?</value>
-  </data>
-  <data name="Operation.Busy">
-    <value>פקודת Greaseweazle כבר פועלת. המתן עד שהוא יסתיים או עצור אותו לפני פתיחת הכלי הזה.</value>
-  </data>
-  <data name="Status.Profile">
-    <value>פרופיל: {0}</value>
-  </data>
-  <data name="Status.TrackProgress">
-    <value>מסלול {0}, צד {1} — {2}/{3}</value>
-  </data>
-  <data name="Status.TrackUnknown">
-    <value>מסלול {0}, צד {1} - {2} מעובד</value>
-  </data>
-  <data name="Operation.Error">
-    <value>שגיאה: {0}</value>
-  </data>
-  <data name="Status.ReadyShort">
-    <value>מוּכָן</value>
-  </data>
-  <data name="Status.Running">
-    <value>רִיצָה</value>
-  </data>
-  <data name="Status.Success">
-    <value>הַצלָחָה</value>
-  </data>
-  <data name="Status.Error">
-    <value>שְׁגִיאָה</value>
-  </data>
-  <data name="Status.Cancelled">
-    <value>בּוּטלָה</value>
-  </data>
+  <data name="App.GwNotConfigured"><value>Greaseweazle הכלים אינם מוגדרים. פתח את אפשרויות ← העדפות.</value></data>
+  <data name="App.OperationRunningClose"><value>פועלת פעולה. לעצור את זה ולסגור את GW GUI?</value></data>
+  <data name="Operation.Finished"><value>הסתיים: קוד {0}, משך {1}.</value></data>
+  <data name="Operation.Succeeded"><value>הפקודה הושלמה בהצלחה.</value></data>
+  <data name="Operation.Cancelled"><value>הפקודה בוטלה.</value></data>
+  <data name="Operation.ExitCode"><value>הפקודה הסתיימה בקוד {0}.</value></data>
+  <data name="Common.Console"><value>לְנַחֵם</value></data>
+  <data name="Common.Command"><value>פְּקוּדָה</value></data>
+  <data name="Status.FaceTrackProgress"><value>צד {0}: מסלול {1} — {2}/{3}</value></data>
+  <data name="Status.Ready"><value>GW GUI מוכן.</value></data>
+  <data name="Status.DefaultProfile"><value>פרופיל: ברירת מחדל</value></data>
+  <data name="Operation.StopTitle"><value>עצור את הפעולה</value></data>
+  <data name="Operation.StopConfirm"><value>לעצור את פעולת Greaseweazle הנוכחית?</value></data>
+  <data name="Operation.Busy"><value>פקודת Greaseweazle כבר פועלת. המתן עד שהוא יסתיים או עצור אותו לפני פתיחת הכלי הזה.</value></data>
+  <data name="Status.Profile"><value>פרופיל: {0}</value></data>
+  <data name="Status.TrackProgress"><value>מסלול {0}, צד {1} — {2}/{3}</value></data>
+  <data name="Status.TrackUnknown"><value>מסלול {0}, צד {1} - {2} מעובד</value></data>
+  <data name="Operation.Error"><value>שגיאה: {0}</value></data>
+  <data name="Status.ReadyShort"><value>מוּכָן</value></data>
+  <data name="Status.Running"><value>רִיצָה</value></data>
+  <data name="Status.Success"><value>הַצלָחָה</value></data>
+  <data name="Status.Error"><value>שְׁגִיאָה</value></data>
+  <data name="Status.Cancelled"><value>בּוּטלָה</value></data>
 </root>

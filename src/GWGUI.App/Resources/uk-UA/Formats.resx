@@ -12,67 +12,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Detection.Ambiguous">
-    <value>Неоднозначний формат</value>
-  </data>
-  <data name="Detection.RawScp">
-    <value>Необроблений запис SCP розпізнано.</value>
-  </data>
-  <data name="Detection.AmigaSize">
-    <value>Формат Amiga розпізнається за розміром файлу.</value>
-  </data>
-  <data name="Detection.AcornSize">
-    <value>Формат Acorn розпізнається за розміром файлу.</value>
-  </data>
-  <data name="Detection.AtariUnknownSize">
-    <value>Розмір не відповідає відомому профілю Atari ST.</value>
-  </data>
-  <data name="Detection.AtariSize">
-    <value>Геометрія Atari ST розпізнається за розміром файлу.</value>
-  </data>
-  <data name="Detection.MsaInferred">
-    <value>розпізнано контейнер Atari MSA; підтвердити геометрію, якщо необхідно.</value>
-  </data>
-  <data name="Detection.IbmAmbiguous">
-    <value>Саме розширення не може визначити геометрію IBM PC.</value>
-  </data>
-  <data name="Detection.IbmSize">
-    <value>Геометрія IBM PC розпізнається за розміром файлу.</value>
-  </data>
-  <data name="Detection.ExtensionInferred">
-    <value>Формат, отриманий із розширення.</value>
-  </data>
-  <data name="Detection.Multiple">
-    <value>Можливі декілька форматів; виберіть один явно.</value>
-  </data>
-  <data name="Format.raw.scp">
-    <value>Необроблене зображення потоку</value>
-  </data>
-  <data name="Format.raw.hfe">
-    <value>HxC зображення потоку</value>
-  </data>
-  <data name="Common.DiskImageFilter">
-    <value>Образи дисків|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Усі файли|*.*</value>
-  </data>
-  <data name="Detection.AppleDosOrder">
-    <value>Формат Apple II DOS визначено за порядком секторів.</value>
-  </data>
-  <data name="Detection.AppleProDosOrder">
-    <value>Формат Apple II ProDOS визначено за порядком секторів.</value>
-  </data>
-  <data name="Detection.AppleContainer">
-    <value>Виявлено контейнер образу диска Apple.</value>
-  </data>
-  <data name="Classification.Automatic">
-    <value>Автоматичне визначення</value>
-  </data>
-  <data name="Classification.Machine">
-    <value>Комп’ютер</value>
-  </data>
-  <data name="Classification.Format">
-    <value>Формат</value>
-  </data>
-  <data name="Classification.Protection">
-    <value>Захист</value>
-  </data>
+  <data name="Detection.Ambiguous"><value>Неоднозначний формат</value></data>
+  <data name="Detection.RawScp"><value>Необроблений запис SCP розпізнано.</value></data>
+  <data name="Detection.AmigaSize"><value>Формат Amiga розпізнається за розміром файлу.</value></data>
+  <data name="Detection.AcornSize"><value>Формат Acorn розпізнається за розміром файлу.</value></data>
+  <data name="Detection.AtariUnknownSize"><value>Розмір не відповідає відомій Atari ST профіль.</value></data>
+  <data name="Detection.AtariSize"><value>Геометрія Atari ST розпізнається за розміром файлу.</value></data>
+  <data name="Detection.MsaInferred"><value>розпізнано контейнер Atari MSA; підтвердити геометрію, якщо необхідно.</value></data>
+  <data name="Detection.IbmAmbiguous"><value>Подовжувач не може визначитися з IBM PC геометрія.</value></data>
+  <data name="Detection.IbmSize"><value>Геометрія IBM PC розпізнається за розміром файлу.</value></data>
+  <data name="Detection.ExtensionInferred"><value>Формат, отриманий із розширення.</value></data>
+  <data name="Detection.Multiple"><value>Можливі декілька форматів; виберіть один явно.</value></data>
+  <data name="Format.raw.scp"><value>Необроблене зображення потоку</value></data>
+  <data name="Common.DiskImageFilter"><value>Дискові зображення|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Всі файли|*.*</value></data>
+  <data name="Detection.AppleDosOrder"><value>Формат Apple II DOS визначено за порядком секторів.</value></data>
+  <data name="Detection.AppleProDosOrder"><value>Формат Apple II ProDOS визначено за порядком секторів.</value></data>
+  <data name="Detection.AppleContainer"><value>Виявлено контейнер образу диска Apple.</value></data>
+  <data name="Classification.Automatic"><value>Автоматичне визначення</value></data>
+  <data name="Classification.Machine"><value>Комп’ютер</value></data>
+  <data name="Classification.Format"><value>Формат</value></data>
+  <data name="Classification.Protection"><value>Захист</value></data>
 </root>

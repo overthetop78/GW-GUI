@@ -12,33 +12,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.SettingsSaveFailed">
-    <value>Ayarlar kaydedilemedi.
-
-{0}</value>
-  </data>
-  <data name="Error.Title">
-    <value>GW GUI hatası</value>
-  </data>
-  <data name="Error.Unexpected">
-    <value>Beklenmeyen bir hatayla karşılaşıldı.
-
-{0}</value>
-  </data>
-  <data name="Error.SaveFailed">
-    <value>Ayarlar kaydedilemedi. Pencere yine de kapanacak.
-
-{0}</value>
-  </data>
-  <data name="Error.LogSaved">
-    <value>Raporun tamamı şuraya kaydedildi:
-{0}</value>
-  </data>
+  <data name="App.SettingsSaveFailed"><value>Ayarlar kaydedilemedi.&#xA;&#xA;{0}</value></data>
+  <data name="Error.Title"><value>GW GUI hatası</value></data>
+  <data name="Error.Unexpected"><value>Beklenmeyen bir hatayla karşılaşıldı.&#xA;&#xA;{0}</value></data>
+  <data name="Error.SaveFailed"><value>Ayarlar kaydedilemedi. Pencere yine de kapanacak.&#xA;&#xA;{0}</value></data>
+  <data name="Error.LogSaved"><value>Raporun tamamı şuraya kaydedildi:&#xA;{0}</value></data>
   <data name="Error.Description.NetworkTimeout"><value>Uzak servis bağlantı zamanından önce cevap vermedi. Ağ bağlantısını kontrol edin ve tekrar deneyin.</value></data>
   <data name="Error.Description.NetworkDns"><value>Uzak servis adresi çözülmedi. Ağ veya DNS ayarlarını kontrol edin ve tekrar deneyin.</value></data>
   <data name="Error.Description.NetworkRefused"><value>Uzak servis bağlantıyı reddetti. Yok veya bloke edilebilir olabilir.</value></data>
   <data name="Error.Description.NetworkUnavailable"><value>Uzak servis ulaşılamadı. İnternet bağlantısı, güvenlik duvarı, VPN veya proxy ayarlarını kontrol edin ve tekrar deneyin.</value></data>
-  <data name="Error.Description.HttpStatus"><value>Uzak servis HTTP statüsüne geri döndü {0 The Daha sonra tekrar deneyin.</value></data>
+  <data name="Error.Description.HttpStatus"><value>Uzak hizmet geri döndü HTTP durum {0}. Tekrar deneyin.</value></data>
   <data name="Error.Description.OperationTimeout"><value>Operasyon izin verilen süre içinde bitirmedi. Tekrar deneyin.</value></data>
   <data name="Error.Description.OperationCancelled"><value>Operasyon bitmeden önce iptal edildi.</value></data>
   <data name="Error.Description.AccessDenied"><value>GW GUI talep edilen dosyaya, klasöre veya cihaza erişmek için izin verilmez.</value></data>

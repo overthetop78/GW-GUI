@@ -12,73 +12,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options">
-    <value>_Opciók</value>
-  </data>
-  <data name="Menu.Preferences">
-    <value>Beállítások…</value>
-  </data>
-  <data name="Menu.Diagnostics">
-    <value>Diagnosztika</value>
-  </data>
-  <data name="Menu.Information">
-    <value>Információ</value>
-  </data>
-  <data name="Menu.Bandwidth">
-    <value>USB sávszélesség</value>
-  </data>
-  <data name="Menu.Rpm">
-    <value>RPM sebesség</value>
-  </data>
-  <data name="Menu.Seek">
-    <value>Keresd a fejet…</value>
-  </data>
-  <data name="Menu.Hardware">
-    <value>Hardver</value>
-  </data>
-  <data name="Menu.Pins">
-    <value>Pins…</value>
-  </data>
-  <data name="Menu.Reset">
-    <value>Reset</value>
-  </data>
-  <data name="Menu.Delays">
-    <value>Késések…</value>
-  </data>
-  <data name="Menu.Firmware">
-    <value>Firmware…</value>
-  </data>
-  <data name="Menu.Help">
-    <value>_Segítség</value>
-  </data>
-  <data name="Menu.Documentation">
-    <value>Dokumentáció</value>
-  </data>
-  <data name="Menu.About">
-    <value>Körülbelül</value>
-  </data>
-  <data name="Tab.Read">
-    <value>Olvas</value>
-  </data>
-  <data name="Tab.Write">
-    <value>Írj</value>
-  </data>
-  <data name="Tab.Convert">
-    <value>Átalakítás</value>
-  </data>
-  <data name="Tab.Visualize">
-    <value>Megjelenítés</value>
-  </data>
-  <data name="Tab.Tools">
-    <value>Eszközök</value>
-  </data>
-  <data name="Menu.Align">
-    <value>Hajtásigazítás…</value>
-  </data>
-  <data name="Tab.Explorer">
-    <value>Lemezböngésző</value>
-  </data>
-  <data name="Tab.Emulation">
-    <value>Emuláció</value>
-  </data>
+  <data name="Menu.Options"><value>_Opciók</value></data>
+  <data name="Menu.Preferences"><value>Beállítások…</value></data>
+  <data name="Menu.Diagnostics"><value>Diagnosztika</value></data>
+  <data name="Menu.Information"><value>Információ</value></data>
+  <data name="Menu.Bandwidth"><value>USB sávszélesség</value></data>
+  <data name="Menu.Rpm"><value>RPM sebesség</value></data>
+  <data name="Menu.Seek"><value>Keresd a fejet…</value></data>
+  <data name="Menu.Hardware"><value>Hardver</value></data>
+<data name="Menu.Delays"><value>Késések…</value></data>
+<data name="Menu.Help"><value>_Segítség</value></data>
+  <data name="Menu.Documentation"><value>Dokumentáció</value></data>
+  <data name="Menu.About"><value>Körülbelül</value></data>
+  <data name="Tab.Read"><value>Olvas</value></data>
+  <data name="Tab.Write"><value>Írj</value></data>
+  <data name="Tab.Convert"><value>Átalakítás</value></data>
+  <data name="Tab.Visualize"><value>Megjelenítés</value></data>
+  <data name="Tab.Tools"><value>Eszközök</value></data>
+  <data name="Menu.Align"><value>Hajtásigazítás…</value></data>
+  <data name="Tab.Explorer"><value>Lemezböngésző</value></data>
+  <data name="Tab.Emulation"><value>Emuláció</value></data>
+  <data name="Menu.Pins"><value>Pins...</value></data>
+  <data name="Menu.Reset"><value>Újraindítás</value></data>
+  <data name="Menu.Firmware"><value>Firmware...</value></data>
 </root>

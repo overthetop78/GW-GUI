@@ -12,16 +12,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="About.Description">
-    <value>อินเทอร์เฟซ Windows ที่ทันสมัยสำหรับการอ่าน เขียน แปลง และตรวจสอบฟล็อปปี้ดิสก์ด้วย Greaseweazle</value>
-  </data>
-  <data name="About.License">
-    <value>ซอฟต์แวร์โอเพ่นซอร์ส — MIT ใบอนุญาต</value>
-  </data>
-  <data name="About.Version">
-    <value>เวอร์ชัน {0}</value>
-  </data>
-  <data name="About.Components">
-    <value>เวอร์ชันคอมโพเนนต์</value>
-  </data>
+  <data name="About.Description"><value>อินเทอร์เฟซ Windows ที่ทันสมัยสำหรับการอ่าน เขียน แปลง และตรวจสอบฟล็อปปี้ดิสก์ด้วย Greaseweazle</value></data>
+  <data name="About.License"><value>ซอฟต์แวร์โอเพ่นซอร์ส — MIT ใบอนุญาต</value></data>
+  <data name="About.Version"><value>เวอร์ชัน {0}</value></data>
+  <data name="About.Components"><value>เวอร์ชันคอมโพเนนต์</value></data>
 </root>

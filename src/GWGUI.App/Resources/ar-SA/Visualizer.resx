@@ -12,209 +12,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Visual.Decoder">
-    <value>فك التشفير</value>
-  </data>
-  <data name="Visual.LinkZoom">
-    <value>تكبير الارتباط</value>
-  </data>
-  <data name="Visual.OpenScp">
-    <value>افتح ملف SCP...</value>
-  </data>
-  <data name="Visual.NoFile">
-    <value>لا يوجد ملف SCP مفتوح</value>
-  </data>
-  <data name="Visual.Waiting">
-    <value>في انتظار الملف</value>
-  </data>
-  <data name="Visual.Inspector">
-    <value>مفتش</value>
-  </data>
-  <data name="Visual.SelectTrack">
-    <value>حدد المسار.</value>
-  </data>
-  <data name="Visual.Controls">
-    <value>انقر: حدد · العجلة: تكبير · انقر بزر الماوس الأيمن: عموم</value>
-  </data>
-  <data name="Visual.NormalFlux">
-    <value>التدفق الطبيعي</value>
-  </data>
-  <data name="Visual.ShortTransition">
-    <value>انتقال قصير</value>
-  </data>
-  <data name="Visual.LongTransition">
-    <value>انتقال طويل / شذوذ</value>
-  </data>
-  <data name="Visual.Loading">
-    <value>قراءة الملف...</value>
-  </data>
-  <data name="Visual.Invalid">
-    <value>ملف غير صالح</value>
-  </data>
-  <data name="Visual.Title">
-    <value>SCP التصور</value>
-  </data>
-  <data name="Visual.ChecksumValid">
-    <value>صالح</value>
-  </data>
-  <data name="Visual.ChecksumInvalid">
-    <value>غير صالح</value>
-  </data>
-  <data name="Visual.Summary">
-    <value>SCP {0} · {1} المسارات · {2} الثورات · {3} الدقة ns · {4} المجموع الاختباري</value>
-  </data>
-  <data name="Visual.Revolution">
-    <value>الثورة {0}: {1:N0} التحولات · {2:F2} مللي ثانية · {3:F2} RPM</value>
-  </data>
-  <data name="Visual.Analysis">
-    <value>فك التشفير: {0}
-الثقة: {1:P0}
-الخلية المقدرة: {2:F1} علامات التجزئة
-الهياكل: {3}</value>
-  </data>
-  <data name="Visual.Track">
-    <value>الجانب: {0}
-المسار: {1}
-SCP الإدخال: {2}</value>
-  </data>
-  <data name="Visual.SideNoData">
-    <value>الجانب {0}
-لا توجد بيانات</value>
-  </data>
-  <data name="Visual.TrackTooltip">
-    <value>الجانب {0} · المسار {1}
-{2} الثورة (الثورات)</value>
-  </data>
-  <data name="Visual.Automatic">
-    <value>تلقائي</value>
-  </data>
-  <data name="Visual.StructureHeader">
-    <value>العنوان/العنوان</value>
-  </data>
-  <data name="Visual.StructureData">
-    <value>البيانات التي تم فك تشفيرها</value>
-  </data>
-  <data name="Visual.StructureAnomaly">
-    <value>محذوف/شذوذ</value>
-  </data>
-  <data name="Visual.AnalysedRevolution">
-    <value>التحليل على أساس الثورة {0}.</value>
-  </data>
-  <data name="Visual.BitOffset">
-    <value>بت {0:N0}</value>
-  </data>
-  <data name="Visual.SectorDetail">
-    <value>القطاع C{0} H{1} R{2} · {3} بايت · {4} {5}</value>
-  </data>
-  <data name="Visual.CrcValid">
-    <value>صالح</value>
-  </data>
-  <data name="Visual.CrcInvalid">
-    <value>غير صالح</value>
-  </data>
-  <data name="Visual.IntegrityUnavailable">
-    <value>غير متاح</value>
-  </data>
-  <data name="Visual.StructureKind.Sync">
-    <value>التزامن</value>
-  </data>
-  <data name="Visual.StructureKind.IdAddressMark">
-    <value>رأس القطاع</value>
-  </data>
-  <data name="Visual.StructureKind.DataAddressMark">
-    <value>بيانات القطاع</value>
-  </data>
-  <data name="Visual.StructureKind.DeletedDataAddressMark">
-    <value>بيانات القطاع المحذوفة</value>
-  </data>
-  <data name="Visual.StructureKind.AmigaSync">
-    <value>Amiga المزامنة</value>
-  </data>
-  <data name="Visual.StructureKind.AppleAddress">
-    <value>مقدمة عنوان أبل</value>
-  </data>
-  <data name="Visual.StructureKind.AppleData">
-    <value>مقدمة بيانات أبل</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreSync">
-    <value>Commodore المزامنة</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreHeader">
-    <value>Commodore رأس الصفحة</value>
-  </data>
-  <data name="Visual.StructureKind.FormatHeader">
-    <value>رأس التنسيق</value>
-  </data>
-  <data name="Visual.StructureKind.FormatData">
-    <value>تنسيق البيانات</value>
-  </data>
-  <data name="Visual.StructureKind.TimingAnomaly">
-    <value>توقيت الشذوذ</value>
-  </data>
-  <data name="Visual.OpenFilter">
-    <value>SuperCard Pro التقاط (*.scp)|*.scp|جميع الملفات|*.*</value>
-  </data>
-  <data name="Visual.Integrity.Checksum">
-    <value>المجموع الاختباري</value>
-  </data>
-  <data name="Visual.Side">
-    <value>الجانب {0}</value>
-  </data>
-  <data name="Visual.AnalysingTrack">
-    <value>جارٍ تحليل المسار {0}/{1}...</value>
-  </data>
-  <data name="Visual.SideLabel">
-    <value>جانب</value>
-  </data>
-  <data name="Visual.TrackLabel">
-    <value>مسار</value>
-  </data>
-  <data name="Visual.ScpEntryLabel">
-    <value>SCP الإدخال</value>
-  </data>
-  <data name="Visual.RevolutionsTitle">
-    <value>الثورات</value>
-  </data>
-  <data name="Visual.AnalysisTitle">
-    <value>تحليل</value>
-  </data>
-  <data name="Visual.ConfidenceLabel">
-    <value>ثقة</value>
-  </data>
-  <data name="Visual.CellLabel">
-    <value>الخلية المقدرة</value>
-  </data>
-  <data name="Visual.StructuresLabel">
-    <value>الهياكل</value>
-  </data>
-  <data name="Visual.StructuresTitle">
-    <value>الهياكل المكتشفة</value>
-  </data>
-  <data name="Visual.SectorsTitle">
-    <value>القطاعات</value>
-  </data>
-  <data name="Visual.TransitionsUnit">
-    <value>التحولات</value>
-  </data>
-  <data name="Visual.OpenImage">
-    <value>افتح صورة القرص...</value>
-  </data>
-  <data name="Visual.DetachInspector">
-    <value>فصل المفتش</value>
-  </data>
-  <data name="Visual.AttachInspector">
-    <value>إرفاق المفتش</value>
-  </data>
-  <data name="Visual.SummaryTab">
-    <value>ملخص</value>
-  </data>
-  <data name="Visual.FormatDetected">
-    <value>تم الكشف عن التنسيق</value>
-  </data>
-  <data name="Visual.AverageRpm">
-    <value>متوسط ​​دورة في الدقيقة</value>
-  </data>
-  <data name="Visual.AverageDuration">
-    <value>متوسط ​​المدة</value>
-  </data>
+  <data name="Visual.Decoder"><value>فك التشفير</value></data>
+  <data name="Visual.LinkZoom"><value>تكبير الارتباط</value></data>
+  <data name="Visual.OpenScp"><value>فتح SCP ملف...</value></data>
+  <data name="Visual.NoFile"><value>لا يوجد ملف SCP مفتوح</value></data>
+  <data name="Visual.Waiting"><value>في انتظار الملف</value></data>
+  <data name="Visual.Inspector"><value>مفتش</value></data>
+  <data name="Visual.SelectTrack"><value>حدد المسار.</value></data>
+  <data name="Visual.Controls"><value>انقر: حدد · العجلة: تكبير · انقر بزر الماوس الأيمن: عموم</value></data>
+  <data name="Visual.NormalFlux"><value>التدفق الطبيعي</value></data>
+  <data name="Visual.ShortTransition"><value>انتقال قصير</value></data>
+  <data name="Visual.LongTransition"><value>انتقال طويل / شذوذ</value></data>
+  <data name="Visual.Loading"><value>قراءة الملف...</value></data>
+  <data name="Visual.Invalid"><value>ملف غير صالح</value></data>
+  <data name="Visual.Title"><value>SCP التصور</value></data>
+  <data name="Visual.ChecksumValid"><value>صالح</value></data>
+  <data name="Visual.ChecksumInvalid"><value>غير صالح</value></data>
+  <data name="Visual.Summary"><value>SCP {0} · {1} المسارات · {2} الثورات · {3} الدقة ns · {4} المجموع الاختباري</value></data>
+  <data name="Visual.Revolution"><value>الثورة {0}: {1:N0} التحولات · {2:F2} مللي ثانية · {3:F2} RPM</value></data>
+  <data name="Visual.Analysis"><value>فك التشفير: {0}&#xA;الثقة: {1:P0}&#xA;الخلية المقدرة: {2:F1} علامات التجزئة&#xA;الهياكل: {3}</value></data>
+  <data name="Visual.Track"><value>الجانب: {0}&#xA;المسار: {1}&#xA;SCP الإدخال: {2}</value></data>
+  <data name="Visual.SideNoData"><value>الجانب {0}&#xA;لا توجد بيانات</value></data>
+  <data name="Visual.TrackTooltip"><value>الجانب {0} · المسار {1}&#xA;{2} الثورة (الثورات)</value></data>
+  <data name="Visual.Automatic"><value>تلقائي</value></data>
+  <data name="Visual.StructureHeader"><value>العنوان/العنوان</value></data>
+  <data name="Visual.StructureData"><value>البيانات التي تم فك تشفيرها</value></data>
+  <data name="Visual.StructureAnomaly"><value>محذوف/شذوذ</value></data>
+  <data name="Visual.AnalysedRevolution"><value>التحليل على أساس الثورة {0}.</value></data>
+  <data name="Visual.BitOffset"><value>بت {0:N0}</value></data>
+  <data name="Visual.SectorDetail"><value>القطاع C{0} H{1} R{2} · {3} بايت · {4} {5}</value></data>
+  <data name="Visual.CrcValid"><value>صالح</value></data>
+  <data name="Visual.CrcInvalid"><value>غير صالح</value></data>
+  <data name="Visual.IntegrityUnavailable"><value>غير متاح</value></data>
+  <data name="Visual.StructureKind.Sync"><value>التزامن</value></data>
+  <data name="Visual.StructureKind.IdAddressMark"><value>رأس القطاع</value></data>
+  <data name="Visual.StructureKind.DataAddressMark"><value>بيانات القطاع</value></data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark"><value>بيانات القطاع المحذوفة</value></data>
+  <data name="Visual.StructureKind.AmigaSync"><value>Amiga المزامنة</value></data>
+  <data name="Visual.StructureKind.AppleAddress"><value>مقدمة عنوان أبل</value></data>
+  <data name="Visual.StructureKind.AppleData"><value>مقدمة بيانات أبل</value></data>
+  <data name="Visual.StructureKind.CommodoreSync"><value>Commodore المزامنة</value></data>
+  <data name="Visual.StructureKind.CommodoreHeader"><value>Commodore رأس الصفحة</value></data>
+  <data name="Visual.StructureKind.FormatHeader"><value>رأس التنسيق</value></data>
+  <data name="Visual.StructureKind.FormatData"><value>تنسيق البيانات</value></data>
+  <data name="Visual.StructureKind.TimingAnomaly"><value>توقيت الشذوذ</value></data>
+  <data name="Visual.OpenFilter"><value>SuperCard Pro التقاط (*.scp)|*.scp|جميع الملفات|*.*</value></data>
+  <data name="Visual.Integrity.Checksum"><value>المجموع الاختباري</value></data>
+  <data name="Visual.Side"><value>الجانب {0}</value></data>
+  <data name="Visual.AnalysingTrack"><value>مسار التحليل {0}/{1}…</value></data>
+  <data name="Visual.SideLabel"><value>جانب</value></data>
+  <data name="Visual.TrackLabel"><value>مسار</value></data>
+  <data name="Visual.ScpEntryLabel"><value>SCP الإدخال</value></data>
+  <data name="Visual.RevolutionsTitle"><value>الثورات</value></data>
+  <data name="Visual.AnalysisTitle"><value>تحليل</value></data>
+  <data name="Visual.ConfidenceLabel"><value>ثقة</value></data>
+  <data name="Visual.CellLabel"><value>الخلية المقدرة</value></data>
+  <data name="Visual.StructuresLabel"><value>الهياكل</value></data>
+  <data name="Visual.StructuresTitle"><value>الهياكل المكتشفة</value></data>
+  <data name="Visual.SectorsTitle"><value>القطاعات</value></data>
+  <data name="Visual.TransitionsUnit"><value>التحولات</value></data>
+  <data name="Visual.OpenImage"><value>افتح صورة القرص...</value></data>
+  <data name="Visual.DetachInspector"><value>فصل المفتش</value></data>
+  <data name="Visual.AttachInspector"><value>إرفاق المفتش</value></data>
+  <data name="Visual.SummaryTab"><value>ملخص</value></data>
+  <data name="Visual.FormatDetected"><value>تم الكشف عن التنسيق</value></data>
+  <data name="Visual.AverageRpm"><value>متوسط RPM</value></data>
+  <data name="Visual.AverageDuration"><value>متوسط ​​المدة</value></data>
 </root>

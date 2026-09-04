@@ -12,73 +12,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.GwNotConfigured">
-    <value>Greaseweazle Công cụ chưa được định cấu hình. Mở Tùy chọn → Tùy chọn.</value>
-  </data>
-  <data name="App.OperationRunningClose">
-    <value>Một hoạt động đang chạy. Dừng lại và đóng GW GUI?</value>
-  </data>
-  <data name="Operation.Finished">
-    <value>Đã hoàn thành: mã {0}, thời lượng {1}.</value>
-  </data>
-  <data name="Operation.Succeeded">
-    <value>Lệnh đã hoàn tất thành công.</value>
-  </data>
-  <data name="Operation.Cancelled">
-    <value>Lệnh bị hủy.</value>
-  </data>
-  <data name="Operation.ExitCode">
-    <value>Lệnh kết thúc bằng mã {0}.</value>
-  </data>
-  <data name="Common.Console">
-    <value>Bảng điều khiển</value>
-  </data>
-  <data name="Common.Command">
-    <value>Yêu cầu</value>
-  </data>
-  <data name="Status.FaceTrackProgress">
-    <value>Bên {0}: đường {1} — {2}/{3}</value>
-  </data>
-  <data name="Status.Ready">
-    <value>GW GUI sẵn sàng.</value>
-  </data>
-  <data name="Status.DefaultProfile">
-    <value>Hồ sơ: Mặc định</value>
-  </data>
-  <data name="Operation.StopTitle">
-    <value>Dừng hoạt động</value>
-  </data>
-  <data name="Operation.StopConfirm">
-    <value>Dừng hoạt động Greaseweazle hiện tại?</value>
-  </data>
-  <data name="Operation.Busy">
-    <value>Lệnh Greaseweazle đang chạy. Đợi nó chạy xong hoặc dừng trước khi mở công cụ này.</value>
-  </data>
-  <data name="Status.Profile">
-    <value>Hồ sơ: {0}</value>
-  </data>
-  <data name="Status.TrackProgress">
-    <value>Đường {0}, bên {1} — {2}/{3}</value>
-  </data>
-  <data name="Status.TrackUnknown">
-    <value>Theo dõi {0}, bên {1} — {2} đã xử lý</value>
-  </data>
-  <data name="Operation.Error">
-    <value>Lỗi: {0}</value>
-  </data>
-  <data name="Status.ReadyShort">
-    <value>Sẵn sàng</value>
-  </data>
-  <data name="Status.Running">
-    <value>Đang chạy</value>
-  </data>
-  <data name="Status.Success">
-    <value>Thành công</value>
-  </data>
-  <data name="Status.Error">
-    <value>Lỗi</value>
-  </data>
-  <data name="Status.Cancelled">
-    <value>Đã hủy</value>
-  </data>
+  <data name="App.GwNotConfigured"><value>Greaseweazle Công cụ chưa được định cấu hình. Mở Tùy chọn → Tùy chọn.</value></data>
+  <data name="App.OperationRunningClose"><value>Một hoạt động đang chạy. Dừng lại và đóng GW GUI?</value></data>
+  <data name="Operation.Finished"><value>Đã hoàn thành: mã {0}, thời lượng {1}.</value></data>
+  <data name="Operation.Succeeded"><value>Lệnh đã hoàn tất thành công.</value></data>
+  <data name="Operation.Cancelled"><value>Lệnh bị hủy.</value></data>
+  <data name="Operation.ExitCode"><value>Lệnh kết thúc bằng mã {0}.</value></data>
+  <data name="Common.Console"><value>Bảng điều khiển</value></data>
+  <data name="Common.Command"><value>Yêu cầu</value></data>
+  <data name="Status.FaceTrackProgress"><value>Bên {0}: đường {1} — {2}/{3}</value></data>
+  <data name="Status.Ready"><value>GW GUI sẵn sàng.</value></data>
+  <data name="Status.DefaultProfile"><value>Hồ sơ: Mặc định</value></data>
+  <data name="Operation.StopTitle"><value>Dừng hoạt động</value></data>
+  <data name="Operation.StopConfirm"><value>Dừng hoạt động Greaseweazle hiện tại?</value></data>
+  <data name="Operation.Busy"><value>Lệnh Greaseweazle đang chạy. Đợi nó chạy xong hoặc dừng trước khi mở công cụ này.</value></data>
+  <data name="Status.Profile"><value>Hồ sơ: {0}</value></data>
+  <data name="Status.TrackProgress"><value>Đường {0}, bên {1} — {2}/{3}</value></data>
+  <data name="Status.TrackUnknown"><value>Theo dõi {0}, bên {1} — {2} đã xử lý</value></data>
+  <data name="Operation.Error"><value>Lỗi: {0}</value></data>
+  <data name="Status.ReadyShort"><value>Sẵn sàng</value></data>
+  <data name="Status.Running"><value>Đang chạy</value></data>
+  <data name="Status.Success"><value>Thành công</value></data>
+  <data name="Status.Error"><value>Lỗi</value></data>
+  <data name="Status.Cancelled"><value>Đã hủy</value></data>
 </root>

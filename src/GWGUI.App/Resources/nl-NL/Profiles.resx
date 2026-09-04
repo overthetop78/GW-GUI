@@ -12,52 +12,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Profiles.ByOperation">
-    <value>Profielen per bewerking</value>
-  </data>
-  <data name="Profiles.Tab">
-    <value>Tab</value>
-  </data>
-  <data name="Profiles.Name">
-    <value>Naam</value>
-  </data>
-  <data name="Profiles.System">
-    <value>Systeem</value>
-  </data>
-  <data name="Profiles.Rename">
-    <value>Naam wijzigen…</value>
-  </data>
-  <data name="Profile.SaveTitle">
-    <value>Profiel opslaan</value>
-  </data>
-  <data name="Profile.Name">
-    <value>Profielnaam</value>
-  </data>
-  <data name="Profile.NameRequired">
-    <value>Voer een naam in.</value>
-  </data>
-  <data name="Profile.Title">
-    <value>Profiel</value>
-  </data>
-  <data name="Common.Profile">
-    <value>Profiel</value>
-  </data>
-  <data name="Profile.Default">
-    <value>Standaard</value>
-  </data>
-  <data name="Profile.SystemRename">
-    <value>Het standaardprofiel is permanent en kan niet worden hernoemd.</value>
-  </data>
-  <data name="Profile.SystemDelete">
-    <value>Het standaardprofiel is permanent en kan niet worden verwijderd.</value>
-  </data>
-  <data name="Profile.DuplicateName">
-    <value>Een profiel op dit tabblad heeft deze naam al.</value>
-  </data>
-  <data name="Profile.Replace">
-    <value>Dit profiel bestaat al. Vervangen?</value>
-  </data>
-  <data name="Profile.DeleteConfirm">
-    <value>Profiel “{0}” verwijderen?</value>
-  </data>
+  <data name="Profiles.ByOperation"><value>Profielen per bewerking</value></data>
+<data name="Profiles.Name"><value>Naam</value></data>
+  <data name="Profiles.System"><value>Systeem</value></data>
+  <data name="Profiles.Rename"><value>Naam wijzigen…</value></data>
+  <data name="Profile.SaveTitle"><value>Profiel opslaan</value></data>
+  <data name="Profile.Name"><value>Profielnaam</value></data>
+  <data name="Profile.NameRequired"><value>Voer een naam in.</value></data>
+  <data name="Profile.Title"><value>Profiel</value></data>
+  <data name="Common.Profile"><value>Profiel</value></data>
+  <data name="Profile.Default"><value>Standaard</value></data>
+  <data name="Profile.SystemRename"><value>Het standaardprofiel is permanent en kan niet worden hernoemd.</value></data>
+  <data name="Profile.SystemDelete"><value>Het standaardprofiel is permanent en kan niet worden verwijderd.</value></data>
+  <data name="Profile.DuplicateName"><value>Een profiel op dit tabblad heeft deze naam al.</value></data>
+  <data name="Profile.Replace"><value>Dit profiel bestaat al. Vervangen?</value></data>
+  <data name="Profile.DeleteConfirm"><value>Profiel “{0}” verwijderen?</value></data>
 </root>

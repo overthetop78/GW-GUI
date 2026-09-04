@@ -12,140 +12,77 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Conflict.Title">
-    <value>Bestaande bestanden</value>
-  </data>
-  <data name="Conflict.Heading">
-    <value>Sommige bestanden bestaan ​​al</value>
-  </data>
-  <data name="Conflict.Help">
-    <value>Kies een actie voor elk bestand of pas dezelfde actie toe op alle bestanden.</value>
-  </data>
-  <data name="Conflict.File">
-    <value>Bestand</value>
-  </data>
-  <data name="Conflict.Action">
-    <value>Actie</value>
-  </data>
-  <data name="Conflict.Overwrite">
-    <value>Overschrijven</value>
-  </data>
-  <data name="Conflict.Skip">
-    <value>Overslaan</value>
-  </data>
-  <data name="Conflict.Number">
-    <value>Gebruik het volgende nummer</value>
-  </data>
-  <data name="Conflict.AllOverwrite">
-    <value>Alles overschrijven</value>
-  </data>
-  <data name="Conflict.AllSkip">
-    <value>Alles overslaan</value>
-  </data>
-  <data name="Conflict.AllNumber">
-    <value>Nummer alles</value>
-  </data>
-  <data name="Conversion.Title">
-    <value>Conversie</value>
-  </data>
-  <data name="Conversion.SelectOutput">
-    <value>Selecteer ten minste één uitvoerformaat.</value>
-  </data>
-  <data name="Conversion.SourceAmbiguous">
-    <value>Dubbelzinnige bron</value>
-  </data>
-  <data name="Conversion.Summary">
-    <value>Samenvatting: {0} geslaagd, {1} mislukt.</value>
-  </data>
-  <data name="Conversion.Failures">
-    <value>Storingen: {0}</value>
-  </data>
-  <data name="Conversion.Source">
-    <value>Bron</value>
-  </data>
-  <data name="Conversion.OutputNames">
-    <value>Uitvoernamen</value>
-  </data>
-  <data name="Conversion.AddTags">
-    <value>Tags toevoegen</value>
-  </data>
-  <data name="Conversion.Selected">
-    <value>Gekozen</value>
-  </data>
-  <data name="Conversion.CommonFormats">
-    <value>Veel voorkomende formaten</value>
-  </data>
-  <data name="Conversion.ShowRare">
-    <value>Toon zelden gebruikte formaten</value>
-  </data>
-  <data name="Conversion.LimitTracks">
-    <value>Beperk nummers</value>
-  </data>
-  <data name="Conversion.SourceRequired">
-    <value>Kies een bestaande bronafbeelding.</value>
-  </data>
-  <data name="Conversion.NameRequired">
-    <value>Voer de uitvoerbestandsnamen in.</value>
-  </data>
-  <data name="Conversion.CheckOutput">
-    <value>Controleer ten minste één uitvoerformaat.</value>
-  </data>
-  <data name="Conversion.More">
-    <value>(+ {0} conversie(s))</value>
-  </data>
-  <data name="Conversion.DefaultExtensionTip">
-    <value>Geen extensie aangevinkt: {0} wordt standaard gebruikt.</value>
-  </data>
-  <data name="Conversion.Incompatible">
-    <value>{0} is niet compatibel met deze bron.</value>
-  </data>
-  <data name="Conversion.NoAvailableOutputName">
-    <value>Er kon geen beschikbare uitvoerbestandsnaam worden gevonden.</value>
-  </data>
-  <data name="Conversion.ReconstructedFlux">
-    <value>gereconstrueerde flux</value>
-  </data>
-  <data name="Migration.Open"><value>File migration...</value></data>
-  <data name="Migration.Title"><value>File migration</value></data>
-  <data name="Migration.Heading"><value>Migrate files to another file system</value></data>
-  <data name="Migration.Source"><value>Source image</value></data>
-  <data name="Migration.NoSource"><value>Select an image containing a recognized file system.</value></data>
-  <data name="Migration.Destination"><value>Destination file system and format</value></data>
-  <data name="Migration.Output"><value>Destination image</value></data>
-  <data name="Migration.Compatibility"><value>Compatibility and losses</value></data>
-  <data name="Migration.Waiting"><value>Select a source and a destination.</value></data>
-  <data name="Migration.Severity"><value>Severity</value></data>
-  <data name="Migration.Path"><value>Source path</value></data>
-  <data name="Migration.Description"><value>Description</value></data>
-  <data name="Migration.AcceptLosses"><value>Accept the listed metadata losses</value></data>
-  <data name="Migration.Execute"><value>Migrate files</value></data>
-  <data name="Migration.Blocking"><value>Blocking</value></data>
-  <data name="Migration.MetadataLoss"><value>Metadata loss</value></data>
-  <data name="Migration.SourceSummary"><value>Volume: {0} — File system: {1} — Root entries: {2}</value></data>
-  <data name="Migration.SourceFailed"><value>Unable to prepare the migration: {0}</value></data>
-  <data name="Migration.Completed"><value>The destination image was created: {0}</value></data>
-  <data name="Migration.Failed"><value>Migration failed: {0}</value></data>
-  <data name="Migration.Incompatible"><value>Incompatible: correct the blocking losses before migration.</value></data>
-  <data name="Migration.CompatibleWithLosses"><value>Compatible after accepting the listed metadata losses.</value></data>
-  <data name="Migration.Compatible"><value>Compatible: no loss detected.</value></data>
-  <data name="Migration.Loss.MissingContent"><value>File content is unavailable.</value></data>
-  <data name="Migration.Loss.UnsupportedEntryKind"><value>This entry type is not supported by the destination.</value></data>
-  <data name="Migration.Loss.InvalidName"><value>The name is not valid for the destination.</value></data>
-  <data name="Migration.Loss.NameTooLong"><value>The name is too long for the destination.</value></data>
-  <data name="Migration.Loss.NameCollision"><value>Several entries would have the same destination name.</value></data>
-  <data name="Migration.Loss.FileTooLarge"><value>The file is too large for the destination.</value></data>
-  <data name="Migration.Loss.InvalidMetadata"><value>The source metadata is invalid.</value></data>
-  <data name="Migration.Loss.ModifiedDate"><value>The modification date will not be preserved.</value></data>
-  <data name="Migration.Loss.Comment"><value>The comment will not be preserved.</value></data>
-  <data name="Migration.Loss.Attributes"><value>The source attributes will not be preserved.</value></data>
-  <data name="Migration.OverwriteConfirm"><value>The destination image already exists. Replace it? {0}</value></data>
-  <data name="Migration.SourceDestinationSame"><value>The destination image cannot replace the source image.</value></data>
-  <data name="Conversion.Fidelity.SectorData"><value>sector data; protections not preserved</value></data>
-  <data name="Conversion.Fidelity.ReconstructedTracks"><value>reconstructed tracks; original flux not preserved</value></data>
-  <data name="Conversion.Fidelity.PreservedFlux"><value>original flux preserved</value></data>
-  <data name="Conversion.EngineExternal" xml:space="preserve"><value>Host Tools: converting {0}.</value></data>
-  <data name="Conversion.EngineInternalStart" xml:space="preserve"><value>Internal engine: converting {0} to {1}.</value></data>
-  <data name="Conversion.EngineInternalComplete" xml:space="preserve"><value>Internal conversion completed: {0}.</value></data>
-  <data name="Conversion.EngineInternalUnavailable" xml:space="preserve"><value>The internal engine does not support this conversion: {0}.</value></data>
-  <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Internal conversion failed for {0}: {1}</value></data>
+  <data name="Conflict.Title"><value>Bestaande bestanden</value></data>
+  <data name="Conflict.Heading"><value>Sommige bestanden bestaan ​​al</value></data>
+  <data name="Conflict.Help"><value>Kies een actie voor elk bestand of pas dezelfde actie toe op alle bestanden.</value></data>
+  <data name="Conflict.File"><value>Bestand</value></data>
+  <data name="Conflict.Action"><value>Actie</value></data>
+  <data name="Conflict.Overwrite"><value>Overschrijven</value></data>
+  <data name="Conflict.Skip"><value>Overslaan</value></data>
+  <data name="Conflict.Number"><value>Gebruik het volgende nummer</value></data>
+  <data name="Conflict.AllOverwrite"><value>Alles overschrijven</value></data>
+  <data name="Conflict.AllSkip"><value>Alles overslaan</value></data>
+  <data name="Conflict.AllNumber"><value>Nummer alles</value></data>
+  <data name="Conversion.Title"><value>Conversie</value></data>
+  <data name="Conversion.SelectOutput"><value>Selecteer ten minste één uitvoerformaat.</value></data>
+  <data name="Conversion.SourceAmbiguous"><value>Dubbelzinnige bron</value></data>
+  <data name="Conversion.Summary"><value>Samenvatting: {0} geslaagd, {1} mislukt.</value></data>
+  <data name="Conversion.Failures"><value>Storingen: {0}</value></data>
+  <data name="Conversion.Source"><value>Bron</value></data>
+  <data name="Conversion.OutputNames"><value>Uitvoernamen</value></data>
+  <data name="Conversion.AddTags"><value>Tags toevoegen</value></data>
+  <data name="Conversion.Selected"><value>Gekozen</value></data>
+  <data name="Conversion.CommonFormats"><value>Veel voorkomende formaten</value></data>
+  <data name="Conversion.ShowRare"><value>Toon zelden gebruikte formaten</value></data>
+  <data name="Conversion.LimitTracks"><value>Beperk nummers</value></data>
+  <data name="Conversion.SourceRequired"><value>Kies een bestaande bronafbeelding.</value></data>
+  <data name="Conversion.NameRequired"><value>Voer de uitvoerbestandsnamen in.</value></data>
+  <data name="Conversion.CheckOutput"><value>Controleer ten minste één uitvoerformaat.</value></data>
+  <data name="Conversion.More"><value>(+ {0} conversie(s))</value></data>
+  <data name="Conversion.DefaultExtensionTip"><value>Geen extensie aangevinkt: {0} wordt standaard gebruikt.</value></data>
+  <data name="Conversion.Incompatible"><value>{0} is niet compatibel met deze bron.</value></data>
+  <data name="Conversion.NoAvailableOutputName"><value>Er kon geen beschikbare uitvoerbestandsnaam worden gevonden.</value></data>
+  <data name="Conversion.ReconstructedFlux"><value>gereconstrueerde flux</value></data>
+  <data name="Migration.Open"><value>Bestandsmigratie...</value></data>
+  <data name="Migration.Title"><value>Bestandsmigratie</value></data>
+  <data name="Migration.Heading"><value>Bestanden migreren naar een ander bestandssysteem</value></data>
+  <data name="Migration.Source"><value>Bronafbeelding</value></data>
+  <data name="Migration.NoSource"><value>Selecteer een afbeelding met een erkend bestandssysteem.</value></data>
+  <data name="Migration.Destination"><value>Het systeem en de indeling van het bestandsdoel</value></data>
+  <data name="Migration.Output"><value>Bestemmingsafbeelding</value></data>
+  <data name="Migration.Compatibility"><value>Verenigbaarheid en verliezen</value></data>
+  <data name="Migration.Waiting"><value>Selecteer een bron en een bestemming.</value></data>
+  <data name="Migration.Path"><value>Bronpad</value></data>
+  <data name="Migration.Description"><value>Omschrijving</value></data>
+  <data name="Migration.AcceptLosses"><value>Accepteer de verliezen aan opgenomen metagegevens</value></data>
+  <data name="Migration.Execute"><value>Bestanden migreren</value></data>
+  <data name="Migration.Blocking"><value>Blokkeren</value></data>
+  <data name="Migration.MetadataLoss"><value>Verlies van metadata</value></data>
+  <data name="Migration.SourceSummary"><value>Volume: {0}  {1} • Begin-items: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>Kan de migratie niet voorbereiden: {0}</value></data>
+  <data name="Migration.Completed"><value>De bestemmingsafbeelding is aangemaakt: {0}</value></data>
+  <data name="Migration.Failed"><value>Migratie mislukt: {0}</value></data>
+  <data name="Migration.Incompatible"><value>Onverenigbaar: correctie van de blokkeringsverliezen vóór migratie.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>Compatibel na aanvaarding van de opgegeven metadataverliezen.</value></data>
+  <data name="Migration.Compatible"><value>Compatibel: geen verlies gedetecteerd.</value></data>
+  <data name="Migration.Loss.MissingContent"><value>Bestandsinhoud is niet beschikbaar.</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>Dit invoertype wordt niet ondersteund door de bestemming.</value></data>
+  <data name="Migration.Loss.InvalidName"><value>De naam is niet geldig voor de bestemming.</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>De naam is te lang voor de bestemming.</value></data>
+  <data name="Migration.Loss.NameCollision"><value>Verschillende vermeldingen zouden dezelfde bestemmingsnaam hebben.</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>Het bestand is te groot voor de bestemming.</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>De bronmetadata is ongeldig.</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>De datum van wijziging wordt niet bewaard.</value></data>
+  <data name="Migration.Loss.Comment"><value>Het commentaar zal niet worden bewaard.</value></data>
+  <data name="Migration.Loss.Attributes"><value>De bronattributen worden niet bewaard.</value></data>
+  <data name="Migration.OverwriteConfirm"><value>De bestemmingsafbeelding bestaat al. Vervangen? {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>De doelafbeelding kan de bronafbeelding niet vervangen.</value></data>
+  <data name="Conversion.Fidelity.SectorData"><value>sectorgegevens; beschermingen niet bewaard</value></data>
+  <data name="Conversion.Fidelity.ReconstructedTracks"><value>gereconstrueerde sporen; originele flux niet bewaard</value></data>
+  <data name="Conversion.Fidelity.PreservedFlux"><value>oorspronkelijke flux bewaard</value></data>
+  <data name="Conversion.EngineExternal"><value>Host Tools: converteren {0}.</value></data>
+  <data name="Conversion.EngineInternalStart"><value>Interne motor: omzetten {0} tot {1}.</value></data>
+  <data name="Conversion.EngineInternalComplete"><value>Interne conversie voltooid: {0}.</value></data>
+  <data name="Conversion.EngineInternalUnavailable"><value>De interne motor ondersteunt deze conversie niet: {0}.</value></data>
+  <data name="Conversion.EngineInternalFailed"><value>Interne conversie mislukt voor {0}: {1}</value></data>
 </root>

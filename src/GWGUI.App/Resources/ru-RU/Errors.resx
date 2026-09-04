@@ -12,28 +12,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.SettingsSaveFailed">
-    <value>Настройки не удалось сохранить.
-
-{0}</value>
-  </data>
-  <data name="Error.Title">
-    <value>GW GUI ошибка</value>
-  </data>
-  <data name="Error.Unexpected">
-    <value>Была перехвачена непредвиденная ошибка.
-
-{0}</value>
-  </data>
-  <data name="Error.SaveFailed">
-    <value>Настройки не удалось сохранить. Окно все равно закроется.
-
-{0}</value>
-  </data>
-  <data name="Error.LogSaved">
-    <value>Полный отчет сохранен по адресу:
-{0}</value>
-  </data>
+  <data name="App.SettingsSaveFailed"><value>Настройки не удалось сохранить.&#xA;&#xA;{0}</value></data>
+  <data name="Error.Title"><value>GW GUI ошибка</value></data>
+  <data name="Error.Unexpected"><value>Была перехвачена непредвиденная ошибка.&#xA;&#xA;{0}</value></data>
+  <data name="Error.SaveFailed"><value>Настройки не удалось сохранить. Окно все равно закроется.&#xA;&#xA;{0}</value></data>
+  <data name="Error.LogSaved"><value>Полный отчет сохранен по адресу:&#xA;{0}</value></data>
   <data name="Error.Description.NetworkTimeout"><value>Удаленная служба не ответила до того, как соединение отключилось. Проверьте сетевое соединение и попробуйте еще раз.</value></data>
   <data name="Error.Description.NetworkDns"><value>Адрес удаленной службы не может быть решен. Проверьте настройки сети или DNS и попробуйте снова.</value></data>
   <data name="Error.Description.NetworkRefused"><value>Удаленный сервис отказался от подключения. Он может быть недоступен или заблокирован.</value></data>

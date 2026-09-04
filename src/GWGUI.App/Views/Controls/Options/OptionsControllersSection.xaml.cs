@@ -5,6 +5,7 @@ using GWGUI.App.Views.Controls.Options.ControllerPresentation;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Threading;
 
 namespace GWGUI.App.Views.Controls.Options;
@@ -23,6 +24,7 @@ public partial class OptionsControllersSection : UserControl
     private GameInputDeviceDescriptor? _selectedDevice;
     private GameInputLiveState? _lastState;
     private bool _updatingSelectors;
+    private bool _updatingAnalogSettings;
     private bool _refreshingState;
     private bool _testingRumble;
     private int _deviceRefreshVersion;
@@ -200,6 +202,7 @@ public partial class OptionsControllersSection : UserControl
         if (device is null)
         {
             ModelSelectorPanel.Visibility = Visibility.Collapsed;
+            AnalogDeadZonePanel.Visibility = Visibility.Collapsed;
             ModelSelector.SelectedIndex = -1;
             Visualizer.State = null;
         }
@@ -213,11 +216,59 @@ public partial class OptionsControllersSection : UserControl
             ModelSelector.SelectedItem = ModelSelector.Items.Cast<ModelChoice>()
                 .FirstOrDefault(choice => choice.Model == (hasOverride ? model : null));
             Visualizer.Model = model;
+            LoadAnalogDeadZones(device);
         }
         _updatingSelectors = false;
         ClearControls();
         UpdateDescriptor();
         if (IsLoaded && IsVisible) _ = RefreshLiveStateAsync();
+    }
+
+    private void LoadAnalogDeadZones(GameInputDeviceDescriptor device)
+    {
+        AnalogDeadZonePanel.Visibility = device.StandardCapabilities.HasGamepad
+            || (device.SupportedInput & GameInputKind.Gamepad) != 0
+            ? Visibility.Visible : Visibility.Collapsed;
+        var profile = ControllerAnalogDeadZoneProfileStore.Get(device.Id);
+        _updatingAnalogSettings = true;
+        StickDeadZoneSlider.Value = profile.StickPercent;
+        TriggerDeadZoneSlider.Value = profile.TriggerPercent;
+        OuterDeadZoneSlider.Value = profile.OuterPercent;
+        _updatingAnalogSettings = false;
+        UpdateAnalogDeadZoneLabels(profile);
+    }
+
+    private ControllerAnalogDeadZoneProfile ReadAnalogDeadZones() => new(
+        (int)Math.Round(StickDeadZoneSlider.Value),
+        (int)Math.Round(TriggerDeadZoneSlider.Value),
+        (int)Math.Round(OuterDeadZoneSlider.Value));
+
+    private void AnalogDeadZoneSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    {
+        if (_updatingAnalogSettings || _selectedDevice is null) return;
+        var profile = ReadAnalogDeadZones().Normalize();
+        UpdateAnalogDeadZoneLabels(profile);
+        ControllerAnalogDeadZoneProfileStore.Preview(_selectedDevice.Id, profile);
+        RefreshLiveState();
+    }
+
+    private void AnalogDeadZoneSlider_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e) =>
+        SaveAnalogDeadZones();
+
+    private void AnalogDeadZoneSlider_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e) =>
+        SaveAnalogDeadZones();
+
+    private void SaveAnalogDeadZones()
+    {
+        if (_updatingAnalogSettings || _selectedDevice is null) return;
+        ControllerAnalogDeadZoneProfileStore.Save(_selectedDevice.Id, ReadAnalogDeadZones());
+    }
+
+    private void UpdateAnalogDeadZoneLabels(ControllerAnalogDeadZoneProfile profile)
+    {
+        StickDeadZoneText.Text = $"{profile.StickPercent} %";
+        TriggerDeadZoneText.Text = $"{profile.TriggerPercent} %";
+        OuterDeadZoneText.Text = $"{profile.OuterPercent} %";
     }
 
     private void ModelSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)

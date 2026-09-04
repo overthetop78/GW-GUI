@@ -12,102 +12,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Image">
-    <value>Disk görüntüsü</value>
-  </data>
-  <data name="Explorer.Format">
-    <value>Biçim</value>
-  </data>
-  <data name="Explorer.OpenImage">
-    <value>Görüntü aç…</value>
-  </data>
-  <data name="Explorer.Automatic">
-    <value>Otomatik algılama</value>
-  </data>
-  <data name="Explorer.Volume">
-    <value>Birim</value>
-  </data>
-  <data name="Explorer.FileSystem">
-    <value>Dosya sistemi</value>
-  </data>
-  <data name="Explorer.Capacity">
-    <value>Kapasite</value>
-  </data>
-  <data name="Explorer.Free">
-    <value>Boş alan</value>
-  </data>
-  <data name="Explorer.Entries">
-    <value>Öğeler</value>
-  </data>
-  <data name="Explorer.SelectEntry">
-    <value>Bir dosya veya klasör seçin.</value>
-  </data>
-  <data name="Explorer.Size">
-    <value>Boyut</value>
-  </data>
-  <data name="Explorer.Modified">
-    <value>Değiştirilme</value>
-  </data>
-  <data name="Explorer.Comment">
-    <value>Açıklama</value>
-  </data>
-  <data name="Explorer.Warnings">
-    <value>Uyarılar</value>
-  </data>
-  <data name="Explorer.Directory">
-    <value>Klasör</value>
-  </data>
-  <data name="Explorer.File">
-    <value>Dosya</value>
-  </data>
-  <data name="Explorer.Link">
-    <value>Bağlantı</value>
-  </data>
-  <data name="Explorer.Unknown">
-    <value>Bilinmiyor</value>
-  </data>
-  <data name="Explorer.Unnamed">
-    <value>Adsız birim</value>
-  </data>
-  <data name="Explorer.LoadFailed">
-    <value>Bu görüntü açılamıyor: {0}</value>
-  </data>
-  <data name="Explorer.Loading">
-    <value>Disk görüntüsü okunuyor…</value>
-  </data>
-  <data name="Explorer.ReadDisk">
-    <value>Disketi oku</value>
-  </data>
-  <data name="Explorer.Name">
-    <value>Ad</value>
-  </data>
-  <data name="Explorer.Type">
-    <value>Tür</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirmTitle">
-    <value>Disketi oku</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirm">
-    <value>Disket seçili sürücüye ({0}) takılı ve okunmaya hazır mı?</value>
-  </data>
-  <data name="Explorer.Type.Text">
-    <value>Metin dosyası</value>
-  </data>
-  <data name="Explorer.Type.Image">
-    <value>Görüntü</value>
-  </data>
-  <data name="Explorer.Type.Audio">
-    <value>Ses dosyası</value>
-  </data>
-  <data name="Explorer.Type.Archive">
-    <value>Arşiv</value>
-  </data>
-  <data name="Explorer.Type.Program">
-    <value>Program</value>
-  </data>
-  <data name="Explorer.Type.DiskImage">
-    <value>Disk kalıbı</value>
-  </data>
+  <data name="Explorer.Image"><value>Disk görüntüsü</value></data>
+  <data name="Explorer.Format"><value>Biçim</value></data>
+  <data name="Explorer.OpenImage"><value>Görüntü aç…</value></data>
+  <data name="Explorer.Automatic"><value>Otomatik algılama</value></data>
+  <data name="Explorer.Volume"><value>Birim</value></data>
+  <data name="Explorer.FileSystem"><value>Dosya sistemi</value></data>
+  <data name="Explorer.Capacity"><value>Kapasite</value></data>
+  <data name="Explorer.Free"><value>Boş alan</value></data>
+  <data name="Explorer.Entries"><value>Öğeler</value></data>
+  <data name="Explorer.SelectEntry"><value>Bir dosya veya klasör seçin.</value></data>
+  <data name="Explorer.Size"><value>Boyut</value></data>
+  <data name="Explorer.Modified"><value>Değiştirilme</value></data>
+  <data name="Explorer.Comment"><value>Açıklama</value></data>
+  <data name="Explorer.Warnings"><value>Uyarılar</value></data>
+  <data name="Explorer.Directory"><value>Klasör</value></data>
+  <data name="Explorer.File"><value>Dosya</value></data>
+  <data name="Explorer.Link"><value>Bağlantı</value></data>
+  <data name="Explorer.Unknown"><value>Bilinmiyor</value></data>
+  <data name="Explorer.Unnamed"><value>Adsız birim</value></data>
+  <data name="Explorer.LoadFailed"><value>Bu görüntü açılamıyor: {0}</value></data>
+  <data name="Explorer.Loading"><value>Disk görüntüsü okunuyor…</value></data>
+  <data name="Explorer.ReadDisk"><value>Disketi oku</value></data>
+  <data name="Explorer.Name"><value>Ad</value></data>
+  <data name="Explorer.Type"><value>Tür</value></data>
+  <data name="Explorer.ReadDiskConfirmTitle"><value>Disketi oku</value></data>
+  <data name="Explorer.ReadDiskConfirm"><value>Disket seçili sürücüye ({0}) takılı ve okunmaya hazır mı?</value></data>
+  <data name="Explorer.Type.Text"><value>Metin dosyası</value></data>
+  <data name="Explorer.Type.Image"><value>Görüntü</value></data>
+  <data name="Explorer.Type.Audio"><value>Ses dosyası</value></data>
+  <data name="Explorer.Type.Archive"><value>Arşiv</value></data>
+<data name="Explorer.Type.DiskImage"><value>Disk kalıbı</value></data>
   <data name="Explorer.System"><value>Sistem</value></data>
   <data name="Explorer.Protection"><value>Koruma</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Fiziksel sektörler — tanınan dosya sistemi yok</value></data>
@@ -119,6 +54,7 @@
   <data name="Explorer.Content.crack-the-company"><value>The Company tarafından crack</value></data>
   <data name="Explorer.DataBlocks"><value>Veri blokları</value></data>
   <data name="Explorer.DetectedFormats"><value>Algılandı: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable"><value>Host Tools, uygun bir sektör imajı üretemez {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed"><value>Host Tools, görüntüyü olarak kodlayamadı {0}.</value></data>
+  <data name="Explorer.Type.Program"><value>Program Programı Programı Programı Programı Programı Programı Programı Programı Programı Programı Programı Programı</value></data>
 </root>

@@ -12,73 +12,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options">
-    <value>_Možnosti</value>
-  </data>
-  <data name="Menu.Preferences">
-    <value>Předvolby…</value>
-  </data>
-  <data name="Menu.Diagnostics">
-    <value>Diagnostika</value>
-  </data>
-  <data name="Menu.Information">
-    <value>Informace</value>
-  </data>
-  <data name="Menu.Bandwidth">
-    <value>USB šířka pásma</value>
-  </data>
-  <data name="Menu.Rpm">
-    <value>RPM rychlost</value>
-  </data>
-  <data name="Menu.Seek">
-    <value>Hledej hlavu…</value>
-  </data>
-  <data name="Menu.Hardware">
-    <value>Železářské zboží</value>
-  </data>
-  <data name="Menu.Pins">
-    <value>Piny…</value>
-  </data>
-  <data name="Menu.Reset">
-    <value>Resetovat</value>
-  </data>
-  <data name="Menu.Delays">
-    <value>Zpoždění…</value>
-  </data>
-  <data name="Menu.Firmware">
-    <value>Firmware…</value>
-  </data>
-  <data name="Menu.Help">
-    <value>_Pomoc</value>
-  </data>
-  <data name="Menu.Documentation">
-    <value>Dokumentace</value>
-  </data>
-  <data name="Menu.About">
-    <value>O</value>
-  </data>
-  <data name="Tab.Read">
-    <value>Číst</value>
-  </data>
-  <data name="Tab.Write">
-    <value>Napsat</value>
-  </data>
-  <data name="Tab.Convert">
-    <value>Konverze</value>
-  </data>
-  <data name="Tab.Visualize">
-    <value>Vizualizace</value>
-  </data>
-  <data name="Tab.Tools">
-    <value>Nástroje</value>
-  </data>
-  <data name="Menu.Align">
-    <value>Zarovnání pohonu…</value>
-  </data>
-  <data name="Tab.Explorer">
-    <value>Průzkumník disku</value>
-  </data>
-  <data name="Tab.Emulation">
-    <value>Emulace</value>
-  </data>
+  <data name="Menu.Options"><value>_Možnosti</value></data>
+  <data name="Menu.Preferences"><value>Předvolby…</value></data>
+  <data name="Menu.Diagnostics"><value>Diagnostika</value></data>
+  <data name="Menu.Information"><value>Informace</value></data>
+  <data name="Menu.Bandwidth"><value>USB šířka pásma</value></data>
+  <data name="Menu.Rpm"><value>RPM rychlost</value></data>
+  <data name="Menu.Seek"><value>Hledej hlavu…</value></data>
+  <data name="Menu.Hardware"><value>Železářské zboží</value></data>
+  <data name="Menu.Pins"><value>Piny…</value></data>
+  <data name="Menu.Reset"><value>Resetovat</value></data>
+  <data name="Menu.Delays"><value>Zpoždění…</value></data>
+<data name="Menu.Help"><value>_Pomoc</value></data>
+  <data name="Menu.Documentation"><value>Dokumentace</value></data>
+  <data name="Menu.About"><value>O</value></data>
+  <data name="Tab.Read"><value>Číst</value></data>
+  <data name="Tab.Write"><value>Napsat</value></data>
+  <data name="Tab.Convert"><value>Konverze</value></data>
+  <data name="Tab.Visualize"><value>Vizualizace</value></data>
+  <data name="Tab.Tools"><value>Nástroje</value></data>
+  <data name="Menu.Align"><value>Zarovnání pohonu…</value></data>
+  <data name="Tab.Explorer"><value>Průzkumník disku</value></data>
+  <data name="Tab.Emulation"><value>Emulace</value></data>
+  <data name="Menu.Firmware"><value>Firmware...</value></data>
 </root>

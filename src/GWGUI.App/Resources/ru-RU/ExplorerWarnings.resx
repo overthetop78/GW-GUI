@@ -12,172 +12,60 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Warning.InvalidChecksum">
-    <value>Корневой блок {0} имеет неверную контрольную сумму.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryNesting">
-    <value>Достигнут предел вложенности каталогов.</value>
-  </data>
-  <data name="Explorer.Warning.InvalidDirectoryChain">
-    <value>Неверная или циклическая цепочка каталогов в блоке {0}.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryEntryMissing">
-    <value>Блок записи каталога {0} отсутствует.</value>
-  </data>
-  <data name="Explorer.Warning.AmigaExtension">
-    <value>{0}: неверный блок расширения файла {1}.</value>
-  </data>
-  <data name="Explorer.Warning.AmigaBlock">
-    <value>{0}: AmigaDOS {1} ({2}) отсутствует.</value>
-  </data>
-  <data name="Explorer.Warning.FileDataMissing">
-    <value>Блок данных файла {0} отсутствует.</value>
-  </data>
-  <data name="Explorer.Warning.OfsType">
-    <value>Блок данных OFS {0} имеет непредвиденный тип.</value>
-  </data>
-  <data name="Explorer.Warning.BitmapMissing">
-    <value>Блок растрового изображения {0} отсутствует.</value>
-  </data>
-  <data name="Explorer.Warning.BitmapChecksum">
-    <value>Блок растрового изображения {0} имеет недопустимую контрольную сумму.</value>
-  </data>
-  <data name="Explorer.Warning.CpmAllocation">
-    <value>{0}: блок распределения CP/M {1} находится за пределами образа.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDirectoryCyclic">
-    <value>Циклическая цепочка каталогов CBM DOS по адресу {0}/{1}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDirectoryMissing">
-    <value>Сектор каталога CBM DOS {0}/{1} отсутствует.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDataCyclic">
-    <value>{0}: Циклическая цепочка данных в {1}/{2}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDataMissing">
-    <value>{0}: сектор данных {1}/{2} отсутствует.</value>
-  </data>
-  <data name="Explorer.Warning.CbmCapacity">
-    <value>{0}: цепочка файлов превышает емкость образа.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdDirectoryMissing">
-    <value>Отсутствует один или несколько блоков каталога UCSD.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdEntry">
-    <value>Запись каталога UCSD {0} имеет недопустимое или пустое имя.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdRange">
-    <value>{0}: недопустимый диапазон блоков {1}..{2}.</value>
-  </data>
-  <data name="Explorer.Warning.DataBlocksMissing">
-    <value>{0}: отсутствует один или несколько блоков данных.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdCount">
-    <value>В каталоге UCSD объявлены файлы {0}, но найдено {1} допустимых записей.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentInodeZero">
-    <value>{0}: неверный COHERENT индекс 0.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentInodeOutside">
-    <value>{0}: COHERENT индексный дескриптор {1} находится за пределами изображения.</value>
-  </data>
-  <data name="Explorer.Warning.FileTooLarge">
-    <value>{0}: файл слишком велик.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentBlock">
-    <value>{0}: СОВРЕМЕННЫЙ блок {1} находится за пределами изображения.</value>
-  </data>
-  <data name="Explorer.Warning.BytesUnread">
-    <value>{0}: {1} байтов не удалось прочитать.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentIndirect">
-    <value>{0}: косвенный блок COHERENT {1} находится за пределами изображения.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11SegmentMissing">
-    <value>Сегмент каталога RT-11 {0} отсутствует.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11EntrySize">
-    <value>Сегмент каталога RT-11 {0} имеет недопустимый размер записи.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11EmptyName">
-    <value>Запись RT-11 в блоке {0} имеет пустое имя.</value>
-  </data>
-  <data name="Explorer.Warning.ProDosNesting">
-    <value>Достигнут предел вложенности каталогов ProDOS.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryBlockCyclic">
-    <value>Блок каталога {0} отсутствует или является циклическим.</value>
-  </data>
-  <data name="Explorer.Warning.MasterIndexMissing">
-    <value>{0}: блок главного индекса {1} отсутствует.</value>
-  </data>
-  <data name="Explorer.Warning.DataBlockMissing">
-    <value>{0}: блок данных {1} отсутствует.</value>
-  </data>
-  <data name="Explorer.Warning.IndexBlockMissing">
-    <value>{0}: индексный блок {1} отсутствует.</value>
-  </data>
-  <data name="Explorer.Warning.CatalogMissing">
-    <value>Сектор каталога T{0} S{1} отсутствует или является циклическим.</value>
-  </data>
-  <data name="Explorer.Warning.CatalogSize">
-    <value>{0}: размер каталога не соответствует.</value>
-  </data>
-  <data name="Explorer.Warning.TrackSectorList">
-    <value>{0}: список T/S T{1} S{2} отсутствует или цикличен.</value>
-  </data>
-  <data name="Explorer.Warning.TrackSectorData">
-    <value>{0}: сектор данных T{1} S{2} отсутствует.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryBlockMissing">
-    <value>Блок каталога {0} отсутствует.</value>
-  </data>
-  <data name="Explorer.Warning.MfsEntry">
-    <value>Неверная запись каталога MFS в блоке {0}.</value>
-  </data>
-  <data name="Explorer.Warning.ResourceFork">
-    <value>{0}: метаданные ветки ресурсов противоречивы.</value>
-  </data>
-  <data name="Explorer.Warning.MfsChain">
-    <value>{0}: неверная цепочка распределения MFS.</value>
-  </data>
-  <data name="Explorer.Warning.BlockMissing">
-    <value>{0}: блок {1} отсутствует.</value>
-  </data>
-  <data name="Explorer.Warning.BbcSector">
-    <value>{0}: сектор данных {1} отсутствует.</value>
-  </data>
-  <data name="Explorer.Warning.HfsCatalog">
-    <value>Каталог HFS не содержит доступных для чтения конечных записей.</value>
-  </data>
-  <data name="Explorer.Warning.HfsDirectory">
-    <value>Циклический каталог HFS #{0}.</value>
-  </data>
-  <data name="Explorer.Warning.HfsBlock">
-    <value>{0}: блок HFS {1} отсутствует.</value>
-  </data>
-  <data name="Explorer.Warning.HfsExtents">
-    <value>{0}: требуются дополнительные экстенты HFS или данные отсутствуют.</value>
-  </data>
-  <data name="Explorer.Warning.FatNesting">
-    <value>Достигнут предел вложенности каталогов FAT.</value>
-  </data>
-  <data name="Explorer.Warning.FatChain">
-    <value>{0}: неверная или циклическая цепочка FAT в кластере {1}.</value>
-  </data>
-  <data name="Explorer.Warning.SectorMissing">
-    <value>Сектор {0} отсутствует.</value>
-  </data>
-  <data name="Explorer.Warning.LisaCatalog">
-    <value>Страницы каталога Lisa отсутствуют; имена файлов были восстановлены только из тегов страниц.</value>
-  </data>
-  <data name="Explorer.Warning.AtariDirectory">
-    <value>Сектор каталога {0} отсутствует.</value>
-  </data>
-  <data name="Explorer.Warning.AtariData">
-    <value>{0}: неверный или отсутствующий сектор данных Atari DOS.</value>
-  </data>
-  <data name="Explorer.Warning.AtariOwner">
-    <value>Сектор {0} принадлежит файлу {1}, ожидаемый {2}.</value>
-  </data>
+  <data name="Explorer.Warning.InvalidChecksum"><value>Корневой блок {0} имеет неверную контрольную сумму.</value></data>
+  <data name="Explorer.Warning.DirectoryNesting"><value>Достигнут предел вложенности каталогов.</value></data>
+  <data name="Explorer.Warning.InvalidDirectoryChain"><value>Неверная или циклическая цепочка каталогов в блоке {0}.</value></data>
+  <data name="Explorer.Warning.DirectoryEntryMissing"><value>Блок записи каталога {0} отсутствует.</value></data>
+  <data name="Explorer.Warning.AmigaExtension"><value>{0}: неверный блок расширения файла {1}.</value></data>
+  <data name="Explorer.Warning.AmigaBlock"><value>{0}: AmigaDOS {1} ({2}) отсутствует.</value></data>
+  <data name="Explorer.Warning.FileDataMissing"><value>Блок данных файла {0} отсутствует.</value></data>
+  <data name="Explorer.Warning.OfsType"><value>Блок данных OFS {0} имеет непредвиденный тип.</value></data>
+  <data name="Explorer.Warning.BitmapMissing"><value>Блок растрового изображения {0} отсутствует.</value></data>
+  <data name="Explorer.Warning.BitmapChecksum"><value>Блок растрового изображения {0} имеет недопустимую контрольную сумму.</value></data>
+  <data name="Explorer.Warning.CpmAllocation"><value>{0}: блок распределения CP/M {1} находится за пределами образа.</value></data>
+  <data name="Explorer.Warning.CbmDirectoryCyclic"><value>Циклическая цепочка каталогов CBM DOS по адресу {0}/{1}.</value></data>
+  <data name="Explorer.Warning.CbmDirectoryMissing"><value>Сектор каталога CBM DOS {0}/{1} отсутствует.</value></data>
+  <data name="Explorer.Warning.CbmDataCyclic"><value>{0}: Циклическая цепочка данных в {1}/{2}.</value></data>
+  <data name="Explorer.Warning.CbmDataMissing"><value>{0}: сектор данных {1}/{2} отсутствует.</value></data>
+  <data name="Explorer.Warning.CbmCapacity"><value>{0}: цепочка файлов превышает емкость образа.</value></data>
+  <data name="Explorer.Warning.UcsdDirectoryMissing"><value>один или несколько UCSD блоки каталогов отсутствуют.</value></data>
+  <data name="Explorer.Warning.UcsdEntry"><value>Запись каталога UCSD {0} имеет недопустимое или пустое имя.</value></data>
+  <data name="Explorer.Warning.UcsdRange"><value>{0}: недопустимый диапазон блоков {1}..{2}.</value></data>
+  <data name="Explorer.Warning.DataBlocksMissing"><value>{0}: отсутствует один или несколько блоков данных.</value></data>
+  <data name="Explorer.Warning.UcsdCount"><value>The Interface UCSD каталог объявляет {0} файлы, но {1} были найдены действительные записи.</value></data>
+  <data name="Explorer.Warning.CoherentInodeZero"><value>{0}: неверный COHERENT индекс 0.</value></data>
+  <data name="Explorer.Warning.CoherentInodeOutside"><value>{0}: COHERENT индексный дескриптор {1} находится за пределами изображения.</value></data>
+  <data name="Explorer.Warning.FileTooLarge"><value>{0}: файл слишком велик.</value></data>
+  <data name="Explorer.Warning.CoherentBlock"><value>{0}: COHERENT блок {1} находится вне изображения.</value></data>
+  <data name="Explorer.Warning.BytesUnread"><value>{0}: {1} байтов не удалось прочитать.</value></data>
+  <data name="Explorer.Warning.CoherentIndirect"><value>{0}: косвенный блок COHERENT {1} находится за пределами изображения.</value></data>
+  <data name="Explorer.Warning.Rt11SegmentMissing"><value>Сегмент каталога RT-11 {0} отсутствует.</value></data>
+  <data name="Explorer.Warning.Rt11EntrySize"><value>Сегмент каталога RT-11 {0} имеет недопустимый размер записи.</value></data>
+  <data name="Explorer.Warning.Rt11EmptyName"><value>Запись RT-11 в блоке {0} имеет пустое имя.</value></data>
+  <data name="Explorer.Warning.ProDosNesting"><value>Достигнут предел вложенности каталогов ProDOS.</value></data>
+  <data name="Explorer.Warning.DirectoryBlockCyclic"><value>Блок каталога {0} отсутствует или является циклическим.</value></data>
+  <data name="Explorer.Warning.MasterIndexMissing"><value>{0}: блок главного индекса {1} отсутствует.</value></data>
+  <data name="Explorer.Warning.DataBlockMissing"><value>{0}: блок данных {1} отсутствует.</value></data>
+  <data name="Explorer.Warning.IndexBlockMissing"><value>{0}: индексный блок {1} отсутствует.</value></data>
+  <data name="Explorer.Warning.CatalogMissing"><value>Сектор каталога T{0} S{1} отсутствует или является циклическим.</value></data>
+  <data name="Explorer.Warning.CatalogSize"><value>{0}: размер каталога не соответствует.</value></data>
+  <data name="Explorer.Warning.TrackSectorList"><value>{0}: список T/S T{1} S{2} отсутствует или цикличен.</value></data>
+  <data name="Explorer.Warning.TrackSectorData"><value>{0}: сектор данных T{1} S{2} отсутствует.</value></data>
+  <data name="Explorer.Warning.DirectoryBlockMissing"><value>Блок каталога {0} отсутствует.</value></data>
+  <data name="Explorer.Warning.MfsEntry"><value>Неверная запись каталога MFS в блоке {0}.</value></data>
+  <data name="Explorer.Warning.ResourceFork"><value>{0}: метаданные ветки ресурсов противоречивы.</value></data>
+  <data name="Explorer.Warning.MfsChain"><value>{0}: Недействительный MFS цепочка распределения.</value></data>
+  <data name="Explorer.Warning.BlockMissing"><value>{0}: блок {1} отсутствует.</value></data>
+  <data name="Explorer.Warning.BbcSector"><value>{0}: сектор данных {1} отсутствует.</value></data>
+  <data name="Explorer.Warning.HfsCatalog"><value>Каталог HFS не содержит доступных для чтения конечных записей.</value></data>
+  <data name="Explorer.Warning.HfsDirectory"><value>Циклический каталог HFS #{0}.</value></data>
+  <data name="Explorer.Warning.HfsBlock"><value>{0}: блок HFS {1} отсутствует.</value></data>
+  <data name="Explorer.Warning.HfsExtents"><value>{0}: требуются дополнительные экстенты HFS или данные отсутствуют.</value></data>
+  <data name="Explorer.Warning.FatNesting"><value>The Interface FAT предел вложенности каталога был достигнут.</value></data>
+  <data name="Explorer.Warning.FatChain"><value>{0}: неверная или циклическая цепочка FAT в кластере {1}.</value></data>
+  <data name="Explorer.Warning.SectorMissing"><value>Сектор {0} отсутствует.</value></data>
+  <data name="Explorer.Warning.LisaCatalog"><value>Страницы каталога Lisa отсутствуют; имена файлов были восстановлены только из тегов страниц.</value></data>
+  <data name="Explorer.Warning.AtariDirectory"><value>Сектор каталога {0} отсутствует.</value></data>
+  <data name="Explorer.Warning.AtariData"><value>{0}: недействительный или отсутствующий Atari DOS сектор данных.</value></data>
+  <data name="Explorer.Warning.AtariOwner"><value>Сектор {0} принадлежит файлу {1}, ожидаемый {2}.</value></data>
 </root>

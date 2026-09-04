@@ -12,63 +12,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Write.Title">
-    <value>Yazmak</value>
-  </data>
-  <data name="Write.SelectSource">
-    <value>Mevcut bir kaynak görseli seçin.</value>
-  </data>
-  <data name="Write.Ambiguous">
-    <value>Biçim belirsizdir. Açıkça uyumlu bir format seçin.</value>
-  </data>
-  <data name="Write.VerifyOff">
-    <value>Yazdıktan sonra doğrulama devre dışı bırakıldı.</value>
-  </data>
-  <data name="Write.VerifyOn">
-    <value>Yazma sonrası doğrulama etkinleştirildi.</value>
-  </data>
-  <data name="Write.ConfirmTitle">
-    <value>Yazmayı onayla</value>
-  </data>
-  <data name="Write.Confirm">
-    <value>Resim: {0}
-Biçim: {1}
-Sürücü: {2}
-{3}
-
-Bu görüntü diske yazılsın mı?</value>
-  </data>
-  <data name="Write.Source">
-    <value>Kaynak resim</value>
-  </data>
-  <data name="Write.Detected">
-    <value>Algılanan format</value>
-  </data>
-  <data name="Write.ChooseImage">
-    <value>Bir resim seçin.</value>
-  </data>
-  <data name="Write.NoVerify">
-    <value>Yazdıktan sonra doğrulamayı devre dışı bırak</value>
-  </data>
-  <data name="Write.NoVerifyTip">
-    <value>--no-verify ekler. Yazmayı onaylamak için disk yeniden okunmayacaktır.</value>
-  </data>
-  <data name="Write.EraseEmpty">
-    <value>Boş parçaları sil</value>
-  </data>
-  <data name="Write.VisualizeTracks">
-    <value>Parçaları görselleştirin</value>
-  </data>
-  <data name="Write.VisualizeFormatRequired">
-    <value>Parçalarını görselleştirmeden önce disk formatını seçin.</value>
-  </data>
+  <data name="Write.Title"><value>Yazmak</value></data>
+  <data name="Write.SelectSource"><value>Mevcut bir kaynak görseli seçin.</value></data>
+  <data name="Write.Ambiguous"><value>Biçim belirsizdir. Açıkça uyumlu bir format seçin.</value></data>
+  <data name="Write.VerifyOff"><value>Yazdıktan sonra doğrulama devre dışı bırakıldı.</value></data>
+  <data name="Write.VerifyOn"><value>Yazma sonrası doğrulama etkinleştirildi.</value></data>
+  <data name="Write.ConfirmTitle"><value>Yazmayı onayla</value></data>
+  <data name="Write.Confirm"><value>Resim: {0}&#xA;Biçim: {1}&#xA;Sürücü: {2}&#xA;{3}&#xA;&#xA;Bu görüntü diske yazılsın mı?</value></data>
+  <data name="Write.Source"><value>Kaynak resim</value></data>
+  <data name="Write.Detected"><value>Algılanan format</value></data>
+  <data name="Write.ChooseImage"><value>Bir resim seçin.</value></data>
+  <data name="Write.NoVerify"><value>Yazdıktan sonra doğrulamayı devre dışı bırak</value></data>
+  <data name="Write.NoVerifyTip"><value>--no-verify ekler. Yazmayı onaylamak için disk yeniden okunmayacaktır.</value></data>
+  <data name="Write.EraseEmpty"><value>Boş parçaları sil</value></data>
+  <data name="Write.VisualizeTracks"><value>Parçaları görselleştirin</value></data>
+  <data name="Write.VisualizeFormatRequired"><value>Parçalarını görselleştirmeden önce disk formatını seçin.</value></data>
   <data name="Write.InternalWriter" xml:space="preserve"><value>Dahili yazma (deneysel)</value></data>
   <data name="Write.InternalWriterTip" xml:space="preserve"><value>gw.exe olmadan doğrudan dahili motorla yazar.</value></data>
   <data name="Write.InternalPreview" xml:space="preserve"><value>GW GUI dahili yazma: {0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Seçilen gelişmiş seçeneklerden bazıları henüz desteklenmiyor.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Dahili doğrulama henüz kullanılamıyor. “Doğrulama” seçeneğini kapatın.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>İz {0}, yüz {1}: {2}</value></data>
-  <data name="Write.InternalFailureReason">
-    <value>Dahili yazma başarısız oldu.</value>
-  </data>
+  <data name="Write.InternalFailureReason"><value>Dahili yazma başarısız oldu.</value></data>
 </root>

@@ -12,209 +12,69 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Visual.Decoder">
-    <value>Dekodér</value>
-  </data>
-  <data name="Visual.LinkZoom">
-    <value>Zoom odkazu</value>
-  </data>
-  <data name="Visual.OpenScp">
-    <value>Otevřít soubor SCP…</value>
-  </data>
-  <data name="Visual.NoFile">
-    <value>Není otevřen žádný soubor SCP</value>
-  </data>
-  <data name="Visual.Waiting">
-    <value>Čekání na soubor</value>
-  </data>
-  <data name="Visual.Inspector">
-    <value>Inspektor</value>
-  </data>
-  <data name="Visual.SelectTrack">
-    <value>Vyberte skladbu.</value>
-  </data>
-  <data name="Visual.Controls">
-    <value>Klikněte: vyberte · Kolečko: přiblížení · Klikněte pravým tlačítkem: posouvejte</value>
-  </data>
-  <data name="Visual.NormalFlux">
-    <value>Normální tok</value>
-  </data>
-  <data name="Visual.ShortTransition">
-    <value>Krátký přechod</value>
-  </data>
-  <data name="Visual.LongTransition">
-    <value>Dlouhý přechod/anomálie</value>
-  </data>
-  <data name="Visual.Loading">
-    <value>Čtení souboru…</value>
-  </data>
-  <data name="Visual.Invalid">
-    <value>Neplatný soubor</value>
-  </data>
-  <data name="Visual.Title">
-    <value>SCP vizualizace</value>
-  </data>
-  <data name="Visual.ChecksumValid">
-    <value>platný</value>
-  </data>
-  <data name="Visual.ChecksumInvalid">
-    <value>neplatný</value>
-  </data>
-  <data name="Visual.Summary">
-    <value>SCP {0} · {1} stopy · {2} otáčky · Rozlišení {3} ns · {4} kontrolní součet</value>
-  </data>
-  <data name="Visual.Revolution">
-    <value>Revoluce {0}: {1:N0} přechody · {2:F2} ms · {3:F2} RPM</value>
-  </data>
-  <data name="Visual.Analysis">
-    <value>Dekódování: {0}
-Spolehlivost: {1:P0}
-Odhadovaná buňka: {2:F1} klíšťat
-Struktury: {3}</value>
-  </data>
-  <data name="Visual.Track">
-    <value>Strana: {0}
-Skladba: {1}
-SCP záznam: {2}</value>
-  </data>
-  <data name="Visual.SideNoData">
-    <value>Strana {0}
-Žádná data</value>
-  </data>
-  <data name="Visual.TrackTooltip">
-    <value>Strana {0} · Stopa {1}
-{2} otáčky</value>
-  </data>
-  <data name="Visual.Automatic">
-    <value>Automatický</value>
-  </data>
-  <data name="Visual.StructureHeader">
-    <value>Záhlaví/adresa</value>
-  </data>
-  <data name="Visual.StructureData">
-    <value>Dekódovaná data</value>
-  </data>
-  <data name="Visual.StructureAnomaly">
-    <value>Smazáno/anomálie</value>
-  </data>
-  <data name="Visual.AnalysedRevolution">
-    <value>Analýza založená na revoluci {0}.</value>
-  </data>
-  <data name="Visual.BitOffset">
-    <value>bit {0:N0}</value>
-  </data>
-  <data name="Visual.SectorDetail">
-    <value>Sektor C{0} H{1} R{2} · {3} bajtů · {4} {5}</value>
-  </data>
-  <data name="Visual.CrcValid">
-    <value>platný</value>
-  </data>
-  <data name="Visual.CrcInvalid">
-    <value>neplatný</value>
-  </data>
-  <data name="Visual.IntegrityUnavailable">
-    <value>nedostupný</value>
-  </data>
-  <data name="Visual.StructureKind.Sync">
-    <value>Synchronizace</value>
-  </data>
-  <data name="Visual.StructureKind.IdAddressMark">
-    <value>Záhlaví sektoru</value>
-  </data>
-  <data name="Visual.StructureKind.DataAddressMark">
-    <value>Sektorová data</value>
-  </data>
-  <data name="Visual.StructureKind.DeletedDataAddressMark">
-    <value>Smazaná data sektoru</value>
-  </data>
-  <data name="Visual.StructureKind.AmigaSync">
-    <value>Amiga synchronizace</value>
-  </data>
-  <data name="Visual.StructureKind.AppleAddress">
-    <value>Prolog adresy Apple</value>
-  </data>
-  <data name="Visual.StructureKind.AppleData">
-    <value>Apple datový prolog</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreSync">
-    <value>Commodore synchronizace</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreHeader">
-    <value>Commodore záhlaví</value>
-  </data>
-  <data name="Visual.StructureKind.FormatHeader">
-    <value>Formátovat záhlaví</value>
-  </data>
-  <data name="Visual.StructureKind.FormatData">
-    <value>Formátovat data</value>
-  </data>
-  <data name="Visual.StructureKind.TimingAnomaly">
-    <value>Časová anomálie</value>
-  </data>
-  <data name="Visual.OpenFilter">
-    <value>SuperCard Pro zachytit (*.scp)|*.scp|Všechny soubory|*.*</value>
-  </data>
-  <data name="Visual.Integrity.Checksum">
-    <value>Kontrolní součet</value>
-  </data>
-  <data name="Visual.Side">
-    <value>Strana {0}</value>
-  </data>
-  <data name="Visual.AnalysingTrack">
-    <value>Probíhá analýza stopy {0}/{1}…</value>
-  </data>
-  <data name="Visual.SideLabel">
-    <value>Strana</value>
-  </data>
-  <data name="Visual.TrackLabel">
-    <value>Dráha</value>
-  </data>
-  <data name="Visual.ScpEntryLabel">
-    <value>SCP záznam</value>
-  </data>
-  <data name="Visual.RevolutionsTitle">
-    <value>Revoluce</value>
-  </data>
-  <data name="Visual.AnalysisTitle">
-    <value>Analýza</value>
-  </data>
-  <data name="Visual.ConfidenceLabel">
-    <value>Důvěra</value>
-  </data>
-  <data name="Visual.CellLabel">
-    <value>Odhadovaná buňka</value>
-  </data>
-  <data name="Visual.StructuresLabel">
-    <value>Struktury</value>
-  </data>
-  <data name="Visual.StructuresTitle">
-    <value>Zjištěné struktury</value>
-  </data>
-  <data name="Visual.SectorsTitle">
-    <value>Sektory</value>
-  </data>
-  <data name="Visual.TransitionsUnit">
-    <value>přechody</value>
-  </data>
-  <data name="Visual.OpenImage">
-    <value>Otevřít obraz disku…</value>
-  </data>
-  <data name="Visual.DetachInspector">
-    <value>Odpojte inspektora</value>
-  </data>
-  <data name="Visual.AttachInspector">
-    <value>Připojte inspektora</value>
-  </data>
-  <data name="Visual.SummaryTab">
-    <value>Shrnutí</value>
-  </data>
-  <data name="Visual.FormatDetected">
-    <value>Zjištěn formát</value>
-  </data>
-  <data name="Visual.AverageRpm">
-    <value>Průměrná RPM</value>
-  </data>
-  <data name="Visual.AverageDuration">
-    <value>Průměrná doba trvání</value>
-  </data>
+  <data name="Visual.Decoder"><value>Dekodér</value></data>
+  <data name="Visual.LinkZoom"><value>Zoom odkazu</value></data>
+  <data name="Visual.OpenScp"><value>Otevřít soubor SCP…</value></data>
+  <data name="Visual.NoFile"><value>Není otevřen žádný soubor SCP</value></data>
+  <data name="Visual.Waiting"><value>Čekání na soubor</value></data>
+  <data name="Visual.Inspector"><value>Inspektor</value></data>
+  <data name="Visual.SelectTrack"><value>Vyberte skladbu.</value></data>
+  <data name="Visual.Controls"><value>Klikněte: vyberte · Kolečko: přiblížení · Klikněte pravým tlačítkem: posouvejte</value></data>
+  <data name="Visual.NormalFlux"><value>Normální tok</value></data>
+  <data name="Visual.ShortTransition"><value>Krátký přechod</value></data>
+  <data name="Visual.LongTransition"><value>Dlouhý přechod/anomálie</value></data>
+  <data name="Visual.Loading"><value>Čtení souboru…</value></data>
+  <data name="Visual.Invalid"><value>Neplatný soubor</value></data>
+  <data name="Visual.Title"><value>SCP vizualizace</value></data>
+  <data name="Visual.ChecksumValid"><value>platný</value></data>
+  <data name="Visual.ChecksumInvalid"><value>neplatný</value></data>
+  <data name="Visual.Summary"><value>SCP {0} · {1} stopy · {2} otáčky · Rozlišení {3} ns · {4} kontrolní součet</value></data>
+  <data name="Visual.Revolution"><value>Revoluce {0}: {1:N0} přechody · {2:F2} ms · {3:F2} RPM</value></data>
+  <data name="Visual.Analysis"><value>Dekódování: {0}&#xA;Spolehlivost: {1:P0}&#xA;Odhadovaná buňka: {2:F1} klíšťat&#xA;Struktury: {3}</value></data>
+  <data name="Visual.Track"><value>Strana: {0}&#xA;Skladba: {1}&#xA;SCP záznam: {2}</value></data>
+  <data name="Visual.SideNoData"><value>Strana {0}&#xA;Žádná data</value></data>
+  <data name="Visual.TrackTooltip"><value>Strana {0} · Stopa {1}&#xA;{2} otáčky</value></data>
+  <data name="Visual.Automatic"><value>Automatický</value></data>
+  <data name="Visual.StructureHeader"><value>Záhlaví/adresa</value></data>
+  <data name="Visual.StructureData"><value>Dekódovaná data</value></data>
+  <data name="Visual.StructureAnomaly"><value>Smazáno/anomálie</value></data>
+  <data name="Visual.AnalysedRevolution"><value>Analýza založená na revoluci {0}.</value></data>
+<data name="Visual.SectorDetail"><value>Sektor C{0} H{1} R{2} · {3} bajtů · {4} {5}</value></data>
+  <data name="Visual.CrcValid"><value>platný</value></data>
+  <data name="Visual.CrcInvalid"><value>neplatný</value></data>
+  <data name="Visual.IntegrityUnavailable"><value>nedostupný</value></data>
+  <data name="Visual.StructureKind.Sync"><value>Synchronizace</value></data>
+  <data name="Visual.StructureKind.IdAddressMark"><value>Záhlaví sektoru</value></data>
+  <data name="Visual.StructureKind.DataAddressMark"><value>Sektorová data</value></data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark"><value>Smazaná data sektoru</value></data>
+  <data name="Visual.StructureKind.AmigaSync"><value>Amiga synchronizace</value></data>
+  <data name="Visual.StructureKind.AppleAddress"><value>Prolog adresy Apple</value></data>
+  <data name="Visual.StructureKind.AppleData"><value>Apple datový prolog</value></data>
+  <data name="Visual.StructureKind.CommodoreSync"><value>Commodore synchronizace</value></data>
+  <data name="Visual.StructureKind.CommodoreHeader"><value>Commodore záhlaví</value></data>
+  <data name="Visual.StructureKind.FormatHeader"><value>Formátovat záhlaví</value></data>
+  <data name="Visual.StructureKind.FormatData"><value>Formátovat data</value></data>
+  <data name="Visual.StructureKind.TimingAnomaly"><value>Časová anomálie</value></data>
+  <data name="Visual.OpenFilter"><value>SuperCard Pro zachytit (*.scp)|*.scp|Všechny soubory|*.*</value></data>
+  <data name="Visual.Integrity.Checksum"><value>Kontrolní součet</value></data>
+  <data name="Visual.Side"><value>Strana {0}</value></data>
+  <data name="Visual.AnalysingTrack"><value>Probíhá analýza stopy {0}/{1}…</value></data>
+  <data name="Visual.SideLabel"><value>Strana</value></data>
+  <data name="Visual.TrackLabel"><value>Dráha</value></data>
+  <data name="Visual.ScpEntryLabel"><value>SCP záznam</value></data>
+  <data name="Visual.RevolutionsTitle"><value>Revoluce</value></data>
+  <data name="Visual.AnalysisTitle"><value>Analýza</value></data>
+  <data name="Visual.ConfidenceLabel"><value>Důvěra</value></data>
+  <data name="Visual.CellLabel"><value>Odhadovaná buňka</value></data>
+  <data name="Visual.StructuresLabel"><value>Struktury</value></data>
+  <data name="Visual.StructuresTitle"><value>Zjištěné struktury</value></data>
+  <data name="Visual.SectorsTitle"><value>Sektory</value></data>
+  <data name="Visual.TransitionsUnit"><value>přechody</value></data>
+  <data name="Visual.OpenImage"><value>Otevřít obraz disku…</value></data>
+  <data name="Visual.DetachInspector"><value>Odpojte inspektora</value></data>
+  <data name="Visual.AttachInspector"><value>Připojte inspektora</value></data>
+  <data name="Visual.SummaryTab"><value>Shrnutí</value></data>
+  <data name="Visual.FormatDetected"><value>Zjištěn formát</value></data>
+  <data name="Visual.AverageRpm"><value>Průměrná RPM</value></data>
+  <data name="Visual.AverageDuration"><value>Průměrná doba trvání</value></data>
 </root>

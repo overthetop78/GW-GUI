@@ -12,140 +12,78 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Conflict.Title">
-    <value>ไฟล์ที่มีอยู่</value>
-  </data>
-  <data name="Conflict.Heading">
-    <value>มีไฟล์บางไฟล์อยู่แล้ว</value>
-  </data>
-  <data name="Conflict.Help">
-    <value>เลือกการดำเนินการสำหรับแต่ละไฟล์หรือใช้การดำเนินการเดียวกันกับทุกไฟล์</value>
-  </data>
-  <data name="Conflict.File">
-    <value>ไฟล์</value>
-  </data>
-  <data name="Conflict.Action">
-    <value>การกระทำ</value>
-  </data>
-  <data name="Conflict.Overwrite">
-    <value>เขียนทับ</value>
-  </data>
-  <data name="Conflict.Skip">
-    <value>ข้าม</value>
-  </data>
-  <data name="Conflict.Number">
-    <value>ใช้หมายเลขถัดไป</value>
-  </data>
-  <data name="Conflict.AllOverwrite">
-    <value>เขียนทับทั้งหมด</value>
-  </data>
-  <data name="Conflict.AllSkip">
-    <value>ข้ามทั้งหมด</value>
-  </data>
-  <data name="Conflict.AllNumber">
-    <value>หมายเลขทั้งหมด</value>
-  </data>
-  <data name="Conversion.Title">
-    <value>การแปลง</value>
-  </data>
-  <data name="Conversion.SelectOutput">
-    <value>เลือกรูปแบบเอาต์พุตอย่างน้อยหนึ่งรูปแบบ</value>
-  </data>
-  <data name="Conversion.SourceAmbiguous">
-    <value>แหล่งที่มาที่ไม่ชัดเจน</value>
-  </data>
-  <data name="Conversion.Summary">
-    <value>สรุป: {0} สำเร็จ {1} ล้มเหลว</value>
-  </data>
-  <data name="Conversion.Failures">
-    <value>ความล้มเหลว: {0}</value>
-  </data>
-  <data name="Conversion.Source">
-    <value>แหล่งที่มา</value>
-  </data>
-  <data name="Conversion.OutputNames">
-    <value>ชื่อเอาต์พุต</value>
-  </data>
-  <data name="Conversion.AddTags">
-    <value>เพิ่มแท็ก</value>
-  </data>
-  <data name="Conversion.Selected">
-    <value>เลือกแล้ว</value>
-  </data>
-  <data name="Conversion.CommonFormats">
-    <value>รูปแบบทั่วไป</value>
-  </data>
-  <data name="Conversion.ShowRare">
-    <value>แสดงรูปแบบที่ไม่ค่อยได้ใช้</value>
-  </data>
-  <data name="Conversion.LimitTracks">
-    <value>จำกัดแทร็ก</value>
-  </data>
-  <data name="Conversion.SourceRequired">
-    <value>เลือกอิมเมจต้นฉบับที่มีอยู่</value>
-  </data>
-  <data name="Conversion.NameRequired">
-    <value>ป้อนชื่อไฟล์เอาต์พุต</value>
-  </data>
-  <data name="Conversion.CheckOutput">
-    <value>ตรวจสอบรูปแบบเอาต์พุตอย่างน้อยหนึ่งรูปแบบ</value>
-  </data>
-  <data name="Conversion.More">
-    <value>(+ {0} การแปลง)</value>
-  </data>
-  <data name="Conversion.DefaultExtensionTip">
-    <value>ไม่มีการตรวจสอบส่วนขยาย: {0} ถูกใช้เป็นค่าเริ่มต้น</value>
-  </data>
-  <data name="Conversion.Incompatible">
-    <value>{0} เข้ากันไม่ได้กับแหล่งที่มานี้</value>
-  </data>
-  <data name="Conversion.NoAvailableOutputName">
-    <value>ไม่พบชื่อไฟล์เอาต์พุตที่ใช้ได้</value>
-  </data>
-  <data name="Conversion.ReconstructedFlux">
-    <value>ฟลักซ์ที่สร้างขึ้นใหม่</value>
-  </data>
-  <data name="Migration.Open"><value>File migration...</value></data>
-  <data name="Migration.Title"><value>File migration</value></data>
-  <data name="Migration.Heading"><value>Migrate files to another file system</value></data>
-  <data name="Migration.Source"><value>Source image</value></data>
-  <data name="Migration.NoSource"><value>Select an image containing a recognized file system.</value></data>
-  <data name="Migration.Destination"><value>Destination file system and format</value></data>
-  <data name="Migration.Output"><value>Destination image</value></data>
-  <data name="Migration.Compatibility"><value>Compatibility and losses</value></data>
-  <data name="Migration.Waiting"><value>Select a source and a destination.</value></data>
-  <data name="Migration.Severity"><value>Severity</value></data>
-  <data name="Migration.Path"><value>Source path</value></data>
-  <data name="Migration.Description"><value>Description</value></data>
-  <data name="Migration.AcceptLosses"><value>Accept the listed metadata losses</value></data>
-  <data name="Migration.Execute"><value>Migrate files</value></data>
-  <data name="Migration.Blocking"><value>Blocking</value></data>
-  <data name="Migration.MetadataLoss"><value>Metadata loss</value></data>
-  <data name="Migration.SourceSummary"><value>Volume: {0} — File system: {1} — Root entries: {2}</value></data>
-  <data name="Migration.SourceFailed"><value>Unable to prepare the migration: {0}</value></data>
-  <data name="Migration.Completed"><value>The destination image was created: {0}</value></data>
-  <data name="Migration.Failed"><value>Migration failed: {0}</value></data>
-  <data name="Migration.Incompatible"><value>Incompatible: correct the blocking losses before migration.</value></data>
-  <data name="Migration.CompatibleWithLosses"><value>Compatible after accepting the listed metadata losses.</value></data>
-  <data name="Migration.Compatible"><value>Compatible: no loss detected.</value></data>
-  <data name="Migration.Loss.MissingContent"><value>File content is unavailable.</value></data>
-  <data name="Migration.Loss.UnsupportedEntryKind"><value>This entry type is not supported by the destination.</value></data>
-  <data name="Migration.Loss.InvalidName"><value>The name is not valid for the destination.</value></data>
-  <data name="Migration.Loss.NameTooLong"><value>The name is too long for the destination.</value></data>
-  <data name="Migration.Loss.NameCollision"><value>Several entries would have the same destination name.</value></data>
-  <data name="Migration.Loss.FileTooLarge"><value>The file is too large for the destination.</value></data>
-  <data name="Migration.Loss.InvalidMetadata"><value>The source metadata is invalid.</value></data>
-  <data name="Migration.Loss.ModifiedDate"><value>The modification date will not be preserved.</value></data>
-  <data name="Migration.Loss.Comment"><value>The comment will not be preserved.</value></data>
-  <data name="Migration.Loss.Attributes"><value>The source attributes will not be preserved.</value></data>
-  <data name="Migration.OverwriteConfirm"><value>The destination image already exists. Replace it? {0}</value></data>
-  <data name="Migration.SourceDestinationSame"><value>The destination image cannot replace the source image.</value></data>
-  <data name="Conversion.Fidelity.SectorData"><value>sector data; protections not preserved</value></data>
-  <data name="Conversion.Fidelity.ReconstructedTracks"><value>reconstructed tracks; original flux not preserved</value></data>
-  <data name="Conversion.Fidelity.PreservedFlux"><value>original flux preserved</value></data>
-  <data name="Conversion.EngineExternal" xml:space="preserve"><value>Host Tools: converting {0}.</value></data>
-  <data name="Conversion.EngineInternalStart" xml:space="preserve"><value>Internal engine: converting {0} to {1}.</value></data>
-  <data name="Conversion.EngineInternalComplete" xml:space="preserve"><value>Internal conversion completed: {0}.</value></data>
-  <data name="Conversion.EngineInternalUnavailable" xml:space="preserve"><value>The internal engine does not support this conversion: {0}.</value></data>
-  <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Internal conversion failed for {0}: {1}</value></data>
+  <data name="Conflict.Title"><value>ไฟล์ที่มีอยู่</value></data>
+  <data name="Conflict.Heading"><value>มีไฟล์บางไฟล์อยู่แล้ว</value></data>
+  <data name="Conflict.Help"><value>เลือกการดำเนินการสำหรับแต่ละไฟล์หรือใช้การดำเนินการเดียวกันกับทุกไฟล์</value></data>
+  <data name="Conflict.File"><value>ไฟล์</value></data>
+  <data name="Conflict.Action"><value>การกระทำ</value></data>
+  <data name="Conflict.Overwrite"><value>เขียนทับ</value></data>
+  <data name="Conflict.Skip"><value>ข้าม</value></data>
+  <data name="Conflict.Number"><value>ใช้หมายเลขถัดไป</value></data>
+  <data name="Conflict.AllOverwrite"><value>เขียนทับทั้งหมด</value></data>
+  <data name="Conflict.AllSkip"><value>ข้ามทั้งหมด</value></data>
+  <data name="Conflict.AllNumber"><value>หมายเลขทั้งหมด</value></data>
+  <data name="Conversion.Title"><value>การแปลง</value></data>
+  <data name="Conversion.SelectOutput"><value>เลือกรูปแบบเอาต์พุตอย่างน้อยหนึ่งรูปแบบ</value></data>
+  <data name="Conversion.SourceAmbiguous"><value>แหล่งที่มาที่ไม่ชัดเจน</value></data>
+  <data name="Conversion.Summary"><value>สรุป: {0} สำเร็จ {1} ล้มเหลว</value></data>
+  <data name="Conversion.Failures"><value>ความล้มเหลว: {0}</value></data>
+  <data name="Conversion.Source"><value>แหล่งที่มา</value></data>
+  <data name="Conversion.OutputNames"><value>ชื่อเอาต์พุต</value></data>
+  <data name="Conversion.AddTags"><value>เพิ่มแท็ก</value></data>
+  <data name="Conversion.Selected"><value>เลือกแล้ว</value></data>
+  <data name="Conversion.CommonFormats"><value>รูปแบบทั่วไป</value></data>
+  <data name="Conversion.ShowRare"><value>แสดงรูปแบบที่ไม่ค่อยได้ใช้</value></data>
+  <data name="Conversion.LimitTracks"><value>จำกัดแทร็ก</value></data>
+  <data name="Conversion.SourceRequired"><value>เลือกอิมเมจต้นฉบับที่มีอยู่</value></data>
+  <data name="Conversion.NameRequired"><value>ป้อนชื่อไฟล์เอาต์พุต</value></data>
+  <data name="Conversion.CheckOutput"><value>ตรวจสอบรูปแบบเอาต์พุตอย่างน้อยหนึ่งรูปแบบ</value></data>
+  <data name="Conversion.More"><value>(+ {0} การแปลง)</value></data>
+  <data name="Conversion.DefaultExtensionTip"><value>ไม่มีการตรวจสอบส่วนขยาย: {0} ถูกใช้เป็นค่าเริ่มต้น</value></data>
+  <data name="Conversion.Incompatible"><value>{0} เข้ากันไม่ได้กับแหล่งที่มานี้</value></data>
+  <data name="Conversion.NoAvailableOutputName"><value>ไม่พบชื่อไฟล์เอาต์พุตที่ใช้ได้</value></data>
+  <data name="Conversion.ReconstructedFlux"><value>ฟลักซ์ที่สร้างขึ้นใหม่</value></data>
+  <data name="Migration.Open"><value>การย้ายแฟ้ม...</value></data>
+  <data name="Migration.Title"><value>การย้ายแฟ้ม</value></data>
+  <data name="Migration.Heading"><value>จัดเรียงแฟ้มไปยังระบบแฟ้มอื่น</value></data>
+  <data name="Migration.Source"><value>อิมเมจต้นฉบับ</value></data>
+  <data name="Migration.NoSource"><value>เลือกภาพที่มีระบบแฟ้มที่รู้จัก</value></data>
+  <data name="Migration.Destination"><value>ปลายทางของระบบและรูปแบบแฟ้ม</value></data>
+  <data name="Migration.Output"><value>แฟ้มภาพปลายทาง</value></data>
+  <data name="Migration.Compatibility"><value>ความเสมอภาคและการสูญเสีย</value></data>
+  <data name="Migration.Waiting"><value>เลือกแหล่งและปลายทาง</value></data>
+  <data name="Migration.Severity"><value>ความจุ</value></data>
+  <data name="Migration.Path"><value>พาธของแหล่ง</value></data>
+  <data name="Migration.Description"><value>คําอธิบาย</value></data>
+  <data name="Migration.AcceptLosses"><value>ยอมรับข้อมูลกํากับที่แสดง</value></data>
+  <data name="Migration.Execute"><value>ชื่อแฟ้มการขอข้อมูล</value></data>
+  <data name="Migration.Blocking"><value>บล็อค</value></data>
+  <data name="Migration.MetadataLoss"><value>ข้อมูลกํากับภาพสูญหาย</value></data>
+  <data name="Migration.SourceSummary"><value>ระดับเสียง: {0} — ระบบไฟล์: {1} — หลัก ฐาน: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>ไม่สามารถเตรียมการอพยพได้: {0}</value></data>
+  <data name="Migration.Completed"><value>อิมเมจปลายทางถูกสร้าง: {0}</value></data>
+  <data name="Migration.Failed"><value>การย้ายภาพล้มเหลว: {0}</value></data>
+  <data name="Migration.Incompatible"><value>ไม่ เข้า กัน: แก้ไข ความ สูญ เสีย ที่ ขวาง กั้น ก่อน อพยพ.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>เข้ากันได้หลังจากยอมรับการสูญเสียข้อมูล</value></data>
+  <data name="Migration.Compatible"><value>เข้ากันได้ ไม่ตรวจพบการสูญเสีย</value></data>
+  <data name="Migration.Loss.MissingContent"><value>ไม่มีเนื้อหาแฟ้มอยู่</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>ชนิดของรายการนี้ไม่รองรับโดยปลายทาง</value></data>
+  <data name="Migration.Loss.InvalidName"><value>ชื่อสําหรับปลายทางไม่ถูกต้อง</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>ชื่อมันยาวเกินไป สําหรับจุดหมายปลายทาง</value></data>
+  <data name="Migration.Loss.NameCollision"><value>หลายรายการมีชื่อเดียวกัน</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>แฟ้มมีขนาดใหญ่เกินที่จะกําหนดปลายทาง</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>ข้อมูลกํากับภาพแบบต้นทางไม่ถูกต้อง</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>วันแก้ไขจะไม่ถูกรักษา</value></data>
+  <data name="Migration.Loss.Comment"><value>ความเห็นจะไม่ถูกบันทึก</value></data>
+  <data name="Migration.Loss.Attributes"><value>คุณสมบัติของแหล่งจะไม่รักษา</value></data>
+  <data name="Migration.OverwriteConfirm"><value>มีรูปภาพปลายทางอยู่แล้ว แทนที่หรือไม่? {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>อิมเมจปลายทางไม่สามารถแทนที่อิมเมจต้นฉบับได้</value></data>
+  <data name="Conversion.Fidelity.SectorData"><value>ข้อมูลภาค; ไม่เก็บรักษา</value></data>
+  <data name="Conversion.Fidelity.ReconstructedTracks"><value>แทร็กที่ถูกสร้างใหม่; ฟลอกซ์ดั้งเดิมยังไม่มีการรักษา</value></data>
+  <data name="Conversion.Fidelity.PreservedFlux"><value>ฟลูซ์เดิมคงไว้</value></data>
+  <data name="Conversion.EngineExternal"><value>เครื่องมือของโฮสต์: {0}. .</value></data>
+  <data name="Conversion.EngineInternalStart"><value>เครื่องยนต์ภายใน: {0} ถึง {1}. .</value></data>
+  <data name="Conversion.EngineInternalComplete"><value>การแปลงภายในเสร็จสมบูรณ์แล้ว: {0}. .</value></data>
+  <data name="Conversion.EngineInternalUnavailable"><value>เครื่องยนต์ภายในไม่รองรับการแปลงนี้: {0}. .</value></data>
+  <data name="Conversion.EngineInternalFailed"><value>การแปลงภายในล้มเหลว {0}: {1}</value></data>
 </root>

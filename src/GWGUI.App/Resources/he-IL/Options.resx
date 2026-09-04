@@ -12,165 +12,56 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Options.Title">
-    <value>אפשרויות</value>
-  </data>
-  <data name="Options.General">
-    <value>כְּלָלִי</value>
-  </data>
-  <data name="Options.Tools">
-    <value>Greaseweazle כלים</value>
-  </data>
-  <data name="Options.Hardware">
-    <value>בקרים וכוננים</value>
-  </data>
-  <data name="Options.Profiles">
-    <value>פרופילים</value>
-  </data>
-  <data name="Options.ImagesFolder">
-    <value>תיקיית תמונת דיסק המוגדרת כברירת מחדל</value>
-  </data>
-  <data name="Options.Language">
-    <value>שָׂפָה</value>
-  </data>
-  <data name="Options.Theme">
-    <value>נוֹשֵׂא</value>
-  </data>
-  <data name="Theme.System">
-    <value>מַעֲרֶכֶת</value>
-  </data>
-  <data name="Theme.Light">
-    <value>אוֹר</value>
-  </data>
-  <data name="Theme.Dark">
-    <value>כֵּהֶה</value>
-  </data>
-  <data name="Options.GwPath">
-    <value>נתיב אל gw.exe</value>
-  </data>
-  <data name="Options.ToolsHelp">
-    <value>אם הכלים חסרים, העוזר יציע להוריד אותם או לבחור התקנה קיימת. עדכונים מתפרסמים רק.</value>
-  </data>
-  <data name="Options.HardwarePersistence">
-    <value>הגדרות החומרה נשארות מאוחסנות כאשר כונן מנותק.</value>
-  </data>
-  <data name="Options.ExecutableFilter">
-    <value>Greaseweazle (gw.exe)|gw.exe|קובץ הפעלה (*.exe)|*.exe</value>
-  </data>
-  <data name="Options.RemoveHardware">
-    <value>להסיר את הבקר המאוחסן הזה ואת כל הכוננים שלו?</value>
-  </data>
-  <data name="Options.HardwareTitle">
-    <value>חוּמרָה</value>
-  </data>
-  <data name="Options.UseConversionTags">
-    <value>השתמש בתגים בשמות קבצי המרה</value>
-  </data>
-  <data name="Options.TagPreset">
-    <value>מוגדר מראש</value>
-  </data>
-  <data name="Options.TagPresetFamily">
-    <value>משפחה בלבד</value>
-  </data>
-  <data name="Options.TagPresetFormat">
-    <value>פורמט בלבד</value>
-  </data>
-  <data name="Options.TagPresetFamilyFormat">
-    <value>משפחה ופורמט</value>
-  </data>
-  <data name="Options.TagPresetFamilyExtension">
-    <value>משפחה והרחבה</value>
-  </data>
-  <data name="Options.TagPresetDetailed">
-    <value>משפחה, פורמט והרחבה</value>
-  </data>
-  <data name="Options.TagPattern">
-    <value>דפוס תג המרה</value>
-  </data>
-  <data name="Options.TagVariablesTitle">
-    <value>משתנים זמינים</value>
-  </data>
-  <data name="Options.TagVariableName">
-    <value>שם קובץ המקור</value>
-  </data>
-  <data name="Options.TagVariableFamily">
-    <value>משפחה: PC, ST, AMIGA…</value>
-  </data>
-  <data name="Options.TagVariableFormat">
-    <value>פורמט: 720, 1440, DD…</value>
-  </data>
-  <data name="Options.TagVariableExtension">
-    <value>שלוחה: IMA, ST, ADF...</value>
-  </data>
-  <data name="Options.TagVariableDateIso">
-    <value>תאריך: 2026-08-06</value>
-  </data>
-  <data name="Options.TagVariableDateCompact">
-    <value>תאריך: 20260806</value>
-  </data>
-  <data name="Options.TagVariableDateLocal">
-    <value>תאריך: 06-08-2026</value>
-  </data>
-  <data name="Options.TagVariableTimeFull">
-    <value>זמן: 14-35-42</value>
-  </data>
-  <data name="Options.TagVariableTimeCompact">
-    <value>זמן: 143542</value>
-  </data>
-  <data name="Options.TagVariableTimeShort">
-    <value>זמן: 14-35</value>
-  </data>
-  <data name="Options.TagPatternHelp">
-    <value>{NAME} - שם קובץ המקור
-{FAMILY} — משפחת מכונות (PC, ST, AMIGA...)
-{FORMAT} - פורמט או גיאומטריה (720, 1440, DD...)
-{EXTENSION} — סיומת פלט (IMA, ST, ADF...)
-{DATE:YYYY-MM-DD} — תאריך 2026-08-06
-{DATE:YYYYMMDD} — תאריך 20260806
-{DATE:DD-MM-YYYY} — תאריך 06-08-2026
-{TIME:HH-MM-SS} - זמן 14-35-42
-{TIME:HHMMSS} - זמן 143542
-{TIME:HH-MM} - זמן 14-35</value>
-  </data>
-  <data name="Options.RecentTagPatterns">
-    <value>דפוסים מותאמים אישית אחרונים</value>
-  </data>
-  <data name="Options.NextTagExample">
-    <value>הדוגמה הבאה</value>
-  </data>
-  <data name="Options.TagPatternPreview">
-    <value>דוגמה: {0}</value>
-  </data>
-  <data name="Options.TagPatternInvalid">
-    <value>תבנית התג חייבת להכיל {tag}.</value>
-  </data>
-  <data name="Options.EnableLogs">
-    <value>שמור יומנים</value>
-  </data>
-  <data name="Options.Logs">
-    <value>יומנים</value>
-  </data>
-  <data name="Options.LogsDescription">
-    <value>לכל פעולה יש קובץ משלה בתיקייה GW GUI Logs.</value>
-  </data>
-  <data name="Options.LogActionErase">
-    <value>לִמְחוֹק</value>
-  </data>
-  <data name="Options.LogActionClean">
-    <value>ראשים נקיים</value>
-  </data>
-  <data name="Options.OpenLogsFolder">
-    <value>פתח תיקייה</value>
-  </data>
-  <data name="Options.LogMaximumSize">
-    <value>גודל מקסימלי</value>
-  </data>
-  <data name="Options.KeepLogArchives">
-    <value>שמור יומנים קודמים</value>
-  </data>
-  <data name="Options.LogUnlimitedHint">
-    <value>0 = בלתי מוגבל</value>
-  </data>
+  <data name="Options.Title"><value>אפשרויות</value></data>
+  <data name="Options.General"><value>כְּלָלִי</value></data>
+  <data name="Options.Tools"><value>Greaseweazle כלים</value></data>
+  <data name="Options.Hardware"><value>בקרים וכוננים</value></data>
+  <data name="Options.Profiles"><value>פרופילים</value></data>
+  <data name="Options.ImagesFolder"><value>תיקיית תמונת דיסק המוגדרת כברירת מחדל</value></data>
+  <data name="Options.Language"><value>שָׂפָה</value></data>
+  <data name="Options.Theme"><value>נוֹשֵׂא</value></data>
+  <data name="Theme.System"><value>מַעֲרֶכֶת</value></data>
+  <data name="Theme.Light"><value>אוֹר</value></data>
+  <data name="Theme.Dark"><value>כֵּהֶה</value></data>
+  <data name="Options.GwPath"><value>נתיב אל gw.exe</value></data>
+  <data name="Options.ToolsHelp"><value>אם הכלים חסרים, העוזר יציע להוריד אותם או לבחור התקנה קיימת. עדכונים מתפרסמים רק.</value></data>
+  <data name="Options.HardwarePersistence"><value>הגדרות החומרה נשארות מאוחסנות כאשר כונן מנותק.</value></data>
+  <data name="Options.ExecutableFilter"><value>Greaseweazle (gw.exe)|gw.exe|Executable (הוצאה להורג)*.exe)|*.exe</value></data>
+  <data name="Options.RemoveHardware"><value>להסיר את הבקר המאוחסן הזה ואת כל הכוננים שלו?</value></data>
+  <data name="Options.HardwareTitle"><value>חוּמרָה</value></data>
+  <data name="Options.UseConversionTags"><value>השתמש בתגים בשמות קבצי המרה</value></data>
+  <data name="Options.TagPreset"><value>מוגדר מראש</value></data>
+  <data name="Options.TagPresetFamily"><value>משפחה בלבד</value></data>
+  <data name="Options.TagPresetFormat"><value>פורמט בלבד</value></data>
+  <data name="Options.TagPresetFamilyFormat"><value>משפחה ופורמט</value></data>
+  <data name="Options.TagPresetFamilyExtension"><value>משפחה והרחבה</value></data>
+  <data name="Options.TagPresetDetailed"><value>משפחה, פורמט והרחבה</value></data>
+  <data name="Options.TagPattern"><value>דפוס תג המרה</value></data>
+  <data name="Options.TagVariablesTitle"><value>משתנים זמינים</value></data>
+  <data name="Options.TagVariableName"><value>שם קובץ המקור</value></data>
+  <data name="Options.TagVariableFamily"><value>משפחה: PC, ST, AMIGA…</value></data>
+  <data name="Options.TagVariableFormat"><value>פורמט: 720, 1440, DD…</value></data>
+  <data name="Options.TagVariableExtension"><value>הרחבה: IMA, ST, ADF...</value></data>
+  <data name="Options.TagVariableDateIso"><value>תאריך: 2026-08-06</value></data>
+  <data name="Options.TagVariableDateCompact"><value>תאריך: 20260806</value></data>
+  <data name="Options.TagVariableDateLocal"><value>תאריך: 06-08-2026</value></data>
+  <data name="Options.TagVariableTimeFull"><value>זמן: 14-35-42</value></data>
+  <data name="Options.TagVariableTimeCompact"><value>זמן: 143542</value></data>
+  <data name="Options.TagVariableTimeShort"><value>זמן: 14-35</value></data>
+  <data name="Options.TagPatternHelp"><value>{NAME} Source filename&#xA;{FAMILY} Machine FamilyPC, ST, AMIGA...&#xA;{FORMAT} פורמט או גיאומטריה (720, 1440, DD...&#xA;{EXTENSION} ההרחבה (Ftationסיומת)IMA, ST, ADF...&#xA;{DATE:YYYY-MM-DD} תאריך 2026-8&#xA;{DATE:YYYYMMDD} תאריך 20260806&#xA;{DATE:DD-MM-YYYY} תאריך 06-8-2026&#xA;{TIME:HH-MM-SS} זמן 14-35-42&#xA;{TIME:HHMMSS} זמן 143542&#xA;{TIME:HH-MM} זמן 14-35</value></data>
+  <data name="Options.RecentTagPatterns"><value>דפוסים מותאמים אישית אחרונים</value></data>
+  <data name="Options.NextTagExample"><value>הדוגמה הבאה</value></data>
+  <data name="Options.TagPatternPreview"><value>דוגמה: {0}</value></data>
+  <data name="Options.TagPatternInvalid"><value>תבנית התג חייבת להכיל {tag}.</value></data>
+  <data name="Options.EnableLogs"><value>שמור יומנים</value></data>
+  <data name="Options.Logs"><value>יומנים</value></data>
+  <data name="Options.LogsDescription"><value>לכל פעולה יש קובץ משלה בתיקייה GW GUI Logs.</value></data>
+  <data name="Options.LogActionErase"><value>לִמְחוֹק</value></data>
+  <data name="Options.LogActionClean"><value>ראשים נקיים</value></data>
+  <data name="Options.OpenLogsFolder"><value>פתח תיקייה</value></data>
+  <data name="Options.LogMaximumSize"><value>גודל מקסימלי</value></data>
+  <data name="Options.KeepLogArchives"><value>שמור יומנים קודמים</value></data>
+  <data name="Options.LogUnlimitedHint"><value>0 = בלתי מוגבל</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>מנועים</value></data>
   <data name="Engines.Description" xml:space="preserve"><value>בחר בנפרד את המנוע המשמש לכל פעולה.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>המנוע הפנימי של GW GUI</value></data>
@@ -185,9 +76,7 @@
   <data name="Controllers.NoneDetected" xml:space="preserve"><value>לא זוהה בקר</value></data>
   <data name="Controllers.DetectedCount" xml:space="preserve"><value>זוהו {0} בקרים</value></data>
   <data name="Controllers.TestRumble" xml:space="preserve"><value>בדיקת רטט</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve">
-    <value>עוצמת רטט</value>
-  </data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>עוצמת רטט</value></data>
   <data name="Controllers.LiveInputs" xml:space="preserve"><value>קלט בזמן אמת</value></data>
   <data name="Controllers.Control" xml:space="preserve"><value>פקד</value></data>
   <data name="Controllers.Value" xml:space="preserve"><value>ערך</value></data>
@@ -218,17 +107,10 @@
   <data name="Controllers.Yes" xml:space="preserve"><value>כן</value></data>
   <data name="Controllers.No" xml:space="preserve"><value>לא</value></data>
   <data name="Controllers.None" xml:space="preserve"><value>ללא</value></data>
-  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>בקר כללי</value></data>
-  <data name="Controllers.Model.Auto" xml:space="preserve"><value>אוטומטי</value></data>
-  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>הגה</value></data>
-  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>מוט טיסה</value></data>
-  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>מוט ארקייד</value></data>
-  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>בית גולמי</value></data>
+<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>בית גולמי</value></data>
   <data name="Controllers.AnalogValues" xml:space="preserve"><value>ערכים אנלוגיים</value></data>
   <data name="Controllers.DetectionFailed" xml:space="preserve"><value>זיהוי הבקרים נכשל</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve">
-    <value>מאתר בקרים…</value>
-  </data>
+  <data name="Controllers.Detecting" xml:space="preserve"><value>מאתר בקרים…</value></data>
   <data name="Controllers.ReadFailed" xml:space="preserve"><value>קריאת הבקר נכשלה</value></data>
   <data name="Controllers.TestRunning" xml:space="preserve"><value>הבדיקה מתבצעת…</value></data>
   <data name="Controllers.TestFailed" xml:space="preserve"><value>הבדיקה נכשלה</value></data>
@@ -253,91 +135,53 @@
   <data name="Controllers.Roll" xml:space="preserve"><value>גלגול</value></data>
   <data name="Controllers.Pitch" xml:space="preserve"><value>עלרוד</value></data>
   <data name="Controllers.Yaw" xml:space="preserve"><value>סבסוב</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve">
-    <value>חיישנים</value>
-  </data>
-  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
-    <value>ניווט בממשק</value>
-  </data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
-    <value>בקר משחק</value>
-  </data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
-    <value>מנוע בתדר נמוך</value>
-  </data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
-    <value>מנוע בתדר גבוה</value>
-  </data>
-  <data name="Controllers.Enum.Share" xml:space="preserve">
-    <value>שיתוף</value>
-  </data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve">
-    <value>לינארי</value>
-  </data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve">
-    <value>זוויתי</value>
-  </data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve">
-    <value>רגיל</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
-    <value>קבוע</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
-    <value>מדרון</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
-    <value>גל סינוס</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
-    <value>גל מרובע</value>
-  </data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
-    <value>גל משולש</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
-    <value>שן מסור עולה</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
-    <value>שן מסור יורדת</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
-    <value>קפיץ</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
-    <value>חיכוך</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
-    <value>מרסן</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
-    <value>אינרציה</value>
-  </data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve">
-    <value>מוט היגוי</value>
-  </data>
-  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
-    <value>בקר רב־צירי</value>
-  </data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
-    <value>שימוש HID</value>
-  </data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve">
-    <value>צירים</value>
-  </data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve">
-    <value>לחצנים</value>
-  </data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
-    <value>מצטבר</value>
-  </data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve">
-    <value>וירטואלי</value>
-  </data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve">
-    <value>דוח קלט</value>
-  </data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
-    <value>דוח פלט</value>
-  </data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>חיישנים</value></data>
+  <data name="Controllers.Enum.UiNavigation"><value>UI ניווט</value></data>
+  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>בקר משחק</value></data>
+  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>מנוע בתדר נמוך</value></data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>מנוע בתדר גבוה</value></data>
+  <data name="Controllers.Enum.Share" xml:space="preserve"><value>שיתוף</value></data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>לינארי</value></data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>זוויתי</value></data>
+  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>רגיל</value></data>
+  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>קבוע</value></data>
+  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>מדרון</value></data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>גל סינוס</value></data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>גל מרובע</value></data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>גל משולש</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>שן מסור עולה</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>שן מסור יורדת</value></data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>קפיץ</value></data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>חיכוך</value></data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>מרסן</value></data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>אינרציה</value></data>
+  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>מוט היגוי</value></data>
+  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>בקר רב־צירי</value></data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>שימוש HID</value></data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>צירים</value></data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>לחצנים</value></data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>מצטבר</value></data>
+  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>וירטואלי</value></data>
+  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>דוח קלט</value></data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>דוח פלט</value></data>
+<data name="Emulation.InitialDisk"><value>הדיסק הראשון</value></data>
+  <data name="Emulation.Audio"><value>אודיו Audio</value></data>
+  <data name="Emulation.Controller"><value>המפקח {0}</value></data>
+  <data name="Emulation.Core.NameOptions"><value>אפשרויות ליבה</value></data>
+  <data name="Emulation.MultiDrive"><value>Mount the first four Disks in DF0-DF3</value></data>
+  <data name="Emulation.DiskNumber"><value>דיסק דיסק {0}</value></data>
+  <data name="Emulation.LoadOptions"><value>אפשרויות טעינה</value></data>
+  <data name="Emulation.Configurations"><value>סודיות</value></data>
+  <data name="Emulation.Firmware"><value>תגית:</value></data>
+  <data name="Emulation.ReleaseMouse"><value>עכבר שחרור</value></data>
+  <data name="Emulation.DeleteConfirm"><value>למחוק את התצורה של עמיגה?</value></data>
+  <data name="Emulation.ModelRequired"><value>מודל אמיגה נדרש.</value></data>
+  <data name="Emulation.KickstartRequired"><value>יש צורך בנתיב Kickstart.</value></data>
+  <data name="Emulation.FileRequired"><value>נתיב קושחה נדרש הוא ריק.</value></data>
+  <data name="Emulation.FileMissing"><value>הקובץ שנבחר אינו קיים.</value></data>
+<data name="Options.EmulationMachineTitle"><value>{0} - - - - {1} : {2}</value></data>
+  <data name="Controllers.AnalogDeadZones"><value>אזורי אנליסטים</value></data>
+  <data name="Controllers.StickDeadZone"><value>מקלות</value></data>
+  <data name="Controllers.TriggerDeadZone"><value>טריגר</value></data>
+  <data name="Controllers.OuterDeadZone"><value>אזור מת</value></data>
 </root>

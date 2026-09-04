@@ -12,16 +12,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="About.Description">
-    <value>现代 Windows 界面，用于使用 Greaseweazle 读取、写入、转换和检查软盘。</value>
-  </data>
-  <data name="About.License">
-    <value>开源软件 — MIT 许可证</value>
-  </data>
-  <data name="About.Version">
-    <value>版本 {0}</value>
-  </data>
-  <data name="About.Components">
-    <value>组件版本</value>
-  </data>
+  <data name="About.Description"><value>现代 Windows 界面，用于使用 Greaseweazle 读取、写入、转换和检查软盘。</value></data>
+  <data name="About.License"><value>开源软件 — MIT 许可证</value></data>
+  <data name="About.Version"><value>版本 {0}</value></data>
+  <data name="About.Components"><value>组件版本</value></data>
 </root>

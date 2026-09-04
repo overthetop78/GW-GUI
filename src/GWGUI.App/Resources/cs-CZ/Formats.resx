@@ -12,67 +12,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Detection.Ambiguous">
-    <value>Nejednoznačný formát</value>
-  </data>
-  <data name="Detection.RawScp">
-    <value>Bylo rozpoznáno nezpracované zachycení SCP.</value>
-  </data>
-  <data name="Detection.AmigaSize">
-    <value>Formát Amiga rozpoznán podle velikosti souboru.</value>
-  </data>
-  <data name="Detection.AcornSize">
-    <value>Formát Acorn rozpoznán podle velikosti souboru.</value>
-  </data>
-  <data name="Detection.AtariUnknownSize">
-    <value>Velikost neodpovídá známému profilu Atari ST.</value>
-  </data>
-  <data name="Detection.AtariSize">
-    <value>Geometrie Atari ST rozpoznána z velikosti souboru.</value>
-  </data>
-  <data name="Detection.MsaInferred">
-    <value>Rozpoznán kontejner Atari MSA; v případě potřeby potvrďte geometrii.</value>
-  </data>
-  <data name="Detection.IbmAmbiguous">
-    <value>Samotné rozšíření nemůže určit geometrii IBM PC.</value>
-  </data>
-  <data name="Detection.IbmSize">
-    <value>Geometrie IBM PC rozpoznána z velikosti souboru.</value>
-  </data>
-  <data name="Detection.ExtensionInferred">
-    <value>Formát odvozený z rozšíření.</value>
-  </data>
-  <data name="Detection.Multiple">
-    <value>Je možných několik formátů; jednu explicitně vybrat.</value>
-  </data>
-  <data name="Format.raw.scp">
-    <value>Obraz surového toku</value>
-  </data>
-  <data name="Format.raw.hfe">
-    <value>HxC obraz toku</value>
-  </data>
-  <data name="Common.DiskImageFilter">
-    <value>Obrazy disků|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Všechny soubory|*.*</value>
-  </data>
-  <data name="Detection.AppleDosOrder">
-    <value>Formát Apple II DOS byl rozpoznán podle pořadí sektorů.</value>
-  </data>
-  <data name="Detection.AppleProDosOrder">
-    <value>Formát Apple II ProDOS byl rozpoznán podle pořadí sektorů.</value>
-  </data>
-  <data name="Detection.AppleContainer">
-    <value>Byl zjištěn kontejner obrazu disku Apple.</value>
-  </data>
-  <data name="Classification.Automatic">
-    <value>Automatická detekce</value>
-  </data>
-  <data name="Classification.Machine">
-    <value>Počítač</value>
-  </data>
-  <data name="Classification.Format">
-    <value>Formát</value>
-  </data>
-  <data name="Classification.Protection">
-    <value>Ochrana</value>
-  </data>
+  <data name="Detection.Ambiguous"><value>Nejednoznačný formát</value></data>
+  <data name="Detection.RawScp"><value>Syrový SCP zachycení rozpoznáno.</value></data>
+  <data name="Detection.AmigaSize"><value>Formát Amiga rozpoznán podle velikosti souboru.</value></data>
+  <data name="Detection.AcornSize"><value>Formát Acorn rozpoznán podle velikosti souboru.</value></data>
+  <data name="Detection.AtariUnknownSize"><value>Velikost neodpovídá známé Atari ST profil.</value></data>
+  <data name="Detection.AtariSize"><value>Geometrie Atari ST rozpoznána z velikosti souboru.</value></data>
+  <data name="Detection.MsaInferred"><value>Rozpoznán kontejner Atari MSA; v případě potřeby potvrďte geometrii.</value></data>
+  <data name="Detection.IbmAmbiguous"><value>Samostatné rozšíření nemůže určit IBM PC geometrie.</value></data>
+  <data name="Detection.IbmSize"><value>Geometrie IBM PC rozpoznána z velikosti souboru.</value></data>
+  <data name="Detection.ExtensionInferred"><value>Formát odvozený z rozšíření.</value></data>
+  <data name="Detection.Multiple"><value>Je možných několik formátů; jednu explicitně vybrat.</value></data>
+  <data name="Format.raw.scp"><value>Obraz surového toku</value></data>
+  <data name="Common.DiskImageFilter"><value>Obrázky disků|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Všechny soubory|*.*</value></data>
+  <data name="Detection.AppleDosOrder"><value>Formát Apple II DOS byl rozpoznán podle pořadí sektorů.</value></data>
+  <data name="Detection.AppleProDosOrder"><value>Formát Apple II ProDOS byl rozpoznán podle pořadí sektorů.</value></data>
+  <data name="Detection.AppleContainer"><value>Byl zjištěn kontejner obrazu disku Apple.</value></data>
+  <data name="Classification.Automatic"><value>Automatická detekce</value></data>
+  <data name="Classification.Machine"><value>Počítač</value></data>
+  <data name="Classification.Format"><value>Formát</value></data>
+  <data name="Classification.Protection"><value>Ochrana</value></data>
 </root>

@@ -28,10 +28,59 @@ public sealed class EmulationVideoProcessingPipelineTests
         foreach (var sampling in Enum.GetValues<EmulationVideoSampling>())
         {
             var fragment = SpirvCompilation.CompileGlslToSpirv(
-                VeldridVideoProcessingShaders.Fragment(sampling), $"video-{sampling}.frag",
+                VeldridVideoProcessingShaders.Fragment(sampling,
+                    EmulationVideoDisplayTechnology.Normal), $"video-{sampling}.frag",
                 ShaderStages.Fragment, GlslCompileOptions.Default);
             Assert.NotEmpty(fragment.SpirvBytes);
         }
+    }
+
+    [Fact]
+    public void VeldridDisplayTechnologyShadersCompileToSpirv()
+    {
+        foreach (var displayTechnology in Enum.GetValues<EmulationVideoDisplayTechnology>())
+        {
+            var fragment = SpirvCompilation.CompileGlslToSpirv(
+                VeldridVideoProcessingShaders.Fragment(
+                    EmulationVideoSampling.Nearest, displayTechnology),
+                $"video-{displayTechnology}.frag", ShaderStages.Fragment,
+                GlslCompileOptions.Default);
+            Assert.NotEmpty(fragment.SpirvBytes);
+        }
+    }
+
+    [Fact]
+    public void VeldridDirect3D11PresentsFirstFrameWithinTenSeconds()
+    {
+        RunSta(() =>
+        {
+            var surface = new VeldridVideoSurface(GraphicsBackend.Direct3D11);
+            var window = new System.Windows.Window
+            {
+                Content = surface,
+                Width = 128,
+                Height = 128,
+                ShowInTaskbar = false,
+                ShowActivated = false
+            };
+            try
+            {
+                window.Show();
+                window.UpdateLayout();
+                var frame = new VideoFrame(Enumerable.Repeat((byte)255, 4 * 4 * 4).ToArray(),
+                    4, 4, 16, EmulationPixelFormat.Xrgb8888, 1f, 1, TimeSpan.Zero);
+                var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+                var worker = Task.Factory.StartNew(() => surface.Present(frame),
+                    CancellationToken.None, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+                Assert.True(worker.Wait(TimeSpan.FromSeconds(10)),
+                    $"The first Direct3D frame took longer than ten seconds ({stopwatch.Elapsed}).");
+            }
+            finally
+            {
+                window.Close();
+                surface.Dispose();
+            }
+        });
     }
 
     [Fact]
@@ -258,6 +307,19 @@ public sealed class EmulationVideoProcessingPipelineTests
                 surface.Snapshot.CopyPixels(temporal, surface.Snapshot.PixelWidth * 4, 0);
                 Assert.Contains(temporal.Chunk(4), pixel =>
                     pixel[0] > 0 || pixel[1] > 0 || pixel[2] > 0);
+
+                surface.SetVideoProcessing(new EmulationVideoProcessingConfiguration
+                {
+                    DisplayTechnology = EmulationVideoDisplayTechnology.LedMatrix,
+                    LedMatrix = new EmulationLedMatrixVideoConfiguration(
+                        EmulationLedMatrixColor.Blue, CellSize: 60, CellGap: 45,
+                        Diffusion: 70, Brightness: 90,
+                        Shape: EmulationLedMatrixShape.Round,
+                        HaloRadius: 55, BlackDepth: 95)
+                });
+                surface.Present(new VideoFrame(Enumerable.Repeat((byte)180, 16).ToArray(),
+                    2, 2, 8, EmulationPixelFormat.Xrgb8888, 1f, 4,
+                    TimeSpan.FromMilliseconds(32)));
             }
             finally
             {
@@ -359,13 +421,15 @@ public sealed class EmulationVideoProcessingPipelineTests
                 {
                     DisplayTechnology = EmulationVideoDisplayTechnology.Vfd,
                     Vfd = new EmulationVfdVideoConfiguration(EmulationVfdColor.Blue,
-                        PhosphorIntensity: 70, HaloIntensity: 25, PersistenceIntensity: 20)
+                        PhosphorIntensity: 70, HaloIntensity: 25,
+                        PersistenceMilliseconds: 20)
                 },
                 new EmulationVideoProcessingConfiguration
                 {
                     DisplayTechnology = EmulationVideoDisplayTechnology.Vfd,
                     Vfd = new EmulationVfdVideoConfiguration(EmulationVfdColor.Green,
-                        PhosphorIntensity: 100, HaloIntensity: 70, PersistenceIntensity: 80)
+                        PhosphorIntensity: 100, HaloIntensity: 70,
+                        PersistenceMilliseconds: 80)
                 },
                 new EmulationVideoProcessingConfiguration
                 {
@@ -973,7 +1037,7 @@ public sealed class EmulationVideoProcessingPipelineTests
                 validationPipeline.Process(configuration, frame, new(16, 16), new(48, 48)))
                 .ToArray();
             var outputDirectory = Path.Combine(RepositoryRoot(),
-                "artifacts", "advanced-filter-validation");
+                "build", "validation", "advanced-filter-validation");
 
             foreach (var renderer in Enum.GetValues<EmulationVideoRenderer>())
             {
@@ -1426,7 +1490,7 @@ public sealed class EmulationVideoProcessingPipelineTests
     }
 
     [Fact]
-    public void CpuPlasmaPassesAreNeutralDeterministicAndUseOneResettableHistoryFrame()
+    public void CpuPlasmaPassesAreNeutralDeterministicAndUseResettableDecayingHistory()
     {
         var frame = DeterministicFrame(4, 3);
         byte[] Process(EmulationPlasmaVideoConfiguration plasma, long sequence = 10)
@@ -1446,9 +1510,15 @@ public sealed class EmulationVideoProcessingPipelineTests
         var cells = Process(new EmulationPlasmaVideoConfiguration(CellStructure: 100));
         var diffusion = Process(new EmulationPlasmaVideoConfiguration(Diffusion: 100));
         var dither = Process(new EmulationPlasmaVideoConfiguration(TemporalDithering: 100));
+        var blacks = Process(new EmulationPlasmaVideoConfiguration(BlackDepth: 100));
+        var phosphors = Process(new EmulationPlasmaVideoConfiguration(PhosphorIntensity: 100));
+        var gamma = Process(new EmulationPlasmaVideoConfiguration(GammaResponse: 100));
         Assert.False(neutral.SequenceEqual(cells));
         Assert.False(neutral.SequenceEqual(diffusion));
         Assert.False(neutral.SequenceEqual(dither));
+        Assert.False(neutral.SequenceEqual(blacks));
+        Assert.False(neutral.SequenceEqual(phosphors));
+        Assert.False(neutral.SequenceEqual(gamma));
         Assert.Equal(dither, Process(
             new EmulationPlasmaVideoConfiguration(TemporalDithering: 100)));
         Assert.False(dither.SequenceEqual(Process(
@@ -1476,6 +1546,61 @@ public sealed class EmulationVideoProcessingPipelineTests
         var reset = history.Process(configuration, Pixel(0, 5),
             new EmulationVideoProcessingSize(1, 1), new EmulationVideoProcessingSize(1, 1));
         Assert.Equal(0, EmulationVideoPixelFunctions.ToBgra32(reset)[0]);
+    }
+
+    [Fact]
+    public void CpuPlasmaDiffusionSpreadsHighlightsAndMaximumPersistenceDecays()
+    {
+        var pixels = new byte[5 * 5 * 4];
+        var center = (2 * 5 + 2) * 4;
+        pixels[center] = pixels[center + 1] = pixels[center + 2] = 255;
+        var frame = new VideoFrame(pixels, 5, 5, 20, EmulationPixelFormat.Xrgb8888,
+            1f, 1, TimeSpan.Zero);
+        using (var diffusion = new SoftwareEmulationVideoProcessingPipeline())
+        {
+            var output = diffusion.Process(new EmulationVideoProcessingConfiguration
+            {
+                DisplayTechnology = EmulationVideoDisplayTechnology.Plasma,
+                Plasma = new EmulationPlasmaVideoConfiguration(Diffusion: 100)
+            }, frame, new EmulationVideoProcessingSize(5, 5),
+                new EmulationVideoProcessingSize(5, 5));
+            Assert.True(EmulationVideoPixelFunctions.ToBgra32(output)[(2 * 5 + 3) * 4] > 0);
+        }
+
+        using (var limiter = new SoftwareEmulationVideoProcessingPipeline())
+        {
+            var fullWhite = Enumerable.Repeat((byte)255, 4 * 4 * 4).ToArray();
+            var brightFrame = new VideoFrame(fullWhite, 4, 4, 16,
+                EmulationPixelFormat.Xrgb8888, 1f, 1, TimeSpan.Zero);
+            var output = limiter.Process(new EmulationVideoProcessingConfiguration
+            {
+                DisplayTechnology = EmulationVideoDisplayTechnology.Plasma,
+                Plasma = new EmulationPlasmaVideoConfiguration(
+                    AutomaticBrightnessLimiter: 100)
+            }, brightFrame, new EmulationVideoProcessingSize(4, 4),
+                new EmulationVideoProcessingSize(4, 4));
+            Assert.True(EmulationVideoPixelFunctions.ToBgra32(output)[0] < 255);
+        }
+
+        static VideoFrame Pixel(byte value, long sequence) => new(
+            new byte[] { value, value, value, 0 }, 1, 1, 4,
+            EmulationPixelFormat.Xrgb8888, 1f, sequence, TimeSpan.Zero);
+        var configuration = new EmulationVideoProcessingConfiguration
+        {
+            DisplayTechnology = EmulationVideoDisplayTechnology.Plasma,
+            Plasma = new EmulationPlasmaVideoConfiguration(PersistenceIntensity: 100)
+        };
+        using var persistence = new SoftwareEmulationVideoProcessingPipeline();
+        _ = persistence.Process(configuration, Pixel(255, 1),
+            new EmulationVideoProcessingSize(1, 1), new EmulationVideoProcessingSize(1, 1));
+        var first = EmulationVideoPixelFunctions.ToBgra32(persistence.Process(configuration,
+            Pixel(0, 2), new EmulationVideoProcessingSize(1, 1),
+            new EmulationVideoProcessingSize(1, 1)))[0];
+        var second = EmulationVideoPixelFunctions.ToBgra32(persistence.Process(configuration,
+            Pixel(0, 3), new EmulationVideoProcessingSize(1, 1),
+            new EmulationVideoProcessingSize(1, 1)))[0];
+        Assert.True(first > second);
+        Assert.True(second > 0);
     }
 
     [Fact]
@@ -1512,11 +1637,25 @@ public sealed class EmulationVideoProcessingPipelineTests
             LineThreshold: 90, LineIntensity: 80));
         var halo = Process(new EmulationVectorVideoConfiguration(
             LineThreshold: 10, LineIntensity: 80, HaloIntensity: 100));
+        var wideBeam = Process(new EmulationVectorVideoConfiguration(
+            LineThreshold: 10, LineIntensity: 80, BeamWidth: 100));
+        var unfocusedBeam = Process(new EmulationVectorVideoConfiguration(
+            LineThreshold: 10, LineIntensity: 80, BeamFocus: 0));
+        var greenPhosphor = Process(new EmulationVectorVideoConfiguration(
+            LineThreshold: 10, LineIntensity: 80,
+            PhosphorColor: EmulationCrtColorMode.Green));
+        var broadHalo = Process(new EmulationVectorVideoConfiguration(
+            LineThreshold: 10, LineIntensity: 80, HaloIntensity: 100,
+            HaloRadius: 100));
         Assert.Equal(pixels.Where((_, index) => index % 4 != 3),
             neutral.Where((_, index) => index % 4 != 3));
         Assert.False(neutral.SequenceEqual(lowThreshold));
         Assert.False(lowThreshold.SequenceEqual(highThreshold));
         Assert.False(lowThreshold.SequenceEqual(halo));
+        Assert.False(lowThreshold.SequenceEqual(wideBeam));
+        Assert.False(lowThreshold.SequenceEqual(unfocusedBeam));
+        Assert.False(lowThreshold.SequenceEqual(greenPhosphor));
+        Assert.False(halo.SequenceEqual(broadHalo));
 
         static VideoFrame Pixel(byte value, long sequence) => new(
             new byte[] { value, value, value, 0 }, 1, 1, 4,
@@ -1986,10 +2125,14 @@ public sealed class EmulationVideoProcessingPipelineTests
         var lit = new VideoFrame(new byte[]
         {
             0,0,0,0, 0,0,0,0, 0,0,0,0,
-            0,0,0,0, 255,255,255,0, 0,0,0,0,
+            0,0,0,0, 180,180,180,0, 0,0,0,0,
             0,0,0,0, 0,0,0,0, 0,0,0,0
         }, 3, 3, 12, EmulationPixelFormat.Xrgb8888, 1f, 1, TimeSpan.Zero);
-        var dark = lit with { Pixels = new byte[36], Sequence = 2 };
+        var dark = lit with
+        {
+            Pixels = new byte[36], Sequence = 2,
+            Timestamp = TimeSpan.FromMilliseconds(16)
+        };
         var hashes = new HashSet<string>(StringComparer.Ordinal);
         foreach (var color in Enum.GetValues<EmulationVfdColor>())
         {
@@ -1998,7 +2141,8 @@ public sealed class EmulationVideoProcessingPipelineTests
             {
                 DisplayTechnology = EmulationVideoDisplayTechnology.Vfd,
                 Vfd = new EmulationVfdVideoConfiguration(color,
-                    PhosphorIntensity: 80, HaloIntensity: 100, PersistenceIntensity: 50)
+                    PhosphorIntensity: 80, HaloIntensity: 100,
+                    PersistenceMilliseconds: 200)
             };
             var first = EmulationVideoPixelFunctions.ToBgra32(pipeline.Process(configuration,
                 lit, new(3, 3), new(3, 3)));
@@ -2009,10 +2153,53 @@ public sealed class EmulationVideoProcessingPipelineTests
             Assert.Contains(retained.Chunk(4), pixel => pixel[0] > 0 || pixel[1] > 0 || pixel[2] > 0);
         }
         Assert.Equal(Enum.GetValues<EmulationVfdColor>().Length, hashes.Count);
+
+        byte[] Render(EmulationVfdVideoConfiguration vfd,
+            EmulationVideoProcessingSize? output = null)
+        {
+            using var pipeline = new SoftwareEmulationVideoProcessingPipeline();
+            return EmulationVideoPixelFunctions.ToBgra32(pipeline.Process(
+                new EmulationVideoProcessingConfiguration
+                {
+                    DisplayTechnology = EmulationVideoDisplayTechnology.Vfd,
+                    Vfd = vfd
+                }, lit, new(3, 3), output ?? new(3, 3)));
+        }
+
+        var baseVfd = new EmulationVfdVideoConfiguration(PhosphorIntensity: 100,
+            EmissionThreshold: 10, GlassDarkening: 100, HaloIntensity: 0);
+        Assert.False(Render(baseVfd).SequenceEqual(Render(baseVfd with { HaloIntensity = 100 })));
+        Assert.False(Render(baseVfd).SequenceEqual(Render(baseVfd with { EmissionThreshold = 90 })));
+        Assert.False(Render(baseVfd).SequenceEqual(Render(baseVfd with { GlassDarkening = 0 })));
+        Assert.False(Render(baseVfd, new(6, 6)).SequenceEqual(Render(baseVfd with
+        {
+            Structure = EmulationVfdStructure.DotMatrix,
+            CellSize = 35,
+            CellGap = 60
+        }, new(6, 6))));
+
+        using var withoutPersistence = new SoftwareEmulationVideoProcessingPipeline();
+        using var withPersistence = new SoftwareEmulationVideoProcessingPipeline();
+        var noPersistence = new EmulationVideoProcessingConfiguration
+        {
+            DisplayTechnology = EmulationVideoDisplayTechnology.Vfd,
+            Vfd = baseVfd with { PersistenceMilliseconds = 0 }
+        };
+        var persistent = noPersistence with
+        {
+            Vfd = baseVfd with { PersistenceMilliseconds = 250 }
+        };
+        _ = withoutPersistence.Process(noPersistence, lit, new(3, 3), new(3, 3));
+        _ = withPersistence.Process(persistent, lit, new(3, 3), new(3, 3));
+        var darkWithout = EmulationVideoPixelFunctions.ToBgra32(withoutPersistence.Process(
+            noPersistence, dark, new(3, 3), new(3, 3)));
+        var darkWith = EmulationVideoPixelFunctions.ToBgra32(withPersistence.Process(
+            persistent, dark, new(3, 3), new(3, 3)));
+        Assert.True(darkWith.Sum(value => (long)value) > darkWithout.Sum(value => (long)value));
     }
 
     [Fact]
-    public void LedMatrixColorsCellsGapDiffusionAndBrightnessAreDistinctAndBounded()
+    public void LedMatrixOptionsAreIndependentDistinctAndBounded()
     {
         var pixels = Enumerable.Range(0, 12 * 12).SelectMany(index => new byte[]
         {
@@ -2047,8 +2234,23 @@ public sealed class EmulationVideoProcessingPipelineTests
                     LedMatrix = ledMatrix
                 }, frame, new(12, 12), new(12, 12)));
         var compact = Render(new(CellSize: 0, CellGap: 0, Diffusion: 0, Brightness: 25));
-        var spaced = Render(new(CellSize: 100, CellGap: 100, Diffusion: 100, Brightness: 100));
+        var spaced = Render(new(CellSize: 100, CellGap: 100, Diffusion: 100,
+            Brightness: 100, Shape: EmulationLedMatrixShape.Square,
+            HaloRadius: 100, BlackDepth: 100));
         Assert.False(compact.SequenceEqual(spaced));
+
+        var baseline = new EmulationLedMatrixVideoConfiguration(CellSize: 45, CellGap: 35,
+            Diffusion: 55, Brightness: 80, Shape: EmulationLedMatrixShape.Round,
+            HaloRadius: 30, BlackDepth: 90);
+        var variants = new[]
+        {
+            baseline, baseline with { CellSize = 80 }, baseline with { CellGap = 75 },
+            baseline with { Diffusion = 90 }, baseline with { Brightness = 30 },
+            baseline with { Shape = EmulationLedMatrixShape.Square },
+            baseline with { HaloRadius = 80 }, baseline with { BlackDepth = 20 }
+        };
+        Assert.Equal(variants.Length, variants.Select(value => Convert.ToHexString(
+            System.Security.Cryptography.SHA256.HashData(Render(value)))).Distinct().Count());
     }
 
     [Fact]

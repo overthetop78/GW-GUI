@@ -12,52 +12,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Profiles.ByOperation">
-    <value>Profils par opération</value>
-  </data>
-  <data name="Profiles.Tab">
-    <value>Onglet</value>
-  </data>
-  <data name="Profiles.Name">
-    <value>Nom</value>
-  </data>
-  <data name="Profiles.System">
-    <value>Système</value>
-  </data>
-  <data name="Profiles.Rename">
-    <value>Renommer…</value>
-  </data>
-  <data name="Profile.SaveTitle">
-    <value>Enregistrer le profil</value>
-  </data>
-  <data name="Profile.Name">
-    <value>Nom du profil</value>
-  </data>
-  <data name="Profile.NameRequired">
-    <value>Indiquez un nom.</value>
-  </data>
-  <data name="Profile.Title">
-    <value>Profil</value>
-  </data>
-  <data name="Common.Profile">
-    <value>Profil</value>
-  </data>
-  <data name="Profile.Default">
-    <value>Par défaut</value>
-  </data>
-  <data name="Profile.SystemRename">
-    <value>Le profil Par défaut est permanent et ne peut pas être renommé.</value>
-  </data>
-  <data name="Profile.SystemDelete">
-    <value>Le profil Par défaut est permanent et ne peut pas être supprimé.</value>
-  </data>
-  <data name="Profile.DuplicateName">
-    <value>Un profil de cet onglet porte déjà ce nom.</value>
-  </data>
-  <data name="Profile.Replace">
-    <value>Ce profil existe déjà. Voulez-vous le remplacer ?</value>
-  </data>
-  <data name="Profile.DeleteConfirm">
-    <value>Supprimer le profil « {0} » ?</value>
-  </data>
+  <data name="Profiles.ByOperation"><value>Profils par opération</value></data>
+  <data name="Profiles.Tab"><value>Onglet</value></data>
+  <data name="Profiles.Name"><value>Nom</value></data>
+  <data name="Profiles.System"><value>Système</value></data>
+  <data name="Profiles.Rename"><value>Renommer…</value></data>
+  <data name="Profile.SaveTitle"><value>Enregistrer le profil</value></data>
+  <data name="Profile.Name"><value>Nom du profil</value></data>
+  <data name="Profile.NameRequired"><value>Indiquez un nom.</value></data>
+  <data name="Profile.Title"><value>Profil</value></data>
+  <data name="Common.Profile"><value>Profil</value></data>
+  <data name="Profile.Default"><value>Par défaut</value></data>
+  <data name="Profile.SystemRename"><value>Le profil Par défaut est permanent et ne peut pas être renommé.</value></data>
+  <data name="Profile.SystemDelete"><value>Le profil Par défaut est permanent et ne peut pas être supprimé.</value></data>
+  <data name="Profile.DuplicateName"><value>Un profil de cet onglet porte déjà ce nom.</value></data>
+  <data name="Profile.Replace"><value>Ce profil existe déjà. Voulez-vous le remplacer ?</value></data>
+  <data name="Profile.DeleteConfirm"><value>Supprimer le profil « {0} » ?</value></data>
 </root>

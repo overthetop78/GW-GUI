@@ -12,1025 +12,322 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Emulation.Tab.Machines">
-    <value>Machines</value>
-  </data>
-  <data name="Emulation.Core.Name">
-    <value>Kern</value>
-  </data>
-  <data name="Emulation.Core.NameManagerTitle">
-    <value>{0}-emulatiekern</value>
-  </data>
-  <data name="Emulation.Core.NameManagerDescription">
-    <value>De bibliotheek blijft buiten GW GUI. De geselecteerde versie vervangt de momenteel geïnstalleerde versie.</value>
-  </data>
-  <data name="Emulation.Core.NameRequiredVersion">
-    <value>Door GW GUI vereiste versie</value>
-  </data>
-  <data name="Emulation.Core.NameLatestVersion">
-    <value>Nieuwste beschikbare officiële versie</value>
-  </data>
-  <data name="Emulation.Core.NameProjectVersion">
-    <value>Momenteel geïnstalleerde versie</value>
-  </data>
-  <data name="Emulation.Core.NameSearchPrompt">
-    <value>Klik op Zoeken om de officiële Libretro-server te raadplegen.</value>
-  </data>
-  <data name="Emulation.Core.NameSearch">
-    <value>Versies zoeken</value>
-  </data>
-  <data name="Emulation.Core.NameDownload">
-    <value>Downloaden en vervangen</value>
-  </data>
-  <data name="Emulation.Core.NameSearching">
-    <value>Beschikbare versies zoeken…</value>
-  </data>
-  <data name="Emulation.Core.NameNoneFound">
-    <value>Geen officiële versie gevonden.</value>
-  </data>
-  <data name="Emulation.Core.NameVersionsFound">
-    <value>{0} versie(s) beschikbaar.</value>
-  </data>
-  <data name="Emulation.Core.NameDownloading">
-    <value>{0} downloaden…</value>
-  </data>
-  <data name="Emulation.Core.NameInstalledPath">
-    <value>Geïnstalleerde versie: {0}</value>
-  </data>
-  <data name="Emulation.Core.NameInstalled">
-    <value>{0} · geïnstalleerd</value>
-  </data>
-  <data name="Emulation.Core.NameNotInstalled">
-    <value>Geen versie geïnstalleerd</value>
-  </data>
-  <data name="Emulation.Machine.Open">
-    <value>Openen</value>
-  </data>
-  <data name="Emulation.Tab.Welcome">
-    <value>Welkom</value>
-  </data>
-  <data name="Emulation.Welcome.Text">
-    <value>Selecteer hierboven een opgeslagen machine en klik op Openen. Elke actieve machine verschijnt op een eigen tabblad.</value>
-  </data>
-  <data name="Emulation.Configuration.Description">
-    <value>Maak, selecteer, wijzig of verwijder hier opgeslagen configuraties. Selecteer het tabblad {0} om de gekozen configuratie te bewerken.</value>
-  </data>
-  <data name="Emulation.Tab.General">
-    <value>Algemeen</value>
-  </data>
-  <data name="Emulation.Tab.Video">
-    <value>Video</value>
-  </data>
-  <data name="Emulation.Tab.Storage">
-    <value>Opslag</value>
-  </data>
-  <data name="Emulation.Tab.Keyboard">
-    <value>Toetsenbord</value>
-  </data>
-  <data name="Emulation.Tab.Mouse">
-    <value>Muis</value>
-  </data>
-  <data name="Emulation.Controller.Tab">
-    <value>Controllers</value>
-  </data>
-  <data name="Emulation.Tab.Advanced">
-    <value>Geavanceerd</value>
-  </data>
-  <data name="Emulation.Device.Name.Id">
-    <value>Apparaat-id</value>
-  </data>
-  <data name="Emulation.Controller.Device">
-    <value>Apparaat voor controller {0}</value>
-  </data>
-  <data name="Emulation.Keyboard.SystemKey">
-    <value>{0}-toets</value>
-  </data>
-  <data name="Emulation.Keyboard.HostKey">
-    <value>Hosttoets</value>
-  </data>
-  <data name="Emulation.Cpu.Summary">
-    <value>Processor: {0}</value>
-  </data>
-  <data name="Emulation.Memory.Summary">
-    <value>Chip-RAM: {0} KiB\nSlow-RAM: {1} KiB\nFast-RAM: {2} MiB</value>
-  </data>
-  <data name="Emulation.Video.Summary">
-    <value>Videochipset: {0}</value>
-  </data>
-  <data name="Emulation.Cpu.Model">
-    <value>CPU-model</value>
-  </data>
-  <data name="Emulation.Cpu.Multiplier">
-    <value>CPU-vermenigvuldiger</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility">
-    <value>Cycluscompatibele CPU</value>
-  </data>
-  <data name="Emulation.Memory.Z3">
-    <value>Zorro III RAM</value>
-  </data>
-  <data name="Emulation.Video.Standard">
-    <value>Videostandaard</value>
-  </data>
-  <data name="Emulation.Video.Resolution">
-    <value>Resolutie</value>
-  </data>
-  <data name="Emulation.Video.AspectRatio">
-    <value>Beeldverhouding</value>
-  </data>
-  <data name="Emulation.Video.Crop">
-    <value>Randen bijsnijden</value>
-  </data>
-  <data name="Emulation.Video.FlickerFixer">
-    <value>Flikkercorrectie</value>
-  </data>
-  <data name="Emulation.Audio.Enabled">
-    <value>Audio inschakelen</value>
-  </data>
-  <data name="Emulation.Audio.Output">
-    <value>Audio-uitvoer</value>
-  </data>
-  <data name="Emulation.Audio.Latency">
-    <value>Latentie (ms)</value>
-  </data>
-  <data name="Emulation.Audio.Interpolation">
-    <value>Interpolatie</value>
-  </data>
-  <data name="Emulation.Audio.Filter">
-    <value>Amiga-audiofilter</value>
-  </data>
-  <data name="Emulation.Audio.StereoSeparation">
-    <value>Stereoscheiding (%)</value>
-  </data>
-  <data name="Emulation.Audio.Input">
-    <value>Audio-invoer</value>
-  </data>
-  <data name="Emulation.Audio.InputUnavailable">
-    <value>Deze Amiga-core biedt geen audio-invoer.</value>
-  </data>
-  <data name="Emulation.Audio.DefaultOutput">
-    <value>Standaarduitvoer van Windows</value>
-  </data>
-  <data name="Emulation.Storage.Media.Add">
-    <value>Medium toevoegen</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Create">
-    <value>Harde schijf maken</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Size">
-    <value>Grootte harde schijf (MiB)</value>
-  </data>
-  <data name="Emulation.Storage.Media.None">
-    <value>Geen media. Voeg een diskette, harde schijf of cd toe die door het geselecteerde model wordt ondersteund.</value>
-  </data>
-  <data name="Emulation.Storage.ReadOnly">
-    <value>Alleen-lezen</value>
-  </data>
-  <data name="Emulation.Amiga.Storage.MediaFilter">
-    <value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Filter">
-    <value>Amiga hard disk|*.hdf|All files|*.*</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.NotSupported">
-    <value>Het geselecteerde model ondersteunt geen harde schijf.</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.TooManyDrives">
-    <value>Dit model ondersteunt maximaal {0} diskettestation(s).</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.TooManyDrives">
-    <value>Dit model ondersteunt maximaal {0} harde schijf/schijven.</value>
-  </data>
-  <data name="Emulation.Storage.Cd.NotSupported">
-    <value>Het geselecteerde model ondersteunt geen cd-station.</value>
-  </data>
-  <data name="Emulation.Keyboard.Mapping.Duplicate">
-    <value>Twee Amiga-toetsen gebruiken dezelfde pc-toets. Los de rode toewijzingen op voordat u opslaat.</value>
-  </data>
-  <data name="Emulation.Mouse.ReleaseKey">
-    <value>Toets om muis vrij te geven</value>
-  </data>
-  <data name="Emulation.Mouse.Button.Left">
-    <value>Linkermuisknop</value>
-  </data>
-  <data name="Emulation.Mouse.Button.Right">
-    <value>Rechtermuisknop</value>
-  </data>
-  <data name="Emulation.Mouse.Button.Middle">
-    <value>Middelste muisknop</value>
-  </data>
-  <data name="Emulation.Controller.Detect">
-    <value>Controllers detecteren</value>
-  </data>
-  <data name="Emulation.Controller.EmulatedAction">
-    <value>Amiga-actie</value>
-  </data>
-  <data name="Emulation.Controller.PhysicalControl">
-    <value>Invoer van toetsenbord, muis of controller</value>
-  </data>
-  <data name="Emulation.Amiga.Chipset.Name">
-    <value>Chipset</value>
-  </data>
-  <data name="Emulation.Storage.Cd.Drive">
-    <value>Cd-station</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.DriveCount">
-    <value>Aantal diskettestations</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.DriveCount">
-    <value>Aantal harde schijven</value>
-  </data>
-  <data name="Emulation.Cpu.Speed">
-    <value>CPU-snelheid</value>
-  </data>
-  <data name="Emulation.Cpu.SpeedOriginal">
-    <value>Oorspronkelijke snelheid</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility.Normal">
-    <value>Normaal</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility.Compatible">
-    <value>Compatibel</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility.Memory">
-    <value>Geheugencompatibel</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility.Exact">
-    <value>Cyclusnauwkeurig</value>
-  </data>
-  <data name="Emulation.Fpu.Integrated">
-    <value>Geïntegreerde FPU</value>
-  </data>
-  <data name="Emulation.Value.Enabled">
-    <value>Ingeschakeld</value>
-  </data>
-  <data name="Emulation.Value.Disabled">
-    <value>Uitgeschakeld</value>
-  </data>
-  <data name="Emulation.Value.Minimum">
-    <value>Minimum</value>
-  </data>
-  <data name="Emulation.Value.VerySmall">
-    <value>Zeer klein</value>
-  </data>
-  <data name="Emulation.Value.Small">
-    <value>Klein</value>
-  </data>
-  <data name="Emulation.Value.Medium">
-    <value>Middelgroot</value>
-  </data>
-  <data name="Emulation.Value.Large">
-    <value>Groot</value>
-  </data>
-  <data name="Emulation.Value.VeryLarge">
-    <value>Zeer groot</value>
-  </data>
-  <data name="Emulation.Value.Maximum">
-    <value>Maximum</value>
-  </data>
-  <data name="Emulation.State.Locked">
-    <value>Vergrendeld</value>
-  </data>
-  <data name="Emulation.State.Immediate">
-    <value>Onmiddellijk</value>
-  </data>
-  <data name="Emulation.State.Waiting">
-    <value>Met wachttijd</value>
-  </data>
-  <data name="Emulation.Value.Standard">
-    <value>Standaard</value>
-  </data>
-  <data name="Emulation.Value.Enhanced">
-    <value>Verbeterd</value>
-  </data>
-  <data name="Emulation.Value.Internal">
-    <value>Intern</value>
-  </data>
-  <data name="Emulation.Value.Loud">
-    <value>Luid</value>
-  </data>
-  <data name="Emulation.Video.Resolution.AutoLow">
-    <value>Automatische lage resolutie</value>
-  </data>
-  <data name="Emulation.Video.Resolution.AutoSuperHigh">
-    <value>Automatische superhoge resolutie</value>
-  </data>
-  <data name="Emulation.Video.Resolution.Low">
-    <value>Lage resolutie</value>
-  </data>
-  <data name="Emulation.Video.Resolution.High">
-    <value>Hoge resolutie</value>
-  </data>
-  <data name="Emulation.Video.Resolution.SuperHigh">
-    <value>Superhoge resolutie</value>
-  </data>
-  <data name="Emulation.Video.LineMode">
-    <value>Lijnmodus</value>
-  </data>
-  <data name="Emulation.Video.HzChange">
-    <value>Wijzigingen in vernieuwingsfrequentie</value>
-  </data>
-  <data name="Emulation.Video.FrameSkip">
-    <value>Frames overslaan</value>
-  </data>
-  <data name="Emulation.Video.Colors">
-    <value>Kleurdiepte</value>
-  </data>
-  <data name="Emulation.Video.Gamma">
-    <value>Gamma</value>
-  </data>
-  <data name="Emulation.State.ImmediateBlits">
-    <value>Blitterwerking</value>
-  </data>
-  <data name="Emulation.Video.Collision.Level">
-    <value>Botsingsdetectie</value>
-  </data>
-  <data name="Emulation.Video.LineMode.Single">
-    <value>Enkele scan</value>
-  </data>
-  <data name="Emulation.Video.LineMode.Double">
-    <value>Dubbele scan</value>
-  </data>
-  <data name="Emulation.Video.Collision.Sprites">
-    <value>Sprites</value>
-  </data>
-  <data name="Emulation.Video.Collision.Playfields">
-    <value>Speelvelden</value>
-  </data>
-  <data name="Emulation.Video.Collision.Full">
-    <value>Volledig</value>
-  </data>
-  <data name="Emulation.Audio.Interpolation.Anti">
-    <value>Anti-interpolatie</value>
-  </data>
-  <data name="Emulation.Audio.Filter.Emulated">
-    <value>Geëmuleerd</value>
-  </data>
-  <data name="Emulation.Audio.FilterType">
-    <value>Filtertype</value>
-  </data>
-  <data name="Emulation.Audio.Floppy.Sound">
-    <value>Geluidsvolume diskettestation</value>
-  </data>
-  <data name="Emulation.Audio.Floppy.SoundType">
-    <value>Geluidstype diskettestation</value>
-  </data>
-  <data name="Emulation.Audio.Floppy.MuteEmpty">
-    <value>Lege stations dempen</value>
-  </data>
-  <data name="Emulation.Audio.Cd.Volume">
-    <value>Cd-audiovolume</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.Speed">
-    <value>Snelheid diskettestation</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.WriteProtection">
-    <value>Diskette-images tegen schrijven beveiligen</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.WriteRedirect">
-    <value>Schrijven naar diskette omleiden</value>
-  </data>
-  <data name="Emulation.Storage.Cd.Speed">
-    <value>Cd-snelheid</value>
-  </data>
-  <data name="Emulation.Keyboard.PassThrough">
-    <value>Fysiek toetsenbord doorgeven</value>
-  </data>
-  <data name="Emulation.Mouse.Physical">
-    <value>Fysieke muis</value>
-  </data>
-  <data name="Emulation.Mouse.PhysicalDouble">
-    <value>Dubbele beweging</value>
-  </data>
-  <data name="Emulation.Mouse.Speed">
-    <value>Muissnelheid</value>
-  </data>
-  <data name="Emulation.Mouse.Analog">
-    <value>Analoge sticks voor muisbesturing</value>
-  </data>
-  <data name="Emulation.Mouse.AnalogDeadzone">
-    <value>Dode zone analoge sticks</value>
-  </data>
-  <data name="Emulation.Mouse.AnalogSpeed">
-    <value>Muissnelheid analoge stick</value>
-  </data>
-  <data name="Emulation.Controller.Stick.Left">
-    <value>Linkerstick</value>
-  </data>
-  <data name="Emulation.Controller.Stick.Right">
-    <value>Rechterstick</value>
-  </data>
-  <data name="Emulation.Controller.Stick.Both">
-    <value>Beide sticks</value>
-  </data>
-  <data name="Emulation.Controller.Action.TurboFire">
-    <value>Turbovuur</value>
-  </data>
-  <data name="Emulation.Controller.Turbo.Button">
-    <value>Turboknop</value>
-  </data>
-  <data name="Emulation.Controller.Turbo.Pulse">
-    <value>Turbopuls</value>
-  </data>
-  <data name="Emulation.Controller.PortOrder">
-    <value>Volgorde controllerpoorten</value>
-  </data>
-  <data name="Emulation.Core.Emulator">
-    <value>Emulator</value>
-  </data>
-  <data name="Emulation.Folder.StorageBase">
-    <value>Gedeelde opslagmap voor emulatie</value>
-  </data>
-  <data name="Emulation.Folder.StorageBaseDescription">
-    <value>Harde schijven worden automatisch georganiseerd in HDD\Amiga, HDD\Atari en de mappen van toekomstige systemen.</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Add">
-    <value>Bestaande harde schijf toevoegen</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.List">
-    <value>Harde schijven</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.None">
-    <value>Er is geen harde schijf aan deze machine gekoppeld.</value>
-  </data>
-  <data name="Emulation.Keyboard.Priority.Hint">
-    <value>Gereserveerde sneltoetsen</value>
-  </data>
-  <data name="Emulation.Keyboard.Priority.Description">
-    <value>Sneltoetsen van GW GUI en Windows blijven actief en worden niet door de machine vastgelegd.</value>
-  </data>
-  <data name="Emulation.Input.Behavior">
-    <value>Gedrag</value>
-  </data>
-  <data name="Emulation.Input.Assign">
-    <value>Toewijzen...</value>
-  </data>
-  <data name="Emulation.Input.Actions">
-    <value>Acties</value>
-  </data>
-  <data name="Emulation.Input.Press">
-    <value>Druk op een toets...</value>
-  </data>
-  <data name="Emulation.Folder.CreateStorage">
-    <value>Ontbrekende submappen automatisch maken</value>
-  </data>
-  <data name="Emulation.Folder.Common">
-    <value>Gedeelde mappen</value>
-  </data>
-  <data name="Emulation.Input.SharedDescription">
-    <value>Apparaatdetectie wordt gedeeld, maar toewijzingen worden apart opgeslagen in elke machineconfiguratie.</value>
-  </data>
-  <data name="Emulation.Input.Test">
-    <value>Invoer testen</value>
-  </data>
-  <data name="Emulation.Input.SharedDevices">
-    <value>Gedeelde invoerapparaten</value>
-  </data>
-  <data name="Emulation.Folder.Capture">
-    <value>Map voor opnamen</value>
-  </data>
-  <data name="Emulation.Folder.State">
-    <value>Map voor opgeslagen statussen</value>
-  </data>
-  <data name="Emulation.Folder.Default">
-    <value>Standaardmappen</value>
-  </data>
-  <data name="Emulation.Controller.NoneDetected">
-    <value>Geen controller gedetecteerd</value>
-  </data>
-  <data name="Emulation.Input.TestPrompt">
-    <value>Druk op een toetsenbordtoets of muisknop om de detectie te testen.</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.List">
-    <value>Diskettes</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.Extended">
-    <value>Uitgebreide ROM</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.Key">
-    <value>ROM-sleutel</value>
-  </data>
-  <data name="Emulation.Cpu.Processor">
-    <value>Processor</value>
-  </data>
-  <data name="Emulation.Cpu.Precision">
-    <value>Nauwkeurigheid</value>
-  </data>
-  <data name="Emulation.Cpu.Acceleration">
-    <value>Versnelling</value>
-  </data>
-  <data name="Emulation.Memory.Main">
-    <value>Hoofdgeheugen</value>
-  </data>
-  <data name="Emulation.Memory.Extensions">
-    <value>Geheugenuitbreidingen</value>
-  </data>
-  <data name="Emulation.Memory.None">
-    <value>Geen</value>
-  </data>
-  <data name="Emulation.Memory.CompatibleWithModel">
-    <value>De geheugenconfiguratie is compatibel met {0}.</value>
-  </data>
-  <data name="Emulation.Memory.ExtensionsCompatibleWithModel">
-    <value>De geheugenuitbreidingen zijn compatibel met {0}.</value>
-  </data>
-  <data name="Emulation.Memory.Z3UnavailableForModel">
-    <value>Zorro III-RAM is niet beschikbaar op {0}.</value>
-  </data>
-  <data name="Emulation.Memory.TotalConfigured">
-    <value>Totaal geconfigureerd geheugen: {0} {1}</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.System">
-    <value>Systeem-ROM</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.Detected">
-    <value>Gedetecteerde ROMs</value>
-  </data>
-  <data name="Emulation.Firmware.Use">
-    <value>Gebruiken</value>
-  </data>
-  <data name="Emulation.Value.NotUsed">
-    <value>Niet gebruikt</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.OpenFolder">
-    <value>ROM-map openen</value>
-  </data>
-  <data name="Emulation.Firmware.PartiallyCompatible">
-    <value>Gedeeltelijk compatibel</value>
-  </data>
-  <data name="Emulation.Firmware.Official">
-    <value>Officieel</value>
-  </data>
-  <data name="Emulation.Firmware.Incompatible">
-    <value>Niet compatibel</value>
-  </data>
-  <data name="Emulation.Video.Settings.Display">
-    <value>Weergave</value>
-  </data>
-  <data name="Emulation.Video.Settings.Rendering">
-    <value>Rendering</value>
-  </data>
-  <data name="Emulation.Amiga.Chipset.NameCompatibility">
-    <value>Chipsetcompatibiliteit</value>
-  </data>
-  <data name="Emulation.Audio.Device">
-    <value>Apparaat</value>
-  </data>
-  <data name="Emulation.Audio.LatencyLabel">
-    <value>Latentie</value>
-  </data>
-  <data name="Emulation.Audio.Quality">
-    <value>Kwaliteit</value>
-  </data>
-  <data name="Emulation.Audio.Drives">
-    <value>Stations</value>
-  </data>
-  <data name="Emulation.Device.Name.Type">
-    <value>Type</value>
-  </data>
-  <data name="Emulation.Storage.Device.Add">
-    <value>Opslagapparaat toevoegen</value>
-  </data>
-  <data name="Emulation.Amiga.Storage.Floppy.Dd">
-    <value>Amiga 3,5 inch DD · 880 KiB</value>
-  </data>
-  <data name="Emulation.Amiga.Storage.Floppy.Hd">
-    <value>Amiga 3,5 inch HD · 1,76 MiB</value>
-  </data>
-  <data name="Emulation.Storage.Media.Associated">
-    <value>Gekoppeld medium</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Automatic">
-    <value>De schijfgeometrie wordt automatisch door de emulator bepaald.</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.BlankCreated">
-    <value>Lege diskettekopie gemaakt: {0}</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.BlankHint">
-    <value>Het bestand wordt leeg gemaakt en moet daarna in de geëmuleerde machine worden gepartitioneerd en geformatteerd.</value>
-  </data>
-  <data name="Emulation.Storage.Cd.Writer">
-    <value>Cd-brander</value>
-  </data>
-  <data name="Emulation.Storage.Cd.WriterHint">
-    <value>Een lege schijf kan alleen worden gemaakt als de geselecteerde machine en emulator schrijven ondersteunen.</value>
-  </data>
-  <data name="Emulation.Storage.Cd.Device">
-    <value>Cd-romstation</value>
-  </data>
-  <data name="Emulation.Storage.Device.Configure">
-    <value>Configureren</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.CreateBlank">
-    <value>Lege diskette maken</value>
-  </data>
-  <data name="Emulation.Storage.Disk.Image">
-    <value>Schijfkopie</value>
-  </data>
-  <data name="Emulation.Storage.Disk.ImageRequired">
-    <value>Selecteer een bestaande schijfkopie.</value>
-  </data>
-  <data name="Emulation.Storage.Disk.ExistingHint">
-    <value>Het geselecteerde bestand wordt aan dit virtuele station gekoppeld.</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.Device">
-    <value>Diskettestation</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.ImageFilter">
-    <value>Amiga-diskettekopie|*.adf|Alle bestanden|*.*</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Device">
-    <value>Harde schijf</value>
-  </data>
-  <data name="Emulation.Storage.Device.Interface">
-    <value>Interface</value>
-  </data>
-  <data name="Emulation.Storage.File.Preallocate">
-    <value>Bestand vooraf toewijzen</value>
-  </data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint">
-    <value>Diskettes en cd's worden vanuit de actieve machine geplaatst of vervangen.</value>
-  </data>
-  <data name="Emulation.Storage.Media.Remove">
-    <value>Medium verwijderen</value>
-  </data>
-  <data name="Emulation.Storage.Disk.ReplaceExisting">
-    <value>De schijfkopie bestaat al: {0}\nWilt u deze vervangen?</value>
-  </data>
-  <data name="Emulation.Storage.Device.CapabilitiesHint">
-    <value>De beschikbare typen, modellen en id's hangen af van de geselecteerde machine.</value>
-  </data>
-  <data name="Emulation.Storage.Tape.Device">
-    <value>Bandstation</value>
-  </data>
-  <data name="Emulation.Storage.Disk.Use">
-    <value>Schijf gebruiken</value>
-  </data>
-  <data name="Emulation.Storage.Disk.UseExisting">
-    <value>Bestaande schijf gebruiken</value>
-  </data>
-  <data name="Emulation.Storage.ModifyInGeneral">
-    <value>Wijzigen in Algemeen</value>
-  </data>
-  <data name="Emulation.Storage.Device.NoneAvailable">
-    <value>Voor deze machine is geen extra opslagapparaat beschikbaar.</value>
-  </data>
-  <data name="Emulation.Storage.Device.List">
-    <value>Opslagapparaten</value>
-  </data>
-  <data name="Emulation.Input.Binding.RestoreDefaults">
-    <value>Standaardwaarden herstellen</value>
-  </data>
-  <data name="Emulation.Input.Binding.ClearConflicts">
-    <value>Conflicten wissen</value>
-  </data>
-  <data name="Emulation.Keyboard.EmulatedKey">
-    <value>Machinetoets</value>
-  </data>
-  <data name="Emulation.Input.Binding.Label">
-    <value>Toewijzing</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelState">
-    <value>Status</value>
-  </data>
-  <data name="Emulation.Input.Binding.Search">
-    <value>Zoek een toets of toewijzing</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelLegend">
-    <value>Geldig: unieke toewijzing · Conflict: toewijzing meermaals gebruikt · Gereserveerd: Windows- of GW GUI-sneltoets</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelValid">
-    <value>Geldig</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelConflict">
-    <value>Conflict</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelReserved">
-    <value>Gereserveerd</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelUnassigned">
-    <value>Niet toegewezen</value>
-  </data>
-  <data name="Emulation.Shortcut.Global">
-    <value>Emulatiesneltoetsen</value>
-  </data>
-  <data name="Emulation.Tab.Shortcuts">
-    <value>Sneltoetsen</value>
-  </data>
-  <data name="Emulation.Shortcut.ReleaseMouse">
-    <value>Muis vrijgeven</value>
-  </data>
-  <data name="Emulation.Shortcut.PauseResume">
-    <value>Pauzeren / hervatten</value>
-  </data>
-  <data name="Emulation.Shortcut.Fullscreen">
-    <value>Volledig scherm / venster</value>
-  </data>
-  <data name="Emulation.Shortcut.Power">
-    <value>Aan / uit</value>
-  </data>
-  <data name="Emulation.Shortcut.SoftReset">
-    <value>Warme reset</value>
-  </data>
-  <data name="Emulation.Shortcut.HardReset">
-    <value>Koude reset</value>
-  </data>
-  <data name="Emulation.Shortcut.QuickSave">
-    <value>Snel status opslaan</value>
-  </data>
-  <data name="Emulation.Shortcut.QuickLoad">
-    <value>Snel status laden</value>
-  </data>
-  <data name="Emulation.Shortcut.Screenshot">
-    <value>Schermafbeelding</value>
-  </data>
-  <data name="Emulation.Shortcut.Mute">
-    <value>Actieve machine dempen</value>
-  </data>
-  <data name="Emulation.Shortcut.FastForward">
-    <value>Snel vooruit tijdens ingedrukt houden</value>
-  </data>
-  <data name="Emulation.Shortcut.InsertMedia">
-    <value>Medium plaatsen of vervangen</value>
-  </data>
-  <data name="Emulation.Shortcut.EjectMedia">
-    <value>Medium uitwerpen</value>
-  </data>
-  <data name="Emulation.Shortcut.NextMedia">
-    <value>Volgend medium</value>
-  </data>
-  <data name="Emulation.Key.Help">
-    <value>Help</value>
-  </data>
-  <data name="Emulation.Key.LeftAmiga">
-    <value>Linker Amiga</value>
-  </data>
-  <data name="Emulation.Key.RightAmiga">
-    <value>Rechter Amiga</value>
-  </data>
-  <data name="Emulation.Keyboard.SpecialKeysOnlyHint">
-    <value>Letters, cijfers en gewone modificatietoetsen worden rechtstreeks doorgestuurd. Alleen de functie- en speciale Amiga-toetsen moeten hier worden toegewezen.</value>
-  </data>
-  <data name="Emulation.Shortcut.Unavailable">
-    <value>Deze actie wordt nog niet ondersteund door de huidige emulator.</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Allocation">
-    <value>Toewijzing</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.AutomaticProfile">
-    <value>Automatische geometrie</value>
-  </data>
-  <data name="Emulation.Storage.Media.Blank">
-    <value>Leeg medium</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.BytesPerSector">
-    <value>Bytes per sector</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.CalculatedCapacity">
-    <value>Berekende capaciteit: {0}</value>
-  </data>
-  <data name="Emulation.Controller.Mappings">
-    <value>Controllertoewijzingen</value>
-  </data>
-  <data name="Emulation.Controller.Port">
-    <value>Poort {0}</value>
-  </data>
-  <data name="Emulation.Controller.Type">
-    <value>Controllertype</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.CustomSize">
-    <value>Aangepaste grootte</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Cylinders">
-    <value>Cilinders</value>
-  </data>
-  <data name="Emulation.Storage.File.DestinationFolder">
-    <value>Doelmap</value>
-  </data>
-  <data name="Emulation.Controller.Detected">
-    <value>Gedetecteerde controllers</value>
-  </data>
-  <data name="Emulation.Device.Name">
-    <value>Apparaat</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Label">
-    <value>Schijfgeometrie (CHS)</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.SizeProfile">
-    <value>Grootteprofiel</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.Drive">
-    <value>Diskettestation</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Heads">
-    <value>Koppen</value>
-  </data>
-  <data name="Emulation.Input.Capture.Hint">
-    <value>Klik op Toewijzen en gebruik daarna een toets, muisknop of controllerknop.</value>
-  </data>
-  <data name="Emulation.Storage.Disk.InvalidSize">
-    <value>De schijfgrootte of geometrie is ongeldig.</value>
-  </data>
-  <data name="Emulation.Mouse.Actions">
-    <value>Muisacties</value>
-  </data>
-  <data name="Emulation.Mouse.Button.4">
-    <value>Muisknop 4</value>
-  </data>
-  <data name="Emulation.Mouse.Button.5">
-    <value>Muisknop 5</value>
-  </data>
-  <data name="Emulation.Mouse.Capture.Title">
-    <value>Muis vastleggen</value>
-  </data>
-  <data name="Emulation.Storage.File.PreallocationHint">
-    <value>Reserveert de fysieke schijfruimte direct; anders groeit het image tijdens het schrijven.</value>
-  </data>
-  <data name="Emulation.Controller.SearchBinding">
-    <value>Zoek naar een actie of invoer</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Sectors">
-    <value>Sectoren</value>
-  </data>
-  <data name="Emulation.Controller.Action.Up">
-    <value>Omhoog</value>
-  </data>
-  <data name="Emulation.Controller.Action.Down">
-    <value>Omlaag</value>
-  </data>
-  <data name="Emulation.Controller.Action.Left">
-    <value>Links</value>
-  </data>
-  <data name="Emulation.Controller.Action.Right">
-    <value>Rechts</value>
-  </data>
-  <data name="Emulation.Controller.Action.Fire1">
-    <value>Vuurknop 1</value>
-  </data>
-  <data name="Emulation.Controller.Action.Fire2">
-    <value>Vuurknop 2</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Red">
-    <value>Rode CD32-knop</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Blue">
-    <value>Blauwe CD32-knop</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Green">
-    <value>Groene CD32-knop</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Yellow">
-    <value>Gele CD32-knop</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Rewind">
-    <value>CD32 terugspoelen</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.FastForward">
-    <value>CD32 vooruitspoelen</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.PlayPause">
-    <value>CD32 afspelen / pauzeren</value>
-  </data>
-  <data name="Emulation.Controller.AnalogJoystick">
-    <value>Analoge joystick</value>
-  </data>
-  <data name="Emulation.Mouse.Wheel.Up">
-    <value>Muiswiel omhoog</value>
-  </data>
-  <data name="Emulation.Mouse.Wheel.Down">
-    <value>Muiswiel omlaag</value>
-  </data>
-  <data name="Emulation.Mouse.Wheel.Left">
-    <value>Muiswiel naar links</value>
-  </data>
-  <data name="Emulation.Mouse.Wheel.Right">
-    <value>Muiswiel naar rechts</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve">
-    <value>Deze waarde wordt bepaald door het geselecteerde model.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve">
-    <value>Er is geen compatibele FPU beschikbaar voor dit model.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve">
-    <value>Er is geen alternatief geheugen beschikbaar voor dit model.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve">
-    <value>Dit model heeft geen configureerbare firmware.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve">
-    <value>Dit model heeft geen toetsenbord.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve">
-    <value>Dit model heeft geen muis.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve">
-    <value>Dit model heeft geen opslagmedia.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
-    <value>Selecteer het Jaguar CD-model om cd-media te gebruiken.</value>
-  </data>
-  <data name="Emulation.Storage.Cassettes">
-    <value>Cassette</value>
-  </data>
-  <data name="Emulation.Storage.Cartridges">
-    <value>Cartridge</value>
-  </data>
-  <data name="Emulation.Storage.CompactDiscs">
-    <value>Compact discs</value>
-  </data>
-  <data name="Emulation.Atari.Video.Region">
-    <value>Regio</value>
-  </data>
-  <data name="Emulation.Atari.Firmware.Multilingual">
-    <value>Meertalig</value>
-  </data>
-  <data name="Emulation.Atari.Video.RegionFree">
-    <value>Regiovrij</value>
-  </data>
-  <data name="Emulation.Tab.Audio" xml:space="preserve">
-    <value>Audio</value>
-  </data>
-  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve">
-    <value>De vereiste Atari kern werd niet gevonden.</value>
-  </data>
-  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve">
-    <value>De geselecteerde Atari-kern kon niet geladen worden.</value>
-  </data>
-  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve">
-    <value>Een vereiste Atari firmware ontbreekt.</value>
-  </data>
-  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve">
-    <value>Een Atari firmware is ongeldig of onverenigbaar.</value>
-  </data>
-  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve">
-    <value>De geconfigureerde Atari media werd niet gevonden.</value>
-  </data>
-  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve">
-    <value>De geconfigureerde media worden niet ondersteund door deze Atari machine.</value>
-  </data>
-  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve">
-    <value>Een Atari-optie heeft een ongeldige waarde.</value>
-  </data>
-  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve">
-    <value>Communicatie met de gastheer van Atari is mislukt.</value>
-  </data>
-  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve">
-    <value>De opgeslagen Atari staat is ongeldig.</value>
-  </data>
-  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve">
-    <value>De opgeslagen Atari staat is onverenigbaar met de huidige machine.</value>
-  </data>
-  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve">
-    <value>Er is een onverwachte Atari emulatiefout opgetreden.</value>
-  </data>
-  <data name="Emulation.Atari.Error.Details" xml:space="preserve">
-    <value>Details: {0}</value>
-  </data>
-  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve">
-    <value>De actieve Atari configuratie kan niet worden gewijzigd of verwijderd.</value>
-  </data>
-  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve">
-    <value>Vereiste Atari-firmware '{0}' is niet geconfigureerd voor {1}.</value>
-  </data>
-  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve">
-    <value>Geconfigureerde Atari-firmware '{0}' is niet gevonden: {1}</value>
-  </data>
-  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve">
-    <value>Geconfigureerde Atari media is niet gevonden: {0}</value>
-  </data>
-  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve">
-    <value>Het uitvoerbare pad van de Atari-host is niet beschikbaar.</value>
-  </data>
-  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve">
-    <value>De Atari kern '{0}' is niet geïnstalleerd.</value>
-  </data>
-  <data name="Emulation.Atari.Storage.MediaFilter" xml:space="preserve">
-    <value>Atari-media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Alle bestanden|*.*</value>
-  </data>
+<data name="Emulation.Core.Name"><value>Kern</value></data>
+  <data name="Emulation.Core.NameManagerTitle"><value>{0}-emulatiekern</value></data>
+  <data name="Emulation.Core.NameManagerDescription"><value>De bibliotheek blijft buiten GW GUI. De geselecteerde versie vervangt de momenteel geïnstalleerde versie.</value></data>
+  <data name="Emulation.Core.NameRequiredVersion"><value>Door GW GUI vereiste versie</value></data>
+  <data name="Emulation.Core.NameLatestVersion"><value>Nieuwste beschikbare officiële versie</value></data>
+  <data name="Emulation.Core.NameProjectVersion"><value>Momenteel geïnstalleerde versie</value></data>
+  <data name="Emulation.Core.NameSearchPrompt"><value>Klik op Zoeken om de officiële Libretro-server te raadplegen.</value></data>
+  <data name="Emulation.Core.NameSearch"><value>Versies zoeken</value></data>
+  <data name="Emulation.Core.NameDownload"><value>Downloaden en vervangen</value></data>
+  <data name="Emulation.Core.NameSearching"><value>Beschikbare versies zoeken…</value></data>
+  <data name="Emulation.Core.NameNoneFound"><value>Geen officiële versie gevonden.</value></data>
+  <data name="Emulation.Core.NameVersionsFound"><value>{0} versie(s) beschikbaar.</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>Downloaden {0}…</value></data>
+  <data name="Emulation.Core.NameInstalledPath"><value>Geïnstalleerde versie: {0}</value></data>
+  <data name="Emulation.Core.NameInstalled"><value>{0} · geïnstalleerd</value></data>
+  <data name="Emulation.Core.NameNotInstalled"><value>Geen versie geïnstalleerd</value></data>
+  <data name="Emulation.Machine.Open"><value>Openen</value></data>
+  <data name="Emulation.Tab.Welcome"><value>Welkom</value></data>
+  <data name="Emulation.Welcome.Text"><value>Selecteer hierboven een opgeslagen machine en klik op Openen. Elke actieve machine verschijnt op een eigen tabblad.</value></data>
+  <data name="Emulation.Configuration.Description"><value>Maak, selecteer, wijzig of verwijder hier opgeslagen configuraties. Selecteer het tabblad {0} om de gekozen configuratie te bewerken.</value></data>
+  <data name="Emulation.Tab.General"><value>Algemeen</value></data>
+<data name="Emulation.Tab.Storage"><value>Opslag</value></data>
+  <data name="Emulation.Tab.Keyboard"><value>Toetsenbord</value></data>
+  <data name="Emulation.Tab.Mouse"><value>Muis</value></data>
+<data name="Emulation.Tab.Advanced"><value>Geavanceerd</value></data>
+  <data name="Emulation.Device.Name.Id"><value>Apparaat-id</value></data>
+  <data name="Emulation.Controller.Device"><value>Apparaat voor controller {0}</value></data>
+  <data name="Emulation.Keyboard.SystemKey"><value>{0}-toets</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Hosttoets</value></data>
+  <data name="Emulation.Memory.Summary"><value>Spaander RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value></data>
+  <data name="Emulation.Video.Summary"><value>Videochipset: {0}</value></data>
+  <data name="Emulation.Cpu.Model"><value>CPU-model</value></data>
+  <data name="Emulation.Cpu.Multiplier"><value>CPU-vermenigvuldiger</value></data>
+  <data name="Emulation.Cpu.Compatibility"><value>Cycluscompatibele CPU</value></data>
+<data name="Emulation.Video.Standard"><value>Videostandaard</value></data>
+  <data name="Emulation.Video.Resolution"><value>Resolutie</value></data>
+  <data name="Emulation.Video.AspectRatio"><value>Beeldverhouding</value></data>
+  <data name="Emulation.Video.Crop"><value>Randen bijsnijden</value></data>
+  <data name="Emulation.Video.FlickerFixer"><value>Flikkercorrectie</value></data>
+  <data name="Emulation.Audio.Enabled"><value>Audio inschakelen</value></data>
+  <data name="Emulation.Audio.Output"><value>Audio-uitvoer</value></data>
+  <data name="Emulation.Audio.Latency"><value>Latentie (ms)</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>Interpolatie</value></data>
+  <data name="Emulation.Audio.Filter"><value>Amiga-audiofilter</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>Stereoscheiding (%)</value></data>
+  <data name="Emulation.Audio.Input"><value>Audio-invoer</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>Deze Amiga-core biedt geen audio-invoer.</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Standaarduitvoer van Windows</value></data>
+  <data name="Emulation.Storage.Media.Add"><value>Medium toevoegen</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>Harde schijf maken</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>Grootte harde schijf (MiB)</value></data>
+  <data name="Emulation.Storage.Media.None"><value>Geen media. Voeg een diskette, harde schijf of CD ondersteund door het geselecteerde model.</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>Alleen-lezen</value></data>
+<data name="Emulation.Storage.HardDisk.NotSupported"><value>Het geselecteerde model ondersteunt geen harde schijf.</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>Dit model ondersteunt maximaal {0} diskettestation(s).</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>Dit model ondersteunt maximaal {0} harde schijf/schijven.</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>Het geselecteerde model ondersteunt geen CD drive.</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>Twee Amiga toetsen gebruiken hetzelfde PC sleutel. Los de rode mappings op voordat u opslaat.</value></data>
+  <data name="Emulation.Mouse.ReleaseKey"><value>Toets om muis vrij te geven</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>Linkermuisknop</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>Rechtermuisknop</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>Middelste muisknop</value></data>
+  <data name="Emulation.Controller.Detect"><value>Controllers detecteren</value></data>
+  <data name="Emulation.Controller.EmulatedAction"><value>Amiga-actie</value></data>
+  <data name="Emulation.Controller.PhysicalControl"><value>Invoer van toetsenbord, muis of controller</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>Aantal diskettestations</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>Aantal harde schijven</value></data>
+  <data name="Emulation.Cpu.Speed"><value>CPU-snelheid</value></data>
+  <data name="Emulation.Cpu.SpeedOriginal"><value>Oorspronkelijke snelheid</value></data>
+  <data name="Emulation.Cpu.Compatibility.Normal"><value>Normaal</value></data>
+  <data name="Emulation.Cpu.Compatibility.Compatible"><value>Compatibel</value></data>
+  <data name="Emulation.Cpu.Compatibility.Memory"><value>Geheugencompatibel</value></data>
+  <data name="Emulation.Cpu.Compatibility.Exact"><value>Cyclusnauwkeurig</value></data>
+  <data name="Emulation.Fpu.Integrated"><value>Geïntegreerde FPU</value></data>
+  <data name="Emulation.Value.Enabled"><value>Ingeschakeld</value></data>
+  <data name="Emulation.Value.Disabled"><value>Uitgeschakeld</value></data>
+<data name="Emulation.Value.VerySmall"><value>Zeer klein</value></data>
+  <data name="Emulation.Value.Small"><value>Klein</value></data>
+  <data name="Emulation.Value.Medium"><value>Middelgroot</value></data>
+  <data name="Emulation.Value.Large"><value>Groot</value></data>
+  <data name="Emulation.Value.VeryLarge"><value>Zeer groot</value></data>
+<data name="Emulation.State.Locked"><value>Vergrendeld</value></data>
+  <data name="Emulation.State.Immediate"><value>Onmiddellijk</value></data>
+  <data name="Emulation.State.Waiting"><value>Met wachttijd</value></data>
+  <data name="Emulation.Value.Standard"><value>Standaard</value></data>
+  <data name="Emulation.Value.Enhanced"><value>Verbeterd</value></data>
+  <data name="Emulation.Value.Internal"><value>Intern</value></data>
+  <data name="Emulation.Value.Loud"><value>Luid</value></data>
+  <data name="Emulation.Video.Resolution.AutoLow"><value>Automatische lage resolutie</value></data>
+  <data name="Emulation.Video.Resolution.AutoSuperHigh"><value>Automatische superhoge resolutie</value></data>
+  <data name="Emulation.Video.Resolution.Low"><value>Lage resolutie</value></data>
+  <data name="Emulation.Video.Resolution.High"><value>Hoge resolutie</value></data>
+  <data name="Emulation.Video.Resolution.SuperHigh"><value>Superhoge resolutie</value></data>
+  <data name="Emulation.Video.LineMode"><value>Lijnmodus</value></data>
+  <data name="Emulation.Video.HzChange"><value>Wijzigingen in vernieuwingsfrequentie</value></data>
+  <data name="Emulation.Video.FrameSkip"><value>Frames overslaan</value></data>
+  <data name="Emulation.Video.Colors"><value>Kleurdiepte</value></data>
+<data name="Emulation.State.ImmediateBlits"><value>Blitterwerking</value></data>
+  <data name="Emulation.Video.Collision.Level"><value>Botsingsdetectie</value></data>
+  <data name="Emulation.Video.LineMode.Single"><value>Enkele scan</value></data>
+  <data name="Emulation.Video.LineMode.Double"><value>Dubbele scan</value></data>
+<data name="Emulation.Video.Collision.Playfields"><value>Speelvelden</value></data>
+  <data name="Emulation.Video.Collision.Full"><value>Volledig</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>Anti-interpolatie</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>Geëmuleerd</value></data>
+  <data name="Emulation.Audio.FilterType"><value>Filtertype</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>Geluidsvolume diskettestation</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>Geluidstype diskettestation</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>Lege stations dempen</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Snelheid diskettestation</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>Diskette-images tegen schrijven beveiligen</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Schrijven naar diskette omleiden</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>CD snelheid</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Fysiek toetsenbord doorgeven</value></data>
+  <data name="Emulation.Mouse.Physical"><value>Fysieke muis</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>Dubbele beweging</value></data>
+  <data name="Emulation.Mouse.Speed"><value>Muissnelheid</value></data>
+  <data name="Emulation.Mouse.Analog"><value>Analoge sticks voor muisbesturing</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>Dode zone analoge sticks</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>Muissnelheid analoge stick</value></data>
+  <data name="Emulation.Controller.Stick.Left"><value>Linkerstick</value></data>
+  <data name="Emulation.Controller.Stick.Right"><value>Rechterstick</value></data>
+  <data name="Emulation.Controller.Stick.Both"><value>Beide sticks</value></data>
+  <data name="Emulation.Controller.Action.TurboFire"><value>Turbovuur</value></data>
+  <data name="Emulation.Controller.Turbo.Button"><value>Turboknop</value></data>
+  <data name="Emulation.Controller.Turbo.Pulse"><value>Turbopuls</value></data>
+  <data name="Emulation.Controller.PortOrder"><value>Volgorde controllerpoorten</value></data>
+<data name="Emulation.Folder.StorageBase"><value>Gedeelde opslagmap voor emulatie</value></data>
+  <data name="Emulation.Folder.StorageBaseDescription"><value>Harde schijven worden automatisch georganiseerd in HDD\Amiga, HDD\Atari, en de mappen van toekomstige systemen.</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>Bestaande harde schijf toevoegen</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>Harde schijven</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>Er is geen harde schijf aan deze machine gekoppeld.</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Gereserveerde sneltoetsen</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>Sneltoetsen van GW GUI en Windows blijven actief en worden niet door de machine vastgelegd.</value></data>
+  <data name="Emulation.Input.Behavior"><value>Gedrag</value></data>
+  <data name="Emulation.Input.Assign"><value>Toewijzen...</value></data>
+  <data name="Emulation.Input.Actions"><value>Acties</value></data>
+  <data name="Emulation.Input.Press"><value>Druk op een toets...</value></data>
+  <data name="Emulation.Folder.CreateStorage"><value>Ontbrekende submappen automatisch maken</value></data>
+  <data name="Emulation.Folder.Common"><value>Gedeelde mappen</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>Apparaatdetectie wordt gedeeld, maar toewijzingen worden apart opgeslagen in elke machineconfiguratie.</value></data>
+  <data name="Emulation.Input.Test"><value>Invoer testen</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>Gedeelde invoerapparaten</value></data>
+  <data name="Emulation.Folder.Capture"><value>Map voor opnamen</value></data>
+  <data name="Emulation.Folder.State"><value>Map voor opgeslagen statussen</value></data>
+  <data name="Emulation.Folder.Default"><value>Standaardmappen</value></data>
+  <data name="Emulation.Controller.NoneDetected"><value>Geen controller gedetecteerd</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>Druk op een toetsenbordtoets of muisknop om de detectie te testen.</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>Diskettes</value></data>
+  <data name="Emulation.Firmware.Rom.Extended"><value>Uitgebreide ROM</value></data>
+  <data name="Emulation.Firmware.Rom.Key"><value>ROM-sleutel</value></data>
+<data name="Emulation.Cpu.Precision"><value>Nauwkeurigheid</value></data>
+  <data name="Emulation.Cpu.Acceleration"><value>Versnelling</value></data>
+  <data name="Emulation.Memory.Main"><value>Hoofdgeheugen</value></data>
+  <data name="Emulation.Memory.Extensions"><value>Geheugenuitbreidingen</value></data>
+  <data name="Emulation.Memory.None"><value>Geen</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>De geheugenconfiguratie is compatibel met {0}.</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>De geheugenuitbreidingen zijn compatibel met {0}.</value></data>
+  <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM is niet beschikbaar op {0}.</value></data>
+  <data name="Emulation.Memory.TotalConfigured"><value>Totaal geconfigureerd geheugen: {0} {1}</value></data>
+  <data name="Emulation.Firmware.Rom.System"><value>Systeem-ROM</value></data>
+  <data name="Emulation.Firmware.Rom.Detected"><value>Gedetecteerde ROMs</value></data>
+  <data name="Emulation.Firmware.Use"><value>Gebruiken</value></data>
+  <data name="Emulation.Value.NotUsed"><value>Niet gebruikt</value></data>
+  <data name="Emulation.Firmware.Rom.OpenFolder"><value>ROM-map openen</value></data>
+  <data name="Emulation.Firmware.PartiallyCompatible"><value>Gedeeltelijk compatibel</value></data>
+  <data name="Emulation.Firmware.Official"><value>Officieel</value></data>
+  <data name="Emulation.Firmware.Incompatible"><value>Niet compatibel</value></data>
+  <data name="Emulation.Video.Settings.Display"><value>Weergave</value></data>
+<data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Chipsetcompatibiliteit</value></data>
+  <data name="Emulation.Audio.Device"><value>Apparaat</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>Latentie</value></data>
+  <data name="Emulation.Audio.Quality"><value>Kwaliteit</value></data>
+  <data name="Emulation.Audio.Drives"><value>Stations</value></data>
+<data name="Emulation.Storage.Device.Add"><value>Opslagapparaat toevoegen</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3,5 inch DD · 880 KiB</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3,5 inch HD · 1,76 MiB</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>Gekoppeld medium</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>De schijfgeometrie wordt automatisch door de emulator bepaald.</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>Lege diskettekopie gemaakt: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>Het bestand wordt leeg gemaakt en moet daarna in de geëmuleerde machine worden gepartitioneerd en geformatteerd.</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>Een lege schijf kan alleen worden gemaakt als de geselecteerde machine en emulator schrijven ondersteunen.</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>Configureren</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>Lege diskette maken</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>Schijfkopie</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>Selecteer een bestaande schijfkopie.</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>Het geselecteerde bestand wordt aan dit virtuele station gekoppeld.</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>Diskettestation</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>Amiga-diskettekopie|*.adf|Alle bestanden|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>Harde schijf</value></data>
+<data name="Emulation.Storage.File.Preallocate"><value>Bestand vooraf toewijzen</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Diskettes en cd's worden vanuit de actieve machine geplaatst of vervangen.</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>Medium verwijderen</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>De schijfkopie bestaat al: {0}\nWilt u deze vervangen?</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>De beschikbare typen, modellen en id's hangen af van de geselecteerde machine.</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>Bandstation</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>Schijf gebruiken</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>Bestaande schijf gebruiken</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>Wijzigen in Algemeen</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>Voor deze machine is geen extra opslagapparaat beschikbaar.</value></data>
+  <data name="Emulation.Storage.Device.List"><value>Opslagapparaten</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>Standaardwaarden herstellen</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>Conflicten wissen</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Machinetoets</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>Toewijzing</value></data>
+<data name="Emulation.Input.Binding.Search"><value>Zoek een toets of toewijzing</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>Geldig: unieke toewijzing · Conflict: toewijzing meermaals gebruikt · Gereserveerd: Windows- of GW GUI-sneltoets</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>Geldig</value></data>
+<data name="Emulation.Input.Binding.LabelReserved"><value>Gereserveerd</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>Niet toegewezen</value></data>
+  <data name="Emulation.Shortcut.Global"><value>Emulatiesneltoetsen</value></data>
+  <data name="Emulation.Tab.Shortcuts"><value>Sneltoetsen</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Muis vrijgeven</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Pauzeren / hervatten</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Volledig scherm / venster</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Aan / uit</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>Warme reset</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Koude reset</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Snel status opslaan</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Snel status laden</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Schermafbeelding</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Actieve machine dempen</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Snel vooruit tijdens ingedrukt houden</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Medium plaatsen of vervangen</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Medium uitwerpen</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Volgend medium</value></data>
+<data name="Emulation.Key.LeftAmiga"><value>Linker Amiga</value></data>
+  <data name="Emulation.Key.RightAmiga"><value>Rechter Amiga</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Letters, cijfers en gewone modificatietoetsen worden rechtstreeks doorgestuurd. Alleen de functie- en speciale Amiga-toetsen moeten hier worden toegewezen.</value></data>
+  <data name="Emulation.Shortcut.Unavailable"><value>Deze actie wordt nog niet ondersteund door de huidige emulator.</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>Toewijzing</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>Automatische geometrie</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>Leeg medium</value></data>
+<data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>Berekende capaciteit: {0}</value></data>
+  <data name="Emulation.Controller.Mappings"><value>Controllertoewijzingen</value></data>
+  <data name="Emulation.Controller.Port"><value>Poort {0}</value></data>
+  <data name="Emulation.Controller.Type"><value>Controllertype</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>Aangepaste grootte</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>Cilinders</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>Doelmap</value></data>
+  <data name="Emulation.Controller.Detected"><value>Gedetecteerde controllers</value></data>
+  <data name="Emulation.Device.Name"><value>Apparaat</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>Schijfgeometrie (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>Grootteprofiel</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>Diskettestation</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>Koppen</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>Klik op Toewijzen en gebruik daarna een toets, muisknop of controllerknop.</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>De schijfgrootte of geometrie is ongeldig.</value></data>
+  <data name="Emulation.Mouse.Actions"><value>Muisacties</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>Muisknop 4</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>Muisknop 5</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>Muis vastleggen</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>Reserveert de fysieke schijfruimte direct; anders groeit het image tijdens het schrijven.</value></data>
+  <data name="Emulation.Controller.SearchBinding"><value>Zoek naar een actie of invoer</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>Sectoren</value></data>
+  <data name="Emulation.Controller.Action.Up"><value>Omhoog</value></data>
+  <data name="Emulation.Controller.Action.Down"><value>Omlaag</value></data>
+  <data name="Emulation.Controller.Action.Left"><value>Links</value></data>
+  <data name="Emulation.Controller.Action.Right"><value>Rechts</value></data>
+  <data name="Emulation.Controller.Action.Fire1"><value>Vuurknop 1</value></data>
+  <data name="Emulation.Controller.Action.Fire2"><value>Vuurknop 2</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>Rode CD32-knop</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>Blauwe CD32-knop</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>Groene CD32-knop</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>Gele CD32-knop</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 terugspoelen</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 vooruitspoelen</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 afspelen / pauzeren</value></data>
+  <data name="Emulation.Controller.AnalogJoystick"><value>Analoge joystick</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>Muiswiel omhoog</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>Muiswiel omlaag</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>Muiswiel naar links</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>Muiswiel naar rechts</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>Deze waarde wordt bepaald door het geselecteerde model.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve"><value>Er is geen compatibele FPU beschikbaar voor dit model.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>Er is geen alternatief geheugen beschikbaar voor dit model.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>Dit model heeft geen configureerbare firmware.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>Dit model heeft geen toetsenbord.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>Dit model heeft geen muis.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Dit model heeft geen opslagmedia.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Selecteer de Jaguar CD te gebruiken model CD media.</value></data>
+<data name="Emulation.Atari.Video.Region"><value>Regio</value></data>
+  <data name="Emulation.Atari.Firmware.Multilingual"><value>Meertalig</value></data>
+  <data name="Emulation.Atari.Video.RegionFree"><value>Regiovrij</value></data>
+<data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>De vereiste Atari kern werd niet gevonden.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>De geselecteerde Atari-kern kon niet geladen worden.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>Een vereiste Atari firmware ontbreekt.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>Een Atari firmware is ongeldig of onverenigbaar.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>De geconfigureerde Atari media werd niet gevonden.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>De geconfigureerde media worden niet ondersteund door deze Atari machine.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>Een Atari-optie heeft een ongeldige waarde.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>Communicatie met de gastheer van Atari is mislukt.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>De opgeslagen Atari staat is ongeldig.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>De opgeslagen Atari staat is onverenigbaar met de huidige machine.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>Er is een onverwachte Atari emulatiefout opgetreden.</value></data>
+<data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>De actieve Atari configuratie kan niet worden gewijzigd of verwijderd.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve"><value>Vereiste Atari-firmware '{0}' is niet geconfigureerd voor {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>Geconfigureerde Atari-firmware '{0}' is niet gevonden: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>Geconfigureerde Atari media is niet gevonden: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>Het uitvoerbare pad van de Atari-host is niet beschikbaar.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>De Atari kern '{0}' is niet geïnstalleerd.</value></data>
+  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Alle bestanden|*.*</value></data>
   <data name="Emulation.Controller.Automatic"><value>Automatisch</value></data>
   <data name="Emulation.Controller.None"><value>Geen</value></data>
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Parallelle joystickadapter met vier spelers</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Joystick/muis wisselen</value></data>
   <data name="Emulation.Atari.Controller.NumericKeypad"><value>Numeriek toetsenbord</value></data>
-  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
-    <value>De emulator heeft een medium nodig voordat deze machine kan worden ingeschakeld. Plaats of configureer een van de vereiste media die hieronder worden weergegeven.</value>
-  </data>
-  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
-    <value>De machine kon niet worden ingeschakeld</value>
-  </data>
-  <data name="Emulation.Error.Machine" xml:space="preserve">
-    <value>Machine</value>
-  </data>
-  <data name="Emulation.Error.RequiredMedia" xml:space="preserve">
-    <value>Vereiste media</value>
-  </data>
+  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve"><value>De emulator heeft een medium nodig voordat deze machine kan worden ingeschakeld. Plaats of configureer een van de vereiste media die hieronder worden weergegeven.</value></data>
+  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve"><value>De machine kon niet worden ingeschakeld</value></data>
+<data name="Emulation.Error.RequiredMedia" xml:space="preserve"><value>Vereiste media</value></data>
   <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Snel opstarten</value></data>
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Diskettestationsgeluid</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Gepolariseerd audiofilter</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Stationsactiviteit op het emulatorscherm weergeven</value></data>
-  <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Mosaic-geheugenuitbreiding</value></data>
-  <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Axlon-geheugenuitbreiding</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic"><value>Mozaïek RAM uitbreiding</value></data>
+  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM uitbreiding</value></data>
   <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Axlon $0F-bankschaduw</value></data>
   <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>Stereo-POKEY</value></data>
   <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Artefacten met hoge resolutie</value></data>
@@ -1045,7 +342,6 @@
   <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Altijd</value></data>
   <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Tint</value></data>
   <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Verzadiging</value></data>
-  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>Contrast</value></data>
   <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Helderheid</value></data>
   <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>GTIA-kleurvertraging</value></data>
   <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>Extern palet</value></data>
@@ -1063,18 +359,10 @@
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normaal</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Hoog</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Cartridgesleuf</value></data>
-  <data name="Emulation.Media.Insert" xml:space="preserve">
-    <value>Medium plaatsen</value>
-  </data>
-  <data name="Emulation.Media.Eject" xml:space="preserve">
-    <value>Medium uitwerpen</value>
-  </data>
-  <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
-  <data name="Emulation.Key.AtariHelp" xml:space="preserve"><value>Help</value></data>
-  <data name="Emulation.Key.AtariUndo" xml:space="preserve"><value>Undo</value></data>
-  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput kon niet worden geïnitialiseerd. Installeer of herstel de meegeleverde GameInput-runtime.</value></data>
+  <data name="Emulation.Media.Insert" xml:space="preserve"><value>Medium plaatsen</value></data>
+  <data name="Emulation.Media.Eject" xml:space="preserve"><value>Medium uitwerpen</value></data>
+<data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput kon niet worden geïnitialiseerd. Installeer of herstel de meegeleverde GameInput-runtime.</value></data>
   <data name="Emulation.Configuration.Brand"><value>Merk</value></data>
-  <data name="Emulation.Configuration.Machine"><value>Machine</value></data>
   <data name="Emulation.Configuration.TotalRam"><value>Totaal RAM</value></data>
   <data name="Emulation.Configuration.Readers"><value>Stations</value></data>
   <data name="Emulation.Configuration.Peripherals"><value>Randapparaten</value></data>
@@ -1117,7 +405,7 @@
   <data name="Emulation.Help.Cpu.Precision.Short"><value>Selecteren CPU nauwkeurigheid van de emulatie</value></data>
   <data name="Emulation.Help.Cpu.Precision.Detailed"><value>Selecteer hoe nauw CPU timing volgt de originele hardware. Meer nauwkeurige modi kunnen de compatibiliteit verbeteren, maar kunnen meer verwerking vereisen.</value></data>
   <data name="Emulation.Help.Cpu.Speed.Short"><value>Stel het emuleerde in CPU snelheid</value></data>
-  <data name="Emulation.Help.Cpu.Speed.Detailed"><value>Stelt de processorfrequentie in die door de emuleerde machine wordt gebruikt. De originele snelheid behoudt hardware timing. Hogere waarden versnellen CPU- beperkte software.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed"><value>Stelt de processorfrequentie in die door de emuleerde machine wordt gebruikt. De oorspronkelijke snelheid behoudt hardware timing. Hogere waarden versnellen CPU-beperkte software.</value></data>
   <data name="Emulation.Help.Mouse.Analog.Short"><value>Gebruik analoge sticks om de muis te bedienen</value></data>
   <data name="Emulation.Help.Mouse.Analog.Detailed"><value>Hiermee kan analoge joystick assen de geëmulleerde muisaanwijzer verplaatsen. Schakel het in wanneer een fysieke analoge stick de pointer moet controleren.</value></data>
   <data name="Emulation.Help.Mouse.AnalogSpeed.Short"><value>Analoge muissnelheid instellen</value></data>
@@ -1165,7 +453,7 @@
   <data name="Emulation.Help.Video.CollisionLevel.Short"><value>Selecteer botsdetectie detail</value></data>
   <data name="Emulation.Help.Video.CollisionLevel.Detailed"><value>Selecteer welke sprite en playfield botsingen worden berekend. Meer volledige detectie verbetert de compatibiliteit, maar vereist meer verwerking.</value></data>
   <data name="Emulation.Help.Video.FlickerFixer.Short"><value>Verminder interlaced display flicker</value></data>
-  <data name="Emulation.Help.Video.FlickerFixer.Detailed"><value>Vermindert flicker in interlaced video output. Schakel het in voor een stabieler beeld. Schakel het uit om het originele interlaced displaygedrag te behouden.</value></data>
+  <data name="Emulation.Help.Video.FlickerFixer.Detailed"><value>Vermindert flikkering in geïnterlinieerde video-uitvoer. Schakel dit in voor een stabieler beeld. Schakel het uit om het oorspronkelijke geïnterlinieerde weergavegedrag te behouden.</value></data>
   <data name="Emulation.Help.Video.AspectRatio.Short"><value>Selecteer de getoonde beeldverhouding</value></data>
   <data name="Emulation.Help.Video.AspectRatio.Detailed"><value>Selecteer hoe de emuleerde afbeelding horizontaal en verticaal wordt geschaald. Automatisch volgt de geëmulgeerde uitvoer. Een vaste keuzekrachten die vorm geven.</value></data>
   <data name="Emulation.Help.Video.Gamma.Short"><value>Afbeelding gamma aanpassen</value></data>
@@ -1173,7 +461,7 @@
   <data name="Emulation.Help.Video.LineMode.Short"><value>Selecteer de videoregelmodus</value></data>
   <data name="Emulation.Help.Video.LineMode.Detailed"><value>Selecteer hoe verticale videolijnen worden weergegeven. Automatisch volgt de geëmulgeerde modus. Andere keuzes dwingen enkele lijnen, dubbele lijnen, of scanlijnen wanneer beschikbaar.</value></data>
   <data name="Emulation.Help.Video.Standard.Short"><value>Selecteer de videostandaard</value></data>
-  <data name="Emulation.Help.Video.Standard.Detailed"><value>Selecteert de emuleerde televisie timing, zoals PAL of NTSC. Dit beïnvloedt refresh rate, hardware timing, en software compatibiliteit.</value></data>
+  <data name="Emulation.Help.Video.Standard.Detailed"><value>Selecteert de geëmuleerde televisietiming, zoals PAL of NTSC. Dit beïnvloedt de vernieuwingsfrequentie, hardwaretiming en softwarecompatibiliteit.</value></data>
   <data name="Emulation.Help.Video.ExternalPalette.Short"><value>Selecteer een extern kleurenpalet</value></data>
   <data name="Emulation.Help.Video.ExternalPalette.Detailed"><value>Selecteer een voorgedefinieerd kleurenpalet in plaats van kleuren gegenereerd uit de huidige video-instellingen. Kies Geen om de gegenereerde kleuren te gebruiken.</value></data>
   <data name="Emulation.Help.Video.Colors.Short"><value>Kleurdiepte selecteren</value></data>
@@ -1186,9 +474,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Stelt de GTIA kleur fase vertraging gebruikt om kleuren te reproduceren. Standaard gebruikt de standaard waarde. Numerieke keuzes verschuiven de resulterende tinten.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>Frame overslaan instellen</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Stelt in hoeveel weergaveframes worden weggelaten. Uitgeschakeld trekt elk frame. Hogere waarden verminderen het renderingswerk maar maken beweging minder glad.</value></data>
-  <data name="Emulation.Controller.Visual" xml:space="preserve">
-    <value>Uiterlijk</value>
-  </data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Uiterlijk</value></data>
   <data name="Emulation.Video.Compatibility.ExclusiveDisplayTechnology"><value>Slechts één displaytechnologie kan tegelijk actief zijn.</value></data>
   <data name="Emulation.Video.Crt.Color.Amber"><value>Monochroom ambergeel</value></data>
   <data name="Emulation.Video.Crt.Color.Color"><value>Kleur</value></data>
@@ -1196,18 +482,14 @@
   <data name="Emulation.Video.Crt.Color.Gray"><value>Monochroom grijs</value></data>
   <data name="Emulation.Video.Crt.Color.Green"><value>Monochroomgroen</value></data>
   <data name="Emulation.Video.Crt.Color.White"><value>Monochroomwit</value></data>
-  <data name="Emulation.Video.Crt.Mask.ApertureGrille"><value>Aperture grille</value></data>
+  <data name="Emulation.Video.Crt.Mask.ApertureGrille"><value>Grafrooster</value></data>
   <data name="Emulation.Video.Crt.Mask.None"><value>Geen</value></data>
   <data name="Emulation.Video.Crt.Mask.ShadowMask"><value>Schaduwmasker</value></data>
   <data name="Emulation.Video.Crt.Mask.SlotMask"><value>Slotmasker</value></data>
-  <data name="Emulation.Video.FixedPixel.Technology.Lcd"><value>LCD</value></data>
-  <data name="Emulation.Video.FixedPixel.Technology.LedBacklitLcd"><value>LED-backlit LCD</value></data>
-  <data name="Emulation.Video.FixedPixel.Technology.Oled"><value>OLED</value></data>
-  <data name="Emulation.Video.Limitation.UnsupportedBackend"><value>Deze instelling wordt niet ondersteund door de geselecteerde rendering backend.</value></data>
+<data name="Emulation.Video.Limitation.UnsupportedBackend"><value>Deze instelling wordt niet ondersteund door de geselecteerde rendering backend.</value></data>
   <data name="Emulation.Video.Orientation.Horizontal"><value>Horizontaal</value></data>
   <data name="Emulation.Video.Orientation.Vertical"><value>Verticaal</value></data>
   <data name="Emulation.Video.Parameter.Brightness"><value>Helderheid</value></data>
-  <data name="Emulation.Video.Parameter.Contrast"><value>Contrast</value></data>
   <data name="Emulation.Video.Parameter.CrtBeamDiffusion"><value>Straaldiffusie</value></data>
   <data name="Emulation.Video.Parameter.CrtBeamIntensity"><value>Straalintensiteit</value></data>
   <data name="Emulation.Video.Parameter.CrtBeamWidth"><value>Straalbreedte</value></data>
@@ -1227,7 +509,6 @@
   <data name="Emulation.Video.Parameter.CrtScanlinePhase"><value>Scanlijnfase</value></data>
   <data name="Emulation.Video.Parameter.CrtScanlinesEnabled"><value>Scanlijnen</value></data>
   <data name="Emulation.Video.Parameter.CrtScanlineThickness"><value>Scanlijndikte</value></data>
-  <data name="Emulation.Video.Parameter.CrtVignette"><value>Vignette</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBacklight"><value>Backlight intensiteit</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBlackDepth"><value>Zwarte diepte</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelGridIntensity"><value>Pixelnetintensiteit</value></data>
@@ -1237,7 +518,6 @@
   <data name="Emulation.Video.Parameter.FixedPixelResponseTime"><value>Responstijd (ms)</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelSubpixels"><value>Subpixelindeling</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelTechnology"><value>Vaste-pixeltechnologie</value></data>
-  <data name="Emulation.Video.Parameter.Gamma"><value>Gamma</value></data>
   <data name="Emulation.Video.Parameter.PlasmaCellStructure"><value>Celstructuur</value></data>
   <data name="Emulation.Video.Parameter.PlasmaDiffusion"><value>Lichtdiffusie</value></data>
   <data name="Emulation.Video.Parameter.PlasmaPersistence"><value>Persistentie</value></data>
@@ -1248,6 +528,8 @@
   <data name="Emulation.Video.Parameter.VectorLineIntensity"><value>Lijnintensiteit</value></data>
   <data name="Emulation.Video.Parameter.VectorLineThreshold"><value>Regeldrempel</value></data>
   <data name="Emulation.Video.Parameter.VectorPersistence"><value>Persistentie</value></data>
+  <data name="Emulation.Video.Vector.Group.Drawing"><value>Detectie en tekening</value></data>
+  <data name="Emulation.Video.Vector.Group.Glow"><value>Gloed en persistentie</value></data>
   <data name="Emulation.Video.Preset.CrtAmber"><value>CRT — Amber monochroom</value></data>
   <data name="Emulation.Video.Preset.CrtArcadeColor"><value>CRT kleur arcade</value></data>
   <data name="Emulation.Video.Preset.CrtGreen"><value>CRT Groen monochroom</value></data>
@@ -1255,34 +537,18 @@
   <data name="Emulation.Video.Preset.CrtWhite"><value>CRT Wit monochroom</value></data>
   <data name="Emulation.Video.Preset.LcdColor"><value>Kleur LCD</value></data>
   <data name="Emulation.Video.Preset.LcdMonochrome"><value>Monochroom LCD</value></data>
-  <data name="Emulation.Video.Preset.LedBacklitLcd"><value>LED-backlit LCD</value></data>
   <data name="Emulation.Video.Preset.Normal"><value>Normaal</value></data>
-  <data name="Emulation.Video.Preset.Oled"><value>OLED</value></data>
-  <data name="Emulation.Video.Preset.Plasma"><value>Plasma</value></data>
   <data name="Emulation.Video.Preset.Vector"><value>Vectorweergave</value></data>
   <data name="Emulation.Video.Sampling"><value>Steekproef</value></data>
-  <data name="Emulation.Video.Sampling.Bicubic"><value>Bicubic</value></data>
   <data name="Emulation.Video.Sampling.Bilinear"><value>Bilineair</value></data>
   <data name="Emulation.Video.Sampling.Nearest"><value>Normaal</value></data>
   <data name="Emulation.Video.Sampling.SharpBilinear"><value>Scherp bilineair</value></data>
   <data name="Emulation.Video.Settings.General"><value>Algemene afbeeldingsaanpassingen</value></data>
   <data name="Emulation.Video.Settings.GwGuiProcessing"><value>GW GUI videobewerking</value></data>
-  <data name="Emulation.Video.Subpixels.Bgr"><value>BGR</value></data>
-  <data name="Emulation.Video.Subpixels.Monochrome"><value>Monochroom</value></data>
-  <data name="Emulation.Video.Subpixels.Rgb"><value>RGB</value></data>
-  <data name="Emulation.Video.Technology"><value>Weergavetechnologie</value></data>
-  <data name="Emulation.Video.Technology.Crt"><value>CRT</value></data>
-  <data name="Emulation.Video.Technology.FixedPixel"><value>LCD / LED / OLED</value></data>
+<data name="Emulation.Video.Subpixels.Monochrome"><value>Monochroom</value></data>
+<data name="Emulation.Video.Technology"><value>Weergavetechnologie</value></data>
   <data name="Emulation.Video.Technology.Normal"><value>Normaal</value></data>
-  <data name="Emulation.Video.Technology.Plasma"><value>Plasma</value></data>
-  <data name="Emulation.Video.Technology.Vector"><value>Vector</value></data>
-  <data name="Emulation.Video.Sampling.Xbr"><value>xBR</value></data>
-  <data name="Emulation.Video.Sampling.Xbrz"><value>xBRZ</value></data>
-  <data name="Emulation.Video.Sampling.Hqx"><value>HQx</value></data>
-  <data name="Emulation.Video.Sampling.ScaleFx"><value>ScaleFX</value></data>
-  <data name="Emulation.Video.Sampling.ScaleNx"><value>ScaleNx</value></data>
-  <data name="Emulation.Video.Sampling.Sabr"><value>SABR</value></data>
-  <data name="Emulation.Video.Settings.Restoration"><value>Afbeeldingsherstel</value></data>
+<data name="Emulation.Video.Settings.Restoration"><value>Afbeeldingsherstel</value></data>
   <data name="Emulation.Video.Parameter.Dedithering"><value>Dithering verwijderen</value></data>
   <data name="Emulation.Video.Parameter.Denoising"><value>Bekennen</value></data>
   <data name="Emulation.Video.Parameter.Debanding"><value>Verbindingsreductie</value></data>
@@ -1292,31 +558,26 @@
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Bob - gelijkmatige lijnen</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob - oneven lijnen</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Verticaal mengen</value></data>
-  <data name="Emulation.Video.Technology.Vfd"><value>VFD</value></data>
-  <data name="Emulation.Video.Vfd.Color.Blue"><value>Blauw</value></data>
+<data name="Emulation.Video.Vfd.Color.Blue"><value>Blauw</value></data>
   <data name="Emulation.Video.Vfd.Color.Green"><value>Groen</value></data>
-  <data name="Emulation.Video.Vfd.Color.Amber"><value>Amber</value></data>
   <data name="Emulation.Video.Vfd.Color.Red"><value>Rood</value></data>
   <data name="Emulation.Video.Parameter.VfdColor"><value>Fosforkleur</value></data>
   <data name="Emulation.Video.Parameter.VfdPhosphorIntensity"><value>Fosforintensiteit</value></data>
-  <data name="Emulation.Video.Parameter.VfdHaloIntensity"><value>VFD halo</value></data>
-  <data name="Emulation.Video.Parameter.VfdPersistence"><value>VFD persistentie</value></data>
+  <data name="Emulation.Video.Parameter.VfdHaloIntensity"><value>VFD-halo</value></data>
+  <data name="Emulation.Video.Parameter.VfdPersistence"><value>duur van de Persistentie (ms)</value></data>
   <data name="Emulation.Video.Technology.LedMatrix"><value>LED-matrix</value></data>
-  <data name="Emulation.Video.LedMatrix.Color.Rgb"><value>RGB</value></data>
-  <data name="Emulation.Video.LedMatrix.Color.Red"><value>Rood</value></data>
+<data name="Emulation.Video.LedMatrix.Color.Red"><value>Rood</value></data>
   <data name="Emulation.Video.LedMatrix.Color.Green"><value>Groen</value></data>
-  <data name="Emulation.Video.LedMatrix.Color.Amber"><value>Amber</value></data>
   <data name="Emulation.Video.LedMatrix.Color.Blue"><value>Blauw</value></data>
   <data name="Emulation.Video.LedMatrix.Color.White"><value>Wit</value></data>
   <data name="Emulation.Video.Parameter.LedMatrixColor"><value>LED-kleur</value></data>
   <data name="Emulation.Video.Parameter.LedMatrixCellSize"><value>LED-celgrootte</value></data>
   <data name="Emulation.Video.Parameter.LedMatrixCellGap"><value>LED-celafstand</value></data>
-  <data name="Emulation.Video.Parameter.LedMatrixDiffusion"><value>LED-diffusie</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixDiffusion"><value>Halo-intensiteit</value></data>
   <data name="Emulation.Video.Parameter.LedMatrixBrightness"><value>LED-helderheid</value></data>
   <data name="Emulation.Video.Technology.DotMatrix"><value>Puntmatrix</value></data>
   <data name="Emulation.Video.DotMatrix.Palette.Green"><value>Groen LCD</value></data>
   <data name="Emulation.Video.DotMatrix.Palette.Gray"><value>Grijs LCD</value></data>
-  <data name="Emulation.Video.DotMatrix.Palette.Amber"><value>Amber</value></data>
   <data name="Emulation.Video.DotMatrix.Palette.Blue"><value>Blauw</value></data>
   <data name="Emulation.Video.DotMatrix.Shape.Round"><value>Rond</value></data>
   <data name="Emulation.Video.DotMatrix.Shape.Square"><value>Vierkant</value></data>
@@ -1331,7 +592,6 @@
   <data name="Emulation.Video.SegmentDisplay.Layout.Sixteen"><value>16 segmenten</value></data>
   <data name="Emulation.Video.SegmentDisplay.Color.Red"><value>Rood</value></data>
   <data name="Emulation.Video.SegmentDisplay.Color.Green"><value>Groen</value></data>
-  <data name="Emulation.Video.SegmentDisplay.Color.Amber"><value>Amber</value></data>
   <data name="Emulation.Video.SegmentDisplay.Color.Blue"><value>Blauw</value></data>
   <data name="Emulation.Video.SegmentDisplay.Color.White"><value>Wit</value></data>
   <data name="Emulation.Video.Parameter.SegmentDisplayLayout"><value>Segmentindeling</value></data>
@@ -1348,7 +608,7 @@
   <data name="Emulation.Video.Parameter.EPaperContrast"><value>Elektronisch papier contrast</value></data>
   <data name="Emulation.Video.Parameter.EPaperDithering"><value>Elektronisch papier datering</value></data>
   <data name="Emulation.Video.Parameter.EPaperRefreshTime"><value>Ververstijd (ms)</value></data>
-  <data name="Emulation.Video.Parameter.EPaperGhosting"><value>Ghosting</value></data>
+  <data name="Emulation.Video.Parameter.EPaperGhosting"><value>Spook</value></data>
   <data name="Emulation.Video.Technology.Projection"><value>Projectie</value></data>
   <data name="Emulation.Video.Parameter.ProjectionOpticalBlur"><value>Optische vervaging</value></data>
   <data name="Emulation.Video.Parameter.ProjectionDiffusion"><value>Lichtdiffusie</value></data>
@@ -1358,15 +618,12 @@
   <data name="Emulation.Video.Parameter.GeneralPersistence"><value>Algemene persistentie</value></data>
   <data name="Emulation.Video.Parameter.MotionBlur"><value>Bewegingsvervaging</value></data>
   <data name="Emulation.Video.Parameter.Flicker"><value>Knipperintensiteit</value></data>
-  <data name="Emulation.Video.Parameter.Interlacing"><value>Interlacing</value></data>
   <data name="Emulation.Video.Parameter.BlackFrameInsertion"><value>Zwarte frame invoegen</value></data>
   <data name="Emulation.Video.Settings.SignalSimulation"><value>Signaalsimulaties</value></data>
   <data name="Emulation.Video.Settings.Stylistic"><value>Stilistische effecten</value></data>
   <data name="Emulation.Video.Parameter.Grain"><value>Analoge korrel</value></data>
-  <data name="Emulation.Video.Parameter.Vhs"><value>VHS</value></data>
-  <data name="Emulation.Video.Parameter.ChromaticAberration"><value>Chromatische aberratie</value></data>
+<data name="Emulation.Video.Parameter.ChromaticAberration"><value>Chromatische aberratie</value></data>
   <data name="Emulation.Video.Parameter.Bloom"><value>Lichte bloei</value></data>
-  <data name="Emulation.Video.Parameter.Sepia"><value>Sepia</value></data>
   <data name="Emulation.Video.Tab.Display"><value>Beeldscherm</value></data>
   <data name="Emulation.Video.Tab.Rendering"><value>Renderen</value></data>
   <data name="Emulation.Video.Tab.Technology"><value>Technologie</value></data>
@@ -1375,15 +632,7 @@
   <data name="Emulation.Video.Tab.Motion"><value>Beweging</value></data>
   <data name="Emulation.Video.Tab.Signal"><value>Signaal</value></data>
   <data name="Emulation.Video.Tab.Effects"><value>Effecten</value></data>
-  <data name="Emulation.Video.Sampling.Hq2x"><value>HQ2x</value></data>
-  <data name="Emulation.Video.Sampling.Hq3x"><value>HQ3x</value></data>
-  <data name="Emulation.Video.Sampling.Hq4x"><value>HQ4x</value></data>
-  <data name="Emulation.Video.Sampling.TwoXSai"><value>2xSaI</value></data>
-  <data name="Emulation.Video.Sampling.SuperTwoXSai"><value>Super 2xSaI</value></data>
-  <data name="Emulation.Video.Sampling.SuperEagle"><value>Super Eagle</value></data>
-  <data name="Emulation.Video.Sampling.EpxScale2x"><value>EPX / Scale2x</value></data>
-  <data name="Emulation.Video.Sampling.Jinc2"><value>JINC2</value></data>
-  <data name="Emulation.Video.Sampling.Lanczos"><value>Lanczos</value></data>  <data name="Emulation.Video.Parameter.FineDetails"><value>Fijne details</value></data>
+<data name="Emulation.Video.Parameter.FineDetails"><value>Fijne details</value></data>
   <data name="Emulation.Video.Restoration.Level.None"><value>Geen</value></data>
   <data name="Emulation.Video.Restoration.Level.Light"><value>Licht</value></data>
   <data name="Emulation.Video.Restoration.Level.Medium"><value>Gemiddeld</value></data>
@@ -1394,16 +643,9 @@
   <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>Verbindingsdegradatie</value></data>
   <data name="Emulation.Video.Parameter.SignalStandard"><value>Kleurstandaard</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>Standaardeffectintensiteit</value></data>
-  <data name="Emulation.Video.Signal.Connection.RgbScart"><value>RGB (SCART)</value></data>
-  <data name="Emulation.Video.Signal.Connection.Component"><value>Component (YPbPr)</value></data>
-  <data name="Emulation.Video.Signal.Connection.SVideo"><value>S-Video</value></data>
-  <data name="Emulation.Video.Signal.Connection.Composite"><value>Composite</value></data>
-  <data name="Emulation.Video.Signal.Connection.Rf"><value>RF</value></data>
-  <data name="Emulation.Video.Signal.Standard.Automatic"><value>Automatisch</value></data>
-  <data name="Emulation.Video.Signal.Standard.Pal"><value>PAL</value></data>
-  <data name="Emulation.Video.Signal.Standard.Ntsc"><value>NTSC</value></data>
-  <data name="Emulation.Video.Signal.Standard.Secam"><value>SECAM</value></data>
-  <data name="Emulation.Video.Signal.Connection.None"><value>Geen</value></data>
+<data name="Emulation.Video.Signal.Connection.Composite"><value>Samengesteld</value></data>
+<data name="Emulation.Video.Signal.Standard.Automatic"><value>Automatisch</value></data>
+<data name="Emulation.Video.Signal.Connection.None"><value>Geen</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>Horizontale kromming</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>Verticale kromming</value></data>
   <data name="Emulation.Video.Parameter.CrtTrapezoid"><value>Trapezoïde</value></data>
@@ -1418,4 +660,50 @@
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>Fase 1/2</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>Fase 3/4</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>Bloeding in de achtergrondverlichting</value></data>
+  <data name="Emulation.Video.Parameter.VfdEmissionThreshold"><value>Emissiedrempel</value></data>
+  <data name="Emulation.Video.Parameter.VfdGlassDarkening"><value>Verduistering van rookglas</value></data>
+  <data name="Emulation.Video.Parameter.VfdStructure"><value>Anodestructuur</value></data>
+  <data name="Emulation.Video.Parameter.VfdCellSize"><value>Celgrootte</value></data>
+  <data name="Emulation.Video.Parameter.VfdCellGap"><value>Celafstand</value></data>
+  <data name="Emulation.Video.Parameter.VfdHaloRadius"><value>Halostraal</value></data>
+  <data name="Emulation.Video.Vfd.Structure.Graphic"><value>Grafisch</value></data>
+  <data name="Emulation.Video.Vfd.Structure.DotMatrix"><value>Puntenmatrix</value></data>
+  <data name="Emulation.Video.Vfd.Group.PhosphorAndGlass"><value>Fosfor en glas</value></data>
+  <data name="Emulation.Video.Vfd.Group.Anodes"><value>Anodestructuur</value></data>
+  <data name="Emulation.Video.Vfd.Group.GlowAndResponse"><value>Gloed en respons</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaBlackDepth"><value>Zwarte diepte</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaPhosphorIntensity"><value>Fosforintensiteit</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaGammaResponse"><value>Gammarespons</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaAutomaticBrightnessLimiter"><value>Automatische helderheidsbegrenzer</value></data>
+  <data name="Emulation.Video.Plasma.Group.PanelAndCells"><value>Panel en cellen</value></data>
+  <data name="Emulation.Video.Plasma.Group.Phosphors"><value>Fosfor</value></data>
+  <data name="Emulation.Video.Plasma.Group.Light"><value>Lichtbeheer</value></data>
+  <data name="Emulation.Video.Plasma.Group.Temporal"><value>Tijdsrespons</value></data>
+  <data name="Emulation.Video.Parameter.VectorBeamWidth"><value>Straalbreedte</value></data>
+  <data name="Emulation.Video.Parameter.VectorBeamFocus"><value>Straal focus</value></data>
+  <data name="Emulation.Video.Parameter.VectorPhosphorColor"><value>Fosforkleur</value></data>
+  <data name="Emulation.Video.Parameter.VectorHaloRadius"><value>Halostraal</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixShape"><value>LED-vorm</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixHaloRadius"><value>Halostraal</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixBlackDepth"><value>Zwartdiepte</value></data>
+  <data name="Emulation.Video.LedMatrix.Shape.Round"><value>Rond</value></data>
+  <data name="Emulation.Video.LedMatrix.Shape.Square"><value>Vierkant</value></data>
+  <data name="Emulation.Video.LedMatrix.Group.Structure"><value>Matrixstructuur</value></data>
+  <data name="Emulation.Video.LedMatrix.Group.Emission"><value>Lichtemissie</value></data>
+  <data name="Emulation.Cpu.Summary"><value>Verwerker: {0}</value></data>
+  <data name="Emulation.Memory.Chip"><value>Spaander RAM</value></data>
+  <data name="Emulation.Memory.Slow"><value>Langzaam RAM</value></data>
+  <data name="Emulation.Memory.Fast"><value>Snelle RAM</value></data>
+<data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Alle bestanden|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>Amiga harde schijf|*.hdf|Alle bestanden|*.*</value></data>
+  <data name="Emulation.Amiga.Chipset.Name"><value>Spaanplaat</value></data>
+  <data name="Emulation.Value.Minimum"><value>minimaal</value></data>
+  <data name="Emulation.Cpu.Processor"><value>Verwerker</value></data>
+  <data name="Emulation.Video.Settings.Rendering"><value>Renderen</value></data>
+  <data name="Emulation.Key.Help"><value>Hulp</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32"><value>CD32-controller</value></data>
+  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 lichtpistool</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>Patroon</value></data>
+  <data name="Emulation.Storage.CompactDiscs"><value>Compacte schijven</value></data>
+  <data name="Emulation.Tab.Audio"><value>Geluid</value></data>
 </root>

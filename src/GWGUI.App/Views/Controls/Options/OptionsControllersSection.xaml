@@ -73,6 +73,65 @@
                                           AutomationProperties.Name="{l:Loc Controllers.VisualModel}"/>
                             </Grid>
 
+                            <Border x:Name="AnalogDeadZonePanel" Background="{DynamicResource ControlBrush}"
+                                    CornerRadius="7" Padding="12" Margin="0,0,0,12" Visibility="Collapsed">
+                                <StackPanel>
+                                    <TextBlock Text="{l:Loc Controllers.AnalogDeadZones}" FontSize="16"
+                                               FontWeight="SemiBold" Margin="0,0,0,8"/>
+                                    <Grid Margin="0,0,0,8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="190"/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="52"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{l:Loc Controllers.StickDeadZone}" VerticalAlignment="Center"/>
+                                        <Slider Grid.Column="1" x:Name="StickDeadZoneSlider"
+                                                Minimum="0" Maximum="50" TickFrequency="1"
+                                                IsSnapToTickEnabled="True" IsMoveToPointEnabled="True"
+                                                ValueChanged="AnalogDeadZoneSlider_ValueChanged"
+                                                PreviewMouseLeftButtonUp="AnalogDeadZoneSlider_PreviewMouseLeftButtonUp"
+                                                LostKeyboardFocus="AnalogDeadZoneSlider_LostKeyboardFocus"
+                                                AutomationProperties.Name="{l:Loc Controllers.StickDeadZone}"/>
+                                        <TextBlock Grid.Column="2" x:Name="StickDeadZoneText"
+                                                   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid Margin="0,0,0,8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="190"/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="52"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{l:Loc Controllers.TriggerDeadZone}" VerticalAlignment="Center"/>
+                                        <Slider Grid.Column="1" x:Name="TriggerDeadZoneSlider"
+                                                Minimum="0" Maximum="50" TickFrequency="1"
+                                                IsSnapToTickEnabled="True" IsMoveToPointEnabled="True"
+                                                ValueChanged="AnalogDeadZoneSlider_ValueChanged"
+                                                PreviewMouseLeftButtonUp="AnalogDeadZoneSlider_PreviewMouseLeftButtonUp"
+                                                LostKeyboardFocus="AnalogDeadZoneSlider_LostKeyboardFocus"
+                                                AutomationProperties.Name="{l:Loc Controllers.TriggerDeadZone}"/>
+                                        <TextBlock Grid.Column="2" x:Name="TriggerDeadZoneText"
+                                                   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                    </Grid>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="190"/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="52"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{l:Loc Controllers.OuterDeadZone}" VerticalAlignment="Center"/>
+                                        <Slider Grid.Column="1" x:Name="OuterDeadZoneSlider"
+                                                Minimum="0" Maximum="30" TickFrequency="1"
+                                                IsSnapToTickEnabled="True" IsMoveToPointEnabled="True"
+                                                ValueChanged="AnalogDeadZoneSlider_ValueChanged"
+                                                PreviewMouseLeftButtonUp="AnalogDeadZoneSlider_PreviewMouseLeftButtonUp"
+                                                LostKeyboardFocus="AnalogDeadZoneSlider_LostKeyboardFocus"
+                                                AutomationProperties.Name="{l:Loc Controllers.OuterDeadZone}"/>
+                                        <TextBlock Grid.Column="2" x:Name="OuterDeadZoneText"
+                                                   HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
+
                             <ItemsControl x:Name="AnalogValuesList" HorizontalAlignment="Stretch" Margin="0,0,0,12">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate><UniformGrid Columns="2"/></ItemsPanelTemplate>

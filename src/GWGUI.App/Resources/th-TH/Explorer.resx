@@ -12,102 +12,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Image">
-    <value>อิมเมจดิสก์</value>
-  </data>
-  <data name="Explorer.Format">
-    <value>รูปแบบ</value>
-  </data>
-  <data name="Explorer.OpenImage">
-    <value>เปิดอิมเมจ…</value>
-  </data>
-  <data name="Explorer.Automatic">
-    <value>ตรวจหาอัตโนมัติ</value>
-  </data>
-  <data name="Explorer.Volume">
-    <value>โวลุ่ม</value>
-  </data>
-  <data name="Explorer.FileSystem">
-    <value>ระบบไฟล์</value>
-  </data>
-  <data name="Explorer.Capacity">
-    <value>ความจุ</value>
-  </data>
-  <data name="Explorer.Free">
-    <value>พื้นที่ว่าง</value>
-  </data>
-  <data name="Explorer.Entries">
-    <value>รายการ</value>
-  </data>
-  <data name="Explorer.SelectEntry">
-    <value>เลือกไฟล์หรือโฟลเดอร์</value>
-  </data>
-  <data name="Explorer.Size">
-    <value>ขนาด</value>
-  </data>
-  <data name="Explorer.Modified">
-    <value>แก้ไขเมื่อ</value>
-  </data>
-  <data name="Explorer.Comment">
-    <value>ความคิดเห็น</value>
-  </data>
-  <data name="Explorer.Warnings">
-    <value>คำเตือน</value>
-  </data>
-  <data name="Explorer.Directory">
-    <value>โฟลเดอร์</value>
-  </data>
-  <data name="Explorer.File">
-    <value>ไฟล์</value>
-  </data>
-  <data name="Explorer.Link">
-    <value>ลิงก์</value>
-  </data>
-  <data name="Explorer.Unknown">
-    <value>ไม่ทราบ</value>
-  </data>
-  <data name="Explorer.Unnamed">
-    <value>โวลุ่มไม่มีชื่อ</value>
-  </data>
-  <data name="Explorer.LoadFailed">
-    <value>ไม่สามารถเปิดอิมเมจนี้ได้: {0}</value>
-  </data>
-  <data name="Explorer.Loading">
-    <value>กำลังอ่านอิมเมจดิสก์…</value>
-  </data>
-  <data name="Explorer.ReadDisk">
-    <value>อ่านดิสก์</value>
-  </data>
-  <data name="Explorer.Name">
-    <value>ชื่อ</value>
-  </data>
-  <data name="Explorer.Type">
-    <value>ชนิด</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirmTitle">
-    <value>อ่านดิสก์</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirm">
-    <value>ใส่ดิสก์ไว้ในไดรฟ์ที่เลือกอยู่ ({0}) และพร้อมอ่านแล้วหรือไม่?</value>
-  </data>
-  <data name="Explorer.Type.Text">
-    <value>ไฟล์ข้อความ</value>
-  </data>
-  <data name="Explorer.Type.Image">
-    <value>รูปภาพ</value>
-  </data>
-  <data name="Explorer.Type.Audio">
-    <value>ไฟล์เสียง</value>
-  </data>
-  <data name="Explorer.Type.Archive">
-    <value>ไฟล์เก็บถาวร</value>
-  </data>
-  <data name="Explorer.Type.Program">
-    <value>โปรแกรม</value>
-  </data>
-  <data name="Explorer.Type.DiskImage">
-    <value>อิมเมจดิสก์</value>
-  </data>
+  <data name="Explorer.Image"><value>อิมเมจดิสก์</value></data>
+  <data name="Explorer.Format"><value>รูปแบบ</value></data>
+  <data name="Explorer.OpenImage"><value>เปิดอิมเมจ…</value></data>
+  <data name="Explorer.Automatic"><value>ตรวจหาอัตโนมัติ</value></data>
+  <data name="Explorer.Volume"><value>โวลุ่ม</value></data>
+  <data name="Explorer.FileSystem"><value>ระบบไฟล์</value></data>
+  <data name="Explorer.Capacity"><value>ความจุ</value></data>
+  <data name="Explorer.Free"><value>พื้นที่ว่าง</value></data>
+  <data name="Explorer.Entries"><value>รายการ</value></data>
+  <data name="Explorer.SelectEntry"><value>เลือกไฟล์หรือโฟลเดอร์</value></data>
+  <data name="Explorer.Size"><value>ขนาด</value></data>
+  <data name="Explorer.Modified"><value>แก้ไขเมื่อ</value></data>
+  <data name="Explorer.Comment"><value>ความคิดเห็น</value></data>
+  <data name="Explorer.Warnings"><value>คำเตือน</value></data>
+  <data name="Explorer.Directory"><value>โฟลเดอร์</value></data>
+  <data name="Explorer.File"><value>ไฟล์</value></data>
+  <data name="Explorer.Link"><value>ลิงก์</value></data>
+  <data name="Explorer.Unknown"><value>ไม่ทราบ</value></data>
+  <data name="Explorer.Unnamed"><value>โวลุ่มไม่มีชื่อ</value></data>
+  <data name="Explorer.LoadFailed"><value>ไม่สามารถเปิดอิมเมจนี้ได้: {0}</value></data>
+  <data name="Explorer.Loading"><value>กำลังอ่านอิมเมจดิสก์…</value></data>
+  <data name="Explorer.ReadDisk"><value>อ่านดิสก์</value></data>
+  <data name="Explorer.Name"><value>ชื่อ</value></data>
+  <data name="Explorer.Type"><value>ชนิด</value></data>
+  <data name="Explorer.ReadDiskConfirmTitle"><value>อ่านดิสก์</value></data>
+  <data name="Explorer.ReadDiskConfirm"><value>ใส่ดิสก์ไว้ในไดรฟ์ที่เลือกอยู่ ({0}) และพร้อมอ่านแล้วหรือไม่?</value></data>
+  <data name="Explorer.Type.Text"><value>ไฟล์ข้อความ</value></data>
+  <data name="Explorer.Type.Image"><value>รูปภาพ</value></data>
+  <data name="Explorer.Type.Audio"><value>ไฟล์เสียง</value></data>
+  <data name="Explorer.Type.Archive"><value>ไฟล์เก็บถาวร</value></data>
+  <data name="Explorer.Type.Program"><value>โปรแกรม</value></data>
+  <data name="Explorer.Type.DiskImage"><value>อิมเมจดิสก์</value></data>
   <data name="Explorer.System"><value>ระบบ</value></data>
   <data name="Explorer.Protection"><value>การป้องกัน</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>เซกเตอร์ทางกายภาพ — ไม่รู้จักระบบไฟล์</value></data>
@@ -119,6 +55,6 @@
   <data name="Explorer.Content.crack-the-company"><value>Crack โดย The Company</value></data>
   <data name="Explorer.DataBlocks"><value>บล็อกข้อมูล</value></data>
   <data name="Explorer.DetectedFormats"><value>ตรวจพบ: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable"><value>เครื่องมือของโฮสต์ไม่สามารถสร้างภาพของภาคต่าง ๆ ที่สามารถขยายได้ {0}. .</value></data>
+  <data name="Explorer.ExternalEngineFailed"><value>เครื่องมือของโฮสต์ ไม่สามารถถอดรหัสภาพได้ {0}. .</value></data>
 </root>

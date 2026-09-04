@@ -12,102 +12,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Image">
-    <value>Εικόνα δίσκου</value>
-  </data>
-  <data name="Explorer.Format">
-    <value>Μορφή</value>
-  </data>
-  <data name="Explorer.OpenImage">
-    <value>Άνοιγμα εικόνας…</value>
-  </data>
-  <data name="Explorer.Automatic">
-    <value>Αυτόματη ανίχνευση</value>
-  </data>
-  <data name="Explorer.Volume">
-    <value>Τόμος</value>
-  </data>
-  <data name="Explorer.FileSystem">
-    <value>Σύστημα αρχείων</value>
-  </data>
-  <data name="Explorer.Capacity">
-    <value>Χωρητικότητα</value>
-  </data>
-  <data name="Explorer.Free">
-    <value>Ελεύθερος χώρος</value>
-  </data>
-  <data name="Explorer.Entries">
-    <value>Στοιχεία</value>
-  </data>
-  <data name="Explorer.SelectEntry">
-    <value>Επιλέξτε αρχείο ή φάκελο.</value>
-  </data>
-  <data name="Explorer.Size">
-    <value>Μέγεθος</value>
-  </data>
-  <data name="Explorer.Modified">
-    <value>Τροποποιήθηκε</value>
-  </data>
-  <data name="Explorer.Comment">
-    <value>Σχόλιο</value>
-  </data>
-  <data name="Explorer.Warnings">
-    <value>Προειδοποιήσεις</value>
-  </data>
-  <data name="Explorer.Directory">
-    <value>Φάκελος</value>
-  </data>
-  <data name="Explorer.File">
-    <value>Αρχείο</value>
-  </data>
-  <data name="Explorer.Link">
-    <value>Σύνδεσμος</value>
-  </data>
-  <data name="Explorer.Unknown">
-    <value>Άγνωστο</value>
-  </data>
-  <data name="Explorer.Unnamed">
-    <value>Τόμος χωρίς όνομα</value>
-  </data>
-  <data name="Explorer.LoadFailed">
-    <value>Δεν είναι δυνατό το άνοιγμα της εικόνας: {0}</value>
-  </data>
-  <data name="Explorer.Loading">
-    <value>Ανάγνωση εικόνας δίσκου…</value>
-  </data>
-  <data name="Explorer.ReadDisk">
-    <value>Ανάγνωση δισκέτας</value>
-  </data>
-  <data name="Explorer.Name">
-    <value>Όνομα</value>
-  </data>
-  <data name="Explorer.Type">
-    <value>Τύπος</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirmTitle">
-    <value>Ανάγνωση δισκέτας</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirm">
-    <value>Έχει τοποθετηθεί η δισκέτα στην επιλεγμένη μονάδα ({0}) και είναι έτοιμη για ανάγνωση;</value>
-  </data>
-  <data name="Explorer.Type.Text">
-    <value>Αρχείο κειμένου</value>
-  </data>
-  <data name="Explorer.Type.Image">
-    <value>Εικόνα</value>
-  </data>
-  <data name="Explorer.Type.Audio">
-    <value>Αρχείο ήχου</value>
-  </data>
-  <data name="Explorer.Type.Archive">
-    <value>Αρχείο</value>
-  </data>
-  <data name="Explorer.Type.Program">
-    <value>Πρόγραμμα</value>
-  </data>
-  <data name="Explorer.Type.DiskImage">
-    <value>Εικόνα δίσκου</value>
-  </data>
+  <data name="Explorer.Image"><value>Εικόνα δίσκου</value></data>
+  <data name="Explorer.Format"><value>Μορφή</value></data>
+  <data name="Explorer.OpenImage"><value>Άνοιγμα εικόνας…</value></data>
+  <data name="Explorer.Automatic"><value>Αυτόματη ανίχνευση</value></data>
+  <data name="Explorer.Volume"><value>Τόμος</value></data>
+  <data name="Explorer.FileSystem"><value>Σύστημα αρχείων</value></data>
+  <data name="Explorer.Capacity"><value>Χωρητικότητα</value></data>
+  <data name="Explorer.Free"><value>Ελεύθερος χώρος</value></data>
+  <data name="Explorer.Entries"><value>Στοιχεία</value></data>
+  <data name="Explorer.SelectEntry"><value>Επιλέξτε αρχείο ή φάκελο.</value></data>
+  <data name="Explorer.Size"><value>Μέγεθος</value></data>
+  <data name="Explorer.Modified"><value>Τροποποιήθηκε</value></data>
+  <data name="Explorer.Comment"><value>Σχόλιο</value></data>
+  <data name="Explorer.Warnings"><value>Προειδοποιήσεις</value></data>
+  <data name="Explorer.Directory"><value>Φάκελος</value></data>
+  <data name="Explorer.File"><value>Αρχείο</value></data>
+  <data name="Explorer.Link"><value>Σύνδεσμος</value></data>
+  <data name="Explorer.Unknown"><value>Άγνωστο</value></data>
+  <data name="Explorer.Unnamed"><value>Τόμος χωρίς όνομα</value></data>
+  <data name="Explorer.LoadFailed"><value>Δεν είναι δυνατό το άνοιγμα της εικόνας: {0}</value></data>
+  <data name="Explorer.Loading"><value>Ανάγνωση εικόνας δίσκου…</value></data>
+  <data name="Explorer.ReadDisk"><value>Ανάγνωση δισκέτας</value></data>
+  <data name="Explorer.Name"><value>Όνομα</value></data>
+  <data name="Explorer.Type"><value>Τύπος</value></data>
+  <data name="Explorer.ReadDiskConfirmTitle"><value>Ανάγνωση δισκέτας</value></data>
+  <data name="Explorer.ReadDiskConfirm"><value>Έχει τοποθετηθεί η δισκέτα στην επιλεγμένη μονάδα ({0}) και είναι έτοιμη για ανάγνωση;</value></data>
+  <data name="Explorer.Type.Text"><value>Αρχείο κειμένου</value></data>
+  <data name="Explorer.Type.Image"><value>Εικόνα</value></data>
+  <data name="Explorer.Type.Audio"><value>Αρχείο ήχου</value></data>
+  <data name="Explorer.Type.Archive"><value>Αρχείο</value></data>
+  <data name="Explorer.Type.Program"><value>Πρόγραμμα</value></data>
+  <data name="Explorer.Type.DiskImage"><value>Εικόνα δίσκου</value></data>
   <data name="Explorer.System"><value>Σύστημα</value></data>
   <data name="Explorer.Protection"><value>Προστασία</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Φυσικοί τομείς — δεν αναγνωρίστηκε σύστημα αρχείων</value></data>
@@ -119,6 +55,6 @@
   <data name="Explorer.Content.crack-the-company"><value>Crack από την The Company</value></data>
   <data name="Explorer.DataBlocks"><value>Μπλοκ δεδομένων</value></data>
   <data name="Explorer.DetectedFormats"><value>Εντοπίστηκε: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable"><value>Τα εργαλεία υποδοχής δεν μπορούν να παράγουν μια εκρηκτική εικόνα τομέα για {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed"><value>Τα εργαλεία υποδοχής δεν μπορούν να αποκωδικοποιήσουν την εικόνα ως {0}.</value></data>
 </root>

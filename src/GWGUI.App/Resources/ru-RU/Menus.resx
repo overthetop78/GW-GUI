@@ -12,73 +12,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options">
-    <value>_Параметры</value>
-  </data>
-  <data name="Menu.Preferences">
-    <value>Предпочтения…</value>
-  </data>
-  <data name="Menu.Diagnostics">
-    <value>Диагностика</value>
-  </data>
-  <data name="Menu.Information">
-    <value>Информация</value>
-  </data>
-  <data name="Menu.Bandwidth">
-    <value>USB пропускная способность</value>
-  </data>
-  <data name="Menu.Rpm">
-    <value>RPM скорость</value>
-  </data>
-  <data name="Menu.Seek">
-    <value>Ищите голову…</value>
-  </data>
-  <data name="Menu.Hardware">
-    <value>Аппаратное обеспечение</value>
-  </data>
-  <data name="Menu.Pins">
-    <value>Булавки…</value>
-  </data>
-  <data name="Menu.Reset">
-    <value>Перезагрузить</value>
-  </data>
-  <data name="Menu.Delays">
-    <value>Задержки…</value>
-  </data>
-  <data name="Menu.Firmware">
-    <value>Прошивка…</value>
-  </data>
-  <data name="Menu.Help">
-    <value>_Помощь</value>
-  </data>
-  <data name="Menu.Documentation">
-    <value>Документация</value>
-  </data>
-  <data name="Menu.About">
-    <value>О</value>
-  </data>
-  <data name="Tab.Read">
-    <value>Читать</value>
-  </data>
-  <data name="Tab.Write">
-    <value>Писать</value>
-  </data>
-  <data name="Tab.Convert">
-    <value>Конверсия</value>
-  </data>
-  <data name="Tab.Visualize">
-    <value>Визуализация</value>
-  </data>
-  <data name="Tab.Tools">
-    <value>Инструменты</value>
-  </data>
-  <data name="Menu.Align">
-    <value>Выравнивание привода…</value>
-  </data>
-  <data name="Tab.Explorer">
-    <value>Проводник диска</value>
-  </data>
-  <data name="Tab.Emulation">
-    <value>Эмуляция</value>
-  </data>
+  <data name="Menu.Options"><value>_Параметры</value></data>
+  <data name="Menu.Preferences"><value>Предпочтения…</value></data>
+  <data name="Menu.Diagnostics"><value>Диагностика</value></data>
+  <data name="Menu.Information"><value>Информация</value></data>
+  <data name="Menu.Bandwidth"><value>USB пропускная способность</value></data>
+  <data name="Menu.Rpm"><value>RPM скорость</value></data>
+  <data name="Menu.Seek"><value>Ищите голову…</value></data>
+  <data name="Menu.Hardware"><value>Аппаратное обеспечение</value></data>
+  <data name="Menu.Pins"><value>Булавки…</value></data>
+  <data name="Menu.Reset"><value>Перезагрузить</value></data>
+  <data name="Menu.Delays"><value>Задержки…</value></data>
+  <data name="Menu.Firmware"><value>Прошивка…</value></data>
+  <data name="Menu.Help"><value>_Помощь</value></data>
+  <data name="Menu.Documentation"><value>Документация</value></data>
+  <data name="Menu.About"><value>О</value></data>
+  <data name="Tab.Read"><value>Читать</value></data>
+  <data name="Tab.Write"><value>Писать</value></data>
+  <data name="Tab.Convert"><value>Конверсия</value></data>
+  <data name="Tab.Visualize"><value>Визуализация</value></data>
+  <data name="Tab.Tools"><value>Инструменты</value></data>
+  <data name="Menu.Align"><value>Выравнивание привода…</value></data>
+  <data name="Tab.Explorer"><value>Проводник диска</value></data>
+  <data name="Tab.Emulation"><value>Эмуляция</value></data>
 </root>

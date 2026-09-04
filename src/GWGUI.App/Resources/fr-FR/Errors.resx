@@ -12,28 +12,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.SettingsSaveFailed">
-    <value>Les réglages n’ont pas pu être enregistrés.
-
-{0}</value>
-  </data>
-  <data name="Error.Title">
-    <value>Erreur de GW GUI</value>
-  </data>
-  <data name="Error.Unexpected">
-    <value>Une erreur inattendue a été interceptée.
-
-{0}</value>
-  </data>
-  <data name="Error.SaveFailed">
-    <value>Les réglages n’ont pas pu être enregistrés. La fenêtre va tout de même se fermer.
-
-{0}</value>
-  </data>
-  <data name="Error.LogSaved">
-    <value>Le rapport complet a été enregistré dans :
-{0}</value>
-  </data>
+  <data name="App.SettingsSaveFailed"><value>Les réglages n’ont pas pu être enregistrés.&#xA;&#xA;{0}</value></data>
+  <data name="Error.Title"><value>Erreur de GW GUI</value></data>
+  <data name="Error.Unexpected"><value>Une erreur inattendue a été interceptée.&#xA;&#xA;{0}</value></data>
+  <data name="Error.SaveFailed"><value>Les réglages n’ont pas pu être enregistrés. La fenêtre va tout de même se fermer.&#xA;&#xA;{0}</value></data>
+  <data name="Error.LogSaved"><value>Le rapport complet a été enregistré dans :&#xA;{0}</value></data>
   <data name="Error.Description.NetworkTimeout"><value>Le service distant n'a pas répondu avant l'expiration du délai de connexion. Vérifiez la connexion réseau, puis réessayez.</value></data>
   <data name="Error.Description.NetworkDns"><value>L'adresse du service distant n'a pas pu être résolue. Vérifiez les paramètres réseau ou DNS, puis réessayez.</value></data>
   <data name="Error.Description.NetworkRefused"><value>Le service distant a refusé la connexion. Il est peut-être indisponible ou bloqué.</value></data>

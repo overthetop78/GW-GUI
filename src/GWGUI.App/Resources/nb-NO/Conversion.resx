@@ -12,140 +12,78 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Conflict.Title">
-    <value>Eksisterende filer</value>
-  </data>
-  <data name="Conflict.Heading">
-    <value>Noen filer eksisterer allerede</value>
-  </data>
-  <data name="Conflict.Help">
-    <value>Velg en handling for hver fil eller bruk den samme handlingen på alle filene.</value>
-  </data>
-  <data name="Conflict.File">
-    <value>Fil</value>
-  </data>
-  <data name="Conflict.Action">
-    <value>Handling</value>
-  </data>
-  <data name="Conflict.Overwrite">
-    <value>Overskriv</value>
-  </data>
-  <data name="Conflict.Skip">
-    <value>Hopp over</value>
-  </data>
-  <data name="Conflict.Number">
-    <value>Bruk neste nummer</value>
-  </data>
-  <data name="Conflict.AllOverwrite">
-    <value>Overskriv alle</value>
-  </data>
-  <data name="Conflict.AllSkip">
-    <value>Hopp over alt</value>
-  </data>
-  <data name="Conflict.AllNumber">
-    <value>Nummer alle</value>
-  </data>
-  <data name="Conversion.Title">
-    <value>Omdannelse</value>
-  </data>
-  <data name="Conversion.SelectOutput">
-    <value>Velg minst ett utdataformat.</value>
-  </data>
-  <data name="Conversion.SourceAmbiguous">
-    <value>Tvetydig kilde</value>
-  </data>
-  <data name="Conversion.Summary">
-    <value>Sammendrag: {0} lyktes, {1} mislyktes.</value>
-  </data>
-  <data name="Conversion.Failures">
-    <value>Feil: {0}</value>
-  </data>
-  <data name="Conversion.Source">
-    <value>Kilde</value>
-  </data>
-  <data name="Conversion.OutputNames">
-    <value>Utdatanavn</value>
-  </data>
-  <data name="Conversion.AddTags">
-    <value>Legg til tagger</value>
-  </data>
-  <data name="Conversion.Selected">
-    <value>Valgt</value>
-  </data>
-  <data name="Conversion.CommonFormats">
-    <value>Vanlige formater</value>
-  </data>
-  <data name="Conversion.ShowRare">
-    <value>Vis sjelden brukte formater</value>
-  </data>
-  <data name="Conversion.LimitTracks">
-    <value>Begrens spor</value>
-  </data>
-  <data name="Conversion.SourceRequired">
-    <value>Velg et eksisterende kildebilde.</value>
-  </data>
-  <data name="Conversion.NameRequired">
-    <value>Skriv inn utdatafilnavnene.</value>
-  </data>
-  <data name="Conversion.CheckOutput">
-    <value>Sjekk minst ett utdataformat.</value>
-  </data>
-  <data name="Conversion.More">
-    <value>(+ {0} konvertering(er))</value>
-  </data>
-  <data name="Conversion.DefaultExtensionTip">
-    <value>Ingen utvidelse er merket: {0} brukes som standard.</value>
-  </data>
-  <data name="Conversion.Incompatible">
-    <value>{0} er ikke kompatibel med denne kilden.</value>
-  </data>
-  <data name="Conversion.NoAvailableOutputName">
-    <value>Finner ikke noe tilgjengelig utdatafilnavn.</value>
-  </data>
-  <data name="Conversion.ReconstructedFlux">
-    <value>rekonstruert fluks</value>
-  </data>
-  <data name="Migration.Open"><value>File migration...</value></data>
-  <data name="Migration.Title"><value>File migration</value></data>
-  <data name="Migration.Heading"><value>Migrate files to another file system</value></data>
-  <data name="Migration.Source"><value>Source image</value></data>
-  <data name="Migration.NoSource"><value>Select an image containing a recognized file system.</value></data>
-  <data name="Migration.Destination"><value>Destination file system and format</value></data>
-  <data name="Migration.Output"><value>Destination image</value></data>
-  <data name="Migration.Compatibility"><value>Compatibility and losses</value></data>
-  <data name="Migration.Waiting"><value>Select a source and a destination.</value></data>
-  <data name="Migration.Severity"><value>Severity</value></data>
-  <data name="Migration.Path"><value>Source path</value></data>
-  <data name="Migration.Description"><value>Description</value></data>
-  <data name="Migration.AcceptLosses"><value>Accept the listed metadata losses</value></data>
-  <data name="Migration.Execute"><value>Migrate files</value></data>
-  <data name="Migration.Blocking"><value>Blocking</value></data>
-  <data name="Migration.MetadataLoss"><value>Metadata loss</value></data>
-  <data name="Migration.SourceSummary"><value>Volume: {0} — File system: {1} — Root entries: {2}</value></data>
-  <data name="Migration.SourceFailed"><value>Unable to prepare the migration: {0}</value></data>
-  <data name="Migration.Completed"><value>The destination image was created: {0}</value></data>
-  <data name="Migration.Failed"><value>Migration failed: {0}</value></data>
-  <data name="Migration.Incompatible"><value>Incompatible: correct the blocking losses before migration.</value></data>
-  <data name="Migration.CompatibleWithLosses"><value>Compatible after accepting the listed metadata losses.</value></data>
-  <data name="Migration.Compatible"><value>Compatible: no loss detected.</value></data>
-  <data name="Migration.Loss.MissingContent"><value>File content is unavailable.</value></data>
-  <data name="Migration.Loss.UnsupportedEntryKind"><value>This entry type is not supported by the destination.</value></data>
-  <data name="Migration.Loss.InvalidName"><value>The name is not valid for the destination.</value></data>
-  <data name="Migration.Loss.NameTooLong"><value>The name is too long for the destination.</value></data>
-  <data name="Migration.Loss.NameCollision"><value>Several entries would have the same destination name.</value></data>
-  <data name="Migration.Loss.FileTooLarge"><value>The file is too large for the destination.</value></data>
-  <data name="Migration.Loss.InvalidMetadata"><value>The source metadata is invalid.</value></data>
-  <data name="Migration.Loss.ModifiedDate"><value>The modification date will not be preserved.</value></data>
-  <data name="Migration.Loss.Comment"><value>The comment will not be preserved.</value></data>
-  <data name="Migration.Loss.Attributes"><value>The source attributes will not be preserved.</value></data>
-  <data name="Migration.OverwriteConfirm"><value>The destination image already exists. Replace it? {0}</value></data>
-  <data name="Migration.SourceDestinationSame"><value>The destination image cannot replace the source image.</value></data>
-  <data name="Conversion.Fidelity.SectorData"><value>sector data; protections not preserved</value></data>
-  <data name="Conversion.Fidelity.ReconstructedTracks"><value>reconstructed tracks; original flux not preserved</value></data>
-  <data name="Conversion.Fidelity.PreservedFlux"><value>original flux preserved</value></data>
-  <data name="Conversion.EngineExternal" xml:space="preserve"><value>Host Tools: converting {0}.</value></data>
-  <data name="Conversion.EngineInternalStart" xml:space="preserve"><value>Internal engine: converting {0} to {1}.</value></data>
-  <data name="Conversion.EngineInternalComplete" xml:space="preserve"><value>Internal conversion completed: {0}.</value></data>
-  <data name="Conversion.EngineInternalUnavailable" xml:space="preserve"><value>The internal engine does not support this conversion: {0}.</value></data>
-  <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Internal conversion failed for {0}: {1}</value></data>
+  <data name="Conflict.Title"><value>Eksisterende filer</value></data>
+  <data name="Conflict.Heading"><value>Noen filer eksisterer allerede</value></data>
+  <data name="Conflict.Help"><value>Velg en handling for hver fil eller bruk den samme handlingen på alle filene.</value></data>
+  <data name="Conflict.File"><value>Fil</value></data>
+  <data name="Conflict.Action"><value>Handling</value></data>
+  <data name="Conflict.Overwrite"><value>Overskriv</value></data>
+  <data name="Conflict.Skip"><value>Hopp over</value></data>
+  <data name="Conflict.Number"><value>Bruk neste nummer</value></data>
+  <data name="Conflict.AllOverwrite"><value>Overskriv alle</value></data>
+  <data name="Conflict.AllSkip"><value>Hopp over alt</value></data>
+  <data name="Conflict.AllNumber"><value>Nummer alle</value></data>
+  <data name="Conversion.Title"><value>Omdannelse</value></data>
+  <data name="Conversion.SelectOutput"><value>Velg minst ett utdataformat.</value></data>
+  <data name="Conversion.SourceAmbiguous"><value>Tvetydig kilde</value></data>
+  <data name="Conversion.Summary"><value>Sammendrag: {0} lyktes, {1} mislyktes.</value></data>
+  <data name="Conversion.Failures"><value>Feil: {0}</value></data>
+  <data name="Conversion.Source"><value>Kilde</value></data>
+  <data name="Conversion.OutputNames"><value>Utdatanavn</value></data>
+  <data name="Conversion.AddTags"><value>Legg til tagger</value></data>
+  <data name="Conversion.Selected"><value>Valgt</value></data>
+  <data name="Conversion.CommonFormats"><value>Vanlige formater</value></data>
+  <data name="Conversion.ShowRare"><value>Vis sjelden brukte formater</value></data>
+  <data name="Conversion.LimitTracks"><value>Begrens spor</value></data>
+  <data name="Conversion.SourceRequired"><value>Velg et eksisterende kildebilde.</value></data>
+  <data name="Conversion.NameRequired"><value>Skriv inn utdatafilnavnene.</value></data>
+  <data name="Conversion.CheckOutput"><value>Sjekk minst ett utdataformat.</value></data>
+  <data name="Conversion.More"><value>(+ {0} konvertering(er))</value></data>
+  <data name="Conversion.DefaultExtensionTip"><value>Ingen utvidelse er merket: {0} brukes som standard.</value></data>
+  <data name="Conversion.Incompatible"><value>{0} er ikke kompatibel med denne kilden.</value></data>
+  <data name="Conversion.NoAvailableOutputName"><value>Finner ikke noe tilgjengelig utdatafilnavn.</value></data>
+  <data name="Conversion.ReconstructedFlux"><value>rekonstruert fluks</value></data>
+  <data name="Migration.Open"><value>Fil migrasjon...</value></data>
+  <data name="Migration.Title"><value>Fil- migrasjon</value></data>
+  <data name="Migration.Heading"><value>Migrer filer til et annet filsystem</value></data>
+  <data name="Migration.Source"><value>Kildebilde</value></data>
+  <data name="Migration.NoSource"><value>Velg et bilde som inneholder et gjenkjent filsystem.</value></data>
+  <data name="Migration.Destination"><value>Destinasjon filsystem og format</value></data>
+  <data name="Migration.Output"><value>Destinasjonsbilde</value></data>
+  <data name="Migration.Compatibility"><value>Kompatibilitet og tap</value></data>
+  <data name="Migration.Waiting"><value>Velg en kilde og et mål.</value></data>
+  <data name="Migration.Severity"><value>Sværhet</value></data>
+  <data name="Migration.Path"><value>Kildesti</value></data>
+  <data name="Migration.Description"><value>Beskrivelse</value></data>
+  <data name="Migration.AcceptLosses"><value>Godta de oppførte metadata tap</value></data>
+  <data name="Migration.Execute"><value>Migrer filer</value></data>
+  <data name="Migration.Blocking"><value>Blokkering</value></data>
+  <data name="Migration.MetadataLoss"><value>Metadatatap</value></data>
+  <data name="Migration.SourceSummary"><value>Volum: {0} — Filsystem: {1} — Rotposter: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>Kan ikke forberede migrasjonen: {0}</value></data>
+  <data name="Migration.Completed"><value>Bildet av målet ble opprettet: {0}</value></data>
+  <data name="Migration.Failed"><value>Migrasjon mislykkes: {0}</value></data>
+  <data name="Migration.Incompatible"><value>Ukompatibel: Rett opp blokkeringstapene før migrasjon.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>Kompatibel etter å ha akseptert de oppførte metadata tap.</value></data>
+  <data name="Migration.Compatible"><value>Kompatibel: Ingen tap detektert.</value></data>
+  <data name="Migration.Loss.MissingContent"><value>Filinnholdet er utilgjengelig.</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>Denne oppføringstypen støttes ikke av målet.</value></data>
+  <data name="Migration.Loss.InvalidName"><value>Navnet er ikke gyldig for destinasjonen.</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>Navnet er for lenge til reisemålet.</value></data>
+  <data name="Migration.Loss.NameCollision"><value>Flere poster hadde samme destinasjonsnavn.</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>Filen er for stor for destinasjonen.</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>Kilden metadata er ugyldig.</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>Endringsdatoen vil ikke bli bevart.</value></data>
+  <data name="Migration.Loss.Comment"><value>Kommentaren vil ikke bli bevart.</value></data>
+  <data name="Migration.Loss.Attributes"><value>Kildeattributtene vil ikke bli bevart.</value></data>
+  <data name="Migration.OverwriteConfirm"><value>Destinasjonsbildet eksisterer allerede. Bytt ut det? {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>Destinasjonsbildet kan ikke erstatte kildebildet.</value></data>
+  <data name="Conversion.Fidelity.SectorData"><value>sektordata; beskyttelse som ikke er bevart</value></data>
+  <data name="Conversion.Fidelity.ReconstructedTracks"><value>rekonstruerte spor; opprinnelige flux ikke bevart</value></data>
+  <data name="Conversion.Fidelity.PreservedFlux"><value>opprinnelige flux konservert</value></data>
+  <data name="Conversion.EngineExternal"><value>Vertsverktøy: konvertering {0}.</value></data>
+  <data name="Conversion.EngineInternalStart"><value>Intern motor: konvertering {0} til {1}.</value></data>
+  <data name="Conversion.EngineInternalComplete"><value>Intern konvertering fullført: {0}.</value></data>
+  <data name="Conversion.EngineInternalUnavailable"><value>Den interne motoren støtter ikke denne konverteringen: {0}.</value></data>
+  <data name="Conversion.EngineInternalFailed"><value>Intern konvertering mislyktes for {0}:) {1}</value></data>
 </root>

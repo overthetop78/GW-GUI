@@ -12,148 +12,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Hardware.Port">
-    <value>Havn</value>
-  </data>
-  <data name="Hardware.UsbId">
-    <value>USB identifikator</value>
-  </data>
-  <data name="Hardware.Drive">
-    <value>Kjøre</value>
-  </data>
-  <data name="Hardware.Available">
-    <value>Tilgjengelig</value>
-  </data>
-  <data name="Hardware.Scan">
-    <value>Skann</value>
-  </data>
-  <data name="Hardware.AddDrive">
-    <value>Legg til en stasjon …</value>
-  </data>
-  <data name="Hardware.NoDrive">
-    <value>Ingen stasjon definert</value>
-  </data>
-  <data name="Hardware.EditorTitle">
-    <value>Definer en stasjon</value>
-  </data>
-  <data name="Hardware.Controller">
-    <value>Greaseweazle kontroller</value>
-  </data>
-  <data name="Hardware.GwSelection">
-    <value>Utvalget overført til gw</value>
-  </data>
-  <data name="Hardware.PhysicalSize">
-    <value>Fysisk størrelse</value>
-  </data>
-  <data name="Hardware.SizeShort">
-    <value>Størrelse</value>
-  </data>
-  <data name="Hardware.DensityShort">
-    <value>Tetthet</value>
-  </data>
-  <data name="Hardware.SpeedShort">
-    <value>Fart</value>
-  </data>
-  <data name="Hardware.AvailableState">
-    <value>Tilgjengelig</value>
-  </data>
-  <data name="Hardware.UnavailableState">
-    <value>Utilgjengelig</value>
-  </data>
-  <data name="Hardware.DensityDescription">
-    <value>Kjøretetthet (bare beskrivelse)</value>
-  </data>
-  <data name="Hardware.SpeedDescription">
-    <value>Nominell hastighet (kun beskrivelse)</value>
-  </data>
-  <data name="Hardware.NotConfigured">
-    <value>Kontrolleren er ikke konfigurert</value>
-  </data>
-  <data name="Hardware.Disconnected">
-    <value>koblet fra</value>
-  </data>
-  <data name="Hardware.SelectedDisconnected">
-    <value>Den valgte stasjonen er frakoblet. Koble den til igjen eller skann på nytt i Alternativer → Kontrollere og stasjoner.</value>
-  </data>
-  <data name="Hardware.DriveLabel">
-    <value>{0}-tommers · {1} · {2} · {3}</value>
-  </data>
-  <data name="Hardware.DriveDialogTitle">
-    <value>Kjøre</value>
-  </data>
-  <data name="Hardware.ControllerRequired">
-    <value>Skann eller legg til en Greaseweazle-kontroller først.</value>
-  </data>
-  <data name="Hardware.Description">
-    <value>{0}-tommers · {1} · utvalg {2}{3}</value>
-  </data>
-  <data name="Hardware.ScanTitle">
-    <value>Skann</value>
-  </data>
-  <data name="Hardware.GwRequired">
-    <value>Velg eller last ned gw.exe nedenfor først.</value>
-  </data>
-  <data name="Hardware.StartupTitle">
-    <value>Maskinvaresjekk</value>
-  </data>
-  <data name="Hardware.StartupMissing">
-    <value>Konfigurert maskinvare ble ikke funnet</value>
-  </data>
-  <data name="Hardware.StartupExplanation">
-    <value>Konfigurasjonen er bevart, men dens stasjoner vil forbli utilgjengelige til deres Greaseweazle blir funnet igjen.</value>
-  </data>
-  <data name="Hardware.StartupMissingList">
-    <value>Mangler Greaseweazle kontrollere</value>
-  </data>
-  <data name="Hardware.StartupRetry">
-    <value>Søk igjen</value>
-  </data>
-  <data name="Hardware.StartupSettings">
-    <value>Maskinvareinnstillinger</value>
-  </data>
-  <data name="Hardware.StartupContinue">
-    <value>Fortsett uten denne stasjonen</value>
-  </data>
-  <data name="Hardware.StartupCheckFailed">
-    <value>Maskinvarekontrollen mislyktes: {0}</value>
-  </data>
-  <data name="Hardware.NewDetectedTitle">
-    <value>Ny Greaseweazle oppdaget</value>
-  </data>
-  <data name="Hardware.NewDetected">
-    <value>{0} ble oppdaget på {1}. Vil du konfigurere stasjonen nå?</value>
-  </data>
-  <data name="Hardware.ConfigurationState">
-    <value>Konfigurasjon</value>
-  </data>
-  <data name="Hardware.Configured">
-    <value>Konfigurert</value>
-  </data>
-  <data name="Hardware.NotConfiguredState">
-    <value>Oppdaget, ikke konfigurert</value>
-  </data>
-  <data name="Hardware.Configure">
-    <value>Konfigurer</value>
-  </data>
-  <data name="Hardware.ReaderNumber">
-    <value>Kjør {0}</value>
-  </data>
-  <data name="Hardware.DriveChoice">
-    <value>Stasjon {0} · {1}″ · {2} · {3}</value>
-  </data>
-  <data name="Hardware.Forget">
-    <value>Glemme</value>
-  </data>
-  <data name="Hardware.ForgetConfirm">
-    <value>Vil du virkelig glemme denne stasjonen eller enheten?</value>
-  </data>
-  <data name="Hardware.ForgetLastConfirm">
-    <value>Dette er den siste konfigurerte stasjonen for denne Greaseweazle. Vil du glemme både stasjonen og Greaseweazle?</value>
-  </data>
-  <data name="Hardware.SelectController">
-    <value>Velg først en rad som tilhører den aktuelle Greaseweazle.</value>
-  </data>
-  <data name="Hardware.MaximumDrives">
-    <value>Høyst to stasjoner kan tilordnes automatisk til denne Greaseweazle (A og B).</value>
-  </data>
+  <data name="Hardware.Port"><value>Havn</value></data>
+  <data name="Hardware.UsbId"><value>USB identifikator</value></data>
+  <data name="Hardware.Drive"><value>Kjøre</value></data>
+  <data name="Hardware.Available"><value>Tilgjengelig</value></data>
+  <data name="Hardware.Scan"><value>Skann</value></data>
+  <data name="Hardware.AddDrive"><value>Legg til en stasjon …</value></data>
+  <data name="Hardware.NoDrive"><value>Ingen stasjon definert</value></data>
+  <data name="Hardware.EditorTitle"><value>Definer en stasjon</value></data>
+  <data name="Hardware.Controller"><value>Greaseweazle kontroller</value></data>
+  <data name="Hardware.GwSelection"><value>Utvalget overført til gw</value></data>
+  <data name="Hardware.PhysicalSize"><value>Fysisk størrelse</value></data>
+  <data name="Hardware.SizeShort"><value>Størrelse</value></data>
+  <data name="Hardware.DensityShort"><value>Tetthet</value></data>
+  <data name="Hardware.SpeedShort"><value>Fart</value></data>
+  <data name="Hardware.AvailableState"><value>Tilgjengelig</value></data>
+  <data name="Hardware.UnavailableState"><value>Utilgjengelig</value></data>
+  <data name="Hardware.DensityDescription"><value>Kjøretetthet (bare beskrivelse)</value></data>
+  <data name="Hardware.SpeedDescription"><value>Nominell hastighet (kun beskrivelse)</value></data>
+  <data name="Hardware.NotConfigured"><value>Kontrolleren er ikke konfigurert</value></data>
+  <data name="Hardware.Disconnected"><value>koblet fra</value></data>
+  <data name="Hardware.SelectedDisconnected"><value>Den valgte stasjonen er frakoblet. Koble den til igjen eller skann på nytt i Alternativer → Kontrollere og stasjoner.</value></data>
+  <data name="Hardware.DriveLabel"><value>{0}-tommers · {1} · {2} · {3}</value></data>
+  <data name="Hardware.DriveDialogTitle"><value>Kjøre</value></data>
+  <data name="Hardware.ControllerRequired"><value>Skann eller legg til en Greaseweazle-kontroller først.</value></data>
+  <data name="Hardware.Description"><value>{0}-tommers · {1} · utvalg {2}{3}</value></data>
+  <data name="Hardware.ScanTitle"><value>Skann</value></data>
+  <data name="Hardware.GwRequired"><value>Velg eller last ned gw.exe nedenfor først.</value></data>
+  <data name="Hardware.StartupTitle"><value>Maskinvaresjekk</value></data>
+  <data name="Hardware.StartupMissing"><value>Konfigurert maskinvare ble ikke funnet</value></data>
+  <data name="Hardware.StartupExplanation"><value>Konfigurasjonen er bevart, men dens stasjoner vil forbli utilgjengelige til deres Greaseweazle blir funnet igjen.</value></data>
+  <data name="Hardware.StartupMissingList"><value>Mangler Greaseweazle kontrollere</value></data>
+  <data name="Hardware.StartupRetry"><value>Søk igjen</value></data>
+  <data name="Hardware.StartupSettings"><value>Maskinvareinnstillinger</value></data>
+  <data name="Hardware.StartupContinue"><value>Fortsett uten denne stasjonen</value></data>
+  <data name="Hardware.StartupCheckFailed"><value>Maskinvarekontrollen mislyktes: {0}</value></data>
+  <data name="Hardware.NewDetectedTitle"><value>Ny Greaseweazle oppdaget</value></data>
+  <data name="Hardware.NewDetected"><value>{0} ble oppdaget på {1}. Vil du konfigurere stasjonen nå?</value></data>
+  <data name="Hardware.ConfigurationState"><value>Konfigurasjon</value></data>
+  <data name="Hardware.Configured"><value>Konfigurert</value></data>
+  <data name="Hardware.NotConfiguredState"><value>Oppdaget, ikke konfigurert</value></data>
+  <data name="Hardware.Configure"><value>Konfigurer</value></data>
+  <data name="Hardware.ReaderNumber"><value>Kjør {0}</value></data>
+  <data name="Hardware.DriveChoice"><value>Stasjon {0} · {1}″ · {2} · {3}</value></data>
+  <data name="Hardware.Forget"><value>Glemme</value></data>
+  <data name="Hardware.ForgetConfirm"><value>Vil du virkelig glemme denne stasjonen eller enheten?</value></data>
+  <data name="Hardware.ForgetLastConfirm"><value>Dette er den siste konfigurerte stasjonen for denne Greaseweazle. Vil du glemme både stasjonen og Greaseweazle?</value></data>
+  <data name="Hardware.SelectController"><value>Velg først en rad som tilhører den aktuelle Greaseweazle.</value></data>
+  <data name="Hardware.MaximumDrives"><value>Høyst to stasjoner kan tilordnes automatisk til denne Greaseweazle (A og B).</value></data>
 </root>

@@ -12,52 +12,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Profiles.ByOperation">
-    <value>Профили по операциям</value>
-  </data>
-  <data name="Profiles.Tab">
-    <value>Вкладка</value>
-  </data>
-  <data name="Profiles.Name">
-    <value>Имя</value>
-  </data>
-  <data name="Profiles.System">
-    <value>Система</value>
-  </data>
-  <data name="Profiles.Rename">
-    <value>Переименовать…</value>
-  </data>
-  <data name="Profile.SaveTitle">
-    <value>Сохранить профиль</value>
-  </data>
-  <data name="Profile.Name">
-    <value>Имя профиля</value>
-  </data>
-  <data name="Profile.NameRequired">
-    <value>Введите имя.</value>
-  </data>
-  <data name="Profile.Title">
-    <value>Профиль</value>
-  </data>
-  <data name="Common.Profile">
-    <value>Профиль</value>
-  </data>
-  <data name="Profile.Default">
-    <value>По умолчанию</value>
-  </data>
-  <data name="Profile.SystemRename">
-    <value>Профиль по умолчанию является постоянным и не может быть переименован.</value>
-  </data>
-  <data name="Profile.SystemDelete">
-    <value>Профиль по умолчанию является постоянным и не может быть удален.</value>
-  </data>
-  <data name="Profile.DuplicateName">
-    <value>Профиль на этой вкладке уже имеет это имя.</value>
-  </data>
-  <data name="Profile.Replace">
-    <value>Этот профиль уже существует. Заменить?</value>
-  </data>
-  <data name="Profile.DeleteConfirm">
-    <value>Удалить профиль «{0}»?</value>
-  </data>
+  <data name="Profiles.ByOperation"><value>Профили по операциям</value></data>
+  <data name="Profiles.Tab"><value>Вкладка</value></data>
+  <data name="Profiles.Name"><value>Имя</value></data>
+  <data name="Profiles.System"><value>Система</value></data>
+  <data name="Profiles.Rename"><value>Переименовать…</value></data>
+  <data name="Profile.SaveTitle"><value>Сохранить профиль</value></data>
+  <data name="Profile.Name"><value>Имя профиля</value></data>
+  <data name="Profile.NameRequired"><value>Введите имя.</value></data>
+  <data name="Profile.Title"><value>Профиль</value></data>
+  <data name="Common.Profile"><value>Профиль</value></data>
+  <data name="Profile.Default"><value>По умолчанию</value></data>
+  <data name="Profile.SystemRename"><value>Профиль по умолчанию является постоянным и не может быть переименован.</value></data>
+  <data name="Profile.SystemDelete"><value>Профиль по умолчанию является постоянным и не может быть удален.</value></data>
+  <data name="Profile.DuplicateName"><value>Профиль на этой вкладке уже имеет это имя.</value></data>
+  <data name="Profile.Replace"><value>Этот профиль уже существует. Заменить?</value></data>
+  <data name="Profile.DeleteConfirm"><value>Удалить профиль «{0}»?</value></data>
 </root>

@@ -12,148 +12,51 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Hardware.Port">
-    <value>Havn</value>
-  </data>
-  <data name="Hardware.UsbId">
-    <value>USB identifikator</value>
-  </data>
-  <data name="Hardware.Drive">
-    <value>Køre</value>
-  </data>
-  <data name="Hardware.Available">
-    <value>Tilgængelig</value>
-  </data>
-  <data name="Hardware.Scan">
-    <value>Scan</value>
-  </data>
-  <data name="Hardware.AddDrive">
-    <value>Tilføj et drev...</value>
-  </data>
-  <data name="Hardware.NoDrive">
-    <value>Intet drev defineret</value>
-  </data>
-  <data name="Hardware.EditorTitle">
-    <value>Definer et drev</value>
-  </data>
-  <data name="Hardware.Controller">
-    <value>Greaseweazle controller</value>
-  </data>
-  <data name="Hardware.GwSelection">
-    <value>Udvælgelsen videregivet til gw</value>
-  </data>
-  <data name="Hardware.PhysicalSize">
-    <value>Fysisk størrelse</value>
-  </data>
-  <data name="Hardware.SizeShort">
-    <value>Størrelse</value>
-  </data>
-  <data name="Hardware.DensityShort">
-    <value>Tæthed</value>
-  </data>
-  <data name="Hardware.SpeedShort">
-    <value>Hastighed</value>
-  </data>
-  <data name="Hardware.AvailableState">
-    <value>Tilgængelig</value>
-  </data>
-  <data name="Hardware.UnavailableState">
-    <value>Ikke tilgængelig</value>
-  </data>
-  <data name="Hardware.DensityDescription">
-    <value>Drevtæthed (kun beskrivelse)</value>
-  </data>
-  <data name="Hardware.SpeedDescription">
-    <value>Nominel hastighed (kun beskrivelse)</value>
-  </data>
-  <data name="Hardware.NotConfigured">
-    <value>Controller ikke konfigureret</value>
-  </data>
-  <data name="Hardware.Disconnected">
-    <value>afbrudt</value>
-  </data>
-  <data name="Hardware.SelectedDisconnected">
-    <value>Det valgte drev afbrydes. Tilslut den igen, eller scan igen i Indstillinger → Controllere og drev.</value>
-  </data>
-  <data name="Hardware.DriveLabel">
-    <value>{0}-tommer · {1} · {2} · {3}</value>
-  </data>
-  <data name="Hardware.DriveDialogTitle">
-    <value>Køre</value>
-  </data>
-  <data name="Hardware.ControllerRequired">
-    <value>Scan eller tilføj en Greaseweazle controller først.</value>
-  </data>
-  <data name="Hardware.Description">
-    <value>{0}-tommer · {1} · valg {2}{3}</value>
-  </data>
-  <data name="Hardware.ScanTitle">
-    <value>Scan</value>
-  </data>
-  <data name="Hardware.GwRequired">
-    <value>Vælg eller download gw.exe nedenfor først.</value>
-  </data>
-  <data name="Hardware.StartupTitle">
-    <value>Hardwarekontrol</value>
-  </data>
-  <data name="Hardware.StartupMissing">
-    <value>Konfigureret hardware kunne ikke findes</value>
-  </data>
-  <data name="Hardware.StartupExplanation">
-    <value>Konfigurationen er bevaret, men dens drev vil forblive utilgængelige, indtil deres Greaseweazle er fundet igen.</value>
-  </data>
-  <data name="Hardware.StartupMissingList">
-    <value>Mangler Greaseweazle controllere</value>
-  </data>
-  <data name="Hardware.StartupRetry">
-    <value>Søg igen</value>
-  </data>
-  <data name="Hardware.StartupSettings">
-    <value>Hardwareindstillinger</value>
-  </data>
-  <data name="Hardware.StartupContinue">
-    <value>Fortsæt uden dette drev</value>
-  </data>
-  <data name="Hardware.StartupCheckFailed">
-    <value>Hardwarekontrollen mislykkedes: {0}</value>
-  </data>
-  <data name="Hardware.NewDetectedTitle">
-    <value>Ny Greaseweazle fundet</value>
-  </data>
-  <data name="Hardware.NewDetected">
-    <value>{0} blev fundet på {1}. Vil du konfigurere dens drev nu?</value>
-  </data>
-  <data name="Hardware.ConfigurationState">
-    <value>Konfiguration</value>
-  </data>
-  <data name="Hardware.Configured">
-    <value>Konfigureret</value>
-  </data>
-  <data name="Hardware.NotConfiguredState">
-    <value>Registreret, ikke konfigureret</value>
-  </data>
-  <data name="Hardware.Configure">
-    <value>Konfigurer</value>
-  </data>
-  <data name="Hardware.ReaderNumber">
-    <value>Kør {0}</value>
-  </data>
-  <data name="Hardware.DriveChoice">
-    <value>Drev {0} · {1}″ · {2} · {3}</value>
-  </data>
-  <data name="Hardware.Forget">
-    <value>Glemme</value>
-  </data>
-  <data name="Hardware.ForgetConfirm">
-    <value>Vil du virkelig glemme dette drev eller denne enhed?</value>
-  </data>
-  <data name="Hardware.ForgetLastConfirm">
-    <value>Dette er det sidst konfigurerede drev til denne Greaseweazle. Vil du glemme både drevet og Greaseweazle?</value>
-  </data>
-  <data name="Hardware.SelectController">
-    <value>Vælg først en række, der tilhører den relevante Greaseweazle.</value>
-  </data>
-  <data name="Hardware.MaximumDrives">
-    <value>Der kan højst tildeles to drev automatisk til denne Greaseweazle (A og B).</value>
-  </data>
+  <data name="Hardware.Port"><value>Havn</value></data>
+  <data name="Hardware.UsbId"><value>USB identifikator</value></data>
+  <data name="Hardware.Drive"><value>Køre</value></data>
+  <data name="Hardware.Available"><value>Tilgængelig</value></data>
+<data name="Hardware.AddDrive"><value>Tilføj et drev...</value></data>
+  <data name="Hardware.NoDrive"><value>Intet drev defineret</value></data>
+  <data name="Hardware.EditorTitle"><value>Definer et drev</value></data>
+<data name="Hardware.GwSelection"><value>Udvælgelsen videregivet til gw</value></data>
+  <data name="Hardware.PhysicalSize"><value>Fysisk størrelse</value></data>
+  <data name="Hardware.SizeShort"><value>Størrelse</value></data>
+  <data name="Hardware.DensityShort"><value>Tæthed</value></data>
+  <data name="Hardware.SpeedShort"><value>Hastighed</value></data>
+  <data name="Hardware.AvailableState"><value>Tilgængelig</value></data>
+  <data name="Hardware.UnavailableState"><value>Ikke tilgængelig</value></data>
+  <data name="Hardware.DensityDescription"><value>Drevtæthed (kun beskrivelse)</value></data>
+  <data name="Hardware.SpeedDescription"><value>Nominel hastighed (kun beskrivelse)</value></data>
+  <data name="Hardware.NotConfigured"><value>Controller ikke konfigureret</value></data>
+  <data name="Hardware.Disconnected"><value>afbrudt</value></data>
+  <data name="Hardware.SelectedDisconnected"><value>Det valgte drev afbrydes. Tilslut den igen, eller scan igen i Indstillinger → Controllere og drev.</value></data>
+  <data name="Hardware.DriveLabel"><value>{0}-tommer · {1} · {2} · {3}</value></data>
+  <data name="Hardware.DriveDialogTitle"><value>Køre</value></data>
+  <data name="Hardware.ControllerRequired"><value>Scan eller tilføj en Greaseweazle controller først.</value></data>
+  <data name="Hardware.Description"><value>{0}-tommer · {1} · valg {2}{3}</value></data>
+<data name="Hardware.GwRequired"><value>Vælg eller download gw.exe nedenfor først.</value></data>
+  <data name="Hardware.StartupTitle"><value>Hardwarekontrol</value></data>
+  <data name="Hardware.StartupMissing"><value>Konfigureret hardware kunne ikke findes</value></data>
+  <data name="Hardware.StartupExplanation"><value>Konfigurationen er bevaret, men dens drev vil forblive utilgængelige, indtil deres Greaseweazle er fundet igen.</value></data>
+  <data name="Hardware.StartupMissingList"><value>Mangler Greaseweazle controllere</value></data>
+  <data name="Hardware.StartupRetry"><value>Søg igen</value></data>
+  <data name="Hardware.StartupSettings"><value>Hardwareindstillinger</value></data>
+  <data name="Hardware.StartupContinue"><value>Fortsæt uden dette drev</value></data>
+  <data name="Hardware.StartupCheckFailed"><value>Hardwarekontrollen mislykkedes: {0}</value></data>
+  <data name="Hardware.NewDetectedTitle"><value>Ny Greaseweazle fundet</value></data>
+  <data name="Hardware.NewDetected"><value>{0} blev fundet på {1}. Vil du konfigurere dens drev nu?</value></data>
+  <data name="Hardware.ConfigurationState"><value>Konfiguration</value></data>
+  <data name="Hardware.Configured"><value>Konfigureret</value></data>
+  <data name="Hardware.NotConfiguredState"><value>Registreret, ikke konfigureret</value></data>
+  <data name="Hardware.Configure"><value>Konfigurer</value></data>
+  <data name="Hardware.ReaderNumber"><value>Kør {0}</value></data>
+  <data name="Hardware.DriveChoice"><value>Drev {0} · {1}″ · {2} · {3}</value></data>
+  <data name="Hardware.Forget"><value>Glemme</value></data>
+  <data name="Hardware.ForgetConfirm"><value>Vil du virkelig glemme dette drev eller denne enhed?</value></data>
+  <data name="Hardware.ForgetLastConfirm"><value>Dette er det sidst konfigurerede drev til denne Greaseweazle. Vil du glemme både drevet og Greaseweazle?</value></data>
+  <data name="Hardware.SelectController"><value>Vælg først en række, der tilhører den relevante Greaseweazle.</value></data>
+  <data name="Hardware.MaximumDrives"><value>Der kan højst tildeles to drev automatisk til denne Greaseweazle (A og B).</value></data>
+  <data name="Hardware.Scan"><value>ScanName</value></data>
+  <data name="Hardware.ScanTitle"><value>ScanName</value></data>
 </root>

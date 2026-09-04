@@ -12,165 +12,56 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Options.Title">
-    <value>Επιλογές</value>
-  </data>
-  <data name="Options.General">
-    <value>Γενικός</value>
-  </data>
-  <data name="Options.Tools">
-    <value>Greaseweazle Εργαλεία</value>
-  </data>
-  <data name="Options.Hardware">
-    <value>Ελεγκτές και μονάδες δίσκου</value>
-  </data>
-  <data name="Options.Profiles">
-    <value>Προφίλ</value>
-  </data>
-  <data name="Options.ImagesFolder">
-    <value>Προεπιλεγμένος φάκελος εικόνας δίσκου</value>
-  </data>
-  <data name="Options.Language">
-    <value>Γλώσσα</value>
-  </data>
-  <data name="Options.Theme">
-    <value>Θέμα</value>
-  </data>
-  <data name="Theme.System">
-    <value>Σύστημα</value>
-  </data>
-  <data name="Theme.Light">
-    <value>Φως</value>
-  </data>
-  <data name="Theme.Dark">
-    <value>Σκοτάδι</value>
-  </data>
-  <data name="Options.GwPath">
-    <value>Διαδρομή προς gw.exe</value>
-  </data>
-  <data name="Options.ToolsHelp">
-    <value>Εάν λείπουν τα εργαλεία, ο βοηθός θα προσφερθεί να τα κατεβάσει ή να επιλέξει μια υπάρχουσα εγκατάσταση. Οι ενημερώσεις ανακοινώνονται μόνο.</value>
-  </data>
-  <data name="Options.HardwarePersistence">
-    <value>Οι ρυθμίσεις υλικού παραμένουν αποθηκευμένες όταν αποσυνδέεται μια μονάδα δίσκου.</value>
-  </data>
-  <data name="Options.ExecutableFilter">
-    <value>Greaseweazle (gw.exe)|gw.exe|Εκτέλεσιμο (*.exe)|*.exe</value>
-  </data>
-  <data name="Options.RemoveHardware">
-    <value>Κατάργηση αυτού του αποθηκευμένου ελεγκτή και όλων των μονάδων δίσκου του;</value>
-  </data>
-  <data name="Options.HardwareTitle">
-    <value>Μηχανήματα υπολογιστών</value>
-  </data>
-  <data name="Options.UseConversionTags">
-    <value>Χρησιμοποιήστε ετικέτες στα ονόματα αρχείων μετατροπής</value>
-  </data>
-  <data name="Options.TagPreset">
-    <value>Προκαθορισμένη</value>
-  </data>
-  <data name="Options.TagPresetFamily">
-    <value>Μόνο για οικογένεια</value>
-  </data>
-  <data name="Options.TagPresetFormat">
-    <value>Μορφοποίηση μόνο</value>
-  </data>
-  <data name="Options.TagPresetFamilyFormat">
-    <value>Οικογένεια και μορφή</value>
-  </data>
-  <data name="Options.TagPresetFamilyExtension">
-    <value>Οικογένεια και επέκταση</value>
-  </data>
-  <data name="Options.TagPresetDetailed">
-    <value>Οικογένεια, μορφή και επέκταση</value>
-  </data>
-  <data name="Options.TagPattern">
-    <value>Μοτίβο ετικέτας μετατροπής</value>
-  </data>
-  <data name="Options.TagVariablesTitle">
-    <value>Διαθέσιμες μεταβλητές</value>
-  </data>
-  <data name="Options.TagVariableName">
-    <value>Όνομα αρχείου πηγής</value>
-  </data>
-  <data name="Options.TagVariableFamily">
-    <value>Οικογένεια: PC, ST, AMIGA…</value>
-  </data>
-  <data name="Options.TagVariableFormat">
-    <value>Μορφή: 720, 1440, DD…</value>
-  </data>
-  <data name="Options.TagVariableExtension">
-    <value>Επέκταση: IMA, ST, ADF…</value>
-  </data>
-  <data name="Options.TagVariableDateIso">
-    <value>Ημερομηνία: 2026-08-06</value>
-  </data>
-  <data name="Options.TagVariableDateCompact">
-    <value>Ημερομηνία: 20260806</value>
-  </data>
-  <data name="Options.TagVariableDateLocal">
-    <value>Ημερομηνία: 06-08-2026</value>
-  </data>
-  <data name="Options.TagVariableTimeFull">
-    <value>Ώρα: 14-35-42</value>
-  </data>
-  <data name="Options.TagVariableTimeCompact">
-    <value>Ώρα: 143542</value>
-  </data>
-  <data name="Options.TagVariableTimeShort">
-    <value>Ώρα: 14-35</value>
-  </data>
-  <data name="Options.TagPatternHelp">
-    <value>{NAME} — όνομα αρχείου πηγής
-{FAMILY} — οικογένεια μηχανών (PC, ST, AMIGA…)
-{FORMAT} — μορφή ή γεωμετρία (720, 1440, DD…)
-{EXTENSION} — επέκταση εξόδου (IMA, ST, ADF…)
-{DATE:YYYY-MM-DD} — ημερομηνία 2026-08-06
-{DATE:YYYYMMDD} — ημερομηνία 20260806
-{DATE:DD-MM-YYYY} — ημερομηνία 06-08-2026
-{TIME:HH-MM-SS} — ώρα 14-35-42
-{TIME:HHMMSS} — ώρα 143542
-{TIME:HH-MM} — ώρα 14-35</value>
-  </data>
-  <data name="Options.RecentTagPatterns">
-    <value>Πρόσφατα προσαρμοσμένα μοτίβα</value>
-  </data>
-  <data name="Options.NextTagExample">
-    <value>Επόμενο παράδειγμα</value>
-  </data>
-  <data name="Options.TagPatternPreview">
-    <value>Παράδειγμα: {0}</value>
-  </data>
-  <data name="Options.TagPatternInvalid">
-    <value>Το μοτίβο ετικέτας πρέπει να περιέχει {tag}.</value>
-  </data>
-  <data name="Options.EnableLogs">
-    <value>Αποθήκευση αρχείων καταγραφής</value>
-  </data>
-  <data name="Options.Logs">
-    <value>κούτσουρα</value>
-  </data>
-  <data name="Options.LogsDescription">
-    <value>Κάθε ενέργεια έχει το δικό της αρχείο στο φάκελο GW GUI Logs.</value>
-  </data>
-  <data name="Options.LogActionErase">
-    <value>Εξάλειψη</value>
-  </data>
-  <data name="Options.LogActionClean">
-    <value>Καθαρά κεφάλια</value>
-  </data>
-  <data name="Options.OpenLogsFolder">
-    <value>Άνοιγμα φακέλου</value>
-  </data>
-  <data name="Options.LogMaximumSize">
-    <value>Μέγιστο μέγεθος</value>
-  </data>
-  <data name="Options.KeepLogArchives">
-    <value>Διατηρήστε προηγούμενα αρχεία καταγραφής</value>
-  </data>
-  <data name="Options.LogUnlimitedHint">
-    <value>0 = απεριόριστο</value>
-  </data>
+  <data name="Options.Title"><value>Επιλογές</value></data>
+  <data name="Options.General"><value>Γενικός</value></data>
+  <data name="Options.Tools"><value>Greaseweazle Εργαλεία</value></data>
+  <data name="Options.Hardware"><value>Ελεγκτές και μονάδες δίσκου</value></data>
+  <data name="Options.Profiles"><value>Προφίλ</value></data>
+  <data name="Options.ImagesFolder"><value>Προεπιλεγμένος φάκελος εικόνας δίσκου</value></data>
+  <data name="Options.Language"><value>Γλώσσα</value></data>
+  <data name="Options.Theme"><value>Θέμα</value></data>
+  <data name="Theme.System"><value>Σύστημα</value></data>
+  <data name="Theme.Light"><value>Φως</value></data>
+  <data name="Theme.Dark"><value>Σκοτάδι</value></data>
+  <data name="Options.GwPath"><value>Διαδρομή προς gw.exe</value></data>
+  <data name="Options.ToolsHelp"><value>Εάν λείπουν τα εργαλεία, ο βοηθός θα προσφερθεί να τα κατεβάσει ή να επιλέξει μια υπάρχουσα εγκατάσταση. Οι ενημερώσεις ανακοινώνονται μόνο.</value></data>
+  <data name="Options.HardwarePersistence"><value>Οι ρυθμίσεις υλικού παραμένουν αποθηκευμένες όταν αποσυνδέεται μια μονάδα δίσκου.</value></data>
+  <data name="Options.ExecutableFilter"><value>Greaseweazle (gw.exe)|gw.exe|Εκτελέσιμο (*.exe)|*.exe</value></data>
+  <data name="Options.RemoveHardware"><value>Κατάργηση αυτού του αποθηκευμένου ελεγκτή και όλων των μονάδων δίσκου του;</value></data>
+  <data name="Options.HardwareTitle"><value>Μηχανήματα υπολογιστών</value></data>
+  <data name="Options.UseConversionTags"><value>Χρησιμοποιήστε ετικέτες στα ονόματα αρχείων μετατροπής</value></data>
+  <data name="Options.TagPreset"><value>Προκαθορισμένη</value></data>
+  <data name="Options.TagPresetFamily"><value>Μόνο για οικογένεια</value></data>
+  <data name="Options.TagPresetFormat"><value>Μορφοποίηση μόνο</value></data>
+  <data name="Options.TagPresetFamilyFormat"><value>Οικογένεια και μορφή</value></data>
+  <data name="Options.TagPresetFamilyExtension"><value>Οικογένεια και επέκταση</value></data>
+  <data name="Options.TagPresetDetailed"><value>Οικογένεια, μορφή και επέκταση</value></data>
+  <data name="Options.TagPattern"><value>Μοτίβο ετικέτας μετατροπής</value></data>
+  <data name="Options.TagVariablesTitle"><value>Διαθέσιμες μεταβλητές</value></data>
+  <data name="Options.TagVariableName"><value>Όνομα αρχείου πηγής</value></data>
+  <data name="Options.TagVariableFamily"><value>Οικογένεια: PC, ST, AMIGA…</value></data>
+  <data name="Options.TagVariableFormat"><value>Μορφή: 720, 1440, DD…</value></data>
+  <data name="Options.TagVariableExtension"><value>Επέκταση: IMA, ST, ADF…</value></data>
+  <data name="Options.TagVariableDateIso"><value>Ημερομηνία: 2026-08-06</value></data>
+  <data name="Options.TagVariableDateCompact"><value>Ημερομηνία: 20260806</value></data>
+  <data name="Options.TagVariableDateLocal"><value>Ημερομηνία: 06-08-2026</value></data>
+  <data name="Options.TagVariableTimeFull"><value>Ώρα: 14-35-42</value></data>
+  <data name="Options.TagVariableTimeCompact"><value>Ώρα: 143542</value></data>
+  <data name="Options.TagVariableTimeShort"><value>Ώρα: 14-35</value></data>
+  <data name="Options.TagPatternHelp"><value>{NAME} — όνομα πηγαίου αρχείου&#xA;{FAMILY} — οικογένεια μηχανών (PC, ST, AMIGA...)&#xA;{FORMAT} — μορφή ή γεωμετρία (720, 1440, DD...)&#xA;{EXTENSION} — επέκταση εξόδου (IMA, ST, ADF...)&#xA;{DATE:YYYY-MM-DD} — ημερομηνία 2026-08-06&#xA;{DATE:YYYYMMDD} — ημερομηνία 20260806&#xA;{DATE:DD-MM-YYYY} — ημερομηνία 06-08-2026&#xA;{TIME:HH-MM-SS} — χρόνος 14-35-42&#xA;{TIME:HHMMSS} — χρόνος 143542&#xA;{TIME:HH-MM} — χρόνος 14-35</value></data>
+  <data name="Options.RecentTagPatterns"><value>Πρόσφατα προσαρμοσμένα μοτίβα</value></data>
+  <data name="Options.NextTagExample"><value>Επόμενο παράδειγμα</value></data>
+  <data name="Options.TagPatternPreview"><value>Παράδειγμα: {0}</value></data>
+  <data name="Options.TagPatternInvalid"><value>Το μοτίβο ετικέτας πρέπει να περιέχει {tag}.</value></data>
+  <data name="Options.EnableLogs"><value>Αποθήκευση αρχείων καταγραφής</value></data>
+  <data name="Options.Logs"><value>κούτσουρα</value></data>
+  <data name="Options.LogsDescription"><value>Κάθε ενέργεια έχει το δικό της αρχείο στο φάκελο GW GUI Logs.</value></data>
+  <data name="Options.LogActionErase"><value>Εξάλειψη</value></data>
+  <data name="Options.LogActionClean"><value>Καθαρά κεφάλια</value></data>
+  <data name="Options.OpenLogsFolder"><value>Άνοιγμα φακέλου</value></data>
+  <data name="Options.LogMaximumSize"><value>Μέγιστο μέγεθος</value></data>
+  <data name="Options.KeepLogArchives"><value>Διατηρήστε προηγούμενα αρχεία καταγραφής</value></data>
+  <data name="Options.LogUnlimitedHint"><value>0 = απεριόριστο</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>Μηχανές</value></data>
   <data name="Engines.Description" xml:space="preserve"><value>Επιλέξτε ανεξάρτητα τη μηχανή που χρησιμοποιείται για κάθε λειτουργία.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>Εσωτερική μηχανή GW GUI</value></data>
@@ -185,9 +76,7 @@
   <data name="Controllers.NoneDetected" xml:space="preserve"><value>Δεν εντοπίστηκε χειριστήριο</value></data>
   <data name="Controllers.DetectedCount" xml:space="preserve"><value>Εντοπίστηκαν {0} χειριστήρια</value></data>
   <data name="Controllers.TestRumble" xml:space="preserve"><value>Δοκιμή δόνησης</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve">
-    <value>Ένταση δόνησης</value>
-  </data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>Ένταση δόνησης</value></data>
   <data name="Controllers.LiveInputs" xml:space="preserve"><value>Ζωντανές είσοδοι</value></data>
   <data name="Controllers.Control" xml:space="preserve"><value>Στοιχείο ελέγχου</value></data>
   <data name="Controllers.Value" xml:space="preserve"><value>Τιμή</value></data>
@@ -218,17 +107,10 @@
   <data name="Controllers.Yes" xml:space="preserve"><value>Ναι</value></data>
   <data name="Controllers.No" xml:space="preserve"><value>Όχι</value></data>
   <data name="Controllers.None" xml:space="preserve"><value>Κανένα</value></data>
-  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>Γενικό χειριστήριο</value></data>
-  <data name="Controllers.Model.Auto" xml:space="preserve"><value>Αυτόματο</value></data>
-  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>Τιμόνι</value></data>
-  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>Χειριστήριο πτήσης</value></data>
-  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>Μοχλός arcade</value></data>
-  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Ακατέργαστο byte</value></data>
+<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Ακατέργαστο byte</value></data>
   <data name="Controllers.AnalogValues" xml:space="preserve"><value>Αναλογικές τιμές</value></data>
   <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Αποτυχία εντοπισμού χειριστηρίων</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve">
-    <value>Εντοπισμός χειριστηρίων…</value>
-  </data>
+  <data name="Controllers.Detecting" xml:space="preserve"><value>Εντοπισμός χειριστηρίων…</value></data>
   <data name="Controllers.ReadFailed" xml:space="preserve"><value>Αποτυχία ανάγνωσης χειριστηρίου</value></data>
   <data name="Controllers.TestRunning" xml:space="preserve"><value>Δοκιμή σε εξέλιξη…</value></data>
   <data name="Controllers.TestFailed" xml:space="preserve"><value>Η δοκιμή απέτυχε</value></data>
@@ -253,91 +135,52 @@
   <data name="Controllers.Roll" xml:space="preserve"><value>Κύλιση</value></data>
   <data name="Controllers.Pitch" xml:space="preserve"><value>Πρόνευση</value></data>
   <data name="Controllers.Yaw" xml:space="preserve"><value>Εκτροπή</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve">
-    <value>Αισθητήρες</value>
-  </data>
-  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
-    <value>Πλοήγηση διεπαφής</value>
-  </data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
-    <value>Χειριστήριο</value>
-  </data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
-    <value>Κινητήρας χαμηλής συχνότητας</value>
-  </data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
-    <value>Κινητήρας υψηλής συχνότητας</value>
-  </data>
-  <data name="Controllers.Enum.Share" xml:space="preserve">
-    <value>Κοινοποίηση</value>
-  </data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve">
-    <value>Γραμμικό</value>
-  </data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve">
-    <value>Γωνιακό</value>
-  </data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve">
-    <value>Κανονικό</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
-    <value>Σταθερό</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
-    <value>Κλίση</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
-    <value>Ημιτονοειδές κύμα</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
-    <value>Τετραγωνικό κύμα</value>
-  </data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
-    <value>Τριγωνικό κύμα</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
-    <value>Ανοδική πριονωτή κυματομορφή</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
-    <value>Καθοδική πριονωτή κυματομορφή</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
-    <value>Ελατήριο</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
-    <value>Τριβή</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
-    <value>Αποσβεστήρας</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
-    <value>Αδράνεια</value>
-  </data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve">
-    <value>Μοχλός</value>
-  </data>
-  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
-    <value>Ελεγκτής πολλαπλών αξόνων</value>
-  </data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
-    <value>Χρήση HID</value>
-  </data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve">
-    <value>άξονες</value>
-  </data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve">
-    <value>κουμπιά</value>
-  </data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
-    <value>Συγκεντρωτικό</value>
-  </data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve">
-    <value>Εικονικό</value>
-  </data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve">
-    <value>Αναφορά εισόδου</value>
-  </data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
-    <value>Αναφορά εξόδου</value>
-  </data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Αισθητήρες</value></data>
+  <data name="Controllers.Enum.UiNavigation"><value>UI πλοήγηση</value></data>
+  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>Χειριστήριο</value></data>
+  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Κινητήρας χαμηλής συχνότητας</value></data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Κινητήρας υψηλής συχνότητας</value></data>
+  <data name="Controllers.Enum.Share" xml:space="preserve"><value>Κοινοποίηση</value></data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Γραμμικό</value></data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Γωνιακό</value></data>
+  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>Κανονικό</value></data>
+  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Σταθερό</value></data>
+  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Κλίση</value></data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Ημιτονοειδές κύμα</value></data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>Τετραγωνικό κύμα</value></data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>Τριγωνικό κύμα</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>Ανοδική πριονωτή κυματομορφή</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>Καθοδική πριονωτή κυματομορφή</value></data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>Ελατήριο</value></data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Τριβή</value></data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Αποσβεστήρας</value></data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Αδράνεια</value></data>
+  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Μοχλός</value></data>
+  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Ελεγκτής πολλαπλών αξόνων</value></data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>Χρήση HID</value></data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>άξονες</value></data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>κουμπιά</value></data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Συγκεντρωτικό</value></data>
+  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>Εικονικό</value></data>
+  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Αναφορά εισόδου</value></data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Αναφορά εξόδου</value></data>
+<data name="Emulation.InitialDisk"><value>Αρχικός δίσκος</value></data>
+  <data name="Emulation.Audio"><value>Ήχος</value></data>
+  <data name="Emulation.Controller"><value>Ελεγκτής {0}</value></data>
+  <data name="Emulation.Core.NameOptions"><value>Βασικές επιλογές</value></data>
+  <data name="Emulation.MultiDrive"><value>Προσάρτηση των πρώτων τεσσάρων δίσκων στο DF0 ⁇ DF3</value></data>
+  <data name="Emulation.DiskNumber"><value>Δίσκος {0}</value></data>
+  <data name="Emulation.LoadOptions"><value>Φόρτωση διαθέσιμων επιλογών</value></data>
+  <data name="Emulation.Configurations"><value>⁇</value></data>
+  <data name="Emulation.Firmware"><value>Είδη για το καθάρισμα των ρούχων</value></data>
+  <data name="Emulation.ReleaseMouse"><value>Ελευθέρωσε το ποντίκι</value></data>
+  <data name="Emulation.DeleteConfirm"><value>Διαγραφή της διαμόρφωσης της Amiga;</value></data>
+  <data name="Emulation.ModelRequired"><value>Απαιτείται ένα μοντέλο Amiga.</value></data>
+  <data name="Emulation.KickstartRequired"><value>Απαιτείται διαδρομή Kickstart.</value></data>
+  <data name="Emulation.FileRequired"><value>Μια απαιτούμενη διαδρομή firmware είναι κενή.</value></data>
+  <data name="Emulation.FileMissing"><value>Το επιλεγμένο αρχείο δεν υπάρχει.</value></data>
+  <data name="Controllers.AnalogDeadZones"><value>Αναλογική νεκρή ζώνη</value></data>
+  <data name="Controllers.StickDeadZone"><value>Στικ</value></data>
+  <data name="Controllers.TriggerDeadZone"><value>Ενεργοποιητές</value></data>
+  <data name="Controllers.OuterDeadZone"><value>Εξωτερική νεκρή ζώνη</value></data>
 </root>

@@ -12,36 +12,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.SettingsSaveFailed">
-    <value>Asetuksia ei voitu tallentaa.
-
-{0}</value>
-  </data>
-  <data name="Error.Title">
-    <value>GW GUI virhe</value>
-  </data>
-  <data name="Error.Unexpected">
-    <value>Odottamaton virhe havaittiin.
-
-{0}</value>
-  </data>
-  <data name="Error.SaveFailed">
-    <value>Asetuksia ei voitu tallentaa. Ikkuna sulkeutuu silti.
-
-{0}</value>
-  </data>
-  <data name="Error.LogSaved">
-    <value>Koko raportti tallennettiin osoitteeseen:
-{0}</value>
-  </data>
+  <data name="App.SettingsSaveFailed"><value>Asetuksia ei voitu tallentaa.&#xA;&#xA;{0}</value></data>
+  <data name="Error.Title"><value>GW GUI virhe</value></data>
+  <data name="Error.Unexpected"><value>Odottamaton virhe havaittiin.&#xA;&#xA;{0}</value></data>
+  <data name="Error.SaveFailed"><value>Asetuksia ei voitu tallentaa. Ikkuna sulkeutuu silti.&#xA;&#xA;{0}</value></data>
+  <data name="Error.LogSaved"><value>Koko raportti tallennettiin osoitteeseen:&#xA;{0}</value></data>
   <data name="Error.Description.NetworkTimeout"><value>Kaukopalvelu ei vastannut ennen yhteyden sulkemista. Tarkista verkkoyhteys ja yritä uudelleen.</value></data>
   <data name="Error.Description.NetworkDns"><value>Etäpalvelun osoitetta ei voitu ratkaista. Tarkista verkko- tai DNS-asetukset ja yritä uudelleen.</value></data>
   <data name="Error.Description.NetworkRefused"><value>Kaukopalvelu kielsi yhteyden. Se voi olla käytettävissä tai estetty.</value></data>
   <data name="Error.Description.NetworkUnavailable"><value>Kaukopalveluun ei päästy. Tarkista Internet-yhteys, palomuuri, VPN tai välityspalvelimen asetukset ja yritä uudelleen.</value></data>
-  <data name="Error.Description.HttpStatus"><value>Etäpalvelu palautti HTTP- tilan {0}. Yritä uudelleen myöhemmin.</value></data>
+  <data name="Error.Description.HttpStatus"><value>Etäpalvelu palautettiin HTTP tila {0}. Kokeile myöhemmin uudelleen.</value></data>
   <data name="Error.Description.OperationTimeout"><value>Operaatio ei päättynyt määräajassa. Yritä uudelleen.</value></data>
   <data name="Error.Description.OperationCancelled"><value>Operaatio peruttiin ennen sen päättymistä.</value></data>
-  <data name="Error.Description.AccessDenied"><value>GW-käyttöliittymällä ei ole lupaa käyttää pyydettyä tiedostoa, kansiota tai laitetta.</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI ei ole lupaa käyttää pyydettyä tiedostoa, kansiota tai laitetta.</value></data>
   <data name="Error.Description.FileNotFound"><value>Tarvittavaa tiedostoa ei löytynyt: {0}</value></data>
   <data name="Error.Description.DirectoryNotFound"><value>Tarvittavaa kansiota ei löytynyt.</value></data>
   <data name="Error.Description.DriveNotFound"><value>Pyydetty asema ei ole käytettävissä.</value></data>
@@ -52,5 +35,5 @@
   <data name="Error.Description.InvalidOperation"><value>Operaatiota ei voida toteuttaa nykyisessä hakemusvaltiossa.</value></data>
   <data name="Error.Description.NotSupported"><value>Valittu tiedosto, laite tai alusta ei tue tätä toimintoa.</value></data>
   <data name="Error.Description.OutOfMemory"><value>Ei ole riittävästi muistia loppuun operaation.</value></data>
-  <data name="Error.Description.Unexpected"><value>GW-käyttöliittymä kohtasi odottamattoman ongelman suorittaessaan tätä toimintoa.</value></data>
+  <data name="Error.Description.Unexpected"><value>GW GUI kohdattiin odottamaton ongelma suoritettaessa tätä toimintoa.</value></data>
 </root>

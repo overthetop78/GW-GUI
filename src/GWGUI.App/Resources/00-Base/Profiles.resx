@@ -12,52 +12,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Profiles.ByOperation" xml:space="preserve">
-    <value>Profiles by operation</value>
-  </data>
-  <data name="Profiles.Tab" xml:space="preserve">
-    <value>Tab</value>
-  </data>
-  <data name="Profiles.Name" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="Profiles.System" xml:space="preserve">
-    <value>System</value>
-  </data>
-  <data name="Profiles.Rename" xml:space="preserve">
-    <value>Rename…</value>
-  </data>
-  <data name="Profile.SaveTitle">
-    <value>Save profile</value>
-  </data>
-  <data name="Profile.Name">
-    <value>Profile name</value>
-  </data>
-  <data name="Profile.NameRequired">
-    <value>Enter a name.</value>
-  </data>
-  <data name="Profile.Title">
-    <value>Profile</value>
-  </data>
-  <data name="Common.Profile">
-    <value>Profile</value>
-  </data>
-  <data name="Profile.Default">
-    <value>Default</value>
-  </data>
-  <data name="Profile.SystemRename">
-    <value>The Default profile is permanent and cannot be renamed.</value>
-  </data>
-  <data name="Profile.SystemDelete">
-    <value>The Default profile is permanent and cannot be deleted.</value>
-  </data>
-  <data name="Profile.DuplicateName">
-    <value>A profile in this tab already has this name.</value>
-  </data>
-  <data name="Profile.Replace">
-    <value>This profile already exists. Replace it?</value>
-  </data>
-  <data name="Profile.DeleteConfirm">
-    <value>Delete profile “{0}”?</value>
-  </data>
+  <data name="Profiles.ByOperation" xml:space="preserve"><value>Profiles by operation</value></data>
+  <data name="Profiles.Tab" xml:space="preserve"><value>Tab</value></data>
+  <data name="Profiles.Name" xml:space="preserve"><value>Name</value></data>
+  <data name="Profiles.System" xml:space="preserve"><value>System</value></data>
+  <data name="Profiles.Rename" xml:space="preserve"><value>Rename…</value></data>
+  <data name="Profile.SaveTitle"><value>Save profile</value></data>
+  <data name="Profile.Name"><value>Profile name</value></data>
+  <data name="Profile.NameRequired"><value>Enter a name.</value></data>
+  <data name="Profile.Title"><value>Profile</value></data>
+  <data name="Common.Profile"><value>Profile</value></data>
+  <data name="Profile.Default"><value>Default</value></data>
+  <data name="Profile.SystemRename"><value>The Default profile is permanent and cannot be renamed.</value></data>
+  <data name="Profile.SystemDelete"><value>The Default profile is permanent and cannot be deleted.</value></data>
+  <data name="Profile.DuplicateName"><value>A profile in this tab already has this name.</value></data>
+  <data name="Profile.Replace"><value>This profile already exists. Replace it?</value></data>
+  <data name="Profile.DeleteConfirm"><value>Delete profile “{0}”?</value></data>
 </root>

@@ -12,73 +12,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options">
-    <value>_Alternativ</value>
-  </data>
-  <data name="Menu.Preferences">
-    <value>Inställningar...</value>
-  </data>
-  <data name="Menu.Diagnostics">
-    <value>Diagnostik</value>
-  </data>
-  <data name="Menu.Information">
-    <value>Information</value>
-  </data>
-  <data name="Menu.Bandwidth">
-    <value>USB bandbredd</value>
-  </data>
-  <data name="Menu.Rpm">
-    <value>RPM hastighet</value>
-  </data>
-  <data name="Menu.Seek">
-    <value>Sök huvud...</value>
-  </data>
-  <data name="Menu.Hardware">
-    <value>Hårdvara</value>
-  </data>
-  <data name="Menu.Pins">
-    <value>Pins...</value>
-  </data>
-  <data name="Menu.Reset">
-    <value>Återställa</value>
-  </data>
-  <data name="Menu.Delays">
-    <value>Förseningar...</value>
-  </data>
-  <data name="Menu.Firmware">
-    <value>Firmware...</value>
-  </data>
-  <data name="Menu.Help">
-    <value>_Hjälp</value>
-  </data>
-  <data name="Menu.Documentation">
-    <value>Dokumentation</value>
-  </data>
-  <data name="Menu.About">
-    <value>Om</value>
-  </data>
-  <data name="Tab.Read">
-    <value>Läsa</value>
-  </data>
-  <data name="Tab.Write">
-    <value>Skriva</value>
-  </data>
-  <data name="Tab.Convert">
-    <value>Omvandling</value>
-  </data>
-  <data name="Tab.Visualize">
-    <value>Visualisering</value>
-  </data>
-  <data name="Tab.Tools">
-    <value>Verktyg</value>
-  </data>
-  <data name="Menu.Align">
-    <value>Drive justering...</value>
-  </data>
-  <data name="Tab.Explorer">
-    <value>Diskutforskare</value>
-  </data>
-  <data name="Tab.Emulation">
-    <value>Emulering</value>
-  </data>
+  <data name="Menu.Options"><value>_Alternativ</value></data>
+  <data name="Menu.Preferences"><value>Inställningar...</value></data>
+  <data name="Menu.Diagnostics"><value>Diagnostik</value></data>
+<data name="Menu.Bandwidth"><value>USB bandbredd</value></data>
+  <data name="Menu.Rpm"><value>RPM hastighet</value></data>
+  <data name="Menu.Seek"><value>Sök huvud...</value></data>
+  <data name="Menu.Hardware"><value>Hårdvara</value></data>
+  <data name="Menu.Pins"><value>Pins...</value></data>
+  <data name="Menu.Reset"><value>Återställa</value></data>
+  <data name="Menu.Delays"><value>Förseningar...</value></data>
+  <data name="Menu.Firmware"><value>Firmware...</value></data>
+  <data name="Menu.Help"><value>_Hjälp</value></data>
+  <data name="Menu.Documentation"><value>Dokumentation</value></data>
+  <data name="Menu.About"><value>Om</value></data>
+  <data name="Tab.Read"><value>Läsa</value></data>
+  <data name="Tab.Write"><value>Skriva</value></data>
+  <data name="Tab.Convert"><value>Omvandling</value></data>
+  <data name="Tab.Visualize"><value>Visualisering</value></data>
+  <data name="Tab.Tools"><value>Verktyg</value></data>
+  <data name="Menu.Align"><value>Drive justering...</value></data>
+  <data name="Tab.Explorer"><value>Diskutforskare</value></data>
+  <data name="Tab.Emulation"><value>Emulering</value></data>
+  <data name="Menu.Information"><value>Information Information Information Information Information Information</value></data>
 </root>

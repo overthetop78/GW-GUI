@@ -12,163 +12,57 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Tool.Ready">
-    <value>准备执行。</value>
-  </data>
-  <data name="Tool.RawOutput">
-    <value>原始输出</value>
-  </data>
-  <data name="Maintenance.EraseTitle">
-    <value>确认擦除</value>
-  </data>
-  <data name="Maintenance.EraseConfirm">
-    <value>永久删除插入磁盘上的所有数据？</value>
-  </data>
-  <data name="Maintenance.CleanTitle">
-    <value>清洁头部</value>
-  </data>
-  <data name="Maintenance.CleanConfirm">
-    <value>确认已插入清洁盘。切勿使用数据盘。</value>
-  </data>
-  <data name="Tools.Erase">
-    <value>擦除磁盘</value>
-  </data>
-  <data name="Tools.EraseWarning">
-    <value>磁盘上的所有数据都将被破坏。</value>
-  </data>
-  <data name="Tools.LimitTracks">
-    <value>限制曲目</value>
-  </data>
-  <data name="Tools.Revolutions">
-    <value>转数</value>
-  </data>
-  <data name="Tools.Clean">
-    <value>清洁头部</value>
-  </data>
-  <data name="Tools.CleanWarning">
-    <value>插入清洁磁盘，切勿插入包含数据的磁盘。</value>
-  </data>
-  <data name="Tools.Cylinders">
-    <value>气缸</value>
-  </data>
-  <data name="Tools.Passes">
-    <value>通行证</value>
-  </data>
-  <data name="Tools.Linger">
-    <value>每个气缸的持续时间（毫秒）</value>
-  </data>
-  <data name="Tool.Field.Measurements">
-    <value>测量次数</value>
-  </data>
-  <data name="Tool.Field.Cylinder">
-    <value>圆柱</value>
-  </data>
-  <data name="Tool.Field.Extreme">
-    <value>允许极限气缸</value>
-  </data>
-  <data name="Tool.Field.MotorOn">
-    <value>保持电机活跃</value>
-  </data>
-  <data name="Tool.Field.Pin">
-    <value>引脚（8、26 或 28）</value>
-  </data>
-  <data name="Tool.Field.SetPin">
-    <value>更换针脚</value>
-  </data>
-  <data name="Tool.Field.High">
-    <value>高电平</value>
-  </data>
-  <data name="Tool.Field.Select">
-    <value>选择（微秒）</value>
-  </data>
-  <data name="Tool.Field.Step">
-    <value>头步 (µs)</value>
-  </data>
-  <data name="Tool.Field.Settle">
-    <value>稳定（毫秒）</value>
-  </data>
-  <data name="Tool.Field.Motor">
-    <value>电机（毫秒）</value>
-  </data>
-  <data name="Tool.Field.Watchdog">
-    <value>自动取消选择（毫秒）</value>
-  </data>
-  <data name="Tool.Field.PreWrite">
-    <value>写入前（微秒）</value>
-  </data>
-  <data name="Tool.Field.PostWrite">
-    <value>写入后（微秒）</value>
-  </data>
-  <data name="Tool.Field.IndexMask">
-    <value>索引掩模（μs）</value>
-  </data>
-  <data name="Tool.Field.Bootloader">
-    <value>更新引导加载程序（有风险）</value>
-  </data>
-  <data name="Tool.BootloaderWarning">
-    <value>更新引导加载程序是一项高级操作，如果中断，可能会导致控制器无法使用。继续？</value>
-  </data>
-  <data name="Tool.ControllerFallback">
-    <value>控制器</value>
-  </data>
-  <data name="Tool.FirmwareUnknown">
-    <value>未知固件</value>
-  </data>
-  <data name="Tool.PortUnknown">
-    <value>未知端口</value>
-  </data>
-  <data name="Tool.NetworkWarning">
-    <value>本地信息有效；只是网络检查失败。</value>
-  </data>
-  <data name="Tool.Running">
-    <value>命令运行...</value>
-  </data>
-  <data name="Tool.Title.Info">
-    <value>控制器信息</value>
-  </data>
-  <data name="Tool.Title.Bandwidth">
-    <value>USB 带宽</value>
-  </data>
-  <data name="Tool.Title.Rpm">
-    <value>行驶速度</value>
-  </data>
-  <data name="Tool.Title.Seek">
-    <value>求头</value>
-  </data>
-  <data name="Tool.Title.Pin">
-    <value>硬件引脚</value>
-  </data>
-  <data name="Tool.Title.Reset">
-    <value>复位控制器</value>
-  </data>
-  <data name="Tool.Title.Delays">
-    <value>延误</value>
-  </data>
-  <data name="Tool.Title.Update">
-    <value>固件</value>
-  </data>
-  <data name="Tool.InvalidParameters">
-    <value>无效参数</value>
-  </data>
-  <data name="Tool.InvalidParametersHelp">
-    <value>执行前检查突出显示的命令参数。</value>
-  </data>
-  <data name="Tool.BootloaderTitle">
-    <value>引导加载模式</value>
-  </data>
-  <data name="Tool.Title.Align">
-    <value>驱动器对准诊断</value>
-  </data>
-  <data name="Tool.Field.AlignTracks">
-    <value>交替轨道（必需）</value>
-  </data>
-  <data name="Tool.Field.AlignReads">
-    <value>读取次数</value>
-  </data>
-  <data name="Tool.Field.AlignFormat">
-    <value>解码格式</value>
-  </data>
-  <data name="Tool.Field.AlignRaw">
-    <value>读取原始通量 (--raw)</value>
-  </data>
+  <data name="Tool.Ready"><value>准备执行。</value></data>
+  <data name="Tool.RawOutput"><value>原始输出</value></data>
+  <data name="Maintenance.EraseTitle"><value>确认擦除</value></data>
+  <data name="Maintenance.EraseConfirm"><value>永久删除插入磁盘上的所有数据？</value></data>
+  <data name="Maintenance.CleanTitle"><value>清洁头部</value></data>
+  <data name="Maintenance.CleanConfirm"><value>确认已插入清洁盘。切勿使用数据盘。</value></data>
+  <data name="Tools.Erase"><value>擦除磁盘</value></data>
+  <data name="Tools.EraseWarning"><value>磁盘上的所有数据都将被破坏。</value></data>
+  <data name="Tools.LimitTracks"><value>限制曲目</value></data>
+  <data name="Tools.Revolutions"><value>转数</value></data>
+  <data name="Tools.Clean"><value>清洁头部</value></data>
+  <data name="Tools.CleanWarning"><value>插入清洁磁盘，切勿插入包含数据的磁盘。</value></data>
+  <data name="Tools.Cylinders"><value>气缸</value></data>
+  <data name="Tools.Passes"><value>通行证</value></data>
+  <data name="Tools.Linger"><value>每个气缸的持续时间（毫秒）</value></data>
+  <data name="Tool.Field.Measurements"><value>测量次数</value></data>
+  <data name="Tool.Field.Cylinder"><value>圆柱</value></data>
+  <data name="Tool.Field.Extreme"><value>允许极限气缸</value></data>
+  <data name="Tool.Field.MotorOn"><value>保持电机活跃</value></data>
+  <data name="Tool.Field.Pin"><value>引脚（8、26 或 28）</value></data>
+  <data name="Tool.Field.SetPin"><value>更换针脚</value></data>
+  <data name="Tool.Field.High"><value>高电平</value></data>
+  <data name="Tool.Field.Select"><value>选择（微秒）</value></data>
+  <data name="Tool.Field.Step"><value>头步 (µs)</value></data>
+  <data name="Tool.Field.Settle"><value>稳定（毫秒）</value></data>
+  <data name="Tool.Field.Motor"><value>电机（毫秒）</value></data>
+  <data name="Tool.Field.Watchdog"><value>自动取消选择（毫秒）</value></data>
+  <data name="Tool.Field.PreWrite"><value>写入前（微秒）</value></data>
+  <data name="Tool.Field.PostWrite"><value>写入后（微秒）</value></data>
+  <data name="Tool.Field.IndexMask"><value>索引掩模（μs）</value></data>
+  <data name="Tool.Field.Bootloader"><value>更新引导加载程序（有风险）</value></data>
+  <data name="Tool.BootloaderWarning"><value>更新引导加载程序是一项高级操作，如果中断，可能会导致控制器无法使用。继续？</value></data>
+  <data name="Tool.ControllerFallback"><value>控制器</value></data>
+  <data name="Tool.FirmwareUnknown"><value>未知固件</value></data>
+  <data name="Tool.PortUnknown"><value>未知端口</value></data>
+  <data name="Tool.NetworkWarning"><value>本地信息有效；只是网络检查失败。</value></data>
+  <data name="Tool.Running"><value>命令运行...</value></data>
+  <data name="Tool.Title.Info"><value>控制器信息</value></data>
+  <data name="Tool.Title.Bandwidth"><value>USB 带宽</value></data>
+  <data name="Tool.Title.Rpm"><value>行驶速度</value></data>
+  <data name="Tool.Title.Seek"><value>求头</value></data>
+  <data name="Tool.Title.Pin"><value>硬件引脚</value></data>
+  <data name="Tool.Title.Reset"><value>复位控制器</value></data>
+  <data name="Tool.Title.Delays"><value>延误</value></data>
+  <data name="Tool.Title.Update"><value>固件</value></data>
+  <data name="Tool.InvalidParameters"><value>无效参数</value></data>
+  <data name="Tool.InvalidParametersHelp"><value>执行前检查突出显示的命令参数。</value></data>
+  <data name="Tool.BootloaderTitle"><value>引导加载模式</value></data>
+  <data name="Tool.Title.Align"><value>驱动器对准诊断</value></data>
+  <data name="Tool.Field.AlignTracks"><value>交替轨道（必需）</value></data>
+  <data name="Tool.Field.AlignReads"><value>读取次数</value></data>
+  <data name="Tool.Field.AlignFormat"><value>解码格式</value></data>
+  <data name="Tool.Field.AlignRaw"><value>读取原始通量 (--raw)</value></data>
 </root>

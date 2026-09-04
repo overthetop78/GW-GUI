@@ -12,165 +12,56 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Options.Title">
-    <value>Tùy chọn</value>
-  </data>
-  <data name="Options.General">
-    <value>Tổng quan</value>
-  </data>
-  <data name="Options.Tools">
-    <value>Greaseweazle Công cụ</value>
-  </data>
-  <data name="Options.Hardware">
-    <value>Bộ điều khiển và ổ đĩa</value>
-  </data>
-  <data name="Options.Profiles">
-    <value>Hồ sơ</value>
-  </data>
-  <data name="Options.ImagesFolder">
-    <value>Thư mục ảnh đĩa mặc định</value>
-  </data>
-  <data name="Options.Language">
-    <value>Ngôn ngữ</value>
-  </data>
-  <data name="Options.Theme">
-    <value>chủ đề</value>
-  </data>
-  <data name="Theme.System">
-    <value>Hệ thống</value>
-  </data>
-  <data name="Theme.Light">
-    <value>Ánh sáng</value>
-  </data>
-  <data name="Theme.Dark">
-    <value>Tối tăm</value>
-  </data>
-  <data name="Options.GwPath">
-    <value>Đường dẫn đến gw.exe</value>
-  </data>
-  <data name="Options.ToolsHelp">
-    <value>Nếu thiếu công cụ, trợ lý sẽ đề nghị tải chúng xuống hoặc chọn bản cài đặt hiện có. Cập nhật chỉ được công bố.</value>
-  </data>
-  <data name="Options.HardwarePersistence">
-    <value>Cài đặt phần cứng vẫn được lưu trữ khi ổ đĩa bị ngắt kết nối.</value>
-  </data>
-  <data name="Options.ExecutableFilter">
-    <value>Greaseweazle (gw.exe)|gw.exe|Có thể thực thi (*.exe)|*.exe</value>
-  </data>
-  <data name="Options.RemoveHardware">
-    <value>Xóa bộ điều khiển được lưu trữ này và tất cả các ổ đĩa của nó?</value>
-  </data>
-  <data name="Options.HardwareTitle">
-    <value>Phần cứng</value>
-  </data>
-  <data name="Options.UseConversionTags">
-    <value>Sử dụng thẻ trong tên tệp chuyển đổi</value>
-  </data>
-  <data name="Options.TagPreset">
-    <value>cài sẵn</value>
-  </data>
-  <data name="Options.TagPresetFamily">
-    <value>Chỉ dành cho gia đình</value>
-  </data>
-  <data name="Options.TagPresetFormat">
-    <value>Chỉ định dạng</value>
-  </data>
-  <data name="Options.TagPresetFamilyFormat">
-    <value>Gia đình và định dạng</value>
-  </data>
-  <data name="Options.TagPresetFamilyExtension">
-    <value>Gia đình và phần mở rộng</value>
-  </data>
-  <data name="Options.TagPresetDetailed">
-    <value>Gia đình, định dạng và phần mở rộng</value>
-  </data>
-  <data name="Options.TagPattern">
-    <value>Mẫu thẻ chuyển đổi</value>
-  </data>
-  <data name="Options.TagVariablesTitle">
-    <value>Các biến có sẵn</value>
-  </data>
-  <data name="Options.TagVariableName">
-    <value>Tên tệp nguồn</value>
-  </data>
-  <data name="Options.TagVariableFamily">
-    <value>Gia đình: PC, ST, AMIGA…</value>
-  </data>
-  <data name="Options.TagVariableFormat">
-    <value>Định dạng: 720, 1440, DD…</value>
-  </data>
-  <data name="Options.TagVariableExtension">
-    <value>Gia hạn: IMA, ST, ADF…</value>
-  </data>
-  <data name="Options.TagVariableDateIso">
-    <value>Ngày: 2026-08-06</value>
-  </data>
-  <data name="Options.TagVariableDateCompact">
-    <value>Ngày: 20260806</value>
-  </data>
-  <data name="Options.TagVariableDateLocal">
-    <value>Ngày: 06-08-2026</value>
-  </data>
-  <data name="Options.TagVariableTimeFull">
-    <value>Thời gian: 14-35-42</value>
-  </data>
-  <data name="Options.TagVariableTimeCompact">
-    <value>Thời gian: 143542</value>
-  </data>
-  <data name="Options.TagVariableTimeShort">
-    <value>Thời gian: 14-35</value>
-  </data>
-  <data name="Options.TagPatternHelp">
-    <value>{NAME} — tên file nguồn
-{FAMILY} — họ máy (PC, ST, AMIGA…)
-{FORMAT} — định dạng hoặc hình học (720, 1440, DD…)
-{EXTENSION} — phần mở rộng đầu ra (IMA, ST, ADF…)
-{DATE:YYYY-MM-DD} — ngày 2026-08-06
-{DATE:YYYYMMDD} — ngày 20260806
-{DATE:DD-MM-YYYY} — ngày 08-06-2026
-{TIME:HH-MM-SS} — thời gian 14-35-42
-{TIME:HHMMSS} — thời gian 143542
-{TIME:HH-MM} — thời gian 14-35</value>
-  </data>
-  <data name="Options.RecentTagPatterns">
-    <value>Các mẫu tùy chỉnh gần đây</value>
-  </data>
-  <data name="Options.NextTagExample">
-    <value>Ví dụ tiếp theo</value>
-  </data>
-  <data name="Options.TagPatternPreview">
-    <value>Ví dụ: {0}</value>
-  </data>
-  <data name="Options.TagPatternInvalid">
-    <value>Mẫu thẻ phải chứa {tag}.</value>
-  </data>
-  <data name="Options.EnableLogs">
-    <value>Lưu nhật ký</value>
-  </data>
-  <data name="Options.Logs">
-    <value>Nhật ký</value>
-  </data>
-  <data name="Options.LogsDescription">
-    <value>Mỗi hành động có tệp riêng trong thư mục Nhật ký GW GUI.</value>
-  </data>
-  <data name="Options.LogActionErase">
-    <value>Xóa</value>
-  </data>
-  <data name="Options.LogActionClean">
-    <value>Đầu sạch</value>
-  </data>
-  <data name="Options.OpenLogsFolder">
-    <value>Mở thư mục</value>
-  </data>
-  <data name="Options.LogMaximumSize">
-    <value>Kích thước tối đa</value>
-  </data>
-  <data name="Options.KeepLogArchives">
-    <value>Giữ nhật ký trước đó</value>
-  </data>
-  <data name="Options.LogUnlimitedHint">
-    <value>0 = không giới hạn</value>
-  </data>
+  <data name="Options.Title"><value>Tùy chọn</value></data>
+  <data name="Options.General"><value>Tổng quan</value></data>
+  <data name="Options.Tools"><value>Greaseweazle Công cụ</value></data>
+  <data name="Options.Hardware"><value>Bộ điều khiển và ổ đĩa</value></data>
+  <data name="Options.Profiles"><value>Hồ sơ</value></data>
+  <data name="Options.ImagesFolder"><value>Thư mục ảnh đĩa mặc định</value></data>
+  <data name="Options.Language"><value>Ngôn ngữ</value></data>
+  <data name="Options.Theme"><value>chủ đề</value></data>
+  <data name="Theme.System"><value>Hệ thống</value></data>
+  <data name="Theme.Light"><value>Ánh sáng</value></data>
+  <data name="Theme.Dark"><value>Tối tăm</value></data>
+  <data name="Options.GwPath"><value>Đường dẫn đến gw.exe</value></data>
+  <data name="Options.ToolsHelp"><value>Nếu thiếu công cụ, trợ lý sẽ đề nghị tải chúng xuống hoặc chọn bản cài đặt hiện có. Cập nhật chỉ được công bố.</value></data>
+  <data name="Options.HardwarePersistence"><value>Cài đặt phần cứng vẫn được lưu trữ khi ổ đĩa bị ngắt kết nối.</value></data>
+  <data name="Options.ExecutableFilter"><value>Greaseweazle (gw.exe)|gw.exe|Có thể thực hiện (*.exe)|*.exe</value></data>
+  <data name="Options.RemoveHardware"><value>Xóa bộ điều khiển được lưu trữ này và tất cả các ổ đĩa của nó?</value></data>
+  <data name="Options.HardwareTitle"><value>Phần cứng</value></data>
+  <data name="Options.UseConversionTags"><value>Sử dụng thẻ trong tên tệp chuyển đổi</value></data>
+  <data name="Options.TagPreset"><value>cài sẵn</value></data>
+  <data name="Options.TagPresetFamily"><value>Chỉ dành cho gia đình</value></data>
+  <data name="Options.TagPresetFormat"><value>Chỉ định dạng</value></data>
+  <data name="Options.TagPresetFamilyFormat"><value>Gia đình và định dạng</value></data>
+  <data name="Options.TagPresetFamilyExtension"><value>Gia đình và phần mở rộng</value></data>
+  <data name="Options.TagPresetDetailed"><value>Gia đình, định dạng và phần mở rộng</value></data>
+  <data name="Options.TagPattern"><value>Mẫu thẻ chuyển đổi</value></data>
+  <data name="Options.TagVariablesTitle"><value>Các biến có sẵn</value></data>
+  <data name="Options.TagVariableName"><value>Tên tệp nguồn</value></data>
+  <data name="Options.TagVariableFamily"><value>Gia đình: PC, ST, AMIGA…</value></data>
+  <data name="Options.TagVariableFormat"><value>Định dạng: 720, 1440, DD…</value></data>
+  <data name="Options.TagVariableExtension"><value>Gia hạn: IMA, ST, ADF…</value></data>
+  <data name="Options.TagVariableDateIso"><value>Ngày: 2026-08-06</value></data>
+  <data name="Options.TagVariableDateCompact"><value>Ngày: 20260806</value></data>
+  <data name="Options.TagVariableDateLocal"><value>Ngày: 06-08-2026</value></data>
+  <data name="Options.TagVariableTimeFull"><value>Thời gian: 14-35-42</value></data>
+  <data name="Options.TagVariableTimeCompact"><value>Thời gian: 143542</value></data>
+  <data name="Options.TagVariableTimeShort"><value>Thời gian: 14-35</value></data>
+  <data name="Options.TagPatternHelp"><value>{NAME} — tên tập tin nguồn&#xA;{FAMILY} — Nhóm máy (PC. ST. AMIGA...)&#xA;{FORMAT} — định dạng hoặc hình học (720, 1440, DD...)&#xA;{EXTENSION} — phần mở rộng kết xuất (IMA. ST. ADF...)&#xA;{DATE:YYYY-MM-DD} — ngày 2026-08-06&#xA;{DATE:YYYYMMDD} — ngày 20260806&#xA;{DATE:DD-MM-YYYY} — ngày 06-08-26&#xA;{TIME:HH-MM-SS} — thời gian 14-35-42&#xA;{TIME:HHMMSS} — Thời gian 143542&#xA;{TIME:HH-MM} — thời gian 14- 35</value></data>
+  <data name="Options.RecentTagPatterns"><value>Các mẫu tùy chỉnh gần đây</value></data>
+  <data name="Options.NextTagExample"><value>Ví dụ tiếp theo</value></data>
+  <data name="Options.TagPatternPreview"><value>Ví dụ: {0}</value></data>
+  <data name="Options.TagPatternInvalid"><value>Mẫu thẻ phải chứa {tag}.</value></data>
+  <data name="Options.EnableLogs"><value>Lưu nhật ký</value></data>
+  <data name="Options.Logs"><value>Nhật ký</value></data>
+  <data name="Options.LogsDescription"><value>mỗi hành động có tập tin riêng của nó trong GW GUI thư mục ghi lưu.</value></data>
+  <data name="Options.LogActionErase"><value>Xóa</value></data>
+  <data name="Options.LogActionClean"><value>Đầu sạch</value></data>
+  <data name="Options.OpenLogsFolder"><value>Mở thư mục</value></data>
+  <data name="Options.LogMaximumSize"><value>Kích thước tối đa</value></data>
+  <data name="Options.KeepLogArchives"><value>Giữ nhật ký trước đó</value></data>
+  <data name="Options.LogUnlimitedHint"><value>0 = không giới hạn</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>Bộ máy</value></data>
   <data name="Engines.Description" xml:space="preserve"><value>Chọn riêng bộ máy dùng cho từng thao tác.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>Bộ máy nội bộ GW GUI</value></data>
@@ -185,9 +76,7 @@
   <data name="Controllers.NoneDetected" xml:space="preserve"><value>Không phát hiện tay cầm</value></data>
   <data name="Controllers.DetectedCount" xml:space="preserve"><value>Đã phát hiện {0} tay cầm</value></data>
   <data name="Controllers.TestRumble" xml:space="preserve"><value>Kiểm tra rung</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve">
-    <value>Cường độ rung</value>
-  </data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>Cường độ rung</value></data>
   <data name="Controllers.LiveInputs" xml:space="preserve"><value>Đầu vào trực tiếp</value></data>
   <data name="Controllers.Control" xml:space="preserve"><value>Điều khiển</value></data>
   <data name="Controllers.Value" xml:space="preserve"><value>Giá trị</value></data>
@@ -218,17 +107,10 @@
   <data name="Controllers.Yes" xml:space="preserve"><value>Có</value></data>
   <data name="Controllers.No" xml:space="preserve"><value>Không</value></data>
   <data name="Controllers.None" xml:space="preserve"><value>Không có</value></data>
-  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>Tay cầm chung</value></data>
-  <data name="Controllers.Model.Auto" xml:space="preserve"><value>Tự động</value></data>
-  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>Vô lăng</value></data>
-  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>Cần điều khiển bay</value></data>
-  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>Cần arcade</value></data>
-  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Byte thô</value></data>
+<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Byte thô</value></data>
   <data name="Controllers.AnalogValues" xml:space="preserve"><value>Giá trị analog</value></data>
   <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Không thể phát hiện tay cầm</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve">
-    <value>Đang phát hiện tay cầm…</value>
-  </data>
+  <data name="Controllers.Detecting" xml:space="preserve"><value>Đang phát hiện tay cầm…</value></data>
   <data name="Controllers.ReadFailed" xml:space="preserve"><value>Không thể đọc tay cầm</value></data>
   <data name="Controllers.TestRunning" xml:space="preserve"><value>Đang kiểm tra…</value></data>
   <data name="Controllers.TestFailed" xml:space="preserve"><value>Kiểm tra thất bại</value></data>
@@ -253,91 +135,53 @@
   <data name="Controllers.Roll" xml:space="preserve"><value>Lăn</value></data>
   <data name="Controllers.Pitch" xml:space="preserve"><value>Chúc</value></data>
   <data name="Controllers.Yaw" xml:space="preserve"><value>Đảo hướng</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve">
-    <value>Cảm biến</value>
-  </data>
-  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
-    <value>Điều hướng giao diện</value>
-  </data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
-    <value>Tay cầm chơi game</value>
-  </data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
-    <value>Động cơ tần số thấp</value>
-  </data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
-    <value>Động cơ tần số cao</value>
-  </data>
-  <data name="Controllers.Enum.Share" xml:space="preserve">
-    <value>Chia sẻ</value>
-  </data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve">
-    <value>Tuyến tính</value>
-  </data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve">
-    <value>Góc</value>
-  </data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve">
-    <value>Bình thường</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
-    <value>Không đổi</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
-    <value>Dốc</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
-    <value>Sóng sin</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
-    <value>Sóng vuông</value>
-  </data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
-    <value>Sóng tam giác</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
-    <value>Răng cưa tăng</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
-    <value>Răng cưa giảm</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
-    <value>Lò xo</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
-    <value>Ma sát</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
-    <value>Bộ giảm chấn</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
-    <value>Quán tính</value>
-  </data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve">
-    <value>Cần điều khiển</value>
-  </data>
-  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
-    <value>Bộ điều khiển đa trục</value>
-  </data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
-    <value>Công dụng HID</value>
-  </data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve">
-    <value>trục</value>
-  </data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve">
-    <value>nút</value>
-  </data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
-    <value>Tổng hợp</value>
-  </data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve">
-    <value>Ảo</value>
-  </data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve">
-    <value>Báo cáo đầu vào</value>
-  </data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
-    <value>Báo cáo đầu ra</value>
-  </data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Cảm biến</value></data>
+  <data name="Controllers.Enum.UiNavigation"><value>UI định vị</value></data>
+  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>Tay cầm chơi game</value></data>
+  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Động cơ tần số thấp</value></data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Động cơ tần số cao</value></data>
+  <data name="Controllers.Enum.Share" xml:space="preserve"><value>Chia sẻ</value></data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Tuyến tính</value></data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Góc</value></data>
+  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>Bình thường</value></data>
+  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Không đổi</value></data>
+  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Dốc</value></data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Sóng sin</value></data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>Sóng vuông</value></data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>Sóng tam giác</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>Răng cưa tăng</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>Răng cưa giảm</value></data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>Lò xo</value></data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Ma sát</value></data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Bộ giảm chấn</value></data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Quán tính</value></data>
+  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Cần điều khiển</value></data>
+  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Bộ điều khiển đa trục</value></data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>Công dụng HID</value></data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>trục</value></data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>nút</value></data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Tổng hợp</value></data>
+  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>Ảo</value></data>
+  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Báo cáo đầu vào</value></data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Báo cáo đầu ra</value></data>
+<data name="Emulation.InitialDisk"><value>Đĩa đầu</value></data>
+  <data name="Emulation.Audio"><value>Âm thanh</value></data>
+  <data name="Emulation.Controller"><value>Điều khiển {0}</value></data>
+  <data name="Emulation.Core.NameOptions"><value>Tùy chọn lõi</value></data>
+  <data name="Emulation.MultiDrive"><value>Gắn kết bốn đĩa đầu trong DF0–DF3</value></data>
+  <data name="Emulation.DiskNumber"><value>Đĩa {0}</value></data>
+  <data name="Emulation.LoadOptions"><value>Tải các tùy chọn sẵn sàng</value></data>
+  <data name="Emulation.Configurations"><value>Cấu hình</value></data>
+  <data name="Emulation.Firmware"><value>Phần cứng</value></data>
+  <data name="Emulation.ReleaseMouse"><value>Mở chuột</value></data>
+  <data name="Emulation.DeleteConfirm"><value>Xoá cấu hình Amiga này không?</value></data>
+  <data name="Emulation.ModelRequired"><value>Cần phải có một mô hình Amiga.</value></data>
+  <data name="Emulation.KickstartRequired"><value>Cần phải có một đường dẫn Kickstart.</value></data>
+  <data name="Emulation.FileRequired"><value>Một đường dẫn phần mềm cần thiết là rỗng.</value></data>
+  <data name="Emulation.FileMissing"><value>Tập tin đã chọn không tồn tại.</value></data>
+<data name="Options.EmulationMachineTitle"><value>{0} - {1} : {2}</value></data>
+  <data name="Controllers.AnalogDeadZones"><value>Phân tích vùng chết</value></data>
+  <data name="Controllers.StickDeadZone"><value>Chấm</value></data>
+  <data name="Controllers.TriggerDeadZone"><value>bộ gây nên</value></data>
+  <data name="Controllers.OuterDeadZone"><value>Vùng chết ngoài</value></data>
 </root>

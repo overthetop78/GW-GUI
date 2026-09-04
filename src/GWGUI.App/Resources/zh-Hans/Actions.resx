@@ -12,51 +12,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Cancel">
-    <value>取消</value>
-  </data>
-  <data name="Common.Save">
-    <value>节省</value>
-  </data>
-  <data name="Common.Create">
-    <value>创建</value>
-  </data>
-  <data name="Common.Delete">
-    <value>删除</value>
-  </data>
-  <data name="Common.Browse">
-    <value>浏览…</value>
-  </data>
-  <data name="Common.Choose">
-    <value>选择…</value>
-  </data>
-  <data name="Common.Close">
-    <value>关闭</value>
-  </data>
-  <data name="Common.Execute">
-    <value>执行</value>
-  </data>
-  <data name="Common.Stop">
-    <value>停止</value>
-  </data>
-  <data name="Common.Continue">
-    <value>继续</value>
-  </data>
-  <data name="Common.Reset">
-    <value>重置</value>
-  </data>
-  <data name="Common.Copy">
-    <value>复制</value>
-  </data>
-  <data name="Common.Modify">
-    <value>调整</value>
-  </data>
-  <data name="Common.Hide">
-    <value>隐藏</value>
-  </data>
-  <data name="Common.Export">
-    <value>出口</value>
-  </data>
+  <data name="Common.Cancel"><value>取消</value></data>
+  <data name="Common.Save"><value>节省</value></data>
+  <data name="Common.Create"><value>创建</value></data>
+  <data name="Common.Delete"><value>删除</value></data>
+  <data name="Common.Browse"><value>浏览…</value></data>
+  <data name="Common.Choose"><value>选择…</value></data>
+  <data name="Common.Close"><value>关闭</value></data>
+  <data name="Common.Execute"><value>执行</value></data>
+  <data name="Common.Stop"><value>停止</value></data>
+  <data name="Common.Continue"><value>继续</value></data>
+  <data name="Common.Reset"><value>重置</value></data>
+  <data name="Common.Copy"><value>复制</value></data>
+  <data name="Common.Modify"><value>调整</value></data>
+  <data name="Common.Hide"><value>隐藏</value></data>
+  <data name="Common.Export"><value>出口</value></data>
   <data name="Common.New"><value>新建</value></data>
   <data name="Common.Refresh"><value>刷新</value></data>
   <data name="Common.OpenFolder"><value>打开文件夹</value></data>

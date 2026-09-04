@@ -12,163 +12,57 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Tool.Ready">
-    <value>Sẵn sàng để thực hiện.</value>
-  </data>
-  <data name="Tool.RawOutput">
-    <value>Đầu ra thô</value>
-  </data>
-  <data name="Maintenance.EraseTitle">
-    <value>Xác nhận xóa</value>
-  </data>
-  <data name="Maintenance.EraseConfirm">
-    <value>Xóa vĩnh viễn tất cả dữ liệu trên đĩa được chèn?</value>
-  </data>
-  <data name="Maintenance.CleanTitle">
-    <value>Đầu sạch</value>
-  </data>
-  <data name="Maintenance.CleanConfirm">
-    <value>Xác nhận rằng đĩa dọn dẹp đã được lắp vào. Không bao giờ sử dụng đĩa dữ liệu.</value>
-  </data>
-  <data name="Tools.Erase">
-    <value>Xóa một đĩa</value>
-  </data>
-  <data name="Tools.EraseWarning">
-    <value>Tất cả dữ liệu trên đĩa sẽ bị hủy.</value>
-  </data>
-  <data name="Tools.LimitTracks">
-    <value>Giới hạn bài hát</value>
-  </data>
-  <data name="Tools.Revolutions">
-    <value>cuộc cách mạng</value>
-  </data>
-  <data name="Tools.Clean">
-    <value>Đầu sạch</value>
-  </data>
-  <data name="Tools.CleanWarning">
-    <value>Đưa đĩa dọn dẹp vào, không bao giờ đưa đĩa chứa dữ liệu vào.</value>
-  </data>
-  <data name="Tools.Cylinders">
-    <value>Xi lanh</value>
-  </data>
-  <data name="Tools.Passes">
-    <value>Đường chuyền</value>
-  </data>
-  <data name="Tools.Linger">
-    <value>Thời lượng trên mỗi xi lanh (ms)</value>
-  </data>
-  <data name="Tool.Field.Measurements">
-    <value>Số lần đo</value>
-  </data>
-  <data name="Tool.Field.Cylinder">
-    <value>Xi lanh</value>
-  </data>
-  <data name="Tool.Field.Extreme">
-    <value>Cho phép xi lanh cực đoan</value>
-  </data>
-  <data name="Tool.Field.MotorOn">
-    <value>Giữ cho động cơ hoạt động</value>
-  </data>
-  <data name="Tool.Field.Pin">
-    <value>Ghim (8, 26 hoặc 28)</value>
-  </data>
-  <data name="Tool.Field.SetPin">
-    <value>Thay đổi mã pin</value>
-  </data>
-  <data name="Tool.Field.High">
-    <value>Cấp độ cao</value>
-  </data>
-  <data name="Tool.Field.Select">
-    <value>Lựa chọn (µs)</value>
-  </data>
-  <data name="Tool.Field.Step">
-    <value>Bước đầu (µs)</value>
-  </data>
-  <data name="Tool.Field.Settle">
-    <value>Giải quyết (ms)</value>
-  </data>
-  <data name="Tool.Field.Motor">
-    <value>Động cơ (ms)</value>
-  </data>
-  <data name="Tool.Field.Watchdog">
-    <value>Tự động bỏ chọn (ms)</value>
-  </data>
-  <data name="Tool.Field.PreWrite">
-    <value>Trước khi viết (µs)</value>
-  </data>
-  <data name="Tool.Field.PostWrite">
-    <value>Sau khi viết (µs)</value>
-  </data>
-  <data name="Tool.Field.IndexMask">
-    <value>Mặt nạ chỉ mục (µs)</value>
-  </data>
-  <data name="Tool.Field.Bootloader">
-    <value>Cập nhật bootloader (rủi ro)</value>
-  </data>
-  <data name="Tool.BootloaderWarning">
-    <value>Cập nhật bộ nạp khởi động là một thao tác nâng cao có thể khiến bộ điều khiển không sử dụng được nếu bị gián đoạn. Tiếp tục?</value>
-  </data>
-  <data name="Tool.ControllerFallback">
-    <value>Bộ điều khiển</value>
-  </data>
-  <data name="Tool.FirmwareUnknown">
-    <value>Phần mềm không xác định</value>
-  </data>
-  <data name="Tool.PortUnknown">
-    <value>Cổng không xác định</value>
-  </data>
-  <data name="Tool.NetworkWarning">
-    <value>Thông tin địa phương là hợp lệ; chỉ kiểm tra mạng không thành công.</value>
-  </data>
-  <data name="Tool.Running">
-    <value>Lệnh đang chạy…</value>
-  </data>
-  <data name="Tool.Title.Info">
-    <value>Thông tin bộ điều khiển</value>
-  </data>
-  <data name="Tool.Title.Bandwidth">
-    <value>USB băng thông</value>
-  </data>
-  <data name="Tool.Title.Rpm">
-    <value>Tốc độ ổ đĩa</value>
-  </data>
-  <data name="Tool.Title.Seek">
-    <value>Tìm kiếm đầu</value>
-  </data>
-  <data name="Tool.Title.Pin">
-    <value>Chân phần cứng</value>
-  </data>
-  <data name="Tool.Title.Reset">
-    <value>Đặt lại bộ điều khiển</value>
-  </data>
-  <data name="Tool.Title.Delays">
-    <value>Sự chậm trễ</value>
-  </data>
-  <data name="Tool.Title.Update">
-    <value>Phần sụn</value>
-  </data>
-  <data name="Tool.InvalidParameters">
-    <value>Thông số không hợp lệ</value>
-  </data>
-  <data name="Tool.InvalidParametersHelp">
-    <value>Kiểm tra các tham số lệnh được đánh dấu trước khi thực hiện.</value>
-  </data>
-  <data name="Tool.BootloaderTitle">
-    <value>Chế độ bộ nạp khởi động</value>
-  </data>
-  <data name="Tool.Title.Align">
-    <value>Chẩn đoán căn chỉnh ổ đĩa</value>
-  </data>
-  <data name="Tool.Field.AlignTracks">
-    <value>(Các) bản nhạc thay thế (bắt buộc)</value>
-  </data>
-  <data name="Tool.Field.AlignReads">
-    <value>Số lần đọc</value>
-  </data>
-  <data name="Tool.Field.AlignFormat">
-    <value>Định dạng giải mã</value>
-  </data>
-  <data name="Tool.Field.AlignRaw">
-    <value>Đọc thông lượng thô (--raw)</value>
-  </data>
+  <data name="Tool.Ready"><value>Sẵn sàng để thực hiện.</value></data>
+  <data name="Tool.RawOutput"><value>Đầu ra thô</value></data>
+  <data name="Maintenance.EraseTitle"><value>Xác nhận xóa</value></data>
+  <data name="Maintenance.EraseConfirm"><value>Xóa vĩnh viễn tất cả dữ liệu trên đĩa được chèn?</value></data>
+  <data name="Maintenance.CleanTitle"><value>Đầu sạch</value></data>
+  <data name="Maintenance.CleanConfirm"><value>Xác nhận rằng đĩa dọn dẹp đã được lắp vào. Không bao giờ sử dụng đĩa dữ liệu.</value></data>
+  <data name="Tools.Erase"><value>Xóa một đĩa</value></data>
+  <data name="Tools.EraseWarning"><value>Tất cả dữ liệu trên đĩa sẽ bị hủy.</value></data>
+  <data name="Tools.LimitTracks"><value>Giới hạn bài hát</value></data>
+  <data name="Tools.Revolutions"><value>cuộc cách mạng</value></data>
+  <data name="Tools.Clean"><value>Đầu sạch</value></data>
+  <data name="Tools.CleanWarning"><value>Đưa đĩa dọn dẹp vào, không bao giờ đưa đĩa chứa dữ liệu vào.</value></data>
+  <data name="Tools.Cylinders"><value>Xi lanh</value></data>
+  <data name="Tools.Passes"><value>Đường chuyền</value></data>
+  <data name="Tools.Linger"><value>Thời lượng trên mỗi xi lanh (ms)</value></data>
+  <data name="Tool.Field.Measurements"><value>Số lần đo</value></data>
+  <data name="Tool.Field.Cylinder"><value>Xi lanh</value></data>
+  <data name="Tool.Field.Extreme"><value>Cho phép xi lanh cực đoan</value></data>
+  <data name="Tool.Field.MotorOn"><value>Giữ cho động cơ hoạt động</value></data>
+  <data name="Tool.Field.Pin"><value>Ghim (8, 26 hoặc 28)</value></data>
+  <data name="Tool.Field.SetPin"><value>Thay đổi mã pin</value></data>
+  <data name="Tool.Field.High"><value>Cấp độ cao</value></data>
+  <data name="Tool.Field.Select"><value>Lựa chọn (µs)</value></data>
+  <data name="Tool.Field.Step"><value>Bước đầu (µs)</value></data>
+  <data name="Tool.Field.Settle"><value>Giải quyết (ms)</value></data>
+  <data name="Tool.Field.Motor"><value>Động cơ (ms)</value></data>
+  <data name="Tool.Field.Watchdog"><value>Tự động bỏ chọn (ms)</value></data>
+  <data name="Tool.Field.PreWrite"><value>Trước khi viết (µs)</value></data>
+  <data name="Tool.Field.PostWrite"><value>Sau khi viết (µs)</value></data>
+  <data name="Tool.Field.IndexMask"><value>Mặt nạ chỉ mục (µs)</value></data>
+  <data name="Tool.Field.Bootloader"><value>Cập nhật bootloader (rủi ro)</value></data>
+  <data name="Tool.BootloaderWarning"><value>Cập nhật bộ nạp khởi động là một thao tác nâng cao có thể khiến bộ điều khiển không sử dụng được nếu bị gián đoạn. Tiếp tục?</value></data>
+  <data name="Tool.ControllerFallback"><value>Bộ điều khiển</value></data>
+  <data name="Tool.FirmwareUnknown"><value>Phần mềm không xác định</value></data>
+  <data name="Tool.PortUnknown"><value>Cổng không xác định</value></data>
+  <data name="Tool.NetworkWarning"><value>Thông tin địa phương là hợp lệ; chỉ kiểm tra mạng không thành công.</value></data>
+  <data name="Tool.Running"><value>Lệnh đang chạy…</value></data>
+  <data name="Tool.Title.Info"><value>Thông tin bộ điều khiển</value></data>
+  <data name="Tool.Title.Bandwidth"><value>USB băng thông</value></data>
+  <data name="Tool.Title.Rpm"><value>Tốc độ ổ đĩa</value></data>
+  <data name="Tool.Title.Seek"><value>Tìm kiếm đầu</value></data>
+  <data name="Tool.Title.Pin"><value>Chân phần cứng</value></data>
+  <data name="Tool.Title.Reset"><value>Đặt lại bộ điều khiển</value></data>
+  <data name="Tool.Title.Delays"><value>Sự chậm trễ</value></data>
+  <data name="Tool.Title.Update"><value>Phần sụn</value></data>
+  <data name="Tool.InvalidParameters"><value>Thông số không hợp lệ</value></data>
+  <data name="Tool.InvalidParametersHelp"><value>Kiểm tra các tham số lệnh được đánh dấu trước khi thực hiện.</value></data>
+  <data name="Tool.BootloaderTitle"><value>Chế độ bộ nạp khởi động</value></data>
+  <data name="Tool.Title.Align"><value>Chẩn đoán căn chỉnh ổ đĩa</value></data>
+  <data name="Tool.Field.AlignTracks"><value>(Các) bản nhạc thay thế (bắt buộc)</value></data>
+  <data name="Tool.Field.AlignReads"><value>Số lần đọc</value></data>
+  <data name="Tool.Field.AlignFormat"><value>Định dạng giải mã</value></data>
+  <data name="Tool.Field.AlignRaw"><value>Đọc thông lượng thô (--raw)</value></data>
 </root>

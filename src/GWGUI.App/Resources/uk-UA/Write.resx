@@ -12,63 +12,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Write.Title">
-    <value>Напишіть</value>
-  </data>
-  <data name="Write.SelectSource">
-    <value>Виберіть наявне вихідне зображення.</value>
-  </data>
-  <data name="Write.Ambiguous">
-    <value>Формат неоднозначний. Явно виберіть сумісний формат.</value>
-  </data>
-  <data name="Write.VerifyOff">
-    <value>Перевірка після запису вимкнена.</value>
-  </data>
-  <data name="Write.VerifyOn">
-    <value>Увімкнено перевірку після запису.</value>
-  </data>
-  <data name="Write.ConfirmTitle">
-    <value>Підтвердити запис</value>
-  </data>
-  <data name="Write.Confirm">
-    <value>Зображення: {0}
-Формат: {1}
-Диск: {2}
-{3}
-
-Записати це зображення на диск?</value>
-  </data>
-  <data name="Write.Source">
-    <value>Вихідне зображення</value>
-  </data>
-  <data name="Write.Detected">
-    <value>Виявлений формат</value>
-  </data>
-  <data name="Write.ChooseImage">
-    <value>Виберіть зображення.</value>
-  </data>
-  <data name="Write.NoVerify">
-    <value>Відключити перевірку після написання</value>
-  </data>
-  <data name="Write.NoVerifyTip">
-    <value>Додає --no-verify. Диск не буде перечитано для підтвердження запису.</value>
-  </data>
-  <data name="Write.EraseEmpty">
-    <value>Стерти порожні сліди</value>
-  </data>
-  <data name="Write.VisualizeTracks">
-    <value>Візуалізація треків</value>
-  </data>
-  <data name="Write.VisualizeFormatRequired">
-    <value>Виберіть формат диска перед візуалізацією його треків.</value>
-  </data>
+  <data name="Write.Title"><value>Напишіть</value></data>
+  <data name="Write.SelectSource"><value>Виберіть наявне вихідне зображення.</value></data>
+  <data name="Write.Ambiguous"><value>Формат неоднозначний. Явно виберіть сумісний формат.</value></data>
+  <data name="Write.VerifyOff"><value>Перевірка після запису вимкнена.</value></data>
+  <data name="Write.VerifyOn"><value>Увімкнено перевірку після запису.</value></data>
+  <data name="Write.ConfirmTitle"><value>Підтвердити запис</value></data>
+  <data name="Write.Confirm"><value>Зображення: {0}&#xA;Формат: {1}&#xA;Диск: {2}&#xA;{3}&#xA;&#xA;Записати це зображення на диск?</value></data>
+  <data name="Write.Source"><value>Вихідне зображення</value></data>
+  <data name="Write.Detected"><value>Виявлений формат</value></data>
+  <data name="Write.ChooseImage"><value>Виберіть зображення.</value></data>
+  <data name="Write.NoVerify"><value>Відключити перевірку після написання</value></data>
+  <data name="Write.NoVerifyTip"><value>Додає --no-verify. Диск не буде перечитано для підтвердження запису.</value></data>
+  <data name="Write.EraseEmpty"><value>Стерти порожні сліди</value></data>
+  <data name="Write.VisualizeTracks"><value>Візуалізація треків</value></data>
+  <data name="Write.VisualizeFormatRequired"><value>Виберіть формат диска перед візуалізацією його треків.</value></data>
   <data name="Write.InternalWriter" xml:space="preserve"><value>Внутрішній запис (експериментально)</value></data>
   <data name="Write.InternalWriterTip" xml:space="preserve"><value>Записує безпосередньо внутрішнім рушієм без gw.exe.</value></data>
   <data name="Write.InternalPreview" xml:space="preserve"><value>Внутрішній запис GW GUI: {0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Деякі вибрані розширені параметри ще не підтримуються.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Внутрішня перевірка ще недоступна. Увімкніть «Не перевіряти».</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Доріжка {0}, сторона {1}: {2}</value></data>
-  <data name="Write.InternalFailureReason">
-    <value>Внутрішній запис не виконано.</value>
-  </data>
+  <data name="Write.InternalFailureReason"><value>Внутрішній запис не виконано.</value></data>
 </root>

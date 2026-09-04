@@ -12,63 +12,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Write.Title">
-    <value>Escrever</value>
-  </data>
-  <data name="Write.SelectSource">
-    <value>Escolha uma imagem de origem existente.</value>
-  </data>
-  <data name="Write.Ambiguous">
-    <value>O formato é ambíguo. Escolha explicitamente um formato compatível.</value>
-  </data>
-  <data name="Write.VerifyOff">
-    <value>A verificação após a escrita está desativada.</value>
-  </data>
-  <data name="Write.VerifyOn">
-    <value>A verificação após a gravação está ativada.</value>
-  </data>
-  <data name="Write.ConfirmTitle">
-    <value>Confirmar gravação</value>
-  </data>
-  <data name="Write.Confirm">
-    <value>Imagem: {0}
-Formato: {1}
-Condução: {2}
-{3}
-
-Gravar esta imagem no disco?</value>
-  </data>
-  <data name="Write.Source">
-    <value>Imagem de origem</value>
-  </data>
-  <data name="Write.Detected">
-    <value>Formato detectado</value>
-  </data>
-  <data name="Write.ChooseImage">
-    <value>Escolha uma imagem.</value>
-  </data>
-  <data name="Write.NoVerify">
-    <value>Desative a verificação após escrever</value>
-  </data>
-  <data name="Write.NoVerifyTip">
-    <value>Adiciona --no-verify. O disco não será relido para confirmar a gravação.</value>
-  </data>
-  <data name="Write.EraseEmpty">
-    <value>Apagar faixas vazias</value>
-  </data>
-  <data name="Write.VisualizeTracks">
-    <value>Visualizar trilhos</value>
-  </data>
-  <data name="Write.VisualizeFormatRequired">
-    <value>Selecione o formato do disco antes de visualizar as suas faixas.</value>
-  </data>
+  <data name="Write.Title"><value>Escrever</value></data>
+  <data name="Write.SelectSource"><value>Escolha uma imagem de origem existente.</value></data>
+  <data name="Write.Ambiguous"><value>O formato é ambíguo. Escolha explicitamente um formato compatível.</value></data>
+  <data name="Write.VerifyOff"><value>A verificação após a escrita está desativada.</value></data>
+  <data name="Write.VerifyOn"><value>A verificação após a gravação está ativada.</value></data>
+  <data name="Write.ConfirmTitle"><value>Confirmar gravação</value></data>
+  <data name="Write.Confirm"><value>Imagem: {0}&#xA;Formato: {1}&#xA;Condução: {2}&#xA;{3}&#xA;&#xA;Gravar esta imagem no disco?</value></data>
+  <data name="Write.Source"><value>Imagem de origem</value></data>
+  <data name="Write.Detected"><value>Formato detectado</value></data>
+  <data name="Write.ChooseImage"><value>Escolha uma imagem.</value></data>
+  <data name="Write.NoVerify"><value>Desative a verificação após escrever</value></data>
+  <data name="Write.NoVerifyTip"><value>Adiciona --no-verify. O disco não será relido para confirmar a gravação.</value></data>
+  <data name="Write.EraseEmpty"><value>Apagar faixas vazias</value></data>
+  <data name="Write.VisualizeTracks"><value>Visualizar trilhos</value></data>
+  <data name="Write.VisualizeFormatRequired"><value>Selecione o formato do disco antes de visualizar as suas faixas.</value></data>
   <data name="Write.InternalWriter" xml:space="preserve"><value>Escrita interna (experimental)</value></data>
   <data name="Write.InternalWriterTip" xml:space="preserve"><value>Escreve diretamente com o motor interno sem gw.exe.</value></data>
   <data name="Write.InternalPreview" xml:space="preserve"><value>Escrita interna do GW GUI: {0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Uma ou mais opções avançadas selecionadas ainda não são suportadas pela escrita interna.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>A verificação interna ainda não está disponível. Ative «Não verificar».</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Pista {0}, lado {1}: {2}</value></data>
-  <data name="Write.InternalFailureReason">
-    <value>A escrita interna falhou.</value>
-  </data>
+  <data name="Write.InternalFailureReason"><value>A escrita interna falhou.</value></data>
 </root>

@@ -12,63 +12,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Write.Title">
-    <value>Écriture</value>
-  </data>
-  <data name="Write.SelectSource">
-    <value>Choisissez une image source existante.</value>
-  </data>
-  <data name="Write.Ambiguous">
-    <value>Le format est ambigu. Choisissez explicitement un format compatible.</value>
-  </data>
-  <data name="Write.VerifyOff">
-    <value>La vérification après écriture est désactivée.</value>
-  </data>
-  <data name="Write.VerifyOn">
-    <value>La vérification après écriture est active.</value>
-  </data>
-  <data name="Write.ConfirmTitle">
-    <value>Confirmer l’écriture</value>
-  </data>
-  <data name="Write.Confirm">
-    <value>Image : {0}
-Format : {1}
-Lecteur : {2}
-{3}
-
-Écrire cette image sur la disquette ?</value>
-  </data>
-  <data name="Write.Source">
-    <value>Image source</value>
-  </data>
-  <data name="Write.Detected">
-    <value>Format détecté</value>
-  </data>
-  <data name="Write.ChooseImage">
-    <value>Choisissez une image.</value>
-  </data>
-  <data name="Write.NoVerify">
-    <value>Désactiver la vérification après écriture</value>
-  </data>
-  <data name="Write.NoVerifyTip">
-    <value>Ajoute --no-verify. La disquette ne sera pas relue pour confirmer l’écriture.</value>
-  </data>
-  <data name="Write.EraseEmpty">
-    <value>Effacer les pistes vides</value>
-  </data>
-  <data name="Write.VisualizeTracks">
-    <value>Visualiser les pistes</value>
-  </data>
-  <data name="Write.VisualizeFormatRequired">
-    <value>Sélectionnez le format de la disquette avant de visualiser ses pistes.</value>
-  </data>
+  <data name="Write.Title"><value>Écriture</value></data>
+  <data name="Write.SelectSource"><value>Choisissez une image source existante.</value></data>
+  <data name="Write.Ambiguous"><value>Le format est ambigu. Choisissez explicitement un format compatible.</value></data>
+  <data name="Write.VerifyOff"><value>La vérification après écriture est désactivée.</value></data>
+  <data name="Write.VerifyOn"><value>La vérification après écriture est active.</value></data>
+  <data name="Write.ConfirmTitle"><value>Confirmer l’écriture</value></data>
+  <data name="Write.Confirm"><value>Image : {0}&#xA;Format : {1}&#xA;Lecteur : {2}&#xA;{3}&#xA;&#xA;Écrire cette image sur la disquette ?</value></data>
+  <data name="Write.Source"><value>Image source</value></data>
+  <data name="Write.Detected"><value>Format détecté</value></data>
+  <data name="Write.ChooseImage"><value>Choisissez une image.</value></data>
+  <data name="Write.NoVerify"><value>Désactiver la vérification après écriture</value></data>
+  <data name="Write.NoVerifyTip"><value>Ajoute --no-verify. La disquette ne sera pas relue pour confirmer l’écriture.</value></data>
+  <data name="Write.EraseEmpty"><value>Effacer les pistes vides</value></data>
+  <data name="Write.VisualizeTracks"><value>Visualiser les pistes</value></data>
+  <data name="Write.VisualizeFormatRequired"><value>Sélectionnez le format de la disquette avant de visualiser ses pistes.</value></data>
   <data name="Write.InternalWriter" xml:space="preserve"><value>Écriture interne (expérimentale)</value></data>
   <data name="Write.InternalWriterTip" xml:space="preserve"><value>Écrit directement avec le moteur interne, sans gw.exe.</value></data>
   <data name="Write.InternalPreview" xml:space="preserve"><value>Écriture interne GW GUI : {0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Une ou plusieurs options avancées sélectionnées ne sont pas encore prises en charge par l’écriture interne.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>La vérification interne n’est pas encore disponible. Activez « Ne pas vérifier » pour utiliser l’écriture interne expérimentale.</value></data>
-  <data name="Write.InternalFailure" xml:space="preserve"><value>Piste {0}, face {1} : {2}</value></data>
-  <data name="Write.InternalFailureReason">
-    <value>L’écriture interne a échoué.</value>
-  </data>
+  <data name="Write.InternalFailure"><value>Piste {0}, côté {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason"><value>L’écriture interne a échoué.</value></data>
 </root>

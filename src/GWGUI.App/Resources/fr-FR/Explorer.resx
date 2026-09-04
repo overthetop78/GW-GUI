@@ -12,110 +12,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Image">
-    <value>Image disque</value>
-  </data>
-  <data name="Explorer.DetectedFormats">
-    <value>Détecté : {0}</value>
-  </data>
-  <data name="Explorer.Format">
-    <value>Format</value>
-  </data>
-  <data name="Explorer.OpenImage">
-    <value>Ouvrir une image…</value>
-  </data>
-  <data name="Explorer.Automatic">
-    <value>Détection automatique</value>
-  </data>
-  <data name="Explorer.Volume">
-    <value>Volume</value>
-  </data>
-  <data name="Explorer.FileSystem">
-    <value>Système de fichiers</value>
-  </data>
-  <data name="Explorer.Capacity">
-    <value>Capacité</value>
-  </data>
-  <data name="Explorer.Free">
-    <value>Espace libre</value>
-  </data>
-  <data name="Explorer.Entries">
-    <value>Éléments</value>
-  </data>
-  <data name="Explorer.SelectEntry">
-    <value>Sélectionnez un fichier ou un dossier.</value>
-  </data>
-  <data name="Explorer.Size">
-    <value>Taille</value>
-  </data>
-  <data name="Explorer.Modified">
-    <value>Modifié</value>
-  </data>
-  <data name="Explorer.Comment">
-    <value>Commentaire</value>
-  </data>
-  <data name="Explorer.Warnings">
-    <value>Avertissements</value>
-  </data>
-  <data name="Explorer.Directory">
-    <value>Dossier</value>
-  </data>
-  <data name="Explorer.File">
-    <value>Fichier</value>
-  </data>
-  <data name="Explorer.Link">
-    <value>Lien</value>
-  </data>
-  <data name="Explorer.Unknown">
-    <value>Inconnu</value>
-  </data>
-  <data name="Explorer.Unnamed">
-    <value>Volume sans nom</value>
-  </data>
-  <data name="Explorer.LoadFailed">
-    <value>Impossible d’ouvrir cette image : {0}</value>
-  </data>
-  <data name="Explorer.Loading">
-    <value>Lecture de l’image disque…</value>
-  </data>
-  <data name="Explorer.ReadDisk">
-    <value>Lire la disquette</value>
-  </data>
-  <data name="Explorer.Name">
-    <value>Nom</value>
-  </data>
-  <data name="Explorer.Type">
-    <value>Type</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirmTitle">
-    <value>Lire la disquette</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirm">
-    <value>La disquette est-elle bien insérée dans le lecteur actuellement sélectionné ({0}) et prête à être lue ?</value>
-  </data>
-  <data name="Explorer.Type.Text">
-    <value>Fichier texte</value>
-  </data>
-  <data name="Explorer.Type.Image">
-    <value>Image</value>
-  </data>
-  <data name="Explorer.Type.Audio">
-    <value>Fichier audio</value>
-  </data>
-  <data name="Explorer.Type.Archive">
-    <value>Archive</value>
-  </data>
-  <data name="Explorer.Type.Program">
-    <value>Programme</value>
-  </data>
-  <data name="Explorer.Type.DiskImage">
-    <value>Image disque</value>
-  </data>
+  <data name="Explorer.Image"><value>Image disque</value></data>
+  <data name="Explorer.DetectedFormats"><value>Détecté : {0}</value></data>
+<data name="Explorer.OpenImage"><value>Ouvrir une image…</value></data>
+  <data name="Explorer.Automatic"><value>Détection automatique</value></data>
+<data name="Explorer.FileSystem"><value>Système de fichiers</value></data>
+  <data name="Explorer.Capacity"><value>Capacité</value></data>
+  <data name="Explorer.Free"><value>Espace libre</value></data>
+  <data name="Explorer.Entries"><value>Éléments</value></data>
+  <data name="Explorer.SelectEntry"><value>Sélectionnez un fichier ou un dossier.</value></data>
+  <data name="Explorer.Size"><value>Taille</value></data>
+  <data name="Explorer.Modified"><value>Modifié</value></data>
+  <data name="Explorer.Comment"><value>Commentaire</value></data>
+  <data name="Explorer.Warnings"><value>Avertissements</value></data>
+  <data name="Explorer.Directory"><value>Dossier</value></data>
+  <data name="Explorer.File"><value>Fichier</value></data>
+  <data name="Explorer.Link"><value>Lien</value></data>
+  <data name="Explorer.Unknown"><value>Inconnu</value></data>
+  <data name="Explorer.Unnamed"><value>Volume sans nom</value></data>
+  <data name="Explorer.LoadFailed"><value>Impossible d’ouvrir cette image : {0}</value></data>
+  <data name="Explorer.Loading"><value>Lecture de l’image disque…</value></data>
+  <data name="Explorer.ReadDisk"><value>Lire la disquette</value></data>
+  <data name="Explorer.Name"><value>Nom</value></data>
+<data name="Explorer.ReadDiskConfirmTitle"><value>Lire la disquette</value></data>
+  <data name="Explorer.ReadDiskConfirm"><value>La disquette est-elle bien insérée dans le lecteur actuellement sélectionné ({0}) et prête à être lue ?</value></data>
+  <data name="Explorer.Type.Text"><value>Fichier texte</value></data>
+<data name="Explorer.Type.Audio"><value>Fichier audio</value></data>
+<data name="Explorer.Type.Program"><value>Programme</value></data>
+  <data name="Explorer.Type.DiskImage"><value>Image disque</value></data>
   <data name="Explorer.System"><value>Système</value></data>
-  <data name="Explorer.Protection"><value>Protection</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Secteurs physiques — aucun système de fichiers reconnu</value></data>
   <data name="Explorer.Organization"><value>Organisation</value></data>
-  <data name="Explorer.Modification"><value>Modification</value></data>
   <data name="Explorer.Compression"><value>Compactage</value></data>
   <data name="Explorer.CustomSectorLoader"><value>Chargeur personnalisé par secteurs</value></data>
   <data name="Explorer.CustomSectorLoaderNoCatalog"><value>Chargeur personnalisé — aucun catalogue de fichiers</value></data>
@@ -123,4 +50,5 @@
   <data name="Explorer.DataBlocks"><value>Blocs de données</value></data>
   <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Les Host Tools ne peuvent pas produire une image sectorielle exploitable pour {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Les Host Tools n’ont pas pu décoder l’image au format {0}.</value></data>
+  <data name="Explorer.Format"><value>Présentation</value></data>
 </root>

@@ -12,53 +12,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Cancel">
-    <value>Mégsem</value>
-  </data>
-  <data name="Common.Save">
-    <value>Megtakarítás</value>
-  </data>
-  <data name="Common.Create">
-    <value>Létrehozás</value>
-  </data>
-  <data name="Common.Delete">
-    <value>Töröl</value>
-  </data>
-  <data name="Common.Browse">
-    <value>Tallózás…</value>
-  </data>
-  <data name="Common.Choose">
-    <value>Válassz…</value>
-  </data>
-  <data name="Common.Close">
-    <value>Közeli</value>
-  </data>
-  <data name="Common.Execute">
-    <value>Végrehajtás</value>
-  </data>
-  <data name="Common.Stop">
-    <value>Stop</value>
-  </data>
-  <data name="Common.Continue">
-    <value>Folytatás</value>
-  </data>
-  <data name="Common.Reset">
-    <value>Reset</value>
-  </data>
-  <data name="Common.Copy">
-    <value>Másolat</value>
-  </data>
-  <data name="Common.Modify">
-    <value>Módosít</value>
-  </data>
-  <data name="Common.Hide">
-    <value>Elrejt</value>
-  </data>
-  <data name="Common.Export">
-    <value>Export</value>
-  </data>
-  <data name="Common.New"><value>Új</value></data>
+  <data name="Common.Cancel"><value>Mégsem</value></data>
+  <data name="Common.Save"><value>Megtakarítás</value></data>
+  <data name="Common.Create"><value>Létrehozás</value></data>
+  <data name="Common.Delete"><value>Töröl</value></data>
+  <data name="Common.Browse"><value>Tallózás…</value></data>
+  <data name="Common.Choose"><value>Válassz…</value></data>
+  <data name="Common.Close"><value>Közeli</value></data>
+  <data name="Common.Execute"><value>Végrehajtás</value></data>
+<data name="Common.Continue"><value>Folytatás</value></data>
+<data name="Common.Copy"><value>Másolat</value></data>
+  <data name="Common.Modify"><value>Módosít</value></data>
+  <data name="Common.Hide"><value>Elrejt</value></data>
+<data name="Common.New"><value>Új</value></data>
   <data name="Common.Refresh"><value>Frissítés</value></data>
   <data name="Common.OpenFolder"><value>Mappa megnyitása</value></data>
   <data name="Common.Pause" xml:space="preserve"><value>Szünet</value></data>
+  <data name="Common.Stop"><value>Állj!</value></data>
+  <data name="Common.Reset"><value>Újraindítás</value></data>
+  <data name="Common.Export"><value>Exportálás</value></data>
 </root>

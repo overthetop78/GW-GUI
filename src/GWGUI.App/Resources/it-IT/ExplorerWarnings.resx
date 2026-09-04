@@ -12,172 +12,60 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Warning.InvalidChecksum">
-    <value>Il blocco radice {0} ha un checksum non valido.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryNesting">
-    <value>È stato raggiunto il limite di nidificazione delle directory.</value>
-  </data>
-  <data name="Explorer.Warning.InvalidDirectoryChain">
-    <value>Catena di directory non valida o ciclica nel blocco {0}.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryEntryMissing">
-    <value>Manca il blocco di voci della directory {0}.</value>
-  </data>
-  <data name="Explorer.Warning.AmigaExtension">
-    <value>{0}: blocco estensione file non valido {1}.</value>
-  </data>
-  <data name="Explorer.Warning.AmigaBlock">
-    <value>{0}: Manca AmigaDOS {1} ({2}).</value>
-  </data>
-  <data name="Explorer.Warning.FileDataMissing">
-    <value>Manca il blocco dati file {0}.</value>
-  </data>
-  <data name="Explorer.Warning.OfsType">
-    <value>Il blocco dati OFS {0} ha un tipo imprevisto.</value>
-  </data>
-  <data name="Explorer.Warning.BitmapMissing">
-    <value>Manca il blocco bitmap {0}.</value>
-  </data>
-  <data name="Explorer.Warning.BitmapChecksum">
-    <value>Il blocco bitmap {0} ha un checksum non valido.</value>
-  </data>
-  <data name="Explorer.Warning.CpmAllocation">
-    <value>{0}: il blocco di assegnazione CP/M {1} è esterno all'immagine.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDirectoryCyclic">
-    <value>Catena di directory ciclica CBM DOS in {0}/{1}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDirectoryMissing">
-    <value>Manca il settore della directory DOS CBM {0}/{1}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDataCyclic">
-    <value>{0}: catena di dati ciclica in {1}/{2}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDataMissing">
-    <value>{0}: manca il settore dati {1}/{2}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmCapacity">
-    <value>{0}: la catena di file supera la capacità dell'immagine.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdDirectoryMissing">
-    <value>Mancano uno o più blocchi di directory UCSD.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdEntry">
-    <value>La voce della directory UCSD {0} ha un nome non valido o vuoto.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdRange">
-    <value>{0}: intervallo di blocchi non valido {1}..{2}.</value>
-  </data>
-  <data name="Explorer.Warning.DataBlocksMissing">
-    <value>{0}: mancano uno o più blocchi dati.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdCount">
-    <value>La directory UCSD dichiara i file {0} ma sono state trovate voci valide {1}.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentInodeZero">
-    <value>{0}: inode COHERENT 0 non valido.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentInodeOutside">
-    <value>{0}: l'inode COHERENT {1} è esterno all'immagine.</value>
-  </data>
-  <data name="Explorer.Warning.FileTooLarge">
-    <value>{0}: il file è troppo grande.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentBlock">
-    <value>{0}: il blocco COHERENT {1} è esterno all'immagine.</value>
-  </data>
-  <data name="Explorer.Warning.BytesUnread">
-    <value>{0}: Impossibile leggere {1} byte.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentIndirect">
-    <value>{0}: il blocco COERENTE indiretto {1} è esterno all'immagine.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11SegmentMissing">
-    <value>Manca il segmento della directory RT-11 {0}.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11EntrySize">
-    <value>Il segmento della directory RT-11 {0} ha una dimensione di voce non valida.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11EmptyName">
-    <value>La voce RT-11 nel blocco {0} ha un nome vuoto.</value>
-  </data>
-  <data name="Explorer.Warning.ProDosNesting">
-    <value>È stato raggiunto il limite di nidificazione delle directory ProDOS.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryBlockCyclic">
-    <value>Il blocco di directory {0} è mancante o ciclico.</value>
-  </data>
-  <data name="Explorer.Warning.MasterIndexMissing">
-    <value>{0}: manca il blocco indice principale {1}.</value>
-  </data>
-  <data name="Explorer.Warning.DataBlockMissing">
-    <value>{0}: manca il blocco dati {1}.</value>
-  </data>
-  <data name="Explorer.Warning.IndexBlockMissing">
-    <value>{0}: manca il blocco indice {1}.</value>
-  </data>
-  <data name="Explorer.Warning.CatalogMissing">
-    <value>Settore catalogo T{0} S{1} mancante o ciclico.</value>
-  </data>
-  <data name="Explorer.Warning.CatalogSize">
-    <value>{0}: la dimensione del catalogo non è coerente.</value>
-  </data>
-  <data name="Explorer.Warning.TrackSectorList">
-    <value>{0}: Elenco T/S T{1} S{2} mancante o ciclico.</value>
-  </data>
-  <data name="Explorer.Warning.TrackSectorData">
-    <value>{0}: manca il settore dati T{1} S{2}.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryBlockMissing">
-    <value>Manca il blocco di directory {0}.</value>
-  </data>
-  <data name="Explorer.Warning.MfsEntry">
-    <value>Voce della directory MFS non valida nel blocco {0}.</value>
-  </data>
-  <data name="Explorer.Warning.ResourceFork">
-    <value>{0}: i metadati del fork delle risorse non sono coerenti.</value>
-  </data>
-  <data name="Explorer.Warning.MfsChain">
-    <value>{0}: catena di allocazione MFS non valida.</value>
-  </data>
-  <data name="Explorer.Warning.BlockMissing">
-    <value>{0}: manca il blocco {1}.</value>
-  </data>
-  <data name="Explorer.Warning.BbcSector">
-    <value>{0}: manca il settore dati {1}.</value>
-  </data>
-  <data name="Explorer.Warning.HfsCatalog">
-    <value>Il catalogo HFS non contiene record foglia leggibili.</value>
-  </data>
-  <data name="Explorer.Warning.HfsDirectory">
-    <value>Directory HFS ciclica #{0}.</value>
-  </data>
-  <data name="Explorer.Warning.HfsBlock">
-    <value>{0}: manca il blocco HFS {1}.</value>
-  </data>
-  <data name="Explorer.Warning.HfsExtents">
-    <value>{0}: sono necessarie estensioni HFS aggiuntive oppure mancano dati.</value>
-  </data>
-  <data name="Explorer.Warning.FatNesting">
-    <value>È stato raggiunto il limite di annidamento delle directory FAT.</value>
-  </data>
-  <data name="Explorer.Warning.FatChain">
-    <value>{0}: catena FAT non valida o ciclica nel cluster {1}.</value>
-  </data>
-  <data name="Explorer.Warning.SectorMissing">
-    <value>Manca il settore {0}.</value>
-  </data>
-  <data name="Explorer.Warning.LisaCatalog">
-    <value>Mancano le pagine del catalogo Lisa; i nomi dei file sono stati recuperati solo dai tag della pagina.</value>
-  </data>
-  <data name="Explorer.Warning.AtariDirectory">
-    <value>Manca il settore della directory {0}.</value>
-  </data>
-  <data name="Explorer.Warning.AtariData">
-    <value>{0}: settore dati Atari DOS non valido o mancante.</value>
-  </data>
-  <data name="Explorer.Warning.AtariOwner">
-    <value>Il settore {0} appartiene al file {1}, previsto {2}.</value>
-  </data>
+  <data name="Explorer.Warning.InvalidChecksum"><value>Il blocco radice {0} ha un checksum non valido.</value></data>
+  <data name="Explorer.Warning.DirectoryNesting"><value>È stato raggiunto il limite di nidificazione delle directory.</value></data>
+  <data name="Explorer.Warning.InvalidDirectoryChain"><value>Catena di directory non valida o ciclica nel blocco {0}.</value></data>
+  <data name="Explorer.Warning.DirectoryEntryMissing"><value>blocco di ingresso di Directory {0} manca.</value></data>
+  <data name="Explorer.Warning.AmigaExtension"><value>{0}: blocco estensione file non valido {1}.</value></data>
+  <data name="Explorer.Warning.AmigaBlock"><value>{0}: Manca AmigaDOS {1} ({2}).</value></data>
+  <data name="Explorer.Warning.FileDataMissing"><value>blocco dati file {0} manca.</value></data>
+  <data name="Explorer.Warning.OfsType"><value>Il blocco dati OFS {0} ha un tipo imprevisto.</value></data>
+  <data name="Explorer.Warning.BitmapMissing"><value>Blocco bitmap {0} manca.</value></data>
+  <data name="Explorer.Warning.BitmapChecksum"><value>Il blocco bitmap {0} ha un checksum non valido.</value></data>
+  <data name="Explorer.Warning.CpmAllocation"><value>{0}: il blocco di assegnazione CP/M {1} è esterno all'immagine.</value></data>
+  <data name="Explorer.Warning.CbmDirectoryCyclic"><value>Catena di directory ciclica CBM DOS in {0}/{1}.</value></data>
+  <data name="Explorer.Warning.CbmDirectoryMissing"><value>CBM DOS settore directory {0}/{1} manca.</value></data>
+  <data name="Explorer.Warning.CbmDataCyclic"><value>{0}: catena di dati ciclica in {1}/{2}.</value></data>
+  <data name="Explorer.Warning.CbmDataMissing"><value>{0}: Settore dati {1}/{2} manca.</value></data>
+  <data name="Explorer.Warning.CbmCapacity"><value>{0}: la catena di file supera la capacità dell'immagine.</value></data>
+  <data name="Explorer.Warning.UcsdDirectoryMissing"><value>Uno o più UCSD i blocchi di directory sono mancanti.</value></data>
+  <data name="Explorer.Warning.UcsdEntry"><value>La voce della directory UCSD {0} ha un nome non valido o vuoto.</value></data>
+  <data name="Explorer.Warning.UcsdRange"><value>{0}: intervallo di blocchi non valido {1}..{2}.</value></data>
+  <data name="Explorer.Warning.DataBlocksMissing"><value>{0}: mancano uno o più blocchi dati.</value></data>
+  <data name="Explorer.Warning.UcsdCount"><value>The UCSD la directory dichiara {0} file ma {1} sono state trovate voci valide.</value></data>
+  <data name="Explorer.Warning.CoherentInodeZero"><value>{0}: inode COHERENT 0 non valido.</value></data>
+  <data name="Explorer.Warning.CoherentInodeOutside"><value>{0}: l'inode COHERENT {1} è esterno all'immagine.</value></data>
+  <data name="Explorer.Warning.FileTooLarge"><value>{0}: il file è troppo grande.</value></data>
+  <data name="Explorer.Warning.CoherentBlock"><value>{0}: il blocco COHERENT {1} è esterno all'immagine.</value></data>
+  <data name="Explorer.Warning.BytesUnread"><value>{0}: Impossibile leggere {1} byte.</value></data>
+  <data name="Explorer.Warning.CoherentIndirect"><value>{0}: indiretto COHERENT blocco {1} è fuori dall'immagine.</value></data>
+  <data name="Explorer.Warning.Rt11SegmentMissing"><value>RT-11 segmento di directory {0} manca.</value></data>
+  <data name="Explorer.Warning.Rt11EntrySize"><value>Il segmento della directory RT-11 {0} ha una dimensione di voce non valida.</value></data>
+  <data name="Explorer.Warning.Rt11EmptyName"><value>La voce RT-11 nel blocco {0} ha un nome vuoto.</value></data>
+  <data name="Explorer.Warning.ProDosNesting"><value>È stato raggiunto il limite di nidificazione delle directory ProDOS.</value></data>
+  <data name="Explorer.Warning.DirectoryBlockCyclic"><value>Il blocco di directory {0} è mancante o ciclico.</value></data>
+  <data name="Explorer.Warning.MasterIndexMissing"><value>{0}: master index block {1} manca.</value></data>
+  <data name="Explorer.Warning.DataBlockMissing"><value>{0}: blocco dati {1} manca.</value></data>
+  <data name="Explorer.Warning.IndexBlockMissing"><value>{0}: blocco indice {1} manca.</value></data>
+  <data name="Explorer.Warning.CatalogMissing"><value>Settore catalogo T{0} S{1} mancante o ciclico.</value></data>
+  <data name="Explorer.Warning.CatalogSize"><value>{0}: la dimensione del catalogo non è coerente.</value></data>
+  <data name="Explorer.Warning.TrackSectorList"><value>{0}: Elenco T/S T{1} S{2} mancante o ciclico.</value></data>
+  <data name="Explorer.Warning.TrackSectorData"><value>{0}: dataset T{1} S{2} manca.</value></data>
+  <data name="Explorer.Warning.DirectoryBlockMissing"><value>blocco di directory {0} manca.</value></data>
+  <data name="Explorer.Warning.MfsEntry"><value>Voce della directory MFS non valida nel blocco {0}.</value></data>
+  <data name="Explorer.Warning.ResourceFork"><value>{0}: i metadati del fork delle risorse non sono coerenti.</value></data>
+  <data name="Explorer.Warning.MfsChain"><value>{0}: catena di allocazione MFS non valida.</value></data>
+  <data name="Explorer.Warning.BlockMissing"><value>{0}: blocco {1} manca.</value></data>
+  <data name="Explorer.Warning.BbcSector"><value>{0}: settore dati {1} manca.</value></data>
+  <data name="Explorer.Warning.HfsCatalog"><value>Il catalogo HFS non contiene record foglia leggibili.</value></data>
+  <data name="Explorer.Warning.HfsDirectory"><value>Directory HFS ciclica #{0}.</value></data>
+  <data name="Explorer.Warning.HfsBlock"><value>{0}: HFS blocco {1} manca.</value></data>
+  <data name="Explorer.Warning.HfsExtents"><value>{0}: sono necessarie estensioni HFS aggiuntive oppure mancano dati.</value></data>
+  <data name="Explorer.Warning.FatNesting"><value>The FAT limite di nidificazione directory è stato raggiunto.</value></data>
+  <data name="Explorer.Warning.FatChain"><value>{0}: catena FAT non valida o ciclica nel cluster {1}.</value></data>
+  <data name="Explorer.Warning.SectorMissing"><value>Sector {0} manca.</value></data>
+  <data name="Explorer.Warning.LisaCatalog"><value>Mancano le pagine del catalogo Lisa; i nomi dei file sono stati recuperati solo dai tag della pagina.</value></data>
+  <data name="Explorer.Warning.AtariDirectory"><value>Settore Directory {0} manca.</value></data>
+  <data name="Explorer.Warning.AtariData"><value>{0}: settore dati Atari DOS non valido o mancante.</value></data>
+  <data name="Explorer.Warning.AtariOwner"><value>Il settore {0} appartiene al file {1}, previsto {2}.</value></data>
 </root>

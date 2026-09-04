@@ -12,172 +12,60 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Warning.InvalidChecksum">
-    <value>Το ριζικό μπλοκ {0} έχει μη έγκυρο άθροισμα ελέγχου.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryNesting">
-    <value>Συμπληρώθηκε το όριο ένθεσης καταλόγου.</value>
-  </data>
-  <data name="Explorer.Warning.InvalidDirectoryChain">
-    <value>Μη έγκυρη ή κυκλική αλυσίδα καταλόγου στο μπλοκ {0}.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryEntryMissing">
-    <value>Το μπλοκ καταχώρισης καταλόγου {0} λείπει.</value>
-  </data>
-  <data name="Explorer.Warning.AmigaExtension">
-    <value>{0}: Μη έγκυρο μπλοκ επέκτασης αρχείου {1}.</value>
-  </data>
-  <data name="Explorer.Warning.AmigaBlock">
-    <value>{0}: Το AmigaDOS {1} ({2}) λείπει.</value>
-  </data>
-  <data name="Explorer.Warning.FileDataMissing">
-    <value>Το μπλοκ δεδομένων αρχείου {0} λείπει.</value>
-  </data>
-  <data name="Explorer.Warning.OfsType">
-    <value>Το μπλοκ δεδομένων OFS {0} έχει έναν απροσδόκητο τύπο.</value>
-  </data>
-  <data name="Explorer.Warning.BitmapMissing">
-    <value>Το μπλοκ bitmap {0} λείπει.</value>
-  </data>
-  <data name="Explorer.Warning.BitmapChecksum">
-    <value>Το μπλοκ Bitmap {0} έχει μη έγκυρο άθροισμα ελέγχου.</value>
-  </data>
-  <data name="Explorer.Warning.CpmAllocation">
-    <value>{0}: Το μπλοκ εκχώρησης CP/M {1} βρίσκεται εκτός της εικόνας.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDirectoryCyclic">
-    <value>Κυκλική αλυσίδα καταλόγου CBM DOS στο {0}/{1}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDirectoryMissing">
-    <value>Ο τομέας καταλόγου CBM DOS {0}/{1} λείπει.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDataCyclic">
-    <value>{0}: Κυκλική αλυσίδα δεδομένων σε {1}/{2}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDataMissing">
-    <value>{0}: Ο τομέας δεδομένων {1}/{2} λείπει.</value>
-  </data>
-  <data name="Explorer.Warning.CbmCapacity">
-    <value>{0}: η αλυσίδα αρχείων υπερβαίνει τη χωρητικότητα εικόνας.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdDirectoryMissing">
-    <value>Λείπουν ένα ή περισσότερα μπλοκ καταλόγου UCSD.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdEntry">
-    <value>Η καταχώριση καταλόγου UCSD {0} έχει μη έγκυρο ή κενό όνομα.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdRange">
-    <value>{0}: μη έγκυρο εύρος αποκλεισμού {1}..{2}.</value>
-  </data>
-  <data name="Explorer.Warning.DataBlocksMissing">
-    <value>{0}: λείπουν ένα ή περισσότερα μπλοκ δεδομένων.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdCount">
-    <value>Ο κατάλογος UCSD δηλώνει {0} αρχεία, αλλά βρέθηκαν {1} έγκυρες καταχωρήσεις.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentInodeZero">
-    <value>{0}: Μη έγκυρος κωδικός COHERENT 0.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentInodeOutside">
-    <value>{0}: Ο ΣΥΝΟΠΤΙΚΟΣ κωδικός {1} είναι έξω από την εικόνα.</value>
-  </data>
-  <data name="Explorer.Warning.FileTooLarge">
-    <value>{0}: Το αρχείο είναι πολύ μεγάλο.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentBlock">
-    <value>{0}: ΣΥΝΟΧΙΚΟ μπλοκ {1} είναι έξω από την εικόνα.</value>
-  </data>
-  <data name="Explorer.Warning.BytesUnread">
-    <value>{0}: Δεν ήταν δυνατή η ανάγνωση των {1} byte.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentIndirect">
-    <value>{0}: το έμμεσο COHERENT μπλοκ {1} βρίσκεται έξω από την εικόνα.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11SegmentMissing">
-    <value>Το τμήμα καταλόγου RT-11 {0} λείπει.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11EntrySize">
-    <value>Το τμήμα καταλόγου RT-11 {0} έχει μη έγκυρο μέγεθος καταχώρισης.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11EmptyName">
-    <value>Η καταχώρηση RT-11 στο μπλοκ {0} έχει ένα κενό όνομα.</value>
-  </data>
-  <data name="Explorer.Warning.ProDosNesting">
-    <value>Συμπληρώθηκε το όριο ένθεσης καταλόγου ProDOS.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryBlockCyclic">
-    <value>Το μπλοκ καταλόγου {0} λείπει ή είναι κυκλικό.</value>
-  </data>
-  <data name="Explorer.Warning.MasterIndexMissing">
-    <value>{0}: λείπει το κύριο μπλοκ ευρετηρίου {1}.</value>
-  </data>
-  <data name="Explorer.Warning.DataBlockMissing">
-    <value>{0}: λείπει το μπλοκ δεδομένων {1}.</value>
-  </data>
-  <data name="Explorer.Warning.IndexBlockMissing">
-    <value>{0}: λείπει το μπλοκ ευρετηρίου {1}.</value>
-  </data>
-  <data name="Explorer.Warning.CatalogMissing">
-    <value>Ο τομέας καταλόγου T{0} S{1} λείπει ή είναι κυκλικός.</value>
-  </data>
-  <data name="Explorer.Warning.CatalogSize">
-    <value>{0}: το μέγεθος του καταλόγου είναι ασυνεπές.</value>
-  </data>
-  <data name="Explorer.Warning.TrackSectorList">
-    <value>{0}: Η λίστα T/S T{1} S{2} λείπει ή είναι κυκλική.</value>
-  </data>
-  <data name="Explorer.Warning.TrackSectorData">
-    <value>{0}: ο τομέας δεδομένων T{1} S{2} λείπει.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryBlockMissing">
-    <value>Το μπλοκ καταλόγου {0} λείπει.</value>
-  </data>
-  <data name="Explorer.Warning.MfsEntry">
-    <value>Μη έγκυρη καταχώριση καταλόγου MFS στο μπλοκ {0}.</value>
-  </data>
-  <data name="Explorer.Warning.ResourceFork">
-    <value>{0}: τα μεταδεδομένα της διχάλας πόρων δεν είναι συνεπή.</value>
-  </data>
-  <data name="Explorer.Warning.MfsChain">
-    <value>{0}: μη έγκυρη αλυσίδα εκχώρησης MFS.</value>
-  </data>
-  <data name="Explorer.Warning.BlockMissing">
-    <value>{0}: λείπει το μπλοκ {1}.</value>
-  </data>
-  <data name="Explorer.Warning.BbcSector">
-    <value>{0}: ο τομέας δεδομένων {1} λείπει.</value>
-  </data>
-  <data name="Explorer.Warning.HfsCatalog">
-    <value>Ο κατάλογος HFS δεν περιέχει αναγνώσιμες εγγραφές φύλλων.</value>
-  </data>
-  <data name="Explorer.Warning.HfsDirectory">
-    <value>Κυκλικός κατάλογος HFS #{0}.</value>
-  </data>
-  <data name="Explorer.Warning.HfsBlock">
-    <value>{0}: Το μπλοκ HFS {1} λείπει.</value>
-  </data>
-  <data name="Explorer.Warning.HfsExtents">
-    <value>{0}: απαιτούνται πρόσθετες εκτάσεις HFS ή λείπουν δεδομένα.</value>
-  </data>
-  <data name="Explorer.Warning.FatNesting">
-    <value>Συμπληρώθηκε το όριο ένθεσης καταλόγου FAT.</value>
-  </data>
-  <data name="Explorer.Warning.FatChain">
-    <value>{0}: Μη έγκυρη ή κυκλική αλυσίδα FAT στο σύμπλεγμα {1}.</value>
-  </data>
-  <data name="Explorer.Warning.SectorMissing">
-    <value>Ο τομέας {0} λείπει.</value>
-  </data>
-  <data name="Explorer.Warning.LisaCatalog">
-    <value>Οι σελίδες του καταλόγου Lisa λείπουν. Τα ονόματα αρχείων ανακτήθηκαν μόνο από ετικέτες σελίδας.</value>
-  </data>
-  <data name="Explorer.Warning.AtariDirectory">
-    <value>Ο τομέας καταλόγου {0} λείπει.</value>
-  </data>
-  <data name="Explorer.Warning.AtariData">
-    <value>{0}: μη έγκυρος ή λείπει τομέας δεδομένων Atari DOS.</value>
-  </data>
-  <data name="Explorer.Warning.AtariOwner">
-    <value>Ο τομέας {0} ανήκει στο αρχείο {1}, αναμένεται {2}.</value>
-  </data>
+  <data name="Explorer.Warning.InvalidChecksum"><value>Το ριζικό μπλοκ {0} έχει μη έγκυρο άθροισμα ελέγχου.</value></data>
+  <data name="Explorer.Warning.DirectoryNesting"><value>Συμπληρώθηκε το όριο ένθεσης καταλόγου.</value></data>
+  <data name="Explorer.Warning.InvalidDirectoryChain"><value>Μη έγκυρη ή κυκλική αλυσίδα καταλόγου στο μπλοκ {0}.</value></data>
+  <data name="Explorer.Warning.DirectoryEntryMissing"><value>Το μπλοκ καταχώρισης καταλόγου {0} λείπει.</value></data>
+  <data name="Explorer.Warning.AmigaExtension"><value>{0}: Μη έγκυρο μπλοκ επέκτασης αρχείου {1}.</value></data>
+  <data name="Explorer.Warning.AmigaBlock"><value>{0}: Το AmigaDOS {1} ({2}) λείπει.</value></data>
+  <data name="Explorer.Warning.FileDataMissing"><value>Το μπλοκ δεδομένων αρχείου {0} λείπει.</value></data>
+  <data name="Explorer.Warning.OfsType"><value>Το μπλοκ δεδομένων OFS {0} έχει έναν απροσδόκητο τύπο.</value></data>
+  <data name="Explorer.Warning.BitmapMissing"><value>Το μπλοκ bitmap {0} λείπει.</value></data>
+  <data name="Explorer.Warning.BitmapChecksum"><value>Το μπλοκ Bitmap {0} έχει μη έγκυρο άθροισμα ελέγχου.</value></data>
+  <data name="Explorer.Warning.CpmAllocation"><value>{0}: Το μπλοκ εκχώρησης CP/M {1} βρίσκεται εκτός της εικόνας.</value></data>
+  <data name="Explorer.Warning.CbmDirectoryCyclic"><value>Κυκλική αλυσίδα καταλόγου CBM DOS στο {0}/{1}.</value></data>
+  <data name="Explorer.Warning.CbmDirectoryMissing"><value>Ο τομέας καταλόγου CBM DOS {0}/{1} λείπει.</value></data>
+  <data name="Explorer.Warning.CbmDataCyclic"><value>{0}: Κυκλική αλυσίδα δεδομένων σε {1}/{2}.</value></data>
+  <data name="Explorer.Warning.CbmDataMissing"><value>{0}: Ο τομέας δεδομένων {1}/{2} λείπει.</value></data>
+  <data name="Explorer.Warning.CbmCapacity"><value>{0}: η αλυσίδα αρχείων υπερβαίνει τη χωρητικότητα εικόνας.</value></data>
+  <data name="Explorer.Warning.UcsdDirectoryMissing"><value>Μία ή περισσότερες UCSD λείπουν τα μπλοκ καταλόγου.</value></data>
+  <data name="Explorer.Warning.UcsdEntry"><value>Η καταχώριση καταλόγου UCSD {0} έχει μη έγκυρο ή κενό όνομα.</value></data>
+  <data name="Explorer.Warning.UcsdRange"><value>{0}: μη έγκυρο εύρος αποκλεισμού {1}..{2}.</value></data>
+  <data name="Explorer.Warning.DataBlocksMissing"><value>{0}: λείπουν ένα ή περισσότερα μπλοκ δεδομένων.</value></data>
+  <data name="Explorer.Warning.UcsdCount"><value>Ο κατάλογος UCSD δηλώνει {0} αρχεία, αλλά βρέθηκαν {1} έγκυρες καταχωρήσεις.</value></data>
+  <data name="Explorer.Warning.CoherentInodeZero"><value>{0}: Μη έγκυρος κωδικός COHERENT 0.</value></data>
+  <data name="Explorer.Warning.CoherentInodeOutside"><value>{0}: COHERENT inode {1} είναι έξω από την εικόνα.</value></data>
+  <data name="Explorer.Warning.FileTooLarge"><value>{0}: Το αρχείο είναι πολύ μεγάλο.</value></data>
+  <data name="Explorer.Warning.CoherentBlock"><value>{0}: COHERENT block {1} είναι έξω από την εικόνα.</value></data>
+  <data name="Explorer.Warning.BytesUnread"><value>{0}: Δεν ήταν δυνατή η ανάγνωση των {1} byte.</value></data>
+  <data name="Explorer.Warning.CoherentIndirect"><value>{0}: το έμμεσο COHERENT μπλοκ {1} βρίσκεται έξω από την εικόνα.</value></data>
+  <data name="Explorer.Warning.Rt11SegmentMissing"><value>Το τμήμα καταλόγου RT-11 {0} λείπει.</value></data>
+  <data name="Explorer.Warning.Rt11EntrySize"><value>Το τμήμα καταλόγου RT-11 {0} έχει μη έγκυρο μέγεθος καταχώρισης.</value></data>
+  <data name="Explorer.Warning.Rt11EmptyName"><value>Η καταχώρηση RT-11 στο μπλοκ {0} έχει ένα κενό όνομα.</value></data>
+  <data name="Explorer.Warning.ProDosNesting"><value>Συμπληρώθηκε το όριο ένθεσης καταλόγου ProDOS.</value></data>
+  <data name="Explorer.Warning.DirectoryBlockCyclic"><value>Το μπλοκ καταλόγου {0} λείπει ή είναι κυκλικό.</value></data>
+  <data name="Explorer.Warning.MasterIndexMissing"><value>{0}: κύριο τμήμα ευρετηρίου {1} λείπει.</value></data>
+  <data name="Explorer.Warning.DataBlockMissing"><value>{0}: μπλοκ δεδομένων {1} λείπει.</value></data>
+  <data name="Explorer.Warning.IndexBlockMissing"><value>{0}: index block {1} λείπει.</value></data>
+  <data name="Explorer.Warning.CatalogMissing"><value>Ο τομέας καταλόγου T{0} S{1} λείπει ή είναι κυκλικός.</value></data>
+  <data name="Explorer.Warning.CatalogSize"><value>{0}: το μέγεθος του καταλόγου είναι ασυνεπές.</value></data>
+  <data name="Explorer.Warning.TrackSectorList"><value>{0}: Η λίστα T/S T{1} S{2} λείπει ή είναι κυκλική.</value></data>
+  <data name="Explorer.Warning.TrackSectorData"><value>{0}: ο τομέας δεδομένων T{1} S{2} λείπει.</value></data>
+  <data name="Explorer.Warning.DirectoryBlockMissing"><value>Το μπλοκ καταλόγου {0} λείπει.</value></data>
+  <data name="Explorer.Warning.MfsEntry"><value>Μη έγκυρη καταχώριση καταλόγου MFS στο μπλοκ {0}.</value></data>
+  <data name="Explorer.Warning.ResourceFork"><value>{0}: τα μεταδεδομένα της διχάλας πόρων δεν είναι συνεπή.</value></data>
+  <data name="Explorer.Warning.MfsChain"><value>{0}: μη έγκυρη MFS αλυσίδα κατανομής.</value></data>
+  <data name="Explorer.Warning.BlockMissing"><value>{0}: block {1} λείπει.</value></data>
+  <data name="Explorer.Warning.BbcSector"><value>{0}: ο τομέας δεδομένων {1} λείπει.</value></data>
+  <data name="Explorer.Warning.HfsCatalog"><value>Ο κατάλογος HFS δεν περιέχει αναγνώσιμες εγγραφές φύλλων.</value></data>
+  <data name="Explorer.Warning.HfsDirectory"><value>Κυκλικός κατάλογος HFS #{0}.</value></data>
+  <data name="Explorer.Warning.HfsBlock"><value>{0}: Το μπλοκ HFS {1} λείπει.</value></data>
+  <data name="Explorer.Warning.HfsExtents"><value>{0}: απαιτούνται πρόσθετες εκτάσεις HFS ή λείπουν δεδομένα.</value></data>
+  <data name="Explorer.Warning.FatNesting"><value>Η FAT επιτεύχθηκε όριο φωλεοποίησης καταλόγου.</value></data>
+  <data name="Explorer.Warning.FatChain"><value>{0}: Μη έγκυρη ή κυκλική αλυσίδα FAT στο σύμπλεγμα {1}.</value></data>
+  <data name="Explorer.Warning.SectorMissing"><value>Ο τομέας {0} λείπει.</value></data>
+  <data name="Explorer.Warning.LisaCatalog"><value>Οι σελίδες του καταλόγου Lisa λείπουν. Τα ονόματα αρχείων ανακτήθηκαν μόνο από ετικέτες σελίδας.</value></data>
+  <data name="Explorer.Warning.AtariDirectory"><value>Ο τομέας καταλόγου {0} λείπει.</value></data>
+  <data name="Explorer.Warning.AtariData"><value>{0}: άκυρο ή λείπει το Atari DOS τομέας δεδομένων.</value></data>
+  <data name="Explorer.Warning.AtariOwner"><value>Ο τομέας {0} ανήκει στο αρχείο {1}, αναμένεται {2}.</value></data>
 </root>

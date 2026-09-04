@@ -12,102 +12,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Image">
-    <value>Lemezkép</value>
-  </data>
-  <data name="Explorer.Format">
-    <value>Formátum</value>
-  </data>
-  <data name="Explorer.OpenImage">
-    <value>Lemezkép megnyitása…</value>
-  </data>
-  <data name="Explorer.Automatic">
-    <value>Automatikus felismerés</value>
-  </data>
-  <data name="Explorer.Volume">
-    <value>Kötet</value>
-  </data>
-  <data name="Explorer.FileSystem">
-    <value>Fájlrendszer</value>
-  </data>
-  <data name="Explorer.Capacity">
-    <value>Kapacitás</value>
-  </data>
-  <data name="Explorer.Free">
-    <value>Szabad hely</value>
-  </data>
-  <data name="Explorer.Entries">
-    <value>Elemek</value>
-  </data>
-  <data name="Explorer.SelectEntry">
-    <value>Válasszon fájlt vagy mappát.</value>
-  </data>
-  <data name="Explorer.Size">
-    <value>Méret</value>
-  </data>
-  <data name="Explorer.Modified">
-    <value>Módosítva</value>
-  </data>
-  <data name="Explorer.Comment">
-    <value>Megjegyzés</value>
-  </data>
-  <data name="Explorer.Warnings">
-    <value>Figyelmeztetések</value>
-  </data>
-  <data name="Explorer.Directory">
-    <value>Mappa</value>
-  </data>
-  <data name="Explorer.File">
-    <value>Fájl</value>
-  </data>
-  <data name="Explorer.Link">
-    <value>Hivatkozás</value>
-  </data>
-  <data name="Explorer.Unknown">
-    <value>Ismeretlen</value>
-  </data>
-  <data name="Explorer.Unnamed">
-    <value>Névtelen kötet</value>
-  </data>
-  <data name="Explorer.LoadFailed">
-    <value>A lemezkép nem nyitható meg: {0}</value>
-  </data>
-  <data name="Explorer.Loading">
-    <value>Lemezkép olvasása…</value>
-  </data>
-  <data name="Explorer.ReadDisk">
-    <value>Lemez olvasása</value>
-  </data>
-  <data name="Explorer.Name">
-    <value>Név</value>
-  </data>
-  <data name="Explorer.Type">
-    <value>Típus</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirmTitle">
-    <value>Lemez olvasása</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirm">
-    <value>A lemez az aktuálisan kiválasztott meghajtóban ({0}) van, és készen áll az olvasásra?</value>
-  </data>
-  <data name="Explorer.Type.Text">
-    <value>Szövegfájl</value>
-  </data>
-  <data name="Explorer.Type.Image">
-    <value>Kép</value>
-  </data>
-  <data name="Explorer.Type.Audio">
-    <value>Hangfájl</value>
-  </data>
-  <data name="Explorer.Type.Archive">
-    <value>Archívum</value>
-  </data>
-  <data name="Explorer.Type.Program">
-    <value>Program</value>
-  </data>
-  <data name="Explorer.Type.DiskImage">
-    <value>Lemezkép</value>
-  </data>
+  <data name="Explorer.Image"><value>Lemezkép</value></data>
+  <data name="Explorer.Format"><value>Formátum</value></data>
+  <data name="Explorer.OpenImage"><value>Lemezkép megnyitása…</value></data>
+  <data name="Explorer.Automatic"><value>Automatikus felismerés</value></data>
+  <data name="Explorer.Volume"><value>Kötet</value></data>
+  <data name="Explorer.FileSystem"><value>Fájlrendszer</value></data>
+  <data name="Explorer.Capacity"><value>Kapacitás</value></data>
+  <data name="Explorer.Free"><value>Szabad hely</value></data>
+  <data name="Explorer.Entries"><value>Elemek</value></data>
+  <data name="Explorer.SelectEntry"><value>Válasszon fájlt vagy mappát.</value></data>
+  <data name="Explorer.Size"><value>Méret</value></data>
+  <data name="Explorer.Modified"><value>Módosítva</value></data>
+  <data name="Explorer.Comment"><value>Megjegyzés</value></data>
+  <data name="Explorer.Warnings"><value>Figyelmeztetések</value></data>
+  <data name="Explorer.Directory"><value>Mappa</value></data>
+  <data name="Explorer.File"><value>Fájl</value></data>
+  <data name="Explorer.Link"><value>Hivatkozás</value></data>
+  <data name="Explorer.Unknown"><value>Ismeretlen</value></data>
+  <data name="Explorer.Unnamed"><value>Névtelen kötet</value></data>
+  <data name="Explorer.LoadFailed"><value>A lemezkép nem nyitható meg: {0}</value></data>
+  <data name="Explorer.Loading"><value>Lemezkép olvasása…</value></data>
+  <data name="Explorer.ReadDisk"><value>Lemez olvasása</value></data>
+  <data name="Explorer.Name"><value>Név</value></data>
+  <data name="Explorer.Type"><value>Típus</value></data>
+  <data name="Explorer.ReadDiskConfirmTitle"><value>Lemez olvasása</value></data>
+  <data name="Explorer.ReadDiskConfirm"><value>A lemez az aktuálisan kiválasztott meghajtóban ({0}) van, és készen áll az olvasásra?</value></data>
+  <data name="Explorer.Type.Text"><value>Szövegfájl</value></data>
+  <data name="Explorer.Type.Image"><value>Kép</value></data>
+  <data name="Explorer.Type.Audio"><value>Hangfájl</value></data>
+  <data name="Explorer.Type.Archive"><value>Archívum</value></data>
+<data name="Explorer.Type.DiskImage"><value>Lemezkép</value></data>
   <data name="Explorer.System"><value>Rendszer</value></data>
   <data name="Explorer.Protection"><value>Védelem</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Fizikai szektorok — nem ismerhető fel fájlrendszer</value></data>
@@ -119,6 +54,6 @@
   <data name="Explorer.Content.crack-the-company"><value>A The Company crackje</value></data>
   <data name="Explorer.DataBlocks"><value>Adatblokkok</value></data>
   <data name="Explorer.DetectedFormats"><value>Észlelve: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable"><value>A Host Tools nem tud magyarázható ágazati képet alkotni {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed"><value>A Host Tools nem tudta dekódolni a képet {0}.</value></data>
 </root>

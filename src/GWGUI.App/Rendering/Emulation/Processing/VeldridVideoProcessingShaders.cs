@@ -24,11 +24,13 @@ internal static class VeldridVideoProcessingShaders
             vec4 CrtDisplay; vec4 CrtBeam; vec4 CrtOptical; vec4 CrtGeometry;
             vec4 CrtScanlines; vec4 CrtPattern; vec4 CrtPatternIntensity;
             vec4 FixedDisplay; vec4 FixedSpatial; vec4 FixedTechnology; vec4 FixedTemporal;
-            vec4 PlasmaEffect; vec4 PlasmaTemporal; vec4 VectorEffect; vec4 VectorTemporal;
+            vec4 PlasmaEffect; vec4 PlasmaTemporal; vec4 PlasmaDisplay;
+            vec4 VectorEffect; vec4 VectorTemporal; vec4 VectorDisplay;
             vec4 Restoration; vec4 SegmentDisplay; vec4 SegmentTemporal;
             vec4 General; vec4 Restoration2; vec4 Temporal;
             vec4 Signal; vec4 Signal2; vec4 Stylistic; vec4 Stylistic2;
-            vec4 Vfd; vec4 LedMatrix; vec4 DotMatrix; vec4 EPaper;
+            vec4 VfdDisplay; vec4 VfdStructure; vec4 VfdOptical;
+            vec4 LedMatrixEmission; vec4 LedMatrixStructure; vec4 DotMatrix; vec4 EPaper;
             vec4 Projection;
         } Parameters;
         layout(set=0,binding=1) uniform texture2D Source;
@@ -180,12 +182,178 @@ internal static class VeldridVideoProcessingShaders
             if(mode==3)c=mix(c,(u+d)*.5,.5);
             return videoSharpnessParameter(c,axial,Parameters.Processing.x);
         }
-        """ + FilterFixedPixelSubpixels.Shader + FilterFixedPixelGrid.Shader
+        """ + "\n" + """
+        #if DISPLAY_TECHNOLOGY == 2
+        """ + "\n" + FilterFixedPixelSubpixels.Shader + FilterFixedPixelGrid.Shader
         + FilterLcdDisplay.Shader + FilterLedBacklitLcdDisplay.Shader + FilterOledDisplay.Shader
-        + FilterFixedPixelResponse.Shader + FilterFixedPixelPersistence.Shader + """
+        + FilterFixedPixelResponse.Shader + FilterFixedPixelPersistence.Shader + "\n" + """
+        #endif
+        #if DISPLAY_TECHNOLOGY == 3
+        """ + "\n" + FilterPlasmaCellStructure.Shader + FilterPlasmaTemporalDithering.Shader
+        + FilterPlasmaLightDiffusion.Shader + FilterPlasmaPersistence.Shader
+        + FilterPlasmaBlackDepth.Shader + FilterPlasmaPhosphorIntensity.Shader
+        + FilterPlasmaGammaResponse.Shader
+        + FilterPlasmaAutomaticBrightnessLimiter.Shader + "\n" + """
+        #endif
+        #if DISPLAY_TECHNOLOGY == 4
+        """ + "\n" + FilterVectorLineDetection.Shader + FilterVectorLineIntensity.Shader
+        + FilterVectorBeamWidth.Shader + FilterVectorBeamFocus.Shader
+        + FilterVectorHalo.Shader + FilterVectorHaloRadius.Shader
+        + FilterVectorPhosphorColor.Shader + FilterVectorPersistence.Shader + "\n" + """
+        #endif
+        #if DISPLAY_TECHNOLOGY == 5
+        """ + "\n" + FilterVfdEmissionThreshold.Shader + FilterVfdPhosphorIntensity.Shader
+        + FilterVfdPhosphorColor.Shader + FilterVfdGlass.Shader
+        + FilterVfdCellStructure.Shader + FilterVfdHaloRadius.Shader
+        + FilterVfdHalo.Shader + FilterVfdPersistence.Shader + "\n" + """
+        #endif
+        #if DISPLAY_TECHNOLOGY == 6
+        """ + "\n" + FilterLedMatrixCellStructure.Shader
+        + FilterLedMatrixColor.Shader + FilterLedMatrixBrightness.Shader
+        + FilterLedMatrixHalo.Shader + FilterLedMatrixBlackDepth.Shader + "\n" + """
+        #endif
+        #if DISPLAY_TECHNOLOGY == 3
+        vec3 plasmaPixel(vec3 color,vec2 uv)
+        {
+            vec2 sourceSize=max(Parameters.Processing.zw,vec2(1.0));
+            vec2 pixelScale=Parameters.Output.xy/sourceSize;
+            color=filterPlasmaBlackDepth(color,Parameters.PlasmaDisplay.x);
+            color=filterPlasmaGammaResponse(color,Parameters.PlasmaDisplay.z);
+            color=filterPlasmaPhosphorIntensity(color,Parameters.PlasmaDisplay.y);
+            color=filterPlasmaAutomaticBrightnessLimiter(color,Parameters.PlasmaDisplay.w,
+                Parameters.PlasmaTemporal.w);
+            color=filterPlasmaCellStructure(color,fract(uv*sourceSize),
+                Parameters.PlasmaEffect.y,pixelScale);
+            color=filterPlasmaTemporalDithering(color,floor(uv*Parameters.Output.xy),
+                Parameters.PlasmaEffect.w,Parameters.PlasmaTemporal.z);
+            if(Parameters.PlasmaEffect.z>0.0)
+            {
+                vec2 stepSize=1.0/sourceSize;
+                vec3 nearLight=(raw(uv-vec2(stepSize.x,0.0))+raw(uv+vec2(stepSize.x,0.0))
+                    +raw(uv-vec2(0.0,stepSize.y))+raw(uv+vec2(0.0,stepSize.y)))*.25;
+                vec3 farLight=(raw(uv-vec2(stepSize.x*2.0,0.0))+raw(uv+vec2(stepSize.x*2.0,0.0))
+                    +raw(uv-vec2(0.0,stepSize.y*2.0))+raw(uv+vec2(0.0,stepSize.y*2.0)))*.25;
+                color=filterPlasmaLightDiffusion(color,nearLight,farLight,
+                    Parameters.PlasmaEffect.z);
+            }
+            return color;
+        }
+        #endif
+        #if DISPLAY_TECHNOLOGY == 4
+        float vectorLuminance(vec2 uv)
+        {
+            return dot(adjust(raw(uv)),vec3(.2126,.7152,.0722));
+        }
+        float vectorEmission(vec2 uv)
+        {
+            vec2 s=1.0/max(Parameters.Processing.zw,vec2(1.0));
+            float tl=vectorLuminance(uv+vec2(-s.x,-s.y));
+            float t=vectorLuminance(uv+vec2(0.0,-s.y));
+            float tr=vectorLuminance(uv+vec2(s.x,-s.y));
+            float l=vectorLuminance(uv+vec2(-s.x,0.0));
+            float r=vectorLuminance(uv+vec2(s.x,0.0));
+            float bl=vectorLuminance(uv+vec2(-s.x,s.y));
+            float b=vectorLuminance(uv+vec2(0.0,s.y));
+            float br=vectorLuminance(uv+vec2(s.x,s.y));
+            return filterVectorLineDetection(-tl-2.0*l-bl+tr+2.0*r+br,
+                -tl-2.0*t-tr+bl+2.0*b+br,Parameters.VectorEffect.y);
+        }
+        vec3 vectorPixel(vec3 color,vec2 uv)
+        {
+            vec2 sourceStep=1.0/max(Parameters.Processing.zw,vec2(1.0));
+            float center=vectorEmission(uv);
+            float nearEmission=max(max(vectorEmission(uv+vec2(sourceStep.x,0.0)),
+                vectorEmission(uv-vec2(sourceStep.x,0.0))),max(
+                vectorEmission(uv+vec2(0.0,sourceStep.y)),
+                vectorEmission(uv-vec2(0.0,sourceStep.y))));
+            float farEmission=max(max(vectorEmission(uv+vec2(sourceStep.x*2.0,0.0)),
+                vectorEmission(uv-vec2(sourceStep.x*2.0,0.0))),max(
+                vectorEmission(uv+vec2(0.0,sourceStep.y*2.0)),
+                vectorEmission(uv-vec2(0.0,sourceStep.y*2.0))));
+            float emission=filterVectorBeamWidth(center,nearEmission,farEmission,
+                Parameters.VectorDisplay.x);
+            emission=filterVectorBeamFocus(emission,(center+nearEmission*4.0)/5.0,
+                Parameters.VectorDisplay.y);
+            color=filterVectorLineIntensity(color,emission,Parameters.VectorEffect.z);
+            if(Parameters.VectorEffect.w>0.0&&Parameters.VectorEffect.z>0.0)
+            {
+                float radius=filterVectorHaloRadius(Parameters.VectorDisplay.w);
+                vec2 s=sourceStep*radius;
+                float average=0.0;
+                for(int y=-1;y<=1;y++)for(int x=-1;x<=1;x++)
+                    average+=vectorEmission(uv+vec2(float(x),float(y))*s);
+                color=filterVectorHalo(color,average/9.0,Parameters.VectorEffect.z,
+                    Parameters.VectorEffect.w);
+            }
+            color=filterVectorPhosphorColor(color,Parameters.VectorDisplay.z);
+            return clamp(color,0.0,1.0);
+        }
+        #endif
+        #if DISPLAY_TECHNOLOGY == 5
+        float vfdEmission(vec2 uv)
+        {
+            vec3 sampleColor=adjust(sourceColor(clamp(uv,vec2(0.0),vec2(1.0))));
+            return filterVfdEmissionThreshold(dot(sampleColor,vec3(.2126,.7152,.0722)),
+                Parameters.VfdDisplay.z);
+        }
+        vec3 vfdPixel(vec3 source,vec2 uv)
+        {
+            float mask=filterVfdCellStructure(uv,Parameters.Processing.zw,
+                Parameters.VfdStructure.x,Parameters.VfdStructure.y,
+                Parameters.VfdStructure.z);
+            float emission=filterVfdPhosphorIntensity(filterVfdEmissionThreshold(
+                dot(source,vec3(.2126,.7152,.0722)),Parameters.VfdDisplay.z)*mask,
+                Parameters.VfdDisplay.y);
+            vec2 stepSize=1.0/max(Parameters.Processing.zw,vec2(1.0));
+            float radius=filterVfdHaloRadius(Parameters.VfdOptical.x);
+            float nearRadius=max(1.0,radius*.5);
+            float nearEmission=(vfdEmission(uv+vec2(stepSize.x*nearRadius,0.0))
+                +vfdEmission(uv-vec2(stepSize.x*nearRadius,0.0))
+                +vfdEmission(uv+vec2(0.0,stepSize.y*nearRadius))
+                +vfdEmission(uv-vec2(0.0,stepSize.y*nearRadius)))*.25;
+            float farEmission=(vfdEmission(uv+vec2(stepSize.x*radius,stepSize.y*radius))
+                +vfdEmission(uv+vec2(-stepSize.x*radius,stepSize.y*radius))
+                +vfdEmission(uv+vec2(stepSize.x*radius,-stepSize.y*radius))
+                +vfdEmission(uv-vec2(stepSize.x*radius,stepSize.y*radius)))*.25;
+            float halo=filterVfdPhosphorIntensity(filterVfdHalo(nearEmission,farEmission,
+                Parameters.VfdStructure.w),Parameters.VfdDisplay.y);
+            return clamp(filterVfdGlass(source,Parameters.VfdDisplay.w)
+                +filterVfdPhosphorColor(emission,Parameters.VfdDisplay.x)
+                +filterVfdPhosphorColor(halo,Parameters.VfdDisplay.x),0.0,1.0);
+        }
+        #endif
+        #if DISPLAY_TECHNOLOGY == 6
+        vec3 ledMatrixPixel(vec2 uv)
+        {
+            vec2 sourceSize=max(Parameters.Processing.zw,vec2(1.0));
+            float pitch=filterLedMatrixPitch(Parameters.LedMatrixStructure.x);
+            vec2 sourcePosition=uv*sourceSize;
+            vec2 cell=floor(sourcePosition/pitch);
+            vec2 centerUv=(cell+.5)*pitch/sourceSize;
+            vec2 sampleOffset=vec2(pitch*.28)/sourceSize;
+            vec3 emission=(raw(centerUv)*4.0+raw(centerUv-vec2(sampleOffset.x,0.0))
+                +raw(centerUv+vec2(sampleOffset.x,0.0))
+                +raw(centerUv-vec2(0.0,sampleOffset.y))
+                +raw(centerUv+vec2(0.0,sampleOffset.y)))/8.0;
+            emission=filterLedMatrixColor(emission,Parameters.LedMatrixEmission.x);
+            emission=filterLedMatrixBrightness(emission,Parameters.LedMatrixEmission.y);
+            vec2 localPosition=fract(sourcePosition/pitch)-.5;
+            float distance=filterLedMatrixDistance(localPosition,Parameters.LedMatrixEmission.w);
+            float edgeWidth=max(sourceSize.x/max(Parameters.Output.x,1.0),
+                sourceSize.y/max(Parameters.Output.y,1.0))/pitch;
+            float core=filterLedMatrixCore(distance,Parameters.LedMatrixStructure.y,edgeWidth);
+            float halo=filterLedMatrixHalo(distance,Parameters.LedMatrixStructure.y,
+                Parameters.LedMatrixStructure.w,Parameters.LedMatrixStructure.z)*(1.0-core);
+            return clamp(filterLedMatrixBlackDepth(Parameters.LedMatrixEmission.z)
+                +emission*(core+halo),0.0,1.0);
+        }
+        #endif
         vec3 displayEffect(vec3 c,vec2 uv){int t=int(Parameters.General.x+.5);vec2 p=floor(uv*Parameters.Output.xy),l=fract(uv*Parameters.Processing.zw);
+        #if DISPLAY_TECHNOLOGY == 1
             if(t==1){vec2 q=uv*2.0-1.0;q.x*=1.0+Parameters.CrtGeometry.x*.28*q.y*q.y+Parameters.CrtGeometry.z*.22*q.y;q.y*=1.0+Parameters.CrtGeometry.y*.28*q.x*q.x;vec2 wuv=(q+1.0)*.5;if(any(lessThan(wuv,vec2(0)))||any(greaterThan(wuv,vec2(1))))return vec3(0);vec2 ss=1.0/max(Parameters.Processing.zw,vec2(1));vec3 src=raw(wuv),v=(raw(wuv-vec2(0,ss.y))+raw(wuv+vec2(0,ss.y)))*.5,n=(raw(wuv-ss)+raw(wuv+ss)+raw(wuv+vec2(ss.x,-ss.y))+raw(wuv+vec2(-ss.x,ss.y))+src*5.0)/9.0;c=mix(src,v,Parameters.CrtBeam.y*.45);c=mix(c,n,Parameters.CrtBeam.w*.72);c=clamp(c*(1.0+Parameters.CrtBeam.z*.5)+max(n-vec3(.35),vec3(0))*Parameters.CrtOptical.x*.85,0.0,1.0);if(Parameters.CrtDisplay.y>.5){float lum=dot(c,vec3(.2126,.7152,.0722));c=lum*vec3(Parameters.CrtDisplay.zw,Parameters.CrtBeam.x);}p=floor(uv*Parameters.Processing.zw);int mask=int(Parameters.CrtOptical.y+.5),subpixelLayout=int(Parameters.CrtOptical.z+.5);if(mask!=0&&Parameters.CrtOptical.w>0){int selected=subpixelLayout==0?-1:int(mod(p.x,3.0));if(subpixelLayout==2)selected=2-selected;if(mask==2)selected=int(mod(float(selected)+mod(p.y,2.0),3.0));bool gap=mask==3&&int(mod(p.y,4.0))==3;float strength=Parameters.CrtOptical.w*.88;for(int channel=0;channel<3;channel++){float attenuation=gap||(selected>=0&&channel!=selected)?strength:strength*.12;if(subpixelLayout==0)attenuation=int(mod(p.x+p.y,2.0))==0?strength*.1:strength;c[channel]*=1.0-attenuation;}}if(Parameters.CrtPatternIntensity.y>.5&&Parameters.CrtScanlines.x>0){float a=Parameters.CrtPatternIntensity.z<.5?uv.y*Parameters.Processing.w:uv.x*Parameters.Processing.z,gapStart=mix(.47,.18,Parameters.CrtScanlines.y),cycle=fract((a+Parameters.CrtScanlines.z*.25)*.5),distanceFromBeam=min(abs(cycle-.25),1.0-abs(cycle-.25)),gap=smoothstep(gapStart,min(.5,gapStart+.055),distanceFromBeam),coverage=1.0-gapStart*2.0,comp=1.0+Parameters.CrtScanlines.w*Parameters.CrtScanlines.x*coverage*.45;c*=(1.0-Parameters.CrtScanlines.x*gap*.94)*comp;}if(Parameters.CrtPattern.x>.5&&Parameters.CrtPatternIntensity.x>0){float a=Parameters.CrtPattern.y<.5?p.y:p.x,len=Parameters.CrtPattern.y<.5?Parameters.Processing.w:Parameters.Processing.z,cycles=1.0+Parameters.CrtPattern.z*31.0,w=.5+.5*cos(6.2831853*(a+.5)*cycles/len+Parameters.CrtPattern.w*6.2831853);c*=1.0-Parameters.CrtPatternIntensity.x*.85*w;}float radius=clamp(dot(uv*2.0-1.0,uv*2.0-1.0)*.5,0.0,1.0);c*=1.0-Parameters.CrtGeometry.w*.92*pow(radius,1.5);}
-            else if(t==2)
+        #endif
+        #if DISPLAY_TECHNOLOGY == 2
+            if(t==2)
             {
                 c=filterFixedPixelSubpixels(c,l,Parameters.FixedDisplay.z,Parameters.FixedSpatial.yzw,
                     Parameters.FixedDisplay.w,Parameters.Output.x/max(Parameters.Processing.z,1.0));
@@ -204,13 +372,32 @@ internal static class VeldridVideoProcessingShaders
                 }
                 else c=filterOledDisplay(c,Parameters.FixedTechnology.y);
             }
-            else if(t==3){int s=min(2,int(l.x*3.0));for(int x=0;x<3;x++)if(x!=s)c[x]*=1.0-Parameters.PlasmaEffect.y*.35;c+=vec3((hash(p)-.5)*Parameters.PlasmaEffect.w*.08);}
-            else if(t==4){vec2 s=1.0/max(Parameters.Output.xy,vec2(1));float x=length(raw(uv+vec2(s.x,0))-raw(uv-vec2(s.x,0))),y=length(raw(uv+vec2(0,s.y))-raw(uv-vec2(0,s.y)));c+=vec3(smoothstep(Parameters.VectorEffect.y,Parameters.VectorEffect.y+.1,length(vec2(x,y)))*Parameters.VectorEffect.z*(1.0+Parameters.VectorEffect.w*.5));}
-            else if(t==5){int x=int(Parameters.Vfd.x+.5);vec3 k=x==1?vec3(.05,1,.12):x==2?vec3(1,.45,.02):x==3?vec3(1,.04,.02):vec3(.05,.45,1);c=k*dot(c,vec3(.2126,.7152,.0722))*(.5+Parameters.Vfd.y);}
-            else if(t==6){float z=max(2.0,2.0+Parameters.LedMatrix.y*10.0);vec2 q=fract(p/z)-.5;c*=smoothstep(.5,.5-Parameters.LedMatrix.z*.35,max(abs(q.x),abs(q.y)))*(.5+Parameters.LedMatrix.w);}
-            else if(t==7){vec2 q=fract(p/vec2(6,8))-.5;float d=int(Parameters.DotMatrix.y+.5)==0?length(q):max(abs(q.x),abs(q.y));c*=smoothstep(.5,.5-Parameters.DotMatrix.z*.45,d)*(.5+Parameters.DotMatrix.w);}
-            else if(t==8)c=mapSegments(c,uv);else if(t==9){float y=dot(c,vec3(.2126,.7152,.0722)),n=int(Parameters.EPaper.x+.5)==0?1.0:15.0;y=floor(y*n+hash(p)*Parameters.EPaper.z)/max(n,1.0);c=int(Parameters.EPaper.x+.5)==2?mix(vec3(y),c,.45):vec3(y);c=mix(vec3(.92),c,.4+Parameters.EPaper.y*.6);}
-            else if(t==10){vec2 s=1.0/max(Parameters.Output.xy,vec2(1));c=mix(c,(raw(uv-s)+raw(uv+s))*.5,Parameters.Projection.x*.55+Parameters.Projection.y*.25);c*=1.0-(hash(p)-.5)*Parameters.Projection.z*.12;}return clamp(c,0.0,1.0);}
+        #endif
+        #if DISPLAY_TECHNOLOGY == 3
+            if(t==3)c=plasmaPixel(c,uv);
+        #endif
+        #if DISPLAY_TECHNOLOGY == 4
+            if(t==4)c=vectorPixel(c,uv);
+        #endif
+        #if DISPLAY_TECHNOLOGY == 5
+            if(t==5)c=vfdPixel(c,uv);
+        #endif
+        #if DISPLAY_TECHNOLOGY == 6
+            if(t==6)c=ledMatrixPixel(uv);
+        #endif
+        #if DISPLAY_TECHNOLOGY == 7
+            if(t==7){vec2 q=fract(p/vec2(6,8))-.5;float d=int(Parameters.DotMatrix.y+.5)==0?length(q):max(abs(q.x),abs(q.y));c*=smoothstep(.5,.5-Parameters.DotMatrix.z*.45,d)*(.5+Parameters.DotMatrix.w);}
+        #endif
+        #if DISPLAY_TECHNOLOGY == 8
+            if(t==8)c=mapSegments(c,uv);
+        #endif
+        #if DISPLAY_TECHNOLOGY == 9
+            if(t==9){float y=dot(c,vec3(.2126,.7152,.0722)),n=int(Parameters.EPaper.x+.5)==0?1.0:15.0;y=floor(y*n+hash(p)*Parameters.EPaper.z)/max(n,1.0);c=int(Parameters.EPaper.x+.5)==2?mix(vec3(y),c,.45):vec3(y);c=mix(vec3(.92),c,.4+Parameters.EPaper.y*.6);}
+        #endif
+        #if DISPLAY_TECHNOLOGY == 10
+            if(t==10){vec2 s=1.0/max(Parameters.Output.xy,vec2(1));c=mix(c,(raw(uv-s)+raw(uv+s))*.5,Parameters.Projection.x*.55+Parameters.Projection.y*.25);c*=1.0-(hash(p)-.5)*Parameters.Projection.z*.12;}
+        #endif
+            return clamp(c,0.0,1.0);}
         """ + SignalConnectionRgbScart.Shader + SignalConnectionComponent.Shader
         + SignalConnectionSVideo.Shader + SignalConnectionComposite.Shader
         + SignalConnectionRf.Shader + SignalStandardPal.Shader + SignalStandardNtsc.Shader
@@ -255,11 +442,26 @@ internal static class VeldridVideoProcessingShaders
             vec2 historyUv=clamp(fsin_TexCoord,.5/size,1.0-.5/size);
             vec3 previous=displayEffect(adjust(texture(sampler2D(History,LinearSampler),historyUv).rgb),fsin_TexCoord);
             previous=clamp(postEffect(previous,fsin_TexCoord),0.0,1.0);
+        #if DISPLAY_TECHNOLOGY == 3
+            if(Parameters.PlasmaTemporal.y>.5)
+                c=filterPlasmaPersistence(c,previous,Parameters.PlasmaTemporal.x);
+        #endif
+        #if DISPLAY_TECHNOLOGY == 4
+            if(Parameters.VectorTemporal.y>.5)
+                c=filterVectorPersistence(c,previous,Parameters.VectorTemporal.x);
+        #endif
+        #if DISPLAY_TECHNOLOGY == 5
+            if(Parameters.VfdOptical.w>.5)
+                c=filterVfdPersistence(c,previous,Parameters.VfdOptical.y,
+                    Parameters.VfdOptical.z);
+        #endif
+        #if DISPLAY_TECHNOLOGY == 2
             if(Parameters.FixedDisplay.x>.5&&Parameters.FixedTemporal.z>.5)
             {
                 c=filterFixedPixelResponse(previous,c,Parameters.FixedTemporal.x,Parameters.FixedTemporal.w);
                 c=filterFixedPixelPersistence(c,previous,Parameters.FixedTemporal.y);
             }
+        #endif
             c=filterInterlacing(c,previous,fsin_TexCoord,Parameters.Processing.w,Parameters.General.z,Parameters.Temporal.w,Parameters.Signal2.z,Parameters.General.y);
             c=filterFlicker(c,Parameters.General.z,Parameters.Temporal.z);
             if(Parameters.General.y>.5)
@@ -273,7 +475,9 @@ internal static class VeldridVideoProcessingShaders
         }
         """;
 
-    internal static string Fragment(GWGUI.Emulation.Enums.EmulationVideoSampling sampling)
+    internal static string Fragment(GWGUI.Emulation.Enums.EmulationVideoSampling sampling,
+        GWGUI.Emulation.Enums.EmulationVideoDisplayTechnology displayTechnology =
+            GWGUI.Emulation.Enums.EmulationVideoDisplayTechnology.Normal)
     {
         var (dependencies, function) = sampling switch
         {
@@ -338,7 +542,7 @@ internal static class VeldridVideoProcessingShaders
                     + FilterXbr.VeldridShader + FilterSabr.VeldridShader, "sabrCompactSample"),
             _ => throw new ArgumentOutOfRangeException(nameof(sampling), sampling, null)
         };
-        return FragmentHeader + dependencies
+        return FragmentHeader + $"#define DISPLAY_TECHNOLOGY {(int)displayTechnology}\n" + dependencies
             + $"vec3 sourceColor(vec2 uv){{return {function}(uv);}}\n"
             + VideoBrightnessParameterFunctions.Shader + VideoContrastParameterFunctions.Shader
             + VideoGammaParameterFunctions.Shader + VideoSaturationParameterFunctions.Shader

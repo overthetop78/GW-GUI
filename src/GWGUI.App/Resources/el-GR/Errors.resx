@@ -12,28 +12,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.SettingsSaveFailed">
-    <value>Δεν ήταν δυνατή η αποθήκευση των ρυθμίσεων.
-
-{0}</value>
-  </data>
-  <data name="Error.Title">
-    <value>GW GUI σφάλμα</value>
-  </data>
-  <data name="Error.Unexpected">
-    <value>Καταγράφηκε ένα απροσδόκητο σφάλμα.
-
-{0}</value>
-  </data>
-  <data name="Error.SaveFailed">
-    <value>Δεν ήταν δυνατή η αποθήκευση των ρυθμίσεων. Το παράθυρο θα εξακολουθεί να κλείνει.
-
-{0}</value>
-  </data>
-  <data name="Error.LogSaved">
-    <value>Η πλήρης αναφορά αποθηκεύτηκε στη διεύθυνση:
-{0}</value>
-  </data>
+  <data name="App.SettingsSaveFailed"><value>Δεν ήταν δυνατή η αποθήκευση των ρυθμίσεων.&#xA;&#xA;{0}</value></data>
+  <data name="Error.Title"><value>GW GUI σφάλμα</value></data>
+  <data name="Error.Unexpected"><value>Καταγράφηκε ένα απροσδόκητο σφάλμα.&#xA;&#xA;{0}</value></data>
+  <data name="Error.SaveFailed"><value>Δεν ήταν δυνατή η αποθήκευση των ρυθμίσεων. Το παράθυρο θα εξακολουθεί να κλείνει.&#xA;&#xA;{0}</value></data>
+  <data name="Error.LogSaved"><value>Η πλήρης αναφορά αποθηκεύτηκε στη διεύθυνση:&#xA;{0}</value></data>
   <data name="Error.Description.NetworkTimeout"><value>Η απομακρυσμένη υπηρεσία δεν ανταποκρίθηκε πριν λήξει ο χρόνος σύνδεσης. Ελέγξτε τη σύνδεση δικτύου και προσπαθήστε ξανά.</value></data>
   <data name="Error.Description.NetworkDns"><value>Η διεύθυνση απομακρυσμένης υπηρεσίας δεν μπορούσε να επιλυθεί. Ελέγξτε τις ρυθμίσεις δικτύου ή DNS και προσπαθήστε ξανά.</value></data>
   <data name="Error.Description.NetworkRefused"><value>Η απομακρυσμένη υπηρεσία αρνήθηκε τη σύνδεση. Μπορεί να μην είναι διαθέσιμη ή να είναι μπλοκαρισμένη.</value></data>

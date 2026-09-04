@@ -12,53 +12,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Cancel">
-    <value>Cancellare</value>
-  </data>
-  <data name="Common.Save">
-    <value>Salva</value>
-  </data>
-  <data name="Common.Create">
-    <value>Crea</value>
-  </data>
-  <data name="Common.Delete">
-    <value>Eliminare</value>
-  </data>
-  <data name="Common.Browse">
-    <value>Sfoglia...</value>
-  </data>
-  <data name="Common.Choose">
-    <value>Scegliere…</value>
-  </data>
-  <data name="Common.Close">
-    <value>Vicino</value>
-  </data>
-  <data name="Common.Execute">
-    <value>Eseguire</value>
-  </data>
-  <data name="Common.Stop">
-    <value>Fermare</value>
-  </data>
-  <data name="Common.Continue">
-    <value>Continuare</value>
-  </data>
-  <data name="Common.Reset">
-    <value>Reset</value>
-  </data>
-  <data name="Common.Copy">
-    <value>Copia</value>
-  </data>
-  <data name="Common.Modify">
-    <value>Modificare</value>
-  </data>
-  <data name="Common.Hide">
-    <value>Nascondere</value>
-  </data>
-  <data name="Common.Export">
-    <value>Esportare</value>
-  </data>
+  <data name="Common.Cancel"><value>Cancellare</value></data>
+  <data name="Common.Save"><value>Salva</value></data>
+  <data name="Common.Create"><value>Crea</value></data>
+  <data name="Common.Delete"><value>Eliminare</value></data>
+  <data name="Common.Browse"><value>Sfoglia...</value></data>
+  <data name="Common.Choose"><value>Scegliere…</value></data>
+  <data name="Common.Close"><value>Vicino</value></data>
+  <data name="Common.Execute"><value>Eseguire</value></data>
+  <data name="Common.Stop"><value>Fermare</value></data>
+  <data name="Common.Continue"><value>Continuare</value></data>
+<data name="Common.Copy"><value>Copia</value></data>
+  <data name="Common.Modify"><value>Modificare</value></data>
+  <data name="Common.Hide"><value>Nascondere</value></data>
+  <data name="Common.Export"><value>Esportare</value></data>
   <data name="Common.New"><value>Nuovo</value></data>
   <data name="Common.Refresh"><value>Aggiorna</value></data>
   <data name="Common.OpenFolder"><value>Apri cartella</value></data>
   <data name="Common.Pause" xml:space="preserve"><value>Pausa</value></data>
+  <data name="Common.Reset"><value>Ripristino</value></data>
 </root>

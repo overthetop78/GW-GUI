@@ -67,19 +67,36 @@ public static class EmulationVideoProcessingCatalog
     public const string PlasmaDiffusion = nameof(PlasmaDiffusion);
     public const string PlasmaTemporalDithering = nameof(PlasmaTemporalDithering);
     public const string PlasmaPersistence = nameof(PlasmaPersistence);
+    public const string PlasmaBlackDepth = nameof(PlasmaBlackDepth);
+    public const string PlasmaPhosphorIntensity = nameof(PlasmaPhosphorIntensity);
+    public const string PlasmaGammaResponse = nameof(PlasmaGammaResponse);
+    public const string PlasmaAutomaticBrightnessLimiter = nameof(PlasmaAutomaticBrightnessLimiter);
     public const string VectorLineThreshold = nameof(VectorLineThreshold);
     public const string VectorLineIntensity = nameof(VectorLineIntensity);
+    public const string VectorBeamWidth = nameof(VectorBeamWidth);
+    public const string VectorBeamFocus = nameof(VectorBeamFocus);
+    public const string VectorPhosphorColor = nameof(VectorPhosphorColor);
     public const string VectorHaloIntensity = nameof(VectorHaloIntensity);
+    public const string VectorHaloRadius = nameof(VectorHaloRadius);
     public const string VectorPersistence = nameof(VectorPersistence);
     public const string VfdColor = nameof(VfdColor);
     public const string VfdPhosphorIntensity = nameof(VfdPhosphorIntensity);
+    public const string VfdEmissionThreshold = nameof(VfdEmissionThreshold);
+    public const string VfdGlassDarkening = nameof(VfdGlassDarkening);
+    public const string VfdStructure = nameof(VfdStructure);
+    public const string VfdCellSize = nameof(VfdCellSize);
+    public const string VfdCellGap = nameof(VfdCellGap);
     public const string VfdHaloIntensity = nameof(VfdHaloIntensity);
+    public const string VfdHaloRadius = nameof(VfdHaloRadius);
     public const string VfdPersistence = nameof(VfdPersistence);
     public const string LedMatrixColor = nameof(LedMatrixColor);
     public const string LedMatrixCellSize = nameof(LedMatrixCellSize);
     public const string LedMatrixCellGap = nameof(LedMatrixCellGap);
     public const string LedMatrixDiffusion = nameof(LedMatrixDiffusion);
     public const string LedMatrixBrightness = nameof(LedMatrixBrightness);
+    public const string LedMatrixShape = nameof(LedMatrixShape);
+    public const string LedMatrixHaloRadius = nameof(LedMatrixHaloRadius);
+    public const string LedMatrixBlackDepth = nameof(LedMatrixBlackDepth);
     public const string DotMatrixPalette = nameof(DotMatrixPalette);
     public const string DotMatrixShape = nameof(DotMatrixShape);
     public const string DotMatrixDotSize = nameof(DotMatrixDotSize);
@@ -126,10 +143,16 @@ public static class EmulationVideoProcessingCatalog
         FixedPixelGridIntensity, FixedPixelPixelGap, FixedPixelResponseTime,
         FixedPixelPersistence, FixedPixelBacklight, FixedPixelBacklightBleed, FixedPixelBlackDepth,
         PlasmaCellStructure, PlasmaDiffusion, PlasmaTemporalDithering, PlasmaPersistence,
-        VectorLineThreshold, VectorLineIntensity, VectorHaloIntensity, VectorPersistence,
-        VfdColor, VfdPhosphorIntensity, VfdHaloIntensity, VfdPersistence,
+        PlasmaBlackDepth, PlasmaPhosphorIntensity, PlasmaGammaResponse,
+        PlasmaAutomaticBrightnessLimiter,
+        VectorLineThreshold, VectorLineIntensity, VectorBeamWidth, VectorBeamFocus,
+        VectorPhosphorColor, VectorHaloIntensity, VectorHaloRadius, VectorPersistence,
+        VfdColor, VfdPhosphorIntensity, VfdEmissionThreshold, VfdGlassDarkening,
+        VfdStructure, VfdCellSize, VfdCellGap, VfdHaloIntensity, VfdHaloRadius,
+        VfdPersistence,
         LedMatrixColor, LedMatrixCellSize, LedMatrixCellGap, LedMatrixDiffusion,
-        LedMatrixBrightness, DotMatrixPalette, DotMatrixShape, DotMatrixDotSize,
+        LedMatrixBrightness, LedMatrixShape, LedMatrixHaloRadius, LedMatrixBlackDepth,
+        DotMatrixPalette, DotMatrixShape, DotMatrixDotSize,
         DotMatrixContrast, DotMatrixResponseTime, SegmentDisplayLayout, SegmentDisplayColor,
         SegmentDisplayThickness, SegmentDisplayContrast, SegmentDisplayGlow,
         SegmentDisplayResponseTime, EPaperColorMode, EPaperContrast, EPaperDithering,
@@ -206,8 +229,14 @@ public static class EmulationVideoProcessingCatalog
     public static IReadOnlyDictionary<EmulationVfdColor, string> VfdColorResourceKeys { get; }
         = ResourceKeys("Vfd.Color", Enum.GetValues<EmulationVfdColor>());
 
+    public static IReadOnlyDictionary<EmulationVfdStructure, string> VfdStructureResourceKeys { get; }
+        = ResourceKeys("Vfd.Structure", Enum.GetValues<EmulationVfdStructure>());
+
     public static IReadOnlyDictionary<EmulationLedMatrixColor, string> LedMatrixColorResourceKeys { get; }
         = ResourceKeys("LedMatrix.Color", Enum.GetValues<EmulationLedMatrixColor>());
+
+    public static IReadOnlyDictionary<EmulationLedMatrixShape, string> LedMatrixShapeResourceKeys { get; }
+        = ResourceKeys("LedMatrix.Shape", Enum.GetValues<EmulationLedMatrixShape>());
 
     public static IReadOnlyDictionary<EmulationDotMatrixPalette, string> DotMatrixPaletteResourceKeys { get; }
         = ResourceKeys("DotMatrix.Palette", Enum.GetValues<EmulationDotMatrixPalette>());
@@ -266,11 +295,18 @@ public static class EmulationVideoProcessingCatalog
             [FixedPixelPersistence] = 0, [FixedPixelBacklight] = null, [FixedPixelBacklightBleed] = 25, [FixedPixelBlackDepth] = null,
             [PlasmaCellStructure] = 0, [PlasmaDiffusion] = 0, [PlasmaTemporalDithering] = 0,
             [PlasmaPersistence] = 0, [VectorLineThreshold] = 0, [VectorLineIntensity] = 0,
-            [VectorHaloIntensity] = 0, [VectorPersistence] = 0,
+            [VectorBeamWidth] = 0, [VectorBeamFocus] = 100,
+            [VectorPhosphorColor] = EmulationCrtColorMode.Color,
+            [VectorHaloIntensity] = 0, [VectorHaloRadius] = 0, [VectorPersistence] = 0,
             [VfdColor] = EmulationVfdColor.Blue, [VfdPhosphorIntensity] = 70,
-            [VfdHaloIntensity] = 25, [VfdPersistence] = 20,
+            [VfdEmissionThreshold] = 28, [VfdGlassDarkening] = 75,
+            [VfdStructure] = EmulationVfdStructure.Graphic,
+            [VfdCellSize] = 70, [VfdCellGap] = 20,
+            [VfdHaloIntensity] = 25, [VfdHaloRadius] = 25, [VfdPersistence] = 20,
             [LedMatrixColor] = EmulationLedMatrixColor.Rgb, [LedMatrixCellSize] = 35,
             [LedMatrixCellGap] = 30, [LedMatrixDiffusion] = 20, [LedMatrixBrightness] = 75,
+            [LedMatrixShape] = EmulationLedMatrixShape.Round,
+            [LedMatrixHaloRadius] = 25, [LedMatrixBlackDepth] = 100,
             [DotMatrixPalette] = EmulationDotMatrixPalette.Green,
             [DotMatrixShape] = EmulationDotMatrixShape.Round, [DotMatrixDotSize] = 55,
             [DotMatrixContrast] = 70, [DotMatrixResponseTime] = 120,
@@ -348,7 +384,7 @@ public static class EmulationVideoProcessingCatalog
         Add(PlasmaCellStructure, PlasmaPersistence, EmulationVideoDisplayTechnology.Plasma);
         Add(VectorLineThreshold, VectorPersistence, EmulationVideoDisplayTechnology.Vector);
         Add(VfdColor, VfdPersistence, EmulationVideoDisplayTechnology.Vfd);
-        Add(LedMatrixColor, LedMatrixBrightness, EmulationVideoDisplayTechnology.LedMatrix);
+        Add(LedMatrixColor, LedMatrixBlackDepth, EmulationVideoDisplayTechnology.LedMatrix);
         Add(DotMatrixPalette, DotMatrixResponseTime, EmulationVideoDisplayTechnology.DotMatrix);
         Add(SegmentDisplayLayout, SegmentDisplayResponseTime,
             EmulationVideoDisplayTechnology.SegmentDisplay);
@@ -392,7 +428,7 @@ public static class EmulationVideoProcessingCatalog
             {
                 DisplayTechnology = EmulationVideoDisplayTechnology.Plasma,
                 Sampling = EmulationVideoSampling.Bilinear,
-                Plasma = new(35, 30, 20, 20)
+                Plasma = new(35, 30, 20, 20, 55, 25, 20, 35)
             },
             [EmulationVideoPreset.Vector] = new()
             {

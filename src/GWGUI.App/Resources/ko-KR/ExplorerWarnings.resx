@@ -12,172 +12,60 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Warning.InvalidChecksum">
-    <value>루트 블록 {0}에 잘못된 체크섬이 있습니다.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryNesting">
-    <value>디렉터리 중첩 제한에 도달했습니다.</value>
-  </data>
-  <data name="Explorer.Warning.InvalidDirectoryChain">
-    <value>{0} 블록에 잘못된 또는 순환 디렉터리 체인이 있습니다.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryEntryMissing">
-    <value>디렉터리 항목 블록 {0}이(가) 없습니다.</value>
-  </data>
-  <data name="Explorer.Warning.AmigaExtension">
-    <value>{0}: 잘못된 파일 확장 블록 {1}.</value>
-  </data>
-  <data name="Explorer.Warning.AmigaBlock">
-    <value>{0}: AmigaDOS {1}({2})이 누락되었습니다.</value>
-  </data>
-  <data name="Explorer.Warning.FileDataMissing">
-    <value>파일 데이터 블록 {0}이(가) 없습니다.</value>
-  </data>
-  <data name="Explorer.Warning.OfsType">
-    <value>OFS 데이터 블록 {0}에 예상치 못한 유형이 있습니다.</value>
-  </data>
-  <data name="Explorer.Warning.BitmapMissing">
-    <value>비트맵 블록 {0}이(가) 없습니다.</value>
-  </data>
-  <data name="Explorer.Warning.BitmapChecksum">
-    <value>비트맵 블록 {0}에 잘못된 체크섬이 있습니다.</value>
-  </data>
-  <data name="Explorer.Warning.CpmAllocation">
-    <value>{0}: CP/M 할당 블록 {1}이 이미지 외부에 있습니다.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDirectoryCyclic">
-    <value>{0}/{1}에 있는 순환 CBM DOS 디렉토리 체인.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDirectoryMissing">
-    <value>CBM DOS 디렉터리 섹터 {0}/{1}이(가) 없습니다.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDataCyclic">
-    <value>{0}: {1}/{2}의 순환 데이터 체인입니다.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDataMissing">
-    <value>{0}: 데이터 섹터 {1}/{2}이(가) 없습니다.</value>
-  </data>
-  <data name="Explorer.Warning.CbmCapacity">
-    <value>{0}: 파일 체인이 이미지 용량을 초과했습니다.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdDirectoryMissing">
-    <value>하나 이상의 UCSD 디렉터리 블록이 누락되었습니다.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdEntry">
-    <value>UCSD 디렉터리 항목 {0}의 이름이 잘못되었거나 비어 있습니다.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdRange">
-    <value>{0}: 잘못된 블록 범위 {1}..{2}.</value>
-  </data>
-  <data name="Explorer.Warning.DataBlocksMissing">
-    <value>{0}: 하나 이상의 데이터 블록이 누락되었습니다.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdCount">
-    <value>UCSD 디렉터리에서 {0} 파일을 선언했지만 {1} 유효한 항목이 발견되었습니다.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentInodeZero">
-    <value>{0}: COHERENT inode 0이 잘못되었습니다.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentInodeOutside">
-    <value>{0}: COHERENT inode {1}이 이미지 외부에 있습니다.</value>
-  </data>
-  <data name="Explorer.Warning.FileTooLarge">
-    <value>{0}: 파일이 너무 큽니다.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentBlock">
-    <value>{0}: COHERENT 블록 {1}이 이미지 외부에 있습니다.</value>
-  </data>
-  <data name="Explorer.Warning.BytesUnread">
-    <value>{0}: {1} 바이트를 읽을 수 없습니다.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentIndirect">
-    <value>{0}: 간접 COHERENT 블록 {1}이 이미지 외부에 있습니다.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11SegmentMissing">
-    <value>RT-11 디렉터리 세그먼트 {0}이(가) 없습니다.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11EntrySize">
-    <value>RT-11 디렉터리 세그먼트 {0}에 잘못된 항목 크기가 있습니다.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11EmptyName">
-    <value>{0} 블록의 RT-11 항목에 빈 이름이 있습니다.</value>
-  </data>
-  <data name="Explorer.Warning.ProDosNesting">
-    <value>ProDOS 디렉터리 중첩 제한에 도달했습니다.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryBlockCyclic">
-    <value>디렉터리 블록 {0}이(가) 없거나 주기적입니다.</value>
-  </data>
-  <data name="Explorer.Warning.MasterIndexMissing">
-    <value>{0}: 마스터 인덱스 블록 {1}이(가) 없습니다.</value>
-  </data>
-  <data name="Explorer.Warning.DataBlockMissing">
-    <value>{0}: 데이터 블록 {1}이(가) 없습니다.</value>
-  </data>
-  <data name="Explorer.Warning.IndexBlockMissing">
-    <value>{0}: 인덱스 블록 {1}이(가) 없습니다.</value>
-  </data>
-  <data name="Explorer.Warning.CatalogMissing">
-    <value>카탈로그 섹터 T{0} S{1}이 누락되었거나 주기적입니다.</value>
-  </data>
-  <data name="Explorer.Warning.CatalogSize">
-    <value>{0}: 카탈로그 크기가 일관되지 않습니다.</value>
-  </data>
-  <data name="Explorer.Warning.TrackSectorList">
-    <value>{0}: T/S 목록 T{1} S{2}이 누락되었거나 순환됩니다.</value>
-  </data>
-  <data name="Explorer.Warning.TrackSectorData">
-    <value>{0}: 데이터 섹터 T{1} S{2}이(가) 없습니다.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryBlockMissing">
-    <value>디렉터리 블록 {0}이(가) 없습니다.</value>
-  </data>
-  <data name="Explorer.Warning.MfsEntry">
-    <value>{0} 블록의 MFS 디렉터리 항목이 잘못되었습니다.</value>
-  </data>
-  <data name="Explorer.Warning.ResourceFork">
-    <value>{0}: 리소스 포크 메타데이터가 일치하지 않습니다.</value>
-  </data>
-  <data name="Explorer.Warning.MfsChain">
-    <value>{0}: MFS 할당 체인이 잘못되었습니다.</value>
-  </data>
-  <data name="Explorer.Warning.BlockMissing">
-    <value>{0}: {1} 블록이 누락되었습니다.</value>
-  </data>
-  <data name="Explorer.Warning.BbcSector">
-    <value>{0}: 데이터 섹터 {1}이(가) 없습니다.</value>
-  </data>
-  <data name="Explorer.Warning.HfsCatalog">
-    <value>HFS 카탈로그에는 읽을 수 있는 리프 레코드가 없습니다.</value>
-  </data>
-  <data name="Explorer.Warning.HfsDirectory">
-    <value>순환 HFS 디렉터리 #{0}.</value>
-  </data>
-  <data name="Explorer.Warning.HfsBlock">
-    <value>{0}: HFS 블록 {1}이(가) 없습니다.</value>
-  </data>
-  <data name="Explorer.Warning.HfsExtents">
-    <value>{0}: 추가 HFS 범위가 필요하거나 데이터가 누락되었습니다.</value>
-  </data>
-  <data name="Explorer.Warning.FatNesting">
-    <value>FAT 디렉터리 중첩 제한에 도달했습니다.</value>
-  </data>
-  <data name="Explorer.Warning.FatChain">
-    <value>{0}: 클러스터 {1}에 잘못된 또는 순환 FAT 체인이 있습니다.</value>
-  </data>
-  <data name="Explorer.Warning.SectorMissing">
-    <value>섹터 {0}이(가) 없습니다.</value>
-  </data>
-  <data name="Explorer.Warning.LisaCatalog">
-    <value>Lisa 카탈로그 페이지가 누락되었습니다. 파일 이름은 페이지 태그에서만 복구되었습니다.</value>
-  </data>
-  <data name="Explorer.Warning.AtariDirectory">
-    <value>디렉터리 섹터 {0}이(가) 없습니다.</value>
-  </data>
-  <data name="Explorer.Warning.AtariData">
-    <value>{0}: Atari DOS 데이터 섹터가 잘못되었거나 누락되었습니다.</value>
-  </data>
-  <data name="Explorer.Warning.AtariOwner">
-    <value>{0} 섹터는 {1} 파일에 속하며 {2}이 필요합니다.</value>
-  </data>
+  <data name="Explorer.Warning.InvalidChecksum"><value>루트 블록 {0}에 잘못된 체크섬이 있습니다.</value></data>
+  <data name="Explorer.Warning.DirectoryNesting"><value>디렉터리 중첩 제한에 도달했습니다.</value></data>
+  <data name="Explorer.Warning.InvalidDirectoryChain"><value>블록에서 잘못된 또는 순환 디렉토리 체인 {0}.</value></data>
+  <data name="Explorer.Warning.DirectoryEntryMissing"><value>디렉터리 항목 블록 {0}이(가) 없습니다.</value></data>
+  <data name="Explorer.Warning.AmigaExtension"><value>{0}: 잘못된 파일 확장 블록 {1}.</value></data>
+  <data name="Explorer.Warning.AmigaBlock"><value>{0}: AmigaDOS {1}({2})이 누락되었습니다.</value></data>
+  <data name="Explorer.Warning.FileDataMissing"><value>파일 데이터 블록 {0}이(가) 없습니다.</value></data>
+  <data name="Explorer.Warning.OfsType"><value>OFS 데이터 블록 {0}에 예상치 못한 유형이 있습니다.</value></data>
+  <data name="Explorer.Warning.BitmapMissing"><value>비트맵 블록 {0}이(가) 없습니다.</value></data>
+  <data name="Explorer.Warning.BitmapChecksum"><value>비트맵 블록 {0}에 잘못된 체크섬이 있습니다.</value></data>
+  <data name="Explorer.Warning.CpmAllocation"><value>{0}: CP/M 할당 블록 {1}이 이미지 외부에 있습니다.</value></data>
+  <data name="Explorer.Warning.CbmDirectoryCyclic"><value>Cyclic CBM DOS 디렉토리 체인 at {0}/{1}.</value></data>
+  <data name="Explorer.Warning.CbmDirectoryMissing"><value>CBM DOS 디렉터리 섹터 {0}/{1}이(가) 없습니다.</value></data>
+  <data name="Explorer.Warning.CbmDataCyclic"><value>{0}: Cyclic 데이터 체인 {1}/{2}.</value></data>
+  <data name="Explorer.Warning.CbmDataMissing"><value>{0}: 데이터 섹터 {1}/{2}이(가) 없습니다.</value></data>
+  <data name="Explorer.Warning.CbmCapacity"><value>{0}: 파일 체인이 이미지 용량을 초과했습니다.</value></data>
+  <data name="Explorer.Warning.UcsdDirectoryMissing"><value>하나 이상의 UCSD 디렉터리 블록이 누락되었습니다.</value></data>
+  <data name="Explorer.Warning.UcsdEntry"><value>UCSD 디렉터리 항목 {0}의 이름이 잘못되었거나 비어 있습니다.</value></data>
+  <data name="Explorer.Warning.UcsdRange"><value>{0}: 잘못된 블록 범위 {1}..{2}.</value></data>
+  <data name="Explorer.Warning.DataBlocksMissing"><value>{0}: 하나 이상의 데이터 블록이 누락되었습니다.</value></data>
+  <data name="Explorer.Warning.UcsdCount"><value>UCSD 디렉터리에서 {0} 파일을 선언했지만 {1} 유효한 항목이 발견되었습니다.</value></data>
+  <data name="Explorer.Warning.CoherentInodeZero"><value>{0}: COHERENT inode 0이 잘못되었습니다.</value></data>
+  <data name="Explorer.Warning.CoherentInodeOutside"><value>{0}: COHERENT inode {1}이 이미지 외부에 있습니다.</value></data>
+  <data name="Explorer.Warning.FileTooLarge"><value>{0}: 파일이 너무 큽니다.</value></data>
+  <data name="Explorer.Warning.CoherentBlock"><value>{0}: COHERENT 블록 {1}이 이미지 외부에 있습니다.</value></data>
+  <data name="Explorer.Warning.BytesUnread"><value>{0}: {1} 바이트를 읽을 수 없습니다.</value></data>
+  <data name="Explorer.Warning.CoherentIndirect"><value>{0}: 간접 COHERENT 블록 {1}이 이미지 외부에 있습니다.</value></data>
+  <data name="Explorer.Warning.Rt11SegmentMissing"><value>RT-11 디렉터리 세그먼트 {0}이(가) 없습니다.</value></data>
+  <data name="Explorer.Warning.Rt11EntrySize"><value>RT-11 디렉터리 세그먼트 {0}에 잘못된 항목 크기가 있습니다.</value></data>
+  <data name="Explorer.Warning.Rt11EmptyName"><value>RT-11 블록에 입력 {0} 빈 이름이 있습니다.</value></data>
+  <data name="Explorer.Warning.ProDosNesting"><value>ProDOS 디렉터리 중첩 제한에 도달했습니다.</value></data>
+  <data name="Explorer.Warning.DirectoryBlockCyclic"><value>디렉터리 블록 {0}이(가) 없거나 주기적입니다.</value></data>
+  <data name="Explorer.Warning.MasterIndexMissing"><value>{0}: 마스터 인덱스 블록 {1}이(가) 없습니다.</value></data>
+  <data name="Explorer.Warning.DataBlockMissing"><value>{0}: 데이터 블록 {1}이(가) 없습니다.</value></data>
+  <data name="Explorer.Warning.IndexBlockMissing"><value>{0}: 인덱스 블록 {1}이(가) 없습니다.</value></data>
+  <data name="Explorer.Warning.CatalogMissing"><value>카탈로그 섹터 T{0} S{1}이 누락되었거나 주기적입니다.</value></data>
+  <data name="Explorer.Warning.CatalogSize"><value>{0}: 카탈로그 크기가 일관되지 않습니다.</value></data>
+  <data name="Explorer.Warning.TrackSectorList"><value>{0}: T/S 목록 T{1} S{2}이 누락되었거나 순환됩니다.</value></data>
+  <data name="Explorer.Warning.TrackSectorData"><value>{0}: 데이터 섹터 T{1} S{2}이(가) 없습니다.</value></data>
+  <data name="Explorer.Warning.DirectoryBlockMissing"><value>디렉터리 블록 {0}이(가) 없습니다.</value></data>
+  <data name="Explorer.Warning.MfsEntry"><value>잘못된 MFS block에 있는 디렉토리 항목 {0}.</value></data>
+  <data name="Explorer.Warning.ResourceFork"><value>{0}: 리소스 포크 메타데이터가 일치하지 않습니다.</value></data>
+  <data name="Explorer.Warning.MfsChain"><value>{0}: MFS 할당 체인이 잘못되었습니다.</value></data>
+  <data name="Explorer.Warning.BlockMissing"><value>{0}: {1} 블록이 누락되었습니다.</value></data>
+  <data name="Explorer.Warning.BbcSector"><value>{0}: 데이터 섹터 {1}이(가) 없습니다.</value></data>
+  <data name="Explorer.Warning.HfsCatalog"><value>HFS 카탈로그에는 읽을 수 있는 리프 레코드가 없습니다.</value></data>
+  <data name="Explorer.Warning.HfsDirectory"><value>순환 HFS 디렉터리 #{0}.</value></data>
+  <data name="Explorer.Warning.HfsBlock"><value>{0}: HFS 블록 {1}이(가) 없습니다.</value></data>
+  <data name="Explorer.Warning.HfsExtents"><value>{0}: 추가 HFS 범위가 필요하거나 데이터가 누락되었습니다.</value></data>
+  <data name="Explorer.Warning.FatNesting"><value>FAT 디렉터리 중첩 제한에 도달했습니다.</value></data>
+  <data name="Explorer.Warning.FatChain"><value>{0}: 잘못된 또는 사이클링 FAT 클러스터에서 체인 {1}.</value></data>
+  <data name="Explorer.Warning.SectorMissing"><value>섹터 {0}이(가) 없습니다.</value></data>
+  <data name="Explorer.Warning.LisaCatalog"><value>Lisa 카탈로그 페이지가 누락되었습니다. 파일 이름은 페이지 태그에서만 복구되었습니다.</value></data>
+  <data name="Explorer.Warning.AtariDirectory"><value>디렉터리 섹터 {0}이(가) 없습니다.</value></data>
+  <data name="Explorer.Warning.AtariData"><value>{0}: Atari DOS 데이터 섹터가 잘못되었거나 누락되었습니다.</value></data>
+  <data name="Explorer.Warning.AtariOwner"><value>분야 {0} 파일에 속함 {1}, 예상 {2}.</value></data>
 </root>

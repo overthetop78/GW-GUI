@@ -12,40 +12,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="HostTools.Detect">
-    <value>Find gw.exe</value>
-  </data>
-  <data name="HostTools.Check">
-    <value>Se efter opdateringer</value>
-  </data>
-  <data name="HostTools.Download">
-    <value>Download den seneste version</value>
-  </data>
-  <data name="HostTools.Rollback">
-    <value>Brug forrige sti</value>
-  </data>
-  <data name="HostTools.None">
-    <value>Ingen installation fundet.</value>
-  </data>
-  <data name="HostTools.Detected">
-    <value>Registreret: {0}</value>
-  </data>
-  <data name="HostTools.Latest">
-    <value>Seneste tilgængelige version: {0}</value>
-  </data>
-  <data name="HostTools.Installed">
-    <value>Version {0} installeret.</value>
-  </data>
-  <data name="HostTools.DownloadConfirm">
-    <value>Vil du downloade og installere Greaseweazle Host Tools {0} til Windows x64?</value>
-  </data>
-  <data name="HostTools.Title">
-    <value>Greaseweazle Værtsværktøjer</value>
-  </data>
-  <data name="HostTools.NoPrevious">
-    <value>Ingen gyldig tidligere sti er gemt.</value>
-  </data>
-  <data name="HostTools.UpdateAvailable">
-    <value>Værtsværktøjer {0} tilgængelige</value>
-  </data>
+<data name="HostTools.Check"><value>Se efter opdateringer</value></data>
+  <data name="HostTools.Download"><value>Download den seneste version</value></data>
+  <data name="HostTools.Rollback"><value>Brug forrige sti</value></data>
+  <data name="HostTools.None"><value>Ingen installation fundet.</value></data>
+  <data name="HostTools.Detected"><value>Registreret: {0}</value></data>
+  <data name="HostTools.Latest"><value>Seneste tilgængelige version: {0}</value></data>
+  <data name="HostTools.Installed"><value>Version {0} installeret.</value></data>
+  <data name="HostTools.DownloadConfirm"><value>Vil du downloade og installere Greaseweazle Host Tools {0} til Windows x64?</value></data>
+  <data name="HostTools.Title"><value>Greaseweazle Værtsværktøjer</value></data>
+  <data name="HostTools.NoPrevious"><value>Ingen gyldig tidligere sti er gemt.</value></data>
+  <data name="HostTools.UpdateAvailable"><value>Værtsværktøjer {0} tilgængelige</value></data>
 </root>

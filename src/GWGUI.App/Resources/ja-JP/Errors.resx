@@ -12,33 +12,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.SettingsSaveFailed">
-    <value>設定を保存できませんでした。
-
-{0}</value>
-  </data>
-  <data name="Error.Title">
-    <value>GW GUI エラー</value>
-  </data>
-  <data name="Error.Unexpected">
-    <value>予期しないエラーがインターセプトされました。
-
-{0}</value>
-  </data>
-  <data name="Error.SaveFailed">
-    <value>設定を保存できませんでした。窓はまだ閉まります。
-
-{0}</value>
-  </data>
-  <data name="Error.LogSaved">
-    <value>完全なレポートは次の場所に保存されました。
-{0}</value>
-  </data>
+  <data name="App.SettingsSaveFailed"><value>設定を保存できませんでした。&#xA;&#xA;{0}</value></data>
+  <data name="Error.Title"><value>GW GUI エラー</value></data>
+  <data name="Error.Unexpected"><value>予期しないエラーがインターセプトされました。&#xA;&#xA;{0}</value></data>
+  <data name="Error.SaveFailed"><value>設定を保存できませんでした。窓はまだ閉まります。&#xA;&#xA;{0}</value></data>
+  <data name="Error.LogSaved"><value>完全なレポートは次の場所に保存されました。&#xA;{0}</value></data>
   <data name="Error.Description.NetworkTimeout"><value>接続がタイムアウトする前にリモートサービスが応答しませんでした。 ネットワーク接続をチェックしてもう一度お試しください。</value></data>
   <data name="Error.Description.NetworkDns"><value>リモートサービスアドレスは解決できませんでした。 ネットワークまたはDNSの設定を確認し、もう一度お試しください。</value></data>
   <data name="Error.Description.NetworkRefused"><value>リモートサービスは接続を拒否しました。 利用不可、ブロック不可</value></data>
   <data name="Error.Description.NetworkUnavailable"><value>リモートサービスは到達できませんでした。 インターネット接続、ファイアウォール、VPN、プロキシ設定をチェックし、もう一度お試しください。</value></data>
-  <data name="Error.Description.HttpStatus"><value>リモートサービスは HTTP ステータス {0} を返します。 もう一度お試しください。</value></data>
+  <data name="Error.Description.HttpStatus"><value>リモート サービスは戻りました HTTP 状態 {0}. 後で再度試みて下さい。</value></data>
   <data name="Error.Description.OperationTimeout"><value>運転は許された時間内に終了しなかった。 もう一度お試しください。</value></data>
   <data name="Error.Description.OperationCancelled"><value>作業は終了前に中止となりました。</value></data>
   <data name="Error.Description.AccessDenied"><value>GW GUI は、要求されたファイル、フォルダ、またはデバイスにアクセスする許可はありません。</value></data>

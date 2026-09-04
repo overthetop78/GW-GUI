@@ -12,1026 +12,348 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Emulation.Tab.Machines">
-    <value>Máy</value>
-  </data>
-  <data name="Emulation.Core.Name">
-    <value>Lõi</value>
-  </data>
-  <data name="Emulation.Core.NameManagerTitle">
-    <value>Lõi giả lập {0}</value>
-  </data>
-  <data name="Emulation.Core.NameManagerDescription">
-    <value>Thư viện vẫn nằm bên ngoài GW GUI. Phiên bản được chọn sẽ thay thế phiên bản hiện đang cài đặt.</value>
-  </data>
-  <data name="Emulation.Core.NameRequiredVersion">
-    <value>Phiên bản GW GUI yêu cầu</value>
-  </data>
-  <data name="Emulation.Core.NameLatestVersion">
-    <value>Phiên bản chính thức mới nhất hiện có</value>
-  </data>
-  <data name="Emulation.Core.NameProjectVersion">
-    <value>Phiên bản hiện đang cài đặt</value>
-  </data>
-  <data name="Emulation.Core.NameSearchPrompt">
-    <value>Nhấp Tìm kiếm để truy vấn máy chủ Libretro chính thức.</value>
-  </data>
-  <data name="Emulation.Core.NameSearch">
-    <value>Tìm phiên bản</value>
-  </data>
-  <data name="Emulation.Core.NameDownload">
-    <value>Tải xuống và thay thế</value>
-  </data>
-  <data name="Emulation.Core.NameSearching">
-    <value>Đang tìm các phiên bản hiện có…</value>
-  </data>
-  <data name="Emulation.Core.NameNoneFound">
-    <value>Không tìm thấy phiên bản chính thức.</value>
-  </data>
-  <data name="Emulation.Core.NameVersionsFound">
-    <value>Có {0} phiên bản.</value>
-  </data>
-  <data name="Emulation.Core.NameDownloading">
-    <value>Đang tải {0}…</value>
-  </data>
-  <data name="Emulation.Core.NameInstalledPath">
-    <value>Phiên bản đã cài đặt: {0}</value>
-  </data>
-  <data name="Emulation.Core.NameInstalled">
-    <value>{0} · đã cài đặt</value>
-  </data>
-  <data name="Emulation.Core.NameNotInstalled">
-    <value>Chưa cài đặt phiên bản nào</value>
-  </data>
-  <data name="Emulation.Machine.Open">
-    <value>Mở</value>
-  </data>
-  <data name="Emulation.Tab.Welcome">
-    <value>Chào mừng</value>
-  </data>
-  <data name="Emulation.Welcome.Text">
-    <value>Chọn một máy đã lưu ở trên rồi nhấp Mở. Mỗi máy đang chạy xuất hiện trong một thẻ riêng.</value>
-  </data>
-  <data name="Emulation.Configuration.Description">
-    <value>Tạo, chọn, sửa đổi hoặc xóa cấu hình đã lưu tại đây. Chọn thẻ {0} để chỉnh sửa cấu hình đã chọn.</value>
-  </data>
-  <data name="Emulation.Tab.General">
-    <value>Chung</value>
-  </data>
-  <data name="Emulation.Tab.Video">
-    <value>Video</value>
-  </data>
-  <data name="Emulation.Tab.Storage">
-    <value>Lưu trữ</value>
-  </data>
-  <data name="Emulation.Tab.Keyboard">
-    <value>Bàn phím</value>
-  </data>
-  <data name="Emulation.Tab.Mouse">
-    <value>Chuột</value>
-  </data>
-  <data name="Emulation.Controller.Tab">
-    <value>Bộ điều khiển</value>
-  </data>
-  <data name="Emulation.Tab.Advanced">
-    <value>Nâng cao</value>
-  </data>
-  <data name="Emulation.Device.Name.Id">
-    <value>Mã định danh thiết bị</value>
-  </data>
-  <data name="Emulation.Controller.Device">
-    <value>Thiết bị bộ điều khiển {0}</value>
-  </data>
-  <data name="Emulation.Keyboard.SystemKey">
-    <value>Phím {0}</value>
-  </data>
-  <data name="Emulation.Keyboard.HostKey">
-    <value>Phím máy chủ</value>
-  </data>
-  <data name="Emulation.Cpu.Summary">
-    <value>Bộ xử lý: {0}</value>
-  </data>
-  <data name="Emulation.Memory.Summary">
-    <value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value>
-  </data>
-  <data name="Emulation.Video.Summary">
-    <value>Chipset video: {0}</value>
-  </data>
-  <data name="Emulation.Cpu.Model">
-    <value>Mẫu CPU</value>
-  </data>
-  <data name="Emulation.Cpu.Multiplier">
-    <value>Hệ số nhân CPU</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility">
-    <value>CPU tương thích từng chu kỳ</value>
-  </data>
-  <data name="Emulation.Memory.Z3">
-    <value>RAM Zorro III</value>
-  </data>
-  <data name="Emulation.Video.Standard">
-    <value>Chuẩn video</value>
-  </data>
-  <data name="Emulation.Video.Resolution">
-    <value>Độ phân giải</value>
-  </data>
-  <data name="Emulation.Video.AspectRatio">
-    <value>Tỷ lệ khung hình</value>
-  </data>
-  <data name="Emulation.Video.Crop">
-    <value>Cắt viền</value>
-  </data>
-  <data name="Emulation.Video.FlickerFixer">
-    <value>Sửa nhấp nháy</value>
-  </data>
-  <data name="Emulation.Audio.Enabled">
-    <value>Bật âm thanh</value>
-  </data>
-  <data name="Emulation.Audio.Output">
-    <value>Đầu ra âm thanh</value>
-  </data>
-  <data name="Emulation.Audio.Latency">
-    <value>Độ trễ (ms)</value>
-  </data>
-  <data name="Emulation.Audio.Interpolation">
-    <value>Nội suy</value>
-  </data>
-  <data name="Emulation.Audio.Filter">
-    <value>Bộ lọc âm thanh Amiga</value>
-  </data>
-  <data name="Emulation.Audio.StereoSeparation">
-    <value>Tách âm stereo (%)</value>
-  </data>
-  <data name="Emulation.Audio.Input">
-    <value>Đầu vào âm thanh</value>
-  </data>
-  <data name="Emulation.Audio.InputUnavailable">
-    <value>Lõi Amiga này không cung cấp đầu vào âm thanh.</value>
-  </data>
-  <data name="Emulation.Audio.DefaultOutput">
-    <value>Đầu ra mặc định của Windows</value>
-  </data>
-  <data name="Emulation.Storage.Media.Add">
-    <value>Thêm phương tiện</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Create">
-    <value>Tạo ổ cứng</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Size">
-    <value>Kích thước ổ cứng (MiB)</value>
-  </data>
-  <data name="Emulation.Storage.Media.None">
-    <value>Không có phương tiện. Hãy thêm đĩa mềm, ổ cứng hoặc CD được mẫu đã chọn hỗ trợ.</value>
-  </data>
-  <data name="Emulation.Storage.ReadOnly">
-    <value>Chỉ đọc</value>
-  </data>
-  <data name="Emulation.Amiga.Storage.MediaFilter">
-    <value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|All files|*.*</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Filter">
-    <value>Amiga hard disk|*.hdf|All files|*.*</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.NotSupported">
-    <value>Mẫu đã chọn không hỗ trợ ổ cứng.</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.TooManyDrives">
-    <value>Mẫu này hỗ trợ tối đa {0} ổ đĩa mềm.</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.TooManyDrives">
-    <value>Mẫu này hỗ trợ tối đa {0} ổ cứng.</value>
-  </data>
-  <data name="Emulation.Storage.Cd.NotSupported">
-    <value>Mẫu đã chọn không hỗ trợ ổ CD.</value>
-  </data>
-  <data name="Emulation.Keyboard.Mapping.Duplicate">
-    <value>Hai phím Amiga sử dụng cùng một phím PC. Hãy sửa các ánh xạ màu đỏ trước khi lưu.</value>
-  </data>
-  <data name="Emulation.Mouse.ReleaseKey">
-    <value>Phím nhả chuột</value>
-  </data>
-  <data name="Emulation.Mouse.Button.Left">
-    <value>Nút chuột trái</value>
-  </data>
-  <data name="Emulation.Mouse.Button.Right">
-    <value>Nút chuột phải</value>
-  </data>
-  <data name="Emulation.Mouse.Button.Middle">
-    <value>Nút chuột giữa</value>
-  </data>
-  <data name="Emulation.Controller.Detect">
-    <value>Phát hiện tay cầm</value>
-  </data>
-  <data name="Emulation.Controller.EmulatedAction">
-    <value>Hành động Amiga</value>
-  </data>
-  <data name="Emulation.Controller.PhysicalControl">
-    <value>Điều khiển bằng bàn phím, chuột hoặc tay cầm</value>
-  </data>
-  <data name="Emulation.Amiga.Chipset.Name">
-    <value>Bộ vi mạch</value>
-  </data>
-  <data name="Emulation.Storage.Cd.Drive">
-    <value>Ổ đĩa CD</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.DriveCount">
-    <value>Số ổ đĩa mềm</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.DriveCount">
-    <value>Số ổ đĩa cứng</value>
-  </data>
-  <data name="Emulation.Cpu.Speed">
-    <value>Tốc độ CPU</value>
-  </data>
-  <data name="Emulation.Cpu.SpeedOriginal">
-    <value>Tốc độ gốc</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility.Normal">
-    <value>Bình thường</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility.Compatible">
-    <value>Tương thích</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility.Memory">
-    <value>Tương thích bộ nhớ</value>
-  </data>
-  <data name="Emulation.Cpu.Compatibility.Exact">
-    <value>Chính xác từng chu kỳ</value>
-  </data>
-  <data name="Emulation.Fpu.Integrated">
-    <value>FPU tích hợp</value>
-  </data>
-  <data name="Emulation.Value.Enabled">
-    <value>Đã bật</value>
-  </data>
-  <data name="Emulation.Value.Disabled">
-    <value>Đã tắt</value>
-  </data>
-  <data name="Emulation.Value.Minimum">
-    <value>Tối thiểu</value>
-  </data>
-  <data name="Emulation.Value.VerySmall">
-    <value>Rất nhỏ</value>
-  </data>
-  <data name="Emulation.Value.Small">
-    <value>Nhỏ</value>
-  </data>
-  <data name="Emulation.Value.Medium">
-    <value>Trung bình</value>
-  </data>
-  <data name="Emulation.Value.Large">
-    <value>Lớn</value>
-  </data>
-  <data name="Emulation.Value.VeryLarge">
-    <value>Rất lớn</value>
-  </data>
-  <data name="Emulation.Value.Maximum">
-    <value>Tối đa</value>
-  </data>
-  <data name="Emulation.State.Locked">
-    <value>Đã khóa</value>
-  </data>
-  <data name="Emulation.State.Immediate">
-    <value>Ngay lập tức</value>
-  </data>
-  <data name="Emulation.State.Waiting">
-    <value>Có chờ</value>
-  </data>
-  <data name="Emulation.Value.Standard">
-    <value>Tiêu chuẩn</value>
-  </data>
-  <data name="Emulation.Value.Enhanced">
-    <value>Nâng cao</value>
-  </data>
-  <data name="Emulation.Value.Internal">
-    <value>Nội bộ</value>
-  </data>
-  <data name="Emulation.Value.Loud">
-    <value>Lớn</value>
-  </data>
-  <data name="Emulation.Video.Resolution.AutoLow">
-    <value>Độ phân giải thấp tự động</value>
-  </data>
-  <data name="Emulation.Video.Resolution.AutoSuperHigh">
-    <value>Độ phân giải siêu cao tự động</value>
-  </data>
-  <data name="Emulation.Video.Resolution.Low">
-    <value>Độ phân giải thấp</value>
-  </data>
-  <data name="Emulation.Video.Resolution.High">
-    <value>Độ phân giải cao</value>
-  </data>
-  <data name="Emulation.Video.Resolution.SuperHigh">
-    <value>Độ phân giải siêu cao</value>
-  </data>
-  <data name="Emulation.Video.LineMode">
-    <value>Chế độ dòng</value>
-  </data>
-  <data name="Emulation.Video.HzChange">
-    <value>Thay đổi tần số làm mới</value>
-  </data>
-  <data name="Emulation.Video.FrameSkip">
-    <value>Bỏ qua khung hình</value>
-  </data>
-  <data name="Emulation.Video.Colors">
-    <value>Độ sâu màu</value>
-  </data>
-  <data name="Emulation.Video.Gamma">
-    <value>Gamma</value>
-  </data>
-  <data name="Emulation.State.ImmediateBlits">
-    <value>Hoạt động blitter</value>
-  </data>
-  <data name="Emulation.Video.Collision.Level">
-    <value>Phát hiện va chạm</value>
-  </data>
-  <data name="Emulation.Video.LineMode.Single">
-    <value>Quét đơn</value>
-  </data>
-  <data name="Emulation.Video.LineMode.Double">
-    <value>Quét kép</value>
-  </data>
-  <data name="Emulation.Video.Collision.Sprites">
-    <value>Sprite</value>
-  </data>
-  <data name="Emulation.Video.Collision.Playfields">
-    <value>Lớp hình ảnh</value>
-  </data>
-  <data name="Emulation.Video.Collision.Full">
-    <value>Đầy đủ</value>
-  </data>
-  <data name="Emulation.Audio.Interpolation.Anti">
-    <value>Chống nội suy</value>
-  </data>
-  <data name="Emulation.Audio.Filter.Emulated">
-    <value>Mô phỏng</value>
-  </data>
-  <data name="Emulation.Audio.FilterType">
-    <value>Loại bộ lọc</value>
-  </data>
-  <data name="Emulation.Audio.Floppy.Sound">
-    <value>Âm lượng tiếng ổ đĩa mềm</value>
-  </data>
-  <data name="Emulation.Audio.Floppy.SoundType">
-    <value>Loại tiếng ổ đĩa mềm</value>
-  </data>
-  <data name="Emulation.Audio.Floppy.MuteEmpty">
-    <value>Tắt tiếng ổ đĩa trống</value>
-  </data>
-  <data name="Emulation.Audio.Cd.Volume">
-    <value>Âm lượng CD</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.Speed">
-    <value>Tốc độ ổ đĩa mềm</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.WriteProtection">
-    <value>Chống ghi ảnh đĩa mềm</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.WriteRedirect">
-    <value>Chuyển hướng ghi đĩa mềm</value>
-  </data>
-  <data name="Emulation.Storage.Cd.Speed">
-    <value>Tốc độ CD</value>
-  </data>
-  <data name="Emulation.Keyboard.PassThrough">
-    <value>Chuyển trực tiếp bàn phím vật lý</value>
-  </data>
-  <data name="Emulation.Mouse.Physical">
-    <value>Chuột vật lý</value>
-  </data>
-  <data name="Emulation.Mouse.PhysicalDouble">
-    <value>Di chuyển gấp đôi</value>
-  </data>
-  <data name="Emulation.Mouse.Speed">
-    <value>Tốc độ chuột</value>
-  </data>
-  <data name="Emulation.Mouse.Analog">
-    <value>Cần analog điều khiển chuột</value>
-  </data>
-  <data name="Emulation.Mouse.AnalogDeadzone">
-    <value>Vùng chết cần analog</value>
-  </data>
-  <data name="Emulation.Mouse.AnalogSpeed">
-    <value>Tốc độ chuột bằng cần analog</value>
-  </data>
-  <data name="Emulation.Controller.Stick.Left">
-    <value>Cần trái</value>
-  </data>
-  <data name="Emulation.Controller.Stick.Right">
-    <value>Cần phải</value>
-  </data>
-  <data name="Emulation.Controller.Stick.Both">
-    <value>Cả hai cần</value>
-  </data>
-  <data name="Emulation.Controller.Action.TurboFire">
-    <value>Bắn nhanh</value>
-  </data>
-  <data name="Emulation.Controller.Turbo.Button">
-    <value>Nút turbo</value>
-  </data>
-  <data name="Emulation.Controller.Turbo.Pulse">
-    <value>Nhịp turbo</value>
-  </data>
-  <data name="Emulation.Controller.PortOrder">
-    <value>Thứ tự cổng tay cầm</value>
-  </data>
-  <data name="Emulation.Core.Emulator">
-    <value>Trình giả lập</value>
-  </data>
-  <data name="Emulation.Folder.StorageBase">
-    <value>Thư mục lưu trữ giả lập dùng chung</value>
-  </data>
-  <data name="Emulation.Folder.StorageBaseDescription">
-    <value>Ổ cứng được tự động sắp xếp trong HDD\Amiga, HDD\Atari và các thư mục của hệ thống tương lai.</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Add">
-    <value>Thêm ổ cứng hiện có</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.List">
-    <value>Ổ cứng</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.None">
-    <value>Không có ổ cứng nào được gắn với máy này.</value>
-  </data>
-  <data name="Emulation.Keyboard.Priority.Hint">
-    <value>Phím tắt dành riêng</value>
-  </data>
-  <data name="Emulation.Keyboard.Priority.Description">
-    <value>Các phím tắt của GW GUI và Windows vẫn hoạt động và không bị máy thu nhận.</value>
-  </data>
-  <data name="Emulation.Input.Behavior">
-    <value>Hành vi</value>
-  </data>
-  <data name="Emulation.Input.Assign">
-    <value>Gán...</value>
-  </data>
-  <data name="Emulation.Input.Actions">
-    <value>Hành động</value>
-  </data>
-  <data name="Emulation.Input.Press">
-    <value>Nhấn một phím...</value>
-  </data>
-  <data name="Emulation.Folder.CreateStorage">
-    <value>Tự động tạo các thư mục con còn thiếu</value>
-  </data>
-  <data name="Emulation.Folder.Common">
-    <value>Thư mục dùng chung</value>
-  </data>
-  <data name="Emulation.Input.SharedDescription">
-    <value>Việc phát hiện thiết bị được dùng chung, còn các gán được lưu riêng trong từng cấu hình máy.</value>
-  </data>
-  <data name="Emulation.Input.Test">
-    <value>Kiểm tra đầu vào</value>
-  </data>
-  <data name="Emulation.Input.SharedDevices">
-    <value>Thiết bị đầu vào dùng chung</value>
-  </data>
-  <data name="Emulation.Folder.Capture">
-    <value>Thư mục ảnh chụp</value>
-  </data>
-  <data name="Emulation.Folder.State">
-    <value>Thư mục trạng thái đã lưu</value>
-  </data>
-  <data name="Emulation.Folder.Default">
-    <value>Thư mục mặc định</value>
-  </data>
-  <data name="Emulation.Controller.NoneDetected">
-    <value>Không phát hiện tay cầm</value>
-  </data>
-  <data name="Emulation.Input.TestPrompt">
-    <value>Nhấn phím bàn phím hoặc nút chuột để kiểm tra phát hiện.</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.List">
-    <value>Đĩa mềm</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.Extended">
-    <value>ROM mở rộng</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.Key">
-    <value>Khóa ROM</value>
-  </data>
-  <data name="Emulation.Cpu.Processor">
-    <value>Bộ xử lý</value>
-  </data>
-  <data name="Emulation.Cpu.Precision">
-    <value>Độ chính xác</value>
-  </data>
-  <data name="Emulation.Cpu.Acceleration">
-    <value>Tăng tốc</value>
-  </data>
-  <data name="Emulation.Memory.Main">
-    <value>Bộ nhớ chính</value>
-  </data>
-  <data name="Emulation.Memory.Extensions">
-    <value>Mở rộng bộ nhớ</value>
-  </data>
-  <data name="Emulation.Memory.None">
-    <value>Không có</value>
-  </data>
-  <data name="Emulation.Memory.CompatibleWithModel">
-    <value>Cấu hình bộ nhớ tương thích với {0}.</value>
-  </data>
-  <data name="Emulation.Memory.ExtensionsCompatibleWithModel">
-    <value>Các phần mở rộng bộ nhớ tương thích với {0}.</value>
-  </data>
-  <data name="Emulation.Memory.Z3UnavailableForModel">
-    <value>RAM Zorro III không khả dụng trên {0}.</value>
-  </data>
-  <data name="Emulation.Memory.TotalConfigured">
-    <value>Tổng bộ nhớ đã cấu hình: {0} {1}</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.System">
-    <value>ROM hệ thống</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.Detected">
-    <value>ROM đã phát hiện</value>
-  </data>
-  <data name="Emulation.Firmware.Use">
-    <value>Sử dụng</value>
-  </data>
-  <data name="Emulation.Value.NotUsed">
-    <value>Không sử dụng</value>
-  </data>
-  <data name="Emulation.Firmware.Rom.OpenFolder">
-    <value>Mở thư mục ROM</value>
-  </data>
-  <data name="Emulation.Firmware.PartiallyCompatible">
-    <value>Tương thích một phần</value>
-  </data>
-  <data name="Emulation.Firmware.Official">
-    <value>Chính thức</value>
-  </data>
-  <data name="Emulation.Firmware.Incompatible">
-    <value>Không tương thích</value>
-  </data>
-  <data name="Emulation.Video.Settings.Display">
-    <value>Hiển thị</value>
-  </data>
-  <data name="Emulation.Video.Settings.Rendering">
-    <value>Kết xuất</value>
-  </data>
-  <data name="Emulation.Amiga.Chipset.NameCompatibility">
-    <value>Tương thích chipset</value>
-  </data>
-  <data name="Emulation.Audio.Device">
-    <value>Thiết bị</value>
-  </data>
-  <data name="Emulation.Audio.LatencyLabel">
-    <value>Độ trễ</value>
-  </data>
-  <data name="Emulation.Audio.Quality">
-    <value>Chất lượng</value>
-  </data>
-  <data name="Emulation.Audio.Drives">
-    <value>Ổ đĩa</value>
-  </data>
-  <data name="Emulation.Device.Name.Type">
-    <value>Loại</value>
-  </data>
-  <data name="Emulation.Storage.Device.Add">
-    <value>Thêm thiết bị lưu trữ</value>
-  </data>
-  <data name="Emulation.Amiga.Storage.Floppy.Dd">
-    <value>Amiga 3,5 inch DD · 880 KiB</value>
-  </data>
-  <data name="Emulation.Amiga.Storage.Floppy.Hd">
-    <value>Amiga 3,5 inch HD · 1,76 MiB</value>
-  </data>
-  <data name="Emulation.Storage.Media.Associated">
-    <value>Phương tiện được liên kết</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Automatic">
-    <value>Hình học đĩa được trình giả lập tự động xác định.</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.BlankCreated">
-    <value>Đã tạo ảnh đĩa mềm trống: {0}</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.BlankHint">
-    <value>Tệp sẽ được tạo trống, sau đó phải được phân vùng và định dạng trong máy giả lập.</value>
-  </data>
-  <data name="Emulation.Storage.Cd.Writer">
-    <value>Ổ ghi CD</value>
-  </data>
-  <data name="Emulation.Storage.Cd.WriterHint">
-    <value>Chỉ có thể tạo đĩa trống khi máy và trình giả lập đã chọn hỗ trợ ghi.</value>
-  </data>
-  <data name="Emulation.Storage.Cd.Device">
-    <value>Ổ CD-ROM</value>
-  </data>
-  <data name="Emulation.Storage.Device.Configure">
-    <value>Cấu hình</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.CreateBlank">
-    <value>Tạo đĩa mềm trống</value>
-  </data>
-  <data name="Emulation.Storage.Disk.Image">
-    <value>Ảnh đĩa</value>
-  </data>
-  <data name="Emulation.Storage.Disk.ImageRequired">
-    <value>Chọn một ảnh đĩa hiện có.</value>
-  </data>
-  <data name="Emulation.Storage.Disk.ExistingHint">
-    <value>Tệp đã chọn sẽ được gắn vào ổ đĩa ảo này.</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.Device">
-    <value>Ổ đĩa mềm</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.ImageFilter">
-    <value>Ảnh đĩa mềm Amiga|*.adf|Tất cả tệp|*.*</value>
-  </data>
-  <data name="Emulation.Storage.HardDisk.Device">
-    <value>Đĩa cứng</value>
-  </data>
-  <data name="Emulation.Storage.Device.Interface">
-    <value>Giao diện</value>
-  </data>
-  <data name="Emulation.Storage.File.Preallocate">
-    <value>Phân bổ trước tệp</value>
-  </data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint">
-    <value>Đĩa mềm và CD được chèn hoặc thay thế từ máy đang chạy.</value>
-  </data>
-  <data name="Emulation.Storage.Media.Remove">
-    <value>Tháo phương tiện</value>
-  </data>
-  <data name="Emulation.Storage.Disk.ReplaceExisting">
-    <value>Ảnh đĩa đã tồn tại: {0}\nBạn có muốn thay thế không?</value>
-  </data>
-  <data name="Emulation.Storage.Device.CapabilitiesHint">
-    <value>Các loại, mẫu và mã định danh có sẵn phụ thuộc vào máy đã chọn.</value>
-  </data>
-  <data name="Emulation.Storage.Tape.Device">
-    <value>Ổ băng từ</value>
-  </data>
-  <data name="Emulation.Storage.Disk.Use">
-    <value>Dùng đĩa</value>
-  </data>
-  <data name="Emulation.Storage.Disk.UseExisting">
-    <value>Dùng đĩa hiện có</value>
-  </data>
-  <data name="Emulation.Storage.ModifyInGeneral">
-    <value>Sửa trong Chung</value>
-  </data>
-  <data name="Emulation.Storage.Device.NoneAvailable">
-    <value>Không có thiết bị lưu trữ bổ sung cho máy này.</value>
-  </data>
-  <data name="Emulation.Storage.Device.List">
-    <value>Thiết bị lưu trữ</value>
-  </data>
-  <data name="Emulation.Input.Binding.RestoreDefaults">
-    <value>Khôi phục mặc định</value>
-  </data>
-  <data name="Emulation.Input.Binding.ClearConflicts">
-    <value>Xóa xung đột</value>
-  </data>
-  <data name="Emulation.Keyboard.EmulatedKey">
-    <value>Phím của máy</value>
-  </data>
-  <data name="Emulation.Input.Binding.Label">
-    <value>Gán phím</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelState">
-    <value>Trạng thái</value>
-  </data>
-  <data name="Emulation.Input.Binding.Search">
-    <value>Tìm phím hoặc phép gán</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelLegend">
-    <value>Hợp lệ: phép gán duy nhất · Xung đột: phép gán dùng nhiều lần · Dành riêng: phím tắt Windows hoặc GW GUI</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelValid">
-    <value>Hợp lệ</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelConflict">
-    <value>Xung đột</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelReserved">
-    <value>Dành riêng</value>
-  </data>
-  <data name="Emulation.Input.Binding.LabelUnassigned">
-    <value>Chưa gán</value>
-  </data>
-  <data name="Emulation.Shortcut.Global">
-    <value>Phím tắt mô phỏng</value>
-  </data>
-  <data name="Emulation.Tab.Shortcuts">
-    <value>Phím tắt</value>
-  </data>
-  <data name="Emulation.Shortcut.ReleaseMouse">
-    <value>Thả chuột</value>
-  </data>
-  <data name="Emulation.Shortcut.PauseResume">
-    <value>Tạm dừng / tiếp tục</value>
-  </data>
-  <data name="Emulation.Shortcut.Fullscreen">
-    <value>Toàn màn hình / cửa sổ</value>
-  </data>
-  <data name="Emulation.Shortcut.Power">
-    <value>Bật / tắt nguồn</value>
-  </data>
-  <data name="Emulation.Shortcut.SoftReset">
-    <value>Khởi động lại mềm</value>
-  </data>
-  <data name="Emulation.Shortcut.HardReset">
-    <value>Khởi động lại cứng</value>
-  </data>
-  <data name="Emulation.Shortcut.QuickSave">
-    <value>Lưu nhanh trạng thái</value>
-  </data>
-  <data name="Emulation.Shortcut.QuickLoad">
-    <value>Tải nhanh trạng thái</value>
-  </data>
-  <data name="Emulation.Shortcut.Screenshot">
-    <value>Chụp màn hình</value>
-  </data>
-  <data name="Emulation.Shortcut.Mute">
-    <value>Tắt tiếng máy đang hoạt động</value>
-  </data>
-  <data name="Emulation.Shortcut.FastForward">
-    <value>Tua nhanh khi giữ phím</value>
-  </data>
-  <data name="Emulation.Shortcut.InsertMedia">
-    <value>Lắp hoặc thay phương tiện</value>
-  </data>
-  <data name="Emulation.Shortcut.EjectMedia">
-    <value>Đẩy phương tiện ra</value>
-  </data>
-  <data name="Emulation.Shortcut.NextMedia">
-    <value>Phương tiện tiếp theo</value>
-  </data>
-  <data name="Emulation.Key.Help">
-    <value>Trợ giúp</value>
-  </data>
-  <data name="Emulation.Key.LeftAmiga">
-    <value>Amiga trái</value>
-  </data>
-  <data name="Emulation.Key.RightAmiga">
-    <value>Amiga phải</value>
-  </data>
-  <data name="Emulation.Keyboard.SpecialKeysOnlyHint">
-    <value>Chữ cái, chữ số và phím bổ trợ thông thường được truyền trực tiếp. Chỉ cần gán các phím chức năng và phím đặc biệt của Amiga tại đây.</value>
-  </data>
-  <data name="Emulation.Shortcut.Unavailable">
-    <value>Trình mô phỏng hiện tại chưa hỗ trợ thao tác này.</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Allocation">
-    <value>Phân bổ</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.AutomaticProfile">
-    <value>Hình học tự động</value>
-  </data>
-  <data name="Emulation.Storage.Media.Blank">
-    <value>Phương tiện trống</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.BytesPerSector">
-    <value>Byte mỗi cung</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.CalculatedCapacity">
-    <value>Dung lượng tính toán: {0}</value>
-  </data>
-  <data name="Emulation.Controller.Mappings">
-    <value>Ánh xạ tay cầm</value>
-  </data>
-  <data name="Emulation.Controller.Port">
-    <value>Cổng {0}</value>
-  </data>
-  <data name="Emulation.Controller.Type">
-    <value>Loại tay cầm</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.CustomSize">
-    <value>Kích thước tùy chỉnh</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Cylinders">
-    <value>Trụ</value>
-  </data>
-  <data name="Emulation.Storage.File.DestinationFolder">
-    <value>Thư mục đích</value>
-  </data>
-  <data name="Emulation.Controller.Detected">
-    <value>Tay cầm đã phát hiện</value>
-  </data>
-  <data name="Emulation.Device.Name">
-    <value>Thiết bị</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Label">
-    <value>Hình học đĩa (CHS)</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.SizeProfile">
-    <value>Cấu hình kích thước</value>
-  </data>
-  <data name="Emulation.Storage.Floppy.Drive">
-    <value>Ổ đĩa mềm</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Heads">
-    <value>Đầu đọc</value>
-  </data>
-  <data name="Emulation.Input.Capture.Hint">
-    <value>Bấm Gán rồi sử dụng phím, nút chuột hoặc nút tay cầm.</value>
-  </data>
-  <data name="Emulation.Storage.Disk.InvalidSize">
-    <value>Kích thước hoặc hình học đĩa không hợp lệ.</value>
-  </data>
-  <data name="Emulation.Mouse.Actions">
-    <value>Thao tác chuột</value>
-  </data>
-  <data name="Emulation.Mouse.Button.4">
-    <value>Nút chuột 4</value>
-  </data>
-  <data name="Emulation.Mouse.Button.5">
-    <value>Nút chuột 5</value>
-  </data>
-  <data name="Emulation.Mouse.Capture.Title">
-    <value>Bắt chuột</value>
-  </data>
-  <data name="Emulation.Storage.File.PreallocationHint">
-    <value>Dành ngay dung lượng vật lý; nếu không, ảnh sẽ tăng khi ghi dữ liệu.</value>
-  </data>
-  <data name="Emulation.Controller.SearchBinding">
-    <value>Tìm thao tác hoặc đầu vào</value>
-  </data>
-  <data name="Emulation.Storage.Geometry.Sectors">
-    <value>Cung</value>
-  </data>
-  <data name="Emulation.Controller.Action.Up">
-    <value>Lên</value>
-  </data>
-  <data name="Emulation.Controller.Action.Down">
-    <value>Xuống</value>
-  </data>
-  <data name="Emulation.Controller.Action.Left">
-    <value>Trái</value>
-  </data>
-  <data name="Emulation.Controller.Action.Right">
-    <value>Phải</value>
-  </data>
-  <data name="Emulation.Controller.Action.Fire1">
-    <value>Nút bắn 1</value>
-  </data>
-  <data name="Emulation.Controller.Action.Fire2">
-    <value>Nút bắn 2</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Red">
-    <value>Nút đỏ CD32</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Blue">
-    <value>Nút xanh dương CD32</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Green">
-    <value>Nút xanh lá CD32</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Yellow">
-    <value>Nút vàng CD32</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.Rewind">
-    <value>CD32 tua lại</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.FastForward">
-    <value>CD32 tua nhanh</value>
-  </data>
-  <data name="Emulation.Amiga.Controller.Cd32.PlayPause">
-    <value>CD32 phát / tạm dừng</value>
-  </data>
-  <data name="Emulation.Controller.AnalogJoystick">
-    <value>Cần điều khiển analog</value>
-  </data>
-  <data name="Emulation.Mouse.Wheel.Up">
-    <value>Con lăn chuột lên</value>
-  </data>
-  <data name="Emulation.Mouse.Wheel.Down">
-    <value>Con lăn chuột xuống</value>
-  </data>
-  <data name="Emulation.Mouse.Wheel.Left">
-    <value>Con lăn chuột sang trái</value>
-  </data>
-  <data name="Emulation.Mouse.Wheel.Right">
-    <value>Con lăn chuột sang phải</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve">
-    <value>Giá trị này được xác định bởi mô hình đã chọn.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve">
-    <value>Không có sẵn cho mô hình này.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve">
-    <value>Không có bộ nhớ khác sẵn sàng cho mô hình này.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve">
-    <value>Mô hình này không có phần mềm cấu hình được.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve">
-    <value>Mô hình này không có bàn phím.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve">
-    <value>Mô hình này không có chuột.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve">
-    <value>Mô hình này không có phương tiện lưu trữ.</value>
-  </data>
-  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve">
-    <value>Chọn mẫu Jaguar CD để sử dụng đĩa CD.</value>
-  </data>
-  <data name="Emulation.Storage.Cassettes">
-    <value>Băng cassette</value>
-  </data>
-  <data name="Emulation.Storage.Cartridges">
-    <value>Hộp băng</value>
-  </data>
+  <data name="Emulation.Tab.Machines"><value>Máy</value></data>
+  <data name="Emulation.Core.Name"><value>Lõi</value></data>
+  <data name="Emulation.Core.NameManagerTitle"><value>Lõi giả lập {0}</value></data>
+  <data name="Emulation.Core.NameManagerDescription"><value>Thư viện vẫn nằm bên ngoài GW GUI. Phiên bản được chọn sẽ thay thế phiên bản hiện đang cài đặt.</value></data>
+  <data name="Emulation.Core.NameRequiredVersion"><value>Phiên bản GW GUI yêu cầu</value></data>
+  <data name="Emulation.Core.NameLatestVersion"><value>Phiên bản chính thức mới nhất hiện có</value></data>
+  <data name="Emulation.Core.NameProjectVersion"><value>Phiên bản hiện đang cài đặt</value></data>
+  <data name="Emulation.Core.NameSearchPrompt"><value>Nhấp Tìm kiếm để truy vấn máy chủ Libretro chính thức.</value></data>
+  <data name="Emulation.Core.NameSearch"><value>Tìm phiên bản</value></data>
+  <data name="Emulation.Core.NameDownload"><value>Tải xuống và thay thế</value></data>
+  <data name="Emulation.Core.NameSearching"><value>Đang tìm các phiên bản hiện có…</value></data>
+  <data name="Emulation.Core.NameNoneFound"><value>Không tìm thấy phiên bản chính thức.</value></data>
+  <data name="Emulation.Core.NameVersionsFound"><value>Có {0} phiên bản.</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>Đang tải {0}…</value></data>
+  <data name="Emulation.Core.NameInstalledPath"><value>Phiên bản đã cài đặt: {0}</value></data>
+  <data name="Emulation.Core.NameInstalled"><value>{0} · đã cài đặt</value></data>
+  <data name="Emulation.Core.NameNotInstalled"><value>Chưa cài đặt phiên bản nào</value></data>
+  <data name="Emulation.Machine.Open"><value>Mở</value></data>
+  <data name="Emulation.Tab.Welcome"><value>Chào mừng</value></data>
+  <data name="Emulation.Welcome.Text"><value>Chọn một máy đã lưu ở trên rồi nhấp Mở. Mỗi máy đang chạy xuất hiện trong một thẻ riêng.</value></data>
+  <data name="Emulation.Configuration.Description"><value>Tạo, chọn, sửa đổi hoặc xóa cấu hình đã lưu tại đây. Chọn thẻ {0} để chỉnh sửa cấu hình đã chọn.</value></data>
+  <data name="Emulation.Tab.General"><value>Chung</value></data>
+<data name="Emulation.Tab.Storage"><value>Lưu trữ</value></data>
+  <data name="Emulation.Tab.Keyboard"><value>Bàn phím</value></data>
+  <data name="Emulation.Tab.Mouse"><value>Chuột</value></data>
+  <data name="Emulation.Controller.Tab"><value>Bộ điều khiển</value></data>
+  <data name="Emulation.Tab.Advanced"><value>Nâng cao</value></data>
+  <data name="Emulation.Device.Name.Id"><value>Mã định danh thiết bị</value></data>
+  <data name="Emulation.Controller.Device"><value>Thiết bị bộ điều khiển {0}</value></data>
+  <data name="Emulation.Keyboard.SystemKey"><value>Phím {0}</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Phím máy chủ</value></data>
+  <data name="Emulation.Cpu.Summary"><value>Bộ xử lý: {0}</value></data>
+<data name="Emulation.Video.Summary"><value>Chipset video: {0}</value></data>
+  <data name="Emulation.Cpu.Model"><value>Mẫu CPU</value></data>
+  <data name="Emulation.Cpu.Multiplier"><value>Hệ số nhân CPU</value></data>
+  <data name="Emulation.Cpu.Compatibility"><value>CPU tương thích từng chu kỳ</value></data>
+<data name="Emulation.Video.Standard"><value>Chuẩn video</value></data>
+  <data name="Emulation.Video.Resolution"><value>Độ phân giải</value></data>
+  <data name="Emulation.Video.AspectRatio"><value>Tỷ lệ khung hình</value></data>
+  <data name="Emulation.Video.Crop"><value>Cắt viền</value></data>
+  <data name="Emulation.Video.FlickerFixer"><value>Sửa nhấp nháy</value></data>
+  <data name="Emulation.Audio.Enabled"><value>Bật âm thanh</value></data>
+  <data name="Emulation.Audio.Output"><value>Đầu ra âm thanh</value></data>
+  <data name="Emulation.Audio.Latency"><value>Độ trễ (ms)</value></data>
+  <data name="Emulation.Audio.Interpolation"><value>Nội suy</value></data>
+  <data name="Emulation.Audio.Filter"><value>Bộ lọc âm thanh Amiga</value></data>
+  <data name="Emulation.Audio.StereoSeparation"><value>Tách âm stereo (%)</value></data>
+  <data name="Emulation.Audio.Input"><value>Đầu vào âm thanh</value></data>
+  <data name="Emulation.Audio.InputUnavailable"><value>Lõi Amiga này không cung cấp đầu vào âm thanh.</value></data>
+  <data name="Emulation.Audio.DefaultOutput"><value>Đầu ra mặc định của Windows</value></data>
+  <data name="Emulation.Storage.Media.Add"><value>Thêm phương tiện</value></data>
+  <data name="Emulation.Storage.HardDisk.Create"><value>Tạo ổ cứng</value></data>
+  <data name="Emulation.Storage.HardDisk.Size"><value>Kích thước ổ cứng (MiB)</value></data>
+  <data name="Emulation.Storage.Media.None"><value>Không có phương tiện. Hãy thêm đĩa mềm, ổ cứng hoặc CD được mẫu đã chọn hỗ trợ.</value></data>
+  <data name="Emulation.Storage.ReadOnly"><value>Chỉ đọc</value></data>
+<data name="Emulation.Storage.HardDisk.NotSupported"><value>Mẫu đã chọn không hỗ trợ ổ cứng.</value></data>
+  <data name="Emulation.Storage.Floppy.TooManyDrives"><value>Mẫu này hỗ trợ tối đa {0} ổ đĩa mềm.</value></data>
+  <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>Mẫu này hỗ trợ tối đa {0} ổ cứng.</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>Mô hình đã chọn không hỗ trợ một CD ổ đĩa.</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>Hai phím Amiga sử dụng cùng một PC phím. Giải quyết các bản đồ màu đỏ trước khi lưu.</value></data>
+  <data name="Emulation.Mouse.ReleaseKey"><value>Phím nhả chuột</value></data>
+  <data name="Emulation.Mouse.Button.Left"><value>Nút chuột trái</value></data>
+  <data name="Emulation.Mouse.Button.Right"><value>Nút chuột phải</value></data>
+  <data name="Emulation.Mouse.Button.Middle"><value>Nút chuột giữa</value></data>
+  <data name="Emulation.Controller.Detect"><value>Phát hiện tay cầm</value></data>
+  <data name="Emulation.Controller.EmulatedAction"><value>Hành động Amiga</value></data>
+  <data name="Emulation.Controller.PhysicalControl"><value>Điều khiển bằng bàn phím, chuột hoặc tay cầm</value></data>
+  <data name="Emulation.Amiga.Chipset.Name"><value>Bộ vi mạch</value></data>
+  <data name="Emulation.Storage.Cd.Drive"><value>Ổ đĩa CD</value></data>
+  <data name="Emulation.Storage.Floppy.DriveCount"><value>Số ổ đĩa mềm</value></data>
+  <data name="Emulation.Storage.HardDisk.DriveCount"><value>Số ổ đĩa cứng</value></data>
+  <data name="Emulation.Cpu.Speed"><value>Tốc độ CPU</value></data>
+  <data name="Emulation.Cpu.SpeedOriginal"><value>Tốc độ gốc</value></data>
+  <data name="Emulation.Cpu.Compatibility.Normal"><value>Bình thường</value></data>
+  <data name="Emulation.Cpu.Compatibility.Compatible"><value>Tương thích</value></data>
+  <data name="Emulation.Cpu.Compatibility.Memory"><value>Tương thích bộ nhớ</value></data>
+  <data name="Emulation.Cpu.Compatibility.Exact"><value>Chính xác từng chu kỳ</value></data>
+  <data name="Emulation.Fpu.Integrated"><value>FPU tích hợp</value></data>
+  <data name="Emulation.Value.Enabled"><value>Đã bật</value></data>
+  <data name="Emulation.Value.Disabled"><value>Đã tắt</value></data>
+  <data name="Emulation.Value.Minimum"><value>Tối thiểu</value></data>
+  <data name="Emulation.Value.VerySmall"><value>Rất nhỏ</value></data>
+  <data name="Emulation.Value.Small"><value>Nhỏ</value></data>
+  <data name="Emulation.Value.Medium"><value>Trung bình</value></data>
+  <data name="Emulation.Value.Large"><value>Lớn</value></data>
+  <data name="Emulation.Value.VeryLarge"><value>Rất lớn</value></data>
+  <data name="Emulation.Value.Maximum"><value>Tối đa</value></data>
+  <data name="Emulation.State.Locked"><value>Đã khóa</value></data>
+  <data name="Emulation.State.Immediate"><value>Ngay lập tức</value></data>
+  <data name="Emulation.State.Waiting"><value>Có chờ</value></data>
+  <data name="Emulation.Value.Standard"><value>Tiêu chuẩn</value></data>
+  <data name="Emulation.Value.Enhanced"><value>Nâng cao</value></data>
+  <data name="Emulation.Value.Internal"><value>Nội bộ</value></data>
+  <data name="Emulation.Value.Loud"><value>Lớn</value></data>
+  <data name="Emulation.Video.Resolution.AutoLow"><value>Độ phân giải thấp tự động</value></data>
+  <data name="Emulation.Video.Resolution.AutoSuperHigh"><value>Độ phân giải siêu cao tự động</value></data>
+  <data name="Emulation.Video.Resolution.Low"><value>Độ phân giải thấp</value></data>
+  <data name="Emulation.Video.Resolution.High"><value>Độ phân giải cao</value></data>
+  <data name="Emulation.Video.Resolution.SuperHigh"><value>Độ phân giải siêu cao</value></data>
+  <data name="Emulation.Video.LineMode"><value>Chế độ dòng</value></data>
+  <data name="Emulation.Video.HzChange"><value>Thay đổi tần số làm mới</value></data>
+  <data name="Emulation.Video.FrameSkip"><value>Bỏ qua khung hình</value></data>
+  <data name="Emulation.Video.Colors"><value>Độ sâu màu</value></data>
+<data name="Emulation.State.ImmediateBlits"><value>Hoạt động blitter</value></data>
+  <data name="Emulation.Video.Collision.Level"><value>Phát hiện va chạm</value></data>
+  <data name="Emulation.Video.LineMode.Single"><value>Quét đơn</value></data>
+  <data name="Emulation.Video.LineMode.Double"><value>Quét kép</value></data>
+  <data name="Emulation.Video.Collision.Sprites"><value>Sprite</value></data>
+  <data name="Emulation.Video.Collision.Playfields"><value>Lớp hình ảnh</value></data>
+  <data name="Emulation.Video.Collision.Full"><value>Đầy đủ</value></data>
+  <data name="Emulation.Audio.Interpolation.Anti"><value>Chống nội suy</value></data>
+  <data name="Emulation.Audio.Filter.Emulated"><value>Mô phỏng</value></data>
+  <data name="Emulation.Audio.FilterType"><value>Loại bộ lọc</value></data>
+  <data name="Emulation.Audio.Floppy.Sound"><value>Âm lượng tiếng ổ đĩa mềm</value></data>
+  <data name="Emulation.Audio.Floppy.SoundType"><value>Loại tiếng ổ đĩa mềm</value></data>
+  <data name="Emulation.Audio.Floppy.MuteEmpty"><value>Tắt tiếng ổ đĩa trống</value></data>
+  <data name="Emulation.Audio.Cd.Volume"><value>Âm lượng CD</value></data>
+  <data name="Emulation.Storage.Floppy.Speed"><value>Tốc độ ổ đĩa mềm</value></data>
+  <data name="Emulation.Storage.Floppy.WriteProtection"><value>Chống ghi ảnh đĩa mềm</value></data>
+  <data name="Emulation.Storage.Floppy.WriteRedirect"><value>Chuyển hướng ghi đĩa mềm</value></data>
+  <data name="Emulation.Storage.Cd.Speed"><value>Tốc độ CD</value></data>
+  <data name="Emulation.Keyboard.PassThrough"><value>Chuyển trực tiếp bàn phím vật lý</value></data>
+  <data name="Emulation.Mouse.Physical"><value>Chuột vật lý</value></data>
+  <data name="Emulation.Mouse.PhysicalDouble"><value>Di chuyển gấp đôi</value></data>
+  <data name="Emulation.Mouse.Speed"><value>Tốc độ chuột</value></data>
+  <data name="Emulation.Mouse.Analog"><value>Cần analog điều khiển chuột</value></data>
+  <data name="Emulation.Mouse.AnalogDeadzone"><value>Vùng chết cần analog</value></data>
+  <data name="Emulation.Mouse.AnalogSpeed"><value>Tốc độ chuột bằng cần analog</value></data>
+  <data name="Emulation.Controller.Stick.Left"><value>Cần trái</value></data>
+  <data name="Emulation.Controller.Stick.Right"><value>Cần phải</value></data>
+  <data name="Emulation.Controller.Stick.Both"><value>Cả hai cần</value></data>
+  <data name="Emulation.Controller.Action.TurboFire"><value>Bắn nhanh</value></data>
+  <data name="Emulation.Controller.Turbo.Button"><value>Nút turbo</value></data>
+  <data name="Emulation.Controller.Turbo.Pulse"><value>Nhịp turbo</value></data>
+  <data name="Emulation.Controller.PortOrder"><value>Thứ tự cổng tay cầm</value></data>
+  <data name="Emulation.Core.Emulator"><value>Trình giả lập</value></data>
+  <data name="Emulation.Folder.StorageBase"><value>Thư mục lưu trữ giả lập dùng chung</value></data>
+  <data name="Emulation.Folder.StorageBaseDescription"><value>Ổ cứng được tự động sắp xếp trong HDD\Amiga, HDD\Atari và các thư mục của hệ thống tương lai.</value></data>
+  <data name="Emulation.Storage.HardDisk.Add"><value>Thêm ổ cứng hiện có</value></data>
+  <data name="Emulation.Storage.HardDisk.List"><value>Ổ cứng</value></data>
+  <data name="Emulation.Storage.HardDisk.None"><value>Không có ổ cứng nào được gắn với máy này.</value></data>
+  <data name="Emulation.Keyboard.Priority.Hint"><value>Phím tắt dành riêng</value></data>
+  <data name="Emulation.Keyboard.Priority.Description"><value>Các phím tắt của GW GUI và Windows vẫn hoạt động và không bị máy thu nhận.</value></data>
+  <data name="Emulation.Input.Behavior"><value>Hành vi</value></data>
+  <data name="Emulation.Input.Assign"><value>Gán...</value></data>
+  <data name="Emulation.Input.Actions"><value>Hành động</value></data>
+  <data name="Emulation.Input.Press"><value>Nhấn một phím...</value></data>
+  <data name="Emulation.Folder.CreateStorage"><value>Tự động tạo các thư mục con còn thiếu</value></data>
+  <data name="Emulation.Folder.Common"><value>Thư mục dùng chung</value></data>
+  <data name="Emulation.Input.SharedDescription"><value>Việc phát hiện thiết bị được dùng chung, còn các gán được lưu riêng trong từng cấu hình máy.</value></data>
+  <data name="Emulation.Input.Test"><value>Kiểm tra đầu vào</value></data>
+  <data name="Emulation.Input.SharedDevices"><value>Thiết bị đầu vào dùng chung</value></data>
+  <data name="Emulation.Folder.Capture"><value>Thư mục ảnh chụp</value></data>
+  <data name="Emulation.Folder.State"><value>Thư mục trạng thái đã lưu</value></data>
+  <data name="Emulation.Folder.Default"><value>Thư mục mặc định</value></data>
+  <data name="Emulation.Controller.NoneDetected"><value>Không phát hiện tay cầm</value></data>
+  <data name="Emulation.Input.TestPrompt"><value>Nhấn phím bàn phím hoặc nút chuột để kiểm tra phát hiện.</value></data>
+  <data name="Emulation.Storage.Floppy.List"><value>Đĩa mềm</value></data>
+  <data name="Emulation.Firmware.Rom.Extended"><value>ROM mở rộng</value></data>
+  <data name="Emulation.Firmware.Rom.Key"><value>Khóa ROM</value></data>
+  <data name="Emulation.Cpu.Processor"><value>Bộ xử lý</value></data>
+  <data name="Emulation.Cpu.Precision"><value>Độ chính xác</value></data>
+  <data name="Emulation.Cpu.Acceleration"><value>Tăng tốc</value></data>
+  <data name="Emulation.Memory.Main"><value>Bộ nhớ chính</value></data>
+  <data name="Emulation.Memory.Extensions"><value>Mở rộng bộ nhớ</value></data>
+  <data name="Emulation.Memory.None"><value>Không có</value></data>
+  <data name="Emulation.Memory.CompatibleWithModel"><value>Cấu hình bộ nhớ tương thích với {0}.</value></data>
+  <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Các phần mở rộng bộ nhớ tương thích với {0}.</value></data>
+  <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM không sẵn sàng trên {0}.</value></data>
+  <data name="Emulation.Memory.TotalConfigured"><value>Tổng bộ nhớ đã cấu hình: {0} {1}</value></data>
+  <data name="Emulation.Firmware.Rom.System"><value>ROM hệ thống</value></data>
+  <data name="Emulation.Firmware.Rom.Detected"><value>phát hiện ROM đã dùng</value></data>
+  <data name="Emulation.Firmware.Use"><value>Sử dụng</value></data>
+  <data name="Emulation.Value.NotUsed"><value>Không sử dụng</value></data>
+  <data name="Emulation.Firmware.Rom.OpenFolder"><value>Mở thư mục ROM</value></data>
+  <data name="Emulation.Firmware.PartiallyCompatible"><value>Tương thích một phần</value></data>
+  <data name="Emulation.Firmware.Official"><value>Chính thức</value></data>
+  <data name="Emulation.Firmware.Incompatible"><value>Không tương thích</value></data>
+  <data name="Emulation.Video.Settings.Display"><value>Hiển thị</value></data>
+  <data name="Emulation.Video.Settings.Rendering"><value>Kết xuất</value></data>
+  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Tương thích chipset</value></data>
+  <data name="Emulation.Audio.Device"><value>Thiết bị</value></data>
+  <data name="Emulation.Audio.LatencyLabel"><value>Độ trễ</value></data>
+  <data name="Emulation.Audio.Quality"><value>Chất lượng</value></data>
+  <data name="Emulation.Audio.Drives"><value>Ổ đĩa</value></data>
+  <data name="Emulation.Device.Name.Type"><value>Loại</value></data>
+  <data name="Emulation.Storage.Device.Add"><value>Thêm thiết bị lưu trữ</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3,5 inch DD · 880 KiB</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3,5 inch HD · 1,76 MiB</value></data>
+  <data name="Emulation.Storage.Media.Associated"><value>Phương tiện được liên kết</value></data>
+  <data name="Emulation.Storage.Geometry.Automatic"><value>Hình học đĩa được trình giả lập tự động xác định.</value></data>
+  <data name="Emulation.Storage.Floppy.BlankCreated"><value>Đã tạo ảnh đĩa mềm trống: {0}</value></data>
+  <data name="Emulation.Storage.HardDisk.BlankHint"><value>Tệp sẽ được tạo trống, sau đó phải được phân vùng và định dạng trong máy giả lập.</value></data>
+  <data name="Emulation.Storage.Cd.Writer"><value>Ổ ghi CD</value></data>
+  <data name="Emulation.Storage.Cd.WriterHint"><value>Chỉ có thể tạo đĩa trống khi máy và trình giả lập đã chọn hỗ trợ ghi.</value></data>
+  <data name="Emulation.Storage.Cd.Device"><value>Ổ CD-ROM</value></data>
+  <data name="Emulation.Storage.Device.Configure"><value>Cấu hình</value></data>
+  <data name="Emulation.Storage.Floppy.CreateBlank"><value>Tạo đĩa mềm trống</value></data>
+  <data name="Emulation.Storage.Disk.Image"><value>Ảnh đĩa</value></data>
+  <data name="Emulation.Storage.Disk.ImageRequired"><value>Chọn một ảnh đĩa hiện có.</value></data>
+  <data name="Emulation.Storage.Disk.ExistingHint"><value>Tệp đã chọn sẽ được gắn vào ổ đĩa ảo này.</value></data>
+  <data name="Emulation.Storage.Floppy.Device"><value>Ổ đĩa mềm</value></data>
+  <data name="Emulation.Storage.Floppy.ImageFilter"><value>Ảnh đĩa mềm Amiga|*.adf|Tất cả tệp|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Device"><value>Đĩa cứng</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>Giao diện</value></data>
+  <data name="Emulation.Storage.File.Preallocate"><value>Phân bổ trước tệp</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Các đĩa CD và đĩa mềm được chèn hoặc thay thế từ máy đang chạy.</value></data>
+  <data name="Emulation.Storage.Media.Remove"><value>Tháo phương tiện</value></data>
+  <data name="Emulation.Storage.Disk.ReplaceExisting"><value>Ảnh đĩa đã tồn tại: {0}\nBạn có muốn thay thế không?</value></data>
+  <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Các loại, mẫu và mã định danh có sẵn phụ thuộc vào máy đã chọn.</value></data>
+  <data name="Emulation.Storage.Tape.Device"><value>Ổ băng từ</value></data>
+  <data name="Emulation.Storage.Disk.Use"><value>Dùng đĩa</value></data>
+  <data name="Emulation.Storage.Disk.UseExisting"><value>Dùng đĩa hiện có</value></data>
+  <data name="Emulation.Storage.ModifyInGeneral"><value>Sửa trong Chung</value></data>
+  <data name="Emulation.Storage.Device.NoneAvailable"><value>Không có thiết bị lưu trữ bổ sung cho máy này.</value></data>
+  <data name="Emulation.Storage.Device.List"><value>Thiết bị lưu trữ</value></data>
+  <data name="Emulation.Input.Binding.RestoreDefaults"><value>Khôi phục mặc định</value></data>
+  <data name="Emulation.Input.Binding.ClearConflicts"><value>Xóa xung đột</value></data>
+  <data name="Emulation.Keyboard.EmulatedKey"><value>Phím của máy</value></data>
+  <data name="Emulation.Input.Binding.Label"><value>Gán phím</value></data>
+  <data name="Emulation.Input.Binding.LabelState"><value>Trạng thái</value></data>
+  <data name="Emulation.Input.Binding.Search"><value>Tìm phím hoặc phép gán</value></data>
+  <data name="Emulation.Input.Binding.LabelLegend"><value>Hợp lệ: phép gán duy nhất · Xung đột: phép gán dùng nhiều lần · Dành riêng: phím tắt Windows hoặc GW GUI</value></data>
+  <data name="Emulation.Input.Binding.LabelValid"><value>Hợp lệ</value></data>
+  <data name="Emulation.Input.Binding.LabelConflict"><value>Xung đột</value></data>
+  <data name="Emulation.Input.Binding.LabelReserved"><value>Dành riêng</value></data>
+  <data name="Emulation.Input.Binding.LabelUnassigned"><value>Chưa gán</value></data>
+  <data name="Emulation.Shortcut.Global"><value>Phím tắt mô phỏng</value></data>
+  <data name="Emulation.Tab.Shortcuts"><value>Phím tắt</value></data>
+  <data name="Emulation.Shortcut.ReleaseMouse"><value>Thả chuột</value></data>
+  <data name="Emulation.Shortcut.PauseResume"><value>Tạm dừng / tiếp tục</value></data>
+  <data name="Emulation.Shortcut.Fullscreen"><value>Toàn màn hình / cửa sổ</value></data>
+  <data name="Emulation.Shortcut.Power"><value>Bật / tắt nguồn</value></data>
+  <data name="Emulation.Shortcut.SoftReset"><value>Khởi động lại mềm</value></data>
+  <data name="Emulation.Shortcut.HardReset"><value>Khởi động lại cứng</value></data>
+  <data name="Emulation.Shortcut.QuickSave"><value>Lưu nhanh trạng thái</value></data>
+  <data name="Emulation.Shortcut.QuickLoad"><value>Tải nhanh trạng thái</value></data>
+  <data name="Emulation.Shortcut.Screenshot"><value>Chụp màn hình</value></data>
+  <data name="Emulation.Shortcut.Mute"><value>Tắt tiếng máy đang hoạt động</value></data>
+  <data name="Emulation.Shortcut.FastForward"><value>Tua nhanh khi giữ phím</value></data>
+  <data name="Emulation.Shortcut.InsertMedia"><value>Lắp hoặc thay phương tiện</value></data>
+  <data name="Emulation.Shortcut.EjectMedia"><value>Đẩy phương tiện ra</value></data>
+  <data name="Emulation.Shortcut.NextMedia"><value>Phương tiện tiếp theo</value></data>
+  <data name="Emulation.Key.Help"><value>Trợ giúp</value></data>
+  <data name="Emulation.Key.LeftAmiga"><value>Amiga trái</value></data>
+  <data name="Emulation.Key.RightAmiga"><value>Amiga phải</value></data>
+  <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Chữ cái, chữ số và phím bổ trợ thông thường được truyền trực tiếp. Chỉ cần gán các phím chức năng và phím đặc biệt của Amiga tại đây.</value></data>
+  <data name="Emulation.Shortcut.Unavailable"><value>Trình mô phỏng hiện tại chưa hỗ trợ thao tác này.</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>Phân bổ</value></data>
+  <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>Hình học tự động</value></data>
+  <data name="Emulation.Storage.Media.Blank"><value>Phương tiện trống</value></data>
+  <data name="Emulation.Storage.Geometry.BytesPerSector"><value>Byte mỗi cung</value></data>
+  <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>Dung lượng tính toán: {0}</value></data>
+  <data name="Emulation.Controller.Mappings"><value>Ánh xạ tay cầm</value></data>
+  <data name="Emulation.Controller.Port"><value>Cổng {0}</value></data>
+  <data name="Emulation.Controller.Type"><value>Loại tay cầm</value></data>
+  <data name="Emulation.Storage.Geometry.CustomSize"><value>Kích thước tùy chỉnh</value></data>
+  <data name="Emulation.Storage.Geometry.Cylinders"><value>Trụ</value></data>
+  <data name="Emulation.Storage.File.DestinationFolder"><value>Thư mục đích</value></data>
+  <data name="Emulation.Controller.Detected"><value>Tay cầm đã phát hiện</value></data>
+  <data name="Emulation.Device.Name"><value>Thiết bị</value></data>
+  <data name="Emulation.Storage.Geometry.Label"><value>Hình học đĩa (CHS)</value></data>
+  <data name="Emulation.Storage.Geometry.SizeProfile"><value>Cấu hình kích thước</value></data>
+  <data name="Emulation.Storage.Floppy.Drive"><value>Ổ đĩa mềm</value></data>
+  <data name="Emulation.Storage.Geometry.Heads"><value>Đầu đọc</value></data>
+  <data name="Emulation.Input.Capture.Hint"><value>Bấm Gán rồi sử dụng phím, nút chuột hoặc nút tay cầm.</value></data>
+  <data name="Emulation.Storage.Disk.InvalidSize"><value>Kích thước hoặc hình học đĩa không hợp lệ.</value></data>
+  <data name="Emulation.Mouse.Actions"><value>Thao tác chuột</value></data>
+  <data name="Emulation.Mouse.Button.4"><value>Nút chuột 4</value></data>
+  <data name="Emulation.Mouse.Button.5"><value>Nút chuột 5</value></data>
+  <data name="Emulation.Mouse.Capture.Title"><value>Bắt chuột</value></data>
+  <data name="Emulation.Storage.File.PreallocationHint"><value>Dành ngay dung lượng vật lý; nếu không, ảnh sẽ tăng khi ghi dữ liệu.</value></data>
+  <data name="Emulation.Controller.SearchBinding"><value>Tìm thao tác hoặc đầu vào</value></data>
+  <data name="Emulation.Storage.Geometry.Sectors"><value>Cung</value></data>
+  <data name="Emulation.Controller.Action.Up"><value>Lên</value></data>
+  <data name="Emulation.Controller.Action.Down"><value>Xuống</value></data>
+  <data name="Emulation.Controller.Action.Left"><value>Trái</value></data>
+  <data name="Emulation.Controller.Action.Right"><value>Phải</value></data>
+  <data name="Emulation.Controller.Action.Fire1"><value>Nút bắn 1</value></data>
+  <data name="Emulation.Controller.Action.Fire2"><value>Nút bắn 2</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>Nút đỏ CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>Nút xanh dương CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>Nút xanh lá CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>Nút vàng CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 tua lại</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 tua nhanh</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 phát / tạm dừng</value></data>
+  <data name="Emulation.Controller.AnalogJoystick"><value>Cần điều khiển analog</value></data>
+  <data name="Emulation.Mouse.Wheel.Up"><value>Con lăn chuột lên</value></data>
+  <data name="Emulation.Mouse.Wheel.Down"><value>Con lăn chuột xuống</value></data>
+  <data name="Emulation.Mouse.Wheel.Left"><value>Con lăn chuột sang trái</value></data>
+  <data name="Emulation.Mouse.Wheel.Right"><value>Con lăn chuột sang phải</value></data>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>Giá trị này được xác định bởi mô hình đã chọn.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>không tương thích FPU sẵn sàng cho mô hình này.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>Không có bộ nhớ khác sẵn sàng cho mô hình này.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>Mô hình này không có phần mềm cấu hình được.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>Mô hình này không có bàn phím.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>Mô hình này không có chuột.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Mô hình này không có phương tiện lưu trữ.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Chọn con báo CD Mô hình cần dùng CD phương tiện.</value></data>
+  <data name="Emulation.Storage.Cassettes"><value>Băng cassette</value></data>
+  <data name="Emulation.Storage.Cartridges"><value>Hộp băng</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Khe cắm hộp băng</value></data>
-  <data name="Emulation.Storage.CompactDiscs">
-    <value>Đĩa compact</value>
-  </data>
-  <data name="Emulation.Atari.Video.Region">
-    <value>Khu vực</value>
-  </data>
-  <data name="Emulation.Atari.Firmware.Multilingual">
-    <value>Đa ngôn ngữ</value>
-  </data>
-  <data name="Emulation.Atari.Video.RegionFree">
-    <value>Không giới hạn khu vực</value>
-  </data>
-  <data name="Emulation.Tab.Audio" xml:space="preserve">
-    <value>Âm thanh</value>
-  </data>
-  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve">
-    <value>Không tìm thấy lõi Atari.</value>
-  </data>
-  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve">
-    <value>Không thể tải lõi Atari đã chọn.</value>
-  </data>
-  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve">
-    <value>Một phần cứng Atari bị thiếu.</value>
-  </data>
-  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve">
-    <value>Một phần cứng Atari không hợp lệ hay không tương thích.</value>
-  </data>
-  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve">
-    <value>Không tìm thấy phương tiện truyền thông Atari được cấu hình.</value>
-  </data>
-  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve">
-    <value>Phương tiện được cấu hình không được hỗ trợ bởi máy Atari này.</value>
-  </data>
-  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve">
-    <value>Một tùy chọn Atari có giá trị không hợp lệ.</value>
-  </data>
-  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve">
-    <value>Liên lạc với tổ chức Atari thất bại.</value>
-  </data>
-  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve">
-    <value>Bang Atari không có quyền.</value>
-  </data>
-  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve">
-    <value>Bang Atari tiết kiệm không tương thích với cỗ máy hiện tại.</value>
-  </data>
-  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve">
-    <value>Một lỗi không ngờ xảy ra ở Atari.</value>
-  </data>
-  <data name="Emulation.Atari.Error.Details" xml:space="preserve">
-    <value>Chi tiết: {0}</value>
-  </data>
-  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve">
-    <value>Cấu hình Atari hoạt động không thể thay đổi hay xoá.</value>
-  </data>
-  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve">
-    <value>Cần thiết phần cứng Atari '{0}' chưa được cấu hình cho {1}.</value>
-  </data>
-  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve">
-    <value>Cấu hình phần cứng Atari '{0}' không được tìm thấy: {1}</value>
-  </data>
-  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve">
-    <value>Không tìm thấy phương tiện truyền thông Atari: {0}</value>
-  </data>
-  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve">
-    <value>Không có đường dẫn đến máy Atari.</value>
-  </data>
-  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve">
-    <value>lõi Atari '{0}' chưa được cài đặt.</value>
-  </data>
-  <data name="Emulation.Atari.Storage.MediaFilter" xml:space="preserve">
-    <value>Truyền thông Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Mọi tập tin|*.*</value>
-  </data>
+  <data name="Emulation.Storage.CompactDiscs"><value>Đĩa compact</value></data>
+  <data name="Emulation.Atari.Video.Region"><value>Khu vực</value></data>
+  <data name="Emulation.Atari.Firmware.Multilingual"><value>Đa ngôn ngữ</value></data>
+  <data name="Emulation.Atari.Video.RegionFree"><value>Không giới hạn khu vực</value></data>
+  <data name="Emulation.Tab.Audio" xml:space="preserve"><value>Âm thanh</value></data>
+  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>Không tìm thấy lõi Atari.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>Không thể tải lõi Atari đã chọn.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>Một phần cứng Atari bị thiếu.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>Một phần cứng Atari không hợp lệ hay không tương thích.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>Không tìm thấy phương tiện truyền thông Atari được cấu hình.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>Phương tiện được cấu hình không được hỗ trợ bởi máy Atari này.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>Một tùy chọn Atari có giá trị không hợp lệ.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>Liên lạc với tổ chức Atari thất bại.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>Bang Atari không có quyền.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>Bang Atari tiết kiệm không tương thích với cỗ máy hiện tại.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>Một lỗi không ngờ xảy ra ở Atari.</value></data>
+  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>Chi tiết: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>Cấu hình Atari hoạt động không thể thay đổi hay xoá.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve"><value>Cần thiết phần cứng Atari '{0}' chưa được cấu hình cho {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>Cấu hình phần cứng Atari '{0}' không được tìm thấy: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>Không tìm thấy phương tiện truyền thông Atari: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>Không có đường dẫn đến máy Atari.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>lõi Atari '{0}' chưa được cài đặt.</value></data>
+  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Mọi tập tin|*.*</value></data>
   <data name="Emulation.Controller.Automatic"><value>Tự động</value></data>
   <data name="Emulation.Controller.None"><value>Không có</value></data>
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Trình điều chỉnh cần điều khiển bốn người chơi song song</value></data>
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Name</value></data>
   <data name="Emulation.Atari.Controller.NumericKeypad"><value>Name</value></data>
-  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve">
-    <value>Trình giả lập cần có phương tiện trước khi có thể bật máy này. Hãy đưa đĩa mềm vào hoặc cấu hình ổ đĩa cứng.</value>
-  </data>
-  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve">
-    <value>Không thể bật máy</value>
-  </data>
-  <data name="Emulation.Error.Machine" xml:space="preserve">
-    <value>Máy</value>
-  </data>
-  <data name="Emulation.Error.RequiredMedia" xml:space="preserve">
-    <value>Phương tiện bắt buộc</value>
-  </data>
+  <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve"><value>Trình giả lập cần có phương tiện trước khi có thể bật máy này. Hãy đưa đĩa mềm vào hoặc cấu hình ổ đĩa cứng.</value></data>
+  <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve"><value>Không thể bật máy</value></data>
+  <data name="Emulation.Error.Machine" xml:space="preserve"><value>Máy</value></data>
+  <data name="Emulation.Error.RequiredMedia" xml:space="preserve"><value>Phương tiện bắt buộc</value></data>
   <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Khởi động nhanh</value></data>
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Âm thanh ổ đĩa mềm</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Bộ lọc âm thanh phân cực</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Hiển thị hoạt động ổ đĩa trên màn hình trình giả lập</value></data>
-  <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Mở rộng bộ nhớ Mosaic</value></data>
-  <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Mở rộng bộ nhớ Axlon</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic"><value>Moses RAM mở rộng</value></data>
+  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM mở rộng</value></data>
   <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Bóng ngân hàng Axlon $0F</value></data>
   <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>POKEY âm thanh nổi</value></data>
   <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Nhiễu màu độ phân giải cao</value></data>
@@ -1063,23 +385,16 @@
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Thấp</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Bình thường</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Cao</value></data>
-  <data name="Emulation.Media.Insert" xml:space="preserve">
-    <value>Lắp phương tiện</value>
-  </data>
-  <data name="Emulation.Media.Eject" xml:space="preserve">
-    <value>Tháo phương tiện</value>
-  </data>
-  <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
-  <data name="Emulation.Key.AtariHelp" xml:space="preserve"><value>Help</value></data>
-  <data name="Emulation.Key.AtariUndo" xml:space="preserve"><value>Undo</value></data>
-  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Không thể khởi tạo GameInput. Hãy cài đặt hoặc sửa chữa runtime GameInput đi kèm.</value></data>
+  <data name="Emulation.Media.Insert" xml:space="preserve"><value>Lắp phương tiện</value></data>
+  <data name="Emulation.Media.Eject" xml:space="preserve"><value>Tháo phương tiện</value></data>
+<data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>Không thể khởi tạo GameInput. Hãy cài đặt hoặc sửa chữa runtime GameInput đi kèm.</value></data>
   <data name="Emulation.Configuration.Brand"><value>Thương hiệu</value></data>
   <data name="Emulation.Configuration.Machine"><value>Máy</value></data>
   <data name="Emulation.Configuration.TotalRam"><value>Tổng RAM</value></data>
   <data name="Emulation.Configuration.Readers"><value>Ổ đĩa</value></data>
   <data name="Emulation.Configuration.Peripherals"><value>Thiết bị ngoại vi</value></data>
   <data name="Emulation.Configuration.Actions"><value>Hành động</value></data>
-  <data name="Emulation.Configuration.DeleteConfirm"><value>Xóa cấu hình {0} {1}?</value></data>
+  <data name="Emulation.Configuration.DeleteConfirm"><value>Xoá {0} {1} cấu hình?</value></data>
   <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short"><value>Name</value></data>
   <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed"><value>Làm yên lặng tiếng ổ đĩa mô phỏng trong khi không cho vào đĩa. Tắt tùy chọn này để giữ nhiễu cơ chế không hoạt động.</value></data>
   <data name="Emulation.Help.Audio.Filter.Short"><value>Chọn bộ lọc âm thanh tương tự</value></data>
@@ -1103,7 +418,7 @@
   <data name="Emulation.Help.Controller.TurboPulse.Short"><value>Đặt khoảng cách xung tốc</value></data>
   <data name="Emulation.Help.Controller.TurboPulse.Detailed"><value>Đặt thời gian giữa các nút tự động được tạo ra bởi máy gia tốc. Một khoảng thời gian ngắn hơn tạo ra tiếng súng liên tục nhanh hơn.</value></data>
   <data name="Emulation.Help.Controller.Compatibility.Short"><value>Chọn chế độ tương thích điều khiển</value></data>
-  <data name="Emulation.Help.Controller.Compatibility.Detailed"><value>Chọn một bản đồ điều khiển đặc biệt, chẳng hạn như điều khiển song đũa, cổng trao đổi, hoặc Joy2B+Chọn Không để giữ bản đồ cổng chuẩn.</value></data>
+  <data name="Emulation.Help.Controller.Compatibility.Detailed"><value>Chọn một bản đồ điều khiển đặc biệt, như điều khiển song đũa, cổng trao đổi, hay Joy2B+. Chọn Không để giữ bản đồ cổng chuẩn.</value></data>
   <data name="Emulation.Help.Controller.AnalogSensitivity.Short"><value>Đặt độ nhạy tương tự đầu vào</value></data>
   <data name="Emulation.Help.Controller.AnalogSensitivity.Detailed"><value>Đặt độ mạnh của một đầu vào tương tự phản ứng với chuyển động. Một giá trị cao hơn tạo ra một phản ứng lớn hơn từ cùng một chuyển động vật lý.</value></data>
   <data name="Emulation.Help.Controller.DigitalSensitivity.Short"><value>Đặt độ nhạy nhập kỹ thuật số</value></data>
@@ -1113,11 +428,11 @@
   <data name="Emulation.Help.Controller.PaddleSpeed.Short"><value>Đặt tốc độ chuyển động chèo</value></data>
   <data name="Emulation.Help.Controller.PaddleSpeed.Detailed"><value>Đặt cách di chuyển nhanh nhất của đầu vào số Giá trị thấp hơn di chuyển chậm hơn. Một giá trị cao hơn di chuyển nhanh hơn.</value></data>
   <data name="Emulation.Help.Cpu.FpuModel.Short"><value>Chọn FPU</value></data>
-  <data name="Emulation.Help.Cpu.FpuModel.Detailed"><value>Chọn một điểm nổi dùng cho điểm nổi. Chọn Không để tắt FPU.. Mô hình sẵn sàng phụ thuộc vào điều đã chọn CPU.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed"><value>Chọn đơn vị điểm nổi dùng cho hướng dẫn điểm nổi. Chọn Không có để tắt FPU. Mô hình sẵn sàng phụ thuộc vào điều đã chọn CPU.</value></data>
   <data name="Emulation.Help.Cpu.Precision.Short"><value>Chọn CPU Độ chính xác bộ mô phỏng</value></data>
   <data name="Emulation.Help.Cpu.Precision.Detailed"><value>Chọn gần thế nào CPU Thời gian theo sau phần cứng gốc. Các chế độ chính xác hơn có thể cải thiện sự tương thích nhưng có thể đòi hỏi xử lý nhiều hơn.</value></data>
   <data name="Emulation.Help.Cpu.Speed.Short"><value>Đặt sự bắt chước CPU Tốc độ</value></data>
-  <data name="Emulation.Help.Cpu.Speed.Detailed"><value>Đặt tần số xử lý được dùng bởi máy mô phỏng. Tốc độ ban đầu bảo tồn phần cứng thời gian. Giá trị cao hơn tăng tốc CPU- Phần mềm giới hạn.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed"><value>Đặt tần số xử lý được máy mô phỏng dùng. Tốc độ gốc bảo tồn phần cứng đúng giờ. Giá trị cao hơn tăng tốc CPU- Phần mềm giới hạn.</value></data>
   <data name="Emulation.Help.Mouse.Analog.Short"><value>Dùng thanh tương tự để điều khiển con chuột</value></data>
   <data name="Emulation.Help.Mouse.Analog.Detailed"><value>Cho phép trục cần điều khiển tương tự di chuyển con trỏ chuột mô phỏng. Bật nó khi một cây gậy tương tự vật lý nên điều khiển con trỏ.</value></data>
   <data name="Emulation.Help.Mouse.AnalogSpeed.Short"><value>Đặt tốc độ tương tự như chuột</value></data>
@@ -1125,7 +440,7 @@
   <data name="Emulation.Help.Mouse.AnalogDeadzone.Short"><value>Đặt vùng chết tương tự của chuột</value></data>
   <data name="Emulation.Help.Mouse.AnalogDeadzone.Detailed"><value>Bỏ qua những chuyển động tương tự nhỏ xung quanh trung tâm trong khi điều khiển con chuột. Tăng giá trị nếu con trỏ di chuyển trong khi cây gậy được thả ra.</value></data>
   <data name="Emulation.Help.Memory.AxlonShadow.Short"><value>Bật Axlon $0F ngân hàng bóng</value></data>
-  <data name="Emulation.Help.Memory.AxlonShadow.Detailed"><value>Phản chiếu Axlon điều khiển ngân hàng tại địa chỉ $0FHãy bật tùy chọn này chỉ cho phép mở rộng phần mềm hay bộ nhớ dùng địa chỉ thêm này.</value></data>
+  <data name="Emulation.Help.Memory.AxlonShadow.Detailed"><value>phản chiếu ngân hàng điều khiển Axlon tại địa chỉ 0F. Bật nó chỉ cho phần mềm hoặc bộ nhớ mở rộng dùng địa chỉ thêm này.</value></data>
   <data name="Emulation.Help.Memory.Axlon.Short"><value>Đặt Axlon Bộ nhớ mở rộng</value></data>
   <data name="Emulation.Help.Memory.Axlon.Detailed"><value>Đặt số tiền bị cướp ngân hàng Axlon trí nhớ. Tắt bỏ việc mở rộng. Các lựa chọn khác cung cấp khả năng bộ nhớ đã chọn.</value></data>
   <data name="Emulation.Help.Memory.Mosaic.Short"><value>Đặt Mosaic Bộ nhớ mở rộng</value></data>
@@ -1133,7 +448,7 @@
   <data name="Emulation.Help.Memory.Extensions.Short"><value>Đặt bộ nhớ mở rộng bổ sung</value></data>
   <data name="Emulation.Help.Memory.Extensions.Detailed"><value>Đặt số lượng bộ nhớ mở rộng thêm được máy đã chọn hỗ trợ. Chọn Không dùng bộ nhớ chính đã cấu hình.</value></data>
   <data name="Emulation.Help.Memory.Fast.Short"><value>Đặt Fast RAM Cỡ</value></data>
-  <data name="Emulation.Help.Memory.Fast.Detailed"><value>Đặt số lượng Fast RAM hiện có trực tiếp đến CPUCộng Fast RAM có thể giúp tương thích với phần mềm nhưng thay đổi cấu hình phần cứng mô phỏng.</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed"><value>Đặt số lượng nhanh RAM sẵn sàng ngay đến CPU. Nhanh thêm RAM có thể giúp tương thích với phần mềm nhưng thay đổi cấu hình phần cứng mô phỏng.</value></data>
   <data name="Emulation.Help.Memory.MapRam.Short"><value>Bật MapRAM</value></data>
   <data name="Emulation.Help.Memory.MapRam.Detailed"><value>Cho phép phần mềm tương thích với bản đồ RAM vào hệ thống ROM Khu vực địa chỉ. Tùy chọn này chỉ sẵn sàng trên mô hình máy hỗ trợ MapRAM.</value></data>
   <data name="Emulation.Help.Memory.Z3.Short"><value>Đặt Zorro III RAM Cỡ</value></data>
@@ -1186,9 +501,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Đặt GTIA Trễ màu dùng để sinh sản màu. Mặc định dùng giá trị chuẩn. Sự lựa chọn số thay đổi màu sắc.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>Đặt bỏ qua khung</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Đặt số khung hiển thị bị bỏ qua. Tắt mọi khung hình. Giá trị cao hơn giảm việc vẽ nhưng làm cho chuyển động ít mịn hơn.</value></data>
-  <data name="Emulation.Controller.Visual" xml:space="preserve">
-    <value>Giao diện</value>
-  </data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Giao diện</value></data>
   <data name="Emulation.Video.Compatibility.ExclusiveDisplayTechnology"><value>Chỉ một công nghệ hiển thị có thể hoạt động cùng một lúc.</value></data>
   <data name="Emulation.Video.Crt.Color.Amber"><value>amm đơn sắc</value></data>
   <data name="Emulation.Video.Crt.Color.Color"><value>Màu</value></data>
@@ -1200,10 +513,8 @@
   <data name="Emulation.Video.Crt.Mask.None"><value>Không có</value></data>
   <data name="Emulation.Video.Crt.Mask.ShadowMask"><value>Bóng</value></data>
   <data name="Emulation.Video.Crt.Mask.SlotMask"><value>Bóng loáng</value></data>
-  <data name="Emulation.Video.FixedPixel.Technology.Lcd"><value>LCD</value></data>
-  <data name="Emulation.Video.FixedPixel.Technology.LedBacklitLcd"><value>LED-backlit LCD</value></data>
-  <data name="Emulation.Video.FixedPixel.Technology.Oled"><value>OLED</value></data>
-  <data name="Emulation.Video.Limitation.UnsupportedBackend"><value>Thiết lập này không được hỗ trợ bởi hậu phương vẽ đã chọn.</value></data>
+  <data name="Emulation.Video.FixedPixel.Technology.LedBacklitLcd"><value>LED- bôi đen LCD</value></data>
+<data name="Emulation.Video.Limitation.UnsupportedBackend"><value>Thiết lập này không được hỗ trợ bởi hậu phương vẽ đã chọn.</value></data>
   <data name="Emulation.Video.Orientation.Horizontal"><value>Lật ngang</value></data>
   <data name="Emulation.Video.Orientation.Vertical"><value>Dọc</value></data>
   <data name="Emulation.Video.Parameter.Brightness"><value>Độ sáng</value></data>
@@ -1227,7 +538,6 @@
   <data name="Emulation.Video.Parameter.CrtScanlinePhase"><value>Trục</value></data>
   <data name="Emulation.Video.Parameter.CrtScanlinesEnabled"><value>Trục</value></data>
   <data name="Emulation.Video.Parameter.CrtScanlineThickness"><value>Độ dày quét</value></data>
-  <data name="Emulation.Video.Parameter.CrtVignette"><value>Vignette</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBacklight"><value>Cường độ đèn nền</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBlackDepth"><value>Độ sâu Đen</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelGridIntensity"><value>cường độ lưới điểm ảnh</value></data>
@@ -1237,7 +547,7 @@
   <data name="Emulation.Video.Parameter.FixedPixelResponseTime"><value>Thời gian trả lời (ms)</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelSubpixels"><value>Name</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelTechnology"><value>Công nghệ cố định</value></data>
-  <data name="Emulation.Video.Parameter.Gamma"><value>Gamma</value></data>
+  <data name="Emulation.Video.Parameter.Gamma"><value>Gamma (γ)</value></data>
   <data name="Emulation.Video.Parameter.PlasmaCellStructure"><value>Cấu trúc Tế bào</value></data>
   <data name="Emulation.Video.Parameter.PlasmaDiffusion"><value>Ánh sáng</value></data>
   <data name="Emulation.Video.Parameter.PlasmaPersistence"><value>Kiên trì</value></data>
@@ -1248,6 +558,8 @@
   <data name="Emulation.Video.Parameter.VectorLineIntensity"><value>Nhập cường độ</value></data>
   <data name="Emulation.Video.Parameter.VectorLineThreshold"><value>Ngưỡng Đường</value></data>
   <data name="Emulation.Video.Parameter.VectorPersistence"><value>Kiên trì</value></data>
+  <data name="Emulation.Video.Vector.Group.Drawing"><value>Phát hiện và vẽ</value></data>
+  <data name="Emulation.Video.Vector.Group.Glow"><value>Ánh sáng và lưu ảnh</value></data>
   <data name="Emulation.Video.Preset.CrtAmber"><value>CRT — Đơn sắc hổ phách</value></data>
   <data name="Emulation.Video.Preset.CrtArcadeColor"><value>CRT — Trò chơi màu</value></data>
   <data name="Emulation.Video.Preset.CrtGreen"><value>CRT — Đơn sắc xanh</value></data>
@@ -1255,34 +567,22 @@
   <data name="Emulation.Video.Preset.CrtWhite"><value>CRT — Đơn sắc trắng</value></data>
   <data name="Emulation.Video.Preset.LcdColor"><value>LCD màu</value></data>
   <data name="Emulation.Video.Preset.LcdMonochrome"><value>LCD đơn sắc</value></data>
-  <data name="Emulation.Video.Preset.LedBacklitLcd"><value>LED-backlit LCD</value></data>
+  <data name="Emulation.Video.Preset.LedBacklitLcd"><value>LED- bôi đen LCD</value></data>
   <data name="Emulation.Video.Preset.Normal"><value>Chuẩn</value></data>
-  <data name="Emulation.Video.Preset.Oled"><value>OLED</value></data>
-  <data name="Emulation.Video.Preset.Plasma"><value>Plasma</value></data>
+<data name="Emulation.Video.Preset.Plasma"><value>Name</value></data>
   <data name="Emulation.Video.Preset.Vector"><value>Hiển thị véc- tơ</value></data>
-  <data name="Emulation.Video.Sampling"><value>Sampling</value></data>
-  <data name="Emulation.Video.Sampling.Bicubic"><value>Bicubic</value></data>
   <data name="Emulation.Video.Sampling.Bilinear"><value>Tuyến tính</value></data>
   <data name="Emulation.Video.Sampling.Nearest"><value>Chuẩn</value></data>
   <data name="Emulation.Video.Sampling.SharpBilinear"><value>Song tuyến tính sắc nét</value></data>
   <data name="Emulation.Video.Settings.General"><value>Điều chỉnh ảnh</value></data>
   <data name="Emulation.Video.Settings.GwGuiProcessing"><value>Xử lý video GW GUI</value></data>
-  <data name="Emulation.Video.Subpixels.Bgr"><value>BGR</value></data>
-  <data name="Emulation.Video.Subpixels.Monochrome"><value>Đơn sắc</value></data>
-  <data name="Emulation.Video.Subpixels.Rgb"><value>RGB</value></data>
-  <data name="Emulation.Video.Technology"><value>Hiển thị công nghệ</value></data>
-  <data name="Emulation.Video.Technology.Crt"><value>CRT</value></data>
-  <data name="Emulation.Video.Technology.FixedPixel"><value>LCD/ LED/ OLED</value></data>
+<data name="Emulation.Video.Subpixels.Monochrome"><value>Đơn sắc</value></data>
+<data name="Emulation.Video.Technology"><value>Hiển thị công nghệ</value></data>
+<data name="Emulation.Video.Technology.FixedPixel"><value>LCD/ LED/ OLED</value></data>
   <data name="Emulation.Video.Technology.Normal"><value>Chuẩn</value></data>
-  <data name="Emulation.Video.Technology.Plasma"><value>Plasma</value></data>
+  <data name="Emulation.Video.Technology.Plasma"><value>Name</value></data>
   <data name="Emulation.Video.Technology.Vector"><value>Chính:</value></data>
-  <data name="Emulation.Video.Sampling.Xbr"><value>xBR</value></data>
-  <data name="Emulation.Video.Sampling.Xbrz"><value>xBRZ</value></data>
-  <data name="Emulation.Video.Sampling.Hqx"><value>Trụ sở</value></data>
-  <data name="Emulation.Video.Sampling.ScaleFx"><value>ScafX</value></data>
-  <data name="Emulation.Video.Sampling.ScaleNx"><value>Co dãn</value></data>
-  <data name="Emulation.Video.Sampling.Sabr"><value>SABR</value></data>
-  <data name="Emulation.Video.Settings.Restoration"><value>Phục hồi ảnh</value></data>
+<data name="Emulation.Video.Settings.Restoration"><value>Phục hồi ảnh</value></data>
   <data name="Emulation.Video.Parameter.Dedithering"><value>Khử hòa sắc</value></data>
   <data name="Emulation.Video.Parameter.Denoising"><value>Giao ước</value></data>
   <data name="Emulation.Video.Parameter.Debanding"><value>Giảm dây</value></data>
@@ -1292,31 +592,25 @@
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Bob - ngay cả dòng</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Lật dọc</value></data>
-  <data name="Emulation.Video.Technology.Vfd"><value>VFC</value></data>
-  <data name="Emulation.Video.Vfd.Color.Blue"><value>Xanh nước biển</value></data>
+<data name="Emulation.Video.Vfd.Color.Blue"><value>Xanh nước biển</value></data>
   <data name="Emulation.Video.Vfd.Color.Green"><value>Lục</value></data>
-  <data name="Emulation.Video.Vfd.Color.Amber"><value>Amber</value></data>
   <data name="Emulation.Video.Vfd.Color.Red"><value>Đỏ</value></data>
   <data name="Emulation.Video.Parameter.VfdColor"><value>Name</value></data>
   <data name="Emulation.Video.Parameter.VfdPhosphorIntensity"><value>Độ mạnh Phosphor</value></data>
-  <data name="Emulation.Video.Parameter.VfdHaloIntensity"><value>Name</value></data>
-  <data name="Emulation.Video.Parameter.VfdPersistence"><value>Kiên trì VFD</value></data>
+  <data name="Emulation.Video.Parameter.VfdPersistence"><value>độ bền bỉ (ms)</value></data>
   <data name="Emulation.Video.Technology.LedMatrix"><value>Ma trận LED</value></data>
-  <data name="Emulation.Video.LedMatrix.Color.Rgb"><value>RGB</value></data>
-  <data name="Emulation.Video.LedMatrix.Color.Red"><value>Đỏ</value></data>
+<data name="Emulation.Video.LedMatrix.Color.Red"><value>Đỏ</value></data>
   <data name="Emulation.Video.LedMatrix.Color.Green"><value>Lục</value></data>
-  <data name="Emulation.Video.LedMatrix.Color.Amber"><value>Amber</value></data>
   <data name="Emulation.Video.LedMatrix.Color.Blue"><value>Xanh nước biển</value></data>
   <data name="Emulation.Video.LedMatrix.Color.White"><value>Trắng</value></data>
   <data name="Emulation.Video.Parameter.LedMatrixColor"><value>Màu LED</value></data>
   <data name="Emulation.Video.Parameter.LedMatrixCellSize"><value>Kích cỡ Tế bào LED</value></data>
   <data name="Emulation.Video.Parameter.LedMatrixCellGap"><value>Khoảng cách tế bào LED</value></data>
-  <data name="Emulation.Video.Parameter.LedMatrixDiffusion"><value>Ánh sáng</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixDiffusion"><value>Cường độ quầng sáng</value></data>
   <data name="Emulation.Video.Parameter.LedMatrixBrightness"><value>Ánh sáng LED</value></data>
   <data name="Emulation.Video.Technology.DotMatrix"><value>ma trận chấm</value></data>
-  <data name="Emulation.Video.DotMatrix.Palette.Green"><value>Name</value></data>
-  <data name="Emulation.Video.DotMatrix.Palette.Gray"><value>Name</value></data>
-  <data name="Emulation.Video.DotMatrix.Palette.Amber"><value>Amber</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Green"><value>Xanh lá cây LCD</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Gray"><value>Xám LCD</value></data>
   <data name="Emulation.Video.DotMatrix.Palette.Blue"><value>Xanh nước biển</value></data>
   <data name="Emulation.Video.DotMatrix.Shape.Round"><value>Tròn</value></data>
   <data name="Emulation.Video.DotMatrix.Shape.Square"><value>Hình vuông</value></data>
@@ -1331,7 +625,6 @@
   <data name="Emulation.Video.SegmentDisplay.Layout.Sixteen"><value>16 đoạn</value></data>
   <data name="Emulation.Video.SegmentDisplay.Color.Red"><value>Đỏ</value></data>
   <data name="Emulation.Video.SegmentDisplay.Color.Green"><value>Lục</value></data>
-  <data name="Emulation.Video.SegmentDisplay.Color.Amber"><value>Amber</value></data>
   <data name="Emulation.Video.SegmentDisplay.Color.Blue"><value>Xanh nước biển</value></data>
   <data name="Emulation.Video.SegmentDisplay.Color.White"><value>Trắng</value></data>
   <data name="Emulation.Video.Parameter.SegmentDisplayLayout"><value>Bố trí đoạn</value></data>
@@ -1363,10 +656,8 @@
   <data name="Emulation.Video.Settings.SignalSimulation"><value>Mô phỏng tín hiệu</value></data>
   <data name="Emulation.Video.Settings.Stylistic"><value>Hiệu ứng hình ảnh</value></data>
   <data name="Emulation.Video.Parameter.Grain"><value>Hạt than</value></data>
-  <data name="Emulation.Video.Parameter.Vhs"><value>VHS</value></data>
-  <data name="Emulation.Video.Parameter.ChromaticAberration"><value>Name</value></data>
+<data name="Emulation.Video.Parameter.ChromaticAberration"><value>Name</value></data>
   <data name="Emulation.Video.Parameter.Bloom"><value>Ánh sáng rực rỡ</value></data>
-  <data name="Emulation.Video.Parameter.Sepia"><value>Sepia</value></data>
   <data name="Emulation.Video.Tab.Display"><value>Hiển thị</value></data>
   <data name="Emulation.Video.Tab.Rendering"><value>Vẽ</value></data>
   <data name="Emulation.Video.Tab.Technology"><value>Công nghệ</value></data>
@@ -1375,15 +666,7 @@
   <data name="Emulation.Video.Tab.Motion"><value>Chuyển động</value></data>
   <data name="Emulation.Video.Tab.Signal"><value>Tín hiệu</value></data>
   <data name="Emulation.Video.Tab.Effects"><value>Hiệu ứng</value></data>
-  <data name="Emulation.Video.Sampling.Hq2x"><value>HQ2x</value></data>
-  <data name="Emulation.Video.Sampling.Hq3x"><value>HQ3x</value></data>
-  <data name="Emulation.Video.Sampling.Hq4x"><value>HQ4x</value></data>
-  <data name="Emulation.Video.Sampling.TwoXSai"><value>2xSaI</value></data>
-  <data name="Emulation.Video.Sampling.SuperTwoXSai"><value>Super 2xSaI</value></data>
-  <data name="Emulation.Video.Sampling.SuperEagle"><value>Super Eagle</value></data>
-  <data name="Emulation.Video.Sampling.EpxScale2x"><value>EPX / Scale2x</value></data>
-  <data name="Emulation.Video.Sampling.Jinc2"><value>JINC2</value></data>
-  <data name="Emulation.Video.Sampling.Lanczos"><value>Lanczos</value></data>  <data name="Emulation.Video.Parameter.FineDetails"><value>Chi tiết nhỏ</value></data>
+<data name="Emulation.Video.Parameter.FineDetails"><value>Chi tiết nhỏ</value></data>
   <data name="Emulation.Video.Restoration.Level.None"><value>Không</value></data>
   <data name="Emulation.Video.Restoration.Level.Light"><value>Nhẹ</value></data>
   <data name="Emulation.Video.Restoration.Level.Medium"><value>Trung bình</value></data>
@@ -1394,19 +677,12 @@
   <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>Comment</value></data>
   <data name="Emulation.Video.Parameter.SignalStandard"><value>Tiêu chuẩn Màu</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>Nhập cường độ chuẩn</value></data>
-  <data name="Emulation.Video.Signal.Connection.RgbScart"><value>RGB (SCART)</value></data>
-  <data name="Emulation.Video.Signal.Connection.Component"><value>Thành phần (YPbPr)</value></data>
-  <data name="Emulation.Video.Signal.Connection.SVideo"><value>S-Video</value></data>
-  <data name="Emulation.Video.Signal.Connection.Composite"><value>Composite</value></data>
-  <data name="Emulation.Video.Signal.Connection.Rf"><value>RF</value></data>
-  <data name="Emulation.Video.Signal.Standard.Automatic"><value>Tự động</value></data>
-  <data name="Emulation.Video.Signal.Standard.Pal"><value>PAL</value></data>
-  <data name="Emulation.Video.Signal.Standard.Ntsc"><value>NTSC</value></data>
-  <data name="Emulation.Video.Signal.Standard.Secam"><value>SECAM</value></data>
-  <data name="Emulation.Video.Signal.Connection.None"><value>Không có</value></data>
+<data name="Emulation.Video.Signal.Connection.Component"><value>Thành phần (YPbPr)</value></data>
+<data name="Emulation.Video.Signal.Connection.Composite"><value>Hợp nhất</value></data>
+<data name="Emulation.Video.Signal.Standard.Automatic"><value>Tự động</value></data>
+<data name="Emulation.Video.Signal.Connection.None"><value>Không có</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>Đường cong ngang</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>Dọc</value></data>
-  <data name="Emulation.Video.Parameter.CrtTrapezoid"><value>Trapezoid</value></data>
   <data name="Emulation.Video.Crt.Group.Color"><value>Name</value></data>
   <data name="Emulation.Video.Crt.Group.Beam"><value>tia điện từ</value></data>
   <data name="Emulation.Video.Crt.Group.Mask"><value>Mặt nạ Phosphor</value></data>
@@ -1418,4 +694,48 @@
   <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>Giai đoạn 1/2</value></data>
   <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>Giai đoạn 3/ 4</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>Chảy máu đèn sau</value></data>
+  <data name="Emulation.Video.Parameter.VfdEmissionThreshold"><value>Ngưỡng phát sáng</value></data>
+  <data name="Emulation.Video.Parameter.VfdGlassDarkening"><value>Độ tối của kính khói</value></data>
+  <data name="Emulation.Video.Parameter.VfdStructure"><value>Cấu trúc anốt</value></data>
+  <data name="Emulation.Video.Parameter.VfdCellSize"><value>Kích thước ô</value></data>
+  <data name="Emulation.Video.Parameter.VfdCellGap"><value>Khoảng cách ô</value></data>
+  <data name="Emulation.Video.Parameter.VfdHaloRadius"><value>Bán kính quầng sáng</value></data>
+  <data name="Emulation.Video.Vfd.Structure.Graphic"><value>Đồ họa</value></data>
+  <data name="Emulation.Video.Vfd.Structure.DotMatrix"><value>Ma trận điểm</value></data>
+  <data name="Emulation.Video.Vfd.Group.PhosphorAndGlass"><value>Phốt-pho và kính</value></data>
+  <data name="Emulation.Video.Vfd.Group.Anodes"><value>Cấu trúc anốt</value></data>
+  <data name="Emulation.Video.Vfd.Group.GlowAndResponse"><value>Phát sáng và đáp ứng</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaBlackDepth"><value>Độ sâu Đen</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaPhosphorIntensity"><value>Độ mạnh Phosphor</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaGammaResponse"><value>Đáp ứng Gamma (γ)</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaAutomaticBrightnessLimiter"><value>Bộ giới hạn độ sáng tự động</value></data>
+  <data name="Emulation.Video.Plasma.Group.PanelAndCells"><value>Bảng điều khiển và ô</value></data>
+  <data name="Emulation.Video.Plasma.Group.Light"><value>Quản lý nhẹ</value></data>
+  <data name="Emulation.Video.Plasma.Group.Temporal"><value>Phản ứng tạm thời</value></data>
+  <data name="Emulation.Video.Parameter.VectorBeamWidth"><value>Chiều rộng Beam</value></data>
+  <data name="Emulation.Video.Parameter.VectorBeamFocus"><value>Tiêu điểm Beam</value></data>
+  <data name="Emulation.Video.Parameter.VectorPhosphorColor"><value>Name</value></data>
+  <data name="Emulation.Video.Parameter.VectorHaloRadius"><value>Bán kính</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixShape"><value>Hình dạng LED</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixHaloRadius"><value>Bán kính quầng sáng</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixBlackDepth"><value>Độ sâu màu đen</value></data>
+  <data name="Emulation.Video.LedMatrix.Shape.Round"><value>Tròn</value></data>
+  <data name="Emulation.Video.LedMatrix.Shape.Square"><value>Vuông</value></data>
+  <data name="Emulation.Video.LedMatrix.Group.Structure"><value>Cấu trúc ma trận</value></data>
+  <data name="Emulation.Video.LedMatrix.Group.Emission"><value>Phát sáng</value></data>
+  <data name="Emulation.Tab.Video"><value>Ảnh động</value></data>
+  <data name="Emulation.Memory.Slow"><value>RAM chậm</value></data>
+  <data name="Emulation.Memory.Fast"><value>Nhanh RAM</value></data>
+  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga Media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Mọi tập tin|*.*</value></data>
+  <data name="Emulation.Storage.HardDisk.Filter"><value>đĩa cứng Amiga|*.hdf|Mọi tập tin|*.*</value></data>
+  <data name="Emulation.Video.Gamma"><value>Gamma (γ)</value></data>
+  <data name="Emulation.Amiga.Controller.Joystick"><value>Name</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32"><value>Điều khiển CD32</value></data>
+  <data name="Emulation.Atari.Controller.Joystick"><value>Cần điều khiển Atari</value></data>
+  <data name="Emulation.Atari.Controller.PaddleControllers"><value>Điều khiển chèo Atari</value></data>
+  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 súng ánh sáng</value></data>
+  <data name="Emulation.Atari.Controller.Driving"><value>Điều khiển lái xe Atari</value></data>
+  <data name="Emulation.Atari.Controller.Jaguar"><value>Bộ điều khiển Atari Báo</value></data>
+  <data name="Emulation.Atari.Controller.Genesis"><value>Điều khiển Sega Genesis</value></data>
+  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Điều khiển</value></data>
 </root>

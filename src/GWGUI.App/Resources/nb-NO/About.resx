@@ -12,16 +12,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="About.Description">
-    <value>Et moderne Windows-grensesnitt for lesing, skriving, konvertering og inspeksjon av disketter med Greaseweazle.</value>
-  </data>
-  <data name="About.License">
-    <value>Åpen kildekode-programvare — MIT Lisens</value>
-  </data>
-  <data name="About.Version">
-    <value>Versjon {0}</value>
-  </data>
-  <data name="About.Components">
-    <value>Komponentversjoner</value>
-  </data>
+  <data name="About.Description"><value>Et moderne Windows-grensesnitt for lesing, skriving, konvertering og inspeksjon av disketter med Greaseweazle.</value></data>
+  <data name="About.License"><value>Åpen kildekode-programvare — MIT Lisens</value></data>
+  <data name="About.Version"><value>Versjon {0}</value></data>
+  <data name="About.Components"><value>Komponentversjoner</value></data>
 </root>

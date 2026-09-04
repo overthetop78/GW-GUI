@@ -12,40 +12,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="HostTools.Detect">
-    <value>ابحث عن gw.exe</value>
-  </data>
-  <data name="HostTools.Check">
-    <value>التحقق من وجود تحديثات</value>
-  </data>
-  <data name="HostTools.Download">
-    <value>تحميل أحدث نسخة</value>
-  </data>
-  <data name="HostTools.Rollback">
-    <value>استخدم المسار السابق</value>
-  </data>
-  <data name="HostTools.None">
-    <value>لم يتم اكتشاف أي تثبيت.</value>
-  </data>
-  <data name="HostTools.Detected">
-    <value>تم الكشف: {0}</value>
-  </data>
-  <data name="HostTools.Latest">
-    <value>أحدث إصدار متاح: {0}</value>
-  </data>
-  <data name="HostTools.Installed">
-    <value>تم تثبيت الإصدار {0}.</value>
-  </data>
-  <data name="HostTools.DownloadConfirm">
-    <value>هل تريد تنزيل وتثبيت Greaseweazle أدوات المضيف {0} لنظام التشغيل Windows x64؟</value>
-  </data>
-  <data name="HostTools.Title">
-    <value>Greaseweazle أدوات المضيف</value>
-  </data>
-  <data name="HostTools.NoPrevious">
-    <value>لم يتم تخزين أي مسار سابق صالح.</value>
-  </data>
-  <data name="HostTools.UpdateAvailable">
-    <value>أدوات المضيف {0} متاحة</value>
-  </data>
+  <data name="HostTools.Detect"><value>ابحث عن gw.exe</value></data>
+  <data name="HostTools.Check"><value>التحقق من وجود تحديثات</value></data>
+  <data name="HostTools.Download"><value>تحميل أحدث نسخة</value></data>
+  <data name="HostTools.Rollback"><value>استخدم المسار السابق</value></data>
+  <data name="HostTools.None"><value>لم يتم اكتشاف أي تثبيت.</value></data>
+  <data name="HostTools.Detected"><value>تم الكشف: {0}</value></data>
+  <data name="HostTools.Latest"><value>أحدث إصدار متاح: {0}</value></data>
+  <data name="HostTools.Installed"><value>التصويب {0} تم تركيبها.</value></data>
+  <data name="HostTools.DownloadConfirm"><value>هل تريد تنزيل وتثبيت Greaseweazle أدوات المضيف {0} لنظام التشغيل Windows x64؟</value></data>
+  <data name="HostTools.Title"><value>Greaseweazle أدوات المضيف</value></data>
+  <data name="HostTools.NoPrevious"><value>لم يتم تخزين أي مسار سابق صالح.</value></data>
+  <data name="HostTools.UpdateAvailable"><value>أدوات المضيف {0} متاحة</value></data>
 </root>

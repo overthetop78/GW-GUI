@@ -12,52 +12,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Profiles.ByOperation">
-    <value>Profil berdasarkan operasi</value>
-  </data>
-  <data name="Profiles.Tab">
-    <value>tab</value>
-  </data>
-  <data name="Profiles.Name">
-    <value>Nama</value>
-  </data>
-  <data name="Profiles.System">
-    <value>Sistem</value>
-  </data>
-  <data name="Profiles.Rename">
-    <value>Ganti nama…</value>
-  </data>
-  <data name="Profile.SaveTitle">
-    <value>Simpan profil</value>
-  </data>
-  <data name="Profile.Name">
-    <value>Nama profil</value>
-  </data>
-  <data name="Profile.NameRequired">
-    <value>Masukkan nama.</value>
-  </data>
-  <data name="Profile.Title">
-    <value>Profil</value>
-  </data>
-  <data name="Common.Profile">
-    <value>Profil</value>
-  </data>
-  <data name="Profile.Default">
-    <value>Bawaan</value>
-  </data>
-  <data name="Profile.SystemRename">
-    <value>Profil Default bersifat permanen dan tidak dapat diubah namanya.</value>
-  </data>
-  <data name="Profile.SystemDelete">
-    <value>Profil Default bersifat permanen dan tidak dapat dihapus.</value>
-  </data>
-  <data name="Profile.DuplicateName">
-    <value>Profil di tab ini sudah memiliki nama ini.</value>
-  </data>
-  <data name="Profile.Replace">
-    <value>Profil ini sudah ada. Gantikan?</value>
-  </data>
-  <data name="Profile.DeleteConfirm">
-    <value>Hapus profil “{0}”?</value>
-  </data>
+  <data name="Profiles.ByOperation"><value>Profil berdasarkan operasi</value></data>
+  <data name="Profiles.Tab"><value>tab</value></data>
+  <data name="Profiles.Name"><value>Nama</value></data>
+  <data name="Profiles.System"><value>Sistem</value></data>
+  <data name="Profiles.Rename"><value>Ganti nama…</value></data>
+  <data name="Profile.SaveTitle"><value>Simpan profil</value></data>
+  <data name="Profile.Name"><value>Nama profil</value></data>
+  <data name="Profile.NameRequired"><value>Masukkan nama.</value></data>
+  <data name="Profile.Title"><value>Profil</value></data>
+  <data name="Common.Profile"><value>Profil</value></data>
+  <data name="Profile.Default"><value>Bawaan</value></data>
+  <data name="Profile.SystemRename"><value>Profil Default bersifat permanen dan tidak dapat diubah namanya.</value></data>
+  <data name="Profile.SystemDelete"><value>Profil Default bersifat permanen dan tidak dapat dihapus.</value></data>
+  <data name="Profile.DuplicateName"><value>Profil di tab ini sudah memiliki nama ini.</value></data>
+  <data name="Profile.Replace"><value>Profil ini sudah ada. Gantikan?</value></data>
+  <data name="Profile.DeleteConfirm"><value>Hapus profil “{0}”?</value></data>
 </root>

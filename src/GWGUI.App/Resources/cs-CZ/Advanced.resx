@@ -12,118 +12,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Advanced">
-    <value>Pokročilá nastavení</value>
-  </data>
-  <data name="Common.ExpertArguments">
-    <value>Odborné argumenty</value>
-  </data>
-  <data name="Common.ExpertArgumentsTip">
-    <value>Argumenty jsou předávány tak, jak byly napsány po ověření nabídky.</value>
-  </data>
-  <data name="Advanced.SeekRetries">
-    <value>Hledejte opakování</value>
-  </data>
-  <data name="Advanced.FakeIndex">
-    <value>Falešný index</value>
-  </data>
-  <data name="Advanced.HardSectors">
-    <value>Tvrdé sektory</value>
-  </data>
-  <data name="Advanced.Reverse">
-    <value>Data zpětné stopy</value>
-  </data>
-  <data name="Advanced.AdjustSpeed">
-    <value>Upravte rychlost</value>
-  </data>
-  <data name="Advanced.Pll">
-    <value>PLL přepsat</value>
-  </data>
-  <data name="Advanced.DensityPin">
-    <value>Hustota kolíku 2</value>
-  </data>
-  <data name="Advanced.Tg43">
-    <value>Vygenerovat TG43</value>
-  </data>
-  <data name="Advanced.PreErase">
-    <value>Předem vymazat stopy</value>
-  </data>
-  <data name="Advanced.Precomp">
-    <value>Napište předkompenzaci</value>
-  </data>
-  <data name="Advanced.OutputTracks">
-    <value>Výstupní stopy</value>
-  </data>
-  <data name="Advanced.DiskDefs">
-    <value>Vlastní definice disků</value>
-  </data>
-  <data name="Advanced.DiskDefsFilter">
-    <value>Greaseweazle definice disku (*.cfg)|*.cfg|Všechny soubory|*.*</value>
-  </data>
-  <data name="Advanced.DiskDefsMissing">
-    <value>Vybraný soubor s definicemi disku neexistuje.</value>
-  </data>
-  <data name="Advanced.Invalid">
-    <value>Pokročilé nastavení je neplatné: {0}</value>
-  </data>
-  <data name="Advanced.TrackSpecTip">
-    <value>Specifikace stopy, například c=0-79:h=0-1, c=0-79/2:h=0 nebo c=0-79:h=0-1:hswap.</value>
-  </data>
-  <data name="Advanced.SpeedTip">
-    <value>Kladná rychlost nebo perioda, například 300 ot./min., 200 ms, 200 000 us nebo 2 000 0000 ns.</value>
-  </data>
-  <data name="Advanced.PllTip">
-    <value>PLL parametry oddělené dvojtečkami, například period=5:phase=60 nebo period=5:phase=60:lowpass=2.</value>
-  </data>
-  <data name="Advanced.PrecompTip">
-    <value>Napište předkompenzaci, například type=mfm:40=125. Typy: mfm, fm, gcr; hodnoty jsou v nanosekundách.</value>
-  </data>
-  <data name="Advanced.DiskDefsTip">
-    <value>Pomocí vlastního souboru diskdefs.cfg můžete přidat nebo přepsat definice formátu Greaseweazle.</value>
-  </data>
-  <data name="Advanced.RevsTip">
-    <value>--revs: Počet otáček přečtených na stopu. Příklad: --revs 5.</value>
-  </data>
-  <data name="Advanced.RetriesTip">
-    <value>--retries: Další pokusy po chybě. Příklad: --retries 3.</value>
-  </data>
-  <data name="Advanced.TracksTip">
-    <value>--tracks: Omezení válců, hlav nebo krokování. Příklad: --tracks c=0-79:h=0-1.</value>
-  </data>
-  <data name="Advanced.SeekRetriesTip">
-    <value>--seek-retries: Další pokusy po pohybu hlavy. Příklad: --seek-retries 2.</value>
-  </data>
-  <data name="Advanced.FakeIndexTip">
-    <value>--fake-index: Vytvořte časovaný index pro jednotku bez signálu indexu. Příklad: --fake-index 300 ot./min.</value>
-  </data>
-  <data name="Advanced.HardSectorsTip">
-    <value>--hard-sectors: Manipulace s pevným diskem. Nekompatibilní s --fake-index.</value>
-  </data>
-  <data name="Advanced.ReverseTip">
-    <value>--reverse: Obrácená data stopy pro ohebná média nebo kabeláž.</value>
-  </data>
-  <data name="Advanced.AdjustSpeedTip">
-    <value>--adjust-speed: Změna měřítka časování dat. Příklad: --adjust-speed 300 ot./min.</value>
-  </data>
-  <data name="Advanced.PllOptionTip">
-    <value>--pll: Nakonfigurujte smyčku obnovy hodin. Příklad: --pll period=5:phase=60.</value>
-  </data>
-  <data name="Advanced.DenselTip">
-    <value>--densel: Vynutí vysokou nebo nízkou hodnotu pinu pro výběr hustoty. Příklad: --densel H.</value>
-  </data>
-  <data name="Advanced.Tg43Tip">
-    <value>--gen-tg43: Generuje signál TG43 pro jednotky, které to vyžadují. Nekompatibilní s --densel.</value>
-  </data>
-  <data name="Advanced.EraseEmptyTip">
-    <value>--erase-empty: Vymaže stopy, pro které zdrojový obrázek neobsahuje žádná data.</value>
-  </data>
-  <data name="Advanced.PreEraseTip">
-    <value>--pre-erase: Před zápisem vymažte každou stopu.</value>
-  </data>
-  <data name="Advanced.PrecompOptionTip">
-    <value>--precomp: Použít předkompenzaci zápisu. Příklad: --precomp type=mfm:40=125.</value>
-  </data>
-  <data name="Advanced.OutputTracksTip">
-    <value>--out-tracks: Přemapovat stopy ve výstupním obrazu. Příklad: --out-tracks c=0-79:h=0-1.</value>
-  </data>
+  <data name="Common.Advanced"><value>Pokročilá nastavení</value></data>
+  <data name="Common.ExpertArguments"><value>Odborné argumenty</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>Argumenty jsou předávány tak, jak byly napsány po ověření nabídky.</value></data>
+  <data name="Advanced.SeekRetries"><value>Hledejte opakování</value></data>
+  <data name="Advanced.FakeIndex"><value>Falešný index</value></data>
+  <data name="Advanced.HardSectors"><value>Tvrdé sektory</value></data>
+  <data name="Advanced.Reverse"><value>Data zpětné stopy</value></data>
+  <data name="Advanced.AdjustSpeed"><value>Upravte rychlost</value></data>
+  <data name="Advanced.Pll"><value>PLL přepsat</value></data>
+  <data name="Advanced.DensityPin"><value>Hustota kolíku 2</value></data>
+  <data name="Advanced.Tg43"><value>Vygenerovat TG43</value></data>
+  <data name="Advanced.PreErase"><value>Předem vymazat stopy</value></data>
+  <data name="Advanced.Precomp"><value>Napište předkompenzaci</value></data>
+  <data name="Advanced.OutputTracks"><value>Výstupní stopy</value></data>
+  <data name="Advanced.DiskDefs"><value>Vlastní definice disků</value></data>
+  <data name="Advanced.DiskDefsFilter"><value>Greaseweazle definice disku (*.cfg)|*.cfg|Všechny soubory|*.*</value></data>
+  <data name="Advanced.DiskDefsMissing"><value>Vybraný soubor s definicemi disku neexistuje.</value></data>
+  <data name="Advanced.Invalid"><value>Pokročilé nastavení je neplatné: {0}</value></data>
+  <data name="Advanced.TrackSpecTip"><value>Specifikace stopy, například c=0-79:h=0-1, c=0-79/2:h=0 nebo c=0-79:h=0-1:hswap.</value></data>
+  <data name="Advanced.SpeedTip"><value>Kladná rychlost nebo perioda, například 300 ot./min., 200 ms, 200 000 us nebo 2 000 0000 ns.</value></data>
+  <data name="Advanced.PllTip"><value>PLL parametry oddělené dvojtečkami, například period=5:phase=60 nebo period=5:phase=60:lowpass=2.</value></data>
+  <data name="Advanced.PrecompTip"><value>Napište předkompenzaci, například type=mfm:40=125. Typy: mfm, fm, gcr; hodnoty jsou v nanosekundách.</value></data>
+  <data name="Advanced.DiskDefsTip"><value>Pomocí vlastního souboru diskdefs.cfg můžete přidat nebo přepsat definice formátu Greaseweazle.</value></data>
+  <data name="Advanced.RevsTip"><value>--revs: Počet otáček přečtených na stopu. Příklad: --revs 5.</value></data>
+  <data name="Advanced.RetriesTip"><value>--retries: Další pokusy po chybě. Příklad: --retries 3.</value></data>
+  <data name="Advanced.TracksTip"><value>--tracks: Omezení válců, hlav nebo krokování. Příklad: --tracks c=0-79:h=0-1.</value></data>
+  <data name="Advanced.SeekRetriesTip"><value>--seek-retries: Další pokusy po pohybu hlavy. Příklad: --seek-retries 2.</value></data>
+  <data name="Advanced.FakeIndexTip"><value>--fake-index: Vytvořte časovaný index pro jednotku bez signálu indexu. Příklad: --fake-index 300 ot./min.</value></data>
+  <data name="Advanced.HardSectorsTip"><value>--hard-sectors: Manipulace s pevným diskem. Nekompatibilní s --fake-index.</value></data>
+  <data name="Advanced.ReverseTip"><value>--reverse: Obrácená data stopy pro ohebná média nebo kabeláž.</value></data>
+  <data name="Advanced.AdjustSpeedTip"><value>--adjust-speed: Změna měřítka časování dat. Příklad: --adjust-speed 300 ot./min.</value></data>
+  <data name="Advanced.PllOptionTip"><value>--pll: Nakonfigurujte smyčku obnovy hodin. Příklad: --pll period=5:phase=60.</value></data>
+  <data name="Advanced.DenselTip"><value>--densel: Vynutí vysokou nebo nízkou hodnotu pinu pro výběr hustoty. Příklad: --densel H.</value></data>
+  <data name="Advanced.Tg43Tip"><value>--gen-tg43: Generuje signál TG43 pro jednotky, které to vyžadují. Nekompatibilní s --densel.</value></data>
+  <data name="Advanced.EraseEmptyTip"><value>--erase-empty: Vymaže stopy, pro které zdrojový obrázek neobsahuje žádná data.</value></data>
+  <data name="Advanced.PreEraseTip"><value>--pre-erase: Před zápisem vymažte každou stopu.</value></data>
+  <data name="Advanced.PrecompOptionTip"><value>--precomp: Použít předkompenzaci zápisu. Příklad: --precomp type=mfm:40=125.</value></data>
+  <data name="Advanced.OutputTracksTip"><value>--out-tracks: Přemapovat stopy ve výstupním obrazu. Příklad: --out-tracks c=0-79:h=0-1.</value></data>
 </root>

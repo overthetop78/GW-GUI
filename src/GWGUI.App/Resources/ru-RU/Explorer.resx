@@ -12,102 +12,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Image">
-    <value>Образ диска</value>
-  </data>
-  <data name="Explorer.Format">
-    <value>Формат</value>
-  </data>
-  <data name="Explorer.OpenImage">
-    <value>Открыть образ…</value>
-  </data>
-  <data name="Explorer.Automatic">
-    <value>Автоматическое определение</value>
-  </data>
-  <data name="Explorer.Volume">
-    <value>Том</value>
-  </data>
-  <data name="Explorer.FileSystem">
-    <value>Файловая система</value>
-  </data>
-  <data name="Explorer.Capacity">
-    <value>Ёмкость</value>
-  </data>
-  <data name="Explorer.Free">
-    <value>Свободно</value>
-  </data>
-  <data name="Explorer.Entries">
-    <value>Элементы</value>
-  </data>
-  <data name="Explorer.SelectEntry">
-    <value>Выберите файл или папку.</value>
-  </data>
-  <data name="Explorer.Size">
-    <value>Размер</value>
-  </data>
-  <data name="Explorer.Modified">
-    <value>Изменён</value>
-  </data>
-  <data name="Explorer.Comment">
-    <value>Комментарий</value>
-  </data>
-  <data name="Explorer.Warnings">
-    <value>Предупреждения</value>
-  </data>
-  <data name="Explorer.Directory">
-    <value>Папка</value>
-  </data>
-  <data name="Explorer.File">
-    <value>Файл</value>
-  </data>
-  <data name="Explorer.Link">
-    <value>Ссылка</value>
-  </data>
-  <data name="Explorer.Unknown">
-    <value>Неизвестно</value>
-  </data>
-  <data name="Explorer.Unnamed">
-    <value>Том без имени</value>
-  </data>
-  <data name="Explorer.LoadFailed">
-    <value>Не удалось открыть образ: {0}</value>
-  </data>
-  <data name="Explorer.Loading">
-    <value>Чтение образа диска…</value>
-  </data>
-  <data name="Explorer.ReadDisk">
-    <value>Прочитать дискету</value>
-  </data>
-  <data name="Explorer.Name">
-    <value>Имя</value>
-  </data>
-  <data name="Explorer.Type">
-    <value>Тип</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirmTitle">
-    <value>Прочитать дискету</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirm">
-    <value>Дискета вставлена в выбранный сейчас дисковод ({0}) и готова к чтению?</value>
-  </data>
-  <data name="Explorer.Type.Text">
-    <value>Текстовый файл</value>
-  </data>
-  <data name="Explorer.Type.Image">
-    <value>Изображение</value>
-  </data>
-  <data name="Explorer.Type.Audio">
-    <value>Аудиофайл</value>
-  </data>
-  <data name="Explorer.Type.Archive">
-    <value>Архив</value>
-  </data>
-  <data name="Explorer.Type.Program">
-    <value>Программа</value>
-  </data>
-  <data name="Explorer.Type.DiskImage">
-    <value>Образ диска</value>
-  </data>
+  <data name="Explorer.Image"><value>Образ диска</value></data>
+  <data name="Explorer.Format"><value>Формат</value></data>
+  <data name="Explorer.OpenImage"><value>Открыть образ…</value></data>
+  <data name="Explorer.Automatic"><value>Автоматическое определение</value></data>
+  <data name="Explorer.Volume"><value>Том</value></data>
+  <data name="Explorer.FileSystem"><value>Файловая система</value></data>
+  <data name="Explorer.Capacity"><value>Ёмкость</value></data>
+  <data name="Explorer.Free"><value>Свободно</value></data>
+  <data name="Explorer.Entries"><value>Элементы</value></data>
+  <data name="Explorer.SelectEntry"><value>Выберите файл или папку.</value></data>
+  <data name="Explorer.Size"><value>Размер</value></data>
+  <data name="Explorer.Modified"><value>Изменён</value></data>
+  <data name="Explorer.Comment"><value>Комментарий</value></data>
+  <data name="Explorer.Warnings"><value>Предупреждения</value></data>
+  <data name="Explorer.Directory"><value>Папка</value></data>
+  <data name="Explorer.File"><value>Файл</value></data>
+  <data name="Explorer.Link"><value>Ссылка</value></data>
+  <data name="Explorer.Unknown"><value>Неизвестно</value></data>
+  <data name="Explorer.Unnamed"><value>Том без имени</value></data>
+  <data name="Explorer.LoadFailed"><value>Не удалось открыть образ: {0}</value></data>
+  <data name="Explorer.Loading"><value>Чтение образа диска…</value></data>
+  <data name="Explorer.ReadDisk"><value>Прочитать дискету</value></data>
+  <data name="Explorer.Name"><value>Имя</value></data>
+  <data name="Explorer.Type"><value>Тип</value></data>
+  <data name="Explorer.ReadDiskConfirmTitle"><value>Прочитать дискету</value></data>
+  <data name="Explorer.ReadDiskConfirm"><value>Дискета вставлена в выбранный сейчас дисковод ({0}) и готова к чтению?</value></data>
+  <data name="Explorer.Type.Text"><value>Текстовый файл</value></data>
+  <data name="Explorer.Type.Image"><value>Изображение</value></data>
+  <data name="Explorer.Type.Audio"><value>Аудиофайл</value></data>
+  <data name="Explorer.Type.Archive"><value>Архив</value></data>
+  <data name="Explorer.Type.Program"><value>Программа</value></data>
+  <data name="Explorer.Type.DiskImage"><value>Образ диска</value></data>
   <data name="Explorer.System"><value>Система</value></data>
   <data name="Explorer.Protection"><value>Защита</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Физические секторы — файловая система не распознана</value></data>
@@ -119,6 +55,6 @@
   <data name="Explorer.Content.crack-the-company"><value>Crack от The Company</value></data>
   <data name="Explorer.DataBlocks"><value>Блоки данных</value></data>
   <data name="Explorer.DetectedFormats"><value>Обнаружено: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable"><value>Host Tools не может создать образ сектора для поиска. {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed"><value>Host Tools не смогли расшифровать изображение {0}.</value></data>
 </root>

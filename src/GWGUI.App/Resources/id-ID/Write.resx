@@ -12,63 +12,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Write.Title">
-    <value>Menulis</value>
-  </data>
-  <data name="Write.SelectSource">
-    <value>Pilih gambar sumber yang ada.</value>
-  </data>
-  <data name="Write.Ambiguous">
-    <value>Formatnya ambigu. Pilih format yang kompatibel secara eksplisit.</value>
-  </data>
-  <data name="Write.VerifyOff">
-    <value>Verifikasi setelah penulisan dinonaktifkan.</value>
-  </data>
-  <data name="Write.VerifyOn">
-    <value>Verifikasi setelah penulisan diaktifkan.</value>
-  </data>
-  <data name="Write.ConfirmTitle">
-    <value>Konfirmasi tulis</value>
-  </data>
-  <data name="Write.Confirm">
-    <value>Gambar: {0}
-Format: {1}
-Berkendara: {2}
-{3}
-
-Tulis gambar ini ke disk?</value>
-  </data>
-  <data name="Write.Source">
-    <value>Sumber gambar</value>
-  </data>
-  <data name="Write.Detected">
-    <value>Format terdeteksi</value>
-  </data>
-  <data name="Write.ChooseImage">
-    <value>Pilih gambar.</value>
-  </data>
-  <data name="Write.NoVerify">
-    <value>Nonaktifkan verifikasi setelah menulis</value>
-  </data>
-  <data name="Write.NoVerifyTip">
-    <value>Menambahkan --no-verify. Disk tidak akan dibaca ulang untuk mengonfirmasi penulisan.</value>
-  </data>
-  <data name="Write.EraseEmpty">
-    <value>Hapus trek kosong</value>
-  </data>
-  <data name="Write.VisualizeTracks">
-    <value>Visualisasikan trek</value>
-  </data>
-  <data name="Write.VisualizeFormatRequired">
-    <value>Pilih format disk sebelum memvisualisasikan treknya.</value>
-  </data>
+  <data name="Write.Title"><value>Menulis</value></data>
+  <data name="Write.SelectSource"><value>Pilih gambar sumber yang ada.</value></data>
+  <data name="Write.Ambiguous"><value>Formatnya ambigu. Pilih format yang kompatibel secara eksplisit.</value></data>
+  <data name="Write.VerifyOff"><value>Verifikasi setelah penulisan dinonaktifkan.</value></data>
+  <data name="Write.VerifyOn"><value>Verifikasi setelah penulisan diaktifkan.</value></data>
+  <data name="Write.ConfirmTitle"><value>Konfirmasi tulis</value></data>
+  <data name="Write.Confirm"><value>Gambar: {0}&#xA;Format: {1}&#xA;Berkendara: {2}&#xA;{3}&#xA;&#xA;Tulis gambar ini ke disk?</value></data>
+  <data name="Write.Source"><value>Sumber gambar</value></data>
+  <data name="Write.Detected"><value>Format terdeteksi</value></data>
+  <data name="Write.ChooseImage"><value>Pilih gambar.</value></data>
+  <data name="Write.NoVerify"><value>Nonaktifkan verifikasi setelah menulis</value></data>
+  <data name="Write.NoVerifyTip"><value>Menambahkan --no-verify. Disk tidak akan dibaca ulang untuk mengonfirmasi penulisan.</value></data>
+  <data name="Write.EraseEmpty"><value>Hapus trek kosong</value></data>
+  <data name="Write.VisualizeTracks"><value>Visualisasikan trek</value></data>
+  <data name="Write.VisualizeFormatRequired"><value>Pilih format disk sebelum memvisualisasikan treknya.</value></data>
   <data name="Write.InternalWriter" xml:space="preserve"><value>Penulisan internal (eksperimental)</value></data>
   <data name="Write.InternalWriterTip" xml:space="preserve"><value>Menulis langsung dengan mesin internal tanpa gw.exe.</value></data>
   <data name="Write.InternalPreview" xml:space="preserve"><value>Penulisan internal GW GUI: {0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Satu atau beberapa opsi lanjutan belum didukung.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Verifikasi internal belum tersedia. Aktifkan “Jangan verifikasi”.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Trek {0}, sisi {1}: {2}</value></data>
-  <data name="Write.InternalFailureReason">
-    <value>Penulisan internal gagal.</value>
-  </data>
+  <data name="Write.InternalFailureReason"><value>Penulisan internal gagal.</value></data>
 </root>

@@ -12,28 +12,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.SettingsSaveFailed">
-    <value>Nastavení se nepodařilo uložit.
-
-{0}</value>
-  </data>
-  <data name="Error.Title">
-    <value>Chyba GW GUI</value>
-  </data>
-  <data name="Error.Unexpected">
-    <value>Byla zachycena neočekávaná chyba.
-
-{0}</value>
-  </data>
-  <data name="Error.SaveFailed">
-    <value>Nastavení nelze uložit. Okno se stále zavře.
-
-{0}</value>
-  </data>
-  <data name="Error.LogSaved">
-    <value>Celý přehled byl uložen do:
-{0}</value>
-  </data>
+  <data name="App.SettingsSaveFailed"><value>Nastavení se nepodařilo uložit.&#xA;&#xA;{0}</value></data>
+  <data name="Error.Title"><value>Chyba GW GUI</value></data>
+  <data name="Error.Unexpected"><value>Byla zachycena neočekávaná chyba.&#xA;&#xA;{0}</value></data>
+  <data name="Error.SaveFailed"><value>Nastavení nelze uložit. Okno se stále zavře.&#xA;&#xA;{0}</value></data>
+  <data name="Error.LogSaved"><value>Celý přehled byl uložen do:&#xA;{0}</value></data>
   <data name="Error.Description.NetworkTimeout"><value>Vzdálená služba nereagovala dříve, než došlo k přerušení spojení. Zkontrolujte síťové připojení a zkuste to znovu.</value></data>
   <data name="Error.Description.NetworkDns"><value>Adresa vzdálené služby nemohla být vyřešena. Zkontrolujte nastavení sítě nebo DNS a zkuste to znovu.</value></data>
   <data name="Error.Description.NetworkRefused"><value>Vzdálená služba odmítla připojení. Může být nedostupný nebo zablokovaný.</value></data>

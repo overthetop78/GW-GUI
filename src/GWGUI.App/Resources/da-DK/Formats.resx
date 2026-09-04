@@ -12,67 +12,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Detection.Ambiguous">
-    <value>Tvetydigt format</value>
-  </data>
-  <data name="Detection.RawScp">
-    <value>Rå SCP-optagelse genkendt.</value>
-  </data>
-  <data name="Detection.AmigaSize">
-    <value>Amiga format genkendt fra filstørrelse.</value>
-  </data>
-  <data name="Detection.AcornSize">
-    <value>Acorn format genkendt fra filstørrelse.</value>
-  </data>
-  <data name="Detection.AtariUnknownSize">
-    <value>Størrelsen matcher ikke en kendt Atari ST profil.</value>
-  </data>
-  <data name="Detection.AtariSize">
-    <value>Atari ST geometri genkendt fra filstørrelse.</value>
-  </data>
-  <data name="Detection.MsaInferred">
-    <value>Atari MSA container genkendt; bekræft om nødvendigt geometrien.</value>
-  </data>
-  <data name="Detection.IbmAmbiguous">
-    <value>Udvidelsen alene kan ikke bestemme IBM PC geometrien.</value>
-  </data>
-  <data name="Detection.IbmSize">
-    <value>IBM PC geometri genkendt fra filstørrelse.</value>
-  </data>
-  <data name="Detection.ExtensionInferred">
-    <value>Format udledt af udvidelsen.</value>
-  </data>
-  <data name="Detection.Multiple">
-    <value>Flere formater er mulige; vælge en eksplicit.</value>
-  </data>
-  <data name="Format.raw.scp">
-    <value>Rå flux billede</value>
-  </data>
-  <data name="Format.raw.hfe">
-    <value>HxC fluxbillede</value>
-  </data>
-  <data name="Common.DiskImageFilter">
-    <value>Diskbilleder|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Alle filer|*.*</value>
-  </data>
-  <data name="Detection.AppleDosOrder">
-    <value>Apple II DOS-format genkendt ud fra sektorrækkefølgen.</value>
-  </data>
-  <data name="Detection.AppleProDosOrder">
-    <value>Apple II ProDOS-format genkendt ud fra sektorrækkefølgen.</value>
-  </data>
-  <data name="Detection.AppleContainer">
-    <value>Apple-diskimagecontainer fundet.</value>
-  </data>
-  <data name="Classification.Automatic">
-    <value>Automatisk registrering</value>
-  </data>
-  <data name="Classification.Machine">
-    <value>Computer</value>
-  </data>
-  <data name="Classification.Format">
-    <value>Format</value>
-  </data>
-  <data name="Classification.Protection">
-    <value>Beskyttelse</value>
-  </data>
+  <data name="Detection.Ambiguous"><value>Tvetydigt format</value></data>
+  <data name="Detection.RawScp"><value>Rå SCP-optagelse genkendt.</value></data>
+  <data name="Detection.AmigaSize"><value>Amiga format genkendt fra filstørrelse.</value></data>
+  <data name="Detection.AcornSize"><value>Acorn format genkendt fra filstørrelse.</value></data>
+  <data name="Detection.AtariUnknownSize"><value>Størrelsen matcher ikke en kendt Atari ST profil.</value></data>
+  <data name="Detection.AtariSize"><value>Atari ST geometri genkendt fra filstørrelse.</value></data>
+  <data name="Detection.MsaInferred"><value>Atari MSA container genkendt; bekræft om nødvendigt geometrien.</value></data>
+  <data name="Detection.IbmAmbiguous"><value>Udvidelsen alene kan ikke bestemme IBM PC geometrien.</value></data>
+  <data name="Detection.IbmSize"><value>IBM PC geometri genkendt fra filstørrelse.</value></data>
+  <data name="Detection.ExtensionInferred"><value>Format udledt af udvidelsen.</value></data>
+  <data name="Detection.Multiple"><value>Flere formater er mulige; vælge en eksplicit.</value></data>
+  <data name="Format.raw.scp"><value>Rå flux billede</value></data>
+  <data name="Common.DiskImageFilter"><value>Disk images|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Alle filer|*.*</value></data>
+  <data name="Detection.AppleDosOrder"><value>Apple II DOS-format genkendt ud fra sektorrækkefølgen.</value></data>
+  <data name="Detection.AppleProDosOrder"><value>Apple II ProDOS format identificeret fra sektor orden.</value></data>
+  <data name="Detection.AppleContainer"><value>Apple-diskimagecontainer fundet.</value></data>
+  <data name="Classification.Automatic"><value>Automatisk registrering</value></data>
+  <data name="Classification.Machine"><value>Computer</value></data>
+<data name="Classification.Protection"><value>Beskyttelse</value></data>
 </root>

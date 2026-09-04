@@ -12,51 +12,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Cancel">
-    <value>يلغي</value>
-  </data>
-  <data name="Common.Save">
-    <value>يحفظ</value>
-  </data>
-  <data name="Common.Create">
-    <value>إنشاء</value>
-  </data>
-  <data name="Common.Delete">
-    <value>يمسح</value>
-  </data>
-  <data name="Common.Browse">
-    <value>تصفح…</value>
-  </data>
-  <data name="Common.Choose">
-    <value>يختار…</value>
-  </data>
-  <data name="Common.Close">
-    <value>يغلق</value>
-  </data>
-  <data name="Common.Execute">
-    <value>ينفذ</value>
-  </data>
-  <data name="Common.Stop">
-    <value>قف</value>
-  </data>
-  <data name="Common.Continue">
-    <value>يكمل</value>
-  </data>
-  <data name="Common.Reset">
-    <value>إعادة ضبط</value>
-  </data>
-  <data name="Common.Copy">
-    <value>ينسخ</value>
-  </data>
-  <data name="Common.Modify">
-    <value>يُعدِّل</value>
-  </data>
-  <data name="Common.Hide">
-    <value>يخفي</value>
-  </data>
-  <data name="Common.Export">
-    <value>يصدّر</value>
-  </data>
+  <data name="Common.Cancel"><value>يلغي</value></data>
+  <data name="Common.Save"><value>يحفظ</value></data>
+  <data name="Common.Create"><value>إنشاء</value></data>
+  <data name="Common.Delete"><value>يمسح</value></data>
+  <data name="Common.Browse"><value>تصفح…</value></data>
+  <data name="Common.Choose"><value>يختار…</value></data>
+  <data name="Common.Close"><value>يغلق</value></data>
+  <data name="Common.Execute"><value>ينفذ</value></data>
+  <data name="Common.Stop"><value>قف</value></data>
+  <data name="Common.Continue"><value>يكمل</value></data>
+  <data name="Common.Reset"><value>إعادة ضبط</value></data>
+  <data name="Common.Copy"><value>ينسخ</value></data>
+  <data name="Common.Modify"><value>يُعدِّل</value></data>
+  <data name="Common.Hide"><value>يخفي</value></data>
+  <data name="Common.Export"><value>يصدّر</value></data>
   <data name="Common.New"><value>جديد</value></data>
   <data name="Common.Refresh"><value>تحديث</value></data>
   <data name="Common.OpenFolder"><value>فتح المجلد</value></data>

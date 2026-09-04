@@ -12,102 +12,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Image">
-    <value>Образ диска</value>
-  </data>
-  <data name="Explorer.Format">
-    <value>Формат</value>
-  </data>
-  <data name="Explorer.OpenImage">
-    <value>Відкрити образ…</value>
-  </data>
-  <data name="Explorer.Automatic">
-    <value>Автоматичне визначення</value>
-  </data>
-  <data name="Explorer.Volume">
-    <value>Том</value>
-  </data>
-  <data name="Explorer.FileSystem">
-    <value>Файлова система</value>
-  </data>
-  <data name="Explorer.Capacity">
-    <value>Місткість</value>
-  </data>
-  <data name="Explorer.Free">
-    <value>Вільно</value>
-  </data>
-  <data name="Explorer.Entries">
-    <value>Елементи</value>
-  </data>
-  <data name="Explorer.SelectEntry">
-    <value>Виберіть файл або папку.</value>
-  </data>
-  <data name="Explorer.Size">
-    <value>Розмір</value>
-  </data>
-  <data name="Explorer.Modified">
-    <value>Змінено</value>
-  </data>
-  <data name="Explorer.Comment">
-    <value>Коментар</value>
-  </data>
-  <data name="Explorer.Warnings">
-    <value>Попередження</value>
-  </data>
-  <data name="Explorer.Directory">
-    <value>Папка</value>
-  </data>
-  <data name="Explorer.File">
-    <value>Файл</value>
-  </data>
-  <data name="Explorer.Link">
-    <value>Посилання</value>
-  </data>
-  <data name="Explorer.Unknown">
-    <value>Невідомо</value>
-  </data>
-  <data name="Explorer.Unnamed">
-    <value>Том без назви</value>
-  </data>
-  <data name="Explorer.LoadFailed">
-    <value>Не вдалося відкрити образ: {0}</value>
-  </data>
-  <data name="Explorer.Loading">
-    <value>Читання образу диска…</value>
-  </data>
-  <data name="Explorer.ReadDisk">
-    <value>Прочитати дискету</value>
-  </data>
-  <data name="Explorer.Name">
-    <value>Ім'я</value>
-  </data>
-  <data name="Explorer.Type">
-    <value>Тип</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirmTitle">
-    <value>Прочитати дискету</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirm">
-    <value>Дискету вставлено у вибраний зараз дисковод ({0}) і вона готова до читання?</value>
-  </data>
-  <data name="Explorer.Type.Text">
-    <value>Текстовий файл</value>
-  </data>
-  <data name="Explorer.Type.Image">
-    <value>Зображення</value>
-  </data>
-  <data name="Explorer.Type.Audio">
-    <value>Аудіофайл</value>
-  </data>
-  <data name="Explorer.Type.Archive">
-    <value>Архів</value>
-  </data>
-  <data name="Explorer.Type.Program">
-    <value>Програма</value>
-  </data>
-  <data name="Explorer.Type.DiskImage">
-    <value>Образ диска</value>
-  </data>
+  <data name="Explorer.Image"><value>Образ диска</value></data>
+  <data name="Explorer.Format"><value>Формат</value></data>
+  <data name="Explorer.OpenImage"><value>Відкрити образ…</value></data>
+  <data name="Explorer.Automatic"><value>Автоматичне визначення</value></data>
+  <data name="Explorer.Volume"><value>Том</value></data>
+  <data name="Explorer.FileSystem"><value>Файлова система</value></data>
+  <data name="Explorer.Capacity"><value>Місткість</value></data>
+  <data name="Explorer.Free"><value>Вільно</value></data>
+  <data name="Explorer.Entries"><value>Елементи</value></data>
+  <data name="Explorer.SelectEntry"><value>Виберіть файл або папку.</value></data>
+  <data name="Explorer.Size"><value>Розмір</value></data>
+  <data name="Explorer.Modified"><value>Змінено</value></data>
+  <data name="Explorer.Comment"><value>Коментар</value></data>
+  <data name="Explorer.Warnings"><value>Попередження</value></data>
+  <data name="Explorer.Directory"><value>Папка</value></data>
+  <data name="Explorer.File"><value>Файл</value></data>
+  <data name="Explorer.Link"><value>Посилання</value></data>
+  <data name="Explorer.Unknown"><value>Невідомо</value></data>
+  <data name="Explorer.Unnamed"><value>Том без назви</value></data>
+  <data name="Explorer.LoadFailed"><value>Не вдалося відкрити образ: {0}</value></data>
+  <data name="Explorer.Loading"><value>Читання образу диска…</value></data>
+  <data name="Explorer.ReadDisk"><value>Прочитати дискету</value></data>
+  <data name="Explorer.Name"><value>Ім'я</value></data>
+  <data name="Explorer.Type"><value>Тип</value></data>
+  <data name="Explorer.ReadDiskConfirmTitle"><value>Прочитати дискету</value></data>
+  <data name="Explorer.ReadDiskConfirm"><value>Дискету вставлено у вибраний зараз дисковод ({0}) і вона готова до читання?</value></data>
+  <data name="Explorer.Type.Text"><value>Текстовий файл</value></data>
+  <data name="Explorer.Type.Image"><value>Зображення</value></data>
+  <data name="Explorer.Type.Audio"><value>Аудіофайл</value></data>
+  <data name="Explorer.Type.Archive"><value>Архів</value></data>
+  <data name="Explorer.Type.Program"><value>Програма</value></data>
+  <data name="Explorer.Type.DiskImage"><value>Образ диска</value></data>
   <data name="Explorer.System"><value>Система</value></data>
   <data name="Explorer.Protection"><value>Захист</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Фізичні сектори — файлову систему не розпізнано</value></data>
@@ -119,6 +55,6 @@
   <data name="Explorer.Content.crack-the-company"><value>Crack від The Company</value></data>
   <data name="Explorer.DataBlocks"><value>Блоки даних</value></data>
   <data name="Explorer.DetectedFormats"><value>Виявлено: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable"><value>Інструменти не можуть виробляти розширюваний сектор зображення для {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed"><value>Інструменти хост не можуть декодувати зображення як {0}.</value></data>
 </root>

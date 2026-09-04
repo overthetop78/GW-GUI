@@ -12,40 +12,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="HostTools.Detect">
-    <value>gw.exe keresése</value>
-  </data>
-  <data name="HostTools.Check">
-    <value>Ellenőrizze a frissítéseket</value>
-  </data>
-  <data name="HostTools.Download">
-    <value>Töltse le a legújabb verziót</value>
-  </data>
-  <data name="HostTools.Rollback">
-    <value>Használja az előző elérési utat</value>
-  </data>
-  <data name="HostTools.None">
-    <value>Nem észlelhető telepítés.</value>
-  </data>
-  <data name="HostTools.Detected">
-    <value>Észlelve: {0}</value>
-  </data>
-  <data name="HostTools.Latest">
-    <value>A legújabb elérhető verzió: {0}</value>
-  </data>
-  <data name="HostTools.Installed">
-    <value>A {0} verzió telepítve.</value>
-  </data>
-  <data name="HostTools.DownloadConfirm">
-    <value>Töltse le és telepítse a Greaseweazle Host Tools {0} alkalmazást Windows x64-hez?</value>
-  </data>
-  <data name="HostTools.Title">
-    <value>Greaseweazle Gazdaeszközök</value>
-  </data>
-  <data name="HostTools.NoPrevious">
-    <value>Nincs érvényes korábbi elérési út.</value>
-  </data>
-  <data name="HostTools.UpdateAvailable">
-    <value>Host Tools {0} elérhető</value>
-  </data>
+  <data name="HostTools.Detect"><value>gw.exe keresése</value></data>
+  <data name="HostTools.Check"><value>Ellenőrizze a frissítéseket</value></data>
+  <data name="HostTools.Download"><value>Töltse le a legújabb verziót</value></data>
+  <data name="HostTools.Rollback"><value>Használja az előző elérési utat</value></data>
+  <data name="HostTools.None"><value>Nem észlelhető telepítés.</value></data>
+  <data name="HostTools.Detected"><value>Észlelve: {0}</value></data>
+  <data name="HostTools.Latest"><value>A legújabb elérhető verzió: {0}</value></data>
+  <data name="HostTools.Installed"><value>A {0} verzió telepítve.</value></data>
+  <data name="HostTools.DownloadConfirm"><value>Töltse le és telepítse a Greaseweazle Host Tools {0} alkalmazást Windows x64-hez?</value></data>
+  <data name="HostTools.Title"><value>Greaseweazle Gazdaeszközök</value></data>
+  <data name="HostTools.NoPrevious"><value>Nincs érvényes korábbi elérési út.</value></data>
+  <data name="HostTools.UpdateAvailable"><value>Host Tools {0} elérhető</value></data>
 </root>

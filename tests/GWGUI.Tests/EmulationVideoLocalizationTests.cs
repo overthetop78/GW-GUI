@@ -25,8 +25,29 @@ public sealed class EmulationVideoLocalizationTests
         "zh-Hans", "zh-Hant"
     ];
 
+    private static readonly string[] IconKeys =
+    [
+        "Common.SaveIcon", "Common.TrashIcon", "Icon.Save", "Icon.Reset", "Icon.Copy",
+        "Icon.Console", "Options.NextTagExampleIcon"
+    ];
+
     [Fact]
-    public void EveryVideoResourceKeyExistsInEveryCulture()
+    public void IconsExistOnlyInTheNeutralIconCatalogAndResolveThroughFallback()
+    {
+        var resources = new ResourceManager("GWGUI.App.Resources.Icons",
+            typeof(EmulationResourceKeys).Assembly);
+
+        AssertCultureContains(resources, CultureInfo.InvariantCulture, IconKeys);
+        foreach (var cultureName in Cultures)
+        {
+            var culture = CultureInfo.GetCultureInfo(cultureName);
+            Assert.Null(resources.GetResourceSet(culture, createIfNotExists: true, tryParents: false));
+            AssertCultureResolves(resources, culture, IconKeys);
+        }
+    }
+
+    [Fact]
+    public void EveryVideoResourceKeyResolvesInEveryCulture()
     {
         var keys = typeof(EmulationResourceKeys).GetFields()
             .Where(field => field.IsLiteral && field.FieldType == typeof(string))
@@ -38,7 +59,7 @@ public sealed class EmulationVideoLocalizationTests
 
         AssertCultureContains(resources, CultureInfo.InvariantCulture, keys);
         foreach (var culture in Cultures)
-            AssertCultureContains(resources, CultureInfo.GetCultureInfo(culture), keys);
+            AssertCultureResolves(resources, CultureInfo.GetCultureInfo(culture), keys);
     }
 
     [Fact]
@@ -88,6 +109,14 @@ public sealed class EmulationVideoLocalizationTests
         var missing = expected.Where(key => !actual.Contains(key)).ToArray();
         Assert.True(missing.Length == 0,
             $"{culture.Name}: missing {string.Join(", ", missing)}");
+    }
+
+    private static void AssertCultureResolves(ResourceManager resources, CultureInfo culture,
+        IReadOnlyCollection<string> expected)
+    {
+        var missing = expected.Where(key => resources.GetString(key, culture) is null).ToArray();
+        Assert.True(missing.Length == 0,
+            $"{culture.Name}: unresolved {string.Join(", ", missing)}");
     }
 
     private static IReadOnlyList<string> Texts(DependencyObject root) =>

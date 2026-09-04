@@ -12,102 +12,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Image">
-    <value>磁碟映像</value>
-  </data>
-  <data name="Explorer.Format">
-    <value>格式</value>
-  </data>
-  <data name="Explorer.OpenImage">
-    <value>開啟映像…</value>
-  </data>
-  <data name="Explorer.Automatic">
-    <value>自動偵測</value>
-  </data>
-  <data name="Explorer.Volume">
-    <value>磁碟區</value>
-  </data>
-  <data name="Explorer.FileSystem">
-    <value>檔案系統</value>
-  </data>
-  <data name="Explorer.Capacity">
-    <value>容量</value>
-  </data>
-  <data name="Explorer.Free">
-    <value>可用空間</value>
-  </data>
-  <data name="Explorer.Entries">
-    <value>項目</value>
-  </data>
-  <data name="Explorer.SelectEntry">
-    <value>請選取檔案或資料夾。</value>
-  </data>
-  <data name="Explorer.Size">
-    <value>大小</value>
-  </data>
-  <data name="Explorer.Modified">
-    <value>修改時間</value>
-  </data>
-  <data name="Explorer.Comment">
-    <value>註解</value>
-  </data>
-  <data name="Explorer.Warnings">
-    <value>警告</value>
-  </data>
-  <data name="Explorer.Directory">
-    <value>資料夾</value>
-  </data>
-  <data name="Explorer.File">
-    <value>檔案</value>
-  </data>
-  <data name="Explorer.Link">
-    <value>連結</value>
-  </data>
-  <data name="Explorer.Unknown">
-    <value>未知</value>
-  </data>
-  <data name="Explorer.Unnamed">
-    <value>未命名磁碟區</value>
-  </data>
-  <data name="Explorer.LoadFailed">
-    <value>無法開啟此映像：{0}</value>
-  </data>
-  <data name="Explorer.Loading">
-    <value>正在讀取磁碟映像…</value>
-  </data>
-  <data name="Explorer.ReadDisk">
-    <value>讀取磁碟</value>
-  </data>
-  <data name="Explorer.Name">
-    <value>名稱</value>
-  </data>
-  <data name="Explorer.Type">
-    <value>類型</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirmTitle">
-    <value>讀取磁碟</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirm">
-    <value>磁碟是否已插入目前選取的磁碟機（{0}）並準備好讀取？</value>
-  </data>
-  <data name="Explorer.Type.Text">
-    <value>文字檔案</value>
-  </data>
-  <data name="Explorer.Type.Image">
-    <value>影像</value>
-  </data>
-  <data name="Explorer.Type.Audio">
-    <value>音訊檔案</value>
-  </data>
-  <data name="Explorer.Type.Archive">
-    <value>封存檔</value>
-  </data>
-  <data name="Explorer.Type.Program">
-    <value>程式</value>
-  </data>
-  <data name="Explorer.Type.DiskImage">
-    <value>磁碟映像</value>
-  </data>
+  <data name="Explorer.Image"><value>磁碟映像</value></data>
+  <data name="Explorer.Format"><value>格式</value></data>
+  <data name="Explorer.OpenImage"><value>開啟映像…</value></data>
+  <data name="Explorer.Automatic"><value>自動偵測</value></data>
+  <data name="Explorer.Volume"><value>磁碟區</value></data>
+  <data name="Explorer.FileSystem"><value>檔案系統</value></data>
+  <data name="Explorer.Capacity"><value>容量</value></data>
+  <data name="Explorer.Free"><value>可用空間</value></data>
+  <data name="Explorer.Entries"><value>項目</value></data>
+  <data name="Explorer.SelectEntry"><value>請選取檔案或資料夾。</value></data>
+  <data name="Explorer.Size"><value>大小</value></data>
+  <data name="Explorer.Modified"><value>修改時間</value></data>
+  <data name="Explorer.Comment"><value>註解</value></data>
+  <data name="Explorer.Warnings"><value>警告</value></data>
+  <data name="Explorer.Directory"><value>資料夾</value></data>
+  <data name="Explorer.File"><value>檔案</value></data>
+  <data name="Explorer.Link"><value>連結</value></data>
+  <data name="Explorer.Unknown"><value>未知</value></data>
+  <data name="Explorer.Unnamed"><value>未命名磁碟區</value></data>
+  <data name="Explorer.LoadFailed"><value>無法開啟此映像：{0}</value></data>
+  <data name="Explorer.Loading"><value>正在讀取磁碟映像…</value></data>
+  <data name="Explorer.ReadDisk"><value>讀取磁碟</value></data>
+  <data name="Explorer.Name"><value>名稱</value></data>
+  <data name="Explorer.Type"><value>類型</value></data>
+  <data name="Explorer.ReadDiskConfirmTitle"><value>讀取磁碟</value></data>
+  <data name="Explorer.ReadDiskConfirm"><value>磁碟是否已插入目前選取的磁碟機（{0}）並準備好讀取？</value></data>
+  <data name="Explorer.Type.Text"><value>文字檔案</value></data>
+  <data name="Explorer.Type.Image"><value>影像</value></data>
+  <data name="Explorer.Type.Audio"><value>音訊檔案</value></data>
+  <data name="Explorer.Type.Archive"><value>封存檔</value></data>
+  <data name="Explorer.Type.Program"><value>程式</value></data>
+  <data name="Explorer.Type.DiskImage"><value>磁碟映像</value></data>
   <data name="Explorer.System"><value>系統</value></data>
   <data name="Explorer.Protection"><value>保護</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>實體磁區 — 未識別檔案系統</value></data>
@@ -119,6 +55,6 @@
   <data name="Explorer.Content.crack-the-company"><value>The Company 破解版</value></data>
   <data name="Explorer.DataBlocks"><value>資料區塊</value></data>
   <data name="Explorer.DetectedFormats"><value>偵測到：{0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable"><value>主机工具无法生成可扩展扇形图像 {0}. . . . . . . . . . . .</value></data>
+  <data name="Explorer.ExternalEngineFailed"><value>主机工具无法解码图像为 {0}. . . . . . . . . . . .</value></data>
 </root>

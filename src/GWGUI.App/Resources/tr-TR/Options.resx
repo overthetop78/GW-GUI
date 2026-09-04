@@ -12,170 +12,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Options.Title">
-    <value>Seçenekler</value>
-  </data>
-  <data name="Options.General">
-    <value>Genel</value>
-  </data>
-  <data name="Options.Tools">
-    <value>Greaseweazle Araçlar</value>
-  </data>
-  <data name="Options.Hardware">
-    <value>Kontrolörler ve sürücüler</value>
-  </data>
-  <data name="Options.Profiles">
-    <value>Profiller</value>
-  </data>
-  <data name="Options.ImagesFolder">
-    <value>Varsayılan disk görüntüsü klasörü</value>
-  </data>
-  <data name="Options.Language">
-    <value>Dil</value>
-  </data>
-  <data name="Options.Theme">
-    <value>Tema</value>
-  </data>
-  <data name="Theme.System">
-    <value>Sistem</value>
-  </data>
-  <data name="Theme.Light">
-    <value>Işık</value>
-  </data>
-  <data name="Theme.Dark">
-    <value>Karanlık</value>
-  </data>
-  <data name="Options.GwPath">
-    <value>gw.exe'a giden yol</value>
-  </data>
-  <data name="Options.ToolsHelp">
-    <value>Araçlar eksikse asistan bunları indirmeyi veya mevcut bir kurulumu seçmeyi teklif edecektir. Güncellemeler yalnızca duyurulur.</value>
-  </data>
-  <data name="Options.HardwarePersistence">
-    <value>Bir sürücünün bağlantısı kesildiğinde donanım ayarları kayıtlı kalır.</value>
-  </data>
-  <data name="Options.ExecutableFilter">
-    <value>Greaseweazle (gw.exe)|gw.exe|Yürütülebilir (*.exe)|*.exe</value>
-  </data>
-  <data name="Options.RemoveHardware">
-    <value>Bu depolanan denetleyici ve tüm sürücüleri kaldırılsın mı?</value>
-  </data>
-  <data name="Options.HardwareTitle">
-    <value>Donanım</value>
-  </data>
-  <data name="Options.UseConversionTags">
-    <value>Dönüşüm dosya adlarında etiketleri kullanın</value>
-  </data>
-  <data name="Options.TagPreset">
-    <value>Ön ayar</value>
-  </data>
-  <data name="Options.TagPresetFamily">
-    <value>Yalnızca aile</value>
-  </data>
-  <data name="Options.TagPresetFormat">
-    <value>Yalnızca biçim</value>
-  </data>
-  <data name="Options.TagPresetFamilyFormat">
-    <value>Aile ve format</value>
-  </data>
-  <data name="Options.TagPresetFamilyExtension">
-    <value>Aile ve uzantı</value>
-  </data>
-  <data name="Options.TagPresetDetailed">
-    <value>Aile, format ve uzantı</value>
-  </data>
-  <data name="Options.TagPattern">
-    <value>Dönüşüm etiketi modeli</value>
-  </data>
-  <data name="Options.TagVariablesTitle">
-    <value>Mevcut değişkenler</value>
-  </data>
-  <data name="Options.TagVariableName">
-    <value>Kaynak dosya adı</value>
-  </data>
-  <data name="Options.TagVariableFamily">
-    <value>Aile: PC, ST, AMIGA…</value>
-  </data>
-  <data name="Options.TagVariableFormat">
-    <value>Biçim: 720, 1440, DD…</value>
-  </data>
-  <data name="Options.TagVariableExtension">
-    <value>Uzantı: IMA, ST, ADF…</value>
-  </data>
-  <data name="Options.TagVariableDateIso">
-    <value>Tarih: 2026-08-06</value>
-  </data>
-  <data name="Options.TagVariableDateCompact">
-    <value>Tarih: 20260806</value>
-  </data>
-  <data name="Options.TagVariableDateLocal">
-    <value>Tarih: 06-08-2026</value>
-  </data>
-  <data name="Options.TagVariableTimeFull">
-    <value>Saat: 14-35-42</value>
-  </data>
-  <data name="Options.TagVariableTimeCompact">
-    <value>Zaman: 143542</value>
-  </data>
-  <data name="Options.TagVariableTimeShort">
-    <value>Saat: 14-35</value>
-  </data>
-  <data name="Options.TagPatternHelp">
-    <value>{NAME} — kaynak dosya adı
-{FAMILY} — makine ailesi (PC, ST, AMIGA…)
-{FORMAT} — biçim veya geometri (720, 1440, DD…)
-{EXTENSION} — çıkış uzantısı (IMA, ST, ADF…)
-{DATE:YYYY-MM-DD} — tarih 2026-08-06
-{DATE:YYYYMMDD} — tarih 20260806
-{DATE:DD-MM-YYYY} — tarih 06-08-2026
-{TIME:HH-MM-SS} — zaman 14-35-42
-{TIME:HHMMSS} — zaman 143542
-{TIME:HH-MM} — zaman 14-35</value>
-  </data>
-  <data name="Options.RecentTagPatterns">
-    <value>Son özel desenler</value>
-  </data>
-  <data name="Options.NextTagExample">
-    <value>Sonraki örnek</value>
-  </data>
-  <data name="Options.TagPatternPreview">
-    <value>Örnek: {0}</value>
-  </data>
-  <data name="Options.TagPatternInvalid">
-    <value>Etiket modeli {tag} içermelidir.</value>
-  </data>
-  <data name="Options.EnableLogs">
-    <value>Günlükleri kaydet</value>
-  </data>
-  <data name="Options.Logs">
-    <value>Günlükler</value>
-  </data>
-  <data name="Options.LogsDescription">
-    <value>GW GUI Günlükler klasöründe her eylemin kendi dosyası vardır.</value>
-  </data>
-  <data name="Options.LogActionErase">
-    <value>Sil</value>
-  </data>
-  <data name="Options.LogActionClean">
-    <value>Kafaları temizleyin</value>
-  </data>
-  <data name="Options.OpenLogsFolder">
-    <value>Klasörü aç</value>
-  </data>
-  <data name="Options.LogMaximumSize">
-    <value>Maksimum boyut</value>
-  </data>
-  <data name="Options.KeepLogArchives">
-    <value>Önceki günlükleri sakla</value>
-  </data>
-  <data name="Options.LogUnlimitedHint">
-    <value>0 = sınırsız</value>
-  </data>
+  <data name="Options.Title"><value>Seçenekler</value></data>
+  <data name="Options.General"><value>Genel</value></data>
+  <data name="Options.Tools"><value>Greaseweazle Araçlar</value></data>
+  <data name="Options.Hardware"><value>Kontrolörler ve sürücüler</value></data>
+  <data name="Options.Profiles"><value>Profiller</value></data>
+  <data name="Options.ImagesFolder"><value>Varsayılan disk görüntüsü klasörü</value></data>
+  <data name="Options.Language"><value>Dil</value></data>
+  <data name="Options.Theme"><value>Tema</value></data>
+  <data name="Theme.System"><value>Sistem</value></data>
+  <data name="Theme.Light"><value>Işık</value></data>
+  <data name="Theme.Dark"><value>Karanlık</value></data>
+  <data name="Options.GwPath"><value>gw.exe'a giden yol</value></data>
+  <data name="Options.ToolsHelp"><value>Araçlar eksikse asistan bunları indirmeyi veya mevcut bir kurulumu seçmeyi teklif edecektir. Güncellemeler yalnızca duyurulur.</value></data>
+  <data name="Options.HardwarePersistence"><value>Bir sürücünün bağlantısı kesildiğinde donanım ayarları kayıtlı kalır.</value></data>
+  <data name="Options.ExecutableFilter"><value>Greaseweazle (gw.exe)|gw.exe|Executable (Operaable)*.exe)|*.exe</value></data>
+  <data name="Options.RemoveHardware"><value>Bu depolanan denetleyici ve tüm sürücüleri kaldırılsın mı?</value></data>
+  <data name="Options.HardwareTitle"><value>Donanım</value></data>
+  <data name="Options.UseConversionTags"><value>Dönüşüm dosya adlarında etiketleri kullanın</value></data>
+  <data name="Options.TagPreset"><value>Ön ayar</value></data>
+  <data name="Options.TagPresetFamily"><value>Yalnızca aile</value></data>
+  <data name="Options.TagPresetFormat"><value>Yalnızca biçim</value></data>
+  <data name="Options.TagPresetFamilyFormat"><value>Aile ve format</value></data>
+  <data name="Options.TagPresetFamilyExtension"><value>Aile ve uzantı</value></data>
+  <data name="Options.TagPresetDetailed"><value>Aile, format ve uzantı</value></data>
+  <data name="Options.TagPattern"><value>Dönüşüm etiketi modeli</value></data>
+  <data name="Options.TagVariablesTitle"><value>Mevcut değişkenler</value></data>
+  <data name="Options.TagVariableName"><value>Kaynak dosya adı</value></data>
+  <data name="Options.TagVariableFamily"><value>Aile: PC, ST, AMIGA…</value></data>
+  <data name="Options.TagVariableFormat"><value>Biçim: 720, 1440, DD…</value></data>
+  <data name="Options.TagVariableExtension"><value>Uzantı: IMA, ST, ADF…</value></data>
+  <data name="Options.TagVariableDateIso"><value>Tarih: 2026-08-06</value></data>
+  <data name="Options.TagVariableDateCompact"><value>Tarih: 20260806</value></data>
+  <data name="Options.TagVariableDateLocal"><value>Tarih: 06-08-2026</value></data>
+  <data name="Options.TagVariableTimeFull"><value>Saat: 14-35-42</value></data>
+  <data name="Options.TagVariableTimeCompact"><value>Zaman: 143542</value></data>
+  <data name="Options.TagVariableTimeShort"><value>Saat: 14-35</value></data>
+  <data name="Options.TagPatternHelp"><value>{NAME} - kaynak filename&#xA;{FAMILY} - makine ailesi (PC, ST, AMIGA...)&#xA;{FORMAT} - format veya geometri (720, 1440, DD...)&#xA;{EXTENSION} - çıkış uzatma (İngilizce)IMA, ST, ADF...)&#xA;{DATE:YYYY-MM-DD} - date 2026-08-06&#xA;{DATE:YYYYMMDD} - date 20260806&#xA;{DATE:DD-MM-YYYY} - date 06-08-2026&#xA;{TIME:HH-MM-SS} - time 14-35-42&#xA;{TIME:HHMMSS} - time 143542&#xA;{TIME:HH-MM} - time 14-35</value></data>
+  <data name="Options.RecentTagPatterns"><value>Son özel desenler</value></data>
+  <data name="Options.NextTagExample"><value>Sonraki örnek</value></data>
+  <data name="Options.TagPatternPreview"><value>Örnek: {0}</value></data>
+  <data name="Options.TagPatternInvalid"><value>etiket kalıbı içermelidir {tag}.</value></data>
+  <data name="Options.EnableLogs"><value>Günlükleri kaydet</value></data>
+  <data name="Options.Logs"><value>Günlükler</value></data>
+  <data name="Options.LogsDescription"><value>GW GUI Günlükler klasöründe her eylemin kendi dosyası vardır.</value></data>
+  <data name="Options.LogActionErase"><value>Sil</value></data>
+  <data name="Options.LogActionClean"><value>Kafaları temizleyin</value></data>
+  <data name="Options.OpenLogsFolder"><value>Klasörü aç</value></data>
+  <data name="Options.LogMaximumSize"><value>Maksimum boyut</value></data>
+  <data name="Options.KeepLogArchives"><value>Önceki günlükleri sakla</value></data>
+  <data name="Options.LogUnlimitedHint"><value>0 = sınırsız</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>Motorlar</value></data>
   <data name="Engines.Description" xml:space="preserve"><value>Her işlem için kullanılacak motoru bağımsız olarak seçin.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>Dahili GW GUI motoru</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>Seçilen motor kesin olarak kullanılır. İşlemi yapamazsa GW GUI diğer motoru sessizce kullanmak yerine bunu bildirir.</value></data>
-  <data name="Emulation.Model" xml:space="preserve"><value>Model</value></data>
+  <data name="Emulation.Model"><value>Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model Model</value></data>
   <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Fareyi yakala</value></data>
   <data name="Emulation.Configuration" xml:space="preserve"><value>Yapı oluşturma</value></data>
   <data name="Controllers.Title" xml:space="preserve"><value>Kumandalar</value></data>
@@ -185,9 +76,7 @@
   <data name="Controllers.NoneDetected" xml:space="preserve"><value>Kumanda algılanmadı</value></data>
   <data name="Controllers.DetectedCount" xml:space="preserve"><value>{0} kumanda algılandı</value></data>
   <data name="Controllers.TestRumble" xml:space="preserve"><value>Titreşimi test et</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve">
-    <value>Titreşim gücü</value>
-  </data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>Titreşim gücü</value></data>
   <data name="Controllers.LiveInputs" xml:space="preserve"><value>Canlı girişler</value></data>
   <data name="Controllers.Control" xml:space="preserve"><value>Denetim</value></data>
   <data name="Controllers.Value" xml:space="preserve"><value>Değer</value></data>
@@ -218,17 +107,10 @@
   <data name="Controllers.Yes" xml:space="preserve"><value>Evet</value></data>
   <data name="Controllers.No" xml:space="preserve"><value>Hayır</value></data>
   <data name="Controllers.None" xml:space="preserve"><value>Yok</value></data>
-  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>Genel kumanda</value></data>
-  <data name="Controllers.Model.Auto" xml:space="preserve"><value>Otomatik</value></data>
-  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>Direksiyon</value></data>
-  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>Uçuş kolu</value></data>
-  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>Arcade kolu</value></data>
-  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Ham bayt</value></data>
+<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Ham bayt</value></data>
   <data name="Controllers.AnalogValues" xml:space="preserve"><value>Analog değerler</value></data>
   <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Kumanda algılama başarısız</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve">
-    <value>Denetleyiciler algılanıyor…</value>
-  </data>
+  <data name="Controllers.Detecting" xml:space="preserve"><value>Denetleyiciler algılanıyor…</value></data>
   <data name="Controllers.ReadFailed" xml:space="preserve"><value>Kumanda okuma başarısız</value></data>
   <data name="Controllers.TestRunning" xml:space="preserve"><value>Test sürüyor…</value></data>
   <data name="Controllers.TestFailed" xml:space="preserve"><value>Test başarısız</value></data>
@@ -253,91 +135,52 @@
   <data name="Controllers.Roll" xml:space="preserve"><value>Yalpa</value></data>
   <data name="Controllers.Pitch" xml:space="preserve"><value>Yunuslama</value></data>
   <data name="Controllers.Yaw" xml:space="preserve"><value>Sapma</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve">
-    <value>Sensörler</value>
-  </data>
-  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
-    <value>Arayüz gezintisi</value>
-  </data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
-    <value>Oyun kumandası</value>
-  </data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
-    <value>Düşük frekans motoru</value>
-  </data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
-    <value>Yüksek frekans motoru</value>
-  </data>
-  <data name="Controllers.Enum.Share" xml:space="preserve">
-    <value>Paylaş</value>
-  </data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve">
-    <value>Doğrusal</value>
-  </data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve">
-    <value>Açısal</value>
-  </data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve">
-    <value>Normal</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
-    <value>Sabit</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
-    <value>Rampa</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
-    <value>Sinüs dalgası</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
-    <value>Kare dalga</value>
-  </data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
-    <value>Üçgen dalga</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
-    <value>Yükselen testere dişi</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
-    <value>Düşen testere dişi</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
-    <value>Yay</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
-    <value>Sürtünme</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
-    <value>Sönümleyici</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
-    <value>Atalet</value>
-  </data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve">
-    <value>Oyun çubuğu</value>
-  </data>
-  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
-    <value>Çok eksenli denetleyici</value>
-  </data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
-    <value>HID kullanımı</value>
-  </data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve">
-    <value>eksenler</value>
-  </data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve">
-    <value>düğmeler</value>
-  </data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
-    <value>Birleştirilmiş</value>
-  </data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve">
-    <value>Sanal</value>
-  </data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve">
-    <value>Giriş raporu</value>
-  </data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
-    <value>Çıkış raporu</value>
-  </data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Sensörler</value></data>
+  <data name="Controllers.Enum.UiNavigation"><value>UI navigasyon</value></data>
+  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>Oyun kumandası</value></data>
+  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Düşük frekans motoru</value></data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Yüksek frekans motoru</value></data>
+  <data name="Controllers.Enum.Share" xml:space="preserve"><value>Paylaş</value></data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Doğrusal</value></data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Açısal</value></data>
+<data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Sabit</value></data>
+  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Rampa</value></data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Sinüs dalgası</value></data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>Kare dalga</value></data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>Üçgen dalga</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>Yükselen testere dişi</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>Düşen testere dişi</value></data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>Yay</value></data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Sürtünme</value></data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Sönümleyici</value></data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Atalet</value></data>
+  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Oyun çubuğu</value></data>
+  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Çok eksenli denetleyici</value></data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID kullanımı</value></data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>eksenler</value></data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>düğmeler</value></data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Birleştirilmiş</value></data>
+  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>Sanal</value></data>
+  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Giriş raporu</value></data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Çıkış raporu</value></data>
+<data name="Emulation.InitialDisk"><value>İlk disk</value></data>
+  <data name="Emulation.Audio"><value>Ses Ses</value></data>
+  <data name="Emulation.Controller"><value>Sorumlu denetçi {0}</value></data>
+  <data name="Emulation.Core.NameOptions"><value>Core seçenekleri</value></data>
+  <data name="Emulation.MultiDrive"><value>İlk dört diski içeri girin DF0–DF3</value></data>
+  <data name="Emulation.DiskNumber"><value>Disk Disk Disk Disk {0}</value></data>
+  <data name="Emulation.LoadOptions"><value>Mevcut seçenekler</value></data>
+  <data name="Emulation.Configurations"><value>Yapılar</value></data>
+  <data name="Emulation.Firmware"><value>Firmaware</value></data>
+  <data name="Emulation.ReleaseMouse"><value>Yayınlanmış fare</value></data>
+  <data name="Emulation.DeleteConfirm"><value>Bu Amiga yapılandırmasını mi silin?</value></data>
+  <data name="Emulation.ModelRequired"><value>Amiga modeli gereklidir.</value></data>
+  <data name="Emulation.KickstartRequired"><value>Bir Kickstart yolu gereklidir.</value></data>
+  <data name="Emulation.FileRequired"><value>Gerekli bir bilgisayar yolu boş.</value></data>
+  <data name="Emulation.FileMissing"><value>Seçilen dosya mevcut değildir.</value></data>
+<data name="Controllers.Enum.Normal"><value>Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal Normal</value></data>
+<data name="Options.EmulationMachineTitle"><value>{0} - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - {1} : {2}</value></data>
+  <data name="Controllers.AnalogDeadZones"><value>Analog ölü bölgeler</value></data>
+  <data name="Controllers.TriggerDeadZone"><value>Tesirli Tesir</value></data>
+  <data name="Controllers.OuterDeadZone"><value>Dış Ölü Bölge</value></data>
 </root>

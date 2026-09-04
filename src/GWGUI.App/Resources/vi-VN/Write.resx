@@ -12,63 +12,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Write.Title">
-    <value>Viết</value>
-  </data>
-  <data name="Write.SelectSource">
-    <value>Chọn một hình ảnh nguồn hiện có.</value>
-  </data>
-  <data name="Write.Ambiguous">
-    <value>Định dạng không rõ ràng. Rõ ràng chọn một định dạng tương thích.</value>
-  </data>
-  <data name="Write.VerifyOff">
-    <value>Xác minh sau khi viết bị vô hiệu hóa.</value>
-  </data>
-  <data name="Write.VerifyOn">
-    <value>Xác minh sau khi viết được kích hoạt.</value>
-  </data>
-  <data name="Write.ConfirmTitle">
-    <value>Xác nhận viết</value>
-  </data>
-  <data name="Write.Confirm">
-    <value>Hình ảnh: {0}
-Định dạng: {1}
-Lái xe: {2}
-{3}
-
-Ghi hình ảnh này vào đĩa?</value>
-  </data>
-  <data name="Write.Source">
-    <value>Hình ảnh nguồn</value>
-  </data>
-  <data name="Write.Detected">
-    <value>Định dạng được phát hiện</value>
-  </data>
-  <data name="Write.ChooseImage">
-    <value>Chọn một hình ảnh.</value>
-  </data>
-  <data name="Write.NoVerify">
-    <value>Vô hiệu hóa xác minh sau khi viết</value>
-  </data>
-  <data name="Write.NoVerifyTip">
-    <value>Thêm --no-verify. Đĩa sẽ không được đọc lại để xác nhận việc ghi.</value>
-  </data>
-  <data name="Write.EraseEmpty">
-    <value>Xóa các bản nhạc trống</value>
-  </data>
-  <data name="Write.VisualizeTracks">
-    <value>Trực quan hóa các bản nhạc</value>
-  </data>
-  <data name="Write.VisualizeFormatRequired">
-    <value>Chọn định dạng đĩa trước khi hiển thị các bản nhạc của nó.</value>
-  </data>
+  <data name="Write.Title"><value>Viết</value></data>
+  <data name="Write.SelectSource"><value>Chọn một hình ảnh nguồn hiện có.</value></data>
+  <data name="Write.Ambiguous"><value>Định dạng không rõ ràng. Rõ ràng chọn một định dạng tương thích.</value></data>
+  <data name="Write.VerifyOff"><value>Xác minh sau khi viết bị vô hiệu hóa.</value></data>
+  <data name="Write.VerifyOn"><value>Xác minh sau khi viết được kích hoạt.</value></data>
+  <data name="Write.ConfirmTitle"><value>Xác nhận viết</value></data>
+  <data name="Write.Confirm"><value>Hình ảnh: {0}&#xA;Định dạng: {1}&#xA;Lái xe: {2}&#xA;{3}&#xA;&#xA;Ghi hình ảnh này vào đĩa?</value></data>
+  <data name="Write.Source"><value>Hình ảnh nguồn</value></data>
+  <data name="Write.Detected"><value>Định dạng được phát hiện</value></data>
+  <data name="Write.ChooseImage"><value>Chọn một hình ảnh.</value></data>
+  <data name="Write.NoVerify"><value>Vô hiệu hóa xác minh sau khi viết</value></data>
+  <data name="Write.NoVerifyTip"><value>Thêm --no-verify. Đĩa sẽ không được đọc lại để xác nhận việc ghi.</value></data>
+  <data name="Write.EraseEmpty"><value>Xóa các bản nhạc trống</value></data>
+  <data name="Write.VisualizeTracks"><value>Trực quan hóa các bản nhạc</value></data>
+  <data name="Write.VisualizeFormatRequired"><value>Chọn định dạng đĩa trước khi hiển thị các bản nhạc của nó.</value></data>
   <data name="Write.InternalWriter" xml:space="preserve"><value>Ghi nội bộ (thử nghiệm)</value></data>
   <data name="Write.InternalWriterTip" xml:space="preserve"><value>Ghi trực tiếp bằng bộ máy nội bộ mà không dùng gw.exe.</value></data>
   <data name="Write.InternalPreview" xml:space="preserve"><value>Ghi nội bộ GW GUI: {0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Một hoặc nhiều tùy chọn nâng cao chưa được hỗ trợ.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Chưa có xác minh nội bộ. Hãy bật “Không xác minh”.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Rãnh {0}, mặt {1}: {2}</value></data>
-  <data name="Write.InternalFailureReason">
-    <value>Ghi nội bộ không thành công.</value>
-  </data>
+  <data name="Write.InternalFailureReason"><value>Ghi nội bộ không thành công.</value></data>
 </root>

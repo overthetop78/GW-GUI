@@ -12,148 +12,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Hardware.Port">
-    <value>Kikötő</value>
-  </data>
-  <data name="Hardware.UsbId">
-    <value>USB azonosító</value>
-  </data>
-  <data name="Hardware.Drive">
-    <value>Hajtás</value>
-  </data>
-  <data name="Hardware.Available">
-    <value>Elérhető</value>
-  </data>
-  <data name="Hardware.Scan">
-    <value>Letapogatás</value>
-  </data>
-  <data name="Hardware.AddDrive">
-    <value>Meghajtó hozzáadása…</value>
-  </data>
-  <data name="Hardware.NoDrive">
-    <value>Nincs meghajtó meghatározva</value>
-  </data>
-  <data name="Hardware.EditorTitle">
-    <value>Határozzon meg egy meghajtót</value>
-  </data>
-  <data name="Hardware.Controller">
-    <value>Greaseweazle vezérlő</value>
-  </data>
-  <data name="Hardware.GwSelection">
-    <value>A kiválasztás átment a gw-nek</value>
-  </data>
-  <data name="Hardware.PhysicalSize">
-    <value>Fizikai méret</value>
-  </data>
-  <data name="Hardware.SizeShort">
-    <value>Méret</value>
-  </data>
-  <data name="Hardware.DensityShort">
-    <value>Sűrűség</value>
-  </data>
-  <data name="Hardware.SpeedShort">
-    <value>Sebesség</value>
-  </data>
-  <data name="Hardware.AvailableState">
-    <value>Elérhető</value>
-  </data>
-  <data name="Hardware.UnavailableState">
-    <value>Nem elérhető</value>
-  </data>
-  <data name="Hardware.DensityDescription">
-    <value>Hajtássűrűség (csak leírás)</value>
-  </data>
-  <data name="Hardware.SpeedDescription">
-    <value>Névleges sebesség (csak leírás)</value>
-  </data>
-  <data name="Hardware.NotConfigured">
-    <value>A vezérlő nincs konfigurálva</value>
-  </data>
-  <data name="Hardware.Disconnected">
-    <value>szétkapcsolt</value>
-  </data>
-  <data name="Hardware.SelectedDisconnected">
-    <value>A kiválasztott meghajtó le van választva. Csatlakoztassa újra, vagy ellenőrizze újra az Opciók → Vezérlők és meghajtók menüpontban.</value>
-  </data>
-  <data name="Hardware.DriveLabel">
-    <value>{0} hüvelyk · {1} · {2} · {3}</value>
-  </data>
-  <data name="Hardware.DriveDialogTitle">
-    <value>Hajtás</value>
-  </data>
-  <data name="Hardware.ControllerRequired">
-    <value>Először ellenőrizze vagy adjon hozzá egy Greaseweazle vezérlőt.</value>
-  </data>
-  <data name="Hardware.Description">
-    <value>{0} hüvelyk · {1} · kiválasztás {2}{3}</value>
-  </data>
-  <data name="Hardware.ScanTitle">
-    <value>Letapogatás</value>
-  </data>
-  <data name="Hardware.GwRequired">
-    <value>Először válassza ki vagy töltse le a következőt: gw.exe.</value>
-  </data>
-  <data name="Hardware.StartupTitle">
-    <value>Hardver ellenőrzés</value>
-  </data>
-  <data name="Hardware.StartupMissing">
-    <value>A beállított hardver nem található</value>
-  </data>
-  <data name="Hardware.StartupExplanation">
-    <value>A konfiguráció megmarad, de meghajtói elérhetetlenek maradnak mindaddig, amíg a Greaseweazle újra meg nem találják.</value>
-  </data>
-  <data name="Hardware.StartupMissingList">
-    <value>Hiányzik Greaseweazle vezérlő</value>
-  </data>
-  <data name="Hardware.StartupRetry">
-    <value>Keresés újra</value>
-  </data>
-  <data name="Hardware.StartupSettings">
-    <value>Hardver beállítások</value>
-  </data>
-  <data name="Hardware.StartupContinue">
-    <value>Folytassa a meghajtó nélkül</value>
-  </data>
-  <data name="Hardware.StartupCheckFailed">
-    <value>A hardverellenőrzés nem sikerült: {0}</value>
-  </data>
-  <data name="Hardware.NewDetectedTitle">
-    <value>Új Greaseweazle észlelve</value>
-  </data>
-  <data name="Hardware.NewDetected">
-    <value>{0} észlelve a következő napon: {1}. Szeretné most konfigurálni a meghajtót?</value>
-  </data>
-  <data name="Hardware.ConfigurationState">
-    <value>Konfiguráció</value>
-  </data>
-  <data name="Hardware.Configured">
-    <value>Beállítva</value>
-  </data>
-  <data name="Hardware.NotConfiguredState">
-    <value>Észlelve, nincs konfigurálva</value>
-  </data>
-  <data name="Hardware.Configure">
-    <value>Konfigurálás</value>
-  </data>
-  <data name="Hardware.ReaderNumber">
-    <value>Hajtás {0}</value>
-  </data>
-  <data name="Hardware.DriveChoice">
-    <value>Meghajtó {0} · {1}″ · {2} · {3}</value>
-  </data>
-  <data name="Hardware.Forget">
-    <value>Felejtsd el</value>
-  </data>
-  <data name="Hardware.ForgetConfirm">
-    <value>Valóban el akarja felejteni ezt a meghajtót vagy eszközt?</value>
-  </data>
-  <data name="Hardware.ForgetLastConfirm">
-    <value>Ez az utolsó konfigurált meghajtó ehhez a Greaseweazle-hoz. El szeretné felejteni a meghajtót és a Greaseweazle-t is?</value>
-  </data>
-  <data name="Hardware.SelectController">
-    <value>Először válassza ki a megfelelő Greaseweazle sort.</value>
-  </data>
-  <data name="Hardware.MaximumDrives">
-    <value>Legfeljebb két meghajtó rendelhető automatikusan ehhez a Greaseweazle-hoz (A és B).</value>
-  </data>
+  <data name="Hardware.Port"><value>Kikötő</value></data>
+  <data name="Hardware.UsbId"><value>USB azonosító</value></data>
+  <data name="Hardware.Drive"><value>Hajtás</value></data>
+  <data name="Hardware.Available"><value>Elérhető</value></data>
+  <data name="Hardware.Scan"><value>Letapogatás</value></data>
+  <data name="Hardware.AddDrive"><value>Meghajtó hozzáadása…</value></data>
+  <data name="Hardware.NoDrive"><value>Nincs meghajtó meghatározva</value></data>
+  <data name="Hardware.EditorTitle"><value>Határozzon meg egy meghajtót</value></data>
+  <data name="Hardware.Controller"><value>Greaseweazle vezérlő</value></data>
+  <data name="Hardware.GwSelection"><value>A kiválasztás átment a gw-nek</value></data>
+  <data name="Hardware.PhysicalSize"><value>Fizikai méret</value></data>
+  <data name="Hardware.SizeShort"><value>Méret</value></data>
+  <data name="Hardware.DensityShort"><value>Sűrűség</value></data>
+  <data name="Hardware.SpeedShort"><value>Sebesség</value></data>
+  <data name="Hardware.AvailableState"><value>Elérhető</value></data>
+  <data name="Hardware.UnavailableState"><value>Nem elérhető</value></data>
+  <data name="Hardware.DensityDescription"><value>Hajtássűrűség (csak leírás)</value></data>
+  <data name="Hardware.SpeedDescription"><value>Névleges sebesség (csak leírás)</value></data>
+  <data name="Hardware.NotConfigured"><value>A vezérlő nincs konfigurálva</value></data>
+  <data name="Hardware.Disconnected"><value>szétkapcsolt</value></data>
+  <data name="Hardware.SelectedDisconnected"><value>A kiválasztott meghajtó le van választva. Csatlakoztassa újra, vagy ellenőrizze újra az Opciók → Vezérlők és meghajtók menüpontban.</value></data>
+  <data name="Hardware.DriveLabel"><value>{0} hüvelyk · {1} · {2} · {3}</value></data>
+  <data name="Hardware.DriveDialogTitle"><value>Hajtás</value></data>
+  <data name="Hardware.ControllerRequired"><value>Először ellenőrizze vagy adjon hozzá egy Greaseweazle vezérlőt.</value></data>
+  <data name="Hardware.Description"><value>{0} hüvelyk · {1} · kiválasztás {2}{3}</value></data>
+  <data name="Hardware.ScanTitle"><value>Letapogatás</value></data>
+  <data name="Hardware.GwRequired"><value>Először válassza ki vagy töltse le a következőt: gw.exe.</value></data>
+  <data name="Hardware.StartupTitle"><value>Hardver ellenőrzés</value></data>
+  <data name="Hardware.StartupMissing"><value>A beállított hardver nem található</value></data>
+  <data name="Hardware.StartupExplanation"><value>A konfiguráció megmarad, de meghajtói elérhetetlenek maradnak mindaddig, amíg a Greaseweazle újra meg nem találják.</value></data>
+  <data name="Hardware.StartupMissingList"><value>Hiányzik Greaseweazle vezérlő</value></data>
+  <data name="Hardware.StartupRetry"><value>Keresés újra</value></data>
+  <data name="Hardware.StartupSettings"><value>Hardver beállítások</value></data>
+  <data name="Hardware.StartupContinue"><value>Folytassa a meghajtó nélkül</value></data>
+  <data name="Hardware.StartupCheckFailed"><value>A hardverellenőrzés nem sikerült: {0}</value></data>
+  <data name="Hardware.NewDetectedTitle"><value>Új Greaseweazle észlelve</value></data>
+  <data name="Hardware.NewDetected"><value>{0} észlelve a következő napon: {1}. Szeretné most konfigurálni a meghajtót?</value></data>
+  <data name="Hardware.ConfigurationState"><value>Konfiguráció</value></data>
+  <data name="Hardware.Configured"><value>Beállítva</value></data>
+  <data name="Hardware.NotConfiguredState"><value>Észlelve, nincs konfigurálva</value></data>
+  <data name="Hardware.Configure"><value>Konfigurálás</value></data>
+  <data name="Hardware.ReaderNumber"><value>Hajtás {0}</value></data>
+  <data name="Hardware.DriveChoice"><value>Meghajtó {0} · {1}″ · {2} · {3}</value></data>
+  <data name="Hardware.Forget"><value>Felejtsd el</value></data>
+  <data name="Hardware.ForgetConfirm"><value>Valóban el akarja felejteni ezt a meghajtót vagy eszközt?</value></data>
+  <data name="Hardware.ForgetLastConfirm"><value>Ez az utolsó konfigurált meghajtó ehhez a Greaseweazle-hoz. El szeretné felejteni a meghajtót és a Greaseweazle-t is?</value></data>
+  <data name="Hardware.SelectController"><value>Először válassza ki a megfelelő Greaseweazle sort.</value></data>
+  <data name="Hardware.MaximumDrives"><value>Legfeljebb két meghajtó rendelhető automatikusan ehhez a Greaseweazle-hoz (A és B).</value></data>
 </root>

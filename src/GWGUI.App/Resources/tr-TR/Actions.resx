@@ -12,51 +12,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Cancel">
-    <value>İptal etmek</value>
-  </data>
-  <data name="Common.Save">
-    <value>Kaydetmek</value>
-  </data>
-  <data name="Common.Create">
-    <value>Oluştur</value>
-  </data>
-  <data name="Common.Delete">
-    <value>Silmek</value>
-  </data>
-  <data name="Common.Browse">
-    <value>Göz at…</value>
-  </data>
-  <data name="Common.Choose">
-    <value>Seçmek…</value>
-  </data>
-  <data name="Common.Close">
-    <value>Kapalı</value>
-  </data>
-  <data name="Common.Execute">
-    <value>Uygulamak</value>
-  </data>
-  <data name="Common.Stop">
-    <value>Durmak</value>
-  </data>
-  <data name="Common.Continue">
-    <value>Devam etmek</value>
-  </data>
-  <data name="Common.Reset">
-    <value>Sıfırla</value>
-  </data>
-  <data name="Common.Copy">
-    <value>Kopyala</value>
-  </data>
-  <data name="Common.Modify">
-    <value>Değiştir</value>
-  </data>
-  <data name="Common.Hide">
-    <value>Saklamak</value>
-  </data>
-  <data name="Common.Export">
-    <value>İhracat</value>
-  </data>
+  <data name="Common.Cancel"><value>İptal etmek</value></data>
+  <data name="Common.Save"><value>Kaydetmek</value></data>
+  <data name="Common.Create"><value>Oluştur</value></data>
+  <data name="Common.Delete"><value>Silmek</value></data>
+  <data name="Common.Browse"><value>Göz at…</value></data>
+  <data name="Common.Choose"><value>Seçmek…</value></data>
+  <data name="Common.Close"><value>Kapalı</value></data>
+  <data name="Common.Execute"><value>Uygulamak</value></data>
+  <data name="Common.Stop"><value>Durmak</value></data>
+  <data name="Common.Continue"><value>Devam etmek</value></data>
+  <data name="Common.Reset"><value>Sıfırla</value></data>
+  <data name="Common.Copy"><value>Kopyala</value></data>
+  <data name="Common.Modify"><value>Değiştir</value></data>
+  <data name="Common.Hide"><value>Saklamak</value></data>
+  <data name="Common.Export"><value>İhracat</value></data>
   <data name="Common.New"><value>Yeni</value></data>
   <data name="Common.Refresh"><value>Yenile</value></data>
   <data name="Common.OpenFolder"><value>Klasörü aç</value></data>

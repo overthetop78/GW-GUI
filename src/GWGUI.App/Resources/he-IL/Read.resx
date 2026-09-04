@@ -12,127 +12,45 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Read.Title">
-    <value>לִקְרוֹא</value>
-  </data>
-  <data name="Read.NameRequired">
-    <value>הזן שם קובץ.</value>
-  </data>
-  <data name="Read.TypeRequired">
-    <value>בחר סוג תמונה תואם.</value>
-  </data>
-  <data name="Read.FileExistsTitle">
-    <value>קובץ קיים</value>
-  </data>
-  <data name="Read.FileExists">
-    <value>הקובץ הזה כבר קיים.</value>
-  </data>
-  <data name="Read.ConflictPath">
-    <value>קובץ קיים</value>
-  </data>
-  <data name="Read.ConflictOverwrite">
-    <value>החלף</value>
-  </data>
-  <data name="Read.ConflictNextNumber">
-    <value>השתמש במספר הבא</value>
-  </data>
-  <data name="Read.ConflictEditName">
-    <value>תן לי לערוך את השם</value>
-  </data>
-  <data name="Read.ImageToCreate">
-    <value>תמונה ליצירה</value>
-  </data>
-  <data name="Read.Extension">
-    <value>הַרחָבָה</value>
-  </data>
-  <data name="Read.RawScp">
-    <value>תמונה גולמית (SCP)</value>
-  </data>
-  <data name="Read.KnownFormat">
-    <value>פורמט דיסק ידוע</value>
-  </data>
-  <data name="Read.FileName">
-    <value>שם הקובץ</value>
-  </data>
-  <data name="Read.Folder">
-    <value>תיקיה</value>
-  </data>
-  <data name="Read.Revolutions">
-    <value>מהפכות לרצועה</value>
-  </data>
-  <data name="Read.Retries">
-    <value>מנסה שוב</value>
-  </data>
-  <data name="Read.Tracks">
-    <value>מסלולים/צדדים</value>
-  </data>
-  <data name="Read.AutoNumber">
-    <value>מספר אוטומטי של קריאה מוצלחת</value>
-  </data>
-  <data name="Read.Digits">
-    <value>ספרות</value>
-  </data>
-  <data name="Read.Letters">
-    <value>אותיות</value>
-  </data>
-  <data name="Read.Next">
-    <value>הַבָּא:</value>
-  </data>
-  <data name="Read.OpenVisualize">
-    <value>פתח בהדמיה</value>
-  </data>
-  <data name="Read.ScpFinished">
-    <value>לכידת SCP הושלמה. אתה יכול לנתח אותו מבלי להפריע לעבודה שלך.</value>
-  </data>
-  <data name="Read.ScpSummaryTitle">
-    <value>תוצאת SCP סופית:</value>
-  </data>
-  <data name="Read.ScpTracksSummary">
-    <value>מסלולים: {0} טוב, {1} חסר או לא חוקי ({2} צילינדרים, {3} צדדים).</value>
-  </data>
-  <data name="Read.ScpTechnicalSummary">
-    <value>סיבובים: {0} · רזולוציה: {1} ns · גודל: {2:N0} בתים · סכום בדיקה: {3}.</value>
-  </data>
-  <data name="Read.ScpOutputFile">
-    <value>קובץ: {0}</value>
-  </data>
-  <data name="Read.ScpSummaryUnavailable">
-    <value>סיכום SCP לא זמין: {0}</value>
-  </data>
-  <data name="Read.ScpBannerSummary">
-    <value>{0} מסלולים טובים · {1} חסרים או לא חוקיים · {2} צילינדרים · {3} צדדים · {4} סיבוב(ים) · {5:N0} בתים · {6} סכום ביקורת</value>
-  </data>
-  <data name="Read.ChooseType">
-    <value>בחר סוג תמונה</value>
-  </data>
-  <data name="Read.DestinationFolder">
-    <value>תיקיית יעד</value>
-  </data>
-  <data name="Read.CancelledFileDeleted">
-    <value>הקריאה בוטלה: הקובץ הלא שלם נמחק: {0}</value>
-  </data>
-  <data name="Read.CancelledFileDeleteFailed">
-    <value>הקריאה בוטלה, אך לא ניתן היה למחוק את הקובץ הלא שלם: {0} — {1}</value>
-  </data>
-  <data name="Read.OpenExplore">
-    <value>עיון בקבצים</value>
-  </data>
-  <data name="Read.InternalReader">
-    <value>קריאה פנימית של דיסק פיזי (ניסיוני)</value>
-  </data>
-  <data name="Read.InternalReaderTip">
-    <value>קורא את השטף ישירות דרך פרוטוקול Greaseweazle; ‏gw.exe נשאר ברירת המחדל.</value>
-  </data>
-  <data name="Read.InternalPreview">
-    <value>קריאה פנימית של דיסק פיזי אל {0}</value>
-  </data>
-  <data name="Read.InternalRawScpOnly">
-    <value>הקריאה הפנימית יוצרת כרגע תמונות SCP גולמיות בלבד.</value>
-  </data>
-  <data name="Read.InternalUnsupportedOptions">
-    <value>חלק מהאפשרויות שהופעלו עדיין אינן נתמכות בקורא הפנימי.</value>
-  </data>
-  <data name="Read.InternalInvalidOptions">
-    <value>הגדרות הקריאה הפנימית אינן חוקיות.</value>
-  </data>
+  <data name="Read.Title"><value>לִקְרוֹא</value></data>
+  <data name="Read.NameRequired"><value>הזן שם קובץ.</value></data>
+  <data name="Read.TypeRequired"><value>בחר סוג תמונה תואם.</value></data>
+  <data name="Read.FileExistsTitle"><value>קובץ קיים</value></data>
+  <data name="Read.FileExists"><value>הקובץ הזה כבר קיים.</value></data>
+  <data name="Read.ConflictPath"><value>קובץ קיים</value></data>
+  <data name="Read.ConflictOverwrite"><value>החלף</value></data>
+  <data name="Read.ConflictNextNumber"><value>השתמש במספר הבא</value></data>
+  <data name="Read.ConflictEditName"><value>תן לי לערוך את השם</value></data>
+  <data name="Read.ImageToCreate"><value>תמונה ליצירה</value></data>
+  <data name="Read.Extension"><value>הַרחָבָה</value></data>
+  <data name="Read.RawScp"><value>תמונה גולמית (SCP)</value></data>
+  <data name="Read.KnownFormat"><value>פורמט דיסק ידוע</value></data>
+  <data name="Read.FileName"><value>שם הקובץ</value></data>
+  <data name="Read.Folder"><value>תיקיה</value></data>
+  <data name="Read.Revolutions"><value>מהפכות לרצועה</value></data>
+  <data name="Read.Retries"><value>מנסה שוב</value></data>
+  <data name="Read.Tracks"><value>מסלולים/צדדים</value></data>
+  <data name="Read.AutoNumber"><value>מספר אוטומטי של קריאה מוצלחת</value></data>
+  <data name="Read.Digits"><value>ספרות</value></data>
+  <data name="Read.Letters"><value>אותיות</value></data>
+  <data name="Read.Next"><value>הַבָּא:</value></data>
+  <data name="Read.OpenVisualize"><value>פתח בהדמיה</value></data>
+  <data name="Read.ScpFinished"><value>לכידת SCP הושלמה. אתה יכול לנתח אותו מבלי להפריע לעבודה שלך.</value></data>
+  <data name="Read.ScpSummaryTitle"><value>תוצאת SCP סופית:</value></data>
+  <data name="Read.ScpTracksSummary"><value>מסלולים: {0} טוב, {1} חסר או לא חוקי ({2} צילינדרים, {3} צדדים).</value></data>
+  <data name="Read.ScpTechnicalSummary"><value>סיבובים: {0} · רזולוציה: {1} ns · גודל: {2:N0} בתים · סכום בדיקה: {3}.</value></data>
+  <data name="Read.ScpOutputFile"><value>קובץ: {0}</value></data>
+  <data name="Read.ScpSummaryUnavailable"><value>סיכום SCP לא זמין: {0}</value></data>
+  <data name="Read.ScpBannerSummary"><value>{0} מסלולים טובים · {1} חסרים או לא חוקיים · {2} צילינדרים · {3} צדדים · {4} סיבוב(ים) · {5:N0} בתים · {6} סכום ביקורת</value></data>
+  <data name="Read.ChooseType"><value>בחר סוג תמונה</value></data>
+  <data name="Read.DestinationFolder"><value>תיקיית יעד</value></data>
+  <data name="Read.CancelledFileDeleted"><value>הקריאה בוטלה: הקובץ הלא שלם נמחק: {0}</value></data>
+  <data name="Read.CancelledFileDeleteFailed"><value>הקריאה בוטלה, אך לא ניתן היה למחוק את הקובץ הלא שלם: {0} — {1}</value></data>
+  <data name="Read.OpenExplore"><value>עיון בקבצים</value></data>
+  <data name="Read.InternalReader"><value>קריאה פנימית של דיסק פיזי (ניסיוני)</value></data>
+  <data name="Read.InternalReaderTip"><value>קורא את השטף ישירות דרך פרוטוקול Greaseweazle; ‏gw.exe נשאר ברירת המחדל.</value></data>
+  <data name="Read.InternalPreview"><value>קריאה פנימית של דיסק פיזי אל {0}</value></data>
+  <data name="Read.InternalRawScpOnly"><value>הקריאה הפנימית יוצרת כרגע תמונות SCP גולמיות בלבד.</value></data>
+  <data name="Read.InternalUnsupportedOptions"><value>חלק מהאפשרויות שהופעלו עדיין אינן נתמכות בקורא הפנימי.</value></data>
+  <data name="Read.InternalInvalidOptions"><value>הגדרות הקריאה הפנימית אינן חוקיות.</value></data>
 </root>

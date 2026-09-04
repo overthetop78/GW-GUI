@@ -12,209 +12,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Visual.Decoder">
-    <value>解码器</value>
-  </data>
-  <data name="Visual.LinkZoom">
-    <value>链接缩放</value>
-  </data>
-  <data name="Visual.OpenScp">
-    <value>打开 SCP 文件...</value>
-  </data>
-  <data name="Visual.NoFile">
-    <value>没有打开 SCP 文件</value>
-  </data>
-  <data name="Visual.Waiting">
-    <value>等待文件</value>
-  </data>
-  <data name="Visual.Inspector">
-    <value>督察</value>
-  </data>
-  <data name="Visual.SelectTrack">
-    <value>选择一个曲目。</value>
-  </data>
-  <data name="Visual.Controls">
-    <value>单击：选择 · 滚轮：缩放 · 右键单击​​：平移</value>
-  </data>
-  <data name="Visual.NormalFlux">
-    <value>法向通量</value>
-  </data>
-  <data name="Visual.ShortTransition">
-    <value>短暂的过渡</value>
-  </data>
-  <data name="Visual.LongTransition">
-    <value>长过渡/异常</value>
-  </data>
-  <data name="Visual.Loading">
-    <value>正在读取文件...</value>
-  </data>
-  <data name="Visual.Invalid">
-    <value>文件无效</value>
-  </data>
-  <data name="Visual.Title">
-    <value>SCP 可视化</value>
-  </data>
-  <data name="Visual.ChecksumValid">
-    <value>有效的</value>
-  </data>
-  <data name="Visual.ChecksumInvalid">
-    <value>无效的</value>
-  </data>
-  <data name="Visual.Summary">
-    <value>SCP {0} · {1} 磁道 · {2} 转数 · {3} ns 分辨率 · {4} 校验和</value>
-  </data>
-  <data name="Visual.Revolution">
-    <value>第 {0} 转：{1:N0} 次跃迁 · {2:F2} ms · {3:F2} RPM</value>
-  </data>
-  <data name="Visual.Analysis">
-    <value>解码：{0}
-置信度：{1:P0}
-估计细胞：{2:F1} 刻度
-结构：{3}</value>
-  </data>
-  <data name="Visual.Track">
-    <value>侧面：{0}
-曲目：{1}
-SCP 条目：{2}</value>
-  </data>
-  <data name="Visual.SideNoData">
-    <value>侧面 {0}
-无数据</value>
-  </data>
-  <data name="Visual.TrackTooltip">
-    <value>面 {0} · 磁道 {1}
-{2} 转</value>
-  </data>
-  <data name="Visual.Automatic">
-    <value>自动的</value>
-  </data>
-  <data name="Visual.StructureHeader">
-    <value>标头/地址</value>
-  </data>
-  <data name="Visual.StructureData">
-    <value>解码数据</value>
-  </data>
-  <data name="Visual.StructureAnomaly">
-    <value>已删除/异常</value>
-  </data>
-  <data name="Visual.AnalysedRevolution">
-    <value>基于第 {0} 转的分析。</value>
-  </data>
-  <data name="Visual.BitOffset">
-    <value>位 {0:N0}</value>
-  </data>
-  <data name="Visual.SectorDetail">
-    <value>扇区 C{0} H{1} R{2} · {3} 字节 · {4} {5}</value>
-  </data>
-  <data name="Visual.CrcValid">
-    <value>有效的</value>
-  </data>
-  <data name="Visual.CrcInvalid">
-    <value>无效的</value>
-  </data>
-  <data name="Visual.IntegrityUnavailable">
-    <value>不可用</value>
-  </data>
-  <data name="Visual.StructureKind.Sync">
-    <value>同步</value>
-  </data>
-  <data name="Visual.StructureKind.IdAddressMark">
-    <value>扇区标题</value>
-  </data>
-  <data name="Visual.StructureKind.DataAddressMark">
-    <value>部门数据</value>
-  </data>
-  <data name="Visual.StructureKind.DeletedDataAddressMark">
-    <value>已删除的扇区数据</value>
-  </data>
-  <data name="Visual.StructureKind.AmigaSync">
-    <value>Amiga 同步</value>
-  </data>
-  <data name="Visual.StructureKind.AppleAddress">
-    <value>苹果地址序言</value>
-  </data>
-  <data name="Visual.StructureKind.AppleData">
-    <value>苹果数据序言</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreSync">
-    <value>Commodore 同步</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreHeader">
-    <value>Commodore 标头</value>
-  </data>
-  <data name="Visual.StructureKind.FormatHeader">
-    <value>格式标题</value>
-  </data>
-  <data name="Visual.StructureKind.FormatData">
-    <value>格式化数据</value>
-  </data>
-  <data name="Visual.StructureKind.TimingAnomaly">
-    <value>时序异常</value>
-  </data>
-  <data name="Visual.OpenFilter">
-    <value>SuperCard Pro 捕获 (*.scp)|*.scp|所有文件|*.*</value>
-  </data>
-  <data name="Visual.Integrity.Checksum">
-    <value>校验和</value>
-  </data>
-  <data name="Visual.Side">
-    <value>侧面 {0}</value>
-  </data>
-  <data name="Visual.AnalysingTrack">
-    <value>正在分析轨道 {0}/{1}...</value>
-  </data>
-  <data name="Visual.SideLabel">
-    <value>边</value>
-  </data>
-  <data name="Visual.TrackLabel">
-    <value>追踪</value>
-  </data>
-  <data name="Visual.ScpEntryLabel">
-    <value>SCP 条目</value>
-  </data>
-  <data name="Visual.RevolutionsTitle">
-    <value>转数</value>
-  </data>
-  <data name="Visual.AnalysisTitle">
-    <value>分析</value>
-  </data>
-  <data name="Visual.ConfidenceLabel">
-    <value>置信度</value>
-  </data>
-  <data name="Visual.CellLabel">
-    <value>估计细胞</value>
-  </data>
-  <data name="Visual.StructuresLabel">
-    <value>结构</value>
-  </data>
-  <data name="Visual.StructuresTitle">
-    <value>检测到的结构</value>
-  </data>
-  <data name="Visual.SectorsTitle">
-    <value>部门</value>
-  </data>
-  <data name="Visual.TransitionsUnit">
-    <value>跃迁</value>
-  </data>
-  <data name="Visual.OpenImage">
-    <value>打开磁盘映像...</value>
-  </data>
-  <data name="Visual.DetachInspector">
-    <value>分离检查员</value>
-  </data>
-  <data name="Visual.AttachInspector">
-    <value>附上检查员</value>
-  </data>
-  <data name="Visual.SummaryTab">
-    <value>概括</value>
-  </data>
-  <data name="Visual.FormatDetected">
-    <value>检测到格式</value>
-  </data>
-  <data name="Visual.AverageRpm">
-    <value>平均转速</value>
-  </data>
-  <data name="Visual.AverageDuration">
-    <value>平均持续时间</value>
-  </data>
+  <data name="Visual.Decoder"><value>解码器</value></data>
+  <data name="Visual.LinkZoom"><value>链接缩放</value></data>
+  <data name="Visual.OpenScp"><value>打开 SCP 文件...</value></data>
+  <data name="Visual.NoFile"><value>没有打开 SCP 文件</value></data>
+  <data name="Visual.Waiting"><value>等待文件</value></data>
+  <data name="Visual.Inspector"><value>督察</value></data>
+  <data name="Visual.SelectTrack"><value>选择一个曲目。</value></data>
+  <data name="Visual.Controls"><value>单击：选择 · 滚轮：缩放 · 右键单击​​：平移</value></data>
+  <data name="Visual.NormalFlux"><value>法向通量</value></data>
+  <data name="Visual.ShortTransition"><value>短暂的过渡</value></data>
+  <data name="Visual.LongTransition"><value>长过渡/异常</value></data>
+  <data name="Visual.Loading"><value>正在读取文件...</value></data>
+  <data name="Visual.Invalid"><value>文件无效</value></data>
+  <data name="Visual.Title"><value>SCP 可视化</value></data>
+  <data name="Visual.ChecksumValid"><value>有效的</value></data>
+  <data name="Visual.ChecksumInvalid"><value>无效的</value></data>
+  <data name="Visual.Summary"><value>SCP {0} · {1} 磁道 · {2} 转数 · {3} ns 分辨率 · {4} 校验和</value></data>
+  <data name="Visual.Revolution"><value>革命 {0}: {1:N0} 过渡 ! {2:F2} ms \ {3:F2} RPM</value></data>
+  <data name="Visual.Analysis"><value>解码：{0}&#xA;置信度：{1:P0}&#xA;估计细胞：{2:F1} 刻度&#xA;结构：{3}</value></data>
+  <data name="Visual.Track"><value>侧面：{0}&#xA;曲目：{1}&#xA;SCP 条目：{2}</value></data>
+  <data name="Visual.SideNoData"><value>侧面 {0}&#xA;无数据</value></data>
+  <data name="Visual.TrackTooltip"><value>面 {0} · 磁道 {1}&#xA;{2} 转</value></data>
+  <data name="Visual.Automatic"><value>自动的</value></data>
+  <data name="Visual.StructureHeader"><value>标头/地址</value></data>
+  <data name="Visual.StructureData"><value>解码数据</value></data>
+  <data name="Visual.StructureAnomaly"><value>已删除/异常</value></data>
+  <data name="Visual.AnalysedRevolution"><value>基于革命的分析 {0}.</value></data>
+  <data name="Visual.BitOffset"><value>位 {0:N0}</value></data>
+  <data name="Visual.SectorDetail"><value>扇区 C{0} H{1} R{2} · {3} 字节 · {4} {5}</value></data>
+  <data name="Visual.CrcValid"><value>有效的</value></data>
+  <data name="Visual.CrcInvalid"><value>无效的</value></data>
+  <data name="Visual.IntegrityUnavailable"><value>不可用</value></data>
+  <data name="Visual.StructureKind.Sync"><value>同步</value></data>
+  <data name="Visual.StructureKind.IdAddressMark"><value>扇区标题</value></data>
+  <data name="Visual.StructureKind.DataAddressMark"><value>部门数据</value></data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark"><value>已删除的扇区数据</value></data>
+  <data name="Visual.StructureKind.AmigaSync"><value>Amiga 同步</value></data>
+  <data name="Visual.StructureKind.AppleAddress"><value>苹果地址序言</value></data>
+  <data name="Visual.StructureKind.AppleData"><value>苹果数据序言</value></data>
+  <data name="Visual.StructureKind.CommodoreSync"><value>Commodore 同步</value></data>
+  <data name="Visual.StructureKind.CommodoreHeader"><value>Commodore 标头</value></data>
+  <data name="Visual.StructureKind.FormatHeader"><value>格式标题</value></data>
+  <data name="Visual.StructureKind.FormatData"><value>格式化数据</value></data>
+  <data name="Visual.StructureKind.TimingAnomaly"><value>时序异常</value></data>
+  <data name="Visual.OpenFilter"><value>SuperCard Pro 捕获 (*.scp)|*.scp|所有文件|*.*</value></data>
+  <data name="Visual.Integrity.Checksum"><value>校验和</value></data>
+  <data name="Visual.Side"><value>侧面 {0}</value></data>
+  <data name="Visual.AnalysingTrack"><value>分析音轨 {0}/{1}…</value></data>
+  <data name="Visual.SideLabel"><value>边</value></data>
+  <data name="Visual.TrackLabel"><value>追踪</value></data>
+  <data name="Visual.ScpEntryLabel"><value>SCP 条目</value></data>
+  <data name="Visual.RevolutionsTitle"><value>转数</value></data>
+  <data name="Visual.AnalysisTitle"><value>分析</value></data>
+  <data name="Visual.ConfidenceLabel"><value>置信度</value></data>
+  <data name="Visual.CellLabel"><value>估计细胞</value></data>
+  <data name="Visual.StructuresLabel"><value>结构</value></data>
+  <data name="Visual.StructuresTitle"><value>检测到的结构</value></data>
+  <data name="Visual.SectorsTitle"><value>部门</value></data>
+  <data name="Visual.TransitionsUnit"><value>跃迁</value></data>
+  <data name="Visual.OpenImage"><value>打开磁盘映像...</value></data>
+  <data name="Visual.DetachInspector"><value>分离检查员</value></data>
+  <data name="Visual.AttachInspector"><value>附上检查员</value></data>
+  <data name="Visual.SummaryTab"><value>概括</value></data>
+  <data name="Visual.FormatDetected"><value>检测到格式</value></data>
+  <data name="Visual.AverageRpm"><value>平均值 RPM</value></data>
+  <data name="Visual.AverageDuration"><value>平均持续时间</value></data>
 </root>

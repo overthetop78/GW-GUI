@@ -12,102 +12,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Image">
-    <value>Imagem de disco</value>
-  </data>
-  <data name="Explorer.Format">
-    <value>Formato</value>
-  </data>
-  <data name="Explorer.OpenImage">
-    <value>Abrir uma imagem…</value>
-  </data>
-  <data name="Explorer.Automatic">
-    <value>Deteção automática</value>
-  </data>
-  <data name="Explorer.Volume">
-    <value>Volume</value>
-  </data>
-  <data name="Explorer.FileSystem">
-    <value>Sistema de ficheiros</value>
-  </data>
-  <data name="Explorer.Capacity">
-    <value>Capacidade</value>
-  </data>
-  <data name="Explorer.Free">
-    <value>Espaço livre</value>
-  </data>
-  <data name="Explorer.Entries">
-    <value>Itens</value>
-  </data>
-  <data name="Explorer.SelectEntry">
-    <value>Selecione um ficheiro ou uma pasta.</value>
-  </data>
-  <data name="Explorer.Size">
-    <value>Tamanho</value>
-  </data>
-  <data name="Explorer.Modified">
-    <value>Modificado</value>
-  </data>
-  <data name="Explorer.Comment">
-    <value>Comentário</value>
-  </data>
-  <data name="Explorer.Warnings">
-    <value>Avisos</value>
-  </data>
-  <data name="Explorer.Directory">
-    <value>Pasta</value>
-  </data>
-  <data name="Explorer.File">
-    <value>Ficheiro</value>
-  </data>
-  <data name="Explorer.Link">
-    <value>Ligação</value>
-  </data>
-  <data name="Explorer.Unknown">
-    <value>Desconhecido</value>
-  </data>
-  <data name="Explorer.Unnamed">
-    <value>Volume sem nome</value>
-  </data>
-  <data name="Explorer.LoadFailed">
-    <value>Não foi possível abrir esta imagem: {0}</value>
-  </data>
-  <data name="Explorer.Loading">
-    <value>A ler a imagem de disco…</value>
-  </data>
-  <data name="Explorer.ReadDisk">
-    <value>Ler disquete</value>
-  </data>
-  <data name="Explorer.Name">
-    <value>Nome</value>
-  </data>
-  <data name="Explorer.Type">
-    <value>Tipo</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirmTitle">
-    <value>Ler disquete</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirm">
-    <value>A disquete está inserida na unidade atualmente selecionada ({0}) e pronta para ser lida?</value>
-  </data>
-  <data name="Explorer.Type.Text">
-    <value>Ficheiro de texto</value>
-  </data>
-  <data name="Explorer.Type.Image">
-    <value>Imagem</value>
-  </data>
-  <data name="Explorer.Type.Audio">
-    <value>Ficheiro de áudio</value>
-  </data>
-  <data name="Explorer.Type.Archive">
-    <value>Arquivo</value>
-  </data>
-  <data name="Explorer.Type.Program">
-    <value>Programa</value>
-  </data>
-  <data name="Explorer.Type.DiskImage">
-    <value>Imagem de disco</value>
-  </data>
+  <data name="Explorer.Image"><value>Imagem de disco</value></data>
+  <data name="Explorer.Format"><value>Formato</value></data>
+  <data name="Explorer.OpenImage"><value>Abrir uma imagem…</value></data>
+  <data name="Explorer.Automatic"><value>Deteção automática</value></data>
+<data name="Explorer.FileSystem"><value>Sistema de ficheiros</value></data>
+  <data name="Explorer.Capacity"><value>Capacidade</value></data>
+  <data name="Explorer.Free"><value>Espaço livre</value></data>
+  <data name="Explorer.Entries"><value>Itens</value></data>
+  <data name="Explorer.SelectEntry"><value>Selecione um ficheiro ou uma pasta.</value></data>
+  <data name="Explorer.Size"><value>Tamanho</value></data>
+  <data name="Explorer.Modified"><value>Modificado</value></data>
+  <data name="Explorer.Comment"><value>Comentário</value></data>
+  <data name="Explorer.Warnings"><value>Avisos</value></data>
+  <data name="Explorer.Directory"><value>Pasta</value></data>
+  <data name="Explorer.File"><value>Ficheiro</value></data>
+  <data name="Explorer.Link"><value>Ligação</value></data>
+  <data name="Explorer.Unknown"><value>Desconhecido</value></data>
+  <data name="Explorer.Unnamed"><value>Volume sem nome</value></data>
+  <data name="Explorer.LoadFailed"><value>Não foi possível abrir esta imagem: {0}</value></data>
+  <data name="Explorer.Loading"><value>A ler a imagem de disco…</value></data>
+  <data name="Explorer.ReadDisk"><value>Ler disquete</value></data>
+  <data name="Explorer.Name"><value>Nome</value></data>
+  <data name="Explorer.Type"><value>Tipo</value></data>
+  <data name="Explorer.ReadDiskConfirmTitle"><value>Ler disquete</value></data>
+  <data name="Explorer.ReadDiskConfirm"><value>A disquete está inserida na unidade atualmente selecionada ({0}) e pronta para ser lida?</value></data>
+  <data name="Explorer.Type.Text"><value>Ficheiro de texto</value></data>
+  <data name="Explorer.Type.Image"><value>Imagem</value></data>
+  <data name="Explorer.Type.Audio"><value>Ficheiro de áudio</value></data>
+  <data name="Explorer.Type.Archive"><value>Arquivo</value></data>
+  <data name="Explorer.Type.Program"><value>Programa</value></data>
+  <data name="Explorer.Type.DiskImage"><value>Imagem de disco</value></data>
   <data name="Explorer.System"><value>Sistema</value></data>
   <data name="Explorer.Protection"><value>Proteção</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Sectores físicos — nenhum sistema de ficheiros reconhecido</value></data>
@@ -119,6 +54,6 @@
   <data name="Explorer.Content.crack-the-company"><value>Crack por The Company</value></data>
   <data name="Explorer.DataBlocks"><value>Blocos de dados</value></data>
   <data name="Explorer.DetectedFormats"><value>Detetado: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable"><value>As ferramentas da máquina não podem produzir uma imagem do setor expansível para {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed"><value>Ferramentas da máquina não foi possível decodificar a imagem como {0}.</value></data>
 </root>

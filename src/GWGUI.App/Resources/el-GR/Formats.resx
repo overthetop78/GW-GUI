@@ -12,67 +12,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Detection.Ambiguous">
-    <value>Διφορούμενη μορφή</value>
-  </data>
-  <data name="Detection.RawScp">
-    <value>Αναγνωρίστηκε η ακατέργαστη λήψη SCP.</value>
-  </data>
-  <data name="Detection.AmigaSize">
-    <value>Η μορφή Amiga αναγνωρίζεται από το μέγεθος του αρχείου.</value>
-  </data>
-  <data name="Detection.AcornSize">
-    <value>Η μορφή Acorn αναγνωρίζεται από το μέγεθος του αρχείου.</value>
-  </data>
-  <data name="Detection.AtariUnknownSize">
-    <value>Το μέγεθος δεν ταιριάζει με ένα γνωστό προφίλ Atari ST.</value>
-  </data>
-  <data name="Detection.AtariSize">
-    <value>Η γεωμετρία Atari ST αναγνωρίζεται από το μέγεθος αρχείου.</value>
-  </data>
-  <data name="Detection.MsaInferred">
-    <value>Αναγνωρίστηκε το κοντέινερ Atari MSA. επιβεβαιώστε τη γεωμετρία εάν είναι απαραίτητο.</value>
-  </data>
-  <data name="Detection.IbmAmbiguous">
-    <value>Η επέκταση από μόνη της δεν μπορεί να καθορίσει τη γεωμετρία IBM PC.</value>
-  </data>
-  <data name="Detection.IbmSize">
-    <value>Η γεωμετρία IBM PC αναγνωρίζεται από το μέγεθος αρχείου.</value>
-  </data>
-  <data name="Detection.ExtensionInferred">
-    <value>Μορφή που προκύπτει από την επέκταση.</value>
-  </data>
-  <data name="Detection.Multiple">
-    <value>Είναι δυνατές διάφορες μορφές. επιλέξτε ένα ρητά.</value>
-  </data>
-  <data name="Format.raw.scp">
-    <value>Ακατέργαστη εικόνα ροής</value>
-  </data>
-  <data name="Format.raw.hfe">
-    <value>HxC εικόνα ροής</value>
-  </data>
-  <data name="Common.DiskImageFilter">
-    <value>Εικόνες δίσκου|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Όλα τα αρχεία|*.*</value>
-  </data>
-  <data name="Detection.AppleDosOrder">
-    <value>Η μορφή Apple II DOS αναγνωρίστηκε από τη σειρά των τομέων.</value>
-  </data>
-  <data name="Detection.AppleProDosOrder">
-    <value>Η μορφή Apple II ProDOS αναγνωρίστηκε από τη σειρά των τομέων.</value>
-  </data>
-  <data name="Detection.AppleContainer">
-    <value>Εντοπίστηκε περιέκτης εικόνας δίσκου Apple.</value>
-  </data>
-  <data name="Classification.Automatic">
-    <value>Αυτόματη ανίχνευση</value>
-  </data>
-  <data name="Classification.Machine">
-    <value>Υπολογιστής</value>
-  </data>
-  <data name="Classification.Format">
-    <value>Μορφή</value>
-  </data>
-  <data name="Classification.Protection">
-    <value>Προστασία</value>
-  </data>
+  <data name="Detection.Ambiguous"><value>Διφορούμενη μορφή</value></data>
+  <data name="Detection.RawScp"><value>Ακατέργαστο SCP αναγνώριση σύλληψης.</value></data>
+  <data name="Detection.AmigaSize"><value>Η μορφή Amiga αναγνωρίζεται από το μέγεθος του αρχείου.</value></data>
+  <data name="Detection.AcornSize"><value>Η μορφή Acorn αναγνωρίζεται από το μέγεθος του αρχείου.</value></data>
+  <data name="Detection.AtariUnknownSize"><value>Το μέγεθος δεν ταιριάζει με ένα γνωστό Atari ST προφίλ.</value></data>
+  <data name="Detection.AtariSize"><value>Η γεωμετρία Atari ST αναγνωρίζεται από το μέγεθος αρχείου.</value></data>
+  <data name="Detection.MsaInferred"><value>Atari MSA αναγνωρισμένο δοχείο· επιβεβαίωση της γεωμετρίας, εάν είναι απαραίτητο.</value></data>
+  <data name="Detection.IbmAmbiguous"><value>Η επέκταση από μόνη της δεν μπορεί να καθορίσει το IBM PC γεωμετρία.</value></data>
+  <data name="Detection.IbmSize"><value>Η γεωμετρία IBM PC αναγνωρίζεται από το μέγεθος αρχείου.</value></data>
+  <data name="Detection.ExtensionInferred"><value>Μορφή που προκύπτει από την επέκταση.</value></data>
+  <data name="Detection.Multiple"><value>Είναι δυνατές διάφορες μορφές. επιλέξτε ένα ρητά.</value></data>
+  <data name="Format.raw.scp"><value>Ακατέργαστη εικόνα ροής</value></data>
+  <data name="Common.DiskImageFilter"><value>Εικόνες δίσκου|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Όλα τα αρχεία|*.*</value></data>
+  <data name="Detection.AppleDosOrder"><value>Η μορφή Apple II DOS αναγνωρίστηκε από τη σειρά των τομέων.</value></data>
+  <data name="Detection.AppleProDosOrder"><value>Η μορφή Apple II ProDOS αναγνωρίστηκε από τη σειρά των τομέων.</value></data>
+  <data name="Detection.AppleContainer"><value>Εντοπίστηκε περιέκτης εικόνας δίσκου Apple.</value></data>
+  <data name="Classification.Automatic"><value>Αυτόματη ανίχνευση</value></data>
+  <data name="Classification.Machine"><value>Υπολογιστής</value></data>
+  <data name="Classification.Format"><value>Μορφή</value></data>
+  <data name="Classification.Protection"><value>Προστασία</value></data>
 </root>

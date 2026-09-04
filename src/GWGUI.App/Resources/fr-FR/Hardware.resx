@@ -12,148 +12,50 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Hardware.Port">
-    <value>Port</value>
-  </data>
-  <data name="Hardware.UsbId">
-    <value>Identifiant USB</value>
-  </data>
-  <data name="Hardware.Drive">
-    <value>Lecteur</value>
-  </data>
-  <data name="Hardware.Available">
-    <value>Disponible</value>
-  </data>
-  <data name="Hardware.Scan">
-    <value>Scanner</value>
-  </data>
-  <data name="Hardware.AddDrive">
-    <value>Ajouter un lecteur…</value>
-  </data>
-  <data name="Hardware.NoDrive">
-    <value>Aucun lecteur défini</value>
-  </data>
-  <data name="Hardware.EditorTitle">
-    <value>Définir un lecteur</value>
-  </data>
-  <data name="Hardware.Controller">
-    <value>Contrôleur Greaseweazle</value>
-  </data>
-  <data name="Hardware.GwSelection">
-    <value>Sélection transmise à gw</value>
-  </data>
-  <data name="Hardware.PhysicalSize">
-    <value>Taille physique</value>
-  </data>
-  <data name="Hardware.SizeShort">
-    <value>Taille</value>
-  </data>
-  <data name="Hardware.DensityShort">
-    <value>Densité</value>
-  </data>
-  <data name="Hardware.SpeedShort">
-    <value>Vitesse</value>
-  </data>
-  <data name="Hardware.AvailableState">
-    <value>Disponible</value>
-  </data>
-  <data name="Hardware.UnavailableState">
-    <value>Indisponible</value>
-  </data>
-  <data name="Hardware.DensityDescription">
-    <value>Densité du lecteur (description uniquement)</value>
-  </data>
-  <data name="Hardware.SpeedDescription">
-    <value>Vitesse nominale (description uniquement)</value>
-  </data>
-  <data name="Hardware.NotConfigured">
-    <value>Contrôleur non configuré</value>
-  </data>
-  <data name="Hardware.Disconnected">
-    <value>débranché</value>
-  </data>
-  <data name="Hardware.SelectedDisconnected">
-    <value>Le lecteur sélectionné est débranché. Reconnectez-le ou relancez la détection dans Options → Contrôleurs et lecteurs.</value>
-  </data>
-  <data name="Hardware.DriveLabel">
-    <value>{0} pouces · {1} · {2} · {3}</value>
-  </data>
-  <data name="Hardware.DriveDialogTitle">
-    <value>Lecteur</value>
-  </data>
-  <data name="Hardware.ControllerRequired">
-    <value>Scannez ou ajoutez d’abord un contrôleur Greaseweazle.</value>
-  </data>
-  <data name="Hardware.Description">
-    <value>{0} pouces · {1} · sélection {2}{3}</value>
-  </data>
-  <data name="Hardware.ScanTitle">
-    <value>Scanner</value>
-  </data>
-  <data name="Hardware.GwRequired">
-    <value>Sélectionnez ou téléchargez d’abord gw.exe ci-dessous.</value>
-  </data>
-  <data name="Hardware.StartupTitle">
-    <value>Vérification du matériel</value>
-  </data>
-  <data name="Hardware.StartupMissing">
-    <value>Un matériel configuré est introuvable</value>
-  </data>
-  <data name="Hardware.StartupExplanation">
-    <value>La configuration est conservée, mais les lecteurs concernés resteront indisponibles tant que leur Greaseweazle ne sera pas retrouvé.</value>
-  </data>
-  <data name="Hardware.StartupMissingList">
-    <value>Contrôleurs Greaseweazle introuvables</value>
-  </data>
-  <data name="Hardware.StartupRetry">
-    <value>Rechercher à nouveau</value>
-  </data>
-  <data name="Hardware.StartupSettings">
-    <value>Paramètres du matériel</value>
-  </data>
-  <data name="Hardware.StartupContinue">
-    <value>Continuer sans ce lecteur</value>
-  </data>
-  <data name="Hardware.StartupCheckFailed">
-    <value>La vérification du matériel a échoué : {0}</value>
-  </data>
-  <data name="Hardware.NewDetectedTitle">
-    <value>Nouveau Greaseweazle détecté</value>
-  </data>
-  <data name="Hardware.NewDetected">
-    <value>{0} a été détecté sur {1}. Voulez-vous configurer son lecteur maintenant ?</value>
-  </data>
-  <data name="Hardware.ConfigurationState">
-    <value>Configuration</value>
-  </data>
-  <data name="Hardware.Configured">
-    <value>Configuré</value>
-  </data>
-  <data name="Hardware.NotConfiguredState">
-    <value>Détecté, non configuré</value>
-  </data>
-  <data name="Hardware.Configure">
-    <value>Configurer</value>
-  </data>
-  <data name="Hardware.ReaderNumber">
-    <value>Lecteur {0}</value>
-  </data>
-  <data name="Hardware.DriveChoice">
-    <value>Lecteur {0} · {1}″ · {2} · {3}</value>
-  </data>
-  <data name="Hardware.Forget">
-    <value>Oublier</value>
-  </data>
-  <data name="Hardware.ForgetConfirm">
-    <value>Voulez-vous vraiment oublier ce lecteur ou cet appareil ?</value>
-  </data>
-  <data name="Hardware.ForgetLastConfirm">
-    <value>C’est le dernier lecteur configuré pour ce Greaseweazle. Voulez-vous oublier le lecteur et le Greaseweazle ?</value>
-  </data>
-  <data name="Hardware.SelectController">
-    <value>Sélectionnez d’abord une ligne du Greaseweazle concerné.</value>
-  </data>
-  <data name="Hardware.MaximumDrives">
-    <value>Deux lecteurs au maximum peuvent être associés automatiquement à ce Greaseweazle (A et B).</value>
-  </data>
+<data name="Hardware.UsbId"><value>Identifiant USB</value></data>
+  <data name="Hardware.Drive"><value>Lecteur</value></data>
+  <data name="Hardware.Available"><value>Disponible</value></data>
+  <data name="Hardware.Scan"><value>Scanner</value></data>
+  <data name="Hardware.AddDrive"><value>Ajouter un lecteur…</value></data>
+  <data name="Hardware.NoDrive"><value>Aucun lecteur défini</value></data>
+  <data name="Hardware.EditorTitle"><value>Définir un lecteur</value></data>
+  <data name="Hardware.Controller"><value>Contrôleur Greaseweazle</value></data>
+  <data name="Hardware.GwSelection"><value>Sélection transmise à gw</value></data>
+  <data name="Hardware.PhysicalSize"><value>Taille physique</value></data>
+  <data name="Hardware.SizeShort"><value>Taille</value></data>
+  <data name="Hardware.DensityShort"><value>Densité</value></data>
+  <data name="Hardware.SpeedShort"><value>Vitesse</value></data>
+  <data name="Hardware.AvailableState"><value>Disponible</value></data>
+  <data name="Hardware.UnavailableState"><value>Indisponible</value></data>
+  <data name="Hardware.DensityDescription"><value>Densité du lecteur (description uniquement)</value></data>
+  <data name="Hardware.SpeedDescription"><value>Vitesse nominale (description uniquement)</value></data>
+  <data name="Hardware.NotConfigured"><value>Contrôleur non configuré</value></data>
+  <data name="Hardware.Disconnected"><value>débranché</value></data>
+  <data name="Hardware.SelectedDisconnected"><value>Le lecteur sélectionné est débranché. Reconnectez-le ou relancez la détection dans Options → Contrôleurs et lecteurs.</value></data>
+  <data name="Hardware.DriveLabel"><value>{0} pouces · {1} · {2} · {3}</value></data>
+  <data name="Hardware.DriveDialogTitle"><value>Lecteur</value></data>
+  <data name="Hardware.ControllerRequired"><value>Scannez ou ajoutez d’abord un contrôleur Greaseweazle.</value></data>
+  <data name="Hardware.Description"><value>{0} pouces · {1} · sélection {2}{3}</value></data>
+  <data name="Hardware.ScanTitle"><value>Scanner</value></data>
+  <data name="Hardware.GwRequired"><value>Sélectionnez ou téléchargez d’abord gw.exe ci-dessous.</value></data>
+  <data name="Hardware.StartupTitle"><value>Vérification du matériel</value></data>
+  <data name="Hardware.StartupMissing"><value>Un matériel configuré est introuvable</value></data>
+  <data name="Hardware.StartupExplanation"><value>La configuration est conservée, mais les lecteurs concernés resteront indisponibles tant que leur Greaseweazle ne sera pas retrouvé.</value></data>
+  <data name="Hardware.StartupMissingList"><value>Contrôleurs Greaseweazle introuvables</value></data>
+  <data name="Hardware.StartupRetry"><value>Rechercher à nouveau</value></data>
+  <data name="Hardware.StartupSettings"><value>Paramètres du matériel</value></data>
+  <data name="Hardware.StartupContinue"><value>Continuer sans ce lecteur</value></data>
+  <data name="Hardware.StartupCheckFailed"><value>La vérification du matériel a échoué : {0}</value></data>
+  <data name="Hardware.NewDetectedTitle"><value>Nouveau Greaseweazle détecté</value></data>
+  <data name="Hardware.NewDetected"><value>{0} a été détecté sur {1}. Voulez-vous configurer son lecteur maintenant ?</value></data>
+<data name="Hardware.Configured"><value>Configuré</value></data>
+  <data name="Hardware.NotConfiguredState"><value>Détecté, non configuré</value></data>
+  <data name="Hardware.Configure"><value>Configurer</value></data>
+  <data name="Hardware.ReaderNumber"><value>Lecteur {0}</value></data>
+  <data name="Hardware.DriveChoice"><value>Lecteur {0} · {1}″ · {2} · {3}</value></data>
+  <data name="Hardware.Forget"><value>Oublier</value></data>
+  <data name="Hardware.ForgetConfirm"><value>Voulez-vous vraiment oublier ce lecteur ou cet appareil ?</value></data>
+  <data name="Hardware.ForgetLastConfirm"><value>C’est le dernier lecteur configuré pour ce Greaseweazle. Voulez-vous oublier le lecteur et le Greaseweazle ?</value></data>
+  <data name="Hardware.SelectController"><value>Sélectionnez d’abord une ligne du Greaseweazle concerné.</value></data>
+  <data name="Hardware.MaximumDrives"><value>Deux lecteurs au maximum peuvent être associés automatiquement à ce Greaseweazle (A et B).</value></data>
 </root>

@@ -12,51 +12,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Cancel">
-    <value>取消</value>
-  </data>
-  <data name="Common.Save">
-    <value>節省</value>
-  </data>
-  <data name="Common.Create">
-    <value>建立</value>
-  </data>
-  <data name="Common.Delete">
-    <value>刪除</value>
-  </data>
-  <data name="Common.Browse">
-    <value>瀏覽…</value>
-  </data>
-  <data name="Common.Choose">
-    <value>選擇…</value>
-  </data>
-  <data name="Common.Close">
-    <value>關閉</value>
-  </data>
-  <data name="Common.Execute">
-    <value>執行</value>
-  </data>
-  <data name="Common.Stop">
-    <value>停止</value>
-  </data>
-  <data name="Common.Continue">
-    <value>繼續</value>
-  </data>
-  <data name="Common.Reset">
-    <value>重置</value>
-  </data>
-  <data name="Common.Copy">
-    <value>複製</value>
-  </data>
-  <data name="Common.Modify">
-    <value>調整</value>
-  </data>
-  <data name="Common.Hide">
-    <value>隱藏</value>
-  </data>
-  <data name="Common.Export">
-    <value>出口</value>
-  </data>
+  <data name="Common.Cancel"><value>取消</value></data>
+  <data name="Common.Save"><value>節省</value></data>
+  <data name="Common.Create"><value>建立</value></data>
+  <data name="Common.Delete"><value>刪除</value></data>
+  <data name="Common.Browse"><value>瀏覽…</value></data>
+  <data name="Common.Choose"><value>選擇…</value></data>
+  <data name="Common.Close"><value>關閉</value></data>
+  <data name="Common.Execute"><value>執行</value></data>
+  <data name="Common.Stop"><value>停止</value></data>
+  <data name="Common.Continue"><value>繼續</value></data>
+  <data name="Common.Reset"><value>重置</value></data>
+  <data name="Common.Copy"><value>複製</value></data>
+  <data name="Common.Modify"><value>調整</value></data>
+  <data name="Common.Hide"><value>隱藏</value></data>
+  <data name="Common.Export"><value>出口</value></data>
   <data name="Common.New"><value>新增</value></data>
   <data name="Common.Refresh"><value>重新整理</value></data>
   <data name="Common.OpenFolder"><value>開啟資料夾</value></data>

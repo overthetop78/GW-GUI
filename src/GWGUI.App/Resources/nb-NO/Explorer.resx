@@ -12,103 +12,35 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Image">
-    <value>Diskbilde</value>
-  </data>
-  <data name="Explorer.Format">
-    <value>Format</value>
-  </data>
-  <data name="Explorer.OpenImage">
-    <value>Åpne et bilde…</value>
-  </data>
-  <data name="Explorer.Automatic">
-    <value>Automatisk gjenkjenning</value>
-  </data>
-  <data name="Explorer.Volume">
-    <value>Volum</value>
-  </data>
-  <data name="Explorer.FileSystem">
-    <value>Filsystem</value>
-  </data>
-  <data name="Explorer.Capacity">
-    <value>Kapasitet</value>
-  </data>
-  <data name="Explorer.Free">
-    <value>Ledig plass</value>
-  </data>
-  <data name="Explorer.Entries">
-    <value>Elementer</value>
-  </data>
-  <data name="Explorer.SelectEntry">
-    <value>Velg en fil eller mappe.</value>
-  </data>
-  <data name="Explorer.Size">
-    <value>Størrelse</value>
-  </data>
-  <data name="Explorer.Modified">
-    <value>Endret</value>
-  </data>
-  <data name="Explorer.Comment">
-    <value>Kommentar</value>
-  </data>
-  <data name="Explorer.Warnings">
-    <value>Advarsler</value>
-  </data>
-  <data name="Explorer.Directory">
-    <value>Mappe</value>
-  </data>
-  <data name="Explorer.File">
-    <value>Fil</value>
-  </data>
-  <data name="Explorer.Link">
-    <value>Lenke</value>
-  </data>
-  <data name="Explorer.Unknown">
-    <value>Ukjent</value>
-  </data>
-  <data name="Explorer.Unnamed">
-    <value>Volum uten navn</value>
-  </data>
-  <data name="Explorer.LoadFailed">
-    <value>Kan ikke åpne dette bildet: {0}</value>
-  </data>
-  <data name="Explorer.Loading">
-    <value>Leser diskbilde…</value>
-  </data>
-  <data name="Explorer.ReadDisk">
-    <value>Les diskett</value>
-  </data>
-  <data name="Explorer.Name">
-    <value>Navn</value>
-  </data>
-  <data name="Explorer.Type">
-    <value>Type</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirmTitle">
-    <value>Les diskett</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirm">
-    <value>Er disketten satt inn i den valgte stasjonen ({0}) og klar til å leses?</value>
-  </data>
-  <data name="Explorer.Type.Text">
-    <value>Tekstfil</value>
-  </data>
-  <data name="Explorer.Type.Image">
-    <value>Bilde</value>
-  </data>
-  <data name="Explorer.Type.Audio">
-    <value>Lydfil</value>
-  </data>
-  <data name="Explorer.Type.Archive">
-    <value>Arkiv</value>
-  </data>
-  <data name="Explorer.Type.Program">
-    <value>Program</value>
-  </data>
-  <data name="Explorer.Type.DiskImage">
-    <value>Diskbilde</value>
-  </data>
-  <data name="Explorer.System"><value>System</value></data>
+  <data name="Explorer.Image"><value>Diskbilde</value></data>
+<data name="Explorer.OpenImage"><value>Åpne et bilde…</value></data>
+  <data name="Explorer.Automatic"><value>Automatisk gjenkjenning</value></data>
+  <data name="Explorer.Volume"><value>Volum</value></data>
+  <data name="Explorer.FileSystem"><value>Filsystem</value></data>
+  <data name="Explorer.Capacity"><value>Kapasitet</value></data>
+  <data name="Explorer.Free"><value>Ledig plass</value></data>
+  <data name="Explorer.Entries"><value>Elementer</value></data>
+  <data name="Explorer.SelectEntry"><value>Velg en fil eller mappe.</value></data>
+  <data name="Explorer.Size"><value>Størrelse</value></data>
+  <data name="Explorer.Modified"><value>Endret</value></data>
+  <data name="Explorer.Comment"><value>Kommentar</value></data>
+  <data name="Explorer.Warnings"><value>Advarsler</value></data>
+  <data name="Explorer.Directory"><value>Mappe</value></data>
+  <data name="Explorer.File"><value>Fil</value></data>
+  <data name="Explorer.Link"><value>Lenke</value></data>
+  <data name="Explorer.Unknown"><value>Ukjent</value></data>
+  <data name="Explorer.Unnamed"><value>Volum uten navn</value></data>
+  <data name="Explorer.LoadFailed"><value>Kan ikke åpne dette bildet: {0}</value></data>
+  <data name="Explorer.Loading"><value>Leser diskbilde…</value></data>
+  <data name="Explorer.ReadDisk"><value>Les diskett</value></data>
+  <data name="Explorer.Name"><value>Navn</value></data>
+<data name="Explorer.ReadDiskConfirmTitle"><value>Les diskett</value></data>
+  <data name="Explorer.ReadDiskConfirm"><value>Er disketten satt inn i den valgte stasjonen ({0}) og klar til å leses?</value></data>
+  <data name="Explorer.Type.Text"><value>Tekstfil</value></data>
+  <data name="Explorer.Type.Image"><value>Bilde</value></data>
+  <data name="Explorer.Type.Audio"><value>Lydfil</value></data>
+  <data name="Explorer.Type.Archive"><value>Arkiv</value></data>
+<data name="Explorer.Type.DiskImage"><value>Diskbilde</value></data>
   <data name="Explorer.Protection"><value>Beskyttelse</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Fysiske sektorer — ingen gjenkjent filsystem</value></data>
   <data name="Explorer.Organization"><value>Organisering</value></data>
@@ -119,6 +51,7 @@
   <data name="Explorer.Content.crack-the-company"><value>Crack av The Company</value></data>
   <data name="Explorer.DataBlocks"><value>Datablokker</value></data>
   <data name="Explorer.DetectedFormats"><value>Oppdaget: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable"><value>Vertsverktøy kan ikke produsere et eksplorbart sektorbilde for {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed"><value>Vertsverktøy kunne ikke dekode bildet som {0}.</value></data>
+  <data name="Explorer.Format"><value>Formater</value></data>
 </root>

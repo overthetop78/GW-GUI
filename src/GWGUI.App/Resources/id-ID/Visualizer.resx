@@ -12,209 +12,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Visual.Decoder">
-    <value>Dekoder</value>
-  </data>
-  <data name="Visual.LinkZoom">
-    <value>Perbesar tautan</value>
-  </data>
-  <data name="Visual.OpenScp">
-    <value>Buka file SCP…</value>
-  </data>
-  <data name="Visual.NoFile">
-    <value>Tidak ada file SCP yang terbuka</value>
-  </data>
-  <data name="Visual.Waiting">
-    <value>Menunggu file</value>
-  </data>
-  <data name="Visual.Inspector">
-    <value>Inspektur</value>
-  </data>
-  <data name="Visual.SelectTrack">
-    <value>Pilih trek.</value>
-  </data>
-  <data name="Visual.Controls">
-    <value>Klik: pilih · Roda: zoom · Klik kanan: geser</value>
-  </data>
-  <data name="Visual.NormalFlux">
-    <value>Fluks normal</value>
-  </data>
-  <data name="Visual.ShortTransition">
-    <value>Transisi singkat</value>
-  </data>
-  <data name="Visual.LongTransition">
-    <value>Transisi panjang/anomali</value>
-  </data>
-  <data name="Visual.Loading">
-    <value>Membaca berkas…</value>
-  </data>
-  <data name="Visual.Invalid">
-    <value>Berkas tidak valid</value>
-  </data>
-  <data name="Visual.Title">
-    <value>SCP visualisasi</value>
-  </data>
-  <data name="Visual.ChecksumValid">
-    <value>sah</value>
-  </data>
-  <data name="Visual.ChecksumInvalid">
-    <value>tidak sah</value>
-  </data>
-  <data name="Visual.Summary">
-    <value>SCP {0} · {1} trek · {2} revolusi · {3} resolusi ns · {4} checksum</value>
-  </data>
-  <data name="Visual.Revolution">
-    <value>Revolusi {0}: {1:N0} transisi · {2:F2} ms · {3:F2} RPM</value>
-  </data>
-  <data name="Visual.Analysis">
-    <value>Penguraian kode: {0}
-Keyakinan: {1:P0}
-Perkiraan sel: {2:F1} kutu
-Struktur: {3}</value>
-  </data>
-  <data name="Visual.Track">
-    <value>Sisi: {0}
-Jalur: {1}
-SCP entri: {2}</value>
-  </data>
-  <data name="Visual.SideNoData">
-    <value>Sisi {0}
-Tidak ada data</value>
-  </data>
-  <data name="Visual.TrackTooltip">
-    <value>Sisi {0} · Lacak {1}
-{2} revolusi</value>
-  </data>
-  <data name="Visual.Automatic">
-    <value>Otomatis</value>
-  </data>
-  <data name="Visual.StructureHeader">
-    <value>Tajuk/alamat</value>
-  </data>
-  <data name="Visual.StructureData">
-    <value>Data yang diterjemahkan</value>
-  </data>
-  <data name="Visual.StructureAnomaly">
-    <value>Dihapus/anomali</value>
-  </data>
-  <data name="Visual.AnalysedRevolution">
-    <value>Analisis berdasarkan revolusi {0}.</value>
-  </data>
-  <data name="Visual.BitOffset">
-    <value>sedikit {0:N0}</value>
-  </data>
-  <data name="Visual.SectorDetail">
-    <value>Sektor C{0} H{1} R{2} · {3} byte · {4} {5}</value>
-  </data>
-  <data name="Visual.CrcValid">
-    <value>sah</value>
-  </data>
-  <data name="Visual.CrcInvalid">
-    <value>tidak sah</value>
-  </data>
-  <data name="Visual.IntegrityUnavailable">
-    <value>tidak tersedia</value>
-  </data>
-  <data name="Visual.StructureKind.Sync">
-    <value>Sinkronisasi</value>
-  </data>
-  <data name="Visual.StructureKind.IdAddressMark">
-    <value>Tajuk sektor</value>
-  </data>
-  <data name="Visual.StructureKind.DataAddressMark">
-    <value>Data sektor</value>
-  </data>
-  <data name="Visual.StructureKind.DeletedDataAddressMark">
-    <value>Data sektor dihapus</value>
-  </data>
-  <data name="Visual.StructureKind.AmigaSync">
-    <value>sinkronisasi Amiga</value>
-  </data>
-  <data name="Visual.StructureKind.AppleAddress">
-    <value>Prolog alamat Apple</value>
-  </data>
-  <data name="Visual.StructureKind.AppleData">
-    <value>Prolog data Apple</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreSync">
-    <value>sinkronisasi Commodore</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreHeader">
-    <value>Commodore tajuk</value>
-  </data>
-  <data name="Visual.StructureKind.FormatHeader">
-    <value>Format tajuk</value>
-  </data>
-  <data name="Visual.StructureKind.FormatData">
-    <value>Memformat data</value>
-  </data>
-  <data name="Visual.StructureKind.TimingAnomaly">
-    <value>Anomali waktu</value>
-  </data>
-  <data name="Visual.OpenFilter">
-    <value>SuperCard Pro menangkap (*.scp)|*.scp|Semua file|*.*</value>
-  </data>
-  <data name="Visual.Integrity.Checksum">
-    <value>Jumlah pemeriksaan</value>
-  </data>
-  <data name="Visual.Side">
-    <value>Sisi {0}</value>
-  </data>
-  <data name="Visual.AnalysingTrack">
-    <value>Menganalisis trek {0}/{1}…</value>
-  </data>
-  <data name="Visual.SideLabel">
-    <value>Samping</value>
-  </data>
-  <data name="Visual.TrackLabel">
-    <value>Melacak</value>
-  </data>
-  <data name="Visual.ScpEntryLabel">
-    <value>SCP entri</value>
-  </data>
-  <data name="Visual.RevolutionsTitle">
-    <value>Revolusi</value>
-  </data>
-  <data name="Visual.AnalysisTitle">
-    <value>Analisa</value>
-  </data>
-  <data name="Visual.ConfidenceLabel">
-    <value>Kepercayaan diri</value>
-  </data>
-  <data name="Visual.CellLabel">
-    <value>Perkiraan sel</value>
-  </data>
-  <data name="Visual.StructuresLabel">
-    <value>Struktur</value>
-  </data>
-  <data name="Visual.StructuresTitle">
-    <value>Struktur yang terdeteksi</value>
-  </data>
-  <data name="Visual.SectorsTitle">
-    <value>Sektor</value>
-  </data>
-  <data name="Visual.TransitionsUnit">
-    <value>transisi</value>
-  </data>
-  <data name="Visual.OpenImage">
-    <value>Buka gambar disk…</value>
-  </data>
-  <data name="Visual.DetachInspector">
-    <value>Lepaskan inspektur</value>
-  </data>
-  <data name="Visual.AttachInspector">
-    <value>Lampirkan inspektur</value>
-  </data>
-  <data name="Visual.SummaryTab">
-    <value>Ringkasan</value>
-  </data>
-  <data name="Visual.FormatDetected">
-    <value>Format terdeteksi</value>
-  </data>
-  <data name="Visual.AverageRpm">
-    <value>RPM rata-rata</value>
-  </data>
-  <data name="Visual.AverageDuration">
-    <value>Durasi rata-rata</value>
-  </data>
+  <data name="Visual.Decoder"><value>Dekoder</value></data>
+  <data name="Visual.LinkZoom"><value>Perbesar tautan</value></data>
+  <data name="Visual.OpenScp"><value>Buka file SCP…</value></data>
+  <data name="Visual.NoFile"><value>Tidak ada file SCP yang terbuka</value></data>
+  <data name="Visual.Waiting"><value>Menunggu file</value></data>
+  <data name="Visual.Inspector"><value>Inspektur</value></data>
+  <data name="Visual.SelectTrack"><value>Pilih trek.</value></data>
+  <data name="Visual.Controls"><value>Klik: pilih · Roda: zoom · Klik kanan: geser</value></data>
+  <data name="Visual.NormalFlux"><value>Fluks normal</value></data>
+  <data name="Visual.ShortTransition"><value>Transisi singkat</value></data>
+  <data name="Visual.LongTransition"><value>Transisi panjang/anomali</value></data>
+  <data name="Visual.Loading"><value>Membaca berkas…</value></data>
+  <data name="Visual.Invalid"><value>Berkas tidak valid</value></data>
+  <data name="Visual.Title"><value>SCP visualisasi</value></data>
+  <data name="Visual.ChecksumValid"><value>sah</value></data>
+  <data name="Visual.ChecksumInvalid"><value>tidak sah</value></data>
+  <data name="Visual.Summary"><value>SCP {0} · {1} trek · {2} revolusi · {3} resolusi ns · {4} checksum</value></data>
+  <data name="Visual.Revolution"><value>Revolusi {0}: {1:N0} transisi · {2:F2} ms · {3:F2} RPM</value></data>
+  <data name="Visual.Analysis"><value>Penguraian kode: {0}&#xA;Keyakinan: {1:P0}&#xA;Perkiraan sel: {2:F1} kutu&#xA;Struktur: {3}</value></data>
+  <data name="Visual.Track"><value>Sisi: {0}&#xA;Jalur: {1}&#xA;SCP entri: {2}</value></data>
+  <data name="Visual.SideNoData"><value>Sisi {0}&#xA;Tidak ada data</value></data>
+  <data name="Visual.TrackTooltip"><value>Sisi {0} · Lacak {1}&#xA;{2} revolusi</value></data>
+  <data name="Visual.Automatic"><value>Otomatis</value></data>
+  <data name="Visual.StructureHeader"><value>Tajuk/alamat</value></data>
+  <data name="Visual.StructureData"><value>Data yang diterjemahkan</value></data>
+  <data name="Visual.StructureAnomaly"><value>Dihapus/anomali</value></data>
+  <data name="Visual.AnalysedRevolution"><value>Analisis berdasarkan revolusi {0}.</value></data>
+  <data name="Visual.BitOffset"><value>sedikit {0:N0}</value></data>
+  <data name="Visual.SectorDetail"><value>Sektor C{0} H{1} R{2} · {3} byte · {4} {5}</value></data>
+  <data name="Visual.CrcValid"><value>sah</value></data>
+  <data name="Visual.CrcInvalid"><value>tidak sah</value></data>
+  <data name="Visual.IntegrityUnavailable"><value>tidak tersedia</value></data>
+  <data name="Visual.StructureKind.Sync"><value>Sinkronisasi</value></data>
+  <data name="Visual.StructureKind.IdAddressMark"><value>Tajuk sektor</value></data>
+  <data name="Visual.StructureKind.DataAddressMark"><value>Data sektor</value></data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark"><value>Data sektor dihapus</value></data>
+  <data name="Visual.StructureKind.AmigaSync"><value>sinkronisasi Amiga</value></data>
+  <data name="Visual.StructureKind.AppleAddress"><value>Prolog alamat Apple</value></data>
+  <data name="Visual.StructureKind.AppleData"><value>Prolog data Apple</value></data>
+  <data name="Visual.StructureKind.CommodoreSync"><value>sinkronisasi Commodore</value></data>
+  <data name="Visual.StructureKind.CommodoreHeader"><value>Commodore tajuk</value></data>
+  <data name="Visual.StructureKind.FormatHeader"><value>Format tajuk</value></data>
+  <data name="Visual.StructureKind.FormatData"><value>Memformat data</value></data>
+  <data name="Visual.StructureKind.TimingAnomaly"><value>Anomali waktu</value></data>
+  <data name="Visual.OpenFilter"><value>SuperCard Pro menangkap (*.scp)|*.scp|Semua file|*.*</value></data>
+  <data name="Visual.Integrity.Checksum"><value>Jumlah pemeriksaan</value></data>
+  <data name="Visual.Side"><value>Sisi {0}</value></data>
+  <data name="Visual.AnalysingTrack"><value>Menganalisis trek {0}/{1}…</value></data>
+  <data name="Visual.SideLabel"><value>Samping</value></data>
+  <data name="Visual.TrackLabel"><value>Melacak</value></data>
+  <data name="Visual.ScpEntryLabel"><value>SCP entri</value></data>
+  <data name="Visual.RevolutionsTitle"><value>Revolusi</value></data>
+  <data name="Visual.AnalysisTitle"><value>Analisa</value></data>
+  <data name="Visual.ConfidenceLabel"><value>Kepercayaan diri</value></data>
+  <data name="Visual.CellLabel"><value>Perkiraan sel</value></data>
+  <data name="Visual.StructuresLabel"><value>Struktur</value></data>
+  <data name="Visual.StructuresTitle"><value>Struktur yang terdeteksi</value></data>
+  <data name="Visual.SectorsTitle"><value>Sektor</value></data>
+  <data name="Visual.TransitionsUnit"><value>transisi</value></data>
+  <data name="Visual.OpenImage"><value>Buka gambar disk…</value></data>
+  <data name="Visual.DetachInspector"><value>Lepaskan inspektur</value></data>
+  <data name="Visual.AttachInspector"><value>Lampirkan inspektur</value></data>
+  <data name="Visual.SummaryTab"><value>Ringkasan</value></data>
+  <data name="Visual.FormatDetected"><value>Format terdeteksi</value></data>
+  <data name="Visual.AverageRpm"><value>RPM rata-rata</value></data>
+  <data name="Visual.AverageDuration"><value>Durasi rata-rata</value></data>
 </root>

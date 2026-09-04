@@ -12,163 +12,57 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Tool.Ready">
-    <value>Valmiina toteuttamaan.</value>
-  </data>
-  <data name="Tool.RawOutput">
-    <value>Raaka tuotanto</value>
-  </data>
-  <data name="Maintenance.EraseTitle">
-    <value>Vahvista poisto</value>
-  </data>
-  <data name="Maintenance.EraseConfirm">
-    <value>Poistetaanko kaikki syötetyn levyn tiedot pysyvästi?</value>
-  </data>
-  <data name="Maintenance.CleanTitle">
-    <value>Puhtaat päät</value>
-  </data>
-  <data name="Maintenance.CleanConfirm">
-    <value>Varmista, että puhdistuslevy on asetettu paikalleen. Älä koskaan käytä datalevyä.</value>
-  </data>
-  <data name="Tools.Erase">
-    <value>Tyhjennä levy</value>
-  </data>
-  <data name="Tools.EraseWarning">
-    <value>Kaikki levyllä olevat tiedot tuhoutuvat.</value>
-  </data>
-  <data name="Tools.LimitTracks">
-    <value>Rajoita kappaleita</value>
-  </data>
-  <data name="Tools.Revolutions">
-    <value>Vallankumoukset</value>
-  </data>
-  <data name="Tools.Clean">
-    <value>Puhtaat päät</value>
-  </data>
-  <data name="Tools.CleanWarning">
-    <value>Aseta laitteeseen puhdistuslevy, älä koskaan tietoja sisältävää levyä.</value>
-  </data>
-  <data name="Tools.Cylinders">
-    <value>Sylinterit</value>
-  </data>
-  <data name="Tools.Passes">
-    <value>Passit</value>
-  </data>
-  <data name="Tools.Linger">
-    <value>Kesto sylinteriä kohden (ms)</value>
-  </data>
-  <data name="Tool.Field.Measurements">
-    <value>Mittausten lukumäärä</value>
-  </data>
-  <data name="Tool.Field.Cylinder">
-    <value>Sylinteri</value>
-  </data>
-  <data name="Tool.Field.Extreme">
-    <value>Salli äärimmäiset sylinterit</value>
-  </data>
-  <data name="Tool.Field.MotorOn">
-    <value>Pidä moottori aktiivisena</value>
-  </data>
-  <data name="Tool.Field.Pin">
-    <value>Pin (8, 26 tai 28)</value>
-  </data>
-  <data name="Tool.Field.SetPin">
-    <value>Vaihda pin</value>
-  </data>
-  <data name="Tool.Field.High">
-    <value>Korkea taso</value>
-  </data>
-  <data name="Tool.Field.Select">
-    <value>Valinta (µs)</value>
-  </data>
-  <data name="Tool.Field.Step">
-    <value>Pään askel (µs)</value>
-  </data>
-  <data name="Tool.Field.Settle">
-    <value>Settle (ms)</value>
-  </data>
-  <data name="Tool.Field.Motor">
-    <value>Moottori (ms)</value>
-  </data>
-  <data name="Tool.Field.Watchdog">
-    <value>Poista valinta automaattisesti (ms)</value>
-  </data>
-  <data name="Tool.Field.PreWrite">
-    <value>Ennen kirjoittamista (µs)</value>
-  </data>
-  <data name="Tool.Field.PostWrite">
-    <value>Kirjoittamisen jälkeen (µs)</value>
-  </data>
-  <data name="Tool.Field.IndexMask">
-    <value>Indeksimaski (µs)</value>
-  </data>
-  <data name="Tool.Field.Bootloader">
-    <value>Päivitä käynnistyslatain (riskillinen)</value>
-  </data>
-  <data name="Tool.BootloaderWarning">
-    <value>Käynnistyslataimen päivittäminen on edistynyt toiminto, joka voi tehdä ohjaimesta käyttökelvottoman, jos se keskeytyy. Jatkaa?</value>
-  </data>
-  <data name="Tool.ControllerFallback">
-    <value>Ohjain</value>
-  </data>
-  <data name="Tool.FirmwareUnknown">
-    <value>Tuntematon laiteohjelmisto</value>
-  </data>
-  <data name="Tool.PortUnknown">
-    <value>Tuntematon portti</value>
-  </data>
-  <data name="Tool.NetworkWarning">
-    <value>Paikalliset tiedot ovat voimassa; vain verkon tarkistus epäonnistui.</value>
-  </data>
-  <data name="Tool.Running">
-    <value>Komento käynnissä…</value>
-  </data>
-  <data name="Tool.Title.Info">
-    <value>Ohjaimen tiedot</value>
-  </data>
-  <data name="Tool.Title.Bandwidth">
-    <value>USB kaistanleveys</value>
-  </data>
-  <data name="Tool.Title.Rpm">
-    <value>Ajonopeus</value>
-  </data>
-  <data name="Tool.Title.Seek">
-    <value>Etsi päätä</value>
-  </data>
-  <data name="Tool.Title.Pin">
-    <value>Laitteistonastat</value>
-  </data>
-  <data name="Tool.Title.Reset">
-    <value>Nollaa ohjain</value>
-  </data>
-  <data name="Tool.Title.Delays">
-    <value>Viiveet</value>
-  </data>
-  <data name="Tool.Title.Update">
-    <value>Laiteohjelmisto</value>
-  </data>
-  <data name="Tool.InvalidParameters">
-    <value>Virheelliset parametrit</value>
-  </data>
-  <data name="Tool.InvalidParametersHelp">
-    <value>Tarkista korostetut komentoparametrit ennen suorittamista.</value>
-  </data>
-  <data name="Tool.BootloaderTitle">
-    <value>Bootloader-tila</value>
-  </data>
-  <data name="Tool.Title.Align">
-    <value>Ajosuuntauksen diagnostiikka</value>
-  </data>
-  <data name="Tool.Field.AlignTracks">
-    <value>Vaihtelevat kappaleet (pakollinen)</value>
-  </data>
-  <data name="Tool.Field.AlignReads">
-    <value>Lukemien määrä</value>
-  </data>
-  <data name="Tool.Field.AlignFormat">
-    <value>Dekoodausmuoto</value>
-  </data>
-  <data name="Tool.Field.AlignRaw">
-    <value>Lue raakavirta (--raw)</value>
-  </data>
+  <data name="Tool.Ready"><value>Valmiina toteuttamaan.</value></data>
+  <data name="Tool.RawOutput"><value>Raaka tuotanto</value></data>
+  <data name="Maintenance.EraseTitle"><value>Vahvista poisto</value></data>
+  <data name="Maintenance.EraseConfirm"><value>Poistetaanko kaikki syötetyn levyn tiedot pysyvästi?</value></data>
+  <data name="Maintenance.CleanTitle"><value>Puhtaat päät</value></data>
+  <data name="Maintenance.CleanConfirm"><value>Varmista, että puhdistuslevy on asetettu paikalleen. Älä koskaan käytä datalevyä.</value></data>
+  <data name="Tools.Erase"><value>Tyhjennä levy</value></data>
+  <data name="Tools.EraseWarning"><value>Kaikki levyllä olevat tiedot tuhoutuvat.</value></data>
+  <data name="Tools.LimitTracks"><value>Rajoita kappaleita</value></data>
+  <data name="Tools.Revolutions"><value>Vallankumoukset</value></data>
+  <data name="Tools.Clean"><value>Puhtaat päät</value></data>
+  <data name="Tools.CleanWarning"><value>Aseta laitteeseen puhdistuslevy, älä koskaan tietoja sisältävää levyä.</value></data>
+  <data name="Tools.Cylinders"><value>Sylinterit</value></data>
+  <data name="Tools.Passes"><value>Passit</value></data>
+  <data name="Tools.Linger"><value>Kesto sylinteriä kohden (ms)</value></data>
+  <data name="Tool.Field.Measurements"><value>Mittausten lukumäärä</value></data>
+  <data name="Tool.Field.Cylinder"><value>Sylinteri</value></data>
+  <data name="Tool.Field.Extreme"><value>Salli äärimmäiset sylinterit</value></data>
+  <data name="Tool.Field.MotorOn"><value>Pidä moottori aktiivisena</value></data>
+  <data name="Tool.Field.Pin"><value>Pin (8, 26 tai 28)</value></data>
+  <data name="Tool.Field.SetPin"><value>Vaihda pin</value></data>
+  <data name="Tool.Field.High"><value>Korkea taso</value></data>
+  <data name="Tool.Field.Select"><value>Valinta (µs)</value></data>
+  <data name="Tool.Field.Step"><value>Pään askel (µs)</value></data>
+<data name="Tool.Field.Motor"><value>Moottori (ms)</value></data>
+  <data name="Tool.Field.Watchdog"><value>Poista valinta automaattisesti (ms)</value></data>
+  <data name="Tool.Field.PreWrite"><value>Ennen kirjoittamista (µs)</value></data>
+  <data name="Tool.Field.PostWrite"><value>Kirjoittamisen jälkeen (µs)</value></data>
+  <data name="Tool.Field.IndexMask"><value>Indeksimaski (µs)</value></data>
+  <data name="Tool.Field.Bootloader"><value>Päivitä käynnistyslatain (riskillinen)</value></data>
+  <data name="Tool.BootloaderWarning"><value>Käynnistyslataimen päivittäminen on edistynyt toiminto, joka voi tehdä ohjaimesta käyttökelvottoman, jos se keskeytyy. Jatkaa?</value></data>
+  <data name="Tool.ControllerFallback"><value>Ohjain</value></data>
+  <data name="Tool.FirmwareUnknown"><value>Tuntematon laiteohjelmisto</value></data>
+  <data name="Tool.PortUnknown"><value>Tuntematon portti</value></data>
+  <data name="Tool.NetworkWarning"><value>Paikalliset tiedot ovat voimassa; vain verkon tarkistus epäonnistui.</value></data>
+  <data name="Tool.Running"><value>Komento käynnissä…</value></data>
+  <data name="Tool.Title.Info"><value>Ohjaimen tiedot</value></data>
+  <data name="Tool.Title.Bandwidth"><value>USB kaistanleveys</value></data>
+  <data name="Tool.Title.Rpm"><value>Ajonopeus</value></data>
+  <data name="Tool.Title.Seek"><value>Etsi päätä</value></data>
+  <data name="Tool.Title.Pin"><value>Laitteistonastat</value></data>
+  <data name="Tool.Title.Reset"><value>Nollaa ohjain</value></data>
+  <data name="Tool.Title.Delays"><value>Viiveet</value></data>
+  <data name="Tool.Title.Update"><value>Laiteohjelmisto</value></data>
+  <data name="Tool.InvalidParameters"><value>Virheelliset parametrit</value></data>
+  <data name="Tool.InvalidParametersHelp"><value>Tarkista korostetut komentoparametrit ennen suorittamista.</value></data>
+  <data name="Tool.BootloaderTitle"><value>Bootloader-tila</value></data>
+  <data name="Tool.Title.Align"><value>Ajosuuntauksen diagnostiikka</value></data>
+  <data name="Tool.Field.AlignTracks"><value>Vaihtelevat kappaleet (pakollinen)</value></data>
+  <data name="Tool.Field.AlignReads"><value>Lukemien määrä</value></data>
+  <data name="Tool.Field.AlignFormat"><value>Dekoodausmuoto</value></data>
+  <data name="Tool.Field.AlignRaw"><value>Lue raakavirta (--raw)</value></data>
+  <data name="Tool.Field.Settle"><value>Selitä (ms)</value></data>
 </root>

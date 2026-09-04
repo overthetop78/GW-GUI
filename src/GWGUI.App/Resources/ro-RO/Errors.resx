@@ -12,28 +12,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.SettingsSaveFailed">
-    <value>Setările nu au putut fi salvate.
-
-{0}</value>
-  </data>
-  <data name="Error.Title">
-    <value>GW GUI eroare</value>
-  </data>
-  <data name="Error.Unexpected">
-    <value>A fost interceptată o eroare neașteptată.
-
-{0}</value>
-  </data>
-  <data name="Error.SaveFailed">
-    <value>Setările nu au putut fi salvate. Fereastra se va închide în continuare.
-
-{0}</value>
-  </data>
-  <data name="Error.LogSaved">
-    <value>Raportul complet a fost salvat pe:
-{0}</value>
-  </data>
+  <data name="App.SettingsSaveFailed"><value>Setările nu au putut fi salvate.&#xA;&#xA;{0}</value></data>
+  <data name="Error.Title"><value>GW GUI eroare</value></data>
+  <data name="Error.Unexpected"><value>A fost interceptată o eroare neașteptată.&#xA;&#xA;{0}</value></data>
+  <data name="Error.SaveFailed"><value>Setările nu au putut fi salvate. Fereastra se va închide în continuare.&#xA;&#xA;{0}</value></data>
+  <data name="Error.LogSaved"><value>Raportul complet a fost salvat pe:&#xA;{0}</value></data>
   <data name="Error.Description.NetworkTimeout"><value>Serviciul de la distanţă nu a răspuns înainte ca conexiunea să se fi terminat. Verificați conexiunea de rețea și încercați din nou.</value></data>
   <data name="Error.Description.NetworkDns"><value>Adresa de serviciu de la distanță nu a putut fi rezolvată. Verificați setările rețelei sau DNS și încercați din nou.</value></data>
   <data name="Error.Description.NetworkRefused"><value>Serviciul de la distanţă a refuzat conexiunea. Acesta poate fi indisponibil sau blocat.</value></data>

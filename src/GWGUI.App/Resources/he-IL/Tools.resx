@@ -12,163 +12,57 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Tool.Ready">
-    <value>מוכן לביצוע.</value>
-  </data>
-  <data name="Tool.RawOutput">
-    <value>פלט גולמי</value>
-  </data>
-  <data name="Maintenance.EraseTitle">
-    <value>אשר את המחיקה</value>
-  </data>
-  <data name="Maintenance.EraseConfirm">
-    <value>למחוק לצמיתות את כל הנתונים בדיסק שהוכנס?</value>
-  </data>
-  <data name="Maintenance.CleanTitle">
-    <value>ראשים נקיים</value>
-  </data>
-  <data name="Maintenance.CleanConfirm">
-    <value>אשר שדיסק ניקוי הוכנס. לעולם אל תשתמש בדיסק נתונים.</value>
-  </data>
-  <data name="Tools.Erase">
-    <value>מחק דיסק</value>
-  </data>
-  <data name="Tools.EraseWarning">
-    <value>כל הנתונים בדיסק יושמדו.</value>
-  </data>
-  <data name="Tools.LimitTracks">
-    <value>הגבל מסלולים</value>
-  </data>
-  <data name="Tools.Revolutions">
-    <value>מהפכות</value>
-  </data>
-  <data name="Tools.Clean">
-    <value>ראשים נקיים</value>
-  </data>
-  <data name="Tools.CleanWarning">
-    <value>הכנס דיסק ניקוי, לעולם לא דיסק המכיל נתונים.</value>
-  </data>
-  <data name="Tools.Cylinders">
-    <value>צילינדרים</value>
-  </data>
-  <data name="Tools.Passes">
-    <value>עובר</value>
-  </data>
-  <data name="Tools.Linger">
-    <value>משך לצילינדר (מילישניות)</value>
-  </data>
-  <data name="Tool.Field.Measurements">
-    <value>מספר מדידות</value>
-  </data>
-  <data name="Tool.Field.Cylinder">
-    <value>צִילִינדֶר</value>
-  </data>
-  <data name="Tool.Field.Extreme">
-    <value>אפשר צילינדרים קיצוניים</value>
-  </data>
-  <data name="Tool.Field.MotorOn">
-    <value>שמור על מנוע פעיל</value>
-  </data>
-  <data name="Tool.Field.Pin">
-    <value>סיכה (8, 26 או 28)</value>
-  </data>
-  <data name="Tool.Field.SetPin">
-    <value>החלף סיכה</value>
-  </data>
-  <data name="Tool.Field.High">
-    <value>רמה גבוהה</value>
-  </data>
-  <data name="Tool.Field.Select">
-    <value>בחירה (µs)</value>
-  </data>
-  <data name="Tool.Field.Step">
-    <value>צעד ראש (µs)</value>
-  </data>
-  <data name="Tool.Field.Settle">
-    <value>הסדר (ms)</value>
-  </data>
-  <data name="Tool.Field.Motor">
-    <value>מנוע (ms)</value>
-  </data>
-  <data name="Tool.Field.Watchdog">
-    <value>ביטול בחירה אוטומטי (מילישניות)</value>
-  </data>
-  <data name="Tool.Field.PreWrite">
-    <value>לפני כתיבה (µs)</value>
-  </data>
-  <data name="Tool.Field.PostWrite">
-    <value>לאחר כתיבה (µs)</value>
-  </data>
-  <data name="Tool.Field.IndexMask">
-    <value>מסכת אינדקס (µs)</value>
-  </data>
-  <data name="Tool.Field.Bootloader">
-    <value>עדכן את טוען האתחול (מסוכן)</value>
-  </data>
-  <data name="Tool.BootloaderWarning">
-    <value>עדכון של טוען האתחול היא פעולה מתקדמת שיכולה להפוך את הבקר לבלתי שמיש אם יופסק. לְהַמשִׁיך?</value>
-  </data>
-  <data name="Tool.ControllerFallback">
-    <value>בַּקָר</value>
-  </data>
-  <data name="Tool.FirmwareUnknown">
-    <value>קושחה לא ידועה</value>
-  </data>
-  <data name="Tool.PortUnknown">
-    <value>יציאה לא ידועה</value>
-  </data>
-  <data name="Tool.NetworkWarning">
-    <value>המידע המקומי תקף; רק בדיקת הרשת נכשלה.</value>
-  </data>
-  <data name="Tool.Running">
-    <value>הפקודה פועלת...</value>
-  </data>
-  <data name="Tool.Title.Info">
-    <value>מידע בקר</value>
-  </data>
-  <data name="Tool.Title.Bandwidth">
-    <value>USB רוחב פס</value>
-  </data>
-  <data name="Tool.Title.Rpm">
-    <value>מהירות נסיעה</value>
-  </data>
-  <data name="Tool.Title.Seek">
-    <value>חפש ראש</value>
-  </data>
-  <data name="Tool.Title.Pin">
-    <value>פיני חומרה</value>
-  </data>
-  <data name="Tool.Title.Reset">
-    <value>אפס את הבקר</value>
-  </data>
-  <data name="Tool.Title.Delays">
-    <value>עיכובים</value>
-  </data>
-  <data name="Tool.Title.Update">
-    <value>קושחה</value>
-  </data>
-  <data name="Tool.InvalidParameters">
-    <value>פרמטרים לא חוקיים</value>
-  </data>
-  <data name="Tool.InvalidParametersHelp">
-    <value>בדוק את פרמטרי הפקודה המודגשים לפני ביצוע.</value>
-  </data>
-  <data name="Tool.BootloaderTitle">
-    <value>מצב טוען אתחול</value>
-  </data>
-  <data name="Tool.Title.Align">
-    <value>אבחון יישור כונן</value>
-  </data>
-  <data name="Tool.Field.AlignTracks">
-    <value>רצועות מתחלפות (חובה)</value>
-  </data>
-  <data name="Tool.Field.AlignReads">
-    <value>מספר קריאות</value>
-  </data>
-  <data name="Tool.Field.AlignFormat">
-    <value>פורמט פענוח</value>
-  </data>
-  <data name="Tool.Field.AlignRaw">
-    <value>קריאת שטף גולמי (--raw)</value>
-  </data>
+  <data name="Tool.Ready"><value>מוכן לביצוע.</value></data>
+  <data name="Tool.RawOutput"><value>פלט גולמי</value></data>
+  <data name="Maintenance.EraseTitle"><value>אשר את המחיקה</value></data>
+  <data name="Maintenance.EraseConfirm"><value>למחוק לצמיתות את כל הנתונים בדיסק שהוכנס?</value></data>
+  <data name="Maintenance.CleanTitle"><value>ראשים נקיים</value></data>
+  <data name="Maintenance.CleanConfirm"><value>אשר שדיסק ניקוי הוכנס. לעולם אל תשתמש בדיסק נתונים.</value></data>
+  <data name="Tools.Erase"><value>מחק דיסק</value></data>
+  <data name="Tools.EraseWarning"><value>כל הנתונים בדיסק יושמדו.</value></data>
+  <data name="Tools.LimitTracks"><value>הגבל מסלולים</value></data>
+  <data name="Tools.Revolutions"><value>מהפכות</value></data>
+  <data name="Tools.Clean"><value>ראשים נקיים</value></data>
+  <data name="Tools.CleanWarning"><value>הכנס דיסק ניקוי, לעולם לא דיסק המכיל נתונים.</value></data>
+  <data name="Tools.Cylinders"><value>צילינדרים</value></data>
+  <data name="Tools.Passes"><value>עובר</value></data>
+  <data name="Tools.Linger"><value>משך לצילינדר (מילישניות)</value></data>
+  <data name="Tool.Field.Measurements"><value>מספר מדידות</value></data>
+  <data name="Tool.Field.Cylinder"><value>צִילִינדֶר</value></data>
+  <data name="Tool.Field.Extreme"><value>אפשר צילינדרים קיצוניים</value></data>
+  <data name="Tool.Field.MotorOn"><value>שמור על מנוע פעיל</value></data>
+  <data name="Tool.Field.Pin"><value>סיכה (8, 26 או 28)</value></data>
+  <data name="Tool.Field.SetPin"><value>החלף סיכה</value></data>
+  <data name="Tool.Field.High"><value>רמה גבוהה</value></data>
+  <data name="Tool.Field.Select"><value>בחירה (µs)</value></data>
+  <data name="Tool.Field.Step"><value>צעד ראש (µs)</value></data>
+  <data name="Tool.Field.Settle"><value>הסדר (ms)</value></data>
+  <data name="Tool.Field.Motor"><value>מנוע (ms)</value></data>
+  <data name="Tool.Field.Watchdog"><value>ביטול בחירה אוטומטי (מילישניות)</value></data>
+  <data name="Tool.Field.PreWrite"><value>לפני כתיבה (µs)</value></data>
+  <data name="Tool.Field.PostWrite"><value>לאחר כתיבה (µs)</value></data>
+  <data name="Tool.Field.IndexMask"><value>מסכת אינדקס (µs)</value></data>
+  <data name="Tool.Field.Bootloader"><value>עדכן את טוען האתחול (מסוכן)</value></data>
+  <data name="Tool.BootloaderWarning"><value>עדכון של טוען האתחול היא פעולה מתקדמת שיכולה להפוך את הבקר לבלתי שמיש אם יופסק. לְהַמשִׁיך?</value></data>
+  <data name="Tool.ControllerFallback"><value>בַּקָר</value></data>
+  <data name="Tool.FirmwareUnknown"><value>קושחה לא ידועה</value></data>
+  <data name="Tool.PortUnknown"><value>יציאה לא ידועה</value></data>
+  <data name="Tool.NetworkWarning"><value>המידע המקומי תקף; רק בדיקת הרשת נכשלה.</value></data>
+  <data name="Tool.Running"><value>הפקודה פועלת...</value></data>
+  <data name="Tool.Title.Info"><value>מידע בקר</value></data>
+  <data name="Tool.Title.Bandwidth"><value>USB רוחב פס</value></data>
+  <data name="Tool.Title.Rpm"><value>מהירות נסיעה</value></data>
+  <data name="Tool.Title.Seek"><value>חפש ראש</value></data>
+  <data name="Tool.Title.Pin"><value>פיני חומרה</value></data>
+  <data name="Tool.Title.Reset"><value>אפס את הבקר</value></data>
+  <data name="Tool.Title.Delays"><value>עיכובים</value></data>
+  <data name="Tool.Title.Update"><value>קושחה</value></data>
+  <data name="Tool.InvalidParameters"><value>פרמטרים לא חוקיים</value></data>
+  <data name="Tool.InvalidParametersHelp"><value>בדוק את פרמטרי הפקודה המודגשים לפני ביצוע.</value></data>
+  <data name="Tool.BootloaderTitle"><value>מצב טוען אתחול</value></data>
+  <data name="Tool.Title.Align"><value>אבחון יישור כונן</value></data>
+  <data name="Tool.Field.AlignTracks"><value>רצועות מתחלפות (חובה)</value></data>
+  <data name="Tool.Field.AlignReads"><value>מספר קריאות</value></data>
+  <data name="Tool.Field.AlignFormat"><value>פורמט פענוח</value></data>
+  <data name="Tool.Field.AlignRaw"><value>קריאת שטף גולמי (--raw)</value></data>
 </root>

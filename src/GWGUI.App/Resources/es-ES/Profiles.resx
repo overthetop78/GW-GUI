@@ -12,52 +12,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Profiles.ByOperation">
-    <value>Perfiles por operación</value>
-  </data>
-  <data name="Profiles.Tab">
-    <value>Pestaña</value>
-  </data>
-  <data name="Profiles.Name">
-    <value>Nombre</value>
-  </data>
-  <data name="Profiles.System">
-    <value>Sistema</value>
-  </data>
-  <data name="Profiles.Rename">
-    <value>Rebautizar…</value>
-  </data>
-  <data name="Profile.SaveTitle">
-    <value>Guardar perfil</value>
-  </data>
-  <data name="Profile.Name">
-    <value>Nombre del perfil</value>
-  </data>
-  <data name="Profile.NameRequired">
-    <value>Introduzca un nombre.</value>
-  </data>
-  <data name="Profile.Title">
-    <value>Perfil</value>
-  </data>
-  <data name="Common.Profile">
-    <value>Perfil</value>
-  </data>
-  <data name="Profile.Default">
-    <value>Por defecto</value>
-  </data>
-  <data name="Profile.SystemRename">
-    <value>El perfil predeterminado es permanente y no se le puede cambiar el nombre.</value>
-  </data>
-  <data name="Profile.SystemDelete">
-    <value>El perfil predeterminado es permanente y no se puede eliminar.</value>
-  </data>
-  <data name="Profile.DuplicateName">
-    <value>Un perfil en esta pestaña ya tiene este nombre.</value>
-  </data>
-  <data name="Profile.Replace">
-    <value>Este perfil ya existe. ¿Reemplazarlo?</value>
-  </data>
-  <data name="Profile.DeleteConfirm">
-    <value>¿Eliminar perfil “{0}”?</value>
-  </data>
+  <data name="Profiles.ByOperation"><value>Perfiles por operación</value></data>
+  <data name="Profiles.Tab"><value>Pestaña</value></data>
+  <data name="Profiles.Name"><value>Nombre</value></data>
+  <data name="Profiles.System"><value>Sistema</value></data>
+  <data name="Profiles.Rename"><value>Rebautizar…</value></data>
+  <data name="Profile.SaveTitle"><value>Guardar perfil</value></data>
+  <data name="Profile.Name"><value>Nombre del perfil</value></data>
+  <data name="Profile.NameRequired"><value>Introduzca un nombre.</value></data>
+  <data name="Profile.Title"><value>Perfil</value></data>
+  <data name="Common.Profile"><value>Perfil</value></data>
+  <data name="Profile.Default"><value>Por defecto</value></data>
+  <data name="Profile.SystemRename"><value>El perfil predeterminado es permanente y no se le puede cambiar el nombre.</value></data>
+  <data name="Profile.SystemDelete"><value>El perfil predeterminado es permanente y no se puede eliminar.</value></data>
+  <data name="Profile.DuplicateName"><value>Un perfil en esta pestaña ya tiene este nombre.</value></data>
+  <data name="Profile.Replace"><value>Este perfil ya existe. ¿Reemplazarlo?</value></data>
+  <data name="Profile.DeleteConfirm"><value>¿Eliminar perfil “{0}”?</value></data>
 </root>

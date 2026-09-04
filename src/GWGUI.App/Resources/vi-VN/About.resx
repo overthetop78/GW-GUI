@@ -12,16 +12,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="About.Description">
-    <value>Giao diện Windows hiện đại để đọc, ghi, chuyển đổi và kiểm tra đĩa mềm với Greaseweazle.</value>
-  </data>
-  <data name="About.License">
-    <value>Phần mềm nguồn mở — MIT Giấy phép</value>
-  </data>
-  <data name="About.Version">
-    <value>Phiên bản {0}</value>
-  </data>
-  <data name="About.Components">
-    <value>Phiên bản thành phần</value>
-  </data>
+  <data name="About.Description"><value>Giao diện Windows hiện đại để đọc, ghi, chuyển đổi và kiểm tra đĩa mềm với Greaseweazle.</value></data>
+  <data name="About.License"><value>Phần mềm nguồn mở — MIT Giấy phép</value></data>
+  <data name="About.Version"><value>Phiên bản {0}</value></data>
+  <data name="About.Components"><value>Phiên bản thành phần</value></data>
 </root>

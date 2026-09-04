@@ -12,53 +12,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Cancel">
-    <value>Anula</value>
-  </data>
-  <data name="Common.Save">
-    <value>Salva</value>
-  </data>
-  <data name="Common.Create">
-    <value>Creează</value>
-  </data>
-  <data name="Common.Delete">
-    <value>Şterge</value>
-  </data>
-  <data name="Common.Browse">
-    <value>Răsfoiți...</value>
-  </data>
-  <data name="Common.Choose">
-    <value>Alege…</value>
-  </data>
-  <data name="Common.Close">
-    <value>Aproape</value>
-  </data>
-  <data name="Common.Execute">
-    <value>Executa</value>
-  </data>
-  <data name="Common.Stop">
-    <value>Stop</value>
-  </data>
-  <data name="Common.Continue">
-    <value>Continua</value>
-  </data>
-  <data name="Common.Reset">
-    <value>Resetați</value>
-  </data>
-  <data name="Common.Copy">
-    <value>Copie</value>
-  </data>
-  <data name="Common.Modify">
-    <value>Modifica</value>
-  </data>
-  <data name="Common.Hide">
-    <value>Ascunde</value>
-  </data>
-  <data name="Common.Export">
-    <value>Export</value>
-  </data>
-  <data name="Common.New"><value>Nou</value></data>
+  <data name="Common.Cancel"><value>Anula</value></data>
+  <data name="Common.Save"><value>Salva</value></data>
+  <data name="Common.Create"><value>Creează</value></data>
+  <data name="Common.Delete"><value>Şterge</value></data>
+  <data name="Common.Browse"><value>Răsfoiți...</value></data>
+  <data name="Common.Choose"><value>Alege…</value></data>
+  <data name="Common.Close"><value>Aproape</value></data>
+  <data name="Common.Execute"><value>Executa</value></data>
+<data name="Common.Continue"><value>Continua</value></data>
+  <data name="Common.Reset"><value>Resetați</value></data>
+  <data name="Common.Copy"><value>Copie</value></data>
+  <data name="Common.Modify"><value>Modifica</value></data>
+  <data name="Common.Hide"><value>Ascunde</value></data>
+<data name="Common.New"><value>Nou</value></data>
   <data name="Common.Refresh"><value>Reîmprospătează</value></data>
   <data name="Common.OpenFolder"><value>Deschideți folderul</value></data>
   <data name="Common.Pause" xml:space="preserve"><value>Pauză</value></data>
+  <data name="Common.Stop"><value>Opreşte-te.</value></data>
+  <data name="Common.Export"><value>Exportă</value></data>
 </root>

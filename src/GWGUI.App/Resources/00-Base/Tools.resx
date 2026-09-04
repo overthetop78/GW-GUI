@@ -12,163 +12,57 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Tool.Ready">
-    <value>Ready to execute.</value>
-  </data>
-  <data name="Tool.RawOutput">
-    <value>Raw output</value>
-  </data>
-  <data name="Maintenance.EraseTitle">
-    <value>Confirm erase</value>
-  </data>
-  <data name="Maintenance.EraseConfirm">
-    <value>Permanently erase all data on the inserted disk?</value>
-  </data>
-  <data name="Maintenance.CleanTitle">
-    <value>Clean heads</value>
-  </data>
-  <data name="Maintenance.CleanConfirm">
-    <value>Confirm that a cleaning disk is inserted. Never use a data disk.</value>
-  </data>
-  <data name="Tools.Erase">
-    <value>Erase a disk</value>
-  </data>
-  <data name="Tools.EraseWarning">
-    <value>All data on the disk will be destroyed.</value>
-  </data>
-  <data name="Tools.LimitTracks">
-    <value>Limit tracks</value>
-  </data>
-  <data name="Tools.Revolutions">
-    <value>Revolutions</value>
-  </data>
-  <data name="Tools.Clean">
-    <value>Clean heads</value>
-  </data>
-  <data name="Tools.CleanWarning">
-    <value>Insert a cleaning disk, never a disk containing data.</value>
-  </data>
-  <data name="Tools.Cylinders">
-    <value>Cylinders</value>
-  </data>
-  <data name="Tools.Passes">
-    <value>Passes</value>
-  </data>
-  <data name="Tools.Linger">
-    <value>Duration per cylinder (ms)</value>
-  </data>
-  <data name="Tool.Field.Measurements">
-    <value>Number of measurements</value>
-  </data>
-  <data name="Tool.Field.Cylinder">
-    <value>Cylinder</value>
-  </data>
-  <data name="Tool.Field.Extreme">
-    <value>Allow extreme cylinders</value>
-  </data>
-  <data name="Tool.Field.MotorOn">
-    <value>Keep motor active</value>
-  </data>
-  <data name="Tool.Field.Pin">
-    <value>Pin (8, 26 or 28)</value>
-  </data>
-  <data name="Tool.Field.SetPin">
-    <value>Change pin</value>
-  </data>
-  <data name="Tool.Field.High">
-    <value>High level</value>
-  </data>
-  <data name="Tool.Field.Select">
-    <value>Selection (µs)</value>
-  </data>
-  <data name="Tool.Field.Step">
-    <value>Head step (µs)</value>
-  </data>
-  <data name="Tool.Field.Settle">
-    <value>Settle (ms)</value>
-  </data>
-  <data name="Tool.Field.Motor">
-    <value>Motor (ms)</value>
-  </data>
-  <data name="Tool.Field.Watchdog">
-    <value>Auto deselect (ms)</value>
-  </data>
-  <data name="Tool.Field.PreWrite">
-    <value>Before write (µs)</value>
-  </data>
-  <data name="Tool.Field.PostWrite">
-    <value>After write (µs)</value>
-  </data>
-  <data name="Tool.Field.IndexMask">
-    <value>Index mask (µs)</value>
-  </data>
-  <data name="Tool.Field.Bootloader">
-    <value>Update bootloader (risky)</value>
-  </data>
-  <data name="Tool.BootloaderWarning">
-    <value>Updating the bootloader is an advanced operation which can make the controller unusable if interrupted. Continue?</value>
-  </data>
-  <data name="Tool.ControllerFallback">
-    <value>Controller</value>
-  </data>
-  <data name="Tool.FirmwareUnknown">
-    <value>Unknown firmware</value>
-  </data>
-  <data name="Tool.PortUnknown">
-    <value>Unknown port</value>
-  </data>
-  <data name="Tool.NetworkWarning">
-    <value>The local information is valid; only the network check failed.</value>
-  </data>
-  <data name="Tool.Running">
-    <value>Command running…</value>
-  </data>
-  <data name="Tool.Title.Info">
-    <value>Controller information</value>
-  </data>
-  <data name="Tool.Title.Bandwidth">
-    <value>USB bandwidth</value>
-  </data>
-  <data name="Tool.Title.Rpm">
-    <value>Drive speed</value>
-  </data>
-  <data name="Tool.Title.Seek">
-    <value>Seek head</value>
-  </data>
-  <data name="Tool.Title.Pin">
-    <value>Hardware pins</value>
-  </data>
-  <data name="Tool.Title.Reset">
-    <value>Reset controller</value>
-  </data>
-  <data name="Tool.Title.Delays">
-    <value>Delays</value>
-  </data>
-  <data name="Tool.Title.Update">
-    <value>Firmware</value>
-  </data>
-  <data name="Tool.InvalidParameters">
-    <value>Invalid parameters</value>
-  </data>
-  <data name="Tool.InvalidParametersHelp">
-    <value>Check the highlighted command parameters before executing.</value>
-  </data>
-  <data name="Tool.BootloaderTitle">
-    <value>Bootloader mode</value>
-  </data>
-  <data name="Tool.Title.Align">
-    <value>Drive alignment diagnostic</value>
-  </data>
-  <data name="Tool.Field.AlignTracks">
-    <value>Alternating track(s) (required)</value>
-  </data>
-  <data name="Tool.Field.AlignReads">
-    <value>Number of reads</value>
-  </data>
-  <data name="Tool.Field.AlignFormat">
-    <value>Decoding format</value>
-  </data>
-  <data name="Tool.Field.AlignRaw">
-    <value>Read raw flux (--raw)</value>
-  </data>
+  <data name="Tool.Ready"><value>Ready to execute.</value></data>
+  <data name="Tool.RawOutput"><value>Raw output</value></data>
+  <data name="Maintenance.EraseTitle"><value>Confirm erase</value></data>
+  <data name="Maintenance.EraseConfirm"><value>Permanently erase all data on the inserted disk?</value></data>
+  <data name="Maintenance.CleanTitle"><value>Clean heads</value></data>
+  <data name="Maintenance.CleanConfirm"><value>Confirm that a cleaning disk is inserted. Never use a data disk.</value></data>
+  <data name="Tools.Erase"><value>Erase a disk</value></data>
+  <data name="Tools.EraseWarning"><value>All data on the disk will be destroyed.</value></data>
+  <data name="Tools.LimitTracks"><value>Limit tracks</value></data>
+  <data name="Tools.Revolutions"><value>Revolutions</value></data>
+  <data name="Tools.Clean"><value>Clean heads</value></data>
+  <data name="Tools.CleanWarning"><value>Insert a cleaning disk, never a disk containing data.</value></data>
+  <data name="Tools.Cylinders"><value>Cylinders</value></data>
+  <data name="Tools.Passes"><value>Passes</value></data>
+  <data name="Tools.Linger"><value>Duration per cylinder (ms)</value></data>
+  <data name="Tool.Field.Measurements"><value>Number of measurements</value></data>
+  <data name="Tool.Field.Cylinder"><value>Cylinder</value></data>
+  <data name="Tool.Field.Extreme"><value>Allow extreme cylinders</value></data>
+  <data name="Tool.Field.MotorOn"><value>Keep motor active</value></data>
+  <data name="Tool.Field.Pin"><value>Pin (8, 26 or 28)</value></data>
+  <data name="Tool.Field.SetPin"><value>Change pin</value></data>
+  <data name="Tool.Field.High"><value>High level</value></data>
+  <data name="Tool.Field.Select"><value>Selection (µs)</value></data>
+  <data name="Tool.Field.Step"><value>Head step (µs)</value></data>
+  <data name="Tool.Field.Settle"><value>Settle (ms)</value></data>
+  <data name="Tool.Field.Motor"><value>Motor (ms)</value></data>
+  <data name="Tool.Field.Watchdog"><value>Auto deselect (ms)</value></data>
+  <data name="Tool.Field.PreWrite"><value>Before write (µs)</value></data>
+  <data name="Tool.Field.PostWrite"><value>After write (µs)</value></data>
+  <data name="Tool.Field.IndexMask"><value>Index mask (µs)</value></data>
+  <data name="Tool.Field.Bootloader"><value>Update bootloader (risky)</value></data>
+  <data name="Tool.BootloaderWarning"><value>Updating the bootloader is an advanced operation which can make the controller unusable if interrupted. Continue?</value></data>
+  <data name="Tool.ControllerFallback"><value>Controller</value></data>
+  <data name="Tool.FirmwareUnknown"><value>Unknown firmware</value></data>
+  <data name="Tool.PortUnknown"><value>Unknown port</value></data>
+  <data name="Tool.NetworkWarning"><value>The local information is valid; only the network check failed.</value></data>
+  <data name="Tool.Running"><value>Command running…</value></data>
+  <data name="Tool.Title.Info"><value>Controller information</value></data>
+  <data name="Tool.Title.Bandwidth"><value>USB bandwidth</value></data>
+  <data name="Tool.Title.Rpm"><value>Drive speed</value></data>
+  <data name="Tool.Title.Seek"><value>Seek head</value></data>
+  <data name="Tool.Title.Pin"><value>Hardware pins</value></data>
+  <data name="Tool.Title.Reset"><value>Reset controller</value></data>
+  <data name="Tool.Title.Delays"><value>Delays</value></data>
+  <data name="Tool.Title.Update"><value>Firmware</value></data>
+  <data name="Tool.InvalidParameters"><value>Invalid parameters</value></data>
+  <data name="Tool.InvalidParametersHelp"><value>Check the highlighted command parameters before executing.</value></data>
+  <data name="Tool.BootloaderTitle"><value>Bootloader mode</value></data>
+  <data name="Tool.Title.Align"><value>Drive alignment diagnostic</value></data>
+  <data name="Tool.Field.AlignTracks"><value>Alternating track(s) (required)</value></data>
+  <data name="Tool.Field.AlignReads"><value>Number of reads</value></data>
+  <data name="Tool.Field.AlignFormat"><value>Decoding format</value></data>
+  <data name="Tool.Field.AlignRaw"><value>Read raw flux (--raw)</value></data>
 </root>

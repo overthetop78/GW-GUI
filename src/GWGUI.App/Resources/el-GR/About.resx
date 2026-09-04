@@ -12,16 +12,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="About.Description">
-    <value>Μια σύγχρονη διεπαφή Windows για ανάγνωση, εγγραφή, μετατροπή και επιθεώρηση δισκέτας με Greaseweazle.</value>
-  </data>
-  <data name="About.License">
-    <value>Λογισμικό ανοιχτού κώδικα — MIT Άδεια χρήσης</value>
-  </data>
-  <data name="About.Version">
-    <value>Έκδοση {0}</value>
-  </data>
-  <data name="About.Components">
-    <value>Εκδόσεις στοιχείων</value>
-  </data>
+  <data name="About.Description"><value>Μια σύγχρονη διεπαφή Windows για ανάγνωση, εγγραφή, μετατροπή και επιθεώρηση δισκέτας με Greaseweazle.</value></data>
+  <data name="About.License"><value>Λογισμικό ανοιχτού κώδικα — MIT Άδεια χρήσης</value></data>
+  <data name="About.Version"><value>Έκδοση {0}</value></data>
+  <data name="About.Components"><value>Εκδόσεις στοιχείων</value></data>
 </root>

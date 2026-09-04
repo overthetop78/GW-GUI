@@ -12,118 +12,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Advanced">
-    <value>Speciális beállítások</value>
-  </data>
-  <data name="Common.ExpertArguments">
-    <value>Szakértői érvek</value>
-  </data>
-  <data name="Common.ExpertArgumentsTip">
-    <value>Az argumentumok az idézet érvényesítése után a leírtak szerint kerülnek átadásra.</value>
-  </data>
-  <data name="Advanced.SeekRetries">
-    <value>Próbálkozzon újra</value>
-  </data>
-  <data name="Advanced.FakeIndex">
-    <value>Hamis index</value>
-  </data>
-  <data name="Advanced.HardSectors">
-    <value>Kemény szektorok</value>
-  </data>
-  <data name="Advanced.Reverse">
-    <value>Fordított nyomvonal adatok</value>
-  </data>
-  <data name="Advanced.AdjustSpeed">
-    <value>Állítsa be a sebességet</value>
-  </data>
-  <data name="Advanced.Pll">
-    <value>PLL felülbírálása</value>
-  </data>
-  <data name="Advanced.DensityPin">
-    <value>Sűrűség tű 2</value>
-  </data>
-  <data name="Advanced.Tg43">
-    <value>TG43 generálása</value>
-  </data>
-  <data name="Advanced.PreErase">
-    <value>Előtörölni a számokat</value>
-  </data>
-  <data name="Advanced.Precomp">
-    <value>Írj előkompenzációt</value>
-  </data>
-  <data name="Advanced.OutputTracks">
-    <value>Kimeneti sávok</value>
-  </data>
-  <data name="Advanced.DiskDefs">
-    <value>Egyéni lemezdefiníciók</value>
-  </data>
-  <data name="Advanced.DiskDefsFilter">
-    <value>Greaseweazle lemezdefiníciók (*.cfg)|*.cfg|Minden fájl|*.*</value>
-  </data>
-  <data name="Advanced.DiskDefsMissing">
-    <value>A kiválasztott lemezdefiníciós fájl nem létezik.</value>
-  </data>
-  <data name="Advanced.Invalid">
-    <value>Egy speciális beállítás érvénytelen: {0}</value>
-  </data>
-  <data name="Advanced.TrackSpecTip">
-    <value>A sáv specifikációja, például c=0-79:h=0-1, c=0-79/2:h=0 vagy c=0-79:h=0-1:hswap.</value>
-  </data>
-  <data name="Advanced.SpeedTip">
-    <value>Pozitív sebesség vagy periódus, például 300 ford./perc, 200 ms, 200000us vagy 200000000ns.</value>
-  </data>
-  <data name="Advanced.PllTip">
-    <value>PLL paraméterek kettősponttal elválasztva, például period=5:phase=60 vagy period=5:phase=60:lowpass=2.</value>
-  </data>
-  <data name="Advanced.PrecompTip">
-    <value>Írjon előkompenzációt, például type=mfm:40=125. Típusok: mfm, fm, gcr; az értékek nanoszekundumban vannak megadva.</value>
-  </data>
-  <data name="Advanced.DiskDefsTip">
-    <value>Használjon egyéni diskdefs.cfg fájlt a Greaseweazle formátumdefiníciók hozzáadásához vagy felülbírálásához.</value>
-  </data>
-  <data name="Advanced.RevsTip">
-    <value>--revs: A beolvasott fordulatok száma sávonként. Példa: --revs 5.</value>
-  </data>
-  <data name="Advanced.RetriesTip">
-    <value>--retries: További próbálkozások hiba után. Példa: --retries 3.</value>
-  </data>
-  <data name="Advanced.TracksTip">
-    <value>--tracks: Hengerek, fejek vagy léptetés korlátozása. Példa: --tracks c=0-79:h=0-1.</value>
-  </data>
-  <data name="Advanced.SeekRetriesTip">
-    <value>--seek-retries: További próbálkozások a fej mozgatása után. Példa: --seek-retries 2.</value>
-  </data>
-  <data name="Advanced.FakeIndexTip">
-    <value>--fake-index: Időzített index létrehozása indexjel nélküli meghajtóhoz. Példa: --fake-index 300 ford./perc.</value>
-  </data>
-  <data name="Advanced.HardSectorsTip">
-    <value>--hard-sectors: Kezeljen merevlemezt. Nem kompatibilis a következővel: --fake-index.</value>
-  </data>
-  <data name="Advanced.ReverseTip">
-    <value>--reverse: Fordított adatsáv adathordozókhoz vagy vezetékekhez.</value>
-  </data>
-  <data name="Advanced.AdjustSpeedTip">
-    <value>--adjust-speed: Adatidőzítés átméretezése. Példa: --adjust-speed 300 ford./perc.</value>
-  </data>
-  <data name="Advanced.PllOptionTip">
-    <value>--pll: Az óra-helyreállítási hurok konfigurálása. Példa: --pll periódus=5:fázis=60.</value>
-  </data>
-  <data name="Advanced.DenselTip">
-    <value>--densel: A sűrűségválasztó tű magasra vagy alacsonyra kényszerítése. Példa: --densel H.</value>
-  </data>
-  <data name="Advanced.Tg43Tip">
-    <value>--gen-tg43: A TG43 jel generálása az azt igénylő meghajtókhoz. Nem kompatibilis a következővel: --densel.</value>
-  </data>
-  <data name="Advanced.EraseEmptyTip">
-    <value>--erase-empty: Törli azokat a sávokat, amelyekhez a forráskép nem tartalmaz adatokat.</value>
-  </data>
-  <data name="Advanced.PreEraseTip">
-    <value>--pre-erase: Írás előtt töröljön minden számot.</value>
-  </data>
-  <data name="Advanced.PrecompOptionTip">
-    <value>--precomp: Írási előkompenzáció alkalmazása. Példa: --precomp type=mfm:40=125.</value>
-  </data>
-  <data name="Advanced.OutputTracksTip">
-    <value>--out-tracks: A kimeneti kép sávjainak újratervezése. Példa: --out-tracks c=0-79:h=0-1.</value>
-  </data>
+  <data name="Common.Advanced"><value>Speciális beállítások</value></data>
+  <data name="Common.ExpertArguments"><value>Szakértői érvek</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>Az argumentumok az idézet érvényesítése után a leírtak szerint kerülnek átadásra.</value></data>
+  <data name="Advanced.SeekRetries"><value>Próbálkozzon újra</value></data>
+  <data name="Advanced.FakeIndex"><value>Hamis index</value></data>
+  <data name="Advanced.HardSectors"><value>Kemény szektorok</value></data>
+  <data name="Advanced.Reverse"><value>Fordított nyomvonal adatok</value></data>
+  <data name="Advanced.AdjustSpeed"><value>Állítsa be a sebességet</value></data>
+  <data name="Advanced.Pll"><value>PLL felülbírálása</value></data>
+  <data name="Advanced.DensityPin"><value>Sűrűség tű 2</value></data>
+  <data name="Advanced.Tg43"><value>TG43 generálása</value></data>
+  <data name="Advanced.PreErase"><value>Előtörölni a számokat</value></data>
+  <data name="Advanced.Precomp"><value>Írj előkompenzációt</value></data>
+  <data name="Advanced.OutputTracks"><value>Kimeneti sávok</value></data>
+  <data name="Advanced.DiskDefs"><value>Egyéni lemezdefiníciók</value></data>
+  <data name="Advanced.DiskDefsFilter"><value>Greaseweazle lemezdefiníciók (*.cfg)|*.cfg|Minden fájl|*.*</value></data>
+  <data name="Advanced.DiskDefsMissing"><value>A kiválasztott lemezdefiníciós fájl nem létezik.</value></data>
+  <data name="Advanced.Invalid"><value>Egy speciális beállítás érvénytelen: {0}</value></data>
+  <data name="Advanced.TrackSpecTip"><value>A sáv specifikációja, például c=0-79:h=0-1, c=0-79/2:h=0 vagy c=0-79:h=0-1:hswap.</value></data>
+  <data name="Advanced.SpeedTip"><value>Pozitív sebesség vagy periódus, például 300 ford./perc, 200 ms, 200000us vagy 200000000ns.</value></data>
+  <data name="Advanced.PllTip"><value>PLL paraméterek kettősponttal elválasztva, például period=5:phase=60 vagy period=5:phase=60:lowpass=2.</value></data>
+  <data name="Advanced.PrecompTip"><value>Írjon előkompenzációt, például type=mfm:40=125. Típusok: mfm, fm, gcr; az értékek nanoszekundumban vannak megadva.</value></data>
+  <data name="Advanced.DiskDefsTip"><value>Használjon egyéni diskdefs.cfg fájlt a Greaseweazle formátumdefiníciók hozzáadásához vagy felülbírálásához.</value></data>
+  <data name="Advanced.RevsTip"><value>--revs: A beolvasott fordulatok száma sávonként. Példa: --revs 5.</value></data>
+  <data name="Advanced.RetriesTip"><value>--retries: További próbálkozások hiba után. Példa: --retries 3.</value></data>
+  <data name="Advanced.TracksTip"><value>--tracks: Hengerek, fejek vagy léptetés korlátozása. Példa: --tracks c=0-79:h=0-1.</value></data>
+  <data name="Advanced.SeekRetriesTip"><value>--seek-retries: További próbálkozások a fej mozgatása után. Példa: --seek-retries 2.</value></data>
+  <data name="Advanced.FakeIndexTip"><value>--fake-index: Időzített index létrehozása indexjel nélküli meghajtóhoz. Példa: --fake-index 300 ford./perc.</value></data>
+  <data name="Advanced.HardSectorsTip"><value>--hard-sectors: Kezeljen merevlemezt. Nem kompatibilis a következővel: --fake-index.</value></data>
+  <data name="Advanced.ReverseTip"><value>--reverse: Fordított adatsáv adathordozókhoz vagy vezetékekhez.</value></data>
+  <data name="Advanced.AdjustSpeedTip"><value>--adjust-speed: Adatidőzítés átméretezése. Példa: --adjust-speed 300 ford./perc.</value></data>
+  <data name="Advanced.PllOptionTip"><value>--pll: Az óra-helyreállítási hurok konfigurálása. Példa: --pll periódus=5:fázis=60.</value></data>
+  <data name="Advanced.DenselTip"><value>--densel: A sűrűségválasztó tű magasra vagy alacsonyra kényszerítése. Példa: --densel H.</value></data>
+  <data name="Advanced.Tg43Tip"><value>--gen-tg43: A TG43 jel generálása az azt igénylő meghajtókhoz. Nem kompatibilis a következővel: --densel.</value></data>
+  <data name="Advanced.EraseEmptyTip"><value>--erase-empty: Törli azokat a sávokat, amelyekhez a forráskép nem tartalmaz adatokat.</value></data>
+  <data name="Advanced.PreEraseTip"><value>--pre-erase: Írás előtt töröljön minden számot.</value></data>
+  <data name="Advanced.PrecompOptionTip"><value>--precomp: Írási előkompenzáció alkalmazása. Példa: --precomp type=mfm:40=125.</value></data>
+  <data name="Advanced.OutputTracksTip"><value>--out-tracks: A kimeneti kép sávjainak újratervezése. Példa: --out-tracks c=0-79:h=0-1.</value></data>
 </root>

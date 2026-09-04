@@ -12,40 +12,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="HostTools.Detect">
-    <value>Найдите gw.exe</value>
-  </data>
-  <data name="HostTools.Check">
-    <value>Проверьте наличие обновлений</value>
-  </data>
-  <data name="HostTools.Download">
-    <value>Скачать последнюю версию</value>
-  </data>
-  <data name="HostTools.Rollback">
-    <value>Использовать предыдущий путь</value>
-  </data>
-  <data name="HostTools.None">
-    <value>Установка не обнаружена.</value>
-  </data>
-  <data name="HostTools.Detected">
-    <value>Обнаружено: {0}</value>
-  </data>
-  <data name="HostTools.Latest">
-    <value>Последняя доступная версия: {0}.</value>
-  </data>
-  <data name="HostTools.Installed">
-    <value>Версия {0} установлена.</value>
-  </data>
-  <data name="HostTools.DownloadConfirm">
-    <value>Загрузить и установить Greaseweazle Host Tools {0} для Windows x64?</value>
-  </data>
-  <data name="HostTools.Title">
-    <value>Greaseweazle Инструменты хоста</value>
-  </data>
-  <data name="HostTools.NoPrevious">
-    <value>Действительный предыдущий путь не сохранен.</value>
-  </data>
-  <data name="HostTools.UpdateAvailable">
-    <value>Доступны инструменты хоста {0}</value>
-  </data>
+  <data name="HostTools.Detect"><value>Найдите gw.exe</value></data>
+  <data name="HostTools.Check"><value>Проверьте наличие обновлений</value></data>
+  <data name="HostTools.Download"><value>Скачать последнюю версию</value></data>
+  <data name="HostTools.Rollback"><value>Использовать предыдущий путь</value></data>
+  <data name="HostTools.None"><value>Установка не обнаружена.</value></data>
+  <data name="HostTools.Detected"><value>Обнаружено: {0}</value></data>
+  <data name="HostTools.Latest"><value>последняя доступная версия: {0}</value></data>
+  <data name="HostTools.Installed"><value>Версия {0} установлена.</value></data>
+  <data name="HostTools.DownloadConfirm"><value>Загрузить и установить Greaseweazle Host Tools {0} для Windows x64?</value></data>
+  <data name="HostTools.Title"><value>Greaseweazle Инструменты хоста</value></data>
+  <data name="HostTools.NoPrevious"><value>Действительный предыдущий путь не сохранен.</value></data>
+  <data name="HostTools.UpdateAvailable"><value>Доступны инструменты хоста {0}</value></data>
 </root>

@@ -12,172 +12,60 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Warning.InvalidChecksum">
-    <value>A {0} gyökérblokk érvénytelen ellenőrzőösszeggel rendelkezik.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryNesting">
-    <value>Elérte a címtárbeágyazási korlátot.</value>
-  </data>
-  <data name="Explorer.Warning.InvalidDirectoryChain">
-    <value>Érvénytelen vagy ciklikus címtárlánc a {0} blokkban.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryEntryMissing">
-    <value>A {0} címtárbeviteli blokk hiányzik.</value>
-  </data>
-  <data name="Explorer.Warning.AmigaExtension">
-    <value>{0}: Érvénytelen fájlkiterjesztés blokk {1}.</value>
-  </data>
-  <data name="Explorer.Warning.AmigaBlock">
-    <value>{0}: A AmigaDOS {1} ({2}) hiányzik.</value>
-  </data>
-  <data name="Explorer.Warning.FileDataMissing">
-    <value>A {0} fájl adatblokk hiányzik.</value>
-  </data>
-  <data name="Explorer.Warning.OfsType">
-    <value>A {0} OFS adatblokk nem várt típusú.</value>
-  </data>
-  <data name="Explorer.Warning.BitmapMissing">
-    <value>A {0} bittérképblokk hiányzik.</value>
-  </data>
-  <data name="Explorer.Warning.BitmapChecksum">
-    <value>A {0} bittérképblokk érvénytelen ellenőrzőösszeggel rendelkezik.</value>
-  </data>
-  <data name="Explorer.Warning.CpmAllocation">
-    <value>{0}: A {1} CP/M allokációs blokk a képen kívül van.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDirectoryCyclic">
-    <value>Ciklikus CBM DOS címtárlánc itt: {0}/{1}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDirectoryMissing">
-    <value>Hiányzik a CBM DOS címtár szektora: {0}/{1}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDataCyclic">
-    <value>{0}: Ciklikus adatlánc a következő helyen: {1}/{2}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDataMissing">
-    <value>{0}: A {1}/{2} adatszektor hiányzik.</value>
-  </data>
-  <data name="Explorer.Warning.CbmCapacity">
-    <value>{0}: a fájllánc meghaladja a képkapacitást.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdDirectoryMissing">
-    <value>Egy vagy több UCSD-könyvtárblokk hiányzik.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdEntry">
-    <value>A {0} UCSD-címtárbejegyzés neve érvénytelen vagy üres.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdRange">
-    <value>{0}: érvénytelen blokktartomány {1}..{2}.</value>
-  </data>
-  <data name="Explorer.Warning.DataBlocksMissing">
-    <value>{0}: egy vagy több adatblokk hiányzik.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdCount">
-    <value>Az UCSD-könyvtár {0} fájlt deklarál, de {1} érvényes bejegyzés található.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentInodeZero">
-    <value>{0}: Érvénytelen COHERENT 0. inode.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentInodeOutside">
-    <value>{0}: A {1} COHERENT inode kívül van a képen.</value>
-  </data>
-  <data name="Explorer.Warning.FileTooLarge">
-    <value>{0}: A fájl túl nagy.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentBlock">
-    <value>{0}: A {1} COHERENT blokk kívül van a képen.</value>
-  </data>
-  <data name="Explorer.Warning.BytesUnread">
-    <value>{0}: {1} bájt nem olvasható.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentIndirect">
-    <value>{0}: a {1} közvetett KOHERENT blokk a képen kívül van.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11SegmentMissing">
-    <value>Az RT-11 {0} címtárszegmens hiányzik.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11EntrySize">
-    <value>Az RT-11 {0} címtárszegmens bejegyzésmérete érvénytelen.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11EmptyName">
-    <value>A {0} blokkban lévő RT-11 bejegyzésnek üres a neve.</value>
-  </data>
-  <data name="Explorer.Warning.ProDosNesting">
-    <value>Elérte a ProDOS címtárbeágyazási korlátot.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryBlockCyclic">
-    <value>A {0} címtárblokk hiányzik vagy ciklikus.</value>
-  </data>
-  <data name="Explorer.Warning.MasterIndexMissing">
-    <value>{0}: a {1} fő indexblokk hiányzik.</value>
-  </data>
-  <data name="Explorer.Warning.DataBlockMissing">
-    <value>{0}: a {1} adatblokk hiányzik.</value>
-  </data>
-  <data name="Explorer.Warning.IndexBlockMissing">
-    <value>{0}: a {1} indexblokk hiányzik.</value>
-  </data>
-  <data name="Explorer.Warning.CatalogMissing">
-    <value>A T{0} S{1} katalógusszektor hiányzik vagy ciklikus.</value>
-  </data>
-  <data name="Explorer.Warning.CatalogSize">
-    <value>{0}: a katalógus mérete inkonzisztens.</value>
-  </data>
-  <data name="Explorer.Warning.TrackSectorList">
-    <value>{0}: T/S lista T{1} S{2} hiányzik vagy ciklikus.</value>
-  </data>
-  <data name="Explorer.Warning.TrackSectorData">
-    <value>{0}: a T{1} S{2} adatszektor hiányzik.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryBlockMissing">
-    <value>A {0} címtárblokk hiányzik.</value>
-  </data>
-  <data name="Explorer.Warning.MfsEntry">
-    <value>Érvénytelen MFS-könyvtárbejegyzés a {0} blokkban.</value>
-  </data>
-  <data name="Explorer.Warning.ResourceFork">
-    <value>{0}: az erőforrás-elágazás metaadatai inkonzisztensek.</value>
-  </data>
-  <data name="Explorer.Warning.MfsChain">
-    <value>{0}: érvénytelen MFS-elosztási lánc.</value>
-  </data>
-  <data name="Explorer.Warning.BlockMissing">
-    <value>{0}: a {1} blokk hiányzik.</value>
-  </data>
-  <data name="Explorer.Warning.BbcSector">
-    <value>{0}: a {1} adatszektor hiányzik.</value>
-  </data>
-  <data name="Explorer.Warning.HfsCatalog">
-    <value>A HFS katalógus nem tartalmaz olvasható levélrekordokat.</value>
-  </data>
-  <data name="Explorer.Warning.HfsDirectory">
-    <value>Ciklikus HFS-könyvtár #{0}.</value>
-  </data>
-  <data name="Explorer.Warning.HfsBlock">
-    <value>{0}: A {1} HFS blokk hiányzik.</value>
-  </data>
-  <data name="Explorer.Warning.HfsExtents">
-    <value>{0}: további HFS-kiterjesztésekre van szükség, vagy hiányoznak az adatok.</value>
-  </data>
-  <data name="Explorer.Warning.FatNesting">
-    <value>Elérte a FAT-könyvtár beágyazási korlátját.</value>
-  </data>
-  <data name="Explorer.Warning.FatChain">
-    <value>{0}: Érvénytelen vagy ciklikus FAT-lánc a {1} fürtben.</value>
-  </data>
-  <data name="Explorer.Warning.SectorMissing">
-    <value>A {0} szektor hiányzik.</value>
-  </data>
-  <data name="Explorer.Warning.LisaCatalog">
-    <value>A Lisa katalógus oldalai hiányoznak; a fájlnevek csak az oldalcímkékből lettek visszaállítva.</value>
-  </data>
-  <data name="Explorer.Warning.AtariDirectory">
-    <value>A {0} címtár szektor hiányzik.</value>
-  </data>
-  <data name="Explorer.Warning.AtariData">
-    <value>{0}: érvénytelen vagy hiányzik az Atari DOS adatszektor.</value>
-  </data>
-  <data name="Explorer.Warning.AtariOwner">
-    <value>A {0} szektor a {1} fájlhoz tartozik, várhatóan {2}.</value>
-  </data>
+  <data name="Explorer.Warning.InvalidChecksum"><value>A {0} gyökérblokk érvénytelen ellenőrzőösszeggel rendelkezik.</value></data>
+  <data name="Explorer.Warning.DirectoryNesting"><value>Elérte a címtárbeágyazási korlátot.</value></data>
+  <data name="Explorer.Warning.InvalidDirectoryChain"><value>Érvénytelen vagy ciklikus könyvtárlánc blokkban {0}.</value></data>
+  <data name="Explorer.Warning.DirectoryEntryMissing"><value>A {0} címtárbeviteli blokk hiányzik.</value></data>
+  <data name="Explorer.Warning.AmigaExtension"><value>{0}: Érvénytelen fájlkiterjesztés blokk {1}.</value></data>
+  <data name="Explorer.Warning.AmigaBlock"><value>{0}: A AmigaDOS {1} ({2}) hiányzik.</value></data>
+  <data name="Explorer.Warning.FileDataMissing"><value>A {0} fájl adatblokk hiányzik.</value></data>
+  <data name="Explorer.Warning.OfsType"><value>OFS adatblokk {0} váratlan típusa van.</value></data>
+  <data name="Explorer.Warning.BitmapMissing"><value>A {0} bittérképblokk hiányzik.</value></data>
+  <data name="Explorer.Warning.BitmapChecksum"><value>A {0} bittérképblokk érvénytelen ellenőrzőösszeggel rendelkezik.</value></data>
+  <data name="Explorer.Warning.CpmAllocation"><value>{0}: CP/ M hozzárendelési blokk {1} kívül esik a képen.</value></data>
+  <data name="Explorer.Warning.CbmDirectoryCyclic"><value>Ciklikus CBM DOS címtárlánc itt: {0}/{1}.</value></data>
+  <data name="Explorer.Warning.CbmDirectoryMissing"><value>CBM DOS könyvtárszektor {0}/{1} hiányzik.</value></data>
+  <data name="Explorer.Warning.CbmDataCyclic"><value>{0}: Ciklikus adatlánc a következő helyen: {1}/{2}.</value></data>
+  <data name="Explorer.Warning.CbmDataMissing"><value>{0}: A {1}/{2} adatszektor hiányzik.</value></data>
+  <data name="Explorer.Warning.CbmCapacity"><value>{0}: a fájllánc meghaladja a képkapacitást.</value></data>
+  <data name="Explorer.Warning.UcsdDirectoryMissing"><value>Egy vagy több UCSD-könyvtárblokk hiányzik.</value></data>
+  <data name="Explorer.Warning.UcsdEntry"><value>UCSD könyvtárbejegyzés {0} érvénytelen vagy üres neve van.</value></data>
+  <data name="Explorer.Warning.UcsdRange"><value>{0}: érvénytelen blokktartomány {1}..{2}.</value></data>
+  <data name="Explorer.Warning.DataBlocksMissing"><value>{0}: egy vagy több adatblokk hiányzik.</value></data>
+  <data name="Explorer.Warning.UcsdCount"><value>Az UCSD-könyvtár {0} fájlt deklarál, de {1} érvényes bejegyzés található.</value></data>
+  <data name="Explorer.Warning.CoherentInodeZero"><value>{0}: Érvénytelen COHERENT 0. inode.</value></data>
+  <data name="Explorer.Warning.CoherentInodeOutside"><value>{0}: COHERENT inode {1} kívül esik a képen.</value></data>
+  <data name="Explorer.Warning.FileTooLarge"><value>{0}: A fájl túl nagy.</value></data>
+  <data name="Explorer.Warning.CoherentBlock"><value>{0}: COHERENT blokk {1} kívül esik a képen.</value></data>
+  <data name="Explorer.Warning.BytesUnread"><value>{0}: {1} bájt nem olvasható.</value></data>
+  <data name="Explorer.Warning.CoherentIndirect"><value>{0}: indirekt COHERENT blokk {1} kívül esik a képen.</value></data>
+  <data name="Explorer.Warning.Rt11SegmentMissing"><value>Az RT-11 {0} címtárszegmens hiányzik.</value></data>
+  <data name="Explorer.Warning.Rt11EntrySize"><value>Az RT-11 {0} címtárszegmens bejegyzésmérete érvénytelen.</value></data>
+  <data name="Explorer.Warning.Rt11EmptyName"><value>RT-11 bejegyzés a blokkban {0} üres neve van.</value></data>
+  <data name="Explorer.Warning.ProDosNesting"><value>Elérte a ProDOS címtárbeágyazási korlátot.</value></data>
+  <data name="Explorer.Warning.DirectoryBlockCyclic"><value>A {0} címtárblokk hiányzik vagy ciklikus.</value></data>
+  <data name="Explorer.Warning.MasterIndexMissing"><value>{0}: a {1} fő indexblokk hiányzik.</value></data>
+  <data name="Explorer.Warning.DataBlockMissing"><value>{0}: a {1} adatblokk hiányzik.</value></data>
+  <data name="Explorer.Warning.IndexBlockMissing"><value>{0}: a {1} indexblokk hiányzik.</value></data>
+  <data name="Explorer.Warning.CatalogMissing"><value>A T{0} S{1} katalógusszektor hiányzik vagy ciklikus.</value></data>
+  <data name="Explorer.Warning.CatalogSize"><value>{0}: a katalógus mérete inkonzisztens.</value></data>
+  <data name="Explorer.Warning.TrackSectorList"><value>{0}: T/S lista T{1} S{2} hiányzik vagy ciklikus.</value></data>
+  <data name="Explorer.Warning.TrackSectorData"><value>{0}: a T{1} S{2} adatszektor hiányzik.</value></data>
+  <data name="Explorer.Warning.DirectoryBlockMissing"><value>A {0} címtárblokk hiányzik.</value></data>
+  <data name="Explorer.Warning.MfsEntry"><value>Érvénytelen MFS könyvtárbejegyzés a blokkban {0}.</value></data>
+  <data name="Explorer.Warning.ResourceFork"><value>{0}: az erőforrás-elágazás metaadatai inkonzisztensek.</value></data>
+  <data name="Explorer.Warning.MfsChain"><value>{0}: érvénytelen MFS-elosztási lánc.</value></data>
+  <data name="Explorer.Warning.BlockMissing"><value>{0}: a {1} blokk hiányzik.</value></data>
+  <data name="Explorer.Warning.BbcSector"><value>{0}: a {1} adatszektor hiányzik.</value></data>
+  <data name="Explorer.Warning.HfsCatalog"><value>A HFS katalógus nem tartalmaz olvasható levélrekordokat.</value></data>
+  <data name="Explorer.Warning.HfsDirectory"><value>Ciklikus HFS-könyvtár #{0}.</value></data>
+  <data name="Explorer.Warning.HfsBlock"><value>{0}: HFS blokk {1} hiányzik.</value></data>
+  <data name="Explorer.Warning.HfsExtents"><value>{0}: további HFS-kiterjesztésekre van szükség, vagy hiányoznak az adatok.</value></data>
+  <data name="Explorer.Warning.FatNesting"><value>Elérte a FAT-könyvtár beágyazási korlátját.</value></data>
+  <data name="Explorer.Warning.FatChain"><value>{0}: Érvénytelen vagy ciklikus FAT lánc a klaszteren {1}.</value></data>
+  <data name="Explorer.Warning.SectorMissing"><value>A {0} szektor hiányzik.</value></data>
+  <data name="Explorer.Warning.LisaCatalog"><value>A Lisa katalógus oldalai hiányoznak; a fájlnevek csak az oldalcímkékből lettek visszaállítva.</value></data>
+  <data name="Explorer.Warning.AtariDirectory"><value>A {0} címtár szektor hiányzik.</value></data>
+  <data name="Explorer.Warning.AtariData"><value>{0}: érvénytelen vagy hiányzik az Atari DOS adatszektor.</value></data>
+  <data name="Explorer.Warning.AtariOwner"><value>Szektor {0} a fájlhoz tartozik {1}, várható {2}.</value></data>
 </root>

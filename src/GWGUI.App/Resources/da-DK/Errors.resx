@@ -12,28 +12,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.SettingsSaveFailed">
-    <value>Indstillinger kunne ikke gemmes.
-
-{0}</value>
-  </data>
-  <data name="Error.Title">
-    <value>GW GUI fejl</value>
-  </data>
-  <data name="Error.Unexpected">
-    <value>En uventet fejl blev opsnappet.
-
-{0}</value>
-  </data>
-  <data name="Error.SaveFailed">
-    <value>Indstillingerne kunne ikke gemmes. Vinduet vil stadig lukke.
-
-{0}</value>
-  </data>
-  <data name="Error.LogSaved">
-    <value>Den fulde rapport blev gemt på:
-{0}</value>
-  </data>
+  <data name="App.SettingsSaveFailed"><value>Indstillinger kunne ikke gemmes.&#xA;&#xA;{0}</value></data>
+  <data name="Error.Title"><value>GW GUI fejl</value></data>
+  <data name="Error.Unexpected"><value>En uventet fejl blev opsnappet.&#xA;&#xA;{0}</value></data>
+  <data name="Error.SaveFailed"><value>Indstillingerne kunne ikke gemmes. Vinduet vil stadig lukke.&#xA;&#xA;{0}</value></data>
+  <data name="Error.LogSaved"><value>Den fulde rapport blev gemt på:&#xA;{0}</value></data>
   <data name="Error.Description.NetworkTimeout"><value>Fjernbetjeningen reagerede ikke før forbindelsen timede ud. Tjek netværksforbindelsen og prøv igen.</value></data>
   <data name="Error.Description.NetworkDns"><value>Den eksterne serviceadresse kunne ikke løses. Tjek netværkets eller DNS-indstillingerne og prøv igen.</value></data>
   <data name="Error.Description.NetworkRefused"><value>Fjernbetjeningen afslog forbindelsen. Den kan være utilgængelig eller blokeret.</value></data>

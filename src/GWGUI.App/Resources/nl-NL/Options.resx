@@ -12,182 +12,68 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Options.Title">
-    <value>Opties</value>
-  </data>
-  <data name="Options.General">
-    <value>Algemeen</value>
-  </data>
-  <data name="Options.Tools">
-    <value>Greaseweazle Gereedschap</value>
-  </data>
-  <data name="Options.Hardware">
-    <value>Controllers en aandrijvingen</value>
-  </data>
-  <data name="Options.Profiles">
-    <value>Profielen</value>
-  </data>
-  <data name="Options.ImagesFolder">
-    <value>Standaard schijfkopiemap</value>
-  </data>
-  <data name="Options.Language">
-    <value>Taal</value>
-  </data>
-  <data name="Options.Theme">
-    <value>Thema</value>
-  </data>
-  <data name="Theme.System">
-    <value>Systeem</value>
-  </data>
-  <data name="Theme.Light">
-    <value>Licht</value>
-  </data>
-  <data name="Theme.Dark">
-    <value>Donker</value>
-  </data>
-  <data name="Options.GwPath">
-    <value>Pad naar gw.exe</value>
-  </data>
-  <data name="Options.ToolsHelp">
-    <value>Als de tools ontbreken, biedt de assistent aan om ze te downloaden of een bestaande installatie te kiezen. Updates worden alleen aangekondigd.</value>
-  </data>
-  <data name="Options.HardwarePersistence">
-    <value>Hardware-instellingen blijven opgeslagen wanneer een schijf wordt losgekoppeld.</value>
-  </data>
-  <data name="Options.ExecutableFilter">
-    <value>Greaseweazle (gw.exe)|gw.exe|Uitvoerbaar bestand (*.exe)|*.exe</value>
-  </data>
-  <data name="Options.RemoveHardware">
-    <value>Deze opgeslagen controller en alle bijbehorende schijven verwijderen?</value>
-  </data>
-  <data name="Options.HardwareTitle">
-    <value>Hardware</value>
-  </data>
-  <data name="Options.UseConversionTags">
-    <value>Gebruik tags in conversiebestandsnamen</value>
-  </data>
-  <data name="Options.TagPreset">
-    <value>Voorinstelling</value>
-  </data>
-  <data name="Options.TagPresetFamily">
-    <value>Alleen familie</value>
-  </data>
-  <data name="Options.TagPresetFormat">
-    <value>Alleen formaat</value>
-  </data>
-  <data name="Options.TagPresetFamilyFormat">
-    <value>Familie en formaat</value>
-  </data>
-  <data name="Options.TagPresetFamilyExtension">
-    <value>Familie en uitbreiding</value>
-  </data>
-  <data name="Options.TagPresetDetailed">
-    <value>Familie, formaat en uitbreiding</value>
-  </data>
-  <data name="Options.TagPattern">
-    <value>Patroon voor conversietags</value>
-  </data>
-  <data name="Options.TagVariablesTitle">
-    <value>Beschikbare variabelen</value>
-  </data>
-  <data name="Options.TagVariableName">
-    <value>Bronbestandsnaam</value>
-  </data>
-  <data name="Options.TagVariableFamily">
-    <value>Familie: PC, ST, AMIGA…</value>
-  </data>
-  <data name="Options.TagVariableFormat">
-    <value>Formaat: 720, 1440, DD…</value>
-  </data>
-  <data name="Options.TagVariableExtension">
-    <value>Extensie: IMA, ST, ADF…</value>
-  </data>
-  <data name="Options.TagVariableDateIso">
-    <value>Datum: 06-08-2026</value>
-  </data>
-  <data name="Options.TagVariableDateCompact">
-    <value>Datum: 20260806</value>
-  </data>
-  <data name="Options.TagVariableDateLocal">
-    <value>Datum: 06-08-2026</value>
-  </data>
-  <data name="Options.TagVariableTimeFull">
-    <value>Tijd: 14-35-42</value>
-  </data>
-  <data name="Options.TagVariableTimeCompact">
-    <value>Tijd: 143542</value>
-  </data>
-  <data name="Options.TagVariableTimeShort">
-    <value>Tijd: 14-35</value>
-  </data>
-  <data name="Options.TagPatternHelp">
-    <value>{NAME} — bronbestandsnaam
-{FAMILY} — machinefamilie (PC, ST, AMIGA…)
-{FORMAT} — formaat of geometrie (720, 1440, DD…)
-{EXTENSION} — uitgangsuitbreiding (IMA, ST, ADF…)
-{DATE:YYYY-MM-DD} — datum 06-08-2026
-{DATE:YYYYMMDD} — datum 20260806
-{DATE:DD-MM-YYYY} — datum 06-08-2026
-{TIME:HH-MM-SS} — tijd 14-35-42
-{TIME:HHMMSS} — tijd 143542
-{TIME:HH-MM} — tijd 14-35</value>
-  </data>
-  <data name="Options.RecentTagPatterns">
-    <value>Recente aangepaste patronen</value>
-  </data>
-  <data name="Options.NextTagExample">
-    <value>Volgend voorbeeld</value>
-  </data>
-  <data name="Options.TagPatternPreview">
-    <value>Voorbeeld: {0}</value>
-  </data>
-  <data name="Options.TagPatternInvalid">
-    <value>Het tagpatroon moet {tag} bevatten.</value>
-  </data>
-  <data name="Options.EnableLogs">
-    <value>Bewaar logboeken</value>
-  </data>
-  <data name="Options.Logs">
-    <value>Logboeken</value>
-  </data>
-  <data name="Options.LogsDescription">
-    <value>Elke actie heeft een eigen bestand in de map GW GUI Logs.</value>
-  </data>
-  <data name="Options.LogActionErase">
-    <value>Wissen</value>
-  </data>
-  <data name="Options.LogActionClean">
-    <value>Schone hoofden</value>
-  </data>
-  <data name="Options.OpenLogsFolder">
-    <value>Map openen</value>
-  </data>
-  <data name="Options.LogMaximumSize">
-    <value>Maximale grootte</value>
-  </data>
-  <data name="Options.KeepLogArchives">
-    <value>Bewaar eerdere logboeken</value>
-  </data>
-  <data name="Options.LogUnlimitedHint">
-    <value>0 = onbeperkt</value>
-  </data>
-  <data name="Options.Engines" xml:space="preserve"><value>Engines</value></data>
+  <data name="Options.Title"><value>Opties</value></data>
+  <data name="Options.General"><value>Algemeen</value></data>
+  <data name="Options.Tools"><value>Greaseweazle Gereedschap</value></data>
+  <data name="Options.Hardware"><value>Controllers en aandrijvingen</value></data>
+  <data name="Options.Profiles"><value>Profielen</value></data>
+  <data name="Options.ImagesFolder"><value>Standaard schijfkopiemap</value></data>
+  <data name="Options.Language"><value>Taal</value></data>
+  <data name="Options.Theme"><value>Thema</value></data>
+  <data name="Theme.System"><value>Systeem</value></data>
+  <data name="Theme.Light"><value>Licht</value></data>
+  <data name="Theme.Dark"><value>Donker</value></data>
+  <data name="Options.GwPath"><value>Pad naar gw.exe</value></data>
+  <data name="Options.ToolsHelp"><value>Als de tools ontbreken, biedt de assistent aan om ze te downloaden of een bestaande installatie te kiezen. Updates worden alleen aangekondigd.</value></data>
+  <data name="Options.HardwarePersistence"><value>Hardware-instellingen blijven opgeslagen wanneer een schijf wordt losgekoppeld.</value></data>
+  <data name="Options.ExecutableFilter"><value>Greaseweazle (gw.exe)|gw.exe|uitvoerbaar (*.exe)|*.exe</value></data>
+  <data name="Options.RemoveHardware"><value>Deze opgeslagen controller en alle bijbehorende schijven verwijderen?</value></data>
+<data name="Options.UseConversionTags"><value>Gebruik tags in conversiebestandsnamen</value></data>
+  <data name="Options.TagPreset"><value>Voorinstelling</value></data>
+  <data name="Options.TagPresetFamily"><value>Alleen familie</value></data>
+  <data name="Options.TagPresetFormat"><value>Alleen formaat</value></data>
+  <data name="Options.TagPresetFamilyFormat"><value>Familie en formaat</value></data>
+  <data name="Options.TagPresetFamilyExtension"><value>Familie en uitbreiding</value></data>
+  <data name="Options.TagPresetDetailed"><value>Familie, formaat en uitbreiding</value></data>
+  <data name="Options.TagPattern"><value>Patroon voor conversietags</value></data>
+  <data name="Options.TagVariablesTitle"><value>Beschikbare variabelen</value></data>
+  <data name="Options.TagVariableName"><value>Bronbestandsnaam</value></data>
+  <data name="Options.TagVariableFamily"><value>Familie: PC, ST, AMIGA…</value></data>
+  <data name="Options.TagVariableFormat"><value>Formaat: 720, 1440, DD…</value></data>
+  <data name="Options.TagVariableExtension"><value>Extensie: IMA, ST, ADF…</value></data>
+  <data name="Options.TagVariableDateIso"><value>Datum: 06-08-2026</value></data>
+  <data name="Options.TagVariableDateCompact"><value>Datum: 20260806</value></data>
+  <data name="Options.TagVariableDateLocal"><value>Datum: 06-08-2026</value></data>
+  <data name="Options.TagVariableTimeFull"><value>Tijd: 14-35-42</value></data>
+  <data name="Options.TagVariableTimeCompact"><value>Tijd: 143542</value></data>
+  <data name="Options.TagVariableTimeShort"><value>Tijd: 14-35</value></data>
+  <data name="Options.TagPatternHelp"><value>{NAME} &#xA;{FAMILY} . . machinefamilie (PC, ST, AMIGA...)&#xA;{FORMAT} formaat of geometrie (720, 1440, DD...)&#xA;{EXTENSION} • uitbreiding van de uitvoer (IMA, ST, ADF...)&#xA;{DATE:YYYY-MM-DD} &#xA;{DATE:YYYYMMDD} &#xA;{DATE:DD-MM-YYYY} &#xA;{TIME:HH-MM-SS} &#xA;{TIME:HHMMSS} &#xA;{TIME:HH-MM} </value></data>
+  <data name="Options.RecentTagPatterns"><value>Recente aangepaste patronen</value></data>
+  <data name="Options.NextTagExample"><value>Volgend voorbeeld</value></data>
+  <data name="Options.TagPatternPreview"><value>Voorbeeld: {0}</value></data>
+  <data name="Options.TagPatternInvalid"><value>Het tagpatroon moet bevatten {tag}.</value></data>
+  <data name="Options.EnableLogs"><value>Bewaar logboeken</value></data>
+  <data name="Options.Logs"><value>Logboeken</value></data>
+  <data name="Options.LogsDescription"><value>Elke actie heeft een eigen bestand in de map GW GUI Logs.</value></data>
+  <data name="Options.LogActionErase"><value>Wissen</value></data>
+  <data name="Options.LogActionClean"><value>Schone hoofden</value></data>
+  <data name="Options.OpenLogsFolder"><value>Map openen</value></data>
+  <data name="Options.LogMaximumSize"><value>Maximale grootte</value></data>
+  <data name="Options.KeepLogArchives"><value>Bewaar eerdere logboeken</value></data>
+  <data name="Options.LogUnlimitedHint"><value>0 = onbeperkt</value></data>
+  <data name="Options.Engines"><value>Motoren</value></data>
   <data name="Engines.Description" xml:space="preserve"><value>Kies onafhankelijk de engine die voor elke bewerking wordt gebruikt.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>Interne GW GUI-engine</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>De geselecteerde engine wordt strikt gebruikt. Kan deze de bewerking niet uitvoeren, dan meldt GW GUI dit zonder stilzwijgend de andere engine te gebruiken.</value></data>
-  <data name="Emulation.Model" xml:space="preserve"><value>Model</value></data>
   <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Muis vastleggen</value></data>
   <data name="Emulation.Configuration" xml:space="preserve"><value>Instellingen</value></data>
-  <data name="Controllers.Title" xml:space="preserve"><value>Controllers</value></data>
   <data name="Controllers.Detect" xml:space="preserve"><value>Controllers detecteren</value></data>
   <data name="Controllers.Device" xml:space="preserve"><value>Apparaat</value></data>
   <data name="Controllers.VisualModel" xml:space="preserve"><value>Model</value></data>
   <data name="Controllers.NoneDetected" xml:space="preserve"><value>Geen controller gedetecteerd</value></data>
   <data name="Controllers.DetectedCount" xml:space="preserve"><value>{0} controller(s) gedetecteerd</value></data>
   <data name="Controllers.TestRumble" xml:space="preserve"><value>Trilling testen</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve">
-    <value>Trillingssterkte</value>
-  </data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>Trillingssterkte</value></data>
   <data name="Controllers.LiveInputs" xml:space="preserve"><value>Live-invoer</value></data>
   <data name="Controllers.Control" xml:space="preserve"><value>Bediening</value></data>
   <data name="Controllers.Value" xml:space="preserve"><value>Waarde</value></data>
@@ -218,17 +104,10 @@
   <data name="Controllers.Yes" xml:space="preserve"><value>Ja</value></data>
   <data name="Controllers.No" xml:space="preserve"><value>Nee</value></data>
   <data name="Controllers.None" xml:space="preserve"><value>Geen</value></data>
-  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>Algemene gamepad</value></data>
-  <data name="Controllers.Model.Auto" xml:space="preserve"><value>Automatisch</value></data>
-  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>Stuurwiel</value></data>
-  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>Vliegstick</value></data>
-  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>Arcadestick</value></data>
-  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Ruwe byte</value></data>
+<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Ruwe byte</value></data>
   <data name="Controllers.AnalogValues" xml:space="preserve"><value>Analoge waarden</value></data>
   <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Controllerdetectie mislukt</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve">
-    <value>Controllers detecteren…</value>
-  </data>
+  <data name="Controllers.Detecting" xml:space="preserve"><value>Controllers detecteren…</value></data>
   <data name="Controllers.ReadFailed" xml:space="preserve"><value>Controller lezen mislukt</value></data>
   <data name="Controllers.TestRunning" xml:space="preserve"><value>Test wordt uitgevoerd…</value></data>
   <data name="Controllers.TestFailed" xml:space="preserve"><value>Test mislukt</value></data>
@@ -253,91 +132,49 @@
   <data name="Controllers.Roll" xml:space="preserve"><value>Rollen</value></data>
   <data name="Controllers.Pitch" xml:space="preserve"><value>Stampen</value></data>
   <data name="Controllers.Yaw" xml:space="preserve"><value>Gieren</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve">
-    <value>Sensoren</value>
-  </data>
-  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
-    <value>UI-navigatie</value>
-  </data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
-    <value>Gamepad</value>
-  </data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
-    <value>Laagfrequente motor</value>
-  </data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
-    <value>Hoogfrequente motor</value>
-  </data>
-  <data name="Controllers.Enum.Share" xml:space="preserve">
-    <value>Delen</value>
-  </data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve">
-    <value>Lineair</value>
-  </data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve">
-    <value>Hoekvormig</value>
-  </data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve">
-    <value>Normaal</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
-    <value>Constant</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
-    <value>Helling</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
-    <value>Sinusgolf</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
-    <value>Blokgolf</value>
-  </data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
-    <value>Driehoeksgolf</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
-    <value>Stijgende zaagtand</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
-    <value>Dalende zaagtand</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
-    <value>Veer</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
-    <value>Wrijving</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
-    <value>Demper</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
-    <value>Traagheid</value>
-  </data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve">
-    <value>Joystick</value>
-  </data>
-  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
-    <value>Meerassige controller</value>
-  </data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
-    <value>HID-gebruik</value>
-  </data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve">
-    <value>assen</value>
-  </data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve">
-    <value>knoppen</value>
-  </data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
-    <value>Samengevoegd</value>
-  </data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve">
-    <value>Virtueel</value>
-  </data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve">
-    <value>Invoerrapport</value>
-  </data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
-    <value>Uitvoerrapport</value>
-  </data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Sensoren</value></data>
+  <data name="Controllers.Enum.UiNavigation" xml:space="preserve"><value>UI-navigatie</value></data>
+<data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Laagfrequente motor</value></data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Hoogfrequente motor</value></data>
+  <data name="Controllers.Enum.Share" xml:space="preserve"><value>Delen</value></data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Lineair</value></data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Hoekvormig</value></data>
+  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>Normaal</value></data>
+<data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Helling</value></data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Sinusgolf</value></data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>Blokgolf</value></data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>Driehoeksgolf</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>Stijgende zaagtand</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>Dalende zaagtand</value></data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>Veer</value></data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Wrijving</value></data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Demper</value></data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Traagheid</value></data>
+<data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Meerassige controller</value></data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID-gebruik</value></data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>assen</value></data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>knoppen</value></data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Samengevoegd</value></data>
+  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>Virtueel</value></data>
+  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Invoerrapport</value></data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Uitvoerrapport</value></data>
+<data name="Emulation.InitialDisk"><value>Initiële schijf</value></data>
+  <data name="Emulation.Audio"><value>Geluid</value></data>
+  <data name="Emulation.Core.NameOptions"><value>Kernopties</value></data>
+  <data name="Emulation.MultiDrive"><value>Mount de eerste vier schijven in DF0DF3</value></data>
+  <data name="Emulation.DiskNumber"><value>Schijf {0}</value></data>
+  <data name="Emulation.LoadOptions"><value>Beschikbare opties laden</value></data>
+  <data name="Emulation.Configurations"><value>Configuraties</value></data>
+  <data name="Emulation.ReleaseMouse"><value>Laat de muis los</value></data>
+  <data name="Emulation.DeleteConfirm"><value>Deze Amiga configuratie verwijderen?</value></data>
+  <data name="Emulation.ModelRequired"><value>Een Amiga model is vereist.</value></data>
+  <data name="Emulation.KickstartRequired"><value>Een Kickstart pad is vereist.</value></data>
+  <data name="Emulation.FileRequired"><value>Een vereiste firmware pad is leeg.</value></data>
+  <data name="Emulation.FileMissing"><value>Het geselecteerde bestand bestaat niet.</value></data>
+<data name="Controllers.Enum.Gamepad"><value>Spelpad</value></data>
+<data name="Options.EmulationMachineTitle"><value>{0}  {1} : {2}</value></data>
+  <data name="Controllers.AnalogDeadZones"><value>Analoge dode zones</value></data>
+  <data name="Controllers.StickDeadZone"><value>Stokken</value></data>
+  <data name="Controllers.TriggerDeadZone"><value>Drempels</value></data>
+  <data name="Controllers.OuterDeadZone"><value>Buitenste dode zone</value></data>
 </root>

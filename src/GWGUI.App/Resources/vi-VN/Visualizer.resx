@@ -12,209 +12,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Visual.Decoder">
-    <value>Bộ giải mã</value>
-  </data>
-  <data name="Visual.LinkZoom">
-    <value>Thu phóng liên kết</value>
-  </data>
-  <data name="Visual.OpenScp">
-    <value>Mở tệp SCP…</value>
-  </data>
-  <data name="Visual.NoFile">
-    <value>Không có tệp SCP nào được mở</value>
-  </data>
-  <data name="Visual.Waiting">
-    <value>Đang chờ một tập tin</value>
-  </data>
-  <data name="Visual.Inspector">
-    <value>Thanh tra</value>
-  </data>
-  <data name="Visual.SelectTrack">
-    <value>Chọn một bản nhạc.</value>
-  </data>
-  <data name="Visual.Controls">
-    <value>Click: chọn · Wheel: zoom · Click chuột phải: pan</value>
-  </data>
-  <data name="Visual.NormalFlux">
-    <value>Thông lượng bình thường</value>
-  </data>
-  <data name="Visual.ShortTransition">
-    <value>Chuyển tiếp ngắn</value>
-  </data>
-  <data name="Visual.LongTransition">
-    <value>Chuyển tiếp dài/bất thường</value>
-  </data>
-  <data name="Visual.Loading">
-    <value>Đang đọc tệp…</value>
-  </data>
-  <data name="Visual.Invalid">
-    <value>Tệp không hợp lệ</value>
-  </data>
-  <data name="Visual.Title">
-    <value>SCP trực quan hóa</value>
-  </data>
-  <data name="Visual.ChecksumValid">
-    <value>có hiệu lực</value>
-  </data>
-  <data name="Visual.ChecksumInvalid">
-    <value>không hợp lệ</value>
-  </data>
-  <data name="Visual.Summary">
-    <value>SCP {0} · {1} rãnh · {2} vòng quay · {3} độ phân giải ns · {4} tổng kiểm tra</value>
-  </data>
-  <data name="Visual.Revolution">
-    <value>Cách mạng {0}: {1:N0} chuyển tiếp · {2:F2} ms · {3:F2} RPM</value>
-  </data>
-  <data name="Visual.Analysis">
-    <value>Giải mã: {0}
-Sự tự tin: {1:P0}
-Ô ước tính: {2:F1} tích tắc
-Cấu trúc: {3}</value>
-  </data>
-  <data name="Visual.Track">
-    <value>Bên: {0}
-Theo dõi: {1}
-SCP mục nhập: {2}</value>
-  </data>
-  <data name="Visual.SideNoData">
-    <value>Bên {0}
-Không có dữ liệu</value>
-  </data>
-  <data name="Visual.TrackTooltip">
-    <value>Bên {0} · Theo dõi {1}
-{2} cuộc cách mạng</value>
-  </data>
-  <data name="Visual.Automatic">
-    <value>Tự động</value>
-  </data>
-  <data name="Visual.StructureHeader">
-    <value>Tiêu đề/địa chỉ</value>
-  </data>
-  <data name="Visual.StructureData">
-    <value>Dữ liệu được giải mã</value>
-  </data>
-  <data name="Visual.StructureAnomaly">
-    <value>Đã xóa/bất thường</value>
-  </data>
-  <data name="Visual.AnalysedRevolution">
-    <value>Phân tích dựa trên cuộc cách mạng {0}.</value>
-  </data>
-  <data name="Visual.BitOffset">
-    <value>chút {0:N0}</value>
-  </data>
-  <data name="Visual.SectorDetail">
-    <value>Khu vực C{0} H{1} R{2} · {3} byte · {4} {5}</value>
-  </data>
-  <data name="Visual.CrcValid">
-    <value>có hiệu lực</value>
-  </data>
-  <data name="Visual.CrcInvalid">
-    <value>không hợp lệ</value>
-  </data>
-  <data name="Visual.IntegrityUnavailable">
-    <value>không có sẵn</value>
-  </data>
-  <data name="Visual.StructureKind.Sync">
-    <value>Đồng bộ hóa</value>
-  </data>
-  <data name="Visual.StructureKind.IdAddressMark">
-    <value>Tiêu đề ngành</value>
-  </data>
-  <data name="Visual.StructureKind.DataAddressMark">
-    <value>Dữ liệu ngành</value>
-  </data>
-  <data name="Visual.StructureKind.DeletedDataAddressMark">
-    <value>Dữ liệu ngành đã xóa</value>
-  </data>
-  <data name="Visual.StructureKind.AmigaSync">
-    <value>Amiga đồng bộ hóa</value>
-  </data>
-  <data name="Visual.StructureKind.AppleAddress">
-    <value>Lời mở đầu địa chỉ Apple</value>
-  </data>
-  <data name="Visual.StructureKind.AppleData">
-    <value>Lời mở đầu về dữ liệu của Apple</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreSync">
-    <value>Commodore đồng bộ hóa</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreHeader">
-    <value>Commodore tiêu đề</value>
-  </data>
-  <data name="Visual.StructureKind.FormatHeader">
-    <value>Định dạng tiêu đề</value>
-  </data>
-  <data name="Visual.StructureKind.FormatData">
-    <value>Định dạng dữ liệu</value>
-  </data>
-  <data name="Visual.StructureKind.TimingAnomaly">
-    <value>Bất thường về thời gian</value>
-  </data>
-  <data name="Visual.OpenFilter">
-    <value>SuperCard Pro chụp (*.scp)|*.scp|Tất cả các tệp|*.*</value>
-  </data>
-  <data name="Visual.Integrity.Checksum">
-    <value>Tổng kiểm tra</value>
-  </data>
-  <data name="Visual.Side">
-    <value>Bên {0}</value>
-  </data>
-  <data name="Visual.AnalysingTrack">
-    <value>Đang phân tích bản nhạc {0}/{1}…</value>
-  </data>
-  <data name="Visual.SideLabel">
-    <value>Bên</value>
-  </data>
-  <data name="Visual.TrackLabel">
-    <value>Theo dõi</value>
-  </data>
-  <data name="Visual.ScpEntryLabel">
-    <value>SCP mục nhập</value>
-  </data>
-  <data name="Visual.RevolutionsTitle">
-    <value>cuộc cách mạng</value>
-  </data>
-  <data name="Visual.AnalysisTitle">
-    <value>Phân tích</value>
-  </data>
-  <data name="Visual.ConfidenceLabel">
-    <value>Sự tự tin</value>
-  </data>
-  <data name="Visual.CellLabel">
-    <value>Ô ước tính</value>
-  </data>
-  <data name="Visual.StructuresLabel">
-    <value>Cấu trúc</value>
-  </data>
-  <data name="Visual.StructuresTitle">
-    <value>Cấu trúc được phát hiện</value>
-  </data>
-  <data name="Visual.SectorsTitle">
-    <value>Lĩnh vực</value>
-  </data>
-  <data name="Visual.TransitionsUnit">
-    <value>sự chuyển tiếp</value>
-  </data>
-  <data name="Visual.OpenImage">
-    <value>Mở một hình ảnh đĩa…</value>
-  </data>
-  <data name="Visual.DetachInspector">
-    <value>Tách thanh tra</value>
-  </data>
-  <data name="Visual.AttachInspector">
-    <value>Đính kèm thanh tra</value>
-  </data>
-  <data name="Visual.SummaryTab">
-    <value>Bản tóm tắt</value>
-  </data>
-  <data name="Visual.FormatDetected">
-    <value>Đã phát hiện định dạng</value>
-  </data>
-  <data name="Visual.AverageRpm">
-    <value>RPM trung bình</value>
-  </data>
-  <data name="Visual.AverageDuration">
-    <value>Thời lượng trung bình</value>
-  </data>
+  <data name="Visual.Decoder"><value>Bộ giải mã</value></data>
+  <data name="Visual.LinkZoom"><value>Thu phóng liên kết</value></data>
+  <data name="Visual.OpenScp"><value>Mở tệp SCP…</value></data>
+  <data name="Visual.NoFile"><value>Không có tệp SCP nào được mở</value></data>
+  <data name="Visual.Waiting"><value>Đang chờ một tập tin</value></data>
+  <data name="Visual.Inspector"><value>Thanh tra</value></data>
+  <data name="Visual.SelectTrack"><value>Chọn một bản nhạc.</value></data>
+  <data name="Visual.Controls"><value>Click: chọn · Wheel: zoom · Click chuột phải: pan</value></data>
+  <data name="Visual.NormalFlux"><value>Thông lượng bình thường</value></data>
+  <data name="Visual.ShortTransition"><value>Chuyển tiếp ngắn</value></data>
+  <data name="Visual.LongTransition"><value>Chuyển tiếp dài/bất thường</value></data>
+  <data name="Visual.Loading"><value>Đang đọc tệp…</value></data>
+  <data name="Visual.Invalid"><value>Tệp không hợp lệ</value></data>
+  <data name="Visual.Title"><value>SCP trực quan hóa</value></data>
+  <data name="Visual.ChecksumValid"><value>có hiệu lực</value></data>
+  <data name="Visual.ChecksumInvalid"><value>không hợp lệ</value></data>
+  <data name="Visual.Summary"><value>SCP {0} · {1} rãnh · {2} vòng quay · {3} độ phân giải ns · {4} tổng kiểm tra</value></data>
+  <data name="Visual.Revolution"><value>Cách mạng {0}: {1:N0} chuyển tiếp · {2:F2} ms · {3:F2} RPM</value></data>
+  <data name="Visual.Analysis"><value>Giải mã: {0}&#xA;Sự tự tin: {1:P0}&#xA;Ô ước tính: {2:F1} tích tắc&#xA;Cấu trúc: {3}</value></data>
+  <data name="Visual.Track"><value>Bên: {0}&#xA;Theo dõi: {1}&#xA;SCP mục nhập: {2}</value></data>
+  <data name="Visual.SideNoData"><value>Bên {0}&#xA;Không có dữ liệu</value></data>
+  <data name="Visual.TrackTooltip"><value>Bên {0} · Theo dõi {1}&#xA;{2} cuộc cách mạng</value></data>
+  <data name="Visual.Automatic"><value>Tự động</value></data>
+  <data name="Visual.StructureHeader"><value>Tiêu đề/địa chỉ</value></data>
+  <data name="Visual.StructureData"><value>Dữ liệu được giải mã</value></data>
+  <data name="Visual.StructureAnomaly"><value>Đã xóa/bất thường</value></data>
+  <data name="Visual.AnalysedRevolution"><value>Phân tích dựa trên cuộc cách mạng {0}.</value></data>
+  <data name="Visual.BitOffset"><value>chút {0:N0}</value></data>
+  <data name="Visual.SectorDetail"><value>Khu vực C{0} H{1} R{2} · {3} byte · {4} {5}</value></data>
+  <data name="Visual.CrcValid"><value>có hiệu lực</value></data>
+  <data name="Visual.CrcInvalid"><value>không hợp lệ</value></data>
+  <data name="Visual.IntegrityUnavailable"><value>không có sẵn</value></data>
+  <data name="Visual.StructureKind.Sync"><value>Đồng bộ hóa</value></data>
+  <data name="Visual.StructureKind.IdAddressMark"><value>Tiêu đề ngành</value></data>
+  <data name="Visual.StructureKind.DataAddressMark"><value>Dữ liệu ngành</value></data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark"><value>Dữ liệu ngành đã xóa</value></data>
+  <data name="Visual.StructureKind.AmigaSync"><value>Amiga đồng bộ hóa</value></data>
+  <data name="Visual.StructureKind.AppleAddress"><value>Lời mở đầu địa chỉ Apple</value></data>
+  <data name="Visual.StructureKind.AppleData"><value>Lời mở đầu về dữ liệu của Apple</value></data>
+  <data name="Visual.StructureKind.CommodoreSync"><value>Commodore đồng bộ hóa</value></data>
+  <data name="Visual.StructureKind.CommodoreHeader"><value>Commodore tiêu đề</value></data>
+  <data name="Visual.StructureKind.FormatHeader"><value>Định dạng tiêu đề</value></data>
+  <data name="Visual.StructureKind.FormatData"><value>Định dạng dữ liệu</value></data>
+  <data name="Visual.StructureKind.TimingAnomaly"><value>Bất thường về thời gian</value></data>
+  <data name="Visual.OpenFilter"><value>SuperCard Pro chụp (*.scp)|*.scp|Tất cả các tệp|*.*</value></data>
+  <data name="Visual.Integrity.Checksum"><value>Tổng kiểm tra</value></data>
+  <data name="Visual.Side"><value>Bên {0}</value></data>
+  <data name="Visual.AnalysingTrack"><value>Đang phân tích bản nhạc {0}/{1}…</value></data>
+  <data name="Visual.SideLabel"><value>Bên</value></data>
+  <data name="Visual.TrackLabel"><value>Theo dõi</value></data>
+  <data name="Visual.ScpEntryLabel"><value>SCP mục nhập</value></data>
+  <data name="Visual.RevolutionsTitle"><value>cuộc cách mạng</value></data>
+  <data name="Visual.AnalysisTitle"><value>Phân tích</value></data>
+  <data name="Visual.ConfidenceLabel"><value>Sự tự tin</value></data>
+  <data name="Visual.CellLabel"><value>Ô ước tính</value></data>
+  <data name="Visual.StructuresLabel"><value>Cấu trúc</value></data>
+  <data name="Visual.StructuresTitle"><value>Cấu trúc được phát hiện</value></data>
+  <data name="Visual.SectorsTitle"><value>Lĩnh vực</value></data>
+  <data name="Visual.TransitionsUnit"><value>sự chuyển tiếp</value></data>
+  <data name="Visual.OpenImage"><value>Mở một hình ảnh đĩa…</value></data>
+  <data name="Visual.DetachInspector"><value>Tách thanh tra</value></data>
+  <data name="Visual.AttachInspector"><value>Đính kèm thanh tra</value></data>
+  <data name="Visual.SummaryTab"><value>Bản tóm tắt</value></data>
+  <data name="Visual.FormatDetected"><value>Đã phát hiện định dạng</value></data>
+  <data name="Visual.AverageRpm"><value>RPM trung bình</value></data>
+  <data name="Visual.AverageDuration"><value>Thời lượng trung bình</value></data>
 </root>

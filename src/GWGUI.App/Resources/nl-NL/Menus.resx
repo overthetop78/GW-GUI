@@ -12,73 +12,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options">
-    <value>_Opties</value>
-  </data>
-  <data name="Menu.Preferences">
-    <value>Voorkeuren…</value>
-  </data>
-  <data name="Menu.Diagnostics">
-    <value>Diagnostiek</value>
-  </data>
-  <data name="Menu.Information">
-    <value>Informatie</value>
-  </data>
-  <data name="Menu.Bandwidth">
-    <value>USB bandbreedte</value>
-  </data>
-  <data name="Menu.Rpm">
-    <value>RPM snelheid</value>
-  </data>
-  <data name="Menu.Seek">
-    <value>Zoek hoofd…</value>
-  </data>
-  <data name="Menu.Hardware">
-    <value>Hardware</value>
-  </data>
-  <data name="Menu.Pins">
-    <value>Pinnen…</value>
-  </data>
-  <data name="Menu.Reset">
-    <value>Opnieuw instellen</value>
-  </data>
-  <data name="Menu.Delays">
-    <value>Vertragingen…</value>
-  </data>
-  <data name="Menu.Firmware">
-    <value>Firmware…</value>
-  </data>
-  <data name="Menu.Help">
-    <value>_Hulp</value>
-  </data>
-  <data name="Menu.Documentation">
-    <value>Documentatie</value>
-  </data>
-  <data name="Menu.About">
-    <value>Over</value>
-  </data>
-  <data name="Tab.Read">
-    <value>Lezen</value>
-  </data>
-  <data name="Tab.Write">
-    <value>Schrijven</value>
-  </data>
-  <data name="Tab.Convert">
-    <value>Conversie</value>
-  </data>
-  <data name="Tab.Visualize">
-    <value>Visualisatie</value>
-  </data>
-  <data name="Tab.Tools">
-    <value>Hulpmiddelen</value>
-  </data>
-  <data name="Menu.Align">
-    <value>Uitlijning van aandrijving…</value>
-  </data>
-  <data name="Tab.Explorer">
-    <value>Schijfverkenner</value>
-  </data>
-  <data name="Tab.Emulation">
-    <value>Emulatie</value>
-  </data>
+  <data name="Menu.Options"><value>_Opties</value></data>
+  <data name="Menu.Preferences"><value>Voorkeuren…</value></data>
+  <data name="Menu.Diagnostics"><value>Diagnostiek</value></data>
+  <data name="Menu.Information"><value>Informatie</value></data>
+  <data name="Menu.Bandwidth"><value>USB bandbreedte</value></data>
+  <data name="Menu.Rpm"><value>RPM snelheid</value></data>
+  <data name="Menu.Seek"><value>Zoek hoofd…</value></data>
+<data name="Menu.Pins"><value>Pinnen…</value></data>
+  <data name="Menu.Reset"><value>Opnieuw instellen</value></data>
+  <data name="Menu.Delays"><value>Vertragingen…</value></data>
+<data name="Menu.Help"><value>_Hulp</value></data>
+  <data name="Menu.Documentation"><value>Documentatie</value></data>
+  <data name="Menu.About"><value>Over</value></data>
+  <data name="Tab.Read"><value>Lezen</value></data>
+  <data name="Tab.Write"><value>Schrijven</value></data>
+  <data name="Tab.Convert"><value>Conversie</value></data>
+  <data name="Tab.Visualize"><value>Visualisatie</value></data>
+  <data name="Tab.Tools"><value>Hulpmiddelen</value></data>
+  <data name="Menu.Align"><value>Uitlijning van aandrijving…</value></data>
+  <data name="Tab.Explorer"><value>Schijfverkenner</value></data>
+  <data name="Tab.Emulation"><value>Emulatie</value></data>
+  <data name="Menu.Firmware"><value>Firmware...</value></data>
 </root>

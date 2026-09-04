@@ -12,53 +12,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Cancel">
-    <value>Ophæve</value>
-  </data>
-  <data name="Common.Save">
-    <value>Spare</value>
-  </data>
-  <data name="Common.Create">
-    <value>Opret</value>
-  </data>
-  <data name="Common.Delete">
-    <value>Slet</value>
-  </data>
-  <data name="Common.Browse">
-    <value>Gennemse...</value>
-  </data>
-  <data name="Common.Choose">
-    <value>Vælge…</value>
-  </data>
-  <data name="Common.Close">
-    <value>Tæt</value>
-  </data>
-  <data name="Common.Execute">
-    <value>Udfør</value>
-  </data>
-  <data name="Common.Stop">
-    <value>Stop</value>
-  </data>
-  <data name="Common.Continue">
-    <value>Fortsætte</value>
-  </data>
-  <data name="Common.Reset">
-    <value>Nulstil</value>
-  </data>
-  <data name="Common.Copy">
-    <value>Kopi</value>
-  </data>
-  <data name="Common.Modify">
-    <value>Modificere</value>
-  </data>
-  <data name="Common.Hide">
-    <value>Skjule</value>
-  </data>
-  <data name="Common.Export">
-    <value>Eksportere</value>
-  </data>
+  <data name="Common.Cancel"><value>Ophæve</value></data>
+  <data name="Common.Save"><value>Spare</value></data>
+  <data name="Common.Create"><value>Opret</value></data>
+  <data name="Common.Delete"><value>Slet</value></data>
+  <data name="Common.Browse"><value>Gennemse...</value></data>
+  <data name="Common.Choose"><value>Vælge…</value></data>
+  <data name="Common.Close"><value>Tæt</value></data>
+  <data name="Common.Execute"><value>Udfør</value></data>
+<data name="Common.Continue"><value>Fortsætte</value></data>
+  <data name="Common.Reset"><value>Nulstil</value></data>
+  <data name="Common.Copy"><value>Kopi</value></data>
+  <data name="Common.Modify"><value>Modificere</value></data>
+  <data name="Common.Hide"><value>Skjule</value></data>
+  <data name="Common.Export"><value>Eksportere</value></data>
   <data name="Common.New"><value>Ny</value></data>
   <data name="Common.Refresh"><value>Opdater</value></data>
   <data name="Common.OpenFolder"><value>Åbn mappe</value></data>
-  <data name="Common.Pause" xml:space="preserve"><value>Pause</value></data>
 </root>

@@ -12,140 +12,78 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Conflict.Title">
-    <value>الملفات الموجودة</value>
-  </data>
-  <data name="Conflict.Heading">
-    <value>بعض الملفات موجودة بالفعل</value>
-  </data>
-  <data name="Conflict.Help">
-    <value>اختر إجراءً لكل ملف أو قم بتطبيق نفس الإجراء على جميع الملفات.</value>
-  </data>
-  <data name="Conflict.File">
-    <value>ملف</value>
-  </data>
-  <data name="Conflict.Action">
-    <value>فعل</value>
-  </data>
-  <data name="Conflict.Overwrite">
-    <value>الكتابة فوق</value>
-  </data>
-  <data name="Conflict.Skip">
-    <value>يتخطى</value>
-  </data>
-  <data name="Conflict.Number">
-    <value>استخدم الرقم التالي</value>
-  </data>
-  <data name="Conflict.AllOverwrite">
-    <value>الكتابة فوق الكل</value>
-  </data>
-  <data name="Conflict.AllSkip">
-    <value>تخطي الكل</value>
-  </data>
-  <data name="Conflict.AllNumber">
-    <value>رقم الكل</value>
-  </data>
-  <data name="Conversion.Title">
-    <value>تحويل</value>
-  </data>
-  <data name="Conversion.SelectOutput">
-    <value>حدد تنسيق إخراج واحد على الأقل.</value>
-  </data>
-  <data name="Conversion.SourceAmbiguous">
-    <value>مصدر غامض</value>
-  </data>
-  <data name="Conversion.Summary">
-    <value>ملخص: نجح {0}، وفشل {1}.</value>
-  </data>
-  <data name="Conversion.Failures">
-    <value>حالات الفشل: {0}</value>
-  </data>
-  <data name="Conversion.Source">
-    <value>مصدر</value>
-  </data>
-  <data name="Conversion.OutputNames">
-    <value>أسماء المخرجات</value>
-  </data>
-  <data name="Conversion.AddTags">
-    <value>إضافة العلامات</value>
-  </data>
-  <data name="Conversion.Selected">
-    <value>مختارة</value>
-  </data>
-  <data name="Conversion.CommonFormats">
-    <value>التنسيقات الشائعة</value>
-  </data>
-  <data name="Conversion.ShowRare">
-    <value>إظهار التنسيقات التي نادرًا ما تستخدم</value>
-  </data>
-  <data name="Conversion.LimitTracks">
-    <value>الحد من المسارات</value>
-  </data>
-  <data name="Conversion.SourceRequired">
-    <value>اختر صورة مصدر موجودة.</value>
-  </data>
-  <data name="Conversion.NameRequired">
-    <value>أدخل أسماء ملفات الإخراج.</value>
-  </data>
-  <data name="Conversion.CheckOutput">
-    <value>تحقق من تنسيق إخراج واحد على الأقل.</value>
-  </data>
-  <data name="Conversion.More">
-    <value>(+ {0} تحويل (تحويلات))</value>
-  </data>
-  <data name="Conversion.DefaultExtensionTip">
-    <value>لم يتم التحقق من الامتداد: يتم استخدام {0} بشكل افتراضي.</value>
-  </data>
-  <data name="Conversion.Incompatible">
-    <value>{0} غير متوافق مع هذا المصدر.</value>
-  </data>
-  <data name="Conversion.NoAvailableOutputName">
-    <value>لا يمكن العثور على اسم ملف الإخراج المتاح.</value>
-  </data>
-  <data name="Conversion.ReconstructedFlux">
-    <value>تدفق مُعاد البناء</value>
-  </data>
-  <data name="Migration.Open"><value>File migration...</value></data>
-  <data name="Migration.Title"><value>File migration</value></data>
-  <data name="Migration.Heading"><value>Migrate files to another file system</value></data>
-  <data name="Migration.Source"><value>Source image</value></data>
-  <data name="Migration.NoSource"><value>Select an image containing a recognized file system.</value></data>
-  <data name="Migration.Destination"><value>Destination file system and format</value></data>
-  <data name="Migration.Output"><value>Destination image</value></data>
-  <data name="Migration.Compatibility"><value>Compatibility and losses</value></data>
-  <data name="Migration.Waiting"><value>Select a source and a destination.</value></data>
-  <data name="Migration.Severity"><value>Severity</value></data>
-  <data name="Migration.Path"><value>Source path</value></data>
-  <data name="Migration.Description"><value>Description</value></data>
-  <data name="Migration.AcceptLosses"><value>Accept the listed metadata losses</value></data>
-  <data name="Migration.Execute"><value>Migrate files</value></data>
-  <data name="Migration.Blocking"><value>Blocking</value></data>
-  <data name="Migration.MetadataLoss"><value>Metadata loss</value></data>
-  <data name="Migration.SourceSummary"><value>Volume: {0} — File system: {1} — Root entries: {2}</value></data>
-  <data name="Migration.SourceFailed"><value>Unable to prepare the migration: {0}</value></data>
-  <data name="Migration.Completed"><value>The destination image was created: {0}</value></data>
-  <data name="Migration.Failed"><value>Migration failed: {0}</value></data>
-  <data name="Migration.Incompatible"><value>Incompatible: correct the blocking losses before migration.</value></data>
-  <data name="Migration.CompatibleWithLosses"><value>Compatible after accepting the listed metadata losses.</value></data>
-  <data name="Migration.Compatible"><value>Compatible: no loss detected.</value></data>
-  <data name="Migration.Loss.MissingContent"><value>File content is unavailable.</value></data>
-  <data name="Migration.Loss.UnsupportedEntryKind"><value>This entry type is not supported by the destination.</value></data>
-  <data name="Migration.Loss.InvalidName"><value>The name is not valid for the destination.</value></data>
-  <data name="Migration.Loss.NameTooLong"><value>The name is too long for the destination.</value></data>
-  <data name="Migration.Loss.NameCollision"><value>Several entries would have the same destination name.</value></data>
-  <data name="Migration.Loss.FileTooLarge"><value>The file is too large for the destination.</value></data>
-  <data name="Migration.Loss.InvalidMetadata"><value>The source metadata is invalid.</value></data>
-  <data name="Migration.Loss.ModifiedDate"><value>The modification date will not be preserved.</value></data>
-  <data name="Migration.Loss.Comment"><value>The comment will not be preserved.</value></data>
-  <data name="Migration.Loss.Attributes"><value>The source attributes will not be preserved.</value></data>
-  <data name="Migration.OverwriteConfirm"><value>The destination image already exists. Replace it? {0}</value></data>
-  <data name="Migration.SourceDestinationSame"><value>The destination image cannot replace the source image.</value></data>
-  <data name="Conversion.Fidelity.SectorData"><value>sector data; protections not preserved</value></data>
-  <data name="Conversion.Fidelity.ReconstructedTracks"><value>reconstructed tracks; original flux not preserved</value></data>
-  <data name="Conversion.Fidelity.PreservedFlux"><value>original flux preserved</value></data>
-  <data name="Conversion.EngineExternal" xml:space="preserve"><value>Host Tools: converting {0}.</value></data>
-  <data name="Conversion.EngineInternalStart" xml:space="preserve"><value>Internal engine: converting {0} to {1}.</value></data>
-  <data name="Conversion.EngineInternalComplete" xml:space="preserve"><value>Internal conversion completed: {0}.</value></data>
-  <data name="Conversion.EngineInternalUnavailable" xml:space="preserve"><value>The internal engine does not support this conversion: {0}.</value></data>
-  <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Internal conversion failed for {0}: {1}</value></data>
+  <data name="Conflict.Title"><value>الملفات الموجودة</value></data>
+  <data name="Conflict.Heading"><value>بعض الملفات موجودة بالفعل</value></data>
+  <data name="Conflict.Help"><value>اختر إجراءً لكل ملف أو قم بتطبيق نفس الإجراء على جميع الملفات.</value></data>
+  <data name="Conflict.File"><value>ملف</value></data>
+  <data name="Conflict.Action"><value>فعل</value></data>
+  <data name="Conflict.Overwrite"><value>الكتابة فوق</value></data>
+  <data name="Conflict.Skip"><value>يتخطى</value></data>
+  <data name="Conflict.Number"><value>استخدم الرقم التالي</value></data>
+  <data name="Conflict.AllOverwrite"><value>الكتابة فوق الكل</value></data>
+  <data name="Conflict.AllSkip"><value>تخطي الكل</value></data>
+  <data name="Conflict.AllNumber"><value>رقم الكل</value></data>
+  <data name="Conversion.Title"><value>تحويل</value></data>
+  <data name="Conversion.SelectOutput"><value>حدد تنسيق إخراج واحد على الأقل.</value></data>
+  <data name="Conversion.SourceAmbiguous"><value>مصدر غامض</value></data>
+  <data name="Conversion.Summary"><value>موجز: {0} نجحت {1} فشلت.</value></data>
+  <data name="Conversion.Failures"><value>حالات الفشل: {0}</value></data>
+  <data name="Conversion.Source"><value>مصدر</value></data>
+  <data name="Conversion.OutputNames"><value>أسماء المخرجات</value></data>
+  <data name="Conversion.AddTags"><value>إضافة العلامات</value></data>
+  <data name="Conversion.Selected"><value>مختارة</value></data>
+  <data name="Conversion.CommonFormats"><value>التنسيقات الشائعة</value></data>
+  <data name="Conversion.ShowRare"><value>إظهار التنسيقات التي نادرًا ما تستخدم</value></data>
+  <data name="Conversion.LimitTracks"><value>الحد من المسارات</value></data>
+  <data name="Conversion.SourceRequired"><value>اختر صورة مصدر موجودة.</value></data>
+  <data name="Conversion.NameRequired"><value>أدخل أسماء ملفات الإخراج.</value></data>
+  <data name="Conversion.CheckOutput"><value>تحقق من تنسيق إخراج واحد على الأقل.</value></data>
+  <data name="Conversion.More"><value>(+ {0} تحويل (تحويلات))</value></data>
+  <data name="Conversion.DefaultExtensionTip"><value>لم يتم التحقق من الامتداد: يتم استخدام {0} بشكل افتراضي.</value></data>
+  <data name="Conversion.Incompatible"><value>{0} غير متوافق مع هذا المصدر.</value></data>
+  <data name="Conversion.NoAvailableOutputName"><value>لا يمكن العثور على اسم ملف الإخراج المتاح.</value></data>
+  <data name="Conversion.ReconstructedFlux"><value>تدفق مُعاد البناء</value></data>
+  <data name="Migration.Open"><value>هجرة الخيل...</value></data>
+  <data name="Migration.Title"><value>الهجرة من الأموال</value></data>
+  <data name="Migration.Heading"><value>ملفات شركة Migrate إلى نظام ملفات آخر</value></data>
+  <data name="Migration.Source"><value>صورة المصدر</value></data>
+  <data name="Migration.NoSource"><value>اختاري صورة تحتوي على نظام ملف معترف به</value></data>
+  <data name="Migration.Destination"><value>نظام ملفات تحديد الهوية وشكلها</value></data>
+  <data name="Migration.Output"><value>صورة الوجهة</value></data>
+  <data name="Migration.Compatibility"><value>التوافق والخسائر</value></data>
+  <data name="Migration.Waiting"><value>اختيار مصدر و وجهة.</value></data>
+  <data name="Migration.Severity"><value>الشدة</value></data>
+  <data name="Migration.Path"><value>مسار المصدر</value></data>
+  <data name="Migration.Description"><value>الوصف</value></data>
+  <data name="Migration.AcceptLosses"><value>قبول الخسائر المدرجة في البيانات الفوقية</value></data>
+  <data name="Migration.Execute"><value>ملفات Migrate</value></data>
+  <data name="Migration.Blocking"><value>القفل</value></data>
+  <data name="Migration.MetadataLoss"><value>خسارة البيانات</value></data>
+  <data name="Migration.SourceSummary"><value>Volume: {0} - نظام الملفات: {1} - القيود: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>عدم القدرة على إعداد الهجرة: {0}</value></data>
+  <data name="Migration.Completed"><value>تم وضع صورة الوجه: {0}</value></data>
+  <data name="Migration.Failed"><value>وفشلت الهجرة في: {0}</value></data>
+  <data name="Migration.Incompatible"><value>غير متوافقة: تصحيح الخسائر الناجمة عن الحجب قبل الهجرة.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>مقارنة بعد قبول الخسائر المدرجة في البيانات الفوقية.</value></data>
+  <data name="Migration.Compatible"><value>مقارنة: لم يكتشف أي خسارة.</value></data>
+  <data name="Migration.Loss.MissingContent"><value>المحتوى الخفيف غير متاح</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>ولا يدعم هذا النوع من الدخول الوجهة.</value></data>
+  <data name="Migration.Loss.InvalidName"><value>ولا ينطبق الاسم على الوجهة.</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>الاسم طويل جداً على الوجهة</value></data>
+  <data name="Migration.Loss.NameCollision"><value>العديد من القيود سيكون لها نفس اسم الوجهة</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>الملف كبير جداً بالنسبة للمقصد</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>البيانات الوصفية المصدرية غير صحيحة</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>ولن يُحفظ تاريخ التعديل.</value></data>
+  <data name="Migration.Loss.Comment"><value>ولن يُحفظ التعليق.</value></data>
+  <data name="Migration.Loss.Attributes"><value>ولن تُحفظ خصائص المصدر.</value></data>
+  <data name="Migration.OverwriteConfirm"><value>صورة الوجهة موجودة بالفعل، أستبدلها؟ {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>لا يمكن لصورة الوجهة أن تحل محل صورة المصدر</value></data>
+  <data name="Conversion.Fidelity.SectorData"><value>البيانات القطاعية؛ الحماية غير المحتفظ بها</value></data>
+  <data name="Conversion.Fidelity.ReconstructedTracks"><value>مسارات إعادة البناء؛ التدفق الأصلي لم يُحفظ</value></data>
+  <data name="Conversion.Fidelity.PreservedFlux"><value>التدفق الأصلي محمي</value></data>
+  <data name="Conversion.EngineExternal"><value>أدوات مضيفة: محول {0}.</value></data>
+  <data name="Conversion.EngineInternalStart"><value>محرك داخلي: محول {0} إلى {1}.</value></data>
+  <data name="Conversion.EngineInternalComplete"><value>استكمل التحويل الداخلي: {0}.</value></data>
+  <data name="Conversion.EngineInternalUnavailable"><value>لا يدعم المحرك الداخلي هذا التحويل: {0}.</value></data>
+  <data name="Conversion.EngineInternalFailed"><value>فشل التحويل الداخلي {0}: {1}</value></data>
 </root>

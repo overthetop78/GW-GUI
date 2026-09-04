@@ -12,163 +12,57 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Tool.Ready">
-    <value>جاهز للتنفيذ.</value>
-  </data>
-  <data name="Tool.RawOutput">
-    <value>الإخراج الخام</value>
-  </data>
-  <data name="Maintenance.EraseTitle">
-    <value>تأكيد المحو</value>
-  </data>
-  <data name="Maintenance.EraseConfirm">
-    <value>هل تريد مسح جميع البيانات الموجودة على القرص المدرج بشكل دائم؟</value>
-  </data>
-  <data name="Maintenance.CleanTitle">
-    <value>رؤوس نظيفة</value>
-  </data>
-  <data name="Maintenance.CleanConfirm">
-    <value>تأكد من إدخال قرص التنظيف. لا تستخدم قرص البيانات أبدًا.</value>
-  </data>
-  <data name="Tools.Erase">
-    <value>محو القرص</value>
-  </data>
-  <data name="Tools.EraseWarning">
-    <value>سيتم تدمير كافة البيانات الموجودة على القرص.</value>
-  </data>
-  <data name="Tools.LimitTracks">
-    <value>الحد من المسارات</value>
-  </data>
-  <data name="Tools.Revolutions">
-    <value>الثورات</value>
-  </data>
-  <data name="Tools.Clean">
-    <value>رؤوس نظيفة</value>
-  </data>
-  <data name="Tools.CleanWarning">
-    <value>أدخل قرص تنظيف، وليس قرصًا يحتوي على بيانات أبدًا.</value>
-  </data>
-  <data name="Tools.Cylinders">
-    <value>اسطوانات</value>
-  </data>
-  <data name="Tools.Passes">
-    <value>يمر</value>
-  </data>
-  <data name="Tools.Linger">
-    <value>المدة لكل اسطوانة (مللي ثانية)</value>
-  </data>
-  <data name="Tool.Field.Measurements">
-    <value>عدد القياسات</value>
-  </data>
-  <data name="Tool.Field.Cylinder">
-    <value>اسطوانة</value>
-  </data>
-  <data name="Tool.Field.Extreme">
-    <value>السماح للاسطوانات المتطرفة</value>
-  </data>
-  <data name="Tool.Field.MotorOn">
-    <value>إبقاء المحرك نشطا</value>
-  </data>
-  <data name="Tool.Field.Pin">
-    <value>دبوس (8 أو 26 أو 28)</value>
-  </data>
-  <data name="Tool.Field.SetPin">
-    <value>تغيير دبوس</value>
-  </data>
-  <data name="Tool.Field.High">
-    <value>مستوى عال</value>
-  </data>
-  <data name="Tool.Field.Select">
-    <value>التحديد (ميكروثانية)</value>
-  </data>
-  <data name="Tool.Field.Step">
-    <value>خطوة الرأس (ميكروثانية)</value>
-  </data>
-  <data name="Tool.Field.Settle">
-    <value>تسوية (مللي ثانية)</value>
-  </data>
-  <data name="Tool.Field.Motor">
-    <value>المحرك (ملي ثانية)</value>
-  </data>
-  <data name="Tool.Field.Watchdog">
-    <value>إلغاء التحديد التلقائي (مللي ثانية)</value>
-  </data>
-  <data name="Tool.Field.PreWrite">
-    <value>قبل الكتابة (μs)</value>
-  </data>
-  <data name="Tool.Field.PostWrite">
-    <value>بعد الكتابة (μs)</value>
-  </data>
-  <data name="Tool.Field.IndexMask">
-    <value>قناع الفهرس (ميكروثانية)</value>
-  </data>
-  <data name="Tool.Field.Bootloader">
-    <value>تحديث أداة تحميل التشغيل (محفوفة بالمخاطر)</value>
-  </data>
-  <data name="Tool.BootloaderWarning">
-    <value>يعد تحديث أداة تحميل التشغيل عملية متقدمة يمكن أن تجعل وحدة التحكم غير قابلة للاستخدام في حالة مقاطعتها. يكمل؟</value>
-  </data>
-  <data name="Tool.ControllerFallback">
-    <value>المراقب المالي</value>
-  </data>
-  <data name="Tool.FirmwareUnknown">
-    <value>البرامج الثابتة غير معروفة</value>
-  </data>
-  <data name="Tool.PortUnknown">
-    <value>منفذ غير معروف</value>
-  </data>
-  <data name="Tool.NetworkWarning">
-    <value>المعلومات المحلية صالحة؛ فشل فحص الشبكة فقط.</value>
-  </data>
-  <data name="Tool.Running">
-    <value>تشغيل الأمر…</value>
-  </data>
-  <data name="Tool.Title.Info">
-    <value>معلومات وحدة التحكم</value>
-  </data>
-  <data name="Tool.Title.Bandwidth">
-    <value>USB عرض النطاق الترددي</value>
-  </data>
-  <data name="Tool.Title.Rpm">
-    <value>سرعة القيادة</value>
-  </data>
-  <data name="Tool.Title.Seek">
-    <value>تسعى الرأس</value>
-  </data>
-  <data name="Tool.Title.Pin">
-    <value>دبابيس الأجهزة</value>
-  </data>
-  <data name="Tool.Title.Reset">
-    <value>إعادة ضبط وحدة التحكم</value>
-  </data>
-  <data name="Tool.Title.Delays">
-    <value>التأخير</value>
-  </data>
-  <data name="Tool.Title.Update">
-    <value>البرامج الثابتة</value>
-  </data>
-  <data name="Tool.InvalidParameters">
-    <value>المعلمات غير صالحة</value>
-  </data>
-  <data name="Tool.InvalidParametersHelp">
-    <value>تحقق من معلمات الأمر المميزة قبل التنفيذ.</value>
-  </data>
-  <data name="Tool.BootloaderTitle">
-    <value>وضع محمل الإقلاع</value>
-  </data>
-  <data name="Tool.Title.Align">
-    <value>تشخيص محاذاة محرك الأقراص</value>
-  </data>
-  <data name="Tool.Field.AlignTracks">
-    <value>المسار (المسارات) البديل (مطلوب)</value>
-  </data>
-  <data name="Tool.Field.AlignReads">
-    <value>عدد القراءات</value>
-  </data>
-  <data name="Tool.Field.AlignFormat">
-    <value>تنسيق فك التشفير</value>
-  </data>
-  <data name="Tool.Field.AlignRaw">
-    <value>قراءة التدفق الخام (--raw)</value>
-  </data>
+  <data name="Tool.Ready"><value>جاهز للتنفيذ.</value></data>
+  <data name="Tool.RawOutput"><value>الإخراج الخام</value></data>
+  <data name="Maintenance.EraseTitle"><value>تأكيد المحو</value></data>
+  <data name="Maintenance.EraseConfirm"><value>هل تريد مسح جميع البيانات الموجودة على القرص المدرج بشكل دائم؟</value></data>
+  <data name="Maintenance.CleanTitle"><value>رؤوس نظيفة</value></data>
+  <data name="Maintenance.CleanConfirm"><value>تأكد من إدخال قرص التنظيف. لا تستخدم قرص البيانات أبدًا.</value></data>
+  <data name="Tools.Erase"><value>محو القرص</value></data>
+  <data name="Tools.EraseWarning"><value>سيتم تدمير كافة البيانات الموجودة على القرص.</value></data>
+  <data name="Tools.LimitTracks"><value>الحد من المسارات</value></data>
+  <data name="Tools.Revolutions"><value>الثورات</value></data>
+  <data name="Tools.Clean"><value>رؤوس نظيفة</value></data>
+  <data name="Tools.CleanWarning"><value>أدخل قرص تنظيف، وليس قرصًا يحتوي على بيانات أبدًا.</value></data>
+  <data name="Tools.Cylinders"><value>اسطوانات</value></data>
+  <data name="Tools.Passes"><value>يمر</value></data>
+  <data name="Tools.Linger"><value>المدة لكل اسطوانة (مللي ثانية)</value></data>
+  <data name="Tool.Field.Measurements"><value>عدد القياسات</value></data>
+  <data name="Tool.Field.Cylinder"><value>اسطوانة</value></data>
+  <data name="Tool.Field.Extreme"><value>السماح للاسطوانات المتطرفة</value></data>
+  <data name="Tool.Field.MotorOn"><value>إبقاء المحرك نشطا</value></data>
+  <data name="Tool.Field.Pin"><value>دبوس (8 أو 26 أو 28)</value></data>
+  <data name="Tool.Field.SetPin"><value>تغيير دبوس</value></data>
+  <data name="Tool.Field.High"><value>مستوى عال</value></data>
+  <data name="Tool.Field.Select"><value>التحديد (ميكروثانية)</value></data>
+  <data name="Tool.Field.Step"><value>خطوة الرأس (ميكروثانية)</value></data>
+  <data name="Tool.Field.Settle"><value>تسوية (مللي ثانية)</value></data>
+  <data name="Tool.Field.Motor"><value>المحرك (ملي ثانية)</value></data>
+  <data name="Tool.Field.Watchdog"><value>إلغاء التحديد التلقائي (مللي ثانية)</value></data>
+  <data name="Tool.Field.PreWrite"><value>قبل الكتابة (μs)</value></data>
+  <data name="Tool.Field.PostWrite"><value>بعد الكتابة (μs)</value></data>
+  <data name="Tool.Field.IndexMask"><value>قناع الفهرس (ميكروثانية)</value></data>
+  <data name="Tool.Field.Bootloader"><value>تحديث أداة تحميل التشغيل (محفوفة بالمخاطر)</value></data>
+  <data name="Tool.BootloaderWarning"><value>يعد تحديث أداة تحميل التشغيل عملية متقدمة يمكن أن تجعل وحدة التحكم غير قابلة للاستخدام في حالة مقاطعتها. يكمل؟</value></data>
+  <data name="Tool.ControllerFallback"><value>المراقب المالي</value></data>
+  <data name="Tool.FirmwareUnknown"><value>البرامج الثابتة غير معروفة</value></data>
+  <data name="Tool.PortUnknown"><value>منفذ غير معروف</value></data>
+  <data name="Tool.NetworkWarning"><value>المعلومات المحلية صالحة؛ فشل فحص الشبكة فقط.</value></data>
+  <data name="Tool.Running"><value>تشغيل الأمر…</value></data>
+  <data name="Tool.Title.Info"><value>معلومات وحدة التحكم</value></data>
+  <data name="Tool.Title.Bandwidth"><value>USB عرض النطاق الترددي</value></data>
+  <data name="Tool.Title.Rpm"><value>سرعة القيادة</value></data>
+  <data name="Tool.Title.Seek"><value>تسعى الرأس</value></data>
+  <data name="Tool.Title.Pin"><value>دبابيس الأجهزة</value></data>
+  <data name="Tool.Title.Reset"><value>إعادة ضبط وحدة التحكم</value></data>
+  <data name="Tool.Title.Delays"><value>التأخير</value></data>
+  <data name="Tool.Title.Update"><value>البرامج الثابتة</value></data>
+  <data name="Tool.InvalidParameters"><value>المعلمات غير صالحة</value></data>
+  <data name="Tool.InvalidParametersHelp"><value>تحقق من معلمات الأمر المميزة قبل التنفيذ.</value></data>
+  <data name="Tool.BootloaderTitle"><value>وضع محمل الإقلاع</value></data>
+  <data name="Tool.Title.Align"><value>تشخيص محاذاة محرك الأقراص</value></data>
+  <data name="Tool.Field.AlignTracks"><value>المسار (المسارات) البديل (مطلوب)</value></data>
+  <data name="Tool.Field.AlignReads"><value>عدد القراءات</value></data>
+  <data name="Tool.Field.AlignFormat"><value>تنسيق فك التشفير</value></data>
+  <data name="Tool.Field.AlignRaw"><value>قراءة التدفق الخام (--raw)</value></data>
 </root>

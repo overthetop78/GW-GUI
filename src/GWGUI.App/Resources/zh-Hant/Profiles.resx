@@ -12,52 +12,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Profiles.ByOperation">
-    <value>按操作分類</value>
-  </data>
-  <data name="Profiles.Tab">
-    <value>選項卡</value>
-  </data>
-  <data name="Profiles.Name">
-    <value>姓名</value>
-  </data>
-  <data name="Profiles.System">
-    <value>系統</value>
-  </data>
-  <data name="Profiles.Rename">
-    <value>重命名...</value>
-  </data>
-  <data name="Profile.SaveTitle">
-    <value>儲存個人資料</value>
-  </data>
-  <data name="Profile.Name">
-    <value>個人資料名稱</value>
-  </data>
-  <data name="Profile.NameRequired">
-    <value>輸入名稱。</value>
-  </data>
-  <data name="Profile.Title">
-    <value>輪廓</value>
-  </data>
-  <data name="Common.Profile">
-    <value>輪廓</value>
-  </data>
-  <data name="Profile.Default">
-    <value>預設</value>
-  </data>
-  <data name="Profile.SystemRename">
-    <value>預設設定檔是永久性的，無法重新命名。</value>
-  </data>
-  <data name="Profile.SystemDelete">
-    <value>預設設定檔是永久性的，無法刪除。</value>
-  </data>
-  <data name="Profile.DuplicateName">
-    <value>此選項卡中的設定檔已具有此名稱。</value>
-  </data>
-  <data name="Profile.Replace">
-    <value>此設定檔已存在。更換嗎？</value>
-  </data>
-  <data name="Profile.DeleteConfirm">
-    <value>刪除個人資料“{0}”？</value>
-  </data>
+  <data name="Profiles.ByOperation"><value>按操作分類</value></data>
+  <data name="Profiles.Tab"><value>選項卡</value></data>
+  <data name="Profiles.Name"><value>姓名</value></data>
+  <data name="Profiles.System"><value>系統</value></data>
+  <data name="Profiles.Rename"><value>重命名...</value></data>
+  <data name="Profile.SaveTitle"><value>儲存個人資料</value></data>
+  <data name="Profile.Name"><value>個人資料名稱</value></data>
+  <data name="Profile.NameRequired"><value>輸入名稱。</value></data>
+  <data name="Profile.Title"><value>輪廓</value></data>
+  <data name="Common.Profile"><value>輪廓</value></data>
+  <data name="Profile.Default"><value>預設</value></data>
+  <data name="Profile.SystemRename"><value>預設設定檔是永久性的，無法重新命名。</value></data>
+  <data name="Profile.SystemDelete"><value>預設設定檔是永久性的，無法刪除。</value></data>
+  <data name="Profile.DuplicateName"><value>此選項卡中的設定檔已具有此名稱。</value></data>
+  <data name="Profile.Replace"><value>此設定檔已存在。更換嗎？</value></data>
+  <data name="Profile.DeleteConfirm"><value>刪除個人資料“{0}”？</value></data>
 </root>

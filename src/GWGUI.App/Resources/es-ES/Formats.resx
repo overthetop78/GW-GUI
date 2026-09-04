@@ -12,67 +12,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Detection.Ambiguous">
-    <value>Formato ambiguo</value>
-  </data>
-  <data name="Detection.RawScp">
-    <value>Se reconoce la captura de SCP sin procesar.</value>
-  </data>
-  <data name="Detection.AmigaSize">
-    <value>Formato Amiga reconocido por el tamaño del archivo.</value>
-  </data>
-  <data name="Detection.AcornSize">
-    <value>Formato Acorn reconocido por el tamaño del archivo.</value>
-  </data>
-  <data name="Detection.AtariUnknownSize">
-    <value>El tamaño no coincide con un perfil Atari ST conocido.</value>
-  </data>
-  <data name="Detection.AtariSize">
-    <value>Atari ST geometría reconocida a partir del tamaño del archivo.</value>
-  </data>
-  <data name="Detection.MsaInferred">
-    <value>Contenedor Atari MSA reconocido; Confirme la geometría si es necesario.</value>
-  </data>
-  <data name="Detection.IbmAmbiguous">
-    <value>La extensión por sí sola no puede determinar la geometría IBM PC.</value>
-  </data>
-  <data name="Detection.IbmSize">
-    <value>IBM PC geometría reconocida a partir del tamaño del archivo.</value>
-  </data>
-  <data name="Detection.ExtensionInferred">
-    <value>Formato inferido de la extensión.</value>
-  </data>
-  <data name="Detection.Multiple">
-    <value>Son posibles varios formatos; elija uno explícitamente.</value>
-  </data>
-  <data name="Format.raw.scp">
-    <value>Imagen de flujo sin procesar</value>
-  </data>
-  <data name="Format.raw.hfe">
-    <value>HxC imagen de flujo</value>
-  </data>
-  <data name="Common.DiskImageFilter">
-    <value>Imágenes de disco|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Todos los archivos|*.*</value>
-  </data>
-  <data name="Detection.AppleDosOrder">
-    <value>Formato Apple II DOS identificado por el orden de los sectores.</value>
-  </data>
-  <data name="Detection.AppleProDosOrder">
-    <value>Formato Apple II ProDOS identificado por el orden de los sectores.</value>
-  </data>
-  <data name="Detection.AppleContainer">
-    <value>Se ha detectado un contenedor de imagen de disco Apple.</value>
-  </data>
-  <data name="Classification.Automatic">
-    <value>Detección automática</value>
-  </data>
-  <data name="Classification.Machine">
-    <value>Ordenador</value>
-  </data>
-  <data name="Classification.Format">
-    <value>Formato</value>
-  </data>
-  <data name="Classification.Protection">
-    <value>Protección</value>
-  </data>
+  <data name="Detection.Ambiguous"><value>Formato ambiguo</value></data>
+  <data name="Detection.RawScp"><value>Se reconoce la captura de SCP sin procesar.</value></data>
+  <data name="Detection.AmigaSize"><value>Formato Amiga reconocido por el tamaño del archivo.</value></data>
+  <data name="Detection.AcornSize"><value>Formato Acorn reconocido por el tamaño del archivo.</value></data>
+  <data name="Detection.AtariUnknownSize"><value>El tamaño no coincide con un perfil Atari ST conocido.</value></data>
+  <data name="Detection.AtariSize"><value>Atari ST geometría reconocida a partir del tamaño del archivo.</value></data>
+  <data name="Detection.MsaInferred"><value>Contenedor Atari MSA reconocido; Confirme la geometría si es necesario.</value></data>
+  <data name="Detection.IbmAmbiguous"><value>La extensión por sí sola no puede determinar IBM PC geometría.</value></data>
+  <data name="Detection.IbmSize"><value>IBM PC geometría reconocida a partir del tamaño del archivo.</value></data>
+  <data name="Detection.ExtensionInferred"><value>Formato inferido de la extensión.</value></data>
+  <data name="Detection.Multiple"><value>Son posibles varios formatos; elija uno explícitamente.</value></data>
+  <data name="Format.raw.scp"><value>Imagen de flujo sin procesar</value></data>
+  <data name="Common.DiskImageFilter"><value>Imágenes de disco|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Todos los archivos|*.*</value></data>
+  <data name="Detection.AppleDosOrder"><value>Formato Apple II DOS identificado por el orden de los sectores.</value></data>
+  <data name="Detection.AppleProDosOrder"><value>Formato Apple II ProDOS identificado por el orden de los sectores.</value></data>
+  <data name="Detection.AppleContainer"><value>Se ha detectado un contenedor de imagen de disco Apple.</value></data>
+  <data name="Classification.Automatic"><value>Detección automática</value></data>
+  <data name="Classification.Machine"><value>Ordenador</value></data>
+  <data name="Classification.Format"><value>Formato</value></data>
+  <data name="Classification.Protection"><value>Protección</value></data>
 </root>

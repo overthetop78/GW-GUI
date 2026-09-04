@@ -12,28 +12,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.SettingsSaveFailed">
-    <value>Não foi possível salvar as configurações.
-
-{0}</value>
-  </data>
-  <data name="Error.Title">
-    <value>Erro GW GUI</value>
-  </data>
-  <data name="Error.Unexpected">
-    <value>Um erro inesperado foi interceptado.
-
-{0}</value>
-  </data>
-  <data name="Error.SaveFailed">
-    <value>As configurações não puderam ser salvas. A janela ainda fechará.
-
-{0}</value>
-  </data>
-  <data name="Error.LogSaved">
-    <value>O relatório completo foi salvo em:
-{0}</value>
-  </data>
+  <data name="App.SettingsSaveFailed"><value>Não foi possível salvar as configurações.&#xA;&#xA;{0}</value></data>
+  <data name="Error.Title"><value>Erro GW GUI</value></data>
+  <data name="Error.Unexpected"><value>Um erro inesperado foi interceptado.&#xA;&#xA;{0}</value></data>
+  <data name="Error.SaveFailed"><value>As configurações não puderam ser salvas. A janela ainda fechará.&#xA;&#xA;{0}</value></data>
+  <data name="Error.LogSaved"><value>O relatório completo foi salvo em:&#xA;{0}</value></data>
   <data name="Error.Description.NetworkTimeout"><value>O serviço remoto não respondeu antes do tempo de conexão expirado. Verifique a conexão de rede e tente novamente.</value></data>
   <data name="Error.Description.NetworkDns"><value>O endereço de serviço remoto não pôde ser resolvido. Verifique as configurações de rede ou DNS e tente novamente.</value></data>
   <data name="Error.Description.NetworkRefused"><value>O serviço remoto recusou a ligação. Pode estar indisponível ou bloqueada.</value></data>

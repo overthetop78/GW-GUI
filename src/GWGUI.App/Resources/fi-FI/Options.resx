@@ -12,165 +12,56 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Options.Title">
-    <value>Vaihtoehdot</value>
-  </data>
-  <data name="Options.General">
-    <value>Kenraali</value>
-  </data>
-  <data name="Options.Tools">
-    <value>Greaseweazle Työkalut</value>
-  </data>
-  <data name="Options.Hardware">
-    <value>Ohjaimet ja asemat</value>
-  </data>
-  <data name="Options.Profiles">
-    <value>Profiilit</value>
-  </data>
-  <data name="Options.ImagesFolder">
-    <value>Oletuslevykuvakansio</value>
-  </data>
-  <data name="Options.Language">
-    <value>Kieli</value>
-  </data>
-  <data name="Options.Theme">
-    <value>Teema</value>
-  </data>
-  <data name="Theme.System">
-    <value>Järjestelmä</value>
-  </data>
-  <data name="Theme.Light">
-    <value>Kevyt</value>
-  </data>
-  <data name="Theme.Dark">
-    <value>Tumma</value>
-  </data>
-  <data name="Options.GwPath">
-    <value>Polku gw.exe</value>
-  </data>
-  <data name="Options.ToolsHelp">
-    <value>Jos työkalut puuttuvat, avustaja ehdottaa niiden lataamista tai valitse olemassa olevan asennuksen. Päivityksistä ilmoitetaan vain.</value>
-  </data>
-  <data name="Options.HardwarePersistence">
-    <value>Laitteistoasetukset säilyvät tallessa, kun asema irrotetaan.</value>
-  </data>
-  <data name="Options.ExecutableFilter">
-    <value>Greaseweazle (gw.exe)|gw.exe|Suoritettava (*.exe)|*.exe</value>
-  </data>
-  <data name="Options.RemoveHardware">
-    <value>Poistetaanko tämä tallennettu ohjain ja kaikki sen asemat?</value>
-  </data>
-  <data name="Options.HardwareTitle">
-    <value>Laitteisto</value>
-  </data>
-  <data name="Options.UseConversionTags">
-    <value>Käytä tunnisteita muunnostiedostojen nimissä</value>
-  </data>
-  <data name="Options.TagPreset">
-    <value>Esiasetettu</value>
-  </data>
-  <data name="Options.TagPresetFamily">
-    <value>Vain perhe</value>
-  </data>
-  <data name="Options.TagPresetFormat">
-    <value>Vain muoto</value>
-  </data>
-  <data name="Options.TagPresetFamilyFormat">
-    <value>Perhe ja muoto</value>
-  </data>
-  <data name="Options.TagPresetFamilyExtension">
-    <value>Perhe ja laajennus</value>
-  </data>
-  <data name="Options.TagPresetDetailed">
-    <value>Perhe, muoto ja laajennus</value>
-  </data>
-  <data name="Options.TagPattern">
-    <value>Tulostagin malli</value>
-  </data>
-  <data name="Options.TagVariablesTitle">
-    <value>Saatavilla olevat muuttujat</value>
-  </data>
-  <data name="Options.TagVariableName">
-    <value>Lähdetiedoston nimi</value>
-  </data>
-  <data name="Options.TagVariableFamily">
-    <value>Perhe: PC, ST, AMIGA…</value>
-  </data>
-  <data name="Options.TagVariableFormat">
-    <value>Muoto: 720, 1440, DD…</value>
-  </data>
-  <data name="Options.TagVariableExtension">
-    <value>Laajennus: IMA, ST, ADF…</value>
-  </data>
-  <data name="Options.TagVariableDateIso">
-    <value>Päivämäärä: 2026-08-06</value>
-  </data>
-  <data name="Options.TagVariableDateCompact">
-    <value>Päivämäärä: 20260806</value>
-  </data>
-  <data name="Options.TagVariableDateLocal">
-    <value>Päivämäärä: 06-08-2026</value>
-  </data>
-  <data name="Options.TagVariableTimeFull">
-    <value>Aika: 14-35-42</value>
-  </data>
-  <data name="Options.TagVariableTimeCompact">
-    <value>Aika: 143542</value>
-  </data>
-  <data name="Options.TagVariableTimeShort">
-    <value>Aika: 14-35</value>
-  </data>
-  <data name="Options.TagPatternHelp">
-    <value>{NAME} - lähdetiedoston nimi
-{FAMILY} — koneperhe (PC, ST, AMIGA…)
-{FORMAT} — muoto tai geometria (720, 1440, DD…)
-{EXTENSION} — lähtölaajennus (IMA, ST, ADF…)
-{DATE:YYYY-MM-DD} — päivämäärä 2026-08-06
-{DATE:YYYYMMDD} - päivämäärä 20260806
-{DATE:DD-MM-YYYY} — päivämäärä 06-08-2026
-{TIME:HH-MM-SS} — aika 14-35-42
-{TIME:HHMMSS} — aika 143542
-{TIME:HH-MM} — aika 14-35</value>
-  </data>
-  <data name="Options.RecentTagPatterns">
-    <value>Viimeaikaiset mukautetut kuviot</value>
-  </data>
-  <data name="Options.NextTagExample">
-    <value>Seuraava esimerkki</value>
-  </data>
-  <data name="Options.TagPatternPreview">
-    <value>Esimerkki: {0}</value>
-  </data>
-  <data name="Options.TagPatternInvalid">
-    <value>Tunnistemallin tulee sisältää {tag}.</value>
-  </data>
-  <data name="Options.EnableLogs">
-    <value>Tallenna lokit</value>
-  </data>
-  <data name="Options.Logs">
-    <value>Lokit</value>
-  </data>
-  <data name="Options.LogsDescription">
-    <value>Jokaisella toiminnolla on oma tiedostonsa GW GUI Lokit -kansiossa.</value>
-  </data>
-  <data name="Options.LogActionErase">
-    <value>Poista</value>
-  </data>
-  <data name="Options.LogActionClean">
-    <value>Puhtaat päät</value>
-  </data>
-  <data name="Options.OpenLogsFolder">
-    <value>Avaa kansio</value>
-  </data>
-  <data name="Options.LogMaximumSize">
-    <value>Suurin koko</value>
-  </data>
-  <data name="Options.KeepLogArchives">
-    <value>Säilytä aiemmat lokit</value>
-  </data>
-  <data name="Options.LogUnlimitedHint">
-    <value>0 = rajoittamaton</value>
-  </data>
+  <data name="Options.Title"><value>Vaihtoehdot</value></data>
+  <data name="Options.General"><value>Kenraali</value></data>
+  <data name="Options.Tools"><value>Greaseweazle Työkalut</value></data>
+  <data name="Options.Hardware"><value>Ohjaimet ja asemat</value></data>
+  <data name="Options.Profiles"><value>Profiilit</value></data>
+  <data name="Options.ImagesFolder"><value>Oletuslevykuvakansio</value></data>
+  <data name="Options.Language"><value>Kieli</value></data>
+  <data name="Options.Theme"><value>Teema</value></data>
+  <data name="Theme.System"><value>Järjestelmä</value></data>
+  <data name="Theme.Light"><value>Kevyt</value></data>
+  <data name="Theme.Dark"><value>Tumma</value></data>
+  <data name="Options.GwPath"><value>Polku gw.exe</value></data>
+  <data name="Options.ToolsHelp"><value>Jos työkalut puuttuvat, avustaja ehdottaa niiden lataamista tai valitse olemassa olevan asennuksen. Päivityksistä ilmoitetaan vain.</value></data>
+  <data name="Options.HardwarePersistence"><value>Laitteistoasetukset säilyvät tallessa, kun asema irrotetaan.</value></data>
+  <data name="Options.ExecutableFilter"><value>Greaseweazle (gw.exe)|gw.exe|suoritettava (*.exe)|*.exe</value></data>
+  <data name="Options.RemoveHardware"><value>Poistetaanko tämä tallennettu ohjain ja kaikki sen asemat?</value></data>
+  <data name="Options.HardwareTitle"><value>Laitteisto</value></data>
+  <data name="Options.UseConversionTags"><value>Käytä tunnisteita muunnostiedostojen nimissä</value></data>
+  <data name="Options.TagPreset"><value>Esiasetettu</value></data>
+  <data name="Options.TagPresetFamily"><value>Vain perhe</value></data>
+  <data name="Options.TagPresetFormat"><value>Vain muoto</value></data>
+  <data name="Options.TagPresetFamilyFormat"><value>Perhe ja muoto</value></data>
+  <data name="Options.TagPresetFamilyExtension"><value>Perhe ja laajennus</value></data>
+  <data name="Options.TagPresetDetailed"><value>Perhe, muoto ja laajennus</value></data>
+  <data name="Options.TagPattern"><value>Tulostagin malli</value></data>
+  <data name="Options.TagVariablesTitle"><value>Saatavilla olevat muuttujat</value></data>
+  <data name="Options.TagVariableName"><value>Lähdetiedoston nimi</value></data>
+  <data name="Options.TagVariableFamily"><value>Perhe: PC, ST, AMIGA…</value></data>
+  <data name="Options.TagVariableFormat"><value>Muoto: 720, 1440, DD…</value></data>
+  <data name="Options.TagVariableExtension"><value>Laajennus: IMA, ST, ADF…</value></data>
+  <data name="Options.TagVariableDateIso"><value>Päivämäärä: 2026-08-06</value></data>
+  <data name="Options.TagVariableDateCompact"><value>Päivämäärä: 20260806</value></data>
+  <data name="Options.TagVariableDateLocal"><value>Päivämäärä: 06-08-2026</value></data>
+  <data name="Options.TagVariableTimeFull"><value>Aika: 14-35-42</value></data>
+  <data name="Options.TagVariableTimeCompact"><value>Aika: 143542</value></data>
+  <data name="Options.TagVariableTimeShort"><value>Aika: 14-35</value></data>
+  <data name="Options.TagPatternHelp"><value>{NAME} ... lähdetiedostonimi&#xA;{FAMILY} ... koneperhe (PC, ST, AMIGA...)&#xA;{FORMAT} ... muoto tai geometria (720, 1440), DD...)&#xA;{EXTENSION} ...IMA, ST, ADF...)&#xA;{DATE:YYYY-MM-DD} ... päivämäärä 2026-08-06&#xA;{DATE:YYYYMMDD} ... päivämäärä 20260806&#xA;{DATE:DD-MM-YYYY} ... päivä 06-08-2026&#xA;{TIME:HH-MM-SS} ... aika 14-35-42&#xA;{TIME:HHMMSS} ... aika 143542&#xA;{TIME:HH-MM} ... aika 14-35</value></data>
+  <data name="Options.RecentTagPatterns"><value>Viimeaikaiset mukautetut kuviot</value></data>
+  <data name="Options.NextTagExample"><value>Seuraava esimerkki</value></data>
+  <data name="Options.TagPatternPreview"><value>Esimerkki: {0}</value></data>
+  <data name="Options.TagPatternInvalid"><value>Tunnistemallin tulee sisältää {tag}.</value></data>
+  <data name="Options.EnableLogs"><value>Tallenna lokit</value></data>
+  <data name="Options.Logs"><value>Lokit</value></data>
+  <data name="Options.LogsDescription"><value>Jokaisella toiminnolla on oma tiedostonsa GW GUI Lokit -kansiossa.</value></data>
+  <data name="Options.LogActionErase"><value>Poista</value></data>
+  <data name="Options.LogActionClean"><value>Puhtaat päät</value></data>
+  <data name="Options.OpenLogsFolder"><value>Avaa kansio</value></data>
+  <data name="Options.LogMaximumSize"><value>Suurin koko</value></data>
+  <data name="Options.KeepLogArchives"><value>Säilytä aiemmat lokit</value></data>
+  <data name="Options.LogUnlimitedHint"><value>0 = rajoittamaton</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>Moottorit</value></data>
   <data name="Engines.Description" xml:space="preserve"><value>Valitse kullekin toiminnolle käytettävä moottori erikseen.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>GW GUI:n sisäinen moottori</value></data>
@@ -185,9 +76,7 @@
   <data name="Controllers.NoneDetected" xml:space="preserve"><value>Ohjaimia ei havaittu</value></data>
   <data name="Controllers.DetectedCount" xml:space="preserve"><value>Havaittu {0} ohjain(ta)</value></data>
   <data name="Controllers.TestRumble" xml:space="preserve"><value>Testaa värinä</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve">
-    <value>Värinän voimakkuus</value>
-  </data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>Värinän voimakkuus</value></data>
   <data name="Controllers.LiveInputs" xml:space="preserve"><value>Reaaliaikaiset syötteet</value></data>
   <data name="Controllers.Control" xml:space="preserve"><value>Ohjain</value></data>
   <data name="Controllers.Value" xml:space="preserve"><value>Arvo</value></data>
@@ -218,17 +107,10 @@
   <data name="Controllers.Yes" xml:space="preserve"><value>Kyllä</value></data>
   <data name="Controllers.No" xml:space="preserve"><value>Ei</value></data>
   <data name="Controllers.None" xml:space="preserve"><value>Ei mitään</value></data>
-  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>Yleinen peliohjain</value></data>
-  <data name="Controllers.Model.Auto" xml:space="preserve"><value>Automaattinen</value></data>
-  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>Ratti</value></data>
-  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>Lento-ohjain</value></data>
-  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>Arcade-ohjain</value></data>
-  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Raakatavu</value></data>
+<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Raakatavu</value></data>
   <data name="Controllers.AnalogValues" xml:space="preserve"><value>Analogiset arvot</value></data>
   <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Ohjainten tunnistus epäonnistui</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve">
-    <value>Etsitään ohjaimia…</value>
-  </data>
+  <data name="Controllers.Detecting" xml:space="preserve"><value>Etsitään ohjaimia…</value></data>
   <data name="Controllers.ReadFailed" xml:space="preserve"><value>Ohjaimen lukeminen epäonnistui</value></data>
   <data name="Controllers.TestRunning" xml:space="preserve"><value>Testi käynnissä…</value></data>
   <data name="Controllers.TestFailed" xml:space="preserve"><value>Testi epäonnistui</value></data>
@@ -253,91 +135,51 @@
   <data name="Controllers.Roll" xml:space="preserve"><value>Kallistus</value></data>
   <data name="Controllers.Pitch" xml:space="preserve"><value>Nousukulma</value></data>
   <data name="Controllers.Yaw" xml:space="preserve"><value>Suunta</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve">
-    <value>Anturit</value>
-  </data>
-  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
-    <value>Käyttöliittymän navigointi</value>
-  </data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
-    <value>Peliohjain</value>
-  </data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
-    <value>Matalataajuusmoottori</value>
-  </data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
-    <value>Korkeataajuusmoottori</value>
-  </data>
-  <data name="Controllers.Enum.Share" xml:space="preserve">
-    <value>Jaa</value>
-  </data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve">
-    <value>Lineaarinen</value>
-  </data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve">
-    <value>Kulmallinen</value>
-  </data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve">
-    <value>Normaali</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
-    <value>Vakio</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
-    <value>Ramppi</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
-    <value>Siniaalto</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
-    <value>Kantiaalto</value>
-  </data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
-    <value>Kolmioaalto</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
-    <value>Nouseva sahalaita</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
-    <value>Laskeva sahalaita</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
-    <value>Jousi</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
-    <value>Kitka</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
-    <value>Vaimennin</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
-    <value>Inertia</value>
-  </data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve">
-    <value>Ohjainsauva</value>
-  </data>
-  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
-    <value>Moniakseliohjain</value>
-  </data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
-    <value>HID-käyttö</value>
-  </data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve">
-    <value>akselit</value>
-  </data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve">
-    <value>painikkeet</value>
-  </data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
-    <value>Koottu</value>
-  </data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve">
-    <value>Virtuaalinen</value>
-  </data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve">
-    <value>Syöteraportti</value>
-  </data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
-    <value>Tulosteraportti</value>
-  </data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Anturit</value></data>
+  <data name="Controllers.Enum.UiNavigation"><value>UI navigointi</value></data>
+  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>Peliohjain</value></data>
+  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Matalataajuusmoottori</value></data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Korkeataajuusmoottori</value></data>
+  <data name="Controllers.Enum.Share" xml:space="preserve"><value>Jaa</value></data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Lineaarinen</value></data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Kulmallinen</value></data>
+  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>Normaali</value></data>
+  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Vakio</value></data>
+  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Ramppi</value></data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Siniaalto</value></data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>Kantiaalto</value></data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>Kolmioaalto</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>Nouseva sahalaita</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>Laskeva sahalaita</value></data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>Jousi</value></data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Kitka</value></data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Vaimennin</value></data>
+<data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Ohjainsauva</value></data>
+  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Moniakseliohjain</value></data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID-käyttö</value></data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>akselit</value></data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>painikkeet</value></data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Koottu</value></data>
+  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>Virtuaalinen</value></data>
+  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Syöteraportti</value></data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Tulosteraportti</value></data>
+<data name="Emulation.InitialDisk"><value>Alkulevy</value></data>
+  <data name="Emulation.Audio"><value>Ääni</value></data>
+  <data name="Emulation.Controller"><value>Kontrolleri {0}</value></data>
+  <data name="Emulation.Core.NameOptions"><value>Keskeiset vaihtoehdot</value></data>
+  <data name="Emulation.MultiDrive"><value>Asenna neljä ensimmäistä levyä DF0...DF3</value></data>
+  <data name="Emulation.DiskNumber"><value>Levy {0}</value></data>
+  <data name="Emulation.LoadOptions"><value>Lataa käytettävissä olevat vaihtoehdot</value></data>
+  <data name="Emulation.Configurations"><value>Asetukset</value></data>
+  <data name="Emulation.ReleaseMouse"><value>Vapauta hiiri</value></data>
+  <data name="Emulation.DeleteConfirm"><value>Poista tämä Amiga-konfiguraatio?</value></data>
+  <data name="Emulation.ModelRequired"><value>Tarvitaan Amiga-malli.</value></data>
+  <data name="Emulation.KickstartRequired"><value>Potkukäynnistyspolku on pakollinen.</value></data>
+  <data name="Emulation.FileRequired"><value>Tarvittava firmware-polku on tyhjä.</value></data>
+  <data name="Emulation.FileMissing"><value>Valittua tiedostoa ei ole olemassa.</value></data>
+<data name="Options.EmulationMachineTitle"><value>{0} ... {1} : {2}</value></data>
+  <data name="Controllers.AnalogDeadZones"><value>Analogiset kuolleet vyöhykkeet</value></data>
+  <data name="Controllers.StickDeadZone"><value>Tarrat</value></data>
+  <data name="Controllers.TriggerDeadZone"><value>Laukaisimet</value></data>
+  <data name="Controllers.OuterDeadZone"><value>Ulkoinen kuollut alue</value></data>
 </root>

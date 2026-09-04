@@ -12,118 +12,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Advanced">
-    <value>Avanserte innstillinger</value>
-  </data>
-  <data name="Common.ExpertArguments">
-    <value>Ekspertargumenter</value>
-  </data>
-  <data name="Common.ExpertArgumentsTip">
-    <value>Argumenter sendes som skrevet etter sitatvalidering.</value>
-  </data>
-  <data name="Advanced.SeekRetries">
-    <value>Søk på nytt</value>
-  </data>
-  <data name="Advanced.FakeIndex">
-    <value>Falsk indeks</value>
-  </data>
-  <data name="Advanced.HardSectors">
-    <value>Harde sektorer</value>
-  </data>
-  <data name="Advanced.Reverse">
-    <value>Omvendt spordata</value>
-  </data>
-  <data name="Advanced.AdjustSpeed">
-    <value>Juster hastigheten</value>
-  </data>
-  <data name="Advanced.Pll">
-    <value>PLL overstyring</value>
-  </data>
-  <data name="Advanced.DensityPin">
-    <value>Tetthetsstift 2</value>
-  </data>
-  <data name="Advanced.Tg43">
-    <value>Generer TG43</value>
-  </data>
-  <data name="Advanced.PreErase">
-    <value>Forhåndsslett spor</value>
-  </data>
-  <data name="Advanced.Precomp">
-    <value>Skriv forhåndskompensasjon</value>
-  </data>
-  <data name="Advanced.OutputTracks">
-    <value>Utgangsspor</value>
-  </data>
-  <data name="Advanced.DiskDefs">
-    <value>Egendefinerte diskdefinisjoner</value>
-  </data>
-  <data name="Advanced.DiskDefsFilter">
-    <value>Greaseweazle diskdefinisjoner (*.cfg)|*.cfg|Alle filer|*.*</value>
-  </data>
-  <data name="Advanced.DiskDefsMissing">
-    <value>Den valgte diskdefinisjonsfilen eksisterer ikke.</value>
-  </data>
-  <data name="Advanced.Invalid">
-    <value>En avansert innstilling er ugyldig: {0}</value>
-  </data>
-  <data name="Advanced.TrackSpecTip">
-    <value>Sporspesifikasjon, for eksempel c=0-79:h=0-1, c=0-79/2:h=0, eller c=0-79:h=0-1:hswap.</value>
-  </data>
-  <data name="Advanced.SpeedTip">
-    <value>Positiv hastighet eller periode, for eksempel 300rpm, 200ms, 200000us eller 200000000ns.</value>
-  </data>
-  <data name="Advanced.PllTip">
-    <value>PLL parametere atskilt med kolon, for eksempel periode=5:fase=60 eller periode=5:fase=60:lavpass=2.</value>
-  </data>
-  <data name="Advanced.PrecompTip">
-    <value>Skriv forhåndskompensasjon, for eksempel type=mfm:40=125. Typer: mfm, fm, gcr; verdiene er i nanosekunder.</value>
-  </data>
-  <data name="Advanced.DiskDefsTip">
-    <value>Bruk en egendefinert diskdefs.cfg-fil for å legge til eller overstyre Greaseweazle-formatdefinisjoner.</value>
-  </data>
-  <data name="Advanced.RevsTip">
-    <value>--revs: Antall omdreininger lest per spor. Eksempel: --revs 5.</value>
-  </data>
-  <data name="Advanced.RetriesTip">
-    <value>--retries: Ytterligere forsøk etter en feil. Eksempel: --retries 3.</value>
-  </data>
-  <data name="Advanced.TracksTip">
-    <value>--tracks: Begrens sylindre, hoder eller trinn. Eksempel: --tracks c=0-79:h=0-1.</value>
-  </data>
-  <data name="Advanced.SeekRetriesTip">
-    <value>--seek-retries: Ytterligere forsøk etter å ha beveget hodet. Eksempel: --seek-retries 2.</value>
-  </data>
-  <data name="Advanced.FakeIndexTip">
-    <value>--fake-index: Opprett en tidsbestemt indeks for en stasjon uten et indekssignal. Eksempel: --fake-index 300rpm.</value>
-  </data>
-  <data name="Advanced.HardSectorsTip">
-    <value>--hard-sectors: Håndter en harddisk med harddisk. Inkompatibel med --fake-index.</value>
-  </data>
-  <data name="Advanced.ReverseTip">
-    <value>--reverse: Omvendt sporingsdata for flippy media eller ledninger.</value>
-  </data>
-  <data name="Advanced.AdjustSpeedTip">
-    <value>--adjust-speed: Skaler datatiming på nytt. Eksempel: --adjust-speed 300rpm.</value>
-  </data>
-  <data name="Advanced.PllOptionTip">
-    <value>--pll: Konfigurer klokkegjenopprettingssløyfen. Eksempel: --pll periode=5:fase=60.</value>
-  </data>
-  <data name="Advanced.DenselTip">
-    <value>--densel: Tving tetthetsvelgerpinnen høy eller lav. Eksempel: --densel H.</value>
-  </data>
-  <data name="Advanced.Tg43Tip">
-    <value>--gen-tg43: Generer TG43-signalet for stasjoner som krever det. Inkompatibel med --densel.</value>
-  </data>
-  <data name="Advanced.EraseEmptyTip">
-    <value>--erase-empty: Slett spor der kildebildet ikke inneholder data.</value>
-  </data>
-  <data name="Advanced.PreEraseTip">
-    <value>--pre-erase: Slett hvert spor før du skriver det.</value>
-  </data>
-  <data name="Advanced.PrecompOptionTip">
-    <value>--precomp: Bruk skriveforskuddskompensasjon. Eksempel: --precomp type=mfm:40=125.</value>
-  </data>
-  <data name="Advanced.OutputTracksTip">
-    <value>--out-tracks: Tilordne spor på nytt i utdatabildet. Eksempel: --out-tracks c=0-79:h=0-1.</value>
-  </data>
+  <data name="Common.Advanced"><value>Avanserte innstillinger</value></data>
+  <data name="Common.ExpertArguments"><value>Ekspertargumenter</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>Argumenter sendes som skrevet etter sitatvalidering.</value></data>
+  <data name="Advanced.SeekRetries"><value>Søk på nytt</value></data>
+  <data name="Advanced.FakeIndex"><value>Falsk indeks</value></data>
+  <data name="Advanced.HardSectors"><value>Harde sektorer</value></data>
+  <data name="Advanced.Reverse"><value>Omvendt spordata</value></data>
+  <data name="Advanced.AdjustSpeed"><value>Juster hastigheten</value></data>
+  <data name="Advanced.Pll"><value>PLL overstyring</value></data>
+  <data name="Advanced.DensityPin"><value>Tetthetsstift 2</value></data>
+  <data name="Advanced.Tg43"><value>Generer TG43</value></data>
+  <data name="Advanced.PreErase"><value>Forhåndsslett spor</value></data>
+  <data name="Advanced.Precomp"><value>Skriv forhåndskompensasjon</value></data>
+  <data name="Advanced.OutputTracks"><value>Utgangsspor</value></data>
+  <data name="Advanced.DiskDefs"><value>Egendefinerte diskdefinisjoner</value></data>
+  <data name="Advanced.DiskDefsFilter"><value>Greaseweazle diskdefinisjoner (*.cfg)|*.cfg|Alle filer|*.*</value></data>
+  <data name="Advanced.DiskDefsMissing"><value>Den valgte diskdefinisjonsfilen eksisterer ikke.</value></data>
+  <data name="Advanced.Invalid"><value>En avansert innstilling er ugyldig: {0}</value></data>
+  <data name="Advanced.TrackSpecTip"><value>Sporspesifikasjon, for eksempel c=0-79:h=0-1, c=0-79/2:h=0, eller c=0-79:h=0-1:hswap.</value></data>
+  <data name="Advanced.SpeedTip"><value>Positiv hastighet eller periode, for eksempel 300rpm, 200ms, 200000us eller 200000000ns.</value></data>
+  <data name="Advanced.PllTip"><value>PLL parametere atskilt med kolon, for eksempel periode=5:fase=60 eller periode=5:fase=60:lavpass=2.</value></data>
+  <data name="Advanced.PrecompTip"><value>Skriv forhåndskompensasjon, for eksempel type=mfm:40=125. Typer: mfm, fm, gcr; verdiene er i nanosekunder.</value></data>
+  <data name="Advanced.DiskDefsTip"><value>Bruk en egendefinert diskdefs.cfg-fil for å legge til eller overstyre Greaseweazle-formatdefinisjoner.</value></data>
+  <data name="Advanced.RevsTip"><value>--revs: Antall omdreininger lest per spor. Eksempel: --revs 5.</value></data>
+  <data name="Advanced.RetriesTip"><value>--retries: Ytterligere forsøk etter en feil. Eksempel: --retries 3.</value></data>
+  <data name="Advanced.TracksTip"><value>--tracks: Begrens sylindre, hoder eller trinn. Eksempel: --tracks c=0-79:h=0-1.</value></data>
+  <data name="Advanced.SeekRetriesTip"><value>--seek-retries: Ytterligere forsøk etter å ha beveget hodet. Eksempel: --seek-retries 2.</value></data>
+  <data name="Advanced.FakeIndexTip"><value>--fake-index: Opprett en tidsbestemt indeks for en stasjon uten et indekssignal. Eksempel: --fake-index 300rpm.</value></data>
+  <data name="Advanced.HardSectorsTip"><value>--hard-sectors: Håndter en harddisk med harddisk. Inkompatibel med --fake-index.</value></data>
+  <data name="Advanced.ReverseTip"><value>--reverse: Omvendt sporingsdata for flippy media eller ledninger.</value></data>
+  <data name="Advanced.AdjustSpeedTip"><value>--adjust-speed: Skaler datatiming på nytt. Eksempel: --adjust-speed 300rpm.</value></data>
+  <data name="Advanced.PllOptionTip"><value>--pll: Konfigurer klokkegjenopprettingssløyfen. Eksempel: --pll periode=5:fase=60.</value></data>
+  <data name="Advanced.DenselTip"><value>--densel: Tving tetthetsvelgerpinnen høy eller lav. Eksempel: --densel H.</value></data>
+  <data name="Advanced.Tg43Tip"><value>--gen-tg43: Generer TG43-signalet for stasjoner som krever det. Inkompatibel med --densel.</value></data>
+  <data name="Advanced.EraseEmptyTip"><value>--erase-empty: Slett spor der kildebildet ikke inneholder data.</value></data>
+  <data name="Advanced.PreEraseTip"><value>--pre-erase: Slett hvert spor før du skriver det.</value></data>
+  <data name="Advanced.PrecompOptionTip"><value>--precomp: Bruk skriveforskuddskompensasjon. Eksempel: --precomp type=mfm:40=125.</value></data>
+  <data name="Advanced.OutputTracksTip"><value>--out-tracks: Tilordne spor på nytt i utdatabildet. Eksempel: --out-tracks c=0-79:h=0-1.</value></data>
 </root>

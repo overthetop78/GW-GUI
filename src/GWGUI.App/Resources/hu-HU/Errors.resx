@@ -12,28 +12,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.SettingsSaveFailed">
-    <value>A beállításokat nem sikerült elmenteni.
-
-{0}</value>
-  </data>
-  <data name="Error.Title">
-    <value>GW GUI hiba</value>
-  </data>
-  <data name="Error.Unexpected">
-    <value>Váratlan hiba történt.
-
-{0}</value>
-  </data>
-  <data name="Error.SaveFailed">
-    <value>A beállításokat nem sikerült elmenteni. Az ablak továbbra is bezárul.
-
-{0}</value>
-  </data>
-  <data name="Error.LogSaved">
-    <value>A teljes jelentést a következő helyre mentettük:
-{0}</value>
-  </data>
+  <data name="App.SettingsSaveFailed"><value>A beállításokat nem sikerült elmenteni.&#xA;&#xA;{0}</value></data>
+  <data name="Error.Title"><value>GW GUI hiba</value></data>
+  <data name="Error.Unexpected"><value>Váratlan hiba történt.&#xA;&#xA;{0}</value></data>
+  <data name="Error.SaveFailed"><value>A beállításokat nem sikerült elmenteni. Az ablak továbbra is bezárul.&#xA;&#xA;{0}</value></data>
+  <data name="Error.LogSaved"><value>A teljes jelentést a következő helyre mentettük:&#xA;{0}</value></data>
   <data name="Error.Description.NetworkTimeout"><value>A távoli szolgáltatás nem válaszolt, mielőtt a kapcsolat időzített. Ellenőrizze a hálózati kapcsolatot, és próbálja újra.</value></data>
   <data name="Error.Description.NetworkDns"><value>A távoli szolgáltatás címét nem sikerült megoldani. Ellenőrizze a hálózati vagy DNS beállításokat, és próbálja újra.</value></data>
   <data name="Error.Description.NetworkRefused"><value>A távoli szolgáltatás visszautasította a kapcsolatot. Lehet, hogy nem elérhető vagy blokkolható.</value></data>

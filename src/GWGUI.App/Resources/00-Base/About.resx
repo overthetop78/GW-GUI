@@ -12,16 +12,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="About.Description">
-    <value>A modern Windows interface for reading, writing, converting and inspecting floppy disks with Greaseweazle.</value>
-  </data>
-  <data name="About.License">
-    <value>Open-source software — MIT License</value>
-  </data>
-  <data name="About.Version">
-    <value>Version {0}</value>
-  </data>
-  <data name="About.Components">
-    <value>Component versions</value>
-  </data>
+  <data name="About.Description"><value>A modern Windows interface for reading, writing, converting and inspecting floppy disks with Greaseweazle.</value></data>
+  <data name="About.License"><value>Open-source software — MIT License</value></data>
+  <data name="About.Version"><value>Version {0}</value></data>
+  <data name="About.Components"><value>Component versions</value></data>
 </root>

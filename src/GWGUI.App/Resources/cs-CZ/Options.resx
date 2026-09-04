@@ -12,170 +12,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Options.Title">
-    <value>Možnosti</value>
-  </data>
-  <data name="Options.General">
-    <value>Generál</value>
-  </data>
-  <data name="Options.Tools">
-    <value>Greaseweazle Nástroje</value>
-  </data>
-  <data name="Options.Hardware">
-    <value>Ovladače a pohony</value>
-  </data>
-  <data name="Options.Profiles">
-    <value>Profily</value>
-  </data>
-  <data name="Options.ImagesFolder">
-    <value>Výchozí složka obrazu disku</value>
-  </data>
-  <data name="Options.Language">
-    <value>Jazyk</value>
-  </data>
-  <data name="Options.Theme">
-    <value>Téma</value>
-  </data>
-  <data name="Theme.System">
-    <value>Systém</value>
-  </data>
-  <data name="Theme.Light">
-    <value>Světlo</value>
-  </data>
-  <data name="Theme.Dark">
-    <value>Tmavý</value>
-  </data>
-  <data name="Options.GwPath">
-    <value>Cesta k gw.exe</value>
-  </data>
-  <data name="Options.ToolsHelp">
-    <value>Pokud nástroje chybí, asistent nabídne jejich stažení nebo zvolí existující instalaci. Aktualizace jsou pouze oznámeny.</value>
-  </data>
-  <data name="Options.HardwarePersistence">
-    <value>Hardwarová nastavení zůstanou uložena i po odpojení disku.</value>
-  </data>
-  <data name="Options.ExecutableFilter">
-    <value>Greaseweazle (gw.exe)|gw.exe|Spustitelný soubor (*.exe)|*.exe</value>
-  </data>
-  <data name="Options.RemoveHardware">
-    <value>Odebrat tento uložený ovladač a všechny jeho jednotky?</value>
-  </data>
-  <data name="Options.HardwareTitle">
-    <value>Železářské zboží</value>
-  </data>
-  <data name="Options.UseConversionTags">
-    <value>Použijte značky v názvech souborů konverze</value>
-  </data>
-  <data name="Options.TagPreset">
-    <value>Přednastaveno</value>
-  </data>
-  <data name="Options.TagPresetFamily">
-    <value>Pouze rodina</value>
-  </data>
-  <data name="Options.TagPresetFormat">
-    <value>Pouze formát</value>
-  </data>
-  <data name="Options.TagPresetFamilyFormat">
-    <value>Rodina a formát</value>
-  </data>
-  <data name="Options.TagPresetFamilyExtension">
-    <value>Rodina a rozšíření</value>
-  </data>
-  <data name="Options.TagPresetDetailed">
-    <value>Rodina, formát a rozšíření</value>
-  </data>
-  <data name="Options.TagPattern">
-    <value>Vzor značky konverze</value>
-  </data>
-  <data name="Options.TagVariablesTitle">
-    <value>Dostupné proměnné</value>
-  </data>
-  <data name="Options.TagVariableName">
-    <value>Zdrojový název souboru</value>
-  </data>
-  <data name="Options.TagVariableFamily">
-    <value>Rodina: PC, ST, AMIGA…</value>
-  </data>
-  <data name="Options.TagVariableFormat">
-    <value>Formát: 720, 1440, DD…</value>
-  </data>
-  <data name="Options.TagVariableExtension">
-    <value>Rozšíření: IMA, ST, ADF…</value>
-  </data>
-  <data name="Options.TagVariableDateIso">
-    <value>Datum: 2026-08-06</value>
-  </data>
-  <data name="Options.TagVariableDateCompact">
-    <value>Datum: 20260806</value>
-  </data>
-  <data name="Options.TagVariableDateLocal">
-    <value>Datum: 06.08.2026</value>
-  </data>
-  <data name="Options.TagVariableTimeFull">
-    <value>Čas: 14-35-42</value>
-  </data>
-  <data name="Options.TagVariableTimeCompact">
-    <value>Čas: 143542</value>
-  </data>
-  <data name="Options.TagVariableTimeShort">
-    <value>Čas: 14-35</value>
-  </data>
-  <data name="Options.TagPatternHelp">
-    <value>{NAME} — zdrojový název souboru
-{FAMILY} — řada strojů (PC, ST, AMIGA…)
-{FORMAT} — formát nebo geometrie (720, 1440, DD…)
-{EXTENSION} — rozšíření výstupu (IMA, ST, ADF…)
-{DATE:YYYY-MM-DD} — datum 2026-08-06
-{DATE:YYYYMMDD} — datum 20260806
-{DATE:DD-MM-YYYY} — datum 06.08.2026
-{TIME:HH-MM-SS} — čas 14-35-42
-{TIME:HHMMSS} — čas 143542
-{TIME:HH-MM} — čas 14-35</value>
-  </data>
-  <data name="Options.RecentTagPatterns">
-    <value>Nedávné vlastní vzory</value>
-  </data>
-  <data name="Options.NextTagExample">
-    <value>Další příklad</value>
-  </data>
-  <data name="Options.TagPatternPreview">
-    <value>Příklad: {0}</value>
-  </data>
-  <data name="Options.TagPatternInvalid">
-    <value>Vzor značky musí obsahovat {tag}.</value>
-  </data>
-  <data name="Options.EnableLogs">
-    <value>Uložit protokoly</value>
-  </data>
-  <data name="Options.Logs">
-    <value>Protokoly</value>
-  </data>
-  <data name="Options.LogsDescription">
-    <value>Každá akce má svůj vlastní soubor ve složce GW GUI Logs.</value>
-  </data>
-  <data name="Options.LogActionErase">
-    <value>Vymazat</value>
-  </data>
-  <data name="Options.LogActionClean">
-    <value>Čisté hlavy</value>
-  </data>
-  <data name="Options.OpenLogsFolder">
-    <value>Otevřete složku</value>
-  </data>
-  <data name="Options.LogMaximumSize">
-    <value>Maximální velikost</value>
-  </data>
-  <data name="Options.KeepLogArchives">
-    <value>Uchovávejte předchozí protokoly</value>
-  </data>
-  <data name="Options.LogUnlimitedHint">
-    <value>0 = neomezeně</value>
-  </data>
+  <data name="Options.Title"><value>Možnosti</value></data>
+  <data name="Options.General"><value>Generál</value></data>
+  <data name="Options.Tools"><value>Greaseweazle Nástroje</value></data>
+  <data name="Options.Hardware"><value>Ovladače a pohony</value></data>
+  <data name="Options.Profiles"><value>Profily</value></data>
+  <data name="Options.ImagesFolder"><value>Výchozí složka obrazu disku</value></data>
+  <data name="Options.Language"><value>Jazyk</value></data>
+  <data name="Options.Theme"><value>Téma</value></data>
+  <data name="Theme.System"><value>Systém</value></data>
+  <data name="Theme.Light"><value>Světlo</value></data>
+  <data name="Theme.Dark"><value>Tmavý</value></data>
+  <data name="Options.GwPath"><value>Cesta k gw.exe</value></data>
+  <data name="Options.ToolsHelp"><value>Pokud nástroje chybí, asistent nabídne jejich stažení nebo zvolí existující instalaci. Aktualizace jsou pouze oznámeny.</value></data>
+  <data name="Options.HardwarePersistence"><value>Hardwarová nastavení zůstanou uložena i po odpojení disku.</value></data>
+  <data name="Options.ExecutableFilter"><value>Greseweazle (gw.exe)|gw.exe|Spustitelný (*.exe)|*.exe</value></data>
+  <data name="Options.RemoveHardware"><value>Odebrat tento uložený ovladač a všechny jeho jednotky?</value></data>
+  <data name="Options.HardwareTitle"><value>Železářské zboží</value></data>
+  <data name="Options.UseConversionTags"><value>Použijte značky v názvech souborů konverze</value></data>
+  <data name="Options.TagPreset"><value>Přednastaveno</value></data>
+  <data name="Options.TagPresetFamily"><value>Pouze rodina</value></data>
+  <data name="Options.TagPresetFormat"><value>Pouze formát</value></data>
+  <data name="Options.TagPresetFamilyFormat"><value>Rodina a formát</value></data>
+  <data name="Options.TagPresetFamilyExtension"><value>Rodina a rozšíření</value></data>
+  <data name="Options.TagPresetDetailed"><value>Rodina, formát a rozšíření</value></data>
+  <data name="Options.TagPattern"><value>Vzor značky konverze</value></data>
+  <data name="Options.TagVariablesTitle"><value>Dostupné proměnné</value></data>
+  <data name="Options.TagVariableName"><value>Zdrojový název souboru</value></data>
+  <data name="Options.TagVariableFamily"><value>Rodina: PC, ST, AMIGA…</value></data>
+  <data name="Options.TagVariableFormat"><value>Formát: 720, 1440, DD…</value></data>
+  <data name="Options.TagVariableExtension"><value>Rozšíření: IMA, ST, ADF…</value></data>
+  <data name="Options.TagVariableDateIso"><value>Datum: 2026-08-06</value></data>
+  <data name="Options.TagVariableDateCompact"><value>Datum: 20260806</value></data>
+  <data name="Options.TagVariableDateLocal"><value>Datum: 06.08.2026</value></data>
+  <data name="Options.TagVariableTimeFull"><value>Čas: 14-35-42</value></data>
+  <data name="Options.TagVariableTimeCompact"><value>Čas: 143542</value></data>
+  <data name="Options.TagVariableTimeShort"><value>Čas: 14-35</value></data>
+  <data name="Options.TagPatternHelp"><value>{NAME} - zdrojový název souboru&#xA;{FAMILY} - rodina strojů (PC, ST, AMIGA...)&#xA;{FORMAT} - formát nebo geometrie (720,1440, DD...)&#xA;{EXTENSION} - rozšíření výstupu (IMA, ST, ADF...)&#xA;{DATE:YYYY-MM-DD} - datum 2026- 08- 06&#xA;{DATE:YYYYMMDD} - datum 20260806&#xA;{DATE:DD-MM-YYYY} - datum 06-08-2026&#xA;{TIME:HH-MM-SS} - čas 14-35-42&#xA;{TIME:HHMMSS} - čas 143542&#xA;{TIME:HH-MM} - čas 14-35</value></data>
+  <data name="Options.RecentTagPatterns"><value>Nedávné vlastní vzory</value></data>
+  <data name="Options.NextTagExample"><value>Další příklad</value></data>
+  <data name="Options.TagPatternPreview"><value>Příklad: {0}</value></data>
+  <data name="Options.TagPatternInvalid"><value>Vzor značky musí obsahovat {tag}.</value></data>
+  <data name="Options.EnableLogs"><value>Uložit protokoly</value></data>
+  <data name="Options.Logs"><value>Protokoly</value></data>
+  <data name="Options.LogsDescription"><value>Každá akce má svůj vlastní soubor ve složce GW GUI Logs.</value></data>
+  <data name="Options.LogActionErase"><value>Vymazat</value></data>
+  <data name="Options.LogActionClean"><value>Čisté hlavy</value></data>
+  <data name="Options.OpenLogsFolder"><value>Otevřete složku</value></data>
+  <data name="Options.LogMaximumSize"><value>Maximální velikost</value></data>
+  <data name="Options.KeepLogArchives"><value>Uchovávejte předchozí protokoly</value></data>
+  <data name="Options.LogUnlimitedHint"><value>0 = neomezeně</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>Moduly</value></data>
   <data name="Engines.Description" xml:space="preserve"><value>Zvolte nezávisle modul použitý pro každou operaci.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>Interní modul GW GUI</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>Vybraný modul se používá striktně. Pokud operaci nezvládne, GW GUI to oznámí a tiše nepoužije druhý modul.</value></data>
-  <data name="Emulation.Model" xml:space="preserve"><value>Model</value></data>
+  <data name="Emulation.Model"><value>Vzor</value></data>
   <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Zachytávat myš</value></data>
   <data name="Emulation.Configuration" xml:space="preserve"><value>Nastavení</value></data>
   <data name="Controllers.Title" xml:space="preserve"><value>Ovladače</value></data>
@@ -185,9 +76,7 @@
   <data name="Controllers.NoneDetected" xml:space="preserve"><value>Nebyl zjištěn žádný ovladač</value></data>
   <data name="Controllers.DetectedCount" xml:space="preserve"><value>Zjištěno ovladačů: {0}</value></data>
   <data name="Controllers.TestRumble" xml:space="preserve"><value>Test vibrací</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve">
-    <value>Síla vibrací</value>
-  </data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>Síla vibrací</value></data>
   <data name="Controllers.LiveInputs" xml:space="preserve"><value>Živé vstupy</value></data>
   <data name="Controllers.Control" xml:space="preserve"><value>Ovládací prvek</value></data>
   <data name="Controllers.Value" xml:space="preserve"><value>Hodnota</value></data>
@@ -218,17 +107,10 @@
   <data name="Controllers.Yes" xml:space="preserve"><value>Ano</value></data>
   <data name="Controllers.No" xml:space="preserve"><value>Ne</value></data>
   <data name="Controllers.None" xml:space="preserve"><value>Žádné</value></data>
-  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>Obecný gamepad</value></data>
-  <data name="Controllers.Model.Auto" xml:space="preserve"><value>Automaticky</value></data>
-  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>Volant</value></data>
-  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>Letecký joystick</value></data>
-  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>Arcade joystick</value></data>
-  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Nezpracovaný bajt</value></data>
+<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Nezpracovaný bajt</value></data>
   <data name="Controllers.AnalogValues" xml:space="preserve"><value>Analogové hodnoty</value></data>
   <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Zjišťování ovladačů selhalo</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve">
-    <value>Probíhá zjišťování ovladačů…</value>
-  </data>
+  <data name="Controllers.Detecting" xml:space="preserve"><value>Probíhá zjišťování ovladačů…</value></data>
   <data name="Controllers.ReadFailed" xml:space="preserve"><value>Čtení ovladače selhalo</value></data>
   <data name="Controllers.TestRunning" xml:space="preserve"><value>Probíhá test…</value></data>
   <data name="Controllers.TestFailed" xml:space="preserve"><value>Test selhal</value></data>
@@ -253,91 +135,48 @@
   <data name="Controllers.Roll" xml:space="preserve"><value>Náklon</value></data>
   <data name="Controllers.Pitch" xml:space="preserve"><value>Klonění</value></data>
   <data name="Controllers.Yaw" xml:space="preserve"><value>Vybočení</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve">
-    <value>Senzory</value>
-  </data>
-  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
-    <value>Navigace rozhraní</value>
-  </data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
-    <value>Gamepad</value>
-  </data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
-    <value>Nízkofrekvenční motor</value>
-  </data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
-    <value>Vysokofrekvenční motor</value>
-  </data>
-  <data name="Controllers.Enum.Share" xml:space="preserve">
-    <value>Sdílet</value>
-  </data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve">
-    <value>Lineární</value>
-  </data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve">
-    <value>Úhlový</value>
-  </data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve">
-    <value>Normální</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
-    <value>Konstantní</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
-    <value>Náběh</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
-    <value>Sinusová vlna</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
-    <value>Obdélníková vlna</value>
-  </data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
-    <value>Trojúhelníková vlna</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
-    <value>Vzestupný pilový průběh</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
-    <value>Sestupný pilový průběh</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
-    <value>Pružina</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
-    <value>Tření</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
-    <value>Tlumič</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
-    <value>Setrvačnost</value>
-  </data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve">
-    <value>Joystick</value>
-  </data>
-  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
-    <value>Víceosý ovladač</value>
-  </data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
-    <value>Použití HID</value>
-  </data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve">
-    <value>osy</value>
-  </data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve">
-    <value>tlačítka</value>
-  </data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
-    <value>Agregovaný</value>
-  </data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve">
-    <value>Virtuální</value>
-  </data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve">
-    <value>Vstupní sestava</value>
-  </data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
-    <value>Výstupní sestava</value>
-  </data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Senzory</value></data>
+  <data name="Controllers.Enum.UiNavigation"><value>UI navigace</value></data>
+<data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Nízkofrekvenční motor</value></data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Vysokofrekvenční motor</value></data>
+  <data name="Controllers.Enum.Share" xml:space="preserve"><value>Sdílet</value></data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Lineární</value></data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Úhlový</value></data>
+  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>Normální</value></data>
+  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Konstantní</value></data>
+  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Náběh</value></data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Sinusová vlna</value></data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>Obdélníková vlna</value></data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>Trojúhelníková vlna</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>Vzestupný pilový průběh</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>Sestupný pilový průběh</value></data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>Pružina</value></data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Tření</value></data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Tlumič</value></data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Setrvačnost</value></data>
+<data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Víceosý ovladač</value></data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>Použití HID</value></data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>osy</value></data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>tlačítka</value></data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Agregovaný</value></data>
+  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>Virtuální</value></data>
+  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Vstupní sestava</value></data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Výstupní sestava</value></data>
+<data name="Emulation.InitialDisk"><value>Původní disk</value></data>
+  <data name="Emulation.Controller"><value>Kontrolor {0}</value></data>
+  <data name="Emulation.Core.NameOptions"><value>Základní opce</value></data>
+  <data name="Emulation.MultiDrive"><value>První čtyři disky se připojí DF0-DF3</value></data>
+  <data name="Emulation.LoadOptions"><value>Volby, které jsou k dispozici</value></data>
+  <data name="Emulation.Configurations"><value>Konfigurace</value></data>
+  <data name="Emulation.ReleaseMouse"><value>Vypustit myš</value></data>
+  <data name="Emulation.DeleteConfirm"><value>Smazat tuto konfiguraci Amiga?</value></data>
+  <data name="Emulation.ModelRequired"><value>Je potřeba model Amiga.</value></data>
+  <data name="Emulation.KickstartRequired"><value>Je třeba Kickstart cestu.</value></data>
+  <data name="Emulation.FileRequired"><value>Požadovaná cesta firmware je prázdná.</value></data>
+  <data name="Emulation.FileMissing"><value>Vybraný soubor neexistuje.</value></data>
+<data name="Options.EmulationMachineTitle"><value>{0} - {1} : {2}</value></data>
+  <data name="Controllers.AnalogDeadZones"><value>Analogové mrtvé zóny</value></data>
+  <data name="Controllers.StickDeadZone"><value>Tyčinky</value></data>
+  <data name="Controllers.TriggerDeadZone"><value>Spouštěče</value></data>
+  <data name="Controllers.OuterDeadZone"><value>Vnější mrtvá zóna</value></data>
 </root>

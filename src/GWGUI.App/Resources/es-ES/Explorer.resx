@@ -12,102 +12,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Image">
-    <value>Imagen de disco</value>
-  </data>
-  <data name="Explorer.Format">
-    <value>Formato</value>
-  </data>
-  <data name="Explorer.OpenImage">
-    <value>Abrir una imagen…</value>
-  </data>
-  <data name="Explorer.Automatic">
-    <value>Detección automática</value>
-  </data>
-  <data name="Explorer.Volume">
-    <value>Volumen</value>
-  </data>
-  <data name="Explorer.FileSystem">
-    <value>Sistema de archivos</value>
-  </data>
-  <data name="Explorer.Capacity">
-    <value>Capacidad</value>
-  </data>
-  <data name="Explorer.Free">
-    <value>Espacio libre</value>
-  </data>
-  <data name="Explorer.Entries">
-    <value>Elementos</value>
-  </data>
-  <data name="Explorer.SelectEntry">
-    <value>Seleccione un archivo o una carpeta.</value>
-  </data>
-  <data name="Explorer.Size">
-    <value>Tamaño</value>
-  </data>
-  <data name="Explorer.Modified">
-    <value>Modificado</value>
-  </data>
-  <data name="Explorer.Comment">
-    <value>Comentario</value>
-  </data>
-  <data name="Explorer.Warnings">
-    <value>Advertencias</value>
-  </data>
-  <data name="Explorer.Directory">
-    <value>Carpeta</value>
-  </data>
-  <data name="Explorer.File">
-    <value>Archivo</value>
-  </data>
-  <data name="Explorer.Link">
-    <value>Enlace</value>
-  </data>
-  <data name="Explorer.Unknown">
-    <value>Desconocido</value>
-  </data>
-  <data name="Explorer.Unnamed">
-    <value>Volumen sin nombre</value>
-  </data>
-  <data name="Explorer.LoadFailed">
-    <value>No se puede abrir esta imagen: {0}</value>
-  </data>
-  <data name="Explorer.Loading">
-    <value>Leyendo la imagen de disco…</value>
-  </data>
-  <data name="Explorer.ReadDisk">
-    <value>Leer disco</value>
-  </data>
-  <data name="Explorer.Name">
-    <value>Nombre</value>
-  </data>
-  <data name="Explorer.Type">
-    <value>Tipo</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirmTitle">
-    <value>Leer disco</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirm">
-    <value>¿Está el disco insertado en la unidad seleccionada actualmente ({0}) y listo para la lectura?</value>
-  </data>
-  <data name="Explorer.Type.Text">
-    <value>Archivo de texto</value>
-  </data>
-  <data name="Explorer.Type.Image">
-    <value>Imagen</value>
-  </data>
-  <data name="Explorer.Type.Audio">
-    <value>Archivo de audio</value>
-  </data>
-  <data name="Explorer.Type.Archive">
-    <value>Archivo comprimido</value>
-  </data>
-  <data name="Explorer.Type.Program">
-    <value>Programa</value>
-  </data>
-  <data name="Explorer.Type.DiskImage">
-    <value>Imagen de disco</value>
-  </data>
+  <data name="Explorer.Image"><value>Imagen de disco</value></data>
+  <data name="Explorer.Format"><value>Formato</value></data>
+  <data name="Explorer.OpenImage"><value>Abrir una imagen…</value></data>
+  <data name="Explorer.Automatic"><value>Detección automática</value></data>
+  <data name="Explorer.Volume"><value>Volumen</value></data>
+  <data name="Explorer.FileSystem"><value>Sistema de archivos</value></data>
+  <data name="Explorer.Capacity"><value>Capacidad</value></data>
+  <data name="Explorer.Free"><value>Espacio libre</value></data>
+  <data name="Explorer.Entries"><value>Elementos</value></data>
+  <data name="Explorer.SelectEntry"><value>Seleccione un archivo o una carpeta.</value></data>
+  <data name="Explorer.Size"><value>Tamaño</value></data>
+  <data name="Explorer.Modified"><value>Modificado</value></data>
+  <data name="Explorer.Comment"><value>Comentario</value></data>
+  <data name="Explorer.Warnings"><value>Advertencias</value></data>
+  <data name="Explorer.Directory"><value>Carpeta</value></data>
+  <data name="Explorer.File"><value>Archivo</value></data>
+  <data name="Explorer.Link"><value>Enlace</value></data>
+  <data name="Explorer.Unknown"><value>Desconocido</value></data>
+  <data name="Explorer.Unnamed"><value>Volumen sin nombre</value></data>
+  <data name="Explorer.LoadFailed"><value>No se puede abrir esta imagen: {0}</value></data>
+  <data name="Explorer.Loading"><value>Leyendo la imagen de disco…</value></data>
+  <data name="Explorer.ReadDisk"><value>Leer disco</value></data>
+  <data name="Explorer.Name"><value>Nombre</value></data>
+  <data name="Explorer.Type"><value>Tipo</value></data>
+  <data name="Explorer.ReadDiskConfirmTitle"><value>Leer disco</value></data>
+  <data name="Explorer.ReadDiskConfirm"><value>¿Está el disco insertado en la unidad seleccionada actualmente ({0}) y listo para la lectura?</value></data>
+  <data name="Explorer.Type.Text"><value>Archivo de texto</value></data>
+  <data name="Explorer.Type.Image"><value>Imagen</value></data>
+  <data name="Explorer.Type.Audio"><value>Archivo de audio</value></data>
+  <data name="Explorer.Type.Archive"><value>Archivo comprimido</value></data>
+  <data name="Explorer.Type.Program"><value>Programa</value></data>
+  <data name="Explorer.Type.DiskImage"><value>Imagen de disco</value></data>
   <data name="Explorer.System"><value>Sistema</value></data>
   <data name="Explorer.Protection"><value>Protección</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Sectores físicos — ningún sistema de archivos reconocido</value></data>
@@ -119,6 +55,6 @@
   <data name="Explorer.Content.crack-the-company"><value>Crack de The Company</value></data>
   <data name="Explorer.DataBlocks"><value>Bloques de datos</value></data>
   <data name="Explorer.DetectedFormats"><value>Detectado: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable"><value>Herramientas de Host no pueden producir una imagen del sector explorable {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed"><value>Herramientas de host no pueden decodificar la imagen como {0}.</value></data>
 </root>

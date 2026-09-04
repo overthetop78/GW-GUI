@@ -12,73 +12,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.GwNotConfigured">
-    <value>Greaseweazle Τα εργαλεία δεν έχουν ρυθμιστεί. Ανοίξτε τις Επιλογές → Προτιμήσεις.</value>
-  </data>
-  <data name="App.OperationRunningClose">
-    <value>Εκτελείται μια λειτουργία. Διακοπή και κλείσιμο GW GUI;</value>
-  </data>
-  <data name="Operation.Finished">
-    <value>Ολοκληρώθηκε: κωδικός {0}, διάρκεια {1}.</value>
-  </data>
-  <data name="Operation.Succeeded">
-    <value>Η εντολή ολοκληρώθηκε με επιτυχία.</value>
-  </data>
-  <data name="Operation.Cancelled">
-    <value>Η εντολή ακυρώθηκε.</value>
-  </data>
-  <data name="Operation.ExitCode">
-    <value>Η εντολή τελείωνε με τον κωδικό {0}.</value>
-  </data>
-  <data name="Common.Console">
-    <value>Κονσόλα</value>
-  </data>
-  <data name="Common.Command">
-    <value>Εντολή</value>
-  </data>
-  <data name="Status.FaceTrackProgress">
-    <value>Πλευρά {0}: κομμάτι {1} — {2}/{3}</value>
-  </data>
-  <data name="Status.Ready">
-    <value>GW GUI έτοιμο.</value>
-  </data>
-  <data name="Status.DefaultProfile">
-    <value>Προφίλ: Προεπιλογή</value>
-  </data>
-  <data name="Operation.StopTitle">
-    <value>Διακοπή λειτουργίας</value>
-  </data>
-  <data name="Operation.StopConfirm">
-    <value>Διακοπή της τρέχουσας λειτουργίας Greaseweazle;</value>
-  </data>
-  <data name="Operation.Busy">
-    <value>Εκτελείται ήδη μια εντολή Greaseweazle. Περιμένετε να τελειώσει ή σταματήστε πριν ανοίξετε αυτό το εργαλείο.</value>
-  </data>
-  <data name="Status.Profile">
-    <value>Προφίλ: {0}</value>
-  </data>
-  <data name="Status.TrackProgress">
-    <value>Κομμάτι {0}, πλευρά {1} — {2}/{3}</value>
-  </data>
-  <data name="Status.TrackUnknown">
-    <value>Κομμάτι {0}, πλευρά {1} — {2} σε επεξεργασία</value>
-  </data>
-  <data name="Operation.Error">
-    <value>Σφάλμα: {0}</value>
-  </data>
-  <data name="Status.ReadyShort">
-    <value>Ετοιμος</value>
-  </data>
-  <data name="Status.Running">
-    <value>Τρέξιμο</value>
-  </data>
-  <data name="Status.Success">
-    <value>Επιτυχία</value>
-  </data>
-  <data name="Status.Error">
-    <value>Σφάλμα</value>
-  </data>
-  <data name="Status.Cancelled">
-    <value>Ακυρώθηκε</value>
-  </data>
+  <data name="App.GwNotConfigured"><value>Greaseweazle Τα εργαλεία δεν έχουν ρυθμιστεί. Ανοίξτε τις Επιλογές → Προτιμήσεις.</value></data>
+  <data name="App.OperationRunningClose"><value>Εκτελείται μια λειτουργία. Διακοπή και κλείσιμο GW GUI;</value></data>
+  <data name="Operation.Finished"><value>Ολοκληρώθηκε: κωδικός {0}, διάρκεια {1}.</value></data>
+  <data name="Operation.Succeeded"><value>Η εντολή ολοκληρώθηκε με επιτυχία.</value></data>
+  <data name="Operation.Cancelled"><value>Η εντολή ακυρώθηκε.</value></data>
+  <data name="Operation.ExitCode"><value>Η εντολή τελείωνε με τον κωδικό {0}.</value></data>
+  <data name="Common.Console"><value>Κονσόλα</value></data>
+  <data name="Common.Command"><value>Εντολή</value></data>
+  <data name="Status.FaceTrackProgress"><value>Πλευρά {0}: κομμάτι {1} — {2}/{3}</value></data>
+  <data name="Status.Ready"><value>GW GUI έτοιμο.</value></data>
+  <data name="Status.DefaultProfile"><value>Προφίλ: Προεπιλογή</value></data>
+  <data name="Operation.StopTitle"><value>Διακοπή λειτουργίας</value></data>
+  <data name="Operation.StopConfirm"><value>Διακοπή της τρέχουσας λειτουργίας Greaseweazle;</value></data>
+  <data name="Operation.Busy"><value>Εκτελείται ήδη μια εντολή Greaseweazle. Περιμένετε να τελειώσει ή σταματήστε πριν ανοίξετε αυτό το εργαλείο.</value></data>
+  <data name="Status.Profile"><value>Προφίλ: {0}</value></data>
+  <data name="Status.TrackProgress"><value>Κομμάτι {0}, πλευρά {1} — {2}/{3}</value></data>
+  <data name="Status.TrackUnknown"><value>Κομμάτι {0}, πλευρά {1} — {2} σε επεξεργασία</value></data>
+  <data name="Operation.Error"><value>Σφάλμα: {0}</value></data>
+  <data name="Status.ReadyShort"><value>Ετοιμος</value></data>
+  <data name="Status.Running"><value>Τρέξιμο</value></data>
+  <data name="Status.Success"><value>Επιτυχία</value></data>
+  <data name="Status.Error"><value>Σφάλμα</value></data>
+  <data name="Status.Cancelled"><value>Ακυρώθηκε</value></data>
 </root>

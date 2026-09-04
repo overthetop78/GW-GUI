@@ -12,40 +12,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="HostTools.Detect">
-    <value>מצא את gw.exe</value>
-  </data>
-  <data name="HostTools.Check">
-    <value>בדוק אם יש עדכונים</value>
-  </data>
-  <data name="HostTools.Download">
-    <value>הורד את הגרסה האחרונה</value>
-  </data>
-  <data name="HostTools.Rollback">
-    <value>השתמש בנתיב הקודם</value>
-  </data>
-  <data name="HostTools.None">
-    <value>לא זוהתה התקנה.</value>
-  </data>
-  <data name="HostTools.Detected">
-    <value>זוהה: {0}</value>
-  </data>
-  <data name="HostTools.Latest">
-    <value>הגרסה האחרונה הזמינה: {0}</value>
-  </data>
-  <data name="HostTools.Installed">
-    <value>גרסה {0} מותקנת.</value>
-  </data>
-  <data name="HostTools.DownloadConfirm">
-    <value>להוריד ולהתקין את Greaseweazle Host Tools {0} עבור Windows x64?</value>
-  </data>
-  <data name="HostTools.Title">
-    <value>Greaseweazle כלי מארח</value>
-  </data>
-  <data name="HostTools.NoPrevious">
-    <value>לא מאוחסן נתיב קודם חוקי.</value>
-  </data>
-  <data name="HostTools.UpdateAvailable">
-    <value>כלי מארח {0} זמינים</value>
-  </data>
+  <data name="HostTools.Detect"><value>מצא את gw.exe</value></data>
+  <data name="HostTools.Check"><value>בדוק אם יש עדכונים</value></data>
+  <data name="HostTools.Download"><value>הורד את הגרסה האחרונה</value></data>
+  <data name="HostTools.Rollback"><value>השתמש בנתיב הקודם</value></data>
+  <data name="HostTools.None"><value>לא זוהתה התקנה.</value></data>
+  <data name="HostTools.Detected"><value>זוהה: {0}</value></data>
+  <data name="HostTools.Latest"><value>הגרסה האחרונה הזמינה: {0}</value></data>
+  <data name="HostTools.Installed"><value>גרסה {0} מותקנת.</value></data>
+  <data name="HostTools.DownloadConfirm"><value>להוריד ולהתקין את Greaseweazle Host Tools {0} עבור Windows x64?</value></data>
+  <data name="HostTools.Title"><value>Greaseweazle כלי מארח</value></data>
+  <data name="HostTools.NoPrevious"><value>לא מאוחסן נתיב קודם חוקי.</value></data>
+  <data name="HostTools.UpdateAvailable"><value>כלי מארח {0} זמינים</value></data>
 </root>

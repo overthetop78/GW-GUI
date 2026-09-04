@@ -12,148 +12,50 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Hardware.Port">
-    <value>Hafen</value>
-  </data>
-  <data name="Hardware.UsbId">
-    <value>USB-Bezeichner</value>
-  </data>
-  <data name="Hardware.Drive">
-    <value>Fahren</value>
-  </data>
-  <data name="Hardware.Available">
-    <value>Verfügbar</value>
-  </data>
-  <data name="Hardware.Scan">
-    <value>Scan</value>
-  </data>
-  <data name="Hardware.AddDrive">
-    <value>Ein Laufwerk hinzufügen…</value>
-  </data>
-  <data name="Hardware.NoDrive">
-    <value>Kein Laufwerk definiert</value>
-  </data>
-  <data name="Hardware.EditorTitle">
-    <value>Definieren Sie ein Laufwerk</value>
-  </data>
-  <data name="Hardware.Controller">
-    <value>Greaseweazle-Controller</value>
-  </data>
-  <data name="Hardware.GwSelection">
-    <value>Auswahl an gw übergeben</value>
-  </data>
-  <data name="Hardware.PhysicalSize">
-    <value>Körperliche Größe</value>
-  </data>
-  <data name="Hardware.SizeShort">
-    <value>Größe</value>
-  </data>
-  <data name="Hardware.DensityShort">
-    <value>Dichte</value>
-  </data>
-  <data name="Hardware.SpeedShort">
-    <value>Geschwindigkeit</value>
-  </data>
-  <data name="Hardware.AvailableState">
-    <value>Verfügbar</value>
-  </data>
-  <data name="Hardware.UnavailableState">
-    <value>Nicht verfügbar</value>
-  </data>
-  <data name="Hardware.DensityDescription">
-    <value>Laufwerksdichte (nur Beschreibung)</value>
-  </data>
-  <data name="Hardware.SpeedDescription">
-    <value>Nenngeschwindigkeit (nur Beschreibung)</value>
-  </data>
-  <data name="Hardware.NotConfigured">
-    <value>Controller nicht konfiguriert</value>
-  </data>
-  <data name="Hardware.Disconnected">
-    <value>getrennt</value>
-  </data>
-  <data name="Hardware.SelectedDisconnected">
-    <value>Die Verbindung zum ausgewählten Laufwerk wird getrennt. Schließen Sie es erneut an oder scannen Sie erneut unter Optionen → Controller und Laufwerke.</value>
-  </data>
-  <data name="Hardware.DriveLabel">
-    <value>{0}-Zoll · {1} · {2} · {3}</value>
-  </data>
-  <data name="Hardware.DriveDialogTitle">
-    <value>Fahren</value>
-  </data>
-  <data name="Hardware.ControllerRequired">
-    <value>Scannen Sie zuerst einen Greaseweazle-Controller oder fügen Sie ihn hinzu.</value>
-  </data>
-  <data name="Hardware.Description">
-    <value>{0}-Zoll · {1} · Auswahl {2}{3}</value>
-  </data>
-  <data name="Hardware.ScanTitle">
-    <value>Scan</value>
-  </data>
-  <data name="Hardware.GwRequired">
-    <value>Wählen Sie unten zuerst gw.exe aus oder laden Sie es herunter.</value>
-  </data>
-  <data name="Hardware.StartupTitle">
-    <value>Hardware-Check</value>
-  </data>
-  <data name="Hardware.StartupMissing">
-    <value>Konfigurierte Hardware konnte nicht gefunden werden</value>
-  </data>
-  <data name="Hardware.StartupExplanation">
-    <value>Die Konfiguration bleibt erhalten, aber ihre Laufwerke bleiben nicht verfügbar, bis ihr Greaseweazle wieder gefunden wird.</value>
-  </data>
-  <data name="Hardware.StartupMissingList">
-    <value>Fehlende Greaseweazle-Controller</value>
-  </data>
-  <data name="Hardware.StartupRetry">
-    <value>Suchen Sie erneut</value>
-  </data>
-  <data name="Hardware.StartupSettings">
-    <value>Hardwareeinstellungen</value>
-  </data>
-  <data name="Hardware.StartupContinue">
-    <value>Fahren Sie ohne diesen Antrieb fort</value>
-  </data>
-  <data name="Hardware.StartupCheckFailed">
-    <value>Die Hardwareprüfung ist fehlgeschlagen: {0}</value>
-  </data>
-  <data name="Hardware.NewDetectedTitle">
-    <value>Neues Greaseweazle erkannt</value>
-  </data>
-  <data name="Hardware.NewDetected">
-    <value>{0} wurde auf {1} erkannt. Möchten Sie das Laufwerk jetzt konfigurieren?</value>
-  </data>
-  <data name="Hardware.ConfigurationState">
-    <value>Konfiguration</value>
-  </data>
-  <data name="Hardware.Configured">
-    <value>Konfiguriert</value>
-  </data>
-  <data name="Hardware.NotConfiguredState">
-    <value>Erkannt, nicht konfiguriert</value>
-  </data>
-  <data name="Hardware.Configure">
-    <value>Konfigurieren</value>
-  </data>
-  <data name="Hardware.ReaderNumber">
-    <value>Fahren Sie {0}</value>
-  </data>
-  <data name="Hardware.DriveChoice">
-    <value>Laufwerk {0} · {1}″ · {2} · {3}</value>
-  </data>
-  <data name="Hardware.Forget">
-    <value>Vergessen</value>
-  </data>
-  <data name="Hardware.ForgetConfirm">
-    <value>Möchten Sie dieses Laufwerk oder Gerät wirklich vergessen?</value>
-  </data>
-  <data name="Hardware.ForgetLastConfirm">
-    <value>Dies ist das zuletzt konfigurierte Laufwerk für diesen Greaseweazle. Möchten Sie sowohl das Laufwerk als auch den Greaseweazle vergessen?</value>
-  </data>
-  <data name="Hardware.SelectController">
-    <value>Wählen Sie zunächst eine Zeile aus, die zum relevanten Greaseweazle gehört.</value>
-  </data>
-  <data name="Hardware.MaximumDrives">
-    <value>Diesem Greaseweazle (A und B) können maximal zwei Laufwerke automatisch zugeordnet werden.</value>
-  </data>
+  <data name="Hardware.Port"><value>Hafen</value></data>
+  <data name="Hardware.UsbId"><value>USB-Bezeichner</value></data>
+  <data name="Hardware.Drive"><value>Fahren</value></data>
+  <data name="Hardware.Available"><value>Verfügbar</value></data>
+<data name="Hardware.AddDrive"><value>Ein Laufwerk hinzufügen…</value></data>
+  <data name="Hardware.NoDrive"><value>Kein Laufwerk definiert</value></data>
+  <data name="Hardware.EditorTitle"><value>Definieren Sie ein Laufwerk</value></data>
+  <data name="Hardware.Controller"><value>Greaseweazle-Controller</value></data>
+  <data name="Hardware.GwSelection"><value>Auswahl an gw übergeben</value></data>
+  <data name="Hardware.PhysicalSize"><value>Körperliche Größe</value></data>
+  <data name="Hardware.SizeShort"><value>Größe</value></data>
+  <data name="Hardware.DensityShort"><value>Dichte</value></data>
+  <data name="Hardware.SpeedShort"><value>Geschwindigkeit</value></data>
+  <data name="Hardware.AvailableState"><value>Verfügbar</value></data>
+  <data name="Hardware.UnavailableState"><value>Nicht verfügbar</value></data>
+  <data name="Hardware.DensityDescription"><value>Laufwerksdichte (nur Beschreibung)</value></data>
+  <data name="Hardware.SpeedDescription"><value>Nenngeschwindigkeit (nur Beschreibung)</value></data>
+  <data name="Hardware.NotConfigured"><value>Controller nicht konfiguriert</value></data>
+  <data name="Hardware.Disconnected"><value>getrennt</value></data>
+  <data name="Hardware.SelectedDisconnected"><value>Die Verbindung zum ausgewählten Laufwerk wird getrennt. Schließen Sie es erneut an oder scannen Sie erneut unter Optionen → Controller und Laufwerke.</value></data>
+  <data name="Hardware.DriveLabel"><value>{0}-Zoll · {1} · {2} · {3}</value></data>
+  <data name="Hardware.DriveDialogTitle"><value>Fahren</value></data>
+  <data name="Hardware.ControllerRequired"><value>Scannen Sie zuerst einen Greaseweazle-Controller oder fügen Sie ihn hinzu.</value></data>
+  <data name="Hardware.Description"><value>{0}-Zoll · {1} · Auswahl {2}{3}</value></data>
+<data name="Hardware.GwRequired"><value>Wählen Sie unten zuerst gw.exe aus oder laden Sie es herunter.</value></data>
+  <data name="Hardware.StartupTitle"><value>Hardware-Check</value></data>
+  <data name="Hardware.StartupMissing"><value>Konfigurierte Hardware konnte nicht gefunden werden</value></data>
+  <data name="Hardware.StartupExplanation"><value>Die Konfiguration bleibt erhalten, aber ihre Laufwerke bleiben nicht verfügbar, bis ihr Greaseweazle wieder gefunden wird.</value></data>
+  <data name="Hardware.StartupMissingList"><value>Fehlende Greaseweazle-Controller</value></data>
+  <data name="Hardware.StartupRetry"><value>Suchen Sie erneut</value></data>
+  <data name="Hardware.StartupSettings"><value>Hardwareeinstellungen</value></data>
+  <data name="Hardware.StartupContinue"><value>Fahren Sie ohne diesen Antrieb fort</value></data>
+  <data name="Hardware.StartupCheckFailed"><value>Die Hardwareprüfung ist fehlgeschlagen: {0}</value></data>
+  <data name="Hardware.NewDetectedTitle"><value>Neues Greaseweazle erkannt</value></data>
+  <data name="Hardware.NewDetected"><value>{0} wurde am {1}. Möchten Sie das Laufwerk jetzt konfigurieren?</value></data>
+  <data name="Hardware.ConfigurationState"><value>Konfiguration</value></data>
+  <data name="Hardware.Configured"><value>Konfiguriert</value></data>
+  <data name="Hardware.NotConfiguredState"><value>Erkannt, nicht konfiguriert</value></data>
+  <data name="Hardware.Configure"><value>Konfigurieren</value></data>
+  <data name="Hardware.ReaderNumber"><value>Fahren Sie {0}</value></data>
+  <data name="Hardware.DriveChoice"><value>Laufwerk {0} · {1}″ · {2} · {3}</value></data>
+  <data name="Hardware.Forget"><value>Vergessen</value></data>
+  <data name="Hardware.ForgetConfirm"><value>Möchten Sie dieses Laufwerk oder Gerät wirklich vergessen?</value></data>
+  <data name="Hardware.ForgetLastConfirm"><value>Dies ist das zuletzt konfigurierte Laufwerk für diesen Greaseweazle. Möchten Sie sowohl das Laufwerk als auch den Greaseweazle vergessen?</value></data>
+  <data name="Hardware.SelectController"><value>Wählen Sie zunächst eine Zeile aus, die zum relevanten Greaseweazle gehört.</value></data>
+  <data name="Hardware.MaximumDrives"><value>Diesem Greaseweazle (A und B) können maximal zwei Laufwerke automatisch zugeordnet werden.</value></data>
 </root>

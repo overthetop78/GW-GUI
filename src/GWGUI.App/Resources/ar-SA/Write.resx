@@ -12,63 +12,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Write.Title">
-    <value>يكتب</value>
-  </data>
-  <data name="Write.SelectSource">
-    <value>اختر صورة مصدر موجودة.</value>
-  </data>
-  <data name="Write.Ambiguous">
-    <value>التنسيق غامض. اختر تنسيقًا متوافقًا بشكل صريح.</value>
-  </data>
-  <data name="Write.VerifyOff">
-    <value>تم تعطيل التحقق بعد الكتابة.</value>
-  </data>
-  <data name="Write.VerifyOn">
-    <value>يتم تمكين التحقق بعد الكتابة.</value>
-  </data>
-  <data name="Write.ConfirmTitle">
-    <value>تأكيد الكتابة</value>
-  </data>
-  <data name="Write.Confirm">
-    <value>الصورة: {0}
-التنسيق: {1}
-محرك الأقراص: {2}
-{3}
-
-كتابة هذه الصورة على القرص؟</value>
-  </data>
-  <data name="Write.Source">
-    <value>صورة المصدر</value>
-  </data>
-  <data name="Write.Detected">
-    <value>التنسيق المكتشف</value>
-  </data>
-  <data name="Write.ChooseImage">
-    <value>اختر صورة.</value>
-  </data>
-  <data name="Write.NoVerify">
-    <value>تعطيل التحقق بعد الكتابة</value>
-  </data>
-  <data name="Write.NoVerifyTip">
-    <value>يضيف --no-verify. لن تتم إعادة قراءة القرص لتأكيد الكتابة.</value>
-  </data>
-  <data name="Write.EraseEmpty">
-    <value>محو المسارات الفارغة</value>
-  </data>
-  <data name="Write.VisualizeTracks">
-    <value>تصور المسارات</value>
-  </data>
-  <data name="Write.VisualizeFormatRequired">
-    <value>حدد تنسيق القرص قبل تصور مساراته.</value>
-  </data>
+  <data name="Write.Title"><value>يكتب</value></data>
+  <data name="Write.SelectSource"><value>اختر صورة مصدر موجودة.</value></data>
+  <data name="Write.Ambiguous"><value>التنسيق غامض. اختر تنسيقًا متوافقًا بشكل صريح.</value></data>
+  <data name="Write.VerifyOff"><value>تم تعطيل التحقق بعد الكتابة.</value></data>
+  <data name="Write.VerifyOn"><value>يتم تمكين التحقق بعد الكتابة.</value></data>
+  <data name="Write.ConfirmTitle"><value>تأكيد الكتابة</value></data>
+  <data name="Write.Confirm"><value>الصورة: {0}&#xA;التنسيق: {1}&#xA;محرك الأقراص: {2}&#xA;{3}&#xA;&#xA;كتابة هذه الصورة على القرص؟</value></data>
+  <data name="Write.Source"><value>صورة المصدر</value></data>
+  <data name="Write.Detected"><value>التنسيق المكتشف</value></data>
+  <data name="Write.ChooseImage"><value>اختر صورة.</value></data>
+  <data name="Write.NoVerify"><value>تعطيل التحقق بعد الكتابة</value></data>
+  <data name="Write.NoVerifyTip"><value>يضيف --no-verify. لن تتم إعادة قراءة القرص لتأكيد الكتابة.</value></data>
+  <data name="Write.EraseEmpty"><value>محو المسارات الفارغة</value></data>
+  <data name="Write.VisualizeTracks"><value>تصور المسارات</value></data>
+  <data name="Write.VisualizeFormatRequired"><value>حدد تنسيق القرص قبل تصور مساراته.</value></data>
   <data name="Write.InternalWriter" xml:space="preserve"><value>كتابة داخلية (تجريبية)</value></data>
   <data name="Write.InternalWriterTip" xml:space="preserve"><value>يكتب مباشرة بالمحرك الداخلي دون gw.exe.</value></data>
   <data name="Write.InternalPreview" xml:space="preserve"><value>كتابة GW GUI الداخلية: {0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>بعض الخيارات المتقدمة المحددة غير مدعومة بعد.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>التحقق الداخلي غير متاح بعد. فعّل «عدم التحقق».</value></data>
-  <data name="Write.InternalFailure" xml:space="preserve"><value>المسار {0}، الوجه {1}: {2}</value></data>
-  <data name="Write.InternalFailureReason">
-    <value>فشلت الكتابة الداخلية.</value>
-  </data>
+  <data name="Write.InternalFailure"><value>المسار {0}, الجانب {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason"><value>فشلت الكتابة الداخلية.</value></data>
 </root>

@@ -12,116 +12,44 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Emulation.Tab.Machines">
-    <value>Machines</value>
-  </data>
-  <data name="Emulation.Core.Name">
-    <value>Cœur</value>
-  </data>
-  <data name="Emulation.Core.NameManagerTitle">
-    <value>Cœur d’émulation {0}</value>
-  </data>
-  <data name="Emulation.Core.NameManagerDescription">
-    <value>La bibliothèque reste externe à GW GUI. La version sélectionnée remplace la version actuellement installée.</value>
-  </data>
-  <data name="Emulation.Core.NameRequiredVersion">
-    <value>Version demandée par GW GUI</value>
-  </data>
-  <data name="Emulation.Core.NameLatestVersion">
-    <value>Dernière version officielle disponible</value>
-  </data>
-  <data name="Emulation.Core.NameProjectVersion">
-    <value>Version actuellement installée</value>
-  </data>
-  <data name="Emulation.Core.NameSearchPrompt">
-    <value>Cliquez sur Rechercher pour interroger le serveur officiel Libretro.</value>
-  </data>
-  <data name="Emulation.Core.NameSearch">
-    <value>Rechercher les versions</value>
-  </data>
-  <data name="Emulation.Core.NameDownload">
-    <value>Télécharger et remplacer</value>
-  </data>
-  <data name="Emulation.Core.NameSearching">
-    <value>Recherche des versions disponibles…</value>
-  </data>
-  <data name="Emulation.Core.NameNoneFound">
-    <value>Aucune version officielle trouvée.</value>
-  </data>
-  <data name="Emulation.Core.NameVersionsFound">
-    <value>{0} version(s) disponible(s).</value>
-  </data>
-  <data name="Emulation.Core.NameDownloading">
-    <value>Téléchargement de {0}…</value>
-  </data>
-  <data name="Emulation.Core.NameInstalledPath">
-    <value>Version installée : {0}</value>
-  </data>
-  <data name="Emulation.Core.NameInstalled">
-    <value>{0} · installée</value>
-  </data>
-  <data name="Emulation.Core.NameNotInstalled">
-    <value>Aucune version installée</value>
-  </data>
-  <data name="Emulation.Machine.Open">
-    <value>Ouvrir</value>
-  </data>
-  <data name="Emulation.Tab.Welcome">
-    <value>Accueil</value>
-  </data>
-  <data name="Emulation.Welcome.Text">
-    <value>Sélectionnez une machine enregistrée ci-dessus puis cliquez sur Ouvrir. Chaque machine démarrée apparaît dans son propre onglet.</value>
-  </data>
-  <data name="Emulation.Configuration.Description">
-    <value>Créez, sélectionnez, modifiez ou supprimez ici les configurations enregistrées. Ouvrez l’onglet {0} pour modifier la configuration sélectionnée.</value>
-  </data>
-  <data name="Emulation.Tab.General">
-    <value>Général</value>
-  </data>
-  <data name="Emulation.Tab.Video">
-    <value>Vidéo</value>
-  </data>
-  <data name="Emulation.Tab.Storage">
-    <value>Stockage</value>
-  </data>
-  <data name="Emulation.Tab.Keyboard">
-    <value>Clavier</value>
-  </data>
-  <data name="Emulation.Tab.Mouse">
-    <value>Souris</value>
-  </data>
-  <data name="Emulation.Controller.Tab">
-    <value>Manettes</value>
-  </data>
-  <data name="Emulation.Tab.Advanced">
-    <value>Avancé</value>
-  </data>
-  <data name="Emulation.Device.Name.Id">
-    <value>Identifiant du périphérique</value>
-  </data>
-  <data name="Emulation.Controller.Device">
-    <value>Périphérique de la manette {0}</value>
-  </data>
-  <data name="Emulation.Keyboard.SystemKey">
-    <value>Touche {0}</value>
-  </data>
-  <data name="Emulation.Keyboard.HostKey">
-    <value>Touche du PC</value>
-  </data>
-  <data name="Emulation.Cpu.Summary">
-    <value>Processeur : {0}</value>
-  </data>
-  <data name="Emulation.Memory.Summary">
-    <value>Chip RAM : {0} Kio\nSlow RAM : {1} Kio\nFast RAM : {2} Mio</value>
-  </data>
-  <data name="Emulation.Video.Summary">
-    <value>Jeu de puces vidéo : {0}</value>
-  </data>
+<data name="Emulation.Core.Name"><value>Cœur</value></data>
+  <data name="Emulation.Core.NameManagerTitle"><value>Cœur d’émulation {0}</value></data>
+  <data name="Emulation.Core.NameManagerDescription"><value>La bibliothèque reste externe à GW GUI. La version sélectionnée remplace la version actuellement installée.</value></data>
+  <data name="Emulation.Core.NameRequiredVersion"><value>Version demandée par GW GUI</value></data>
+  <data name="Emulation.Core.NameLatestVersion"><value>Dernière version officielle disponible</value></data>
+  <data name="Emulation.Core.NameProjectVersion"><value>Version actuellement installée</value></data>
+  <data name="Emulation.Core.NameSearchPrompt"><value>Cliquez sur Rechercher pour interroger le serveur officiel Libretro.</value></data>
+  <data name="Emulation.Core.NameSearch"><value>Rechercher les versions</value></data>
+  <data name="Emulation.Core.NameDownload"><value>Télécharger et remplacer</value></data>
+  <data name="Emulation.Core.NameSearching"><value>Recherche des versions disponibles…</value></data>
+  <data name="Emulation.Core.NameNoneFound"><value>Aucune version officielle trouvée.</value></data>
+  <data name="Emulation.Core.NameVersionsFound"><value>{0} version(s) disponible(s).</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>Téléchargement de {0}…</value></data>
+  <data name="Emulation.Core.NameInstalledPath"><value>Version installée : {0}</value></data>
+  <data name="Emulation.Core.NameInstalled"><value>{0} · installée</value></data>
+  <data name="Emulation.Core.NameNotInstalled"><value>Aucune version installée</value></data>
+  <data name="Emulation.Machine.Open"><value>Ouvrir</value></data>
+  <data name="Emulation.Tab.Welcome"><value>Accueil</value></data>
+  <data name="Emulation.Welcome.Text"><value>Sélectionnez une machine enregistrée ci-dessus puis cliquez sur Ouvrir. Chaque machine démarrée apparaît dans son propre onglet.</value></data>
+  <data name="Emulation.Configuration.Description"><value>Créez, sélectionnez, modifiez ou supprimez ici les configurations enregistrées. Ouvrez l’onglet {0} pour modifier la configuration sélectionnée.</value></data>
+  <data name="Emulation.Tab.General"><value>Général</value></data>
+  <data name="Emulation.Tab.Video"><value>Vidéo</value></data>
+  <data name="Emulation.Tab.Storage"><value>Stockage</value></data>
+  <data name="Emulation.Tab.Keyboard"><value>Clavier</value></data>
+  <data name="Emulation.Tab.Mouse"><value>Souris</value></data>
+  <data name="Emulation.Controller.Tab"><value>Manettes</value></data>
+  <data name="Emulation.Tab.Advanced"><value>Avancé</value></data>
+  <data name="Emulation.Device.Name.Id"><value>Identifiant du périphérique</value></data>
+  <data name="Emulation.Controller.Device"><value>Périphérique de la manette {0}</value></data>
+  <data name="Emulation.Keyboard.SystemKey"><value>Touche {0}</value></data>
+  <data name="Emulation.Keyboard.HostKey"><value>Clé d'accueil</value></data>
+  <data name="Emulation.Cpu.Summary"><value>Processeur : {0}</value></data>
+  <data name="Emulation.Memory.Summary"><value>Chip RAM : {0} Kio\nSlow RAM : {1} Kio\nFast RAM : {2} Mio</value></data>
+  <data name="Emulation.Video.Summary"><value>Jeu de puces vidéo : {0}</value></data>
   <data name="Emulation.Cpu.Model"><value>Modèle de CPU</value></data>
   <data name="Emulation.Cpu.Multiplier"><value>Multiplicateur du CPU</value></data>
-  <data name="Emulation.Cpu.Compatibility"><value>Compatibilité</value></data>
-  <data name="Emulation.Memory.Z3"><value>RAM Zorro III</value></data>
-  <data name="Emulation.Video.Standard"><value>Norme</value></data>
+  <data name="Emulation.Cpu.Compatibility"><value>compatible avec le cycle CPU</value></data>
+<data name="Emulation.Video.Standard"><value>Norme</value></data>
   <data name="Emulation.Video.Resolution"><value>Résolution</value></data>
   <data name="Emulation.Video.AspectRatio"><value>Format d’image</value></data>
   <data name="Emulation.Video.Crop"><value>Rogner les bordures</value></data>
@@ -129,7 +57,6 @@
   <data name="Emulation.Audio.Enabled"><value>Activer le son</value></data>
   <data name="Emulation.Audio.Output"><value>Sortie audio</value></data>
   <data name="Emulation.Audio.Latency"><value>Latence</value></data>
-  <data name="Emulation.Audio.Interpolation"><value>Interpolation</value></data>
   <data name="Emulation.Audio.Filter"><value>Filtre Amiga</value></data>
   <data name="Emulation.Audio.StereoSeparation"><value>Séparation stéréo</value></data>
   <data name="Emulation.Audio.Input"><value>Entrée audio</value></data>
@@ -140,13 +67,13 @@
   <data name="Emulation.Storage.HardDisk.Size"><value>Taille du disque dur (Mio)</value></data>
   <data name="Emulation.Storage.Media.None"><value>Aucun média. Ajoutez une disquette, un disque dur ou un CD accepté par le modèle choisi.</value></data>
   <data name="Emulation.Storage.ReadOnly"><value>Lecture seule</value></data>
-  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Médias Amiga|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Tous les fichiers|*.*</value></data>
+  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Tous les fichiers|*.*</value></data>
   <data name="Emulation.Storage.HardDisk.Filter"><value>Disque dur Amiga|*.hdf|Tous les fichiers|*.*</value></data>
   <data name="Emulation.Storage.HardDisk.NotSupported"><value>Le modèle choisi ne prend pas en charge les disques durs.</value></data>
   <data name="Emulation.Storage.Floppy.TooManyDrives"><value>Ce modèle accepte au maximum {0} lecteur(s) de disquette.</value></data>
   <data name="Emulation.Storage.HardDisk.TooManyDrives"><value>Ce modèle accepte au maximum {0} disque(s) dur(s).</value></data>
-  <data name="Emulation.Storage.Cd.NotSupported"><value>Le modèle choisi ne prend pas en charge les lecteurs de CD.</value></data>
-  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>Deux touches Amiga utilisent la même touche du PC. Corrigez les lignes rouges avant d’enregistrer.</value></data>
+  <data name="Emulation.Storage.Cd.NotSupported"><value>Le modèle sélectionné ne supporte pas une CD lecteur.</value></data>
+  <data name="Emulation.Keyboard.Mapping.Duplicate"><value>Deux touches Amiga utilisent la même PC clé. Résolvez les mappages rouges avant de les enregistrer.</value></data>
   <data name="Emulation.Mouse.ReleaseKey"><value>Touche pour libérer la souris</value></data>
   <data name="Emulation.Mouse.Button.Left"><value>Bouton gauche de la souris</value></data>
   <data name="Emulation.Mouse.Button.Right"><value>Bouton droit de la souris</value></data>
@@ -161,23 +88,21 @@
   <data name="Emulation.Cpu.Speed"><value>Vitesse du CPU</value></data>
   <data name="Emulation.Cpu.SpeedOriginal"><value>Vitesse d’origine</value></data>
   <data name="Emulation.Cpu.Compatibility.Normal"><value>Normale</value></data>
-  <data name="Emulation.Cpu.Compatibility.Compatible"><value>Compatible</value></data>
   <data name="Emulation.Cpu.Compatibility.Memory"><value>Compatible avec la mémoire</value></data>
   <data name="Emulation.Cpu.Compatibility.Exact"><value>Exacte cycle par cycle</value></data>
   <data name="Emulation.Fpu.Integrated"><value>FPU intégré</value></data>
   <data name="Emulation.Value.Enabled"><value>Activé</value></data>
   <data name="Emulation.Value.Disabled"><value>Désactivé</value></data>
-  <data name="Emulation.Value.Minimum"><value>Minimum</value></data>
+  <data name="Emulation.Value.Minimum"><value>minimum</value></data>
   <data name="Emulation.Value.VerySmall"><value>Très petit</value></data>
   <data name="Emulation.Value.Small"><value>Petit</value></data>
   <data name="Emulation.Value.Medium"><value>Moyen</value></data>
   <data name="Emulation.Value.Large"><value>Grand</value></data>
   <data name="Emulation.Value.VeryLarge"><value>Très grand</value></data>
-  <data name="Emulation.Value.Maximum"><value>Maximum</value></data>
   <data name="Emulation.State.Locked"><value>Verrouillé</value></data>
   <data name="Emulation.State.Immediate"><value>Immédiat</value></data>
   <data name="Emulation.State.Waiting"><value>Avec attente</value></data>
-  <data name="Emulation.Value.Standard"><value>Standard</value></data>
+  <data name="Emulation.Value.Standard"><value>Norme</value></data>
   <data name="Emulation.Value.Enhanced"><value>Amélioré</value></data>
   <data name="Emulation.Value.Internal"><value>Interne</value></data>
   <data name="Emulation.Value.Loud"><value>Fort</value></data>
@@ -190,12 +115,10 @@
   <data name="Emulation.Video.HzChange"><value>Changement de fréquence</value></data>
   <data name="Emulation.Video.FrameSkip"><value>Saut d’images</value></data>
   <data name="Emulation.Video.Colors"><value>Profondeur des couleurs</value></data>
-  <data name="Emulation.Video.Gamma"><value>Gamma</value></data>
   <data name="Emulation.State.ImmediateBlits"><value>Blitter</value></data>
   <data name="Emulation.Video.Collision.Level"><value>Collisions</value></data>
   <data name="Emulation.Video.LineMode.Single"><value>Balayage simple</value></data>
   <data name="Emulation.Video.LineMode.Double"><value>Double balayage</value></data>
-  <data name="Emulation.Video.Collision.Sprites"><value>Sprites</value></data>
   <data name="Emulation.Video.Collision.Playfields"><value>Plans graphiques</value></data>
   <data name="Emulation.Video.Collision.Full"><value>Complète</value></data>
   <data name="Emulation.Audio.Interpolation.Anti"><value>Interpolation anti</value></data>
@@ -233,7 +156,6 @@
   <data name="Emulation.Keyboard.Priority.Description"><value>Les raccourcis de GW GUI et de Windows restent actifs et ne sont pas capturés par la machine.</value></data>
   <data name="Emulation.Input.Behavior"><value>Comportement</value></data>
   <data name="Emulation.Input.Assign"><value>Assigner…</value></data>
-  <data name="Emulation.Input.Actions"><value>Actions</value></data>
   <data name="Emulation.Input.Press"><value>Appuyez sur une touche…</value></data>
   <data name="Emulation.Folder.CreateStorage"><value>Créer automatiquement les sous-dossiers manquants</value></data>
   <data name="Emulation.Folder.Common"><value>Dossiers communs</value></data>
@@ -256,16 +178,15 @@
   <data name="Emulation.Memory.None"><value>Aucune</value></data>
   <data name="Emulation.Memory.CompatibleWithModel"><value>Configuration compatible avec l’{0}.</value></data>
   <data name="Emulation.Memory.ExtensionsCompatibleWithModel"><value>Extensions mémoire compatibles avec l’{0}.</value></data>
-  <data name="Emulation.Memory.Z3UnavailableForModel"><value>RAM Zorro III non disponible sur l’{0}.</value></data>
+  <data name="Emulation.Memory.Z3UnavailableForModel"><value>Zorro III RAM n'est pas disponible sur {0}.</value></data>
   <data name="Emulation.Memory.TotalConfigured"><value>Mémoire totale configurée : {0} {1}</value></data>
   <data name="Emulation.Firmware.Rom.System"><value>ROM système</value></data>
-  <data name="Emulation.Firmware.Rom.Detected"><value>ROM détectées</value></data>
+  <data name="Emulation.Firmware.Rom.Detected"><value>ROM détectés</value></data>
   <data name="Emulation.Firmware.Use"><value>Utiliser</value></data>
   <data name="Emulation.Value.NotUsed"><value>Non utilisé</value></data>
   <data name="Emulation.Firmware.Rom.OpenFolder"><value>Ouvrir le dossier des ROM</value></data>
   <data name="Emulation.Firmware.PartiallyCompatible"><value>Partiellement compatible</value></data>
   <data name="Emulation.Firmware.Official"><value>Officiel</value></data>
-  <data name="Emulation.Firmware.Incompatible"><value>Incompatible</value></data>
   <data name="Emulation.Video.Settings.Display"><value>Affichage</value></data>
   <data name="Emulation.Video.Settings.Rendering"><value>Rendu</value></data>
   <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Compatibilité du jeu de puces</value></data>
@@ -273,7 +194,6 @@
   <data name="Emulation.Audio.LatencyLabel"><value>Latence</value></data>
   <data name="Emulation.Audio.Quality"><value>Qualité</value></data>
   <data name="Emulation.Audio.Drives"><value>Lecteurs</value></data>
-  <data name="Emulation.Device.Name.Type"><value>Type</value></data>
   <data name="Emulation.Storage.Device.Add"><value>Ajouter un périphérique de stockage</value></data>
   <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3,5 pouces DD · 880 Kio</value></data>
   <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3,5 pouces HD · 1,76 Mio</value></data>
@@ -292,9 +212,8 @@
   <data name="Emulation.Storage.Floppy.Device"><value>Lecteur de disquette</value></data>
   <data name="Emulation.Storage.Floppy.ImageFilter"><value>Image de disquette Amiga|*.adf|Tous les fichiers|*.*</value></data>
   <data name="Emulation.Storage.HardDisk.Device"><value>Disque dur</value></data>
-  <data name="Emulation.Storage.Device.Interface"><value>Interface</value></data>
   <data name="Emulation.Storage.File.Preallocate"><value>Préallouer le fichier</value></data>
-  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Les disquettes et les CD sont insérés ou remplacés depuis la machine en cours d’exécution.</value></data>
+  <data name="Emulation.Storage.Media.RemovableRuntimeHint"><value>Les floppies et les CD sont insérés ou remplacés depuis la machine à tourner.</value></data>
   <data name="Emulation.Storage.Media.Remove"><value>Retirer le support</value></data>
   <data name="Emulation.Storage.Disk.ReplaceExisting"><value>L’image disque existe déjà : {0}\nVoulez-vous la remplacer ?</value></data>
   <data name="Emulation.Storage.Device.CapabilitiesHint"><value>Les types, modèles et identifiants disponibles dépendent de la machine sélectionnée.</value></data>
@@ -307,7 +226,6 @@
   <data name="Emulation.Input.Binding.RestoreDefaults"><value>Restaurer les valeurs par défaut</value></data>
   <data name="Emulation.Input.Binding.ClearConflicts"><value>Effacer les conflits</value></data>
   <data name="Emulation.Keyboard.EmulatedKey"><value>Touche de la machine</value></data>
-  <data name="Emulation.Input.Binding.Label"><value>Association</value></data>
   <data name="Emulation.Input.Binding.LabelState"><value>État</value></data>
   <data name="Emulation.Input.Binding.Search"><value>Rechercher une touche ou une association</value></data>
   <data name="Emulation.Input.Binding.LabelLegend"><value>Valide : association unique · Conflit : association utilisée plusieurs fois · Réservé : raccourci Windows ou GW GUI</value></data>
@@ -336,13 +254,12 @@
   <data name="Emulation.Key.RightAmiga"><value>Amiga droite</value></data>
   <data name="Emulation.Keyboard.SpecialKeysOnlyHint"><value>Les lettres, les chiffres et les modificateurs ordinaires sont transmis directement. Seules les touches de fonction et les touches spéciales de l’Amiga doivent être associées ici.</value></data>
   <data name="Emulation.Shortcut.Unavailable"><value>Cette action n’est pas encore fournie par l’émulateur actuel.</value></data>
-  <data name="Emulation.Storage.Geometry.Allocation"><value>Allocation</value></data>
+  <data name="Emulation.Storage.Geometry.Allocation"><value>Montant alloué</value></data>
   <data name="Emulation.Storage.Geometry.AutomaticProfile"><value>Géométrie automatique</value></data>
   <data name="Emulation.Storage.Media.Blank"><value>Média vierge</value></data>
   <data name="Emulation.Storage.Geometry.BytesPerSector"><value>Octets par secteur</value></data>
   <data name="Emulation.Storage.Geometry.CalculatedCapacity"><value>Capacité calculée : {0}</value></data>
   <data name="Emulation.Controller.Mappings"><value>Affectation des manettes</value></data>
-  <data name="Emulation.Controller.Port"><value>Port {0}</value></data>
   <data name="Emulation.Controller.Type"><value>Type de manette</value></data>
   <data name="Emulation.Storage.Geometry.CustomSize"><value>Taille personnalisée</value></data>
   <data name="Emulation.Storage.Geometry.Cylinders"><value>Cylindres</value></data>
@@ -387,14 +304,12 @@
   <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>Ce modèle n'a pas de clavier.</value></data>
   <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>Ce modèle n'a pas de souris.</value></data>
   <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Ce modèle n'a pas de support de stockage.</value></data>
-  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve"><value>Sélectionnez le modèle Jaguar CD pour utiliser un disque CD.</value></data>
-  <data name="Emulation.Storage.Cassettes"><value>Cassette</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Sélectionnez la Jaguar CD modèle à utiliser CD médias.</value></data>
   <data name="Emulation.Storage.Cartridges"><value>Cartouche</value></data>
   <data name="Emulation.Storage.CompactDiscs"><value>Disques compacts</value></data>
   <data name="Emulation.Atari.Video.Region"><value>Région</value></data>
   <data name="Emulation.Atari.Firmware.Multilingual"><value>Multilingue</value></data>
   <data name="Emulation.Atari.Video.RegionFree"><value>Sans région</value></data>
-  <data name="Emulation.Tab.Audio"><value>Audio</value></data>
   <data name="Emulation.Atari.Error.CoreNotFound"><value>Le cœur Atari requis est introuvable.</value></data>
   <data name="Emulation.Atari.Error.CoreRejected"><value>Le cœur Atari sélectionné n’a pas pu être chargé.</value></data>
   <data name="Emulation.Atari.Error.FirmwareMissing"><value>Un firmware Atari requis est manquant.</value></data>
@@ -403,7 +318,6 @@
   <data name="Emulation.Atari.Error.ContentUnsupported"><value>Le média configuré n’est pas pris en charge par cette machine Atari.</value></data>
   <data name="Emulation.Error.RequiredMediaMissing"><value>L’émulateur nécessite un média avant de pouvoir allumer cette machine. Insérez ou configurez l’un des supports requis indiqués ci-dessous.</value></data>
   <data name="Emulation.Error.PowerFailureTitle"><value>Impossible d’allumer la machine</value></data>
-  <data name="Emulation.Error.Machine"><value>Machine</value></data>
   <data name="Emulation.Error.RequiredMedia"><value>Supports requis</value></data>
   <data name="Emulation.Atari.Error.OptionInvalid"><value>Une option Atari contient une valeur invalide.</value></data>
   <data name="Emulation.Atari.Error.HostProtocolFailure"><value>La communication avec l’hôte Atari a échoué.</value></data>
@@ -417,7 +331,7 @@
   <data name="Emulation.Atari.Error.MediaFileMissing"><value>Le média Atari configuré est introuvable : {0}</value></data>
   <data name="Emulation.Atari.Error.HostExecutableMissing"><value>Le chemin de l'exécutable hôte Atari n'est pas disponible.</value></data>
   <data name="Emulation.Atari.Error.CoreNotInstalled"><value>Le cœur Atari « {0} » n’est pas installé.</value></data>
-  <data name="Emulation.Atari.Storage.MediaFilter"><value>Médias Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Tous les fichiers|*.*</value></data>
+  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Tous les fichiers|*.*</value></data>
   <data name="Emulation.Controller.Automatic"><value>Automatique</value></data>
   <data name="Emulation.Controller.None"><value>Aucune</value></data>
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Adaptateur parallèle pour quatre joysticks</value></data>
@@ -427,8 +341,8 @@
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Bruit des lecteurs de disquettes</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Filtre audio polarisé</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Afficher l’activité des lecteurs sur l’écran de l’émulateur</value></data>
-  <data name="Emulation.Atari.Memory.Mosaic" xml:space="preserve"><value>Extension mémoire Mosaic</value></data>
-  <data name="Emulation.Atari.Memory.Axlon" xml:space="preserve"><value>Extension mémoire Axlon</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic"><value>Extension de RAM Mosaic</value></data>
+  <data name="Emulation.Atari.Memory.Axlon"><value>Extension de RAM Axlon</value></data>
   <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Banque fantôme Axlon $0F</value></data>
   <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>POKEY stéréo</value></data>
   <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Artéfacts haute résolution</value></data>
@@ -442,7 +356,6 @@
   <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>Pendant l’appui sur le tir</value></data>
   <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Toujours</value></data>
   <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Teinte</value></data>
-  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Saturation</value></data>
   <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>Contraste</value></data>
   <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Luminosité</value></data>
   <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>Retard de couleur GTIA</value></data>
@@ -461,22 +374,13 @@
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normale</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Haute</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Emplacement cartouche</value></data>
-  <data name="Emulation.Media.Insert" xml:space="preserve">
-    <value>Insérer un support</value>
-  </data>
-  <data name="Emulation.Media.Eject" xml:space="preserve">
-    <value>Éjecter le support</value>
-  </data>
-  <data name="Emulation.Key.AtariBreak" xml:space="preserve"><value>Break</value></data>
-  <data name="Emulation.Key.AtariHelp" xml:space="preserve"><value>Help</value></data>
-  <data name="Emulation.Key.AtariUndo" xml:space="preserve"><value>Undo</value></data>
-  <data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput n’a pas pu être initialisé. Installez ou réparez le runtime GameInput inclus.</value></data>
+  <data name="Emulation.Media.Insert" xml:space="preserve"><value>Insérer un support</value></data>
+  <data name="Emulation.Media.Eject" xml:space="preserve"><value>Éjecter le support</value></data>
+<data name="Emulation.Controller.GameInputUnavailable" xml:space="preserve"><value>GameInput n’a pas pu être initialisé. Installez ou réparez le runtime GameInput inclus.</value></data>
   <data name="Emulation.Configuration.Brand"><value>Marque</value></data>
-  <data name="Emulation.Configuration.Machine"><value>Machine</value></data>
   <data name="Emulation.Configuration.TotalRam"><value>RAM totale</value></data>
   <data name="Emulation.Configuration.Readers"><value>Lecteurs</value></data>
   <data name="Emulation.Configuration.Peripherals"><value>Périphériques</value></data>
-  <data name="Emulation.Configuration.Actions"><value>Actions</value></data>
   <data name="Emulation.Configuration.DeleteConfirm"><value>Supprimer la configuration {0} {1} ?</value></data>
   <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Short"><value>Rendre silencieux les lecteurs vides</value></data>
   <data name="Emulation.Help.Audio.Floppy.MuteEmpty.Detailed"><value>Coupe le bruit du lecteur émulé lorsqu’aucune disquette n’est insérée. Désactive cette option pour conserver le bruit mécanique au repos.</value></data>
@@ -489,7 +393,7 @@
   <data name="Emulation.Help.Audio.Latency.Short"><value>Régler la latence audio</value></data>
   <data name="Emulation.Help.Audio.Latency.Detailed"><value>Règle la durée du tampon audio. Un tampon plus court réduit le délai, mais peut provoquer des craquements. Un tampon plus long améliore la stabilité, mais augmente le délai.</value></data>
   <data name="Emulation.Help.Audio.PokeyStereo.Short"><value>Activer la stéréo avec deux POKEY</value></data>
-  <data name="Emulation.Help.Audio.PokeyStereo.Detailed"><value>Ajoute une seconde puce POKEY émulée afin de produire un son stéréo. Active cette option uniquement pour les logiciels compatibles avec deux puces POKEY.</value></data>
+  <data name="Emulation.Help.Audio.PokeyStereo.Detailed"><value>Ajoute une deuxième émulation POKEY puce pour produire du son stéréo. Activer cette option uniquement pour les logiciels qui prennent en charge le double POKEY audio.</value></data>
   <data name="Emulation.Help.Audio.StereoSeparation.Short"><value>Régler la séparation stéréo</value></data>
   <data name="Emulation.Help.Audio.StereoSeparation.Detailed"><value>Règle la séparation entre les canaux gauche et droit. Une valeur faible mélange davantage les canaux. Une valeur élevée les maintient plus distincts.</value></data>
   <data name="Emulation.Help.Audio.Floppy.SoundType.Short"><value>Choisir les sons du lecteur de disquette</value></data>
@@ -511,11 +415,11 @@
   <data name="Emulation.Help.Controller.PaddleSpeed.Short"><value>Régler la vitesse des paddles</value></data>
   <data name="Emulation.Help.Controller.PaddleSpeed.Detailed"><value>Règle la vitesse à laquelle une entrée numérique déplace un paddle émulé. Une valeur faible le déplace plus lentement. Une valeur élevée le déplace plus rapidement.</value></data>
   <data name="Emulation.Help.Cpu.FpuModel.Short"><value>Choisir le FPU</value></data>
-  <data name="Emulation.Help.Cpu.FpuModel.Detailed"><value>Choisit l’unité de calcul en virgule flottante utilisée pour les instructions correspondantes. Choisis Aucun pour désactiver le FPU. Les modèles disponibles dépendent du CPU sélectionné.</value></data>
+  <data name="Emulation.Help.Cpu.FpuModel.Detailed"><value>sélectionne l'unité de point flottant utilisée pour les instructions de point flottant. FPU. Les modèles disponibles dépendent de la sélection CPU.</value></data>
   <data name="Emulation.Help.Cpu.Precision.Short"><value>Choisir la précision d’émulation du CPU</value></data>
   <data name="Emulation.Help.Cpu.Precision.Detailed"><value>Détermine avec quelle fidélité la temporisation du CPU reproduit le matériel d’origine. Les modes plus précis peuvent améliorer la compatibilité, mais demandent davantage de calculs.</value></data>
   <data name="Emulation.Help.Cpu.Speed.Short"><value>Régler la vitesse du CPU émulé</value></data>
-  <data name="Emulation.Help.Cpu.Speed.Detailed"><value>Règle la fréquence du processeur de la machine émulée. La vitesse d’origine conserve la temporisation du matériel. Les valeurs supérieures accélèrent les logiciels limités par le CPU.</value></data>
+  <data name="Emulation.Help.Cpu.Speed.Detailed"><value>Régle la fréquence du processeur utilisée par la machine émulée. La vitesse originale préserve le timing du matériel. CPU-logiciel limité.</value></data>
   <data name="Emulation.Help.Mouse.Analog.Short"><value>Contrôler la souris avec des sticks analogiques</value></data>
   <data name="Emulation.Help.Mouse.Analog.Detailed"><value>Permet aux axes analogiques d’une manette de déplacer le pointeur de la souris émulée. Active cette option pour contrôler le pointeur avec un stick analogique physique.</value></data>
   <data name="Emulation.Help.Mouse.AnalogSpeed.Short"><value>Régler la vitesse de la souris analogique</value></data>
@@ -531,11 +435,11 @@
   <data name="Emulation.Help.Memory.Extensions.Short"><value>Régler la mémoire d’extension supplémentaire</value></data>
   <data name="Emulation.Help.Memory.Extensions.Detailed"><value>Règle la quantité de mémoire d’extension supplémentaire prise en charge par la machine sélectionnée. Choisis Aucun pour utiliser uniquement la mémoire principale configurée.</value></data>
   <data name="Emulation.Help.Memory.Fast.Short"><value>Régler la taille de la Fast RAM</value></data>
-  <data name="Emulation.Help.Memory.Fast.Detailed"><value>Règle la quantité de Fast RAM directement accessible au CPU. Une capacité supérieure peut aider les logiciels compatibles, mais modifie la configuration matérielle émulée.</value></data>
+  <data name="Emulation.Help.Memory.Fast.Detailed"><value>définit la quantité de Fast RAM disponible directement à la CPU. rapide supplémentaire RAM peut aider les logiciels compatibles mais modifie la configuration matérielle émulée.</value></data>
   <data name="Emulation.Help.Memory.MapRam.Short"><value>Activer MapRAM</value></data>
   <data name="Emulation.Help.Memory.MapRam.Detailed"><value>Permet aux logiciels compatibles de placer de la RAM modifiable dans la zone d’adresses de la ROM système. Cette option est disponible uniquement sur les modèles compatibles avec MapRAM.</value></data>
-  <data name="Emulation.Help.Memory.Z3.Short"><value>Régler la taille de la RAM Zorro III</value></data>
-  <data name="Emulation.Help.Memory.Z3.Detailed"><value>Règle la quantité de Fast RAM 32 bits connectée au bus Zorro III. Utilise-la uniquement avec des machines et des logiciels 32 bits compatibles.</value></data>
+  <data name="Emulation.Help.Memory.Z3.Short"><value>Set Zorro III RAM taille</value></data>
+  <data name="Emulation.Help.Memory.Z3.Detailed"><value>Définit la quantité de 32-bit Fast RAM connectée par le Zorro III bus. Utilisez-le uniquement avec des machines et des logiciels 32 bits compatibles.</value></data>
   <data name="Emulation.Help.Memory.Slow.Short"><value>Régler la taille de la Slow RAM</value></data>
   <data name="Emulation.Help.Memory.Slow.Detailed"><value>Règle la quantité de Slow RAM dans la zone d’extension de la trappe. Cette mémoire est plus lente que la Fast RAM et occupe une autre plage d’adresses matérielles.</value></data>
   <data name="Emulation.Help.Firmware.RomKey.Short"><value>Choisir la clé de déchiffrement de la ROM</value></data>
@@ -543,9 +447,9 @@
   <data name="Emulation.Help.Firmware.FastBoot.Short"><value>Activer le démarrage rapide</value></data>
   <data name="Emulation.Help.Firmware.FastBoot.Detailed"><value>Ignore certains délais d’initialisation du matériel afin de raccourcir le démarrage. Désactive cette option lorsqu’un logiciel nécessite la séquence de démarrage d’origine.</value></data>
   <data name="Emulation.Help.Firmware.ExtendedRom.Short"><value>Choisir une ROM étendue</value></data>
-  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed"><value>Choisit la ROM secondaire requise par certains modèles de machine. Laisse ce champ vide lorsque le modèle sélectionné n’utilise pas de ROM étendue.</value></data>
+  <data name="Emulation.Help.Firmware.ExtendedRom.Detailed"><value>sélectionne le firmware secondaire ROM requise par certains modèles de machine. Laisser ce champ vide lorsque le modèle sélectionné n'utilise pas de modèle étendu ROM.</value></data>
   <data name="Emulation.Help.Storage.SioAcceleration.Short"><value>Accélérer les transferts SIO</value></data>
-  <data name="Emulation.Help.Storage.SioAcceleration.Detailed"><value>Accélère les transferts compatibles par le bus d’entrée-sortie série. Désactive cette option lorsqu’un logiciel dépend de la temporisation SIO d’origine.</value></data>
+  <data name="Emulation.Help.Storage.SioAcceleration.Detailed"><value>accélère les transferts compatibles via le bus d'entrée/sortie série. Désactive cette option lorsque le logiciel dépend du moment du transfert initial.</value></data>
   <data name="Emulation.Help.Storage.CassetteBoot.Short"><value>Démarrer depuis la cassette</value></data>
   <data name="Emulation.Help.Storage.CassetteBoot.Detailed"><value>Demande à la machine émulée de tenter un démarrage depuis l’image de cassette attachée. Désactive cette option pour démarrer depuis un autre périphérique.</value></data>
   <data name="Emulation.Help.Storage.RealTimeClock.Short"><value>Activer l’horloge R-Time 8</value></data>
@@ -584,9 +488,7 @@
   <data name="Emulation.Help.Video.ColorDelay.Detailed"><value>Règle le déphasage des couleurs du GTIA utilisé pour reproduire les teintes. La valeur par défaut utilise le réglage normal. Les valeurs numériques décalent les teintes obtenues.</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Short"><value>Régler le saut d’images</value></data>
   <data name="Emulation.Help.Video.FrameSkip.Detailed"><value>Règle le nombre d’images d’affichage omises. Le mode désactivé affiche chaque image. Les valeurs élevées réduisent le travail de rendu, mais rendent les mouvements moins fluides.</value></data>
-  <data name="Emulation.Controller.Visual" xml:space="preserve">
-    <value>Visuel</value>
-  </data>
+  <data name="Emulation.Controller.Visual" xml:space="preserve"><value>Visuel</value></data>
   <data name="Emulation.Video.Compatibility.ExclusiveDisplayTechnology"><value>Une seule technologie d'affichage peut être active à la fois.</value></data>
   <data name="Emulation.Video.Crt.Color.Amber"><value>Ambre monochrome</value></data>
   <data name="Emulation.Video.Crt.Color.Color"><value>Couleur</value></data>
@@ -598,10 +500,8 @@
   <data name="Emulation.Video.Crt.Mask.None"><value>Aucune</value></data>
   <data name="Emulation.Video.Crt.Mask.ShadowMask"><value>Masque perforé</value></data>
   <data name="Emulation.Video.Crt.Mask.SlotMask"><value>Masque à fentes</value></data>
-  <data name="Emulation.Video.FixedPixel.Technology.Lcd"><value>LCD</value></data>
-  <data name="Emulation.Video.FixedPixel.Technology.LedBacklitLcd"><value>LED-backlit LCD</value></data>
-  <data name="Emulation.Video.FixedPixel.Technology.Oled"><value>OLED</value></data>
-  <data name="Emulation.Video.Limitation.UnsupportedBackend"><value>Ce paramètre n'est pas supporté par le moteur de rendu sélectionné.</value></data>
+  <data name="Emulation.Video.FixedPixel.Technology.LedBacklitLcd"><value>LCD rétroéclairé par LED</value></data>
+<data name="Emulation.Video.Limitation.UnsupportedBackend"><value>Ce paramètre n'est pas supporté par le moteur de rendu sélectionné.</value></data>
   <data name="Emulation.Video.Orientation.Horizontal"><value>Horizontale</value></data>
   <data name="Emulation.Video.Orientation.Vertical"><value>Verticale</value></data>
   <data name="Emulation.Video.Parameter.Brightness"><value>Luminosité</value></data>
@@ -623,9 +523,7 @@
   <data name="Emulation.Video.Parameter.CrtScanlineIntensity"><value>Intensité des scanlines</value></data>
   <data name="Emulation.Video.Parameter.CrtScanlineOrientation"><value>Orientation des scanlines</value></data>
   <data name="Emulation.Video.Parameter.CrtScanlinePhase"><value>Phase des scanlines</value></data>
-  <data name="Emulation.Video.Parameter.CrtScanlinesEnabled"><value>Scanlines</value></data>
   <data name="Emulation.Video.Parameter.CrtScanlineThickness"><value>Épaisseur des scanlines</value></data>
-  <data name="Emulation.Video.Parameter.CrtVignette"><value>Vignette</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBacklight"><value>Intensité du rétroéclairage</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBlackDepth"><value>Profondeur des noirs</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelGridIntensity"><value>Intensité de la grille des pixels</value></data>
@@ -635,17 +533,29 @@
   <data name="Emulation.Video.Parameter.FixedPixelResponseTime"><value>Temps de réponse (ms)</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelSubpixels"><value>Disposition des sous-pixels</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelTechnology"><value>Technologie à pixels fixes</value></data>
-  <data name="Emulation.Video.Parameter.Gamma"><value>Gamma</value></data>
   <data name="Emulation.Video.Parameter.PlasmaCellStructure"><value>Structure des cellules</value></data>
   <data name="Emulation.Video.Parameter.PlasmaDiffusion"><value>Diffusion de la lumière</value></data>
   <data name="Emulation.Video.Parameter.PlasmaPersistence"><value>Persistance</value></data>
-  <data name="Emulation.Video.Parameter.PlasmaTemporalDithering"><value>Dithering temporel</value></data>
-  <data name="Emulation.Video.Parameter.Saturation"><value>Saturation</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaBlackDepth"><value>Profondeur des noirs</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaPhosphorIntensity"><value>Intensité des phosphores</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaGammaResponse"><value>Réponse gamma</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaAutomaticBrightnessLimiter"><value>Limiteur automatique de luminosité</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaTemporalDithering"><value>Tramage temporel</value></data>
+  <data name="Emulation.Video.Plasma.Group.PanelAndCells"><value>Dalle et cellules</value></data>
+  <data name="Emulation.Video.Plasma.Group.Phosphors"><value>Phosphores</value></data>
+  <data name="Emulation.Video.Plasma.Group.Light"><value>Gestion de la lumière</value></data>
+  <data name="Emulation.Video.Plasma.Group.Temporal"><value>Réponse temporelle</value></data>
   <data name="Emulation.Video.Parameter.Sharpness"><value>Netteté</value></data>
   <data name="Emulation.Video.Parameter.VectorHaloIntensity"><value>Intensité du halo</value></data>
+  <data name="Emulation.Video.Parameter.VectorHaloRadius"><value>Rayon du halo</value></data>
+  <data name="Emulation.Video.Parameter.VectorBeamWidth"><value>Largeur du faisceau</value></data>
+  <data name="Emulation.Video.Parameter.VectorBeamFocus"><value>Focalisation du faisceau</value></data>
+  <data name="Emulation.Video.Parameter.VectorPhosphorColor"><value>Couleur des phosphores</value></data>
   <data name="Emulation.Video.Parameter.VectorLineIntensity"><value>Intensité de la ligne</value></data>
-  <data name="Emulation.Video.Parameter.VectorLineThreshold"><value>Seuil de ligne</value></data>
+  <data name="Emulation.Video.Parameter.VectorLineThreshold"><value>Seuil de détection des lignes</value></data>
   <data name="Emulation.Video.Parameter.VectorPersistence"><value>Persistance</value></data>
+  <data name="Emulation.Video.Vector.Group.Drawing"><value>Détection et tracé</value></data>
+  <data name="Emulation.Video.Vector.Group.Glow"><value>Lueur et rémanence</value></data>
   <data name="Emulation.Video.Preset.CrtAmber"><value>CRT — Monochrome ambré</value></data>
   <data name="Emulation.Video.Preset.CrtArcadeColor"><value>CRT — arcade couleur</value></data>
   <data name="Emulation.Video.Preset.CrtGreen"><value>CRT — monochrome vert</value></data>
@@ -653,34 +563,19 @@
   <data name="Emulation.Video.Preset.CrtWhite"><value>CRT — monochrome blanc</value></data>
   <data name="Emulation.Video.Preset.LcdColor"><value>Couleur LCD</value></data>
   <data name="Emulation.Video.Preset.LcdMonochrome"><value>LCD monochrome</value></data>
-  <data name="Emulation.Video.Preset.LedBacklitLcd"><value>LED-backlit LCD</value></data>
-  <data name="Emulation.Video.Preset.Normal"><value>Normal</value></data>
-  <data name="Emulation.Video.Preset.Oled"><value>OLED</value></data>
-  <data name="Emulation.Video.Preset.Plasma"><value>Plasma</value></data>
+  <data name="Emulation.Video.Preset.LedBacklitLcd"><value>LCD rétroéclairé par LED</value></data>
+<data name="Emulation.Video.Preset.Plasma"><value>Plasme</value></data>
   <data name="Emulation.Video.Preset.Vector"><value>Affichage des vecteurs</value></data>
   <data name="Emulation.Video.Sampling"><value>Échantillonnage</value></data>
   <data name="Emulation.Video.Sampling.Bicubic"><value>Bicubique</value></data>
   <data name="Emulation.Video.Sampling.Bilinear"><value>Bilinéaire</value></data>
-  <data name="Emulation.Video.Sampling.Nearest"><value>Normal</value></data>
   <data name="Emulation.Video.Sampling.SharpBilinear"><value>Bilinéaire net</value></data>
   <data name="Emulation.Video.Settings.General"><value>Réglages généraux de l'image</value></data>
   <data name="Emulation.Video.Settings.GwGuiProcessing"><value>Traitement vidéo GW GUI</value></data>
-  <data name="Emulation.Video.Subpixels.Bgr"><value>BGR</value></data>
-  <data name="Emulation.Video.Subpixels.Monochrome"><value>Monochrome</value></data>
-  <data name="Emulation.Video.Subpixels.Rgb"><value>RGB</value></data>
-  <data name="Emulation.Video.Technology"><value>Technologie d'affichage</value></data>
-  <data name="Emulation.Video.Technology.Crt"><value>CRT</value></data>
-  <data name="Emulation.Video.Technology.FixedPixel"><value>LCD / LED / OLED</value></data>
-  <data name="Emulation.Video.Technology.Normal"><value>Normal</value></data>
-  <data name="Emulation.Video.Technology.Plasma"><value>Plasma</value></data>
+<data name="Emulation.Video.Technology"><value>Technologie d'affichage</value></data>
+  <data name="Emulation.Video.Technology.Plasma"><value>Plasme</value></data>
   <data name="Emulation.Video.Technology.Vector"><value>Vectoriel</value></data>
-  <data name="Emulation.Video.Sampling.Xbr"><value>xBR</value></data>
-  <data name="Emulation.Video.Sampling.Xbrz"><value>xBRZ</value></data>
-  <data name="Emulation.Video.Sampling.Hqx"><value>HQx</value></data>
-  <data name="Emulation.Video.Sampling.ScaleFx"><value>ScaleFX</value></data>
-  <data name="Emulation.Video.Sampling.ScaleNx"><value>ScaleNx</value></data>
-  <data name="Emulation.Video.Sampling.Sabr"><value>SABR</value></data>
-  <data name="Emulation.Video.Settings.Restoration"><value>Restauration de l'image</value></data>
+<data name="Emulation.Video.Settings.Restoration"><value>Restauration de l'image</value></data>
   <data name="Emulation.Video.Parameter.Dedithering"><value>Détramage</value></data>
   <data name="Emulation.Video.Parameter.Denoising"><value>Débruitage</value></data>
   <data name="Emulation.Video.Parameter.Debanding"><value>Réduction des bandes</value></data>
@@ -690,18 +585,27 @@
   <data name="Emulation.Video.Deinterlacing.BobEvenLines"><value>Bob — lignes paires</value></data>
   <data name="Emulation.Video.Deinterlacing.BobOddLines"><value>Bob — lignes impaires</value></data>
   <data name="Emulation.Video.Deinterlacing.Blend"><value>Fusion verticale</value></data>
-  <data name="Emulation.Video.Technology.Vfd"><value>VFD</value></data>
-  <data name="Emulation.Video.Vfd.Color.Blue"><value>Bleu</value></data>
+<data name="Emulation.Video.Vfd.Color.Blue"><value>Bleu</value></data>
   <data name="Emulation.Video.Vfd.Color.Green"><value>Vert</value></data>
   <data name="Emulation.Video.Vfd.Color.Amber"><value>Ambre</value></data>
   <data name="Emulation.Video.Vfd.Color.Red"><value>Rouge</value></data>
   <data name="Emulation.Video.Parameter.VfdColor"><value>Couleur de phosphore</value></data>
   <data name="Emulation.Video.Parameter.VfdPhosphorIntensity"><value>Intensité du phosphore</value></data>
   <data name="Emulation.Video.Parameter.VfdHaloIntensity"><value>Halo VFD</value></data>
-  <data name="Emulation.Video.Parameter.VfdPersistence"><value>Persistance VFD</value></data>
+  <data name="Emulation.Video.Parameter.VfdPersistence"><value>Durée de persistance (ms)</value></data>
+  <data name="Emulation.Video.Parameter.VfdEmissionThreshold"><value>Seuil d’émission</value></data>
+  <data name="Emulation.Video.Parameter.VfdGlassDarkening"><value>Assombrissement du verre fumé</value></data>
+  <data name="Emulation.Video.Parameter.VfdStructure"><value>Structure des anodes</value></data>
+  <data name="Emulation.Video.Parameter.VfdCellSize"><value>Taille des cellules</value></data>
+  <data name="Emulation.Video.Parameter.VfdCellGap"><value>Espacement des cellules</value></data>
+  <data name="Emulation.Video.Parameter.VfdHaloRadius"><value>Rayon du halo</value></data>
+  <data name="Emulation.Video.Vfd.Structure.Graphic"><value>Graphique</value></data>
+  <data name="Emulation.Video.Vfd.Structure.DotMatrix"><value>Matrice de points</value></data>
+  <data name="Emulation.Video.Vfd.Group.PhosphorAndGlass"><value>Phosphore et verre</value></data>
+  <data name="Emulation.Video.Vfd.Group.Anodes"><value>Structure des anodes</value></data>
+  <data name="Emulation.Video.Vfd.Group.GlowAndResponse"><value>Lueur et réponse</value></data>
   <data name="Emulation.Video.Technology.LedMatrix"><value>Matrice LED</value></data>
-  <data name="Emulation.Video.LedMatrix.Color.Rgb"><value>RGB</value></data>
-  <data name="Emulation.Video.LedMatrix.Color.Red"><value>Rouge</value></data>
+<data name="Emulation.Video.LedMatrix.Color.Red"><value>Rouge</value></data>
   <data name="Emulation.Video.LedMatrix.Color.Green"><value>Vert</value></data>
   <data name="Emulation.Video.LedMatrix.Color.Amber"><value>Ambre</value></data>
   <data name="Emulation.Video.LedMatrix.Color.Blue"><value>Bleu</value></data>
@@ -709,7 +613,7 @@
   <data name="Emulation.Video.Parameter.LedMatrixColor"><value>Couleur LED</value></data>
   <data name="Emulation.Video.Parameter.LedMatrixCellSize"><value>Taille des cellules LED</value></data>
   <data name="Emulation.Video.Parameter.LedMatrixCellGap"><value>Espacement des cellules LED</value></data>
-  <data name="Emulation.Video.Parameter.LedMatrixDiffusion"><value>Diffusion LED</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixDiffusion"><value>Intensité du halo</value></data>
   <data name="Emulation.Video.Parameter.LedMatrixBrightness"><value>Luminosité LED</value></data>
   <data name="Emulation.Video.Technology.DotMatrix"><value>Matrice de points</value></data>
   <data name="Emulation.Video.DotMatrix.Palette.Green"><value>LCD vert</value></data>
@@ -723,10 +627,6 @@
   <data name="Emulation.Video.Parameter.DotMatrixDotSize"><value>Taille du point</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixContrast"><value>Contraste des points</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixResponseTime"><value>Temps de réponse (ms)</value></data>
-  <data name="Emulation.Video.Technology.SegmentDisplay"><value>Segments</value></data>
-  <data name="Emulation.Video.SegmentDisplay.Layout.Seven"><value>7 segments</value></data>
-  <data name="Emulation.Video.SegmentDisplay.Layout.Fourteen"><value>14 segments</value></data>
-  <data name="Emulation.Video.SegmentDisplay.Layout.Sixteen"><value>16 segments</value></data>
   <data name="Emulation.Video.SegmentDisplay.Color.Red"><value>Rouge</value></data>
   <data name="Emulation.Video.SegmentDisplay.Color.Green"><value>Vert</value></data>
   <data name="Emulation.Video.SegmentDisplay.Color.Amber"><value>Ambre</value></data>
@@ -739,7 +639,6 @@
   <data name="Emulation.Video.Parameter.SegmentDisplayGlow"><value>Halo des segments</value></data>
   <data name="Emulation.Video.Parameter.SegmentDisplayResponseTime"><value>Temps de réponse des segments (ms)</value></data>
   <data name="Emulation.Video.Technology.EPaper"><value>Papier électronique</value></data>
-  <data name="Emulation.Video.EPaper.ColorMode.Monochrome"><value>Monochrome</value></data>
   <data name="Emulation.Video.EPaper.ColorMode.Grayscale16"><value>16 niveaux de gris</value></data>
   <data name="Emulation.Video.EPaper.ColorMode.Color4096"><value>4096 couleurs</value></data>
   <data name="Emulation.Video.Parameter.EPaperColorMode"><value>Mode papier électronique</value></data>
@@ -747,7 +646,6 @@
   <data name="Emulation.Video.Parameter.EPaperDithering"><value>Tramage du papier électronique</value></data>
   <data name="Emulation.Video.Parameter.EPaperRefreshTime"><value>Temps de rafraîchissement (ms)</value></data>
   <data name="Emulation.Video.Parameter.EPaperGhosting"><value>Image fantôme</value></data>
-  <data name="Emulation.Video.Technology.Projection"><value>Projection</value></data>
   <data name="Emulation.Video.Parameter.ProjectionOpticalBlur"><value>Flou optique</value></data>
   <data name="Emulation.Video.Parameter.ProjectionDiffusion"><value>Diffusion de la lumière</value></data>
   <data name="Emulation.Video.Parameter.ProjectionScreenTexture"><value>Texture de toile</value></data>
@@ -761,27 +659,16 @@
   <data name="Emulation.Video.Settings.SignalSimulation"><value>Simulations de signaux</value></data>
   <data name="Emulation.Video.Settings.Stylistic"><value>Effets stylistiques</value></data>
   <data name="Emulation.Video.Parameter.Grain"><value>Grain analogique</value></data>
-  <data name="Emulation.Video.Parameter.Vhs"><value>VHS</value></data>
-  <data name="Emulation.Video.Parameter.ChromaticAberration"><value>Aberration chromatique</value></data>
+<data name="Emulation.Video.Parameter.ChromaticAberration"><value>Aberration chromatique</value></data>
   <data name="Emulation.Video.Parameter.Bloom"><value>Halo lumineux</value></data>
   <data name="Emulation.Video.Parameter.Sepia"><value>Sépia</value></data>
   <data name="Emulation.Video.Tab.Display"><value>Affichage</value></data>
   <data name="Emulation.Video.Tab.Rendering"><value>Rendu</value></data>
   <data name="Emulation.Video.Tab.Technology"><value>Technologie</value></data>
-  <data name="Emulation.Video.Tab.Image"><value>Image</value></data>
   <data name="Emulation.Video.Tab.Restoration"><value>Restauration</value></data>
   <data name="Emulation.Video.Tab.Motion"><value>Mouvement</value></data>
-  <data name="Emulation.Video.Tab.Signal"><value>Signal</value></data>
   <data name="Emulation.Video.Tab.Effects"><value>Effets</value></data>
-  <data name="Emulation.Video.Sampling.Hq2x"><value>HQ2x</value></data>
-  <data name="Emulation.Video.Sampling.Hq3x"><value>HQ3x</value></data>
-  <data name="Emulation.Video.Sampling.Hq4x"><value>HQ4x</value></data>
-  <data name="Emulation.Video.Sampling.TwoXSai"><value>2xSaI</value></data>
-  <data name="Emulation.Video.Sampling.SuperTwoXSai"><value>Super 2xSaI</value></data>
-  <data name="Emulation.Video.Sampling.SuperEagle"><value>Super Eagle</value></data>
-  <data name="Emulation.Video.Sampling.EpxScale2x"><value>EPX / Scale2x</value></data>
-  <data name="Emulation.Video.Sampling.Jinc2"><value>JINC2</value></data>
-  <data name="Emulation.Video.Sampling.Lanczos"><value>Lanczos</value></data>  <data name="Emulation.Video.Parameter.FineDetails"><value>Détails fins</value></data>
+<data name="Emulation.Video.Parameter.FineDetails"><value>Détails fins</value></data>
   <data name="Emulation.Video.Restoration.Level.None"><value>Aucun</value></data>
   <data name="Emulation.Video.Restoration.Level.Light"><value>Léger</value></data>
   <data name="Emulation.Video.Restoration.Level.Medium"><value>Moyen</value></data>
@@ -792,16 +679,9 @@
   <data name="Emulation.Video.Parameter.SignalConnectionIntensity"><value>Dégradation de la connexion</value></data>
   <data name="Emulation.Video.Parameter.SignalStandard"><value>Norme couleur</value></data>
   <data name="Emulation.Video.Parameter.SignalStandardIntensity"><value>Intensité de la norme</value></data>
-  <data name="Emulation.Video.Signal.Connection.RgbScart"><value>RGB (Péritel/SCART)</value></data>
-  <data name="Emulation.Video.Signal.Connection.Component"><value>Composante (YPbPr)</value></data>
-  <data name="Emulation.Video.Signal.Connection.SVideo"><value>S-Video</value></data>
-  <data name="Emulation.Video.Signal.Connection.Composite"><value>Composite</value></data>
-  <data name="Emulation.Video.Signal.Connection.Rf"><value>RF</value></data>
-  <data name="Emulation.Video.Signal.Standard.Automatic"><value>Automatique</value></data>
-  <data name="Emulation.Video.Signal.Standard.Pal"><value>PAL</value></data>
-  <data name="Emulation.Video.Signal.Standard.Ntsc"><value>NTSC</value></data>
-  <data name="Emulation.Video.Signal.Standard.Secam"><value>SECAM</value></data>
-  <data name="Emulation.Video.Signal.Connection.None"><value>Aucun</value></data>
+<data name="Emulation.Video.Signal.Connection.Component"><value>Composante (YPbPr)</value></data>
+<data name="Emulation.Video.Signal.Standard.Automatic"><value>Automatique</value></data>
+<data name="Emulation.Video.Signal.Connection.None"><value>Aucun</value></data>
   <data name="Emulation.Video.Parameter.CrtHorizontalCurvature"><value>Courbure horizontale</value></data>
   <data name="Emulation.Video.Parameter.CrtVerticalCurvature"><value>Courbure verticale</value></data>
   <data name="Emulation.Video.Parameter.CrtTrapezoid"><value>Déformation trapézoïdale</value></data>
@@ -809,11 +689,27 @@
   <data name="Emulation.Video.Crt.Group.Beam"><value>Faisceau d'électrons</value></data>
   <data name="Emulation.Video.Crt.Group.Mask"><value>Masque de phosphore</value></data>
   <data name="Emulation.Video.Crt.Group.Geometry"><value>Géométrie de l'écran</value></data>
-  <data name="Emulation.Video.Crt.Group.Scanlines"><value>Scanlines</value></data>
   <data name="Emulation.Video.Crt.Group.Interference"><value>Interférences et moiré</value></data>
-  <data name="Emulation.Video.Crt.ScanlinePhase.Zero"><value>Phase 0</value></data>
-  <data name="Emulation.Video.Crt.ScanlinePhase.Quarter"><value>Phase 1/4</value></data>
-  <data name="Emulation.Video.Crt.ScanlinePhase.Half"><value>Phase 1/2</value></data>
-  <data name="Emulation.Video.Crt.ScanlinePhase.ThreeQuarters"><value>Phase 3/4</value></data>
   <data name="Emulation.Video.Parameter.FixedPixelBacklightBleed"><value>Halo du rétroéclairage</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixShape"><value>Forme des LED</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixHaloRadius"><value>Rayon du halo</value></data>
+  <data name="Emulation.Video.Parameter.LedMatrixBlackDepth"><value>Profondeur des noirs</value></data>
+  <data name="Emulation.Video.LedMatrix.Shape.Round"><value>Ronde</value></data>
+  <data name="Emulation.Video.LedMatrix.Shape.Square"><value>Carrée</value></data>
+  <data name="Emulation.Video.LedMatrix.Group.Structure"><value>Structure de la matrice</value></data>
+  <data name="Emulation.Video.LedMatrix.Group.Emission"><value>Émission lumineuse</value></data>
+  <data name="Emulation.Memory.Slow"><value>RAM lente</value></data>
+  <data name="Emulation.Memory.Fast"><value>RAM rapide</value></data>
+  <data name="Emulation.Amiga.Controller.Joystick"><value>Joystick Amiga</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32"><value>Contrôleur CD32</value></data>
+  <data name="Emulation.Atari.Controller.Joystick"><value>Joystick Atari</value></data>
+  <data name="Emulation.Atari.Controller.PaddleControllers"><value>Contrôleurs Atari Paddle</value></data>
+  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 pistolet léger</value></data>
+  <data name="Emulation.Atari.Controller.Atari5200"><value>Contrôleur Atari 5200</value></data>
+  <data name="Emulation.Atari.Controller.Driving"><value>Contrôleur de conduite Atari</value></data>
+  <data name="Emulation.Atari.Controller.ProLine"><value>Joystick Pro-Line Atari</value></data>
+  <data name="Emulation.Atari.Controller.Jaguar"><value>Contrôleur d'Atari Jaguar</value></data>
+<data name="Emulation.Atari.Controller.BoosterGrip"><value>Grip du booster Atari</value></data>
+  <data name="Emulation.Atari.Controller.Genesis"><value>Contrôleur de Sega Genesis</value></data>
+  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Contrôleur</value></data>
 </root>

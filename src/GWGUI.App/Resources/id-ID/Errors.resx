@@ -12,28 +12,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.SettingsSaveFailed">
-    <value>Setelan tidak dapat disimpan.
-
-{0}</value>
-  </data>
-  <data name="Error.Title">
-    <value>kesalahan GW GUI</value>
-  </data>
-  <data name="Error.Unexpected">
-    <value>Kesalahan tak terduga berhasil dicegat.
-
-{0}</value>
-  </data>
-  <data name="Error.SaveFailed">
-    <value>Pengaturan tidak dapat disimpan. Jendela akan tetap tertutup.
-
-{0}</value>
-  </data>
-  <data name="Error.LogSaved">
-    <value>Laporan lengkap disimpan ke:
-{0}</value>
-  </data>
+  <data name="App.SettingsSaveFailed"><value>Setelan tidak dapat disimpan.&#xA;&#xA;{0}</value></data>
+  <data name="Error.Title"><value>kesalahan GW GUI</value></data>
+  <data name="Error.Unexpected"><value>Kesalahan tak terduga berhasil dicegat.&#xA;&#xA;{0}</value></data>
+  <data name="Error.SaveFailed"><value>Pengaturan tidak dapat disimpan. Jendela akan tetap tertutup.&#xA;&#xA;{0}</value></data>
+  <data name="Error.LogSaved"><value>Laporan lengkap disimpan ke:&#xA;{0}</value></data>
   <data name="Error.Description.NetworkTimeout"><value>Layanan jarak jauh tak menjawab sebelum koneksi habis. Periksa koneksi jaringan dan coba lagi.</value></data>
   <data name="Error.Description.NetworkDns"><value>Alamat layanan jarak jauh tak dapat diselesaikan. Periksa pengaturan jaringan atau DNS dan coba lagi.</value></data>
   <data name="Error.Description.NetworkRefused"><value>Layanan jarak jauh menolak koneksi. Mungkin tidak tersedia atau diblokir.</value></data>
@@ -41,7 +24,7 @@
   <data name="Error.Description.HttpStatus"><value>Layanan jarak jauh mengembalikan status HTTP {0}. Coba lagi nanti.</value></data>
   <data name="Error.Description.OperationTimeout"><value>Operasi tidak selesai dalam waktu yang diizinkan. Coba lagi.</value></data>
   <data name="Error.Description.OperationCancelled"><value>Operasi dibatalkan sebelum selesai.</value></data>
-  <data name="Error.Description.AccessDenied"><value>GUI GW tidak memiliki izin untuk mengakses berkas, folder, atau perangkat yang diminta.</value></data>
+  <data name="Error.Description.AccessDenied"><value>GW GUI tak punya hak akses untuk mengakses berkas, folder, atau perangkat yang diminta.</value></data>
   <data name="Error.Description.FileNotFound"><value>Berkas yang diperlukan tak dapat ditemukan: {0}</value></data>
   <data name="Error.Description.DirectoryNotFound"><value>Folder yang diperlukan tidak dapat ditemukan.</value></data>
   <data name="Error.Description.DriveNotFound"><value>Kandar yang diminta tidak tersedia.</value></data>

@@ -12,172 +12,60 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Warning.InvalidChecksum">
-    <value>Кореневий блок {0} має недійсну контрольну суму.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryNesting">
-    <value>Досягнуто ліміту вкладеності каталогу.</value>
-  </data>
-  <data name="Explorer.Warning.InvalidDirectoryChain">
-    <value>Недійсний або циклічний ланцюжок каталогів у блоці {0}.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryEntryMissing">
-    <value>Блок запису каталогу {0} відсутній.</value>
-  </data>
-  <data name="Explorer.Warning.AmigaExtension">
-    <value>{0}: недійсний блок розширення файлу {1}.</value>
-  </data>
-  <data name="Explorer.Warning.AmigaBlock">
-    <value>{0}: AmigaDOS {1} ({2}) відсутній.</value>
-  </data>
-  <data name="Explorer.Warning.FileDataMissing">
-    <value>Блок даних файлу {0} відсутній.</value>
-  </data>
-  <data name="Explorer.Warning.OfsType">
-    <value>Блок даних OFS {0} має неочікуваний тип.</value>
-  </data>
-  <data name="Explorer.Warning.BitmapMissing">
-    <value>Блок растрового зображення {0} відсутній.</value>
-  </data>
-  <data name="Explorer.Warning.BitmapChecksum">
-    <value>Блок растрового зображення {0} має недійсну контрольну суму.</value>
-  </data>
-  <data name="Explorer.Warning.CpmAllocation">
-    <value>{0}: Блок розподілу CP/M {1} знаходиться поза зображенням.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDirectoryCyclic">
-    <value>Циклічний ланцюжок каталогів CBM DOS на {0}/{1}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDirectoryMissing">
-    <value>Сектор каталогу CBM DOS {0}/{1} відсутній.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDataCyclic">
-    <value>{0}: ланцюжок циклічних даних на {1}/{2}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDataMissing">
-    <value>{0}: Сектор даних {1}/{2} відсутній.</value>
-  </data>
-  <data name="Explorer.Warning.CbmCapacity">
-    <value>{0}: ланцюжок файлів перевищує ємність зображення.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdDirectoryMissing">
-    <value>Один або кілька блоків каталогу UCSD відсутні.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdEntry">
-    <value>Запис каталогу UCSD {0} має недійсне або порожнє ім’я.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdRange">
-    <value>{0}: недійсний діапазон блоків {1}..{2}.</value>
-  </data>
-  <data name="Explorer.Warning.DataBlocksMissing">
-    <value>{0}: один або кілька блоків даних відсутні.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdCount">
-    <value>У каталозі UCSD оголошено {0} файлів, але знайдено {1} дійсних записів.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentInodeZero">
-    <value>{0}: недійсний COHERENT inode 0.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentInodeOutside">
-    <value>{0}: COHERENT inode {1} знаходиться поза зображенням.</value>
-  </data>
-  <data name="Explorer.Warning.FileTooLarge">
-    <value>{0}: файл завеликий.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentBlock">
-    <value>{0}: COHERENT блок {1} знаходиться поза зображенням.</value>
-  </data>
-  <data name="Explorer.Warning.BytesUnread">
-    <value>{0}: {1} байт(ів) не вдалося прочитати.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentIndirect">
-    <value>{0}: непрямий COHERENT блок {1} знаходиться поза зображенням.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11SegmentMissing">
-    <value>Сегмент каталогу RT-11 {0} відсутній.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11EntrySize">
-    <value>Сегмент каталогу RT-11 {0} має недійсний розмір запису.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11EmptyName">
-    <value>Запис RT-11 у блоці {0} має порожнє ім’я.</value>
-  </data>
-  <data name="Explorer.Warning.ProDosNesting">
-    <value>Досягнуто ліміту вкладеності каталогу ProDOS.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryBlockCyclic">
-    <value>Блок каталогу {0} відсутній або циклічний.</value>
-  </data>
-  <data name="Explorer.Warning.MasterIndexMissing">
-    <value>{0}: блок головного індексу {1} відсутній.</value>
-  </data>
-  <data name="Explorer.Warning.DataBlockMissing">
-    <value>{0}: блок даних {1} відсутній.</value>
-  </data>
-  <data name="Explorer.Warning.IndexBlockMissing">
-    <value>{0}: блок індексу {1} відсутній.</value>
-  </data>
-  <data name="Explorer.Warning.CatalogMissing">
-    <value>Сектор каталогу T{0} S{1} відсутній або циклічний.</value>
-  </data>
-  <data name="Explorer.Warning.CatalogSize">
-    <value>{0}: розмір каталогу невідповідний.</value>
-  </data>
-  <data name="Explorer.Warning.TrackSectorList">
-    <value>{0}: список T/S T{1} S{2} відсутній або циклічний.</value>
-  </data>
-  <data name="Explorer.Warning.TrackSectorData">
-    <value>{0}: сектор даних T{1} S{2} відсутній.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryBlockMissing">
-    <value>Блок каталогу {0} відсутній.</value>
-  </data>
-  <data name="Explorer.Warning.MfsEntry">
-    <value>Недійсний запис каталогу MFS у блоці {0}.</value>
-  </data>
-  <data name="Explorer.Warning.ResourceFork">
-    <value>{0}: метадані відгалуження ресурсу суперечливі.</value>
-  </data>
-  <data name="Explorer.Warning.MfsChain">
-    <value>{0}: недійсний ланцюжок розподілу MFS.</value>
-  </data>
-  <data name="Explorer.Warning.BlockMissing">
-    <value>{0}: блок {1} відсутній.</value>
-  </data>
-  <data name="Explorer.Warning.BbcSector">
-    <value>{0}: відсутній сектор даних {1}.</value>
-  </data>
-  <data name="Explorer.Warning.HfsCatalog">
-    <value>Каталог HFS не містить читабельних листових записів.</value>
-  </data>
-  <data name="Explorer.Warning.HfsDirectory">
-    <value>Циклічний каталог HFS #{0}.</value>
-  </data>
-  <data name="Explorer.Warning.HfsBlock">
-    <value>{0}: блок HFS {1} відсутній.</value>
-  </data>
-  <data name="Explorer.Warning.HfsExtents">
-    <value>{0}: потрібні додаткові екстенти HFS або дані відсутні.</value>
-  </data>
-  <data name="Explorer.Warning.FatNesting">
-    <value>Досягнуто ліміту вкладеності каталогу FAT.</value>
-  </data>
-  <data name="Explorer.Warning.FatChain">
-    <value>{0}: Недійсний або циклічний ланцюжок FAT у кластері {1}.</value>
-  </data>
-  <data name="Explorer.Warning.SectorMissing">
-    <value>Сектор {0} відсутній.</value>
-  </data>
-  <data name="Explorer.Warning.LisaCatalog">
-    <value>Сторінки каталогу Lisa відсутні; імена файлів були відновлені лише з тегів сторінки.</value>
-  </data>
-  <data name="Explorer.Warning.AtariDirectory">
-    <value>Сектор каталогу {0} відсутній.</value>
-  </data>
-  <data name="Explorer.Warning.AtariData">
-    <value>{0}: недійсний або відсутній сектор даних Atari DOS.</value>
-  </data>
-  <data name="Explorer.Warning.AtariOwner">
-    <value>Сектор {0} належить файлу {1}, очікується {2}.</value>
-  </data>
+  <data name="Explorer.Warning.InvalidChecksum"><value>Кореневий блок {0} має недійсну контрольну суму.</value></data>
+  <data name="Explorer.Warning.DirectoryNesting"><value>Досягнуто ліміту вкладеності каталогу.</value></data>
+  <data name="Explorer.Warning.InvalidDirectoryChain"><value>Недійсний або циклічний ланцюжок каталогів у блоці {0}.</value></data>
+  <data name="Explorer.Warning.DirectoryEntryMissing"><value>Блок запису каталогу {0} відсутній.</value></data>
+  <data name="Explorer.Warning.AmigaExtension"><value>{0}: недійсний блок розширення файлу {1}.</value></data>
+  <data name="Explorer.Warning.AmigaBlock"><value>{0}: AmigaDOS {1} ({2}) відсутній.</value></data>
+  <data name="Explorer.Warning.FileDataMissing"><value>Блок даних файлу {0} відсутній.</value></data>
+  <data name="Explorer.Warning.OfsType"><value>Блок даних OFS {0} має неочікуваний тип.</value></data>
+  <data name="Explorer.Warning.BitmapMissing"><value>Блок растрового зображення {0} відсутній.</value></data>
+  <data name="Explorer.Warning.BitmapChecksum"><value>Блок растрового зображення {0} має недійсну контрольну суму.</value></data>
+  <data name="Explorer.Warning.CpmAllocation"><value>{0}: Блок розподілу CP/M {1} знаходиться поза зображенням.</value></data>
+  <data name="Explorer.Warning.CbmDirectoryCyclic"><value>Циклічний ланцюжок каталогів CBM DOS на {0}/{1}.</value></data>
+  <data name="Explorer.Warning.CbmDirectoryMissing"><value>Сектор каталогу CBM DOS {0}/{1} відсутній.</value></data>
+  <data name="Explorer.Warning.CbmDataCyclic"><value>{0}: ланцюжок циклічних даних на {1}/{2}.</value></data>
+  <data name="Explorer.Warning.CbmDataMissing"><value>{0}: Сектор даних {1}/{2} відсутній.</value></data>
+  <data name="Explorer.Warning.CbmCapacity"><value>{0}: ланцюжок файлів перевищує ємність зображення.</value></data>
+  <data name="Explorer.Warning.UcsdDirectoryMissing"><value>Один або кілька блоків каталогу UCSD відсутні.</value></data>
+  <data name="Explorer.Warning.UcsdEntry"><value>Запис каталогу UCSD {0} має недійсне або порожнє ім’я.</value></data>
+  <data name="Explorer.Warning.UcsdRange"><value>{0}: недійсний діапазон блоків {1}..{2}.</value></data>
+  <data name="Explorer.Warning.DataBlocksMissing"><value>{0}: один або кілька блоків даних відсутні.</value></data>
+  <data name="Explorer.Warning.UcsdCount"><value>У каталозі UCSD оголошено {0} файлів, але знайдено {1} дійсних записів.</value></data>
+  <data name="Explorer.Warning.CoherentInodeZero"><value>{0}: недійсний COHERENT inode 0.</value></data>
+  <data name="Explorer.Warning.CoherentInodeOutside"><value>{0}: COHERENT inode {1} знаходиться поза зображенням.</value></data>
+  <data name="Explorer.Warning.FileTooLarge"><value>{0}: файл завеликий.</value></data>
+  <data name="Explorer.Warning.CoherentBlock"><value>{0}: COHERENT блок {1} знаходиться поза зображенням.</value></data>
+  <data name="Explorer.Warning.BytesUnread"><value>{0}: {1} байт(ів) не вдалося прочитати.</value></data>
+  <data name="Explorer.Warning.CoherentIndirect"><value>{0}: непрямий COHERENT блок {1} знаходиться поза зображенням.</value></data>
+  <data name="Explorer.Warning.Rt11SegmentMissing"><value>Сегмент каталогу RT-11 {0} відсутній.</value></data>
+  <data name="Explorer.Warning.Rt11EntrySize"><value>Сегмент каталогу RT-11 {0} має недійсний розмір запису.</value></data>
+  <data name="Explorer.Warning.Rt11EmptyName"><value>Запис RT-11 у блоці {0} має порожнє ім’я.</value></data>
+  <data name="Explorer.Warning.ProDosNesting"><value>Досягнуто ліміту вкладеності каталогу ProDOS.</value></data>
+  <data name="Explorer.Warning.DirectoryBlockCyclic"><value>Блок каталогу {0} відсутній або циклічний.</value></data>
+  <data name="Explorer.Warning.MasterIndexMissing"><value>{0}: блок головного індексу {1} відсутній.</value></data>
+  <data name="Explorer.Warning.DataBlockMissing"><value>{0}: блок даних {1} відсутній.</value></data>
+  <data name="Explorer.Warning.IndexBlockMissing"><value>{0}: блок індексу {1} відсутній.</value></data>
+  <data name="Explorer.Warning.CatalogMissing"><value>Сектор каталогу T{0} S{1} відсутній або циклічний.</value></data>
+  <data name="Explorer.Warning.CatalogSize"><value>{0}: розмір каталогу невідповідний.</value></data>
+  <data name="Explorer.Warning.TrackSectorList"><value>{0}: список T/S T{1} S{2} відсутній або циклічний.</value></data>
+  <data name="Explorer.Warning.TrackSectorData"><value>{0}: сектор даних T{1} S{2} відсутній.</value></data>
+  <data name="Explorer.Warning.DirectoryBlockMissing"><value>Блок каталогу {0} відсутній.</value></data>
+  <data name="Explorer.Warning.MfsEntry"><value>Недійсний запис каталогу MFS у блоці {0}.</value></data>
+  <data name="Explorer.Warning.ResourceFork"><value>{0}: метадані відгалуження ресурсу суперечливі.</value></data>
+  <data name="Explorer.Warning.MfsChain"><value>{0}: недійсний MFS ланцюга виділення.</value></data>
+  <data name="Explorer.Warning.BlockMissing"><value>{0}: блок {1} відсутній.</value></data>
+  <data name="Explorer.Warning.BbcSector"><value>{0}: сектор даних {1} КСНУМКС</value></data>
+  <data name="Explorer.Warning.HfsCatalog"><value>Каталог HFS не містить читабельних листових записів.</value></data>
+  <data name="Explorer.Warning.HfsDirectory"><value>Циклічний каталог HFS #{0}.</value></data>
+  <data name="Explorer.Warning.HfsBlock"><value>{0}: блок HFS {1} відсутній.</value></data>
+  <data name="Explorer.Warning.HfsExtents"><value>{0}: потрібні додаткові екстенти HFS або дані відсутні.</value></data>
+  <data name="Explorer.Warning.FatNesting"><value>Мистецтво FAT обмеження вставки каталогів.</value></data>
+  <data name="Explorer.Warning.FatChain"><value>{0}: Недійсний або циклічний ланцюжок FAT у кластері {1}.</value></data>
+  <data name="Explorer.Warning.SectorMissing"><value>Сектор {0} відсутній.</value></data>
+  <data name="Explorer.Warning.LisaCatalog"><value>Сторінки каталогу Lisa відсутні; імена файлів були відновлені лише з тегів сторінки.</value></data>
+  <data name="Explorer.Warning.AtariDirectory"><value>Сектор каталогу {0} відсутній.</value></data>
+  <data name="Explorer.Warning.AtariData"><value>{0}: недійсний або відсутній Atari DOS сектор даних.</value></data>
+  <data name="Explorer.Warning.AtariOwner"><value>Сектор {0} належить файлу {1}, очікується {2}.</value></data>
 </root>

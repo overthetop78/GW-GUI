@@ -12,118 +12,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Advanced">
-    <value>Ustawienia zaawansowane</value>
-  </data>
-  <data name="Common.ExpertArguments">
-    <value>Argumenty ekspertów</value>
-  </data>
-  <data name="Common.ExpertArgumentsTip">
-    <value>Argumenty są przekazywane w postaci zapisanej po sprawdzeniu poprawności cytatu.</value>
-  </data>
-  <data name="Advanced.SeekRetries">
-    <value>Szukaj ponownych prób</value>
-  </data>
-  <data name="Advanced.FakeIndex">
-    <value>Fałszywy indeks</value>
-  </data>
-  <data name="Advanced.HardSectors">
-    <value>Twarde sektory</value>
-  </data>
-  <data name="Advanced.Reverse">
-    <value>Odwróć dane ścieżki</value>
-  </data>
-  <data name="Advanced.AdjustSpeed">
-    <value>Dostosuj prędkość</value>
-  </data>
-  <data name="Advanced.Pll">
-    <value>Zastąpienie PLL</value>
-  </data>
-  <data name="Advanced.DensityPin">
-    <value>Pin gęstości 2</value>
-  </data>
-  <data name="Advanced.Tg43">
-    <value>Wygeneruj TG43</value>
-  </data>
-  <data name="Advanced.PreErase">
-    <value>Wstępnie usuń utwory</value>
-  </data>
-  <data name="Advanced.Precomp">
-    <value>Napisz wstępną rekompensatę</value>
-  </data>
-  <data name="Advanced.OutputTracks">
-    <value>Ścieżki wyjściowe</value>
-  </data>
-  <data name="Advanced.DiskDefs">
-    <value>Niestandardowe definicje dysków</value>
-  </data>
-  <data name="Advanced.DiskDefsFilter">
-    <value>Greaseweazle definicje dysków (*.cfg)|*.cfg|Wszystkie pliki|*.*</value>
-  </data>
-  <data name="Advanced.DiskDefsMissing">
-    <value>Wybrany plik definicji dysków nie istnieje.</value>
-  </data>
-  <data name="Advanced.Invalid">
-    <value>Ustawienie zaawansowane jest nieprawidłowe: {0}</value>
-  </data>
-  <data name="Advanced.TrackSpecTip">
-    <value>Specyfikacja ścieżki, na przykład c=0-79:h=0-1, c=0-79/2:h=0 lub c=0-79:h=0-1:hswap.</value>
-  </data>
-  <data name="Advanced.SpeedTip">
-    <value>Dodatnia prędkość lub okres, na przykład 300 obr./min, 200 ms, 200 000 us lub 200000000 ns.</value>
-  </data>
-  <data name="Advanced.PllTip">
-    <value>Parametry PLL oddzielone dwukropkami, na przykład okres=5:faza=60 lub okres=5:faza=60:dolnoprzepustowy=2.</value>
-  </data>
-  <data name="Advanced.PrecompTip">
-    <value>Zapisz wstępną kompensację, na przykład typ=mfm:40=125. Typy: mfm, fm, gcr; wartości podano w nanosekundach.</value>
-  </data>
-  <data name="Advanced.DiskDefsTip">
-    <value>Użyj niestandardowego pliku diskdefs.cfg, aby dodać lub zastąpić definicje formatu Greaseweazle.</value>
-  </data>
-  <data name="Advanced.RevsTip">
-    <value>--revs: Liczba obrotów odczytanych na ścieżkę. Przykład: --revs 5.</value>
-  </data>
-  <data name="Advanced.RetriesTip">
-    <value>--retries: Dodatkowe próby po błędzie. Przykład: --retries 3.</value>
-  </data>
-  <data name="Advanced.TracksTip">
-    <value>--tracks: Ogranicz cylindry, głowice lub stopnie. Przykład: --tracks c=0-79:h=0-1.</value>
-  </data>
-  <data name="Advanced.SeekRetriesTip">
-    <value>--seek-retries: Dodatkowe próby po poruszeniu głową. Przykład: --seek-retries 2.</value>
-  </data>
-  <data name="Advanced.FakeIndexTip">
-    <value>--fake-index: Utwórz indeks czasowy dla napędu bez sygnału indeksu. Przykład: --fake-index 300 obr./min.</value>
-  </data>
-  <data name="Advanced.HardSectorsTip">
-    <value>--hard-sectors: Obsługuj dysk z twardymi sektorami. Niekompatybilny z --fake-index.</value>
-  </data>
-  <data name="Advanced.ReverseTip">
-    <value>--reverse: Odwróć dane ścieżki dla flipperów lub okablowania.</value>
-  </data>
-  <data name="Advanced.AdjustSpeedTip">
-    <value>--adjust-speed: Przeskaluj taktowanie danych. Przykład: --adjust-speed 300 obr./min.</value>
-  </data>
-  <data name="Advanced.PllOptionTip">
-    <value>--pll: Skonfiguruj pętlę odzyskiwania zegara. Przykład: --pll okres=5:faza=60.</value>
-  </data>
-  <data name="Advanced.DenselTip">
-    <value>--densel: Wymuś wysoki lub niski poziom pinu wyboru gęstości. Przykład: --densel H.</value>
-  </data>
-  <data name="Advanced.Tg43Tip">
-    <value>--gen-tg43: Generuje sygnał TG43 dla napędów, które tego wymagają. Niekompatybilny z --densel.</value>
-  </data>
-  <data name="Advanced.EraseEmptyTip">
-    <value>--erase-empty: Usuń utwory, dla których obraz źródłowy nie zawiera żadnych danych.</value>
-  </data>
-  <data name="Advanced.PreEraseTip">
-    <value>--pre-erase: Usuń każdy utwór przed jego zapisaniem.</value>
-  </data>
-  <data name="Advanced.PrecompOptionTip">
-    <value>--precomp: Zastosuj wstępną kompensację zapisu. Przykład: --precomp typ=mfm:40=125.</value>
-  </data>
-  <data name="Advanced.OutputTracksTip">
-    <value>--out-tracks: Zmapuj ścieżki na obrazie wyjściowym. Przykład: --out-tracks c=0-79:h=0-1.</value>
-  </data>
+  <data name="Common.Advanced"><value>Ustawienia zaawansowane</value></data>
+  <data name="Common.ExpertArguments"><value>Argumenty ekspertów</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>Argumenty są przekazywane w postaci zapisanej po sprawdzeniu poprawności cytatu.</value></data>
+  <data name="Advanced.SeekRetries"><value>Szukaj ponownych prób</value></data>
+  <data name="Advanced.FakeIndex"><value>Fałszywy indeks</value></data>
+  <data name="Advanced.HardSectors"><value>Twarde sektory</value></data>
+  <data name="Advanced.Reverse"><value>Odwróć dane ścieżki</value></data>
+  <data name="Advanced.AdjustSpeed"><value>Dostosuj prędkość</value></data>
+  <data name="Advanced.Pll"><value>Zastąpienie PLL</value></data>
+  <data name="Advanced.DensityPin"><value>Pin gęstości 2</value></data>
+  <data name="Advanced.Tg43"><value>Wygeneruj TG43</value></data>
+  <data name="Advanced.PreErase"><value>Wstępnie usuń utwory</value></data>
+  <data name="Advanced.Precomp"><value>Napisz wstępną rekompensatę</value></data>
+  <data name="Advanced.OutputTracks"><value>Ścieżki wyjściowe</value></data>
+  <data name="Advanced.DiskDefs"><value>Niestandardowe definicje dysków</value></data>
+  <data name="Advanced.DiskDefsFilter"><value>Greaseweazle definicje dysków (*.cfg)|*.cfg|Wszystkie pliki|*.*</value></data>
+  <data name="Advanced.DiskDefsMissing"><value>Wybrany plik definicji dysków nie istnieje.</value></data>
+  <data name="Advanced.Invalid"><value>Ustawienie zaawansowane jest nieprawidłowe: {0}</value></data>
+  <data name="Advanced.TrackSpecTip"><value>Specyfikacja ścieżki, na przykład c=0-79:h=0-1, c=0-79/2:h=0 lub c=0-79:h=0-1:hswap.</value></data>
+  <data name="Advanced.SpeedTip"><value>Dodatnia prędkość lub okres, na przykład 300 obr./min, 200 ms, 200 000 us lub 200000000 ns.</value></data>
+  <data name="Advanced.PllTip"><value>Parametry PLL oddzielone dwukropkami, na przykład okres=5:faza=60 lub okres=5:faza=60:dolnoprzepustowy=2.</value></data>
+  <data name="Advanced.PrecompTip"><value>Zapisz wstępną kompensację, na przykład typ=mfm:40=125. Typy: mfm, fm, gcr; wartości podano w nanosekundach.</value></data>
+  <data name="Advanced.DiskDefsTip"><value>Użyj niestandardowego pliku diskdefs.cfg, aby dodać lub zastąpić definicje formatu Greaseweazle.</value></data>
+  <data name="Advanced.RevsTip"><value>--revs: Liczba obrotów odczytanych na ścieżkę. Przykład: --revs 5.</value></data>
+  <data name="Advanced.RetriesTip"><value>--retries: Dodatkowe próby po błędzie. Przykład: --retries 3.</value></data>
+  <data name="Advanced.TracksTip"><value>--tracks: Ogranicz cylindry, głowice lub stopnie. Przykład: --tracks c=0-79:h=0-1.</value></data>
+  <data name="Advanced.SeekRetriesTip"><value>--seek-retries: Dodatkowe próby po poruszeniu głową. Przykład: --seek-retries 2.</value></data>
+  <data name="Advanced.FakeIndexTip"><value>--fake-index: Utwórz indeks czasowy dla napędu bez sygnału indeksu. Przykład: --fake-index 300 obr./min.</value></data>
+  <data name="Advanced.HardSectorsTip"><value>--hard-sectors: Obsługuj dysk z twardymi sektorami. Niekompatybilny z --fake-index.</value></data>
+  <data name="Advanced.ReverseTip"><value>--reverse: Odwróć dane ścieżki dla flipperów lub okablowania.</value></data>
+  <data name="Advanced.AdjustSpeedTip"><value>--adjust-speed: Przeskaluj taktowanie danych. Przykład: --adjust-speed 300 obr./min.</value></data>
+  <data name="Advanced.PllOptionTip"><value>--pll: Skonfiguruj pętlę odzyskiwania zegara. Przykład: --pll okres=5:faza=60.</value></data>
+  <data name="Advanced.DenselTip"><value>--densel: Wymuś wysoki lub niski poziom pinu wyboru gęstości. Przykład: --densel H.</value></data>
+  <data name="Advanced.Tg43Tip"><value>--gen-tg43: Generuje sygnał TG43 dla napędów, które tego wymagają. Niekompatybilny z --densel.</value></data>
+  <data name="Advanced.EraseEmptyTip"><value>--erase-empty: Usuń utwory, dla których obraz źródłowy nie zawiera żadnych danych.</value></data>
+  <data name="Advanced.PreEraseTip"><value>--pre-erase: Usuń każdy utwór przed jego zapisaniem.</value></data>
+  <data name="Advanced.PrecompOptionTip"><value>--precomp: Zastosuj wstępną kompensację zapisu. Przykład: --precomp typ=mfm:40=125.</value></data>
+  <data name="Advanced.OutputTracksTip"><value>--out-tracks: Zmapuj ścieżki na obrazie wyjściowym. Przykład: --out-tracks c=0-79:h=0-1.</value></data>
 </root>

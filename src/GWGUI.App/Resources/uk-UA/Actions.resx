@@ -12,51 +12,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Cancel">
-    <value>Скасувати</value>
-  </data>
-  <data name="Common.Save">
-    <value>зберегти</value>
-  </data>
-  <data name="Common.Create">
-    <value>Створити</value>
-  </data>
-  <data name="Common.Delete">
-    <value>Видалити</value>
-  </data>
-  <data name="Common.Browse">
-    <value>Перегляд…</value>
-  </data>
-  <data name="Common.Choose">
-    <value>Виберіть…</value>
-  </data>
-  <data name="Common.Close">
-    <value>Закрити</value>
-  </data>
-  <data name="Common.Execute">
-    <value>Виконати</value>
-  </data>
-  <data name="Common.Stop">
-    <value>СТІЙ</value>
-  </data>
-  <data name="Common.Continue">
-    <value>Продовжити</value>
-  </data>
-  <data name="Common.Reset">
-    <value>Скинути</value>
-  </data>
-  <data name="Common.Copy">
-    <value>Копія</value>
-  </data>
-  <data name="Common.Modify">
-    <value>Змінити</value>
-  </data>
-  <data name="Common.Hide">
-    <value>Сховати</value>
-  </data>
-  <data name="Common.Export">
-    <value>Експорт</value>
-  </data>
+  <data name="Common.Cancel"><value>Скасувати</value></data>
+  <data name="Common.Save"><value>зберегти</value></data>
+  <data name="Common.Create"><value>Створити</value></data>
+  <data name="Common.Delete"><value>Видалити</value></data>
+  <data name="Common.Browse"><value>Перегляд…</value></data>
+  <data name="Common.Choose"><value>Виберіть…</value></data>
+  <data name="Common.Close"><value>Закрити</value></data>
+  <data name="Common.Execute"><value>Виконати</value></data>
+  <data name="Common.Stop"><value>СТІЙ</value></data>
+  <data name="Common.Continue"><value>Продовжити</value></data>
+  <data name="Common.Reset"><value>Скинути</value></data>
+  <data name="Common.Copy"><value>Копія</value></data>
+  <data name="Common.Modify"><value>Змінити</value></data>
+  <data name="Common.Hide"><value>Сховати</value></data>
+  <data name="Common.Export"><value>Експорт</value></data>
   <data name="Common.New"><value>Новий</value></data>
   <data name="Common.Refresh"><value>Оновити</value></data>
   <data name="Common.OpenFolder"><value>Відкрити папку</value></data>

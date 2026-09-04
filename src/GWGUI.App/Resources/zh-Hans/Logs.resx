@@ -12,10 +12,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Logs.ExportFilter">
-    <value>文本日志(*.txt)|*.txt|所有文件|*.*</value>
-  </data>
-  <data name="Logs.History">
-    <value>操作历史</value>
-  </data>
+  <data name="Logs.ExportFilter"><value>文本日志(*.txt)|*.txt|所有文件|*.*</value></data>
+  <data name="Logs.History"><value>操作历史</value></data>
 </root>

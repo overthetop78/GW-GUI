@@ -12,16 +12,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="About.Description">
-    <value>Moderni Windows-käyttöliittymä levykkeiden lukemiseen, kirjoittamiseen, muuntamiseen ja tarkastamiseen Greaseweazle:lla.</value>
-  </data>
-  <data name="About.License">
-    <value>Avoimen lähdekoodin ohjelmisto — MIT Lisenssi</value>
-  </data>
-  <data name="About.Version">
-    <value>Versio {0}</value>
-  </data>
-  <data name="About.Components">
-    <value>Komponenttien versiot</value>
-  </data>
+  <data name="About.Description"><value>Moderni Windows-käyttöliittymä levykkeiden lukemiseen, kirjoittamiseen, muuntamiseen ja tarkastamiseen Greaseweazle:lla.</value></data>
+  <data name="About.License"><value>Avoimen lähdekoodin ohjelmisto — MIT Lisenssi</value></data>
+  <data name="About.Version"><value>Versio {0}</value></data>
+  <data name="About.Components"><value>Komponenttien versiot</value></data>
 </root>

@@ -12,28 +12,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.SettingsSaveFailed">
-    <value>Settings could not be saved.
-
-{0}</value>
-  </data>
-  <data name="Error.Title">
-    <value>GW GUI error</value>
-  </data>
-  <data name="Error.Unexpected">
-    <value>An unexpected error was intercepted.
-
-{0}</value>
-  </data>
-  <data name="Error.SaveFailed">
-    <value>The settings could not be saved. The window will still close.
-
-{0}</value>
-  </data>
-  <data name="Error.LogSaved">
-    <value>The full report was saved to:
-{0}</value>
-  </data>
+  <data name="App.SettingsSaveFailed"><value>Settings could not be saved.&#xA;&#xA;{0}</value></data>
+  <data name="Error.Title"><value>GW GUI error</value></data>
+  <data name="Error.Unexpected"><value>An unexpected error was intercepted.&#xA;&#xA;{0}</value></data>
+  <data name="Error.SaveFailed"><value>The settings could not be saved. The window will still close.&#xA;&#xA;{0}</value></data>
+  <data name="Error.LogSaved"><value>The full report was saved to:&#xA;{0}</value></data>
   <data name="Error.Description.NetworkTimeout"><value>The remote service did not respond before the connection timed out. Check the network connection and try again.</value></data>
   <data name="Error.Description.NetworkDns"><value>The remote service address could not be resolved. Check the network or DNS settings and try again.</value></data>
   <data name="Error.Description.NetworkRefused"><value>The remote service refused the connection. It may be unavailable or blocked.</value></data>

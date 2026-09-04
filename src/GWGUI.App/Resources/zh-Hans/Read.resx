@@ -12,127 +12,45 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Read.Title">
-    <value>读</value>
-  </data>
-  <data name="Read.NameRequired">
-    <value>输入文件名。</value>
-  </data>
-  <data name="Read.TypeRequired">
-    <value>选择兼容的图像类型。</value>
-  </data>
-  <data name="Read.FileExistsTitle">
-    <value>现有文件</value>
-  </data>
-  <data name="Read.FileExists">
-    <value>该文件已经存在。</value>
-  </data>
-  <data name="Read.ConflictPath">
-    <value>现有文件</value>
-  </data>
-  <data name="Read.ConflictOverwrite">
-    <value>覆盖</value>
-  </data>
-  <data name="Read.ConflictNextNumber">
-    <value>使用下一个数字</value>
-  </data>
-  <data name="Read.ConflictEditName">
-    <value>让我编辑一下名字</value>
-  </data>
-  <data name="Read.ImageToCreate">
-    <value>要创建的图像</value>
-  </data>
-  <data name="Read.Extension">
-    <value>扩大</value>
-  </data>
-  <data name="Read.RawScp">
-    <value>原始图像 (SCP)</value>
-  </data>
-  <data name="Read.KnownFormat">
-    <value>已知磁盘格式</value>
-  </data>
-  <data name="Read.FileName">
-    <value>文件名</value>
-  </data>
-  <data name="Read.Folder">
-    <value>文件夹</value>
-  </data>
-  <data name="Read.Revolutions">
-    <value>每轨转数</value>
-  </data>
-  <data name="Read.Retries">
-    <value>重试</value>
-  </data>
-  <data name="Read.Tracks">
-    <value>轨道/侧面</value>
-  </data>
-  <data name="Read.AutoNumber">
-    <value>自动对成功读取进行编号</value>
-  </data>
-  <data name="Read.Digits">
-    <value>数字</value>
-  </data>
-  <data name="Read.Letters">
-    <value>信件</value>
-  </data>
-  <data name="Read.Next">
-    <value>下一个：</value>
-  </data>
-  <data name="Read.OpenVisualize">
-    <value>在可视化中打开</value>
-  </data>
-  <data name="Read.ScpFinished">
-    <value>SCP 捕获已完成。您可以在不中断工作的情况下对其进行分析。</value>
-  </data>
-  <data name="Read.ScpSummaryTitle">
-    <value>最终 SCP 结果：</value>
-  </data>
-  <data name="Read.ScpTracksSummary">
-    <value>轨迹：{0} 良好，{1} 缺失或无效（{2} 圆柱体，{3} 侧面）。</value>
-  </data>
-  <data name="Read.ScpTechnicalSummary">
-    <value>转数：{0} · 分辨率：{1} ns · 大小：{2:N0} 字节 · 校验和：{3}。</value>
-  </data>
-  <data name="Read.ScpOutputFile">
-    <value>文件：{0}</value>
-  </data>
-  <data name="Read.ScpSummaryUnavailable">
-    <value>SCP 摘要不可用：{0}</value>
-  </data>
-  <data name="Read.ScpBannerSummary">
-    <value>{0} 良好磁道 · {1} 缺失或无效 · {2} 柱面 · {3} 边数 · {4} 转数 · {5:N0} 字节 · {6} 校验和</value>
-  </data>
-  <data name="Read.ChooseType">
-    <value>选择图像类型</value>
-  </data>
-  <data name="Read.DestinationFolder">
-    <value>目标文件夹</value>
-  </data>
-  <data name="Read.CancelledFileDeleted">
-    <value>读取已取消：不完整的文件已删除：{0}</value>
-  </data>
-  <data name="Read.CancelledFileDeleteFailed">
-    <value>读取已取消，但无法删除不完整的文件：{0} — {1}</value>
-  </data>
-  <data name="Read.OpenExplore">
-    <value>浏览文件</value>
-  </data>
-  <data name="Read.InternalReader">
-    <value>内部物理磁盘读取（实验性）</value>
-  </data>
-  <data name="Read.InternalReaderTip">
-    <value>通过 Greaseweazle 协议直接读取磁通；gw.exe 仍为默认方式。</value>
-  </data>
-  <data name="Read.InternalPreview">
-    <value>内部物理磁盘读取到 {0}</value>
-  </data>
-  <data name="Read.InternalRawScpOnly">
-    <value>内部读取目前仅创建原始 SCP 映像。</value>
-  </data>
-  <data name="Read.InternalUnsupportedOptions">
-    <value>内部读取器尚不支持某些已启用的选项。</value>
-  </data>
-  <data name="Read.InternalInvalidOptions">
-    <value>内部读取设置无效。</value>
-  </data>
+  <data name="Read.Title"><value>读</value></data>
+  <data name="Read.NameRequired"><value>输入文件名。</value></data>
+  <data name="Read.TypeRequired"><value>选择兼容的图像类型。</value></data>
+  <data name="Read.FileExistsTitle"><value>现有文件</value></data>
+  <data name="Read.FileExists"><value>该文件已经存在。</value></data>
+  <data name="Read.ConflictPath"><value>现有文件</value></data>
+  <data name="Read.ConflictOverwrite"><value>覆盖</value></data>
+  <data name="Read.ConflictNextNumber"><value>使用下一个数字</value></data>
+  <data name="Read.ConflictEditName"><value>让我编辑一下名字</value></data>
+  <data name="Read.ImageToCreate"><value>要创建的图像</value></data>
+  <data name="Read.Extension"><value>扩大</value></data>
+  <data name="Read.RawScp"><value>原始图像 (SCP)</value></data>
+  <data name="Read.KnownFormat"><value>已知磁盘格式</value></data>
+  <data name="Read.FileName"><value>文件名</value></data>
+  <data name="Read.Folder"><value>文件夹</value></data>
+  <data name="Read.Revolutions"><value>每轨转数</value></data>
+  <data name="Read.Retries"><value>重试</value></data>
+  <data name="Read.Tracks"><value>轨道/侧面</value></data>
+  <data name="Read.AutoNumber"><value>自动对成功读取进行编号</value></data>
+  <data name="Read.Digits"><value>数字</value></data>
+  <data name="Read.Letters"><value>信件</value></data>
+  <data name="Read.Next"><value>下一个：</value></data>
+  <data name="Read.OpenVisualize"><value>在可视化中打开</value></data>
+  <data name="Read.ScpFinished"><value>SCP 捕获已完成。您可以在不中断工作的情况下对其进行分析。</value></data>
+  <data name="Read.ScpSummaryTitle"><value>最终 SCP 结果：</value></data>
+  <data name="Read.ScpTracksSummary"><value>轨迹：{0} 良好，{1} 缺失或无效（{2} 圆柱体，{3} 侧面）。</value></data>
+  <data name="Read.ScpTechnicalSummary"><value>革命 : {0} ・ 分辨率 : {1} ns = 大小 : {2:N0} 字节 \ 校验和 : {3}.</value></data>
+  <data name="Read.ScpOutputFile"><value>文件：{0}</value></data>
+  <data name="Read.ScpSummaryUnavailable"><value>SCP 摘要不可用：{0}</value></data>
+  <data name="Read.ScpBannerSummary"><value>{0} 良好磁道 · {1} 缺失或无效 · {2} 柱面 · {3} 边数 · {4} 转数 · {5:N0} 字节 · {6} 校验和</value></data>
+  <data name="Read.ChooseType"><value>选择图像类型</value></data>
+  <data name="Read.DestinationFolder"><value>目标文件夹</value></data>
+  <data name="Read.CancelledFileDeleted"><value>读取已取消：不完整的文件已删除：{0}</value></data>
+  <data name="Read.CancelledFileDeleteFailed"><value>读取已取消，但无法删除不完整的文件：{0} — {1}</value></data>
+  <data name="Read.OpenExplore"><value>浏览文件</value></data>
+  <data name="Read.InternalReader"><value>内部物理磁盘读取（实验性）</value></data>
+  <data name="Read.InternalReaderTip"><value>通过 Greaseweazle 协议直接读取磁通；gw.exe 仍为默认方式。</value></data>
+  <data name="Read.InternalPreview"><value>内部物理磁盘读取到 {0}</value></data>
+  <data name="Read.InternalRawScpOnly"><value>内部读取目前仅创建原始 SCP 映像。</value></data>
+  <data name="Read.InternalUnsupportedOptions"><value>内部读取器尚不支持某些已启用的选项。</value></data>
+  <data name="Read.InternalInvalidOptions"><value>内部读取设置无效。</value></data>
 </root>

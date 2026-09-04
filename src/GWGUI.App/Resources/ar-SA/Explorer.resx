@@ -12,102 +12,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Image">
-    <value>صورة القرص</value>
-  </data>
-  <data name="Explorer.Format">
-    <value>التنسيق</value>
-  </data>
-  <data name="Explorer.OpenImage">
-    <value>فتح صورة…</value>
-  </data>
-  <data name="Explorer.Automatic">
-    <value>اكتشاف تلقائي</value>
-  </data>
-  <data name="Explorer.Volume">
-    <value>وحدة التخزين</value>
-  </data>
-  <data name="Explorer.FileSystem">
-    <value>نظام الملفات</value>
-  </data>
-  <data name="Explorer.Capacity">
-    <value>السعة</value>
-  </data>
-  <data name="Explorer.Free">
-    <value>المساحة الحرة</value>
-  </data>
-  <data name="Explorer.Entries">
-    <value>العناصر</value>
-  </data>
-  <data name="Explorer.SelectEntry">
-    <value>حدد ملفًا أو مجلدًا.</value>
-  </data>
-  <data name="Explorer.Size">
-    <value>الحجم</value>
-  </data>
-  <data name="Explorer.Modified">
-    <value>تاريخ التعديل</value>
-  </data>
-  <data name="Explorer.Comment">
-    <value>تعليق</value>
-  </data>
-  <data name="Explorer.Warnings">
-    <value>تحذيرات</value>
-  </data>
-  <data name="Explorer.Directory">
-    <value>مجلد</value>
-  </data>
-  <data name="Explorer.File">
-    <value>ملف</value>
-  </data>
-  <data name="Explorer.Link">
-    <value>ارتباط</value>
-  </data>
-  <data name="Explorer.Unknown">
-    <value>غير معروف</value>
-  </data>
-  <data name="Explorer.Unnamed">
-    <value>وحدة تخزين بلا اسم</value>
-  </data>
-  <data name="Explorer.LoadFailed">
-    <value>تعذر فتح هذه الصورة: {0}</value>
-  </data>
-  <data name="Explorer.Loading">
-    <value>جارٍ قراءة صورة القرص…</value>
-  </data>
-  <data name="Explorer.ReadDisk">
-    <value>قراءة القرص</value>
-  </data>
-  <data name="Explorer.Name">
-    <value>الاسم</value>
-  </data>
-  <data name="Explorer.Type">
-    <value>النوع</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirmTitle">
-    <value>قراءة القرص</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirm">
-    <value>هل القرص مُدخل في محرك الأقراص المحدد حاليًا ({0}) وجاهز للقراءة؟</value>
-  </data>
-  <data name="Explorer.Type.Text">
-    <value>ملف نصي</value>
-  </data>
-  <data name="Explorer.Type.Image">
-    <value>صورة</value>
-  </data>
-  <data name="Explorer.Type.Audio">
-    <value>ملف صوتي</value>
-  </data>
-  <data name="Explorer.Type.Archive">
-    <value>أرشيف</value>
-  </data>
-  <data name="Explorer.Type.Program">
-    <value>برنامج</value>
-  </data>
-  <data name="Explorer.Type.DiskImage">
-    <value>صورة قرص</value>
-  </data>
+  <data name="Explorer.Image"><value>صورة القرص</value></data>
+  <data name="Explorer.Format"><value>التنسيق</value></data>
+  <data name="Explorer.OpenImage"><value>فتح صورة…</value></data>
+  <data name="Explorer.Automatic"><value>اكتشاف تلقائي</value></data>
+  <data name="Explorer.Volume"><value>وحدة التخزين</value></data>
+  <data name="Explorer.FileSystem"><value>نظام الملفات</value></data>
+  <data name="Explorer.Capacity"><value>السعة</value></data>
+  <data name="Explorer.Free"><value>المساحة الحرة</value></data>
+  <data name="Explorer.Entries"><value>العناصر</value></data>
+  <data name="Explorer.SelectEntry"><value>حدد ملفًا أو مجلدًا.</value></data>
+  <data name="Explorer.Size"><value>الحجم</value></data>
+  <data name="Explorer.Modified"><value>تاريخ التعديل</value></data>
+  <data name="Explorer.Comment"><value>تعليق</value></data>
+  <data name="Explorer.Warnings"><value>تحذيرات</value></data>
+  <data name="Explorer.Directory"><value>مجلد</value></data>
+  <data name="Explorer.File"><value>ملف</value></data>
+  <data name="Explorer.Link"><value>ارتباط</value></data>
+  <data name="Explorer.Unknown"><value>غير معروف</value></data>
+  <data name="Explorer.Unnamed"><value>وحدة تخزين بلا اسم</value></data>
+  <data name="Explorer.LoadFailed"><value>تعذر فتح هذه الصورة: {0}</value></data>
+  <data name="Explorer.Loading"><value>جارٍ قراءة صورة القرص…</value></data>
+  <data name="Explorer.ReadDisk"><value>قراءة القرص</value></data>
+  <data name="Explorer.Name"><value>الاسم</value></data>
+  <data name="Explorer.Type"><value>النوع</value></data>
+  <data name="Explorer.ReadDiskConfirmTitle"><value>قراءة القرص</value></data>
+  <data name="Explorer.ReadDiskConfirm"><value>هل القرص مُدخل في محرك الأقراص المحدد حاليًا ({0}) وجاهز للقراءة؟</value></data>
+  <data name="Explorer.Type.Text"><value>ملف نصي</value></data>
+  <data name="Explorer.Type.Image"><value>صورة</value></data>
+  <data name="Explorer.Type.Audio"><value>ملف صوتي</value></data>
+  <data name="Explorer.Type.Archive"><value>أرشيف</value></data>
+  <data name="Explorer.Type.Program"><value>برنامج</value></data>
+  <data name="Explorer.Type.DiskImage"><value>صورة قرص</value></data>
   <data name="Explorer.System"><value>النظام</value></data>
   <data name="Explorer.Protection"><value>الحماية</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>القطاعات الفعلية — لم يتم التعرّف على نظام ملفات</value></data>
@@ -119,6 +55,6 @@
   <data name="Explorer.Content.crack-the-company"><value>كراك بواسطة The Company</value></data>
   <data name="Explorer.DataBlocks"><value>كتل البيانات</value></data>
   <data name="Explorer.DetectedFormats"><value>المكتشف: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable"><value>لا يمكن لأدوات المضيف أن تنتج صورة قطاعية قابلة للاستهلاك {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed"><value>لا يمكن لأدوات الرهائن أن تفكك الصورة على أنها {0}.</value></data>
 </root>

@@ -12,172 +12,60 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Warning.InvalidChecksum">
-    <value>Rotblocket {0} har en ogiltig kontrollsumma.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryNesting">
-    <value>Katalogkapslingsgränsen nåddes.</value>
-  </data>
-  <data name="Explorer.Warning.InvalidDirectoryChain">
-    <value>Ogiltig eller cyklisk katalogkedja vid block {0}.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryEntryMissing">
-    <value>Katalogpostblock {0} saknas.</value>
-  </data>
-  <data name="Explorer.Warning.AmigaExtension">
-    <value>{0}: Ogiltigt filtilläggsblock {1}.</value>
-  </data>
-  <data name="Explorer.Warning.AmigaBlock">
-    <value>{0}: AmigaDOS {1} ({2}) saknas.</value>
-  </data>
-  <data name="Explorer.Warning.FileDataMissing">
-    <value>Fildatablock {0} saknas.</value>
-  </data>
-  <data name="Explorer.Warning.OfsType">
-    <value>OFS-datablock {0} har en oväntad typ.</value>
-  </data>
-  <data name="Explorer.Warning.BitmapMissing">
-    <value>Bitmappsblocket {0} saknas.</value>
-  </data>
-  <data name="Explorer.Warning.BitmapChecksum">
-    <value>Bitmappsblocket {0} har en ogiltig kontrollsumma.</value>
-  </data>
-  <data name="Explorer.Warning.CpmAllocation">
-    <value>{0}: CP/M-allokeringsblock {1} är utanför bilden.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDirectoryCyclic">
-    <value>Cyklisk CBM DOS-katalogkedja vid {0}/{1}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDirectoryMissing">
-    <value>CBM DOS-katalogsektorn {0}/{1} saknas.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDataCyclic">
-    <value>{0}: Cyklisk datakedja vid {1}/{2}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDataMissing">
-    <value>{0}: Datasektorn {1}/{2} saknas.</value>
-  </data>
-  <data name="Explorer.Warning.CbmCapacity">
-    <value>{0}: filkedjan överskrider bildkapaciteten.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdDirectoryMissing">
-    <value>Ett eller flera UCSD-katalogblock saknas.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdEntry">
-    <value>UCSD-katalogposten {0} har ett ogiltigt eller tomt namn.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdRange">
-    <value>{0}: ogiltigt blockintervall {1}..{2}.</value>
-  </data>
-  <data name="Explorer.Warning.DataBlocksMissing">
-    <value>{0}: ett eller flera datablock saknas.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdCount">
-    <value>UCSD-katalogen deklarerar {0}-filer men {1} giltiga poster hittades.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentInodeZero">
-    <value>{0}: Ogiltig COHERENT inod 0.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentInodeOutside">
-    <value>{0}: COHERENT inod {1} är utanför bilden.</value>
-  </data>
-  <data name="Explorer.Warning.FileTooLarge">
-    <value>{0}: Filen är för stor.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentBlock">
-    <value>{0}: KOHERENT block {1} är utanför bilden.</value>
-  </data>
-  <data name="Explorer.Warning.BytesUnread">
-    <value>{0}: {1} byte(s) kunde inte läsas.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentIndirect">
-    <value>{0}: indirekt SAMMANHÅLLANDE block {1} är utanför bilden.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11SegmentMissing">
-    <value>RT-11 katalogsegment {0} saknas.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11EntrySize">
-    <value>RT-11-katalogsegmentet {0} har en ogiltig poststorlek.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11EmptyName">
-    <value>RT-11-posten vid block {0} har ett tomt namn.</value>
-  </data>
-  <data name="Explorer.Warning.ProDosNesting">
-    <value>ProDOS-katalogens kapslingsgräns nåddes.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryBlockCyclic">
-    <value>Katalogblocket {0} saknas eller är cykliskt.</value>
-  </data>
-  <data name="Explorer.Warning.MasterIndexMissing">
-    <value>{0}: huvudindexblock {1} saknas.</value>
-  </data>
-  <data name="Explorer.Warning.DataBlockMissing">
-    <value>{0}: datablock {1} saknas.</value>
-  </data>
-  <data name="Explorer.Warning.IndexBlockMissing">
-    <value>{0}: indexblock {1} saknas.</value>
-  </data>
-  <data name="Explorer.Warning.CatalogMissing">
-    <value>Katalogsektor T{0} S{1} saknas eller är cyklisk.</value>
-  </data>
-  <data name="Explorer.Warning.CatalogSize">
-    <value>{0}: katalogstorleken är inkonsekvent.</value>
-  </data>
-  <data name="Explorer.Warning.TrackSectorList">
-    <value>{0}: T/S-lista T{1} S{2} saknas eller är cyklisk.</value>
-  </data>
-  <data name="Explorer.Warning.TrackSectorData">
-    <value>{0}: datasektor T{1} S{2} saknas.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryBlockMissing">
-    <value>Katalogblock {0} saknas.</value>
-  </data>
-  <data name="Explorer.Warning.MfsEntry">
-    <value>Ogiltig MFS-katalogpost i block {0}.</value>
-  </data>
-  <data name="Explorer.Warning.ResourceFork">
-    <value>{0}: resursgaffelmetadata är inkonsekvent.</value>
-  </data>
-  <data name="Explorer.Warning.MfsChain">
-    <value>{0}: ogiltig MFS-tilldelningskedja.</value>
-  </data>
-  <data name="Explorer.Warning.BlockMissing">
-    <value>{0}: block {1} saknas.</value>
-  </data>
-  <data name="Explorer.Warning.BbcSector">
-    <value>{0}: datasektor {1} saknas.</value>
-  </data>
-  <data name="Explorer.Warning.HfsCatalog">
-    <value>HFS-katalogen innehåller inga läsbara bladposter.</value>
-  </data>
-  <data name="Explorer.Warning.HfsDirectory">
-    <value>Cyklisk HFS-katalog #{0}.</value>
-  </data>
-  <data name="Explorer.Warning.HfsBlock">
-    <value>{0}: HFS-block {1} saknas.</value>
-  </data>
-  <data name="Explorer.Warning.HfsExtents">
-    <value>{0}: ytterligare HFS-omfattningar krävs eller data saknas.</value>
-  </data>
-  <data name="Explorer.Warning.FatNesting">
-    <value>FAT-katalogens kapslingsgräns nåddes.</value>
-  </data>
-  <data name="Explorer.Warning.FatChain">
-    <value>{0}: Ogiltig eller cyklisk FAT-kedja vid kluster {1}.</value>
-  </data>
-  <data name="Explorer.Warning.SectorMissing">
-    <value>Sektor {0} saknas.</value>
-  </data>
-  <data name="Explorer.Warning.LisaCatalog">
-    <value>Lisas katalogsidor saknas; filnamn återställdes endast från sidtaggar.</value>
-  </data>
-  <data name="Explorer.Warning.AtariDirectory">
-    <value>Katalogsektor {0} saknas.</value>
-  </data>
-  <data name="Explorer.Warning.AtariData">
-    <value>{0}: ogiltig eller saknad Atari DOS-datasektor.</value>
-  </data>
-  <data name="Explorer.Warning.AtariOwner">
-    <value>Sektor {0} tillhör filen {1}, förväntad {2}.</value>
-  </data>
+  <data name="Explorer.Warning.InvalidChecksum"><value>Rotblocket {0} har en ogiltig kontrollsumma.</value></data>
+  <data name="Explorer.Warning.DirectoryNesting"><value>Katalogkapslingsgränsen nåddes.</value></data>
+  <data name="Explorer.Warning.InvalidDirectoryChain"><value>Ogiltig eller cyklisk katalogkedja vid block {0}.</value></data>
+  <data name="Explorer.Warning.DirectoryEntryMissing"><value>Katalogpostblock {0} saknas.</value></data>
+  <data name="Explorer.Warning.AmigaExtension"><value>{0}: Ogiltigt filtilläggsblock {1}.</value></data>
+  <data name="Explorer.Warning.AmigaBlock"><value>{0}: AmigaDOS {1} ({2}) saknas.</value></data>
+  <data name="Explorer.Warning.FileDataMissing"><value>Fildatablock {0} saknas.</value></data>
+  <data name="Explorer.Warning.OfsType"><value>OFS-datablock {0} har en oväntad typ.</value></data>
+  <data name="Explorer.Warning.BitmapMissing"><value>Bitmappsblocket {0} saknas.</value></data>
+  <data name="Explorer.Warning.BitmapChecksum"><value>Bitmappsblocket {0} har en ogiltig kontrollsumma.</value></data>
+  <data name="Explorer.Warning.CpmAllocation"><value>{0}: CP/M-allokeringsblock {1} är utanför bilden.</value></data>
+  <data name="Explorer.Warning.CbmDirectoryCyclic"><value>Cyklisk CBM DOS-katalogkedja vid {0}/{1}.</value></data>
+  <data name="Explorer.Warning.CbmDirectoryMissing"><value>CBM DOS-katalogsektorn {0}/{1} saknas.</value></data>
+  <data name="Explorer.Warning.CbmDataCyclic"><value>{0}: Cyklisk datakedja vid {1}/{2}.</value></data>
+  <data name="Explorer.Warning.CbmDataMissing"><value>{0}: Datasektorn {1}/{2} saknas.</value></data>
+  <data name="Explorer.Warning.CbmCapacity"><value>{0}: filkedjan överskrider bildkapaciteten.</value></data>
+  <data name="Explorer.Warning.UcsdDirectoryMissing"><value>Ett eller flera UCSD-katalogblock saknas.</value></data>
+  <data name="Explorer.Warning.UcsdEntry"><value>UCSD-katalogposten {0} har ett ogiltigt eller tomt namn.</value></data>
+  <data name="Explorer.Warning.UcsdRange"><value>{0}: ogiltigt blockintervall {1}..{2}.</value></data>
+  <data name="Explorer.Warning.DataBlocksMissing"><value>{0}: ett eller flera datablock saknas.</value></data>
+  <data name="Explorer.Warning.UcsdCount"><value>UCSD-katalogen deklarerar {0}-filer men {1} giltiga poster hittades.</value></data>
+  <data name="Explorer.Warning.CoherentInodeZero"><value>{0}: Ogiltig COHERENT inod 0.</value></data>
+  <data name="Explorer.Warning.CoherentInodeOutside"><value>{0}: COHERENT inod {1} är utanför bilden.</value></data>
+  <data name="Explorer.Warning.FileTooLarge"><value>{0}: Filen är för stor.</value></data>
+  <data name="Explorer.Warning.CoherentBlock"><value>{0}:: COHERENT block {1} är utanför bilden.</value></data>
+  <data name="Explorer.Warning.BytesUnread"><value>{0}: {1} byte(s) kunde inte läsas.</value></data>
+  <data name="Explorer.Warning.CoherentIndirect"><value>{0}: indirekt COHERENT block {1} är utanför bilden.</value></data>
+  <data name="Explorer.Warning.Rt11SegmentMissing"><value>RT-11 katalogsegment {0} saknas.</value></data>
+  <data name="Explorer.Warning.Rt11EntrySize"><value>RT-11-katalogsegmentet {0} har en ogiltig poststorlek.</value></data>
+  <data name="Explorer.Warning.Rt11EmptyName"><value>RT-11-posten vid block {0} har ett tomt namn.</value></data>
+  <data name="Explorer.Warning.ProDosNesting"><value>ProDOS-katalogens kapslingsgräns nåddes.</value></data>
+  <data name="Explorer.Warning.DirectoryBlockCyclic"><value>Katalogblocket {0} saknas eller är cykliskt.</value></data>
+  <data name="Explorer.Warning.MasterIndexMissing"><value>{0}: huvudindexblock {1} saknas.</value></data>
+  <data name="Explorer.Warning.DataBlockMissing"><value>{0}: datablock {1} saknas.</value></data>
+  <data name="Explorer.Warning.IndexBlockMissing"><value>{0}: indexblock {1} saknas.</value></data>
+  <data name="Explorer.Warning.CatalogMissing"><value>Katalogsektor T{0} S{1} saknas eller är cyklisk.</value></data>
+  <data name="Explorer.Warning.CatalogSize"><value>{0}: katalogstorleken är inkonsekvent.</value></data>
+  <data name="Explorer.Warning.TrackSectorList"><value>{0}: T/S-lista T{1} S{2} saknas eller är cyklisk.</value></data>
+  <data name="Explorer.Warning.TrackSectorData"><value>{0}: datasektor T{1} S{2} saknas.</value></data>
+  <data name="Explorer.Warning.DirectoryBlockMissing"><value>Katalogblock {0} saknas.</value></data>
+  <data name="Explorer.Warning.MfsEntry"><value>Ogiltig MFS-katalogpost i block {0}.</value></data>
+  <data name="Explorer.Warning.ResourceFork"><value>{0}: resursgaffelmetadata är inkonsekvent.</value></data>
+  <data name="Explorer.Warning.MfsChain"><value>{0}: ogiltig MFS-tilldelningskedja.</value></data>
+  <data name="Explorer.Warning.BlockMissing"><value>{0}: block {1} saknas.</value></data>
+  <data name="Explorer.Warning.BbcSector"><value>{0}: datasektor {1} saknas.</value></data>
+  <data name="Explorer.Warning.HfsCatalog"><value>HFS-katalogen innehåller inga läsbara bladposter.</value></data>
+  <data name="Explorer.Warning.HfsDirectory"><value>Cyklisk HFS-katalog #{0}.</value></data>
+  <data name="Explorer.Warning.HfsBlock"><value>{0}: HFS-block {1} saknas.</value></data>
+  <data name="Explorer.Warning.HfsExtents"><value>{0}: ytterligare HFS-omfattningar krävs eller data saknas.</value></data>
+  <data name="Explorer.Warning.FatNesting"><value>FAT-katalogens kapslingsgräns nåddes.</value></data>
+  <data name="Explorer.Warning.FatChain"><value>{0}: Ogiltig eller cyklisk FAT-kedja vid kluster {1}.</value></data>
+  <data name="Explorer.Warning.SectorMissing"><value>Sektor {0} saknas.</value></data>
+  <data name="Explorer.Warning.LisaCatalog"><value>Lisas katalogsidor saknas; filnamn återställdes endast från sidtaggar.</value></data>
+  <data name="Explorer.Warning.AtariDirectory"><value>Katalogsektor {0} saknas.</value></data>
+  <data name="Explorer.Warning.AtariData"><value>{0}: ogiltig eller saknad Atari DOS-datasektor.</value></data>
+  <data name="Explorer.Warning.AtariOwner"><value>Sektor {0} tillhör filen {1}, förväntad {2}.</value></data>
 </root>

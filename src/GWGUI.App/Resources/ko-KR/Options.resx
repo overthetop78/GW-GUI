@@ -12,165 +12,56 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Options.Title">
-    <value>옵션</value>
-  </data>
-  <data name="Options.General">
-    <value>일반적인</value>
-  </data>
-  <data name="Options.Tools">
-    <value>Greaseweazle 도구</value>
-  </data>
-  <data name="Options.Hardware">
-    <value>컨트롤러 및 드라이브</value>
-  </data>
-  <data name="Options.Profiles">
-    <value>프로필</value>
-  </data>
-  <data name="Options.ImagesFolder">
-    <value>기본 디스크 이미지 폴더</value>
-  </data>
-  <data name="Options.Language">
-    <value>언어</value>
-  </data>
-  <data name="Options.Theme">
-    <value>주제</value>
-  </data>
-  <data name="Theme.System">
-    <value>체계</value>
-  </data>
-  <data name="Theme.Light">
-    <value>빛</value>
-  </data>
-  <data name="Theme.Dark">
-    <value>어두운</value>
-  </data>
-  <data name="Options.GwPath">
-    <value>gw.exe에 대한 경로</value>
-  </data>
-  <data name="Options.ToolsHelp">
-    <value>도구가 누락된 경우 도우미는 해당 도구를 다운로드하거나 기존 설치를 선택하도록 제안합니다. 업데이트는 공지만 됩니다.</value>
-  </data>
-  <data name="Options.HardwarePersistence">
-    <value>드라이브 연결이 끊어져도 하드웨어 설정은 계속 저장되어 있습니다.</value>
-  </data>
-  <data name="Options.ExecutableFilter">
-    <value>Greaseweazle (gw.exe)|gw.exe|실행 파일(*.exe)|*.exe</value>
-  </data>
-  <data name="Options.RemoveHardware">
-    <value>저장된 컨트롤러와 해당 드라이브를 모두 제거하시겠습니까?</value>
-  </data>
-  <data name="Options.HardwareTitle">
-    <value>하드웨어</value>
-  </data>
-  <data name="Options.UseConversionTags">
-    <value>변환 파일 이름에 태그 사용</value>
-  </data>
-  <data name="Options.TagPreset">
-    <value>프리셋</value>
-  </data>
-  <data name="Options.TagPresetFamily">
-    <value>가족만</value>
-  </data>
-  <data name="Options.TagPresetFormat">
-    <value>형식만</value>
-  </data>
-  <data name="Options.TagPresetFamilyFormat">
-    <value>제품군 및 형식</value>
-  </data>
-  <data name="Options.TagPresetFamilyExtension">
-    <value>가족 및 확장</value>
-  </data>
-  <data name="Options.TagPresetDetailed">
-    <value>제품군, 형식 및 확장</value>
-  </data>
-  <data name="Options.TagPattern">
-    <value>전환 태그 패턴</value>
-  </data>
-  <data name="Options.TagVariablesTitle">
-    <value>사용 가능한 변수</value>
-  </data>
-  <data name="Options.TagVariableName">
-    <value>소스 파일 이름</value>
-  </data>
-  <data name="Options.TagVariableFamily">
-    <value>가족: PC, ST, AMIGA…</value>
-  </data>
-  <data name="Options.TagVariableFormat">
-    <value>형식: 720, 1440, DD…</value>
-  </data>
-  <data name="Options.TagVariableExtension">
-    <value>확장자: IMA, ST, ADF…</value>
-  </data>
-  <data name="Options.TagVariableDateIso">
-    <value>날짜: 2026-08-06</value>
-  </data>
-  <data name="Options.TagVariableDateCompact">
-    <value>날짜: 20260806</value>
-  </data>
-  <data name="Options.TagVariableDateLocal">
-    <value>날짜: 2026년 6월 8일</value>
-  </data>
-  <data name="Options.TagVariableTimeFull">
-    <value>시간: 14-35-42</value>
-  </data>
-  <data name="Options.TagVariableTimeCompact">
-    <value>시간: 143542</value>
-  </data>
-  <data name="Options.TagVariableTimeShort">
-    <value>시간: 14-35</value>
-  </data>
-  <data name="Options.TagPatternHelp">
-    <value>{NAME} — 소스 파일 이름
-{FAMILY} — 머신 계열(PC, ST, AMIGA…)
-{FORMAT} — 형식 또는 기하학(720, 1440, DD…)
-{EXTENSION} — 출력 확장 (IMA, ST, ADF…)
-{DATE:YYYY-MM-DD} — 날짜 2026-08-06
-{DATE:YYYYMMDD} — 날짜 20260806
-{DATE:DD-MM-YYYY} — 날짜 2026년 6월 8일
-{TIME:HH-MM-SS} — 시간 14-35-42
-{TIME:HHMMSS} — 시간 143542
-{TIME:HH-MM} — 시간 14-35</value>
-  </data>
-  <data name="Options.RecentTagPatterns">
-    <value>최근 커스텀 패턴</value>
-  </data>
-  <data name="Options.NextTagExample">
-    <value>다음 예</value>
-  </data>
-  <data name="Options.TagPatternPreview">
-    <value>예: {0}</value>
-  </data>
-  <data name="Options.TagPatternInvalid">
-    <value>태그 패턴에는 {tag}이 포함되어야 합니다.</value>
-  </data>
-  <data name="Options.EnableLogs">
-    <value>로그 저장</value>
-  </data>
-  <data name="Options.Logs">
-    <value>로그</value>
-  </data>
-  <data name="Options.LogsDescription">
-    <value>각 작업에는 GW GUI Logs 폴더에 자체 파일이 있습니다.</value>
-  </data>
-  <data name="Options.LogActionErase">
-    <value>지우다</value>
-  </data>
-  <data name="Options.LogActionClean">
-    <value>헤드 청소</value>
-  </data>
-  <data name="Options.OpenLogsFolder">
-    <value>폴더 열기</value>
-  </data>
-  <data name="Options.LogMaximumSize">
-    <value>최대 크기</value>
-  </data>
-  <data name="Options.KeepLogArchives">
-    <value>이전 로그 유지</value>
-  </data>
-  <data name="Options.LogUnlimitedHint">
-    <value>0 = 무제한</value>
-  </data>
+  <data name="Options.Title"><value>옵션</value></data>
+  <data name="Options.General"><value>일반적인</value></data>
+  <data name="Options.Tools"><value>Greaseweazle 도구</value></data>
+  <data name="Options.Hardware"><value>컨트롤러 및 드라이브</value></data>
+  <data name="Options.Profiles"><value>프로필</value></data>
+  <data name="Options.ImagesFolder"><value>기본 디스크 이미지 폴더</value></data>
+  <data name="Options.Language"><value>언어</value></data>
+  <data name="Options.Theme"><value>주제</value></data>
+  <data name="Theme.System"><value>체계</value></data>
+  <data name="Theme.Light"><value>빛</value></data>
+  <data name="Theme.Dark"><value>어두운</value></data>
+  <data name="Options.GwPath"><value>gw.exe에 대한 경로</value></data>
+  <data name="Options.ToolsHelp"><value>도구가 누락된 경우 도우미는 해당 도구를 다운로드하거나 기존 설치를 선택하도록 제안합니다. 업데이트는 공지만 됩니다.</value></data>
+  <data name="Options.HardwarePersistence"><value>드라이브 연결이 끊어져도 하드웨어 설정은 계속 저장되어 있습니다.</value></data>
+  <data name="Options.ExecutableFilter"><value>Greaseweazle (gw.exe)|gw.exe|실행 (runtable)*.exe)|*.exe</value></data>
+  <data name="Options.RemoveHardware"><value>저장된 컨트롤러와 해당 드라이브를 모두 제거하시겠습니까?</value></data>
+  <data name="Options.HardwareTitle"><value>하드웨어</value></data>
+  <data name="Options.UseConversionTags"><value>변환 파일 이름에 태그 사용</value></data>
+  <data name="Options.TagPreset"><value>프리셋</value></data>
+  <data name="Options.TagPresetFamily"><value>가족만</value></data>
+  <data name="Options.TagPresetFormat"><value>형식만</value></data>
+  <data name="Options.TagPresetFamilyFormat"><value>제품군 및 형식</value></data>
+  <data name="Options.TagPresetFamilyExtension"><value>가족 및 확장</value></data>
+  <data name="Options.TagPresetDetailed"><value>제품군, 형식 및 확장</value></data>
+  <data name="Options.TagPattern"><value>전환 태그 패턴</value></data>
+  <data name="Options.TagVariablesTitle"><value>사용 가능한 변수</value></data>
+  <data name="Options.TagVariableName"><value>소스 파일 이름</value></data>
+  <data name="Options.TagVariableFamily"><value>가족: PC, ST, AMIGA…</value></data>
+  <data name="Options.TagVariableFormat"><value>형식: 720, 1440, DD…</value></data>
+  <data name="Options.TagVariableExtension"><value>확장자: IMA, ST, ADF…</value></data>
+  <data name="Options.TagVariableDateIso"><value>날짜: 2026-08-06</value></data>
+  <data name="Options.TagVariableDateCompact"><value>날짜: 20260806</value></data>
+  <data name="Options.TagVariableDateLocal"><value>날짜: 2026년 6월 8일</value></data>
+  <data name="Options.TagVariableTimeFull"><value>시간: 14-35-42</value></data>
+  <data name="Options.TagVariableTimeCompact"><value>시간: 143542</value></data>
+  <data name="Options.TagVariableTimeShort"><value>시간: 14-35</value></data>
+  <data name="Options.TagPatternHelp"><value>{NAME} — 소스 파일명&#xA;{FAMILY} — 기계 제품군 (PC, ST, AMIGA...)&#xA;{FORMAT} — 형식 또는 기하학 (720, 1440, DD...)&#xA;{EXTENSION} — 출력 확장 (IMA, ST, ADF...)&#xA;{DATE:YYYY-MM-DD} — 날짜 2026-08-06&#xA;{DATE:YYYYMMDD} — 날짜 20260806&#xA;{DATE:DD-MM-YYYY} — 날짜 06-08-2026&#xA;{TIME:HH-MM-SS} — 시간 14-35-42&#xA;{TIME:HHMMSS} — 시간 143542&#xA;{TIME:HH-MM} — 시간 14-35</value></data>
+  <data name="Options.RecentTagPatterns"><value>최근 커스텀 패턴</value></data>
+  <data name="Options.NextTagExample"><value>다음 예</value></data>
+  <data name="Options.TagPatternPreview"><value>예: {0}</value></data>
+  <data name="Options.TagPatternInvalid"><value>꼬리표 본은 포함해야 합니다 {tag}.</value></data>
+  <data name="Options.EnableLogs"><value>로그 저장</value></data>
+  <data name="Options.Logs"><value>로그</value></data>
+  <data name="Options.LogsDescription"><value>각 작업에는 GW GUI Logs 폴더에 자체 파일이 있습니다.</value></data>
+  <data name="Options.LogActionErase"><value>지우다</value></data>
+  <data name="Options.LogActionClean"><value>헤드 청소</value></data>
+  <data name="Options.OpenLogsFolder"><value>폴더 열기</value></data>
+  <data name="Options.LogMaximumSize"><value>최대 크기</value></data>
+  <data name="Options.KeepLogArchives"><value>이전 로그 유지</value></data>
+  <data name="Options.LogUnlimitedHint"><value>0 = 무제한</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>엔진</value></data>
   <data name="Engines.Description" xml:space="preserve"><value>각 작업에 사용할 엔진을 개별적으로 선택합니다.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>GW GUI 내부 엔진</value></data>
@@ -185,15 +76,13 @@
   <data name="Controllers.NoneDetected" xml:space="preserve"><value>검색된 컨트롤러 없음</value></data>
   <data name="Controllers.DetectedCount" xml:space="preserve"><value>컨트롤러 {0}개 검색됨</value></data>
   <data name="Controllers.TestRumble" xml:space="preserve"><value>진동 테스트</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve">
-    <value>진동 강도</value>
-  </data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>진동 강도</value></data>
   <data name="Controllers.LiveInputs" xml:space="preserve"><value>실시간 입력</value></data>
   <data name="Controllers.Control" xml:space="preserve"><value>컨트롤</value></data>
   <data name="Controllers.Value" xml:space="preserve"><value>값</value></data>
   <data name="Controllers.Active" xml:space="preserve"><value>활성</value></data>
   <data name="Controllers.Capabilities" xml:space="preserve"><value>기능</value></data>
-  <data name="Controllers.Identity" xml:space="preserve"><value>장치 ID</value></data>
+  <data name="Controllers.Identity"><value>장치 식별 정보</value></data>
   <data name="Controllers.InputKinds" xml:space="preserve"><value>입력 유형</value></data>
   <data name="Controllers.Controls" xml:space="preserve"><value>컨트롤</value></data>
   <data name="Controllers.Rumble" xml:space="preserve"><value>진동 모터</value></data>
@@ -218,17 +107,10 @@
   <data name="Controllers.Yes" xml:space="preserve"><value>예</value></data>
   <data name="Controllers.No" xml:space="preserve"><value>아니요</value></data>
   <data name="Controllers.None" xml:space="preserve"><value>없음</value></data>
-  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>일반 게임패드</value></data>
-  <data name="Controllers.Model.Auto" xml:space="preserve"><value>자동</value></data>
-  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>레이싱 휠</value></data>
-  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>비행 스틱</value></data>
-  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>아케이드 스틱</value></data>
-  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>원시 바이트</value></data>
+<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>원시 바이트</value></data>
   <data name="Controllers.AnalogValues" xml:space="preserve"><value>아날로그 값</value></data>
   <data name="Controllers.DetectionFailed" xml:space="preserve"><value>컨트롤러 검색 실패</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve">
-    <value>컨트롤러 검색 중…</value>
-  </data>
+  <data name="Controllers.Detecting" xml:space="preserve"><value>컨트롤러 검색 중…</value></data>
   <data name="Controllers.ReadFailed" xml:space="preserve"><value>컨트롤러 읽기 실패</value></data>
   <data name="Controllers.TestRunning" xml:space="preserve"><value>테스트 진행 중…</value></data>
   <data name="Controllers.TestFailed" xml:space="preserve"><value>테스트 실패</value></data>
@@ -253,91 +135,53 @@
   <data name="Controllers.Roll" xml:space="preserve"><value>롤</value></data>
   <data name="Controllers.Pitch" xml:space="preserve"><value>피치</value></data>
   <data name="Controllers.Yaw" xml:space="preserve"><value>요</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve">
-    <value>센서</value>
-  </data>
-  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
-    <value>UI 탐색</value>
-  </data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
-    <value>게임패드</value>
-  </data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
-    <value>저주파 모터</value>
-  </data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
-    <value>고주파 모터</value>
-  </data>
-  <data name="Controllers.Enum.Share" xml:space="preserve">
-    <value>공유</value>
-  </data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve">
-    <value>선형</value>
-  </data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve">
-    <value>각도</value>
-  </data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve">
-    <value>법선</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
-    <value>상수</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
-    <value>램프</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
-    <value>사인파</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
-    <value>구형파</value>
-  </data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
-    <value>삼각파</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
-    <value>상승 톱니파</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
-    <value>하강 톱니파</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
-    <value>스프링</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
-    <value>마찰</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
-    <value>댐퍼</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
-    <value>관성</value>
-  </data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve">
-    <value>조이스틱</value>
-  </data>
-  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
-    <value>다축 컨트롤러</value>
-  </data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
-    <value>HID 용도</value>
-  </data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve">
-    <value>축</value>
-  </data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve">
-    <value>버튼</value>
-  </data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
-    <value>집계</value>
-  </data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve">
-    <value>가상</value>
-  </data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve">
-    <value>입력 보고서</value>
-  </data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
-    <value>출력 보고서</value>
-  </data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>센서</value></data>
+  <data name="Controllers.Enum.UiNavigation" xml:space="preserve"><value>UI 탐색</value></data>
+  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>게임패드</value></data>
+  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>저주파 모터</value></data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>고주파 모터</value></data>
+  <data name="Controllers.Enum.Share" xml:space="preserve"><value>공유</value></data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>선형</value></data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>각도</value></data>
+  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>법선</value></data>
+  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>상수</value></data>
+  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>램프</value></data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>사인파</value></data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>구형파</value></data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>삼각파</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>상승 톱니파</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>하강 톱니파</value></data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>스프링</value></data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>마찰</value></data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>댐퍼</value></data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>관성</value></data>
+  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>조이스틱</value></data>
+  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>다축 컨트롤러</value></data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID 용도</value></data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>축</value></data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>버튼</value></data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>집계</value></data>
+  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>가상</value></data>
+  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>입력 보고서</value></data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>출력 보고서</value></data>
+<data name="Emulation.InitialDisk"><value>초기 디스크</value></data>
+  <data name="Emulation.Audio"><value>의 특징</value></data>
+  <data name="Emulation.Controller"><value>의 특징 {0}</value></data>
+  <data name="Emulation.Core.NameOptions"><value>핵심 옵션</value></data>
+  <data name="Emulation.MultiDrive"><value>DF0–DF3에서 첫 번째 4개의 디스크를 장착</value></data>
+  <data name="Emulation.DiskNumber"><value>의 특징 {0}</value></data>
+  <data name="Emulation.LoadOptions"><value>사용 가능한 옵션</value></data>
+  <data name="Emulation.Configurations"><value>제품 설명</value></data>
+  <data name="Emulation.Firmware"><value>회사 소개</value></data>
+  <data name="Emulation.ReleaseMouse"><value>릴리스 마우스</value></data>
+  <data name="Emulation.DeleteConfirm"><value>이 Amiga 구성을 삭제?</value></data>
+  <data name="Emulation.ModelRequired"><value>Amiga 모델이 필요합니다.</value></data>
+  <data name="Emulation.KickstartRequired"><value>Kickstart 경로가 필요합니다.</value></data>
+  <data name="Emulation.FileRequired"><value>필수 펌웨어 경로가 빈.</value></data>
+  <data name="Emulation.FileMissing"><value>선택한 파일은 존재하지 않습니다.</value></data>
+<data name="Options.EmulationMachineTitle"><value>{0} - - - {1} :: {2}</value></data>
+  <data name="Controllers.AnalogDeadZones"><value>아날로그 죽은 영역</value></data>
+  <data name="Controllers.StickDeadZone"><value>팟캐스트</value></data>
+  <data name="Controllers.TriggerDeadZone"><value>팟캐스트</value></data>
+  <data name="Controllers.OuterDeadZone"><value>외부 죽은 지역</value></data>
 </root>

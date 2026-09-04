@@ -12,127 +12,45 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Read.Title">
-    <value>Membaca</value>
-  </data>
-  <data name="Read.NameRequired">
-    <value>Masukkan nama file.</value>
-  </data>
-  <data name="Read.TypeRequired">
-    <value>Pilih jenis gambar yang kompatibel.</value>
-  </data>
-  <data name="Read.FileExistsTitle">
-    <value>Berkas yang ada</value>
-  </data>
-  <data name="Read.FileExists">
-    <value>File ini sudah ada.</value>
-  </data>
-  <data name="Read.ConflictPath">
-    <value>Berkas yang ada</value>
-  </data>
-  <data name="Read.ConflictOverwrite">
-    <value>Timpa</value>
-  </data>
-  <data name="Read.ConflictNextNumber">
-    <value>Gunakan nomor berikutnya</value>
-  </data>
-  <data name="Read.ConflictEditName">
-    <value>Biarkan saya mengedit namanya</value>
-  </data>
-  <data name="Read.ImageToCreate">
-    <value>Gambar untuk dibuat</value>
-  </data>
-  <data name="Read.Extension">
-    <value>Perpanjangan</value>
-  </data>
-  <data name="Read.RawScp">
-    <value>Gambar mentah (SCP)</value>
-  </data>
-  <data name="Read.KnownFormat">
-    <value>Format disk yang dikenal</value>
-  </data>
-  <data name="Read.FileName">
-    <value>Nama file</value>
-  </data>
-  <data name="Read.Folder">
-    <value>Map</value>
-  </data>
-  <data name="Read.Revolutions">
-    <value>Revolusi per trek</value>
-  </data>
-  <data name="Read.Retries">
-    <value>Percobaan ulang</value>
-  </data>
-  <data name="Read.Tracks">
-    <value>Trek/sisi</value>
-  </data>
-  <data name="Read.AutoNumber">
-    <value>Secara otomatis memberi nomor pada pembacaan yang berhasil</value>
-  </data>
-  <data name="Read.Digits">
-    <value>angka</value>
-  </data>
-  <data name="Read.Letters">
-    <value>Surat</value>
-  </data>
-  <data name="Read.Next">
-    <value>Berikutnya:</value>
-  </data>
-  <data name="Read.OpenVisualize">
-    <value>Buka di Visualisasi</value>
-  </data>
-  <data name="Read.ScpFinished">
-    <value>Pengambilan SCP selesai. Anda dapat menganalisisnya tanpa mengganggu pekerjaan Anda.</value>
-  </data>
-  <data name="Read.ScpSummaryTitle">
-    <value>Hasil akhir SCP:</value>
-  </data>
-  <data name="Read.ScpTracksSummary">
-    <value>Trek: {0} bagus, {1} hilang atau tidak valid (silinder {2}, sisi {3}).</value>
-  </data>
-  <data name="Read.ScpTechnicalSummary">
-    <value>Revolusi: {0} · Resolusi: {1} ns · Ukuran: {2:N0} bytes · Checksum: {3}.</value>
-  </data>
-  <data name="Read.ScpOutputFile">
-    <value>Berkas: {0}</value>
-  </data>
-  <data name="Read.ScpSummaryUnavailable">
-    <value>Ringkasan SCP tidak tersedia: {0}</value>
-  </data>
-  <data name="Read.ScpBannerSummary">
-    <value>{0} trek bagus · {1} hilang atau tidak valid · {2} silinder · {3} sisi · {4} revolusi · {5:N0} byte · {6} checksum</value>
-  </data>
-  <data name="Read.ChooseType">
-    <value>Pilih jenis gambar</value>
-  </data>
-  <data name="Read.DestinationFolder">
-    <value>Folder tujuan</value>
-  </data>
-  <data name="Read.CancelledFileDeleted">
-    <value>Baca dibatalkan: File yang tidak lengkap telah dihapus: {0}</value>
-  </data>
-  <data name="Read.CancelledFileDeleteFailed">
-    <value>Baca dibatalkan, tetapi file yang tidak lengkap tidak dapat dihapus: {0} — {1}</value>
-  </data>
-  <data name="Read.OpenExplore">
-    <value>Jelajahi berkas</value>
-  </data>
-  <data name="Read.InternalReader">
-    <value>Pembacaan disk fisik internal (eksperimental)</value>
-  </data>
-  <data name="Read.InternalReaderTip">
-    <value>Membaca fluks langsung melalui protokol Greaseweazle; gw.exe tetap menjadi bawaan.</value>
-  </data>
-  <data name="Read.InternalPreview">
-    <value>Pembacaan disk fisik internal ke {0}</value>
-  </data>
-  <data name="Read.InternalRawScpOnly">
-    <value>Pembacaan internal saat ini hanya membuat citra SCP mentah.</value>
-  </data>
-  <data name="Read.InternalUnsupportedOptions">
-    <value>Beberapa opsi aktif belum didukung oleh pembaca internal.</value>
-  </data>
-  <data name="Read.InternalInvalidOptions">
-    <value>Pengaturan pembacaan internal tidak valid.</value>
-  </data>
+  <data name="Read.Title"><value>Membaca</value></data>
+  <data name="Read.NameRequired"><value>Masukkan nama file.</value></data>
+  <data name="Read.TypeRequired"><value>Pilih jenis gambar yang kompatibel.</value></data>
+  <data name="Read.FileExistsTitle"><value>Berkas yang ada</value></data>
+  <data name="Read.FileExists"><value>File ini sudah ada.</value></data>
+  <data name="Read.ConflictPath"><value>Berkas yang ada</value></data>
+  <data name="Read.ConflictOverwrite"><value>Timpa</value></data>
+  <data name="Read.ConflictNextNumber"><value>Gunakan nomor berikutnya</value></data>
+  <data name="Read.ConflictEditName"><value>Biarkan saya mengedit namanya</value></data>
+  <data name="Read.ImageToCreate"><value>Gambar untuk dibuat</value></data>
+  <data name="Read.Extension"><value>Perpanjangan</value></data>
+  <data name="Read.RawScp"><value>Gambar mentah (SCP)</value></data>
+  <data name="Read.KnownFormat"><value>Format disk yang dikenal</value></data>
+  <data name="Read.FileName"><value>Nama file</value></data>
+  <data name="Read.Folder"><value>Map</value></data>
+  <data name="Read.Revolutions"><value>Revolusi per trek</value></data>
+  <data name="Read.Retries"><value>Percobaan ulang</value></data>
+  <data name="Read.Tracks"><value>Trek/sisi</value></data>
+  <data name="Read.AutoNumber"><value>Secara otomatis memberi nomor pada pembacaan yang berhasil</value></data>
+  <data name="Read.Digits"><value>angka</value></data>
+  <data name="Read.Letters"><value>Surat</value></data>
+  <data name="Read.Next"><value>Berikutnya:</value></data>
+  <data name="Read.OpenVisualize"><value>Buka di Visualisasi</value></data>
+  <data name="Read.ScpFinished"><value>Pengambilan SCP selesai. Anda dapat menganalisisnya tanpa mengganggu pekerjaan Anda.</value></data>
+  <data name="Read.ScpSummaryTitle"><value>Hasil akhir SCP:</value></data>
+  <data name="Read.ScpTracksSummary"><value>Trek: {0} bagus, {1} hilang atau tidak valid ({2} cylinders, {3} sisi).</value></data>
+  <data name="Read.ScpTechnicalSummary"><value>Revolusi: {0} · Resolusi: {1} ns · Ukuran: {2:N0} bytes · Checksum: {3}.</value></data>
+  <data name="Read.ScpOutputFile"><value>Berkas: {0}</value></data>
+  <data name="Read.ScpSummaryUnavailable"><value>Ringkasan SCP tidak tersedia: {0}</value></data>
+  <data name="Read.ScpBannerSummary"><value>{0} trek bagus · {1} hilang atau tidak valid · {2} silinder · {3} sisi · {4} revolusi · {5:N0} byte · {6} checksum</value></data>
+  <data name="Read.ChooseType"><value>Pilih jenis gambar</value></data>
+  <data name="Read.DestinationFolder"><value>Folder tujuan</value></data>
+  <data name="Read.CancelledFileDeleted"><value>Baca dibatalkan: File yang tidak lengkap telah dihapus: {0}</value></data>
+  <data name="Read.CancelledFileDeleteFailed"><value>Baca dibatalkan, tetapi file yang tidak lengkap tidak dapat dihapus: {0} — {1}</value></data>
+  <data name="Read.OpenExplore"><value>Jelajahi berkas</value></data>
+  <data name="Read.InternalReader"><value>Pembacaan disk fisik internal (eksperimental)</value></data>
+  <data name="Read.InternalReaderTip"><value>Membaca fluks langsung melalui protokol Greaseweazle; gw.exe tetap menjadi bawaan.</value></data>
+  <data name="Read.InternalPreview"><value>Pembacaan disk fisik internal ke {0}</value></data>
+  <data name="Read.InternalRawScpOnly"><value>Pembacaan internal saat ini hanya membuat citra SCP mentah.</value></data>
+  <data name="Read.InternalUnsupportedOptions"><value>Beberapa opsi aktif belum didukung oleh pembaca internal.</value></data>
+  <data name="Read.InternalInvalidOptions"><value>Pengaturan pembacaan internal tidak valid.</value></data>
 </root>

@@ -12,127 +12,45 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Read.Title">
-    <value>Leer</value>
-  </data>
-  <data name="Read.NameRequired">
-    <value>Introduzca un nombre de archivo.</value>
-  </data>
-  <data name="Read.TypeRequired">
-    <value>Elija un tipo de imagen compatible.</value>
-  </data>
-  <data name="Read.FileExistsTitle">
-    <value>Archivo existente</value>
-  </data>
-  <data name="Read.FileExists">
-    <value>Este archivo ya existe.</value>
-  </data>
-  <data name="Read.ConflictPath">
-    <value>Archivo existente</value>
-  </data>
-  <data name="Read.ConflictOverwrite">
-    <value>Exagerar</value>
-  </data>
-  <data name="Read.ConflictNextNumber">
-    <value>Usa el siguiente número</value>
-  </data>
-  <data name="Read.ConflictEditName">
-    <value>Déjame editar el nombre</value>
-  </data>
-  <data name="Read.ImageToCreate">
-    <value>Imagen para crear</value>
-  </data>
-  <data name="Read.Extension">
-    <value>Extensión</value>
-  </data>
-  <data name="Read.RawScp">
-    <value>Imagen sin procesar (SCP)</value>
-  </data>
-  <data name="Read.KnownFormat">
-    <value>Formato de disco conocido</value>
-  </data>
-  <data name="Read.FileName">
-    <value>Nombre del archivo</value>
-  </data>
-  <data name="Read.Folder">
-    <value>Carpeta</value>
-  </data>
-  <data name="Read.Revolutions">
-    <value>Revoluciones por pista</value>
-  </data>
-  <data name="Read.Retries">
-    <value>Reintentos</value>
-  </data>
-  <data name="Read.Tracks">
-    <value>Pistas/lados</value>
-  </data>
-  <data name="Read.AutoNumber">
-    <value>Numerar automáticamente las lecturas exitosas</value>
-  </data>
-  <data name="Read.Digits">
-    <value>Dígitos</value>
-  </data>
-  <data name="Read.Letters">
-    <value>Letras</value>
-  </data>
-  <data name="Read.Next">
-    <value>Próximo:</value>
-  </data>
-  <data name="Read.OpenVisualize">
-    <value>Abrir en visualización</value>
-  </data>
-  <data name="Read.ScpFinished">
-    <value>La captura SCP está completa. Podrás analizarlo sin interrumpir tu trabajo.</value>
-  </data>
-  <data name="Read.ScpSummaryTitle">
-    <value>Resultado final SCP:</value>
-  </data>
-  <data name="Read.ScpTracksSummary">
-    <value>Pistas: {0} buena, {1} faltante o no válida (cilindros {2}, lados {3}).</value>
-  </data>
-  <data name="Read.ScpTechnicalSummary">
-    <value>Revoluciones: {0} · Resolución: {1} ns · Tamaño: {2:N0} bytes · Suma de comprobación: {3}.</value>
-  </data>
-  <data name="Read.ScpOutputFile">
-    <value>Archivo: {0}</value>
-  </data>
-  <data name="Read.ScpSummaryUnavailable">
-    <value>SCP resumen no disponible: {0}</value>
-  </data>
-  <data name="Read.ScpBannerSummary">
-    <value>{0} buenas pistas · {1} falta o no es válido · {2} cilindros · {3} lados · {4} revolución(es) · {5:N0} bytes · {6} suma de comprobación</value>
-  </data>
-  <data name="Read.ChooseType">
-    <value>Elige un tipo de imagen</value>
-  </data>
-  <data name="Read.DestinationFolder">
-    <value>Carpeta de destino</value>
-  </data>
-  <data name="Read.CancelledFileDeleted">
-    <value>Lectura cancelada: El archivo incompleto fue eliminado: {0}</value>
-  </data>
-  <data name="Read.CancelledFileDeleteFailed">
-    <value>Lectura cancelada, pero el archivo incompleto no se pudo eliminar: {0} — {1}</value>
-  </data>
-  <data name="Read.OpenExplore">
-    <value>Explorar archivos</value>
-  </data>
-  <data name="Read.InternalReader">
-    <value>Lectura física interna del disco (experimental)</value>
-  </data>
-  <data name="Read.InternalReaderTip">
-    <value>Lee el flujo directamente mediante el protocolo Greaseweazle; gw.exe sigue siendo el valor predeterminado.</value>
-  </data>
-  <data name="Read.InternalPreview">
-    <value>Lectura física interna del disco en {0}</value>
-  </data>
-  <data name="Read.InternalRawScpOnly">
-    <value>La lectura interna actualmente solo crea imágenes SCP sin procesar.</value>
-  </data>
-  <data name="Read.InternalUnsupportedOptions">
-    <value>El lector interno aún no admite algunas opciones activadas.</value>
-  </data>
-  <data name="Read.InternalInvalidOptions">
-    <value>La configuración de lectura interna no es válida.</value>
-  </data>
+  <data name="Read.Title"><value>Leer</value></data>
+  <data name="Read.NameRequired"><value>Introduzca un nombre de archivo.</value></data>
+  <data name="Read.TypeRequired"><value>Elija un tipo de imagen compatible.</value></data>
+  <data name="Read.FileExistsTitle"><value>Archivo existente</value></data>
+  <data name="Read.FileExists"><value>Este archivo ya existe.</value></data>
+  <data name="Read.ConflictPath"><value>Archivo existente</value></data>
+  <data name="Read.ConflictOverwrite"><value>Exagerar</value></data>
+  <data name="Read.ConflictNextNumber"><value>Usa el siguiente número</value></data>
+  <data name="Read.ConflictEditName"><value>Déjame editar el nombre</value></data>
+  <data name="Read.ImageToCreate"><value>Imagen para crear</value></data>
+  <data name="Read.Extension"><value>Extensión</value></data>
+  <data name="Read.RawScp"><value>Imagen sin procesar (SCP)</value></data>
+  <data name="Read.KnownFormat"><value>Formato de disco conocido</value></data>
+  <data name="Read.FileName"><value>Nombre del archivo</value></data>
+  <data name="Read.Folder"><value>Carpeta</value></data>
+  <data name="Read.Revolutions"><value>Revoluciones por pista</value></data>
+  <data name="Read.Retries"><value>Reintentos</value></data>
+  <data name="Read.Tracks"><value>Pistas/lados</value></data>
+  <data name="Read.AutoNumber"><value>Numerar automáticamente las lecturas exitosas</value></data>
+  <data name="Read.Digits"><value>Dígitos</value></data>
+  <data name="Read.Letters"><value>Letras</value></data>
+  <data name="Read.Next"><value>Próximo:</value></data>
+  <data name="Read.OpenVisualize"><value>Abrir en visualización</value></data>
+  <data name="Read.ScpFinished"><value>La captura SCP está completa. Podrás analizarlo sin interrumpir tu trabajo.</value></data>
+  <data name="Read.ScpSummaryTitle"><value>Resultado final SCP:</value></data>
+  <data name="Read.ScpTracksSummary"><value>Pistas: {0} buena, {1} falta o inválida ({2} cilindros, {3} lados).</value></data>
+  <data name="Read.ScpTechnicalSummary"><value>Revoluciones: {0} · Resolución: {1} ns · Tamaño: {2:N0} bytes · Suma de comprobación: {3}.</value></data>
+  <data name="Read.ScpOutputFile"><value>Archivo: {0}</value></data>
+  <data name="Read.ScpSummaryUnavailable"><value>SCP resumen no disponible: {0}</value></data>
+  <data name="Read.ScpBannerSummary"><value>{0} buenas pistas · {1} falta o no es válido · {2} cilindros · {3} lados · {4} revolución(es) · {5:N0} bytes · {6} suma de comprobación</value></data>
+  <data name="Read.ChooseType"><value>Elige un tipo de imagen</value></data>
+  <data name="Read.DestinationFolder"><value>Carpeta de destino</value></data>
+  <data name="Read.CancelledFileDeleted"><value>Lectura cancelada: El archivo incompleto fue eliminado: {0}</value></data>
+  <data name="Read.CancelledFileDeleteFailed"><value>Lectura cancelada, pero el archivo incompleto no se pudo eliminar: {0} — {1}</value></data>
+  <data name="Read.OpenExplore"><value>Explorar archivos</value></data>
+  <data name="Read.InternalReader"><value>Lectura física interna del disco (experimental)</value></data>
+  <data name="Read.InternalReaderTip"><value>Lee el flujo directamente mediante el protocolo Greaseweazle; gw.exe sigue siendo el valor predeterminado.</value></data>
+  <data name="Read.InternalPreview"><value>Lectura física interna del disco en {0}</value></data>
+  <data name="Read.InternalRawScpOnly"><value>La lectura interna actualmente solo crea imágenes SCP sin procesar.</value></data>
+  <data name="Read.InternalUnsupportedOptions"><value>El lector interno aún no admite algunas opciones activadas.</value></data>
+  <data name="Read.InternalInvalidOptions"><value>La configuración de lectura interna no es válida.</value></data>
 </root>

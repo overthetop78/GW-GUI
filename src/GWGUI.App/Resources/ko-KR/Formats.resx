@@ -12,67 +12,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Detection.Ambiguous">
-    <value>모호한 형식</value>
-  </data>
-  <data name="Detection.RawScp">
-    <value>원시 SCP 캡처가 인식되었습니다.</value>
-  </data>
-  <data name="Detection.AmigaSize">
-    <value>Amiga 형식은 파일 크기로 인식됩니다.</value>
-  </data>
-  <data name="Detection.AcornSize">
-    <value>Acorn 형식은 파일 크기로 인식됩니다.</value>
-  </data>
-  <data name="Detection.AtariUnknownSize">
-    <value>크기가 알려진 Atari ST 프로필과 일치하지 않습니다.</value>
-  </data>
-  <data name="Detection.AtariSize">
-    <value>Atari ST 파일 크기에서 인식된 기하학.</value>
-  </data>
-  <data name="Detection.MsaInferred">
-    <value>Atari MSA 컨테이너가 인식되었습니다. 필요한 경우 형상을 확인하십시오.</value>
-  </data>
-  <data name="Detection.IbmAmbiguous">
-    <value>확장만으로는 IBM PC 형상을 결정할 수 없습니다.</value>
-  </data>
-  <data name="Detection.IbmSize">
-    <value>IBM PC 파일 크기에서 인식된 기하학.</value>
-  </data>
-  <data name="Detection.ExtensionInferred">
-    <value>확장 프로그램에서 유추된 형식입니다.</value>
-  </data>
-  <data name="Detection.Multiple">
-    <value>여러 형식이 가능합니다. 명시적으로 하나를 선택하세요.</value>
-  </data>
-  <data name="Format.raw.scp">
-    <value>원시 플럭스 이미지</value>
-  </data>
-  <data name="Format.raw.hfe">
-    <value>HxC 플럭스 이미지</value>
-  </data>
-  <data name="Common.DiskImageFilter">
-    <value>디스크 이미지|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|모든 파일|*.*</value>
-  </data>
-  <data name="Detection.AppleDosOrder">
-    <value>섹터 순서에서 Apple II DOS 형식을 식별했습니다.</value>
-  </data>
-  <data name="Detection.AppleProDosOrder">
-    <value>섹터 순서에서 Apple II ProDOS 형식을 식별했습니다.</value>
-  </data>
-  <data name="Detection.AppleContainer">
-    <value>Apple 디스크 이미지 컨테이너를 감지했습니다.</value>
-  </data>
-  <data name="Classification.Automatic">
-    <value>자동 감지</value>
-  </data>
-  <data name="Classification.Machine">
-    <value>컴퓨터</value>
-  </data>
-  <data name="Classification.Format">
-    <value>형식</value>
-  </data>
-  <data name="Classification.Protection">
-    <value>보호</value>
-  </data>
+  <data name="Detection.Ambiguous"><value>모호한 형식</value></data>
+  <data name="Detection.RawScp"><value>원시 SCP 캡처가 인식되었습니다.</value></data>
+  <data name="Detection.AmigaSize"><value>Amiga 형식은 파일 크기로 인식됩니다.</value></data>
+  <data name="Detection.AcornSize"><value>Acorn 형식은 파일 크기로 인식됩니다.</value></data>
+  <data name="Detection.AtariUnknownSize"><value>크기가 알려진 Atari ST 프로필과 일치하지 않습니다.</value></data>
+  <data name="Detection.AtariSize"><value>Atari ST 파일 크기에서 인식된 기하학.</value></data>
+  <data name="Detection.MsaInferred"><value>Atari MSA 컨테이너가 인식되었습니다. 필요한 경우 형상을 확인하십시오.</value></data>
+  <data name="Detection.IbmAmbiguous"><value>확장만으로는 IBM PC 형상을 결정할 수 없습니다.</value></data>
+  <data name="Detection.IbmSize"><value>IBM PC 파일 크기에서 인식된 기하학.</value></data>
+  <data name="Detection.ExtensionInferred"><value>확장 프로그램에서 유추된 형식입니다.</value></data>
+  <data name="Detection.Multiple"><value>여러 형식이 가능합니다. 명시적으로 하나를 선택하세요.</value></data>
+  <data name="Format.raw.scp"><value>원시 플럭스 이미지</value></data>
+  <data name="Common.DiskImageFilter"><value>Disk 이미지|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|모든 파일|*.*</value></data>
+  <data name="Detection.AppleDosOrder"><value>섹터 순서에서 Apple II DOS 형식을 식별했습니다.</value></data>
+  <data name="Detection.AppleProDosOrder"><value>섹터 순서에서 Apple II ProDOS 형식을 식별했습니다.</value></data>
+  <data name="Detection.AppleContainer"><value>Apple 디스크 이미지 컨테이너를 감지했습니다.</value></data>
+  <data name="Classification.Automatic"><value>자동 감지</value></data>
+  <data name="Classification.Machine"><value>컴퓨터</value></data>
+  <data name="Classification.Format"><value>형식</value></data>
+  <data name="Classification.Protection"><value>보호</value></data>
 </root>

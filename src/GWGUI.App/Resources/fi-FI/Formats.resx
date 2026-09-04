@@ -12,67 +12,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Detection.Ambiguous">
-    <value>Epäselvä muoto</value>
-  </data>
-  <data name="Detection.RawScp">
-    <value>Raaka SCP -kaappaus tunnistettu.</value>
-  </data>
-  <data name="Detection.AmigaSize">
-    <value>Amiga-muoto tunnistetaan tiedostokoosta.</value>
-  </data>
-  <data name="Detection.AcornSize">
-    <value>Acorn-muoto tunnistetaan tiedostokoosta.</value>
-  </data>
-  <data name="Detection.AtariUnknownSize">
-    <value>Koko ei vastaa tunnettua Atari ST-profiilia.</value>
-  </data>
-  <data name="Detection.AtariSize">
-    <value>Atari ST geometria tunnistettu tiedoston koosta.</value>
-  </data>
-  <data name="Detection.MsaInferred">
-    <value>Atari MSA kontti tunnistettu; vahvista geometria tarvittaessa.</value>
-  </data>
-  <data name="Detection.IbmAmbiguous">
-    <value>Laajennus ei yksin voi määrittää IBM PC-geometriaa.</value>
-  </data>
-  <data name="Detection.IbmSize">
-    <value>IBM PC geometria tunnistettu tiedoston koosta.</value>
-  </data>
-  <data name="Detection.ExtensionInferred">
-    <value>Laajennuksesta päätelty muoto.</value>
-  </data>
-  <data name="Detection.Multiple">
-    <value>Useat formaatit ovat mahdollisia; valitse yksi selkeästi.</value>
-  </data>
-  <data name="Format.raw.scp">
-    <value>Raaka vuokuva</value>
-  </data>
-  <data name="Format.raw.hfe">
-    <value>HxC vuokuva</value>
-  </data>
-  <data name="Common.DiskImageFilter">
-    <value>Levykuvat|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Kaikki tiedostot|*.*</value>
-  </data>
-  <data name="Detection.AppleDosOrder">
-    <value>Apple II DOS -muoto tunnistettiin sektorijärjestyksestä.</value>
-  </data>
-  <data name="Detection.AppleProDosOrder">
-    <value>Apple II ProDOS -muoto tunnistettiin sektorijärjestyksestä.</value>
-  </data>
-  <data name="Detection.AppleContainer">
-    <value>Apple-levykuvasäilö havaittu.</value>
-  </data>
-  <data name="Classification.Automatic">
-    <value>Automaattinen tunnistus</value>
-  </data>
-  <data name="Classification.Machine">
-    <value>Tietokone</value>
-  </data>
-  <data name="Classification.Format">
-    <value>Muoto</value>
-  </data>
-  <data name="Classification.Protection">
-    <value>Suojaus</value>
-  </data>
+  <data name="Detection.Ambiguous"><value>Epäselvä muoto</value></data>
+  <data name="Detection.RawScp"><value>Raaka SCP -kaappaus tunnistettu.</value></data>
+  <data name="Detection.AmigaSize"><value>Amiga-muoto tunnistetaan tiedostokoosta.</value></data>
+  <data name="Detection.AcornSize"><value>Acorn-muoto tunnistetaan tiedostokoosta.</value></data>
+  <data name="Detection.AtariUnknownSize"><value>Koko ei vastaa tunnettua Atari ST-profiilia.</value></data>
+  <data name="Detection.AtariSize"><value>Atari ST geometria tunnistettu tiedoston koosta.</value></data>
+  <data name="Detection.MsaInferred"><value>Atari MSA kontti tunnistettu; vahvista geometria tarvittaessa.</value></data>
+  <data name="Detection.IbmAmbiguous"><value>Laajennus ei yksin voi määrittää IBM PC-geometriaa.</value></data>
+  <data name="Detection.IbmSize"><value>IBM PC geometria tunnistettu tiedoston koosta.</value></data>
+  <data name="Detection.ExtensionInferred"><value>Laajennuksesta päätelty muoto.</value></data>
+  <data name="Detection.Multiple"><value>Useat formaatit ovat mahdollisia; valitse yksi selkeästi.</value></data>
+  <data name="Format.raw.scp"><value>Raaka vuokuva</value></data>
+  <data name="Common.DiskImageFilter"><value>Levykuvat|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|Kaikki tiedostot|*.*</value></data>
+  <data name="Detection.AppleDosOrder"><value>Apple II DOS -muoto tunnistettiin sektorijärjestyksestä.</value></data>
+  <data name="Detection.AppleProDosOrder"><value>Apple II ProDOS -muoto tunnistettiin sektorijärjestyksestä.</value></data>
+  <data name="Detection.AppleContainer"><value>Apple-levykuvasäilö havaittu.</value></data>
+  <data name="Classification.Automatic"><value>Automaattinen tunnistus</value></data>
+  <data name="Classification.Machine"><value>Tietokone</value></data>
+  <data name="Classification.Format"><value>Muoto</value></data>
+  <data name="Classification.Protection"><value>Suojaus</value></data>
 </root>

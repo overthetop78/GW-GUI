@@ -12,73 +12,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options">
-    <value>_ตัวเลือก</value>
-  </data>
-  <data name="Menu.Preferences">
-    <value>การตั้งค่า...</value>
-  </data>
-  <data name="Menu.Diagnostics">
-    <value>การวินิจฉัย</value>
-  </data>
-  <data name="Menu.Information">
-    <value>ข้อมูล</value>
-  </data>
-  <data name="Menu.Bandwidth">
-    <value>USB แบนด์วิธ</value>
-  </data>
-  <data name="Menu.Rpm">
-    <value>RPM ความเร็ว</value>
-  </data>
-  <data name="Menu.Seek">
-    <value>แสวงหาหัว…</value>
-  </data>
-  <data name="Menu.Hardware">
-    <value>ฮาร์ดแวร์</value>
-  </data>
-  <data name="Menu.Pins">
-    <value>หมุด…</value>
-  </data>
-  <data name="Menu.Reset">
-    <value>รีเซ็ต</value>
-  </data>
-  <data name="Menu.Delays">
-    <value>ความล่าช้า...</value>
-  </data>
-  <data name="Menu.Firmware">
-    <value>เฟิร์มแวร์...</value>
-  </data>
-  <data name="Menu.Help">
-    <value>_ช่วย</value>
-  </data>
-  <data name="Menu.Documentation">
-    <value>เอกสารประกอบ</value>
-  </data>
-  <data name="Menu.About">
-    <value>เกี่ยวกับ</value>
-  </data>
-  <data name="Tab.Read">
-    <value>อ่าน</value>
-  </data>
-  <data name="Tab.Write">
-    <value>เขียน</value>
-  </data>
-  <data name="Tab.Convert">
-    <value>การแปลง</value>
-  </data>
-  <data name="Tab.Visualize">
-    <value>การแสดงภาพ</value>
-  </data>
-  <data name="Tab.Tools">
-    <value>เครื่องมือ</value>
-  </data>
-  <data name="Menu.Align">
-    <value>การจัดตำแหน่งไดรฟ์...</value>
-  </data>
-  <data name="Tab.Explorer">
-    <value>ตัวสำรวจดิสก์</value>
-  </data>
-  <data name="Tab.Emulation">
-    <value>การจำลอง</value>
-  </data>
+  <data name="Menu.Options"><value>_ตัวเลือก</value></data>
+  <data name="Menu.Preferences"><value>การตั้งค่า...</value></data>
+  <data name="Menu.Diagnostics"><value>การวินิจฉัย</value></data>
+  <data name="Menu.Information"><value>ข้อมูล</value></data>
+  <data name="Menu.Bandwidth"><value>USB แบนด์วิธ</value></data>
+  <data name="Menu.Rpm"><value>RPM ความเร็ว</value></data>
+  <data name="Menu.Seek"><value>แสวงหาหัว…</value></data>
+  <data name="Menu.Hardware"><value>ฮาร์ดแวร์</value></data>
+  <data name="Menu.Pins"><value>หมุด…</value></data>
+  <data name="Menu.Reset"><value>รีเซ็ต</value></data>
+  <data name="Menu.Delays"><value>ความล่าช้า...</value></data>
+  <data name="Menu.Firmware"><value>เฟิร์มแวร์...</value></data>
+  <data name="Menu.Help"><value>_ช่วย</value></data>
+  <data name="Menu.Documentation"><value>เอกสารประกอบ</value></data>
+  <data name="Menu.About"><value>เกี่ยวกับ</value></data>
+  <data name="Tab.Read"><value>อ่าน</value></data>
+  <data name="Tab.Write"><value>เขียน</value></data>
+  <data name="Tab.Convert"><value>การแปลง</value></data>
+  <data name="Tab.Visualize"><value>การแสดงภาพ</value></data>
+  <data name="Tab.Tools"><value>เครื่องมือ</value></data>
+  <data name="Menu.Align"><value>การจัดตำแหน่งไดรฟ์...</value></data>
+  <data name="Tab.Explorer"><value>ตัวสำรวจดิสก์</value></data>
+  <data name="Tab.Emulation"><value>การจำลอง</value></data>
 </root>

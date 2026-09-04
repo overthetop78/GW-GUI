@@ -12,140 +12,77 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Conflict.Title">
-    <value>Mevcut dosyalar</value>
-  </data>
-  <data name="Conflict.Heading">
-    <value>Bazı dosyalar zaten mevcut</value>
-  </data>
-  <data name="Conflict.Help">
-    <value>Her dosya için bir eylem seçin veya aynı eylemi tüm dosyalara uygulayın.</value>
-  </data>
-  <data name="Conflict.File">
-    <value>Dosya</value>
-  </data>
-  <data name="Conflict.Action">
-    <value>Aksiyon</value>
-  </data>
-  <data name="Conflict.Overwrite">
-    <value>Üzerine yaz</value>
-  </data>
-  <data name="Conflict.Skip">
-    <value>Atlamak</value>
-  </data>
-  <data name="Conflict.Number">
-    <value>Sonraki numarayı kullan</value>
-  </data>
-  <data name="Conflict.AllOverwrite">
-    <value>Tümünün üzerine yaz</value>
-  </data>
-  <data name="Conflict.AllSkip">
-    <value>Tümünü atla</value>
-  </data>
-  <data name="Conflict.AllNumber">
-    <value>Hepsini numaralandır</value>
-  </data>
-  <data name="Conversion.Title">
-    <value>Dönüşüm</value>
-  </data>
-  <data name="Conversion.SelectOutput">
-    <value>En az bir çıktı formatı seçin.</value>
-  </data>
-  <data name="Conversion.SourceAmbiguous">
-    <value>Belirsiz kaynak</value>
-  </data>
-  <data name="Conversion.Summary">
-    <value>Özet: {0} başarılı oldu, {1} başarısız oldu.</value>
-  </data>
-  <data name="Conversion.Failures">
-    <value>Hatalar: {0}</value>
-  </data>
-  <data name="Conversion.Source">
-    <value>Kaynak</value>
-  </data>
-  <data name="Conversion.OutputNames">
-    <value>Çıkış adları</value>
-  </data>
-  <data name="Conversion.AddTags">
-    <value>Etiket ekle</value>
-  </data>
-  <data name="Conversion.Selected">
-    <value>Seçildi</value>
-  </data>
-  <data name="Conversion.CommonFormats">
-    <value>Ortak formatlar</value>
-  </data>
-  <data name="Conversion.ShowRare">
-    <value>Nadiren kullanılan formatları göster</value>
-  </data>
-  <data name="Conversion.LimitTracks">
-    <value>Parçaları sınırla</value>
-  </data>
-  <data name="Conversion.SourceRequired">
-    <value>Mevcut bir kaynak görseli seçin.</value>
-  </data>
-  <data name="Conversion.NameRequired">
-    <value>Çıktı dosya adlarını girin.</value>
-  </data>
-  <data name="Conversion.CheckOutput">
-    <value>En az bir çıktı formatını kontrol edin.</value>
-  </data>
-  <data name="Conversion.More">
-    <value>(+ {0} dönüşüm(ler))</value>
-  </data>
-  <data name="Conversion.DefaultExtensionTip">
-    <value>Hiçbir uzantı kontrol edilmedi: Varsayılan olarak {0} kullanılır.</value>
-  </data>
-  <data name="Conversion.Incompatible">
-    <value>{0} bu kaynakla uyumlu değil.</value>
-  </data>
-  <data name="Conversion.NoAvailableOutputName">
-    <value>Kullanılabilir çıktı dosyası adı bulunamadı.</value>
-  </data>
-  <data name="Conversion.ReconstructedFlux">
-    <value>yeniden oluşturulmuş akış</value>
-  </data>
-  <data name="Migration.Open"><value>File migration...</value></data>
-  <data name="Migration.Title"><value>File migration</value></data>
-  <data name="Migration.Heading"><value>Migrate files to another file system</value></data>
-  <data name="Migration.Source"><value>Source image</value></data>
-  <data name="Migration.NoSource"><value>Select an image containing a recognized file system.</value></data>
-  <data name="Migration.Destination"><value>Destination file system and format</value></data>
-  <data name="Migration.Output"><value>Destination image</value></data>
-  <data name="Migration.Compatibility"><value>Compatibility and losses</value></data>
-  <data name="Migration.Waiting"><value>Select a source and a destination.</value></data>
-  <data name="Migration.Severity"><value>Severity</value></data>
-  <data name="Migration.Path"><value>Source path</value></data>
-  <data name="Migration.Description"><value>Description</value></data>
-  <data name="Migration.AcceptLosses"><value>Accept the listed metadata losses</value></data>
-  <data name="Migration.Execute"><value>Migrate files</value></data>
-  <data name="Migration.Blocking"><value>Blocking</value></data>
-  <data name="Migration.MetadataLoss"><value>Metadata loss</value></data>
-  <data name="Migration.SourceSummary"><value>Volume: {0} — File system: {1} — Root entries: {2}</value></data>
-  <data name="Migration.SourceFailed"><value>Unable to prepare the migration: {0}</value></data>
-  <data name="Migration.Completed"><value>The destination image was created: {0}</value></data>
-  <data name="Migration.Failed"><value>Migration failed: {0}</value></data>
-  <data name="Migration.Incompatible"><value>Incompatible: correct the blocking losses before migration.</value></data>
-  <data name="Migration.CompatibleWithLosses"><value>Compatible after accepting the listed metadata losses.</value></data>
-  <data name="Migration.Compatible"><value>Compatible: no loss detected.</value></data>
-  <data name="Migration.Loss.MissingContent"><value>File content is unavailable.</value></data>
-  <data name="Migration.Loss.UnsupportedEntryKind"><value>This entry type is not supported by the destination.</value></data>
-  <data name="Migration.Loss.InvalidName"><value>The name is not valid for the destination.</value></data>
-  <data name="Migration.Loss.NameTooLong"><value>The name is too long for the destination.</value></data>
-  <data name="Migration.Loss.NameCollision"><value>Several entries would have the same destination name.</value></data>
-  <data name="Migration.Loss.FileTooLarge"><value>The file is too large for the destination.</value></data>
-  <data name="Migration.Loss.InvalidMetadata"><value>The source metadata is invalid.</value></data>
-  <data name="Migration.Loss.ModifiedDate"><value>The modification date will not be preserved.</value></data>
-  <data name="Migration.Loss.Comment"><value>The comment will not be preserved.</value></data>
-  <data name="Migration.Loss.Attributes"><value>The source attributes will not be preserved.</value></data>
-  <data name="Migration.OverwriteConfirm"><value>The destination image already exists. Replace it? {0}</value></data>
-  <data name="Migration.SourceDestinationSame"><value>The destination image cannot replace the source image.</value></data>
-  <data name="Conversion.Fidelity.SectorData"><value>sector data; protections not preserved</value></data>
-  <data name="Conversion.Fidelity.ReconstructedTracks"><value>reconstructed tracks; original flux not preserved</value></data>
-  <data name="Conversion.Fidelity.PreservedFlux"><value>original flux preserved</value></data>
-  <data name="Conversion.EngineExternal" xml:space="preserve"><value>Host Tools: converting {0}.</value></data>
-  <data name="Conversion.EngineInternalStart" xml:space="preserve"><value>Internal engine: converting {0} to {1}.</value></data>
-  <data name="Conversion.EngineInternalComplete" xml:space="preserve"><value>Internal conversion completed: {0}.</value></data>
-  <data name="Conversion.EngineInternalUnavailable" xml:space="preserve"><value>The internal engine does not support this conversion: {0}.</value></data>
-  <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Internal conversion failed for {0}: {1}</value></data>
+  <data name="Conflict.Title"><value>Mevcut dosyalar</value></data>
+  <data name="Conflict.Heading"><value>Bazı dosyalar zaten mevcut</value></data>
+  <data name="Conflict.Help"><value>Her dosya için bir eylem seçin veya aynı eylemi tüm dosyalara uygulayın.</value></data>
+  <data name="Conflict.File"><value>Dosya</value></data>
+  <data name="Conflict.Action"><value>Aksiyon</value></data>
+  <data name="Conflict.Overwrite"><value>Üzerine yaz</value></data>
+  <data name="Conflict.Skip"><value>Atlamak</value></data>
+  <data name="Conflict.Number"><value>Sonraki numarayı kullan</value></data>
+  <data name="Conflict.AllOverwrite"><value>Tümünün üzerine yaz</value></data>
+  <data name="Conflict.AllSkip"><value>Tümünü atla</value></data>
+  <data name="Conflict.AllNumber"><value>Hepsini numaralandır</value></data>
+  <data name="Conversion.Title"><value>Dönüşüm</value></data>
+  <data name="Conversion.SelectOutput"><value>En az bir çıktı formatı seçin.</value></data>
+  <data name="Conversion.SourceAmbiguous"><value>Belirsiz kaynak</value></data>
+  <data name="Conversion.Summary"><value>Özet: {0} başarılı oldu, {1} başarısız oldu.</value></data>
+  <data name="Conversion.Failures"><value>Hatalar: {0}</value></data>
+  <data name="Conversion.Source"><value>Kaynak</value></data>
+  <data name="Conversion.OutputNames"><value>Çıkış adları</value></data>
+  <data name="Conversion.AddTags"><value>Etiket ekle</value></data>
+  <data name="Conversion.Selected"><value>Seçildi</value></data>
+  <data name="Conversion.CommonFormats"><value>Ortak formatlar</value></data>
+  <data name="Conversion.ShowRare"><value>Nadiren kullanılan formatları göster</value></data>
+  <data name="Conversion.LimitTracks"><value>Parçaları sınırla</value></data>
+  <data name="Conversion.SourceRequired"><value>Mevcut bir kaynak görseli seçin.</value></data>
+  <data name="Conversion.NameRequired"><value>Çıktı dosya adlarını girin.</value></data>
+  <data name="Conversion.CheckOutput"><value>En az bir çıktı formatını kontrol edin.</value></data>
+  <data name="Conversion.More"><value>(+ {0} dönüşüm(ler))</value></data>
+  <data name="Conversion.DefaultExtensionTip"><value>Hiçbir uzantı kontrol edilmedi: Varsayılan olarak {0} kullanılır.</value></data>
+  <data name="Conversion.Incompatible"><value>{0} bu kaynakla uyumlu değil.</value></data>
+  <data name="Conversion.NoAvailableOutputName"><value>Kullanılabilir çıktı dosyası adı bulunamadı.</value></data>
+  <data name="Conversion.ReconstructedFlux"><value>yeniden oluşturulmuş akış</value></data>
+  <data name="Migration.Open"><value>Dosya göçü...</value></data>
+  <data name="Migration.Title"><value>Dosya göçü</value></data>
+  <data name="Migration.Heading"><value>Migrate dosyaları başka bir dosya sistemi</value></data>
+  <data name="Migration.NoSource"><value>Tanık bir dosya sistemi içeren bir görüntü seçin.</value></data>
+  <data name="Migration.Destination"><value>Hedef dosya sistemi ve format</value></data>
+  <data name="Migration.Output"><value>Hedef görüntü görüntü görüntü</value></data>
+  <data name="Migration.Compatibility"><value>Uyumluluk ve kayıplar</value></data>
+  <data name="Migration.Waiting"><value>Bir kaynak ve bir hedef seçin.</value></data>
+  <data name="Migration.Severity"><value>Şiddetlilık</value></data>
+  <data name="Migration.Path"><value>Kaynak yolu</value></data>
+  <data name="Migration.Description"><value>Açıklama</value></data>
+  <data name="Migration.AcceptLosses"><value>Listelenen metadata kayıpları kabul et</value></data>
+  <data name="Migration.Execute"><value>Migrate dosyaları</value></data>
+  <data name="Migration.Blocking"><value>Bloking</value></data>
+  <data name="Migration.MetadataLoss"><value>Metadata kaybı</value></data>
+  <data name="Migration.SourceSummary"><value>Cilt: {0} - Dosya sistemi: {1} - Kök girişleri: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>Göçü hazırlamak için güvenilmez: {0}</value></data>
+  <data name="Migration.Completed"><value>Hedef görüntü oluşturuldu: {0}</value></data>
+  <data name="Migration.Failed"><value>Göç başarısız oldu: {0}</value></data>
+  <data name="Migration.Incompatible"><value>Uyumlu: göçün önündeki engelleri düzeltin.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>Listelenen metadata kayıplarını kabul ettikten sonra.</value></data>
+  <data name="Migration.Compatible"><value>Uyumlu: tespit edilen bir kayıp yok.</value></data>
+  <data name="Migration.Loss.MissingContent"><value>Dosya içeriği mevcut değildir.</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>Bu giriş türü varış noktası tarafından desteklenmez.</value></data>
+  <data name="Migration.Loss.InvalidName"><value>Adı varış için geçerli değildir.</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>Adı varış için çok uzun.</value></data>
+  <data name="Migration.Loss.NameCollision"><value>Birkaç giriş aynı varış adı olurdu.</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>Dosya varış için çok büyük.</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>Kaynak metadata geçersizdir.</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>Değişiklikler tarihi korunmayacak.</value></data>
+  <data name="Migration.Loss.Comment"><value>Yorum korunmuş olmayacak.</value></data>
+  <data name="Migration.Loss.Attributes"><value>Kaynak özellikleri korunmuş olmayacaktır.</value></data>
+  <data name="Migration.OverwriteConfirm"><value>Hedef görüntü zaten var. Onu Değiştirin? {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>Hedef görüntü kaynak imajını değiştiremez.</value></data>
+  <data name="Conversion.Fidelity.SectorData"><value>Sektör verileri; korumalar korunmasız</value></data>
+  <data name="Conversion.Fidelity.ReconstructedTracks"><value>Yeniden inşa edilmiş parçalar; orijinal flux korunmuş değil</value></data>
+  <data name="Conversion.Fidelity.PreservedFlux"><value>Orijinal flux korunmuş</value></data>
+  <data name="Conversion.EngineExternal"><value>Host Tools: dönüştürme {0}.</value></data>
+  <data name="Conversion.EngineInternalStart"><value>İç motor: dönüştürme {0} tom için {1}.</value></data>
+  <data name="Conversion.EngineInternalComplete"><value>İç dönüşüm tamamlandı: {0}.</value></data>
+  <data name="Conversion.EngineInternalUnavailable"><value>İç motor bu dönüşümü desteklemiyor: {0}.</value></data>
+  <data name="Conversion.EngineInternalFailed"><value>İç dönüşüm başarısız oldu {0}: {1}</value></data>
 </root>

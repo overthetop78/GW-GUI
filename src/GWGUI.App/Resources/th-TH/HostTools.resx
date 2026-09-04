@@ -12,40 +12,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="HostTools.Detect">
-    <value>ค้นหา gw.exe</value>
-  </data>
-  <data name="HostTools.Check">
-    <value>ตรวจสอบการอัปเดต</value>
-  </data>
-  <data name="HostTools.Download">
-    <value>ดาวน์โหลดเวอร์ชันล่าสุด</value>
-  </data>
-  <data name="HostTools.Rollback">
-    <value>ใช้เส้นทางก่อนหน้า</value>
-  </data>
-  <data name="HostTools.None">
-    <value>ไม่พบการติดตั้ง</value>
-  </data>
-  <data name="HostTools.Detected">
-    <value>ตรวจพบ: {0}</value>
-  </data>
-  <data name="HostTools.Latest">
-    <value>เวอร์ชันล่าสุดที่มี: {0}</value>
-  </data>
-  <data name="HostTools.Installed">
-    <value>ติดตั้งเวอร์ชัน {0} แล้ว</value>
-  </data>
-  <data name="HostTools.DownloadConfirm">
-    <value>ดาวน์โหลดและติดตั้ง Greaseweazle Host Tools {0} สำหรับ Windows x64 หรือไม่</value>
-  </data>
-  <data name="HostTools.Title">
-    <value>Greaseweazle เครื่องมือโฮสต์</value>
-  </data>
-  <data name="HostTools.NoPrevious">
-    <value>ไม่มีการจัดเก็บเส้นทางก่อนหน้าที่ถูกต้อง</value>
-  </data>
-  <data name="HostTools.UpdateAvailable">
-    <value>เครื่องมือโฮสต์ {0} พร้อมใช้งาน</value>
-  </data>
+  <data name="HostTools.Detect"><value>ค้นหา gw.exe</value></data>
+  <data name="HostTools.Check"><value>ตรวจสอบการอัปเดต</value></data>
+  <data name="HostTools.Download"><value>ดาวน์โหลดเวอร์ชันล่าสุด</value></data>
+  <data name="HostTools.Rollback"><value>ใช้เส้นทางก่อนหน้า</value></data>
+  <data name="HostTools.None"><value>ไม่พบการติดตั้ง</value></data>
+  <data name="HostTools.Detected"><value>ตรวจพบ: {0}</value></data>
+  <data name="HostTools.Latest"><value>เวอร์ชันล่าสุดที่มี: {0}</value></data>
+  <data name="HostTools.Installed"><value>ติดตั้งเวอร์ชัน {0} แล้ว</value></data>
+  <data name="HostTools.DownloadConfirm"><value>ดาวน์โหลดและติดตั้ง Greaseweazle Host Tools {0} สำหรับ Windows x64 หรือไม่</value></data>
+  <data name="HostTools.Title"><value>Greaseweazle เครื่องมือโฮสต์</value></data>
+  <data name="HostTools.NoPrevious"><value>ไม่มีการจัดเก็บเส้นทางก่อนหน้าที่ถูกต้อง</value></data>
+  <data name="HostTools.UpdateAvailable"><value>เครื่องมือโฮสต์ {0} พร้อมใช้งาน</value></data>
 </root>

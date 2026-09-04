@@ -12,103 +12,36 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Image">
-    <value>Diskettenabbild</value>
-  </data>
-  <data name="Explorer.Format">
-    <value>Format</value>
-  </data>
-  <data name="Explorer.OpenImage">
-    <value>Abbild öffnen…</value>
-  </data>
-  <data name="Explorer.Automatic">
-    <value>Automatische Erkennung</value>
-  </data>
-  <data name="Explorer.Volume">
-    <value>Datenträger</value>
-  </data>
-  <data name="Explorer.FileSystem">
-    <value>Dateisystem</value>
-  </data>
-  <data name="Explorer.Capacity">
-    <value>Kapazität</value>
-  </data>
-  <data name="Explorer.Free">
-    <value>Freier Speicher</value>
-  </data>
-  <data name="Explorer.Entries">
-    <value>Elemente</value>
-  </data>
-  <data name="Explorer.SelectEntry">
-    <value>Datei oder Ordner auswählen.</value>
-  </data>
-  <data name="Explorer.Size">
-    <value>Größe</value>
-  </data>
-  <data name="Explorer.Modified">
-    <value>Geändert</value>
-  </data>
-  <data name="Explorer.Comment">
-    <value>Kommentar</value>
-  </data>
-  <data name="Explorer.Warnings">
-    <value>Warnungen</value>
-  </data>
-  <data name="Explorer.Directory">
-    <value>Ordner</value>
-  </data>
-  <data name="Explorer.File">
-    <value>Datei</value>
-  </data>
-  <data name="Explorer.Link">
-    <value>Verknüpfung</value>
-  </data>
-  <data name="Explorer.Unknown">
-    <value>Unbekannt</value>
-  </data>
-  <data name="Explorer.Unnamed">
-    <value>Unbenannter Datenträger</value>
-  </data>
-  <data name="Explorer.LoadFailed">
-    <value>Dieses Abbild kann nicht geöffnet werden: {0}</value>
-  </data>
-  <data name="Explorer.Loading">
-    <value>Datenträgerabbild wird gelesen…</value>
-  </data>
-  <data name="Explorer.ReadDisk">
-    <value>Diskette lesen</value>
-  </data>
-  <data name="Explorer.Name">
-    <value>Name</value>
-  </data>
-  <data name="Explorer.Type">
-    <value>Typ</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirmTitle">
-    <value>Diskette lesen</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirm">
-    <value>Ist die Diskette in das aktuell ausgewählte Laufwerk ({0}) eingelegt und zum Lesen bereit?</value>
-  </data>
-  <data name="Explorer.Type.Text">
-    <value>Textdatei</value>
-  </data>
-  <data name="Explorer.Type.Image">
-    <value>Bild</value>
-  </data>
-  <data name="Explorer.Type.Audio">
-    <value>Audiodatei</value>
-  </data>
-  <data name="Explorer.Type.Archive">
-    <value>Archiv</value>
-  </data>
-  <data name="Explorer.Type.Program">
-    <value>Programm</value>
-  </data>
-  <data name="Explorer.Type.DiskImage">
-    <value>Datenträgerabbild</value>
-  </data>
-  <data name="Explorer.System"><value>System</value></data>
+  <data name="Explorer.Image"><value>Diskettenabbild</value></data>
+<data name="Explorer.OpenImage"><value>Abbild öffnen…</value></data>
+  <data name="Explorer.Automatic"><value>Automatische Erkennung</value></data>
+  <data name="Explorer.Volume"><value>Datenträger</value></data>
+  <data name="Explorer.FileSystem"><value>Dateisystem</value></data>
+  <data name="Explorer.Capacity"><value>Kapazität</value></data>
+  <data name="Explorer.Free"><value>Freier Speicher</value></data>
+  <data name="Explorer.Entries"><value>Elemente</value></data>
+  <data name="Explorer.SelectEntry"><value>Datei oder Ordner auswählen.</value></data>
+  <data name="Explorer.Size"><value>Größe</value></data>
+  <data name="Explorer.Modified"><value>Geändert</value></data>
+  <data name="Explorer.Comment"><value>Kommentar</value></data>
+  <data name="Explorer.Warnings"><value>Warnungen</value></data>
+  <data name="Explorer.Directory"><value>Ordner</value></data>
+  <data name="Explorer.File"><value>Datei</value></data>
+  <data name="Explorer.Link"><value>Verknüpfung</value></data>
+  <data name="Explorer.Unknown"><value>Unbekannt</value></data>
+  <data name="Explorer.Unnamed"><value>Unbenannter Datenträger</value></data>
+  <data name="Explorer.LoadFailed"><value>Dieses Abbild kann nicht geöffnet werden: {0}</value></data>
+  <data name="Explorer.Loading"><value>Datenträgerabbild wird gelesen…</value></data>
+  <data name="Explorer.ReadDisk"><value>Diskette lesen</value></data>
+<data name="Explorer.Type"><value>Typ</value></data>
+  <data name="Explorer.ReadDiskConfirmTitle"><value>Diskette lesen</value></data>
+  <data name="Explorer.ReadDiskConfirm"><value>Ist die Diskette in das aktuell ausgewählte Laufwerk ({0}) eingelegt und zum Lesen bereit?</value></data>
+  <data name="Explorer.Type.Text"><value>Textdatei</value></data>
+  <data name="Explorer.Type.Image"><value>Bild</value></data>
+  <data name="Explorer.Type.Audio"><value>Audiodatei</value></data>
+  <data name="Explorer.Type.Archive"><value>Archiv</value></data>
+  <data name="Explorer.Type.Program"><value>Programm</value></data>
+  <data name="Explorer.Type.DiskImage"><value>Datenträgerabbild</value></data>
   <data name="Explorer.Protection"><value>Schutz</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>Physische Sektoren — kein erkanntes Dateisystem</value></data>
   <data name="Explorer.Organization"><value>Organisation</value></data>
@@ -119,6 +52,6 @@
   <data name="Explorer.Content.crack-the-company"><value>Crack von The Company</value></data>
   <data name="Explorer.DataBlocks"><value>Datenblöcke</value></data>
   <data name="Explorer.DetectedFormats"><value>Erkannt: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable"><value>Host-Tools können kein erforschbares Sektorbild für {0}.</value></data>
+  <data name="Explorer.ExternalEngineFailed"><value>Host Tools konnten das Bild nicht dekodieren als {0}.</value></data>
 </root>

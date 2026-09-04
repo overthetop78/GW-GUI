@@ -12,170 +12,57 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Options.Title">
-    <value>Opțiuni</value>
-  </data>
-  <data name="Options.General">
-    <value>General</value>
-  </data>
-  <data name="Options.Tools">
-    <value>Greaseweazle Instrumente</value>
-  </data>
-  <data name="Options.Hardware">
-    <value>Controlere și unități</value>
-  </data>
-  <data name="Options.Profiles">
-    <value>Profiluri</value>
-  </data>
-  <data name="Options.ImagesFolder">
-    <value>Folder implicit de imagine de disc</value>
-  </data>
-  <data name="Options.Language">
-    <value>Limbă</value>
-  </data>
-  <data name="Options.Theme">
-    <value>Temă</value>
-  </data>
-  <data name="Theme.System">
-    <value>Sistem</value>
-  </data>
-  <data name="Theme.Light">
-    <value>Aprinde</value>
-  </data>
-  <data name="Theme.Dark">
-    <value>Întuneric</value>
-  </data>
-  <data name="Options.GwPath">
-    <value>Calea către gw.exe</value>
-  </data>
-  <data name="Options.ToolsHelp">
-    <value>Dacă instrumentele lipsesc, asistentul se va oferi să le descarce sau să aleagă o instalare existentă. Actualizările sunt doar anunțate.</value>
-  </data>
-  <data name="Options.HardwarePersistence">
-    <value>Setările hardware rămân stocate atunci când o unitate este deconectată.</value>
-  </data>
-  <data name="Options.ExecutableFilter">
-    <value>Greaseweazle (gw.exe)|gw.exe|Executabil (*.exe)|*.exe</value>
-  </data>
-  <data name="Options.RemoveHardware">
-    <value>Eliminați acest controler stocat și toate unitățile sale?</value>
-  </data>
-  <data name="Options.HardwareTitle">
-    <value>Hardware</value>
-  </data>
-  <data name="Options.UseConversionTags">
-    <value>Utilizați etichete în numele fișierelor de conversie</value>
-  </data>
-  <data name="Options.TagPreset">
-    <value>Presetat</value>
-  </data>
-  <data name="Options.TagPresetFamily">
-    <value>Doar familie</value>
-  </data>
-  <data name="Options.TagPresetFormat">
-    <value>Numai format</value>
-  </data>
-  <data name="Options.TagPresetFamilyFormat">
-    <value>Familie și format</value>
-  </data>
-  <data name="Options.TagPresetFamilyExtension">
-    <value>Familia și extinderea</value>
-  </data>
-  <data name="Options.TagPresetDetailed">
-    <value>Familie, format și extensie</value>
-  </data>
-  <data name="Options.TagPattern">
-    <value>Model de etichetă de conversie</value>
-  </data>
-  <data name="Options.TagVariablesTitle">
-    <value>Variabile disponibile</value>
-  </data>
-  <data name="Options.TagVariableName">
-    <value>Nume fișier sursă</value>
-  </data>
-  <data name="Options.TagVariableFamily">
-    <value>Familie: PC, ST, AMIGA…</value>
-  </data>
-  <data name="Options.TagVariableFormat">
-    <value>Format: 720, 1440, DD…</value>
-  </data>
-  <data name="Options.TagVariableExtension">
-    <value>Extensie: IMA, ST, ADF…</value>
-  </data>
-  <data name="Options.TagVariableDateIso">
-    <value>Data: 2026-08-06</value>
-  </data>
-  <data name="Options.TagVariableDateCompact">
-    <value>Data: 20260806</value>
-  </data>
-  <data name="Options.TagVariableDateLocal">
-    <value>Data: 06-08-2026</value>
-  </data>
-  <data name="Options.TagVariableTimeFull">
-    <value>Ora: 14-35-42</value>
-  </data>
-  <data name="Options.TagVariableTimeCompact">
-    <value>Ora: 143542</value>
-  </data>
-  <data name="Options.TagVariableTimeShort">
-    <value>Timp: 14-35</value>
-  </data>
-  <data name="Options.TagPatternHelp">
-    <value>{NAME} — numele fișierului sursă
-{FAMILY} — familia de mașini (PC, ST, AMIGA…)
-{FORMAT} — format sau geometrie (720, 1440, DD…)
-{EXTENSION} — extensie de ieșire (IMA, ST, ADF…)
-{DATE:YYYY-MM-DD} — data 2026-08-06
-{DATE:YYYYMMDD} — data 20260806
-{DATE:DD-MM-YYYY} — data 06-08-2026
-{TIME:HH-MM-SS} — ora 14-35-42
-{TIME:HHMMSS} — ora 143542
-{TIME:HH-MM} — ora 14-35</value>
-  </data>
-  <data name="Options.RecentTagPatterns">
-    <value>Modele personalizate recente</value>
-  </data>
-  <data name="Options.NextTagExample">
-    <value>Următorul exemplu</value>
-  </data>
-  <data name="Options.TagPatternPreview">
-    <value>Exemplu: {0}</value>
-  </data>
-  <data name="Options.TagPatternInvalid">
-    <value>Modelul de etichetă trebuie să conțină {tag}.</value>
-  </data>
-  <data name="Options.EnableLogs">
-    <value>Salvați jurnalele</value>
-  </data>
-  <data name="Options.Logs">
-    <value>Bușteni</value>
-  </data>
-  <data name="Options.LogsDescription">
-    <value>Fiecare acțiune are propriul fișier în folderul GW GUI Jurnal.</value>
-  </data>
-  <data name="Options.LogActionErase">
-    <value>Şterge</value>
-  </data>
-  <data name="Options.LogActionClean">
-    <value>Capetele curate</value>
-  </data>
-  <data name="Options.OpenLogsFolder">
-    <value>Deschide folderul</value>
-  </data>
-  <data name="Options.LogMaximumSize">
-    <value>Dimensiunea maxima</value>
-  </data>
-  <data name="Options.KeepLogArchives">
-    <value>Păstrați jurnalele anterioare</value>
-  </data>
-  <data name="Options.LogUnlimitedHint">
-    <value>0 = nelimitat</value>
-  </data>
+  <data name="Options.Title"><value>Opțiuni</value></data>
+<data name="Options.Tools"><value>Greaseweazle Instrumente</value></data>
+  <data name="Options.Hardware"><value>Controlere și unități</value></data>
+  <data name="Options.Profiles"><value>Profiluri</value></data>
+  <data name="Options.ImagesFolder"><value>Folder implicit de imagine de disc</value></data>
+  <data name="Options.Language"><value>Limbă</value></data>
+  <data name="Options.Theme"><value>Temă</value></data>
+  <data name="Theme.System"><value>Sistem</value></data>
+  <data name="Theme.Light"><value>Aprinde</value></data>
+  <data name="Theme.Dark"><value>Întuneric</value></data>
+  <data name="Options.GwPath"><value>Calea către gw.exe</value></data>
+  <data name="Options.ToolsHelp"><value>Dacă instrumentele lipsesc, asistentul se va oferi să le descarce sau să aleagă o instalare existentă. Actualizările sunt doar anunțate.</value></data>
+  <data name="Options.HardwarePersistence"><value>Setările hardware rămân stocate atunci când o unitate este deconectată.</value></data>
+  <data name="Options.ExecutableFilter"><value>Greaseweazle (gw.exe)|gw.exe|Executabilă (*.exe)|*.exe</value></data>
+  <data name="Options.RemoveHardware"><value>Eliminați acest controler stocat și toate unitățile sale?</value></data>
+<data name="Options.UseConversionTags"><value>Utilizați etichete în numele fișierelor de conversie</value></data>
+  <data name="Options.TagPreset"><value>Presetat</value></data>
+  <data name="Options.TagPresetFamily"><value>Doar familie</value></data>
+  <data name="Options.TagPresetFormat"><value>Numai format</value></data>
+  <data name="Options.TagPresetFamilyFormat"><value>Familie și format</value></data>
+  <data name="Options.TagPresetFamilyExtension"><value>Familia și extinderea</value></data>
+  <data name="Options.TagPresetDetailed"><value>Familie, format și extensie</value></data>
+  <data name="Options.TagPattern"><value>Model de etichetă de conversie</value></data>
+  <data name="Options.TagVariablesTitle"><value>Variabile disponibile</value></data>
+  <data name="Options.TagVariableName"><value>Nume fișier sursă</value></data>
+  <data name="Options.TagVariableFamily"><value>Familie: PC, ST, AMIGA…</value></data>
+<data name="Options.TagVariableExtension"><value>Extensie: IMA, ST, ADF…</value></data>
+  <data name="Options.TagVariableDateIso"><value>Data: 2026-08-06</value></data>
+  <data name="Options.TagVariableDateCompact"><value>Data: 20260806</value></data>
+  <data name="Options.TagVariableDateLocal"><value>Data: 06-08-2026</value></data>
+  <data name="Options.TagVariableTimeFull"><value>Ora: 14-35-42</value></data>
+  <data name="Options.TagVariableTimeCompact"><value>Ora: 143542</value></data>
+  <data name="Options.TagVariableTimeShort"><value>Timp: 14-35</value></data>
+  <data name="Options.TagPatternHelp"><value>{NAME} &#xA;{FAMILY} PC, ST, AMIGA...)&#xA;{FORMAT} format sau geometrie (720, 1440, DD...)&#xA;{EXTENSION} IMA, ST, ADF...)&#xA;{DATE:YYYY-MM-DD} &#xA;{DATE:YYYYMMDD} &#xA;{DATE:DD-MM-YYYY} &#xA;{TIME:HH-MM-SS} &#xA;{TIME:HHMMSS} &#xA;{TIME:HH-MM} </value></data>
+  <data name="Options.RecentTagPatterns"><value>Modele personalizate recente</value></data>
+  <data name="Options.NextTagExample"><value>Următorul exemplu</value></data>
+  <data name="Options.TagPatternPreview"><value>Exemplu: {0}</value></data>
+  <data name="Options.TagPatternInvalid"><value>Modelul de etichetă trebuie să conțină {tag}.</value></data>
+  <data name="Options.EnableLogs"><value>Salvați jurnalele</value></data>
+  <data name="Options.Logs"><value>Bușteni</value></data>
+  <data name="Options.LogsDescription"><value>Fiecare acțiune are propriul fișier în folderul GW GUI Jurnal.</value></data>
+  <data name="Options.LogActionErase"><value>Şterge</value></data>
+  <data name="Options.LogActionClean"><value>Capetele curate</value></data>
+  <data name="Options.OpenLogsFolder"><value>Deschide folderul</value></data>
+  <data name="Options.LogMaximumSize"><value>Dimensiunea maxima</value></data>
+  <data name="Options.KeepLogArchives"><value>Păstrați jurnalele anterioare</value></data>
+  <data name="Options.LogUnlimitedHint"><value>0 = nelimitat</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>Motoare</value></data>
   <data name="Engines.Description" xml:space="preserve"><value>Alegeți independent motorul utilizat pentru fiecare operație.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>Motor intern GW GUI</value></data>
   <data name="Engines.StrictChoice" xml:space="preserve"><value>Motorul selectat este utilizat strict. Dacă nu poate efectua operația, GW GUI raportează acest lucru fără a utiliza în tăcere celălalt motor.</value></data>
-  <data name="Emulation.Model" xml:space="preserve"><value>Model</value></data>
   <data name="Emulation.CaptureMouse" xml:space="preserve"><value>Capturează mouse-ul</value></data>
   <data name="Emulation.Configuration" xml:space="preserve"><value>Configurare</value></data>
   <data name="Controllers.Title" xml:space="preserve"><value>Controlere</value></data>
@@ -185,11 +72,8 @@
   <data name="Controllers.NoneDetected" xml:space="preserve"><value>Nu a fost detectat niciun controler</value></data>
   <data name="Controllers.DetectedCount" xml:space="preserve"><value>{0} controler(e) detectat(e)</value></data>
   <data name="Controllers.TestRumble" xml:space="preserve"><value>Testează vibrația</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve">
-    <value>Intensitatea vibrațiilor</value>
-  </data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>Intensitatea vibrațiilor</value></data>
   <data name="Controllers.LiveInputs" xml:space="preserve"><value>Intrări în timp real</value></data>
-  <data name="Controllers.Control" xml:space="preserve"><value>Control</value></data>
   <data name="Controllers.Value" xml:space="preserve"><value>Valoare</value></data>
   <data name="Controllers.Active" xml:space="preserve"><value>Activ</value></data>
   <data name="Controllers.Capabilities" xml:space="preserve"><value>Capabilități</value></data>
@@ -218,17 +102,10 @@
   <data name="Controllers.Yes" xml:space="preserve"><value>Da</value></data>
   <data name="Controllers.No" xml:space="preserve"><value>Nu</value></data>
   <data name="Controllers.None" xml:space="preserve"><value>Niciunul</value></data>
-  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>Controler generic</value></data>
-  <data name="Controllers.Model.Auto" xml:space="preserve"><value>Automat</value></data>
-  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>Volan</value></data>
-  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>Manșă de zbor</value></data>
-  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>Stick arcade</value></data>
-  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Octet brut</value></data>
+<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Octet brut</value></data>
   <data name="Controllers.AnalogValues" xml:space="preserve"><value>Valori analogice</value></data>
   <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Detectarea controlerelor a eșuat</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve">
-    <value>Se detectează controlerele…</value>
-  </data>
+  <data name="Controllers.Detecting" xml:space="preserve"><value>Se detectează controlerele…</value></data>
   <data name="Controllers.ReadFailed" xml:space="preserve"><value>Citirea controlerului a eșuat</value></data>
   <data name="Controllers.TestRunning" xml:space="preserve"><value>Test în curs…</value></data>
   <data name="Controllers.TestFailed" xml:space="preserve"><value>Test eșuat</value></data>
@@ -253,91 +130,49 @@
   <data name="Controllers.Roll" xml:space="preserve"><value>Ruliu</value></data>
   <data name="Controllers.Pitch" xml:space="preserve"><value>Tangaj</value></data>
   <data name="Controllers.Yaw" xml:space="preserve"><value>Girație</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve">
-    <value>Senzori</value>
-  </data>
-  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
-    <value>Navigare interfață</value>
-  </data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
-    <value>Controler</value>
-  </data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
-    <value>Motor de joasă frecvență</value>
-  </data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
-    <value>Motor de înaltă frecvență</value>
-  </data>
-  <data name="Controllers.Enum.Share" xml:space="preserve">
-    <value>Partajare</value>
-  </data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve">
-    <value>Liniar</value>
-  </data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve">
-    <value>Unghiular</value>
-  </data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve">
-    <value>Normal</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
-    <value>Constant</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
-    <value>Rampă</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
-    <value>Undă sinusoidală</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
-    <value>Undă pătrată</value>
-  </data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
-    <value>Undă triunghiulară</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
-    <value>Dinte de ferăstrău ascendent</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
-    <value>Dinte de ferăstrău descendent</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
-    <value>Arc</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
-    <value>Frecare</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
-    <value>Amortizor</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
-    <value>Inerție</value>
-  </data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve">
-    <value>Joystick</value>
-  </data>
-  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
-    <value>Controler multiaxial</value>
-  </data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
-    <value>Utilizare HID</value>
-  </data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve">
-    <value>axe</value>
-  </data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve">
-    <value>butoane</value>
-  </data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
-    <value>Agregat</value>
-  </data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve">
-    <value>Virtual</value>
-  </data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve">
-    <value>Raport de intrare</value>
-  </data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
-    <value>Raport de ieșire</value>
-  </data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Senzori</value></data>
+  <data name="Controllers.Enum.UiNavigation"><value>UI navigație</value></data>
+  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>Controler</value></data>
+  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Motor de joasă frecvență</value></data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Motor de înaltă frecvență</value></data>
+  <data name="Controllers.Enum.Share" xml:space="preserve"><value>Partajare</value></data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Liniar</value></data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Unghiular</value></data>
+<data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Rampă</value></data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Undă sinusoidală</value></data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>Undă pătrată</value></data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>Undă triunghiulară</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>Dinte de ferăstrău ascendent</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>Dinte de ferăstrău descendent</value></data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>Arc</value></data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Frecare</value></data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Amortizor</value></data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Inerție</value></data>
+<data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Controler multiaxial</value></data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>Utilizare HID</value></data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>axe</value></data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>butoane</value></data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Agregat</value></data>
+<data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Raport de intrare</value></data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Raport de ieșire</value></data>
+  <data name="Options.General"><value>Generalități</value></data>
+  <data name="Options.TagVariableFormat"><value>Format: 720, 1440, DD...</value></data>
+<data name="Emulation.InitialDisk"><value>Disc inițial</value></data>
+  <data name="Emulation.Controller"><value>Controlor {0}</value></data>
+  <data name="Emulation.Core.NameOptions"><value>Opțiuni principale</value></data>
+  <data name="Emulation.MultiDrive"><value>Montați primele patru discuri în DF0DF3</value></data>
+  <data name="Emulation.DiskNumber"><value>Disc {0}</value></data>
+  <data name="Emulation.LoadOptions"><value>Încarcă opțiunile disponibile</value></data>
+  <data name="Emulation.Configurations"><value>Configurații</value></data>
+  <data name="Emulation.ReleaseMouse"><value>Eliberați mouse-ul</value></data>
+  <data name="Emulation.DeleteConfirm"><value>Ștergeți această configurație Amiga?</value></data>
+  <data name="Emulation.ModelRequired"><value>Este necesar un model Amiga.</value></data>
+  <data name="Emulation.KickstartRequired"><value>Este necesară o cale Kickstart.</value></data>
+  <data name="Emulation.FileRequired"><value>O cale firmware necesară este goală.</value></data>
+  <data name="Emulation.FileMissing"><value>Fișierul selectat nu există.</value></data>
+  <data name="Controllers.Enum.Effect.Constant"><value>Constantă</value></data>
+<data name="Options.EmulationMachineTitle"><value>{0}  {1} : {2}</value></data>
+  <data name="Controllers.AnalogDeadZones"><value>Zone moarte analogice</value></data>
+  <data name="Controllers.TriggerDeadZone"><value>Declanșatoare</value></data>
+  <data name="Controllers.OuterDeadZone"><value>Zona de pescuit a Uniunii Europene</value></data>
 </root>

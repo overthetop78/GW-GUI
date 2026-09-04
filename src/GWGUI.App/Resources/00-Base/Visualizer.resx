@@ -12,293 +12,98 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Visual.Decoder">
-    <value>Decoder</value>
-  </data>
-  <data name="Visual.LinkZoom">
-    <value>Link zoom</value>
-  </data>
-  <data name="Visual.OpenScp">
-    <value>Open an SCP file…</value>
-  </data>
-  <data name="Visual.NoFile">
-    <value>No SCP file open</value>
-  </data>
-  <data name="Visual.Waiting">
-    <value>Waiting for a file</value>
-  </data>
-  <data name="Visual.Inspector">
-    <value>Inspector</value>
-  </data>
-  <data name="Visual.SelectTrack">
-    <value>Select a track.</value>
-  </data>
-  <data name="Visual.Controls">
-    <value>Click: select · Wheel: zoom · Right click: pan</value>
-  </data>
-  <data name="Visual.NormalFlux">
-    <value>Normal flux</value>
-  </data>
-  <data name="Visual.ShortTransition">
-    <value>Short transition</value>
-  </data>
-  <data name="Visual.LongTransition">
-    <value>Long transition/anomaly</value>
-  </data>
-  <data name="Visual.Loading">
-    <value>Reading file…</value>
-  </data>
-  <data name="Visual.Invalid">
-    <value>Invalid file</value>
-  </data>
-  <data name="Visual.Title">
-    <value>SCP visualization</value>
-  </data>
-  <data name="Visual.ChecksumValid">
-    <value>valid</value>
-  </data>
-  <data name="Visual.ChecksumInvalid">
-    <value>invalid</value>
-  </data>
-  <data name="Visual.Summary">
-    <value>SCP {0} · {1} tracks · {2} revolution(s) · {3} ns resolution · {4} checksum</value>
-  </data>
-  <data name="Visual.Revolution">
-    <value>Revolution {0}: {1:N0} transitions · {2:F2} ms · {3:F2} RPM</value>
-  </data>
-  <data name="Visual.Analysis">
-    <value>Decoding: {0}
-Confidence: {1:P0}
-Estimated cell: {2:F1} ticks
-Structures: {3}</value>
-  </data>
-  <data name="Visual.Track">
-    <value>Side: {0}
-Track: {1}
-SCP entry: {2}</value>
-  </data>
-  <data name="Visual.SideNoData">
-    <value>Side {0}
-No data</value>
-  </data>
-  <data name="Visual.TrackTooltip">
-    <value>Side {0} · Track {1}
-{2} revolution(s)</value>
-  </data>
-  <data name="Visual.Automatic">
-    <value>Automatic</value>
-  </data>
-  <data name="Visual.StructureHeader">
-    <value>Header/address</value>
-  </data>
-  <data name="Visual.StructureData">
-    <value>Decoded data</value>
-  </data>
-  <data name="Visual.StructureAnomaly">
-    <value>Deleted/anomaly</value>
-  </data>
-  <data name="Visual.AnalysedRevolution">
-    <value>Analysis based on revolution {0}.</value>
-  </data>
-  <data name="Visual.BitOffset">
-    <value>bit {0:N0}</value>
-  </data>
-  <data name="Visual.SectorDetail">
-    <value>Sector C{0} H{1} R{2} · {3} bytes · {4} {5}</value>
-  </data>
-  <data name="Visual.CrcValid">
-    <value>valid</value>
-  </data>
-  <data name="Visual.CrcInvalid">
-    <value>invalid</value>
-  </data>
-  <data name="Visual.IntegrityUnavailable">
-    <value>unavailable</value>
-  </data>
-  <data name="Visual.DecoderName.iso.mfm">
-    <value>ISO MFM (Atari ST / IBM PC)</value>
-  </data>
-  <data name="Visual.DecoderName.iso.fm">
-    <value>ISO FM (single density)</value>
-  </data>
-  <data name="Visual.DecoderName.amiga.mfm">
-    <value>Amiga MFM</value>
-  </data>
-  <data name="Visual.DecoderName.apple2.gcr">
-    <value>Apple II GCR</value>
-  </data>
-  <data name="Visual.DecoderName.applemac.gcr">
-    <value>Apple Macintosh GCR</value>
-  </data>
-  <data name="Visual.DecoderName.commodore.gcr">
-    <value>Commodore GCR</value>
-  </data>
-  <data name="Visual.DecoderName.membrain.mfm">
-    <value>Membrain MFM</value>
-  </data>
-  <data name="Visual.DecoderName.aed6200p.mfm">
-    <value>AED 6200P MFM</value>
-  </data>
-  <data name="Visual.DecoderName.qdmo5.mfm">
-    <value>QD MO5 MFM</value>
-  </data>
-  <data name="Visual.DecoderName.centurion.mfm">
-    <value>Centurion MFM</value>
-  </data>
-  <data name="Visual.DecoderName.northstar.mfm">
-    <value>NorthStar hard-sectored MFM</value>
-  </data>
-  <data name="Visual.DecoderName.heathkit.fm">
-    <value>Heathkit hard-sectored FM</value>
-  </data>
-  <data name="Visual.DecoderName.micraln.fm">
-    <value>Micral N hard-sectored FM</value>
-  </data>
-  <data name="Visual.DecoderName.emu.fm">
-    <value>E-mu Emulator FM</value>
-  </data>
-  <data name="Visual.DecoderName.tycom.fm">
-    <value>TYCOM FM</value>
-  </data>
-  <data name="Visual.DecoderName.dec.rx02">
-    <value>DEC RX02 M²FM</value>
-  </data>
-  <data name="Visual.DecoderName.arburg">
-    <value>Arburg system/data</value>
-  </data>
-  <data name="Visual.DecoderName.victor9k.gcr">
-    <value>Victor 9000 GCR</value>
-  </data>
-  <data name="Visual.DecoderName.raw">
-    <value>Raw flux</value>
-  </data>
-  <data name="Visual.StructureKind.Sync">
-    <value>Synchronization</value>
-  </data>
-  <data name="Visual.StructureKind.IdAddressMark">
-    <value>Sector header</value>
-  </data>
-  <data name="Visual.StructureKind.DataAddressMark">
-    <value>Sector data</value>
-  </data>
-  <data name="Visual.StructureKind.DeletedDataAddressMark">
-    <value>Deleted sector data</value>
-  </data>
-  <data name="Visual.StructureKind.AmigaSync">
-    <value>Amiga synchronization</value>
-  </data>
-  <data name="Visual.StructureKind.AppleAddress">
-    <value>Apple address prologue</value>
-  </data>
-  <data name="Visual.StructureKind.AppleData">
-    <value>Apple data prologue</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreSync">
-    <value>Commodore synchronization</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreHeader">
-    <value>Commodore header</value>
-  </data>
-  <data name="Visual.StructureKind.FormatHeader">
-    <value>Format header</value>
-  </data>
-  <data name="Visual.StructureKind.FormatData">
-    <value>Format data</value>
-  </data>
-  <data name="Visual.StructureKind.TimingAnomaly">
-    <value>Timing anomaly</value>
-  </data>
-  <data name="Visual.OpenFilter">
-    <value>SuperCard Pro capture (*.scp)|*.scp|All files|*.*</value>
-  </data>
-  <data name="Visual.Integrity.Crc">
-    <value>CRC</value>
-  </data>
-  <data name="Visual.Integrity.Checksum">
-    <value>Checksum</value>
-  </data>
-  <data name="Visual.Side">
-    <value>Side {0}</value>
-  </data>
-  <data name="Visual.AnalysingTrack">
-    <value>Analysing track {0}/{1}…</value>
-  </data>
-  <data name="Visual.SideLabel">
-    <value>Side</value>
-  </data>
-  <data name="Visual.TrackLabel">
-    <value>Track</value>
-  </data>
-  <data name="Visual.ScpEntryLabel">
-    <value>SCP entry</value>
-  </data>
-  <data name="Visual.RevolutionsTitle">
-    <value>Revolutions</value>
-  </data>
-  <data name="Visual.AnalysisTitle">
-    <value>Analysis</value>
-  </data>
-  <data name="Visual.ConfidenceLabel">
-    <value>Confidence</value>
-  </data>
-  <data name="Visual.CellLabel">
-    <value>Estimated cell</value>
-  </data>
-  <data name="Visual.StructuresLabel">
-    <value>Structures</value>
-  </data>
-  <data name="Visual.StructuresTitle">
-    <value>Detected structures</value>
-  </data>
-  <data name="Visual.SectorsTitle">
-    <value>Sectors</value>
-  </data>
-  <data name="Visual.TransitionsUnit">
-    <value>transitions</value>
-  </data>
-  <data name="Visual.NumberPrefix">
-    <value>#</value>
-  </data>
-  <data name="Visual.ValueSeparator">
-    <value>  ·  </value>
-  </data>
-  <data name="Visual.OpenImage">
-    <value>Open a disk image…</value>
-  </data>
-  <data name="Visual.DetachInspector">
-    <value>Detach inspector</value>
-  </data>
-  <data name="Visual.AttachInspector">
-    <value>Attach inspector</value>
-  </data>
-  <data name="Visual.SummaryTab">
-    <value>Summary</value>
-  </data>
-  <data name="Visual.FormatDetected">
-    <value>Detected format</value>
-  </data>
-  <data name="Visual.AverageRpm">
-    <value>Average RPM</value>
-  </data>
-  <data name="Visual.AverageDuration">
-    <value>Average duration</value>
-  </data>
-  <data name="Visual.DecoderName.hp.mmfm">
-    <value>HP MMFM</value>
-  </data>
-  <data name="Visual.DecoderName.datageneral.fm">
-    <value>Data General 2F</value>
-  </data>
-  <data name="Visual.DecoderName.micropolis.mfm">
-    <value>Micropolis MFM</value>
-  </data>
-  <data name="Visual.DecoderName.apple2.rwts18">
-    <value>Apple II Brøderbund RWTS18</value>
-  </data>
-  <data name="Visual.DecoderName.applelisa.fileware.gcr">
-    <value>Apple Lisa FileWare GCR</value>
-  </data>
-  <data name="Visual.DecoderName.commodore900.gcr">
-    <value>Commodore 900 GCR</value>
-  </data>
+  <data name="Visual.Decoder"><value>Decoder</value></data>
+  <data name="Visual.LinkZoom"><value>Link zoom</value></data>
+  <data name="Visual.OpenScp"><value>Open an SCP file…</value></data>
+  <data name="Visual.NoFile"><value>No SCP file open</value></data>
+  <data name="Visual.Waiting"><value>Waiting for a file</value></data>
+  <data name="Visual.Inspector"><value>Inspector</value></data>
+  <data name="Visual.SelectTrack"><value>Select a track.</value></data>
+  <data name="Visual.Controls"><value>Click: select · Wheel: zoom · Right click: pan</value></data>
+  <data name="Visual.NormalFlux"><value>Normal flux</value></data>
+  <data name="Visual.ShortTransition"><value>Short transition</value></data>
+  <data name="Visual.LongTransition"><value>Long transition/anomaly</value></data>
+  <data name="Visual.Loading"><value>Reading file…</value></data>
+  <data name="Visual.Invalid"><value>Invalid file</value></data>
+  <data name="Visual.Title"><value>SCP visualization</value></data>
+  <data name="Visual.ChecksumValid"><value>valid</value></data>
+  <data name="Visual.ChecksumInvalid"><value>invalid</value></data>
+  <data name="Visual.Summary"><value>SCP {0} · {1} tracks · {2} revolution(s) · {3} ns resolution · {4} checksum</value></data>
+  <data name="Visual.Revolution"><value>Revolution {0}: {1:N0} transitions · {2:F2} ms · {3:F2} RPM</value></data>
+  <data name="Visual.Analysis"><value>Decoding: {0}&#xA;Confidence: {1:P0}&#xA;Estimated cell: {2:F1} ticks&#xA;Structures: {3}</value></data>
+  <data name="Visual.Track"><value>Side: {0}&#xA;Track: {1}&#xA;SCP entry: {2}</value></data>
+  <data name="Visual.SideNoData"><value>Side {0}&#xA;No data</value></data>
+  <data name="Visual.TrackTooltip"><value>Side {0} · Track {1}&#xA;{2} revolution(s)</value></data>
+  <data name="Visual.Automatic"><value>Automatic</value></data>
+  <data name="Visual.StructureHeader"><value>Header/address</value></data>
+  <data name="Visual.StructureData"><value>Decoded data</value></data>
+  <data name="Visual.StructureAnomaly"><value>Deleted/anomaly</value></data>
+  <data name="Visual.AnalysedRevolution"><value>Analysis based on revolution {0}.</value></data>
+  <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>
+  <data name="Visual.SectorDetail"><value>Sector C{0} H{1} R{2} · {3} bytes · {4} {5}</value></data>
+  <data name="Visual.CrcValid"><value>valid</value></data>
+  <data name="Visual.CrcInvalid"><value>invalid</value></data>
+  <data name="Visual.IntegrityUnavailable"><value>unavailable</value></data>
+  <data name="Visual.DecoderName.iso.mfm"><value>ISO MFM (Atari ST / IBM PC)</value></data>
+  <data name="Visual.DecoderName.iso.fm"><value>ISO FM (single density)</value></data>
+  <data name="Visual.DecoderName.amiga.mfm"><value>Amiga MFM</value></data>
+  <data name="Visual.DecoderName.apple2.gcr"><value>Apple II GCR</value></data>
+  <data name="Visual.DecoderName.applemac.gcr"><value>Apple Macintosh GCR</value></data>
+  <data name="Visual.DecoderName.commodore.gcr"><value>Commodore GCR</value></data>
+  <data name="Visual.DecoderName.membrain.mfm"><value>Membrain MFM</value></data>
+  <data name="Visual.DecoderName.aed6200p.mfm"><value>AED 6200P MFM</value></data>
+  <data name="Visual.DecoderName.qdmo5.mfm"><value>QD MO5 MFM</value></data>
+  <data name="Visual.DecoderName.centurion.mfm"><value>Centurion MFM</value></data>
+  <data name="Visual.DecoderName.northstar.mfm"><value>NorthStar hard-sectored MFM</value></data>
+  <data name="Visual.DecoderName.heathkit.fm"><value>Heathkit hard-sectored FM</value></data>
+  <data name="Visual.DecoderName.micraln.fm"><value>Micral N hard-sectored FM</value></data>
+  <data name="Visual.DecoderName.emu.fm"><value>E-mu Emulator FM</value></data>
+  <data name="Visual.DecoderName.tycom.fm"><value>TYCOM FM</value></data>
+  <data name="Visual.DecoderName.dec.rx02"><value>DEC RX02 M²FM</value></data>
+  <data name="Visual.DecoderName.arburg"><value>Arburg system/data</value></data>
+  <data name="Visual.DecoderName.victor9k.gcr"><value>Victor 9000 GCR</value></data>
+  <data name="Visual.DecoderName.raw"><value>Raw flux</value></data>
+  <data name="Visual.StructureKind.Sync"><value>Synchronization</value></data>
+  <data name="Visual.StructureKind.IdAddressMark"><value>Sector header</value></data>
+  <data name="Visual.StructureKind.DataAddressMark"><value>Sector data</value></data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark"><value>Deleted sector data</value></data>
+  <data name="Visual.StructureKind.AmigaSync"><value>Amiga synchronization</value></data>
+  <data name="Visual.StructureKind.AppleAddress"><value>Apple address prologue</value></data>
+  <data name="Visual.StructureKind.AppleData"><value>Apple data prologue</value></data>
+  <data name="Visual.StructureKind.CommodoreSync"><value>Commodore synchronization</value></data>
+  <data name="Visual.StructureKind.CommodoreHeader"><value>Commodore header</value></data>
+  <data name="Visual.StructureKind.FormatHeader"><value>Format header</value></data>
+  <data name="Visual.StructureKind.FormatData"><value>Format data</value></data>
+  <data name="Visual.StructureKind.TimingAnomaly"><value>Timing anomaly</value></data>
+  <data name="Visual.OpenFilter"><value>SuperCard Pro capture (*.scp)|*.scp|All files|*.*</value></data>
+  <data name="Visual.Integrity.Crc"><value>CRC</value></data>
+  <data name="Visual.Integrity.Checksum"><value>Checksum</value></data>
+  <data name="Visual.Side"><value>Side {0}</value></data>
+  <data name="Visual.AnalysingTrack"><value>Analysing track {0}/{1}…</value></data>
+  <data name="Visual.SideLabel"><value>Side</value></data>
+  <data name="Visual.TrackLabel"><value>Track</value></data>
+  <data name="Visual.ScpEntryLabel"><value>SCP entry</value></data>
+  <data name="Visual.RevolutionsTitle"><value>Revolutions</value></data>
+  <data name="Visual.AnalysisTitle"><value>Analysis</value></data>
+  <data name="Visual.ConfidenceLabel"><value>Confidence</value></data>
+  <data name="Visual.CellLabel"><value>Estimated cell</value></data>
+  <data name="Visual.StructuresLabel"><value>Structures</value></data>
+  <data name="Visual.StructuresTitle"><value>Detected structures</value></data>
+  <data name="Visual.SectorsTitle"><value>Sectors</value></data>
+  <data name="Visual.TransitionsUnit"><value>transitions</value></data>
+  <data name="Visual.NumberPrefix"><value>#</value></data>
+  <data name="Visual.ValueSeparator"><value>  ·  </value></data>
+  <data name="Visual.OpenImage"><value>Open a disk image…</value></data>
+  <data name="Visual.DetachInspector"><value>Detach inspector</value></data>
+  <data name="Visual.AttachInspector"><value>Attach inspector</value></data>
+  <data name="Visual.SummaryTab"><value>Summary</value></data>
+  <data name="Visual.FormatDetected"><value>Detected format</value></data>
+  <data name="Visual.AverageRpm"><value>Average RPM</value></data>
+  <data name="Visual.AverageDuration"><value>Average duration</value></data>
+  <data name="Visual.DecoderName.hp.mmfm"><value>HP MMFM</value></data>
+  <data name="Visual.DecoderName.datageneral.fm"><value>Data General 2F</value></data>
+  <data name="Visual.DecoderName.micropolis.mfm"><value>Micropolis MFM</value></data>
+  <data name="Visual.DecoderName.apple2.rwts18"><value>Apple II Brøderbund RWTS18</value></data>
+  <data name="Visual.DecoderName.applelisa.fileware.gcr"><value>Apple Lisa FileWare GCR</value></data>
+  <data name="Visual.DecoderName.commodore900.gcr"><value>Commodore 900 GCR</value></data>
 </root>

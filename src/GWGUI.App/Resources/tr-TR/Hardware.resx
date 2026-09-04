@@ -12,148 +12,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Hardware.Port">
-    <value>Liman</value>
-  </data>
-  <data name="Hardware.UsbId">
-    <value>USB tanımlayıcı</value>
-  </data>
-  <data name="Hardware.Drive">
-    <value>Sürmek</value>
-  </data>
-  <data name="Hardware.Available">
-    <value>Mevcut</value>
-  </data>
-  <data name="Hardware.Scan">
-    <value>Tara</value>
-  </data>
-  <data name="Hardware.AddDrive">
-    <value>Bir sürücü ekleyin…</value>
-  </data>
-  <data name="Hardware.NoDrive">
-    <value>Tanımlanmış sürücü yok</value>
-  </data>
-  <data name="Hardware.EditorTitle">
-    <value>Bir sürücüyü tanımlayın</value>
-  </data>
-  <data name="Hardware.Controller">
-    <value>Greaseweazle denetleyici</value>
-  </data>
-  <data name="Hardware.GwSelection">
-    <value>Seçim gw'ye aktarıldı</value>
-  </data>
-  <data name="Hardware.PhysicalSize">
-    <value>Fiziksel boyut</value>
-  </data>
-  <data name="Hardware.SizeShort">
-    <value>Boyut</value>
-  </data>
-  <data name="Hardware.DensityShort">
-    <value>Yoğunluk</value>
-  </data>
-  <data name="Hardware.SpeedShort">
-    <value>Hız</value>
-  </data>
-  <data name="Hardware.AvailableState">
-    <value>Mevcut</value>
-  </data>
-  <data name="Hardware.UnavailableState">
-    <value>Kullanılamıyor</value>
-  </data>
-  <data name="Hardware.DensityDescription">
-    <value>Sürücü yoğunluğu (yalnızca açıklama)</value>
-  </data>
-  <data name="Hardware.SpeedDescription">
-    <value>Nominal hız (yalnızca açıklama)</value>
-  </data>
-  <data name="Hardware.NotConfigured">
-    <value>Denetleyici yapılandırılmadı</value>
-  </data>
-  <data name="Hardware.Disconnected">
-    <value>bağlantısı kesildi</value>
-  </data>
-  <data name="Hardware.SelectedDisconnected">
-    <value>Seçilen sürücünün bağlantısı kesildi. Yeniden bağlayın veya Seçenekler → Denetleyiciler ve sürücüler bölümünde tekrar tarayın.</value>
-  </data>
-  <data name="Hardware.DriveLabel">
-    <value>{0}-inç · {1} · {2} · {3}</value>
-  </data>
-  <data name="Hardware.DriveDialogTitle">
-    <value>Sürmek</value>
-  </data>
-  <data name="Hardware.ControllerRequired">
-    <value>Önce bir Greaseweazle denetleyiciyi tarayın veya ekleyin.</value>
-  </data>
-  <data name="Hardware.Description">
-    <value>{0}-inç · {1} · seçim {2}{3}</value>
-  </data>
-  <data name="Hardware.ScanTitle">
-    <value>Tara</value>
-  </data>
-  <data name="Hardware.GwRequired">
-    <value>Önce aşağıdaki gw.exe öğesini seçin veya indirin.</value>
-  </data>
-  <data name="Hardware.StartupTitle">
-    <value>Donanım kontrolü</value>
-  </data>
-  <data name="Hardware.StartupMissing">
-    <value>Yapılandırılmış donanım bulunamadı</value>
-  </data>
-  <data name="Hardware.StartupExplanation">
-    <value>Yapılandırma korunur, ancak sürücüleri Greaseweazle yeniden bulunana kadar kullanılamaz durumda kalacaktır.</value>
-  </data>
-  <data name="Hardware.StartupMissingList">
-    <value>Greaseweazle denetleyicileri eksik</value>
-  </data>
-  <data name="Hardware.StartupRetry">
-    <value>Tekrar ara</value>
-  </data>
-  <data name="Hardware.StartupSettings">
-    <value>Donanım ayarları</value>
-  </data>
-  <data name="Hardware.StartupContinue">
-    <value>Bu sürücü olmadan devam et</value>
-  </data>
-  <data name="Hardware.StartupCheckFailed">
-    <value>Donanım kontrolü başarısız oldu: {0}</value>
-  </data>
-  <data name="Hardware.NewDetectedTitle">
-    <value>Yeni Greaseweazle algılandı</value>
-  </data>
-  <data name="Hardware.NewDetected">
-    <value>{0}, {1} üzerinde tespit edildi. Sürücüsünü şimdi yapılandırmak istiyor musunuz?</value>
-  </data>
-  <data name="Hardware.ConfigurationState">
-    <value>Yapılandırma</value>
-  </data>
-  <data name="Hardware.Configured">
-    <value>Yapılandırılmış</value>
-  </data>
-  <data name="Hardware.NotConfiguredState">
-    <value>Algılandı, yapılandırılmadı</value>
-  </data>
-  <data name="Hardware.Configure">
-    <value>Yapılandır</value>
-  </data>
-  <data name="Hardware.ReaderNumber">
-    <value>{0} sürücü</value>
-  </data>
-  <data name="Hardware.DriveChoice">
-    <value>Sürücü {0} · {1}″ · {2} · {3}</value>
-  </data>
-  <data name="Hardware.Forget">
-    <value>Unutmak</value>
-  </data>
-  <data name="Hardware.ForgetConfirm">
-    <value>Bu sürücüyü veya cihazı gerçekten unutmak istiyor musunuz?</value>
-  </data>
-  <data name="Hardware.ForgetLastConfirm">
-    <value>Bu, bu Greaseweazle için yapılandırılan son sürücüdür. Hem sürücüyü hem de Greaseweazle'yi unutmak mı istiyorsunuz?</value>
-  </data>
-  <data name="Hardware.SelectController">
-    <value>Önce ilgili Greaseweazle'ye ait bir satırı seçin.</value>
-  </data>
-  <data name="Hardware.MaximumDrives">
-    <value>Bu Greaseweazle (A ve B) öğesine otomatik olarak en fazla iki sürücü atanabilir.</value>
-  </data>
+  <data name="Hardware.Port"><value>Liman</value></data>
+  <data name="Hardware.UsbId"><value>USB tanımlayıcı</value></data>
+  <data name="Hardware.Drive"><value>Sürmek</value></data>
+  <data name="Hardware.Available"><value>Mevcut</value></data>
+  <data name="Hardware.Scan"><value>Tara</value></data>
+  <data name="Hardware.AddDrive"><value>Bir sürücü ekleyin…</value></data>
+  <data name="Hardware.NoDrive"><value>Tanımlanmış sürücü yok</value></data>
+  <data name="Hardware.EditorTitle"><value>Bir sürücüyü tanımlayın</value></data>
+  <data name="Hardware.Controller"><value>Greaseweazle denetleyici</value></data>
+  <data name="Hardware.GwSelection"><value>Seçim gw'ye aktarıldı</value></data>
+  <data name="Hardware.PhysicalSize"><value>Fiziksel boyut</value></data>
+  <data name="Hardware.SizeShort"><value>Boyut</value></data>
+  <data name="Hardware.DensityShort"><value>Yoğunluk</value></data>
+  <data name="Hardware.SpeedShort"><value>Hız</value></data>
+  <data name="Hardware.AvailableState"><value>Mevcut</value></data>
+  <data name="Hardware.UnavailableState"><value>Kullanılamıyor</value></data>
+  <data name="Hardware.DensityDescription"><value>Sürücü yoğunluğu (yalnızca açıklama)</value></data>
+  <data name="Hardware.SpeedDescription"><value>Nominal hız (yalnızca açıklama)</value></data>
+  <data name="Hardware.NotConfigured"><value>Denetleyici yapılandırılmadı</value></data>
+  <data name="Hardware.Disconnected"><value>bağlantısı kesildi</value></data>
+  <data name="Hardware.SelectedDisconnected"><value>Seçilen sürücünün bağlantısı kesildi. Yeniden bağlayın veya Seçenekler → Denetleyiciler ve sürücüler bölümünde tekrar tarayın.</value></data>
+  <data name="Hardware.DriveLabel"><value>{0}-inç · {1} · {2} · {3}</value></data>
+  <data name="Hardware.DriveDialogTitle"><value>Sürmek</value></data>
+  <data name="Hardware.ControllerRequired"><value>Önce bir Greaseweazle denetleyiciyi tarayın veya ekleyin.</value></data>
+  <data name="Hardware.Description"><value>{0}-inç · {1} · seçim {2}{3}</value></data>
+  <data name="Hardware.ScanTitle"><value>Tara</value></data>
+  <data name="Hardware.GwRequired"><value>Önce aşağıdaki gw.exe öğesini seçin veya indirin.</value></data>
+  <data name="Hardware.StartupTitle"><value>Donanım kontrolü</value></data>
+  <data name="Hardware.StartupMissing"><value>Yapılandırılmış donanım bulunamadı</value></data>
+  <data name="Hardware.StartupExplanation"><value>Yapılandırma korunur, ancak sürücüleri Greaseweazle yeniden bulunana kadar kullanılamaz durumda kalacaktır.</value></data>
+  <data name="Hardware.StartupMissingList"><value>Greaseweazle denetleyicileri eksik</value></data>
+  <data name="Hardware.StartupRetry"><value>Tekrar ara</value></data>
+  <data name="Hardware.StartupSettings"><value>Donanım ayarları</value></data>
+  <data name="Hardware.StartupContinue"><value>Bu sürücü olmadan devam et</value></data>
+  <data name="Hardware.StartupCheckFailed"><value>Donanım kontrolü başarısız oldu: {0}</value></data>
+  <data name="Hardware.NewDetectedTitle"><value>Yeni Greaseweazle algılandı</value></data>
+  <data name="Hardware.NewDetected"><value>{0} tespit edildi {1}. Şimdi arabasını yapılandırmak ister misiniz?</value></data>
+  <data name="Hardware.ConfigurationState"><value>Yapılandırma</value></data>
+  <data name="Hardware.Configured"><value>Yapılandırılmış</value></data>
+  <data name="Hardware.NotConfiguredState"><value>Algılandı, yapılandırılmadı</value></data>
+  <data name="Hardware.Configure"><value>Yapılandır</value></data>
+  <data name="Hardware.ReaderNumber"><value>{0} sürücü</value></data>
+  <data name="Hardware.DriveChoice"><value>Sürücü {0} · {1}″ · {2} · {3}</value></data>
+  <data name="Hardware.Forget"><value>Unutmak</value></data>
+  <data name="Hardware.ForgetConfirm"><value>Bu sürücüyü veya cihazı gerçekten unutmak istiyor musunuz?</value></data>
+  <data name="Hardware.ForgetLastConfirm"><value>Bu, bu Greaseweazle için yapılandırılan son sürücüdür. Hem sürücüyü hem de Greaseweazle'yi unutmak mı istiyorsunuz?</value></data>
+  <data name="Hardware.SelectController"><value>Önce ilgili Greaseweazle'ye ait bir satırı seçin.</value></data>
+  <data name="Hardware.MaximumDrives"><value>Bu Greaseweazle (A ve B) öğesine otomatik olarak en fazla iki sürücü atanabilir.</value></data>
 </root>

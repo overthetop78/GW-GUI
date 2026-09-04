@@ -12,63 +12,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Write.Title">
-    <value>Írj</value>
-  </data>
-  <data name="Write.SelectSource">
-    <value>Válasszon egy meglévő forrásképet.</value>
-  </data>
-  <data name="Write.Ambiguous">
-    <value>A formátum kétértelmű. Kifejezetten válasszon kompatibilis formátumot.</value>
-  </data>
-  <data name="Write.VerifyOff">
-    <value>Az írás utáni ellenőrzés le van tiltva.</value>
-  </data>
-  <data name="Write.VerifyOn">
-    <value>Az írás utáni ellenőrzés engedélyezve van.</value>
-  </data>
-  <data name="Write.ConfirmTitle">
-    <value>Írás megerősítése</value>
-  </data>
-  <data name="Write.Confirm">
-    <value>Kép: {0}
-Formátum: {1}
-Meghajtó: {2}
-{3}
-
-Lemezre írja ezt a képet?</value>
-  </data>
-  <data name="Write.Source">
-    <value>Forrás kép</value>
-  </data>
-  <data name="Write.Detected">
-    <value>Az észlelt formátum</value>
-  </data>
-  <data name="Write.ChooseImage">
-    <value>Válasszon egy képet.</value>
-  </data>
-  <data name="Write.NoVerify">
-    <value>Írás után tiltsa le az ellenőrzést</value>
-  </data>
-  <data name="Write.NoVerifyTip">
-    <value>Hozzáadja a következőt: --no-verify. A lemez nem lesz újraolvasva az írás megerősítéséhez.</value>
-  </data>
-  <data name="Write.EraseEmpty">
-    <value>Üres számok törlése</value>
-  </data>
-  <data name="Write.VisualizeTracks">
-    <value>Számok megjelenítése</value>
-  </data>
-  <data name="Write.VisualizeFormatRequired">
-    <value>A műsorszámok megjelenítése előtt válassza ki a lemez formátumát.</value>
-  </data>
+  <data name="Write.Title"><value>Írj</value></data>
+  <data name="Write.SelectSource"><value>Válasszon egy meglévő forrásképet.</value></data>
+  <data name="Write.Ambiguous"><value>A formátum kétértelmű. Kifejezetten válasszon kompatibilis formátumot.</value></data>
+  <data name="Write.VerifyOff"><value>Az írás utáni ellenőrzés le van tiltva.</value></data>
+  <data name="Write.VerifyOn"><value>Az írás utáni ellenőrzés engedélyezve van.</value></data>
+  <data name="Write.ConfirmTitle"><value>Írás megerősítése</value></data>
+  <data name="Write.Confirm"><value>Kép: {0}&#xA;Formátum: {1}&#xA;Meghajtó: {2}&#xA;{3}&#xA;&#xA;Lemezre írja ezt a képet?</value></data>
+  <data name="Write.Source"><value>Forrás kép</value></data>
+  <data name="Write.Detected"><value>Az észlelt formátum</value></data>
+  <data name="Write.ChooseImage"><value>Válasszon egy képet.</value></data>
+  <data name="Write.NoVerify"><value>Írás után tiltsa le az ellenőrzést</value></data>
+  <data name="Write.NoVerifyTip"><value>Hozzáadja a következőt: --no-verify. A lemez nem lesz újraolvasva az írás megerősítéséhez.</value></data>
+  <data name="Write.EraseEmpty"><value>Üres számok törlése</value></data>
+  <data name="Write.VisualizeTracks"><value>Számok megjelenítése</value></data>
+  <data name="Write.VisualizeFormatRequired"><value>A műsorszámok megjelenítése előtt válassza ki a lemez formátumát.</value></data>
   <data name="Write.InternalWriter" xml:space="preserve"><value>Belső írás (kísérleti)</value></data>
   <data name="Write.InternalWriterTip" xml:space="preserve"><value>Közvetlenül a belső motorral ír, gw.exe nélkül.</value></data>
   <data name="Write.InternalPreview" xml:space="preserve"><value>GW GUI belső írás: {0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Egy vagy több kiválasztott speciális beállítás még nem támogatott.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>A belső ellenőrzés még nem érhető el. Kapcsolja be a „Ne ellenőrizze” lehetőséget.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Sáv {0}, oldal {1}: {2}</value></data>
-  <data name="Write.InternalFailureReason">
-    <value>A belső írás sikertelen.</value>
-  </data>
+  <data name="Write.InternalFailureReason"><value>A belső írás sikertelen.</value></data>
 </root>

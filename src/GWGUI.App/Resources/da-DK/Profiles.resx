@@ -12,52 +12,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Profiles.ByOperation">
-    <value>Profiler efter operation</value>
-  </data>
-  <data name="Profiles.Tab">
-    <value>Tab</value>
-  </data>
-  <data name="Profiles.Name">
-    <value>Navn</value>
-  </data>
-  <data name="Profiles.System">
-    <value>System</value>
-  </data>
-  <data name="Profiles.Rename">
-    <value>Omdøb...</value>
-  </data>
-  <data name="Profile.SaveTitle">
-    <value>Gem profil</value>
-  </data>
-  <data name="Profile.Name">
-    <value>Profilnavn</value>
-  </data>
-  <data name="Profile.NameRequired">
-    <value>Indtast et navn.</value>
-  </data>
-  <data name="Profile.Title">
-    <value>Profil</value>
-  </data>
-  <data name="Common.Profile">
-    <value>Profil</value>
-  </data>
-  <data name="Profile.Default">
-    <value>Misligholdelse</value>
-  </data>
-  <data name="Profile.SystemRename">
-    <value>Standardprofilen er permanent og kan ikke omdøbes.</value>
-  </data>
-  <data name="Profile.SystemDelete">
-    <value>Standardprofilen er permanent og kan ikke slettes.</value>
-  </data>
-  <data name="Profile.DuplicateName">
-    <value>En profil på denne fane har allerede dette navn.</value>
-  </data>
-  <data name="Profile.Replace">
-    <value>Denne profil findes allerede. Vil du udskifte det?</value>
-  </data>
-  <data name="Profile.DeleteConfirm">
-    <value>Slet profil "{0}"?</value>
-  </data>
+  <data name="Profiles.ByOperation"><value>Profiler efter operation</value></data>
+<data name="Profiles.Name"><value>Navn</value></data>
+<data name="Profiles.Rename"><value>Omdøb...</value></data>
+  <data name="Profile.SaveTitle"><value>Gem profil</value></data>
+  <data name="Profile.Name"><value>Profilnavn</value></data>
+  <data name="Profile.NameRequired"><value>Indtast et navn.</value></data>
+  <data name="Profile.Title"><value>Profil</value></data>
+  <data name="Common.Profile"><value>Profil</value></data>
+  <data name="Profile.Default"><value>Misligholdelse</value></data>
+  <data name="Profile.SystemRename"><value>Standardprofilen er permanent og kan ikke omdøbes.</value></data>
+  <data name="Profile.SystemDelete"><value>Standardprofilen er permanent og kan ikke slettes.</value></data>
+  <data name="Profile.DuplicateName"><value>En profil på denne fane har allerede dette navn.</value></data>
+  <data name="Profile.Replace"><value>Denne profil findes allerede. Vil du udskifte det?</value></data>
+  <data name="Profile.DeleteConfirm"><value>Slet profil "{0}"?</value></data>
+  <data name="Profiles.Tab"><value>Faneblad</value></data>
 </root>

@@ -12,53 +12,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Cancel">
-    <value>Peruuttaa</value>
-  </data>
-  <data name="Common.Save">
-    <value>Tallentaa</value>
-  </data>
-  <data name="Common.Create">
-    <value>Luo</value>
-  </data>
-  <data name="Common.Delete">
-    <value>Poistaa</value>
-  </data>
-  <data name="Common.Browse">
-    <value>Selaa…</value>
-  </data>
-  <data name="Common.Choose">
-    <value>Valita…</value>
-  </data>
-  <data name="Common.Close">
-    <value>Lähellä</value>
-  </data>
-  <data name="Common.Execute">
-    <value>Suorittaa</value>
-  </data>
-  <data name="Common.Stop">
-    <value>Stop</value>
-  </data>
-  <data name="Common.Continue">
-    <value>Jatkaa</value>
-  </data>
-  <data name="Common.Reset">
-    <value>Nollaa</value>
-  </data>
-  <data name="Common.Copy">
-    <value>Kopioida</value>
-  </data>
-  <data name="Common.Modify">
-    <value>Muuttaa</value>
-  </data>
-  <data name="Common.Hide">
-    <value>Piilottaa</value>
-  </data>
-  <data name="Common.Export">
-    <value>Viedä</value>
-  </data>
+  <data name="Common.Cancel"><value>Peruuttaa</value></data>
+  <data name="Common.Save"><value>Tallentaa</value></data>
+  <data name="Common.Create"><value>Luo</value></data>
+  <data name="Common.Delete"><value>Poistaa</value></data>
+  <data name="Common.Browse"><value>Selaa…</value></data>
+  <data name="Common.Choose"><value>Valita…</value></data>
+  <data name="Common.Close"><value>Lähellä</value></data>
+  <data name="Common.Execute"><value>Suorittaa</value></data>
+<data name="Common.Continue"><value>Jatkaa</value></data>
+  <data name="Common.Reset"><value>Nollaa</value></data>
+  <data name="Common.Copy"><value>Kopioida</value></data>
+  <data name="Common.Modify"><value>Muuttaa</value></data>
+  <data name="Common.Hide"><value>Piilottaa</value></data>
+  <data name="Common.Export"><value>Viedä</value></data>
   <data name="Common.New"><value>Uusi</value></data>
   <data name="Common.Refresh"><value>Päivitä</value></data>
   <data name="Common.OpenFolder"><value>Avaa kansio</value></data>
   <data name="Common.Pause" xml:space="preserve"><value>Keskeytä</value></data>
+  <data name="Common.Stop"><value>Pysäytä</value></data>
 </root>

@@ -12,140 +12,78 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Conflict.Title">
-    <value>Існуючі файли</value>
-  </data>
-  <data name="Conflict.Heading">
-    <value>Деякі файли вже існують</value>
-  </data>
-  <data name="Conflict.Help">
-    <value>Виберіть дію для кожного файлу або застосуйте одну дію до всіх файлів.</value>
-  </data>
-  <data name="Conflict.File">
-    <value>Файл</value>
-  </data>
-  <data name="Conflict.Action">
-    <value>Дія</value>
-  </data>
-  <data name="Conflict.Overwrite">
-    <value>Перезаписати</value>
-  </data>
-  <data name="Conflict.Skip">
-    <value>Пропустити</value>
-  </data>
-  <data name="Conflict.Number">
-    <value>Використовуйте наступне число</value>
-  </data>
-  <data name="Conflict.AllOverwrite">
-    <value>Перезаписати все</value>
-  </data>
-  <data name="Conflict.AllSkip">
-    <value>Пропустити все</value>
-  </data>
-  <data name="Conflict.AllNumber">
-    <value>Пронумерувати все</value>
-  </data>
-  <data name="Conversion.Title">
-    <value>Перетворення</value>
-  </data>
-  <data name="Conversion.SelectOutput">
-    <value>Виберіть принаймні один вихідний формат.</value>
-  </data>
-  <data name="Conversion.SourceAmbiguous">
-    <value>Неоднозначне джерело</value>
-  </data>
-  <data name="Conversion.Summary">
-    <value>Підсумок: {0} вдалося, {1} не вдалося.</value>
-  </data>
-  <data name="Conversion.Failures">
-    <value>Помилки: {0}</value>
-  </data>
-  <data name="Conversion.Source">
-    <value>Джерело</value>
-  </data>
-  <data name="Conversion.OutputNames">
-    <value>Вихідні назви</value>
-  </data>
-  <data name="Conversion.AddTags">
-    <value>Додайте теги</value>
-  </data>
-  <data name="Conversion.Selected">
-    <value>Вибране</value>
-  </data>
-  <data name="Conversion.CommonFormats">
-    <value>Поширені формати</value>
-  </data>
-  <data name="Conversion.ShowRare">
-    <value>Показати рідко використовувані формати</value>
-  </data>
-  <data name="Conversion.LimitTracks">
-    <value>Обмежити доріжки</value>
-  </data>
-  <data name="Conversion.SourceRequired">
-    <value>Виберіть наявне вихідне зображення.</value>
-  </data>
-  <data name="Conversion.NameRequired">
-    <value>Введіть імена вихідних файлів.</value>
-  </data>
-  <data name="Conversion.CheckOutput">
-    <value>Перевірте принаймні один вихідний формат.</value>
-  </data>
-  <data name="Conversion.More">
-    <value>(+ {0} конверсій)</value>
-  </data>
-  <data name="Conversion.DefaultExtensionTip">
-    <value>Розширення не позначено: {0} використовується за умовчанням.</value>
-  </data>
-  <data name="Conversion.Incompatible">
-    <value>{0} несумісний із цим джерелом.</value>
-  </data>
-  <data name="Conversion.NoAvailableOutputName">
-    <value>Не вдалося знайти доступну назву вихідного файлу.</value>
-  </data>
-  <data name="Conversion.ReconstructedFlux">
-    <value>реконструйований потік</value>
-  </data>
-  <data name="Migration.Open"><value>File migration...</value></data>
-  <data name="Migration.Title"><value>File migration</value></data>
-  <data name="Migration.Heading"><value>Migrate files to another file system</value></data>
-  <data name="Migration.Source"><value>Source image</value></data>
-  <data name="Migration.NoSource"><value>Select an image containing a recognized file system.</value></data>
-  <data name="Migration.Destination"><value>Destination file system and format</value></data>
-  <data name="Migration.Output"><value>Destination image</value></data>
-  <data name="Migration.Compatibility"><value>Compatibility and losses</value></data>
-  <data name="Migration.Waiting"><value>Select a source and a destination.</value></data>
-  <data name="Migration.Severity"><value>Severity</value></data>
-  <data name="Migration.Path"><value>Source path</value></data>
-  <data name="Migration.Description"><value>Description</value></data>
-  <data name="Migration.AcceptLosses"><value>Accept the listed metadata losses</value></data>
-  <data name="Migration.Execute"><value>Migrate files</value></data>
-  <data name="Migration.Blocking"><value>Blocking</value></data>
-  <data name="Migration.MetadataLoss"><value>Metadata loss</value></data>
-  <data name="Migration.SourceSummary"><value>Volume: {0} — File system: {1} — Root entries: {2}</value></data>
-  <data name="Migration.SourceFailed"><value>Unable to prepare the migration: {0}</value></data>
-  <data name="Migration.Completed"><value>The destination image was created: {0}</value></data>
-  <data name="Migration.Failed"><value>Migration failed: {0}</value></data>
-  <data name="Migration.Incompatible"><value>Incompatible: correct the blocking losses before migration.</value></data>
-  <data name="Migration.CompatibleWithLosses"><value>Compatible after accepting the listed metadata losses.</value></data>
-  <data name="Migration.Compatible"><value>Compatible: no loss detected.</value></data>
-  <data name="Migration.Loss.MissingContent"><value>File content is unavailable.</value></data>
-  <data name="Migration.Loss.UnsupportedEntryKind"><value>This entry type is not supported by the destination.</value></data>
-  <data name="Migration.Loss.InvalidName"><value>The name is not valid for the destination.</value></data>
-  <data name="Migration.Loss.NameTooLong"><value>The name is too long for the destination.</value></data>
-  <data name="Migration.Loss.NameCollision"><value>Several entries would have the same destination name.</value></data>
-  <data name="Migration.Loss.FileTooLarge"><value>The file is too large for the destination.</value></data>
-  <data name="Migration.Loss.InvalidMetadata"><value>The source metadata is invalid.</value></data>
-  <data name="Migration.Loss.ModifiedDate"><value>The modification date will not be preserved.</value></data>
-  <data name="Migration.Loss.Comment"><value>The comment will not be preserved.</value></data>
-  <data name="Migration.Loss.Attributes"><value>The source attributes will not be preserved.</value></data>
-  <data name="Migration.OverwriteConfirm"><value>The destination image already exists. Replace it? {0}</value></data>
-  <data name="Migration.SourceDestinationSame"><value>The destination image cannot replace the source image.</value></data>
-  <data name="Conversion.Fidelity.SectorData"><value>sector data; protections not preserved</value></data>
-  <data name="Conversion.Fidelity.ReconstructedTracks"><value>reconstructed tracks; original flux not preserved</value></data>
-  <data name="Conversion.Fidelity.PreservedFlux"><value>original flux preserved</value></data>
-  <data name="Conversion.EngineExternal" xml:space="preserve"><value>Host Tools: converting {0}.</value></data>
-  <data name="Conversion.EngineInternalStart" xml:space="preserve"><value>Internal engine: converting {0} to {1}.</value></data>
-  <data name="Conversion.EngineInternalComplete" xml:space="preserve"><value>Internal conversion completed: {0}.</value></data>
-  <data name="Conversion.EngineInternalUnavailable" xml:space="preserve"><value>The internal engine does not support this conversion: {0}.</value></data>
-  <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Internal conversion failed for {0}: {1}</value></data>
+  <data name="Conflict.Title"><value>Існуючі файли</value></data>
+  <data name="Conflict.Heading"><value>Деякі файли вже існують</value></data>
+  <data name="Conflict.Help"><value>Виберіть дію для кожного файлу або застосуйте одну дію до всіх файлів.</value></data>
+  <data name="Conflict.File"><value>Файл</value></data>
+  <data name="Conflict.Action"><value>Дія</value></data>
+  <data name="Conflict.Overwrite"><value>Перезаписати</value></data>
+  <data name="Conflict.Skip"><value>Пропустити</value></data>
+  <data name="Conflict.Number"><value>Використовуйте наступне число</value></data>
+  <data name="Conflict.AllOverwrite"><value>Перезаписати все</value></data>
+  <data name="Conflict.AllSkip"><value>Пропустити все</value></data>
+  <data name="Conflict.AllNumber"><value>Пронумерувати все</value></data>
+  <data name="Conversion.Title"><value>Перетворення</value></data>
+  <data name="Conversion.SelectOutput"><value>Виберіть принаймні один вихідний формат.</value></data>
+  <data name="Conversion.SourceAmbiguous"><value>Неоднозначне джерело</value></data>
+  <data name="Conversion.Summary"><value>Підсумок: {0} вдалося, {1} не вдалося.</value></data>
+  <data name="Conversion.Failures"><value>Помилки: {0}</value></data>
+  <data name="Conversion.Source"><value>Джерело</value></data>
+  <data name="Conversion.OutputNames"><value>Вихідні назви</value></data>
+  <data name="Conversion.AddTags"><value>Додайте теги</value></data>
+  <data name="Conversion.Selected"><value>Вибране</value></data>
+  <data name="Conversion.CommonFormats"><value>Поширені формати</value></data>
+  <data name="Conversion.ShowRare"><value>Показати рідко використовувані формати</value></data>
+  <data name="Conversion.LimitTracks"><value>Обмежити доріжки</value></data>
+  <data name="Conversion.SourceRequired"><value>Виберіть наявне вихідне зображення.</value></data>
+  <data name="Conversion.NameRequired"><value>Введіть імена вихідних файлів.</value></data>
+  <data name="Conversion.CheckOutput"><value>Перевірте принаймні один вихідний формат.</value></data>
+  <data name="Conversion.More"><value>(+ {0} конверсій)</value></data>
+  <data name="Conversion.DefaultExtensionTip"><value>Розширення не позначено: {0} використовується за умовчанням.</value></data>
+  <data name="Conversion.Incompatible"><value>{0} несумісний із цим джерелом.</value></data>
+  <data name="Conversion.NoAvailableOutputName"><value>Не вдалося знайти доступну назву вихідного файлу.</value></data>
+  <data name="Conversion.ReconstructedFlux"><value>реконструйований потік</value></data>
+  <data name="Migration.Open"><value>Перетворення файлів</value></data>
+  <data name="Migration.Title"><value>Перетворення файлів</value></data>
+  <data name="Migration.Heading"><value>Змігрувати файли в іншу файлову систему</value></data>
+  <data name="Migration.Source"><value>Джерело зображення</value></data>
+  <data name="Migration.NoSource"><value>Виберіть зображення, що містить визнану файлову систему.</value></data>
+  <data name="Migration.Destination"><value>Форматування та форматування</value></data>
+  <data name="Migration.Output"><value>Напрямок</value></data>
+  <data name="Migration.Compatibility"><value>Сумісність та втрати</value></data>
+  <data name="Migration.Waiting"><value>Виберіть джерело та призначення.</value></data>
+  <data name="Migration.Severity"><value>Сєвєвічність</value></data>
+  <data name="Migration.Path"><value>Джерело шлях</value></data>
+  <data name="Migration.Description"><value>Опис</value></data>
+  <data name="Migration.AcceptLosses"><value>Прийняття перерахованих втрат метаданих</value></data>
+  <data name="Migration.Execute"><value>Migrate файли</value></data>
+  <data name="Migration.Blocking"><value>Блокування</value></data>
+  <data name="Migration.MetadataLoss"><value>Збиток метаданих</value></data>
+  <data name="Migration.SourceSummary"><value>Об'єм: {0} — файлова система: {1} — Записи кореневих: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>Не можна підготувати міграцію: {0}</value></data>
+  <data name="Migration.Completed"><value>Створено зображення призначення: {0}</value></data>
+  <data name="Migration.Failed"><value>Не вдалося переселення: {0}</value></data>
+  <data name="Migration.Incompatible"><value>Несумісні: виправити пошкодження блоків перед передачею.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>Сумісність після прийняття зазначених втрат метаданих.</value></data>
+  <data name="Migration.Compatible"><value>Сумісність: не виявлено втрати.</value></data>
+  <data name="Migration.Loss.MissingContent"><value>Файл вмісту є недоступним.</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>Цей тип входу не підтримується призначенням.</value></data>
+  <data name="Migration.Loss.InvalidName"><value>Назва не діє для призначення.</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>Назва дуже довго для призначення.</value></data>
+  <data name="Migration.Loss.NameCollision"><value>Кілька записів будуть мати однакову назву призначення.</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>Файл занадто великий для призначення.</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>Випадкові метадані недійсні.</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>Дата модифікації не буде збережена.</value></data>
+  <data name="Migration.Loss.Comment"><value>Не буде збережено коментар.</value></data>
+  <data name="Migration.Loss.Attributes"><value>Випадкові атрибути не будуть збережені.</value></data>
+  <data name="Migration.OverwriteConfirm"><value>Зображення призначення вже існує. Замініть його? {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>Зображення призначення не може замінити вихідний образ.</value></data>
+  <data name="Conversion.Fidelity.SectorData"><value>дані галузі; захист не збережених</value></data>
+  <data name="Conversion.Fidelity.ReconstructedTracks"><value>реконструйовані доріжки; оригінальний флюс не збережений</value></data>
+  <data name="Conversion.Fidelity.PreservedFlux"><value>оригінальний флюс</value></data>
+  <data name="Conversion.EngineExternal"><value>Інструменти хост: перетворення {0}.</value></data>
+  <data name="Conversion.EngineInternalStart"><value>Внутрішній двигун: перетворення {0} до {1}.</value></data>
+  <data name="Conversion.EngineInternalComplete"><value>Вбудований конверт завершено: {0}.</value></data>
+  <data name="Conversion.EngineInternalUnavailable"><value>Внутрішній двигун не підтримує цю конвертацію: {0}.</value></data>
+  <data name="Conversion.EngineInternalFailed"><value>Внутрішнє перетворення не вдалося для {0}: {1}</value></data>
 </root>

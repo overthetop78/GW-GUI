@@ -12,172 +12,60 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Warning.InvalidChecksum">
-    <value>Blok root {0} memiliki checksum yang tidak valid.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryNesting">
-    <value>Batas penumpukan direktori telah tercapai.</value>
-  </data>
-  <data name="Explorer.Warning.InvalidDirectoryChain">
-    <value>Rantai direktori tidak valid atau siklik di blok {0}.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryEntryMissing">
-    <value>Blok entri direktori {0} tidak ada.</value>
-  </data>
-  <data name="Explorer.Warning.AmigaExtension">
-    <value>{0}: Blok ekstensi file tidak valid {1}.</value>
-  </data>
-  <data name="Explorer.Warning.AmigaBlock">
-    <value>{0}: AmigaDOS {1} ({2}) hilang.</value>
-  </data>
-  <data name="Explorer.Warning.FileDataMissing">
-    <value>Blok data file {0} hilang.</value>
-  </data>
-  <data name="Explorer.Warning.OfsType">
-    <value>Blok data OFS {0} memiliki tipe yang tidak terduga.</value>
-  </data>
-  <data name="Explorer.Warning.BitmapMissing">
-    <value>Blok bitmap {0} tidak ada.</value>
-  </data>
-  <data name="Explorer.Warning.BitmapChecksum">
-    <value>Blok bitmap {0} memiliki checksum yang tidak valid.</value>
-  </data>
-  <data name="Explorer.Warning.CpmAllocation">
-    <value>{0}: Blok alokasi CP/M {1} berada di luar gambar.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDirectoryCyclic">
-    <value>Rantai direktori CBM DOS siklik di {0}/{1}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDirectoryMissing">
-    <value>Sektor direktori CBM DOS {0}/{1} tidak ada.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDataCyclic">
-    <value>{0}: Rantai data siklik di {1}/{2}.</value>
-  </data>
-  <data name="Explorer.Warning.CbmDataMissing">
-    <value>{0}: Sektor data {1}/{2} tidak ada.</value>
-  </data>
-  <data name="Explorer.Warning.CbmCapacity">
-    <value>{0}: rantai file melebihi kapasitas gambar.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdDirectoryMissing">
-    <value>Satu atau lebih blok direktori UCSD hilang.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdEntry">
-    <value>Entri direktori UCSD {0} memiliki nama yang tidak valid atau kosong.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdRange">
-    <value>{0}: rentang blok tidak valid {1}..{2}.</value>
-  </data>
-  <data name="Explorer.Warning.DataBlocksMissing">
-    <value>{0}: satu atau lebih blok data hilang.</value>
-  </data>
-  <data name="Explorer.Warning.UcsdCount">
-    <value>Direktori UCSD mendeklarasikan file {0} tetapi ditemukan {1} entri yang valid.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentInodeZero">
-    <value>{0}: Inode COHERENT 0 tidak valid.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentInodeOutside">
-    <value>{0}: Inode KOHEREN {1} berada di luar gambar.</value>
-  </data>
-  <data name="Explorer.Warning.FileTooLarge">
-    <value>{0}: File terlalu besar.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentBlock">
-    <value>{0}: Blok KOHEREN {1} berada di luar gambar.</value>
-  </data>
-  <data name="Explorer.Warning.BytesUnread">
-    <value>{0}: {1} byte tidak dapat dibaca.</value>
-  </data>
-  <data name="Explorer.Warning.CoherentIndirect">
-    <value>{0}: blok KOHEREN tidak langsung {1} berada di luar gambar.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11SegmentMissing">
-    <value>Segmen direktori RT-11 {0} tidak ada.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11EntrySize">
-    <value>Segmen direktori RT-11 {0} memiliki ukuran entri yang tidak valid.</value>
-  </data>
-  <data name="Explorer.Warning.Rt11EmptyName">
-    <value>Entri RT-11 di blok {0} memiliki nama kosong.</value>
-  </data>
-  <data name="Explorer.Warning.ProDosNesting">
-    <value>Batas penumpukan direktori ProDOS telah tercapai.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryBlockCyclic">
-    <value>Blok direktori {0} tidak ada atau bersifat siklik.</value>
-  </data>
-  <data name="Explorer.Warning.MasterIndexMissing">
-    <value>{0}: blok indeks utama {1} hilang.</value>
-  </data>
-  <data name="Explorer.Warning.DataBlockMissing">
-    <value>{0}: blok data {1} hilang.</value>
-  </data>
-  <data name="Explorer.Warning.IndexBlockMissing">
-    <value>{0}: blok indeks {1} hilang.</value>
-  </data>
-  <data name="Explorer.Warning.CatalogMissing">
-    <value>Sektor katalog T{0} S{1} tidak ada atau bersifat siklik.</value>
-  </data>
-  <data name="Explorer.Warning.CatalogSize">
-    <value>{0}: ukuran katalog tidak konsisten.</value>
-  </data>
-  <data name="Explorer.Warning.TrackSectorList">
-    <value>{0}: Daftar T/S T{1} S{2} hilang atau berputar.</value>
-  </data>
-  <data name="Explorer.Warning.TrackSectorData">
-    <value>{0}: sektor data T{1} S{2} tidak ada.</value>
-  </data>
-  <data name="Explorer.Warning.DirectoryBlockMissing">
-    <value>Blok direktori {0} tidak ada.</value>
-  </data>
-  <data name="Explorer.Warning.MfsEntry">
-    <value>Entri direktori MFS tidak valid di blok {0}.</value>
-  </data>
-  <data name="Explorer.Warning.ResourceFork">
-    <value>{0}: metadata fork sumber daya tidak konsisten.</value>
-  </data>
-  <data name="Explorer.Warning.MfsChain">
-    <value>{0}: rantai alokasi MFS tidak valid.</value>
-  </data>
-  <data name="Explorer.Warning.BlockMissing">
-    <value>{0}: blok {1} hilang.</value>
-  </data>
-  <data name="Explorer.Warning.BbcSector">
-    <value>{0}: sektor data {1} tidak ada.</value>
-  </data>
-  <data name="Explorer.Warning.HfsCatalog">
-    <value>Katalog HFS tidak berisi catatan daun yang dapat dibaca.</value>
-  </data>
-  <data name="Explorer.Warning.HfsDirectory">
-    <value>Direktori HFS siklik #{0}.</value>
-  </data>
-  <data name="Explorer.Warning.HfsBlock">
-    <value>{0}: Blok HFS {1} hilang.</value>
-  </data>
-  <data name="Explorer.Warning.HfsExtents">
-    <value>{0}: diperlukan perluasan HFS tambahan atau data hilang.</value>
-  </data>
-  <data name="Explorer.Warning.FatNesting">
-    <value>Batas penumpukan direktori FAT telah tercapai.</value>
-  </data>
-  <data name="Explorer.Warning.FatChain">
-    <value>{0}: Rantai FAT tidak valid atau siklik di cluster {1}.</value>
-  </data>
-  <data name="Explorer.Warning.SectorMissing">
-    <value>Sektor {0} tidak ada.</value>
-  </data>
-  <data name="Explorer.Warning.LisaCatalog">
-    <value>Halaman katalog Lisa hilang; nama file dipulihkan hanya dari tag halaman.</value>
-  </data>
-  <data name="Explorer.Warning.AtariDirectory">
-    <value>Sektor direktori {0} tidak ada.</value>
-  </data>
-  <data name="Explorer.Warning.AtariData">
-    <value>{0}: sektor data Atari DOS tidak valid atau hilang.</value>
-  </data>
-  <data name="Explorer.Warning.AtariOwner">
-    <value>Sektor {0} milik file {1}, diharapkan {2}.</value>
-  </data>
+  <data name="Explorer.Warning.InvalidChecksum"><value>Blok root {0} memiliki checksum yang tidak valid.</value></data>
+  <data name="Explorer.Warning.DirectoryNesting"><value>Batas penumpukan direktori telah tercapai.</value></data>
+  <data name="Explorer.Warning.InvalidDirectoryChain"><value>Rantai direktori tidak valid atau siklik di blok {0}.</value></data>
+  <data name="Explorer.Warning.DirectoryEntryMissing"><value>Blok entri direktori {0} tidak ada.</value></data>
+  <data name="Explorer.Warning.AmigaExtension"><value>{0}: Blok ekstensi file tidak valid {1}.</value></data>
+  <data name="Explorer.Warning.AmigaBlock"><value>{0}: AmigaDOS {1} ({2}) hilang.</value></data>
+  <data name="Explorer.Warning.FileDataMissing"><value>Blok data file {0} hilang.</value></data>
+  <data name="Explorer.Warning.OfsType"><value>Blok data OFS {0} memiliki tipe yang tidak terduga.</value></data>
+  <data name="Explorer.Warning.BitmapMissing"><value>Blok bitmap {0} tidak ada.</value></data>
+  <data name="Explorer.Warning.BitmapChecksum"><value>Blok bitmap {0} memiliki checksum yang tidak valid.</value></data>
+  <data name="Explorer.Warning.CpmAllocation"><value>{0}: Blok alokasi CP/M {1} berada di luar gambar.</value></data>
+  <data name="Explorer.Warning.CbmDirectoryCyclic"><value>Rantai direktori CBM DOS siklik di {0}/{1}.</value></data>
+  <data name="Explorer.Warning.CbmDirectoryMissing"><value>Sektor direktori CBM DOS {0}/{1} tidak ada.</value></data>
+  <data name="Explorer.Warning.CbmDataCyclic"><value>{0}: Rantai data siklik di {1}/{2}.</value></data>
+  <data name="Explorer.Warning.CbmDataMissing"><value>{0}: Sektor data {1}/{2} tidak ada.</value></data>
+  <data name="Explorer.Warning.CbmCapacity"><value>{0}: rantai file melebihi kapasitas gambar.</value></data>
+  <data name="Explorer.Warning.UcsdDirectoryMissing"><value>Satu atau lebih blok direktori UCSD hilang.</value></data>
+  <data name="Explorer.Warning.UcsdEntry"><value>Entri direktori UCSD {0} memiliki nama yang tidak valid atau kosong.</value></data>
+  <data name="Explorer.Warning.UcsdRange"><value>{0}: rentang blok tidak valid {1}..{2}.</value></data>
+  <data name="Explorer.Warning.DataBlocksMissing"><value>{0}: satu atau lebih blok data hilang.</value></data>
+  <data name="Explorer.Warning.UcsdCount"><value>Direktori UCSD mendeklarasikan file {0} tetapi ditemukan {1} entri yang valid.</value></data>
+  <data name="Explorer.Warning.CoherentInodeZero"><value>{0}: Inode COHERENT 0 tidak valid.</value></data>
+  <data name="Explorer.Warning.CoherentInodeOutside"><value>{0}: COHERENT inode {1} di luar gambar.</value></data>
+  <data name="Explorer.Warning.FileTooLarge"><value>{0}: File terlalu besar.</value></data>
+  <data name="Explorer.Warning.CoherentBlock"><value>{0}: COHERENT blok {1} di luar gambar.</value></data>
+  <data name="Explorer.Warning.BytesUnread"><value>{0}: {1} byte tidak dapat dibaca.</value></data>
+  <data name="Explorer.Warning.CoherentIndirect"><value>{0}: tidak langsung COHERENT blok {1} di luar gambar.</value></data>
+  <data name="Explorer.Warning.Rt11SegmentMissing"><value>Segmen direktori RT-11 {0} tidak ada.</value></data>
+  <data name="Explorer.Warning.Rt11EntrySize"><value>Segmen direktori RT-11 {0} memiliki ukuran entri yang tidak valid.</value></data>
+  <data name="Explorer.Warning.Rt11EmptyName"><value>Entri RT-11 di blok {0} memiliki nama kosong.</value></data>
+  <data name="Explorer.Warning.ProDosNesting"><value>Batas penumpukan direktori ProDOS telah tercapai.</value></data>
+  <data name="Explorer.Warning.DirectoryBlockCyclic"><value>Blok direktori {0} tidak ada atau bersifat siklik.</value></data>
+  <data name="Explorer.Warning.MasterIndexMissing"><value>{0}: blok indeks utama {1} hilang.</value></data>
+  <data name="Explorer.Warning.DataBlockMissing"><value>{0}: blok data {1} hilang.</value></data>
+  <data name="Explorer.Warning.IndexBlockMissing"><value>{0}: blok indeks {1} hilang.</value></data>
+  <data name="Explorer.Warning.CatalogMissing"><value>Sektor katalog T{0} S{1} tidak ada atau bersifat siklik.</value></data>
+  <data name="Explorer.Warning.CatalogSize"><value>{0}: ukuran katalog tidak konsisten.</value></data>
+  <data name="Explorer.Warning.TrackSectorList"><value>{0}: Daftar T/S T{1} S{2} hilang atau berputar.</value></data>
+  <data name="Explorer.Warning.TrackSectorData"><value>{0}: sektor data T{1} S{2} tidak ada.</value></data>
+  <data name="Explorer.Warning.DirectoryBlockMissing"><value>Blok direktori {0} tidak ada.</value></data>
+  <data name="Explorer.Warning.MfsEntry"><value>Entri direktori MFS tidak valid di blok {0}.</value></data>
+  <data name="Explorer.Warning.ResourceFork"><value>{0}: metadata fork sumber daya tidak konsisten.</value></data>
+  <data name="Explorer.Warning.MfsChain"><value>{0}: rantai alokasi MFS tidak valid.</value></data>
+  <data name="Explorer.Warning.BlockMissing"><value>{0}: blok {1} hilang.</value></data>
+  <data name="Explorer.Warning.BbcSector"><value>{0}: sektor data {1} tidak ada.</value></data>
+  <data name="Explorer.Warning.HfsCatalog"><value>Katalog HFS tidak berisi catatan daun yang dapat dibaca.</value></data>
+  <data name="Explorer.Warning.HfsDirectory"><value>Direktori HFS siklik #{0}.</value></data>
+  <data name="Explorer.Warning.HfsBlock"><value>{0}: Blok HFS {1} hilang.</value></data>
+  <data name="Explorer.Warning.HfsExtents"><value>{0}: diperlukan perluasan HFS tambahan atau data hilang.</value></data>
+  <data name="Explorer.Warning.FatNesting"><value>Batas penumpukan direktori FAT telah tercapai.</value></data>
+  <data name="Explorer.Warning.FatChain"><value>{0}: Rantai FAT tidak valid atau siklik di cluster {1}.</value></data>
+  <data name="Explorer.Warning.SectorMissing"><value>Sektor {0} tidak ada.</value></data>
+  <data name="Explorer.Warning.LisaCatalog"><value>Halaman katalog Lisa hilang; nama file dipulihkan hanya dari tag halaman.</value></data>
+  <data name="Explorer.Warning.AtariDirectory"><value>Sektor direktori {0} tidak ada.</value></data>
+  <data name="Explorer.Warning.AtariData"><value>{0}: sektor data Atari DOS tidak valid atau hilang.</value></data>
+  <data name="Explorer.Warning.AtariOwner"><value>Sektor {0} milik file {1}, diharapkan {2}.</value></data>
 </root>

@@ -12,140 +12,78 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Conflict.Title">
-    <value>Các tập tin hiện có</value>
-  </data>
-  <data name="Conflict.Heading">
-    <value>Một số tệp đã tồn tại</value>
-  </data>
-  <data name="Conflict.Help">
-    <value>Chọn một hành động cho mỗi tệp hoặc áp dụng cùng một hành động cho tất cả các tệp.</value>
-  </data>
-  <data name="Conflict.File">
-    <value>Tài liệu</value>
-  </data>
-  <data name="Conflict.Action">
-    <value>Hoạt động</value>
-  </data>
-  <data name="Conflict.Overwrite">
-    <value>Ghi đè</value>
-  </data>
-  <data name="Conflict.Skip">
-    <value>Nhảy</value>
-  </data>
-  <data name="Conflict.Number">
-    <value>Sử dụng số tiếp theo</value>
-  </data>
-  <data name="Conflict.AllOverwrite">
-    <value>Ghi đè tất cả</value>
-  </data>
-  <data name="Conflict.AllSkip">
-    <value>Bỏ qua tất cả</value>
-  </data>
-  <data name="Conflict.AllNumber">
-    <value>Đánh số tất cả</value>
-  </data>
-  <data name="Conversion.Title">
-    <value>chuyển đổi</value>
-  </data>
-  <data name="Conversion.SelectOutput">
-    <value>Chọn ít nhất một định dạng đầu ra.</value>
-  </data>
-  <data name="Conversion.SourceAmbiguous">
-    <value>Nguồn mơ hồ</value>
-  </data>
-  <data name="Conversion.Summary">
-    <value>Tóm tắt: {0} thành công, {1} thất bại.</value>
-  </data>
-  <data name="Conversion.Failures">
-    <value>Lỗi: {0}</value>
-  </data>
-  <data name="Conversion.Source">
-    <value>Nguồn</value>
-  </data>
-  <data name="Conversion.OutputNames">
-    <value>Tên đầu ra</value>
-  </data>
-  <data name="Conversion.AddTags">
-    <value>Thêm thẻ</value>
-  </data>
-  <data name="Conversion.Selected">
-    <value>Đã chọn</value>
-  </data>
-  <data name="Conversion.CommonFormats">
-    <value>Các định dạng phổ biến</value>
-  </data>
-  <data name="Conversion.ShowRare">
-    <value>Hiển thị các định dạng hiếm khi được sử dụng</value>
-  </data>
-  <data name="Conversion.LimitTracks">
-    <value>Giới hạn bài hát</value>
-  </data>
-  <data name="Conversion.SourceRequired">
-    <value>Chọn một hình ảnh nguồn hiện có.</value>
-  </data>
-  <data name="Conversion.NameRequired">
-    <value>Nhập tên tập tin đầu ra.</value>
-  </data>
-  <data name="Conversion.CheckOutput">
-    <value>Kiểm tra ít nhất một định dạng đầu ra.</value>
-  </data>
-  <data name="Conversion.More">
-    <value>(+ {0} chuyển đổi)</value>
-  </data>
-  <data name="Conversion.DefaultExtensionTip">
-    <value>Không có tiện ích mở rộng nào được chọn: {0} được sử dụng theo mặc định.</value>
-  </data>
-  <data name="Conversion.Incompatible">
-    <value>{0} không tương thích với nguồn này.</value>
-  </data>
-  <data name="Conversion.NoAvailableOutputName">
-    <value>Không thể tìm thấy tên tệp đầu ra có sẵn.</value>
-  </data>
-  <data name="Conversion.ReconstructedFlux">
-    <value>luồng được tái tạo</value>
-  </data>
-  <data name="Migration.Open"><value>File migration...</value></data>
-  <data name="Migration.Title"><value>File migration</value></data>
-  <data name="Migration.Heading"><value>Migrate files to another file system</value></data>
-  <data name="Migration.Source"><value>Source image</value></data>
-  <data name="Migration.NoSource"><value>Select an image containing a recognized file system.</value></data>
-  <data name="Migration.Destination"><value>Destination file system and format</value></data>
-  <data name="Migration.Output"><value>Destination image</value></data>
-  <data name="Migration.Compatibility"><value>Compatibility and losses</value></data>
-  <data name="Migration.Waiting"><value>Select a source and a destination.</value></data>
-  <data name="Migration.Severity"><value>Severity</value></data>
-  <data name="Migration.Path"><value>Source path</value></data>
-  <data name="Migration.Description"><value>Description</value></data>
-  <data name="Migration.AcceptLosses"><value>Accept the listed metadata losses</value></data>
-  <data name="Migration.Execute"><value>Migrate files</value></data>
-  <data name="Migration.Blocking"><value>Blocking</value></data>
-  <data name="Migration.MetadataLoss"><value>Metadata loss</value></data>
-  <data name="Migration.SourceSummary"><value>Volume: {0} — File system: {1} — Root entries: {2}</value></data>
-  <data name="Migration.SourceFailed"><value>Unable to prepare the migration: {0}</value></data>
-  <data name="Migration.Completed"><value>The destination image was created: {0}</value></data>
-  <data name="Migration.Failed"><value>Migration failed: {0}</value></data>
-  <data name="Migration.Incompatible"><value>Incompatible: correct the blocking losses before migration.</value></data>
-  <data name="Migration.CompatibleWithLosses"><value>Compatible after accepting the listed metadata losses.</value></data>
-  <data name="Migration.Compatible"><value>Compatible: no loss detected.</value></data>
-  <data name="Migration.Loss.MissingContent"><value>File content is unavailable.</value></data>
-  <data name="Migration.Loss.UnsupportedEntryKind"><value>This entry type is not supported by the destination.</value></data>
-  <data name="Migration.Loss.InvalidName"><value>The name is not valid for the destination.</value></data>
-  <data name="Migration.Loss.NameTooLong"><value>The name is too long for the destination.</value></data>
-  <data name="Migration.Loss.NameCollision"><value>Several entries would have the same destination name.</value></data>
-  <data name="Migration.Loss.FileTooLarge"><value>The file is too large for the destination.</value></data>
-  <data name="Migration.Loss.InvalidMetadata"><value>The source metadata is invalid.</value></data>
-  <data name="Migration.Loss.ModifiedDate"><value>The modification date will not be preserved.</value></data>
-  <data name="Migration.Loss.Comment"><value>The comment will not be preserved.</value></data>
-  <data name="Migration.Loss.Attributes"><value>The source attributes will not be preserved.</value></data>
-  <data name="Migration.OverwriteConfirm"><value>The destination image already exists. Replace it? {0}</value></data>
-  <data name="Migration.SourceDestinationSame"><value>The destination image cannot replace the source image.</value></data>
-  <data name="Conversion.Fidelity.SectorData"><value>sector data; protections not preserved</value></data>
-  <data name="Conversion.Fidelity.ReconstructedTracks"><value>reconstructed tracks; original flux not preserved</value></data>
-  <data name="Conversion.Fidelity.PreservedFlux"><value>original flux preserved</value></data>
-  <data name="Conversion.EngineExternal" xml:space="preserve"><value>Host Tools: converting {0}.</value></data>
-  <data name="Conversion.EngineInternalStart" xml:space="preserve"><value>Internal engine: converting {0} to {1}.</value></data>
-  <data name="Conversion.EngineInternalComplete" xml:space="preserve"><value>Internal conversion completed: {0}.</value></data>
-  <data name="Conversion.EngineInternalUnavailable" xml:space="preserve"><value>The internal engine does not support this conversion: {0}.</value></data>
-  <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Internal conversion failed for {0}: {1}</value></data>
+  <data name="Conflict.Title"><value>Các tập tin hiện có</value></data>
+  <data name="Conflict.Heading"><value>Một số tệp đã tồn tại</value></data>
+  <data name="Conflict.Help"><value>Chọn một hành động cho mỗi tệp hoặc áp dụng cùng một hành động cho tất cả các tệp.</value></data>
+  <data name="Conflict.File"><value>Tài liệu</value></data>
+  <data name="Conflict.Action"><value>Hoạt động</value></data>
+  <data name="Conflict.Overwrite"><value>Ghi đè</value></data>
+  <data name="Conflict.Skip"><value>Nhảy</value></data>
+  <data name="Conflict.Number"><value>Sử dụng số tiếp theo</value></data>
+  <data name="Conflict.AllOverwrite"><value>Ghi đè tất cả</value></data>
+  <data name="Conflict.AllSkip"><value>Bỏ qua tất cả</value></data>
+  <data name="Conflict.AllNumber"><value>Đánh số tất cả</value></data>
+  <data name="Conversion.Title"><value>chuyển đổi</value></data>
+  <data name="Conversion.SelectOutput"><value>Chọn ít nhất một định dạng đầu ra.</value></data>
+  <data name="Conversion.SourceAmbiguous"><value>Nguồn mơ hồ</value></data>
+  <data name="Conversion.Summary"><value>Tóm tắt: {0} thành công, {1} thất bại.</value></data>
+  <data name="Conversion.Failures"><value>Lỗi: {0}</value></data>
+  <data name="Conversion.Source"><value>Nguồn</value></data>
+  <data name="Conversion.OutputNames"><value>Tên đầu ra</value></data>
+  <data name="Conversion.AddTags"><value>Thêm thẻ</value></data>
+  <data name="Conversion.Selected"><value>Đã chọn</value></data>
+  <data name="Conversion.CommonFormats"><value>Các định dạng phổ biến</value></data>
+  <data name="Conversion.ShowRare"><value>Hiển thị các định dạng hiếm khi được sử dụng</value></data>
+  <data name="Conversion.LimitTracks"><value>Giới hạn bài hát</value></data>
+  <data name="Conversion.SourceRequired"><value>Chọn một hình ảnh nguồn hiện có.</value></data>
+  <data name="Conversion.NameRequired"><value>Nhập tên tập tin đầu ra.</value></data>
+  <data name="Conversion.CheckOutput"><value>Kiểm tra ít nhất một định dạng đầu ra.</value></data>
+  <data name="Conversion.More"><value>(+ {0} chuyển đổi)</value></data>
+  <data name="Conversion.DefaultExtensionTip"><value>Không có tiện ích mở rộng nào được chọn: {0} được sử dụng theo mặc định.</value></data>
+  <data name="Conversion.Incompatible"><value>{0} không tương thích với nguồn này.</value></data>
+  <data name="Conversion.NoAvailableOutputName"><value>Không thể tìm thấy tên tệp đầu ra có sẵn.</value></data>
+  <data name="Conversion.ReconstructedFlux"><value>luồng được tái tạo</value></data>
+  <data name="Migration.Open"><value>Di trú tập tin...</value></data>
+  <data name="Migration.Title"><value>Di trú tập tin</value></data>
+  <data name="Migration.Heading"><value>Chuyển tập tin sang hệ thống tập tin khác</value></data>
+  <data name="Migration.Source"><value>Ảnh nguồn</value></data>
+  <data name="Migration.NoSource"><value>Chọn một ảnh chứa hệ thống tập tin đã nhận.</value></data>
+  <data name="Migration.Destination"><value>Hệ thống tập tin và định dạng đích</value></data>
+  <data name="Migration.Output"><value>Ảnh đích</value></data>
+  <data name="Migration.Compatibility"><value>Tương thích và mất mát</value></data>
+  <data name="Migration.Waiting"><value>Chọn một nguồn và đích.</value></data>
+  <data name="Migration.Severity"><value>Độ dốc</value></data>
+  <data name="Migration.Path"><value>Đường dẫn nguồn</value></data>
+  <data name="Migration.Description"><value>Mô tả</value></data>
+  <data name="Migration.AcceptLosses"><value>Chấp nhận tổn thất siêu dữ liệu được liệt kê</value></data>
+  <data name="Migration.Execute"><value>Chuyển tập tin</value></data>
+  <data name="Migration.Blocking"><value>Chặn</value></data>
+  <data name="Migration.MetadataLoss"><value>Mất siêu dữ liệu</value></data>
+  <data name="Migration.SourceSummary"><value>Âm lượng: {0} - Hệ thống tập tin: {1} - Mục nhập gốc: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>Không thể chuẩn bị cho cuộc di cư: {0}</value></data>
+  <data name="Migration.Completed"><value>Ảnh đích được tạo: {0}</value></data>
+  <data name="Migration.Failed"><value>Chuyển thành: {0}</value></data>
+  <data name="Migration.Incompatible"><value>Không thể tương ứng: sửa chữa những tổn thất trước khi di cư.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>Hợp lý sau khi chấp nhận những tổn thất về siêu dữ liệu được liệt kê.</value></data>
+  <data name="Migration.Compatible"><value>Hợp lý: không thấy mất mát.</value></data>
+  <data name="Migration.Loss.MissingContent"><value>Không có nội dung tập tin.</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>Kiểu mục nhập này không được hỗ trợ bởi đích.</value></data>
+  <data name="Migration.Loss.InvalidName"><value>Tên không hợp lệ cho đích.</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>Tên của nó quá dài để đến nơi.</value></data>
+  <data name="Migration.Loss.NameCollision"><value>Một số mục nhập có cùng tên đích.</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>Tập tin quá lớn để đích.</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>Siêu dữ liệu mã nguồn không hợp lệ.</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>Ngày sửa đổi sẽ không được bảo tồn.</value></data>
+  <data name="Migration.Loss.Comment"><value>Lời bình luận sẽ không được lưu giữ.</value></data>
+  <data name="Migration.Loss.Attributes"><value>Các đặc tính gốc sẽ không được bảo tồn.</value></data>
+  <data name="Migration.OverwriteConfirm"><value>Ảnh đích đã tồn tại. Thay thế nó? {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>Ảnh đích không thể thay thế ảnh gốc.</value></data>
+  <data name="Conversion.Fidelity.SectorData"><value>Dữ liệu phân khu; bảo vệ không được bảo tồn</value></data>
+  <data name="Conversion.Fidelity.ReconstructedTracks"><value>Dấu vết được xây dựng lại; luồng gốc không bảo tồn</value></data>
+  <data name="Conversion.Fidelity.PreservedFlux"><value>Bảo tồn luồng gốc</value></data>
+  <data name="Conversion.EngineExternal"><value>Công cụ máy: đang chuyển đổi {0}.</value></data>
+  <data name="Conversion.EngineInternalStart"><value>Cơ chế nội bộ: chuyển đổi {0} phải {1}.</value></data>
+  <data name="Conversion.EngineInternalComplete"><value>Hoàn tất việc chuyển đổi nội bộ: {0}.</value></data>
+  <data name="Conversion.EngineInternalUnavailable"><value>Cơ chế nội bộ không hỗ trợ việc chuyển đổi này: {0}.</value></data>
+  <data name="Conversion.EngineInternalFailed"><value>Việc chuyển đổi nội bộ bị lỗi {0}: {1}</value></data>
 </root>

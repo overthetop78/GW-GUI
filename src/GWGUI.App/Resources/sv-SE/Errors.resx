@@ -12,28 +12,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.SettingsSaveFailed">
-    <value>Inställningarna kunde inte sparas.
-
-{0}</value>
-  </data>
-  <data name="Error.Title">
-    <value>GW GUI fel</value>
-  </data>
-  <data name="Error.Unexpected">
-    <value>Ett oväntat fel fångades upp.
-
-{0}</value>
-  </data>
-  <data name="Error.SaveFailed">
-    <value>Inställningarna kunde inte sparas. Fönstret stängs fortfarande.
-
-{0}</value>
-  </data>
-  <data name="Error.LogSaved">
-    <value>Hela rapporten sparades till:
-{0}</value>
-  </data>
+  <data name="App.SettingsSaveFailed"><value>Inställningarna kunde inte sparas.&#xA;&#xA;{0}</value></data>
+  <data name="Error.Title"><value>GW GUI fel</value></data>
+  <data name="Error.Unexpected"><value>Ett oväntat fel fångades upp.&#xA;&#xA;{0}</value></data>
+  <data name="Error.SaveFailed"><value>Inställningarna kunde inte sparas. Fönstret stängs fortfarande.&#xA;&#xA;{0}</value></data>
+  <data name="Error.LogSaved"><value>Hela rapporten sparades till:&#xA;{0}</value></data>
   <data name="Error.Description.NetworkTimeout"><value>Fjärrtjänsten svarade inte innan anslutningen gick ut. Kontrollera nätverksanslutningen och försök igen.</value></data>
   <data name="Error.Description.NetworkDns"><value>Fjärrtjänsten kunde inte lösas. Kontrollera nätverks- eller DNS-inställningarna och försök igen.</value></data>
   <data name="Error.Description.NetworkRefused"><value>Fjärrtjänsten vägrade anslutningen. Det kan vara otillgängligt eller blockerat.</value></data>

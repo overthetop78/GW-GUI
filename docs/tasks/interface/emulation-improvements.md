@@ -2055,7 +2055,7 @@ modification ultérieure décale ces lignes.
     contenu propriétaire qui l’a produite. Les mires couvrent les couleurs, gradients, diagonales et
     damiers nécessaires pour voir palettes, masque, scanlines, courbure, halo et vignettage.
   - Modifications : `tests/GWGUI.Tests/EmulationVideoProcessingPipelineTests.cs` et planches
-    générées dans `artifacts/crt-validation` ; ordre des colonnes : Arcade couleur, Téléviseur
+    générées dans `build/validation/crt-validation` ; ordre des colonnes : Arcade couleur, Téléviseur
     couleur, vert, ambre, blanc ; lignes : Amiga puis Atari.
 
 - **2026-09-02 — Paramètres exacts du modèle Plasma**
@@ -2286,7 +2286,7 @@ modification ultérieure décale ces lignes.
     Direct3D 11 et Vulkan produisent exactement le même PNG et le même SHA-256.
   - Modifications réalisées : `EmulationVideoProcessingPipelineTests.cs:635`, image source à
     `:1784`, écriture PNG généralisée à `:1837` et racine du dépôt à `:1875`. Artefacts :
-    `artifacts/advanced-filter-validation/advanced-wpf.png`, `advanced-opengl.png`,
+    `build/validation/advanced-filter-validation/advanced-wpf.png`, `advanced-opengl.png`,
     `advanced-direct3d11.png` et `advanced-vulkan.png`.
   - Vérifications terminées avant cochage : planche ciblée `1/1`, suite finale
     vidéo/configuration/interface/localisation `122/122`, compilation GWGUI.App sans avertissement
@@ -2974,12 +2974,35 @@ Chaque dernière case ci-dessous est une modification atomique. Elle doit laisse
   - [x] Compléter EmulationPlasmaVideoConfiguration, le catalogue, les ressources et le panneau conditionnel sans modifier les autres technologies.
   - [x] Implémenter la référence CPU, puis les passes Veldrid et OpenGL avec les mêmes valeurs.
   - [x] Ajouter les tests déterministes et vérifier Plasma avec les quatre renderers avant de cocher le groupe.
+  - [x] Reprendre le modèle après la validation visuelle des quatre contrôles Plasma.
+    - [x] Isoler le bloc d’interface dans EmulationPlasmaSettingsBlock.cs, supprimer l’agrégateur
+      FilterPlasma.cs et placer chaque traitement dans son propre fichier : structure des cellules,
+      profondeur des noirs, intensité des phosphores, réponse gamma, tramage temporel, diffusion
+      lumineuse, persistance et limiteur automatique de luminosité fondé sur la luminance moyenne
+      de l’image complète.
+    - [x] Présenter les paramètres dans quatre cartes fonctionnelles sans cadre Plasma redondant :
+      dalle et cellules, phosphores, gestion de la lumière et réponse temporelle.
+    - [x] Supprimer les bandes RGB non résolubles en intégrant le motif selon le rapport entre la
+      définition de la vidéo émulée et la taille de sortie.
+    - [x] Remplacer le bruit du tramage temporel par une quantification Bayer animée et bornée.
+    - [x] Rendre la diffusion lumineuse visible et dépendante des hautes lumières, à deux rayons
+      exprimés dans les coordonnées de la vidéo émulée.
+    - [x] Raccorder diffusion et persistance au shader Veldrid utilisé par Direct3D 11 et Vulkan,
+      puis rendre la persistance décroissante afin que la valeur maximale ne fige pas l’image.
 
 - [x] Implémenter l’écran vectoriel après Plasma
   - [x] Faire valider l’approximation raster, les paramètres de lignes, halo et persistance, puis les inscrire dans docs/reference/emulation-video-filters.md.
   - [x] Compléter EmulationVectorVideoConfiguration, le catalogue, les ressources et le panneau conditionnel sans prétendre recevoir des primitives vectorielles du moteur.
   - [x] Implémenter la détection/renforcement de lignes et la persistance dans la référence CPU, puis dans Veldrid et OpenGL.
   - [x] Ajouter les tests déterministes et vérifier l’écran vectoriel avec les quatre renderers avant de cocher le groupe.
+  - [x] Séparer le traitement en FilterVectorLineDetection.cs,
+    FilterVectorLineIntensity.cs, FilterVectorHalo.cs et FilterVectorPersistence.cs, puis présenter
+    les réglages dans deux cartes sans cadre vectoriel redondant : détection et tracé, lueur et
+    rémanence.
+  - [x] Compléter le modèle vectoriel avec la largeur/focalisation du faisceau, le
+    mode de phosphore (couleurs de la source, vert, ambre, blanc ou gris) et le rayon du halo. Ces
+    paramètres doivent rester indépendants de la résolution physique de l’écran et s’appliquer à
+    l’approximation raster issue de la vidéo émulée.
 
 - [x] Ajouter les filtres indépendants avancés un groupe à la fois
   - [x] Faire valider xBR, inscrire sa source et sa licence dans docs/reference/emulation-video-filters.md, puis l’implémenter et le vérifier seul dans les quatre renderers.
@@ -2997,8 +3020,15 @@ Chaque dernière case ci-dessous est une modification atomique. Elle doit laisse
   - [x] Ajouter les tests et validations visuelles propres à chaque filtre avant de cocher sa tâche individuelle.
 
 - [x] Traiter le catalogue ultérieur sans regrouper plusieurs effets dans une seule modification
-  - [x] Préparer puis implémenter VFD lorsqu’une machine prise en charge le nécessite.
-  - [x] Préparer puis implémenter la matrice LED lorsqu’une machine prise en charge le nécessite.
+  - [x] Refaire VFD avec seuil d’émission, verre fumé, structure graphique/matrice, taille et
+    espacement des cellules, halo avec rayon et persistance exprimée en millisecondes ; séparer
+    chaque fonction dans son propre fichier, organiser l’interface en trois cartes et raccorder les
+    paramètres aux quatre renderers dans les coordonnées de la vidéo émulée.
+  - [x] Refaire la matrice LED dans les coordonnées de la vidéo émulée : cellules régulières rondes
+    ou carrées, couleur réellement appliquée, luminosité pouvant atteindre l’extinction, espacement,
+    halo (intensité et rayon) et profondeur des noirs indépendants ; séparer chaque fonction dans son
+    propre fichier, organiser l’interface en deux cartes et compiler ce code uniquement lorsque la
+    technologie Matrice LED est sélectionnée.
   - [x] Préparer puis implémenter la matrice de points lorsqu’une machine prise en charge le nécessite.
   - [x] Préparer puis implémenter les affichages à segments lorsqu’une machine prise en charge le nécessite.
   - [x] Préparer puis implémenter le papier électronique après validation de son utilité et de ses paramètres.

@@ -12,52 +12,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Profiles.ByOperation">
-    <value>Perfis por operação</value>
-  </data>
-  <data name="Profiles.Tab">
-    <value>Guia</value>
-  </data>
-  <data name="Profiles.Name">
-    <value>Nome</value>
-  </data>
-  <data name="Profiles.System">
-    <value>Sistema</value>
-  </data>
-  <data name="Profiles.Rename">
-    <value>Renomear…</value>
-  </data>
-  <data name="Profile.SaveTitle">
-    <value>Guardar perfil</value>
-  </data>
-  <data name="Profile.Name">
-    <value>Nome do perfil</value>
-  </data>
-  <data name="Profile.NameRequired">
-    <value>Introduza um nome.</value>
-  </data>
-  <data name="Profile.Title">
-    <value>Perfil</value>
-  </data>
-  <data name="Common.Profile">
-    <value>Perfil</value>
-  </data>
-  <data name="Profile.Default">
-    <value>Predefinição</value>
-  </data>
-  <data name="Profile.SystemRename">
-    <value>O perfil Padrão é permanente e não pode ser renomeado.</value>
-  </data>
-  <data name="Profile.SystemDelete">
-    <value>O perfil Padrão é permanente e não pode ser eliminado.</value>
-  </data>
-  <data name="Profile.DuplicateName">
-    <value>Um perfil neste separador já possui este nome.</value>
-  </data>
-  <data name="Profile.Replace">
-    <value>Este perfil já existe. Substituí-lo?</value>
-  </data>
-  <data name="Profile.DeleteConfirm">
-    <value>Apagar perfil “{0}”?</value>
-  </data>
+  <data name="Profiles.ByOperation"><value>Perfis por operação</value></data>
+  <data name="Profiles.Tab"><value>Guia</value></data>
+  <data name="Profiles.Name"><value>Nome</value></data>
+  <data name="Profiles.System"><value>Sistema</value></data>
+  <data name="Profiles.Rename"><value>Renomear…</value></data>
+  <data name="Profile.SaveTitle"><value>Guardar perfil</value></data>
+  <data name="Profile.Name"><value>Nome do perfil</value></data>
+  <data name="Profile.NameRequired"><value>Introduza um nome.</value></data>
+  <data name="Profile.Title"><value>Perfil</value></data>
+  <data name="Common.Profile"><value>Perfil</value></data>
+  <data name="Profile.Default"><value>Predefinição</value></data>
+  <data name="Profile.SystemRename"><value>O perfil Padrão é permanente e não pode ser renomeado.</value></data>
+  <data name="Profile.SystemDelete"><value>O perfil Padrão é permanente e não pode ser eliminado.</value></data>
+  <data name="Profile.DuplicateName"><value>Um perfil neste separador já possui este nome.</value></data>
+  <data name="Profile.Replace"><value>Este perfil já existe. Substituí-lo?</value></data>
+  <data name="Profile.DeleteConfirm"><value>Apagar perfil “{0}”?</value></data>
 </root>

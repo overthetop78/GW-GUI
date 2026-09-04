@@ -12,67 +12,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Detection.Ambiguous">
-    <value>פורמט מעורפל</value>
-  </data>
-  <data name="Detection.RawScp">
-    <value>לכידת SCP גולמית מזוהה.</value>
-  </data>
-  <data name="Detection.AmigaSize">
-    <value>פורמט Amiga מזוהה מגודל הקובץ.</value>
-  </data>
-  <data name="Detection.AcornSize">
-    <value>פורמט Acorn מזוהה מגודל הקובץ.</value>
-  </data>
-  <data name="Detection.AtariUnknownSize">
-    <value>הגודל אינו תואם לפרופיל Atari ST ידוע.</value>
-  </data>
-  <data name="Detection.AtariSize">
-    <value>Atari ST גיאומטריה מזוהה מגודל הקובץ.</value>
-  </data>
-  <data name="Detection.MsaInferred">
-    <value>מיכל Atari MSA מזוהה; אשר את הגיאומטריה במידת הצורך.</value>
-  </data>
-  <data name="Detection.IbmAmbiguous">
-    <value>ההרחבה לבדה לא יכולה לקבוע את הגיאומטריה IBM PC.</value>
-  </data>
-  <data name="Detection.IbmSize">
-    <value>IBM PC גיאומטריה מזוהה מגודל הקובץ.</value>
-  </data>
-  <data name="Detection.ExtensionInferred">
-    <value>הפורמט נגזר מההרחבה.</value>
-  </data>
-  <data name="Detection.Multiple">
-    <value>מספר פורמטים אפשריים; לבחור אחד במפורש.</value>
-  </data>
-  <data name="Format.raw.scp">
-    <value>תמונת שטף גולמי</value>
-  </data>
-  <data name="Format.raw.hfe">
-    <value>תמונת שטף HxC</value>
-  </data>
-  <data name="Common.DiskImageFilter">
-    <value>תמונות דיסק|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|כל הקבצים|*.*</value>
-  </data>
-  <data name="Detection.AppleDosOrder">
-    <value>תבנית Apple II DOS זוהתה לפי סדר הסקטורים.</value>
-  </data>
-  <data name="Detection.AppleProDosOrder">
-    <value>תבנית Apple II ProDOS זוהתה לפי סדר הסקטורים.</value>
-  </data>
-  <data name="Detection.AppleContainer">
-    <value>זוהה מכל תמונת דיסק של Apple.</value>
-  </data>
-  <data name="Classification.Automatic">
-    <value>זיהוי אוטומטי</value>
-  </data>
-  <data name="Classification.Machine">
-    <value>מחשב</value>
-  </data>
-  <data name="Classification.Format">
-    <value>תבנית</value>
-  </data>
-  <data name="Classification.Protection">
-    <value>הגנה</value>
-  </data>
+  <data name="Detection.Ambiguous"><value>פורמט מעורפל</value></data>
+  <data name="Detection.RawScp"><value>לכידת SCP גולמית מזוהה.</value></data>
+  <data name="Detection.AmigaSize"><value>פורמט Amiga מזוהה מגודל הקובץ.</value></data>
+  <data name="Detection.AcornSize"><value>פורמט Acorn מזוהה מגודל הקובץ.</value></data>
+  <data name="Detection.AtariUnknownSize"><value>הגודל אינו תואם לפרופיל Atari ST ידוע.</value></data>
+  <data name="Detection.AtariSize"><value>Atari ST גיאומטריה מזוהה מגודל הקובץ.</value></data>
+  <data name="Detection.MsaInferred"><value>מיכל Atari MSA מזוהה; אשר את הגיאומטריה במידת הצורך.</value></data>
+  <data name="Detection.IbmAmbiguous"><value>הסיומת לבדה לא יכולה לקבוע IBM PC Geoמטריה</value></data>
+  <data name="Detection.IbmSize"><value>IBM PC גיאומטריה מזוהה מגודל הקובץ.</value></data>
+  <data name="Detection.ExtensionInferred"><value>הפורמט נגזר מההרחבה.</value></data>
+  <data name="Detection.Multiple"><value>מספר פורמטים אפשריים; לבחור אחד במפורש.</value></data>
+  <data name="Format.raw.scp"><value>תמונת שטף גולמי</value></data>
+  <data name="Common.DiskImageFilter"><value>Disk Images|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|כל הקבצים|*.*</value></data>
+  <data name="Detection.AppleDosOrder"><value>תבנית Apple II DOS זוהתה לפי סדר הסקטורים.</value></data>
+  <data name="Detection.AppleProDosOrder"><value>תבנית Apple II ProDOS זוהתה לפי סדר הסקטורים.</value></data>
+  <data name="Detection.AppleContainer"><value>זוהה מכל תמונת דיסק של Apple.</value></data>
+  <data name="Classification.Automatic"><value>זיהוי אוטומטי</value></data>
+  <data name="Classification.Machine"><value>מחשב</value></data>
+  <data name="Classification.Format"><value>תבנית</value></data>
+  <data name="Classification.Protection"><value>הגנה</value></data>
 </root>

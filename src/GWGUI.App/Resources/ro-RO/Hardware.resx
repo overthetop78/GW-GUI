@@ -12,148 +12,51 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Hardware.Port">
-    <value>Port</value>
-  </data>
-  <data name="Hardware.UsbId">
-    <value>USB identificator</value>
-  </data>
-  <data name="Hardware.Drive">
-    <value>Conduce</value>
-  </data>
-  <data name="Hardware.Available">
-    <value>Disponibil</value>
-  </data>
-  <data name="Hardware.Scan">
-    <value>Scanează</value>
-  </data>
-  <data name="Hardware.AddDrive">
-    <value>Adăugați o unitate...</value>
-  </data>
-  <data name="Hardware.NoDrive">
-    <value>Nicio unitate definită</value>
-  </data>
-  <data name="Hardware.EditorTitle">
-    <value>Definiți o unitate</value>
-  </data>
-  <data name="Hardware.Controller">
-    <value>Greaseweazle controler</value>
-  </data>
-  <data name="Hardware.GwSelection">
-    <value>Selecția a trecut la gw</value>
-  </data>
-  <data name="Hardware.PhysicalSize">
-    <value>Dimensiunea fizică</value>
-  </data>
-  <data name="Hardware.SizeShort">
-    <value>Dimensiune</value>
-  </data>
-  <data name="Hardware.DensityShort">
-    <value>Densitate</value>
-  </data>
-  <data name="Hardware.SpeedShort">
-    <value>Viteză</value>
-  </data>
-  <data name="Hardware.AvailableState">
-    <value>Disponibil</value>
-  </data>
-  <data name="Hardware.UnavailableState">
-    <value>Indisponibil</value>
-  </data>
-  <data name="Hardware.DensityDescription">
-    <value>Densitatea unității (doar descriere)</value>
-  </data>
-  <data name="Hardware.SpeedDescription">
-    <value>Viteza nominală (doar descriere)</value>
-  </data>
-  <data name="Hardware.NotConfigured">
-    <value>Controlerul nu este configurat</value>
-  </data>
-  <data name="Hardware.Disconnected">
-    <value>deconectat</value>
-  </data>
-  <data name="Hardware.SelectedDisconnected">
-    <value>Unitatea selectată este deconectată. Reconectați-l sau scanați din nou în Opțiuni → Controlere și unități.</value>
-  </data>
-  <data name="Hardware.DriveLabel">
-    <value>{0}-inchi · {1} · {2} · {3}</value>
-  </data>
-  <data name="Hardware.DriveDialogTitle">
-    <value>Conduce</value>
-  </data>
-  <data name="Hardware.ControllerRequired">
-    <value>Scanați sau adăugați mai întâi un controler Greaseweazle.</value>
-  </data>
-  <data name="Hardware.Description">
-    <value>{0}-inchi · {1} · selecție {2}{3}</value>
-  </data>
-  <data name="Hardware.ScanTitle">
-    <value>Scanează</value>
-  </data>
-  <data name="Hardware.GwRequired">
-    <value>Selectați sau descărcați mai întâi gw.exe de mai jos.</value>
-  </data>
-  <data name="Hardware.StartupTitle">
-    <value>Verificare hardware</value>
-  </data>
-  <data name="Hardware.StartupMissing">
-    <value>Hardware-ul configurat nu a putut fi găsit</value>
-  </data>
-  <data name="Hardware.StartupExplanation">
-    <value>Configurația este păstrată, dar unitățile sale vor rămâne indisponibile până când Greaseweazle este găsit din nou.</value>
-  </data>
-  <data name="Hardware.StartupMissingList">
-    <value>Lipsesc Greaseweazle controlere</value>
-  </data>
-  <data name="Hardware.StartupRetry">
-    <value>Caută din nou</value>
-  </data>
-  <data name="Hardware.StartupSettings">
-    <value>Setări hardware</value>
-  </data>
-  <data name="Hardware.StartupContinue">
-    <value>Continuați fără această unitate</value>
-  </data>
-  <data name="Hardware.StartupCheckFailed">
-    <value>Verificarea hardware-ului a eșuat: {0}</value>
-  </data>
-  <data name="Hardware.NewDetectedTitle">
-    <value>Greaseweazle nou detectat</value>
-  </data>
-  <data name="Hardware.NewDetected">
-    <value>{0} a fost detectat pe {1}. Doriți să-i configurați unitatea acum?</value>
-  </data>
-  <data name="Hardware.ConfigurationState">
-    <value>Configurare</value>
-  </data>
-  <data name="Hardware.Configured">
-    <value>Configurat</value>
-  </data>
-  <data name="Hardware.NotConfiguredState">
-    <value>Detectat, neconfigurat</value>
-  </data>
-  <data name="Hardware.Configure">
-    <value>Configurați</value>
-  </data>
-  <data name="Hardware.ReaderNumber">
-    <value>Conduceți {0}</value>
-  </data>
-  <data name="Hardware.DriveChoice">
-    <value>Conduceți {0} · {1}″ · {2} · {3}</value>
-  </data>
-  <data name="Hardware.Forget">
-    <value>Uita</value>
-  </data>
-  <data name="Hardware.ForgetConfirm">
-    <value>Chiar vrei să uiți această unitate sau dispozitiv?</value>
-  </data>
-  <data name="Hardware.ForgetLastConfirm">
-    <value>Aceasta este ultima unitate configurată pentru acest Greaseweazle. Doriți să uitați atât unitatea, cât și Greaseweazle?</value>
-  </data>
-  <data name="Hardware.SelectController">
-    <value>Selectați mai întâi un rând care aparține Greaseweazle relevant.</value>
-  </data>
-  <data name="Hardware.MaximumDrives">
-    <value>Cel mult două unități pot fi alocate automat acestui Greaseweazle (A și B).</value>
-  </data>
+<data name="Hardware.UsbId"><value>USB identificator</value></data>
+  <data name="Hardware.Drive"><value>Conduce</value></data>
+  <data name="Hardware.Available"><value>Disponibil</value></data>
+  <data name="Hardware.Scan"><value>Scanează</value></data>
+  <data name="Hardware.AddDrive"><value>Adăugați o unitate...</value></data>
+  <data name="Hardware.NoDrive"><value>Nicio unitate definită</value></data>
+  <data name="Hardware.EditorTitle"><value>Definiți o unitate</value></data>
+  <data name="Hardware.Controller"><value>Greaseweazle controler</value></data>
+  <data name="Hardware.GwSelection"><value>Selecția a trecut la gw</value></data>
+  <data name="Hardware.PhysicalSize"><value>Dimensiunea fizică</value></data>
+  <data name="Hardware.SizeShort"><value>Dimensiune</value></data>
+  <data name="Hardware.DensityShort"><value>Densitate</value></data>
+  <data name="Hardware.SpeedShort"><value>Viteză</value></data>
+  <data name="Hardware.AvailableState"><value>Disponibil</value></data>
+  <data name="Hardware.UnavailableState"><value>Indisponibil</value></data>
+  <data name="Hardware.DensityDescription"><value>Densitatea unității (doar descriere)</value></data>
+  <data name="Hardware.SpeedDescription"><value>Viteza nominală (doar descriere)</value></data>
+  <data name="Hardware.NotConfigured"><value>Controlerul nu este configurat</value></data>
+  <data name="Hardware.Disconnected"><value>deconectat</value></data>
+  <data name="Hardware.SelectedDisconnected"><value>Unitatea selectată este deconectată. Reconectați-l sau scanați din nou în Opțiuni → Controlere și unități.</value></data>
+  <data name="Hardware.DriveLabel"><value>{0}-inchi · {1} · {2} · {3}</value></data>
+  <data name="Hardware.DriveDialogTitle"><value>Conduce</value></data>
+  <data name="Hardware.ControllerRequired"><value>Scanați sau adăugați mai întâi un controler Greaseweazle.</value></data>
+  <data name="Hardware.Description"><value>{0}-inchi · {1} · selecție {2}{3}</value></data>
+  <data name="Hardware.ScanTitle"><value>Scanează</value></data>
+  <data name="Hardware.GwRequired"><value>Selectați sau descărcați mai întâi gw.exe de mai jos.</value></data>
+  <data name="Hardware.StartupTitle"><value>Verificare hardware</value></data>
+  <data name="Hardware.StartupMissing"><value>Hardware-ul configurat nu a putut fi găsit</value></data>
+  <data name="Hardware.StartupExplanation"><value>Configurația este păstrată, dar unitățile sale vor rămâne indisponibile până când Greaseweazle este găsit din nou.</value></data>
+  <data name="Hardware.StartupMissingList"><value>Lipsesc Greaseweazle controlere</value></data>
+  <data name="Hardware.StartupRetry"><value>Caută din nou</value></data>
+  <data name="Hardware.StartupSettings"><value>Setări hardware</value></data>
+  <data name="Hardware.StartupContinue"><value>Continuați fără această unitate</value></data>
+  <data name="Hardware.StartupCheckFailed"><value>Verificarea hardware-ului a eșuat: {0}</value></data>
+  <data name="Hardware.NewDetectedTitle"><value>Greaseweazle nou detectat</value></data>
+  <data name="Hardware.NewDetected"><value>{0} a fost detectat pe {1}. Doriți să-i configurați unitatea acum?</value></data>
+  <data name="Hardware.ConfigurationState"><value>Configurare</value></data>
+  <data name="Hardware.Configured"><value>Configurat</value></data>
+  <data name="Hardware.NotConfiguredState"><value>Detectat, neconfigurat</value></data>
+  <data name="Hardware.Configure"><value>Configurați</value></data>
+  <data name="Hardware.ReaderNumber"><value>Conduceți {0}</value></data>
+  <data name="Hardware.DriveChoice"><value>Conduceți {0} · {1}″ · {2} · {3}</value></data>
+  <data name="Hardware.Forget"><value>Uita</value></data>
+  <data name="Hardware.ForgetConfirm"><value>Chiar vrei să uiți această unitate sau dispozitiv?</value></data>
+  <data name="Hardware.ForgetLastConfirm"><value>Aceasta este ultima unitate configurată pentru acest Greaseweazle. Doriți să uitați atât unitatea, cât și Greaseweazle?</value></data>
+  <data name="Hardware.SelectController"><value>Selectați mai întâi un rând care aparține Greaseweazle relevant.</value></data>
+  <data name="Hardware.MaximumDrives"><value>Cel mult două unități pot fi alocate automat acestui Greaseweazle (A și B).</value></data>
 </root>

@@ -12,28 +12,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.SettingsSaveFailed">
-    <value>Nie można zapisać ustawień.
-
-{0}</value>
-  </data>
-  <data name="Error.Title">
-    <value>GW GUI błąd</value>
-  </data>
-  <data name="Error.Unexpected">
-    <value>Przechwycono nieoczekiwany błąd.
-
-{0}</value>
-  </data>
-  <data name="Error.SaveFailed">
-    <value>Nie można zapisać ustawień. Okno będzie nadal zamknięte.
-
-{0}</value>
-  </data>
-  <data name="Error.LogSaved">
-    <value>Pełny raport został zapisany w:
-{0}</value>
-  </data>
+  <data name="App.SettingsSaveFailed"><value>Nie można zapisać ustawień.&#xA;&#xA;{0}</value></data>
+  <data name="Error.Title"><value>GW GUI błąd</value></data>
+  <data name="Error.Unexpected"><value>Przechwycono nieoczekiwany błąd.&#xA;&#xA;{0}</value></data>
+  <data name="Error.SaveFailed"><value>Nie można zapisać ustawień. Okno będzie nadal zamknięte.&#xA;&#xA;{0}</value></data>
+  <data name="Error.LogSaved"><value>Pełny raport został zapisany w:&#xA;{0}</value></data>
   <data name="Error.Description.NetworkTimeout"><value>Usługa zdalna nie odpowiadała przed zakończeniem połączenia. Sprawdź połączenie sieciowe i spróbuj ponownie.</value></data>
   <data name="Error.Description.NetworkDns"><value>Adres zdalnej obsługi nie mógł zostać rozwiązany. Sprawdź ustawienia sieci lub DNS i spróbuj ponownie.</value></data>
   <data name="Error.Description.NetworkRefused"><value>Pilot odmówił połączenia. Może być niedostępny lub zablokowany.</value></data>

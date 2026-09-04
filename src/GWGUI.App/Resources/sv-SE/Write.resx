@@ -12,63 +12,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Write.Title">
-    <value>Skriva</value>
-  </data>
-  <data name="Write.SelectSource">
-    <value>Välj en befintlig källbild.</value>
-  </data>
-  <data name="Write.Ambiguous">
-    <value>Formatet är tvetydigt. Välj uttryckligen ett kompatibelt format.</value>
-  </data>
-  <data name="Write.VerifyOff">
-    <value>Verifiering efter skrivning är inaktiverad.</value>
-  </data>
-  <data name="Write.VerifyOn">
-    <value>Verifiering efter skrivning är aktiverad.</value>
-  </data>
-  <data name="Write.ConfirmTitle">
-    <value>Bekräfta skrivning</value>
-  </data>
-  <data name="Write.Confirm">
-    <value>Bild: {0}
-Format: {1}
-Drive: {2}
-{3}
-
-Skriva den här bilden till disken?</value>
-  </data>
-  <data name="Write.Source">
-    <value>Källbild</value>
-  </data>
-  <data name="Write.Detected">
-    <value>Upptäckt format</value>
-  </data>
-  <data name="Write.ChooseImage">
-    <value>Välj en bild.</value>
-  </data>
-  <data name="Write.NoVerify">
-    <value>Inaktivera verifiering efter att du skrivit</value>
-  </data>
-  <data name="Write.NoVerifyTip">
-    <value>Lägger till --no-verify. Disken kommer inte att läsas om för att bekräfta skrivningen.</value>
-  </data>
-  <data name="Write.EraseEmpty">
-    <value>Radera tomma spår</value>
-  </data>
-  <data name="Write.VisualizeTracks">
-    <value>Visualisera spår</value>
-  </data>
-  <data name="Write.VisualizeFormatRequired">
-    <value>Välj skivformat innan du visualiserar dess spår.</value>
-  </data>
+  <data name="Write.Title"><value>Skriva</value></data>
+  <data name="Write.SelectSource"><value>Välj en befintlig källbild.</value></data>
+  <data name="Write.Ambiguous"><value>Formatet är tvetydigt. Välj uttryckligen ett kompatibelt format.</value></data>
+  <data name="Write.VerifyOff"><value>Verifiering efter skrivning är inaktiverad.</value></data>
+  <data name="Write.VerifyOn"><value>Verifiering efter skrivning är aktiverad.</value></data>
+  <data name="Write.ConfirmTitle"><value>Bekräfta skrivning</value></data>
+  <data name="Write.Confirm"><value>Bild: {0}&#xA;Format: {1}&#xA;Drive: {2}&#xA;{3}&#xA;&#xA;Skriva den här bilden till disken?</value></data>
+  <data name="Write.Source"><value>Källbild</value></data>
+  <data name="Write.Detected"><value>Upptäckt format</value></data>
+  <data name="Write.ChooseImage"><value>Välj en bild.</value></data>
+  <data name="Write.NoVerify"><value>Inaktivera verifiering efter att du skrivit</value></data>
+  <data name="Write.NoVerifyTip"><value>Lägger till --no-verify. Disken kommer inte att läsas om för att bekräfta skrivningen.</value></data>
+  <data name="Write.EraseEmpty"><value>Radera tomma spår</value></data>
+  <data name="Write.VisualizeTracks"><value>Visualisera spår</value></data>
+  <data name="Write.VisualizeFormatRequired"><value>Välj skivformat innan du visualiserar dess spår.</value></data>
   <data name="Write.InternalWriter" xml:space="preserve"><value>Intern skrivning (experimentell)</value></data>
   <data name="Write.InternalWriterTip" xml:space="preserve"><value>Skriver direkt med den interna motorn utan gw.exe.</value></data>
   <data name="Write.InternalPreview" xml:space="preserve"><value>Intern GW GUI-skrivning: {0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Ett eller flera valda avancerade alternativ stöds ännu inte.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Intern verifiering är ännu inte tillgänglig. Aktivera ”Verifiera inte”.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Spår {0}, sida {1}: {2}</value></data>
-  <data name="Write.InternalFailureReason">
-    <value>Intern skrivning misslyckades.</value>
-  </data>
+  <data name="Write.InternalFailureReason"><value>Intern skrivning misslyckades.</value></data>
 </root>

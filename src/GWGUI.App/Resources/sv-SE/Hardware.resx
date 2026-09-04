@@ -12,148 +12,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Hardware.Port">
-    <value>Hamn</value>
-  </data>
-  <data name="Hardware.UsbId">
-    <value>USB identifierare</value>
-  </data>
-  <data name="Hardware.Drive">
-    <value>Köra</value>
-  </data>
-  <data name="Hardware.Available">
-    <value>Tillgänglig</value>
-  </data>
-  <data name="Hardware.Scan">
-    <value>Avsöka</value>
-  </data>
-  <data name="Hardware.AddDrive">
-    <value>Lägg till en enhet...</value>
-  </data>
-  <data name="Hardware.NoDrive">
-    <value>Ingen enhet definierad</value>
-  </data>
-  <data name="Hardware.EditorTitle">
-    <value>Definiera en enhet</value>
-  </data>
-  <data name="Hardware.Controller">
-    <value>Greaseweazle styrenhet</value>
-  </data>
-  <data name="Hardware.GwSelection">
-    <value>Urvalet skickades till gw</value>
-  </data>
-  <data name="Hardware.PhysicalSize">
-    <value>Fysisk storlek</value>
-  </data>
-  <data name="Hardware.SizeShort">
-    <value>Storlek</value>
-  </data>
-  <data name="Hardware.DensityShort">
-    <value>Densitet</value>
-  </data>
-  <data name="Hardware.SpeedShort">
-    <value>Hastighet</value>
-  </data>
-  <data name="Hardware.AvailableState">
-    <value>Tillgänglig</value>
-  </data>
-  <data name="Hardware.UnavailableState">
-    <value>Inte tillgänglig</value>
-  </data>
-  <data name="Hardware.DensityDescription">
-    <value>Drivetäthet (endast beskrivning)</value>
-  </data>
-  <data name="Hardware.SpeedDescription">
-    <value>Nominell hastighet (endast beskrivning)</value>
-  </data>
-  <data name="Hardware.NotConfigured">
-    <value>Styrenheten är inte konfigurerad</value>
-  </data>
-  <data name="Hardware.Disconnected">
-    <value>osammanhängande</value>
-  </data>
-  <data name="Hardware.SelectedDisconnected">
-    <value>Den valda enheten är frånkopplad. Anslut den igen eller skanna igen i Alternativ → Styrenheter och enheter.</value>
-  </data>
-  <data name="Hardware.DriveLabel">
-    <value>{0}-tum · {1} · {2} · {3}</value>
-  </data>
-  <data name="Hardware.DriveDialogTitle">
-    <value>Köra</value>
-  </data>
-  <data name="Hardware.ControllerRequired">
-    <value>Skanna eller lägg till en Greaseweazle-kontroller först.</value>
-  </data>
-  <data name="Hardware.Description">
-    <value>{0}-tum · {1} · urval {2}{3}</value>
-  </data>
-  <data name="Hardware.ScanTitle">
-    <value>Avsöka</value>
-  </data>
-  <data name="Hardware.GwRequired">
-    <value>Välj eller ladda ner gw.exe nedan först.</value>
-  </data>
-  <data name="Hardware.StartupTitle">
-    <value>Hårdvarukontroll</value>
-  </data>
-  <data name="Hardware.StartupMissing">
-    <value>Konfigurerad hårdvara kunde inte hittas</value>
-  </data>
-  <data name="Hardware.StartupExplanation">
-    <value>Konfigurationen bevaras, men dess enheter kommer att förbli otillgängliga tills deras Greaseweazle hittas igen.</value>
-  </data>
-  <data name="Hardware.StartupMissingList">
-    <value>Saknar Greaseweazle kontroller</value>
-  </data>
-  <data name="Hardware.StartupRetry">
-    <value>Sök igen</value>
-  </data>
-  <data name="Hardware.StartupSettings">
-    <value>Hårdvaruinställningar</value>
-  </data>
-  <data name="Hardware.StartupContinue">
-    <value>Fortsätt utan denna enhet</value>
-  </data>
-  <data name="Hardware.StartupCheckFailed">
-    <value>Hårdvarukontrollen misslyckades: {0}</value>
-  </data>
-  <data name="Hardware.NewDetectedTitle">
-    <value>Ny Greaseweazle upptäckt</value>
-  </data>
-  <data name="Hardware.NewDetected">
-    <value>{0} upptäcktes på {1}. Vill du konfigurera dess enhet nu?</value>
-  </data>
-  <data name="Hardware.ConfigurationState">
-    <value>Konfiguration</value>
-  </data>
-  <data name="Hardware.Configured">
-    <value>Konfigurerad</value>
-  </data>
-  <data name="Hardware.NotConfiguredState">
-    <value>Detekterad, inte konfigurerad</value>
-  </data>
-  <data name="Hardware.Configure">
-    <value>Konfigurera</value>
-  </data>
-  <data name="Hardware.ReaderNumber">
-    <value>Kör {0}</value>
-  </data>
-  <data name="Hardware.DriveChoice">
-    <value>Drive {0} · {1}″ · {2} · {3}</value>
-  </data>
-  <data name="Hardware.Forget">
-    <value>Glömma</value>
-  </data>
-  <data name="Hardware.ForgetConfirm">
-    <value>Vill du verkligen glömma den här enheten eller enheten?</value>
-  </data>
-  <data name="Hardware.ForgetLastConfirm">
-    <value>Detta är den senast konfigurerade enheten för denna Greaseweazle. Vill du glömma både enheten och Greaseweazle?</value>
-  </data>
-  <data name="Hardware.SelectController">
-    <value>Välj först en rad som tillhör den relevanta Greaseweazle.</value>
-  </data>
-  <data name="Hardware.MaximumDrives">
-    <value>Högst två enheter kan tilldelas automatiskt till denna Greaseweazle (A och B).</value>
-  </data>
+  <data name="Hardware.Port"><value>Hamn</value></data>
+  <data name="Hardware.UsbId"><value>USB identifierare</value></data>
+  <data name="Hardware.Drive"><value>Köra</value></data>
+  <data name="Hardware.Available"><value>Tillgänglig</value></data>
+  <data name="Hardware.Scan"><value>Avsöka</value></data>
+  <data name="Hardware.AddDrive"><value>Lägg till en enhet...</value></data>
+  <data name="Hardware.NoDrive"><value>Ingen enhet definierad</value></data>
+  <data name="Hardware.EditorTitle"><value>Definiera en enhet</value></data>
+  <data name="Hardware.Controller"><value>Greaseweazle styrenhet</value></data>
+  <data name="Hardware.GwSelection"><value>Urvalet skickades till gw</value></data>
+  <data name="Hardware.PhysicalSize"><value>Fysisk storlek</value></data>
+  <data name="Hardware.SizeShort"><value>Storlek</value></data>
+  <data name="Hardware.DensityShort"><value>Densitet</value></data>
+  <data name="Hardware.SpeedShort"><value>Hastighet</value></data>
+  <data name="Hardware.AvailableState"><value>Tillgänglig</value></data>
+  <data name="Hardware.UnavailableState"><value>Inte tillgänglig</value></data>
+  <data name="Hardware.DensityDescription"><value>Drivetäthet (endast beskrivning)</value></data>
+  <data name="Hardware.SpeedDescription"><value>Nominell hastighet (endast beskrivning)</value></data>
+  <data name="Hardware.NotConfigured"><value>Styrenheten är inte konfigurerad</value></data>
+  <data name="Hardware.Disconnected"><value>osammanhängande</value></data>
+  <data name="Hardware.SelectedDisconnected"><value>Den valda enheten är frånkopplad. Anslut den igen eller skanna igen i Alternativ → Styrenheter och enheter.</value></data>
+  <data name="Hardware.DriveLabel"><value>{0}-tum · {1} · {2} · {3}</value></data>
+  <data name="Hardware.DriveDialogTitle"><value>Köra</value></data>
+  <data name="Hardware.ControllerRequired"><value>Skanna eller lägg till en Greaseweazle-kontroller först.</value></data>
+  <data name="Hardware.Description"><value>{0}-tum · {1} · urval {2}{3}</value></data>
+  <data name="Hardware.ScanTitle"><value>Avsöka</value></data>
+  <data name="Hardware.GwRequired"><value>Välj eller ladda ner gw.exe nedan först.</value></data>
+  <data name="Hardware.StartupTitle"><value>Hårdvarukontroll</value></data>
+  <data name="Hardware.StartupMissing"><value>Konfigurerad hårdvara kunde inte hittas</value></data>
+  <data name="Hardware.StartupExplanation"><value>Konfigurationen bevaras, men dess enheter kommer att förbli otillgängliga tills deras Greaseweazle hittas igen.</value></data>
+  <data name="Hardware.StartupMissingList"><value>Saknar Greaseweazle kontroller</value></data>
+  <data name="Hardware.StartupRetry"><value>Sök igen</value></data>
+  <data name="Hardware.StartupSettings"><value>Hårdvaruinställningar</value></data>
+  <data name="Hardware.StartupContinue"><value>Fortsätt utan denna enhet</value></data>
+  <data name="Hardware.StartupCheckFailed"><value>Hårdvarukontrollen misslyckades: {0}</value></data>
+  <data name="Hardware.NewDetectedTitle"><value>Ny Greaseweazle upptäckt</value></data>
+  <data name="Hardware.NewDetected"><value>{0} upptäcktes på {1}. Vill du konfigurera dess enhet nu?</value></data>
+  <data name="Hardware.ConfigurationState"><value>Konfiguration</value></data>
+  <data name="Hardware.Configured"><value>Konfigurerad</value></data>
+  <data name="Hardware.NotConfiguredState"><value>Detekterad, inte konfigurerad</value></data>
+  <data name="Hardware.Configure"><value>Konfigurera</value></data>
+  <data name="Hardware.ReaderNumber"><value>Kör {0}</value></data>
+<data name="Hardware.Forget"><value>Glömma</value></data>
+  <data name="Hardware.ForgetConfirm"><value>Vill du verkligen glömma den här enheten eller enheten?</value></data>
+  <data name="Hardware.ForgetLastConfirm"><value>Detta är den senast konfigurerade enheten för denna Greaseweazle. Vill du glömma både enheten och Greaseweazle?</value></data>
+  <data name="Hardware.SelectController"><value>Välj först en rad som tillhör den relevanta Greaseweazle.</value></data>
+  <data name="Hardware.MaximumDrives"><value>Högst två enheter kan tilldelas automatiskt till denna Greaseweazle (A och B).</value></data>
+  <data name="Hardware.DriveChoice"><value>Drive {0} · · {1}′′ · · {2} · · {3}</value></data>
 </root>

@@ -95,6 +95,8 @@ public sealed partial class ControllerVisualizer : FrameworkElement
         {
             case ControllerVisualModel.XboxSeries: DrawXbox(drawingContext, series: true); break;
             case ControllerVisualModel.XboxOne: DrawXbox(drawingContext, series: false); break;
+            case ControllerVisualModel.Xbox360: DrawXbox(drawingContext, series: false); break;
+            case ControllerVisualModel.Xbox360White: DrawXbox(drawingContext, series: false); break;
             case ControllerVisualModel.XboxRematchCore: DrawXbox(drawingContext, series: false, rematchCore: true); break;
             case ControllerVisualModel.PlayStation4: DrawPlayStation(drawingContext, dualSense: false); break;
             case ControllerVisualModel.PlayStation5: DrawPlayStation(drawingContext, dualSense: true); break;

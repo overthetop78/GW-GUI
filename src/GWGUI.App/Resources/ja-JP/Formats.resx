@@ -12,67 +12,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Detection.Ambiguous">
-    <value>あいまいな形式</value>
-  </data>
-  <data name="Detection.RawScp">
-    <value>生の SCP キャプチャが認識されました。</value>
-  </data>
-  <data name="Detection.AmigaSize">
-    <value>ファイルサイズからAmiga形式が認識されました。</value>
-  </data>
-  <data name="Detection.AcornSize">
-    <value>ファイルサイズからAcorn形式が認識されました。</value>
-  </data>
-  <data name="Detection.AtariUnknownSize">
-    <value>サイズが既知の Atari ST プロファイルと一致しません。</value>
-  </data>
-  <data name="Detection.AtariSize">
-    <value>Atari ST ジオメトリはファイル サイズから認識されました。</value>
-  </data>
-  <data name="Detection.MsaInferred">
-    <value>Atari MSA コンテナが認識されました。必要に応じて形状を確認します。</value>
-  </data>
-  <data name="Detection.IbmAmbiguous">
-    <value>拡張だけでは IBM PC ジオメトリを決定できません。</value>
-  </data>
-  <data name="Detection.IbmSize">
-    <value>IBM PC ジオメトリはファイル サイズから認識されました。</value>
-  </data>
-  <data name="Detection.ExtensionInferred">
-    <value>拡張子から推測される形式。</value>
-  </data>
-  <data name="Detection.Multiple">
-    <value>いくつかの形式が可能です。明示的に 1 つを選択してください。</value>
-  </data>
-  <data name="Format.raw.scp">
-    <value>生のフラックス画像</value>
-  </data>
-  <data name="Format.raw.hfe">
-    <value>HxC フラックス画像</value>
-  </data>
-  <data name="Common.DiskImageFilter">
-    <value>ディスク イメージ|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|すべてのファイル|*.*</value>
-  </data>
-  <data name="Detection.AppleDosOrder">
-    <value>セクター順序から Apple II DOS 形式を識別しました。</value>
-  </data>
-  <data name="Detection.AppleProDosOrder">
-    <value>セクター順序から Apple II ProDOS 形式を識別しました。</value>
-  </data>
-  <data name="Detection.AppleContainer">
-    <value>Apple ディスクイメージコンテナーを検出しました。</value>
-  </data>
-  <data name="Classification.Automatic">
-    <value>自動検出</value>
-  </data>
-  <data name="Classification.Machine">
-    <value>コンピューター</value>
-  </data>
-  <data name="Classification.Format">
-    <value>フォーマット</value>
-  </data>
-  <data name="Classification.Protection">
-    <value>プロテクト</value>
-  </data>
+  <data name="Detection.Ambiguous"><value>あいまいな形式</value></data>
+  <data name="Detection.RawScp"><value>生の SCP キャプチャが認識されました。</value></data>
+  <data name="Detection.AmigaSize"><value>ファイルサイズからAmiga形式が認識されました。</value></data>
+  <data name="Detection.AcornSize"><value>ファイルサイズからAcorn形式が認識されました。</value></data>
+  <data name="Detection.AtariUnknownSize"><value>サイズが既知の Atari ST プロファイルと一致しません。</value></data>
+  <data name="Detection.AtariSize"><value>Atari ST ジオメトリはファイル サイズから認識されました。</value></data>
+  <data name="Detection.MsaInferred"><value>Atari MSA コンテナが認識されました。必要に応じて形状を確認します。</value></data>
+  <data name="Detection.IbmAmbiguous"><value>拡張だけでは IBM PC ジオメトリを決定できません。</value></data>
+  <data name="Detection.IbmSize"><value>IBM PC ジオメトリはファイル サイズから認識されました。</value></data>
+  <data name="Detection.ExtensionInferred"><value>拡張子から推測される形式。</value></data>
+  <data name="Detection.Multiple"><value>いくつかの形式が可能です。明示的に 1 つを選択してください。</value></data>
+  <data name="Format.raw.scp"><value>生のフラックス画像</value></data>
+  <data name="Common.DiskImageFilter"><value>ディスク イメージ|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|すべてのファイル|*.*</value></data>
+  <data name="Detection.AppleDosOrder"><value>セクター順序から Apple II DOS 形式を識別しました。</value></data>
+  <data name="Detection.AppleProDosOrder"><value>セクター順序から Apple II ProDOS 形式を識別しました。</value></data>
+  <data name="Detection.AppleContainer"><value>Apple ディスクイメージコンテナーを検出しました。</value></data>
+  <data name="Classification.Automatic"><value>自動検出</value></data>
+  <data name="Classification.Machine"><value>コンピューター</value></data>
+  <data name="Classification.Format"><value>フォーマット</value></data>
+  <data name="Classification.Protection"><value>プロテクト</value></data>
 </root>

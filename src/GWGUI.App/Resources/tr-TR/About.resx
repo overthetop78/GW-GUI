@@ -12,16 +12,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="About.Description">
-    <value>Greaseweazle ile disketleri okumak, yazmak, dönüştürmek ve incelemek için modern bir Windows arayüzü.</value>
-  </data>
-  <data name="About.License">
-    <value>Açık kaynaklı yazılım — MIT Lisans</value>
-  </data>
-  <data name="About.Version">
-    <value>Sürüm {0}</value>
-  </data>
-  <data name="About.Components">
-    <value>Bileşen sürümleri</value>
-  </data>
+  <data name="About.Description"><value>Greaseweazle ile disketleri okumak, yazmak, dönüştürmek ve incelemek için modern bir Windows arayüzü.</value></data>
+  <data name="About.License"><value>Açık kaynaklı yazılım — MIT Lisans</value></data>
+  <data name="About.Version"><value>Sürüm {0}</value></data>
+  <data name="About.Components"><value>Bileşen sürümleri</value></data>
 </root>

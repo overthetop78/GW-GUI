@@ -5,6 +5,7 @@ internal static class GameInputDeviceModelCatalog
     private static readonly IReadOnlyDictionary<uint, KnownDevice> KnownDevices =
         new Dictionary<uint, KnownDevice>
         {
+            [Key(0x045E, 0x028E)] = new("Xbox 360 Controller for Windows", ControllerVisualModel.Xbox360, false),
             [Key(0x045E, 0x0B12)] = new("Xbox Series X Controller", ControllerVisualModel.XboxSeries, false),
             [Key(0x10F5, 0x7122)] = new("Xbox Rematch Core Wired Controller- Black", ControllerVisualModel.XboxRematchCore, true),
             [Key(0x0810, 0xE501)] = new("SEGA Mega Drive 6 boutons", ControllerVisualModel.MegaDrive6, true),
@@ -56,6 +57,8 @@ internal static class GameInputDeviceModelCatalog
             return (ControllerVisualModel.PlayStation4, true);
         if (normalized.Contains("xbox series"))
             return (ControllerVisualModel.XboxSeries, true);
+        if (normalized.Contains("xbox 360"))
+            return (ControllerVisualModel.Xbox360, false);
         if (normalized.Contains("xbox"))
             return (ControllerVisualModel.XboxOne, false);
         if (normalized.Contains("mega drive") || normalized.Contains("megadrive") || normalized.Contains("genesis"))

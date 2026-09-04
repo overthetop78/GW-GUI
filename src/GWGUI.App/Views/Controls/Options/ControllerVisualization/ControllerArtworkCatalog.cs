@@ -16,6 +16,8 @@ internal static class ControllerArtworkCatalog
             [ControllerVisualModel.GenericGamepad] = "generic-gamepad.png",
             [ControllerVisualModel.XboxSeries] = "xbox-series.png",
             [ControllerVisualModel.XboxOne] = "xbox-one.png",
+            [ControllerVisualModel.Xbox360] = "xbox-360-black.png",
+            [ControllerVisualModel.Xbox360White] = "xbox-360-white.png",
             [ControllerVisualModel.XboxRematchCore] = "xbox-rematch-core.png",
             [ControllerVisualModel.PlayStation4] = "playstation-4.png",
             [ControllerVisualModel.PlayStation5] = "playstation-5.png",

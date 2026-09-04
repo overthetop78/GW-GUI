@@ -12,8 +12,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Unknown">
-    <value>알려지지 않은</value>
-  </data>
+  <data name="Common.Unknown"><value>알려지지 않은</value></data>
   <data name="Common.Eject" xml:space="preserve"><value>꺼내기</value></data>
 </root>

@@ -12,163 +12,57 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Tool.Ready">
-    <value>실행할 준비가 되었습니다.</value>
-  </data>
-  <data name="Tool.RawOutput">
-    <value>원시 출력</value>
-  </data>
-  <data name="Maintenance.EraseTitle">
-    <value>삭제 확인</value>
-  </data>
-  <data name="Maintenance.EraseConfirm">
-    <value>삽입된 디스크의 모든 데이터를 영구적으로 삭제하시겠습니까?</value>
-  </data>
-  <data name="Maintenance.CleanTitle">
-    <value>헤드 청소</value>
-  </data>
-  <data name="Maintenance.CleanConfirm">
-    <value>클리닝 디스크가 삽입되었는지 확인하세요. 데이터 디스크를 사용하지 마십시오.</value>
-  </data>
-  <data name="Tools.Erase">
-    <value>디스크 지우기</value>
-  </data>
-  <data name="Tools.EraseWarning">
-    <value>디스크의 모든 데이터가 삭제됩니다.</value>
-  </data>
-  <data name="Tools.LimitTracks">
-    <value>트랙 제한</value>
-  </data>
-  <data name="Tools.Revolutions">
-    <value>회전 수</value>
-  </data>
-  <data name="Tools.Clean">
-    <value>헤드 청소</value>
-  </data>
-  <data name="Tools.CleanWarning">
-    <value>데이터가 포함된 디스크가 아닌 클리닝 디스크를 삽입하십시오.</value>
-  </data>
-  <data name="Tools.Cylinders">
-    <value>실린더</value>
-  </data>
-  <data name="Tools.Passes">
-    <value>패스</value>
-  </data>
-  <data name="Tools.Linger">
-    <value>실린더당 기간(ms)</value>
-  </data>
-  <data name="Tool.Field.Measurements">
-    <value>측정 횟수</value>
-  </data>
-  <data name="Tool.Field.Cylinder">
-    <value>실린더</value>
-  </data>
-  <data name="Tool.Field.Extreme">
-    <value>극단적인 실린더 허용</value>
-  </data>
-  <data name="Tool.Field.MotorOn">
-    <value>모터를 활성 상태로 유지</value>
-  </data>
-  <data name="Tool.Field.Pin">
-    <value>핀(8, 26 또는 28)</value>
-  </data>
-  <data name="Tool.Field.SetPin">
-    <value>핀 변경</value>
-  </data>
-  <data name="Tool.Field.High">
-    <value>높은 수준</value>
-  </data>
-  <data name="Tool.Field.Select">
-    <value>선택(μs)</value>
-  </data>
-  <data name="Tool.Field.Step">
-    <value>헤드 스텝(μs)</value>
-  </data>
-  <data name="Tool.Field.Settle">
-    <value>정착(밀리초)</value>
-  </data>
-  <data name="Tool.Field.Motor">
-    <value>모터(ms)</value>
-  </data>
-  <data name="Tool.Field.Watchdog">
-    <value>자동 선택 취소(밀리초)</value>
-  </data>
-  <data name="Tool.Field.PreWrite">
-    <value>쓰기 전(μs)</value>
-  </data>
-  <data name="Tool.Field.PostWrite">
-    <value>쓰기 후(μs)</value>
-  </data>
-  <data name="Tool.Field.IndexMask">
-    <value>인덱스 마스크(μs)</value>
-  </data>
-  <data name="Tool.Field.Bootloader">
-    <value>부트로더 업데이트(위험함)</value>
-  </data>
-  <data name="Tool.BootloaderWarning">
-    <value>부트로더 업데이트는 중단될 경우 컨트롤러를 사용할 수 없게 만들 수 있는 고급 작업입니다. 계속하다?</value>
-  </data>
-  <data name="Tool.ControllerFallback">
-    <value>제어 장치</value>
-  </data>
-  <data name="Tool.FirmwareUnknown">
-    <value>알 수 없는 펌웨어</value>
-  </data>
-  <data name="Tool.PortUnknown">
-    <value>알 수 없는 포트</value>
-  </data>
-  <data name="Tool.NetworkWarning">
-    <value>지역 정보가 유효합니다. 네트워크 확인에만 실패했습니다.</value>
-  </data>
-  <data name="Tool.Running">
-    <value>명령 실행 중…</value>
-  </data>
-  <data name="Tool.Title.Info">
-    <value>컨트롤러 정보</value>
-  </data>
-  <data name="Tool.Title.Bandwidth">
-    <value>USB 대역폭</value>
-  </data>
-  <data name="Tool.Title.Rpm">
-    <value>주행 속도</value>
-  </data>
-  <data name="Tool.Title.Seek">
-    <value>머리를 찾으세요</value>
-  </data>
-  <data name="Tool.Title.Pin">
-    <value>하드웨어 핀</value>
-  </data>
-  <data name="Tool.Title.Reset">
-    <value>컨트롤러 재설정</value>
-  </data>
-  <data name="Tool.Title.Delays">
-    <value>지연</value>
-  </data>
-  <data name="Tool.Title.Update">
-    <value>펌웨어</value>
-  </data>
-  <data name="Tool.InvalidParameters">
-    <value>잘못된 매개변수</value>
-  </data>
-  <data name="Tool.InvalidParametersHelp">
-    <value>실행하기 전에 강조 표시된 명령 매개변수를 확인하십시오.</value>
-  </data>
-  <data name="Tool.BootloaderTitle">
-    <value>부트로더 모드</value>
-  </data>
-  <data name="Tool.Title.Align">
-    <value>드라이브 정렬 진단</value>
-  </data>
-  <data name="Tool.Field.AlignTracks">
-    <value>대체 트랙(들)(필수)</value>
-  </data>
-  <data name="Tool.Field.AlignReads">
-    <value>읽기 횟수</value>
-  </data>
-  <data name="Tool.Field.AlignFormat">
-    <value>디코딩 형식</value>
-  </data>
-  <data name="Tool.Field.AlignRaw">
-    <value>원시 플럭스 읽기(--raw)</value>
-  </data>
+  <data name="Tool.Ready"><value>실행할 준비가 되었습니다.</value></data>
+  <data name="Tool.RawOutput"><value>원시 출력</value></data>
+  <data name="Maintenance.EraseTitle"><value>삭제 확인</value></data>
+  <data name="Maintenance.EraseConfirm"><value>삽입된 디스크의 모든 데이터를 영구적으로 삭제하시겠습니까?</value></data>
+  <data name="Maintenance.CleanTitle"><value>헤드 청소</value></data>
+  <data name="Maintenance.CleanConfirm"><value>클리닝 디스크가 삽입되었는지 확인하세요. 데이터 디스크를 사용하지 마십시오.</value></data>
+  <data name="Tools.Erase"><value>디스크 지우기</value></data>
+  <data name="Tools.EraseWarning"><value>디스크의 모든 데이터가 삭제됩니다.</value></data>
+  <data name="Tools.LimitTracks"><value>트랙 제한</value></data>
+  <data name="Tools.Revolutions"><value>회전 수</value></data>
+  <data name="Tools.Clean"><value>헤드 청소</value></data>
+  <data name="Tools.CleanWarning"><value>데이터가 포함된 디스크가 아닌 클리닝 디스크를 삽입하십시오.</value></data>
+  <data name="Tools.Cylinders"><value>실린더</value></data>
+  <data name="Tools.Passes"><value>패스</value></data>
+  <data name="Tools.Linger"><value>실린더당 기간(ms)</value></data>
+  <data name="Tool.Field.Measurements"><value>측정 횟수</value></data>
+  <data name="Tool.Field.Cylinder"><value>실린더</value></data>
+  <data name="Tool.Field.Extreme"><value>극단적인 실린더 허용</value></data>
+  <data name="Tool.Field.MotorOn"><value>모터를 활성 상태로 유지</value></data>
+  <data name="Tool.Field.Pin"><value>핀(8, 26 또는 28)</value></data>
+  <data name="Tool.Field.SetPin"><value>핀 변경</value></data>
+  <data name="Tool.Field.High"><value>높은 수준</value></data>
+  <data name="Tool.Field.Select"><value>선택(μs)</value></data>
+  <data name="Tool.Field.Step"><value>헤드 스텝(μs)</value></data>
+  <data name="Tool.Field.Settle"><value>정착(밀리초)</value></data>
+  <data name="Tool.Field.Motor"><value>모터(ms)</value></data>
+  <data name="Tool.Field.Watchdog"><value>자동 선택 취소(밀리초)</value></data>
+  <data name="Tool.Field.PreWrite"><value>쓰기 전(μs)</value></data>
+  <data name="Tool.Field.PostWrite"><value>쓰기 후(μs)</value></data>
+  <data name="Tool.Field.IndexMask"><value>인덱스 마스크(μs)</value></data>
+  <data name="Tool.Field.Bootloader"><value>부트로더 업데이트(위험함)</value></data>
+  <data name="Tool.BootloaderWarning"><value>부트로더 업데이트는 중단될 경우 컨트롤러를 사용할 수 없게 만들 수 있는 고급 작업입니다. 계속하다?</value></data>
+  <data name="Tool.ControllerFallback"><value>제어 장치</value></data>
+  <data name="Tool.FirmwareUnknown"><value>알 수 없는 펌웨어</value></data>
+  <data name="Tool.PortUnknown"><value>알 수 없는 포트</value></data>
+  <data name="Tool.NetworkWarning"><value>지역 정보가 유효합니다. 네트워크 확인에만 실패했습니다.</value></data>
+  <data name="Tool.Running"><value>명령 실행 중…</value></data>
+  <data name="Tool.Title.Info"><value>컨트롤러 정보</value></data>
+  <data name="Tool.Title.Bandwidth"><value>USB 대역폭</value></data>
+  <data name="Tool.Title.Rpm"><value>주행 속도</value></data>
+  <data name="Tool.Title.Seek"><value>머리를 찾으세요</value></data>
+  <data name="Tool.Title.Pin"><value>하드웨어 핀</value></data>
+  <data name="Tool.Title.Reset"><value>컨트롤러 재설정</value></data>
+  <data name="Tool.Title.Delays"><value>지연</value></data>
+  <data name="Tool.Title.Update"><value>펌웨어</value></data>
+  <data name="Tool.InvalidParameters"><value>잘못된 매개변수</value></data>
+  <data name="Tool.InvalidParametersHelp"><value>실행하기 전에 강조 표시된 명령 매개변수를 확인하십시오.</value></data>
+  <data name="Tool.BootloaderTitle"><value>부트로더 모드</value></data>
+  <data name="Tool.Title.Align"><value>드라이브 정렬 진단</value></data>
+  <data name="Tool.Field.AlignTracks"><value>대체 트랙(들)(필수)</value></data>
+  <data name="Tool.Field.AlignReads"><value>읽기 횟수</value></data>
+  <data name="Tool.Field.AlignFormat"><value>디코딩 형식</value></data>
+  <data name="Tool.Field.AlignRaw"><value>원시 플럭스 읽기(--raw)</value></data>
 </root>

@@ -12,163 +12,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Tool.Ready">
-    <value>Gata de executat.</value>
-  </data>
-  <data name="Tool.RawOutput">
-    <value>Ieșire brută</value>
-  </data>
-  <data name="Maintenance.EraseTitle">
-    <value>Confirmați ștergerea</value>
-  </data>
-  <data name="Maintenance.EraseConfirm">
-    <value>Ștergeți definitiv toate datele de pe discul introdus?</value>
-  </data>
-  <data name="Maintenance.CleanTitle">
-    <value>Capetele curate</value>
-  </data>
-  <data name="Maintenance.CleanConfirm">
-    <value>Confirmați că este introdus un disc de curățare. Nu utilizați niciodată un disc de date.</value>
-  </data>
-  <data name="Tools.Erase">
-    <value>Ștergeți un disc</value>
-  </data>
-  <data name="Tools.EraseWarning">
-    <value>Toate datele de pe disc vor fi distruse.</value>
-  </data>
-  <data name="Tools.LimitTracks">
-    <value>Limitați piese</value>
-  </data>
-  <data name="Tools.Revolutions">
-    <value>Revoluții</value>
-  </data>
-  <data name="Tools.Clean">
-    <value>Capetele curate</value>
-  </data>
-  <data name="Tools.CleanWarning">
-    <value>Introduceți un disc de curățare, niciodată un disc care conține date.</value>
-  </data>
-  <data name="Tools.Cylinders">
-    <value>Cilindrii</value>
-  </data>
-  <data name="Tools.Passes">
-    <value>Treci</value>
-  </data>
-  <data name="Tools.Linger">
-    <value>Durata pe cilindru (ms)</value>
-  </data>
-  <data name="Tool.Field.Measurements">
-    <value>Numărul de măsurători</value>
-  </data>
-  <data name="Tool.Field.Cylinder">
-    <value>Cilindru</value>
-  </data>
-  <data name="Tool.Field.Extreme">
-    <value>Permiteți cilindrii extremi</value>
-  </data>
-  <data name="Tool.Field.MotorOn">
-    <value>Păstrați motorul activ</value>
-  </data>
-  <data name="Tool.Field.Pin">
-    <value>Pin (8, 26 sau 28)</value>
-  </data>
-  <data name="Tool.Field.SetPin">
-    <value>Schimbați pinul</value>
-  </data>
-  <data name="Tool.Field.High">
-    <value>Nivel înalt</value>
-  </data>
-  <data name="Tool.Field.Select">
-    <value>Selecție (µs)</value>
-  </data>
-  <data name="Tool.Field.Step">
-    <value>Pasul capului (µs)</value>
-  </data>
-  <data name="Tool.Field.Settle">
-    <value>Rezolvare (ms)</value>
-  </data>
-  <data name="Tool.Field.Motor">
-    <value>Motor (ms)</value>
-  </data>
-  <data name="Tool.Field.Watchdog">
-    <value>Deselectare automată (ms)</value>
-  </data>
-  <data name="Tool.Field.PreWrite">
-    <value>Înainte de scriere (µs)</value>
-  </data>
-  <data name="Tool.Field.PostWrite">
-    <value>După scriere (µs)</value>
-  </data>
-  <data name="Tool.Field.IndexMask">
-    <value>Mască index (µs)</value>
-  </data>
-  <data name="Tool.Field.Bootloader">
-    <value>Actualizați încărcătorul de pornire (riscant)</value>
-  </data>
-  <data name="Tool.BootloaderWarning">
-    <value>Actualizarea bootloader-ului este o operațiune avansată care poate face controlerul inutilizabil dacă este întrerupt. Continua?</value>
-  </data>
-  <data name="Tool.ControllerFallback">
-    <value>Controlor</value>
-  </data>
-  <data name="Tool.FirmwareUnknown">
-    <value>Firmware necunoscut</value>
-  </data>
-  <data name="Tool.PortUnknown">
-    <value>Port necunoscut</value>
-  </data>
-  <data name="Tool.NetworkWarning">
-    <value>Informațiile locale sunt valabile; doar verificarea rețelei a eșuat.</value>
-  </data>
-  <data name="Tool.Running">
-    <value>Comanda rulează...</value>
-  </data>
-  <data name="Tool.Title.Info">
-    <value>Informații despre controler</value>
-  </data>
-  <data name="Tool.Title.Bandwidth">
-    <value>USB lățime de bandă</value>
-  </data>
-  <data name="Tool.Title.Rpm">
-    <value>Viteza de conducere</value>
-  </data>
-  <data name="Tool.Title.Seek">
-    <value>Caută cap</value>
-  </data>
-  <data name="Tool.Title.Pin">
-    <value>Știfturi hardware</value>
-  </data>
-  <data name="Tool.Title.Reset">
-    <value>Resetați controlerul</value>
-  </data>
-  <data name="Tool.Title.Delays">
-    <value>Întârzieri</value>
-  </data>
-  <data name="Tool.Title.Update">
-    <value>Firmware</value>
-  </data>
-  <data name="Tool.InvalidParameters">
-    <value>Parametri nevalidi</value>
-  </data>
-  <data name="Tool.InvalidParametersHelp">
-    <value>Verificați parametrii comenzii evidențiați înainte de a executa.</value>
-  </data>
-  <data name="Tool.BootloaderTitle">
-    <value>Modul bootloader</value>
-  </data>
-  <data name="Tool.Title.Align">
-    <value>Diagnosticarea alinierii unității</value>
-  </data>
-  <data name="Tool.Field.AlignTracks">
-    <value>Piesele alternative (obligatoriu)</value>
-  </data>
-  <data name="Tool.Field.AlignReads">
-    <value>Numărul de citiri</value>
-  </data>
-  <data name="Tool.Field.AlignFormat">
-    <value>Format de decodare</value>
-  </data>
-  <data name="Tool.Field.AlignRaw">
-    <value>Citiți fluxul brut (--raw)</value>
-  </data>
+  <data name="Tool.Ready"><value>Gata de executat.</value></data>
+  <data name="Tool.RawOutput"><value>Ieșire brută</value></data>
+  <data name="Maintenance.EraseTitle"><value>Confirmați ștergerea</value></data>
+  <data name="Maintenance.EraseConfirm"><value>Ștergeți definitiv toate datele de pe discul introdus?</value></data>
+  <data name="Maintenance.CleanTitle"><value>Capetele curate</value></data>
+  <data name="Maintenance.CleanConfirm"><value>Confirmați că este introdus un disc de curățare. Nu utilizați niciodată un disc de date.</value></data>
+  <data name="Tools.Erase"><value>Ștergeți un disc</value></data>
+  <data name="Tools.EraseWarning"><value>Toate datele de pe disc vor fi distruse.</value></data>
+  <data name="Tools.LimitTracks"><value>Limitați piese</value></data>
+  <data name="Tools.Revolutions"><value>Revoluții</value></data>
+  <data name="Tools.Clean"><value>Capetele curate</value></data>
+  <data name="Tools.CleanWarning"><value>Introduceți un disc de curățare, niciodată un disc care conține date.</value></data>
+  <data name="Tools.Cylinders"><value>Cilindrii</value></data>
+  <data name="Tools.Passes"><value>Treci</value></data>
+  <data name="Tools.Linger"><value>Durata pe cilindru (ms)</value></data>
+  <data name="Tool.Field.Measurements"><value>Numărul de măsurători</value></data>
+  <data name="Tool.Field.Cylinder"><value>Cilindru</value></data>
+  <data name="Tool.Field.Extreme"><value>Permiteți cilindrii extremi</value></data>
+  <data name="Tool.Field.MotorOn"><value>Păstrați motorul activ</value></data>
+  <data name="Tool.Field.Pin"><value>Pin (8, 26 sau 28)</value></data>
+  <data name="Tool.Field.SetPin"><value>Schimbați pinul</value></data>
+  <data name="Tool.Field.High"><value>Nivel înalt</value></data>
+  <data name="Tool.Field.Select"><value>Selecție (µs)</value></data>
+  <data name="Tool.Field.Step"><value>Pasul capului (µs)</value></data>
+  <data name="Tool.Field.Settle"><value>Rezolvare (ms)</value></data>
+<data name="Tool.Field.Watchdog"><value>Deselectare automată (ms)</value></data>
+  <data name="Tool.Field.PreWrite"><value>Înainte de scriere (µs)</value></data>
+  <data name="Tool.Field.PostWrite"><value>După scriere (µs)</value></data>
+  <data name="Tool.Field.IndexMask"><value>Mască index (µs)</value></data>
+  <data name="Tool.Field.Bootloader"><value>Actualizați încărcătorul de pornire (riscant)</value></data>
+  <data name="Tool.BootloaderWarning"><value>Actualizarea bootloader-ului este o operațiune avansată care poate face controlerul inutilizabil dacă este întrerupt. Continua?</value></data>
+  <data name="Tool.ControllerFallback"><value>Controlor</value></data>
+  <data name="Tool.FirmwareUnknown"><value>Firmware necunoscut</value></data>
+  <data name="Tool.PortUnknown"><value>Port necunoscut</value></data>
+  <data name="Tool.NetworkWarning"><value>Informațiile locale sunt valabile; doar verificarea rețelei a eșuat.</value></data>
+  <data name="Tool.Running"><value>Comanda rulează...</value></data>
+  <data name="Tool.Title.Info"><value>Informații despre controler</value></data>
+  <data name="Tool.Title.Bandwidth"><value>USB lățime de bandă</value></data>
+  <data name="Tool.Title.Rpm"><value>Viteza de conducere</value></data>
+  <data name="Tool.Title.Seek"><value>Caută cap</value></data>
+  <data name="Tool.Title.Pin"><value>Știfturi hardware</value></data>
+  <data name="Tool.Title.Reset"><value>Resetați controlerul</value></data>
+  <data name="Tool.Title.Delays"><value>Întârzieri</value></data>
+<data name="Tool.InvalidParameters"><value>Parametri nevalidi</value></data>
+  <data name="Tool.InvalidParametersHelp"><value>Verificați parametrii comenzii evidențiați înainte de a executa.</value></data>
+  <data name="Tool.BootloaderTitle"><value>Modul bootloader</value></data>
+  <data name="Tool.Title.Align"><value>Diagnosticarea alinierii unității</value></data>
+  <data name="Tool.Field.AlignTracks"><value>Piesele alternative (obligatoriu)</value></data>
+  <data name="Tool.Field.AlignReads"><value>Numărul de citiri</value></data>
+  <data name="Tool.Field.AlignFormat"><value>Format de decodare</value></data>
+  <data name="Tool.Field.AlignRaw"><value>Citiți fluxul brut (--raw)</value></data>
 </root>

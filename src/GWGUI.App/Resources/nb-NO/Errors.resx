@@ -12,28 +12,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.SettingsSaveFailed">
-    <value>Innstillingene kunne ikke lagres.
-
-{0}</value>
-  </data>
-  <data name="Error.Title">
-    <value>GW GUI feil</value>
-  </data>
-  <data name="Error.Unexpected">
-    <value>En uventet feil ble fanget opp.
-
-{0}</value>
-  </data>
-  <data name="Error.SaveFailed">
-    <value>Innstillingene kunne ikke lagres. Vinduet vil fortsatt lukkes.
-
-{0}</value>
-  </data>
-  <data name="Error.LogSaved">
-    <value>Hele rapporten ble lagret til:
-{0}</value>
-  </data>
+  <data name="App.SettingsSaveFailed"><value>Innstillingene kunne ikke lagres.&#xA;&#xA;{0}</value></data>
+  <data name="Error.Title"><value>GW GUI feil</value></data>
+  <data name="Error.Unexpected"><value>En uventet feil ble fanget opp.&#xA;&#xA;{0}</value></data>
+  <data name="Error.SaveFailed"><value>Innstillingene kunne ikke lagres. Vinduet vil fortsatt lukkes.&#xA;&#xA;{0}</value></data>
+  <data name="Error.LogSaved"><value>Hele rapporten ble lagret til:&#xA;{0}</value></data>
   <data name="Error.Description.NetworkTimeout"><value>Den eksterne tjenesten responderte ikke før tilkoblingen utløpt. Sjekk nettverkstilkoblingen og prøv igjen.</value></data>
   <data name="Error.Description.NetworkDns"><value>Den eksterne tjenesteadressen kunne ikke løses. Sjekk nettverks- eller DNS-innstillingene og prøv på nytt.</value></data>
   <data name="Error.Description.NetworkRefused"><value>Fjerntjenesten nektet tilkoblingen. Det kan være utilgjengelig eller blokkert.</value></data>

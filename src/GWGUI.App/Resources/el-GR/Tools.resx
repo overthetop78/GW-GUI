@@ -12,163 +12,57 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Tool.Ready">
-    <value>Έτοιμο για εκτέλεση.</value>
-  </data>
-  <data name="Tool.RawOutput">
-    <value>Ακατέργαστη έξοδος</value>
-  </data>
-  <data name="Maintenance.EraseTitle">
-    <value>Επιβεβαίωση διαγραφής</value>
-  </data>
-  <data name="Maintenance.EraseConfirm">
-    <value>Να διαγραφούν οριστικά όλα τα δεδομένα στον δίσκο που έχει εισαχθεί;</value>
-  </data>
-  <data name="Maintenance.CleanTitle">
-    <value>Καθαρά κεφάλια</value>
-  </data>
-  <data name="Maintenance.CleanConfirm">
-    <value>Επιβεβαιώστε ότι έχει τοποθετηθεί ένας δίσκος καθαρισμού. Μην χρησιμοποιείτε ποτέ δίσκο δεδομένων.</value>
-  </data>
-  <data name="Tools.Erase">
-    <value>Διαγράψτε έναν δίσκο</value>
-  </data>
-  <data name="Tools.EraseWarning">
-    <value>Όλα τα δεδομένα στο δίσκο θα καταστραφούν.</value>
-  </data>
-  <data name="Tools.LimitTracks">
-    <value>Περιορίστε τα κομμάτια</value>
-  </data>
-  <data name="Tools.Revolutions">
-    <value>Επαναστάσεις</value>
-  </data>
-  <data name="Tools.Clean">
-    <value>Καθαρά κεφάλια</value>
-  </data>
-  <data name="Tools.CleanWarning">
-    <value>Τοποθετήστε έναν δίσκο καθαρισμού, ποτέ έναν δίσκο που περιέχει δεδομένα.</value>
-  </data>
-  <data name="Tools.Cylinders">
-    <value>Κύλινδροι</value>
-  </data>
-  <data name="Tools.Passes">
-    <value>Πάσες</value>
-  </data>
-  <data name="Tools.Linger">
-    <value>Διάρκεια ανά κύλινδρο (ms)</value>
-  </data>
-  <data name="Tool.Field.Measurements">
-    <value>Αριθμός μετρήσεων</value>
-  </data>
-  <data name="Tool.Field.Cylinder">
-    <value>Κύλινδρος</value>
-  </data>
-  <data name="Tool.Field.Extreme">
-    <value>Επιτρέψτε ακραίους κυλίνδρους</value>
-  </data>
-  <data name="Tool.Field.MotorOn">
-    <value>Διατηρήστε τον κινητήρα ενεργό</value>
-  </data>
-  <data name="Tool.Field.Pin">
-    <value>Pin (8, 26 ή 28)</value>
-  </data>
-  <data name="Tool.Field.SetPin">
-    <value>Αλλαγή καρφίτσας</value>
-  </data>
-  <data name="Tool.Field.High">
-    <value>Υψηλό επίπεδο</value>
-  </data>
-  <data name="Tool.Field.Select">
-    <value>Επιλογή (μs)</value>
-  </data>
-  <data name="Tool.Field.Step">
-    <value>Βήμα κεφαλιού (μs)</value>
-  </data>
-  <data name="Tool.Field.Settle">
-    <value>Τακτοποίηση (ms)</value>
-  </data>
-  <data name="Tool.Field.Motor">
-    <value>Κινητήρας (ms)</value>
-  </data>
-  <data name="Tool.Field.Watchdog">
-    <value>Αυτόματη αποεπιλογή (ms)</value>
-  </data>
-  <data name="Tool.Field.PreWrite">
-    <value>Πριν γράψετε (μs)</value>
-  </data>
-  <data name="Tool.Field.PostWrite">
-    <value>Μετά την εγγραφή (μs)</value>
-  </data>
-  <data name="Tool.Field.IndexMask">
-    <value>Μάσκα ευρετηρίου (μs)</value>
-  </data>
-  <data name="Tool.Field.Bootloader">
-    <value>Ενημέρωση bootloader (επικίνδυνο)</value>
-  </data>
-  <data name="Tool.BootloaderWarning">
-    <value>Η ενημέρωση του bootloader είναι μια προηγμένη λειτουργία που μπορεί να καταστήσει τον ελεγκτή άχρηστο εάν διακοπεί. Συνεχίζω;</value>
-  </data>
-  <data name="Tool.ControllerFallback">
-    <value>Ελεγκτής</value>
-  </data>
-  <data name="Tool.FirmwareUnknown">
-    <value>Άγνωστο υλικολογισμικό</value>
-  </data>
-  <data name="Tool.PortUnknown">
-    <value>Άγνωστο λιμάνι</value>
-  </data>
-  <data name="Tool.NetworkWarning">
-    <value>Οι τοπικές πληροφορίες είναι έγκυρες. μόνο ο έλεγχος δικτύου απέτυχε.</value>
-  </data>
-  <data name="Tool.Running">
-    <value>Εκτελείται η εντολή…</value>
-  </data>
-  <data name="Tool.Title.Info">
-    <value>Πληροφορίες ελεγκτή</value>
-  </data>
-  <data name="Tool.Title.Bandwidth">
-    <value>USB εύρος ζώνης</value>
-  </data>
-  <data name="Tool.Title.Rpm">
-    <value>Ταχύτητα οδήγησης</value>
-  </data>
-  <data name="Tool.Title.Seek">
-    <value>Αναζητήστε το κεφάλι</value>
-  </data>
-  <data name="Tool.Title.Pin">
-    <value>Καρφίτσες υλικού</value>
-  </data>
-  <data name="Tool.Title.Reset">
-    <value>Επαναφορά ελεγκτή</value>
-  </data>
-  <data name="Tool.Title.Delays">
-    <value>Καθυστερήσεις</value>
-  </data>
-  <data name="Tool.Title.Update">
-    <value>Υλικολογισμικό</value>
-  </data>
-  <data name="Tool.InvalidParameters">
-    <value>Μη έγκυρες παράμετροι</value>
-  </data>
-  <data name="Tool.InvalidParametersHelp">
-    <value>Ελέγξτε τις επισημασμένες παραμέτρους της εντολής πριν την εκτέλεση.</value>
-  </data>
-  <data name="Tool.BootloaderTitle">
-    <value>Λειτουργία bootloader</value>
-  </data>
-  <data name="Tool.Title.Align">
-    <value>Διαγνωστικός έλεγχος ευθυγράμμισης κίνησης</value>
-  </data>
-  <data name="Tool.Field.AlignTracks">
-    <value>Εναλλασσόμενο κομμάτι(α) (απαιτείται)</value>
-  </data>
-  <data name="Tool.Field.AlignReads">
-    <value>Αριθμός αναγνώσεων</value>
-  </data>
-  <data name="Tool.Field.AlignFormat">
-    <value>Μορφή αποκωδικοποίησης</value>
-  </data>
-  <data name="Tool.Field.AlignRaw">
-    <value>Ανάγνωση πρωτογενούς ροής (--raw)</value>
-  </data>
+  <data name="Tool.Ready"><value>Έτοιμο για εκτέλεση.</value></data>
+  <data name="Tool.RawOutput"><value>Ακατέργαστη έξοδος</value></data>
+  <data name="Maintenance.EraseTitle"><value>Επιβεβαίωση διαγραφής</value></data>
+  <data name="Maintenance.EraseConfirm"><value>Να διαγραφούν οριστικά όλα τα δεδομένα στον δίσκο που έχει εισαχθεί;</value></data>
+  <data name="Maintenance.CleanTitle"><value>Καθαρά κεφάλια</value></data>
+  <data name="Maintenance.CleanConfirm"><value>Επιβεβαιώστε ότι έχει τοποθετηθεί ένας δίσκος καθαρισμού. Μην χρησιμοποιείτε ποτέ δίσκο δεδομένων.</value></data>
+  <data name="Tools.Erase"><value>Διαγράψτε έναν δίσκο</value></data>
+  <data name="Tools.EraseWarning"><value>Όλα τα δεδομένα στο δίσκο θα καταστραφούν.</value></data>
+  <data name="Tools.LimitTracks"><value>Περιορίστε τα κομμάτια</value></data>
+  <data name="Tools.Revolutions"><value>Επαναστάσεις</value></data>
+  <data name="Tools.Clean"><value>Καθαρά κεφάλια</value></data>
+  <data name="Tools.CleanWarning"><value>Τοποθετήστε έναν δίσκο καθαρισμού, ποτέ έναν δίσκο που περιέχει δεδομένα.</value></data>
+  <data name="Tools.Cylinders"><value>Κύλινδροι</value></data>
+  <data name="Tools.Passes"><value>Πάσες</value></data>
+  <data name="Tools.Linger"><value>Διάρκεια ανά κύλινδρο (ms)</value></data>
+  <data name="Tool.Field.Measurements"><value>Αριθμός μετρήσεων</value></data>
+  <data name="Tool.Field.Cylinder"><value>Κύλινδρος</value></data>
+  <data name="Tool.Field.Extreme"><value>Επιτρέψτε ακραίους κυλίνδρους</value></data>
+  <data name="Tool.Field.MotorOn"><value>Διατηρήστε τον κινητήρα ενεργό</value></data>
+  <data name="Tool.Field.Pin"><value>Pin (8, 26 ή 28)</value></data>
+  <data name="Tool.Field.SetPin"><value>Αλλαγή καρφίτσας</value></data>
+  <data name="Tool.Field.High"><value>Υψηλό επίπεδο</value></data>
+  <data name="Tool.Field.Select"><value>Επιλογή (μs)</value></data>
+  <data name="Tool.Field.Step"><value>Βήμα κεφαλιού (μs)</value></data>
+  <data name="Tool.Field.Settle"><value>Τακτοποίηση (ms)</value></data>
+  <data name="Tool.Field.Motor"><value>Κινητήρας (ms)</value></data>
+  <data name="Tool.Field.Watchdog"><value>Αυτόματη αποεπιλογή (ms)</value></data>
+  <data name="Tool.Field.PreWrite"><value>Πριν γράψετε (μs)</value></data>
+  <data name="Tool.Field.PostWrite"><value>Μετά την εγγραφή (μs)</value></data>
+  <data name="Tool.Field.IndexMask"><value>Μάσκα ευρετηρίου (μs)</value></data>
+  <data name="Tool.Field.Bootloader"><value>Ενημέρωση bootloader (επικίνδυνο)</value></data>
+  <data name="Tool.BootloaderWarning"><value>Η ενημέρωση του bootloader είναι μια προηγμένη λειτουργία που μπορεί να καταστήσει τον ελεγκτή άχρηστο εάν διακοπεί. Συνεχίζω;</value></data>
+  <data name="Tool.ControllerFallback"><value>Ελεγκτής</value></data>
+  <data name="Tool.FirmwareUnknown"><value>Άγνωστο υλικολογισμικό</value></data>
+  <data name="Tool.PortUnknown"><value>Άγνωστο λιμάνι</value></data>
+  <data name="Tool.NetworkWarning"><value>Οι τοπικές πληροφορίες είναι έγκυρες. μόνο ο έλεγχος δικτύου απέτυχε.</value></data>
+  <data name="Tool.Running"><value>Εκτελείται η εντολή…</value></data>
+  <data name="Tool.Title.Info"><value>Πληροφορίες ελεγκτή</value></data>
+  <data name="Tool.Title.Bandwidth"><value>USB εύρος ζώνης</value></data>
+  <data name="Tool.Title.Rpm"><value>Ταχύτητα οδήγησης</value></data>
+  <data name="Tool.Title.Seek"><value>Αναζητήστε το κεφάλι</value></data>
+  <data name="Tool.Title.Pin"><value>Καρφίτσες υλικού</value></data>
+  <data name="Tool.Title.Reset"><value>Επαναφορά ελεγκτή</value></data>
+  <data name="Tool.Title.Delays"><value>Καθυστερήσεις</value></data>
+  <data name="Tool.Title.Update"><value>Υλικολογισμικό</value></data>
+  <data name="Tool.InvalidParameters"><value>Μη έγκυρες παράμετροι</value></data>
+  <data name="Tool.InvalidParametersHelp"><value>Ελέγξτε τις επισημασμένες παραμέτρους της εντολής πριν την εκτέλεση.</value></data>
+  <data name="Tool.BootloaderTitle"><value>Λειτουργία bootloader</value></data>
+  <data name="Tool.Title.Align"><value>Διαγνωστικός έλεγχος ευθυγράμμισης κίνησης</value></data>
+  <data name="Tool.Field.AlignTracks"><value>Εναλλασσόμενο κομμάτι(α) (απαιτείται)</value></data>
+  <data name="Tool.Field.AlignReads"><value>Αριθμός αναγνώσεων</value></data>
+  <data name="Tool.Field.AlignFormat"><value>Μορφή αποκωδικοποίησης</value></data>
+  <data name="Tool.Field.AlignRaw"><value>Ανάγνωση πρωτογενούς ροής (--raw)</value></data>
 </root>

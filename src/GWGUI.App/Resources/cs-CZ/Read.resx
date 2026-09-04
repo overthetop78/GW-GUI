@@ -12,127 +12,45 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Read.Title">
-    <value>Číst</value>
-  </data>
-  <data name="Read.NameRequired">
-    <value>Zadejte název souboru.</value>
-  </data>
-  <data name="Read.TypeRequired">
-    <value>Vyberte kompatibilní typ obrázku.</value>
-  </data>
-  <data name="Read.FileExistsTitle">
-    <value>Existující soubor</value>
-  </data>
-  <data name="Read.FileExists">
-    <value>Tento soubor již existuje.</value>
-  </data>
-  <data name="Read.ConflictPath">
-    <value>Existující soubor</value>
-  </data>
-  <data name="Read.ConflictOverwrite">
-    <value>Přepsat</value>
-  </data>
-  <data name="Read.ConflictNextNumber">
-    <value>Použijte následující číslo</value>
-  </data>
-  <data name="Read.ConflictEditName">
-    <value>Dovolte mi upravit název</value>
-  </data>
-  <data name="Read.ImageToCreate">
-    <value>Obrázek k vytvoření</value>
-  </data>
-  <data name="Read.Extension">
-    <value>Rozšíření</value>
-  </data>
-  <data name="Read.RawScp">
-    <value>Nezpracovaný obrázek (SCP)</value>
-  </data>
-  <data name="Read.KnownFormat">
-    <value>Známý formát disku</value>
-  </data>
-  <data name="Read.FileName">
-    <value>Název souboru</value>
-  </data>
-  <data name="Read.Folder">
-    <value>Složka</value>
-  </data>
-  <data name="Read.Revolutions">
-    <value>Otáčky na stopu</value>
-  </data>
-  <data name="Read.Retries">
-    <value>Opakování</value>
-  </data>
-  <data name="Read.Tracks">
-    <value>Dráhy/strany</value>
-  </data>
-  <data name="Read.AutoNumber">
-    <value>Automaticky očíslovat úspěšná čtení</value>
-  </data>
-  <data name="Read.Digits">
-    <value>Číslice</value>
-  </data>
-  <data name="Read.Letters">
-    <value>Dopisy</value>
-  </data>
-  <data name="Read.Next">
-    <value>Další:</value>
-  </data>
-  <data name="Read.OpenVisualize">
-    <value>Otevřít ve vizualizaci</value>
-  </data>
-  <data name="Read.ScpFinished">
-    <value>Zachycení SCP je dokončeno. Můžete to analyzovat, aniž byste přerušili svou práci.</value>
-  </data>
-  <data name="Read.ScpSummaryTitle">
-    <value>Konečný výsledek SCP:</value>
-  </data>
-  <data name="Read.ScpTracksSummary">
-    <value>Stopy: {0} dobré, {1} chybějící nebo neplatné ({2} válce, {3} strany).</value>
-  </data>
-  <data name="Read.ScpTechnicalSummary">
-    <value>Otáčky: {0} · Rozlišení: {1} ns · Velikost: {2:N0} bajtů · Kontrolní součet: {3}.</value>
-  </data>
-  <data name="Read.ScpOutputFile">
-    <value>Soubor: {0}</value>
-  </data>
-  <data name="Read.ScpSummaryUnavailable">
-    <value>Souhrn SCP není k dispozici: {0}</value>
-  </data>
-  <data name="Read.ScpBannerSummary">
-    <value>{0} dobré stopy · {1} chybějící nebo neplatné · {2} válce · {3} strany · {4} otáčky · {5:N0} bajtů · {6} kontrolní součet</value>
-  </data>
-  <data name="Read.ChooseType">
-    <value>Vyberte typ obrázku</value>
-  </data>
-  <data name="Read.DestinationFolder">
-    <value>Cílová složka</value>
-  </data>
-  <data name="Read.CancelledFileDeleted">
-    <value>Čtení zrušeno: Neúplný soubor byl smazán: {0}</value>
-  </data>
-  <data name="Read.CancelledFileDeleteFailed">
-    <value>Čtení bylo zrušeno, ale neúplný soubor nelze smazat: {0} — {1}</value>
-  </data>
-  <data name="Read.OpenExplore">
-    <value>Procházet soubory</value>
-  </data>
-  <data name="Read.InternalReader">
-    <value>Interní čtení fyzického disku (experimentální)</value>
-  </data>
-  <data name="Read.InternalReaderTip">
-    <value>Čte tok přímo přes protokol Greaseweazle; gw.exe zůstává výchozí.</value>
-  </data>
-  <data name="Read.InternalPreview">
-    <value>Interní čtení fyzického disku do {0}</value>
-  </data>
-  <data name="Read.InternalRawScpOnly">
-    <value>Interní čtení nyní vytváří pouze nezpracované obrazy SCP.</value>
-  </data>
-  <data name="Read.InternalUnsupportedOptions">
-    <value>Interní čtečka zatím nepodporuje některé povolené volby.</value>
-  </data>
-  <data name="Read.InternalInvalidOptions">
-    <value>Nastavení interního čtení je neplatné.</value>
-  </data>
+  <data name="Read.Title"><value>Číst</value></data>
+  <data name="Read.NameRequired"><value>Zadejte název souboru.</value></data>
+  <data name="Read.TypeRequired"><value>Vyberte kompatibilní typ obrázku.</value></data>
+  <data name="Read.FileExistsTitle"><value>Existující soubor</value></data>
+  <data name="Read.FileExists"><value>Tento soubor již existuje.</value></data>
+  <data name="Read.ConflictPath"><value>Existující soubor</value></data>
+  <data name="Read.ConflictOverwrite"><value>Přepsat</value></data>
+  <data name="Read.ConflictNextNumber"><value>Použijte následující číslo</value></data>
+  <data name="Read.ConflictEditName"><value>Dovolte mi upravit název</value></data>
+  <data name="Read.ImageToCreate"><value>Obrázek k vytvoření</value></data>
+  <data name="Read.Extension"><value>Rozšíření</value></data>
+  <data name="Read.RawScp"><value>Nezpracovaný obrázek (SCP)</value></data>
+  <data name="Read.KnownFormat"><value>Známý formát disku</value></data>
+  <data name="Read.FileName"><value>Název souboru</value></data>
+  <data name="Read.Folder"><value>Složka</value></data>
+  <data name="Read.Revolutions"><value>Otáčky na stopu</value></data>
+  <data name="Read.Retries"><value>Opakování</value></data>
+  <data name="Read.Tracks"><value>Dráhy/strany</value></data>
+  <data name="Read.AutoNumber"><value>Automaticky očíslovat úspěšná čtení</value></data>
+  <data name="Read.Digits"><value>Číslice</value></data>
+  <data name="Read.Letters"><value>Dopisy</value></data>
+  <data name="Read.Next"><value>Další:</value></data>
+  <data name="Read.OpenVisualize"><value>Otevřít ve vizualizaci</value></data>
+  <data name="Read.ScpFinished"><value>Zachycení SCP je dokončeno. Můžete to analyzovat, aniž byste přerušili svou práci.</value></data>
+  <data name="Read.ScpSummaryTitle"><value>Konečný výsledek SCP:</value></data>
+  <data name="Read.ScpTracksSummary"><value>Stopy: {0} dobré, {1} chybějící nebo neplatné ({2} válce, {3} strany).</value></data>
+  <data name="Read.ScpTechnicalSummary"><value>Otáčky: {0} · Rozlišení: {1} ns · Velikost: {2:N0} bajtů · Kontrolní součet: {3}.</value></data>
+  <data name="Read.ScpOutputFile"><value>Soubor: {0}</value></data>
+  <data name="Read.ScpSummaryUnavailable"><value>Souhrn SCP není k dispozici: {0}</value></data>
+  <data name="Read.ScpBannerSummary"><value>{0} dobré stopy · {1} chybějící nebo neplatné · {2} válce · {3} strany · {4} otáčky · {5:N0} bajtů · {6} kontrolní součet</value></data>
+  <data name="Read.ChooseType"><value>Vyberte typ obrázku</value></data>
+  <data name="Read.DestinationFolder"><value>Cílová složka</value></data>
+  <data name="Read.CancelledFileDeleted"><value>Čtení zrušeno: Neúplný soubor byl smazán: {0}</value></data>
+  <data name="Read.CancelledFileDeleteFailed"><value>Čtení bylo zrušeno, ale neúplný soubor nelze smazat: {0} — {1}</value></data>
+  <data name="Read.OpenExplore"><value>Procházet soubory</value></data>
+  <data name="Read.InternalReader"><value>Interní čtení fyzického disku (experimentální)</value></data>
+  <data name="Read.InternalReaderTip"><value>Čte tok přímo přes protokol Greaseweazle; gw.exe zůstává výchozí.</value></data>
+  <data name="Read.InternalPreview"><value>Interní čtení fyzického disku do {0}</value></data>
+  <data name="Read.InternalRawScpOnly"><value>Interní čtení v současné době vytváří syrové SCP pouze obrázky.</value></data>
+  <data name="Read.InternalUnsupportedOptions"><value>Interní čtečka zatím nepodporuje některé povolené volby.</value></data>
+  <data name="Read.InternalInvalidOptions"><value>Nastavení interního čtení je neplatné.</value></data>
 </root>

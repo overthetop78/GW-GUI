@@ -24,6 +24,10 @@ public sealed partial class ControllerVisualizer
             case ControllerVisualModel.XboxRematchCore:
                 DrawXboxArtworkOverlays(dc, bounds);
                 break;
+            case ControllerVisualModel.Xbox360:
+            case ControllerVisualModel.Xbox360White:
+                DrawXbox360ArtworkOverlays(dc, bounds);
+                break;
             case ControllerVisualModel.GenericGamepad:
                 DrawGenericArtworkOverlays(dc, bounds);
                 break;
@@ -247,6 +251,24 @@ public sealed partial class ControllerVisualizer
             input.Button(GameInputGamepadButtons.PaddleRight1, 16));
         DrawArtworkHalo(dc, At(bounds, .595, .715), Radius(bounds, .032),
             input.Button(GameInputGamepadButtons.PaddleRight2, 17));
+    }
+
+    private void DrawXbox360ArtworkOverlays(DrawingContext dc, Rect bounds)
+    {
+        var input = Input;
+        DrawArtworkStick(dc, At(bounds, .249, .278), input.LeftX, input.LeftY,
+            input.Button(GameInputGamepadButtons.LeftThumbstick, 8), Radius(bounds, .078));
+        DrawArtworkStick(dc, At(bounds, .610, .497), input.RightX, input.RightY,
+            input.Button(GameInputGamepadButtons.RightThumbstick, 9), Radius(bounds, .078));
+        DrawArtworkDpad(dc, bounds, .363, .498, .045);
+        DrawFaceButtons(dc, bounds, (.735, .388), (.799, .289), (.670, .285), (.735, .179));
+        DrawArtworkHalo(dc, At(bounds, .402, .288), Radius(bounds, .027),
+            input.Button(GameInputGamepadButtons.View, 6));
+        DrawArtworkHalo(dc, At(bounds, .586, .287), Radius(bounds, .027),
+            input.Button(GameInputGamepadButtons.Menu, 7));
+        DrawArtworkHalo(dc, At(bounds, .499, .290), Radius(bounds, .052),
+            input.SystemButton(GameInputSystemButtons.Guide));
+        DrawShoulderAndTriggerOverlays(dc, bounds, .270, .730, .080);
     }
     private void DrawGenericArtworkOverlays(DrawingContext dc, Rect bounds)
     {

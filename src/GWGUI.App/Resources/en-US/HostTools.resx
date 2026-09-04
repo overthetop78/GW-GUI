@@ -12,40 +12,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="HostTools.Detect">
-    <value>Find gw.exe</value>
-  </data>
-  <data name="HostTools.Check">
-    <value>Check for updates</value>
-  </data>
-  <data name="HostTools.Download">
-    <value>Download latest version</value>
-  </data>
-  <data name="HostTools.Rollback">
-    <value>Use previous path</value>
-  </data>
-  <data name="HostTools.None">
-    <value>No installation detected.</value>
-  </data>
-  <data name="HostTools.Detected">
-    <value>Detected: {0}</value>
-  </data>
-  <data name="HostTools.Latest">
-    <value>Latest available version: {0}</value>
-  </data>
-  <data name="HostTools.Installed">
-    <value>Version {0} installed.</value>
-  </data>
-  <data name="HostTools.DownloadConfirm">
-    <value>Download and install Greaseweazle Host Tools {0} for Windows x64?</value>
-  </data>
-  <data name="HostTools.Title">
-    <value>Greaseweazle Host Tools</value>
-  </data>
-  <data name="HostTools.NoPrevious">
-    <value>No valid previous path is stored.</value>
-  </data>
-  <data name="HostTools.UpdateAvailable">
-    <value>Host Tools {0} available</value>
-  </data>
 </root>

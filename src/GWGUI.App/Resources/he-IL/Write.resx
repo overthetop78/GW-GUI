@@ -12,63 +12,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Write.Title">
-    <value>לִכתוֹב</value>
-  </data>
-  <data name="Write.SelectSource">
-    <value>בחר תמונת מקור קיימת.</value>
-  </data>
-  <data name="Write.Ambiguous">
-    <value>הפורמט מעורפל. בחר במפורש פורמט תואם.</value>
-  </data>
-  <data name="Write.VerifyOff">
-    <value>אימות לאחר כתיבה מושבת.</value>
-  </data>
-  <data name="Write.VerifyOn">
-    <value>אימות לאחר כתיבה מופעל.</value>
-  </data>
-  <data name="Write.ConfirmTitle">
-    <value>אשר את הכתיבה</value>
-  </data>
-  <data name="Write.Confirm">
-    <value>תמונה: {0}
-פורמט: {1}
-כונן: {2}
-{3}
-
-לכתוב את התמונה הזו לדיסק?</value>
-  </data>
-  <data name="Write.Source">
-    <value>תמונת מקור</value>
-  </data>
-  <data name="Write.Detected">
-    <value>פורמט זוהה</value>
-  </data>
-  <data name="Write.ChooseImage">
-    <value>בחר תמונה.</value>
-  </data>
-  <data name="Write.NoVerify">
-    <value>השבת את האימות לאחר הכתיבה</value>
-  </data>
-  <data name="Write.NoVerifyTip">
-    <value>מוסיף --no-verify. הדיסק לא ייקרא מחדש כדי לאשר את הכתיבה.</value>
-  </data>
-  <data name="Write.EraseEmpty">
-    <value>מחק רצועות ריקות</value>
-  </data>
-  <data name="Write.VisualizeTracks">
-    <value>דמיינו מסלולים</value>
-  </data>
-  <data name="Write.VisualizeFormatRequired">
-    <value>בחר את פורמט הדיסק לפני הצגת הרצועות שלו.</value>
-  </data>
+  <data name="Write.Title"><value>לִכתוֹב</value></data>
+  <data name="Write.SelectSource"><value>בחר תמונת מקור קיימת.</value></data>
+  <data name="Write.Ambiguous"><value>הפורמט מעורפל. בחר במפורש פורמט תואם.</value></data>
+  <data name="Write.VerifyOff"><value>אימות לאחר כתיבה מושבת.</value></data>
+  <data name="Write.VerifyOn"><value>אימות לאחר כתיבה מופעל.</value></data>
+  <data name="Write.ConfirmTitle"><value>אשר את הכתיבה</value></data>
+  <data name="Write.Confirm"><value>תמונה: {0}&#xA;פורמט: {1}&#xA;כונן: {2}&#xA;{3}&#xA;&#xA;לכתוב את התמונה הזו לדיסק?</value></data>
+  <data name="Write.Source"><value>תמונת מקור</value></data>
+  <data name="Write.Detected"><value>פורמט זוהה</value></data>
+  <data name="Write.ChooseImage"><value>בחר תמונה.</value></data>
+  <data name="Write.NoVerify"><value>השבת את האימות לאחר הכתיבה</value></data>
+  <data name="Write.NoVerifyTip"><value>מוסיף --no-verify. הדיסק לא ייקרא מחדש כדי לאשר את הכתיבה.</value></data>
+  <data name="Write.EraseEmpty"><value>מחק רצועות ריקות</value></data>
+  <data name="Write.VisualizeTracks"><value>דמיינו מסלולים</value></data>
+  <data name="Write.VisualizeFormatRequired"><value>בחר את פורמט הדיסק לפני הצגת הרצועות שלו.</value></data>
   <data name="Write.InternalWriter" xml:space="preserve"><value>כתיבה פנימית (ניסיונית)</value></data>
   <data name="Write.InternalWriterTip" xml:space="preserve"><value>כתיבה ישירה באמצעות המנוע הפנימי ללא gw.exe.</value></data>
   <data name="Write.InternalPreview" xml:space="preserve"><value>כתיבה פנימית של GW GUI: {0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>אפשרות מתקדמת אחת או יותר עדיין אינה נתמכת.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>אימות פנימי עדיין אינו זמין. יש להפעיל „ללא אימות”.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>רצועה {0}, צד {1}: {2}</value></data>
-  <data name="Write.InternalFailureReason">
-    <value>הכתיבה הפנימית נכשלה.</value>
-  </data>
+  <data name="Write.InternalFailureReason"><value>הכתיבה הפנימית נכשלה.</value></data>
 </root>

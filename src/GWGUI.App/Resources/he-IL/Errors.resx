@@ -12,33 +12,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.SettingsSaveFailed">
-    <value>לא ניתן היה לשמור את ההגדרות.
-
-{0}</value>
-  </data>
-  <data name="Error.Title">
-    <value>שגיאה GW GUI</value>
-  </data>
-  <data name="Error.Unexpected">
-    <value>שגיאה בלתי צפויה יורטה.
-
-{0}</value>
-  </data>
-  <data name="Error.SaveFailed">
-    <value>לא ניתן היה לשמור את ההגדרות. החלון עדיין ייסגר.
-
-{0}</value>
-  </data>
-  <data name="Error.LogSaved">
-    <value>הדוח המלא נשמר ב:
-{0}</value>
-  </data>
+  <data name="App.SettingsSaveFailed"><value>לא ניתן היה לשמור את ההגדרות.&#xA;&#xA;{0}</value></data>
+  <data name="Error.Title"><value>שגיאה GW GUI</value></data>
+  <data name="Error.Unexpected"><value>שגיאה בלתי צפויה יורטה.&#xA;&#xA;{0}</value></data>
+  <data name="Error.SaveFailed"><value>לא ניתן היה לשמור את ההגדרות. החלון עדיין ייסגר.&#xA;&#xA;{0}</value></data>
+  <data name="Error.LogSaved"><value>הדוח המלא נשמר ב:&#xA;{0}</value></data>
   <data name="Error.Description.NetworkTimeout"><value>השירות המרוחק לא הגיב לפני שהקשר יצא. בדוק את חיבור הרשת ולנסות שוב.</value></data>
   <data name="Error.Description.NetworkDns"><value>לא ניתן לפתור את כתובת השירות מרחוק. בדוק את הגדרות הרשת או ה- DNS ולנסות שוב.</value></data>
   <data name="Error.Description.NetworkRefused"><value>השירות המרוחק סירב לקשר. זה יכול להיות לא זמין או חסום.</value></data>
   <data name="Error.Description.NetworkUnavailable"><value>לא ניתן להגיע לשירות המרוחק. בדוק את חיבור האינטרנט, חומת אש, VPN או הגדרות Proxy ולנסות שוב.</value></data>
-  <data name="Error.Description.HttpStatus"><value>השירות המרוחק חזר לסטטוס HTTP {0} נסה שוב אחר כך.</value></data>
+  <data name="Error.Description.HttpStatus"><value>The Distance service back HTTP סטטוס {0}. נסה שוב אחר כך.</value></data>
   <data name="Error.Description.OperationTimeout"><value>המבצע לא הסתיים בזמן המותר. נסה שוב.</value></data>
   <data name="Error.Description.OperationCancelled"><value>המבצע בוטל לפני שהוא הסתיים.</value></data>
   <data name="Error.Description.AccessDenied"><value>GW GUI אין רשות לגשת לקובץ המבוקש, התיקיה או המכשיר.</value></data>

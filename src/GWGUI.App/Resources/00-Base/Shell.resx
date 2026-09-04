@@ -12,79 +12,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.Title">
-    <value>GW GUI</value>
-  </data>
-  <data name="App.GwNotConfigured">
-    <value>Greaseweazle Tools is not configured. Open Options → Preferences.</value>
-  </data>
-  <data name="App.OperationRunningClose">
-    <value>An operation is running. Stop it and close GW GUI?</value>
-  </data>
-  <data name="Operation.Finished">
-    <value>Finished: code {0}, duration {1}.</value>
-  </data>
-  <data name="Operation.Succeeded">
-    <value>Command completed successfully.</value>
-  </data>
-  <data name="Operation.Cancelled">
-    <value>Command cancelled.</value>
-  </data>
-  <data name="Operation.ExitCode">
-    <value>The command ended with code {0}.</value>
-  </data>
-  <data name="Common.Console">
-    <value>Console</value>
-  </data>
-  <data name="Common.Command">
-    <value>Command</value>
-  </data>
-  <data name="Status.FaceTrackProgress">
-    <value>Side {0}: track {1} — {2}/{3}</value>
-  </data>
-  <data name="Status.Ready">
-    <value>GW GUI ready.</value>
-  </data>
-  <data name="Status.DefaultProfile">
-    <value>Profile: Default</value>
-  </data>
-  <data name="Operation.StopTitle">
-    <value>Stop operation</value>
-  </data>
-  <data name="Operation.StopConfirm">
-    <value>Stop the current Greaseweazle operation?</value>
-  </data>
-  <data name="Operation.Busy">
-    <value>A Greaseweazle command is already running. Wait for it to finish or stop it before opening this tool.</value>
-  </data>
-  <data name="Status.Profile">
-    <value>Profile: {0}</value>
-  </data>
-  <data name="Status.TrackProgress">
-    <value>Track {0}, side {1} — {2}/{3}</value>
-  </data>
-  <data name="Status.TrackUnknown">
-    <value>Track {0}, side {1} — {2} processed</value>
-  </data>
-  <data name="Operation.Error">
-    <value>Error: {0}</value>
-  </data>
-  <data name="Status.ReadyShort">
-    <value>Ready</value>
-  </data>
-  <data name="Status.Running">
-    <value>Running</value>
-  </data>
-  <data name="Status.Success">
-    <value>Success</value>
-  </data>
-  <data name="Status.Error">
-    <value>Error</value>
-  </data>
-  <data name="Status.Cancelled">
-    <value>Cancelled</value>
-  </data>
-  <data name="Terminal.Prompt">
-    <value>&gt;</value>
-  </data>
+  <data name="App.Title"><value>GW GUI</value></data>
+  <data name="App.GwNotConfigured"><value>Greaseweazle Tools is not configured. Open Options → Preferences.</value></data>
+  <data name="App.OperationRunningClose"><value>An operation is running. Stop it and close GW GUI?</value></data>
+  <data name="Operation.Finished"><value>Finished: code {0}, duration {1}.</value></data>
+  <data name="Operation.Succeeded"><value>Command completed successfully.</value></data>
+  <data name="Operation.Cancelled"><value>Command cancelled.</value></data>
+  <data name="Operation.ExitCode"><value>The command ended with code {0}.</value></data>
+  <data name="Common.Console"><value>Console</value></data>
+  <data name="Common.Command"><value>Command</value></data>
+  <data name="Status.FaceTrackProgress"><value>Side {0}: track {1} — {2}/{3}</value></data>
+  <data name="Status.Ready"><value>GW GUI ready.</value></data>
+  <data name="Status.DefaultProfile"><value>Profile: Default</value></data>
+  <data name="Operation.StopTitle"><value>Stop operation</value></data>
+  <data name="Operation.StopConfirm"><value>Stop the current Greaseweazle operation?</value></data>
+  <data name="Operation.Busy"><value>A Greaseweazle command is already running. Wait for it to finish or stop it before opening this tool.</value></data>
+  <data name="Status.Profile"><value>Profile: {0}</value></data>
+  <data name="Status.TrackProgress"><value>Track {0}, side {1} — {2}/{3}</value></data>
+  <data name="Status.TrackUnknown"><value>Track {0}, side {1} — {2} processed</value></data>
+  <data name="Operation.Error"><value>Error: {0}</value></data>
+  <data name="Status.ReadyShort"><value>Ready</value></data>
+  <data name="Status.Running"><value>Running</value></data>
+  <data name="Status.Success"><value>Success</value></data>
+  <data name="Status.Error"><value>Error</value></data>
+  <data name="Status.Cancelled"><value>Cancelled</value></data>
+  <data name="Terminal.Prompt"><value>&gt;</value></data>
 </root>

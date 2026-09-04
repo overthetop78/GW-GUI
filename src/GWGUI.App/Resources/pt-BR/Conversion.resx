@@ -12,140 +12,78 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Conflict.Title">
-    <value>Arquivos existentes</value>
-  </data>
-  <data name="Conflict.Heading">
-    <value>Alguns arquivos já existem</value>
-  </data>
-  <data name="Conflict.Help">
-    <value>Escolha uma ação para cada arquivo ou aplique a mesma ação a todos os arquivos.</value>
-  </data>
-  <data name="Conflict.File">
-    <value>Arquivo</value>
-  </data>
-  <data name="Conflict.Action">
-    <value>Ação</value>
-  </data>
-  <data name="Conflict.Overwrite">
-    <value>Substituir</value>
-  </data>
-  <data name="Conflict.Skip">
-    <value>Pular</value>
-  </data>
-  <data name="Conflict.Number">
-    <value>Usar o próximo número</value>
-  </data>
-  <data name="Conflict.AllOverwrite">
-    <value>Substituir tudo</value>
-  </data>
-  <data name="Conflict.AllSkip">
-    <value>Pular tudo</value>
-  </data>
-  <data name="Conflict.AllNumber">
-    <value>Numere tudo</value>
-  </data>
-  <data name="Conversion.Title">
-    <value>Conversão</value>
-  </data>
-  <data name="Conversion.SelectOutput">
-    <value>Selecione pelo menos um formato de saída.</value>
-  </data>
-  <data name="Conversion.SourceAmbiguous">
-    <value>Fonte ambígua</value>
-  </data>
-  <data name="Conversion.Summary">
-    <value>Resumo: {0} foi bem-sucedido, {1} falhou.</value>
-  </data>
-  <data name="Conversion.Failures">
-    <value>Falhas: {0}</value>
-  </data>
-  <data name="Conversion.Source">
-    <value>Fonte</value>
-  </data>
-  <data name="Conversion.OutputNames">
-    <value>Nomes de saída</value>
-  </data>
-  <data name="Conversion.AddTags">
-    <value>Adicionar tags</value>
-  </data>
-  <data name="Conversion.Selected">
-    <value>Selecionado</value>
-  </data>
-  <data name="Conversion.CommonFormats">
-    <value>Formatos comuns</value>
-  </data>
-  <data name="Conversion.ShowRare">
-    <value>Mostrar formatos raramente usados</value>
-  </data>
-  <data name="Conversion.LimitTracks">
-    <value>Limitar faixas</value>
-  </data>
-  <data name="Conversion.SourceRequired">
-    <value>Escolha uma imagem de origem existente.</value>
-  </data>
-  <data name="Conversion.NameRequired">
-    <value>Insira os nomes dos arquivos de saída.</value>
-  </data>
-  <data name="Conversion.CheckOutput">
-    <value>Verifique pelo menos um formato de saída.</value>
-  </data>
-  <data name="Conversion.More">
-    <value>(+ {0} conversões))</value>
-  </data>
-  <data name="Conversion.DefaultExtensionTip">
-    <value>Nenhuma extensão marcada: {0} é usado por padrão.</value>
-  </data>
-  <data name="Conversion.Incompatible">
-    <value>{0} não é compatível com esta fonte.</value>
-  </data>
-  <data name="Conversion.NoAvailableOutputName">
-    <value>Nenhum nome de arquivo de saída disponível foi encontrado.</value>
-  </data>
-  <data name="Conversion.ReconstructedFlux">
-    <value>fluxo reconstruído</value>
-  </data>
-  <data name="Migration.Open"><value>File migration...</value></data>
-  <data name="Migration.Title"><value>File migration</value></data>
-  <data name="Migration.Heading"><value>Migrate files to another file system</value></data>
-  <data name="Migration.Source"><value>Source image</value></data>
-  <data name="Migration.NoSource"><value>Select an image containing a recognized file system.</value></data>
-  <data name="Migration.Destination"><value>Destination file system and format</value></data>
-  <data name="Migration.Output"><value>Destination image</value></data>
-  <data name="Migration.Compatibility"><value>Compatibility and losses</value></data>
-  <data name="Migration.Waiting"><value>Select a source and a destination.</value></data>
-  <data name="Migration.Severity"><value>Severity</value></data>
-  <data name="Migration.Path"><value>Source path</value></data>
-  <data name="Migration.Description"><value>Description</value></data>
-  <data name="Migration.AcceptLosses"><value>Accept the listed metadata losses</value></data>
-  <data name="Migration.Execute"><value>Migrate files</value></data>
-  <data name="Migration.Blocking"><value>Blocking</value></data>
-  <data name="Migration.MetadataLoss"><value>Metadata loss</value></data>
-  <data name="Migration.SourceSummary"><value>Volume: {0} — File system: {1} — Root entries: {2}</value></data>
-  <data name="Migration.SourceFailed"><value>Unable to prepare the migration: {0}</value></data>
-  <data name="Migration.Completed"><value>The destination image was created: {0}</value></data>
-  <data name="Migration.Failed"><value>Migration failed: {0}</value></data>
-  <data name="Migration.Incompatible"><value>Incompatible: correct the blocking losses before migration.</value></data>
-  <data name="Migration.CompatibleWithLosses"><value>Compatible after accepting the listed metadata losses.</value></data>
-  <data name="Migration.Compatible"><value>Compatible: no loss detected.</value></data>
-  <data name="Migration.Loss.MissingContent"><value>File content is unavailable.</value></data>
-  <data name="Migration.Loss.UnsupportedEntryKind"><value>This entry type is not supported by the destination.</value></data>
-  <data name="Migration.Loss.InvalidName"><value>The name is not valid for the destination.</value></data>
-  <data name="Migration.Loss.NameTooLong"><value>The name is too long for the destination.</value></data>
-  <data name="Migration.Loss.NameCollision"><value>Several entries would have the same destination name.</value></data>
-  <data name="Migration.Loss.FileTooLarge"><value>The file is too large for the destination.</value></data>
-  <data name="Migration.Loss.InvalidMetadata"><value>The source metadata is invalid.</value></data>
-  <data name="Migration.Loss.ModifiedDate"><value>The modification date will not be preserved.</value></data>
-  <data name="Migration.Loss.Comment"><value>The comment will not be preserved.</value></data>
-  <data name="Migration.Loss.Attributes"><value>The source attributes will not be preserved.</value></data>
-  <data name="Migration.OverwriteConfirm"><value>The destination image already exists. Replace it? {0}</value></data>
-  <data name="Migration.SourceDestinationSame"><value>The destination image cannot replace the source image.</value></data>
-  <data name="Conversion.Fidelity.SectorData"><value>sector data; protections not preserved</value></data>
-  <data name="Conversion.Fidelity.ReconstructedTracks"><value>reconstructed tracks; original flux not preserved</value></data>
-  <data name="Conversion.Fidelity.PreservedFlux"><value>original flux preserved</value></data>
-  <data name="Conversion.EngineExternal" xml:space="preserve"><value>Host Tools: converting {0}.</value></data>
-  <data name="Conversion.EngineInternalStart" xml:space="preserve"><value>Internal engine: converting {0} to {1}.</value></data>
-  <data name="Conversion.EngineInternalComplete" xml:space="preserve"><value>Internal conversion completed: {0}.</value></data>
-  <data name="Conversion.EngineInternalUnavailable" xml:space="preserve"><value>The internal engine does not support this conversion: {0}.</value></data>
-  <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Internal conversion failed for {0}: {1}</value></data>
+  <data name="Conflict.Title"><value>Arquivos existentes</value></data>
+  <data name="Conflict.Heading"><value>Alguns arquivos já existem</value></data>
+  <data name="Conflict.Help"><value>Escolha uma ação para cada arquivo ou aplique a mesma ação a todos os arquivos.</value></data>
+  <data name="Conflict.File"><value>Arquivo</value></data>
+  <data name="Conflict.Action"><value>Ação</value></data>
+  <data name="Conflict.Overwrite"><value>Substituir</value></data>
+  <data name="Conflict.Skip"><value>Pular</value></data>
+  <data name="Conflict.Number"><value>Usar o próximo número</value></data>
+  <data name="Conflict.AllOverwrite"><value>Substituir tudo</value></data>
+  <data name="Conflict.AllSkip"><value>Pular tudo</value></data>
+  <data name="Conflict.AllNumber"><value>Numere tudo</value></data>
+  <data name="Conversion.Title"><value>Conversão</value></data>
+  <data name="Conversion.SelectOutput"><value>Selecione pelo menos um formato de saída.</value></data>
+  <data name="Conversion.SourceAmbiguous"><value>Fonte ambígua</value></data>
+  <data name="Conversion.Summary"><value>Resumo: {0} foi bem-sucedido, {1} falhou.</value></data>
+  <data name="Conversion.Failures"><value>Falhas: {0}</value></data>
+  <data name="Conversion.Source"><value>Fonte</value></data>
+  <data name="Conversion.OutputNames"><value>Nomes de saída</value></data>
+  <data name="Conversion.AddTags"><value>Adicionar tags</value></data>
+  <data name="Conversion.Selected"><value>Selecionado</value></data>
+  <data name="Conversion.CommonFormats"><value>Formatos comuns</value></data>
+  <data name="Conversion.ShowRare"><value>Mostrar formatos raramente usados</value></data>
+  <data name="Conversion.LimitTracks"><value>Limitar faixas</value></data>
+  <data name="Conversion.SourceRequired"><value>Escolha uma imagem de origem existente.</value></data>
+  <data name="Conversion.NameRequired"><value>Insira os nomes dos arquivos de saída.</value></data>
+  <data name="Conversion.CheckOutput"><value>Verifique pelo menos um formato de saída.</value></data>
+  <data name="Conversion.More"><value>(+ {0} conversões))</value></data>
+  <data name="Conversion.DefaultExtensionTip"><value>Nenhuma extensão marcada: {0} é usado por padrão.</value></data>
+  <data name="Conversion.Incompatible"><value>{0} não é compatível com esta fonte.</value></data>
+  <data name="Conversion.NoAvailableOutputName"><value>Nenhum nome de arquivo de saída disponível foi encontrado.</value></data>
+  <data name="Conversion.ReconstructedFlux"><value>fluxo reconstruído</value></data>
+  <data name="Migration.Open"><value>Migração do arquivo...</value></data>
+  <data name="Migration.Title"><value>Migração de arquivos</value></data>
+  <data name="Migration.Heading"><value>Migrar os ficheiros para outro sistema de ficheiros</value></data>
+  <data name="Migration.Source"><value>Imagem de origem</value></data>
+  <data name="Migration.NoSource"><value>Selecione uma imagem que contenha um sistema de arquivos reconhecido.</value></data>
+  <data name="Migration.Destination"><value>Sistema de ficheiros de destino e formato</value></data>
+  <data name="Migration.Output"><value>Imagem de destino</value></data>
+  <data name="Migration.Compatibility"><value>Compatibilidade e perdas</value></data>
+  <data name="Migration.Waiting"><value>Selecione uma fonte e um destino.</value></data>
+  <data name="Migration.Severity"><value>Severidade</value></data>
+  <data name="Migration.Path"><value>Localização do código</value></data>
+  <data name="Migration.Description"><value>Designação das mercadorias</value></data>
+  <data name="Migration.AcceptLosses"><value>Aceitar as perdas de metadados listadas</value></data>
+  <data name="Migration.Execute"><value>Migrar arquivos</value></data>
+  <data name="Migration.Blocking"><value>Bloqueamento</value></data>
+  <data name="Migration.MetadataLoss"><value>Perda de metadados</value></data>
+  <data name="Migration.SourceSummary"><value>Volume: {0} — Sistema de ficheiros: {1} — Inserções na base: {2}</value></data>
+  <data name="Migration.SourceFailed"><value>Não foi possível preparar a migração: {0}</value></data>
+  <data name="Migration.Completed"><value>A imagem de destino foi criada: {0}</value></data>
+  <data name="Migration.Failed"><value>A migração falhou: {0}</value></data>
+  <data name="Migration.Incompatible"><value>Incompatível: corrigir as perdas de bloqueio antes da migração.</value></data>
+  <data name="Migration.CompatibleWithLosses"><value>Compatível após aceitar as perdas de metadados listados.</value></data>
+  <data name="Migration.Compatible"><value>Compatível: nenhuma perda detectada.</value></data>
+  <data name="Migration.Loss.MissingContent"><value>O conteúdo do arquivo está indisponível.</value></data>
+  <data name="Migration.Loss.UnsupportedEntryKind"><value>Este tipo de entrada não é suportado pelo destino.</value></data>
+  <data name="Migration.Loss.InvalidName"><value>O nome não é válido para o destino.</value></data>
+  <data name="Migration.Loss.NameTooLong"><value>O nome é muito longo para o destino.</value></data>
+  <data name="Migration.Loss.NameCollision"><value>Vários itens teriam o mesmo nome de destino.</value></data>
+  <data name="Migration.Loss.FileTooLarge"><value>O arquivo é muito grande para o destino.</value></data>
+  <data name="Migration.Loss.InvalidMetadata"><value>Os metadados de origem são inválidos.</value></data>
+  <data name="Migration.Loss.ModifiedDate"><value>A data de modificação não será preservada.</value></data>
+  <data name="Migration.Loss.Comment"><value>O comentário não será preservado.</value></data>
+  <data name="Migration.Loss.Attributes"><value>Os atributos de origem não serão preservados.</value></data>
+  <data name="Migration.OverwriteConfirm"><value>A imagem de destino já existe. Substituí- la? {0}</value></data>
+  <data name="Migration.SourceDestinationSame"><value>A imagem de destino não pode substituir a imagem de origem.</value></data>
+  <data name="Conversion.Fidelity.SectorData"><value>dados do setor; proteções não preservadas</value></data>
+  <data name="Conversion.Fidelity.ReconstructedTracks"><value>faixas reconstruídas; fluxo original não preservado</value></data>
+  <data name="Conversion.Fidelity.PreservedFlux"><value>fluxo original preservado</value></data>
+  <data name="Conversion.EngineExternal"><value>Ferramentas da máquina: converter {0}.</value></data>
+  <data name="Conversion.EngineInternalStart"><value>Motor interno: conversão {0} para {1}.</value></data>
+  <data name="Conversion.EngineInternalComplete"><value>Conversão interna concluída: {0}.</value></data>
+  <data name="Conversion.EngineInternalUnavailable"><value>O motor interno não suporta esta conversão: {0}.</value></data>
+  <data name="Conversion.EngineInternalFailed"><value>A conversão interna falhou para {0}: {1}</value></data>
 </root>

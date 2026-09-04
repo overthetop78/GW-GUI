@@ -12,165 +12,56 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Options.Title">
-    <value>オプション</value>
-  </data>
-  <data name="Options.General">
-    <value>一般的な</value>
-  </data>
-  <data name="Options.Tools">
-    <value>Greaseweazle ツール</value>
-  </data>
-  <data name="Options.Hardware">
-    <value>コントローラーとドライブ</value>
-  </data>
-  <data name="Options.Profiles">
-    <value>プロフィール</value>
-  </data>
-  <data name="Options.ImagesFolder">
-    <value>デフォルトのディスクイメージフォルダー</value>
-  </data>
-  <data name="Options.Language">
-    <value>言語</value>
-  </data>
-  <data name="Options.Theme">
-    <value>テーマ</value>
-  </data>
-  <data name="Theme.System">
-    <value>システム</value>
-  </data>
-  <data name="Theme.Light">
-    <value>ライト</value>
-  </data>
-  <data name="Theme.Dark">
-    <value>暗い</value>
-  </data>
-  <data name="Options.GwPath">
-    <value>gw.exe へのパス</value>
-  </data>
-  <data name="Options.ToolsHelp">
-    <value>ツールが見つからない場合、アシスタントはツールをダウンロードするか、既存のインストールを選択するよう提案します。アップデートは発表のみです。</value>
-  </data>
-  <data name="Options.HardwarePersistence">
-    <value>ドライブが切断されても、ハードウェア設定は保存されたままになります。</value>
-  </data>
-  <data name="Options.ExecutableFilter">
-    <value>Greaseweazle (gw.exe)|gw.exe|実行可能ファイル (*.exe)|*.exe</value>
-  </data>
-  <data name="Options.RemoveHardware">
-    <value>この格納されたコントローラーとそのすべてのドライブを削除しますか?</value>
-  </data>
-  <data name="Options.HardwareTitle">
-    <value>ハードウェア</value>
-  </data>
-  <data name="Options.UseConversionTags">
-    <value>変換ファイル名にタグを使用する</value>
-  </data>
-  <data name="Options.TagPreset">
-    <value>プリセット</value>
-  </data>
-  <data name="Options.TagPresetFamily">
-    <value>家族のみ</value>
-  </data>
-  <data name="Options.TagPresetFormat">
-    <value>フォーマットのみ</value>
-  </data>
-  <data name="Options.TagPresetFamilyFormat">
-    <value>ファミリーとフォーマット</value>
-  </data>
-  <data name="Options.TagPresetFamilyExtension">
-    <value>家族と延長</value>
-  </data>
-  <data name="Options.TagPresetDetailed">
-    <value>ファミリ、フォーマット、拡張子</value>
-  </data>
-  <data name="Options.TagPattern">
-    <value>コンバージョンタグパターン</value>
-  </data>
-  <data name="Options.TagVariablesTitle">
-    <value>利用可能な変数</value>
-  </data>
-  <data name="Options.TagVariableName">
-    <value>ソースファイル名</value>
-  </data>
-  <data name="Options.TagVariableFamily">
-    <value>ファミリ: PC、ST、AMIGA…</value>
-  </data>
-  <data name="Options.TagVariableFormat">
-    <value>形式: 720、1440、DD…</value>
-  </data>
-  <data name="Options.TagVariableExtension">
-    <value>内線番号: IMA、ST、ADF…</value>
-  </data>
-  <data name="Options.TagVariableDateIso">
-    <value>日付: 2026-08-06</value>
-  </data>
-  <data name="Options.TagVariableDateCompact">
-    <value>日付: 20260806</value>
-  </data>
-  <data name="Options.TagVariableDateLocal">
-    <value>日付: 2026 年 6 月 8 日</value>
-  </data>
-  <data name="Options.TagVariableTimeFull">
-    <value>時間: 14-35-42</value>
-  </data>
-  <data name="Options.TagVariableTimeCompact">
-    <value>時間: 143542</value>
-  </data>
-  <data name="Options.TagVariableTimeShort">
-    <value>時間: 14-35</value>
-  </data>
-  <data name="Options.TagPatternHelp">
-    <value>{NAME} — ソースファイル名
-{FAMILY} — マシン ファミリ (PC、ST、AMIGA…)
-{FORMAT} — フォーマットまたはジオメトリ (720、1440、DD…)
-{EXTENSION} — 出力拡張子 (IMA、ST、ADF…)
-{DATE:YYYY-MM-DD} — 日付 2026-08-06
-{DATE:YYYYMMDD} — 日付 20260806
-{DATE:DD-MM-YYYY} — 日付 06-08-2026
-{TIME:HH-MM-SS} — 時間 14-35-42
-{TIME:HHMMSS} — 時刻 143542
-{TIME:HH-MM} — 時間 14-35</value>
-  </data>
-  <data name="Options.RecentTagPatterns">
-    <value>最近のカスタムパターン</value>
-  </data>
-  <data name="Options.NextTagExample">
-    <value>次の例</value>
-  </data>
-  <data name="Options.TagPatternPreview">
-    <value>例: {0}</value>
-  </data>
-  <data name="Options.TagPatternInvalid">
-    <value>タグ パターンには {tag} が含まれている必要があります。</value>
-  </data>
-  <data name="Options.EnableLogs">
-    <value>ログを保存する</value>
-  </data>
-  <data name="Options.Logs">
-    <value>ログ</value>
-  </data>
-  <data name="Options.LogsDescription">
-    <value>各アクションには、GW GUI Logs フォルダー内に独自のファイルがあります。</value>
-  </data>
-  <data name="Options.LogActionErase">
-    <value>消去</value>
-  </data>
-  <data name="Options.LogActionClean">
-    <value>ヘッドをクリーンにする</value>
-  </data>
-  <data name="Options.OpenLogsFolder">
-    <value>フォルダーを開く</value>
-  </data>
-  <data name="Options.LogMaximumSize">
-    <value>最大サイズ</value>
-  </data>
-  <data name="Options.KeepLogArchives">
-    <value>以前のログを保存する</value>
-  </data>
-  <data name="Options.LogUnlimitedHint">
-    <value>0 = 無制限</value>
-  </data>
+  <data name="Options.Title"><value>オプション</value></data>
+  <data name="Options.General"><value>一般的な</value></data>
+  <data name="Options.Tools"><value>Greaseweazle ツール</value></data>
+  <data name="Options.Hardware"><value>コントローラーとドライブ</value></data>
+  <data name="Options.Profiles"><value>プロフィール</value></data>
+  <data name="Options.ImagesFolder"><value>デフォルトのディスクイメージフォルダー</value></data>
+  <data name="Options.Language"><value>言語</value></data>
+  <data name="Options.Theme"><value>テーマ</value></data>
+  <data name="Theme.System"><value>システム</value></data>
+  <data name="Theme.Light"><value>ライト</value></data>
+  <data name="Theme.Dark"><value>暗い</value></data>
+  <data name="Options.GwPath"><value>gw.exe へのパス</value></data>
+  <data name="Options.ToolsHelp"><value>ツールが見つからない場合、アシスタントはツールをダウンロードするか、既存のインストールを選択するよう提案します。アップデートは発表のみです。</value></data>
+  <data name="Options.HardwarePersistence"><value>ドライブが切断されても、ハードウェア設定は保存されたままになります。</value></data>
+  <data name="Options.ExecutableFilter"><value>グリースウェザー(gw.exe)|gw.exe|実行可能(*.exe)|*.exe</value></data>
+  <data name="Options.RemoveHardware"><value>この格納されたコントローラーとそのすべてのドライブを削除しますか?</value></data>
+  <data name="Options.HardwareTitle"><value>ハードウェア</value></data>
+  <data name="Options.UseConversionTags"><value>変換ファイル名にタグを使用する</value></data>
+  <data name="Options.TagPreset"><value>プリセット</value></data>
+  <data name="Options.TagPresetFamily"><value>家族のみ</value></data>
+  <data name="Options.TagPresetFormat"><value>フォーマットのみ</value></data>
+  <data name="Options.TagPresetFamilyFormat"><value>ファミリーとフォーマット</value></data>
+  <data name="Options.TagPresetFamilyExtension"><value>家族と延長</value></data>
+  <data name="Options.TagPresetDetailed"><value>ファミリ、フォーマット、拡張子</value></data>
+  <data name="Options.TagPattern"><value>コンバージョンタグパターン</value></data>
+  <data name="Options.TagVariablesTitle"><value>利用可能な変数</value></data>
+  <data name="Options.TagVariableName"><value>ソースファイル名</value></data>
+  <data name="Options.TagVariableFamily"><value>ファミリ: PC、ST、AMIGA…</value></data>
+  <data name="Options.TagVariableFormat"><value>形式: 720、1440、DD…</value></data>
+  <data name="Options.TagVariableExtension"><value>内線番号: IMA、ST、ADF…</value></data>
+  <data name="Options.TagVariableDateIso"><value>日付: 2026-08-06</value></data>
+  <data name="Options.TagVariableDateCompact"><value>日付: 20260806</value></data>
+  <data name="Options.TagVariableDateLocal"><value>日付: 2026 年 6 月 8 日</value></data>
+  <data name="Options.TagVariableTimeFull"><value>時間: 14-35-42</value></data>
+  <data name="Options.TagVariableTimeCompact"><value>時間: 143542</value></data>
+  <data name="Options.TagVariableTimeShort"><value>時間: 14-35</value></data>
+  <data name="Options.TagPatternHelp"><value>{NAME} — ソースファイル名&#xA;{FAMILY} — マシン ファミリー ()PC、 ST、 AMIGA...)&#xA;{FORMAT} — フォーマットか幾何学(720、1440、 DD...)&#xA;{EXTENSION} — 出力延長 ()IMA、 ST、 ADF...)&#xA;{DATE:YYYY-MM-DD} — 日 2026-08-06&#xA;{DATE:YYYYMMDD} — 日 20260806&#xA;{DATE:DD-MM-YYYY} — 日 06-08-2026&#xA;{TIME:HH-MM-SS} — 時間 14-35-42&#xA;{TIME:HHMMSS} — 時間 143542&#xA;{TIME:HH-MM} — 時間 14-35</value></data>
+  <data name="Options.RecentTagPatterns"><value>最近のカスタムパターン</value></data>
+  <data name="Options.NextTagExample"><value>次の例</value></data>
+  <data name="Options.TagPatternPreview"><value>例: {0}</value></data>
+  <data name="Options.TagPatternInvalid"><value>タグパターンは、 {tag}.</value></data>
+  <data name="Options.EnableLogs"><value>ログを保存する</value></data>
+  <data name="Options.Logs"><value>ログ</value></data>
+  <data name="Options.LogsDescription"><value>各アクションには、GW GUI Logs フォルダー内に独自のファイルがあります。</value></data>
+  <data name="Options.LogActionErase"><value>消去</value></data>
+  <data name="Options.LogActionClean"><value>ヘッドをクリーンにする</value></data>
+  <data name="Options.OpenLogsFolder"><value>フォルダーを開く</value></data>
+  <data name="Options.LogMaximumSize"><value>最大サイズ</value></data>
+  <data name="Options.KeepLogArchives"><value>以前のログを保存する</value></data>
+  <data name="Options.LogUnlimitedHint"><value>0 = 無制限</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>エンジン</value></data>
   <data name="Engines.Description" xml:space="preserve"><value>各操作で使用するエンジンを個別に選択します。</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>GW GUI 内部エンジン</value></data>
@@ -185,9 +76,7 @@
   <data name="Controllers.NoneDetected" xml:space="preserve"><value>コントローラーが検出されません</value></data>
   <data name="Controllers.DetectedCount" xml:space="preserve"><value>{0} 台のコントローラーを検出</value></data>
   <data name="Controllers.TestRumble" xml:space="preserve"><value>振動をテスト</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve">
-    <value>振動の強さ</value>
-  </data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>振動の強さ</value></data>
   <data name="Controllers.LiveInputs" xml:space="preserve"><value>リアルタイム入力</value></data>
   <data name="Controllers.Control" xml:space="preserve"><value>コントロール</value></data>
   <data name="Controllers.Value" xml:space="preserve"><value>値</value></data>
@@ -218,17 +107,10 @@
   <data name="Controllers.Yes" xml:space="preserve"><value>はい</value></data>
   <data name="Controllers.No" xml:space="preserve"><value>いいえ</value></data>
   <data name="Controllers.None" xml:space="preserve"><value>なし</value></data>
-  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>汎用ゲームパッド</value></data>
-  <data name="Controllers.Model.Auto" xml:space="preserve"><value>自動</value></data>
-  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>ステアリング ホイール</value></data>
-  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>フライト スティック</value></data>
-  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>アーケード スティック</value></data>
-  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>生バイト</value></data>
+<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>生バイト</value></data>
   <data name="Controllers.AnalogValues" xml:space="preserve"><value>アナログ値</value></data>
   <data name="Controllers.DetectionFailed" xml:space="preserve"><value>コントローラーの検出に失敗しました</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve">
-    <value>コントローラーを検出中…</value>
-  </data>
+  <data name="Controllers.Detecting" xml:space="preserve"><value>コントローラーを検出中…</value></data>
   <data name="Controllers.ReadFailed" xml:space="preserve"><value>コントローラーの読み取りに失敗しました</value></data>
   <data name="Controllers.TestRunning" xml:space="preserve"><value>テスト中…</value></data>
   <data name="Controllers.TestFailed" xml:space="preserve"><value>テストに失敗しました</value></data>
@@ -253,91 +135,53 @@
   <data name="Controllers.Roll" xml:space="preserve"><value>ロール</value></data>
   <data name="Controllers.Pitch" xml:space="preserve"><value>ピッチ</value></data>
   <data name="Controllers.Yaw" xml:space="preserve"><value>ヨー</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve">
-    <value>センサー</value>
-  </data>
-  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
-    <value>UI ナビゲーション</value>
-  </data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
-    <value>ゲームパッド</value>
-  </data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
-    <value>低周波モーター</value>
-  </data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
-    <value>高周波モーター</value>
-  </data>
-  <data name="Controllers.Enum.Share" xml:space="preserve">
-    <value>共有</value>
-  </data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve">
-    <value>直線</value>
-  </data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve">
-    <value>角度</value>
-  </data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve">
-    <value>法線</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
-    <value>定常</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
-    <value>ランプ</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
-    <value>正弦波</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
-    <value>矩形波</value>
-  </data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
-    <value>三角波</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
-    <value>上昇のこぎり波</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
-    <value>下降のこぎり波</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
-    <value>ばね</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
-    <value>摩擦</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
-    <value>ダンパー</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
-    <value>慣性</value>
-  </data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve">
-    <value>ジョイスティック</value>
-  </data>
-  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
-    <value>多軸コントローラー</value>
-  </data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
-    <value>HID 用途</value>
-  </data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve">
-    <value>軸</value>
-  </data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve">
-    <value>ボタン</value>
-  </data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
-    <value>集約</value>
-  </data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve">
-    <value>仮想</value>
-  </data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve">
-    <value>入力レポート</value>
-  </data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
-    <value>出力レポート</value>
-  </data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>センサー</value></data>
+  <data name="Controllers.Enum.UiNavigation" xml:space="preserve"><value>UI ナビゲーション</value></data>
+  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>ゲームパッド</value></data>
+  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>低周波モーター</value></data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>高周波モーター</value></data>
+  <data name="Controllers.Enum.Share" xml:space="preserve"><value>共有</value></data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>直線</value></data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>角度</value></data>
+  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>法線</value></data>
+  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>定常</value></data>
+  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>ランプ</value></data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>正弦波</value></data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>矩形波</value></data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>三角波</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>上昇のこぎり波</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>下降のこぎり波</value></data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>ばね</value></data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>摩擦</value></data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>ダンパー</value></data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>慣性</value></data>
+  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>ジョイスティック</value></data>
+  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>多軸コントローラー</value></data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID 用途</value></data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>軸</value></data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>ボタン</value></data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>集約</value></data>
+  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>仮想</value></data>
+  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>入力レポート</value></data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>出力レポート</value></data>
+<data name="Emulation.InitialDisk"><value>初期ディスク</value></data>
+  <data name="Emulation.Audio"><value>オーディオ</value></data>
+  <data name="Emulation.Controller"><value>コントローラー {0}</value></data>
+  <data name="Emulation.Core.NameOptions"><value>コアオプション</value></data>
+  <data name="Emulation.MultiDrive"><value>最初の4ディスクを取付けて下さい DF0–DF3</value></data>
+  <data name="Emulation.DiskNumber"><value>ディスク {0}</value></data>
+  <data name="Emulation.LoadOptions"><value>利用可能なオプションをロードする</value></data>
+  <data name="Emulation.Configurations"><value>構成</value></data>
+  <data name="Emulation.Firmware"><value>ファームウェア</value></data>
+  <data name="Emulation.ReleaseMouse"><value>マウスを解放する</value></data>
+  <data name="Emulation.DeleteConfirm"><value>このAmiga設定を削除しますか?</value></data>
+  <data name="Emulation.ModelRequired"><value>明美雅モデルが必要です。</value></data>
+  <data name="Emulation.KickstartRequired"><value>キックスタートパスが必要です。</value></data>
+  <data name="Emulation.FileRequired"><value>必要なファームウェアパスは空です。</value></data>
+  <data name="Emulation.FileMissing"><value>選択したファイルが存在しない。</value></data>
+<data name="Options.EmulationMachineTitle"><value>{0} と よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ よ {1} : : : : {2}</value></data>
+  <data name="Controllers.AnalogDeadZones"><value>アナログの死んだ地帯</value></data>
+  <data name="Controllers.StickDeadZone"><value>スティック</value></data>
+  <data name="Controllers.TriggerDeadZone"><value>トリガ</value></data>
+  <data name="Controllers.OuterDeadZone"><value>外出死んだ地帯</value></data>
 </root>

@@ -12,16 +12,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="About.Description">
-    <value>Greaseweazle を使用してフロッピー ディスクの読み取り、書き込み、変換、検査を行うための最新の Windows インターフェイス。</value>
-  </data>
-  <data name="About.License">
-    <value>オープンソース ソフトウェア — MIT ライセンス</value>
-  </data>
-  <data name="About.Version">
-    <value>バージョン {0}</value>
-  </data>
-  <data name="About.Components">
-    <value>コンポーネントのバージョン</value>
-  </data>
+  <data name="About.Description"><value>Greaseweazle を使用してフロッピー ディスクの読み取り、書き込み、変換、検査を行うための最新の Windows インターフェイス。</value></data>
+  <data name="About.License"><value>オープンソース ソフトウェア — MIT ライセンス</value></data>
+  <data name="About.Version"><value>バージョン {0}</value></data>
+  <data name="About.Components"><value>コンポーネントのバージョン</value></data>
 </root>

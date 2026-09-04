@@ -12,73 +12,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options">
-    <value>_Opzioni</value>
-  </data>
-  <data name="Menu.Preferences">
-    <value>Preferenze…</value>
-  </data>
-  <data name="Menu.Diagnostics">
-    <value>Diagnostica</value>
-  </data>
-  <data name="Menu.Information">
-    <value>Informazioni</value>
-  </data>
-  <data name="Menu.Bandwidth">
-    <value>USB larghezza di banda</value>
-  </data>
-  <data name="Menu.Rpm">
-    <value>RPM velocità</value>
-  </data>
-  <data name="Menu.Seek">
-    <value>Cerca la testa...</value>
-  </data>
-  <data name="Menu.Hardware">
-    <value>Hardware</value>
-  </data>
-  <data name="Menu.Pins">
-    <value>Perni…</value>
-  </data>
-  <data name="Menu.Reset">
-    <value>Reset</value>
-  </data>
-  <data name="Menu.Delays">
-    <value>Ritardi…</value>
-  </data>
-  <data name="Menu.Firmware">
-    <value>Firmware...</value>
-  </data>
-  <data name="Menu.Help">
-    <value>_Aiuto</value>
-  </data>
-  <data name="Menu.Documentation">
-    <value>Documentazione</value>
-  </data>
-  <data name="Menu.About">
-    <value>Di</value>
-  </data>
-  <data name="Tab.Read">
-    <value>Leggere</value>
-  </data>
-  <data name="Tab.Write">
-    <value>Scrivere</value>
-  </data>
-  <data name="Tab.Convert">
-    <value>Conversione</value>
-  </data>
-  <data name="Tab.Visualize">
-    <value>Visualizzazione</value>
-  </data>
-  <data name="Tab.Tools">
-    <value>Utensili</value>
-  </data>
-  <data name="Menu.Align">
-    <value>Guidare l'allineamento...</value>
-  </data>
-  <data name="Tab.Explorer">
-    <value>Esplora disco</value>
-  </data>
-  <data name="Tab.Emulation">
-    <value>Emulazione</value>
-  </data>
+  <data name="Menu.Options"><value>_Opzioni</value></data>
+  <data name="Menu.Preferences"><value>Preferenze…</value></data>
+  <data name="Menu.Diagnostics"><value>Diagnostica</value></data>
+  <data name="Menu.Information"><value>Informazioni</value></data>
+  <data name="Menu.Bandwidth"><value>USB larghezza di banda</value></data>
+  <data name="Menu.Rpm"><value>RPM velocità</value></data>
+  <data name="Menu.Seek"><value>Cerca la testa...</value></data>
+<data name="Menu.Pins"><value>Perni…</value></data>
+<data name="Menu.Delays"><value>Ritardi…</value></data>
+  <data name="Menu.Firmware"><value>Firmware...</value></data>
+  <data name="Menu.Help"><value>_Aiuto</value></data>
+  <data name="Menu.Documentation"><value>Documentazione</value></data>
+  <data name="Menu.About"><value>Di</value></data>
+  <data name="Tab.Read"><value>Leggere</value></data>
+  <data name="Tab.Write"><value>Scrivere</value></data>
+  <data name="Tab.Convert"><value>Conversione</value></data>
+  <data name="Tab.Visualize"><value>Visualizzazione</value></data>
+  <data name="Tab.Tools"><value>Utensili</value></data>
+  <data name="Menu.Align"><value>Guidare l'allineamento...</value></data>
+  <data name="Tab.Explorer"><value>Esplora disco</value></data>
+  <data name="Tab.Emulation"><value>Emulazione</value></data>
+  <data name="Menu.Reset"><value>Ripristino</value></data>
 </root>

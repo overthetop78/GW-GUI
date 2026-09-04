@@ -12,40 +12,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="HostTools.Detect">
-    <value>Trova gw.exe</value>
-  </data>
-  <data name="HostTools.Check">
-    <value>Controlla gli aggiornamenti</value>
-  </data>
-  <data name="HostTools.Download">
-    <value>Scarica l'ultima versione</value>
-  </data>
-  <data name="HostTools.Rollback">
-    <value>Utilizza il percorso precedente</value>
-  </data>
-  <data name="HostTools.None">
-    <value>Nessuna installazione rilevata.</value>
-  </data>
-  <data name="HostTools.Detected">
-    <value>Rilevato: {0}</value>
-  </data>
-  <data name="HostTools.Latest">
-    <value>Ultima versione disponibile: {0}</value>
-  </data>
-  <data name="HostTools.Installed">
-    <value>Versione {0} installata.</value>
-  </data>
-  <data name="HostTools.DownloadConfirm">
-    <value>Scaricare e installare Greaseweazle Strumenti host {0} per Windows x64?</value>
-  </data>
-  <data name="HostTools.Title">
-    <value>Greaseweazle Strumenti dell'host</value>
-  </data>
-  <data name="HostTools.NoPrevious">
-    <value>Non viene memorizzato alcun percorso precedente valido.</value>
-  </data>
-  <data name="HostTools.UpdateAvailable">
-    <value>Strumenti host {0} disponibili</value>
-  </data>
+  <data name="HostTools.Detect"><value>Trova gw.exe</value></data>
+  <data name="HostTools.Check"><value>Controlla gli aggiornamenti</value></data>
+  <data name="HostTools.Download"><value>Scarica l'ultima versione</value></data>
+  <data name="HostTools.Rollback"><value>Utilizza il percorso precedente</value></data>
+  <data name="HostTools.None"><value>Nessuna installazione rilevata.</value></data>
+  <data name="HostTools.Detected"><value>Rilevato: {0}</value></data>
+  <data name="HostTools.Latest"><value>Ultima versione disponibile: {0}</value></data>
+  <data name="HostTools.Installed"><value>Versione {0} installata.</value></data>
+  <data name="HostTools.DownloadConfirm"><value>Scaricare e installare Greaseweazle Strumenti host {0} per Windows x64?</value></data>
+  <data name="HostTools.Title"><value>Greaseweazle Strumenti dell'host</value></data>
+  <data name="HostTools.NoPrevious"><value>Non viene memorizzato alcun percorso precedente valido.</value></data>
+  <data name="HostTools.UpdateAvailable"><value>Strumenti host {0} disponibili</value></data>
 </root>

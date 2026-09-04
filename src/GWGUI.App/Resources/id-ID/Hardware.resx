@@ -12,148 +12,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Hardware.Port">
-    <value>Pelabuhan</value>
-  </data>
-  <data name="Hardware.UsbId">
-    <value>USB pengenal</value>
-  </data>
-  <data name="Hardware.Drive">
-    <value>Menyetir</value>
-  </data>
-  <data name="Hardware.Available">
-    <value>Tersedia</value>
-  </data>
-  <data name="Hardware.Scan">
-    <value>Pindai</value>
-  </data>
-  <data name="Hardware.AddDrive">
-    <value>Tambahkan drive…</value>
-  </data>
-  <data name="Hardware.NoDrive">
-    <value>Tidak ada drive yang ditentukan</value>
-  </data>
-  <data name="Hardware.EditorTitle">
-    <value>Tentukan drive</value>
-  </data>
-  <data name="Hardware.Controller">
-    <value>Greaseweazle pengontrol</value>
-  </data>
-  <data name="Hardware.GwSelection">
-    <value>Seleksi lolos ke gw</value>
-  </data>
-  <data name="Hardware.PhysicalSize">
-    <value>Ukuran fisik</value>
-  </data>
-  <data name="Hardware.SizeShort">
-    <value>Ukuran</value>
-  </data>
-  <data name="Hardware.DensityShort">
-    <value>Kepadatan</value>
-  </data>
-  <data name="Hardware.SpeedShort">
-    <value>Kecepatan</value>
-  </data>
-  <data name="Hardware.AvailableState">
-    <value>Tersedia</value>
-  </data>
-  <data name="Hardware.UnavailableState">
-    <value>Tidak tersedia</value>
-  </data>
-  <data name="Hardware.DensityDescription">
-    <value>Kepadatan berkendara (hanya deskripsi)</value>
-  </data>
-  <data name="Hardware.SpeedDescription">
-    <value>Kecepatan nominal (hanya deskripsi)</value>
-  </data>
-  <data name="Hardware.NotConfigured">
-    <value>Pengontrol tidak dikonfigurasi</value>
-  </data>
-  <data name="Hardware.Disconnected">
-    <value>terputus</value>
-  </data>
-  <data name="Hardware.SelectedDisconnected">
-    <value>Drive yang dipilih terputus. Hubungkan kembali atau pindai lagi di Pilihan → Pengontrol dan drive.</value>
-  </data>
-  <data name="Hardware.DriveLabel">
-    <value>{0}-inci · {1} · {2} · {3}</value>
-  </data>
-  <data name="Hardware.DriveDialogTitle">
-    <value>Menyetir</value>
-  </data>
-  <data name="Hardware.ControllerRequired">
-    <value>Pindai atau tambahkan pengontrol Greaseweazle terlebih dahulu.</value>
-  </data>
-  <data name="Hardware.Description">
-    <value>{0}-inci · {1} · pilihan {2}{3}</value>
-  </data>
-  <data name="Hardware.ScanTitle">
-    <value>Pindai</value>
-  </data>
-  <data name="Hardware.GwRequired">
-    <value>Pilih atau download gw.exe di bawah terlebih dahulu.</value>
-  </data>
-  <data name="Hardware.StartupTitle">
-    <value>Pemeriksaan perangkat keras</value>
-  </data>
-  <data name="Hardware.StartupMissing">
-    <value>Perangkat keras yang dikonfigurasi tidak dapat ditemukan</value>
-  </data>
-  <data name="Hardware.StartupExplanation">
-    <value>Konfigurasi dipertahankan, namun drive-nya akan tetap tidak tersedia hingga Greaseweazle ditemukan lagi.</value>
-  </data>
-  <data name="Hardware.StartupMissingList">
-    <value>Pengontrol Greaseweazle tidak ada</value>
-  </data>
-  <data name="Hardware.StartupRetry">
-    <value>Cari lagi</value>
-  </data>
-  <data name="Hardware.StartupSettings">
-    <value>Pengaturan perangkat keras</value>
-  </data>
-  <data name="Hardware.StartupContinue">
-    <value>Lanjutkan tanpa drive ini</value>
-  </data>
-  <data name="Hardware.StartupCheckFailed">
-    <value>Pemeriksaan perangkat keras gagal: {0}</value>
-  </data>
-  <data name="Hardware.NewDetectedTitle">
-    <value>Greaseweazle baru terdeteksi</value>
-  </data>
-  <data name="Hardware.NewDetected">
-    <value>{0} terdeteksi pada {1}. Apakah Anda ingin mengkonfigurasi drive-nya sekarang?</value>
-  </data>
-  <data name="Hardware.ConfigurationState">
-    <value>Konfigurasi</value>
-  </data>
-  <data name="Hardware.Configured">
-    <value>Dikonfigurasi</value>
-  </data>
-  <data name="Hardware.NotConfiguredState">
-    <value>Terdeteksi, tidak dikonfigurasi</value>
-  </data>
-  <data name="Hardware.Configure">
-    <value>Konfigurasikan</value>
-  </data>
-  <data name="Hardware.ReaderNumber">
-    <value>Berkendara {0}</value>
-  </data>
-  <data name="Hardware.DriveChoice">
-    <value>Berkendara {0} · {1}″ · {2} · {3}</value>
-  </data>
-  <data name="Hardware.Forget">
-    <value>Lupa</value>
-  </data>
-  <data name="Hardware.ForgetConfirm">
-    <value>Apakah Anda benar-benar ingin melupakan drive atau perangkat ini?</value>
-  </data>
-  <data name="Hardware.ForgetLastConfirm">
-    <value>Ini adalah drive terakhir yang dikonfigurasi untuk Greaseweazle ini. Apakah Anda ingin melupakan drive dan Greaseweazle?</value>
-  </data>
-  <data name="Hardware.SelectController">
-    <value>Pilih baris milik Greaseweazle yang relevan terlebih dahulu.</value>
-  </data>
-  <data name="Hardware.MaximumDrives">
-    <value>Paling banyak dua drive dapat ditetapkan secara otomatis ke Greaseweazle ini (A dan B).</value>
-  </data>
+  <data name="Hardware.Port"><value>Pelabuhan</value></data>
+  <data name="Hardware.UsbId"><value>USB pengenal</value></data>
+  <data name="Hardware.Drive"><value>Menyetir</value></data>
+  <data name="Hardware.Available"><value>Tersedia</value></data>
+  <data name="Hardware.Scan"><value>Pindai</value></data>
+  <data name="Hardware.AddDrive"><value>Tambahkan drive…</value></data>
+  <data name="Hardware.NoDrive"><value>Tidak ada drive yang ditentukan</value></data>
+  <data name="Hardware.EditorTitle"><value>Tentukan drive</value></data>
+  <data name="Hardware.Controller"><value>Greaseweazle pengontrol</value></data>
+  <data name="Hardware.GwSelection"><value>Seleksi lolos ke gw</value></data>
+  <data name="Hardware.PhysicalSize"><value>Ukuran fisik</value></data>
+  <data name="Hardware.SizeShort"><value>Ukuran</value></data>
+  <data name="Hardware.DensityShort"><value>Kepadatan</value></data>
+  <data name="Hardware.SpeedShort"><value>Kecepatan</value></data>
+  <data name="Hardware.AvailableState"><value>Tersedia</value></data>
+  <data name="Hardware.UnavailableState"><value>Tidak tersedia</value></data>
+  <data name="Hardware.DensityDescription"><value>Kepadatan berkendara (hanya deskripsi)</value></data>
+  <data name="Hardware.SpeedDescription"><value>Kecepatan nominal (hanya deskripsi)</value></data>
+  <data name="Hardware.NotConfigured"><value>Pengontrol tidak dikonfigurasi</value></data>
+  <data name="Hardware.Disconnected"><value>terputus</value></data>
+  <data name="Hardware.SelectedDisconnected"><value>Drive yang dipilih terputus. Hubungkan kembali atau pindai lagi di Pilihan → Pengontrol dan drive.</value></data>
+  <data name="Hardware.DriveLabel"><value>{0}-inci · {1} · {2} · {3}</value></data>
+  <data name="Hardware.DriveDialogTitle"><value>Menyetir</value></data>
+  <data name="Hardware.ControllerRequired"><value>Pindai atau tambahkan pengontrol Greaseweazle terlebih dahulu.</value></data>
+  <data name="Hardware.Description"><value>{0}-inci · {1} · pilihan {2}{3}</value></data>
+  <data name="Hardware.ScanTitle"><value>Pindai</value></data>
+  <data name="Hardware.GwRequired"><value>Pilih atau download gw.exe di bawah terlebih dahulu.</value></data>
+  <data name="Hardware.StartupTitle"><value>Pemeriksaan perangkat keras</value></data>
+  <data name="Hardware.StartupMissing"><value>Perangkat keras yang dikonfigurasi tidak dapat ditemukan</value></data>
+  <data name="Hardware.StartupExplanation"><value>Konfigurasi dipertahankan, namun drive-nya akan tetap tidak tersedia hingga Greaseweazle ditemukan lagi.</value></data>
+  <data name="Hardware.StartupMissingList"><value>Pengontrol Greaseweazle tidak ada</value></data>
+  <data name="Hardware.StartupRetry"><value>Cari lagi</value></data>
+  <data name="Hardware.StartupSettings"><value>Pengaturan perangkat keras</value></data>
+  <data name="Hardware.StartupContinue"><value>Lanjutkan tanpa drive ini</value></data>
+  <data name="Hardware.StartupCheckFailed"><value>Pemeriksaan perangkat keras gagal: {0}</value></data>
+  <data name="Hardware.NewDetectedTitle"><value>Greaseweazle baru terdeteksi</value></data>
+  <data name="Hardware.NewDetected"><value>{0} terdeteksi pada {1}. Apakah Anda ingin mengkonfigurasi drive-nya sekarang?</value></data>
+  <data name="Hardware.ConfigurationState"><value>Konfigurasi</value></data>
+  <data name="Hardware.Configured"><value>Dikonfigurasi</value></data>
+  <data name="Hardware.NotConfiguredState"><value>Terdeteksi, tidak dikonfigurasi</value></data>
+  <data name="Hardware.Configure"><value>Konfigurasikan</value></data>
+  <data name="Hardware.ReaderNumber"><value>Berkendara {0}</value></data>
+  <data name="Hardware.DriveChoice"><value>Berkendara {0} · {1}″ · {2} · {3}</value></data>
+  <data name="Hardware.Forget"><value>Lupa</value></data>
+  <data name="Hardware.ForgetConfirm"><value>Apakah Anda benar-benar ingin melupakan drive atau perangkat ini?</value></data>
+  <data name="Hardware.ForgetLastConfirm"><value>Ini adalah drive terakhir yang dikonfigurasi untuk Greaseweazle ini. Apakah Anda ingin melupakan drive dan Greaseweazle?</value></data>
+  <data name="Hardware.SelectController"><value>Pilih baris milik Greaseweazle yang relevan terlebih dahulu.</value></data>
+  <data name="Hardware.MaximumDrives"><value>Paling banyak dua drive dapat ditetapkan secara otomatis ke Greaseweazle ini (A dan B).</value></data>
 </root>

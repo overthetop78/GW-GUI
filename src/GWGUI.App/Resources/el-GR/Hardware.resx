@@ -12,148 +12,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Hardware.Port">
-    <value>Λιμάνι</value>
-  </data>
-  <data name="Hardware.UsbId">
-    <value>USB αναγνωριστικό</value>
-  </data>
-  <data name="Hardware.Drive">
-    <value>Οδηγώ</value>
-  </data>
-  <data name="Hardware.Available">
-    <value>Διαθέσιμος</value>
-  </data>
-  <data name="Hardware.Scan">
-    <value>Σάρωση</value>
-  </data>
-  <data name="Hardware.AddDrive">
-    <value>Προσθήκη μονάδας δίσκου…</value>
-  </data>
-  <data name="Hardware.NoDrive">
-    <value>Δεν έχει οριστεί μονάδα δίσκου</value>
-  </data>
-  <data name="Hardware.EditorTitle">
-    <value>Ορίστε μια μονάδα δίσκου</value>
-  </data>
-  <data name="Hardware.Controller">
-    <value>Greaseweazle ελεγκτής</value>
-  </data>
-  <data name="Hardware.GwSelection">
-    <value>Η επιλογή πέρασε στο gw</value>
-  </data>
-  <data name="Hardware.PhysicalSize">
-    <value>Φυσικό μέγεθος</value>
-  </data>
-  <data name="Hardware.SizeShort">
-    <value>Μέγεθος</value>
-  </data>
-  <data name="Hardware.DensityShort">
-    <value>Πυκνότητα</value>
-  </data>
-  <data name="Hardware.SpeedShort">
-    <value>Ταχύτητα</value>
-  </data>
-  <data name="Hardware.AvailableState">
-    <value>Διαθέσιμος</value>
-  </data>
-  <data name="Hardware.UnavailableState">
-    <value>Δυσεύρετος</value>
-  </data>
-  <data name="Hardware.DensityDescription">
-    <value>Πυκνότητα κίνησης (μόνο περιγραφή)</value>
-  </data>
-  <data name="Hardware.SpeedDescription">
-    <value>Ονομαστική ταχύτητα (μόνο περιγραφή)</value>
-  </data>
-  <data name="Hardware.NotConfigured">
-    <value>Ο ελεγκτής δεν έχει ρυθμιστεί</value>
-  </data>
-  <data name="Hardware.Disconnected">
-    <value>ασύνδετος</value>
-  </data>
-  <data name="Hardware.SelectedDisconnected">
-    <value>Η επιλεγμένη μονάδα δίσκου έχει αποσυνδεθεί. Συνδέστε το ξανά ή σαρώστε ξανά στις Επιλογές → Ελεγκτές και μονάδες δίσκου.</value>
-  </data>
-  <data name="Hardware.DriveLabel">
-    <value>{0}-ίντσα · {1} · {2} · {3}</value>
-  </data>
-  <data name="Hardware.DriveDialogTitle">
-    <value>Οδηγώ</value>
-  </data>
-  <data name="Hardware.ControllerRequired">
-    <value>Σαρώστε ή προσθέστε πρώτα έναν ελεγκτή Greaseweazle.</value>
-  </data>
-  <data name="Hardware.Description">
-    <value>{0}-ίντσα · {1} · επιλογή {2}{3}</value>
-  </data>
-  <data name="Hardware.ScanTitle">
-    <value>Σάρωση</value>
-  </data>
-  <data name="Hardware.GwRequired">
-    <value>Επιλέξτε ή κατεβάστε πρώτα το gw.exe παρακάτω.</value>
-  </data>
-  <data name="Hardware.StartupTitle">
-    <value>Έλεγχος υλικού</value>
-  </data>
-  <data name="Hardware.StartupMissing">
-    <value>Δεν ήταν δυνατή η εύρεση του διαμορφωμένου υλικού</value>
-  </data>
-  <data name="Hardware.StartupExplanation">
-    <value>Η διαμόρφωση διατηρείται, αλλά οι μονάδες δίσκου θα παραμείνουν μη διαθέσιμες έως ότου βρεθεί ξανά η Greaseweazle τους.</value>
-  </data>
-  <data name="Hardware.StartupMissingList">
-    <value>Λείπουν Greaseweazle ελεγκτές</value>
-  </data>
-  <data name="Hardware.StartupRetry">
-    <value>Αναζήτηση ξανά</value>
-  </data>
-  <data name="Hardware.StartupSettings">
-    <value>Ρυθμίσεις υλικού</value>
-  </data>
-  <data name="Hardware.StartupContinue">
-    <value>Συνεχίστε χωρίς αυτήν τη μονάδα δίσκου</value>
-  </data>
-  <data name="Hardware.StartupCheckFailed">
-    <value>Ο έλεγχος υλικού απέτυχε: {0}</value>
-  </data>
-  <data name="Hardware.NewDetectedTitle">
-    <value>Εντοπίστηκε νέο Greaseweazle</value>
-  </data>
-  <data name="Hardware.NewDetected">
-    <value>Το {0} εντοπίστηκε στις {1}. Θέλετε να διαμορφώσετε τη μονάδα δίσκου του τώρα;</value>
-  </data>
-  <data name="Hardware.ConfigurationState">
-    <value>Διαμόρφωση</value>
-  </data>
-  <data name="Hardware.Configured">
-    <value>Διαμόρφωση</value>
-  </data>
-  <data name="Hardware.NotConfiguredState">
-    <value>Εντοπίστηκε, δεν διαμορφώθηκε</value>
-  </data>
-  <data name="Hardware.Configure">
-    <value>Διαμόρφωση</value>
-  </data>
-  <data name="Hardware.ReaderNumber">
-    <value>Οδηγήστε {0}</value>
-  </data>
-  <data name="Hardware.DriveChoice">
-    <value>Οδηγήστε {0} · {1}″ · {2} · {3}</value>
-  </data>
-  <data name="Hardware.Forget">
-    <value>Ξεχνώ</value>
-  </data>
-  <data name="Hardware.ForgetConfirm">
-    <value>Θέλετε πραγματικά να ξεχάσετε αυτήν τη μονάδα δίσκου ή τη συσκευή;</value>
-  </data>
-  <data name="Hardware.ForgetLastConfirm">
-    <value>Αυτή είναι η τελευταία ρυθμισμένη μονάδα δίσκου για αυτό το Greaseweazle. Θέλετε να ξεχάσετε και τη μονάδα δίσκου και το Greaseweazle;</value>
-  </data>
-  <data name="Hardware.SelectController">
-    <value>Επιλέξτε πρώτα μια σειρά που ανήκει στο σχετικό Greaseweazle.</value>
-  </data>
-  <data name="Hardware.MaximumDrives">
-    <value>Το πολύ δύο μονάδες δίσκου μπορούν να εκχωρηθούν αυτόματα σε αυτό το Greaseweazle (Α και Β).</value>
-  </data>
+  <data name="Hardware.Port"><value>Λιμάνι</value></data>
+  <data name="Hardware.UsbId"><value>USB αναγνωριστικό</value></data>
+  <data name="Hardware.Drive"><value>Οδηγώ</value></data>
+  <data name="Hardware.Available"><value>Διαθέσιμος</value></data>
+  <data name="Hardware.Scan"><value>Σάρωση</value></data>
+  <data name="Hardware.AddDrive"><value>Προσθήκη μονάδας δίσκου…</value></data>
+  <data name="Hardware.NoDrive"><value>Δεν έχει οριστεί μονάδα δίσκου</value></data>
+  <data name="Hardware.EditorTitle"><value>Ορίστε μια μονάδα δίσκου</value></data>
+  <data name="Hardware.Controller"><value>Greaseweazle ελεγκτής</value></data>
+  <data name="Hardware.GwSelection"><value>Η επιλογή πέρασε στο gw</value></data>
+  <data name="Hardware.PhysicalSize"><value>Φυσικό μέγεθος</value></data>
+  <data name="Hardware.SizeShort"><value>Μέγεθος</value></data>
+  <data name="Hardware.DensityShort"><value>Πυκνότητα</value></data>
+  <data name="Hardware.SpeedShort"><value>Ταχύτητα</value></data>
+  <data name="Hardware.AvailableState"><value>Διαθέσιμος</value></data>
+  <data name="Hardware.UnavailableState"><value>Δυσεύρετος</value></data>
+  <data name="Hardware.DensityDescription"><value>Πυκνότητα κίνησης (μόνο περιγραφή)</value></data>
+  <data name="Hardware.SpeedDescription"><value>Ονομαστική ταχύτητα (μόνο περιγραφή)</value></data>
+  <data name="Hardware.NotConfigured"><value>Ο ελεγκτής δεν έχει ρυθμιστεί</value></data>
+  <data name="Hardware.Disconnected"><value>ασύνδετος</value></data>
+  <data name="Hardware.SelectedDisconnected"><value>Η επιλεγμένη μονάδα δίσκου έχει αποσυνδεθεί. Συνδέστε το ξανά ή σαρώστε ξανά στις Επιλογές → Ελεγκτές και μονάδες δίσκου.</value></data>
+  <data name="Hardware.DriveLabel"><value>{0}-ίντσα · {1} · {2} · {3}</value></data>
+  <data name="Hardware.DriveDialogTitle"><value>Οδηγώ</value></data>
+  <data name="Hardware.ControllerRequired"><value>Σαρώστε ή προσθέστε πρώτα έναν ελεγκτή Greaseweazle.</value></data>
+  <data name="Hardware.Description"><value>{0}-ίντσα · {1} · επιλογή {2}{3}</value></data>
+  <data name="Hardware.ScanTitle"><value>Σάρωση</value></data>
+  <data name="Hardware.GwRequired"><value>Επιλέξτε ή κατεβάστε πρώτα το gw.exe παρακάτω.</value></data>
+  <data name="Hardware.StartupTitle"><value>Έλεγχος υλικού</value></data>
+  <data name="Hardware.StartupMissing"><value>Δεν ήταν δυνατή η εύρεση του διαμορφωμένου υλικού</value></data>
+  <data name="Hardware.StartupExplanation"><value>Η διαμόρφωση διατηρείται, αλλά οι μονάδες δίσκου θα παραμείνουν μη διαθέσιμες έως ότου βρεθεί ξανά η Greaseweazle τους.</value></data>
+  <data name="Hardware.StartupMissingList"><value>Λείπουν Greaseweazle ελεγκτές</value></data>
+  <data name="Hardware.StartupRetry"><value>Αναζήτηση ξανά</value></data>
+  <data name="Hardware.StartupSettings"><value>Ρυθμίσεις υλικού</value></data>
+  <data name="Hardware.StartupContinue"><value>Συνεχίστε χωρίς αυτήν τη μονάδα δίσκου</value></data>
+  <data name="Hardware.StartupCheckFailed"><value>Ο έλεγχος υλικού απέτυχε: {0}</value></data>
+  <data name="Hardware.NewDetectedTitle"><value>Εντοπίστηκε νέο Greaseweazle</value></data>
+  <data name="Hardware.NewDetected"><value>Το {0} εντοπίστηκε στις {1}. Θέλετε να διαμορφώσετε τη μονάδα δίσκου του τώρα;</value></data>
+  <data name="Hardware.ConfigurationState"><value>Διαμόρφωση</value></data>
+  <data name="Hardware.Configured"><value>Διαμόρφωση</value></data>
+  <data name="Hardware.NotConfiguredState"><value>Εντοπίστηκε, δεν διαμορφώθηκε</value></data>
+  <data name="Hardware.Configure"><value>Διαμόρφωση</value></data>
+  <data name="Hardware.ReaderNumber"><value>Οδηγήστε {0}</value></data>
+  <data name="Hardware.DriveChoice"><value>Οδηγήστε {0} · {1}″ · {2} · {3}</value></data>
+  <data name="Hardware.Forget"><value>Ξεχνώ</value></data>
+  <data name="Hardware.ForgetConfirm"><value>Θέλετε πραγματικά να ξεχάσετε αυτήν τη μονάδα δίσκου ή τη συσκευή;</value></data>
+  <data name="Hardware.ForgetLastConfirm"><value>Αυτή είναι η τελευταία ρυθμισμένη μονάδα δίσκου για αυτό το Greaseweazle. Θέλετε να ξεχάσετε και τη μονάδα δίσκου και το Greaseweazle;</value></data>
+  <data name="Hardware.SelectController"><value>Επιλέξτε πρώτα μια σειρά που ανήκει στο σχετικό Greaseweazle.</value></data>
+  <data name="Hardware.MaximumDrives"><value>Το πολύ δύο μονάδες δίσκου μπορούν να εκχωρηθούν αυτόματα σε αυτό το Greaseweazle (Α και Β).</value></data>
 </root>

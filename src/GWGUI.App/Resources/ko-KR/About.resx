@@ -12,16 +12,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="About.Description">
-    <value>Greaseweazle을 사용하여 플로피 디스크를 읽고, 쓰고, 변환하고 검사하기 위한 최신 Windows 인터페이스입니다.</value>
-  </data>
-  <data name="About.License">
-    <value>오픈 소스 소프트웨어 — MIT 라이선스</value>
-  </data>
-  <data name="About.Version">
-    <value>버전 {0}</value>
-  </data>
-  <data name="About.Components">
-    <value>구성 요소 버전</value>
-  </data>
+  <data name="About.Description"><value>Greaseweazle을 사용하여 플로피 디스크를 읽고, 쓰고, 변환하고 검사하기 위한 최신 Windows 인터페이스입니다.</value></data>
+  <data name="About.License"><value>오픈 소스 소프트웨어 — MIT 라이선스</value></data>
+  <data name="About.Version"><value>버전 {0}</value></data>
+  <data name="About.Components"><value>구성 요소 버전</value></data>
 </root>

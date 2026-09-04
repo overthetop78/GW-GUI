@@ -12,8 +12,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Unknown">
-    <value>Unknown</value>
-  </data>
-  <data name="Common.Eject"><value>Eject</value></data>
 </root>

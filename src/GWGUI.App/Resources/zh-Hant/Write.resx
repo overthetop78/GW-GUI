@@ -12,63 +12,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Write.Title">
-    <value>寫</value>
-  </data>
-  <data name="Write.SelectSource">
-    <value>選擇現有的來源影像。</value>
-  </data>
-  <data name="Write.Ambiguous">
-    <value>格式不明確。明確選擇相容的格式。</value>
-  </data>
-  <data name="Write.VerifyOff">
-    <value>禁用寫入後驗證。</value>
-  </data>
-  <data name="Write.VerifyOn">
-    <value>寫入後驗證啟用。</value>
-  </data>
-  <data name="Write.ConfirmTitle">
-    <value>確認寫入</value>
-  </data>
-  <data name="Write.Confirm">
-    <value>圖片：{0}
-格式：{1}
-驅動器：{2}
-{3}
-
-將此映像寫入磁碟？</value>
-  </data>
-  <data name="Write.Source">
-    <value>來源圖片</value>
-  </data>
-  <data name="Write.Detected">
-    <value>偵測到的格式</value>
-  </data>
-  <data name="Write.ChooseImage">
-    <value>選擇一個圖像。</value>
-  </data>
-  <data name="Write.NoVerify">
-    <value>寫入後禁用驗證</value>
-  </data>
-  <data name="Write.NoVerifyTip">
-    <value>新增 --no-verify。不會重新讀取磁碟來確認寫入。</value>
-  </data>
-  <data name="Write.EraseEmpty">
-    <value>擦除空軌道</value>
-  </data>
-  <data name="Write.VisualizeTracks">
-    <value>視覺化曲目</value>
-  </data>
-  <data name="Write.VisualizeFormatRequired">
-    <value>在查看其磁軌之前選擇磁碟格式。</value>
-  </data>
+  <data name="Write.Title"><value>寫</value></data>
+  <data name="Write.SelectSource"><value>選擇現有的來源影像。</value></data>
+  <data name="Write.Ambiguous"><value>格式不明確。明確選擇相容的格式。</value></data>
+  <data name="Write.VerifyOff"><value>禁用寫入後驗證。</value></data>
+  <data name="Write.VerifyOn"><value>寫入後驗證啟用。</value></data>
+  <data name="Write.ConfirmTitle"><value>確認寫入</value></data>
+  <data name="Write.Confirm"><value>圖片：{0}&#xA;格式：{1}&#xA;驅動器：{2}&#xA;{3}&#xA;&#xA;將此映像寫入磁碟？</value></data>
+  <data name="Write.Source"><value>來源圖片</value></data>
+  <data name="Write.Detected"><value>偵測到的格式</value></data>
+  <data name="Write.ChooseImage"><value>選擇一個圖像。</value></data>
+  <data name="Write.NoVerify"><value>寫入後禁用驗證</value></data>
+  <data name="Write.NoVerifyTip"><value>新增 --no-verify。不會重新讀取磁碟來確認寫入。</value></data>
+  <data name="Write.EraseEmpty"><value>擦除空軌道</value></data>
+  <data name="Write.VisualizeTracks"><value>視覺化曲目</value></data>
+  <data name="Write.VisualizeFormatRequired"><value>在查看其磁軌之前選擇磁碟格式。</value></data>
   <data name="Write.InternalWriter" xml:space="preserve"><value>內部寫入（實驗性）</value></data>
   <data name="Write.InternalWriterTip" xml:space="preserve"><value>不使用 gw.exe，直接透過內部引擎寫入。</value></data>
   <data name="Write.InternalPreview" xml:space="preserve"><value>GW GUI 內部寫入：{0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>一個或多個所選進階選項尚未支援。</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>內部驗證尚未可用。請啟用「不驗證」。</value></data>
-  <data name="Write.InternalFailure" xml:space="preserve"><value>磁軌 {0}，磁面 {1}：{2}</value></data>
-  <data name="Write.InternalFailureReason">
-    <value>內部寫入失敗。</value>
-  </data>
+  <data name="Write.InternalFailure"><value>音轨 {0}, 侧 {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason"><value>內部寫入失敗。</value></data>
 </root>

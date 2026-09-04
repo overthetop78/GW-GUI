@@ -12,165 +12,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Options.Title">
-    <value>Alternativ</value>
-  </data>
-  <data name="Options.General">
-    <value>Allmän</value>
-  </data>
-  <data name="Options.Tools">
-    <value>Greaseweazle Verktyg</value>
-  </data>
-  <data name="Options.Hardware">
-    <value>Styrenheter och drivenheter</value>
-  </data>
-  <data name="Options.Profiles">
-    <value>Profiler</value>
-  </data>
-  <data name="Options.ImagesFolder">
-    <value>Standard diskbildsmapp</value>
-  </data>
-  <data name="Options.Language">
-    <value>Språk</value>
-  </data>
-  <data name="Options.Theme">
-    <value>Tema</value>
-  </data>
-  <data name="Theme.System">
-    <value>System</value>
-  </data>
-  <data name="Theme.Light">
-    <value>Ljus</value>
-  </data>
-  <data name="Theme.Dark">
-    <value>Mörk</value>
-  </data>
-  <data name="Options.GwPath">
-    <value>Sökväg till gw.exe</value>
-  </data>
-  <data name="Options.ToolsHelp">
-    <value>Om verktygen saknas kommer assistenten att erbjuda att ladda ner dem eller välja en befintlig installation. Uppdateringar meddelas endast.</value>
-  </data>
-  <data name="Options.HardwarePersistence">
-    <value>Hårdvaruinställningarna förblir lagrade när en enhet kopplas bort.</value>
-  </data>
-  <data name="Options.ExecutableFilter">
-    <value>Greaseweazle (gw.exe)|gw.exe|Körbar (*.exe)|*.exe</value>
-  </data>
-  <data name="Options.RemoveHardware">
-    <value>Ta bort denna lagrade kontroller och alla dess enheter?</value>
-  </data>
-  <data name="Options.HardwareTitle">
-    <value>Hårdvara</value>
-  </data>
-  <data name="Options.UseConversionTags">
-    <value>Använd taggar i konverteringsfilnamn</value>
-  </data>
-  <data name="Options.TagPreset">
-    <value>Förinställa</value>
-  </data>
-  <data name="Options.TagPresetFamily">
-    <value>Endast familj</value>
-  </data>
-  <data name="Options.TagPresetFormat">
-    <value>Endast format</value>
-  </data>
-  <data name="Options.TagPresetFamilyFormat">
-    <value>Familj och format</value>
-  </data>
-  <data name="Options.TagPresetFamilyExtension">
-    <value>Familj och förlängning</value>
-  </data>
-  <data name="Options.TagPresetDetailed">
-    <value>Familj, format och förlängning</value>
-  </data>
-  <data name="Options.TagPattern">
-    <value>Konverteringstaggmönster</value>
-  </data>
-  <data name="Options.TagVariablesTitle">
-    <value>Tillgängliga variabler</value>
-  </data>
-  <data name="Options.TagVariableName">
-    <value>Källfilnamn</value>
-  </data>
-  <data name="Options.TagVariableFamily">
-    <value>Familj: PC, ST, AMIGA...</value>
-  </data>
-  <data name="Options.TagVariableFormat">
-    <value>Format: 720, 1440, DD...</value>
-  </data>
-  <data name="Options.TagVariableExtension">
-    <value>Tillägg: IMA, ST, ADF...</value>
-  </data>
-  <data name="Options.TagVariableDateIso">
-    <value>Datum: 2026-08-06</value>
-  </data>
-  <data name="Options.TagVariableDateCompact">
-    <value>Datum: 20260806</value>
-  </data>
-  <data name="Options.TagVariableDateLocal">
-    <value>Datum: 2026-08-06</value>
-  </data>
-  <data name="Options.TagVariableTimeFull">
-    <value>Tid: 14-35-42</value>
-  </data>
-  <data name="Options.TagVariableTimeCompact">
-    <value>Tid: 143542</value>
-  </data>
-  <data name="Options.TagVariableTimeShort">
-    <value>Tid: 14-35</value>
-  </data>
-  <data name="Options.TagPatternHelp">
-    <value>{NAME} — källfilnamn
-{FAMILY} — maskinfamilj (PC, ST, AMIGA...)
-{FORMAT} — format eller geometri (720, 1440, DD...)
-{EXTENSION} — utgångsförlängning (IMA, ST, ADF...)
-{DATE:YYYY-MM-DD} — datum 2026-08-06
-{DATE:YYYYMMDD} — datum 20260806
-{DATE:DD-MM-YYYY} — datum 2026-08-06
-{TIME:HH-MM-SS} — tid 14-35-42
-{TIME:HHMMSS} — tid 143542
-{TIME:HH-MM} — tid 14-35</value>
-  </data>
-  <data name="Options.RecentTagPatterns">
-    <value>Senaste anpassade mönster</value>
-  </data>
-  <data name="Options.NextTagExample">
-    <value>Nästa exempel</value>
-  </data>
-  <data name="Options.TagPatternPreview">
-    <value>Exempel: {0}</value>
-  </data>
-  <data name="Options.TagPatternInvalid">
-    <value>Taggmönstret måste innehålla {tag}.</value>
-  </data>
-  <data name="Options.EnableLogs">
-    <value>Spara loggar</value>
-  </data>
-  <data name="Options.Logs">
-    <value>Loggar</value>
-  </data>
-  <data name="Options.LogsDescription">
-    <value>Varje åtgärd har sin egen fil i mappen GW GUI Logs.</value>
-  </data>
-  <data name="Options.LogActionErase">
-    <value>Radera</value>
-  </data>
-  <data name="Options.LogActionClean">
-    <value>Rengör huvuden</value>
-  </data>
-  <data name="Options.OpenLogsFolder">
-    <value>Öppna mappen</value>
-  </data>
-  <data name="Options.LogMaximumSize">
-    <value>Maximal storlek</value>
-  </data>
-  <data name="Options.KeepLogArchives">
-    <value>Spara tidigare loggar</value>
-  </data>
-  <data name="Options.LogUnlimitedHint">
-    <value>0 = obegränsat</value>
-  </data>
+  <data name="Options.Title"><value>Alternativ</value></data>
+  <data name="Options.General"><value>Allmän</value></data>
+  <data name="Options.Tools"><value>Greaseweazle Verktyg</value></data>
+  <data name="Options.Hardware"><value>Styrenheter och drivenheter</value></data>
+  <data name="Options.Profiles"><value>Profiler</value></data>
+  <data name="Options.ImagesFolder"><value>Standard diskbildsmapp</value></data>
+  <data name="Options.Language"><value>Språk</value></data>
+  <data name="Options.Theme"><value>Tema</value></data>
+<data name="Theme.Light"><value>Ljus</value></data>
+  <data name="Theme.Dark"><value>Mörk</value></data>
+  <data name="Options.GwPath"><value>Sökväg till gw.exe</value></data>
+  <data name="Options.ToolsHelp"><value>Om verktygen saknas kommer assistenten att erbjuda att ladda ner dem eller välja en befintlig installation. Uppdateringar meddelas endast.</value></data>
+  <data name="Options.HardwarePersistence"><value>Hårdvaruinställningarna förblir lagrade när en enhet kopplas bort.</value></data>
+  <data name="Options.ExecutableFilter"><value>Greaseweazle (gw.exe)|gw.exe|Exekverbar (genomförbar)*.exe)|*.exe</value></data>
+  <data name="Options.RemoveHardware"><value>Ta bort denna lagrade kontroller och alla dess enheter?</value></data>
+  <data name="Options.HardwareTitle"><value>Hårdvara</value></data>
+  <data name="Options.UseConversionTags"><value>Använd taggar i konverteringsfilnamn</value></data>
+  <data name="Options.TagPreset"><value>Förinställa</value></data>
+  <data name="Options.TagPresetFamily"><value>Endast familj</value></data>
+  <data name="Options.TagPresetFormat"><value>Endast format</value></data>
+  <data name="Options.TagPresetFamilyFormat"><value>Familj och format</value></data>
+  <data name="Options.TagPresetFamilyExtension"><value>Familj och förlängning</value></data>
+  <data name="Options.TagPresetDetailed"><value>Familj, format och förlängning</value></data>
+  <data name="Options.TagPattern"><value>Konverteringstaggmönster</value></data>
+  <data name="Options.TagVariablesTitle"><value>Tillgängliga variabler</value></data>
+  <data name="Options.TagVariableName"><value>Källfilnamn</value></data>
+  <data name="Options.TagVariableFamily"><value>Familj: PC, ST, AMIGA...</value></data>
+  <data name="Options.TagVariableFormat"><value>Format: 720, 1440, DD...</value></data>
+  <data name="Options.TagVariableExtension"><value>Förlängning: IMA, ST, ADF...</value></data>
+  <data name="Options.TagVariableDateIso"><value>Datum: 2026-08-06</value></data>
+  <data name="Options.TagVariableDateCompact"><value>Datum: 20260806</value></data>
+  <data name="Options.TagVariableDateLocal"><value>Datum: 2026-08-06</value></data>
+  <data name="Options.TagVariableTimeFull"><value>Tid: 14-35-42</value></data>
+  <data name="Options.TagVariableTimeCompact"><value>Tid: 143542</value></data>
+  <data name="Options.TagVariableTimeShort"><value>Tid: 14-35</value></data>
+  <data name="Options.TagPatternHelp"><value>{NAME} - Källa filnamn&#xA;{FAMILY} - maskinfamilj (PC, ST, AMIGA...)&#xA;{FORMAT} format eller geometri (720, 1440, DD...)&#xA;{EXTENSION} - utgångsförlängning (utgångsförlängning)IMA, ST, ADF...)&#xA;{DATE:YYYY-MM-DD} - datum 2026-08-06&#xA;{DATE:YYYYMMDD} - datum 20260806&#xA;{DATE:DD-MM-YYYY} - datum 06-08-2026&#xA;{TIME:HH-MM-SS} - Tid 14-35-42&#xA;{TIME:HHMMSS} - Tid 143542&#xA;{TIME:HH-MM} - Tid 14-35</value></data>
+  <data name="Options.RecentTagPatterns"><value>Senaste anpassade mönster</value></data>
+  <data name="Options.NextTagExample"><value>Nästa exempel</value></data>
+  <data name="Options.TagPatternPreview"><value>Exempel: {0}</value></data>
+  <data name="Options.TagPatternInvalid"><value>Taggmönstret måste innehålla {tag}.</value></data>
+  <data name="Options.EnableLogs"><value>Spara loggar</value></data>
+  <data name="Options.Logs"><value>Loggar</value></data>
+  <data name="Options.LogsDescription"><value>Varje åtgärd har sin egen fil i mappen GW GUI Logs.</value></data>
+  <data name="Options.LogActionErase"><value>Radera</value></data>
+  <data name="Options.LogActionClean"><value>Rengör huvuden</value></data>
+  <data name="Options.OpenLogsFolder"><value>Öppna mappen</value></data>
+  <data name="Options.LogMaximumSize"><value>Maximal storlek</value></data>
+  <data name="Options.KeepLogArchives"><value>Spara tidigare loggar</value></data>
+  <data name="Options.LogUnlimitedHint"><value>0 = obegränsat</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>Motorer</value></data>
   <data name="Engines.Description" xml:space="preserve"><value>Välj oberoende vilken motor som används för varje åtgärd.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>Intern GW GUI-motor</value></data>
@@ -185,9 +75,7 @@
   <data name="Controllers.NoneDetected" xml:space="preserve"><value>Ingen handkontroll identifierades</value></data>
   <data name="Controllers.DetectedCount" xml:space="preserve"><value>{0} handkontroll(er) identifierade</value></data>
   <data name="Controllers.TestRumble" xml:space="preserve"><value>Testa vibration</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve">
-    <value>Vibrationsstyrka</value>
-  </data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>Vibrationsstyrka</value></data>
   <data name="Controllers.LiveInputs" xml:space="preserve"><value>Live-indata</value></data>
   <data name="Controllers.Control" xml:space="preserve"><value>Kontroll</value></data>
   <data name="Controllers.Value" xml:space="preserve"><value>Värde</value></data>
@@ -206,7 +94,6 @@
   <data name="Controllers.WheelCapabilities" xml:space="preserve"><value>Ratt</value></data>
   <data name="Controllers.WheelDetails" xml:space="preserve"><value>{0:0.#}° · koppling={1} · handbroms={2} · växelspak={3}</value></data>
   <data name="Controllers.GameInputName" xml:space="preserve"><value>GameInput-namn</value></data>
-  <data name="Controllers.Revision" xml:space="preserve"><value>Revision</value></data>
   <data name="Controllers.HardwareVersion" xml:space="preserve"><value>Maskinvaruversion</value></data>
   <data name="Controllers.FirmwareVersion" xml:space="preserve"><value>Firmwareversion</value></data>
   <data name="Controllers.Family" xml:space="preserve"><value>Familj</value></data>
@@ -218,17 +105,10 @@
   <data name="Controllers.Yes" xml:space="preserve"><value>Ja</value></data>
   <data name="Controllers.No" xml:space="preserve"><value>Nej</value></data>
   <data name="Controllers.None" xml:space="preserve"><value>Ingen</value></data>
-  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>Generisk handkontroll</value></data>
-  <data name="Controllers.Model.Auto" xml:space="preserve"><value>Auto</value></data>
-  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>Ratt</value></data>
-  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>Flygspak</value></data>
-  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>Arcade-spak</value></data>
-  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Rå byte</value></data>
+<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Rå byte</value></data>
   <data name="Controllers.AnalogValues" xml:space="preserve"><value>Analoga värden</value></data>
   <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Identifiering av handkontroller misslyckades</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve">
-    <value>Identifierar handkontroller…</value>
-  </data>
+  <data name="Controllers.Detecting" xml:space="preserve"><value>Identifierar handkontroller…</value></data>
   <data name="Controllers.ReadFailed" xml:space="preserve"><value>Handkontrollen kunde inte läsas</value></data>
   <data name="Controllers.TestRunning" xml:space="preserve"><value>Test pågår…</value></data>
   <data name="Controllers.TestFailed" xml:space="preserve"><value>Testet misslyckades</value></data>
@@ -253,91 +133,46 @@
   <data name="Controllers.Roll" xml:space="preserve"><value>Rullning</value></data>
   <data name="Controllers.Pitch" xml:space="preserve"><value>Stampning</value></data>
   <data name="Controllers.Yaw" xml:space="preserve"><value>Girning</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve">
-    <value>Sensorer</value>
-  </data>
-  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
-    <value>UI-navigering</value>
-  </data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
-    <value>Handkontroll</value>
-  </data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
-    <value>Lågfrekvensmotor</value>
-  </data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
-    <value>Högfrekvensmotor</value>
-  </data>
-  <data name="Controllers.Enum.Share" xml:space="preserve">
-    <value>Dela</value>
-  </data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve">
-    <value>Linjär</value>
-  </data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve">
-    <value>Vinklad</value>
-  </data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve">
-    <value>Normal</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
-    <value>Konstant</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
-    <value>Ramp</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
-    <value>Sinusvåg</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
-    <value>Fyrkantsvåg</value>
-  </data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
-    <value>Triangelvåg</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
-    <value>Stigande sågtand</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
-    <value>Fallande sågtand</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
-    <value>Fjäder</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
-    <value>Friktion</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
-    <value>Dämpare</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
-    <value>Tröghet</value>
-  </data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve">
-    <value>Styrspak</value>
-  </data>
-  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
-    <value>Fleraxlig kontroll</value>
-  </data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
-    <value>HID-användning</value>
-  </data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve">
-    <value>axlar</value>
-  </data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve">
-    <value>knappar</value>
-  </data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
-    <value>Aggregerad</value>
-  </data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve">
-    <value>Virtuell</value>
-  </data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve">
-    <value>Indatarapport</value>
-  </data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
-    <value>Utdatarapport</value>
-  </data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Sensorer</value></data>
+  <data name="Controllers.Enum.UiNavigation" xml:space="preserve"><value>UI-navigering</value></data>
+  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>Handkontroll</value></data>
+  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Lågfrekvensmotor</value></data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Högfrekvensmotor</value></data>
+  <data name="Controllers.Enum.Share" xml:space="preserve"><value>Dela</value></data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Linjär</value></data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Vinklad</value></data>
+<data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Konstant</value></data>
+<data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Sinusvåg</value></data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>Fyrkantsvåg</value></data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>Triangelvåg</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>Stigande sågtand</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>Fallande sågtand</value></data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>Fjäder</value></data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Friktion</value></data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Dämpare</value></data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Tröghet</value></data>
+  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Styrspak</value></data>
+  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Fleraxlig kontroll</value></data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID-användning</value></data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>axlar</value></data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>knappar</value></data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Aggregerad</value></data>
+  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>Virtuell</value></data>
+  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Indatarapport</value></data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Utdatarapport</value></data>
+  <data name="Theme.System"><value>Systemsystem</value></data>
+  <data name="Emulation.Core.NameOptions"><value>Kärnalternativ</value></data>
+  <data name="Emulation.MultiDrive"><value>Montera de fyra första diskarna i DF0-DF3</value></data>
+  <data name="Emulation.LoadOptions"><value>Load tillgängliga alternativ</value></data>
+  <data name="Emulation.Configurations"><value>Konfigurationer</value></data>
+  <data name="Emulation.ReleaseMouse"><value>Släpp mus</value></data>
+  <data name="Emulation.DeleteConfirm"><value>Ta bort denna Amiga-konfiguration?</value></data>
+  <data name="Emulation.ModelRequired"><value>En Amiga-modell krävs.</value></data>
+  <data name="Emulation.KickstartRequired"><value>En Kickstart-bana krävs.</value></data>
+  <data name="Emulation.FileRequired"><value>En nödvändig firmware väg är tom.</value></data>
+  <data name="Emulation.FileMissing"><value>Den valda filen finns inte.</value></data>
+  <data name="Controllers.Enum.Effect.Ramp"><value>Ramp Ramp</value></data>
+<data name="Options.EmulationMachineTitle"><value>{0} -- {1} :: :: {2}</value></data>
+  <data name="Controllers.AnalogDeadZones"><value>Analoga döda zoner</value></data>
+  <data name="Controllers.OuterDeadZone"><value>Yttre döda zonen</value></data>
 </root>

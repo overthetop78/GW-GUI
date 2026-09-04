@@ -12,118 +12,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Advanced">
-    <value>Lisäasetukset</value>
-  </data>
-  <data name="Common.ExpertArguments">
-    <value>Asiantuntijan argumentit</value>
-  </data>
-  <data name="Common.ExpertArgumentsTip">
-    <value>Argumentit välitetään kirjoitettuna lainauksen vahvistamisen jälkeen.</value>
-  </data>
-  <data name="Advanced.SeekRetries">
-    <value>Etsi uudelleenyrityksiä</value>
-  </data>
-  <data name="Advanced.FakeIndex">
-    <value>Väärä indeksi</value>
-  </data>
-  <data name="Advanced.HardSectors">
-    <value>Kovat sektorit</value>
-  </data>
-  <data name="Advanced.Reverse">
-    <value>Reverse track data</value>
-  </data>
-  <data name="Advanced.AdjustSpeed">
-    <value>Säädä nopeutta</value>
-  </data>
-  <data name="Advanced.Pll">
-    <value>PLL ohitus</value>
-  </data>
-  <data name="Advanced.DensityPin">
-    <value>Tiheystappi 2</value>
-  </data>
-  <data name="Advanced.Tg43">
-    <value>Luo TG43</value>
-  </data>
-  <data name="Advanced.PreErase">
-    <value>Esipyyhi raidat</value>
-  </data>
-  <data name="Advanced.Precomp">
-    <value>Kirjoita ennakkokorvaus</value>
-  </data>
-  <data name="Advanced.OutputTracks">
-    <value>Tulostusraidat</value>
-  </data>
-  <data name="Advanced.DiskDefs">
-    <value>Mukautetut levymääritykset</value>
-  </data>
-  <data name="Advanced.DiskDefsFilter">
-    <value>Greaseweazle levymääritykset (*.cfg)|*.cfg|Kaikki tiedostot|*.*</value>
-  </data>
-  <data name="Advanced.DiskDefsMissing">
-    <value>Valittua levynmääritystiedostoa ei ole olemassa.</value>
-  </data>
-  <data name="Advanced.Invalid">
-    <value>Lisäasetus on virheellinen: {0}</value>
-  </data>
-  <data name="Advanced.TrackSpecTip">
-    <value>Raidan määritykset, esimerkiksi c=0-79:h=0-1, c=0-79/2:h=0 tai c=0-79:h=0-1:hswap.</value>
-  </data>
-  <data name="Advanced.SpeedTip">
-    <value>Positiivinen nopeus tai jakso, esimerkiksi 300 rpm, 200 ms, 200000us tai 200000000ns.</value>
-  </data>
-  <data name="Advanced.PllTip">
-    <value>PLL parametrit erotettuina kaksoispisteillä, esimerkiksi period=5:phase=60 tai period=5:phase=60:lowpass=2.</value>
-  </data>
-  <data name="Advanced.PrecompTip">
-    <value>Kirjoita ennakkokompensaatio, esimerkiksi type=mfm:40=125. Tyypit: mfm, fm, gcr; arvot ovat nanosekunteina.</value>
-  </data>
-  <data name="Advanced.DiskDefsTip">
-    <value>Käytä mukautettua diskdefs.cfg-tiedostoa Greaseweazle-muotomääritelmien lisäämiseen tai ohittamiseen.</value>
-  </data>
-  <data name="Advanced.RevsTip">
-    <value>--revs: Raitaa kohti luettujen kierrosten määrä. Esimerkki: --revs 5.</value>
-  </data>
-  <data name="Advanced.RetriesTip">
-    <value>--retries: Lisäyritykset virheen jälkeen. Esimerkki: --retries 3.</value>
-  </data>
-  <data name="Advanced.TracksTip">
-    <value>--tracks: Rajoita sylintereitä, päitä tai astumista. Esimerkki: --tracks c=0-79:h=0-1.</value>
-  </data>
-  <data name="Advanced.SeekRetriesTip">
-    <value>--seek-retries: Lisäyritykset pään siirron jälkeen. Esimerkki: --seek-retries 2.</value>
-  </data>
-  <data name="Advanced.FakeIndexTip">
-    <value>--fake-index: Luo ajastettu indeksi asemalle, jossa ei ole indeksisignaalia. Esimerkki: --fake-index 300 rpm.</value>
-  </data>
-  <data name="Advanced.HardSectorsTip">
-    <value>--hard-sectors: Käsittele kovalevyä. Ei yhteensopiva --fake-index:n kanssa.</value>
-  </data>
-  <data name="Advanced.ReverseTip">
-    <value>--reverse: Käänteiset raidat flippy-mediaa tai johdotusta varten.</value>
-  </data>
-  <data name="Advanced.AdjustSpeedTip">
-    <value>--adjust-speed: Skaalaa tietojen ajoitus uudelleen. Esimerkki: --adjust-speed 300 rpm.</value>
-  </data>
-  <data name="Advanced.PllOptionTip">
-    <value>--pll: Määritä kellon palautussilmukka. Esimerkki: --pll period=5:phase=60.</value>
-  </data>
-  <data name="Advanced.DenselTip">
-    <value>--densel: Pakota tiheyden valintanasta korkeaksi tai matalaksi. Esimerkki: --densel H.</value>
-  </data>
-  <data name="Advanced.Tg43Tip">
-    <value>--gen-tg43: Luo signaali TG43 sitä vaativille asemille. Ei yhteensopiva --densel:n kanssa.</value>
-  </data>
-  <data name="Advanced.EraseEmptyTip">
-    <value>--erase-empty: Poista raidat, joille lähdekuva ei sisällä tietoja.</value>
-  </data>
-  <data name="Advanced.PreEraseTip">
-    <value>--pre-erase: Pyyhi jokainen raita ennen sen kirjoittamista.</value>
-  </data>
-  <data name="Advanced.PrecompOptionTip">
-    <value>--precomp: Käytä kirjoitusennakkokompensaatiota. Esimerkki: --precomp type=mfm:40=125.</value>
-  </data>
-  <data name="Advanced.OutputTracksTip">
-    <value>--out-tracks: Yhdistä raidat tulostekuvassa. Esimerkki: --out-tracks c=0-79:h=0-1.</value>
-  </data>
+  <data name="Common.Advanced"><value>Lisäasetukset</value></data>
+  <data name="Common.ExpertArguments"><value>Asiantuntijan argumentit</value></data>
+  <data name="Common.ExpertArgumentsTip"><value>Argumentit välitetään kirjoitettuna lainauksen vahvistamisen jälkeen.</value></data>
+  <data name="Advanced.SeekRetries"><value>Etsi uudelleenyrityksiä</value></data>
+  <data name="Advanced.FakeIndex"><value>Väärä indeksi</value></data>
+  <data name="Advanced.HardSectors"><value>Kovat sektorit</value></data>
+<data name="Advanced.AdjustSpeed"><value>Säädä nopeutta</value></data>
+  <data name="Advanced.Pll"><value>PLL ohitus</value></data>
+  <data name="Advanced.DensityPin"><value>Tiheystappi 2</value></data>
+  <data name="Advanced.Tg43"><value>Luo TG43</value></data>
+  <data name="Advanced.PreErase"><value>Esipyyhi raidat</value></data>
+  <data name="Advanced.Precomp"><value>Kirjoita ennakkokorvaus</value></data>
+  <data name="Advanced.OutputTracks"><value>Tulostusraidat</value></data>
+  <data name="Advanced.DiskDefs"><value>Mukautetut levymääritykset</value></data>
+  <data name="Advanced.DiskDefsFilter"><value>Greaseweazle levymääritykset (*.cfg)|*.cfg|Kaikki tiedostot|*.*</value></data>
+  <data name="Advanced.DiskDefsMissing"><value>Valittua levynmääritystiedostoa ei ole olemassa.</value></data>
+  <data name="Advanced.Invalid"><value>Lisäasetus on virheellinen: {0}</value></data>
+  <data name="Advanced.TrackSpecTip"><value>Raidan määritykset, esimerkiksi c=0-79:h=0-1, c=0-79/2:h=0 tai c=0-79:h=0-1:hswap.</value></data>
+  <data name="Advanced.SpeedTip"><value>Positiivinen nopeus tai jakso, esimerkiksi 300 rpm, 200 ms, 200000us tai 200000000ns.</value></data>
+  <data name="Advanced.PllTip"><value>PLL parametrit erotettuina kaksoispisteillä, esimerkiksi period=5:phase=60 tai period=5:phase=60:lowpass=2.</value></data>
+  <data name="Advanced.PrecompTip"><value>Kirjoita ennakkokompensaatio, esimerkiksi type=mfm:40=125. Tyypit: mfm, fm, gcr; arvot ovat nanosekunteina.</value></data>
+  <data name="Advanced.DiskDefsTip"><value>Käytä mukautettua diskdefs.cfg-tiedostoa Greaseweazle-muotomääritelmien lisäämiseen tai ohittamiseen.</value></data>
+  <data name="Advanced.RevsTip"><value>--revs: Raitaa kohti luettujen kierrosten määrä. Esimerkki: --revs 5.</value></data>
+  <data name="Advanced.RetriesTip"><value>--retries: Lisäyritykset virheen jälkeen. Esimerkki: --retries 3.</value></data>
+  <data name="Advanced.TracksTip"><value>--tracks: Rajoita sylintereitä, päitä tai astumista. Esimerkki: --tracks c=0-79:h=0-1.</value></data>
+  <data name="Advanced.SeekRetriesTip"><value>--seek-retries: Lisäyritykset pään siirron jälkeen. Esimerkki: --seek-retries 2.</value></data>
+  <data name="Advanced.FakeIndexTip"><value>--fake-index: Luo ajastettu indeksi asemalle, jossa ei ole indeksisignaalia. Esimerkki: --fake-index 300 rpm.</value></data>
+  <data name="Advanced.HardSectorsTip"><value>--hard-sectors: Käsittele kovalevyä. Ei yhteensopiva --fake-index:n kanssa.</value></data>
+  <data name="Advanced.ReverseTip"><value>--reverse: Käänteiset raidat flippy-mediaa tai johdotusta varten.</value></data>
+  <data name="Advanced.AdjustSpeedTip"><value>--adjust-speed: Skaalaa tietojen ajoitus uudelleen. Esimerkki: --adjust-speed 300 rpm.</value></data>
+  <data name="Advanced.PllOptionTip"><value>--pll: Määritä kellon palautussilmukka. Esimerkki: --pll period=5:phase=60.</value></data>
+  <data name="Advanced.DenselTip"><value>--densel: Pakota tiheyden valintanasta korkeaksi tai matalaksi. Esimerkki: --densel H.</value></data>
+  <data name="Advanced.Tg43Tip"><value>--gen-tg43: Luo signaali TG43 sitä vaativille asemille. Ei yhteensopiva --densel:n kanssa.</value></data>
+  <data name="Advanced.EraseEmptyTip"><value>--erase-empty: Poista raidat, joille lähdekuva ei sisällä tietoja.</value></data>
+  <data name="Advanced.PreEraseTip"><value>--pre-erase: Pyyhi jokainen raita ennen sen kirjoittamista.</value></data>
+  <data name="Advanced.PrecompOptionTip"><value>--precomp: Käytä kirjoitusennakkokompensaatiota. Esimerkki: --precomp type=mfm:40=125.</value></data>
+  <data name="Advanced.OutputTracksTip"><value>--out-tracks: Yhdistä raidat tulostekuvassa. Esimerkki: --out-tracks c=0-79:h=0-1.</value></data>
+  <data name="Advanced.Reverse"><value>Käänteisraiteen tiedot</value></data>
 </root>

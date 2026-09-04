@@ -12,63 +12,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Write.Title">
-    <value>Scrie</value>
-  </data>
-  <data name="Write.SelectSource">
-    <value>Alegeți o imagine sursă existentă.</value>
-  </data>
-  <data name="Write.Ambiguous">
-    <value>Formatul este ambiguu. Alegeți în mod explicit un format compatibil.</value>
-  </data>
-  <data name="Write.VerifyOff">
-    <value>Verificarea după scriere este dezactivată.</value>
-  </data>
-  <data name="Write.VerifyOn">
-    <value>Verificarea după scriere este activată.</value>
-  </data>
-  <data name="Write.ConfirmTitle">
-    <value>Confirmați scrierea</value>
-  </data>
-  <data name="Write.Confirm">
-    <value>Imagine: {0}
-Format: {1}
-Conducere: {2}
-{3}
-
-Scrieți această imagine pe disc?</value>
-  </data>
-  <data name="Write.Source">
-    <value>Imagine sursă</value>
-  </data>
-  <data name="Write.Detected">
-    <value>Format detectat</value>
-  </data>
-  <data name="Write.ChooseImage">
-    <value>Alegeți o imagine.</value>
-  </data>
-  <data name="Write.NoVerify">
-    <value>Dezactivați verificarea după scriere</value>
-  </data>
-  <data name="Write.NoVerifyTip">
-    <value>Adaugă --no-verify. Discul nu va fi recitit pentru a confirma scrierea.</value>
-  </data>
-  <data name="Write.EraseEmpty">
-    <value>Ștergeți piesele goale</value>
-  </data>
-  <data name="Write.VisualizeTracks">
-    <value>Vizualizați piese</value>
-  </data>
-  <data name="Write.VisualizeFormatRequired">
-    <value>Selectați formatul discului înainte de a-i vizualiza urmele.</value>
-  </data>
+  <data name="Write.Title"><value>Scrie</value></data>
+  <data name="Write.SelectSource"><value>Alegeți o imagine sursă existentă.</value></data>
+  <data name="Write.Ambiguous"><value>Formatul este ambiguu. Alegeți în mod explicit un format compatibil.</value></data>
+  <data name="Write.VerifyOff"><value>Verificarea după scriere este dezactivată.</value></data>
+  <data name="Write.VerifyOn"><value>Verificarea după scriere este activată.</value></data>
+  <data name="Write.ConfirmTitle"><value>Confirmați scrierea</value></data>
+  <data name="Write.Confirm"><value>Imagine: {0}&#xA;Format: {1}&#xA;Conducere: {2}&#xA;{3}&#xA;&#xA;Scrieți această imagine pe disc?</value></data>
+  <data name="Write.Source"><value>Imagine sursă</value></data>
+  <data name="Write.Detected"><value>Format detectat</value></data>
+  <data name="Write.ChooseImage"><value>Alegeți o imagine.</value></data>
+  <data name="Write.NoVerify"><value>Dezactivați verificarea după scriere</value></data>
+  <data name="Write.NoVerifyTip"><value>Adaugă --no-verify. Discul nu va fi recitit pentru a confirma scrierea.</value></data>
+  <data name="Write.EraseEmpty"><value>Ștergeți piesele goale</value></data>
+  <data name="Write.VisualizeTracks"><value>Vizualizați piese</value></data>
+  <data name="Write.VisualizeFormatRequired"><value>Selectați formatul discului înainte de a-i vizualiza urmele.</value></data>
   <data name="Write.InternalWriter" xml:space="preserve"><value>Scriere internă (experimentală)</value></data>
   <data name="Write.InternalWriterTip" xml:space="preserve"><value>Scrie direct cu motorul intern, fără gw.exe.</value></data>
   <data name="Write.InternalPreview" xml:space="preserve"><value>Scriere internă GW GUI: {0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>Una sau mai multe opțiuni avansate selectate nu sunt încă acceptate.</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>Verificarea internă nu este încă disponibilă. Activați „Nu verifica”.</value></data>
   <data name="Write.InternalFailure" xml:space="preserve"><value>Pistă {0}, față {1}: {2}</value></data>
-  <data name="Write.InternalFailureReason">
-    <value>Scrierea internă a eșuat.</value>
-  </data>
+  <data name="Write.InternalFailureReason"><value>Scrierea internă a eșuat.</value></data>
 </root>

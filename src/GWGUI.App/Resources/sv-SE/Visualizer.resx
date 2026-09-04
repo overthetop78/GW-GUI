@@ -12,209 +12,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Visual.Decoder">
-    <value>Avkodare</value>
-  </data>
-  <data name="Visual.LinkZoom">
-    <value>Länkzoom</value>
-  </data>
-  <data name="Visual.OpenScp">
-    <value>Öppna en SCP fil...</value>
-  </data>
-  <data name="Visual.NoFile">
-    <value>Ingen SCP fil öppen</value>
-  </data>
-  <data name="Visual.Waiting">
-    <value>Väntar på en fil</value>
-  </data>
-  <data name="Visual.Inspector">
-    <value>Inspektör</value>
-  </data>
-  <data name="Visual.SelectTrack">
-    <value>Välj ett spår.</value>
-  </data>
-  <data name="Visual.Controls">
-    <value>Klicka: välj · Hjul: zoom · Högerklicka: panorera</value>
-  </data>
-  <data name="Visual.NormalFlux">
-    <value>Normalt flöde</value>
-  </data>
-  <data name="Visual.ShortTransition">
-    <value>Kort övergång</value>
-  </data>
-  <data name="Visual.LongTransition">
-    <value>Lång övergång/avvikelse</value>
-  </data>
-  <data name="Visual.Loading">
-    <value>Läser fil...</value>
-  </data>
-  <data name="Visual.Invalid">
-    <value>Ogiltig fil</value>
-  </data>
-  <data name="Visual.Title">
-    <value>SCP visualisering</value>
-  </data>
-  <data name="Visual.ChecksumValid">
-    <value>giltig</value>
-  </data>
-  <data name="Visual.ChecksumInvalid">
-    <value>ogiltig</value>
-  </data>
-  <data name="Visual.Summary">
-    <value>SCP {0} · {1} spår · {2} varv · {3} ns upplösning · {4} kontrollsumma</value>
-  </data>
-  <data name="Visual.Revolution">
-    <value>Revolution {0}: {1:N0} övergångar · {2:F2} ms · {3:F2} RPM</value>
-  </data>
-  <data name="Visual.Analysis">
-    <value>Avkodning: {0}
-Självförtroende: {1:P0}
-Beräknad cell: {2:F1} tick
-Strukturer: {3}</value>
-  </data>
-  <data name="Visual.Track">
-    <value>Sida: {0}
-Spår: {1}
-SCP post: {2}</value>
-  </data>
-  <data name="Visual.SideNoData">
-    <value>Sida {0}
-Inga data</value>
-  </data>
-  <data name="Visual.TrackTooltip">
-    <value>Sida {0} · Spår {1}
-{2} varv</value>
-  </data>
-  <data name="Visual.Automatic">
-    <value>Automatisk</value>
-  </data>
-  <data name="Visual.StructureHeader">
-    <value>Rubrik/adress</value>
-  </data>
-  <data name="Visual.StructureData">
-    <value>Avkodad data</value>
-  </data>
-  <data name="Visual.StructureAnomaly">
-    <value>Raderad/avvikelse</value>
-  </data>
-  <data name="Visual.AnalysedRevolution">
-    <value>Analys baserad på revolution {0}.</value>
-  </data>
-  <data name="Visual.BitOffset">
-    <value>bit {0:N0}</value>
-  </data>
-  <data name="Visual.SectorDetail">
-    <value>Sektor C{0} H{1} R{2} · {3} byte · {4} {5}</value>
-  </data>
-  <data name="Visual.CrcValid">
-    <value>giltig</value>
-  </data>
-  <data name="Visual.CrcInvalid">
-    <value>ogiltig</value>
-  </data>
-  <data name="Visual.IntegrityUnavailable">
-    <value>inte tillgänglig</value>
-  </data>
-  <data name="Visual.StructureKind.Sync">
-    <value>Synkronisering</value>
-  </data>
-  <data name="Visual.StructureKind.IdAddressMark">
-    <value>Sektorhuvud</value>
-  </data>
-  <data name="Visual.StructureKind.DataAddressMark">
-    <value>Sektordata</value>
-  </data>
-  <data name="Visual.StructureKind.DeletedDataAddressMark">
-    <value>Raderade sektordata</value>
-  </data>
-  <data name="Visual.StructureKind.AmigaSync">
-    <value>Amiga synkronisering</value>
-  </data>
-  <data name="Visual.StructureKind.AppleAddress">
-    <value>Apple adressprolog</value>
-  </data>
-  <data name="Visual.StructureKind.AppleData">
-    <value>Apples dataprolog</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreSync">
-    <value>Commodore synkronisering</value>
-  </data>
-  <data name="Visual.StructureKind.CommodoreHeader">
-    <value>Commodore rubrik</value>
-  </data>
-  <data name="Visual.StructureKind.FormatHeader">
-    <value>Formatera rubrik</value>
-  </data>
-  <data name="Visual.StructureKind.FormatData">
-    <value>Formatera data</value>
-  </data>
-  <data name="Visual.StructureKind.TimingAnomaly">
-    <value>Tidsavvikelse</value>
-  </data>
-  <data name="Visual.OpenFilter">
-    <value>SuperCard Pro fånga (*.scp)|*.scp|Alla filer|*.*</value>
-  </data>
-  <data name="Visual.Integrity.Checksum">
-    <value>Kontrollsumma</value>
-  </data>
-  <data name="Visual.Side">
-    <value>Sida {0}</value>
-  </data>
-  <data name="Visual.AnalysingTrack">
-    <value>Analyserar spår {0}/{1}...</value>
-  </data>
-  <data name="Visual.SideLabel">
-    <value>Sida</value>
-  </data>
-  <data name="Visual.TrackLabel">
-    <value>Spåra</value>
-  </data>
-  <data name="Visual.ScpEntryLabel">
-    <value>SCP post</value>
-  </data>
-  <data name="Visual.RevolutionsTitle">
-    <value>Revolutioner</value>
-  </data>
-  <data name="Visual.AnalysisTitle">
-    <value>Analys</value>
-  </data>
-  <data name="Visual.ConfidenceLabel">
-    <value>Förtroende</value>
-  </data>
-  <data name="Visual.CellLabel">
-    <value>Beräknad cell</value>
-  </data>
-  <data name="Visual.StructuresLabel">
-    <value>Strukturer</value>
-  </data>
-  <data name="Visual.StructuresTitle">
-    <value>Upptäckta strukturer</value>
-  </data>
-  <data name="Visual.SectorsTitle">
-    <value>Sektorer</value>
-  </data>
-  <data name="Visual.TransitionsUnit">
-    <value>övergångar</value>
-  </data>
-  <data name="Visual.OpenImage">
-    <value>Öppna en diskavbildning...</value>
-  </data>
-  <data name="Visual.DetachInspector">
-    <value>Koppla loss inspektören</value>
-  </data>
-  <data name="Visual.AttachInspector">
-    <value>Fäst inspektören</value>
-  </data>
-  <data name="Visual.SummaryTab">
-    <value>Sammanfattning</value>
-  </data>
-  <data name="Visual.FormatDetected">
-    <value>Format upptäckt</value>
-  </data>
-  <data name="Visual.AverageRpm">
-    <value>Genomsnittligt RPM</value>
-  </data>
-  <data name="Visual.AverageDuration">
-    <value>Genomsnittlig varaktighet</value>
-  </data>
+  <data name="Visual.Decoder"><value>Avkodare</value></data>
+  <data name="Visual.LinkZoom"><value>Länkzoom</value></data>
+  <data name="Visual.OpenScp"><value>Öppna en SCP fil...</value></data>
+  <data name="Visual.NoFile"><value>Ingen SCP fil öppen</value></data>
+  <data name="Visual.Waiting"><value>Väntar på en fil</value></data>
+  <data name="Visual.Inspector"><value>Inspektör</value></data>
+  <data name="Visual.SelectTrack"><value>Välj ett spår.</value></data>
+  <data name="Visual.Controls"><value>Klicka: välj · Hjul: zoom · Högerklicka: panorera</value></data>
+  <data name="Visual.NormalFlux"><value>Normalt flöde</value></data>
+  <data name="Visual.ShortTransition"><value>Kort övergång</value></data>
+  <data name="Visual.LongTransition"><value>Lång övergång/avvikelse</value></data>
+  <data name="Visual.Loading"><value>Läser fil...</value></data>
+  <data name="Visual.Invalid"><value>Ogiltig fil</value></data>
+  <data name="Visual.Title"><value>SCP visualisering</value></data>
+  <data name="Visual.ChecksumValid"><value>giltig</value></data>
+  <data name="Visual.ChecksumInvalid"><value>ogiltig</value></data>
+  <data name="Visual.Summary"><value>SCP {0} · {1} spår · {2} varv · {3} ns upplösning · {4} kontrollsumma</value></data>
+  <data name="Visual.Revolution"><value>Revolution {0}: {1:N0} övergångar · {2:F2} ms · {3:F2} RPM</value></data>
+  <data name="Visual.Analysis"><value>Avkodning: {0}&#xA;Självförtroende: {1:P0}&#xA;Beräknad cell: {2:F1} tick&#xA;Strukturer: {3}</value></data>
+  <data name="Visual.Track"><value>Sida: {0}&#xA;Spår: {1}&#xA;SCP post: {2}</value></data>
+  <data name="Visual.SideNoData"><value>Sida {0}&#xA;Inga data</value></data>
+  <data name="Visual.TrackTooltip"><value>Sida {0} · Spår {1}&#xA;{2} varv</value></data>
+  <data name="Visual.Automatic"><value>Automatisk</value></data>
+  <data name="Visual.StructureHeader"><value>Rubrik/adress</value></data>
+  <data name="Visual.StructureData"><value>Avkodad data</value></data>
+  <data name="Visual.StructureAnomaly"><value>Raderad/avvikelse</value></data>
+  <data name="Visual.AnalysedRevolution"><value>Analys baserad på revolution {0}.</value></data>
+<data name="Visual.SectorDetail"><value>Sektor C{0} H{1} R{2} · {3} byte · {4} {5}</value></data>
+  <data name="Visual.CrcValid"><value>giltig</value></data>
+  <data name="Visual.CrcInvalid"><value>ogiltig</value></data>
+  <data name="Visual.IntegrityUnavailable"><value>inte tillgänglig</value></data>
+  <data name="Visual.StructureKind.Sync"><value>Synkronisering</value></data>
+  <data name="Visual.StructureKind.IdAddressMark"><value>Sektorhuvud</value></data>
+  <data name="Visual.StructureKind.DataAddressMark"><value>Sektordata</value></data>
+  <data name="Visual.StructureKind.DeletedDataAddressMark"><value>Raderade sektordata</value></data>
+  <data name="Visual.StructureKind.AmigaSync"><value>Amiga synkronisering</value></data>
+  <data name="Visual.StructureKind.AppleAddress"><value>Apple adressprolog</value></data>
+  <data name="Visual.StructureKind.AppleData"><value>Apples dataprolog</value></data>
+  <data name="Visual.StructureKind.CommodoreSync"><value>Commodore synkronisering</value></data>
+  <data name="Visual.StructureKind.CommodoreHeader"><value>Commodore rubrik</value></data>
+  <data name="Visual.StructureKind.FormatHeader"><value>Formatera rubrik</value></data>
+  <data name="Visual.StructureKind.FormatData"><value>Formatera data</value></data>
+  <data name="Visual.StructureKind.TimingAnomaly"><value>Tidsavvikelse</value></data>
+  <data name="Visual.OpenFilter"><value>SuperCard Pro fånga (*.scp)|*.scp|Alla filer|*.*</value></data>
+  <data name="Visual.Integrity.Checksum"><value>Kontrollsumma</value></data>
+  <data name="Visual.Side"><value>Sida {0}</value></data>
+  <data name="Visual.AnalysingTrack"><value>Analysera spår {0}/{1}…</value></data>
+  <data name="Visual.SideLabel"><value>Sida</value></data>
+  <data name="Visual.TrackLabel"><value>Spåra</value></data>
+  <data name="Visual.ScpEntryLabel"><value>SCP post</value></data>
+  <data name="Visual.RevolutionsTitle"><value>Revolutioner</value></data>
+  <data name="Visual.AnalysisTitle"><value>Analys</value></data>
+  <data name="Visual.ConfidenceLabel"><value>Förtroende</value></data>
+  <data name="Visual.CellLabel"><value>Beräknad cell</value></data>
+  <data name="Visual.StructuresLabel"><value>Strukturer</value></data>
+  <data name="Visual.StructuresTitle"><value>Upptäckta strukturer</value></data>
+  <data name="Visual.SectorsTitle"><value>Sektorer</value></data>
+  <data name="Visual.TransitionsUnit"><value>övergångar</value></data>
+  <data name="Visual.OpenImage"><value>Öppna en diskavbildning...</value></data>
+  <data name="Visual.DetachInspector"><value>Koppla loss inspektören</value></data>
+  <data name="Visual.AttachInspector"><value>Fäst inspektören</value></data>
+  <data name="Visual.SummaryTab"><value>Sammanfattning</value></data>
+  <data name="Visual.FormatDetected"><value>Format upptäckt</value></data>
+  <data name="Visual.AverageRpm"><value>Genomsnittligt RPM</value></data>
+  <data name="Visual.AverageDuration"><value>Genomsnittlig varaktighet</value></data>
+  <data name="Visual.BitOffset"><value>Lite bit {0:N0}</value></data>
 </root>

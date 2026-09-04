@@ -12,10 +12,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Logs.ExportFilter">
-    <value>יומן טקסט (*.txt)|*.txt|כל הקבצים|*.*</value>
-  </data>
-  <data name="Logs.History">
-    <value>היסטוריית המבצעים</value>
-  </data>
+  <data name="Logs.ExportFilter"><value>יומן טקסט (*.txt)|*.txt|כל הקבצים|*.*</value></data>
+  <data name="Logs.History"><value>היסטוריית המבצעים</value></data>
 </root>

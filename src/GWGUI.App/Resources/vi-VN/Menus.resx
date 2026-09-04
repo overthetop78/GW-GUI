@@ -12,73 +12,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options">
-    <value>_Tùy chọn</value>
-  </data>
-  <data name="Menu.Preferences">
-    <value>Sở thích…</value>
-  </data>
-  <data name="Menu.Diagnostics">
-    <value>Chẩn đoán</value>
-  </data>
-  <data name="Menu.Information">
-    <value>Thông tin</value>
-  </data>
-  <data name="Menu.Bandwidth">
-    <value>USB băng thông</value>
-  </data>
-  <data name="Menu.Rpm">
-    <value>RPM tốc độ</value>
-  </data>
-  <data name="Menu.Seek">
-    <value>Tìm đầu…</value>
-  </data>
-  <data name="Menu.Hardware">
-    <value>Phần cứng</value>
-  </data>
-  <data name="Menu.Pins">
-    <value>Ghim…</value>
-  </data>
-  <data name="Menu.Reset">
-    <value>Cài lại</value>
-  </data>
-  <data name="Menu.Delays">
-    <value>Sự chậm trễ…</value>
-  </data>
-  <data name="Menu.Firmware">
-    <value>Phần sụn…</value>
-  </data>
-  <data name="Menu.Help">
-    <value>_Giúp đỡ</value>
-  </data>
-  <data name="Menu.Documentation">
-    <value>Tài liệu</value>
-  </data>
-  <data name="Menu.About">
-    <value>Về</value>
-  </data>
-  <data name="Tab.Read">
-    <value>Đọc</value>
-  </data>
-  <data name="Tab.Write">
-    <value>Viết</value>
-  </data>
-  <data name="Tab.Convert">
-    <value>chuyển đổi</value>
-  </data>
-  <data name="Tab.Visualize">
-    <value>Trực quan hóa</value>
-  </data>
-  <data name="Tab.Tools">
-    <value>Công cụ</value>
-  </data>
-  <data name="Menu.Align">
-    <value>Căn chỉnh ổ đĩa…</value>
-  </data>
-  <data name="Tab.Explorer">
-    <value>Trình duyệt đĩa</value>
-  </data>
-  <data name="Tab.Emulation">
-    <value>Giả lập</value>
-  </data>
+  <data name="Menu.Options"><value>_Tùy chọn</value></data>
+  <data name="Menu.Preferences"><value>Sở thích…</value></data>
+  <data name="Menu.Diagnostics"><value>Chẩn đoán</value></data>
+  <data name="Menu.Information"><value>Thông tin</value></data>
+  <data name="Menu.Bandwidth"><value>USB băng thông</value></data>
+  <data name="Menu.Rpm"><value>RPM tốc độ</value></data>
+  <data name="Menu.Seek"><value>Tìm đầu…</value></data>
+  <data name="Menu.Hardware"><value>Phần cứng</value></data>
+  <data name="Menu.Pins"><value>Ghim…</value></data>
+  <data name="Menu.Reset"><value>Cài lại</value></data>
+  <data name="Menu.Delays"><value>Sự chậm trễ…</value></data>
+  <data name="Menu.Firmware"><value>Phần sụn…</value></data>
+  <data name="Menu.Help"><value>_Giúp đỡ</value></data>
+  <data name="Menu.Documentation"><value>Tài liệu</value></data>
+  <data name="Menu.About"><value>Về</value></data>
+  <data name="Tab.Read"><value>Đọc</value></data>
+  <data name="Tab.Write"><value>Viết</value></data>
+  <data name="Tab.Convert"><value>chuyển đổi</value></data>
+  <data name="Tab.Visualize"><value>Trực quan hóa</value></data>
+  <data name="Tab.Tools"><value>Công cụ</value></data>
+  <data name="Menu.Align"><value>Căn chỉnh ổ đĩa…</value></data>
+  <data name="Tab.Explorer"><value>Trình duyệt đĩa</value></data>
+  <data name="Tab.Emulation"><value>Giả lập</value></data>
 </root>

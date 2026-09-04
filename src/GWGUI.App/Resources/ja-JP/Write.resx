@@ -12,63 +12,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Write.Title">
-    <value>書く</value>
-  </data>
-  <data name="Write.SelectSource">
-    <value>既存のソース イメージを選択します。</value>
-  </data>
-  <data name="Write.Ambiguous">
-    <value>形式が曖昧です。互換性のある形式を明示的に選択します。</value>
-  </data>
-  <data name="Write.VerifyOff">
-    <value>書き込み後のベリファイは無効になります。</value>
-  </data>
-  <data name="Write.VerifyOn">
-    <value>書き込み後のベリファイが可能です。</value>
-  </data>
-  <data name="Write.ConfirmTitle">
-    <value>書き込みの確認</value>
-  </data>
-  <data name="Write.Confirm">
-    <value>画像: {0}
-形式: {1}
-ドライブ: {2}
-{3}
-
-このイメージをディスクに書き込みますか?</value>
-  </data>
-  <data name="Write.Source">
-    <value>ソース画像</value>
-  </data>
-  <data name="Write.Detected">
-    <value>検出されたフォーマット</value>
-  </data>
-  <data name="Write.ChooseImage">
-    <value>画像を選択してください。</value>
-  </data>
-  <data name="Write.NoVerify">
-    <value>書き込み後の検証を無効にする</value>
-  </data>
-  <data name="Write.NoVerifyTip">
-    <value>--no-verify を追加します。書き込みを確認するためにディスクが再度読み取られることはありません。</value>
-  </data>
-  <data name="Write.EraseEmpty">
-    <value>空のトラックを消去する</value>
-  </data>
-  <data name="Write.VisualizeTracks">
-    <value>トラックを視覚化する</value>
-  </data>
-  <data name="Write.VisualizeFormatRequired">
-    <value>トラックを視覚化する前にディスク形式を選択します。</value>
-  </data>
+  <data name="Write.Title"><value>書く</value></data>
+  <data name="Write.SelectSource"><value>既存のソース イメージを選択します。</value></data>
+  <data name="Write.Ambiguous"><value>形式が曖昧です。互換性のある形式を明示的に選択します。</value></data>
+  <data name="Write.VerifyOff"><value>書き込み後のベリファイは無効になります。</value></data>
+  <data name="Write.VerifyOn"><value>書き込み後のベリファイが可能です。</value></data>
+  <data name="Write.ConfirmTitle"><value>書き込みの確認</value></data>
+  <data name="Write.Confirm"><value>画像: {0}&#xA;形式: {1}&#xA;ドライブ: {2}&#xA;{3}&#xA;&#xA;このイメージをディスクに書き込みますか?</value></data>
+  <data name="Write.Source"><value>ソース画像</value></data>
+  <data name="Write.Detected"><value>検出されたフォーマット</value></data>
+  <data name="Write.ChooseImage"><value>画像を選択してください。</value></data>
+  <data name="Write.NoVerify"><value>書き込み後の検証を無効にする</value></data>
+  <data name="Write.NoVerifyTip"><value>--no-verify を追加します。書き込みを確認するためにディスクが再度読み取られることはありません。</value></data>
+  <data name="Write.EraseEmpty"><value>空のトラックを消去する</value></data>
+  <data name="Write.VisualizeTracks"><value>トラックを視覚化する</value></data>
+  <data name="Write.VisualizeFormatRequired"><value>トラックを視覚化する前にディスク形式を選択します。</value></data>
   <data name="Write.InternalWriter" xml:space="preserve"><value>内部書き込み（試験運用）</value></data>
   <data name="Write.InternalWriterTip" xml:space="preserve"><value>gw.exe を使わず、内部エンジンで直接書き込みます。</value></data>
   <data name="Write.InternalPreview" xml:space="preserve"><value>GW GUI 内部書き込み: {0}</value></data>
   <data name="Write.InternalUnsupportedOptions" xml:space="preserve"><value>選択した詳細オプションの一部はまだ対応していません。</value></data>
   <data name="Write.InternalVerificationUnavailable" xml:space="preserve"><value>内部検証はまだ利用できません。「検証しない」を有効にしてください。</value></data>
-  <data name="Write.InternalFailure" xml:space="preserve"><value>トラック {0}、面 {1}: {2}</value></data>
-  <data name="Write.InternalFailureReason">
-    <value>内部書き込みに失敗しました。</value>
-  </data>
+  <data name="Write.InternalFailure"><value>トラック {0}, 側面 {1}: {2}</value></data>
+  <data name="Write.InternalFailureReason"><value>内部書き込みに失敗しました。</value></data>
 </root>

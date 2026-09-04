@@ -12,165 +12,54 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Options.Title">
-    <value>Opciones</value>
-  </data>
-  <data name="Options.General">
-    <value>General</value>
-  </data>
-  <data name="Options.Tools">
-    <value>Greaseweazle Herramientas</value>
-  </data>
-  <data name="Options.Hardware">
-    <value>Controladores y unidades</value>
-  </data>
-  <data name="Options.Profiles">
-    <value>Perfiles</value>
-  </data>
-  <data name="Options.ImagesFolder">
-    <value>Carpeta de imagen de disco predeterminada</value>
-  </data>
-  <data name="Options.Language">
-    <value>Idioma</value>
-  </data>
-  <data name="Options.Theme">
-    <value>Tema</value>
-  </data>
-  <data name="Theme.System">
-    <value>Sistema</value>
-  </data>
-  <data name="Theme.Light">
-    <value>Luz</value>
-  </data>
-  <data name="Theme.Dark">
-    <value>Oscuro</value>
-  </data>
-  <data name="Options.GwPath">
-    <value>Camino a gw.exe</value>
-  </data>
-  <data name="Options.ToolsHelp">
-    <value>Si faltan las herramientas, el asistente le ofrecerá descargarlas o elegir una instalación existente. Las actualizaciones sólo se anuncian.</value>
-  </data>
-  <data name="Options.HardwarePersistence">
-    <value>La configuración del hardware permanece almacenada cuando se desconecta una unidad.</value>
-  </data>
-  <data name="Options.ExecutableFilter">
-    <value>Greaseweazle (gw.exe)|gw.exe|Ejecutable (*.exe)|*.exe</value>
-  </data>
-  <data name="Options.RemoveHardware">
-    <value>¿Eliminar este controlador almacenado y todas sus unidades?</value>
-  </data>
-  <data name="Options.HardwareTitle">
-    <value>Hardware</value>
-  </data>
-  <data name="Options.UseConversionTags">
-    <value>Utilice etiquetas en los nombres de archivos de conversión</value>
-  </data>
-  <data name="Options.TagPreset">
-    <value>Programar</value>
-  </data>
-  <data name="Options.TagPresetFamily">
-    <value>Solo familia</value>
-  </data>
-  <data name="Options.TagPresetFormat">
-    <value>Sólo formato</value>
-  </data>
-  <data name="Options.TagPresetFamilyFormat">
-    <value>Familia y formato</value>
-  </data>
-  <data name="Options.TagPresetFamilyExtension">
-    <value>Familia y extensión</value>
-  </data>
-  <data name="Options.TagPresetDetailed">
-    <value>Familia, formato y extensión</value>
-  </data>
-  <data name="Options.TagPattern">
-    <value>Patrón de etiqueta de conversión</value>
-  </data>
-  <data name="Options.TagVariablesTitle">
-    <value>Variables disponibles</value>
-  </data>
-  <data name="Options.TagVariableName">
-    <value>Nombre del archivo fuente</value>
-  </data>
-  <data name="Options.TagVariableFamily">
-    <value>Familia: PC, ST, AMIGA…</value>
-  </data>
-  <data name="Options.TagVariableFormat">
-    <value>Formato: 720, 1440, DD…</value>
-  </data>
-  <data name="Options.TagVariableExtension">
-    <value>Extensión: IMA, ST, ADF…</value>
-  </data>
-  <data name="Options.TagVariableDateIso">
-    <value>Fecha: 2026-08-06</value>
-  </data>
-  <data name="Options.TagVariableDateCompact">
-    <value>Fecha: 20260806</value>
-  </data>
-  <data name="Options.TagVariableDateLocal">
-    <value>Fecha: 08-06-2026</value>
-  </data>
-  <data name="Options.TagVariableTimeFull">
-    <value>Hora: 14-35-42</value>
-  </data>
-  <data name="Options.TagVariableTimeCompact">
-    <value>Hora: 143542</value>
-  </data>
-  <data name="Options.TagVariableTimeShort">
-    <value>Hora: 14-35</value>
-  </data>
-  <data name="Options.TagPatternHelp">
-    <value>{NAME} - nombre del archivo fuente
-{FAMILY} — familia de máquinas (PC, ST, AMIGA…)
-{FORMAT} — formato o geometría (720, 1440, DD…)
-{EXTENSION} — extensión de salida (IMA, ST, ADF…)
-{DATE:YYYY-MM-DD} — fecha 2026-08-06
-{DATE:YYYYMMDD} — fecha 20260806
-{DATE:DD-MM-YYYY} — fecha 08-06-2026
-{TIME:HH-MM-SS} — hora 14-35-42
-{TIME:HHMMSS} - hora 143542
-{TIME:HH-MM} - tiempo 14-35</value>
-  </data>
-  <data name="Options.RecentTagPatterns">
-    <value>Patrones personalizados recientes</value>
-  </data>
-  <data name="Options.NextTagExample">
-    <value>Siguiente ejemplo</value>
-  </data>
-  <data name="Options.TagPatternPreview">
-    <value>Ejemplo: {0}</value>
-  </data>
-  <data name="Options.TagPatternInvalid">
-    <value>El patrón de etiqueta debe contener {tag}.</value>
-  </data>
-  <data name="Options.EnableLogs">
-    <value>Guardar registros</value>
-  </data>
-  <data name="Options.Logs">
-    <value>Registros</value>
-  </data>
-  <data name="Options.LogsDescription">
-    <value>Cada acción tiene su propio archivo en la carpeta Registros GW GUI.</value>
-  </data>
-  <data name="Options.LogActionErase">
-    <value>Borrar</value>
-  </data>
-  <data name="Options.LogActionClean">
-    <value>Cabezas limpias</value>
-  </data>
-  <data name="Options.OpenLogsFolder">
-    <value>Abrir carpeta</value>
-  </data>
-  <data name="Options.LogMaximumSize">
-    <value>Tamaño máximo</value>
-  </data>
-  <data name="Options.KeepLogArchives">
-    <value>Mantener registros anteriores</value>
-  </data>
-  <data name="Options.LogUnlimitedHint">
-    <value>0 = ilimitado</value>
-  </data>
+  <data name="Options.Title"><value>Opciones</value></data>
+<data name="Options.Tools"><value>Greaseweazle Herramientas</value></data>
+  <data name="Options.Hardware"><value>Controladores y unidades</value></data>
+  <data name="Options.Profiles"><value>Perfiles</value></data>
+  <data name="Options.ImagesFolder"><value>Carpeta de imagen de disco predeterminada</value></data>
+  <data name="Options.Language"><value>Idioma</value></data>
+  <data name="Options.Theme"><value>Tema</value></data>
+  <data name="Theme.System"><value>Sistema</value></data>
+  <data name="Theme.Light"><value>Luz</value></data>
+  <data name="Theme.Dark"><value>Oscuro</value></data>
+  <data name="Options.GwPath"><value>Camino a gw.exe</value></data>
+  <data name="Options.ToolsHelp"><value>Si faltan las herramientas, el asistente le ofrecerá descargarlas o elegir una instalación existente. Las actualizaciones sólo se anuncian.</value></data>
+  <data name="Options.HardwarePersistence"><value>La configuración del hardware permanece almacenada cuando se desconecta una unidad.</value></data>
+  <data name="Options.ExecutableFilter"><value>Greaseweazle (gw.exe)|gw.exe|ejecutable (*.exe)|*.exe</value></data>
+  <data name="Options.RemoveHardware"><value>¿Eliminar este controlador almacenado y todas sus unidades?</value></data>
+<data name="Options.UseConversionTags"><value>Utilice etiquetas en los nombres de archivos de conversión</value></data>
+  <data name="Options.TagPreset"><value>Programar</value></data>
+  <data name="Options.TagPresetFamily"><value>Solo familia</value></data>
+  <data name="Options.TagPresetFormat"><value>Sólo formato</value></data>
+  <data name="Options.TagPresetFamilyFormat"><value>Familia y formato</value></data>
+  <data name="Options.TagPresetFamilyExtension"><value>Familia y extensión</value></data>
+  <data name="Options.TagPresetDetailed"><value>Familia, formato y extensión</value></data>
+  <data name="Options.TagPattern"><value>Patrón de etiqueta de conversión</value></data>
+  <data name="Options.TagVariablesTitle"><value>Variables disponibles</value></data>
+  <data name="Options.TagVariableName"><value>Nombre del archivo fuente</value></data>
+  <data name="Options.TagVariableFamily"><value>Familia: PC, ST, AMIGA…</value></data>
+  <data name="Options.TagVariableFormat"><value>Formato: 720, 1440, DD…</value></data>
+  <data name="Options.TagVariableExtension"><value>Extensión: IMA, ST, ADF…</value></data>
+  <data name="Options.TagVariableDateIso"><value>Fecha: 2026-08-06</value></data>
+  <data name="Options.TagVariableDateCompact"><value>Fecha: 20260806</value></data>
+  <data name="Options.TagVariableDateLocal"><value>Fecha: 08-06-2026</value></data>
+  <data name="Options.TagVariableTimeFull"><value>Hora: 14-35-42</value></data>
+  <data name="Options.TagVariableTimeCompact"><value>Hora: 143542</value></data>
+  <data name="Options.TagVariableTimeShort"><value>Hora: 14-35</value></data>
+  <data name="Options.TagPatternHelp"><value>{NAME} — nombre de archivo fuente&#xA;{FAMILY} — familia de la máquina (PC, ST, AMIGA...)&#xA;{FORMAT} — formato o geometría (720, 1440, DD...)&#xA;{EXTENSION} — extensión de salida (IMA, ST, ADF...)&#xA;{DATE:YYYY-MM-DD} — fecha 2026-08-06&#xA;{DATE:YYYYMMDD} — fecha 20260806&#xA;{DATE:DD-MM-YYYY} — fecha 06-08-2026&#xA;{TIME:HH-MM-SS} — tiempo 14-35-42&#xA;{TIME:HHMMSS} — tiempo 143542&#xA;{TIME:HH-MM} — tiempo 14-35</value></data>
+  <data name="Options.RecentTagPatterns"><value>Patrones personalizados recientes</value></data>
+  <data name="Options.NextTagExample"><value>Siguiente ejemplo</value></data>
+  <data name="Options.TagPatternPreview"><value>Ejemplo: {0}</value></data>
+  <data name="Options.TagPatternInvalid"><value>El patrón de etiqueta debe contener {tag}.</value></data>
+  <data name="Options.EnableLogs"><value>Guardar registros</value></data>
+  <data name="Options.Logs"><value>Registros</value></data>
+  <data name="Options.LogsDescription"><value>Cada acción tiene su propio archivo en el GW GUI carpeta de registros.</value></data>
+  <data name="Options.LogActionErase"><value>Borrar</value></data>
+  <data name="Options.LogActionClean"><value>Cabezas limpias</value></data>
+  <data name="Options.OpenLogsFolder"><value>Abrir carpeta</value></data>
+  <data name="Options.LogMaximumSize"><value>Tamaño máximo</value></data>
+  <data name="Options.KeepLogArchives"><value>Mantener registros anteriores</value></data>
+  <data name="Options.LogUnlimitedHint"><value>0 = ilimitado</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>Motores</value></data>
   <data name="Engines.Description" xml:space="preserve"><value>Elija de forma independiente el motor utilizado para cada operación.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>Motor interno de GW GUI</value></data>
@@ -185,11 +74,8 @@
   <data name="Controllers.NoneDetected" xml:space="preserve"><value>No se detectó ningún mando</value></data>
   <data name="Controllers.DetectedCount" xml:space="preserve"><value>{0} mando(s) detectado(s)</value></data>
   <data name="Controllers.TestRumble" xml:space="preserve"><value>Probar vibración</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve">
-    <value>Intensidad de vibración</value>
-  </data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>Intensidad de vibración</value></data>
   <data name="Controllers.LiveInputs" xml:space="preserve"><value>Entradas en tiempo real</value></data>
-  <data name="Controllers.Control" xml:space="preserve"><value>Control</value></data>
   <data name="Controllers.Value" xml:space="preserve"><value>Valor</value></data>
   <data name="Controllers.Active" xml:space="preserve"><value>Activo</value></data>
   <data name="Controllers.Capabilities" xml:space="preserve"><value>Funciones</value></data>
@@ -216,19 +102,11 @@
   <data name="Controllers.ControlType.Switch" xml:space="preserve"><value>Conmutador</value></data>
   <data name="Controllers.ControlCounts" xml:space="preserve"><value>{0} ejes · {1} botones · {2} conmutadores</value></data>
   <data name="Controllers.Yes" xml:space="preserve"><value>Sí</value></data>
-  <data name="Controllers.No" xml:space="preserve"><value>No</value></data>
   <data name="Controllers.None" xml:space="preserve"><value>Ninguno</value></data>
-  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>Mando genérico</value></data>
-  <data name="Controllers.Model.Auto" xml:space="preserve"><value>Auto</value></data>
-  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>Volante</value></data>
-  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>Palanca de vuelo</value></data>
-  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>Palanca arcade</value></data>
-  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Byte sin procesar</value></data>
+<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Byte sin procesar</value></data>
   <data name="Controllers.AnalogValues" xml:space="preserve"><value>Valores analógicos</value></data>
   <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Error al detectar los mandos</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve">
-    <value>Detectando mandos…</value>
-  </data>
+  <data name="Controllers.Detecting" xml:space="preserve"><value>Detectando mandos…</value></data>
   <data name="Controllers.ReadFailed" xml:space="preserve"><value>Error al leer el mando</value></data>
   <data name="Controllers.TestRunning" xml:space="preserve"><value>Prueba en curso…</value></data>
   <data name="Controllers.TestFailed" xml:space="preserve"><value>Error en la prueba</value></data>
@@ -253,91 +131,46 @@
   <data name="Controllers.Roll" xml:space="preserve"><value>Alabeo</value></data>
   <data name="Controllers.Pitch" xml:space="preserve"><value>Cabeceo</value></data>
   <data name="Controllers.Yaw" xml:space="preserve"><value>Guiñada</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve">
-    <value>Sensores</value>
-  </data>
-  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
-    <value>Navegación de la interfaz</value>
-  </data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
-    <value>Mando</value>
-  </data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
-    <value>Motor de baja frecuencia</value>
-  </data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
-    <value>Motor de alta frecuencia</value>
-  </data>
-  <data name="Controllers.Enum.Share" xml:space="preserve">
-    <value>Compartir</value>
-  </data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve">
-    <value>Lineal</value>
-  </data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve">
-    <value>Angular</value>
-  </data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve">
-    <value>Normal</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
-    <value>Constante</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
-    <value>Rampa</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
-    <value>Onda sinusoidal</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
-    <value>Onda cuadrada</value>
-  </data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
-    <value>Onda triangular</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
-    <value>Diente de sierra ascendente</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
-    <value>Diente de sierra descendente</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
-    <value>Resorte</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
-    <value>Fricción</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
-    <value>Amortiguador</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
-    <value>Inercia</value>
-  </data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve">
-    <value>Joystick</value>
-  </data>
-  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
-    <value>Controlador multieje</value>
-  </data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
-    <value>Uso HID</value>
-  </data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve">
-    <value>ejes</value>
-  </data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve">
-    <value>botones</value>
-  </data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
-    <value>Agregado</value>
-  </data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve">
-    <value>Virtual</value>
-  </data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve">
-    <value>Informe de entrada</value>
-  </data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
-    <value>Informe de salida</value>
-  </data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Sensores</value></data>
+  <data name="Controllers.Enum.UiNavigation"><value>UI navegación</value></data>
+  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>Mando</value></data>
+  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Motor de baja frecuencia</value></data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>Motor de alta frecuencia</value></data>
+  <data name="Controllers.Enum.Share" xml:space="preserve"><value>Compartir</value></data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Lineal</value></data>
+<data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Constante</value></data>
+  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Rampa</value></data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Onda sinusoidal</value></data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>Onda cuadrada</value></data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>Onda triangular</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>Diente de sierra ascendente</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>Diente de sierra descendente</value></data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>Resorte</value></data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Fricción</value></data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Amortiguador</value></data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Inercia</value></data>
+<data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Controlador multieje</value></data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>Uso HID</value></data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>ejes</value></data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>botones</value></data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Agregado</value></data>
+<data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Informe de entrada</value></data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Informe de salida</value></data>
+<data name="Emulation.InitialDisk"><value>Disco inicial</value></data>
+  <data name="Emulation.Controller"><value>Controlador {0}</value></data>
+  <data name="Emulation.Core.NameOptions"><value>Opciones básicas</value></data>
+  <data name="Emulation.MultiDrive"><value>Montar los primeros cuatro discos en DF0–DF3</value></data>
+  <data name="Emulation.LoadOptions"><value>Carga de opciones disponibles</value></data>
+  <data name="Emulation.Configurations"><value>Configuraciones</value></data>
+  <data name="Emulation.ReleaseMouse"><value>Liberar el ratón</value></data>
+  <data name="Emulation.DeleteConfirm"><value>¿Suprímase esta configuración de Amiga?</value></data>
+  <data name="Emulation.ModelRequired"><value>Se requiere un modelo Amiga.</value></data>
+  <data name="Emulation.KickstartRequired"><value>Se requiere un camino de Kickstart.</value></data>
+  <data name="Emulation.FileRequired"><value>Un camino de firmware requerido está vacío.</value></data>
+  <data name="Emulation.FileMissing"><value>El archivo seleccionado no existe.</value></data>
+<data name="Options.EmulationMachineTitle"><value>{0} - {1} : {2}</value></data>
+  <data name="Controllers.AnalogDeadZones"><value>Zonas muertas analógicas</value></data>
+  <data name="Controllers.StickDeadZone"><value>Pegatinas</value></data>
+  <data name="Controllers.TriggerDeadZone"><value>Los desencadenantes</value></data>
+  <data name="Controllers.OuterDeadZone"><value>Zona de muertos</value></data>
 </root>

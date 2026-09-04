@@ -12,102 +12,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Explorer.Image">
-    <value>ディスクイメージ</value>
-  </data>
-  <data name="Explorer.Format">
-    <value>形式</value>
-  </data>
-  <data name="Explorer.OpenImage">
-    <value>イメージを開く…</value>
-  </data>
-  <data name="Explorer.Automatic">
-    <value>自動検出</value>
-  </data>
-  <data name="Explorer.Volume">
-    <value>ボリューム</value>
-  </data>
-  <data name="Explorer.FileSystem">
-    <value>ファイルシステム</value>
-  </data>
-  <data name="Explorer.Capacity">
-    <value>容量</value>
-  </data>
-  <data name="Explorer.Free">
-    <value>空き領域</value>
-  </data>
-  <data name="Explorer.Entries">
-    <value>項目</value>
-  </data>
-  <data name="Explorer.SelectEntry">
-    <value>ファイルまたはフォルダーを選択してください。</value>
-  </data>
-  <data name="Explorer.Size">
-    <value>サイズ</value>
-  </data>
-  <data name="Explorer.Modified">
-    <value>更新日時</value>
-  </data>
-  <data name="Explorer.Comment">
-    <value>コメント</value>
-  </data>
-  <data name="Explorer.Warnings">
-    <value>警告</value>
-  </data>
-  <data name="Explorer.Directory">
-    <value>フォルダー</value>
-  </data>
-  <data name="Explorer.File">
-    <value>ファイル</value>
-  </data>
-  <data name="Explorer.Link">
-    <value>リンク</value>
-  </data>
-  <data name="Explorer.Unknown">
-    <value>不明</value>
-  </data>
-  <data name="Explorer.Unnamed">
-    <value>名前のないボリューム</value>
-  </data>
-  <data name="Explorer.LoadFailed">
-    <value>このイメージを開けません: {0}</value>
-  </data>
-  <data name="Explorer.Loading">
-    <value>ディスクイメージを読み込んでいます…</value>
-  </data>
-  <data name="Explorer.ReadDisk">
-    <value>ディスクを読み取る</value>
-  </data>
-  <data name="Explorer.Name">
-    <value>名前</value>
-  </data>
-  <data name="Explorer.Type">
-    <value>種類</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirmTitle">
-    <value>ディスクを読み取る</value>
-  </data>
-  <data name="Explorer.ReadDiskConfirm">
-    <value>現在選択されているドライブ（{0}）にディスクが挿入され、読み取り可能な状態ですか？</value>
-  </data>
-  <data name="Explorer.Type.Text">
-    <value>テキスト ファイル</value>
-  </data>
-  <data name="Explorer.Type.Image">
-    <value>画像</value>
-  </data>
-  <data name="Explorer.Type.Audio">
-    <value>音声ファイル</value>
-  </data>
-  <data name="Explorer.Type.Archive">
-    <value>アーカイブ</value>
-  </data>
-  <data name="Explorer.Type.Program">
-    <value>プログラム</value>
-  </data>
-  <data name="Explorer.Type.DiskImage">
-    <value>ディスク イメージ</value>
-  </data>
+  <data name="Explorer.Image"><value>ディスクイメージ</value></data>
+  <data name="Explorer.Format"><value>形式</value></data>
+  <data name="Explorer.OpenImage"><value>イメージを開く…</value></data>
+  <data name="Explorer.Automatic"><value>自動検出</value></data>
+  <data name="Explorer.Volume"><value>ボリューム</value></data>
+  <data name="Explorer.FileSystem"><value>ファイルシステム</value></data>
+  <data name="Explorer.Capacity"><value>容量</value></data>
+  <data name="Explorer.Free"><value>空き領域</value></data>
+  <data name="Explorer.Entries"><value>項目</value></data>
+  <data name="Explorer.SelectEntry"><value>ファイルまたはフォルダーを選択してください。</value></data>
+  <data name="Explorer.Size"><value>サイズ</value></data>
+  <data name="Explorer.Modified"><value>更新日時</value></data>
+  <data name="Explorer.Comment"><value>コメント</value></data>
+  <data name="Explorer.Warnings"><value>警告</value></data>
+  <data name="Explorer.Directory"><value>フォルダー</value></data>
+  <data name="Explorer.File"><value>ファイル</value></data>
+  <data name="Explorer.Link"><value>リンク</value></data>
+  <data name="Explorer.Unknown"><value>不明</value></data>
+  <data name="Explorer.Unnamed"><value>名前のないボリューム</value></data>
+  <data name="Explorer.LoadFailed"><value>このイメージを開けません: {0}</value></data>
+  <data name="Explorer.Loading"><value>ディスクイメージを読み込んでいます…</value></data>
+  <data name="Explorer.ReadDisk"><value>ディスクを読み取る</value></data>
+  <data name="Explorer.Name"><value>名前</value></data>
+  <data name="Explorer.Type"><value>種類</value></data>
+  <data name="Explorer.ReadDiskConfirmTitle"><value>ディスクを読み取る</value></data>
+  <data name="Explorer.ReadDiskConfirm"><value>現在選択されているドライブ（{0}）にディスクが挿入され、読み取り可能な状態ですか？</value></data>
+  <data name="Explorer.Type.Text"><value>テキスト ファイル</value></data>
+  <data name="Explorer.Type.Image"><value>画像</value></data>
+  <data name="Explorer.Type.Audio"><value>音声ファイル</value></data>
+  <data name="Explorer.Type.Archive"><value>アーカイブ</value></data>
+  <data name="Explorer.Type.Program"><value>プログラム</value></data>
+  <data name="Explorer.Type.DiskImage"><value>ディスク イメージ</value></data>
   <data name="Explorer.System"><value>システム</value></data>
   <data name="Explorer.Protection"><value>プロテクション</value></data>
   <data name="Explorer.PhysicalSectorsNoFileSystem"><value>物理セクター — 認識されたファイルシステムなし</value></data>
@@ -119,6 +55,6 @@
   <data name="Explorer.Content.crack-the-company"><value>The Company によるクラック</value></data>
   <data name="Explorer.DataBlocks"><value>データブロック</value></data>
   <data name="Explorer.DetectedFormats"><value>検出: {0}</value></data>
-  <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
-  <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>
+  <data name="Explorer.ExternalEngineUnavailable"><value>ホストツールは、探知可能なセクターイメージを生成できません。 {0}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</value></data>
+  <data name="Explorer.ExternalEngineFailed"><value>ホストツールはイメージをそのままデコードできません {0}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</value></data>
 </root>

@@ -12,163 +12,57 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Tool.Ready">
-    <value>Готовий до виконання.</value>
-  </data>
-  <data name="Tool.RawOutput">
-    <value>Необроблений вихід</value>
-  </data>
-  <data name="Maintenance.EraseTitle">
-    <value>Підтвердити стирання</value>
-  </data>
-  <data name="Maintenance.EraseConfirm">
-    <value>Назавжди стерти всі дані на вставленому диску?</value>
-  </data>
-  <data name="Maintenance.CleanTitle">
-    <value>Чисті голови</value>
-  </data>
-  <data name="Maintenance.CleanConfirm">
-    <value>Переконайтеся, що диск для очищення вставлено. Ніколи не використовуйте диск з даними.</value>
-  </data>
-  <data name="Tools.Erase">
-    <value>Очистити диск</value>
-  </data>
-  <data name="Tools.EraseWarning">
-    <value>Усі дані на диску будуть знищені.</value>
-  </data>
-  <data name="Tools.LimitTracks">
-    <value>Обмежити доріжки</value>
-  </data>
-  <data name="Tools.Revolutions">
-    <value>Революції</value>
-  </data>
-  <data name="Tools.Clean">
-    <value>Чисті голови</value>
-  </data>
-  <data name="Tools.CleanWarning">
-    <value>Вставляйте диск для очищення, а не диск з даними.</value>
-  </data>
-  <data name="Tools.Cylinders">
-    <value>Циліндри</value>
-  </data>
-  <data name="Tools.Passes">
-    <value>Паси</value>
-  </data>
-  <data name="Tools.Linger">
-    <value>Тривалість на циліндр (мс)</value>
-  </data>
-  <data name="Tool.Field.Measurements">
-    <value>Кількість вимірювань</value>
-  </data>
-  <data name="Tool.Field.Cylinder">
-    <value>Циліндр</value>
-  </data>
-  <data name="Tool.Field.Extreme">
-    <value>Дозволяють екстремальні циліндри</value>
-  </data>
-  <data name="Tool.Field.MotorOn">
-    <value>Тримайте моторику активною</value>
-  </data>
-  <data name="Tool.Field.Pin">
-    <value>Pin (8, 26 або 28)</value>
-  </data>
-  <data name="Tool.Field.SetPin">
-    <value>Змінити шпильку</value>
-  </data>
-  <data name="Tool.Field.High">
-    <value>Високий рівень</value>
-  </data>
-  <data name="Tool.Field.Select">
-    <value>Вибір (мкс)</value>
-  </data>
-  <data name="Tool.Field.Step">
-    <value>Крок голови (мкс)</value>
-  </data>
-  <data name="Tool.Field.Settle">
-    <value>Розрахунок (мс)</value>
-  </data>
-  <data name="Tool.Field.Motor">
-    <value>Двигун (мс)</value>
-  </data>
-  <data name="Tool.Field.Watchdog">
-    <value>Автоматичне скасування вибору (мс)</value>
-  </data>
-  <data name="Tool.Field.PreWrite">
-    <value>Перед записом (мкс)</value>
-  </data>
-  <data name="Tool.Field.PostWrite">
-    <value>Після запису (мкс)</value>
-  </data>
-  <data name="Tool.Field.IndexMask">
-    <value>Індексна маска (мкс)</value>
-  </data>
-  <data name="Tool.Field.Bootloader">
-    <value>Оновити завантажувач (ризиковано)</value>
-  </data>
-  <data name="Tool.BootloaderWarning">
-    <value>Оновлення завантажувача є розширеною операцією, яка може зробити контролер непридатним для використання, якщо її перервати. Продовжити?</value>
-  </data>
-  <data name="Tool.ControllerFallback">
-    <value>Контролер</value>
-  </data>
-  <data name="Tool.FirmwareUnknown">
-    <value>Невідома прошивка</value>
-  </data>
-  <data name="Tool.PortUnknown">
-    <value>Невідомий порт</value>
-  </data>
-  <data name="Tool.NetworkWarning">
-    <value>Місцева інформація дійсна; лише перевірка мережі не вдалася.</value>
-  </data>
-  <data name="Tool.Running">
-    <value>Виконується команда…</value>
-  </data>
-  <data name="Tool.Title.Info">
-    <value>Інформація про контролера</value>
-  </data>
-  <data name="Tool.Title.Bandwidth">
-    <value>USB пропускна здатність</value>
-  </data>
-  <data name="Tool.Title.Rpm">
-    <value>Швидкість руху</value>
-  </data>
-  <data name="Tool.Title.Seek">
-    <value>Шукайте голову</value>
-  </data>
-  <data name="Tool.Title.Pin">
-    <value>Апаратні штифти</value>
-  </data>
-  <data name="Tool.Title.Reset">
-    <value>Скинути контролер</value>
-  </data>
-  <data name="Tool.Title.Delays">
-    <value>Затримки</value>
-  </data>
-  <data name="Tool.Title.Update">
-    <value>Прошивка</value>
-  </data>
-  <data name="Tool.InvalidParameters">
-    <value>Недійсні параметри</value>
-  </data>
-  <data name="Tool.InvalidParametersHelp">
-    <value>Перевірте виділені параметри команди перед виконанням.</value>
-  </data>
-  <data name="Tool.BootloaderTitle">
-    <value>Режим завантажувача</value>
-  </data>
-  <data name="Tool.Title.Align">
-    <value>Діагностика вирівнювання приводу</value>
-  </data>
-  <data name="Tool.Field.AlignTracks">
-    <value>Альтернативна доріжка(и) (обов’язково)</value>
-  </data>
-  <data name="Tool.Field.AlignReads">
-    <value>Кількість читань</value>
-  </data>
-  <data name="Tool.Field.AlignFormat">
-    <value>Формат декодування</value>
-  </data>
-  <data name="Tool.Field.AlignRaw">
-    <value>Читання необробленого потоку (--raw)</value>
-  </data>
+  <data name="Tool.Ready"><value>Готовий до виконання.</value></data>
+  <data name="Tool.RawOutput"><value>Необроблений вихід</value></data>
+  <data name="Maintenance.EraseTitle"><value>Підтвердити стирання</value></data>
+  <data name="Maintenance.EraseConfirm"><value>Назавжди стерти всі дані на вставленому диску?</value></data>
+  <data name="Maintenance.CleanTitle"><value>Чисті голови</value></data>
+  <data name="Maintenance.CleanConfirm"><value>Переконайтеся, що диск для очищення вставлено. Ніколи не використовуйте диск з даними.</value></data>
+  <data name="Tools.Erase"><value>Очистити диск</value></data>
+  <data name="Tools.EraseWarning"><value>Усі дані на диску будуть знищені.</value></data>
+  <data name="Tools.LimitTracks"><value>Обмежити доріжки</value></data>
+  <data name="Tools.Revolutions"><value>Революції</value></data>
+  <data name="Tools.Clean"><value>Чисті голови</value></data>
+  <data name="Tools.CleanWarning"><value>Вставляйте диск для очищення, а не диск з даними.</value></data>
+  <data name="Tools.Cylinders"><value>Циліндри</value></data>
+  <data name="Tools.Passes"><value>Паси</value></data>
+  <data name="Tools.Linger"><value>Тривалість на циліндр (мс)</value></data>
+  <data name="Tool.Field.Measurements"><value>Кількість вимірювань</value></data>
+  <data name="Tool.Field.Cylinder"><value>Циліндр</value></data>
+  <data name="Tool.Field.Extreme"><value>Дозволяють екстремальні циліндри</value></data>
+  <data name="Tool.Field.MotorOn"><value>Тримайте моторику активною</value></data>
+  <data name="Tool.Field.Pin"><value>Pin (8, 26 або 28)</value></data>
+  <data name="Tool.Field.SetPin"><value>Змінити шпильку</value></data>
+  <data name="Tool.Field.High"><value>Високий рівень</value></data>
+  <data name="Tool.Field.Select"><value>Вибір (мкс)</value></data>
+  <data name="Tool.Field.Step"><value>Крок голови (мкс)</value></data>
+  <data name="Tool.Field.Settle"><value>Розрахунок (мс)</value></data>
+  <data name="Tool.Field.Motor"><value>Двигун (мс)</value></data>
+  <data name="Tool.Field.Watchdog"><value>Автоматичне скасування вибору (мс)</value></data>
+  <data name="Tool.Field.PreWrite"><value>Перед записом (мкс)</value></data>
+  <data name="Tool.Field.PostWrite"><value>Після запису (мкс)</value></data>
+  <data name="Tool.Field.IndexMask"><value>Індексна маска (мкс)</value></data>
+  <data name="Tool.Field.Bootloader"><value>Оновити завантажувач (ризиковано)</value></data>
+  <data name="Tool.BootloaderWarning"><value>Оновлення завантажувача є розширеною операцією, яка може зробити контролер непридатним для використання, якщо її перервати. Продовжити?</value></data>
+  <data name="Tool.ControllerFallback"><value>Контролер</value></data>
+  <data name="Tool.FirmwareUnknown"><value>Невідома прошивка</value></data>
+  <data name="Tool.PortUnknown"><value>Невідомий порт</value></data>
+  <data name="Tool.NetworkWarning"><value>Місцева інформація дійсна; лише перевірка мережі не вдалася.</value></data>
+  <data name="Tool.Running"><value>Виконується команда…</value></data>
+  <data name="Tool.Title.Info"><value>Інформація про контролера</value></data>
+  <data name="Tool.Title.Bandwidth"><value>USB пропускна здатність</value></data>
+  <data name="Tool.Title.Rpm"><value>Швидкість руху</value></data>
+  <data name="Tool.Title.Seek"><value>Шукайте голову</value></data>
+  <data name="Tool.Title.Pin"><value>Апаратні штифти</value></data>
+  <data name="Tool.Title.Reset"><value>Скинути контролер</value></data>
+  <data name="Tool.Title.Delays"><value>Затримки</value></data>
+  <data name="Tool.Title.Update"><value>Прошивка</value></data>
+  <data name="Tool.InvalidParameters"><value>Недійсні параметри</value></data>
+  <data name="Tool.InvalidParametersHelp"><value>Перевірте виділені параметри команди перед виконанням.</value></data>
+  <data name="Tool.BootloaderTitle"><value>Режим завантажувача</value></data>
+  <data name="Tool.Title.Align"><value>Діагностика вирівнювання приводу</value></data>
+  <data name="Tool.Field.AlignTracks"><value>Альтернативна доріжка(и) (обов’язково)</value></data>
+  <data name="Tool.Field.AlignReads"><value>Кількість читань</value></data>
+  <data name="Tool.Field.AlignFormat"><value>Формат декодування</value></data>
+  <data name="Tool.Field.AlignRaw"><value>Читання необробленого потоку (--raw)</value></data>
 </root>

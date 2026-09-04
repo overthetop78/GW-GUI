@@ -12,51 +12,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Common.Cancel">
-    <value>Cancelar</value>
-  </data>
-  <data name="Common.Save">
-    <value>Salvar</value>
-  </data>
-  <data name="Common.Create">
-    <value>Criar</value>
-  </data>
-  <data name="Common.Delete">
-    <value>Excluir</value>
-  </data>
-  <data name="Common.Browse">
-    <value>Navegar…</value>
-  </data>
-  <data name="Common.Choose">
-    <value>Escolher…</value>
-  </data>
-  <data name="Common.Close">
-    <value>Fechar</value>
-  </data>
-  <data name="Common.Execute">
-    <value>Executar</value>
-  </data>
-  <data name="Common.Stop">
-    <value>Parar</value>
-  </data>
-  <data name="Common.Continue">
-    <value>Continuar</value>
-  </data>
-  <data name="Common.Reset">
-    <value>Reiniciar</value>
-  </data>
-  <data name="Common.Copy">
-    <value>Cópia</value>
-  </data>
-  <data name="Common.Modify">
-    <value>Modificar</value>
-  </data>
-  <data name="Common.Hide">
-    <value>Esconder</value>
-  </data>
-  <data name="Common.Export">
-    <value>Exportar</value>
-  </data>
+  <data name="Common.Cancel"><value>Cancelar</value></data>
+  <data name="Common.Save"><value>Salvar</value></data>
+  <data name="Common.Create"><value>Criar</value></data>
+  <data name="Common.Delete"><value>Excluir</value></data>
+  <data name="Common.Browse"><value>Navegar…</value></data>
+  <data name="Common.Choose"><value>Escolher…</value></data>
+  <data name="Common.Close"><value>Fechar</value></data>
+  <data name="Common.Execute"><value>Executar</value></data>
+  <data name="Common.Stop"><value>Parar</value></data>
+  <data name="Common.Continue"><value>Continuar</value></data>
+  <data name="Common.Reset"><value>Reiniciar</value></data>
+  <data name="Common.Copy"><value>Cópia</value></data>
+  <data name="Common.Modify"><value>Modificar</value></data>
+  <data name="Common.Hide"><value>Esconder</value></data>
+  <data name="Common.Export"><value>Exportar</value></data>
   <data name="Common.New"><value>Novo</value></data>
   <data name="Common.Refresh"><value>Atualizar</value></data>
   <data name="Common.OpenFolder"><value>Abrir pasta</value></data>

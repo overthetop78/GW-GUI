@@ -12,73 +12,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.GwNotConfigured">
-    <value>Інструменти Greaseweazle не налаштовано. Відкрийте Параметри → Параметри.</value>
-  </data>
-  <data name="App.OperationRunningClose">
-    <value>Проводиться операція. Зупинити це та закрити GW GUI?</value>
-  </data>
-  <data name="Operation.Finished">
-    <value>Завершено: код {0}, тривалість {1}.</value>
-  </data>
-  <data name="Operation.Succeeded">
-    <value>Команда виконана успішно.</value>
-  </data>
-  <data name="Operation.Cancelled">
-    <value>Команда скасована.</value>
-  </data>
-  <data name="Operation.ExitCode">
-    <value>Команда закінчувалася кодом {0}.</value>
-  </data>
-  <data name="Common.Console">
-    <value>Консоль</value>
-  </data>
-  <data name="Common.Command">
-    <value>Команда</value>
-  </data>
-  <data name="Status.FaceTrackProgress">
-    <value>Сторона {0}: доріжка {1} — {2}/{3}</value>
-  </data>
-  <data name="Status.Ready">
-    <value>GW GUI готовий.</value>
-  </data>
-  <data name="Status.DefaultProfile">
-    <value>Профіль: за замовчуванням</value>
-  </data>
-  <data name="Operation.StopTitle">
-    <value>Зупинити операцію</value>
-  </data>
-  <data name="Operation.StopConfirm">
-    <value>Зупинити поточну операцію Greaseweazle?</value>
-  </data>
-  <data name="Operation.Busy">
-    <value>Команда Greaseweazle вже запущена. Зачекайте, поки він закінчиться, або зупиніть його, перш ніж відкривати цей інструмент.</value>
-  </data>
-  <data name="Status.Profile">
-    <value>Профіль: {0}</value>
-  </data>
-  <data name="Status.TrackProgress">
-    <value>Колія {0}, сторона {1} — {2}/{3}</value>
-  </data>
-  <data name="Status.TrackUnknown">
-    <value>Трек {0}, сторона {1} — {2} оброблено</value>
-  </data>
-  <data name="Operation.Error">
-    <value>Помилка: {0}</value>
-  </data>
-  <data name="Status.ReadyShort">
-    <value>Готовий</value>
-  </data>
-  <data name="Status.Running">
-    <value>Біг</value>
-  </data>
-  <data name="Status.Success">
-    <value>Успіх</value>
-  </data>
-  <data name="Status.Error">
-    <value>Помилка</value>
-  </data>
-  <data name="Status.Cancelled">
-    <value>Скасовано</value>
-  </data>
+  <data name="App.GwNotConfigured"><value>Інструменти Greaseweazle не налаштовано. Відкрийте Параметри → Параметри.</value></data>
+  <data name="App.OperationRunningClose"><value>Проводиться операція. Зупинити це та закрити GW GUI?</value></data>
+  <data name="Operation.Finished"><value>Завершено: код {0}, тривалість {1}.</value></data>
+  <data name="Operation.Succeeded"><value>Команда виконана успішно.</value></data>
+  <data name="Operation.Cancelled"><value>Команда скасована.</value></data>
+  <data name="Operation.ExitCode"><value>Команда закінчувалася кодом {0}.</value></data>
+  <data name="Common.Console"><value>Консоль</value></data>
+  <data name="Common.Command"><value>Команда</value></data>
+  <data name="Status.FaceTrackProgress"><value>Сторона {0}: доріжка {1} — {2}/{3}</value></data>
+  <data name="Status.Ready"><value>GW GUI готовий.</value></data>
+  <data name="Status.DefaultProfile"><value>Профіль: за замовчуванням</value></data>
+  <data name="Operation.StopTitle"><value>Зупинити операцію</value></data>
+  <data name="Operation.StopConfirm"><value>Зупинити поточну операцію Greaseweazle?</value></data>
+  <data name="Operation.Busy"><value>Команда Greaseweazle вже запущена. Зачекайте, поки він закінчиться, або зупиніть його, перш ніж відкривати цей інструмент.</value></data>
+  <data name="Status.Profile"><value>Профіль: {0}</value></data>
+  <data name="Status.TrackProgress"><value>Колія {0}, сторона {1} — {2}/{3}</value></data>
+  <data name="Status.TrackUnknown"><value>Трек {0}, сторона {1} — {2} оброблено</value></data>
+  <data name="Operation.Error"><value>Помилка: {0}</value></data>
+  <data name="Status.ReadyShort"><value>Готовий</value></data>
+  <data name="Status.Running"><value>Біг</value></data>
+  <data name="Status.Success"><value>Успіх</value></data>
+  <data name="Status.Error"><value>Помилка</value></data>
+  <data name="Status.Cancelled"><value>Скасовано</value></data>
 </root>

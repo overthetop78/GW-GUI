@@ -12,163 +12,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Tool.Ready">
-    <value>Připraveno k provedení.</value>
-  </data>
-  <data name="Tool.RawOutput">
-    <value>Surový výstup</value>
-  </data>
-  <data name="Maintenance.EraseTitle">
-    <value>Potvrďte vymazání</value>
-  </data>
-  <data name="Maintenance.EraseConfirm">
-    <value>Trvale vymazat všechna data na vloženém disku?</value>
-  </data>
-  <data name="Maintenance.CleanTitle">
-    <value>Čisté hlavy</value>
-  </data>
-  <data name="Maintenance.CleanConfirm">
-    <value>Ujistěte se, že je vložen čisticí disk. Nikdy nepoužívejte datový disk.</value>
-  </data>
-  <data name="Tools.Erase">
-    <value>Vymazat disk</value>
-  </data>
-  <data name="Tools.EraseWarning">
-    <value>Všechna data na disku budou zničena.</value>
-  </data>
-  <data name="Tools.LimitTracks">
-    <value>Omezit stopy</value>
-  </data>
-  <data name="Tools.Revolutions">
-    <value>Revoluce</value>
-  </data>
-  <data name="Tools.Clean">
-    <value>Čisté hlavy</value>
-  </data>
-  <data name="Tools.CleanWarning">
-    <value>Vložte čisticí disk, nikdy disk obsahující data.</value>
-  </data>
-  <data name="Tools.Cylinders">
-    <value>Válce</value>
-  </data>
-  <data name="Tools.Passes">
-    <value>Passy</value>
-  </data>
-  <data name="Tools.Linger">
-    <value>Doba trvání na válec (ms)</value>
-  </data>
-  <data name="Tool.Field.Measurements">
-    <value>Počet měření</value>
-  </data>
-  <data name="Tool.Field.Cylinder">
-    <value>Válec</value>
-  </data>
-  <data name="Tool.Field.Extreme">
-    <value>Povolit extrémní válce</value>
-  </data>
-  <data name="Tool.Field.MotorOn">
-    <value>Udržujte motor aktivní</value>
-  </data>
-  <data name="Tool.Field.Pin">
-    <value>Pin (8, 26 nebo 28)</value>
-  </data>
-  <data name="Tool.Field.SetPin">
-    <value>Vyměňte pin</value>
-  </data>
-  <data name="Tool.Field.High">
-    <value>Vysoká úroveň</value>
-  </data>
-  <data name="Tool.Field.Select">
-    <value>Výběr (µs)</value>
-  </data>
-  <data name="Tool.Field.Step">
-    <value>Krok hlavy (µs)</value>
-  </data>
-  <data name="Tool.Field.Settle">
-    <value>Vyrovnat (ms)</value>
-  </data>
-  <data name="Tool.Field.Motor">
-    <value>Motor (ms)</value>
-  </data>
-  <data name="Tool.Field.Watchdog">
-    <value>Automatické zrušení výběru (ms)</value>
-  </data>
-  <data name="Tool.Field.PreWrite">
-    <value>Před zápisem (µs)</value>
-  </data>
-  <data name="Tool.Field.PostWrite">
-    <value>Po zápisu (µs)</value>
-  </data>
-  <data name="Tool.Field.IndexMask">
-    <value>Indexová maska ​​(µs)</value>
-  </data>
-  <data name="Tool.Field.Bootloader">
-    <value>Aktualizovat bootloader (rizikové)</value>
-  </data>
-  <data name="Tool.BootloaderWarning">
-    <value>Aktualizace bootloaderu je pokročilá operace, která v případě přerušení může způsobit nepoužitelnost řadiče. Pokračovat?</value>
-  </data>
-  <data name="Tool.ControllerFallback">
-    <value>Ovladač</value>
-  </data>
-  <data name="Tool.FirmwareUnknown">
-    <value>Neznámý firmware</value>
-  </data>
-  <data name="Tool.PortUnknown">
-    <value>Neznámý port</value>
-  </data>
-  <data name="Tool.NetworkWarning">
-    <value>Místní informace jsou platné; selhala pouze kontrola sítě.</value>
-  </data>
-  <data name="Tool.Running">
-    <value>Příkaz běží…</value>
-  </data>
-  <data name="Tool.Title.Info">
-    <value>Informace o ovladači</value>
-  </data>
-  <data name="Tool.Title.Bandwidth">
-    <value>USB šířka pásma</value>
-  </data>
-  <data name="Tool.Title.Rpm">
-    <value>Rychlost jízdy</value>
-  </data>
-  <data name="Tool.Title.Seek">
-    <value>Hledej hlavu</value>
-  </data>
-  <data name="Tool.Title.Pin">
-    <value>Hardwarové kolíky</value>
-  </data>
-  <data name="Tool.Title.Reset">
-    <value>Resetujte ovladač</value>
-  </data>
-  <data name="Tool.Title.Delays">
-    <value>Zpoždění</value>
-  </data>
-  <data name="Tool.Title.Update">
-    <value>Firmware</value>
-  </data>
-  <data name="Tool.InvalidParameters">
-    <value>Neplatné parametry</value>
-  </data>
-  <data name="Tool.InvalidParametersHelp">
-    <value>Před provedením zkontrolujte zvýrazněné parametry příkazu.</value>
-  </data>
-  <data name="Tool.BootloaderTitle">
-    <value>Režim bootloader</value>
-  </data>
-  <data name="Tool.Title.Align">
-    <value>Diagnostika vyrovnání pohonu</value>
-  </data>
-  <data name="Tool.Field.AlignTracks">
-    <value>Střídavé stopy (povinné)</value>
-  </data>
-  <data name="Tool.Field.AlignReads">
-    <value>Počet přečtení</value>
-  </data>
-  <data name="Tool.Field.AlignFormat">
-    <value>Formát dekódování</value>
-  </data>
-  <data name="Tool.Field.AlignRaw">
-    <value>Číst nezpracovaný tok (--raw)</value>
-  </data>
+  <data name="Tool.Ready"><value>Připraveno k provedení.</value></data>
+  <data name="Tool.RawOutput"><value>Surový výstup</value></data>
+  <data name="Maintenance.EraseTitle"><value>Potvrďte vymazání</value></data>
+  <data name="Maintenance.EraseConfirm"><value>Trvale vymazat všechna data na vloženém disku?</value></data>
+  <data name="Maintenance.CleanTitle"><value>Čisté hlavy</value></data>
+  <data name="Maintenance.CleanConfirm"><value>Ujistěte se, že je vložen čisticí disk. Nikdy nepoužívejte datový disk.</value></data>
+  <data name="Tools.Erase"><value>Vymazat disk</value></data>
+  <data name="Tools.EraseWarning"><value>Všechna data na disku budou zničena.</value></data>
+  <data name="Tools.LimitTracks"><value>Omezit stopy</value></data>
+  <data name="Tools.Revolutions"><value>Revoluce</value></data>
+  <data name="Tools.Clean"><value>Čisté hlavy</value></data>
+  <data name="Tools.CleanWarning"><value>Vložte čisticí disk, nikdy disk obsahující data.</value></data>
+  <data name="Tools.Cylinders"><value>Válce</value></data>
+  <data name="Tools.Passes"><value>Passy</value></data>
+  <data name="Tools.Linger"><value>Doba trvání na válec (ms)</value></data>
+  <data name="Tool.Field.Measurements"><value>Počet měření</value></data>
+  <data name="Tool.Field.Cylinder"><value>Válec</value></data>
+  <data name="Tool.Field.Extreme"><value>Povolit extrémní válce</value></data>
+  <data name="Tool.Field.MotorOn"><value>Udržujte motor aktivní</value></data>
+  <data name="Tool.Field.Pin"><value>Pin (8, 26 nebo 28)</value></data>
+  <data name="Tool.Field.SetPin"><value>Vyměňte pin</value></data>
+  <data name="Tool.Field.High"><value>Vysoká úroveň</value></data>
+  <data name="Tool.Field.Select"><value>Výběr (µs)</value></data>
+  <data name="Tool.Field.Step"><value>Krok hlavy (µs)</value></data>
+  <data name="Tool.Field.Settle"><value>Vyrovnat (ms)</value></data>
+<data name="Tool.Field.Watchdog"><value>Automatické zrušení výběru (ms)</value></data>
+  <data name="Tool.Field.PreWrite"><value>Před zápisem (µs)</value></data>
+  <data name="Tool.Field.PostWrite"><value>Po zápisu (µs)</value></data>
+  <data name="Tool.Field.IndexMask"><value>Indexová maska ​​(µs)</value></data>
+  <data name="Tool.Field.Bootloader"><value>Aktualizovat bootloader (rizikové)</value></data>
+  <data name="Tool.BootloaderWarning"><value>Aktualizace bootloaderu je pokročilá operace, která v případě přerušení může způsobit nepoužitelnost řadiče. Pokračovat?</value></data>
+  <data name="Tool.ControllerFallback"><value>Ovladač</value></data>
+  <data name="Tool.FirmwareUnknown"><value>Neznámý firmware</value></data>
+  <data name="Tool.PortUnknown"><value>Neznámý port</value></data>
+  <data name="Tool.NetworkWarning"><value>Místní informace jsou platné; selhala pouze kontrola sítě.</value></data>
+  <data name="Tool.Running"><value>Příkaz běží…</value></data>
+  <data name="Tool.Title.Info"><value>Informace o ovladači</value></data>
+  <data name="Tool.Title.Bandwidth"><value>USB šířka pásma</value></data>
+  <data name="Tool.Title.Rpm"><value>Rychlost jízdy</value></data>
+  <data name="Tool.Title.Seek"><value>Hledej hlavu</value></data>
+  <data name="Tool.Title.Pin"><value>Hardwarové kolíky</value></data>
+  <data name="Tool.Title.Reset"><value>Resetujte ovladač</value></data>
+  <data name="Tool.Title.Delays"><value>Zpoždění</value></data>
+<data name="Tool.InvalidParameters"><value>Neplatné parametry</value></data>
+  <data name="Tool.InvalidParametersHelp"><value>Před provedením zkontrolujte zvýrazněné parametry příkazu.</value></data>
+  <data name="Tool.BootloaderTitle"><value>Režim bootloader</value></data>
+  <data name="Tool.Title.Align"><value>Diagnostika vyrovnání pohonu</value></data>
+  <data name="Tool.Field.AlignTracks"><value>Střídavé stopy (povinné)</value></data>
+  <data name="Tool.Field.AlignReads"><value>Počet přečtení</value></data>
+  <data name="Tool.Field.AlignFormat"><value>Formát dekódování</value></data>
+  <data name="Tool.Field.AlignRaw"><value>Číst nezpracovaný tok (--raw)</value></data>
 </root>

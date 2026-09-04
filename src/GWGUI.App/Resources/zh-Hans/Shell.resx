@@ -12,73 +12,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.GwNotConfigured">
-    <value>Greaseweazle 工具未配置。打开选项 → 首选项。</value>
-  </data>
-  <data name="App.OperationRunningClose">
-    <value>一项操作正在运行。停止它并关闭 GW GUI？</value>
-  </data>
-  <data name="Operation.Finished">
-    <value>已完成：代码 {0}，持续时间 {1}。</value>
-  </data>
-  <data name="Operation.Succeeded">
-    <value>命令成功完成。</value>
-  </data>
-  <data name="Operation.Cancelled">
-    <value>命令已取消。</value>
-  </data>
-  <data name="Operation.ExitCode">
-    <value>该命令以代码 {0} 结束。</value>
-  </data>
-  <data name="Common.Console">
-    <value>安慰</value>
-  </data>
-  <data name="Common.Command">
-    <value>命令</value>
-  </data>
-  <data name="Status.FaceTrackProgress">
-    <value>侧面 {0}：轨道 {1} — {2}/{3}</value>
-  </data>
-  <data name="Status.Ready">
-    <value>GW GUI 准备好了。</value>
-  </data>
-  <data name="Status.DefaultProfile">
-    <value>配置文件：默认</value>
-  </data>
-  <data name="Operation.StopTitle">
-    <value>停止运行</value>
-  </data>
-  <data name="Operation.StopConfirm">
-    <value>停止当前的 Greaseweazle 操作？</value>
-  </data>
-  <data name="Operation.Busy">
-    <value>Greaseweazle 命令已在运行。等待其完成或停止，然后再打开此工具。</value>
-  </data>
-  <data name="Status.Profile">
-    <value>简介：{0}</value>
-  </data>
-  <data name="Status.TrackProgress">
-    <value>轨道 {0}，侧面 {1} — {2}/{3}</value>
-  </data>
-  <data name="Status.TrackUnknown">
-    <value>轨道 {0}，侧面 {1} — {2} 已处理</value>
-  </data>
-  <data name="Operation.Error">
-    <value>错误：{0}</value>
-  </data>
-  <data name="Status.ReadyShort">
-    <value>准备好</value>
-  </data>
-  <data name="Status.Running">
-    <value>跑步</value>
-  </data>
-  <data name="Status.Success">
-    <value>成功</value>
-  </data>
-  <data name="Status.Error">
-    <value>错误</value>
-  </data>
-  <data name="Status.Cancelled">
-    <value>取消</value>
-  </data>
+  <data name="App.GwNotConfigured"><value>Greaseweazle 工具未配置。打开选项 → 首选项。</value></data>
+  <data name="App.OperationRunningClose"><value>一项操作正在运行。停止它并关闭 GW GUI？</value></data>
+  <data name="Operation.Finished"><value>已完成: 代码 {0}, 持续时间 {1}.</value></data>
+  <data name="Operation.Succeeded"><value>命令成功完成。</value></data>
+  <data name="Operation.Cancelled"><value>命令已取消。</value></data>
+  <data name="Operation.ExitCode"><value>命令以代码结尾 {0}.</value></data>
+  <data name="Common.Console"><value>安慰</value></data>
+  <data name="Common.Command"><value>命令</value></data>
+  <data name="Status.FaceTrackProgress"><value>侧面 {0}: 音轨 {1} -- {2}/{3}</value></data>
+  <data name="Status.Ready"><value>GW GUI 准备好了。</value></data>
+  <data name="Status.DefaultProfile"><value>配置文件：默认</value></data>
+  <data name="Operation.StopTitle"><value>停止运行</value></data>
+  <data name="Operation.StopConfirm"><value>停止当前的 Greaseweazle 操作？</value></data>
+  <data name="Operation.Busy"><value>Greaseweazle 命令已在运行。等待其完成或停止，然后再打开此工具。</value></data>
+  <data name="Status.Profile"><value>简介：{0}</value></data>
+  <data name="Status.TrackProgress"><value>音轨 {0}, 侧 {1} -- {2}/{3}</value></data>
+  <data name="Status.TrackUnknown"><value>音轨 {0}, 侧 {1} -- {2} 已处理</value></data>
+  <data name="Operation.Error"><value>错误：{0}</value></data>
+  <data name="Status.ReadyShort"><value>准备好</value></data>
+  <data name="Status.Running"><value>跑步</value></data>
+  <data name="Status.Success"><value>成功</value></data>
+  <data name="Status.Error"><value>错误</value></data>
+  <data name="Status.Cancelled"><value>取消</value></data>
 </root>

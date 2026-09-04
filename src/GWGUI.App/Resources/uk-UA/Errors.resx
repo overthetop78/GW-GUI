@@ -12,28 +12,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="App.SettingsSaveFailed">
-    <value>Не вдалося зберегти налаштування.
-
-{0}</value>
-  </data>
-  <data name="Error.Title">
-    <value>Помилка GW GUI</value>
-  </data>
-  <data name="Error.Unexpected">
-    <value>Неочікувана помилка була перехоплена.
-
-{0}</value>
-  </data>
-  <data name="Error.SaveFailed">
-    <value>Не вдалося зберегти налаштування. Вікно все одно закриється.
-
-{0}</value>
-  </data>
-  <data name="Error.LogSaved">
-    <value>Повний звіт було збережено в:
-{0}</value>
-  </data>
+  <data name="App.SettingsSaveFailed"><value>Не вдалося зберегти налаштування.&#xA;&#xA;{0}</value></data>
+  <data name="Error.Title"><value>Помилка GW GUI</value></data>
+  <data name="Error.Unexpected"><value>Неочікувана помилка була перехоплена.&#xA;&#xA;{0}</value></data>
+  <data name="Error.SaveFailed"><value>Не вдалося зберегти налаштування. Вікно все одно закриється.&#xA;&#xA;{0}</value></data>
+  <data name="Error.LogSaved"><value>Повний звіт було збережено в:&#xA;{0}</value></data>
   <data name="Error.Description.NetworkTimeout"><value>Віддалений сервіс не відповідав перед підключенням. Перевірити підключення мережі і спробувати знову.</value></data>
   <data name="Error.Description.NetworkDns"><value>Адреса віддаленого сервісу не можна вирішити. Перевірити мережу або налаштування DNS і спробувати знову.</value></data>
   <data name="Error.Description.NetworkRefused"><value>Відхилено віддалене обслуговування. Це може бути недоступний або заблокований.</value></data>

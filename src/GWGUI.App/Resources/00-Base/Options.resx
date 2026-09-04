@@ -12,171 +12,57 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Options.Title" xml:space="preserve">
-    <value>Options</value>
-  </data>
-  <data name="Options.General" xml:space="preserve">
-    <value>General</value>
-  </data>
-  <data name="Options.Tools" xml:space="preserve">
-    <value>Greaseweazle Tools</value>
-  </data>
-  <data name="Options.Hardware" xml:space="preserve">
-    <value>Controllers and drives</value>
-  </data>
-  <data name="Options.Profiles" xml:space="preserve">
-    <value>Profiles</value>
-  </data>
-  <data name="Options.ImagesFolder" xml:space="preserve">
-    <value>Default disk-image folder</value>
-  </data>
-  <data name="Options.Language" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="Options.Theme" xml:space="preserve">
-    <value>Theme</value>
-  </data>
-  <data name="Theme.System" xml:space="preserve">
-    <value>System</value>
-  </data>
-  <data name="Theme.Light" xml:space="preserve">
-    <value>Light</value>
-  </data>
-  <data name="Theme.Dark" xml:space="preserve">
-    <value>Dark</value>
-  </data>
-  <data name="Options.GwPath" xml:space="preserve">
-    <value>Path to gw.exe</value>
-  </data>
-  <data name="Options.ToolsHelp" xml:space="preserve">
-    <value>If the tools are missing, the assistant will offer to download them or choose an existing installation. Updates are only announced.</value>
-  </data>
-  <data name="Options.HardwarePersistence" xml:space="preserve">
-    <value>Hardware settings remain stored when a drive is disconnected.</value>
-  </data>
-  <data name="Options.ExecutableFilter">
-    <value>Greaseweazle (gw.exe)|gw.exe|Executable (*.exe)|*.exe</value>
-  </data>
-  <data name="Options.RemoveHardware">
-    <value>Remove this stored controller and all its drives?</value>
-  </data>
-  <data name="Options.HardwareTitle">
-    <value>Hardware</value>
-  </data>
-  <data name="Options.UseConversionTags">
-    <value>Use tags in conversion filenames</value>
-  </data>
-  <data name="Options.TagPreset">
-    <value>Preset</value>
-  </data>
-  <data name="Options.TagPresetFamily">
-    <value>Family only</value>
-  </data>
-  <data name="Options.TagPresetFormat">
-    <value>Format only</value>
-  </data>
-  <data name="Options.TagPresetFamilyFormat">
-    <value>Family and format</value>
-  </data>
-  <data name="Options.TagPresetFamilyExtension">
-    <value>Family and extension</value>
-  </data>
-  <data name="Options.TagPresetDetailed">
-    <value>Family, format and extension</value>
-  </data>
-  <data name="Options.TagPattern">
-    <value>Conversion tag pattern</value>
-  </data>
-  <data name="Options.TagVariablesTitle">
-    <value>Available variables</value>
-  </data>
-  <data name="Options.TagVariableName">
-    <value>Source filename</value>
-  </data>
-  <data name="Options.TagVariableFamily">
-    <value>Family: PC, ST, AMIGA…</value>
-  </data>
-  <data name="Options.TagVariableFormat">
-    <value>Format: 720, 1440, DD…</value>
-  </data>
-  <data name="Options.TagVariableExtension">
-    <value>Extension: IMA, ST, ADF…</value>
-  </data>
-  <data name="Options.TagVariableDateIso">
-    <value>Date: 2026-08-06</value>
-  </data>
-  <data name="Options.TagVariableDateCompact">
-    <value>Date: 20260806</value>
-  </data>
-  <data name="Options.TagVariableDateLocal">
-    <value>Date: 06-08-2026</value>
-  </data>
-  <data name="Options.TagVariableTimeFull">
-    <value>Time: 14-35-42</value>
-  </data>
-  <data name="Options.TagVariableTimeCompact">
-    <value>Time: 143542</value>
-  </data>
-  <data name="Options.TagVariableTimeShort">
-    <value>Time: 14-35</value>
-  </data>
-  <data name="Options.TagPatternHelp">
-    <value>{NAME} — source filename
-{FAMILY} — machine family (PC, ST, AMIGA…)
-{FORMAT} — format or geometry (720, 1440, DD…)
-{EXTENSION} — output extension (IMA, ST, ADF…)
-{DATE:YYYY-MM-DD} — date 2026-08-06
-{DATE:YYYYMMDD} — date 20260806
-{DATE:DD-MM-YYYY} — date 06-08-2026
-{TIME:HH-MM-SS} — time 14-35-42
-{TIME:HHMMSS} — time 143542
-{TIME:HH-MM} — time 14-35</value>
-  </data>
-  <data name="Options.RecentTagPatterns">
-    <value>Recent custom patterns</value>
-  </data>
-  <data name="Options.NextTagExample">
-    <value>Next example</value>
-  </data>
-  <data name="Options.NextTagExampleIcon">
-    <value>↻</value>
-  </data>
-  <data name="Options.TagPatternPreview">
-    <value>Example: {0}</value>
-  </data>
-  <data name="Options.TagPatternInvalid">
-    <value>The tag pattern must contain {tag}.</value>
-  </data>
-  <data name="Options.EnableLogs">
-    <value>Save logs</value>
-  </data>
-  <data name="Options.Logs">
-    <value>Logs</value>
-  </data>
-  <data name="Options.LogsDescription">
-    <value>Each action has its own file in the GW GUI Logs folder.</value>
-  </data>
-  <data name="Options.LogActionErase">
-    <value>Erase</value>
-  </data>
-  <data name="Options.LogActionClean">
-    <value>Clean heads</value>
-  </data>
-  <data name="Options.OpenLogsFolder">
-    <value>Open folder</value>
-  </data>
-  <data name="Options.LogMaximumSize">
-    <value>Maximum size</value>
-  </data>
-  <data name="Options.Kilobytes">
-    <value>KiB</value>
-  </data>
-  <data name="Options.KeepLogArchives">
-    <value>Keep previous logs</value>
-  </data>
-  <data name="Options.LogUnlimitedHint">
-    <value>0 = unlimited</value>
-  </data>
+  <data name="Options.Title" xml:space="preserve"><value>Options</value></data>
+  <data name="Options.General" xml:space="preserve"><value>General</value></data>
+  <data name="Options.Tools" xml:space="preserve"><value>Greaseweazle Tools</value></data>
+  <data name="Options.Hardware" xml:space="preserve"><value>Controllers and drives</value></data>
+  <data name="Options.Profiles" xml:space="preserve"><value>Profiles</value></data>
+  <data name="Options.ImagesFolder" xml:space="preserve"><value>Default disk-image folder</value></data>
+  <data name="Options.Language" xml:space="preserve"><value>Language</value></data>
+  <data name="Options.Theme" xml:space="preserve"><value>Theme</value></data>
+  <data name="Theme.System" xml:space="preserve"><value>System</value></data>
+  <data name="Theme.Light" xml:space="preserve"><value>Light</value></data>
+  <data name="Theme.Dark" xml:space="preserve"><value>Dark</value></data>
+  <data name="Options.GwPath" xml:space="preserve"><value>Path to gw.exe</value></data>
+  <data name="Options.ToolsHelp" xml:space="preserve"><value>If the tools are missing, the assistant will offer to download them or choose an existing installation. Updates are only announced.</value></data>
+  <data name="Options.HardwarePersistence" xml:space="preserve"><value>Hardware settings remain stored when a drive is disconnected.</value></data>
+  <data name="Options.ExecutableFilter"><value>Greaseweazle (gw.exe)|gw.exe|Executable (*.exe)|*.exe</value></data>
+  <data name="Options.RemoveHardware"><value>Remove this stored controller and all its drives?</value></data>
+  <data name="Options.HardwareTitle"><value>Hardware</value></data>
+  <data name="Options.UseConversionTags"><value>Use tags in conversion filenames</value></data>
+  <data name="Options.TagPreset"><value>Preset</value></data>
+  <data name="Options.TagPresetFamily"><value>Family only</value></data>
+  <data name="Options.TagPresetFormat"><value>Format only</value></data>
+  <data name="Options.TagPresetFamilyFormat"><value>Family and format</value></data>
+  <data name="Options.TagPresetFamilyExtension"><value>Family and extension</value></data>
+  <data name="Options.TagPresetDetailed"><value>Family, format and extension</value></data>
+  <data name="Options.TagPattern"><value>Conversion tag pattern</value></data>
+  <data name="Options.TagVariablesTitle"><value>Available variables</value></data>
+  <data name="Options.TagVariableName"><value>Source filename</value></data>
+  <data name="Options.TagVariableFamily"><value>Family: PC, ST, AMIGA…</value></data>
+  <data name="Options.TagVariableFormat"><value>Format: 720, 1440, DD…</value></data>
+  <data name="Options.TagVariableExtension"><value>Extension: IMA, ST, ADF…</value></data>
+  <data name="Options.TagVariableDateIso"><value>Date: 2026-08-06</value></data>
+  <data name="Options.TagVariableDateCompact"><value>Date: 20260806</value></data>
+  <data name="Options.TagVariableDateLocal"><value>Date: 06-08-2026</value></data>
+  <data name="Options.TagVariableTimeFull"><value>Time: 14-35-42</value></data>
+  <data name="Options.TagVariableTimeCompact"><value>Time: 143542</value></data>
+  <data name="Options.TagVariableTimeShort"><value>Time: 14-35</value></data>
+  <data name="Options.TagPatternHelp"><value>{NAME} — source filename&#xA;{FAMILY} — machine family (PC, ST, AMIGA…)&#xA;{FORMAT} — format or geometry (720, 1440, DD…)&#xA;{EXTENSION} — output extension (IMA, ST, ADF…)&#xA;{DATE:YYYY-MM-DD} — date 2026-08-06&#xA;{DATE:YYYYMMDD} — date 20260806&#xA;{DATE:DD-MM-YYYY} — date 06-08-2026&#xA;{TIME:HH-MM-SS} — time 14-35-42&#xA;{TIME:HHMMSS} — time 143542&#xA;{TIME:HH-MM} — time 14-35</value></data>
+  <data name="Options.RecentTagPatterns"><value>Recent custom patterns</value></data>
+  <data name="Options.NextTagExample"><value>Next example</value></data>
+  <data name="Options.TagPatternPreview"><value>Example: {0}</value></data>
+  <data name="Options.TagPatternInvalid"><value>The tag pattern must contain {tag}.</value></data>
+  <data name="Options.EnableLogs"><value>Save logs</value></data>
+  <data name="Options.Logs"><value>Logs</value></data>
+  <data name="Options.LogsDescription"><value>Each action has its own file in the GW GUI Logs folder.</value></data>
+  <data name="Options.LogActionErase"><value>Erase</value></data>
+  <data name="Options.LogActionClean"><value>Clean heads</value></data>
+  <data name="Options.OpenLogsFolder"><value>Open folder</value></data>
+  <data name="Options.LogMaximumSize"><value>Maximum size</value></data>
+  <data name="Options.Kilobytes"><value>KiB</value></data>
+  <data name="Options.KeepLogArchives"><value>Keep previous logs</value></data>
+  <data name="Options.LogUnlimitedHint"><value>0 = unlimited</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>Engines</value></data>
   <data name="Engines.Description" xml:space="preserve"><value>Choose the engine used independently for each operation.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>Internal GW GUI engine</value></data>
@@ -206,9 +92,7 @@
   <data name="Controllers.NoneDetected" xml:space="preserve"><value>No controller detected</value></data>
   <data name="Controllers.DetectedCount" xml:space="preserve"><value>{0} controller(s) detected</value></data>
   <data name="Controllers.TestRumble" xml:space="preserve"><value>Test vibration</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve">
-    <value>Rumble strength</value>
-  </data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>Rumble strength</value></data>
   <data name="Controllers.LiveInputs" xml:space="preserve"><value>Live inputs</value></data>
   <data name="Controllers.Control" xml:space="preserve"><value>Control</value></data>
   <data name="Controllers.Value" xml:space="preserve"><value>Value</value></data>
@@ -243,6 +127,8 @@
   <data name="Controllers.Model.XboxSeries" xml:space="preserve"><value>Xbox Series</value></data>
   <data name="Controllers.Model.XboxRematchCore" xml:space="preserve"><value>Turtle Beach REMATCH Core</value></data>
   <data name="Controllers.Model.XboxOne" xml:space="preserve"><value>Xbox One</value></data>
+  <data name="Controllers.Model.Xbox360" xml:space="preserve"><value>Xbox 360 — Black</value></data>
+  <data name="Controllers.Model.Xbox360White" xml:space="preserve"><value>Xbox 360 — White</value></data>
   <data name="Controllers.Model.PlayStation4" xml:space="preserve"><value>PlayStation 4</value></data>
   <data name="Controllers.Model.PlayStation5" xml:space="preserve"><value>PlayStation 5</value></data>
   <data name="Controllers.Model.MasterSystem" xml:space="preserve"><value>Master System</value></data>
@@ -259,9 +145,7 @@
   <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>Raw byte</value></data>
   <data name="Controllers.AnalogValues" xml:space="preserve"><value>Analog values</value></data>
   <data name="Controllers.DetectionFailed" xml:space="preserve"><value>Controller detection failed</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve">
-    <value>Detecting controllers…</value>
-  </data>
+  <data name="Controllers.Detecting" xml:space="preserve"><value>Detecting controllers…</value></data>
   <data name="Controllers.ReadFailed" xml:space="preserve"><value>Controller reading failed</value></data>
   <data name="Controllers.TestRunning" xml:space="preserve"><value>Test in progress…</value></data>
   <data name="Controllers.TestFailed" xml:space="preserve"><value>Test failed</value></data>
@@ -286,97 +170,41 @@
   <data name="Controllers.Roll" xml:space="preserve"><value>Roll</value></data>
   <data name="Controllers.Pitch" xml:space="preserve"><value>Pitch</value></data>
   <data name="Controllers.Yaw" xml:space="preserve"><value>Yaw</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve">
-    <value>Sensors</value>
-  </data>
-  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
-    <value>UI navigation</value>
-  </data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
-    <value>Gamepad</value>
-  </data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
-    <value>Low-frequency motor</value>
-  </data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
-    <value>High-frequency motor</value>
-  </data>
-  <data name="Controllers.Enum.Share" xml:space="preserve">
-    <value>Share</value>
-  </data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve">
-    <value>Linear</value>
-  </data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve">
-    <value>Angular</value>
-  </data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve">
-    <value>Normal</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
-    <value>Constant</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
-    <value>Ramp</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
-    <value>Sine wave</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
-    <value>Square wave</value>
-  </data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
-    <value>Triangle wave</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
-    <value>Rising sawtooth</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
-    <value>Falling sawtooth</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
-    <value>Spring</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
-    <value>Friction</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
-    <value>Damper</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
-    <value>Inertia</value>
-  </data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve">
-    <value>Joystick</value>
-  </data>
-  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
-    <value>Multi-axis controller</value>
-  </data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
-    <value>HID usage</value>
-  </data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve">
-    <value>axes</value>
-  </data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve">
-    <value>buttons</value>
-  </data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
-    <value>Aggregate</value>
-  </data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve">
-    <value>Virtual</value>
-  </data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve">
-    <value>Input report</value>
-  </data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
-    <value>Output report</value>
-  </data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>Sensors</value></data>
+  <data name="Controllers.Enum.UiNavigation" xml:space="preserve"><value>UI navigation</value></data>
+  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>Gamepad</value></data>
+  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>Low-frequency motor</value></data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>High-frequency motor</value></data>
+  <data name="Controllers.Enum.Share" xml:space="preserve"><value>Share</value></data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>Linear</value></data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>Angular</value></data>
+  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>Normal</value></data>
+  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>Constant</value></data>
+  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>Ramp</value></data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>Sine wave</value></data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>Square wave</value></data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>Triangle wave</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>Rising sawtooth</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>Falling sawtooth</value></data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>Spring</value></data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>Friction</value></data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>Damper</value></data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>Inertia</value></data>
+  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>Joystick</value></data>
+  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>Multi-axis controller</value></data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>HID usage</value></data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>axes</value></data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>buttons</value></data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>Aggregate</value></data>
+  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>Virtual</value></data>
+  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>Input report</value></data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>Output report</value></data>
   <data name="Controllers.Model.Nintendo64" xml:space="preserve"><value>Nintendo 64</value></data>
   <data name="Controllers.Model.NintendoEntertainmentSystem" xml:space="preserve"><value>Nintendo Entertainment System (NES)</value></data>
   <data name="Controllers.Model.SuperNintendo" xml:space="preserve"><value>Super Nintendo</value></data>
-  <data name="Options.EmulationMachineTitle" xml:space="preserve">
-    <value>{0} — {1} : {2}</value>
-  </data>
+  <data name="Options.EmulationMachineTitle" xml:space="preserve"><value>{0} — {1} : {2}</value></data>
+  <data name="Controllers.AnalogDeadZones" xml:space="preserve"><value>Analog dead zones</value></data>
+  <data name="Controllers.StickDeadZone" xml:space="preserve"><value>Sticks</value></data>
+  <data name="Controllers.TriggerDeadZone" xml:space="preserve"><value>Triggers</value></data>
+  <data name="Controllers.OuterDeadZone" xml:space="preserve"><value>Outer dead zone</value></data>
 </root>

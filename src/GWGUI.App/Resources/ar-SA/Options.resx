@@ -12,165 +12,56 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Options.Title">
-    <value>خيارات</value>
-  </data>
-  <data name="Options.General">
-    <value>عام</value>
-  </data>
-  <data name="Options.Tools">
-    <value>Greaseweazle الأدوات</value>
-  </data>
-  <data name="Options.Hardware">
-    <value>وحدات التحكم ومحركات الأقراص</value>
-  </data>
-  <data name="Options.Profiles">
-    <value>الملفات الشخصية</value>
-  </data>
-  <data name="Options.ImagesFolder">
-    <value>المجلد الافتراضي لصورة القرص</value>
-  </data>
-  <data name="Options.Language">
-    <value>لغة</value>
-  </data>
-  <data name="Options.Theme">
-    <value>سمة</value>
-  </data>
-  <data name="Theme.System">
-    <value>نظام</value>
-  </data>
-  <data name="Theme.Light">
-    <value>ضوء</value>
-  </data>
-  <data name="Theme.Dark">
-    <value>مظلم</value>
-  </data>
-  <data name="Options.GwPath">
-    <value>المسار إلى gw.exe</value>
-  </data>
-  <data name="Options.ToolsHelp">
-    <value>إذا كانت الأدوات مفقودة، فسيعرض عليك المساعد تنزيلها أو اختيار تثبيت موجود. يتم الإعلان عن التحديثات فقط.</value>
-  </data>
-  <data name="Options.HardwarePersistence">
-    <value>تظل إعدادات الأجهزة مخزنة عند فصل محرك الأقراص.</value>
-  </data>
-  <data name="Options.ExecutableFilter">
-    <value>Greaseweazle (gw.exe)|gw.exe|قابل للتنفيذ (*.exe)|*.exe</value>
-  </data>
-  <data name="Options.RemoveHardware">
-    <value>إزالة وحدة التحكم المخزنة هذه وكافة محركات الأقراص الخاصة بها؟</value>
-  </data>
-  <data name="Options.HardwareTitle">
-    <value>الأجهزة</value>
-  </data>
-  <data name="Options.UseConversionTags">
-    <value>استخدم العلامات في أسماء ملفات التحويل</value>
-  </data>
-  <data name="Options.TagPreset">
-    <value>محددة مسبقا</value>
-  </data>
-  <data name="Options.TagPresetFamily">
-    <value>العائلة فقط</value>
-  </data>
-  <data name="Options.TagPresetFormat">
-    <value>التنسيق فقط</value>
-  </data>
-  <data name="Options.TagPresetFamilyFormat">
-    <value>الأسرة والشكل</value>
-  </data>
-  <data name="Options.TagPresetFamilyExtension">
-    <value>الأسرة والامتداد</value>
-  </data>
-  <data name="Options.TagPresetDetailed">
-    <value>الأسرة والشكل والامتداد</value>
-  </data>
-  <data name="Options.TagPattern">
-    <value>نمط علامة التحويل</value>
-  </data>
-  <data name="Options.TagVariablesTitle">
-    <value>المتغيرات المتاحة</value>
-  </data>
-  <data name="Options.TagVariableName">
-    <value>اسم الملف المصدر</value>
-  </data>
-  <data name="Options.TagVariableFamily">
-    <value>العائلة: PC، ST، AMIGA…</value>
-  </data>
-  <data name="Options.TagVariableFormat">
-    <value>التنسيق: 720، 1440، DD…</value>
-  </data>
-  <data name="Options.TagVariableExtension">
-    <value>الامتداد: IMA، ST، ADF…</value>
-  </data>
-  <data name="Options.TagVariableDateIso">
-    <value>التاريخ: 2026-08-06</value>
-  </data>
-  <data name="Options.TagVariableDateCompact">
-    <value>التاريخ: 20260806</value>
-  </data>
-  <data name="Options.TagVariableDateLocal">
-    <value>التاريخ: 06-08-2026</value>
-  </data>
-  <data name="Options.TagVariableTimeFull">
-    <value>الوقت: 14-35-42</value>
-  </data>
-  <data name="Options.TagVariableTimeCompact">
-    <value>الوقت: 143542</value>
-  </data>
-  <data name="Options.TagVariableTimeShort">
-    <value>الوقت: 14-35</value>
-  </data>
-  <data name="Options.TagPatternHelp">
-    <value>{NAME} — اسم الملف المصدر
-{FAMILY} — عائلة الآلة (PC، ST، AMIGA...)
-{FORMAT} — الشكل أو الشكل الهندسي (720، 1440، DD…)
-{EXTENSION} — امتداد الإخراج (IMA، ST، ADF...)
-{DATE:YYYY-MM-DD} - التاريخ 2026-08-06
-{DATE:YYYYMMDD} - التاريخ 20260806
-{DATE:DD-MM-YYYY} — التاريخ 06-08-2026
-{TIME:HH-MM-SS} - الوقت 14-35-42
-{TIME:HHMMSS} - الوقت 143542
-{TIME:HH-MM} - الوقت 14-35</value>
-  </data>
-  <data name="Options.RecentTagPatterns">
-    <value>الأنماط المخصصة الأخيرة</value>
-  </data>
-  <data name="Options.NextTagExample">
-    <value>المثال التالي</value>
-  </data>
-  <data name="Options.TagPatternPreview">
-    <value>مثال: {0}</value>
-  </data>
-  <data name="Options.TagPatternInvalid">
-    <value>يجب أن يحتوي نمط العلامة على {tag}.</value>
-  </data>
-  <data name="Options.EnableLogs">
-    <value>حفظ السجلات</value>
-  </data>
-  <data name="Options.Logs">
-    <value>سجلات</value>
-  </data>
-  <data name="Options.LogsDescription">
-    <value>كل إجراء له ملف خاص به في مجلد السجلات GW GUI.</value>
-  </data>
-  <data name="Options.LogActionErase">
-    <value>محو</value>
-  </data>
-  <data name="Options.LogActionClean">
-    <value>رؤوس نظيفة</value>
-  </data>
-  <data name="Options.OpenLogsFolder">
-    <value>افتح المجلد</value>
-  </data>
-  <data name="Options.LogMaximumSize">
-    <value>الحد الأقصى للحجم</value>
-  </data>
-  <data name="Options.KeepLogArchives">
-    <value>الاحتفاظ بالسجلات السابقة</value>
-  </data>
-  <data name="Options.LogUnlimitedHint">
-    <value>0 = غير محدود</value>
-  </data>
+  <data name="Options.Title"><value>خيارات</value></data>
+  <data name="Options.General"><value>عام</value></data>
+  <data name="Options.Tools"><value>Greaseweazle الأدوات</value></data>
+  <data name="Options.Hardware"><value>وحدات التحكم ومحركات الأقراص</value></data>
+  <data name="Options.Profiles"><value>الملفات الشخصية</value></data>
+  <data name="Options.ImagesFolder"><value>المجلد الافتراضي لصورة القرص</value></data>
+  <data name="Options.Language"><value>لغة</value></data>
+  <data name="Options.Theme"><value>سمة</value></data>
+  <data name="Theme.System"><value>نظام</value></data>
+  <data name="Theme.Light"><value>ضوء</value></data>
+  <data name="Theme.Dark"><value>مظلم</value></data>
+  <data name="Options.GwPath"><value>المسار إلى gw.exe</value></data>
+  <data name="Options.ToolsHelp"><value>إذا كانت الأدوات مفقودة، فسيعرض عليك المساعد تنزيلها أو اختيار تثبيت موجود. يتم الإعلان عن التحديثات فقط.</value></data>
+  <data name="Options.HardwarePersistence"><value>تظل إعدادات الأجهزة مخزنة عند فصل محرك الأقراص.</value></data>
+  <data name="Options.ExecutableFilter"><value>غريزويزل (جو.كس)|gw.exe|قابلة للتنفيذ (مطبقة)*.exe)|*.exe</value></data>
+  <data name="Options.RemoveHardware"><value>إزالة وحدة التحكم المخزنة هذه وكافة محركات الأقراص الخاصة بها؟</value></data>
+  <data name="Options.HardwareTitle"><value>الأجهزة</value></data>
+  <data name="Options.UseConversionTags"><value>استخدم العلامات في أسماء ملفات التحويل</value></data>
+  <data name="Options.TagPreset"><value>محددة مسبقا</value></data>
+  <data name="Options.TagPresetFamily"><value>العائلة فقط</value></data>
+  <data name="Options.TagPresetFormat"><value>التنسيق فقط</value></data>
+  <data name="Options.TagPresetFamilyFormat"><value>الأسرة والشكل</value></data>
+  <data name="Options.TagPresetFamilyExtension"><value>الأسرة والامتداد</value></data>
+  <data name="Options.TagPresetDetailed"><value>الأسرة والشكل والامتداد</value></data>
+  <data name="Options.TagPattern"><value>نمط علامة التحويل</value></data>
+  <data name="Options.TagVariablesTitle"><value>المتغيرات المتاحة</value></data>
+  <data name="Options.TagVariableName"><value>اسم الملف المصدر</value></data>
+  <data name="Options.TagVariableFamily"><value>العائلة: PC، ST، AMIGA…</value></data>
+  <data name="Options.TagVariableFormat"><value>التنسيق: 720، 1440، DD…</value></data>
+  <data name="Options.TagVariableExtension"><value>الامتداد: IMA، ST، ADF…</value></data>
+  <data name="Options.TagVariableDateIso"><value>التاريخ: 2026-08-06</value></data>
+  <data name="Options.TagVariableDateCompact"><value>التاريخ: 20260806</value></data>
+  <data name="Options.TagVariableDateLocal"><value>التاريخ: 06-08-2026</value></data>
+  <data name="Options.TagVariableTimeFull"><value>الوقت: 14-35-42</value></data>
+  <data name="Options.TagVariableTimeCompact"><value>الوقت: 143542</value></data>
+  <data name="Options.TagVariableTimeShort"><value>الوقت: 14-35</value></data>
+  <data name="Options.TagPatternHelp"><value>{NAME} - اسم ملف المصدر&#xA;{FAMILY} - أسرة الآلات )الآلات(PC، ST، AMIGA...&#xA;{FORMAT} - الشكل أو الهندسة (720، 1440، DD...&#xA;{EXTENSION} - تمديد الناتج )العمل(IMA، ST، ADF...&#xA;{DATE:YYYY-MM-DD} - التاريخ 2026-08-06&#xA;{DATE:YYYYMMDD} - التاريخ 20260806&#xA;{DATE:DD-MM-YYYY} 06-08-2026&#xA;{TIME:HH-MM-SS} - الوقت&#xA;{TIME:HHMMSS} - الوقت ١٤٣٥٤٢&#xA;{TIME:HH-MM} - الوقت 14-35</value></data>
+  <data name="Options.RecentTagPatterns"><value>الأنماط المخصصة الأخيرة</value></data>
+  <data name="Options.NextTagExample"><value>المثال التالي</value></data>
+  <data name="Options.TagPatternPreview"><value>مثال: {0}</value></data>
+  <data name="Options.TagPatternInvalid"><value>يجب أن يحتوي نمط العلامة على {tag}.</value></data>
+  <data name="Options.EnableLogs"><value>حفظ السجلات</value></data>
+  <data name="Options.Logs"><value>سجلات</value></data>
+  <data name="Options.LogsDescription"><value>لكل إجراء ملفه الخاص في GW GUI ملف لوجز.</value></data>
+  <data name="Options.LogActionErase"><value>محو</value></data>
+  <data name="Options.LogActionClean"><value>رؤوس نظيفة</value></data>
+  <data name="Options.OpenLogsFolder"><value>افتح المجلد</value></data>
+  <data name="Options.LogMaximumSize"><value>الحد الأقصى للحجم</value></data>
+  <data name="Options.KeepLogArchives"><value>الاحتفاظ بالسجلات السابقة</value></data>
+  <data name="Options.LogUnlimitedHint"><value>0 = غير محدود</value></data>
   <data name="Options.Engines" xml:space="preserve"><value>المحركات</value></data>
   <data name="Engines.Description" xml:space="preserve"><value>اختر بشكل مستقل المحرك المستخدم لكل عملية.</value></data>
   <data name="Engines.Internal" xml:space="preserve"><value>محرك GW GUI الداخلي</value></data>
@@ -185,9 +76,7 @@
   <data name="Controllers.NoneDetected" xml:space="preserve"><value>لم يتم اكتشاف وحدة تحكم</value></data>
   <data name="Controllers.DetectedCount" xml:space="preserve"><value>تم اكتشاف {0} وحدة تحكم</value></data>
   <data name="Controllers.TestRumble" xml:space="preserve"><value>اختبار الاهتزاز</value></data>
-  <data name="Controllers.RumbleStrength" xml:space="preserve">
-    <value>قوة الاهتزاز</value>
-  </data>
+  <data name="Controllers.RumbleStrength" xml:space="preserve"><value>قوة الاهتزاز</value></data>
   <data name="Controllers.LiveInputs" xml:space="preserve"><value>الإدخالات المباشرة</value></data>
   <data name="Controllers.Control" xml:space="preserve"><value>عنصر التحكم</value></data>
   <data name="Controllers.Value" xml:space="preserve"><value>القيمة</value></data>
@@ -218,17 +107,10 @@
   <data name="Controllers.Yes" xml:space="preserve"><value>نعم</value></data>
   <data name="Controllers.No" xml:space="preserve"><value>لا</value></data>
   <data name="Controllers.None" xml:space="preserve"><value>لا شيء</value></data>
-  <data name="Controllers.Model.GenericGamepad" xml:space="preserve"><value>وحدة تحكم عامة</value></data>
-  <data name="Controllers.Model.Auto" xml:space="preserve"><value>تلقائي</value></data>
-  <data name="Controllers.Model.RacingWheel" xml:space="preserve"><value>عجلة القيادة</value></data>
-  <data name="Controllers.Model.FlightStick" xml:space="preserve"><value>عصا الطيران</value></data>
-  <data name="Controllers.Model.ArcadeStick" xml:space="preserve"><value>عصا ألعاب الصالات</value></data>
-  <data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>بايت خام</value></data>
+<data name="Controllers.ControlType.RawByte" xml:space="preserve"><value>بايت خام</value></data>
   <data name="Controllers.AnalogValues" xml:space="preserve"><value>القيم التناظرية</value></data>
   <data name="Controllers.DetectionFailed" xml:space="preserve"><value>فشل اكتشاف وحدات التحكم</value></data>
-  <data name="Controllers.Detecting" xml:space="preserve">
-    <value>جارٍ اكتشاف وحدات التحكم…</value>
-  </data>
+  <data name="Controllers.Detecting" xml:space="preserve"><value>جارٍ اكتشاف وحدات التحكم…</value></data>
   <data name="Controllers.ReadFailed" xml:space="preserve"><value>فشلت قراءة وحدة التحكم</value></data>
   <data name="Controllers.TestRunning" xml:space="preserve"><value>الاختبار قيد التنفيذ…</value></data>
   <data name="Controllers.TestFailed" xml:space="preserve"><value>فشل الاختبار</value></data>
@@ -253,91 +135,53 @@
   <data name="Controllers.Roll" xml:space="preserve"><value>الالتفاف</value></data>
   <data name="Controllers.Pitch" xml:space="preserve"><value>الميل</value></data>
   <data name="Controllers.Yaw" xml:space="preserve"><value>الانحراف</value></data>
-  <data name="Controllers.Enum.Sensors" xml:space="preserve">
-    <value>المستشعرات</value>
-  </data>
-  <data name="Controllers.Enum.UiNavigation" xml:space="preserve">
-    <value>التنقل في الواجهة</value>
-  </data>
-  <data name="Controllers.Enum.Gamepad" xml:space="preserve">
-    <value>ذراع تحكم</value>
-  </data>
-  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve">
-    <value>محرك منخفض التردد</value>
-  </data>
-  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve">
-    <value>محرك عالي التردد</value>
-  </data>
-  <data name="Controllers.Enum.Share" xml:space="preserve">
-    <value>مشاركة</value>
-  </data>
-  <data name="Controllers.Enum.Linear" xml:space="preserve">
-    <value>خطي</value>
-  </data>
-  <data name="Controllers.Enum.Angular" xml:space="preserve">
-    <value>زاوي</value>
-  </data>
-  <data name="Controllers.Enum.Normal" xml:space="preserve">
-    <value>عادي</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve">
-    <value>ثابت</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve">
-    <value>تدرج</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve">
-    <value>موجة جيبية</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve">
-    <value>موجة مربعة</value>
-  </data>
-  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve">
-    <value>موجة مثلثية</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve">
-    <value>سن منشار صاعد</value>
-  </data>
-  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve">
-    <value>سن منشار هابط</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve">
-    <value>نابض</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve">
-    <value>احتكاك</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve">
-    <value>مخمّد</value>
-  </data>
-  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve">
-    <value>قصور ذاتي</value>
-  </data>
-  <data name="Controllers.Enum.Joystick" xml:space="preserve">
-    <value>عصا تحكم</value>
-  </data>
-  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve">
-    <value>وحدة تحكم متعددة المحاور</value>
-  </data>
-  <data name="Controllers.Enum.HidUsage" xml:space="preserve">
-    <value>استخدام HID</value>
-  </data>
-  <data name="Controllers.Enum.Axes" xml:space="preserve">
-    <value>محاور</value>
-  </data>
-  <data name="Controllers.Enum.Buttons" xml:space="preserve">
-    <value>أزرار</value>
-  </data>
-  <data name="Controllers.Enum.Aggregate" xml:space="preserve">
-    <value>مجمّع</value>
-  </data>
-  <data name="Controllers.Enum.Virtual" xml:space="preserve">
-    <value>افتراضي</value>
-  </data>
-  <data name="Controllers.Enum.InputReport" xml:space="preserve">
-    <value>تقرير إدخال</value>
-  </data>
-  <data name="Controllers.Enum.OutputReport" xml:space="preserve">
-    <value>تقرير إخراج</value>
-  </data>
+  <data name="Controllers.Enum.Sensors" xml:space="preserve"><value>المستشعرات</value></data>
+  <data name="Controllers.Enum.UiNavigation"><value>UI الملاحة</value></data>
+  <data name="Controllers.Enum.Gamepad" xml:space="preserve"><value>ذراع تحكم</value></data>
+  <data name="Controllers.Enum.LowFrequencyMotor" xml:space="preserve"><value>محرك منخفض التردد</value></data>
+  <data name="Controllers.Enum.HighFrequencyMotor" xml:space="preserve"><value>محرك عالي التردد</value></data>
+  <data name="Controllers.Enum.Share" xml:space="preserve"><value>مشاركة</value></data>
+  <data name="Controllers.Enum.Linear" xml:space="preserve"><value>خطي</value></data>
+  <data name="Controllers.Enum.Angular" xml:space="preserve"><value>زاوي</value></data>
+  <data name="Controllers.Enum.Normal" xml:space="preserve"><value>عادي</value></data>
+  <data name="Controllers.Enum.Effect.Constant" xml:space="preserve"><value>ثابت</value></data>
+  <data name="Controllers.Enum.Effect.Ramp" xml:space="preserve"><value>تدرج</value></data>
+  <data name="Controllers.Enum.Effect.SineWave" xml:space="preserve"><value>موجة جيبية</value></data>
+  <data name="Controllers.Enum.Effect.SquareWave" xml:space="preserve"><value>موجة مربعة</value></data>
+  <data name="Controllers.Enum.Effect.TriangleWave" xml:space="preserve"><value>موجة مثلثية</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothUp" xml:space="preserve"><value>سن منشار صاعد</value></data>
+  <data name="Controllers.Enum.Effect.SawtoothDown" xml:space="preserve"><value>سن منشار هابط</value></data>
+  <data name="Controllers.Enum.Effect.Spring" xml:space="preserve"><value>نابض</value></data>
+  <data name="Controllers.Enum.Effect.Friction" xml:space="preserve"><value>احتكاك</value></data>
+  <data name="Controllers.Enum.Effect.Damper" xml:space="preserve"><value>مخمّد</value></data>
+  <data name="Controllers.Enum.Effect.Inertia" xml:space="preserve"><value>قصور ذاتي</value></data>
+  <data name="Controllers.Enum.Joystick" xml:space="preserve"><value>عصا تحكم</value></data>
+  <data name="Controllers.Enum.MultiAxisController" xml:space="preserve"><value>وحدة تحكم متعددة المحاور</value></data>
+  <data name="Controllers.Enum.HidUsage" xml:space="preserve"><value>استخدام HID</value></data>
+  <data name="Controllers.Enum.Axes" xml:space="preserve"><value>محاور</value></data>
+  <data name="Controllers.Enum.Buttons" xml:space="preserve"><value>أزرار</value></data>
+  <data name="Controllers.Enum.Aggregate" xml:space="preserve"><value>مجمّع</value></data>
+  <data name="Controllers.Enum.Virtual" xml:space="preserve"><value>افتراضي</value></data>
+  <data name="Controllers.Enum.InputReport" xml:space="preserve"><value>تقرير إدخال</value></data>
+  <data name="Controllers.Enum.OutputReport" xml:space="preserve"><value>تقرير إخراج</value></data>
+<data name="Emulation.InitialDisk"><value>قرص أولي</value></data>
+  <data name="Emulation.Audio"><value>أوديو</value></data>
+  <data name="Emulation.Controller"><value>المراقب المالي {0}</value></data>
+  <data name="Emulation.Core.NameOptions"><value>الخيارات الأساسية</value></data>
+  <data name="Emulation.MultiDrive"><value>سدد أول أربعة أقراص في DF0-DF3</value></data>
+  <data name="Emulation.DiskNumber"><value>قرص {0}</value></data>
+  <data name="Emulation.LoadOptions"><value>الخيارات المتاحة</value></data>
+  <data name="Emulation.Configurations"><value>خامسا - المفاوضات</value></data>
+  <data name="Emulation.Firmware"><value>البرنامج الثابت</value></data>
+  <data name="Emulation.ReleaseMouse"><value>إطلاق النار</value></data>
+  <data name="Emulation.DeleteConfirm"><value>تحذف هذه التشكيلة من "أميغا"؟</value></data>
+  <data name="Emulation.ModelRequired"><value>هناك حاجة إلى نموذج لـ (أميغا).</value></data>
+  <data name="Emulation.KickstartRequired"><value>(كيكستارت) مطلوب</value></data>
+  <data name="Emulation.FileRequired"><value>الطريق المطلوب هو البرمجيات الفارغة</value></data>
+  <data name="Emulation.FileMissing"><value>الملف المختار غير موجود</value></data>
+<data name="Options.EmulationMachineTitle"><value>{0} - {1} : {2}</value></data>
+  <data name="Controllers.AnalogDeadZones"><value>المناطق الميتة</value></data>
+  <data name="Controllers.StickDeadZone"><value>عصا</value></data>
+  <data name="Controllers.TriggerDeadZone"><value>المصاريف</value></data>
+  <data name="Controllers.OuterDeadZone"><value>المنطقة الخالية من الأسلحة</value></data>
 </root>

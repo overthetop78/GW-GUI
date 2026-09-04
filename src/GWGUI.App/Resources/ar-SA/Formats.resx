@@ -12,67 +12,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Detection.Ambiguous">
-    <value>تنسيق غامض</value>
-  </data>
-  <data name="Detection.RawScp">
-    <value>تم التعرف على التقاط SCP الخام.</value>
-  </data>
-  <data name="Detection.AmigaSize">
-    <value>تم التعرف على تنسيق Amiga من حجم الملف.</value>
-  </data>
-  <data name="Detection.AcornSize">
-    <value>تم التعرف على تنسيق Acorn من حجم الملف.</value>
-  </data>
-  <data name="Detection.AtariUnknownSize">
-    <value>الحجم لا يتطابق مع ملف تعريف Atari ST معروف.</value>
-  </data>
-  <data name="Detection.AtariSize">
-    <value>تم التعرف على هندسة Atari ST من حجم الملف.</value>
-  </data>
-  <data name="Detection.MsaInferred">
-    <value>تم التعرف على حاوية Atari MSA؛ تأكيد الهندسة إذا لزم الأمر.</value>
-  </data>
-  <data name="Detection.IbmAmbiguous">
-    <value>لا يمكن للامتداد وحده تحديد الشكل الهندسي IBM PC.</value>
-  </data>
-  <data name="Detection.IbmSize">
-    <value>تم التعرف على هندسة IBM PC من حجم الملف.</value>
-  </data>
-  <data name="Detection.ExtensionInferred">
-    <value>التنسيق المستنتج من الامتداد.</value>
-  </data>
-  <data name="Detection.Multiple">
-    <value>عدة أشكال ممكنة. اختر واحدة صراحة.</value>
-  </data>
-  <data name="Format.raw.scp">
-    <value>صورة التدفق الخام</value>
-  </data>
-  <data name="Format.raw.hfe">
-    <value>HxC صورة التدفق</value>
-  </data>
-  <data name="Common.DiskImageFilter">
-    <value>صور القرص|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|جميع الملفات|*.*</value>
-  </data>
-  <data name="Detection.AppleDosOrder">
-    <value>تم التعرف على تنسيق Apple II DOS من ترتيب القطاعات.</value>
-  </data>
-  <data name="Detection.AppleProDosOrder">
-    <value>تم التعرف على تنسيق Apple II ProDOS من ترتيب القطاعات.</value>
-  </data>
-  <data name="Detection.AppleContainer">
-    <value>تم اكتشاف حاوية صورة قرص Apple.</value>
-  </data>
-  <data name="Classification.Automatic">
-    <value>اكتشاف تلقائي</value>
-  </data>
-  <data name="Classification.Machine">
-    <value>الحاسوب</value>
-  </data>
-  <data name="Classification.Format">
-    <value>التنسيق</value>
-  </data>
-  <data name="Classification.Protection">
-    <value>الحماية</value>
-  </data>
+  <data name="Detection.Ambiguous"><value>تنسيق غامض</value></data>
+  <data name="Detection.RawScp"><value>تم التعرف على التقاط SCP الخام.</value></data>
+  <data name="Detection.AmigaSize"><value>تم التعرف على تنسيق Amiga من حجم الملف.</value></data>
+  <data name="Detection.AcornSize"><value>تم التعرف على تنسيق Acorn من حجم الملف.</value></data>
+  <data name="Detection.AtariUnknownSize"><value>الحجم لا يتطابق مع ملف تعريف Atari ST معروف.</value></data>
+  <data name="Detection.AtariSize"><value>تم التعرف على هندسة Atari ST من حجم الملف.</value></data>
+  <data name="Detection.MsaInferred"><value>تم التعرف على حاوية Atari MSA؛ تأكيد الهندسة إذا لزم الأمر.</value></data>
+  <data name="Detection.IbmAmbiguous"><value>لا يمكن للتمديد وحده أن يحدد IBM PC الهندسة.</value></data>
+  <data name="Detection.IbmSize"><value>تم التعرف على هندسة IBM PC من حجم الملف.</value></data>
+  <data name="Detection.ExtensionInferred"><value>التنسيق المستنتج من الامتداد.</value></data>
+  <data name="Detection.Multiple"><value>عدة أشكال ممكنة. اختر واحدة صراحة.</value></data>
+  <data name="Format.raw.scp"><value>صورة التدفق الخام</value></data>
+  <data name="Common.DiskImageFilter"><value>صور قرصية|*.scp;*.adf;*.st;*.msa;*.atr;*.ima;*.img;*.hfe;*.d64;*.d71;*.d81;*.dsk;*.edsk;*.do;*.po;*.2mg;*.image;*.dc42;*.d13;*.nib;*.woz|جميع الملفات|*.*</value></data>
+  <data name="Detection.AppleDosOrder"><value>تم التعرف على تنسيق Apple II DOS من ترتيب القطاعات.</value></data>
+  <data name="Detection.AppleProDosOrder"><value>تم التعرف على تنسيق Apple II ProDOS من ترتيب القطاعات.</value></data>
+  <data name="Detection.AppleContainer"><value>تم اكتشاف حاوية صورة قرص Apple.</value></data>
+  <data name="Classification.Automatic"><value>اكتشاف تلقائي</value></data>
+  <data name="Classification.Machine"><value>الحاسوب</value></data>
+  <data name="Classification.Format"><value>التنسيق</value></data>
+  <data name="Classification.Protection"><value>الحماية</value></data>
 </root>
