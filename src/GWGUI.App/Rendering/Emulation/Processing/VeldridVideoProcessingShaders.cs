@@ -30,7 +30,8 @@ internal static class VeldridVideoProcessingShaders
             vec4 General; vec4 Restoration2; vec4 Temporal;
             vec4 Signal; vec4 Signal2; vec4 Stylistic; vec4 Stylistic2;
             vec4 VfdDisplay; vec4 VfdStructure; vec4 VfdOptical;
-            vec4 LedMatrixEmission; vec4 LedMatrixStructure; vec4 DotMatrix; vec4 EPaper;
+            vec4 LedMatrixEmission; vec4 LedMatrixStructure;
+            vec4 DotMatrixGeometry; vec4 DotMatrixEmission; vec4 DotMatrixTemporal; vec4 EPaper;
             vec4 Projection;
         } Parameters;
         layout(set=0,binding=1) uniform texture2D Source;
@@ -212,6 +213,13 @@ internal static class VeldridVideoProcessingShaders
         + FilterLedMatrixColor.Shader + FilterLedMatrixBrightness.Shader
         + FilterLedMatrixHalo.Shader + FilterLedMatrixBlackDepth.Shader + "\n" + """
         #endif
+        #if DISPLAY_TECHNOLOGY == 7
+        """ + "\n" + FilterDotMatrixCellSize.Shader + FilterDotMatrixCellGap.Shader
+        + FilterDotMatrixShape.Shader + FilterDotMatrixDotSize.Shader + FilterDotMatrixContrast.Shader
+        + FilterDotMatrixBrightness.Shader + FilterDotMatrixPalette.Shader
+        + FilterDotMatrixHalo.Shader + FilterDotMatrixResponse.Shader
+        + FilterDotMatrixPersistence.Shader + "\n" + """
+        #endif
         #if DISPLAY_TECHNOLOGY == 3
         vec3 plasmaPixel(vec3 color,vec2 uv)
         {
@@ -348,6 +356,46 @@ internal static class VeldridVideoProcessingShaders
                 +emission*(core+halo),0.0,1.0);
         }
         #endif
+        #if DISPLAY_TECHNOLOGY == 7
+        vec3 dotMatrixSample(vec2 uv,bool history)
+        {
+            vec2 sourceSize=max(Parameters.Processing.zw,vec2(1.0));
+            float pitch=filterDotMatrixPitch(Parameters.DotMatrixGeometry.z);
+            vec2 cell=floor(uv*sourceSize/pitch);
+            vec2 centerUv=(cell+.5)*pitch/sourceSize;
+            vec2 offset=vec2(pitch*.28)/sourceSize;
+            if(history)
+                return (adjust(texture(sampler2D(History,LinearSampler),centerUv).rgb)*4.0
+                    +adjust(texture(sampler2D(History,LinearSampler),centerUv-vec2(offset.x,0)).rgb)
+                    +adjust(texture(sampler2D(History,LinearSampler),centerUv+vec2(offset.x,0)).rgb)
+                    +adjust(texture(sampler2D(History,LinearSampler),centerUv-vec2(0,offset.y)).rgb)
+                    +adjust(texture(sampler2D(History,LinearSampler),centerUv+vec2(0,offset.y)).rgb))/8.0;
+            return (raw(centerUv)*4.0+raw(centerUv-vec2(offset.x,0))
+                +raw(centerUv+vec2(offset.x,0))+raw(centerUv-vec2(0,offset.y))
+                +raw(centerUv+vec2(0,offset.y)))/8.0;
+        }
+        vec3 dotMatrixPixel(vec2 uv,bool history)
+        {
+            vec2 sourceSize=max(Parameters.Processing.zw,vec2(1.0));
+            float pitch=filterDotMatrixPitch(Parameters.DotMatrixGeometry.z);
+            vec2 local=fract(uv*sourceSize/pitch)-.5;
+            float distance=filterDotMatrixDistance(local,Parameters.DotMatrixGeometry.y);
+            float radius=filterDotMatrixRadius(Parameters.DotMatrixGeometry.w,
+                Parameters.DotMatrixEmission.x);
+            float edge=max(sourceSize.x/max(Parameters.Output.x,1.0),
+                sourceSize.y/max(Parameters.Output.y,1.0))/pitch;
+            float core=smoothstep(radius+edge,radius-edge,distance);
+            float halo=filterDotMatrixHalo(distance,radius,
+                Parameters.DotMatrixEmission.w)*(1.0-core);
+            vec3 source=dotMatrixSample(uv,history);
+            float level=filterDotMatrixBrightness(filterDotMatrixContrast(
+                dot(source,vec3(.2126,.7152,.0722)),Parameters.DotMatrixEmission.y),
+                Parameters.DotMatrixEmission.z);
+            return mix(filterDotMatrixBackground(Parameters.DotMatrixGeometry.x),
+                filterDotMatrixForeground(source,Parameters.DotMatrixGeometry.x),
+                clamp(level*(core+halo),0.0,1.0));
+        }
+        #endif
         vec3 displayEffect(vec3 c,vec2 uv){int t=int(Parameters.General.x+.5);vec2 p=floor(uv*Parameters.Output.xy),l=fract(uv*Parameters.Processing.zw);
         #if DISPLAY_TECHNOLOGY == 1
             if(t==1){vec2 q=uv*2.0-1.0;q.x*=1.0+Parameters.CrtGeometry.x*.28*q.y*q.y+Parameters.CrtGeometry.z*.22*q.y;q.y*=1.0+Parameters.CrtGeometry.y*.28*q.x*q.x;vec2 wuv=(q+1.0)*.5;if(any(lessThan(wuv,vec2(0)))||any(greaterThan(wuv,vec2(1))))return vec3(0);vec2 ss=1.0/max(Parameters.Processing.zw,vec2(1));vec3 src=raw(wuv),v=(raw(wuv-vec2(0,ss.y))+raw(wuv+vec2(0,ss.y)))*.5,n=(raw(wuv-ss)+raw(wuv+ss)+raw(wuv+vec2(ss.x,-ss.y))+raw(wuv+vec2(-ss.x,ss.y))+src*5.0)/9.0;c=mix(src,v,Parameters.CrtBeam.y*.45);c=mix(c,n,Parameters.CrtBeam.w*.72);c=clamp(c*(1.0+Parameters.CrtBeam.z*.5)+max(n-vec3(.35),vec3(0))*Parameters.CrtOptical.x*.85,0.0,1.0);if(Parameters.CrtDisplay.y>.5){float lum=dot(c,vec3(.2126,.7152,.0722));c=lum*vec3(Parameters.CrtDisplay.zw,Parameters.CrtBeam.x);}p=floor(uv*Parameters.Processing.zw);int mask=int(Parameters.CrtOptical.y+.5),subpixelLayout=int(Parameters.CrtOptical.z+.5);if(mask!=0&&Parameters.CrtOptical.w>0){int selected=subpixelLayout==0?-1:int(mod(p.x,3.0));if(subpixelLayout==2)selected=2-selected;if(mask==2)selected=int(mod(float(selected)+mod(p.y,2.0),3.0));bool gap=mask==3&&int(mod(p.y,4.0))==3;float strength=Parameters.CrtOptical.w*.88;for(int channel=0;channel<3;channel++){float attenuation=gap||(selected>=0&&channel!=selected)?strength:strength*.12;if(subpixelLayout==0)attenuation=int(mod(p.x+p.y,2.0))==0?strength*.1:strength;c[channel]*=1.0-attenuation;}}if(Parameters.CrtPatternIntensity.y>.5&&Parameters.CrtScanlines.x>0){float a=Parameters.CrtPatternIntensity.z<.5?uv.y*Parameters.Processing.w:uv.x*Parameters.Processing.z,gapStart=mix(.47,.18,Parameters.CrtScanlines.y),cycle=fract((a+Parameters.CrtScanlines.z*.25)*.5),distanceFromBeam=min(abs(cycle-.25),1.0-abs(cycle-.25)),gap=smoothstep(gapStart,min(.5,gapStart+.055),distanceFromBeam),coverage=1.0-gapStart*2.0,comp=1.0+Parameters.CrtScanlines.w*Parameters.CrtScanlines.x*coverage*.45;c*=(1.0-Parameters.CrtScanlines.x*gap*.94)*comp;}if(Parameters.CrtPattern.x>.5&&Parameters.CrtPatternIntensity.x>0){float a=Parameters.CrtPattern.y<.5?p.y:p.x,len=Parameters.CrtPattern.y<.5?Parameters.Processing.w:Parameters.Processing.z,cycles=1.0+Parameters.CrtPattern.z*31.0,w=.5+.5*cos(6.2831853*(a+.5)*cycles/len+Parameters.CrtPattern.w*6.2831853);c*=1.0-Parameters.CrtPatternIntensity.x*.85*w;}float radius=clamp(dot(uv*2.0-1.0,uv*2.0-1.0)*.5,0.0,1.0);c*=1.0-Parameters.CrtGeometry.w*.92*pow(radius,1.5);}
@@ -386,7 +434,7 @@ internal static class VeldridVideoProcessingShaders
             if(t==6)c=ledMatrixPixel(uv);
         #endif
         #if DISPLAY_TECHNOLOGY == 7
-            if(t==7){vec2 q=fract(p/vec2(6,8))-.5;float d=int(Parameters.DotMatrix.y+.5)==0?length(q):max(abs(q.x),abs(q.y));c*=smoothstep(.5,.5-Parameters.DotMatrix.z*.45,d)*(.5+Parameters.DotMatrix.w);}
+            if(t==7)c=dotMatrixPixel(uv,false);
         #endif
         #if DISPLAY_TECHNOLOGY == 8
             if(t==8)c=mapSegments(c,uv);
@@ -442,6 +490,16 @@ internal static class VeldridVideoProcessingShaders
             vec2 historyUv=clamp(fsin_TexCoord,.5/size,1.0-.5/size);
             vec3 previous=displayEffect(adjust(texture(sampler2D(History,LinearSampler),historyUv).rgb),fsin_TexCoord);
             previous=clamp(postEffect(previous,fsin_TexCoord),0.0,1.0);
+        #if DISPLAY_TECHNOLOGY == 7
+            if(Parameters.DotMatrixTemporal.z>.5)
+            {
+                previous=clamp(postEffect(dotMatrixPixel(fsin_TexCoord,true),fsin_TexCoord),0.0,1.0);
+                c=filterDotMatrixResponse(previous,c,Parameters.DotMatrixTemporal.x);
+                c=filterDotMatrixPersistence(c,previous,Parameters.DotMatrixTemporal.y,
+                    Parameters.DotMatrixGeometry.x,
+                    filterDotMatrixBackground(Parameters.DotMatrixGeometry.x));
+            }
+        #endif
         #if DISPLAY_TECHNOLOGY == 3
             if(Parameters.PlasmaTemporal.y>.5)
                 c=filterPlasmaPersistence(c,previous,Parameters.PlasmaTemporal.x);

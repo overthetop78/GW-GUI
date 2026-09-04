@@ -754,4 +754,15 @@
 <data name="Emulation.Atari.Controller.BoosterGrip"><value>阿塔里助推器 Grip 游戏</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>世嘉创世纪控制器</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ 主计长</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>红色</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>白色</value></data>
+  <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>矩形</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>单元格</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>颜色和光</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>反应和持久性</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>单元格大小</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>单元格间隔</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>点亮度</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>光向圆点周围扩散</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>余辉持续时间（毫秒）</value></data>
 </root>

@@ -704,4 +704,15 @@
   <data name="Emulation.Controller.PortOrder"><value>Kontrollør portordre</value></data>
   <data name="Emulation.Amiga.Controller.Joystick"><value>Amigajoystick</value></data>
   <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro- Line Joystick</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>Rød</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>Hvid</value></data>
+  <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>Rektangel</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>Celler</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>Farve og lys</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>Respons og persistens</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>Cellestørrelse</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>Celleafstand</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Punktlysstyrke</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Efterglødens varighed (ms)</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Lysdiffusion omkring prikker</value></data>
 </root>

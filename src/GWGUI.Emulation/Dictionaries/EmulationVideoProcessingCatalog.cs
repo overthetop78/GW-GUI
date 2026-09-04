@@ -100,8 +100,13 @@ public static class EmulationVideoProcessingCatalog
     public const string DotMatrixPalette = nameof(DotMatrixPalette);
     public const string DotMatrixShape = nameof(DotMatrixShape);
     public const string DotMatrixDotSize = nameof(DotMatrixDotSize);
+    public const string DotMatrixCellSize = nameof(DotMatrixCellSize);
+    public const string DotMatrixCellGap = nameof(DotMatrixCellGap);
     public const string DotMatrixContrast = nameof(DotMatrixContrast);
+    public const string DotMatrixBrightness = nameof(DotMatrixBrightness);
+    public const string DotMatrixHaloIntensity = nameof(DotMatrixHaloIntensity);
     public const string DotMatrixResponseTime = nameof(DotMatrixResponseTime);
+    public const string DotMatrixPersistence = nameof(DotMatrixPersistence);
     public const string SegmentDisplayLayout = nameof(SegmentDisplayLayout);
     public const string SegmentDisplayColor = nameof(SegmentDisplayColor);
     public const string SegmentDisplayThickness = nameof(SegmentDisplayThickness);
@@ -152,8 +157,9 @@ public static class EmulationVideoProcessingCatalog
         VfdPersistence,
         LedMatrixColor, LedMatrixCellSize, LedMatrixCellGap, LedMatrixDiffusion,
         LedMatrixBrightness, LedMatrixShape, LedMatrixHaloRadius, LedMatrixBlackDepth,
-        DotMatrixPalette, DotMatrixShape, DotMatrixDotSize,
-        DotMatrixContrast, DotMatrixResponseTime, SegmentDisplayLayout, SegmentDisplayColor,
+        DotMatrixPalette, DotMatrixShape, DotMatrixCellSize, DotMatrixDotSize,
+        DotMatrixCellGap, DotMatrixContrast, DotMatrixBrightness, DotMatrixHaloIntensity,
+        DotMatrixResponseTime, DotMatrixPersistence, SegmentDisplayLayout, SegmentDisplayColor,
         SegmentDisplayThickness, SegmentDisplayContrast, SegmentDisplayGlow,
         SegmentDisplayResponseTime, EPaperColorMode, EPaperContrast, EPaperDithering,
         EPaperRefreshTime, EPaperGhosting, ProjectionOpticalBlur, ProjectionDiffusion,
@@ -308,8 +314,11 @@ public static class EmulationVideoProcessingCatalog
             [LedMatrixShape] = EmulationLedMatrixShape.Round,
             [LedMatrixHaloRadius] = 25, [LedMatrixBlackDepth] = 100,
             [DotMatrixPalette] = EmulationDotMatrixPalette.Green,
-            [DotMatrixShape] = EmulationDotMatrixShape.Round, [DotMatrixDotSize] = 55,
-            [DotMatrixContrast] = 70, [DotMatrixResponseTime] = 120,
+            [DotMatrixShape] = EmulationDotMatrixShape.Round, [DotMatrixCellSize] = 25,
+            [DotMatrixDotSize] = 55, [DotMatrixCellGap] = 20,
+            [DotMatrixContrast] = 70, [DotMatrixBrightness] = 80,
+            [DotMatrixHaloIntensity] = 15, [DotMatrixResponseTime] = 120,
+            [DotMatrixPersistence] = 0,
             [SegmentDisplayLayout] = EmulationSegmentDisplayLayout.Seven,
             [SegmentDisplayColor] = EmulationSegmentDisplayColor.Red,
             [SegmentDisplayThickness] = 55, [SegmentDisplayContrast] = 80,
@@ -385,7 +394,7 @@ public static class EmulationVideoProcessingCatalog
         Add(VectorLineThreshold, VectorPersistence, EmulationVideoDisplayTechnology.Vector);
         Add(VfdColor, VfdPersistence, EmulationVideoDisplayTechnology.Vfd);
         Add(LedMatrixColor, LedMatrixBlackDepth, EmulationVideoDisplayTechnology.LedMatrix);
-        Add(DotMatrixPalette, DotMatrixResponseTime, EmulationVideoDisplayTechnology.DotMatrix);
+        Add(DotMatrixPalette, DotMatrixPersistence, EmulationVideoDisplayTechnology.DotMatrix);
         Add(SegmentDisplayLayout, SegmentDisplayResponseTime,
             EmulationVideoDisplayTechnology.SegmentDisplay);
         Add(EPaperColorMode, EPaperGhosting, EmulationVideoDisplayTechnology.EPaper);

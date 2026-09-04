@@ -753,4 +753,15 @@
 <data name="Emulation.Atari.Controller.BoosterGrip"><value>Ατάρι Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Ελεγκτής της Sega Genesis</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ ελεγκτής</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>Κόκκινο</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>Λευκό</value></data>
+  <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>Ορθογώνιο</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>Κύτταρα</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>Χρώμα και φως</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>Ανταπόκριση και επιμονή</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>Μέγεθος κελιού</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>Διαπόσταση κελιών</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Φωτεινότητα κουκκίδας</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Διασπορά φωτός γύρω από κουκίδες</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Διάρκεια μεταλάμψης (ms)</value></data>
 </root>

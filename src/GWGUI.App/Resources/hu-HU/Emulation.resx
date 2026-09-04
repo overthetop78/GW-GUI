@@ -727,4 +727,15 @@
   <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 könnyű fegyver</value></data>
   <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro- Line Joystick</value></data>
 <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari booster Grip</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>Piros</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>Fehér</value></data>
+  <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>Négyszög</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>Cellák</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>Színes és világos</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>A válasz és a tartós hatás</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>Sejtméret</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>A cellák távolsága</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Pontok fényereje</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Utánvilágítás időtartama (ms)</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Fényszóródás a pontok körül</value></data>
 </root>

@@ -163,8 +163,13 @@ public static class EmulationVideoProcessingConfigurationFunctions
                 Palette = DefinedOrDefault(dotMatrix.Palette, EmulationDotMatrixPalette.Green),
                 Shape = DefinedOrDefault(dotMatrix.Shape, EmulationDotMatrixShape.Round),
                 DotSize = Intensity(dotMatrix.DotSize),
+                CellSize = Intensity(dotMatrix.CellSize),
+                CellGap = Intensity(dotMatrix.CellGap),
                 Contrast = Intensity(dotMatrix.Contrast),
-                ResponseTimeMilliseconds = Duration(dotMatrix.ResponseTimeMilliseconds)
+                Brightness = Intensity(dotMatrix.Brightness),
+                HaloIntensity = Intensity(dotMatrix.HaloIntensity),
+                ResponseTimeMilliseconds = Duration(dotMatrix.ResponseTimeMilliseconds),
+                PersistenceMilliseconds = Duration(dotMatrix.PersistenceMilliseconds)
             },
             SegmentDisplay = segmentDisplay with
             {

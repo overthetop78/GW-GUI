@@ -732,4 +732,14 @@
   <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 kevytase</value></data>
   <data name="Emulation.Atari.Controller.Driving"><value>Atari-ajoohjain</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Kontrolleri</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>Punainen</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>Valkoinen</value></data>
+  <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>Suorakulmio</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>Solut</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>Väri ja valo</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>Vaste ja pysyvyys</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>Solun koko</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>Soluväli</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Pisteen kirkkaus</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Valon diffuusio pisteiden ympärillä</value></data>
 </root>

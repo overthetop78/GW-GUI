@@ -18,6 +18,7 @@ namespace GWGUI.App.Views.Controls.Emulation.Options;
 public sealed partial class OptionsEmulationSection : UserControl
 {
     public static event EventHandler<EmulationConfigurationSavedEventArgs>? ConfigurationSaved;
+    public static event EventHandler<EmulationConfigurationSavedEventArgs>? VideoConfigurationChanged;
     internal event Action<EmulationMachineEditingContext?>? EditingContextChanged;
 
     private readonly IReadOnlyList<IEmulationModule> _modules = EmulationModuleRegistry.Modules;
@@ -121,11 +122,16 @@ public sealed partial class OptionsEmulationSection : UserControl
 
         section = new EmulationModuleSettingsSection(module);
         section.ConfigurationSaved += ModuleConfigurationSaved;
+        section.VideoConfigurationChanged += ModuleVideoConfigurationChanged;
         section.EditingContextChanged += ModuleEditingContextChanged;
         _moduleSections.Add(tab, section);
         tab.Content = section;
         return section;
     }
+
+    private static void ModuleVideoConfigurationChanged(object? sender,
+        EmulationConfigurationSavedEventArgs args) =>
+        VideoConfigurationChanged?.Invoke(sender, args);
 
     private void ModuleEditingContextChanged(object? sender, EmulationMachineEditingContext context)
     {

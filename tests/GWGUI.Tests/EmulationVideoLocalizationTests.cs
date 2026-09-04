@@ -63,6 +63,19 @@ public sealed class EmulationVideoLocalizationTests
     }
 
     [Fact]
+    public void FrenchKeepsPlasmaAsTheTechnologyName()
+    {
+        var resources = new ResourceManager("GWGUI.App.Resources.Emulation",
+            typeof(EmulationResourceKeys).Assembly);
+        var french = CultureInfo.GetCultureInfo("fr-FR");
+
+        Assert.Equal("Plasma", resources.GetString(
+            EmulationResourceKeys.VideoTechnologyPlasma, french));
+        Assert.Equal("Plasma", resources.GetString(
+            EmulationResourceKeys.VideoPresetPlasma, french));
+    }
+
+    [Fact]
     public void RefreshLocalizedContentImmediatelyReplacesVisiblePanelText()
     {
         RunSta(() =>

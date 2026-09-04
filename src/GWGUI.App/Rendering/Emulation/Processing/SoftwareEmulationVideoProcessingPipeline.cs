@@ -315,11 +315,24 @@ internal sealed class SoftwareEmulationVideoProcessingPipeline : IEmulationVideo
         {
             var elapsedMilliseconds = Math.Max(0.001,
                 (timestamp - _dotMatrixHistoryTimestamp).TotalMilliseconds);
-            var responseMilliseconds = configuration.DotMatrix.ResponseTimeMilliseconds;
-            var response = responseMilliseconds == 0 ? 1f : (float)(1d
-                - Math.Exp(-elapsedMilliseconds / responseMilliseconds));
+            var response = FilterDotMatrixResponse.BlendFactor(
+                configuration.DotMatrix.ResponseTimeMilliseconds, elapsedMilliseconds);
+            var reflective = configuration.DotMatrix.Palette is EmulationDotMatrixPalette.Green
+                or EmulationDotMatrixPalette.Gray;
+            var background = configuration.DotMatrix.Palette == EmulationDotMatrixPalette.Green
+                ? (.16f, .25f, .075f) : (.64f, .68f, .62f);
             for (var index = 0; index < colors.Length; index++)
-                colors[index] = Lerp(_dotMatrixHistory![index], colors[index], response);
+            {
+                var responded = Lerp(_dotMatrixHistory![index], colors[index], response);
+                colors[index] = FilterDotMatrixPersistence.Apply(responded,
+                    _dotMatrixHistory[index], configuration.DotMatrix.PersistenceMilliseconds,
+                    elapsedMilliseconds, reflective, index % 3 switch
+                    {
+                        0 => background.Item1,
+                        1 => background.Item2,
+                        _ => background.Item3
+                    });
+            }
         }
         _dotMatrixHistory = colors.ToArray();
         _dotMatrixHistoryWidth = width;
@@ -505,7 +518,7 @@ internal sealed class SoftwareEmulationVideoProcessingPipeline : IEmulationVideo
         }
         if (configuration.DisplayTechnology == EmulationVideoDisplayTechnology.DotMatrix)
         {
-            FilterDotMatrix.Apply(colors, outputWidth, outputHeight,
+            FilterDotMatrix.Apply(colors, sourceWidth, sourceHeight, outputWidth, outputHeight,
                 configuration.DotMatrix);
             return;
         }

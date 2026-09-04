@@ -85,7 +85,9 @@ public sealed class EmulationVideoConfigurationTests
                 Diffusion: 102, Brightness: -2, Shape: (EmulationLedMatrixShape)999,
                 HaloRadius: 103, BlackDepth: -3),
             DotMatrix = new((EmulationDotMatrixPalette)999, (EmulationDotMatrixShape)999,
-                DotSize: 101, Contrast: -1, ResponseTimeMilliseconds: 1001),
+                DotSize: 101, Contrast: -1, ResponseTimeMilliseconds: 1001,
+                CellSize: 102, CellGap: -2, Brightness: 103, HaloIntensity: -3,
+                PersistenceMilliseconds: 1002),
             SegmentDisplay = new((EmulationSegmentDisplayLayout)999,
                 (EmulationSegmentDisplayColor)999, Thickness: 101, Contrast: -1,
                 Glow: 102, ResponseTimeMilliseconds: 1001),
@@ -147,8 +149,13 @@ public sealed class EmulationVideoConfigurationTests
         Assert.Equal(EmulationDotMatrixPalette.Green, normalized.DotMatrix.Palette);
         Assert.Equal(EmulationDotMatrixShape.Round, normalized.DotMatrix.Shape);
         Assert.Equal(100, normalized.DotMatrix.DotSize);
+        Assert.Equal(100, normalized.DotMatrix.CellSize);
+        Assert.Equal(0, normalized.DotMatrix.CellGap);
         Assert.Equal(0, normalized.DotMatrix.Contrast);
+        Assert.Equal(100, normalized.DotMatrix.Brightness);
+        Assert.Equal(0, normalized.DotMatrix.HaloIntensity);
         Assert.Equal(1000, normalized.DotMatrix.ResponseTimeMilliseconds);
+        Assert.Equal(1000, normalized.DotMatrix.PersistenceMilliseconds);
         Assert.Equal(EmulationSegmentDisplayLayout.Seven, normalized.SegmentDisplay.Layout);
         Assert.Equal(EmulationSegmentDisplayColor.Red, normalized.SegmentDisplay.Color);
         Assert.Equal(100, normalized.SegmentDisplay.Thickness);

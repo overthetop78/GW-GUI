@@ -755,4 +755,15 @@
 <data name="Emulation.Atari.Controller.BoosterGrip"><value>アタリ ボスター グリップ</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>セガジェネシスコントローラ</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atariの喜び2B+ コントローラー</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>レッド</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>ステンレス</value></data>
+  <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>レクタングル</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>セル</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>色およびライト</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>応答と持続性</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>セルサイズ</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>セル・スペーシング</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>ドット明るさ</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>点の周りの光拡散</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>残光時間 (ms)</value></data>
 </root>

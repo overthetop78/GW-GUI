@@ -13,6 +13,16 @@ namespace GWGUI.App.Views.Controls.Emulation.Machine;
 
 public sealed partial class EmulationSection
 {
+    private void VideoConfigurationChanged(object? sender,
+        EmulationConfigurationSavedEventArgs args) =>
+        EmulationOpenMachineConfigurationFunctions.TryApply(_openMachines,
+            args.Configuration.ModuleId, args.Configuration.Id, tab =>
+            {
+                if (tab.Content is MachineController view)
+                    view.ApplyVideoConfiguration(args.Configuration.VideoRenderer,
+                        args.Configuration.VideoProcessing);
+            });
+
     private async void ConfigurationSaved(object? sender, EmulationConfigurationSavedEventArgs args)
     {
         await ReloadConfigurationsAsync();

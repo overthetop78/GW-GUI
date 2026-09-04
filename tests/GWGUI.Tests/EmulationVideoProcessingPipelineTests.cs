@@ -2258,6 +2258,14 @@ public sealed class EmulationVideoProcessingPipelineTests
     {
         var bright = new VideoFrame(Enumerable.Repeat((byte)255, 12 * 12 * 4).ToArray(),
             12, 12, 48, EmulationPixelFormat.Xrgb8888, 1f, 1, TimeSpan.Zero);
+        var colored = bright with
+        {
+            Pixels = Enumerable.Range(0, 12 * 12).SelectMany(index => new byte[]
+            {
+                (byte)(index * 17 % 256), (byte)(index * 43 % 256),
+                (byte)(index * 79 % 256), 0
+            }).ToArray()
+        };
         var dark = bright with
         {
             Pixels = new byte[12 * 12 * 4], Sequence = 2,
@@ -2275,7 +2283,7 @@ public sealed class EmulationVideoProcessingPipelineTests
                     ResponseTimeMilliseconds: 0)
             };
             var output = EmulationVideoPixelFunctions.ToBgra32(pipeline.Process(configuration,
-                bright, new(12, 12), new(12, 12)));
+                colored, new(12, 12), new(12, 12)));
             hashes.Add(Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(output)));
         }
         Assert.Equal(Enum.GetValues<EmulationDotMatrixPalette>().Length, hashes.Count);
@@ -2308,6 +2316,56 @@ public sealed class EmulationVideoProcessingPipelineTests
         var immediate = EmulationVideoPixelFunctions.ToBgra32(immediatePipeline.Process(
             Configuration(0), dark, new(12, 12), new(12, 12)));
         Assert.False(slow.SequenceEqual(immediate));
+
+        using var persistentPipeline = new SoftwareEmulationVideoProcessingPipeline();
+        using var noPersistencePipeline = new SoftwareEmulationVideoProcessingPipeline();
+        var persistentConfiguration = Configuration(0) with
+        {
+            DotMatrix = new(ResponseTimeMilliseconds: 0,
+                PersistenceMilliseconds: 1000)
+        };
+        persistentPipeline.Process(persistentConfiguration, bright, new(12, 12), new(12, 12));
+        noPersistencePipeline.Process(Configuration(0), bright, new(12, 12), new(12, 12));
+        var persistent = EmulationVideoPixelFunctions.ToBgra32(persistentPipeline.Process(
+            persistentConfiguration, dark, new(12, 12), new(12, 12)));
+        var withoutPersistence = EmulationVideoPixelFunctions.ToBgra32(
+            noPersistencePipeline.Process(Configuration(0), dark, new(12, 12), new(12, 12)));
+        Assert.False(persistent.SequenceEqual(withoutPersistence));
+    }
+
+    [Fact]
+    public void EveryDotMatrixSpatialAndLightOptionChangesTheLogicalCellRendering()
+    {
+        var pixels = Enumerable.Range(0, 24 * 18).SelectMany(index => new byte[]
+        {
+            (byte)(index * 13 % 256), (byte)(index * 29 % 256),
+            (byte)(index * 61 % 256), 0
+        }).ToArray();
+        var frame = new VideoFrame(pixels, 24, 18, 96, EmulationPixelFormat.Xrgb8888,
+            1f, 1, TimeSpan.Zero);
+        var baseline = new EmulationDotMatrixVideoConfiguration(
+            EmulationDotMatrixPalette.Rgb, EmulationDotMatrixShape.Round,
+            DotSize: 55, Contrast: 70, ResponseTimeMilliseconds: 0,
+            CellSize: 25, CellGap: 20, Brightness: 80, HaloIntensity: 15);
+        byte[] Render(EmulationDotMatrixVideoConfiguration value)
+        {
+            using var pipeline = new SoftwareEmulationVideoProcessingPipeline();
+            return EmulationVideoPixelFunctions.ToBgra32(pipeline.Process(
+                new EmulationVideoProcessingConfiguration
+                {
+                    DisplayTechnology = EmulationVideoDisplayTechnology.DotMatrix,
+                    DotMatrix = value
+                }, frame, new(24, 18), new(96, 72)));
+        }
+        var variants = new[]
+        {
+            baseline, baseline with { CellSize = 80 }, baseline with { DotSize = 90 },
+            baseline with { CellGap = 75 }, baseline with { Contrast = 20 },
+            baseline with { Brightness = 25 }, baseline with { HaloIntensity = 90 },
+            baseline with { Shape = EmulationDotMatrixShape.Rectangle }
+        };
+        Assert.Equal(variants.Length, variants.Select(value => Convert.ToHexString(
+            System.Security.Cryptography.SHA256.HashData(Render(value)))).Distinct().Count());
     }
 
     [Fact]

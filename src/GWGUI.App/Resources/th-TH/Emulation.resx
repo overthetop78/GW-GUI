@@ -754,4 +754,15 @@
 <data name="Emulation.Atari.Controller.BoosterGrip"><value>แอตาริ บูสเตอร์ กริป</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>เซกา เยเน ซิศ</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari จอย 2B+ controller</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>แดง</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>ขาว</value></data>
+  <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>สี่เหลี่ยม</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>เซลล์</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>สีและแสง</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>การ ตอบ รับ และ ความ พากเพียร</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>ขนาดเซลล์</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>ช่องว่างของเซลล์</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>ความสว่างของจุด</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>ความสว่างกระจายรอบจุด</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>ระยะเวลาแสงตกค้าง (มิลลิวินาที)</value></data>
 </root>

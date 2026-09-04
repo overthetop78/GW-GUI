@@ -751,4 +751,14 @@
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>בקר Atari Booster Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>המפקח Sega Genesis</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>בקר Atari Joy 2B+</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>אדום אדום אדום</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>לבן לבן</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>תאים</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>צבע ואור</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>תגובה ועקשנות</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>גודל התא</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>תאים ספאקים</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>בהירות הנקודות</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>פיזור אור סביב הנקודות</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>משך הזוהר השיורי (מ״ש)</value></data>
 </root>

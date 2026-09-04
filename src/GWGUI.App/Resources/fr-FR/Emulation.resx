@@ -564,7 +564,7 @@
   <data name="Emulation.Video.Preset.LcdColor"><value>Couleur LCD</value></data>
   <data name="Emulation.Video.Preset.LcdMonochrome"><value>LCD monochrome</value></data>
   <data name="Emulation.Video.Preset.LedBacklitLcd"><value>LCD rétroéclairé par LED</value></data>
-<data name="Emulation.Video.Preset.Plasma"><value>Plasme</value></data>
+<data name="Emulation.Video.Preset.Plasma"><value>Plasma</value></data>
   <data name="Emulation.Video.Preset.Vector"><value>Affichage des vecteurs</value></data>
   <data name="Emulation.Video.Sampling"><value>Échantillonnage</value></data>
   <data name="Emulation.Video.Sampling.Bicubic"><value>Bicubique</value></data>
@@ -573,7 +573,7 @@
   <data name="Emulation.Video.Settings.General"><value>Réglages généraux de l'image</value></data>
   <data name="Emulation.Video.Settings.GwGuiProcessing"><value>Traitement vidéo GW GUI</value></data>
 <data name="Emulation.Video.Technology"><value>Technologie d'affichage</value></data>
-  <data name="Emulation.Video.Technology.Plasma"><value>Plasme</value></data>
+  <data name="Emulation.Video.Technology.Plasma"><value>Plasma</value></data>
   <data name="Emulation.Video.Technology.Vector"><value>Vectoriel</value></data>
 <data name="Emulation.Video.Settings.Restoration"><value>Restauration de l'image</value></data>
   <data name="Emulation.Video.Parameter.Dedithering"><value>Détramage</value></data>
@@ -712,4 +712,14 @@
 <data name="Emulation.Atari.Controller.BoosterGrip"><value>Grip du booster Atari</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Contrôleur de Sega Genesis</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Contrôleur</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>Rouge</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>Blanc</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>Cellules</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>Couleur et lumière</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>Réponse et persistance</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>Taille des cellules</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>Espacement des cellules</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Luminosité des points</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Diffusion lumineuse autour des points</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Durée de rémanence lumineuse (ms)</value></data>
 </root>

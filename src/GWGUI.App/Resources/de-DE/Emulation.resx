@@ -714,4 +714,15 @@
   <data name="Emulation.Amiga.Controller.Cd32"><value>CD32-Steuerung</value></data>
   <data name="Emulation.Atari.Controller.Joystick"><value>Atari Joystick</value></data>
   <data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Paddle Controller</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>Rot</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>Weiß</value></data>
+  <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>Rechteck</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>Zellen</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>Farbe und Licht</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>Reaktion und Persistenz</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>Zellgröße</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>Zellabstand</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Punkthelligkeit</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Lichtdiffusion um Punkte</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Nachleuchtdauer (ms)</value></data>
 </root>

@@ -754,4 +754,15 @@
 <data name="Emulation.Atari.Controller.BoosterGrip"><value>앗리 부스터 그립</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis 컨트롤러</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>아타리 조이 2B+ Controller</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>은</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>은</value></data>
+  <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>퀵메뉴</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>의약정보</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>색깔과 빛</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>응답 및 지속</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>세포 크기</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>세포 간격</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>점 광도</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>빛은 점의 주위에 확산</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>잔광 지속 시간 (ms)</value></data>
 </root>

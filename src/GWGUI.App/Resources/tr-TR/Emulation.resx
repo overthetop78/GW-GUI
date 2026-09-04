@@ -710,4 +710,15 @@
   <data name="Emulation.Atari.Controller.Driving"><value>Atari Araba Sorumluluğu</value></data>
   <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar</value></data>
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari ATM</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>Red Red Red Red Red Red Red</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>Beyaz Beyaz Beyaz Beyaz</value></data>
+  <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>Rect bok</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>Hücreler</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>Renk ve ışık</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>Yanıt ve kalıcılık</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>Hücre büyüklüğü</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>Hücre spacing</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Nokta parlaklığı</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Noktaların etrafındaki ışık yayılımı</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Art ışık süresi (ms)</value></data>
 </root>

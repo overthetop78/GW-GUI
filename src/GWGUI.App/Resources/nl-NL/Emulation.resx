@@ -706,4 +706,15 @@
   <data name="Emulation.Storage.Cartridges"><value>Patroon</value></data>
   <data name="Emulation.Storage.CompactDiscs"><value>Compacte schijven</value></data>
   <data name="Emulation.Tab.Audio"><value>Geluid</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>Rood</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>Wit</value></data>
+  <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>Rechthoek</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>Cellen</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>Kleur en licht</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>Respons en persistentie</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>Celgrootte</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>Celafstand</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Punthelderheid</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Lichtdiffusie rond puntjes</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Nagloeiduur (ms)</value></data>
 </root>

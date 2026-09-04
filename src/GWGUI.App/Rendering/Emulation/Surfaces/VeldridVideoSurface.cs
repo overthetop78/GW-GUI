@@ -72,7 +72,15 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
 
     public void SetVideoProcessing(EmulationVideoProcessingConfiguration configuration)
     {
+        var displayTechnologyChanged = _videoProcessing.DisplayTechnology
+            != configuration.DisplayTechnology;
         _videoProcessing = EmulationVideoProcessingConfigurationFunctions.Normalize(configuration);
+        if (displayTechnologyChanged)
+        {
+            _hasHistory = false;
+            _historyTimestamp = TimeSpan.Zero;
+            _historySequence = 0;
+        }
         _snapshot = null;
     }
 
@@ -338,9 +346,12 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
     {
         _videoProcessingPipeline.Dispose();
         _snapshotPipeline.Dispose();
-        DisposeFrameResources();
-        _commands?.Dispose();
-        _device?.Dispose();
+        lock (_deviceGate)
+        {
+            DisposeFrameResources();
+            _commands?.Dispose();
+            _device?.Dispose();
+        }
         base.Dispose();
     }
 
@@ -384,7 +395,9 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
         Vector4 VfdOptical,
         Vector4 LedMatrixEmission,
         Vector4 LedMatrixStructure,
-        Vector4 DotMatrix,
+        Vector4 DotMatrixGeometry,
+        Vector4 DotMatrixEmission,
+        Vector4 DotMatrixTemporal,
         Vector4 EPaper,
         Vector4 Projection);
 
@@ -403,6 +416,8 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
         var vfd = VfdVideoShaderParameters.From(configuration, hasHistory,
             elapsedMilliseconds);
         var ledMatrix = LedMatrixVideoShaderParameters.From(configuration);
+        var dotMatrix = DotMatrixVideoShaderParameters.From(configuration, hasHistory,
+            elapsedMilliseconds);
         return new VideoParameters(
             new Vector4(
                 adjustments.Brightness / 20f,
@@ -439,7 +454,7 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
             new Vector4(configuration.Stylistic.Sepia ? 1f : 0f, 0f, 0f, 0f),
             vfd.Display, vfd.Structure, vfd.Optical,
             ledMatrix.Emission, ledMatrix.Structure,
-            new Vector4((float)configuration.DotMatrix.Palette, (float)configuration.DotMatrix.Shape, configuration.DotMatrix.DotSize / 100f, configuration.DotMatrix.Contrast / 100f),
+            dotMatrix.Geometry, dotMatrix.Emission, dotMatrix.Temporal,
             new Vector4((float)configuration.EPaper.ColorMode, configuration.EPaper.Contrast / 100f, configuration.EPaper.Dithering / 100f, configuration.EPaper.Ghosting / 100f),
             new Vector4(configuration.Projection.OpticalBlur / 100f, configuration.Projection.Diffusion / 100f, configuration.Projection.ScreenTexture / 100f, configuration.Projection.Convergence / 100f));
     }

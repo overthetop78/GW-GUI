@@ -730,4 +730,15 @@
 <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Impulsor Grip</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Controlador Sega Genesis</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Controlador Atari Joy 2B+</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>Vermelho</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>Branco</value></data>
+  <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>Rectângulo</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>Células</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>Cor e luz</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>Resposta e persistência</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>Tamanho da célula</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>Espaçamento celular</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Brilho do ponto</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Difusão de luz em torno de pontos</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Duração do brilho residual (ms)</value></data>
 </root>

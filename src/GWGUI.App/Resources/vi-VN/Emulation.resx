@@ -738,4 +738,15 @@
   <data name="Emulation.Atari.Controller.Jaguar"><value>Bộ điều khiển Atari Báo</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Điều khiển Sega Genesis</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Điều khiển</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>Đỏ</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>Trắng</value></data>
+  <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>Chữ nhật</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>Các ô</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>Màu và ánh sáng</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>Đáp ứng và kiên trì</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>Kích cỡ Tế bào</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>Khoảng cách Tế bào</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Độ sáng chấm</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Ánh sáng khuếch tán xung quanh chấm</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Thời gian lưu sáng (ms)</value></data>
 </root>

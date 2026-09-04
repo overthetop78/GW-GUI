@@ -79,8 +79,12 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
         }
         _machines.SelectionChanged += MachineChanged;
         _videoProcessing.ConfigurationChanged += (_, _) =>
+        {
             _configuration = _module.ApplyVideoProcessing(_configuration,
                 _videoProcessing.Configuration);
+            VideoConfigurationChanged?.Invoke(this,
+                new EmulationConfigurationSavedEventArgs(_configuration));
+        };
         _videoProcessing.ConfigurationSaveRequested += (_, _) =>
             _videoSaveDebouncer.Schedule(ApplyUserChangeAsync, error =>
                 ControlErrorPresenter.ShowEmulation(this, error,
@@ -92,6 +96,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
     }
 
     internal event EventHandler<EmulationConfigurationSavedEventArgs>? ConfigurationSaved;
+    internal event EventHandler<EmulationConfigurationSavedEventArgs>? VideoConfigurationChanged;
     internal event EventHandler<EmulationMachineEditingContext>? EditingContextChanged;
 
     internal Task ReloadWhenOpenedAsync() => ExecuteAsync(ReloadAsync);

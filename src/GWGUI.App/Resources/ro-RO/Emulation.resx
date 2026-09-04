@@ -717,4 +717,14 @@
   <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 Pistol cu lumină</value></data>
   <data name="Emulation.Atari.Controller.Driving"><value>Atari Controller de conducere</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Controlor Sega Genesis</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>Roșu</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>Alb</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>Celule</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>Culoare și lumină</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>Răspunsul şi persistenţa</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>Dimensiunea celulei</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>Spațierea celulelor</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Luminozitate punct</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Difuzarea luminii în jurul punctelor</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Durata luminescenței remanente (ms)</value></data>
 </root>

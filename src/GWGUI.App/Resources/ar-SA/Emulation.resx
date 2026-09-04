@@ -755,4 +755,15 @@
   <data name="Emulation.Video.FixedPixel.Technology.LedBacklitLcd"><value>شاشة LCD بإضاءة خلفية LED</value></data>
   <data name="Emulation.Video.Preset.Plasma"><value>بلاسما</value></data>
   <data name="Emulation.Video.Signal.Connection.Composite"><value>مركبة</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>أحمر</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>أبيض</value></data>
+  <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>ريكانغ</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>الخلايا</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>اللون والضوء</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>الاستجابة والثبات</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>حجم الخلية</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>المباعدة بين خلايا الخلايا</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>سطوع النقاط</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>انتشار الضوء حول النقاط</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>مدة التوهج اللاحق (مللي ثانية)</value></data>
 </root>

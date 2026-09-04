@@ -715,4 +715,15 @@
   <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro- Line Joystick</value></data>
   <data name="Emulation.Atari.Controller.BoosterGrip"><value>Grip Atari Booster</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Kontroler Kejadian Sega</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>Merah</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>Putih</value></data>
+  <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>Rangkap ulang</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>Sel</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>Warna dan cahaya</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>Respon dan ketekunan</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>Ukuran sel</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>Jarak sel</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Kecerahan titik</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Durasi pendar sisa (ms)</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Difusi cahaya sekitar titik</value></data>
 </root>

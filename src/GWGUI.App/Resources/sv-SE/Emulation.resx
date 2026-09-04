@@ -683,4 +683,14 @@
   <data name="Emulation.Amiga.Controller.Cd32"><value>CD32-kontroller</value></data>
   <data name="Emulation.Atari.Controller.Driving"><value>Atari körkontroll</value></data>
 <data name="Emulation.Atari.Video.Region"><value>Region Region Region Region Region</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>Röd</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>Vitvitt vit</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>Celler</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>Färg och ljus</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>Svar och uthållighet</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>Cellstorlek</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>Cell-spacing</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Punktljusstyrka</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Efterglödstid (ms)</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Ljus diffusion runt prickar</value></data>
 </root>

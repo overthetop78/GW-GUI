@@ -735,4 +735,15 @@
   <data name="Emulation.Atari.Controller.Jaguar"><value>Kontroler Atari Jaguar</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Sterownik Sega Genesis</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Kontroler</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>Czerwony</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>Biały</value></data>
+  <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>Prostokąt</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>Komórki</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>Kolor i światło</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>Odpowiedź i trwałość</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>Wielkość komórki</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>Odstęp komórek</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Jasność kropki</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Czas poświaty (ms)</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Dyfuzja światła wokół kropki</value></data>
 </root>

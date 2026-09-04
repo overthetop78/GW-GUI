@@ -50,7 +50,9 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
     private readonly int _vfdOpticalLocation;
     private readonly int _ledMatrixEmissionLocation;
     private readonly int _ledMatrixStructureLocation;
-    private readonly int _dotMatrixLocation;
+    private readonly int _dotMatrixGeometryLocation;
+    private readonly int _dotMatrixEmissionLocation;
+    private readonly int _dotMatrixTemporalLocation;
     private readonly int _ePaperLocation;
     private readonly int _projectionLocation;
 
@@ -118,7 +120,9 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
         _vfdOpticalLocation = _getUniformLocation(_program, "VfdOptical");
         _ledMatrixEmissionLocation = _getUniformLocation(_program, "LedMatrixEmission");
         _ledMatrixStructureLocation = _getUniformLocation(_program, "LedMatrixStructure");
-        _dotMatrixLocation = _getUniformLocation(_program, "DotMatrix");
+        _dotMatrixGeometryLocation = _getUniformLocation(_program, "DotMatrixGeometry");
+        _dotMatrixEmissionLocation = _getUniformLocation(_program, "DotMatrixEmission");
+        _dotMatrixTemporalLocation = _getUniformLocation(_program, "DotMatrixTemporal");
         _ePaperLocation = _getUniformLocation(_program, "EPaper");
         _projectionLocation = _getUniformLocation(_program, "Projection");
         _useProgram(_program);
@@ -182,7 +186,11 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
         var ledMatrix = LedMatrixVideoShaderParameters.From(configuration);
         Set(_ledMatrixEmissionLocation, ledMatrix.Emission);
         Set(_ledMatrixStructureLocation, ledMatrix.Structure);
-        Set(_dotMatrixLocation, new((float)configuration.DotMatrix.Palette, (float)configuration.DotMatrix.Shape, configuration.DotMatrix.DotSize / 100f, configuration.DotMatrix.Contrast / 100f));
+        var dotMatrix = DotMatrixVideoShaderParameters.From(configuration, hasHistory,
+            elapsedMilliseconds);
+        Set(_dotMatrixGeometryLocation, dotMatrix.Geometry);
+        Set(_dotMatrixEmissionLocation, dotMatrix.Emission);
+        Set(_dotMatrixTemporalLocation, dotMatrix.Temporal);
         Set(_ePaperLocation, new((float)configuration.EPaper.ColorMode, configuration.EPaper.Contrast / 100f, configuration.EPaper.Dithering / 100f, configuration.EPaper.Ghosting / 100f));
         Set(_projectionLocation, new(configuration.Projection.OpticalBlur / 100f, configuration.Projection.Diffusion / 100f, configuration.Projection.ScreenTexture / 100f, configuration.Projection.Convergence / 100f));
     }
@@ -315,7 +323,9 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
         uniform vec4 VfdOptical;
         uniform vec4 LedMatrixEmission;
         uniform vec4 LedMatrixStructure;
-        uniform vec4 DotMatrix;
+        uniform vec4 DotMatrixGeometry;
+        uniform vec4 DotMatrixEmission;
+        uniform vec4 DotMatrixTemporal;
         uniform vec4 EPaper;
         uniform vec4 Projection;
         varying vec2 TextureCoordinate;
@@ -440,6 +450,13 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
         """ + "\n" + FilterLedMatrixCellStructure.Shader
         + FilterLedMatrixColor.Shader + FilterLedMatrixBrightness.Shader
         + FilterLedMatrixHalo.Shader + FilterLedMatrixBlackDepth.Shader + "\n" + """
+        #endif
+        #if DISPLAY_TECHNOLOGY == 7
+        """ + "\n" + FilterDotMatrixCellSize.Shader + FilterDotMatrixCellGap.Shader
+        + FilterDotMatrixShape.Shader + FilterDotMatrixDotSize.Shader + FilterDotMatrixContrast.Shader
+        + FilterDotMatrixBrightness.Shader + FilterDotMatrixPalette.Shader
+        + FilterDotMatrixHalo.Shader + FilterDotMatrixResponse.Shader
+        + FilterDotMatrixPersistence.Shader + "\n" + """
         #endif
         #if DISPLAY_TECHNOLOGY == 2
         vec3 fixedPixel(vec3 color, vec2 uv)
@@ -787,6 +804,44 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
                 +emission*(core+halo),0.0,1.0);
         }
         #endif
+        #if DISPLAY_TECHNOLOGY == 7
+        vec3 dotMatrixSample(vec2 uv,bool history)
+        {
+            vec2 sourceSize=max(Processing.zw,vec2(1.0));
+            float pitch=filterDotMatrixPitch(DotMatrixGeometry.z);
+            vec2 cell=floor(uv*sourceSize/pitch);
+            vec2 centerUv=(cell+.5)*pitch/sourceSize;
+            vec2 offset=vec2(pitch*.28)/sourceSize;
+            if(history)
+                return (adjustColor(texture2D(History,centerUv).rgb)*4.0
+                    +adjustColor(texture2D(History,centerUv-vec2(offset.x,0.0)).rgb)
+                    +adjustColor(texture2D(History,centerUv+vec2(offset.x,0.0)).rgb)
+                    +adjustColor(texture2D(History,centerUv-vec2(0.0,offset.y)).rgb)
+                    +adjustColor(texture2D(History,centerUv+vec2(0.0,offset.y)).rgb))/8.0;
+            return (adjustColor(sampleConfigured(centerUv).rgb)*4.0
+                +adjustColor(sampleConfigured(centerUv-vec2(offset.x,0.0)).rgb)
+                +adjustColor(sampleConfigured(centerUv+vec2(offset.x,0.0)).rgb)
+                +adjustColor(sampleConfigured(centerUv-vec2(0.0,offset.y)).rgb)
+                +adjustColor(sampleConfigured(centerUv+vec2(0.0,offset.y)).rgb))/8.0;
+        }
+        vec3 dotMatrixPixel(vec2 uv,bool history)
+        {
+            vec2 sourceSize=max(Processing.zw,vec2(1.0));
+            float pitch=filterDotMatrixPitch(DotMatrixGeometry.z);
+            vec2 local=fract(uv*sourceSize/pitch)-.5;
+            float distance=filterDotMatrixDistance(local,DotMatrixGeometry.y);
+            float radius=filterDotMatrixRadius(DotMatrixGeometry.w,DotMatrixEmission.x);
+            float edge=max(sourceSize.x/max(Output.x,1.0),sourceSize.y/max(Output.y,1.0))/pitch;
+            float core=smoothstep(radius+edge,radius-edge,distance);
+            float halo=filterDotMatrixHalo(distance,radius,DotMatrixEmission.w)*(1.0-core);
+            vec3 source=dotMatrixSample(uv,history);
+            float level=filterDotMatrixBrightness(filterDotMatrixContrast(
+                dot(source,vec3(.2126,.7152,.0722)),DotMatrixEmission.y),DotMatrixEmission.z);
+            return mix(filterDotMatrixBackground(DotMatrixGeometry.x),
+                filterDotMatrixForeground(source,DotMatrixGeometry.x),
+                clamp(level*(core+halo),0.0,1.0));
+        }
+        #endif
         vec3 extraDisplay(vec3 color,vec2 uv){int t=int(General.x+.5);vec2 p=floor(uv*Output.xy);
         #if DISPLAY_TECHNOLOGY == 5
             if(t==5)color=vfdPixel(color,uv);
@@ -795,7 +850,7 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
             if(t==6)color=ledMatrixPixel(uv);
         #endif
         #if DISPLAY_TECHNOLOGY == 7
-            if(t==7){vec2 q=fract(p/vec2(6.0,8.0))-.5;float d=int(DotMatrix.y+.5)==0?length(q):max(abs(q.x),abs(q.y));color*=smoothstep(.5,.5-DotMatrix.z*.45,d)*(.5+DotMatrix.w);}
+            if(t==7)color=dotMatrixPixel(uv,false);
         #endif
         #if DISPLAY_TECHNOLOGY == 8
             if(t==8){vec2 q=fract(p/vec2(8.0,12.0))-.5;float bars=min(abs(q.x),min(abs(q.y),abs(q.x+q.y)*.7));color=vec3(1.0,.05,.02)*dot(color,vec3(.2126,.7152,.0722))*smoothstep(.18,.04,bars);}
@@ -850,6 +905,15 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
             vec2 historyUv=clamp(TextureCoordinate,.5/Processing.zw,1.0-.5/Processing.zw);
             vec3 previous=extraDisplay(adjustColor(texture2D(History,historyUv).rgb),TextureCoordinate);
             previous=postColor(previous,TextureCoordinate);
+        #if DISPLAY_TECHNOLOGY == 7
+            if(DotMatrixTemporal.z>.5)
+            {
+                previous=postColor(dotMatrixPixel(TextureCoordinate,true),TextureCoordinate);
+                center=filterDotMatrixResponse(previous,center,DotMatrixTemporal.x);
+                center=filterDotMatrixPersistence(center,previous,DotMatrixTemporal.y,
+                    DotMatrixGeometry.x,filterDotMatrixBackground(DotMatrixGeometry.x));
+            }
+        #endif
         #if DISPLAY_TECHNOLOGY == 5
             if(VfdOptical.w>.5)
                 center=filterVfdPersistence(center,previous,VfdOptical.y,VfdOptical.z);

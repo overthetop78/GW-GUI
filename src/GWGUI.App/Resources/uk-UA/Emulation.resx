@@ -751,4 +751,15 @@
 <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Гріп</value></data>
   <data name="Emulation.Atari.Controller.Genesis"><value>Контролер генезу Sega</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ контролер</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>Червоний</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>Білий</value></data>
+  <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>ректикут</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>Клітини</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>Колір і світло</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>Відповідність та наполегливість</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>Розмір комірки</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>Сприяє зціленням клітин</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Яскравість точок</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Світло дифузії навколо точок</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Тривалість післясвітіння (мс)</value></data>
 </root>

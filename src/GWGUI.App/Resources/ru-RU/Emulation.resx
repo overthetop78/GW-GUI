@@ -750,4 +750,15 @@
   <data name="Emulation.Atari.Controller.Driving"><value>Контроллер вождения Atari</value></data>
   <data name="Emulation.Atari.Controller.Jaguar"><value>Контроллер Jaguar Atari</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Контроллер</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>красный</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>белый</value></data>
+  <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>прямоугольник</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>Клетки</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>Цвет и свет</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>Ответ и настойчивость</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>Размер ячейки</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>Расстояние между клетками</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Точечная яркость</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Светодиффузия вокруг точек</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Длительность послесвечения (мс)</value></data>
 </root>

@@ -82,7 +82,7 @@ Ce catalogue est extensible et ne promet pas que toutes les familles seront livr
 | Écran vectoriel | détection des lignes, largeur et focalisation du faisceau, couleur des phosphores, intensité et rayon du halo, persistance | approximation raster exclusive des autres technologies ; historique nécessaire | implémentation raster originale GW GUI tant que le moteur ne fournit pas de primitives vectorielles |
 | VFD | phosphores lumineux, seuil d’émission, verre fumé, structure des anodes, halo et persistance | approximation raster spécialisée et exclusive ; historique nécessaire | implémentation raster originale GW GUI, MIT |
 | Matrice LED | cellules LED, espacement, diffusion et couleur | technologie spécialisée exclusive, compatible avec scaler, restauration et réglages généraux | implémentation raster originale GW GUI, MIT |
-| Matrice de points | palette, forme et taille des points, contraste et réponse | technologie spécialisée exclusive ; compatible avec scaler, restauration et réglages généraux | implémentation raster originale GW GUI, MIT |
+| Matrice de points | cellules logiques, palette, forme, taille et espacement des points, contraste, luminosité, halo, réponse et persistance | technologie spécialisée exclusive ; compatible avec scaler, restauration et réglages généraux | implémentation raster originale GW GUI, MIT |
 | Affichage à segments | disposition 7/14/16, teinte, épaisseur, contraste, halo et réponse | technologie spécialisée exclusive ; compatible avec scaler, restauration et réglages généraux | implémentation raster originale GW GUI, MIT |
 | Papier électronique | modes monochrome, 16 gris ou 4096 couleurs, contraste, tramage, rafraîchissement et image fantôme | technologie secondaire exclusive avec historique temporel | implémentation raster originale GW GUI, MIT |
 | Projection | flou optique, diffusion, texture de toile et convergence RGB | technologie secondaire exclusive, compatible avec scaler, restauration et réglages généraux | implémentation raster originale GW GUI, MIT |
@@ -695,14 +695,19 @@ décrit comme pilote LCD STN à matrice de points. Elles servent uniquement à c
 code, pilote, document ou actif tiers n’est incorporé. La passe originale GW GUI reste sous MIT.
 
 `Matrice de points` est distincte de la matrice LED et exclusive des autres technologies
-d’affichage. Son panneau propose les palettes `LCD vert`, `LCD gris`, `Ambre` et `Bleu`, la forme
-`Rond` ou `Carré`, puis `Taille du point` et `Contraste des points` bornés à `0..100`, ainsi que
-`Temps de réponse (ms)` borné à `0..1000`. Les valeurs initiales sont vert, rond, `55`, `70` et
-`120 ms`.
+d’affichage. Les options sont réparties entre `Cellules`, `Couleur et lumière` et `Réponse et
+persistance`. Les palettes disponibles sont LCD vert, LCD gris, RGB, ambre, bleu, rouge et blanc ; les
+points peuvent être ronds, carrés ou rectangulaires. Taille de cellule, taille du point, espacement,
+contraste, luminosité et halo sont bornés à `0..100`. Réponse et persistance sont bornées à
+`0..1000 ms`.
 
-La passe moyenne la luminance dans une trame fixe de points, applique la forme et la taille choisies,
-puis interpole entre le fond et l’encre de la palette selon le contraste. Un historique séparé
-reproduit la réponse exponentielle entre frames sans la confondre avec la persistance LCD générale.
+La taille de cellule regroupe les pixels de la résolution logique fournie par l’émulateur, jamais les
+pixels physiques du moniteur. La passe moyenne chaque cellule avant agrandissement, puis applique
+séparément forme, remplissage, espace, palette, contraste, luminosité et halo. La réponse retarde les
+montées et descentes ; la persistance ralentit seulement l’extinction. CPU/WPF, OpenGL, Direct3D 11
+et Vulkan utilisent le même modèle. Les fonctions du shader Matrice de points sont placées derrière
+la variante conditionnelle de cette technologie et ne sont donc pas compilées lors du démarrage
+d’un affichage Normal, CRT, Plasma, VFD ou d’une autre technologie.
 Le filtre se combine avec tous les scalers, restaurations et réglages généraux. WPF utilise le
 pipeline CPU commun ; OpenGL, Direct3D 11 et Vulkan déclarent le même repli CPU déterministe.
 
@@ -1101,7 +1106,7 @@ neutre. Les scénarios dédiés sont :
 |---|---|
 | VFD | `VfdColorsHaloAndPersistenceAreDistinctAndBounded` |
 | Matrice LED | `LedMatrixOptionsAreIndependentDistinctAndBounded` |
-| Matrice de points | `DotMatrixPalettesShapesContrastAndResponseAreDistinctAndBounded` |
+| Matrice de points | `DotMatrixPalettesShapesContrastAndResponseAreDistinctAndBounded`, `EveryDotMatrixSpatialAndLightOptionChangesTheLogicalCellRendering` |
 | Affichage à segments | `SegmentDisplayLayoutsColorsGeometryGlowAndResponseAreDistinctAndBounded` |
 | Papier électronique | `EPaperModesContrastDitheringRefreshAndGhostingAreDistinctAndBounded` |
 | Projection | `ProjectionBlurDiffusionTextureAndConvergenceAreDistinctAndBounded` |

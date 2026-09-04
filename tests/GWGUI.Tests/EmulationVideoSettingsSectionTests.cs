@@ -620,8 +620,23 @@ public sealed class EmulationVideoSettingsSectionTests
                 EmulationVideoProcessingCatalog.DotMatrixDotSize).Value = 33;
             FindByAutomationId<Slider>(panel,
                 EmulationVideoProcessingCatalog.DotMatrixContrast).Value = 74;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.DotMatrixCellSize).Value = 42;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.DotMatrixCellGap).Value = 18;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.DotMatrixBrightness).Value = 83;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.DotMatrixHaloIntensity).Value = 29;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.DotMatrixPersistence).Value = 240;
             Assert.Equal(33, panel.Configuration.DotMatrix.DotSize);
             Assert.Equal(74, panel.Configuration.DotMatrix.Contrast);
+            Assert.Equal(42, panel.Configuration.DotMatrix.CellSize);
+            Assert.Equal(18, panel.Configuration.DotMatrix.CellGap);
+            Assert.Equal(83, panel.Configuration.DotMatrix.Brightness);
+            Assert.Equal(29, panel.Configuration.DotMatrix.HaloIntensity);
+            Assert.Equal(240, panel.Configuration.DotMatrix.PersistenceMilliseconds);
 
             panel.SetConfiguration(new EmulationVideoProcessingConfiguration
             {
@@ -748,6 +763,33 @@ public sealed class EmulationVideoSettingsSectionTests
             SelectTechnology(panel, EmulationVideoDisplayTechnology.Vector);
             Assert.Equal(EmulationVideoDisplayTechnology.Vector,
                 panel.Configuration.DisplayTechnology);
+        });
+    }
+
+    [Fact]
+    public void ModulePublishesVideoChangesBeforeTheDeferredSave()
+    {
+        RunSta(() =>
+        {
+            var application = Application.Current ?? new Application();
+            application.Resources[typeof(ComboBox)] = new Style(typeof(ComboBox));
+            application.Resources[typeof(ComboBoxItem)] = new Style(typeof(ComboBoxItem));
+            application.Resources["MainTabItemStyle"] = new Style(typeof(TabItem));
+            application.Resources["IconFontFamily"] = new System.Windows.Media.FontFamily(
+                "Segoe MDL2 Assets");
+            var section = new EmulationModuleSettingsSection(new TestModule());
+            var videoField = typeof(EmulationModuleSettingsSection).GetField(
+                "_videoProcessing", BindingFlags.Instance | BindingFlags.NonPublic);
+            var panel = Assert.IsType<EmulationVideoProcessingSettingsSection>(
+                videoField?.GetValue(section));
+            IEmulationConfiguration? changed = null;
+            section.VideoConfigurationChanged += (_, args) => changed = args.Configuration;
+
+            SelectTechnology(panel, EmulationVideoDisplayTechnology.Plasma);
+
+            Assert.NotNull(changed);
+            Assert.Equal(EmulationVideoDisplayTechnology.Plasma,
+                changed.VideoProcessing.DisplayTechnology);
         });
     }
 

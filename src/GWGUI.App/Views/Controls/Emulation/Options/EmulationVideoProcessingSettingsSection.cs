@@ -463,28 +463,9 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
         EmulationLedMatrixSettingsBlock.Create(_configuration.LedMatrix,
             update => SetLedMatrix(update(_configuration.LedMatrix)));
 
-    private FrameworkElement CreateDotMatrixPanel()
-    {
-        var dotMatrix = _configuration.DotMatrix;
-        var panel = Section(EmulationResourceKeys.VideoTechnologyDotMatrix);
-        panel.Children.Add(ChoiceField(EmulationResourceKeys.VideoParameterDotMatrixPalette,
-            EmulationVideoProcessingCatalog.DotMatrixPaletteResourceKeys, dotMatrix.Palette,
-            value => SetDotMatrix(_configuration.DotMatrix with { Palette = value }),
-            EmulationVideoProcessingCatalog.DotMatrixPalette));
-        panel.Children.Add(ChoiceField(EmulationResourceKeys.VideoParameterDotMatrixShape,
-            EmulationVideoProcessingCatalog.DotMatrixShapeResourceKeys, dotMatrix.Shape,
-            value => SetDotMatrix(_configuration.DotMatrix with { Shape = value }),
-            EmulationVideoProcessingCatalog.DotMatrixShape));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.DotMatrixDotSize,
-            dotMatrix.DotSize, value => SetDotMatrix(_configuration.DotMatrix with { DotSize = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.DotMatrixContrast,
-            dotMatrix.Contrast, value => SetDotMatrix(_configuration.DotMatrix with { Contrast = value }));
-        AddSlider(panel, EmulationVideoProcessingCatalog.DotMatrixResponseTime,
-            dotMatrix.ResponseTimeMilliseconds, EmulationVideoProcessingLimits.DurationMinimumMilliseconds,
-            EmulationVideoProcessingLimits.DurationMaximumMilliseconds,
-            value => SetDotMatrix(_configuration.DotMatrix with { ResponseTimeMilliseconds = value }));
-        return panel;
-    }
+    private FrameworkElement CreateDotMatrixPanel() =>
+        EmulationDotMatrixSettingsBlock.Create(_configuration.DotMatrix,
+            update => SetDotMatrix(update(_configuration.DotMatrix)));
 
     private FrameworkElement CreateSegmentDisplayPanel()
     {

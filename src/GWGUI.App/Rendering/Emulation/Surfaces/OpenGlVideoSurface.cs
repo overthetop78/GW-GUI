@@ -55,7 +55,10 @@ internal sealed class OpenGlVideoSurface : HwndHost, IEmulationVideoSurface
 
     public void SetVideoProcessing(EmulationVideoProcessingConfiguration configuration)
     {
+        var displayTechnologyChanged = _videoProcessing.DisplayTechnology
+            != configuration.DisplayTechnology;
         _videoProcessing = EmulationVideoProcessingConfigurationFunctions.Normalize(configuration);
+        if (displayTechnologyChanged) ResetHistory();
         _snapshot = null;
     }
 

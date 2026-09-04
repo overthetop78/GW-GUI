@@ -705,4 +705,15 @@
   <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar-kontrolleren</value></data>
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ kontroller</value></data>
   <data name="Emulation.Video.FixedPixel.Technology.LedBacklitLcd"><value>LED-backlight LCD</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Red"><value>Rød</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.White"><value>Hvit</value></data>
+  <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>Rektangel</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Cells"><value>Celler</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Light"><value>Farge og lys</value></data>
+  <data name="Emulation.Video.DotMatrix.Group.Temporal"><value>Respons og utholdenhet</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellSize"><value>Cellstørrelse</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>Cellavstand</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Punktlysstyrke</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Etterglødvarighet (ms)</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Lysdiffusion rundt prikker</value></data>
 </root>
