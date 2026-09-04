@@ -22,6 +22,22 @@ namespace GWGUI.Tests;
 public sealed class EmulationVideoSettingsSectionTests
 {
     [Fact]
+    public void ShaderLoadingIndicatorTracksTheRealLoadingState()
+    {
+        RunSta(() =>
+        {
+            var panel = new EmulationVideoProcessingSettingsSection();
+            var indicator = FindByAutomationId<FrameworkElement>(panel, "VideoShaderLoading");
+
+            Assert.Equal(Visibility.Collapsed, indicator.Visibility);
+            panel.SetShaderLoading(true);
+            Assert.Equal(Visibility.Visible, indicator.Visibility);
+            panel.SetShaderLoading(false);
+            Assert.Equal(Visibility.Collapsed, indicator.Visibility);
+        });
+    }
+
+    [Fact]
     public void ModuleSettingsCanRebuildWithItsReusableVideoPanel()
     {
         RunSta(() =>

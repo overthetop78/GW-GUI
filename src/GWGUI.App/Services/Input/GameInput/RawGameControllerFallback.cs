@@ -15,15 +15,11 @@ internal static class RawGameControllerFallback
         if (_monitoring) return;
         _monitoring = true;
         RefreshOnUiThread();
-        RawGameController.RawGameControllerAdded += ControllerChanged;
-        RawGameController.RawGameControllerRemoved += ControllerChanged;
     }
 
     internal static void StopMonitoring()
     {
         if (!_monitoring) return;
-        RawGameController.RawGameControllerAdded -= ControllerChanged;
-        RawGameController.RawGameControllerRemoved -= ControllerChanged;
         lock (Sync) _devices = [];
         _monitoring = false;
     }
@@ -37,13 +33,6 @@ internal static class RawGameControllerFallback
             return;
         }
         Refresh();
-    }
-
-    private static void ControllerChanged(object? sender, RawGameController controller)
-    {
-        var dispatcher = Application.Current?.Dispatcher;
-        if (dispatcher is null || dispatcher.CheckAccess()) Refresh();
-        else dispatcher.BeginInvoke(Refresh);
     }
 
     internal static void Refresh()

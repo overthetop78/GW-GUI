@@ -737,4 +737,5 @@
   <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Jas teček</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Doba dosvitu (ms)</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Rozšíření světla kolem bodů</value></data>
+  <data name="Emulation.Video.Shader.Loading"><value>Načítání obrazového shaderu…</value></data>
 </root>

@@ -717,4 +717,5 @@
   <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Punthelderheid</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Lichtdiffusie rond puntjes</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Nagloeiduur (ms)</value></data>
+  <data name="Emulation.Video.Shader.Loading"><value>Videoshader laden…</value></data>
 </root>

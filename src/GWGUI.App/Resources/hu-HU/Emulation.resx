@@ -738,4 +738,5 @@
   <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Pontok fényereje</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Utánvilágítás időtartama (ms)</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Fényszóródás a pontok körül</value></data>
+  <data name="Emulation.Video.Shader.Loading"><value>A videóshader betöltése…</value></data>
 </root>

@@ -765,4 +765,5 @@
   <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>ความสว่างของจุด</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>ความสว่างกระจายรอบจุด</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>ระยะเวลาแสงตกค้าง (มิลลิวินาที)</value></data>
+  <data name="Emulation.Video.Shader.Loading"><value>กำลังโหลดวิดีโอเชดเดอร์…</value></data>
 </root>

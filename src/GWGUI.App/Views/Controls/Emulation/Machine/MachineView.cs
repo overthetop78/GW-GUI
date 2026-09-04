@@ -1,4 +1,5 @@
 using GWGUI.App.Constants.Controls.Visual;
+using GWGUI.App.Constants.Localization;
 using GWGUI.App.Contracts.Machine;
 using GWGUI.App.Localization.Extensions;
 using System.Windows;
@@ -13,6 +14,10 @@ namespace GWGUI.App.Views.Controls.Emulation.Machine;
 internal sealed class MachineView : UserControl
 {
     private readonly Dictionary<string, Ellipse> _deviceLeds = new(StringComparer.Ordinal);
+    private readonly Border _shaderLoadingOverlay;
+    private readonly TextBlock _shaderLoadingText;
+    private FrameworkElement? _videoView;
+    private bool _shaderLoading;
 
     internal MachineView()
     {
@@ -30,6 +35,34 @@ internal sealed class MachineView : UserControl
         Root.Children.Add(Toolbar);
 
         VideoHost = new Grid { Background = Brushes.Black };
+        _shaderLoadingText = new TextBlock
+        {
+            Text = LocExtension.Get(EmulationResourceKeys.VideoShaderLoading),
+            Foreground = Brushes.White,
+            FontWeight = FontWeights.SemiBold,
+            HorizontalAlignment = HorizontalAlignment.Center
+        };
+        var loadingContent = new StackPanel { Width = 220 };
+        loadingContent.Children.Add(_shaderLoadingText);
+        loadingContent.Children.Add(new ProgressBar
+        {
+            IsIndeterminate = true,
+            Height = 5,
+            Margin = new Thickness(0, 10, 0, 0)
+        });
+        _shaderLoadingOverlay = new Border
+        {
+            Background = new SolidColorBrush(Color.FromArgb(190, 20, 22, 26)),
+            CornerRadius = new CornerRadius(8),
+            Padding = new Thickness(20, 16, 20, 16),
+            Child = loadingContent,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
+            IsHitTestVisible = false,
+            Visibility = Visibility.Collapsed
+        };
+        Panel.SetZIndex(_shaderLoadingOverlay, 1);
+        VideoHost.Children.Add(_shaderLoadingOverlay);
         Screen = new Border
         {
             Background = Brushes.Black,
@@ -112,8 +145,19 @@ internal sealed class MachineView : UserControl
 
     internal void SetVideoView(FrameworkElement view)
     {
-        VideoHost.Children.Clear();
-        VideoHost.Children.Add(view);
+        if (_videoView is not null) VideoHost.Children.Remove(_videoView);
+        _videoView = view;
+        _videoView.Visibility = _shaderLoading ? Visibility.Hidden : Visibility.Visible;
+        VideoHost.Children.Insert(0, view);
+    }
+
+    internal void SetShaderLoading(bool isLoading)
+    {
+        _shaderLoadingText.Text = LocExtension.Get(EmulationResourceKeys.VideoShaderLoading);
+        _shaderLoading = isLoading;
+        if (_videoView is not null)
+            _videoView.Visibility = isLoading ? Visibility.Hidden : Visibility.Visible;
+        _shaderLoadingOverlay.Visibility = isLoading ? Visibility.Visible : Visibility.Collapsed;
     }
 
     internal void SetDevices(IEnumerable<MachineViewDevice> devices, Action<Exception> showError,

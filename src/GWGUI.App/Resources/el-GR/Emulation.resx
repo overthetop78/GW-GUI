@@ -764,4 +764,5 @@
   <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Φωτεινότητα κουκκίδας</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Διασπορά φωτός γύρω από κουκίδες</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Διάρκεια μεταλάμψης (ms)</value></data>
+  <data name="Emulation.Video.Shader.Loading"><value>Φόρτωση σκιαστή βίντεο…</value></data>
 </root>

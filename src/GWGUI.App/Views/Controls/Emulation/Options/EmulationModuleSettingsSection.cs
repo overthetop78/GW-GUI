@@ -99,6 +99,13 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
     internal event EventHandler<EmulationConfigurationSavedEventArgs>? VideoConfigurationChanged;
     internal event EventHandler<EmulationMachineEditingContext>? EditingContextChanged;
 
+    internal void SetVideoShaderLoading(string moduleId, Guid configurationId, bool isLoading)
+    {
+        if (!string.Equals(_module.Id, moduleId, StringComparison.Ordinal)
+            || _configuration.Id != configurationId) return;
+        _videoProcessing.SetShaderLoading(isLoading);
+    }
+
     internal Task ReloadWhenOpenedAsync() => ExecuteAsync(ReloadAsync);
 
     internal async Task ReloadAfterConfigurationDeletedAsync(
@@ -226,6 +233,8 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
             : EmulationSettingsLayout.VideoSettingsChoice(rendering[0]);
         _videoProcessing.SetConfiguration(_configuration.VideoProcessing,
             EmulationSettingsLayout.VideoSettingsFields(display), rendererChoice);
+        _videoProcessing.SetShaderLoading(EmulationVideoShaderLoadingStatus.IsLoading(
+            _module.Id, _configuration.Id));
         ApplySettingsRules(settings);
         return EmulationSettingsLayout.VideoSettingsPage(_videoProcessing);
     }

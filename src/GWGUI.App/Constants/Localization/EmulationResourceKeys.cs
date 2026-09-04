@@ -42,6 +42,7 @@ public static class EmulationResourceKeys
     public const string VideoSignalSimulationSettings = "Emulation.Video.Settings.SignalSimulation";
     public const string VideoStylisticSettings = "Emulation.Video.Settings.Stylistic";
     public const string VideoGwGuiProcessing = "Emulation.Video.Settings.GwGuiProcessing";
+    public const string VideoShaderLoading = "Emulation.Video.Shader.Loading";
     public const string VideoDisplaySettings = "Emulation.Video.Settings.Display";
     public const string VideoRenderingSettings = "Emulation.Video.Settings.Rendering";
     public const string VideoTabDisplay = "Emulation.Video.Tab.Display";

@@ -859,4 +859,5 @@
   <data name="Emulation.Video.LedMatrix.Shape.Square"><value>Square</value></data>
   <data name="Emulation.Video.LedMatrix.Group.Structure"><value>Matrix structure</value></data>
   <data name="Emulation.Video.LedMatrix.Group.Emission"><value>Light emission</value></data>
+  <data name="Emulation.Video.Shader.Loading"><value>Loading video shader…</value></data>
 </root>

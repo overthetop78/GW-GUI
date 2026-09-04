@@ -5,6 +5,7 @@ using System.IO.Pipes;
 using System.IO.MemoryMappedFiles;
 using System.Text.Json;
 using GWGUI.Emulation;
+using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Emulation.Amiga.Services;
 
@@ -82,6 +83,14 @@ internal sealed class AmigaProcessCore : IAmigaCore
         startInfo.ArgumentList.Add(pipeName);
         startInfo.ArgumentList.Add(videoMapName);
         _process = Process.Start(startInfo) ?? throw new InvalidOperationException(AmigaProcessCoreConstants.TheAmigaCoreHostProcessCouldNotBeStarted);
+        try { EmulationChildProcessLifetime.Attach(_process); }
+        catch
+        {
+            if (!_process.HasExited) _process.Kill(true);
+            _process.Dispose();
+            _process = null;
+            throw;
+        }
         try
         {
             using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(15));

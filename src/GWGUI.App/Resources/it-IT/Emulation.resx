@@ -737,4 +737,5 @@
   <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Luminosità dei punti</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Durata della luminescenza residua (ms)</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Diffusione di luce intorno punti</value></data>
+  <data name="Emulation.Video.Shader.Loading"><value>Caricamento dello shader video…</value></data>
 </root>

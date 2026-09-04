@@ -765,4 +765,5 @@
   <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>점 광도</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>빛은 점의 주위에 확산</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>잔광 지속 시간 (ms)</value></data>
+  <data name="Emulation.Video.Shader.Loading"><value>비디오 셰이더를 불러오는 중…</value></data>
 </root>

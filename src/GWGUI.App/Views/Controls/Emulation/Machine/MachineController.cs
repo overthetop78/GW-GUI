@@ -40,6 +40,8 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         _video = new MachineVideoPresenter(_view, options.Machine, options.VideoRenderer,
             options.VideoProcessing);
         _video.FramePresented += FramePresented;
+        _video.ShaderLoadingChanged += VideoShaderLoadingChanged;
+        VideoShaderLoadingChanged(_video.IsShaderLoading);
         _session.MachineChanged += MachineChanged;
         _input = new MachineInputController(_view, _video.InputView, _video.InputHandle,
             () => _session.Machine, options.GlobalShortcuts, ExecuteShortcutAsync, options.IsActive);
@@ -63,10 +65,12 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         if (_disposed) return;
         ExitFullscreen();
         _video.FramePresented -= FramePresented;
+        _video.ShaderLoadingChanged -= VideoShaderLoadingChanged;
         _video.SurfaceChanged -= VideoSurfaceChanged;
         _session.MachineChanged -= MachineChanged;
         _input.Dispose();
         _video.Dispose();
+        EmulationVideoShaderLoadingStatus.Set(_options.ModuleId, _options.ConfigurationId, false);
         await _session.DisposeAsync();
         _disposed = true;
     }
@@ -85,6 +89,13 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
     }
 
     public async ValueTask DisposeAsync() => await StopAsync();
+
+    private void VideoShaderLoadingChanged(bool isLoading)
+    {
+        _view.SetShaderLoading(isLoading);
+        EmulationVideoShaderLoadingStatus.Set(
+            _options.ModuleId, _options.ConfigurationId, isLoading);
+    }
 
     private MachineCommandActions CreateActions() => new(
         TogglePowerAsync,

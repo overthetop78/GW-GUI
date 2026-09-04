@@ -765,4 +765,5 @@
   <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>点亮度</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>光向圆点周围扩散</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>余辉持续时间（毫秒）</value></data>
+  <data name="Emulation.Video.Shader.Loading"><value>正在加载视频着色器…</value></data>
 </root>

@@ -761,4 +761,5 @@
   <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>בהירות הנקודות</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>פיזור אור סביב הנקודות</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>משך הזוהר השיורי (מ״ש)</value></data>
+  <data name="Emulation.Video.Shader.Loading"><value>טוען את שיידר הווידאו…</value></data>
 </root>

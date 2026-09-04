@@ -18,6 +18,14 @@ namespace GWGUI.Tests;
 public sealed class EmulationVideoProcessingPipelineTests
 {
     [Fact]
+    public void RfGpuNoiseIsScaledByTheSelectedIntensity()
+    {
+        Assert.Contains("float rfNoise=noise*amount", SignalConnectionRf.Shader,
+            StringComparison.Ordinal);
+        Assert.Contains("rfNoise*.16", SignalConnectionRf.Shader, StringComparison.Ordinal);
+    }
+
+    [Fact]
     [Trait("Category", "GpuExhaustive")]
     public void VeldridPortableShadersCompileToSpirv()
     {

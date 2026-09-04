@@ -4,6 +4,8 @@ using GWGUI.Emulation;
 namespace GWGUI.App.Contracts.Machine;
 
 internal sealed record MachineControllerOptions(
+    string ModuleId,
+    Guid ConfigurationId,
     IEmulatedMachine Machine,
     Func<IReadOnlyList<EmulationMedia>, IEmulatedMachine> MachineFactory,
     IReadOnlyList<EmulationMediaDevice> MediaDevices,

@@ -9,10 +9,11 @@ internal static class SignalConnectionRf
         {
             vec3 blurred=(left+color*1.5+right)*.285714;
             vec3 result=mix(color,blurred,amount*.92);
-            float interference=sin(line*.41+noise*23.0)*amount*.055;
-            if(standard<1.5) result+=vec3(noise*.16+interference,noise*.10-interference*.25,noise*.13-interference);
-            else if(standard<2.5) result+=vec3(noise*.18+interference,-noise*.04,noise*.10-interference*.55);
-            else result+=vec3(noise*.10+interference,noise*.06-interference*.35,-noise*.15-interference);
+            float rfNoise=noise*amount;
+            float interference=sin(line*.41+rfNoise*23.0)*amount*.055;
+            if(standard<1.5) result+=vec3(rfNoise*.16+interference,rfNoise*.10-interference*.25,rfNoise*.13-interference);
+            else if(standard<2.5) result+=vec3(rfNoise*.18+interference,-rfNoise*.04,rfNoise*.10-interference*.55);
+            else result+=vec3(rfNoise*.10+interference,rfNoise*.06-interference*.35,-rfNoise*.15-interference);
             return clamp(result,0.0,1.0);
         }
         """;

@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.Json;
 using System.Runtime.Versioning;
 using GWGUI.Emulation;
+using GWGUI.Emulation.Functions;
 
 namespace GWGUI.Emulation.Atari.Services;
 
@@ -193,7 +194,19 @@ internal sealed class AtariProcessCore : IAtariCore
         startInfo.ArgumentList.Add(AtariCoreHostConstants.CommandLineArgument);
         startInfo.ArgumentList.Add(pipeName);
         startInfo.ArgumentList.Add(videoMapName);
-        return Process.Start(startInfo) ?? throw new InvalidOperationException(AtariCoreHostErrors.ProcessStartFailed);
+        var process = Process.Start(startInfo)
+            ?? throw new InvalidOperationException(AtariCoreHostErrors.ProcessStartFailed);
+        try
+        {
+            EmulationChildProcessLifetime.Attach(process);
+            return process;
+        }
+        catch
+        {
+            if (!process.HasExited) process.Kill(true);
+            process.Dispose();
+            throw;
+        }
     }
 
     private void ReadInitialization(BinaryReader reader)

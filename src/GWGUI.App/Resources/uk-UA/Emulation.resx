@@ -762,4 +762,5 @@
   <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Яскравість точок</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Світло дифузії навколо точок</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Тривалість післясвітіння (мс)</value></data>
+  <data name="Emulation.Video.Shader.Loading"><value>Завантаження відеошейдера…</value></data>
 </root>

@@ -742,4 +742,5 @@
   <data name="Emulation.Video.Parameter.DotMatrixCellGap"><value>Soluväli</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Pisteen kirkkaus</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Valon diffuusio pisteiden ympärillä</value></data>
+  <data name="Emulation.Video.Shader.Loading"><value>Ladataan videosävyttäjää…</value></data>
 </root>

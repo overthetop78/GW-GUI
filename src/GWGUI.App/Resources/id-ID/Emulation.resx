@@ -726,4 +726,5 @@
   <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Kecerahan titik</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Durasi pendar sisa (ms)</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Difusi cahaya sekitar titik</value></data>
+  <data name="Emulation.Video.Shader.Loading"><value>Memuat shader video…</value></data>
 </root>

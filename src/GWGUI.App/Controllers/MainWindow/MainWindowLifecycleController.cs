@@ -61,6 +61,7 @@ internal sealed class MainWindowLifecycleController(
     Action captureConversion,
     Action applyTheme)
 {
+    private static readonly TimeSpan ShutdownTimeout = TimeSpan.FromSeconds(10);
     private bool settingsSaveInProgress;
     private bool closeAfterSettingsSave;
 
@@ -160,11 +161,27 @@ internal sealed class MainWindowLifecycleController(
     private async Task SaveAndCloseAsync()
     {
         Exception? failure = null;
-        try { await settingsStore.SaveAsync(settings()).ConfigureAwait(false); }
+        using var shutdown = new CancellationTokenSource(ShutdownTimeout);
+        try { await settingsStore.SaveAsync(settings()).WaitAsync(shutdown.Token).ConfigureAwait(false); }
+        catch (OperationCanceledException)
+        {
+            ErrorLog.Write(new TimeoutException("Settings save exceeded the application shutdown deadline."),
+                "Saving application settings during shutdown");
+        }
         catch (Exception exception) { failure = exception; }
         var stopping = await window.Dispatcher.InvokeAsync(stopEmulation);
-        await stopping.ConfigureAwait(false);
-        await operation.WaitForCompletionAsync().ConfigureAwait(false);
+        try { await stopping.WaitAsync(shutdown.Token).ConfigureAwait(false); }
+        catch (OperationCanceledException)
+        {
+            ErrorLog.Write(new TimeoutException("Emulation shutdown exceeded the application shutdown deadline."),
+                "Stopping emulation during application shutdown");
+        }
+        try { await operation.WaitForCompletionAsync().WaitAsync(shutdown.Token).ConfigureAwait(false); }
+        catch (OperationCanceledException)
+        {
+            ErrorLog.Write(new TimeoutException("Operation shutdown exceeded the application shutdown deadline."),
+                "Stopping the active operation during application shutdown");
+        }
         if (window.Dispatcher.HasShutdownStarted || window.Dispatcher.HasShutdownFinished) return;
         try
         {

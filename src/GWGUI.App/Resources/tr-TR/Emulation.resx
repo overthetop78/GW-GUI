@@ -721,4 +721,5 @@
   <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Nokta parlaklığı</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Noktaların etrafındaki ışık yayılımı</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Art ışık süresi (ms)</value></data>
+  <data name="Emulation.Video.Shader.Loading"><value>Video gölgelendiricisi yükleniyor…</value></data>
 </root>

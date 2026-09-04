@@ -766,4 +766,5 @@
   <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>ドット明るさ</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>点の周りの光拡散</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>残光時間 (ms)</value></data>
+  <data name="Emulation.Video.Shader.Loading"><value>ビデオシェーダーを読み込んでいます…</value></data>
 </root>

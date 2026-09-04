@@ -66,6 +66,7 @@ public sealed partial class OptionsEmulationSection : UserControl
             _moduleTabs.Add(tab, module);
         }
         _tabs.SelectionChanged += ModuleTabSelectionChanged;
+        EmulationVideoShaderLoadingStatus.Changed += VideoShaderLoadingChanged;
         Content = _tabs;
         Loaded += async (_, _) => await LoadConfigurationsWhenVisibleAsync();
         IsVisibleChanged += async (_, _) => await LoadConfigurationsWhenVisibleAsync();
@@ -132,6 +133,18 @@ public sealed partial class OptionsEmulationSection : UserControl
     private static void ModuleVideoConfigurationChanged(object? sender,
         EmulationConfigurationSavedEventArgs args) =>
         VideoConfigurationChanged?.Invoke(sender, args);
+
+    private void VideoShaderLoadingChanged(object? sender,
+        EmulationVideoShaderLoadingChangedEventArgs args)
+    {
+        if (!Dispatcher.CheckAccess())
+        {
+            Dispatcher.BeginInvoke(() => VideoShaderLoadingChanged(sender, args));
+            return;
+        }
+        foreach (var section in _moduleSections.Values)
+            section.SetVideoShaderLoading(args.ModuleId, args.ConfigurationId, args.IsLoading);
+    }
 
     private void ModuleEditingContextChanged(object? sender, EmulationMachineEditingContext context)
     {

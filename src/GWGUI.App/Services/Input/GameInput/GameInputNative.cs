@@ -66,15 +66,13 @@ internal static class GameInputNative
 
     internal static string? SelectRuntime(IEnumerable<GameInputRuntimeCandidate> candidates)
     {
-        var available = candidates.ToArray();
-        var preferred = available
-            .Where(candidate => candidate.Source != GameInputRuntimeSource.SystemFallback)
+        return candidates
             .OrderByDescending(candidate => candidate.Version)
-            .ThenByDescending(candidate => candidate.Source)
-            .FirstOrDefault();
-        return preferred?.Path ?? available
-            .Where(candidate => candidate.Source == GameInputRuntimeSource.SystemFallback)
-            .OrderByDescending(candidate => candidate.Version)
+            // Windows.Gaming.Input already loads the system GameInput runtime.
+            // Reuse it when versions are equal instead of mapping an identical
+            // second copy from the registered redistributable directory.
+            .ThenByDescending(candidate => candidate.Source == GameInputRuntimeSource.SystemFallback)
+            .ThenByDescending(candidate => candidate.Source == GameInputRuntimeSource.AppLocal)
             .Select(candidate => candidate.Path)
             .FirstOrDefault();
     }

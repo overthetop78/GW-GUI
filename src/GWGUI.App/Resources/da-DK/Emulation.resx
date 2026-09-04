@@ -715,4 +715,5 @@
   <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Punktlysstyrke</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Efterglødens varighed (ms)</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Lysdiffusion omkring prikker</value></data>
+  <data name="Emulation.Video.Shader.Loading"><value>Indlæser videoshader…</value></data>
 </root>

@@ -24,6 +24,8 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
     private bool _loading;
     private Slider? _activeSliderEdit;
     private bool _sliderSavePending;
+    private bool _shaderLoading;
+    private FrameworkElement? _shaderLoadingIndicator;
     private string _selectedSettingsTab = DisplayTab;
 
     private const string DisplayTab = "Display";
@@ -44,6 +46,14 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
     internal event EventHandler? ConfigurationSaveRequested;
 
     internal EmulationVideoProcessingConfiguration Configuration => _configuration;
+
+    internal void SetShaderLoading(bool isLoading)
+    {
+        _shaderLoading = isLoading;
+        if (_shaderLoadingIndicator is not null)
+            _shaderLoadingIndicator.Visibility = isLoading
+                ? Visibility.Visible : Visibility.Collapsed;
+    }
 
     internal void SetConfiguration(EmulationVideoProcessingConfiguration? configuration)
     {
@@ -188,6 +198,8 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
     private FrameworkElement CreateSelectors()
     {
         var panel = new StackPanel();
+        _shaderLoadingIndicator = CreateShaderLoadingIndicator();
+        panel.Children.Add(_shaderLoadingIndicator);
         if (_rendererChoice is not null) panel.Children.Add(_rendererChoice);
         panel.Children.Add(ChoiceField(EmulationResourceKeys.VideoSampling,
             EmulationVideoProcessingCatalog.SamplingResourceKeys, _configuration.Sampling,
@@ -200,6 +212,28 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
                 RebuildContent();
             }));
         return panel;
+    }
+
+    private FrameworkElement CreateShaderLoadingIndicator()
+    {
+        var loading = new StackPanel
+        {
+            Margin = new Thickness(0, 0, 0, 12),
+            Visibility = _shaderLoading ? Visibility.Visible : Visibility.Collapsed
+        };
+        loading.Children.Add(new TextBlock
+        {
+            Text = LocExtension.Get(EmulationResourceKeys.VideoShaderLoading),
+            FontWeight = FontWeights.SemiBold
+        });
+        loading.Children.Add(new ProgressBar
+        {
+            IsIndeterminate = true,
+            Height = 4,
+            Margin = new Thickness(0, 7, 0, 0)
+        });
+        AutomationProperties.SetAutomationId(loading, "VideoShaderLoading");
+        return loading;
     }
 
     private FrameworkElement CreateSignalSimulation()

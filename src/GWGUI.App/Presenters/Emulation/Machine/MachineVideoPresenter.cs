@@ -11,6 +11,7 @@ namespace GWGUI.App.Presenters.Emulation.Machine;
 
 internal sealed class MachineVideoPresenter : IDisposable
 {
+    private static readonly TimeSpan WorkerShutdownTimeout = TimeSpan.FromSeconds(3);
     private readonly MachineView _view;
     private FrameworkElement _displayHost;
     private IEmulatedMachine _machine;
@@ -30,6 +31,9 @@ internal sealed class MachineVideoPresenter : IDisposable
     private VideoFrame? _pendingGpuFrame;
     private VideoFrame? _latestCompletedFrame;
     private bool _disposed;
+    private long _shaderLoadGeneration;
+    private volatile bool _shaderLoading;
+    private volatile bool _shaderPrepared;
 
     internal MachineVideoPresenter(MachineView view, IEmulatedMachine machine,
         EmulationVideoRenderer renderer,
@@ -43,6 +47,7 @@ internal sealed class MachineVideoPresenter : IDisposable
         _gpuWorker = Task.Factory.StartNew(ProcessGpuFrames, CancellationToken.None,
             TaskCreationOptions.LongRunning, TaskScheduler.Default);
         _view.SetVideoView(_surface.View);
+        _shaderPrepared = _surface.Renderer == EmulationVideoRenderer.Wpf;
         _displayHost.SizeChanged += DisplayHostSizeChanged;
         _machine.Video.FrameReady += VideoFrameReady;
         FitScreen();
@@ -56,8 +61,10 @@ internal sealed class MachineVideoPresenter : IDisposable
     internal Task<System.Windows.Media.Imaging.BitmapSource?> CaptureSnapshotAsync() =>
         _surface.CaptureSnapshotAsync();
     internal double MeasuredFramesPerSecond => _measuredFramesPerSecond;
+    internal bool IsShaderLoading => _shaderLoading;
     internal event EventHandler<VideoFrame>? FramePresented;
     internal event EventHandler? SurfaceChanged;
+    internal event Action<bool>? ShaderLoadingChanged;
 
     internal void SetMachine(IEmulatedMachine machine)
     {
@@ -81,15 +88,25 @@ internal sealed class MachineVideoPresenter : IDisposable
         _view.SetVideoView(replacement.View);
         previous.Dispose();
         SurfaceChanged?.Invoke(this, EventArgs.Empty);
-        if (_machine.Video.LatestFrame is { } frame) QueueFrame(frame);
+        _shaderPrepared = replacement.Renderer == EmulationVideoRenderer.Wpf;
+        if (_shaderPrepared) SetShaderLoading(false);
+        else if (_shaderLoading) Interlocked.Increment(ref _shaderLoadGeneration);
     }
 
     internal void SetVideoProcessing(EmulationVideoProcessingConfiguration configuration)
     {
         var normalized = EmulationVideoProcessingConfigurationFunctions.Normalize(configuration);
         if (_videoProcessing == normalized) return;
+        var rebuildsShader = _surface.Renderer != EmulationVideoRenderer.Wpf
+            && (_videoProcessing.Sampling != normalized.Sampling
+                || _videoProcessing.DisplayTechnology != normalized.DisplayTechnology);
         _videoProcessing = normalized;
-        _surface.SetVideoProcessing(normalized);
+        lock (_surfaceGate) _surface.SetVideoProcessing(normalized);
+        if (rebuildsShader)
+        {
+            _shaderPrepared = false;
+            if (_shaderLoading) Interlocked.Increment(ref _shaderLoadGeneration);
+        }
     }
 
     internal void SetVisible(bool visible) =>
@@ -132,11 +149,16 @@ internal sealed class MachineVideoPresenter : IDisposable
         lock (_gpuFrameGate) _pendingGpuFrame = null;
         _gpuWorkerCancellation.Cancel();
         _gpuFrameAvailable.Set();
-        try { _gpuWorker.GetAwaiter().GetResult(); }
-        catch (OperationCanceledException) { }
-        lock (_surfaceGate) _surface.Dispose();
-        _gpuWorkerCancellation.Dispose();
-        _gpuFrameAvailable.Dispose();
+        var workerStopped = false;
+        try { workerStopped = _gpuWorker.Wait(WorkerShutdownTimeout); }
+        catch (AggregateException error) when (error.InnerExceptions.All(exception =>
+                   exception is OperationCanceledException)) { workerStopped = true; }
+        if (workerStopped)
+        {
+            lock (_surfaceGate) _surface.Dispose();
+            _gpuWorkerCancellation.Dispose();
+            _gpuFrameAvailable.Dispose();
+        }
     }
 
     private void DisplayHostSizeChanged(object sender, SizeChangedEventArgs args) => FitScreen();
@@ -160,6 +182,7 @@ internal sealed class MachineVideoPresenter : IDisposable
             });
             return;
         }
+        if (!_shaderPrepared) SetShaderLoading(true);
         lock (_gpuFrameGate) _pendingGpuFrame = frame;
         _gpuFrameAvailable.Set();
     }
@@ -180,7 +203,15 @@ internal sealed class MachineVideoPresenter : IDisposable
                 }
                 if (frame is null) break;
                 Exception? error = null;
-                try { lock (_surfaceGate) _surface.Present(frame); }
+                long generation = 0;
+                try
+                {
+                    lock (_surfaceGate)
+                    {
+                        _surface.Present(frame);
+                        generation = Volatile.Read(ref _shaderLoadGeneration);
+                    }
+                }
                 catch (Exception exception) { error = exception; }
                 if (error is not null)
                 {
@@ -188,6 +219,8 @@ internal sealed class MachineVideoPresenter : IDisposable
                     lock (_gpuFrameGate) _pendingGpuFrame = null;
                     break;
                 }
+                _shaderPrepared = true;
+                CompleteShaderLoading(generation);
                 NotifyFrameCompleted(frame);
             }
         }
@@ -196,7 +229,26 @@ internal sealed class MachineVideoPresenter : IDisposable
     private void PresentOnUi(VideoFrame frame)
     {
         lock (_surfaceGate) _surface.Present(frame);
+        CompleteShaderLoading(Volatile.Read(ref _shaderLoadGeneration));
         NotifyFrameCompleted(frame);
+    }
+
+    private void SetShaderLoading(bool loading)
+    {
+        if (loading) Interlocked.Increment(ref _shaderLoadGeneration);
+        if (_shaderLoading == loading) return;
+        _shaderLoading = loading;
+        if (_view.Dispatcher.CheckAccess()) ShaderLoadingChanged?.Invoke(loading);
+        else _view.Dispatcher.BeginInvoke(() => ShaderLoadingChanged?.Invoke(loading));
+    }
+
+    private void CompleteShaderLoading(long generation)
+    {
+        if (!_shaderLoading || generation != Volatile.Read(ref _shaderLoadGeneration)) return;
+        _view.Dispatcher.BeginInvoke(() =>
+        {
+            if (generation == Volatile.Read(ref _shaderLoadGeneration)) SetShaderLoading(false);
+        });
     }
 
     private void FallbackAfterGpuFailure(VideoFrame frame)

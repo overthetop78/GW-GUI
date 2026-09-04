@@ -766,4 +766,5 @@
   <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>سطوع النقاط</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>انتشار الضوء حول النقاط</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>مدة التوهج اللاحق (مللي ثانية)</value></data>
+  <data name="Emulation.Video.Shader.Loading"><value>جارٍ تحميل مُظلّل الفيديو…</value></data>
 </root>

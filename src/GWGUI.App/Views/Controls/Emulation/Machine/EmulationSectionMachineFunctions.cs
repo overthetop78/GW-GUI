@@ -27,6 +27,7 @@ public sealed partial class EmulationSection
                 (device, latency) => new WasapiAudioOutput(device, latency)));
         MachineController? view = null;
         view = new MachineController(new MachineControllerOptions(
+            selected.Module.Id, selected.Configuration.Id,
             runtime.CreateMachine(runtime.MountedMedia), runtime.CreateMachine,
             runtime.MediaDevices, runtime.MountedMedia, runtime.Configuration.VideoRenderer,
             runtime.Configuration.VideoProcessing,

@@ -746,4 +746,5 @@
   <data name="Emulation.Video.Parameter.DotMatrixBrightness"><value>Jasność kropki</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Czas poświaty (ms)</value></data>
   <data name="Emulation.Video.Parameter.DotMatrixHaloIntensity"><value>Dyfuzja światła wokół kropki</value></data>
+  <data name="Emulation.Video.Shader.Loading"><value>Ładowanie shadera wideo…</value></data>
 </root>
