@@ -1,19 +1,29 @@
-# Wiki utilisateur
+# Préparer et publier le wiki
 
-L'aide utilisateur est uniquement en ligne. Le bouton Documentation ouvre le Wiki GitHub dans la langue de l'application, avec un repli anglais pour une langue inconnue.
+Les commandes de cette page s’exécutent depuis la racine du dépôt.
 
-Les sources sont dans `wiki/` : `Home.md` propose toutes les langues, chaque dossier de langue contient son guide et son sommaire, et `images/` contient les captures partagées. Les noms des pages sont uniques et portent le code complet de langue. Les guides repris constituent une base à revoir progressivement avec le code actuel.
+Les sources du wiki sont conservées dans [wiki/](../../wiki/Home.md), avec un dossier par langue et un dossier `images/` partagé. Les modifications se font dans ces sources ; le dépôt `GW-GUI.wiki.git` reçoit le résultat de la préparation.
 
-## Préparer localement
+## Préparer les fichiers localement
 
-Exécuter `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-wiki.ps1`.
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-wiki.ps1
+```
 
-Le script vérifie les langues, les noms des pages, les cibles des liens locaux et les images. Il prépare `build/wiki/`, conserve les dossiers et adapte les liens aux URL du Wiki GitHub. Cette commande prépare uniquement les fichiers locaux.
+Le script vérifie la présence des langues, l’unicité des noms de pages et les cibles des liens locaux. Il copie les pages et les images dans `build/wiki`, en convertissant les liens Markdown et les chemins des balises HTML `<img>` vers les URL adaptées à GitHub Wiki. Il conserve les dossiers par langue.
 
-## Publier sur demande
+## Publier les fichiers sur GitHub
 
-Exécuter `scripts/publish-wiki.cmd`. Git doit être installé et authentifié avec un compte autorisé à écrire dans le wiki. Avant la première publication, le wiki doit être activé et posséder sa première page GitHub.
+```powershell
+.\scripts\publish-wiki.cmd
+```
 
-Le script prépare les fichiers, clone `GW-GUI.wiki.git`, synchronise les pages et les images, puis crée un commit dans le dépôt du wiki et le pousse. Un manifeste permet de retirer les anciens fichiers issus du script. Les corrections se font dans les sources `wiki/` du dépôt principal.
+Cette commande lance `publish-wiki.ps1`, qui appelle d’abord `build-wiki.ps1`, clone le dépôt du wiki, synchronise les fichiers, puis effectue le commit et le push du wiki. Git doit disposer d’un accès en écriture au wiki ; le script reprend le nom et l’adresse de l’auteur configurés dans le dépôt principal.
 
-Le wiki se publie indépendamment des releases du logiciel. Les PDF ne sont plus générés ni distribués.
+Lors de la toute première mise en place, le wiki doit être activé et posséder une première page créée sur GitHub pour permettre son clonage.
+
+La préparation locale et la publication sont séparées pour pouvoir vérifier les fichiers sans les envoyer. Un push du dépôt principal ou une release du logiciel ne publie pas le wiki : sa publication se lance avec sa propre commande.
+
+Les noms de pages sont uniques et portent le code complet de langue. Les guides repris constituent une base à revoir progressivement avec le code actuel. L’aide de l’application ouvre directement la page de sa langue, avec un repli anglais pour une langue inconnue.
+
+Le script de publication utilise un manifeste pour retirer les anciens fichiers issus de ses publications. Les PDF ne sont plus générés ni distribués.

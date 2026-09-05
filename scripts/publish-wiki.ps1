@@ -5,12 +5,20 @@ $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $built = Join-Path $repository 'build\wiki'
 & (Join-Path $PSScriptRoot 'build-wiki.ps1')
 if (-not (Get-Command git -ErrorAction SilentlyContinue)) { throw 'Git is required.' }
+$authorName = git -C $repository config user.name
+if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($authorName)) { throw 'Configure user.name in the main repository before publishing the wiki.' }
+$authorEmail = git -C $repository config user.email
+if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($authorEmail)) { throw 'Configure user.email in the main repository before publishing the wiki.' }
 
 # Use a fresh checkout so local files can never be mistaken for old wiki pages.
 $checkout = Join-Path $repository ('build\wiki-publish-' + [Guid]::NewGuid().ToString('N'))
 git clone 'https://github.com/overthetop78/GW-GUI.wiki.git' $checkout
 if ($LASTEXITCODE -ne 0) { throw 'Wiki clone failed. Enable the wiki and create its initial page on GitHub before the first publication.' }
 try {
+    git -C $checkout config user.name $authorName
+    if ($LASTEXITCODE -ne 0) { throw 'Could not configure wiki author name.' }
+    git -C $checkout config user.email $authorEmail
+    if ($LASTEXITCODE -ne 0) { throw 'Could not configure wiki author email.' }
     # Only files recorded by our previous publication may be removed.
     $manifestPath = Join-Path $checkout '.gwgui-wiki-files.json'
     if (Test-Path -LiteralPath $manifestPath) {

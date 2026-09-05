@@ -269,8 +269,6 @@ Ces trois relevés enrichis instantanés ne contiennent que `usb gamepad` et `Xb
 - Un périphérique non typé affiche un choix **Auto** puis les modèles manuels.
 - SEGA Mega Drive est séparée en deux modèles : 3 boutons et 6 boutons.
 - Les silhouettes Xbox, PlayStation, Master System, SEGA Mega Drive, Saturn et Dreamcast ont été redessinées avec des formes, couleurs, commandes et matériaux propres à chaque matériel.
-- Planche de contrôle : docs/captures/controller-models-reference-20260823.png.
-- Capture de la vraie section WPF avec une Xbox Series injectée : docs/captures/options-controllers-xbox-series-reference-20260823.png.
 - Dernière lecture matérielle : la Xbox Series 045E:0B12 était déconnectée ; seules la manette USB 0810:E501 et la Turtle Beach 10F5:7122 étaient présentes. La validation physique du nom n'a donc pas été simulée.
 
 

@@ -7,6 +7,9 @@ La documentation est organisée par responsabilité. Les règles, les décisions
 - [Règles permanentes](project/rules.md)
 - [Décisions produit et explications confirmées](project/decisions.md)
 - [Préparation et publication du wiki](project/wiki.md)
+- [Développement avec .NET et organisation du dépôt](project/development.md)
+- [Publication des releases et snapshots](project/release.md)
+- [Tests disponibles et contrôles de release](project/testing.md)
 
 ## Architecture actuelle
 
