@@ -768,4 +768,9 @@
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>Inkoust a barvy</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>Papírový povrch</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>Obnovit a zbytkový obraz</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionLightOutput"><value>Výstup světla</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionAmbientLight"><value>Okolní světlo</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Ostří tmavnutí</value></data>
+  <data name="Emulation.Video.Projection.Group.Optics"><value>Optika a světlo</value></data>
+  <data name="Emulation.Video.Projection.Group.Screen"><value>Projekční plátno</value></data>
 </root>

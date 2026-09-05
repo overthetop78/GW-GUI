@@ -792,4 +792,9 @@
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>Фарби і фарби</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>Поверхня паперу</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>Рефреш і залишковий образ</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionLightOutput"><value>Світловідведення</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionAmbientLight"><value>Амбієнт світло</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Край темний</value></data>
+  <data name="Emulation.Video.Projection.Group.Optics"><value>Оптики і світло</value></data>
+  <data name="Emulation.Video.Projection.Group.Screen"><value>Екран проекції</value></data>
 </root>

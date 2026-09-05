@@ -889,4 +889,9 @@
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>Ink and colors</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>Paper surface</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>Refresh and residual image</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionLightOutput"><value>Light output</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionAmbientLight"><value>Ambient light</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Edge darkening</value></data>
+  <data name="Emulation.Video.Projection.Group.Optics"><value>Optics and light</value></data>
+  <data name="Emulation.Video.Projection.Group.Screen"><value>Projection screen</value></data>
 </root>

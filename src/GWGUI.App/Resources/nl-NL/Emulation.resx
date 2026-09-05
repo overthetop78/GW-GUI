@@ -746,4 +746,9 @@
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>Inkt en kleuren</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>Papieroppervlak</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>Afbeelding vernieuwen en resterend</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionLightOutput"><value>Lichtuitvoer</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionAmbientLight"><value>Omgevingslicht</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Randverduistering</value></data>
+  <data name="Emulation.Video.Projection.Group.Optics"><value>Optie en licht</value></data>
+  <data name="Emulation.Video.Projection.Group.Screen"><value>Projectiescherm</value></data>
 </root>

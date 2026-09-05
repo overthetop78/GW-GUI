@@ -174,6 +174,15 @@ public sealed class EmulationVideoProcessingPipelineTests
                 Assert.True(worker.Wait(TimeSpan.FromSeconds(30)),
                     $"{backend} timed out while building the electronic-paper pipeline.");
                 if (failure is not null) ExceptionDispatchInfo.Capture(failure).Throw();
+                surface.SetVideoProcessing(new EmulationVideoProcessingConfiguration
+                {
+                    DisplayTechnology = EmulationVideoDisplayTechnology.Projection,
+                    Projection = new(62, 56, 98, 34, 61, 18, 29)
+                });
+                worker = Task.Factory.StartNew(() => surface.Present(bright with { Sequence = 5 }),
+                    CancellationToken.None, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+                Assert.True(worker.Wait(TimeSpan.FromSeconds(30)),
+                    $"{backend} timed out while building the projection pipeline.");
             }
             finally
             {
@@ -344,6 +353,107 @@ public sealed class EmulationVideoProcessingPipelineTests
         });
     }
 
+    [Theory]
+    [Trait("Category", "GpuExhaustive")]
+    [InlineData(EmulationVideoRenderer.OpenGL)]
+    [InlineData(EmulationVideoRenderer.Direct3D11)]
+    [InlineData(EmulationVideoRenderer.Vulkan)]
+    public void ProjectionOptionsChangeActualGpuPixelsWithoutRebuilding(EmulationVideoRenderer renderer)
+    {
+        RunSta(() =>
+        {
+            using var surface = CreateDeterministicSurface(renderer);
+            var window = new System.Windows.Window
+            {
+                Content = surface.View, Width = 180, Height = 140,
+                Left = 20, Top = 20, Topmost = true,
+                WindowStyle = System.Windows.WindowStyle.None,
+                ShowInTaskbar = false, ShowActivated = false
+            };
+            using var commands = new System.Collections.Concurrent.BlockingCollection<Action>();
+            var worker = Task.Factory.StartNew(() =>
+            {
+                foreach (var command in commands.GetConsumingEnumerable()) command();
+            }, CancellationToken.None, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+            try
+            {
+                window.Show();
+                window.UpdateLayout();
+                var neutral = new EmulationProjectionVideoConfiguration(0, 0, 0, 0);
+                var variants = new Dictionary<string, EmulationProjectionVideoConfiguration>
+                {
+                    ["Neutral"] = neutral,
+                    ["OpticalBlur"] = neutral with { OpticalBlur = 100 },
+                    ["Diffusion"] = neutral with { Diffusion = 100 },
+                    ["ScreenTexture"] = neutral with { ScreenTexture = 100 },
+                    ["Convergence"] = neutral with { Convergence = 100 },
+                    ["LightOutput"] = neutral with { LightOutput = 100 },
+                    ["AmbientLight"] = neutral with { AmbientLight = 100 },
+                    ["Vignette"] = neutral with { Vignette = 100 }
+                };
+                var frame = AdvancedValidationFrame(16, 16);
+                byte[]? baseline = null;
+                foreach (var (name, configuration) in variants)
+                {
+                    var timer = System.Diagnostics.Stopwatch.StartNew();
+                    surface.SetVideoProcessing(new EmulationVideoProcessingConfiguration
+                    {
+                        DisplayTechnology = EmulationVideoDisplayTechnology.Projection,
+                        Projection = configuration
+                    });
+                    Exception? failure = null;
+                    using var presented = new ManualResetEventSlim();
+                    commands.Add(() =>
+                    {
+                        try { for (var repeat = 0; repeat < 4; repeat++) surface.Present(frame); }
+                        catch (Exception error) { failure = error; }
+                        finally { presented.Set(); }
+                    });
+                    Assert.True(presented.Wait(TimeSpan.FromSeconds(30)), renderer + " " + name);
+                    if (failure is not null) ExceptionDispatchInfo.Capture(failure).Throw();
+                    timer.Stop();
+                    if (baseline is not null)
+                        Assert.True(timer.ElapsedMilliseconds < 1000,
+                            $"{renderer} {name} took {timer.ElapsedMilliseconds} ms.");
+                    Thread.Sleep(40);
+                    var origin = surface.View.PointToScreen(new System.Windows.Point(0, 0));
+                    var width = Math.Max(1, (int)surface.View.ActualWidth);
+                    var height = Math.Max(1, (int)surface.View.ActualHeight);
+                    using var bitmap = new System.Drawing.Bitmap(width, height);
+                    using (var graphics = System.Drawing.Graphics.FromImage(bitmap))
+                        graphics.CopyFromScreen((int)origin.X, (int)origin.Y, 0, 0,
+                            new System.Drawing.Size(width, height));
+                    var image = new byte[width * height * 3];
+                    var index = 0;
+                    for (var y = 0; y < height; y++)
+                    for (var x = 0; x < width; x++)
+                    {
+                        var pixel = bitmap.GetPixel(x, y);
+                        image[index++] = pixel.R;
+                        image[index++] = pixel.G;
+                        image[index++] = pixel.B;
+                    }
+                    if (baseline is null)
+                    {
+                        Assert.True(image.Max() - image.Min() > 50, renderer + " has no visible image.");
+                        baseline = image;
+                    }
+                    else
+                    {
+                        var difference = image.Zip(baseline, (a, b) => Math.Abs(a - b)).Average();
+                        Assert.True(difference > .02, $"{renderer} {name} has no visible effect.");
+                    }
+                }
+            }
+            finally
+            {
+                commands.CompleteAdding();
+                worker.Wait(TimeSpan.FromSeconds(30));
+                window.Close();
+            }
+        });
+    }
+
     [Fact]
     public void OpenGlProgramBuildsAndPresentsAProcessedFrame()
     {
@@ -455,6 +565,14 @@ public sealed class EmulationVideoProcessingPipelineTests
                     2, 2, 8, EmulationPixelFormat.Xrgb8888, 1f, 6,
                     TimeSpan.FromMilliseconds(64)));
                 Assert.NotNull(surface.Snapshot);
+                surface.SetVideoProcessing(new EmulationVideoProcessingConfiguration
+                {
+                    DisplayTechnology = EmulationVideoDisplayTechnology.Projection,
+                    Projection = new(62, 56, 98, 34, 61, 18, 29)
+                });
+                surface.Present(new VideoFrame(Enumerable.Repeat((byte)170, 16).ToArray(),
+                    2, 2, 8, EmulationPixelFormat.Xrgb8888, 1f, 7,
+                    TimeSpan.FromMilliseconds(80)));
             }
             finally
             {
@@ -3229,9 +3347,15 @@ public sealed class EmulationVideoProcessingPipelineTests
         var variants = new[]
         {
             Render(new(100, 0, 0, 0)), Render(new(0, 100, 0, 0)),
-            Render(new(0, 0, 100, 0)), Render(new(0, 0, 0, 100))
+            Render(new(0, 0, 100, 0)), Render(new(0, 0, 0, 100)),
+            Render(new(0, 0, 0, 0, LightOutput: 100)),
+            Render(new(0, 0, 0, 0, AmbientLight: 100)),
+            Render(new(0, 0, 0, 0, Vignette: 100))
         };
         Assert.All(variants, variant => Assert.False(neutral.SequenceEqual(variant)));
+        Assert.Equal(EmulationVideoPixelFunctions.ToBgra32(frame), neutral);
+        Assert.False(neutral.SequenceEqual(Render(new(0, 0, 0, 1))));
+        Assert.Equal(Render(new(0, 0, 100, 0)), Render(new(0, 0, 100, 0)));
         Assert.Equal(variants.Length, variants.Select(variant => Convert.ToHexString(
             System.Security.Cryptography.SHA256.HashData(variant))).Distinct().Count());
     }

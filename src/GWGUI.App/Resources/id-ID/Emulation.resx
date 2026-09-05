@@ -756,4 +756,9 @@
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>Tinta dan warna</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>Permukaan Kertas</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>Segarkan dan sisa gambar</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionLightOutput"><value>Keluaran ringan</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionAmbientLight"><value>Cahaya Ambient</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Kegelaman tepi</value></data>
+  <data name="Emulation.Video.Projection.Group.Optics"><value>Optik dan cahaya</value></data>
+  <data name="Emulation.Video.Projection.Group.Screen"><value>Layar proyeksi</value></data>
 </root>

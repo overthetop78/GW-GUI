@@ -795,4 +795,9 @@
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>墨水和颜色</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>纸张表面</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>刷新和剩余图像</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionLightOutput"><value>光输出</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionAmbientLight"><value>环境光</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionVignette"><value>边缘变暗</value></data>
+  <data name="Emulation.Video.Projection.Group.Optics"><value>光线和光线</value></data>
+  <data name="Emulation.Video.Projection.Group.Screen"><value>投影屏幕</value></data>
 </root>

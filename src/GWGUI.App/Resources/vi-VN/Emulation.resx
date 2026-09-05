@@ -779,4 +779,9 @@
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>Ink và màu</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>Bề mặt giấy</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>Cập nhật và lưu ảnh</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionLightOutput"><value>Đầu ra ánh sáng</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionAmbientLight"><value>Ánh sáng chung quanh</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Tối về cạnh</value></data>
+  <data name="Emulation.Video.Projection.Group.Optics"><value>Mắt và ánh sáng</value></data>
+  <data name="Emulation.Video.Projection.Group.Screen"><value>Màn hình chiếu</value></data>
 </root>

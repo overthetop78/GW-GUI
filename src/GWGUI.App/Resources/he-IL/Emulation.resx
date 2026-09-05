@@ -791,4 +791,9 @@
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>דיו וצבעים</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>נייר משטח</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>תמונה מרעננים והחיונית</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionLightOutput"><value>Lightפלט</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionAmbientLight"><value>אור  Ambient Light</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionVignette"><value>תגית: Darking</value></data>
+  <data name="Emulation.Video.Projection.Group.Optics"><value>אופטיקה ואור</value></data>
+  <data name="Emulation.Video.Projection.Group.Screen"><value>מסך Projection</value></data>
 </root>

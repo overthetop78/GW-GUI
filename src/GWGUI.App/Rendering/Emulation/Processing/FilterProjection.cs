@@ -8,27 +8,33 @@ internal static class FilterProjection
         EmulationProjectionVideoConfiguration configuration)
     {
         var source = colors.ToArray();
-        var radius = configuration.OpticalBlur > 60 ? 2 : 1;
+        var radius = 2;
         var blur = configuration.OpticalBlur / 100f;
-        var diffusion = configuration.Diffusion / 100f * 0.35f;
-        var texture = configuration.ScreenTexture / 100f * 0.22f;
-        var shift = (int)MathF.Round(configuration.Convergence / 100f * 3f);
+        var diffusion = configuration.Diffusion / 100f;
+        var texture = configuration.ScreenTexture / 100f;
+        var shift = FilterProjectionConvergence.Apply(configuration.Convergence / 100f);
         for (var y = 0; y < height; y++)
         for (var x = 0; x < width; x++)
         {
             var center = (y * width + x) * 3;
             var average = Neighborhood(source, width, height, x, y, radius);
-            var red = Lerp(Sample(source, width, height, x - shift, y, 0), average.R, blur);
-            var green = Lerp(source[center + 1], average.G, blur);
-            var blue = Lerp(Sample(source, width, height, x + shift, y, 2), average.B, blur);
-            red = Math.Clamp(red + average.R * diffusion, 0f, 1f);
-            green = Math.Clamp(green + average.G * diffusion, 0f, 1f);
-            blue = Math.Clamp(blue + average.B * diffusion, 0f, 1f);
-            var weave = ((x & 3) == 0 ? 0.65f : 0f) + ((y & 3) == 0 ? 0.35f : 0f);
-            var screen = 1f - texture * weave;
-            colors[center] = red * screen;
-            colors[center + 1] = green * screen;
-            colors[center + 2] = blue * screen;
+            var red = FilterProjectionOpticalBlur.Apply(Sample(source, width, height, x - shift, y, 0), average.R, blur);
+            var green = FilterProjectionOpticalBlur.Apply(source[center + 1], average.G, blur);
+            var blue = FilterProjectionOpticalBlur.Apply(Sample(source, width, height, x + shift, y, 2), average.B, blur);
+            red = FilterProjectionDiffusion.Apply(red, average.R, diffusion);
+            green = FilterProjectionDiffusion.Apply(green, average.G, diffusion);
+            blue = FilterProjectionDiffusion.Apply(blue, average.B, diffusion);
+            float Compose(float value)
+            {
+                value = FilterProjectionLightOutput.Apply(value, configuration.LightOutput / 100f);
+                value = FilterProjectionVignette.Apply(value, (x + .5f) / width,
+                    (y + .5f) / height, configuration.Vignette / 100f);
+                value = FilterProjectionAmbientLight.Apply(value, configuration.AmbientLight / 100f);
+                return FilterProjectionScreenTexture.Apply(value, x, y, texture);
+            }
+            colors[center] = Compose(red);
+            colors[center + 1] = Compose(green);
+            colors[center + 2] = Compose(blue);
         }
     }
 
@@ -53,11 +59,14 @@ internal static class FilterProjection
         return (red / count, green / count, blue / count);
     }
 
-    private static float Sample(float[] source, int width, int height, int x, int y, int channel)
+    private static float Sample(float[] source, int width, int height, float x, int y, int channel)
     {
-        x = Math.Clamp(x, 0, width - 1);
+        x = Math.Clamp(x, 0f, width - 1f);
         y = Math.Clamp(y, 0, height - 1);
-        return source[(y * width + x) * 3 + channel];
+        var left = (int)MathF.Floor(x);
+        var right = Math.Min(width - 1, left + 1);
+        return Lerp(source[(y * width + left) * 3 + channel],
+            source[(y * width + right) * 3 + channel], x - left);
     }
 
     private static float Lerp(float start, float end, float amount) =>

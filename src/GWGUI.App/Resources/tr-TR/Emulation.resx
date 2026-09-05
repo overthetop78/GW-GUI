@@ -746,4 +746,9 @@
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>Ink ve renkler</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>Kağıt Yüzeyi</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>Yenileme ve ikametçi görüntü</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionLightOutput"><value>Işık Çıktısı</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionAmbientLight"><value>Ortam Işığı</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Edge karanlıklaştırma</value></data>
+  <data name="Emulation.Video.Projection.Group.Optics"><value>Optik ve ışık</value></data>
+  <data name="Emulation.Video.Projection.Group.Screen"><value>Projection ekran</value></data>
 </root>

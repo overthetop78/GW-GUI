@@ -509,23 +509,9 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
         EmulationEPaperSettingsBlock.Create(_configuration.EPaper,
             update => SetEPaper(update(_configuration.EPaper)), RebuildContent);
 
-    private FrameworkElement CreateProjectionPanel()
-    {
-        var projection = _configuration.Projection;
-        var panel = Section(EmulationResourceKeys.VideoTechnologyProjection);
-        AddIntensity(panel, EmulationVideoProcessingCatalog.ProjectionOpticalBlur,
-            projection.OpticalBlur,
-            value => SetProjection(_configuration.Projection with { OpticalBlur = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.ProjectionDiffusion,
-            projection.Diffusion, value => SetProjection(_configuration.Projection with { Diffusion = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.ProjectionScreenTexture,
-            projection.ScreenTexture,
-            value => SetProjection(_configuration.Projection with { ScreenTexture = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.ProjectionConvergence,
-            projection.Convergence,
-            value => SetProjection(_configuration.Projection with { Convergence = value }));
-        return panel;
-    }
+    private FrameworkElement CreateProjectionPanel() =>
+        EmulationProjectionSettingsBlock.Create(_configuration.Projection,
+            update => SetProjection(update(_configuration.Projection)));
 
     private static StackPanel Section(string resourceKey)
     {

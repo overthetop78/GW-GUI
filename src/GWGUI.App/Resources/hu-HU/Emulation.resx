@@ -769,4 +769,8 @@
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>Tinta és színek</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>Papírfelület</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>Frissítés és visszamaradt kép</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionLightOutput"><value>Fénykimenet</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionAmbientLight"><value>Környezeti fény</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionVignette"><value>A szélek sötétedése</value></data>
+  <data name="Emulation.Video.Projection.Group.Screen"><value>Vetítővászon</value></data>
 </root>

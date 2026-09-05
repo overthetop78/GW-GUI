@@ -795,4 +795,9 @@
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>الحبر والألوان</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>سطح الورق</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>صورة متجددة وصورة متبقية</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionLightOutput"><value>الناتج الخفيف</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionAmbientLight"><value>ضوء عال</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionVignette"><value>ظالمة</value></data>
+  <data name="Emulation.Video.Projection.Group.Optics"><value>الأفيون والضوء</value></data>
+  <data name="Emulation.Video.Projection.Group.Screen"><value>شاشة الإسقاط</value></data>
 </root>

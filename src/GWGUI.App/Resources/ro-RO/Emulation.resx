@@ -756,4 +756,9 @@
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>Cerneală și culori</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>Suprafață de hârtie</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>Reîmprospătează și imaginea reziduală</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionLightOutput"><value>Ieșire ușoară</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionAmbientLight"><value>Lumina ambientală</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Întuneric margine</value></data>
+  <data name="Emulation.Video.Projection.Group.Optics"><value>Optica si lumina</value></data>
+  <data name="Emulation.Video.Projection.Group.Screen"><value>Ecranul de proiectie</value></data>
 </root>

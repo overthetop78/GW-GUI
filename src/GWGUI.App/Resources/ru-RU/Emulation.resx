@@ -791,4 +791,9 @@
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>Чернила и цвета</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>Бумажная поверхность</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>Обновление и остаточное изображение</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionLightOutput"><value>Световой выход</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionAmbientLight"><value>Огни окружающей среды</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Край темнеет</value></data>
+  <data name="Emulation.Video.Projection.Group.Optics"><value>Оптика и свет</value></data>
+  <data name="Emulation.Video.Projection.Group.Screen"><value>Экран проекции</value></data>
 </root>

@@ -404,7 +404,8 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
         Vector4 EPaperInkAndColor,
         Vector4 EPaperSurface,
         Vector4 EPaperTemporal,
-        Vector4 Projection);
+        Vector4 Projection,
+        Vector4 ProjectionScreen);
 
     private static VideoParameters Parameters(EmulationVideoProcessingConfiguration configuration,
         int sourceWidth, int sourceHeight, int outputWidth, int outputHeight,
@@ -459,6 +460,8 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
             ledMatrix.Emission, ledMatrix.Structure,
             dotMatrix.Geometry, dotMatrix.Emission, dotMatrix.Temporal,
             ePaper.InkAndColor, ePaper.PaperSurface, ePaper.Temporal,
-            new Vector4(configuration.Projection.OpticalBlur / 100f, configuration.Projection.Diffusion / 100f, configuration.Projection.ScreenTexture / 100f, configuration.Projection.Convergence / 100f));
+            new Vector4(configuration.Projection.OpticalBlur / 100f, configuration.Projection.Diffusion / 100f, configuration.Projection.ScreenTexture / 100f, configuration.Projection.Convergence / 100f),
+            new Vector4(configuration.Projection.LightOutput / 100f,
+                configuration.Projection.AmbientLight / 100f, configuration.Projection.Vignette / 100f, 0f));
     }
 }

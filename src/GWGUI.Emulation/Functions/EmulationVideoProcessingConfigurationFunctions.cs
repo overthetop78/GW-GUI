@@ -211,7 +211,10 @@ public static class EmulationVideoProcessingConfigurationFunctions
                 OpticalBlur = Intensity(projection.OpticalBlur),
                 Diffusion = Intensity(projection.Diffusion),
                 ScreenTexture = Intensity(projection.ScreenTexture),
-                Convergence = Intensity(projection.Convergence)
+                Convergence = Intensity(projection.Convergence),
+                LightOutput = Intensity(projection.LightOutput),
+                AmbientLight = Intensity(projection.AmbientLight),
+                Vignette = Intensity(projection.Vignette)
             }
         };
     }

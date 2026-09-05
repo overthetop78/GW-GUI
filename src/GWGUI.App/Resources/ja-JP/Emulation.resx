@@ -796,4 +796,9 @@
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>インクと色</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>ペーパー表面</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>リフレッシュと残留イメージ</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionLightOutput"><value>軽い出力</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionAmbientLight"><value>周囲光</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionVignette"><value>エッジダークニング</value></data>
+  <data name="Emulation.Video.Projection.Group.Optics"><value>光と光</value></data>
+  <data name="Emulation.Video.Projection.Group.Screen"><value>投影スクリーン</value></data>
 </root>

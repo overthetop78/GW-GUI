@@ -141,6 +141,9 @@ public static class EmulationVideoProcessingCatalog
     public const string ProjectionDiffusion = nameof(ProjectionDiffusion);
     public const string ProjectionScreenTexture = nameof(ProjectionScreenTexture);
     public const string ProjectionConvergence = nameof(ProjectionConvergence);
+    public const string ProjectionLightOutput = nameof(ProjectionLightOutput);
+    public const string ProjectionAmbientLight = nameof(ProjectionAmbientLight);
+    public const string ProjectionVignette = nameof(ProjectionVignette);
 
     public const string ExclusiveDisplayTechnology = nameof(ExclusiveDisplayTechnology);
     public const string UnsupportedBackend = nameof(UnsupportedBackend);
@@ -189,7 +192,8 @@ public static class EmulationVideoProcessingCatalog
         EPaperRefreshTime, EPaperGhosting, EPaperInkDensity, EPaperPaperBrightness,
         EPaperPaperWarmth, EPaperColorSaturation, EPaperSurfaceTexture,
         EPaperEdgeSoftness, ProjectionOpticalBlur, ProjectionDiffusion,
-        ProjectionScreenTexture, ProjectionConvergence
+        ProjectionScreenTexture, ProjectionConvergence, ProjectionLightOutput,
+        ProjectionAmbientLight, ProjectionVignette
     ];
 
     public static IReadOnlyDictionary<EmulationVideoDisplayTechnology, string> DisplayTechnologyResourceKeys { get; }
@@ -366,7 +370,9 @@ public static class EmulationVideoProcessingCatalog
             [EPaperPaperWarmth] = 35, [EPaperColorSaturation] = 55,
             [EPaperSurfaceTexture] = 10, [EPaperEdgeSoftness] = 10,
             [ProjectionOpticalBlur] = 20, [ProjectionDiffusion] = 15,
-            [ProjectionScreenTexture] = 10, [ProjectionConvergence] = 5
+            [ProjectionScreenTexture] = 10, [ProjectionConvergence] = 5,
+            [ProjectionLightOutput] = 50, [ProjectionAmbientLight] = 0,
+            [ProjectionVignette] = 0
         };
 
     public static IReadOnlyDictionary<string, EmulationVideoDisplayTechnology> RequiredTechnologies { get; } =
@@ -438,7 +444,7 @@ public static class EmulationVideoProcessingCatalog
         Add(SegmentDisplayLayout, SegmentDisplayPersistence,
             EmulationVideoDisplayTechnology.SegmentDisplay);
         Add(EPaperColorMode, EPaperEdgeSoftness, EmulationVideoDisplayTechnology.EPaper);
-        Add(ProjectionOpticalBlur, ProjectionConvergence,
+        Add(ProjectionOpticalBlur, ProjectionVignette,
             EmulationVideoDisplayTechnology.Projection);
         return result;
 

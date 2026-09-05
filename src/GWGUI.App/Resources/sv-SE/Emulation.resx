@@ -720,4 +720,9 @@
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>Ink och färger</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>Pappersyta</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>Uppfrisk och resterande bild</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionLightOutput"><value>Ljusproduktion</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionAmbientLight"><value>omgivande ljus</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Edge mörkare</value></data>
+  <data name="Emulation.Video.Projection.Group.Optics"><value>Optik och ljus</value></data>
+  <data name="Emulation.Video.Projection.Group.Screen"><value>Projektionsskärm</value></data>
 </root>

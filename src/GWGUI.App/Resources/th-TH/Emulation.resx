@@ -795,4 +795,9 @@
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>หมึกและสี</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>ผิวกระดาษ</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>ปรับปรุงภาพและภาพที่ซ้ํากัน</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionLightOutput"><value>แสดงผลด้วยแสง</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionAmbientLight"><value>แสงอาคม</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionVignette"><value>ความมืดของขอบ</value></data>
+  <data name="Emulation.Video.Projection.Group.Optics"><value>ปฏิภาณและแสง</value></data>
+  <data name="Emulation.Video.Projection.Group.Screen"><value>หน้าจอคํานวณ</value></data>
 </root>

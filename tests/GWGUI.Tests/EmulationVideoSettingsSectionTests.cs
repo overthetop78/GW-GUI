@@ -455,6 +455,39 @@ public sealed class EmulationVideoSettingsSectionTests
     }
 
     [Fact]
+    public void ProjectionGroupsAndSuccessiveEditsPreserveEveryOption()
+    {
+        RunSta(() =>
+        {
+            var panel = new EmulationVideoProcessingSettingsSection();
+            panel.SetConfiguration(new EmulationVideoProcessingConfiguration
+            {
+                DisplayTechnology = EmulationVideoDisplayTechnology.Projection
+            });
+            CheckGroup(EmulationResourceKeys.VideoProjectionGroupOptics,
+                EmulationVideoProcessingCatalog.ProjectionOpticalBlur,
+                EmulationVideoProcessingCatalog.ProjectionDiffusion,
+                EmulationVideoProcessingCatalog.ProjectionConvergence,
+                EmulationVideoProcessingCatalog.ProjectionLightOutput);
+            CheckGroup(EmulationResourceKeys.VideoProjectionGroupScreen,
+                EmulationVideoProcessingCatalog.ProjectionScreenTexture,
+                EmulationVideoProcessingCatalog.ProjectionAmbientLight,
+                EmulationVideoProcessingCatalog.ProjectionVignette);
+            Assert.Equal(new EmulationProjectionVideoConfiguration(31, 31, 31, 31, 31, 31, 31),
+                panel.Configuration.Projection);
+
+            void CheckGroup(string groupId, params string[] options)
+            {
+                var group = FindByAutomationId<Border>(panel, groupId);
+                Assert.Equal(options.Order(StringComparer.Ordinal),
+                    AutomationIds(group).Where(id => id != groupId).Order(StringComparer.Ordinal));
+                foreach (var id in options)
+                    FindByAutomationId<Slider>(group, id).Value = 31;
+            }
+        });
+    }
+
+    [Fact]
     public void ConditionalRebuildPreservesTheSelectedVideoTab()
     {
         RunSta(() =>

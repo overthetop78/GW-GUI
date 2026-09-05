@@ -794,4 +794,9 @@
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>Μελάνι και χρώματα</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>Επιφάνειες χαρτιού</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>Ανανέωση και υπολειπόμενη εικόνα</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionLightOutput"><value>Έξοδος φωτός</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionAmbientLight"><value>Περιβάλλον</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Σκουραίνει η άκρη</value></data>
+  <data name="Emulation.Video.Projection.Group.Optics"><value>Οπτικά και φως</value></data>
+  <data name="Emulation.Video.Projection.Group.Screen"><value>Οθόνη προβολής</value></data>
 </root>

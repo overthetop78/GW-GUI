@@ -754,4 +754,9 @@
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>Tinta y colores</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>Superficie de papel</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>Imagen refinada y residual</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionLightOutput"><value>Producción de luz</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionAmbientLight"><value>Luz ambiente</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Oscurecedor de bordes</value></data>
+  <data name="Emulation.Video.Projection.Group.Optics"><value>Óptica y luz</value></data>
+  <data name="Emulation.Video.Projection.Group.Screen"><value>Pantalla de proyección</value></data>
 </root>

@@ -771,4 +771,9 @@
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>Muste ja värit</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>Paperin pinta</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>Päivitä ja jätä kuva</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionLightOutput"><value>Valoteho</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionAmbientLight"><value>Ympäristövalo</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Edgen tummuminen</value></data>
+  <data name="Emulation.Video.Projection.Group.Optics"><value>Optiikka ja valo</value></data>
+  <data name="Emulation.Video.Projection.Group.Screen"><value>Projection-näyttö</value></data>
 </root>

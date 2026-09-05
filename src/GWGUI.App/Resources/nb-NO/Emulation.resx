@@ -744,4 +744,9 @@
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>Blek og farger</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>Papiroverflate</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>Oppdater og gjenværende bilde</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionLightOutput"><value>Lysutgang</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionAmbientLight"><value>Ambient lys</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Edge formørkelse</value></data>
+  <data name="Emulation.Video.Projection.Group.Optics"><value>Optikk og lys</value></data>
+  <data name="Emulation.Video.Projection.Group.Screen"><value>Projeksjonsskjerm</value></data>
 </root>

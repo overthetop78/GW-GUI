@@ -100,7 +100,8 @@ public sealed class EmulationVideoConfigurationTests
                 PaperBrightness: 103, PaperWarmth: -3, ColorSaturation: 104,
                 SurfaceTexture: -4, EdgeSoftness: 105),
             Projection = new(OpticalBlur: 101, Diffusion: -1,
-                ScreenTexture: 102, Convergence: -2)
+                ScreenTexture: 102, Convergence: -2,
+                LightOutput: 103, AmbientLight: -3, Vignette: 104)
         });
 
         Assert.Equal(EmulationVideoDisplayTechnology.Normal, normalized.DisplayTechnology);
@@ -194,6 +195,9 @@ public sealed class EmulationVideoConfigurationTests
         Assert.Equal(0, normalized.Projection.Diffusion);
         Assert.Equal(100, normalized.Projection.ScreenTexture);
         Assert.Equal(0, normalized.Projection.Convergence);
+        Assert.Equal(100, normalized.Projection.LightOutput);
+        Assert.Equal(0, normalized.Projection.AmbientLight);
+        Assert.Equal(100, normalized.Projection.Vignette);
         Assert.Equal(Math.Pow(2d, -0.5d), EmulationImageAdjustmentFunctions.GammaExponent(5), 12);
     }
 
@@ -397,7 +401,8 @@ public sealed class EmulationVideoConfigurationTests
         EPaper = new(EmulationEPaperColorMode.Color4096, Contrast: 83, Dithering: 41,
             RefreshTimeMilliseconds: 640, Ghosting: 27),
         Projection = new(OpticalBlur: 31, Diffusion: 24,
-            ScreenTexture: 17, Convergence: 12)
+            ScreenTexture: 17, Convergence: 12, LightOutput: 61,
+            AmbientLight: 18, Vignette: 29)
     };
 
     private static string SingleMachineDocument(string directory) =>

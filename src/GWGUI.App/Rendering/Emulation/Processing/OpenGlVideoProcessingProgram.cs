@@ -62,6 +62,7 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
     private readonly int _ePaperSurfaceLocation;
     private readonly int _ePaperTemporalLocation;
     private readonly int _projectionLocation;
+    private readonly int _projectionScreenLocation;
 
     internal OpenGlVideoProcessingProgram(EmulationVideoSampling sampling,
         EmulationVideoDisplayTechnology displayTechnology)
@@ -139,6 +140,7 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
         _ePaperSurfaceLocation = _getUniformLocation(_program, "EPaperSurface");
         _ePaperTemporalLocation = _getUniformLocation(_program, "EPaperTemporal");
         _projectionLocation = _getUniformLocation(_program, "Projection");
+        _projectionScreenLocation = _getUniformLocation(_program, "ProjectionScreen");
         _useProgram(_program);
         _uniform1i(_sourceLocation, 0);
         _uniform1i(_historyLocation, 1);
@@ -218,6 +220,8 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
         Set(_ePaperSurfaceLocation, ePaper.PaperSurface);
         Set(_ePaperTemporalLocation, ePaper.Temporal);
         Set(_projectionLocation, new(configuration.Projection.OpticalBlur / 100f, configuration.Projection.Diffusion / 100f, configuration.Projection.ScreenTexture / 100f, configuration.Projection.Convergence / 100f));
+        Set(_projectionScreenLocation, new(configuration.Projection.LightOutput / 100f,
+            configuration.Projection.AmbientLight / 100f, configuration.Projection.Vignette / 100f, 0f));
     }
 
     private void Set(int location, System.Numerics.Vector4 value) =>
@@ -360,6 +364,7 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
         uniform vec4 EPaperSurface;
         uniform vec4 EPaperTemporal;
         uniform vec4 Projection;
+        uniform vec4 ProjectionScreen;
         varying vec2 TextureCoordinate;
 
         """ + VideoBrightnessParameterFunctions.Shader
@@ -880,6 +885,9 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
                 clamp(level*(core+halo),0.0,1.0));
         }
         #endif
+        #if DISPLAY_TECHNOLOGY == 10
+        """ + "\n" + ProjectionVideoShader.Create(false) + "\n" + """
+        #endif
         vec3 extraDisplay(vec3 color,vec2 uv){int t=int(General.x+.5);vec2 p=floor(uv*Output.xy);
         #if DISPLAY_TECHNOLOGY == 5
             if(t==5)color=vfdPixel(color,uv);
@@ -897,7 +905,7 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
             if(t==9)color=ePaperPixel(uv);
         #endif
         #if DISPLAY_TECHNOLOGY == 10
-            if(t==10){vec2 s=1.0/max(Output.xy,vec2(1.0));color=mix(color,(extraRaw(uv-s)+extraRaw(uv+s))*.5,Projection.x*.55+Projection.y*.25);color*=1.0-(extraHash(p)-.5)*Projection.z*.12;}
+            if(t==10)color=projectionPixel(uv);
         #endif
             return clamp(color,0.0,1.0);}
         """ + SignalConnectionRgbScart.Shader + SignalConnectionComponent.Shader

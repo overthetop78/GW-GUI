@@ -230,6 +230,11 @@ public static class EmulationResourceKeys
     public const string VideoParameterProjectionDiffusion = "Emulation.Video.Parameter.ProjectionDiffusion";
     public const string VideoParameterProjectionScreenTexture = "Emulation.Video.Parameter.ProjectionScreenTexture";
     public const string VideoParameterProjectionConvergence = "Emulation.Video.Parameter.ProjectionConvergence";
+    public const string VideoParameterProjectionLightOutput = "Emulation.Video.Parameter.ProjectionLightOutput";
+    public const string VideoParameterProjectionAmbientLight = "Emulation.Video.Parameter.ProjectionAmbientLight";
+    public const string VideoParameterProjectionVignette = "Emulation.Video.Parameter.ProjectionVignette";
+    public const string VideoProjectionGroupOptics = "Emulation.Video.Projection.Group.Optics";
+    public const string VideoProjectionGroupScreen = "Emulation.Video.Projection.Group.Screen";
     public const string VideoDeinterlacingOff = "Emulation.Video.Deinterlacing.Off";
     public const string VideoDeinterlacingBobEvenLines = "Emulation.Video.Deinterlacing.BobEvenLines";
     public const string VideoDeinterlacingBobOddLines = "Emulation.Video.Deinterlacing.BobOddLines";

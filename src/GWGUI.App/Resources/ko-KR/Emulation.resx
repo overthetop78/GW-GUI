@@ -795,4 +795,9 @@
   <data name="Emulation.Video.EPaper.Group.InkAndColor"><value>잉크와 색깔</value></data>
   <data name="Emulation.Video.EPaper.Group.PaperSurface"><value>종이 표면</value></data>
   <data name="Emulation.Video.EPaper.Group.Refresh"><value>새로 고침 및 잔여 이미지</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionLightOutput"><value>빛 산출</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionAmbientLight"><value>주위 빛</value></data>
+  <data name="Emulation.Video.Parameter.ProjectionVignette"><value>연락처</value></data>
+  <data name="Emulation.Video.Projection.Group.Optics"><value>광학 및 빛</value></data>
+  <data name="Emulation.Video.Projection.Group.Screen"><value>Projection 스크린</value></data>
 </root>
