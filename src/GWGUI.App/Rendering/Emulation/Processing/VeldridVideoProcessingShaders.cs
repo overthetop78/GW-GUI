@@ -491,69 +491,69 @@ internal static class VeldridVideoProcessingShaders
         }
         """;
 
-    internal static string Fragment(GWGUI.Emulation.Enums.EmulationVideoSampling sampling,
-        GWGUI.Emulation.Enums.EmulationVideoDisplayTechnology displayTechnology =
-            GWGUI.Emulation.Enums.EmulationVideoDisplayTechnology.Normal)
+    internal static string Fragment(GWGUI.VideoPresentation.Enums.EmulationVideoSampling sampling,
+        GWGUI.VideoPresentation.Enums.EmulationVideoDisplayTechnology displayTechnology =
+            GWGUI.VideoPresentation.Enums.EmulationVideoDisplayTechnology.Normal)
     {
         var (dependencies, function) = sampling switch
         {
-            GWGUI.Emulation.Enums.EmulationVideoSampling.Nearest =>
+            GWGUI.VideoPresentation.Enums.EmulationVideoSampling.Nearest =>
                 (FilterNormal.VeldridShader, "nearestSample"),
-            GWGUI.Emulation.Enums.EmulationVideoSampling.Bilinear =>
+            GWGUI.VideoPresentation.Enums.EmulationVideoSampling.Bilinear =>
                 (FilterBilinear.VeldridShader, "linearSampleCompact"),
-            GWGUI.Emulation.Enums.EmulationVideoSampling.SharpBilinear =>
+            GWGUI.VideoPresentation.Enums.EmulationVideoSampling.SharpBilinear =>
                 (FilterBilinear.VeldridShader + FilterSharpBilinear.VeldridShader,
                     "sharpBilinearSampleCompact"),
-            GWGUI.Emulation.Enums.EmulationVideoSampling.Bicubic =>
+            GWGUI.VideoPresentation.Enums.EmulationVideoSampling.Bicubic =>
                 (FilterNormal.VeldridShader + FilterBicubic.VeldridShader,
                     "bicubicSampleCompact"),
-            GWGUI.Emulation.Enums.EmulationVideoSampling.Xbr =>
+            GWGUI.VideoPresentation.Enums.EmulationVideoSampling.Xbr =>
                 (FilterNormal.VeldridShader + FilterXbr.VeldridShader, "xbrCompactSample"),
-            GWGUI.Emulation.Enums.EmulationVideoSampling.Xbrz =>
+            GWGUI.VideoPresentation.Enums.EmulationVideoSampling.Xbrz =>
                 (FilterNormal.VeldridShader + FilterXbr.VeldridShader
                     + FilterXbrz.VeldridShader, "xbrzCompactSample"),
-            GWGUI.Emulation.Enums.EmulationVideoSampling.Hqx =>
+            GWGUI.VideoPresentation.Enums.EmulationVideoSampling.Hqx =>
                 (FilterNormal.VeldridShader + FilterBilinear.VeldridShader
                     + FilterXbr.VeldridShader + FilterHqx.VeldridShader, "hqxCompactSample"),
-            GWGUI.Emulation.Enums.EmulationVideoSampling.Hq2x =>
+            GWGUI.VideoPresentation.Enums.EmulationVideoSampling.Hq2x =>
                 (FilterNormal.VeldridShader + FilterBilinear.VeldridShader
                     + FilterXbr.VeldridShader + FilterHqx.VeldridShader
                     + FilterHq2x.VeldridShader, "hq2xSampleCompact"),
-            GWGUI.Emulation.Enums.EmulationVideoSampling.Hq3x =>
+            GWGUI.VideoPresentation.Enums.EmulationVideoSampling.Hq3x =>
                 (FilterNormal.VeldridShader + FilterBilinear.VeldridShader
                     + FilterXbr.VeldridShader + FilterHqx.VeldridShader
                     + FilterHq3x.VeldridShader, "hq3xSampleCompact"),
-            GWGUI.Emulation.Enums.EmulationVideoSampling.Hq4x =>
+            GWGUI.VideoPresentation.Enums.EmulationVideoSampling.Hq4x =>
                 (FilterNormal.VeldridShader + FilterBilinear.VeldridShader
                     + FilterXbr.VeldridShader + FilterHqx.VeldridShader
                     + FilterHq4x.VeldridShader, "hq4xSampleCompact"),
-            GWGUI.Emulation.Enums.EmulationVideoSampling.TwoXSai =>
+            GWGUI.VideoPresentation.Enums.EmulationVideoSampling.TwoXSai =>
                 (FilterNormal.VeldridShader + FilterXbr.VeldridShader
                     + FilterTwoXSai.VeldridShader, "twoXSaiSampleCompact"),
-            GWGUI.Emulation.Enums.EmulationVideoSampling.SuperTwoXSai =>
+            GWGUI.VideoPresentation.Enums.EmulationVideoSampling.SuperTwoXSai =>
                 (FilterNormal.VeldridShader + FilterBilinear.VeldridShader
                     + FilterXbr.VeldridShader + FilterTwoXSai.VeldridShader
                     + FilterSuperTwoXSai.VeldridShader, "superTwoXSaiSampleCompact"),
-            GWGUI.Emulation.Enums.EmulationVideoSampling.SuperEagle =>
+            GWGUI.VideoPresentation.Enums.EmulationVideoSampling.SuperEagle =>
                 (FilterNormal.VeldridShader + FilterBilinear.VeldridShader
                     + FilterXbr.VeldridShader + FilterTwoXSai.VeldridShader
                     + FilterSuperEagle.VeldridShader, "superEagleSampleCompact"),
-            GWGUI.Emulation.Enums.EmulationVideoSampling.EpxScale2x =>
+            GWGUI.VideoPresentation.Enums.EmulationVideoSampling.EpxScale2x =>
                 (FilterNormal.VeldridShader + FilterXbr.VeldridShader
                     + FilterEpxScale2x.VeldridShader, "epxScale2xSampleCompact"),
-            GWGUI.Emulation.Enums.EmulationVideoSampling.Jinc2 =>
+            GWGUI.VideoPresentation.Enums.EmulationVideoSampling.Jinc2 =>
                 (FilterNormal.VeldridShader + FilterJinc2.VeldridShader,
                     "jinc2SampleCompact"),
-            GWGUI.Emulation.Enums.EmulationVideoSampling.Lanczos =>
+            GWGUI.VideoPresentation.Enums.EmulationVideoSampling.Lanczos =>
                 (FilterNormal.VeldridShader + FilterLanczos.VeldridShader,
                     "lanczosSampleCompact"),
-            GWGUI.Emulation.Enums.EmulationVideoSampling.ScaleFx =>
+            GWGUI.VideoPresentation.Enums.EmulationVideoSampling.ScaleFx =>
                 (FilterNormal.VeldridShader + FilterXbr.VeldridShader
                     + FilterScaleFx.VeldridShader, "scaleFxCompactSample"),
-            GWGUI.Emulation.Enums.EmulationVideoSampling.ScaleNx =>
+            GWGUI.VideoPresentation.Enums.EmulationVideoSampling.ScaleNx =>
                 (FilterNormal.VeldridShader + FilterXbr.VeldridShader
                     + FilterScaleNx.VeldridShader, "scaleNxCompactSample"),
-            GWGUI.Emulation.Enums.EmulationVideoSampling.Sabr =>
+            GWGUI.VideoPresentation.Enums.EmulationVideoSampling.Sabr =>
                 (FilterNormal.VeldridShader + FilterBilinear.VeldridShader
                     + FilterXbr.VeldridShader + FilterSabr.VeldridShader, "sabrCompactSample"),
             _ => throw new ArgumentOutOfRangeException(nameof(sampling), sampling, null)

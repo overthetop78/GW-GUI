@@ -22,9 +22,7 @@ internal static class AtariConfigurationStoreFunctions
         new Dictionary<string, string>(configuration.Options),
         configuration.Input,
         StoreFolders(configuration.Folders, pathBase),
-        configuration.AudioEnabled,
-        configuration.VideoRenderer,
-        configuration.VideoProcessing);
+        configuration.AudioEnabled);
 
     internal static AtariMachineConfiguration FromDocument(AtariConfigurationDocument document,
         string pathBase)
@@ -50,9 +48,7 @@ internal static class AtariConfigurationStoreFunctions
             document.Id,
             AtariConstants.CurrentConfigurationSchemaVersion,
             document.AudioEnabled,
-            document.VideoRenderer,
-            ResolveFolders(document.Folders, pathBase),
-            document.VideoProcessing);
+            ResolveFolders(document.Folders, pathBase));
     }
 
     internal static string? StorePath(string? path, string pathBase)

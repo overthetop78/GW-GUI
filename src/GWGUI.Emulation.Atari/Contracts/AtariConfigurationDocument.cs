@@ -12,6 +12,4 @@ internal sealed record AtariConfigurationDocument(
     IReadOnlyDictionary<string, string> Options,
     AtariInputConfiguration Input,
     AtariFolderConfiguration Folders,
-    bool AudioEnabled,
-    EmulationVideoRenderer VideoRenderer,
-    EmulationVideoProcessingConfiguration? VideoProcessing = null);
+    bool AudioEnabled);

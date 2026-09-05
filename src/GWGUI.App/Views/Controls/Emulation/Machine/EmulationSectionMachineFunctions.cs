@@ -17,6 +17,8 @@ public sealed partial class EmulationSection
 {
     private async Task OpenMachineAsync(EmulationConfigurationListItem selected)
     {
+        var presentation = GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.Get(
+            selected.Module.Id, selected.Configuration.Id);
         var moduleRoot = Path.Combine(_settings.EmulationStorageFolder, selected.Module.Id);
         var runtime = await selected.Module.CreateRuntimeAsync(selected.Configuration,
             new EmulationRuntimeServices(
@@ -29,8 +31,8 @@ public sealed partial class EmulationSection
         view = new MachineController(new MachineControllerOptions(
             selected.Module.Id, selected.Configuration.Id,
             runtime.CreateMachine(runtime.MountedMedia), runtime.CreateMachine,
-            runtime.MediaDevices, runtime.MountedMedia, runtime.Configuration.VideoRenderer,
-            runtime.Configuration.VideoProcessing,
+            runtime.MediaDevices, runtime.MountedMedia, presentation.Renderer,
+            presentation.Processing!,
             EmulationShortcutMap.GlobalShortcuts(_settings.EmulationShortcuts),
             Path.Combine(_settings.EmulationStateFolder,
                 $"{selected.Module.Id}-{selected.Configuration.Id:N}.gwas"),

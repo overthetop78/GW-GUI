@@ -82,7 +82,6 @@ internal static class AmigaSettingsDescriptionFunctionsConstants
     internal const string OptionGfxFlickerfixer = "puae_gfx_flickerfixer";
     internal const string ResourceVideoFlickerFixer = "Emulation.Video.FlickerFixer";
     internal const string Enabled = "enabled";
-    internal const string ResourceVideoSettingsRendering = "Emulation.Video.Settings.Rendering";
     internal const string Audio = "audio";
     internal const string ResourceAudio = "Emulation.Audio";
     internal const string Value6 = "\uE767";

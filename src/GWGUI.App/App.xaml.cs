@@ -96,6 +96,8 @@ public partial class App : Application
 
     protected override void OnExit(ExitEventArgs e)
     {
+        try { GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.FlushPending(); }
+        catch (Exception error) { System.Diagnostics.Trace.TraceError(error.ToString()); }
         GameInputControllerSource.Instance.StopMonitoring();
         SystemEvents.UserPreferenceChanged -= SystemPreferenceChanged;
         DispatcherUnhandledException -= OnDispatcherUnhandledException;

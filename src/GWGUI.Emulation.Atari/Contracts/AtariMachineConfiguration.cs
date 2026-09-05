@@ -13,9 +13,7 @@ public sealed record AtariMachineConfiguration : IEmulationConfiguration
         Guid id = default,
         int schemaVersion = AtariConstants.CurrentConfigurationSchemaVersion,
         bool audioEnabled = true,
-        EmulationVideoRenderer videoRenderer = EmulationVideoRenderer.Direct3D11,
-        AtariFolderConfiguration? folders = null,
-        EmulationVideoProcessingConfiguration? videoProcessing = null)
+        AtariFolderConfiguration? folders = null)
     {
         Model = model;
         Family = AtariConfigurationFunctions.GetFamily(model);
@@ -27,25 +25,21 @@ public sealed record AtariMachineConfiguration : IEmulationConfiguration
         Id = id == Guid.Empty ? Guid.NewGuid() : id;
         SchemaVersion = schemaVersion;
         AudioEnabled = audioEnabled;
-        VideoRenderer = videoRenderer;
         Folders = folders ?? new AtariFolderConfiguration();
-        VideoProcessing = EmulationVideoProcessingConfigurationFunctions.Normalize(videoProcessing);
         AtariConfigurationFunctions.Validate(SchemaVersion, Model, Firmwares, Media, Input);
     }
 
     public string ModuleId => AtariMachineConfigurationConstants.Atari;
-    public int SchemaVersion { get; }
-    public Guid Id { get; }
+    public int SchemaVersion { get; init; }
+    public Guid Id { get; init; }
     public AtariMachineModel Model { get; }
     public string MachineId => Model.ToString();
     public AtariMachineFamily Family { get; }
     public AtariEmulator Core { get; }
-    public IReadOnlyList<AtariFirmwareConfiguration> Firmwares { get; }
-    public IReadOnlyList<AtariMediaConfiguration> Media { get; }
-    public IReadOnlyDictionary<string, string> Options { get; }
-    public AtariInputConfiguration Input { get; }
-    public bool AudioEnabled { get; }
-    public EmulationVideoRenderer VideoRenderer { get; }
-    public AtariFolderConfiguration Folders { get; }
-    public EmulationVideoProcessingConfiguration VideoProcessing { get; }
+    public IReadOnlyList<AtariFirmwareConfiguration> Firmwares { get; init; }
+    public IReadOnlyList<AtariMediaConfiguration> Media { get; init; }
+    public IReadOnlyDictionary<string, string> Options { get; init; }
+    public AtariInputConfiguration Input { get; init; }
+    public bool AudioEnabled { get; init; }
+    public AtariFolderConfiguration Folders { get; init; }
 }

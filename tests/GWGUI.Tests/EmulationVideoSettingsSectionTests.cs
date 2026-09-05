@@ -927,7 +927,7 @@ public sealed class EmulationVideoSettingsSectionTests
     }
 
     [Fact]
-    public void ModulePublishesVideoChangesBeforeTheDeferredSave()
+    public void MinimalModuleReceivesHostRendererAndEffectsWithoutNativeSaves()
     {
         RunSta(() =>
         {
@@ -937,7 +937,8 @@ public sealed class EmulationVideoSettingsSectionTests
             application.Resources["MainTabItemStyle"] = new Style(typeof(TabItem));
             application.Resources["IconFontFamily"] = new System.Windows.Media.FontFamily(
                 "Segoe MDL2 Assets");
-            var section = new EmulationModuleSettingsSection(new TestModule());
+            var module = new TestModule();
+            var section = new EmulationModuleSettingsSection(module);
             var videoField = typeof(EmulationModuleSettingsSection).GetField(
                 "_videoProcessing", BindingFlags.Instance | BindingFlags.NonPublic);
             var panel = Assert.IsType<EmulationVideoProcessingSettingsSection>(
@@ -949,7 +950,17 @@ public sealed class EmulationVideoSettingsSectionTests
 
             Assert.NotNull(changed);
             Assert.Equal(EmulationVideoDisplayTechnology.Plasma,
-                changed.VideoProcessing.DisplayTechnology);
+                EmulationVideoPresentationProfiles.Store.Get(changed.ModuleId, changed.Id).Processing!.DisplayTechnology);
+            var identity = changed.Id;
+            var renderer = FindByAutomationId<ComboBox>(panel,
+                nameof(EmulationVideoPresentationProfile.Renderer));
+            foreach (var choice in Enum.GetValues<EmulationVideoRenderer>())
+            {
+                renderer.SelectedValue = choice;
+                Assert.Equal(choice, EmulationVideoPresentationProfiles.Store.Get(changed.ModuleId, identity).Renderer);
+                Assert.Equal(identity, changed.Id);
+            }
+            Assert.Empty(module.SavedConfigurations);
         });
     }
 
@@ -960,10 +971,7 @@ public sealed class EmulationVideoSettingsSectionTests
         var configuration = (TestConfiguration)module.CreateConfiguration(TestModule.MachineId)
             with
         {
-            VideoProcessing = new EmulationVideoProcessingConfiguration
-            {
-                Adjustments = new EmulationImageAdjustments(Brightness: 4)
-            }
+            NativeValue = 4
         };
         EmulationConfigurationDraftStore.Remove(module.Id, TestModule.MachineId);
         try
@@ -974,7 +982,7 @@ public sealed class EmulationVideoSettingsSectionTests
             Assert.False(saved);
             Assert.True(EmulationConfigurationDraftStore.TryGet(
                 module.Id, TestModule.MachineId, out var draft));
-            Assert.Equal(4, draft.VideoProcessing.Adjustments.Brightness);
+            Assert.Equal(4, Assert.IsType<TestConfiguration>(draft).NativeValue);
             Assert.Empty(module.SavedConfigurations);
         }
         finally
@@ -988,10 +996,7 @@ public sealed class EmulationVideoSettingsSectionTests
     {
         var existing = TestConfiguration.Create() with
         {
-            VideoProcessing = new EmulationVideoProcessingConfiguration
-            {
-                Adjustments = new EmulationImageAdjustments(Brightness: 6)
-            }
+            NativeValue = 6
         };
         var module = new TestModule(existing);
 
@@ -1002,7 +1007,7 @@ public sealed class EmulationVideoSettingsSectionTests
         var saved = Assert.Single(module.SavedConfigurations);
         Assert.Same(existing, saved);
         Assert.Equal(existing.Id, saved.Id);
-        Assert.Equal(6, saved.VideoProcessing.Adjustments.Brightness);
+        Assert.Equal(6, Assert.IsType<TestConfiguration>(saved).NativeValue);
     }
 
     [Fact]
@@ -1072,12 +1077,10 @@ public sealed class EmulationVideoSettingsSectionTests
         string ModuleId,
         Guid Id,
         string MachineId,
-        EmulationVideoRenderer VideoRenderer,
-        EmulationVideoProcessingConfiguration VideoProcessing) : IEmulationConfiguration
+        int NativeValue = 0) : IEmulationConfiguration
     {
         internal static TestConfiguration Create() => new(
-            $"test-{Guid.NewGuid():N}", Guid.NewGuid(), TestModule.MachineId,
-            EmulationVideoRenderer.Wpf, new EmulationVideoProcessingConfiguration());
+            $"test-{Guid.NewGuid():N}", Guid.NewGuid(), TestModule.MachineId);
     }
 
     private sealed class TestModule : IEmulationModule
@@ -1109,8 +1112,7 @@ public sealed class EmulationVideoSettingsSectionTests
             new(machineId, Visibility, []);
 
         public IEmulationConfiguration CreateConfiguration(string machineId) =>
-            new TestConfiguration(Id, Guid.NewGuid(), machineId, EmulationVideoRenderer.Wpf,
-                new EmulationVideoProcessingConfiguration());
+            new TestConfiguration(Id, Guid.NewGuid(), machineId);
 
         public IEmulationConfiguration ChangeMachine(
             IEmulationConfiguration configuration, string machineId) =>
@@ -1119,9 +1121,6 @@ public sealed class EmulationVideoSettingsSectionTests
         public IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration,
             IReadOnlyDictionary<string, string?> values) => configuration;
 
-        public IEmulationConfiguration ApplyVideoProcessing(IEmulationConfiguration configuration,
-            EmulationVideoProcessingConfiguration videoProcessing) =>
-            ((TestConfiguration)configuration) with { VideoProcessing = videoProcessing };
 
         public EmulationConfigurationSummary SummarizeConfiguration(
             IEmulationConfiguration configuration) =>

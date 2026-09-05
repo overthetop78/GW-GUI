@@ -508,16 +508,22 @@ La séparation obligatoire est la suivante :
 
 ```text
 GWGUI.Emulation
-    → contrats sérialisables de configuration vidéo
-    → identifiants, valeurs neutres, groupes et compatibilités
+    → contrats d’émulation et vidéo brute : IEmulationVideo, VideoFrame, EmulationPixelFormat
     → aucune dépendance vers WPF, Veldrid, OpenGL ou un langage de shader
+    → aucune référence à GWGUI.VideoPresentation
 
 GWGUI.Emulation.xxx
-    → porte la configuration commune dans chaque configuration de machine
-    → conserve séparément les options vidéo natives de son émulateur
+    → conserve uniquement les options vidéo natives de son émulateur
+    → ne stocke ni renderer ni post-traitement dans la configuration de machine
     → ne traduit pas une option PAL, NTSC, composite, RF ou équivalente en filtre GW GUI
 
+GWGUI.VideoPresentation
+    → bibliothèque indépendante, sans référence vers les modules ni App
+    → contrats de présentation, enums, valeurs neutres, catalogue et normalisation
+    → profil hôte regroupant renderer et traitements, stockage générique et migration
+
 GWGUI.App
+    → référence GWGUI.Emulation et GWGUI.VideoPresentation, jamais l’inverse
     → construit l’interface commune de l’onglet Vidéo
     → compose la chaîne de traitement à partir de la configuration
     → exécute cette chaîne dans WPF/CPU, OpenGL ou Veldrid
@@ -529,6 +535,27 @@ leurs valeurs neutres, leurs dépendances et leurs incompatibilités. Les textes
 trouvent pas dans ce catalogue : il transporte uniquement des clés de ressources traduites par
 App. Les algorithmes, shaders, pipelines, textures temporaires et objets graphiques restent dans
 App.
+
+Le profil `EmulationVideoPresentationProfile` est indexé par `(ModuleId, ConfigurationId)`.
+Il est enregistré sous `Data/Emulation/VideoPresentation/<module encodé en hexadécimal>/<id>.json`
+(le répertoire Data est celui résolu par StoragePaths). Un brouillon reste en mémoire tant que
+la configuration n’est pas créée. L’éditeur met à jour le cache et la surface immédiatement ;
+l’écriture atomique du seul profil s’effectue ensuite hors du thread d’interface. Les écritures
+demandées sont vidées à la fermeture normale. La suppression retire le profil et annule ses
+écritures en attente ; le stockage fournit également une copie explicite vers un nouvel identifiant.
+
+Avant l’ouverture ou la sauvegarde d’une configuration existante, l’hôte importe les anciens champs
+`videoRenderer` et `videoProcessing` des JSON Amiga/Atari. Le profil est écrit avant d’être mis en
+cache ; un échec laisse les données sources intactes et permet de réessayer. Un profil déjà présent
+prévaut sur les champs historiques : la migration est idempotente. Une erreur de lecture ou
+d’écriture remonte au gestionnaire d’erreurs de l’action concernée, sans remplacement silencieux par
+les valeurs par défaut. L’import ne réécrit pas le JSON source ; la sauvegarde native suivante ne
+sérialise plus les anciens champs. Les états Atari créés avant cette séparation restent lisibles :
+seule la vérification de compatibilité historique considère leurs anciens champs de présentation.
+
+Règle pour tout futur module : produire les frames brutes et décrire ses options natives ; ne jamais
+référencer GWGUI.VideoPresentation, stocker un profil de présentation ni appliquer les effets GW GUI.
+Le choix du renderer et les traitements sont fournis automatiquement par l’éditeur hôte.
 
 La chaîne reçoit une image commune et l’ordonne ainsi : normalisation de la source, restauration
 éventuelle, mise à l’échelle, technologie d’affichage, réglages généraux, puis sortie. Une étape
@@ -552,14 +579,14 @@ ne provoque pas une lecture GPU systématique à chaque trame uniquement pour pr
 
 #### Enregistrement et application aux instances
 
-La configuration des traitements appartient à la configuration de chaque machine. Elle n’est ni
+Le profil hôte des traitements est associé à l’identifiant de chaque configuration de machine. Il n’est ni
 globale, ni partagée comme objet mutable entre Amiga, Atari ou plusieurs instances ouvertes. Les
 valeurs absentes d’une ancienne configuration prennent les valeurs neutres sans migration
 destructive.
 
-Lorsqu’une configuration existante est modifiée, App l’enregistre selon le mécanisme automatique
-déjà utilisé par l’éditeur, puis cible l’onglet ouvert par le couple
-`(ModuleId, ConfigurationId)`. Seule cette instance reçoit la nouvelle configuration vidéo. Une
+Lorsqu’un profil vidéo est modifié, App cible immédiatement l’onglet ouvert par le couple
+`(ModuleId, ConfigurationId)` et enregistre ensuite le profil indépendamment des données natives.
+Seule cette instance reçoit la nouvelle configuration vidéo. Une
 modification d’un paramètre numérique met à jour les constantes de la chaîne sans recréer la
 machine. Une modification structurelle construit une nouvelle chaîne de façon atomique ; l’ancienne
 reste active si la construction échoue.

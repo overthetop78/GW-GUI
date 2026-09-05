@@ -262,10 +262,8 @@ internal sealed class AtariMachine : IEmulatedMachine, IEmulationLifecycle, IEmu
     public ValueTask SetOptionAsync(string key, string value, CancellationToken cancellationToken = default) =>
         QueueCommand(() => _core.SetOption(key, value), cancellationToken);
 
-    private AtariMachineConfiguration CurrentConfiguration() => new(Configuration.Model,
-        Configuration.Firmwares, _mountedMedia.ToArray(), Configuration.Options, Configuration.Input,
-        Configuration.Id, Configuration.SchemaVersion, Configuration.AudioEnabled,
-        Configuration.VideoRenderer, Configuration.Folders, Configuration.VideoProcessing);
+    private AtariMachineConfiguration CurrentConfiguration() =>
+        Configuration with { Media = _mountedMedia.ToArray() };
 
     private ValueTask QueueCommand(Action action, CancellationToken cancellationToken)
     {

@@ -25,7 +25,6 @@ internal static class AmigaSettingsDescriptionFunctions
             [AmigaSettingsDescriptionFunctionsConstants.OptionImmediateBlits] = "Emulation.Help.Video.ImmediateBlits",
             [AmigaSettingsDescriptionFunctionsConstants.OptionCollisionLevel] = "Emulation.Help.Video.CollisionLevel",
             [AmigaSettingsDescriptionFunctionsConstants.OptionGfxFlickerfixer] = "Emulation.Help.Video.FlickerFixer",
-            [AmigaSettingsConstants.VideoRenderer] = "Emulation.Help.Video.Rendering",
             [AmigaSettingsConstants.AudioLatency] = "Emulation.Help.Audio.Latency",
             [AmigaSettingsDescriptionFunctionsConstants.OptionSoundInterpol] = "Emulation.Help.Audio.Interpolation",
             [AmigaSettingsDescriptionFunctionsConstants.OptionSoundFilter] = "Emulation.Help.Audio.Filter",
@@ -111,9 +110,7 @@ internal static class AmigaSettingsDescriptionFunctions
                 Select(AmigaSettingsDescriptionFunctionsConstants.OptionCollisionLevel, EmulationMachineTab.Video, AmigaSettingsDescriptionFunctionsConstants.Display, AmigaSettingsDescriptionFunctionsConstants.ResourceVideoCollisionLevel,
                     Value(options, AmigaSettingsDescriptionFunctionsConstants.OptionCollisionLevel, AmigaSettingsDescriptionFunctionsConstants.Playfields), CollisionChoices()),
                 Toggle(AmigaSettingsDescriptionFunctionsConstants.OptionGfxFlickerfixer, EmulationMachineTab.Video, AmigaSettingsDescriptionFunctionsConstants.Display,
-                    AmigaSettingsDescriptionFunctionsConstants.ResourceVideoFlickerFixer, Value(options, AmigaSettingsDescriptionFunctionsConstants.OptionGfxFlickerfixer, AmigaSettingsDescriptionFunctionsConstants.Disabled) == AmigaSettingsDescriptionFunctionsConstants.Enabled),
-                Select(AmigaSettingsConstants.VideoRenderer, EmulationMachineTab.Video, AmigaSettingsDescriptionFunctionsConstants.Display, AmigaSettingsDescriptionFunctionsConstants.ResourceVideoSettingsRendering,
-                    configuration.VideoRenderer.ToString(), RendererChoices())),
+                    AmigaSettingsDescriptionFunctionsConstants.ResourceVideoFlickerFixer, Value(options, AmigaSettingsDescriptionFunctionsConstants.OptionGfxFlickerfixer, AmigaSettingsDescriptionFunctionsConstants.Disabled) == AmigaSettingsDescriptionFunctionsConstants.Enabled)),
             Block(AmigaSettingsDescriptionFunctionsConstants.Audio, EmulationMachineTab.Audio, AmigaSettingsDescriptionFunctionsConstants.ResourceAudio, AmigaSettingsDescriptionFunctionsConstants.Value6, 2,
                 Toggle(AmigaSettingsConstants.AudioEnabled, EmulationMachineTab.Audio, AmigaSettingsDescriptionFunctionsConstants.Audio,
                     AmigaSettingsDescriptionFunctionsConstants.ResourceAudioEnabled, configuration.AudioEnabled),
@@ -385,9 +382,6 @@ internal static class AmigaSettingsDescriptionFunctions
     [new(AmigaSettingsDescriptionFunctionsConstants.None, AmigaSettingsDescriptionFunctionsConstants.HostToolsNone), new(AmigaSettingsDescriptionFunctionsConstants.Sprites, AmigaSettingsDescriptionFunctionsConstants.ResourceVideoCollisionSprites),
         new(AmigaSettingsDescriptionFunctionsConstants.Playfields, AmigaSettingsDescriptionFunctionsConstants.ResourceVideoCollisionPlayfields),
         new(AmigaSettingsDescriptionFunctionsConstants.Full, AmigaSettingsDescriptionFunctionsConstants.ResourceVideoCollisionFull)];
-
-    private static IEnumerable<EmulationSettingsChoice> RendererChoices() =>
-        Enum.GetNames<EmulationVideoRenderer>().Select(value => Invariant(value, value));
 
     private static IReadOnlyList<EmulationSettingsChoice> AudioInterpolationChoices() =>
     [new(AmigaSettingsDescriptionFunctionsConstants.None, AmigaSettingsDescriptionFunctionsConstants.HostToolsNone), new(AmigaSettingsDescriptionFunctionsConstants.Anti, AmigaSettingsDescriptionFunctionsConstants.ResourceAudioInterpolationAnti),

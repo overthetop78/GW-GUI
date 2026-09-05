@@ -42,7 +42,6 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
     private IEmulationConfiguration _configuration;
     private bool _loading;
     private readonly SemaphoreSlim _saveInputGate = new(1, 1);
-    private readonly EmulationConfigurationSaveDebouncer _videoSaveDebouncer = new();
     private EmulationMachineTab _selectedTab = EmulationMachineTab.General;
 
     internal EmulationModuleSettingsSection(IEmulationModule module)
@@ -78,21 +77,19 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
             _storageSettings.SettingsChanged += async (_, _) => await ExecuteUserChangeAsync();
         }
         _machines.SelectionChanged += MachineChanged;
-        _videoProcessing.ConfigurationChanged += (_, _) =>
+        _videoProcessing.ConfigurationChanged += async (_, _) =>
         {
-            _configuration = _module.ApplyVideoProcessing(_configuration,
-                _videoProcessing.Configuration);
+            var profile = EmulationVideoPresentationProfiles.Store.Get(_module.Id, _configuration.Id);
+            EmulationVideoPresentationProfiles.Store.Set(_module.Id, _configuration.Id,
+                profile with { Processing = _videoProcessing.Configuration });
+            if (!_saved.Any(item => item.Id == _configuration.Id))
+                EmulationConfigurationDraftStore.Set(_module.Id, _configuration);
             VideoConfigurationChanged?.Invoke(this,
                 new EmulationConfigurationSavedEventArgs(_configuration));
+            await ExecuteAsync(SaveVideoProfileAsync);
         };
-        _videoProcessing.ConfigurationSaveRequested += (_, _) =>
-            _videoSaveDebouncer.Schedule(ApplyUserChangeAsync, error =>
-                ControlErrorPresenter.ShowEmulation(this, error,
-                    ControlErrorContexts.EmulationConfigurationManagement,
-                    LocExtension.Get(_module.DisplayResourceKey)));
         Content = BuildEditor();
         Loaded += async (_, _) => await ExecuteAsync(ReloadAsync);
-        Unloaded += (_, _) => _videoSaveDebouncer.Dispose();
     }
 
     internal event EventHandler<EmulationConfigurationSavedEventArgs>? ConfigurationSaved;
@@ -226,12 +223,31 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
             .ToArray();
         var display = fields.Where(field => field.LabelResourceKey != rendererResourceKey)
             .Select(CreateVideoSettingsField).ToArray();
-        var rendering = fields.Where(field => field.LabelResourceKey == rendererResourceKey)
-            .Select(CreateVideoSettingsField).ToArray();
-        var rendererChoice = rendering.Length == 0
-            ? null
-            : EmulationSettingsLayout.VideoSettingsChoice(rendering[0]);
-        _videoProcessing.SetConfiguration(_configuration.VideoProcessing,
+        var profile = EmulationVideoPresentationProfiles.Store.Get(_module.Id, _configuration.Id);
+        var renderer = new ComboBox
+        {
+            ItemsSource = EmulationVideoProcessingCatalog.RendererResourceKeys.Select(pair =>
+                new KeyValuePair<EmulationVideoRenderer, string>(pair.Key, LocExtension.Get(pair.Value))).ToArray(),
+            DisplayMemberPath = nameof(KeyValuePair<EmulationVideoRenderer, string>.Value),
+            SelectedValuePath = nameof(KeyValuePair<EmulationVideoRenderer, string>.Key),
+            SelectedValue = profile.Renderer
+        };
+        System.Windows.Automation.AutomationProperties.SetAutomationId(renderer,
+            nameof(EmulationVideoPresentationProfile.Renderer));
+        renderer.SelectionChanged += async (_, _) =>
+        {
+            if (renderer.SelectedValue is not EmulationVideoRenderer choice) return;
+            var current = EmulationVideoPresentationProfiles.Store.Get(_module.Id, _configuration.Id);
+            EmulationVideoPresentationProfiles.Store.Set(_module.Id, _configuration.Id,
+                current with { Renderer = choice });
+            if (!_saved.Any(item => item.Id == _configuration.Id))
+                EmulationConfigurationDraftStore.Set(_module.Id, _configuration);
+            VideoConfigurationChanged?.Invoke(this, new EmulationConfigurationSavedEventArgs(_configuration));
+            await ExecuteAsync(SaveVideoProfileAsync);
+        };
+        var rendererChoice = EmulationSettingsLayout.VideoSettingsChoice(
+            new EmulationVideoSettingsField(LocExtension.Get(rendererResourceKey), renderer));
+        _videoProcessing.SetConfiguration(profile.Processing,
             EmulationSettingsLayout.VideoSettingsFields(display), rendererChoice);
         _videoProcessing.SetShaderLoading(EmulationVideoShaderLoadingStatus.IsLoading(
             _module.Id, _configuration.Id));
@@ -456,6 +472,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
 
     private async Task ApplyUserChangeAsync()
     {
+        EmulationVideoPresentationProfiles.Store.Get(_module.Id, _configuration.Id);
         CaptureEditorValues();
         if (!_saved.Any(configuration => configuration.MachineId == _configuration.MachineId))
         {
@@ -481,6 +498,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
 
     private async Task SaveAsync()
     {
+        EmulationVideoPresentationProfiles.Store.Get(_module.Id, _configuration.Id);
         var values = _fieldControls.ToDictionary(item => item.Key, item => ReadValue(item.Value),
             StringComparer.Ordinal);
         _configuration = _module.ApplySettings(_configuration, values);
@@ -488,10 +506,20 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
             _configuration = _inputSettings.Apply(_configuration);
         if (_storageSettings is not null)
             _configuration = _storageSettings.Apply(_configuration);
-        await _module.SaveConfigurationAsync(_configuration);
-        EmulationConfigurationDraftStore.Remove(_module.Id, _configuration.MachineId);
-        ConfigurationSaved?.Invoke(this, new EmulationConfigurationSavedEventArgs(_configuration));
+        var configuration = _configuration;
+        await EmulationVideoPresentationProfiles.Store.SaveAsync(_module.Id, configuration.Id);
+        await _module.SaveConfigurationAsync(configuration);
+        EmulationConfigurationDraftStore.Remove(_module.Id, configuration.MachineId);
+        ConfigurationSaved?.Invoke(this, new EmulationConfigurationSavedEventArgs(configuration));
         await ReloadAsync();
+    }
+
+    private Task SaveVideoProfileAsync()
+    {
+        var id = _configuration.Id;
+        return _saved.Any(item => item.Id == id)
+            ? EmulationVideoPresentationProfiles.Store.SaveAsync(_module.Id, id)
+            : Task.CompletedTask;
     }
 
     private static string? ReadValue(FrameworkElement control) => control switch

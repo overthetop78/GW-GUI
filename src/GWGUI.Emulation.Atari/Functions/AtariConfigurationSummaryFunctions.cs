@@ -24,7 +24,6 @@ internal static class AtariConfigurationSummaryFunctions
         if (configuration.Firmwares.Count > 0)
             details.Add(string.Join(AtariConfigurationSummaryFunctionsConstants.Value, configuration.Firmwares.Select(Firmware)));
         details.Add($"Core {configuration.Core}");
-        details.Add($"Video {(configuration.VideoRenderer == EmulationVideoRenderer.Direct3D11 ? AtariConfigurationSummaryFunctionsConstants.D3D11 : configuration.VideoRenderer)}");
         details.Add(configuration.AudioEnabled ? AtariConfigurationSummaryFunctionsConstants.AudioOn : AtariConfigurationSummaryFunctionsConstants.AudioOff);
         return new EmulationConfigurationSummary(model.DisplayResourceKey, details);
     }

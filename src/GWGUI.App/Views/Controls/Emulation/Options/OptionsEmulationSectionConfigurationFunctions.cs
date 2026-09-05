@@ -43,6 +43,8 @@ public sealed partial class OptionsEmulationSection
         try
         {
             await row.Module.DeleteConfigurationAsync(row.Configuration.Id);
+            GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.Delete(
+                row.Module.Id, row.Configuration.Id);
             await ReloadConfigurationsAsync();
             var section = _moduleSections.FirstOrDefault(item =>
                 ReferenceEquals(_moduleTabs[item.Key], row.Module)).Value;

@@ -65,8 +65,12 @@ internal sealed class EmulationInputSettingsController
         return _manager.ApplyInputSettings(configuration, _settings);
     }
 
-    internal ValueTask SaveAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default) =>
-        _manager.SaveInputSettingsAsync(configuration, cancellationToken);
+    internal ValueTask SaveAsync(IEmulationConfiguration configuration, CancellationToken cancellationToken = default)
+    {
+        GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.Get(
+            configuration.ModuleId, configuration.Id);
+        return _manager.SaveInputSettingsAsync(configuration, cancellationToken);
+    }
 
     private UIElement CreateKeyboardView()
     {

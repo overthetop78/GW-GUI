@@ -38,7 +38,6 @@ internal static partial class AmigaConfigurationSummaryFunctions
             devices.Add(AmigaConfigurationSummaryFunctionsConstants.CD);
         if (devices.Count > 0) details.Add(string.Join(AmigaConfigurationSummaryFunctionsConstants.Value, devices));
 
-        details.Add($"Video {Renderer(configuration.VideoRenderer)}");
         details.Add(configuration.AudioEnabled ? AmigaConfigurationSummaryFunctionsConstants.AudioOn : AmigaConfigurationSummaryFunctionsConstants.AudioOff);
         var displayResourceKey = AmigaMachineCatalog.All.First(item => item.Id == configuration.Model)
             .DisplayResourceKey;
@@ -91,8 +90,6 @@ internal static partial class AmigaConfigurationSummaryFunctions
     private static string FormatMemory(long bytes) => bytes < 1024 * 1024
         ? $"{bytes / 1024d:0.#} KiB"
         : $"{bytes / 1024d / 1024d:0.##} MiB";
-    private static string Renderer(EmulationVideoRenderer renderer) =>
-        renderer == EmulationVideoRenderer.Direct3D11 ? AmigaConfigurationSummaryFunctionsConstants.D3D11 : renderer.ToString();
 
     [GeneratedRegex(AmigaConfigurationSummaryFunctionsConstants.D11232045301DD, RegexOptions.IgnoreCase)]
     private static partial Regex FirmwareVersionPattern();

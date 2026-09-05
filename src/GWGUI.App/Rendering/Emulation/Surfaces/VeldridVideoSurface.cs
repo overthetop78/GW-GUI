@@ -34,8 +34,8 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
     private Shader[]? _shaders;
     private int _width;
     private int _height;
-    private GWGUI.Emulation.Enums.EmulationVideoSampling _sampling;
-    private GWGUI.Emulation.Enums.EmulationVideoDisplayTechnology _displayTechnology;
+    private GWGUI.VideoPresentation.Enums.EmulationVideoSampling _sampling;
+    private GWGUI.VideoPresentation.Enums.EmulationVideoDisplayTechnology _displayTechnology;
     private uint _swapchainWidth;
     private uint _swapchainHeight;
     private bool _hasHistory;
@@ -182,8 +182,8 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
     }
 
     private void EnsureDevice(int width, int height,
-        GWGUI.Emulation.Enums.EmulationVideoSampling sampling,
-        GWGUI.Emulation.Enums.EmulationVideoDisplayTechnology displayTechnology)
+        GWGUI.VideoPresentation.Enums.EmulationVideoSampling sampling,
+        GWGUI.VideoPresentation.Enums.EmulationVideoDisplayTechnology displayTechnology)
     {
         if (_device is null)
         {

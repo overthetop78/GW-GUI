@@ -92,7 +92,6 @@ internal static class AtariSettingsDescriptionFunctionsConstants
     internal const string X = "x";
     internal const string Value11 = " × ";
     internal const string ResourceAudioDefaultOutput = "Emulation.Audio.DefaultOutput";
-    internal const string ResourceVideoSettingsRendering = "Emulation.Video.Settings.Rendering";
     internal const string Enabled = "enabled";
     internal const string Disabled = "disabled";
 }

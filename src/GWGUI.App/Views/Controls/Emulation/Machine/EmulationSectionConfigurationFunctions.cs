@@ -19,8 +19,11 @@ public sealed partial class EmulationSection
             args.Configuration.ModuleId, args.Configuration.Id, tab =>
             {
                 if (tab.Content is MachineController view)
-                    view.ApplyVideoConfiguration(args.Configuration.VideoRenderer,
-                        args.Configuration.VideoProcessing);
+                {
+                    var profile = GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.Get(
+                        args.Configuration.ModuleId, args.Configuration.Id);
+                    view.ApplyVideoConfiguration(profile.Renderer, profile.Processing!);
+                }
             });
 
     private async void ConfigurationSaved(object? sender, EmulationConfigurationSavedEventArgs args)
@@ -30,8 +33,11 @@ public sealed partial class EmulationSection
             args.Configuration.ModuleId, args.Configuration.Id, tab =>
             {
                 if (tab.Content is MachineController view)
-                    view.ApplyVideoConfiguration(args.Configuration.VideoRenderer,
-                        args.Configuration.VideoProcessing);
+                {
+                    var profile = GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.Get(
+                        args.Configuration.ModuleId, args.Configuration.Id);
+                    view.ApplyVideoConfiguration(profile.Renderer, profile.Processing!);
+                }
             });
     }
 

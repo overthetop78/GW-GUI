@@ -20,7 +20,6 @@ internal static class AtariSettingsDescriptionFunctions
             [AtariConfigurationOptionConstants.VideoStandard] = "Emulation.Help.Video.Standard",
             [AtariVideoAudioSettingsConstants.AspectRatioOption] = "Emulation.Help.Video.AspectRatio",
             [AtariVideoAudioSettingsConstants.FrameSkipOption] = "Emulation.Help.Video.FrameSkip",
-            [AtariSettingsConstants.VideoRenderer] = "Emulation.Help.Video.Rendering",
             [AtariSettingsConstants.Region] = "Emulation.Help.Video.Region",
             [AtariEightBitSettingsConstants.ArtifactingModeOptionKey] = "Emulation.Help.Video.Artifacting",
             [AtariEightBitSettingsConstants.ColorGammaOptionKey] = "Emulation.Help.Video.Gamma",
@@ -142,8 +141,7 @@ internal static class AtariSettingsDescriptionFunctions
                         AtariVideoAudioSettingsConstants.Disabled) == AtariVideoAudioSettingsConstants.Enabled),
                 Select(AtariVideoAudioSettingsConstants.FrameSkipOption, EmulationMachineTab.Video, AtariSettingsDescriptionFunctionsConstants.Video,
                     AtariSettingsDescriptionFunctionsConstants.ResourceVideoFrameSkip, Value(configuration, AtariVideoAudioSettingsConstants.FrameSkipOption,
-                        AtariVideoAudioSettingsConstants.MinimumFrameSkip.ToString()), FrameSkips()),
-                Renderer(configuration)),
+                        AtariVideoAudioSettingsConstants.MinimumFrameSkip.ToString()), FrameSkips())),
             Audio(configuration, true)
         ];
     }
@@ -168,8 +166,7 @@ internal static class AtariSettingsDescriptionFunctions
                     isEnabled: model.Regions.Count > 1),
                 Select(AtariVideoAudioSettingsConstants.ResolutionOption, EmulationMachineTab.Video, AtariSettingsDescriptionFunctionsConstants.Video,
                     AtariSettingsDescriptionFunctionsConstants.ResourceVideoResolution, Value(configuration, AtariVideoAudioSettingsConstants.ResolutionOption,
-                        DefaultResolution(configuration.Model)), Resolutions(configuration.Model)),
-                Renderer(configuration)),
+                        DefaultResolution(configuration.Model)), Resolutions(configuration.Model))),
             Audio(configuration, false)
         };
         if (configuration.Model == AtariMachineModel.Atari400)
@@ -400,10 +397,6 @@ internal static class AtariSettingsDescriptionFunctions
 
     private static EmulationSettingsChoice Invariant(string value) => new(value, string.Empty, value);
 
-    private static EmulationSettingsField Renderer(AtariMachineConfiguration configuration) =>
-        Select(AtariSettingsConstants.VideoRenderer, EmulationMachineTab.Video, AtariSettingsDescriptionFunctionsConstants.Video,
-            AtariSettingsDescriptionFunctionsConstants.ResourceVideoSettingsRendering, configuration.VideoRenderer.ToString(),
-            Enum.GetNames<EmulationVideoRenderer>());
 
     private static EmulationSettingsBlock Block(string id, EmulationMachineTab tab, string title,
         string icon, int columns, params EmulationSettingsField[] fields) =>

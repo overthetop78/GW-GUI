@@ -77,9 +77,7 @@ internal static class AtariStorageSettingsFunctions
         }
         var media = settings.MountedMedia.Select(item =>
             EmulationMediaConversionFunctions.ToAtari(item, configuration.Media)).ToArray();
-        return new AtariMachineConfiguration(configuration.Model, configuration.Firmwares, media, options,
-            configuration.Input, configuration.Id, configuration.SchemaVersion, configuration.AudioEnabled,
-            configuration.VideoRenderer, configuration.Folders, configuration.VideoProcessing);
+        return configuration with { Media = media, Options = options };
     }
 
     private static EmulationMediaType ToMediaType(AtariMediaCategory category) => category switch

@@ -11,7 +11,6 @@ internal static class AtariSettingsConstants
     internal const string Region = "gwgui_atari_region";
     internal const string MouseSpeed = AtariMachineOptionConstants.PointerSpeed;
     internal const string AudioEnabled = "configuration.audioEnabled";
-    internal const string VideoRenderer = "configuration.videoRenderer";
     internal const string SystemFirmware = "configuration.systemFirmware";
     internal const string HardDiskFolder = "configuration.folders.hardDisks";
 }

@@ -32,8 +32,7 @@ internal static class AtariSavedStateFunctions
             throw Invalid(AtariErrorCode.StateIncompatible, AtariStateConstants.ModelMismatchError);
         if (!string.Equals(header.ContentSha256, ContentHash(configuration), StringComparison.OrdinalIgnoreCase))
             throw Invalid(AtariErrorCode.StateIncompatible, AtariStateConstants.ContentMismatchError);
-        if (!string.Equals(header.ConfigurationSha256, ConfigurationHash(configuration),
-                StringComparison.OrdinalIgnoreCase))
+        if (!IsCompatibleConfigurationHash(configuration, header.ConfigurationSha256))
             throw Invalid(AtariErrorCode.StateIncompatible, AtariStateConstants.ConfigurationMismatchError);
     }
 
@@ -58,7 +57,6 @@ internal static class AtariSavedStateFunctions
             configuration.Model,
             configuration.Core,
             configuration.AudioEnabled,
-            configuration.VideoRenderer,
             ContentEntries(configuration),
             configuration.Options.OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray(),
             InputFingerprint(configuration.Input),
@@ -66,6 +64,43 @@ internal static class AtariSavedStateFunctions
                 .ToArray(),
             configuration.Firmwares.OrderBy(firmware => firmware.Category).ToArray());
         return HashBytes(JsonSerializer.SerializeToUtf8Bytes(fingerprint, AtariStateConstants.JsonOptions));
+    }
+
+    internal static bool IsCompatibleConfigurationHash(AtariMachineConfiguration configuration, string hash)
+    {
+        if (string.Equals(hash, ConfigurationHash(configuration), StringComparison.OrdinalIgnoreCase))
+            return true;
+        // Format used before presentation profiles were moved out of the modules.
+        // Try every historical numeric value; it never represented emulated machine state.
+        for (var legacyValue = 0; legacyValue < AtariStateConstants.LegacyPresentationValueCount; legacyValue++)
+            if (string.Equals(hash, LegacyConfigurationHash(configuration, legacyValue),
+                StringComparison.OrdinalIgnoreCase)) return true;
+        return false;
+    }
+
+    internal static string LegacyConfigurationHash(AtariMachineConfiguration configuration, int legacyValue)
+    {
+        var fingerprint = new AtariStateConfigurationFingerprint(configuration.SchemaVersion,
+            configuration.Model, configuration.Core, configuration.AudioEnabled,
+            ContentEntries(configuration),
+            configuration.Options.OrderBy(pair => pair.Key, StringComparer.Ordinal).ToArray(),
+            InputFingerprint(configuration.Input),
+            configuration.Media.OrderBy(MediaOrder).ThenBy(media => media.Path, StringComparer.OrdinalIgnoreCase).ToArray(),
+            configuration.Firmwares.OrderBy(firmware => firmware.Category).ToArray());
+        var document = JsonSerializer.SerializeToElement(fingerprint, AtariStateConstants.JsonOptions);
+        using var stream = new MemoryStream();
+        using (var writer = new Utf8JsonWriter(stream))
+        {
+            writer.WriteStartObject();
+            foreach (var property in document.EnumerateObject())
+            {
+                property.WriteTo(writer);
+                if (property.Name == AtariStateConstants.LegacyAudioProperty)
+                    writer.WriteNumber(AtariStateConstants.LegacyPresentationProperty, legacyValue);
+            }
+            writer.WriteEndObject();
+        }
+        return HashBytes(stream.ToArray());
     }
 
     internal static string ContentHash(AtariMachineConfiguration configuration) =>

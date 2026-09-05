@@ -5,7 +5,6 @@ internal sealed record AtariStateConfigurationFingerprint(
     AtariMachineModel Model,
     AtariEmulator Core,
     bool AudioEnabled,
-    GWGUI.Emulation.Enums.EmulationVideoRenderer VideoRenderer,
     IReadOnlyList<AtariStateContentEntry> Content,
     IReadOnlyList<KeyValuePair<string, string>> Options,
     AtariStateInputFingerprint Input,

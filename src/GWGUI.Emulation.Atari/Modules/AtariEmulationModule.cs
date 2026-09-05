@@ -114,36 +114,27 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
         var options = new Dictionary<string, string>(atari.Options);
         foreach (var value in values)
         {
-            if (value.Key is AtariSettingsConstants.AudioEnabled or AtariSettingsConstants.VideoRenderer
+            if (value.Key is AtariSettingsConstants.AudioEnabled
                 or AtariSettingsConstants.SystemFirmware or AtariSettingsConstants.HardDiskFolder
                 or AtariSettingsConstants.CpuOriginalFrequency) continue;
             if (value.Value is null) options.Remove(value.Key);
             else options[value.Key] = value.Value;
         }
-        var renderer = values.TryGetValue(AtariSettingsConstants.VideoRenderer, out var rendererValue)
-            && Enum.TryParse<EmulationVideoRenderer>(rendererValue, out var selectedRenderer)
-                ? selectedRenderer : atari.VideoRenderer;
         var firmwares = ApplySystemFirmware(atari, values.GetValueOrDefault(AtariSettingsConstants.SystemFirmware));
         var folders = atari.Folders with
         {
             HardDisks = values.GetValueOrDefault(AtariSettingsConstants.HardDiskFolder)
                 ?? atari.Folders.HardDisks
         };
-        return new AtariMachineConfiguration(atari.Model, firmwares, atari.Media, options, atari.Input,
-            atari.Id, atari.SchemaVersion,
-            values.GetValueOrDefault(AtariSettingsConstants.AudioEnabled) == AtariEmulationModuleConstants.Enabled,
-            renderer, folders, atari.VideoProcessing);
+        return atari with
+        {
+            Firmwares = firmwares, Options = options, Folders = folders,
+            AudioEnabled = values.GetValueOrDefault(AtariSettingsConstants.AudioEnabled)
+                == AtariEmulationModuleConstants.Enabled
+        };
     }
 
-    public IEmulationConfiguration ApplyVideoProcessing(IEmulationConfiguration configuration,
-        EmulationVideoProcessingConfiguration videoProcessing)
-    {
-        if (configuration is not AtariMachineConfiguration atari)
-            throw new ArgumentException(nameof(configuration));
-        return new AtariMachineConfiguration(atari.Model, atari.Firmwares, atari.Media, atari.Options,
-            atari.Input, atari.Id, atari.SchemaVersion, atari.AudioEnabled, atari.VideoRenderer,
-            atari.Folders, EmulationVideoProcessingConfigurationFunctions.Normalize(videoProcessing));
-    }
+
 
     public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) =>
         AtariConfigurationSummaryFunctions.Create(configuration as AtariMachineConfiguration
@@ -281,9 +272,7 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
             CancellationToken.None).GetAwaiter().GetResult();
         var selected = AtariFirmwareScanFunctions.CreateSelection(scanned);
         var configured = atari.Firmwares.Where(item => item.Category != selected.Category).Append(selected).ToArray();
-        return new AtariMachineConfiguration(atari.Model, configured, atari.Media, atari.Options, atari.Input,
-            atari.Id, atari.SchemaVersion, atari.AudioEnabled, atari.VideoRenderer, atari.Folders,
-            atari.VideoProcessing);
+        return atari with { Firmwares = configured };
     }
 
     private static EmulationFirmwareCompatibility ToFirmwareCompatibility(
@@ -338,10 +327,7 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
     {
         var converted = media.Select(item => EmulationMediaConversionFunctions.ToAtari(item,
             configuration.Media)).ToArray();
-        return new AtariMachineConfiguration(configuration.Model, configuration.Firmwares, converted,
-            configuration.Options, configuration.Input, configuration.Id, configuration.SchemaVersion,
-            configuration.AudioEnabled, configuration.VideoRenderer, configuration.Folders,
-            configuration.VideoProcessing);
+        return configuration with { Media = converted };
     }
 
 }

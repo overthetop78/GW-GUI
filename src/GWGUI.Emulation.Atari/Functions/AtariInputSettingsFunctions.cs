@@ -56,10 +56,7 @@ internal static class AtariInputSettingsFunctions
             foreach (var binding in settings.Mouse.Values)
                 options[AtariMouseSettingsConstants.MappingOptionPrefix + binding.Key] = binding.Value;
         var input = current with { KeyboardMappings = keyboard, Controllers = controllers };
-        return new AtariMachineConfiguration(configuration.Model, configuration.Firmwares, configuration.Media,
-            options, input, configuration.Id, configuration.SchemaVersion,
-            configuration.AudioEnabled, configuration.VideoRenderer, configuration.Folders,
-            configuration.VideoProcessing);
+        return configuration with { Options = options, Input = input };
     }
 
     private static IReadOnlyList<InputBindingDefinition> KeyboardDefinitions(AtariMachineModel model)

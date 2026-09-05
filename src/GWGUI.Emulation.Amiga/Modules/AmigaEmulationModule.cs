@@ -96,7 +96,7 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
         {
             if (value.Key is AmigaSettingsConstants.KickstartPath or AmigaSettingsConstants.ExtendedRomPath
                 or AmigaSettingsConstants.RomKeyPath or AmigaSettingsConstants.AudioEnabled
-                or AmigaSettingsConstants.VideoRenderer or AmigaSettingsConstants.CpuOriginalSpeed
+                or AmigaSettingsConstants.CpuOriginalSpeed
                 or AmigaSettingsConstants.CpuSpeed or AmigaSettingsConstants.AudioOutput
                 or AmigaSettingsConstants.AudioLatency or AmigaSettingsConstants.AudioStereoSeparation
                 or AmigaSettingsConstants.ParallelJoystickAdapter) continue;
@@ -111,9 +111,6 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
             options[AmigaEmulationModuleConstants.OptionCpuThrottle] = throttle;
             options[AmigaEmulationModuleConstants.OptionCpuMultiplier] = multiplier;
         }
-        var renderer = values.TryGetValue(AmigaSettingsConstants.VideoRenderer, out var rendererValue)
-            && Enum.TryParse<EmulationVideoRenderer>(rendererValue, out var selectedRenderer)
-                ? selectedRenderer : amiga.VideoRenderer;
         var currentAudio = amiga.Audio ?? new AmigaAudioConfiguration();
         var hasOutput = values.TryGetValue(AmigaSettingsConstants.AudioOutput, out var output);
         var latency = int.TryParse(values.GetValueOrDefault(AmigaSettingsConstants.AudioLatency), out var latencyValue)
@@ -149,20 +146,10 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
                 Filter = options.GetValueOrDefault(AmigaEmulationModuleConstants.OptionSoundFilter) ?? currentAudio.Filter,
                 StereoSeparation = stereo
             },
-            VideoRenderer = renderer,
-            VideoProcessing = EmulationVideoProcessingConfigurationFunctions.Normalize(amiga.VideoProcessing),
             Input = input
         };
     }
 
-    public IEmulationConfiguration ApplyVideoProcessing(IEmulationConfiguration configuration,
-        EmulationVideoProcessingConfiguration videoProcessing) =>
-        configuration is AmigaMachineConfiguration amiga
-            ? amiga with
-            {
-                VideoProcessing = EmulationVideoProcessingConfigurationFunctions.Normalize(videoProcessing)
-            }
-            : throw new ArgumentException(nameof(configuration));
 
     private static string? OptionalPath(string? path) =>
         string.IsNullOrWhiteSpace(path) ? null : path;

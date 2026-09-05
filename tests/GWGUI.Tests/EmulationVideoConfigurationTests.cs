@@ -217,17 +217,22 @@ public sealed class EmulationVideoConfigurationTests
     }
 
     [Fact]
-    public async Task AmigaStore_RoundTripsVideoProcessing()
+    public async Task AmigaLegacyPresentationMigratesToHostAndSurvivesNativeSave()
     {
         using var temporary = new TemporaryDirectory();
         var store = new AmigaConfigurationStore(temporary.Path);
-        var expected = AmigaMachineConfiguration.A500(System.IO.Path.Combine(temporary.Path, "kick.rom"))
-            with { VideoProcessing = SampleVideo() };
-
+        var expected = AmigaMachineConfiguration.A500(Path.Combine(temporary.Path, "kick.rom"));
         await store.SaveAsync(expected);
+        var path = SingleMachineDocument(temporary.Path);
+        await AddLegacyVideoAsync(path);
+        var profiles = Profiles(temporary.Path, path);
+        var profile = profiles.Get("amiga", expected.Id);
+        Assert.Equal(SampleVideo(), profile.Processing);
+        Assert.Equal(EmulationVideoRenderer.Vulkan, profile.Renderer);
         var actual = Assert.Single(await store.LoadAllAsync());
-
-        Assert.Equal(expected.VideoProcessing, actual.VideoProcessing);
+        await store.SaveAsync(actual with { AudioEnabled = false });
+        Assert.False(JsonNode.Parse(await File.ReadAllTextAsync(path))!.AsObject().ContainsKey("videoProcessing"));
+        Assert.Equal(profile, Profiles(temporary.Path, path).Get("amiga", expected.Id));
     }
 
     [Fact]
@@ -255,61 +260,50 @@ public sealed class EmulationVideoConfigurationTests
         Assert.Single(await reader.LoadAllAsync());
     }
     [Fact]
-    public async Task AmigaStore_LoadsLegacyDocumentWithoutVideoProcessingAsNeutral()
+    public async Task AmigaWithoutPresentationUsesHostDefaults()
     {
         using var temporary = new TemporaryDirectory();
         var store = new AmigaConfigurationStore(temporary.Path);
-        await store.SaveAsync(AmigaMachineConfiguration.A500(
-            System.IO.Path.Combine(temporary.Path, "kick.rom")) with { VideoProcessing = SampleVideo() });
-        await RemoveVideoProcessingAsync(SingleMachineDocument(temporary.Path));
-
+        await store.SaveAsync(AmigaMachineConfiguration.A500(Path.Combine(temporary.Path, "kick.rom")));
         var actual = Assert.Single(await store.LoadAllAsync());
-
-        Assert.Null(actual.VideoProcessing);
         Assert.Equal(new EmulationVideoProcessingConfiguration(),
-            ((GWGUI.Emulation.Interfaces.IEmulationConfiguration)actual).VideoProcessing);
+            Profiles(temporary.Path, SingleMachineDocument(temporary.Path)).Get("amiga", actual.Id).Processing);
     }
 
     [Fact]
-    public async Task AmigaStore_RemovesOnlyAnIncompatibleOptionalPropertyAndLoadsConfiguration()
+    public async Task HostMigrationReadsLegacyNumericBooleanWithoutLosingOtherEffects()
     {
         using var temporary = new TemporaryDirectory();
         var store = new AmigaConfigurationStore(temporary.Path);
-        await store.SaveAsync(AmigaMachineConfiguration.A500(
-            System.IO.Path.Combine(temporary.Path, "kick.rom")) with
-        {
-            Model = "A600",
-            VideoProcessing = SampleVideo()
-        });
+        var configuration = AmigaMachineConfiguration.A500(Path.Combine(temporary.Path, "kick.rom"));
+        await store.SaveAsync(configuration);
         var path = SingleMachineDocument(temporary.Path);
+        await AddLegacyVideoAsync(path);
         var json = JsonNode.Parse(await File.ReadAllTextAsync(path))!.AsObject();
         json["videoProcessing"]!["stylistic"]!["sepia"] = 0;
-        await File.WriteAllTextAsync(path, json.ToJsonString(new JsonSerializerOptions
-        {
-            WriteIndented = true
-        }));
-
-        var actual = Assert.Single(await store.LoadAllAsync());
-        var repaired = JsonNode.Parse(await File.ReadAllTextAsync(path))!.AsObject();
-
-        Assert.Equal("A600", actual.Model);
-        Assert.False(actual.VideoProcessing!.Stylistic.Sepia);
-        Assert.Null(repaired["videoProcessing"]!["stylistic"]!["sepia"]);
-        Assert.NotNull(repaired["videoProcessing"]!["stylistic"]!["grain"]);
+        await File.WriteAllTextAsync(path, json.ToJsonString());
+        var original = await File.ReadAllTextAsync(path);
+        var profile = Profiles(temporary.Path, path).Get("amiga", configuration.Id);
+        Assert.False(profile.Processing!.Stylistic.Sepia);
+        Assert.Equal(SampleVideo().Stylistic.Grain, profile.Processing.Stylistic.Grain);
+        Assert.Equal(original, await File.ReadAllTextAsync(path));
     }
 
     [Fact]
-    public async Task AtariStore_RoundTripsVideoProcessing()
+    public async Task AtariLegacyPresentationMigratesToHostAndSurvivesNativeSave()
     {
         using var temporary = new TemporaryDirectory();
         var store = new AtariConfigurationStore(temporary.Path);
-        var expected = new AtariMachineConfiguration(AtariMachineModel.St,
-            videoProcessing: SampleVideo());
-
+        var expected = new AtariMachineConfiguration(AtariMachineModel.St);
         await store.SaveAsync(expected);
+        var path = SingleMachineDocument(temporary.Path);
+        await AddLegacyVideoAsync(path);
+        var profile = Profiles(temporary.Path, path).Get("atari", expected.Id);
+        Assert.Equal(SampleVideo(), profile.Processing);
         var actual = Assert.Single(await store.LoadAllAsync());
-
-        Assert.Equal(expected.VideoProcessing, actual.VideoProcessing);
+        await store.SaveAsync(actual with { AudioEnabled = false });
+        Assert.False(JsonNode.Parse(await File.ReadAllTextAsync(path))!.AsObject().ContainsKey("videoProcessing"));
+        Assert.Equal(profile, Profiles(temporary.Path, path).Get("atari", expected.Id));
     }
 
     [Fact]
@@ -336,30 +330,43 @@ public sealed class EmulationVideoConfigurationTests
         Assert.Single(await reader.LoadAllAsync());
     }
     [Fact]
-    public async Task AtariStore_LoadsLegacyDocumentWithoutVideoProcessingAsNeutral()
+    public async Task AtariWithoutPresentationUsesHostDefaults()
     {
         using var temporary = new TemporaryDirectory();
         var store = new AtariConfigurationStore(temporary.Path);
-        await store.SaveAsync(new AtariMachineConfiguration(AtariMachineModel.St,
-            videoProcessing: SampleVideo()));
-        await RemoveVideoProcessingAsync(SingleMachineDocument(temporary.Path));
-
+        await store.SaveAsync(new AtariMachineConfiguration(AtariMachineModel.St));
         var actual = Assert.Single(await store.LoadAllAsync());
-
-        Assert.Equal(new EmulationVideoProcessingConfiguration(), actual.VideoProcessing);
+        Assert.Equal(new EmulationVideoProcessingConfiguration(),
+            Profiles(temporary.Path, SingleMachineDocument(temporary.Path)).Get("atari", actual.Id).Processing);
     }
 
     [Fact]
-    public void AtariInputReconstruction_PreservesVideoProcessing()
+    public async Task AtariNativeEditsAndPersistenceDoNotOwnTheHostProfile()
     {
-        var expected = SampleVideo();
-        var configuration = new AtariMachineConfiguration(AtariMachineModel.St,
-            videoProcessing: expected);
-        var input = AtariInputSettingsFunctions.Describe(configuration);
-
-        var rebuilt = AtariInputSettingsFunctions.Apply(configuration, input);
-
-        Assert.Equal(expected, rebuilt.VideoProcessing);
+        using var temporary = new TemporaryDirectory();
+        var profiles = Profiles(temporary.Path, Path.Combine(temporary.Path, "absent.json"));
+        var configuration = new AtariMachineConfiguration(AtariMachineModel.St);
+        var expected = new EmulationVideoPresentationProfile(EmulationVideoRenderer.OpenGL, SampleVideo()).Normalize();
+        profiles.Set("atari", configuration.Id, expected);
+        profiles.Save("atari", configuration.Id);
+        var rebuilt = AtariInputSettingsFunctions.Apply(configuration, AtariInputSettingsFunctions.Describe(configuration));
+        rebuilt = rebuilt with
+        {
+            Firmwares = [new(AtariFirmwareCategory.Tos, Path.Combine(temporary.Path, "tos.img"), true)],
+            Media = [new(Path.Combine(temporary.Path, "disk.st"), AtariMediaCategory.Floppy, EmulationMediaSlot.Floppy0)],
+            Folders = new(HardDisks: Path.Combine(temporary.Path, "disks"))
+        };
+        rebuilt = AtariStorageSettingsFunctions.Apply(rebuilt, AtariStorageSettingsFunctions.Describe(rebuilt));
+        Assert.Equal(configuration.Id, rebuilt.Id);
+        Assert.Equal(expected, profiles.Get("atari", rebuilt.Id));
+        var nativeStore = new AtariConfigurationStore(Path.Combine(temporary.Path, "native"));
+        await nativeStore.SaveAsync(rebuilt);
+        var reloaded = Assert.Single(await nativeStore.LoadAllAsync());
+        Assert.Equal(rebuilt.Firmwares, reloaded.Firmwares);
+        Assert.Equal(rebuilt.Media, reloaded.Media);
+        Assert.Equal(rebuilt.Folders, reloaded.Folders);
+        Assert.Equal(expected, Profiles(temporary.Path, Path.Combine(temporary.Path, "absent.json"))
+            .Get("atari", reloaded.Id));
     }
 
     private static EmulationVideoProcessingConfiguration SampleVideo() => new()
@@ -408,14 +415,16 @@ public sealed class EmulationVideoConfigurationTests
     private static string SingleMachineDocument(string directory) =>
         Assert.Single(Directory.GetFiles(directory, "machine.json", SearchOption.AllDirectories));
 
-    private static async Task RemoveVideoProcessingAsync(string path)
+    private static GWGUI.VideoPresentation.Services.VideoPresentationProfileStore Profiles(string root, string legacy) =>
+        new(Path.Combine(root, "presentation"), (_, _) => [legacy]);
+
+    private static async Task AddLegacyVideoAsync(string path)
     {
-        var document = JsonNode.Parse(await File.ReadAllTextAsync(path))!.AsObject();
-        Assert.True(document.Remove("videoProcessing"));
-        await File.WriteAllTextAsync(path, document.ToJsonString(new JsonSerializerOptions
-        {
-            WriteIndented = true
-        }));
+        var json = JsonNode.Parse(await File.ReadAllTextAsync(path))!.AsObject();
+        json["videoRenderer"] = (int)EmulationVideoRenderer.Vulkan;
+        json["videoProcessing"] = JsonSerializer.SerializeToNode(SampleVideo(),
+            new JsonSerializerOptions(JsonSerializerDefaults.Web));
+        await File.WriteAllTextAsync(path, json.ToJsonString());
     }
 
     private sealed class TemporaryDirectory : IDisposable

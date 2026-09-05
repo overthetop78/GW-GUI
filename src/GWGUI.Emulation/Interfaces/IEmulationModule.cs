@@ -13,8 +13,6 @@ public interface IEmulationModule
     IEmulationConfiguration ChangeMachine(IEmulationConfiguration configuration, string machineId);
     IEmulationConfiguration ApplySettings(IEmulationConfiguration configuration,
         IReadOnlyDictionary<string, string?> values);
-    IEmulationConfiguration ApplyVideoProcessing(IEmulationConfiguration configuration,
-        EmulationVideoProcessingConfiguration videoProcessing);
     EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration);
     ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(IEmulationConfiguration configuration,
         EmulationRuntimeServices services, CancellationToken cancellationToken = default);

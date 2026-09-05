@@ -16,6 +16,7 @@ internal static class EmulationConfigurationPersistenceFunctions
             return false;
         }
 
+        EmulationVideoPresentationProfiles.Store.Get(module.Id, configuration.Id);
         await module.SaveConfigurationAsync(configuration, cancellationToken);
         return true;
     }
