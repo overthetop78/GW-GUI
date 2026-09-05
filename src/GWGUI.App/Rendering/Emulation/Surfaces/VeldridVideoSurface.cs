@@ -381,7 +381,10 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
         Vector4 VectorTemporal,
         Vector4 VectorDisplay,
         Vector4 Restoration,
-        Vector4 SegmentDisplay,
+        Vector4 SegmentGeometry,
+        Vector4 SegmentShape,
+        Vector4 SegmentEmission,
+        Vector4 SegmentOptical,
         Vector4 SegmentTemporal,
         Vector4 General,
         Vector4 Restoration2,
@@ -398,7 +401,9 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
         Vector4 DotMatrixGeometry,
         Vector4 DotMatrixEmission,
         Vector4 DotMatrixTemporal,
-        Vector4 EPaper,
+        Vector4 EPaperInkAndColor,
+        Vector4 EPaperSurface,
+        Vector4 EPaperTemporal,
         Vector4 Projection);
 
     private static VideoParameters Parameters(EmulationVideoProcessingConfiguration configuration,
@@ -418,6 +423,10 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
         var ledMatrix = LedMatrixVideoShaderParameters.From(configuration);
         var dotMatrix = DotMatrixVideoShaderParameters.From(configuration, hasHistory,
             elapsedMilliseconds);
+        var segmentDisplay = SegmentDisplayVideoShaderParameters.From(configuration,
+            hasHistory, elapsedMilliseconds);
+        var ePaper = EPaperVideoShaderParameters.From(configuration, hasHistory,
+            elapsedMilliseconds);
         return new VideoParameters(
             new Vector4(
                 adjustments.Brightness / 20f,
@@ -433,14 +442,8 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
             fixedPixel.Temporal, plasma.Effect, plasma.Temporal, plasma.Display,
             vector.Effect, vector.Temporal, vector.Display,
             new Vector4(configuration.Restoration.DetailRecovery / 100f, 0f, 0f, 0f),
-            new Vector4(configuration.SegmentDisplay.Thickness / 100f,
-                configuration.SegmentDisplay.Contrast / 100f,
-                configuration.SegmentDisplay.Glow / 100f,
-                (float)configuration.SegmentDisplay.Layout),
-            new Vector4(configuration.DisplayTechnology
-                    == EmulationVideoDisplayTechnology.SegmentDisplay ? 1f : 0f,
-                (float)configuration.SegmentDisplay.Color,
-                configuration.SegmentDisplay.ResponseTimeMilliseconds, hasHistory ? 1f : 0f),
+            segmentDisplay.Geometry, segmentDisplay.Shape, segmentDisplay.Emission,
+            segmentDisplay.Optical, segmentDisplay.Temporal,
             new Vector4((float)configuration.DisplayTechnology, hasHistory ? 1f : 0f, sequence % 4096, (float)elapsedMilliseconds),
             new Vector4(configuration.Restoration.Dedithering / 100f, configuration.Restoration.Denoising / 100f, configuration.Restoration.Debanding / 100f, (float)configuration.Restoration.Deinterlacing),
             new Vector4(configuration.Temporal.GeneralPersistence / 100f, configuration.Temporal.MotionBlur / 100f, configuration.Temporal.Flicker / 100f, configuration.Temporal.Interlacing > 0 ? 1f : 0f),
@@ -455,7 +458,7 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
             vfd.Display, vfd.Structure, vfd.Optical,
             ledMatrix.Emission, ledMatrix.Structure,
             dotMatrix.Geometry, dotMatrix.Emission, dotMatrix.Temporal,
-            new Vector4((float)configuration.EPaper.ColorMode, configuration.EPaper.Contrast / 100f, configuration.EPaper.Dithering / 100f, configuration.EPaper.Ghosting / 100f),
+            ePaper.InkAndColor, ePaper.PaperSurface, ePaper.Temporal,
             new Vector4(configuration.Projection.OpticalBlur / 100f, configuration.Projection.Diffusion / 100f, configuration.Projection.ScreenTexture / 100f, configuration.Projection.Convergence / 100f));
     }
 }

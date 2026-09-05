@@ -90,9 +90,15 @@ public sealed class EmulationVideoConfigurationTests
                 PersistenceMilliseconds: 1002),
             SegmentDisplay = new((EmulationSegmentDisplayLayout)999,
                 (EmulationSegmentDisplayColor)999, Thickness: 101, Contrast: -1,
-                Glow: 102, ResponseTimeMilliseconds: 1001),
+                Glow: 102, ResponseTimeMilliseconds: 1001, CellSize: 103,
+                HorizontalGap: -2, VerticalGap: 104, SegmentGap: -3,
+                EndShape: (EmulationSegmentEndShape)999, Brightness: 105,
+                ActivationThreshold: -4, OffSegmentVisibility: 106,
+                BlackDepth: -5, HaloRadius: 107, PersistenceMilliseconds: 1002),
             EPaper = new((EmulationEPaperColorMode)999, Contrast: 101, Dithering: -1,
-                RefreshTimeMilliseconds: 1001, Ghosting: 102),
+                RefreshTimeMilliseconds: 1001, Ghosting: 102, InkDensity: -2,
+                PaperBrightness: 103, PaperWarmth: -3, ColorSaturation: 104,
+                SurfaceTexture: -4, EdgeSoftness: 105),
             Projection = new(OpticalBlur: 101, Diffusion: -1,
                 ScreenTexture: 102, Convergence: -2)
         });
@@ -162,11 +168,28 @@ public sealed class EmulationVideoConfigurationTests
         Assert.Equal(0, normalized.SegmentDisplay.Contrast);
         Assert.Equal(100, normalized.SegmentDisplay.Glow);
         Assert.Equal(1000, normalized.SegmentDisplay.ResponseTimeMilliseconds);
+        Assert.Equal(100, normalized.SegmentDisplay.CellSize);
+        Assert.Equal(0, normalized.SegmentDisplay.HorizontalGap);
+        Assert.Equal(100, normalized.SegmentDisplay.VerticalGap);
+        Assert.Equal(0, normalized.SegmentDisplay.SegmentGap);
+        Assert.Equal(EmulationSegmentEndShape.Beveled, normalized.SegmentDisplay.EndShape);
+        Assert.Equal(100, normalized.SegmentDisplay.Brightness);
+        Assert.Equal(0, normalized.SegmentDisplay.ActivationThreshold);
+        Assert.Equal(100, normalized.SegmentDisplay.OffSegmentVisibility);
+        Assert.Equal(0, normalized.SegmentDisplay.BlackDepth);
+        Assert.Equal(100, normalized.SegmentDisplay.HaloRadius);
+        Assert.Equal(1000, normalized.SegmentDisplay.PersistenceMilliseconds);
         Assert.Equal(EmulationEPaperColorMode.Monochrome, normalized.EPaper.ColorMode);
         Assert.Equal(100, normalized.EPaper.Contrast);
         Assert.Equal(0, normalized.EPaper.Dithering);
         Assert.Equal(1000, normalized.EPaper.RefreshTimeMilliseconds);
         Assert.Equal(100, normalized.EPaper.Ghosting);
+        Assert.Equal(0, normalized.EPaper.InkDensity);
+        Assert.Equal(100, normalized.EPaper.PaperBrightness);
+        Assert.Equal(0, normalized.EPaper.PaperWarmth);
+        Assert.Equal(100, normalized.EPaper.ColorSaturation);
+        Assert.Equal(0, normalized.EPaper.SurfaceTexture);
+        Assert.Equal(100, normalized.EPaper.EdgeSoftness);
         Assert.Equal(100, normalized.Projection.OpticalBlur);
         Assert.Equal(0, normalized.Projection.Diffusion);
         Assert.Equal(100, normalized.Projection.ScreenTexture);

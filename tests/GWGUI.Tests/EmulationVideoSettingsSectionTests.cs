@@ -6,6 +6,7 @@ using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using GWGUI.App.Constants.Localization;
 using GWGUI.App.Functions.Views.Emulation.Machine;
 using GWGUI.App.Functions.Views.Emulation.Settings;
 using GWGUI.App.Contracts.Views.Emulation.Settings;
@@ -370,6 +371,90 @@ public sealed class EmulationVideoSettingsSectionTests
     }
 
     [Fact]
+    public void SegmentDisplayOptionsAreSeparatedIntoFourCoherentGroups()
+    {
+        RunSta(() =>
+        {
+            var panel = new EmulationVideoProcessingSettingsSection();
+            panel.SetConfiguration(new EmulationVideoProcessingConfiguration
+            {
+                DisplayTechnology = EmulationVideoDisplayTechnology.SegmentDisplay
+            });
+
+            AssertGroup(EmulationResourceKeys.VideoSegmentDisplayGroupCells,
+                EmulationVideoProcessingCatalog.SegmentDisplayLayout,
+                EmulationVideoProcessingCatalog.SegmentDisplayCellSize,
+                EmulationVideoProcessingCatalog.SegmentDisplayHorizontalGap,
+                EmulationVideoProcessingCatalog.SegmentDisplayVerticalGap);
+            AssertGroup(EmulationResourceKeys.VideoSegmentDisplayGroupGeometry,
+                EmulationVideoProcessingCatalog.SegmentDisplayThickness,
+                EmulationVideoProcessingCatalog.SegmentDisplaySegmentGap,
+                EmulationVideoProcessingCatalog.SegmentDisplayEndShape,
+                EmulationVideoProcessingCatalog.SegmentDisplayDecimalPoint,
+                EmulationVideoProcessingCatalog.SegmentDisplayColon);
+            AssertGroup(EmulationResourceKeys.VideoSegmentDisplayGroupEmission,
+                EmulationVideoProcessingCatalog.SegmentDisplayColor,
+                EmulationVideoProcessingCatalog.SegmentDisplayBrightness,
+                EmulationVideoProcessingCatalog.SegmentDisplayActivationThreshold,
+                EmulationVideoProcessingCatalog.SegmentDisplayContrast,
+                EmulationVideoProcessingCatalog.SegmentDisplayOffSegmentVisibility,
+                EmulationVideoProcessingCatalog.SegmentDisplayBlackDepth);
+            AssertGroup(EmulationResourceKeys.VideoSegmentDisplayGroupLightAndResponse,
+                EmulationVideoProcessingCatalog.SegmentDisplayGlow,
+                EmulationVideoProcessingCatalog.SegmentDisplayHaloRadius,
+                EmulationVideoProcessingCatalog.SegmentDisplayResponseTime,
+                EmulationVideoProcessingCatalog.SegmentDisplayPersistence);
+            return;
+
+            void AssertGroup(string groupId, params string[] expectedOptions)
+            {
+                var group = FindByAutomationId<Border>(panel, groupId);
+                var ids = AutomationIds(group);
+                Assert.Equal(expectedOptions.Order(StringComparer.Ordinal),
+                    ids.Where(id => id != groupId).Order(StringComparer.Ordinal));
+            }
+        });
+    }
+
+    [Fact]
+    public void EPaperOptionsAreSeparatedIntoThreeCoherentGroups()
+    {
+        RunSta(() =>
+        {
+            var panel = new EmulationVideoProcessingSettingsSection();
+            panel.SetConfiguration(new EmulationVideoProcessingConfiguration
+            {
+                DisplayTechnology = EmulationVideoDisplayTechnology.EPaper,
+                EPaper = new EmulationEPaperVideoConfiguration(
+                    ColorMode: EmulationEPaperColorMode.Color4096)
+            });
+            AssertGroup(EmulationResourceKeys.VideoEPaperGroupInkAndColor,
+                EmulationVideoProcessingCatalog.EPaperColorMode,
+                EmulationVideoProcessingCatalog.EPaperInkDensity,
+                EmulationVideoProcessingCatalog.EPaperContrast,
+                EmulationVideoProcessingCatalog.EPaperDithering,
+                EmulationVideoProcessingCatalog.EPaperColorSaturation);
+            AssertGroup(EmulationResourceKeys.VideoEPaperGroupPaperSurface,
+                EmulationVideoProcessingCatalog.EPaperPaperBrightness,
+                EmulationVideoProcessingCatalog.EPaperPaperWarmth,
+                EmulationVideoProcessingCatalog.EPaperSurfaceTexture,
+                EmulationVideoProcessingCatalog.EPaperEdgeSoftness);
+            AssertGroup(EmulationResourceKeys.VideoEPaperGroupRefresh,
+                EmulationVideoProcessingCatalog.EPaperRefreshTime,
+                EmulationVideoProcessingCatalog.EPaperGhosting);
+            return;
+
+            void AssertGroup(string groupId, params string[] expectedOptions)
+            {
+                var group = FindByAutomationId<Border>(panel, groupId);
+                var ids = AutomationIds(group);
+                Assert.Equal(expectedOptions.Order(StringComparer.Ordinal),
+                    ids.Where(id => id != groupId).Order(StringComparer.Ordinal));
+            }
+        });
+    }
+
+    [Fact]
     public void ConditionalRebuildPreservesTheSelectedVideoTab()
     {
         RunSta(() =>
@@ -662,19 +747,45 @@ public sealed class EmulationVideoSettingsSectionTests
                 EmulationVideoProcessingCatalog.SegmentDisplayThickness).Value = 34;
             FindByAutomationId<Slider>(panel,
                 EmulationVideoProcessingCatalog.SegmentDisplayGlow).Value = 75;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.SegmentDisplayCellSize).Value = 62;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.SegmentDisplayBrightness).Value = 81;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.SegmentDisplayHaloRadius).Value = 47;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.SegmentDisplayPersistence).Value = 215;
             Assert.Equal(34, panel.Configuration.SegmentDisplay.Thickness);
             Assert.Equal(75, panel.Configuration.SegmentDisplay.Glow);
+            Assert.Equal(62, panel.Configuration.SegmentDisplay.CellSize);
+            Assert.Equal(81, panel.Configuration.SegmentDisplay.Brightness);
+            Assert.Equal(47, panel.Configuration.SegmentDisplay.HaloRadius);
+            Assert.Equal(215, panel.Configuration.SegmentDisplay.PersistenceMilliseconds);
 
             panel.SetConfiguration(new EmulationVideoProcessingConfiguration
             {
-                DisplayTechnology = EmulationVideoDisplayTechnology.EPaper
+                DisplayTechnology = EmulationVideoDisplayTechnology.EPaper,
+                EPaper = new EmulationEPaperVideoConfiguration(
+                    ColorMode: EmulationEPaperColorMode.Color4096)
             });
             FindByAutomationId<Slider>(panel,
                 EmulationVideoProcessingCatalog.EPaperContrast).Value = 35;
             FindByAutomationId<Slider>(panel,
                 EmulationVideoProcessingCatalog.EPaperGhosting).Value = 76;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.EPaperInkDensity).Value = 64;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.EPaperPaperBrightness).Value = 82;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.EPaperColorSaturation).Value = 48;
+            FindByAutomationId<Slider>(panel,
+                EmulationVideoProcessingCatalog.EPaperEdgeSoftness).Value = 27;
             Assert.Equal(35, panel.Configuration.EPaper.Contrast);
             Assert.Equal(76, panel.Configuration.EPaper.Ghosting);
+            Assert.Equal(64, panel.Configuration.EPaper.InkDensity);
+            Assert.Equal(82, panel.Configuration.EPaper.PaperBrightness);
+            Assert.Equal(48, panel.Configuration.EPaper.ColorSaturation);
+            Assert.Equal(27, panel.Configuration.EPaper.EdgeSoftness);
 
             panel.SetConfiguration(new EmulationVideoProcessingConfiguration
             {

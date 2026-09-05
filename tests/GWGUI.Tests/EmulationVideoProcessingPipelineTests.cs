@@ -91,6 +91,98 @@ public sealed class EmulationVideoProcessingPipelineTests
         });
     }
 
+    [Theory]
+    [InlineData(GraphicsBackend.Direct3D11)]
+    [InlineData(GraphicsBackend.Vulkan)]
+    public void VeldridSpecializedDisplaysBuildPipelinesAndPresentFrames(GraphicsBackend backend)
+    {
+        RunSta(() =>
+        {
+            var surface = new VeldridVideoSurface(backend);
+            var window = new System.Windows.Window
+            {
+                Content = surface,
+                Width = 128,
+                Height = 96,
+                ShowInTaskbar = false,
+                ShowActivated = false
+            };
+            try
+            {
+                window.Show();
+                window.UpdateLayout();
+                surface.SetVideoProcessing(new EmulationVideoProcessingConfiguration
+                {
+                    DisplayTechnology = EmulationVideoDisplayTechnology.SegmentDisplay,
+                    SegmentDisplay = new EmulationSegmentDisplayVideoConfiguration(
+                        Layout: EmulationSegmentDisplayLayout.Sixteen,
+                        Color: EmulationSegmentDisplayColor.Green,
+                        Thickness: 67, Contrast: 78, Glow: 54,
+                        ResponseTimeMilliseconds: 120, CellSize: 56,
+                        HorizontalGap: 23, VerticalGap: 31, SegmentGap: 16,
+                        EndShape: EmulationSegmentEndShape.Rounded,
+                        DecimalPoint: true, Colon: true, Brightness: 91,
+                        ActivationThreshold: 38, OffSegmentVisibility: 13,
+                        BlackDepth: 96, HaloRadius: 47,
+                        PersistenceMilliseconds: 180)
+                });
+                var bright = new VideoFrame(Enumerable.Repeat((byte)220, 8 * 8 * 4).ToArray(),
+                    8, 8, 32, EmulationPixelFormat.Xrgb8888, 1f, 1, TimeSpan.Zero);
+                var dark = bright with
+                {
+                    Pixels = new byte[8 * 8 * 4], Sequence = 2,
+                    Timestamp = TimeSpan.FromMilliseconds(16)
+                };
+                Exception? failure = null;
+                var worker = Task.Factory.StartNew(() =>
+                {
+                    try
+                    {
+                        surface.Present(bright);
+                        surface.Present(dark);
+                    }
+                    catch (Exception error) { failure = error; }
+                }, CancellationToken.None, TaskCreationOptions.LongRunning,
+                    TaskScheduler.Default);
+                Assert.True(worker.Wait(TimeSpan.FromSeconds(30)),
+                    $"{backend} timed out while building the segment-display pipeline.");
+                if (failure is not null) ExceptionDispatchInfo.Capture(failure).Throw();
+
+                surface.SetVideoProcessing(new EmulationVideoProcessingConfiguration
+                {
+                    DisplayTechnology = EmulationVideoDisplayTechnology.EPaper,
+                    EPaper = new EmulationEPaperVideoConfiguration(
+                        ColorMode: EmulationEPaperColorMode.Color4096,
+                        Contrast: 76, Dithering: 41, RefreshTimeMilliseconds: 220,
+                        Ghosting: 32, InkDensity: 87, PaperBrightness: 92,
+                        PaperWarmth: 39, ColorSaturation: 61,
+                        SurfaceTexture: 18, EdgeSoftness: 26)
+                });
+                failure = null;
+                worker = Task.Factory.StartNew(() =>
+                {
+                    try
+                    {
+                        surface.Present(bright with { Sequence = 3,
+                            Timestamp = TimeSpan.FromMilliseconds(32) });
+                        surface.Present(dark with { Sequence = 4,
+                            Timestamp = TimeSpan.FromMilliseconds(48) });
+                    }
+                    catch (Exception error) { failure = error; }
+                }, CancellationToken.None, TaskCreationOptions.LongRunning,
+                    TaskScheduler.Default);
+                Assert.True(worker.Wait(TimeSpan.FromSeconds(30)),
+                    $"{backend} timed out while building the electronic-paper pipeline.");
+                if (failure is not null) ExceptionDispatchInfo.Capture(failure).Throw();
+            }
+            finally
+            {
+                window.Close();
+                surface.Dispose();
+            }
+        });
+    }
+
     [Fact]
     public void VeldridDirect3D11PresentsVisiblePixelsFromDedicatedThread()
     {
@@ -328,6 +420,41 @@ public sealed class EmulationVideoProcessingPipelineTests
                 surface.Present(new VideoFrame(Enumerable.Repeat((byte)180, 16).ToArray(),
                     2, 2, 8, EmulationPixelFormat.Xrgb8888, 1f, 4,
                     TimeSpan.FromMilliseconds(32)));
+
+                surface.SetVideoProcessing(new EmulationVideoProcessingConfiguration
+                {
+                    DisplayTechnology = EmulationVideoDisplayTechnology.SegmentDisplay,
+                    SegmentDisplay = new EmulationSegmentDisplayVideoConfiguration(
+                        Layout: EmulationSegmentDisplayLayout.Sixteen,
+                        Color: EmulationSegmentDisplayColor.Blue,
+                        Thickness: 62, Contrast: 73, Glow: 48,
+                        ResponseTimeMilliseconds: 0, CellSize: 58,
+                        HorizontalGap: 19, VerticalGap: 27, SegmentGap: 18,
+                        EndShape: EmulationSegmentEndShape.Rounded,
+                        DecimalPoint: true, Colon: true, Brightness: 92,
+                        ActivationThreshold: 37, OffSegmentVisibility: 11,
+                        BlackDepth: 94, HaloRadius: 44,
+                        PersistenceMilliseconds: 0)
+                });
+                surface.Present(new VideoFrame(Enumerable.Repeat((byte)180, 16).ToArray(),
+                    2, 2, 8, EmulationPixelFormat.Xrgb8888, 1f, 5,
+                    TimeSpan.FromMilliseconds(48)));
+                Assert.NotNull(surface.Snapshot);
+
+                surface.SetVideoProcessing(new EmulationVideoProcessingConfiguration
+                {
+                    DisplayTechnology = EmulationVideoDisplayTechnology.EPaper,
+                    EPaper = new EmulationEPaperVideoConfiguration(
+                        ColorMode: EmulationEPaperColorMode.Color4096,
+                        Contrast: 72, Dithering: 34, RefreshTimeMilliseconds: 180,
+                        Ghosting: 28, InkDensity: 84, PaperBrightness: 91,
+                        PaperWarmth: 42, ColorSaturation: 63,
+                        SurfaceTexture: 17, EdgeSoftness: 23)
+                });
+                surface.Present(new VideoFrame(Enumerable.Repeat((byte)170, 16).ToArray(),
+                    2, 2, 8, EmulationPixelFormat.Xrgb8888, 1f, 6,
+                    TimeSpan.FromMilliseconds(64)));
+                Assert.NotNull(surface.Snapshot);
             }
             finally
             {
@@ -2394,7 +2521,7 @@ public sealed class EmulationVideoProcessingPipelineTests
                 {
                     DisplayTechnology = EmulationVideoDisplayTechnology.SegmentDisplay,
                     SegmentDisplay = segmentDisplay
-                }, frame, new(24, 24), new(24, 24)));
+                }, frame, new(24, 24), new(96, 72)));
         }
 
         var colorHashes = Enum.GetValues<EmulationSegmentDisplayColor>()
@@ -2412,30 +2539,101 @@ public sealed class EmulationVideoProcessingPipelineTests
                 ResponseTimeMilliseconds: 0)).SequenceEqual(
             Render(new(Thickness: 100, Contrast: 100, Glow: 100,
                 ResponseTimeMilliseconds: 0))));
+        Assert.False(Render(new(CellSize: 0, HorizontalGap: 0, VerticalGap: 0,
+                SegmentGap: 0, Brightness: 20, ActivationThreshold: 20,
+                OffSegmentVisibility: 0, BlackDepth: 100, HaloRadius: 0,
+                ResponseTimeMilliseconds: 0, PersistenceMilliseconds: 0)).SequenceEqual(
+            Render(new(CellSize: 100, HorizontalGap: 100, VerticalGap: 100,
+                SegmentGap: 100, Brightness: 100, ActivationThreshold: 80,
+                OffSegmentVisibility: 100, BlackDepth: 0, HaloRadius: 100,
+                ResponseTimeMilliseconds: 0, PersistenceMilliseconds: 0))));
+
+        var baseline = new EmulationSegmentDisplayVideoConfiguration(
+            Layout: EmulationSegmentDisplayLayout.Sixteen,
+            Color: EmulationSegmentDisplayColor.Red,
+            Thickness: 55, Contrast: 65, Glow: 45,
+            ResponseTimeMilliseconds: 0, CellSize: 45,
+            HorizontalGap: 20, VerticalGap: 20, SegmentGap: 15,
+            EndShape: EmulationSegmentEndShape.Beveled,
+            DecimalPoint: false, Colon: false, Brightness: 75,
+            ActivationThreshold: 45, OffSegmentVisibility: 12,
+            BlackDepth: 85, HaloRadius: 35, PersistenceMilliseconds: 0);
+        var baselinePixels = Render(baseline);
+        void AssertOptionChangesImage(string option,
+            EmulationSegmentDisplayVideoConfiguration changed)
+        {
+            Assert.False(baselinePixels.SequenceEqual(Render(changed)),
+                $"Segment-display option {option} did not change the rendered image.");
+        }
+        AssertOptionChangesImage(nameof(baseline.Layout), baseline with
+            { Layout = EmulationSegmentDisplayLayout.Seven });
+        AssertOptionChangesImage(nameof(baseline.Color), baseline with
+            { Color = EmulationSegmentDisplayColor.Green });
+        AssertOptionChangesImage(nameof(baseline.Thickness), baseline with { Thickness = 85 });
+        AssertOptionChangesImage(nameof(baseline.Contrast), baseline with { Contrast = 95 });
+        AssertOptionChangesImage(nameof(baseline.Glow), baseline with { Glow = 5 });
+        AssertOptionChangesImage(nameof(baseline.CellSize), baseline with { CellSize = 80 });
+        AssertOptionChangesImage(nameof(baseline.HorizontalGap), baseline with
+            { HorizontalGap = 75 });
+        AssertOptionChangesImage(nameof(baseline.VerticalGap), baseline with
+            { VerticalGap = 75 });
+        AssertOptionChangesImage(nameof(baseline.SegmentGap), baseline with { SegmentGap = 75 });
+        AssertOptionChangesImage(nameof(baseline.EndShape), baseline with
+            { EndShape = EmulationSegmentEndShape.Rounded });
+        AssertOptionChangesImage(nameof(baseline.DecimalPoint), baseline with
+            { DecimalPoint = true });
+        AssertOptionChangesImage(nameof(baseline.Colon), baseline with { Colon = true });
+        AssertOptionChangesImage(nameof(baseline.Brightness), baseline with { Brightness = 25 });
+        AssertOptionChangesImage(nameof(baseline.ActivationThreshold), baseline with
+            { ActivationThreshold = 80 });
+        AssertOptionChangesImage(nameof(baseline.OffSegmentVisibility), baseline with
+            { OffSegmentVisibility = 70 });
+        AssertOptionChangesImage(nameof(baseline.BlackDepth), baseline with { BlackDepth = 25 });
+        AssertOptionChangesImage(nameof(baseline.HaloRadius), baseline with { HaloRadius = 80 });
 
         var dark = frame with
         {
             Pixels = new byte[24 * 24 * 4], Sequence = 2,
             Timestamp = TimeSpan.FromMilliseconds(16)
         };
-        using var slowPipeline = new SoftwareEmulationVideoProcessingPipeline();
-        using var immediatePipeline = new SoftwareEmulationVideoProcessingPipeline();
-        EmulationVideoProcessingConfiguration Configuration(int response) => new()
+        EmulationVideoProcessingConfiguration Configuration(int response, int persistence) => new()
         {
             DisplayTechnology = EmulationVideoDisplayTechnology.SegmentDisplay,
-            SegmentDisplay = new(ResponseTimeMilliseconds: response)
+            SegmentDisplay = new(ResponseTimeMilliseconds: response,
+                PersistenceMilliseconds: persistence)
         };
-        slowPipeline.Process(Configuration(1000), frame, new(24, 24), new(24, 24));
-        immediatePipeline.Process(Configuration(0), frame, new(24, 24), new(24, 24));
-        var slow = EmulationVideoPixelFunctions.ToBgra32(slowPipeline.Process(
-            Configuration(1000), dark, new(24, 24), new(24, 24)));
-        var immediate = EmulationVideoPixelFunctions.ToBgra32(immediatePipeline.Process(
-            Configuration(0), dark, new(24, 24), new(24, 24)));
-        Assert.False(slow.SequenceEqual(immediate));
+
+        using var persistentPipeline = new SoftwareEmulationVideoProcessingPipeline();
+        using var noPersistencePipeline = new SoftwareEmulationVideoProcessingPipeline();
+        persistentPipeline.Process(Configuration(0, 1000), frame, new(24, 24), new(24, 24));
+        noPersistencePipeline.Process(Configuration(0, 0), frame, new(24, 24), new(24, 24));
+        var persistent = EmulationVideoPixelFunctions.ToBgra32(persistentPipeline.Process(
+            Configuration(0, 1000), dark, new(24, 24), new(24, 24)));
+        var noPersistence = EmulationVideoPixelFunctions.ToBgra32(noPersistencePipeline.Process(
+            Configuration(0, 0), dark, new(24, 24), new(24, 24)));
+        Assert.False(persistent.SequenceEqual(noPersistence));
+
+        var initialDark = dark with { Sequence = 1, Timestamp = TimeSpan.Zero };
+        var brightAfterDark = frame with
+        {
+            Sequence = 2, Timestamp = TimeSpan.FromMilliseconds(16)
+        };
+        using var slowResponsePipeline = new SoftwareEmulationVideoProcessingPipeline();
+        using var immediateResponsePipeline = new SoftwareEmulationVideoProcessingPipeline();
+        slowResponsePipeline.Process(Configuration(1000, 0), initialDark,
+            new(24, 24), new(24, 24));
+        immediateResponsePipeline.Process(Configuration(0, 0), initialDark,
+            new(24, 24), new(24, 24));
+        var slowResponse = EmulationVideoPixelFunctions.ToBgra32(slowResponsePipeline.Process(
+            Configuration(1000, 0), brightAfterDark, new(24, 24), new(24, 24)));
+        var immediateResponse = EmulationVideoPixelFunctions.ToBgra32(
+            immediateResponsePipeline.Process(Configuration(0, 0), brightAfterDark,
+                new(24, 24), new(24, 24)));
+        Assert.False(slowResponse.SequenceEqual(immediateResponse));
     }
 
     [Fact]
-    public void EPaperModesContrastDitheringRefreshAndGhostingAreDistinctAndBounded()
+    public void EPaperOptionsAreIndividuallyDistinctAndBounded()
     {
         var pixels = Enumerable.Range(0, 16 * 16).SelectMany(index => new byte[]
         {
@@ -2459,29 +2657,60 @@ public sealed class EmulationVideoProcessingPipelineTests
                 Render(new(ColorMode: mode, RefreshTimeMilliseconds: 0)))))
             .ToHashSet(StringComparer.Ordinal);
         Assert.Equal(Enum.GetValues<EmulationEPaperColorMode>().Length, hashes.Count);
-        Assert.False(Render(new(Contrast: 0, Dithering: 0, RefreshTimeMilliseconds: 0))
-            .SequenceEqual(Render(new(Contrast: 100, Dithering: 100,
-                RefreshTimeMilliseconds: 0))));
+        var baseline = new EmulationEPaperVideoConfiguration(
+            ColorMode: EmulationEPaperColorMode.Color4096, Contrast: 60,
+            Dithering: 40, RefreshTimeMilliseconds: 0, Ghosting: 0,
+            InkDensity: 75, PaperBrightness: 80, PaperWarmth: 30,
+            ColorSaturation: 55, SurfaceTexture: 20, EdgeSoftness: 20);
+        var baselinePixels = Render(baseline);
+        void AssertOptionChangesImage(string option, EmulationEPaperVideoConfiguration changed)
+        {
+            Assert.False(baselinePixels.SequenceEqual(Render(changed)),
+                $"Electronic-paper option {option} did not change the rendered image.");
+        }
+        AssertOptionChangesImage(nameof(baseline.Contrast), baseline with { Contrast = 95 });
+        AssertOptionChangesImage(nameof(baseline.Dithering), baseline with { Dithering = 95 });
+        AssertOptionChangesImage(nameof(baseline.InkDensity), baseline with { InkDensity = 20 });
+        AssertOptionChangesImage(nameof(baseline.PaperBrightness), baseline with
+            { PaperBrightness = 25 });
+        AssertOptionChangesImage(nameof(baseline.PaperWarmth), baseline with { PaperWarmth = 90 });
+        AssertOptionChangesImage(nameof(baseline.ColorSaturation), baseline with
+            { ColorSaturation = 5 });
+        AssertOptionChangesImage(nameof(baseline.SurfaceTexture), baseline with
+            { SurfaceTexture = 90 });
+        AssertOptionChangesImage(nameof(baseline.EdgeSoftness), baseline with
+            { EdgeSoftness = 90 });
 
         var dark = frame with
         {
             Pixels = new byte[16 * 16 * 4], Sequence = 2,
             Timestamp = TimeSpan.FromMilliseconds(16)
         };
-        using var slowPipeline = new SoftwareEmulationVideoProcessingPipeline();
-        using var immediatePipeline = new SoftwareEmulationVideoProcessingPipeline();
         EmulationVideoProcessingConfiguration Configuration(int refresh, int ghosting) => new()
         {
             DisplayTechnology = EmulationVideoDisplayTechnology.EPaper,
             EPaper = new(RefreshTimeMilliseconds: refresh, Ghosting: ghosting)
         };
-        slowPipeline.Process(Configuration(1000, 100), frame, new(16, 16), new(16, 16));
-        immediatePipeline.Process(Configuration(0, 0), frame, new(16, 16), new(16, 16));
-        var slow = EmulationVideoPixelFunctions.ToBgra32(slowPipeline.Process(
-            Configuration(1000, 100), dark, new(16, 16), new(16, 16)));
-        var immediate = EmulationVideoPixelFunctions.ToBgra32(immediatePipeline.Process(
+        using var slowRefreshPipeline = new SoftwareEmulationVideoProcessingPipeline();
+        using var immediateRefreshPipeline = new SoftwareEmulationVideoProcessingPipeline();
+        slowRefreshPipeline.Process(Configuration(1000, 0), frame, new(16, 16), new(16, 16));
+        immediateRefreshPipeline.Process(Configuration(0, 0), frame, new(16, 16), new(16, 16));
+        var slowRefresh = EmulationVideoPixelFunctions.ToBgra32(slowRefreshPipeline.Process(
+            Configuration(1000, 0), dark, new(16, 16), new(16, 16)));
+        var immediateRefresh = EmulationVideoPixelFunctions.ToBgra32(
+            immediateRefreshPipeline.Process(Configuration(0, 0), dark,
+                new(16, 16), new(16, 16)));
+        Assert.False(slowRefresh.SequenceEqual(immediateRefresh));
+
+        using var ghostedPipeline = new SoftwareEmulationVideoProcessingPipeline();
+        using var cleanPipeline = new SoftwareEmulationVideoProcessingPipeline();
+        ghostedPipeline.Process(Configuration(0, 100), frame, new(16, 16), new(16, 16));
+        cleanPipeline.Process(Configuration(0, 0), frame, new(16, 16), new(16, 16));
+        var ghosted = EmulationVideoPixelFunctions.ToBgra32(ghostedPipeline.Process(
+            Configuration(0, 100), dark, new(16, 16), new(16, 16)));
+        var clean = EmulationVideoPixelFunctions.ToBgra32(cleanPipeline.Process(
             Configuration(0, 0), dark, new(16, 16), new(16, 16)));
-        Assert.False(slow.SequenceEqual(immediate));
+        Assert.False(ghosted.SequenceEqual(clean));
     }
 
     [Fact]

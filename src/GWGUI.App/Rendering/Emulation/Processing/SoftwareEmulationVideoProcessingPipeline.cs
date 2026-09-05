@@ -363,11 +363,18 @@ internal sealed class SoftwareEmulationVideoProcessingPipeline : IEmulationVideo
         {
             var elapsedMilliseconds = Math.Max(0.001,
                 (timestamp - _segmentDisplayHistoryTimestamp).TotalMilliseconds);
-            var responseMilliseconds = configuration.SegmentDisplay.ResponseTimeMilliseconds;
-            var response = responseMilliseconds == 0 ? 1f : (float)(1d
-                - Math.Exp(-elapsedMilliseconds / responseMilliseconds));
+            var response = FilterSegmentDisplayResponse.BlendFactor(
+                configuration.SegmentDisplay.ResponseTimeMilliseconds, elapsedMilliseconds);
+            var persistence = FilterSegmentDisplayPersistence.Decay(
+                configuration.SegmentDisplay.PersistenceMilliseconds, elapsedMilliseconds);
             for (var index = 0; index < colors.Length; index++)
-                colors[index] = Lerp(_segmentDisplayHistory![index], colors[index], response);
+            {
+                var previous = _segmentDisplayHistory![index];
+                var target = colors[index];
+                colors[index] = target >= previous
+                    ? Lerp(previous, target, response)
+                    : MathF.Max(target, previous * persistence);
+            }
         }
         _segmentDisplayHistory = colors.ToArray();
         _segmentDisplayHistoryWidth = width;
@@ -396,16 +403,14 @@ internal sealed class SoftwareEmulationVideoProcessingPipeline : IEmulationVideo
             && timestamp >= _ePaperHistoryTimestamp;
         if (compatibleHistory)
         {
-            var elapsedMilliseconds = Math.Max(0.001,
-                (timestamp - _ePaperHistoryTimestamp).TotalMilliseconds);
-            var refreshMilliseconds = configuration.EPaper.RefreshTimeMilliseconds;
-            var response = refreshMilliseconds == 0 ? 1f : (float)(1d
-                - Math.Exp(-elapsedMilliseconds / refreshMilliseconds));
-            var ghosting = configuration.EPaper.Ghosting / 100f * 0.4f;
+            var elapsedMilliseconds = (timestamp - _ePaperHistoryTimestamp).TotalMilliseconds;
+            var response = FilterEPaperRefreshTime.BlendFactor(elapsedMilliseconds,
+                configuration.EPaper.RefreshTimeMilliseconds);
+            var ghosting = FilterEPaperGhosting.BlendFactor(configuration.EPaper.Ghosting);
             for (var index = 0; index < colors.Length; index++)
             {
                 var refreshed = Lerp(_ePaperHistory![index], colors[index], response);
-                colors[index] = Lerp(refreshed, _ePaperHistory[index], ghosting);
+                colors[index] = Lerp(_ePaperHistory[index], refreshed, ghosting);
             }
         }
         _ePaperHistory = colors.ToArray();
@@ -524,7 +529,8 @@ internal sealed class SoftwareEmulationVideoProcessingPipeline : IEmulationVideo
         }
         if (configuration.DisplayTechnology == EmulationVideoDisplayTechnology.SegmentDisplay)
         {
-            FilterSegmentDisplay.Apply(colors, outputWidth, outputHeight,
+            FilterSegmentDisplay.Apply(colors, sourceWidth, sourceHeight,
+                outputWidth, outputHeight,
                 configuration.SegmentDisplay);
             return;
         }

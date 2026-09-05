@@ -109,15 +109,34 @@ public static class EmulationVideoProcessingCatalog
     public const string DotMatrixPersistence = nameof(DotMatrixPersistence);
     public const string SegmentDisplayLayout = nameof(SegmentDisplayLayout);
     public const string SegmentDisplayColor = nameof(SegmentDisplayColor);
+    public const string SegmentDisplayCellSize = nameof(SegmentDisplayCellSize);
+    public const string SegmentDisplayHorizontalGap = nameof(SegmentDisplayHorizontalGap);
+    public const string SegmentDisplayVerticalGap = nameof(SegmentDisplayVerticalGap);
     public const string SegmentDisplayThickness = nameof(SegmentDisplayThickness);
+    public const string SegmentDisplaySegmentGap = nameof(SegmentDisplaySegmentGap);
+    public const string SegmentDisplayEndShape = nameof(SegmentDisplayEndShape);
+    public const string SegmentDisplayDecimalPoint = nameof(SegmentDisplayDecimalPoint);
+    public const string SegmentDisplayColon = nameof(SegmentDisplayColon);
+    public const string SegmentDisplayBrightness = nameof(SegmentDisplayBrightness);
+    public const string SegmentDisplayActivationThreshold = nameof(SegmentDisplayActivationThreshold);
     public const string SegmentDisplayContrast = nameof(SegmentDisplayContrast);
+    public const string SegmentDisplayOffSegmentVisibility = nameof(SegmentDisplayOffSegmentVisibility);
+    public const string SegmentDisplayBlackDepth = nameof(SegmentDisplayBlackDepth);
     public const string SegmentDisplayGlow = nameof(SegmentDisplayGlow);
+    public const string SegmentDisplayHaloRadius = nameof(SegmentDisplayHaloRadius);
     public const string SegmentDisplayResponseTime = nameof(SegmentDisplayResponseTime);
+    public const string SegmentDisplayPersistence = nameof(SegmentDisplayPersistence);
     public const string EPaperColorMode = nameof(EPaperColorMode);
     public const string EPaperContrast = nameof(EPaperContrast);
     public const string EPaperDithering = nameof(EPaperDithering);
     public const string EPaperRefreshTime = nameof(EPaperRefreshTime);
     public const string EPaperGhosting = nameof(EPaperGhosting);
+    public const string EPaperInkDensity = nameof(EPaperInkDensity);
+    public const string EPaperPaperBrightness = nameof(EPaperPaperBrightness);
+    public const string EPaperPaperWarmth = nameof(EPaperPaperWarmth);
+    public const string EPaperColorSaturation = nameof(EPaperColorSaturation);
+    public const string EPaperSurfaceTexture = nameof(EPaperSurfaceTexture);
+    public const string EPaperEdgeSoftness = nameof(EPaperEdgeSoftness);
     public const string ProjectionOpticalBlur = nameof(ProjectionOpticalBlur);
     public const string ProjectionDiffusion = nameof(ProjectionDiffusion);
     public const string ProjectionScreenTexture = nameof(ProjectionScreenTexture);
@@ -160,9 +179,16 @@ public static class EmulationVideoProcessingCatalog
         DotMatrixPalette, DotMatrixShape, DotMatrixCellSize, DotMatrixDotSize,
         DotMatrixCellGap, DotMatrixContrast, DotMatrixBrightness, DotMatrixHaloIntensity,
         DotMatrixResponseTime, DotMatrixPersistence, SegmentDisplayLayout, SegmentDisplayColor,
-        SegmentDisplayThickness, SegmentDisplayContrast, SegmentDisplayGlow,
-        SegmentDisplayResponseTime, EPaperColorMode, EPaperContrast, EPaperDithering,
-        EPaperRefreshTime, EPaperGhosting, ProjectionOpticalBlur, ProjectionDiffusion,
+        SegmentDisplayCellSize, SegmentDisplayHorizontalGap, SegmentDisplayVerticalGap,
+        SegmentDisplayThickness, SegmentDisplaySegmentGap, SegmentDisplayEndShape,
+        SegmentDisplayDecimalPoint, SegmentDisplayColon, SegmentDisplayBrightness,
+        SegmentDisplayActivationThreshold, SegmentDisplayContrast,
+        SegmentDisplayOffSegmentVisibility, SegmentDisplayBlackDepth, SegmentDisplayGlow,
+        SegmentDisplayHaloRadius, SegmentDisplayResponseTime, SegmentDisplayPersistence,
+        EPaperColorMode, EPaperContrast, EPaperDithering,
+        EPaperRefreshTime, EPaperGhosting, EPaperInkDensity, EPaperPaperBrightness,
+        EPaperPaperWarmth, EPaperColorSaturation, EPaperSurfaceTexture,
+        EPaperEdgeSoftness, ProjectionOpticalBlur, ProjectionDiffusion,
         ProjectionScreenTexture, ProjectionConvergence
     ];
 
@@ -256,6 +282,9 @@ public static class EmulationVideoProcessingCatalog
     public static IReadOnlyDictionary<EmulationSegmentDisplayColor, string> SegmentDisplayColorResourceKeys { get; }
         = ResourceKeys("SegmentDisplay.Color", Enum.GetValues<EmulationSegmentDisplayColor>());
 
+    public static IReadOnlyDictionary<EmulationSegmentEndShape, string> SegmentDisplayEndShapeResourceKeys { get; }
+        = ResourceKeys("SegmentDisplay.EndShape", Enum.GetValues<EmulationSegmentEndShape>());
+
     public static IReadOnlyDictionary<EmulationEPaperColorMode, string> EPaperColorModeResourceKeys { get; }
         = ResourceKeys("EPaper.ColorMode", Enum.GetValues<EmulationEPaperColorMode>());
 
@@ -321,10 +350,21 @@ public static class EmulationVideoProcessingCatalog
             [DotMatrixPersistence] = 0,
             [SegmentDisplayLayout] = EmulationSegmentDisplayLayout.Seven,
             [SegmentDisplayColor] = EmulationSegmentDisplayColor.Red,
-            [SegmentDisplayThickness] = 55, [SegmentDisplayContrast] = 80,
-            [SegmentDisplayGlow] = 20, [SegmentDisplayResponseTime] = 30,
+            [SegmentDisplayCellSize] = 45, [SegmentDisplayHorizontalGap] = 15,
+            [SegmentDisplayVerticalGap] = 20, [SegmentDisplayThickness] = 55,
+            [SegmentDisplaySegmentGap] = 12,
+            [SegmentDisplayEndShape] = EmulationSegmentEndShape.Beveled,
+            [SegmentDisplayDecimalPoint] = false, [SegmentDisplayColon] = false,
+            [SegmentDisplayBrightness] = 85, [SegmentDisplayActivationThreshold] = 45,
+            [SegmentDisplayContrast] = 80, [SegmentDisplayOffSegmentVisibility] = 8,
+            [SegmentDisplayBlackDepth] = 100, [SegmentDisplayGlow] = 20,
+            [SegmentDisplayHaloRadius] = 25, [SegmentDisplayResponseTime] = 30,
+            [SegmentDisplayPersistence] = 60,
             [EPaperColorMode] = EmulationEPaperColorMode.Monochrome, [EPaperContrast] = 70,
             [EPaperDithering] = 35, [EPaperRefreshTime] = 500, [EPaperGhosting] = 20,
+            [EPaperInkDensity] = 90, [EPaperPaperBrightness] = 90,
+            [EPaperPaperWarmth] = 35, [EPaperColorSaturation] = 55,
+            [EPaperSurfaceTexture] = 10, [EPaperEdgeSoftness] = 10,
             [ProjectionOpticalBlur] = 20, [ProjectionDiffusion] = 15,
             [ProjectionScreenTexture] = 10, [ProjectionConvergence] = 5
         };
@@ -395,9 +435,9 @@ public static class EmulationVideoProcessingCatalog
         Add(VfdColor, VfdPersistence, EmulationVideoDisplayTechnology.Vfd);
         Add(LedMatrixColor, LedMatrixBlackDepth, EmulationVideoDisplayTechnology.LedMatrix);
         Add(DotMatrixPalette, DotMatrixPersistence, EmulationVideoDisplayTechnology.DotMatrix);
-        Add(SegmentDisplayLayout, SegmentDisplayResponseTime,
+        Add(SegmentDisplayLayout, SegmentDisplayPersistence,
             EmulationVideoDisplayTechnology.SegmentDisplay);
-        Add(EPaperColorMode, EPaperGhosting, EmulationVideoDisplayTechnology.EPaper);
+        Add(EPaperColorMode, EPaperEdgeSoftness, EmulationVideoDisplayTechnology.EPaper);
         Add(ProjectionOpticalBlur, ProjectionConvergence,
             EmulationVideoDisplayTechnology.Projection);
         return result;

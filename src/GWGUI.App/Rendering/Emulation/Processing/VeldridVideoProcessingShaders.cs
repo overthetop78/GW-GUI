@@ -26,12 +26,14 @@ internal static class VeldridVideoProcessingShaders
             vec4 FixedDisplay; vec4 FixedSpatial; vec4 FixedTechnology; vec4 FixedTemporal;
             vec4 PlasmaEffect; vec4 PlasmaTemporal; vec4 PlasmaDisplay;
             vec4 VectorEffect; vec4 VectorTemporal; vec4 VectorDisplay;
-            vec4 Restoration; vec4 SegmentDisplay; vec4 SegmentTemporal;
+            vec4 Restoration; vec4 SegmentGeometry; vec4 SegmentShape;
+            vec4 SegmentEmission; vec4 SegmentOptical; vec4 SegmentTemporal;
             vec4 General; vec4 Restoration2; vec4 Temporal;
             vec4 Signal; vec4 Signal2; vec4 Stylistic; vec4 Stylistic2;
             vec4 VfdDisplay; vec4 VfdStructure; vec4 VfdOptical;
             vec4 LedMatrixEmission; vec4 LedMatrixStructure;
-            vec4 DotMatrixGeometry; vec4 DotMatrixEmission; vec4 DotMatrixTemporal; vec4 EPaper;
+            vec4 DotMatrixGeometry; vec4 DotMatrixEmission; vec4 DotMatrixTemporal;
+            vec4 EPaperInkAndColor; vec4 EPaperSurface; vec4 EPaperTemporal;
             vec4 Projection;
         } Parameters;
         layout(set=0,binding=1) uniform texture2D Source;
@@ -81,59 +83,6 @@ internal static class VeldridVideoProcessingShaders
             float amount=strength*clamp((.35-localContrast)/.30,0.0,1.0);
             float extension=localContrast*.25*strength;
             return clamp(center+(center-sum/8.0)*amount,minimum-vec3(extension),maximum+vec3(extension));
-        }
-        float distanceToSegment(vec2 point,vec4 segment)
-        {
-            vec2 direction=segment.zw-segment.xy;
-            float position=clamp(dot(point-segment.xy,direction)/max(dot(direction,direction),.0001),0.0,1.0);
-            return length(point-(segment.xy+position*direction));
-        }
-        float shape(vec2 point,int segmentLayout)
-        {
-            float d=distanceToSegment(point,vec4(.2,.08,.8,.08));
-            d=min(d,distanceToSegment(point,vec4(.82,.1,.82,.48)));
-            d=min(d,distanceToSegment(point,vec4(.82,.52,.82,.9)));
-            d=min(d,distanceToSegment(point,vec4(.2,.92,.8,.92)));
-            d=min(d,distanceToSegment(point,vec4(.18,.52,.18,.9)));
-            d=min(d,distanceToSegment(point,vec4(.18,.1,.18,.48)));
-            d=min(d,distanceToSegment(point,vec4(.2,.5,.8,.5)));
-            if(segmentLayout>=1)
-            {
-                d=min(d,distanceToSegment(point,vec4(.2,.1,.48,.47)));
-                d=min(d,distanceToSegment(point,vec4(.8,.1,.52,.47)));
-                d=min(d,distanceToSegment(point,vec4(.2,.9,.48,.53)));
-                d=min(d,distanceToSegment(point,vec4(.8,.9,.52,.53)));
-                d=min(d,distanceToSegment(point,vec4(.5,.1,.5,.47)));
-                d=min(d,distanceToSegment(point,vec4(.5,.53,.5,.9)));
-            }
-            if(segmentLayout>=2)
-            {
-                d=min(d,distanceToSegment(point,vec4(.28,.3,.72,.3)));
-                d=min(d,distanceToSegment(point,vec4(.28,.7,.72,.7)));
-            }
-            return d;
-        }
-        vec3 tint()
-        {
-            int color=int(Parameters.SegmentTemporal.y+.5);
-            if(color==1)return vec3(.04,1.0,.08);
-            if(color==2)return vec3(1.0,.42,.015);
-            if(color==3)return vec3(.03,.28,1.0);
-            if(color==4)return vec3(1.0);
-            return vec3(1.0,.025,.01);
-        }
-        vec3 mapSegments(vec3 source,vec2 uv)
-        {
-            float luminance=dot(source,vec3(.2126,.7152,.0722));
-            float contrast=.65+Parameters.SegmentDisplay.y*2.35;
-            float activation=clamp((luminance-.5)*contrast+.5,0.0,1.0);
-            vec2 pixel=floor(uv*Parameters.Output.xy);
-            vec2 local=(mod(pixel,vec2(8.0,12.0))+.5)/vec2(8.0,12.0);
-            float distance=shape(local,int(Parameters.SegmentDisplay.w+.5));
-            float thickness=.025+Parameters.SegmentDisplay.x*.105;
-            float core=clamp((thickness-distance)*25.0,0.0,1.0);
-            float halo=clamp(1.0-distance/.22,0.0,1.0)*Parameters.SegmentDisplay.z*.5;
-            return clamp(activation*clamp(core+halo*(1.0-core),0.0,1.0)*tint(),0.0,1.0);
         }
         float hash(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233))+Parameters.General.z)*43758.5453);}
         vec3 raw(vec2 uv){return adjust(sourceColor(uv));}
@@ -219,6 +168,12 @@ internal static class VeldridVideoProcessingShaders
         + FilterDotMatrixBrightness.Shader + FilterDotMatrixPalette.Shader
         + FilterDotMatrixHalo.Shader + FilterDotMatrixResponse.Shader
         + FilterDotMatrixPersistence.Shader + "\n" + """
+        #endif
+        #if DISPLAY_TECHNOLOGY == 8
+        """ + "\n" + FilterSegmentDisplay.VeldridShader + "\n" + """
+        #endif
+        #if DISPLAY_TECHNOLOGY == 9
+        """ + "\n" + FilterEPaper.VeldridShader + "\n" + """
         #endif
         #if DISPLAY_TECHNOLOGY == 3
         vec3 plasmaPixel(vec3 color,vec2 uv)
@@ -437,10 +392,10 @@ internal static class VeldridVideoProcessingShaders
             if(t==7)c=dotMatrixPixel(uv,false);
         #endif
         #if DISPLAY_TECHNOLOGY == 8
-            if(t==8)c=mapSegments(c,uv);
+            if(t==8)c=segmentDisplayPixel(uv);
         #endif
         #if DISPLAY_TECHNOLOGY == 9
-            if(t==9){float y=dot(c,vec3(.2126,.7152,.0722)),n=int(Parameters.EPaper.x+.5)==0?1.0:15.0;y=floor(y*n+hash(p)*Parameters.EPaper.z)/max(n,1.0);c=int(Parameters.EPaper.x+.5)==2?mix(vec3(y),c,.45):vec3(y);c=mix(vec3(.92),c,.4+Parameters.EPaper.y*.6);}
+            if(t==9)c=ePaperPixel(uv);
         #endif
         #if DISPLAY_TECHNOLOGY == 10
             if(t==10){vec2 s=1.0/max(Parameters.Output.xy,vec2(1));c=mix(c,(raw(uv-s)+raw(uv+s))*.5,Parameters.Projection.x*.55+Parameters.Projection.y*.25);c*=1.0-(hash(p)-.5)*Parameters.Projection.z*.12;}

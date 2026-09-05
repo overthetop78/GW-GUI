@@ -175,10 +175,22 @@ public static class EmulationVideoProcessingConfigurationFunctions
             {
                 Layout = DefinedOrDefault(segmentDisplay.Layout, EmulationSegmentDisplayLayout.Seven),
                 Color = DefinedOrDefault(segmentDisplay.Color, EmulationSegmentDisplayColor.Red),
+                CellSize = Intensity(segmentDisplay.CellSize),
+                HorizontalGap = Intensity(segmentDisplay.HorizontalGap),
+                VerticalGap = Intensity(segmentDisplay.VerticalGap),
                 Thickness = Intensity(segmentDisplay.Thickness),
+                SegmentGap = Intensity(segmentDisplay.SegmentGap),
+                EndShape = DefinedOrDefault(segmentDisplay.EndShape,
+                    EmulationSegmentEndShape.Beveled),
                 Contrast = Intensity(segmentDisplay.Contrast),
+                Brightness = Intensity(segmentDisplay.Brightness),
+                ActivationThreshold = Intensity(segmentDisplay.ActivationThreshold),
+                OffSegmentVisibility = Intensity(segmentDisplay.OffSegmentVisibility),
+                BlackDepth = Intensity(segmentDisplay.BlackDepth),
                 Glow = Intensity(segmentDisplay.Glow),
-                ResponseTimeMilliseconds = Duration(segmentDisplay.ResponseTimeMilliseconds)
+                HaloRadius = Intensity(segmentDisplay.HaloRadius),
+                ResponseTimeMilliseconds = Duration(segmentDisplay.ResponseTimeMilliseconds),
+                PersistenceMilliseconds = Duration(segmentDisplay.PersistenceMilliseconds)
             },
             EPaper = ePaper with
             {
@@ -186,7 +198,13 @@ public static class EmulationVideoProcessingConfigurationFunctions
                 Contrast = Intensity(ePaper.Contrast),
                 Dithering = Intensity(ePaper.Dithering),
                 RefreshTimeMilliseconds = Duration(ePaper.RefreshTimeMilliseconds),
-                Ghosting = Intensity(ePaper.Ghosting)
+                Ghosting = Intensity(ePaper.Ghosting),
+                InkDensity = Intensity(ePaper.InkDensity),
+                PaperBrightness = Intensity(ePaper.PaperBrightness),
+                PaperWarmth = Intensity(ePaper.PaperWarmth),
+                ColorSaturation = Intensity(ePaper.ColorSaturation),
+                SurfaceTexture = Intensity(ePaper.SurfaceTexture),
+                EdgeSoftness = Intensity(ePaper.EdgeSoftness)
             },
             Projection = projection with
             {

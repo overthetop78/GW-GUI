@@ -38,6 +38,11 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
     private readonly int _vectorEffectLocation;
     private readonly int _vectorTemporalLocation;
     private readonly int _vectorDisplayLocation;
+    private readonly int _segmentGeometryLocation;
+    private readonly int _segmentShapeLocation;
+    private readonly int _segmentEmissionLocation;
+    private readonly int _segmentOpticalLocation;
+    private readonly int _segmentTemporalLocation;
     private readonly int _generalLocation;
     private readonly int _restorationLocation;
     private readonly int _temporalLocation;
@@ -53,7 +58,9 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
     private readonly int _dotMatrixGeometryLocation;
     private readonly int _dotMatrixEmissionLocation;
     private readonly int _dotMatrixTemporalLocation;
-    private readonly int _ePaperLocation;
+    private readonly int _ePaperInkAndColorLocation;
+    private readonly int _ePaperSurfaceLocation;
+    private readonly int _ePaperTemporalLocation;
     private readonly int _projectionLocation;
 
     internal OpenGlVideoProcessingProgram(EmulationVideoSampling sampling,
@@ -108,6 +115,11 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
         _vectorEffectLocation = _getUniformLocation(_program, "VectorEffect");
         _vectorTemporalLocation = _getUniformLocation(_program, "VectorTemporal");
         _vectorDisplayLocation = _getUniformLocation(_program, "VectorDisplay");
+        _segmentGeometryLocation = _getUniformLocation(_program, "SegmentGeometry");
+        _segmentShapeLocation = _getUniformLocation(_program, "SegmentShape");
+        _segmentEmissionLocation = _getUniformLocation(_program, "SegmentEmission");
+        _segmentOpticalLocation = _getUniformLocation(_program, "SegmentOptical");
+        _segmentTemporalLocation = _getUniformLocation(_program, "SegmentTemporal");
         _generalLocation = _getUniformLocation(_program, "General");
         _restorationLocation = _getUniformLocation(_program, "Restoration");
         _temporalLocation = _getUniformLocation(_program, "Temporal");
@@ -123,7 +135,9 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
         _dotMatrixGeometryLocation = _getUniformLocation(_program, "DotMatrixGeometry");
         _dotMatrixEmissionLocation = _getUniformLocation(_program, "DotMatrixEmission");
         _dotMatrixTemporalLocation = _getUniformLocation(_program, "DotMatrixTemporal");
-        _ePaperLocation = _getUniformLocation(_program, "EPaper");
+        _ePaperInkAndColorLocation = _getUniformLocation(_program, "EPaperInkAndColor");
+        _ePaperSurfaceLocation = _getUniformLocation(_program, "EPaperSurface");
+        _ePaperTemporalLocation = _getUniformLocation(_program, "EPaperTemporal");
         _projectionLocation = _getUniformLocation(_program, "Projection");
         _useProgram(_program);
         _uniform1i(_sourceLocation, 0);
@@ -168,6 +182,13 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
         Set(_vectorEffectLocation, vector.Effect);
         Set(_vectorTemporalLocation, vector.Temporal);
         Set(_vectorDisplayLocation, vector.Display);
+        var segmentDisplay = SegmentDisplayVideoShaderParameters.From(configuration,
+            hasHistory, elapsedMilliseconds);
+        Set(_segmentGeometryLocation, segmentDisplay.Geometry);
+        Set(_segmentShapeLocation, segmentDisplay.Shape);
+        Set(_segmentEmissionLocation, segmentDisplay.Emission);
+        Set(_segmentOpticalLocation, segmentDisplay.Optical);
+        Set(_segmentTemporalLocation, segmentDisplay.Temporal);
         Set(_generalLocation, new((float)configuration.DisplayTechnology, hasHistory ? 1f : 0f, sequence % 4096, (float)elapsedMilliseconds));
         Set(_restorationLocation, new(configuration.Restoration.Dedithering / 100f, configuration.Restoration.Denoising / 100f, configuration.Restoration.Debanding / 100f, (float)configuration.Restoration.Deinterlacing));
         Set(_temporalLocation, new(configuration.Temporal.GeneralPersistence / 100f, configuration.Temporal.MotionBlur / 100f, configuration.Temporal.Flicker / 100f, configuration.Temporal.Interlacing > 0 ? 1f : 0f));
@@ -191,7 +212,11 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
         Set(_dotMatrixGeometryLocation, dotMatrix.Geometry);
         Set(_dotMatrixEmissionLocation, dotMatrix.Emission);
         Set(_dotMatrixTemporalLocation, dotMatrix.Temporal);
-        Set(_ePaperLocation, new((float)configuration.EPaper.ColorMode, configuration.EPaper.Contrast / 100f, configuration.EPaper.Dithering / 100f, configuration.EPaper.Ghosting / 100f));
+        var ePaper = EPaperVideoShaderParameters.From(configuration, hasHistory,
+            elapsedMilliseconds);
+        Set(_ePaperInkAndColorLocation, ePaper.InkAndColor);
+        Set(_ePaperSurfaceLocation, ePaper.PaperSurface);
+        Set(_ePaperTemporalLocation, ePaper.Temporal);
         Set(_projectionLocation, new(configuration.Projection.OpticalBlur / 100f, configuration.Projection.Diffusion / 100f, configuration.Projection.ScreenTexture / 100f, configuration.Projection.Convergence / 100f));
     }
 
@@ -311,6 +336,11 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
         uniform vec4 VectorEffect;
         uniform vec4 VectorTemporal;
         uniform vec4 VectorDisplay;
+        uniform vec4 SegmentGeometry;
+        uniform vec4 SegmentShape;
+        uniform vec4 SegmentEmission;
+        uniform vec4 SegmentOptical;
+        uniform vec4 SegmentTemporal;
         uniform vec4 General;
         uniform vec4 Restoration;
         uniform vec4 Temporal;
@@ -326,7 +356,9 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
         uniform vec4 DotMatrixGeometry;
         uniform vec4 DotMatrixEmission;
         uniform vec4 DotMatrixTemporal;
-        uniform vec4 EPaper;
+        uniform vec4 EPaperInkAndColor;
+        uniform vec4 EPaperSurface;
+        uniform vec4 EPaperTemporal;
         uniform vec4 Projection;
         varying vec2 TextureCoordinate;
 
@@ -457,6 +489,12 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
         + FilterDotMatrixBrightness.Shader + FilterDotMatrixPalette.Shader
         + FilterDotMatrixHalo.Shader + FilterDotMatrixResponse.Shader
         + FilterDotMatrixPersistence.Shader + "\n" + """
+        #endif
+        #if DISPLAY_TECHNOLOGY == 8
+        """ + "\n" + FilterSegmentDisplay.OpenGlShader + "\n" + """
+        #endif
+        #if DISPLAY_TECHNOLOGY == 9
+        """ + "\n" + FilterEPaper.OpenGlShader + "\n" + """
         #endif
         #if DISPLAY_TECHNOLOGY == 2
         vec3 fixedPixel(vec3 color, vec2 uv)
@@ -853,10 +891,10 @@ internal sealed class OpenGlVideoProcessingProgram : IDisposable
             if(t==7)color=dotMatrixPixel(uv,false);
         #endif
         #if DISPLAY_TECHNOLOGY == 8
-            if(t==8){vec2 q=fract(p/vec2(8.0,12.0))-.5;float bars=min(abs(q.x),min(abs(q.y),abs(q.x+q.y)*.7));color=vec3(1.0,.05,.02)*dot(color,vec3(.2126,.7152,.0722))*smoothstep(.18,.04,bars);}
+            if(t==8)color=segmentDisplayPixel(uv);
         #endif
         #if DISPLAY_TECHNOLOGY == 9
-            if(t==9){float y=dot(color,vec3(.2126,.7152,.0722)),n=int(EPaper.x+.5)==0?1.0:15.0;y=floor(y*n+extraHash(p)*EPaper.z)/max(n,1.0);color=int(EPaper.x+.5)==2?mix(vec3(y),color,.45):vec3(y);color=mix(vec3(.92),color,.4+EPaper.y*.6);}
+            if(t==9)color=ePaperPixel(uv);
         #endif
         #if DISPLAY_TECHNOLOGY == 10
             if(t==10){vec2 s=1.0/max(Output.xy,vec2(1.0));color=mix(color,(extraRaw(uv-s)+extraRaw(uv+s))*.5,Projection.x*.55+Projection.y*.25);color*=1.0-(extraHash(p)-.5)*Projection.z*.12;}

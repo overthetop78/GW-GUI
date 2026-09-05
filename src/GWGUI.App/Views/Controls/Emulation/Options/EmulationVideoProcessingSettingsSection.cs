@@ -501,54 +501,13 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
         EmulationDotMatrixSettingsBlock.Create(_configuration.DotMatrix,
             update => SetDotMatrix(update(_configuration.DotMatrix)));
 
-    private FrameworkElement CreateSegmentDisplayPanel()
-    {
-        var segmentDisplay = _configuration.SegmentDisplay;
-        var panel = Section(EmulationResourceKeys.VideoTechnologySegmentDisplay);
-        panel.Children.Add(ChoiceField(EmulationResourceKeys.VideoParameterSegmentDisplayLayout,
-            EmulationVideoProcessingCatalog.SegmentDisplayLayoutResourceKeys, segmentDisplay.Layout,
-            value => SetSegmentDisplay(_configuration.SegmentDisplay with { Layout = value }),
-            EmulationVideoProcessingCatalog.SegmentDisplayLayout));
-        panel.Children.Add(ChoiceField(EmulationResourceKeys.VideoParameterSegmentDisplayColor,
-            EmulationVideoProcessingCatalog.SegmentDisplayColorResourceKeys, segmentDisplay.Color,
-            value => SetSegmentDisplay(_configuration.SegmentDisplay with { Color = value }),
-            EmulationVideoProcessingCatalog.SegmentDisplayColor));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.SegmentDisplayThickness,
-            segmentDisplay.Thickness,
-            value => SetSegmentDisplay(_configuration.SegmentDisplay with { Thickness = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.SegmentDisplayContrast,
-            segmentDisplay.Contrast,
-            value => SetSegmentDisplay(_configuration.SegmentDisplay with { Contrast = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.SegmentDisplayGlow,
-            segmentDisplay.Glow, value => SetSegmentDisplay(_configuration.SegmentDisplay with { Glow = value }));
-        AddSlider(panel, EmulationVideoProcessingCatalog.SegmentDisplayResponseTime,
-            segmentDisplay.ResponseTimeMilliseconds,
-            EmulationVideoProcessingLimits.DurationMinimumMilliseconds,
-            EmulationVideoProcessingLimits.DurationMaximumMilliseconds,
-            value => SetSegmentDisplay(_configuration.SegmentDisplay with { ResponseTimeMilliseconds = value }));
-        return panel;
-    }
+    private FrameworkElement CreateSegmentDisplayPanel() =>
+        EmulationSegmentDisplaySettingsBlock.Create(_configuration.SegmentDisplay,
+            update => SetSegmentDisplay(update(_configuration.SegmentDisplay)));
 
-    private FrameworkElement CreateEPaperPanel()
-    {
-        var ePaper = _configuration.EPaper;
-        var panel = Section(EmulationResourceKeys.VideoTechnologyEPaper);
-        panel.Children.Add(ChoiceField(EmulationResourceKeys.VideoParameterEPaperColorMode,
-            EmulationVideoProcessingCatalog.EPaperColorModeResourceKeys, ePaper.ColorMode,
-            value => SetEPaper(_configuration.EPaper with { ColorMode = value }),
-            EmulationVideoProcessingCatalog.EPaperColorMode));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.EPaperContrast,
-            ePaper.Contrast, value => SetEPaper(_configuration.EPaper with { Contrast = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.EPaperDithering,
-            ePaper.Dithering, value => SetEPaper(_configuration.EPaper with { Dithering = value }));
-        AddSlider(panel, EmulationVideoProcessingCatalog.EPaperRefreshTime,
-            ePaper.RefreshTimeMilliseconds, EmulationVideoProcessingLimits.DurationMinimumMilliseconds,
-            EmulationVideoProcessingLimits.DurationMaximumMilliseconds,
-            value => SetEPaper(_configuration.EPaper with { RefreshTimeMilliseconds = value }));
-        AddIntensity(panel, EmulationVideoProcessingCatalog.EPaperGhosting,
-            ePaper.Ghosting, value => SetEPaper(_configuration.EPaper with { Ghosting = value }));
-        return panel;
-    }
+    private FrameworkElement CreateEPaperPanel() =>
+        EmulationEPaperSettingsBlock.Create(_configuration.EPaper,
+            update => SetEPaper(update(_configuration.EPaper)), RebuildContent);
 
     private FrameworkElement CreateProjectionPanel()
     {
