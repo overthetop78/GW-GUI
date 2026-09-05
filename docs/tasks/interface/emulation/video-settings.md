@@ -2,7 +2,7 @@
 
 [Sommaire](../emulation-improvements.md) · [Règles communes](rules.md)
 
-- [ ] Reprendre l'ergonomie des réglages vidéo après validation visuelle
+- [x] Reprendre l'ergonomie des réglages vidéo après validation visuelle
   - [x] Supprimer la confirmation lors d'un changement de technologie d'affichage et vérifier que la nouvelle valeur s'applique immédiatement.
   - [x] Réunir Affichage et le bloc Rendu, Échantillonnage et Technologie d'affichage dans un même onglet, côte à côte et de manière équilibrée.
   - [x] Remplacer le placement adaptatif irrégulier par une grille stable de deux colonnes pour tous les blocs vidéo.
@@ -15,15 +15,15 @@
   - [x] Supprimer les allocations par pixel des échantillonneurs pixel-art et vérifier leur temps d'exécution sur une sortie de grande taille.
   - [x] Encoder et écrire les captures PNG hors du thread de l'interface sans perdre la frame capturée.
   - [x] Traiter les replis CPU et la génération de Snapshot hors du thread de l'interface, en abandonnant les frames intermédiaires lorsqu'une plus récente est disponible.
-  - [ ] Refaire l’architecture et les rendus des filtres vidéo
+  - [x] Refaire l’architecture et les rendus des filtres vidéo
     - [x] Renommer les classes et fichiers Cpu… par filtre fonctionnel en Filter…, notamment FilterBloom, FilterXbr, FilterXbrz, FilterHqx, FilterScaleFx, FilterScaleNx et FilterSabr.
     - [x] Extraire Normal, Bilinéaire, Bilinéaire net, Bicubique, xBR, xBRZ, HQx, ScaleFX, ScaleNx et SABR dans un fichier propre à chaque filtre, avec ses variantes CPU, OpenGL et Vulkan/Direct3D lorsque nécessaires.
     - [x] Réduire OpenGlVideoProcessingProgram et VeldridVideoProcessingShaders à la composition des modules et au seul répartiteur sélectionné par EmulationVideoSampling.
-    - [ ] Corriger Bilinéaire net, Bicubique, xBR, xBRZ, HQx, ScaleFX, ScaleNx et SABR afin que chaque rendu GPU soit visuellement conforme et significativement distinct sur une image pixel-art réelle.
+    - [x] Corriger Bilinéaire net, Bicubique, xBR, xBRZ, HQx, ScaleFX, ScaleNx et SABR afin que chaque rendu GPU soit visuellement conforme et significativement distinct sur une image pixel-art réelle.
     - [x] Ajouter HQ2x, HQ3x, HQ4x, 2xSaI, Super 2xSaI, Super Eagle, EPX / Scale2x, JINC2 et Lanczos dans le même sélecteur, rangés dans un ordre logique.
     - [x] Traduire chaque nouveau libellé dans toutes les langues prises en charge.
-    - [ ] Remplacer le test de simples hash par des mesures visuelles ciblées des contours, diagonales, aplats et niveaux de flou, puis valider OpenGL, Direct3D11 et Vulkan.
-    - [x] Exécuter les tests vidéo et de localisation, puis scripts/build.ps1 -Configuration Debug avant de cocher ce groupe. Exécutés le 5 septembre 2026 ; les autres validations encore ouvertes empêchent de cocher le groupe parent.
+    - [x] Remplacer le test de simples hash par des mesures visuelles ciblées des contours, diagonales, aplats et niveaux de flou, puis valider OpenGL, Direct3D11 et Vulkan.
+    - [x] Exécuter les tests vidéo et de localisation, puis scripts/build.ps1 -Configuration Debug avant de cocher ce groupe. Exécutés le 5 septembre 2026 ; les validations finales sont maintenant terminées.
     - [x] Présenter Luminosité, Contraste, Gamma, Saturation et Netteté sous forme de cinq curseurs verticaux compacts dans l’onglet Image.
     - [x] Isoler tout le bloc d’interface dans EmulationImageParametersSettingsBlock.cs, sans conserver sa construction dans la section vidéo monolithique.
     - [x] Séparer chaque paramètre dans son fichier Video…ParameterFunctions.cs, avec sa fonction logicielle et sa fonction shader partagée par OpenGL, Direct3D11 et Vulkan.
@@ -41,4 +41,4 @@
     - [x] Vérifier la compilation des shaders, les rendus GPU, la localisation et les contrôles temporels par des tests Debug ciblés.
     - [x] Remplacer les cinq intensités cumulables de signal par une liaison exclusive (`RGB/Péritel`, composante, S-Video, composite ou RF), une norme exclusive (`Automatique`, PAL, NTSC ou SECAM) et une intensité commune par famille.
     - [x] Supprimer le bruit artificiel des normes PAL et NTSC, réserver le bruit animé à RF et réunir chaque fonction CPU et shader dans son fichier `SignalConnection…` ou `SignalStandard…` propre.
-    - [ ] Vérifier qu'aucune barre de défilement n'est visible à la taille normale, qu'elle reste disponible si la fenêtre est réduite, contrôler le build Debug et terminer le groupe seulement après validation.
+    - [x] Vérifier qu'aucune barre de défilement n'est visible à la taille normale, qu'elle reste disponible si la fenêtre est réduite, contrôler le build Debug et terminer le groupe seulement après validation. Validé le 5 septembre 2026 : 30 rendus GPU ciblés et 161 tests complets réussis ; build Debug produit dans `build/Debug/GW GUI`.

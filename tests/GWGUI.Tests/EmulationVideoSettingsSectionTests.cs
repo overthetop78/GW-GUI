@@ -371,6 +371,67 @@ public sealed class EmulationVideoSettingsSectionTests
     }
 
     [Fact]
+    public void VideoTabsOnlyShowVerticalScrollbarsWhenAvailableHeightRequiresThem()
+    {
+        const double normalWidth = 1120;
+        const double normalHeight = 650;
+        const double reducedHeight = 260;
+        RunSta(() =>
+        {
+            var panel = new EmulationVideoProcessingSettingsSection();
+            panel.SetConfiguration(new EmulationVideoProcessingConfiguration
+            {
+                DisplayTechnology = EmulationVideoDisplayTechnology.Crt,
+                Crt = new EmulationCrtVideoConfiguration(
+                    Mask: EmulationCrtMask.ShadowMask,
+                    ScanlinesEnabled: true,
+                    PatternEnabled: true)
+            }, new Grid(), EmulationSettingsLayout.VideoSettingsChoice(
+                new EmulationVideoSettingsField("Rendu", new ComboBox())));
+            var window = new Window
+            {
+                Content = panel,
+                Width = normalWidth,
+                Height = normalHeight,
+                Left = -10000,
+                Top = -10000,
+                WindowStyle = WindowStyle.None,
+                ShowInTaskbar = false,
+                ShowActivated = false
+            };
+            try
+            {
+                window.Show();
+                var tabs = Assert.IsType<TabControl>(panel.Content);
+                foreach (var tab in tabs.Items.Cast<TabItem>())
+                {
+                    tabs.SelectedItem = tab;
+                    window.UpdateLayout();
+                    var scroller = Assert.IsType<ScrollViewer>(tab.Content);
+                    Assert.True(scroller.ScrollableHeight == 0,
+                        $"{tab.Tag} scrolls by {scroller.ScrollableHeight:F1} pixels at normal size.");
+                    Assert.Equal(Visibility.Collapsed,
+                        scroller.ComputedVerticalScrollBarVisibility);
+                }
+
+                window.Height = reducedHeight;
+                tabs.SelectedItem = tabs.Items.Cast<TabItem>()
+                    .Single(tab => Equals(tab.Tag, "Technology"));
+                window.UpdateLayout();
+                var reduced = Assert.IsType<ScrollViewer>(
+                    ((TabItem)tabs.SelectedItem).Content);
+                Assert.True(reduced.ScrollableHeight > 0);
+                Assert.Equal(Visibility.Visible,
+                    reduced.ComputedVerticalScrollBarVisibility);
+            }
+            finally
+            {
+                window.Close();
+            }
+        });
+    }
+
+    [Fact]
     public void SegmentDisplayOptionsAreSeparatedIntoFourCoherentGroups()
     {
         RunSta(() =>

@@ -337,7 +337,8 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
         return frame;
     }
 
-    private static Border FramedGroup(string titleResourceKey, FrameworkElement content)
+    private static Border FramedGroup(string titleResourceKey, FrameworkElement content,
+        bool compact = false)
     {
         var panel = new StackPanel();
         panel.Children.Add(new TextBlock
@@ -346,8 +347,31 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
             FontWeight = FontWeights.SemiBold,
             Margin = new Thickness(0, 0, 0, 10)
         });
-        panel.Children.Add(content);
+        panel.Children.Add(compact ? CompactFields(content) : content);
         return FramedSection(panel);
+    }
+
+    private static FrameworkElement CompactFields(FrameworkElement content)
+    {
+        if (content is not StackPanel panel || panel.Children.Count < 2) return content;
+        var children = panel.Children.Cast<UIElement>().ToArray();
+        panel.Children.Clear();
+        var grid = new Grid();
+        grid.ColumnDefinitions.Add(new ColumnDefinition());
+        grid.ColumnDefinitions.Add(new ColumnDefinition());
+        for (var index = 0; index < children.Length; index++)
+        {
+            var child = children[index];
+            if (child is FrameworkElement element)
+                element.Margin = new Thickness(index % 2 == 0 ? 0 : 8, 0,
+                    index % 2 == 0 ? 8 : 0, 0);
+            Grid.SetColumn(child, index % 2);
+            Grid.SetRow(child, index / 2);
+            grid.Children.Add(child);
+        }
+        for (var row = 0; row < (children.Length + 1) / 2; row++)
+            grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        return grid;
     }
 
     private static FrameworkElement CompactSection(FrameworkElement content)
@@ -359,8 +383,7 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
         var fields = new Grid();
         fields.ColumnDefinitions.Add(new ColumnDefinition());
         fields.ColumnDefinitions.Add(new ColumnDefinition());
-        for (var row = 0; row < (children.Length - 1 + 1) / 2; row++)
-            fields.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        var columns = new[] { new StackPanel(), new StackPanel() };
         for (var index = 1; index < children.Length; index++)
         {
             var field = children[index];
@@ -368,10 +391,11 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
             if (field is FrameworkElement element)
                 element.Margin = new Thickness(cell % 2 == 0 ? 0 : 10, 2,
                     cell % 2 == 0 ? 10 : 0, 6);
-            Grid.SetRow(field, cell / 2);
-            Grid.SetColumn(field, cell % 2);
-            fields.Children.Add(field);
+            columns[cell % 2].Children.Add(field);
         }
+        fields.Children.Add(columns[0]);
+        Grid.SetColumn(columns[1], 1);
+        fields.Children.Add(columns[1]);
         section.Children.Add(fields);
         return section;
     }
@@ -387,7 +411,7 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
                 SetCrt(_configuration.Crt with { ColorMode = value });
                 RebuildContent();
             }, EmulationVideoProcessingCatalog.CrtColorMode));
-        panel.Children.Add(FramedGroup("Emulation.Video.Crt.Group.Color", color));
+        panel.Children.Add(FramedGroup("Emulation.Video.Crt.Group.Color", color, compact: true));
         var beam = new StackPanel();
         AddIntensity(beam, EmulationVideoProcessingCatalog.CrtBeamWidth, crt.BeamWidth,
             value => SetCrt(_configuration.Crt with { BeamWidth = value }));
@@ -397,7 +421,7 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
             value => SetCrt(_configuration.Crt with { BeamDiffusion = value }));
         AddIntensity(beam, EmulationVideoProcessingCatalog.CrtHaloIntensity, crt.HaloIntensity,
             value => SetCrt(_configuration.Crt with { HaloIntensity = value }));
-        panel.Children.Add(FramedGroup("Emulation.Video.Crt.Group.Beam", beam));
+        panel.Children.Add(FramedGroup("Emulation.Video.Crt.Group.Beam", beam, compact: true));
         var mask = new StackPanel();
         mask.Children.Add(ChoiceField(ParameterKey(EmulationVideoProcessingCatalog.CrtMask),
             EmulationVideoProcessingCatalog.CrtMaskResourceKeys, crt.Mask,
@@ -413,7 +437,7 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
         AddIntensity(mask, EmulationVideoProcessingCatalog.CrtMaskIntensity, crt.MaskIntensity,
             value => SetCrt(_configuration.Crt with { MaskIntensity = value }));
         }
-        panel.Children.Add(FramedGroup("Emulation.Video.Crt.Group.Mask", mask));
+        panel.Children.Add(FramedGroup("Emulation.Video.Crt.Group.Mask", mask, compact: true));
         var geometry = new StackPanel();
         AddSlider(geometry, EmulationVideoProcessingCatalog.CrtHorizontalCurvature,
             crt.HorizontalCurvature, -100, 100,
@@ -425,7 +449,7 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
             value => SetCrt(_configuration.Crt with { Trapezoid = value }));
         AddIntensity(geometry, EmulationVideoProcessingCatalog.CrtVignette, crt.Vignette,
             value => SetCrt(_configuration.Crt with { Vignette = value }));
-        panel.Children.Add(FramedGroup("Emulation.Video.Crt.Group.Geometry", geometry));
+        panel.Children.Add(FramedGroup("Emulation.Video.Crt.Group.Geometry", geometry, compact: true));
         var scanlines = new StackPanel();
         AddToggle(scanlines, EmulationVideoProcessingCatalog.CrtScanlinesEnabled, crt.ScanlinesEnabled, value =>
         {
@@ -433,7 +457,7 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
             RebuildContent();
         });
         if (crt.ScanlinesEnabled) AddScanlineFields(scanlines, crt);
-        panel.Children.Add(FramedGroup("Emulation.Video.Crt.Group.Scanlines", scanlines));
+        panel.Children.Add(FramedGroup("Emulation.Video.Crt.Group.Scanlines", scanlines, compact: true));
         var pattern = new StackPanel();
         AddToggle(pattern, EmulationVideoProcessingCatalog.CrtPatternEnabled, crt.PatternEnabled, value =>
         {
@@ -441,7 +465,7 @@ internal sealed class EmulationVideoProcessingSettingsSection : UserControl
             RebuildContent();
         });
         if (crt.PatternEnabled) AddPatternFields(pattern, crt);
-        panel.Children.Add(FramedGroup("Emulation.Video.Crt.Group.Interference", pattern));
+        panel.Children.Add(FramedGroup("Emulation.Video.Crt.Group.Interference", pattern, compact: true));
         return panel;
     }
 

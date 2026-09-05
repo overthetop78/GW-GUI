@@ -242,7 +242,7 @@ public sealed class EmulationVideoProcessingPipelineTests
     [InlineData(EmulationVideoRenderer.OpenGL)]
     [InlineData(EmulationVideoRenderer.Direct3D11)]
     [InlineData(EmulationVideoRenderer.Vulkan)]
-    public void GpuSamplingModesPresentDistinctPixels(EmulationVideoRenderer renderer)
+    public void GpuSamplingModesProduceDistinctMeasuredBlurLevels(EmulationVideoRenderer renderer)
     {
         RunSta(() =>
         {
@@ -332,7 +332,18 @@ public sealed class EmulationVideoProcessingPipelineTests
                 var sharpDifference = bilinear.Zip(sharp,
                     (first, second) => Math.Abs(first - second)).Average();
                 Assert.True(sharpDifference >= .1,
-                    $"{renderer} Bilinéaire net is too close to Bilinéaire ({sharpDifference:F3}).");
+                    $"{renderer} Sharp bilinear is too close to Bilinear ({sharpDifference:F3}).");
+                var measuredBlurLevels = new[]
+                {
+                    EmulationVideoSampling.Bilinear,
+                    EmulationVideoSampling.SharpBilinear,
+                    EmulationVideoSampling.Bicubic
+                }.ToDictionary(sampling => sampling, sampling => images[sampling].Zip(nearest,
+                    (filtered, original) => Math.Abs(filtered - original)).Average());
+                Assert.All(measuredBlurLevels, level => Assert.True(level.Value >= .02,
+                    $"{renderer} {level.Key} has no measurable blur level ({level.Value:F3})."));
+                Assert.Equal(measuredBlurLevels.Count,
+                    measuredBlurLevels.Values.Select(value => Math.Round(value, 2)).Distinct().Count());
 
                 var pairs = images.SelectMany((first, index) => images.Skip(index + 1)
                     .Select(second => (First: first, Second: second)));
@@ -874,35 +885,39 @@ public sealed class EmulationVideoProcessingPipelineTests
 
     [Theory]
     [Trait("Category", "GpuExhaustive")]
-    [InlineData(EmulationVideoRenderer.Wpf, EmulationVideoSampling.Xbr)]
+    [InlineData(EmulationVideoRenderer.OpenGL, EmulationVideoSampling.Bilinear)]
+    [InlineData(EmulationVideoRenderer.Direct3D11, EmulationVideoSampling.Bilinear)]
+    [InlineData(EmulationVideoRenderer.Vulkan, EmulationVideoSampling.Bilinear)]
+    [InlineData(EmulationVideoRenderer.OpenGL, EmulationVideoSampling.SharpBilinear)]
+    [InlineData(EmulationVideoRenderer.Direct3D11, EmulationVideoSampling.SharpBilinear)]
+    [InlineData(EmulationVideoRenderer.Vulkan, EmulationVideoSampling.SharpBilinear)]
+    [InlineData(EmulationVideoRenderer.OpenGL, EmulationVideoSampling.Bicubic)]
+    [InlineData(EmulationVideoRenderer.Direct3D11, EmulationVideoSampling.Bicubic)]
+    [InlineData(EmulationVideoRenderer.Vulkan, EmulationVideoSampling.Bicubic)]
     [InlineData(EmulationVideoRenderer.OpenGL, EmulationVideoSampling.Xbr)]
     [InlineData(EmulationVideoRenderer.Direct3D11, EmulationVideoSampling.Xbr)]
     [InlineData(EmulationVideoRenderer.Vulkan, EmulationVideoSampling.Xbr)]
-    [InlineData(EmulationVideoRenderer.Wpf, EmulationVideoSampling.Xbrz)]
     [InlineData(EmulationVideoRenderer.OpenGL, EmulationVideoSampling.Xbrz)]
     [InlineData(EmulationVideoRenderer.Direct3D11, EmulationVideoSampling.Xbrz)]
     [InlineData(EmulationVideoRenderer.Vulkan, EmulationVideoSampling.Xbrz)]
-    [InlineData(EmulationVideoRenderer.Wpf, EmulationVideoSampling.Hqx)]
     [InlineData(EmulationVideoRenderer.OpenGL, EmulationVideoSampling.Hqx)]
     [InlineData(EmulationVideoRenderer.Direct3D11, EmulationVideoSampling.Hqx)]
     [InlineData(EmulationVideoRenderer.Vulkan, EmulationVideoSampling.Hqx)]
-    [InlineData(EmulationVideoRenderer.Wpf, EmulationVideoSampling.ScaleFx)]
     [InlineData(EmulationVideoRenderer.OpenGL, EmulationVideoSampling.ScaleFx)]
     [InlineData(EmulationVideoRenderer.Direct3D11, EmulationVideoSampling.ScaleFx)]
     [InlineData(EmulationVideoRenderer.Vulkan, EmulationVideoSampling.ScaleFx)]
-    [InlineData(EmulationVideoRenderer.Wpf, EmulationVideoSampling.ScaleNx)]
     [InlineData(EmulationVideoRenderer.OpenGL, EmulationVideoSampling.ScaleNx)]
     [InlineData(EmulationVideoRenderer.Direct3D11, EmulationVideoSampling.ScaleNx)]
     [InlineData(EmulationVideoRenderer.Vulkan, EmulationVideoSampling.ScaleNx)]
-    [InlineData(EmulationVideoRenderer.Wpf, EmulationVideoSampling.Sabr)]
     [InlineData(EmulationVideoRenderer.OpenGL, EmulationVideoSampling.Sabr)]
     [InlineData(EmulationVideoRenderer.Direct3D11, EmulationVideoSampling.Sabr)]
     [InlineData(EmulationVideoRenderer.Vulkan, EmulationVideoSampling.Sabr)]
-    public void PixelArtScalerMatchesCpuReferenceOnRenderer(
+    public void SamplingPreservesFlatAreasAndContoursWhileReconstructingPixelArtDiagonals(
         EmulationVideoRenderer renderer, EmulationVideoSampling sampling)
     {
         RunSta(() =>
         {
+            const double validationOutputSize = 90;
             var frame = new VideoFrame(new byte[]
             {
                 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 0,
@@ -914,9 +929,12 @@ public sealed class EmulationVideoProcessingPipelineTests
                 Sampling = sampling
             };
             using var surface = CreateDeterministicSurface(renderer);
+            surface.View.Width = validationOutputSize;
+            surface.View.Height = validationOutputSize;
             var window = new System.Windows.Window
             {
-                Content = surface.View, Width = 24, Height = 18,
+                Content = surface.View,
+                SizeToContent = System.Windows.SizeToContent.WidthAndHeight,
                 Left = -10000, Top = -10000,
                 WindowStyle = System.Windows.WindowStyle.None,
                 ShowInTaskbar = false, ShowActivated = false
@@ -925,6 +943,11 @@ public sealed class EmulationVideoProcessingPipelineTests
             {
                 window.Show();
                 window.UpdateLayout();
+                surface.View.Measure(new System.Windows.Size(
+                    validationOutputSize, validationOutputSize));
+                surface.View.Arrange(new System.Windows.Rect(0, 0,
+                    validationOutputSize, validationOutputSize));
+                surface.View.UpdateLayout();
                 surface.SetVideoProcessing(configuration);
                 surface.Present(frame);
                 var snapshot = Assert.IsType<System.Windows.Media.Imaging.WriteableBitmap>(
@@ -938,6 +961,31 @@ public sealed class EmulationVideoProcessingPipelineTests
                 Assert.Equal(expected.Length, actual.Length);
                 for (var index = 0; index < expected.Length; index++)
                     Assert.InRange(Math.Abs(expected[index] - actual[index]), 0, 1);
+                var luminances = actual.Where((_, index) => index % 4 == 0).ToArray();
+                Assert.True(luminances.Min() <= 1,
+                    $"{renderer} {sampling} lost the black flat area.");
+                Assert.True(luminances.Max() >= 254,
+                    $"{renderer} {sampling} lost the white flat area and contour contrast.");
+                var nearestFrame = cpu.Process(configuration with
+                {
+                    Sampling = EmulationVideoSampling.Nearest
+                }, frame, new(3, 3), new(snapshot.PixelWidth, snapshot.PixelHeight));
+                var nearest = EmulationVideoPixelFunctions.ToBgra32(nearestFrame);
+                var diagonalChanges = actual.Zip(nearest,
+                    (filtered, blocky) => Math.Abs(filtered - blocky)).Count(value => value >= 2);
+                if (sampling != EmulationVideoSampling.SharpBilinear)
+                    Assert.True(diagonalChanges > 0,
+                        $"{renderer} {sampling} did not measurably reconstruct the diagonal contour "
+                        + $"at {snapshot.PixelWidth}×{snapshot.PixelHeight}.");
+                else
+                    Assert.Equal(0, diagonalChanges);
+                var intermediatePixels = luminances.Count(value => value is > 1 and < 254);
+                if (sampling is EmulationVideoSampling.SharpBilinear
+                    or EmulationVideoSampling.ScaleFx or EmulationVideoSampling.ScaleNx)
+                    Assert.Equal(0, intermediatePixels);
+                else
+                    Assert.True(intermediatePixels > 0,
+                        $"{renderer} {sampling} produced no measured contour transition.");
             }
             finally
             {

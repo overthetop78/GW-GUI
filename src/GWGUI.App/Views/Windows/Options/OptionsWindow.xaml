@@ -5,7 +5,7 @@
         xmlns:l="clr-namespace:GWGUI.App.Localization.Extensions"
         xmlns:common="clr-namespace:GWGUI.App.Views.Controls.Common" xmlns:options="clr-namespace:GWGUI.App.Views.Controls.Options" xmlns:emulationOptions="clr-namespace:GWGUI.App.Views.Controls.Emulation.Options"
         Title="{l:Loc Options.Title}" Width="1120" Height="650" MinWidth="980" MinHeight="560"
-        WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Closing="Window_Closing">
+        WindowStartupLocation="CenterOwner" ResizeMode="CanResize" Closing="Window_Closing">
     <Grid Margin="16">
         <Grid.RowDefinitions>
             <RowDefinition />
