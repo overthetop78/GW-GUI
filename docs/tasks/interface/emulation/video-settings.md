@@ -1,0 +1,44 @@
+# Filtres vidéo : ergonomie et rendus
+
+[Sommaire](../emulation-improvements.md) · [Règles communes](rules.md)
+
+- [ ] Reprendre l'ergonomie des réglages vidéo après validation visuelle
+  - [x] Supprimer la confirmation lors d'un changement de technologie d'affichage et vérifier que la nouvelle valeur s'applique immédiatement.
+  - [x] Réunir Affichage et le bloc Rendu, Échantillonnage et Technologie d'affichage dans un même onglet, côte à côte et de manière équilibrée.
+  - [x] Remplacer le placement adaptatif irrégulier par une grille stable de deux colonnes pour tous les blocs vidéo.
+  - [x] Limiter globalement tous les sélecteurs de l'application à cinq éléments visibles, puis afficher un défilement vertical.
+  - [x] Organiser Image, Restauration, Mouvement, Signal et Effets dans des onglets localisés, nommer l'onglet technologique d'après la technologie choisie et conserver l'onglet actif lors d'une reconstruction.
+  - [x] Remplacer le libellé utilisateur « Plus proche voisin » par « Normal » dans toutes les langues avec Argos.
+  - [x] Encadrer séparément les paramètres d'affichage de l'émulateur et le traitement vidéo GW GUI dans l'onglet Affichage.
+  - [x] Regrouper les réglages permanents dans les seuls onglets Image et Effets, avec des cadres internes pour restauration, mouvement, signal et style.
+  - [x] Appliquer un changement de traitement vidéo sans recalcul synchrone immédiat sur le thread de l'interface.
+  - [x] Supprimer les allocations par pixel des échantillonneurs pixel-art et vérifier leur temps d'exécution sur une sortie de grande taille.
+  - [x] Encoder et écrire les captures PNG hors du thread de l'interface sans perdre la frame capturée.
+  - [x] Traiter les replis CPU et la génération de Snapshot hors du thread de l'interface, en abandonnant les frames intermédiaires lorsqu'une plus récente est disponible.
+  - [ ] Refaire l’architecture et les rendus des filtres vidéo
+    - [x] Renommer les classes et fichiers Cpu… par filtre fonctionnel en Filter…, notamment FilterBloom, FilterXbr, FilterXbrz, FilterHqx, FilterScaleFx, FilterScaleNx et FilterSabr.
+    - [x] Extraire Normal, Bilinéaire, Bilinéaire net, Bicubique, xBR, xBRZ, HQx, ScaleFX, ScaleNx et SABR dans un fichier propre à chaque filtre, avec ses variantes CPU, OpenGL et Vulkan/Direct3D lorsque nécessaires.
+    - [x] Réduire OpenGlVideoProcessingProgram et VeldridVideoProcessingShaders à la composition des modules et au seul répartiteur sélectionné par EmulationVideoSampling.
+    - [ ] Corriger Bilinéaire net, Bicubique, xBR, xBRZ, HQx, ScaleFX, ScaleNx et SABR afin que chaque rendu GPU soit visuellement conforme et significativement distinct sur une image pixel-art réelle.
+    - [x] Ajouter HQ2x, HQ3x, HQ4x, 2xSaI, Super 2xSaI, Super Eagle, EPX / Scale2x, JINC2 et Lanczos dans le même sélecteur, rangés dans un ordre logique.
+    - [x] Traduire chaque nouveau libellé dans toutes les langues prises en charge.
+    - [ ] Remplacer le test de simples hash par des mesures visuelles ciblées des contours, diagonales, aplats et niveaux de flou, puis valider OpenGL, Direct3D11 et Vulkan.
+    - [x] Exécuter les tests vidéo et de localisation, puis scripts/build.ps1 -Configuration Debug avant de cocher ce groupe. Exécutés le 5 septembre 2026 ; les autres validations encore ouvertes empêchent de cocher le groupe parent.
+    - [x] Présenter Luminosité, Contraste, Gamma, Saturation et Netteté sous forme de cinq curseurs verticaux compacts dans l’onglet Image.
+    - [x] Isoler tout le bloc d’interface dans EmulationImageParametersSettingsBlock.cs, sans conserver sa construction dans la section vidéo monolithique.
+    - [x] Séparer chaque paramètre dans son fichier Video…ParameterFunctions.cs, avec sa fonction logicielle et sa fonction shader partagée par OpenGL, Direct3D11 et Vulkan.
+    - [x] Renommer les anciens effets Cpu… en Filter… et réserver Software… au pipeline et au worker de repli, afin que les noms décrivent la responsabilité plutôt que le processeur utilisé.
+    - [x] Isoler l’interface de restauration dans EmulationImageRestorationSettingsBlock.cs et la placer à côté des paramètres d’image dans un cadre de même niveau.
+    - [x] Présenter Débruitage, Réduction des bandes et Détails fins sous forme de trois curseurs verticaux compacts, puis renommer le libellé utilisateur « Récupération de détails » en « Détails fins » dans toutes les langues.
+    - [x] Corriger le libellé utilisateur « Dédithering » en « Détramage » et remplacer son intensité continue par exactement quatre niveaux localisés : Aucun, Léger, Moyen et Fort, mappés sur 0, 33, 67 et 100, tous contenus dans la largeur disponible et accompagnés de quatre graduations visibles.
+    - [x] Réduire le désentrelacement à un sélecteur compact de 220 pixels au lieu de lui attribuer toute la largeur du cadre.
+    - [x] Renforcer les traitements GPU de restauration : reconnaissance de damier pour le détramage, débruitage bilatéral 3 × 3, réduction directionnelle des bandes et récupération bornée des détails fins, sans limitation artificielle à 25 ou 30 %.
+    - [x] Ajouter les tests de disposition, des quatre niveaux de détramage, de conservation des changements combinés, de localisation et de compilation/rendu des shaders sur WPF, OpenGL, Direct3D11 et Vulkan.
+    - [x] Isoler le bloc des effets temporels dans EmulationTemporalEffectsSettingsBlock.cs et chaque traitement dans FilterGeneralPersistence.cs, FilterMotionBlur.cs, FilterFlicker.cs, FilterInterlacing.cs et FilterBlackFrameInsertion.cs.
+    - [x] Remplacer l’intensité d’entrelacement par une activation binaire et conserver un réglage séparé de visibilité des trames.
+    - [x] Appliquer l’entrelacement temporel sur les lignes de deux frames source consécutives avant agrandissement, à 50 champs/s en PAL et 60 champs/s en NTSC lorsque le moteur produit ces cadences.
+    - [x] Cadencer le scintillement et l’insertion d’images noires sur la parité des frames source et les appliquer directement dans le pipeline de chaque renderer.
+    - [x] Vérifier la compilation des shaders, les rendus GPU, la localisation et les contrôles temporels par des tests Debug ciblés.
+    - [x] Remplacer les cinq intensités cumulables de signal par une liaison exclusive (`RGB/Péritel`, composante, S-Video, composite ou RF), une norme exclusive (`Automatique`, PAL, NTSC ou SECAM) et une intensité commune par famille.
+    - [x] Supprimer le bruit artificiel des normes PAL et NTSC, réserver le bruit animé à RF et réunir chaque fonction CPU et shader dans son fichier `SignalConnection…` ou `SignalStandard…` propre.
+    - [ ] Vérifier qu'aucune barre de défilement n'est visible à la taille normale, qu'elle reste disponible si la fenêtre est réduite, contrôler le build Debug et terminer le groupe seulement après validation.
