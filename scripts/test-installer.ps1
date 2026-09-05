@@ -33,15 +33,12 @@ try {
     $install = Start-Process -FilePath $setup -ArgumentList @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/NOICONS', "/LANG=$InstallerLanguage", "/DIR=`"$destination`"") -Wait -PassThru
     if ($install.ExitCode -ne 0) { throw "Installer exited with code $($install.ExitCode)." }
 
-    $sourceGuideDirectory = Join-Path $repository 'docs\user-guide'
-    $guidePdfs = @(Get-ChildItem -LiteralPath $sourceGuideDirectory -File -Filter '*.pdf')
-    $required = @('gwgui.exe', 'unins000.exe') + @($guidePdfs | ForEach-Object { "Documentation\user-guide\$($_.Name)" })
+    $required = @('gwgui.exe', 'unins000.exe')
     foreach ($relative in $required) {
         $path = Join-Path $destination $relative
         if (-not (Test-Path -LiteralPath $path -PathType Leaf)) { throw "Installed file missing: $relative" }
     }
-    $installedGuideFiles = @(Get-ChildItem -LiteralPath (Join-Path $destination 'Documentation\user-guide') -Recurse -File)
-    if ($installedGuideFiles | Where-Object Extension -ne '.pdf') { throw 'The installer included Markdown or image files in the user guide.' }
+    if (Test-Path -LiteralPath (Join-Path $destination 'Documentation\user-guide')) { throw 'The installer included the obsolete offline user guide.' }
     if (Get-ChildItem -LiteralPath $destination -Recurse -File -Filter '*.pdb') { throw 'Debug symbols were installed.' }
 
     $version = (Get-Item -LiteralPath (Join-Path $destination 'gwgui.exe')).VersionInfo.ProductVersion

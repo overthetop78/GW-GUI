@@ -13,7 +13,7 @@ import urllib.request
 from pathlib import Path
 
 
-DEFAULT_CACHE = Path("docs/user-guide/translation-data/google-translate-cache.json")
+DEFAULT_CACHE = Path("tmp/google-translate-cache.json")
 
 
 TOKEN_PATTERN = re.compile(

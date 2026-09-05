@@ -78,6 +78,8 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Filename: "{app}\gwgui.exe"; Description: "{cm:LaunchProgram,GW GUI}"; Flags: nowait postinstall skipifsilent unchecked
 
 [InstallDelete]
+; The user guide is now hosted on the GitHub wiki.
+Type: filesandordirs; Name: "{app}\Documentation\user-guide"
 ; Releases older than 0.1.1 were self-contained and left a private .NET runtime
 ; beside gwgui.exe. A framework-dependent upgrade must remove those root DLLs:
 ; otherwise apphost selects the incomplete application-local runtime instead of

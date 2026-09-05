@@ -574,8 +574,8 @@ public partial class MainWindow : Window
     private void Documentation_Click(object sender, RoutedEventArgs e)
     {
         var language = System.Globalization.CultureInfo.CurrentUICulture.Name;
-        var path = UserGuideLocator.Find(AppContext.BaseDirectory, language);
-        if (path is not null) Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
+        var url = UserGuideLocator.GetUrl(language);
+        Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
     }
 
     private void ReadInput_Changed(object sender, RoutedEventArgs e) => _readTab.InputChanged();

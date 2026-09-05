@@ -6,6 +6,7 @@ La documentation est organisée par responsabilité. Les règles, les décisions
 
 - [Règles permanentes](project/rules.md)
 - [Décisions produit et explications confirmées](project/decisions.md)
+- [Préparation et publication du wiki](project/wiki.md)
 
 ## Architecture actuelle
 
@@ -37,4 +38,4 @@ La documentation est organisée par responsabilité. Les règles, les décisions
 
 ## Guide utilisateur
 
-Le dossier [user-guide](user-guide/fr-FR.md) est géré séparément et n’est pas modifié lors du rangement de la documentation technique.
+Le guide utilisateur est désormais préparé dans [wiki](../wiki/Home.md), avec une entrée par langue et des images partagées. L’aide de l’application ouvre le Wiki GitHub en ligne.

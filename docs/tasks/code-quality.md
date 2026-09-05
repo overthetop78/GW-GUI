@@ -1,12 +1,12 @@
 # Qualité et refactorisation du code
 
-Les phases ci-dessous restent exécutées dans leur ordre. Chaque case conserve son état actuel.
+État réconcilié le 5 septembre 2026 avec le code au commit `809bfb24` et son historique. Une case cochée indique une réalisation vérifiée ; la mention **Sans objet** distingue une exigence devenue obsolète. Une case ouverte peut désigner un contrôle restant sur du code déjà présent, et non une implémentation à recommencer. Les validations manuelles et la clôture globale ne sont pas déduites de la seule présence du code. Les travaux restants suivent l’ordre des phases.
 
 ## Phase 02 — Refactorisation et rangement du code
 
-Cette phase reprend entièrement la refactorisation. Les extractions déjà réalisées ne sont pas considérées comme validées tant que leur place, leur responsabilité et leurs dépendances n’ont pas été contrôlées dans cette nouvelle liste.
+Cette phase conserve le suivi du rangement réalisé et des contrôles encore nécessaires. Les anciens plans préparatoires devenus sans objet sont clos explicitement ; les extractions et déplacements déjà réalisés ne sont pas à recommencer.
 
-`AtariScpSectorImageReader.cs`, `MainWindow.xaml.cs`, la racine de `GWGUI.App` et le dossier `GWGUI.MediaEngine/Images` sont des exemples visibles du problème. Ils ne limitent pas le périmètre : **tous les projets et tous les fichiers de production doivent être examinés et rangés**.
+Les anciens exemples (`AtariScpSectorImageReader.cs`, racine de `GWGUI.App`, `GWGUI.MediaEngine/Images`) sont historiques. L’examen des responsabilités encore mal placées couvre toujours tous les projets de production, dont `MainWindow.xaml.cs` ; il part de l’arborescence actuelle.
 
 ### Règles de travail de cette phase
 
@@ -41,130 +41,160 @@ Ces points sont des règles, pas des tâches à cocher.
 
 #### 2.1.2 Préparer le plan de déplacement
 
-- [ ] Ajouter au document une table de correspondance entre l’emplacement actuel et l’emplacement cible.
-  - [ ] Couvrir `GWGUI.App`.
-  - [ ] Couvrir `GWGUI.Domain`.
-  - [ ] Couvrir `GWGUI.Infrastructure`.
-  - [ ] Couvrir `GWGUI.MediaEngine`.
-  - [ ] Couvrir les fichiers de production présents à la racine de chaque projet.
-  - [ ] Distinguer les fichiers qui restent à leur place.
-  - [ ] Distinguer les fichiers qui doivent seulement être déplacés.
-  - [ ] Distinguer les fichiers qui doivent être renommés.
-  - [ ] Distinguer les fichiers qui doivent être séparés en plusieurs responsabilités.
-  - [ ] Distinguer les fichiers dont plusieurs parties doivent rejoindre des modules existants.
+**Sans objet pour le plan initial** : le document de proposition a été supprimé lors de la réorganisation documentaire (`e8ec6cfb`) et le rangement a depuis évolué. Il n’est plus nécessaire de reconstruire rétroactivement sa table de déplacement. Les cases ci-dessous sont closes à ce titre, sans prétendre que cette table avait été rédigée. Les déplacements encore nécessaires restent soumis à la règle de préparation et de validation de leur structure cible, au moment du bloc concerné.
+
+- [x] Ajouter au document une table de correspondance entre l’emplacement actuel et l’emplacement cible — **sans objet pour l’ancien plan**.
+  - [x] Couvrir `GWGUI.App`.
+  - [x] Couvrir `GWGUI.Domain`.
+  - [x] Couvrir `GWGUI.Infrastructure`.
+  - [x] Couvrir `GWGUI.MediaEngine`.
+  - [x] Couvrir les fichiers de production présents à la racine de chaque projet.
+  - [x] Distinguer les fichiers qui restent à leur place.
+  - [x] Distinguer les fichiers qui doivent seulement être déplacés.
+  - [x] Distinguer les fichiers qui doivent être renommés.
+  - [x] Distinguer les fichiers qui doivent être séparés en plusieurs responsabilités.
+  - [x] Distinguer les fichiers dont plusieurs parties doivent rejoindre des modules existants.
 
 #### 2.1.3 Contrôler la structure proposée
 
-- [ ] Vérifier la structure cible avant toute modification du code.
-  - [ ] Vérifier qu’un dossier ne mélange pas interface, domaine, infrastructure et formats de disquette.
-  - [ ] Vérifier que les dossiers génériques comme `Controls`, `Services` et `Images` ne redeviennent pas des dossiers fourre-tout.
-  - [ ] Vérifier que chaque famille de fichiers possède un emplacement évident.
-  - [ ] Vérifier qu’un nouveau format pourra être ajouté sans modifier plusieurs dossiers sans rapport.
-  - [ ] Vérifier que les composants réellement communs ne sont pas dupliqués dans chaque fonction.
-  - [ ] Vérifier que les composants spécifiques ne sont pas placés artificiellement dans un dossier commun.
-  - [ ] Corriger le document tant qu’un fichier important n’a pas de destination claire.
-- [ ] Faire valider la structure cible avant de commencer les déplacements.
+**Sans objet pour l’ancienne proposition supprimée**, comme 2.1.2. Ces cases ferment la revue préparatoire de ce document, sans attester une approbation historique. Les contrôles du code actuel restent en 2.2 à 2.6 et 2.9 ; une nouvelle proposition sera préparée uniquement pour les déplacements restant à effectuer.
+
+- [x] Vérifier la structure cible avant toute modification du code.
+  - [x] Vérifier qu’un dossier ne mélange pas interface, domaine, infrastructure et formats de disquette.
+  - [x] Vérifier que les dossiers génériques comme `Controls`, `Services` et `Images` ne redeviennent pas des dossiers fourre-tout.
+  - [x] Vérifier que chaque famille de fichiers possède un emplacement évident.
+  - [x] Vérifier qu’un nouveau format pourra être ajouté sans modifier plusieurs dossiers sans rapport.
+  - [x] Vérifier que les composants réellement communs ne sont pas dupliqués dans chaque fonction.
+  - [x] Vérifier que les composants spécifiques ne sont pas placés artificiellement dans un dossier commun.
+  - [x] Corriger le document tant qu’un fichier important n’a pas de destination claire.
+- [x] Faire valider la structure cible avant de commencer les déplacements.
 
 ### 2.2 Réorganiser `GWGUI.App`
 
 #### 2.2.1 Nettoyer la racine du projet
 
-- [ ] Examiner tous les fichiers actuellement placés à la racine de `GWGUI.App` à partir de la cartographie de la tâche 01.
-  - [ ] Laisser à la racine uniquement les fichiers qui appartiennent réellement au démarrage ou à la définition du projet.
-  - [ ] Ranger les fenêtres secondaires selon leur fonction.
-    - [ ] Fenêtre À propos.
-    - [ ] Fenêtres de conflits de Lecture et Conversion.
-    - [ ] Fenêtre des problèmes de l’Explorateur.
-    - [ ] Fenêtres liées aux outils GW.
-    - [ ] Fenêtre de matériel indisponible.
-    - [ ] Fenêtre d’historique des journaux.
-    - [ ] Fenêtre de nommage des profils.
-    - [ ] Fenêtres et vues SCP.
-  - [ ] Ranger les contrôles actuellement isolés à la racine dans leur fonction réelle.
-  - [ ] Ranger `StoragePaths` et `ThemeManager` selon leur responsabilité approuvée dans la structure cible.
-  - [ ] Mettre à jour les namespaces, références XAML et ressources après chaque groupe de déplacements.
+- [x] Examiner les fichiers actuellement placés à la racine de `GWGUI.App` et constater leur rangement.
+  - [x] Laisser à la racine uniquement les fichiers qui appartiennent réellement au démarrage ou à la définition du projet.
+  - [x] Ranger les fenêtres secondaires selon leur fonction.
+    - [x] Fenêtre À propos.
+    - [x] Fenêtres de conflits de Lecture et Conversion.
+    - [x] Fenêtre des problèmes de l’Explorateur.
+    - [x] Fenêtres liées aux outils GW.
+    - [x] Fenêtre de matériel indisponible.
+    - [x] Fenêtre d’historique des journaux.
+    - [x] Fenêtre de nommage des profils.
+    - [x] Fenêtres et vues SCP.
+  - [x] Ranger les contrôles actuellement isolés à la racine dans leur fonction réelle.
+  - [x] Ranger `StoragePaths` et `ThemeManager` selon leur responsabilité, dans `Services/Storage` et `Services/Theming`.
+  - [x] Mettre à jour les namespaces, références XAML et ressources après chaque groupe de déplacements.
 
 #### 2.2.2 Réorganiser les composants visuels
 
-- [ ] Remplacer le dossier `Controls` unique par la structure fonctionnelle validée.
-  - [ ] Séparer les composants communs réutilisables.
-  - [ ] Regrouper les composants de Lecture.
-  - [ ] Regrouper les composants d’Écriture.
-  - [ ] Regrouper les composants de Conversion.
-  - [ ] Regrouper les composants du Visualisateur.
-  - [ ] Regrouper les composants de l’Explorateur.
-  - [ ] Regrouper les composants des Outils.
-  - [ ] Regrouper les composants des Options.
-  - [ ] Regrouper menu, terminal, barre d’état et progression selon la structure validée.
-  - [ ] Vérifier que chaque composant XAML et son code-behind restent ensemble.
-  - [ ] Vérifier que les composants réutilisés n’embarquent pas l’état d’un onglet particulier.
+- [x] Remplacer le dossier `Controls` unique par une structure fonctionnelle (`Views/Controls`).
+  - [x] Séparer les composants communs réutilisables.
+  - [x] Regrouper les composants de Lecture.
+  - [x] Regrouper les composants d’Écriture.
+  - [x] Regrouper les composants de Conversion.
+  - [x] Regrouper les composants du Visualisateur.
+  - [x] Regrouper les composants de l’Explorateur.
+  - [x] Regrouper les composants des Outils.
+  - [x] Regrouper les composants des Options.
+  - [x] Regrouper menu, terminal, barre d’état et progression dans les composants de `Views/Controls/Shell`.
+  - [x] Vérifier que chaque composant XAML et son code-behind restent ensemble.
+  - [x] Vérifier que les composants réutilisés n’embarquent pas l’état d’un onglet particulier.
+
+Vérification ciblée du code et des usages XAML le 5 septembre 2026 : `CardSection`, `PathSection`, `MainTabHeader`, `FileEntryIcon`, `ProfileSection`, `DiskClassificationSelector`, `TrackProgressStrip` et `ScpInspectorPanel`. Les propriétés et collections de présentation sont propres à chaque instance ; les seules brosses partagées de `TrackProgressStrip` sont gelées. Les chemins et profils sont fournis par leurs consommateurs ; le panneau SCP reçoit son modèle par `DataContext`. Aucun de ces composants ne conserve de référence à un onglet concret ni d’état métier statique partagé entre onglets. La synchronisation Explorateur/Visualisateur est explicitement assurée par `DiskImageWorkspaceController`, hors des composants communs. Aucun refactor nécessaire pour ce point. Les essais interactifs d’indépendance restent suivis en 7.1.
 
 #### 2.2.3 Reprendre complètement `MainWindow`
 
-- [ ] Établir dans le document de structure la liste des responsabilités encore présentes dans `MainWindow.xaml.cs`.
-  - [ ] Initialisation de la fenêtre.
-  - [ ] Navigation entre les onglets.
-  - [ ] Lecture.
-  - [ ] Écriture.
-  - [ ] Conversion.
-  - [ ] Visualisation.
-  - [ ] Exploration.
-  - [ ] Outils et maintenance.
-  - [ ] Profils.
-  - [ ] Matériel et sélection du lecteur.
-  - [ ] Exécution et arrêt des commandes.
-  - [ ] Terminal et journaux.
-  - [ ] Progression et barre d’état.
-  - [ ] Placement et dimensions de la fenêtre.
-  - [ ] Synchronisation d’une image entre Explorateur et Visualisateur.
-- [ ] Attribuer un propriétaire cible à chacune de ces responsabilités.
-- [ ] Extraire la logique de chaque fonction hors de `MainWindow` dans l’ordre défini par le document de structure.
-  - [ ] Déplacer son état.
-  - [ ] Déplacer ses traitements.
-  - [ ] Déplacer ses gestionnaires d’événements.
-  - [ ] Exposer uniquement les commandes, données et événements nécessaires à la fenêtre principale.
-  - [ ] Remplacer les accès directs de `MainWindow` aux contrôles internes par l’interface publique du composant concerné.
-  - [ ] Vérifier qu’aucun gestionnaire n’est abonné deux fois.
-  - [ ] Vérifier qu’aucun service ou composant n’est construit deux fois.
-  - [ ] Supprimer de `MainWindow` l’ancien code après raccordement du nouveau propriétaire.
-- [ ] Réduire le rôle final de `MainWindow` à la composition et à la coordination réellement globale.
-  - [ ] Conserver la création des grands blocs de la fenêtre.
-  - [ ] Conserver uniquement la navigation globale qui ne dépend d’aucun onglet particulier.
-  - [ ] Conserver uniquement les échanges nécessaires entre deux fonctions distinctes.
-  - [ ] Documenter les responsabilités qui doivent encore y rester et pourquoi.
+- [x] Établir dans le présent suivi la liste des responsabilités encore présentes dans `MainWindow.xaml.cs`.
+  - [x] Initialisation de la fenêtre.
+  - [x] Navigation entre les onglets.
+  - [x] Lecture.
+  - [x] Écriture.
+  - [x] Conversion.
+  - [x] Visualisation.
+  - [x] Exploration.
+  - [x] Outils et maintenance.
+  - [x] Profils.
+  - [x] Matériel et sélection du lecteur.
+  - [x] Exécution et arrêt des commandes.
+  - [x] Terminal et journaux.
+  - [x] Progression et barre d’état.
+  - [x] Placement et dimensions de la fenêtre.
+  - [x] Synchronisation d’une image entre Explorateur et Visualisateur.
+- [x] Attribuer un propriétaire cible à chacune de ces responsabilités.
+- [x] **Clos par décision utilisateur — ne pas toucher** : conserver l’extraction actuelle de `MainWindow` et abandonner les déplacements supplémentaires proposés.
+  - [x] Déplacer son état — **sans objet, organisation actuelle conservée**.
+  - [x] Déplacer ses traitements — **sans objet, organisation actuelle conservée**.
+  - [x] Déplacer ses gestionnaires d’événements — **sans objet, organisation actuelle conservée**.
+  - [x] Exposer uniquement les commandes, données et événements nécessaires à la fenêtre principale — **refactor supplémentaire abandonné**.
+  - [x] Remplacer les accès directs de `MainWindow` aux contrôles internes par l’interface publique du composant concerné — **refactor supplémentaire abandonné**.
+  - [x] Vérifier les doubles abonnements après déplacement — **sans objet, déplacement abandonné ; ne vaut pas validation générale des abonnements actuels**.
+  - [x] Vérifier les doubles constructions après déplacement — **sans objet, déplacement abandonné ; ne vaut pas validation générale des constructions actuelles**.
+  - [x] Supprimer de `MainWindow` l’ancien code après raccordement du nouveau propriétaire — **sans objet, organisation actuelle conservée**.
+- [x] **Clos par décision utilisateur** : conserver le rôle actuel de `MainWindow`, y compris les traitements et raccordements examinés.
+  - [x] Conserver la création des grands blocs de la fenêtre.
+  - [x] Réduire davantage la navigation conservée dans la fenêtre — **sans objet, organisation actuelle conservée**.
+  - [x] Réduire davantage les échanges conservés dans la fenêtre — **sans objet, organisation actuelle conservée**.
+  - [x] Documenter les responsabilités qui doivent encore y rester et pourquoi.
+
+Responsabilités et propriétaires constatés dans le constructeur et les délégations de `MainWindow` :
+
+| Responsabilité | Propriétaire actuel ou cible pour les restes |
+|---|---|
+| Initialisation, chargement et fermeture | Composition dans `MainWindow`, cycle de vie dans `MainWindowLifecycleController` |
+| Navigation globale et échanges entre onglets | `MainWindow`, car ils relient plusieurs fonctions |
+| Lecture / Écriture / Conversion | `ReadTabController`, `WriteTabController`, `ConversionTabController` |
+| Visualisation, exploration et synchronisation d’image | `DiskImageWorkspaceController`, `ScpInspectorController`, `ExplorerReadController` |
+| Outils et maintenance | `MaintenanceToolsController`, `HostToolsUpdateController` |
+| Profils | `OperationProfileController`, `OperationProfileCollection` |
+| Matériel et sélection du lecteur | `HardwareSelectionController`, `StartupHardwareMonitor` |
+| Exécution et arrêt | `OperationRuntimeController` ; confirmation globale raccordée par la fenêtre |
+| Terminal et journaux | `TerminalPanelController`, `ConsoleLogSession` |
+| Progression et barre d’état | `OperationProgressController`, `ApplicationStatusBar` |
+| Placement et dimensions | `WindowPlacementController` |
+
+Décision utilisateur du 5 septembre 2026 : **ne pas toucher à l’organisation actuelle de `MainWindow` pour ce refactor**. La composition, la navigation, les accès aux contrôles et les traitements restants examinés sont conservés. Cette décision clôt les tâches de déplacement ci-dessus ; elle ne signifie pas que les extractions abandonnées ont été réalisées. Une nouvelle demande explicite sera nécessaire pour reprendre ce chantier.
+
+Motif de la décision : les opérations, profils et états propres à Lecture/Écriture/Conversion sont déjà largement délégués aux trois contrôleurs. Les déplacements supplémentaires concernaient `RefreshFormatSelectors`, les validations de `ToolCommand_Click` et les abonnements des méthodes `ConnectReadComponents`, `ConnectWriteComponents` et `ConnectConvertComponents`. Ils demanderaient de préserver l’ordre d’initialisation et des événements de sélection, ainsi que l’accès aux catalogues et réglages actualisés. Après examen de ces dépendances, l’utilisateur choisit de conserver le fonctionnement et l’organisation actuels.
 
 #### 2.2.4 Reprendre `OptionsWindow`
 
-- [ ] Vérifier les responsabilités restantes dans `OptionsWindow.xaml.cs` sans refaire celles déjà correctement extraites.
-  - [ ] Général.
-  - [ ] Contrôleurs et lecteurs.
-  - [ ] Profils.
-  - [ ] Journaux.
-  - [ ] Host Tools.
-  - [ ] Tags.
-  - [ ] Sauvegarde immédiate et fermeture.
-- [ ] Déplacer chaque responsabilité restante vers le composant ou contrôleur approuvé.
-- [ ] Conserver dans la fenêtre uniquement la composition des pages et la fermeture globale.
-- [ ] Vérifier que les changements automatiques restent appliqués sans bouton Enregistrer général.
+- [x] Vérifier les responsabilités restantes dans `OptionsWindow.xaml.cs` sans refaire celles déjà correctement extraites.
+  - [x] Général.
+  - [x] Contrôleurs et lecteurs.
+  - [x] Profils.
+  - [x] Journaux.
+  - [x] Host Tools.
+  - [x] Tags.
+  - [x] Sauvegarde immédiate et fermeture.
+- [x] **Clos par décision utilisateur — ne pas toucher** : conserver les responsabilités actuelles d’`OptionsWindow` et abandonner les déplacements supplémentaires proposés.
+- [x] **Clos par décision utilisateur** : conserver le rôle actuel de la fenêtre, y compris la coordination de la sauvegarde et de la fermeture.
+- [x] Vérifier que les changements automatiques restent appliqués sans bouton Enregistrer général.
+
+Décision utilisateur du 5 septembre 2026 : conserver l’organisation actuelle d’`OptionsWindow`, comme pour `MainWindow` en 2.2.3. Les contrôleurs et les raccordements existants restent en place. Les tâches d’extraction supplémentaire sont closes par cette décision, sans prétendre que ces extractions ont été réalisées. Une nouvelle demande explicite sera nécessaire pour reprendre ce chantier.
 
 #### 2.2.5 Réorganiser services et ViewModels de l’application
 
-- [ ] Classer tous les fichiers de `Services` selon leur consommateur et leur portée.
-  - [ ] Services réellement globaux.
-  - [ ] Services de Lecture.
-  - [ ] Services d’Écriture.
-  - [ ] Services de Conversion.
-  - [ ] Services du Visualisateur.
-  - [ ] Services de l’Explorateur.
-  - [ ] Services matériels.
-  - [ ] Services de fenêtre et navigation.
-  - [ ] Services d’exécution, progression, terminal et journaux.
-- [ ] Classer tous les fichiers de `ViewModels` selon leur fonction.
-- [ ] Vérifier qu’un ViewModel ne manipule pas directement un contrôle WPF.
+- [x] Classer tous les fichiers de `Services` selon leur consommateur et leur portée.
+  - [x] Services réellement globaux.
+  - [x] Services de Lecture.
+  - [x] Services d’Écriture.
+  - [x] Services de Conversion.
+  - [x] Services du Visualisateur.
+  - [x] Services de l’Explorateur.
+  - [x] Services matériels.
+  - [x] Services de fenêtre et navigation.
+  - [x] Services d’exécution, progression, terminal et journaux.
+- [x] Classer tous les fichiers de `ViewModels` selon leur fonction.
+- [x] Vérifier qu’un ViewModel ne manipule pas directement un contrôle WPF.
 - [ ] Vérifier qu’un service spécifique à un onglet n’est pas présenté comme service global.
 - [ ] Vérifier que les services globaux ne dépendent pas d’un onglet concret.
 
 ### 2.3 Réorganiser `GWGUI.MediaEngine`
+
+Constat de la revue de 2.2 : le rangement est présent dans `Views/Windows`, `Views/Dialogs`, `Views/Controls`, `Services` et `ViewModels`, avec des sous-dossiers fonctionnels. `StoragePaths` et `ThemeManager` sont respectivement dans `Services/Storage` et `Services/Theming`. Aucun accès direct à un contrôle WPF n’a été trouvé dans les 20 ViewModels. Les contrôleurs de Lecture, Écriture, Conversion, cycle de vie et Options existent déjà : ne pas refaire leurs extractions. Les chantiers supplémentaires de `MainWindow` et `OptionsWindow` sont clos par décision utilisateur en 2.2.3 et 2.2.4.
 
 #### 2.3.1 Reprendre entièrement le dossier `Images`
 
@@ -277,67 +307,72 @@ Ces points sont des règles, pas des tâches à cocher.
 - [x] Vérifier la séparation entre lecteur SCP, modèles SCP, informations de capture et constantes de structure.
 - [x] Vérifier que `ScpReader` ne contient que la lecture du conteneur SCP.
 - [x] Vérifier que les primitives de bits et CRC ne dépendent ni de l’interface ni d’une machine précise.
-- [ ] Signaler dans la tâche 03 les constantes encore mal placées sans les traiter dans cette phase.
-- [ ] Signaler dans la tâche 04 les modèles ou contrats encore mélangés sans les traiter dans cette phase.
+- [x] Signaler dans la tâche 03 les constantes encore mal placées sans les traiter dans cette phase.
+- [x] Signaler dans la tâche 04 les modèles ou contrats encore mélangés sans les traiter dans cette phase.
 
 ### 2.4 Réorganiser `GWGUI.Domain`
 
 #### 2.4.1 Vérifier les frontières fonctionnelles
 
-- [ ] Examiner chaque dossier du domaine à partir de la cartographie validée.
-  - [ ] Commandes.
-  - [ ] Conversion.
-  - [ ] Formats.
-  - [ ] Matériel.
-  - [ ] Host Tools.
-  - [ ] Maintenance.
-  - [ ] Nommage.
-  - [ ] Profils.
-  - [ ] Lecture.
-  - [ ] Réglages.
-  - [ ] Écriture.
+- [x] Examiner l’arborescence actuelle et les responsabilités déclarées dans chaque dossier du domaine.
+  - [x] Commandes.
+  - [x] Conversion.
+  - [x] Formats.
+  - [x] Matériel.
+  - [x] Host Tools.
+  - [x] Maintenance.
+  - [x] Nommage.
+  - [x] Profils.
+  - [x] Lecture.
+  - [x] Réglages.
+  - [x] Écriture.
+  - [x] Parité, également présente dans le domaine actuel.
 - [ ] Vérifier que chaque fichier appartient réellement à son dossier.
 - [ ] Déplacer les fichiers mal rangés vers la fonction qui les possède.
-- [ ] Vérifier qu’aucun fichier du domaine ne dépend de WPF.
-- [ ] Vérifier qu’aucun fichier du domaine ne dépend d’une implémentation Windows ou d’un stockage concret.
+- [x] Vérifier qu’aucun fichier du domaine ne dépend de WPF.
+- [x] Vérifier qu’aucun fichier du domaine ne dépend d’une implémentation Windows ou d’un stockage concret.
 
 #### 2.4.2 Reprendre les commandes et opérations
 
 - [ ] Distinguer construction, validation, planification et exécution des commandes.
-- [ ] Vérifier séparément Lecture, Écriture et Conversion.
+- [x] Vérifier séparément Lecture, Écriture et Conversion.
 - [ ] Vérifier que les options communes ne sont pas recopiées dans chaque constructeur.
-- [ ] Vérifier que les différences propres aux opérations restent dans leur fonction.
-- [ ] Vérifier que la compatibilité d’un format ne dépend pas d’un contrôle WPF.
+- [x] Vérifier que les différences propres aux opérations restent dans leur fonction.
+- [x] Vérifier que la compatibilité d’un format ne dépend pas d’un contrôle WPF.
 
 #### 2.4.3 Reprendre formats et capacités
 
-- [ ] Vérifier les responsabilités du catalogue intégré, du catalogue tenant compte de GW et des modèles de format.
+- [x] Vérifier les responsabilités du catalogue intégré, du catalogue tenant compte de GW et des modèles de format.
 - [ ] Conserver une source commune pour les formats proposés à Lecture, Écriture, Conversion, Explorateur et Visualisateur.
 - [ ] Vérifier que les capacités propres à GW restent distinctes des capacités internes de GW GUI.
 - [ ] Vérifier que les définitions de disquette intégrées ont un propriétaire unique.
 
+Les trois constructeurs d’opérations sont distincts et utilisent `GwOptionValidator`, `BuiltInDiskDefinitions` et `CommandLineTokenizer`. Ils recopient encore la boucle d’ajout des options et, pour Lecture/Écriture, la primitive `Add` : la mutualisation reste ouverte en 2.4.2, 2.6 et phase 05.
+
 #### 2.4.4 Reprendre réglages, profils et matériel
 
-- [ ] Vérifier que les réglages sont répartis par domaine sans recréer un fichier monolithique.
-- [ ] Vérifier que les profils restent séparés par opération.
-- [ ] Vérifier que la description physique d’un lecteur ne devient pas une option GW.
-- [ ] Vérifier que routage matériel, registre matériel et découverte Windows restent séparés.
+- [x] Vérifier que les réglages sont répartis par domaine sans recréer un fichier monolithique.
+- [x] Vérifier que les profils restent séparés par opération.
+- [x] Vérifier que la description physique d’un lecteur ne devient pas une option GW.
+- [x] Vérifier que routage matériel, registre matériel et découverte Windows restent séparés.
+
+`OperationProfileCollection` partitionne les magasins par `OperationKind`. `HardwareRoutingPolicy` déduit les arguments du routage et du nombre de périphériques, sans transformer taille, densité ou RPM en options de commande. Les essais matériels restent distincts de ce contrôle du code.
 
 ### 2.5 Réorganiser `GWGUI.Infrastructure`
 
 #### 2.5.1 Vérifier chaque implémentation technique
 
-- [ ] Classer les implémentations par domaine technique.
-  - [ ] Découverte matérielle Windows.
-  - [ ] Registre matériel Greaseweazle.
-  - [ ] Installation et capacités Host Tools.
-  - [ ] Exécution des processus.
-  - [ ] Journaux d’opération.
-  - [ ] Stockage des réglages.
+- [x] Classer les implémentations par domaine technique.
+  - [x] Découverte matérielle Windows.
+  - [x] Registre matériel Greaseweazle.
+  - [x] Installation et capacités Host Tools.
+  - [x] Exécution des processus.
+  - [x] Journaux d’opération.
+  - [x] Stockage des réglages.
 - [ ] Vérifier que chaque implémentation réalise un contrat du domaine ou un besoin clairement identifié de l’application.
-- [ ] Vérifier que l’infrastructure ne contient aucune décision d’affichage WPF.
+- [x] Vérifier que l’infrastructure ne contient aucune décision d’affichage WPF.
 - [ ] Vérifier que l’infrastructure ne décide pas du format métier à la place des catalogues du domaine.
-- [ ] Vérifier que les classes propres à Windows sont identifiables par leur emplacement et leur nom.
+- [x] Vérifier que les classes propres à Windows sont identifiables par leur emplacement et leur nom.
 
 ### 2.6 Supprimer les duplications architecturales
 
@@ -373,11 +408,11 @@ Ces points sont des règles, pas des tâches à cocher.
 
 #### 2.7.1 Ranger les tests selon le code de production
 
-- [ ] Définir dans le document de structure l’arborescence cible des tests.
+- [x] **Sans objet pour l’ancien document** : y redéfinir l’arborescence cible des tests. La séparation actuelle est décrite dans `docs/architecture/overview.md` : suite courante `GWGUI.Tests`, corpus privé `GWGUI.LocalDiskImageTests` et catégorie `GpuExhaustive`.
 - [ ] Regrouper les tests par projet et fonction de production.
-- [ ] Séparer les tests unitaires ciblés des tests utilisant le corpus d’images.
-- [ ] Conserver les images externes hors du dépôt selon les règles déjà décidées.
-- [ ] Ne pas créer plusieurs tests qui vérifient exactement le même comportement.
+- [x] Séparer les tests unitaires ciblés des tests utilisant le corpus d’images.
+- [x] Conserver les images externes hors du dépôt selon les règles déjà décidées.
+- [x] **Sans objet comme tâche autonome** : ne pas créer de tests redondants. Cette consigne reste applicable à tout ajout de test.
 
 #### 2.7.2 Définir des blocs de contrôle rapides
 
@@ -387,41 +422,43 @@ Ces points sont des règles, pas des tâches à cocher.
 - [ ] Définir un bloc de contrôle pour `GWGUI.MediaEngine`.
 - [ ] Définir un bloc ciblé pour la détection multiformat.
 - [ ] Définir un bloc ciblé pour les registres de formats, décodeurs, encodeurs et systèmes de fichiers.
-- [ ] Utiliser le bloc concerné après une série cohérente de déplacements.
-- [ ] Réserver la compilation complète et la suite complète à la clôture d’un grand bloc ou de la phase.
+- [x] **Sans objet comme tâche autonome** : Utiliser le bloc concerné après une série cohérente de déplacements. Consigne à appliquer aux blocs futurs.
+- [x] **Sans objet comme tâche autonome** : Réserver la compilation complète et la suite complète à la clôture d’un grand bloc ou de la phase. Consigne à appliquer aux blocs futurs.
 
 ### 2.8 Contrôler chaque bloc de refactorisation
 
+**Sans objet comme liste de travaux autonomes** : ce bloc décrit des consignes récurrentes, déjà prescrites par les règles de travail. Les cases sont closes à ce titre, sans affirmer que chaque ancien bloc a reçu tous ces contrôles. Ces consignes restent obligatoires pour les modifications futures ; les validations finales encore nécessaires restent ouvertes en 2.9.
+
 #### 2.8.1 Contrôle après chaque tâche autonome
 
-- [ ] Vérifier uniquement les fichiers et dépendances modifiés.
-- [ ] Exécuter le bloc de tests ciblé correspondant.
-- [ ] Vérifier qu’aucun abonnement, enregistrement ou appel n’est dupliqué.
-- [ ] Vérifier que l’ancien chemin a été supprimé lorsqu’il n’est plus utilisé.
-- [ ] Mettre à jour le document de structure si la destination finale a dû être corrigée.
-- [ ] Cocher immédiatement les sous-tâches réellement terminées.
-- [ ] Créer le commit de la tâche autonome terminée.
+- [x] Vérifier uniquement les fichiers et dépendances modifiés.
+- [x] Exécuter le bloc de tests ciblé correspondant.
+- [x] Vérifier qu’aucun abonnement, enregistrement ou appel n’est dupliqué.
+- [x] Vérifier que l’ancien chemin a été supprimé lorsqu’il n’est plus utilisé.
+- [x] Mettre à jour le document de structure si la destination finale a dû être corrigée.
+- [x] Cocher immédiatement les sous-tâches réellement terminées.
+- [x] Créer le commit de la tâche autonome terminée.
 
 #### 2.8.2 Contrôle à la fin d’un bloc cohérent
 
-- [ ] Compiler les projets concernés ensemble.
-- [ ] Exécuter les groupes de tests concernés ensemble.
-- [ ] Contrôler les dépendances entre projets.
-- [ ] Vérifier que le comportement observable est conservé.
-- [ ] Pousser le bloc complet.
+- [x] Compiler les projets concernés ensemble.
+- [x] Exécuter les groupes de tests concernés ensemble.
+- [x] Contrôler les dépendances entre projets.
+- [x] Vérifier que le comportement observable est conservé.
+- [x] Pousser le bloc complet.
 
 ### 2.9 Clôturer réellement la phase 02
 
 #### 2.9.1 Vérifier la structure finale
 
-- [ ] Comparer l’arborescence obtenue à la structure cible validée.
-- [ ] Expliquer dans le document toute différence conservée volontairement.
-- [ ] Vérifier qu’aucun fichier de production n’a été oublié dans la table de déplacement.
+- [x] **Sans objet pour l’ancien plan** : Comparer l’arborescence obtenue à la structure cible validée. la proposition initiale a été supprimée ; contrôler la structure actuelle et les destinations des prochains blocs.
+- [x] **Sans objet pour l’ancien plan** : Expliquer dans le document toute différence conservée volontairement. ne pas reconstruire une justification rétroactive de chaque écart à la proposition supprimée.
+- [x] **Sans objet pour l’ancien plan** : Vérifier qu’aucun fichier de production n’a été oublié dans la table de déplacement. la table historique n’est plus à reconstruire (2.1.2).
 - [ ] Vérifier que les racines des projets ne contiennent plus de fichiers mal rangés.
 - [ ] Vérifier que les dossiers génériques ne sont plus des dossiers fourre-tout.
-- [ ] Vérifier que `MainWindow` est réellement limité à son rôle final documenté.
-- [ ] Vérifier que `OptionsWindow` est réellement limité à son rôle final documenté.
-- [ ] Vérifier que `Images` est réellement structuré par responsabilités.
+- [x] **Clos par décision utilisateur (2.2.3)** : le rôle actuel documenté de `MainWindow` est conservé ; aucune réduction supplémentaire n’est demandée.
+- [x] **Clos par décision utilisateur (2.2.4)** : le rôle actuel documenté d’`OptionsWindow` est conservé ; aucune réduction supplémentaire n’est demandée.
+- [x] Vérifier que `Images` est réellement structuré par responsabilités.
 - [ ] Vérifier que les comportements multiformats sont toujours présents.
 
 #### 2.9.2 Validation finale de la phase
@@ -439,16 +476,18 @@ Ces points sont des règles, pas des tâches à cocher.
 
 La phase 02 sera terminée uniquement lorsque :
 
-- la structure cible aura été écrite, contrôlée et validée avant les déplacements ;
+- les déplacements encore nécessaires auront une structure cible préparée et validée avant leur exécution ;
 - chaque fichier de production aura une destination et une responsabilité claires ;
-- `MainWindow` et `OptionsWindow` ne concentreront plus les traitements propres aux fonctions ;
+- les rôles actuels de `MainWindow` et d’`OptionsWindow` seront conservés conformément aux décisions de 2.2.3 et 2.2.4 ;
 - `GWGUI.App`, `GWGUI.Domain`, `GWGUI.Infrastructure` et `GWGUI.MediaEngine` seront rangés selon leurs responsabilités réelles ;
-- les dossiers génériques visibles aujourd’hui ne seront plus des listes plates de fichiers sans organisation suffisante ;
+- les dossiers actuels auront des responsabilités claires, sans refaire les rangements déjà réalisés ;
 - la détection automatique, la sélection manuelle et les disquettes multiformats conserveront leur comportement ;
 - les contrôles auront été effectués par blocs rapides, puis une fois complètement à la clôture ;
 - la documentation représentera exactement le code final.
 
 ## Phase 03 — Constantes et textes techniques
+
+Les anciens noms `Images`, `ScpDetection` et `Interpretations` de la phase 02 désignent des étapes historiques ; l’organisation actuelle est décrite dans [l’architecture média](../architecture/media.md). Les anciennes étapes de préparation ne doivent pas entraîner le déplacement à nouveau du code déjà rangé ; la validation historique de la structure n’est pas attestée rétroactivement par cette revue.
 
 ### 3.1 Constantes
 
@@ -459,15 +498,19 @@ La phase 02 sera terminée uniquement lorsque :
 - [ ] Documenter la source des valeurs techniques non évidentes.
 - [x] Intégrer dans les données embarquées toute définition spéciale de disquette nécessaire au produit.
 
+Signalement issu de 2.3.8 et de la revue : la structure SCP dispose déjà de `Containers/Scp/ScpFormatConstants.cs`. Il reste notamment des extensions dans `ImageFormatWorkspace.FallbackImageExtensions`, des identifiants et extensions dans `CapabilityAwareImageFormatCatalog`, ainsi que des arguments `--device`, `--drive`, `--format` et noms de commandes dans les constructeurs Lecture/Écriture/Conversion. Les cases globales de constantes ne sont donc pas closes.
+
 ### 3.2 Aucun texte brut visible
 
 - [x] Retirer tout libellé, message, infobulle, titre ou erreur visible écrit directement dans C# ou XAML.
 - [x] Envoyer chaque texte utilisateur vers la ressource de traduction de son domaine.
-- [ ] Garder les noms techniques non traduisibles dans un catalogue neutre commun.
-- [ ] Vérifier que le même nom technique n’est pas recopié dans trente langues s’il doit rester identique.
+- [x] Garder les noms techniques non traduisibles dans les catalogues neutres de `00-Base`.
+- [x] Vérifier que le même nom technique n’est pas recopié dans trente langues s’il doit rester identique.
 - [x] Distinguer messages de journaux techniques et messages destinés à l’utilisateur.
 
 ### 3.3 Contrôles
+
+Le nettoyage des noms invariants est réalisé par `scripts/translate-resx-argos.py` (`INVARIANT_VALUE_PATTERN`, `INVARIANT_KEY_PATTERNS`, `audit_resources`) ; son audit réussi est consigné dans `interface/emulation/video-host-separation.md`. Les contrôles ci-dessous concernent les identifiants métier, constantes et textes du code, au-delà de cet audit des RESX.
 
 - [ ] Ajouter un contrôle des identifiants utilisés mais absents des catalogues.
 - [ ] Ajouter un contrôle des constantes dupliquées.
@@ -478,22 +521,27 @@ La phase 02 sera terminée uniquement lorsque :
 ### 4.1 Modèles de données
 
 - [ ] Créer des DTO ou records distincts pour machine, format, géométrie, média, codec, protection, conteneur et système de fichiers.
-- [ ] Créer des modèles distincts pour piste physique, secteur décodé, intégrité, révolution et avertissement.
+- [x] Disposer de représentations distinctes pour les pistes (`ProtectedTrack`, `IPiste`), secteurs (`DecodedSector`), révolutions (`FluxRevolution`, `TrackFluxRevolution`) et avertissements (`IDiagnostic`).
+- [ ] Vérifier si la représentation de l’intégrité répond entièrement au modèle distinct demandé ; `SectorIntegrityKind` et `IntegrityValid` existent déjà dans `DecodedSector`.
 - [ ] Séparer les modèles publics partagés des structures internes propres à un algorithme.
-- [ ] Ajouter aux modèles les métadonnées nécessaires aux images multiformats et protégées.
+- [x] Ajouter aux modèles les métadonnées nécessaires aux images multiformats et protégées.
 - [ ] Définir les invariants et validations à la construction des données.
+
+Signalement issu de 2.3.8 : `IImageDisquette.cs` contient encore deux contrats publics (`IImageDisquette`, `IMetadonneesImage`) et `ImageFormatModels.cs` deux records (`ImageExtension`, `DiskFormat`). `DecodedSector` copie les données, mais n’impose pas toutes les validations de tailles et de coordonnées. Les tâches globales de séparation et d’invariants restent ouvertes. Les métadonnées multiformats et protégées existent via `IImageDisquette.FormatsDetectes` et `DiskImageMetadata.SystemIds` / `ProtectionId`.
 
 ### 4.2 Enums et identifiants extensibles
 
 - [ ] Utiliser des enums pour les ensembles fermés et stables : état d’intégrité, type de média, face, état d’opération et capacité.
 - [ ] Utiliser des identifiants catalogués pour les formats, protections et définitions extensibles.
-- [ ] Vérifier que les formats provenant des `diskdefs` et autres définitions extensibles restent catalogués dynamiquement.
+- [x] Vérifier que les formats provenant des `diskdefs` et autres définitions extensibles restent catalogués dynamiquement.
 
 ### 4.3 Interfaces
 
 - [ ] Définir des contrats distincts pour lecture/écriture de conteneur, décodage/encodage de piste, reconstruction sectorielle, système de fichiers, détection, visualisation et conversion.
 - [ ] Justifier chaque nouvelle interface par une frontière réelle ou par des implémentations interchangeables.
-- [ ] Vérifier les dépendances autorisées entre projets.
+- [x] Vérifier les dépendances autorisées entre projets.
+
+Les interfaces spécialisées du moteur existent déjà (`IScpReader`, `IScpWriter`, `IFluxDecoder`, `ITrackEncoder`, `IIsoScpSectorImagePolicy`, `IFileSystemReader`, `IDiskImageRecognitionPolicy`, `ISectorImageVisualizationPolicy`). La case globale conserve l’examen des frontières restantes, notamment la conversion ; elle ne demande pas de recréer ces interfaces. Les références `.csproj` ont été contrôlées : `Infrastructure` dépend du domaine ; Amiga/Atari dépendent d’Emulation et MediaEngine ; `VideoPresentation` reste indépendant des modules ; App compose ces bibliothèques. `ImageFormatWorkspace.AddDiskDefinitions` enrichit dynamiquement le catalogue.
 
 ## Phase 05 — Fonctions et services
 
@@ -502,19 +550,23 @@ La phase 02 sera terminée uniquement lorsque :
 - [ ] Séparer parsing, validation, transformation, sélection et présentation.
 - [ ] Regrouper dans un même fichier les petites fonctions qui constituent une seule primitive cohérente.
 - [ ] Isoler les accès disque, processus, réglages, journaux et dialogues derrière les services existants ou des contrats justifiés.
-- [ ] Réutiliser le même résultat d’analyse entre Explorateur et Visualisateur.
-- [ ] Annuler immédiatement l’analyse précédente lorsqu’une nouvelle image est chargée.
+- [x] Réutiliser le même résultat d’analyse entre Explorateur et Visualisateur.
+- [x] Annuler immédiatement l’analyse précédente lorsqu’une nouvelle image est chargée.
 - [ ] Vérifier que chaque service a un propriétaire, une responsabilité et des tests ciblés.
+
+Éléments déjà présents à réutiliser : `DiskImageWorkspaceController.LoadAsync` transmet le résultat de l’Explorateur au Visualisateur ; `DiskImageCancellationScope` annule et libère l’analyse précédente de chaque type. Les essais de changements rapides et de fermeture restent en 7.2. Des constantes, modèles et contrats spécialisés existent déjà dans le moteur média ; les cases globales des phases 03 et 04 restent ouvertes tant que leur couverture complète n’est pas établie.
 
 ## Phase 06 — Traductions
 
 ### 6.1 Arborescence
 
 - [x] Organiser les ressources sous `Resources/00-Base` pour les catalogues neutres et sous un dossier par culture distribuée.
-- [x] Séparer les ressources dans les 21 catalogues actuels : `About`, `Actions`, `Advanced`, `Common`, `Conversion`, `Emulation`, `Errors`, `Explorer`, `ExplorerWarnings`, `Formats`, `Hardware`, `HostTools`, `Logs`, `Menus`, `Options`, `Profiles`, `Read`, `Shell`, `Tools`, `Visualizer` et `Write`.
-- [x] Fournir pour chaque catalogue une ressource neutre et une ressource par culture distribuée.
-- [ ] Garder dans `Common` uniquement ce qui est réellement commun et basique.
+- [x] Séparer les ressources dans les 21 catalogues de textes actuels : `About`, `Actions`, `Advanced`, `Common`, `Conversion`, `Emulation`, `Errors`, `Explorer`, `ExplorerWarnings`, `Formats`, `Hardware`, `HostTools`, `Logs`, `Menus`, `Options`, `Profiles`, `Read`, `Shell`, `Tools`, `Visualizer` et `Write`, plus le catalogue neutre `Icons` (22 catalogues au total).
+- [x] Fournir pour chaque catalogue de textes une ressource neutre et une ressource par culture distribuée ; conserver `Icons` uniquement dans `00-Base`.
+- [x] Garder dans `Common` uniquement ce qui est réellement commun et basique.
 - [ ] Placer une erreur spécialisée dans son catalogue fonctionnel ou dans `Errors` uniquement lorsqu’elle est réellement partagée.
+
+`Common.resx` ne contient actuellement que `Common.Unknown` et `Common.Eject`. L’organisation est donc faite ; les contrôles restants concernent les erreurs spécialisées et l’application effective des langues.
 
 ### 6.2 Chargeur de ressources
 
@@ -522,16 +574,19 @@ La phase 02 sera terminée uniquement lorsque :
 - [x] Conserver le repli géré par `ResourceManager` vers la culture parente puis la ressource neutre.
 - [x] Refuser les clés dupliquées entre catalogues lors de la construction de l’index.
 - [ ] Vérifier le changement de langue immédiat dans toutes les fenêtres déjà ouvertes.
-- [ ] Vérifier que le sélecteur conserve le nom natif de chaque langue.
+- [x] Vérifier que le sélecteur conserve le nom natif de chaque langue.
 
 ### 6.3 Vérification
 
-- [ ] Vérifier la parité des clés de toutes les langues.
-- [ ] Vérifier les placeholders, retours à la ligne et valeurs vides.
+- [x] **Sans objet sous sa forme initiale** : imposer des clés identiques dans toutes les langues. Les entrées techniques invariantes et les doublons anglais utilisent désormais le repli vers `00-Base`.
+- [ ] Vérifier la couverture effective des traductions nécessaires, en tenant compte de ce repli.
+- [x] Vérifier les placeholders, retours à la ligne et valeurs vides.
 - [ ] Détecter les corruptions d’encodage et le mojibake.
 - [ ] Vérifier les langues de droite à gauche.
 - [ ] Vérifier séparément les traductions de l’application et celles de l’installateur.
 - [ ] Vérifier que les listes de formats des cinq fonctions utilisent les mêmes noms du catalogue central.
+
+Contrôle statique du 5 septembre 2026 : 631 fichiers RESX XML/UTF-8 analysés, aucun placeholder divergent, aucun nombre de retours à la ligne divergent, aucune valeur vide ni clé localisée inconnue. Aucun caractère de remplacement Unicode détecté ; cela ne suffit pas à exclure tout mojibake sémantique ni à valider visuellement les langues de droite à gauche. L’audit RESX antérieur (29 cultures, 22 catalogues) est également enregistré dans `interface/emulation/video-host-separation.md`. Les vérifications de couverture et d’installateur restent distinctes.
 
 ## Phase 07 — Interface, robustesse et maintenance
 
@@ -566,16 +621,19 @@ Ces tâches viennent après le refactor principal et avant la validation finale 
 - [x] Générer les 19 descriptions dans les 29 cultures distribuées avec Argos et vérifier leurs placeholders.
 - [x] Tester en français le délai de connexion réseau et le fichier absent, sans mention du journal.
 - [x] Terminer le groupe « descriptions localisées des erreurs ».
-- [ ] Localiser tous les messages utilisateur et conserver le détail technique dans les journaux.
+- [x] **Doublon de suivi, sans objet ici** : localiser les messages utilisateur et conserver le détail technique dans les journaux est suivi en 3.2 et dans le groupe « descriptions localisées des erreurs » ci-dessus.
 - [ ] Remplacer la boîte d’erreur d’un format simplement non reconnu par l’état d’interface prévu.
 - [ ] Vérifier un journal par action, rotation, archivage et ouverture du dossier Logs.
 - [ ] Vérifier nettoyage des fichiers temporaires et partiels.
 - [ ] Vérifier les réglages absents, anciens, partiels ou corrompus.
-- [ ] Ajouter et vérifier les migrations qui conservent les réglages existants.
+- [x] Ajouter les migrations existantes : `SettingsMigrator` (schéma 8) et migration des anciens profils vidéo hôtes ; cette dernière est validée dans `interface/emulation/video-host-separation.md`.
+- [ ] Compléter la vérification des migrations générales de réglages et de leurs cas anciens, partiels ou corrompus.
+
+Les tâches d’interface (7.1) et de performance (7.2) restent nécessaires : les builds et tests vidéo réussis ne prouvent ni tous les DPI, ni tous les parcours d’images, ni les essais matériels. Les services de journaux, de persistance et de migration sont déjà présents ; les cases ouvertes de 7.3 portent sur leurs validations restantes, pas sur leur recréation.
 
 ### 7.4 Documentation et crédits
 
-- [ ] Maintenir les documents actuels après chaque bloc terminé.
+- [x] **Sans objet comme tâche ponctuelle** : Maintenir les documents actuels après chaque bloc terminé. Obligation permanente, à appliquer lors de chaque changement concerné.
 - [ ] Mettre à jour l’état du projet et la liste des formats réellement pris en charge.
-- [ ] Maintenir les crédits, licences et liens des projets réellement utilisés ou étudiés.
+- [x] **Sans objet comme tâche ponctuelle** : Maintenir les crédits, licences et liens des projets réellement utilisés ou étudiés. Obligation permanente, à appliquer lors de chaque changement concerné.
 

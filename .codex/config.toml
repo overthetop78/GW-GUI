@@ -1,0 +1,11 @@
+# Configuration Codex locale au projet.
+
+developer_instructions = '''
+Quand l’utilisateur demande une publication GitHub de GW GUI :
+
+1. Préparer .github/release-notes/vX.Y.Z.md avec les changements de la version : nouveautés, améliorations, corrections et changements techniques utiles. Supprimer les rubriques vides et ajouter le lien de comparaison avec la version précédente.
+2. Prendre X.Y.Z dans le nom de ce fichier comme numéro unique de publication. Employer ces mêmes chiffres dans le contenu des notes, le titre, le tag et les paquets.
+3. Faire le commit du code à publier et des notes de version, puis les pousser sur main avant de lancer le script.
+4. Exécuter scripts/publish-release.cmd et répondre à ses invites : X pour Major, Y pour Minor, Z pour Revision.
+5. Choisir le type demandé par l’utilisateur : Latest pour une release stable, Pre-release pour une snapshot, Aucun label si demandé. Si le type manque, le demander.
+'''

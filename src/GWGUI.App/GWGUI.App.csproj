@@ -42,7 +42,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="..\..\docs\user-guide\*.pdf" Link="Documentation\user-guide\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="Assets\DiskDefinitions\built-in.cfg" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="$(PkgMicrosoft_GameInput)\redist\GameInputRedist.msi" Link="Runtime\GameInputRedist.msi" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
     <Resource Include="Assets\app-icon.png" />

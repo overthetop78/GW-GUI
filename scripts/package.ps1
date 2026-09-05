@@ -33,8 +33,6 @@ Copy-Item -Path (Join-Path $applicationPublish '*') -Destination $publish -Recur
 Remove-Item -LiteralPath (Join-Path $publish 'gwgui.app.exe'),(Join-Path $publish 'gwgui.app.runtimeconfig.json') -Force
 & (Join-Path $repository 'scripts\organize-application-output.ps1') -OutputDirectory $publish
 Get-ChildItem -LiteralPath $publish -Recurse -File -Filter '*.pdb' | Remove-Item -Force
-& (Join-Path $repository 'scripts\test-user-guide-package.ps1') -PublishedUserGuidePath (Join-Path $publish 'Documentation\user-guide')
-if ($LASTEXITCODE -ne 0) { throw 'Published user-guide validation failed.' }
 
 Copy-Item -Path (Join-Path $publish '*') -Destination $portablePackage -Recurse -Force
 Copy-Item -LiteralPath (Join-Path $repository 'LICENSE') -Destination $portablePackage
