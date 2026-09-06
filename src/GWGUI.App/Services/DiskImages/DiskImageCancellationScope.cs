@@ -28,6 +28,7 @@ public sealed class DiskImageCancellationScope : IDisposable
     public void ExitVisualizationConversion() => _visualizationConversionGate.Release();
 
     public void CancelScp() => _scp?.Cancel();
+    public void CancelInspector() => _inspector?.Cancel();
 
     public void CancelAll()
     {

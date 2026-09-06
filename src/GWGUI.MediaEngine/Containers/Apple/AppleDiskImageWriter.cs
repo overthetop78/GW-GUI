@@ -17,14 +17,17 @@ public sealed class AppleDiskImageWriter
     }.ToFrozenDictionary(StringComparer.OrdinalIgnoreCase);
     private readonly AppleRwts18TrackEncodingService _encoder;
     private readonly AppleIITrackEncodingService _standardEncoder;
+    private readonly Func<string, byte[], CancellationToken, Task>? _writeBytes;
 
     /// <summary>Crée la façade avec le service d'encodage fourni ou le service par défaut.</summary>
     /// <param name="encoder">Service d'encodage RWTS18 optionnel.</param>
     /// <param name="standardEncoder">Service d'encodage Apple II GCR standard optionnel.</param>
-    public AppleDiskImageWriter(AppleRwts18TrackEncodingService? encoder = null, AppleIITrackEncodingService? standardEncoder = null)
+    public AppleDiskImageWriter(AppleRwts18TrackEncodingService? encoder = null, AppleIITrackEncodingService? standardEncoder = null,
+        Func<string, byte[], CancellationToken, Task>? writeBytes = null)
     {
         _encoder = encoder ?? new();
         _standardEncoder = standardEncoder ?? new();
+        _writeBytes = writeBytes;
     }
 
     /// <summary>Indique si l'extension correspond à un conteneur actuellement écrit.</summary>
@@ -39,6 +42,10 @@ public sealed class AppleDiskImageWriter
         var extension = Path.GetExtension(path);
         if (!Outputs.TryGetValue(extension, out var output)) throw AppleDiskImageWriterExceptions.UnsupportedExtension(extension);
         var tracks = image.FormatId.Equals(DiskImageFormatIds.AppleIIRwts18, StringComparison.OrdinalIgnoreCase) ? _encoder.Encode(image, output.MaximumBits, cancellationToken) : _standardEncoder.Encode(image, output.MaximumBits, cancellationToken);
+        if (_writeBytes is not null)
+            return extension.Equals(DiskImageFileExtensions.Nib, StringComparison.OrdinalIgnoreCase)
+                ? NibWriter.WriteAsync(tracks, path, cancellationToken, _writeBytes)
+                : WozWriter.WriteAsync(tracks, path, cancellationToken, _writeBytes);
         return output.Write(tracks, path, cancellationToken);
     }
 }

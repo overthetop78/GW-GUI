@@ -12,7 +12,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options"><value>_Pilihan</value></data>
+  <data name="Menu.Options"><value>Pilihan</value></data>
   <data name="Menu.Preferences"><value>Preferensi…</value></data>
   <data name="Menu.Diagnostics"><value>Diagnostik</value></data>
   <data name="Menu.Information"><value>Informasi</value></data>
@@ -23,7 +23,7 @@
   <data name="Menu.Pins"><value>Pin…</value></data>
   <data name="Menu.Reset"><value>Mengatur ulang</value></data>
   <data name="Menu.Delays"><value>Penundaan…</value></data>
-<data name="Menu.Help"><value>_Membantu</value></data>
+<data name="Menu.Help"><value>Membantu</value></data>
   <data name="Menu.Documentation"><value>Dokumentasi</value></data>
   <data name="Menu.About"><value>Tentang</value></data>
   <data name="Tab.Read"><value>Membaca</value></data>

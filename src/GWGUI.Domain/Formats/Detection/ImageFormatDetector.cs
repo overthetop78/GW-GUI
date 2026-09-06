@@ -1,7 +1,7 @@
 using GWGUI.Domain.Formats;
 namespace GWGUI.Domain.Formats.Detection;
 
-public sealed class ImageFormatDetector(IImageFormatCatalog catalog)
+public sealed class ImageFormatDetector(IImageFormatCatalog catalog, Func<string, Stream>? openRead = null)
 {
     private static readonly IReadOnlyList<IImageFormatDetectionRule> Rules =
     [
@@ -20,7 +20,7 @@ public sealed class ImageFormatDetector(IImageFormatCatalog catalog)
             .Where(format => format.Extensions.Any(item => item.Extension.Equals(extension, StringComparison.OrdinalIgnoreCase)))
             .ToArray();
 
-        var context = new ImageFormatDetectionContext(catalog, filePath, knownLength, extension, candidates);
+        var context = new ImageFormatDetectionContext(catalog, filePath, knownLength, extension, candidates, openRead ?? File.OpenRead);
         foreach (var rule in Rules)
             if (rule.TryDetect(context, out var result))
                 return result;

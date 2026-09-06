@@ -7,6 +7,9 @@ namespace GWGUI.MediaEngine.Containers.Atari.Msa;
 /// <summary>Lit les conteneurs Atari ST Magic Shadow Archiver.</summary>
 public sealed class MsaReader
 {
+    private readonly Func<string, CancellationToken, Task<byte[]>> readBytes;
+    public MsaReader() : this(File.ReadAllBytesAsync) { }
+    internal MsaReader(Func<string, CancellationToken, Task<byte[]>> readBytes) => this.readBytes = readBytes;
     /// <summary>Lit les pistes MSA brutes ou compressÃ©es et construit leur image sectorielle Atari ST.</summary>
     /// <param name="path">Chemin du fichier MSA.</param>
     /// <param name="cancellationToken">Jeton permettant d'annuler le parcours des pistes.</param>
@@ -17,7 +20,7 @@ public sealed class MsaReader
     /// <exception cref="OperationCanceledException">L'opÃ©ration est annulÃ©e.</exception>
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
-        var source = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
+        var source = await readBytes(path, cancellationToken).ConfigureAwait(false);
         if (source.Length < MsaLayout.HeaderSize || ReadWord(source, MsaLayout.SignatureOffset) != MsaFormat.Signature) throw MsaExceptions.InvalidHeader(source.Length);
         var sectors = ReadWord(source, MsaLayout.SectorsPerTrackOffset);
         var heads = ReadWord(source, MsaLayout.HeadsOffset) + 1;

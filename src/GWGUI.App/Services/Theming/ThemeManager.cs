@@ -13,9 +13,13 @@ public static class ThemeManager
 
     public static void Apply(AppTheme requested)
     {
-        var dark = requested == AppTheme.Dark || requested == AppTheme.System && SystemUsesDarkTheme();
+        Apply(requested, requested == AppTheme.System && SystemUsesDarkTheme(), SystemParameters.WindowGlassColor);
+    }
+
+    internal static void Apply(AppTheme requested, bool systemUsesDarkTheme, Color systemAccent)
+    {
+        var dark = requested == AppTheme.Dark || requested == AppTheme.System && systemUsesDarkTheme;
         IsDark = dark;
-        var systemAccent = SystemParameters.WindowGlassColor;
         Set("AccentBrush", systemAccent.A == 0 ? Color.FromRgb(77, 118, 232) : Color.FromRgb(systemAccent.R, systemAccent.G, systemAccent.B));
         Set("WindowBrush", dark ? "#17191F" : "#F1F2F4");
         Set("CardBrush", dark ? "#23262E" : "#FFFFFF");

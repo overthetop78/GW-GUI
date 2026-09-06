@@ -170,11 +170,15 @@ public partial class MainWindow : Window
     private readonly MainWindowViewModel _viewModel;
     private GwFormatCapabilities _gwCapabilities = GwFormatCapabilities.Unknown;
     private readonly bool _settingsProvidedAtStartup;
+    private readonly Action<string> _openDocumentation;
+    private readonly Action<Exception, string> _writeError;
 
     public MainWindow() : this(null, null, null, null, null, null, null, null, null, null) { }
 
-    public MainWindow(IMessageDialogService? dialogs, IFileDialogService? fileDialogs = null, IBusinessDialogService? businessDialogs = null, IWindowNavigationService? navigation = null, IGwCommandBuilder? commandBuilder = null, IGwInstallationManager? hostTools = null, IGreaseweazleRunner? runner = null, ISettingsStore? settingsStore = null, IHardwareRegistry? hardwareRegistry = null, AppSettings? initialSettings = null)
+    public MainWindow(IMessageDialogService? dialogs, IFileDialogService? fileDialogs = null, IBusinessDialogService? businessDialogs = null, IWindowNavigationService? navigation = null, IGwCommandBuilder? commandBuilder = null, IGwInstallationManager? hostTools = null, IGreaseweazleRunner? runner = null, ISettingsStore? settingsStore = null, IHardwareRegistry? hardwareRegistry = null, AppSettings? initialSettings = null, Action<string>? openDocumentation = null, Action<Exception, string>? logError = null, string? dataDirectory = null)
     {
+        _openDocumentation = openDocumentation ?? (url => Process.Start(new ProcessStartInfo(url) { UseShellExecute = true }));
+        _writeError = logError ?? ((error, context) => ErrorLog.Write(error, context));
         InitializeComponent();
         _settingsProvidedAtStartup = initialSettings is not null;
         _settings = initialSettings ?? new AppSettings();
@@ -196,8 +200,8 @@ public partial class MainWindow : Window
             (key, arguments) => LocExtension.Get(key, arguments));
         _commandBuilder = commandBuilder ?? new GwCommandBuilder();
         _hostTools = hostTools ?? new GwInstallationManager(new HttpClient(), StoragePaths.HostToolsDirectory);
-        var directory = StoragePaths.DataDirectory;
-        _logsDirectory = StoragePaths.LogsDirectory;
+        var directory = dataDirectory ?? StoragePaths.DataDirectory;
+        _logsDirectory = Path.Combine(directory, "Logs");
         _consoleLog = new ConsoleLogSession(_logsDirectory, () => _settings.Logging);
         _terminalPanel = new TerminalPanelController(TerminalBlock, ConsoleRow, ConsoleSplitter, _settings);
         _runner = runner ?? new GreaseweazleRunner();
@@ -575,7 +579,8 @@ public partial class MainWindow : Window
     {
         var language = System.Globalization.CultureInfo.CurrentUICulture.Name;
         var url = UserGuideLocator.GetUrl(language);
-        Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+        try { _openDocumentation(url); }
+        catch (Exception exception) { ShowLoggedError(exception, "Opening documentation", "App.Title"); }
     }
 
     private void ReadInput_Changed(object sender, RoutedEventArgs e) => _readTab.InputChanged();
@@ -628,7 +633,7 @@ public partial class MainWindow : Window
 
     private void AppendAnalysisFailure(Exception exception, string context)
     {
-        ErrorLog.Write(exception, context);
+        _writeError(exception, context);
         var detail = ExceptionDescriptionFunctions.Describe(exception);
         _operation.AppendText(Environment.NewLine);
         _operation.AppendText(LocExtension.Get("Error.Unexpected", detail));
@@ -694,7 +699,7 @@ public partial class MainWindow : Window
 
     private void ShowLoggedError(Exception exception, string context, string titleKey, string messageKey = "Error.Unexpected")
     {
-        ErrorLog.Write(exception, context);
+        _writeError(exception, context);
         var detail = ExceptionDescriptionFunctions.Describe(exception);
         _dialogs.Show(LocExtension.Get(messageKey, detail), LocExtension.Get(titleKey), icon: UserDialogIcon.Error);
     }

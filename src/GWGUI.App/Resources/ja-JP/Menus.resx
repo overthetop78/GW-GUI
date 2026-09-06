@@ -12,7 +12,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options"><value>_オプション</value></data>
+  <data name="Menu.Options"><value>オプション</value></data>
   <data name="Menu.Preferences"><value>設定…</value></data>
   <data name="Menu.Diagnostics"><value>診断</value></data>
   <data name="Menu.Information"><value>情報</value></data>
@@ -24,7 +24,7 @@
   <data name="Menu.Reset"><value>リセット</value></data>
   <data name="Menu.Delays"><value>遅延…</value></data>
   <data name="Menu.Firmware"><value>ファームウェア…</value></data>
-  <data name="Menu.Help"><value>_ヘルプ</value></data>
+  <data name="Menu.Help"><value>ヘルプ</value></data>
   <data name="Menu.Documentation"><value>ドキュメント</value></data>
   <data name="Menu.About"><value>について</value></data>
   <data name="Tab.Read"><value>読む</value></data>

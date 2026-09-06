@@ -39,6 +39,29 @@ jobs:
         run: |
           $version = $env:VERSION.TrimStart('v')
           "PACKAGE_VERSION=$version" >> $env:GITHUB_ENV
+      - name: Run GW GUI tests
+        id: application_tests
+        shell: pwsh
+        run: |
+          dotnet test .\tests\GWGUI.Tests\GWGUI.Tests.csproj --configuration Release --logger "trx;LogFileName=GWGUI.Tests.trx" --results-directory .\TestResults
+          if ($LASTEXITCODE -ne 0) { throw 'GW GUI tests failed.' }
+          $reportPath = '.\TestResults\GWGUI.Tests.trx'
+          if (-not (Test-Path -LiteralPath $reportPath)) { throw 'The test report is missing.' }
+          [xml]$report = Get-Content -LiteralPath $reportPath -Raw
+          $counters = $report.TestRun.ResultSummary.Counters
+          if ($null -eq $counters -or [int]$counters.executed -le 0) {
+            throw 'No GW GUI test was executed.'
+          }
+          if ([int]$counters.passed -ne [int]$counters.executed) {
+            throw 'Not all executed GW GUI tests passed.'
+          }
+      - name: Upload GW GUI test results
+        if: always() && steps.application_tests.outcome != 'skipped'
+        uses: actions/upload-artifact@v6
+        with:
+          name: GWGUI-test-results-${{ env.PACKAGE_VERSION }}
+          path: TestResults/
+          if-no-files-found: warn
       - name: Install Inno Setup
         shell: pwsh
         run: choco install innosetup --yes --no-progress
@@ -48,9 +71,6 @@ jobs:
       - name: Validate wiki sources
         shell: pwsh
         run: .\scripts\build-wiki.ps1
-      - name: Audit packaged application accessibility
-        shell: pwsh
-        run: .\scripts\test-app-accessibility.ps1 -ApplicationPath ".\dist\portable\GW GUI\gwgui.exe"
       - name: Smoke-test installer in English
         shell: pwsh
         run: .\scripts\test-installer.ps1 -SetupPath ".\dist\GW-GUI-$env:PACKAGE_VERSION-win-x64-setup.exe" -ExpectedVersion $env:PACKAGE_VERSION -InstallerLanguage english

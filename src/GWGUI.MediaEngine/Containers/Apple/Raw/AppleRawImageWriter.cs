@@ -2,17 +2,19 @@ using GWGUI.MediaEngine.Conversion.Apple;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Geometries.Apple;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Containers.Storage;
 
 namespace GWGUI.MediaEngine.Containers.Apple.Raw;
 
 /// <summary>Écrit les images Apple sectorielles brutes en ordre DOS ou ProDOS explicite.</summary>
-public sealed class AppleRawImageWriter
+public sealed class AppleRawImageWriter(IAtomicImageFileWriter? fileWriter = null)
 {
+    private readonly IAtomicImageFileWriter files = fileWriter ?? new AtomicImageFileWriter();
     /// <summary>Valide la cible, construit sa charge utile puis remplace atomiquement le fichier de destination.</summary>
     public async Task WriteAsync(SectorImage image, string path, string targetFormatId, CancellationToken cancellationToken = default)
     {
         var payload = BuildPayload(image, targetFormatId, Path.GetExtension(path));
-        await WriteAtomicallyAsync(path, payload, cancellationToken).ConfigureAwait(false);
+        await files.WriteAsync(path, (output, token) => output.WriteAsync(payload, token).AsTask(), cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>Construit la charge utile sectorielle correspondant au format et au conteneur demandés.</summary>

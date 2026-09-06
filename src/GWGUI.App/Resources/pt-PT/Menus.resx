@@ -12,7 +12,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options"><value>_Opções</value></data>
+  <data name="Menu.Options"><value>Opções</value></data>
   <data name="Menu.Preferences"><value>Preferências…</value></data>
   <data name="Menu.Diagnostics"><value>Diagnóstico</value></data>
   <data name="Menu.Information"><value>Informação</value></data>
@@ -22,7 +22,7 @@
 <data name="Menu.Pins"><value>Alfinetes…</value></data>
   <data name="Menu.Reset"><value>Reiniciar</value></data>
   <data name="Menu.Delays"><value>Atrasos…</value></data>
-<data name="Menu.Help"><value>_Ajuda</value></data>
+<data name="Menu.Help"><value>Ajuda</value></data>
   <data name="Menu.Documentation"><value>Documentação</value></data>
   <data name="Menu.About"><value>Sobre</value></data>
   <data name="Tab.Read"><value>Ler</value></data>

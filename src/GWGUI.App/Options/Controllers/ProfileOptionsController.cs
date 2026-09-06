@@ -19,6 +19,9 @@ internal sealed class ProfileOptionsController
     private readonly ProfileOptionsState _state;
     private readonly Func<Task> _persistAsync;
     private readonly Func<string, object[], string> _localize;
+    private readonly Func<string, string?> _promptName;
+    private readonly Func<string, bool> _confirmDelete;
+    private readonly Action _duplicateName;
     private ProfileOptionRow? _lastClick;
     private DateTime _lastClickAt;
 
@@ -27,13 +30,23 @@ internal sealed class ProfileOptionsController
         OptionsProfilesSection section,
         ProfileOptionsState state,
         Func<Task> persistAsync,
-        Func<string, object[], string> localize)
+        Func<string, object[], string> localize,
+        Func<string, string?>? promptName = null,
+        Func<string, bool>? confirmDelete = null,
+        Action? duplicateName = null)
     {
         _owner = owner;
         _section = section;
         _state = state;
         _persistAsync = persistAsync;
         _localize = localize;
+        _promptName = promptName ?? (name =>
+        {
+            var dialog = new ProfileNameWindow(name) { Owner = _owner };
+            return dialog.ShowDialog() == true ? dialog.ProfileName : null;
+        });
+        _confirmDelete = confirmDelete ?? (name => MessageBox.Show(_owner, Localize("Profile.DeleteConfirm", name), Localize("Profile.Title"), MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes);
+        _duplicateName = duplicateName ?? (() => MessageBox.Show(_owner, Localize("Profile.DuplicateName"), Localize("Profile.Title"), MessageBoxButton.OK, MessageBoxImage.Warning));
 
         _section.ReadProfiles.ItemsSource = _state.Read;
         _section.WriteProfiles.ItemsSource = _state.Write;
@@ -54,22 +67,22 @@ internal sealed class ProfileOptionsController
     private async void Rename(object sender, RoutedEventArgs e)
     {
         if (SelectedProfile(sender) is not ProfileOptionRow row) return;
-        var dialog = new ProfileNameWindow(row.Name) { Owner = _owner };
-        if (dialog.ShowDialog() != true) return;
-        if (_state.ContainsName(row, dialog.ProfileName))
+        var name = _promptName(row.Name);
+        if (name is null) return;
+        if (_state.ContainsName(row, name))
         {
-            MessageBox.Show(_owner, Localize("Profile.DuplicateName"), Localize("Profile.Title"), MessageBoxButton.OK, MessageBoxImage.Warning);
+            _duplicateName();
             return;
         }
 
-        _state.Rename(row, dialog.ProfileName);
+        _state.Rename(row, name);
         await _persistAsync();
     }
 
     private async void Delete(object sender, RoutedEventArgs e)
     {
         if (SelectedProfile(sender) is not ProfileOptionRow row) return;
-        if (MessageBox.Show(_owner, Localize("Profile.DeleteConfirm", row.Name), Localize("Profile.Title"), MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
+        if (!_confirmDelete(row.Name)) return;
         _state.For(row.Operation).Remove(row);
         await _persistAsync();
     }

@@ -25,7 +25,10 @@ internal sealed class MachineInputController : IDisposable
     private readonly Func<string, Task> _executeShortcut;
     private readonly Func<bool> _isActive;
     private readonly IReadOnlyList<KeyboardShortcutBinding> _keyboardShortcuts;
-    private readonly RelativeMouseCapture _pointerCapture = new();
+    private readonly IRelativeMouseCapture _pointerCapture;
+    private readonly Func<GameInputPhysicalState> _readPhysicalInput;
+    private readonly Action<FrameworkElement, IntPtr> _focus;
+    private readonly bool _automaticPolling;
     private readonly HashSet<EmulationKey> _keys = [];
     private readonly HashSet<Key> _physicalKeys = [];
     private readonly Dictionary<Key, EmulationKey> _pressedShortcutKeys = [];
@@ -44,9 +47,15 @@ internal sealed class MachineInputController : IDisposable
 
     internal MachineInputController(MachineView view, FrameworkElement inputView, IntPtr inputHandle,
         Func<IEmulatedMachine> machine, IReadOnlyList<GlobalShortcutBinding> globalShortcuts,
-        Func<string, Task> executeShortcut, Func<bool> isActive)
+        Func<string, Task> executeShortcut, Func<bool> isActive,
+        IRelativeMouseCapture? pointerCapture = null, Func<GameInputPhysicalState>? readPhysicalInput = null,
+        Action<FrameworkElement, IntPtr>? focus = null, bool automaticPolling = true)
     {
         _view = view;
+        _pointerCapture = pointerCapture ?? new RelativeMouseCapture();
+        _readPhysicalInput = readPhysicalInput ?? GameInputControllerReader.ReadPhysicalInput;
+        _focus = focus ?? RelativeMouseCapture.Focus;
+        _automaticPolling = automaticPolling;
         _inputView = inputView;
         _inputHandle = inputHandle;
         _machine = machine;
@@ -66,7 +75,7 @@ internal sealed class MachineInputController : IDisposable
     internal void SetPowered(bool powered)
     {
         _powered = powered;
-        if (powered) _timer.Start();
+        if (powered) { if (_automaticPolling) _timer.Start(); }
         else
         {
             _timer.Stop();
@@ -90,7 +99,7 @@ internal sealed class MachineInputController : IDisposable
     internal void RestoreFocus()
     {
         if (!_powered || !_isActive()) return;
-        RelativeMouseCapture.Focus(_inputView, _inputHandle);
+        _focus(_inputView, _inputHandle);
     }
 
     internal void ReleasePointer() => _pointerCapture.Release(_inputView, _inputHandle);
@@ -153,19 +162,19 @@ internal sealed class MachineInputController : IDisposable
     private void KeyDown(object sender, KeyEventArgs args)
     {
         var source = args.Key == Key.System ? args.SystemKey : args.Key;
-        args.Handled = HandleKeyDown(source);
+        args.Handled = HandleKeyDown(source, Keyboard.Modifiers);
     }
 
     private void KeyUp(object sender, KeyEventArgs args)
     {
         var source = args.Key == Key.System ? args.SystemKey : args.Key;
-        args.Handled = HandleKeyUp(source);
+        args.Handled = HandleKeyUp(source, Keyboard.Modifiers);
     }
 
-    private bool HandleKeyDown(Key source)
+    internal bool HandleKeyDown(Key source, ModifierKeys modifiers)
     {
         if (!KeyboardChordFunctions.IsModifierKey(source)) _physicalKeys.Add(source);
-        var shortcut = EmulationShortcutFunctions.ResolveGlobal(_globalShortcuts, Keyboard.Modifiers,
+        var shortcut = EmulationShortcutFunctions.ResolveGlobal(_globalShortcuts, modifiers,
             _physicalKeys, source, _activeShortcuts);
         if (shortcut.Category == EmulationShortcutMatchCategory.Global)
         {
@@ -175,7 +184,7 @@ internal sealed class MachineInputController : IDisposable
         }
         if (shortcut.Category == EmulationShortcutMatchCategory.ReservedForGlobal) return true;
         var machineShortcut = _keyboardShortcuts.FirstOrDefault(binding =>
-            KeyboardChordFunctions.Matches(binding.Chord, Keyboard.Modifiers, _physicalKeys));
+            KeyboardChordFunctions.Matches(binding.Chord, modifiers, _physicalKeys));
         if (machineShortcut is not null)
         {
             _pressedShortcutKeys[source] = machineShortcut.EmulationKey;
@@ -189,11 +198,11 @@ internal sealed class MachineInputController : IDisposable
         return true;
     }
 
-    private bool HandleKeyUp(Key source)
+    internal bool HandleKeyUp(Key source, ModifierKeys modifiers)
     {
         _physicalKeys.Remove(source);
         EmulationShortcutFunctions.ReleaseInactive(_activeShortcuts, _globalShortcuts,
-            Keyboard.Modifiers, _physicalKeys);
+            modifiers, _physicalKeys);
         if (_pressedShortcutKeys.Remove(source, out var shortcutKey))
         {
             _keys.Remove(shortcutKey);
@@ -212,8 +221,12 @@ internal sealed class MachineInputController : IDisposable
     }
 
     private void MouseDown(object sender, MouseButtonEventArgs args)
+        => RequestPointerCapture();
+
+    internal void RequestPointerCapture()
     {
-        _inputView.Focus();
+        if (!_powered || _disposed || !_isActive()) return;
+        _focus(_inputView, _inputHandle);
         if (_machine().Input.SupportsPointerCapture && _machine().Input.CapturePointerOnClick
             && !_pointerCapture.IsCaptured)
             _pointerCapture.Capture(_inputView, _view.Screen, _inputHandle);
@@ -226,6 +239,9 @@ internal sealed class MachineInputController : IDisposable
     private void MouseWheel(object sender, MouseWheelEventArgs args) => Publish(wheel: args.Delta);
 
     private void LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs args)
+        => Deactivate();
+
+    internal void Deactivate()
     {
         if (_hostTransition) return;
         ReleasePointer();
@@ -233,7 +249,7 @@ internal sealed class MachineInputController : IDisposable
         _physicalKeys.Clear();
         _pressedShortcutKeys.Clear();
         _activeShortcuts.Clear();
-        Publish();
+        if (_powered && !_disposed) _machine().Input.SetInput(EmulationInputSnapshot.Empty);
     }
 
     private void ViewLoaded(object sender, RoutedEventArgs args) => AttachWindowHook();
@@ -265,10 +281,15 @@ internal sealed class MachineInputController : IDisposable
 
     private void TimerTick(object? sender, EventArgs args) => Publish();
 
-    private void Publish(int deltaX = 0, int deltaY = 0, int wheel = 0, int horizontalWheel = 0)
+    internal void Publish(int deltaX = 0, int deltaY = 0, int wheel = 0, int horizontalWheel = 0)
     {
         if (!_powered || _disposed) return;
-        var physical = GameInputControllerReader.ReadPhysicalInput();
+        if (!_isActive())
+        {
+            Deactivate();
+            return;
+        }
+        var physical = _readPhysicalInput();
         var keys = new HashSet<EmulationKey>(physical.Keys);
         foreach (var shortcutKey in _pressedShortcutKeys.Values) keys.Add(shortcutKey);
         var pointer = _pointerCapture.IsCaptured
@@ -288,11 +309,11 @@ internal sealed class MachineInputController : IDisposable
         {
             case WindowsInputMessages.KeyDown:
             case WindowsInputMessages.SystemKeyDown:
-                handled = HandleKeyDown(KeyInterop.KeyFromVirtualKey(unchecked((int)wParam.ToInt64())));
+                handled = HandleKeyDown(KeyInterop.KeyFromVirtualKey(unchecked((int)wParam.ToInt64())), Keyboard.Modifiers);
                 break;
             case WindowsInputMessages.KeyUp:
             case WindowsInputMessages.SystemKeyUp:
-                handled = HandleKeyUp(KeyInterop.KeyFromVirtualKey(unchecked((int)wParam.ToInt64())));
+                handled = HandleKeyUp(KeyInterop.KeyFromVirtualKey(unchecked((int)wParam.ToInt64())), Keyboard.Modifiers);
                 break;
             case WindowsInputMessages.LeftButtonDown:
             case WindowsInputMessages.RightButtonDown:

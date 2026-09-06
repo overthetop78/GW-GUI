@@ -5,8 +5,11 @@ namespace GWGUI.VideoPresentation.Services;
 
 /// <summary>Host-owned profiles. Legacy data is read before any module may replace its JSON.</summary>
 public sealed class VideoPresentationProfileStore(
-    string directory, Func<string, Guid, IEnumerable<string>>? legacyPaths = null)
+    string directory, Func<string, Guid, IEnumerable<string>>? legacyPaths = null,
+    IVideoProfileFiles? fileSystem = null, Func<Action, Task>? schedule = null)
 {
+    private readonly IVideoProfileFiles _files = fileSystem ?? new VideoProfileFiles();
+    private readonly Func<Action, Task> _schedule = schedule ?? Task.Run;
     private readonly object _gate = new();
     private readonly object _writeGate = new();
     private readonly HashSet<(string Module, Guid Id)> _pending = [];
@@ -20,9 +23,9 @@ public sealed class VideoPresentationProfileStore(
             if (_profiles.TryGetValue((module, id), out var cached)) return cached;
             var path = ProfilePath(module, id);
             EmulationVideoPresentationProfile profile;
-            if (File.Exists(path))
+            if (_files.Exists(path))
                 profile = (JsonSerializer.Deserialize<EmulationVideoPresentationProfile>(
-                    File.ReadAllText(path), JsonOptions)
+                    _files.Read(path), JsonOptions)
                     ?? throw new InvalidDataException(path)).Normalize();
             else
             {
@@ -61,7 +64,7 @@ public sealed class VideoPresentationProfileStore(
     public Task SaveAsync(string module, Guid id)
     {
         lock (_gate) _pending.Add((module, id));
-        return Task.Run(() => SavePending(module, id));
+        return _schedule(() => SavePending(module, id));
     }
 
     private void SavePending(string module, Guid id)
@@ -101,7 +104,7 @@ public sealed class VideoPresentationProfileStore(
         lock (_writeGate)
         lock (_gate)
         {
-            File.Delete(ProfilePath(module, id));
+            _files.Delete(ProfilePath(module, id));
             _profiles.Remove((module, id));
             _pending.Remove((module, id));
         }
@@ -121,8 +124,8 @@ public sealed class VideoPresentationProfileStore(
     {
         foreach (var path in legacyPaths?.Invoke(module, id) ?? [])
         {
-            if (!File.Exists(path)) continue;
-            using var document = JsonDocument.Parse(File.ReadAllText(path));
+            if (!_files.Exists(path)) continue;
+            using var document = JsonDocument.Parse(_files.Read(path));
             var renderer = EmulationVideoRenderer.Direct3D11;
             EmulationVideoProcessingConfiguration? processing = null;
             var found = false;
@@ -146,21 +149,9 @@ public sealed class VideoPresentationProfileStore(
         return null;
     }
 
-    private static void Write(string path, EmulationVideoPresentationProfile profile)
+    private void Write(string path, EmulationVideoPresentationProfile profile)
     {
-        Directory.CreateDirectory(Path.GetDirectoryName(path)!);
-        var temporary = path + Guid.NewGuid().ToString(VideoPresentationStorageConstants.IdentifierFormat)
-            + VideoPresentationStorageConstants.TemporaryExtension;
-        try
-        {
-            using (var stream = new FileStream(temporary, FileMode.CreateNew, FileAccess.Write, FileShare.None))
-            {
-                JsonSerializer.Serialize(stream, profile.Normalize(), JsonOptions);
-                stream.Flush(flushToDisk: true);
-            }
-            File.Move(temporary, path, overwrite: true);
-        }
-        finally { if (File.Exists(temporary)) File.Delete(temporary); }
+        _files.WriteAtomically(path, stream => JsonSerializer.Serialize(stream, profile.Normalize(), JsonOptions));
     }
 
     private static JsonSerializerOptions CreateJsonOptions()

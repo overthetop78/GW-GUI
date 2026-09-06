@@ -10,6 +10,7 @@ internal sealed class AmigaMachine : IEmulatedMachine, IEmulationLifecycle, IEmu
     private readonly IAmigaCore _core;
     private readonly string _sessionDirectory;
     private readonly string? _saveDirectory;
+    private readonly Action<string>? _deleteSession;
     private IAudioOutput? _audioOutput;
     private CancellationTokenSource? _stop;
     private Task? _runLoop;
@@ -28,13 +29,15 @@ internal sealed class AmigaMachine : IEmulatedMachine, IEmulationLifecycle, IEmu
     private bool _controllerPointerMode;
 
     internal AmigaMachine(Guid id, AmigaMachineConfiguration configuration,
-        IAmigaCore core, string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null)
+        IAmigaCore core, string sessionDirectory, IAudioOutput? audioOutput = null, string? saveDirectory = null,
+        Action<string>? deleteSession = null)
     {
         Id = id;
         Configuration = configuration;
         _core = core;
         _sessionDirectory = sessionDirectory;
         _saveDirectory = saveDirectory;
+        _deleteSession = deleteSession;
         _audioOutput = audioOutput;
         _mediaPaths = AmigaExternalCore.ResolveConfiguredMedia(configuration)
             .Select(item => Path.GetFullPath(item.Path)).ToList();
@@ -469,6 +472,7 @@ internal sealed class AmigaMachine : IEmulatedMachine, IEmulationLifecycle, IEmu
 
     private void DeleteSessionDirectory()
     {
+        if (_deleteSession is not null) { _deleteSession(_sessionDirectory); return; }
         try
         {
             var path = Path.GetFullPath(_sessionDirectory);

@@ -10,6 +10,15 @@ namespace GWGUI.MediaEngine.Containers.Msx.Raw;
 /// <summary>Lit et valide une image sectorielle brute MSX-DOS.</summary>
 public sealed class MsxRawImageReader
 {
+    private readonly Func<string, CancellationToken, Task<byte[]>> readBytes;
+
+    public MsxRawImageReader() : this(File.ReadAllBytesAsync) { }
+
+    internal MsxRawImageReader(Func<string, CancellationToken, Task<byte[]>> readBytes)
+    {
+        this.readBytes = readBytes ?? throw new ArgumentNullException(nameof(readBytes));
+    }
+
     /// <summary>Lit l'image, valide son BPB MSX-DOS et reconstruit ses secteurs dans l'ordre CHS linÃ©aire dÃ©crit par sa gÃ©omÃ©trie.</summary>
     /// <param name="path">Chemin de l'image brute Ã  lire.</param>
     /// <param name="cancellationToken">Jeton permettant d'annuler la lecture et la construction sectorielle.</param>
@@ -18,7 +27,7 @@ public sealed class MsxRawImageReader
     /// <remarks>Les capacitÃ©s et tailles sectorielles manipulÃ©es sont exprimÃ©es en octets. Les adresses sectorielles utilisent une numÃ©rotation commenÃ§ant Ã  un.</remarks>
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
-        var data = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
+        var data = await readBytes(path, cancellationToken).ConfigureAwait(false);
         if (!MsxBootSectorProbe.LooksLikeMsx(data)) throw MsxRawImageExceptions.InvalidBootSector(data.Length);
         var mediaDescriptor = data[FatBootSectorLayout.MediaDescriptorOffset];
         var geometry = MsxDiskGeometryCatalog.Find(data.Length, mediaDescriptor) ?? throw MsxRawImageExceptions.UnsupportedGeometry(data.Length, mediaDescriptor);

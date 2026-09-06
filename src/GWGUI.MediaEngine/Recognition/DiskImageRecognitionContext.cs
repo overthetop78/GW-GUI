@@ -8,6 +8,7 @@ public sealed class DiskImageRecognitionContext
 
     /// <summary>Tâche unique de lecture, conservée également lorsqu'elle est annulée ou en erreur.</summary>
     private Task<byte[]>? readTask;
+    private readonly Func<CancellationToken, Task<byte[]>> readBytes;
 
     /// <summary>Crée le contexte associé à un fichier et au format éventuellement demandé.</summary>
     /// <param name="path">Chemin du fichier à reconnaître.</param>
@@ -23,6 +24,19 @@ public sealed class DiskImageRecognitionContext
         Length = new FileInfo(path).Length;
         Extension = System.IO.Path.GetExtension(path).ToLowerInvariant();
         RequestedFormatId = requestedFormatId;
+        readBytes = token => File.ReadAllBytesAsync(path, token);
+    }
+
+    /// <summary>Crée un contexte avec une source de données et une taille déjà connues.</summary>
+    internal DiskImageRecognitionContext(string path, string? requestedFormatId, long length, Func<CancellationToken, Task<byte[]>> readBytes)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(path);
+        ArgumentNullException.ThrowIfNull(readBytes);
+        Path = path;
+        Length = length;
+        Extension = System.IO.Path.GetExtension(path).ToLowerInvariant();
+        RequestedFormatId = requestedFormatId;
+        this.readBytes = readBytes;
     }
 
     /// <summary>Obtient le chemin reçu lors de la création du contexte.</summary>
@@ -53,5 +67,5 @@ public sealed class DiskImageRecognitionContext
     /// <summary>Transforme également une erreur synchrone d'ouverture en tâche fautive réutilisable.</summary>
     /// <param name="cancellationToken">Jeton de la première lecture.</param>
     /// <returns>Octets lus dans le fichier.</returns>
-    private async Task<byte[]> ReadFileAsync(CancellationToken cancellationToken) => await File.ReadAllBytesAsync(Path, cancellationToken).ConfigureAwait(false);
+    private async Task<byte[]> ReadFileAsync(CancellationToken cancellationToken) => await readBytes(cancellationToken).ConfigureAwait(false);
 }

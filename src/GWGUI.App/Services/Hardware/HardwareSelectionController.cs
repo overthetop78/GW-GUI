@@ -30,7 +30,7 @@ public sealed class HardwareSelectionController(
         var previousId = (selector.SelectedItem as HardwareChoice)?.Drive.Id;
         var choices = currentSettings.Drives.Select(drive =>
         {
-            var controller = currentSettings.Controllers.FirstOrDefault(item => item.UsbId == drive.ControllerUsbId);
+            var controller = currentSettings.Controllers.FirstOrDefault(item => string.Equals(item.UsbId, drive.ControllerUsbId, StringComparison.OrdinalIgnoreCase));
             if (controller is null) return null;
             var number = currentSettings.Drives.Where(item => item.ControllerUsbId == drive.ControllerUsbId).ToList().IndexOf(drive) + 1;
             var label = localize("Hardware.DriveChoice", [number, drive.Size, drive.Density, controller.LastPort]);
@@ -65,15 +65,24 @@ public sealed class HardwareSelectionController(
 
     public bool EnsureAvailable()
     {
-        if (Selected is not { Available: false }) return true;
+        if (SelectionIsAvailable()) return true;
         dialogs.Show(localize("Hardware.SelectedDisconnected", []), localize("Menu.Hardware", []), icon: UserDialogIcon.Warning);
         return false;
+    }
+
+    private bool SelectionIsAvailable()
+    {
+        if (Selected is not { } selected) return true;
+        var currentSettings = settings();
+        var drive = currentSettings.Drives.FirstOrDefault(item => item.Id == selected.Drive.Id);
+        return drive is not null && currentSettings.Controllers.Any(item => item.IsAvailable
+            && string.Equals(item.UsbId, drive.ControllerUsbId, StringComparison.OrdinalIgnoreCase));
     }
 
     private void UpdateStatus()
     {
         var selected = Selected;
-        var enabled = selected is not { Available: false };
+        var enabled = SelectionIsAvailable();
         viewModel.HardwareText = selected is null ? localize("Hardware.NotConfigured", []) : selected.Label;
         viewModel.HardwareBrush = new SolidColorBrush(selected?.Available == true
             ? Color.FromRgb(63, 171, 91)

@@ -8,7 +8,8 @@ internal static class EmulationConfigurationPersistenceFunctions
         IEmulationModule module,
         IEmulationConfiguration configuration,
         bool hasSavedConfiguration,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken = default,
+        GWGUI.VideoPresentation.Services.VideoPresentationProfileStore? profiles = null)
     {
         if (!hasSavedConfiguration)
         {
@@ -16,7 +17,7 @@ internal static class EmulationConfigurationPersistenceFunctions
             return false;
         }
 
-        EmulationVideoPresentationProfiles.Store.Get(module.Id, configuration.Id);
+        (profiles ?? EmulationVideoPresentationProfiles.Store).Get(module.Id, configuration.Id);
         await module.SaveConfigurationAsync(configuration, cancellationToken);
         return true;
     }

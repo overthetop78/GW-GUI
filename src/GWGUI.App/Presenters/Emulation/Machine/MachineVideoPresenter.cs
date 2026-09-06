@@ -13,6 +13,7 @@ internal sealed class MachineVideoPresenter : IDisposable
 {
     private static readonly TimeSpan WorkerShutdownTimeout = TimeSpan.FromSeconds(3);
     private readonly MachineView _view;
+    private readonly Func<EmulationVideoRenderer, IEmulationVideoSurface> _createSurface;
     private FrameworkElement _displayHost;
     private IEmulatedMachine _machine;
     private IEmulationVideoSurface _surface;
@@ -37,9 +38,11 @@ internal sealed class MachineVideoPresenter : IDisposable
 
     internal MachineVideoPresenter(MachineView view, IEmulatedMachine machine,
         EmulationVideoRenderer renderer,
-        EmulationVideoProcessingConfiguration? videoProcessing = null)
+        EmulationVideoProcessingConfiguration? videoProcessing = null,
+        Func<EmulationVideoRenderer, IEmulationVideoSurface>? createSurface = null)
     {
         _view = view;
+        _createSurface = createSurface ?? EmulationVideoSurfaceFactory.Create;
         _displayHost = view.DisplayHost;
         _machine = machine;
         _videoProcessing = EmulationVideoProcessingConfigurationFunctions.Normalize(videoProcessing);
@@ -143,6 +146,7 @@ internal sealed class MachineVideoPresenter : IDisposable
 
     public void Dispose()
     {
+        if (_disposed) return;
         _machine.Video.FrameReady -= VideoFrameReady;
         _displayHost.SizeChanged -= DisplayHostSizeChanged;
         _disposed = true;
@@ -228,6 +232,7 @@ internal sealed class MachineVideoPresenter : IDisposable
 
     private void PresentOnUi(VideoFrame frame)
     {
+        if (_disposed) return;
         lock (_surfaceGate) _surface.Present(frame);
         CompleteShaderLoading(Volatile.Read(ref _shaderLoadGeneration));
         NotifyFrameCompleted(frame);
@@ -306,10 +311,10 @@ internal sealed class MachineVideoPresenter : IDisposable
     private IEmulationVideoSurface CreateSurface(EmulationVideoRenderer renderer)
     {
         IEmulationVideoSurface surface;
-        try { surface = EmulationVideoSurfaceFactory.Create(renderer); }
+        try { surface = _createSurface(renderer); }
         catch when (renderer != EmulationVideoRenderer.Wpf)
         {
-            surface = EmulationVideoSurfaceFactory.Create(EmulationVideoRenderer.Wpf);
+            surface = _createSurface(EmulationVideoRenderer.Wpf);
         }
         surface.SetVideoProcessing(_videoProcessing);
         return surface;

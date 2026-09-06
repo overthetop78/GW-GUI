@@ -30,6 +30,8 @@ namespace GWGUI.App.Views.Controls.Emulation.Options;
 internal sealed partial class EmulationModuleSettingsSection : UserControl
 {
     private readonly IEmulationModule _module;
+    private readonly GWGUI.VideoPresentation.Services.VideoPresentationProfileStore _profiles;
+    private readonly Action<Exception> _showError;
     private readonly ComboBox _machines = new() { MinWidth = 300 };
     private readonly EmulationVideoProcessingSettingsSection _videoProcessing = new();
     private readonly Dictionary<string, FrameworkElement> _fieldControls = new(StringComparer.Ordinal);
@@ -44,12 +46,17 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
     private readonly SemaphoreSlim _saveInputGate = new(1, 1);
     private EmulationMachineTab _selectedTab = EmulationMachineTab.General;
 
-    internal EmulationModuleSettingsSection(IEmulationModule module)
+    internal EmulationModuleSettingsSection(IEmulationModule module,
+        GWGUI.VideoPresentation.Services.VideoPresentationProfileStore? profiles = null,
+        Action<Exception>? showError = null)
     {
         FlowDirection = CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft
             ? FlowDirection.RightToLeft
             : FlowDirection.LeftToRight;
         _module = module;
+        _profiles = profiles ?? EmulationVideoPresentationProfiles.Store;
+        _showError = showError ?? (error => ControlErrorPresenter.ShowEmulation(this, error,
+            ControlErrorContexts.EmulationConfigurationManagement, LocExtension.Get(_module.DisplayResourceKey)));
         _machines.Style = EmulationMachineChoiceLayout.CreateComboBoxStyle();
         _machines.ItemContainerStyle = EmulationMachineChoiceLayout.CreateItemContainerStyle();
         _machines.ItemTemplate = EmulationMachineChoiceLayout.CreateTemplate();
@@ -79,8 +86,8 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
         _machines.SelectionChanged += MachineChanged;
         _videoProcessing.ConfigurationChanged += async (_, _) =>
         {
-            var profile = EmulationVideoPresentationProfiles.Store.Get(_module.Id, _configuration.Id);
-            EmulationVideoPresentationProfiles.Store.Set(_module.Id, _configuration.Id,
+            var profile = _profiles.Get(_module.Id, _configuration.Id);
+            _profiles.Set(_module.Id, _configuration.Id,
                 profile with { Processing = _videoProcessing.Configuration });
             if (!_saved.Any(item => item.Id == _configuration.Id))
                 EmulationConfigurationDraftStore.Set(_module.Id, _configuration);
@@ -223,7 +230,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
             .ToArray();
         var display = fields.Where(field => field.LabelResourceKey != rendererResourceKey)
             .Select(CreateVideoSettingsField).ToArray();
-        var profile = EmulationVideoPresentationProfiles.Store.Get(_module.Id, _configuration.Id);
+        var profile = _profiles.Get(_module.Id, _configuration.Id);
         var renderer = new ComboBox
         {
             ItemsSource = EmulationVideoProcessingCatalog.RendererResourceKeys.Select(pair =>
@@ -237,8 +244,8 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
         renderer.SelectionChanged += async (_, _) =>
         {
             if (renderer.SelectedValue is not EmulationVideoRenderer choice) return;
-            var current = EmulationVideoPresentationProfiles.Store.Get(_module.Id, _configuration.Id);
-            EmulationVideoPresentationProfiles.Store.Set(_module.Id, _configuration.Id,
+            var current = _profiles.Get(_module.Id, _configuration.Id);
+            _profiles.Set(_module.Id, _configuration.Id,
                 current with { Renderer = choice });
             if (!_saved.Any(item => item.Id == _configuration.Id))
                 EmulationConfigurationDraftStore.Set(_module.Id, _configuration);
@@ -462,9 +469,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
         try { await action(); }
         catch (Exception error)
         {
-            ControlErrorPresenter.ShowEmulation(this, error,
-                ControlErrorContexts.EmulationConfigurationManagement,
-                LocExtension.Get(_module.DisplayResourceKey));
+            _showError(error);
         }
     }
 
@@ -472,12 +477,12 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
 
     private async Task ApplyUserChangeAsync()
     {
-        EmulationVideoPresentationProfiles.Store.Get(_module.Id, _configuration.Id);
+        _profiles.Get(_module.Id, _configuration.Id);
         CaptureEditorValues();
         if (!_saved.Any(configuration => configuration.MachineId == _configuration.MachineId))
         {
             await EmulationConfigurationPersistenceFunctions.PersistAsync(
-                _module, _configuration, hasSavedConfiguration: false);
+                _module, _configuration, hasSavedConfiguration: false, profiles: _profiles);
             return;
         }
         await _saveInputGate.WaitAsync();
@@ -486,7 +491,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
             CaptureEditorValues();
             var configuration = _configuration;
             if (await EmulationConfigurationPersistenceFunctions.PersistAsync(
-                    _module, configuration, hasSavedConfiguration: true))
+                    _module, configuration, hasSavedConfiguration: true, profiles: _profiles))
                 ConfigurationSaved?.Invoke(this,
                     new EmulationConfigurationSavedEventArgs(configuration));
         }
@@ -498,7 +503,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
 
     private async Task SaveAsync()
     {
-        EmulationVideoPresentationProfiles.Store.Get(_module.Id, _configuration.Id);
+        _profiles.Get(_module.Id, _configuration.Id);
         var values = _fieldControls.ToDictionary(item => item.Key, item => ReadValue(item.Value),
             StringComparer.Ordinal);
         _configuration = _module.ApplySettings(_configuration, values);
@@ -507,7 +512,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
         if (_storageSettings is not null)
             _configuration = _storageSettings.Apply(_configuration);
         var configuration = _configuration;
-        await EmulationVideoPresentationProfiles.Store.SaveAsync(_module.Id, configuration.Id);
+        await _profiles.SaveAsync(_module.Id, configuration.Id);
         await _module.SaveConfigurationAsync(configuration);
         EmulationConfigurationDraftStore.Remove(_module.Id, configuration.MachineId);
         ConfigurationSaved?.Invoke(this, new EmulationConfigurationSavedEventArgs(configuration));
@@ -518,7 +523,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
     {
         var id = _configuration.Id;
         return _saved.Any(item => item.Id == id)
-            ? EmulationVideoPresentationProfiles.Store.SaveAsync(_module.Id, id)
+            ? _profiles.SaveAsync(_module.Id, id)
             : Task.CompletedTask;
     }
 

@@ -17,9 +17,9 @@ public partial class OptionsControllersSection : UserControl
     private readonly Action<Exception, string> _errorLogger;
     private readonly ObservableCollection<ControllerInputRow> _controlRows = [];
     private readonly Dictionary<(GameInputControlType Type, int Index), ControllerInputRow> _controlRowsByKey = [];
-    private readonly Dictionary<string, ControllerVisualModel> _visualOverrides =
-        ControllerVisualProfileStore.GetModels().ToDictionary(item => item.Key, item => item.Value,
-            StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, ControllerVisualModel> _visualOverrides;
+    private readonly IControllerProfileStore _profiles;
+    private readonly Func<int, Task> _delay;
     private IReadOnlyList<GameInputDeviceDescriptor> _devices = [];
     private GameInputDeviceDescriptor? _selectedDevice;
     private GameInputLiveState? _lastState;
@@ -35,9 +35,15 @@ public partial class OptionsControllersSection : UserControl
 
     internal OptionsControllersSection(
         IGameInputControllerSource source,
-        Action<Exception, string>? errorLogger = null)
+        Action<Exception, string>? errorLogger = null,
+        IControllerProfileStore? profiles = null,
+        Func<int, Task>? delay = null)
     {
         _source = source;
+        _profiles = profiles ?? new ControllerProfileStore();
+        _delay = delay ?? Task.Delay;
+        _visualOverrides = _profiles.GetModels().ToDictionary(item => item.Key, item => item.Value,
+            StringComparer.OrdinalIgnoreCase);
         _errorLogger = errorLogger ?? ((exception, context) => ErrorLog.Write(exception, context));
         InitializeComponent();
         ControlsGrid.ItemsSource = _controlRows;
@@ -176,9 +182,9 @@ public partial class OptionsControllersSection : UserControl
         UpdateDetectionStatus();
     }
 
-    private static GameInputDeviceDescriptor ApplyStoredProfile(GameInputDeviceDescriptor device)
+    private GameInputDeviceDescriptor ApplyStoredProfile(GameInputDeviceDescriptor device)
     {
-        if (!ControllerVisualProfileStore.TryGet(device.Id, out var profile)) return device;
+        if (_profiles.GetVisual(device.Id) is not { } profile) return device;
         return device with
         {
             ProductName = ControllerVisualProfileStore.DisplayName(profile.Model, profile.DisplayName),
@@ -229,7 +235,7 @@ public partial class OptionsControllersSection : UserControl
         AnalogDeadZonePanel.Visibility = device.StandardCapabilities.HasGamepad
             || (device.SupportedInput & GameInputKind.Gamepad) != 0
             ? Visibility.Visible : Visibility.Collapsed;
-        var profile = ControllerAnalogDeadZoneProfileStore.Get(device.Id);
+        var profile = _profiles.GetAnalog(device.Id);
         _updatingAnalogSettings = true;
         StickDeadZoneSlider.Value = profile.StickPercent;
         TriggerDeadZoneSlider.Value = profile.TriggerPercent;
@@ -248,7 +254,7 @@ public partial class OptionsControllersSection : UserControl
         if (_updatingAnalogSettings || _selectedDevice is null) return;
         var profile = ReadAnalogDeadZones().Normalize();
         UpdateAnalogDeadZoneLabels(profile);
-        ControllerAnalogDeadZoneProfileStore.Preview(_selectedDevice.Id, profile);
+        _profiles.PreviewAnalog(_selectedDevice.Id, profile);
         RefreshLiveState();
     }
 
@@ -261,7 +267,7 @@ public partial class OptionsControllersSection : UserControl
     private void SaveAnalogDeadZones()
     {
         if (_updatingAnalogSettings || _selectedDevice is null) return;
-        ControllerAnalogDeadZoneProfileStore.Save(_selectedDevice.Id, ReadAnalogDeadZones());
+        _profiles.SaveAnalog(_selectedDevice.Id, ReadAnalogDeadZones());
     }
 
     private void UpdateAnalogDeadZoneLabels(ControllerAnalogDeadZoneProfile profile)
@@ -279,13 +285,13 @@ public partial class OptionsControllersSection : UserControl
         {
             _visualOverrides[_selectedDevice.Id] = model;
             var displayName = ControllerVisualProfileStore.DisplayName(model, choice.DisplayName);
-            ControllerVisualProfileStore.Set(_selectedDevice.Id, model, displayName);
+            _profiles.SetVisual(_selectedDevice.Id, model, displayName);
             ApplyDevices(_devices, force: true);
         }
         else
         {
             _visualOverrides.Remove(_selectedDevice.Id);
-            ControllerVisualProfileStore.Remove(_selectedDevice.Id);
+            _profiles.RemoveVisual(_selectedDevice.Id);
             Visualizer.Model = _selectedDevice.SuggestedVisualModel;
         }
     }
@@ -335,7 +341,7 @@ public partial class OptionsControllersSection : UserControl
         IdentityDetailsText.Text = GameInputDescriptorPresenter.Identity(device);
     }
 
-    private async Task RefreshLiveStateAsync()
+    internal async Task RefreshLiveStateAsync()
     {
         var device = _selectedDevice;
         if (device is null)
@@ -477,7 +483,7 @@ public partial class OptionsControllersSection : UserControl
                 TestStatusText.Text = LocExtension.Get("Controllers.TestFailed");
                 return;
             }
-            await Task.Delay(pulseDurationMilliseconds);
+            await _delay(pulseDurationMilliseconds);
             TestStatusText.Text = LocExtension.Get("Controllers.TestCompleted");
         }
         catch (Exception exception)

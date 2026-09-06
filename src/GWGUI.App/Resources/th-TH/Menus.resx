@@ -12,7 +12,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options"><value>_ตัวเลือก</value></data>
+  <data name="Menu.Options"><value>ตัวเลือก</value></data>
   <data name="Menu.Preferences"><value>การตั้งค่า...</value></data>
   <data name="Menu.Diagnostics"><value>การวินิจฉัย</value></data>
   <data name="Menu.Information"><value>ข้อมูล</value></data>
@@ -24,7 +24,7 @@
   <data name="Menu.Reset"><value>รีเซ็ต</value></data>
   <data name="Menu.Delays"><value>ความล่าช้า...</value></data>
   <data name="Menu.Firmware"><value>เฟิร์มแวร์...</value></data>
-  <data name="Menu.Help"><value>_ช่วย</value></data>
+  <data name="Menu.Help"><value>ช่วย</value></data>
   <data name="Menu.Documentation"><value>เอกสารประกอบ</value></data>
   <data name="Menu.About"><value>เกี่ยวกับ</value></data>
   <data name="Tab.Read"><value>อ่าน</value></data>

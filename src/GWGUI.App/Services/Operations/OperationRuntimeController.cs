@@ -15,7 +15,7 @@ namespace GWGUI.App.Services.Operations;
 public sealed class OperationRuntimeController
 {
     private readonly OperationCoordinator _coordinator = new();
-    private readonly OperationResultPresenter _resultPresenter = new();
+    private readonly OperationResultPresenter _resultPresenter;
     private readonly Stopwatch _stopwatch = new();
     private readonly DispatcherTimer _timer = new() { Interval = TimeSpan.FromSeconds(1) };
     private readonly Dispatcher _dispatcher;
@@ -31,8 +31,10 @@ public sealed class OperationRuntimeController
         OperationProgressController progress,
         TextBox output,
         ConsoleLogSession consoleLog,
-        Func<string, object[], string> localize)
+        Func<string, object[], string> localize,
+        Action<Exception, string>? logError = null)
     {
+        _resultPresenter = new(logError);
         _dispatcher = dispatcher;
         _viewModel = viewModel;
         _progress = progress;

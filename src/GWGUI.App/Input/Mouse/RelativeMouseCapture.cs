@@ -5,12 +5,12 @@ using System.Windows.Input;
 
 namespace GWGUI.App.Input.Mouse;
 
-internal sealed class RelativeMouseCapture
+internal sealed class RelativeMouseCapture : IRelativeMouseCapture
 {
     private readonly RelativeMouseCaptureState _state = new();
-    internal bool IsCaptured => _state.IsCaptured;
+    public bool IsCaptured => _state.IsCaptured;
 
-    internal void Capture(FrameworkElement display, FrameworkElement screen, IntPtr nativeHandle)
+    public void Capture(FrameworkElement display, FrameworkElement screen, IntPtr nativeHandle)
     {
         _state.Capture();
         display.Cursor = Cursors.None;
@@ -30,7 +30,7 @@ internal sealed class RelativeMouseCapture
         else display.Focus();
     }
 
-    internal void Release(FrameworkElement display, IntPtr nativeHandle)
+    public void Release(FrameworkElement display, IntPtr nativeHandle)
     {
         if (!_state.Release()) return;
         System.Windows.Input.Mouse.Capture(null);
@@ -38,7 +38,7 @@ internal sealed class RelativeMouseCapture
         display.Cursor = null;
     }
 
-    internal void ProcessMovement(FrameworkElement screen, Action<int, int> moved)
+    public void ProcessMovement(FrameworkElement screen, Action<int, int> moved)
     {
         if (!IsCaptured || !GetCursorPos(out var current)) return;
         var center = screen.PointToScreen(RelativeMouseCaptureFunctions.Center(screen.ActualWidth, screen.ActualHeight));

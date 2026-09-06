@@ -5,8 +5,9 @@ using GWGUI.MediaEngine.Encoding;
 namespace GWGUI.MediaEngine.Containers.Hfe;
 
 /// <summary>Écrit des pistes FM ou MFM uniformes dans un conteneur HFE version 1.</summary>
-public sealed class HfeWriter
+public sealed class HfeWriter(GWGUI.MediaEngine.Containers.Storage.IAtomicImageFileWriter? fileSystem = null)
 {
+    private readonly GWGUI.MediaEngine.Containers.Storage.IAtomicImageFileWriter files = fileSystem ?? new GWGUI.MediaEngine.Containers.Storage.AtomicImageFileWriter();
     public Task WriteAsync(
         IReadOnlyList<EncodedDiskTrack> tracks,
         string path,
@@ -136,28 +137,12 @@ public sealed class HfeWriter
         return header;
     }
 
-    private static async Task WriteBytesAsync(
+    private async Task WriteBytesAsync(
         byte[] bytes,
         string path,
         CancellationToken cancellationToken)
     {
-        var fullPath = Path.GetFullPath(path);
-        var directory = Path.GetDirectoryName(fullPath) ?? Directory.GetCurrentDirectory();
-        Directory.CreateDirectory(directory);
-        var temporaryPath = Path.Combine(
-            directory,
-            $".{Path.GetFileName(fullPath)}.{Guid.NewGuid():N}.tmp");
-        try
-        {
-            await File.WriteAllBytesAsync(temporaryPath, bytes, cancellationToken)
-                .ConfigureAwait(false);
-            File.Move(temporaryPath, fullPath, true);
-        }
-        finally
-        {
-            if (File.Exists(temporaryPath))
-                File.Delete(temporaryPath);
-        }
+        await files.WriteAsync(path, (stream, token) => stream.WriteAsync(bytes, token).AsTask(), cancellationToken).ConfigureAwait(false);
     }
 
     private static void Validate(HfeImage image)

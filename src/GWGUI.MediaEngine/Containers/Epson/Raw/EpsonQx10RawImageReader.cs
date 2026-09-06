@@ -6,10 +6,19 @@ namespace GWGUI.MediaEngine.Containers.Epson.Raw;
 /// <summary>Relit une image Epson QX-10 brute selon le profil explicitement sélectionné.</summary>
 public sealed class EpsonQx10RawImageReader
 {
+    private readonly Func<string, CancellationToken, Task<byte[]>> readBytes;
+
+    public EpsonQx10RawImageReader() : this(File.ReadAllBytesAsync) { }
+
+    internal EpsonQx10RawImageReader(Func<string, CancellationToken, Task<byte[]>> readBytes)
+    {
+        this.readBytes = readBytes ?? throw new ArgumentNullException(nameof(readBytes));
+    }
+
     /// <summary>Découpe les octets selon la géométrie Epson demandée.</summary>
     public async Task<SectorImage> ReadAsync(string path, string formatId, CancellationToken cancellationToken = default)
     {
-        var bytes = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
+        var bytes = await readBytes(path, cancellationToken).ConfigureAwait(false);
         var geometry = EpsonQx10GeometryCatalog.Resolve(formatId);
         var expectedLength = geometry.AllTracks.Sum(track => track.Count * track.SectorSize);
         if (bytes.Length != expectedLength) throw new InvalidDataException($"Epson image length is {bytes.Length}; expected {expectedLength} bytes for '{formatId}'.");

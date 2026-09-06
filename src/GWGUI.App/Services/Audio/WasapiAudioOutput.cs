@@ -10,13 +10,18 @@ public sealed class WasapiAudioOutput : IAudioOutput
 {
     private readonly string? _deviceId;
     private readonly int _latencyMilliseconds;
-    private WasapiOut? _device;
+    private IWavePlayer? _device;
+    private readonly Func<string?, int, IWavePlayer> _createDevice;
     private BufferedWaveProvider? _buffer;
     private byte[] _writeBuffer = [];
     private bool _disposed;
 
     public WasapiAudioOutput(string? deviceId = null, int latencyMilliseconds = 50)
+        : this(deviceId, latencyMilliseconds, CreateDevice) { }
+
+    internal WasapiAudioOutput(string? deviceId, int latencyMilliseconds, Func<string?, int, IWavePlayer> createDevice)
     {
+        _createDevice = createDevice ?? throw new ArgumentNullException(nameof(createDevice));
         _deviceId = string.IsNullOrWhiteSpace(deviceId) ? null : deviceId;
         _latencyMilliseconds = Math.Clamp(latencyMilliseconds, 10, 500);
     }
@@ -47,16 +52,17 @@ public sealed class WasapiAudioOutput : IAudioOutput
             DiscardOnBufferOverflow = true,
             ReadFully = true
         };
-        if (_deviceId is null)
-            _device = new WasapiOut(AudioClientShareMode.Shared, false, _latencyMilliseconds);
-        else
-        {
-            using var enumerator = new MMDeviceEnumerator();
-            var endpoint = enumerator.GetDevice(_deviceId);
-            _device = new WasapiOut(endpoint, AudioClientShareMode.Shared, false, _latencyMilliseconds);
-        }
+        _device = _createDevice(_deviceId, _latencyMilliseconds);
         _device.Init(_buffer);
         _device.Play();
+    }
+
+    private static IWavePlayer CreateDevice(string? deviceId, int latencyMilliseconds)
+    {
+        if (deviceId is null) return new WasapiOut(AudioClientShareMode.Shared, false, latencyMilliseconds);
+        using var enumerator = new MMDeviceEnumerator();
+        var endpoint = enumerator.GetDevice(deviceId);
+        return new WasapiOut(endpoint, AudioClientShareMode.Shared, false, latencyMilliseconds);
     }
 
     public void Write(ReadOnlySpan<short> interleavedStereo)

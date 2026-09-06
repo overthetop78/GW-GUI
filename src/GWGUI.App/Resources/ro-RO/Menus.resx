@@ -12,7 +12,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options"><value>_Opțiuni</value></data>
+  <data name="Menu.Options"><value>Opțiuni</value></data>
   <data name="Menu.Preferences"><value>Preferințe…</value></data>
   <data name="Menu.Diagnostics"><value>Diagnosticare</value></data>
   <data name="Menu.Information"><value>Informaţii</value></data>
@@ -22,7 +22,7 @@
 <data name="Menu.Pins"><value>Știfturi…</value></data>
   <data name="Menu.Reset"><value>Resetați</value></data>
   <data name="Menu.Delays"><value>Întârzieri…</value></data>
-<data name="Menu.Help"><value>_Ajutor</value></data>
+<data name="Menu.Help"><value>Ajutor</value></data>
   <data name="Menu.Documentation"><value>Documentare</value></data>
   <data name="Menu.About"><value>Despre</value></data>
   <data name="Tab.Read"><value>Citire</value></data>

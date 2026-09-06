@@ -7,14 +7,15 @@ using GWGUI.MediaEngine.SectorImages;
 namespace GWGUI.MediaEngine.Containers.Apple.DiskCopy;
 
 /// <summary>Écrit les conteneurs Apple DiskCopy 4.2 avec données, tags et checksums.</summary>
-public sealed class DiskCopyWriter
+public sealed class DiskCopyWriter(GWGUI.MediaEngine.Containers.Storage.IAtomicImageFileWriter? fileSystem = null)
 {
+    private readonly GWGUI.MediaEngine.Containers.Storage.IAtomicImageFileWriter files = fileSystem ?? new GWGUI.MediaEngine.Containers.Storage.AtomicImageFileWriter();
     /// <summary>Écrit une image avec les métadonnées d'en-tête indiquées.</summary>
     public async Task WriteAsync(SectorImage image, string path, DiskCopyImage? source = null, CancellationToken cancellationToken = default)
     {
         var metadata = source ?? CreateMetadata(image, Path.GetFileNameWithoutExtension(path));
         var bytes = Build(image, metadata);
-        await AppleRawImageWriter.WriteAtomicallyAsync(path, bytes, cancellationToken).ConfigureAwait(false);
+        await files.WriteAsync(path, (stream, token) => stream.WriteAsync(bytes, token).AsTask(), cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>Sérialise l'en-tête, les blocs et leurs tags facultatifs.</summary>

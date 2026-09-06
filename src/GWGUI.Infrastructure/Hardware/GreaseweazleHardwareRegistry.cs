@@ -30,7 +30,7 @@ public sealed class GreaseweazleHardwareRegistry(
             if (!GreaseweazleHardwareScanFunctions.CanUseInfo(result, parsed, serial)) continue;
             var confirmedSerial = NullIfWhiteSpace(parsed.SerialNumber) ?? serial.UsbSerialNumber;
             var usbId = confirmedSerial ?? serial.StableId;
-            var controller = controllers.FirstOrDefault(item => Matches(item, serial, confirmedSerial));
+            var controller = controllers.Concat(unconfigured).FirstOrDefault(item => Matches(item, serial, confirmedSerial));
             if (controller is null)
             {
                 controller = new ControllerSettings { UsbId = usbId };

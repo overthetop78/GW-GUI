@@ -20,6 +20,7 @@ internal sealed class GeneralOptionsController
     private readonly Func<Task> _persistSettings;
     private readonly Action _refreshLocalizedContent;
     private readonly Func<string, object[], string> _localize;
+    private readonly Func<string?> _selectImagesFolder;
 
     public GeneralOptionsController(
         Window owner,
@@ -28,7 +29,8 @@ internal sealed class GeneralOptionsController
         Func<bool> isInitializing,
         Func<Task> persistSettings,
         Action refreshLocalizedContent,
-        Func<string, object[], string> localize)
+        Func<string, object[], string> localize,
+        Func<string?>? selectImagesFolder = null)
     {
         _owner = owner;
         _section = section;
@@ -37,6 +39,7 @@ internal sealed class GeneralOptionsController
         _persistSettings = persistSettings;
         _refreshLocalizedContent = refreshLocalizedContent;
         _localize = localize;
+        _selectImagesFolder = selectImagesFolder ?? SelectImagesFolder;
 
         section.ImagesFolder.Text = settings.DefaultImagesFolder;
         StoragePaths.ConfigureEmulationStorageDirectory(settings.EmulationStorageFolder);
@@ -89,10 +92,16 @@ internal sealed class GeneralOptionsController
 
     private async void BrowseImagesFolder(object sender, RoutedEventArgs e)
     {
-        var dialog = new OpenFolderDialog { Multiselect = false, Title = _localize("Options.ImagesFolder", []) };
-        if (dialog.ShowDialog(_owner) != true) return;
-        _section.ImagesFolder.Text = dialog.FolderName;
+        var path = _selectImagesFolder();
+        if (path is null) return;
+        _section.ImagesFolder.Text = path;
         await _persistSettings();
+    }
+
+    private string? SelectImagesFolder()
+    {
+        var dialog = new OpenFolderDialog { Multiselect = false, Title = _localize("Options.ImagesFolder", []) };
+        return dialog.ShowDialog(_owner) == true ? dialog.FolderName : null;
     }
 
 }

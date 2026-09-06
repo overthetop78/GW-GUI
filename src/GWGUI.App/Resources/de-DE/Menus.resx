@@ -12,7 +12,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options"><value>_Optionen</value></data>
+  <data name="Menu.Options"><value>Optionen</value></data>
   <data name="Menu.Preferences"><value>Präferenzen…</value></data>
   <data name="Menu.Diagnostics"><value>Diagnose</value></data>
 <data name="Menu.Bandwidth"><value>USB Bandbreite</value></data>
@@ -20,7 +20,7 @@
   <data name="Menu.Seek"><value>Kopf suchen…</value></data>
 <data name="Menu.Reset"><value>Zurücksetzen</value></data>
   <data name="Menu.Delays"><value>Verzögerungen…</value></data>
-<data name="Menu.Help"><value>_Helfen</value></data>
+<data name="Menu.Help"><value>Helfen</value></data>
   <data name="Menu.Documentation"><value>Dokumentation</value></data>
   <data name="Menu.About"><value>Um</value></data>
   <data name="Tab.Read"><value>Lesen</value></data>

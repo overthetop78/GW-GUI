@@ -57,8 +57,17 @@ internal sealed class ReadTabController(
     Func<HardwareChoice?> selectedHardware,
     Action confirmAndRequestStop,
     Action updateProfileStatus,
-    Action updateReadCommand)
+    Action updateReadCommand,
+    Func<string?, bool>? fileExists = null,
+    Func<string, Exception?>? deleteCancelledOutput = null,
+    Action? selectOutputName = null,
+    Func<string, Task<GWGUI.MediaEngine.Exploration.ScpCaptureInfo>>? readCaptureInfo = null,
+    Action<Exception, string>? logError = null)
 {
+    private readonly Func<string?, bool> exists = fileExists ?? File.Exists;
+    private readonly Func<string, Exception?> deleteOutput = deleteCancelledOutput ?? CancelledOutputCleaner.TryDelete;
+    private readonly Func<string, Task<GWGUI.MediaEngine.Exploration.ScpCaptureInfo>> captureInfo = readCaptureInfo ?? (path => GWGUI.MediaEngine.Exploration.ScpCaptureInfoReader.ReadAsync(path));
+    private readonly Action<Exception, string> reportError = logError ?? ((error, context) => ErrorLog.Write(error, context));
     private ComboBox ProfileCombo => view.ProfileBlock.ProfileCombo;
     private RadioButton RawScpRadio => view.ImageBlock.RawScpRadio;
     private RadioButton KnownFormatRadio => view.ImageBlock.KnownFormatRadio;
@@ -311,7 +320,7 @@ internal sealed class ReadTabController(
             dialogs.Show(LocExtension.Get("Read.NameRequired"), LocExtension.Get("Read.Title"), icon: UserDialogIcon.Information);
             return;
         }
-        if (!UsesInternalPhysicalRead && (string.IsNullOrWhiteSpace(settings().GwExecutablePath) || !File.Exists(settings().GwExecutablePath)))
+        if (!UsesInternalPhysicalRead && (string.IsNullOrWhiteSpace(settings().GwExecutablePath) || !exists(settings().GwExecutablePath)))
         {
             dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), icon: UserDialogIcon.Information);
             return;
@@ -324,10 +333,15 @@ internal sealed class ReadTabController(
             return;
         }
         var target = GetTarget(extension);
-        if (File.Exists(target))
+        if (exists(target))
         {
             var choice = businessDialogs.ResolveReadConflict(target);
-            if (choice is null or ReadConflictChoice.EditName) { fileName.Focus(); fileName.SelectAll(); return; }
+            if (choice is null or ReadConflictChoice.EditName)
+            {
+                if (selectOutputName is not null) selectOutputName();
+                else { fileName.Focus(); fileName.SelectAll(); }
+                return;
+            }
             if (choice == ReadConflictChoice.UseNextNumber)
             {
                 var advanced = view.AdvancedBlock;
@@ -340,7 +354,7 @@ internal sealed class ReadTabController(
                     extension,
                     sequenceKind,
                     advanced.SequenceWidthComboBox.SelectedIndex + 1,
-                    next);
+                    next, exists);
                 target = available.Path;
                 viewModel.Read.SequenceValue = sequenceKind == SequenceKind.Numeric
                     ? available.Value.ToString()
@@ -399,7 +413,7 @@ internal sealed class ReadTabController(
                 view.CompletionBlock.Visibility = Visibility.Visible;
                 await AppendScpCaptureSummaryAsync(target);
             }
-            if (result.IsSuccess && File.Exists(target))
+            if (result.IsSuccess && exists(target))
                 await AnalyzeCompletedAsync(target);
             if (result.IsSuccess) viewModel.Read.TryAdvanceSequence();
         }
@@ -453,7 +467,7 @@ internal sealed class ReadTabController(
 
     private void HandleCancelledOutput(string target, bool showDialog, string logContext)
     {
-        var deletionError = CancelledOutputCleaner.TryDelete(target);
+        var deletionError = deleteOutput(target);
         if (deletionError is null)
         {
             operation.AppendText(Environment.NewLine + LocExtension.Get("Read.CancelledFileDeleted", target) + Environment.NewLine);
@@ -483,7 +497,7 @@ internal sealed class ReadTabController(
     {
         try
         {
-            var info = await GWGUI.MediaEngine.Exploration.ScpCaptureInfoReader.ReadAsync(path);
+            var info = await captureInfo(path);
             var checksum = LocExtension.Get(info.ChecksumValid ? "Visual.ChecksumValid" : "Visual.ChecksumInvalid");
             operation.AppendText(Environment.NewLine + LocExtension.Get("Read.ScpSummaryTitle") + Environment.NewLine);
             operation.AppendText(LocExtension.Get("Read.ScpTracksSummary", info.CapturedTracks, info.MissingTracks, info.Cylinders, info.Sides) + Environment.NewLine);
@@ -494,7 +508,7 @@ internal sealed class ReadTabController(
         }
         catch (Exception exception)
         {
-            ErrorLog.Write(exception, "Reading SCP summary");
+            reportError(exception, "Reading SCP summary");
             var detail = ExceptionDescriptionFunctions.Describe(exception);
             view.CompletionBlock.SummaryTextBlock.Text = LocExtension.Get("Read.ScpSummaryUnavailable", detail);
             operation.AppendText(Environment.NewLine + LocExtension.Get("Read.ScpSummaryUnavailable", detail) + Environment.NewLine);

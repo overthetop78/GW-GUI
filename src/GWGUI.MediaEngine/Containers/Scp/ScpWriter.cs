@@ -30,6 +30,20 @@ public sealed class ScpWriter : IScpWriter
     private static async Task WriteTemporaryAsync(string path, ScpImage image, CancellationToken cancellationToken)
     {
         await using var output = new FileStream(path, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None, 4096, FileOptions.Asynchronous);
+        await WriteAsync(output, image, cancellationToken).ConfigureAwait(false);
+    }
+
+    /// <summary>Écrit un conteneur dans un flux lisible, inscriptible et repositionnable, sans fermer ce flux.</summary>
+    public static async Task WriteAsync(Stream output, ScpImage image, CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(output);
+        ArgumentNullException.ThrowIfNull(image);
+        if (!output.CanRead || !output.CanWrite || !output.CanSeek)
+            throw new ArgumentException("The SCP output must support reading, writing and seeking.", nameof(output));
+        Validate(image);
+        cancellationToken.ThrowIfCancellationRequested();
+        output.Position = 0;
+        output.SetLength(0);
         var prefixLength = ScpFormatConstants.TrackTableOffset + ScpFormatConstants.FloppyTrackSlots * ScpFormatConstants.TrackTableEntrySize;
         await output.WriteAsync(new byte[prefixLength], cancellationToken).ConfigureAwait(false);
         var offsets = new uint[ScpFormatConstants.FloppyTrackSlots];
@@ -131,7 +145,7 @@ public sealed class ScpWriter : IScpWriter
     }
 
     /// <summary>Calcule la somme des octets depuis la table jusqu'à la fin du fichier temporaire.</summary>
-    private static async Task<uint> ComputeChecksumAsync(FileStream stream, CancellationToken cancellationToken)
+    private static async Task<uint> ComputeChecksumAsync(Stream stream, CancellationToken cancellationToken)
     {
         stream.Position = ScpFormatConstants.TrackTableOffset;
         var buffer = new byte[81920];

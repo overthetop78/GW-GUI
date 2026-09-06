@@ -5,8 +5,19 @@ using System.Text;
 
 namespace GWGUI.Infrastructure.Processes;
 
-public sealed class GreaseweazleRunner(IOperationLogWriter? logWriter = null) : IGreaseweazleRunner
+public sealed class GreaseweazleRunner : IGreaseweazleRunner
 {
+    private readonly IOperationLogWriter? logWriter;
+    private readonly Func<ProcessStartInfo, ICommandProcess> createProcess;
+    private readonly Func<Task> waitForStop;
+    public GreaseweazleRunner(IOperationLogWriter? logWriter = null)
+        : this(info => new CommandProcess(info), () => Task.Delay(TimeSpan.FromSeconds(2), CancellationToken.None), logWriter) { }
+    public GreaseweazleRunner(Func<ProcessStartInfo, ICommandProcess> createProcess, Func<Task> waitForStop, IOperationLogWriter? logWriter = null)
+    {
+        this.createProcess = createProcess ?? throw new ArgumentNullException(nameof(createProcess));
+        this.waitForStop = waitForStop ?? throw new ArgumentNullException(nameof(waitForStop));
+        this.logWriter = logWriter;
+    }
     private int _running;
     public bool IsRunning => Volatile.Read(ref _running) != 0;
 
@@ -18,7 +29,6 @@ public sealed class GreaseweazleRunner(IOperationLogWriter? logWriter = null) : 
         var lines = new List<GwOutputLine>();
         var gate = new object();
         var started = Stopwatch.StartNew();
-        using var process = new Process { StartInfo = CreateStartInfo(command), EnableRaisingEvents = true };
 
         void Publish(GwOutputStream stream, string? text)
         {
@@ -28,14 +38,13 @@ public sealed class GreaseweazleRunner(IOperationLogWriter? logWriter = null) : 
             output?.Report(line);
         }
 
-        process.OutputDataReceived += (_, e) => Publish(GwOutputStream.Standard, e.Data);
-        process.ErrorDataReceived += (_, e) => Publish(GwOutputStream.Error, e.Data);
-
         try
         {
+            using var process = createProcess(CreateStartInfo(command));
+            process.StandardOutput += text => Publish(GwOutputStream.Standard, text);
+            process.StandardError += text => Publish(GwOutputStream.Error, text);
             process.Start();
-            process.BeginOutputReadLine();
-            process.BeginErrorReadLine();
+            process.BeginRead();
             var cancelled = false;
             try
             {
@@ -50,8 +59,8 @@ public sealed class GreaseweazleRunner(IOperationLogWriter? logWriter = null) : 
                     // Give them a short grace period before terminating the process tree.
                     try { process.CloseMainWindow(); } catch (InvalidOperationException) { }
                     var exited = process.WaitForExitAsync(CancellationToken.None);
-                    if (await Task.WhenAny(exited, Task.Delay(TimeSpan.FromSeconds(2), CancellationToken.None)).ConfigureAwait(false) != exited && !process.HasExited)
-                        process.Kill(entireProcessTree: true);
+                    if (await Task.WhenAny(exited, waitForStop()).ConfigureAwait(false) != exited && !process.HasExited)
+                        process.Kill();
                 }
                 await process.WaitForExitAsync(CancellationToken.None).ConfigureAwait(false);
             }

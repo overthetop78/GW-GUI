@@ -59,8 +59,12 @@ internal sealed class WriteTabController(
     Func<string, string?, Task> loadScp,
     Func<string, Task> loadExplorer,
     Action<Exception, string> appendAnalysisFailure,
-    Action updateProfileStatus)
+    Action updateProfileStatus,
+    Func<string?, bool>? fileExists = null,
+    Func<string, DetectedImageFormat>? detectSource = null,
+    Func<string, Task>? analyzeSource = null)
 {
+    private readonly Func<string?, bool> exists = fileExists ?? File.Exists;
     private DetectedImageFormat? detectedFormat;
     private bool UsesInternal => settings().Engines.PhysicalWrite == OperationEngine.Internal;
     private ComboBox FormatCombo => view.FormatBlock.FormatCombo;
@@ -73,13 +77,13 @@ internal sealed class WriteTabController(
         var path = fileDialogs.OpenFile(new(LocExtension.Get("Common.DiskImageFilter"), readFolder.Text));
         if (path is null) return;
         viewModel.Write.SourcePath = path;
-        detectedFormat = formatDetector().Detect(path, new FileInfo(path).Length);
+        detectedFormat = detectSource is null ? formatDetector().Detect(path, new FileInfo(path).Length) : detectSource(path);
         view.FormatBlock.DetectionText.Text = $"{detectedFormat.Format?.DisplayName ?? LocExtension.Get("Detection.Ambiguous")} — {LocExtension.Get(detectedFormat.ExplanationKey)}";
         FormatCombo.ItemsSource = detectedFormat.Candidates.Count > 0 ? detectedFormat.Candidates : formatCatalog().Formats;
         FormatCombo.SelectedItem = detectedFormat.Format;
         FormatCombo.Visibility = detectedFormat.RequiresUserChoice ? Visibility.Visible : Visibility.Collapsed;
         view.FormatBlock.VisualizeTracksButton.IsEnabled = true;
-        try { await diskImageWorkspace.AnalyzeAsync(path); }
+        try { await (analyzeSource is null ? diskImageWorkspace.AnalyzeAsync(path) : analyzeSource(path)); }
         catch (Exception exception) when (exception is InvalidDataException or NotSupportedException)
         { appendAnalysisFailure(exception, $"Analyzing write source: {path}"); }
         UpdateCommand();
@@ -143,12 +147,12 @@ internal sealed class WriteTabController(
         if (operation.IsRunning) { confirmAndRequestStop(); return; }
         if (!ensureSelectedHardwareAvailable()) return;
         if (!diskDefinitionsController.Validate(view.AdvancedBlock.DiskDefinitionsEnabled, view.AdvancedBlock.DiskDefinitionsValue, LocExtension.Get("Write.Title"))) return;
-        if (!File.Exists(view.SourceBlock.Input.Text)) { dialogs.Show(LocExtension.Get("Write.SelectSource"), LocExtension.Get("Write.Title"), icon: UserDialogIcon.Information); return; }
+        if (!exists(view.SourceBlock.Input.Text)) { dialogs.Show(LocExtension.Get("Write.SelectSource"), LocExtension.Get("Write.Title"), icon: UserDialogIcon.Information); return; }
         var selected = FormatCombo.SelectedItem as DiskFormat ?? detectedFormat?.Format;
         if (selected is null || (detectedFormat?.RequiresUserChoice == true && FormatCombo.SelectedItem is null))
         { dialogs.Show(LocExtension.Get("Write.Ambiguous"), LocExtension.Get("Write.Title"), icon: UserDialogIcon.Warning); FormatCombo.Visibility = Visibility.Visible; return; }
         if (UsesInternal) { await ExecuteInternalAsync(selected); return; }
-        if (string.IsNullOrWhiteSpace(settings().GwExecutablePath) || !File.Exists(settings().GwExecutablePath))
+        if (string.IsNullOrWhiteSpace(settings().GwExecutablePath) || !exists(settings().GwExecutablePath))
         { dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title"), icon: UserDialogIcon.Information); return; }
         GwCommand command;
         try { command = BuildCommand(); }

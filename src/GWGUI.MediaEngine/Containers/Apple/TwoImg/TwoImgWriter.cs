@@ -2,12 +2,14 @@ using System.Buffers.Binary;
 using GWGUI.MediaEngine.Containers.Apple.Raw;
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Containers.Storage;
 
 namespace GWGUI.MediaEngine.Containers.Apple.TwoImg;
 
 /// <summary>Enveloppe une image sectorielle Apple validée dans un conteneur 2IMG version 1.</summary>
-public sealed class TwoImgWriter
+public sealed class TwoImgWriter(IAtomicImageFileWriter? fileWriter = null)
 {
+    private readonly IAtomicImageFileWriter files = fileWriter ?? new AtomicImageFileWriter();
     /// <summary>Construit l'en-tête et la charge utile puis remplace atomiquement le fichier de destination.</summary>
     public async Task WriteAsync(SectorImage image, string path, string targetFormatId, CancellationToken cancellationToken = default)
     {
@@ -24,7 +26,7 @@ public sealed class TwoImgWriter
         BinaryPrimitives.WriteUInt32LittleEndian(container.AsSpan(TwoImgLayout.DataOffsetOffset), TwoImgLayout.MinimumHeaderSize);
         BinaryPrimitives.WriteUInt32LittleEndian(container.AsSpan(TwoImgLayout.DataLengthOffset), checked((uint)payload.Length));
         payload.CopyTo(container, TwoImgLayout.MinimumHeaderSize);
-        await AppleRawImageWriter.WriteAtomicallyAsync(path, container, cancellationToken).ConfigureAwait(false);
+        await files.WriteAsync(path, (output, token) => output.WriteAsync(container, token).AsTask(), cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>Détermine le type de charge utile depuis l'identifiant de format explicite.</summary>

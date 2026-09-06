@@ -56,8 +56,12 @@ internal sealed class ConversionTabController(
     Action confirmAndRequestStop,
     Action<Exception, string> appendAnalysisFailure,
     Action updateProfileStatus,
-    Dispatcher dispatcher)
+    Dispatcher dispatcher,
+    Func<string?, bool>? fileExists = null,
+    Func<string, DetectedImageFormat>? detectSource = null,
+    Func<string, Task>? analyzeSource = null)
 {
+    private readonly Func<string?, bool> exists = fileExists ?? File.Exists;
     private string? sourceExtension;
     private DetectedImageFormat? sourceDetection;
     private bool UsesInternal => settings().Engines.Conversion == OperationEngine.Internal;
@@ -105,10 +109,10 @@ internal sealed class ConversionTabController(
         var path = fileDialogs.OpenFile(new(LocExtension.Get("Common.DiskImageFilter"), readFolder.Text));
         if (path is null) return;
         viewModel.Conversion.SourcePath = path; viewModel.Conversion.OutputName = Path.GetFileNameWithoutExtension(path);
-        var detection = formatDetector().Detect(path, new FileInfo(path).Length);
+        var detection = detectSource is null ? formatDetector().Detect(path, new FileInfo(path).Length) : detectSource(path);
         view.OutputBlock.SourceInformation.Text = detection.Format?.DisplayName ?? LocExtension.Get("Conversion.SourceAmbiguous");
         view.SourceBlock.ActionButton.Visibility = Path.GetExtension(path).Equals(".scp", StringComparison.OrdinalIgnoreCase) ? Visibility.Visible : Visibility.Collapsed;
-        try { await diskImageWorkspace.AnalyzeAsync(path); }
+        try { await (analyzeSource is null ? diskImageWorkspace.AnalyzeAsync(path) : analyzeSource(path)); }
         catch (Exception exception) when (exception is InvalidDataException or NotSupportedException)
         { appendAnalysisFailure(exception, $"Analyzing conversion source: {path}"); }
         BuildFormats(Path.GetExtension(path), detection); UpdateCommand();
@@ -158,7 +162,7 @@ internal sealed class ConversionTabController(
     {
         if (operation.IsRunning) { confirmAndRequestStop(); return; }
         if (!diskDefinitionsController.Validate(view.AdvancedBlock.DiskDefinitionsEnabled, view.AdvancedBlock.DiskDefinitionsValue, LocExtension.Get("Conversion.Title"))) return;
-        if (!File.Exists(view.SourceBlock.Input.Text)) { dialogs.Show(LocExtension.Get("Conversion.SourceRequired"), LocExtension.Get("Conversion.Title")); return; }
+        if (!exists(view.SourceBlock.Input.Text)) { dialogs.Show(LocExtension.Get("Conversion.SourceRequired"), LocExtension.Get("Conversion.Title")); return; }
         if (string.IsNullOrWhiteSpace(view.OutputBlock.OutputNameTextBox.Text)) { dialogs.Show(LocExtension.Get("Conversion.NameRequired"), LocExtension.Get("Conversion.Title")); return; }
         IReadOnlyList<ConversionOutput> outputs;
         try { outputs = Plan(); GwOptionValidator.Validate(Options()); }
@@ -166,9 +170,9 @@ internal sealed class ConversionTabController(
         if (outputs.Count == 0) { dialogs.Show(LocExtension.Get("Conversion.CheckOutput"), LocExtension.Get("Conversion.Title")); return; }
         if (UsesInternal && outputs.Any(x => !ConversionBatchExecutor.IsInternal(viewModel.Conversion.SourcePath, x)))
         { dialogs.Show(LocExtension.Get("Conversion.EngineInternalUnavailable", outputs.First(x => !ConversionBatchExecutor.IsInternal(viewModel.Conversion.SourcePath, x)).OutputPath), LocExtension.Get("Conversion.Title")); return; }
-        if (!UsesInternal && (string.IsNullOrWhiteSpace(settings().GwExecutablePath) || !File.Exists(settings().GwExecutablePath)))
+        if (!UsesInternal && (string.IsNullOrWhiteSpace(settings().GwExecutablePath) || !exists(settings().GwExecutablePath)))
         { dialogs.Show(LocExtension.Get("App.GwNotConfigured"), LocExtension.Get("App.Title")); return; }
-        var existing = outputs.Where(x => File.Exists(x.OutputPath)).ToArray();
+        var existing = outputs.Where(x => exists(x.OutputPath)).ToArray();
         if (existing.Length > 0)
         {
             var decisions = businessDialogs.ResolveConversionConflicts(existing); if (decisions is null) return;
@@ -187,10 +191,10 @@ internal sealed class ConversionTabController(
         view.ExecuteActionButton.Content = LocExtension.Get("Common.Execute");
     }
 
-    private static string NumberedPath(string path)
+    private string NumberedPath(string path)
     {
         var folder = Path.GetDirectoryName(path)!; var name = Path.GetFileNameWithoutExtension(path); var extension = Path.GetExtension(path);
-        for (var number = 1; number < int.MaxValue; number++) { var candidate = Path.Combine(folder, $"{name} ({number}){extension}"); if (!File.Exists(candidate)) return candidate; }
+        for (var number = 1; number < int.MaxValue; number++) { var candidate = Path.Combine(folder, $"{name} ({number}){extension}"); if (!exists(candidate)) return candidate; }
         throw new IOException(LocExtension.Get("Conversion.NoAvailableOutputName"));
     }
 

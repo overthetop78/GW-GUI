@@ -44,7 +44,10 @@ public static class StoragePaths
     public static string? NormalizeHostToolsPath(string? path) => path;
 
     public static string ResolveDataDirectory(string applicationDirectory, string roamingDirectory) =>
-        File.Exists(Path.Combine(applicationDirectory, "portable.flag"))
+        ResolveDataDirectory(applicationDirectory, roamingDirectory, File.Exists);
+
+    internal static string ResolveDataDirectory(string applicationDirectory, string roamingDirectory, Func<string, bool> exists) =>
+        exists(Path.Combine(applicationDirectory, "portable.flag"))
             ? Path.Combine(applicationDirectory, "Data")
             : Path.Combine(roamingDirectory, "GW GUI");
 

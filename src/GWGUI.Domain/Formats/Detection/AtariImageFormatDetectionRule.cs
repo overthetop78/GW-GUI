@@ -42,7 +42,7 @@ internal sealed class AtariImageFormatDetectionRule : IImageFormatDetectionRule
     {
         try
         {
-            using var stream = File.OpenRead(context.FilePath);
+            using var stream = context.OpenRead(context.FilePath);
             Span<byte> header = stackalloc byte[10];
             if (stream.Read(header) != header.Length || BinaryPrimitives.ReadUInt16BigEndian(header) != 0x0e0f) return null;
             var sectorsPerTrack = BinaryPrimitives.ReadUInt16BigEndian(header[2..]);

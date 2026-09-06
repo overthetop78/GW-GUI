@@ -12,7 +12,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options"><value>_خيارات</value></data>
+  <data name="Menu.Options"><value>خيارات</value></data>
   <data name="Menu.Preferences"><value>التفضيلات…</value></data>
   <data name="Menu.Diagnostics"><value>التشخيص</value></data>
   <data name="Menu.Information"><value>معلومة</value></data>
@@ -24,7 +24,7 @@
   <data name="Menu.Reset"><value>إعادة ضبط</value></data>
   <data name="Menu.Delays"><value>تأخيرات…</value></data>
   <data name="Menu.Firmware"><value>البرامج الثابتة…</value></data>
-  <data name="Menu.Help"><value>_يساعد</value></data>
+  <data name="Menu.Help"><value>يساعد</value></data>
   <data name="Menu.Documentation"><value>التوثيق</value></data>
   <data name="Menu.About"><value>عن</value></data>
   <data name="Tab.Read"><value>يقرأ</value></data>

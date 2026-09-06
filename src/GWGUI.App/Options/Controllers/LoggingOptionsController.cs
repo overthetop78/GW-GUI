@@ -23,6 +23,7 @@ internal sealed class LoggingOptionsController
     private readonly Func<Task> _persistAsync;
     private readonly Func<string, string> _localize;
     private readonly Action<Exception> _reportOpenFolderError;
+    private readonly string _logsDirectory;
 
     public LoggingOptionsController(
         OptionsLogsSection section,
@@ -30,7 +31,8 @@ internal sealed class LoggingOptionsController
         Func<bool> isInitializing,
         Func<Task> persistAsync,
         Func<string, string> localize,
-        Action<Exception> reportOpenFolderError)
+        Action<Exception> reportOpenFolderError,
+        string? logsDirectory = null)
     {
         _section = section;
         _settings = settings;
@@ -38,13 +40,14 @@ internal sealed class LoggingOptionsController
         _persistAsync = persistAsync;
         _localize = localize;
         _reportOpenFolderError = reportOpenFolderError;
+        _logsDirectory = logsDirectory ?? StoragePaths.LogsDirectory;
 
         _section.LogRowChanged += RowChanged;
         _section.MaximumSizeEditingFinished += MaximumSizeEditingFinished;
         _section.NumericTextEntered += NumericTextEntered;
         _section.OpenLogsFolderRequested += OpenLogsFolder;
         _section.OptionsList.ItemsSource = Options;
-        _section.DirectoryText.Text = StoragePaths.LogsDirectory;
+        _section.DirectoryText.Text = _logsDirectory;
         RefreshLocalizedContent();
     }
 
@@ -67,9 +70,18 @@ internal sealed class LoggingOptionsController
 
     private async void MaximumSizeEditingFinished(object sender, KeyboardFocusChangedEventArgs e)
     {
-        if (sender is TextBox textBox && textBox.DataContext is LogOptionRow row &&
-            (!int.TryParse(textBox.Text, out var value) || value < 0))
-            textBox.Text = row.Settings.MaximumKilobytes.ToString();
+        if (sender is TextBox textBox) await CommitMaximumSizeAsync(textBox);
+    }
+
+    internal async Task CommitMaximumSizeAsync(TextBox textBox)
+    {
+        if (textBox.DataContext is LogOptionRow row)
+        {
+            if (!int.TryParse(textBox.Text, out var value) || value < 0)
+                textBox.SetCurrentValue(TextBox.TextProperty, row.Settings.MaximumKilobytes.ToString());
+            else
+                textBox.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+        }
         await _persistAsync();
     }
 
@@ -80,8 +92,8 @@ internal sealed class LoggingOptionsController
     {
         try
         {
-            Directory.CreateDirectory(StoragePaths.LogsDirectory);
-            Process.Start(new ProcessStartInfo(StoragePaths.LogsDirectory) { UseShellExecute = true });
+            Directory.CreateDirectory(_logsDirectory);
+            Process.Start(new ProcessStartInfo(_logsDirectory) { UseShellExecute = true });
         }
         catch (Exception exception)
         {

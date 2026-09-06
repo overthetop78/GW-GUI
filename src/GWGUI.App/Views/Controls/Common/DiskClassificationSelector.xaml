@@ -13,19 +13,19 @@
                   VerticalAlignment="Bottom" Height="38" Margin="0,0,14,0" Checked="Automatic_Changed" Unchecked="Automatic_Changed"/>
         <StackPanel Grid.Column="1" Margin="0,0,12,0">
             <TextBlock Text="{l:Loc Classification.Machine}" Margin="0,0,0,5"/>
-            <ComboBox x:Name="Machine" Height="38" VerticalContentAlignment="Center" SelectionChanged="Machine_Changed">
+            <ComboBox x:Name="Machine" Height="38" VerticalContentAlignment="Center" SelectionChanged="Machine_Changed" AutomationProperties.Name="{l:Loc Classification.Machine}">
                 <ComboBox.ItemTemplate><DataTemplate><TextBlock Text="{Binding DisplayName}"><TextBlock.Style><Style TargetType="TextBlock"><Setter Property="Foreground" Value="{DynamicResource TextBrush}"/><Style.Triggers><MultiDataTrigger><MultiDataTrigger.Conditions><Condition Binding="{Binding IsDetected}" Value="True"/><Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource AncestorType=ComboBoxItem}}" Value="True"/></MultiDataTrigger.Conditions><Setter Property="Foreground" Value="{DynamicResource AccentBrush}"/><Setter Property="FontWeight" Value="SemiBold"/></MultiDataTrigger></Style.Triggers></Style></TextBlock.Style></TextBlock></DataTemplate></ComboBox.ItemTemplate>
             </ComboBox>
         </StackPanel>
         <StackPanel Grid.Column="2" Margin="0,0,12,0">
             <TextBlock Text="{l:Loc Classification.Format}" Margin="0,0,0,5"/>
-            <ComboBox x:Name="Format" Height="38" VerticalContentAlignment="Center" SelectionChanged="Format_Changed">
+            <ComboBox x:Name="Format" Height="38" VerticalContentAlignment="Center" SelectionChanged="Format_Changed" AutomationProperties.Name="{l:Loc Classification.Format}">
                 <ComboBox.ItemTemplate><DataTemplate><TextBlock Text="{Binding DisplayName}"><TextBlock.Style><Style TargetType="TextBlock"><Setter Property="Foreground" Value="{DynamicResource TextBrush}"/><Style.Triggers><MultiDataTrigger><MultiDataTrigger.Conditions><Condition Binding="{Binding IsDetected}" Value="True"/><Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource AncestorType=ComboBoxItem}}" Value="True"/></MultiDataTrigger.Conditions><Setter Property="Foreground" Value="{DynamicResource AccentBrush}"/><Setter Property="FontWeight" Value="SemiBold"/></MultiDataTrigger></Style.Triggers></Style></TextBlock.Style></TextBlock></DataTemplate></ComboBox.ItemTemplate>
             </ComboBox>
         </StackPanel>
         <StackPanel x:Name="ProtectionPanel" Grid.Column="3" Width="200" Visibility="Collapsed">
             <TextBlock Text="{l:Loc Classification.Protection}" Margin="0,0,0,5"/>
-            <ComboBox x:Name="Protection" Height="38" VerticalContentAlignment="Center" DisplayMemberPath="DisplayName" SelectionChanged="Protection_Changed"/>
+            <ComboBox x:Name="Protection" Height="38" VerticalContentAlignment="Center" DisplayMemberPath="DisplayName" SelectionChanged="Protection_Changed" AutomationProperties.Name="{l:Loc Classification.Protection}"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -23,6 +23,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
     private readonly MachineControllerOptions _options;
     private readonly MachineView _view = new();
     private readonly MachineSession _session;
+    private readonly MachineQuickStates _quickStates;
     private readonly MachineVideoPresenter _video;
     private readonly MachineCommandBar _commands;
     private readonly MachineInputController _input;
@@ -37,6 +38,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         _options = options;
         _audioMuted = options.Machine.Audio.IsMuted;
         _session = new MachineSession(options.Machine, options.MachineFactory, options.MountedMedia);
+        _quickStates = new MachineQuickStates(() => _session.Machine.SavedStates, options.QuickStatePath);
         _video = new MachineVideoPresenter(_view, options.Machine, options.VideoRenderer,
             options.VideoProcessing);
         _video.FramePresented += FramePresented;
@@ -47,8 +49,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
             () => _session.Machine, options.GlobalShortcuts, ExecuteShortcutAsync, options.IsActive);
         _commands = new MachineCommandBar(_view.Toolbar, CreateActions(), options.GlobalShortcuts,
             options.ShowError, _input.RestoreFocus);
-        _commands.SetSavedStateAvailability(options.Machine.SavedStates.IsSupported,
-            File.Exists(options.QuickStatePath));
+        _commands.SetSavedStateAvailability(_quickStates.IsSupported, _quickStates.IsAvailable);
         _video.SurfaceChanged += VideoSurfaceChanged;
         _commands.RendererStatus.Text = MachinePresentationFunctions.RendererName(_video.Renderer);
         _commands.SetPowered(false);
@@ -150,17 +151,12 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
 
     private async Task QuickSaveAsync()
     {
-        if (!_session.Machine.SavedStates.IsSupported) return;
-        var folder = Path.GetDirectoryName(_options.QuickStatePath);
-        if (!string.IsNullOrWhiteSpace(folder)) Directory.CreateDirectory(folder);
-        await _session.Machine.SavedStates.SaveAsync(_options.QuickStatePath);
-        _commands.SetSavedStateAvailability(true, true);
+        if (await _quickStates.SaveAsync()) _commands.SetSavedStateAvailability(true, true);
     }
 
     private async Task QuickLoadAsync()
     {
-        if (!_session.Machine.SavedStates.IsSupported || !File.Exists(_options.QuickStatePath)) return;
-        await _session.Machine.SavedStates.LoadAsync(_options.QuickStatePath);
+        await _quickStates.LoadAsync();
     }
 
     private async Task CaptureScreenAsync()
@@ -237,8 +233,7 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         _video.SetMachine(machine);
         machine.Audio.SetMuted(_audioMuted);
         _commands.SetMuted(_audioMuted);
-        _commands.SetSavedStateAvailability(machine.SavedStates.IsSupported,
-            File.Exists(_options.QuickStatePath));
+        _commands.SetSavedStateAvailability(_quickStates.IsSupported, _quickStates.IsAvailable);
         RebuildMediaDevices();
     }
 

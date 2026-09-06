@@ -6,7 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
-    <VSTestTestCaseFilter>(Category!=LocalAssets)&amp;(Category!=GpuExhaustive)</VSTestTestCaseFilter>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,10 +17,12 @@
 
   <ItemGroup>
     <Using Include="Xunit" />
+    <Using Include="System.IO" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\GWGUI.Domain\GWGUI.Domain.csproj" />
+    <ProjectReference Include="..\..\src\GWGUI.Launcher\GWGUI.Launcher.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.Infrastructure\GWGUI.Infrastructure.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
     <ProjectReference Include="..\..\src\GWGUI.App\GWGUI.App.csproj" />

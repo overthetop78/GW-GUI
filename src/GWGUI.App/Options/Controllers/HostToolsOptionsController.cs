@@ -18,6 +18,7 @@ internal sealed class HostToolsOptionsController
     private readonly Func<Task> _persistSettings;
     private readonly Action<Exception> _reportError;
     private readonly Func<string, object[], string> _localize;
+    private readonly Func<string?, bool> _exists;
 
     public HostToolsOptionsController(
         Window owner,
@@ -26,7 +27,8 @@ internal sealed class HostToolsOptionsController
         IGwInstallationManager manager,
         Func<Task> persistSettings,
         Action<Exception> reportError,
-        Func<string, object[], string> localize)
+        Func<string, object[], string> localize,
+        Func<string?, bool>? fileExists = null)
     {
         _owner = owner;
         _section = section;
@@ -34,6 +36,7 @@ internal sealed class HostToolsOptionsController
         _persistSettings = persistSettings;
         _reportError = reportError;
         _localize = localize;
+        _exists = fileExists ?? File.Exists;
 
         section.GwPath.Text = _state.CurrentPath ?? "";
         RefreshStatus();
@@ -132,7 +135,7 @@ internal sealed class HostToolsOptionsController
         }
     }
 
-    private void RefreshStatus() => _section.HostToolsState.Text = File.Exists(CurrentPath)
+    private void RefreshStatus() => _section.HostToolsState.Text = _exists(CurrentPath)
         ? _localize("HostTools.Detected", [CurrentPath])
         : _localize("HostTools.None", []);
 }

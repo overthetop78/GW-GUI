@@ -12,7 +12,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options"><value>_Tùy chọn</value></data>
+  <data name="Menu.Options"><value>Tùy chọn</value></data>
   <data name="Menu.Preferences"><value>Sở thích…</value></data>
   <data name="Menu.Diagnostics"><value>Chẩn đoán</value></data>
   <data name="Menu.Information"><value>Thông tin</value></data>
@@ -24,7 +24,7 @@
   <data name="Menu.Reset"><value>Cài lại</value></data>
   <data name="Menu.Delays"><value>Sự chậm trễ…</value></data>
   <data name="Menu.Firmware"><value>Phần sụn…</value></data>
-  <data name="Menu.Help"><value>_Giúp đỡ</value></data>
+  <data name="Menu.Help"><value>Giúp đỡ</value></data>
   <data name="Menu.Documentation"><value>Tài liệu</value></data>
   <data name="Menu.About"><value>Về</value></data>
   <data name="Tab.Read"><value>Đọc</value></data>

@@ -19,6 +19,15 @@ public sealed class Cp2Reader
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         var data = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
+        return Read(data, cancellationToken);
+    }
+
+    /// <summary>Lit un conteneur CP2 déjà chargé en mémoire.</summary>
+    public Task<SectorImage> ReadAsync(ReadOnlyMemory<byte> data, CancellationToken cancellationToken = default) =>
+        Task.FromResult(Read(data.ToArray(), cancellationToken));
+
+    private static SectorImage Read(byte[] data, CancellationToken cancellationToken)
+    {
         ValidateContainer(data);
         var sectors = ReadSectorBlocks(data, cancellationToken);
         return BuildImage(sectors, cancellationToken);

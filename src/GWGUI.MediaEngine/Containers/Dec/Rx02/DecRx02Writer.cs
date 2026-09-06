@@ -1,12 +1,14 @@
 using GWGUI.MediaEngine.Definitions;
 using GWGUI.MediaEngine.Geometries.Dec;
 using GWGUI.MediaEngine.SectorImages;
+using GWGUI.MediaEngine.Containers.Storage;
 
 namespace GWGUI.MediaEngine.Containers.Dec.Rx02;
 
 /// <summary>Écrit les blocs logiques RT-11 dans l'ordre physique entrelacé d'un dump DEC RX02.</summary>
-public sealed class DecRx02Writer
+public sealed class DecRx02Writer(IAtomicImageFileWriter? fileWriter = null)
 {
+    private readonly IAtomicImageFileWriter files = fileWriter ?? new AtomicImageFileWriter();
     /// <summary>Valide la géométrie, sépare chaque bloc en deux secteurs puis écrit atomiquement le dump.</summary>
     public async Task WriteAsync(SectorImage image, string path, CancellationToken cancellationToken = default)
     {
@@ -20,18 +22,6 @@ public sealed class DecRx02Writer
             var data = block.Data.ToArray();
             for (var part = 0; part < DecRx02Geometry.PhysicalSectorsPerLogicalBlock; part++) DecRx02SectorOrder.WriteLogicalSector(bytes, blockIndex * DecRx02Geometry.PhysicalSectorsPerLogicalBlock + part, data.AsSpan(part * DecRx02Geometry.PhysicalSectorSize, DecRx02Geometry.PhysicalSectorSize));
         }
-        var fullPath = Path.GetFullPath(path);
-        var directory = Path.GetDirectoryName(fullPath) ?? Directory.GetCurrentDirectory();
-        Directory.CreateDirectory(directory);
-        var temporaryPath = Path.Combine(directory, $".{Path.GetFileName(fullPath)}.{Guid.NewGuid():N}.tmp");
-        try
-        {
-            await File.WriteAllBytesAsync(temporaryPath, bytes, cancellationToken).ConfigureAwait(false);
-            File.Move(temporaryPath, fullPath, true);
-        }
-        finally
-        {
-            if (File.Exists(temporaryPath)) File.Delete(temporaryPath);
-        }
+        await files.WriteAsync(path, (output, token) => output.WriteAsync(bytes, token).AsTask(), cancellationToken).ConfigureAwait(false);
     }
 }

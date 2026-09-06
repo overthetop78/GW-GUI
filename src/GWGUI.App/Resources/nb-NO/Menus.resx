@@ -12,7 +12,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options"><value>_Alternativer</value></data>
+  <data name="Menu.Options"><value>Alternativer</value></data>
   <data name="Menu.Preferences"><value>Innstillinger …</value></data>
   <data name="Menu.Diagnostics"><value>Diagnostikk</value></data>
   <data name="Menu.Information"><value>Informasjon</value></data>
@@ -24,7 +24,7 @@
   <data name="Menu.Reset"><value>Tilbakestill</value></data>
   <data name="Menu.Delays"><value>Forsinkelser...</value></data>
   <data name="Menu.Firmware"><value>Fastvare...</value></data>
-  <data name="Menu.Help"><value>_Hjelp</value></data>
+  <data name="Menu.Help"><value>Hjelp</value></data>
   <data name="Menu.Documentation"><value>Dokumentasjon</value></data>
   <data name="Menu.About"><value>Om</value></data>
   <data name="Tab.Read"><value>Lese</value></data>

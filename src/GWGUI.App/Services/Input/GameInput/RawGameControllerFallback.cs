@@ -120,7 +120,12 @@ internal static class RawGameControllerFallback
     {
         RawDevice[] snapshot;
         lock (Sync) snapshot = _devices.ToArray();
+        return DistinctFallback(gameInput, snapshot, device => device.Descriptor);
+    }
 
+    internal static IReadOnlyList<T> DistinctFallback<T>(IReadOnlyList<GameInputDeviceDescriptor> gameInput,
+        IReadOnlyList<T> snapshot, Func<T, GameInputDeviceDescriptor> describe)
+    {
         var remainingByVidPid = gameInput
             .Where(device => device.VendorId != 0 || device.ProductId != 0)
             .GroupBy(device => (device.VendorId, device.ProductId))
@@ -128,10 +133,10 @@ internal static class RawGameControllerFallback
         var remainingByName = gameInput
             .GroupBy(device => Normalize(device.ProductName), StringComparer.OrdinalIgnoreCase)
             .ToDictionary(group => group.Key, group => group.Count(), StringComparer.OrdinalIgnoreCase);
-        var result = new List<RawDevice>();
+        var result = new List<T>();
         foreach (var device in snapshot)
         {
-            var descriptor = device.Descriptor;
+            var descriptor = describe(device);
             var vidPid = (descriptor.VendorId, descriptor.ProductId);
             if (vidPid != (0, 0) &&
                 remainingByVidPid.TryGetValue(vidPid, out var sameVidPid) && sameVidPid > 0)

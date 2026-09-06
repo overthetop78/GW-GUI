@@ -32,8 +32,12 @@ public sealed class MaintenanceToolsController(
     Action? confirmStop = null,
     ConsoleLogSession? consoleLog = null,
     IGreaseweazleRunner? runner = null,
-    TextBox? logOutput = null)
+    TextBox? logOutput = null,
+    Func<string?, bool>? fileExists = null,
+    Action<Exception, string>? logError = null)
 {
+    private readonly Func<string?, bool> exists = fileExists ?? File.Exists;
+    private readonly Action<Exception, string> writeError = logError ?? ((error, context) => ErrorLog.Write(error, context));
     public void UpdateSelection()
     {
         tools.ErasePanel.Visibility = tools.ToolsList.SelectedIndex == 0 ? Visibility.Visible : Visibility.Collapsed;
@@ -46,6 +50,7 @@ public sealed class MaintenanceToolsController(
         var options = new List<EnabledOption>();
         if (tools.EraseTracksEnabled.IsChecked == true) options.Add(new("--tracks", tools.EraseTracksValue.Text.Trim()));
         if (tools.EraseRevsEnabled.IsChecked == true) options.Add(new("--revs", tools.EraseRevsValue.Text.Trim()));
+        GwOptionValidator.Validate(options);
         return commandBuilder.BuildErase(new EraseRequest(
             settings().GwExecutablePath ?? "gw.exe",
             options,
@@ -56,12 +61,20 @@ public sealed class MaintenanceToolsController(
 
     public GwCommand BuildClean() => commandBuilder.BuildClean(new CleanRequest(
         settings().GwExecutablePath ?? "gw.exe",
-        tools.CleanCylindersEnabled.IsChecked == true && int.TryParse(tools.CleanCylindersValue.Text, out var cylinders) ? cylinders : null,
-        tools.CleanPassesEnabled.IsChecked == true && int.TryParse(tools.CleanPassesValue.Text, out var passes) ? passes : null,
-        tools.CleanLingerEnabled.IsChecked == true && int.TryParse(tools.CleanLingerValue.Text, out var linger) ? linger : null,
+        ParseOptional(tools.CleanCylindersEnabled, tools.CleanCylindersValue, 1),
+        ParseOptional(tools.CleanPassesEnabled, tools.CleanPassesValue, 1),
+        ParseOptional(tools.CleanLingerEnabled, tools.CleanLingerValue, 0),
         deviceArgument(),
         driveArgument(),
         tools.CleanExpertArguments.Text));
+
+    private static int? ParseOptional(CheckBox enabled, TextBox input, int minimum)
+    {
+        if (enabled.IsChecked != true) return null;
+        if (!int.TryParse(input.Text, out var value) || value < minimum)
+            throw new ArgumentException("Invalid maintenance count or duration.");
+        return value;
+    }
 
     public void UpdatePreview()
     {
@@ -72,21 +85,28 @@ public sealed class MaintenanceToolsController(
         }
         catch (Exception exception)
         {
-            ErrorLog.Write(exception, "Building maintenance preview");
+            writeError(exception, "Building maintenance preview");
             showCommand($"⚠ {localize("Advanced.Invalid", [localize("Common.Unknown", [])])}");
         }
     }
 
-    public Task ExecuteEraseAsync() => ExecuteAsync(BuildErase(), tools.EraseExecuteButton);
-    public Task ExecuteCleanAsync() => ExecuteAsync(BuildClean(), tools.CleanExecuteButton);
+    public Task ExecuteEraseAsync() => ExecuteAsync(BuildErase, tools.EraseExecuteButton);
+    public Task ExecuteCleanAsync() => ExecuteAsync(BuildClean, tools.CleanExecuteButton);
 
-    private async Task ExecuteAsync(GwCommand command, Button button)
+    private async Task ExecuteAsync(Func<GwCommand> buildCommand, Button button)
     {
         if (operation is null || dialogs is null || ensureHardware is null || confirmStop is null || consoleLog is null || runner is null || logOutput is null) return;
         if (operation.IsRunning) { confirmStop(); return; }
         if (!ensureHardware()) return;
-        if (string.IsNullOrWhiteSpace(settings().GwExecutablePath) || !File.Exists(settings().GwExecutablePath))
+        if (string.IsNullOrWhiteSpace(settings().GwExecutablePath) || !exists(settings().GwExecutablePath))
         { dialogs.Show(localize("App.GwNotConfigured", []), localize("App.Title", [])); return; }
+        GwCommand command;
+        try { command = buildCommand(); }
+        catch (ArgumentException)
+        {
+            dialogs.Show(localize("Advanced.Invalid", [localize("Common.Unknown", [])]), localize("App.Title", []));
+            return;
+        }
         button.Content = localize("Common.Stop", []); operation.Begin(); await operation.RenderPendingAsync(); logOutput.Clear();
         await consoleLog.BeginAsync(command.Verb, command.ToDisplayString());
         var outcome = await operation.RunAsync(token => runner.RunAsync(command, new Progress<GwOutputLine>(operation.Report), token));

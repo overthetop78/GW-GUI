@@ -6,7 +6,8 @@ internal sealed record ImageFormatDetectionContext(
     string FilePath,
     long? KnownLength,
     string Extension,
-    IReadOnlyList<DiskFormat> Candidates)
+    IReadOnlyList<DiskFormat> Candidates,
+    Func<string, Stream> OpenRead)
 {
     public DetectedImageFormat Result(string? formatId, FormatConfidence confidence, string explanationKey) =>
         new(

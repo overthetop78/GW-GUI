@@ -6,7 +6,8 @@ Ce dossier contient uniquement les travaux restant à exécuter ou les feuilles 
 
 1. [Qualité et refactorisation du code](code-quality.md)
 2. [Versionnement et publication](release.md)
-3. [Validation finale des images et du matériel](validation.md), toujours en dernier pour ce parcours.
+3. [Reconstruction des tests rapides de release](release-tests.md)
+4. [Validation finale des images et du matériel](validation.md), toujours en dernier pour ce parcours.
 
 ## Émulation
 

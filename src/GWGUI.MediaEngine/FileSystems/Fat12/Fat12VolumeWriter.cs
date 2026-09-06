@@ -84,7 +84,8 @@ public sealed class Fat12VolumeWriter
             boot[0] = FatBootSectorLayout.ShortJumpOpcode;
             boot[1] = 0x3c;
             boot[2] = 0x90;
-            System.Text.Encoding.ASCII.GetBytes("GWGUI   ").CopyTo(boot, FatBootSectorLayout.OemOffset);
+            var oem = Geometries.Msx.MsxDiskGeometryCatalog.TryFromFormatId(geometry.FormatId, out _) ? "MSX     " : "GWGUI   ";
+            System.Text.Encoding.ASCII.GetBytes(oem).CopyTo(boot, FatBootSectorLayout.OemOffset);
             BinaryPrimitives.WriteUInt16LittleEndian(boot.AsSpan(FatBootSectorLayout.BytesPerSectorOffset), FatBootSectorLayout.SectorSize);
             boot[FatBootSectorLayout.SectorsPerClusterOffset] = checked((byte)_layout.SectorsPerCluster);
             BinaryPrimitives.WriteUInt16LittleEndian(boot.AsSpan(FatBootSectorLayout.ReservedSectorCountOffset), 1);

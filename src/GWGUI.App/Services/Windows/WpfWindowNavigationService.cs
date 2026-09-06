@@ -1,6 +1,5 @@
 using GWGUI.Domain.Commands.Building;
 using GWGUI.Domain.Commands.Execution;
-using GWGUI.Domain.Hardware;
 using GWGUI.Domain.HostTools;
 using GWGUI.Domain.Settings;
 using GWGUI.App.Contracts.Services.Navigation;
@@ -19,28 +18,56 @@ namespace GWGUI.App.Services.Windows;
 public sealed class WpfWindowNavigationService : IWindowNavigationService
 {
     private readonly Window _owner;
-    private readonly IGwInstallationManager? _hostTools;
-    private readonly IGreaseweazleRunner _runner;
-    private readonly IGwCommandBuilder _commandBuilder;
+    private readonly Func<AppSettings, OptionsSection, Window> _options;
+    private readonly Func<string, Window> _logs;
+    private readonly Func<Window> _about;
+    private readonly Func<GwToolWindowRequest, Window> _tool;
+    private readonly Func<Window, Window, bool?> _show;
 
     public WpfWindowNavigationService(Window owner, IGwInstallationManager? hostTools = null, IGreaseweazleRunner? runner = null, IGwCommandBuilder? commandBuilder = null)
     {
         _owner = owner;
-        _hostTools = hostTools;
-        _runner = runner ?? new GreaseweazleRunner();
-        _commandBuilder = commandBuilder ?? new GwCommandBuilder();
+        var commandRunner = runner ?? new GreaseweazleRunner();
+        var commands = commandBuilder ?? new GwCommandBuilder();
+        _options = (settings, section) => new OptionsWindow(settings,
+            new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), commandRunner, commands), hostTools, section);
+        _logs = directory => new LogHistoryWindow(directory);
+        _about = () => new AboutWindow();
+        _tool = request => new GwToolWindow(request.Executable, request.Verb, request.Device, request.Drive,
+            commandRunner, commands, new ConsoleLogSession(request.LogsDirectory, () => request.Logging));
+        _show = (window, dialogOwner) =>
+        {
+            window.Owner = dialogOwner;
+            return window.ShowDialog();
+        };
+    }
+
+    internal WpfWindowNavigationService(Window owner,
+        Func<AppSettings, OptionsSection, Window> options, Func<string, Window> logs,
+        Func<Window> about, Func<GwToolWindowRequest, Window> tool, Func<Window, Window, bool?> show)
+    {
+        _owner = owner;
+        _options = options;
+        _logs = logs;
+        _about = about;
+        _tool = tool;
+        _show = show;
+    }
+
+    private void Show(Window window)
+    {
+        _show(window, _owner);
     }
 
     public bool ShowOptions(AppSettings settings, OptionsSection section = OptionsSection.General)
     {
-        IHardwareRegistry hardware = new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), _runner, _commandBuilder);
-        new OptionsWindow(settings, hardware, _hostTools, section) { Owner = _owner }.ShowDialog();
+        Show(_options(settings, section));
         return true;
     }
-    public void ShowLogHistory(string logsDirectory) => new LogHistoryWindow(logsDirectory) { Owner = _owner }.ShowDialog();
-    public void ShowAbout() => new AboutWindow { Owner = _owner }.ShowDialog();
+    public void ShowLogHistory(string logsDirectory) => Show(_logs(logsDirectory));
+    public void ShowAbout() => Show(_about());
     public void ShowGwTool(GwToolWindowRequest request)
     {
-        new GwToolWindow(request.Executable, request.Verb, request.Device, request.Drive, _runner, _commandBuilder, new ConsoleLogSession(request.LogsDirectory, () => request.Logging)) { Owner = _owner }.ShowDialog();
+        Show(_tool(request));
     }
 }

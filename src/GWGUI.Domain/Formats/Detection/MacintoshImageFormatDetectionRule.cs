@@ -21,7 +21,7 @@ internal sealed class MacintoshImageFormatDetectionRule : IImageFormatDetectionR
             return true;
         }
 
-        if (context.Extension == ".img" && TryDetectRawImage(context.FilePath, context.KnownLength, out var rawFormatId))
+        if (context.Extension == ".img" && TryDetectRawImage(context, out var rawFormatId))
         {
             result = context.Result(rawFormatId, FormatConfidence.Certain, "Detection.AppleContainer");
             return true;
@@ -31,13 +31,13 @@ internal sealed class MacintoshImageFormatDetectionRule : IImageFormatDetectionR
         return false;
     }
 
-    private static bool TryDetectRawImage(string filePath, long? knownLength, out string? formatId)
+    private static bool TryDetectRawImage(ImageFormatDetectionContext context, out string? formatId)
     {
-        formatId = knownLength switch { 409_600 => "mac.400", 819_200 => "mac.800", 1_474_560 => "mac.1440", _ => null };
+        formatId = context.KnownLength switch { 409_600 => "mac.400", 819_200 => "mac.800", 1_474_560 => "mac.1440", _ => null };
         if (formatId is null) return false;
         try
         {
-            using var stream = File.OpenRead(filePath);
+            using var stream = context.OpenRead(context.FilePath);
             if (stream.Length < 1026) return false;
             stream.Position = 1024;
             Span<byte> signature = stackalloc byte[2];

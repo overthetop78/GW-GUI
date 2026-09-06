@@ -10,4 +10,7 @@
     <ApplicationIcon>..\GWGUI.App\Assets\app-icon.ico</ApplicationIcon>
     <ApplicationManifest>..\GWGUI.App\app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="GWGUI.Tests" />
+  </ItemGroup>
 </Project>

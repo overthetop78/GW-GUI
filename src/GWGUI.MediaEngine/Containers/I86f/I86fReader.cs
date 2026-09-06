@@ -16,6 +16,15 @@ public sealed class I86fReader
     public async Task<I86fImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
         var data = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
+        return Read(data, cancellationToken);
+    }
+
+    /// <summary>Lit un conteneur 86F déjà chargé en mémoire.</summary>
+    public Task<I86fImage> ReadAsync(ReadOnlyMemory<byte> data, CancellationToken cancellationToken = default) =>
+        Task.FromResult(Read(data.ToArray(), cancellationToken));
+
+    private static I86fImage Read(byte[] data, CancellationToken cancellationToken)
+    {
         if (data.Length < I86fLayout.MinimumFileLength || BinaryPrimitives.ReadUInt32LittleEndian(data.AsSpan(I86fFormat.SignatureOffset, I86fFormat.SignatureLength)) != I86fFormat.Signature) throw I86fExceptions.MissingSignature(data.Length);
 
         var fileFlags = (I86fFileFlags)BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(I86fLayout.FileFlagsOffset, I86fLayout.FileFlagsLength));

@@ -29,9 +29,12 @@ public sealed class DiskImageRecognitionRegistry
     /// <exception cref="OperationCanceledException">Le jeton est annulé avant ou pendant le parcours.</exception>
     /// <exception cref="IOException">Le fichier ne peut pas être consulté ou lu.</exception>
     /// <exception cref="UnauthorizedAccessException">L'accès au fichier est refusé.</exception>
-    public async Task<SectorImage> ReadAsync(string path, string? requestedFormatId, CancellationToken cancellationToken)
+    public Task<SectorImage> ReadAsync(string path, string? requestedFormatId, CancellationToken cancellationToken)
+        => ReadAsync(new DiskImageRecognitionContext(path, requestedFormatId), cancellationToken);
+
+    /// <summary>Reconnaît une source déjà décrite en partageant sa lecture entre les politiques.</summary>
+    internal async Task<SectorImage> ReadAsync(DiskImageRecognitionContext context, CancellationToken cancellationToken)
     {
-        var context = new DiskImageRecognitionContext(path, requestedFormatId);
         var failures = new List<DiskImageRecognitionFailure>();
         foreach (var policy in policies)
         {

@@ -7,8 +7,9 @@ using System.Security.Cryptography;
 
 namespace GWGUI.Infrastructure.HostTools;
 
-public sealed partial class GwInstallationManager(HttpClient httpClient, string managedRoot) : IGwInstallationManager
+public sealed partial class GwInstallationManager(HttpClient httpClient, string managedRoot, IInstallationFileSystem? fileSystem = null) : IGwInstallationManager
 {
+    private readonly IInstallationFileSystem files = fileSystem ?? new InstallationFileSystem();
     private static readonly Uri LatestReleaseApi = new("https://api.github.com/repos/keirf/greaseweazle/releases/latest");
 
     public IReadOnlyList<HostToolsInstallation> Detect(string? configuredPath = null)
@@ -16,16 +17,16 @@ public sealed partial class GwInstallationManager(HttpClient httpClient, string 
         var candidates = new List<string?> { configuredPath, Path.Combine(AppContext.BaseDirectory, "gw.exe") };
         var path = Environment.GetEnvironmentVariable("PATH") ?? "";
         candidates.AddRange(path.Split(Path.PathSeparator, StringSplitOptions.RemoveEmptyEntries).Select(x => Path.Combine(x.Trim(), "gw.exe")));
-        if (Directory.Exists(managedRoot))
+        if (files.DirectoryExists(managedRoot))
         {
-            foreach (var versionDirectory in Directory.EnumerateDirectories(managedRoot)
+            foreach (var versionDirectory in files.EnumerateDirectories(managedRoot)
                          .Where(directory => !Path.GetFileName(directory).StartsWith(".", StringComparison.Ordinal)))
             {
                 NormalizeManagedInstallation(versionDirectory);
             }
-            candidates.AddRange(Directory.EnumerateFiles(managedRoot, "gw.exe", SearchOption.AllDirectories));
+            candidates.AddRange(files.EnumerateFiles(managedRoot, "gw.exe", SearchOption.AllDirectories));
         }
-        return candidates.Where(x => !string.IsNullOrWhiteSpace(x) && File.Exists(x)).Select(x => Path.GetFullPath(x!))
+        return candidates.Where(x => !string.IsNullOrWhiteSpace(x) && files.FileExists(x)).Select(x => Path.GetFullPath(x!))
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .Select(x => new HostToolsInstallation(x, VersionFromPath(x), IsInside(x, managedRoot))).ToArray();
     }
@@ -52,7 +53,7 @@ public sealed partial class GwInstallationManager(HttpClient httpClient, string 
 
     public async Task<HostToolsInstallation> InstallAsync(HostToolsRelease release, IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
-        Directory.CreateDirectory(managedRoot);
+        files.CreateDirectory(managedRoot);
         var destination = Path.GetFullPath(Path.Combine(managedRoot, release.Version));
         EnsureInside(destination, managedRoot);
         var existing = NormalizeManagedInstallation(destination);
@@ -60,7 +61,7 @@ public sealed partial class GwInstallationManager(HttpClient httpClient, string 
 
         var temporary = Path.GetFullPath(Path.Combine(managedRoot, ".install-" + Guid.NewGuid().ToString("N")));
         EnsureInside(temporary, managedRoot);
-        Directory.CreateDirectory(temporary);
+        files.CreateDirectory(temporary);
         try
         {
             using var request = new HttpRequestMessage(HttpMethod.Get, release.DownloadUri);
@@ -88,24 +89,24 @@ public sealed partial class GwInstallationManager(HttpClient httpClient, string 
             foreach (var entry in archive.Entries)
             {
                 var target = Path.GetFullPath(Path.Combine(temporary, entry.FullName)); EnsureInside(target, temporary);
-                if (string.IsNullOrEmpty(entry.Name)) { Directory.CreateDirectory(target); continue; }
-                Directory.CreateDirectory(Path.GetDirectoryName(target)!);
-                await using var input = entry.Open(); await using var output = File.Create(target); await input.CopyToAsync(output, cancellationToken).ConfigureAwait(false);
+                if (string.IsNullOrEmpty(entry.Name)) { files.CreateDirectory(target); continue; }
+                files.CreateDirectory(Path.GetDirectoryName(target)!);
+                await using var input = entry.Open(); await using var output = files.CreateFile(target); await input.CopyToAsync(output, cancellationToken).ConfigureAwait(false);
             }
-            var executable = Directory.EnumerateFiles(temporary, "gw.exe", SearchOption.AllDirectories).FirstOrDefault() ?? throw new InvalidDataException("gw.exe is missing from the downloaded archive.");
+            var executable = files.EnumerateFiles(temporary, "gw.exe", SearchOption.AllDirectories).FirstOrDefault() ?? throw new InvalidDataException("gw.exe is missing from the downloaded archive.");
             var payload = Path.GetDirectoryName(executable)!;
-            Directory.CreateDirectory(destination);
+            files.CreateDirectory(destination);
             PromotePayload(payload, destination);
             return new(Path.Combine(destination, "gw.exe"), release.Version, true);
         }
-        finally { if (Directory.Exists(temporary)) Directory.Delete(temporary, recursive: true); }
+        finally { if (files.DirectoryExists(temporary)) files.DeleteDirectory(temporary, recursive: true); }
     }
 
     public HostToolsSelection Select(string? currentPath, string? previousPath, HostToolsInstallation selected)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(selected.ExecutablePath);
-        if (!File.Exists(selected.ExecutablePath)) throw new FileNotFoundException("The selected gw executable does not exist.", selected.ExecutablePath);
-        var previous = !string.Equals(currentPath, selected.ExecutablePath, StringComparison.OrdinalIgnoreCase) && File.Exists(currentPath)
+        if (!files.FileExists(selected.ExecutablePath)) throw new FileNotFoundException("The selected gw executable does not exist.", selected.ExecutablePath);
+        var previous = !string.Equals(currentPath, selected.ExecutablePath, StringComparison.OrdinalIgnoreCase) && files.FileExists(currentPath)
             ? currentPath
             : previousPath;
         return new(selected.ExecutablePath, previous, selected.Version);
@@ -113,37 +114,37 @@ public sealed partial class GwInstallationManager(HttpClient httpClient, string 
 
     public HostToolsSelection Rollback(string? currentPath, string? previousPath)
     {
-        if (!File.Exists(previousPath)) throw new FileNotFoundException("The previous gw executable does not exist.", previousPath);
+        if (!files.FileExists(previousPath)) throw new FileNotFoundException("The previous gw executable does not exist.", previousPath);
         return new(previousPath, string.IsNullOrWhiteSpace(currentPath) ? null : currentPath, null);
     }
 
     private static string? VersionFromPath(string path) => VersionRegex().Match(path) is { Success: true } match ? match.Groups[1].Value : null;
-    private static string? NormalizeManagedInstallation(string destination)
+    private string? NormalizeManagedInstallation(string destination)
     {
         var direct = Path.Combine(destination, "gw.exe");
-        if (File.Exists(direct)) return direct;
-        if (!Directory.Exists(destination)) return null;
-        var nested = Directory.EnumerateFiles(destination, "gw.exe", SearchOption.AllDirectories).FirstOrDefault();
+        if (files.FileExists(direct)) return direct;
+        if (!files.DirectoryExists(destination)) return null;
+        var nested = files.EnumerateFiles(destination, "gw.exe", SearchOption.AllDirectories).FirstOrDefault();
         if (nested is null) return null;
         PromotePayload(Path.GetDirectoryName(nested)!, destination);
-        return File.Exists(direct) ? direct : nested;
+        return files.FileExists(direct) ? direct : nested;
     }
 
-    private static void PromotePayload(string payload, string destination)
+    private void PromotePayload(string payload, string destination)
     {
         if (Path.GetFullPath(payload).Equals(Path.GetFullPath(destination), StringComparison.OrdinalIgnoreCase)) return;
-        foreach (var entry in Directory.EnumerateFileSystemEntries(payload).ToArray())
+        foreach (var entry in files.EnumerateEntries(payload).ToArray())
         {
             var target = Path.Combine(destination, Path.GetFileName(entry));
-            if (Directory.Exists(entry)) Directory.Move(entry, target);
-            else File.Move(entry, target);
+            if (files.DirectoryExists(entry)) files.MoveDirectory(entry, target);
+            else files.MoveFile(entry, target);
         }
         var current = payload;
         while (!Path.GetFullPath(current).Equals(Path.GetFullPath(destination), StringComparison.OrdinalIgnoreCase)
-               && Directory.Exists(current) && !Directory.EnumerateFileSystemEntries(current).Any())
+               && files.DirectoryExists(current) && !files.EnumerateEntries(current).Any())
         {
-            var parent = Directory.GetParent(current)?.FullName;
-            Directory.Delete(current);
+            var parent = Path.GetDirectoryName(Path.GetFullPath(current));
+            files.DeleteDirectory(current);
             if (parent is null) break;
             current = parent;
         }

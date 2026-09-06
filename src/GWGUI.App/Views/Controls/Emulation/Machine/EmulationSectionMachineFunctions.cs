@@ -47,7 +47,7 @@ public sealed partial class EmulationSection
         await AddMachineAsync(selected, runtime, view, view.StopAsync);
     }
 
-    private Task AddMachineAsync(EmulationConfigurationListItem selected, EmulationMachineRuntime runtime,
+    internal Task AddMachineAsync(EmulationConfigurationListItem selected, EmulationMachineRuntime runtime,
         FrameworkElement view, Func<Task> stop)
     {
         var key = (selected.Module.Id, selected.Configuration.Id);
@@ -61,7 +61,7 @@ public sealed partial class EmulationSection
         return Task.CompletedTask;
     }
 
-    private async Task CloseMachineAsync(
+    internal async Task CloseMachineAsync(
         (string ModuleId, Guid Id) key, TabItem tab, Func<Task> stop)
     {
         if (!_openMachines.ContainsKey(key)) return;

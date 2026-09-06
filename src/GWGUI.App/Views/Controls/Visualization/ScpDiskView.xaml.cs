@@ -46,16 +46,29 @@ public partial class ScpDiskView : UserControl
 
     private void Canvas_PaintSurface(object? sender, SKPaintSurfaceEventArgs e)
     {
-        var center = new SKPoint(e.Info.Width / 2f + _panX * e.Info.Width / (float)Math.Max(1, Canvas.ActualWidth), e.Info.Height / 2f + _panY * e.Info.Height / (float)Math.Max(1, Canvas.ActualHeight));
-        _renderer.Render(e.Surface.Canvas, new ScpRenderRequest(_image, _head, SelectedTrack, e.Info.Width, e.Info.Height, center, _zoom,
-            LocExtension.Get("Visual.SideNoData", _head), LocExtension.Get("Visual.Side", _head), _mediaCategory));
+        _renderer.Render(e.Surface.Canvas, CreateRenderRequest(e.Info.Width, e.Info.Height));
+    }
+
+    internal ScpRenderRequest CreateRenderRequest(int width, int height)
+    {
+        var center = new SKPoint(width / 2f + _panX * width / (float)Math.Max(1, Canvas.ActualWidth), height / 2f + _panY * height / (float)Math.Max(1, Canvas.ActualHeight));
+        return new(_image, _head, SelectedTrack, width, height, center, _zoom,
+            LocExtension.Get("Visual.SideNoData", _head), LocExtension.Get("Visual.Side", _head), _mediaCategory);
+    }
+
+    internal void PanBy(double x, double y)
+    {
+        _panX += (float)x; _panY += (float)y; Canvas.InvalidateVisual();
     }
 
     private void Canvas_MouseWheel(object sender, MouseWheelEventArgs e) { SetZoom(_zoom * (e.Delta > 0 ? 1.12f : .89f), true); e.Handled = true; }
     private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        => SelectTrackAt(e.GetPosition(Canvas));
+
+    internal void SelectTrackAt(Point position)
     {
         var tracks = _image?.Tracks.Where(x => x.Head == _head).OrderBy(x => x.Cylinder).ToArray() ?? []; if (tracks.Length == 0) return;
-        var position = e.GetPosition(Canvas); var centerX = Canvas.ActualWidth / 2 + _panX; var centerY = Canvas.ActualHeight / 2 + _panY; var distance = Math.Sqrt(Math.Pow(position.X - centerX, 2) + Math.Pow(position.Y - centerY, 2));
+        var centerX = Canvas.ActualWidth / 2 + _panX; var centerY = Canvas.ActualHeight / 2 + _panY; var distance = Math.Sqrt(Math.Pow(position.X - centerX, 2) + Math.Pow(position.Y - centerY, 2));
         var outer = ScpMediaGeometryFunctions.FluxRadius((int)Canvas.ActualWidth, (int)Canvas.ActualHeight, _zoom, _mediaCategory); var inner = outer * .25; if (distance < inner || distance > outer) return;
         var index = Math.Clamp((int)((outer - distance) / ((outer - inner) / tracks.Length)), 0, tracks.Length - 1); SelectedTrack = tracks[index]; Canvas.InvalidateVisual(); TrackSelected?.Invoke(this, SelectedTrack);
     }
@@ -65,6 +78,6 @@ public partial class ScpDiskView : UserControl
     private void Canvas_MouseMove(object sender, MouseEventArgs e)
     {
         var position = e.GetPosition(Canvas);
-        if (_dragOrigin is Point origin && e.RightButton == MouseButtonState.Pressed) { _panX += (float)(position.X - origin.X); _panY += (float)(position.Y - origin.Y); _dragOrigin = position; Canvas.InvalidateVisual(); return; }
+        if (_dragOrigin is Point origin && e.RightButton == MouseButtonState.Pressed) { PanBy(position.X - origin.X, position.Y - origin.Y); _dragOrigin = position; return; }
     }
 }

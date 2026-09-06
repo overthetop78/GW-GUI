@@ -14,7 +14,11 @@ internal static class WozWriter
     /// <param name="tracks">Pistes binaires dans l'ordre Apple II.</param>
     /// <param name="path">Chemin du fichier de destination.</param>
     /// <param name="cancellationToken">Jeton d'annulation.</param>
-    public static async Task WriteAsync(IReadOnlyList<IReadOnlyList<bool>> tracks, string path, CancellationToken cancellationToken = default)
+    public static Task WriteAsync(IReadOnlyList<IReadOnlyList<bool>> tracks, string path, CancellationToken cancellationToken = default) =>
+        WriteAsync(tracks, path, cancellationToken, File.WriteAllBytesAsync);
+
+    internal static async Task WriteAsync(IReadOnlyList<IReadOnlyList<bool>> tracks, string path, CancellationToken cancellationToken,
+        Func<string, byte[], CancellationToken, Task> writeBytes)
     {
         if (tracks.Count == 0 || tracks.Count > WozLayout.AppleIITrackCount) throw WozExceptions.InvalidTrackCount(tracks.Count, WozLayout.AppleIITrackCount);
         for (var track = 0; track < tracks.Count; track++) if (tracks[track].Count > MaximumTrackBitCount) throw WozExceptions.TrackTooLong(track, tracks[track].Count, MaximumTrackBitCount);
@@ -27,7 +31,7 @@ internal static class WozWriter
         WozChunkWriter.Write(stream, WozFormat.TracksChunkId, CreateTracks(tracks));
         var output = stream.ToArray();
         BinaryPrimitives.WriteUInt32LittleEndian(output.AsSpan(WozLayout.CrcOffset, WozLayout.CrcLength), WozCrc32.Compute(output.AsSpan(WozLayout.ChunksOffset)));
-        await File.WriteAllBytesAsync(path, output, cancellationToken).ConfigureAwait(false);
+        await writeBytes(path, output, cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>Construit le chunk INFO WOZ1.</summary>

@@ -12,7 +12,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options"><value>_Επιλογές</value></data>
+  <data name="Menu.Options"><value>Επιλογές</value></data>
   <data name="Menu.Preferences"><value>Προτιμήσεις…</value></data>
   <data name="Menu.Diagnostics"><value>Διαγνωστικά</value></data>
   <data name="Menu.Information"><value>Πληροφορίες</value></data>
@@ -24,7 +24,7 @@
   <data name="Menu.Reset"><value>Επαναφορά</value></data>
   <data name="Menu.Delays"><value>Καθυστερήσεις…</value></data>
   <data name="Menu.Firmware"><value>Υλικολογισμικό…</value></data>
-  <data name="Menu.Help"><value>_Βοήθεια</value></data>
+  <data name="Menu.Help"><value>Βοήθεια</value></data>
   <data name="Menu.Documentation"><value>Απόδειξη με έγγραφα</value></data>
   <data name="Menu.About"><value>Για</value></data>
   <data name="Tab.Read"><value>Ανάγνωση</value></data>

@@ -6,11 +6,13 @@ using System.IO;
 
 namespace GWGUI.App.Services.Hardware;
 
-public sealed class StartupHardwareMonitor(IHardwareRegistry registry, ISettingsStore settingsStore)
+public sealed class StartupHardwareMonitor(IHardwareRegistry registry, ISettingsStore settingsStore,
+    Func<string, bool>? fileExists = null)
 {
+    private readonly Func<string, bool> exists = fileExists ?? File.Exists;
     public async Task<StartupHardwareCheckResult> CheckAsync(AppSettings settings, CancellationToken cancellationToken = default)
     {
-        if (string.IsNullOrWhiteSpace(settings.GwExecutablePath) || !File.Exists(settings.GwExecutablePath))
+        if (string.IsNullOrWhiteSpace(settings.GwExecutablePath) || !exists(settings.GwExecutablePath))
         {
             if (settings.Controllers.Count == 0) return new(false, [], []);
             foreach (var controller in settings.Controllers) controller.IsAvailable = false;

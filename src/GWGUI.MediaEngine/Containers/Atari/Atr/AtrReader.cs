@@ -7,6 +7,9 @@ namespace GWGUI.MediaEngine.Containers.Atari.Atr;
 /// <summary>Valide un conteneur ATR et expose sa charge utile sous forme de secteurs Atari adressÃ©s.</summary>
 public sealed class AtrReader
 {
+    private readonly Func<string, CancellationToken, Task<byte[]>> readBytes;
+    public AtrReader() : this(File.ReadAllBytesAsync) { }
+    internal AtrReader(Func<string, CancellationToken, Task<byte[]>> readBytes) => this.readBytes = readBytes;
     /// <summary>Lit et valide un conteneur ATR, puis restitue tous ses secteurs dans leur ordre logique.</summary>
     /// <param name="path">Chemin du conteneur ATR.</param>
     /// <param name="cancellationToken">Jeton permettant d'annuler la lecture.</param>
@@ -20,7 +23,7 @@ public sealed class AtrReader
     /// <exception cref="OperationCanceledException">Le jeton d'annulation demande l'arrÃªt de la lecture.</exception>
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
-        var data = await ReadValidatedContainerAsync(path, cancellationToken).ConfigureAwait(false);
+        var data = await ReadValidatedContainerAsync(path, cancellationToken, readBytes).ConfigureAwait(false);
         var sectorSize = BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.SectorSizeOffset));
         var payloadLength = data.Length - AtrLayout.HeaderSize;
         var sectorCount = AtrLayout.GetSectorCount(payloadLength, sectorSize);
@@ -49,9 +52,10 @@ public sealed class AtrReader
     /// <exception cref="IOException">Une erreur d'entrÃ©e-sortie survient pendant la lecture.</exception>
     /// <exception cref="InvalidDataException">Le fichier ne respecte pas la disposition ATR attendue.</exception>
     /// <exception cref="OperationCanceledException">Le jeton d'annulation demande l'arrÃªt de la lecture.</exception>
-    internal static async Task<byte[]> ReadValidatedContainerAsync(string path, CancellationToken cancellationToken)
+    internal static async Task<byte[]> ReadValidatedContainerAsync(string path, CancellationToken cancellationToken,
+        Func<string, CancellationToken, Task<byte[]>>? readBytes = null)
     {
-        var data = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
+        var data = await (readBytes ?? File.ReadAllBytesAsync)(path, cancellationToken).ConfigureAwait(false);
         ushort? observedSignature = data.Length >= sizeof(ushort) ? BinaryPrimitives.ReadUInt16LittleEndian(data.AsSpan(AtrLayout.SignatureOffset)) : null;
         if (data.Length < AtrLayout.HeaderSize || observedSignature != AtrFormat.Signature) throw AtrExceptions.InvalidHeader(data.Length, AtrLayout.HeaderSize, observedSignature, AtrFormat.Signature);
 

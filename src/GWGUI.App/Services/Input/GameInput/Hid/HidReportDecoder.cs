@@ -6,14 +6,16 @@ namespace GWGUI.App.Services.Input.GameInput;
 internal sealed class HidReportDecoder : IDisposable
 {
     private const int HidpStatusSuccess = 0x00110000;
-    private readonly SafeFileHandle _handle;
+    private readonly SafeFileHandle? _handle;
     private readonly IntPtr _preparsedData;
     private readonly HidNative.HidCaps _caps;
     private readonly IReadOnlyList<Binding> _bindings;
+    private readonly Func<Binding, byte[], (bool Success, uint Value)> _readValue;
+    private readonly Func<Binding, byte[], (bool Success, ushort[] Usages)> _readUsages;
     private bool _disposed;
 
     private HidReportDecoder(
-        SafeFileHandle handle,
+        SafeFileHandle? handle,
         IntPtr preparsedData,
         HidNative.HidCaps caps,
         IReadOnlyList<Binding> bindings)
@@ -22,7 +24,18 @@ internal sealed class HidReportDecoder : IDisposable
         _preparsedData = preparsedData;
         _caps = caps;
         _bindings = bindings;
+        _readValue = ReadNativeValue;
+        _readUsages = ReadNativeUsages;
         Controls = bindings.Select(binding => binding.Descriptor).ToArray();
+    }
+
+    internal HidReportDecoder(ushort reportLength, IReadOnlyList<Binding> bindings,
+        Func<Binding, byte[], (bool Success, uint Value)> readValue,
+        Func<Binding, byte[], (bool Success, ushort[] Usages)> readUsages)
+        : this(null, IntPtr.Zero, new HidNative.HidCaps { InputReportByteLength = reportLength }, bindings)
+    {
+        _readValue = readValue;
+        _readUsages = readUsages;
     }
 
     internal IReadOnlyList<GameInputControlDescriptor> Controls { get; }
@@ -117,6 +130,13 @@ internal sealed class HidReportDecoder : IDisposable
 
     private GameInputControlValue ReadButton(Binding binding, byte[] report)
     {
+        var (success, usages) = _readUsages(binding, report);
+        return new GameInputControlValue(binding.Descriptor.Type, binding.Descriptor.Index,
+            binding.Descriptor.Label, success && usages.Contains(binding.Usage) ? 1f : 0f);
+    }
+
+    private (bool Success, ushort[] Usages) ReadNativeUsages(Binding binding, byte[] report)
+    {
         var usages = new ushort[Math.Max(1, binding.UsageCount)];
         uint count = (uint)usages.Length;
         var status = HidNative.HidP_GetUsages(
@@ -128,37 +148,19 @@ internal sealed class HidReportDecoder : IDisposable
             _preparsedData,
             report,
             (uint)report.Length);
-        var pressed = status == HidpStatusSuccess &&
-            usages.AsSpan(0, checked((int)Math.Min(count, (uint)usages.Length)))
-                .Contains(binding.Usage);
-        return new GameInputControlValue(
-            binding.Descriptor.Type,
-            binding.Descriptor.Index,
-            binding.Descriptor.Label,
-            pressed ? 1f : 0f);
+        return (status == HidpStatusSuccess, usages[..checked((int)Math.Min(count, (uint)usages.Length))]);
     }
 
     private GameInputControlValue ReadAxis(Binding binding, byte[] report)
     {
-        var status = HidNative.HidP_GetUsageValue(
-            HidNative.HidReportType.Input,
-            binding.UsagePage,
-            binding.LinkCollection,
-            binding.Usage,
-            out var rawValue,
-            _preparsedData,
-            report,
-            (uint)report.Length);
-        if (status != HidpStatusSuccess) return Neutral(binding);
+        var (success, rawValue) = _readValue(binding, report);
+        if (!success) return Neutral(binding);
         var value = SignExtend(rawValue, binding.BitSize, binding.LogicalMinimum < 0);
-        return new GameInputControlValue(
-            binding.Descriptor.Type,
-            binding.Descriptor.Index,
-            binding.Descriptor.Label,
-            Normalize(value, binding.LogicalMinimum, binding.LogicalMaximum));
+        return new GameInputControlValue(binding.Descriptor.Type, binding.Descriptor.Index,
+            binding.Descriptor.Label, Normalize(value, binding.LogicalMinimum, binding.LogicalMaximum));
     }
 
-    private GameInputControlValue ReadSwitch(Binding binding, byte[] report)
+    private (bool Success, uint Value) ReadNativeValue(Binding binding, byte[] report)
     {
         var status = HidNative.HidP_GetUsageValue(
             HidNative.HidReportType.Input,
@@ -169,7 +171,13 @@ internal sealed class HidReportDecoder : IDisposable
             _preparsedData,
             report,
             (uint)report.Length);
-        if (status != HidpStatusSuccess) return Neutral(binding);
+        return (status == HidpStatusSuccess, rawValue);
+    }
+
+    private GameInputControlValue ReadSwitch(Binding binding, byte[] report)
+    {
+        var (success, rawValue) = _readValue(binding, report);
+        if (!success) return Neutral(binding);
         var value = SignExtend(rawValue, binding.BitSize, binding.LogicalMinimum < 0);
         var ordinal = value - binding.LogicalMinimum;
         var position = DecodeHat(value, binding.LogicalMinimum);
@@ -341,11 +349,11 @@ internal sealed class HidReportDecoder : IDisposable
     {
         if (_disposed) return;
         _disposed = true;
-        HidNative.HidD_FreePreparsedData(_preparsedData);
-        _handle.Dispose();
+        if (_preparsedData != IntPtr.Zero) HidNative.HidD_FreePreparsedData(_preparsedData);
+        _handle?.Dispose();
     }
 
-    private sealed record Binding(
+    internal sealed record Binding(
         GameInputControlDescriptor Descriptor,
         byte ReportId,
         ushort UsagePage,

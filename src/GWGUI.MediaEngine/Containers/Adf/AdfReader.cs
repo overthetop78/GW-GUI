@@ -8,12 +8,21 @@ namespace GWGUI.MediaEngine.Containers.Adf;
 /// <summary>Lit les conteneurs ADF Acorn et Amiga dont la géométrie est déterminée par la taille exacte.</summary>
 public sealed class AdfReader
 {
+    private readonly Func<string, CancellationToken, Task<byte[]>> readBytes;
+
+    public AdfReader() : this(File.ReadAllBytesAsync) { }
+
+    internal AdfReader(Func<string, CancellationToken, Task<byte[]>> readBytes)
+    {
+        this.readBytes = readBytes ?? throw new ArgumentNullException(nameof(readBytes));
+    }
+
     private static readonly int[] AcceptedSizes = [AcornAdfGeometry.Capacity, AcornAdfGeometry.PaddedCapacity, AmigaAdfGeometry.DoubleDensityCapacity, AmigaAdfGeometry.HighDensityCapacity];
 
     /// <summary>Lit le fichier et reconstruit ses secteurs avec une numérotation commençant à zéro.</summary>
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
-        var data = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
+        var data = await readBytes(path, cancellationToken).ConfigureAwait(false);
         if (data.Length == AcornAdfGeometry.Capacity) return RegularSectorImageBuilder.Create(data, AcornAdfGeometry.Geometry, cancellationToken);
         if (data.Length == AcornAdfGeometry.PaddedCapacity) return RegularSectorImageBuilder.Create(data, AcornAdfGeometry.Geometry, cancellationToken, AcornAdfGeometry.PaddedTrailingByteCount);
         if (data.Length == AmigaAdfGeometry.DoubleDensity.Capacity) return RegularSectorImageBuilder.Create(data, AmigaAdfGeometry.DoubleDensity, cancellationToken);

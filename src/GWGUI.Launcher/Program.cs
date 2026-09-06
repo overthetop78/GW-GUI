@@ -14,24 +14,14 @@ internal static class Program
         AssemblyLoadContext.Default.Resolving += ResolveAssembly;
         AddLibraryDirectoriesToPath();
 
-        var application = AssemblyLoadContext.Default.LoadFromAssemblyPath(Path.Combine(LibraryDirectory, "gwgui.app.dll"));
-        var entryPoint = application.EntryPoint ?? throw new InvalidOperationException("gwgui.app.dll has no entry point.");
-        var parameters = entryPoint.GetParameters().Length == 0 ? null : new object?[] { args };
-        var result = entryPoint.Invoke(null, parameters);
-        return result is int exitCode ? exitCode : 0;
+        return LauncherPolicy.Run(AppContext.BaseDirectory, args,
+            path => AssemblyLoadContext.Default.LoadFromAssemblyPath(path).EntryPoint);
     }
 
     private static Assembly? ResolveAssembly(AssemblyLoadContext context, AssemblyName name)
     {
-        if (name.Name is null) return null;
-        if (name.Name.EndsWith(".resources", StringComparison.OrdinalIgnoreCase)
-            && !string.IsNullOrWhiteSpace(name.CultureName))
-        {
-            var resource = Path.Combine(AppContext.BaseDirectory, "Languages", $"{name.CultureName}.dll");
-            if (File.Exists(resource)) return context.LoadFromAssemblyPath(resource);
-        }
-        if (!Directory.Exists(LibraryDirectory)) return null;
-        var path = Directory.EnumerateFiles(LibraryDirectory, $"{name.Name}.dll", SearchOption.AllDirectories).FirstOrDefault();
+        var path = LauncherPolicy.ResolveAssemblyPath(AppContext.BaseDirectory, name, File.Exists, Directory.Exists,
+            (directory, pattern) => Directory.EnumerateFiles(directory, pattern, SearchOption.AllDirectories));
         return path is null ? null : context.LoadFromAssemblyPath(path);
     }
 

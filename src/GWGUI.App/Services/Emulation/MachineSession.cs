@@ -87,6 +87,7 @@ internal sealed class MachineSession : IAsyncDisposable
 
     internal async Task InsertAsync(EmulationMedia media, bool requiresMachineRecreation)
     {
+        ObjectDisposedException.ThrowIf(_disposed, this);
         var next = _mountedMedia.Where(item => item.Slot != media.Slot).Append(media).ToArray();
         if (IsPowered && requiresMachineRecreation) await RecreateRunningMachineAsync(next);
         else if (IsPowered) await _machine.Media.InsertAsync(media);
@@ -96,6 +97,7 @@ internal sealed class MachineSession : IAsyncDisposable
 
     internal async Task EjectAsync(EmulationMediaSlot slot, bool requiresMachineRecreation)
     {
+        ObjectDisposedException.ThrowIf(_disposed, this);
         var next = _mountedMedia.Where(item => item.Slot != slot).ToArray();
         if (IsPowered && requiresMachineRecreation) await RecreateRunningMachineAsync(next);
         else if (IsPowered) await _machine.Media.EjectAsync(slot);
@@ -158,6 +160,7 @@ internal sealed class MachineSession : IAsyncDisposable
         {
             await _machine.DisposeAsync();
             _hasLiveMachine = false;
+            IsPowered = false;
         }
     }
 }

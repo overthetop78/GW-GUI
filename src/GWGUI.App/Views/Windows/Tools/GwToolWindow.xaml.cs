@@ -26,8 +26,10 @@ public partial class GwToolWindow : Window
     private readonly Dictionary<string, CheckBox> _checks = [];
     private bool _closeWhenOperationStops;
     private bool _operationHasStopped;
+    private readonly Func<string, string, bool> _confirm;
+    private readonly Action<Exception, string> _logError;
 
-    public GwToolWindow(string executable, string verb, string? device = null, string? drive = null, IGreaseweazleRunner? runner = null, IGwCommandBuilder? commandBuilder = null, ConsoleLogSession? consoleLog = null)
+    public GwToolWindow(string executable, string verb, string? device = null, string? drive = null, IGreaseweazleRunner? runner = null, IGwCommandBuilder? commandBuilder = null, ConsoleLogSession? consoleLog = null, Func<string, string, bool>? confirm = null, Action<Exception, string>? logError = null)
     {
         InitializeComponent();
         _executable = executable;
@@ -37,6 +39,8 @@ public partial class GwToolWindow : Window
         _runner = runner ?? new GreaseweazleRunner();
         _commandBuilder = commandBuilder ?? new GwCommandBuilder();
         _consoleLog = consoleLog;
+        _confirm = confirm ?? ((message, title) => MessageBox.Show(this, message, title, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes);
+        _logError = logError ?? ((exception, context) => ErrorLog.Write(exception, context));
         Heading.Text = Title = TitleFor(verb);
         CreateParameters(); UpdateCommand();
     }
@@ -101,11 +105,13 @@ public partial class GwToolWindow : Window
         catch (ArgumentException) { CommandText.Text = L("Tool.InvalidParameters"); ExecuteButton.IsEnabled = false; Summary.Text = L("Tool.InvalidParametersHelp"); }
     }
 
-    private async void Execute_Click(object sender, RoutedEventArgs e)
+    private async void Execute_Click(object sender, RoutedEventArgs e) => await ExecuteAsync();
+
+    internal async Task ExecuteAsync()
     {
         if (_runner.IsRunning)
         {
-            if (MessageBox.Show(this, LocExtension.Get("Operation.StopConfirm"), LocExtension.Get("Operation.StopTitle"), MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes) _cancellation?.Cancel();
+            if (_confirm(LocExtension.Get("Operation.StopConfirm"), LocExtension.Get("Operation.StopTitle"))) _cancellation?.Cancel();
             return;
         }
         _cancellation = new CancellationTokenSource();
@@ -115,7 +121,7 @@ public partial class GwToolWindow : Window
         var progress = new Progress<GwOutputLine>(line => { RawOutput.AppendText(line.Text + Environment.NewLine); RawOutput.ScrollToEnd(); if (_consoleLog is not null) _ = _consoleLog.AppendAsync(line.Text); });
         try
         {
-            if (_verb == "update" && Checked("bootloader") && MessageBox.Show(this, L("Tool.BootloaderWarning"), L("Tool.BootloaderTitle"), MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes) return;
+            if (_verb == "update" && Checked("bootloader") && !_confirm(L("Tool.BootloaderWarning"), L("Tool.BootloaderTitle"))) return;
             var command = BuildCommand();
             if (_consoleLog is not null) await _consoleLog.BeginAsync(_verb, command.ToDisplayString());
             var result = await _runner.RunAsync(command, progress, _cancellation.Token);
@@ -129,7 +135,7 @@ public partial class GwToolWindow : Window
         }
         catch (Exception exception)
         {
-            ErrorLog.Write(exception, $"Running GW tool '{_verb}'");
+            _logError(exception, $"Running GW tool '{_verb}'");
             var detail = ExceptionDescriptionFunctions.Describe(exception);
             Summary.Text = LocExtension.Get("Error.Unexpected", detail);
             if (_consoleLog is not null) await _consoleLog.AppendAsync(Summary.Text);

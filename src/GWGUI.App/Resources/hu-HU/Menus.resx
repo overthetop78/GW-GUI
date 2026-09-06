@@ -12,7 +12,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options"><value>_Opciók</value></data>
+  <data name="Menu.Options"><value>Opciók</value></data>
   <data name="Menu.Preferences"><value>Beállítások…</value></data>
   <data name="Menu.Diagnostics"><value>Diagnosztika</value></data>
   <data name="Menu.Information"><value>Információ</value></data>
@@ -21,7 +21,7 @@
   <data name="Menu.Seek"><value>Keresd a fejet…</value></data>
   <data name="Menu.Hardware"><value>Hardver</value></data>
 <data name="Menu.Delays"><value>Késések…</value></data>
-<data name="Menu.Help"><value>_Segítség</value></data>
+<data name="Menu.Help"><value>Segítség</value></data>
   <data name="Menu.Documentation"><value>Dokumentáció</value></data>
   <data name="Menu.About"><value>Körülbelül</value></data>
   <data name="Tab.Read"><value>Olvas</value></data>

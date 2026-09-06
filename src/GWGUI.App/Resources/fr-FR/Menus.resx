@@ -21,7 +21,7 @@
   <data name="Menu.Pins"><value>Broches…</value></data>
   <data name="Menu.Reset"><value>Réinitialiser</value></data>
   <data name="Menu.Delays"><value>Temporisations…</value></data>
-<data name="Menu.Help"><value>_Aide</value></data>
+<data name="Menu.Help"><value>Aide</value></data>
 <data name="Menu.About"><value>À propos</value></data>
   <data name="Tab.Read"><value>Lecture</value></data>
   <data name="Tab.Write"><value>Écriture</value></data>

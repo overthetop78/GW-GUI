@@ -11,6 +11,15 @@ namespace GWGUI.MediaEngine.Containers.Raw;
 /// <summary>Lit les images IMG ambiguës et départage les interprétations IBM, Amstrad CPC et Amstrad PCW prises en charge.</summary>
 internal sealed class RawImgReader
 {
+    private readonly Func<string, CancellationToken, Task<byte[]>> readBytes;
+
+    public RawImgReader() : this(File.ReadAllBytesAsync) { }
+
+    internal RawImgReader(Func<string, CancellationToken, Task<byte[]>> readBytes)
+    {
+        this.readBytes = readBytes ?? throw new ArgumentNullException(nameof(readBytes));
+    }
+
     /// <summary>Lit le fichier IMG puis conserve ou réidentifie l'image construite par le Reader IBM selon son contenu.</summary>
     /// <param name="path">Chemin de l'image IMG brute.</param>
     /// <param name="cancellationToken">Jeton permettant d'annuler la lecture et la construction.</param>
@@ -18,7 +27,7 @@ internal sealed class RawImgReader
     /// <exception cref="InvalidDataException">La géométrie ne peut pas être déterminée par le Reader IBM.</exception>
     public async Task<SectorImage> ReadAsync(string path, CancellationToken cancellationToken = default)
     {
-        var bytes = await File.ReadAllBytesAsync(path, cancellationToken).ConfigureAwait(false);
+        var bytes = await readBytes(path, cancellationToken).ConfigureAwait(false);
         var hasFatBpb = FatBpbGeometryDetector.TryDetect(bytes, bytes.Length, out _);
         var geometry = IbmRawImageGeometryDetector.Detect(bytes);
         var image = IbmRawSectorImageBuilder.Create(bytes, geometry, cancellationToken);

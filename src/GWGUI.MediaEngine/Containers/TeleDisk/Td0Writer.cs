@@ -4,8 +4,9 @@ using GWGUI.MediaEngine.SectorImages;
 namespace GWGUI.MediaEngine.Containers.TeleDisk;
 
 /// <summary>Écrit des conteneurs TeleDisk non compressés en conservant les enregistrements détaillés.</summary>
-public sealed class Td0Writer
+public sealed class Td0Writer(GWGUI.MediaEngine.Containers.Storage.IAtomicImageFileWriter? fileSystem = null)
 {
+    private readonly GWGUI.MediaEngine.Containers.Storage.IAtomicImageFileWriter files = fileSystem ?? new GWGUI.MediaEngine.Containers.Storage.AtomicImageFileWriter();
     /// <summary>Écrit atomiquement une image sectorielle avec une carte TeleDisk standard.</summary>
     public Task WriteAsync(SectorImage image, string path, CancellationToken cancellationToken = default) => WriteAsync(CreateDetailedImage(image), path, cancellationToken);
 
@@ -13,19 +14,7 @@ public sealed class Td0Writer
     public async Task WriteAsync(Td0Image image, string path, CancellationToken cancellationToken = default)
     {
         var bytes = Build(image, cancellationToken);
-        var fullPath = Path.GetFullPath(path);
-        var directory = Path.GetDirectoryName(fullPath) ?? Directory.GetCurrentDirectory();
-        Directory.CreateDirectory(directory);
-        var temporaryPath = Path.Combine(directory, $".{Path.GetFileName(fullPath)}.{Guid.NewGuid():N}.tmp");
-        try
-        {
-            await File.WriteAllBytesAsync(temporaryPath, bytes, cancellationToken).ConfigureAwait(false);
-            File.Move(temporaryPath, fullPath, true);
-        }
-        finally
-        {
-            if (File.Exists(temporaryPath)) File.Delete(temporaryPath);
-        }
+        await files.WriteAsync(path, (stream, token) => stream.WriteAsync(bytes, token).AsTask(), cancellationToken).ConfigureAwait(false);
     }
 
     internal static byte[] Build(Td0Image image, CancellationToken cancellationToken = default)

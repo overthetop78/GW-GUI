@@ -12,7 +12,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options"><value>_Alternativ</value></data>
+  <data name="Menu.Options"><value>Alternativ</value></data>
   <data name="Menu.Preferences"><value>Inställningar...</value></data>
   <data name="Menu.Diagnostics"><value>Diagnostik</value></data>
 <data name="Menu.Bandwidth"><value>USB bandbredd</value></data>
@@ -23,7 +23,7 @@
   <data name="Menu.Reset"><value>Återställa</value></data>
   <data name="Menu.Delays"><value>Förseningar...</value></data>
   <data name="Menu.Firmware"><value>Firmware...</value></data>
-  <data name="Menu.Help"><value>_Hjälp</value></data>
+  <data name="Menu.Help"><value>Hjälp</value></data>
   <data name="Menu.Documentation"><value>Dokumentation</value></data>
   <data name="Menu.About"><value>Om</value></data>
   <data name="Tab.Read"><value>Läsa</value></data>

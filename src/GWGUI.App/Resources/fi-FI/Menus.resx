@@ -12,7 +12,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options"><value>_Vaihtoehdot</value></data>
+  <data name="Menu.Options"><value>Vaihtoehdot</value></data>
   <data name="Menu.Preferences"><value>Asetukset…</value></data>
   <data name="Menu.Diagnostics"><value>Diagnostiikka</value></data>
   <data name="Menu.Information"><value>Tiedot</value></data>
@@ -24,7 +24,7 @@
   <data name="Menu.Reset"><value>Nollaa</value></data>
   <data name="Menu.Delays"><value>Viiveet…</value></data>
   <data name="Menu.Firmware"><value>Laiteohjelmisto…</value></data>
-  <data name="Menu.Help"><value>_Auttaa</value></data>
+  <data name="Menu.Help"><value>Auttaa</value></data>
   <data name="Menu.Documentation"><value>Dokumentaatio</value></data>
   <data name="Menu.About"><value>Noin</value></data>
   <data name="Tab.Read"><value>Lukea</value></data>

@@ -5,13 +5,14 @@ using GWGUI.MediaEngine.SectorImages;
 namespace GWGUI.MediaEngine.Containers.Apple.Raw;
 
 /// <summary>Écrit les images sectorielles brutes Macintosh GCR 400/800 Kio et MFM 1,44 Mio.</summary>
-public sealed class MacintoshRawImageWriter
+public sealed class MacintoshRawImageWriter(GWGUI.MediaEngine.Containers.Storage.IAtomicImageFileWriter? fileSystem = null)
 {
+    private readonly GWGUI.MediaEngine.Containers.Storage.IAtomicImageFileWriter files = fileSystem ?? new GWGUI.MediaEngine.Containers.Storage.AtomicImageFileWriter();
     /// <summary>Valide la géométrie et l'ordre zoné ou linéaire avant l'écriture atomique.</summary>
     public async Task WriteAsync(SectorImage image, string path, CancellationToken cancellationToken = default)
     {
         var bytes = BuildPayload(image);
-        await AppleRawImageWriter.WriteAtomicallyAsync(path, bytes, cancellationToken).ConfigureAwait(false);
+        await files.WriteAsync(path, (stream, token) => stream.WriteAsync(bytes, token).AsTask(), cancellationToken).ConfigureAwait(false);
     }
 
     /// <summary>Construit les octets bruts dans l'ordre logique Macintosh.</summary>

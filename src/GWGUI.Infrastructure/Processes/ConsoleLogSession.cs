@@ -3,8 +3,11 @@ using System.Text;
 
 namespace GWGUI.Infrastructure.Processes;
 
-public sealed class ConsoleLogSession(string directory, Func<OperationLogSettings> settingsProvider)
+public sealed class ConsoleLogSession(string directory, Func<OperationLogSettings> settingsProvider,
+    ILogFileSystem? fileSystem = null, Func<DateTimeOffset>? clock = null)
 {
+    private readonly ILogFileSystem files = fileSystem ?? new LogFileSystem();
+    private readonly Func<DateTimeOffset> now = clock ?? (() => DateTimeOffset.Now);
     private readonly SemaphoreSlim gate = new(1, 1);
     private string? activePath;
     private string? activeAction;
@@ -15,7 +18,7 @@ public sealed class ConsoleLogSession(string directory, Func<OperationLogSetting
         activePath = Path.Combine(directory, activeAction + ".log");
         await AppendAsync("", false).ConfigureAwait(false);
         await AppendAsync(new string('=', 80), false).ConfigureAwait(false);
-        await AppendAsync($"{DateTimeOffset.Now:O}", false).ConfigureAwait(false);
+        await AppendAsync($"{now():O}", false).ConfigureAwait(false);
         await AppendAsync("> " + command, false).ConfigureAwait(false);
     }
 
@@ -32,9 +35,9 @@ public sealed class ConsoleLogSession(string directory, Func<OperationLogSetting
         await gate.WaitAsync().ConfigureAwait(false);
         try
         {
-            Directory.CreateDirectory(directory);
+            files.CreateDirectory(directory);
             var maximumBytes = Math.Max(0L, settings.MaximumKilobytes) * 1024L;
-            if (maximumBytes > 0 && File.Exists(activePath) && new FileInfo(activePath).Length + Encoding.UTF8.GetByteCount(entry) > maximumBytes)
+            if (maximumBytes > 0 && files.Exists(activePath) && files.Length(activePath) + Encoding.UTF8.GetByteCount(entry) > maximumBytes)
             {
                 if (settings.KeepArchives) Archive(activePath);
                 else
@@ -43,16 +46,16 @@ public sealed class ConsoleLogSession(string directory, Func<OperationLogSetting
                     return;
                 }
             }
-            if (!File.Exists(activePath) || maximumBytes == 0 || new FileInfo(activePath).Length + Encoding.UTF8.GetByteCount(entry) <= maximumBytes)
-                await File.AppendAllTextAsync(activePath, entry, new UTF8Encoding(false)).ConfigureAwait(false);
+            if (!files.Exists(activePath) || maximumBytes == 0 || files.Length(activePath) + Encoding.UTF8.GetByteCount(entry) <= maximumBytes)
+                await files.AppendAsync(activePath, entry).ConfigureAwait(false);
         }
         catch (Exception exception) when (exception is IOException or UnauthorizedAccessException) { }
         finally { gate.Release(); }
     }
 
-    private static async Task TrimOldestLinesAsync(string path, string incoming, long maximumBytes)
+    private async Task TrimOldestLinesAsync(string path, string incoming, long maximumBytes)
     {
-        var lines = (await File.ReadAllLinesAsync(path).ConfigureAwait(false)).Append(incoming.TrimEnd('\r', '\n')).ToArray();
+        var lines = (await files.ReadLinesAsync(path).ConfigureAwait(false)).Append(incoming.TrimEnd('\r', '\n')).ToArray();
         var retained = new Stack<string>();
         long size = 0;
         for (var index = lines.Length - 1; index >= 0; index--)
@@ -63,17 +66,17 @@ public sealed class ConsoleLogSession(string directory, Func<OperationLogSetting
             retained.Push(lines[index]);
             size += lineSize;
         }
-        await File.WriteAllLinesAsync(path, retained, new UTF8Encoding(false)).ConfigureAwait(false);
+        await files.WriteLinesAsync(path, retained).ConfigureAwait(false);
     }
 
-    private static void Archive(string path)
+    private void Archive(string path)
     {
         var folder = Path.GetDirectoryName(path)!;
         var name = Path.GetFileNameWithoutExtension(path);
-        var stamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
+        var stamp = now().ToString("yyyy-MM-dd_HH-mm-ss");
         var archive = Path.Combine(folder, $"{name}-{stamp}.log");
-        for (var suffix = 2; File.Exists(archive); suffix++) archive = Path.Combine(folder, $"{name}-{stamp}-{suffix}.log");
-        File.Move(path, archive);
+        for (var suffix = 2; files.Exists(archive); suffix++) archive = Path.Combine(folder, $"{name}-{stamp}-{suffix}.log");
+        files.Move(path, archive);
     }
 
     private static string SafeName(string action)

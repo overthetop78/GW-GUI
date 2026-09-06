@@ -3,25 +3,14 @@ using System.Buffers.Binary;
 namespace GWGUI.MediaEngine.Containers.Amstrad.CpcDsk;
 
 /// <summary>Écrit les conteneurs CPCEMU DSK standard et EDSK en conservant leurs descripteurs.</summary>
-public sealed class CpcDskWriter
+public sealed class CpcDskWriter(GWGUI.MediaEngine.Containers.Storage.IAtomicImageFileWriter? fileSystem = null)
 {
+    private readonly GWGUI.MediaEngine.Containers.Storage.IAtomicImageFileWriter files = fileSystem ?? new GWGUI.MediaEngine.Containers.Storage.AtomicImageFileWriter();
     /// <summary>Valide puis écrit atomiquement le modèle de conteneur fourni.</summary>
     public async Task WriteAsync(CpcDskImage image, string path, CancellationToken cancellationToken = default)
     {
         var bytes = Build(image);
-        var fullPath = Path.GetFullPath(path);
-        var directory = Path.GetDirectoryName(fullPath) ?? Directory.GetCurrentDirectory();
-        Directory.CreateDirectory(directory);
-        var temporaryPath = Path.Combine(directory, $".{Path.GetFileName(fullPath)}.{Guid.NewGuid():N}.tmp");
-        try
-        {
-            await File.WriteAllBytesAsync(temporaryPath, bytes, cancellationToken).ConfigureAwait(false);
-            File.Move(temporaryPath, fullPath, true);
-        }
-        finally
-        {
-            if (File.Exists(temporaryPath)) File.Delete(temporaryPath);
-        }
+        await files.WriteAsync(path, (stream, token) => stream.WriteAsync(bytes, token).AsTask(), cancellationToken).ConfigureAwait(false);
     }
 
     private static byte[] Build(CpcDskImage image)

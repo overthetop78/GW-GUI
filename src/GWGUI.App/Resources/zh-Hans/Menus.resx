@@ -12,7 +12,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
-  <data name="Menu.Options"><value>_选项</value></data>
+  <data name="Menu.Options"><value>选项</value></data>
   <data name="Menu.Preferences"><value>偏好设置...</value></data>
   <data name="Menu.Diagnostics"><value>诊断</value></data>
   <data name="Menu.Information"><value>信息</value></data>
@@ -24,7 +24,7 @@
   <data name="Menu.Reset"><value>重置</value></data>
   <data name="Menu.Delays"><value>延误……</value></data>
   <data name="Menu.Firmware"><value>固件…</value></data>
-  <data name="Menu.Help"><value>_帮助</value></data>
+  <data name="Menu.Help"><value>帮助</value></data>
   <data name="Menu.Documentation"><value>文档</value></data>
   <data name="Menu.About"><value>关于</value></data>
   <data name="Tab.Read"><value>读</value></data>

@@ -7,8 +7,9 @@ using GWGUI.App.Services.Logging;
 
 namespace GWGUI.App.Presenters.Operations;
 
-public sealed class OperationResultPresenter
+public sealed class OperationResultPresenter(Action<Exception, string>? logError = null)
 {
+    private readonly Action<Exception, string> writeError = logError ?? ((error, context) => ErrorLog.Write(error, context));
     public OperationResultPresentation Present(OperationOutcome<GwExecutionResult> outcome)
     {
         if (outcome.Error is { } error) return Error(error);
@@ -42,9 +43,9 @@ public sealed class OperationResultPresenter
         return new(state, messages);
     }
 
-    private static OperationResultPresentation Error(Exception error)
+    private OperationResultPresentation Error(Exception error)
     {
-        ErrorLog.Write(error, "Running Greaseweazle operation");
+        writeError(error, "Running Greaseweazle operation");
         var detail = ExceptionDescriptionFunctions.Describe(error);
         return new(OperationResultState.Error, [new("Error.Unexpected", [detail])]);
     }

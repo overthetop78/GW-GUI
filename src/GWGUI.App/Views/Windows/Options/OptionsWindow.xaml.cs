@@ -72,6 +72,7 @@ public partial class OptionsWindow : Window
     private bool _initializing = true;
     private readonly ISettingsStore _settingsStore;
     private readonly SemaphoreSlim _saveLock = new(1, 1);
+    private readonly Action<Exception> _reportSaveError;
     private bool _closingAfterSave;
     private bool _closeInProgress;
     private EmulationMachineEditingContext? _emulationEditingContext;
@@ -80,51 +81,53 @@ public partial class OptionsWindow : Window
     public ObservableCollection<ProfileOptionRow> WriteProfiles => _profileOptionsController.Write;
     public ObservableCollection<ProfileOptionRow> ConvertProfiles => _profileOptionsController.Convert;
     public ObservableCollection<LogOptionRow> LogOptions => _loggingOptionsController.Options;
-    public OptionsWindow(AppSettings settings, IHardwareRegistry? hardwareRegistry = null, IGwInstallationManager? hostTools = null, OptionsSection section = OptionsSection.General, ISettingsStore? settingsStore = null)
+    public OptionsWindow(AppSettings settings, IHardwareRegistry? hardwareRegistry = null, IGwInstallationManager? hostTools = null, OptionsSection section = OptionsSection.General, ISettingsStore? settingsStore = null, string? dataDirectory = null, Func<string?, bool>? fileExists = null, Action<Exception>? reportSaveError = null)
     {
         InitializeComponent();
         ConnectSections();
         _settings = settings;
+        var directory = dataDirectory ?? StoragePaths.DataDirectory;
+        _reportSaveError = reportSaveError ?? (error => ShowLoggedError(error, "Saving Options", "Error.Title", MessageBoxImage.Warning));
         _generalOptionsController = new GeneralOptionsController(
             this,
             GeneralSection,
             settings,
             () => _initializing,
-            PersistSettingsAsync,
+            SaveFromEditorAsync,
             RefreshLocalizedContent,
             (key, arguments) => LocExtension.Get(key, arguments));
-        EmulationSection.Configure(settings, PersistSettingsAsync);
+        EmulationSection.Configure(settings, SaveFromEditorAsync);
         _profileState = new ProfileOptionsState(settings.Profiles);
         _profileOptionsController = new ProfileOptionsController(
             this,
             ProfilesSection,
             _profileState,
-            PersistSettingsAsync,
+            SaveFromEditorAsync,
             (key, arguments) => LocExtension.Get(key, arguments));
         _tagOptionsController = new TagOptionsController(
             GeneralSection,
             settings,
             () => _initializing,
-            PersistSettingsAsync,
+            SaveFromEditorAsync,
             (key, arguments) => LocExtension.Get(key, arguments));
         _loggingOptionsController = new LoggingOptionsController(
             LogsSection,
             settings,
             () => _initializing,
-            PersistSettingsAsync,
+            SaveFromEditorAsync,
             key => LocExtension.Get(key),
-            exception => ShowLoggedError(exception, "Opening Logs folder", "Error.Title", MessageBoxImage.Warning));
-        _settingsStore = settingsStore ?? new JsonSettingsStore(Path.Combine(StoragePaths.DataDirectory, "settings.json"));
-        var managedRoot = StoragePaths.HostToolsDirectory;
+            exception => ShowLoggedError(exception, "Opening Logs folder", "Error.Title", MessageBoxImage.Warning), Path.Combine(directory, "Logs"));
+        _settingsStore = settingsStore ?? new JsonSettingsStore(Path.Combine(directory, "settings.json"));
+        var managedRoot = Path.Combine(directory, "Greaseweazle");
         var hostToolsManager = hostTools ?? new GwInstallationManager(new HttpClient(), managedRoot);
         _hostToolsOptionsController = new HostToolsOptionsController(
             this,
             HardwareSection,
             settings,
             hostToolsManager,
-            PersistSettingsAsync,
+            SaveFromEditorAsync,
             exception => ShowLoggedError(exception, "Managing Host Tools", "HostTools.Title", MessageBoxImage.Error),
-            (key, arguments) => LocExtension.Get(key, arguments));
+            (key, arguments) => LocExtension.Get(key, arguments), fileExists);
         _hardwareRegistry = hardwareRegistry ?? new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), new GreaseweazleRunner());
         _hardwareState = new HardwareOptionsState(settings);
         _controllers = _hardwareState.Controllers;
@@ -137,13 +140,13 @@ public partial class OptionsWindow : Window
             Hardware,
             _hardwareRegistry,
             () => _hostToolsOptionsController.CurrentPath,
-            PersistSettingsAsync,
+            SaveFromEditorAsync,
             ShowLoggedError);
         _engineOptionsController = new EngineOptionsController(
             EnginesSection,
             settings.Engines,
             () => _initializing,
-            PersistSettingsAsync);
+            SaveFromEditorAsync);
         _hardwareOptionsController.Initialize();
         Navigation.SelectedIndex = section switch
         {
@@ -232,7 +235,7 @@ public partial class OptionsWindow : Window
     internal static string RenderTagPattern(string pattern, string name, string family, string format, string extension, DateTime timestamp) =>
         TagPatternFormatter.Render(pattern, name, family, format, extension, timestamp);
 
-    private async void AutoSaveText_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e) => await PersistSettingsAsync();
+    private async void AutoSaveText_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e) => await SaveFromEditorAsync();
 
     private async void ScanHardware_Click(object sender, RoutedEventArgs e) => await _hardwareOptionsController.ScanAsync();
 
@@ -269,13 +272,19 @@ public partial class OptionsWindow : Window
         _profileOptionsController.ApplyTo(_settings);
     }
 
-    private async Task PersistSettingsAsync()
+    internal async Task PersistSettingsAsync()
     {
         if (_initializing) return;
         ApplyControlsToSettings();
         await _saveLock.WaitAsync().ConfigureAwait(false);
         try { await _settingsStore.SaveAsync(_settings).ConfigureAwait(false); }
         finally { _saveLock.Release(); }
+    }
+
+    internal async Task SaveFromEditorAsync()
+    {
+        try { await PersistSettingsAsync(); }
+        catch (Exception exception) { _reportSaveError(exception); }
     }
 
     private void Close_Click(object sender, RoutedEventArgs e) => BeginClose();

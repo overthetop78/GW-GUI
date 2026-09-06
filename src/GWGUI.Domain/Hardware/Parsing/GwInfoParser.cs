@@ -10,16 +10,19 @@ public static class GwInfoParser
             foreach (var rawLine in output.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries))
             {
                 var line = rawLine.Trim();
+                var separator = line.IndexOf(':');
+                if (separator < 0) continue;
                 foreach (var label in labels)
-                    if (line.StartsWith(label, StringComparison.OrdinalIgnoreCase))
-                        return line[(line.IndexOf(':') + 1)..].Trim();
+                    if (line[..separator].Trim().Equals(label, StringComparison.OrdinalIgnoreCase))
+                        return line[(separator + 1)..].Trim();
             }
             return null;
         }
 
         var port = ValueAfter("Port") ?? output.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries)
             .Select(x => x.Trim())
-            .FirstOrDefault(x => x.StartsWith("COM", StringComparison.OrdinalIgnoreCase));
+            .FirstOrDefault(x => x.Length > 3 && x.StartsWith("COM", StringComparison.OrdinalIgnoreCase)
+                && x[3..].All(char.IsAsciiDigit));
 
         return new GwDeviceInfo(
             ValueAfter("Host Tools"), port, ValueAfter("Model"), ValueAfter("MCU"),

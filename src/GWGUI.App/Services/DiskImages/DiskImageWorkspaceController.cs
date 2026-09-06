@@ -44,7 +44,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
     private readonly IGreaseweazleRunner _visualizationRunner;
     private readonly ScpInspectorController _inspector;
     private readonly ScpDocumentLoader _scpLoader;
-    private readonly DiskImageExplorer _diskImageExplorer;
+    private readonly Func<string, string?, CancellationToken, Task<ExploredDiskImage>> _explore;
     private readonly SectorImageFluxVisualizer _sectorVisualizer;
     private readonly Func<bool> _operationIsRunning;
     private readonly Action<Exception, string, string, string> _showError;
@@ -72,7 +72,8 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         DiskImageCancellationScope cancellation,
         Func<bool> operationIsRunning,
         Action<Exception, string, string, string> showError,
-        Func<string, object[], string> localize)
+        Func<string, object[], string> localize,
+        Func<string, string?, CancellationToken, Task<ExploredDiskImage>>? explore = null)
     {
         _explorer = explorer;
         _visualizer = visualizer;
@@ -87,7 +88,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         _visualizationRunner = visualizationRunner;
         _inspector = inspector;
         _scpLoader = scpLoader;
-        _diskImageExplorer = diskImageExplorer;
+        _explore = explore ?? diskImageExplorer.ExploreAsync;
         _sectorVisualizer = sectorVisualizer;
         _cancellation = cancellation;
         _operationIsRunning = operationIsRunning;
@@ -103,9 +104,8 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         string path,
         CancellationToken cancellationToken = default)
     {
-        var document = await _diskImageExplorer.ExploreAsync(
-            path,
-            cancellationToken: cancellationToken);
+        var document = await _explore(path, null, cancellationToken);
+        cancellationToken.ThrowIfCancellationRequested();
         LastReadImage = document;
         return document;
     }
@@ -130,6 +130,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
     public async Task LoadAsync(string path, string? displayFileName = null)
     {
         var explored = await LoadExplorerAsync(path, true);
+        if (explored is null) return;
         await LoadVisualizerAsync(path, displayFileName, explored);
     }
 
@@ -163,6 +164,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { return null; }
         catch (Exception exception)
         {
+            if (!_cancellation.IsCurrentExplorer(cancellation) || cancellation.IsCancellationRequested) return null;
             if (_cancellation.IsCurrentExplorer(cancellation)) _explorer.SetLoading(false);
             _showError(exception, $"Opening disk image in Explorer: {path}", "Tab.Explorer", "Explorer.LoadFailed");
             return null;
@@ -198,7 +200,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
     {
         var settings = _getSettings();
         if (settings.Engines.ExplorerRead == OperationEngine.Internal)
-            return await _diskImageExplorer.ExploreAsync(path, requestedFormat, cancellationToken);
+            return await _explore(path, requestedFormat, cancellationToken);
 
         if (string.IsNullOrWhiteSpace(settings.GwExecutablePath) || !File.Exists(settings.GwExecutablePath))
             throw new InvalidOperationException(_localize("App.GwNotConfigured", []));
@@ -223,7 +225,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
             var result = await _visualizationRunner.RunAsync(command, cancellationToken: cancellationToken);
             if (!result.IsSuccess || !File.Exists(temporaryPath))
                 throw new InvalidDataException(_localize("Explorer.ExternalEngineFailed", [format.DisplayName]));
-            return await _diskImageExplorer.ExploreAsync(temporaryPath, format.Id, cancellationToken);
+            return await _explore(temporaryPath, format.Id, cancellationToken);
         }
         finally
         {
@@ -255,6 +257,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
             explored = null;
         }
 
+        if (cancellation.IsCancellationRequested) return;
         if (Path.GetExtension(path).Equals(".scp", StringComparison.OrdinalIgnoreCase))
         {
             await LoadScpAsync(path, displayFileName);
@@ -332,6 +335,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
         catch (Exception exception)
         {
+            if (!_cancellation.IsCurrentScp(cancellation) || cancellation.IsCancellationRequested) return;
             _scpImage = null;
             _visualizer.Header.SummaryText.Text = _localize("Visual.Invalid", []);
             _showError(exception, $"Opening disk image in Visualizer: {path}", "Visual.Title", "Error.Unexpected");
@@ -384,6 +388,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
 
     private async Task DisplayScpAsync(ScpImage image, string fileName, string summary, CancellationTokenSource cancellation)
     {
+        if (cancellation.IsCancellationRequested) return;
         _scpImage = image;
         _visualizer.Header.FileNameText.Text = fileName;
         var heads = image.Tracks.Select(track => track.Head).ToHashSet();

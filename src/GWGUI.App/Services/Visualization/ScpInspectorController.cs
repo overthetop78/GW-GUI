@@ -60,6 +60,7 @@ public sealed class ScpInspectorController
 
     public void SetImage(ScpImage image)
     {
+        _cancellation.CancelInspector();
         _image = image;
         _selectedTrack = null;
         _section.Inspector.DataContext = null;
@@ -68,6 +69,7 @@ public sealed class ScpInspectorController
 
     public void ClearImage()
     {
+        _cancellation.CancelInspector();
         _image = null;
         _selectedTrack = null;
         _section.Inspector.DataContext = null;
@@ -82,8 +84,17 @@ public sealed class ScpInspectorController
 
     private void TrackSelected(object? sender, ScpTrack? track)
     {
+        _ = SelectTrackAsync(track);
+    }
+
+    internal Task SelectTrackAsync(ScpTrack? track)
+    {
         _selectedTrack = track;
-        RefreshInspector();
+        if (track is not null) return UpdateInspectorAsync(track);
+        _cancellation.CancelInspector();
+        _section.Inspector.DataContext = null;
+        if (_detachedWindow is not null) _detachedWindow.DataContext = null;
+        return Task.CompletedTask;
     }
 
     private async void DecoderChanged(object sender, SelectionChangedEventArgs e)

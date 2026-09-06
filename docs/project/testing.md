@@ -1,8 +1,18 @@
 # Tests et contrôles actuels
 
+La reconstruction de la suite est détaillée dans [la feuille de tâches des tests rapides de release](../tasks/release-tests.md).
+
 Les commandes de cette page s’exécutent depuis la racine du dépôt.
 
-Le projet `tests/GWGUI.Tests` est conservé pour reconstruire la suite générale, mais ne contient actuellement aucun test. **Le workflow de release ne valide donc pas automatiquement les fonctionnalités métier** telles que la lecture, l’écriture, la conversion ou l’émulation.
+Le groupe 1.1 de `tests/GWGUI.Tests` vérifie les sept onglets et leurs états, le routage des commandes, les requêtes de dialogues et leurs réponses simulées, la disposition hors écran, le placement sur des géométries simulées et les propriétés/liaisons des contrôles. Les libellés des menus sont contrôlés dans les langues du catalogue sans imposer de traduction ni de lettre d’accès.
+
+Les vues sont créées en mémoire sur un Dispatcher STA. Aucun affichage, handle de fenêtre natif ni focus réel n’est nécessaire. Les anciens scénarios interactifs ont été remplacés ; la modalité et le focus natifs de WPF ne font pas partie des résultats déclarés couverts.
+
+Dernière validation locale en configuration `Release` : **1 176 tests réussis, 0 échec, 0 ignoré, en 20 secondes**, rapport `TestResults/GWGUI.Tests.trx`.
+
+Les 41 groupes couvrent les 122 tâches du plan, réparties entre l’application, l’interface, le matériel, les médias et l’émulation. Les scénarios exercent les opérations et leur annulation, les réglages et profils, la localisation, les commandes et le protocole, la reconnaissance des images, les conteneurs, les codecs, les systèmes de fichiers, les conversions et migrations, ainsi que les adaptateurs, entrées et sorties audio/vidéo de GW GUI.
+
+Les données sont synthétiques et les accès aux fichiers de données sont simulés en mémoire, y compris pour les réglages, les conteneurs et les migrations. Les périphériques, processus, services réseau et cœurs externes sont remplacés aux interfaces ; les traitements intégrés de GW GUI sont réellement exécutés. Aucun scénario ne lance de moteur d’émulation ou `gw.exe`.
 
 ## Tests des images disque
 
@@ -14,12 +24,15 @@ dotnet test tests/GWGUI.LocalDiskImageTests/GWGUI.LocalDiskImageTests.csproj
 
 ## Contrôles exécutés pendant la release
 
-Après la construction des paquets, le workflow prépare et vérifie les sources du wiki, contrôle certains aspects de l’accessibilité de l’application, teste l’installation en anglais et en français, puis teste une mise à jour depuis une ancienne installation simulée.
+Le workflow `release.yml` restaure, compile en configuration `Release` et exécute `GWGUI.Tests` avant de construire les paquets, pour les déclenchements manuels (dont les snapshots) et les tags de release. Une erreur de compilation, un test en échec, un rapport absent ou aucun test exécuté bloque la suite du workflow et la publication. Le rapport TRX, contenant les résultats et durées des cas, est conservé dans l’artefact `GWGUI-test-results-<version>`, également en cas d’échec lorsqu’un rapport a pu être produit. Les nouveaux groupes ajoutés à ce projet seront automatiquement inclus, sans filtre de catégorie.
+
+Ce raccordement est configuré ; sa première exécution sur GitHub reste à vérifier lors d’une release.
+
+Après la construction des paquets, le workflow prépare et vérifie les sources du wiki, teste l’installation en anglais et en français, puis teste une mise à jour depuis une ancienne installation simulée. L’ancien audit qui ouvre l’application a été retiré du workflow ; les exigences UI hors écran sont suivies dans les groupes Interface du plan.
 
 Ces contrôles peuvent aussi être lancés localement après le packaging. Exemple pour les paquets `0.1.3` :
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-app-accessibility.ps1
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-installer.ps1 -SetupPath dist/GW-GUI-0.1.3-win-x64-setup.exe -ExpectedVersion 0.1.3 -InstallerLanguage english
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-installer.ps1 -SetupPath dist/GW-GUI-0.1.3-win-x64-setup.exe -ExpectedVersion 0.1.3 -InstallerLanguage french
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-installer-upgrade.ps1 -CurrentVersion 0.1.3
@@ -27,8 +40,11 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-installer-upgra
 
 | Contrôle | Ce qu’il vérifie |
 |---|---|
-| Accessibilité | Ouverture de l’application, redimensionnement à 1280 × 720 unités logiques en tenant compte du DPI, et présence de noms accessibles pour les commandes visibles dans les onglets. |
 | Installation | Installation silencieuse dans un dossier isolé sous `dist`, fichiers attendus, version, langue, puis désinstallation et nettoyage. |
 | Mise à jour | Installation d’une ancienne version simulée, ajout de restes d’un ancien runtime .NET, mise à jour et suppression de ces fichiers obsolètes, puis désinstallation. |
 
-Les contrôles d’installation refusent de démarrer si une installation GW GUI est déjà enregistrée pour l’utilisateur. Le contrôle d’accessibilité pilote une fenêtre réelle et nécessite un bureau Windows accessible.
+Les contrôles d’installation refusent de démarrer si une installation GW GUI est déjà enregistrée pour l’utilisateur.
+
+## Ancien contrôle interactif, manuel uniquement
+
+`scripts/test-app-accessibility.ps1` reste disponible pour ouvrir l’exécutable empaqueté, contrôler son redimensionnement avec le DPI Windows et inspecter les noms accessibles. Ce script nécessite un bureau ; il n’est plus appelé par le workflow de release ni par `GWGUI.Tests`. Les tests hors écran ne sont pas présentés comme un remplacement de sa vérification du cadre natif.
