@@ -1,4 +1,4 @@
-; *** Inno Setup version 6.1.0+ Romanian messages ***
+; *** Inno Setup version 6.5.0+ Romanian messages ***
 ; Translator : Alexandru Bogdan Munteanu (muntealb@gmail.com)
 ;
 ; To download user-contributed translations of this file, go to:
@@ -212,14 +212,12 @@ ReadyMemoGroup=Dosarul Meniului de Start:
 ReadyMemoTasks=Sarcini Suplimentare:
 
 ; *** TDownloadWizardPage wizard page and DownloadTemporaryFile
-DownloadingLabel=Descarc file suplimentare...
+DownloadingLabel2=Descarc fiºiere...
 ButtonStopDownload=O&preºte descãrcarea
 StopDownload=Sigur vrei sã opreºti descãrcarea?
 ErrorDownloadAborted=Descãrcare abandonatã
 ErrorDownloadFailed=Descãrcare eºuatã: %1 %2
 ErrorDownloadSizeFailed=Obþinerea mãrimii a eºuat: %1 %2
-ErrorFileHash1=Haºul filei a eºuat: %1
-ErrorFileHash2=Haºul filei e nevalid: aºteptat %1, gãsit %2
 ErrorProgress=Progres nevalid: %1 of %2
 ErrorFileSize=Mãrime a filei nevalidã: aºteptatã %1, gãsitã %2
 
@@ -365,6 +363,34 @@ StatusUninstalling=Dezinstalez %1...
 ; *** Shutdown block reasons
 ShutdownBlockReasonInstallingApp=Instalez %1.
 ShutdownBlockReasonUninstallingApp=Dezinstalez %1.
+
+; *** Archive extraction
+ExtractingLabel=Extrag fiºiere...
+ButtonStopExtraction=O&preºte extragerea
+StopExtraction=Sigur vrei sã opreºti extragerea?
+ErrorExtractionAborted=Extragere abandonatã
+ErrorExtractionFailed=Extragere eºuatã: %1
+ArchiveIncorrectPassword=Parola este incorectã
+ArchiveIsCorrupted=Arhiva este deterioratã
+ArchiveUnsupportedFormat=Formatul arhivei nu este acceptat
+
+; *** Download and extraction errors
+ErrorDownloading=A apãrut o eroare la descãrcarea unui fiºier:
+ErrorExtracting=A apãrut o eroare la extragerea unei arhive:
+RetryCancelSelectAction=Selecteazã acþiunea
+RetryCancelRetry=Î&ncearcã din nou
+RetryCancelCancel=Anuleazã
+StatusDownloadFiles=Descarc fiºiere...
+
+; *** Source verification
+SourceVerificationFailed=Verificarea fiºierului sursã a eºuat: %1
+VerificationFileHashIncorrect=Valoarea hash a fiºierului este incorectã
+VerificationFileNameIncorrect=Numele fiºierului este incorect
+VerificationFileSizeIncorrect=Dimensiunea fiºierului este incorectã
+VerificationFileTagIncorrect=Eticheta fiºierului este incorectã
+VerificationKeyNotFound=Fiºierul de semnãturã "%1" foloseºte o cheie necunoscutã
+VerificationSignatureDoesntExist=Fiºierul de semnãturã "%1" nu existã
+VerificationSignatureInvalid=Fiºierul de semnãturã "%1" nu este valid
 
 ; The custom messages below aren't used by Setup itself, but if you make
 ; use of them in your scripts, you'll want to translate them.
