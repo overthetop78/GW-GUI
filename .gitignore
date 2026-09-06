@@ -4,7 +4,6 @@ obj/
 .vs/
 *.user
 *.suo
-TestResults/
 dist/
 packages/
 *.log

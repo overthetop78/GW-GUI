@@ -12,4 +12,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
   </resheader>
+  <data name="Emulation.Hdd.Delete" xml:space="preserve"><value>Delete disk image…</value></data>
+  <data name="Emulation.Hdd.DeleteConfirm" xml:space="preserve"><value>Permanently delete this disk image and all its data? This operation cannot be undone.&#10;{0}</value></data>
+  <data name="Emulation.Hdd.InUse" xml:space="preserve"><value>Deletion is impossible. Detach this disk, save the configurations and close the listed sessions first:&#10;{0}</value></data>
+  <data name="Emulation.Hdd.OpenSession" xml:space="preserve"><value>Open session: {0}</value></data>
+  <data name="Emulation.Hdd.Link" xml:space="preserve"><value>Deletion through links is not allowed. Select the original file.</value></data>
+  <data name="Emulation.Hdd.InvalidFormat" xml:space="preserve"><value>Choose an extension supported by this machine and interface.</value></data>
+  <data name="Emulation.Hdd.Exists" xml:space="preserve"><value>This file already exists. Choose another name.</value></data>
+  <data name="Emulation.Hdd.Limits" xml:space="preserve"><value>Capacity: 512 bytes to {0}, in multiples of 512. Conservative limit for the supported system.</value></data>
+  <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Creates an empty raw disk without an operating system. Prepare and format it using disk tools inside the emulated machine.</value></data>
+  <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Disk preparation</value></data>
+  <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Blank (unformatted)</value></data>
+  <data name="Emulation.Hdd.Prepare.AtariAhdiFat16" xml:space="preserve"><value>AHDI partition + FAT16 volume (without HDD driver)</value></data>
+  <data name="Emulation.Hdd.Prepare.AmigaOfs" xml:space="preserve"><value>OFS volume (Amiga)</value></data>
+  <data name="Emulation.Hdd.Prepare.AmigaFfs" xml:space="preserve"><value>FFS volume (Amiga)</value></data>
+  <data name="Emulation.Hdd.Prepare.AmigaRdbOfs" xml:space="preserve"><value>RDB + OFS (Amiga)</value></data>
+  <data name="Emulation.Hdd.Prepare.AmigaRdbFfs" xml:space="preserve"><value>RDB + FFS (Amiga)</value></data>
+  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Formatting creates an empty volume, without an operating system. Atari HDD booting also requires a compatible disk driver installed from the emulated machine. Compressed images may redirect writes to an extracted copy.</value></data>
 </root>

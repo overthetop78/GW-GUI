@@ -10,7 +10,15 @@ internal static class AtariHatariContentFunctions
             .ThenBy(item => item.Path, StringComparer.OrdinalIgnoreCase)
             .ToArray();
         if (media.Length > AtariHatariContentConstants.MaximumPrimaryContentCount)
-            throw new InvalidOperationException(AtariHatariContentErrors.MultiplePrimaryContentUnsupported);
+        {
+            var hardDisk = media.SingleOrDefault(item => item.Category == AtariMediaCategory.HardDisk);
+            var floppy = media.SingleOrDefault(item => item.Category == AtariMediaCategory.Floppy);
+            if (media.Length != 2 || hardDisk is null || floppy is null || floppy.Slot != EmulationMediaSlot.Floppy0)
+                throw new InvalidOperationException(AtariHatariContentErrors.MultiplePrimaryContentUnsupported);
+            var storage = AtariHatariStorageFunctions.Prepare(configuration.Model, hardDisk, supportedExtensions);
+            var prepared = AtariScpMediaFunctions.Prepare(configuration, floppy, sessionDirectory, supportedExtensions);
+            return new AtariHatariContent(hardDisk, storage.RuntimePath, null, storage, prepared);
+        }
         if (media.Length == AtariHatariContentConstants.FirstContentIndex) return null;
         var selected = media[AtariHatariContentConstants.FirstContentIndex];
         if (selected.Category == AtariMediaCategory.Floppy)

@@ -10,7 +10,8 @@ internal static class UcsdDirectoryEntryReader
     public static UcsdDirectoryEntriesResult Read(SectorImage image, UcsdDirectoryHeader header, UcsdBlockReadResult directory, List<string> warnings)
     {
         var entries = new List<FileSystemEntry>();
-        var usedBlocks = Enumerable.Range(UcsdFileSystemLayout.DirectoryBlock, header.DirectoryBlockCount).ToHashSet();
+        // The system area includes boot blocks 0 and 1, even when no boot code is installed.
+        var usedBlocks = Enumerable.Range(0, header.EndDirectory).ToHashSet();
         var valid = directory.IsValid;
         var bytes = directory.Bytes.ToArray();
         var capacityEntries = Math.Max(0, (bytes.Length - UcsdFileSystemLayout.EntrySize) / UcsdFileSystemLayout.EntrySize);

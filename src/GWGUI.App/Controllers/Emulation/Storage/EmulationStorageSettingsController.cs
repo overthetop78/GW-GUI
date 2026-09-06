@@ -6,6 +6,7 @@ using System.IO;
 using System.Windows;
 using GWGUI.Emulation;
 using Microsoft.Win32;
+using GWGUI.App.Services.Emulation;
 
 
 namespace GWGUI.App.Controllers.Emulation.Storage;
@@ -114,13 +115,18 @@ internal sealed class EmulationStorageSettingsController
         var current = _settings.MountedMedia.FirstOrDefault(item => item.Slot == device.Slot);
         var dialog = new HardDiskDriveConfigurationDialog(device.DisplayLabel ?? device.Slot.ToString(),
             _configuration?.MachineId ?? string.Empty, current?.Path,
-            device.ImageDirectory ?? _defaultFolder(EmulationDefaultFolderCategory.HardDisk));
-        if (dialog.ShowDialog() != true || string.IsNullOrWhiteSpace(dialog.SupportPath)) return;
-        var media = new EmulationMedia(dialog.SupportPath, device.Slot, device.MediaType,
-            current?.IsReadOnly ?? false, true);
+            device.ImageDirectory ?? _defaultFolder(EmulationDefaultFolderCategory.HardDisk),
+            device.HardDiskFormats ?? [], path => HardDiskDeletionService.DeleteAsync(path, _configuration!));
+        if (dialog.ShowDialog() != true) return;
+        var media = string.IsNullOrWhiteSpace(dialog.SupportPath) ? null
+            : new EmulationMedia(dialog.SupportPath, device.Slot, device.MediaType,
+                current?.IsReadOnly ?? false, true);
         _settings = _settings with
         {
-            MountedMedia = _settings.MountedMedia.Where(item => item.Slot != device.Slot).Append(media).ToArray()
+            MountedMedia = _settings.MountedMedia.Where(item => item.Slot != device.Slot)
+                .Concat(media is null ? [] : new[] { media }).ToArray(),
+            DeviceSettings = (_settings.DeviceSettings ?? []).Where(item => item.Slot != device.Slot)
+                .Append(new EmulationStorageDeviceSettings(device.Slot, InterfaceId: media is null ? null : dialog.InterfaceId?.ToLowerInvariant())).ToArray()
         };
         Rebuild();
         SettingsChanged?.Invoke(this, EventArgs.Empty);

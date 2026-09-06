@@ -6,6 +6,7 @@ namespace GWGUI.App.Services.Emulation;
 internal static class EmulationConfigurationDraftStore
 {
     private static readonly Dictionary<(string ModuleId, string MachineId), IEmulationConfiguration> Drafts = [];
+    internal static IReadOnlyList<IEmulationConfiguration> All => Drafts.Values.ToArray();
 
     internal static bool TryGet(string moduleId, string machineId, out IEmulationConfiguration configuration) =>
         Drafts.TryGetValue((moduleId, machineId), out configuration!);

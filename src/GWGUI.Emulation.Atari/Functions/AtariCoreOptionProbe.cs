@@ -19,7 +19,7 @@ public static class AtariCoreOptionProbe
         {
             using var library = new ExternalCoreLibrary(absoluteCore);
             var exports = AtariCoreFunctions.ResolveExports(library);
-            using var callbacks = new AtariExternalHostCallbacks(
+            using var callbacks = new AtariExternalHostCallbacks(category,
                 Path.Combine(session, AtariConstants.SystemDirectoryName),
                 Path.Combine(session, AtariConstants.ContentDirectoryName),
                 Path.Combine(session, AtariConstants.SavesDirectoryName),

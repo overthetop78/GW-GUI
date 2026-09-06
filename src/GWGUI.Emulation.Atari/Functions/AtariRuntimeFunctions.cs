@@ -36,7 +36,7 @@ internal static class AtariRuntimeFunctions
             ? null
             : new AtariRuntimeGeometry(frame.Width, frame.Height, frame.Pitch, frame.AspectRatio);
         return new AtariRuntimeStatus(configuration.Model, core.Region, core.FramesPerSecond, core.SampleRate,
-            geometry, core.CoreName, new Dictionary<EmulationMediaSlot, bool>(),
+            geometry, core.CoreName, EmulationMediaActivityFunctions.FromLedStates(configuration.Core, core.LedStates),
             new Dictionary<int, bool>(core.LedStates), core.BufferedAudioFrames, core.AudioOverrunCount,
             core.AudioUnderrunCount, core.HostProcessState, core.HostProcessId);
     }

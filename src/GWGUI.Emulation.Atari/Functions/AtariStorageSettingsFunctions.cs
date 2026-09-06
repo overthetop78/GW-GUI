@@ -18,7 +18,9 @@ internal static class AtariStorageSettingsFunctions
             .Where(rule => rule.Availability == AtariMediaAvailability.Available
                 && rule.Category != AtariMediaCategory.Directory)
             .SelectMany(rule => rule.Slots.Select(slot => new EmulationMediaDevice(slot,
-                ToMediaType(rule.Category), Extensions(rule.Category),
+                ToMediaType(rule.Category), rule.Category == AtariMediaCategory.HardDisk
+                    ? AtariHardDiskFormats.For(configuration.Model).Select(format => format.Extension).ToArray()
+                    : Extensions(rule.Category),
                 AtariStorageConfigurationFunctions.IsRemovable(rule.Category),
                 rule.Category == AtariMediaCategory.Cartridge && compatibility.Core == AtariEmulator.Atari800,
                 DisplayLabel(configuration.Model, slot),
@@ -27,7 +29,9 @@ internal static class AtariStorageSettingsFunctions
                 Interfaces(configuration.Model, rule.Category),
                 rule.Category == AtariMediaCategory.HardDisk
                     ? configuration.Folders.HardDisks : null,
-                IsPermanent: AtariStorageConfigurationFunctions.IsPrimaryDevice(configuration.Model, slot))))
+                IsPermanent: AtariStorageConfigurationFunctions.IsPrimaryDevice(configuration.Model, slot),
+                HardDiskFormats: rule.Category == AtariMediaCategory.HardDisk
+                    ? AtariHardDiskFormats.For(configuration.Model) : null)))
             .ToArray();
         var primary = AtariStorageConfigurationFunctions.PrimaryDevice(configuration.Model)?.Slot;
         var configured = configuration.Options
@@ -71,12 +75,24 @@ internal static class AtariStorageSettingsFunctions
             if (!string.IsNullOrWhiteSpace(deviceSettings.InterfaceId))
             {
                 var device = settings.AvailableDevices.First(item => item.Slot == deviceSettings.Slot);
-                if (device.InterfaceChoices?.Any(choice => choice.Id == deviceSettings.InterfaceId) == true)
-                    options[$"{InterfaceOptionPrefix}{deviceSettings.Slot}"] = deviceSettings.InterfaceId;
+                var selectedInterface = device.InterfaceChoices?.FirstOrDefault(choice =>
+                    string.Equals(choice.Id, deviceSettings.InterfaceId, StringComparison.OrdinalIgnoreCase));
+                if (selectedInterface is not null)
+                    options[$"{InterfaceOptionPrefix}{deviceSettings.Slot}"] = selectedInterface.Id;
             }
         }
         var media = settings.MountedMedia.Select(item =>
-            EmulationMediaConversionFunctions.ToAtari(item, configuration.Media)).ToArray();
+        {
+            var converted = EmulationMediaConversionFunctions.ToAtari(item, configuration.Media);
+            if (item.Type != EmulationMediaType.HardDisk) return converted;
+            var format = AtariHardDiskFormats.For(configuration.Model).FirstOrDefault(candidate =>
+                string.Equals(candidate.Extension, Path.GetExtension(item.Path), StringComparison.OrdinalIgnoreCase))
+                ?? throw new ArgumentException(AtariHatariStorageErrors.StorageExtensionInvalid);
+            var selected = settings.DeviceSettings?.FirstOrDefault(device => device.Slot == item.Slot)?.InterfaceId;
+            if (selected is not null && !string.Equals(selected, format.InterfaceName, StringComparison.OrdinalIgnoreCase))
+                throw new ArgumentException(AtariHatariStorageErrors.StorageExtensionInvalid);
+            return converted with { StorageBus = format.Id == "atari-acsi" ? AtariStorageBus.Acsi : AtariStorageBus.Ide };
+        }).ToArray();
         return configuration with { Media = media, Options = options };
     }
 

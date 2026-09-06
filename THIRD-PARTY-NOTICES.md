@@ -1,5 +1,21 @@
 # Third-party notices
 
+## HDD formatting libraries
+
+This product includes software developed by Michiel Pelt.
+
+The integrated Amiga filesystem source is adapted from Hst.Amiga 0.6.236, source commit
+`be46479b058264b88b73346a496a04525205f431` from
+https://github.com/henrikstengaard/hst-amiga. Its managed PFS3 implementation is
+derived from PFS3AIO by Toni Wilen and the filesystem developed by Michiel Pelt.
+
+The following original license texts accompany the application:
+
+- [Hst.Amiga 0.6.236 — MIT](licenses/hst.amiga.txt)
+- [PFS3 — BSD four-clause license](licenses/pfs3.txt), copyright Michiel Pelt
+- [LTRData.DiscUtils 1.0.88 — MIT](licenses/DiscUtils.txt)
+- [.NET runtime libraries — MIT](licenses/dotnet-runtime.txt)
+
 ## xBR algorithm reference
 
 The xBR Level 1 implementation is adapted from concepts and constants in Hyllian's

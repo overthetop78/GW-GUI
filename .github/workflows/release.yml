@@ -40,28 +40,20 @@ jobs:
           $version = $env:VERSION.TrimStart('v')
           "PACKAGE_VERSION=$version" >> $env:GITHUB_ENV
       - name: Run GW GUI tests
-        id: application_tests
         shell: pwsh
         run: |
-          dotnet test .\tests\GWGUI.Tests\GWGUI.Tests.csproj --configuration Release --logger "trx;LogFileName=GWGUI.Tests.trx" --results-directory .\TestResults
-          if ($LASTEXITCODE -ne 0) { throw 'GW GUI tests failed.' }
-          $reportPath = '.\TestResults\GWGUI.Tests.trx'
-          if (-not (Test-Path -LiteralPath $reportPath)) { throw 'The test report is missing.' }
-          [xml]$report = Get-Content -LiteralPath $reportPath -Raw
-          $counters = $report.TestRun.ResultSummary.Counters
-          if ($null -eq $counters -or [int]$counters.executed -le 0) {
+          $env:DOTNET_CLI_UI_LANGUAGE = 'en-US'
+          $testOutput = @(& dotnet test .\tests\GWGUI.Tests\GWGUI.Tests.csproj --configuration Release --logger "console;verbosity=normal" 2>&1)
+          $testExitCode = $LASTEXITCODE
+          $testOutput | ForEach-Object { Write-Host $_ }
+          if ($testExitCode -ne 0) { throw 'GW GUI tests failed.' }
+
+          $summary = [string]::Join("`n", $testOutput)
+          $testCounts = [regex]::Matches($summary, '(?im)(?:^|,)\s*Total(?: tests)?\s*:\s*(\d+)')
+          $executed = ($testCounts | ForEach-Object { [int]$_.Groups[1].Value } | Measure-Object -Sum).Sum
+          if ($testCounts.Count -eq 0 -or $executed -le 0) {
             throw 'No GW GUI test was executed.'
           }
-          if ([int]$counters.passed -ne [int]$counters.executed) {
-            throw 'Not all executed GW GUI tests passed.'
-          }
-      - name: Upload GW GUI test results
-        if: always() && steps.application_tests.outcome != 'skipped'
-        uses: actions/upload-artifact@v6
-        with:
-          name: GWGUI-test-results-${{ env.PACKAGE_VERSION }}
-          path: TestResults/
-          if-no-files-found: warn
       - name: Install Inno Setup
         shell: pwsh
         run: choco install innosetup --yes --no-progress

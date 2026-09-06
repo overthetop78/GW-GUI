@@ -40,6 +40,19 @@ internal static class AudioBufferScenarios
         audio.ReplaceFactory(()=>second); audio.Write(new(new short[]{56,-78},48000,1,1,TimeSpan.Zero));
         Assert.Equal(new short[]{56,-78},second.Samples[^1]); Assert.Equal(48000,second.Rates[^1]);
     }
+    public static void UnavailableOutputIsNotRetriedForEveryChunk()
+    {
+        var attempts=0;
+        using var audio = new GWGUI.Emulation.Atari.Services.AtariAudioOutputController(
+            factory:()=>{attempts++;throw new IOException("synthetic unavailable output");});
+        var chunk=new GWGUI.Emulation.Contracts.AudioChunk(new short[]{12,-34},44100,1,0,TimeSpan.Zero);
+        audio.Start(44100);
+        for(var index=0;index<100;index++) audio.Write(chunk);
+        Assert.Equal(1,attempts);
+        audio.SetMuted(true);
+        audio.SetMuted(false);
+        Assert.Equal(2,attempts);
+    }
     private sealed class Output:IWavePlayer
     {
         public IWaveProvider? Provider;

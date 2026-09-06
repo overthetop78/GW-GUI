@@ -37,7 +37,8 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
     {
         _options = options;
         _audioMuted = options.Machine.Audio.IsMuted;
-        _session = new MachineSession(options.Machine, options.MachineFactory, options.MountedMedia);
+        _session = new MachineSession(options.ModuleId, options.ConfigurationId, options.WindowTitle,
+            options.Machine, options.MachineFactory, options.MountedMedia);
         _quickStates = new MachineQuickStates(() => _session.Machine.SavedStates, options.QuickStatePath);
         _video = new MachineVideoPresenter(_view, options.Machine, options.VideoRenderer,
             options.VideoProcessing);

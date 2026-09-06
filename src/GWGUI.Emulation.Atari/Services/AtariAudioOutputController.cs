@@ -14,6 +14,7 @@ internal sealed class AtariAudioOutputController : IDisposable
     private bool _paused;
     private bool _stopped;
     private bool _started;
+    private bool _unavailable;
 
     internal AtariAudioOutputController(IAudioOutput? output = null, Func<IAudioOutput?>? factory = null)
     {
@@ -30,6 +31,7 @@ internal sealed class AtariAudioOutputController : IDisposable
         {
             _sampleRate = sampleRate;
             _stopped = false;
+            _unavailable = false;
             EnsureStarted();
         }
     }
@@ -49,7 +51,11 @@ internal sealed class AtariAudioOutputController : IDisposable
                 DropOutput();
                 if (!EnsureStarted()) return;
                 try { _output!.Write(samples); }
-                catch { DropOutput(); }
+                catch
+                {
+                    DropOutput();
+                    _unavailable = true;
+                }
             }
         }
     }
@@ -60,7 +66,11 @@ internal sealed class AtariAudioOutputController : IDisposable
         {
             _muted = muted;
             if (muted) Flush();
-            else EnsureStarted();
+            else
+            {
+                _unavailable = false;
+                EnsureStarted();
+            }
         }
     }
 
@@ -84,6 +94,7 @@ internal sealed class AtariAudioOutputController : IDisposable
         lock (_gate)
         {
             _paused = false;
+            _unavailable = false;
             EnsureStarted();
         }
     }
@@ -95,6 +106,7 @@ internal sealed class AtariAudioOutputController : IDisposable
         lock (_gate)
         {
             _factory = factory;
+            _unavailable = false;
             DropOutput();
             EnsureStarted();
         }
@@ -117,9 +129,14 @@ internal sealed class AtariAudioOutputController : IDisposable
 
     private bool EnsureStarted()
     {
-        if (_stopped || _paused || _muted || _sampleRate <= AtariMachineConstants.InvalidSampleRate) return false;
+        if (_stopped || _paused || _muted || _unavailable
+            || _sampleRate <= AtariMachineConstants.InvalidSampleRate) return false;
         _output ??= CreateOutput();
-        if (_output is null) return false;
+        if (_output is null)
+        {
+            _unavailable = true;
+            return false;
+        }
         if (_started) return true;
         try
         {
@@ -130,6 +147,7 @@ internal sealed class AtariAudioOutputController : IDisposable
         catch
         {
             DropOutput();
+            _unavailable = true;
             return false;
         }
     }

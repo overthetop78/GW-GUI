@@ -249,7 +249,8 @@ internal sealed class MachineInputController : IDisposable
         _physicalKeys.Clear();
         _pressedShortcutKeys.Clear();
         _activeShortcuts.Clear();
-        if (_powered && !_disposed) _machine().Input.SetInput(EmulationInputSnapshot.Empty);
+        if (_powered && !_disposed && CanAcceptInput(_machine()))
+            _machine().Input.SetInput(EmulationInputSnapshot.Empty);
     }
 
     private void ViewLoaded(object sender, RoutedEventArgs args) => AttachWindowHook();
@@ -300,8 +301,13 @@ internal sealed class MachineInputController : IDisposable
                 Left = false, Right = false, Middle = false,
                 ExtendedButton1 = false, ExtendedButton2 = false
             };
-        _machine().Input.SetInput(new EmulationInputSnapshot(keys, pointer, physical.Controllers));
+        var machine = _machine();
+        if (!CanAcceptInput(machine)) return;
+        machine.Input.SetInput(new EmulationInputSnapshot(keys, pointer, physical.Controllers));
     }
+
+    private static bool CanAcceptInput(IEmulatedMachine machine) =>
+        machine.State is EmulationMachineState.Running or EmulationMachineState.Paused;
 
     private IntPtr NativeMessage(IntPtr hwnd, int message, IntPtr wParam, IntPtr lParam, ref bool handled)
     {

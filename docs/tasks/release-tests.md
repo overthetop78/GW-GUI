@@ -800,9 +800,9 @@ Groupe de tâches — dossier `Emulation/Audio/`.
 
 ## Exécution et suivi
 
-Les **122 tâches des 41 groupes** sont terminées et cochées. Dernière vérification locale : **1 176 tests réussis, 0 échec, 0 ignoré, en 20 secondes**. Rapport : `TestResults/GWGUI.Tests.trx`.
+Les **122 tâches des 41 groupes** sont terminées et cochées. Dernière vérification locale : **1 579 tests réussis, 0 échec, 0 ignoré, en 18 secondes**.
 
-Le raccordement existant exécute `dotnet test --configuration Release` avant le packaging, bloque sur échec ou absence de tests exécutés et conserve le rapport TRX. Les anciens filtres de tests et l’appel à l’audit interactif ont été retirés. Le résultat sur GitHub et la disponibilité de l’artefact restent à confirmer lors de la prochaine release autorisée.
+Le raccordement existant exécute `dotnet test --configuration Release` avant le packaging et bloque sur échec ou absence de tests exécutés. Ce contrôle lit directement la sortie de la commande et ne conserve aucun rapport. Les anciens filtres de tests et l’appel à l’audit interactif ont été retirés. Le résultat sur GitHub reste à confirmer lors de la prochaine release autorisée.
 
 À la réalisation de chaque groupe :
 

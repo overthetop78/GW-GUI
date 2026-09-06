@@ -63,7 +63,6 @@ internal static class GameInputControllerReader
     internal static void StopMonitoring()
     {
         RawGameControllerFallback.StopMonitoring();
-        StopRegisteredCallbacks();
         Worker.TryInvoke(() =>
         {
             Shutdown();
@@ -73,28 +72,6 @@ internal static class GameInputControllerReader
                 InitializationFailed = false;
             }
         }, ShutdownTimeout);
-    }
-
-    private static void StopRegisteredCallbacks()
-    {
-        IGameInput? gameInput;
-        ulong[] callbackTokens;
-        lock (Sync)
-        {
-            gameInput = _gameInput;
-            callbackTokens = DeviceTokens
-                .Append(_systemButtonToken)
-                .Concat(Devices.Values.Select(entry => entry.RawReadingToken))
-                .Where(token => token != 0)
-                .Distinct()
-                .ToArray();
-        }
-        if (gameInput is null) return;
-        foreach (var token in callbackTokens)
-        {
-            try { gameInput.StopCallback(token); }
-            catch (Exception exception) when (IsInteropFailure(exception)) { }
-        }
     }
 
     internal static IReadOnlyList<GameInputDeviceDescriptor> GetConnectedControllerDetailsCached()
@@ -1075,7 +1052,7 @@ internal static class GameInputControllerReader
             LatestRawReports.Clear();
             while (PendingDeviceChanges.TryDequeue(out var pending))
                 Marshal.Release(pending.Lifetime);
-            Release(_gameInput);
+            FinalRelease(_gameInput);
             _gameInput = null;
         }
         return true;
@@ -1118,6 +1095,11 @@ internal static class GameInputControllerReader
     private static void Release(object? value)
     {
         if (value is not null && Marshal.IsComObject(value)) Marshal.ReleaseComObject(value);
+    }
+
+    private static void FinalRelease(object? value)
+    {
+        if (value is not null && Marshal.IsComObject(value)) Marshal.FinalReleaseComObject(value);
     }
 
     private sealed class GameInputWorker

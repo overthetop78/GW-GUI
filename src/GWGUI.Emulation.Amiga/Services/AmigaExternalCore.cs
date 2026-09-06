@@ -74,6 +74,13 @@ internal sealed class AmigaExternalCore : IAmigaCore
         if (!File.Exists(configuration.KickstartPath))
             throw new FileNotFoundException(AmigaExternalCoreConstants.TheConfiguredAmigaKickstartWasNotFound, configuration.KickstartPath);
         var media = ResolveConfiguredMedia(configuration);
+        foreach (var disk in media.Where(item => item.Category == AmigaMediaCategory.HardDrive && !Directory.Exists(item.Path)))
+        {
+            var format = AmigaHardDiskFormats.All.FirstOrDefault(item => string.Equals(item.Extension,
+                Path.GetExtension(disk.Path), StringComparison.OrdinalIgnoreCase))
+                ?? throw new InvalidDataException("Unsupported Amiga hard disk image extension.");
+            GWGUI.Emulation.HardDisks.HardDiskImageValidation.ValidateExisting(disk.Path, format);
+        }
         foreach (var item in media)
             if (!File.Exists(item.Path) && !Directory.Exists(item.Path))
                 throw new FileNotFoundException(AmigaExternalCoreConstants.TheConfiguredAmigaMediaImageOrDirectoryWasNotFound, item.Path);

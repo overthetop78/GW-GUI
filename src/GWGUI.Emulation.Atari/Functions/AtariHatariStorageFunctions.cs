@@ -21,6 +21,17 @@ internal static class AtariHatariStorageFunctions
     internal static AtariHatariStorage Prepare(AtariMachineModel model, AtariMediaConfiguration media,
         IReadOnlySet<string> supportedExtensions)
     {
+        try { return PrepareImage(model, media, supportedExtensions); }
+        catch (Exception error) when (error is ArgumentException or InvalidDataException)
+        {
+            throw new AtariEmulationException(AtariErrorCategory.Content, AtariErrorCode.ContentUnsupported,
+                error.Message, new Dictionary<string, string> { [AtariConstants.PathContextKey] = media.Path }, error);
+        }
+    }
+
+    private static AtariHatariStorage PrepareImage(AtariMachineModel model, AtariMediaConfiguration media,
+        IReadOnlySet<string> supportedExtensions)
+    {
         var bus = ResolveBus(media);
         ValidateModel(model, bus);
         if (bus == AtariStorageBus.Gemdos) return PrepareGemdos(media, supportedExtensions);
@@ -31,6 +42,8 @@ internal static class AtariHatariStorageFunctions
         if (!string.Equals(Path.GetExtension(media.Path), expectedExtension, StringComparison.OrdinalIgnoreCase))
             throw new InvalidDataException(AtariHatariStorageErrors.StorageExtensionInvalid);
         AtariContentFunctions.Validate(media.Path, supportedExtensions);
+        var format = AtariHardDiskFormats.For(model).Single(item => item.Extension == expectedExtension);
+        GWGUI.Emulation.HardDisks.HardDiskImageValidation.ValidateExisting(media.Path, format);
         ValidateImageAccess(media);
         return new AtariHatariStorage(media, bus, Path.GetFullPath(media.Path),
             [new AtariHatariStorageVolume(NormalizeMountPoint(media.MountPoint), Path.GetFullPath(media.Path),

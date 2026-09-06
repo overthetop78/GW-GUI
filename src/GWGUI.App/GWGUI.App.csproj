@@ -43,6 +43,8 @@
 
   <ItemGroup>
     <Content Include="Assets\DiskDefinitions\built-in.cfg" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\THIRD-PARTY-NOTICES.md" Link="THIRD-PARTY-NOTICES.md" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="..\..\licenses\*.txt" Link="licenses\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
     <Content Include="$(PkgMicrosoft_GameInput)\redist\GameInputRedist.msi" Link="Runtime\GameInputRedist.msi" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
     <Resource Include="Assets\app-icon.png" />
     <Resource Include="Assets\Controllers\*.png" />

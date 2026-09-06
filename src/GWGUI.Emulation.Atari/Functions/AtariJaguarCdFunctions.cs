@@ -22,10 +22,11 @@ internal static class AtariJaguarCdFunctions
             throw Unsupported(AtariJaguarCdErrors.CompleteDiscRequired);
         var path = AtariContentFunctions.Validate(media.Path, reportedExtensions);
         ValidateReadable(path);
+        var activityPaths = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { Path.GetFullPath(path) };
         if (extension.Equals(AtariJaguarCdConstants.CueExtension, StringComparison.OrdinalIgnoreCase))
-            ValidateCueTracks(path);
+            foreach (var track in ValidateCueTracks(path)) activityPaths.Add(track);
         return new AtariPreparedJaguarCd(media, path,
-            needsFullPath || AtariJaguarCdConstants.RequiresFullPath);
+            needsFullPath || AtariJaguarCdConstants.RequiresFullPath, activityPaths);
     }
 
     internal static void RejectForStandardJaguar(
@@ -40,10 +41,10 @@ internal static class AtariJaguarCdFunctions
         new(AtariErrorCategory.Content, AtariErrorCode.ContentUnsupported,
             message);
 
-    private static void ValidateCueTracks(string cuePath)
+    private static IReadOnlyList<string> ValidateCueTracks(string cuePath)
     {
         var directory = Path.GetDirectoryName(cuePath) ?? string.Empty;
-        var hasTrackFile = false;
+        List<string> tracks = [];
         foreach (var line in File.ReadLines(cuePath))
         {
             var trimmed = line.Trim();
@@ -52,12 +53,14 @@ internal static class AtariJaguarCdFunctions
             var firstQuote = trimmed.IndexOf(AtariJaguarCdConstants.CueQuotedPathDelimiter);
             var lastQuote = trimmed.LastIndexOf(AtariJaguarCdConstants.CueQuotedPathDelimiter);
             if (firstQuote == AtariJaguarCdConstants.MissingCueDelimiterIndex || lastQuote <= firstQuote) continue;
-            hasTrackFile = true;
             var trackPath = trimmed[(firstQuote + AtariJaguarCdConstants.CueContentStartOffset)..lastQuote];
-            if (!File.Exists(Path.Combine(directory, trackPath)))
+            var fullTrackPath = Path.GetFullPath(Path.Combine(directory, trackPath));
+            if (!File.Exists(fullTrackPath))
                 throw Unsupported(AtariJaguarCdErrors.MissingCueTrack);
+            tracks.Add(fullTrackPath);
         }
-        if (!hasTrackFile) throw Unsupported(AtariJaguarCdErrors.EmptyCue);
+        if (tracks.Count == 0) throw Unsupported(AtariJaguarCdErrors.EmptyCue);
+        return tracks;
     }
 
     private static void ValidateReadable(string path)

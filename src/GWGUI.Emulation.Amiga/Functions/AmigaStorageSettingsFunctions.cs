@@ -18,8 +18,8 @@ internal static class AmigaStorageSettingsFunctions
             .Concat(model.SupportsHardDrives
                 ? Enumerable.Range(0, model.MaximumHardDrives).Select(index => new EmulationMediaDevice(
                     new EmulationMediaSlot(EmulationMediaCategory.HardDisk, index),
-                    EmulationMediaType.HardDisk, [AmigaStorageSettingsFunctionsConstants.Hdf, AmigaStorageSettingsFunctionsConstants.Hdz], false,
-                    DisplayLabel: $"DH{index}:")) : [])
+                    EmulationMediaType.HardDisk, AmigaHardDiskFormats.All.Select(format => format.Extension).ToArray(), false,
+                    DisplayLabel: $"DH{index}:", HardDiskFormats: AmigaHardDiskFormats.All)) : [])
             .Concat(model.HasCdDrive
                 ? [new EmulationMediaDevice(EmulationMediaSlot.Cd0, EmulationMediaType.CompactDisc,
                     [AmigaStorageSettingsFunctionsConstants.Cue, AmigaStorageSettingsFunctionsConstants.Ccd, AmigaStorageSettingsFunctionsConstants.Chd, AmigaStorageSettingsFunctionsConstants.Nrg, AmigaStorageSettingsFunctionsConstants.Mds, AmigaStorageSettingsFunctionsConstants.Iso], DisplayLabel: AmigaStorageSettingsFunctionsConstants.CD0,

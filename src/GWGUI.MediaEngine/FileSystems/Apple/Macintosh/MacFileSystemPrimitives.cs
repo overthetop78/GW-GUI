@@ -5,6 +5,7 @@ namespace GWGUI.MediaEngine.FileSystems.Apple.Macintosh;
 /// <summary>Fournit les primitives binaires et textuelles communes aux systèmes de fichiers Macintosh.</summary>
 internal static class MacFileSystemPrimitives
 {
+    private static readonly System.Text.Encoding MacRoman=System.Text.CodePagesEncodingProvider.Instance.GetEncoding(10000)!;
     /// <summary>Lit un entier non signé de 16 bits encodé en ordre big-endian.</summary>
     public static ushort ReadUInt16(ReadOnlySpan<byte> data, int offset) => BinaryPrimitives.ReadUInt16BigEndian(data.Slice(offset, sizeof(ushort)));
 
@@ -19,7 +20,7 @@ internal static class MacFileSystemPrimitives
     }
 
     /// <summary>Décode un nom Macintosh et remplace son séparateur historique par une barre oblique.</summary>
-    public static string DecodeName(ReadOnlySpan<byte> value) => System.Text.Encoding.Latin1.GetString(value).Replace(':', '/');
+    public static string DecodeName(ReadOnlySpan<byte> value) => MacRoman.GetString(value).Replace(':', '/');
 
     /// <summary>Convertit sans dépassement un identifiant Macintosh vers la référence de stockage commune.</summary>
     public static int ToStorageReference(uint id) => checked((int)Math.Min(id, int.MaxValue));

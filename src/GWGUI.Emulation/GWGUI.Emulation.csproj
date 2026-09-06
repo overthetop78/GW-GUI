@@ -6,6 +6,15 @@
     <AssemblyName>gwgui.emulation</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="LTRData.DiscUtils.Vhd" Version="1.0.88" />
+    <PackageReference Include="LTRData.DiscUtils.Vhdx" Version="1.0.88" />
+    <PackageReference Include="LTRData.DiscUtils.Vdi" Version="1.0.88" />
+    <PackageReference Include="LTRData.DiscUtils.Vmdk" Version="1.0.88" />
+    <PackageReference Include="LTRData.DiscUtils.Fat" Version="1.0.88" />
+    <PackageReference Include="LTRData.DiscUtils.Ntfs" Version="1.0.88" />
+    <PackageReference Include="LTRData.DiscUtils.ExFat" Version="1.0.88" />
+    <PackageReference Include="LTRData.DiscUtils.Ext" Version="1.0.88" />
+    <PackageReference Include="LTRData.DiscUtils.HfsPlus" Version="1.0.88" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Amiga" />
     <InternalsVisibleTo Include="GWGUI.Emulation.Atari" />
     <InternalsVisibleTo Include="GWGUI.Tests" />

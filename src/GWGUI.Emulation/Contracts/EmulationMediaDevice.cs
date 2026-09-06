@@ -10,4 +10,5 @@ public sealed record EmulationMediaDevice(
     FloppyDriveDialogOptions? FloppyOptions = null,
     IReadOnlyList<EmulationSettingsChoice>? InterfaceChoices = null,
     string? ImageDirectory = null,
-    bool IsPermanent = false);
+    bool IsPermanent = false,
+    IReadOnlyList<GWGUI.Emulation.HardDisks.HardDiskImageFormat>? HardDiskFormats = null);

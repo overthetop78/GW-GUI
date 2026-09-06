@@ -4,6 +4,8 @@ namespace GWGUI.App.Services.Emulation;
 
 internal sealed class MachineSession : IAsyncDisposable
 {
+    private static readonly HashSet<MachineSession> OpenSessions = [];
+    internal static IReadOnlyList<MachineSession> All => OpenSessions.ToArray();
     private readonly Func<IReadOnlyList<EmulationMedia>, IEmulatedMachine> _machineFactory;
     private readonly List<EmulationMedia> _mountedMedia;
     private IEmulatedMachine _machine;
@@ -13,12 +15,24 @@ internal sealed class MachineSession : IAsyncDisposable
     internal MachineSession(IEmulatedMachine machine,
         Func<IReadOnlyList<EmulationMedia>, IEmulatedMachine> machineFactory,
         IEnumerable<EmulationMedia> mountedMedia)
+        : this(string.Empty, Guid.Empty, string.Empty, machine, machineFactory, mountedMedia) { }
+
+    internal MachineSession(string moduleId, Guid configurationId, string displayName, IEmulatedMachine machine,
+        Func<IReadOnlyList<EmulationMedia>, IEmulatedMachine> machineFactory,
+        IEnumerable<EmulationMedia> mountedMedia)
     {
+        ModuleId = moduleId;
+        ConfigurationId = configurationId;
+        DisplayName = displayName;
         _machine = machine;
         _machineFactory = machineFactory;
         _mountedMedia = mountedMedia.ToList();
+        OpenSessions.Add(this);
     }
 
+    internal string ModuleId { get; }
+    internal Guid ConfigurationId { get; }
+    internal string DisplayName { get; }
     internal IEmulatedMachine Machine => _machine;
     internal bool IsPowered { get; private set; }
     internal IReadOnlyList<EmulationMedia> MountedMedia => _mountedMedia;
@@ -110,6 +124,7 @@ internal sealed class MachineSession : IAsyncDisposable
         if (_disposed) return;
         await DisposeCurrentMachineAsync();
         _disposed = true;
+        OpenSessions.Remove(this);
     }
 
     private void CreateMachine()

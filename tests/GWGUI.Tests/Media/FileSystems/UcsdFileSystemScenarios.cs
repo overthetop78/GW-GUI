@@ -20,9 +20,9 @@ internal static class UcsdFileSystemScenarios
         var image=new SectorImage(DiskImageFormatIds.UcsdIbmMfm,512,1,1,16,blocks); var reader=new UcsdFileSystemReader();
         if(damage==4) { Assert.False(reader.CanRead(image)); Assert.Throws<InvalidDataException>(()=>reader.Read(image)); return; }
         Assert.True(reader.CanRead(image)); var volume=reader.Read(image); Assert.Equal("TEST",volume.Name);
-        if(damage==5) { Assert.Empty(volume.Entries); Assert.Empty(volume.Warnings); return; }
+        if(damage==5) { Assert.Empty(volume.Entries); Assert.Empty(volume.Warnings); Assert.Equal((16-end)*512L,volume.FreeBytes); return; }
         var first=Assert.Single(volume.Entries,item=>item.Name=="ONE"); Assert.Equal(Enumerable.Repeat((byte)42,512).Concat(new byte[]{93,94}),first.Content); Assert.True(first.MetadataValid);
-        if(damage==0) { Assert.Equal(new byte[]{17},Assert.Single(volume.Entries,item=>item.Name=="TWO").Content); Assert.Empty(volume.Warnings); }
+        if(damage==0) { Assert.Equal(new byte[]{17},Assert.Single(volume.Entries,item=>item.Name=="TWO").Content); Assert.Empty(volume.Warnings); Assert.Equal((16-end-3)*512L,volume.FreeBytes); }
         else { Assert.NotEmpty(volume.Warnings); Assert.Equal(0,volume.FreeBytes); Assert.DoesNotContain(volume.Entries,item=>item.Name=="TWO" && item.MetadataValid); }
     }
     public static void Volume(bool bigEndian)
@@ -36,6 +36,7 @@ internal static class UcsdFileSystemScenarios
         var image = new SectorImage(DiskImageFormatIds.UcsdIbmMfm, 512, 1, 1, 8, blocks);
         var reader = new UcsdFileSystemReader(); Assert.True(reader.CanRead(image));
         var volume = reader.Read(image); var file = Assert.Single(volume.Entries);
+        Assert.Equal(512L, volume.FreeBytes);
         Assert.Equal("TEST", volume.Name); Assert.Equal("FILE", file.Name); Assert.Equal(2, file.Size); Assert.Equal(new byte[] { 42, 93 }, file.Content); Assert.True(file.MetadataValid); Assert.Empty(volume.Warnings);
         var incomplete = new SectorImage(image.FormatId, 512, 1, 1, 8, blocks.Where(block => block.LogicalBlock != 6));
         var damaged = reader.Read(incomplete); Assert.False(Assert.Single(damaged.Entries).MetadataValid); Assert.NotEmpty(damaged.Warnings); Assert.Equal(0, damaged.FreeBytes);

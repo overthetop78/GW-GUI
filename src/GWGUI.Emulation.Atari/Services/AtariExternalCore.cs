@@ -82,7 +82,7 @@ internal sealed class AtariExternalCore : IAtariCore
             var configuredOptions = Emulator == AtariEmulator.Hatari
                 ? AtariMachineOptionFunctions.Apply(configuration)
                 : configuration.Options;
-            _callbacks = new AtariExternalHostCallbacks(
+            _callbacks = new AtariExternalHostCallbacks(Emulator,
                 systemDirectory,
                 Path.Combine(absoluteSession, AtariConstants.ContentDirectoryName),
                 saveDirectory ?? Path.Combine(absoluteSession, AtariConstants.SavesDirectoryName),
@@ -111,6 +111,7 @@ internal sealed class AtariExternalCore : IAtariCore
             {
                 _jaguarCd = AtariJaguarCdFunctions.Prepare(configuration, media,
                     _info.NeedsFullPath, _info.Extensions);
+                _callbacks.TrackOpticalMedia(_jaguarCd.ActivityPaths);
             }
             else if (AtariCartridgeFunctions.Supports(Emulator) && media is not null)
             {
@@ -142,6 +143,14 @@ internal sealed class AtariExternalCore : IAtariCore
             AtariCoreLifecycleFunctions.Load(_exports, _callbacks, configuration,
                 _content?.GameInfo ?? nint.Zero);
             _gameLoaded = true;
+            if (_hatariContent?.BootFloppy is { } bootFloppy)
+            {
+                _sessionMedia.Add(bootFloppy);
+                _callbacks.DiskControl.Insert(bootFloppy.RuntimePath);
+                _exports.Reset();
+                var configuredFloppy = configuration.Media.First(item => item.Slot == EmulationMediaSlot.Floppy0);
+                AtariMediaRuntimeFunctions.Register(_mountedMedia, configuredFloppy);
+            }
             _supportsSaveStates = AtariStateFunctions.IsAvailable(_exports);
             Region = AtariRuntimeFunctions.Region(_exports.GetRegion());
             if (atari800Media?.ContentType is Atari800ContentType.Floppy or Atari800ContentType.Cassette &&
@@ -164,7 +173,11 @@ internal sealed class AtariExternalCore : IAtariCore
         }
     }
 
-    public void RunFrame() => RequireExports().Run();
+    public void RunFrame()
+    {
+        RequireCallbacks().BeginFrame();
+        RequireExports().Run();
+    }
     public void HardReset() => RequireExports().Reset();
     public void SetInput(EmulationInputSnapshot snapshot) => RequireCallbacks().Input = snapshot;
     public void SetControllerPortDevice(int port, AtariPeripheralCategory peripheral)
@@ -380,6 +393,7 @@ internal sealed class AtariExternalCore : IAtariCore
         previousContent?.Dispose();
         _content = candidate;
         _jaguarCd = prepared;
+        RequireCallbacks().TrackOpticalMedia(prepared.ActivityPaths);
         _cartridge = null;
         AtariMediaRuntimeFunctions.Register(_mountedMedia, media with { IsInserted = true });
     }

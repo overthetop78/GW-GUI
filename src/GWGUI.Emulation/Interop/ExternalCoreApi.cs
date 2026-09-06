@@ -25,6 +25,17 @@ internal static class ExternalCoreApi
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     internal delegate void LogCallback(int level, nint format);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate nint VfsGetPath(nint stream);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate nint VfsOpen(nint path, uint mode, uint hints);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate int VfsClose(nint stream);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate long VfsSize(nint stream);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate long VfsTell(nint stream);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate long VfsSeek(nint stream, long offset, int origin);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate long VfsRead(nint stream, nint destination, ulong length);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate long VfsWrite(nint stream, nint source, ulong length);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate int VfsFlush(nint stream);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate int VfsRemove(nint path);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] internal delegate int VfsRename(nint oldPath, nint newPath);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
     internal delegate bool SetEjectState([MarshalAs(UnmanagedType.I1)] bool ejected);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] [return: MarshalAs(UnmanagedType.I1)]
@@ -140,6 +151,37 @@ internal static class ExternalCoreApi
     internal struct LogInterface
     {
         internal nint Log;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct VfsInterfaceInfo
+    {
+        internal uint RequiredInterfaceVersion;
+        internal nint Interface;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct VfsInterface
+    {
+        internal nint GetPath;
+        internal nint Open;
+        internal nint Close;
+        internal nint Size;
+        internal nint Tell;
+        internal nint Seek;
+        internal nint Read;
+        internal nint Write;
+        internal nint Flush;
+        internal nint Remove;
+        internal nint Rename;
+        internal nint Truncate;
+        internal nint Stat;
+        internal nint MakeDirectory;
+        internal nint OpenDirectory;
+        internal nint ReadDirectory;
+        internal nint DirectoryEntryName;
+        internal nint DirectoryEntryIsDirectory;
+        internal nint CloseDirectory;
     }
 
     [StructLayout(LayoutKind.Sequential)]

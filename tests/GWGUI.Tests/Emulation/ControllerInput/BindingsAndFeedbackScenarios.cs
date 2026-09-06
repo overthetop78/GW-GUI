@@ -36,7 +36,9 @@ internal static class BindingsAndFeedbackScenarios
     }
     public static void Routing()
     {
-        var snapshots=new[] {new List<EmulationInputSnapshot>(),new List<EmulationInputSnapshot>()}; var active=true; var selected=0; var reads=0; var focus=0;
+        var snapshots=new[] {new List<EmulationInputSnapshot>(),new List<EmulationInputSnapshot>()};
+        var states=new[] {GWGUI.Emulation.Enums.EmulationMachineState.Running,GWGUI.Emulation.Enums.EmulationMachineState.Running};
+        var active=true; var selected=0; var reads=0; var focus=0;
         var physical=new GWGUI.App.Services.Input.GameInput.GameInputPhysicalState(new HashSet<GWGUI.Emulation.Enums.EmulationKey>{GWGUI.Emulation.Enums.EmulationKey.A},new(12,-3,2,true,false,false),[]);
         var machines=Enumerable.Range(0,2).Select(index=>
         {
@@ -47,7 +49,12 @@ internal static class BindingsAndFeedbackScenarios
                 "SetInput"=>Record(index,(EmulationInputSnapshot)args[0]!),
                 _=>throw new InvalidOperationException(method.Name)
             });
-            return GWGUI.Tests.Application.TestInfrastructure.ControlledDependencies.Simulate<GWGUI.Emulation.Interfaces.IEmulatedMachine>((method,_)=>method.Name=="get_Input"?input:throw new InvalidOperationException(method.Name));
+            return GWGUI.Tests.Application.TestInfrastructure.ControlledDependencies.Simulate<GWGUI.Emulation.Interfaces.IEmulatedMachine>((method,_)=>method.Name switch
+            {
+                "get_Input"=>input,
+                "get_State"=>states[index],
+                _=>throw new InvalidOperationException(method.Name)
+            });
         }).ToArray();
         object? Record(int index,EmulationInputSnapshot value) { snapshots[index].Add(value); return null; }
         var pointer=new Pointer(); var view=new GWGUI.App.Views.Controls.Emulation.Machine.MachineView();
@@ -62,6 +69,8 @@ internal static class BindingsAndFeedbackScenarios
         active=false; controller.Deactivate(); Assert.Empty(snapshots[0][^1].Keys); Assert.Equal(1,pointer.Releases);
         var previousReads=reads; controller.Publish(); controller.RequestPointerCapture(); Assert.Equal(previousReads,reads); Assert.Equal(1,pointer.Captures);
         selected=1; active=true; controller.Publish(); Assert.Equal(physical.Keys,Assert.Single(snapshots[1]).Keys);
+        states[1]=GWGUI.Emulation.Enums.EmulationMachineState.Stopping;
+        var stoppingCount=snapshots[1].Count; controller.Publish(); Assert.Equal(stoppingCount,snapshots[1].Count);
         var firstCount=snapshots[0].Count; var secondCount=snapshots[1].Count; controller.SetPowered(false); controller.Publish(); Assert.Equal(secondCount,snapshots[1].Count); Assert.Equal(firstCount,snapshots[0].Count);
         controller.Dispose(); var count=snapshots[1].Count; controller.Publish(); Assert.Equal(count,snapshots[1].Count);
     }

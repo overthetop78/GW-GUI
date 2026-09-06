@@ -293,6 +293,7 @@ internal sealed class AtariMachine : IEmulatedMachine, IEmulationLifecycle, IEmu
                 _started?.TrySetResult();
             }
             var nextFrame = Stopwatch.GetTimestamp();
+            using var frameTimer = new AtariFrameTimer(cancellationToken);
             long videoSequence = default;
             while (!cancellationToken.IsCancellationRequested)
             {
@@ -306,7 +307,7 @@ internal sealed class AtariMachine : IEmulatedMachine, IEmulationLifecycle, IEmu
                 _core.RunFrame();
                 PublishOutputs(ref videoSequence);
                 nextFrame = AtariMachineFunctions.NextFrameTimestamp(nextFrame, _core.FramesPerSecond);
-                AtariMachineFunctions.WaitForFrame(nextFrame, cancellationToken);
+                frameTimer.WaitUntil(nextFrame, cancellationToken);
                 if (nextFrame < Stopwatch.GetTimestamp()) nextFrame = Stopwatch.GetTimestamp();
             }
         }

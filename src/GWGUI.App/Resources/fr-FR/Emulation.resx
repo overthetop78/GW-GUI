@@ -756,4 +756,21 @@
   <data name="Emulation.Video.Parameter.ProjectionVignette"><value>Obscurcissement des bords</value></data>
   <data name="Emulation.Video.Projection.Group.Optics"><value>Optique et lumière</value></data>
   <data name="Emulation.Video.Projection.Group.Screen"><value>Écran de projection</value></data>
+  <data name="Emulation.Hdd.Delete" xml:space="preserve"><value>Supprimer l’image disque…</value></data>
+  <data name="Emulation.Hdd.DeleteConfirm" xml:space="preserve"><value>Supprimer définitivement cette image disque et toutes ses données ? Cette opération est irréversible.&#10;{0}</value></data>
+  <data name="Emulation.Hdd.InUse" xml:space="preserve"><value>Suppression impossible. Retirez ce support, enregistrez les configurations et fermez les sessions suivantes avant de le supprimer :&#10;{0}</value></data>
+  <data name="Emulation.Hdd.OpenSession" xml:space="preserve"><value>Session ouverte : {0}</value></data>
+  <data name="Emulation.Hdd.Link" xml:space="preserve"><value>La suppression par un lien est interdite. Sélectionnez le fichier original.</value></data>
+  <data name="Emulation.Hdd.InvalidFormat" xml:space="preserve"><value>Choisissez une extension acceptée par cette machine et cette interface.</value></data>
+  <data name="Emulation.Hdd.Exists" xml:space="preserve"><value>Ce fichier existe déjà. Choisissez un autre nom.</value></data>
+  <data name="Emulation.Hdd.Limits" xml:space="preserve"><value>Capacité : de 512 octets à {0}, par multiples de 512. Limite prudente pour le système pris en charge.</value></data>
+  <data name="Emulation.Hdd.Blank" xml:space="preserve"><value>Crée un disque brut vierge sans système d’exploitation. Préparez et formatez-le avec les outils de disque dans la machine émulée.</value></data>
+  <data name="Emulation.Hdd.Preparation" xml:space="preserve"><value>Préparation du disque</value></data>
+  <data name="Emulation.Hdd.Prepare.Blank" xml:space="preserve"><value>Vierge (non formaté)</value></data>
+  <data name="Emulation.Hdd.Prepare.AtariAhdiFat16" xml:space="preserve"><value>Partition AHDI + volume FAT16 (sans pilote HDD)</value></data>
+  <data name="Emulation.Hdd.Prepare.AmigaOfs" xml:space="preserve"><value>Volume OFS (Amiga)</value></data>
+  <data name="Emulation.Hdd.Prepare.AmigaFfs" xml:space="preserve"><value>Volume FFS (Amiga)</value></data>
+  <data name="Emulation.Hdd.Prepare.AmigaRdbOfs" xml:space="preserve"><value>RDB + OFS (Amiga)</value></data>
+  <data name="Emulation.Hdd.Prepare.AmigaRdbFfs" xml:space="preserve"><value>RDB + FFS (Amiga)</value></data>
+  <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Le formatage crée un volume vide, sans système d’exploitation. Le démarrage sur HDD Atari nécessite aussi un pilote disque compatible installé depuis la machine émulée. Les écritures sur une image compressée peuvent être redirigées vers une copie extraite.</value></data>
 </root>

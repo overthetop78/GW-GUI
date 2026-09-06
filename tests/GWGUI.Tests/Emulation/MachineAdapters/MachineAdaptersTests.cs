@@ -56,4 +56,6 @@ public sealed class MachineAdaptersTests
     [Fact] public void IncompatibleConfigurationIsRejected() => MachineCapabilitiesScenarios.Invalid();
     [Fact] public void AdapterOptionsAreMappedWithoutCore() => MachineConfigurationMappingScenarios.Options();
     [Fact] public void MediaCategoriesAreMappedWithoutCore() => MachineConfigurationMappingScenarios.Media();
+    [Fact] public void HatariDriveIndicatorsFeedTheCommonMediaActivity() => AtariMediaActivityScenarios.HatariOverlay();
+    [Fact] public void Atari800DriveIndicatorsFeedTheCommonMediaActivity() => AtariMediaActivityScenarios.Atari800Overlay();
 }

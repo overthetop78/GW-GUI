@@ -11,13 +11,6 @@ internal static class AtariMachineFunctions
         (long)(Stopwatch.Frequency / Math.Clamp(framesPerSecond,
             AtariMachineConstants.MinimumFramesPerSecond, AtariMachineConstants.MaximumFramesPerSecond));
 
-    internal static void WaitForFrame(long target, CancellationToken cancellationToken)
-    {
-        var remaining = target - Stopwatch.GetTimestamp();
-        if (remaining > AtariMachineConstants.NoRemainingTicks)
-            cancellationToken.WaitHandle.WaitOne(TimeSpan.FromSeconds((double)remaining / Stopwatch.Frequency));
-    }
-
     internal static void ReleaseInput(IAtariCore core) => core.SetInput(EmulationInputSnapshot.Empty);
 
     internal static void TryReleaseInput(IAtariCore core)

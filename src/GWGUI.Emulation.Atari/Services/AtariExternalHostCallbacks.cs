@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using GWGUI.Emulation;
+using GWGUI.Emulation.Services;
 
 namespace GWGUI.Emulation.Atari.Services;
 
@@ -12,6 +13,7 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
     private readonly AtariKeyboardState _keyboard = new();
     private readonly long _videoStartTimestamp = Stopwatch.GetTimestamp();
     private readonly AtariAudioBuffer _audio = new();
+    private readonly AtariEmulator _emulator;
     private readonly Dictionary<int, bool> _ledStates = [];
     private readonly HashSet<uint> _unknownEnvironmentCommands = [];
     private readonly HashSet<uint> _environmentCommands = [];
@@ -22,15 +24,19 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
     private long _videoSequence;
     private long _audioSequence;
     private EmulationPixelFormat _pixelFormat = EmulationPixelFormat.Xrgb8888;
+    private bool _usesNativeLedInterface;
     private bool _disposed;
     private ExternalCoreApi.KeyboardEvent? _keyboardEvent;
     private IReadOnlyList<AtariControllerBinding>? _controllerBindings;
     private readonly AtariDiskControl _diskControl = new();
+    private readonly ExternalCoreVirtualFileSystem _virtualFileSystem;
+    private readonly HashSet<string> _opticalActivityPaths = new(StringComparer.OrdinalIgnoreCase);
 
-    internal AtariExternalHostCallbacks(string systemDirectory, string contentDirectory, string saveDirectory,
+    internal AtariExternalHostCallbacks(AtariEmulator emulator, string systemDirectory, string contentDirectory, string saveDirectory,
         string assetsDirectory,
         IReadOnlyDictionary<string, string> configuredOptions)
     {
+        _emulator = emulator;
         Directory.CreateDirectory(systemDirectory);
         Directory.CreateDirectory(contentDirectory);
         Directory.CreateDirectory(saveDirectory);
@@ -40,6 +46,7 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
         _saveDirectory = new ExternalCoreUtf8String(Path.GetFullPath(saveDirectory));
         _assetsDirectory = new ExternalCoreUtf8String(Path.GetFullPath(assetsDirectory));
         _optionHost = new AtariCoreOptionHost(configuredOptions);
+        _virtualFileSystem = new ExternalCoreVirtualFileSystem(OnFileRead);
         Environment = OnEnvironment;
         Video = OnVideo;
         AudioSample = OnAudioSample;
@@ -110,6 +117,16 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
     internal void SetOption(string key, string value) => _optionHost.SetValue(key, value);
     internal void ConfigureInput(AtariInputConfiguration input) => _controllerBindings = input.Controllers;
     internal void ValidateConfiguredOptions() => _optionHost.ValidateConfiguredValues();
+    internal void TrackOpticalMedia(IEnumerable<string> paths)
+    {
+        _opticalActivityPaths.Clear();
+        foreach (var path in paths) _opticalActivityPaths.Add(Path.GetFullPath(path));
+    }
+
+    internal void BeginFrame()
+    {
+        if (_emulator == AtariEmulator.VirtualJaguar) _ledStates[0] = false;
+    }
 
     private bool OnEnvironment(uint command, nint data)
     {
@@ -216,6 +233,7 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
             case ExternalCoreApiConstants.SetVariable:
                 return _optionHost.SetNativeValue(data);
             case ExternalCoreApiConstants.GetVfsInterface:
+                return _virtualFileSystem.Provide(data);
             case ExternalCoreApiConstants.GetMidiInterface:
             case ExternalCoreApiConstants.SetFastForwardingOverride:
             case ExternalCoreApiConstants.SetContentInfoOverride:
@@ -334,6 +352,7 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
         {
             SetLedState = Marshal.GetFunctionPointerForDelegate(SetLedState)
         }, data, false);
+        _usesNativeLedInterface = true;
         return true;
     }
 
@@ -376,6 +395,13 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
         if (length > EmulationHostProtocolConstants.VideoSlotCapacity) return;
         var pixels = _videoBuffers.Rent(length);
         AtariVideoFunctions.CopyRows(data, pixels, checked((int)height), checked((int)pitch));
+        if (_emulator == AtariEmulator.Hatari && !_usesNativeLedInterface)
+            EmulationMediaActivityFunctions.CaptureHatariOverlay(pixels.AsSpan(AtariConstants.FirstBufferIndex, length),
+                checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, _ledStates);
+        else if (_emulator == AtariEmulator.Atari800 && !_usesNativeLedInterface)
+            EmulationMediaActivityFunctions.CaptureAtari800Overlay(
+                pixels.AsSpan(AtariConstants.FirstBufferIndex, length), checked((int)width), checked((int)height),
+                checked((int)pitch), _pixelFormat, _ledStates);
         LatestVideoFrame = new VideoFrame(pixels.AsMemory(AtariConstants.FirstBufferIndex, length),
             checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, AspectRatio,
             ++_videoSequence, AtariVideoFunctions.Timestamp(_videoStartTimestamp));
@@ -410,6 +436,11 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
     }
     private short OnInputState(uint port, uint device, uint index, uint id) => _input.State(port, device, index, id);
     private void OnSetLedState(int led, int state) => _ledStates[led] = state != AtariConstants.InactiveState;
+    private void OnFileRead(string path, long length)
+    {
+        if (length > 0 && _emulator == AtariEmulator.VirtualJaguar && _opticalActivityPaths.Contains(path))
+            _ledStates[0] = true;
+    }
     private bool OnSetRumbleState(uint port, uint effect, ushort strength) => false;
     private bool OnSetSensorState(uint port, uint action, uint rate) => false;
     private float OnGetSensorInput(uint port, uint id) => AtariEnvironmentConstants.NoSensorInput;
@@ -426,6 +457,7 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
         _disposed = true;
         _optionHost.Dispose();
         _videoBuffers.Dispose();
+        _virtualFileSystem.Dispose();
         _systemDirectory.Dispose();
         _contentDirectory.Dispose();
         _saveDirectory.Dispose();

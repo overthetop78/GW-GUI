@@ -8,7 +8,7 @@ Le groupe 1.1 de `tests/GWGUI.Tests` vérifie les sept onglets et leurs états, 
 
 Les vues sont créées en mémoire sur un Dispatcher STA. Aucun affichage, handle de fenêtre natif ni focus réel n’est nécessaire. Les anciens scénarios interactifs ont été remplacés ; la modalité et le focus natifs de WPF ne font pas partie des résultats déclarés couverts.
 
-Dernière validation locale en configuration `Release` : **1 176 tests réussis, 0 échec, 0 ignoré, en 20 secondes**, rapport `TestResults/GWGUI.Tests.trx`.
+Dernière validation locale en configuration `Release` : **1 579 tests réussis, 0 échec, 0 ignoré, en 18 secondes**.
 
 Les 41 groupes couvrent les 122 tâches du plan, réparties entre l’application, l’interface, le matériel, les médias et l’émulation. Les scénarios exercent les opérations et leur annulation, les réglages et profils, la localisation, les commandes et le protocole, la reconnaissance des images, les conteneurs, les codecs, les systèmes de fichiers, les conversions et migrations, ainsi que les adaptateurs, entrées et sorties audio/vidéo de GW GUI.
 
@@ -24,7 +24,7 @@ dotnet test tests/GWGUI.LocalDiskImageTests/GWGUI.LocalDiskImageTests.csproj
 
 ## Contrôles exécutés pendant la release
 
-Le workflow `release.yml` restaure, compile en configuration `Release` et exécute `GWGUI.Tests` avant de construire les paquets, pour les déclenchements manuels (dont les snapshots) et les tags de release. Une erreur de compilation, un test en échec, un rapport absent ou aucun test exécuté bloque la suite du workflow et la publication. Le rapport TRX, contenant les résultats et durées des cas, est conservé dans l’artefact `GWGUI-test-results-<version>`, également en cas d’échec lorsqu’un rapport a pu être produit. Les nouveaux groupes ajoutés à ce projet seront automatiquement inclus, sans filtre de catégorie.
+Le workflow `release.yml` restaure, compile en configuration `Release` et exécute `GWGUI.Tests` avant de construire les paquets, pour les déclenchements manuels (dont les snapshots) et les tags de release. Une erreur de compilation, un test en échec ou l’absence de test exécuté bloque la suite du workflow et la publication. Le nombre de tests est contrôlé directement dans la sortie de `dotnet test`. Les nouveaux groupes ajoutés à ce projet seront automatiquement inclus, sans filtre de catégorie.
 
 Ce raccordement est configuré ; sa première exécution sur GitHub reste à vérifier lors d’une release.
 
