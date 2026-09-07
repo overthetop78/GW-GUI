@@ -15,12 +15,11 @@ public static class AtariEightBitSettingsFunctions
                 AtariEightBitSettingsCatalog.OriginalComputerResolutions[0]);
         }
 
-        if (configuration.Model != AtariMachineModel.Atari400) return options;
-
-        foreach (var setting in AtariEightBitSettingsCatalog.NativeSettings.Where(setting =>
-                     setting.Atari400Disposition is AtariEightBitSettingDisposition.DifferentModel
-                         or AtariEightBitSettingDisposition.HiddenInternal))
-            options.Remove(setting.Key);
+        if (configuration.Model == AtariMachineModel.Atari400)
+            foreach (var setting in AtariEightBitSettingsCatalog.NativeSettings.Where(setting =>
+                         setting.Atari400Disposition is AtariEightBitSettingDisposition.DifferentModel
+                             or AtariEightBitSettingDisposition.HiddenInternal))
+                options.Remove(setting.Key);
 
         Validate(options, AtariConfigurationOptionConstants.VideoStandard,
             Enum.GetNames<AtariClassicRegion>(), AtariClassicRegion.Ntsc.ToString());
@@ -52,8 +51,11 @@ public static class AtariEightBitSettingsFunctions
             AtariEightBitSettingsCatalog.Sensitivities, AtariEightBitSettingsConstants.DefaultSensitivity);
         Validate(options, AtariEightBitSettingsConstants.AutofireOptionKey,
             AtariEightBitSettingsCatalog.AutofireModes, AtariEightBitSettingsConstants.Disabled);
-        options[AtariEightBitSettingsConstants.Os400800OptionKey] = AtariEightBitSettingsFunctionsConstants.Auto;
-        options[AtariEightBitSettingsConstants.BasicVersionOptionKey] = AtariEightBitSettingsFunctionsConstants.Auto;
+        if (configuration.Model == AtariMachineModel.Atari400)
+        {
+            options[AtariEightBitSettingsConstants.Os400800OptionKey] = AtariEightBitSettingsFunctionsConstants.Auto;
+            options[AtariEightBitSettingsConstants.BasicVersionOptionKey] = AtariEightBitSettingsFunctionsConstants.Auto;
+        }
         Validate(options, AtariEightBitSettingsConstants.MosaicMemoryOptionKey,
             AtariEightBitSettingsCatalog.Mosaic(configuration.Model).Select(choice => choice.Value).ToArray(),
             AtariEightBitSettingsConstants.Disabled);

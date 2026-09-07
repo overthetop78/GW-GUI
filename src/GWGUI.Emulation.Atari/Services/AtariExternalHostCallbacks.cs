@@ -398,7 +398,7 @@ internal sealed class AtariExternalHostCallbacks : IDisposable
         if (_emulator == AtariEmulator.Hatari && !_usesNativeLedInterface)
             EmulationMediaActivityFunctions.CaptureHatariOverlay(pixels.AsSpan(AtariConstants.FirstBufferIndex, length),
                 checked((int)width), checked((int)height), checked((int)pitch), _pixelFormat, _ledStates);
-        else if (_emulator == AtariEmulator.Atari800 && !_usesNativeLedInterface)
+        else if (_emulator == AtariEmulator.Atari800)
             EmulationMediaActivityFunctions.CaptureAtari800Overlay(
                 pixels.AsSpan(AtariConstants.FirstBufferIndex, length), checked((int)width), checked((int)height),
                 checked((int)pitch), _pixelFormat, _ledStates);

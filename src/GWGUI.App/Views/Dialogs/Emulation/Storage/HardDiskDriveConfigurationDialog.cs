@@ -19,6 +19,7 @@ public sealed class HardDiskDriveConfigurationDialog : Window
 {
     private readonly string _identifier;
     private readonly string _imageDirectory;
+    private readonly Guid _clientGuid;
     private readonly TabControl _supportMode = new();
     private readonly TextBox _existingPath = new();
     private readonly TextBox _newName = new() { Text = EmulationControlDefaults.HardDiskFileName };
@@ -42,11 +43,12 @@ public sealed class HardDiskDriveConfigurationDialog : Window
     public string? InterfaceId { get; private set; }
 
     public HardDiskDriveConfigurationDialog(string identifier, string machineName, string? currentPath,
-        string imageDirectory, IReadOnlyList<HardDiskImageFormat> formats,
+        string imageDirectory, IReadOnlyList<HardDiskImageFormat> formats, Guid clientGuid,
         Func<string, Task<bool>>? deleteImage = null)
     {
         _identifier = identifier;
         _imageDirectory = imageDirectory;
+        _clientGuid = clientGuid;
         _formats = formats;
         if (formats.Count == 0) throw new ArgumentException(nameof(formats));
         _deleteImage = deleteImage;
@@ -221,7 +223,8 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         var dialog = new OpenFileDialog
         {
             Filter = string.Join('|', _formats.Select(format => $"{format.DisplayName}|*{format.Extension}")),
-            InitialDirectory = _imageDirectory
+            InitialDirectory = _imageDirectory,
+            ClientGuid = _clientGuid
         };
         if (dialog.ShowDialog(this) == true)
         {

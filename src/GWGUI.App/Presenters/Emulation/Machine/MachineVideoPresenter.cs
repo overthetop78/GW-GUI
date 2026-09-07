@@ -127,7 +127,9 @@ internal sealed class MachineVideoPresenter : IDisposable
     internal void FitScreen(double? aspectRatio = null)
     {
         var frame = _machine.Video.LatestFrame;
-        var ratio = aspectRatio ?? frame?.AspectRatio ?? MachinePresentationConstants.DefaultAspectRatio;
+        var ratio = aspectRatio ?? (frame is { Width: > 0, Height: > 0 }
+            ? frame.Width / (double)frame.Height
+            : MachinePresentationConstants.DefaultAspectRatio);
         var fitted = EmulationVideoLayoutFunctions.Fit(_displayHost.ActualWidth,
             _displayHost.ActualHeight, (float)ratio);
         if (fitted.IsEmpty) return;
@@ -267,7 +269,7 @@ internal sealed class MachineVideoPresenter : IDisposable
     {
         if (_disposed) return;
         UpdateFrameRate();
-        FitScreen(frame.AspectRatio);
+        FitScreen(frame.Width / (double)frame.Height);
         FramePresented?.Invoke(this, frame);
     }
     private void NotifyFrameCompleted(VideoFrame frame)

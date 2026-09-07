@@ -116,6 +116,23 @@ public sealed class HardDisksTests
     }
 
     [Theory]
+    [InlineData(20)]
+    [InlineData(40)]
+    public void AtariIdePreparationStoresWordSwappedAhdiAndFat(int mib)
+    {
+        using var disk = new MemoryStream(); disk.SetLength((long)mib * 1024 * 1024);
+        HardDiskPreparationWriter.Prepare(disk, HardDiskPreparation.AtariAhdiFat16, formatId: "atari-ide");
+        var bytes = disk.GetBuffer();
+
+        var partitionType = mib < 32 ? "GEM" : "BGM";
+        Assert.Equal(new byte[] { (byte)partitionType[0], 1, (byte)partitionType[2], (byte)partitionType[1] },
+            bytes.AsSpan(0x1c6, 4).ToArray());
+        Assert.Equal(new byte[] { 0, 0, 1, 0 }, bytes.AsSpan(0x1ca, 4).ToArray());
+        Assert.Equal(new byte[] { 0x1c, 0x60 }, bytes.AsSpan(512, 2).ToArray());
+        Assert.Equal(new byte[] { (byte)'W', (byte)'G', (byte)'U', (byte)'G' }, bytes.AsSpan(514, 4).ToArray());
+    }
+
+    [Theory]
     [InlineData(false)]
     [InlineData(true)]
     public void AmigaVolumeHasValidRootAndFreeSpaceBitmap(bool ffs)

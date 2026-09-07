@@ -7,6 +7,7 @@ using System.Windows;
 using GWGUI.Emulation;
 using Microsoft.Win32;
 using GWGUI.App.Services.Emulation;
+using GWGUI.App.Functions.Emulation.Storage;
 
 
 namespace GWGUI.App.Controllers.Emulation.Storage;
@@ -15,13 +16,15 @@ internal sealed class EmulationStorageSettingsController
 {
     private readonly IEmulationStorageSettingsManager _manager;
     private readonly Func<EmulationDefaultFolderCategory?, string> _defaultFolder;
+    private readonly string _moduleId;
     private EmulationStorageDeviceList _view = null!;
     private IEmulationConfiguration? _configuration;
     private EmulationStorageSettings _settings = new([], [], []);
 
-    internal EmulationStorageSettingsController(IEmulationStorageSettingsManager manager,
+    internal EmulationStorageSettingsController(string moduleId, IEmulationStorageSettingsManager manager,
         Func<EmulationDefaultFolderCategory?, string> defaultFolder)
     {
+        _moduleId = moduleId;
         _manager = manager;
         _defaultFolder = defaultFolder;
     }
@@ -95,6 +98,8 @@ internal sealed class EmulationStorageSettingsController
         var dialog = new OpenFileDialog
         {
             InitialDirectory = MediaDirectory(device.MediaType),
+            ClientGuid = EmulationMediaDialogFunctions.ClientGuid(_moduleId,
+                _configuration?.MachineId ?? string.Empty, device.Slot),
             Filter = string.IsNullOrWhiteSpace(filter)
                 ? LocExtension.Get("Emulation.Storage.Media.Associated") + "|*.*"
                 : LocExtension.Get("Emulation.Storage.Media.Associated") + $"|{filter}|" +
@@ -116,7 +121,9 @@ internal sealed class EmulationStorageSettingsController
         var dialog = new HardDiskDriveConfigurationDialog(device.DisplayLabel ?? device.Slot.ToString(),
             _configuration?.MachineId ?? string.Empty, current?.Path,
             device.ImageDirectory ?? _defaultFolder(EmulationDefaultFolderCategory.HardDisk),
-            device.HardDiskFormats ?? [], path => HardDiskDeletionService.DeleteAsync(path, _configuration!));
+            device.HardDiskFormats ?? [], EmulationMediaDialogFunctions.ClientGuid(_moduleId,
+                _configuration?.MachineId ?? string.Empty, device.Slot),
+            path => HardDiskDeletionService.DeleteAsync(path, _configuration!));
         if (dialog.ShowDialog() != true) return;
         var media = string.IsNullOrWhiteSpace(dialog.SupportPath) ? null
             : new EmulationMedia(dialog.SupportPath, device.Slot, device.MediaType,
@@ -147,7 +154,9 @@ internal sealed class EmulationStorageSettingsController
         var current = (_settings.DeviceSettings ?? []).FirstOrDefault(item => item.Slot == device.Slot)?.Floppy
             ?? new FloppyDriveSettings(device.FloppyOptions!.Models[0].Value, "100", false, false);
         var dialog = new FloppyDriveConfigurationDialog(device.DisplayLabel ?? device.Slot.ToString(),
-            _configuration?.MachineId ?? string.Empty, current, device.FloppyOptions!);
+            _configuration?.MachineId ?? string.Empty, current, device.FloppyOptions!,
+            EmulationMediaDialogFunctions.ClientGuid(_moduleId,
+                _configuration?.MachineId ?? string.Empty, device.Slot));
         if (dialog.ShowDialog() != true) return;
         var settings = (_settings.DeviceSettings ?? []).Where(item => item.Slot != device.Slot)
             .Append(new EmulationStorageDeviceSettings(device.Slot, dialog.Settings)).ToArray();

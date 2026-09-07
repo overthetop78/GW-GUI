@@ -4,6 +4,7 @@ using GWGUI.App.Constants.Machine;
 using GWGUI.App.Contracts.Machine;
 using GWGUI.App.Controllers.Emulation.Machine;
 using GWGUI.App.Functions.Machine;
+using GWGUI.App.Functions.Emulation.Storage;
 using GWGUI.App.Functions.Rendering.Emulation;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Presenters.Emulation.Machine;
@@ -88,6 +89,17 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
     {
         _video.SetVideoProcessing(videoProcessing);
         ApplyVideoRenderer(renderer);
+    }
+
+    internal async Task ApplyRuntimeOptionsAsync(IReadOnlyDictionary<string, string> options)
+    {
+        if (_disposed || _session.Machine.State is not EmulationMachineState.Running
+            and not EmulationMachineState.Paused) return;
+        var available = _session.Machine.Runtime.AvailableOptions
+            .Select(option => option.Key).ToHashSet(StringComparer.Ordinal);
+        foreach (var option in options)
+            if (available.Contains(option.Key))
+                await _session.Machine.Runtime.SetOptionAsync(option.Key, option.Value);
     }
 
     public async ValueTask DisposeAsync() => await StopAsync();
@@ -256,7 +268,9 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         var dialog = new OpenFileDialog
         {
             Filter = $"{LocExtension.Get("Emulation.Storage.Media.Associated")} ({string.Join(";", extensions)})|{string.Join(";", extensions)}",
-            InitialDirectory = _options.InitialMediaDirectory(device)
+            InitialDirectory = _options.InitialMediaDirectory(device),
+            ClientGuid = EmulationMediaDialogFunctions.ClientGuid(_options.ModuleId,
+                _options.MachineId, device.Slot)
         };
         if (dialog.ShowDialog() != true) return;
         var directory = Path.GetDirectoryName(dialog.FileName);

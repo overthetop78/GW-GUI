@@ -173,6 +173,15 @@ L’intégration Atari est terminée uniquement lorsque les six cœurs sont gér
 
 Les tâches de cette section sont volontairement différées. Elles ne doivent être reprises, cochées ou utilisées pour bloquer les tâches Atari non documentaires qu’après instruction explicite.
 
+### ATA-066 — Gérer proprement les erreurs d’éjection du CD Jaguar
+
+- [ ] Considérer le cas où un CD et une cartouche sont montés simultanément : Virtual Jaguar démarre actuellement la cartouche en priorité.
+- [ ] Intercepter l’échec renvoyé par Virtual Jaguar lorsqu’un CD est éjecté pendant une lecture active.
+- [ ] Intercepter également l’échec observé lors de l’éjection du CD monté mais inactif pendant que la cartouche est exécutée.
+- [ ] Remplacer l’erreur générique d’état invalide par une notification explicite indiquant que le disque ne peut pas être éjecté à cet instant.
+- [ ] Conserver la session d’émulation dans un état cohérent après le refus d’éjection.
+- [ ] Ajouter des tests de régression des deux chemins d’erreur et vérifier manuellement l’éjection pendant une cinématique, une piste audio et l’exécution prioritaire d’une cartouche.
+
 ### ATA-065 — Ajouter Atari System 1 avec MAME et FBNeo
 
 - [ ] Ajouter les cœurs libretro MAME et FBNeo à la gestion des moteurs, au téléchargement, à la détection de version et au lancement.

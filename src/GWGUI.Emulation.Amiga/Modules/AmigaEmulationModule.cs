@@ -154,6 +154,11 @@ public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorM
     private static string? OptionalPath(string? path) =>
         string.IsNullOrWhiteSpace(path) ? null : path;
 
+    public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration) =>
+        new Dictionary<string, string>((configuration as AmigaMachineConfiguration
+            ?? throw new ArgumentException(nameof(configuration))).Options
+            ?? new Dictionary<string, string>());
+
     public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) =>
         AmigaConfigurationSummaryFunctions.Create(configuration as AmigaMachineConfiguration
             ?? throw new ArgumentException(nameof(configuration)));

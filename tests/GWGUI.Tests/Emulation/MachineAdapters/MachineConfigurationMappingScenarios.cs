@@ -53,11 +53,13 @@ internal static class MachineConfigurationMappingScenarios
         Assert.False(mapped.Options.ContainsKey("removed")); Assert.Equal("synthetic",mapped.Options["specific"]); Assert.Equal("kept",mapped.Options["preserved"]);
         Assert.Equal(original.Model,mapped.Model); Assert.Equal(original.Core,mapped.Core); Assert.Equal(original.Id,mapped.Id);
         Assert.Equal("old",original.Options["removed"]); Assert.False(original.Options.ContainsKey("specific"));
+        var runtimeOptions=module.RuntimeOptions(mapped);
+        Assert.Equal("synthetic",runtimeOptions["specific"]); Assert.Equal("kept",runtimeOptions["preserved"]);
         if(original.Family==AtariMachineFamily.St)
         {
-            var options=AtariMachineOptionFunctions.Apply(mapped);
-            Assert.Equal(model is "Ste" or "MegaSte" ? "ste" : model=="Tt" ? "tt" : model=="Falcon" ? "falcon" : "st",options["hatari_machinetype"]);
+            Assert.Equal(model is "Ste" or "MegaSte" ? "ste" : model=="Tt" ? "tt" : model=="Falcon" ? "falcon" : "st",runtimeOptions["hatari_machinetype"]);
         }
+        else Assert.False(runtimeOptions.ContainsKey("hatari_machinetype"));
     }
     public static void EightBitNormalization()
     {

@@ -80,7 +80,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
         }
         if (module is IEmulationStorageSettingsManager storageManager)
         {
-            _storageSettings = new EmulationStorageSettingsController(storageManager, DefaultFolder);
+            _storageSettings = new EmulationStorageSettingsController(_module.Id, storageManager, DefaultFolder);
             _storageSettings.SettingsChanged += async (_, _) => await ExecuteUserChangeAsync();
         }
         _machines.SelectionChanged += MachineChanged;

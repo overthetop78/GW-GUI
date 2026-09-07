@@ -49,8 +49,8 @@ internal static class Atari800MediaFunctions
             out var cassetteBoot) && string.Equals(cassetteBoot, AtariEightBitSettingsConstants.Enabled,
             StringComparison.OrdinalIgnoreCase);
         options[AtariEightBitSettingsConstants.CassetteBootOptionKey] =
-            configuredCassetteBoot || media?.ContentType == Atari800ContentType.Cassette
-                && media.Configuration.CassetteAutoBoot
+            media?.ContentType == Atari800ContentType.Cassette
+                && (configuredCassetteBoot || media.Configuration.CassetteAutoBoot)
                 ? AtariEightBitSettingsConstants.Enabled
                 : AtariEightBitSettingsConstants.Disabled;
         if (options.TryGetValue(AtariConfigurationOptionConstants.VideoStandard, out var standard))
@@ -60,11 +60,22 @@ internal static class Atari800MediaFunctions
         options.Remove(AtariConfigurationOptionConstants.VideoStandard);
         MoveOption(options, AtariConfigurationOptionConstants.VideoResolution,
             AtariEightBitSettingsConstants.ResolutionOptionKey);
+        if (RequiresFullOverlayWidth(options))
+            options[AtariEightBitSettingsConstants.ResolutionOptionKey] = "384x240";
         // Per-port dead zones are already applied by GW GUI before analog input is forwarded.
         options[AtariEightBitSettingsConstants.AnalogDeadZoneOptionKey] =
             AtariEightBitSettingsConstants.NeutralAnalogDeadZone;
         return options;
     }
+
+    private static bool RequiresFullOverlayWidth(IReadOnlyDictionary<string, string> options) =>
+        IsEnabled(options, AtariEightBitSettingsConstants.ShowActivityOptionKey) ||
+        IsEnabled(options, AtariEightBitSettingsConstants.ShowSectorOptionKey) ||
+        IsEnabled(options, AtariEightBitSettingsConstants.ShowSpeedOptionKey);
+
+    private static bool IsEnabled(IReadOnlyDictionary<string, string> options, string key) =>
+        string.Equals(options.GetValueOrDefault(key), AtariEightBitSettingsConstants.Enabled,
+            StringComparison.OrdinalIgnoreCase);
 
     private static void MoveOption(IDictionary<string, string> options, string source, string destination)
     {

@@ -134,6 +134,15 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
         };
     }
 
+    public IReadOnlyDictionary<string, string> RuntimeOptions(IEmulationConfiguration configuration)
+    {
+        var atari = configuration as AtariMachineConfiguration
+            ?? throw new ArgumentException(nameof(configuration));
+        return AtariCompatibilityCatalog.Get(atari.Model).Core == AtariEmulator.Hatari
+            ? AtariMachineOptionFunctions.Apply(atari)
+            : atari.Options;
+    }
+
 
 
     public EmulationConfigurationSummary SummarizeConfiguration(IEmulationConfiguration configuration) =>

@@ -16,13 +16,15 @@ public sealed partial class EmulationSection
     private void VideoConfigurationChanged(object? sender,
         EmulationConfigurationSavedEventArgs args) =>
         EmulationOpenMachineConfigurationFunctions.TryApply(_openMachines,
-            args.Configuration.ModuleId, args.Configuration.Id, tab =>
+            args.Configuration.ModuleId, args.Configuration.Id, async tab =>
             {
                 if (tab.Content is MachineController view)
                 {
                     var profile = GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.Get(
                         args.Configuration.ModuleId, args.Configuration.Id);
                     view.ApplyVideoConfiguration(profile.Renderer, profile.Processing!);
+                    var module = _modules.First(item => item.Id == args.Configuration.ModuleId);
+                    await view.ApplyRuntimeOptionsAsync(module.RuntimeOptions(args.Configuration));
                 }
             });
 
@@ -30,13 +32,15 @@ public sealed partial class EmulationSection
     {
         await ReloadConfigurationsAsync();
         EmulationOpenMachineConfigurationFunctions.TryApply(_openMachines,
-            args.Configuration.ModuleId, args.Configuration.Id, tab =>
+            args.Configuration.ModuleId, args.Configuration.Id, async tab =>
             {
                 if (tab.Content is MachineController view)
                 {
                     var profile = GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.Get(
                         args.Configuration.ModuleId, args.Configuration.Id);
                     view.ApplyVideoConfiguration(profile.Renderer, profile.Processing!);
+                    var module = _modules.First(item => item.Id == args.Configuration.ModuleId);
+                    await view.ApplyRuntimeOptionsAsync(module.RuntimeOptions(args.Configuration));
                 }
             });
     }

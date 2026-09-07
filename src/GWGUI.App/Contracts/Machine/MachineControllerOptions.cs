@@ -5,6 +5,7 @@ namespace GWGUI.App.Contracts.Machine;
 
 internal sealed record MachineControllerOptions(
     string ModuleId,
+    string MachineId,
     Guid ConfigurationId,
     IEmulatedMachine Machine,
     Func<IReadOnlyList<EmulationMedia>, IEmulatedMachine> MachineFactory,

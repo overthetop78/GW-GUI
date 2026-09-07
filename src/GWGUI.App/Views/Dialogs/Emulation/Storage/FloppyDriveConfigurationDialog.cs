@@ -19,6 +19,7 @@ public sealed class FloppyDriveConfigurationDialog : Window
     private readonly CheckBox _writeProtected = new();
     private readonly CheckBox _redirectWrites = new();
     private readonly FloppyDriveDialogOptions _options;
+    private readonly Guid _clientGuid;
 
     public FloppyDriveSettings Settings => new(
         (_model.SelectedItem as StorageDialogChoice)?.Value ?? "35dd",
@@ -27,9 +28,10 @@ public sealed class FloppyDriveConfigurationDialog : Window
         _redirectWrites.IsChecked == true);
 
     public FloppyDriveConfigurationDialog(string identifier, string machineName,
-        FloppyDriveSettings settings, FloppyDriveDialogOptions options)
+        FloppyDriveSettings settings, FloppyDriveDialogOptions options, Guid clientGuid)
     {
         _options = options;
+        _clientGuid = clientGuid;
         Title = $"{LocExtension.Get(EmulationResourceKeys.StorageDeviceConfigure)} {identifier}";
         Owner = Application.Current.Windows.OfType<Window>().FirstOrDefault(window => window.IsActive);
         ShowInTaskbar = false;
@@ -105,6 +107,7 @@ public sealed class FloppyDriveConfigurationDialog : Window
             DefaultExt = _options.DefaultExtension,
             AddExtension = true,
             InitialDirectory = _options.ImageDirectory,
+            ClientGuid = _clientGuid,
             FileName = $"blank{_options.DefaultExtension}"
         };
         if (dialog.ShowDialog(this) != true) return;

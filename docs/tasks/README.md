@@ -13,6 +13,7 @@ Ce dossier contient uniquement les travaux restant à exécuter ou les feuilles 
 
 - [Amiga](emulation/amiga.md)
 - [Atari](emulation/atari.md)
+- [Corrections des cassettes Atari800](emulation/atari800-cassette.md)
 - [GameInput](emulation/gameinput.md)
 
 ## Interface d’émulation

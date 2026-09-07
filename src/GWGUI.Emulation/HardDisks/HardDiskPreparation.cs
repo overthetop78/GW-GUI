@@ -5,13 +5,16 @@ namespace GWGUI.Emulation.HardDisks;
 
 public static class HardDiskPreparationWriter
 {
-    public static void Prepare(Stream disk, HardDiskPreparation preparation, string label = "GWGUI")
+    public static void Prepare(Stream disk, HardDiskPreparation preparation, string label = "GWGUI", string? formatId = null)
     {
         switch (preparation)
         {
             case HardDiskPreparation.Blank: return;
             case HardDiskPreparation.AtariAhdiFat16:
-                using (var partition = AtariAhdiPartitionWriter.Create(disk)) AtariFat16VolumeFormatter.Format(partition);
+                using (var partition = string.Equals(formatId, "atari-ide", StringComparison.OrdinalIgnoreCase)
+                           ? AtariIdePartitionWriter.Create(disk)
+                           : AtariAhdiPartitionWriter.Create(disk))
+                    AtariFat16VolumeFormatter.Format(partition);
                 break;
             case HardDiskPreparation.AmigaOfs: AmigaDosVolumeFormatter.Format(disk, label, false); break;
             case HardDiskPreparation.AmigaFfs: AmigaDosVolumeFormatter.Format(disk, label, true); break;
