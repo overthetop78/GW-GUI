@@ -14,6 +14,7 @@ function New-GwGuiBuild {
     $output = Join-Path $buildRoot "$BuildConfiguration\GW GUI"
     $staging = Join-Path $buildRoot ".staging\$BuildConfiguration"
     $applicationPublish = Join-Path $staging 'application'
+    $moduleStaging = Join-Path $staging 'modules'
 
     $runningExecutable = Join-Path $output 'gwgui.exe'
     if (Test-Path -LiteralPath $runningExecutable -PathType Leaf) {
@@ -47,6 +48,25 @@ function New-GwGuiBuild {
     dotnet publish (Join-Path $repository 'src\GWGUI.App\GWGUI.App.csproj') `
         -c $BuildConfiguration -r win-x64 --self-contained false -o $applicationPublish --disable-build-servers
     if ($LASTEXITCODE -ne 0) { throw "$BuildConfiguration application publish failed." }
+
+    $moduleOutput = Join-Path $applicationPublish 'Modules'
+    New-Item -ItemType Directory -Path $moduleOutput -Force | Out-Null
+    $modules = @(
+        @{ Project = 'src\GWGUI.Emulation.Amiga\GWGUI.Emulation.Amiga.csproj'; Assembly = 'gwgui.emulation.amiga' },
+        @{ Project = 'src\GWGUI.Emulation.Atari\GWGUI.Emulation.Atari.csproj'; Assembly = 'gwgui.emulation.atari' }
+    )
+    foreach ($module in $modules) {
+        $publish = Join-Path $moduleStaging $module.Assembly
+        dotnet publish (Join-Path $repository $module.Project) `
+            -c $BuildConfiguration -r win-x64 --self-contained false -o $publish --disable-build-servers
+        if ($LASTEXITCODE -ne 0) { throw "$BuildConfiguration $($module.Assembly) module publish failed." }
+        foreach ($extension in @('.dll', '.pdb')) {
+            $source = Join-Path $publish ($module.Assembly + $extension)
+            if (Test-Path -LiteralPath $source -PathType Leaf) {
+                Copy-Item -LiteralPath $source -Destination $moduleOutput -Force
+            }
+        }
+    }
 
     dotnet publish (Join-Path $repository 'src\GWGUI.Launcher\GWGUI.Launcher.csproj') `
         -c $BuildConfiguration -r win-x64 --self-contained false -o $output --disable-build-servers

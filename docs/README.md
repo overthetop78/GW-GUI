@@ -15,6 +15,8 @@ La documentation est organisée par responsabilité. Les règles, les décisions
 
 - [Vue d’ensemble](architecture/overview.md)
 - [Architecture modulaire de l’émulation](architecture/emulation.md)
+- [Raccordement des modules d’émulation dynamiques](architecture/emulation-modules.md)
+- [Guide autonome de développement d’un module](architecture/emulation-module-authoring.md)
 - [Médias et images de disquette](architecture/media.md)
 - [Versionnement et compilation](architecture/versioning.md)
 
