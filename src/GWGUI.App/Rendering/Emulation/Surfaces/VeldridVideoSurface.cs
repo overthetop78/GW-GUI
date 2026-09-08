@@ -105,6 +105,17 @@ internal sealed class VeldridVideoSurface : HwndHost, IEmulationVideoSurface
         lock (_deviceGate) PresentCore(frame);
     }
 
+    public void ResetHistory()
+    {
+        lock (_deviceGate)
+        {
+            _hasHistory = false;
+            _historyTimestamp = TimeSpan.Zero;
+            _historySequence = 0;
+            _snapshotPipeline.ResetTemporalHistory();
+        }
+    }
+
     private void PresentCore(VideoFrame frame)
     {
         if (_hwnd == IntPtr.Zero) return;
