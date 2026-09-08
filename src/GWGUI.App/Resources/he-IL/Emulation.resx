@@ -46,7 +46,7 @@
   <data name="Emulation.Keyboard.HostKey"><value>מקש מארח</value></data>
   <data name="Emulation.Cpu.Summary"><value>מעבד: {0}</value></data>
 <data name="Emulation.Video.Summary"><value>ערכת שבבי וידאו: {0}</value></data>
-<data name="Emulation.Amiga.Chipset.Name"><value>ערכת שבבים</value></data>
+
   <data name="Emulation.Storage.Cd.Drive"><value>כונן CD</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>מספר כונני תקליטונים</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>מספר כוננים קשיחים</value></data>
@@ -95,15 +95,15 @@
   <data name="Emulation.Firmware.Incompatible"><value>לא תואם</value></data>
   <data name="Emulation.Video.Settings.Display"><value>תצוגה</value></data>
   <data name="Emulation.Video.Settings.Rendering"><value>עיבוד</value></data>
-  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>תאימות ערכת שבבים</value></data>
+  
   <data name="Emulation.Audio.Device"><value>התקן</value></data>
   <data name="Emulation.Audio.LatencyLabel"><value>השהיה</value></data>
   <data name="Emulation.Audio.Quality"><value>איכות</value></data>
   <data name="Emulation.Audio.Drives"><value>כוננים</value></data>
   <data name="Emulation.Device.Name.Type"><value>סוג</value></data>
   <data name="Emulation.Storage.Device.Add"><value>הוספת התקן אחסון</value></data>
-  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga ‏3.5 אינץ׳ DD · ‏880 KiB</value></data>
-  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga ‏3.5 אינץ׳ HD · ‏1.76 MiB</value></data>
+  
+  
   <data name="Emulation.Storage.Media.Associated"><value>מדיה משויכת</value></data>
   <data name="Emulation.Storage.Geometry.Automatic"><value>גאומטריית הדיסק נקבעת אוטומטית בידי האמולטור.</value></data>
   <data name="Emulation.Storage.Floppy.BlankCreated"><value>נוצרה תמונת תקליטון ריקה: {0}</value></data>
@@ -195,95 +195,95 @@
   <data name="Emulation.Controller.Action.Right"><value>ימינה</value></data>
   <data name="Emulation.Controller.Action.Fire1"><value>כפתור ירי 1</value></data>
   <data name="Emulation.Controller.Action.Fire2"><value>כפתור ירי 2</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>כפתור CD32 אדום</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>כפתור CD32 כחול</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>כפתור CD32 ירוק</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>כפתור CD32 צהוב</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 הרצה לאחור</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 הרצה קדימה</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 הפעלה / השהיה</value></data>
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Controller.AnalogJoystick"><value>ג׳ויסטיק אנלוגי</value></data>
   <data name="Emulation.Mouse.Wheel.Up"><value>גלגלת עכבר למעלה</value></data>
   <data name="Emulation.Mouse.Wheel.Down"><value>גלגלת עכבר למטה</value></data>
   <data name="Emulation.Mouse.Wheel.Left"><value>גלגלת עכבר שמאלה</value></data>
   <data name="Emulation.Mouse.Wheel.Right"><value>גלגלת עכבר ימינה</value></data>
-  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>ערך זה נקבע על ידי המודל שנבחר.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve"><value>אין FPU מתאים זמין עבור מודל זה.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>אין זיכרון חלופי לדגם זה.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>למודל הזה אין קושחה מוגדרת.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>לדגם הזה אין מקלדת.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>למודל הזה אין עכבר.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>לדגם הזה אין אמצעי אחסון.</value></data>
-  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>בחר את יגואר CD מודל לשימוש CD Media</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Storage.Cassettes"><value>קלטת</value></data>
   <data name="Emulation.Storage.Cartridges"><value>מחסנית</value></data>
   <data name="Emulation.Storage.CompactDiscs"><value>תקליטורים</value></data>
-  <data name="Emulation.Atari.Video.Region"><value>אזור</value></data>
-  <data name="Emulation.Atari.Firmware.Multilingual"><value>רב-לשוני</value></data>
-  <data name="Emulation.Atari.Video.RegionFree"><value>ללא אזור</value></data>
+  
+  
+  
   <data name="Emulation.Tab.Audio" xml:space="preserve"><value>שמע</value></data>
-  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>ליבת Atari הנדרשת לא נמצאה.</value></data>
-  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>לא ניתן לטעון את ליבת Atari שנבחרה.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>חסרה קושחת Atari נדרשת.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>קושחת Atari אינה תקינה או אינה תואמת.</value></data>
-  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>מדיית Atari שהוגדרה לא נמצאה.</value></data>
-  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>המדיה שהוגדרה אינה נתמכת במכונת Atari זו.</value></data>
-  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>לאפשרות Atari יש ערך לא תקין.</value></data>
-  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>התקשורת עם מארח Atari נכשלה.</value></data>
-  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>מצב השמירה של Atari אינו תקין.</value></data>
-  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>מצב השמירה של Atari אינו תואם למכונה הנוכחית.</value></data>
-  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>אירעה שגיאת הדמיית Atari בלתי צפויה.</value></data>
-  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>פרטים: {0}</value></data>
-  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>לא ניתן לשנות או למחוק את תצורת Atari הפעילה.</value></data>
-  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve"><value>קושחת Atari הנדרשת '{0}' אינה מוגדרת עבור {1}.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>קושחת Atari שהוגדרה '{0}' לא נמצאה: {1}</value></data>
-  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>מדיית Atari שהוגדרה לא נמצאה: {0}</value></data>
-  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>נתיב קובץ ההפעלה של מארח Atari אינו זמין.</value></data>
-  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>ליבת Atari '{0}' אינה מותקנת.</value></data>
-  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari Media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|כל הקבצים|*.*</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Controller.Automatic"><value>אוֹטוֹמָטִי</value></data>
   <data name="Emulation.Controller.None"><value>ללא</value></data>
-  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>המונחים: four-player joystick Fiter</value></data>
+  
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Switch joystick /mouse</value></data>
-  <data name="Emulation.Atari.Controller.NumericKeypad"><value>המונחים: keypad</value></data>
+  
   <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve"><value>האמולטור דורש מדיה לפני שניתן להפעיל מכונה זו. הכנס או הגדר אחד מאמצעי המדיה הנדרשים המוצגים להלן.</value></data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve"><value>לא ניתן להפעיל את המכונה</value></data>
   <data name="Emulation.Error.Machine" xml:space="preserve"><value>מכונה</value></data>
   <data name="Emulation.Error.RequiredMedia" xml:space="preserve"><value>מדיה נדרשת</value></data>
-  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>אתחול מהיר</value></data>
+  
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>צליל כונן תקליטונים</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>מסנן שמע מקוטב</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>הצג פעילות כוננים במסך האמולטור</value></data>
-  <data name="Emulation.Atari.Memory.Mosaic"><value>פסיפס RAM הרחבה</value></data>
-  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM הרחבה</value></data>
-  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>צל בנק Axlon $0F</value></data>
-  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>POKEY סטריאו</value></data>
-  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>ארטיפקטים ברזולוציה גבוהה</value></data>
-  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>האצת SIO</value></data>
-  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>אתחול מקלטת</value></data>
-  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>גרסת מערכת ההפעלה</value></data>
-  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>BASIC פנימי</value></data>
-  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>גרסת BASIC</value></data>
-  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>מהירות תנועת Paddle</value></data>
-  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>ירי אוטומטי</value></data>
-  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>בזמן שלחצן הירי לחוץ</value></data>
-  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>תמיד</value></data>
-  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>גוון</value></data>
-  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>רוויה</value></data>
-  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>ניגודיות</value></data>
-  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>בהירות</value></data>
-  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>השהיית צבע GTIA</value></data>
-  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>לוח צבעים חיצוני</value></data>
-  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>תאימות בקר</value></data>
-  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>רגישות דיגיטלית</value></data>
-  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>רגישות אנלוגית</value></data>
-  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>ג׳ויסטיק כפול</value></data>
-  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>החלפת יציאות</value></data>
-  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>הצגת מהירות ההדמיה</value></data>
-  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>הצגת מונה מגזר/בלוק</value></data>
-  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>שעון זמן אמת R-Time 8</value></data>
-  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>התקן מדפסת P:</value></data>
-  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>התקן טורי R:</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>נמוכה</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>רגילה</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>גבוהה</value></data>
@@ -660,7 +660,7 @@
   <data name="Emulation.Storage.HardDisk.Size"><value>גודל הארד-דיסק (MiB)</value></data>
   <data name="Emulation.Storage.Media.None"><value>No Media. Add a floppy, hard Disk או CD נתמך על ידי המודל שנבחר.</value></data>
   <data name="Emulation.Storage.ReadOnly"><value>Read-רק</value></data>
-  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga Media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|כל הקבצים|*.*</value></data>
+  
   <data name="Emulation.Storage.HardDisk.Filter"><value>Amiga קשיח דיסק|*.hdf|כל הקבצים|*.*</value></data>
   <data name="Emulation.Storage.HardDisk.NotSupported"><value>המודל שנבחר אינו תומך בדיסק קשיח.</value></data>
   <data name="Emulation.Storage.Floppy.TooManyDrives"><value>המודל הזה מקבל ברוב {0} כונן צנרת (s)</value></data>
@@ -739,18 +739,18 @@
   <data name="Emulation.Controller.Turbo.Button"><value>כפתור טורבו</value></data>
   <data name="Emulation.Controller.Turbo.Pulse"><value>הדופק טורבו</value></data>
   <data name="Emulation.Controller.PortOrder"><value>פקודת נמל</value></data>
-  <data name="Emulation.Amiga.Controller.Joystick"><value>עמיגה שמחה</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32"><value>CD32 בקר</value></data>
-  <data name="Emulation.Atari.Controller.Joystick"><value>ג'ויסטיק Atari</value></data>
-  <data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Paddle Controller</value></data>
-  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>אקדח אור Atari XG-1</value></data>
-  <data name="Emulation.Atari.Controller.Atari5200"><value>בקר Atari 5200</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>בקר נהיגה Atari</value></data>
-  <data name="Emulation.Atari.Controller.ProLine"><value>ג'ויסטיק Atari Pro-Line</value></data>
-  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari יגואר Controller</value></data>
-  <data name="Emulation.Atari.Controller.BoosterGrip"><value>בקר Atari Booster Grip</value></data>
-  <data name="Emulation.Atari.Controller.Genesis"><value>המפקח Sega Genesis</value></data>
-  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>בקר Atari Joy 2B+</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Video.DotMatrix.Palette.Red"><value>אדום אדום אדום</value></data>
   <data name="Emulation.Video.DotMatrix.Palette.White"><value>לבן לבן</value></data>
   <data name="Emulation.Video.DotMatrix.Group.Cells"><value>תאים</value></data>
@@ -831,8 +831,8 @@
   <data name="Emulation.Hdd.PreparationHint"><value>עיצוב יוצר נפח ריק, ללא מערכת הפעלה. Atari HDD גם נעילה דורשת נהג דיסק תואם המותקן מהמכונה החיקויה.תמונות קומפרסוכאות עלולות להפנות את הכתיבה לעתק מופק.</value></data>
   <data name="Emulation.Value.None"><value>ללא</value></data>
   <data name="Emulation.Value.Gray"><value>אפור</value></data>
-  <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>כחול/חום 1</value></data>
-  <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>כחול/חום 2</value></data>
+  
+  
   <data name="Emulation.Value.Default"><value>ברירת מחדל</value></data>
   <data name="Emulation.Firmware.Rom.Basic"><value>רום BASIC</value></data>
   <data name="Emulation.Firmware.Rom.Xegs"><value>רום XEGS</value></data>

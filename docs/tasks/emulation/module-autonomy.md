@@ -32,53 +32,55 @@ un résultat historique comme une validation nouvelle.
 
 ## Liste ordonnée
 
-- [ ] 1. Donner aux modules leurs traductions embarquées prioritaires
+- [x] 1. Donner aux modules leurs traductions embarquées prioritaires
   - [x] 1.1. Définir le raccordement à la traduction commune existante
     - [x] 1.1.1. Formaliser la répartition des textes et les appels à adapter
       - [x] Créer `docs/architecture/emulation-module-localization.md` à partir de `Localization/Extensions/LocExtension.cs`, `Localization/Sources/LocalizationSource.cs`, `Constants/Localization/LocalizationCatalogNames.cs`, `Dictionaries/Localization/UiLanguageCatalog.cs` sous `src/GWGUI.App`, des ressources App et des clés émises par Amiga et Atari ; y inscrire les clés communes, invariantes et propres à chaque module, toutes les cultures distribuées et les chemins des consommateurs concernés.
       - [x] Compléter ce document avec la résolution prévue : catalogue du module concerné avant les ressources App, repli de langue du module, conservation de `00-Base`, du formatage et du comportement actuel de clé absente ; préciser le changement de langue et la prévention des collisions entre familles. Soumettre toute ambiguïté restante avant de coder.
       - [x] Compléter les sous-tâches de 1.2 et 1.3 dans ce fichier avec chaque chemin de consommateur identifié et les remplacements précis à réaliser.
-  - [ ] 1.2. Raccorder un catalogue de module sans dépendance vers App
-    - [ ] 1.2.1. Ajouter le contrat et sa résolution commune
-      - [ ] Créer `src/GWGUI.Emulation/Interfaces/IEmulationModuleLocalization.cs` avec la capacité de rechercher un texte par clé et culture, en distinguant une clé absente d'une valeur présente ; ne pas exposer de type App ou WPF.
-      - [ ] Créer `src/GWGUI.Emulation/Services/EmulationModuleLocalization.cs` pour lire les ressources embarquées d'un module et appliquer le repli documenté, sans dépendre d'un moteur concret.
-      - [ ] Modifier `src/GWGUI.App/Localization/Extensions/LocExtension.cs` pour proposer la recherche et les bindings dans le contexte d'un module, avec priorité au module puis repli vers la résolution App existante ; conserver les appels sans module.
-      - [ ] Modifier `src/GWGUI.App/Services/Emulation/EmulationModuleRegistry.cs` pour rendre accessibles les catalogues des modules chargés sans construire de dépendance circulaire entre initialisation des modules et localisation.
-    - [ ] 1.2.2. Relier les consommateurs aux catalogues
-      - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs` pour traduire les métadonnées avec `_module`, y compris les choix et explications, et conserver le rafraîchissement existant.
-      - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs` pour traduire les familles avec leur module lors de la construction et du rafraîchissement.
-      - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs` pour traduire le nom de machine dans son contexte de module.
-      - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` pour traduire les familles avec leur module.
-      - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` pour traduire les titres de machines et runtimes avec le module sélectionné ou l'identifiant de configuration.
-      - [ ] Modifier `src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationPresenter.cs` pour traduire le résumé avec le module reçu.
-      - [ ] Modifier `src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationSettingsValuePresentationFunctions.cs` pour accepter le contexte de module dans `DisplayValue` sans modifier les calculs numériques.
-      - [ ] Modifier `src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs` pour transmettre le module à la traduction du nom et du choix CPU.
-      - [ ] Modifier `src/GWGUI.App/Views/Controls/Emulation/Input/InputBindingEditor.xaml.cs` pour accepter un contexte de traduction optionnel dans `SetRows`, en conservant les raccourcis hôte sans module.
-      - [ ] Modifier `src/GWGUI.App/Controllers/Emulation/Input/EmulationInputSettingsController.cs` pour transmettre le module aux choix des périphériques et aux trois appels d'affichage des associations ; conserver les noms des contrôleurs physiques communs.
-      - [ ] Modifier `src/GWGUI.App/Views/Dialogs/Emulation/Storage/FloppyDriveConfigurationDialog.cs` pour accepter un contexte de traduction optionnel des modèles de lecteur.
-      - [ ] Modifier `src/GWGUI.App/Controllers/Emulation/Storage/EmulationStorageSettingsController.cs` pour traduire les modèles et transmettre le contexte au dialogue de lecteur.
-      - [ ] Modifier `src/GWGUI.App/Controllers/Emulation/Firmware/EmulationFirmwareManagementController.cs` pour traduire le libellé du champ destinataire avec le module reçu.
-      - [ ] Modifier `src/GWGUI.App/Services/Emulation/HardDiskDeletionService.cs` pour traduire les noms de machines référentes avec chaque module parcouru.
-      - [ ] Compléter `docs/architecture/emulation-module-localization.md` avec la vérification des consommateurs préservés : `EmulationModuleHardwareSettingsSection.cs`, `EmulationEmulatorManagementController.cs`, `ControlErrorPresenter.cs` et touches hôte ; inscrire ici toute adaptation supplémentaire nécessaire avant de l'exécuter.
-  - [ ] 1.3. Transférer les ressources des deux familles
-    - [ ] 1.3.1. Embarquer les traductions Amiga
-      - [ ] Créer `src/GWGUI.Emulation.Amiga/Resources/00-Base/Emulation.resx` et les `Resources/<culture>/Emulation.resx` de toutes les cultures inventoriées ; déplacer les clés propres à Amiga depuis les catalogues App recensés, sans changer les identifiants ni retraduire les textes déjà présents. Garder les valeurs invariantes dans la base appropriée uniquement.
-      - [ ] Modifier `src/GWGUI.Emulation.Amiga/GWGUI.Emulation.Amiga.csproj` pour embarquer ces catalogues de toutes les cultures dans la DLL du module et leur donner les noms attendus par le lecteur commun.
-      - [ ] Modifier `src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModule.cs` pour exposer son catalogue par le contrat commun.
-    - [ ] 1.3.2. Embarquer les traductions Atari
-      - [ ] Créer `src/GWGUI.Emulation.Atari/Resources/00-Base/Emulation.resx` et les `Resources/<culture>/Emulation.resx` de toutes les cultures inventoriées ; déplacer les clés propres à Atari depuis les catalogues App recensés, en conservant textes, identifiants et séparation des invariants.
-      - [ ] Modifier `src/GWGUI.Emulation.Atari/GWGUI.Emulation.Atari.csproj` pour embarquer tous ces catalogues dans la DLL du module avec les noms attendus.
-      - [ ] Modifier `src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs` pour exposer son catalogue par le contrat commun.
-    - [ ] 1.3.3. Maintenir les langues et la documentation
-      - [ ] Modifier `scripts/translate-resx-argos.py` pour accepter la racine de ressources d'un module en conservant la racine App par défaut et les opérations existantes ; utiliser les modèles Argos installés sans réexaminer leur installation.
-      - [ ] Compléter avec cet outil les seules traductions nouvelles ou manquantes des ressources concernées dans toutes les langues ; conserver les paramètres de formatage et éviter les doublons invariants.
-      - [ ] Modifier `docs/architecture/emulation-module-authoring.md` et `docs/future/emulation-plugins.md` pour décrire les traductions réellement embarquées, leur priorité et leur maintenance ; retirer la présentation des traductions externes comme cible retenue.
-  - [ ] 1.4. Valider la traduction des modules
-    - [ ] 1.4.1. Vérifier la priorité et le comportement existant
-      - [ ] Ajouter dans `tests/GWGUI.Tests/Interface/Localization` des scénarios autonomes avec catalogues en mémoire pour la priorité, le repli, les collisions entre modules, le formatage et les clés absentes ; compléter la feuille avec les noms exacts des fichiers avant création, selon le fonctionnement des tests existants.
-      - [ ] Créer `docs/tasks/emulation/module-autonomy-validation.md` et y enregistrer les résultats des tests pertinents et de `scripts/build.ps1 -Configuration Debug`, après leur exécution.
-      - [ ] Compléter ce relevé après essai de changement de langue et d'affichage des réglages Amiga et Atari, contrôle de toutes les cultures et essai temporaire d'une clé concurrente module/App ; préciser toute validation interactive encore attendue.
-      - [ ] Supprimer les scénarios temporaires, fichiers et modifications de ressources créés uniquement pour ces essais ; conserver les tests autonomes utiles et inscrire le nettoyage dans le relevé.
+  - [x] 1.2. Raccorder un catalogue de module sans dépendance vers App
+    - [x] 1.2.1. Ajouter le contrat et sa résolution commune
+      - [x] Créer `src/GWGUI.Emulation/Interfaces/IEmulationModuleLocalization.cs` avec la capacité de rechercher un texte par clé et culture, en distinguant une clé absente d'une valeur présente ; ne pas exposer de type App ou WPF.
+      - [x] Créer `src/GWGUI.Emulation/Services/EmulationModuleLocalization.cs` pour lire les ressources embarquées d'un module et appliquer le repli documenté, sans dépendre d'un moteur concret.
+      - [x] Modifier `src/GWGUI.App/Localization/Extensions/LocExtension.cs` pour proposer la recherche et les bindings dans le contexte d'un module, avec priorité au module puis repli vers la résolution App existante ; conserver les appels sans module.
+      - [x] Modifier `src/GWGUI.App/Services/Emulation/EmulationModuleRegistry.cs` pour rendre accessibles les catalogues des modules chargés sans construire de dépendance circulaire entre initialisation des modules et localisation.
+    - [x] 1.2.2. Relier les consommateurs aux catalogues
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs` pour traduire les métadonnées avec `_module`, y compris les choix et explications, et conserver le rafraîchissement existant.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSection.cs` pour traduire les familles avec leur module lors de la construction et du rafraîchissement.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs` pour traduire le nom de machine dans son contexte de module.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` pour traduire les familles avec leur module.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` pour traduire les titres de machines et runtimes avec le module sélectionné ou l'identifiant de configuration.
+      - [x] Modifier `src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationPresenter.cs` pour traduire le résumé avec le module reçu.
+      - [x] Modifier `src/GWGUI.App/Functions/Views/Emulation/Settings/EmulationSettingsValuePresentationFunctions.cs` pour accepter le contexte de module dans `DisplayValue` sans modifier les calculs numériques.
+      - [x] Modifier `src/GWGUI.App/Presenters/Emulation/Configurations/EmulationConfigurationTablePresenter.cs` pour transmettre le module à la traduction du nom et du choix CPU.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Input/InputBindingEditor.xaml.cs` pour accepter un contexte de traduction optionnel dans `SetRows`, en conservant les raccourcis hôte sans module.
+      - [x] Modifier `src/GWGUI.App/Controllers/Emulation/Input/EmulationInputSettingsController.cs` pour transmettre le module aux choix des périphériques et aux trois appels d'affichage des associations ; conserver les noms des contrôleurs physiques communs.
+      - [x] Modifier `src/GWGUI.App/Views/Dialogs/Emulation/Storage/FloppyDriveConfigurationDialog.cs` pour accepter un contexte de traduction optionnel des modèles de lecteur.
+      - [x] Modifier `src/GWGUI.App/Controllers/Emulation/Storage/EmulationStorageSettingsController.cs` pour traduire les modèles et transmettre le contexte au dialogue de lecteur.
+      - [x] Modifier `src/GWGUI.App/Controllers/Emulation/Firmware/EmulationFirmwareManagementController.cs` pour traduire le libellé du champ destinataire avec le module reçu.
+      - [x] Modifier `src/GWGUI.App/Services/Emulation/HardDiskDeletionService.cs` pour traduire les noms de machines référentes avec chaque module parcouru.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Emulation/Options/EmulationModuleHardwareSettingsSection.cs` pour transmettre `_module` aux deux appels `DisplayValue` du résumé CPU ; conserver les calculs et textes hôte.
+      - [x] Compléter `docs/architecture/emulation-module-localization.md` avec la vérification des consommateurs préservés : `EmulationModuleHardwareSettingsSection.cs`, `EmulationEmulatorManagementController.cs`, `ControlErrorPresenter.cs` et touches hôte ; inscrire ici toute adaptation supplémentaire nécessaire avant de l'exécuter.
+  - [x] 1.3. Transférer les ressources des deux familles
+    - [x] 1.3.1. Embarquer les traductions Amiga
+      - [x] Créer `src/GWGUI.Emulation.Amiga/Resources/00-Base/Emulation.resx` et les `Resources/<culture>/Emulation.resx` de toutes les cultures inventoriées ; déplacer les clés propres à Amiga depuis les catalogues App recensés, sans changer les identifiants ni retraduire les textes déjà présents. Garder les valeurs invariantes dans la base appropriée uniquement.
+      - [x] Modifier `src/GWGUI.Emulation.Amiga/GWGUI.Emulation.Amiga.csproj` pour embarquer ces catalogues de toutes les cultures dans la DLL du module et leur donner les noms attendus par le lecteur commun.
+      - [x] Modifier `src/GWGUI.Emulation.Amiga/Modules/AmigaEmulationModule.cs` pour exposer son catalogue par le contrat commun.
+    - [x] 1.3.2. Embarquer les traductions Atari
+      - [x] Créer `src/GWGUI.Emulation.Atari/Resources/00-Base/Emulation.resx` et les `Resources/<culture>/Emulation.resx` de toutes les cultures inventoriées ; déplacer les clés propres à Atari depuis les catalogues App recensés, en conservant textes, identifiants et séparation des invariants.
+      - [x] Modifier `src/GWGUI.Emulation.Atari/GWGUI.Emulation.Atari.csproj` pour embarquer tous ces catalogues dans la DLL du module avec les noms attendus.
+      - [x] Modifier `src/GWGUI.Emulation.Atari/Modules/AtariEmulationModule.cs` pour exposer son catalogue par le contrat commun.
+    - [x] 1.3.3. Maintenir les langues et la documentation
+      - [x] Modifier `scripts/translate-resx-argos.py` pour accepter la racine de ressources d'un module en conservant la racine App par défaut et les opérations existantes ; utiliser les modèles Argos installés sans réexaminer leur installation.
+      - [x] Compléter avec cet outil les seules traductions nouvelles ou manquantes des ressources concernées dans toutes les langues ; conserver les paramètres de formatage et éviter les doublons invariants.
+      - [x] Modifier `docs/architecture/emulation-module-authoring.md` et `docs/future/emulation-plugins.md` pour décrire les traductions réellement embarquées, leur priorité et leur maintenance ; retirer la présentation des traductions externes comme cible retenue.
+  - [x] 1.4. Valider la traduction des modules
+    - [x] 1.4.1. Vérifier la priorité et le comportement existant
+      - [x] Créer `tests/GWGUI.Tests/Interface/Localization/ModuleLocalizationTests.cs` avec des catalogues en mémoire et l'infrastructure STA existante : priorité au module, repli App, deux modules avec la même clé, formatage, valeur vide présente, clé absente et culture transmise. Conserver ces tests autonomes ; contrôler les ressources DLL et le repli réel de leurs langues par l'essai temporaire prévu plus bas.
+      - [x] Corriger dans `src/GWGUI.App/Controllers/Emulation/Input/EmulationInputSettingsController.cs` l'accès à `_moduleId` introduit dans la méthode statique de reconstruction des associations : transmettre explicitement le contexte ou utiliser la méthode d'instance selon ses appels existants ; relancer ensuite la compilation et les tests de localisation.
+      - [x] Créer `docs/tasks/emulation/module-autonomy-validation.md` et y enregistrer les résultats des tests pertinents et de `scripts/build.ps1 -Configuration Debug`, après leur exécution.
+      - [x] Créer et exécuter `tests/GWGUI.Tests/Interface/Localization/TemporaryModuleLocalizationTests.cs` pour contrôler les ressources des deux DLL, le repli de culture, leurs métadonnées et les bindings lors du changement de langue ; compléter ensuite le relevé avec ces résultats et les limites de validation interactive. Le fichier sera supprimé à l'action suivante.
+      - [x] Supprimer les scénarios temporaires, fichiers et modifications de ressources créés uniquement pour ces essais ; conserver les tests autonomes utiles et inscrire le nettoyage dans le relevé.
 
 - [ ] 2. Identifier les modules et contrôler leur compatibilité
   - [ ] 2.1. Fixer le manifeste et la version d'API

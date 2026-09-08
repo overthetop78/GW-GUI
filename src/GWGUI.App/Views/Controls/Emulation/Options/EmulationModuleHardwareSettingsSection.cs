@@ -28,9 +28,9 @@ internal sealed partial class EmulationModuleSettingsSection
         var cpuControl = CreateControlField(cpu);
         var speedControl = speed is null ? null : CreateControlField(speed);
         var machineName = (_machines.SelectedItem as EmulationMachineChoice)?.DisplayName ?? settings.MachineId;
-        var cpuName = EmulationSettingsValuePresentationFunctions.DisplayValue(cpu);
+        var cpuName = EmulationSettingsValuePresentationFunctions.DisplayValue(cpu, _module);
         var originalSpeed = originalSpeedField is null ? string.Empty
-            : EmulationSettingsValuePresentationFunctions.DisplayValue(originalSpeedField);
+            : EmulationSettingsValuePresentationFunctions.DisplayValue(originalSpeedField, _module);
         var page = EmulationSettingsLayout.CpuSettingsPage(new EmulationCpuSettingsContent(
             cpuControl,
             new TextBlock { Text = string.Join(" · ", new[] { machineName, cpuName, originalSpeed }

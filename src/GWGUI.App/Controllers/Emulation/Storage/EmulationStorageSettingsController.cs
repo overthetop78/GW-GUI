@@ -156,7 +156,7 @@ internal sealed class EmulationStorageSettingsController
         var dialog = new FloppyDriveConfigurationDialog(device.DisplayLabel ?? device.Slot.ToString(),
             _configuration?.MachineId ?? string.Empty, current, device.FloppyOptions!,
             EmulationMediaDialogFunctions.ClientGuid(_moduleId,
-                _configuration?.MachineId ?? string.Empty, device.Slot));
+                _configuration?.MachineId ?? string.Empty, device.Slot), _moduleId);
         if (dialog.ShowDialog() != true) return;
         var settings = (_settings.DeviceSettings ?? []).Where(item => item.Slot != device.Slot)
             .Append(new EmulationStorageDeviceSettings(device.Slot, dialog.Settings)).ToArray();
@@ -194,6 +194,6 @@ internal sealed class EmulationStorageSettingsController
             ?? device.FloppyOptions.Models[0];
         return string.IsNullOrWhiteSpace(choice.DisplayResourceKey)
             ? choice.InvariantDisplayValue ?? choice.Value
-            : LocExtension.Get(choice.DisplayResourceKey);
+            : LocExtension.GetForModule(_moduleId, choice.DisplayResourceKey);
     }
 }

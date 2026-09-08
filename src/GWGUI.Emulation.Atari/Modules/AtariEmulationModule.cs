@@ -3,8 +3,15 @@ using GWGUI.Emulation;
 namespace GWGUI.Emulation.Atari.Modules;
 
 public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorManager,
-    IEmulationFirmwareManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager
+    IEmulationFirmwareManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager,
+    IEmulationModuleLocalization
 {
+    private static readonly EmulationModuleLocalization Localization = new(
+        typeof(AtariEmulationModule).Assembly, "GWGUI.Emulation.Atari.Resources.Emulation");
+
+    public bool TryGetString(string key, System.Globalization.CultureInfo culture, out string value) =>
+        Localization.TryGetString(key, culture, out value);
+
     private readonly AtariConfigurationStore _store;
     private readonly HttpClient _httpClient;
     private readonly string _coreDirectory;

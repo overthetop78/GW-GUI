@@ -105,6 +105,21 @@ Le transfert des clés ne doit pas supprimer les textes communs employés par d'
 (notamment formats de disques et touches physiques). Le test de priorité utilise une concurrence
 temporaire module/App ; il ne justifie pas de conserver des copies permanentes des textes transférés.
 
+## Consommateurs communs vérifiés
+
+Les appels CPU de `EmulationModuleHardwareSettingsSection.cs` transmettent désormais le module
+à `DisplayValue`. Les contrôles eux-mêmes passent déjà par `CreateControlField` contextualisé.
+Les titres et totaux génériques du matériel restent hôte. `EmulationEmulatorManagementController.cs`
+présente les opérations communes de recherche/installation ; ses clés ne sont pas transférées.
+`ControlErrorPresenter.cs` traduit les codes de `EmulationMessage` avec les constantes de l'hôte,
+sans recevoir de clé propre à une famille ; ce fonctionnement et les messages originaux des cœurs
+restent inchangés. Les touches physiques et les noms des manettes physiques restent communs.
+
+Les associations propres à la machine passent par le contexte transmis à `InputBindingEditor.SetRows`.
+Les raccourcis globaux utilisent toujours l'appel sans module. Les dialogues de lecteurs reçoivent
+le contexte pour les modèles décrits par le module ; leurs commandes communes restent hôte.
+Les parcours `RefreshLocalizedContent` des options et de la fenêtre principale sont conservés.
+
 ## Inventaire des clés
 
 Les tables ci-dessous recensent les clés neutres retrouvées littéralement dans les sources

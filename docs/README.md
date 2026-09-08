@@ -40,6 +40,7 @@ La documentation est organisée par responsabilité. Les règles, les décisions
 ## Évolutions différées
 
 - [Modules d’émulation chargeables](future/emulation-plugins.md)
+- [Organisation interne des moteurs : base commune et adaptations par moteur](future/emulation-engine-organization.md)
 
 ## Guide utilisateur
 

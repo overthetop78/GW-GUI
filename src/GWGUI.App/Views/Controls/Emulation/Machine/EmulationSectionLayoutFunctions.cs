@@ -116,9 +116,9 @@ public sealed partial class EmulationSection
     {
         var machine = selected.Module.Machines.First(item =>
             item.Id == selected.Configuration.MachineId);
-        return LocExtension.Get(machine.DisplayResourceKey);
+        return LocExtension.GetForModule(selected.Module, machine.DisplayResourceKey);
     }
 
     private static string RuntimeDisplayName(EmulationMachineRuntime runtime) =>
-        LocExtension.Get(runtime.DisplayResourceKey);
+        LocExtension.GetForModule(runtime.Configuration.ModuleId, runtime.DisplayResourceKey);
 }

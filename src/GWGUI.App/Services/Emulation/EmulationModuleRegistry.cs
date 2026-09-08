@@ -13,6 +13,11 @@ internal static class EmulationModuleRegistry
     private static readonly HttpClient HttpClient = new();
     internal static IReadOnlyList<IEmulationModule> Modules { get; } = Discover();
 
+    internal static IEmulationModuleLocalization? FindLocalization(string? moduleId) =>
+        string.IsNullOrWhiteSpace(moduleId) ? null : Modules.FirstOrDefault(module =>
+            string.Equals(module.Id, moduleId, StringComparison.OrdinalIgnoreCase))
+            as IEmulationModuleLocalization;
+
     private static IReadOnlyList<IEmulationModule> Discover()
     {
         var directory = Path.Combine(AppContext.BaseDirectory, "Modules");

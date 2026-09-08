@@ -105,7 +105,7 @@ internal sealed class EmulationInputSettingsController
             LocExtension.Get("Emulation.Input.Binding.Search"));
         if (set is null) return editor;
         editor.ConfigureCaptureSources(ToCaptureSources(set.Sources), set.PrefixKeyboardSource);
-        editor.SetRows(set.Definitions, set.Values);
+        editor.SetRows(set.Definitions, set.Values, _moduleId);
         return editor;
     }
 
@@ -117,14 +117,14 @@ internal sealed class EmulationInputSettingsController
             LocExtension.Get("Emulation.Input.Binding.Search"),
             _moduleId ?? string.Empty, _machineId ?? string.Empty);
         var choices = port.ControllerChoices.Select(choice => new EmulationControllerChoiceView(choice,
-            choice.InvariantDisplayValue ?? LocExtension.Get(choice.DisplayResourceKey))).ToArray();
+            choice.InvariantDisplayValue ?? LocExtension.GetForModule(_moduleId, choice.DisplayResourceKey))).ToArray();
         editor.Type.ItemsSource = choices;
         editor.Type.DisplayMemberPath = nameof(EmulationControllerChoiceView.DisplayName);
         editor.Type.SelectedItem = choices.FirstOrDefault(choice => choice.Choice.Id == port.SelectedControllerId)
             ?? choices.FirstOrDefault();
         editor.PhysicalDeviceId = port.PhysicalDeviceId;
         editor.DeadZonePercent = port.DeadZonePercent;
-        editor.Bindings.SetRows(port.Bindings.Definitions, port.Bindings.Values);
+        editor.Bindings.SetRows(port.Bindings.Definitions, port.Bindings.Values, _moduleId);
         UpdateControllerBindings(editor, port.VisualId, preserveCurrentBindings: true);
         editor.Type.SelectionChanged += (_, _) =>
         {
@@ -140,7 +140,7 @@ internal sealed class EmulationInputSettingsController
         return editor;
     }
 
-    private static void UpdateControllerBindings(
+    private void UpdateControllerBindings(
         EmulationControllerPortEditor editor,
         string? preferredVisualId = null,
         bool preserveCurrentBindings = true)
@@ -150,7 +150,7 @@ internal sealed class EmulationInputSettingsController
         var current = preserveCurrentBindings
             ? editor.Bindings.Rows.ToDictionary(row => row.Id, row => row.Binding, StringComparer.Ordinal)
             : new Dictionary<string, string>(StringComparer.Ordinal);
-        editor.Bindings.SetRows(selected.Choice.BindingDefinitions, current);
+        editor.Bindings.SetRows(selected.Choice.BindingDefinitions, current, _moduleId);
         UpdateControllerVisuals(editor, preferredVisualId);
         UpdateControllerVisualProfile(editor);
     }

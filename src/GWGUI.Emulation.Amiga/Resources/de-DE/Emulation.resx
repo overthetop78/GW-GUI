@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amiga.Chipset.Name"><value>Chipsatz</value></data>
+  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Chipsatzkompatibilität</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3,5 Zoll DD · 880 KiB</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3,5 Zoll HD · 1,76 MiB</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>Rote CD32-Taste</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>Blaue CD32-Taste</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>Grüne CD32-Taste</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>Gelbe CD32-Taste</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 Rücklauf</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 Vorlauf</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 Wiedergabe / Pause</value></data>
+  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Paralleler 4-Spieler-Joystick-Adapter</value></data>
+  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Alle Dateien|*.*</value></data>
+  <data name="Emulation.Amiga.Controller.Joystick"><value>Amiga Joystick</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32"><value>CD32-Steuerung</value></data>
+</root>

@@ -69,7 +69,7 @@
   <data name="Emulation.Storage.HardDisk.Size"><value>Размер жёсткого диска (MiB)</value></data>
   <data name="Emulation.Storage.Media.None"><value>Нет носителей. Добавьте дискету, жёсткий диск или CD, поддерживаемые выбранной моделью.</value></data>
   <data name="Emulation.Storage.ReadOnly"><value>Только чтение</value></data>
-  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga Media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|все файлы|*.*</value></data>
+  
   <data name="Emulation.Storage.HardDisk.Filter"><value>Жёсткий диск Amiga|*.hdf|Все файлы|*.*</value></data>
   <data name="Emulation.Storage.HardDisk.NotSupported"><value>Выбранная модель не поддерживает жёсткий диск.</value></data>
   <data name="Emulation.Storage.Floppy.TooManyDrives"><value>Эта модель поддерживает не более {0} дисководов.</value></data>
@@ -83,7 +83,7 @@
   <data name="Emulation.Controller.Detect"><value>Обнаружить контроллеры</value></data>
   <data name="Emulation.Controller.EmulatedAction"><value>Действие Amiga</value></data>
   <data name="Emulation.Controller.PhysicalControl"><value>Ввод с клавиатуры, мыши или контроллера</value></data>
-  <data name="Emulation.Amiga.Chipset.Name"><value>Набор микросхем</value></data>
+  
   <data name="Emulation.Storage.Cd.Drive"><value>Привод CD</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>Количество дисководов</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>Количество жёстких дисков</value></data>
@@ -197,15 +197,15 @@
   <data name="Emulation.Firmware.Incompatible"><value>Несовместима</value></data>
   <data name="Emulation.Video.Settings.Display"><value>Отображение</value></data>
   <data name="Emulation.Video.Settings.Rendering"><value>Рендеринг</value></data>
-  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Совместимость чипсета</value></data>
+  
   <data name="Emulation.Audio.Device"><value>Устройство</value></data>
   <data name="Emulation.Audio.LatencyLabel"><value>Задержка</value></data>
   <data name="Emulation.Audio.Quality"><value>Качество</value></data>
   <data name="Emulation.Audio.Drives"><value>Приводы</value></data>
   <data name="Emulation.Device.Name.Type"><value>Тип</value></data>
   <data name="Emulation.Storage.Device.Add"><value>Добавить устройство хранения</value></data>
-  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3,5 дюйма DD · 880 КиБ</value></data>
-  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3,5 дюйма HD · 1,76 МиБ</value></data>
+  
+  
   <data name="Emulation.Storage.Media.Associated"><value>Связанный носитель</value></data>
   <data name="Emulation.Storage.Geometry.Automatic"><value>Геометрия диска определяется эмулятором автоматически.</value></data>
   <data name="Emulation.Storage.Floppy.BlankCreated"><value>Создан пустой образ дискеты: {0}</value></data>
@@ -297,96 +297,96 @@
   <data name="Emulation.Controller.Action.Right"><value>Вправо</value></data>
   <data name="Emulation.Controller.Action.Fire1"><value>Кнопка огня 1</value></data>
   <data name="Emulation.Controller.Action.Fire2"><value>Кнопка огня 2</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>Красная кнопка CD32</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>Синяя кнопка CD32</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>Зелёная кнопка CD32</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>Жёлтая кнопка CD32</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 перемотка назад</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 перемотка вперёд</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 воспроизведение / пауза</value></data>
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Controller.AnalogJoystick"><value>Аналоговый джойстик</value></data>
   <data name="Emulation.Mouse.Wheel.Up"><value>Колесо мыши вверх</value></data>
   <data name="Emulation.Mouse.Wheel.Down"><value>Колесо мыши вниз</value></data>
   <data name="Emulation.Mouse.Wheel.Left"><value>Колесо мыши влево</value></data>
   <data name="Emulation.Mouse.Wheel.Right"><value>Колесо мыши вправо</value></data>
-  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>Это значение определяется выбранной моделью.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFpu"><value>Нет совместимости FPU доступна для этой модели.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>Альтернативной памяти для этой модели нет.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>Эта модель не имеет настраиваемой прошивки.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>У этой модели нет клавиатуры.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>У этой модели нет мыши.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Эта модель не имеет носителей информации.</value></data>
-  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Выберите Jaguar CD модель для использования CD медиа.</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Storage.Cassettes"><value>Кассета</value></data>
   <data name="Emulation.Storage.Cartridges"><value>Картридж</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Слот для картриджа</value></data>
   <data name="Emulation.Storage.CompactDiscs"><value>Компакт-диски</value></data>
-  <data name="Emulation.Atari.Video.Region"><value>Регион</value></data>
-  <data name="Emulation.Atari.Firmware.Multilingual"><value>Многоязычный</value></data>
-  <data name="Emulation.Atari.Video.RegionFree"><value>Без региона</value></data>
+  
+  
+  
   <data name="Emulation.Tab.Audio" xml:space="preserve"><value>Аудио</value></data>
-  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>Требуемое ядро Atari не найдено.</value></data>
-  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>Выбранное ядро Atari не могло быть загружено.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>Необходимая прошивка Atari отсутствует.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>Прошивка Atari является недействительной или несовместимой.</value></data>
-  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>Настроенные СМИ Atari не найдены.</value></data>
-  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>Настроенные носители не поддерживаются этой машиной Atari.</value></data>
-  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>Опцион Atari имеет недействительное значение.</value></data>
-  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>Связь с хозяином Atari не удалась.</value></data>
-  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>Государство Атари недействительно.</value></data>
-  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>Сохраненное состояние Atari несовместимо с текущей машиной.</value></data>
-  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>Неожиданная ошибка эмуляции Atari.</value></data>
-  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>Подробности: {0}</value></data>
-  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>Активная конфигурация Atari не может быть изменена или удалена.</value></data>
-  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve"><value>Требуемая прошивка Atari '{0}' не сконфигурирована для {1}.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>Прошивка Atari «{0}» не найдена: {1}</value></data>
-  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>Настроенных носителей Atari обнаружено не было: {0}</value></data>
-  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>Исполняемый путь хоста Atari недоступен.</value></data>
-  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>Ядро Atari '{0}' не установлено.</value></data>
-  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari Media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|все файлы|*.*</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Controller.Automatic"><value>Автоматический</value></data>
   <data name="Emulation.Controller.None"><value>Нет</value></data>
-  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Параллельный четырехпользовательский адаптер джойстика</value></data>
+  
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Переключить джойстик/мышь</value></data>
-  <data name="Emulation.Atari.Controller.NumericKeypad"><value>Числовая клавиатура</value></data>
+  
   <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve"><value>Перед включением этой машины эмулятору требуется носитель. Вставьте дискету или настройте жёсткий диск.</value></data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve"><value>Не удалось включить машину</value></data>
   <data name="Emulation.Error.Machine" xml:space="preserve"><value>Машина</value></data>
   <data name="Emulation.Error.RequiredMedia" xml:space="preserve"><value>Необходимые носители</value></data>
-  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Быстрая загрузка</value></data>
+  
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Звук дисковода</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Поляризованный аудиофильтр</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Показывать активность дисководов на экране эмулятора</value></data>
-  <data name="Emulation.Atari.Memory.Mosaic"><value>Mosaic RAM расширение</value></data>
-  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM расширение</value></data>
-  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Теневая копия банка Axlon $0F</value></data>
-  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>Стерео POKEY</value></data>
-  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Артефакты высокого разрешения</value></data>
-  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>Ускорение SIO</value></data>
-  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Загрузка с кассеты</value></data>
-  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>Ревизия операционной системы</value></data>
-  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>Встроенный BASIC</value></data>
-  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>Ревизия BASIC</value></data>
-  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>Скорость движения paddle-контроллеров</value></data>
-  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>Автоогонь</value></data>
-  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>Пока удерживается кнопка огня</value></data>
-  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Всегда</value></data>
-  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Оттенок</value></data>
-  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Насыщенность</value></data>
-  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>Контраст</value></data>
-  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Яркость</value></data>
-  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>Задержка цвета GTIA</value></data>
-  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>Внешняя палитра</value></data>
-  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>Совместимость контроллера</value></data>
-  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>Цифровая чувствительность</value></data>
-  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>Аналоговая чувствительность</value></data>
-  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>Двойной джойстик</value></data>
-  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>Поменять порты</value></data>
-  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>Показывать скорость эмуляции</value></data>
-  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>Показывать счётчик секторов/блоков</value></data>
-  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>Часы реального времени R-Time 8</value></data>
-  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>Устройство принтера P:</value></data>
-  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>Последовательное устройство R:</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Низкое</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Нормальное</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Высокое</value></data>
@@ -741,15 +741,15 @@
   <data name="Emulation.Memory.Chip"><value>Чип RAM</value></data>
   <data name="Emulation.Memory.Slow"><value>Медленная RAM</value></data>
   <data name="Emulation.Memory.Fast"><value>Быстрая RAM</value></data>
-  <data name="Emulation.Amiga.Controller.Joystick"><value>Амига джойстик</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32"><value>CD32 контроллер</value></data>
-  <data name="Emulation.Atari.Controller.Joystick"><value>Атари джойстик</value></data>
-  <data name="Emulation.Atari.Controller.PaddleControllers"><value>Контроллеры Atari Paddle</value></data>
-  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Легкий пистолет XG-1</value></data>
-  <data name="Emulation.Atari.Controller.Atari5200"><value>Контроллер Atari 5200</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>Контроллер вождения Atari</value></data>
-  <data name="Emulation.Atari.Controller.Jaguar"><value>Контроллер Jaguar Atari</value></data>
-  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Контроллер</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Video.DotMatrix.Palette.Red"><value>красный</value></data>
   <data name="Emulation.Video.DotMatrix.Palette.White"><value>белый</value></data>
   <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>прямоугольник</value></data>
@@ -829,8 +829,8 @@
   <data name="Emulation.Value.None"><value>Нет</value></data>
   <data name="Emulation.Value.Default"><value>По умолчанию</value></data>
   <data name="Emulation.Value.Gray"><value>Серый</value></data>
-  <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Синий/коричневый 1</value></data>
-  <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Синий/коричневый 2</value></data>
+  
+  
   <data name="Emulation.Firmware.Rom.Basic"><value>ПЗУ BASIC</value></data>
   <data name="Emulation.Firmware.Rom.Xegs"><value>ПЗУ XEGS</value></data>
 </root>

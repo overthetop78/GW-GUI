@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>Această valoare este determinată de modelul selectat.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve"><value>Nu există FPU compatibil pentru acest model.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>Pentru acest model nu există memorie alternativă.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>Acest model nu are nici un firmware configurabil.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>Acest model nu are tastatură.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>Acest model nu are şoarece.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Acest model nu are suport de stocare.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Selectați Jaguarul CD model de utilizat CD media.</value></data>
+  <data name="Emulation.Atari.Video.Region"><value>Regiune</value></data>
+  <data name="Emulation.Atari.Firmware.Multilingual"><value>Multilingv</value></data>
+  <data name="Emulation.Atari.Video.RegionFree"><value>Fără regiune</value></data>
+  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>Miezul Atari necesar nu a fost găsit.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>Miezul Atari selectat nu a putut fi încărcat.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>Lipseşte un firmware Atari necesar.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>Un firmware Atari este invalid sau incompatibil.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>Presa configurată Atari nu a fost găsită.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>Mass-media configurată nu este susținută de această mașină Atari.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>O opțiune Atari are o valoare invalidă.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>Comunicarea cu gazda Atari a eșuat.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>Starea salvată de Atari este invalidă.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>Starea salvată de Atari este incompatibilă cu maşina curentă.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>A avut loc o eroare neaşteptată de emulare Atari.</value></data>
+  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>Detalii: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>Configuraţia activă Atari nu poate fi modificată sau eliminată.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve"><value>Atari firmware "{0}" nu este configurat pentru {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>Configurat Atari firmware '{0}' nu a fost găsit: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>Configurat Atari media nu a fost găsit: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>Calea executabilă a gazdei Atari nu este disponibilă.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>Miezul Atari '{0}' nu este instalat.</value></data>
+  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Toate fișierele|*.*</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>Tastatură numerică</value></data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Pornire rapidă</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic"><value>Mozaic RAM extindere</value></data>
+  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM extindere</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Umbră banc Axlon $0F</value></data>
+  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>POKEY stereo</value></data>
+  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Artefacte de înaltă rezoluție</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>Accelerare SIO</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Pornire de pe casetă</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>Revizia sistemului de operare</value></data>
+  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>BASIC intern</value></data>
+  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>Revizie BASIC</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>Viteza de mișcare a controllerelor paddle</value></data>
+  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>Foc automat</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>Cât timp butonul de foc este apăsat</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Întotdeauna</value></data>
+  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Nuanță</value></data>
+  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Saturație</value></data>
+  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Luminozitate</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>Întârziere culoare GTIA</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>Paletă externă</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>Compatibilitate controler</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>Sensibilitate digitală</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>Sensibilitate analogică</value></data>
+  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>Joystick dublu</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>Inversează porturile</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>Afișează viteza emulării</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>Afișează contorul sector/bloc</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>Ceas în timp real R-Time 8</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>Dispozitiv imprimantă P:</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>Dispozitiv serial R:</value></data>
+  <data name="Emulation.Atari.Controller.PaddleControllers"><value>Controlorii Atari Paddle</value></data>
+  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 Pistol cu lumină</value></data>
+  <data name="Emulation.Atari.Controller.Driving"><value>Atari Controller de conducere</value></data>
+  <data name="Emulation.Atari.Controller.Genesis"><value>Controlor Sega Genesis</value></data>
+  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Controlor</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Albastru/maro 1</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Albastru/maro 2</value></data>
+</root>

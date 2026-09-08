@@ -28,7 +28,7 @@ public sealed class FloppyDriveConfigurationDialog : Window
         _redirectWrites.IsChecked == true);
 
     public FloppyDriveConfigurationDialog(string identifier, string machineName,
-        FloppyDriveSettings settings, FloppyDriveDialogOptions options, Guid clientGuid)
+        FloppyDriveSettings settings, FloppyDriveDialogOptions options, Guid clientGuid, string? moduleId = null)
     {
         _options = options;
         _clientGuid = clientGuid;
@@ -43,7 +43,8 @@ public sealed class FloppyDriveConfigurationDialog : Window
         _model.ItemsSource = options.Models.Select(choice =>
             new StorageDialogChoice(choice.Value, string.IsNullOrWhiteSpace(choice.DisplayResourceKey)
                 ? choice.InvariantDisplayValue ?? choice.Value
-                : LocExtension.Get(choice.DisplayResourceKey))).ToArray();
+                : (moduleId is null ? LocExtension.Get(choice.DisplayResourceKey)
+                    : LocExtension.GetForModule(moduleId, choice.DisplayResourceKey)))).ToArray();
         ComboBoxSelection.SelectByValue<StorageDialogChoice>(
             _model, settings.Model, choice => choice.Value);
         _speed.ItemsSource = new[]

@@ -3,8 +3,15 @@ using GWGUI.Emulation;
 namespace GWGUI.Emulation.Amiga.Modules;
 
 public sealed class AmigaEmulationModule : IEmulationModule, IEmulationEmulatorManager,
-    IEmulationFirmwareManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager
+    IEmulationFirmwareManager, IEmulationInputSettingsManager, IEmulationStorageSettingsManager,
+    IEmulationModuleLocalization
 {
+    private static readonly EmulationModuleLocalization Localization = new(
+        typeof(AmigaEmulationModule).Assembly, "GWGUI.Emulation.Amiga.Resources.Emulation");
+
+    public bool TryGetString(string key, System.Globalization.CultureInfo culture, out string value) =>
+        Localization.TryGetString(key, culture, out value);
+
     private readonly AmigaConfigurationStore _store;
     private readonly HttpClient _httpClient;
     private readonly string _coreDirectory;

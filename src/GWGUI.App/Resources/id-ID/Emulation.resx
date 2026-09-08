@@ -187,15 +187,15 @@
   <data name="Emulation.Firmware.Incompatible"><value>Tidak kompatibel</value></data>
   <data name="Emulation.Video.Settings.Display"><value>Tampilan</value></data>
   <data name="Emulation.Video.Settings.Rendering"><value>Perenderan</value></data>
-  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Kompatibilitas chipset</value></data>
+  
   <data name="Emulation.Audio.Device"><value>Perangkat</value></data>
   <data name="Emulation.Audio.LatencyLabel"><value>Latensi</value></data>
   <data name="Emulation.Audio.Quality"><value>Kualitas</value></data>
   <data name="Emulation.Audio.Drives"><value>Drive</value></data>
   <data name="Emulation.Device.Name.Type"><value>Jenis</value></data>
   <data name="Emulation.Storage.Device.Add"><value>Tambah perangkat penyimpanan</value></data>
-  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3,5 inci DD · 880 KiB</value></data>
-  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3,5 inci HD · 1,76 MiB</value></data>
+  
+  
   <data name="Emulation.Storage.Media.Associated"><value>Media terkait</value></data>
   <data name="Emulation.Storage.Geometry.Automatic"><value>Geometri disk ditentukan otomatis oleh emulator.</value></data>
   <data name="Emulation.Storage.Floppy.BlankCreated"><value>Citra disket kosong dibuat: {0}</value></data>
@@ -283,94 +283,94 @@
   <data name="Emulation.Controller.Action.Right"><value>Kanan</value></data>
   <data name="Emulation.Controller.Action.Fire1"><value>Tombol tembak 1</value></data>
   <data name="Emulation.Controller.Action.Fire2"><value>Tombol tembak 2</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>Tombol merah CD32</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>Tombol biru CD32</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>Tombol hijau CD32</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>Tombol kuning CD32</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 putar balik</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 maju cepat</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 putar / jeda</value></data>
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Controller.AnalogJoystick"><value>Joystick analog</value></data>
   <data name="Emulation.Mouse.Wheel.Up"><value>Roda tetikus ke atas</value></data>
   <data name="Emulation.Mouse.Wheel.Down"><value>Roda tetikus ke bawah</value></data>
   <data name="Emulation.Mouse.Wheel.Left"><value>Roda tetikus ke kiri</value></data>
   <data name="Emulation.Mouse.Wheel.Right"><value>Roda tetikus ke kanan</value></data>
-  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>Nilai ini ditentukan oleh model yang dipilih.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve"><value>FPU yang kompatibel tidak tersedia untuk model ini.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>Tidak ada memori alternatif yang tersedia untuk model ini.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>Model ini tidak memiliki firmware yang dapat diatur.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>Model ini tidak memiliki keyboard.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>Model ini tidak memiliki mouse.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Model ini tidak memiliki media penyimpanan.</value></data>
-  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Pilih Jaguar CD model yang akan dipakai CD media.</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Storage.Cassettes"><value>Kaset</value></data>
   <data name="Emulation.Storage.Cartridges"><value>Kartrid</value></data>
   <data name="Emulation.Storage.CompactDiscs"><value>Cakram padat</value></data>
-  <data name="Emulation.Atari.Video.Region"><value>Wilayah</value></data>
-  <data name="Emulation.Atari.Firmware.Multilingual"><value>Multibahasa</value></data>
-  <data name="Emulation.Atari.Video.RegionFree"><value>Bebas wilayah</value></data>
-<data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>Inti yang diperlukan Atari tidak ditemukan.</value></data>
-  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>Inti Atari yang dipilih tidak dapat dimuat.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>Sebuah firmware Atari yang diperlukan hilang.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>Firmware Atari tidak valid atau tidak kompatibel.</value></data>
-  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>Media Atari yang dikonfigurasi tidak ditemukan.</value></data>
-  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>Media yang dikonfigurasi tidak didukung oleh mesin Atari ini.</value></data>
-  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>Sebuah opsi Atari memiliki nilai yang tidak valid.</value></data>
-  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>Komunikasi dengan pemilik Atari gagal.</value></data>
-  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>Negara bagian tabungan Atari tidak valid.</value></data>
-  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>Negara bagian tabungan Atari tidak kompatibel dengan mesin saat ini.</value></data>
-  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>Kesalahan emulasi Atari yang tak terduga terjadi.</value></data>
-  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>Rincian: {0}</value></data>
-  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>Konfigurasi Atari yang aktif tak dapat diubah atau dihapus.</value></data>
-  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve"><value>Firmware Atari yang diperlukan '{0}' tidak dikonfigurasi untuk {1}.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>Dikonfigured Atari firmware '{0}' tidak ditemukan: {1}</value></data>
-  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>Media Atari yang dikonfigurasi tidak ditemukan: {0}</value></data>
-  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>Jalur eksekusi Atari host tidak tersedia.</value></data>
-  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>Inti Atari '{0}' belum terpasang.</value></data>
-  <data name="Emulation.Atari.Storage.MediaFilter"><value>Media Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Semua berkas|*.*</value></data>
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Controller.Automatic"><value>Otomatis</value></data>
   <data name="Emulation.Controller.None"><value>Tidak ada</value></data>
-  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Adaptor joystick paralel empat pemain</value></data>
+  
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Tukar joystick / mouse</value></data>
-  <data name="Emulation.Atari.Controller.NumericKeypad"><value>keypad numerik</value></data>
+  
   <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve"><value>Emulator memerlukan media sebelum mesin ini dapat dinyalakan. Masukkan atau konfigurasikan salah satu media yang diperlukan yang ditampilkan di bawah.</value></data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve"><value>Mesin tidak dapat dinyalakan</value></data>
   <data name="Emulation.Error.Machine" xml:space="preserve"><value>Mesin</value></data>
   <data name="Emulation.Error.RequiredMedia" xml:space="preserve"><value>Media yang diperlukan</value></data>
-  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Boot cepat</value></data>
+  
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Suara drive disket</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Filter audio terpolarisasi</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Tampilkan aktivitas drive pada layar emulator</value></data>
-  <data name="Emulation.Atari.Memory.Mosaic"><value>Mosaic RAM ekspansi</value></data>
-  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM ekspansi</value></data>
-  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Bayangan bank Axlon $0F</value></data>
-  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>POKEY stereo</value></data>
-  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Artefak resolusi tinggi</value></data>
-  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>Akselerasi SIO</value></data>
-  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Mulai dari kaset</value></data>
-  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>Revisi sistem operasi</value></data>
-  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>BASIC internal</value></data>
-  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>Revisi BASIC</value></data>
-  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>Kecepatan gerak paddle</value></data>
-  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>Tembak otomatis</value></data>
-  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>Saat tombol tembak ditahan</value></data>
-  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Selalu</value></data>
-  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Rona</value></data>
-  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Saturasi</value></data>
-  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>Kontras</value></data>
-  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Kecerahan</value></data>
-  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>Tunda warna GTIA</value></data>
-  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>Palet eksternal</value></data>
-  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>Kompatibilitas pengontrol</value></data>
-  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>Sensitivitas digital</value></data>
-  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>Sensitivitas analog</value></data>
-  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>Joystick ganda</value></data>
-  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>Tukar porta</value></data>
-  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>Tampilkan kecepatan emulasi</value></data>
-  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>Tampilkan penghitung sektor/blok</value></data>
-  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>Jam waktu nyata R-Time 8</value></data>
-  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>Perangkat pencetak P:</value></data>
-  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>Perangkat serial R:</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Rendah</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Tinggi</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Slot kartrid</value></data>
@@ -704,17 +704,17 @@
   <data name="Emulation.Memory.Summary"><value>Chip RAM: {0} KiB\ nSlow RAM: {1} KiB\ nFast RAM: {2} MiB</value></data>
   <data name="Emulation.Memory.Slow"><value>RAM Lambat</value></data>
   <data name="Emulation.Memory.Fast"><value>RAM Cepat</value></data>
-  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Media Amiga|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Semua berkas|*.*</value></data>
+  
   <data name="Emulation.Storage.HardDisk.Filter"><value>Idola hard disk|*.hdf|Semua berkas|*.*</value></data>
   <data name="Emulation.Input.Binding.LabelValid"><value>Berlaku</value></data>
-  <data name="Emulation.Amiga.Controller.Joystick"><value>Tongkat joyga Amiga</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32"><value>Pengontrol CD32</value></data>
-  <data name="Emulation.Atari.Controller.Joystick"><value>Jepit Atari</value></data>
-  <data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Pengontrol Paddle</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>Atari Kontrol Mengemudi</value></data>
-  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro- Line Joystick</value></data>
-  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Grip Atari Booster</value></data>
-  <data name="Emulation.Atari.Controller.Genesis"><value>Kontroler Kejadian Sega</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Video.DotMatrix.Palette.Red"><value>Merah</value></data>
   <data name="Emulation.Video.DotMatrix.Palette.White"><value>Putih</value></data>
   <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>Rangkap ulang</value></data>
@@ -774,7 +774,7 @@
   <data name="Emulation.Cassette.State.Paused"><value>Dijeda</value></data>
   <data name="Emulation.Cassette.State.Recording"><value>Merekam</value></data>
   <data name="Emulation.Cassette.State.EndOfTape"><value>Akhir pita</value></data>
-  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Pengontrol</value></data>
+  
   <data name="Emulation.Hdd.Delete"><value>Hapus image disk...</value></data>
   <data name="Emulation.Hdd.DeleteConfirm"><value>Hapus permanen image diska ini dan semua datanya? Operasi ini tak dapat dibatalkan.&#xA;{0}</value></data>
   <data name="Emulation.Hdd.InUse"><value>Penghapusan tidak mungkin. Lepas disk ini, simpan konfigurasi dan tutup sesi yang terdaftar dulu:&#xA;{0}</value></data>
@@ -791,8 +791,8 @@
   <data name="Emulation.Value.None"><value>Tidak ada</value></data>
   <data name="Emulation.Value.Default"><value>Bawaan</value></data>
   <data name="Emulation.Value.Gray"><value>Abu-abu</value></data>
-  <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Biru/cokelat 1</value></data>
-  <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Biru/cokelat 2</value></data>
+  
+  
   <data name="Emulation.Firmware.Rom.Basic"><value>ROM BASIC</value></data>
   <data name="Emulation.Firmware.Rom.Xegs"><value>ROM XEGS</value></data>
 </root>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Compatibilidade do chipset</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga de 3,5 polegadas DD · 880 KiB</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga de 3,5 polegadas HD · 1,76 MiB</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>Botão vermelho do CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>Botão azul do CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>Botão verde do CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>Botão amarelo do CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>Retroceder no CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>Avançar no CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>Reproduzir / pausar no CD32</value></data>
+  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Adaptador paralelo de joystick de quatro jogadores</value></data>
+  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Todos os arquivos|*.*</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32"><value>Controlador CD32</value></data>
+</root>

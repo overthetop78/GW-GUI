@@ -66,12 +66,14 @@ public partial class InputBindingEditor : UserControl
         ValidateBindings();
     }
 
-    public void SetRows(IEnumerable<InputBindingDefinition> definitions, IReadOnlyDictionary<string, string>? values)
+    public void SetRows(IEnumerable<InputBindingDefinition> definitions, IReadOnlyDictionary<string, string>? values, string? moduleId = null)
     {
         _rows.Clear();
         foreach (var definition in definitions)
             _rows.Add(new InputBindingRow(definition.Id,
-                definition.InvariantDisplayValue ?? LocExtension.Get(definition.DisplayResourceKey),
+                definition.InvariantDisplayValue ?? (moduleId is null
+                    ? LocExtension.Get(definition.DisplayResourceKey)
+                    : LocExtension.GetForModule(moduleId, definition.DisplayResourceKey)),
                 values?.GetValueOrDefault(definition.Id) ?? definition.DefaultBinding, definition.DefaultBinding));
         ValidateBindings();
     }

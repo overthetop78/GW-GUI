@@ -12,4 +12,10 @@
     <ProjectReference Include="..\GWGUI.Emulation\GWGUI.Emulation.csproj" />
     <ProjectReference Include="..\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\*\*.resx">
+      <WithCulture>false</WithCulture>
+      <LogicalName>GWGUI.Emulation.Amiga.Resources.%(Filename).$([System.IO.Path]::GetFileName($([System.IO.Path]::GetDirectoryName('%(Identity)')))).resources</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

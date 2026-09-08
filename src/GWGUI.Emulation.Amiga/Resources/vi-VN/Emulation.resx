@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amiga.Chipset.Name"><value>Bộ vi mạch</value></data>
+  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Tương thích chipset</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3,5 inch DD · 880 KiB</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3,5 inch HD · 1,76 MiB</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>Nút đỏ CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>Nút xanh dương CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>Nút xanh lá CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>Nút vàng CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 tua lại</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 tua nhanh</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 phát / tạm dừng</value></data>
+  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Trình điều chỉnh cần điều khiển bốn người chơi song song</value></data>
+  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga Media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Mọi tập tin|*.*</value></data>
+  <data name="Emulation.Amiga.Controller.Joystick"><value>Name</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32"><value>Điều khiển CD32</value></data>
+</root>

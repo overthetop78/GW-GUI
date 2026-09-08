@@ -8,9 +8,8 @@ la bibliothèque de contrats `gwgui.emulation.dll`, de ce document et d'un proje
 
 État actuel important : le chargement dynamique fonctionne, mais `GWGUI.Emulation` n'est pas encore
 publié comme paquet SDK autonome. Un module développé hors du dépôt doit donc temporairement
-référencer la DLL issue du même build de GW GUI. La version explicite de l'API et les ressources de
-traduction propres au module sont décrites comme évolutions nécessaires, pas comme fonctions déjà
-disponibles.
+référencer la DLL issue du même build de GW GUI. La version explicite de l'API reste une évolution
+à réaliser. Les traductions propres au module passent par `IEmulationModuleLocalization`.
 
 ## 1. Ce que contient un module
 
@@ -131,8 +130,8 @@ public interface IEmulationModule
 ### Identité et catalogue
 
 - `Id` identifie la famille et doit rester compatible avec les configurations déjà enregistrées.
-- `DisplayResourceKey` désigne son libellé traduit. Actuellement cette clé doit exister dans les
-  ressources de GW GUI ; le futur catalogue du module supprimera cette limitation.
+- `DisplayResourceKey` désigne son libellé traduit. La recherche consulte d'abord le catalogue
+  du module, puis les ressources de GW GUI en repli.
 - `Machines` contient des `EmulationMachineDefinition(Id, DisplayResourceKey)`. Les identifiants
   machine sont uniques dans le module et stables dans le temps.
 - `DefaultVisibility` annonce les onglets, blocs et champs généralement visibles.
@@ -410,13 +409,34 @@ Le chargement est dynamique, mais l'écosystème externe n'est pas encore totale
 - pas de paquet NuGet `GWGUI.Emulation.SDK` versionné ;
 - pas de numéro de version négocié de l'API hôte ;
 - pas de manifeste décrivant l'assembly principal et ses dépendances ;
-- les clés de traduction sont encore fournies par les ressources centrales ;
 - les dépendances privées ne sont pas isolées par module ;
 - mise à jour uniquement après arrêt et remplacement manuel des fichiers.
 
 Ces limites n'empêchent pas les modules officiels actuels, mais doivent être résolues avant de
 promettre qu'un projet tiers séparé restera compatible avec plusieurs versions de GW GUI.
 
-La résolution future des textes consultera d'abord le catalogue du module, puis les ressources
-internes de GW GUI comme repli. Un module pourra ainsi renommer ses propres champs sans mise à jour
-de l'application.
+## 15. Traductions embarquées
+
+Le module peut implémenter cette capacité facultative :
+
+```csharp
+public interface IEmulationModuleLocalization
+{
+    bool TryGetString(string key, CultureInfo culture, out string value);
+}
+```
+
+Retourner `false` pour une clé absente et `true` pour une valeur présente, même vide.
+`EmulationModuleLocalization` fournit le lecteur commun des catalogues RESX compilés et
+embarqués dans la DLL principale. Amiga et Atari l'utilisent avec les 29 cultures distribuées
+et une base `00-Base`. Aucun fichier de traduction externe n'est nécessaire pour ces modules.
+
+La recherche reçoit le module concerné : culture demandée, parents de culture, `en-US`, base
+du module, puis résolution App existante. La recherche invariante utilise uniquement les bases.
+Les valeurs invariantes (CPU, formats, noms de machines…) restent dans leur base sans copie
+par langue. Les textes communs de l'hôte restent dans App.
+
+Les bindings suivent le changement de culture existant. Pour compléter les traductions,
+utiliser `scripts/translate-resx-argos.py --root src/GWGUI.Emulation.<Famille>/Resources` avec
+les options existantes d'Argos. Le [raccordement détaillé](emulation-module-localization.md)
+décrit les consommateurs et les noms des ressources.

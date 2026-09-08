@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>Tämä arvo määräytyy valitun mallin mukaan.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve"><value>Tähän malliin ei ole saatavilla yhteensopivaa FPU:ta.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>Mallille ei ole saatavilla vaihtoehtoista muistia.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>Tässä mallissa ei ole konfiguroitavaa ohjelmistoa.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>Tässä mallissa ei ole koskettimia.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>Tässä mallissa ei ole hiiriä.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Tässä mallissa ei ole tallennusvälineitä.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve"><value>Valitse Jaguar CD -malli käyttääksesi CD-levyjä.</value></data>
+  <data name="Emulation.Atari.Video.Region"><value>Alue</value></data>
+  <data name="Emulation.Atari.Firmware.Multilingual"><value>Monikielinen</value></data>
+  <data name="Emulation.Atari.Video.RegionFree"><value>Aluevapaa</value></data>
+  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>Tarvittavaa Atarin ydintä ei löytynyt.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>Valittua Atarin ydintä ei voitu ladata.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>Tarvittava Atari-ohjelmisto puuttuu.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>Atari-ohjelmisto on virheellinen tai yhteensopimaton.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>Määriteltyä Atarin mediaa ei löytynyt.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>Tämä Atari-kone ei tue konfiguroitua mediaa.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>Atari-valinnalla on virheellinen arvo.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>Yhteydenpito Atarin isäntään epäonnistui.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>Atarin pelastama osavaltio on kelvoton.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>Atarin pelastama tila on yhteensopimaton nykyisen koneen kanssa.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>Tapahtui odottamaton atari-emulointivirhe.</value></data>
+  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>Lisätiedot: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>Aktiivista Atarin asetusta ei voi muuttaa tai poistaa.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve"><value>Vaadittu Atari firmware '{0}' ei ole konfiguroitu {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>Atarin ohjelmistoa '{0}' ei löytynyt: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>Atari-mediaa ei löytynyt: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>Atarin isännän suoritettava polku ei ole käytettävissä.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>Atarin ydintä '{0}' ei ole asennettu.</value></data>
+  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Kaikki tiedostot|*.*</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>Näppäimistö</value></data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Pikakäynnistys</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic"><value>Mosaic RAM laajennus</value></data>
+  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM laajennus</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Axlon $0F -pankin varjostus</value></data>
+  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Korkean tarkkuuden artefaktit</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>SIO-kiihdytys</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Käynnistä kasetilta</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>Käyttöjärjestelmän versio</value></data>
+  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>Sisäinen BASIC</value></data>
+  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>BASIC-versio</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>Paddle-ohjainten liikenopeus</value></data>
+  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>Automaattituli</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>Kun tulipainiketta pidetään painettuna</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Aina</value></data>
+  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Sävy</value></data>
+  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Värikylläisyys</value></data>
+  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>Kontrasti</value></data>
+  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Kirkkaus</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>GTIA-väriviive</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>Ulkoinen paletti</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>Ohjaimen yhteensopivuus</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>Digitaalinen herkkyys</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>Analoginen herkkyys</value></data>
+  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>Kaksoisohjain</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>Vaihda portit</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>Näytä emulointinopeus</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>Näytä sektori-/lohkolaskuri</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>R-Time 8 -reaaliaikakello</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>P:-tulostinlaite</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>R:-sarjalaite</value></data>
+  <data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari-melojen ohjaimet</value></data>
+  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 kevytase</value></data>
+  <data name="Emulation.Atari.Controller.Driving"><value>Atari-ajoohjain</value></data>
+  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Kontrolleri</value></data>
+  <data name="Emulation.Atari.Audio.PokeyStereo"><value>Stereot POKEY</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Sininen/ruskea 1</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Sininen/ruskea 2</value></data>
+</root>

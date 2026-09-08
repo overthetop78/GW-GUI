@@ -181,14 +181,14 @@
   <data name="Emulation.Firmware.Official"><value>Officieel</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>Niet compatibel</value></data>
   <data name="Emulation.Video.Settings.Display"><value>Weergave</value></data>
-<data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Chipsetcompatibiliteit</value></data>
+
   <data name="Emulation.Audio.Device"><value>Apparaat</value></data>
   <data name="Emulation.Audio.LatencyLabel"><value>Latentie</value></data>
   <data name="Emulation.Audio.Quality"><value>Kwaliteit</value></data>
   <data name="Emulation.Audio.Drives"><value>Stations</value></data>
 <data name="Emulation.Storage.Device.Add"><value>Opslagapparaat toevoegen</value></data>
-  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3,5 inch DD · 880 KiB</value></data>
-  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3,5 inch HD · 1,76 MiB</value></data>
+  
+  
   <data name="Emulation.Storage.Media.Associated"><value>Gekoppeld medium</value></data>
   <data name="Emulation.Storage.Geometry.Automatic"><value>De schijfgeometrie wordt automatisch door de emulator bepaald.</value></data>
   <data name="Emulation.Storage.Floppy.BlankCreated"><value>Lege diskettekopie gemaakt: {0}</value></data>
@@ -273,88 +273,88 @@
   <data name="Emulation.Controller.Action.Right"><value>Rechts</value></data>
   <data name="Emulation.Controller.Action.Fire1"><value>Vuurknop 1</value></data>
   <data name="Emulation.Controller.Action.Fire2"><value>Vuurknop 2</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>Rode CD32-knop</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>Blauwe CD32-knop</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>Groene CD32-knop</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>Gele CD32-knop</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 terugspoelen</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 vooruitspoelen</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 afspelen / pauzeren</value></data>
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Controller.AnalogJoystick"><value>Analoge joystick</value></data>
   <data name="Emulation.Mouse.Wheel.Up"><value>Muiswiel omhoog</value></data>
   <data name="Emulation.Mouse.Wheel.Down"><value>Muiswiel omlaag</value></data>
   <data name="Emulation.Mouse.Wheel.Left"><value>Muiswiel naar links</value></data>
   <data name="Emulation.Mouse.Wheel.Right"><value>Muiswiel naar rechts</value></data>
-  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>Deze waarde wordt bepaald door het geselecteerde model.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve"><value>Er is geen compatibele FPU beschikbaar voor dit model.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>Er is geen alternatief geheugen beschikbaar voor dit model.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>Dit model heeft geen configureerbare firmware.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>Dit model heeft geen toetsenbord.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>Dit model heeft geen muis.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Dit model heeft geen opslagmedia.</value></data>
-  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Selecteer de Jaguar CD te gebruiken model CD media.</value></data>
-<data name="Emulation.Atari.Video.Region"><value>Regio</value></data>
-  <data name="Emulation.Atari.Firmware.Multilingual"><value>Meertalig</value></data>
-  <data name="Emulation.Atari.Video.RegionFree"><value>Regiovrij</value></data>
-<data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>De vereiste Atari kern werd niet gevonden.</value></data>
-  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>De geselecteerde Atari-kern kon niet geladen worden.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>Een vereiste Atari firmware ontbreekt.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>Een Atari firmware is ongeldig of onverenigbaar.</value></data>
-  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>De geconfigureerde Atari media werd niet gevonden.</value></data>
-  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>De geconfigureerde media worden niet ondersteund door deze Atari machine.</value></data>
-  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>Een Atari-optie heeft een ongeldige waarde.</value></data>
-  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>Communicatie met de gastheer van Atari is mislukt.</value></data>
-  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>De opgeslagen Atari staat is ongeldig.</value></data>
-  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>De opgeslagen Atari staat is onverenigbaar met de huidige machine.</value></data>
-  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>Er is een onverwachte Atari emulatiefout opgetreden.</value></data>
-<data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>De actieve Atari configuratie kan niet worden gewijzigd of verwijderd.</value></data>
-  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve"><value>Vereiste Atari-firmware '{0}' is niet geconfigureerd voor {1}.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>Geconfigureerde Atari-firmware '{0}' is niet gevonden: {1}</value></data>
-  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>Geconfigureerde Atari media is niet gevonden: {0}</value></data>
-  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>Het uitvoerbare pad van de Atari-host is niet beschikbaar.</value></data>
-  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>De Atari kern '{0}' is niet geïnstalleerd.</value></data>
-  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Alle bestanden|*.*</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Controller.Automatic"><value>Automatisch</value></data>
   <data name="Emulation.Controller.None"><value>Geen</value></data>
-  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Parallelle joystickadapter met vier spelers</value></data>
+  
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Joystick/muis wisselen</value></data>
-  <data name="Emulation.Atari.Controller.NumericKeypad"><value>Numeriek toetsenbord</value></data>
+  
   <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve"><value>De emulator heeft een medium nodig voordat deze machine kan worden ingeschakeld. Plaats of configureer een van de vereiste media die hieronder worden weergegeven.</value></data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve"><value>De machine kon niet worden ingeschakeld</value></data>
 <data name="Emulation.Error.RequiredMedia" xml:space="preserve"><value>Vereiste media</value></data>
-  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Snel opstarten</value></data>
+  
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Diskettestationsgeluid</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Gepolariseerd audiofilter</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Stationsactiviteit op het emulatorscherm weergeven</value></data>
-  <data name="Emulation.Atari.Memory.Mosaic"><value>Mozaïek RAM uitbreiding</value></data>
-  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM uitbreiding</value></data>
-  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Axlon $0F-bankschaduw</value></data>
-  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>Stereo-POKEY</value></data>
-  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Artefacten met hoge resolutie</value></data>
-  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>SIO-versnelling</value></data>
-  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Opstarten vanaf cassette</value></data>
-  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>Besturingssysteemrevisie</value></data>
-  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>Interne BASIC</value></data>
-  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>BASIC-revisie</value></data>
-  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>Bewegingssnelheid van paddles</value></data>
-  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>Automatisch vuren</value></data>
-  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>Terwijl vuur ingedrukt wordt</value></data>
-  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Altijd</value></data>
-  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Tint</value></data>
-  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Verzadiging</value></data>
-  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Helderheid</value></data>
-  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>GTIA-kleurvertraging</value></data>
-  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>Extern palet</value></data>
-  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>Controllercompatibiliteit</value></data>
-  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>Digitale gevoeligheid</value></data>
-  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>Analoge gevoeligheid</value></data>
-  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>Dubbele joystick</value></data>
-  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>Poorten omwisselen</value></data>
-  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>Emulatiesnelheid weergeven</value></data>
-  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>Sector-/blokteller weergeven</value></data>
-  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>R-Time 8-realtimeklok</value></data>
-  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>P:-printerapparaat</value></data>
-  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>R:-serieel apparaat</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Laag</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normaal</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Hoog</value></data>
@@ -694,15 +694,15 @@
   <data name="Emulation.Memory.Chip"><value>Spaander RAM</value></data>
   <data name="Emulation.Memory.Slow"><value>Langzaam RAM</value></data>
   <data name="Emulation.Memory.Fast"><value>Snelle RAM</value></data>
-<data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Alle bestanden|*.*</value></data>
+
   <data name="Emulation.Storage.HardDisk.Filter"><value>Amiga harde schijf|*.hdf|Alle bestanden|*.*</value></data>
-  <data name="Emulation.Amiga.Chipset.Name"><value>Spaanplaat</value></data>
+  
   <data name="Emulation.Value.Minimum"><value>minimaal</value></data>
   <data name="Emulation.Cpu.Processor"><value>Verwerker</value></data>
   <data name="Emulation.Video.Settings.Rendering"><value>Renderen</value></data>
   <data name="Emulation.Key.Help"><value>Hulp</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32"><value>CD32-controller</value></data>
-  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 lichtpistool</value></data>
+  
+  
   <data name="Emulation.Storage.Cartridges"><value>Patroon</value></data>
   <data name="Emulation.Storage.CompactDiscs"><value>Compacte schijven</value></data>
   <data name="Emulation.Tab.Audio"><value>Geluid</value></data>
@@ -787,8 +787,8 @@
   <data name="Emulation.Value.None"><value>Geen</value></data>
   <data name="Emulation.Value.Default"><value>Standaard</value></data>
   <data name="Emulation.Value.Gray"><value>Grijs</value></data>
-  <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Blauw/bruin 1</value></data>
-  <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Blauw/bruin 2</value></data>
+  
+  
   <data name="Emulation.Firmware.Rom.Basic"><value>BASIC-ROM</value></data>
   <data name="Emulation.Firmware.Rom.Xegs"><value>XEGS-ROM</value></data>
 </root>

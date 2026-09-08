@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>Giá trị này được xác định bởi mô hình đã chọn.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>không tương thích FPU sẵn sàng cho mô hình này.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>Không có bộ nhớ khác sẵn sàng cho mô hình này.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>Mô hình này không có phần mềm cấu hình được.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>Mô hình này không có bàn phím.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>Mô hình này không có chuột.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Mô hình này không có phương tiện lưu trữ.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Chọn con báo CD Mô hình cần dùng CD phương tiện.</value></data>
+  <data name="Emulation.Atari.Video.Region"><value>Khu vực</value></data>
+  <data name="Emulation.Atari.Firmware.Multilingual"><value>Đa ngôn ngữ</value></data>
+  <data name="Emulation.Atari.Video.RegionFree"><value>Không giới hạn khu vực</value></data>
+  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>Không tìm thấy lõi Atari.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>Không thể tải lõi Atari đã chọn.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>Một phần cứng Atari bị thiếu.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>Một phần cứng Atari không hợp lệ hay không tương thích.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>Không tìm thấy phương tiện truyền thông Atari được cấu hình.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>Phương tiện được cấu hình không được hỗ trợ bởi máy Atari này.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>Một tùy chọn Atari có giá trị không hợp lệ.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>Liên lạc với tổ chức Atari thất bại.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>Bang Atari không có quyền.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>Bang Atari tiết kiệm không tương thích với cỗ máy hiện tại.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>Một lỗi không ngờ xảy ra ở Atari.</value></data>
+  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>Chi tiết: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>Cấu hình Atari hoạt động không thể thay đổi hay xoá.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve"><value>Cần thiết phần cứng Atari '{0}' chưa được cấu hình cho {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>Cấu hình phần cứng Atari '{0}' không được tìm thấy: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>Không tìm thấy phương tiện truyền thông Atari: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>Không có đường dẫn đến máy Atari.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>lõi Atari '{0}' chưa được cài đặt.</value></data>
+  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Mọi tập tin|*.*</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>Name</value></data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Khởi động nhanh</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic"><value>Moses RAM mở rộng</value></data>
+  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM mở rộng</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Bóng ngân hàng Axlon $0F</value></data>
+  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>POKEY âm thanh nổi</value></data>
+  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Nhiễu màu độ phân giải cao</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>Tăng tốc SIO</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Khởi động từ băng cassette</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>Bản sửa đổi hệ điều hành</value></data>
+  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>BASIC tích hợp</value></data>
+  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>Bản sửa đổi BASIC</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>Tốc độ di chuyển paddle</value></data>
+  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>Bắn tự động</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>Trong khi giữ nút bắn</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Luôn luôn</value></data>
+  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Sắc độ</value></data>
+  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Độ bão hòa</value></data>
+  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>Độ tương phản</value></data>
+  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Độ sáng</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>Độ trễ màu GTIA</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>Bảng màu ngoài</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>Khả năng tương thích tay cầm</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>Độ nhạy số</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>Độ nhạy tương tự</value></data>
+  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>Cần điều khiển kép</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>Hoán đổi cổng</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>Hiện tốc độ mô phỏng</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>Hiện bộ đếm cung/khối</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>Đồng hồ thời gian thực R-Time 8</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>Thiết bị máy in P:</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>Thiết bị nối tiếp R:</value></data>
+  <data name="Emulation.Atari.Controller.Joystick"><value>Cần điều khiển Atari</value></data>
+  <data name="Emulation.Atari.Controller.PaddleControllers"><value>Điều khiển chèo Atari</value></data>
+  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 súng ánh sáng</value></data>
+  <data name="Emulation.Atari.Controller.Driving"><value>Điều khiển lái xe Atari</value></data>
+  <data name="Emulation.Atari.Controller.Jaguar"><value>Bộ điều khiển Atari Báo</value></data>
+  <data name="Emulation.Atari.Controller.Genesis"><value>Điều khiển Sega Genesis</value></data>
+  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Điều khiển</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Xanh lam/nâu 1</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Xanh lam/nâu 2</value></data>
+</root>

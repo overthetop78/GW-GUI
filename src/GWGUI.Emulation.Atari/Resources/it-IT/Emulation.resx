@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>Questo valore è determinato dal modello selezionato.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve"><value>Nessun FPU compatibile è disponibile per questo modello.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>Nessun ricordo alternativo è disponibile per questo modello.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>Questo modello non ha firmware configurabile.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>Questo modello non ha tastiera.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>Questo modello non ha il mouse.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Questo modello non ha supporti di memorizzazione.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Selezionare la Jaguar CD modello da usare CD media.</value></data>
+  <data name="Emulation.Atari.Video.Region"><value>Regione</value></data>
+  <data name="Emulation.Atari.Firmware.Multilingual"><value>Multilingue</value></data>
+  <data name="Emulation.Atari.Video.RegionFree"><value>Senza regione</value></data>
+  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>Il nucleo Atari richiesto non è stato trovato.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>Il nucleo Atari selezionato non poteva essere caricato.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>Manca un firmware Atari richiesto.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>Un firmware Atari è non valido o incompatibile.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>I supporti Atari configurati non sono stati trovati.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>I supporti configurati non sono supportati da questa macchina Atari.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>Un'opzione Atari ha un valore non valido.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>La comunicazione con l'ospite Atari fallì.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>Lo stato salvato da Atari non è valido.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>Lo stato salvato Atari è incompatibile con la macchina corrente.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>Si è verificato un errore di emulazione Atari inaspettato.</value></data>
+  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>Dettagli: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>La configurazione Atari attiva non può essere modificata o cancellata.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve"><value>Il firmware Atari richiesto '{0}' non è configurato per {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>Configured Atari firmware '{0}' non è stato trovato: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>Configured Atari media non è stato trovato: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>Il percorso eseguibile Atari non è disponibile.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>Il nucleo Atari '{0}' non è installato.</value></data>
+  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Tutti i file|*.*</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>Tastiera numerica</value></data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Avvio rapido</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic"><value>Mosaic RAM espansione</value></data>
+  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM espansione</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Shadow del banco Axlon $0F</value></data>
+  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>POKEY stereo</value></data>
+  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Artefatti ad alta risoluzione</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>Accelerazione SIO</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Avvia da cassetta</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>Revisione del sistema operativo</value></data>
+  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>BASIC interno</value></data>
+  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>Revisione BASIC</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>Velocità di movimento dei paddle</value></data>
+  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>Fuoco automatico</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>Mentre si tiene premuto fuoco</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Sempre</value></data>
+  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Tonalità</value></data>
+  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Saturazione</value></data>
+  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>Contrasto</value></data>
+  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Luminosità</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>Ritardo colore GTIA</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>Tavolozza esterna</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>Compatibilità controller</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>Sensibilità digitale</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>Sensibilità analogica</value></data>
+  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>Doppio joystick</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>Scambia porte</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>Mostra velocità di emulazione</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>Mostra contatore settore/blocco</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>Orologio in tempo reale R-Time 8</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>Dispositivo stampante P:</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>Dispositivo seriale R:</value></data>
+  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 Pistola leggera</value></data>
+  <data name="Emulation.Atari.Controller.Driving"><value>Atari Regolatore di guida</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Blu/marrone 1</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Blu/marrone 2</value></data>
+</root>

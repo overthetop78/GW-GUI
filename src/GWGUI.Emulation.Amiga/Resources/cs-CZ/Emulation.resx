@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amiga.Chipset.Name"><value>Čipová sada</value></data>
+  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Kompatibilita čipové sady</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3,5 palce DD · 880 KiB</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3,5 palce HD · 1,76 MiB</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>Červené tlačítko CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>Modré tlačítko CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>Zelené tlačítko CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>Žluté tlačítko CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 převinout zpět</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 převinout vpřed</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 přehrát / pozastavit</value></data>
+  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Paralelní čtyřhranný adaptér joystick</value></data>
+  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Všechny soubory|*.*</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32"><value>CD32 regulátor</value></data>
+</root>

@@ -80,7 +80,7 @@
   <data name="Emulation.Controller.Detect"><value>Wykryj kontrolery</value></data>
   <data name="Emulation.Controller.EmulatedAction"><value>Akcja Amiga</value></data>
   <data name="Emulation.Controller.PhysicalControl"><value>Sterowanie klawiaturą, myszą lub kontrolerem</value></data>
-  <data name="Emulation.Amiga.Chipset.Name"><value>Układ scalony</value></data>
+  
   <data name="Emulation.Storage.Cd.Drive"><value>Napęd CD</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>Liczba stacji dyskietek</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>Liczba dysków twardych</value></data>
@@ -191,15 +191,15 @@
   <data name="Emulation.Firmware.Incompatible"><value>Niezgodny</value></data>
   <data name="Emulation.Video.Settings.Display"><value>Wyświetlanie</value></data>
   <data name="Emulation.Video.Settings.Rendering"><value>Renderowanie</value></data>
-  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Zgodność chipsetu</value></data>
+  
   <data name="Emulation.Audio.Device"><value>Urządzenie</value></data>
   <data name="Emulation.Audio.LatencyLabel"><value>Opóźnienie</value></data>
   <data name="Emulation.Audio.Quality"><value>Jakość</value></data>
   <data name="Emulation.Audio.Drives"><value>Napędy</value></data>
   <data name="Emulation.Device.Name.Type"><value>Typ</value></data>
   <data name="Emulation.Storage.Device.Add"><value>Dodaj urządzenie pamięci masowej</value></data>
-  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3,5 cala DD · 880 KiB</value></data>
-  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3,5 cala HD · 1,76 MiB</value></data>
+  
+  
   <data name="Emulation.Storage.Media.Associated"><value>Powiązany nośnik</value></data>
   <data name="Emulation.Storage.Geometry.Automatic"><value>Geometria dysku jest określana automatycznie przez emulator.</value></data>
   <data name="Emulation.Storage.Floppy.BlankCreated"><value>Utworzono pusty obraz dyskietki: {0}</value></data>
@@ -290,92 +290,92 @@
   <data name="Emulation.Controller.Action.Right"><value>Prawo</value></data>
   <data name="Emulation.Controller.Action.Fire1"><value>Przycisk ognia 1</value></data>
   <data name="Emulation.Controller.Action.Fire2"><value>Przycisk ognia 2</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>Czerwony przycisk CD32</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>Niebieski przycisk CD32</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>Zielony przycisk CD32</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>Żółty przycisk CD32</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 przewijanie wstecz</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 przewijanie do przodu</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 odtwarzanie / pauza</value></data>
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Controller.AnalogJoystick"><value>Joystick analogowy</value></data>
   <data name="Emulation.Mouse.Wheel.Up"><value>Kółko myszy w górę</value></data>
   <data name="Emulation.Mouse.Wheel.Down"><value>Kółko myszy w dół</value></data>
   <data name="Emulation.Mouse.Wheel.Left"><value>Kółko myszy w lewo</value></data>
   <data name="Emulation.Mouse.Wheel.Right"><value>Kółko myszy w prawo</value></data>
-  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>Wartość tę określa wybrany model.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFpu"><value>Brak kompatybilności FPU jest dostępna dla tego modelu.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>Dla tego modelu nie ma alternatywnej pamięci.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>Ten model nie ma konfigurowalnego oprogramowania firmowego.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>Ten model nie ma klawiatury.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>Ten model nie ma myszy.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Ten model nie ma nośników.</value></data>
-  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Wybierz Jaguar CD model do użycia CD media.</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Storage.Cassettes"><value>Kaseta</value></data>
   <data name="Emulation.Storage.Cartridges"><value>Kartridż</value></data>
   <data name="Emulation.Storage.CompactDiscs"><value>Płyty kompaktowe</value></data>
-<data name="Emulation.Atari.Firmware.Multilingual"><value>Wielojęzyczny</value></data>
-  <data name="Emulation.Atari.Video.RegionFree"><value>Bez regionu</value></data>
-<data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>Nie znaleziono wymaganego rdzenia Atari.</value></data>
-  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>Wybrany rdzeń Atari nie mógł być załadowany.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>Brakuje wymaganego oprogramowania Atari.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>Oprogramowanie firmowe Atari jest nieważne lub niezgodne.</value></data>
-  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>Nie znaleziono skonfigurowanych mediów Atari.</value></data>
-  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>Konfigurowane media nie są obsługiwane przez tę maszynę Atari.</value></data>
-  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>Opcja Atari ma nieprawidłową wartość.</value></data>
-  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>Komunikacja z gospodarzem Atari nie powiodła się.</value></data>
-  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>Stan zapisany przez Atari jest nieważny.</value></data>
-  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>Stan zapisany przez Atari jest niezgodny z obecną maszyną.</value></data>
-  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>Wystąpił nieoczekiwany błąd emulacyjny Atari.</value></data>
-  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>Szczegóły: {0}</value></data>
-  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>Nie można zmodyfikować lub usunąć aktywnej konfiguracji Atari.</value></data>
-  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve"><value>Wymagane oprogramowanie firmowe Atari '{0}' nie jest skonfigurowane dla {1}.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>Nie znaleziono skonfigurowanego oprogramowania Atari '{0}': {1}</value></data>
-  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>Konfigurowane media Atari nie znaleziono: {0}</value></data>
-  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>Ścieżka wykonywalna hosta Atari jest niedostępna.</value></data>
-  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>Rdzeń Atari '{0}' nie jest zainstalowany.</value></data>
-  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Wszystkie pliki|*.*</value></data>
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Controller.Automatic"><value>Automatyczny</value></data>
   <data name="Emulation.Controller.None"><value>Brak</value></data>
-  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Adapter czteroosobowy równolegle</value></data>
+  
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>Przełącz joystick / mysz</value></data>
-  <data name="Emulation.Atari.Controller.NumericKeypad"><value>Klawiatura numeryczna</value></data>
+  
   <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve"><value>Emulator wymaga nośnika przed włączeniem tej maszyny. Włóż lub skonfiguruj jeden z wymaganych nośników pokazanych poniżej.</value></data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve"><value>Nie można włączyć maszyny</value></data>
   <data name="Emulation.Error.Machine" xml:space="preserve"><value>Maszyna</value></data>
   <data name="Emulation.Error.RequiredMedia" xml:space="preserve"><value>Wymagane nośniki</value></data>
-  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Szybkie uruchamianie</value></data>
+  
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Dźwięk stacji dyskietek</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Spolaryzowany filtr dźwięku</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Pokazuj aktywność napędów na ekranie emulatora</value></data>
-  <data name="Emulation.Atari.Memory.Mosaic"><value>Mozaika RAM rozszerzenie</value></data>
-  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM rozszerzenie</value></data>
-  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Cień banku Axlon $0F</value></data>
-  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Artefakty wysokiej rozdzielczości</value></data>
-  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>Przyspieszenie SIO</value></data>
-  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Uruchamianie z kasety</value></data>
-  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>Wersja systemu operacyjnego</value></data>
-  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>Wewnętrzny BASIC</value></data>
-  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>Wersja BASIC</value></data>
-  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>Szybkość ruchu kontrolerów paddle</value></data>
-  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>Automatyczny ogień</value></data>
-  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>Podczas przytrzymywania ognia</value></data>
-  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Zawsze</value></data>
-  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Odcień</value></data>
-  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Nasycenie</value></data>
-  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>Kontrast</value></data>
-  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Jasność</value></data>
-  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>Opóźnienie koloru GTIA</value></data>
-  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>Paleta zewnętrzna</value></data>
-  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>Zgodność kontrolera</value></data>
-  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>Czułość cyfrowa</value></data>
-  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>Czułość analogowa</value></data>
-  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>Podwójny joystick</value></data>
-  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>Zamień porty</value></data>
-  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>Pokaż szybkość emulacji</value></data>
-  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>Pokaż licznik sektorów/bloków</value></data>
-  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>Zegar czasu rzeczywistego R-Time 8</value></data>
-  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>Urządzenie drukarki P:</value></data>
-  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>Urządzenie szeregowe R:</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Niska</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>Normalna</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Wysoka</value></data>
@@ -721,20 +721,20 @@
   <data name="Emulation.Video.LedMatrix.Group.Emission"><value>Emisja światła</value></data>
   <data name="Emulation.Memory.Summary"><value>Chip RAM: {0} KiB\ nSlow RAM: {1} KiB\ nFast RAM: {2} MiB</value></data>
   <data name="Emulation.Memory.Fast"><value>Szybka pamięć RAM</value></data>
-  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Wszystkie pliki|*.*</value></data>
+  
   <data name="Emulation.Storage.HardDisk.Filter"><value>Dysk twardy Amiga|*.hdf|Wszystkie pliki|*.*</value></data>
   <data name="Emulation.Value.Minimum"><value>Minimalne</value></data>
-  <data name="Emulation.Amiga.Controller.Joystick"><value>Joystick Amigi</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32"><value>Sterownik CD32</value></data>
-  <data name="Emulation.Atari.Controller.Joystick"><value>Jojstik Atari</value></data>
-  <data name="Emulation.Atari.Controller.PaddleControllers"><value>Sterowniki łopatek Atari</value></data>
-  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 Lekka broń</value></data>
-  <data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Kontroler</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>Sterownik jazdy Atari</value></data>
-  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro- Line Joystick</value></data>
-  <data name="Emulation.Atari.Controller.Jaguar"><value>Kontroler Atari Jaguar</value></data>
-  <data name="Emulation.Atari.Controller.Genesis"><value>Sterownik Sega Genesis</value></data>
-  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Kontroler</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Video.DotMatrix.Palette.Red"><value>Czerwony</value></data>
   <data name="Emulation.Video.DotMatrix.Palette.White"><value>Biały</value></data>
   <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>Prostokąt</value></data>
@@ -796,7 +796,7 @@
   <data name="Emulation.Cassette.State.Recording"><value>Nagrywanie</value></data>
   <data name="Emulation.Cassette.State.EndOfTape"><value>Koniec taśmy</value></data>
   <data name="Emulation.Memory.Slow"><value>Powoli RAM</value></data>
-  <data name="Emulation.Atari.Audio.PokeyStereo"><value>StereoCity in New Jersey USA POKEY</value></data>
+  
   <data name="Emulation.Hdd.Delete"><value>Usuń obraz dysku...</value></data>
   <data name="Emulation.Hdd.DeleteConfirm"><value>Na stałe usunąć ten obraz dysku i wszystkie jego dane? Ta operacja nie może być cofnięta.&#xA;{0}</value></data>
   <data name="Emulation.Hdd.InUse"><value>Usuwanie jest niemożliwe. Odłącz ten dysk, zapisz konfiguracje i najpierw zamknij wymienione sesje:&#xA;{0}</value></data>
@@ -815,8 +815,8 @@
   <data name="Emulation.Value.None"><value>Brak</value></data>
   <data name="Emulation.Value.Default"><value>Domyślne</value></data>
   <data name="Emulation.Value.Gray"><value>Szary</value></data>
-  <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Niebieski/brązowy 1</value></data>
-  <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Niebieski/brązowy 2</value></data>
+  
+  
   <data name="Emulation.Firmware.Rom.Basic"><value>ROM BASIC</value></data>
   <data name="Emulation.Firmware.Rom.Xegs"><value>ROM XEGS</value></data>
 </root>

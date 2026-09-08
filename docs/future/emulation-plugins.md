@@ -4,6 +4,10 @@ Le chargement actuel est décrit dans
 [`../architecture/emulation-modules.md`](../architecture/emulation-modules.md) et son contrat complet
 dans [`../architecture/emulation-module-authoring.md`](../architecture/emulation-module-authoring.md).
 
+Le [découpage interne des moteurs](emulation-engine-organization.md) fait l'objet d'un chantier
+différé distinct : conserver une base commune et isoler les adaptations des moteurs au sein
+d'une seule DLL par famille, avec la même approche pour les futurs `GWGUI.Emulation.<Famille>`.
+
 ## Projets séparés et SDK
 
 C'est utile, faisable et pratique : chaque module peut avoir son dépôt, sa version, ses tests et ses
@@ -14,7 +18,7 @@ Avant de promettre cette indépendance, il faut stabiliser :
 
 - le paquet `GWGUI.Emulation.SDK` ;
 - la version de l'API hôte ;
-- les traductions propres au module ;
+- le raccordement des textes propres au module (voir le mécanisme embarqué ci-dessous) ;
 - le format du paquet et ses dépendances privées ;
 - les tests exécutés contre chaque version de GW GUI prise en charge.
 
@@ -27,7 +31,6 @@ Modules/Commodore/
   module.json
   gwgui.emulation.commodore.dll
   dependance-privee.dll
-  Languages/fr-FR.json
 ```
 
 Le sous-dossier évite de mélanger les fichiers de toutes les familles. `module.json` décrit le paquet
@@ -65,15 +68,18 @@ visibilité et règles ; GW GUI crée les contrôles. Le module n'envoie jamais 
 WPF arbitraire.
 
 Un catalogue propre au module concerne seulement les textes associés aux clés de ressources : noms
-des machines, libellés et explications. Actuellement ces textes doivent être présents dans les
-ressources centrales. Les déplacer dans le paquet permettra d'ajouter un module sans modifier les
-fichiers de langue de GW GUI.
+des machines, libellés et explications. Amiga et Atari embarquent leurs catalogues dans leur DLL
+via `IEmulationModuleLocalization`, avec une base neutre et les 29 cultures. Les textes hôte
+communs restent dans les ressources centrales. Le raccordement et son suivi de validation sont
+décrits dans [emulation-module-localization.md](../architecture/emulation-module-localization.md)
+et dans la [feuille de tâches](../tasks/emulation/module-autonomy.md).
 
 Lorsqu'une clé existe à la fois dans le module et dans les ressources internes, la traduction du
 module est prioritaire. Cela permet de corriger ou renommer un champ dans une nouvelle version du
 module sans attendre une nouvelle version de GW GUI. Les ressources internes servent uniquement de
-repli pour les textes communs ou pour assurer la transition des modules actuels. Le mécanisme doit
-d'abord être appliqué à Amiga et Atari avant la création d'un troisième module.
+repli pour les textes communs. Le mécanisme doit être validé sur Amiga et Atari avant la création
+d'un troisième module. Les catalogues embarqués remplacent la proposition de fichiers de langue
+externes par module.
 
 ## Sélection des modules officiels
 

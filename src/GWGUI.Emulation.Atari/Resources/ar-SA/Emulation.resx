@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>وتحدد هذه القيمة النموذج المختار.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>لا متوافقة FPU متاحة لهذا النموذج.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>لا توجد ذاكرة بديلة لهذا النموذج.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>هذا النموذج ليس لديه برمجيات قابلة للتشكيل</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>هذا النموذج ليس لديه لوحة مفاتيح</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>هذا النموذج ليس لديه فأر</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>هذا النموذج ليس لديه وسائل تخزين</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>اختيار الجاغور CD نموذج لاستخدام CD وسائط الإعلام.</value></data>
+  <data name="Emulation.Atari.Video.Region"><value>المنطقة</value></data>
+  <data name="Emulation.Atari.Firmware.Multilingual"><value>متعدد اللغات</value></data>
+  <data name="Emulation.Atari.Video.RegionFree"><value>بلا منطقة</value></data>
+  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>لم يتم العثور على نواة Atari المطلوبة.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>تعذر تحميل نواة Atari المحددة.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>برنامج Atari الثابت المطلوب مفقود.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>أحد برامج Atari الثابتة غير صالح أو غير متوافق.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>لم يتم العثور على وسائط Atari المكوّنة.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>الوسائط المكوّنة غير مدعومة بواسطة جهاز Atari هذا.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>يحتوي أحد خيارات Atari على قيمة غير صالحة.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>فشل الاتصال بمضيف Atari.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>حالة Atari المحفوظة غير صالحة.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>حالة Atari المحفوظة غير متوافقة مع الجهاز الحالي.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>حدث خطأ غير متوقع في محاكاة Atari.</value></data>
+  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>التفاصيل: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>لا يمكن تعديل تكوين Atari النشط أو حذفه.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve"><value>لم يتم تكوين برنامج Atari الثابت المطلوب '{0}' لـ {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>لم يتم العثور على برنامج Atari الثابت المكوّن '{0}': {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>لم يتم العثور على وسائط Atari المكوّنة: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>مسار الملف التنفيذي لمضيف Atari غير متاح.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>لم يتم تثبيت نواة Atari '{0}'.</value></data>
+  <data name="Emulation.Atari.Storage.MediaFilter"><value>وسائط الإعلام في أتاري|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|جميع الملفات|*.*</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>لوحة مفاتيح رقمية</value></data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>تمهيد سريع</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic"><value>موسي RAM توسيع</value></data>
+  <data name="Emulation.Atari.Memory.Axlon"><value>أكسلون RAM توسيع</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>ظل بنك Axlon $0F</value></data>
+  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>POKEY ستيريو</value></data>
+  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>تشوهات الدقة العالية</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>تسريع SIO</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>الإقلاع من الشريط</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>مراجعة نظام التشغيل</value></data>
+  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>BASIC داخلي</value></data>
+  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>مراجعة BASIC</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>سرعة حركة وحدات Paddle</value></data>
+  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>إطلاق تلقائي</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>أثناء الضغط على زر الإطلاق</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>دائمًا</value></data>
+  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>تدرج اللون</value></data>
+  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>التشبع</value></data>
+  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>التباين</value></data>
+  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>السطوع</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>تأخير لون GTIA</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>لوحة ألوان خارجية</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>توافق وحدة التحكم</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>الحساسية الرقمية</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>الحساسية التناظرية</value></data>
+  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>عصا تحكم مزدوجة</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>تبديل المنافذ</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>إظهار سرعة المحاكاة</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>إظهار عداد القطاع/الكتلة</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>ساعة الوقت الحقيقي R-Time 8</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>جهاز الطابعة P:</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>الجهاز التسلسلي R:</value></data>
+  <data name="Emulation.Atari.Controller.Joystick"><value>Atari funstick</value></data>
+  <data name="Emulation.Atari.Controller.PaddleControllers"><value>مراقبو أطاري بادلو</value></data>
+  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 خفيفة</value></data>
+  <data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200</value></data>
+  <data name="Emulation.Atari.Controller.Driving"><value>المراقب المالي ل Atari</value></data>
+  <data name="Emulation.Atari.Controller.ProLine"><value>أتاري برو - لين جوستيك</value></data>
+  <data name="Emulation.Atari.Controller.Lynx"><value>أتاري لينكس</value></data>
+  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar</value></data>
+  <data name="Emulation.Atari.Controller.BoosterGrip"><value>أتاري بوستر غريب</value></data>
+  <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesisالمراقب المالي</value></data>
+  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Observer</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>أزرق/بني 1</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>أزرق/بني 2</value></data>
+</root>
