@@ -17,14 +17,17 @@ publics. Un module référencera ce SDK, jamais le projet principal.
 Avant de promettre cette indépendance, il faut stabiliser :
 
 - le paquet `GWGUI.Emulation.SDK` ;
-- la version de l'API hôte ;
+- l'évolution de l'API hôte (version initiale `1.0` et contrôle par manifeste en place) ;
 - le raccordement des textes propres au module (voir le mécanisme embarqué ci-dessous) ;
 - le format du paquet et ses dépendances privées ;
 - les tests exécutés contre chaque version de GW GUI prise en charge.
 
 ## Sous-dossier et manifeste
 
-Aujourd'hui les DLL sont directement dans `Modules`. Un paquet autonome utilisera plutôt :
+Le manifeste obligatoire et le sous-dossier par famille sont en place pour Amiga et Atari.
+L'API actuelle et les bornes de ces deux modules valent `1.0`. Les DLL seules directement dans
+`Modules` ne sont plus chargées. Le futur paquet autonome complétera cette structure avec les
+dépendances privées :
 
 ```text
 Modules/Commodore/
@@ -38,11 +41,12 @@ avant de charger son code :
 
 ```json
 {
+  "schemaVersion": 1,
   "id": "Commodore",
   "entryAssembly": "gwgui.emulation.commodore.dll",
   "moduleVersion": "1.2.0",
   "hostApiMinimum": "1.0",
-  "hostApiMaximum": "1.x"
+  "hostApiMaximum": "1.0"
 }
 ```
 
@@ -55,6 +59,9 @@ Elle sert bien au contrôle de compatibilité. Un module exigeant l'API 2 doit �
 par une application limitée à l'API 1. La raison exacte est enregistrée dans le journal avant
 d'instancier la factory. Cette version ne désigne ni GW GUI, ni le module, ni le cœur : elle désigne
 uniquement leur langage commun.
+
+La compatibilité avec de futures versions n'est pas présumée : minimum et maximum valent
+actuellement `1.0`. Les bornes ne seront élargies qu'après vérification du module concerné.
 
 ## Diagnostic
 

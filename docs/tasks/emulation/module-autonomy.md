@@ -82,23 +82,29 @@ un résultat historique comme une validation nouvelle.
       - [x] Créer et exécuter `tests/GWGUI.Tests/Interface/Localization/TemporaryModuleLocalizationTests.cs` pour contrôler les ressources des deux DLL, le repli de culture, leurs métadonnées et les bindings lors du changement de langue ; compléter ensuite le relevé avec ces résultats et les limites de validation interactive. Le fichier sera supprimé à l'action suivante.
       - [x] Supprimer les scénarios temporaires, fichiers et modifications de ressources créés uniquement pour ces essais ; conserver les tests autonomes utiles et inscrire le nettoyage dans le relevé.
 
-- [ ] 2. Identifier les modules et contrôler leur compatibilité
-  - [ ] 2.1. Fixer le manifeste et la version d'API
-    - [ ] 2.1.1. Documenter les contrats exacts avant le chargeur
-      - [ ] Compléter `docs/architecture/emulation-modules.md` avec le schéma versionné de `module.json`, les champs d'identité, DLL d'entrée, version du module et bornes d'API ; préciser la comparaison des versions, les identifiants, les chemins autorisés et la transition depuis les DLL directement dans `Modules`. Résoudre avec l'utilisateur toute décision non établie.
-      - [ ] Créer `src/GWGUI.Emulation/Contracts/EmulationModuleManifest.cs` selon ce schéma et `src/GWGUI.Emulation/Constants/EmulationHostApi.cs` pour la version des contrats partagés, distincte du produit et des modules ; conserver les traitements actuels d'Emulation.
-      - [ ] Créer `src/GWGUI.Emulation.Amiga/module.json` et `src/GWGUI.Emulation.Atari/module.json` avec les identifiants existants et les versions définies à l'étape précédente ; configurer leur copie dans les deux fichiers `.csproj`.
-  - [ ] 2.2. Adapter la découverte et la distribution des binaires
-    - [ ] 2.2.1. Valider avant l'initialisation
-      - [ ] Créer `src/GWGUI.App/Services/Emulation/EmulationModuleManifestReader.cs` pour lire et valider chaque manifeste, la compatibilité et le confinement du chemin de la DLL avant la création de la factory.
-      - [ ] Modifier `src/GWGUI.App/Services/Emulation/EmulationModuleRegistry.cs` pour découvrir les paquets selon la transition documentée, contrôler les doublons et la concordance des identités, puis journaliser version, chemin et raisons de refus ; conserver l'indépendance des erreurs et les chemins de données existants.
-      - [ ] Modifier `scripts/build.ps1` pour produire `Modules/Amiga` et `Modules/Atari` avec leurs manifestes et DLL ; conserver `Data/Emulation/Machines/<Id>` et les données des utilisateurs.
-      - [ ] Compléter `docs/architecture/emulation-module-authoring.md` avec un exemple de manifeste conforme, les règles d'évolution de l'API et l'installation locale des paquets.
-  - [ ] 2.3. Valider le chargement et la compatibilité
-    - [ ] 2.3.1. Couvrir les refus utiles sans conserver de fixtures externes
-      - [ ] Ajouter des scénarios autonomes de validation des manifestes et versions dans `tests/GWGUI.Tests/Emulation/Modules`, avec données en mémoire ; inscrire les fichiers exacts dans cette liste avant leur création.
-      - [ ] Compléter `docs/tasks/emulation/module-autonomy-validation.md` après tests et essais temporaires : dossier absent/vide, Amiga seul, Atari seul, les deux, manifeste absent/invalide/incompatible, doublon, DLL invalide, factory en échec et module retiré avec données conservées ; inclure le routage des commandes de processus des moteurs.
-      - [ ] Supprimer les modules factices, scripts d'essai et fichiers produits uniquement pour cette validation, restaurer le paquet de travail et inscrire le nettoyage dans le relevé.
+- [x] 2. Identifier les modules et contrôler leur compatibilité
+  - [x] 2.1. Fixer le manifeste et la version d'API
+    - [x] 2.1.1. Documenter les contrats exacts avant le chargeur
+      - [x] Compléter `docs/architecture/emulation-modules.md` avec le schéma versionné de `module.json`, les champs d'identité, DLL d'entrée, version du module et bornes d'API ; préciser la comparaison des versions, les identifiants, les chemins autorisés et la transition depuis les DLL directement dans `Modules`. Résoudre avec l'utilisateur toute décision non établie.
+      - [x] Créer `src/GWGUI.Emulation/Contracts/EmulationModuleManifest.cs` selon ce schéma et `src/GWGUI.Emulation/Constants/EmulationHostApi.cs` pour la version des contrats partagés, distincte du produit et des modules ; conserver les traitements actuels d'Emulation.
+      - [x] Créer `src/GWGUI.Emulation.Amiga/module.json` et `src/GWGUI.Emulation.Atari/module.json` avec les identifiants existants et les versions définies à l'étape précédente ; configurer leur copie dans les deux fichiers `.csproj`.
+  - [x] 2.2. Adapter la découverte et la distribution des binaires
+    - [x] 2.2.1. Valider avant l'initialisation
+      - [x] Créer `src/GWGUI.App/Services/Emulation/EmulationModuleManifestReader.cs` pour lire et valider chaque manifeste, la compatibilité et le confinement du chemin de la DLL avant la création de la factory.
+      - [x] Modifier `src/GWGUI.App/Services/Logging/ErrorLog.cs` pour réutiliser le formateur et le stockage existants avec une entrée d'information sans exception fictive ; conserver les journaux d'erreur actuels et écrire les succès de chargement dans un journal d'information.
+      - [x] Modifier `src/GWGUI.App/Services/Emulation/EmulationModuleRegistry.cs` pour découvrir uniquement les sous-dossiers avec manifeste, contrôler les doublons et la concordance des identités, puis journaliser version, chemin et raisons de refus ; conserver l'indépendance des erreurs et les chemins de données existants. Isoler les paramètres de découverte (répertoire, racine de données, diagnostic) pour vérifier les scénarios sans modifier les données utilisateur.
+      - [x] Modifier `scripts/build.ps1` pour produire `Modules/Amiga` et `Modules/Atari` avec leurs manifestes et DLL ; conserver `Data/Emulation/Machines/<Id>` et les données des utilisateurs.
+      - [x] Compléter `docs/architecture/emulation-module-authoring.md` avec un exemple de manifeste conforme, les règles d'évolution de l'API et l'installation locale des paquets.
+      - [x] Mettre à jour `docs/future/emulation-plugins.md` pour remplacer l'ancien exemple `1.x`, indiquer les manifestes obligatoires réalisés et conserver comme différés les dépendances privées, paquets et mises à jour.
+  - [x] 2.3. Valider le chargement et la compatibilité
+    - [x] 2.3.1. Couvrir les refus utiles sans conserver de fixtures externes
+      - [x] Créer `tests/GWGUI.Tests/Emulation/Modules/EmulationModuleManifestTests.cs` : champs obligatoires, chemins interdits, versions numériques et bornes inclusives avec JSON en mémoire ; exécuter ces tests et les tests de localisation existants. Première exécution : 64 réussites, une assertion de type trop stricte à corriger.
+      - [x] Corriger dans `EmulationModuleManifestTests.cs` la vérification du JSON incomplet avec `ThrowsAny<JsonException>` pour accepter le sous-type réel ; relancer les 65 tests ciblés.
+      - [x] Créer puis exécuter `tests/GWGUI.Tests/Emulation/Modules/TemporaryModuleDiscoveryTests.cs` : charger les DLL réelles dans `build/.module-manifest-validation`, vérifier les modules seuls/ensemble, les refus et la conservation des données ; inclure une factory factice dans le test et le routage des commandes hôtes. Corriger le scénario temporaire après relecture des deux protocoles : connexion par pipe, commande Dispose et lecture de sa réponse avant attente de fin, en utilisant aussi le préfixe de version du protocole Atari et la mémoire vidéo Amiga ; nettoyer le dossier temporaire avant la nouvelle exécution. Supprimer ce fichier et son dossier temporaire après les essais.
+      - [x] Produire le paquet Debug avec `scripts/build.ps1 -Configuration Debug` et vérifier `build/Debug/GW GUI/gwgui.exe`, les deux manifestes et les DLL dans leurs sous-dossiers.
+      - [x] Recompiler `tests/GWGUI.Tests/GWGUI.Tests.csproj` après suppression du test temporaire et relancer les 65 tests ciblés pour retirer aussi sa factory de la DLL de tests.
+      - [x] Compléter `docs/tasks/emulation/module-autonomy-validation.md` après tests et essais temporaires : dossier absent/vide, Amiga seul, Atari seul, les deux, manifeste absent/invalide/incompatible, doublon, DLL invalide, factory en échec et module retiré avec données conservées ; inclure le routage des commandes de processus des moteurs.
+      - [x] Supprimer les modules factices, scripts d'essai et fichiers produits uniquement pour cette validation, restaurer le paquet de travail et inscrire le nettoyage dans le relevé.
 
 - [ ] 3. Produire des paquets de modules indépendants et un paquet complet
   - [ ] 3.1. Préparer les dépendances et leur résolution

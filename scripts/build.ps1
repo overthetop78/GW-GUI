@@ -52,18 +52,32 @@ function New-GwGuiBuild {
     $moduleOutput = Join-Path $applicationPublish 'Modules'
     New-Item -ItemType Directory -Path $moduleOutput -Force | Out-Null
     $modules = @(
-        @{ Project = 'src\GWGUI.Emulation.Amiga\GWGUI.Emulation.Amiga.csproj'; Assembly = 'gwgui.emulation.amiga' },
-        @{ Project = 'src\GWGUI.Emulation.Atari\GWGUI.Emulation.Atari.csproj'; Assembly = 'gwgui.emulation.atari' }
+        @{ Project = 'src\GWGUI.Emulation.Amiga\GWGUI.Emulation.Amiga.csproj'; Assembly = 'gwgui.emulation.amiga'; Folder = 'Amiga' },
+        @{ Project = 'src\GWGUI.Emulation.Atari\GWGUI.Emulation.Atari.csproj'; Assembly = 'gwgui.emulation.atari'; Folder = 'Atari' }
     )
     foreach ($module in $modules) {
+        $project = Join-Path $repository $module.Project
+        $manifestPath = Join-Path (Split-Path -Parent $project) 'module.json'
+        $manifest = Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
+        if ($manifest.schemaVersion -ne 1 -or $manifest.id -ine $module.Folder -or
+            $manifest.entryAssembly -ine ($module.Assembly + '.dll') -or
+            $manifest.moduleVersion -notmatch '^\d+\.\d+\.\d+$' -or
+            $manifest.hostApiMinimum -ne '1.0' -or $manifest.hostApiMaximum -ne '1.0') {
+            throw "Invalid manifest for official module '$($module.Folder)': $manifestPath"
+        }
+        $destination = Join-Path $moduleOutput $module.Folder
+        New-Item -ItemType Directory -Path $destination -Force | Out-Null
         $publish = Join-Path $moduleStaging $module.Assembly
-        dotnet publish (Join-Path $repository $module.Project) `
-            -c $BuildConfiguration -r win-x64 --self-contained false -o $publish --disable-build-servers
+        dotnet publish $project `
+            -c $BuildConfiguration -r win-x64 --self-contained false -p:Version=$($manifest.moduleVersion) -o $publish --disable-build-servers
         if ($LASTEXITCODE -ne 0) { throw "$BuildConfiguration $($module.Assembly) module publish failed." }
+        Copy-Item -LiteralPath (Join-Path $publish 'module.json') -Destination $destination -Force
         foreach ($extension in @('.dll', '.pdb')) {
             $source = Join-Path $publish ($module.Assembly + $extension)
             if (Test-Path -LiteralPath $source -PathType Leaf) {
-                Copy-Item -LiteralPath $source -Destination $moduleOutput -Force
+                Copy-Item -LiteralPath $source -Destination $destination -Force
+            } elseif ($extension -eq '.dll') {
+                throw "Module entry assembly was not produced: $source"
             }
         }
     }

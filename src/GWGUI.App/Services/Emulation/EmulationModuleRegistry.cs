@@ -11,65 +11,68 @@ namespace GWGUI.App.Services.Emulation;
 internal static class EmulationModuleRegistry
 {
     private static readonly HttpClient HttpClient = new();
-    internal static IReadOnlyList<IEmulationModule> Modules { get; } = Discover();
+    private static readonly Lazy<IReadOnlyList<IEmulationModule>> LoadedModules = new(() => Discover(
+        Path.Combine(AppContext.BaseDirectory, "Modules"), StoragePaths.DataDirectory, WriteDiagnostic));
+    internal static IReadOnlyList<IEmulationModule> Modules => LoadedModules.Value;
 
     internal static IEmulationModuleLocalization? FindLocalization(string? moduleId) =>
         string.IsNullOrWhiteSpace(moduleId) ? null : Modules.FirstOrDefault(module =>
             string.Equals(module.Id, moduleId, StringComparison.OrdinalIgnoreCase))
             as IEmulationModuleLocalization;
 
-    private static IReadOnlyList<IEmulationModule> Discover()
+    internal static IReadOnlyList<IEmulationModule> Discover(string directory, string dataDirectory,
+        Action<string, Exception?> diagnostic)
     {
-        var directory = Path.Combine(AppContext.BaseDirectory, "Modules");
         var modules = new Dictionary<string, IEmulationModule>(StringComparer.OrdinalIgnoreCase);
         try
         {
             if (!Directory.Exists(directory)) return [];
-            foreach (var path in Directory.EnumerateFiles(directory, "*.dll", SearchOption.TopDirectoryOnly)
+            foreach (var path in Directory.EnumerateFiles(directory, "*.dll", SearchOption.TopDirectoryOnly))
+                diagnostic($"Ignoring loose module DLL '{path}': a module folder with module.json is required.", null);
+            foreach (var path in Directory.EnumerateDirectories(directory)
                          .OrderBy(path => path, StringComparer.OrdinalIgnoreCase))
-                LoadAssembly(path, modules);
+                LoadModule(path, dataDirectory, modules, diagnostic);
         }
         catch (Exception error)
         {
-            ErrorLog.Write(error, $"Discovering emulation modules in '{directory}'");
+            diagnostic($"Discovering emulation modules in '{directory}'", error);
         }
         return modules.Values.OrderBy(module => module.Id, StringComparer.OrdinalIgnoreCase).ToArray();
     }
 
-    private static void LoadAssembly(string path, IDictionary<string, IEmulationModule> modules)
+    private static void LoadModule(string directory, string dataDirectory,
+        IDictionary<string, IEmulationModule> modules, Action<string, Exception?> diagnostic)
     {
+        var context = $"Loading emulation module manifest '{Path.Combine(directory, EmulationHostApi.ManifestFileName)}'";
         try
         {
+            var manifest = EmulationModuleManifestReader.Read(directory);
+            var path = Path.Combine(Path.GetFullPath(directory), manifest.EntryAssembly);
+            context = $"Loading emulation module '{manifest.Id}' version {manifest.ModuleVersion} from '{path}'";
+            if (modules.ContainsKey(manifest.Id))
+                throw new InvalidDataException($"An emulation module with id '{manifest.Id}' is already loaded.");
             var assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(Path.GetFullPath(path));
-            foreach (var type in FactoryTypes(assembly))
-            {
-                try
-                {
-                    var factory = (IEmulationModuleFactory)Activator.CreateInstance(type)!;
-                    ValidateId(factory.Id);
-                    if (modules.ContainsKey(factory.Id))
-                        throw new InvalidDataException($"An emulation module with id '{factory.Id}' is already loaded.");
-                    var root = Path.Combine(StoragePaths.EmulationDirectory, "Machines", factory.Id);
-                    var module = factory.Create(new EmulationModuleContext(
-                        StoragePaths.DataDirectory, root, HttpClient));
-                    if (!string.Equals(module.Id, factory.Id, StringComparison.OrdinalIgnoreCase))
-                        throw new InvalidDataException(
-                            $"Emulation module factory id '{factory.Id}' does not match module id '{module.Id}'.");
-                    modules.Add(module.Id, module);
-                }
-                catch (Exception error)
-                {
-                    ErrorLog.Write(error, $"Loading emulation module factory '{type.FullName}' from '{path}'");
-                }
-            }
+            var factories = FactoryTypes(assembly, diagnostic).ToArray();
+            if (factories.Length != 1)
+                throw new InvalidDataException($"Module '{manifest.Id}' must expose exactly one public factory; found {factories.Length}.");
+            var factory = (IEmulationModuleFactory)Activator.CreateInstance(factories[0])!;
+            if (!string.Equals(factory.Id, manifest.Id, StringComparison.OrdinalIgnoreCase))
+                throw new InvalidDataException($"Manifest id '{manifest.Id}' does not match factory id '{factory.Id}'.");
+            var root = Path.Combine(dataDirectory, "Emulation", "Machines", factory.Id);
+            var module = factory.Create(new EmulationModuleContext(dataDirectory, root, HttpClient));
+            if (module is null || !string.Equals(module.Id, manifest.Id, StringComparison.OrdinalIgnoreCase))
+                throw new InvalidDataException($"Manifest id '{manifest.Id}' does not match the created module id '{module?.Id}'.");
+            modules.Add(manifest.Id, module);
+            diagnostic($"Loaded emulation module '{module.Id}' version {manifest.ModuleVersion} from '{path}' " +
+                $"(host API {EmulationHostApi.CurrentVersion}).", null);
         }
         catch (Exception error)
         {
-            ErrorLog.Write(error, $"Loading emulation module assembly '{path}'");
+            diagnostic(context, error);
         }
     }
 
-    private static IEnumerable<Type> FactoryTypes(Assembly assembly)
+    private static IEnumerable<Type> FactoryTypes(Assembly assembly, Action<string, Exception?> diagnostic)
     {
         try
         {
@@ -78,20 +81,19 @@ internal static class EmulationModuleRegistry
         catch (ReflectionTypeLoadException error)
         {
             foreach (var loaderError in error.LoaderExceptions.OfType<Exception>())
-                ErrorLog.Write(loaderError, $"Inspecting emulation module assembly '{assembly.Location}'");
+                diagnostic($"Inspecting emulation module assembly '{assembly.Location}'", loaderError);
             return error.Types.OfType<Type>().Where(IsFactory).ToArray();
         }
     }
 
     private static bool IsFactory(Type type) =>
-        type is { IsClass: true, IsAbstract: false, IsPublic: true }
+        type is { IsClass: true, IsAbstract: false, IsPublic: true, ContainsGenericParameters: false }
         && typeof(IEmulationModuleFactory).IsAssignableFrom(type)
         && type.GetConstructor(Type.EmptyTypes) is not null;
 
-    private static void ValidateId(string id)
+    private static void WriteDiagnostic(string context, Exception? error)
     {
-        if (string.IsNullOrWhiteSpace(id) || id.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0
-            || id.Contains(Path.DirectorySeparatorChar) || id.Contains(Path.AltDirectorySeparatorChar))
-            throw new InvalidDataException($"Invalid emulation module id '{id}'.");
+        if (error is null) ErrorLog.WriteInformation(context, "Emulation module discovery");
+        else ErrorLog.Write(error, context);
     }
 }

@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "id": "atari",
+  "entryAssembly": "gwgui.emulation.atari.dll",
+  "moduleVersion": "1.0.0",
+  "hostApiMinimum": "1.0",
+  "hostApiMaximum": "1.0"
+}

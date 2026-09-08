@@ -8,8 +8,9 @@ la bibliothèque de contrats `gwgui.emulation.dll`, de ce document et d'un proje
 
 État actuel important : le chargement dynamique fonctionne, mais `GWGUI.Emulation` n'est pas encore
 publié comme paquet SDK autonome. Un module développé hors du dépôt doit donc temporairement
-référencer la DLL issue du même build de GW GUI. La version explicite de l'API reste une évolution
-à réaliser. Les traductions propres au module passent par `IEmulationModuleLocalization`.
+référencer la DLL issue du même build de GW GUI. L'API actuelle est `1.0` et chaque module doit
+déclarer ses bornes compatibles dans `module.json`. Les traductions propres au module passent
+par `IEmulationModuleLocalization`.
 
 ## 1. Ce que contient un module
 
@@ -45,15 +46,49 @@ machines, les champs et le runtime ; GW GUI construit toute l'interface.
       <HintPath>sdk\gwgui.emulation.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <None Update="module.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>
 ```
 
-La DLL finale est déposée directement dans `Modules`. GW GUI la charge au prochain démarrage.
+La DLL finale et `module.json` sont déposés dans `Modules/Commodore`. GW GUI contrôle le manifeste
+au prochain démarrage, avant d'initialiser la factory. Une DLL seule directement dans `Modules`
+n'est pas chargée.
+
+Exemple de manifeste pour un module construit et validé avec l'API actuelle :
+
+```json
+{
+  "schemaVersion": 1,
+  "id": "Commodore",
+  "entryAssembly": "gwgui.emulation.commodore.dll",
+  "moduleVersion": "1.0.0",
+  "hostApiMinimum": "1.0",
+  "hostApiMaximum": "1.0"
+}
+```
+
+La version du module contient trois composantes numériques. Les versions d'API contiennent
+deux composantes et les bornes sont inclusives. Un joker comme `1.x` n'est pas accepté :
+la compatibilité future n'est pas supposée. Une modification des contrats doit être accompagnée
+d'une évaluation de la version d'API ; n'élargir les bornes d'un module qu'après vérification.
+Une correction interne au produit ou au moteur n'impose pas à elle seule de changer l'API.
+
+L'identifiant doit être un nom de dossier valide et stable. `entryAssembly` est un simple nom
+de DLL dans ce dossier : aucun chemin absolu, sous-chemin ou lien externe. Les trois identités
+(manifeste, factory, module) doivent correspondre sans distinction de casse. Le
+[schéma et les règles de chargement](emulation-modules.md) précisent les validations.
+
+Pour un essai local, fermer GW GUI, déposer le dossier complet dans `Modules`, puis relancer.
+Les modules Amiga et Atari sont produits automatiquement avec leur manifeste par
+`scripts/build.ps1 -Configuration Debug`. Les succès sont inscrits dans `Data/Logs/information-*.log`
+et les refus dans `Data/Logs/errors-*.log`. Les configurations et cœurs téléchargés restent dans
+les dossiers de données existants.
 
 ## 3. Factory : point d'entrée obligatoire
 
-Une classe publique, non abstraite, avec constructeur public sans paramètre implémente :
+Une seule classe publique, non abstraite, sans paramètre générique ouvert, avec constructeur
+public sans paramètre implémente :
 
 ```csharp
 public interface IEmulationModuleFactory
@@ -407,8 +442,8 @@ Chaque méthode valide que la configuration reçue appartient au bon `ModuleId` 
 Le chargement est dynamique, mais l'écosystème externe n'est pas encore totalement stabilisé :
 
 - pas de paquet NuGet `GWGUI.Emulation.SDK` versionné ;
-- pas de numéro de version négocié de l'API hôte ;
-- pas de manifeste décrivant l'assembly principal et ses dépendances ;
+- le manifeste décrit l'assembly principal et sa compatibilité ; la distribution autonome des
+  dépendances privées reste à réaliser ;
 - les dépendances privées ne sont pas isolées par module ;
 - mise à jour uniquement après arrêt et remplacement manuel des fichiers.
 
