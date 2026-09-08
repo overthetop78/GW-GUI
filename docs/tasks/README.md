@@ -11,6 +11,7 @@ Ce dossier contient uniquement les travaux restant à exécuter ou les feuilles 
 
 ## Émulation
 
+- [Autonomie des modules : traductions, compatibilité, paquets et mises à jour](emulation/module-autonomy.md)
 - [Amiga](emulation/amiga.md)
 - [Atari](emulation/atari.md)
 - [Commodore](emulation/commodore.md)
