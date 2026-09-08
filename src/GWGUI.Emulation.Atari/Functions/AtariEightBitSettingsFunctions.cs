@@ -118,8 +118,8 @@ public static class AtariEightBitSettingsFunctions
             AtariEightBitSettingsConstants.Disabled);
         SetDefault(options, AtariEightBitSettingsConstants.SerialDeviceOptionKey,
             AtariEightBitSettingsConstants.Disabled);
-        SetDefault(options, AtariEightBitSettingsConstants.SioAccelerationOptionKey,
-            AtariEightBitSettingsConstants.Enabled);
+        options[AtariEightBitSettingsConstants.SioAccelerationOptionKey] =
+            AtariEightBitSettingsConstants.Enabled;
         SetDefault(options, AtariEightBitSettingsConstants.CassetteBootOptionKey,
             AtariEightBitSettingsConstants.Disabled);
         SetDefault(options, AtariEightBitSettingsConstants.PokeyStereoOptionKey,

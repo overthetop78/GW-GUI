@@ -20,7 +20,9 @@ internal static class AtariStorageSettingsFunctions
             .SelectMany(rule => rule.Slots.Select(slot => new EmulationMediaDevice(slot,
                 ToMediaType(rule.Category), rule.Category == AtariMediaCategory.HardDisk
                     ? AtariHardDiskFormats.For(configuration.Model).Select(format => format.Extension).ToArray()
-                    : Extensions(rule.Category),
+                    : rule.Category == AtariMediaCategory.Cartridge
+                        ? CartridgeExtensions(configuration)
+                        : Extensions(rule.Category),
                 AtariStorageConfigurationFunctions.IsRemovable(rule.Category),
                 rule.Category == AtariMediaCategory.Cartridge && compatibility.Core == AtariEmulator.Atari800,
                 DisplayLabel(configuration.Model, slot),
@@ -121,10 +123,24 @@ internal static class AtariStorageSettingsFunctions
         AtariMediaCategory.Floppy => [AtariStorageSettingsFunctionsConstants.St, AtariStorageSettingsFunctionsConstants.Msa, AtariStorageSettingsFunctionsConstants.Stx, AtariStorageSettingsFunctionsConstants.Dim, AtariStorageSettingsFunctionsConstants.Ipf, AtariStorageSettingsFunctionsConstants.Scp, AtariStorageSettingsFunctionsConstants.Atr, AtariStorageSettingsFunctionsConstants.Xfd, AtariStorageSettingsFunctionsConstants.Dcm, AtariStorageSettingsFunctionsConstants.Atx],
         AtariMediaCategory.HardDisk => [AtariStorageSettingsFunctionsConstants.Img, AtariStorageSettingsFunctionsConstants.Hdf, AtariStorageSettingsFunctionsConstants.Vhd],
         AtariMediaCategory.Cassette => [AtariStorageSettingsFunctionsConstants.Cas],
-        AtariMediaCategory.Cartridge => [AtariStorageSettingsFunctionsConstants.Car, AtariStorageSettingsFunctionsConstants.Rom, AtariStorageSettingsFunctionsConstants.A26, AtariStorageSettingsFunctionsConstants.A52, AtariStorageSettingsFunctionsConstants.A78, AtariStorageSettingsFunctionsConstants.Lnx, AtariStorageSettingsFunctionsConstants.J64, AtariStorageSettingsFunctionsConstants.Jag],
         AtariMediaCategory.CompactDisc => [AtariStorageSettingsFunctionsConstants.Cue, AtariStorageSettingsFunctionsConstants.Chd, AtariStorageSettingsFunctionsConstants.Iso],
         _ => []
     };
+
+    private static IReadOnlyList<string> CartridgeExtensions(AtariMachineConfiguration configuration)
+    {
+        IReadOnlySet<string> extensions = configuration.Core switch
+        {
+            AtariEmulator.Atari800 when configuration.Model == AtariMachineModel.Atari5200 =>
+                new HashSet<string>(["a52", "bin", "rom"], StringComparer.OrdinalIgnoreCase),
+            AtariEmulator.Atari800 =>
+                new HashSet<string>(["car", "bin", "rom"], StringComparer.OrdinalIgnoreCase),
+            _ when AtariCartridgeConstants.Extensions.TryGetValue(configuration.Core, out var supported) => supported,
+            _ => new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        };
+        return extensions.Order(StringComparer.OrdinalIgnoreCase)
+            .Select(extension => $"{AtariConstants.ExtensionPrefix}{extension}").ToArray();
+    }
 
     private static FloppyDriveDialogOptions FloppyOptions(AtariMachineModel model, string? imageDirectory)
     {

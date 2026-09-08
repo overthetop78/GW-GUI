@@ -25,6 +25,8 @@ internal static class AtariSettingsDescriptionFunctionsConstants
     internal const string ResourceMemoryExtensions = "Emulation.Memory.Extensions";
     internal const string Firmware = "firmware";
     internal const string ResourceFirmwareRomSystem = "Emulation.Firmware.Rom.System";
+    internal const string ResourceFirmwareRomBasic = "Emulation.Firmware.Rom.Basic";
+    internal const string ResourceFirmwareRomXegs = "Emulation.Firmware.Rom.Xegs";
     internal const string Value5 = "\uE8B7";
     internal const string HatariFastboot = "hatari_fastboot";
     internal const string ResourceAtariFastBoot = "Emulation.Atari.FastBoot";

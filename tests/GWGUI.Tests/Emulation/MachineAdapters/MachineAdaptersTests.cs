@@ -58,4 +58,14 @@ public sealed class MachineAdaptersTests
     [Fact] public void MediaCategoriesAreMappedWithoutCore() => MachineConfigurationMappingScenarios.Media();
     [Fact] public void HatariDriveIndicatorsFeedTheCommonMediaActivity() => AtariMediaActivityScenarios.HatariOverlay();
     [Fact] public void Atari800DriveIndicatorsFeedTheCommonMediaActivity() => AtariMediaActivityScenarios.Atari800Overlay();
+    [Fact] public void Atari800CassettePlaySendsOneReturnPulse() =>
+        AtariCassetteScenarios.PlaybackSendsOneReturnPulse();
+    [Fact] public void AtariEightBitCassetteBootUsesTheNativeCoreOption() =>
+        AtariCassetteScenarios.AutomaticBootUsesTheCoreOptionForEveryComputerModel();
+    [Fact] public void OriginalAtariCassetteBootSendsOneDelayedReturnPulse() =>
+        AtariCassetteScenarios.AutomaticBootSendsOneDelayedReturnOnlyForOriginalModels();
+    [Fact] public void AtariCartridgeFiltersFollowTheSelectedModel() =>
+        AtariCartridgeScenarios.FiltersFollowTheSelectedModel();
+    [Fact] public void Atari800CartridgeTakesInitialContentPriority() =>
+        AtariCartridgeScenarios.CartridgeIsTheInitialAtari800Content();
 }

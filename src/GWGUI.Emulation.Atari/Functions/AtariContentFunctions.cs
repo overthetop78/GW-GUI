@@ -24,10 +24,10 @@ internal static class AtariContentFunctions
     }
 
     internal static AtariLoadedContent Create(string contentPath, bool needsFullPath,
-        IReadOnlySet<string> supportedExtensions)
+        IReadOnlySet<string> supportedExtensions, bool useWindowsAnsiPath = false)
     {
         var absolutePath = Validate(contentPath, supportedExtensions);
-        var path = new ExternalCoreUtf8String(absolutePath);
+        var path = new AtariContentPath(absolutePath, useWindowsAnsiPath);
         var data = nint.Zero;
         var gameInfo = nint.Zero;
         try

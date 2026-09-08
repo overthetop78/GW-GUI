@@ -7,4 +7,6 @@ internal sealed record MachineViewDevice(
     bool Removable,
     bool Present,
     Func<Task>? Insert,
-    Func<Task>? Eject);
+    Func<Task>? Eject,
+    string? Status = null,
+    IReadOnlyList<MachineViewDeviceCommand>? Commands = null);

@@ -4,10 +4,10 @@ namespace GWGUI.Emulation.Atari.Services;
 
 internal sealed class AtariLoadedContent : IDisposable
 {
-    private ExternalCoreUtf8String? _path;
+    private AtariContentPath? _path;
     private nint _data;
 
-    internal AtariLoadedContent(nint gameInfo, ExternalCoreUtf8String path, nint data)
+    internal AtariLoadedContent(nint gameInfo, AtariContentPath path, nint data)
     {
         GameInfo = gameInfo;
         _path = path;

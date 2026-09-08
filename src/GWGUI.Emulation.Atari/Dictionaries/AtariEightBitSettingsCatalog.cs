@@ -46,7 +46,7 @@ public static class AtariEightBitSettingsCatalog
         Visible(AtariEightBitSettingsConstants.PrinterDeviceOptionKey),
         Visible(AtariEightBitSettingsConstants.SerialDeviceOptionKey),
         Hidden(AtariEightBitSettingsConstants.SlowExecutableLoadingOptionKey),
-        Visible(AtariEightBitSettingsConstants.SioAccelerationOptionKey),
+        Managed(AtariEightBitSettingsConstants.SioAccelerationOptionKey),
         Visible(AtariEightBitSettingsConstants.CassetteBootOptionKey),
         Visible(AtariEightBitSettingsConstants.PokeyStereoOptionKey),
         Hidden(AtariEightBitSettingsConstants.LegacyConfigurationOptionKey)

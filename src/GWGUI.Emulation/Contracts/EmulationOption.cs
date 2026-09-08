@@ -8,4 +8,5 @@ public sealed record EmulationOption(
     string DefaultValue,
     string CurrentValue,
     IReadOnlyList<EmulationOptionValue> Values,
-    bool IsVisible = true);
+    bool IsVisible = true,
+    bool RequiresRestart = false);

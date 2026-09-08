@@ -33,7 +33,6 @@ internal static class AtariSettingsDescriptionFunctions
             [AtariEightBitSettingsConstants.AnalogSensitivityOptionKey] = "Emulation.Help.Controller.AnalogSensitivity",
             [AtariEightBitSettingsConstants.AutofireOptionKey] = "Emulation.Help.Controller.Autofire",
             [AtariEightBitSettingsConstants.PaddleMovementSpeedOptionKey] = "Emulation.Help.Controller.PaddleSpeed",
-            [AtariEightBitSettingsConstants.SioAccelerationOptionKey] = "Emulation.Help.Storage.SioAcceleration",
             [AtariEightBitSettingsConstants.CassetteBootOptionKey] = "Emulation.Help.Storage.CassetteBoot",
             [AtariEightBitSettingsConstants.RealTimeClockOptionKey] = "Emulation.Help.Storage.RealTimeClock",
             [AtariEightBitSettingsConstants.PrinterDeviceOptionKey] = "Emulation.Help.Storage.PrinterDevice",
@@ -169,17 +168,43 @@ internal static class AtariSettingsDescriptionFunctions
                         DefaultResolution(configuration.Model)), Resolutions(configuration.Model))),
             Audio(configuration, false)
         };
-        if (configuration.Model == AtariMachineModel.Atari400)
+        if (configuration.Core == AtariEmulator.Atari800)
         {
-            blocks.Add(Block(AtariSettingsDescriptionFunctionsConstants.Firmware, EmulationMachineTab.Rom, AtariSettingsDescriptionFunctionsConstants.ResourceFirmwareRomSystem, AtariSettingsDescriptionFunctionsConstants.Value5, 1,
-                Path(AtariSettingsConstants.SystemFirmware, EmulationMachineTab.Rom, AtariSettingsDescriptionFunctionsConstants.Firmware,
-                    AtariSettingsDescriptionFunctionsConstants.ResourceFirmwareRomSystem, configuration.Firmwares.FirstOrDefault()?.Path)));
+            var firmwareFields = ClassicFirmwareFields(configuration);
+            blocks.Add(Block(AtariSettingsDescriptionFunctionsConstants.Firmware, EmulationMachineTab.Rom,
+                AtariSettingsDescriptionFunctionsConstants.ResourceFirmwareRomSystem,
+                AtariSettingsDescriptionFunctionsConstants.Value5, firmwareFields.Length > 1 ? 2 : 1,
+                firmwareFields));
         }
         AddEightBitMemory(configuration, blocks);
         AddEightBitOptions(configuration, blocks);
         AddEightBitControllerOptions(configuration, blocks);
         return blocks;
     }
+
+    private static EmulationSettingsField[] ClassicFirmwareFields(AtariMachineConfiguration configuration)
+    {
+        var categories = AtariClassicModelCatalog.Get(configuration.Model).Firmware;
+        var fields = new List<EmulationSettingsField>();
+        if (categories.Any(category => AtariFirmwareSelectionFunctions.IsSystemRom(configuration.Model, category)))
+            fields.Add(FirmwarePath(configuration, AtariSettingsConstants.SystemFirmware,
+                AtariSettingsDescriptionFunctionsConstants.ResourceFirmwareRomSystem));
+        if (configuration.Model is AtariMachineModel.Atari800Xl or AtariMachineModel.Atari130Xe
+            or AtariMachineModel.XlXe or AtariMachineModel.Xegs)
+            fields.Add(FirmwarePath(configuration, AtariSettingsConstants.BasicFirmware,
+                AtariSettingsDescriptionFunctionsConstants.ResourceFirmwareRomBasic));
+        if (categories.Contains(AtariFirmwareCategory.AtariXegsBios))
+            fields.Add(FirmwarePath(configuration, AtariSettingsConstants.XegsFirmware,
+                AtariSettingsDescriptionFunctionsConstants.ResourceFirmwareRomXegs));
+        return fields.ToArray();
+    }
+
+    private static EmulationSettingsField FirmwarePath(AtariMachineConfiguration configuration,
+        string fieldId, string label) =>
+        Path(fieldId, EmulationMachineTab.Rom, AtariSettingsDescriptionFunctionsConstants.Firmware, label,
+            configuration.Firmwares.FirstOrDefault(item => string.Equals(
+                AtariFirmwareSelectionFunctions.FieldId(configuration.Model, item.Category), fieldId,
+                StringComparison.Ordinal))?.Path);
 
     private static void AddEightBitControllerOptions(AtariMachineConfiguration configuration,
         ICollection<EmulationSettingsBlock> blocks)
@@ -260,9 +285,6 @@ internal static class AtariSettingsDescriptionFunctions
             Toggle(AtariEightBitSettingsConstants.ShowSectorOptionKey, EmulationMachineTab.Storage,
                 AtariSettingsDescriptionFunctionsConstants.StorageOptions, AtariSettingsDescriptionFunctionsConstants.ResourceAtariStorageSectorOsd, Enabled(configuration,
                     AtariEightBitSettingsConstants.ShowSectorOptionKey)),
-            Toggle(AtariEightBitSettingsConstants.SioAccelerationOptionKey, EmulationMachineTab.Storage,
-                AtariSettingsDescriptionFunctionsConstants.StorageOptions, AtariSettingsDescriptionFunctionsConstants.ResourceAtariStorageSioAcceleration, Enabled(configuration,
-                    AtariEightBitSettingsConstants.SioAccelerationOptionKey)),
             Toggle(AtariEightBitSettingsConstants.CassetteBootOptionKey, EmulationMachineTab.Storage,
                 AtariSettingsDescriptionFunctionsConstants.StorageOptions, AtariSettingsDescriptionFunctionsConstants.ResourceAtariStorageCassetteBoot, Enabled(configuration,
                     AtariEightBitSettingsConstants.CassetteBootOptionKey)),
@@ -405,21 +427,52 @@ internal static class AtariSettingsDescriptionFunctions
     private static EmulationSettingsField Select(string id, EmulationMachineTab tab, string block,
         string label, string value, IEnumerable<string> choices, bool isEnabled = true) =>
         new(id, tab, block, label, EmulationSettingsEditor.Selection, value,
-            choices.Select(choice => new EmulationSettingsChoice(choice, choice, choice)).ToArray(),
+            choices.Select(choice => LocalizedChoice(id, choice)).ToArray(),
             IsEnabled: isEnabled, ExplanationResourceKey: ShortHelp(id),
-            DetailedExplanationResourceKey: DetailedHelp(id));
+            DetailedExplanationResourceKey: DetailedHelp(id),
+            RequiresRestart: AtariRuntimeOptionFunctions.RequiresRestart(AtariEmulator.Atari800, id));
+
+    private static EmulationSettingsChoice LocalizedChoice(string fieldId, string value) =>
+        (fieldId, value) switch
+    {
+        (_, AtariEightBitSettingsConstants.None) => new(value, "Emulation.Value.None"),
+        (_, AtariEightBitSettingsConstants.Disabled) => new(value, "Emulation.Value.Disabled"),
+        (AtariEightBitSettingsConstants.ControllerCompatibilityOptionKey,
+            AtariEightBitSettingsConstants.DualStick) =>
+            new(value, "Emulation.Atari.Controller.DualStick"),
+        (_, AtariEightBitSettingsConstants.Enabled) => new(value, "Emulation.Value.Enabled"),
+        (_, AtariEightBitSettingsConstants.AutofireOnButton) =>
+            new(value, "Emulation.Atari.Controller.AutofireButton"),
+        (_, AtariEightBitSettingsConstants.AutofireAlways) =>
+            new(value, "Emulation.Atari.Controller.AutofireAlways"),
+        (_, AtariEightBitSettingsConstants.SwapPorts) =>
+            new(value, "Emulation.Atari.Controller.SwapPorts"),
+        (_, AtariEightBitSettingsConstants.Joy2BPlus) =>
+            new(value, "Emulation.Atari.Controller.Joy2BPlus"),
+        (_, AtariEightBitSettingsCatalogConstants.Auto) =>
+            new(value, AtariSettingsDescriptionFunctionsConstants.VisualAutomatic),
+        (_, AtariEightBitSettingsCatalogConstants.Default) => new(value, "Emulation.Value.Default"),
+        (_, AtariEightBitSettingsCatalogConstants.Gray) => new(value, "Emulation.Value.Gray"),
+        (_, AtariEightBitSettingsCatalogConstants.BlueBrown1) =>
+            new(value, "Emulation.Atari.Video.Artifacting.BlueBrown1"),
+        (_, AtariEightBitSettingsCatalogConstants.BlueBrown2) =>
+            new(value, "Emulation.Atari.Video.Artifacting.BlueBrown2"),
+        _ => Invariant(value)
+    };
 
     private static EmulationSettingsField Select(string id, EmulationMachineTab tab, string block,
         string label, string value, IEnumerable<EmulationSettingsChoice> choices, bool isEnabled = true) =>
         new(id, tab, block, label, EmulationSettingsEditor.Selection, value, choices.ToArray(),
             IsEnabled: isEnabled, ExplanationResourceKey: ShortHelp(id),
-            DetailedExplanationResourceKey: DetailedHelp(id));
+            DetailedExplanationResourceKey: DetailedHelp(id),
+            RequiresRestart: AtariRuntimeOptionFunctions.RequiresRestart(AtariEmulator.Atari800, id));
 
     private static EmulationSettingsField Toggle(string id, EmulationMachineTab tab, string block,
         string label, bool value, string enabledValue = AtariSettingsDescriptionFunctionsConstants.Enabled, string disabledValue = AtariSettingsDescriptionFunctionsConstants.Disabled) =>
         new(id, tab, block, label, EmulationSettingsEditor.Toggle,
             value ? enabledValue : disabledValue, ExplanationResourceKey: ShortHelp(id),
-            DetailedExplanationResourceKey: DetailedHelp(id), EnabledValue: enabledValue, DisabledValue: disabledValue);
+            DetailedExplanationResourceKey: DetailedHelp(id), EnabledValue: enabledValue, DisabledValue: disabledValue,
+            RequiresRestart: AtariRuntimeOptionFunctions.RequiresRestart(AtariEmulator.Atari800, id));
 
     private static EmulationSettingsField Path(string id, EmulationMachineTab tab, string block,
         string label, string? value) => new(id, tab, block, label, EmulationSettingsEditor.Path, value,

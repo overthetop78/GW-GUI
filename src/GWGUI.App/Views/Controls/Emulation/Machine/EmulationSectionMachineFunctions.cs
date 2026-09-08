@@ -19,18 +19,13 @@ public sealed partial class EmulationSection
     {
         var presentation = GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.Get(
             selected.Module.Id, selected.Configuration.Id);
-        var moduleRoot = Path.Combine(_settings.EmulationStorageFolder, selected.Module.Id);
-        var runtime = await selected.Module.CreateRuntimeAsync(selected.Configuration,
-            new EmulationRuntimeServices(
-                Path.Combine(moduleRoot, "Sessions"),
-                Path.Combine(moduleRoot, "States"),
-                Path.Combine(moduleRoot, "Converted"),
-                Environment.ProcessPath!,
-                (device, latency) => new WasapiAudioOutput(device, latency)));
+        var runtime = await CreateRuntimeAsync(selected.Module, selected.Configuration);
         MachineController? view = null;
         view = new MachineController(new MachineControllerOptions(
             selected.Module.Id, selected.Configuration.MachineId, selected.Configuration.Id,
             runtime.CreateMachine(runtime.MountedMedia), runtime.CreateMachine,
+            (configuration, cancellationToken) => CreateRuntimeAsync(
+                selected.Module, configuration, cancellationToken),
             runtime.MediaDevices, runtime.MountedMedia, presentation.Renderer,
             presentation.Processing!,
             EmulationShortcutMap.GlobalShortcuts(_settings.EmulationShortcuts),
@@ -45,6 +40,21 @@ public sealed partial class EmulationSection
             () => ReferenceEquals(_machines.SelectedContent, view),
             runtime.PrepareMediaAsync));
         await AddMachineAsync(selected, runtime, view, view.StopAsync);
+    }
+
+    private ValueTask<EmulationMachineRuntime> CreateRuntimeAsync(
+        IEmulationModule module,
+        IEmulationConfiguration configuration,
+        CancellationToken cancellationToken = default)
+    {
+        var moduleRoot = Path.Combine(_settings.EmulationStorageFolder, module.Id);
+        return module.CreateRuntimeAsync(configuration,
+            new EmulationRuntimeServices(
+                Path.Combine(moduleRoot, "Sessions"),
+                Path.Combine(moduleRoot, "States"),
+                Path.Combine(moduleRoot, "Converted"),
+                Environment.ProcessPath!,
+                (device, latency) => new WasapiAudioOutput(device, latency)), cancellationToken);
     }
 
     internal Task AddMachineAsync(EmulationConfigurationListItem selected, EmulationMachineRuntime runtime,

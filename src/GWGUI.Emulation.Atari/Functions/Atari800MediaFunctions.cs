@@ -4,6 +4,19 @@ namespace GWGUI.Emulation.Atari.Functions;
 
 internal static class Atari800MediaFunctions
 {
+    internal static AtariMediaConfiguration? Primary(IEnumerable<AtariMediaConfiguration> media) => media
+        .Where(item => item.IsInserted)
+        .OrderBy(item => item.Category switch
+        {
+            AtariMediaCategory.Cartridge => 0,
+            AtariMediaCategory.Cassette => 1,
+            AtariMediaCategory.Floppy => 2,
+            _ => 3
+        })
+        .ThenBy(item => item.MountOrder)
+        .ThenBy(item => item.Path, StringComparer.OrdinalIgnoreCase)
+        .FirstOrDefault();
+
     internal static Atari800PreparedMedia Prepare(
         AtariMachineConfiguration machine,
         AtariMediaConfiguration media,
@@ -53,6 +66,8 @@ internal static class Atari800MediaFunctions
                 && (configuredCassetteBoot || media.Configuration.CassetteAutoBoot)
                 ? AtariEightBitSettingsConstants.Enabled
                 : AtariEightBitSettingsConstants.Disabled;
+        options[AtariEightBitSettingsConstants.SioAccelerationOptionKey] =
+            AtariEightBitSettingsConstants.Enabled;
         if (options.TryGetValue(AtariConfigurationOptionConstants.VideoStandard, out var standard))
             options[AtariEightBitSettingsConstants.VideoStandardOptionKey] =
                 string.Equals(standard, AtariClassicRegion.Pal.ToString(), StringComparison.OrdinalIgnoreCase)

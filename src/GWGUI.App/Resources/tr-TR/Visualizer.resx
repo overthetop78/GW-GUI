@@ -77,4 +77,5 @@
   <data name="Visual.AverageRpm"><value>Ortalama RPM</value></data>
   <data name="Visual.AverageDuration"><value>Ortalama süre</value></data>
   <data name="Visual.BitOffset"><value>biraz biraz biraz biraz {0:N0}</value></data>
+  <data name="Visual.AnalysingTrack"><value>Analysing track {0}/ / / / / / /{1}…</value></data>
 </root>

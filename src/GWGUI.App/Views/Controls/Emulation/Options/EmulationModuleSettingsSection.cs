@@ -102,6 +102,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
     internal event EventHandler<EmulationConfigurationSavedEventArgs>? ConfigurationSaved;
     internal event EventHandler<EmulationConfigurationSavedEventArgs>? VideoConfigurationChanged;
     internal event EventHandler<EmulationMachineEditingContext>? EditingContextChanged;
+    internal IEmulationConfiguration CurrentConfiguration => _configuration;
 
     internal void SetVideoShaderLoading(string moduleId, Guid configurationId, bool isLoading)
     {
@@ -281,7 +282,9 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
 
     private EmulationSettingsControlField CreateControlField(EmulationSettingsField field) =>
         new(
-            LocExtension.Get(field.LabelResourceKey),
+            field.RequiresRestart
+                ? $"{LocExtension.Get(field.LabelResourceKey)} · {LocExtension.Get("Emulation.Option.RestartRequired")}"
+                : LocExtension.Get(field.LabelResourceKey),
             CreateField(field),
             field.ExplanationResourceKey is null
                 ? null

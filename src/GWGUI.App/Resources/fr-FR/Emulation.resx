@@ -770,7 +770,27 @@
   <data name="Emulation.Hdd.Prepare.AtariAhdiFat16" xml:space="preserve"><value>Partition AHDI + volume FAT16 (sans pilote HDD)</value></data>
   <data name="Emulation.Hdd.Prepare.AmigaOfs" xml:space="preserve"><value>Volume OFS (Amiga)</value></data>
   <data name="Emulation.Hdd.Prepare.AmigaFfs" xml:space="preserve"><value>Volume FFS (Amiga)</value></data>
-  <data name="Emulation.Hdd.Prepare.AmigaRdbOfs" xml:space="preserve"><value>RDB + OFS (Amiga)</value></data>
-  <data name="Emulation.Hdd.Prepare.AmigaRdbFfs" xml:space="preserve"><value>RDB + FFS (Amiga)</value></data>
   <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Le formatage crée un volume vide, sans système d’exploitation. Le démarrage sur HDD Atari nécessite aussi un pilote disque compatible installé depuis la machine émulée. Les écritures sur une image compressée peuvent être redirigées vers une copie extraite.</value></data>
+  <data name="Emulation.Option.RestartRequired"><value>Redémarrage requis</value></data>
+  <data name="Emulation.Cassette.Command.Play"><value>Lecture</value></data>
+  <data name="Emulation.Cassette.Command.Pause"><value>Pause</value></data>
+  <data name="Emulation.Cassette.Command.Rewind"><value>Rembobinage</value></data>
+  <data name="Emulation.Cassette.Command.FastForward"><value>Avance rapide</value></data>
+  <data name="Emulation.Cassette.Command.Record"><value>Enregistrement</value></data>
+  <data name="Emulation.Cassette.Command.Stop"><value>Arrêt</value></data>
+  <data name="Emulation.Cassette.State.Empty"><value>Aucune cassette</value></data>
+  <data name="Emulation.Cassette.State.Stopped"><value>Arrêtée</value></data>
+  <data name="Emulation.Cassette.State.Playing"><value>Lecture</value></data>
+  <data name="Emulation.Cassette.State.Paused"><value>En pause</value></data>
+  <data name="Emulation.Cassette.State.Recording"><value>Enregistrement</value></data>
+  <data name="Emulation.Cassette.State.EndOfTape"><value>Fin de bande</value></data>
+  <data name="Emulation.Video.Technology.Plasma"><value>Plasma</value></data>
+  <data name="Emulation.Video.Preset.Plasma"><value>Plasma</value></data>
+  <data name="Emulation.Value.None"><value>Aucun</value></data>
+  <data name="Emulation.Value.Default"><value>Par défaut</value></data>
+  <data name="Emulation.Value.Gray"><value>Gris</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Bleu/brun 1</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Bleu/brun 2</value></data>
+  <data name="Emulation.Firmware.Rom.Basic"><value>ROM BASIC</value></data>
+  <data name="Emulation.Firmware.Rom.Xegs"><value>ROM XEGS</value></data>
 </root>

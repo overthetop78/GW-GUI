@@ -6,7 +6,8 @@ using GWGUI.Emulation;
 namespace GWGUI.Emulation.Atari.Services;
 
 internal sealed class AtariMachine : IEmulatedMachine, IEmulationLifecycle, IEmulationInput,
-    IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime
+    IEmulationMedia, IEmulationVideo, IEmulationAudio, IEmulationSavedStates, IEmulationRuntime,
+    IEmulationCassetteTransport
 {
     private readonly object _gate = new();
     private readonly IAtariCore _core;
@@ -14,6 +15,7 @@ internal sealed class AtariMachine : IEmulatedMachine, IEmulationLifecycle, IEmu
     private readonly string? _saveDirectory;
     private readonly ConcurrentQueue<AtariMachineCommand> _commands = new();
     private readonly AtariAudioOutputController _audio;
+    private readonly AtariCassetteInputController _cassetteInput;
     private readonly List<AtariMediaConfiguration> _mountedMedia;
     private CancellationTokenSource? _stopSource;
     private Task? _runLoop;
@@ -31,6 +33,7 @@ internal sealed class AtariMachine : IEmulatedMachine, IEmulationLifecycle, IEmu
         _core = core;
         _sessionDirectory = sessionDirectory;
         _audio = new AtariAudioOutputController(audioOutput, audioOutputFactory);
+        _cassetteInput = new AtariCassetteInputController(configuration);
         _audio.SetMuted(!configuration.AudioEnabled);
         if (configuration.Options.TryGetValue(AtariConfigurationOptionConstants.AudioVolume, out var volume)
             && int.TryParse(volume, NumberStyles.Integer, CultureInfo.InvariantCulture, out var volumePercent))
@@ -47,6 +50,8 @@ internal sealed class AtariMachine : IEmulatedMachine, IEmulationLifecycle, IEmu
     public IEmulationAudio Audio => this;
     public IEmulationSavedStates SavedStates => this;
     public IEmulationRuntime Runtime => this;
+    public IEmulationCassetteTransport? CassetteTransport =>
+        Configuration.Core == AtariEmulator.Atari800 ? this : null;
     bool IEmulationInput.SupportsPointerCapture =>
         AtariCompatibilityCatalog.Get(Configuration.Model).VisibleTabs.Contains(AtariSettingsTab.Mouse);
     bool IEmulationInput.CapturePointerOnClick => Configuration.Input?.CaptureMouse ?? true;
@@ -69,6 +74,15 @@ internal sealed class AtariMachine : IEmulatedMachine, IEmulationLifecycle, IEmu
     public AtariRuntimeStatus RuntimeStatus => AtariRuntimeFunctions.Status(Configuration, _core);
     public event EventHandler<VideoFrame>? VideoFrameReady;
     public event EventHandler<AudioChunk>? AudioChunkReady;
+    EmulationCassetteState IEmulationCassetteTransport.State => AtariCassetteStateFunctions.From(
+        _mountedMedia.Any(media => media.Category == AtariMediaCategory.Cassette && media.IsInserted),
+        ((IEmulationRuntime)this).MediaActivity.GetValueOrDefault(EmulationMediaSlot.Cassette0));
+    EmulationCassetteCommand? IEmulationCassetteTransport.ActiveOperation =>
+        ((IEmulationCassetteTransport)this).State == EmulationCassetteState.Playing
+            ? EmulationCassetteCommand.Play
+            : null;
+    IReadOnlySet<EmulationCassetteCommand> IEmulationCassetteTransport.AvailableCommands =>
+        AtariCassetteInputController.AvailableCommands;
     IReadOnlyList<EmulationMedia> IEmulationMedia.MountedMedia => _mountedMedia
         .Select(EmulationMediaConversionFunctions.ToCommon).OfType<EmulationMedia>().ToArray();
     ValueTask IEmulationMedia.InsertAsync(EmulationMedia media, CancellationToken cancellationToken) =>
@@ -103,7 +117,8 @@ internal sealed class AtariMachine : IEmulatedMachine, IEmulationLifecycle, IEmu
             option.DefaultValue,
             option.CurrentValue,
             option.Values.Select(value => new EmulationOptionValue(value.Value, value.Label)).ToArray(),
-            option.IsVisible))
+            option.IsVisible,
+            AtariRuntimeOptionFunctions.RequiresRestart(Configuration.Core, option.Key)))
         .ToArray();
     VideoFrame? IEmulationVideo.LatestFrame => LatestVideoFrame;
     double IEmulationVideo.FramesPerSecond => _core.FramesPerSecond;
@@ -200,8 +215,8 @@ internal sealed class AtariMachine : IEmulatedMachine, IEmulationLifecycle, IEmu
     }
 
     public void SetInput(EmulationInputSnapshot snapshot) =>
-        QueueCommand(_core.SetInput, AtariInputSnapshotFunctions.Apply(snapshot, Configuration.Input,
-            Configuration.Model), CancellationToken.None).AsTask().GetAwaiter().GetResult();
+        _cassetteInput.SetPhysicalInput(AtariInputSnapshotFunctions.Apply(snapshot, Configuration.Input,
+            Configuration.Model));
 
     public void SetControllerPortDevice(int port, AtariPeripheralCategory peripheral) =>
         QueueCommand(() => _core.SetControllerPortDevice(port, peripheral), CancellationToken.None)
@@ -262,6 +277,14 @@ internal sealed class AtariMachine : IEmulatedMachine, IEmulationLifecycle, IEmu
     public ValueTask SetOptionAsync(string key, string value, CancellationToken cancellationToken = default) =>
         QueueCommand(() => _core.SetOption(key, value), cancellationToken);
 
+    ValueTask IEmulationCassetteTransport.ExecuteAsync(EmulationCassetteCommand command,
+        CancellationToken cancellationToken) => QueueCommand(() =>
+        {
+            if (command != EmulationCassetteCommand.Play)
+                throw new NotSupportedException(command.ToString());
+            _cassetteInput.Play();
+        }, cancellationToken);
+
     private AtariMachineConfiguration CurrentConfiguration() =>
         Configuration with { Media = _mountedMedia.ToArray() };
 
@@ -304,6 +327,7 @@ internal sealed class AtariMachine : IEmulatedMachine, IEmulationLifecycle, IEmu
                 while (_commands.TryDequeue(out var command)) command.Execute();
                 lock (_gate)
                     if (_pauseRequested) continue;
+                _core.SetInput(_cassetteInput.NextFrame());
                 _core.RunFrame();
                 PublishOutputs(ref videoSequence);
                 nextFrame = AtariMachineFunctions.NextFrameTimestamp(nextFrame, _core.FramesPerSecond);

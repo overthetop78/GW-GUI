@@ -1,12 +1,15 @@
 using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Constants.Localization;
 using GWGUI.App.Contracts.Machine;
+using GWGUI.App.Functions.Emulation.Machine;
 using GWGUI.App.Localization.Extensions;
+using GWGUI.Emulation;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace GWGUI.App.Views.Controls.Emulation.Machine;
 
@@ -14,6 +17,12 @@ namespace GWGUI.App.Views.Controls.Emulation.Machine;
 internal sealed class MachineView : UserControl
 {
     private readonly Dictionary<string, Ellipse> _deviceLeds = new(StringComparer.Ordinal);
+    private readonly Dictionary<string, TextBlock> _deviceStatuses = new(StringComparer.Ordinal);
+    private readonly Dictionary<string, Dictionary<EmulationCassetteCommand, Button>> _cassetteButtons =
+        new(StringComparer.Ordinal);
+    private readonly HashSet<Button> _blinkingCassetteButtons = [];
+    private readonly DispatcherTimer _cassetteBlinkTimer;
+    private bool _cassetteBlinkVisible = true;
     private readonly Border _shaderLoadingOverlay;
     private readonly TextBlock _shaderLoadingText;
     private FrameworkElement? _videoView;
@@ -21,6 +30,9 @@ internal sealed class MachineView : UserControl
 
     internal MachineView()
     {
+        _cassetteBlinkTimer = new DispatcherTimer(
+            TimeSpan.FromMilliseconds(400), DispatcherPriority.Render, CassetteBlinkTick, Dispatcher);
+        _cassetteBlinkTimer.Stop();
         Root = new Grid { Background = Brushes.Transparent };
         Root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         Root.RowDefinitions.Add(new RowDefinition());
@@ -83,7 +95,7 @@ internal sealed class MachineView : UserControl
         };
         BottomBar = new Border
         {
-            Height = 24,
+            MinHeight = 24,
             BorderThickness = new Thickness(1, 1, 1, 0),
             Child = DeviceStrip,
             Padding = new Thickness(4, 1, 4, 1)
@@ -165,13 +177,24 @@ internal sealed class MachineView : UserControl
     {
         DeviceStrip.Children.Clear();
         _deviceLeds.Clear();
+        _deviceStatuses.Clear();
+        _cassetteButtons.Clear();
+        _blinkingCassetteButtons.Clear();
+        _cassetteBlinkTimer.Stop();
+        _cassetteBlinkVisible = true;
         foreach (var device in devices)
             DeviceStrip.Children.Add(DeviceItem(device, showError, restoreFocus));
+        UpdateCassetteBlinkTimer();
     }
 
     private FrameworkElement DeviceItem(MachineViewDevice device, Action<Exception> showError,
         Action restoreFocus)
     {
+        var root = new StackPanel
+        {
+            Orientation = Orientation.Vertical,
+            VerticalAlignment = VerticalAlignment.Center
+        };
         var panel = new StackPanel
         {
             Orientation = Orientation.Horizontal,
@@ -182,11 +205,19 @@ internal sealed class MachineView : UserControl
             Width = 10,
             Height = 10,
             Fill = device.Present || !device.Removable ? Brushes.ForestGreen : Brushes.Gray,
-            Margin = new Thickness(0, 0, 4, 0),
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
             Tag = device.Key
         };
         _deviceLeds[device.Key] = led;
-        panel.Children.Add(led);
+        var ledHost = new Grid
+        {
+            Width = 18,
+            Height = 20,
+            VerticalAlignment = VerticalAlignment.Center
+        };
+        ledHost.Children.Add(led);
+        panel.Children.Add(ledHost);
 
         var open = new Button
         {
@@ -223,7 +254,80 @@ internal sealed class MachineView : UserControl
             open.Click += async (_, _) => await RunAsync(device.Insert, showError, restoreFocus);
         panel.Children.Add(open);
 
-        if (device.Removable && device.Eject is not null)
+        if (device.Status is not null)
+        {
+            var status = new TextBlock
+            {
+                Text = device.Status,
+                Margin = new Thickness(4, 0, 2, 0),
+                VerticalAlignment = VerticalAlignment.Center
+            };
+            _deviceStatuses[device.Key] = status;
+            panel.Children.Add(status);
+        }
+
+        if (device.Commands is { Count: > 0 })
+        {
+            var commandRow = new StackPanel
+            {
+                Orientation = Orientation.Horizontal
+            };
+            var commands = new Border
+            {
+                Child = commandRow,
+                Margin = new Thickness(18, 2, 2, 3),
+                Padding = new Thickness(2),
+                CornerRadius = new CornerRadius(6),
+                BorderThickness = new Thickness(1)
+            };
+            commands.SetResourceReference(BackgroundProperty, "ControlBrush");
+            commands.SetResourceReference(BorderBrushProperty, "BorderBrush");
+            var buttons = new Dictionary<EmulationCassetteCommand, Button>();
+            foreach (var command in device.Commands)
+            {
+                var icon = new TextBlock
+                {
+                    Text = command.Glyph,
+                    FontFamily = new FontFamily("Segoe UI Symbol"),
+                    FontSize = 15,
+                    FontWeight = FontWeights.Bold,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center
+                };
+                var face = new Border
+                {
+                    Child = icon,
+                    Width = 27,
+                    Height = 21,
+                    CornerRadius = new CornerRadius(4),
+                    BorderThickness = new Thickness(1)
+                };
+                var button = new Button
+                {
+                    Content = face,
+                    ToolTip = command.Label,
+                    IsEnabled = command.IsEnabled,
+                    Width = 31,
+                    Height = 25,
+                    MinWidth = 0,
+                    MinHeight = 0,
+                    Padding = new Thickness(0),
+                    Margin = new Thickness(1, 0, 1, 0)
+                };
+                button.SetResourceReference(StyleProperty, "StatusIconButton");
+                SetCassetteButtonVisual(button, command.Command, command.IsSupported,
+                    command.IsActive, command.IsBlinking);
+                button.Click += async (_, _) => await RunAsync(command.Execute, showError, restoreFocus);
+                buttons[command.Command] = button;
+                commandRow.Children.Add(button);
+            }
+            _cassetteButtons[device.Key] = buttons;
+            root.Children.Add(panel);
+            root.Children.Add(commands);
+        }
+        else root.Children.Add(panel);
+
+        if (device.Removable)
         {
             var eject = new Button
             {
@@ -240,21 +344,100 @@ internal sealed class MachineView : UserControl
                 MinHeight = 0,
                 Padding = new Thickness(0),
                 Margin = new Thickness(3, 0, 0, 0),
-                IsEnabled = device.Present
+                IsEnabled = device.Present && device.Eject is not null,
+                Visibility = device.Eject is null ? Visibility.Hidden : Visibility.Visible
             };
             eject.SetResourceReference(StyleProperty, "StatusIconButton");
-            eject.Click += async (_, _) => await RunAsync(device.Eject, showError, restoreFocus);
+            if (device.Eject is not null)
+                eject.Click += async (_, _) => await RunAsync(device.Eject, showError, restoreFocus);
             panel.Children.Add(eject);
         }
 
         return new Border
         {
-            Child = panel,
+            Child = root,
             Padding = new Thickness(4, 0, 4, 0),
             Margin = new Thickness(0, 0, 3, 0),
             BorderThickness = new Thickness(0, 0, 1, 0),
             BorderBrush = new SolidColorBrush(Color.FromRgb(215, 222, 231))
         };
+    }
+
+    internal void SetDeviceStatus(string key, string status)
+    {
+        if (_deviceStatuses.TryGetValue(key, out var text)) text.Text = status;
+    }
+
+    internal void SetCassetteTransport(string key, EmulationCassetteState state,
+        EmulationCassetteCommand? activeOperation,
+        IReadOnlySet<EmulationCassetteCommand> supportedCommands, bool powered)
+    {
+        if (!_cassetteButtons.TryGetValue(key, out var buttons)) return;
+        foreach (var (command, button) in buttons)
+        {
+            var supported = supportedCommands.Contains(command);
+            var active = CassetteTransportPresentationFunctions.IsActive(state, activeOperation, command);
+            var blinking = CassetteTransportPresentationFunctions.IsBlinking(state, activeOperation, command);
+            button.IsEnabled = CassetteTransportPresentationFunctions.IsEnabled(
+                powered, supported, state, activeOperation, command);
+            SetCassetteButtonVisual(button, command, supported, active, blinking);
+        }
+        UpdateCassetteBlinkTimer();
+    }
+
+    private void SetCassetteButtonVisual(Button button, EmulationCassetteCommand command,
+        bool supported, bool active, bool blinking)
+    {
+        _blinkingCassetteButtons.Remove(button);
+        var foreground = command switch
+        {
+            EmulationCassetteCommand.Play when active => new SolidColorBrush(Color.FromRgb(0, 200, 83)),
+            EmulationCassetteCommand.Play when supported => new SolidColorBrush(Color.FromRgb(22, 130, 59)),
+            EmulationCassetteCommand.Play => new SolidColorBrush(Color.FromRgb(111, 156, 124)),
+            EmulationCassetteCommand.Record when active => new SolidColorBrush(Color.FromRgb(235, 24, 54)),
+            EmulationCassetteCommand.Record when supported => new SolidColorBrush(Color.FromRgb(180, 35, 24)),
+            EmulationCassetteCommand.Record => new SolidColorBrush(Color.FromRgb(185, 120, 120)),
+            _ when !supported => Brushes.Gray,
+            _ when active => Brushes.DodgerBlue,
+            _ => Brushes.DimGray
+        };
+        button.Foreground = foreground;
+        button.Background = Brushes.Transparent;
+        button.Opacity = supported ? 1 : command is EmulationCassetteCommand.Play or EmulationCassetteCommand.Record
+            ? 0.72 : 0.42;
+        if (button.Content is Border face && face.Child is TextBlock icon)
+        {
+            icon.Foreground = foreground;
+            face.BorderBrush = foreground;
+            face.BorderThickness = active ? new Thickness(2) : new Thickness(1);
+            face.Background = active
+                ? command switch
+                {
+                    EmulationCassetteCommand.Play => new SolidColorBrush(Color.FromArgb(55, 0, 200, 83)),
+                    EmulationCassetteCommand.Record => new SolidColorBrush(Color.FromArgb(55, 235, 24, 54)),
+                    _ => new SolidColorBrush(Color.FromArgb(45, 30, 144, 255))
+                }
+                : Brushes.Transparent;
+        }
+        if (blinking) _blinkingCassetteButtons.Add(button);
+    }
+
+    private void UpdateCassetteBlinkTimer()
+    {
+        if (_blinkingCassetteButtons.Count > 0)
+        {
+            if (!_cassetteBlinkTimer.IsEnabled) _cassetteBlinkTimer.Start();
+            return;
+        }
+        _cassetteBlinkTimer.Stop();
+        _cassetteBlinkVisible = true;
+    }
+
+    private void CassetteBlinkTick(object? sender, EventArgs args)
+    {
+        _cassetteBlinkVisible = !_cassetteBlinkVisible;
+        foreach (var button in _blinkingCassetteButtons)
+            button.Opacity = _cassetteBlinkVisible ? 1 : 0.25;
     }
 
     private static async Task RunAsync(Func<Task> action, Action<Exception> showError,

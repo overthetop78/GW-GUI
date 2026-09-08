@@ -9,6 +9,7 @@ internal sealed record MachineControllerOptions(
     Guid ConfigurationId,
     IEmulatedMachine Machine,
     Func<IReadOnlyList<EmulationMedia>, IEmulatedMachine> MachineFactory,
+    Func<IEmulationConfiguration, CancellationToken, ValueTask<EmulationMachineRuntime>> CreateRuntimeAsync,
     IReadOnlyList<EmulationMediaDevice> MediaDevices,
     IReadOnlyList<EmulationMedia> MountedMedia,
     EmulationVideoRenderer VideoRenderer,

@@ -8,4 +8,10 @@ public class EmulationViewsTests(GWGUI.Tests.Application.TestInfrastructure.StaE
     public Task ConfigurationDraftSaveAndRetry(bool failure) => sta.RunAsync(() => MachineConfigurationScenarios.ConfigurationEditing(failure));
     [Theory] [InlineData(false)] [InlineData(true)]
     public Task CommandsRespectPowerStateAndReportErrors(bool failure) => sta.Run(() => EmulationInteractionScenarios.Commands(failure));
+    [Fact] public void CassetteCommandsReflectCapabilitiesAndTransportState() =>
+        CassetteTransportPresentationScenarios.CommandsReflectCapabilitiesAndTransportState();
+    [Fact] public Task CassettePanelShowsEveryCommandBelowTheDevice() =>
+        sta.Run(CassetteTransportPresentationScenarios.PanelContainsASeparateRowWithEveryCommand);
+    [Fact] public Task EmptyDeviceKeepsItsSizeAndCentersItsLed() =>
+        sta.Run(CassetteTransportPresentationScenarios.DeviceHeaderKeepsEjectSpaceAndCentersLedWhenEmpty);
 }

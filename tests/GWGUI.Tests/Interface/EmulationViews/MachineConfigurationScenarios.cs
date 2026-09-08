@@ -88,6 +88,12 @@ internal static class MachineConfigurationScenarios
             var saved = Assert.IsType<Configuration>(Assert.Single(module.Saved)); Assert.Equal("on",saved.Value);
             Assert.False(EmulationConfigurationDraftStore.TryGet(module.Id,"a",out _)); Assert.NotEmpty(files.Writes);
             await view.EditConfigurationAsync(saved); Assert.True(Assert.Single(Controls<CheckBox>(view)).IsChecked);
+            module.Saved.Clear();
+            Assert.Single(Controls<CheckBox>(view)).IsChecked = false;
+            await Dispatcher.Yield(DispatcherPriority.ContextIdle);
+            var immediatelySaved = Assert.IsType<Configuration>(Assert.Single(module.Saved));
+            Assert.Equal("off", immediatelySaved.Value);
+            Assert.Equal("off", Assert.IsType<Configuration>(view.CurrentConfiguration).Value);
             Assert.Equal(failed?1:0,errors.Count);
         }
         finally { module.Cleanup(); }

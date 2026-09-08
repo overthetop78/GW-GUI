@@ -915,4 +915,24 @@
   <data name="Emulation.Hdd.Prepare.AmigaRdbOfs" xml:space="preserve"><value>RDB + OFS (Amiga)</value></data>
   <data name="Emulation.Hdd.Prepare.AmigaRdbFfs" xml:space="preserve"><value>RDB + FFS (Amiga)</value></data>
   <data name="Emulation.Hdd.PreparationHint" xml:space="preserve"><value>Formatting creates an empty volume, without an operating system. Atari HDD booting also requires a compatible disk driver installed from the emulated machine. Compressed images may redirect writes to an extracted copy.</value></data>
+  <data name="Emulation.Option.RestartRequired"><value>Restart required</value></data>
+  <data name="Emulation.Cassette.Command.Play"><value>Play</value></data>
+  <data name="Emulation.Cassette.Command.Pause"><value>Pause</value></data>
+  <data name="Emulation.Cassette.Command.Rewind"><value>Rewind</value></data>
+  <data name="Emulation.Cassette.Command.FastForward"><value>Fast forward</value></data>
+  <data name="Emulation.Cassette.Command.Record"><value>Record</value></data>
+  <data name="Emulation.Cassette.Command.Stop"><value>Stop</value></data>
+  <data name="Emulation.Cassette.State.Empty"><value>No cassette</value></data>
+  <data name="Emulation.Cassette.State.Stopped"><value>Stopped</value></data>
+  <data name="Emulation.Cassette.State.Playing"><value>Playing</value></data>
+  <data name="Emulation.Cassette.State.Paused"><value>Paused</value></data>
+  <data name="Emulation.Cassette.State.Recording"><value>Recording</value></data>
+  <data name="Emulation.Cassette.State.EndOfTape"><value>End of tape</value></data>
+  <data name="Emulation.Value.None"><value>None</value></data>
+  <data name="Emulation.Value.Default"><value>Default</value></data>
+  <data name="Emulation.Value.Gray"><value>Gray</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Blue/brown 1</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Blue/brown 2</value></data>
+  <data name="Emulation.Firmware.Rom.Basic"><value>BASIC ROM</value></data>
+  <data name="Emulation.Firmware.Rom.Xegs"><value>XEGS ROM</value></data>
 </root>

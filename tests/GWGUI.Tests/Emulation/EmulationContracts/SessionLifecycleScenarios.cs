@@ -39,6 +39,34 @@ internal static class SessionLifecycleScenarios
         else { Assert.Equal(0,calls); Assert.Same(first.Value,session.Machine); Assert.Equal(eject?"EjectAsync":"InsertAsync",first.Calls[^1]); }
         if(eject) Assert.Empty(session.MountedMedia); else Assert.Equal(next,Assert.Single(session.MountedMedia));
     }
+    public static async Task UpdatedConfigurationIsUsedOnNextStart(bool powered)
+    {
+        var original = new Machine();
+        var updated = new Machine();
+        var factoryCalls = 0;
+        await using var session = new MachineSession(original.Value, _ => throw new InvalidOperationException(), [Disk]);
+        if (powered) await session.PowerOnAsync();
+
+        await session.UpdateMachineFactoryAsync(media =>
+        {
+            factoryCalls++;
+            Assert.Equal(Disk, Assert.Single(media));
+            return updated.Value;
+        });
+
+        if (powered)
+        {
+            Assert.Same(original.Value, session.Machine);
+            Assert.Equal(0, factoryCalls);
+            await session.PowerOffAsync();
+            await session.PowerOnAsync();
+        }
+        else await session.PowerOnAsync();
+
+        Assert.Same(updated.Value, session.Machine);
+        Assert.Equal(1, factoryCalls);
+        Assert.Equal(new[] { "StartAsync" }, updated.Calls);
+    }
     private static EmulationMedia Disk => new("virtual", EmulationMediaSlot.Floppy0, EmulationMediaType.Floppy, false, true);
     public static async Task Lifecycle()
     {

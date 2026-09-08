@@ -5,6 +5,7 @@ using GWGUI.App.Contracts.Machine;
 using GWGUI.App.Controllers.Emulation.Machine;
 using GWGUI.App.Functions.Machine;
 using GWGUI.App.Functions.Emulation.Storage;
+using GWGUI.App.Functions.Emulation.Machine;
 using GWGUI.App.Functions.Rendering.Emulation;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Presenters.Emulation.Machine;
@@ -21,6 +22,16 @@ namespace GWGUI.App.Views.Controls.Emulation.Machine;
 
 internal sealed class MachineController : UserControl, IAsyncDisposable
 {
+    internal static readonly EmulationCassetteCommand[] CassetteCommandOrder =
+    [
+        EmulationCassetteCommand.Record,
+        EmulationCassetteCommand.Play,
+        EmulationCassetteCommand.Rewind,
+        EmulationCassetteCommand.FastForward,
+        EmulationCassetteCommand.Stop,
+        EmulationCassetteCommand.Pause
+    ];
+
     private readonly MachineControllerOptions _options;
     private readonly MachineView _view = new();
     private readonly MachineSession _session;
@@ -28,6 +39,8 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
     private readonly MachineVideoPresenter _video;
     private readonly MachineCommandBar _commands;
     private readonly MachineInputController _input;
+    private IReadOnlyList<EmulationMediaDevice> _mediaDevices;
+    private Func<EmulationMedia, CancellationToken, ValueTask<EmulationMedia>>? _prepareMediaAsync;
     private readonly Dictionary<EmulationMediaSlot, DateTime> _mediaActivityUntil = [];
     private Window? _fullscreenWindow;
     private Grid? _fullscreenHost;
@@ -37,6 +50,8 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
     internal MachineController(MachineControllerOptions options)
     {
         _options = options;
+        _mediaDevices = options.MediaDevices;
+        _prepareMediaAsync = options.PrepareMediaAsync;
         _audioMuted = options.Machine.Audio.IsMuted;
         _session = new MachineSession(options.ModuleId, options.ConfigurationId, options.WindowTitle,
             options.Machine, options.MachineFactory, options.MountedMedia);
@@ -95,11 +110,19 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
     {
         if (_disposed || _session.Machine.State is not EmulationMachineState.Running
             and not EmulationMachineState.Paused) return;
-        var available = _session.Machine.Runtime.AvailableOptions
-            .Select(option => option.Key).ToHashSet(StringComparer.Ordinal);
-        foreach (var option in options)
-            if (available.Contains(option.Key))
-                await _session.Machine.Runtime.SetOptionAsync(option.Key, option.Value);
+        foreach (var option in EmulationRuntimeOptionFunctions.HotChanges(
+                     options, _session.Machine.Runtime.AvailableOptions))
+            await _session.Machine.Runtime.SetOptionAsync(option.Key, option.Value);
+    }
+
+    internal async Task ApplyConfigurationAsync(IEmulationConfiguration configuration)
+    {
+        if (_disposed) return;
+        var runtime = await _options.CreateRuntimeAsync(configuration, CancellationToken.None);
+        _mediaDevices = runtime.MediaDevices;
+        _prepareMediaAsync = runtime.PrepareMediaAsync;
+        await _session.UpdateMachineFactoryAsync(runtime.CreateMachine);
+        RebuildMediaDevices();
     }
 
     public async ValueTask DisposeAsync() => await StopAsync();
@@ -137,11 +160,12 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         _commands.SetPowered(_session.IsPowered);
         _video.SetVisible(_session.IsPowered);
         if (!_session.IsPowered) _commands.Status.Text = string.Empty;
+        RebuildMediaDevices();
     }
 
     private Task HardResetAsync()
     {
-        var requiresRecreation = _options.MediaDevices.Any(device => device.RequiresMachineRecreation
+        var requiresRecreation = _mediaDevices.Any(device => device.RequiresMachineRecreation
             && _session.MountedMedia.Any(media => media.Slot == device.Slot));
         return requiresRecreation
             ? _session.RecreateRunningMachineAsync()
@@ -252,14 +276,37 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
 
     private void RebuildMediaDevices()
     {
-        _view.SetDevices(_options.MediaDevices.Select(device =>
+        _view.SetDevices(_mediaDevices.Select(device =>
         {
             var mounted = _session.MountedMedia.FirstOrDefault(media => media.Slot == device.Slot);
+            var cassette = device.MediaType == EmulationMediaType.Cassette
+                ? _session.Machine.CassetteTransport : null;
+            var state = cassette?.State ?? EmulationCassetteState.Empty;
+            var activeOperation = cassette?.ActiveOperation;
             return new MachineViewDevice(device.Slot.ToString(), device.DisplayLabel ?? device.Slot.ToString(),
                 DeviceGlyph(device.MediaType), device.IsRemovable, mounted is not null,
                 device.IsRemovable ? () => InsertMediaAsync(device) : null,
-                device.IsRemovable && mounted is not null ? () => EjectMediaAsync(device) : null);
+                device.IsRemovable && mounted is not null ? () => EjectMediaAsync(device) : null,
+                device.MediaType == EmulationMediaType.Cassette ? CassetteStateText(state) : null,
+                device.MediaType == EmulationMediaType.Cassette
+                    ? CassetteCommandOrder.Select(command => CassetteCommand(
+                        command, cassette, state, activeOperation)).ToArray()
+                    : null);
         }), _options.ShowError, _input.RestoreFocus);
+    }
+
+    private MachineViewDeviceCommand CassetteCommand(EmulationCassetteCommand command,
+        IEmulationCassetteTransport? transport, EmulationCassetteState state,
+        EmulationCassetteCommand? activeOperation)
+    {
+        var supported = transport?.AvailableCommands.Contains(command) == true;
+        return new MachineViewDeviceCommand(command, CassetteCommandText(command),
+            CassetteCommandGlyph(command), supported,
+            CassetteTransportPresentationFunctions.IsEnabled(
+                _session.IsPowered, supported, state, activeOperation, command),
+            CassetteTransportPresentationFunctions.IsActive(state, activeOperation, command),
+            CassetteTransportPresentationFunctions.IsBlinking(state, activeOperation, command),
+            () => ExecuteCassetteCommandAsync(command));
     }
 
     private async Task InsertMediaAsync(EmulationMediaDevice device)
@@ -276,8 +323,8 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         var directory = Path.GetDirectoryName(dialog.FileName);
         if (!string.IsNullOrWhiteSpace(directory)) _options.RememberMediaDirectory(device, directory);
         var media = new EmulationMedia(dialog.FileName, device.Slot, device.MediaType, false, true);
-        if (_options.PrepareMediaAsync is not null)
-            media = await _options.PrepareMediaAsync(media, CancellationToken.None);
+        if (_prepareMediaAsync is not null)
+            media = await _prepareMediaAsync(media, CancellationToken.None);
         await _session.InsertAsync(media, device.RequiresMachineRecreation);
         RebuildMediaDevices();
     }
@@ -287,6 +334,39 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
         await _session.EjectAsync(device.Slot, device.RequiresMachineRecreation);
         RebuildMediaDevices();
     }
+
+    private async Task ExecuteCassetteCommandAsync(EmulationCassetteCommand command)
+    {
+        var cassette = _session.Machine.CassetteTransport;
+        if (cassette is null) return;
+        await cassette.ExecuteAsync(command);
+        UpdateCassetteTransport(cassette);
+    }
+
+    private void UpdateCassetteTransport(IEmulationCassetteTransport cassette)
+    {
+        var key = EmulationMediaSlot.Cassette0.ToString();
+        _view.SetDeviceStatus(key, CassetteStateText(cassette.State));
+        _view.SetCassetteTransport(key, cassette.State, cassette.ActiveOperation,
+            cassette.AvailableCommands, _session.IsPowered);
+    }
+
+    private static string CassetteStateText(EmulationCassetteState state) =>
+        LocExtension.Get($"Emulation.Cassette.State.{state}");
+
+    private static string CassetteCommandText(EmulationCassetteCommand command) =>
+        LocExtension.Get($"Emulation.Cassette.Command.{command}");
+
+    private static string CassetteCommandGlyph(EmulationCassetteCommand command) => command switch
+    {
+        EmulationCassetteCommand.Play => "▶",
+        EmulationCassetteCommand.Stop => "■",
+        EmulationCassetteCommand.Pause => "Ⅱ",
+        EmulationCassetteCommand.Rewind => "⏪",
+        EmulationCassetteCommand.FastForward => "⏩",
+        EmulationCassetteCommand.Record => "●",
+        _ => "?"
+    };
 
     private static string DeviceGlyph(EmulationMediaType type) => type switch
     {
@@ -333,7 +413,8 @@ internal sealed class MachineController : UserControl, IAsyncDisposable
             _session.Machine.Video.FramesPerSecond, _video.MeasuredFramesPerSecond);
         var now = DateTime.UtcNow;
         var activityStates = _session.Machine.Runtime.MediaActivity;
-        foreach (var device in _options.MediaDevices)
+        if (_session.Machine.CassetteTransport is { } cassette) UpdateCassetteTransport(cassette);
+        foreach (var device in _mediaDevices)
         {
             if (!_view.DeviceLeds.TryGetValue(device.Slot.ToString(), out var led)) continue;
             if (activityStates.GetValueOrDefault(device.Slot))

@@ -115,12 +115,22 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
         foreach (var value in values)
         {
             if (value.Key is AtariSettingsConstants.AudioEnabled
-                or AtariSettingsConstants.SystemFirmware or AtariSettingsConstants.HardDiskFolder
+                or AtariSettingsConstants.SystemFirmware or AtariSettingsConstants.BasicFirmware
+                or AtariSettingsConstants.XegsFirmware or AtariSettingsConstants.HardDiskFolder
                 or AtariSettingsConstants.CpuOriginalFrequency) continue;
             if (value.Value is null) options.Remove(value.Key);
             else options[value.Key] = value.Value;
         }
-        var firmwares = ApplySystemFirmware(atari, values.GetValueOrDefault(AtariSettingsConstants.SystemFirmware));
+        IReadOnlyList<AtariFirmwareConfiguration> firmwares = atari.Firmwares;
+        foreach (var fieldId in new[]
+                 {
+                     AtariSettingsConstants.SystemFirmware, AtariSettingsConstants.BasicFirmware,
+                     AtariSettingsConstants.XegsFirmware
+                 })
+        {
+            if (values.TryGetValue(fieldId, out var path))
+                firmwares = ApplyFirmware(atari, firmwares, fieldId, path);
+        }
         var folders = atari.Folders with
         {
             HardDisks = values.GetValueOrDefault(AtariSettingsConstants.HardDiskFolder)
@@ -170,20 +180,19 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
         EmulationStorageSettings settings) => AtariStorageSettingsFunctions.Apply(
         configuration as AtariMachineConfiguration ?? throw new ArgumentException(nameof(configuration)), settings);
 
-    private static IReadOnlyList<AtariFirmwareConfiguration> ApplySystemFirmware(
-        AtariMachineConfiguration configuration, string? path)
+    private static IReadOnlyList<AtariFirmwareConfiguration> ApplyFirmware(
+        AtariMachineConfiguration configuration, IReadOnlyList<AtariFirmwareConfiguration> firmwares,
+        string fieldId, string? path)
     {
         if (string.IsNullOrWhiteSpace(path))
-        {
-            var category = AtariCompatibilityCatalog.Get(configuration.Model).Core == AtariEmulator.Hatari
-                ? AtariFirmwareCategory.Tos : AtariFirmwareCategory.AtariSystemOs;
-            return configuration.Firmwares.Where(item => item.Category != category).ToArray();
-        }
+            return AtariFirmwareSelectionFunctions.ReplaceField(configuration.Model, firmwares, fieldId, null);
         var scanned = AtariFirmwareScanFunctions.ScanFileAsync(path, configuration.Model, null,
             CancellationToken.None).GetAwaiter().GetResult();
         var selected = AtariFirmwareScanFunctions.CreateSelection(scanned);
-        return configuration.Firmwares.Where(item => item.Category != selected.Category)
-            .Append(selected).ToArray();
+        if (!string.Equals(AtariFirmwareSelectionFunctions.FieldId(configuration.Model, selected.Category),
+                fieldId, StringComparison.Ordinal))
+            throw new InvalidOperationException(nameof(path));
+        return AtariFirmwareSelectionFunctions.ReplaceField(configuration.Model, firmwares, fieldId, selected);
     }
 
     public async ValueTask<IReadOnlyList<IEmulationConfiguration>> LoadConfigurationsAsync(
@@ -265,7 +274,8 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
                 compatibility, compatibility == EmulationFirmwareCompatibility.Incompatible ||
                                scanned.Definition?.Category is null
                     ? null
-                    : AtariSettingsConstants.SystemFirmware));
+                    : AtariFirmwareSelectionFunctions.FieldId(atari.Model, scanned.Definition.Category.Value)
+                      ?? AtariSettingsConstants.SystemFirmware));
         }
         return entries;
     }
@@ -275,12 +285,17 @@ public sealed class AtariEmulationModule : IEmulationModule, IEmulationEmulatorM
     {
         var atari = configuration as AtariMachineConfiguration
             ?? throw new ArgumentException(nameof(configuration));
-        if (firmware.DestinationFieldId != AtariSettingsConstants.SystemFirmware)
+        if (firmware.DestinationFieldId is not (AtariSettingsConstants.SystemFirmware
+            or AtariSettingsConstants.BasicFirmware or AtariSettingsConstants.XegsFirmware))
             throw new InvalidOperationException(nameof(firmware));
         var scanned = AtariFirmwareScanFunctions.ScanFileAsync(firmware.Path, atari.Model, null,
             CancellationToken.None).GetAwaiter().GetResult();
         var selected = AtariFirmwareScanFunctions.CreateSelection(scanned);
-        var configured = atari.Firmwares.Where(item => item.Category != selected.Category).Append(selected).ToArray();
+        var actualFieldId = AtariFirmwareSelectionFunctions.FieldId(atari.Model, selected.Category);
+        var configured = actualFieldId is null
+            ? atari.Firmwares.Where(item => item.Category != selected.Category).Append(selected).ToArray()
+            : AtariFirmwareSelectionFunctions.ReplaceField(atari.Model, atari.Firmwares,
+                actualFieldId, selected);
         return atari with { Firmwares = configured };
     }
 

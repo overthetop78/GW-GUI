@@ -6,7 +6,7 @@ internal sealed class MachineSession : IAsyncDisposable
 {
     private static readonly HashSet<MachineSession> OpenSessions = [];
     internal static IReadOnlyList<MachineSession> All => OpenSessions.ToArray();
-    private readonly Func<IReadOnlyList<EmulationMedia>, IEmulatedMachine> _machineFactory;
+    private Func<IReadOnlyList<EmulationMedia>, IEmulatedMachine> _machineFactory;
     private readonly List<EmulationMedia> _mountedMedia;
     private IEmulatedMachine _machine;
     private bool _disposed;
@@ -97,6 +97,14 @@ internal sealed class MachineSession : IAsyncDisposable
             IsPowered = false;
             throw;
         }
+    }
+
+    internal async Task UpdateMachineFactoryAsync(
+        Func<IReadOnlyList<EmulationMedia>, IEmulatedMachine> machineFactory)
+    {
+        ObjectDisposedException.ThrowIf(_disposed, this);
+        _machineFactory = machineFactory;
+        if (!IsPowered) await RecreateStoppedMachineAsync(_mountedMedia);
     }
 
     internal async Task InsertAsync(EmulationMedia media, bool requiresMachineRecreation)

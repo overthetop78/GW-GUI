@@ -71,10 +71,12 @@ internal sealed class AtariExternalCore : IAtariCore
             _configuration = configuration;
             _sessionDirectory = absoluteSession;
             var systemDirectory = Path.Combine(absoluteSession, AtariConstants.SystemDirectoryName);
-            var media = configuration.Media.Where(item => item.IsInserted)
-                .OrderBy(item => item.MountOrder)
-                .ThenBy(item => item.Path, StringComparer.OrdinalIgnoreCase)
-                .FirstOrDefault();
+            var media = Emulator == AtariEmulator.Atari800
+                ? Atari800MediaFunctions.Primary(configuration.Media)
+                : configuration.Media.Where(item => item.IsInserted)
+                    .OrderBy(item => item.MountOrder)
+                    .ThenBy(item => item.Path, StringComparer.OrdinalIgnoreCase)
+                    .FirstOrDefault();
             AtariSessionMedia? preparedMedia = null;
             Atari800PreparedMedia? atari800Media = null;
             _library = new ExternalCoreLibrary(_corePath);
@@ -138,7 +140,8 @@ internal sealed class AtariExternalCore : IAtariCore
                 var runtimePath = _hatariContent?.RuntimePath ?? atari800Media?.RuntimePath ??
                     _cartridge?.RuntimePath ?? _jaguarCd?.RuntimePath ?? preparedMedia!.RuntimePath;
                 _content = AtariContentFunctions.Create(runtimePath,
-                    _jaguarCd?.NeedsFullPath ?? _info.NeedsFullPath, _info.Extensions);
+                    _jaguarCd?.NeedsFullPath ?? _info.NeedsFullPath, _info.Extensions,
+                    Emulator == AtariEmulator.Atari800);
             }
             AtariCoreLifecycleFunctions.Load(_exports, _callbacks, configuration,
                 _content?.GameInfo ?? nint.Zero);

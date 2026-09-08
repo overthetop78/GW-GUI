@@ -13,9 +13,9 @@ namespace GWGUI.App.Views.Controls.Emulation.Machine;
 
 public sealed partial class EmulationSection
 {
-    private void VideoConfigurationChanged(object? sender,
+    private async void VideoConfigurationChanged(object? sender,
         EmulationConfigurationSavedEventArgs args) =>
-        EmulationOpenMachineConfigurationFunctions.TryApply(_openMachines,
+        await EmulationOpenMachineConfigurationFunctions.TryApplyAsync(_openMachines,
             args.Configuration.ModuleId, args.Configuration.Id, async tab =>
             {
                 if (tab.Content is MachineController view)
@@ -31,7 +31,7 @@ public sealed partial class EmulationSection
     private async void ConfigurationSaved(object? sender, EmulationConfigurationSavedEventArgs args)
     {
         await ReloadConfigurationsAsync();
-        EmulationOpenMachineConfigurationFunctions.TryApply(_openMachines,
+        await EmulationOpenMachineConfigurationFunctions.TryApplyAsync(_openMachines,
             args.Configuration.ModuleId, args.Configuration.Id, async tab =>
             {
                 if (tab.Content is MachineController view)
@@ -40,6 +40,7 @@ public sealed partial class EmulationSection
                         args.Configuration.ModuleId, args.Configuration.Id);
                     view.ApplyVideoConfiguration(profile.Renderer, profile.Processing!);
                     var module = _modules.First(item => item.Id == args.Configuration.ModuleId);
+                    await view.ApplyConfigurationAsync(args.Configuration);
                     await view.ApplyRuntimeOptionsAsync(module.RuntimeOptions(args.Configuration));
                 }
             });

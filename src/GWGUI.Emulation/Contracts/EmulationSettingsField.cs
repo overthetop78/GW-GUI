@@ -17,4 +17,5 @@ public sealed record EmulationSettingsField(
     EmulationDefaultFolderCategory? DefaultFolderCategory = null,
     long? NumericValue = null,
     EmulationSettingsChoiceSource ChoiceSource = EmulationSettingsChoiceSource.Declared,
-    bool RefreshSettingsOnChange = false);
+    bool RefreshSettingsOnChange = false,
+    bool RequiresRestart = false);

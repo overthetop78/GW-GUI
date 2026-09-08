@@ -64,4 +64,5 @@
   <data name="Tool.Field.AlignFormat"><value>Kod çözme formatı</value></data>
   <data name="Tool.Field.AlignRaw"><value>Ham akışı okuyun (--raw)</value></data>
   <data name="Tool.Title.Update"><value>Firmaware</value></data>
+  <data name="Tool.Field.SetPin"><value>Değişim pin</value></data>
 </root>

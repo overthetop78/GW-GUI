@@ -12,5 +12,7 @@ internal static class AtariSettingsConstants
     internal const string MouseSpeed = AtariMachineOptionConstants.PointerSpeed;
     internal const string AudioEnabled = "configuration.audioEnabled";
     internal const string SystemFirmware = "configuration.systemFirmware";
+    internal const string BasicFirmware = "configuration.basicFirmware";
+    internal const string XegsFirmware = "configuration.xegsFirmware";
     internal const string HardDiskFolder = "configuration.folders.hardDisks";
 }

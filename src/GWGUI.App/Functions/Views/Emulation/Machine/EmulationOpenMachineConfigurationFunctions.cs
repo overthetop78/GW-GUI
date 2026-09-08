@@ -2,14 +2,14 @@ namespace GWGUI.App.Functions.Views.Emulation.Machine;
 
 internal static class EmulationOpenMachineConfigurationFunctions
 {
-    internal static bool TryApply<TValue>(
+    internal static async Task<bool> TryApplyAsync<TValue>(
         IReadOnlyDictionary<(string ModuleId, Guid ConfigurationId), TValue> openMachines,
         string moduleId,
         Guid configurationId,
-        Action<TValue> apply)
+        Func<TValue, Task> apply)
     {
         if (!openMachines.TryGetValue((moduleId, configurationId), out var value)) return false;
-        apply(value);
+        await apply(value);
         return true;
     }
 }
