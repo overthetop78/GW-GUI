@@ -222,8 +222,25 @@
   <data name="Updates.ModuleDirectoryReady"><value>وضع الدليل الرسمي لرؤية الوحدات المتاحة للتركيب.</value></data>
   <data name="Updates.ModuleDirectorySearching"><value>وضع دليل الوحدة...</value></data>
   <data name="Updates.ModuleDirectoryEmpty"><value>ولا توجد حاليا وحدة متوافقة.</value></data>
-  <data name="Updates.ModuleDirectoryResults"><value>{0} الوحدات (الوحدات) المتاحة.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} وحدات في المكتال الرسمي</value></data>
   <data name="Updates.ModuleDirectoryFailed"><value>غير قادر على تحميل دليل الوحدة</value></data>
   <data name="Updates.ModuleNotInstalled"><value>غير مركب</value></data>
   <data name="Updates.ModuleAvailableVersion"><value>الصيغة المتاحة: {0}</value></data>
+  <data name="Updates.ModuleDirectoryInstalledBadge"><value>مثبتة</value></data>
+  <data name="Updates.ModulePackageExplanation"><value>تركيب وحدة تضيف آلاتها إلى GW GUI. وتدار النواة الأساسية للمرشدين والبرمجيات المطلوبة بصورة منفصلة في خيارات الفرضية.</value></data>
+  <data name="Updates.ModuleInstalledUpdatesTitle"><value>تحديث الوحدات المركبة</value></data>
+  <data name="Updates.ModuleAdvancedInstallationTitle"><value>التركيب المتقدم</value></data>
+  <data name="Options.PreferencesTitle"><value>الأفضليات</value></data>
+  <data name="Options.EmulationTitle"><value>الأفضليات الخلقية</value></data>
+  <data name="Updates.ModuleDirectoryTitle"><value>الوحدات المتاحة</value></data>
+  <data name="Updates.NavigationApplicationSubtitle"><value>تحديثات التطبيقات</value></data>
+  <data name="Updates.NavigationDirectorySubtitle"><value>وحدات الحشد والتركيب</value></data>
+  <data name="Updates.NavigationAdvancedSubtitle"><value>ZIP المحفوظات أو المفهرسة URL</value></data>
+  <data name="Updates.ModuleDownloaded"><value>تحميل</value></data>
+  <data name="Updates.FinishModuleInstallations"><value>التركيب النهائي</value></data>
+  <data name="Updates.FinishModuleInstallationsHint"><value>GW GUI سوف يغلق، تركيب جميع الوحدات المحملة، واعادة التشغيل.</value></data>
+  <data name="Updates.FinishModuleInstallationsConfirm"><value>هل انتهيت من تركيب كل الوحدات المحملة؟ GW GUI سوف يغلق ويعيد تشغيله</value></data>
+  <data name="Options.EmulationModuleTitle"><value>{0} أماكن العزل</value></data>
+  <data name="Updates.CloseWithPendingModulesConfirm"><value>الانتهاء من تركيب الوحدات المحملة قبل إغلاقها؟ لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا، لا</value></data>
+  <data name="Updates.Application"><value>GW GUI</value></data>
 </root>

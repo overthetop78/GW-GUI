@@ -810,4 +810,32 @@
   
   <data name="Emulation.Firmware.Rom.Basic"><value>ROM BASIC</value></data>
   <data name="Emulation.Firmware.Rom.Xegs"><value>ROM XEGS</value></data>
+  <data name="Emulation.Core.Install"><value>Instalar</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>Instalado</value></data>
+  <data name="Emulation.Tab.Mouse"><value>Mouse</value></data>
+  <data name="Emulation.Memory.Summary"><value>Chip RAM: {0} KiB\nSlow RAM: {1} KiB\nFast RAM: {2} MiB</value></data>
+  <data name="Emulation.Memory.Chip"><value>Chip RAM</value></data>
+  <data name="Emulation.Cpu.Compatibility.Normal"><value>Normal</value></data>
+  <data name="Emulation.Storage.Device.Interface"><value>Interface</value></data>
+  <data name="Emulation.Audio.Quality.Normal"><value>Normal</value></data>
+  <data name="Emulation.Controller.Visual"><value>Visual</value></data>
+  <data name="Emulation.Video.Technology.Normal"><value>Normal</value></data>
+  <data name="Emulation.Video.Technology.Plasma"><value>Plasma</value></data>
+  <data name="Emulation.Video.Sampling.Nearest"><value>Normal</value></data>
+  <data name="Emulation.Video.Sampling.Bilinear"><value>Bilinear</value></data>
+  <data name="Emulation.Video.Sampling.Bicubic"><value>Bicubic</value></data>
+  <data name="Emulation.Video.Orientation.Horizontal"><value>Horizontal</value></data>
+  <data name="Emulation.Video.Orientation.Vertical"><value>Vertical</value></data>
+  <data name="Emulation.Video.Preset.Normal"><value>Normal</value></data>
+  <data name="Emulation.Video.Preset.Plasma"><value>Plasma</value></data>
+  <data name="Emulation.Video.Vfd.Color.Amber"><value>Amber</value></data>
+  <data name="Emulation.Video.LedMatrix.Color.Amber"><value>Amber</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Amber"><value>Amber</value></data>
+  <data name="Emulation.Video.SegmentDisplay.Color.Amber"><value>Amber</value></data>
+  <data name="Emulation.Video.Parameter.Sepia"><value>Sepia</value></data>
+  <data name="Emulation.Video.Renderer.Wpf"><value>WPF</value></data>
+  <data name="Emulation.Hdd.Prepare.AmigaOfs"><value>OFS volume (Amiga)</value></data>
+  <data name="Emulation.Hdd.Prepare.AmigaFfs"><value>FFS volume (Amiga)</value></data>
+  <data name="Emulation.Hdd.Prepare.AmigaRdbOfs"><value>RDB + OFS (Amiga)</value></data>
+  <data name="Emulation.Hdd.Prepare.AmigaRdbFfs"><value>RDB + FFS (Amiga)</value></data>
 </root>

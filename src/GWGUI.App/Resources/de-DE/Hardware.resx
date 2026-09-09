@@ -58,4 +58,6 @@
   <data name="Hardware.ForgetLastConfirm"><value>Dies ist das zuletzt konfigurierte Laufwerk für diesen Greaseweazle. Möchten Sie sowohl das Laufwerk als auch den Greaseweazle vergessen?</value></data>
   <data name="Hardware.SelectController"><value>Wählen Sie zunächst eine Zeile aus, die zum relevanten Greaseweazle gehört.</value></data>
   <data name="Hardware.MaximumDrives"><value>Diesem Greaseweazle (A und B) können maximal zwei Laufwerke automatisch zugeordnet werden.</value></data>
+  <data name="Hardware.Scan"><value>Scan</value></data>
+  <data name="Hardware.ScanTitle"><value>Scan</value></data>
 </root>

@@ -74,4 +74,9 @@
   <data name="Emulation.Atari.Audio.PokeyStereo"><value>Stereo Stereo POKEY</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Mavi/kahverengi 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Mavi/kahverengi 2</value></data>
+  <data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Paddle Controllers</value></data>
+  <data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
+  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
+  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
+  <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
 </root>

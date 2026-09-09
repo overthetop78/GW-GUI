@@ -35,4 +35,6 @@
   <data name="Menu.Align"><value>Ευθυγράμμιση κίνησης…</value></data>
   <data name="Tab.Explorer"><value>Εξερεύνηση δίσκου</value></data>
   <data name="Tab.Emulation"><value>Εξομοίωση</value></data>
+  <data name="Menu.Emulation"><value>Εξομοίωση</value></data>
+  <data name="Menu.EmulationPreferences"><value>Προτιμήσεις εξομοίωσης...</value></data>
 </root>

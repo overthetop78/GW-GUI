@@ -35,4 +35,6 @@
   <data name="Menu.Pins"><value>Pins...</value></data>
   <data name="Menu.Reset"><value>Újraindítás</value></data>
   <data name="Menu.Firmware"><value>Firmware...</value></data>
+  <data name="Menu.Emulation"><value>Emuláció</value></data>
+  <data name="Menu.EmulationPreferences"><value>Emulációs preferenciák...</value></data>
 </root>

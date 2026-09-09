@@ -156,3 +156,20 @@ ensuite publié avec succès le premier répertoire officiel dans la release tec
 `https://github.com/overthetop78/GW-GUI/releases/download/module-directory/module-directory.json`.
 Le document public a été téléchargé et contrôlé : schéma 1, deux entrées, Amiga 1.0.0 et Atari
 1.0.0, chacune reliée à son catalogue indépendant public.
+
+## Présentation compacte des modules
+
+Le 9 septembre 2026, la liste du répertoire officiel a été compactée. Un module absent conserve une
+action **Installer** ; un module présent affiche maintenant un badge **Installé** et sa version au
+lieu d’un bouton d’installation simplement désactivé. Les contrôles de mise à jour des modules
+installés possèdent leur propre titre et ne montrent plus une seconde carte pour chaque module déjà
+à jour. L’installation manuelle par ZIP ou URL reste disponible dans le panneau repliable
+**Installation avancée**.
+
+L’écran explique désormais que le paquet ajoute le code et les machines du module, tandis que les
+cœurs d’émulation et les firmwares se gèrent ensuite dans les options d’émulation. Le README et la
+documentation d’architecture distinguent également ces éléments.
+
+Les 12 tests ciblés du répertoire et des catalogues de module ont réussi. L’audit Argos a validé
+29 cultures, 22 catalogues et 42 371 entrées localisées. Le build Debug propre a réussi : sa version
+produit est `0.3.0`, `build` contient uniquement `Debug` et le dossier `Modules` final est vide.

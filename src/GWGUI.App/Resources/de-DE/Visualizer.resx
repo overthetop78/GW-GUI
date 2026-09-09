@@ -77,4 +77,5 @@
   <data name="Visual.FormatDetected"><value>Format erkannt</value></data>
   <data name="Visual.AverageRpm"><value>Durchschnitt RPM</value></data>
   <data name="Visual.AverageDuration"><value>Durchschnittliche Dauer</value></data>
+  <data name="Visual.Decoder"><value>Decoder</value></data>
 </root>

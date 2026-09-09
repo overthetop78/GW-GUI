@@ -23,4 +23,5 @@
   <data name="HostTools.Title"><value>Greaseweazle Værtsværktøjer</value></data>
   <data name="HostTools.NoPrevious"><value>Ingen gyldig tidligere sti er gemt.</value></data>
   <data name="HostTools.UpdateAvailable"><value>Værtsværktøjer {0} tilgængelige</value></data>
+  <data name="HostTools.Detect"><value>Find gw.exe</value></data>
 </root>

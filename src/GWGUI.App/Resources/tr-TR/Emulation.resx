@@ -794,6 +794,46 @@
   <data name="Emulation.Value.Gray"><value>Gri</value></data>
   
   
+  <data name="Emulation.Core.Install"><value>Yükleme yükleme</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>Yüklemek için</value></data>
+  <data name="Emulation.Core.NameDownloading"><value>Downloading {0}…</value></data>
+  <data name="Emulation.Help.Memory.MapRam.Short"><value>Enable MapRAM</value></data>
+  <data name="Emulation.Help.Storage.CassetteBoot.Short"><value>Enable cassette startup</value></data>
+  <data name="Emulation.Video.Sampling"><value>Sampling</value></data>
+  <data name="Emulation.Video.Technology.Vector"><value>Vector</value></data>
+  <data name="Emulation.Video.Sampling.Bicubic"><value>Bicubic</value></data>
+  <data name="Emulation.Video.Parameter.Contrast"><value>Contrast</value></data>
+  <data name="Emulation.Video.Parameter.Saturation"><value>Saturation</value></data>
+  <data name="Emulation.Video.Parameter.CrtVignette"><value>Vignette</value></data>
+  <data name="Emulation.Video.Parameter.CrtScanlinesEnabled"><value>Scanlines</value></data>
+  <data name="Emulation.Video.Parameter.CrtPatternEnabled"><value>Voluntary pattern</value></data>
+  <data name="Emulation.Video.Parameter.FixedPixelPersistence"><value>Persistence</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaTemporalDithering"><value>Temporal dithering</value></data>
+  <data name="Emulation.Video.Plasma.Group.Phosphors"><value>Phosphors</value></data>
+  <data name="Emulation.Video.Parameter.PlasmaPersistence"><value>Persistence</value></data>
+  <data name="Emulation.Video.Parameter.VectorPhosphorColor"><value>Phosphor color</value></data>
+  <data name="Emulation.Video.Parameter.VectorPersistence"><value>Persistence</value></data>
+  <data name="Emulation.Video.Preset.Vector"><value>Vector display</value></data>
+  <data name="Emulation.Video.Parameter.Denoising"><value>Denoising</value></data>
+  <data name="Emulation.Video.Parameter.Deinterlacing"><value>Deinterlacing</value></data>
+  <data name="Emulation.Video.Parameter.VfdColor"><value>Phosphor color</value></data>
+  <data name="Emulation.Video.Technology.DotMatrix"><value>Dot matrix</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Gray"><value>Gray LCD</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixContrast"><value>Dot contrast</value></data>
+  <data name="Emulation.Video.Technology.SegmentDisplay"><value>Segment display</value></data>
+  <data name="Emulation.Video.Parameter.EPaperContrast"><value>Ink contrast</value></data>
+  <data name="Emulation.Video.Parameter.EPaperGhosting"><value>Residual image</value></data>
+  <data name="Emulation.Video.Technology.Projection"><value>Projection</value></data>
+  <data name="Emulation.Video.Parameter.Interlacing"><value>Interlacing</value></data>
+  <data name="Emulation.Video.Parameter.ChromaticAberration"><value>Chromatic aberration</value></data>
+  <data name="Emulation.Video.Parameter.Sepia"><value>Sepia</value></data>
+  <data name="Emulation.Video.Tab.Rendering"><value>Rendering</value></data>
+  <data name="Emulation.Video.Crt.Group.Color"><value>Phosphor color</value></data>
+  <data name="Emulation.Video.Crt.Group.Scanlines"><value>Scanlines</value></data>
+  <data name="Emulation.Video.Crt.Group.Interference"><value>Interference and moire</value></data>
+  <data name="Emulation.Video.SegmentDisplay.EndShape.Beveled"><value>Beveled</value></data>
+  <data name="Emulation.Video.Parameter.SegmentDisplayDecimalPoint"><value>Decimal point</value></data>
+  <data name="Emulation.Video.Renderer.Wpf"><value>WPF</value></data>
   <data name="Emulation.Firmware.Rom.Basic"><value>BASIC ROM</value></data>
   <data name="Emulation.Firmware.Rom.Xegs"><value>XEGS ROM</value></data>
 </root>

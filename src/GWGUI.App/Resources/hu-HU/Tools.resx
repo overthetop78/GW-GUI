@@ -64,4 +64,5 @@
   <data name="Tool.Field.AlignRaw"><value>Nyers fluxus (--raw) olvasása</value></data>
   <data name="Tools.LimitTracks"><value>Határértékek</value></data>
   <data name="Tool.Title.Update"><value>A "Sor" kifejezés a "Típus" vagy "Típus" jelölést jelenti.</value></data>
+  <data name="Tool.Field.Motor"><value>Motor (ms)</value></data>
 </root>

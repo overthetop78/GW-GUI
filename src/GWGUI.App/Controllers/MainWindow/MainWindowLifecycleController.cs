@@ -59,7 +59,8 @@ internal sealed class MainWindowLifecycleController(
     Action captureWrite,
     Action captureProfiles,
     Action captureConversion,
-    Action applyTheme)
+    Action applyTheme,
+    Action clearPendingModuleInstallations)
 {
     private static readonly TimeSpan ShutdownTimeout = TimeSpan.FromSeconds(10);
     private bool settingsSaveInProgress;
@@ -88,7 +89,12 @@ internal sealed class MainWindowLifecycleController(
     internal void Closing(System.ComponentModel.CancelEventArgs e)
     {
         diskImageWorkspace.CancelAll();
-        if (closeAfterSettingsSave) { diskImageWorkspace.Dispose(); return; }
+        if (closeAfterSettingsSave)
+        {
+            clearPendingModuleInstallations();
+            diskImageWorkspace.Dispose();
+            return;
+        }
         e.Cancel = true;
         if (settingsSaveInProgress) return;
         if (operation.IsRunning)
@@ -105,7 +111,7 @@ internal sealed class MainWindowLifecycleController(
     internal async Task ShowPreferencesAsync()
     {
         captureProfiles();
-        if (!navigation.ShowOptions(settings())) return;
+        if (!navigation.ShowPreferences(settings())) return;
         captureRead(); captureWrite(); captureConversion(); captureWindow();
         loadProfiles(); refreshReadProfiles(); refreshWriteProfiles(); refreshConvertProfiles();
         viewModel.Read.Folder = settings().DefaultImagesFolder; refreshHardware(); applyTheme();
@@ -137,7 +143,7 @@ internal sealed class MainWindowLifecycleController(
                     LocExtension.Get("Hardware.NewDetectedTitle"), UserDialogButtons.YesNo, UserDialogIcon.Question) == UserDialogResult.Yes;
                 settings().UnconfiguredControllers.Add(controller);
                 await settingsStore.SaveAsync(settings());
-                if (configure) navigation.ShowOptions(settings(), OptionsSection.Hardware);
+                if (configure) navigation.ShowPreferences(settings(), PreferencesSection.Hardware);
                 await settingsStore.SaveAsync(settings()); refreshHardware();
             }
             if (check.MissingControllers.Count == 0) return;
@@ -146,7 +152,7 @@ internal sealed class MainWindowLifecycleController(
                 case MissingHardwareChoice.Retry: continue;
                 case MissingHardwareChoice.OpenSettings:
                     captureProfiles();
-                    if (navigation.ShowOptions(settings()))
+                    if (navigation.ShowPreferences(settings()))
                     {
                         loadProfiles(); refreshReadProfiles(); refreshWriteProfiles(); refreshConvertProfiles();
                         viewModel.Read.Folder = settings().DefaultImagesFolder; refreshHardware(); applyTheme();

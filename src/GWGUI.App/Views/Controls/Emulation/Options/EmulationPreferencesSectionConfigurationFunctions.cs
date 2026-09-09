@@ -1,4 +1,4 @@
-using GWGUI.App.Constants.Emulation.Errors;
+﻿using GWGUI.App.Constants.Emulation.Errors;
 using GWGUI.App.Presenters.Common;
 using GWGUI.App.Contracts.Emulation.Configurations;
 using GWGUI.App.Localization.Extensions;
@@ -7,14 +7,8 @@ using System.Windows;
 
 namespace GWGUI.App.Views.Controls.Emulation.Options;
 
-public sealed partial class OptionsEmulationSection
+public sealed partial class EmulationPreferencesSection
 {
-    private async void ModuleConfigurationSaved(object? sender, EmulationConfigurationSavedEventArgs args)
-    {
-        ConfigurationSaved?.Invoke(this, args);
-        await ReloadConfigurationsAsync();
-    }
-
     private async Task ReloadConfigurationsAsync()
     {
         var loaded = await Task.WhenAll(_modules.Select(async module =>
@@ -46,12 +40,6 @@ public sealed partial class OptionsEmulationSection
             GWGUI.App.Services.Emulation.EmulationVideoPresentationProfiles.Store.Delete(
                 row.Module.Id, row.Configuration.Id);
             await ReloadConfigurationsAsync();
-            var section = _moduleSections.FirstOrDefault(item =>
-                ReferenceEquals(_moduleTabs[item.Key], row.Module)).Value;
-            if (section is not null)
-                await section.ReloadAfterConfigurationDeletedAsync(
-                    row.Configuration.Id,
-                    row.Configuration.MachineId);
         }
         catch (Exception error)
         {
@@ -65,10 +53,8 @@ public sealed partial class OptionsEmulationSection
 
     private async Task EditConfigurationAsync(EmulationConfigurationTableRow row)
     {
-        var section = GetOrCreateModuleSection(row.Module);
-        await section.EditConfigurationAsync(row.Configuration);
-        _tabs.SelectedItem = _moduleTabs.First(entry =>
-            ReferenceEquals(entry.Value, row.Module)).Key;
+        if (EditConfigurationRequested is { } edit)
+            await edit(row.Module, row.Configuration);
     }
 
     private void FilterConfigurationTable()
@@ -96,3 +82,4 @@ public sealed partial class OptionsEmulationSection
     }
 
 }
+

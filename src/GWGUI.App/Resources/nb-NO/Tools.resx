@@ -64,4 +64,5 @@
   <data name="Tool.Field.AlignReads"><value>Antall avlesninger</value></data>
   <data name="Tool.Field.AlignFormat"><value>Dekodingsformat</value></data>
   <data name="Tool.Field.AlignRaw"><value>Les råfluks (--raw)</value></data>
+  <data name="Tool.Field.Motor"><value>Motor (ms)</value></data>
 </root>

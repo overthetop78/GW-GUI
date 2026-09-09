@@ -3,110 +3,127 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:l="clr-namespace:GWGUI.App.Localization.Extensions">
     <UserControl.Resources>
+        <DataTemplate x:Key="NavigationTemplate">
+            <Grid Margin="4,6">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="38"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                <Border Width="32" Height="32" CornerRadius="16" Background="{Binding Background}" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Icon}" FontFamily="Segoe MDL2 Assets" FontSize="16"
+                               Foreground="{Binding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Title}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
+                    <TextBlock Text="{Binding Subtitle}" Foreground="{DynamicResource MutedTextBrush}"
+                               FontSize="11" TextTrimming="CharacterEllipsis"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
         <DataTemplate x:Key="UpdateComponentTemplate">
-            <Border Style="{StaticResource Card}" Padding="14" Margin="0,0,0,8">
+            <Border Style="{StaticResource Card}" Padding="16" Margin="0,0,0,10">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
-                    <TextBlock Text="{Binding DisplayName}" FontWeight="SemiBold"/>
-                    <TextBlock Grid.Column="1" Text="{Binding InstalledLabel}"/>
-                    <ComboBox Grid.Column="2" ItemsSource="{Binding Versions}"
-                              SelectedItem="{Binding SelectedVersion, Mode=TwoWay}"
-                              IsEnabled="{Binding CanSelectVersion}"
-                              SelectionChanged="Version_SelectionChanged"/>
-                    <TextBlock Grid.Row="1" Grid.ColumnSpan="3" Text="{Binding StatusLabel}"
-                               Margin="0,7,0,0" Foreground="{DynamicResource MutedTextBrush}"
-                               TextWrapping="Wrap"/>
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="44"/><ColumnDefinition Width="2*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                    <Border Width="36" Height="36" CornerRadius="18" Background="{Binding StateBackground}">
+                        <TextBlock Text="{Binding StateIcon}" FontFamily="Segoe MDL2 Assets" FontSize="17"
+                                   Foreground="{Binding StateForeground}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="8,0,14,0" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding DisplayName}" FontWeight="SemiBold" FontSize="15"/>
+                        <TextBlock Text="{Binding InstalledLabel}" Margin="0,3,0,0" Foreground="{DynamicResource MutedTextBrush}"/>
+                        <TextBlock Text="{Binding StatusLabel}" Margin="0,3,0,0" Foreground="{Binding StateForeground}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <ComboBox Grid.Column="2" ItemsSource="{Binding Versions}" SelectedItem="{Binding SelectedVersion, Mode=TwoWay}"
+                              IsEnabled="{Binding CanSelectVersion}" VerticalAlignment="Center" SelectionChanged="Version_SelectionChanged"/>
                 </Grid>
             </Border>
         </DataTemplate>
         <DataTemplate x:Key="AvailableModuleTemplate">
-            <Border Style="{StaticResource Card}" Padding="14" Margin="0,0,0,8">
+            <Border Style="{StaticResource Card}" Padding="16,13" Margin="0,0,0,9">
                 <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="{Binding DisplayName}" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                        <TextBlock Text="{Binding VersionLabel}"/>
-                        <TextBlock Text="{Binding StateLabel}" Foreground="{DynamicResource MutedTextBrush}"/>
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="44"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                    <Border Width="36" Height="36" CornerRadius="18" Background="{Binding StateBackground}">
+                        <TextBlock Text="{Binding StateIcon}" FontFamily="Segoe MDL2 Assets" FontSize="17"
+                                   Foreground="{Binding StateForeground}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="8,0,14,0" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding DisplayName}" FontWeight="SemiBold" FontSize="15"/>
+                        <TextBlock Text="{Binding DetailsLabel}" Margin="0,3,0,0" Foreground="{DynamicResource MutedTextBrush}"/>
                     </StackPanel>
-                    <Button Grid.Column="2" Content="{l:Loc Updates.ModuleDirectoryInstall}"
-                            IsEnabled="{Binding CanInstall}" Click="InstallAvailableModule_Click"/>
+                    <Border Grid.Column="2" Background="{Binding StateBackground}" CornerRadius="12" Padding="12,5" Margin="12,0,0,0" VerticalAlignment="Center">
+                        <Border.Style><Style TargetType="Border"><Setter Property="Visibility" Value="Collapsed"/><Style.Triggers><DataTrigger Binding="{Binding ShowsStateBadge}" Value="True"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers></Style></Border.Style>
+                        <TextBlock Text="{Binding StateLabel}" Foreground="{Binding StateForeground}" FontWeight="SemiBold"/>
+                    </Border>
+                    <Button Grid.Column="3" Content="{l:Loc Updates.ModuleDirectoryInstall}" IsEnabled="{Binding CanInstall}" Margin="12,0,0,0" MinWidth="110" Click="InstallAvailableModule_Click">
+                        <Button.Style><Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}"><Style.Triggers><DataTrigger Binding="{Binding ShowsStateBadge}" Value="True"><Setter Property="Visibility" Value="Collapsed"/></DataTrigger></Style.Triggers></Style></Button.Style>
+                    </Button>
                 </Grid>
             </Border>
         </DataTemplate>
     </UserControl.Resources>
-
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-    <Grid Margin="18">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-
-        <TextBlock Text="{l:Loc Updates.Description}" TextWrapping="Wrap" Margin="0,0,0,12"/>
-
-        <GroupBox Grid.Row="1" Header="{l:Loc Updates.Application}" Margin="0,0,0,12">
-            <StackPanel Margin="10">
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="SearchAction" Content="{l:Loc Updates.Search}" Click="Search_Click"/>
-                    <Button x:Name="InstallAction" Content="{l:Loc Updates.Install}" Margin="10,0,0,0"
-                            IsEnabled="False" Click="Install_Click"/>
-                    <Button x:Name="CancelAction" Content="{l:Loc Common.Cancel}" Margin="10,0,0,0"
-                            Visibility="Collapsed" Click="Cancel_Click"/>
-                </StackPanel>
-                <TextBlock x:Name="SearchStatus" Margin="0,12" TextWrapping="Wrap"
-                           Foreground="{DynamicResource MutedTextBrush}"/>
-                <ProgressBar x:Name="PreparationProgress" Height="4" Margin="0,0,0,12"
-                             Minimum="0" Maximum="100" Visibility="Collapsed"/>
-                <ItemsControl x:Name="ResultsList" ItemTemplate="{StaticResource UpdateComponentTemplate}"/>
-            </StackPanel>
-        </GroupBox>
-
-        <GroupBox Grid.Row="2" Header="{l:Loc Updates.ScopeModules}">
-            <StackPanel Margin="10">
-                <TextBlock Text="{l:Loc Updates.ModuleDirectoryDescription}" TextWrapping="Wrap"
-                           Foreground="{DynamicResource MutedTextBrush}" Margin="0,0,0,8"/>
-                <Button x:Name="SearchAvailableModulesAction"
-                        Content="{l:Loc Updates.ModuleDirectorySearch}"
-                        HorizontalAlignment="Left" Click="SearchAvailableModules_Click"/>
-                <TextBlock x:Name="AvailableModulesStatus" Margin="0,12" TextWrapping="Wrap"
-                           Foreground="{DynamicResource MutedTextBrush}"/>
-                <ItemsControl x:Name="AvailableModulesList" ItemTemplate="{StaticResource AvailableModuleTemplate}"/>
-                <Separator Margin="0,12"/>
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="SearchModulesAction" Content="{l:Loc Updates.Search}" Click="SearchModules_Click"/>
-                    <Button x:Name="InstallModulesAction" Content="{l:Loc Updates.Install}" Margin="10,0,0,0"
-                            IsEnabled="False" Click="InstallModules_Click"/>
-                    <Button x:Name="CancelModulesAction" Content="{l:Loc Common.Cancel}" Margin="10,0,0,0"
-                            Visibility="Collapsed" Click="CancelModules_Click"/>
-                </StackPanel>
-                <Separator Margin="0,12"/>
-                <TextBlock Text="{l:Loc Updates.ModuleInstallDescription}" TextWrapping="Wrap"
-                           Foreground="{DynamicResource MutedTextBrush}" Margin="0,0,0,8"/>
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="InstallModuleFileAction" Content="{l:Loc Updates.ModuleInstallFromFile}"
-                            Click="InstallModuleFile_Click"/>
-                    <TextBox x:Name="ModuleCatalogUrlInput" Width="360" Margin="10,0,0,0"
-                             ToolTip="{l:Loc Updates.ModuleCatalogUrlHint}"/>
-                    <Button x:Name="InstallModuleUrlAction" Content="{l:Loc Updates.ModuleInstallFromUrl}"
-                            Margin="10,0,0,0" Click="InstallModuleUrl_Click"/>
-                </StackPanel>
-                <TextBlock x:Name="ModulesStatus" Margin="0,12" TextWrapping="Wrap"
-                           Foreground="{DynamicResource MutedTextBrush}"/>
-                <ProgressBar x:Name="ModulesPreparationProgress" Height="4" Margin="0,0,0,12"
-                             Minimum="0" Maximum="100" Visibility="Collapsed"/>
-                <ItemsControl x:Name="ModulesResultsList" ItemTemplate="{StaticResource UpdateComponentTemplate}"/>
-            </StackPanel>
-        </GroupBox>
+    <Grid>
+        <Grid.ColumnDefinitions><ColumnDefinition Width="260"/><ColumnDefinition Width="14"/><ColumnDefinition/></Grid.ColumnDefinitions>
+        <Border Style="{StaticResource Card}" Padding="8">
+            <ListBox x:Name="UpdateNavigation" BorderThickness="0" Background="Transparent"
+                     KeyboardNavigation.IsTabStop="True"
+                     ItemTemplate="{StaticResource NavigationTemplate}" SelectionChanged="Navigation_SelectionChanged"/>
+        </Border>
+        <Border Grid.Column="2" Style="{StaticResource Card}" Padding="22">
+            <Grid>
+                <Grid x:Name="ApplicationPage">
+                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition/></Grid.RowDefinitions>
+                    <TextBlock Text="{l:Loc Updates.Application}" FontSize="21" FontWeight="SemiBold"/>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,16,0,0">
+                        <Button x:Name="SearchAction" Content="{l:Loc Updates.Search}" Click="Search_Click"/>
+                        <Button x:Name="InstallAction" Content="{l:Loc Updates.Install}" Margin="10,0,0,0" IsEnabled="False" Click="Install_Click"/>
+                        <Button x:Name="CancelAction" Content="{l:Loc Common.Cancel}" Margin="10,0,0,0" Visibility="Collapsed" Click="Cancel_Click"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Margin="0,14,0,10">
+                        <TextBlock x:Name="SearchStatus" TextWrapping="Wrap" Foreground="{DynamicResource MutedTextBrush}"/>
+                        <ProgressBar x:Name="PreparationProgress" Height="4" Margin="0,10,0,0" Minimum="0" Maximum="100" Visibility="Collapsed"/>
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto"><ItemsControl x:Name="ResultsList" ItemTemplate="{StaticResource UpdateComponentTemplate}"/></ScrollViewer>
+                </Grid>
+                <Grid x:Name="DirectoryPage" Visibility="Collapsed">
+                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition/></Grid.RowDefinitions>
+                    <TextBlock Text="{l:Loc Updates.ModuleDirectoryTitle}" FontSize="21" FontWeight="SemiBold"/>
+                    <StackPanel Grid.Row="1" Margin="0,8,0,0">
+                        <TextBlock Text="{l:Loc Updates.ModuleDirectoryDescription}" TextWrapping="Wrap" Foreground="{DynamicResource MutedTextBrush}"/>
+                        <TextBlock Text="{l:Loc Updates.ModulePackageExplanation}" TextWrapping="Wrap" Margin="0,6,0,0" Foreground="{DynamicResource MutedTextBrush}"/>
+                        <Button x:Name="SearchAvailableModulesAction" HorizontalAlignment="Left" Margin="0,14,0,0" Content="{l:Loc Updates.ModuleDirectorySearch}" Click="SearchAvailableModules_Click"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Margin="0,14,0,10">
+                        <TextBlock x:Name="AvailableModulesStatus" TextWrapping="Wrap" Foreground="{DynamicResource MutedTextBrush}"/>
+                        <ProgressBar x:Name="DirectoryProgress" Height="4" Margin="0,10,0,0" Minimum="0" Maximum="100" Visibility="Collapsed"/>
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto"><ItemsControl x:Name="AvailableModulesList" ItemTemplate="{StaticResource AvailableModuleTemplate}"/></ScrollViewer>
+                </Grid>
+                <Grid x:Name="InstalledModulePage" Visibility="Collapsed">
+                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition/></Grid.RowDefinitions>
+                    <StackPanel><TextBlock x:Name="SelectedModuleTitle" FontSize="21" FontWeight="SemiBold"/><TextBlock x:Name="SelectedModuleVersion" Margin="0,5,0,0" Foreground="{DynamicResource MutedTextBrush}"/></StackPanel>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,16,0,0">
+                        <Button x:Name="SearchModulesAction" Content="{l:Loc Updates.Search}" Click="SearchModules_Click"/>
+                        <Button x:Name="InstallModulesAction" Content="{l:Loc Updates.Install}" Margin="10,0,0,0" IsEnabled="False" Click="InstallModules_Click"/>
+                        <Button x:Name="CancelModulesAction" Content="{l:Loc Common.Cancel}" Margin="10,0,0,0" Visibility="Collapsed" Click="CancelModules_Click"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Margin="0,14,0,10">
+                        <TextBlock x:Name="ModulesStatus" TextWrapping="Wrap" Foreground="{DynamicResource MutedTextBrush}"/>
+                        <ProgressBar x:Name="ModulesPreparationProgress" Height="4" Margin="0,10,0,0" Minimum="0" Maximum="100" Visibility="Collapsed"/>
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto"><ItemsControl x:Name="ModulesResultsList" ItemTemplate="{StaticResource UpdateComponentTemplate}"/></ScrollViewer>
+                </Grid>
+                <Grid x:Name="AdvancedPage" Visibility="Collapsed">
+                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                    <TextBlock Text="{l:Loc Updates.ModuleAdvancedInstallationTitle}" FontSize="21" FontWeight="SemiBold"/>
+                    <StackPanel Grid.Row="1" Margin="0,10,0,0">
+                        <TextBlock Text="{l:Loc Updates.ModuleInstallDescription}" TextWrapping="Wrap" Foreground="{DynamicResource MutedTextBrush}" Margin="0,0,0,14"/>
+                        <Button x:Name="InstallModuleFileAction" HorizontalAlignment="Left" Content="{l:Loc Updates.ModuleInstallFromFile}" Click="InstallModuleFile_Click"/>
+                        <TextBlock Text="{l:Loc Updates.ModuleCatalogUrlHint}" Margin="0,18,0,6" Foreground="{DynamicResource MutedTextBrush}"/>
+                        <Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBox x:Name="ModuleCatalogUrlInput"/><Button x:Name="InstallModuleUrlAction" Grid.Column="1" Content="{l:Loc Updates.ModuleInstallFromUrl}" Margin="10,0,0,0" Click="InstallModuleUrl_Click"/></Grid>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Margin="0,18,0,0">
+                        <TextBlock x:Name="AdvancedStatus" TextWrapping="Wrap" Foreground="{DynamicResource MutedTextBrush}"/>
+                        <ProgressBar x:Name="AdvancedProgress" Height="4" Margin="0,10,0,0" Minimum="0" Maximum="100" Visibility="Collapsed"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Border>
     </Grid>
-    </ScrollViewer>
 </UserControl>

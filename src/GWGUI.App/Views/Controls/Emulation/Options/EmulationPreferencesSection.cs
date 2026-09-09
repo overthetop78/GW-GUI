@@ -1,4 +1,4 @@
-using GWGUI.Domain.Settings;
+﻿using GWGUI.Domain.Settings;
 using GWGUI.App.Contracts.Emulation.Configurations;
 using GWGUI.App.Contracts.Emulation.Machine;
 using GWGUI.App.Localization.Extensions;
@@ -15,11 +15,11 @@ using GWGUI.Emulation;
 
 namespace GWGUI.App.Views.Controls.Emulation.Options;
 
-public sealed partial class OptionsEmulationSection : UserControl
+public sealed partial class EmulationPreferencesSection : UserControl
 {
     public static event EventHandler<EmulationConfigurationSavedEventArgs>? ConfigurationSaved;
     public static event EventHandler<EmulationConfigurationSavedEventArgs>? VideoConfigurationChanged;
-    internal event Action<EmulationMachineEditingContext?>? EditingContextChanged;
+    internal event Func<IEmulationModule, IEmulationConfiguration, Task>? EditConfigurationRequested;
 
     private readonly IReadOnlyList<IEmulationModule> _modules = EmulationModuleRegistry.Modules;
     private readonly TextBlock _configurationBrandLabel = new();
@@ -37,12 +37,10 @@ public sealed partial class OptionsEmulationSection : UserControl
     private readonly TabItem _generalTab;
     private readonly TabItem _shortcutsTab;
     private readonly List<(TabItem Tab, string ResourceKey)> _localizedTabs = [];
-    private readonly Dictionary<TabItem, IEmulationModule> _moduleTabs = [];
-    private readonly Dictionary<TabItem, EmulationModuleSettingsSection> _moduleSections = [];
     private bool _configurationsLoaded;
     private bool _loadingConfigurations;
 
-    public OptionsEmulationSection()
+    public EmulationPreferencesSection()
     {
         _tabs = new TabControl
         {
@@ -60,15 +58,6 @@ public sealed partial class OptionsEmulationSection : UserControl
         _generalTab = AddTab(_tabs, "\uE713", "Emulation.Tab.General", BuildGeneralTab());
         _shortcutsTab = AddTab(_tabs, "\uE765", "Emulation.Tab.Shortcuts", BuildShortcutsTab());
         AddTab(_tabs, "\uE8A5", "Emulation.Configuration", BuildConfigurationsTab());
-        foreach (var module in _modules)
-        {
-            var tab = AddTab(_tabs, "\uE7FC", module.DisplayResourceKey, new Grid());
-            if (tab.Header is MainTabHeader header)
-                header.Text = LocExtension.GetForModule(module, module.DisplayResourceKey);
-            _moduleTabs.Add(tab, module);
-        }
-        _tabs.SelectionChanged += ModuleTabSelectionChanged;
-        EmulationVideoShaderLoadingStatus.Changed += VideoShaderLoadingChanged;
         Content = _tabs;
         Loaded += async (_, _) => await LoadConfigurationsWhenVisibleAsync();
         IsVisibleChanged += async (_, _) => await LoadConfigurationsWhenVisibleAsync();
@@ -87,6 +76,8 @@ public sealed partial class OptionsEmulationSection : UserControl
         StoragePaths.ConfigureEmulationStateDirectory(settings.EmulationStateFolder);
     }
 
+    internal Task ReloadConfigurationsForWindowAsync() => ReloadConfigurationsAsync();
+
     private async Task LoadConfigurationsWhenVisibleAsync()
     {
         if (!IsLoaded || !IsVisible || _configurationsLoaded || _loadingConfigurations) return;
@@ -99,63 +90,11 @@ public sealed partial class OptionsEmulationSection : UserControl
         finally { _loadingConfigurations = false; }
     }
 
-    private async void ModuleTabSelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (!ReferenceEquals(e.OriginalSource, _tabs)
-            || _tabs.SelectedItem is not TabItem tab) return;
-        if (!_moduleTabs.TryGetValue(tab, out var module))
-        {
-            EditingContextChanged?.Invoke(null);
-            return;
-        }
+    internal static void RaiseConfigurationSaved(object sender, EmulationConfigurationSavedEventArgs args) =>
+        ConfigurationSaved?.Invoke(sender, args);
 
-        var sectionAlreadyExists = _moduleSections.ContainsKey(tab);
-        var section = GetOrCreateModuleSection(module);
-        if (!sectionAlreadyExists)
-            return;
-
-        await section.ReloadWhenOpenedAsync();
-    }
-
-    private EmulationModuleSettingsSection GetOrCreateModuleSection(IEmulationModule module)
-    {
-        var tab = _moduleTabs.First(entry => ReferenceEquals(entry.Value, module)).Key;
-        if (_moduleSections.TryGetValue(tab, out var section))
-            return section;
-
-        section = new EmulationModuleSettingsSection(module);
-        section.ConfigurationSaved += ModuleConfigurationSaved;
-        section.VideoConfigurationChanged += ModuleVideoConfigurationChanged;
-        section.EditingContextChanged += ModuleEditingContextChanged;
-        _moduleSections.Add(tab, section);
-        tab.Content = section;
-        return section;
-    }
-
-    private static void ModuleVideoConfigurationChanged(object? sender,
-        EmulationConfigurationSavedEventArgs args) =>
+    internal static void RaiseVideoConfigurationChanged(object sender, EmulationConfigurationSavedEventArgs args) =>
         VideoConfigurationChanged?.Invoke(sender, args);
-
-    private void VideoShaderLoadingChanged(object? sender,
-        EmulationVideoShaderLoadingChangedEventArgs args)
-    {
-        if (!Dispatcher.CheckAccess())
-        {
-            Dispatcher.BeginInvoke(() => VideoShaderLoadingChanged(sender, args));
-            return;
-        }
-        foreach (var section in _moduleSections.Values)
-            section.SetVideoShaderLoading(args.ModuleId, args.ConfigurationId, args.IsLoading);
-    }
-
-    private void ModuleEditingContextChanged(object? sender, EmulationMachineEditingContext context)
-    {
-        if (sender is not EmulationModuleSettingsSection section
-            || _tabs.SelectedItem is not TabItem tab
-            || !_moduleSections.TryGetValue(tab, out var active)
-            || !ReferenceEquals(active, section)) return;
-        EditingContextChanged?.Invoke(context);
-    }
 
     internal void RefreshLocalizedContent()
     {
@@ -163,11 +102,9 @@ public sealed partial class OptionsEmulationSection : UserControl
             StringComparer.Ordinal);
         foreach (var (tab, resourceKey) in _localizedTabs)
         {
-            var text = _moduleTabs.TryGetValue(tab, out var module)
-                ? LocExtension.GetForModule(module, resourceKey) : LocExtension.Get(resourceKey);
+            var text = LocExtension.Get(resourceKey);
             if (tab.Header is MainTabHeader header) header.Text = text;
         }
-        foreach (var section in _moduleSections.Values) section.RefreshLocalizedContent();
         _shortcuts.SetRows(GlobalShortcutDefinitions(), shortcutValues);
         _shortcuts.ConfigurePresentation(LocExtension.Get("Emulation.Input.Actions"),
             LocExtension.Get("Emulation.Input.Binding.Search"));
@@ -184,3 +121,4 @@ public sealed partial class OptionsEmulationSection : UserControl
     }
 
 }
+

@@ -222,8 +222,25 @@
   <data name="Updates.ModuleDirectoryReady"><value>Tải thư mục chính thức để xem các mô- đun sẵn sàng để cài đặt.</value></data>
   <data name="Updates.ModuleDirectorySearching"><value>Đang nạp thư mục mô- đun...</value></data>
   <data name="Updates.ModuleDirectoryEmpty"><value>Hiện tại không có môđun tương thích.</value></data>
-  <data name="Updates.ModuleDirectoryResults"><value>{0} Có sẵn môđun.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} Các mô- đun trong danh mục chính thức.</value></data>
   <data name="Updates.ModuleDirectoryFailed"><value>Không thể nạp thư mục mô- đun.</value></data>
   <data name="Updates.ModuleNotInstalled"><value>Chưa cài đặt</value></data>
   <data name="Updates.ModuleAvailableVersion"><value>Phiên bản sẵn sàng: {0}</value></data>
+  <data name="Updates.ModuleDirectoryInstalledBadge"><value>Đã cài đặt</value></data>
+  <data name="Updates.ModulePackageExplanation"><value>Cài đặt một mô-đun thêm máy của nó GW GUI. Các lõi giả lập và phần mềm cần thiết được quản lý riêng biệt trong các lựa chọn Emulation.</value></data>
+  <data name="Updates.ModuleInstalledUpdatesTitle"><value>Cập nhật cho môđun đã cài đặt</value></data>
+  <data name="Updates.ModuleAdvancedInstallationTitle"><value>Cài đặt Cấp cao</value></data>
+  <data name="Options.PreferencesTitle"><value>Tùy thích</value></data>
+  <data name="Options.EmulationTitle"><value>Đang phân loại</value></data>
+  <data name="Updates.ModuleDirectoryTitle"><value>Các mô- đun sẵn sàng</value></data>
+  <data name="Updates.NavigationApplicationSubtitle"><value>Cập nhật ứng dụng</value></data>
+  <data name="Updates.NavigationDirectorySubtitle"><value>Duyệt và cài đặt mô- đun</value></data>
+  <data name="Updates.NavigationAdvancedSubtitle"><value>ZIP Name URL</value></data>
+  <data name="Updates.ModuleDownloaded"><value>Tải về</value></data>
+  <data name="Updates.FinishModuleInstallations"><value>Kết thúc cài đặt</value></data>
+  <data name="Updates.FinishModuleInstallationsHint"><value>GW GUI sẽ đóng lại, cài đặt các mô- đun đã tải về và khởi động lại.</value></data>
+  <data name="Updates.FinishModuleInstallationsConfirm"><value>Cài đặt xong các mô-đun chưa? GW GUI sẽ đóng và khởi động lại.</value></data>
+  <data name="Options.EmulationModuleTitle"><value>{0} Thiết lập mô phỏng</value></data>
+  <data name="Updates.CloseWithPendingModulesConfirm"><value>Hoàn tất cài đặt các mô- đun đã tải về trước khi đóng? Chọn Không để hủy việc tải về và đóng.</value></data>
+  <data name="Updates.Application"><value>GW GUI</value></data>
 </root>

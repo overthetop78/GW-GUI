@@ -52,4 +52,9 @@
   <data name="Explorer.DetectedFormats"><value>Registreret: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable"><value>Værtsværktøjer kan ikke producere et explorable sektor image til {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>Værtsværktøjer kunne ikke afkode billedet som {0}.</value></data>
+  <data name="Explorer.Format"><value>Format</value></data>
+  <data name="Explorer.Link"><value>Link</value></data>
+  <data name="Explorer.Type"><value>Type</value></data>
+  <data name="Explorer.Type.Program"><value>Program</value></data>
+  <data name="Explorer.System"><value>System</value></data>
 </root>

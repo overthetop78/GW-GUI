@@ -54,4 +54,7 @@
   <data name="Explorer.ExternalEngineUnavailable"><value>Vertsverktøy kan ikke produsere et eksplorbart sektorbilde for {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>Vertsverktøy kunne ikke dekode bildet som {0}.</value></data>
   <data name="Explorer.Format"><value>Formater</value></data>
+  <data name="Explorer.Type"><value>Type</value></data>
+  <data name="Explorer.Type.Program"><value>Program</value></data>
+  <data name="Explorer.System"><value>System</value></data>
 </root>

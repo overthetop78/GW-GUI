@@ -15,4 +15,5 @@
   <data name="About.Description"><value>En moderne Windows-grænseflade til læsning, skrivning, konvertering og inspektion af disketter med Greaseweazle.</value></data>
   <data name="About.License"><value>Open source-software — MIT Licens</value></data>
 <data name="About.Components"><value>Komponentversioner</value></data>
+  <data name="About.Version"><value>Version {0}</value></data>
 </root>

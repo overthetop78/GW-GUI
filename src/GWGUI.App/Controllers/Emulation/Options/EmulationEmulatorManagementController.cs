@@ -1,12 +1,10 @@
+using System.Windows;
 using GWGUI.App.Constants.Emulation;
 using GWGUI.App.Constants.Emulation.Errors;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Presenters.Common;
 using GWGUI.App.Views.Controls.Emulation.Options;
-using System.Windows;
-using System.Windows.Controls;
 using GWGUI.Emulation;
-
 
 namespace GWGUI.App.Controllers.Emulation.Options;
 
@@ -26,72 +24,46 @@ internal sealed class EmulationEmulatorManagementController
     internal UIElement CreateView()
     {
         _view = new EmulationCoreManagementPanel((key, arguments) => LocExtension.Get(key, arguments));
-        _view.Search.Click += SearchClicked;
-        _view.Download.Click += InstallClicked;
+        _view.Install.Click += InstallClicked;
         _view.Cancel.Click += CancelClicked;
-        _view.Versions.SelectionChanged += VersionSelectionChanged;
-        _view.ShowPrompt(LocExtension.Get(EmulationCoreManagementConstants.SearchPromptResource));
         return _view;
     }
 
     internal async Task RefreshAsync()
     {
         var installation = await _manager.GetEmulatorInstallationAsync(_machineId());
-        _view.Installed.Text = installation.InstalledVersion is null
-            ? LocExtension.Get(EmulationCoreManagementConstants.NotInstalledResource)
-            : LocExtension.Get(EmulationCoreManagementConstants.InstalledResource, installation.InstalledVersion);
-    }
-
-    private async void SearchClicked(object sender, RoutedEventArgs args)
-    {
-        await RunAsync(async cancellationToken =>
-        {
-            _view.HideResults();
-            _view.SetStatus(string.Empty);
-            _view.ShowPrompt(LocExtension.Get(EmulationCoreManagementConstants.SearchingResource));
-            var releases = await _manager.FindEmulatorReleasesAsync(_machineId(), cancellationToken);
-            _view.Versions.ItemsSource = releases;
-            _view.Versions.DisplayMemberPath = nameof(EmulationEmulatorRelease.DisplayName);
-            var required = releases.FirstOrDefault(release => release.IsRequired) ?? releases.FirstOrDefault();
-            _view.Versions.SelectedItem = required;
-            _view.FoundCount.Text = LocExtension.Get(EmulationCoreManagementConstants.VersionsFoundResource,
-                releases.Count);
-            _view.RequiredVersion.Text = required?.DisplayName ?? string.Empty;
-            _view.LatestVersion.Text = releases.LastOrDefault()?.DisplayName ?? string.Empty;
-            if (releases.Count == 0)
-                _view.ShowPrompt(LocExtension.Get(EmulationCoreManagementConstants.NoneFoundResource));
-            else
-            {
-                _view.SetStatus(string.Empty);
-                _view.ShowResults();
-            }
-        });
+        _view.Emulators.ItemsSource = new[] { installation.EmulatorId };
+        _view.Emulators.SelectedIndex = 0;
+        _view.ShowInstallation(installation.InstalledVersion is not null);
+        _view.SetStatus(string.Empty);
     }
 
     private async void InstallClicked(object sender, RoutedEventArgs args)
     {
-        if (_view.Versions.SelectedItem is not EmulationEmulatorRelease release) return;
         await RunAsync(async cancellationToken =>
         {
+            _view.SetStatus(LocExtension.Get(EmulationCoreManagementConstants.SearchingResource));
+            var releases = await _manager.FindEmulatorReleasesAsync(_machineId(), cancellationToken);
+            var release = releases.FirstOrDefault(candidate => candidate.IsRequired)
+                ?? releases.FirstOrDefault()
+                ?? throw new InvalidOperationException(
+                    LocExtension.Get(EmulationCoreManagementConstants.NoneFoundResource));
             _view.SetStatus(LocExtension.Get(EmulationCoreManagementConstants.DownloadingResource,
                 release.DisplayName));
             var progress = new Progress<double>(value => _view.Progress.Value = value);
             var path = await _manager.InstallEmulatorAsync(_machineId(), release, progress, cancellationToken);
             await RefreshAsync();
             _view.SetStatus(LocExtension.Get(EmulationCoreManagementConstants.InstalledPathResource, path));
-        }, showProgress: true);
+        });
     }
 
     private void CancelClicked(object sender, RoutedEventArgs args) => _operation?.Cancel();
 
-    private void VersionSelectionChanged(object sender, SelectionChangedEventArgs args) =>
-        _view.Versions.ToolTip = (_view.Versions.SelectedItem as EmulationEmulatorRelease)?.DisplayName;
-
-    private async Task RunAsync(Func<CancellationToken, Task> action, bool showProgress = false)
+    private async Task RunAsync(Func<CancellationToken, Task> action)
     {
         _operation?.Dispose();
         _operation = new CancellationTokenSource();
-        SetBusy(true, showProgress);
+        SetBusy(true);
         try { await action(_operation.Token); }
         catch (OperationCanceledException)
         {
@@ -102,15 +74,15 @@ internal sealed class EmulationEmulatorManagementController
             ControlErrorPresenter.ShowUnexpected(_view, error, ControlErrorContexts.EmulatorManagement,
                 LocExtension.Get(EmulationCoreManagementConstants.EmulatorResource));
         }
-        finally { SetBusy(false, false); }
+        finally { SetBusy(false); }
     }
 
-    private void SetBusy(bool busy, bool showProgress)
+    private void SetBusy(bool busy)
     {
-        _view.Search.IsEnabled = !busy;
-        _view.Download.IsEnabled = !busy;
+        _view.Emulators.IsEnabled = !busy;
+        _view.Install.IsEnabled = !busy;
         _view.Cancel.Visibility = busy ? Visibility.Visible : Visibility.Collapsed;
-        _view.Progress.Visibility = busy && showProgress ? Visibility.Visible : Visibility.Collapsed;
-        if (!showProgress) _view.Progress.Value = EmulationCoreManagementConstants.InitialProgress;
+        _view.Progress.Visibility = busy ? Visibility.Visible : Visibility.Collapsed;
+        if (!busy) _view.Progress.Value = EmulationCoreManagementConstants.InitialProgress;
     }
 }

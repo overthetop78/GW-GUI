@@ -6,6 +6,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using GWGUI.Updates.Contracts;
 using GWGUI.Updates.Services;
+using GWGUI.App.Contracts.Updates;
 
 namespace GWGUI.App.Services.Updates;
 
@@ -37,12 +38,110 @@ internal sealed class UpdatePackagePreparationService
         IProgress<double>? progress = null, CancellationToken cancellationToken = default,
         IReadOnlyDictionary<string, string>? expectedModuleCatalogUrls = null)
     {
+        var preparation = await PrepareComponentsAsync(plan, progress, cancellationToken,
+            expectedModuleCatalogUrls).ConfigureAwait(false);
+        try
+        {
+            return await CreateLaunchAsync(preparation.TransactionId, preparation.WorkingDirectory,
+                    preparation.Components, cancellationToken)
+                .ConfigureAwait(false);
+        }
+        catch
+        {
+            DeleteDirectory(preparation.WorkingDirectory);
+            throw;
+        }
+    }
+
+    internal async Task<PendingModuleInstallation> PrepareRemoteModuleAsync(UpdatePlan plan,
+        string displayName, string catalogUrl, IProgress<double>? progress = null,
+        CancellationToken cancellationToken = default)
+    {
+        var preparation = await PrepareComponentsAsync(plan, progress, cancellationToken,
+            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                [plan.Items.Single().ComponentId] = catalogUrl
+            }).ConfigureAwait(false);
+        var component = preparation.Components.Single();
+        return new(component.ComponentId, displayName, component.Version, catalogUrl, component,
+            preparation.WorkingDirectory);
+    }
+
+    internal Task<PendingModuleInstallation> PrepareLocalModuleAsync(string archivePath,
+        string displayName,
+        CancellationToken cancellationToken = default)
+    {
+        var sourceArchive = Path.GetFullPath(archivePath);
+        if (!File.Exists(sourceArchive)) throw new FileNotFoundException("Module archive was not found.", sourceArchive);
+        VerifyInstallationIsWritable();
+        var transactionId = Guid.NewGuid().ToString("N");
+        var workDirectory = Path.Combine(_workingRootDirectory, transactionId);
+        var localArchive = Path.Combine(workDirectory, "packages", "module.zip");
+        Directory.CreateDirectory(Path.GetDirectoryName(localArchive)!);
+        try
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            File.Copy(sourceArchive, localArchive, overwrite: false);
+            cancellationToken.ThrowIfCancellationRequested();
+            var validated = _archiveValidator.ExtractModuleValidated(localArchive,
+                Path.Combine(workDirectory, "extracted"));
+            var manifest = validated.ModuleManifest
+                ?? throw new InvalidDataException("The module archive does not contain a manifest.");
+            var installed = _installedState();
+            if (installed.Modules.Any(module => module.Id.Equals(manifest.Id, StringComparison.OrdinalIgnoreCase)))
+                throw new InvalidOperationException($"Module '{manifest.Id}' is already installed.");
+            ValidateModuleHostCompatibility(manifest, installed.HostApiVersion);
+            var component = new PreparedUpdateComponent(manifest.Id, UpdateComponentKind.Module,
+                UpdateComponentOperation.InstallModule, manifest.ModuleVersion, validated.RootDirectory);
+            return Task.FromResult(new PendingModuleInstallation(manifest.Id, displayName,
+                manifest.ModuleVersion, manifest.UpdateCatalogUrl, component, workDirectory));
+        }
+        catch
+        {
+            try { if (Directory.Exists(workDirectory)) Directory.Delete(workDirectory, recursive: true); }
+            catch { }
+            throw;
+        }
+    }
+
+    internal async Task<PreparedUpdateLaunch> CreateModuleLaunchAsync(
+        IReadOnlyList<PendingModuleInstallation> installations,
+        CancellationToken cancellationToken = default)
+    {
+        if (installations.Count == 0)
+            throw new InvalidOperationException("No prepared module installation is available.");
+        VerifyInstallationIsWritable();
+        var transactionId = Guid.NewGuid().ToString("N");
+        var workDirectory = Path.Combine(_workingRootDirectory, transactionId);
+        try
+        {
+            var components = new List<PreparedUpdateComponent>(installations.Count);
+            foreach (var installation in installations)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                var destination = Path.Combine(workDirectory, "extracted", installation.ModuleId);
+                CopyRegularDirectory(installation.Component.PreparedDirectory, destination);
+                components.Add(installation.Component with { PreparedDirectory = destination });
+            }
+            return await CreateLaunchAsync(transactionId, workDirectory, components, cancellationToken)
+                .ConfigureAwait(false);
+        }
+        catch
+        {
+            DeleteDirectory(workDirectory);
+            throw;
+        }
+    }
+
+    private async Task<PreparedComponents> PrepareComponentsAsync(UpdatePlan plan,
+        IProgress<double>? progress, CancellationToken cancellationToken,
+        IReadOnlyDictionary<string, string>? expectedModuleCatalogUrls)
+    {
         if (!plan.IsCompatible || plan.Items.Count == 0)
             throw new InvalidOperationException("The selected update plan is empty or incompatible.");
         var installed = _installedState();
         ValidateFinalCompatibility(plan, installed);
         VerifyInstallationIsWritable();
-
         var transactionId = Guid.NewGuid().ToString("N");
         var workDirectory = Path.Combine(_workingRootDirectory, transactionId);
         var packagesDirectory = Path.Combine(workDirectory, "packages");
@@ -79,51 +178,11 @@ internal sealed class UpdatePackagePreparationService
                     validated.RootDirectory));
                 progress?.Report((index + 1d) / plan.Items.Count);
             }
-
-            return await CreateLaunchAsync(transactionId, workDirectory, prepared, cancellationToken)
-                .ConfigureAwait(false);
+            return new(transactionId, workDirectory, prepared);
         }
         catch
         {
-            try { if (Directory.Exists(workDirectory)) Directory.Delete(workDirectory, recursive: true); }
-            catch { }
-            throw;
-        }
-    }
-
-    internal async Task<PreparedModuleInstallation> PrepareLocalModuleAsync(string archivePath,
-        CancellationToken cancellationToken = default)
-    {
-        var sourceArchive = Path.GetFullPath(archivePath);
-        if (!File.Exists(sourceArchive)) throw new FileNotFoundException("Module archive was not found.", sourceArchive);
-        VerifyInstallationIsWritable();
-        var transactionId = Guid.NewGuid().ToString("N");
-        var workDirectory = Path.Combine(_workingRootDirectory, transactionId);
-        var localArchive = Path.Combine(workDirectory, "packages", "module.zip");
-        Directory.CreateDirectory(Path.GetDirectoryName(localArchive)!);
-        try
-        {
-            cancellationToken.ThrowIfCancellationRequested();
-            File.Copy(sourceArchive, localArchive, overwrite: false);
-            cancellationToken.ThrowIfCancellationRequested();
-            var validated = _archiveValidator.ExtractModuleValidated(localArchive,
-                Path.Combine(workDirectory, "extracted"));
-            var manifest = validated.ModuleManifest
-                ?? throw new InvalidDataException("The module archive does not contain a manifest.");
-            var installed = _installedState();
-            if (installed.Modules.Any(module => module.Id.Equals(manifest.Id, StringComparison.OrdinalIgnoreCase)))
-                throw new InvalidOperationException($"Module '{manifest.Id}' is already installed.");
-            ValidateModuleHostCompatibility(manifest, installed.HostApiVersion);
-            var component = new PreparedUpdateComponent(manifest.Id, UpdateComponentKind.Module,
-                UpdateComponentOperation.InstallModule, manifest.ModuleVersion, validated.RootDirectory);
-            var launch = await CreateLaunchAsync(transactionId, workDirectory, [component], cancellationToken)
-                .ConfigureAwait(false);
-            return new(manifest.Id, manifest.ModuleVersion, manifest.UpdateCatalogUrl, launch);
-        }
-        catch
-        {
-            try { if (Directory.Exists(workDirectory)) Directory.Delete(workDirectory, recursive: true); }
-            catch { }
+            DeleteDirectory(workDirectory);
             throw;
         }
     }
@@ -248,6 +307,12 @@ internal sealed class UpdatePackagePreparationService
         }
     }
 
+    private static void DeleteDirectory(string path)
+    {
+        try { if (Directory.Exists(path)) Directory.Delete(path, recursive: true); }
+        catch { }
+    }
+
     private static JsonSerializerOptions CreateJsonOptions()
     {
         var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
@@ -262,8 +327,7 @@ internal sealed record PreparedUpdateLaunch(
     string WorkingDirectory,
     string ResultPath);
 
-internal sealed record PreparedModuleInstallation(
-    string ModuleId,
-    string ModuleVersion,
-    string UpdateCatalogUrl,
-    PreparedUpdateLaunch Launch);
+internal sealed record PreparedComponents(
+    string TransactionId,
+    string WorkingDirectory,
+    IReadOnlyList<PreparedUpdateComponent> Components);

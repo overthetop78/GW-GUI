@@ -84,4 +84,6 @@
   <data name="Conversion.EngineInternalFailed"><value>La conversion interne a échoué pour {0}: {1}</value></data>
   <data name="Conflict.Action"><value>Décision</value></data>
   <data name="Conversion.More"><value> ( ) {0} conversion(s)</value></data>
+  <data name="Conversion.Title"><value>Conversion</value></data>
+  <data name="Conversion.Source"><value>Source</value></data>
 </root>

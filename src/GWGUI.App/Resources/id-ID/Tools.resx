@@ -64,4 +64,5 @@
   <data name="Tool.Field.AlignReads"><value>Jumlah bacaan</value></data>
   <data name="Tool.Field.AlignFormat"><value>Format penguraian kode</value></data>
   <data name="Tool.Field.AlignRaw"><value>Baca fluks mentah (--raw)</value></data>
+  <data name="Tool.Title.Update"><value>Firmware</value></data>
 </root>

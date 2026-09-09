@@ -76,4 +76,6 @@
   <data name="Visual.FormatDetected"><value>Formátum észlelve</value></data>
   <data name="Visual.AverageRpm"><value>Átlagos RPM</value></data>
   <data name="Visual.AverageDuration"><value>Átlagos időtartam</value></data>
+  <data name="Visual.LinkZoom"><value>Link zoom</value></data>
+  <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>
 </root>

@@ -35,4 +35,6 @@
   <data name="Menu.Align"><value>驅動器對準...</value></data>
   <data name="Tab.Explorer"><value>磁碟檔案總管</value></data>
   <data name="Tab.Emulation"><value>模擬</value></data>
+  <data name="Menu.Emulation"><value>模拟</value></data>
+  <data name="Menu.EmulationPreferences"><value>模拟偏好...</value></data>
 </root>

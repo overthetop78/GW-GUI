@@ -837,4 +837,8 @@
   
   <data name="Emulation.Firmware.Rom.Basic"><value>روم BASIC</value></data>
   <data name="Emulation.Firmware.Rom.Xegs"><value>روم XEGS</value></data>
+  <data name="Emulation.Core.Install"><value>إنستال</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>مثبتة</value></data>
+  <data name="Emulation.Video.SegmentDisplay.EndShape.Straight"><value>Straight</value></data>
+  <data name="Emulation.Video.Renderer.Wpf"><value>WPF</value></data>
 </root>

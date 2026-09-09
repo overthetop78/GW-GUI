@@ -56,4 +56,5 @@
   <data name="Explorer.DetectedFormats"><value>Észlelve: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable"><value>A Host Tools nem tud magyarázható ágazati képet alkotni {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>A Host Tools nem tudta dekódolni a képet {0}.</value></data>
+  <data name="Explorer.Type.Program"><value>Program</value></data>
 </root>

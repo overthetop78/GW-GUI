@@ -31,4 +31,5 @@
   <data name="Classification.Automatic"><value>Automatische Erkennung</value></data>
   <data name="Classification.Machine"><value>Computer</value></data>
 <data name="Classification.Protection"><value>Kopierschutz</value></data>
+  <data name="Classification.Format"><value>Format</value></data>
 </root>

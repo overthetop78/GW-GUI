@@ -51,4 +51,10 @@
   <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Les Host Tools ne peuvent pas produire une image sectorielle exploitable pour {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Les Host Tools n’ont pas pu décoder l’image au format {0}.</value></data>
   <data name="Explorer.Format"><value>Présentation</value></data>
+  <data name="Explorer.Volume"><value>Volume</value></data>
+  <data name="Explorer.Type"><value>Type</value></data>
+  <data name="Explorer.Type.Image"><value>Image</value></data>
+  <data name="Explorer.Type.Archive"><value>Archive</value></data>
+  <data name="Explorer.Protection"><value>Protection</value></data>
+  <data name="Explorer.Modification"><value>Modification</value></data>
 </root>

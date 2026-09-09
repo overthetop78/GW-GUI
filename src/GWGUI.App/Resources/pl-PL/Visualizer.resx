@@ -77,4 +77,5 @@
   <data name="Visual.FormatDetected"><value>Wykryto format</value></data>
   <data name="Visual.AverageRpm"><value>średnia RPM</value></data>
   <data name="Visual.AverageDuration"><value>Średni czas trwania</value></data>
+  <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>
 </root>

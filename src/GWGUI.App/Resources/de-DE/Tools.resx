@@ -63,4 +63,6 @@
   <data name="Tool.Field.AlignReads"><value>Anzahl der Lesevorgänge</value></data>
   <data name="Tool.Field.AlignFormat"><value>Dekodierungsformat</value></data>
   <data name="Tool.Field.AlignRaw"><value>Rohflussmittel lesen (--raw)</value></data>
+  <data name="Tool.Field.Motor"><value>Motor (ms)</value></data>
+  <data name="Tool.Title.Update"><value>Firmware</value></data>
 </root>

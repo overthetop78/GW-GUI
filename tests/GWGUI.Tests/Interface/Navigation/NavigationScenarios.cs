@@ -120,7 +120,9 @@ internal static class NavigationScenarios
         var item = request switch
         {
             "preferences" => (MenuItem)menu.OptionsMenuItem.Items[0],
-            "history" => (MenuItem)menu.OptionsMenuItem.Items[1],
+            "updates" => (MenuItem)menu.OptionsMenuItem.Items[1],
+            "history" => (MenuItem)menu.OptionsMenuItem.Items[2],
+            "emulation" => (MenuItem)menu.EmulationMenuItem.Items[0],
             _ => (MenuItem)menu.HelpMenuItem.Items[1]
         };
         item.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent, item));
@@ -130,8 +132,12 @@ internal static class NavigationScenarios
     private sealed class RecordingNavigation : IWindowNavigationService
     {
         internal List<string> Calls { get; } = [];
-        public bool ShowOptions(AppSettings settings, OptionsSection section = OptionsSection.General)
+        public bool ShowPreferences(AppSettings settings, PreferencesSection section = PreferencesSection.General)
         { Calls.Add("preferences"); return false; }
+        public void ShowEmulationPreferences(AppSettings settings) => Calls.Add("emulation");
+        public void ShowEmulationModuleOptions(AppSettings settings, string moduleId) =>
+            Calls.Add($"emulation:{moduleId}");
+        public void ShowUpdates() => Calls.Add("updates");
         public void ShowLogHistory(string logsDirectory) => Calls.Add("history");
         public void ShowAbout() => Calls.Add("about");
         public void ShowGwTool(GwToolWindowRequest request) => Calls.Add(request.Verb);
@@ -146,7 +152,10 @@ internal static class NavigationScenarios
         var factories = new List<string>();
         var shown = 0;
         var service = new WpfWindowNavigationService(owner,
-            (actual, section) => { Assert.Same(settings, actual); Assert.Equal(OptionsSection.General, section); factories.Add("preferences"); return dialog; },
+            (actual, section) => { Assert.Same(settings, actual); Assert.Equal(PreferencesSection.General, section); factories.Add("preferences"); return dialog; },
+            actual => { Assert.Same(settings, actual); factories.Add("emulation"); return dialog; },
+            (actual, moduleId) => { Assert.Same(settings, actual); Assert.Equal("test-module", moduleId); factories.Add("emulation-module"); return dialog; },
+            () => { factories.Add("updates"); return dialog; },
             path => { Assert.Equal("fake-logs", path); factories.Add("history"); return dialog; },
             () => { factories.Add("about"); return dialog; },
             actual => { Assert.Same(toolRequest, actual); factories.Add("tool"); return dialog; },
@@ -165,7 +174,10 @@ internal static class NavigationScenarios
                 switch (request)
                 {
                     // Existing contract: preferences are saved as edited; ShowOptions returns true even on close.
-                    case "preferences": Assert.True(service.ShowOptions(settings)); break;
+                    case "preferences": Assert.True(service.ShowPreferences(settings)); break;
+                    case "emulation": service.ShowEmulationPreferences(settings); break;
+                    case "emulation-module": service.ShowEmulationModuleOptions(settings, "test-module"); break;
+                    case "updates": service.ShowUpdates(); break;
                     case "history": service.ShowLogHistory("fake-logs"); break;
                     case "about": service.ShowAbout(); break;
                     case "tool": service.ShowGwTool(toolRequest); break;
@@ -195,6 +207,8 @@ internal static class NavigationScenarios
         var menu = new MainMenu();
         var calls = new List<(string Request, object Sender)>();
         menu.PreferencesRequested += (sender, _) => calls.Add(("preferences", sender));
+        menu.UpdatesRequested += (sender, _) => calls.Add(("updates", sender));
+        menu.EmulationPreferencesRequested += (sender, _) => calls.Add(("emulation", sender));
         menu.LogHistoryRequested += (sender, _) => calls.Add(("history", sender));
         menu.DocumentationRequested += (sender, _) => calls.Add(("documentation", sender));
         menu.AboutRequested += (sender, _) => calls.Add(("about", sender));
@@ -202,7 +216,9 @@ internal static class NavigationScenarios
         var item = request switch
         {
             "preferences" => (MenuItem)menu.OptionsMenuItem.Items[0],
-            "history" => (MenuItem)menu.OptionsMenuItem.Items[1],
+            "updates" => (MenuItem)menu.OptionsMenuItem.Items[1],
+            "history" => (MenuItem)menu.OptionsMenuItem.Items[2],
+            "emulation" => (MenuItem)menu.EmulationMenuItem.Items[0],
             "documentation" => (MenuItem)menu.HelpMenuItem.Items[0],
             "about" => (MenuItem)menu.HelpMenuItem.Items[1],
             _ => Descendants(menu.OptionsMenuItem).Single(item => Equals(item.Tag, request))

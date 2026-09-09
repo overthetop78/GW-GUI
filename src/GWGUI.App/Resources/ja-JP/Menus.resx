@@ -35,4 +35,6 @@
   <data name="Menu.Align"><value>ドライブのアライメント…</value></data>
   <data name="Tab.Explorer"><value>ディスク エクスプローラー</value></data>
   <data name="Tab.Emulation"><value>エミュレーション</value></data>
+  <data name="Menu.Emulation"><value>プロモーション</value></data>
+  <data name="Menu.EmulationPreferences"><value>エミュレータの設定...</value></data>
 </root>

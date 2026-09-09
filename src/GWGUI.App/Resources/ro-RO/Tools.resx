@@ -63,4 +63,6 @@
   <data name="Tool.Field.AlignReads"><value>Numărul de citiri</value></data>
   <data name="Tool.Field.AlignFormat"><value>Format de decodare</value></data>
   <data name="Tool.Field.AlignRaw"><value>Citiți fluxul brut (--raw)</value></data>
+  <data name="Tool.Field.Motor"><value>Motor (ms)</value></data>
+  <data name="Tool.Title.Update"><value>Firmware</value></data>
 </root>

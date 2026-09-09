@@ -161,6 +161,15 @@
       - [x] Exécuter les tests ciblés, construire `module-directory.json`, exécuter l’audit Argos et produire un build Debug propre sans module, puis inscrire les résultats et la version affichée dans `docs/tasks/emulation/independent-module-distribution-validation.md`.
     - [x] 9.4.6 Publier le premier répertoire officiel
       - [x] Commiter et pousser les fichiers validés sur `main`, exécuter le workflow du répertoire, contrôler son URL et son contenu Amiga/Atari, puis inscrire la publication dans `docs/tasks/emulation/independent-module-distribution-validation.md`.
-  - [ ] 9.5 Effectuer la validation utilisateur
-    - [ ] 9.5.1 Vérifier les parcours visibles
+  - [x] 9.5 Clarifier et compacter la gestion visible des modules
+    - [x] 9.5.1 Recomposer la liste des modules officiels
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Options/OptionsUpdatesSection.xaml` et son code associé pour présenter chaque module sur une ligne compacte, remplacer l’action désactivée d’un module présent par un badge « Installé » et regrouper l’installation manuelle dans un panneau avancé repliable.
+      - [x] Modifier `src/GWGUI.App/Options/Controllers/UpdateOptionsController.cs` pour fournir à chaque ligne son état explicite et ne plus afficher de cartes redondantes pour les modules installés déjà à jour.
+    - [x] 9.5.2 Expliquer la séparation entre module et cœur d’émulation
+      - [x] Modifier tous les fichiers `src/GWGUI.App/Resources/*/Options.resx` avec les titres, états et explications du nouvel affichage, en précisant que le module ajoute les machines tandis que les cœurs et firmwares se gèrent séparément dans `Options > Émulation`, et utiliser Argos pour toutes les langues traduites.
+      - [x] Modifier `README.md` et `docs/architecture/emulation-module-updates.md` pour distinguer clairement le paquet du module, le téléchargement ultérieur des cœurs Libretro et les firmwares fournis par l’utilisateur.
+    - [x] 9.5.3 Vérifier le nouvel affichage
+      - [x] Exécuter les tests ciblés, l’audit Argos et `scripts/build.ps1 -Configuration Debug`, contrôler la version 0.3.0 et le dossier `Modules` vide, puis inscrire les résultats dans `docs/tasks/emulation/independent-module-distribution-validation.md`.
+  - [ ] 9.6 Effectuer la validation utilisateur
+    - [ ] 9.6.1 Vérifier les parcours visibles
       - [ ] Faire vérifier par l’utilisateur l’installation depuis un ZIP, l’installation depuis une URL, la mise à jour indépendante d’un module et la mise à jour de GW GUI conservant tous les modules, puis inscrire son résultat dans `docs/tasks/emulation/independent-module-distribution-validation.md`.

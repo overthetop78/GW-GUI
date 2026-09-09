@@ -35,4 +35,6 @@
   <data name="Menu.Align"><value>Sürücü hizalaması…</value></data>
   <data name="Tab.Explorer"><value>Disk Gezgini</value></data>
   <data name="Tab.Emulation"><value>Emülasyon</value></data>
+  <data name="Menu.EmulationPreferences"><value>Emulation tercihleri...</value></data>
+  <data name="Menu.Emulation"><value>Emulation</value></data>
 </root>

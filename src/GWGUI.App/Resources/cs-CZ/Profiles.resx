@@ -27,4 +27,5 @@
   <data name="Profile.DuplicateName"><value>Profil na této kartě již tento název má.</value></data>
   <data name="Profile.Replace"><value>Tento profil již existuje. Vyměnit?</value></data>
   <data name="Profile.DeleteConfirm"><value>Smazat profil „{0}“?</value></data>
+  <data name="Profiles.Tab"><value>Tab</value></data>
 </root>

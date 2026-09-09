@@ -64,4 +64,5 @@
   <data name="Tool.Field.AlignReads"><value>Numero di letture</value></data>
   <data name="Tool.Field.AlignFormat"><value>Formato di decodifica</value></data>
   <data name="Tool.Field.AlignRaw"><value>Leggi il flusso grezzo (--raw)</value></data>
+  <data name="Tool.Title.Update"><value>Firmware</value></data>
 </root>

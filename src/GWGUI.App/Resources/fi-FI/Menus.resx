@@ -35,4 +35,6 @@
   <data name="Menu.Align"><value>Ajolinjaus…</value></data>
   <data name="Tab.Explorer"><value>Levynhallinta</value></data>
   <data name="Tab.Emulation"><value>Emulointi</value></data>
+  <data name="Menu.Emulation"><value>Emulsio</value></data>
+  <data name="Menu.EmulationPreferences"><value>Emulsioasetukset...</value></data>
 </root>

@@ -30,5 +30,11 @@
   <data name="Menu.Align"><value>Alignement du lecteur…</value></data>
   <data name="Tab.Explorer"><value>Explorateur</value></data>
   <data name="Tab.Emulation"><value>Émulation</value></data>
-  <data name="Menu.Firmware"><value>Le micrologiciel...</value></data>
+  <data name="Menu.Firmware"><value>Micrologiciel…</value></data>
+  <data name="Menu.EmulationPreferences"><value>Préférences d'émulation...</value></data>
+  <data name="Menu.Options"><value>Options</value></data>
+  <data name="Menu.Diagnostics"><value>Diagnostics</value></data>
+  <data name="Menu.Documentation"><value>Documentation</value></data>
+  <data name="Tab.Convert"><value>Conversion</value></data>
+  <data name="Menu.Emulation"><value>Emulation</value></data>
 </root>

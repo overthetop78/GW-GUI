@@ -222,8 +222,25 @@
   <data name="Updates.ModuleDirectoryReady"><value>インストール可能なモジュールを参照するために、公式ディレクトリをロードします。</value></data>
   <data name="Updates.ModuleDirectorySearching"><value>モジュールディレクトリをロードする...</value></data>
   <data name="Updates.ModuleDirectoryEmpty"><value>対応モジュールは使用できません。</value></data>
-  <data name="Updates.ModuleDirectoryResults"><value>{0} モジュール(s) あり。</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} オフィシャルカタログのモジュール。</value></data>
   <data name="Updates.ModuleDirectoryFailed"><value>モジュールディレクトリをロードできません。</value></data>
   <data name="Updates.ModuleNotInstalled"><value>インストールされていない</value></data>
   <data name="Updates.ModuleAvailableVersion"><value>利用できる版: {0}</value></data>
+  <data name="Updates.ModuleDirectoryInstalledBadge"><value>インストール済み</value></data>
+  <data name="Updates.ModulePackageExplanation"><value>モジュールのインストールは、マシンをマシンに追加します。 GW GUI. エミュレータコアと必要なファームウェアは、エミュレーションオプションで個別に管理されます。</value></data>
+  <data name="Updates.ModuleInstalledUpdatesTitle"><value>インストールされたモジュールの更新</value></data>
+  <data name="Updates.ModuleAdvancedInstallationTitle"><value>高度の取付け</value></data>
+  <data name="Options.PreferencesTitle"><value>設定</value></data>
+  <data name="Options.EmulationTitle"><value>エミュレーションの好み</value></data>
+  <data name="Updates.ModuleDirectoryTitle"><value>利用可能なモジュール</value></data>
+  <data name="Updates.NavigationApplicationSubtitle"><value>アプリケーション更新</value></data>
+  <data name="Updates.NavigationDirectorySubtitle"><value>モジュールのブラウズとインストール</value></data>
+  <data name="Updates.NavigationAdvancedSubtitle"><value>ZIP アーカイブまたはカタログ URL</value></data>
+  <data name="Updates.ModuleDownloaded"><value>ダウンロード</value></data>
+  <data name="Updates.FinishModuleInstallations"><value>終わりの取付け</value></data>
+  <data name="Updates.FinishModuleInstallationsHint"><value>GW GUI 閉じ、ダウンロードしたすべてのモジュールをインストールし、再起動します。</value></data>
+  <data name="Updates.FinishModuleInstallationsConfirm"><value>ダウンロードしたすべてのモジュールのインストールが完了しますか? GW GUI クローズして再起動します。</value></data>
+  <data name="Options.EmulationModuleTitle"><value>{0} エミュレータの設定</value></data>
+  <data name="Updates.CloseWithPendingModulesConfirm"><value>ダウンロードしたモジュールを閉じる前にインストールを完了しますか? ダウンロードをキャンセルし、閉じるには、選択しないでください。</value></data>
+  <data name="Updates.Application"><value>GW GUI</value></data>
 </root>

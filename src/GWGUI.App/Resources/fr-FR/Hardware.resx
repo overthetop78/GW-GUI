@@ -58,4 +58,6 @@
   <data name="Hardware.ForgetLastConfirm"><value>C’est le dernier lecteur configuré pour ce Greaseweazle. Voulez-vous oublier le lecteur et le Greaseweazle ?</value></data>
   <data name="Hardware.SelectController"><value>Sélectionnez d’abord une ligne du Greaseweazle concerné.</value></data>
   <data name="Hardware.MaximumDrives"><value>Deux lecteurs au maximum peuvent être associés automatiquement à ce Greaseweazle (A et B).</value></data>
+  <data name="Hardware.Port"><value>Port</value></data>
+  <data name="Hardware.ConfigurationState"><value>Configuration</value></data>
 </root>

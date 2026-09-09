@@ -6,6 +6,7 @@ using GWGUI.App.Services.Emulation;
 using GWGUI.Emulation.Constants;
 using GWGUI.Updates.Contracts;
 using GWGUI.Updates.Services;
+using GWGUI.App.Contracts.Updates;
 
 namespace GWGUI.App.Services.Updates;
 
@@ -17,31 +18,36 @@ internal sealed class ModuleInstallationService
     private readonly ModuleUpdateCatalogValidator _catalogValidator;
     private readonly Func<IReadOnlyList<LoadedEmulationModule>> _installedModules;
     private readonly Func<string> _hostApiVersion;
+    private readonly Func<string, bool> _isPending;
 
     internal ModuleInstallationService(
         HttpClient? httpClient = null,
         UpdatePackagePreparationService? packagePreparation = null,
         ModuleUpdateCatalogValidator? catalogValidator = null,
         Func<IReadOnlyList<LoadedEmulationModule>>? installedModules = null,
-        Func<string>? hostApiVersion = null)
+        Func<string>? hostApiVersion = null,
+        Func<string, bool>? isPending = null)
     {
         _httpClient = httpClient ?? new HttpClient();
         _packagePreparation = packagePreparation ?? new UpdatePackagePreparationService(_httpClient);
         _catalogValidator = catalogValidator ?? new ModuleUpdateCatalogValidator();
         _installedModules = installedModules ?? (() => EmulationModuleRegistry.Packages);
         _hostApiVersion = hostApiVersion ?? (() => EmulationHostApi.CurrentVersion.ToString(2));
+        _isPending = isPending ?? (_ => false);
     }
 
-    internal async Task<PreparedModuleInstallation> PrepareFromFileAsync(string archivePath,
+    internal async Task<PendingModuleInstallation> PrepareFromFileAsync(string archivePath,
+        string displayName,
         CancellationToken cancellationToken = default)
     {
-        var prepared = await _packagePreparation.PrepareLocalModuleAsync(archivePath, cancellationToken)
+        var prepared = await _packagePreparation.PrepareLocalModuleAsync(archivePath, displayName, cancellationToken)
             .ConfigureAwait(false);
         EnsureNotInstalled(prepared.ModuleId);
         return prepared;
     }
 
-    internal async Task<PreparedModuleInstallation> PrepareFromCatalogAsync(string catalogUrl,
+    internal async Task<PendingModuleInstallation> PrepareFromCatalogAsync(string catalogUrl,
+        string displayName,
         IProgress<double>? progress = null, CancellationToken cancellationToken = default)
     {
         var catalogUri = ValidateDirectCatalogUri(catalogUrl);
@@ -64,16 +70,14 @@ internal sealed class ModuleInstallationService
                 $"Module '{component.Id}' has no release compatible with host API {hostApi.ToString(2)}.");
         var plan = new UpdatePlan(UpdateSearchScope.Modules,
             [new UpdatePlanItem(component.Id, UpdateComponentKind.Module, "0.0.0", release)], true, []);
-        var launch = await _packagePreparation.PrepareAsync(plan, progress, cancellationToken,
-            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-            {
-                [component.Id] = catalogUri.AbsoluteUri
-            }).ConfigureAwait(false);
-        return new(component.Id, release.Version, catalogUri.AbsoluteUri, launch);
+        return await _packagePreparation.PrepareRemoteModuleAsync(plan, displayName,
+            catalogUri.AbsoluteUri, progress, cancellationToken).ConfigureAwait(false);
     }
 
     private void EnsureNotInstalled(string moduleId)
     {
+        if (_isPending(moduleId))
+            throw new InvalidOperationException($"Module '{moduleId}' is already downloaded.");
         if (_installedModules().Any(module =>
                 module.Manifest.Id.Equals(moduleId, StringComparison.OrdinalIgnoreCase)))
             throw new InvalidOperationException(

@@ -34,4 +34,7 @@
   <data name="Tab.Explorer"><value>Explorer disc</value></data>
   <data name="Tab.Emulation"><value>Emulare</value></data>
   <data name="Menu.Firmware"><value>Firmware...</value></data>
+  <data name="Menu.Emulation"><value>Emulare</value></data>
+  <data name="Menu.EmulationPreferences"><value>Preferinţele de emulare...</value></data>
+  <data name="Menu.Hardware"><value>Hardware</value></data>
 </root>

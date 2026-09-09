@@ -34,4 +34,7 @@
   <data name="Tab.Explorer"><value>Esplora disco</value></data>
   <data name="Tab.Emulation"><value>Emulazione</value></data>
   <data name="Menu.Reset"><value>Ripristino</value></data>
+  <data name="Menu.Emulation"><value>Emiciclo</value></data>
+  <data name="Menu.EmulationPreferences"><value>Preferenze di emulazione...</value></data>
+  <data name="Menu.Hardware"><value>Hardware</value></data>
 </root>

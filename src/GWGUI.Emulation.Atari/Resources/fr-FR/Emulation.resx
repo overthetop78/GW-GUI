@@ -77,4 +77,6 @@
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Contrôleur</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Bleu/brun 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Bleu/brun 2</value></data>
+  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
+  <data name="Emulation.Atari.Video.Saturation"><value>Saturation</value></data>
 </root>

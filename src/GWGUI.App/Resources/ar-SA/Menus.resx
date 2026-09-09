@@ -35,4 +35,6 @@
   <data name="Menu.Align"><value>محاذاة القيادة…</value></data>
   <data name="Tab.Explorer"><value>مستكشف القرص</value></data>
   <data name="Tab.Emulation"><value>المحاكاة</value></data>
+  <data name="Menu.Emulation"><value>الاختراع</value></data>
+  <data name="Menu.EmulationPreferences"><value>الأفضليات...</value></data>
 </root>

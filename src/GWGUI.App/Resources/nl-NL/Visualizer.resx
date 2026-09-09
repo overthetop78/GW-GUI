@@ -76,4 +76,6 @@
   <data name="Visual.FormatDetected"><value>Formaat gedetecteerd</value></data>
   <data name="Visual.AverageRpm"><value>gemiddeld RPM</value></data>
   <data name="Visual.AverageDuration"><value>Gemiddelde duur</value></data>
+  <data name="Visual.Decoder"><value>Decoder</value></data>
+  <data name="Visual.SectorDetail"><value>Sector C{0} H{1} R{2} · {3} bytes · {4} {5}</value></data>
 </root>

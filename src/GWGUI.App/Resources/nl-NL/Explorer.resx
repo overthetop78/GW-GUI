@@ -54,4 +54,7 @@
   <data name="Explorer.DetectedFormats"><value>Gedetecteerd: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable"><value>Host Tools kan geen exploreerbaar sectorbeeld voor {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>Hosttools konden de afbeelding niet decoderen als {0}.</value></data>
+  <data name="Explorer.Volume"><value>Volume</value></data>
+  <data name="Explorer.Entries"><value>Items</value></data>
+  <data name="Explorer.Type"><value>Type</value></data>
 </root>

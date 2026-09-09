@@ -55,4 +55,6 @@
   <data name="Explorer.DetectedFormats"><value>Detectat: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable"><value>Uneltele gazdă nu pot produce o imagine de sector explorabilă pentru {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>Uneltele gazdă nu au putut decoda imaginea ca {0}.</value></data>
+  <data name="Explorer.Format"><value>Format</value></data>
+  <data name="Explorer.Type.Program"><value>Program</value></data>
 </root>

@@ -31,4 +31,5 @@
   <data name="Classification.Automatic"><value>Deteksi otomatis</value></data>
   <data name="Classification.Machine"><value>Komputer</value></data>
 <data name="Classification.Protection"><value>Proteksi</value></data>
+  <data name="Classification.Format"><value>Format</value></data>
 </root>

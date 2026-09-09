@@ -27,4 +27,5 @@
   <data name="Profile.DuplicateName"><value>Egy profil ezen a lapon már rendelkezik ezzel a névvel.</value></data>
   <data name="Profile.Replace"><value>Ez a profil már létezik. Cserélje ki?</value></data>
   <data name="Profile.DeleteConfirm"><value>Törli a „{0}” profilt?</value></data>
+  <data name="Profiles.Tab"><value>Tab</value></data>
 </root>

@@ -17,4 +17,6 @@
   <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>Riproduci / pausa CD32</value></data>
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Adattatore di joystick a quattro giocatori parallelo</value></data>
   <data name="Emulation.Amiga.Controller.Cd32"><value>Controller CD32</value></data>
+  <data name="Emulation.Amiga.Chipset.Name"><value>Chipset</value></data>
+  <data name="Emulation.Amiga.Controller.Joystick"><value>Amiga joystick</value></data>
 </root>

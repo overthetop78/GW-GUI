@@ -35,4 +35,6 @@
   <data name="Menu.Align"><value>יישור כונן...</value></data>
   <data name="Tab.Explorer"><value>סייר הדיסק</value></data>
   <data name="Tab.Emulation"><value>אמולציה</value></data>
+  <data name="Menu.Emulation"><value>סליחות</value></data>
+  <data name="Menu.EmulationPreferences"><value>העדפות  ⁇</value></data>
 </root>

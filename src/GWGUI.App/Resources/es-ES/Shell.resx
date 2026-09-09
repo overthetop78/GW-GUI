@@ -33,4 +33,6 @@
   <data name="Status.Running"><value>Correr</value></data>
   <data name="Status.Success"><value>Éxito</value></data>
 <data name="Status.Cancelled"><value>Cancelado</value></data>
+  <data name="Operation.Error"><value>Error: {0}</value></data>
+  <data name="Status.Error"><value>Error</value></data>
 </root>

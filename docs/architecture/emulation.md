@@ -70,17 +70,19 @@ Une future bibliothèque `GWGUI.Emulation.Sega` sera ajoutée de la même maniè
 
 Une bibliothèque intervient à deux endroits parce que l’application possède deux écrans différents.
 
-### 3.1 Options d’émulation
+### 3.1 Préférences d’émulation
 
-`OptionsEmulationSection` représente **Options → Émulation**. Une instance de ce contrôle est créée avec la fenêtre Options, puis elle construit actuellement les onglets Amiga et Atari.
+`EmulationPreferencesSection` représente la fenêtre ouverte depuis **Émulation → Préférences d’émulation…**. Elle construit uniquement les pages communes Général, Raccourcis et Configurations.
 
-Cet emplacement est correct. Pour ajouter Sega avec l’architecture actuelle, il faut y raccorder l’onglet Sega. Le rendu reste commun dans App et reçoit les données Sega. Il ne faut pas copier une page graphique `Sega...` dans App.
+Le menu principal **Émulation** est construit à partir des modules chargés. Sa première entrée ouvre la fenêtre des préférences communes. Après un séparateur, chaque module ajoute une entrée portant son nom localisé ; cette entrée ouvre une nouvelle `EmulationModuleOptionsWindow` alimentée par le module correspondant. App ne contient aucun identifiant ni libellé propre à Amiga, Atari ou une future famille.
 
-Chaque famille possède sa propre instance d’onglet. La construction graphique est commune, mais chaque onglet crée ses propres instances de boutons, sélecteurs, champs, listes et autres contrôles. Aucun objet graphique n’est partagé entre les onglets Amiga, Atari ou une future famille.
+Le rendu reste commun dans App et reçoit les données du module ciblé. Il ne faut pas copier une page graphique propre à une famille dans App.
 
-Les contrôles de chaque instance sont remplis avec les données de la bibliothèque correspondante : `GWGUI.Emulation.Amiga` pour l’onglet Amiga, `GWGUI.Emulation.Atari` pour l’onglet Atari, puis la bibliothèque concernée pour toute nouvelle famille.
+Chaque fenêtre de module possède sa propre instance du contrôle générique. La construction graphique est commune, mais chaque fenêtre crée ses propres instances de boutons, sélecteurs, champs, listes et autres contrôles. Aucun objet graphique n’est partagé entre les fenêtres Amiga, Atari ou une future famille.
 
-Ces instances restent en mémoire pendant la durée de vie de la fenêtre Options. Lorsqu’un utilisateur passe d’un onglet de famille à un autre puis revient au premier, les contrôles de ce premier onglet conservent donc leur état courant. Seuls le code de construction, la disposition et les comportements graphiques sont communs ; les objets créés et les données qu’ils contiennent sont indépendants.
+Les contrôles de chaque instance sont remplis avec les données de la bibliothèque correspondante : `GWGUI.Emulation.Amiga` pour la fenêtre Amiga, `GWGUI.Emulation.Atari` pour la fenêtre Atari, puis la bibliothèque concernée pour toute nouvelle famille.
+
+Ces instances restent en mémoire pendant la durée de vie de leur boîte de dialogue. Seuls le code de construction, la disposition et les comportements graphiques sont communs ; les objets créés et les données qu’ils contiennent sont indépendants.
 
 L’onglet **Configurations** reste commun à toutes les familles. Il rassemble dans une même liste les configurations enregistrées Amiga, Atari et celles de toute future bibliothèque raccordée, comme Sega. Il ne doit pas être dupliqué dans chaque onglet de famille.
 
@@ -455,11 +457,23 @@ Le sous-onglet Général permet notamment la sélection de la machine. Son conte
 
 La machine ne peut être changée que depuis ce sous-onglet Général. Lors du changement de machine, Général est donc déjà actif ; masquer ou afficher les autres sous-onglets ne nécessite aucune règle de redirection vers un autre sous-onglet.
 
-### 7.1 Sélecteur commun des machines
+### 7.1 Fenêtres et navigation communes des machines
 
-Chaque onglet de famille crée sa propre instance du sélecteur commun des machines. La bibliothèque `Emulation.xxx` correspondante fournit à ce sélecteur uniquement la liste nécessaire à son remplissage : pour chaque machine, un identifiant stable et la clé permettant à App d'afficher son nom traduit.
+Le menu principal **Émulation** sépare deux niveaux. **Préférences d’émulation…** ouvre uniquement
+les réglages communs Général, Raccourcis et Configurations. Chaque entrée de module installé ouvre
+une boîte de dialogue indépendante intitulée `Paramètres d’émulation {module}`. App résout
+l’identifiant dynamique du module, fournit son `IEmulationModule` au même contrôle générique et ne
+contient aucune fenêtre particulière pour Amiga, Atari ou une future famille.
 
-Le sélecteur ne reçoit pas toutes les caractéristiques matérielles de toutes les machines. Lorsqu'une machine est sélectionnée, App transmet son identifiant à la bibliothèque associée à l'onglet. Cette bibliothèque recherche alors la machine dans son propre catalogue et renvoie seulement les données nécessaires à la configuration sélectionnée : sous-onglets, blocs et éléments visibles, valeurs proposées, valeurs actuelles, contraintes et compatibilités.
+La fenêtre d’un module arrive directement sur les onglets propres à l’émulateur. Elle ne répète pas
+les onglets communs et n’ajoute aucun écran intermédiaire. Une liste verticale placée à gauche
+présente les machines fournies par le module ; la zone de droite affiche les onglets et réglages
+existants de la machine sélectionnée. La couleur déjà dérivée de `HasSavedConfiguration` distingue
+les machines utilisables disposant d’une configuration enregistrée de celles qui n’en ont pas.
+
+Chaque fenêtre de module crée sa propre instance de la liste commune des machines. La bibliothèque `Emulation.xxx` correspondante fournit à cette liste uniquement les données nécessaires à son remplissage : pour chaque machine, un identifiant stable et la clé permettant à App d'afficher son nom traduit.
+
+La liste ne reçoit pas toutes les caractéristiques matérielles de toutes les machines. Lorsqu'une machine est sélectionnée, App transmet son identifiant à la bibliothèque associée à la fenêtre. Cette bibliothèque recherche alors la machine dans son propre catalogue et renvoie seulement les données nécessaires à la configuration sélectionnée : sous-onglets, blocs et éléments visibles, valeurs proposées, valeurs actuelles, contraintes et compatibilités.
 
 Le catalogue complet et les règles propres aux machines restent ainsi dans `Emulation.xxx`. App ne conserve et n'interprète pas leurs caractéristiques ; il crée les contrôles communs, traduit les textes et affiche les données reçues.
 
@@ -675,15 +689,13 @@ Un nom générique ne doit jamais masquer une dépendance spécifique.
 
 Pour ajouter Sega avec l’architecture retenue :
 
-1. créer `GWGUI.Emulation.Sega` ;
-2. y créer moteurs, machines, configurations, capacités et règles ;
-3. ajouter sa référence dans `GWGUI.App.csproj` ;
-4. la raccorder dans `OptionsEmulationSection` pour les paramètres ;
-5. la raccorder dans `EmulationSection` pour charger et ouvrir ses machines ;
-6. ajouter ses traductions et ressources visuelles dans App ;
-7. réutiliser les contrôles communs, ou ajouter un nouveau contrôle commun si aucune représentation existante ne convient.
+1. créer un dépôt de module indépendant qui référence le SDK public de GW GUI ;
+2. y créer moteurs, machines, configurations, capacités, règles, traductions et ressources visuelles ;
+3. produire son paquet contenant `module.json`, les assemblages et son URL de catalogue directe ;
+4. publier ce paquet et référencer son catalogue dans le catalogue officiel des modules si le module doit y apparaître ;
+5. installer le module dans `Modules` : sa découverte crée automatiquement son entrée de menu, sa fenêtre de paramètres et ses machines sans modifier ni republier GW GUI.
 
-Il ne faut ni copier une interface Sega complète ni introduire une découverte automatique de DLL sans nouveau besoin explicite.
+Le module fournit ses données ; GW GUI conserve les contrôles communs et ne contient aucun raccord propre à Sega, Amiga, Atari ou une autre famille.
 
 ## 13. Validation
 

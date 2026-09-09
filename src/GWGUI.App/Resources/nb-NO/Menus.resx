@@ -35,4 +35,6 @@
   <data name="Menu.Align"><value>Drive justering...</value></data>
   <data name="Tab.Explorer"><value>Diskutforsker</value></data>
   <data name="Tab.Emulation"><value>Emulering</value></data>
+  <data name="Menu.Emulation"><value>Emulering</value></data>
+  <data name="Menu.EmulationPreferences"><value>Emuleringsinnstillinger...</value></data>
 </root>

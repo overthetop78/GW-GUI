@@ -35,4 +35,6 @@
   <data name="Tab.Explorer"><value>Průzkumník disku</value></data>
   <data name="Tab.Emulation"><value>Emulace</value></data>
   <data name="Menu.Firmware"><value>Firmware...</value></data>
+  <data name="Menu.Emulation"><value>Emulace</value></data>
+  <data name="Menu.EmulationPreferences"><value>Emulační preference...</value></data>
 </root>

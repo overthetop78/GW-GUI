@@ -29,31 +29,16 @@ internal static class EmulationMachineChoiceLayout
         return template;
     }
 
-    internal static Style CreateItemContainerStyle()
+    internal static Style CreateListItemContainerStyle()
     {
-        var style = new Style(typeof(ComboBoxItem),
-            (Style)Application.Current.FindResource(typeof(ComboBoxItem)));
+        var style = new Style(typeof(ListBoxItem),
+            (Style)Application.Current.FindResource(typeof(ListBoxItem)));
         style.Setters.Add(new Setter(Control.HorizontalContentAlignmentProperty, HorizontalAlignment.Stretch));
+        style.Setters.Add(new Setter(FrameworkElement.MarginProperty, new Thickness(0, 0, 0, 6)));
+        style.Setters.Add(new Setter(Control.PaddingProperty, new Thickness(12, 10, 12, 10)));
         var configured = new DataTrigger
         {
             Binding = new Binding(nameof(EmulationMachineChoice.HasSavedConfiguration)),
-            Value = true
-        };
-        AddConfiguredSetters(configured.Setters);
-        style.Triggers.Add(configured);
-        return style;
-    }
-
-    internal static Style CreateComboBoxStyle()
-    {
-        var style = new Style(typeof(ComboBox),
-            (Style)Application.Current.FindResource(typeof(ComboBox)));
-        var configured = new DataTrigger
-        {
-            Binding = new Binding("SelectedItem.HasSavedConfiguration")
-            {
-                RelativeSource = new RelativeSource(RelativeSourceMode.Self)
-            },
             Value = true
         };
         AddConfiguredSetters(configured.Setters);

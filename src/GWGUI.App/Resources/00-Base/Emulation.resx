@@ -935,4 +935,6 @@
   
   <data name="Emulation.Firmware.Rom.Basic"><value>BASIC ROM</value></data>
   <data name="Emulation.Firmware.Rom.Xegs"><value>XEGS ROM</value></data>
+  <data name="Emulation.Core.Install"><value>Install</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>Installed</value></data>
 </root>

@@ -59,4 +59,5 @@
   <data name="Hardware.ForgetLastConfirm"><value>To jest ostatni skonfigurowany dysk dla tego Greaseweazle. Czy chcesz zapomnieć zarówno o napędzie, jak i Greaseweazle?</value></data>
   <data name="Hardware.SelectController"><value>Najpierw wybierz wiersz należący do odpowiedniego Greaseweazle.</value></data>
   <data name="Hardware.MaximumDrives"><value>Do tego Greaseweazle (A i B) można automatycznie przypisać maksymalnie dwa dyski.</value></data>
+  <data name="Hardware.Port"><value>Port</value></data>
 </root>

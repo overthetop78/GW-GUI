@@ -34,4 +34,5 @@
   <data name="Status.Success"><value>Succès</value></data>
   <data name="Status.Error"><value>Erreur</value></data>
   <data name="Status.Cancelled"><value>Interrompu</value></data>
+  <data name="Common.Console"><value>Console</value></data>
 </root>

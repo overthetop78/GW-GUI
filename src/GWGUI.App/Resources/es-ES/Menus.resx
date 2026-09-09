@@ -34,4 +34,7 @@
   <data name="Menu.Align"><value>Alineación de la unidad…</value></data>
   <data name="Tab.Explorer"><value>Explorador de disco</value></data>
   <data name="Tab.Emulation"><value>Emulación</value></data>
+  <data name="Menu.Emulation"><value>Emulación</value></data>
+  <data name="Menu.EmulationPreferences"><value>Preferencias de emulación...</value></data>
+  <data name="Menu.Hardware"><value>Hardware</value></data>
 </root>

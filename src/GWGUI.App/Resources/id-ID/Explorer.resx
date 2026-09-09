@@ -54,4 +54,7 @@
   <data name="Explorer.DetectedFormats"><value>Terdeteksi: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable"><value>Perkakas Host tidak dapat menghasilkan gambar sektor yang diexceduble untuk {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>Perkakas Host tidak dapat mendekode gambar sebagai {0}.</value></data>
+  <data name="Explorer.Format"><value>Format</value></data>
+  <data name="Explorer.Volume"><value>Volume</value></data>
+  <data name="Explorer.Type.Program"><value>Program</value></data>
 </root>

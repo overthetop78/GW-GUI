@@ -76,4 +76,7 @@
   <data name="Emulation.Atari.Audio.PokeyStereo"><value>StereoCity in New Jersey USA POKEY</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Niebieski/brązowy 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Niebieski/brązowy 2</value></data>
+  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
+  <data name="Emulation.Atari.Video.Region"><value>Region</value></data>
+  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
 </root>

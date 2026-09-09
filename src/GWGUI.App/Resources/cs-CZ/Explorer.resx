@@ -56,4 +56,5 @@
   <data name="Explorer.DetectedFormats"><value>Zjištěno: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable"><value>Hostitelské nástroje nemohou produkovat vysvětlující obraz odvětví pro {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>Hostitelské nástroje nemohly dekódovat obrázek jako {0}.</value></data>
+  <data name="Explorer.Type.Program"><value>Program</value></data>
 </root>

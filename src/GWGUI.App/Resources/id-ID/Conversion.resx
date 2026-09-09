@@ -84,4 +84,6 @@
   <data name="Conversion.EngineInternalComplete"><value>Konversi internal selesai: {0}.</value></data>
   <data name="Conversion.EngineInternalUnavailable"><value>Mesin internal tidak mendukung konversi ini: {0}.</value></data>
   <data name="Conversion.EngineInternalFailed"><value>Konversi internal gagal untuk {0}: {1}</value></data>
+  <data name="Migration.Severity"><value>Severity</value></data>
+  <data name="Migration.Blocking"><value>Blocking</value></data>
 </root>

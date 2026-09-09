@@ -67,6 +67,15 @@ Les règles détaillées de cette séparation sont décrites dans [l’architect
 
 `GWGUI.App` sépare les fenêtres dans `Views/Windows`, les composants réutilisables dans `Views/Controls` et les responsabilités non visuelles dans leurs contrôleurs, présentateurs, fonctions et services respectifs.
 
+Les réglages et outils de gestion sont répartis entre trois fenêtres accessibles depuis la fenêtre principale :
+
+- **Options > Préférences…** ouvre les réglages généraux de GW GUI : général, journaux, contrôleurs et lecteurs, moteurs, profils et manettes ;
+- **Émulation > Préférences d’émulation…** ouvre seulement les réglages communs Général, Raccourcis et Configurations ;
+- chaque autre entrée dynamique du menu **Émulation** ouvre une boîte de dialogue indépendante alimentée par le module installé correspondant ;
+- **Options > Mises à jour…** ouvre le gestionnaire des versions de GW GUI et des modules d’émulation.
+
+Ces fenêtres conservent des responsabilités distinctes. Les préférences enregistrent le comportement général de l’application, les préférences d’émulation enregistrent les réglages partagés, chaque fenêtre de module configure directement ses machines, et la fenêtre des mises à jour gère la découverte, la préparation groupée, l’installation et le remplacement des composants distribués.
+
 Les ressources de langue sont réparties par culture sous `Resources`. `00-Base` contient les catalogues neutres ; chaque culture distribuée possède les mêmes catalogues spécialisés.
 
 ## Persistance et état

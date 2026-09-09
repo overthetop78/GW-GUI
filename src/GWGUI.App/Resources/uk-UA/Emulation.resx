@@ -838,4 +838,7 @@
   
   <data name="Emulation.Firmware.Rom.Basic"><value>ПЗП BASIC</value></data>
   <data name="Emulation.Firmware.Rom.Xegs"><value>ПЗП XEGS</value></data>
+  <data name="Emulation.Core.Install"><value>Встановити</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>Встановити</value></data>
+  <data name="Emulation.Video.Renderer.Wpf"><value>WPF</value></data>
 </root>

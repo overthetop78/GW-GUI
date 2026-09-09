@@ -221,8 +221,26 @@
   <data name="Updates.ModuleDirectoryReady"><value>Φόρτωση του επίσημου καταλόγου για να δείτε τις διαθέσιμες ενότητες για εγκατάσταση.</value></data>
   <data name="Updates.ModuleDirectorySearching"><value>Φόρτωση του καταλόγου αρθρωμάτων...</value></data>
   <data name="Updates.ModuleDirectoryEmpty"><value>Δεν υπάρχει διαθέσιμη συμβατή ενότητα.</value></data>
-  <data name="Updates.ModuleDirectoryResults"><value>{0} άρθρωμα(-α) διαθέσιμο(-α).</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} ενότητες στον επίσημο κατάλογο.</value></data>
   <data name="Updates.ModuleDirectoryFailed"><value>Αδυναμία φόρτωσης του καταλόγου του αρθρώματος.</value></data>
   <data name="Updates.ModuleNotInstalled"><value>Μη εγκατεστημένο</value></data>
   <data name="Updates.ModuleAvailableVersion"><value>Διαθέσιμη έκδοση: {0}</value></data>
+  <data name="Updates.ModuleDirectoryInstalledBadge"><value>Εγκατασταμένη</value></data>
+  <data name="Updates.ModulePackageExplanation"><value>Η εγκατάσταση ενός δομοστοιχείου προσθέτει τα μηχανήματα του GW GUI. Οι πυρήνες εξομοιωτών και τα απαιτούμενα firmware διαχειρίζονται ξεχωριστά στις επιλογές εξομοίωσης.</value></data>
+  <data name="Updates.ModuleInstalledUpdatesTitle"><value>Ενημέρωση για εγκατεστημένες ενότητες</value></data>
+  <data name="Updates.ModuleAdvancedInstallationTitle"><value>Προχωρημένη εγκατάσταση</value></data>
+  <data name="Options.PreferencesTitle"><value>Προτιμήσεις</value></data>
+  <data name="Options.EmulationTitle"><value>Προτιμήσεις εξομοίωσης</value></data>
+  <data name="Updates.ModuleDirectoryTitle"><value>Διαθέσιμες ενότητες</value></data>
+  <data name="Updates.NavigationApplicationSubtitle"><value>Ενημέρωση εφαρμογής</value></data>
+  <data name="Updates.NavigationDirectorySubtitle"><value>Περιήγηση και εγκατάσταση ενοτήτων</value></data>
+  <data name="Updates.NavigationAdvancedSubtitle"><value>ZIP αρχείο ή κατάλογος URL</value></data>
+  <data name="Updates.ModuleDownloaded"><value>Λήψη</value></data>
+  <data name="Updates.FinishModuleInstallations"><value>Εγκατάσταση τερματισμού</value></data>
+  <data name="Updates.FinishModuleInstallationsHint"><value>GW GUI θα κλείσει, να εγκαταστήσει όλες τις μεταφορτωμένες ενότητες, και επανεκκίνηση.</value></data>
+  <data name="Updates.FinishModuleInstallationsConfirm"><value>Να ολοκληρώσω την εγκατάσταση όλων των download modules; GW GUI θα κλείσει και θα επανεκκινήσει.</value></data>
+  <data name="Options.EmulationModuleTitle"><value>{0} ⁇  προσομοίωσης</value></data>
+  <data name="Updates.CloseWithPendingModulesConfirm"><value>Τερματίστε την εγκατάσταση των download module πριν το κλείσιμο; Επιλέξτε Όχι για να ακυρώσετε τις λήψεις και να κλείσετε.</value></data>
+  <data name="Options.EmulationMachineTitle"><value>{0} — {1} : {2}</value></data>
+  <data name="Updates.Application"><value>GW GUI</value></data>
 </root>

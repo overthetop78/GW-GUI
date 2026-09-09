@@ -221,8 +221,26 @@
   <data name="Updates.ModuleDirectoryReady"><value>Kurulum için mevcut olan modülleri görmek için resmi rehberi gönderin.</value></data>
   <data name="Updates.ModuleDirectorySearching"><value>Modül kılavuzunu Yükler...</value></data>
   <data name="Updates.ModuleDirectoryEmpty"><value>Şu anda uyumlu modül mevcut değildir.</value></data>
-  <data name="Updates.ModuleDirectoryResults"><value>{0} modülü (s) mevcut.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} Resmi katalogdaki modüller.</value></data>
   <data name="Updates.ModuleDirectoryFailed"><value>Modül dizisini yüklemek için kullanılamaz.</value></data>
   <data name="Updates.ModuleNotInstalled"><value>Yüklemek için yükleme</value></data>
   <data name="Updates.ModuleAvailableVersion"><value>Mevcut sürüm: {0}</value></data>
+  <data name="Updates.ModuleDirectoryInstalledBadge"><value>Yüklemek için</value></data>
+  <data name="Updates.ModulePackageExplanation"><value>Bir modül yükleme makinelerinin makinelerini makinelerini ekliyor GW GUI. Emulator çekirdeği ve gerekli donanım, Emulation seçeneklerinde ayrı olarak yönetilir.</value></data>
+  <data name="Updates.ModuleInstalledUpdatesTitle"><value>Oluşturulan modüller için Güncellemeler</value></data>
+  <data name="Updates.ModuleAdvancedInstallationTitle"><value>Gelişmiş yükleme</value></data>
+  <data name="Options.PreferencesTitle"><value>Tercihler</value></data>
+  <data name="Options.EmulationTitle"><value>Emulation tercihleri</value></data>
+  <data name="Updates.ModuleDirectoryTitle"><value>Mevcut modüller</value></data>
+  <data name="Updates.NavigationApplicationSubtitle"><value>Uygulama güncelleştirmeleri</value></data>
+  <data name="Updates.NavigationDirectorySubtitle"><value>Göz ve yükleme modülleri</value></data>
+  <data name="Updates.NavigationAdvancedSubtitle"><value>ZIP arşiv veya katalog URL</value></data>
+  <data name="Updates.ModuleDownloaded"><value>Downloaded Downloaded</value></data>
+  <data name="Updates.FinishModuleInstallations"><value>Bidek yükleme</value></data>
+  <data name="Updates.FinishModuleInstallationsHint"><value>GW GUI Yakın olacak, tüm indirilen modülleri kuracak ve yeniden başlatacaktır.</value></data>
+  <data name="Updates.FinishModuleInstallationsConfirm"><value>Tüm indirilmiş modülleri yüklemeyi bitirin mi? GW GUI Yakın ve yeniden başlayacak.</value></data>
+  <data name="Options.EmulationModuleTitle"><value>{0} Anülasyon ayarları</value></data>
+  <data name="Updates.CloseWithPendingModulesConfirm"><value>Kapanıştan önce yüklenen modüllerin kurulumunun tamamlanmasını bitirmek için izin vermeyin? İndirmeleri ve yakınları iptal etmek için seçin.</value></data>
+  <data name="Controllers.StickDeadZone"><value>Sticks</value></data>
+  <data name="Updates.Application"><value>GW GUI</value></data>
 </root>

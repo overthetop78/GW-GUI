@@ -52,4 +52,5 @@
   <data name="Read.InternalRawScpOnly"><value>La lettura interna attualmente crea solo immagini SCP grezze.</value></data>
   <data name="Read.InternalUnsupportedOptions"><value>Alcune opzioni abilitate non sono ancora supportate dal lettore interno.</value></data>
   <data name="Read.InternalInvalidOptions"><value>Le impostazioni di lettura interna non sono valide.</value></data>
+  <data name="Read.ScpOutputFile"><value>File: {0}</value></data>
 </root>

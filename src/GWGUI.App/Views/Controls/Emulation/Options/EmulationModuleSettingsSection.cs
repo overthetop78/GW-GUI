@@ -32,7 +32,13 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
     private readonly IEmulationModule _module;
     private readonly GWGUI.VideoPresentation.Services.VideoPresentationProfileStore _profiles;
     private readonly Action<Exception> _showError;
-    private readonly ComboBox _machines = new() { MinWidth = 300 };
+    private readonly ListBox _machines = new()
+    {
+        MinWidth = 220,
+        BorderThickness = new Thickness(0),
+        Background = System.Windows.Media.Brushes.Transparent,
+        HorizontalContentAlignment = HorizontalAlignment.Stretch
+    };
     private readonly EmulationVideoProcessingSettingsSection _videoProcessing = new();
     private readonly Dictionary<string, FrameworkElement> _fieldControls = new(StringComparer.Ordinal);
     private readonly Dictionary<FrameworkElement, Func<Task>> _userChangeHandlers = [];
@@ -57,8 +63,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
         _profiles = profiles ?? EmulationVideoPresentationProfiles.Store;
         _showError = showError ?? (error => ControlErrorPresenter.ShowEmulation(this, error,
             ControlErrorContexts.EmulationConfigurationManagement, LocExtension.GetForModule(_module, _module.DisplayResourceKey)));
-        _machines.Style = EmulationMachineChoiceLayout.CreateComboBoxStyle();
-        _machines.ItemContainerStyle = EmulationMachineChoiceLayout.CreateItemContainerStyle();
+        _machines.ItemContainerStyle = EmulationMachineChoiceLayout.CreateListItemContainerStyle();
         _machines.ItemTemplate = EmulationMachineChoiceLayout.CreateTemplate();
         var choices = module.Machines.Select(machine => new EmulationMachineChoice(machine,
             LocExtension.GetForModule(_module, machine.DisplayResourceKey), false)).ToArray();
@@ -156,24 +161,23 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
 
     private UIElement BuildEditor()
     {
-        return BuildMachineTabs();
+        var layout = new Grid();
+        layout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(250) });
+        layout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(16) });
+        layout.ColumnDefinitions.Add(new ColumnDefinition());
+        var navigation = new Border { Padding = new Thickness(8), Child = _machines };
+        navigation.SetResourceReference(FrameworkElement.StyleProperty, "Card");
+        layout.Children.Add(navigation);
+        var tabs = BuildMachineTabs();
+        Grid.SetColumn(tabs, 2);
+        layout.Children.Add(tabs);
+        return layout;
     }
 
     private UIElement BuildGeneralHeader()
     {
         var heading = new Grid { Margin = new Thickness(0, 0, 0, 12) };
-        heading.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-        heading.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(360) });
         heading.ColumnDefinitions.Add(new ColumnDefinition());
-        heading.Children.Add(new TextBlock
-        {
-            Text = LocExtension.Get("Emulation.Model"),
-            FontWeight = FontWeights.SemiBold,
-            VerticalAlignment = VerticalAlignment.Center,
-            Margin = new Thickness(0, 0, 12, 0)
-        });
-        Grid.SetColumn(_machines, 1);
-        heading.Children.Add(_machines);
         var save = new Button
         {
             Content = LocExtension.Get("Common.Create"),
@@ -183,7 +187,6 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
                 ? Visibility.Collapsed : Visibility.Visible
         };
         save.Click += async (_, _) => await ExecuteAsync(SaveAsync);
-        Grid.SetColumn(save, 2);
         heading.Children.Add(save);
         return heading;
     }

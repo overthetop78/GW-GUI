@@ -65,7 +65,7 @@ internal static class MachineConfigurationScenarios
         var view = new EmulationModuleSettingsSection(module.Service,store,errors.Add);
         try
         {
-            var tabs = Assert.IsType<TabControl>(view.Content);
+            var tabs = Assert.Single(Controls<TabControl>(view));
             Assert.Equal(new[] { EmulationMachineTab.General,EmulationMachineTab.Cpu },tabs.Items.Cast<TabItem>().Select(x => (EmulationMachineTab)x.Tag));
             Assert.DoesNotContain(Controls<TextBox>(view),x => x.Text == "hidden");
             Assert.False(Controls<TextBox>(view).Single(x => x.Text == "fixed").IsEnabled);

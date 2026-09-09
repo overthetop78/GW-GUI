@@ -222,8 +222,25 @@
   <data name="Updates.ModuleDirectoryReady"><value>Завантажте офіційну каталог, щоб переглянути модулі, доступні для установки.</value></data>
   <data name="Updates.ModuleDirectorySearching"><value>Завантаження каталогу модуля...</value></data>
   <data name="Updates.ModuleDirectoryEmpty"><value>Немає сумісного модуля в даний час доступний.</value></data>
-  <data name="Updates.ModuleDirectoryResults"><value>{0} Модуль (s) доступний.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} модулі в офіційному каталозі.</value></data>
   <data name="Updates.ModuleDirectoryFailed"><value>Неможливо завантажити каталог модуля.</value></data>
   <data name="Updates.ModuleNotInstalled"><value>Не встановлено</value></data>
   <data name="Updates.ModuleAvailableVersion"><value>Доступна версія: {0}</value></data>
+  <data name="Updates.ModuleDirectoryInstalledBadge"><value>Встановити</value></data>
+  <data name="Updates.ModulePackageExplanation"><value>Встановлення модуля додає свої машини GW GUI. Виготовляємо емуляторні ядра та необхідну прошивку, які можна використовувати окремо в опції емуляції.</value></data>
+  <data name="Updates.ModuleInstalledUpdatesTitle"><value>Оновлення для встановлених модулів</value></data>
+  <data name="Updates.ModuleAdvancedInstallationTitle"><value>Розширена установка</value></data>
+  <data name="Options.PreferencesTitle"><value>Навігація</value></data>
+  <data name="Options.EmulationTitle"><value>Налаштування емуляційних</value></data>
+  <data name="Updates.ModuleDirectoryTitle"><value>Доступні модулі</value></data>
+  <data name="Updates.NavigationApplicationSubtitle"><value>Оновлення додатків</value></data>
+  <data name="Updates.NavigationDirectorySubtitle"><value>Перегляд і установка модулів</value></data>
+  <data name="Updates.NavigationAdvancedSubtitle"><value>ZIP Архів або каталог URL</value></data>
+  <data name="Updates.ModuleDownloaded"><value>Завантажити</value></data>
+  <data name="Updates.FinishModuleInstallations"><value>Оздоблення монтажної установки</value></data>
+  <data name="Updates.FinishModuleInstallationsHint"><value>GW GUI закриє, встановіть всі завантажені модулі, і перезапустіть.</value></data>
+  <data name="Updates.FinishModuleInstallationsConfirm"><value>Оздоблення установки всіх завантажених модулів? GW GUI закриє і перезавантажить.</value></data>
+  <data name="Options.EmulationModuleTitle"><value>{0} налаштування емульсії</value></data>
+  <data name="Updates.CloseWithPendingModulesConfirm"><value>Оздоблення установки завантажених модулів перед закриттям? Виберіть Ні для скасування завантаження і закриття.</value></data>
+  <data name="Updates.Application"><value>GW GUI</value></data>
 </root>

@@ -222,8 +222,25 @@
   <data name="Updates.ModuleDirectoryReady"><value>装入正式目录以查看可用的模块以供安装 。</value></data>
   <data name="Updates.ModuleDirectorySearching"><value>正在装入模块目录...</value></data>
   <data name="Updates.ModuleDirectoryEmpty"><value>目前没有兼容的模块。</value></data>
-  <data name="Updates.ModuleDirectoryResults"><value>{0} 模块。</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} 模块在正式目录中。</value></data>
   <data name="Updates.ModuleDirectoryFailed"><value>无法装入模块目录 。</value></data>
   <data name="Updates.ModuleNotInstalled"><value>未安装</value></data>
   <data name="Updates.ModuleAvailableVersion"><value>可用版本 : {0}</value></data>
+  <data name="Updates.ModuleDirectoryInstalledBadge"><value>已安装</value></data>
+  <data name="Updates.ModulePackageExplanation"><value>安装模块后, 其机器将添加到 GW GUI. 模拟核心和所需的固件在模拟选项中分别管理.</value></data>
+  <data name="Updates.ModuleInstalledUpdatesTitle"><value>已安装模块的更新</value></data>
+  <data name="Updates.ModuleAdvancedInstallationTitle"><value>高级安装</value></data>
+  <data name="Options.PreferencesTitle"><value>首选项</value></data>
+  <data name="Options.EmulationTitle"><value>模拟偏好</value></data>
+  <data name="Updates.ModuleDirectoryTitle"><value>可用模块</value></data>
+  <data name="Updates.NavigationApplicationSubtitle"><value>应用程序更新</value></data>
+  <data name="Updates.NavigationDirectorySubtitle"><value>浏览并安装模块</value></data>
+  <data name="Updates.NavigationAdvancedSubtitle"><value>ZIP 归档或目录 URL</value></data>
+  <data name="Updates.ModuleDownloaded"><value>已下载</value></data>
+  <data name="Updates.FinishModuleInstallations"><value>完成安装</value></data>
+  <data name="Updates.FinishModuleInstallationsHint"><value>GW GUI 将关闭、安装所有已下载的模块并重新启动。</value></data>
+  <data name="Updates.FinishModuleInstallationsConfirm"><value>完成安装所有已下载模块吗 ? GW GUI 将关闭并重新启动。</value></data>
+  <data name="Options.EmulationModuleTitle"><value>{0} 模拟设置</value></data>
+  <data name="Updates.CloseWithPendingModulesConfirm"><value>关闭前完成安装已下载模块? 选择否取消下载并关闭 。</value></data>
+  <data name="Updates.Application"><value>GW GUI</value></data>
 </root>

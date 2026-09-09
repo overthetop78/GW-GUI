@@ -1,4 +1,4 @@
-using GWGUI.Domain.Settings.Emulation;
+﻿using GWGUI.Domain.Settings.Emulation;
 using GWGUI.App.Services.Storage;
 using System.Windows.Controls;
 using GWGUI.Emulation;
@@ -6,7 +6,7 @@ using Microsoft.Win32;
 
 namespace GWGUI.App.Views.Controls.Emulation.Options;
 
-public sealed partial class OptionsEmulationSection
+public sealed partial class EmulationPreferencesSection
 {
     private async Task BrowseFolderAsync(TextBox target)
     {
@@ -56,3 +56,4 @@ public sealed partial class OptionsEmulationSection
     private static InputBindingDefinition Shortcut(string id, string resourceKey) =>
         new(id, resourceKey, EmulationShortcutDefaults.Values[id]);
 }
+

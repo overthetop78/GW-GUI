@@ -51,8 +51,8 @@ public sealed partial class EmulationSection : UserControl
         _machines.PreviewMouseMove += MachineTabMouseMove;
         _machines.DragOver += MachineTabDragOver;
         _machines.Drop += MachineTabDrop;
-        OptionsEmulationSection.ConfigurationSaved += ConfigurationSaved;
-        OptionsEmulationSection.VideoConfigurationChanged += VideoConfigurationChanged;
+        EmulationPreferencesSection.ConfigurationSaved += ConfigurationSaved;
+        EmulationPreferencesSection.VideoConfigurationChanged += VideoConfigurationChanged;
         Content = BuildContent();
         Loaded += async (_, _) => await ReloadConfigurationsAsync();
     }

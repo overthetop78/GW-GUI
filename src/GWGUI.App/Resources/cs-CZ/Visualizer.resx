@@ -77,4 +77,5 @@
   <data name="Visual.FormatDetected"><value>Zjištěn formát</value></data>
   <data name="Visual.AverageRpm"><value>Průměrná RPM</value></data>
   <data name="Visual.AverageDuration"><value>Průměrná doba trvání</value></data>
+  <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>
 </root>

@@ -26,4 +26,6 @@
   <data name="Profile.Replace"><value>Dieses Profil existiert bereits. Ersetzen?</value></data>
   <data name="Profile.DeleteConfirm"><value>Profil „{0}“ löschen?</value></data>
   <data name="Profiles.Tab"><value>Tab.</value></data>
+  <data name="Profiles.Name"><value>Name</value></data>
+  <data name="Profiles.System"><value>System</value></data>
 </root>

@@ -15,4 +15,5 @@
   <data name="About.Description"><value>Une interface Windows moderne pour lire, écrire, convertir et inspecter les disquettes avec Greaseweazle.</value></data>
   <data name="About.License"><value>Logiciel libre — Licence MIT</value></data>
 <data name="About.Components"><value>Versions des composants</value></data>
+  <data name="About.Version"><value>Version {0}</value></data>
 </root>

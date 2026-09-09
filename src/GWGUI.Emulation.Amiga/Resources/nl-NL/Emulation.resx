@@ -18,4 +18,5 @@
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Alle bestanden|*.*</value></data>
   <data name="Emulation.Amiga.Chipset.Name"><value>Spaanplaat</value></data>
   <data name="Emulation.Amiga.Controller.Cd32"><value>CD32-controller</value></data>
+  <data name="Emulation.Amiga.Controller.Joystick"><value>Amiga joystick</value></data>
 </root>

@@ -73,4 +73,9 @@
   <data name="Visual.FormatDetected"><value>Formatet er fundet</value></data>
   <data name="Visual.AverageRpm"><value>Gennemsnitlig RPM</value></data>
   <data name="Visual.AverageDuration"><value>Gennemsnitlig varighed</value></data>
+  <data name="Visual.LinkZoom"><value>Link zoom</value></data>
+  <data name="Visual.NormalFlux"><value>Normal flux</value></data>
+  <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>
+  <data name="Visual.Side"><value>Side {0}</value></data>
+  <data name="Visual.SideLabel"><value>Side</value></data>
 </root>

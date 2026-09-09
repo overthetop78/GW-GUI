@@ -290,6 +290,8 @@ def audit_resources(root: Path) -> None:
             target_entries = read_entries(target_path)
             for key, english in base_entries.items():
                 if key not in target_entries:
+                    if culture_path.name != "en-US" and not is_invariant_entry(key, english):
+                        errors.append(f"{culture_path.name}/{catalog}: missing {key}")
                     continue
                 if is_invariant_entry(key, english):
                     errors.append(f"{culture_path.name}/{catalog}: redundant invariant {key}")
@@ -398,7 +400,6 @@ def main() -> None:
                 fallbacks += remove_fallback_entries(
                     target_path,
                     base_entries,
-                    remove_identical=True,
                 )
         print(f"Duplicate entries removed: {duplicates}")
         print(f"Localized fallback entries removed: {fallbacks}")
@@ -499,7 +500,6 @@ def main() -> None:
                 removed += remove_fallback_entries(
                     root / culture / catalog,
                     base_entries,
-                    remove_identical=True,
                 )
             print(f"{culture}: translated={len(pending)}, invariant duplicates removed={removed}", flush=True)
 
@@ -546,7 +546,6 @@ def main() -> None:
         remove_fallback_entries(
             root / culture / args.resource,
             base_entries,
-            remove_identical=True,
         )
         print(culture, flush=True)
 

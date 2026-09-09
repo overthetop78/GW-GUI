@@ -71,4 +71,12 @@
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ kontroller</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Blå/brun 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Blå/brun 2</value></data>
+  <data name="Emulation.Atari.Controller.Joystick"><value>Atari joystick</value></data>
+  <data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
+  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
+  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
+  <data name="Emulation.Atari.Video.Region"><value>Region</value></data>
+  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
+  <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
+  <data name="Emulation.Atari.Audio.PokeyStereo"><value>Stereo POKEY</value></data>
 </root>

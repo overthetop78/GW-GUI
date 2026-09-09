@@ -85,4 +85,5 @@
   <data name="Conversion.EngineInternalComplete"><value>Conversione interna completata: {0}.</value></data>
   <data name="Conversion.EngineInternalUnavailable"><value>Il motore interno non supporta questa conversione: {0}.</value></data>
   <data name="Conversion.EngineInternalFailed"><value>Conversione interna fallita {0}: {1}</value></data>
+  <data name="Conflict.File"><value>File</value></data>
 </root>

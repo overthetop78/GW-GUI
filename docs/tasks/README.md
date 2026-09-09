@@ -26,5 +26,7 @@ Ce dossier contient uniquement les travaux restant à exécuter ou les feuilles 
 ## Interface d’émulation
 
 - [Améliorations de l’interface d’émulation](interface/emulation-improvements.md)
+- [Séparation des préférences, de l’émulation et des mises à jour](interface/options-emulation-updates-navigation.md)
+- [Installation groupée des modules et fenêtres de paramètres par module](interface/module-settings-and-batched-installation.md)
 
 Chaque document conserve son propre ordre d’exécution. Une case est cochée immédiatement après la réalisation et la vérification de l’action correspondante.

@@ -64,4 +64,5 @@
   <data name="Tool.Field.AlignReads"><value>Liczba odczytów</value></data>
   <data name="Tool.Field.AlignFormat"><value>Format dekodowania</value></data>
   <data name="Tool.Field.AlignRaw"><value>Odczytaj surowy strumień (--raw)</value></data>
+  <data name="Tool.Field.Cylinder"><value>Cylinder</value></data>
 </root>

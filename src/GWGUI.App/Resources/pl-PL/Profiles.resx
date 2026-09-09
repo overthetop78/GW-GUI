@@ -27,4 +27,5 @@
   <data name="Profile.DuplicateName"><value>Profil na tej karcie ma już tę nazwę.</value></data>
   <data name="Profile.Replace"><value>Ten profil już istnieje. Wymienić?</value></data>
   <data name="Profile.DeleteConfirm"><value>Usunąć profil „{0}”?</value></data>
+  <data name="Profiles.System"><value>System</value></data>
 </root>

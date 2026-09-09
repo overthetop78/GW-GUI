@@ -58,8 +58,9 @@ Tous les chemins sont relatifs à `src/GWGUI.App/`.
 |---|---|
 | `Views/Controls/Emulation/Options/EmulationModuleSettingsSection.cs` | Famille, machines, blocs, champs, explications et choix |
 | `Views/Controls/Emulation/Options/EmulationModuleHardwareSettingsSection.cs` | Réglages et présentation des champs matériels |
-| `Views/Controls/Emulation/Options/OptionsEmulationSection.cs` | Familles disponibles |
-| `Views/Controls/Emulation/Options/OptionsEmulationSectionConfigurationFunctions.cs` | Nom de machine et contexte d'édition |
+| `Views/Controls/Emulation/Options/EmulationPreferencesSection.cs` | Familles présentes dans le tableau des configurations |
+| `Views/Controls/Emulation/Options/EmulationPreferencesSectionConfigurationFunctions.cs` | Nom de machine et contexte d'édition |
+| `Views/Windows/EmulationModuleOptions/EmulationModuleOptionsWindow.xaml.cs` | Titre de la fenêtre propre au module |
 | `Views/Controls/Emulation/Machine/EmulationSectionLayoutFunctions.cs` | Libellés des familles |
 | `Views/Controls/Emulation/Machine/EmulationSectionConfigurationFunctions.cs` | Catalogue et sélection des machines |
 | `Presenters/Emulation/Configurations/EmulationConfigurationPresenter.cs` | Nom de machine dans le résumé |

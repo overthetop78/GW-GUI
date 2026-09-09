@@ -18,4 +18,5 @@
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Parallell firespiller joystick adapter</value></data>
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>AMiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Alle filer|*.*</value></data>
   <data name="Emulation.Amiga.Controller.Cd32"><value>CD32-kontroller</value></data>
+  <data name="Emulation.Amiga.Controller.Joystick"><value>Amiga joystick</value></data>
 </root>

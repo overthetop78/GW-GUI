@@ -33,4 +33,8 @@
   <data name="Menu.Pins"><value>Pins...</value></data>
   <data name="Menu.Firmware"><value>Firmware...</value></data>
   <data name="Menu.Information"><value>Informationen</value></data>
+  <data name="Menu.EmulationPreferences"><value>Emulationspräferenzen...</value></data>
+  <data name="Menu.Hardware"><value>Hardware</value></data>
+  <data name="Tab.Emulation"><value>Emulation</value></data>
+  <data name="Menu.Emulation"><value>Emulation</value></data>
 </root>

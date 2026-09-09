@@ -30,4 +30,6 @@
   <data name="Detection.AppleContainer"><value>Conteneur image disque Apple détecté.</value></data>
   <data name="Classification.Automatic"><value>Détection automatique</value></data>
   <data name="Classification.Format"><value>Présentation</value></data>
+  <data name="Classification.Machine"><value>Machine</value></data>
+  <data name="Classification.Protection"><value>Protection</value></data>
 </root>

@@ -119,12 +119,17 @@ La version de l’application vient de son assembly informationnel et sa version
 chargés par `EmulationModuleRegistry`. La version d’un cœur PUAE, Hatari, Atari800 ou autre n’est
 jamais utilisée comme version du module.
 
-L’onglet **Mises à jour** présente deux sections indépendantes. `ApplicationUpdateService` consulte
+La fenêtre dédiée **Options > Mises à jour…** sépare la version de GW GUI, le catalogue des modules
+disponibles, les modules installés et l’installation avancée. `ApplicationUpdateService` consulte
 seulement `UpdateEndpoints.ApplicationCatalogUrl`. `ModuleDirectoryService` consulte l’unique
 `UpdateEndpoints.ModuleDirectoryUrl`, valide le répertoire, puis affiche la dernière version de
-chaque module compatible avec l’API hôte. Un module déjà installé reste visible mais son bouton
-d’installation est désactivé. `ModuleUpdateService` consulte seulement les `UpdateCatalogUrl` des
-modules installés.
+chaque module compatible avec l’API hôte. `ModuleUpdateService` consulte seulement les
+`UpdateCatalogUrl` des modules installés.
+
+Une navigation verticale affiche une entrée par module installé afin de rester utilisable lorsque
+leur nombre augmente. La page du module indique toujours sa version installée et son état explicite :
+installé et à jour, mise à jour disponible, opération en cours ou erreur. Les états utilisent des
+icônes et couleurs communes ; GW GUI ne contient aucun logo ni traitement propre à une famille.
 
 L’installation initiale accepte :
 
@@ -132,7 +137,18 @@ L’installation initiale accepte :
 - une URL HTTPS directe vers un catalogue de module, dont la release compatible la plus récente est
   téléchargée et vérifiée.
 
-Une confirmation explicite précède la préparation et le redémarrage.
+Une confirmation explicite précède chaque téléchargement. La préparation validée est conservée
+pendant l’exécution de GW GUI et la ligne du module prend l’état `Téléchargé`. L’application reste
+ouverte afin que plusieurs modules puissent être préparés successivement. Le bouton
+`Finir l’installation` regroupe tous les composants préparés dans une seule transaction, demande
+la confirmation de fermeture, lance une seule fois l’updater, puis provoque un seul redémarrage.
+Après la reprise, les modules chargés reprennent l’état définitif `Installé`.
+
+L’archive du module contient le manifeste, la DLL du module et ses dépendances propres. Les cœurs
+d’émulation ne sont pas intégrés : le module Amiga gère séparément PUAE et le module Atari gère
+séparément Hatari, Atari800, Stella, ProSystem, Beetle Lynx et Virtual Jaguar. Après installation du
+module, leur recherche et leur téléchargement passent par le menu principal **Émulation**. Les firmwares et
+ROM nécessaires ne sont pas distribués dans le module et restent sélectionnés par l’utilisateur.
 
 ## Préparation et sécurité des archives
 
@@ -144,8 +160,9 @@ une DLL d’entrée présente et une URL de catalogue HTTPS cohérente. Les chem
 `..` et liens de réanalyse sont refusés.
 
 Le plan sérialisé distingue `UpdateApplication`, `InstallModule` et `UpdateModule`. Tous les paquets
-sont préparés avant la fermeture. La copie temporaire de `gwgui.updater.exe` est lancée seulement
-après cette validation.
+sont préparés avant la fermeture. Plusieurs installations de modules préparées séparément peuvent
+être réunies dans ce même plan. La copie temporaire de `gwgui.updater.exe` est lancée seulement
+après cette validation et une seule fois pour toute la transaction.
 
 ## Transaction hors processus
 

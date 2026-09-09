@@ -35,4 +35,6 @@
   <data name="Tab.Explorer"><value>Diskutforskare</value></data>
   <data name="Tab.Emulation"><value>Emulering</value></data>
   <data name="Menu.Information"><value>Information Information Information Information Information Information</value></data>
+  <data name="Menu.Emulation"><value>Emulering</value></data>
+  <data name="Menu.EmulationPreferences"><value>Emuleringspreferenser...</value></data>
 </root>

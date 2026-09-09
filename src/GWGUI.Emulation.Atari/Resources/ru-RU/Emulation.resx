@@ -75,4 +75,8 @@
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Контроллер</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Синий/коричневый 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Синий/коричневый 2</value></data>
+  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
+  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
+  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
+  <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
 </root>

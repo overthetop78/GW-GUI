@@ -1,4 +1,4 @@
-using GWGUI.App.Functions.Views.Emulation.Settings;
+﻿using GWGUI.App.Functions.Views.Emulation.Settings;
 using GWGUI.App.Localization.Extensions;
 using GWGUI.App.Views.Controls.Common;
 using System.Windows;
@@ -8,7 +8,7 @@ using System.Windows.Data;
 
 namespace GWGUI.App.Views.Controls.Emulation.Options;
 
-public sealed partial class OptionsEmulationSection
+public sealed partial class EmulationPreferencesSection
 {
     private ScrollViewer BuildGeneralTab()
     {
@@ -98,3 +98,4 @@ public sealed partial class OptionsEmulationSection
         return tab;
     }
 }
+

@@ -35,4 +35,6 @@
   <data name="Menu.Align"><value>Ustawianie napędu…</value></data>
   <data name="Tab.Explorer"><value>Eksplorator dysku</value></data>
   <data name="Tab.Emulation"><value>Emulacja</value></data>
+  <data name="Menu.Emulation"><value>Emulacja</value></data>
+  <data name="Menu.EmulationPreferences"><value>Preferencje emulacji...</value></data>
 </root>

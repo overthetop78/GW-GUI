@@ -35,4 +35,6 @@
   <data name="Menu.Align"><value>Căn chỉnh ổ đĩa…</value></data>
   <data name="Tab.Explorer"><value>Trình duyệt đĩa</value></data>
   <data name="Tab.Emulation"><value>Giả lập</value></data>
+  <data name="Menu.Emulation"><value>Mô phỏng</value></data>
+  <data name="Menu.EmulationPreferences"><value>Đang phân loại...</value></data>
 </root>

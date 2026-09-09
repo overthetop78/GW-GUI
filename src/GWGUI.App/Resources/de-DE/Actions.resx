@@ -30,4 +30,5 @@
   <data name="Common.Refresh"><value>Aktualisieren</value></data>
   <data name="Common.OpenFolder"><value>Ordner öffnen</value></data>
   <data name="Common.Export"><value>Ausfuhren</value></data>
+  <data name="Common.Pause"><value>Pause</value></data>
 </root>

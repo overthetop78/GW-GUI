@@ -62,4 +62,7 @@
   <data name="Tool.Field.AlignFormat"><value>Afkodningsformat</value></data>
   <data name="Tool.Field.AlignRaw"><value>Læs rå flux (--raw)</value></data>
   <data name="Tool.ControllerFallback"><value>Kontrollør</value></data>
+  <data name="Tool.Field.Cylinder"><value>Cylinder</value></data>
+  <data name="Tool.Field.Motor"><value>Motor (ms)</value></data>
+  <data name="Tool.Title.Update"><value>Firmware</value></data>
 </root>

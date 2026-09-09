@@ -77,4 +77,5 @@
   <data name="Visual.FormatDetected"><value>Εντοπίστηκε μορφή</value></data>
   <data name="Visual.AverageRpm"><value>Μέση RPM</value></data>
   <data name="Visual.AverageDuration"><value>Μέση διάρκεια</value></data>
+  <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>
 </root>

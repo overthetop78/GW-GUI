@@ -820,4 +820,21 @@
   
   <data name="Emulation.Firmware.Rom.Basic"><value>ROM BASIC</value></data>
   <data name="Emulation.Firmware.Rom.Xegs"><value>ROM XEGS</value></data>
+  <data name="Emulation.Core.Install"><value>Cài đặt</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>Đã cài đặt</value></data>
+  <data name="Emulation.Memory.Chip"><value>Chip RAM</value></data>
+  <data name="Emulation.Video.Sampling"><value>Sampling</value></data>
+  <data name="Emulation.Video.Sampling.Bicubic"><value>Bicubic</value></data>
+  <data name="Emulation.Video.Parameter.CrtVignette"><value>Vignette</value></data>
+  <data name="Emulation.Video.Plasma.Group.Phosphors"><value>Phosphors</value></data>
+  <data name="Emulation.Video.Vfd.Color.Amber"><value>Amber</value></data>
+  <data name="Emulation.Video.Parameter.VfdHaloIntensity"><value>VFD halo</value></data>
+  <data name="Emulation.Video.LedMatrix.Color.Amber"><value>Amber</value></data>
+  <data name="Emulation.Video.DotMatrix.Palette.Amber"><value>Amber</value></data>
+  <data name="Emulation.Video.SegmentDisplay.Color.Amber"><value>Amber</value></data>
+  <data name="Emulation.Video.Parameter.Sepia"><value>Sepia</value></data>
+  <data name="Emulation.Video.Parameter.CrtTrapezoid"><value>Trapezoid</value></data>
+  <data name="Emulation.Video.Renderer.Wpf"><value>WPF</value></data>
+  <data name="Emulation.Hdd.Prepare.AmigaRdbOfs"><value>RDB + OFS (Amiga)</value></data>
+  <data name="Emulation.Hdd.Prepare.AmigaRdbFfs"><value>RDB + FFS (Amiga)</value></data>
 </root>

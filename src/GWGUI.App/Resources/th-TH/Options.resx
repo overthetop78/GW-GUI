@@ -222,8 +222,25 @@
   <data name="Updates.ModuleDirectoryReady"><value>โหลดไดเรกทอรีอย่างเป็นทางการเพื่อดูมอดูลที่มีอยู่สําหรับการติดตั้ง</value></data>
   <data name="Updates.ModuleDirectorySearching"><value>กําลังโหลดไดเร็กทอรีของมอดูล...</value></data>
   <data name="Updates.ModuleDirectoryEmpty"><value>ไม่มีมอดูลที่เข้ากันได้ในปัจจุบัน</value></data>
-  <data name="Updates.ModuleDirectoryResults"><value>{0} มอดูล (s) ที่มีอยู่</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} โมดูลในแคตตาล็อกอย่างเป็นทางการ</value></data>
   <data name="Updates.ModuleDirectoryFailed"><value>ไม่สามารถเรียกใช้ไดเร็กทอรีของมอดูลได้</value></data>
   <data name="Updates.ModuleNotInstalled"><value>ไม่ได้ติดตั้ง</value></data>
   <data name="Updates.ModuleAvailableVersion"><value>รุ่นที่มี: {0}</value></data>
+  <data name="Updates.ModuleDirectoryInstalledBadge"><value>ติดตั้ง</value></data>
+  <data name="Updates.ModulePackageExplanation"><value>ติดตั้งโมดูลเพิ่มเครื่องจักร GW GUI. แกนการรับและต้องการ เฟิร์มแวร์ จะจัดการแยกในตัวเลือกการจําลอง</value></data>
+  <data name="Updates.ModuleInstalledUpdatesTitle"><value>ปรับปรุงมอดูลที่ถูกติดตั้งแล้ว</value></data>
+  <data name="Updates.ModuleAdvancedInstallationTitle"><value>การติดตั้งขั้นสูง</value></data>
+  <data name="Options.PreferencesTitle"><value>ปรับแต่ง</value></data>
+  <data name="Options.EmulationTitle"><value>ปรับแต่งการจําลอง</value></data>
+  <data name="Updates.ModuleDirectoryTitle"><value>มอดูลที่มีอยู่</value></data>
+  <data name="Updates.NavigationApplicationSubtitle"><value>การปรับปรุงโปรแกรม</value></data>
+  <data name="Updates.NavigationDirectorySubtitle"><value>เรียกดูและติดตั้งโมดูล</value></data>
+  <data name="Updates.NavigationAdvancedSubtitle"><value>ZIP แฟ้มจัดเก็บหรือแคตตาล็อก URL</value></data>
+  <data name="Updates.ModuleDownloaded"><value>ดาวน์โหลดแล้ว</value></data>
+  <data name="Updates.FinishModuleInstallations"><value>การติดตั้งเสร็จสิ้น</value></data>
+  <data name="Updates.FinishModuleInstallationsHint"><value>GW GUI จะปิด และติดตั้งโมดูลที่ดาวน์โหลดมาแล้วทั้งหมด แล้วเริ่มการทํางานใหม่อีกครั้ง</value></data>
+  <data name="Updates.FinishModuleInstallationsConfirm"><value>ติดตั้งโมดูลที่ดาวน์โหลดมาทั้งหมดเสร็จแล้วหรือไม่? GW GUI จะปิดและเริ่มใหม่</value></data>
+  <data name="Options.EmulationModuleTitle"><value>{0} ตั้งค่าการจําลอง</value></data>
+  <data name="Updates.CloseWithPendingModulesConfirm"><value>ทําการติดตั้งโมดูลที่ดาวน์โหลดมาแล้วให้เสร็จก่อนปิดหรือไม่? เลือกไม่ เพื่อยกเลิกการดาวน์โหลดและปิด</value></data>
+  <data name="Updates.Application"><value>GW GUI</value></data>
 </root>

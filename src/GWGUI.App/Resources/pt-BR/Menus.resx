@@ -34,4 +34,7 @@
   <data name="Tab.Explorer"><value>Explorador de disco</value></data>
   <data name="Tab.Emulation"><value>Emulação</value></data>
   <data name="Menu.Firmware"><value>Firmware...</value></data>
+  <data name="Menu.Emulation"><value>Emulação</value></data>
+  <data name="Menu.EmulationPreferences"><value>Preferências de emulação...</value></data>
+  <data name="Menu.Hardware"><value>Hardware</value></data>
 </root>

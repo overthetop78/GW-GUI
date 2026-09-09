@@ -63,4 +63,6 @@
   <data name="Tool.Field.AlignReads"><value>Aantal lezingen</value></data>
   <data name="Tool.Field.AlignFormat"><value>Decoderingsformaat</value></data>
   <data name="Tool.Field.AlignRaw"><value>Ruwe flux lezen (--raw)</value></data>
+  <data name="Tool.Field.Motor"><value>Motor (ms)</value></data>
+  <data name="Tool.Title.Update"><value>Firmware</value></data>
 </root>

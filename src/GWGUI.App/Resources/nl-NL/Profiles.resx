@@ -27,4 +27,5 @@
   <data name="Profile.DuplicateName"><value>Een profiel op dit tabblad heeft deze naam al.</value></data>
   <data name="Profile.Replace"><value>Dit profiel bestaat al. Vervangen?</value></data>
   <data name="Profile.DeleteConfirm"><value>Profiel “{0}” verwijderen?</value></data>
+  <data name="Profiles.Tab"><value>Tab</value></data>
 </root>

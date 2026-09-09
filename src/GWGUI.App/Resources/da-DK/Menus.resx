@@ -34,4 +34,7 @@
   <data name="Tab.Explorer"><value>Diskstifinder</value></data>
   <data name="Tab.Emulation"><value>Emulering</value></data>
   <data name="Menu.Information"><value>Oplysninger</value></data>
+  <data name="Menu.Emulation"><value>Emulering</value></data>
+  <data name="Menu.EmulationPreferences"><value>Emulations præferencer...</value></data>
+  <data name="Menu.Hardware"><value>Hardware</value></data>
 </root>

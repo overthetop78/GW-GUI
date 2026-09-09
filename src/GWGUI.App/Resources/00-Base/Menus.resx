@@ -35,4 +35,6 @@
   <data name="Menu.Align"><value>Drive alignment…</value></data>
   <data name="Tab.Explorer"><value>Disk Explorer</value></data>
   <data name="Tab.Emulation"><value>Emulation</value></data>
+  <data name="Menu.Emulation"><value>Emulation</value></data>
+  <data name="Menu.EmulationPreferences"><value>Emulation preferences…</value></data>
 </root>

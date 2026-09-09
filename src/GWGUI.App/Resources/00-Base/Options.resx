@@ -246,8 +246,24 @@
   <data name="Updates.ModuleDirectoryReady"><value>Load the official directory to see the modules available for installation.</value></data>
   <data name="Updates.ModuleDirectorySearching"><value>Loading the module directory...</value></data>
   <data name="Updates.ModuleDirectoryEmpty"><value>No compatible module is currently available.</value></data>
-  <data name="Updates.ModuleDirectoryResults"><value>{0} module(s) available.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} modules in the official catalog.</value></data>
   <data name="Updates.ModuleDirectoryFailed"><value>Unable to load the module directory.</value></data>
   <data name="Updates.ModuleNotInstalled"><value>Not installed</value></data>
   <data name="Updates.ModuleAvailableVersion"><value>Available version: {0}</value></data>
+  <data name="Updates.ModuleDirectoryInstalledBadge"><value>Installed</value></data>
+  <data name="Updates.ModulePackageExplanation"><value>Installing a module adds its machines to GW GUI. Emulator cores and required firmware are managed separately in the Emulation options.</value></data>
+  <data name="Updates.ModuleInstalledUpdatesTitle"><value>Updates for installed modules</value></data>
+  <data name="Updates.ModuleAdvancedInstallationTitle"><value>Advanced installation</value></data>
+  <data name="Options.PreferencesTitle"><value>Preferences</value></data>
+  <data name="Options.EmulationTitle"><value>Emulation preferences</value></data>
+  <data name="Updates.ModuleDirectoryTitle"><value>Available modules</value></data>
+  <data name="Updates.NavigationApplicationSubtitle"><value>Application updates</value></data>
+  <data name="Updates.NavigationDirectorySubtitle"><value>Browse and install modules</value></data>
+  <data name="Updates.NavigationAdvancedSubtitle"><value>ZIP archive or catalog URL</value></data>
+  <data name="Updates.ModuleDownloaded"><value>Downloaded</value></data>
+  <data name="Updates.FinishModuleInstallations"><value>Finish installation</value></data>
+  <data name="Updates.FinishModuleInstallationsHint"><value>GW GUI will close, install all downloaded modules, and restart.</value></data>
+  <data name="Updates.FinishModuleInstallationsConfirm"><value>Finish installing all downloaded modules? GW GUI will close and restart.</value></data>
+  <data name="Updates.CloseWithPendingModulesConfirm"><value>Finish installing the downloaded modules before closing? Choose No to cancel the downloads and close.</value></data>
+  <data name="Options.EmulationModuleTitle"><value>{0} emulation settings</value></data>
 </root>

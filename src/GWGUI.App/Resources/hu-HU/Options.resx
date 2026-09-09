@@ -221,8 +221,26 @@
   <data name="Updates.ModuleDirectoryReady"><value>A hivatalos könyvtár betöltése a telepítési modulokhoz.</value></data>
   <data name="Updates.ModuleDirectorySearching"><value>A modul könyvtárának betöltése...</value></data>
   <data name="Updates.ModuleDirectoryEmpty"><value>Jelenleg nincs kompatibilis modul.</value></data>
-  <data name="Updates.ModuleDirectoryResults"><value>{0} elérhető modul (ok).</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} modulok a hivatalos katalógusban.</value></data>
   <data name="Updates.ModuleDirectoryFailed"><value>Nem sikerült betölteni a modulkönyvtárat.</value></data>
   <data name="Updates.ModuleNotInstalled"><value>Nem telepítve</value></data>
   <data name="Updates.ModuleAvailableVersion"><value>Elérhető változat: {0}</value></data>
+  <data name="Updates.ModuleDirectoryInstalledBadge"><value>Telepítve</value></data>
+  <data name="Updates.ModulePackageExplanation"><value>A modul telepítése a gépekhez GW GUI. Az Emulációs opciók az emulátor magokat és a szükséges firmware-t külön kezelik.</value></data>
+  <data name="Updates.ModuleInstalledUpdatesTitle"><value>A telepített modulok frissítése</value></data>
+  <data name="Updates.ModuleAdvancedInstallationTitle"><value>Speciális telepítés</value></data>
+  <data name="Options.PreferencesTitle"><value>Előirányzatok</value></data>
+  <data name="Options.EmulationTitle"><value>Emulációs preferenciák</value></data>
+  <data name="Updates.ModuleDirectoryTitle"><value>A rendelkezésre álló modulok</value></data>
+  <data name="Updates.NavigationApplicationSubtitle"><value>Alkalmazási frissítések</value></data>
+  <data name="Updates.NavigationDirectorySubtitle"><value>Modulok böngészése és telepítése</value></data>
+  <data name="Updates.NavigationAdvancedSubtitle"><value>ZIP archívum vagy katalógus URL</value></data>
+  <data name="Updates.ModuleDownloaded"><value>Letöltés</value></data>
+  <data name="Updates.FinishModuleInstallations"><value>Befejezés telepítése</value></data>
+  <data name="Updates.FinishModuleInstallationsHint"><value>GW GUI bezárja, telepíti az összes letöltött modulokat, és újraindul.</value></data>
+  <data name="Updates.FinishModuleInstallationsConfirm"><value>Befejezni az összes letöltött modul telepítését? GW GUI bezárul és újra indul.</value></data>
+  <data name="Options.EmulationModuleTitle"><value>{0} emuláció beállításai</value></data>
+  <data name="Updates.CloseWithPendingModulesConfirm"><value>Befejezni a letöltött modulok telepítését zárás előtt? Válassza a Nem-t a letöltések törléséhez és bezárásához.</value></data>
+  <data name="Controllers.StickDeadZone"><value>Sticks</value></data>
+  <data name="Updates.Application"><value>GW GUI</value></data>
 </root>

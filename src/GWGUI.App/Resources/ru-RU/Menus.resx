@@ -35,4 +35,6 @@
   <data name="Menu.Align"><value>Выравнивание привода…</value></data>
   <data name="Tab.Explorer"><value>Проводник диска</value></data>
   <data name="Tab.Emulation"><value>Эмуляция</value></data>
+  <data name="Menu.Emulation"><value>эмуляция</value></data>
+  <data name="Menu.EmulationPreferences"><value>Эмуляционные предпочтения...</value></data>
 </root>

@@ -62,4 +62,7 @@
   <data name="Tool.Field.AlignReads"><value>Antal läsningar</value></data>
   <data name="Tool.Field.AlignFormat"><value>Avkodningsformat</value></data>
   <data name="Tool.Field.AlignRaw"><value>Läs råflöde (--raw)</value></data>
+  <data name="Tool.Field.Cylinder"><value>Cylinder</value></data>
+  <data name="Tool.Field.Motor"><value>Motor (ms)</value></data>
+  <data name="Tool.Title.Update"><value>Firmware</value></data>
 </root>

@@ -17,4 +17,6 @@
   <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Adaptador paralelo de joystick de quatro jogadores</value></data>
   <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Todos os arquivos|*.*</value></data>
   <data name="Emulation.Amiga.Controller.Cd32"><value>Controlador CD32</value></data>
+  <data name="Emulation.Amiga.Chipset.Name"><value>Chipset</value></data>
+  <data name="Emulation.Amiga.Controller.Joystick"><value>Amiga joystick</value></data>
 </root>

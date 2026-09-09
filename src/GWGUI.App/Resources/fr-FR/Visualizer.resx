@@ -76,4 +76,6 @@
   <data name="Visual.AverageDuration"><value>Durée moyenne</value></data>
   <data name="Visual.BitOffset"><value>mors {0:N0}</value></data>
 <data name="Visual.Integrity.Checksum"><value>Sommes de contrôle</value></data>
+  <data name="Visual.StructuresLabel"><value>Structures</value></data>
+  <data name="Visual.TransitionsUnit"><value>transitions</value></data>
 </root>

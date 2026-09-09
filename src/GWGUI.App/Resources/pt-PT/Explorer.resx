@@ -56,4 +56,5 @@
   <data name="Explorer.DetectedFormats"><value>Detetado: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable"><value>As ferramentas da máquina não podem produzir uma imagem do setor expansível para {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>Ferramentas da máquina não foi possível decodificar a imagem como {0}.</value></data>
+  <data name="Explorer.Volume"><value>Volume</value></data>
 </root>

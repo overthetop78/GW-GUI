@@ -75,4 +75,8 @@
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Điều khiển</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Xanh lam/nâu 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Xanh lam/nâu 2</value></data>
+  <data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
+  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
+  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
+  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
 </root>

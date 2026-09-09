@@ -63,4 +63,6 @@
   <data name="Tool.Field.AlignFormat"><value>Formato de decodificação</value></data>
   <data name="Tool.Field.AlignRaw"><value>Leia o fluxo bruto (--raw)</value></data>
   <data name="Tools.Passes"><value>Passagens</value></data>
+  <data name="Tool.Field.Motor"><value>Motor (ms)</value></data>
+  <data name="Tool.Title.Update"><value>Firmware</value></data>
 </root>

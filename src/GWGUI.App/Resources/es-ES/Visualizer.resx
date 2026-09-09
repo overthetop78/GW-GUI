@@ -76,4 +76,6 @@
   <data name="Visual.AverageRpm"><value>RPM promedio</value></data>
   <data name="Visual.AverageDuration"><value>Duración media</value></data>
   <data name="Visual.BitOffset"><value>poco {0:N0}</value></data>
+  <data name="Visual.Inspector"><value>Inspector</value></data>
+  <data name="Visual.SectorDetail"><value>Sector C{0} H{1} R{2} · {3} bytes · {4} {5}</value></data>
 </root>

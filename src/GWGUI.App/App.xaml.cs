@@ -9,7 +9,10 @@ using GWGUI.App.Services.Storage;
 using GWGUI.App.Services.Theming;
 using GWGUI.App.Services.Updates;
 using GWGUI.App.Services.Windows;
-using GWGUI.App.Views.Windows.Options;
+using GWGUI.App.Views.Windows.Preferences;
+using GWGUI.App.Views.Windows.EmulationPreferences;
+using GWGUI.App.Views.Windows.EmulationModuleOptions;
+using GWGUI.App.Views.Windows.Updates;
 using GWGUI.App.Views.Windows.Shell;
 using System.Globalization;
 using System.IO;
@@ -156,7 +159,10 @@ public partial class App : Application
         foreach (var window in Windows)
         {
             if (window is MainWindow main) main.RefreshLocalizedContent();
-            else if (window is OptionsWindow options) options.RefreshLocalizedContent();
+            else if (window is PreferencesWindow preferences) preferences.RefreshLocalizedContent();
+            else if (window is EmulationPreferencesWindow emulationPreferences) emulationPreferences.RefreshLocalizedContent();
+            else if (window is EmulationModuleOptionsWindow moduleOptions) moduleOptions.RefreshLocalizedContent();
+            else if (window is UpdatesWindow updates) updates.RefreshLocalizedContent();
         }
     }
 

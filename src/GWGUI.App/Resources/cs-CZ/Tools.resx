@@ -63,4 +63,6 @@
   <data name="Tool.Field.AlignReads"><value>Počet přečtení</value></data>
   <data name="Tool.Field.AlignFormat"><value>Formát dekódování</value></data>
   <data name="Tool.Field.AlignRaw"><value>Číst nezpracovaný tok (--raw)</value></data>
+  <data name="Tool.Field.Motor"><value>Motor (ms)</value></data>
+  <data name="Tool.Title.Update"><value>Firmware</value></data>
 </root>

@@ -59,4 +59,5 @@
   <data name="Hardware.MaximumDrives"><value>Der kan højst tildeles to drev automatisk til denne Greaseweazle (A og B).</value></data>
   <data name="Hardware.Scan"><value>ScanName</value></data>
   <data name="Hardware.ScanTitle"><value>ScanName</value></data>
+  <data name="Hardware.Controller"><value>Greaseweazle controller</value></data>
 </root>

@@ -19,6 +19,7 @@ using GWGUI.App.Presenters.Conversion;
 using GWGUI.App.Services.Dialogs;
 using GWGUI.App.Services.DiskImages;
 using GWGUI.App.Services.Documentation;
+using GWGUI.App.Services.Emulation;
 using GWGUI.App.Services.Hardware;
 using GWGUI.App.Services.Logging;
 using GWGUI.App.Services.Maintenance;
@@ -28,6 +29,7 @@ using GWGUI.App.Services.Storage;
 using GWGUI.App.Services.Terminal;
 using GWGUI.App.Services.Visualization;
 using GWGUI.App.Services.Windows;
+using GWGUI.App.Services.Updates;
 using GWGUI.App.ViewModels.Main;
 using GWGUI.App.Views.Controls.Common;
 using GWGUI.App.Views.Controls.Conversion;
@@ -149,6 +151,7 @@ public partial class MainWindow : Window
     private readonly IFileDialogService _fileDialogs;
     private readonly IBusinessDialogService _businessDialogs;
     private readonly IWindowNavigationService _navigation;
+    private readonly PendingModuleInstallationStore _pendingModuleInstallations;
     private readonly ImageFormatWorkspace _formatWorkspace;
     private readonly DiskDefinitionsController _diskDefinitionsController;
     private readonly WindowPlacementController _windowPlacement = new();
@@ -206,7 +209,9 @@ public partial class MainWindow : Window
         _terminalPanel = new TerminalPanelController(TerminalBlock, ConsoleRow, ConsoleSplitter, _settings);
         _runner = runner ?? new GreaseweazleRunner();
         _hardwareRegistry = hardwareRegistry ?? new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), _runner, _commandBuilder);
-        _navigation = navigation ?? new WpfWindowNavigationService(this, _hostTools, _runner, _commandBuilder);
+        _pendingModuleInstallations = new PendingModuleInstallationStore();
+        _navigation = navigation ?? new WpfWindowNavigationService(this, _hostTools, _runner, _commandBuilder,
+            _pendingModuleInstallations);
         _viewModel = new MainWindowViewModel(LocExtension.Get("Hardware.NotConfigured"), LocExtension.Get("Status.ReadyShort"));
         _hostToolsUpdate = new HostToolsUpdateController(_hostTools, _settings, _viewModel);
         _progress = new OperationProgressController(_viewModel, Face0TrackProgress, Face1TrackProgress,
@@ -376,18 +381,24 @@ public partial class MainWindow : Window
             _terminalPanel.SetVisibility, UpdateReadCommand, UpdateWriteCommand, UpdateConvertCommand,
             UpdateProfileStatus, CheckHostToolsUpdateAsync,
             CaptureWindowSettings, CaptureReadSettings, CaptureWriteSettings, CaptureProfiles,
-            CaptureConversionSettings, () => ((App)Application.Current).SetTheme(_settings.Theme));
+            CaptureConversionSettings, () => ((App)Application.Current).SetTheme(_settings.Theme),
+            _pendingModuleInstallations.Clear);
     }
 
     private void ConnectMainMenu()
     {
         ApplicationMenu.PreferencesRequested += Preferences_Click;
+        ApplicationMenu.UpdatesRequested += (_, _) => _navigation.ShowUpdates();
+        ApplicationMenu.EmulationPreferencesRequested += (_, _) => _navigation.ShowEmulationPreferences(_settings);
+        ApplicationMenu.EmulationModuleRequested += moduleId => _navigation.ShowEmulationModuleOptions(_settings, moduleId);
         ApplicationMenu.LogHistoryRequested += (_, _) => _navigation.ShowLogHistory(_logsDirectory);
         ApplicationMenu.DocumentationRequested += Documentation_Click;
         ApplicationMenu.AboutRequested += (_, _) => _navigation.ShowAbout();
         ApplicationMenu.ToolRequested += (sender, verb) => ToolCommand_Click(sender, new RoutedEventArgs());
+        ApplicationMenu.SetEmulationModules(EmulationModuleRegistry.Modules);
 
         RegisterName("OptionsMenuItem", ApplicationMenu.OptionsMenuItem);
+        RegisterName("EmulationMenuItem", ApplicationMenu.EmulationMenuItem);
         RegisterName("HelpMenuItem", ApplicationMenu.HelpMenuItem);
         RegisterName("AlignMenuItem", ApplicationMenu.AlignMenuItem);
     }
@@ -691,6 +702,7 @@ public partial class MainWindow : Window
         UpdateToolCommand();
         if (!_operation.IsRunning) _operation.SetState("Status.ReadyShort", Color.FromRgb(136, 136, 136));
         ShowHostToolsUpdateIfNeeded();
+        ApplicationMenu.SetEmulationModules(EmulationModuleRegistry.Modules);
         EmulationBlock.RefreshLocalizedContent();
     }
 

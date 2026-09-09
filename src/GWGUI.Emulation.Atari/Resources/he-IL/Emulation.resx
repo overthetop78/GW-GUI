@@ -78,4 +78,5 @@
   <data name="Emulation.Atari.Controller.Joy2BPlus"><value>בקר Atari Joy 2B+</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>כחול/חום 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>כחול/חום 2</value></data>
+  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
 </root>

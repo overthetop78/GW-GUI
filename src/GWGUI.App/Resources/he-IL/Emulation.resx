@@ -836,4 +836,8 @@
   <data name="Emulation.Value.Default"><value>ברירת מחדל</value></data>
   <data name="Emulation.Firmware.Rom.Basic"><value>רום BASIC</value></data>
   <data name="Emulation.Firmware.Rom.Xegs"><value>רום XEGS</value></data>
+  <data name="Emulation.Core.Install"><value>התקן</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>התקנת</value></data>
+  <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>Rectangle</value></data>
+  <data name="Emulation.Video.Renderer.Wpf"><value>WPF</value></data>
 </root>

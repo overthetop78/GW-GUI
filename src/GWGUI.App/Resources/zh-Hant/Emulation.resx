@@ -836,6 +836,9 @@
   <data name="Emulation.Value.Gray"><value>灰色</value></data>
   
   
+  <data name="Emulation.Core.Install"><value>安装</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>已安装</value></data>
+  <data name="Emulation.Video.Renderer.Wpf"><value>WPF</value></data>
   <data name="Emulation.Firmware.Rom.Basic"><value>BASIC ROM</value></data>
   <data name="Emulation.Firmware.Rom.Xegs"><value>XEGS ROM</value></data>
 </root>

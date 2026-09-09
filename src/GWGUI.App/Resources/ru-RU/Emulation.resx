@@ -833,4 +833,8 @@
   
   <data name="Emulation.Firmware.Rom.Basic"><value>ПЗУ BASIC</value></data>
   <data name="Emulation.Firmware.Rom.Xegs"><value>ПЗУ XEGS</value></data>
+  <data name="Emulation.Core.Install"><value>устанавливать</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>установленный</value></data>
+  <data name="Emulation.Video.Technology.FixedPixel"><value>LCD / LED / OLED</value></data>
+  <data name="Emulation.Video.Renderer.Wpf"><value>WPF</value></data>
 </root>

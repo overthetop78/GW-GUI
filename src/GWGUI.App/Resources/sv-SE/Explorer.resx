@@ -56,4 +56,5 @@
   <data name="Explorer.ExternalEngineUnavailable"><value>Värdverktyg kan inte producera en utforskningsbar sektorsbild för {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>Värdverktyg kunde inte avkoda bilden som {0}.</value></data>
   <data name="Explorer.Type.Program"><value>Programprogram</value></data>
+  <data name="Explorer.Format"><value>Format</value></data>
 </root>

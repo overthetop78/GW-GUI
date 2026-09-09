@@ -59,4 +59,5 @@
   <data name="Hardware.ForgetLastConfirm"><value>Aceasta este ultima unitate configurată pentru acest Greaseweazle. Doriți să uitați atât unitatea, cât și Greaseweazle?</value></data>
   <data name="Hardware.SelectController"><value>Selectați mai întâi un rând care aparține Greaseweazle relevant.</value></data>
   <data name="Hardware.MaximumDrives"><value>Cel mult două unități pot fi alocate automat acestui Greaseweazle (A și B).</value></data>
+  <data name="Hardware.Port"><value>Port</value></data>
 </root>

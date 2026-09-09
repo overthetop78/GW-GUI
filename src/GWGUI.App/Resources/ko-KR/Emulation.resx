@@ -836,6 +836,9 @@
   <data name="Emulation.Value.Gray"><value>회색</value></data>
   
   
+  <data name="Emulation.Core.Install"><value>설치하기</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>설치</value></data>
+  <data name="Emulation.Video.Renderer.Wpf"><value>WPF</value></data>
   <data name="Emulation.Firmware.Rom.Basic"><value>BASIC ROM</value></data>
   <data name="Emulation.Firmware.Rom.Xegs"><value>XEGS ROM</value></data>
 </root>

@@ -54,4 +54,7 @@
   <data name="Explorer.DetectedFormats"><value>Wykryto: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable"><value>Narzędzia Host nie mogą stworzyć wyjasnionego obrazu sektorowego dla {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>Narzędzia hosta nie mogły odkodować obrazu jako {0}.</value></data>
+  <data name="Explorer.Format"><value>Format</value></data>
+  <data name="Explorer.Type.Program"><value>Program</value></data>
+  <data name="Explorer.System"><value>System</value></data>
 </root>

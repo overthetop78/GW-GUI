@@ -64,4 +64,5 @@
   <data name="Tool.Field.AlignReads"><value>Número de lecturas</value></data>
   <data name="Tool.Field.AlignFormat"><value>Formato de decodificación</value></data>
   <data name="Tool.Field.AlignRaw"><value>Leer flujo bruto (--raw)</value></data>
+  <data name="Tool.Field.Motor"><value>Motor (ms)</value></data>
 </root>

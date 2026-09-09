@@ -222,8 +222,25 @@
   <data name="Updates.ModuleDirectoryReady"><value>לטעון את המנהל הרשמי כדי לראות את המודולים הזמינים עבור ההתקנה.</value></data>
   <data name="Updates.ModuleDirectorySearching"><value>לטעון את מנהל המודול ...</value></data>
   <data name="Updates.ModuleDirectoryEmpty"><value>אין מודול מתאים זמין כרגע.</value></data>
-  <data name="Updates.ModuleDirectoryResults"><value>{0} מודול (s) זמין.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} מודולים בקטלוג הרשמי.</value></data>
   <data name="Updates.ModuleDirectoryFailed"><value>לא ניתן לטעון את מנהל המודול.</value></data>
   <data name="Updates.ModuleNotInstalled"><value>לא מותקנת</value></data>
   <data name="Updates.ModuleAvailableVersion"><value>גירסה זמינה: {0}</value></data>
+  <data name="Updates.ModuleDirectoryInstalledBadge"><value>התקנת</value></data>
+  <data name="Updates.ModulePackageExplanation"><value>התקנת מודול מוסיפה את המכונות שלה GW GUI. ליבות אדמולטור וקושחה הנדרשת מנוהלות בנפרד באפשרויות ה- Emulation.</value></data>
+  <data name="Updates.ModuleInstalledUpdatesTitle"><value>עדכונים למודולים מותקנים</value></data>
+  <data name="Updates.ModuleAdvancedInstallationTitle"><value>ההתקנה מתקדמת</value></data>
+  <data name="Options.PreferencesTitle"><value>העדפות</value></data>
+  <data name="Options.EmulationTitle"><value>העדפות</value></data>
+  <data name="Updates.ModuleDirectoryTitle"><value>מודולים זמינים</value></data>
+  <data name="Updates.NavigationApplicationSubtitle"><value>עדכוני יישומים</value></data>
+  <data name="Updates.NavigationDirectorySubtitle"><value>Browse ו- Installמודולים</value></data>
+  <data name="Updates.NavigationAdvancedSubtitle"><value>ZIP ארכיון או קטלוג URL</value></data>
+  <data name="Updates.ModuleDownloaded"><value>הורד</value></data>
+  <data name="Updates.FinishModuleInstallations"><value>סיום ההתקנה</value></data>
+  <data name="Updates.FinishModuleInstallationsHint"><value>GW GUI קרוב, להתקין את כל המודולים המוסיפים, ויתחדש מחדש.</value></data>
+  <data name="Updates.FinishModuleInstallationsConfirm"><value>להתקין את כל המודולים המוסיפים? GW GUI זה ייסגר ויחדש מחדש.</value></data>
+  <data name="Options.EmulationModuleTitle"><value>{0} הגדרות חיקוי</value></data>
+  <data name="Updates.CloseWithPendingModulesConfirm"><value>סיים להתקין את המודולים שהורדו לפני הסגירה? בחר לא לבטל את ההורדה והסגורה.</value></data>
+  <data name="Updates.Application"><value>GW GUI</value></data>
 </root>

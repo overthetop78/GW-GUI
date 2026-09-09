@@ -55,4 +55,6 @@
   <data name="Explorer.ExternalEngineUnavailable"><value>Gli strumenti host non possono produrre un'immagine di settore esplorabile per {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>Strumenti host non potrebbero decodificare l'immagine come {0}.</value></data>
   <data name="Explorer.FileSystem"><value>Sistema file</value></data>
+  <data name="Explorer.Volume"><value>Volume</value></data>
+  <data name="Explorer.File"><value>File</value></data>
 </root>

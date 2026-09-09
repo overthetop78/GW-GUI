@@ -27,4 +27,5 @@
   <data name="Profile.Replace"><value>Denne profil findes allerede. Vil du udskifte det?</value></data>
   <data name="Profile.DeleteConfirm"><value>Slet profil "{0}"?</value></data>
   <data name="Profiles.Tab"><value>Faneblad</value></data>
+  <data name="Profiles.System"><value>System</value></data>
 </root>

@@ -815,4 +815,22 @@
   
   <data name="Emulation.Firmware.Rom.Basic"><value>BASIC-ROM</value></data>
   <data name="Emulation.Firmware.Rom.Xegs"><value>XEGS-ROM</value></data>
+  <data name="Emulation.Core.Install"><value>Asenna</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>Asennetut</value></data>
+  <data name="Emulation.Tab.Video"><value>Video</value></data>
+  <data name="Emulation.Memory.Chip"><value>Chip RAM</value></data>
+  <data name="Emulation.Video.Gamma"><value>Gamma</value></data>
+  <data name="Emulation.Video.Collision.Playfields"><value>Playfields</value></data>
+  <data name="Emulation.Video.Technology.FixedPixel"><value>LCD / LED / OLED</value></data>
+  <data name="Emulation.Video.Technology.Plasma"><value>Plasma</value></data>
+  <data name="Emulation.Video.Sampling.Bicubic"><value>Bicubic</value></data>
+  <data name="Emulation.Video.Parameter.Gamma"><value>Gamma</value></data>
+  <data name="Emulation.Video.Parameter.CrtVignette"><value>Vignette</value></data>
+  <data name="Emulation.Video.Preset.Plasma"><value>Plasma</value></data>
+  <data name="Emulation.Video.Parameter.DotMatrixPersistence"><value>Afterglow duration (ms)</value></data>
+  <data name="Emulation.Video.Parameter.Sepia"><value>Sepia</value></data>
+  <data name="Emulation.Video.Parameter.SegmentDisplayColon"><value>Colon</value></data>
+  <data name="Emulation.Video.Renderer.Wpf"><value>WPF</value></data>
+  <data name="Emulation.Hdd.Prepare.AmigaRdbOfs"><value>RDB + OFS (Amiga)</value></data>
+  <data name="Emulation.Hdd.Prepare.AmigaRdbFfs"><value>RDB + FFS (Amiga)</value></data>
 </root>

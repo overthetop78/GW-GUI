@@ -37,6 +37,11 @@ Amiga, Atari et les futurs modules enregistrés. Une archive ZIP ou l’URL HTTP
 reste utilisable pour un module tiers. Chaque module conserve sa propre version et sa propre adresse
 de mise à jour ; une mise à jour de GW GUI préserve les modules déjà installés.
 
+Le paquet d’un module installe son code, son manifeste et ses ressources d’interface. Il ne contient
+pas les cœurs Libretro et ne fournit pas les firmwares protégés des machines. Après l’installation du
+module, les cœurs compatibles se téléchargent dans **Options > Émulation** ; les ROM et firmwares
+nécessaires restent à fournir par l’utilisateur.
+
 Le [wiki utilisateur](https://github.com/overthetop78/GW-GUI/wiki) propose un choix parmi 29 langues. Le menu d’aide ouvre directement le guide dans la langue de l’application. Cette aide est uniquement en ligne ; les guides sont progressivement enrichis et révisés.
 
 ## Compiler le projet avec build.ps1

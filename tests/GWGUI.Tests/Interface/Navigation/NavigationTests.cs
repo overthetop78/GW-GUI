@@ -19,6 +19,8 @@ public sealed class NavigationTests(StaExecutionScenarios sta)
 
     [Theory]
     [InlineData("preferences")]
+    [InlineData("updates")]
+    [InlineData("emulation")]
     [InlineData("history")]
     [InlineData("about")]
     public Task Main_window_routes_dialog_requests_once(string request) =>
@@ -28,6 +30,9 @@ public sealed class NavigationTests(StaExecutionScenarios sta)
     [InlineData("preferences", true)]
     [InlineData("preferences", false)]
     [InlineData("preferences", null)]
+    [InlineData("updates", null)]
+    [InlineData("emulation", null)]
+    [InlineData("emulation-module", null)]
     [InlineData("history", null)]
     [InlineData("about", null)]
     [InlineData("tool", null)]
@@ -67,8 +72,15 @@ public sealed class NavigationTests(StaExecutionScenarios sta)
     public Task Path_section_binds_location_and_accessible_name_and_exposes_browse() =>
         sta.Run(ControlContractScenarios.PathControls);
 
+    [Fact]
+    public Task Updates_footer_replaces_close_while_a_downloaded_module_waits_for_installation() =>
+        sta.Run(ControlContractScenarios.UpdatesFooterReflectsPendingModuleInstallation);
+
     [Theory]
     [InlineData("preferences")]
+    [InlineData("updates")]
+    [InlineData("emulation")]
+    [InlineData("emulation-module")]
     [InlineData("history")]
     [InlineData("about")]
     [InlineData("tool")]
@@ -77,6 +89,8 @@ public sealed class NavigationTests(StaExecutionScenarios sta)
 
     [Theory]
     [InlineData("preferences")]
+    [InlineData("updates")]
+    [InlineData("emulation")]
     [InlineData("history")]
     [InlineData("documentation")]
     [InlineData("about")]

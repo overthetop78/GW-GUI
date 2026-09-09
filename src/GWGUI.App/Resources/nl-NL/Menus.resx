@@ -34,4 +34,7 @@
   <data name="Tab.Explorer"><value>Schijfverkenner</value></data>
   <data name="Tab.Emulation"><value>Emulatie</value></data>
   <data name="Menu.Firmware"><value>Firmware...</value></data>
+  <data name="Menu.Emulation"><value>Emulatie</value></data>
+  <data name="Menu.EmulationPreferences"><value>Emulatie voorkeuren...</value></data>
+  <data name="Menu.Hardware"><value>Hardware</value></data>
 </root>

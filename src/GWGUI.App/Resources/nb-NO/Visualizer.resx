@@ -75,4 +75,7 @@
   <data name="Visual.AverageRpm"><value>Gjennomsnittlig RPM</value></data>
   <data name="Visual.AverageDuration"><value>Gjennomsnittlig varighet</value></data>
   <data name="Visual.LinkZoom"><value>Lenke zoom</value></data>
+  <data name="Visual.BitOffset"><value>bit {0:N0}</value></data>
+  <data name="Visual.Side"><value>Side {0}</value></data>
+  <data name="Visual.SideLabel"><value>Side</value></data>
 </root>

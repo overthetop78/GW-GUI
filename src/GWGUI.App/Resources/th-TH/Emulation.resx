@@ -837,4 +837,8 @@
   
   <data name="Emulation.Firmware.Rom.Basic"><value>รอม BASIC</value></data>
   <data name="Emulation.Firmware.Rom.Xegs"><value>รอม XEGS</value></data>
+  <data name="Emulation.Core.Install"><value>ติดตั้ง</value></data>
+  <data name="Emulation.Core.InstalledBadge"><value>ติดตั้ง</value></data>
+  <data name="Emulation.Video.Technology.FixedPixel"><value>LCD / LED / OLED</value></data>
+  <data name="Emulation.Video.Renderer.Wpf"><value>WPF</value></data>
 </root>

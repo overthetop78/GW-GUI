@@ -29,4 +29,6 @@
   <data name="Common.New"><value>Ny</value></data>
   <data name="Common.Refresh"><value>Opdater</value></data>
   <data name="Common.OpenFolder"><value>Åbn mappe</value></data>
+  <data name="Common.Stop"><value>Stop</value></data>
+  <data name="Common.Pause"><value>Pause</value></data>
 </root>

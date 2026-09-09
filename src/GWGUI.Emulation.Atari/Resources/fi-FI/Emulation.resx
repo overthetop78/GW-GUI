@@ -72,4 +72,11 @@
   <data name="Emulation.Atari.Audio.PokeyStereo"><value>Stereot POKEY</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Sininen/ruskea 1</value></data>
   <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Sininen/ruskea 2</value></data>
+  <data name="Emulation.Atari.Controller.Joystick"><value>Atari joystick</value></data>
+  <data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 Controller</value></data>
+  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line Joystick</value></data>
+  <data name="Emulation.Atari.Controller.Lynx"><value>Atari Lynx</value></data>
+  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar Controller</value></data>
+  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari Booster Grip</value></data>
+  <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis Controller</value></data>
 </root>

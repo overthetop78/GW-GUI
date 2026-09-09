@@ -59,4 +59,5 @@
   <data name="Hardware.ForgetLastConfirm"><value>Dit is de laatst geconfigureerde schijf voor deze Greaseweazle. Wilt u zowel de schijf als de Greaseweazle vergeten?</value></data>
   <data name="Hardware.SelectController"><value>Selecteer eerst een rij die bij de relevante Greaseweazle hoort.</value></data>
   <data name="Hardware.MaximumDrives"><value>Aan deze Greaseweazle kunnen maximaal twee schijven automatisch worden toegewezen (A en B).</value></data>
+  <data name="Hardware.DriveLabel"><value>{0}-inch · {1} · {2} · {3}</value></data>
 </root>

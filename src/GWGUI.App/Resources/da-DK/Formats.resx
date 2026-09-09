@@ -31,4 +31,5 @@
   <data name="Classification.Automatic"><value>Automatisk registrering</value></data>
   <data name="Classification.Machine"><value>Computer</value></data>
 <data name="Classification.Protection"><value>Beskyttelse</value></data>
+  <data name="Classification.Format"><value>Format</value></data>
 </root>
