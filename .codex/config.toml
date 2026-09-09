@@ -24,4 +24,10 @@ Quand l’utilisateur demande une publication GitHub de GW GUI :
 3. Faire le commit du code à publier et des notes de version, puis les pousser sur main avant de lancer le script.
 4. Exécuter scripts/publish-release.cmd et répondre à ses invites : X pour Major, Y pour Minor, Z pour Revision.
 5. Choisir le type demandé par l’utilisateur : Latest pour une release stable, Pre-release pour une snapshot, Aucun label si demandé. Si le type manque, le demander.
+Quand l’utilisateur demande une publication GitHub indépendante d’un module d’émulation :
+
+1. Préparer .github/release-notes/modules/<id>/vX.Y.Z.md avec les changements propres au module. Ce fichier fournit le texte affiché sous le titre de sa release GitHub.
+2. Prendre X.Y.Z dans le champ moduleVersion du fichier src/GWGUI.Emulation.*/module.json comme numéro unique de publication du module. Employer le même identifiant et les mêmes chiffres dans les notes, le titre, le tag module-<id>-vX.Y.Z et les paquets.
+3. Faire le commit du code du module, de son manifeste et de ses notes de version, puis les pousser sur main avant de créer le tag.
+4. Créer le tag module-<id>-vX.Y.Z sur ce commit et le pousser pour déclencher .github/workflows/module-release.yml. Ne pas lancer auparavant le mode manuel de ce workflow, sauf demande explicite de l’utilisateur.
 '''

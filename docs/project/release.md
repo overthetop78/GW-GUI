@@ -72,16 +72,17 @@ Avant une publication réelle :
 
 1. modifier uniquement la version du manifeste du module concerné ;
 2. créer ses notes au chemin indiqué, avec les changements propres au module ;
-3. exécuter manuellement `module-release.yml`, saisir `<id>` et construire l'archive sans créer de
-   release ;
-4. vérifier l'archive `GW-GUI-Module-<id>-X.Y.Z-win-x64.zip` et son fichier `.sha256` ;
-5. commiter et pousser le manifeste, les changements et les notes ;
-6. créer puis pousser le tag correspondant exactement à la version du manifeste.
+3. commiter et pousser le manifeste, les changements et les notes ;
+4. créer puis pousser le tag correspondant exactement à la version du manifeste.
 
 Le workflow accepte tout tag `module-<id>-vX.Y.Z`, retrouve le projet par le manifeste et transmet
 le même identifiant au packaging et au catalogue. Le push du tag relance les tests, reconstruit le
 paquet, vérifie son empreinte et crée la release GitHub avec `--latest=false`. Un identifiant inconnu,
 une version de tag différente du manifeste ou des notes absentes interrompt la publication.
+
+Le déclenchement manuel de `module-release.yml` construit seulement un artefact sans publier de
+release. Il ne fait pas partie de la procédure de publication et ne doit être utilisé que lorsqu'un
+contrôle séparé est explicitement demandé.
 
 ## 6. Catalogue de mises à jour et updater distribués
 

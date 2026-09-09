@@ -1,0 +1,123 @@
+# Distribution entièrement indépendante des modules d’émulation — tâches
+
+- [ ] 1. Séparer complètement les versions et les sources de mises à jour
+  - [ ] 1.1 Faire porter sa source de mise à jour par chaque module
+    - [ ] 1.1.1 Étendre le manifeste commun
+      - [ ] Modifier `src/GWGUI.Emulation/Contracts/EmulationModuleManifest.cs` pour ajouter l’adresse HTTPS obligatoire `UpdateCatalogUrl` et augmenter la version du schéma de manifeste dans `src/GWGUI.Emulation/Constants/EmulationHostApi.cs`.
+      - [ ] Modifier `src/GWGUI.App/Services/Emulation/EmulationModuleManifestReader.cs` pour refuser une adresse absente, relative ou non HTTPS, tout en conservant les contrôles actuels d’identité, de version, d’API et de chemins.
+      - [ ] Modifier `scripts/emulation-modules.ps1` pour appliquer les mêmes règles à tous les manifestes découverts avant un build ou un paquetage.
+      - [ ] Modifier `src/GWGUI.Emulation.Amiga/module.json` et `src/GWGUI.Emulation.Atari/module.json` pour utiliser le nouveau schéma et déclarer chacun l’adresse stable de son propre catalogue de mises à jour.
+    - [ ] 1.1.2 Conserver le manifeste avec le module chargé
+      - [ ] Créer `src/GWGUI.App/Services/Emulation/LoadedEmulationModule.cs` pour associer l’instance `IEmulationModule`, son manifeste et son dossier d’installation.
+      - [ ] Modifier `src/GWGUI.App/Services/Emulation/EmulationModuleRegistry.cs` pour exposer les modules chargés avec leur manifeste sans ajouter de connaissance d’Amiga, d’Atari ou d’une autre famille.
+  - [ ] 1.2 Séparer le catalogue de GW GUI de ceux des modules
+    - [ ] 1.2.1 Réserver le catalogue de l’application à GW GUI
+      - [ ] Modifier `src/GWGUI.App/Constants/Updates/UpdateEndpoints.cs` pour pointer vers un catalogue stable contenant uniquement les versions de GW GUI.
+      - [ ] Modifier `scripts/build-update-catalog.ps1` pour produire soit un catalogue contenant uniquement l’application, soit un catalogue contenant uniquement le module demandé, sans mode `All` mélangeant les composants.
+      - [ ] Modifier `src/GWGUI.Updates/Services/UpdatePlanBuilder.cs` et `src/GWGUI.Updates/Contracts/UpdatePlan.cs` pour supprimer la recherche combinée dans un catalogue central et traiter séparément la version de l’application et les versions des modules installés.
+    - [ ] 1.2.2 Définir le catalogue propre à un module
+      - [ ] Modifier `src/GWGUI.Updates/Contracts/UpdateCatalog.cs` pour imposer qu’un catalogue de module identifie un seul module et fournisse ses versions, URL d’archive, URL de notes, empreintes SHA-256 et bornes d’API hôte.
+      - [ ] Créer `src/GWGUI.Updates/Services/ModuleUpdateCatalogValidator.cs` pour vérifier que l’identifiant du catalogue correspond au manifeste installé et que chaque version et chaque URL sont valides.
+
+- [ ] 2. Rechercher les mises à jour depuis chaque module installé
+  - [ ] 2.1 Limiter le service de mise à jour de l’application à GW GUI
+    - [ ] 2.1.1 Retirer les modules du parcours de l’application
+      - [ ] Modifier `src/GWGUI.App/Services/Updates/ApplicationUpdateService.cs` pour télécharger uniquement le catalogue de GW GUI, comparer uniquement sa version et préparer uniquement son paquet, tout en contrôlant les bornes d’API des modules déjà installés avant le remplacement.
+      - [ ] Modifier `src/GWGUI.App/Options/Controllers/UpdateOptionsController.cs` pour retirer les choix Application, Modules et Tout du même appel et conserver une commande distincte de recherche de mise à jour de GW GUI.
+      - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/OptionsUpdatesSection.xaml` et `OptionsUpdatesSection.xaml.cs` pour afficher séparément la version de GW GUI et les modules installés.
+  - [ ] 2.2 Ajouter le service générique de mise à jour des modules
+    - [ ] 2.2.1 Interroger chaque adresse déclarée
+      - [ ] Créer `src/GWGUI.App/Services/Updates/ModuleUpdateService.cs` pour parcourir les `LoadedEmulationModule`, télécharger chaque `UpdateCatalogUrl`, valider l’identité et sélectionner la dernière version compatible supérieure à `moduleVersion`.
+      - [ ] Modifier `src/GWGUI.App/Options/Controllers/UpdateOptionsController.cs` pour présenter une ligne par module installé, son état, les versions compatibles proposées et une action de mise à jour indépendante.
+      - [ ] Modifier `src/GWGUI.App/Services/Updates/ApplicationUpdateService.cs` ou extraire un service commun dans `src/GWGUI.App/Services/Updates/UpdatePackagePreparationService.cs` afin que GW GUI et les modules partagent le téléchargement annulable, le contrôle SHA-256, la validation d’archive et la préparation du plan sans partager leurs catalogues.
+    - [ ] 2.2.2 Remplacer le module après fermeture
+      - [ ] Modifier `src/GWGUI.Updates/Contracts/UpdateExecutionPlan.cs` pour distinguer clairement une mise à jour d’application, une installation initiale de module et le remplacement d’un module existant.
+      - [ ] Modifier `src/GWGUI.Updater/UpdateInstallationTransaction.cs` pour préserver intégralement `Modules` pendant une mise à jour de GW GUI et remplacer uniquement le dossier du module sélectionné pendant une mise à jour de module.
+      - [ ] Modifier `src/GWGUI.App/Services/Updates/UpdateStartupCoordinator.cs` et `src/GWGUI.Updater/UpdateStartupVerifier.cs` pour relancer GW GUI une seule fois après l’opération et conserver la restauration actuelle en cas d’échec.
+
+- [ ] 3. Installer un module absent sans catalogue général
+  - [ ] 3.1 Accepter une archive choisie par l’utilisateur
+    - [ ] 3.1.1 Préparer une installation depuis un fichier
+      - [ ] Créer `src/GWGUI.App/Services/Updates/ModuleInstallationService.cs` avec une méthode recevant une archive ZIP locale, la validant avec `UpdateArchiveValidator`, refusant un identifiant déjà installé sans action de mise à jour explicite et préparant une installation dans `Modules/<id>` par l’updater.
+      - [ ] Modifier `src/GWGUI.Updates/Services/UpdateArchiveValidator.cs` pour retourner le manifeste validé du module et vérifier que la racine de l’archive est exactement `Modules/<id>` sans chemin externe ni lien de réanalyse.
+      - [ ] Modifier `src/GWGUI.Updater/UpdateInstallationTransaction.cs` pour créer le dossier d’un module absent, le retirer lors d’une restauration et ne modifier aucun autre module.
+  - [ ] 3.2 Accepter l’adresse du catalogue donnée par l’utilisateur
+    - [ ] 3.2.1 Préparer une installation depuis une URL
+      - [ ] Ajouter dans `src/GWGUI.App/Services/Updates/ModuleInstallationService.cs` une méthode recevant une URL HTTPS de catalogue, choisissant sa dernière version compatible, téléchargeant l’archive indiquée et contrôlant son SHA-256 avant extraction.
+      - [ ] Refuser dans `ModuleInstallationService.cs` les dépôts ou pages GitHub ordinaires et accepter uniquement une URL directe vers le catalogue machine lisible, afin de ne dépendre d’aucune API d’hébergeur.
+      - [ ] Vérifier dans `ModuleInstallationService.cs` que le `UpdateCatalogUrl` du manifeste installé correspond à l’adresse utilisée pour l’installation avant de préparer le remplacement.
+  - [ ] 3.3 Raccorder l’installation à l’interface
+    - [ ] 3.3.1 Ajouter les deux actions d’installation
+      - [ ] Modifier `src/GWGUI.App/Views/Controls/Options/OptionsUpdatesSection.xaml` et `OptionsUpdatesSection.xaml.cs` pour ajouter « Installer depuis un fichier » avec le sélecteur ZIP et « Installer depuis une URL » avec la saisie de l’adresse du catalogue.
+      - [ ] Modifier `src/GWGUI.App/Options/Controllers/UpdateOptionsController.cs` pour appeler `ModuleInstallationService`, afficher le module et la version trouvés, demander la confirmation existante puis utiliser le parcours normal de fermeture et de redémarrage.
+      - [ ] Ajouter les libellés, explications, confirmations et erreurs dans `src/GWGUI.App/Resources/00-Base/Options.resx`, puis utiliser `scripts/translate-resx-argos.py` pour les produire dans toutes les cultures sans recopier les identifiants, versions, URL, formats ou noms de machines invariants.
+
+- [ ] 4. Distribuer GW GUI sans réembarquer les modules
+  - [ ] 4.1 Produire un paquet d’application vide de modules
+    - [ ] 4.1.1 Retirer les modules du paquetage complet
+      - [ ] Modifier `scripts/package.ps1` pour ne plus appeler `package-module.ps1`, ne plus extraire les archives de modules dans la publication et ne créer que les paquets de GW GUI, du lanceur et de l’updater.
+      - [ ] Modifier `.github/workflows/release.yml` pour générer le catalogue avec `-Scope Application`, ne plus téléverser d’archives de modules dans la release de GW GUI et publier uniquement le catalogue stable de l’application.
+      - [ ] Modifier `installer/GWGUI.iss` seulement si nécessaire pour qu’une nouvelle installation ne reçoive aucun dossier de module et qu’une mise à niveau conserve le dossier `Modules` déjà installé.
+      - [ ] Modifier `scripts/test-installer.ps1` et `scripts/test-installer-upgrade.ps1` pour vérifier respectivement l’absence de module dans une installation neuve et la conservation exacte des modules présents pendant une mise à niveau.
+  - [ ] 4.2 Garder les modules disponibles dans les builds de développement
+    - [ ] 4.2.1 Distinguer build local et paquet distribué
+      - [ ] Conserver dans `scripts/build.ps1` la construction automatique des projets `GWGUI.Emulation.*` pour les essais locaux et documenter que ce build de développement ne représente pas le contenu du paquet de GW GUI.
+      - [ ] Modifier `docs/project/scripts.md` pour distinguer explicitement la construction locale avec modules, le paquet d’application sans modules et `package-module.ps1` pour les archives indépendantes.
+
+- [ ] 5. Publier chaque module et son catalogue indépendamment
+  - [ ] 5.1 Produire un catalogue stable par identifiant de module
+    - [ ] 5.1.1 Adapter la fabrication du catalogue
+      - [ ] Modifier `scripts/build-update-catalog.ps1` pour recevoir le dépôt et le tag de publication du module sans propriétaire GitHub codé en dur, puis générer un catalogue ne contenant que ce module.
+      - [ ] Modifier `.github/workflows/module-release.yml` pour télécharger le catalogue existant du tag technique propre au module, publier l’archive et son SHA-256, puis remplacer uniquement l’actif de ce catalogue après une publication réussie.
+      - [ ] Corriger définitivement dans `.github/workflows/module-release.yml` le bloc PowerShell `Verify module archive and checksum` avant toute nouvelle exécution GitHub.
+  - [ ] 5.2 Préparer les modules officiels actuels
+    - [ ] 5.2.1 Donner une source indépendante à Amiga et Atari
+      - [ ] Créer `.github/release-notes/modules/amiga/v1.0.0.md` et `.github/release-notes/modules/atari/v1.0.0.md` avec les fonctions initiales propres à chaque module et le lien de comparaison approprié lorsqu’un tag précédent existe.
+      - [ ] Publier les catalogues Amiga et Atari aux adresses inscrites dans leurs manifestes, sans ajouter leurs adresses à une constante ou une liste dans GW GUI.
+  - [ ] 5.3 Rendre la méthode réutilisable hors du dépôt GW GUI
+    - [ ] 5.3.1 Fournir les fichiers de publication d’un module autonome
+      - [ ] Créer `sdk/module-template/GWGUI.Emulation.Module.csproj`, `sdk/module-template/module.json` et `sdk/module-template/ModuleFactory.cs` avec des valeurs factices clairement remplaçables et aucune référence à `GWGUI.App` ou à un module officiel.
+      - [ ] Créer `sdk/module-template/.github/workflows/release-module.yml` pour construire le projet du dépôt du module, publier son ZIP et son SHA-256, puis mettre à jour son propre catalogue à l’URL stable déclarée dans `module.json`.
+      - [ ] Modifier `docs/architecture/emulation-module-authoring.md` pour expliquer la création hors dépôt, l’installation initiale depuis le ZIP ou l’URL du catalogue et la publication des versions suivantes sans intervention dans GW GUI.
+
+- [ ] 6. Publier un SDK versionné pour les auteurs de modules
+  - [ ] 6.1 Transformer le contrat existant en paquet consommable
+    - [ ] 6.1.1 Préparer le paquet SDK
+      - [ ] Modifier `src/GWGUI.Emulation/GWGUI.Emulation.csproj` pour produire le paquet `GWGUI.Emulation.SDK`, conserver l’assembly `gwgui.emulation.dll`, générer la documentation XML et associer une version à l’API hôte publiée.
+      - [ ] Créer `docs/architecture/emulation-sdk-versioning.md` avec la correspondance entre version du paquet SDK, version d’API hôte, règles de compatibilité et procédure de changement de version.
+      - [ ] Modifier le projet modèle sous `sdk/module-template` pour utiliser `PackageReference` vers `GWGUI.Emulation.SDK` au lieu d’un chemin vers une DLL extraite de GW GUI.
+  - [ ] 6.2 Automatiser sa publication
+    - [ ] 6.2.1 Ajouter le workflow SDK
+      - [ ] Créer `.github/workflows/sdk-release.yml` pour tester et empaqueter `GWGUI.Emulation.SDK` depuis un tag `sdk-vX.Y.Z`, puis publier le paquet dans le registre NuGet choisi pour le projet.
+      - [ ] Ajouter dans les paramètres GitHub le secret limité nécessaire au registre retenu et documenter son nom dans `docs/project/release.md` sans inscrire sa valeur dans le dépôt.
+      - [ ] Ajouter dans `.codex/config.toml` la procédure de publication du SDK après validation du registre, du format de tag, des notes et du numéro de version.
+
+- [ ] 7. Gérer la transition des installations existantes
+  - [ ] 7.1 Déterminer si une version de transition est nécessaire
+    - [ ] 7.1.1 Examiner la dernière distribution publique
+      - [ ] Examiner l’archive et l’installateur de la dernière release publiée, puis inscrire dans `docs/tasks/emulation/independent-module-distribution-validation.md` si ses modules possèdent déjà `module.json` et une source de mise à jour.
+  - [ ] 7.2 Fournir une source aux modules déjà installés
+    - [ ] 7.2.1 Choisir le parcours selon le résultat précédent
+      - [ ] Si la dernière distribution contient des modules sans `UpdateCatalogUrl`, préparer et publier une unique version de transition de GW GUI qui installe leurs nouveaux manifestes avant d’activer le paquet d’application sans modules ; sinon, inscrire cette transition « Sans objet » dans le relevé.
+      - [ ] Modifier `ModuleUpdateService.cs` pour signaler clairement qu’un ancien module sans source doit être réinstallé depuis un fichier ou une URL, sans coder son identité ni son adresse dans GW GUI.
+
+- [ ] 8. Valider le fonctionnement sans conserver d’essais temporaires
+  - [ ] 8.1 Conserver les tests autonomes utiles
+    - [ ] 8.1.1 Vérifier les contrats et les choix sans fichiers externes
+      - [ ] Modifier `tests/GWGUI.Tests/Emulation/Modules/EmulationModuleManifestTests.cs` pour couvrir le nouveau schéma, les URL HTTPS valides et les adresses absentes ou invalides.
+      - [ ] Modifier `tests/GWGUI.Tests/Updates/UpdatePlanBuilderTests.cs` pour vérifier qu’un catalogue d’application ne propose aucun module, que chaque catalogue de module reste isolé et que les bornes d’API sont respectées.
+      - [ ] Ajouter des tests en mémoire de `ModuleUpdateCatalogValidator` et de la sélection de version, puis conserver ces tests avec le projet.
+  - [ ] 8.2 Exercer temporairement les installations et remplacements
+    - [ ] 8.2.1 Valider le système de fichiers contrôlé
+      - [ ] Créer des tests temporaires sous `tests/GWGUI.Tests/Updates` pour installer un module absent depuis un ZIP, le mettre à jour depuis un catalogue HTTP en mémoire, préserver les autres modules et restaurer après un échec.
+      - [ ] Exécuter ces tests uniquement dans `build/.independent-module-validation`, inscrire leurs résultats dans `docs/tasks/emulation/independent-module-distribution-validation.md`, puis supprimer les fichiers de tests temporaires et tout le dossier créé pour eux.
+  - [ ] 8.3 Vérifier les paquets et l’interface finale
+    - [ ] 8.3.1 Contrôler les résultats distribués
+      - [ ] Produire un paquet de GW GUI et vérifier qu’il ne contient ni `Modules`, ni manifeste, ni archive de module, puis supprimer le paquet créé uniquement pour ce contrôle après avoir inscrit le résultat.
+      - [ ] Produire séparément les paquets Amiga et Atari, vérifier leur manifeste, leur adresse de catalogue et leur absence du paquet GW GUI, puis supprimer les sorties créées uniquement pour ce contrôle après avoir inscrit le résultat.
+      - [ ] Exécuter l’audit Argos, puis produire le build Debug avec `scripts/build.ps1 -Configuration Debug` et vérifier `build/Debug/GW GUI/gwgui.exe`.
+      - [ ] Faire vérifier par l’utilisateur l’installation depuis un ZIP, l’installation depuis une URL, la mise à jour indépendante d’un module et la mise à jour de GW GUI conservant tous les modules.
+  - [ ] 8.4 Terminer la documentation
+    - [ ] 8.4.1 Aligner tous les documents concernés
+      - [ ] Modifier `docs/architecture/emulation-modules.md`, `docs/architecture/emulation-module-updates.md`, `docs/architecture/emulation-module-authoring.md`, `docs/project/release.md`, `docs/project/scripts.md` et `README.md` pour décrire uniquement l’application sans modules, l’installation explicite et les catalogues propres aux modules.
+      - [ ] Relire `docs/tasks/emulation/module-autonomy.md`, marquer « Sans objet » les anciennes actions remplacées par cette architecture et ajouter un lien vers cette feuille sans modifier l’historique des actions réellement terminées.

@@ -66,8 +66,8 @@ jobs:
         shell: pwsh
         run: |
           $checksum = "$env:MODULE_ARCHIVE.sha256"
-          if (-not (Test-Path -LiteralPath $env:MODULE_ARCHIVE -PathType Leaf)
-              -or -not (Test-Path -LiteralPath $checksum -PathType Leaf)) {
+          if (-not (Test-Path -LiteralPath $env:MODULE_ARCHIVE -PathType Leaf) -or
+              -not (Test-Path -LiteralPath $checksum -PathType Leaf)) {
             throw 'Module archive or checksum is missing.'
           }
           $expected = ((Get-Content -LiteralPath $checksum -Raw).Trim() -split '\s+')[0]
