@@ -1,0 +1,125 @@
+name: Build emulation module package
+
+on:
+  workflow_dispatch:
+    inputs:
+      module:
+        description: Official module to package
+        required: true
+        type: choice
+        options:
+          - amiga
+          - atari
+  push:
+    tags:
+      - module-amiga-v*
+      - module-atari-v*
+
+permissions:
+  contents: write
+
+concurrency:
+  group: component-catalog-publication
+  cancel-in-progress: false
+
+jobs:
+  package:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+      - name: Resolve module version
+        shell: pwsh
+        env:
+          REQUESTED_MODULE: ${{ inputs.module }}
+        run: |
+          if ("${{ github.event_name }}" -eq 'push') {
+            if ($env:GITHUB_REF_NAME -notmatch '^module-(amiga|atari)-v(\d+\.\d+\.\d+)$') {
+              throw "Unsupported module tag: $env:GITHUB_REF_NAME"
+            }
+            $module = $Matches[1]
+            $tagVersion = $Matches[2]
+          } else {
+            $module = $env:REQUESTED_MODULE
+            $tagVersion = $null
+          }
+          $definition = switch ($module) {
+            'amiga' { @{ Id = 'amiga'; Name = 'Amiga'; Manifest = 'src/GWGUI.Emulation.Amiga/module.json' } }
+            'atari' { @{ Id = 'atari'; Name = 'Atari'; Manifest = 'src/GWGUI.Emulation.Atari/module.json' } }
+            default { throw "Unsupported module: $module" }
+          }
+          $manifest = Get-Content -LiteralPath $definition.Manifest -Raw -Encoding UTF8 | ConvertFrom-Json
+          if ($manifest.id -ine $definition.Id -or $manifest.moduleVersion -notmatch '^\d+\.\d+\.\d+$') {
+            throw "Invalid module identity or version in $($definition.Manifest)."
+          }
+          if ($tagVersion -and $tagVersion -ne $manifest.moduleVersion) {
+            throw "Tag version $tagVersion does not match manifest version $($manifest.moduleVersion)."
+          }
+          "MODULE_ID=$($definition.Id)" >> $env:GITHUB_ENV
+          "MODULE_NAME=$($definition.Name)" >> $env:GITHUB_ENV
+          "MODULE_VERSION=$($manifest.moduleVersion)" >> $env:GITHUB_ENV
+          "MODULE_NOTES=.github/release-notes/modules/$($definition.Id)/v$($manifest.moduleVersion).md" >> $env:GITHUB_ENV
+          "MODULE_ARCHIVE=dist/GW-GUI-Module-$($definition.Id)-$($manifest.moduleVersion)-win-x64.zip" >> $env:GITHUB_ENV
+      - name: Run GW GUI tests
+        shell: pwsh
+        run: |
+          $env:DOTNET_CLI_UI_LANGUAGE = 'en-US'
+          dotnet test .\tests\GWGUI.Tests\GWGUI.Tests.csproj --configuration Release --logger "console;verbosity=normal"
+          if ($LASTEXITCODE -ne 0) { throw 'GW GUI tests failed.' }
+      - name: Build module archive
+        shell: pwsh
+        run: .\scripts\package-module.ps1 -Module $env:MODULE_NAME -Configuration Release
+      - name: Verify module archive and checksum
+        shell: pwsh
+        run: |
+          $checksum = "$env:MODULE_ARCHIVE.sha256"
+          if (-not (Test-Path -LiteralPath $env:MODULE_ARCHIVE -PathType Leaf)
+              -or -not (Test-Path -LiteralPath $checksum -PathType Leaf)) {
+            throw 'Module archive or checksum is missing.'
+          }
+          $expected = ((Get-Content -LiteralPath $checksum -Raw).Trim() -split '\s+')[0]
+          $actual = (Get-FileHash -LiteralPath $env:MODULE_ARCHIVE -Algorithm SHA256).Hash
+          if ($actual -ine $expected) { throw 'Module archive checksum verification failed.' }
+      - name: Download existing update catalog
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download component-catalog --pattern update-catalog.json --dir .\dist\existing-catalog
+          if ($LASTEXITCODE -ne 0) { Remove-Item -LiteralPath .\dist\existing-catalog -Recurse -Force -ErrorAction SilentlyContinue }
+      - name: Build and validate update catalog
+        shell: pwsh
+        run: .\scripts\build-update-catalog.ps1 -Scope Module -Module $env:MODULE_NAME -ExistingCatalog .\dist\existing-catalog\update-catalog.json
+      - uses: actions/upload-artifact@v6
+        with:
+          name: GW-GUI-Module-${{ env.MODULE_ID }}-${{ env.MODULE_VERSION }}-win-x64
+          path: |
+            ${{ env.MODULE_ARCHIVE }}
+            ${{ env.MODULE_ARCHIVE }}.sha256
+            dist/update-catalog.json
+          if-no-files-found: error
+      - name: Publish tagged module release
+        if: github.event_name == 'push'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if (-not (Test-Path -LiteralPath $env:MODULE_NOTES -PathType Leaf)) {
+            throw "Module release notes are missing: $env:MODULE_NOTES"
+          }
+          gh release create $env:GITHUB_REF_NAME $env:MODULE_ARCHIVE "$env:MODULE_ARCHIVE.sha256" --verify-tag --latest=false --title "GW GUI $env:MODULE_NAME module $env:MODULE_VERSION" --notes-file $env:MODULE_NOTES
+      - name: Publish validated update catalog
+        if: github.event_name == 'push'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view component-catalog
+          if ($LASTEXITCODE -ne 0) {
+            gh release create component-catalog --title 'GW GUI component catalog' --notes 'Machine-readable update catalog.' --latest=false
+          }
+          if ($LASTEXITCODE -ne 0) { throw 'Unable to create the component catalog release.' }
+          gh release upload component-catalog .\dist\update-catalog.json --clobber
+          if ($LASTEXITCODE -ne 0) { throw 'Unable to publish the component catalog.' }

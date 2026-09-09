@@ -14,20 +14,22 @@ C'est utile, faisable et pratique : chaque module peut avoir son dépôt, sa ver
 publications. GW GUI doit d'abord publier un petit SDK versionné contenant uniquement les contrats
 publics. Un module référencera ce SDK, jamais le projet principal.
 
-Avant de promettre cette indépendance, il faut stabiliser :
+Sont déjà réalisés dans le dépôt :
 
-- le paquet `GWGUI.Emulation.SDK` ;
 - l'évolution de l'API hôte (version initiale `1.0` et contrôle par manifeste en place) ;
-- le raccordement des textes propres au module (voir le mécanisme embarqué ci-dessous) ;
-- le format du paquet et ses dépendances privées ;
-- les tests exécutés contre chaque version de GW GUI prise en charge.
+- le raccordement des textes propres au module ;
+- le format du paquet, les dépendances privées isolées, les archives indépendantes et leur mise à jour.
+
+Restent différés avant de promettre cette indépendance à des projets tiers :
+
+- le paquet public versionné `GWGUI.Emulation.SDK` ;
+- la politique de compatibilité et les tests publiés contre chaque version de GW GUI prise en charge.
 
 ## Sous-dossier et manifeste
 
 Le manifeste obligatoire et le sous-dossier par famille sont en place pour Amiga et Atari.
 L'API actuelle et les bornes de ces deux modules valent `1.0`. Les DLL seules directement dans
-`Modules` ne sont plus chargées. Le futur paquet autonome complétera cette structure avec les
-dépendances privées :
+`Modules` ne sont plus chargées. Le paquet autonome accepte aussi les dépendances privées :
 
 ```text
 Modules/Commodore/
@@ -84,9 +86,8 @@ et dans la [feuille de tâches](../tasks/emulation/module-autonomy.md).
 Lorsqu'une clé existe à la fois dans le module et dans les ressources internes, la traduction du
 module est prioritaire. Cela permet de corriger ou renommer un champ dans une nouvelle version du
 module sans attendre une nouvelle version de GW GUI. Les ressources internes servent uniquement de
-repli pour les textes communs. Le mécanisme doit être validé sur Amiga et Atari avant la création
-d'un troisième module. Les catalogues embarqués remplacent la proposition de fichiers de langue
-externes par module.
+repli pour les textes communs. Le mécanisme est validé sur Amiga et Atari. Les catalogues embarqués
+remplacent la proposition de fichiers de langue externes par module.
 
 ## Sélection des modules officiels
 
@@ -98,18 +99,18 @@ sélection ne sera utile que si la réduction de la taille du paquet devient né
 
 ## `AssemblyLoadContext`
 
-Un contexte dédié permet à chaque module d'utiliser ses propres versions de dépendances sans conflit.
-Une variante « collectable » peut théoriquement décharger un module de la mémoire.
+Un contexte dédié permet déjà à chaque module d'utiliser ses propres versions de dépendances sans
+conflit. Une variante « collectable » pourrait décharger un module de la mémoire.
 
 Le remplacement à chaud est fragile : machines, événements, tâches et DLL natives doivent tous être
-libérés parfaitement. La décision retenue est donc de prévoir l'isolation des dépendances si elle
-devient nécessaire, mais de mettre à jour les modules uniquement après fermeture et redémarrage.
+libérés parfaitement. La décision retenue est donc de conserver l'isolation déjà réalisée, mais de
+mettre à jour les modules uniquement après fermeture et redémarrage.
 
 ## Mise à jour de l'application et des modules
 
-GW GUI doit pouvoir annoncer séparément les mises à jour disponibles pour l'application et pour
-chacun des modules installés. L'utilisateur sélectionne les mises à jour souhaitées, puis GW GUI
-ouvre une application de mise à jour dédiée.
+GW GUI annonce séparément les mises à jour disponibles pour l'application et pour chacun des modules
+installés. L'utilisateur sélectionne les mises à jour souhaitées, puis GW GUI ouvre l'application de
+mise à jour dédiée.
 
 Le flux retenu est :
 
@@ -117,14 +118,14 @@ Le flux retenu est :
 2. toutes les versions sélectionnées sont téléchargées, contrôlées et préparées ensemble ;
 3. GW GUI lance l'application de mise à jour avec le plan complet ;
 4. l'application de mise à jour demande à GW GUI de se fermer puis attend la fin réelle du processus ;
-5. elle sauvegarde les fichiers actuels et remplace l'application, le SDK et tous les modules concernés ;
+5. elle sauvegarde les fichiers actuels et remplace l'application et tous les modules concernés ;
 6. elle relance une seule fois la nouvelle version de GW GUI ;
-7. si le nouveau démarrage échoue, elle peut restaurer les fichiers sauvegardés.
+7. si le nouveau démarrage échoue, elle restaure les fichiers sauvegardés et relance la version précédente.
 
 L'application de mise à jour est un exécutable minimal distinct : elle ne charge aucun module et ne
 dépend pas des DLL qu'elle doit remplacer. Aucune mise à jour n'est appliquée pendant que GW GUI ou
 une machine émulée fonctionne. Plusieurs mises à jour sont toujours regroupées dans une seule
 fermeture et un seul redémarrage.
 
-Cette fonction n'est à réaliser qu'après le manifeste, la version d'API et la vérification du paquet.
-Sans ces trois éléments, une mise à jour indépendante serait inutilement fragile.
+Ce parcours, le catalogue commun, les contrôles d'archive et la restauration sont réalisés. Le
+remplacement sans redémarrage reste différé.

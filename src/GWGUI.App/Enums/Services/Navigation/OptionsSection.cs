@@ -1,3 +1,3 @@
 namespace GWGUI.App.Enums.Services.Navigation;
 
-public enum OptionsSection { General, Logs, HostTools, Hardware, Engines, Profiles, Emulation, Controllers }
+public enum OptionsSection { General, Logs, HostTools, Hardware, Engines, Profiles, Emulation, Controllers, Updates }

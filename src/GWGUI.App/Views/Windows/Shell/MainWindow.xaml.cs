@@ -524,7 +524,11 @@ public partial class MainWindow : Window
         };
     }
 
-    private async void Window_Loaded(object sender, RoutedEventArgs e) => await _lifecycle.LoadAsync();
+    private async void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+        await _lifecycle.LoadAsync();
+        await ((App)Application.Current).CompleteUpdateStartupAsync(this);
+    }
 
     private void MainTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {

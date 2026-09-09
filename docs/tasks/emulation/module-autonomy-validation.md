@@ -3,7 +3,7 @@
 ## Point 1 : traductions embarquées
 
 Validation effectuée le 8 septembre 2026 sur les modifications de la feuille
-`module-autonomy.md`. Le point 2 est relevé séparément ci-dessous ; les points 3 à 5 restent à réaliser.
+`module-autonomy.md`. Les validations suivantes sont relevées par point.
 
 - Audit Argos Amiga : réussi, 29 cultures, 1 catalogue, 406 entrées localisées.
 - Audit Argos Atari : réussi, 29 cultures, 1 catalogue, 1 989 entrées localisées.
@@ -76,3 +76,125 @@ Nettoyage effectué : suppression de `TemporaryModuleDiscoveryTests.cs` et du do
 `build/.module-manifest-validation`, avec ses DLL copiées, manifestes factices et données témoins.
 Le paquet Debug final ne contient aucun de ces fichiers. Seul le test autonome des manifestes
 est conservé pour ce point. Aucun commit ni push n'a été effectué pour ce chantier.
+
+## Point 3 : paquets indépendants et paquet complet
+
+Validation effectuée le 8 septembre 2026.
+
+- `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Debug` :
+  réussi. `build/Debug/GW GUI/gwgui.exe` est présent. Chaque dossier de module contient
+  `module.json`, sa DLL d'entrée, son PDB et son fichier `.deps.json`. Les contrats,
+  `gwgui.mediaengine` et DiscUtils restent uniquement dans les bibliothèques communes.
+- `scripts/package-module.ps1` a produit Amiga et Atari en Debug puis en Release. Les archives
+  Release finales `GW-GUI-Module-amiga-1.0.0-win-x64.zip` et
+  `GW-GUI-Module-atari-1.0.0-win-x64.zip` contiennent chacune uniquement
+  `Modules/<id>/module.json`, la DLL d'entrée et son `.deps.json`. Aucun PDB ni contrat partagé
+  n'est inclus. Les deux empreintes `.sha256` correspondent aux archives.
+- Une première vérification a trouvé les DLL `DiscUtils.*` dupliquées parce que leur nom de
+  fichier ne commence pas par `LTRData`. Le filtre du script a été corrigé et les deux
+  archives ont été reconstruites avant les résultats finaux ci-dessus.
+- `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/package.ps1 -Version 0.1.0
+  -Configuration Release` : réussi. Le portable, l'installateur, les deux archives de modules,
+  leurs empreintes et `SHA256SUMS.txt` sont produits dans `dist`. Le portable et la source de
+  l'installateur contiennent les deux dossiers de modules sans PDB.
+- Installation portable temporaire dans `dist/.module-validation` : le premier démarrage charge
+  Amiga et Atari. Application fermée, Amiga a été remplacé par le contenu exact de son archive
+  indépendante ; le redémarrage charge encore Amiga et Atari. Après retrait du dossier Atari,
+  Amiga reste chargé. Les dossiers `Data/Emulation/Machines/amiga/Configurations` et
+  `Data/Emulation/Machines/atari/Configurations` restent présents après le retrait du module.
+- Tests ciblés :
+  `dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj -c Debug --no-restore --filter
+  "FullyQualifiedName~EmulationModuleManifestTests|FullyQualifiedName~ModuleLocalizationTests"` :
+  32 réussites, aucun échec ni test ignoré. Les catalogues embarqués et leurs replis restent
+  couverts ; aucun nouveau test reposant sur une DLL externe n'est conservé.
+
+Le smoke test portable est donc effectué avec les deux modules, le remplacement d'un seul et
+le retrait de l'autre. L'installateur Release a été compilé avec succès par Inno Setup et son
+contenu inclut les deux dossiers de modules. Les smoke tests installateur anglais, français et
+upgrade ne sont pas exécutés : `test-installer.ps1` s'est arrêté avant toute installation car
+une installation GW GUI est déjà enregistrée sur le poste. Ils restent à exécuter sur un poste
+ou environnement sans cette inscription ; l'installation existante n'a pas été modifiée.
+
+Nettoyage du point 3 : `dist/.module-validation` et son extraction de remplacement ont été
+supprimés. Aucun dossier de smoke test installateur n'a été créé, puisque le contrôle s'est
+arrêté avant l'installation. Les répertoires de travail `.module-package-*` et
+`.application-publish` sont absents. Les archives, empreintes, paquet portable, source
+d'installateur et installateur compilé restent dans `dist` comme sorties du point 3.
+
+## Point 4 : catalogue et recherche des mises à jour
+
+Validation effectuée le 9 septembre 2026. `build-update-catalog.ps1` a généré un catalogue v1
+à partir du portable et des deux archives de modules déjà présents dans `dist`. Les trois
+empreintes ont été recalculées et comparées aux fichiers de contrôle avant l'écriture. Une
+seconde génération limitée au module Amiga, avec le premier catalogue en entrée, a conservé
+les composants `gwgui` et `atari` ainsi que leurs releases.
+
+Les six tests autonomes de `UpdatePlanBuilderTests` réussissent : module à jour, choix explicite
+d'une version compatible, API hôte trop ancienne, recherche Modules isolée, recherche
+Application isolée et plan Ensemble comprenant une application et un module compatibles.
+
+L'essai temporaire `TemporaryUpdateCatalogTests` réussit avec deux scénarios. Un client HTTP en
+mémoire fournit le catalogue sans accès réseau ; les commandes Application, Modules et Ensemble
+produisent respectivement une, une et deux lignes. La section WPF actualise aussi ses libellés
+entre `fr-FR` et `en-US`. Aucun paquet n'est téléchargé, aucun fichier installé n'est remplacé
+et aucun dossier de données utilisateur n'est utilisé par cet essai.
+
+Nettoyage du point 4 : `TemporaryUpdateCatalogTests.cs` a été supprimé. Il n'avait créé aucun
+catalogue sur disque ni aucune sortie dédiée. La DLL de tests a été reconstruite après ce retrait
+et les six tests autonomes de `UpdatePlanBuilderTests` réussissent encore, sans échec ni test ignoré.
+
+## Point 5 : application transactionnelle des mises à jour
+
+Validation effectuée le 9 septembre 2026 dans `build/.update-validation`, sans toucher à
+l'installation existante ni à ses données. Les dix scénarios temporaires réussissent ensemble :
+
+- une archive de module ayant la racine attendue est extraite, tandis qu'une remontée `..` est
+  refusée sans écrire hors de la destination ;
+- un module seul est remplacé, et une transaction Application + Amiga + Atari remplace uniquement
+  ces composants ;
+- l'application seule est remplacée hors `Data` et `Modules`, sans transformer une installation
+  en mode portable, puis l'état précédent est restauré en conservant les données ;
+- un PID encore actif produit le dépassement prévu, tandis qu'un PID déjà absent est accepté ;
+- la disparition du paquet préparé pendant le remplacement produit une restauration complète ;
+- l'annulation pendant la lecture HTTP interrompt la préparation et supprime le dossier de travail ;
+- une empreinte invalide arrête la préparation avant extraction et laisse l'installation intacte ;
+- une préparation valide écrit le plan, extrait le module et copie l'updater temporaire ;
+- les messages de résultat existent en français et en anglais ;
+- l'updater réellement exécuté sur une copie du build remplace l'application, relance le vrai
+  `gwgui.exe`, reçoit son signal après chargement et conserve le fichier témoin ainsi que `Data` ;
+- avec un nouveau `gwgui.exe` volontairement invalide, l'updater restaure l'exécutable précédent,
+  conserve `Data` et relance cette version restaurée une seule fois.
+
+Ce dernier essai a révélé avant le résultat final que l'exception directe de `Process.Start`
+n'entrait pas dans la branche de restauration. Le lancement est maintenant capturé comme un
+échec de démarrage ; le scénario corrigé et les dix scénarios groupés réussissent.
+
+`scripts/package.ps1 -Version 0.1.0 -Configuration Release -SkipInstaller` réussit après cette
+correction. Le portable final et `dist/publish/win-x64` contiennent
+`Updater/gwgui.updater.exe` et ses dépendances. L'exécutable est présent dans l'archive portable,
+son empreinte correspond à `SHA256SUMS.txt` et aucun dossier de staging du paquet ne subsiste.
+
+Nettoyage du point 5 : `TemporaryUpdaterTransactionTests.cs` et
+`TemporaryUpdateEndToEndTests.cs` ont été supprimés, ainsi que la référence de projet et
+`InternalsVisibleTo` ajoutés uniquement pour ces essais. `build/.update-validation` et le dossier
+relatif créé par la première invocation ont été supprimés après vérification de leur chemin.
+Aucun dossier `.update-validation` ou `.staging` ne subsiste.
+
+Après ce nettoyage, la DLL de tests a été reconstruite et les six tests en mémoire de
+`UpdatePlanBuilderTests` réussissent. L'audit RESX réussit avec 29 cultures, 22 catalogues et
+41 755 entrées localisées. Le build final exécuté par
+`powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Debug`
+réussit ; `build/Debug/GW GUI/gwgui.exe` et
+`build/Debug/GW GUI/Updater/gwgui.updater.exe` sont présents.
+
+Correction finale du catalogue : les sérialisations locales stable et snapshot contiennent trois
+composants et pointent toutes vers le tag qui porte effectivement leurs paquets, respectivement
+`v0.1.0` et `v0.1.0-snapshot`. Les fichiers de validation ont ensuite été supprimés. Le workflow
+stable et la publication sans label republient le catalogue ; la snapshot ne remplace pas le
+catalogue stable. Les workflows Application et Module utilisent le même groupe de concurrence
+pour sérialiser la modification de l'actif.
+
+La lecture de l'état installé ignore maintenant les dossiers de modules dont le manifeste a déjà
+été refusé par le registre ; ils ne bloquent donc pas la recherche des modules effectivement
+chargés. L'application compile sans avertissement et les six tests de plan réussissent après
+cette correction.

@@ -64,4 +64,8 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GWGUI.Updates\GWGUI.Updates.csproj" />
+  </ItemGroup>
+
 </Project>

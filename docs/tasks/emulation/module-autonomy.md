@@ -106,55 +106,70 @@ un résultat historique comme une validation nouvelle.
       - [x] Compléter `docs/tasks/emulation/module-autonomy-validation.md` après tests et essais temporaires : dossier absent/vide, Amiga seul, Atari seul, les deux, manifeste absent/invalide/incompatible, doublon, DLL invalide, factory en échec et module retiré avec données conservées ; inclure le routage des commandes de processus des moteurs.
       - [x] Supprimer les modules factices, scripts d'essai et fichiers produits uniquement pour cette validation, restaurer le paquet de travail et inscrire le nettoyage dans le relevé.
 
-- [ ] 3. Produire des paquets de modules indépendants et un paquet complet
-  - [ ] 3.1. Préparer les dépendances et leur résolution
-    - [ ] 3.1.1. Définir puis appliquer la frontière des bibliothèques
-      - [ ] Compléter `docs/architecture/emulation-modules.md` avec l'inventaire des dépendances produites par les projets Amiga et Atari, leur destination commune ou privée, les ressources embarquées et les fichiers nécessaires au lancement des processus ; distinguer binaires distribués et cœurs téléchargés par les services existants.
-      - [ ] Créer `src/GWGUI.App/Services/Emulation/EmulationModuleLoadContext.cs` pour résoudre les dépendances privées depuis le paquet et partager la bibliothèque de contrats avec App, sans déchargement à chaud ; raccorder ce contexte dans `EmulationModuleRegistry.cs`.
-      - [ ] Modifier `scripts/build.ps1` et, selon l'inventaire, `scripts/organize-application-output.ps1` pour copier les dépendances nécessaires sans déplacer les fichiers privés dans les bibliothèques communes ni dupliquer les contrats partagés.
-  - [ ] 3.2. Ajouter la fabrication et la publication par module
-    - [ ] 3.2.1. Fabriquer des archives vérifiables
-      - [ ] Créer `scripts/package-module.ps1` pour construire un module sélectionné, lire sa version dans son manifeste, vérifier les fichiers attendus et produire son archive et son empreinte dans `dist` ; ne pas remplacer les contrats installés avec GW GUI.
-      - [ ] Modifier `scripts/package.ps1` pour inclure les paquets officiels compatibles dans la distribution complète en réutilisant la fabrication des modules ; préserver le packaging portable et l'installateur existants.
-      - [ ] Modifier `.github/workflows/release.yml` pour joindre les archives de modules et leurs empreintes aux publications complètes, en conservant les contrôles existants et la version unique du produit.
-      - [ ] Créer `.github/workflows/module-release.yml` pour préparer une publication d'un seul module avec sa propre version, ses changements et ses contrôles ; documenter dans `docs/project/release.md` les noms de tags distincts et la procédure avant toute publication réelle.
-  - [ ] 3.3. Valider les paquets
-    - [ ] 3.3.1. Vérifier les distributions complètes et indépendantes
-      - [ ] Compléter `docs/tasks/emulation/module-autonomy-validation.md` après fabrication Debug et Release, contrôles des archives/empreintes et remplacement temporaire d'un seul module, application fermée ; vérifier le démarrage, les traductions, l'autre module et les configurations existantes.
-      - [ ] Compléter le relevé après exécution des contrôles existants pertinents de l'installateur et du portable ; distinguer les validations effectuées de celles encore attendues.
-      - [ ] Supprimer les scripts, fichiers et installations temporaires ajoutés pour ces essais, préserver les données préexistantes et noter le nettoyage.
+- [x] 3. Produire des paquets de modules indépendants et un paquet complet
+  - [x] 3.1. Préparer les dépendances et leur résolution
+    - [x] 3.1.1. Définir puis appliquer la frontière des bibliothèques
+      - [x] Compléter `docs/architecture/emulation-modules.md` avec l'inventaire des dépendances produites par les projets Amiga et Atari, leur destination commune ou privée, les ressources embarquées et les fichiers nécessaires au lancement des processus ; distinguer binaires distribués et cœurs téléchargés par les services existants.
+      - [x] Créer `src/GWGUI.App/Services/Emulation/EmulationModuleLoadContext.cs` pour résoudre les dépendances privées depuis le paquet et partager la bibliothèque de contrats avec App, sans déchargement à chaud ; raccorder ce contexte dans `EmulationModuleRegistry.cs`.
+      - [x] Modifier `scripts/build.ps1` et, selon l'inventaire, `scripts/organize-application-output.ps1` pour copier les dépendances nécessaires sans déplacer les fichiers privés dans les bibliothèques communes ni dupliquer les contrats partagés.
+  - [x] 3.2. Ajouter la fabrication et la publication par module
+    - [x] 3.2.1. Fabriquer des archives vérifiables
+      - [x] Créer `scripts/package-module.ps1` pour construire un module sélectionné, lire sa version dans son manifeste, vérifier les fichiers attendus et produire son archive et son empreinte dans `dist` ; ne pas remplacer les contrats installés avec GW GUI.
+      - [x] Modifier `scripts/package.ps1` pour inclure les paquets officiels compatibles dans la distribution complète en réutilisant la fabrication des modules ; préserver le packaging portable et l'installateur existants.
+      - [x] Modifier `.github/workflows/release.yml` pour joindre les archives de modules et leurs empreintes aux publications complètes, en conservant les contrôles existants et la version unique du produit.
+      - [x] Créer `.github/workflows/module-release.yml` pour préparer une publication d'un seul module avec sa propre version, ses changements et ses contrôles ; documenter dans `docs/project/release.md` les noms de tags distincts et la procédure avant toute publication réelle.
+  - [x] 3.3. Valider les paquets
+    - [x] 3.3.1. Vérifier les distributions complètes et indépendantes
+      - [x] Compléter `docs/tasks/emulation/module-autonomy-validation.md` après fabrication Debug et Release, contrôles des archives/empreintes et remplacement temporaire d'un seul module, application fermée ; vérifier le démarrage, les traductions, l'autre module et les configurations existantes.
+      - [x] Compléter le relevé après exécution des contrôles existants pertinents de l'installateur et du portable ; distinguer les validations effectuées de celles encore attendues.
+      - [x] Supprimer les scripts, fichiers et installations temporaires ajoutés pour ces essais, préserver les données préexistantes et noter le nettoyage.
 
-- [ ] 4. Préparer le catalogue et la recherche des mises à jour
-  - [ ] 4.1. Définir les informations de publication et la sélection
-    - [ ] 4.1.1. Formaliser le flux avant d'ajouter des commandes utilisateur
-      - [ ] Créer `docs/architecture/emulation-module-updates.md` avec le catalogue officiel commun : application et modules, identifiants, versions, compatibilité, URL des paquets, empreintes et notes ; y préciser les trois recherches application/modules/ensemble et le résultat pour un module exigeant une API plus récente.
-      - [ ] Compléter ce document après examen des commandes de mise à jour déjà présentes dans App et du workflow GitHub : inscrire les chemins exacts des points d'intégration, l'emplacement de publication du catalogue et la politique de sélection des versions. Demander les décisions utilisateur qui ne sont pas déjà établies, puis détailler les modifications dans cette feuille.
-  - [ ] 4.2. Construire la recherche et le plan commun
-    - [ ] 4.2.1. Ajouter les contrats et les services nécessaires
-      - [ ] Créer les fichiers de contrats de catalogue, de version disponible et de plan de mise à jour aux emplacements arrêtés en 4.1, après les avoir inscrits individuellement ici ; représenter les dépendances d'API sans imposer de mise à jour automatique.
-      - [ ] Créer `scripts/build-update-catalog.ps1` pour générer le catalogue depuis les métadonnées et empreintes des paquets ; adapter les deux workflows de publication pour préserver les entrées des composants non modifiés.
-      - [ ] Créer le service de recherche dans le chemin App arrêté en 4.1 : comparer les manifestes installés au catalogue, proposer les versions compatibles et signaler une mise à jour App nécessaire ; conserver les recherches de versions des cœurs existantes.
-      - [ ] Ajouter les commandes et résultats dans les fichiers d'interface identifiés en 4.1, avec sélection application/modules/ensemble et versions souhaitées ; ajouter toutes les nouvelles chaînes dans les ressources App de toutes les cultures avec Argos, en utilisant `00-Base` pour les invariants.
-  - [ ] 4.3. Valider la recherche sans appliquer de mise à jour
-    - [ ] 4.3.1. Vérifier les comparaisons et la sélection
-      - [ ] Ajouter des tests autonomes sur des catalogues en mémoire : module à jour, version compatible, API trop ancienne, recherche modules seuls et plan de plusieurs mises à jour ; inscrire leurs fichiers exacts dans cette feuille avant création.
-      - [ ] Compléter `docs/tasks/emulation/module-autonomy-validation.md` avec les résultats et un essai temporaire de récupération du catalogue et d'affichage multilingue, sans remplacer de fichiers installés.
-      - [ ] Supprimer les catalogues, scripts et fichiers de test temporaires et inscrire leur nettoyage dans le relevé.
+- [x] 4. Préparer le catalogue et la recherche des mises à jour
+  - [x] 4.1. Définir les informations de publication et la sélection
+    - [x] 4.1.1. Formaliser le flux avant d'ajouter des commandes utilisateur
+      - [x] Créer `docs/architecture/emulation-module-updates.md` avec le catalogue officiel commun : application et modules, identifiants, versions, compatibilité, URL des paquets, empreintes et notes ; y préciser les trois recherches application/modules/ensemble et le résultat pour un module exigeant une API plus récente.
+      - [x] Compléter ce document après examen des commandes de mise à jour déjà présentes dans App et du workflow GitHub : inscrire les chemins exacts des points d'intégration, l'emplacement de publication du catalogue et la politique de sélection des versions. Demander les décisions utilisateur qui ne sont pas déjà établies, puis détailler les modifications dans cette feuille.
+  - [x] 4.2. Construire la recherche et le plan commun
+    - [x] 4.2.1. Ajouter les contrats et les services nécessaires
+      - [x] Créer `src/GWGUI.Updates/GWGUI.Updates.csproj`, l'ajouter à `GWGUI.sln` et le référencer depuis `src/GWGUI.App/GWGUI.App.csproj` comme bibliothèque neutre partagée avec le futur updater.
+      - [x] Créer `src/GWGUI.Updates/Contracts/UpdateCatalog.cs` avec le catalogue, ses composants et leurs releases, puis `src/GWGUI.Updates/Contracts/UpdatePlan.cs` avec l'état installé, les mises à jour disponibles, le plan sélectionné et les résultats de compatibilité ; représenter les versions d'API sans imposer de mise à jour automatique.
+      - [x] Créer `src/GWGUI.Updates/Services/UpdatePlanBuilder.cs` pour valider le catalogue et construire les recherches Application, Modules et Ensemble avec sélection de version, y compris `ApplicationUpdateRequired`.
+      - [x] Créer `scripts/build-update-catalog.ps1` pour générer le catalogue depuis les manifestes, métadonnées et empreintes de `dist`, en conservant les releases des composants non modifiés ; modifier `.github/workflows/release.yml` et `.github/workflows/module-release.yml` pour récupérer puis republier l'actif `update-catalog.json` seulement après validation des paquets.
+      - [x] Créer `src/GWGUI.App/Services/Updates/ApplicationUpdateService.cs` pour récupérer et désérialiser le catalogue, construire l'état installé depuis la version App, l'API hôte et les manifestes chargés, puis appeler `UpdatePlanBuilder` sans modifier de fichier installé ; conserver les recherches des cœurs existantes.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/OptionsUpdatesSection.xaml`, son `.xaml.cs` et `src/GWGUI.App/Options/Controllers/UpdateOptionsController.cs` avec la portée, la commande de recherche, les résultats et le choix d'une version par composant, sans commande d'installation au point 4.
+      - [x] Modifier `src/GWGUI.App/Views/Windows/Options/OptionsWindow.xaml`, son `.xaml.cs` et `src/GWGUI.App/Enums/Services/Navigation/OptionsSection.cs` pour héberger et actualiser l'onglet Mises à jour ; ajouter les nouvelles clés dans `src/GWGUI.App/Resources/00-Base/Options.resx` et tous les `src/GWGUI.App/Resources/<culture>/Options.resx`, puis les traduire avec Argos sans dupliquer les invariants.
+  - [x] 4.3. Valider la recherche sans appliquer de mise à jour
+    - [x] 4.3.1. Vérifier les comparaisons et la sélection
+      - [x] Créer `tests/GWGUI.Tests/Updates/UpdatePlanBuilderTests.cs` avec des catalogues en mémoire : module à jour, version compatible, API trop ancienne, recherche Modules seule, recherche Application et plan Ensemble de plusieurs mises à jour ; conserver ces tests autonomes.
+      - [x] Créer puis exécuter `tests/GWGUI.Tests/Updates/TemporaryUpdateCatalogTests.cs` avec un client HTTP en mémoire et l'infrastructure WPF existante pour contrôler la récupération du catalogue, les trois commandes et l'affichage français/anglais, sans remplacer de fichier installé ; compléter `docs/tasks/emulation/module-autonomy-validation.md` avec les résultats.
+      - [x] Supprimer `tests/GWGUI.Tests/Updates/TemporaryUpdateCatalogTests.cs` et les catalogues ou sorties créés uniquement pour l'essai ; recompiler la DLL de tests, relancer les tests autonomes conservés et inscrire le nettoyage dans le relevé.
 
-- [ ] 5. Appliquer les mises à jour avec un exécutable dédié
-  - [ ] 5.1. Définir le protocole de préparation, fermeture et restauration
-    - [ ] 5.1.1. Décrire le fonctionnement complet avant le remplacement
-      - [ ] Compléter `docs/architecture/emulation-module-updates.md` à partir de `src/GWGUI.Launcher/Program.cs`, `LauncherPolicy.cs`, du démarrage/arrêt App et de `installer/GWGUI.iss` : chemins d'installation, droits, préparation, plan complet, attente de fermeture, sauvegarde, remplacement, relance unique et restauration ; préciser le signal de démarrage réussi avec l'utilisateur si nécessaire.
-      - [ ] Inscrire dans cette feuille les fichiers exacts du démarrage/arrêt App à modifier et les contrats du protocole ; résoudre toute décision non établie avant l'implémentation.
-  - [ ] 5.2. Construire et raccorder l'outil
-    - [ ] 5.2.1. Préparer tous les paquets avant la fermeture
-      - [ ] Ajouter au service App de 4.2 le téléchargement annulable, la vérification des empreintes et de la compatibilité de l'ensemble sélectionné, puis la préparation du plan dans un dossier temporaire ; ne lancer aucun remplacement si la préparation échoue.
-      - [ ] Créer `src/GWGUI.Updater/GWGUI.Updater.csproj` et `Program.cs`, puis ajouter le projet à `GWGUI.sln` : exécutable minimal ne chargeant aucun module et indépendant des DLL qu'il doit remplacer.
-      - [ ] Détailler puis créer les fichiers internes de l'updater pour lire le plan, demander la fermeture et attendre la fin effective de GW GUI et de ses machines, sauvegarder puis remplacer les seuls composants sélectionnés ; préserver les données utilisateur et restaurer après échec selon le protocole de 5.1.
-      - [ ] Modifier les fichiers App identifiés en 5.1 pour transmettre le plan à l'updater, fermer proprement les machines et l'application, puis signaler le résultat du nouveau démarrage ; traduire tous les nouveaux messages dans toutes les cultures avec Argos.
-      - [ ] Modifier `scripts/build.ps1`, `scripts/package.ps1` et les règles concernées de `installer/GWGUI.iss` pour distribuer l'updater ; traiter son propre remplacement uniquement selon le protocole documenté.
-  - [ ] 5.3. Valider le parcours complet et terminer la documentation
-    - [ ] 5.3.1. Exercer le remplacement dans une installation temporaire
-      - [ ] Compléter `docs/tasks/emulation/module-autonomy-validation.md` après essais temporaires : module seul, application seule, plusieurs composants avec une fermeture/relance, téléchargement interrompu, empreinte invalide, fermeture non terminée, remplacement en échec et restauration après démarrage échoué ; vérifier les données et les traductions.
-      - [ ] Supprimer les programmes, scénarios, paquets et installations temporaires créés pour ces essais après vérification de leurs chemins ; conserver uniquement les tests autonomes utiles et le relevé des résultats.
-      - [ ] Mettre à jour `docs/architecture/emulation-modules.md`, `docs/architecture/emulation-module-authoring.md`, `docs/architecture/emulation-module-updates.md`, `docs/project/release.md` et `docs/future/emulation-plugins.md` pour distinguer les fonctions réalisées des points toujours différés.
+- [x] 5. Appliquer les mises à jour avec un exécutable dédié
+  - [x] 5.1. Définir le protocole de préparation, fermeture et restauration
+    - [x] 5.1.1. Décrire le fonctionnement complet avant le remplacement
+      - [x] Compléter `docs/architecture/emulation-module-updates.md` à partir de `src/GWGUI.Launcher/Program.cs`, `LauncherPolicy.cs`, du démarrage/arrêt App et de `installer/GWGUI.iss` : chemins d'installation, droits, préparation, plan complet, attente de fermeture, sauvegarde, remplacement, relance unique et restauration ; préciser le signal de démarrage réussi avec l'utilisateur si nécessaire.
+      - [x] Inscrire dans cette feuille les fichiers exacts du démarrage/arrêt App à modifier et les contrats du protocole ; résoudre toute décision non établie avant l'implémentation.
+  - [x] 5.2. Construire et raccorder l'outil
+    - [x] 5.2.1. Préparer tous les paquets avant la fermeture
+      - [x] Créer `src/GWGUI.Updates/Contracts/UpdateExecutionPlan.cs` avec le plan sérialisé, les composants préparés, les PID, délais, chemins de signal/résultat et le résultat de transaction ; créer `src/GWGUI.Updates/Services/UpdateArchiveValidator.cs` pour valider les racines et chemins des archives application/module sans écrire dans l'installation.
+      - [x] Étendre `src/GWGUI.App/Services/Updates/ApplicationUpdateService.cs` avec le téléchargement annulable, le contrôle SHA-256, l'extraction validée, la revalidation de l'ensemble choisi et l'écriture atomique du plan dans `%TEMP%/GW GUI/Updates/<id>` ; copier `Updater` dans ce dossier et ne lancer aucun remplacement si la préparation échoue.
+      - [x] Créer `src/GWGUI.Updater/GWGUI.Updater.csproj` et `Program.cs`, l'ajouter à `GWGUI.sln`, puis créer `UpdatePlanReader.cs`, `UpdateProcessWaiter.cs`, `UpdateInstallationTransaction.cs` et `UpdateStartupVerifier.cs` : valider le plan, attendre les processus, sauvegarder/remplacer seulement l'application hors `Data`/`Modules` et les modules sélectionnés, restaurer sur échec, relancer une fois et nettoyer.
+      - [x] Créer `src/GWGUI.App/Services/Updates/UpdateStartupCoordinator.cs` ; modifier `src/GWGUI.App/App.xaml.cs`, `src/GWGUI.App/Views/Windows/Shell/MainWindow.xaml.cs`, `OptionsUpdatesSection.xaml/.xaml.cs` et `UpdateOptionsController.cs` pour préparer/lancer l'updater temporaire, fermer la fenêtre d'options puis la fenêtre principale par son arrêt normal, émettre le signal après `MainWindowLifecycleController.LoadAsync` et afficher le résultat.
+      - [x] Ajouter les messages et actions de préparation, confirmation, progression, annulation, réussite et échec dans `src/GWGUI.App/Resources/00-Base/Options.resx` et toutes les cultures avec Argos, sans dupliquer les invariants.
+      - [x] Modifier `scripts/build.ps1` et `scripts/package.ps1` pour publier `GWGUI.Updater` dans `Updater`, puis confirmer que la copie récursive existante de `installer/GWGUI.iss` l'inclut sans nouvelle règle de remplacement en cours d'exécution.
+  - [x] 5.3. Valider le parcours complet et terminer la documentation
+    - [x] 5.3.1. Exercer le remplacement dans une installation temporaire
+      - [x] Ajouter temporairement `InternalsVisibleTo` à `GWGUI.Updater` et sa référence dans les tests, puis créer `tests/GWGUI.Tests/Updates/TemporaryUpdaterTransactionTests.cs` : vérifier dans `build/.update-validation` les chemins d'archive, le module seul, l'application seule, plusieurs composants, l'attente des processus et la restauration.
+      - [x] Créer `tests/GWGUI.Tests/Updates/TemporaryUpdateEndToEndTests.cs` avec HTTP et paquets temporaires pour vérifier le téléchargement interrompu, l'empreinte invalide, la préparation complète et les ressources françaises/anglaises ; ne toucher à aucune installation existante.
+      - [x] Exécuter les scénarios temporaires dans un dossier contrôlé sous `build/.update-validation`, y compris fermeture non terminée, remplacement en échec et restauration simulant un démarrage échoué ; exécuter `scripts/package.ps1 -Version 0.1.0 -Configuration Release -SkipInstaller`, vérifier l'updater du portable et compléter `docs/tasks/emulation/module-autonomy-validation.md` avec chaque résultat.
+      - [x] Supprimer les deux fichiers `Temporary*Tests.cs`, la référence/visibilité temporaire, `build/.update-validation` et les sorties créées uniquement pour ces essais après vérification de leurs chemins ; recompiler la DLL de tests, relancer `UpdatePlanBuilderTests`, l'audit des traductions et le build Debug standard, puis inscrire le nettoyage dans le relevé.
+      - [x] Corriger `scripts/build-update-catalog.ps1`, `.github/workflows/release.yml` et `.github/workflows/module-release.yml` pour que les URL des paquets correspondent à la release qui contient réellement les fichiers, qu'une snapshot ne remplace pas le catalogue stable, qu'une release sans label le mette à jour et que deux publications ne réécrivent pas simultanément le catalogue ; sérialiser les deux variantes localement, supprimer ces sorties d'essai et inscrire le résultat dans le relevé.
+      - [x] Corriger `ApplicationUpdateService.ReadInstalledState` pour ignorer les dossiers dont le manifeste n'a pas été chargé par `EmulationModuleRegistry`, recompiler l'application, relancer les six tests conservés et inscrire ce contrôle dans le relevé.
+      - [x] Mettre à jour `docs/architecture/emulation-modules.md`, `docs/architecture/emulation-module-authoring.md`, `docs/architecture/emulation-module-updates.md`, `docs/project/release.md` et `docs/future/emulation-plugins.md` pour distinguer les fonctions réalisées des points toujours différés.
+      - [x] Restaurer les fins de ligne d'origine de `tests/GWGUI.Tests/GWGUI.Tests.csproj` après le retrait de la référence temporaire, puis vérifier l'absence de différence sur ce fichier et de sorties temporaires de validation.
+
+- [x] 6. Centraliser l'adresse du catalogue de mises à jour
+  - [x] 6.1. Déplacer l'adresse hors du service
+    - [x] 6.1.1. Utiliser la structure de constantes de l'application
+      - [x] Créer `src/GWGUI.App/Constants/Updates/UpdateEndpoints.cs` avec l'adresse du catalogue, puis modifier `src/GWGUI.App/Services/Updates/ApplicationUpdateService.cs` pour construire son URI par défaut depuis cette constante.
+      - [x] Produire le build Debug avec `scripts/build.ps1 -Configuration Debug` et vérifier la présence de `build/Debug/GW GUI/gwgui.exe`.

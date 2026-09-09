@@ -15,6 +15,7 @@ function New-GwGuiBuild {
     $staging = Join-Path $buildRoot ".staging\$BuildConfiguration"
     $applicationPublish = Join-Path $staging 'application'
     $moduleStaging = Join-Path $staging 'modules'
+    $updaterPublish = Join-Path $staging 'updater'
 
     $runningExecutable = Join-Path $output 'gwgui.exe'
     if (Test-Path -LiteralPath $runningExecutable -PathType Leaf) {
@@ -51,6 +52,18 @@ function New-GwGuiBuild {
 
     $moduleOutput = Join-Path $applicationPublish 'Modules'
     New-Item -ItemType Directory -Path $moduleOutput -Force | Out-Null
+    $applicationFiles = @(Get-ChildItem -LiteralPath $applicationPublish -Recurse -File | Where-Object {
+        -not $_.FullName.StartsWith($moduleOutput + [IO.Path]::DirectorySeparatorChar,
+            [StringComparison]::OrdinalIgnoreCase)
+    })
+    $applicationHashes = @{}
+    foreach ($file in $applicationFiles) {
+        if (-not $applicationHashes.ContainsKey($file.Name)) {
+            $applicationHashes[$file.Name] = [Collections.Generic.HashSet[string]]::new(
+                [StringComparer]::OrdinalIgnoreCase)
+        }
+        $null = $applicationHashes[$file.Name].Add((Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash)
+    }
     $modules = @(
         @{ Project = 'src\GWGUI.Emulation.Amiga\GWGUI.Emulation.Amiga.csproj'; Assembly = 'gwgui.emulation.amiga'; Folder = 'Amiga' },
         @{ Project = 'src\GWGUI.Emulation.Atari\GWGUI.Emulation.Atari.csproj'; Assembly = 'gwgui.emulation.atari'; Folder = 'Atari' }
@@ -71,14 +84,26 @@ function New-GwGuiBuild {
         dotnet publish $project `
             -c $BuildConfiguration -r win-x64 --self-contained false -p:Version=$($manifest.moduleVersion) -o $publish --disable-build-servers
         if ($LASTEXITCODE -ne 0) { throw "$BuildConfiguration $($module.Assembly) module publish failed." }
-        Copy-Item -LiteralPath (Join-Path $publish 'module.json') -Destination $destination -Force
-        foreach ($extension in @('.dll', '.pdb')) {
-            $source = Join-Path $publish ($module.Assembly + $extension)
-            if (Test-Path -LiteralPath $source -PathType Leaf) {
-                Copy-Item -LiteralPath $source -Destination $destination -Force
-            } elseif ($extension -eq '.dll') {
-                throw "Module entry assembly was not produced: $source"
+        $entryAssembly = Join-Path $publish ($module.Assembly + '.dll')
+        if (-not (Test-Path -LiteralPath $entryAssembly -PathType Leaf)) {
+            throw "Module entry assembly was not produced: $entryAssembly"
+        }
+        foreach ($source in Get-ChildItem -LiteralPath $publish -Recurse -File) {
+            $isRequiredMetadata = $source.Name -ieq 'module.json' `
+                -or $source.Name -ieq ($module.Assembly + '.dll') `
+                -or $source.Name -ieq ($module.Assembly + '.pdb') `
+                -or $source.Name -ieq ($module.Assembly + '.deps.json')
+            if (-not $isRequiredMetadata -and $applicationHashes.ContainsKey($source.Name)) {
+                $sourceHash = (Get-FileHash -LiteralPath $source.FullName -Algorithm SHA256).Hash
+                if ($applicationHashes[$source.Name].Contains($sourceHash)) { continue }
             }
+            $relativePath = $source.FullName.Substring($publish.Length).TrimStart('\', '/')
+            $target = Join-Path $destination $relativePath
+            $targetDirectory = Split-Path -Parent $target
+            if (-not (Test-Path -LiteralPath $targetDirectory -PathType Container)) {
+                New-Item -ItemType Directory -Path $targetDirectory -Force | Out-Null
+            }
+            Copy-Item -LiteralPath $source.FullName -Destination $target -Force
         }
     }
 
@@ -90,6 +115,12 @@ function New-GwGuiBuild {
     Remove-Item -LiteralPath (Join-Path $output 'gwgui.app.exe'),(Join-Path $output 'gwgui.app.runtimeconfig.json') -Force
 
     & (Join-Path $repository 'scripts\organize-application-output.ps1') -OutputDirectory $output
+    dotnet publish (Join-Path $repository 'src\GWGUI.Updater\GWGUI.Updater.csproj') `
+        -c $BuildConfiguration -r win-x64 --self-contained false -o $updaterPublish --disable-build-servers
+    if ($LASTEXITCODE -ne 0) { throw "$BuildConfiguration updater publish failed." }
+    $updaterOutput = Join-Path $output 'Updater'
+    New-Item -ItemType Directory -Path $updaterOutput -Force | Out-Null
+    Copy-Item -Path (Join-Path $updaterPublish '*') -Destination $updaterOutput -Recurse -Force
     Remove-Item -LiteralPath $staging -Recurse -Force
 
     $executable = Join-Path $output 'gwgui.exe'

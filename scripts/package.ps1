@@ -15,23 +15,49 @@ if (-not $dist.StartsWith($repository + [IO.Path]::DirectorySeparatorChar, [Stri
 
 $publish = Join-Path $dist 'publish\win-x64'
 $applicationPublish = Join-Path $dist '.application-publish'
+$updaterPublish = Join-Path $dist '.updater-publish'
 $portable = Join-Path $dist 'portable\GW GUI'
 $portablePackageRoot = Join-Path $dist '.portable-package'
 $portablePackage = Join-Path $portablePackageRoot 'GW GUI'
-foreach ($target in @($publish, $applicationPublish, $portablePackageRoot)) {
+foreach ($target in @($publish, $applicationPublish, $updaterPublish, $portablePackageRoot)) {
     if (Test-Path -LiteralPath $target) { Remove-Item -LiteralPath $target -Recurse -Force }
 }
 New-Item -ItemType Directory -Path $publish,$portable,$portablePackage -Force | Out-Null
 Get-ChildItem -LiteralPath $portable -Force -ErrorAction SilentlyContinue | Where-Object { $_.Name -ne 'Data' } | Remove-Item -Recurse -Force
-Get-ChildItem -LiteralPath $dist -File -ErrorAction SilentlyContinue | Where-Object { $_.Name -match '^GW-GUI-.+-win-x64-(portable\.zip|setup\.exe)$' -or $_.Name -eq 'SHA256SUMS.txt' } | Remove-Item -Force
+Get-ChildItem -LiteralPath $dist -File -ErrorAction SilentlyContinue | Where-Object {
+    $_.Name -match '^GW-GUI-.+-win-x64-(portable\.zip|setup\.exe)$' `
+        -or $_.Name -match '^GW-GUI-Module-.+-win-x64\.zip(\.sha256)?$' `
+        -or $_.Name -eq 'SHA256SUMS.txt'
+} | Remove-Item -Force
 
 dotnet publish (Join-Path $repository 'src\GWGUI.App\GWGUI.App.csproj') -c $Configuration -r win-x64 --self-contained false -p:Version=$Version -o $applicationPublish --disable-build-servers
 if ($LASTEXITCODE -ne 0) { throw 'dotnet publish failed.' }
+$officialModules = @(
+    @{ Id = 'Amiga'; Manifest = 'src\GWGUI.Emulation.Amiga\module.json' },
+    @{ Id = 'Atari'; Manifest = 'src\GWGUI.Emulation.Atari\module.json' }
+)
+foreach ($module in $officialModules) {
+    & (Join-Path $repository 'scripts\package-module.ps1') -Module $module.Id `
+        -Configuration $Configuration -DistDirectory $dist
+    if ($LASTEXITCODE -ne 0) { throw "$($module.Id) module packaging failed." }
+    $moduleManifest = Get-Content -LiteralPath (Join-Path $repository $module.Manifest) -Raw -Encoding UTF8 | ConvertFrom-Json
+    $moduleArchive = Join-Path $dist "GW-GUI-Module-$($moduleManifest.id)-$($moduleManifest.moduleVersion)-win-x64.zip"
+    if (-not (Test-Path -LiteralPath $moduleArchive -PathType Leaf)) {
+        throw "Official module package was not produced: $moduleArchive"
+    }
+    Expand-Archive -LiteralPath $moduleArchive -DestinationPath $applicationPublish -Force
+}
 dotnet publish (Join-Path $repository 'src\GWGUI.Launcher\GWGUI.Launcher.csproj') -c $Configuration -r win-x64 --self-contained false -p:Version=$Version -o $publish --disable-build-servers
 if ($LASTEXITCODE -ne 0) { throw 'GW GUI bootstrap publish failed.' }
 Copy-Item -Path (Join-Path $applicationPublish '*') -Destination $publish -Recurse -Force
 Remove-Item -LiteralPath (Join-Path $publish 'gwgui.app.exe'),(Join-Path $publish 'gwgui.app.runtimeconfig.json') -Force
 & (Join-Path $repository 'scripts\organize-application-output.ps1') -OutputDirectory $publish
+dotnet publish (Join-Path $repository 'src\GWGUI.Updater\GWGUI.Updater.csproj') -c $Configuration `
+    -r win-x64 --self-contained false -p:Version=$Version -o $updaterPublish --disable-build-servers
+if ($LASTEXITCODE -ne 0) { throw 'GW GUI updater publish failed.' }
+$updaterOutput = Join-Path $publish 'Updater'
+New-Item -ItemType Directory -Path $updaterOutput -Force | Out-Null
+Copy-Item -Path (Join-Path $updaterPublish '*') -Destination $updaterOutput -Recurse -Force
 Get-ChildItem -LiteralPath $publish -Recurse -File -Filter '*.pdb' | Remove-Item -Force
 
 Copy-Item -Path (Join-Path $publish '*') -Destination $portablePackage -Recurse -Force
@@ -76,3 +102,4 @@ Set-Content -LiteralPath (Join-Path $dist 'SHA256SUMS.txt') -Value $checksums -E
 $packages | Select-Object Name,Length
 Remove-Item -LiteralPath $portablePackageRoot -Recurse -Force
 Remove-Item -LiteralPath $applicationPublish -Recurse -Force
+Remove-Item -LiteralPath $updaterPublish -Recurse -Force

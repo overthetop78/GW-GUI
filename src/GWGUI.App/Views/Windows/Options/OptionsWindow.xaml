@@ -35,6 +35,9 @@
             <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="&#xE7FC;" Text="{l:Loc Controllers.Title}"/></TabItem.Header>
                 <options:OptionsControllersSection x:Name="ControllersSection" />
             </TabItem>
+            <TabItem Style="{StaticResource MainTabItemStyle}"><TabItem.Header><common:MainTabHeader Icon="&#xE895;" Text="{l:Loc Updates.Title}"/></TabItem.Header>
+                <options:OptionsUpdatesSection x:Name="UpdatesSection" />
+            </TabItem>
         </TabControl>
 
         <Button x:Name="CloseButton" Grid.Row="1" HorizontalAlignment="Right" Margin="0,12,0,0" MinWidth="120"

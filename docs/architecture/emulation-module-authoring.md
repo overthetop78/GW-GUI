@@ -6,11 +6,11 @@ Ce document décrit le contrat complet entre GW GUI et une bibliothèque d'émul
 module ne doit pas avoir besoin de lire `GWGUI.App`, Amiga ou Atari. Il doit seulement disposer de
 la bibliothèque de contrats `gwgui.emulation.dll`, de ce document et d'un projet .NET compatible.
 
-État actuel important : le chargement dynamique fonctionne, mais `GWGUI.Emulation` n'est pas encore
-publié comme paquet SDK autonome. Un module développé hors du dépôt doit donc temporairement
-référencer la DLL issue du même build de GW GUI. L'API actuelle est `1.0` et chaque module doit
-déclarer ses bornes compatibles dans `module.json`. Les traductions propres au module passent
-par `IEmulationModuleLocalization`.
+État actuel important : le chargement dynamique, les paquets avec dépendances privées et les mises
+à jour après redémarrage fonctionnent. `GWGUI.Emulation` n'est pas encore publié comme paquet SDK
+autonome. Un module développé hors du dépôt doit donc temporairement référencer la DLL issue du
+même build de GW GUI. L'API actuelle est `1.0` et chaque module doit déclarer ses bornes compatibles
+dans `module.json`. Les traductions propres au module passent par `IEmulationModuleLocalization`.
 
 ## 1. Ce que contient un module
 
@@ -437,18 +437,25 @@ Chaque méthode valide que la configuration reçue appartient au bon `ModuleId` 
 - cœur absent, firmware absent, média invalide et configuration endommagée ;
 - annulation et fermeture pendant une opération asynchrone.
 
-## 14. Limites actuelles pour un module externe
+## 14. Fonctions réalisées et limites pour un module externe
 
-Le chargement est dynamique, mais l'écosystème externe n'est pas encore totalement stabilisé :
+Les fonctions suivantes sont réalisées pour les modules officiels :
+
+- manifeste obligatoire et contrôle des versions d'API avant chargement ;
+- sous-dossier autonome avec résolution prioritaire de ses dépendances privées ;
+- archive indépendante créée par `scripts/package-module.ps1` avec empreinte SHA-256 ;
+- catalogue de versions, recherche sélective et installation par l'updater après fermeture ;
+- traductions embarquées décrites à la section suivante.
+
+L'écosystème externe reste différé sur les points suivants :
 
 - pas de paquet NuGet `GWGUI.Emulation.SDK` versionné ;
-- le manifeste décrit l'assembly principal et sa compatibilité ; la distribution autonome des
-  dépendances privées reste à réaliser ;
-- les dépendances privées ne sont pas isolées par module ;
-- mise à jour uniquement après arrêt et remplacement manuel des fichiers.
+- aucune garantie publiée de compatibilité pour un projet tiers séparé ;
+- aucun déchargement à chaud : ajouter, retirer ou mettre à jour un module demande un redémarrage.
 
-Ces limites n'empêchent pas les modules officiels actuels, mais doivent être résolues avant de
-promettre qu'un projet tiers séparé restera compatible avec plusieurs versions de GW GUI.
+Ces limites n'empêchent pas les modules officiels actuels. Le SDK et sa politique de compatibilité
+doivent être établis avant de promettre qu'un projet tiers restera compatible avec plusieurs
+versions de GW GUI.
 
 ## 15. Traductions embarquées
 

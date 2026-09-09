@@ -11,6 +11,7 @@ using GWGUI.App.Options.Controllers;
 using GWGUI.App.Options.States;
 using GWGUI.App.Services.Logging;
 using GWGUI.App.Services.Storage;
+using GWGUI.App.Services.Updates;
 using GWGUI.App.ViewModels.Options;
 using GWGUI.App.Views.Controls.Emulation.Machine;
 using System.Collections.ObjectModel;
@@ -68,6 +69,7 @@ public partial class OptionsWindow : Window
     private readonly List<ControllerSettings> _unconfiguredControllers;
     private readonly List<DriveSettings> _drives;
     private readonly HostToolsOptionsController _hostToolsOptionsController;
+    private readonly UpdateOptionsController _updateOptionsController;
     private readonly IHardwareRegistry _hardwareRegistry;
     private bool _initializing = true;
     private readonly ISettingsStore _settingsStore;
@@ -128,6 +130,12 @@ public partial class OptionsWindow : Window
             SaveFromEditorAsync,
             exception => ShowLoggedError(exception, "Managing Host Tools", "HostTools.Title", MessageBoxImage.Error),
             (key, arguments) => LocExtension.Get(key, arguments), fileExists);
+        _updateOptionsController = new UpdateOptionsController(
+            this,
+            UpdatesSection,
+            new ApplicationUpdateService(),
+            (key, arguments) => LocExtension.Get(key, arguments),
+            exception => ShowLoggedError(exception, "Searching for GW GUI updates", "Updates.Title", MessageBoxImage.Error));
         _hardwareRegistry = hardwareRegistry ?? new GreaseweazleHardwareRegistry(new WindowsSerialDeviceDiscovery(), new GreaseweazleRunner());
         _hardwareState = new HardwareOptionsState(settings);
         _controllers = _hardwareState.Controllers;
@@ -156,6 +164,7 @@ public partial class OptionsWindow : Window
             OptionsSection.Profiles => 4,
             OptionsSection.Emulation => 5,
             OptionsSection.Controllers => 6,
+            OptionsSection.Updates => 7,
             _ => 0
         };
         _initializing = false;
@@ -229,6 +238,7 @@ public partial class OptionsWindow : Window
         _hardwareOptionsController.RefreshRows();
         EmulationSection.RefreshLocalizedContent();
         ControllersSection.RefreshLocalizedContent();
+        _updateOptionsController.RefreshLocalizedContent();
         UpdateTitle();
     }
 

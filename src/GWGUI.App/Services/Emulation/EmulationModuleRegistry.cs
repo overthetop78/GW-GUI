@@ -1,7 +1,6 @@
 using GWGUI.App.Services.Storage;
 using System.IO;
 using System.Reflection;
-using System.Runtime.Loader;
 using System.Net.Http;
 using GWGUI.Emulation;
 using GWGUI.App.Services.Logging;
@@ -51,7 +50,8 @@ internal static class EmulationModuleRegistry
             context = $"Loading emulation module '{manifest.Id}' version {manifest.ModuleVersion} from '{path}'";
             if (modules.ContainsKey(manifest.Id))
                 throw new InvalidDataException($"An emulation module with id '{manifest.Id}' is already loaded.");
-            var assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(Path.GetFullPath(path));
+            var loadContext = new EmulationModuleLoadContext(path);
+            var assembly = loadContext.LoadEntryAssembly();
             var factories = FactoryTypes(assembly, diagnostic).ToArray();
             if (factories.Length != 1)
                 throw new InvalidDataException($"Module '{manifest.Id}' must expose exactly one public factory; found {factories.Length}.");

@@ -66,6 +66,32 @@ Un module référence `GWGUI.Emulation` et ses bibliothèques techniques. Il ne 
 `GWGUI.App`, ni un autre module. `GWGUI.App` référence seulement les contrats de
 `GWGUI.Emulation` : aucun type concret ou `ProjectReference` vers une famille n'y est autorisé.
 
+### Inventaire des modules officiels
+
+Les projets `GWGUI.Emulation.Amiga` et `GWGUI.Emulation.Atari` ont actuellement la même
+frontière de compilation :
+
+| Dépendance produite | Rôle | Destination dans GW GUI |
+|---|---|---|
+| `gwgui.emulation.dll` | Contrats de module et traitements communs, dont les formats de disques | Bibliothèque commune de l'application dans `lib` ; chargée et partagée avec App |
+| `gwgui.mediaengine.dll` | Lecture, conversion et traitements de médias communs aux familles | Bibliothèque commune de l'application dans `lib` ; chargée et partagée avec App |
+| Bibliothèques `LTRData.DiscUtils.*` et `LTRData.Extensions` | Dépendances transitives des traitements communs de `GWGUI.Emulation` | Bibliothèques communes dans `lib`, résolues par l'application |
+
+Chaque paquet officiel contient directement `module.json`, sa DLL d'entrée et, dans un build
+Debug, son PDB. Les 29 catalogues de traduction et `00-Base` sont des ressources embarquées
+dans la DLL d'entrée ; aucun fichier de langue propre au module n'est distribué à côté.
+
+Amiga et Atari n'ont aujourd'hui aucune DLL managée ou native privée à placer dans leur
+dossier de paquet. Le chargeur doit cependant résoudre en priorité depuis ce dossier les futures
+dépendances privées d'un module, tout en partageant les assemblies `gwgui.*` fournies par
+l'application afin de conserver une seule identité des contrats et traitements communs.
+
+Les cœurs PUAE, Hatari, Atari800, Stella, ProSystem, Beetle Lynx et Virtual Jaguar ne sont pas
+des binaires du paquet de module. Les services existants les téléchargent dans
+`Data/Emulation/Machines/<Id>/Core`. Lorsqu'une machine est isolée dans un autre processus,
+le module utilise `EmulationRuntimeServices.HostExecutablePath` pour relancer le `gwgui.exe`
+installé ; aucun exécutable hôte supplémentaire ne doit donc être copié dans le paquet.
+
 ## Entrée obligatoire de la DLL
 
 L'assembly expose une classe `public`, non abstraite, possédant un constructeur public sans
@@ -147,5 +173,17 @@ dans `Modules` sans recompiler App, si ses dépendances sont déjà distribuées
 - identifiant invalide, incohérent ou dupliqué : module refusé ;
 - module retiré : données conservées, aucun type concret du module désérialisé par App.
 
+## État de réalisation
+
+Le chargement par manifeste, le contrôle de l'API, les traductions embarquées, la résolution des
+dépendances privées par un `AssemblyLoadContext` propre au paquet, les archives indépendantes et
+leur mise à jour après redémarrage sont réalisés pour Amiga et Atari. Le paquet complet distribue
+également l'updater dédié et les deux modules officiels.
+
+Restent différés : la publication d'un SDK destiné aux projets tiers, le déchargement à chaud et
+la sélection des modules officiels dans l'installateur. L'organisation interne des différents
+moteurs derrière un contrat commun est suivie séparément dans
+[`../future/emulation-engine-organization.md`](../future/emulation-engine-organization.md).
+
 Les modules sont du code approuvé exécuté avec les droits de GW GUI. Ce mécanisme découple les
-familles mais ne constitue pas une frontière de sécurité et ne permet pas le déchargement à chaud.
+familles mais ne constitue pas une frontière de sécurité.
