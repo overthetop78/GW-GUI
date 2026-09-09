@@ -7,6 +7,7 @@ $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $buildRoot = Join-Path $repository 'build'
 $configurations = if ([string]::IsNullOrWhiteSpace($Configuration)) { @('Debug', 'Release') } else { @($Configuration) }
+. (Join-Path $PSScriptRoot 'emulation-modules.ps1')
 
 function New-GwGuiBuild {
     param([string]$BuildConfiguration)
@@ -64,35 +65,30 @@ function New-GwGuiBuild {
         }
         $null = $applicationHashes[$file.Name].Add((Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash)
     }
-    $modules = @(
-        @{ Project = 'src\GWGUI.Emulation.Amiga\GWGUI.Emulation.Amiga.csproj'; Assembly = 'gwgui.emulation.amiga'; Folder = 'Amiga' },
-        @{ Project = 'src\GWGUI.Emulation.Atari\GWGUI.Emulation.Atari.csproj'; Assembly = 'gwgui.emulation.atari'; Folder = 'Atari' }
-    )
+    $modules = @(Get-GwGuiEmulationModules -RepositoryRoot $repository)
+    $hostApiVersion = [Version]'1.0'
     foreach ($module in $modules) {
-        $project = Join-Path $repository $module.Project
-        $manifestPath = Join-Path (Split-Path -Parent $project) 'module.json'
-        $manifest = Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
-        if ($manifest.schemaVersion -ne 1 -or $manifest.id -ine $module.Folder -or
-            $manifest.entryAssembly -ine ($module.Assembly + '.dll') -or
-            $manifest.moduleVersion -notmatch '^\d+\.\d+\.\d+$' -or
-            $manifest.hostApiMinimum -ne '1.0' -or $manifest.hostApiMaximum -ne '1.0') {
-            throw "Invalid manifest for official module '$($module.Folder)': $manifestPath"
+        $project = $module.ProjectPath
+        $manifest = $module.Manifest
+        if ($hostApiVersion -lt [Version]$manifest.hostApiMinimum `
+            -or $hostApiVersion -gt [Version]$manifest.hostApiMaximum) {
+            throw "Module '$($module.Id)' is not compatible with host API $hostApiVersion."
         }
-        $destination = Join-Path $moduleOutput $module.Folder
+        $destination = Join-Path $moduleOutput $module.Id
         New-Item -ItemType Directory -Path $destination -Force | Out-Null
-        $publish = Join-Path $moduleStaging $module.Assembly
+        $publish = Join-Path $moduleStaging $module.AssemblyName
         dotnet publish $project `
             -c $BuildConfiguration -r win-x64 --self-contained false -p:Version=$($manifest.moduleVersion) -o $publish --disable-build-servers
-        if ($LASTEXITCODE -ne 0) { throw "$BuildConfiguration $($module.Assembly) module publish failed." }
-        $entryAssembly = Join-Path $publish ($module.Assembly + '.dll')
+        if ($LASTEXITCODE -ne 0) { throw "$BuildConfiguration $($module.AssemblyName) module publish failed." }
+        $entryAssembly = Join-Path $publish $module.EntryAssembly
         if (-not (Test-Path -LiteralPath $entryAssembly -PathType Leaf)) {
             throw "Module entry assembly was not produced: $entryAssembly"
         }
         foreach ($source in Get-ChildItem -LiteralPath $publish -Recurse -File) {
             $isRequiredMetadata = $source.Name -ieq 'module.json' `
-                -or $source.Name -ieq ($module.Assembly + '.dll') `
-                -or $source.Name -ieq ($module.Assembly + '.pdb') `
-                -or $source.Name -ieq ($module.Assembly + '.deps.json')
+                -or $source.Name -ieq $module.EntryAssembly `
+                -or $source.Name -ieq ($module.AssemblyName + '.pdb') `
+                -or $source.Name -ieq ($module.AssemblyName + '.deps.json')
             if (-not $isRequiredMetadata -and $applicationHashes.ContainsKey($source.Name)) {
                 $sourceHash = (Get-FileHash -LiteralPath $source.FullName -Algorithm SHA256).Hash
                 if ($applicationHashes[$source.Name].Contains($sourceHash)) { continue }

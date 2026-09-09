@@ -198,3 +198,18 @@ La lecture de l'état installé ignore maintenant les dossiers de modules dont l
 été refusé par le registre ; ils ne bloquent donc pas la recherche des modules effectivement
 chargés. L'application compile sans avertissement et les six tests de plan réussissent après
 cette correction.
+
+## Point 7 : découverte automatique des futurs modules
+
+Validation effectuée le 9 septembre 2026. `scripts/emulation-modules.ps1` découvre les dossiers
+directs `src/GWGUI.Emulation.*` qui possèdent un projet homonyme et un `module.json` conforme. Un
+dépôt factice sous `build/.module-script-validation` contenant Alpha, Beta et Gamma a confirmé la
+découverte des trois familles et la sélection de Beta par son identifiant, sans modifier de liste.
+Les essais ont également confirmé le refus d'une identité différente du nom de dossier et d'un
+identifiant dupliqué. Le dépôt factice et son script d'essai ont ensuite été supprimés.
+
+`scripts/package.ps1 -Version 0.1.0 -Configuration Release -SkipInstaller` a ensuite réussi avec
+`build/.module-package-validation` comme sortie. Les archives indépendantes de tous les manifestes
+réels ont été produites et intégrées dans le paquet complet. Le catalogue créé avec `-Scope All`
+contient un composant par manifeste découvert et chaque composant possède son archive correspondante.
+Le dossier `build/.module-package-validation` a été supprimé après ces contrôles.

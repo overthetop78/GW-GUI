@@ -4,7 +4,6 @@ param(
     [string]$Scope,
     [string]$Version,
     [string]$ApplicationTag,
-    [ValidateSet('Amiga', 'Atari')]
     [string]$Module,
     [string]$ExistingCatalog,
     [string]$DistDirectory,
@@ -13,6 +12,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
+. (Join-Path $PSScriptRoot 'emulation-modules.ps1')
 if ([string]::IsNullOrWhiteSpace($DistDirectory)) { $DistDirectory = Join-Path $repository 'dist' }
 $dist = [IO.Path]::GetFullPath($DistDirectory)
 if ([string]::IsNullOrWhiteSpace($OutputPath)) { $OutputPath = Join-Path $dist 'update-catalog.json' }
@@ -80,11 +80,17 @@ if ($Scope -in @('Application', 'All')) {
 }
 
 if ($Scope -in @('Module', 'All')) {
-    $modules = if ($Scope -eq 'All') { @('Amiga', 'Atari') } else { @($Module) }
-    if ($modules.Count -eq 0 -or [string]::IsNullOrWhiteSpace($modules[0])) { throw 'Module is required when Scope is Module.' }
-    foreach ($moduleName in $modules) {
-        $manifestPath = Join-Path $repository "src\GWGUI.Emulation.$moduleName\module.json"
-        $manifest = Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    $availableModules = @(Get-GwGuiEmulationModules -RepositoryRoot $repository)
+    if ($Scope -eq 'Module' -and [string]::IsNullOrWhiteSpace($Module)) {
+        throw 'Module is required when Scope is Module.'
+    }
+    $modules = if ($Scope -eq 'All') {
+        $availableModules
+    } else {
+        @(Resolve-GwGuiEmulationModule -Modules $availableModules -Module $Module)
+    }
+    foreach ($moduleDefinition in $modules) {
+        $manifest = $moduleDefinition.Manifest
         $packageName = "GW-GUI-Module-$($manifest.id)-$($manifest.moduleVersion)-win-x64.zip"
         $packagePath = Join-Path $dist $packageName
         $tag = if ($Scope -eq 'All') { $ApplicationTag } else { "module-$($manifest.id)-v$($manifest.moduleVersion)" }

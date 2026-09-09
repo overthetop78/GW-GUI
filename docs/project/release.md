@@ -62,24 +62,26 @@ Une publication de module utilise sa propre version `X.Y.Z` lue dans son `module
 Elle ne modifie pas la version de GW GUI et ne remplace pas une release de l'application comme
 dernière release GitHub.
 
-| Module | Tag | Notes |
-|---|---|---|
-| Amiga | `module-amiga-vX.Y.Z` | `.github/release-notes/modules/amiga/vX.Y.Z.md` |
-| Atari | `module-atari-vX.Y.Z` | `.github/release-notes/modules/atari/vX.Y.Z.md` |
+Pour tout identifiant `<id>` découvert dans `src/GWGUI.Emulation.*/module.json` :
+
+- tag : `module-<id>-vX.Y.Z` ;
+- notes : `.github/release-notes/modules/<id>/vX.Y.Z.md` ;
+- archive : `GW-GUI-Module-<id>-X.Y.Z-win-x64.zip`.
 
 Avant une publication réelle :
 
 1. modifier uniquement la version du manifeste du module concerné ;
 2. créer ses notes au chemin indiqué, avec les changements propres au module ;
-3. exécuter manuellement `module-release.yml` pour construire et contrôler l'archive sans
-   créer de release ;
+3. exécuter manuellement `module-release.yml`, saisir `<id>` et construire l'archive sans créer de
+   release ;
 4. vérifier l'archive `GW-GUI-Module-<id>-X.Y.Z-win-x64.zip` et son fichier `.sha256` ;
 5. commiter et pousser le manifeste, les changements et les notes ;
 6. créer puis pousser le tag correspondant exactement à la version du manifeste.
 
-Le push du tag relance les tests, reconstruit le paquet, vérifie son empreinte et crée la release
-GitHub avec `--latest=false`. Une version de tag différente du manifeste ou des notes absentes
-interrompt la publication.
+Le workflow accepte tout tag `module-<id>-vX.Y.Z`, retrouve le projet par le manifeste et transmet
+le même identifiant au packaging et au catalogue. Le push du tag relance les tests, reconstruit le
+paquet, vérifie son empreinte et crée la release GitHub avec `--latest=false`. Un identifiant inconnu,
+une version de tag différente du manifeste ou des notes absentes interrompt la publication.
 
 ## 6. Catalogue de mises à jour et updater distribués
 

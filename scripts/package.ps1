@@ -7,6 +7,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
+. (Join-Path $PSScriptRoot 'emulation-modules.ps1')
 if ([string]::IsNullOrWhiteSpace($DistDirectory)) { $DistDirectory = Join-Path $repository 'dist' }
 $dist = [IO.Path]::GetFullPath($DistDirectory)
 if (-not $dist.StartsWith($repository + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) {
@@ -32,15 +33,12 @@ Get-ChildItem -LiteralPath $dist -File -ErrorAction SilentlyContinue | Where-Obj
 
 dotnet publish (Join-Path $repository 'src\GWGUI.App\GWGUI.App.csproj') -c $Configuration -r win-x64 --self-contained false -p:Version=$Version -o $applicationPublish --disable-build-servers
 if ($LASTEXITCODE -ne 0) { throw 'dotnet publish failed.' }
-$officialModules = @(
-    @{ Id = 'Amiga'; Manifest = 'src\GWGUI.Emulation.Amiga\module.json' },
-    @{ Id = 'Atari'; Manifest = 'src\GWGUI.Emulation.Atari\module.json' }
-)
+$officialModules = @(Get-GwGuiEmulationModules -RepositoryRoot $repository)
 foreach ($module in $officialModules) {
     & (Join-Path $repository 'scripts\package-module.ps1') -Module $module.Id `
         -Configuration $Configuration -DistDirectory $dist
     if ($LASTEXITCODE -ne 0) { throw "$($module.Id) module packaging failed." }
-    $moduleManifest = Get-Content -LiteralPath (Join-Path $repository $module.Manifest) -Raw -Encoding UTF8 | ConvertFrom-Json
+    $moduleManifest = $module.Manifest
     $moduleArchive = Join-Path $dist "GW-GUI-Module-$($moduleManifest.id)-$($moduleManifest.moduleVersion)-win-x64.zip"
     if (-not (Test-Path -LiteralPath $moduleArchive -PathType Leaf)) {
         throw "Official module package was not produced: $moduleArchive"

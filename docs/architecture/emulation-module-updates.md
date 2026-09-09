@@ -20,13 +20,13 @@ stable `component-catalog` :
 
 Les workflows de l'application et des modules téléchargent l'actif existant, remplacent
 uniquement les entrées qu'ils viennent de publier, puis le renvoient avec écrasement. Ainsi,
-publier seulement Atari ne supprime ni les versions Amiga ni les versions de l'application.
+publier un seul module ne supprime ni les versions des autres modules ni celles de l'application.
 Le catalogue n'est mis à jour qu'après la fabrication et la validation des paquets.
 Les deux workflows partagent le groupe de concurrence `component-catalog-publication` afin que
 leurs séquences lecture-modification-publication ne s'exécutent jamais en même temps.
 
-Une release complète référence, pour l'application et les deux modules qu'elle contient, le tag
-de cette release (`vX.Y.Z`). Une release de module isolée référence son tag
+Une release complète référence, pour l'application et tous les modules découverts qu'elle contient,
+le tag de cette release (`vX.Y.Z`). Une release de module isolée référence son tag
 `module-<id>-vX.Y.Z`. Une publication sans label actualise le catalogue comme une release stable.
 Une snapshot publie ses paquets et son catalogue comme artefact de workflow, mais ne remplace pas
 l'actif stable `component-catalog`.
@@ -127,9 +127,14 @@ La recherche utilisateur est ajoutée comme onglet distinct dans les préférenc
 - les nouvelles chaînes appartiennent aux catalogues App `Options.resx` de toutes les cultures.
 
 Le catalogue est généré par `scripts/build-update-catalog.ps1`. `.github/workflows/release.yml`
-met à jour l'application et les deux modules officiels construits avec elle ;
+met à jour l'application et tous les modules découverts construits avec elle ;
 `.github/workflows/module-release.yml` met à jour uniquement le module publié. Les paquets,
 empreintes et notes continuent d'être publiés par leurs workflows respectifs.
+
+Les scripts utilisent `scripts/emulation-modules.ps1` comme inventaire unique. `-Scope All` parcourt
+tous les `src/GWGUI.Emulation.*/module.json` conformes ; `-Scope Module -Module <id>` résout cet
+identifiant dans le même inventaire. Ajouter une famille ne demande donc aucune modification du
+générateur de catalogue.
 
 ## Limites de la recherche
 

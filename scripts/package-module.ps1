@@ -1,6 +1,5 @@
 param(
     [Parameter(Mandatory = $true)]
-    [ValidateSet('Amiga', 'Atari')]
     [string]$Module,
     [ValidateSet('Debug', 'Release')]
     [string]$Configuration = 'Release',
@@ -9,6 +8,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
+. (Join-Path $PSScriptRoot 'emulation-modules.ps1')
 if ([string]::IsNullOrWhiteSpace($DistDirectory)) { $DistDirectory = Join-Path $repository 'dist' }
 $dist = [IO.Path]::GetFullPath($DistDirectory)
 if (-not $dist.StartsWith($repository + [IO.Path]::DirectorySeparatorChar,
@@ -16,23 +16,10 @@ if (-not $dist.StartsWith($repository + [IO.Path]::DirectorySeparatorChar,
     throw 'DistDirectory must be located inside the repository.'
 }
 
-$definitions = @{
-    Amiga = @{ Project = 'src\GWGUI.Emulation.Amiga\GWGUI.Emulation.Amiga.csproj'; Assembly = 'gwgui.emulation.amiga' }
-    Atari = @{ Project = 'src\GWGUI.Emulation.Atari\GWGUI.Emulation.Atari.csproj'; Assembly = 'gwgui.emulation.atari' }
-}
-$definition = $definitions[$Module]
-$project = Join-Path $repository $definition.Project
-$projectDirectory = Split-Path -Parent $project
-$manifestPath = Join-Path $projectDirectory 'module.json'
-$manifest = Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
-$manifestIsInvalid = $manifest.schemaVersion -ne 1 -or $manifest.id -ine $Module `
-    -or $manifest.entryAssembly -ine ($definition.Assembly + '.dll') `
-    -or $manifest.moduleVersion -notmatch '^\d+\.\d+\.\d+$' `
-    -or $manifest.hostApiMinimum -notmatch '^\d+\.\d+$' `
-    -or $manifest.hostApiMaximum -notmatch '^\d+\.\d+$'
-if ($manifestIsInvalid) {
-    throw "Invalid official module manifest: $manifestPath"
-}
+$definitions = @(Get-GwGuiEmulationModules -RepositoryRoot $repository)
+$definition = Resolve-GwGuiEmulationModule -Modules $definitions -Module $Module
+$project = $definition.ProjectPath
+$manifest = $definition.Manifest
 
 $workRoot = Join-Path $dist ".module-package-$($manifest.id.ToLowerInvariant())"
 $publish = Join-Path $workRoot 'publish'
@@ -44,10 +31,10 @@ New-Item -ItemType Directory -Path $dist,$publish,$moduleDirectory -Force | Out-
 try {
     dotnet publish $project -c $Configuration -r win-x64 --self-contained false `
         -p:Version=$($manifest.moduleVersion) -o $publish --disable-build-servers
-    if ($LASTEXITCODE -ne 0) { throw "$Module module publish failed." }
+    if ($LASTEXITCODE -ne 0) { throw "$($definition.Id) module publish failed." }
 
     $entryAssembly = Join-Path $publish $manifest.entryAssembly
-    $dependencyManifest = Join-Path $publish ($definition.Assembly + '.deps.json')
+    $dependencyManifest = Join-Path $publish ($definition.AssemblyName + '.deps.json')
     foreach ($required in @((Join-Path $publish 'module.json'), $entryAssembly, $dependencyManifest)) {
         if (-not (Test-Path -LiteralPath $required -PathType Leaf)) {
             throw "Required module package file was not produced: $required"

@@ -173,3 +173,21 @@ un résultat historique comme une validation nouvelle.
     - [x] 6.1.1. Utiliser la structure de constantes de l'application
       - [x] Créer `src/GWGUI.App/Constants/Updates/UpdateEndpoints.cs` avec l'adresse du catalogue, puis modifier `src/GWGUI.App/Services/Updates/ApplicationUpdateService.cs` pour construire son URI par défaut depuis cette constante.
       - [x] Produire le build Debug avec `scripts/build.ps1 -Configuration Debug` et vérifier la présence de `build/Debug/GW GUI/gwgui.exe`.
+
+- [x] 7. Rendre la fabrication et la publication extensibles aux futurs modules
+  - [x] 7.1. Établir une découverte unique depuis les manifestes
+    - [x] 7.1.1. Centraliser l'inventaire et sa validation
+      - [x] Créer `scripts/emulation-modules.ps1` avec les fonctions qui découvrent chaque dossier direct `src/GWGUI.Emulation.*` contenant `module.json`, associent son projet et sa DLL d'entrée, valident l'identité, les versions, les doublons et permettent une sélection par identifiant sans liste de familles.
+      - [x] Modifier `scripts/build.ps1` pour construire tous les modules retournés par cette découverte et copier chaque paquet sous `Modules/<id>` sans tableau Amiga/Atari.
+      - [x] Modifier `scripts/package-module.ps1` pour accepter tout identifiant découvert et déduire le projet, le manifeste, la DLL d'entrée et le fichier `.deps.json` sans `ValidateSet` ni table de définitions.
+      - [x] Modifier `scripts/package.ps1` pour fabriquer et intégrer tous les modules découverts sans liste de modules officiels.
+      - [x] Modifier `scripts/build-update-catalog.ps1` pour ajouter tous les modules découverts avec `-Scope All` et résoudre `-Scope Module` par identifiant sans `ValidateSet`.
+  - [x] 7.2. Généraliser la publication d'un module
+    - [x] 7.2.1. Retirer les choix et tags fermés du workflow
+      - [x] Modifier `.github/workflows/module-release.yml` pour accepter un identifiant libre, reconnaître `module-<id>-vX.Y.Z`, résoudre le manifeste avec `scripts/emulation-modules.ps1` et transmettre cet identifiant aux scripts de paquet et de catalogue.
+  - [x] 7.3. Vérifier l'ajout d'une nouvelle famille et corriger la documentation
+    - [x] 7.3.1. Exercer la découverte sans conserver de module factice
+      - [x] Créer sous `build/.module-script-validation` un dépôt factice contenant trois projets et manifestes, vérifier la découverte complète, la sélection par identifiant et les refus d'identité ou de doublon, puis supprimer entièrement ce dépôt factice.
+      - [x] Exécuter `scripts/package.ps1 -Version 0.1.0 -Configuration Release -SkipInstaller` dans `build/.module-package-validation`, générer son catalogue `-Scope All`, vérifier que chaque manifeste découvert possède son archive et son composant, puis supprimer cette sortie temporaire.
+      - [x] Mettre à jour `docs/architecture/emulation-modules.md`, `docs/architecture/emulation-module-authoring.md`, `docs/architecture/emulation-module-updates.md`, `docs/project/release.md` et `docs/tasks/emulation/module-autonomy-validation.md` avec la découverte automatique et les seules actions encore nécessaires pour ajouter ou publier un module.
+      - [x] Vérifier qu'aucune liste Amiga/Atari ne subsiste dans les scripts et workflows génériques, produire le build Debug avec `scripts/build.ps1 -Configuration Debug` et vérifier les paquets de tous les manifestes découverts.

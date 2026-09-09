@@ -4,16 +4,12 @@ on:
   workflow_dispatch:
     inputs:
       module:
-        description: Official module to package
+        description: Module id from src/GWGUI.Emulation.*/module.json
         required: true
-        type: choice
-        options:
-          - amiga
-          - atari
+        type: string
   push:
     tags:
-      - module-amiga-v*
-      - module-atari-v*
+      - module-*-v*
 
 permissions:
   contents: write
@@ -35,25 +31,20 @@ jobs:
         env:
           REQUESTED_MODULE: ${{ inputs.module }}
         run: |
+          . .\scripts\emulation-modules.ps1
+          $definitions = @(Get-GwGuiEmulationModules -RepositoryRoot (Resolve-Path .))
           if ("${{ github.event_name }}" -eq 'push') {
-            if ($env:GITHUB_REF_NAME -notmatch '^module-(amiga|atari)-v(\d+\.\d+\.\d+)$') {
+            if ($env:GITHUB_REF_NAME -notmatch '^module-([A-Za-z0-9][A-Za-z0-9._-]*)-v(\d+\.\d+\.\d+)$') {
               throw "Unsupported module tag: $env:GITHUB_REF_NAME"
             }
-            $module = $Matches[1]
+            $moduleId = $Matches[1]
             $tagVersion = $Matches[2]
           } else {
-            $module = $env:REQUESTED_MODULE
+            $moduleId = $env:REQUESTED_MODULE
             $tagVersion = $null
           }
-          $definition = switch ($module) {
-            'amiga' { @{ Id = 'amiga'; Name = 'Amiga'; Manifest = 'src/GWGUI.Emulation.Amiga/module.json' } }
-            'atari' { @{ Id = 'atari'; Name = 'Atari'; Manifest = 'src/GWGUI.Emulation.Atari/module.json' } }
-            default { throw "Unsupported module: $module" }
-          }
-          $manifest = Get-Content -LiteralPath $definition.Manifest -Raw -Encoding UTF8 | ConvertFrom-Json
-          if ($manifest.id -ine $definition.Id -or $manifest.moduleVersion -notmatch '^\d+\.\d+\.\d+$') {
-            throw "Invalid module identity or version in $($definition.Manifest)."
-          }
+          $definition = Resolve-GwGuiEmulationModule -Modules $definitions -Module $moduleId
+          $manifest = $definition.Manifest
           if ($tagVersion -and $tagVersion -ne $manifest.moduleVersion) {
             throw "Tag version $tagVersion does not match manifest version $($manifest.moduleVersion)."
           }
@@ -70,7 +61,7 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'GW GUI tests failed.' }
       - name: Build module archive
         shell: pwsh
-        run: .\scripts\package-module.ps1 -Module $env:MODULE_NAME -Configuration Release
+        run: .\scripts\package-module.ps1 -Module $env:MODULE_ID -Configuration Release
       - name: Verify module archive and checksum
         shell: pwsh
         run: |
@@ -91,7 +82,7 @@ jobs:
           if ($LASTEXITCODE -ne 0) { Remove-Item -LiteralPath .\dist\existing-catalog -Recurse -Force -ErrorAction SilentlyContinue }
       - name: Build and validate update catalog
         shell: pwsh
-        run: .\scripts\build-update-catalog.ps1 -Scope Module -Module $env:MODULE_NAME -ExistingCatalog .\dist\existing-catalog\update-catalog.json
+        run: .\scripts\build-update-catalog.ps1 -Scope Module -Module $env:MODULE_ID -ExistingCatalog .\dist\existing-catalog\update-catalog.json
       - uses: actions/upload-artifact@v6
         with:
           name: GW-GUI-Module-${{ env.MODULE_ID }}-${{ env.MODULE_VERSION }}-win-x64

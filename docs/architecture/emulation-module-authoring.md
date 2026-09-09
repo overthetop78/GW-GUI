@@ -80,10 +80,13 @@ de DLL dans ce dossier : aucun chemin absolu, sous-chemin ou lien externe. Les t
 [schéma et les règles de chargement](emulation-modules.md) précisent les validations.
 
 Pour un essai local, fermer GW GUI, déposer le dossier complet dans `Modules`, puis relancer.
-Les modules Amiga et Atari sont produits automatiquement avec leur manifeste par
-`scripts/build.ps1 -Configuration Debug`. Les succès sont inscrits dans `Data/Logs/information-*.log`
-et les refus dans `Data/Logs/errors-*.log`. Les configurations et cœurs téléchargés restent dans
-les dossiers de données existants.
+Dans le dépôt, placer le projet et son manifeste dans `src/GWGUI.Emulation.<Famille>`, avec un projet
+nommé `GWGUI.Emulation.<Famille>.csproj`. `scripts/emulation-modules.ps1` le découvre alors sans
+modifier de liste. `scripts/build.ps1 -Configuration Debug` produit tous les modules découverts ;
+`scripts/package-module.ps1 -Module <id>` produit l'archive indépendante du module demandé. Les
+succès sont inscrits dans `Data/Logs/information-*.log` et les refus dans
+`Data/Logs/errors-*.log`. Les configurations et cœurs téléchargés restent dans les dossiers de
+données existants.
 
 ## 3. Factory : point d'entrée obligatoire
 
@@ -444,6 +447,7 @@ Les fonctions suivantes sont réalisées pour les modules officiels :
 - manifeste obligatoire et contrôle des versions d'API avant chargement ;
 - sous-dossier autonome avec résolution prioritaire de ses dépendances privées ;
 - archive indépendante créée par `scripts/package-module.ps1` avec empreinte SHA-256 ;
+- découverte automatique depuis le projet et `module.json`, sans liste de familles à maintenir ;
 - catalogue de versions, recherche sélective et installation par l'updater après fermeture ;
 - traductions embarquées décrites à la section suivante.
 

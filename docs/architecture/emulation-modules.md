@@ -155,11 +155,12 @@ Le choix du cœur, ses options natives et ses types privés restent entièrement
 
 1. Créer `src/GWGUI.Emulation.<Famille>` et référencer `GWGUI.Emulation`.
 2. Implémenter la factory et `IEmulationModule`, sans référence à `GWGUI.App`.
-3. Ajouter un `module.json` conforme et configurer sa copie dans le projet. Ajouter le projet et
-   le nom de son assembly à `$modules` dans `scripts/build.ps1` pour l'inclure
-   dans le paquet officiel.
-4. Construire : le script publie le projet séparément et copie sa DLL et son manifeste dans le
-   sous-dossier du module.
+3. Nommer le projet `GWGUI.Emulation.<Famille>.csproj`, ajouter un `module.json` conforme dans le
+   même dossier et configurer sa copie. L'identifiant du manifeste doit correspondre à `<Famille>`
+   sans distinction de casse et `entryAssembly` au nom d'assembly du projet.
+4. Construire : `scripts/emulation-modules.ps1` découvre automatiquement ce manifeste ; les scripts
+   publient le projet séparément et copient son paquet dans `Modules/<id>`. Aucun nom de famille
+   n'est à ajouter dans les scripts ou workflows génériques.
 5. Vérifier le paquet avec ce module, avec les autres, puis avec sa DLL retirée.
 
 Un dossier contenant une DLL compatible et son manifeste peut aussi être déposé manuellement
@@ -177,8 +178,9 @@ dans `Modules` sans recompiler App, si ses dépendances sont déjà distribuées
 
 Le chargement par manifeste, le contrôle de l'API, les traductions embarquées, la résolution des
 dépendances privées par un `AssemblyLoadContext` propre au paquet, les archives indépendantes et
-leur mise à jour après redémarrage sont réalisés pour Amiga et Atari. Le paquet complet distribue
-également l'updater dédié et les deux modules officiels.
+leur mise à jour après redémarrage sont réalisés. Amiga, Atari et tout futur projet conforme sont
+découverts par leur manifeste pour le build, les paquets, le catalogue et la publication. Le paquet
+complet distribue également l'updater dédié et tous les modules ainsi découverts.
 
 Restent différés : la publication d'un SDK destiné aux projets tiers, le déchargement à chaud et
 la sélection des modules officiels dans l'installateur. L'organisation interne des différents
