@@ -89,7 +89,7 @@ jobs:
           }
       - name: Build and validate update catalog
         shell: pwsh
-        run: .\scripts\build-update-catalog.ps1 -Scope Module -Module $env:MODULE_ID -Repository ${{ github.repository }} -ModuleTag $env:MODULE_RELEASE_TAG -ExistingCatalog .\dist\existing-catalog\update-catalog.json
+        run: .\scripts\build-update-catalog.ps1 -Scope Module -Module $env:MODULE_ID -Repository '${{ github.repository }}' -ModuleTag $env:MODULE_RELEASE_TAG -ExistingCatalog .\dist\existing-catalog\update-catalog.json
       - uses: actions/upload-artifact@v6
         with:
           name: GW-GUI-Module-${{ env.MODULE_ID }}-${{ env.MODULE_VERSION }}-win-x64

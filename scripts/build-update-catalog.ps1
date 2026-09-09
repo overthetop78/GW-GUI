@@ -15,9 +15,9 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
+$repositoryRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 . (Join-Path $PSScriptRoot 'emulation-modules.ps1')
-if ([string]::IsNullOrWhiteSpace($DistDirectory)) { $DistDirectory = Join-Path $repository 'dist' }
+if ([string]::IsNullOrWhiteSpace($DistDirectory)) { $DistDirectory = Join-Path $repositoryRoot 'dist' }
 $dist = [IO.Path]::GetFullPath($DistDirectory)
 if ([string]::IsNullOrWhiteSpace($OutputPath)) { $OutputPath = Join-Path $dist 'update-catalog.json' }
 $output = [IO.Path]::GetFullPath($OutputPath)
@@ -96,7 +96,7 @@ if ($Scope -eq 'Application') {
 }
 
 if ($Scope -eq 'Module') {
-    $availableModules = @(Get-GwGuiEmulationModules -RepositoryRoot $repository)
+    $availableModules = @(Get-GwGuiEmulationModules -RepositoryRoot $repositoryRoot)
     if ([string]::IsNullOrWhiteSpace($Module)) {
         throw 'Module is required when Scope is Module.'
     }
