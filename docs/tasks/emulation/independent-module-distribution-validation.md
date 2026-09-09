@@ -54,3 +54,32 @@ workflow `sdk-release.yml`, sans environnement GitHub, pour publier de nouveaux 
 nouvelles versions correspondant exactement à `GWGUI.Emulation.SDK`. La variable GitHub Actions
 `NUGET_USER` est configurée avec le nom public `overthetop78`. Le workflow utilise OIDC et ne dépend
 d’aucune clé API permanente enregistrée dans GitHub.
+
+## Publications externes
+
+Le module Amiga 1.0.0 a été publié par l’exécution GitHub Actions `34349387654` :
+
+- tag et release : `module-amiga-v1.0.0`,
+  `https://github.com/overthetop78/GW-GUI/releases/tag/module-amiga-v1.0.0` ;
+- archive : `GW-GUI-Module-amiga-1.0.0-win-x64.zip`, SHA-256
+  `ad05a22ba6e82f35873ee00b593e9b8ae05ad7082c1f7b63812b5faed004aad1` ;
+- catalogue : `module-amiga-catalog`,
+  `https://github.com/overthetop78/GW-GUI/releases/download/module-amiga-catalog/update-catalog.json`.
+
+Le module Atari 1.0.0 a été publié par l’exécution GitHub Actions `34349734028` :
+
+- tag et release : `module-atari-v1.0.0`,
+  `https://github.com/overthetop78/GW-GUI/releases/tag/module-atari-v1.0.0` ;
+- archive : `GW-GUI-Module-atari-1.0.0-win-x64.zip`, SHA-256
+  `36e7cfb5f8e9bde301bd94923b6220bf1e581ff833e9b744f1e62f8cdf6b0b26` ;
+- catalogue : `module-atari-catalog`,
+  `https://github.com/overthetop78/GW-GUI/releases/download/module-atari-catalog/update-catalog.json`.
+
+Les deux catalogues publiés ont été téléchargés puis contrôlés : chacun contient uniquement son
+module 1.0.0, l’URL de son archive et le SHA-256 correspondant à l’actif GitHub publié.
+
+Le SDK `GWGUI.Emulation.SDK` 1.0.0 a été publié par l’exécution GitHub Actions `34350086555` avec le
+tag `sdk-v1.0.0`. NuGet.org a accepté le paquet principal et le paquet de symboles après échange OIDC.
+La release GitHub `https://github.com/overthetop78/GW-GUI/releases/tag/sdk-v1.0.0` contient
+`GWGUI.Emulation.SDK.1.0.0.nupkg` et `GWGUI.Emulation.SDK.1.0.0.snupkg` avec les notes de version du
+SDK.
