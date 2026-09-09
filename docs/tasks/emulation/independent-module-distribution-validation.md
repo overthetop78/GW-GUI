@@ -42,3 +42,8 @@ a produit `build/Debug/GW GUI/gwgui.exe` (345 088 octets).
 Les tests permanents ciblés `EmulationModuleManifestTests`, `UpdatePlanBuilderTests` et
 `ModuleUpdateCatalogValidatorTests` ont ensuite réussi : 45 réussites, 0 échec et 0 test ignoré.
 Le dossier d’artefacts créé uniquement pour cette exécution a été supprimé.
+
+## État envoyé sur GitHub
+
+L’implémentation locale validée a été commitée sous `31f46d2e` puis poussée sur `origin/main` le
+9 septembre 2026.

@@ -125,7 +125,7 @@
 - [ ] 9. Activer et vérifier les publications externes
   - [ ] 9.1 Envoyer l’état validé du projet
     - [ ] 9.1.1 Préparer GitHub à exécuter les workflows
-      - [ ] Commiter et pousser l’ensemble de l’état validé sur `main`, puis inscrire le commit distant dans `docs/tasks/emulation/independent-module-distribution-validation.md`.
+      - [x] Commiter et pousser l’ensemble de l’état validé sur `main`, puis inscrire le commit distant dans `docs/tasks/emulation/independent-module-distribution-validation.md`.
       - [ ] Configurer dans GitHub le secret limité `NUGET_API_KEY` nécessaire à NuGet.org, puis inscrire uniquement sa présence dans `docs/tasks/emulation/independent-module-distribution-validation.md` sans consigner sa valeur.
   - [ ] 9.2 Publier les composants indépendants
     - [ ] 9.2.1 Publier les modules officiels et le SDK
