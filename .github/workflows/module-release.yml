@@ -82,7 +82,11 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release download $env:MODULE_CATALOG_TAG --pattern update-catalog.json --dir .\dist\existing-catalog
-          if ($LASTEXITCODE -ne 0) { Remove-Item -LiteralPath .\dist\existing-catalog -Recurse -Force -ErrorAction SilentlyContinue }
+          if ($LASTEXITCODE -ne 0) {
+            Remove-Item -LiteralPath .\dist\existing-catalog -Recurse -Force -ErrorAction SilentlyContinue
+            Write-Host "No existing catalog found for $env:MODULE_ID; creating the first one."
+            $global:LASTEXITCODE = 0
+          }
       - name: Build and validate update catalog
         shell: pwsh
         run: .\scripts\build-update-catalog.ps1 -Scope Module -Module $env:MODULE_ID -Repository ${{ github.repository }} -ModuleTag $env:MODULE_RELEASE_TAG -ExistingCatalog .\dist\existing-catalog\update-catalog.json
