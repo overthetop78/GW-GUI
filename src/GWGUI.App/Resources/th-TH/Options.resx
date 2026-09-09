@@ -216,4 +216,14 @@
   <data name="Updates.ModuleCatalogUrlRequired"><value>ป้อนค่าโดยตรง HTTPS URL ของรายการที่อัพเดต</value></data>
   <data name="Updates.ModuleInstallConfirm"><value>ติดตั้งมอดูล {0} รุ่น {1}? GW GUI จะปิดและเริ่มใหม่</value></data>
   <data name="Updates.ModuleInstallFailed"><value>ไม่สามารถเตรียมการติดตั้งโมดูลได้</value></data>
+  <data name="Updates.ModuleDirectoryDescription"><value>เรียกดูโมดูลจําลองอย่างเป็นทางการ ที่สามารถใช้สําหรับการติดตั้งได้</value></data>
+  <data name="Updates.ModuleDirectorySearch"><value>แสดงมอดูลที่มี</value></data>
+  <data name="Updates.ModuleDirectoryInstall"><value>ติดตั้ง</value></data>
+  <data name="Updates.ModuleDirectoryReady"><value>โหลดไดเรกทอรีอย่างเป็นทางการเพื่อดูมอดูลที่มีอยู่สําหรับการติดตั้ง</value></data>
+  <data name="Updates.ModuleDirectorySearching"><value>กําลังโหลดไดเร็กทอรีของมอดูล...</value></data>
+  <data name="Updates.ModuleDirectoryEmpty"><value>ไม่มีมอดูลที่เข้ากันได้ในปัจจุบัน</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} มอดูล (s) ที่มีอยู่</value></data>
+  <data name="Updates.ModuleDirectoryFailed"><value>ไม่สามารถเรียกใช้ไดเร็กทอรีของมอดูลได้</value></data>
+  <data name="Updates.ModuleNotInstalled"><value>ไม่ได้ติดตั้ง</value></data>
+  <data name="Updates.ModuleAvailableVersion"><value>รุ่นที่มี: {0}</value></data>
 </root>

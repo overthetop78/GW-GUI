@@ -215,4 +215,14 @@
   <data name="Updates.ModuleCatalogUrlRequired"><value>Adja meg a közvetlen HTTPS URL modulfrissítési katalógus.</value></data>
   <data name="Updates.ModuleInstallConfirm"><value>Modul telepítése {0} változat {1}? GW GUI bezárul és újra indul.</value></data>
   <data name="Updates.ModuleInstallFailed"><value>Nem sikerült elkészíteni a modul telepítését.</value></data>
+  <data name="Updates.ModuleDirectoryDescription"><value>Böngészés hivatalos emulációs modulok telepítésére.</value></data>
+  <data name="Updates.ModuleDirectorySearch"><value>A rendelkezésre álló modulok megjelenítése</value></data>
+  <data name="Updates.ModuleDirectoryInstall"><value>Telepítés</value></data>
+  <data name="Updates.ModuleDirectoryReady"><value>A hivatalos könyvtár betöltése a telepítési modulokhoz.</value></data>
+  <data name="Updates.ModuleDirectorySearching"><value>A modul könyvtárának betöltése...</value></data>
+  <data name="Updates.ModuleDirectoryEmpty"><value>Jelenleg nincs kompatibilis modul.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} elérhető modul (ok).</value></data>
+  <data name="Updates.ModuleDirectoryFailed"><value>Nem sikerült betölteni a modulkönyvtárat.</value></data>
+  <data name="Updates.ModuleNotInstalled"><value>Nem telepítve</value></data>
+  <data name="Updates.ModuleAvailableVersion"><value>Elérhető változat: {0}</value></data>
 </root>

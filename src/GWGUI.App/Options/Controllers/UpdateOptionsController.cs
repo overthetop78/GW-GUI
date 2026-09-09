@@ -16,6 +16,7 @@ internal sealed class UpdateOptionsController
     private readonly Window _owner;
     private readonly ApplicationUpdateService _applicationService;
     private readonly ModuleUpdateService _moduleService;
+    private readonly ModuleDirectoryService _moduleDirectoryService;
     private readonly UpdatePackagePreparationService _packagePreparation;
     private readonly ModuleInstallationService _moduleInstallation;
     private readonly Func<string, object[], string> _localize;
@@ -28,6 +29,7 @@ internal sealed class UpdateOptionsController
 
     internal ObservableCollection<UpdateComponentRow> ApplicationResults { get; } = [];
     internal ObservableCollection<UpdateComponentRow> ModuleResults { get; } = [];
+    internal ObservableCollection<AvailableModuleRow> AvailableModuleResults { get; } = [];
 
     internal UpdateOptionsController(
         Window owner,
@@ -36,6 +38,7 @@ internal sealed class UpdateOptionsController
         Func<string, object[], string> localize,
         Action<Exception> reportError,
         ModuleUpdateService? moduleService = null,
+        ModuleDirectoryService? moduleDirectoryService = null,
         UpdatePackagePreparationService? packagePreparation = null,
         ModuleInstallationService? moduleInstallation = null)
     {
@@ -43,6 +46,7 @@ internal sealed class UpdateOptionsController
         _section = section;
         _applicationService = applicationService;
         _moduleService = moduleService ?? new ModuleUpdateService();
+        _moduleDirectoryService = moduleDirectoryService ?? new ModuleDirectoryService();
         _packagePreparation = packagePreparation ?? new UpdatePackagePreparationService();
         _moduleInstallation = moduleInstallation ?? new ModuleInstallationService(
             packagePreparation: _packagePreparation);
@@ -50,8 +54,11 @@ internal sealed class UpdateOptionsController
         _reportError = reportError;
         _section.Results.ItemsSource = ApplicationResults;
         _section.ModuleResults.ItemsSource = ModuleResults;
+        _section.AvailableModuleResults.ItemsSource = AvailableModuleResults;
         _section.SearchRequested += SearchApplication;
         _section.SearchModulesRequested += SearchModules;
+        _section.SearchAvailableModulesRequested += SearchAvailableModules;
+        _section.InstallAvailableModuleRequested += InstallAvailableModule;
         _section.VersionSelectionChanged += VersionChanged;
         _section.InstallRequested += InstallApplication;
         _section.InstallModulesRequested += InstallModules;
@@ -68,6 +75,8 @@ internal sealed class UpdateOptionsController
         else RenderApplication(_applicationResult);
         if (_moduleResult is null) _section.ModuleStatus.Text = _localize("Updates.Ready", []);
         else RenderModules(_moduleResult);
+        if (AvailableModuleResults.Count == 0)
+            _section.AvailableModuleStatus.Text = _localize("Updates.ModuleDirectoryReady", []);
     }
 
     private async void SearchApplication(object sender, RoutedEventArgs e)
@@ -102,6 +111,42 @@ internal sealed class UpdateOptionsController
             _reportError(exception);
         }
         finally { if (_preparationCancellation is null) _section.SearchModulesButton.IsEnabled = true; }
+    }
+
+    private async void SearchAvailableModules(object sender, RoutedEventArgs e)
+    {
+        _section.SearchAvailableModulesButton.IsEnabled = false;
+        _section.AvailableModuleStatus.Text = _localize("Updates.ModuleDirectorySearching", []);
+        try
+        {
+            var modules = await _moduleDirectoryService.SearchAsync();
+            AvailableModuleResults.Clear();
+            foreach (var module in modules)
+            {
+                var state = module.InstalledVersion is not null
+                    ? _localize("Updates.InstalledVersion", [module.InstalledVersion])
+                    : module.AvailableVersion is null
+                        ? _localize("Updates.Incompatible", [])
+                        : _localize("Updates.ModuleNotInstalled", []);
+                var version = module.AvailableVersion is null
+                    ? _localize("Updates.Incompatible", [])
+                    : _localize("Updates.ModuleAvailableVersion", [module.AvailableVersion]);
+                AvailableModuleResults.Add(new(module.Id, module.DisplayName, module.CatalogUrl,
+                    version, state, module.CanInstall));
+            }
+            _section.AvailableModuleStatus.Text = AvailableModuleResults.Count == 0
+                ? _localize("Updates.ModuleDirectoryEmpty", [])
+                : _localize("Updates.ModuleDirectoryResults", [AvailableModuleResults.Count]);
+        }
+        catch (Exception exception)
+        {
+            _section.AvailableModuleStatus.Text = _localize("Updates.ModuleDirectoryFailed", []);
+            _reportError(exception);
+        }
+        finally
+        {
+            if (_preparationCancellation is null) _section.SearchAvailableModulesButton.IsEnabled = true;
+        }
     }
 
     private void VersionChanged(object sender, SelectionChangedEventArgs e)
@@ -180,6 +225,14 @@ internal sealed class UpdateOptionsController
         }
         await PrepareNewModuleAsync(cancellation =>
             _moduleInstallation.PrepareFromCatalogAsync(catalogUrl,
+                new Progress<double>(value => _section.ModulesProgress.Value = value * 100), cancellation));
+    }
+
+    private async void InstallAvailableModule(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button { DataContext: AvailableModuleRow module } || !module.CanInstall) return;
+        await PrepareNewModuleAsync(cancellation =>
+            _moduleInstallation.PrepareFromCatalogAsync(module.CatalogUrl,
                 new Progress<double>(value => _section.ModulesProgress.Value = value * 100), cancellation));
     }
 
@@ -290,6 +343,7 @@ internal sealed class UpdateOptionsController
     {
         _section.SearchButton.IsEnabled = !value;
         _section.SearchModulesButton.IsEnabled = !value;
+        _section.SearchAvailableModulesButton.IsEnabled = !value;
         _section.InstallButton.IsEnabled = !value && _applicationResult is not null && CanInstall(_applicationResult);
         _section.InstallModulesButton.IsEnabled = !value && _moduleResult is not null && CanInstall(_moduleResult);
         _section.InstallModuleFileButton.IsEnabled = !value;
@@ -323,6 +377,27 @@ internal sealed class UpdateOptionsController
         try { if (Directory.Exists(workDirectory)) Directory.Delete(workDirectory, recursive: true); }
         catch { }
     }
+}
+
+internal sealed class AvailableModuleRow
+{
+    internal AvailableModuleRow(string id, string displayName, string catalogUrl,
+        string versionLabel, string stateLabel, bool canInstall)
+    {
+        Id = id;
+        DisplayName = displayName;
+        CatalogUrl = catalogUrl;
+        VersionLabel = versionLabel;
+        StateLabel = stateLabel;
+        CanInstall = canInstall;
+    }
+
+    public string Id { get; }
+    public string DisplayName { get; }
+    public string CatalogUrl { get; }
+    public string VersionLabel { get; }
+    public string StateLabel { get; }
+    public bool CanInstall { get; }
 }
 
 internal sealed class UpdateComponentRow

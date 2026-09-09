@@ -216,4 +216,14 @@
   <data name="Updates.ModuleCatalogUrlRequired"><value>자주 묻는 질문 HTTPS URL 모듈 업데이트 카탈로그의.</value></data>
   <data name="Updates.ModuleInstallConfirm"><value>모듈 설치 {0} 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 {1}? GW GUI 닫히고 재시작합니다.</value></data>
   <data name="Updates.ModuleInstallFailed"><value>모듈 설치를 준비할 수 없습니다.</value></data>
+  <data name="Updates.ModuleDirectoryDescription"><value>설치를 위해 사용할 수있는 공식 에뮬레이션 모듈을 검색합니다.</value></data>
+  <data name="Updates.ModuleDirectorySearch"><value>가능한 모듈 표시</value></data>
+  <data name="Updates.ModuleDirectoryInstall"><value>설치하기</value></data>
+  <data name="Updates.ModuleDirectoryReady"><value>설치를 위해 사용할 수있는 모듈을 볼 수있는 공식 디렉토리를로드합니다.</value></data>
+  <data name="Updates.ModuleDirectorySearching"><value>모듈 디렉토리를로드 ...</value></data>
+  <data name="Updates.ModuleDirectoryEmpty"><value>호환 모듈이 없습니다.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} 모듈(s) 가능.</value></data>
+  <data name="Updates.ModuleDirectoryFailed"><value>모듈 디렉토리를 로드할 수 없습니다.</value></data>
+  <data name="Updates.ModuleNotInstalled"><value>설치하기</value></data>
+  <data name="Updates.ModuleAvailableVersion"><value>유효한 버전: {0}</value></data>
 </root>

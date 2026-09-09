@@ -215,4 +215,14 @@
   <data name="Updates.ModuleCatalogUrlRequired"><value>Εισάγετε την ευθεία HTTPS URL του καταλόγου ενημέρωσης ενότητας.</value></data>
   <data name="Updates.ModuleInstallConfirm"><value>Εγκατάσταση αρθρώματος {0} έκδοση {1}? GW GUI θα κλείσει και θα επανεκκινήσει.</value></data>
   <data name="Updates.ModuleInstallFailed"><value>Αδυναμία προετοιμασίας της εγκατάστασης του αρθρώματος.</value></data>
+  <data name="Updates.ModuleDirectoryDescription"><value>Περιήγηση στις επίσημες ενότητες προσομοίωσης διαθέσιμες για εγκατάσταση.</value></data>
+  <data name="Updates.ModuleDirectorySearch"><value>Εμφάνιση διαθέσιμων αρθρωμάτων</value></data>
+  <data name="Updates.ModuleDirectoryInstall"><value>Εγκατάσταση</value></data>
+  <data name="Updates.ModuleDirectoryReady"><value>Φόρτωση του επίσημου καταλόγου για να δείτε τις διαθέσιμες ενότητες για εγκατάσταση.</value></data>
+  <data name="Updates.ModuleDirectorySearching"><value>Φόρτωση του καταλόγου αρθρωμάτων...</value></data>
+  <data name="Updates.ModuleDirectoryEmpty"><value>Δεν υπάρχει διαθέσιμη συμβατή ενότητα.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} άρθρωμα(-α) διαθέσιμο(-α).</value></data>
+  <data name="Updates.ModuleDirectoryFailed"><value>Αδυναμία φόρτωσης του καταλόγου του αρθρώματος.</value></data>
+  <data name="Updates.ModuleNotInstalled"><value>Μη εγκατεστημένο</value></data>
+  <data name="Updates.ModuleAvailableVersion"><value>Διαθέσιμη έκδοση: {0}</value></data>
 </root>

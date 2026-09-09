@@ -1,0 +1,38 @@
+name: Publish emulation module directory
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - module-registry/**
+      - scripts/build-module-directory.ps1
+      - .github/workflows/module-directory.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: module-directory-publication
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build module directory
+        shell: pwsh
+        run: .\scripts\build-module-directory.ps1
+      - name: Publish module directory
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view module-directory
+          if ($LASTEXITCODE -ne 0) {
+            gh release create module-directory --title 'GW GUI module directory' --notes 'Machine-readable directory of installable emulation modules.' --latest=false
+          }
+          if ($LASTEXITCODE -ne 0) { throw 'Unable to create the module directory release.' }
+          gh release upload module-directory .\dist\module-directory.json --clobber
+          if ($LASTEXITCODE -ne 0) { throw 'Unable to publish the module directory.' }

@@ -216,4 +216,14 @@
   <data name="Updates.ModuleCatalogUrlRequired"><value>היכנסו ל-Direct HTTPS URL קטלוג עדכון מודול</value></data>
   <data name="Updates.ModuleInstallConfirm"><value>התקןמודול {0} גירסה גירסה {1}? GW GUI זה ייסגר ויחדש מחדש.</value></data>
   <data name="Updates.ModuleInstallFailed"><value>לא ניתן להכין את ההתקנה של המודול.</value></data>
+  <data name="Updates.ModuleDirectoryDescription"><value>מודולים של חיקוי רשמי Browse זמינים עבור ההתקנה.</value></data>
+  <data name="Updates.ModuleDirectorySearch"><value>הצג מודולים זמינים</value></data>
+  <data name="Updates.ModuleDirectoryInstall"><value>התקן</value></data>
+  <data name="Updates.ModuleDirectoryReady"><value>לטעון את המנהל הרשמי כדי לראות את המודולים הזמינים עבור ההתקנה.</value></data>
+  <data name="Updates.ModuleDirectorySearching"><value>לטעון את מנהל המודול ...</value></data>
+  <data name="Updates.ModuleDirectoryEmpty"><value>אין מודול מתאים זמין כרגע.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} מודול (s) זמין.</value></data>
+  <data name="Updates.ModuleDirectoryFailed"><value>לא ניתן לטעון את מנהל המודול.</value></data>
+  <data name="Updates.ModuleNotInstalled"><value>לא מותקנת</value></data>
+  <data name="Updates.ModuleAvailableVersion"><value>גירסה זמינה: {0}</value></data>
 </root>

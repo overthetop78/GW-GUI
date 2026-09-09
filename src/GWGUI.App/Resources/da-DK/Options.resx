@@ -206,4 +206,14 @@
   <data name="Updates.ModuleCatalogUrlRequired"><value>Indtast direkte HTTPS URL i et katalog over modulopdateringer.</value></data>
   <data name="Updates.ModuleInstallConfirm"><value>Installér modul {0} version {1}? GW GUI vil lukke og genstarte.</value></data>
   <data name="Updates.ModuleInstallFailed"><value>Kan ikke forberede modulinstallationen.</value></data>
+  <data name="Updates.ModuleDirectoryDescription"><value>Gennemse officielle emuleringsmoduler til rådighed for installation.</value></data>
+  <data name="Updates.ModuleDirectorySearch"><value>Vis tilgængelige moduler</value></data>
+  <data name="Updates.ModuleDirectoryInstall"><value>Installer</value></data>
+  <data name="Updates.ModuleDirectoryReady"><value>Indlæs den officielle mappe for at se modulerne til installation.</value></data>
+  <data name="Updates.ModuleDirectorySearching"><value>Indlæser modulmappen...</value></data>
+  <data name="Updates.ModuleDirectoryEmpty"><value>Der er ikke noget kompatibelt modul til rådighed i øjeblikket.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} modul (er) til rådighed.</value></data>
+  <data name="Updates.ModuleDirectoryFailed"><value>Kan ikke indlæse modulmappen.</value></data>
+  <data name="Updates.ModuleNotInstalled"><value>Ikke installeret</value></data>
+  <data name="Updates.ModuleAvailableVersion"><value>Foreligger i: {0}</value></data>
 </root>

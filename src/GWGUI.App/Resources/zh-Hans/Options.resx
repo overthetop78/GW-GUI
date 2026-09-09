@@ -216,4 +216,14 @@
   <data name="Updates.ModuleCatalogUrlRequired"><value>输入直线 HTTPS URL 模块更新目录。</value></data>
   <data name="Updates.ModuleInstallConfirm"><value>安装模块 {0} 版本 {1}? GW GUI 将关闭并重新启动。</value></data>
   <data name="Updates.ModuleInstallFailed"><value>无法准备模块安装 。</value></data>
+  <data name="Updates.ModuleDirectoryDescription"><value>浏览可供安装的官方模拟模块。</value></data>
+  <data name="Updates.ModuleDirectorySearch"><value>显示可用的模块</value></data>
+  <data name="Updates.ModuleDirectoryInstall"><value>安装</value></data>
+  <data name="Updates.ModuleDirectoryReady"><value>装入正式目录以查看可用的模块以供安装 。</value></data>
+  <data name="Updates.ModuleDirectorySearching"><value>正在装入模块目录...</value></data>
+  <data name="Updates.ModuleDirectoryEmpty"><value>目前没有兼容的模块。</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} 模块。</value></data>
+  <data name="Updates.ModuleDirectoryFailed"><value>无法装入模块目录 。</value></data>
+  <data name="Updates.ModuleNotInstalled"><value>未安装</value></data>
+  <data name="Updates.ModuleAvailableVersion"><value>可用版本 : {0}</value></data>
 </root>

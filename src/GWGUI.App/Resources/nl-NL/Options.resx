@@ -208,4 +208,14 @@
   <data name="Updates.ModuleCatalogUrlRequired"><value>Voer het directe HTTPS URL van een module-updatecatalogus.</value></data>
   <data name="Updates.ModuleInstallConfirm"><value>Module installeren {0} versie {1}? GW GUI zal sluiten en opnieuw starten.</value></data>
   <data name="Updates.ModuleInstallFailed"><value>Kan de installatie van de module niet voorbereiden.</value></data>
+  <data name="Updates.ModuleDirectoryDescription"><value>Blader door officiële emulatiemodules die beschikbaar zijn voor installatie.</value></data>
+  <data name="Updates.ModuleDirectorySearch"><value>Beschikbare modules tonen</value></data>
+  <data name="Updates.ModuleDirectoryInstall"><value>Installeren</value></data>
+  <data name="Updates.ModuleDirectoryReady"><value>Laad de officiële map om de modules beschikbaar te zien voor installatie.</value></data>
+  <data name="Updates.ModuleDirectorySearching"><value>De modulemap wordt geladen...</value></data>
+  <data name="Updates.ModuleDirectoryEmpty"><value>Er is momenteel geen compatibele module beschikbaar.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} module(s) beschikbaar.</value></data>
+  <data name="Updates.ModuleDirectoryFailed"><value>Kon de modulemap niet laden.</value></data>
+  <data name="Updates.ModuleNotInstalled"><value>Niet geïnstalleerd</value></data>
+  <data name="Updates.ModuleAvailableVersion"><value>Beschikbare versie: {0}</value></data>
 </root>

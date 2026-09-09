@@ -207,4 +207,14 @@
   <data name="Updates.ModuleCatalogUrlRequired"><value>Masukkan langsung HTTPS URL dari katalog update modul.</value></data>
   <data name="Updates.ModuleInstallConfirm"><value>Pasang modul {0} versi {1}? GW GUI akan menutup dan restart.</value></data>
   <data name="Updates.ModuleInstallFailed"><value>Tidak dapat mempersiapkan instalasi modul.</value></data>
+  <data name="Updates.ModuleDirectoryDescription"><value>Menelusuri modul emulasi resmi yang tersedia untuk instalasi.</value></data>
+  <data name="Updates.ModuleDirectorySearch"><value>Tampilkan modul yang tersedia</value></data>
+  <data name="Updates.ModuleDirectoryInstall"><value>Pasang</value></data>
+  <data name="Updates.ModuleDirectoryReady"><value>Muat direktori resmi untuk melihat modul yang tersedia untuk instalasi.</value></data>
+  <data name="Updates.ModuleDirectorySearching"><value>Memuat direktori modul...</value></data>
+  <data name="Updates.ModuleDirectoryEmpty"><value>Modul yang kompatibel tidak tersedia.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} modul tersedia.</value></data>
+  <data name="Updates.ModuleDirectoryFailed"><value>Tidak dapat memuat direktori modul.</value></data>
+  <data name="Updates.ModuleNotInstalled"><value>Belum terpasang</value></data>
+  <data name="Updates.ModuleAvailableVersion"><value>Versi tersedia: {0}</value></data>
 </root>

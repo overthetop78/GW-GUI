@@ -211,4 +211,14 @@
   <data name="Updates.ModuleCatalogUrlRequired"><value>Zadejte přímý HTTPS URL katalogu aktualizací modulu.</value></data>
   <data name="Updates.ModuleInstallConfirm"><value>Nainstalovat modul {0} verze {1}? GW GUI zavře a restartuje.</value></data>
   <data name="Updates.ModuleInstallFailed"><value>Nelze připravit instalaci modulu.</value></data>
+  <data name="Updates.ModuleDirectoryDescription"><value>Prohlédněte si oficiální emulační moduly dostupné pro instalaci.</value></data>
+  <data name="Updates.ModuleDirectorySearch"><value>Zobrazit dostupné moduly</value></data>
+  <data name="Updates.ModuleDirectoryInstall"><value>Instalovat</value></data>
+  <data name="Updates.ModuleDirectoryReady"><value>Načíst oficiální adresář vidět moduly k dispozici pro instalaci.</value></data>
+  <data name="Updates.ModuleDirectorySearching"><value>Nahrávám adresář modulu...</value></data>
+  <data name="Updates.ModuleDirectoryEmpty"><value>V současné době není k dispozici žádný kompatibilní modul.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} dostupné moduly.</value></data>
+  <data name="Updates.ModuleDirectoryFailed"><value>Nelze načíst adresář modulu.</value></data>
+  <data name="Updates.ModuleNotInstalled"><value>Neinstalováno</value></data>
+  <data name="Updates.ModuleAvailableVersion"><value>Dostupné znění: {0}</value></data>
 </root>

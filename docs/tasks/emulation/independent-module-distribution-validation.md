@@ -116,3 +116,36 @@ l’index public restait soumise au délai d’indexation lors du premier contr�
 
 Le build Debug complet du 9 septembre 2026 a réussi après restauration des dépendances et produit
 `build/Debug/GW GUI/gwgui.exe` avec les modules Amiga et Atari destinés aux essais locaux.
+
+## Sélection des modules dans les builds locaux
+
+Le 9 septembre 2026, `scripts/build.ps1` a été corrigé pour créer un dossier `Modules` vide par
+défaut et n’ajouter des modules que par `--Module <id>[,<id>...]` ou `--AllModules`. Les options
+contradictoires, l’identifiant inconnu et la sélection dupliquée ont été refusés avant construction.
+
+Trois builds Debug successifs ont validé le résultat sans module, avec le seul module `amiga`, puis
+avec tous les modules découverts (`amiga` et `atari`). Un paquet portable temporaire a également
+confirmé que son dossier exécutable et son ZIP contiennent l’entrée `GW GUI\Modules\` vide, sans
+manifeste ni DLL de module. Cette sortie temporaire a été supprimée avec tout le dossier `build`.
+
+Le build final a ensuite été recréé sans option de module. `build` contient uniquement `Debug`,
+`build/Debug/GW GUI/gwgui.exe` est présent, et `build/Debug/GW GUI/Modules` existe avec zéro entrée
+et aucune DLL officielle Amiga ou Atari ailleurs dans la distribution.
+
+## Découverte des modules officiels
+
+Le 9 septembre 2026, le répertoire local a été construit génériquement depuis les fichiers
+`module-registry/amiga.json` et `module-registry/atari.json`. Le document obtenu utilise le schéma 1,
+classe Amiga puis Atari et référence directement leurs catalogues indépendants déjà publiés. Aucun
+identifiant ni dépôt propre à ces modules n’a été ajouté au code ou au script de génération.
+
+Les 7 tests ciblés `ModuleDirectoryCatalogValidatorTests` et `ModuleDirectoryServiceTests` ont
+réussi. Ils couvrent le schéma, le tri, les doublons, les URL invalides, le choix de la dernière
+version compatible avec l’API hôte et la désactivation de l’installation pour un module déjà
+présent. L’audit Argos a également réussi avec 29 cultures, 22 catalogues et 42 259 entrées
+localisées.
+
+Le build Debug propre exécuté avec `scripts/build.ps1 -Configuration Debug` a réussi après
+restauration des dépendances. `build` contient uniquement `Debug`, le dossier
+`build/Debug/GW GUI/Modules` est vide, et `gwgui.exe` ainsi que `lib/gwgui.app.dll` portent la version
+produit `0.3.0`.

@@ -240,4 +240,14 @@
   <data name="Updates.ModuleCatalogUrlRequired"><value>Enter the direct HTTPS URL of a module update catalog.</value></data>
   <data name="Updates.ModuleInstallConfirm"><value>Install module {0} version {1}? GW GUI will close and restart.</value></data>
   <data name="Updates.ModuleInstallFailed"><value>Unable to prepare the module installation.</value></data>
+  <data name="Updates.ModuleDirectoryDescription"><value>Browse official emulation modules available for installation.</value></data>
+  <data name="Updates.ModuleDirectorySearch"><value>Show available modules</value></data>
+  <data name="Updates.ModuleDirectoryInstall"><value>Install</value></data>
+  <data name="Updates.ModuleDirectoryReady"><value>Load the official directory to see the modules available for installation.</value></data>
+  <data name="Updates.ModuleDirectorySearching"><value>Loading the module directory...</value></data>
+  <data name="Updates.ModuleDirectoryEmpty"><value>No compatible module is currently available.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} module(s) available.</value></data>
+  <data name="Updates.ModuleDirectoryFailed"><value>Unable to load the module directory.</value></data>
+  <data name="Updates.ModuleNotInstalled"><value>Not installed</value></data>
+  <data name="Updates.ModuleAvailableVersion"><value>Available version: {0}</value></data>
 </root>

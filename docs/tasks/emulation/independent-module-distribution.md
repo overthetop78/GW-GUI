@@ -59,11 +59,11 @@
     - [x] 4.1.1 Retirer les modules du paquetage complet
       - [x] Modifier `scripts/package.ps1` pour ne plus appeler `package-module.ps1`, ne plus extraire les archives de modules dans la publication et ne créer que les paquets de GW GUI, du lanceur et de l’updater.
       - [x] Modifier `.github/workflows/release.yml` pour générer le catalogue avec `-Scope Application`, ne plus téléverser d’archives de modules dans la release de GW GUI et publier uniquement le catalogue stable de l’application.
-      - [x] Modifier `installer/GWGUI.iss` seulement si nécessaire pour qu’une nouvelle installation ne reçoive aucun dossier de module et qu’une mise à niveau conserve le dossier `Modules` déjà installé.
+      - [x] Modifier `installer/GWGUI.iss` seulement si nécessaire pour qu’une nouvelle installation reçoive un dossier `Modules` vide et qu’une mise à niveau conserve les modules déjà installés.
       - [x] Modifier `scripts/test-installer.ps1` et `scripts/test-installer-upgrade.ps1` pour vérifier respectivement l’absence de module dans une installation neuve et la conservation exacte des modules présents pendant une mise à niveau.
   - [x] 4.2 Garder les modules disponibles dans les builds de développement
     - [x] 4.2.1 Distinguer build local et paquet distribué
-      - [x] Conserver dans `scripts/build.ps1` la construction automatique des projets `GWGUI.Emulation.*` pour les essais locaux et documenter que ce build de développement ne représente pas le contenu du paquet de GW GUI.
+      - [x] Conserver dans `scripts/build.ps1` la possibilité d’ajouter les projets `GWGUI.Emulation.*` pour les essais locaux, avec une sélection explicite des modules ; le build sans option représente le contenu de GW GUI sans module.
       - [x] Modifier `docs/project/scripts.md` pour distinguer explicitement la construction locale avec modules, le paquet d’application sans modules et `package-module.ps1` pour les archives indépendantes.
 
 - [x] 5. Préparer la publication indépendante de chaque module et de son catalogue
@@ -111,7 +111,7 @@
       - [x] Exécuter ces tests uniquement dans `build/.independent-module-validation`, inscrire leurs résultats dans `docs/tasks/emulation/independent-module-distribution-validation.md`, puis supprimer les fichiers de tests temporaires et tout le dossier créé pour eux.
   - [x] 8.3 Vérifier les paquets et l’interface finale
     - [x] 8.3.1 Contrôler les résultats distribués
-      - [x] Produire un paquet de GW GUI et vérifier qu’il ne contient ni `Modules`, ni manifeste, ni archive de module, puis supprimer le paquet créé uniquement pour ce contrôle après avoir inscrit le résultat.
+      - [x] Produire un paquet de GW GUI et vérifier qu’il ne contient aucun module, manifeste ou archive de module, puis supprimer le paquet créé uniquement pour ce contrôle après avoir inscrit le résultat.
       - [x] Produire séparément les paquets Amiga et Atari, vérifier leur manifeste, leur adresse de catalogue et leur absence du paquet GW GUI, puis supprimer les sorties créées uniquement pour ce contrôle après avoir inscrit le résultat.
       - [x] Exécuter l’audit Argos, puis produire le build Debug avec `scripts/build.ps1 -Configuration Debug` et vérifier `build/Debug/GW GUI/gwgui.exe`.
   - [x] 8.4 Terminer la documentation
@@ -135,6 +135,32 @@
       - [x] Publier `GWGUI.Emulation.SDK` 1.0.0 sur NuGet.org avec le tag prévu, puis inscrire le paquet, le tag et la release dans `docs/tasks/emulation/independent-module-distribution-validation.md`.
     - [x] 9.2.3 Fournir la présentation du SDK sur NuGet.org
       - [x] Ajouter un README autonome au paquet `GWGUI.Emulation.SDK`, augmenter sa révision, adapter le modèle de module et publier cette nouvelle version afin que la page NuGet explique directement son rôle, son installation et le démarrage d’un module.
-  - [ ] 9.3 Effectuer la validation utilisateur
-    - [ ] 9.3.1 Vérifier les parcours visibles
+  - [x] 9.3 Rendre les modules facultatifs dans les builds locaux
+    - [x] 9.3.1 Corriger la sélection de contenu de `build.ps1`
+      - [x] Construire l’application avec un dossier `Modules` vide par défaut, ajouter les options longues `--AllModules` et `--Module` pour inclure tous les modules ou sélectionner un ou plusieurs identifiants, puis refuser les options contradictoires, les identifiants inconnus et les doublons.
+      - [x] Appliquer le même dossier `Modules` vide au paquet portable et à l’installateur, puis adapter leur contrôle d’installation propre.
+      - [x] Mettre à jour `README.md` et `docs/project/scripts.md`, supprimer entièrement `build`, vérifier un build Debug vide et des builds ciblés, puis laisser uniquement le build Debug sans module demandé par l’utilisateur.
+  - [ ] 9.4 Rendre les modules officiels disponibles à la découverte
+    - [x] 9.4.1 Définir un répertoire distant sans connaissance des modules dans l’application
+      - [x] Créer les contrats du répertoire de modules sous `src/GWGUI.Updates/Contracts` avec une version de schéma, une date de génération et des entrées contenant uniquement l’identifiant, le nom affiché et l’URL HTTPS directe du catalogue propre au module.
+      - [x] Créer sous `module-registry` une entrée Amiga et une entrée Atari, puis faire ajouter chaque futur module par un nouveau fichier de registre sans modifier une liste dans le code ou dans un script.
+      - [x] Créer `scripts/build-module-directory.ps1` pour découvrir, valider et assembler génériquement toutes les entrées de `module-registry` dans `module-directory.json`, en refusant les identifiants dupliqués et les URL non HTTPS ou ne terminant pas par `.json`.
+      - [x] Créer `.github/workflows/module-directory.yml` pour publier `module-directory.json` dans une release technique stable lors d’un changement du registre ou d’un lancement manuel.
+    - [x] 9.4.2 Charger et présenter les modules installables
+      - [x] Modifier `src/GWGUI.App/Constants/Updates/UpdateEndpoints.cs` pour définir uniquement l’URL du répertoire officiel, sans constante propre à Amiga, Atari ou un futur module.
+      - [x] Créer `src/GWGUI.App/Services/Updates/ModuleDirectoryService.cs` pour télécharger et valider le répertoire, lire chaque catalogue de module, sélectionner la dernière version compatible avec l’API hôte et distinguer les modules absents de ceux déjà installés.
+      - [x] Modifier `src/GWGUI.App/Views/Controls/Options/OptionsUpdatesSection.xaml`, son code associé et `UpdateOptionsController.cs` pour afficher les modules officiels disponibles, leur version et un bouton d’installation, en conservant l’installation avancée par ZIP ou URL.
+      - [x] Modifier tous les fichiers `src/GWGUI.App/Resources/*/Options.resx` avec les libellés du répertoire, de son chargement, de ses erreurs et de l’installation, en utilisant Argos pour toutes les langues traduites.
+    - [x] 9.4.3 Corriger la version des builds locaux
+      - [x] Modifier `src/GWGUI.App/GWGUI.App.csproj` pour prendre `0.3.0` comme version courante par défaut et modifier `scripts/build.ps1` pour accepter une version explicite et la transmettre aux exécutables de l’application, du lanceur et de l’updater.
+      - [x] Modifier `README.md` et `docs/project/scripts.md` pour documenter la version par défaut et l’option permettant de construire une autre version locale.
+    - [x] 9.4.4 Documenter la découverte et l’ajout de futurs modules
+      - [x] Modifier `README.md`, `docs/architecture/emulation-module-updates.md` et `docs/architecture/emulation-module-authoring.md` pour expliquer le répertoire officiel, la découverte dans l’application et l’ajout d’un futur module par un fichier indépendant sous `module-registry`.
+    - [x] 9.4.5 Vérifier la découverte et le build
+      - [x] Ajouter sous `tests/GWGUI.Tests/Updates` les tests du schéma de répertoire, des entrées invalides, de la compatibilité hôte et de l’exclusion des modules déjà installés.
+      - [x] Exécuter les tests ciblés, construire `module-directory.json`, exécuter l’audit Argos et produire un build Debug propre sans module, puis inscrire les résultats et la version affichée dans `docs/tasks/emulation/independent-module-distribution-validation.md`.
+    - [ ] 9.4.6 Publier le premier répertoire officiel
+      - [ ] Commiter et pousser les fichiers validés sur `main`, exécuter le workflow du répertoire, contrôler son URL et son contenu Amiga/Atari, puis inscrire la publication dans `docs/tasks/emulation/independent-module-distribution-validation.md`.
+  - [ ] 9.5 Effectuer la validation utilisateur
+    - [ ] 9.5.1 Vérifier les parcours visibles
       - [ ] Faire vérifier par l’utilisateur l’installation depuis un ZIP, l’installation depuis une URL, la mise à jour indépendante d’un module et la mise à jour de GW GUI conservant tous les modules, puis inscrire son résultat dans `docs/tasks/emulation/independent-module-distribution-validation.md`.

@@ -214,4 +214,14 @@
   <data name="Updates.ModuleCatalogUrlRequired"><value>Anna suora HTTPS URL moduulin päivitysluettelo.</value></data>
   <data name="Updates.ModuleInstallConfirm"><value>Asenna moduuli {0} versio {1}? GW GUI sulkee ja käynnistää uudelleen.</value></data>
   <data name="Updates.ModuleInstallFailed"><value>Moduulin asennusta ei voitu valmistella.</value></data>
+  <data name="Updates.ModuleDirectoryDescription"><value>Selaa virallisia emulgointi moduleja asennukseen.</value></data>
+  <data name="Updates.ModuleDirectorySearch"><value>Näytä käytettävissä olevat moduulit</value></data>
+  <data name="Updates.ModuleDirectoryInstall"><value>Asenna</value></data>
+  <data name="Updates.ModuleDirectoryReady"><value>Lataa virallinen hakemisto nähdäksesi asennusta varten käytettävissä olevat moduulit.</value></data>
+  <data name="Updates.ModuleDirectorySearching"><value>Ladataan moduulihakemistoa...</value></data>
+  <data name="Updates.ModuleDirectoryEmpty"><value>Yhteensopivaa moduulia ei ole tällä hetkellä saatavilla.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} moduulia [s] saatavilla.</value></data>
+  <data name="Updates.ModuleDirectoryFailed"><value>Moduulihakemistoa ei voitu ladata.</value></data>
+  <data name="Updates.ModuleNotInstalled"><value>Ei asennettu</value></data>
+  <data name="Updates.ModuleAvailableVersion"><value>Saatavilla oleva versio: {0}</value></data>
 </root>

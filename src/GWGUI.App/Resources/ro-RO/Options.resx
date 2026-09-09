@@ -207,4 +207,14 @@
   <data name="Updates.ModuleCatalogUrlRequired"><value>Introduceți direct HTTPS URL a unui catalog de actualizare a modulului.</value></data>
   <data name="Updates.ModuleInstallConfirm"><value>Instalează modulul {0} versiune {1}? GW GUI Se va închide şi va reporni.</value></data>
   <data name="Updates.ModuleInstallFailed"><value>Nu s-a putut pregăti instalarea modulului.</value></data>
+  <data name="Updates.ModuleDirectoryDescription"><value>Răsfoiţi modulele de emulare oficiale disponibile pentru instalare.</value></data>
+  <data name="Updates.ModuleDirectorySearch"><value>Afișează modulele disponibile</value></data>
+  <data name="Updates.ModuleDirectoryInstall"><value>Instalează</value></data>
+  <data name="Updates.ModuleDirectoryReady"><value>Încarcă dosarul oficial pentru a vedea modulele disponibile pentru instalare.</value></data>
+  <data name="Updates.ModuleDirectorySearching"><value>Se încarcă directorul modulului...</value></data>
+  <data name="Updates.ModuleDirectoryEmpty"><value>În prezent, nu este disponibil niciun modul compatibil.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} modul (module) disponibil (disponibile).</value></data>
+  <data name="Updates.ModuleDirectoryFailed"><value>Imposibil de încărcat directorul modulului.</value></data>
+  <data name="Updates.ModuleNotInstalled"><value>Neinstalat</value></data>
+  <data name="Updates.ModuleAvailableVersion"><value>Versiunea disponibilă: {0}</value></data>
 </root>

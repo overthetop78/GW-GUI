@@ -210,4 +210,14 @@
   <data name="Updates.ModuleCatalogUrlRequired"><value>Skriv inn direkte HTTPS URL i en moduloppdateringskatalog.</value></data>
   <data name="Updates.ModuleInstallConfirm"><value>Installer modul {0} versjon {1}? GW GUI vil stenge og omstarte.</value></data>
   <data name="Updates.ModuleInstallFailed"><value>Kan ikke forberede modulinstallasjonen.</value></data>
+  <data name="Updates.ModuleDirectoryDescription"><value>Bla gjennom offisielle emuleringsmoduler som er tilgjengelige for installasjon.</value></data>
+  <data name="Updates.ModuleDirectorySearch"><value>Vis tilgjengelige moduler</value></data>
+  <data name="Updates.ModuleDirectoryInstall"><value>Installer</value></data>
+  <data name="Updates.ModuleDirectoryReady"><value>Last den offisielle katalogen for å se modulene som er tilgjengelige for installasjon.</value></data>
+  <data name="Updates.ModuleDirectorySearching"><value>Laster modulkatalogen...</value></data>
+  <data name="Updates.ModuleDirectoryEmpty"><value>Ingen kompatibel modul er for tiden tilgjengelig.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} modul(er) tilgjengelig.</value></data>
+  <data name="Updates.ModuleDirectoryFailed"><value>Kan ikke laste modulkatalogen.</value></data>
+  <data name="Updates.ModuleNotInstalled"><value>Ikke installert</value></data>
+  <data name="Updates.ModuleAvailableVersion"><value>Tilgjengelig versjon: {0}</value></data>
 </root>

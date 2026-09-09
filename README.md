@@ -31,10 +31,11 @@ L’application est proposée pour **Windows x64**, avec une interface multiling
 
 Le **Microsoft Windows Desktop Runtime .NET 10 x64** est nécessaire à l’exécution ; le runtime .NET n’est pas inclus dans les paquets.
 
-Le paquet de GW GUI ne contient aucun module d’émulation. Les modules s’installent séparément dans
-**Options > Mises à jour**, depuis une archive ZIP ou l’URL HTTPS directe de leur catalogue. Chaque
-module conserve sa propre version et sa propre adresse de mise à jour ; une mise à jour de GW GUI
-préserve les modules déjà installés.
+Le paquet de GW GUI ne contient aucun module d’émulation. Dans **Options > Mises à jour**, le bouton
+**Afficher les modules disponibles** charge le répertoire officiel et permet d’installer séparément
+Amiga, Atari et les futurs modules enregistrés. Une archive ZIP ou l’URL HTTPS directe du catalogue
+reste utilisable pour un module tiers. Chaque module conserve sa propre version et sa propre adresse
+de mise à jour ; une mise à jour de GW GUI préserve les modules déjà installés.
 
 Le [wiki utilisateur](https://github.com/overthetop78/GW-GUI/wiki) propose un choix parmi 29 langues. Le menu d’aide ouvre directement le guide dans la langue de l’application. Cette aide est uniquement en ligne ; les guides sont progressivement enrichis et révisés.
 
@@ -51,9 +52,26 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1
 # Construire uniquement Debug
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Debug
 
+# Construire Debug avec une version locale explicite
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Debug -Version 0.3.0
+
 # Construire uniquement Release
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Release
+
+# Construire Debug avec un seul module
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Debug --Module amiga
+
+# Construire Debug avec plusieurs modules choisis
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Debug --Module amiga,atari
+
+# Construire Debug avec tous les modules découverts
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Debug --AllModules
 ```
+
+Sans `--Module` ni `--AllModules`, le dossier `Modules` est créé vide. `--Module` accepte un ou
+plusieurs identifiants découverts depuis leur manifeste. `--AllModules` ajoute tous les modules
+découverts. Les deux options ne peuvent pas être combinées.
+Sans `-Version`, le script utilise la version courante inscrite dans `GWGUI.App.csproj`.
 
 | Configuration | Exécutable produit |
 |---|---|

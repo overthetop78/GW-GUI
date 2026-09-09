@@ -215,4 +215,14 @@
   <data name="Updates.ModuleCatalogUrlRequired"><value>Doğrudan girin HTTPS URL Bir modül güncellemesi kataloğu.</value></data>
   <data name="Updates.ModuleInstallConfirm"><value>Yükleme modülü {0} sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm sürüm {1}? GW GUI Yakın ve yeniden başlayacak.</value></data>
   <data name="Updates.ModuleInstallFailed"><value>Modül kurulumunu hazırlamak için kullanılamaz.</value></data>
+  <data name="Updates.ModuleDirectoryDescription"><value>Kurulum için mevcut resmi emulation modüllerine göz atın.</value></data>
+  <data name="Updates.ModuleDirectorySearch"><value>Mevcut modüller göster</value></data>
+  <data name="Updates.ModuleDirectoryInstall"><value>Yükleme yükleme</value></data>
+  <data name="Updates.ModuleDirectoryReady"><value>Kurulum için mevcut olan modülleri görmek için resmi rehberi gönderin.</value></data>
+  <data name="Updates.ModuleDirectorySearching"><value>Modül kılavuzunu Yükler...</value></data>
+  <data name="Updates.ModuleDirectoryEmpty"><value>Şu anda uyumlu modül mevcut değildir.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} modülü (s) mevcut.</value></data>
+  <data name="Updates.ModuleDirectoryFailed"><value>Modül dizisini yüklemek için kullanılamaz.</value></data>
+  <data name="Updates.ModuleNotInstalled"><value>Yüklemek için yükleme</value></data>
+  <data name="Updates.ModuleAvailableVersion"><value>Mevcut sürüm: {0}</value></data>
 </root>

@@ -449,10 +449,16 @@ Copier `sdk/module-template` dans un dépôt indépendant, remplacer les valeurs
 doivent conserver le même identifiant. Une archive distribuable garde exactement la racine
 `Modules/<id>`.
 
-Pour la première installation, l'utilisateur choisit soit cette archive ZIP dans les options de GW
-GUI, soit l'URL directe du catalogue inscrite dans le manifeste. GW GUI valide l'identité, la version,
-les bornes d'API, l'empreinte du paquet et les chemins, puis redémarre pour installer le module. Les
-recherches suivantes partent uniquement de `updateCatalogUrl` du module installé.
+Pour la première installation, l'utilisateur choisit cette archive ZIP, saisit l'URL directe du
+catalogue inscrite dans le manifeste ou sélectionne le module dans le répertoire officiel de GW GUI.
+GW GUI valide l'identité, la version, les bornes d'API, l'empreinte du paquet et les chemins, puis
+redémarre pour installer le module. Les recherches suivantes partent uniquement de
+`updateCatalogUrl` du module installé.
+
+Pour proposer un module dans le répertoire officiel, ajouter dans le dépôt GW GUI un fichier
+`module-registry/<id>.json` contenant uniquement `id`, `displayName` et l'URL HTTPS directe du
+catalogue `.json`. Le générateur découvre tous ces fichiers automatiquement. Le code de GW GUI et
+les scripts ne contiennent aucune liste de familles à compléter.
 
 Le workflow modèle `.github/workflows/release-module.yml` réagit à un tag `vX.Y.Z`. Il vérifie que
 le tag correspond à `moduleVersion`, construit l'archive et son SHA-256, crée la release propre au

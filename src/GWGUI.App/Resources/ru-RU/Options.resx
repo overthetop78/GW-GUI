@@ -216,4 +216,14 @@
   <data name="Updates.ModuleCatalogUrlRequired"><value>Войди в прямой HTTPS URL каталог обновления модулей.</value></data>
   <data name="Updates.ModuleInstallConfirm"><value>Установить модуль {0} версия {1}? GW GUI Закроется и возобновится.</value></data>
   <data name="Updates.ModuleInstallFailed"><value>Невозможность подготовки модуля установки.</value></data>
+  <data name="Updates.ModuleDirectoryDescription"><value>Просмотрите официальные модули эмуляции, доступные для установки.</value></data>
+  <data name="Updates.ModuleDirectorySearch"><value>Показать доступные модули</value></data>
+  <data name="Updates.ModuleDirectoryInstall"><value>устанавливать</value></data>
+  <data name="Updates.ModuleDirectoryReady"><value>Загрузите официальный каталог, чтобы увидеть модули, доступные для установки.</value></data>
+  <data name="Updates.ModuleDirectorySearching"><value>Загрузка каталога модулей...</value></data>
+  <data name="Updates.ModuleDirectoryEmpty"><value>В настоящее время совместимый модуль недоступен.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} Модуль(ы) доступен.</value></data>
+  <data name="Updates.ModuleDirectoryFailed"><value>Невозможно загрузить каталог модулей.</value></data>
+  <data name="Updates.ModuleNotInstalled"><value>Не установлен</value></data>
+  <data name="Updates.ModuleAvailableVersion"><value>Доступная версия: {0}</value></data>
 </root>

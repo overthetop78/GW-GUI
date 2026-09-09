@@ -7,6 +7,7 @@ Ce document décrit tous les fichiers présents dans `scripts`. Les commandes so
 | Script | Usage | Appelé automatiquement par |
 |---|---|---|
 | `build.ps1` | Construction locale de GW GUI | Aucun |
+| `build-module-directory.ps1` | Production du répertoire des modules installables | Workflow de publication du répertoire de modules |
 | `build-update-catalog.ps1` | Production du catalogue de mises à jour | Workflows de publication de l’application et des modules |
 | `build-wiki.ps1` | Validation et construction du wiki | Publication du wiki et workflow de publication de l’application |
 | `emulation-modules.ps1` | Découverte et validation des modules | Scripts de construction, de paquetage et de catalogue |
@@ -29,12 +30,40 @@ Ce document décrit tous les fichiers présents dans `scripts`. Les commandes so
 Construit une version locale directement utilisable dans `build/Debug/GW GUI` ou `build/Release/GW GUI`.
 
 ```powershell
-.\scripts\build.ps1 [-Configuration Debug|Release]
+.\scripts\build.ps1 [-Configuration Debug|Release] [-Version X.Y.Z] [--Module <id>[,<id>...]] [--AllModules]
 ```
 
-Sans `-Configuration`, le script construit successivement Debug et Release. Pour chaque configuration, il ferme les processus qui utilisent l’exécutable du dossier cible, supprime l’ancien résultat et le répertoire intermédiaire, puis publie l’application, tous les modules découverts, le lanceur et le programme de mise à jour. Il appelle `organize-application-output.ps1` avant de vérifier la présence de `gwgui.exe`.
+Sans `-Configuration`, le script construit successivement Debug et Release. Pour chaque configuration,
+il ferme les processus qui utilisent l’exécutable du dossier cible, supprime l’ancien résultat et le
+répertoire intermédiaire, puis publie l’application, les modules explicitement demandés, le lanceur
+et le programme de mise à jour. Il appelle `organize-application-output.ps1` avant de vérifier la
+présence de `gwgui.exe`.
 
-Le résultat principal se trouve dans `build/<Configuration>/GW GUI`. Il contient les modules découverts dans le dépôt afin de permettre leur développement et leurs essais locaux. Ce contenu de développement ne représente pas le paquet distribué de GW GUI, qui est volontairement livré sans module. Les fichiers intermédiaires sont créés sous `build/.staging` puis supprimés à la fin.
+Le résultat principal se trouve dans `build/<Configuration>/GW GUI`. Par défaut, son dossier
+`Modules` existe et reste vide, comme dans le paquet distribué. `--Module amiga`,
+`--Module amiga,atari` ou tout autre identifiant découvert ajoute uniquement les modules choisis ;
+`--AllModules` ajoute tous les manifestes découverts. `--Module` et `--AllModules` sont incompatibles.
+Un identifiant inconnu, vide ou répété provoque une erreur avant la construction. Les fichiers
+intermédiaires sont créés sous `build/.staging` puis supprimés à la fin.
+Sans `-Version`, la version de l’application vient de `src/GWGUI.App/GWGUI.App.csproj`. `-Version`
+permet de produire explicitement une autre version locale et applique le même numéro à l’application,
+au lanceur et au programme de mise à jour.
+
+### `build-module-directory.ps1`
+
+Construit le répertoire distant utilisé pour afficher les modules installables dans GW GUI.
+
+```powershell
+.\scripts\build-module-directory.ps1 `
+  [-RegistryDirectory <dossier>] `
+  [-OutputPath <fichier.json>]
+```
+
+Par défaut, le script découvre tous les fichiers JSON de `module-registry` et écrit
+`dist/module-directory.json`. Chaque entrée doit contenir uniquement `id`, `displayName` et
+`catalogUrl`. Le script refuse les identifiants et URL dupliqués, les identifiants invalides et les
+adresses qui ne sont pas des URL HTTPS directes terminées par `.json`. Ajouter un module au
+répertoire demande un nouveau fichier de registre, sans modification du script.
 
 ### `emulation-modules.ps1`
 

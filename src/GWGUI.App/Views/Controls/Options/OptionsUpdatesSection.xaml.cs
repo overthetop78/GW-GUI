@@ -14,11 +14,14 @@ public partial class OptionsUpdatesSection : UserControl
     public TextBlock Status => SearchStatus;
     public ItemsControl Results => ResultsList;
     public Button SearchModulesButton => SearchModulesAction;
+    public Button SearchAvailableModulesButton => SearchAvailableModulesAction;
     public Button InstallModulesButton => InstallModulesAction;
     public Button CancelModulesButton => CancelModulesAction;
     public ProgressBar ModulesProgress => ModulesPreparationProgress;
     public TextBlock ModuleStatus => ModulesStatus;
     public ItemsControl ModuleResults => ModulesResultsList;
+    public TextBlock AvailableModuleStatus => AvailableModulesStatus;
+    public ItemsControl AvailableModuleResults => AvailableModulesList;
     public Button InstallModuleFileButton => InstallModuleFileAction;
     public Button InstallModuleUrlButton => InstallModuleUrlAction;
     public TextBox ModuleCatalogUrl => ModuleCatalogUrlInput;
@@ -28,6 +31,8 @@ public partial class OptionsUpdatesSection : UserControl
     public event RoutedEventHandler? InstallRequested;
     public event RoutedEventHandler? CancelRequested;
     public event RoutedEventHandler? SearchModulesRequested;
+    public event RoutedEventHandler? SearchAvailableModulesRequested;
+    public event RoutedEventHandler? InstallAvailableModuleRequested;
     public event RoutedEventHandler? InstallModulesRequested;
     public event RoutedEventHandler? CancelModulesRequested;
     public event RoutedEventHandler? InstallModuleFileRequested;
@@ -39,6 +44,10 @@ public partial class OptionsUpdatesSection : UserControl
     private void Install_Click(object sender, RoutedEventArgs e) => InstallRequested?.Invoke(sender, e);
     private void Cancel_Click(object sender, RoutedEventArgs e) => CancelRequested?.Invoke(sender, e);
     private void SearchModules_Click(object sender, RoutedEventArgs e) => SearchModulesRequested?.Invoke(sender, e);
+    private void SearchAvailableModules_Click(object sender, RoutedEventArgs e) =>
+        SearchAvailableModulesRequested?.Invoke(sender, e);
+    private void InstallAvailableModule_Click(object sender, RoutedEventArgs e) =>
+        InstallAvailableModuleRequested?.Invoke(sender, e);
     private void InstallModules_Click(object sender, RoutedEventArgs e) => InstallModulesRequested?.Invoke(sender, e);
     private void CancelModules_Click(object sender, RoutedEventArgs e) => CancelModulesRequested?.Invoke(sender, e);
     private void InstallModuleFile_Click(object sender, RoutedEventArgs e) => InstallModuleFileRequested?.Invoke(sender, e);

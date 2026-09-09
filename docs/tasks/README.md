@@ -9,6 +9,10 @@ Ce dossier contient uniquement les travaux restant à exécuter ou les feuilles 
 3. [Reconstruction des tests rapides de release](release-tests.md)
 4. [Validation finale des images et du matériel](validation.md), toujours en dernier pour ce parcours.
 
+## Organisation du projet
+
+- [Organisation GitHub et suivi public du projet](project/github-public-project.md)
+
 ## Émulation
 
 - [Autonomie des modules : traductions, compatibilité, paquets et mises à jour](emulation/module-autonomy.md)

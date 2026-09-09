@@ -216,4 +216,14 @@
   <data name="Updates.ModuleCatalogUrlRequired"><value>直接入力 HTTPS URL モジュール更新カタログの</value></data>
   <data name="Updates.ModuleInstallConfirm"><value>モジュールのインストール {0} コンテンツ {1}? GW GUI クローズして再起動します。</value></data>
   <data name="Updates.ModuleInstallFailed"><value>モジュールのインストールを準備できません。</value></data>
+  <data name="Updates.ModuleDirectoryDescription"><value>インストール時に利用可能な公式エミュレーションモジュールをブラウズします。</value></data>
+  <data name="Updates.ModuleDirectorySearch"><value>利用可能なモジュールを表示</value></data>
+  <data name="Updates.ModuleDirectoryInstall"><value>インストール</value></data>
+  <data name="Updates.ModuleDirectoryReady"><value>インストール可能なモジュールを参照するために、公式ディレクトリをロードします。</value></data>
+  <data name="Updates.ModuleDirectorySearching"><value>モジュールディレクトリをロードする...</value></data>
+  <data name="Updates.ModuleDirectoryEmpty"><value>対応モジュールは使用できません。</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} モジュール(s) あり。</value></data>
+  <data name="Updates.ModuleDirectoryFailed"><value>モジュールディレクトリをロードできません。</value></data>
+  <data name="Updates.ModuleNotInstalled"><value>インストールされていない</value></data>
+  <data name="Updates.ModuleAvailableVersion"><value>利用できる版: {0}</value></data>
 </root>

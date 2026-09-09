@@ -216,4 +216,14 @@
   <data name="Updates.ModuleCatalogUrlRequired"><value>Введіть номер мобільного, який Ви вказали при укладаннi договору з банком - для ідентифікації. HTTPS URL каталог оновлення модуля.</value></data>
   <data name="Updates.ModuleInstallConfirm"><value>Модуль ВТС {0} верстка {1}? GW GUI закриє і перезавантажить.</value></data>
   <data name="Updates.ModuleInstallFailed"><value>Неможливо підготувати модульну установку.</value></data>
+  <data name="Updates.ModuleDirectoryDescription"><value>Для установки доступні офіційні емульсійні модулі.</value></data>
+  <data name="Updates.ModuleDirectorySearch"><value>Показати доступні модулі</value></data>
+  <data name="Updates.ModuleDirectoryInstall"><value>Встановити</value></data>
+  <data name="Updates.ModuleDirectoryReady"><value>Завантажте офіційну каталог, щоб переглянути модулі, доступні для установки.</value></data>
+  <data name="Updates.ModuleDirectorySearching"><value>Завантаження каталогу модуля...</value></data>
+  <data name="Updates.ModuleDirectoryEmpty"><value>Немає сумісного модуля в даний час доступний.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} Модуль (s) доступний.</value></data>
+  <data name="Updates.ModuleDirectoryFailed"><value>Неможливо завантажити каталог модуля.</value></data>
+  <data name="Updates.ModuleNotInstalled"><value>Не встановлено</value></data>
+  <data name="Updates.ModuleAvailableVersion"><value>Доступна версія: {0}</value></data>
 </root>

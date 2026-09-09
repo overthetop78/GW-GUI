@@ -216,4 +216,14 @@
   <data name="Updates.ModuleCatalogUrlRequired"><value>أدخل مباشرة HTTPS URL من كتيب تحديث الوحدات</value></data>
   <data name="Updates.ModuleInstallConfirm"><value>وحدة تركيب {0} الصيغة {1}? GW GUI سوف يغلق ويعيد تشغيله</value></data>
   <data name="Updates.ModuleInstallFailed"><value>غير قادر على إعداد تركيبة الوحدات</value></data>
+  <data name="Updates.ModuleDirectoryDescription"><value>وحدات التعبئة الرسمية متاحة للتركيب.</value></data>
+  <data name="Updates.ModuleDirectorySearch"><value>وحدات العرض المتاحة</value></data>
+  <data name="Updates.ModuleDirectoryInstall"><value>إنستال</value></data>
+  <data name="Updates.ModuleDirectoryReady"><value>وضع الدليل الرسمي لرؤية الوحدات المتاحة للتركيب.</value></data>
+  <data name="Updates.ModuleDirectorySearching"><value>وضع دليل الوحدة...</value></data>
+  <data name="Updates.ModuleDirectoryEmpty"><value>ولا توجد حاليا وحدة متوافقة.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} الوحدات (الوحدات) المتاحة.</value></data>
+  <data name="Updates.ModuleDirectoryFailed"><value>غير قادر على تحميل دليل الوحدة</value></data>
+  <data name="Updates.ModuleNotInstalled"><value>غير مركب</value></data>
+  <data name="Updates.ModuleAvailableVersion"><value>الصيغة المتاحة: {0}</value></data>
 </root>

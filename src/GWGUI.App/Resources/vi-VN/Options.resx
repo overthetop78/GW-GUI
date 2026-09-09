@@ -216,4 +216,14 @@
   <data name="Updates.ModuleCatalogUrlRequired"><value>Hãy vào thẳng HTTPS URL của danh mục cập nhật môđun.</value></data>
   <data name="Updates.ModuleInstallConfirm"><value>Cài đặt Mô- đun {0} phiên bản {1}? GW GUI sẽ đóng và khởi động lại.</value></data>
   <data name="Updates.ModuleInstallFailed"><value>Không thể chuẩn bị cài đặt môđun.</value></data>
+  <data name="Updates.ModuleDirectoryDescription"><value>Duyệt mô- đun mô- đun mô- đun chính thức sẵn sàng để cài đặt.</value></data>
+  <data name="Updates.ModuleDirectorySearch"><value>Hiện mô- đun sẵn sàng</value></data>
+  <data name="Updates.ModuleDirectoryInstall"><value>Cài đặt</value></data>
+  <data name="Updates.ModuleDirectoryReady"><value>Tải thư mục chính thức để xem các mô- đun sẵn sàng để cài đặt.</value></data>
+  <data name="Updates.ModuleDirectorySearching"><value>Đang nạp thư mục mô- đun...</value></data>
+  <data name="Updates.ModuleDirectoryEmpty"><value>Hiện tại không có môđun tương thích.</value></data>
+  <data name="Updates.ModuleDirectoryResults"><value>{0} Có sẵn môđun.</value></data>
+  <data name="Updates.ModuleDirectoryFailed"><value>Không thể nạp thư mục mô- đun.</value></data>
+  <data name="Updates.ModuleNotInstalled"><value>Chưa cài đặt</value></data>
+  <data name="Updates.ModuleAvailableVersion"><value>Phiên bản sẵn sàng: {0}</value></data>
 </root>

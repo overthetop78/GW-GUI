@@ -24,8 +24,27 @@
                 </Grid>
             </Border>
         </DataTemplate>
+        <DataTemplate x:Key="AvailableModuleTemplate">
+            <Border Style="{StaticResource Card}" Padding="14" Margin="0,0,0,8">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding DisplayName}" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding VersionLabel}"/>
+                        <TextBlock Text="{Binding StateLabel}" Foreground="{DynamicResource MutedTextBrush}"/>
+                    </StackPanel>
+                    <Button Grid.Column="2" Content="{l:Loc Updates.ModuleDirectoryInstall}"
+                            IsEnabled="{Binding CanInstall}" Click="InstallAvailableModule_Click"/>
+                </Grid>
+            </Border>
+        </DataTemplate>
     </UserControl.Resources>
 
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
     <Grid Margin="18">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -54,6 +73,15 @@
 
         <GroupBox Grid.Row="2" Header="{l:Loc Updates.ScopeModules}">
             <StackPanel Margin="10">
+                <TextBlock Text="{l:Loc Updates.ModuleDirectoryDescription}" TextWrapping="Wrap"
+                           Foreground="{DynamicResource MutedTextBrush}" Margin="0,0,0,8"/>
+                <Button x:Name="SearchAvailableModulesAction"
+                        Content="{l:Loc Updates.ModuleDirectorySearch}"
+                        HorizontalAlignment="Left" Click="SearchAvailableModules_Click"/>
+                <TextBlock x:Name="AvailableModulesStatus" Margin="0,12" TextWrapping="Wrap"
+                           Foreground="{DynamicResource MutedTextBrush}"/>
+                <ItemsControl x:Name="AvailableModulesList" ItemTemplate="{StaticResource AvailableModuleTemplate}"/>
+                <Separator Margin="0,12"/>
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="SearchModulesAction" Content="{l:Loc Updates.Search}" Click="SearchModules_Click"/>
                     <Button x:Name="InstallModulesAction" Content="{l:Loc Updates.Install}" Margin="10,0,0,0"
@@ -80,4 +108,5 @@
             </StackPanel>
         </GroupBox>
     </Grid>
+    </ScrollViewer>
 </UserControl>

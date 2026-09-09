@@ -2,20 +2,28 @@
 
 ## Principe
 
-GW GUI connaît une seule adresse distante : son propre catalogue d’application. Il ne contient ni
-liste de modules disponibles, ni adresse de dépôt Amiga, Atari ou tiers. Chaque module installé
-déclare sa propre source de mise à jour dans `updateCatalogUrl` de son `module.json`.
+GW GUI connaît deux adresses distantes génériques : son propre catalogue d’application et le
+répertoire officiel des modules installables. Il ne contient aucune liste codée en dur ni adresse
+propre à Amiga, Atari ou un futur module. Chaque module installé déclare ensuite sa propre source de
+mise à jour dans `updateCatalogUrl` de son `module.json`.
 
 Les deux parcours restent séparés :
 
 - la recherche **GW GUI** lit le catalogue d’application publié au tag technique
   `application-catalog` ;
+- **Afficher les modules disponibles** lit `module-directory.json`, puis le catalogue indépendant
+  de chaque module référencé ;
 - la recherche **Modules installés** parcourt les manifestes chargés et lit l’adresse déclarée par
   chacun d’eux.
 
-Un module absent n’est donc jamais découvert automatiquement. Sa première installation vient d’un
-ZIP choisi par l’utilisateur ou de l’URL directe de son catalogue. Après cette installation, son
-manifeste fournit l’adresse utilisée pour les recherches suivantes.
+Le répertoire officiel sert uniquement à la première découverte. Il contient, pour chaque module,
+son identifiant, son nom affiché et l’URL HTTPS directe de son catalogue. La première installation
+peut aussi venir d’un ZIP choisi par l’utilisateur ou d’une URL saisie manuellement. Après
+l’installation, le manifeste du module fournit l’adresse utilisée pour les recherches suivantes.
+
+Le répertoire est produit depuis tous les fichiers `module-registry/*.json`. Ajouter un futur module
+officiel consiste donc à ajouter un fichier de registre indépendant ; ni l’application ni le script
+de génération ne reçoivent une nouvelle condition ou une nouvelle constante.
 
 La mise à jour de l’outil Greaseweazle reste indépendante dans `HostToolsOptionsController`,
 `HostToolsOptionsState` et `GwInstallationManager`.
@@ -96,6 +104,10 @@ Le modèle `sdk/module-template/.github/workflows/release-module.yml` applique l
 le dépôt indépendant d’un auteur, avec un tag `vX.Y.Z` et un tag de catalogue `module-catalog`.
 L’adresse complète de ce dernier appartient au `module.json` de ce module.
 
+`.github/workflows/module-directory.yml` reconstruit le répertoire depuis `module-registry` et
+remplace `module-directory.json` dans la release technique `module-directory`. Cette publication est
+indépendante des versions de GW GUI et des versions propres aux modules.
+
 `scripts/build-update-catalog.ps1` accepte uniquement `-Scope Application` ou `-Scope Module`. Le
 paramètre `-Repository OWNER/REPOSITORY` détermine les URL publiées. Une publication de module exige
 également `-Module`, `-ModuleTag` et son paquet déjà construit. Il n’existe plus de portée `All`.
@@ -108,10 +120,11 @@ chargés par `EmulationModuleRegistry`. La version d’un cœur PUAE, Hatari, At
 jamais utilisée comme version du module.
 
 L’onglet **Mises à jour** présente deux sections indépendantes. `ApplicationUpdateService` consulte
-seulement `UpdateEndpoints.ApplicationCatalogUrl`. `ModuleUpdateService` consulte seulement les
-`UpdateCatalogUrl` des modules installés. Une adresse absente dans un ancien manifeste produit un
-diagnostic demandant de réinstaller ce module depuis son ZIP ou son URL ; GW GUI ne devine aucune
-source.
+seulement `UpdateEndpoints.ApplicationCatalogUrl`. `ModuleDirectoryService` consulte l’unique
+`UpdateEndpoints.ModuleDirectoryUrl`, valide le répertoire, puis affiche la dernière version de
+chaque module compatible avec l’API hôte. Un module déjà installé reste visible mais son bouton
+d’installation est désactivé. `ModuleUpdateService` consulte seulement les `UpdateCatalogUrl` des
+modules installés.
 
 L’installation initiale accepte :
 
