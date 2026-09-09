@@ -116,9 +116,12 @@ produits.
 
 ## 7. Publier le SDK d’émulation
 
-Le contrat public est distribué sur NuGet.org sous l’identifiant `GWGUI.Emulation.SDK`. Ajouter dans
-`Settings > Secrets and variables > Actions` le secret de dépôt `NUGET_API_KEY`, contenant une clé
-NuGet.org limitée à ce seul paquet. Ne jamais inscrire sa valeur dans un fichier du dépôt.
+Le contrat public est distribué sur NuGet.org sous l’identifiant `GWGUI.Emulation.SDK`. Dans
+NuGet.org, créer une stratégie **Trusted Publishing** appartenant au compte qui publie le paquet,
+avec `overthetop78` comme propriétaire GitHub, `GW-GUI` comme dépôt, `sdk-release.yml` comme fichier
+de workflow et aucun environnement. Autoriser la publication de nouveaux paquets et versions pour
+`GWGUI.Emulation.SDK`. Dans GitHub Actions, définir la variable `NUGET_USER` avec le nom public du
+profil NuGet.org. Aucune clé API permanente ni aucun secret `NUGET_API_KEY` ne sont nécessaires.
 
 La version `X.Y.Z` doit être identique dans :
 
@@ -127,7 +130,8 @@ La version `X.Y.Z` doit être identique dans :
 - le tag `sdk-vX.Y.Z` ;
 - le paquet `GWGUI.Emulation.SDK.X.Y.Z.nupkg`.
 
-Après commit et push sur `main`, créer et pousser le tag. `.github/workflows/sdk-release.yml` exécute
-les tests, crée le paquet et sa documentation XML, publie sur NuGet.org, puis crée la release GitHub
-du SDK avec ses notes. La politique de compatibilité est détaillée dans
+Après commit et push sur `main`, créer et pousser le tag. `.github/workflows/sdk-release.yml` demande
+un jeton OIDC GitHub, l’échange avec `NuGet/login@v1` contre une clé temporaire, exécute les tests,
+crée le paquet et sa documentation XML, publie sur NuGet.org, puis crée la release GitHub du SDK avec
+ses notes. La politique de compatibilité est détaillée dans
 [`emulation-sdk-versioning.md`](../architecture/emulation-sdk-versioning.md).

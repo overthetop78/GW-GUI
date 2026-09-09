@@ -29,5 +29,7 @@ compatibilité au-delà de cette plage n’est supposée.
 5. Créer puis pousser le tag `sdk-vX.Y.Z`. Le workflow vérifie la cohérence du tag, exécute les tests,
    produit le paquet et le publie sur NuGet.org.
 
-Le secret GitHub `NUGET_API_KEY` contient une clé NuGet.org limitée à la publication de
-`GWGUI.Emulation.SDK`. Sa valeur ne doit jamais être ajoutée au dépôt.
+NuGet.org autorise `.github/workflows/sdk-release.yml` par une stratégie **Trusted Publishing** liée
+à `overthetop78/GW-GUI`. Le workflow demande un jeton OIDC GitHub, que `NuGet/login@v1` échange
+juste avant la publication contre une clé temporaire. Aucune clé permanente n’est créée ou stockée.
+La variable GitHub Actions `NUGET_USER` contient uniquement le nom public du profil NuGet.org.

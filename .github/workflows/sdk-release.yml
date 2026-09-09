@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write
 
 jobs:
   publish:
@@ -32,11 +33,14 @@ jobs:
       - name: Pack SDK
         shell: pwsh
         run: dotnet pack .\src\GWGUI.Emulation\GWGUI.Emulation.csproj --configuration Release --no-restore -p:PackageVersion=$env:SDK_VERSION -o .\dist\sdk
+      - name: Request temporary NuGet.org credential
+        uses: NuGet/login@v1
+        id: nuget-login
+        with:
+          user: ${{ vars.NUGET_USER }}
       - name: Publish SDK to NuGet.org
         shell: pwsh
-        env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
-        run: dotnet nuget push ".\dist\sdk\GWGUI.Emulation.SDK.$env:SDK_VERSION.nupkg" --source https://api.nuget.org/v3/index.json --api-key $env:NUGET_API_KEY --skip-duplicate
+        run: dotnet nuget push ".\dist\sdk\GWGUI.Emulation.SDK.$env:SDK_VERSION.nupkg" --source https://api.nuget.org/v3/index.json --api-key "${{ steps.nuget-login.outputs.NUGET_API_KEY }}" --skip-duplicate
       - name: Publish SDK release notes and packages
         shell: pwsh
         env:
