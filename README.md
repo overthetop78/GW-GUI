@@ -83,6 +83,7 @@ Le dossier `Data` de la copie portable locale est conservé ; il n’est pas ajo
 ## Documentation pour le développement
 
 - [Développement avec .NET et organisation du dépôt](docs/project/development.md)
+- [Référence complète des scripts](docs/project/scripts.md)
 - [Publier une release ou une snapshot](docs/project/release.md)
 - [Préparer et publier le wiki](docs/project/wiki.md)
 - [Tests disponibles et contrôles de release](docs/project/testing.md)
