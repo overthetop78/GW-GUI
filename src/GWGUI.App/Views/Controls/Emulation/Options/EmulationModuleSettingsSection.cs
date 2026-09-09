@@ -56,12 +56,12 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
         _module = module;
         _profiles = profiles ?? EmulationVideoPresentationProfiles.Store;
         _showError = showError ?? (error => ControlErrorPresenter.ShowEmulation(this, error,
-            ControlErrorContexts.EmulationConfigurationManagement, LocExtension.Get(_module.DisplayResourceKey)));
+            ControlErrorContexts.EmulationConfigurationManagement, LocExtension.GetForModule(_module, _module.DisplayResourceKey)));
         _machines.Style = EmulationMachineChoiceLayout.CreateComboBoxStyle();
         _machines.ItemContainerStyle = EmulationMachineChoiceLayout.CreateItemContainerStyle();
         _machines.ItemTemplate = EmulationMachineChoiceLayout.CreateTemplate();
         var choices = module.Machines.Select(machine => new EmulationMachineChoice(machine,
-            LocExtension.Get(machine.DisplayResourceKey), false)).ToArray();
+            LocExtension.GetForModule(_module, machine.DisplayResourceKey), false)).ToArray();
         _machines.ItemsSource = choices;
         _machines.SelectedIndex = 0;
         _configuration = module.CreateConfiguration(choices[0].Definition.Id);
@@ -145,7 +145,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
             ?? (EmulationConfigurationDraftStore.TryGet(_module.Id, machineId, out var draft)
                 ? draft : _module.CreateConfiguration(machineId));
         var choices = _module.Machines.Select(machine => new EmulationMachineChoice(machine,
-            LocExtension.Get(machine.DisplayResourceKey),
+            LocExtension.GetForModule(_module, machine.DisplayResourceKey),
             _saved.Any(configuration => configuration.MachineId == machine.Id))).ToArray();
         _machines.ItemsSource = choices;
         SelectMachine(machineId);
@@ -264,7 +264,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
     }
 
     private EmulationVideoSettingsField CreateVideoSettingsField(EmulationSettingsField field) =>
-        new(LocExtension.Get(field.LabelResourceKey), CreateField(field),
+        new(LocExtension.GetForModule(_module, field.LabelResourceKey), CreateField(field),
             IsTrailingCheckBox: field.Editor == EmulationSettingsEditor.Toggle);
 
     private void AddBlocks(Panel panel, EmulationMachineSettings settings, EmulationMachineTab tab)
@@ -276,22 +276,22 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
             if (fields.Length == 0) continue;
             var form = EmulationSettingsLayout.CompactForm(Math.Max(1, block.Columns), fields);
             panel.Children.Add(EmulationSettingsLayout.IconCard(form,
-                LocExtension.Get(block.TitleResourceKey), block.Icon ?? "\uE713"));
+                LocExtension.GetForModule(_module, block.TitleResourceKey), block.Icon ?? "\uE713"));
         }
     }
 
     private EmulationSettingsControlField CreateControlField(EmulationSettingsField field) =>
         new(
             field.RequiresRestart
-                ? $"{LocExtension.Get(field.LabelResourceKey)} · {LocExtension.Get("Emulation.Option.RestartRequired")}"
-                : LocExtension.Get(field.LabelResourceKey),
+                ? $"{LocExtension.GetForModule(_module, field.LabelResourceKey)} · {LocExtension.Get("Emulation.Option.RestartRequired")}"
+                : LocExtension.GetForModule(_module, field.LabelResourceKey),
             CreateField(field),
             field.ExplanationResourceKey is null
                 ? null
-                : LocExtension.Get(field.ExplanationResourceKey),
+                : LocExtension.GetForModule(_module, field.ExplanationResourceKey),
             field.DetailedExplanationResourceKey is null
                 ? null
-                : LocExtension.Get(field.DetailedExplanationResourceKey));
+                : LocExtension.GetForModule(_module, field.DetailedExplanationResourceKey));
 
     private FrameworkElement CreateField(EmulationSettingsField field)
     {
@@ -338,7 +338,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
         return selection;
     }
 
-    private static IReadOnlyList<EmulationSettingsChoiceView> SelectionChoices(EmulationSettingsField field)
+    private IReadOnlyList<EmulationSettingsChoiceView> SelectionChoices(EmulationSettingsField field)
     {
         var declared = field.Choices?.Select(ChoiceView)
             ?? Enumerable.Empty<EmulationSettingsChoiceView>();
@@ -349,8 +349,8 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
         return declared.Concat(devices).DistinctBy(choice => choice.Choice.Id).ToArray();
     }
 
-    private static EmulationSettingsChoiceView ChoiceView(EmulationSettingsChoice choice) =>
-        new(choice, choice.InvariantDisplayValue ?? LocExtension.Get(choice.DisplayResourceKey));
+    private EmulationSettingsChoiceView ChoiceView(EmulationSettingsChoice choice) =>
+        new(choice, choice.InvariantDisplayValue ?? LocExtension.GetForModule(_module, choice.DisplayResourceKey));
 
     private CheckBox CreateToggle(EmulationSettingsField field)
     {
@@ -569,7 +569,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
         var machine = (_machines.SelectedItem as EmulationMachineChoice)?.DisplayName
             ?? _configuration.MachineId;
         EditingContextChanged?.Invoke(this, new EmulationMachineEditingContext(
-            LocExtension.Get(_module.DisplayResourceKey), machine));
+            LocExtension.GetForModule(_module, _module.DisplayResourceKey), machine));
     }
 
     private Task TabActivatedAsync(EmulationMachineTab tab) =>
@@ -586,7 +586,7 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
     {
         CaptureEditorValues();
         var choices = _module.Machines.Select(machine => new EmulationMachineChoice(machine,
-            LocExtension.Get(machine.DisplayResourceKey),
+            LocExtension.GetForModule(_module, machine.DisplayResourceKey),
             _saved.Any(configuration => configuration.MachineId == machine.Id))).ToArray();
         _machines.ItemsSource = choices;
         SelectMachine(_configuration.MachineId);

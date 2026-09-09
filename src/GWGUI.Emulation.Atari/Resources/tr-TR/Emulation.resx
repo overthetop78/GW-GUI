@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>Bu değer seçilmiş model tarafından belirlenir.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve"><value>Bu model için uyumlu FPU mevcut değildir.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>Bu model için alternatif hafıza mevcut değildir.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>Bu model yapılandırılabilir bir donanıma sahip değildir.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>Bu modelin klavyesi yoktur.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>Bu modelin faresi yoktur.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Bu modelin depolama medyası yoktur.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve"><value>CD medyası kullanmak için Jaguar CD modelini seçin.</value></data>
+  <data name="Emulation.Atari.Video.Region"><value>Bölge</value></data>
+  <data name="Emulation.Atari.Firmware.Multilingual"><value>Çok dilli</value></data>
+  <data name="Emulation.Atari.Video.RegionFree"><value>Bölgeden bağımsız</value></data>
+  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>Gerekli Atari çekirdeği bulunamadı.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>Seçilmiş Atari çekirdeği yüklenemezdi.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>Gerekli Atari Hardware eksik.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>Bir Atariware geçersiz veya uyumlu.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>yapılandırılmış Atari medyası bulunamadı.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>yapılandırılmış medya bu Atari makinesi tarafından desteklenmez.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>Bir Atari seçeneğinin geçersiz bir değeri vardır.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>Atari host ile iletişim başarısız oldu.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>Atari kurtarılan devlet geçersizdir.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>Atari kurtarılan devlet mevcut makine ile uyumlu değildir.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>beklenmedik bir Atari emulation hatası meydana geldi.</value></data>
+  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>Detaylar: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>Aktif Atari yapılandırması değiştirilemez veya silinemez.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>Required Atari Hardware '{0}' için yapılandırılmıyor {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>Configured Atari Hardware '{0}' bulunamadı: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>Configured Atari medyası bulunamadı: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>Atari host executable yolu mevcut değildir.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>Atari core '{0}' yüklü değil.</value></data>
+  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari medyası|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Tüm dosyalar|*.*</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>Numeric Team</value></data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Hızlı başlatma</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic"><value>Mosaic RAM genişleme</value></data>
+  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM genişleme</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Axlon $0F banka gölgesi</value></data>
+  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Yüksek çözünürlüklü yapaylıklar</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>SIO hızlandırma</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Kasetten başlat</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>İşletim sistemi revizyonu</value></data>
+  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>Dahili BASIC</value></data>
+  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>BASIC revizyonu</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>Paddle hareket hızı</value></data>
+  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>Otomatik ateş</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>Ateş düğmesi basılıyken</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Her zaman</value></data>
+  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Renk tonu</value></data>
+  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Doygunluk</value></data>
+  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>Karşıtlık</value></data>
+  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Parlaklık</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>GTIA renk gecikmesi</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>Harici palet</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>Denetleyici uyumluluğu</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>Dijital hassasiyet</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>Analog hassasiyet</value></data>
+  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>Çift kumanda kolu</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>Bağlantı noktalarını değiştir</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>Öykünme hızını göster</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>Sektör/blok sayacını göster</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>R-Time 8 gerçek zamanlı saat</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>P: yazıcı aygıtı</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>R: seri aygıt</value></data>
+  <data name="Emulation.Atari.Controller.Joystick"><value>Merhaba sevinç</value></data>
+  <data name="Emulation.Atari.Controller.Driving"><value>Atari Araba Sorumluluğu</value></data>
+  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar</value></data>
+  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Atari ATM</value></data>
+  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari Atari XG-1 Işık Gun</value></data>
+  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Sorumlu denetçi</value></data>
+  <data name="Emulation.Atari.Audio.PokeyStereo"><value>Stereo Stereo POKEY</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Mavi/kahverengi 1</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Mavi/kahverengi 2</value></data>
+</root>

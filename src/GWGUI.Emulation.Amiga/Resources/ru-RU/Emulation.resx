@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga Media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|все файлы|*.*</value></data>
+  <data name="Emulation.Amiga.Chipset.Name"><value>Набор микросхем</value></data>
+  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Совместимость чипсета</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3,5 дюйма DD · 880 КиБ</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3,5 дюйма HD · 1,76 МиБ</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>Красная кнопка CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>Синяя кнопка CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>Зелёная кнопка CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>Жёлтая кнопка CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 перемотка назад</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 перемотка вперёд</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 воспроизведение / пауза</value></data>
+  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Параллельный четырехпользовательский адаптер джойстика</value></data>
+  <data name="Emulation.Amiga.Controller.Joystick"><value>Амига джойстик</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32"><value>CD32 контроллер</value></data>
+</root>

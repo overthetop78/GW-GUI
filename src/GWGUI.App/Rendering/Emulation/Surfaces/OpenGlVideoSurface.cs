@@ -230,13 +230,14 @@ internal sealed class OpenGlVideoSurface : HwndHost, IEmulationVideoSurface
         base.Dispose();
     }
 
-    private void ResetHistory()
+    public void ResetHistory()
     {
         _hasHistory = false;
         _historyWidth = 0;
         _historyHeight = 0;
         _historyTimestamp = TimeSpan.Zero;
         _historySequence = 0;
+        _snapshotPipeline.ResetTemporalHistory();
     }
 
     private void EnsureProgram(EmulationVideoProcessingConfiguration configuration)

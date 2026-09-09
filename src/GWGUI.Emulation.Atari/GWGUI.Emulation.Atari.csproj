@@ -8,8 +8,15 @@
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <None Update="module.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
     <InternalsVisibleTo Include="GWGUI.Tests" />
     <ProjectReference Include="..\GWGUI.Emulation\GWGUI.Emulation.csproj" />
     <ProjectReference Include="..\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\*\*.resx">
+      <WithCulture>false</WithCulture>
+      <LogicalName>GWGUI.Emulation.Atari.Resources.%(Filename).$([System.IO.Path]::GetFileName($([System.IO.Path]::GetDirectoryName('%(Identity)')))).resources</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

@@ -80,7 +80,7 @@
   <data name="Emulation.Controller.Detect"><value>컨트롤러 검색</value></data>
   <data name="Emulation.Controller.EmulatedAction"><value>Amiga 동작</value></data>
   <data name="Emulation.Controller.PhysicalControl"><value>키보드, 마우스 또는 컨트롤러 입력</value></data>
-  <data name="Emulation.Amiga.Chipset.Name"><value>칩셋</value></data>
+  
   <data name="Emulation.Storage.Cd.Drive"><value>CD 드라이브</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>플로피 드라이브 수</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>하드 디스크 수</value></data>
@@ -194,15 +194,15 @@
   <data name="Emulation.Firmware.Incompatible"><value>호환되지 않음</value></data>
   <data name="Emulation.Video.Settings.Display"><value>디스플레이</value></data>
   <data name="Emulation.Video.Settings.Rendering"><value>렌더링</value></data>
-  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>칩셋 호환성</value></data>
+  
   <data name="Emulation.Audio.Device"><value>장치</value></data>
   <data name="Emulation.Audio.LatencyLabel"><value>지연 시간</value></data>
   <data name="Emulation.Audio.Quality"><value>품질</value></data>
   <data name="Emulation.Audio.Drives"><value>드라이브</value></data>
   <data name="Emulation.Device.Name.Type"><value>유형</value></data>
   <data name="Emulation.Storage.Device.Add"><value>저장 장치 추가</value></data>
-  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3.5인치 DD · 880 KiB</value></data>
-  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3.5인치 HD · 1.76 MiB</value></data>
+  
+  
   <data name="Emulation.Storage.Media.Associated"><value>연결된 미디어</value></data>
   <data name="Emulation.Storage.Geometry.Automatic"><value>디스크 구조는 에뮬레이터가 자동으로 결정합니다.</value></data>
   <data name="Emulation.Storage.Floppy.BlankCreated"><value>빈 플로피 이미지 생성됨: {0}</value></data>
@@ -294,95 +294,95 @@
   <data name="Emulation.Controller.Action.Right"><value>오른쪽</value></data>
   <data name="Emulation.Controller.Action.Fire1"><value>발사 버튼 1</value></data>
   <data name="Emulation.Controller.Action.Fire2"><value>발사 버튼 2</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>CD32 빨간색 버튼</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>CD32 파란색 버튼</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>CD32 녹색 버튼</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>CD32 노란색 버튼</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 되감기</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 빨리 감기</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 재생 / 일시 정지</value></data>
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Controller.AnalogJoystick"><value>아날로그 조이스틱</value></data>
   <data name="Emulation.Mouse.Wheel.Up"><value>마우스 휠 위</value></data>
   <data name="Emulation.Mouse.Wheel.Down"><value>마우스 휠 아래</value></data>
   <data name="Emulation.Mouse.Wheel.Left"><value>마우스 휠 왼쪽</value></data>
   <data name="Emulation.Mouse.Wheel.Right"><value>마우스 휠 오른쪽</value></data>
-  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>이 값은 선택한 모델에 의해 결정됩니다.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve"><value>호환되지 않는 FPU는 이 모형을 위해 유효합니다.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>이 모델에는 교체 메모리가 없습니다.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>이 모델에는 구성 가능한 펌웨어가 없습니다.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>이 모델에는 키보드가 없습니다.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>이 모델은 마우스가 없습니다.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>이 모형에는 저장 매체가 없습니다.</value></data>
-  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve"><value>CD 미디어를 사용하려면 Jaguar CD 모델을 선택하세요.</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Storage.Cassettes"><value>카세트</value></data>
   <data name="Emulation.Storage.Cartridges"><value>카트리지</value></data>
   <data name="Emulation.Storage.CompactDiscs"><value>컴팩트 디스크</value></data>
-  <data name="Emulation.Atari.Video.Region"><value>지역</value></data>
-  <data name="Emulation.Atari.Firmware.Multilingual"><value>다국어</value></data>
-  <data name="Emulation.Atari.Video.RegionFree"><value>지역 제한 없음</value></data>
+  
+  
+  
   <data name="Emulation.Tab.Audio" xml:space="preserve"><value>오디오</value></data>
-  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>필수 Atari 코어를 찾을 수 없습니다.</value></data>
-  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>선택한 Atari 코어를 불러올 수 없습니다.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>필수 Atari 펌웨어가 없습니다.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>Atari 펌웨어가 잘못되었거나 호환되지 않습니다.</value></data>
-  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>구성된 Atari 미디어를 찾을 수 없습니다.</value></data>
-  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>구성된 미디어는 이 Atari 기기에서 지원되지 않습니다.</value></data>
-  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>Atari 옵션 값이 잘못되었습니다.</value></data>
-  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>Atari 호스트와 통신하지 못했습니다.</value></data>
-  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>Atari 저장 상태가 잘못되었습니다.</value></data>
-  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>Atari 저장 상태가 현재 기기와 호환되지 않습니다.</value></data>
-  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>예기치 않은 Atari 에뮬레이션 오류가 발생했습니다.</value></data>
-  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>세부 정보: {0}</value></data>
-  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>사용 중인 Atari 구성은 수정하거나 삭제할 수 없습니다.</value></data>
-  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>필수 Atari 펌웨어 '{0}'은 구성되지 않습니다 {1}.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>구성된 Atari 펌웨어 '{0}'을(를) 찾을 수 없습니다: {1}</value></data>
-  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>구성된 Atari 미디어를 찾을 수 없습니다: {0}</value></data>
-  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>Atari 호스트 실행 파일 경로를 사용할 수 없습니다.</value></data>
-  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>Atari 코어 '{0}'이(가) 설치되어 있지 않습니다.</value></data>
-  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari 미디어|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|모든 파일|*.*</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Controller.Automatic"><value>오토매틱</value></data>
   <data name="Emulation.Controller.None"><value>없음</value></data>
-  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>평행한 4 선수 조이스틱 접합기</value></data>
+  
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>스위치 조이스틱/mouse</value></data>
-  <data name="Emulation.Atari.Controller.NumericKeypad"><value>숫자 키패드</value></data>
+  
   <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve"><value>이 컴퓨터를 켜기 전에 에뮬레이터에 미디어가 필요합니다. 아래에 표시된 필수 미디어 중 하나를 삽입하거나 설정하세요.</value></data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve"><value>컴퓨터를 켤 수 없습니다</value></data>
   <data name="Emulation.Error.Machine" xml:space="preserve"><value>컴퓨터</value></data>
   <data name="Emulation.Error.RequiredMedia" xml:space="preserve"><value>필수 미디어</value></data>
-  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>빠른 부팅</value></data>
+  
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>플로피 드라이브 소리</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>편광 오디오 필터</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>에뮬레이터 화면에 드라이브 활동 표시</value></data>
-  <data name="Emulation.Atari.Memory.Mosaic"><value>Mosaic RAM 확장</value></data>
-  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM 확장</value></data>
-  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Axlon $0F 뱅크 섀도</value></data>
-  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>스테레오 POKEY</value></data>
-  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>고해상도 아티팩트</value></data>
-  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>SIO 가속</value></data>
-  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>카세트에서 부팅</value></data>
-  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>운영 체제 리비전</value></data>
-  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>내장 BASIC</value></data>
-  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>BASIC 리비전</value></data>
-  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>패들 이동 속도</value></data>
-  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>자동 발사</value></data>
-  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>발사 버튼을 누르는 동안</value></data>
-  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>항상</value></data>
-  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>색조</value></data>
-  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>채도</value></data>
-  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>대비</value></data>
-  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>밝기</value></data>
-  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>GTIA 색상 지연</value></data>
-  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>외부 팔레트</value></data>
-  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>컨트롤러 호환성</value></data>
-  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>디지털 감도</value></data>
-  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>아날로그 감도</value></data>
-  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>듀얼 스틱</value></data>
-  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>포트 교환</value></data>
-  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>에뮬레이션 속도 표시</value></data>
-  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>섹터/블록 카운터 표시</value></data>
-  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>R-Time 8 실시간 시계</value></data>
-  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>P: 프린터 장치</value></data>
-  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>R: 직렬 장치</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>낮음</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>보통</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>높음</value></data>
@@ -739,21 +739,21 @@
   <data name="Emulation.Memory.Chip"><value>칩 RAM</value></data>
   <data name="Emulation.Memory.Slow"><value>슬로우 RAM</value></data>
   <data name="Emulation.Memory.Fast"><value>빠른 RAM</value></data>
-<data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga 미디어|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|모든 파일|*.*</value></data>
+
   <data name="Emulation.Storage.HardDisk.Filter"><value>기가 하드 디스크|*.hdf|모든 파일|*.*</value></data>
-  <data name="Emulation.Amiga.Controller.Joystick"><value>Amiga 조이스틱</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32"><value>CD32 관제사</value></data>
-  <data name="Emulation.Atari.Controller.Joystick"><value>모리 즐</value></data>
-  <data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Paddle 컨트롤러</value></data>
-  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 빛 총</value></data>
-  <data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 컨트롤러</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>Atari 운전 컨트롤러</value></data>
-  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro-Line 조이스틱</value></data>
-  <data name="Emulation.Atari.Controller.Lynx"><value>아나리 린스</value></data>
-  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Jaguar 컨트롤러</value></data>
-<data name="Emulation.Atari.Controller.BoosterGrip"><value>앗리 부스터 그립</value></data>
-  <data name="Emulation.Atari.Controller.Genesis"><value>Sega Genesis 컨트롤러</value></data>
-  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>아타리 조이 2B+ Controller</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
   <data name="Emulation.Video.DotMatrix.Palette.Red"><value>은</value></data>
   <data name="Emulation.Video.DotMatrix.Palette.White"><value>은</value></data>
   <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>퀵메뉴</value></data>
@@ -834,8 +834,8 @@
   <data name="Emulation.Value.None"><value>없음</value></data>
   <data name="Emulation.Value.Default"><value>기본값</value></data>
   <data name="Emulation.Value.Gray"><value>회색</value></data>
-  <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>파란색/갈색 1</value></data>
-  <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>파란색/갈색 2</value></data>
+  
+  
   <data name="Emulation.Firmware.Rom.Basic"><value>BASIC ROM</value></data>
   <data name="Emulation.Firmware.Rom.Xegs"><value>XEGS ROM</value></data>
 </root>

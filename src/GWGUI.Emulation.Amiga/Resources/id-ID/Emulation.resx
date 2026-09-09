@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Kompatibilitas chipset</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3,5 inci DD · 880 KiB</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3,5 inci HD · 1,76 MiB</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>Tombol merah CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>Tombol biru CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>Tombol hijau CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>Tombol kuning CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 putar balik</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 maju cepat</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 putar / jeda</value></data>
+  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Adaptor joystick paralel empat pemain</value></data>
+  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Media Amiga|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Semua berkas|*.*</value></data>
+  <data name="Emulation.Amiga.Controller.Joystick"><value>Tongkat joyga Amiga</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32"><value>Pengontrol CD32</value></data>
+</root>

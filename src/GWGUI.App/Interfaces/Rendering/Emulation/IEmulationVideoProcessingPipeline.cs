@@ -5,6 +5,7 @@ internal readonly record struct EmulationVideoProcessingSize(int Width, int Heig
 internal interface IEmulationVideoProcessingPipeline : IDisposable
 {
     EmulationVideoRenderer Renderer { get; }
+    void ResetTemporalHistory() { }
 
     VideoFrame Process(
         EmulationVideoProcessingConfiguration configuration,

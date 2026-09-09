@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amiga.Chipset.Name"><value>칩셋</value></data>
+  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>칩셋 호환성</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3.5인치 DD · 880 KiB</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3.5인치 HD · 1.76 MiB</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>CD32 빨간색 버튼</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>CD32 파란색 버튼</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>CD32 녹색 버튼</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>CD32 노란색 버튼</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 되감기</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 빨리 감기</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 재생 / 일시 정지</value></data>
+  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>평행한 4 선수 조이스틱 접합기</value></data>
+  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga 미디어|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|모든 파일|*.*</value></data>
+  <data name="Emulation.Amiga.Controller.Joystick"><value>Amiga 조이스틱</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32"><value>CD32 관제사</value></data>
+</root>

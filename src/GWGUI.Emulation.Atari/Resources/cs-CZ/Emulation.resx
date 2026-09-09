@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>Tato hodnota je určena zvoleným modelem.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu"><value>Není kompatibilní FPU je k dispozici pro tento model.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>Pro tento model není dostupná žádná alternativní paměť.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>Tento model nemá konfigurovatelný firmware.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>Tento model nemá klávesnici.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>Tento model nemá myš.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Tento model nemá žádná paměťová média.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Vyberte jaguár CD model pro použití CD média.</value></data>
+  <data name="Emulation.Atari.Video.Region"><value>Oblast</value></data>
+  <data name="Emulation.Atari.Firmware.Multilingual"><value>Vícejazyčné</value></data>
+  <data name="Emulation.Atari.Video.RegionFree"><value>Bez regionu</value></data>
+  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>Požadované jádro Atari nebylo nalezeno.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>Zvolené jádro Atari nebylo možné načíst.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>Chybí požadovaný firmware Atari.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>Atari firmware je neplatný nebo nekompatibilní.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>Nakonfigurovaná média Atari nebyla nalezena.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>Nakonfigurovaná média nejsou podporována tímto zařízením Atari.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>Možnost Atari má neplatnou hodnotu.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>Komunikace s hostitelem Atari selhala.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>Uložený stav Atari je neplatný.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>Uložený stav Atari je neslučitelný se stávajícím strojem.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>Nastala neočekávaná chyba emulace Atari.</value></data>
+  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>Podrobnosti: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>Aktivní konfiguraci Atari nelze změnit nebo smazat.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve"><value>Požadovaný firmware Atari '{0}' není konfigurován pro{1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>Konfigurovaný firmware Atari '{0}' nebyl nalezen: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>Konfigurovaná média Atari nebyla nalezena: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>Spustitelná cesta Atari je nedostupná.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>Jádro Atari '{0}' není instalováno.</value></data>
+  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari média|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Všechny soubory|*.*</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>Číselná klávesnice</value></data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Rychlé spuštění</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic"><value>Mozaika RAM rozšíření</value></data>
+  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM rozšíření</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Stín banky Axlon $0F</value></data>
+  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Artefakty ve vysokém rozlišení</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>Zrychlení SIO</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Spustit z kazety</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>Revize operačního systému</value></data>
+  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>Interní BASIC</value></data>
+  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>Revize BASIC</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>Rychlost pohybu paddle ovladačů</value></data>
+  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>Automatická střelba</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>Při podržení střelby</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Vždy</value></data>
+  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Odstín</value></data>
+  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Sytost</value></data>
+  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>Kontrast</value></data>
+  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Jas</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>Zpoždění barev GTIA</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>Externí paleta</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>Kompatibilita ovladače</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>Digitální citlivost</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>Analogová citlivost</value></data>
+  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>Dvojitý joystick</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>Prohodit porty</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>Zobrazit rychlost emulace</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>Zobrazit počítadlo sektorů/bloků</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>Hodiny reálného času R-Time 8</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>Tiskové zařízení P:</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>Sériové zařízení R:</value></data>
+  <data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Pádlové kontrolory</value></data>
+  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro- Line Joystick</value></data>
+  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 Lehká zbraň</value></data>
+  <data name="Emulation.Atari.Controller.Lynx"><value>Atari LynxCity in New York USA</value></data>
+  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Kontrolor</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Modrá/hnědá 1</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Modrá/hnědá 2</value></data>
+</root>

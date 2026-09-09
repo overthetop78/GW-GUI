@@ -18,6 +18,21 @@ internal sealed class SoftwareVideoFrameProcessingWorker : IDisposable
     private WorkItem? _pending;
     private bool _running;
     private bool _disposed;
+    private bool _resetHistory;
+
+    internal void ResetHistory()
+    {
+        lock (_gate) _resetHistory = true;
+    }
+
+    internal void Suspend()
+    {
+        lock (_gate)
+        {
+            _pending = null;
+            _resetHistory = true;
+        }
+    }
 
     internal SoftwareVideoFrameProcessingWorker(IEmulationVideoProcessingPipeline pipeline) =>
         _pipeline = pipeline;
@@ -53,6 +68,7 @@ internal sealed class SoftwareVideoFrameProcessingWorker : IDisposable
         while (true)
         {
             WorkItem? work;
+            bool resetHistory;
             lock (_gate)
             {
                 if (_disposed || _pending is null)
@@ -63,11 +79,14 @@ internal sealed class SoftwareVideoFrameProcessingWorker : IDisposable
                 }
                 work = _pending;
                 _pending = null;
+                resetHistory = _resetHistory;
+                _resetHistory = false;
             }
 
             CpuVideoFrameProcessingResult result;
             try
             {
+                if (resetHistory) _pipeline.ResetTemporalHistory();
                 var processed = _pipeline.Process(work.Configuration, work.Frame,
                     new EmulationVideoProcessingSize(work.Frame.Width, work.Frame.Height),
                     work.OutputSize);

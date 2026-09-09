@@ -71,6 +71,19 @@ internal sealed class WpfVideoSurface : IEmulationVideoSurface
         });
     }
 
+    public void ResetHistory()
+    {
+        Interlocked.Increment(ref _configurationVersion);
+        _worker?.ResetHistory();
+        _synchronousPipeline?.ResetTemporalHistory();
+    }
+
+    public void SuspendPresentation()
+    {
+        Interlocked.Increment(ref _configurationVersion);
+        _worker?.Suspend();
+    }
+
     public void Dispose()
     {
         _disposed = true;

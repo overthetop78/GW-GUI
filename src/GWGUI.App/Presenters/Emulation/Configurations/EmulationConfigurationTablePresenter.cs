@@ -26,7 +26,7 @@ internal static class EmulationConfigurationTablePresenter
             .FirstOrDefault(field => field.IsVisible
                 && field.LabelResourceKey == EmulationHardwareSettingsConstants.CpuModelResourceKey);
         var cpu = cpuField is null ? string.Empty
-            : EmulationSettingsValuePresentationFunctions.DisplayValue(cpuField);
+            : EmulationSettingsValuePresentationFunctions.DisplayValue(cpuField, module);
         var ramFields = settings.Blocks
             .Where(block => block.Tab == EmulationMachineTab.Ram && block.IsVisible)
             .SelectMany(block => block.Fields)
@@ -45,7 +45,7 @@ internal static class EmulationConfigurationTablePresenter
         return new EmulationConfigurationTableRow(
             module,
             configuration,
-            LocExtension.Get(machine.DisplayResourceKey),
+            LocExtension.GetForModule(module, machine.DisplayResourceKey),
             cpu,
             totalRam,
             ReaderGlyphs(module, configuration),

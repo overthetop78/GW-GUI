@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga 介质|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|所有文件|*.*</value></data>
+  <data name="Emulation.Amiga.Chipset.Name"><value>晶片組</value></data>
+  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>晶片組相容性</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3.5 吋 DD · 880 KiB</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3.5 吋 HD · 1.76 MiB</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>CD32 紅色按鈕</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>CD32 藍色按鈕</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>CD32 綠色按鈕</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>CD32 黃色按鈕</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 倒轉</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 快轉</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 播放 / 暫停</value></data>
+  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>平行的四玩家游戏棒适配器</value></data>
+  <data name="Emulation.Amiga.Controller.Joystick"><value>爱乐棒</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32"><value>CD32 控制器</value></data>
+</root>

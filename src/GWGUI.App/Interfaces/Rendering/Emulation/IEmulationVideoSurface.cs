@@ -18,4 +18,6 @@ internal interface IEmulationVideoSurface : IDisposable
         EmulationVideoProcessingConfigurationFunctions.Normalize(null);
     void SetVideoProcessing(EmulationVideoProcessingConfiguration configuration);
     void Present(VideoFrame frame);
+    void ResetHistory() { }
+    void SuspendPresentation() { }
 }

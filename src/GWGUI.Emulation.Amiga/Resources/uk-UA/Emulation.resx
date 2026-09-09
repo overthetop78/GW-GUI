@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amiga.Chipset.Name"><value>Набір мікросхем</value></data>
+  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Сумісність чипсета</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3,5 дюйма DD · 880 КіБ</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3,5 дюйма HD · 1,76 МіБ</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>Червона кнопка CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>Синя кнопка CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>Зелена кнопка CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>Жовта кнопка CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 перемотування назад</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 перемотування вперед</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 відтворення / пауза</value></data>
+  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Parallel чотириплеєр джойстик адаптер</value></data>
+  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Аміга медіа|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Всі файли|*.*</value></data>
+  <data name="Emulation.Amiga.Controller.Joystick"><value>Аміга джойстик</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32"><value>CD32 контролер</value></data>
+</root>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>この値は、選択したモデルで決定されます。</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve"><value>この機種では互換性のある FPU を利用できません。</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>このモデルでは代替メモリは使用できません。</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>このモデルは、構成可能なファームウェアがありません。</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>このモデルはキーボードを持っていません。</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>このモデルはマウスがありません。</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>記憶媒体がない。</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve"><value>CD メディアを使用するには Jaguar CD モデルを選択してください。</value></data>
+  <data name="Emulation.Atari.Video.Region"><value>リージョン</value></data>
+  <data name="Emulation.Atari.Firmware.Multilingual"><value>多言語</value></data>
+  <data name="Emulation.Atari.Video.RegionFree"><value>リージョンフリー</value></data>
+  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>必要なAtariコアが見つかりません。</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>選択したAtariコアを読み込めませんでした。</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>必要なAtariファームウェアがありません。</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>Atariファームウェアが無効または互換性がありません。</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>構成されたAtariメディアが見つかりません。</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>構成されたメディアはこのAtariマシンではサポートされていません。</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>Atariオプションの値が無効です。</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>Atariホストとの通信に失敗しました。</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>Atariの保存状態が無効です。</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>Atariの保存状態は現在のマシンと互換性がありません。</value></data>
+  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>予期しないAtariエミュレーションエラーが発生しました。</value></data>
+  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>詳細: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>使用中のAtari構成は変更または削除できません。</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>必須のAtariのファームウェア '{0}' はのために構成されていません {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>構成されたAtariファームウェア「{0}」が見つかりません: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>構成されたAtariメディアが見つかりません: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>Atariホストの実行ファイルパスを利用できません。</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>Atariコア「{0}」がインストールされていません。</value></data>
+  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari媒体|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|すべてのファイル|*.*</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>数字キーパッド</value></data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>高速起動</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic"><value>モザイク RAM 拡張</value></data>
+  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM 拡張</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Axlon $0F バンクシャドウ</value></data>
+  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>ステレオ POKEY</value></data>
+  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>高解像度アーティファクト</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>SIO アクセラレーション</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>カセットから起動</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>オペレーティングシステムのリビジョン</value></data>
+  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>内蔵 BASIC</value></data>
+  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>BASIC リビジョン</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>パドル移動速度</value></data>
+  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>オート連射</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>発射ボタンを押している間</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>常時</value></data>
+  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>色相</value></data>
+  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>彩度</value></data>
+  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>コントラスト</value></data>
+  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>明るさ</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>GTIA 色遅延</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>外部パレット</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>コントローラー互換性</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>デジタル感度</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>アナログ感度</value></data>
+  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>デュアルスティック</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>ポートを入れ替える</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>エミュレーション速度を表示</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>セクター/ブロックカウンターを表示</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>R-Time 8 リアルタイムクロック</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>P: プリンター機器</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>R: シリアル機器</value></data>
+  <data name="Emulation.Atari.Controller.Joystick"><value>アトリジョイスティック</value></data>
+  <data name="Emulation.Atari.Controller.PaddleControllers"><value>アタリパドルコントローラー</value></data>
+  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>アタリXG-1ライトガン</value></data>
+  <data name="Emulation.Atari.Controller.Atari5200"><value>アタリ5200コントローラー</value></data>
+  <data name="Emulation.Atari.Controller.Driving"><value>アトリ・ドライビング・コントローラー</value></data>
+  <data name="Emulation.Atari.Controller.ProLine"><value>アタリプロラインジョイスティック</value></data>
+  <data name="Emulation.Atari.Controller.Lynx"><value>アトリ・リンクス</value></data>
+  <data name="Emulation.Atari.Controller.Jaguar"><value>アトリ・ジャガー・コントローラー</value></data>
+  <data name="Emulation.Atari.Controller.BoosterGrip"><value>アタリ ボスター グリップ</value></data>
+  <data name="Emulation.Atari.Controller.Genesis"><value>セガジェネシスコントローラ</value></data>
+  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atariの喜び2B+ コントローラー</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>青/茶色 1</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>青/茶色 2</value></data>
+</root>

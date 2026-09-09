@@ -63,6 +63,8 @@ public sealed partial class OptionsEmulationSection : UserControl
         foreach (var module in _modules)
         {
             var tab = AddTab(_tabs, "\uE7FC", module.DisplayResourceKey, new Grid());
+            if (tab.Header is MainTabHeader header)
+                header.Text = LocExtension.GetForModule(module, module.DisplayResourceKey);
             _moduleTabs.Add(tab, module);
         }
         _tabs.SelectionChanged += ModuleTabSelectionChanged;
@@ -161,7 +163,8 @@ public sealed partial class OptionsEmulationSection : UserControl
             StringComparer.Ordinal);
         foreach (var (tab, resourceKey) in _localizedTabs)
         {
-            var text = LocExtension.Get(resourceKey);
+            var text = _moduleTabs.TryGetValue(tab, out var module)
+                ? LocExtension.GetForModule(module, resourceKey) : LocExtension.Get(resourceKey);
             if (tab.Header is MainTabHeader header) header.Text = text;
         }
         foreach (var section in _moduleSections.Values) section.RefreshLocalizedContent();

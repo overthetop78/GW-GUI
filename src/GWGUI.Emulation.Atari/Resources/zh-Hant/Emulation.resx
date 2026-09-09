@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>此值由所選機型決定。</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve"><value>此機型沒有相容的 FPU。</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>此機型沒有替代記憶體。</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>此機型沒有可設定的韌體。</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>此機型沒有鍵盤。</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>此機型沒有滑鼠。</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>此機型沒有儲存媒體。</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve"><value>請選擇 Jaguar CD 機型以使用 CD 光碟。</value></data>
+  <data name="Emulation.Atari.Video.Region"><value>區域</value></data>
+  <data name="Emulation.Atari.Firmware.Multilingual"><value>多語言</value></data>
+  <data name="Emulation.Atari.Video.RegionFree"><value>無區域限制</value></data>
+  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>找不到所需的 Atari 核心。</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>無法載入所選的 Atari 核心。</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>缺少所需的 Atari 韌體。</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>Atari 韌體無效或不相容。</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>找不到已設定的 Atari 媒體。</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>此 Atari 機器不支援已設定的媒體。</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>Atari 選項的值無效。</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>與 Atari 主機通訊失敗。</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>Atari 儲存狀態無效。</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>Atari 儲存狀態與目前的機器不相容。</value></data>
+  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>發生未預期的 Atari 模擬錯誤。</value></data>
+  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>詳細資料：{0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>無法修改或刪除正在使用的 Atari 設定。</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>必需的 Atari 固件 '{0}' 未被配置为 {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>找不到已設定的 Atari 韌體「{0}」：{1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>找不到已設定的 Atari 媒體：{0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>Atari 主機執行檔路徑無法使用。</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>尚未安裝 Atari 核心「{0}」。</value></data>
+  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari 介质|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|所有文件|*.*</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>数字键盘</value></data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>快速啟動</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic"><value>Mosaic RAM 扩展</value></data>
+  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM 扩展</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Axlon $0F 記憶體庫陰影</value></data>
+  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>立體聲 POKEY</value></data>
+  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>高解析度偽色</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>SIO 加速</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>從磁帶啟動</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>作業系統修訂版</value></data>
+  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>內建 BASIC</value></data>
+  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>BASIC 修訂版</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>旋鈕控制器移動速度</value></data>
+  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>自動連發</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>按住開火鍵時</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>永遠</value></data>
+  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>色調</value></data>
+  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>飽和度</value></data>
+  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>對比度</value></data>
+  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>亮度</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>GTIA 色彩延遲</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>外部調色盤</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>控制器相容性</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>數位靈敏度</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>類比靈敏度</value></data>
+  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>雙搖桿</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>交換連接埠</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>顯示模擬速度</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>顯示磁區/區塊計數器</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>R-Time 8 即時時鐘</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>P: 印表機裝置</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>R: 序列裝置</value></data>
+  <data name="Emulation.Atari.Controller.Joystick"><value>阿塔里活计</value></data>
+  <data name="Emulation.Atari.Controller.PaddleControllers"><value>阿塔里平板电脑</value></data>
+  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 轻型炮</value></data>
+  <data name="Emulation.Atari.Controller.Atari5200"><value>阿塔里 5200 主计长</value></data>
+  <data name="Emulation.Atari.Controller.Driving"><value>阿塔里驾驶主管</value></data>
+  <data name="Emulation.Atari.Controller.ProLine"><value>阿塔里亲线欢乐棒</value></data>
+  <data name="Emulation.Atari.Controller.Lynx"><value>阿塔里·林克思(英语:Atari Lynx).</value></data>
+  <data name="Emulation.Atari.Controller.Jaguar"><value>阿塔里美洲虎号主计长</value></data>
+  <data name="Emulation.Atari.Controller.BoosterGrip"><value>阿塔里助推器 Grip 游戏</value></data>
+  <data name="Emulation.Atari.Controller.Genesis"><value>世嘉创世纪控制器</value></data>
+  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ 主计长</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>藍色/棕色 1</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>藍色/棕色 2</value></data>
+</root>

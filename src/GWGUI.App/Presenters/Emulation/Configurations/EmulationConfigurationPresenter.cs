@@ -12,7 +12,7 @@ internal static class EmulationConfigurationPresenter
         var identifier = configuration.Id.ToString(ControlVisualConstants.IdentifierFormat)
             [..ControlVisualConstants.DisplayIdentifierLength];
         return string.Join(ControlVisualConstants.DetailSeparator,
-            new[] { LocExtension.Get(summary.MachineDisplayResourceKey) }
+            new[] { LocExtension.GetForModule(module, summary.MachineDisplayResourceKey) }
                 .Concat(summary.Details)
                 .Append(identifier));
     }

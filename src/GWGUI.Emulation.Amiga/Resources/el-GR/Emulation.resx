@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amiga.Chipset.Name"><value>Σύνολο ολοκληρωμένων</value></data>
+  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Συμβατότητα chipset</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3,5 ιντσών DD · 880 KiB</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3,5 ιντσών HD · 1,76 MiB</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>Κόκκινο κουμπί CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>Μπλε κουμπί CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>Πράσινο κουμπί CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>Κίτρινο κουμπί CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 γρήγορη επιστροφή</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 γρήγορη προώθηση</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 αναπαραγωγή / παύση</value></data>
+  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Παράλληλος προσαρμοστής μοχλός τεσσάρων παικτών</value></data>
+  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Όλα τα αρχεία|*.*</value></data>
+  <data name="Emulation.Amiga.Controller.Joystick"><value>Το ξυλάκι της Amiga</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32"><value>Ελεγκτής CD32</value></data>
+</root>

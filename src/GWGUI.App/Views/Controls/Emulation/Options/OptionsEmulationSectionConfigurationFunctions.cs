@@ -32,7 +32,7 @@ public sealed partial class OptionsEmulationSection
         var answer = MessageBox.Show(
             string.Format(
                 LocExtension.Get("Emulation.Configuration.DeleteConfirm"),
-                LocExtension.Get(row.Module.DisplayResourceKey),
+                LocExtension.GetForModule(row.Module, row.Module.DisplayResourceKey),
                 row.MachineName),
             LocExtension.Get("Common.Delete"),
             MessageBoxButton.YesNo,
@@ -59,7 +59,7 @@ public sealed partial class OptionsEmulationSection
                 this,
                 error,
                 ControlErrorContexts.EmulationConfigurationManagement,
-                LocExtension.Get(row.Module.DisplayResourceKey));
+                LocExtension.GetForModule(row.Module, row.Module.DisplayResourceKey));
         }
     }
 
@@ -88,7 +88,7 @@ public sealed partial class OptionsEmulationSection
         foreach (var module in _modules.Where(module =>
                      _configurationRows.Any(row => ReferenceEquals(row.Module, module))))
             _configurationBrands.Add(new EmulationModuleListItem(
-                module, LocExtension.Get(module.DisplayResourceKey)));
+                module, LocExtension.GetForModule(module, module.DisplayResourceKey)));
         _configurationBrand.SelectedItem = selectedModule is null
             ? null
             : _configurationBrands.FirstOrDefault(item =>

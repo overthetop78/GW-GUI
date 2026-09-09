@@ -55,7 +55,7 @@ internal static class HardDiskDeletionService
             {
                 var settings = manager.DescribeStorageSettings(configuration);
                 if (await UsesAsync(settings.MountedMedia, path, dependencies))
-                    users.Add($"{LocExtension.Get(module.SummarizeConfiguration(configuration).MachineDisplayResourceKey)} · {configuration.Id}");
+                    users.Add($"{LocExtension.GetForModule(module, module.SummarizeConfiguration(configuration).MachineDisplayResourceKey)} · {configuration.Id}");
             }
         }
         foreach (var session in MachineSession.All)

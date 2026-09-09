@@ -69,7 +69,7 @@
   <data name="Emulation.Storage.HardDisk.Size"><value>硬碟大小（MiB）</value></data>
   <data name="Emulation.Storage.Media.None"><value>沒有媒體。請新增所選型號支援的磁碟片、硬碟或 CD。</value></data>
   <data name="Emulation.Storage.ReadOnly"><value>唯讀</value></data>
-  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga 介质|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|所有文件|*.*</value></data>
+  
   <data name="Emulation.Storage.HardDisk.Filter"><value>Amiga 硬碟|*.hdf|所有檔案|*.*</value></data>
   <data name="Emulation.Storage.HardDisk.NotSupported"><value>所選型號不支援硬碟。</value></data>
   <data name="Emulation.Storage.Floppy.TooManyDrives"><value>此型號最多支援 {0} 個磁碟機。</value></data>
@@ -83,7 +83,7 @@
   <data name="Emulation.Controller.Detect"><value>偵測控制器</value></data>
   <data name="Emulation.Controller.EmulatedAction"><value>Amiga 動作</value></data>
   <data name="Emulation.Controller.PhysicalControl"><value>鍵盤、滑鼠或控制器輸入</value></data>
-  <data name="Emulation.Amiga.Chipset.Name"><value>晶片組</value></data>
+  
   <data name="Emulation.Storage.Cd.Drive"><value>CD 光碟機</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>軟碟機數量</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>硬碟數量</value></data>
@@ -197,15 +197,15 @@
   <data name="Emulation.Firmware.Incompatible"><value>不相容</value></data>
   <data name="Emulation.Video.Settings.Display"><value>顯示</value></data>
   <data name="Emulation.Video.Settings.Rendering"><value>算繪</value></data>
-  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>晶片組相容性</value></data>
+  
   <data name="Emulation.Audio.Device"><value>裝置</value></data>
   <data name="Emulation.Audio.LatencyLabel"><value>延遲</value></data>
   <data name="Emulation.Audio.Quality"><value>品質</value></data>
   <data name="Emulation.Audio.Drives"><value>磁碟機</value></data>
   <data name="Emulation.Device.Name.Type"><value>類型</value></data>
   <data name="Emulation.Storage.Device.Add"><value>新增儲存裝置</value></data>
-  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3.5 吋 DD · 880 KiB</value></data>
-  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3.5 吋 HD · 1.76 MiB</value></data>
+  
+  
   <data name="Emulation.Storage.Media.Associated"><value>關聯媒體</value></data>
   <data name="Emulation.Storage.Geometry.Automatic"><value>磁碟幾何結構由模擬器自動決定。</value></data>
   <data name="Emulation.Storage.Floppy.BlankCreated"><value>已建立空白磁片映像：{0}</value></data>
@@ -297,96 +297,96 @@
   <data name="Emulation.Controller.Action.Right"><value>右</value></data>
   <data name="Emulation.Controller.Action.Fire1"><value>射擊按鈕 1</value></data>
   <data name="Emulation.Controller.Action.Fire2"><value>射擊按鈕 2</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>CD32 紅色按鈕</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>CD32 藍色按鈕</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>CD32 綠色按鈕</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>CD32 黃色按鈕</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 倒轉</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 快轉</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 播放 / 暫停</value></data>
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Controller.AnalogJoystick"><value>類比搖桿</value></data>
   <data name="Emulation.Mouse.Wheel.Up"><value>滑鼠滾輪向上</value></data>
   <data name="Emulation.Mouse.Wheel.Down"><value>滑鼠滾輪向下</value></data>
   <data name="Emulation.Mouse.Wheel.Left"><value>滑鼠滾輪向左</value></data>
   <data name="Emulation.Mouse.Wheel.Right"><value>滑鼠滾輪向右</value></data>
-  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>此值由所選機型決定。</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve"><value>此機型沒有相容的 FPU。</value></data>
-  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>此機型沒有替代記憶體。</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>此機型沒有可設定的韌體。</value></data>
-  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>此機型沒有鍵盤。</value></data>
-  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>此機型沒有滑鼠。</value></data>
-  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>此機型沒有儲存媒體。</value></data>
-  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve"><value>請選擇 Jaguar CD 機型以使用 CD 光碟。</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Storage.Cassettes"><value>卡式錄音帶</value></data>
   <data name="Emulation.Storage.Cartridges"><value>卡匣</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>卡匣插槽</value></data>
   <data name="Emulation.Storage.CompactDiscs"><value>光碟</value></data>
-  <data name="Emulation.Atari.Video.Region"><value>區域</value></data>
-  <data name="Emulation.Atari.Firmware.Multilingual"><value>多語言</value></data>
-  <data name="Emulation.Atari.Video.RegionFree"><value>無區域限制</value></data>
+  
+  
+  
   <data name="Emulation.Tab.Audio" xml:space="preserve"><value>音訊</value></data>
-  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>找不到所需的 Atari 核心。</value></data>
-  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>無法載入所選的 Atari 核心。</value></data>
-  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>缺少所需的 Atari 韌體。</value></data>
-  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>Atari 韌體無效或不相容。</value></data>
-  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>找不到已設定的 Atari 媒體。</value></data>
-  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>此 Atari 機器不支援已設定的媒體。</value></data>
-  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>Atari 選項的值無效。</value></data>
-  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>與 Atari 主機通訊失敗。</value></data>
-  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>Atari 儲存狀態無效。</value></data>
-  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>Atari 儲存狀態與目前的機器不相容。</value></data>
-  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>發生未預期的 Atari 模擬錯誤。</value></data>
-  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>詳細資料：{0}</value></data>
-  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>無法修改或刪除正在使用的 Atari 設定。</value></data>
-  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>必需的 Atari 固件 '{0}' 未被配置为 {1}.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>找不到已設定的 Atari 韌體「{0}」：{1}</value></data>
-  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>找不到已設定的 Atari 媒體：{0}</value></data>
-  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>Atari 主機執行檔路徑無法使用。</value></data>
-  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>尚未安裝 Atari 核心「{0}」。</value></data>
-  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari 介质|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|所有文件|*.*</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Controller.Automatic"><value>自動的</value></data>
   <data name="Emulation.Controller.None"><value>無</value></data>
-  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>平行的四玩家游戏棒适配器</value></data>
+  
   <data name="Emulation.Controller.Action.SwitchJoystickMouse"><value>切换乐器/调用</value></data>
-  <data name="Emulation.Atari.Controller.NumericKeypad"><value>数字键盘</value></data>
+  
   <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve"><value>在開啟此機器之前，模擬器需要媒體。請插入軟碟或設定硬碟。</value></data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve"><value>無法開啟機器</value></data>
   <data name="Emulation.Error.Machine" xml:space="preserve"><value>機器</value></data>
   <data name="Emulation.Error.RequiredMedia" xml:space="preserve"><value>所需媒體</value></data>
-  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>快速啟動</value></data>
+  
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>軟碟機聲音</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>偏振音訊濾波器</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>在模擬器畫面上顯示磁碟機活動</value></data>
-  <data name="Emulation.Atari.Memory.Mosaic"><value>Mosaic RAM 扩展</value></data>
-  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM 扩展</value></data>
-  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Axlon $0F 記憶體庫陰影</value></data>
-  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>立體聲 POKEY</value></data>
-  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>高解析度偽色</value></data>
-  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>SIO 加速</value></data>
-  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>從磁帶啟動</value></data>
-  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>作業系統修訂版</value></data>
-  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>內建 BASIC</value></data>
-  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>BASIC 修訂版</value></data>
-  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>旋鈕控制器移動速度</value></data>
-  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>自動連發</value></data>
-  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>按住開火鍵時</value></data>
-  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>永遠</value></data>
-  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>色調</value></data>
-  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>飽和度</value></data>
-  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>對比度</value></data>
-  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>亮度</value></data>
-  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>GTIA 色彩延遲</value></data>
-  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>外部調色盤</value></data>
-  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>控制器相容性</value></data>
-  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>數位靈敏度</value></data>
-  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>類比靈敏度</value></data>
-  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>雙搖桿</value></data>
-  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>交換連接埠</value></data>
-  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>顯示模擬速度</value></data>
-  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>顯示磁區/區塊計數器</value></data>
-  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>R-Time 8 即時時鐘</value></data>
-  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>P: 印表機裝置</value></data>
-  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>R: 序列裝置</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>低</value></data>
   <data name="Emulation.Audio.Quality.Normal" xml:space="preserve"><value>一般</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>高</value></data>
@@ -741,19 +741,19 @@
   <data name="Emulation.Memory.Chip"><value>芯片 RAM</value></data>
   <data name="Emulation.Memory.Slow"><value>慢 RAM</value></data>
   <data name="Emulation.Memory.Fast"><value>快 RAM</value></data>
-  <data name="Emulation.Amiga.Controller.Joystick"><value>爱乐棒</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32"><value>CD32 控制器</value></data>
-  <data name="Emulation.Atari.Controller.Joystick"><value>阿塔里活计</value></data>
-  <data name="Emulation.Atari.Controller.PaddleControllers"><value>阿塔里平板电脑</value></data>
-  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 轻型炮</value></data>
-  <data name="Emulation.Atari.Controller.Atari5200"><value>阿塔里 5200 主计长</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>阿塔里驾驶主管</value></data>
-  <data name="Emulation.Atari.Controller.ProLine"><value>阿塔里亲线欢乐棒</value></data>
-  <data name="Emulation.Atari.Controller.Lynx"><value>阿塔里·林克思(英语:Atari Lynx).</value></data>
-  <data name="Emulation.Atari.Controller.Jaguar"><value>阿塔里美洲虎号主计长</value></data>
-<data name="Emulation.Atari.Controller.BoosterGrip"><value>阿塔里助推器 Grip 游戏</value></data>
-  <data name="Emulation.Atari.Controller.Genesis"><value>世嘉创世纪控制器</value></data>
-  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ 主计长</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  
   <data name="Emulation.Video.DotMatrix.Palette.Red"><value>红色</value></data>
   <data name="Emulation.Video.DotMatrix.Palette.White"><value>白色</value></data>
   <data name="Emulation.Video.DotMatrix.Shape.Rectangle"><value>矩形</value></data>
@@ -834,8 +834,8 @@
   <data name="Emulation.Value.None"><value>無</value></data>
   <data name="Emulation.Value.Default"><value>預設</value></data>
   <data name="Emulation.Value.Gray"><value>灰色</value></data>
-  <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>藍色/棕色 1</value></data>
-  <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>藍色/棕色 2</value></data>
+  
+  
   <data name="Emulation.Firmware.Rom.Basic"><value>BASIC ROM</value></data>
   <data name="Emulation.Firmware.Rom.Xegs"><value>XEGS ROM</value></data>
 </root>

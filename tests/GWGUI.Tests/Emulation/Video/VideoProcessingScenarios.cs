@@ -39,6 +39,12 @@ internal static class VideoProcessingScenarios
             var surface=new Surface(renderer) { Fail=failure==2 && renderer!=EmulationVideoRenderer.Wpf }; created.Add(surface); return surface;
         }
         using var presenter=new GWGUI.App.Presenters.Emulation.Machine.MachineVideoPresenter(view,source.Machine,EmulationVideoRenderer.Direct3D11,processing,Create);
+        var host = new System.Windows.Window { Content = view, Width = 320, Height = 240,
+            ShowActivated = false, ShowInTaskbar = false, Opacity = 0 };
+        try
+        {
+        host.Show();
+        await System.Windows.Threading.Dispatcher.Yield(System.Windows.Threading.DispatcherPriority.ApplicationIdle);
         Assert.Equal(1,source.Subscribers); Assert.Equal(processing,Assert.Single(created[0].Settings));
         var completed=new TaskCompletionSource<VideoFrame>(TaskCreationOptions.RunContinuationsAsynchronously);
         presenter.FramePresented+=(_,frame)=>completed.TrySetResult(frame);
@@ -54,6 +60,8 @@ internal static class VideoProcessingScenarios
         source.Send(frame with { Sequence=8 }); Assert.Single(created[^1].Frames);
         presenter.Dispose(); Assert.Equal(0,replacement.Subscribers); Assert.True(created[^1].Disposed);
         replacement.Send(frame); Assert.Single(created[^1].Frames);
+        }
+        finally { host.Close(); }
     }
     public static void PipelineBrightness(int setting,byte dark,byte light)
     {

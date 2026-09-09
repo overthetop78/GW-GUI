@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amiga.Chipset.Name"><value>Brikkesett</value></data>
+  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Brikkesettkompatibilitet</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3,5-tommers DD · 880 KiB</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3,5-tommers HD · 1,76 MiB</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>Rød CD32-knapp</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>Blå CD32-knapp</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>Grønn CD32-knapp</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>Gul CD32-knapp</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 spol tilbake</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 spol frem</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 spill av / pause</value></data>
+  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Parallell firespiller joystick adapter</value></data>
+  <data name="Emulation.Amiga.Storage.MediaFilter"><value>AMiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Alle filer|*.*</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32"><value>CD32-kontroller</value></data>
+</root>

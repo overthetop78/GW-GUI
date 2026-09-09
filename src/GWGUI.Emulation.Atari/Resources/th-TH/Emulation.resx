@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>ค่านี้จะถูกกําหนดโดยโมเดลที่เลือกไว้</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve"><value>ไม่มี FPU ที่เข้ากันได้กับรุ่นนี้</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>ไม่มีหน่วยความจําอื่นสําหรับรุ่นนี้</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>รุ่นนี้ไม่มีบริษัทที่ปรับแต่งได้</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>รุ่นนี้ไม่มีคีย์บอร์ด</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>รุ่นนี้ไม่มีเมาส์</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>รุ่นนี้ไม่มีสื่อจัดเก็บข้อมูล</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve"><value>เลือกรุ่น Jaguar CD เพื่อใช้สื่อ CD</value></data>
+  <data name="Emulation.Atari.Video.Region"><value>ภูมิภาค</value></data>
+  <data name="Emulation.Atari.Firmware.Multilingual"><value>หลายภาษา</value></data>
+  <data name="Emulation.Atari.Video.RegionFree"><value>ไม่จำกัดภูมิภาค</value></data>
+  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>ไม่พบแกน Atari ที่จำเป็น</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>ไม่สามารถโหลดแกน Atari ที่เลือกได้</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>ไม่มีเฟิร์มแวร์ Atari ที่จำเป็น</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>เฟิร์มแวร์ Atari ไม่ถูกต้องหรือเข้ากันไม่ได้</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>ไม่พบสื่อ Atari ที่กำหนดค่าไว้</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>เครื่อง Atari นี้ไม่รองรับสื่อที่กำหนดค่าไว้</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>ตัวเลือก Atari มีค่าไม่ถูกต้อง</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>การสื่อสารกับโฮสต์ Atari ล้มเหลว</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>สถานะบันทึกของ Atari ไม่ถูกต้อง</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>สถานะบันทึกของ Atari เข้ากันไม่ได้กับเครื่องปัจจุบัน</value></data>
+  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>เกิดข้อผิดพลาดในการจำลอง Atari ที่ไม่คาดคิด</value></data>
+  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>รายละเอียด: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>ไม่สามารถแก้ไขหรือลบการกำหนดค่า Atari ที่ใช้งานอยู่ได้</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing"><value>ต้องการ paffire ของ Atarari{0}'ไม่ได้ถูกปรับแต่งให้ {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>ไม่พบเฟิร์มแวร์ Atari ที่กำหนดค่าไว้ '{0}': {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>ไม่พบสื่อ Atari ที่กำหนดค่าไว้: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>ไม่พบเส้นทางไฟล์ปฏิบัติการของโฮสต์ Atari</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>ไม่ได้ติดตั้งแกน Atari '{0}'</value></data>
+  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari สื่อ|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|ทุกแฟ้ม|*.*</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>ปุ่มพิมพ์ตัวเลข</value></data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>บูตแบบเร็ว</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic"><value>โมเสค RAM การขยาย</value></data>
+  <data name="Emulation.Atari.Memory.Axlon"><value>Schecon RAM การขยาย</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>เงาแบงก์ Axlon $0F</value></data>
+  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>POKEY สเตอริโอ</value></data>
+  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>อาร์ติแฟกต์ความละเอียดสูง</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>การเร่ง SIO</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>บูตจากเทป</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>รุ่นปรับปรุงของระบบปฏิบัติการ</value></data>
+  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>BASIC ภายใน</value></data>
+  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>รุ่นปรับปรุง BASIC</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>ความเร็วการเคลื่อนที่ของ Paddle</value></data>
+  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>ยิงอัตโนมัติ</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>ขณะกดปุ่มยิงค้างไว้</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>ตลอดเวลา</value></data>
+  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>เฉดสี</value></data>
+  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>ความอิ่มตัว</value></data>
+  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>ความคมชัด</value></data>
+  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>ความสว่าง</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>การหน่วงสี GTIA</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>จานสีภายนอก</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>ความเข้ากันได้ของตัวควบคุม</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>ความไวแบบดิจิทัล</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>ความไวแบบแอนะล็อก</value></data>
+  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>จอยสติ๊กคู่</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>สลับพอร์ต</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>แสดงความเร็วการจำลอง</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>แสดงตัวนับเซกเตอร์/บล็อก</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>นาฬิกาเวลาจริง R-Time 8</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>อุปกรณ์เครื่องพิมพ์ P:</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>อุปกรณ์อนุกรม R:</value></data>
+  <data name="Emulation.Atari.Controller.Joystick"><value>แถบชุดลวดลายStencils</value></data>
+  <data name="Emulation.Atari.Controller.PaddleControllers"><value>ผู้ ควบคุม การ ทํา งาน ที่ ทํา ด้วย แผ่น ฟาง อา ตา ริ</value></data>
+  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 ปืนแสง</value></data>
+  <data name="Emulation.Atari.Controller.Atari5200"><value>Atari 5200 ศูนย์ควบคุม</value></data>
+  <data name="Emulation.Atari.Controller.Driving"><value>Atari ไดรฟ์คอนโทรล</value></data>
+  <data name="Emulation.Atari.Controller.ProLine"><value>แท่งควบคุม Atarari</value></data>
+  <data name="Emulation.Atari.Controller.Lynx"><value>อะตาริ ลินซ์</value></data>
+  <data name="Emulation.Atari.Controller.Jaguar"><value>Atari Service control</value></data>
+  <data name="Emulation.Atari.Controller.BoosterGrip"><value>แอตาริ บูสเตอร์ กริป</value></data>
+  <data name="Emulation.Atari.Controller.Genesis"><value>เซกา เยเน ซิศ</value></data>
+  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari จอย 2B+ controller</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>สีน้ำเงิน/น้ำตาล 1</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>สีน้ำเงิน/น้ำตาล 2</value></data>
+</root>

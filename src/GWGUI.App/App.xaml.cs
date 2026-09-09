@@ -7,6 +7,7 @@ using GWGUI.App.Services.Logging;
 using GWGUI.App.Services.Input.GameInput;
 using GWGUI.App.Services.Storage;
 using GWGUI.App.Services.Theming;
+using GWGUI.App.Services.Updates;
 using GWGUI.App.Services.Windows;
 using GWGUI.App.Views.Windows.Options;
 using GWGUI.App.Views.Windows.Shell;
@@ -24,8 +25,10 @@ namespace GWGUI.App;
 public partial class App : Application
 {
     private AppTheme _theme;
+    private UpdateStartupCoordinator? _updateStartup;
     protected override void OnStartup(StartupEventArgs e)
     {
+        _updateStartup = UpdateStartupCoordinator.FromArguments(e.Args);
         foreach (var module in EmulationModuleRegistry.Modules)
         {
             if (module.TryHandleHostCommand(e.Args, out var exitCode))
@@ -155,5 +158,23 @@ public partial class App : Application
             if (window is MainWindow main) main.RefreshLocalizedContent();
             else if (window is OptionsWindow options) options.RefreshLocalizedContent();
         }
+    }
+
+    internal async Task CompleteUpdateStartupAsync(Window owner)
+    {
+        if (_updateStartup is null) return;
+        var coordinator = _updateStartup;
+        _updateStartup = null;
+        try
+        {
+            var result = await coordinator.CompleteStartupAsync();
+            if (result is null) return;
+            var succeeded = result.Status == GWGUI.Updates.Contracts.UpdateTransactionStatus.Succeeded;
+            MessageBox.Show(owner,
+                LocExtension.Get(succeeded ? "Updates.InstallSucceeded" : "Updates.InstallRestored", result.Detail ?? ""),
+                LocExtension.Get("Updates.Title"), MessageBoxButton.OK,
+                succeeded ? MessageBoxImage.Information : MessageBoxImage.Warning);
+        }
+        catch (Exception error) { ErrorLog.Write(error, "Completing update startup"); }
     }
 }

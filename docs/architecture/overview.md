@@ -22,7 +22,7 @@
 
 `GWGUI.Infrastructure` référence uniquement `GWGUI.Domain`.
 
-`GWGUI.Emulation.Amiga` et `GWGUI.Emulation.Atari` référencent `GWGUI.Emulation` et `GWGUI.MediaEngine`. Elles ne se référencent jamais entre elles.
+`GWGUI.Emulation.Amiga` et `GWGUI.Emulation.Atari` référencent `GWGUI.Emulation` et `GWGUI.MediaEngine`. Elles ne se référencent jamais entre elles. `GWGUI.App` ne les référence pas : il les découvre dynamiquement dans `Modules`.
 
 `GWGUI.App` compose `GWGUI.Domain`, `GWGUI.Infrastructure`, `GWGUI.MediaEngine` et les trois projets d’émulation. Les bibliothèques de production ne référencent jamais `GWGUI.App`.
 

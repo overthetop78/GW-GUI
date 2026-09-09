@@ -101,7 +101,7 @@ Une nouvelle instance de machine est créée pour chaque onglet d’exécution. 
 
 `GWGUI.Emulation` contient les contrats et comportements réellement communs. Il ne contient pas les règles propres à Amiga, Atari ou une autre famille.
 
-`GWGUI.Emulation` est une dépendance commune obligatoire de l'application et de toutes les bibliothèques `GWGUI.Emulation.xxx`. `GWGUI.App`, `GWGUI.Emulation.Amiga`, `GWGUI.Emulation.Atari` et les futures bibliothèques utilisent directement les interfaces, enums et contrats définis dans ce projet. Il ne sert pas de passerelle d'exécution : App appelle la bibliothèque spécialisée ciblée, en utilisant les types communs pour lui transmettre les données et recevoir son résultat.
+`GWGUI.Emulation` est une dépendance commune obligatoire de l'application et de toutes les bibliothèques `GWGUI.Emulation.xxx`. `GWGUI.App`, `GWGUI.Emulation.Amiga`, `GWGUI.Emulation.Atari` et les futures bibliothèques utilisent directement les interfaces, enums et contrats définis dans ce projet. App découvre les bibliothèques spécialisées dans `Modules` et communique avec elles uniquement par ces contrats communs.
 
 Les appels passent directement entre `GWGUI.App` et la bibliothèque `GWGUI.Emulation.xxx` ciblée. `GWGUI.Emulation` n'intercepte pas et ne retransmet pas ces appels. Chaque bibliothèque spécialisée traduit elle-même les identifiants, choix et valeurs communs vers les paramètres exacts attendus par son ou ses émulateurs. Elle effectue également la conversion inverse avant de renvoyer à App un résultat exprimé avec les contrats communs.
 
@@ -123,7 +123,7 @@ Ils ne contiennent aucun objet WPF.
 
 Chaque bibliothèque spécialisée contient ses moteurs, machines, configurations, capacités et règles propres.
 
-Chaque bibliothèque spécialisée expose à App une API publique organisée conforme aux contrats communs. Il ne s'agit pas nécessairement d'un objet principal instancié et partagé. App connaît ainsi les fonctions publiques du module Atari, Amiga ou d'une autre famille, mais ne connaît pas les différents émulateurs gérés à l'intérieur de ce module. Lorsqu'une famille utilise plusieurs émulateurs, la bibliothèque sélectionne en interne celui qui correspond à la machine et à la configuration demandées.
+Chaque bibliothèque spécialisée expose une `IEmulationModuleFactory`, puis un `IEmulationModule` conforme aux contrats communs. App ne référence aucun type concret Atari, Amiga ou d'une autre famille et ne connaît pas les différents émulateurs gérés à l'intérieur du module. Lorsqu'une famille utilise plusieurs émulateurs, la bibliothèque sélectionne en interne celui qui correspond à la machine et à la configuration demandées. Le raccordement complet est documenté dans `emulation-modules.md`.
 
 Cette API publique ne doit pas être regroupée dans un fichier fourre-tout. Ses responsabilités sont réparties entre des services internes distincts, rangés dans les fichiers appropriés, notamment le catalogue des machines, la description des options, l'analyse des ROM et la création des machines. L'organisation interne de la bibliothèque reste invisible pour App.
 
@@ -188,7 +188,7 @@ Les composants visuels actuels de gestion des émulateurs deviennent communs et 
 
 Les commandes de clavier, souris et manette sont envoyées directement par l'onglet App à son instance de machine. Il en va de même pour les changements de disquette et de CD. App choisit l'instance grâce à la référence déjà conservée par l'onglet ; aucun routage par l'Engine n'intervient.
 
-Plusieurs machines d'une même famille produisent donc plusieurs chaînes indépendantes : chaque onglet App correspond directement à une instance de machine de la bibliothèque concernée. Une machine Atari exécute l'implémentation fournie par `GWGUI.Emulation.Atari`, tandis qu'une machine Amiga exécute celle de `GWGUI.Emulation.Amiga`. App appelle les interfaces communes ; la référence de chaque instance détermine déjà la bonne implémentation, sans recherche dynamique de DLL.
+Plusieurs machines d'une même famille produisent donc plusieurs chaînes indépendantes : chaque onglet App correspond directement à une instance de machine de la bibliothèque concernée. Une machine Atari exécute l'implémentation fournie par `GWGUI.Emulation.Atari`, tandis qu'une machine Amiga exécute celle de `GWGUI.Emulation.Amiga`. App appelle les interfaces communes ; la référence obtenue après la découverte dynamique détermine la bonne implémentation.
 
 Elle fournit uniquement des données et comportements, jamais des boutons, sélecteurs, onglets ou autres objets graphiques.
 

@@ -28,8 +28,6 @@
     <ProjectReference Include="..\GWGUI.MediaEngine\GWGUI.MediaEngine.csproj" />
     <ProjectReference Include="..\GWGUI.Emulation\GWGUI.Emulation.csproj" />
     <ProjectReference Include="..\GWGUI.VideoPresentation\GWGUI.VideoPresentation.csproj" />
-    <ProjectReference Include="..\GWGUI.Emulation.Amiga\GWGUI.Emulation.Amiga.csproj" />
-    <ProjectReference Include="..\GWGUI.Emulation.Atari\GWGUI.Emulation.Atari.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -64,6 +62,10 @@
       <ManifestResourceName>GWGUI.App.Resources.%(Filename)</ManifestResourceName>
       <LogicalName>GWGUI.App.Resources.%(Filename).resources</LogicalName>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GWGUI.Updates\GWGUI.Updates.csproj" />
   </ItemGroup>
 
 </Project>

@@ -55,7 +55,7 @@ internal sealed class EmulationFirmwareManagementController
                 string.Equals(field.Id, firmware.DestinationFieldId, StringComparison.Ordinal));
             var destination = destinationField is null
                 ? string.Empty
-                : LocExtension.Get(destinationField.LabelResourceKey);
+                : LocExtension.GetForModule(_module, destinationField.LabelResourceKey);
             _firmwares.Items.Add(new ListBoxItem
             {
                 Tag = firmware,

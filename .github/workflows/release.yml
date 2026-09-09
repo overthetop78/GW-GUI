@@ -24,6 +24,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: component-catalog-publication
+  cancel-in-progress: false
+
 jobs:
   package:
     runs-on: windows-latest
@@ -39,6 +43,14 @@ jobs:
         run: |
           $version = $env:VERSION.TrimStart('v')
           "PACKAGE_VERSION=$version" >> $env:GITHUB_ENV
+          if ("${{ github.event_name }}" -eq 'push') {
+            $releaseTag = $env:GITHUB_REF_NAME
+          } elseif ("${{ inputs.publication_type }}" -eq 'prerelease') {
+            $releaseTag = "v$version-snapshot"
+          } else {
+            $releaseTag = "v$version"
+          }
+          "RELEASE_TAG=$releaseTag" >> $env:GITHUB_ENV
       - name: Run GW GUI tests
         shell: pwsh
         run: |
@@ -60,6 +72,17 @@ jobs:
       - name: Build packages
         shell: pwsh
         run: .\scripts\package.ps1 -Version $env:PACKAGE_VERSION
+      - name: Download existing update catalog
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          New-Item -ItemType Directory -Path .\dist -Force | Out-Null
+          gh release download component-catalog --pattern update-catalog.json --dir .\dist\existing-catalog
+          if ($LASTEXITCODE -ne 0) { Remove-Item -LiteralPath .\dist\existing-catalog -Recurse -Force -ErrorAction SilentlyContinue }
+      - name: Build and validate update catalog
+        shell: pwsh
+        run: .\scripts\build-update-catalog.ps1 -Scope All -Version $env:PACKAGE_VERSION -ApplicationTag $env:RELEASE_TAG -ExistingCatalog .\dist\existing-catalog\update-catalog.json
       - name: Validate wiki sources
         shell: pwsh
         run: .\scripts\build-wiki.ps1
@@ -78,14 +101,16 @@ jobs:
           path: |
             dist/GW-GUI-*.zip
             dist/GW-GUI-*.exe
+            dist/GW-GUI-Module-*.zip.sha256
             dist/SHA256SUMS.txt
+            dist/update-catalog.json
           if-no-files-found: error
       - name: Publish GitHub release for tag
         if: startsWith(github.ref, 'refs/tags/v')
         shell: pwsh
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create $env:GITHUB_REF_NAME dist/GW-GUI-*.zip dist/GW-GUI-*.exe dist/SHA256SUMS.txt --verify-tag --generate-notes
+        run: gh release create $env:GITHUB_REF_NAME dist/GW-GUI-*.zip dist/GW-GUI-*.exe dist/GW-GUI-Module-*.zip.sha256 dist/SHA256SUMS.txt --verify-tag --generate-notes
       - name: Publish requested GitHub release
         if: github.event_name == 'workflow_dispatch'
         shell: pwsh
@@ -108,6 +133,7 @@ jobs:
             'release', 'create', $tag,
             'dist/GW-GUI-*.zip',
             'dist/GW-GUI-*.exe',
+            'dist/GW-GUI-Module-*.zip.sha256',
             'dist/SHA256SUMS.txt',
             '--title', $title
           )
@@ -123,3 +149,16 @@ jobs:
             default { throw "Unsupported publication type: $env:PUBLICATION_TYPE" }
           }
           gh @arguments
+      - name: Publish validated update catalog
+        if: startsWith(github.ref, 'refs/tags/v') || (github.event_name == 'workflow_dispatch' && inputs.publication_type != 'prerelease')
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view component-catalog
+          if ($LASTEXITCODE -ne 0) {
+            gh release create component-catalog --title 'GW GUI component catalog' --notes 'Machine-readable update catalog.' --latest=false
+          }
+          if ($LASTEXITCODE -ne 0) { throw 'Unable to create the component catalog release.' }
+          gh release upload component-catalog .\dist\update-catalog.json --clobber
+          if ($LASTEXITCODE -ne 0) { throw 'Unable to publish the component catalog.' }

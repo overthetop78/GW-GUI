@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Tous les fichiers|*.*</value></data>
+  <data name="Emulation.Amiga.Chipset.Name"><value>Jeu de puces</value></data>
+  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Compatibilité du jeu de puces</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3,5 pouces DD · 880 Kio</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3,5 pouces HD · 1,76 Mio</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>Bouton rouge CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>Bouton bleu CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>Bouton vert CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>Bouton jaune CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>Retour rapide CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>Avance rapide CD32</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>Lecture / pause CD32</value></data>
+  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Adaptateur parallèle pour quatre joysticks</value></data>
+  <data name="Emulation.Amiga.Controller.Joystick"><value>Joystick Amiga</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32"><value>Contrôleur CD32</value></data>
+</root>

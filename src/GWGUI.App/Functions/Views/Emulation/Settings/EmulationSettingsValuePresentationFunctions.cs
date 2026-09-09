@@ -6,12 +6,13 @@ namespace GWGUI.App.Functions.Views.Emulation.Settings;
 
 internal static class EmulationSettingsValuePresentationFunctions
 {
-    internal static string DisplayValue(EmulationSettingsField field)
+    internal static string DisplayValue(EmulationSettingsField field, IEmulationModule? module = null)
     {
         var choice = field.Choices?.FirstOrDefault(value => value.Id == field.Value)
             ?? field.Choices?.FirstOrDefault();
         return choice?.InvariantDisplayValue ?? (choice is null ? field.Value ?? string.Empty
-            : LocExtension.Get(choice.DisplayResourceKey));
+            : (module is null ? LocExtension.Get(choice.DisplayResourceKey)
+                : LocExtension.GetForModule(module, choice.DisplayResourceKey)));
     }
     internal static long DefaultNumericValue(EmulationSettingsField field)
     {

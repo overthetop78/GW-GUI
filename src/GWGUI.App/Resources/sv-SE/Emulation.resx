@@ -78,7 +78,7 @@
   <data name="Emulation.Controller.Detect"><value>Identifiera handkontroller</value></data>
   <data name="Emulation.Controller.EmulatedAction"><value>Amiga-åtgärd</value></data>
   <data name="Emulation.Controller.PhysicalControl"><value>Styrning med tangentbord, mus eller handkontroll</value></data>
-  <data name="Emulation.Amiga.Chipset.Name"><value>Kretsuppsättning</value></data>
+  
   <data name="Emulation.Storage.Cd.Drive"><value>CD-enhet</value></data>
   <data name="Emulation.Storage.Floppy.DriveCount"><value>Antal diskettenheter</value></data>
   <data name="Emulation.Storage.HardDisk.DriveCount"><value>Antal hårddiskar</value></data>
@@ -183,15 +183,15 @@
   <data name="Emulation.Firmware.Official"><value>Officiell</value></data>
   <data name="Emulation.Firmware.Incompatible"><value>Inte kompatibel</value></data>
   <data name="Emulation.Video.Settings.Display"><value>Visning</value></data>
-<data name="Emulation.Amiga.Chipset.NameCompatibility"><value>Kretsuppsättningskompatibilitet</value></data>
+
   <data name="Emulation.Audio.Device"><value>Enhet</value></data>
   <data name="Emulation.Audio.LatencyLabel"><value>Fördröjning</value></data>
   <data name="Emulation.Audio.Quality"><value>Kvalitet</value></data>
   <data name="Emulation.Audio.Drives"><value>Enheter</value></data>
   <data name="Emulation.Device.Name.Type"><value>Typ</value></data>
   <data name="Emulation.Storage.Device.Add"><value>Lägg till lagringsenhet</value></data>
-  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga 3,5 tum DD · 880 KiB</value></data>
-  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga 3,5 tum HD · 1,76 MiB</value></data>
+  
+  
   <data name="Emulation.Storage.Media.Associated"><value>Associerat medium</value></data>
   <data name="Emulation.Storage.Geometry.Automatic"><value>Diskgeometrin bestäms automatiskt av emulatorn.</value></data>
   <data name="Emulation.Storage.Floppy.BlankCreated"><value>Tom diskettavbildning skapad: {0}</value></data>
@@ -281,90 +281,90 @@
   <data name="Emulation.Controller.Action.Right"><value>Höger</value></data>
   <data name="Emulation.Controller.Action.Fire1"><value>Avfyrningsknapp 1</value></data>
   <data name="Emulation.Controller.Action.Fire2"><value>Avfyrningsknapp 2</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>Röd CD32-knapp</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>Blå CD32-knapp</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>Grön CD32-knapp</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>Gul CD32-knapp</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 spola tillbaka</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 spola framåt</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 spela / pausa</value></data>
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Controller.AnalogJoystick"><value>Analog styrspak</value></data>
   <data name="Emulation.Mouse.Wheel.Up"><value>Mushjul upp</value></data>
   <data name="Emulation.Mouse.Wheel.Down"><value>Mushjul ned</value></data>
   <data name="Emulation.Mouse.Wheel.Left"><value>Mushjul åt vänster</value></data>
   <data name="Emulation.Mouse.Wheel.Right"><value>Mushjul åt höger</value></data>
-  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>Detta värde bestäms av den valda modellen.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve"><value>Ingen kompatibel FPU är tillgänglig för denna modell.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>Inget alternativt minne är tillgängligt för denna modell.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>Denna modell har ingen konfigurerbar firmware.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>Denna modell har inget tangentbord.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>Denna modell har ingen mus.</value></data>
-  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Denna modell har inga lagringsmedier.</value></data>
-  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd" xml:space="preserve"><value>Välj Jaguar CD-modellen för att använda CD-medier.</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Storage.Cassettes"><value>Kassett</value></data>
   <data name="Emulation.Storage.Cartridges"><value>Spelkassett</value></data>
   <data name="Emulation.Storage.Cartridge.Device" xml:space="preserve"><value>Kassettplats</value></data>
-<data name="Emulation.Atari.Firmware.Multilingual"><value>Flerspråkig</value></data>
-  <data name="Emulation.Atari.Video.RegionFree"><value>Regionsfri</value></data>
-<data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>Den nödvändiga kärnan i Atari hittades inte.</value></data>
-  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>Den valda kärnan i Atari kunde inte laddas.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>En nödvändig Atari firmware saknas.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>En Atari firmware är ogiltig eller oförenlig.</value></data>
-  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>De konfigurerade Atari-medierna hittades inte.</value></data>
-  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>De konfigurerade medierna stöds inte av denna Atari-maskin.</value></data>
-  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>Ett Atari-alternativ har ett ogiltigt värde.</value></data>
-  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>Kommunikation med Atari-värden misslyckades.</value></data>
-  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>Atari räddade staten är ogiltig.</value></data>
-  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>Atari räddade staten är oförenlig med den nuvarande maskinen.</value></data>
-  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>Ett oväntat Atari-emuleringsfel inträffade.</value></data>
-  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>Detaljer: {0}</value></data>
-  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>Den aktiva Atarikonfigurationen kan inte ändras eller tas bort.</value></data>
-  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve"><value>Atari firmware "{0}" är inte konfigurerad för {1}.</value></data>
-  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>Konfigurerad Atari firmware "{0}" hittades inte: {1}</value></data>
-  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>Configured Atari media hittades inte: {0}</value></data>
-  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>Atari värd körbar väg är otillgänglig.</value></data>
-  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>Kärnan "{0}" är inte installerad.</value></data>
-  <data name="Emulation.Atari.Storage.MediaFilter"><value>Atari media|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Alla filer|*.*</value></data>
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Controller.Automatic"><value>Automatisk</value></data>
   <data name="Emulation.Controller.None"><value>Ingen</value></data>
-  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>Parallell joystickadapter för fyra spelare</value></data>
-  <data name="Emulation.Atari.Controller.NumericKeypad"><value>Numerisk keypad</value></data>
+  
+  
   <data name="Emulation.Error.RequiredMediaMissing" xml:space="preserve"><value>Emulatorn kräver ett medium innan den här maskinen kan startas. Sätt in en diskett eller konfigurera en hårddisk.</value></data>
   <data name="Emulation.Error.PowerFailureTitle" xml:space="preserve"><value>Maskinen kunde inte startas</value></data>
   <data name="Emulation.Error.Machine" xml:space="preserve"><value>Maskin</value></data>
   <data name="Emulation.Error.RequiredMedia" xml:space="preserve"><value>Nödvändiga medier</value></data>
-  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Snabbstart</value></data>
+  
   <data name="Emulation.Audio.Floppy.Enabled" xml:space="preserve"><value>Diskettenhetsljud</value></data>
   <data name="Emulation.Audio.PolarizedFilter" xml:space="preserve"><value>Polariserat ljudfilter</value></data>
   <data name="Emulation.Storage.ActivityOsd" xml:space="preserve"><value>Visa enhetsaktivitet på emulatorns skärm</value></data>
-  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Axlon $0F-bankskugga</value></data>
-  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>Stereo-POKEY</value></data>
-  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Högupplösta artefakter</value></data>
-  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>SIO-acceleration</value></data>
-  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Starta från kassett</value></data>
-  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>Operativsystemsrevision</value></data>
-  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>Intern BASIC</value></data>
-  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>BASIC-revision</value></data>
-  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>Paddle-rörelsehastighet</value></data>
-  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>Automateld</value></data>
-  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>När avfyrning hålls nere</value></data>
-  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Alltid</value></data>
-  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Färgton</value></data>
-  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Mättnad</value></data>
-  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>Kontrast</value></data>
-  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Ljusstyrka</value></data>
-  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>GTIA-färgfördröjning</value></data>
-  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>Extern palett</value></data>
-  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>Kontrollkompatibilitet</value></data>
-  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>Digital känslighet</value></data>
-  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>Analog känslighet</value></data>
-  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>Dubbel styrspak</value></data>
-  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>Byt portar</value></data>
-  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>Visa emuleringshastighet</value></data>
-  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>Visa sektor-/blockräknare</value></data>
-  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>R-Time 8-realtidsklocka</value></data>
-  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>P:-skrivarenhet</value></data>
-  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>R:-seriell enhet</value></data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Emulation.Audio.Quality.Low" xml:space="preserve"><value>Låg</value></data>
   <data name="Emulation.Audio.Quality.High" xml:space="preserve"><value>Hög</value></data>
   <data name="Emulation.Media.Insert" xml:space="preserve"><value>Sätt i media</value></data>
@@ -675,13 +675,13 @@
   <data name="Emulation.Video.LedMatrix.Group.Emission"><value>Ljusemission</value></data>
   <data name="Emulation.Memory.Slow"><value>Långsam RAM</value></data>
   <data name="Emulation.Memory.Fast"><value>Snabb RAM</value></data>
-<data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|Alla filer|*.*</value></data>
+
   <data name="Emulation.Storage.HardDisk.Filter"><value>Amiga hårddisk |*.hdf | Alla filer |*.*</value></data>
   <data name="Emulation.Value.Standard"><value>Standard Standard</value></data>
   <data name="Emulation.Controller.Port"><value>Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port Port {0}</value></data>
-  <data name="Emulation.Amiga.Controller.Cd32"><value>CD32-kontroller</value></data>
-  <data name="Emulation.Atari.Controller.Driving"><value>Atari körkontroll</value></data>
-<data name="Emulation.Atari.Video.Region"><value>Region Region Region Region Region</value></data>
+  
+  
+
   <data name="Emulation.Video.DotMatrix.Palette.Red"><value>Röd</value></data>
   <data name="Emulation.Video.DotMatrix.Palette.White"><value>Vitvitt vit</value></data>
   <data name="Emulation.Video.DotMatrix.Group.Cells"><value>Celler</value></data>
@@ -739,9 +739,9 @@
   <data name="Emulation.Cassette.State.Recording"><value>Spelar in</value></data>
   <data name="Emulation.Cassette.State.EndOfTape"><value>Bandets slut</value></data>
   <data name="Emulation.Memory.Summary"><value>Chip RAM:: :: {0} KiB ́nSlow RAM:: :: {1} KiB / NFast RAM:: :: {2} MiB</value></data>
-  <data name="Emulation.Atari.Controller.Xg1LightGun"><value>Atari XG-1 Ljusa Gun</value></data>
-  <data name="Emulation.Atari.Memory.Mosaic"><value>Mosaik RAM expansion expansion expansion</value></data>
-  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM expansion expansion expansion</value></data>
+  
+  
+  
   <data name="Emulation.Video.Technology.FixedPixel"><value>LCD //// LED //// OLED</value></data>
   <data name="Emulation.Hdd.Delete"><value>Ta bort diskbild...</value></data>
   <data name="Emulation.Hdd.DeleteConfirm"><value>Ta bort den här skivan och all dess data? Den här operationen kan inte ångras.&#xA;{0}</value></data>
@@ -763,8 +763,8 @@
   <data name="Emulation.Value.None"><value>Ingen</value></data>
   <data name="Emulation.Value.Default"><value>Standard</value></data>
   <data name="Emulation.Value.Gray"><value>Grå</value></data>
-  <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Blå/brun 1</value></data>
-  <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Blå/brun 2</value></data>
+  
+  
   <data name="Emulation.Firmware.Rom.Basic"><value>BASIC-ROM</value></data>
   <data name="Emulation.Firmware.Rom.Xegs"><value>XEGS-ROM</value></data>
 </root>

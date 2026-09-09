@@ -366,8 +366,10 @@ def main() -> None:
         help="retranslate entries that still contain a substantial English fragment")
     parser.add_argument("--format", action="store_true",
         help="put every RESX data/value translation on one physical XML line")
+    parser.add_argument("--root", type=Path, default=Path("src/GWGUI.App/Resources"),
+        help="RESX root containing 00-Base and culture directories (application or module)")
     args = parser.parse_args()
-    root = Path("src/GWGUI.App/Resources")
+    root = args.root
 
     if args.audit:
         audit_resources(root)

@@ -217,8 +217,13 @@ internal sealed class SoftwareEmulationVideoProcessingPipeline : IEmulationVideo
             : 1.055f * MathF.Pow(value, 1f / 2.4f) - 0.055f;
     }
 
-    public void Dispose()
+    public void Dispose() => ResetTemporalHistory();
+
+    public void ResetTemporalHistory()
     {
+        _interlacing.Reset();
+        _signalTimestamp = TimeSpan.Zero;
+        _signalSequence = 0;
         ResetHistory();
         _plasmaPersistence.Reset();
         ResetVectorHistory();

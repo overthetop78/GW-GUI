@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Atari.Unavailable.ForcedByModel" xml:space="preserve"><value>Nilai ini ditentukan oleh model yang dipilih.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFpu" xml:space="preserve"><value>FPU yang kompatibel tidak tersedia untuk model ini.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoAlternateMemory" xml:space="preserve"><value>Tidak ada memori alternatif yang tersedia untuk model ini.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoFirmware" xml:space="preserve"><value>Model ini tidak memiliki firmware yang dapat diatur.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoKeyboard" xml:space="preserve"><value>Model ini tidak memiliki keyboard.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoMouse" xml:space="preserve"><value>Model ini tidak memiliki mouse.</value></data>
+  <data name="Emulation.Atari.Unavailable.NoStorage" xml:space="preserve"><value>Model ini tidak memiliki media penyimpanan.</value></data>
+  <data name="Emulation.Atari.Unavailable.JaguarStandardNoCd"><value>Pilih Jaguar CD model yang akan dipakai CD media.</value></data>
+  <data name="Emulation.Atari.Video.Region"><value>Wilayah</value></data>
+  <data name="Emulation.Atari.Firmware.Multilingual"><value>Multibahasa</value></data>
+  <data name="Emulation.Atari.Video.RegionFree"><value>Bebas wilayah</value></data>
+  <data name="Emulation.Atari.Error.CoreNotFound" xml:space="preserve"><value>Inti yang diperlukan Atari tidak ditemukan.</value></data>
+  <data name="Emulation.Atari.Error.CoreRejected" xml:space="preserve"><value>Inti Atari yang dipilih tidak dapat dimuat.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareMissing" xml:space="preserve"><value>Sebuah firmware Atari yang diperlukan hilang.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareInvalid" xml:space="preserve"><value>Firmware Atari tidak valid atau tidak kompatibel.</value></data>
+  <data name="Emulation.Atari.Error.ContentNotFound" xml:space="preserve"><value>Media Atari yang dikonfigurasi tidak ditemukan.</value></data>
+  <data name="Emulation.Atari.Error.ContentUnsupported" xml:space="preserve"><value>Media yang dikonfigurasi tidak didukung oleh mesin Atari ini.</value></data>
+  <data name="Emulation.Atari.Error.OptionInvalid" xml:space="preserve"><value>Sebuah opsi Atari memiliki nilai yang tidak valid.</value></data>
+  <data name="Emulation.Atari.Error.HostProtocolFailure" xml:space="preserve"><value>Komunikasi dengan pemilik Atari gagal.</value></data>
+  <data name="Emulation.Atari.Error.StateInvalid" xml:space="preserve"><value>Negara bagian tabungan Atari tidak valid.</value></data>
+  <data name="Emulation.Atari.Error.StateIncompatible" xml:space="preserve"><value>Negara bagian tabungan Atari tidak kompatibel dengan mesin saat ini.</value></data>
+  <data name="Emulation.Atari.Error.Unexpected" xml:space="preserve"><value>Kesalahan emulasi Atari yang tak terduga terjadi.</value></data>
+  <data name="Emulation.Atari.Error.Details" xml:space="preserve"><value>Rincian: {0}</value></data>
+  <data name="Emulation.Atari.Error.ActiveConfiguration" xml:space="preserve"><value>Konfigurasi Atari yang aktif tak dapat diubah atau dihapus.</value></data>
+  <data name="Emulation.Atari.Error.RequiredFirmwareMissing" xml:space="preserve"><value>Firmware Atari yang diperlukan '{0}' tidak dikonfigurasi untuk {1}.</value></data>
+  <data name="Emulation.Atari.Error.FirmwareFileMissing" xml:space="preserve"><value>Dikonfigured Atari firmware '{0}' tidak ditemukan: {1}</value></data>
+  <data name="Emulation.Atari.Error.MediaFileMissing" xml:space="preserve"><value>Media Atari yang dikonfigurasi tidak ditemukan: {0}</value></data>
+  <data name="Emulation.Atari.Error.HostExecutableMissing" xml:space="preserve"><value>Jalur eksekusi Atari host tidak tersedia.</value></data>
+  <data name="Emulation.Atari.Error.CoreNotInstalled" xml:space="preserve"><value>Inti Atari '{0}' belum terpasang.</value></data>
+  <data name="Emulation.Atari.Storage.MediaFilter"><value>Media Atari|*.st;*.msa;*.stx;*.dim;*.ipf;*.vhd;*.ide;*.gem;*.atr;*.xfd;*.atx;*.cas;*.car;*.rom;*.bin;*.a26;*.a78;*.lnx;*.j64;*.jag;*.cue;*.ccd;*.chd;*.iso;*.m3u;*.zip;*.7z|Semua berkas|*.*</value></data>
+  <data name="Emulation.Atari.Controller.NumericKeypad"><value>keypad numerik</value></data>
+  <data name="Emulation.Atari.FastBoot" xml:space="preserve"><value>Boot cepat</value></data>
+  <data name="Emulation.Atari.Memory.Mosaic"><value>Mosaic RAM ekspansi</value></data>
+  <data name="Emulation.Atari.Memory.Axlon"><value>Axlon RAM ekspansi</value></data>
+  <data name="Emulation.Atari.Memory.AxlonShadow" xml:space="preserve"><value>Bayangan bank Axlon $0F</value></data>
+  <data name="Emulation.Atari.Audio.PokeyStereo" xml:space="preserve"><value>POKEY stereo</value></data>
+  <data name="Emulation.Atari.Video.Artifacting" xml:space="preserve"><value>Artefak resolusi tinggi</value></data>
+  <data name="Emulation.Atari.Storage.SioAcceleration" xml:space="preserve"><value>Akselerasi SIO</value></data>
+  <data name="Emulation.Atari.Storage.CassetteBoot" xml:space="preserve"><value>Mulai dari kaset</value></data>
+  <data name="Emulation.Atari.Firmware.OsRevision" xml:space="preserve"><value>Revisi sistem operasi</value></data>
+  <data name="Emulation.Atari.Firmware.BasicEnabled" xml:space="preserve"><value>BASIC internal</value></data>
+  <data name="Emulation.Atari.Firmware.BasicVersion" xml:space="preserve"><value>Revisi BASIC</value></data>
+  <data name="Emulation.Atari.Controller.PaddleSpeed" xml:space="preserve"><value>Kecepatan gerak paddle</value></data>
+  <data name="Emulation.Atari.Controller.Autofire" xml:space="preserve"><value>Tembak otomatis</value></data>
+  <data name="Emulation.Atari.Controller.AutofireButton" xml:space="preserve"><value>Saat tombol tembak ditahan</value></data>
+  <data name="Emulation.Atari.Controller.AutofireAlways" xml:space="preserve"><value>Selalu</value></data>
+  <data name="Emulation.Atari.Video.Hue" xml:space="preserve"><value>Rona</value></data>
+  <data name="Emulation.Atari.Video.Saturation" xml:space="preserve"><value>Saturasi</value></data>
+  <data name="Emulation.Atari.Video.Contrast" xml:space="preserve"><value>Kontras</value></data>
+  <data name="Emulation.Atari.Video.Brightness" xml:space="preserve"><value>Kecerahan</value></data>
+  <data name="Emulation.Atari.Video.ColorDelay" xml:space="preserve"><value>Tunda warna GTIA</value></data>
+  <data name="Emulation.Atari.Video.ExternalPalette" xml:space="preserve"><value>Palet eksternal</value></data>
+  <data name="Emulation.Atari.Controller.Compatibility" xml:space="preserve"><value>Kompatibilitas pengontrol</value></data>
+  <data name="Emulation.Atari.Controller.DigitalSensitivity" xml:space="preserve"><value>Sensitivitas digital</value></data>
+  <data name="Emulation.Atari.Controller.AnalogSensitivity" xml:space="preserve"><value>Sensitivitas analog</value></data>
+  <data name="Emulation.Atari.Controller.DualStick" xml:space="preserve"><value>Joystick ganda</value></data>
+  <data name="Emulation.Atari.Controller.SwapPorts" xml:space="preserve"><value>Tukar porta</value></data>
+  <data name="Emulation.Atari.Storage.SpeedOsd" xml:space="preserve"><value>Tampilkan kecepatan emulasi</value></data>
+  <data name="Emulation.Atari.Storage.SectorOsd" xml:space="preserve"><value>Tampilkan penghitung sektor/blok</value></data>
+  <data name="Emulation.Atari.Storage.RealTimeClock" xml:space="preserve"><value>Jam waktu nyata R-Time 8</value></data>
+  <data name="Emulation.Atari.Storage.PrinterDevice" xml:space="preserve"><value>Perangkat pencetak P:</value></data>
+  <data name="Emulation.Atari.Storage.SerialDevice" xml:space="preserve"><value>Perangkat serial R:</value></data>
+  <data name="Emulation.Atari.Controller.Joystick"><value>Jepit Atari</value></data>
+  <data name="Emulation.Atari.Controller.PaddleControllers"><value>Atari Pengontrol Paddle</value></data>
+  <data name="Emulation.Atari.Controller.Driving"><value>Atari Kontrol Mengemudi</value></data>
+  <data name="Emulation.Atari.Controller.ProLine"><value>Atari Pro- Line Joystick</value></data>
+  <data name="Emulation.Atari.Controller.BoosterGrip"><value>Grip Atari Booster</value></data>
+  <data name="Emulation.Atari.Controller.Genesis"><value>Kontroler Kejadian Sega</value></data>
+  <data name="Emulation.Atari.Controller.Joy2BPlus"><value>Atari Joy 2B+ Pengontrol</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown1"><value>Biru/cokelat 1</value></data>
+  <data name="Emulation.Atari.Video.Artifacting.BlueBrown2"><value>Biru/cokelat 2</value></data>
+</root>

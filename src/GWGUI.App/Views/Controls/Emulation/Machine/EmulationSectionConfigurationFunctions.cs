@@ -62,7 +62,7 @@ public sealed partial class EmulationSection
         }
         _configurations = items;
         var modules = _modules.Select(module => new EmulationModuleListItem(module,
-            LocExtension.Get(module.DisplayResourceKey))).ToArray();
+            LocExtension.GetForModule(module, module.DisplayResourceKey))).ToArray();
         _module.ItemsSource = modules;
         _module.SelectedItem = modules.FirstOrDefault(item => item.Module.Id == selectedModuleId)
             ?? modules.FirstOrDefault(item => items.Any(configuration =>

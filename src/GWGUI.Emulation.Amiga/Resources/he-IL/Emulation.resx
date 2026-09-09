@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Emulation.Amiga.Chipset.Name"><value>ערכת שבבים</value></data>
+  <data name="Emulation.Amiga.Chipset.NameCompatibility"><value>תאימות ערכת שבבים</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Dd"><value>Amiga ‏3.5 אינץ׳ DD · ‏880 KiB</value></data>
+  <data name="Emulation.Amiga.Storage.Floppy.Hd"><value>Amiga ‏3.5 אינץ׳ HD · ‏1.76 MiB</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Red"><value>כפתור CD32 אדום</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Blue"><value>כפתור CD32 כחול</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Green"><value>כפתור CD32 ירוק</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Yellow"><value>כפתור CD32 צהוב</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.Rewind"><value>CD32 הרצה לאחור</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.FastForward"><value>CD32 הרצה קדימה</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32.PlayPause"><value>CD32 הפעלה / השהיה</value></data>
+  <data name="Emulation.Amiga.Controller.ParallelAdapter"><value>המונחים: four-player joystick Fiter</value></data>
+  <data name="Emulation.Amiga.Storage.MediaFilter"><value>Amiga Media|*.adf;*.adz;*.dms;*.fdi;*.ipf;*.raw;*.hdf;*.hdz;*.lha;*.slave;*.info;*.cue;*.ccd;*.chd;*.nrg;*.mds;*.iso;*.uae;*.m3u;*.zip;*.7z|כל הקבצים|*.*</value></data>
+  <data name="Emulation.Amiga.Controller.Joystick"><value>עמיגה שמחה</value></data>
+  <data name="Emulation.Amiga.Controller.Cd32"><value>CD32 בקר</value></data>
+</root>
