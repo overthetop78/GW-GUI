@@ -101,3 +101,18 @@ module. Les actifs téléchargés uniquement pour ce contrôle ont ensuite été
 
 Le paquet `GWGUI.Emulation.SDK` est également visible dans l’index public NuGet.org avec la version
 `1.0.0`.
+
+Le README NuGet du SDK a ensuite été ajouté et contrôlé dans un paquet local 1.0.1 : il se trouve à
+la racine du `.nupkg`, présente l’installation, le démarrage d’un module, les principaux contrats et
+la compatibilité, et renvoie vers les guides complets. Le modèle de module référence maintenant cette
+révision sans changement de l’API hôte `1.0` ni du schéma `2`.
+
+Le SDK 1.0.1 a été publié par l’exécution GitHub Actions `34354428912` avec le tag `sdk-v1.0.1` et la
+release `https://github.com/overthetop78/GW-GUI/releases/tag/sdk-v1.0.1`. La release contient le
+paquet principal et le paquet de symboles. Le paquet principal publié a été téléchargé et contrôlé :
+son SHA-256 vaut `d653051973655608bc3e0ab9715b5bdbf060a3b60bd3e7279e4c0947d5236e11` et son
+`README.md` se trouve bien à la racine. NuGet.org a accepté cette version ; son apparition dans
+l’index public restait soumise au délai d’indexation lors du premier contrôle immédiat.
+
+Le build Debug complet du 9 septembre 2026 a réussi après restauration des dépendances et produit
+`build/Debug/GW GUI/gwgui.exe` avec les modules Amiga et Atari destinés aux essais locaux.

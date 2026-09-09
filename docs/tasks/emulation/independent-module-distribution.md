@@ -127,14 +127,14 @@
     - [x] 9.1.1 Préparer GitHub à exécuter les workflows
       - [x] Commiter et pousser l’ensemble de l’état validé sur `main`, puis inscrire le commit distant dans `docs/tasks/emulation/independent-module-distribution-validation.md`.
       - [x] Modifier `.github/workflows/sdk-release.yml`, `.codex/config.toml`, `docs/project/release.md` et `docs/architecture/emulation-sdk-versioning.md` pour utiliser NuGet Trusted Publishing avec OIDC, sans clé permanente ni secret `NUGET_API_KEY`; faire créer la stratégie NuGet correspondant à `overthetop78/GW-GUI` et `sdk-release.yml`, puis inscrire sa présence dans `docs/tasks/emulation/independent-module-distribution-validation.md`.
-  - [ ] 9.2 Publier les composants indépendants
+  - [x] 9.2 Publier les composants indépendants
     - [x] 9.2.1 Publier une version de GW GUI capable d’utiliser les modules indépendants
       - [x] Préparer, publier et contrôler la première release de l’application fondée sur cette architecture. Son paquet ne doit contenir aucun module, son catalogue doit désigner cette release et ses notes doivent expliquer l’installation indépendante des modules.
     - [x] 9.2.2 Publier les modules officiels et le SDK
       - [x] Publier les releases et catalogues Amiga et Atari aux adresses inscrites dans leurs manifestes, puis inscrire leurs tags, actifs et URL dans `docs/tasks/emulation/independent-module-distribution-validation.md` sans ajouter leurs adresses à une constante ou une liste dans GW GUI.
       - [x] Publier `GWGUI.Emulation.SDK` 1.0.0 sur NuGet.org avec le tag prévu, puis inscrire le paquet, le tag et la release dans `docs/tasks/emulation/independent-module-distribution-validation.md`.
-    - [ ] 9.2.3 Fournir la présentation du SDK sur NuGet.org
-      - [ ] Ajouter un README autonome au paquet `GWGUI.Emulation.SDK`, augmenter sa révision, adapter le modèle de module et publier cette nouvelle version afin que la page NuGet explique directement son rôle, son installation et le démarrage d’un module.
+    - [x] 9.2.3 Fournir la présentation du SDK sur NuGet.org
+      - [x] Ajouter un README autonome au paquet `GWGUI.Emulation.SDK`, augmenter sa révision, adapter le modèle de module et publier cette nouvelle version afin que la page NuGet explique directement son rôle, son installation et le démarrage d’un module.
   - [ ] 9.3 Effectuer la validation utilisateur
     - [ ] 9.3.1 Vérifier les parcours visibles
       - [ ] Faire vérifier par l’utilisateur l’installation depuis un ZIP, l’installation depuis une URL, la mise à jour indépendante d’un module et la mise à jour de GW GUI conservant tous les modules, puis inscrire son résultat dans `docs/tasks/emulation/independent-module-distribution-validation.md`.
