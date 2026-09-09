@@ -5,7 +5,7 @@ namespace GWGUI.Updates.Services;
 
 public sealed class UpdatePlanBuilder
 {
-    public const int SupportedSchemaVersion = 1;
+    public const int SupportedSchemaVersion = 2;
     public const string ApplicationId = "gwgui";
 
     public UpdateSearchResult Search(
@@ -15,6 +15,10 @@ public sealed class UpdatePlanBuilder
         IReadOnlyDictionary<string, string>? selections = null)
     {
         Validate(catalog);
+        if (scope == UpdateSearchScope.Application && catalog.Kind != UpdateCatalogKind.Application)
+            throw new InvalidDataException("The requested application update requires an application catalog.");
+        if (scope == UpdateSearchScope.Modules && catalog.Kind != UpdateCatalogKind.Module)
+            throw new InvalidDataException("The requested module update requires a module catalog.");
         var installedApplicationVersion = ParseVersion(installed.ApplicationVersion, 3, "installed application version");
         var installedHostApi = ParseVersion(installed.HostApiVersion, 2, "installed host API version");
         var installedModules = installed.Modules.ToDictionary(module => module.Id, StringComparer.OrdinalIgnoreCase);
@@ -28,6 +32,13 @@ public sealed class UpdatePlanBuilder
         }
 
         var componentsById = catalog.Components.ToDictionary(component => component.Id, StringComparer.OrdinalIgnoreCase);
+        if (scope == UpdateSearchScope.Application && componentsById.Values.Any(component =>
+                component.Kind != UpdateComponentKind.Application ||
+                !component.Id.Equals(ApplicationId, StringComparison.OrdinalIgnoreCase)))
+            throw new InvalidDataException("The application catalog must contain only the GW GUI application component.");
+        if (scope == UpdateSearchScope.Modules && componentsById.Values.Any(component =>
+                component.Kind != UpdateComponentKind.Module))
+            throw new InvalidDataException("A module catalog must contain only module components.");
         var moduleCatalogs = componentsById.Values
             .Where(component => component.Kind == UpdateComponentKind.Module)
             .ToDictionary(component => component.Id, StringComparer.OrdinalIgnoreCase);
@@ -36,13 +47,12 @@ public sealed class UpdatePlanBuilder
         UpdateCatalogRelease? selectedApplication = null;
         var targetHostApi = installedHostApi;
 
-        if (scope is UpdateSearchScope.Application or UpdateSearchScope.All)
+        if (scope == UpdateSearchScope.Application)
         {
             if (componentsById.TryGetValue(ApplicationId, out var application))
             {
                 var newer = NewerReleases(application, installedApplicationVersion);
-                var feasible = newer.Where(release => ApplicationReleaseIsFeasible(
-                    release, installedModules, moduleCatalogs, scope == UpdateSearchScope.All)).ToArray();
+                var feasible = newer.Where(release => ApplicationReleaseIsFeasible(release, installedModules)).ToArray();
                 selectedApplication = Select(application.Id, feasible, selections, issues);
                 if (selectedApplication is not null)
                     targetHostApi = ParseVersion(selectedApplication.HostApiVersion, 2,
@@ -56,15 +66,11 @@ public sealed class UpdatePlanBuilder
         }
 
         var moduleSelections = new Dictionary<string, UpdateCatalogRelease>(StringComparer.OrdinalIgnoreCase);
-        if (scope is UpdateSearchScope.Modules or UpdateSearchScope.All)
+        if (scope == UpdateSearchScope.Modules)
         {
-            foreach (var installedModule in installed.Modules.OrderBy(module => module.Id, StringComparer.OrdinalIgnoreCase))
+            foreach (var component in moduleCatalogs.Values.OrderBy(component => component.Id, StringComparer.OrdinalIgnoreCase))
             {
-                if (!moduleCatalogs.TryGetValue(installedModule.Id, out var component))
-                {
-                    issues.Add($"The update catalog does not contain installed module '{installedModule.Id}'.");
-                    continue;
-                }
+                if (!installedModules.TryGetValue(component.Id, out var installedModule)) continue;
                 var installedVersion = ParseVersion(installedModule.Version, 3, $"installed module '{installedModule.Id}' version");
                 var newer = NewerReleases(component, installedVersion);
                 var compatible = newer.Where(release => AcceptsHostApi(release, targetHostApi)).ToArray();
@@ -129,19 +135,13 @@ public sealed class UpdatePlanBuilder
 
     private static bool ApplicationReleaseIsFeasible(
         UpdateCatalogRelease release,
-        IReadOnlyDictionary<string, InstalledModuleVersion> installedModules,
-        IReadOnlyDictionary<string, UpdateCatalogComponent> moduleCatalogs,
-        bool mayUpdateModules)
+        IReadOnlyDictionary<string, InstalledModuleVersion> installedModules)
     {
         var hostApi = ParseVersion(release.HostApiVersion, 2, $"application {release.Version} host API");
         foreach (var module in installedModules.Values)
         {
             if (AcceptsHostApi(module.HostApiMinimum, module.HostApiMaximum, hostApi)) continue;
-            if (!mayUpdateModules || !moduleCatalogs.TryGetValue(module.Id, out var component)) return false;
-            var installedVersion = ParseVersion(module.Version, 3, $"installed module '{module.Id}' version");
-            if (!component.Releases.Any(candidate =>
-                    ParseVersion(candidate.Version, 3, $"module '{module.Id}' release version") > installedVersion
-                    && AcceptsHostApi(candidate, hostApi))) return false;
+            return false;
         }
         return true;
     }

@@ -6,8 +6,15 @@ public enum UpdateComponentKind
     Module
 }
 
+public enum UpdateCatalogKind
+{
+    Application,
+    Module
+}
+
 public sealed record UpdateCatalog(
     int SchemaVersion,
+    UpdateCatalogKind Kind,
     DateTimeOffset GeneratedAtUtc,
     IReadOnlyList<UpdateCatalogComponent> Components);
 

@@ -208,4 +208,12 @@
   <data name="Updates.PreparationFailed"><value>Неможливо підготувати оновлення.</value></data>
   <data name="Updates.InstallSucceeded"><value>Вдосконалено оновлення.</value></data>
   <data name="Updates.InstallRestored"><value>Відновлено оновлення, а попередній варіант. {0}</value></data>
+  <data name="Updates.ModuleInstallDescription"><value>Встановіть модуль емульсії з модуля ZIP Архів або каталог прямого оновлення URL.</value></data>
+  <data name="Updates.ModuleInstallFromFile"><value>Встановити з файлу</value></data>
+  <data name="Updates.ModuleInstallFromUrl"><value>Встановити з URL</value></data>
+  <data name="Updates.ModuleCatalogUrlHint"><value>Зручності HTTPS URL каталог оновлення модуля (.json)</value></data>
+  <data name="Updates.ModuleArchiveFilter"><value>Архіви модуля (модульні архіви)*.zip)|*.zip</value></data>
+  <data name="Updates.ModuleCatalogUrlRequired"><value>Введіть номер мобільного, який Ви вказали при укладаннi договору з банком - для ідентифікації. HTTPS URL каталог оновлення модуля.</value></data>
+  <data name="Updates.ModuleInstallConfirm"><value>Модуль ВТС {0} верстка {1}? GW GUI закриє і перезавантажить.</value></data>
+  <data name="Updates.ModuleInstallFailed"><value>Неможливо підготувати модульну установку.</value></data>
 </root>

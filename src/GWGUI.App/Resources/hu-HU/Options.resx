@@ -207,4 +207,12 @@
   <data name="Updates.PreparationFailed"><value>Nem sikerült elkészíteni a frissítést.</value></data>
   <data name="Updates.InstallSucceeded"><value>A frissítések sikeresen lettek telepítve.</value></data>
   <data name="Updates.InstallRestored"><value>A frissítés sikertelen, és az előző verzió visszaállt. {0}</value></data>
+  <data name="Updates.ModuleInstallDescription"><value>Telepíteni egy emulációs modult a ZIP archiválási katalógus vagy annak közvetlen frissítése URL.</value></data>
+  <data name="Updates.ModuleInstallFromFile"><value>Telepítés fájlból</value></data>
+  <data name="Updates.ModuleInstallFromUrl"><value>Telepítés a URL</value></data>
+  <data name="Updates.ModuleCatalogUrlHint"><value>Közvetlen HTTPS URL a modul frissítési katalógus (.json)</value></data>
+  <data name="Updates.ModuleArchiveFilter"><value>A modularchívumok (*.zip)|*.zip</value></data>
+  <data name="Updates.ModuleCatalogUrlRequired"><value>Adja meg a közvetlen HTTPS URL modulfrissítési katalógus.</value></data>
+  <data name="Updates.ModuleInstallConfirm"><value>Modul telepítése {0} változat {1}? GW GUI bezárul és újra indul.</value></data>
+  <data name="Updates.ModuleInstallFailed"><value>Nem sikerült elkészíteni a modul telepítését.</value></data>
 </root>

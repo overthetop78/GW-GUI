@@ -8,5 +8,6 @@
   </PropertyGroup>
   <ItemGroup>
     <InternalsVisibleTo Include="GWGUI.Tests" />
+    <ProjectReference Include="..\GWGUI.Emulation\GWGUI.Emulation.csproj" />
   </ItemGroup>
 </Project>

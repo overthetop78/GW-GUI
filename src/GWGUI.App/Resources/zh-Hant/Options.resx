@@ -208,4 +208,12 @@
   <data name="Updates.PreparationFailed"><value>无法准备更新 。</value></data>
   <data name="Updates.InstallSucceeded"><value>更新已成功安装 。</value></data>
   <data name="Updates.InstallRestored"><value>更新失败, 先前的版本被恢复 。 {0}</value></data>
+  <data name="Updates.ModuleInstallDescription"><value>从 a 安装仿真模块 ZIP 归档或直接更新目录 URL.</value></data>
+  <data name="Updates.ModuleInstallFromFile"><value>从文件中安装</value></data>
+  <data name="Updates.ModuleInstallFromUrl"><value>从 a 安装 URL</value></data>
+  <data name="Updates.ModuleCatalogUrlHint"><value>直接 HTTPS URL 模块更新目录 (.json)</value></data>
+  <data name="Updates.ModuleArchiveFilter"><value>模块档案(*.zip)|*.zip</value></data>
+  <data name="Updates.ModuleCatalogUrlRequired"><value>输入直线 HTTPS URL 模块更新目录。</value></data>
+  <data name="Updates.ModuleInstallConfirm"><value>安装模块 {0} 版本 {1}? GW GUI 将关闭并重新启动。</value></data>
+  <data name="Updates.ModuleInstallFailed"><value>无法准备模块安装 。</value></data>
 </root>

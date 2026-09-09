@@ -208,4 +208,12 @@
   <data name="Updates.PreparationFailed"><value>Không thể chuẩn bị cập nhật.</value></data>
   <data name="Updates.InstallSucceeded"><value>Các cập nhật đã được cài đặt thành công.</value></data>
   <data name="Updates.InstallRestored"><value>Việc cập nhật bị lỗi và phiên bản trước đã được phục hồi. {0}</value></data>
+  <data name="Updates.ModuleInstallDescription"><value>Cài đặt mô- đun mô- đun mô- đun từ một ZIP Name URL.</value></data>
+  <data name="Updates.ModuleInstallFromFile"><value>Cài đặt từ tập tin</value></data>
+  <data name="Updates.ModuleInstallFromUrl"><value>Cài đặt từ a URL</value></data>
+  <data name="Updates.ModuleCatalogUrlHint"><value>Trực tiếp HTTPS URL của danh mục cập nhật mô- đun (Json)</value></data>
+  <data name="Updates.ModuleArchiveFilter"><value>Kho lưu của Module (*.zip)|*.zip</value></data>
+  <data name="Updates.ModuleCatalogUrlRequired"><value>Hãy vào thẳng HTTPS URL của danh mục cập nhật môđun.</value></data>
+  <data name="Updates.ModuleInstallConfirm"><value>Cài đặt Mô- đun {0} phiên bản {1}? GW GUI sẽ đóng và khởi động lại.</value></data>
+  <data name="Updates.ModuleInstallFailed"><value>Không thể chuẩn bị cài đặt môđun.</value></data>
 </root>

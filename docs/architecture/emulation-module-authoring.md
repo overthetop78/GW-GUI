@@ -6,11 +6,11 @@ Ce document décrit le contrat complet entre GW GUI et une bibliothèque d'émul
 module ne doit pas avoir besoin de lire `GWGUI.App`, Amiga ou Atari. Il doit seulement disposer de
 la bibliothèque de contrats `gwgui.emulation.dll`, de ce document et d'un projet .NET compatible.
 
-État actuel important : le chargement dynamique, les paquets avec dépendances privées et les mises
-à jour après redémarrage fonctionnent. `GWGUI.Emulation` n'est pas encore publié comme paquet SDK
-autonome. Un module développé hors du dépôt doit donc temporairement référencer la DLL issue du
-même build de GW GUI. L'API actuelle est `1.0` et chaque module doit déclarer ses bornes compatibles
-dans `module.json`. Les traductions propres au module passent par `IEmulationModuleLocalization`.
+Le chargement dynamique, les paquets avec dépendances privées, l'installation initiale et les mises
+à jour après redémarrage sont indépendants de la publication de GW GUI. Un auteur utilise le paquet
+`GWGUI.Emulation.SDK`, le modèle sous `sdk/module-template` et son propre dépôt. L'API actuelle est
+`1.0` et chaque module déclare ses bornes compatibles et l'adresse HTTPS de son catalogue dans
+`module.json`. Les traductions propres au module passent par `IEmulationModuleLocalization`.
 
 ## 1. Ce que contient un module
 
@@ -42,10 +42,7 @@ machines, les champs et le runtime ; GW GUI construit toute l'interface.
     <AssemblyName>gwgui.emulation.commodore</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="gwgui.emulation">
-      <HintPath>sdk\gwgui.emulation.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
+    <PackageReference Include="GWGUI.Emulation.SDK" Version="1.0.0" />
     <None Update="module.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>
@@ -59,12 +56,13 @@ Exemple de manifeste pour un module construit et validé avec l'API actuelle :
 
 ```json
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "Commodore",
   "entryAssembly": "gwgui.emulation.commodore.dll",
   "moduleVersion": "1.0.0",
   "hostApiMinimum": "1.0",
-  "hostApiMaximum": "1.0"
+  "hostApiMaximum": "1.0",
+  "updateCatalogUrl": "https://github.com/OWNER/REPOSITORY/releases/download/module-catalog/update-catalog.json"
 }
 ```
 
@@ -78,6 +76,10 @@ L'identifiant doit être un nom de dossier valide et stable. `entryAssembly` est
 de DLL dans ce dossier : aucun chemin absolu, sous-chemin ou lien externe. Les trois identités
 (manifeste, factory, module) doivent correspondre sans distinction de casse. Le
 [schéma et les règles de chargement](emulation-modules.md) précisent les validations.
+
+`updateCatalogUrl` appartient au module. Il pointe directement vers un fichier JSON HTTPS lisible
+par GW GUI, et non vers la page d'accueil d'un dépôt. GW GUI ne contient aucune liste de modules ni
+aucune adresse propre à une famille.
 
 Pour un essai local, fermer GW GUI, déposer le dossier complet dans `Modules`, puis relancer.
 Dans le dépôt, placer le projet et son manifeste dans `src/GWGUI.Emulation.<Famille>`, avec un projet
@@ -440,9 +442,26 @@ Chaque méthode valide que la configuration reçue appartient au bon `ModuleId` 
 - cœur absent, firmware absent, média invalide et configuration endommagée ;
 - annulation et fermeture pendant une opération asynchrone.
 
-## 14. Fonctions réalisées et limites pour un module externe
+## 14. Installation et publication hors du dépôt GW GUI
 
-Les fonctions suivantes sont réalisées pour les modules officiels :
+Copier `sdk/module-template` dans un dépôt indépendant, remplacer les valeurs `example`, `OWNER` et
+`REPOSITORY`, puis implémenter `IEmulationModule`. Le fichier `module.json`, la factory et le module
+doivent conserver le même identifiant. Une archive distribuable garde exactement la racine
+`Modules/<id>`.
+
+Pour la première installation, l'utilisateur choisit soit cette archive ZIP dans les options de GW
+GUI, soit l'URL directe du catalogue inscrite dans le manifeste. GW GUI valide l'identité, la version,
+les bornes d'API, l'empreinte du paquet et les chemins, puis redémarre pour installer le module. Les
+recherches suivantes partent uniquement de `updateCatalogUrl` du module installé.
+
+Le workflow modèle `.github/workflows/release-module.yml` réagit à un tag `vX.Y.Z`. Il vérifie que
+le tag correspond à `moduleVersion`, construit l'archive et son SHA-256, crée la release propre au
+module, puis remplace `update-catalog.json` dans la release technique stable `module-catalog`. Une
+nouvelle version d'un module ne demande aucun changement, commit ou release dans GW GUI.
+
+## 15. Fonctions réalisées et limites pour un module externe
+
+Les fonctions suivantes sont réalisées pour les modules conformes au SDK :
 
 - manifeste obligatoire et contrôle des versions d'API avant chargement ;
 - sous-dossier autonome avec résolution prioritaire de ses dépendances privées ;
@@ -453,15 +472,14 @@ Les fonctions suivantes sont réalisées pour les modules officiels :
 
 L'écosystème externe reste différé sur les points suivants :
 
-- pas de paquet NuGet `GWGUI.Emulation.SDK` versionné ;
-- aucune garantie publiée de compatibilité pour un projet tiers séparé ;
 - aucun déchargement à chaud : ajouter, retirer ou mettre à jour un module demande un redémarrage.
 
-Ces limites n'empêchent pas les modules officiels actuels. Le SDK et sa politique de compatibilité
-doivent être établis avant de promettre qu'un projet tiers restera compatible avec plusieurs
-versions de GW GUI.
+Le SDK `GWGUI.Emulation.SDK`, sa politique de compatibilité et le modèle `sdk/module-template` sont
+préparés pour les dépôts indépendants. Sa première publication sur NuGet.org doit précéder la
+construction publique d’un module tiers fondé sur cette référence. Cette publication ne change ni
+la version ni le paquet de GW GUI.
 
-## 15. Traductions embarquées
+## 16. Traductions embarquées
 
 Le module peut implémenter cette capacité facultative :
 

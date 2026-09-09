@@ -7,7 +7,6 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $repository = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
-. (Join-Path $PSScriptRoot 'emulation-modules.ps1')
 if ([string]::IsNullOrWhiteSpace($DistDirectory)) { $DistDirectory = Join-Path $repository 'dist' }
 $dist = [IO.Path]::GetFullPath($DistDirectory)
 if (-not $dist.StartsWith($repository + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) {
@@ -27,24 +26,11 @@ New-Item -ItemType Directory -Path $publish,$portable,$portablePackage -Force | 
 Get-ChildItem -LiteralPath $portable -Force -ErrorAction SilentlyContinue | Where-Object { $_.Name -ne 'Data' } | Remove-Item -Recurse -Force
 Get-ChildItem -LiteralPath $dist -File -ErrorAction SilentlyContinue | Where-Object {
     $_.Name -match '^GW-GUI-.+-win-x64-(portable\.zip|setup\.exe)$' `
-        -or $_.Name -match '^GW-GUI-Module-.+-win-x64\.zip(\.sha256)?$' `
         -or $_.Name -eq 'SHA256SUMS.txt'
 } | Remove-Item -Force
 
 dotnet publish (Join-Path $repository 'src\GWGUI.App\GWGUI.App.csproj') -c $Configuration -r win-x64 --self-contained false -p:Version=$Version -o $applicationPublish --disable-build-servers
 if ($LASTEXITCODE -ne 0) { throw 'dotnet publish failed.' }
-$officialModules = @(Get-GwGuiEmulationModules -RepositoryRoot $repository)
-foreach ($module in $officialModules) {
-    & (Join-Path $repository 'scripts\package-module.ps1') -Module $module.Id `
-        -Configuration $Configuration -DistDirectory $dist
-    if ($LASTEXITCODE -ne 0) { throw "$($module.Id) module packaging failed." }
-    $moduleManifest = $module.Manifest
-    $moduleArchive = Join-Path $dist "GW-GUI-Module-$($moduleManifest.id)-$($moduleManifest.moduleVersion)-win-x64.zip"
-    if (-not (Test-Path -LiteralPath $moduleArchive -PathType Leaf)) {
-        throw "Official module package was not produced: $moduleArchive"
-    }
-    Expand-Archive -LiteralPath $moduleArchive -DestinationPath $applicationPublish -Force
-}
 dotnet publish (Join-Path $repository 'src\GWGUI.Launcher\GWGUI.Launcher.csproj') -c $Configuration -r win-x64 --self-contained false -p:Version=$Version -o $publish --disable-build-servers
 if ($LASTEXITCODE -ne 0) { throw 'GW GUI bootstrap publish failed.' }
 Copy-Item -Path (Join-Path $applicationPublish '*') -Destination $publish -Recurse -Force
@@ -94,7 +80,9 @@ if (-not $SkipInstaller) {
     if ($LASTEXITCODE -ne 0) { throw 'Inno Setup compilation failed.' }
 }
 
-$packages = Get-ChildItem -LiteralPath $dist -File | Where-Object { $_.Extension -in '.zip', '.exe' }
+$packages = Get-ChildItem -LiteralPath $dist -File | Where-Object {
+    $_.Name -match "^GW-GUI-$([regex]::Escape($Version))-win-x64-(portable\.zip|setup\.exe)$"
+}
 $checksums = foreach ($package in $packages) { $hash = Get-FileHash -LiteralPath $package.FullName -Algorithm SHA256; "$($hash.Hash.ToLowerInvariant())  $($package.Name)" }
 Set-Content -LiteralPath (Join-Path $dist 'SHA256SUMS.txt') -Value $checksums -Encoding ascii
 $packages | Select-Object Name,Length

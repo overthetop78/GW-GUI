@@ -1,5 +1,9 @@
 # Autonomie des modules d'émulation — tâches à réaliser
 
+Cette feuille conserve l’historique de la première extraction des modules. L’architecture de
+distribution qui la remplace est suivie dans
+[`independent-module-distribution.md`](independent-module-distribution.md).
+
 ## Périmètre et règles de suivi
 
 Ordre retenu : traductions embarquées, manifestes et compatibilité, paquets indépendants,
@@ -20,8 +24,9 @@ Une décision produit non résolue doit être soumise à l'utilisateur après ex
 Conserver `GWGUI.Emulation` comme couche de contrats et de traitements communs entre App et
 les modules. Conserver une DLL de module par famille, le dépôt commun et les données existantes.
 Le découpage interne des moteurs reste [différé](../../future/emulation-engine-organization.md).
-NuGet, dépôts séparés, sélection des modules dans l'installateur, page de diagnostic dédiée
-et remplacement à chaud ne font pas partie de ce parcours.
+La phrase historique qui excluait NuGet et les dépôts séparés est désormais **Sans objet** : ces
+éléments sont traités par la feuille de distribution indépendante. La page de diagnostic dédiée et
+le remplacement à chaud restent hors de cette ancienne feuille.
 
 Les tests nouveaux conservés doivent être utiles et autonomes. Les essais ajoutés qui créent
 des fichiers ou dépendent de fichiers, applications ou DLL externes sont temporaires : les
@@ -106,7 +111,7 @@ un résultat historique comme une validation nouvelle.
       - [x] Compléter `docs/tasks/emulation/module-autonomy-validation.md` après tests et essais temporaires : dossier absent/vide, Amiga seul, Atari seul, les deux, manifeste absent/invalide/incompatible, doublon, DLL invalide, factory en échec et module retiré avec données conservées ; inclure le routage des commandes de processus des moteurs.
       - [x] Supprimer les modules factices, scripts d'essai et fichiers produits uniquement pour cette validation, restaurer le paquet de travail et inscrire le nettoyage dans le relevé.
 
-- [x] 3. Produire des paquets de modules indépendants et un paquet complet
+- [x] 3. Produire des paquets de modules indépendants et un paquet complet — « paquet complet » Sans objet, remplacé par le paquet d’application vide de modules
   - [x] 3.1. Préparer les dépendances et leur résolution
     - [x] 3.1.1. Définir puis appliquer la frontière des bibliothèques
       - [x] Compléter `docs/architecture/emulation-modules.md` avec l'inventaire des dépendances produites par les projets Amiga et Atari, leur destination commune ou privée, les ressources embarquées et les fichiers nécessaires au lancement des processus ; distinguer binaires distribués et cœurs téléchargés par les services existants.
@@ -115,8 +120,8 @@ un résultat historique comme une validation nouvelle.
   - [x] 3.2. Ajouter la fabrication et la publication par module
     - [x] 3.2.1. Fabriquer des archives vérifiables
       - [x] Créer `scripts/package-module.ps1` pour construire un module sélectionné, lire sa version dans son manifeste, vérifier les fichiers attendus et produire son archive et son empreinte dans `dist` ; ne pas remplacer les contrats installés avec GW GUI.
-      - [x] Modifier `scripts/package.ps1` pour inclure les paquets officiels compatibles dans la distribution complète en réutilisant la fabrication des modules ; préserver le packaging portable et l'installateur existants.
-      - [x] Modifier `.github/workflows/release.yml` pour joindre les archives de modules et leurs empreintes aux publications complètes, en conservant les contrôles existants et la version unique du produit.
+      - [x] Modifier `scripts/package.ps1` pour inclure les paquets officiels compatibles dans la distribution complète en réutilisant la fabrication des modules ; préserver le packaging portable et l'installateur existants. — **Sans objet** : le paquet d’application ne contient plus de modules.
+      - [x] Modifier `.github/workflows/release.yml` pour joindre les archives de modules et leurs empreintes aux publications complètes, en conservant les contrôles existants et la version unique du produit. — **Sans objet** : chaque module possède désormais sa propre release.
       - [x] Créer `.github/workflows/module-release.yml` pour préparer une publication d'un seul module avec sa propre version, ses changements et ses contrôles ; documenter dans `docs/project/release.md` les noms de tags distincts et la procédure avant toute publication réelle.
   - [x] 3.3. Valider les paquets
     - [x] 3.3.1. Vérifier les distributions complètes et indépendantes
@@ -127,16 +132,16 @@ un résultat historique comme une validation nouvelle.
 - [x] 4. Préparer le catalogue et la recherche des mises à jour
   - [x] 4.1. Définir les informations de publication et la sélection
     - [x] 4.1.1. Formaliser le flux avant d'ajouter des commandes utilisateur
-      - [x] Créer `docs/architecture/emulation-module-updates.md` avec le catalogue officiel commun : application et modules, identifiants, versions, compatibilité, URL des paquets, empreintes et notes ; y préciser les trois recherches application/modules/ensemble et le résultat pour un module exigeant une API plus récente.
+      - [x] Créer `docs/architecture/emulation-module-updates.md` avec le catalogue officiel commun : application et modules, identifiants, versions, compatibilité, URL des paquets, empreintes et notes ; y préciser les trois recherches application/modules/ensemble et le résultat pour un module exigeant une API plus récente. — **Sans objet** : le catalogue commun et la portée Ensemble ont été remplacés par un catalogue d’application et un catalogue propre à chaque module.
       - [x] Compléter ce document après examen des commandes de mise à jour déjà présentes dans App et du workflow GitHub : inscrire les chemins exacts des points d'intégration, l'emplacement de publication du catalogue et la politique de sélection des versions. Demander les décisions utilisateur qui ne sont pas déjà établies, puis détailler les modifications dans cette feuille.
   - [x] 4.2. Construire la recherche et le plan commun
     - [x] 4.2.1. Ajouter les contrats et les services nécessaires
       - [x] Créer `src/GWGUI.Updates/GWGUI.Updates.csproj`, l'ajouter à `GWGUI.sln` et le référencer depuis `src/GWGUI.App/GWGUI.App.csproj` comme bibliothèque neutre partagée avec le futur updater.
       - [x] Créer `src/GWGUI.Updates/Contracts/UpdateCatalog.cs` avec le catalogue, ses composants et leurs releases, puis `src/GWGUI.Updates/Contracts/UpdatePlan.cs` avec l'état installé, les mises à jour disponibles, le plan sélectionné et les résultats de compatibilité ; représenter les versions d'API sans imposer de mise à jour automatique.
-      - [x] Créer `src/GWGUI.Updates/Services/UpdatePlanBuilder.cs` pour valider le catalogue et construire les recherches Application, Modules et Ensemble avec sélection de version, y compris `ApplicationUpdateRequired`.
-      - [x] Créer `scripts/build-update-catalog.ps1` pour générer le catalogue depuis les manifestes, métadonnées et empreintes de `dist`, en conservant les releases des composants non modifiés ; modifier `.github/workflows/release.yml` et `.github/workflows/module-release.yml` pour récupérer puis republier l'actif `update-catalog.json` seulement après validation des paquets.
-      - [x] Créer `src/GWGUI.App/Services/Updates/ApplicationUpdateService.cs` pour récupérer et désérialiser le catalogue, construire l'état installé depuis la version App, l'API hôte et les manifestes chargés, puis appeler `UpdatePlanBuilder` sans modifier de fichier installé ; conserver les recherches des cœurs existantes.
-      - [x] Créer `src/GWGUI.App/Views/Controls/Options/OptionsUpdatesSection.xaml`, son `.xaml.cs` et `src/GWGUI.App/Options/Controllers/UpdateOptionsController.cs` avec la portée, la commande de recherche, les résultats et le choix d'une version par composant, sans commande d'installation au point 4.
+      - [x] Créer `src/GWGUI.Updates/Services/UpdatePlanBuilder.cs` pour valider le catalogue et construire les recherches Application, Modules et Ensemble avec sélection de version, y compris `ApplicationUpdateRequired`. — **Sans objet pour Ensemble** : les plans sont maintenant construits séparément par source.
+      - [x] Créer `scripts/build-update-catalog.ps1` pour générer le catalogue depuis les manifestes, métadonnées et empreintes de `dist`, en conservant les releases des composants non modifiés ; modifier `.github/workflows/release.yml` et `.github/workflows/module-release.yml` pour récupérer puis republier l'actif `update-catalog.json` seulement après validation des paquets. — **Sans objet pour le catalogue commun** : chaque workflow publie désormais son catalogue isolé.
+      - [x] Créer `src/GWGUI.App/Services/Updates/ApplicationUpdateService.cs` pour récupérer et désérialiser le catalogue, construire l'état installé depuis la version App, l'API hôte et les manifestes chargés, puis appeler `UpdatePlanBuilder` sans modifier de fichier installé ; conserver les recherches des cœurs existantes. — **Sans objet pour les modules** : ce service ne traite plus que GW GUI et `ModuleUpdateService` lit les sources des modules.
+      - [x] Créer `src/GWGUI.App/Views/Controls/Options/OptionsUpdatesSection.xaml`, son `.xaml.cs` et `src/GWGUI.App/Options/Controllers/UpdateOptionsController.cs` avec la portée, la commande de recherche, les résultats et le choix d'une version par composant, sans commande d'installation au point 4. — **Sans objet pour la portée unique** : l’interface contient maintenant deux sections indépendantes.
       - [x] Modifier `src/GWGUI.App/Views/Windows/Options/OptionsWindow.xaml`, son `.xaml.cs` et `src/GWGUI.App/Enums/Services/Navigation/OptionsSection.cs` pour héberger et actualiser l'onglet Mises à jour ; ajouter les nouvelles clés dans `src/GWGUI.App/Resources/00-Base/Options.resx` et tous les `src/GWGUI.App/Resources/<culture>/Options.resx`, puis les traduire avec Argos sans dupliquer les invariants.
   - [x] 4.3. Valider la recherche sans appliquer de mise à jour
     - [x] 4.3.1. Vérifier les comparaisons et la sélection
@@ -180,14 +185,14 @@ un résultat historique comme une validation nouvelle.
       - [x] Créer `scripts/emulation-modules.ps1` avec les fonctions qui découvrent chaque dossier direct `src/GWGUI.Emulation.*` contenant `module.json`, associent son projet et sa DLL d'entrée, valident l'identité, les versions, les doublons et permettent une sélection par identifiant sans liste de familles.
       - [x] Modifier `scripts/build.ps1` pour construire tous les modules retournés par cette découverte et copier chaque paquet sous `Modules/<id>` sans tableau Amiga/Atari.
       - [x] Modifier `scripts/package-module.ps1` pour accepter tout identifiant découvert et déduire le projet, le manifeste, la DLL d'entrée et le fichier `.deps.json` sans `ValidateSet` ni table de définitions.
-      - [x] Modifier `scripts/package.ps1` pour fabriquer et intégrer tous les modules découverts sans liste de modules officiels.
-      - [x] Modifier `scripts/build-update-catalog.ps1` pour ajouter tous les modules découverts avec `-Scope All` et résoudre `-Scope Module` par identifiant sans `ValidateSet`.
+      - [x] Modifier `scripts/package.ps1` pour fabriquer et intégrer tous les modules découverts sans liste de modules officiels. — **Sans objet** : `package.ps1` ne fabrique plus aucun module.
+      - [x] Modifier `scripts/build-update-catalog.ps1` pour ajouter tous les modules découverts avec `-Scope All` et résoudre `-Scope Module` par identifiant sans `ValidateSet`. — **Sans objet pour `-Scope All`** : un catalogue ne contient qu’une application ou un module.
   - [x] 7.2. Généraliser la publication d'un module
     - [x] 7.2.1. Retirer les choix et tags fermés du workflow
       - [x] Modifier `.github/workflows/module-release.yml` pour accepter un identifiant libre, reconnaître `module-<id>-vX.Y.Z`, résoudre le manifeste avec `scripts/emulation-modules.ps1` et transmettre cet identifiant aux scripts de paquet et de catalogue.
   - [x] 7.3. Vérifier l'ajout d'une nouvelle famille et corriger la documentation
     - [x] 7.3.1. Exercer la découverte sans conserver de module factice
       - [x] Créer sous `build/.module-script-validation` un dépôt factice contenant trois projets et manifestes, vérifier la découverte complète, la sélection par identifiant et les refus d'identité ou de doublon, puis supprimer entièrement ce dépôt factice.
-      - [x] Exécuter `scripts/package.ps1 -Version 0.1.0 -Configuration Release -SkipInstaller` dans `build/.module-package-validation`, générer son catalogue `-Scope All`, vérifier que chaque manifeste découvert possède son archive et son composant, puis supprimer cette sortie temporaire.
+      - [x] Exécuter `scripts/package.ps1 -Version 0.1.0 -Configuration Release -SkipInstaller` dans `build/.module-package-validation`, générer son catalogue `-Scope All`, vérifier que chaque manifeste découvert possède son archive et son composant, puis supprimer cette sortie temporaire. — **Sans objet** dans l’architecture actuelle ; les paquets et catalogues de modules sont vérifiés séparément.
       - [x] Mettre à jour `docs/architecture/emulation-modules.md`, `docs/architecture/emulation-module-authoring.md`, `docs/architecture/emulation-module-updates.md`, `docs/project/release.md` et `docs/tasks/emulation/module-autonomy-validation.md` avec la découverte automatique et les seules actions encore nécessaires pour ajouter ou publier un module.
       - [x] Vérifier qu'aucune liste Amiga/Atari ne subsiste dans les scripts et workflows génériques, produire le build Debug avec `scripts/build.ps1 -Configuration Debug` et vérifier les paquets de tous les manifestes découverts.

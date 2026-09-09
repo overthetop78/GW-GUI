@@ -1,10 +1,14 @@
 param(
     [Parameter(Mandatory = $true)]
-    [ValidateSet('Application', 'Module', 'All')]
+    [ValidateSet('Application', 'Module')]
     [string]$Scope,
     [string]$Version,
     [string]$ApplicationTag,
     [string]$Module,
+    [Parameter(Mandatory = $true)]
+    [ValidatePattern('^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$')]
+    [string]$Repository,
+    [string]$ModuleTag,
     [string]$ExistingCatalog,
     [string]$DistDirectory,
     [string]$OutputPath
@@ -18,12 +22,19 @@ $dist = [IO.Path]::GetFullPath($DistDirectory)
 if ([string]::IsNullOrWhiteSpace($OutputPath)) { $OutputPath = Join-Path $dist 'update-catalog.json' }
 $output = [IO.Path]::GetFullPath($OutputPath)
 
-function Read-ExistingCatalog([string]$Path) {
+function Read-ExistingCatalog([string]$Path, [string]$ExpectedKind) {
     if ([string]::IsNullOrWhiteSpace($Path) -or -not (Test-Path -LiteralPath $Path -PathType Leaf)) {
-        return [ordered]@{ schemaVersion = 1; generatedAtUtc = [DateTimeOffset]::UtcNow.ToString('O'); components = @() }
+        return [ordered]@{
+            schemaVersion = 2
+            kind = $ExpectedKind
+            generatedAtUtc = [DateTimeOffset]::UtcNow.ToString('O')
+            components = @()
+        }
     }
     $catalog = Get-Content -LiteralPath $Path -Raw -Encoding UTF8 | ConvertFrom-Json
-    if ($catalog.schemaVersion -ne 1 -or $null -eq $catalog.components) { throw "Invalid existing update catalog: $Path" }
+    if ($catalog.schemaVersion -ne 2 -or $catalog.kind -ine $ExpectedKind -or $null -eq $catalog.components) {
+        throw "Invalid existing $ExpectedKind update catalog: $Path"
+    }
     return $catalog
 }
 
@@ -58,12 +69,17 @@ function Set-Release($Catalog, [string]$Id, [string]$Kind, $Release) {
     $component.releases = @($component.releases | Sort-Object { [Version]$_.version } -Descending)
 }
 
-$catalog = Read-ExistingCatalog $ExistingCatalog
+$catalogKind = $Scope.ToLowerInvariant()
+$catalog = Read-ExistingCatalog $ExistingCatalog $catalogKind
 $catalog.generatedAtUtc = [DateTimeOffset]::UtcNow.ToString('O')
-$owner = 'overthetop78'
-$repo = 'GW-GUI'
+$repositoryParts = $Repository.Split('/', 2)
+$owner = $repositoryParts[0]
+$repo = $repositoryParts[1]
 
-if ($Scope -in @('Application', 'All')) {
+if ($Scope -eq 'Application') {
+    $catalog.components = @($catalog.components | Where-Object {
+        $_.id -ieq 'gwgui' -and $_.kind -ieq 'application'
+    })
     if ($Version -notmatch '^\d+\.\d+\.\d+$') { throw 'Version is required for the application and must use X.Y.Z.' }
     if ([string]::IsNullOrWhiteSpace($ApplicationTag)) { $ApplicationTag = "v$Version" }
     if ($ApplicationTag -notmatch '^[A-Za-z0-9][A-Za-z0-9._-]*$') { throw 'ApplicationTag contains unsupported characters.' }
@@ -79,31 +95,31 @@ if ($Scope -in @('Application', 'All')) {
     Set-Release $catalog 'gwgui' 'application' $release
 }
 
-if ($Scope -in @('Module', 'All')) {
+if ($Scope -eq 'Module') {
     $availableModules = @(Get-GwGuiEmulationModules -RepositoryRoot $repository)
-    if ($Scope -eq 'Module' -and [string]::IsNullOrWhiteSpace($Module)) {
+    if ([string]::IsNullOrWhiteSpace($Module)) {
         throw 'Module is required when Scope is Module.'
     }
-    $modules = if ($Scope -eq 'All') {
-        $availableModules
-    } else {
-        @(Resolve-GwGuiEmulationModule -Modules $availableModules -Module $Module)
+    if ([string]::IsNullOrWhiteSpace($ModuleTag) `
+        -or $ModuleTag -notmatch '^[A-Za-z0-9][A-Za-z0-9._-]*$') {
+        throw 'ModuleTag is required for a module and contains unsupported characters.'
     }
-    foreach ($moduleDefinition in $modules) {
-        $manifest = $moduleDefinition.Manifest
-        $packageName = "GW-GUI-Module-$($manifest.id)-$($manifest.moduleVersion)-win-x64.zip"
-        $packagePath = Join-Path $dist $packageName
-        $tag = if ($Scope -eq 'All') { $ApplicationTag } else { "module-$($manifest.id)-v$($manifest.moduleVersion)" }
-        $release = [ordered]@{
-            version = $manifest.moduleVersion
-            packageUrl = "https://github.com/$owner/$repo/releases/download/$tag/$packageName"
-            sha256 = Read-Sha256 $packagePath
-            notesUrl = "https://github.com/$owner/$repo/releases/tag/$tag"
-            hostApiMinimum = $manifest.hostApiMinimum
-            hostApiMaximum = $manifest.hostApiMaximum
-        }
-        Set-Release $catalog $manifest.id 'module' $release
+    $moduleDefinition = Resolve-GwGuiEmulationModule -Modules $availableModules -Module $Module
+    $manifest = $moduleDefinition.Manifest
+    $catalog.components = @($catalog.components | Where-Object {
+        $_.id -ieq $manifest.id -and $_.kind -ieq 'module'
+    })
+    $packageName = "GW-GUI-Module-$($manifest.id)-$($manifest.moduleVersion)-win-x64.zip"
+    $packagePath = Join-Path $dist $packageName
+    $release = [ordered]@{
+        version = $manifest.moduleVersion
+        packageUrl = "https://github.com/$owner/$repo/releases/download/$ModuleTag/$packageName"
+        sha256 = Read-Sha256 $packagePath
+        notesUrl = "https://github.com/$owner/$repo/releases/tag/$ModuleTag"
+        hostApiMinimum = $manifest.hostApiMinimum
+        hostApiMaximum = $manifest.hostApiMaximum
     }
+    Set-Release $catalog $manifest.id 'module' $release
 }
 
 $outputDirectory = Split-Path -Parent $output

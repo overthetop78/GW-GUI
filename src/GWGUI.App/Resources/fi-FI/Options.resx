@@ -206,4 +206,12 @@
   <data name="Updates.PreparationFailed"><value>Päivityksen valmistelu epäonnistui.</value></data>
   <data name="Updates.InstallSucceeded"><value>Päivitykset asennettiin onnistuneesti.</value></data>
   <data name="Updates.InstallRestored"><value>Päivitys epäonnistui ja edellinen versio palautettiin. {0}</value></data>
+  <data name="Updates.ModuleInstallDescription"><value>Asenna emulgointimoduuli a ZIP arkisto tai sen suora päivitys luettelo URL.</value></data>
+  <data name="Updates.ModuleInstallFromFile"><value>Asenna tiedostosta</value></data>
+  <data name="Updates.ModuleInstallFromUrl"><value>Asenna URL</value></data>
+  <data name="Updates.ModuleCatalogUrlHint"><value>Suora HTTPS URL moduulin päivitysluettelo (.json)</value></data>
+  <data name="Updates.ModuleArchiveFilter"><value>Moduuliarkisto (*.zip)|*.zip</value></data>
+  <data name="Updates.ModuleCatalogUrlRequired"><value>Anna suora HTTPS URL moduulin päivitysluettelo.</value></data>
+  <data name="Updates.ModuleInstallConfirm"><value>Asenna moduuli {0} versio {1}? GW GUI sulkee ja käynnistää uudelleen.</value></data>
+  <data name="Updates.ModuleInstallFailed"><value>Moduulin asennusta ei voitu valmistella.</value></data>
 </root>

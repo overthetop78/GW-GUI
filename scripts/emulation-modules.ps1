@@ -28,7 +28,7 @@ function Get-GwGuiEmulationModules {
         }
 
         $manifest = Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
-        $manifestIsInvalid = $manifest.schemaVersion -ne 1 `
+        $manifestIsInvalid = $manifest.schemaVersion -ne 2 `
             -or [string]::IsNullOrWhiteSpace($manifest.id) `
             -or $manifest.id -notmatch '^[A-Za-z0-9][A-Za-z0-9._-]*$' `
             -or [string]::IsNullOrWhiteSpace($manifest.entryAssembly) `
@@ -38,6 +38,13 @@ function Get-GwGuiEmulationModules {
             -or $manifest.hostApiMaximum -notmatch '^\d+\.\d+$'
         if ($manifestIsInvalid) {
             throw "Invalid official module manifest: $manifestPath"
+        }
+        [Uri]$updateCatalogUri = $null
+        if ([string]::IsNullOrWhiteSpace($manifest.updateCatalogUrl) `
+            -or $manifest.updateCatalogUrl -ne $manifest.updateCatalogUrl.Trim() `
+            -or -not [Uri]::TryCreate([string]$manifest.updateCatalogUrl, [UriKind]::Absolute, [ref]$updateCatalogUri) `
+            -or $updateCatalogUri.Scheme -ne [Uri]::UriSchemeHttps) {
+            throw "Module update catalog URL must be an absolute HTTPS URL: $manifestPath"
         }
         if (-not $identifiers.Add([string]$manifest.id)) {
             throw "Duplicate emulation module id '$($manifest.id)' in $manifestPath"

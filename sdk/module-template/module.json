@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 2,
+  "id": "example",
+  "entryAssembly": "gwgui.emulation.example.dll",
+  "moduleVersion": "1.0.0",
+  "hostApiMinimum": "1.0",
+  "hostApiMaximum": "1.0",
+  "updateCatalogUrl": "https://github.com/OWNER/REPOSITORY/releases/download/module-catalog/update-catalog.json"
+}

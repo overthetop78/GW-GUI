@@ -41,6 +41,11 @@ internal static class EmulationModuleManifestReader
         var maximum = ParseVersion(manifest.HostApiMaximum, 2, "hostApiMaximum");
         if (minimum > maximum)
             throw new InvalidDataException($"Module '{manifest.Id}' has reversed host API bounds: {minimum} to {maximum}.");
+        if (string.IsNullOrWhiteSpace(manifest.UpdateCatalogUrl)
+            || manifest.UpdateCatalogUrl != manifest.UpdateCatalogUrl.Trim()
+            || !Uri.TryCreate(manifest.UpdateCatalogUrl, UriKind.Absolute, out var updateCatalogUri)
+            || updateCatalogUri.Scheme != Uri.UriSchemeHttps)
+            throw new InvalidDataException("Manifest field 'updateCatalogUrl' must contain an absolute HTTPS URL.");
         var current = hostApiVersion ?? EmulationHostApi.CurrentVersion;
         if (current < minimum || current > maximum)
             throw new InvalidDataException($"Module '{manifest.Id}' version {manifest.ModuleVersion} requires host API " +

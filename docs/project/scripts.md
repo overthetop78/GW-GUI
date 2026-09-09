@@ -12,7 +12,7 @@ Ce document décrit tous les fichiers présents dans `scripts`. Les commandes so
 | `emulation-modules.ps1` | Découverte et validation des modules | Scripts de construction, de paquetage et de catalogue |
 | `organize-application-output.ps1` | Organisation interne des DLL publiées | `build.ps1` et `package.ps1` |
 | `package.ps1` | Création des paquets de l’application | Workflow de publication de l’application |
-| `package-module.ps1` | Création du paquet d’un module | `package.ps1` et workflow de publication d’un module |
+| `package-module.ps1` | Création du paquet indépendant d’un module | Workflow de publication d’un module |
 | `publish-release.cmd` | Déclenchement interactif d’une publication | Aucun |
 | `publish-wiki.cmd` | Raccourci Windows de publication du wiki | Aucun |
 | `publish-wiki.ps1` | Publication du dépôt wiki | `publish-wiki.cmd` |
@@ -34,7 +34,7 @@ Construit une version locale directement utilisable dans `build/Debug/GW GUI` ou
 
 Sans `-Configuration`, le script construit successivement Debug et Release. Pour chaque configuration, il ferme les processus qui utilisent l’exécutable du dossier cible, supprime l’ancien résultat et le répertoire intermédiaire, puis publie l’application, tous les modules découverts, le lanceur et le programme de mise à jour. Il appelle `organize-application-output.ps1` avant de vérifier la présence de `gwgui.exe`.
 
-Le résultat principal se trouve dans `build/<Configuration>/GW GUI`. Les fichiers intermédiaires sont créés sous `build/.staging` puis supprimés à la fin.
+Le résultat principal se trouve dans `build/<Configuration>/GW GUI`. Il contient les modules découverts dans le dépôt afin de permettre leur développement et leurs essais locaux. Ce contenu de développement ne représente pas le paquet distribué de GW GUI, qui est volontairement livré sans module. Les fichiers intermédiaires sont créés sous `build/.staging` puis supprimés à la fin.
 
 ### `emulation-modules.ps1`
 
@@ -78,11 +78,11 @@ Crée l’archive distribuable d’un module découvert par son `module.json`.
 
 Le script publie le projet du module pour Windows x64, vérifie la présence du manifeste, de la DLL d’entrée et du fichier `.deps.json`, puis crée `GW-GUI-Module-<id>-<version>-win-x64.zip` et son fichier `.sha256`. L’archive conserve la racine `Modules/<id>`. Les bibliothèques communes fournies par l’hôte et les PDB de Release sont exclues. Le répertoire de travail temporaire est supprimé, y compris après une erreur.
 
-`-DistDirectory` doit désigner un emplacement situé dans le dépôt. Le script est appelé par `package.ps1` et par le workflow de publication d’un module.
+`-DistDirectory` doit désigner un emplacement situé dans le dépôt. Le script est appelé par le workflow de publication d’un module. Il peut aussi être exécuté directement pour produire une archive de module sans reconstruire ni republier GW GUI.
 
 ### `package.ps1`
 
-Crée les paquets complets d’une version de GW GUI.
+Crée les paquets de l’application GW GUI sans module d’émulation.
 
 ```powershell
 .\scripts\package.ps1 `
@@ -92,7 +92,7 @@ Crée les paquets complets d’une version de GW GUI.
   [-SkipInstaller]
 ```
 
-Le script nettoie les sorties temporaires et les anciens paquets correspondant à la version, tout en conservant les données de `dist/portable/GW GUI/Data`. Il publie l’application, découvre et empaquette tous les modules, intègre chaque module au paquet principal, publie le lanceur et le programme de mise à jour, organise les DLL, retire les PDB et crée l’archive portable. Sans `-SkipInstaller`, il construit aussi l’installateur avec Inno Setup. Il produit enfin `SHA256SUMS.txt`.
+Le script nettoie les sorties temporaires et les anciens paquets d’application correspondant à la version, tout en conservant les données de `dist/portable/GW GUI/Data`. Il publie uniquement l’application, le lanceur et le programme de mise à jour, organise les DLL, retire les PDB et crée l’archive portable. Il n’appelle pas `package-module.ps1` et n’ajoute aucun dossier `Modules`. Sans `-SkipInstaller`, il construit aussi l’installateur avec Inno Setup. Il produit enfin `SHA256SUMS.txt`.
 
 Le répertoire de distribution doit être situé dans le dépôt. Inno Setup est requis uniquement pour produire l’installateur.
 
@@ -102,18 +102,28 @@ Construit `update-catalog.json` à partir des paquets déjà produits.
 
 ```powershell
 .\scripts\build-update-catalog.ps1 `
-  -Scope Application|Module|All `
-  -Version <X.Y.Z> `
-  -ApplicationTag <tag> `
+  -Scope Application|Module `
+  -Repository <OWNER/REPOSITORY> `
+  [-Version <X.Y.Z>] `
+  [-ApplicationTag <tag>] `
   [-Module <identifiant-ou-suffixe>] `
+  [-ModuleTag <tag>] `
   [-ExistingCatalog <fichier>] `
   [-DistDirectory dist] `
   [-OutputPath dist/update-catalog.json]
 ```
 
-Pour l’application, le script ajoute l’URL du paquet, celle des notes et les informations d’API hôte. Pour les modules, il utilise la découverte automatique ; avec `-Scope All`, tous les modules conformes sont inclus. Il vérifie les sommes SHA-256 depuis les fichiers `.sha256` ou `SHA256SUMS.txt`, conserve les autres composants et versions du catalogue existant, remplace une entrée de même version et trie les versions par ordre décroissant.
+Pour l’application, le script produit un catalogue de schéma 2 et de nature `application`, contenant
+uniquement `gwgui`, l’URL du paquet, celle des notes et la version d’API hôte. Pour un module, il
+produit un catalogue de nature `module`, contenant uniquement l’identité demandée, ses bornes d’API
+et les URL construites depuis `-Repository` et `-ModuleTag`. Il n’existe pas de portée `All` : chaque
+module possède son propre catalogue. Le script vérifie les sommes SHA-256 depuis le fichier
+`.sha256` ou `SHA256SUMS.txt`, remplace une release de même version et trie les versions par ordre
+décroissant.
 
-Le script écrit uniquement le catalogue local. Les workflows de publication de l’application et des modules se chargent de l’envoyer vers la publication GitHub prévue.
+Le script écrit uniquement le catalogue local. Le workflow de l’application le publie sous
+`application-catalog`; le workflow du module le publie sous `module-<id>-catalog`, ou sous le tag
+technique choisi dans le dépôt indépendant du module.
 
 ## Wiki et publication
 

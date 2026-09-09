@@ -199,4 +199,12 @@
   <data name="Updates.PreparationFailed"><value>Nu pot pregăti actualizarea.</value></data>
   <data name="Updates.InstallSucceeded"><value>Actualizările au fost instalate cu succes.</value></data>
   <data name="Updates.InstallRestored"><value>Actualizarea a eșuat și versiunea anterioară a fost restaurată. {0}</value></data>
+  <data name="Updates.ModuleInstallDescription"><value>Instalați un modul de emulare dintr-o ZIP arhiva sau catalogul său de actualizare directă URL.</value></data>
+  <data name="Updates.ModuleInstallFromFile"><value>Instalează dintr- un fișier</value></data>
+  <data name="Updates.ModuleInstallFromUrl"><value>Instalare de la un URL</value></data>
+  <data name="Updates.ModuleCatalogUrlHint"><value>directă HTTPS URL a catalogului de actualizare a modulului (.json)</value></data>
+  <data name="Updates.ModuleArchiveFilter"><value>Arhivele modulului (*.zip)|*.zip</value></data>
+  <data name="Updates.ModuleCatalogUrlRequired"><value>Introduceți direct HTTPS URL a unui catalog de actualizare a modulului.</value></data>
+  <data name="Updates.ModuleInstallConfirm"><value>Instalează modulul {0} versiune {1}? GW GUI Se va închide şi va reporni.</value></data>
+  <data name="Updates.ModuleInstallFailed"><value>Nu s-a putut pregăti instalarea modulului.</value></data>
 </root>

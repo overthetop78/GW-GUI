@@ -1,0 +1,44 @@
+name: Publish emulation SDK
+
+on:
+  push:
+    tags: ['sdk-v*']
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+      - name: Resolve SDK version
+        shell: pwsh
+        run: |
+          if ($env:GITHUB_REF_NAME -notmatch '^sdk-v(\d+\.\d+\.\d+)$') { throw 'Invalid SDK tag.' }
+          $version = $Matches[1]
+          [xml]$project = Get-Content .\src\GWGUI.Emulation\GWGUI.Emulation.csproj -Raw
+          if ($project.Project.PropertyGroup.Version -ne $version) { throw 'SDK tag and project version differ.' }
+          $notes = ".github/release-notes/sdk/v$version.md"
+          if (-not (Test-Path -LiteralPath $notes -PathType Leaf)) { throw "SDK release notes are missing: $notes" }
+          "SDK_VERSION=$version" >> $env:GITHUB_ENV
+          "SDK_NOTES=$notes" >> $env:GITHUB_ENV
+      - name: Test contracts
+        shell: pwsh
+        run: dotnet test .\tests\GWGUI.Tests\GWGUI.Tests.csproj --configuration Release
+      - name: Pack SDK
+        shell: pwsh
+        run: dotnet pack .\src\GWGUI.Emulation\GWGUI.Emulation.csproj --configuration Release --no-restore -p:PackageVersion=$env:SDK_VERSION -o .\dist\sdk
+      - name: Publish SDK to NuGet.org
+        shell: pwsh
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: dotnet nuget push ".\dist\sdk\GWGUI.Emulation.SDK.$env:SDK_VERSION.nupkg" --source https://api.nuget.org/v3/index.json --api-key $env:NUGET_API_KEY --skip-duplicate
+      - name: Publish SDK release notes and packages
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create $env:GITHUB_REF_NAME .\dist\sdk\*.nupkg .\dist\sdk\*.snupkg --verify-tag --latest=false --title "GW GUI Emulation SDK $env:SDK_VERSION" --notes-file $env:SDK_NOTES

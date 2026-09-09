@@ -11,6 +11,7 @@ internal sealed class UpdateStartupCoordinator
     private readonly string? _signalPath;
     private readonly string _resultPath;
     private readonly string _workDirectory;
+    private int _completionStarted;
 
     private UpdateStartupCoordinator(string? signalPath, string resultPath, string workDirectory)
     {
@@ -40,10 +41,15 @@ internal sealed class UpdateStartupCoordinator
 
     internal async Task<UpdateTransactionResult?> CompleteStartupAsync(CancellationToken cancellationToken = default)
     {
+        if (Interlocked.Exchange(ref _completionStarted, 1) != 0)
+            throw new InvalidOperationException("Update startup can only be completed once.");
         if (_signalPath is not null)
         {
             Directory.CreateDirectory(Path.GetDirectoryName(_signalPath)!);
-            await File.WriteAllTextAsync(_signalPath, "ready", cancellationToken);
+            await using var signal = new FileStream(_signalPath, FileMode.CreateNew, FileAccess.Write, FileShare.Read,
+                4096, FileOptions.Asynchronous);
+            await using var writer = new StreamWriter(signal);
+            await writer.WriteAsync("ready".AsMemory(), cancellationToken);
         }
         var deadline = DateTime.UtcNow.AddSeconds(35);
         while (!File.Exists(_resultPath) && DateTime.UtcNow < deadline)

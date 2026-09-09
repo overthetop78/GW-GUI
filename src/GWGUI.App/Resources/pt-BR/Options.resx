@@ -200,4 +200,12 @@
   <data name="Updates.PreparationFailed"><value>Não foi possível preparar a atualização.</value></data>
   <data name="Updates.InstallSucceeded"><value>As atualizações foram instaladas com sucesso.</value></data>
   <data name="Updates.InstallRestored"><value>A atualização falhou e a versão anterior foi restaurada. {0}</value></data>
+  <data name="Updates.ModuleInstallDescription"><value>Instalar um módulo de emulação de um ZIP arquivo ou seu catálogo de atualização direta URL.</value></data>
+  <data name="Updates.ModuleInstallFromFile"><value>Instalar a partir de um ficheiro</value></data>
+  <data name="Updates.ModuleInstallFromUrl"><value>Instalar a partir de um URL</value></data>
+  <data name="Updates.ModuleCatalogUrlHint"><value>Directo HTTPS URL do catálogo de atualização do módulo (.json)</value></data>
+  <data name="Updates.ModuleArchiveFilter"><value>Arquivos de módulos (*.zip)|*.zip</value></data>
+  <data name="Updates.ModuleCatalogUrlRequired"><value>Digite o direto HTTPS URL de um catálogo de atualização de módulos.</value></data>
+  <data name="Updates.ModuleInstallConfirm"><value>Instalar o módulo {0} versão {1}? GW GUI fechará e reiniciará.</value></data>
+  <data name="Updates.ModuleInstallFailed"><value>Não foi possível preparar a instalação do módulo.</value></data>
 </root>

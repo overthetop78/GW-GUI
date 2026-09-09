@@ -6,7 +6,7 @@ internal sealed class UpdateInstallationTransaction
 {
     private readonly UpdateExecutionPlan _plan;
     private readonly string _backupDirectory;
-    private readonly HashSet<string> _changedModules = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, bool> _changedModules = new(StringComparer.OrdinalIgnoreCase);
     private bool _applicationChanged;
 
     internal UpdateInstallationTransaction(UpdateExecutionPlan plan, string workDirectory)
@@ -21,9 +21,11 @@ internal sealed class UpdateInstallationTransaction
         Directory.CreateDirectory(_backupDirectory);
         try
         {
-            var application = _plan.Components.FirstOrDefault(item => item.Kind == UpdateComponentKind.Application);
+            var application = _plan.Components.FirstOrDefault(item =>
+                item.Operation == UpdateComponentOperation.UpdateApplication);
             if (application is not null) ReplaceApplication(application.PreparedDirectory);
-            foreach (var module in _plan.Components.Where(item => item.Kind == UpdateComponentKind.Module))
+            foreach (var module in _plan.Components.Where(item =>
+                         item.Operation is UpdateComponentOperation.InstallModule or UpdateComponentOperation.UpdateModule))
                 ReplaceModule(module);
         }
         catch
@@ -50,13 +52,12 @@ internal sealed class UpdateInstallationTransaction
             CopyDirectoryContents(applicationBackup, _plan.InstallationDirectory);
         }
         var modulesBackup = Path.Combine(_backupDirectory, "modules");
-        foreach (var module in _plan.Components.Where(item => item.Kind == UpdateComponentKind.Module
-                     && _changedModules.Contains(item.ComponentId)))
+        foreach (var module in _plan.Components.Where(item => _changedModules.ContainsKey(item.ComponentId)))
         {
             var target = Path.Combine(_plan.InstallationDirectory, "Modules", module.ComponentId);
             if (Directory.Exists(target)) Directory.Delete(target, recursive: true);
             var backup = Path.Combine(modulesBackup, module.ComponentId);
-            if (Directory.Exists(backup)) CopyDirectory(backup, target);
+            if (_changedModules[module.ComponentId] && Directory.Exists(backup)) CopyDirectory(backup, target);
         }
         if (Directory.Exists(_backupDirectory)) Directory.Delete(_backupDirectory, recursive: true);
         _applicationChanged = false;
@@ -79,9 +80,14 @@ internal sealed class UpdateInstallationTransaction
     {
         var target = Path.Combine(_plan.InstallationDirectory, "Modules", module.ComponentId);
         var backup = Path.Combine(_backupDirectory, "modules", module.ComponentId);
-        if (Directory.Exists(target)) CopyDirectory(target, backup);
-        _changedModules.Add(module.ComponentId);
-        if (Directory.Exists(target)) Directory.Delete(target, recursive: true);
+        var existed = Directory.Exists(target);
+        if (module.Operation == UpdateComponentOperation.InstallModule && existed)
+            throw new IOException($"Module '{module.ComponentId}' is already installed.");
+        if (module.Operation == UpdateComponentOperation.UpdateModule && !existed)
+            throw new DirectoryNotFoundException($"Installed module '{module.ComponentId}' was not found.");
+        if (existed) CopyDirectory(target, backup);
+        _changedModules.Add(module.ComponentId, existed);
+        if (existed) Directory.Delete(target, recursive: true);
         CopyDirectory(module.PreparedDirectory, target);
     }
 

@@ -208,4 +208,12 @@
   <data name="Updates.PreparationFailed"><value>ไม่สามารถเตรียมการปรับปรุงได้</value></data>
   <data name="Updates.InstallSucceeded"><value>การปรับปรุงถูกติดตั้งเรียบร้อยแล้ว</value></data>
   <data name="Updates.InstallRestored"><value>การอัปเดตล้มเหลว และรุ่นก่อนหน้าได้ถูกเรียกคืน {0}</value></data>
+  <data name="Updates.ModuleInstallDescription"><value>ติดตั้งโมดูลจําลองจาก ZIP จัดเก็บหรือรายการการปรับปรุงโดยตรง URL.</value></data>
+  <data name="Updates.ModuleInstallFromFile"><value>ติดตั้งจากแฟ้ม</value></data>
+  <data name="Updates.ModuleInstallFromUrl"><value>ติดตั้งจาก URL</value></data>
+  <data name="Updates.ModuleCatalogUrlHint"><value>โดยตรง HTTPS URL ของมอดูลการปรับปรุงแคตตาล็อก (.json)</value></data>
+  <data name="Updates.ModuleArchiveFilter"><value>แฟ้มจัดเก็บของมอดูล (Partory)*.zip)|*.zip</value></data>
+  <data name="Updates.ModuleCatalogUrlRequired"><value>ป้อนค่าโดยตรง HTTPS URL ของรายการที่อัพเดต</value></data>
+  <data name="Updates.ModuleInstallConfirm"><value>ติดตั้งมอดูล {0} รุ่น {1}? GW GUI จะปิดและเริ่มใหม่</value></data>
+  <data name="Updates.ModuleInstallFailed"><value>ไม่สามารถเตรียมการติดตั้งโมดูลได้</value></data>
 </root>

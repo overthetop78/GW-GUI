@@ -62,6 +62,8 @@ Une publication de module utilise sa propre version `X.Y.Z` lue dans son `module
 Elle ne modifie pas la version de GW GUI et ne remplace pas une release de l'application comme
 dernière release GitHub.
 
+### Module officiel conservé dans ce dépôt
+
 Pour tout identifiant `<id>` découvert dans `src/GWGUI.Emulation.*/module.json` :
 
 - tag : `module-<id>-vX.Y.Z` ;
@@ -84,18 +86,48 @@ Le déclenchement manuel de `module-release.yml` construit seulement un artefact
 release. Il ne fait pas partie de la procédure de publication et ne doit être utilisé que lorsqu'un
 contrôle séparé est explicitement demandé.
 
+Après la release, le workflow publie le catalogue propre au module sous
+`module-<id>-catalog`. L’URL correspondante est inscrite dans le `module.json`; GW GUI ne la possède
+pas dans ses constantes.
+
+### Module maintenu dans un dépôt indépendant
+
+Copier `sdk/module-template` dans le dépôt du module et remplacer les valeurs d’exemple. Ce projet
+référence `GWGUI.Emulation.SDK` depuis NuGet.org et possède son propre `module.json`, ses notes, ses
+tags, son workflow et son catalogue. Le tag `vX.Y.Z` déclenche le workflow modèle, qui crée la
+release du module puis publie `update-catalog.json` sous le tag technique `module-catalog` de ce
+dépôt. Aucun commit, tag ou workflow dans GW GUI n’est requis pour publier une nouvelle version de
+ce module.
+
 ## 6. Catalogue de mises à jour et updater distribués
 
 Ces fonctions sont réalisées par les workflows :
 
-- une release stable ou sans label met à jour l'actif `update-catalog.json` du tag technique
-  `component-catalog` ;
+- une release d’application stable ou sans label met à jour l’actif `update-catalog.json` du tag
+  technique `application-catalog` ;
 - une snapshot produit son catalogue comme artefact sans remplacer le catalogue stable ;
-- une release complète inscrit les URL de ses paquets d'application et de modules sous son propre
-  tag ; une release de module inscrit l'URL sous `module-<id>-vX.Y.Z` ;
-- les deux workflows partagent le groupe de concurrence `component-catalog-publication` pour ne pas
-  réécrire le catalogue simultanément ;
-- les paquets complet, portable et installable contiennent `Updater/gwgui.updater.exe`.
+- une release de l’application contient uniquement GW GUI, son lanceur et son updater, sans module ;
+- une release de module inscrit son archive sous `module-<id>-vX.Y.Z` et met à jour uniquement
+  `module-<id>-catalog` ;
+- le paquet portable et l’installateur contiennent `Updater/gwgui.updater.exe`.
 
 La première publication réelle de chaque type doit encore confirmer sur GitHub les actifs et URL
-produits. La publication d'un SDK public pour des modules tiers reste différée.
+produits.
+
+## 7. Publier le SDK d’émulation
+
+Le contrat public est distribué sur NuGet.org sous l’identifiant `GWGUI.Emulation.SDK`. Ajouter dans
+`Settings > Secrets and variables > Actions` le secret de dépôt `NUGET_API_KEY`, contenant une clé
+NuGet.org limitée à ce seul paquet. Ne jamais inscrire sa valeur dans un fichier du dépôt.
+
+La version `X.Y.Z` doit être identique dans :
+
+- `Version` de `src/GWGUI.Emulation/GWGUI.Emulation.csproj` ;
+- `.github/release-notes/sdk/vX.Y.Z.md` ;
+- le tag `sdk-vX.Y.Z` ;
+- le paquet `GWGUI.Emulation.SDK.X.Y.Z.nupkg`.
+
+Après commit et push sur `main`, créer et pousser le tag. `.github/workflows/sdk-release.yml` exécute
+les tests, crée le paquet et sa documentation XML, publie sur NuGet.org, puis crée la release GitHub
+du SDK avec ses notes. La politique de compatibilité est détaillée dans
+[`emulation-sdk-versioning.md`](../architecture/emulation-sdk-versioning.md).

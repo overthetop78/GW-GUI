@@ -199,4 +199,12 @@
   <data name="Updates.PreparationFailed"><value>Tidak dapat mempersiapkan pembaruan.</value></data>
   <data name="Updates.InstallSucceeded"><value>Pemutakhiran telah dipasang dengan sukses.</value></data>
   <data name="Updates.InstallRestored"><value>Pemutakhiran gagal dan versi sebelumnya dikembalikan. {0}</value></data>
+  <data name="Updates.ModuleInstallDescription"><value>Pasang modul emulasi dari ZIP arsip atau katalog pemutakhiran langsung URL.</value></data>
+  <data name="Updates.ModuleInstallFromFile"><value>Pasang dari berkas</value></data>
+  <data name="Updates.ModuleInstallFromUrl"><value>Pasang dari URL</value></data>
+  <data name="Updates.ModuleCatalogUrlHint"><value>Langsung HTTPS URL dari katalog update modul (.json)</value></data>
+  <data name="Updates.ModuleArchiveFilter"><value>Arsip modul (*.zip)|*.zip</value></data>
+  <data name="Updates.ModuleCatalogUrlRequired"><value>Masukkan langsung HTTPS URL dari katalog update modul.</value></data>
+  <data name="Updates.ModuleInstallConfirm"><value>Pasang modul {0} versi {1}? GW GUI akan menutup dan restart.</value></data>
+  <data name="Updates.ModuleInstallFailed"><value>Tidak dapat mempersiapkan instalasi modul.</value></data>
 </root>

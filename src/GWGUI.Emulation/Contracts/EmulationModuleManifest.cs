@@ -6,4 +6,5 @@ public sealed record EmulationModuleManifest(
     string EntryAssembly,
     string ModuleVersion,
     string HostApiMinimum,
-    string HostApiMaximum);
+    string HostApiMaximum,
+    string UpdateCatalogUrl);

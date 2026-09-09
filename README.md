@@ -31,6 +31,11 @@ L’application est proposée pour **Windows x64**, avec une interface multiling
 
 Le **Microsoft Windows Desktop Runtime .NET 10 x64** est nécessaire à l’exécution ; le runtime .NET n’est pas inclus dans les paquets.
 
+Le paquet de GW GUI ne contient aucun module d’émulation. Les modules s’installent séparément dans
+**Options > Mises à jour**, depuis une archive ZIP ou l’URL HTTPS directe de leur catalogue. Chaque
+module conserve sa propre version et sa propre adresse de mise à jour ; une mise à jour de GW GUI
+préserve les modules déjà installés.
+
 Le [wiki utilisateur](https://github.com/overthetop78/GW-GUI/wiki) propose un choix parmi 29 langues. Le menu d’aide ouvre directement le guide dans la langue de l’application. Cette aide est uniquement en ligne ; les guides sont progressivement enrichis et révisés.
 
 ## Compiler le projet avec build.ps1

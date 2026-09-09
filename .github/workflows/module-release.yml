@@ -15,7 +15,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: component-catalog-publication
+  group: module-catalog-publication-${{ inputs.module || github.ref_name }}
   cancel-in-progress: false
 
 jobs:
@@ -53,6 +53,8 @@ jobs:
           "MODULE_VERSION=$($manifest.moduleVersion)" >> $env:GITHUB_ENV
           "MODULE_NOTES=.github/release-notes/modules/$($definition.Id)/v$($manifest.moduleVersion).md" >> $env:GITHUB_ENV
           "MODULE_ARCHIVE=dist/GW-GUI-Module-$($definition.Id)-$($manifest.moduleVersion)-win-x64.zip" >> $env:GITHUB_ENV
+          "MODULE_RELEASE_TAG=module-$($definition.Id)-v$($manifest.moduleVersion)" >> $env:GITHUB_ENV
+          "MODULE_CATALOG_TAG=module-$($definition.Id)-catalog" >> $env:GITHUB_ENV
       - name: Run GW GUI tests
         shell: pwsh
         run: |
@@ -66,8 +68,9 @@ jobs:
         shell: pwsh
         run: |
           $checksum = "$env:MODULE_ARCHIVE.sha256"
-          if (-not (Test-Path -LiteralPath $env:MODULE_ARCHIVE -PathType Leaf) -or
-              -not (Test-Path -LiteralPath $checksum -PathType Leaf)) {
+          $archiveMissing = -not (Test-Path -LiteralPath $env:MODULE_ARCHIVE -PathType Leaf)
+          $checksumMissing = -not (Test-Path -LiteralPath $checksum -PathType Leaf)
+          if ($archiveMissing -or $checksumMissing) {
             throw 'Module archive or checksum is missing.'
           }
           $expected = ((Get-Content -LiteralPath $checksum -Raw).Trim() -split '\s+')[0]
@@ -78,11 +81,11 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release download component-catalog --pattern update-catalog.json --dir .\dist\existing-catalog
+          gh release download $env:MODULE_CATALOG_TAG --pattern update-catalog.json --dir .\dist\existing-catalog
           if ($LASTEXITCODE -ne 0) { Remove-Item -LiteralPath .\dist\existing-catalog -Recurse -Force -ErrorAction SilentlyContinue }
       - name: Build and validate update catalog
         shell: pwsh
-        run: .\scripts\build-update-catalog.ps1 -Scope Module -Module $env:MODULE_ID -ExistingCatalog .\dist\existing-catalog\update-catalog.json
+        run: .\scripts\build-update-catalog.ps1 -Scope Module -Module $env:MODULE_ID -Repository ${{ github.repository }} -ModuleTag $env:MODULE_RELEASE_TAG -ExistingCatalog .\dist\existing-catalog\update-catalog.json
       - uses: actions/upload-artifact@v6
         with:
           name: GW-GUI-Module-${{ env.MODULE_ID }}-${{ env.MODULE_VERSION }}-win-x64
@@ -107,10 +110,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release view component-catalog
+          gh release view $env:MODULE_CATALOG_TAG
           if ($LASTEXITCODE -ne 0) {
-            gh release create component-catalog --title 'GW GUI component catalog' --notes 'Machine-readable update catalog.' --latest=false
+            gh release create $env:MODULE_CATALOG_TAG --title "GW GUI $env:MODULE_NAME module catalog" --notes 'Machine-readable module update catalog.' --latest=false
           }
-          if ($LASTEXITCODE -ne 0) { throw 'Unable to create the component catalog release.' }
-          gh release upload component-catalog .\dist\update-catalog.json --clobber
-          if ($LASTEXITCODE -ne 0) { throw 'Unable to publish the component catalog.' }
+          if ($LASTEXITCODE -ne 0) { throw 'Unable to create the module catalog release.' }
+          gh release upload $env:MODULE_CATALOG_TAG .\dist\update-catalog.json --clobber
+          if ($LASTEXITCODE -ne 0) { throw 'Unable to publish the module catalog.' }

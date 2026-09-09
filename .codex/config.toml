@@ -30,4 +30,10 @@ Quand l’utilisateur demande une publication GitHub indépendante d’un module
 2. Prendre X.Y.Z dans le champ moduleVersion du fichier src/GWGUI.Emulation.*/module.json comme numéro unique de publication du module. Employer le même identifiant et les mêmes chiffres dans les notes, le titre, le tag module-<id>-vX.Y.Z et les paquets.
 3. Faire le commit du code du module, de son manifeste et de ses notes de version, puis les pousser sur main avant de créer le tag.
 4. Créer le tag module-<id>-vX.Y.Z sur ce commit et le pousser pour déclencher .github/workflows/module-release.yml. Ne pas lancer auparavant le mode manuel de ce workflow, sauf demande explicite de l’utilisateur.
-'''
+Quand l’utilisateur demande une publication GitHub du SDK d’émulation :
+
+1. Vérifier que le registre choisi est NuGet.org et que le secret GitHub `NUGET_API_KEY` est configuré sans afficher sa valeur.
+2. Préparer .github/release-notes/sdk/vX.Y.Z.md avec les changements de contrats et de compatibilité propres au SDK.
+3. Prendre X.Y.Z dans le champ Version de src/GWGUI.Emulation/GWGUI.Emulation.csproj comme numéro unique. Employer les mêmes chiffres dans les notes, le tag sdk-vX.Y.Z et le paquet GWGUI.Emulation.SDK.X.Y.Z.nupkg.
+4. Faire le commit du SDK, de sa documentation et de ses notes, puis les pousser sur main avant de créer le tag.
+5. Créer le tag sdk-vX.Y.Z sur ce commit et le pousser pour déclencher .github/workflows/sdk-release.yml.'''

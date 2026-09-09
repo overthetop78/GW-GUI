@@ -208,4 +208,12 @@
   <data name="Updates.PreparationFailed"><value>לא ניתן להכין את העדכון.</value></data>
   <data name="Updates.InstallSucceeded"><value>עדכונים הותקנו בהצלחה.</value></data>
   <data name="Updates.InstallRestored"><value>העדכון נכשל והגרסה הקודמת הוחזרה. {0}</value></data>
+  <data name="Updates.ModuleInstallDescription"><value>התקן מודול חיקוי מ ZIP ארכיון או קטלוג העדכון הישיר URL.</value></data>
+  <data name="Updates.ModuleInstallFromFile"><value>התקנת קובץ</value></data>
+  <data name="Updates.ModuleInstallFromUrl"><value>התקנת מ-A URL</value></data>
+  <data name="Updates.ModuleCatalogUrlHint"><value>בימוי Direct HTTPS URL קטלוג עדכון מודול (Json)</value></data>
+  <data name="Updates.ModuleArchiveFilter"><value>ארכיון מודולים (*.zip)|*.zip</value></data>
+  <data name="Updates.ModuleCatalogUrlRequired"><value>היכנסו ל-Direct HTTPS URL קטלוג עדכון מודול</value></data>
+  <data name="Updates.ModuleInstallConfirm"><value>התקןמודול {0} גירסה גירסה {1}? GW GUI זה ייסגר ויחדש מחדש.</value></data>
+  <data name="Updates.ModuleInstallFailed"><value>לא ניתן להכין את ההתקנה של המודול.</value></data>
 </root>

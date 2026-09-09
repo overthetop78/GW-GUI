@@ -4,6 +4,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>gwgui.emulation</AssemblyName>
+    <PackageId>GWGUI.Emulation.SDK</PackageId>
+    <Version>1.0.0</Version>
+    <Description>Versioned contracts for independent GW GUI emulation modules.</Description>
+    <Authors>overthetop78</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/overthetop78/GW-GUI</RepositoryUrl>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="LTRData.DiscUtils.Vhd" Version="1.0.88" />

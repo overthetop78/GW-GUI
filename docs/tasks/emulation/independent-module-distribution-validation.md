@@ -1,0 +1,44 @@
+# Validation de la distribution indépendante des modules
+
+## Point de départ
+
+Aucune version de GW GUI n’a encore été distribuée. La première publication utilisera directement
+l’architecture indépendante : le paquet de l’application ne contiendra aucun module et chaque module
+sera installé séparément depuis son propre paquet ou son propre catalogue.
+
+## Installations et remplacements temporaires
+
+Le 9 septembre 2026, les quatre tests temporaires ciblés ont réussi sous
+`build/.independent-module-validation` : installation d’un module absent depuis un ZIP, installation
+depuis un catalogue HTTP en mémoire, mise à jour d’un seul module avec préservation des autres et
+restauration après échec, puis suppression d’un module nouvellement installé lorsqu’une opération
+ultérieure échoue. Résultat : 4 réussites, 0 échec, 0 test ignoré.
+
+Le fichier de tests, sa référence temporaire à `GWGUI.Updater` et tous les artefacts de ce contrôle
+ont ensuite été supprimés.
+
+## Paquet de l’application
+
+Le paquet portable `0.0.0-validation` produit le 9 septembre 2026 contenait 126 entrées : aucun
+dossier `Modules`, aucun `module.json`, aucune DLL officielle Amiga ou Atari et aucune archive de
+module dans le dossier de distribution. Les seuls fichiers distribués par ce contrôle étaient le ZIP
+portable et `SHA256SUMS.txt`. Toutes les sorties créées pour ce contrôle ont ensuite été supprimées.
+
+## Paquets des modules officiels
+
+Les paquets Amiga et Atari 1.0.0 ont été produits séparément le 9 septembre 2026. Chaque archive
+contenait quatre entrées sous `Modules/<id>`, dont un `module.json` de schéma 2 et la DLL d’entrée
+attendue. Le manifeste Amiga désigne le catalogue `module-amiga-catalog` et le manifeste Atari le
+catalogue `module-atari-catalog`, chacun sous son URL GitHub HTTPS propre. Les deux fichiers
+`.sha256` correspondaient à leur archive. Le contrôle précédent confirme qu’aucun de ces fichiers ne
+se trouve dans le paquet GW GUI. Toutes les sorties créées pour ce contrôle ont ensuite été supprimées.
+
+## Ressources et build final
+
+L’audit Argos du 9 septembre 2026 a réussi : 29 cultures, 22 catalogues et 41 979 entrées
+localisées. Le build Debug complet exécuté avec `scripts/build.ps1 -Configuration Debug` a réussi et
+a produit `build/Debug/GW GUI/gwgui.exe` (345 088 octets).
+
+Les tests permanents ciblés `EmulationModuleManifestTests`, `UpdatePlanBuilderTests` et
+`ModuleUpdateCatalogValidatorTests` ont ensuite réussi : 45 réussites, 0 échec et 0 test ignoré.
+Le dossier d’artefacts créé uniquement pour cette exécution a été supprimé.

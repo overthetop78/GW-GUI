@@ -68,6 +68,16 @@ try {
     foreach ($obsoleteRuntimeFile in $obsoleteRuntimeFiles) {
         Set-Content -LiteralPath (Join-Path $destination $obsoleteRuntimeFile) -Value 'obsolete runtime fixture'
     }
+    $moduleFixture = Join-Path $destination 'Modules\third-party-test'
+    New-Item -ItemType Directory -Path (Join-Path $moduleFixture 'nested') -Force | Out-Null
+    Set-Content -LiteralPath (Join-Path $moduleFixture 'module.json') -Value '{"id":"third-party-test"}' -Encoding utf8
+    Set-Content -LiteralPath (Join-Path $moduleFixture 'nested\payload.bin') -Value 'module payload' -Encoding ascii
+    $moduleFilesBefore = @(Get-ChildItem -LiteralPath $moduleFixture -Recurse -File | ForEach-Object {
+        [pscustomobject]@{
+            Path = $_.FullName.Substring($moduleFixture.Length).TrimStart('\', '/')
+            Hash = (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash
+        }
+    })
 
     $currentInstall = Start-Process -FilePath $currentSetup -ArgumentList $installArguments -Wait -PassThru
     if ($currentInstall.ExitCode -ne 0) { throw "Current installer exited with code $($currentInstall.ExitCode)." }
@@ -84,6 +94,15 @@ try {
             throw "Upgrade left obsolete application-local runtime file: $obsoleteRuntimeFile"
         }
     }
+    $moduleFilesAfter = @(Get-ChildItem -LiteralPath $moduleFixture -Recurse -File | ForEach-Object {
+        [pscustomobject]@{
+            Path = $_.FullName.Substring($moduleFixture.Length).TrimStart('\', '/')
+            Hash = (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash
+        }
+    })
+    if (Compare-Object $moduleFilesBefore $moduleFilesAfter -Property Path,Hash) {
+        throw 'The application upgrade changed the installed module files.'
+    }
 
     [pscustomobject]@{
         InstallDirectory = $destination
@@ -99,6 +118,10 @@ finally {
     }
     if (Test-Path -LiteralPath $uninstallRegistryPath) { throw 'The uninstall registration remained after cleanup.' }
     if (Test-Path -LiteralPath $destination) {
+        $retainedModules = Join-Path $destination 'Modules'
+        if (Test-Path -LiteralPath $retainedModules) {
+            Remove-Item -LiteralPath $retainedModules -Recurse -Force
+        }
         $remaining = @(Get-ChildItem -LiteralPath $destination -Force)
         if ($remaining.Count -ne 0) { throw "Uninstaller left $($remaining.Count) item(s) in $destination." }
         Remove-Item -LiteralPath $destination -Force

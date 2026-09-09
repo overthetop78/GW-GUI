@@ -14,7 +14,7 @@ internal static class UpdatePlanReader
         var work = Path.GetDirectoryName(path) ?? throw new InvalidDataException("The update plan has no directory.");
         var plan = JsonSerializer.Deserialize<UpdateExecutionPlan>(File.ReadAllText(path), JsonOptions)
             ?? throw new InvalidDataException("The update plan is empty.");
-        if (plan.SchemaVersion != 1 || !Guid.TryParseExact(plan.TransactionId, "N", out _))
+        if (plan.SchemaVersion != 2 || !Guid.TryParseExact(plan.TransactionId, "N", out _))
             throw new InvalidDataException("The update plan identity is invalid.");
         if (plan.ProcessIds.Count == 0 || plan.ProcessIds.Any(id => id <= 0)
             || plan.ShutdownTimeoutSeconds is < 1 or > 300 || plan.StartupTimeoutSeconds is < 1 or > 300)
@@ -30,13 +30,18 @@ internal static class UpdatePlanReader
         var ids = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         foreach (var component in plan.Components)
         {
-            if (!Enum.IsDefined(component.Kind)
+            if (!Enum.IsDefined(component.Kind) || !Enum.IsDefined(component.Operation)
                 || !ids.Add(component.ComponentId)
                 || component.ComponentId.Length == 0
                 || !component.ComponentId.All(character => char.IsAsciiLetterOrDigit(character) || character is '-' or '_'))
                 throw new InvalidDataException("The update plan contains an invalid or duplicate component.");
             if (component.Kind == UpdateComponentKind.Application && component.ComponentId != "gwgui")
                 throw new InvalidDataException("The application component id must be gwgui.");
+            if (component.Kind == UpdateComponentKind.Application
+                && component.Operation != UpdateComponentOperation.UpdateApplication
+                || component.Kind == UpdateComponentKind.Module
+                && component.Operation == UpdateComponentOperation.UpdateApplication)
+                throw new InvalidDataException("The update operation does not match its component kind.");
             EnsureInside(work, component.PreparedDirectory, $"component {component.ComponentId}");
             if (!Directory.Exists(component.PreparedDirectory))
                 throw new DirectoryNotFoundException($"Prepared component is missing: {component.ComponentId}");

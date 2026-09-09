@@ -207,4 +207,12 @@
   <data name="Updates.PreparationFailed"><value>Αδυναμία προετοιμασίας της ενημέρωσης.</value></data>
   <data name="Updates.InstallSucceeded"><value>Οι ενημερώσεις εγκαταστάθηκαν με επιτυχία.</value></data>
   <data name="Updates.InstallRestored"><value>Η ενημέρωση απέτυχε και η προηγούμενη έκδοση αποκαταστάθηκε. {0}</value></data>
+  <data name="Updates.ModuleInstallDescription"><value>Εγκατάσταση ενός αρθρώματος εξομοίωσης από ένα ZIP αρχείο ή τον κατάλογο άμεσης ενημέρωσης του URL.</value></data>
+  <data name="Updates.ModuleInstallFromFile"><value>Εγκατάσταση από ένα αρχείο</value></data>
+  <data name="Updates.ModuleInstallFromUrl"><value>Εγκατάσταση από ένα URL</value></data>
+  <data name="Updates.ModuleCatalogUrlHint"><value>Άμεση HTTPS URL του καταλόγου ενημέρωσης ενότητας (.json)</value></data>
+  <data name="Updates.ModuleArchiveFilter"><value>Αρχεία ενότητας (*.zip)|*.zip</value></data>
+  <data name="Updates.ModuleCatalogUrlRequired"><value>Εισάγετε την ευθεία HTTPS URL του καταλόγου ενημέρωσης ενότητας.</value></data>
+  <data name="Updates.ModuleInstallConfirm"><value>Εγκατάσταση αρθρώματος {0} έκδοση {1}? GW GUI θα κλείσει και θα επανεκκινήσει.</value></data>
+  <data name="Updates.ModuleInstallFailed"><value>Αδυναμία προετοιμασίας της εγκατάστασης του αρθρώματος.</value></data>
 </root>

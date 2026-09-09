@@ -5,8 +5,12 @@ namespace GWGUI.Updater;
 
 internal sealed class UpdateStartupVerifier(UpdateExecutionPlan plan)
 {
+    private int _launchStarted;
+
     internal async Task<bool> LaunchAndWaitAsync()
     {
+        if (Interlocked.Exchange(ref _launchStarted, 1) != 0)
+            throw new InvalidOperationException("GW GUI can only be launched once by an update transaction.");
         if (File.Exists(plan.StartupSignalPath)) File.Delete(plan.StartupSignalPath);
         using var process = Program.Launch(plan, includeSignal: true);
         var deadline = DateTime.UtcNow.AddSeconds(plan.StartupTimeoutSeconds);

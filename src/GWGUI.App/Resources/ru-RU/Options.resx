@@ -208,4 +208,12 @@
   <data name="Updates.PreparationFailed"><value>Невозможность подготовить обновление.</value></data>
   <data name="Updates.InstallSucceeded"><value>Обновления были успешно установлены.</value></data>
   <data name="Updates.InstallRestored"><value>Обновление не удалось, и предыдущая версия была восстановлена. {0}</value></data>
+  <data name="Updates.ModuleInstallDescription"><value>Установите модуль эмуляции из ZIP архив или каталог прямых обновлений URL.</value></data>
+  <data name="Updates.ModuleInstallFromFile"><value>Установка из файла</value></data>
+  <data name="Updates.ModuleInstallFromUrl"><value>Установка из URL</value></data>
+  <data name="Updates.ModuleCatalogUrlHint"><value>Прямой HTTPS URL каталог обновлений модулей (.json)</value></data>
+  <data name="Updates.ModuleArchiveFilter"><value>Модульные архивы (*.zip)|*.zip</value></data>
+  <data name="Updates.ModuleCatalogUrlRequired"><value>Войди в прямой HTTPS URL каталог обновления модулей.</value></data>
+  <data name="Updates.ModuleInstallConfirm"><value>Установить модуль {0} версия {1}? GW GUI Закроется и возобновится.</value></data>
+  <data name="Updates.ModuleInstallFailed"><value>Невозможность подготовки модуля установки.</value></data>
 </root>

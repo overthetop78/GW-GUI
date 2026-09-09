@@ -208,4 +208,12 @@
   <data name="Updates.PreparationFailed"><value>アップデートの準備ができません。</value></data>
   <data name="Updates.InstallSucceeded"><value>更新が正常にインストールされました。</value></data>
   <data name="Updates.InstallRestored"><value>更新が失敗し、以前のバージョンが復元されました。 {0}</value></data>
+  <data name="Updates.ModuleInstallDescription"><value>エミュレータモジュールを a からインストールします。 ZIP アーカイブまたは直接更新カタログ URL.</value></data>
+  <data name="Updates.ModuleInstallFromFile"><value>ファイルからインストールする</value></data>
+  <data name="Updates.ModuleInstallFromUrl"><value>インストールする URL</value></data>
+  <data name="Updates.ModuleCatalogUrlHint"><value>ダイレクト HTTPS URL モジュール更新カタログ(.json)</value></data>
+  <data name="Updates.ModuleArchiveFilter"><value>モジュールのアーカイブ (*.zip)|*.zip</value></data>
+  <data name="Updates.ModuleCatalogUrlRequired"><value>直接入力 HTTPS URL モジュール更新カタログの</value></data>
+  <data name="Updates.ModuleInstallConfirm"><value>モジュールのインストール {0} コンテンツ {1}? GW GUI クローズして再起動します。</value></data>
+  <data name="Updates.ModuleInstallFailed"><value>モジュールのインストールを準備できません。</value></data>
 </root>

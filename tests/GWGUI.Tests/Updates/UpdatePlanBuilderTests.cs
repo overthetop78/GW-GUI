@@ -8,9 +8,9 @@ public sealed class UpdatePlanBuilderTests
     private readonly UpdatePlanBuilder _builder = new();
 
     [Fact]
-    public void Modules_reports_an_installed_module_as_up_to_date()
+    public void Module_catalog_reports_installed_module_as_up_to_date()
     {
-        var result = _builder.Search(Catalog(Module("amiga", ModuleRelease("1.0.0", "1.0", "1.0"))),
+        var result = _builder.Search(ModuleCatalog(Module("amiga", ModuleRelease("1.0.0", "1.0", "1.0"))),
             Installed(), UpdateSearchScope.Modules);
 
         Assert.Equal(UpdateAvailability.UpToDate, Assert.Single(result.Components).Availability);
@@ -18,12 +18,12 @@ public sealed class UpdatePlanBuilderTests
     }
 
     [Fact]
-    public void Modules_selects_the_requested_compatible_version()
+    public void Module_catalog_selects_requested_compatible_version()
     {
         var component = Module("amiga", ModuleRelease("1.2.0", "1.0", "1.0"),
             ModuleRelease("1.1.0", "1.0", "1.0"));
 
-        var result = _builder.Search(Catalog(component), Installed(), UpdateSearchScope.Modules,
+        var result = _builder.Search(ModuleCatalog(component), Installed(), UpdateSearchScope.Modules,
             new Dictionary<string, string> { ["amiga"] = "1.1.0" });
 
         var update = Assert.Single(result.Components);
@@ -33,9 +33,9 @@ public sealed class UpdatePlanBuilderTests
     }
 
     [Fact]
-    public void Modules_requires_an_application_update_for_a_newer_host_api()
+    public void Module_catalog_respects_host_api_bounds()
     {
-        var result = _builder.Search(Catalog(Module("amiga", ModuleRelease("2.0.0", "2.0", "2.0"))),
+        var result = _builder.Search(ModuleCatalog(Module("amiga", ModuleRelease("2.0.0", "2.0", "2.0"))),
             Installed(), UpdateSearchScope.Modules);
 
         var update = Assert.Single(result.Components);
@@ -45,21 +45,27 @@ public sealed class UpdatePlanBuilderTests
     }
 
     [Fact]
-    public void Modules_scope_does_not_include_the_application()
+    public void Application_catalog_cannot_contain_a_module()
     {
-        var result = _builder.Search(Catalog(Application("1.1.0", "1.0"),
-                Module("amiga", ModuleRelease("1.1.0", "1.0", "1.0"))),
-            Installed(), UpdateSearchScope.Modules);
+        var catalog = new UpdateCatalog(2, UpdateCatalogKind.Application, DateTimeOffset.UtcNow,
+            [Application("1.1.0", "1.0"), Module("amiga", ModuleRelease("1.1.0", "1.0", "1.0"))]);
 
-        Assert.DoesNotContain(result.Components, item => item.Kind == UpdateComponentKind.Application);
-        Assert.DoesNotContain(result.Plan.Items, item => item.Kind == UpdateComponentKind.Application);
+        Assert.Throws<InvalidDataException>(() =>
+            _builder.Search(catalog, Installed(), UpdateSearchScope.Application));
     }
 
     [Fact]
-    public void Application_scope_builds_an_application_only_plan()
+    public void Module_catalog_cannot_be_used_for_application_search()
     {
-        var result = _builder.Search(Catalog(Application("1.1.0", "1.0"),
-                Module("amiga", ModuleRelease("1.1.0", "1.0", "1.0"))),
+        Assert.Throws<InvalidDataException>(() => _builder.Search(
+            ModuleCatalog(Module("amiga", ModuleRelease("1.1.0", "1.0", "1.0"))),
+            Installed(), UpdateSearchScope.Application));
+    }
+
+    [Fact]
+    public void Application_catalog_builds_application_only_plan()
+    {
+        var result = _builder.Search(ApplicationCatalog(Application("1.1.0", "1.0")),
             Installed(), UpdateSearchScope.Application);
 
         var item = Assert.Single(result.Plan.Items);
@@ -68,23 +74,24 @@ public sealed class UpdatePlanBuilderTests
     }
 
     [Fact]
-    public void All_builds_a_compatible_application_and_module_plan()
+    public void Application_update_is_blocked_when_installed_module_rejects_target_api()
     {
-        var result = _builder.Search(Catalog(Application("2.0.0", "2.0"),
-                Module("amiga", ModuleRelease("2.0.0", "2.0", "2.0"))),
-            Installed(), UpdateSearchScope.All);
+        var result = _builder.Search(ApplicationCatalog(Application("2.0.0", "2.0")),
+            Installed(), UpdateSearchScope.Application);
 
         Assert.True(result.Plan.IsCompatible);
-        Assert.Equal(2, result.Plan.Items.Count);
-        Assert.Contains(result.Plan.Items, item => item.ComponentId == "gwgui" && item.Release.Version == "2.0.0");
-        Assert.Contains(result.Plan.Items, item => item.ComponentId == "amiga" && item.Release.Version == "2.0.0");
+        Assert.Empty(result.Plan.Items);
+        Assert.Equal(UpdateAvailability.Incompatible, Assert.Single(result.Components).Availability);
     }
 
     private static InstalledUpdateState Installed() => new("1.0.0", "1.0",
         [new InstalledModuleVersion("amiga", "1.0.0", "1.0", "1.0")]);
 
-    private static UpdateCatalog Catalog(params UpdateCatalogComponent[] components) =>
-        new(1, DateTimeOffset.UtcNow, components);
+    private static UpdateCatalog ApplicationCatalog(params UpdateCatalogComponent[] components) =>
+        new(2, UpdateCatalogKind.Application, DateTimeOffset.UtcNow, components);
+
+    private static UpdateCatalog ModuleCatalog(params UpdateCatalogComponent[] components) =>
+        new(2, UpdateCatalogKind.Module, DateTimeOffset.UtcNow, components);
 
     private static UpdateCatalogComponent Application(string version, string api) =>
         new("gwgui", UpdateComponentKind.Application, [Release(version, hostApiVersion: api)]);

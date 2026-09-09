@@ -202,4 +202,12 @@
   <data name="Updates.PreparationFailed"><value>Kan ikke forberede oppdateringen.</value></data>
   <data name="Updates.InstallSucceeded"><value>Oppdateringer ble installert.</value></data>
   <data name="Updates.InstallRestored"><value>Oppdateringen mislykkes og den forrige versjonen ble gjenopprettet. {0}</value></data>
+  <data name="Updates.ModuleInstallDescription"><value>Installere en emuleringsmodul fra en ZIP arkiv eller dens katalog for direkte oppdatering URL.</value></data>
+  <data name="Updates.ModuleInstallFromFile"><value>Installer fra en fil</value></data>
+  <data name="Updates.ModuleInstallFromUrl"><value>Installer fra en URL</value></data>
+  <data name="Updates.ModuleCatalogUrlHint"><value>Direkte HTTPS URL i moduloppdateringskatalogen (.json)</value></data>
+  <data name="Updates.ModuleArchiveFilter"><value>Modularkiv (*.zip)|*.zip</value></data>
+  <data name="Updates.ModuleCatalogUrlRequired"><value>Skriv inn direkte HTTPS URL i en moduloppdateringskatalog.</value></data>
+  <data name="Updates.ModuleInstallConfirm"><value>Installer modul {0} versjon {1}? GW GUI vil stenge og omstarte.</value></data>
+  <data name="Updates.ModuleInstallFailed"><value>Kan ikke forberede modulinstallasjonen.</value></data>
 </root>

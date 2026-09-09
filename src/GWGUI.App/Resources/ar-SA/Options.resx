@@ -208,4 +208,12 @@
   <data name="Updates.PreparationFailed"><value>غير قادر على إعداد المستجدات</value></data>
   <data name="Updates.InstallSucceeded"><value>وتم بنجاح تركيب تحديثات.</value></data>
   <data name="Updates.InstallRestored"><value>وفشلت عملية التحديث واستعيدت النسخة السابقة. {0}</value></data>
+  <data name="Updates.ModuleInstallDescription"><value>تركيب وحدة محاكاة من ZIP سجل المحفوظات أو دليل تحديثه المباشر URL.</value></data>
+  <data name="Updates.ModuleInstallFromFile"><value>تركيب من ملف</value></data>
+  <data name="Updates.ModuleInstallFromUrl"><value>تركيب من URL</value></data>
+  <data name="Updates.ModuleCatalogUrlHint"><value>مباشرة HTTPS URL (ج) دليل تحديث الوحدات (Json)</value></data>
+  <data name="Updates.ModuleArchiveFilter"><value>محفوظات الوحدات*.zip)|*.zip</value></data>
+  <data name="Updates.ModuleCatalogUrlRequired"><value>أدخل مباشرة HTTPS URL من كتيب تحديث الوحدات</value></data>
+  <data name="Updates.ModuleInstallConfirm"><value>وحدة تركيب {0} الصيغة {1}? GW GUI سوف يغلق ويعيد تشغيله</value></data>
+  <data name="Updates.ModuleInstallFailed"><value>غير قادر على إعداد تركيبة الوحدات</value></data>
 </root>

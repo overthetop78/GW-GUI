@@ -208,4 +208,12 @@
   <data name="Updates.PreparationFailed"><value>업데이트를 준비할 수 없습니다.</value></data>
   <data name="Updates.InstallSucceeded"><value>업데이트가 성공적으로 설치되었습니다.</value></data>
   <data name="Updates.InstallRestored"><value>업데이트 실패하고 이전 버전은 복원되었습니다. {0}</value></data>
+  <data name="Updates.ModuleInstallDescription"><value>에뮬레이션 모듈을 설치 ZIP 아카이브 또는 직접 업데이트 카탈로그 URL.</value></data>
+  <data name="Updates.ModuleInstallFromFile"><value>파일에서 설치</value></data>
+  <data name="Updates.ModuleInstallFromUrl"><value>설치하기 URL</value></data>
+  <data name="Updates.ModuleCatalogUrlHint"><value>의 특징 HTTPS URL 모듈 업데이트 카탈로그 (.json)</value></data>
+  <data name="Updates.ModuleArchiveFilter"><value>모듈 아카이브 ( Module archives)*.zip)|*.zip</value></data>
+  <data name="Updates.ModuleCatalogUrlRequired"><value>자주 묻는 질문 HTTPS URL 모듈 업데이트 카탈로그의.</value></data>
+  <data name="Updates.ModuleInstallConfirm"><value>모듈 설치 {0} 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 의 {1}? GW GUI 닫히고 재시작합니다.</value></data>
+  <data name="Updates.ModuleInstallFailed"><value>모듈 설치를 준비할 수 없습니다.</value></data>
 </root>

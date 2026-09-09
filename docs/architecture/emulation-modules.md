@@ -29,21 +29,26 @@ Modules/Atari/gwgui.emulation.atari.dll
 
 ```json
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "amiga",
   "entryAssembly": "gwgui.emulation.amiga.dll",
   "moduleVersion": "1.0.0",
   "hostApiMinimum": "1.0",
-  "hostApiMaximum": "1.0"
+  "hostApiMaximum": "1.0",
+  "updateCatalogUrl": "https://github.com/OWNER/REPOSITORY/releases/download/module-catalog/update-catalog.json"
 }
 ```
 
-Les six champs sont obligatoires. `schemaVersion` identifie le format JSON, actuellement `1`.
+Les sept champs sont obligatoires. `schemaVersion` identifie le format JSON, actuellement `2`.
 `moduleVersion` est un numéro à trois composantes numériques propre au module ; `1.0.0`
 correspond à l'identité initiale des projets Amiga et Atari. Il ne versionne ni GW GUI ni le cœur.
 Les bornes d'API sont des numéros `majeure.mineure`, inclusifs, comparés numériquement.
 L'API actuelle est `1.0` et les deux bornes des modules actuels valent `1.0` : aucun joker `1.x`
 ne promet une compatibilité future. Une borne minimale supérieure à la maximale est invalide.
+
+`updateCatalogUrl` est une URL HTTPS absolue appartenant au module. Elle pointe directement vers
+son catalogue JSON. GW GUI ne possède aucune liste de modules ou de dépôts : une fois le module
+installé, cette adresse est l’unique source de ses recherches de mise à jour.
 
 L'identifiant est stable et comparé sans distinction de casse entre manifeste, factory et module.
 Il doit être utilisable comme nom de dossier : pas de séparateur, de chemin absolu, de caractère
@@ -177,13 +182,14 @@ dans `Modules` sans recompiler App, si ses dépendances sont déjà distribuées
 ## État de réalisation
 
 Le chargement par manifeste, le contrôle de l'API, les traductions embarquées, la résolution des
-dépendances privées par un `AssemblyLoadContext` propre au paquet, les archives indépendantes et
-leur mise à jour après redémarrage sont réalisés. Amiga, Atari et tout futur projet conforme sont
-découverts par leur manifeste pour le build, les paquets, le catalogue et la publication. Le paquet
-complet distribue également l'updater dédié et tous les modules ainsi découverts.
+dépendances privées par un `AssemblyLoadContext` propre au paquet, les archives indépendantes,
+l’installation initiale et leur mise à jour après redémarrage sont réalisés. Amiga, Atari et tout
+futur projet conforme sont découverts par leur manifeste pour les builds locaux et leur propre
+paquet. Le paquet distribué de GW GUI contient l’application, le lanceur et l’updater, sans dossier
+`Modules`. Les modules s’installent séparément depuis un ZIP ou l’URL de leur catalogue.
 
-Restent différés : la publication d'un SDK destiné aux projets tiers, le déchargement à chaud et
-la sélection des modules officiels dans l'installateur. L'organisation interne des différents
+Le SDK `GWGUI.Emulation.SDK` et son modèle de dépôt indépendant sont préparés. Le déchargement à
+chaud reste différé. L'organisation interne des différents
 moteurs derrière un contrat commun est suivie séparément dans
 [`../future/emulation-engine-organization.md`](../future/emulation-engine-organization.md).
 

@@ -3,8 +3,7 @@ namespace GWGUI.Updates.Contracts;
 public enum UpdateSearchScope
 {
     Application,
-    Modules,
-    All
+    Modules
 }
 
 public enum UpdateAvailability

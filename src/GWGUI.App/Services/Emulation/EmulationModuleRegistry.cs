@@ -10,19 +10,20 @@ namespace GWGUI.App.Services.Emulation;
 internal static class EmulationModuleRegistry
 {
     private static readonly HttpClient HttpClient = new();
-    private static readonly Lazy<IReadOnlyList<IEmulationModule>> LoadedModules = new(() => Discover(
+    private static readonly Lazy<IReadOnlyList<LoadedEmulationModule>> LoadedModules = new(() => Discover(
         Path.Combine(AppContext.BaseDirectory, "Modules"), StoragePaths.DataDirectory, WriteDiagnostic));
-    internal static IReadOnlyList<IEmulationModule> Modules => LoadedModules.Value;
+    internal static IReadOnlyList<LoadedEmulationModule> Packages => LoadedModules.Value;
+    internal static IReadOnlyList<IEmulationModule> Modules => Packages.Select(package => package.Module).ToArray();
 
     internal static IEmulationModuleLocalization? FindLocalization(string? moduleId) =>
-        string.IsNullOrWhiteSpace(moduleId) ? null : Modules.FirstOrDefault(module =>
-            string.Equals(module.Id, moduleId, StringComparison.OrdinalIgnoreCase))
+        string.IsNullOrWhiteSpace(moduleId) ? null : Packages.FirstOrDefault(package =>
+            string.Equals(package.Module.Id, moduleId, StringComparison.OrdinalIgnoreCase))?.Module
             as IEmulationModuleLocalization;
 
-    internal static IReadOnlyList<IEmulationModule> Discover(string directory, string dataDirectory,
+    internal static IReadOnlyList<LoadedEmulationModule> Discover(string directory, string dataDirectory,
         Action<string, Exception?> diagnostic)
     {
-        var modules = new Dictionary<string, IEmulationModule>(StringComparer.OrdinalIgnoreCase);
+        var modules = new Dictionary<string, LoadedEmulationModule>(StringComparer.OrdinalIgnoreCase);
         try
         {
             if (!Directory.Exists(directory)) return [];
@@ -36,11 +37,11 @@ internal static class EmulationModuleRegistry
         {
             diagnostic($"Discovering emulation modules in '{directory}'", error);
         }
-        return modules.Values.OrderBy(module => module.Id, StringComparer.OrdinalIgnoreCase).ToArray();
+        return modules.Values.OrderBy(package => package.Module.Id, StringComparer.OrdinalIgnoreCase).ToArray();
     }
 
     private static void LoadModule(string directory, string dataDirectory,
-        IDictionary<string, IEmulationModule> modules, Action<string, Exception?> diagnostic)
+        IDictionary<string, LoadedEmulationModule> modules, Action<string, Exception?> diagnostic)
     {
         var context = $"Loading emulation module manifest '{Path.Combine(directory, EmulationHostApi.ManifestFileName)}'";
         try
@@ -62,7 +63,7 @@ internal static class EmulationModuleRegistry
             var module = factory.Create(new EmulationModuleContext(dataDirectory, root, HttpClient));
             if (module is null || !string.Equals(module.Id, manifest.Id, StringComparison.OrdinalIgnoreCase))
                 throw new InvalidDataException($"Manifest id '{manifest.Id}' does not match the created module id '{module?.Id}'.");
-            modules.Add(manifest.Id, module);
+            modules.Add(manifest.Id, new LoadedEmulationModule(module, manifest, Path.GetFullPath(directory)));
             diagnostic($"Loaded emulation module '{module.Id}' version {manifest.ModuleVersion} from '{path}' " +
                 $"(host API {EmulationHostApi.CurrentVersion}).", null);
         }

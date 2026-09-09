@@ -1,0 +1,92 @@
+name: Publish GW GUI module
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: module-catalog-publication
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+      - name: Build package and catalog
+        shell: pwsh
+        run: |
+          $manifest = Get-Content .\module.json -Raw -Encoding UTF8 | ConvertFrom-Json
+          $version = $env:GITHUB_REF_NAME.TrimStart('v')
+          if ($version -ne $manifest.moduleVersion) { throw 'Tag and manifest versions differ.' }
+          if ($manifest.updateCatalogUrl -ne "https://github.com/${{ github.repository }}/releases/download/module-catalog/update-catalog.json") {
+            throw 'module.json does not point to this repository module-catalog release.'
+          }
+          dotnet publish .\GWGUI.Emulation.Module.csproj -c Release -r win-x64 --self-contained false -p:Version=$version -o .\dist\publish
+          if ($LASTEXITCODE -ne 0) { throw 'Module publish failed.' }
+          $root = ".\dist\package\Modules\$($manifest.id)"
+          New-Item -ItemType Directory -Path $root -Force | Out-Null
+          Copy-Item .\dist\publish\* $root -Recurse -Force
+          Copy-Item .\module.json $root -Force
+          $archive = ".\dist\GW-GUI-Module-$($manifest.id)-$version-win-x64.zip"
+          Compress-Archive -Path .\dist\package\Modules -DestinationPath $archive
+          $sha = (Get-FileHash $archive -Algorithm SHA256).Hash.ToLowerInvariant()
+          "$sha  $([IO.Path]::GetFileName($archive))" | Set-Content "$archive.sha256" -Encoding ascii
+          "MODULE_ID=$($manifest.id)" >> $env:GITHUB_ENV
+          "MODULE_VERSION=$version" >> $env:GITHUB_ENV
+          "MODULE_ARCHIVE=$archive" >> $env:GITHUB_ENV
+          "MODULE_SHA=$sha" >> $env:GITHUB_ENV
+          "MODULE_API_MIN=$($manifest.hostApiMinimum)" >> $env:GITHUB_ENV
+          "MODULE_API_MAX=$($manifest.hostApiMaximum)" >> $env:GITHUB_ENV
+      - name: Download previous catalog
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download module-catalog --pattern update-catalog.json --dir .\dist\catalog
+          if ($LASTEXITCODE -ne 0) { New-Item -ItemType Directory -Path .\dist\catalog -Force | Out-Null }
+      - name: Create catalog
+        shell: pwsh
+        run: |
+          $path = '.\dist\catalog\update-catalog.json'
+          if (Test-Path $path) { $catalog = Get-Content $path -Raw | ConvertFrom-Json }
+          else { $catalog = [pscustomobject]@{ schemaVersion=2; kind='module'; generatedAtUtc=''; components=@() } }
+          if ($catalog.schemaVersion -ne 2 -or $catalog.kind -ne 'module') { throw 'Invalid previous catalog.' }
+          $release = [pscustomobject]@{
+            version=$env:MODULE_VERSION
+            packageUrl="https://github.com/${{ github.repository }}/releases/download/$env:GITHUB_REF_NAME/$([IO.Path]::GetFileName($env:MODULE_ARCHIVE))"
+            sha256=$env:MODULE_SHA
+            notesUrl="https://github.com/${{ github.repository }}/releases/tag/$env:GITHUB_REF_NAME"
+            hostApiMinimum=$env:MODULE_API_MIN
+            hostApiMaximum=$env:MODULE_API_MAX
+          }
+          $component = @($catalog.components | Where-Object id -eq $env:MODULE_ID) | Select-Object -First 1
+          if (-not $component) {
+            $component = [pscustomobject]@{ id=$env:MODULE_ID; kind='module'; releases=@() }
+            $catalog.components = @($component)
+          }
+          $component.releases = @($component.releases | Where-Object version -ne $env:MODULE_VERSION) + $release
+          $component.releases = @($component.releases | Sort-Object { [Version]$_.version } -Descending)
+          $catalog.components = @($component)
+          $catalog.generatedAtUtc = [DateTimeOffset]::UtcNow.ToString('O')
+          $catalog | ConvertTo-Json -Depth 10 | Set-Content $path -Encoding utf8
+      - name: Publish module release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create $env:GITHUB_REF_NAME $env:MODULE_ARCHIVE "$env:MODULE_ARCHIVE.sha256" --verify-tag --latest=false --generate-notes --title "GW GUI module $env:MODULE_ID $env:MODULE_VERSION"
+      - name: Publish module catalog
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view module-catalog
+          if ($LASTEXITCODE -ne 0) { gh release create module-catalog --title 'Module update catalog' --notes 'Machine-readable module update catalog.' --latest=false }
+          if ($LASTEXITCODE -ne 0) { throw 'Unable to create module catalog release.' }
+          gh release upload module-catalog .\dist\catalog\update-catalog.json --clobber

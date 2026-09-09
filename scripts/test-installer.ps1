@@ -40,6 +40,12 @@ try {
     }
     if (Test-Path -LiteralPath (Join-Path $destination 'Documentation\user-guide')) { throw 'The installer included the obsolete offline user guide.' }
     if (Get-ChildItem -LiteralPath $destination -Recurse -File -Filter '*.pdb') { throw 'Debug symbols were installed.' }
+    if (Test-Path -LiteralPath (Join-Path $destination 'Modules')) {
+        throw 'A clean GW GUI installation unexpectedly contains emulation modules.'
+    }
+    if (Get-ChildItem -LiteralPath $destination -Recurse -File -Filter 'module.json') {
+        throw 'A clean GW GUI installation unexpectedly contains a module manifest.'
+    }
 
     $version = (Get-Item -LiteralPath (Join-Path $destination 'gwgui.exe')).VersionInfo.ProductVersion
     if (-not $version.StartsWith($ExpectedVersion, [StringComparison]::Ordinal)) {

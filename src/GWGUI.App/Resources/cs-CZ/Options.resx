@@ -203,4 +203,12 @@
   <data name="Updates.PreparationFailed"><value>Nelze připravit aktualizaci.</value></data>
   <data name="Updates.InstallSucceeded"><value>Aktualizace byly úspěšně nainstalovány.</value></data>
   <data name="Updates.InstallRestored"><value>Aktualizace selhala a předchozí verze byla obnovena. {0}</value></data>
+  <data name="Updates.ModuleInstallDescription"><value>Nainstalujte emulační modul z ZIP archiv nebo jeho katalog s přímou aktualizací URL.</value></data>
+  <data name="Updates.ModuleInstallFromFile"><value>Instalovat ze souboru</value></data>
+  <data name="Updates.ModuleInstallFromUrl"><value>Instalovat z URL</value></data>
+  <data name="Updates.ModuleCatalogUrlHint"><value>Přímé HTTPS URL katalog aktualizací modulu (.json)</value></data>
+  <data name="Updates.ModuleArchiveFilter"><value>Archivy modulu (*.zip)|*.zip</value></data>
+  <data name="Updates.ModuleCatalogUrlRequired"><value>Zadejte přímý HTTPS URL katalogu aktualizací modulu.</value></data>
+  <data name="Updates.ModuleInstallConfirm"><value>Nainstalovat modul {0} verze {1}? GW GUI zavře a restartuje.</value></data>
+  <data name="Updates.ModuleInstallFailed"><value>Nelze připravit instalaci modulu.</value></data>
 </root>

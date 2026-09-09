@@ -25,7 +25,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: component-catalog-publication
+  group: application-catalog-publication
   cancel-in-progress: false
 
 jobs:
@@ -78,11 +78,11 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           New-Item -ItemType Directory -Path .\dist -Force | Out-Null
-          gh release download component-catalog --pattern update-catalog.json --dir .\dist\existing-catalog
+          gh release download application-catalog --pattern update-catalog.json --dir .\dist\existing-catalog
           if ($LASTEXITCODE -ne 0) { Remove-Item -LiteralPath .\dist\existing-catalog -Recurse -Force -ErrorAction SilentlyContinue }
       - name: Build and validate update catalog
         shell: pwsh
-        run: .\scripts\build-update-catalog.ps1 -Scope All -Version $env:PACKAGE_VERSION -ApplicationTag $env:RELEASE_TAG -ExistingCatalog .\dist\existing-catalog\update-catalog.json
+        run: .\scripts\build-update-catalog.ps1 -Scope Application -Version $env:PACKAGE_VERSION -ApplicationTag $env:RELEASE_TAG -Repository ${{ github.repository }} -ExistingCatalog .\dist\existing-catalog\update-catalog.json
       - name: Validate wiki sources
         shell: pwsh
         run: .\scripts\build-wiki.ps1
@@ -99,9 +99,8 @@ jobs:
         with:
           name: GW-GUI-${{ env.PACKAGE_VERSION }}-win-x64
           path: |
-            dist/GW-GUI-*.zip
-            dist/GW-GUI-*.exe
-            dist/GW-GUI-Module-*.zip.sha256
+            dist/GW-GUI-*-win-x64-portable.zip
+            dist/GW-GUI-*-win-x64-setup.exe
             dist/SHA256SUMS.txt
             dist/update-catalog.json
           if-no-files-found: error
@@ -110,7 +109,7 @@ jobs:
         shell: pwsh
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create $env:GITHUB_REF_NAME dist/GW-GUI-*.zip dist/GW-GUI-*.exe dist/GW-GUI-Module-*.zip.sha256 dist/SHA256SUMS.txt --verify-tag --generate-notes
+        run: gh release create $env:GITHUB_REF_NAME dist/GW-GUI-*-win-x64-portable.zip dist/GW-GUI-*-win-x64-setup.exe dist/SHA256SUMS.txt --verify-tag --generate-notes
       - name: Publish requested GitHub release
         if: github.event_name == 'workflow_dispatch'
         shell: pwsh
@@ -131,9 +130,8 @@ jobs:
           }
           $arguments = @(
             'release', 'create', $tag,
-            'dist/GW-GUI-*.zip',
-            'dist/GW-GUI-*.exe',
-            'dist/GW-GUI-Module-*.zip.sha256',
+            'dist/GW-GUI-*-win-x64-portable.zip',
+            'dist/GW-GUI-*-win-x64-setup.exe',
             'dist/SHA256SUMS.txt',
             '--title', $title
           )
@@ -155,10 +153,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release view component-catalog
+          gh release view application-catalog
           if ($LASTEXITCODE -ne 0) {
-            gh release create component-catalog --title 'GW GUI component catalog' --notes 'Machine-readable update catalog.' --latest=false
+            gh release create application-catalog --title 'GW GUI application catalog' --notes 'Machine-readable application update catalog.' --latest=false
           }
           if ($LASTEXITCODE -ne 0) { throw 'Unable to create the component catalog release.' }
-          gh release upload component-catalog .\dist\update-catalog.json --clobber
+          gh release upload application-catalog .\dist\update-catalog.json --clobber
           if ($LASTEXITCODE -ne 0) { throw 'Unable to publish the component catalog.' }

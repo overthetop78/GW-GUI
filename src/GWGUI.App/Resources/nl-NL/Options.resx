@@ -200,4 +200,12 @@
   <data name="Updates.PreparationFailed"><value>Kan de update niet voorbereiden.</value></data>
   <data name="Updates.InstallSucceeded"><value>Updates zijn succesvol geïnstalleerd.</value></data>
   <data name="Updates.InstallRestored"><value>De update is mislukt en de vorige versie is hersteld. {0}</value></data>
+  <data name="Updates.ModuleInstallDescription"><value>Installeer een emulatiemodule van een ZIP archief of de directe update catalogus URL.</value></data>
+  <data name="Updates.ModuleInstallFromFile"><value>Installeren vanaf een bestand</value></data>
+  <data name="Updates.ModuleInstallFromUrl"><value>Installeren vanaf een URL</value></data>
+  <data name="Updates.ModuleCatalogUrlHint"><value>Rechtstreeks HTTPS URL van de module-updatecatalogus (.json)</value></data>
+  <data name="Updates.ModuleArchiveFilter"><value>Modulearchieven (*.zip)|*.zip</value></data>
+  <data name="Updates.ModuleCatalogUrlRequired"><value>Voer het directe HTTPS URL van een module-updatecatalogus.</value></data>
+  <data name="Updates.ModuleInstallConfirm"><value>Module installeren {0} versie {1}? GW GUI zal sluiten en opnieuw starten.</value></data>
+  <data name="Updates.ModuleInstallFailed"><value>Kan de installatie van de module niet voorbereiden.</value></data>
 </root>

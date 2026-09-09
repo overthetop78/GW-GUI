@@ -15,8 +15,16 @@ public sealed record UpdateExecutionPlan(
 public sealed record PreparedUpdateComponent(
     string ComponentId,
     UpdateComponentKind Kind,
+    UpdateComponentOperation Operation,
     string Version,
     string PreparedDirectory);
+
+public enum UpdateComponentOperation
+{
+    UpdateApplication,
+    InstallModule,
+    UpdateModule
+}
 
 public enum UpdateTransactionStatus
 {

@@ -232,4 +232,12 @@
   <data name="Updates.PreparationFailed"><value>Unable to prepare the update.</value></data>
   <data name="Updates.InstallSucceeded"><value>Updates were installed successfully.</value></data>
   <data name="Updates.InstallRestored"><value>The update failed and the previous version was restored. {0}</value></data>
+  <data name="Updates.ModuleInstallDescription"><value>Install an emulation module from a ZIP archive or its direct update catalog URL.</value></data>
+  <data name="Updates.ModuleInstallFromFile"><value>Install from a file</value></data>
+  <data name="Updates.ModuleInstallFromUrl"><value>Install from a URL</value></data>
+  <data name="Updates.ModuleCatalogUrlHint"><value>Direct HTTPS URL of the module update catalog (.json)</value></data>
+  <data name="Updates.ModuleArchiveFilter"><value>Module archives (*.zip)|*.zip</value></data>
+  <data name="Updates.ModuleCatalogUrlRequired"><value>Enter the direct HTTPS URL of a module update catalog.</value></data>
+  <data name="Updates.ModuleInstallConfirm"><value>Install module {0} version {1}? GW GUI will close and restart.</value></data>
+  <data name="Updates.ModuleInstallFailed"><value>Unable to prepare the module installation.</value></data>
 </root>
