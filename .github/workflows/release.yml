@@ -79,10 +79,14 @@ jobs:
         run: |
           New-Item -ItemType Directory -Path .\dist -Force | Out-Null
           gh release download application-catalog --pattern update-catalog.json --dir .\dist\existing-catalog
-          if ($LASTEXITCODE -ne 0) { Remove-Item -LiteralPath .\dist\existing-catalog -Recurse -Force -ErrorAction SilentlyContinue }
+          if ($LASTEXITCODE -ne 0) {
+            Remove-Item -LiteralPath .\dist\existing-catalog -Recurse -Force -ErrorAction SilentlyContinue
+            Write-Host 'No existing application catalog found; creating the first one.'
+            $global:LASTEXITCODE = 0
+          }
       - name: Build and validate update catalog
         shell: pwsh
-        run: .\scripts\build-update-catalog.ps1 -Scope Application -Version $env:PACKAGE_VERSION -ApplicationTag $env:RELEASE_TAG -Repository ${{ github.repository }} -ExistingCatalog .\dist\existing-catalog\update-catalog.json
+        run: .\scripts\build-update-catalog.ps1 -Scope Application -Version $env:PACKAGE_VERSION -ApplicationTag $env:RELEASE_TAG -Repository '${{ github.repository }}' -ExistingCatalog .\dist\existing-catalog\update-catalog.json
       - name: Validate wiki sources
         shell: pwsh
         run: .\scripts\build-wiki.ps1

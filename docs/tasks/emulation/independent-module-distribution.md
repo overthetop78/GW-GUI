@@ -127,8 +127,10 @@
     - [x] 9.1.1 Préparer GitHub à exécuter les workflows
       - [x] Commiter et pousser l’ensemble de l’état validé sur `main`, puis inscrire le commit distant dans `docs/tasks/emulation/independent-module-distribution-validation.md`.
       - [x] Modifier `.github/workflows/sdk-release.yml`, `.codex/config.toml`, `docs/project/release.md` et `docs/architecture/emulation-sdk-versioning.md` pour utiliser NuGet Trusted Publishing avec OIDC, sans clé permanente ni secret `NUGET_API_KEY`; faire créer la stratégie NuGet correspondant à `overthetop78/GW-GUI` et `sdk-release.yml`, puis inscrire sa présence dans `docs/tasks/emulation/independent-module-distribution-validation.md`.
-  - [x] 9.2 Publier les composants indépendants
-    - [x] 9.2.1 Publier les modules officiels et le SDK
+  - [ ] 9.2 Publier les composants indépendants
+    - [ ] 9.2.1 Publier une version de GW GUI capable d’utiliser les modules indépendants
+      - [ ] Préparer, publier et contrôler la première release de l’application fondée sur cette architecture. Son paquet ne doit contenir aucun module, son catalogue doit désigner cette release et ses notes doivent expliquer l’installation indépendante des modules.
+    - [x] 9.2.2 Publier les modules officiels et le SDK
       - [x] Publier les releases et catalogues Amiga et Atari aux adresses inscrites dans leurs manifestes, puis inscrire leurs tags, actifs et URL dans `docs/tasks/emulation/independent-module-distribution-validation.md` sans ajouter leurs adresses à une constante ou une liste dans GW GUI.
       - [x] Publier `GWGUI.Emulation.SDK` 1.0.0 sur NuGet.org avec le tag prévu, puis inscrire le paquet, le tag et la release dans `docs/tasks/emulation/independent-module-distribution-validation.md`.
   - [ ] 9.3 Effectuer la validation utilisateur
