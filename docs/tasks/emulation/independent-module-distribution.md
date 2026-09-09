@@ -140,7 +140,7 @@
       - [x] Construire l’application avec un dossier `Modules` vide par défaut, ajouter les options longues `--AllModules` et `--Module` pour inclure tous les modules ou sélectionner un ou plusieurs identifiants, puis refuser les options contradictoires, les identifiants inconnus et les doublons.
       - [x] Appliquer le même dossier `Modules` vide au paquet portable et à l’installateur, puis adapter leur contrôle d’installation propre.
       - [x] Mettre à jour `README.md` et `docs/project/scripts.md`, supprimer entièrement `build`, vérifier un build Debug vide et des builds ciblés, puis laisser uniquement le build Debug sans module demandé par l’utilisateur.
-  - [ ] 9.4 Rendre les modules officiels disponibles à la découverte
+  - [x] 9.4 Rendre les modules officiels disponibles à la découverte
     - [x] 9.4.1 Définir un répertoire distant sans connaissance des modules dans l’application
       - [x] Créer les contrats du répertoire de modules sous `src/GWGUI.Updates/Contracts` avec une version de schéma, une date de génération et des entrées contenant uniquement l’identifiant, le nom affiché et l’URL HTTPS directe du catalogue propre au module.
       - [x] Créer sous `module-registry` une entrée Amiga et une entrée Atari, puis faire ajouter chaque futur module par un nouveau fichier de registre sans modifier une liste dans le code ou dans un script.
@@ -159,8 +159,8 @@
     - [x] 9.4.5 Vérifier la découverte et le build
       - [x] Ajouter sous `tests/GWGUI.Tests/Updates` les tests du schéma de répertoire, des entrées invalides, de la compatibilité hôte et de l’exclusion des modules déjà installés.
       - [x] Exécuter les tests ciblés, construire `module-directory.json`, exécuter l’audit Argos et produire un build Debug propre sans module, puis inscrire les résultats et la version affichée dans `docs/tasks/emulation/independent-module-distribution-validation.md`.
-    - [ ] 9.4.6 Publier le premier répertoire officiel
-      - [ ] Commiter et pousser les fichiers validés sur `main`, exécuter le workflow du répertoire, contrôler son URL et son contenu Amiga/Atari, puis inscrire la publication dans `docs/tasks/emulation/independent-module-distribution-validation.md`.
+    - [x] 9.4.6 Publier le premier répertoire officiel
+      - [x] Commiter et pousser les fichiers validés sur `main`, exécuter le workflow du répertoire, contrôler son URL et son contenu Amiga/Atari, puis inscrire la publication dans `docs/tasks/emulation/independent-module-distribution-validation.md`.
   - [ ] 9.5 Effectuer la validation utilisateur
     - [ ] 9.5.1 Vérifier les parcours visibles
       - [ ] Faire vérifier par l’utilisateur l’installation depuis un ZIP, l’installation depuis une URL, la mise à jour indépendante d’un module et la mise à jour de GW GUI conservant tous les modules, puis inscrire son résultat dans `docs/tasks/emulation/independent-module-distribution-validation.md`.

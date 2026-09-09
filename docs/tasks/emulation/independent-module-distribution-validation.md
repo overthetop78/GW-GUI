@@ -149,3 +149,10 @@ Le build Debug propre exécuté avec `scripts/build.ps1 -Configuration Debug` a 
 restauration des dépendances. `build` contient uniquement `Debug`, le dossier
 `build/Debug/GW GUI/Modules` est vide, et `gwgui.exe` ainsi que `lib/gwgui.app.dll` portent la version
 produit `0.3.0`.
+
+Le commit `0dfe5822` a été poussé sur `origin/main`. L’exécution GitHub Actions `34367589602` a
+ensuite publié avec succès le premier répertoire officiel dans la release technique
+`module-directory`. Son URL directe est
+`https://github.com/overthetop78/GW-GUI/releases/download/module-directory/module-directory.json`.
+Le document public a été téléchargé et contrôlé : schéma 1, deux entrées, Amiga 1.0.0 et Atari
+1.0.0, chacune reliée à son catalogue indépendant public.
