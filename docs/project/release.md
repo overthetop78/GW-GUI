@@ -111,8 +111,8 @@ Ces fonctions sont réalisées par les workflows :
   `module-<id>-catalog` ;
 - le paquet portable et l’installateur contiennent `Updater/gwgui.updater.exe`.
 
-La première publication réelle de chaque type doit encore confirmer sur GitHub les actifs et URL
-produits.
+Les publications réelles de GW GUI 0.3.0, des modules Amiga et Atari 1.0.0 et du SDK 1.0.0 ont
+confirmé les actifs, catalogues et URL produits.
 
 ## 7. Publier le SDK d’émulation
 
@@ -132,6 +132,6 @@ La version `X.Y.Z` doit être identique dans :
 
 Après commit et push sur `main`, créer et pousser le tag. `.github/workflows/sdk-release.yml` demande
 un jeton OIDC GitHub, l’échange avec `NuGet/login@v1` contre une clé temporaire, exécute les tests,
-crée le paquet et sa documentation XML, publie sur NuGet.org, puis crée la release GitHub du SDK avec
-ses notes. La politique de compatibilité est détaillée dans
+crée le paquet, sa documentation XML et son README, publie sur NuGet.org, puis crée la release GitHub
+du SDK avec ses notes. La politique de compatibilité est détaillée dans
 [`emulation-sdk-versioning.md`](../architecture/emulation-sdk-versioning.md).

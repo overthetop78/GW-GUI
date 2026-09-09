@@ -8,7 +8,7 @@ installation de GW GUI.
 
 | Paquet SDK | API hôte | Schéma du manifeste |
 |---|---|---|
-| `1.0.0` | `1.0` | `2` |
+| `1.0.1` | `1.0` | `2` |
 
 La version du paquet suit SemVer avec trois nombres. La version d’API hôte possède deux nombres et
 représente la compatibilité binaire et comportementale des contrats consommés par un module. Le

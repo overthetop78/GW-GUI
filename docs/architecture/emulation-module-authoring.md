@@ -42,7 +42,7 @@ machines, les champs et le runtime ; GW GUI construit toute l'interface.
     <AssemblyName>gwgui.emulation.commodore</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="GWGUI.Emulation.SDK" Version="1.0.0" />
+    <PackageReference Include="GWGUI.Emulation.SDK" Version="1.0.1" />
     <None Update="module.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>
@@ -475,9 +475,8 @@ L'écosystème externe reste différé sur les points suivants :
 - aucun déchargement à chaud : ajouter, retirer ou mettre à jour un module demande un redémarrage.
 
 Le SDK `GWGUI.Emulation.SDK`, sa politique de compatibilité et le modèle `sdk/module-template` sont
-préparés pour les dépôts indépendants. Sa première publication sur NuGet.org doit précéder la
-construction publique d’un module tiers fondé sur cette référence. Cette publication ne change ni
-la version ni le paquet de GW GUI.
+publiés pour les dépôts indépendants. Un module tiers peut référencer le paquet depuis NuGet.org et
+gérer sa propre publication sans changer la version ni le paquet de GW GUI.
 
 ## 16. Traductions embarquées
 

@@ -83,3 +83,21 @@ tag `sdk-v1.0.0`. NuGet.org a accepté le paquet principal et le paquet de symbo
 La release GitHub `https://github.com/overthetop78/GW-GUI/releases/tag/sdk-v1.0.0` contient
 `GWGUI.Emulation.SDK.1.0.0.nupkg` et `GWGUI.Emulation.SDK.1.0.0.snupkg` avec les notes de version du
 SDK.
+
+GW GUI 0.3.0 a été publié comme release **Latest** par l’exécution GitHub Actions `34352538487` :
+
+- tag et release : `v0.3.0`,
+  `https://github.com/overthetop78/GW-GUI/releases/tag/v0.3.0` ;
+- archive portable : `GW-GUI-0.3.0-win-x64-portable.zip`, SHA-256
+  `6ed1897eac7937de91c6830d60bcebc4967f2401d2326004ab37e3dfa6356b64` ;
+- installateur : `GW-GUI-0.3.0-win-x64-setup.exe` ;
+- catalogue : `application-catalog`, avec un unique composant `gwgui` de version `0.3.0` pointant
+  vers l’archive portable de cette release.
+
+Les notes publiées correspondent à `.github/release-notes/v0.3.0.md`. L’archive portable publiée a
+été téléchargée et son empreinte contrôlée. Ses 126 entrées comprennent `GW GUI/gwgui.exe`, aucun
+dossier `Modules`, aucun `module.json`, aucune DLL officielle Amiga ou Atari et aucune archive de
+module. Les actifs téléchargés uniquement pour ce contrôle ont ensuite été supprimés.
+
+Le paquet `GWGUI.Emulation.SDK` est également visible dans l’index public NuGet.org avec la version
+`1.0.0`.

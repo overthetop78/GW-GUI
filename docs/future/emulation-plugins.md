@@ -11,19 +11,17 @@ d'une seule DLL par famille, avec la même approche pour les futurs `GWGUI.Emula
 ## Projets séparés et SDK
 
 C'est utile, faisable et pratique : chaque module peut avoir son dépôt, sa version, ses tests et ses
-publications. GW GUI doit d'abord publier un petit SDK versionné contenant uniquement les contrats
-publics. Un module référencera ce SDK, jamais le projet principal.
+publications. GW GUI publie un SDK versionné contenant les contrats publics. Un module référence ce
+SDK, jamais le projet principal.
 
 Sont déjà réalisés dans le dépôt :
 
 - l'évolution de l'API hôte (version initiale `1.0` et contrôle par manifeste en place) ;
 - le raccordement des textes propres au module ;
-- le format du paquet, les dépendances privées isolées, les archives indépendantes et leur mise à jour.
+- le format du paquet, les dépendances privées isolées, les archives indépendantes et leur mise à jour ;
+- le paquet public versionné `GWGUI.Emulation.SDK` et sa politique de compatibilité.
 
-Restent différés avant de promettre cette indépendance à des projets tiers :
-
-- le paquet public versionné `GWGUI.Emulation.SDK` ;
-- la politique de compatibilité et les tests publiés contre chaque version de GW GUI prise en charge.
+Restent différés les tests publiés contre chaque version de GW GUI prise en charge.
 
 ## Sous-dossier et manifeste
 

@@ -7,7 +7,7 @@
     <RootNamespace>Example.GWGUI.Module</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="GWGUI.Emulation.SDK" Version="1.0.0" />
+    <PackageReference Include="GWGUI.Emulation.SDK" Version="1.0.1" />
     <None Update="module.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

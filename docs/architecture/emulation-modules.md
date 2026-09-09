@@ -188,7 +188,7 @@ futur projet conforme sont découverts par leur manifeste pour les builds locaux
 paquet. Le paquet distribué de GW GUI contient l’application, le lanceur et l’updater, sans dossier
 `Modules`. Les modules s’installent séparément depuis un ZIP ou l’URL de leur catalogue.
 
-Le SDK `GWGUI.Emulation.SDK` et son modèle de dépôt indépendant sont préparés. Le déchargement à
+Le SDK `GWGUI.Emulation.SDK` et son modèle de dépôt indépendant sont publiés. Le déchargement à
 chaud reste différé. L'organisation interne des différents
 moteurs derrière un contrat commun est suivie séparément dans
 [`../future/emulation-engine-organization.md`](../future/emulation-engine-organization.md).
