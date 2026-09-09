@@ -123,10 +123,10 @@
       - [x] Exécuter les tests `EmulationModuleManifestTests`, `UpdatePlanBuilderTests` et `ModuleUpdateCatalogValidatorTests`, inscrire le résultat dans `docs/tasks/emulation/independent-module-distribution-validation.md`, puis ne conserver aucun artefact créé uniquement pour cette exécution.
 
 - [ ] 9. Activer et vérifier les publications externes
-  - [ ] 9.1 Envoyer l’état validé du projet
-    - [ ] 9.1.1 Préparer GitHub à exécuter les workflows
+  - [x] 9.1 Envoyer l’état validé du projet
+    - [x] 9.1.1 Préparer GitHub à exécuter les workflows
       - [x] Commiter et pousser l’ensemble de l’état validé sur `main`, puis inscrire le commit distant dans `docs/tasks/emulation/independent-module-distribution-validation.md`.
-      - [ ] Modifier `.github/workflows/sdk-release.yml`, `.codex/config.toml`, `docs/project/release.md` et `docs/architecture/emulation-sdk-versioning.md` pour utiliser NuGet Trusted Publishing avec OIDC, sans clé permanente ni secret `NUGET_API_KEY`; faire créer la stratégie NuGet correspondant à `overthetop78/GW-GUI` et `sdk-release.yml`, puis inscrire sa présence dans `docs/tasks/emulation/independent-module-distribution-validation.md`.
+      - [x] Modifier `.github/workflows/sdk-release.yml`, `.codex/config.toml`, `docs/project/release.md` et `docs/architecture/emulation-sdk-versioning.md` pour utiliser NuGet Trusted Publishing avec OIDC, sans clé permanente ni secret `NUGET_API_KEY`; faire créer la stratégie NuGet correspondant à `overthetop78/GW-GUI` et `sdk-release.yml`, puis inscrire sa présence dans `docs/tasks/emulation/independent-module-distribution-validation.md`.
   - [ ] 9.2 Publier les composants indépendants
     - [ ] 9.2.1 Publier les modules officiels et le SDK
       - [ ] Publier les releases et catalogues Amiga et Atari aux adresses inscrites dans leurs manifestes, puis inscrire leurs tags, actifs et URL dans `docs/tasks/emulation/independent-module-distribution-validation.md` sans ajouter leurs adresses à une constante ou une liste dans GW GUI.

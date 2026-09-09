@@ -47,3 +47,10 @@ Le dossier d’artefacts créé uniquement pour cette exécution a été supprim
 
 L’implémentation locale validée a été commitée sous `31f46d2e` puis poussée sur `origin/main` le
 9 septembre 2026.
+
+Le 9 septembre 2026, la stratégie NuGet.org Trusted Publishing `GW-GUI SDK` a été créée et apparaît
+active. Elle appartient à `overthetop78`, autorise uniquement le dépôt `overthetop78/GW-GUI` et le
+workflow `sdk-release.yml`, sans environnement GitHub, pour publier de nouveaux paquets et de
+nouvelles versions correspondant exactement à `GWGUI.Emulation.SDK`. La variable GitHub Actions
+`NUGET_USER` est configurée avec le nom public `overthetop78`. Le workflow utilise OIDC et ne dépend
+d’aucune clé API permanente enregistrée dans GitHub.
