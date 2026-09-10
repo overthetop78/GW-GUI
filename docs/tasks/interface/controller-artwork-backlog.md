@@ -1,10 +1,8 @@
-# Visuels matériels supplémentaires
+# Visuels matériels supplémentaires — backlog facultatif
 
-[Sommaire](../emulation-improvements.md) · [Règles communes](rules.md)
-
-### Backlog non bloquant — visuels matériels supplémentaires
-
-Les tâches d’images ci-dessous sont conservées pour la reprise ultérieure de la bibliothèque de périphériques. Elles ne font pas partie de l’ordre d’exécution actuel du point 6, qui utilise uniquement les images déjà présentes et validées.
+Les tâches d’images ci-dessous sont conservées pour la reprise ultérieure de la bibliothèque de
+périphériques. Elles sont facultatives et ne bloquent aucun travail actuel. Les visuels déjà présents
+et leur fonctionnement sont décrits dans [`../../ui/controllers.md`](../../ui/controllers.md).
 
 - [ ] Ajouter une image réaliste validée pour chaque périphérique supplémentaire
   - [x] Ajouter dans cette checklist, avant toute création, une sous-tâche Créer distincte donnant le chemin exact de chaque image validée dans le tableau de la section 6.

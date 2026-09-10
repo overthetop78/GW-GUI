@@ -1,6 +1,7 @@
 using GWGUI.App.Functions.Emulation.Machine;
 using GWGUI.Emulation.Atari.Constants;
 using GWGUI.Emulation.Atari.Contracts;
+using GWGUI.Emulation.Atari.Dictionaries;
 using GWGUI.Emulation.Atari.Enums;
 using GWGUI.Emulation.Atari.Functions;
 using GWGUI.Emulation.Contracts;
@@ -128,6 +129,39 @@ internal static class RuntimeOptionScenarios
         Assert.DoesNotContain(previous, configured);
         Assert.Single(configured,
             item => AtariFirmwareSelectionFunctions.IsSystemRom(AtariMachineModel.Xegs, item.Category));
+    }
+
+    internal static void AtariExternalFirmwareModelsExposeOnlyUsableRomTabs()
+    {
+        foreach (var model in new[]
+                 {
+                     AtariMachineModel.Atari7800,
+                     AtariMachineModel.Lynx,
+                     AtariMachineModel.JaguarCd
+                 })
+        {
+            Assert.Contains(AtariSettingsTab.Firmware,
+                AtariCompatibilityCatalog.Get(model).VisibleTabs);
+            var firmwareFields = AtariSettingsDescriptionFunctions.Create(
+                    new AtariMachineConfiguration(model))
+                .SelectMany(block => block.Fields)
+                .Where(field => field.DefaultFolderCategory == EmulationDefaultFolderCategory.Firmware)
+                .ToArray();
+            Assert.Equal(AtariSettingsConstants.SystemFirmware, Assert.Single(firmwareFields).Id);
+        }
+
+        foreach (var model in new[]
+                 {
+                     AtariMachineModel.Atari2600,
+                     AtariMachineModel.Jaguar
+                 })
+        {
+            Assert.DoesNotContain(AtariSettingsTab.Firmware,
+                AtariCompatibilityCatalog.Get(model).VisibleTabs);
+            Assert.DoesNotContain(AtariSettingsDescriptionFunctions.Create(
+                    new AtariMachineConfiguration(model)).SelectMany(block => block.Fields),
+                field => field.DefaultFolderCategory == EmulationDefaultFolderCategory.Firmware);
+        }
     }
 
     private static EmulationOption Option(string key, bool restart) =>

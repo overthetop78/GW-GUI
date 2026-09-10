@@ -47,7 +47,7 @@ des frames du module. Le coût CPU correspondant et celui des notifications rest
 Cette visibilité WPF ne détecte pas une fenêtre simplement recouverte par une autre application.
 
 Les tests vérifient la reprise sans nouvel événement vidéo, la pause simulée, la minimisation,
-la concurrence du worker et le repli WPF. Six essais temporaires ont aussi contrôlé les trois
-rendus natifs, leurs changements d'onglet et de fenêtre, et l'identité des pipelines conservés.
-Voir le [relevé de validation](../tasks/emulation/hidden-machine-rendering-validation.md).
-Les essais des quatre machines réelles et les gains mesurés restent à confirmer par l'utilisateur.
+la concurrence du worker et le repli WPF. Les essais réalisés ont aussi contrôlé les trois rendus
+natifs, leurs changements d'onglet et de fenêtre, et l'identité des pipelines conservés. Les mesures
+utilisateur avec zéro à quatre machines confirment que la charge GPU de présentation disparaît quand
+les surfaces sont masquées. L'analyse et la réduction éventuelle du CPU restant sont différées.

@@ -161,8 +161,11 @@ une DLL d’entrée présente et une URL de catalogue HTTPS cohérente. Les chem
 
 Le plan sérialisé distingue `UpdateApplication`, `InstallModule` et `UpdateModule`. Tous les paquets
 sont préparés avant la fermeture. Plusieurs installations de modules préparées séparément peuvent
-être réunies dans ce même plan. La copie temporaire de `gwgui.updater.exe` est lancée seulement
-après cette validation et une seule fois pour toute la transaction.
+être réunies dans ce même plan. Tant que l'application n'a pas redémarré, leur état visible est
+`Téléchargé` et le bouton de fermeture devient `Finir l'installation`. La copie temporaire de
+`gwgui.updater.exe` est lancée seulement après cette validation et une seule fois pour toute la
+transaction. Une fermeture par le bouton `X` demande si l'installation doit être terminée ; le refus
+annule les téléchargements préparés et ferme la fenêtre.
 
 ## Transaction hors processus
 

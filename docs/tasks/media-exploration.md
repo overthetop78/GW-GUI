@@ -1,6 +1,8 @@
 # Exploration et visualisation des HDD et supports optiques
 
-Travail différé : commencer après le chantier en cours de création, formatage et gestion des images HDD décrit dans [le catalogue des formats](hard-disk-format-catalog.md).
+Travail différé : commencer après le chantier de création, formatage et gestion des images HDD décrit
+dans [le catalogue des formats](../project/hard-disk-format-catalog.md) et suivi dans
+[`hard-disk-images.md`](hard-disk-images.md).
 
 Toutes les cases restent ouvertes jusqu’à réalisation et vérification. La hiérarchie est : groupe de groupes de tâches (1), groupe de tâches (1.1), tâche (1.1.1), sous-tâche (1.1.1.1). Les capacités restent indépendantes des machines et émulateurs consommateurs.
 

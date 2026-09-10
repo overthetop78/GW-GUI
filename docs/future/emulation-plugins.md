@@ -77,9 +77,8 @@ WPF arbitraire.
 Un catalogue propre au module concerne seulement les textes associés aux clés de ressources : noms
 des machines, libellés et explications. Amiga et Atari embarquent leurs catalogues dans leur DLL
 via `IEmulationModuleLocalization`, avec une base neutre et les 29 cultures. Les textes hôte
-communs restent dans les ressources centrales. Le raccordement et son suivi de validation sont
-décrits dans [emulation-module-localization.md](../architecture/emulation-module-localization.md)
-et dans la [feuille de tâches](../tasks/emulation/module-autonomy.md).
+communs restent dans les ressources centrales. Le raccordement est décrit dans
+[emulation-module-localization.md](../architecture/emulation-module-localization.md).
 
 Lorsqu'une clé existe à la fois dans le module et dans les ressources internes, la traduction du
 module est prioritaire. Cela permet de corriger ou renommer un champ dans une nouvelle version du
@@ -87,13 +86,12 @@ module sans attendre une nouvelle version de GW GUI. Les ressources internes ser
 repli pour les textes communs. Le mécanisme est validé sur Amiga et Atari. Les catalogues embarqués
 remplacent la proposition de fichiers de langue externes par module.
 
-## Sélection des modules officiels
+## Découverte de modules officiels
 
-Cette idée correspondait à des cases dans l'installateur pour omettre Amiga ou Atari. Elle n'apporte
-rien tant que le paquet complet reste raisonnable. Elle est différée jusqu'au moment où le nombre ou
-la taille des modules justifiera une installation personnalisée. La première version devra extraire
-les modules officiels déjà contenus dans l'installateur ; un installateur téléchargeant uniquement la
-sélection ne sera utile que si la réduction de la taille du paquet devient nécessaire.
+La distribution de GW GUI reste vide de modules. Les modules officiels disponibles sont présentés
+par la fenêtre Mises à jour et installés indépendamment depuis leurs propres archives. Une future
+évolution pourrait ajouter plusieurs sources de découverte ou des filtres au catalogue, mais elle ne
+doit pas réintroduire les modules dans l'installateur de l'application.
 
 ## `AssemblyLoadContext`
 
@@ -125,5 +123,5 @@ dépend pas des DLL qu'elle doit remplacer. Aucune mise à jour n'est appliquée
 une machine émulée fonctionne. Plusieurs mises à jour sont toujours regroupées dans une seule
 fermeture et un seul redémarrage.
 
-Ce parcours, le catalogue commun, les contrôles d'archive et la restauration sont réalisés. Le
+Ce parcours, les catalogues séparés, les contrôles d'archive et la restauration sont réalisés. Le
 remplacement sans redémarrage reste différé.

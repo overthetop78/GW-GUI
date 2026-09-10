@@ -61,7 +61,11 @@ Pour les prochaines familles, conserver dès le départ une distinction lisible 
 commune et les adaptations du moteur présent, sans construire à l'avance un mécanisme complexe
 pour plusieurs moteurs. Réutiliser les traitements de `GWGUI.Emulation` lorsqu'ils sont génériques.
 
-## Reprise et validation du chantier
+## Conditions de reprise et validation du chantier
+
+Ce chantier ne devient une tâche active qu'après une décision explicite, notamment lors de l'ajout
+d'un second moteur dans une famille ou d'un moteur interne. À ce moment-là, une nouvelle feuille de
+tâches devra être écrite à partir du code alors présent.
 
 1. Recenser les comportements spécifiques dispersés dans les classes communes.
 2. Définir les points d'extension nécessaires à partir de ces comportements existants.

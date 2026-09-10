@@ -112,6 +112,7 @@ La validation d’un support RAW refuse les signatures de conteneurs reconnues, 
 
 Documenter la spécification et sa version, implémenter le constructeur dans sa couche, puis tester sur des flux simulés : réouverture indépendante lorsque possible, structures et sommes de contrôle, allocation, limites, erreurs et conservation des données. Les adaptateurs déclarent ensuite explicitement leur compatibilité.
 
-Les références techniques et les travaux restant à effectuer figurent dans [le catalogue de formats](hard-disk-format-catalog.md).
+Les références techniques et l’état confirmé figurent dans [le catalogue de formats](hard-disk-format-catalog.md).
+Les capacités encore ouvertes sont suivies dans [la feuille HDD](../tasks/hard-disk-images.md).
 
-Après ce chantier, les [tâches d’exploration et de visualisation des HDD et supports optiques](media-exploration-tasks.md) prévoient la réutilisation des interfaces existantes, y compris la représentation des couches optiques lorsque les images en conservent les informations.
+Après ce chantier, les [tâches d’exploration et de visualisation des HDD et supports optiques](../tasks/media-exploration.md) prévoient la réutilisation des interfaces existantes, y compris la représentation des couches optiques lorsque les images en conservent les informations.

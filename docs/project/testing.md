@@ -1,6 +1,7 @@
 # Tests et contrôles actuels
 
-La reconstruction de la suite est détaillée dans [la feuille de tâches des tests rapides de release](../tasks/release-tests.md).
+La suite automatisée actuelle est décrite directement dans ce document. Les anciens plans de
+reconstruction ont été retirés après intégration de leurs résultats.
 
 Les commandes de cette page s’exécutent depuis la racine du dépôt.
 

@@ -72,6 +72,10 @@ Chaque nouveau libellé, état, erreur, avertissement et texte accessible est aj
 
 ## Options, matériel et diagnostics
 
+Les préférences propres aux machines et l’installation des modules sont décrites séparément dans
+[Interface d’émulation et gestion des modules](emulation.md). Les associations physiques et leurs
+représentations sont détaillées dans [Contrôleurs, associations et représentations](controllers.md).
+
 ### Options générales
 
 - La fenêtre conserve sa taille, reste modale et utilise des onglets horizontaux. Un bouton Fermer global hors des onglets a le même effet que la croix.

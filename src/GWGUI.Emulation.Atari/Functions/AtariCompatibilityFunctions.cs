@@ -163,6 +163,7 @@ internal static class AtariCompatibilityFunctions
         var portCount = hardware.Ports.Max(port => port.Count);
         var visibleTabs = EnumValues<AtariSettingsTab>()
             .Where(tab => hasKeyboard || tab != AtariSettingsTab.Keyboard)
+            .Where(tab => hardware.Firmware.Count > 0 || tab != AtariSettingsTab.Firmware)
             .Where(tab => tab != AtariSettingsTab.Mouse)
             .ToArray();
         return NewDefinition(model, hardware.Core, options, hardware.Firmware, media, portCount, visibleTabs);

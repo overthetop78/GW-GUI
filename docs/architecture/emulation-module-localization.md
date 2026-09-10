@@ -1,10 +1,9 @@
 # Traductions des modules d'émulation
 
-## État de ce document
+## État actuel
 
-Inventaire de préparation du point 1 de `docs/tasks/emulation/module-autonomy.md`.
-Le mécanisme décrit comme actuel est vérifié dans les sources ; le raccordement aux modules
-reste à implémenter. Ce document ne constate pas une migration déjà effectuée.
+Le raccordement est réalisé dans le SDK, l'hôte et les modules Amiga et Atari. Ce document décrit
+le mécanisme en production et conserve l'inventaire des clés pour vérifier leur propriétaire.
 
 ## Fonctionnement actuel
 
@@ -75,7 +74,7 @@ Tous les chemins sont relatifs à `src/GWGUI.App/`.
 | `Controllers/Emulation/Options/EmulationEmulatorManagementController.cs` | Textes hôte de gestion du cœur, à préserver |
 | `Presenters/Common/ControlErrorPresenter.cs` | Traduction des messages communs d'émulation, à préserver avec leur contexte |
 
-## Résolution à implémenter
+## Résolution mise en place
 
 La recherche reçoit explicitement le module concerné. Elle interroge ses ressources dans
 la culture UI demandée puis ses cultures parentes, la langue de repli `en-US` et sa base
@@ -89,7 +88,7 @@ unités, noms et abréviations invariants communs restent dans la base App ; ceu
 à une famille résident dans sa base. Les clés dont le nom semble générique ne sont déplacées
 que lorsque leur propriété est établie par l'inventaire de leurs usages.
 
-Le contrat commun reçoit une clé et une `CultureInfo`, retourne un indicateur de présence
+Le contrat commun `IEmulationModuleLocalization` reçoit une clé et une `CultureInfo`, retourne un indicateur de présence
 et la valeur trouvée. Les ressources de toutes les cultures sont embarquées dans l'assembly
 principal du module, avec des noms distincts, sans assembly satellite à installer. Les sources
 restent des RESX maintenables avec Argos. Un lecteur commun dans `GWGUI.Emulation` réalise

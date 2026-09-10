@@ -1,32 +1,31 @@
 # Tâches de GW GUI
 
-Ce dossier contient uniquement les travaux restant à exécuter ou les feuilles de suivi encore actives. Les règles permanentes se trouvent dans [project/rules.md](../project/rules.md).
+Ce dossier contient uniquement le travail encore ouvert. Les résultats terminés sont transférés dans
+la documentation durable puis leur feuille est supprimée. Les règles permanentes se trouvent dans
+[`../project/rules.md`](../project/rules.md) et l’organisation documentaire dans
+[`../project/documentation.md`](../project/documentation.md).
 
-## Qualité générale
+## Travail à reprendre après validation ou disponibilité
 
-1. [Qualité et refactorisation du code](code-quality.md)
-2. [Versionnement et publication](release.md)
-3. [Reconstruction des tests rapides de release](release-tests.md)
-4. [Validation finale des images et du matériel](validation.md), toujours en dernier pour ce parcours.
+- [Publications restantes](release.md) — prochaines publications de l’application, du module Atari et, si son contrat évolue, du SDK.
+- [Atari](emulation/atari.md) — validations, accessibilité, Jaguar CD, guide et étude Atari System 1; reporté.
+- [Validations d’émulation](emulation/remaining-validations.md) — Amiga, cassette Atari800, GameInput, CPU masqué et distribution indépendante; reporté.
+- [Contrôleurs d’émulation](interface/emulation/controllers.md) — régressions visuelles, associations et validations matérielles; reporté.
+- [Validation finale](validation.md) — corpus `image_test`, Greaseweazle et entrées/sorties internes; reporté.
 
-## Organisation du projet
+## Images HDD et supports optiques
 
-- [Organisation GitHub et suivi public du projet](project/github-public-project.md)
+- [Création et cycle de vie des images HDD](hard-disk-images.md) — capacités et variantes encore ouvertes.
+- [Exploration et visualisation des HDD et supports optiques](media-exploration.md) — chantier différé après le socle HDD.
 
-## Émulation
+## Plans facultatifs ou différés par décision
 
-- [Autonomie des modules : traductions, compatibilité, paquets et mises à jour](emulation/module-autonomy.md)
-- [Amiga](emulation/amiga.md)
-- [Atari](emulation/atari.md)
-- [Commodore](emulation/commodore.md)
-- [Catalogue global des ordinateurs et consoles](emulation/computer-console-catalog.md)
-- [Corrections des cassettes Atari800](emulation/atari800-cassette.md)
-- [GameInput](emulation/gameinput.md)
+- [Visuels matériels supplémentaires](interface/controller-artwork-backlog.md) — backlog facultatif.
+- [Organisation GitHub et suivi public](project/github-public-project.md) — changement important explicitement reporté.
 
-## Interface d’émulation
+Chaque feuille conserve son ordre d’exécution. Une case est cochée seulement après réalisation et
+vérification de l’action correspondante.
 
-- [Améliorations de l’interface d’émulation](interface/emulation-improvements.md)
-- [Séparation des préférences, de l’émulation et des mises à jour](interface/options-emulation-updates-navigation.md)
-- [Installation groupée des modules et fenêtres de paramètres par module](interface/module-settings-and-batched-installation.md)
-
-Chaque document conserve son propre ordre d’exécution. Une case est cochée immédiatement après la réalisation et la vérification de l’action correspondante.
+La présence d’une action `commit`, `push` ou création de tag dans une feuille ne l’autorise pas. Ces
+opérations Git sont exécutées uniquement après une demande explicite de l’utilisateur; une demande
+explicite de publication autorise les opérations prévues par sa procédure.

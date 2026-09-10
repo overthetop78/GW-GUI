@@ -33,7 +33,7 @@ Les liens privilégient du code d’émulation, des tests ou des descriptions de
 - [3. Règles de conception](#3-règles-de-conception-déduites-des-matériels)
 - [4. Sources transversales](#4-sources-transversales-à-exploiter-en-priorité)
 - [5. Points restant à confirmer](#5-points-restant-à-confirmer-avant-implémentation)
-- Dossiers spécialisés : [Amiga avec PUAE/Libretro](../tasks/emulation/amiga.md) · [Atari avec les cœurs Libretro retenus](../tasks/emulation/atari.md)
+- Documents spécialisés : [architecture des modules](../architecture/emulation-modules.md) · [interface d’émulation](../ui/emulation.md) · [travail Atari encore reporté](../tasks/emulation/atari.md)
 
 ## 1. Inventaire transversal des composants
 

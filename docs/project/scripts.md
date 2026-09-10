@@ -1,11 +1,16 @@
 # Scripts du projet
 
+Ce document est l’inventaire durable de `scripts/`. Tout nouveau script conservé dans le dépôt doit
+être ajouté au tableau et recevoir une section indiquant son objectif, ses paramètres, ses sorties et
+ses appelants automatiques éventuels.
+
 Ce document décrit tous les fichiers présents dans `scripts`. Les commandes sont à exécuter depuis la racine du dépôt, sauf indication contraire.
 
 ## Vue d’ensemble
 
 | Script | Usage | Appelé automatiquement par |
 |---|---|---|
+| `audit-docs.ps1` | Contrôle de la structure et des liens de `docs` | Aucun |
 | `build.ps1` | Construction locale de GW GUI | Aucun |
 | `build-module-directory.ps1` | Production du répertoire des modules installables | Workflow de publication du répertoire de modules |
 | `build-update-catalog.ps1` | Production du catalogue de mises à jour | Workflows de publication de l’application et des modules |
@@ -250,6 +255,19 @@ Il est conservé et exécuté par le workflow de publication de l’application.
 Les trois scripts de test ont donc chacun une couverture utile : les deux contrôles d’installateur font partie de la publication, et le contrôle d’accessibilité couvre un comportement interactif qui ne peut pas être vérifié par ces workflows. Aucun script de test du dossier n’est inutilisé ou inutile.
 
 ## Utilitaires
+
+### `audit-docs.ps1`
+
+Contrôle tous les fichiers Markdown sous `docs`, leurs liens locaux et leur accessibilité depuis
+`docs/README.md`. Il échoue aussi lorsqu’une feuille sous `docs/tasks` ne contient plus aucune case
+ouverte, afin qu’un plan terminé soit transféré puis supprimé.
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/audit-docs.ps1
+```
+
+Le script ne modifie aucun fichier. Il affiche chaque lien cassé, document non indexé ou feuille
+terminée, puis renvoie un code de sortie non nul.
 
 ### `stop-debug-gwgui.ps1`
 

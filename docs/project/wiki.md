@@ -26,4 +26,8 @@ La préparation locale et la publication sont séparées pour pouvoir vérifier 
 
 Les noms de pages sont uniques et portent le code complet de langue. Les guides repris constituent une base à revoir progressivement avec le code actuel. L’aide de l’application ouvre directement la page de sa langue, avec un repli anglais pour une langue inconnue.
 
+Le wiki contient l’aide destinée aux utilisateurs. Les décisions techniques, procédures de
+développement et tâches restantes restent sous `docs/`; le wiki ne sert pas d’historique de
+l’implémentation.
+
 Le script de publication utilise un manifeste pour retirer les anciens fichiers issus de ses publications. Les PDF ne sont plus générés ni distribués.

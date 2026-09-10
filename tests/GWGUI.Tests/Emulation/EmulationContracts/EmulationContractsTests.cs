@@ -26,4 +26,6 @@ public class EmulationContractsTests
         RuntimeOptionScenarios.OnlyRecognizedHotOptionsArePropagated();
     [Fact] public void Atari800CoreMachinesExposeOneSystemRomSlot() =>
         RuntimeOptionScenarios.Atari800CoreMachinesExposeOneSystemRomSlot();
+    [Fact] public void AtariExternalFirmwareModelsExposeOnlyUsableRomTabs() =>
+        RuntimeOptionScenarios.AtariExternalFirmwareModelsExposeOnlyUsableRomTabs();
 }

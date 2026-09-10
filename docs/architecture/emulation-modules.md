@@ -2,6 +2,8 @@
 
 Le contrat de raccordement exhaustif destiné à un auteur qui ne possède pas le code de GW GUI est
 décrit dans [`emulation-module-authoring.md`](emulation-module-authoring.md).
+La [résolution des traductions](emulation-module-localization.md) et les
+[mises à jour indépendantes](emulation-module-updates.md) complètent ce contrat.
 
 ## Fonctionnement
 
@@ -11,7 +13,8 @@ simplement les machines et onglets de sa famille. L'application fonctionne aussi
 `Modules` ou avec un dossier vide.
 
 Le chargement est effectué une fois au démarrage : ajouter, remplacer ou retirer une DLL demande de
-redémarrer GW GUI. L'échec d'un module est journalisé sans empêcher les autres de fonctionner. Le
+terminer l'installation puis de redémarrer GW GUI. Plusieurs modules téléchargés sont regroupés dans
+une seule transaction et un seul redémarrage. L'échec d'un module est journalisé sans empêcher les autres de fonctionner. Le
 retrait d'une DLL ne supprime jamais les configurations ni les données utilisateur.
 
 ## Manifeste obligatoire et version d'API

@@ -1,5 +1,11 @@
 # Organisation GitHub et suivi public du projet — tâches
 
+> **Plan reporté.** La création de l’organisation, le transfert du dépôt, les formulaires Issues et
+> le Project GitHub demandent des changements importants. Ils ne bloquent ni le développement ni
+> les publications actuelles et ne doivent commencer qu’après une nouvelle décision explicite.
+> Les commits, pushs, tags et opérations GitHub décrits dans ce plan exigent aussi une demande
+> explicite; les cases ne constituent pas une autorisation de les effectuer.
+
 Ce document décrit le passage de `overthetop78/GW-GUI` vers une organisation GitHub dédiée, puis
 la mise en place d’un suivi public fondé sur Issues et Projects. Les opérations sont ordonnées pour
 ne pas casser les mises à jour de GW GUI, les modules, le wiki, les releases ni la publication du
@@ -62,8 +68,8 @@ stratégie NuGet Trusted Publishing doit également être réassociée au nouvea
       - [ ] Modifier `README.md` et `src/GWGUI.Emulation/README.md` pour remplacer les liens de releases, wiki, modèle de module et guides par leurs adresses définitives.
     - [ ] 3.4.2 Modifier la documentation de publication
       - [ ] Modifier `.codex/config.toml`, `docs/project/release.md` et `docs/architecture/emulation-sdk-versioning.md` pour employer le nouveau propriétaire GitHub dans les procédures de release et de Trusted Publishing.
-    - [ ] 3.4.3 Modifier les documents de validation encore actifs
-      - [ ] Modifier `docs/tasks/emulation/independent-module-distribution.md` et `docs/tasks/emulation/independent-module-distribution-validation.md` pour remplacer les URL devenues anciennes sans altérer les résultats de validation déjà inscrits.
+    - [ ] 3.4.3 Modifier les documents actuels sur les modules indépendants
+      - [ ] Modifier `docs/architecture/emulation-modules.md`, `docs/architecture/emulation-module-updates.md`, `docs/project/release.md` et `docs/tasks/emulation/remaining-validations.md` pour remplacer les URL devenues anciennes sans altérer les résultats déjà inscrits.
     - [ ] 3.4.4 Réviser les anciennes notes de version
       - [ ] Modifier les fichiers concernés sous `.github/release-notes` pour que leurs liens de comparaison et de wiki utilisent le dépôt transféré, tout en conservant leur contenu historique.
   - [ ] 3.5 Contrôler l’inventaire des anciennes adresses

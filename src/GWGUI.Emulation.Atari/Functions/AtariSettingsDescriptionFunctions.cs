@@ -168,7 +168,7 @@ internal static class AtariSettingsDescriptionFunctions
                         DefaultResolution(configuration.Model)), Resolutions(configuration.Model))),
             Audio(configuration, false)
         };
-        if (configuration.Core == AtariEmulator.Atari800)
+        if (model.Firmware.Count > 0)
         {
             var firmwareFields = ClassicFirmwareFields(configuration);
             blocks.Add(Block(AtariSettingsDescriptionFunctionsConstants.Firmware, EmulationMachineTab.Rom,

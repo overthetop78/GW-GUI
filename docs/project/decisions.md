@@ -156,6 +156,17 @@ Ils sont rarement nécessaires et n’ont pas besoin d’occuper la fenêtre pri
 - La fenêtre principale utilise les onglets Lecture, Écriture, Conversion, Visualisation, Explorateur et Outils. Effacement et nettoyage sont regroupés dans Outils; les diagnostics rares restent des dialogues.
 - La matrice format ↔ extensions est portée par le catalogue de formats. La source détectée filtre les sorties réellement compatibles; une ligne cochée sans extension explicite utilise son extension implicite, tandis que les coches d’extensions la remplacent ou demandent plusieurs conteneurs.
 - Les paramètres rarement utilisés sont placés dans des panneaux Avancé propres à chaque opération. Ils sont mémorisés, inclus dans les profils de l’onglet et réinitialisés en choisissant le profil système permanent Par défaut.
+- La distribution de GW GUI reste vide de modules d’émulation. Chaque module possède sa version, son manifeste, son archive et son catalogue de mise à jour; une mise à jour de module ne republie pas l’application.
+- GW GUI découvre les modules installés par leur manifeste. Le menu Émulation ajoute automatiquement une entrée par module chargé et ouvre la même fenêtre générique avec les données de ce module.
+- La fenêtre Mises à jour sépare l’application, les modules disponibles, les modules installés et l’installation avancée. Plusieurs modules peuvent être téléchargés avant une seule finalisation et un seul redémarrage.
+- Un module téléchargé mais pas encore chargé affiche `Téléchargé`. Le bouton de fermeture devient `Finir l’installation`; un refus depuis la fermeture annule les téléchargements en attente et ferme la fenêtre.
+- Les paramètres généraux d’émulation et les paramètres propres à chaque module sont dans des fenêtres distinctes. Une fenêtre de module arrive directement sur ses machines et ses onglets de réglages.
+- L’onglet ROM d’une machine est affiché lorsqu’un firmware externe est requis ou accepté facultativement; il est absent lorsque la machine ne peut utiliser aucun fichier ROM externe.
+
+Les détails techniques de ces décisions sont centralisés dans
+[`emulation-modules.md`](../architecture/emulation-modules.md),
+[`emulation-module-updates.md`](../architecture/emulation-module-updates.md) et
+[`emulation.md`](../ui/emulation.md).
 
 ### Vérifications nécessitant encore des données réelles
 

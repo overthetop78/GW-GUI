@@ -4,6 +4,9 @@ Le paquet public `GWGUI.Emulation.SDK` contient l’assembly `gwgui.emulation.dl
 XML. Les modules externes le référencent par `PackageReference`; ils ne copient aucune DLL depuis une
 installation de GW GUI.
 
+Le paquet contient également `src/GWGUI.Emulation/README.md` à sa racine. NuGet.org l'affiche comme
+présentation du SDK avec son rôle, son installation et le point de départ d'un module.
+
 ## Versions actuelles
 
 | Paquet SDK | API hôte | Schéma du manifeste |

@@ -111,7 +111,7 @@ Ces fonctions sont réalisées par les workflows :
   `module-<id>-catalog` ;
 - le paquet portable et l’installateur contiennent `Updater/gwgui.updater.exe`.
 
-Les publications réelles de GW GUI 0.3.0, des modules Amiga et Atari 1.0.0 et du SDK 1.0.0 ont
+Les publications réelles de GW GUI 0.3.0, des modules Amiga et Atari 1.0.0 et du SDK 1.0.1 ont
 confirmé les actifs, catalogues et URL produits.
 
 ## 7. Publier le SDK d’émulation
@@ -135,3 +135,6 @@ un jeton OIDC GitHub, l’échange avec `NuGet/login@v1` contre une clé tempora
 crée le paquet, sa documentation XML et son README, publie sur NuGet.org, puis crée la release GitHub
 du SDK avec ses notes. La politique de compatibilité est détaillée dans
 [`emulation-sdk-versioning.md`](../architecture/emulation-sdk-versioning.md).
+
+Le README affiché sur NuGet provient de `src/GWGUI.Emulation/README.md`. Il doit décrire le contrat
+public actuel et être mis à jour dans le même commit lorsqu’une évolution du SDK change son usage.

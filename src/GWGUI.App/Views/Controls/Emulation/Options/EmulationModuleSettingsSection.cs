@@ -277,7 +277,8 @@ internal sealed partial class EmulationModuleSettingsSection : UserControl
             var fields = block.Fields.Where(field => field.IsVisible)
                 .Select(CreateControlField).ToArray();
             if (fields.Length == 0) continue;
-            var form = EmulationSettingsLayout.CompactForm(Math.Max(1, block.Columns), fields);
+            var columns = tab == EmulationMachineTab.Rom ? 1 : Math.Max(1, block.Columns);
+            var form = EmulationSettingsLayout.CompactForm(columns, fields);
             panel.Children.Add(EmulationSettingsLayout.IconCard(form,
                 LocExtension.GetForModule(_module, block.TitleResourceKey), block.Icon ?? "\uE713"));
         }

@@ -109,112 +109,23 @@ Les [implémentations de tables de partitions](https://android.googlesource.com/
 
 Références de structures : [HFS+ et HFSX](https://developer.apple.com/library/archive/technotes/tn/tn1150.html), [comparaison APFS/HFS+](https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/APFS_Guide/VolumeFormatComparison/VolumeFormatComparison.html), [formats documentés par CiderPress](https://ciderpress2.com/doc-index.html), [systèmes de fichiers du noyau Linux](https://docs.kernel.org/filesystems/), [FATX](https://free60.org/System-Software/Systems/FATX/), [PFS](https://github.com/ps2dev/ps2sdk/tree/master/iop/hdd/pfs) et [paramètres CP/M](https://www.cpm.z80.de/manuals/cpm22-m.pdf).
 
-## 4. Travaux transversaux à effectuer
+## 4. État du socle de création
 
-Les profils CHD, QCOW v1 et Parallels sont vérifiés par lecture des structures sérialisées dans les tests, sans lancer de programme externe. HFS+/HFSX et ext2/3/4 sont aussi rouverts par les lecteurs intégrés. Cela ne constitue pas un essai d’amorçage ni une certification de chaque consommateur possible.
+Le socle sépare les registres de conteneurs, partitionnements et systèmes de fichiers. Il compose les
+volumes et leurs options, valide les zones réservées et publie les ensembles de plusieurs fichiers par
+un dossier temporaire. Les dépendances connues de VHD/VHDX, VMDK, QCOW et QED participent au contrôle
+de suppression.
 
-Spécifications complémentaires : [CHD v5](https://github.com/mamedev/mame/blob/master/src/lib/util/chd.h), [lecture des hunks CHD](https://github.com/mamedev/mame/blob/master/src/lib/util/chd.cpp), [Parallels extensible](https://www.qemu.org/docs/master/interop/parallels.html), [QCOW v1](https://github.com/qemu/qemu/blob/master/block/qcow.c), [journal JBD](https://www.kernel.org/doc/html/latest/filesystems/ext4/journal.html), [extents](https://www.kernel.org/doc/html/latest/filesystems/ext4/ifork.html), [HFS+/HFSX](https://developer.apple.com/library/archive/technotes/tn/tn1150.html) et [structures HFS](https://github.com/apple-oss-distributions/hfs/blob/main/core/hfs_format.h).
+Les constructeurs et formateurs déjà couverts comprennent notamment GPT, APM, RDB, MBR avec chaînes
+EBR, XGM, ICD/Supra, QCOW2, VHD/VHDX, plusieurs variantes VMDK, sparsebundle, sparseimage, CHD, QED,
+Parallels, HDI/NHD/THD, UDIF, cloop, Bochs Growing, FAT, exFAT, FATX, MFS, HFS/HFSX, ext, Minix, V7,
+BFS, PFS3, Pascal, D90, SWAPSPACE2 et les labels Sun/SGI. Les validations automatisées portent sur les
+structures sérialisées et leur relecture en mémoire; elles ne prouvent pas l’amorçage par tous les
+consommateurs externes.
 
-Références supplémentaires utilisées pour les constructeurs : [ProDOS](https://ciderpress2.com/formatdoc/ProDOS-notes.html), [CP/M 2.2](https://www.seasip.info/Cpm/format22.html), [QED](https://www.qemu.org/docs/master/interop/qed_spec.html), [exFAT](https://learn.microsoft.com/en-us/windows/win32/fileio/exfat-specification), [superbloc ext](https://www.kernel.org/doc/html/latest/filesystems/ext4/super.html), [descripteurs de groupes ext](https://www.kernel.org/doc/html/latest/filesystems/ext4/group_descr.html), [structures APM](https://raw.githubusercontent.com/torvalds/linux/master/block/partitions/mac.h) et [lecteur FATX](https://github.com/mborgerson/fatx/tree/master/libfatx).
-
-- [ ] Définir des descripteurs séparés pour conteneurs, partitionnements et systèmes de fichiers.
-  - [x] Enregistrer des implémentations indépendantes par identifiant avec callbacks de validation et de construction.
-  - [x] Identifier famille, variante construite, famille de signature et extensions suggérées sans les confondre ; renvoyer tous les candidats d’une extension ambiguë.
-  - [x] Déclarer séparément création, lecture, écriture et conversion : le registre actuel annonce uniquement la création effectivement fournie par ses callbacks.
-  - [ ] Décrire les paramètres et limites intrinsèques de chaque format.
-- [ ] Remplacer les combinaisons prédéfinies par une composition explicite.
-  - [x] Fournir une API de composition et une surcharge de création de fichier utilisant le même plan.
-  - [x] Appliquer cette composition aux ensembles sparsebundle et VMDK : registre séparé, contrôle du consommateur, partitions et formatages communs, publication par dossier.
-  - [x] Définir plusieurs partitions avec leurs systèmes de fichiers et options.
-  - [x] Valider offsets, chevauchements et zones réservées pour les profils de secteurs de 512 octets implémentés.
-  - [ ] Étendre les tailles de secteurs et géométries paramétrables.
-  - [x] Croiser les capacités techniques avec un profil consommateur explicite dans l’API composée : combinaisons, secteurs, capacités du disque et des volumes, nombre de volumes, alignement et restrictions supplémentaires.
-  - [ ] Migrer les adaptateurs utilisant les anciens profils vers la composition lorsqu’ils doivent exposer de nouvelles combinaisons.
-- [ ] Décomposer chaque famille à couvrir en formats et variantes documentés.
-  - [ ] Vérifier les bibliothèques intégrables, leurs licences et leurs capacités réelles de création.
-  - [ ] Fournir un constructeur ou formateur indépendant pour chaque format absent.
-  - [ ] Garder les fonctions d’installation et d’amorçage séparées du formatage.
-- [ ] Étendre la gestion du cycle de vie des images.
-  - [ ] Suivre les parents, fichiers associés, snapshots et volumes agrégés.
-    - [x] Lire les parents VHD/VHDX, les extents et parents VMDK, les références backing QCOW/QED ; borner la lecture des métadonnées et le parcours.
-    - [ ] Résoudre les parents identifiés par hash/UUID, les ensembles segmentés et les organisations supplémentaires.
-  - [ ] Protéger toutes les dépendances lors du retrait et de la suppression.
-    - [x] Raccorder le graphe connu au contrôle de suppression et l’actualiser après confirmation ; comparer les alias sans changer la base des références relatives.
-    - [ ] Présenter et supprimer collectivement un ensemble après contrôle de chacun de ses membres.
-  - [ ] Préserver les originaux lors des conversions et créations interrompues.
-    - [x] Publier un ensemble complet par renommage de son dossier temporaire, sans remplacement ; tester écritures interrompues, collisions, erreurs de producteur et de nettoyage en mémoire.
-    - [ ] Étendre cette garantie aux conversions lorsqu’elles seront implémentées.
-- [ ] Valider chaque variante sur des données simulées en mémoire.
-  - [ ] Réouvrir avec un lecteur indépendant lorsque disponible.
-  - [ ] Vérifier structures, allocation, checksums, données et limites.
-  - [ ] Tester les combinaisons invalides et les erreurs sans construire de vrais fichiers images.
-
-La couverture s’étend format par format. Cette liste recense le travail ; elle n’ajoute aucune capacité au code par simple déclaration.
-
-### Formatage Pascal
-
-- [x] Construire un volume vide little-endian avec blocs de 512 octets, deux blocs système réservés et quatre blocs de répertoire.
-- [x] Enregistrer le formateur `pascal` dans la composition commune et valider taille et nom avant toute écriture.
-- [x] Vérifier la réouverture, les limites et la composition dans une partition sur des flux en mémoire.
-- [ ] Couvrir les autres variantes de répertoire et d’ordre des octets.
-
-La [description du format Pascal](https://ciderpress2.com/formatdoc/Pascal-notes.html) documente les champs et restrictions utilisés. Le lecteur UCSD existant sert à vérifier le résultat ; les blocs système réservés doivent être déduits de l’espace libre, même sans chargeur installé.
-
-### Partitions étendues MBR
-
-- [x] Déclarer les volumes logiques séparément des partitions primaires dans le plan commun.
-- [x] Construire une étendue LBA 0x0F et sa chaîne EBR avec les deux bases d’adressage relatives.
-- [x] Rejeter les collisions de données et de métadonnées, le dépassement des quatre entrées primaires et les volumes logiques actifs avant toute écriture.
-- [x] Rouvrir une chaîne de six volumes logiques avec le lecteur intégré et lire/écrire leurs fichiers en mémoire.
-- [x] Construire le profil CHS à étendue 0x05 avec géométrie explicite et une piste réservée par EBR ; vérifier les deux bases relatives et le cylindre 1023.
-- [ ] Couvrir les autres dispositions EBR historiques.
-
-La [lecture des partitions étendues du noyau Linux](https://github.com/torvalds/linux/blob/master/block/partitions/msdos.c) décrit les adresses relatives utilisées : données par rapport à leur EBR, liens par rapport au début de l’étendue.
-
-### Extensions suivantes du socle
-
-- [x] Construire et vérifier les chaînes XGM, leur réserve de métadonnées et les collisions.
-- [x] Construire et vérifier les douze entrées ICD/Supra.
-- [x] Construire QCOW2 v2 et v3 avec clusters paramétrables et table de refcounts sur plusieurs clusters.
-- [x] Vérifier les en-têtes HDI/NHD/THD, leur géométrie et l’accès aux données sans lancer de programme externe.
-- [x] Paramétrer la géométrie RDB et calculer la réserve de métadonnées selon le nombre de partitions.
-- [x] Construire les volumes MFS et HFS classique vides et les rouvrir avec les lecteurs du dépôt.
-- [x] Construire les variantes DOS2 à DOS5 et vérifier cache de répertoire, allocation et type de partition RDB.
-- [x] Construire et vérifier les volumes Minix v1/v2/v3 sur des flux simulés.
-- [x] Construire les disklabels BSD dans les deux ordres d’octets et vérifier les sept volumes de données.
-- [x] Construire et rouvrir les ensembles VMDK à descripteur séparé, VMFS flat et sparse, entièrement en mémoire.
-- [x] Construire FATX big-endian et vérifier le passage des entrées FAT de 16 à 32 bits.
-- [x] Conserver les noms Mac Roman lors du formatage et de la relecture MFS/HFS classique.
-- [x] Construire FAT12/16/32 avec secteurs de 512 à 4096 octets et lire/écrire des fichiers en mémoire.
-- [x] Construire les labels Sun VTOC v1 et SGI, vérifier leurs checksums, limites, réserves et volumes.
-- [x] Construire UDIF v4 RAW et zlib, reconstituer les secteurs depuis la table XML et relire les fichiers en mémoire.
-- [x] Formater les deux profils D90 et vérifier la couverture BAM, les blocs libres et les références de métadonnées.
-- [x] Construire les enfants VHD/VHDX de parents autonomes sur flux ; vérifier l’héritage, les écritures de l’enfant et l’intégrité du parent.
-- [x] Construire Bochs Growing v1/v2 avec catalogue et bitmaps ; vérifier les frontières d’extents et le dernier secteur partiel.
-- [x] Déduire les types MBR/GPT connus du système de fichiers et demander un type explicite pour les autres associations.
-- [x] Séparer le nom de partition et le label du système de fichiers dans la composition GPT, APM et RDB.
-- [x] Décomposer les labels Latin-1 HFS+/HFSX et valider leur longueur sérialisée.
-- [x] Construire cloop v2 et vérifier offsets, décompression complète des blocs et relecture du volume.
-- [x] Construire V7 dans les trois ordres d’octets et vérifier la chaîne complète d’allocation libre.
-- [x] Construire BFS little-endian et vérifier inodes, extent du répertoire, état de compaction propre, labels et borne de 4 Gio en mémoire.
-- [x] Construire les vingt profils Minix combinant version, ordre des métadonnées/bitmaps et longueur des noms ; vérifier chaque bit d’allocation et les entrées racines.
-- [x] Construire GPT en secteurs de 512, 1024, 2048 et 4096 octets, vérifier les copies, les zones réservées, les combinaisons de secteurs et la récupération depuis le secours.
-- [x] Construire les ensembles VMDK monolithicFlat et twoGbMaxExtentFlat/Sparse ; rouvrir leurs références et vérifier les frontières et le dernier extent partiel.
-- [x] Construire les chaînes différentielles VHD/VHDX fournies explicitement ; vérifier identités, héritage, masquage par zéros et intégrité de tous les ancêtres.
-- [x] Construire VHDX fixe/dynamique en 4Kn, rouvrir GPT/FAT, vérifier une frontière de chunk à 32 Gio et l’héritage différentiel 4Kn.
-- [x] Construire VMDK streamOptimized avec grains zlib, marqueurs, tables et footer ; relire les fichiers, décompresser les grains et vérifier les images entièrement vides en mémoire.
-- [x] Construire sparsebundle avec ses métadonnées, token et bandes ; reconstruire le disque et relire un fichier traversant plusieurs bandes en mémoire.
-- [x] Publier les arborescences d’images avec validation de chaque composant de chemin, détection des collisions fichier/dossier et nettoyage non récursif des seuls éléments créés.
-- [x] Construire sparseimage v3 à en-tête unique, vérifier les index physiques/logiques, la dernière bande, les zones nulles et le refus d’un renommage en RAW.
-- [x] Propager la géométrie BIOS du profil CHS aux secteurs de démarrage FAT et NTFS, y compris la copie de secours FAT32 ; vérifier la réouverture des volumes primaires et logiques.
-- [x] Construire les cinq copies de secours Sun VTOC v1, réserver les cylindres alternatifs et vérifier leurs checksums, emplacements et exclusions des volumes.
-- [x] Construire les dix profils SWAPSPACE2 v1, vérifier UUID, label, pages défectueuses, signature à la fin de la page, limites et types MBR/GPT.
-- [x] Intégrer le formateur PFS3 géré, fixer ses dépendances, distribuer ses notices et vérifier formatage, dossiers, fichiers, réouverture, mode super-index et capacité maximale en mémoire.
-- [x] Vérifier les types de pilote RDB PFS3/PDS3 autour du même volume, sans charger de pilote ni de machine externe.
-- [x] Exposer les identités de tous les profils enregistrés et conserver les extensions de registre indépendantes.
-- [x] Vérifier les plafonds de compatibilité VHD/VHDX avant construction et empêcher qu’une initialisation échouée ou redimensionnée publie un début de conteneur.
-- [x] Refuser les conteneurs identifiables renommés en RAW, y compris lorsqu’ils sont encapsulés dans gzip.
-
+Les capacités manquantes, variantes historiques, dépendances supplémentaires et validations encore à
+faire sont suivies dans [`../tasks/hard-disk-images.md`](../tasks/hard-disk-images.md). Le présent
+catalogue décrit les formats et l’état confirmé; il ne sert plus de checklist.
 Références supplémentaires : [cloop v2](https://github.com/qemu/qemu/blob/master/block/cloop.c), [structures V7FS](https://github.com/NetBSD/src/blob/trunk/sys/fs/v7fs/v7fs.h) et [ordres d’octets V7FS](https://github.com/NetBSD/src/blob/trunk/sys/fs/v7fs/v7fs_endian.c).
 
 Le profil BFS suit les [structures du système de fichiers](https://github.com/torvalds/linux/blob/master/include/uapi/linux/bfs_fs.h) et les contraintes du [formateur de référence](https://github.com/util-linux/util-linux/blob/master/disk-utils/mkfs.bfs.c). Ses tests relisent les métadonnées en mémoire ; aucun essai de montage externe n’est annoncé.

@@ -82,6 +82,8 @@ Les ressources de langue sont réparties par culture sous `Resources`. `00-Base`
 
 Les réglages, profils, configurations d’émulation, journaux, matériel et placements de fenêtres restent gérés par leurs services propriétaires. Une vue ne doit pas devenir la source persistante d’une donnée métier.
 
-## Travaux structurels restants
+## Évolution de l’architecture
 
-La feuille [Qualité et refactorisation du code](../tasks/code-quality.md) contient uniquement les contrôles et changements encore à exécuter. L’architecture décrite ici représente le code actuel et ne remplace pas cette liste de tâches.
+Ce document décrit le code actuel. Les travaux encore ouverts sont indexés dans
+[`../tasks/README.md`](../tasks/README.md); un nouvel audit général de qualité recevra sa propre
+feuille lorsqu’il sera demandé.

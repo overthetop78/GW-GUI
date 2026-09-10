@@ -3,7 +3,7 @@
 ## Statut et périmètre
 
 Recherche effectuée le 1er septembre 2026 pour le point 7 de
-`docs/tasks/interface/emulation-improvements.md`.
+[`../ui/emulation.md`](../ui/emulation.md).
 
 Ce document constitue le catalogue et la proposition d’architecture à faire valider. Il ne valide
 pas à lui seul les choix fonctionnels et ne déclenche aucune implémentation. Conformément à la

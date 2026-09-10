@@ -64,7 +64,9 @@ Actuellement, `GWGUI.App.csproj` référence notamment :
 - `GWGUI.Emulation.Amiga` ;
 - `GWGUI.Emulation.Atari`.
 
-Une future bibliothèque `GWGUI.Emulation.Sega` sera ajoutée de la même manière. Cette solution explicite évite une infrastructure inutile de découverte, de versionnement et de gestion des DLL.
+Une future bibliothèque `GWGUI.Emulation.Sega` pourra être ajoutée de la même manière. Le chargeur,
+les scripts et le répertoire officiel découvrent les modules conformes à leur manifeste sans ajouter
+de référence, de constante ou de branche propre à la nouvelle famille dans `GWGUI.App`.
 
 ## 3. Les deux raccordements dans App
 

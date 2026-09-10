@@ -31,6 +31,10 @@ MonModule
 Le module ne fournit pas de fenêtre, de `UserControl`, de XAML ou de type WPF. Il décrit les
 machines, les champs et le runtime ; GW GUI construit toute l'interface.
 
+Une fois chargé, le module apparaît automatiquement dans le menu **Émulation**. Son entrée ouvre la
+fenêtre générique de paramètres alimentée par ses machines, ses onglets et ses champs. Le module ne
+doit donc pas reproduire la navigation, les badges, les sélecteurs ou les dialogues de l'hôte.
+
 ## 2. Projet minimal
 
 ```xml

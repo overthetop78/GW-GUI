@@ -9,6 +9,9 @@ internal static class AtariFirmwareSelectionFunctions
         AtariMachineModel.Atari800Xl or AtariMachineModel.Atari130Xe or AtariMachineModel.XlXe or
             AtariMachineModel.Xegs => category == AtariFirmwareCategory.AtariXlOs,
         AtariMachineModel.Atari5200 => category == AtariFirmwareCategory.Atari5200Bios,
+        AtariMachineModel.Atari7800 => category == AtariFirmwareCategory.Atari7800Bios,
+        AtariMachineModel.Lynx => category == AtariFirmwareCategory.LynxBootRom,
+        AtariMachineModel.JaguarCd => category == AtariFirmwareCategory.JaguarCdBios,
         _ => false
     };
 

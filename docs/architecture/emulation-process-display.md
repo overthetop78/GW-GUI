@@ -69,3 +69,6 @@ regroupement particulier des anciennes captures.
 
 Aucun code de production modifié, aucun build nécessaire, aucun test permanent ajouté.
 Le script et la capture temporaires sont supprimés à la fin du diagnostic. Aucun commit ni push.
+
+L'analyse distincte de la consommation CPU de l'hôte et des moteurs reste différée. Elle ne doit pas
+être confondue avec ce diagnostic des noms et du regroupement affichés par le Gestionnaire des tâches.

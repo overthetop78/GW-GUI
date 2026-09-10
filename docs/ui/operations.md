@@ -1,5 +1,8 @@
 # Interface — opérations sur les disquettes
 
+Les opérations physiques décrites ici sont distinctes des machines virtuelles et des modules
+présentés dans [l’interface d’émulation](emulation.md).
+
 ## Lecture
 
 ### Objectif visuel — Validé

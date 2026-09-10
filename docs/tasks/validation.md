@@ -1,48 +1,23 @@
-# 9 — Validation finale des images et du matériel
+# Validation finale du corpus et du matériel
 
-Cette phase reste la dernière. Elle commence seulement lorsque les refactors, catalogues, traductions, interfaces et contrôles précédents sont terminés.
+Cette phase est reportée. Les parcours courants étaient utilisables lors des validations historiques,
+mais l’ensemble du corpus et du matériel devra être revérifié avant de déclarer leur couverture
+complète.
 
-## 9.1 Ordre du corpus
+- [ ] 1. Valider le corpus `image_test`
+  - [ ] 1.1 Parcourir les images une par une
+    - [ ] Modifier `docs/reference/media-formats.md` après chaque famille testée pour consigner le conteneur, la détection, la géométrie, le système de fichiers, le décodage, l’encodage, les conversions, la Lecture, l’Écriture, le Visualisateur, l’Explorateur, les traductions, les performances et les erreurs réellement vérifiés.
+  - [ ] 1.2 Classer les images validées
+    - [ ] Déplacer chaque image confirmée vers `image_test/validated_images/<marque>/<modèle>/<type de disquette>/`, retirer les fichiers parasites du dossier source et mettre à jour `docs/reference/media-formats.md` avec son statut final.
 
-- [ ] Parcourir `image_test` dans l’ordre des dossiers.
-- [ ] Construire la liste à traiter en excluant `image_test/validated_images`.
-- [ ] Inclure les images et flux présents dans les dossiers générés.
-- [ ] Tester une image à la fois et communiquer son résultat avant la suivante.
-- [ ] Corriger le code par format ou famille si un parcours échoue.
-- [ ] Rejouer les contrôles concernés afin de vérifier que la correction ne casse pas les autres familles.
+- [ ] 2. Refaire les essais avec Greaseweazle
+  - [ ] 2.1 Valider les opérations physiques disponibles
+    - [ ] Modifier `docs/project/testing.md` après les essais réels de Lecture, Écriture sur support sacrifiable, relecture, conversion, Visualisateur, Explorateur et Effacement pour consigner le matériel, les médias et les résultats.
+  - [ ] 2.2 Valider plusieurs contrôleurs lorsque le matériel existe
+    - [ ] Modifier `docs/project/testing.md` après un essai avec plusieurs Greaseweazle et lecteurs pour consigner leur détection, leur sélection et les commandes produites.
 
-## 9.2 Contrôles par image
-
-- [ ] Vérifier lecture du conteneur.
-- [ ] Vérifier détection simple ou multiformat de la machine, du format, du système de fichiers et de la protection.
-- [ ] Vérifier géométrie, faces, pistes, secteurs et intégrité.
-- [ ] Vérifier décodeur et encodeur correspondant, avec aller-retour lorsqu’il est possible.
-- [ ] Vérifier les conversions internes ou via Greaseweazle réellement compatibles.
-- [ ] Vérifier la Lecture et l’Écriture proposées pour ce format.
-- [ ] Vérifier le Visualisateur : média, faces, pistes, couleurs, légende, progression et inspecteur.
-- [ ] Vérifier l’Explorateur : volume, systèmes, protections, dossiers, fichiers, types, tailles, dates, contenu, espace libre et avertissements.
-- [ ] Vérifier les disquettes protégées sans inventer de faux fichiers ; exposer leur structure physique réelle lorsque le catalogue logique n’existe pas.
-- [ ] Vérifier les listes de formats de Lecture, Écriture, Conversion, Explorateur et Visualisateur.
-- [ ] Vérifier toutes les traductions nécessaires à ce format.
-- [ ] Vérifier performance, annulation, changement rapide d’image, erreurs et journaux.
-
-## 9.3 Classement après validation
-
-- [ ] Déplacer l’image validée vers `validated_images/<marque>/<modèle>/<type de disquette>/`.
-- [ ] Vérifier qu’elle n’existe plus dans son dossier d’origine après le déplacement.
-- [ ] Classer les images générées dans la même arborescence finale.
-- [ ] Supprimer les fichiers parasites du dossier terminé.
-- [ ] Supprimer le dossier source lorsqu’il ne contient plus d’image utile.
-
-## 9.4 Essais matériels finaux
-
-- [ ] Tester la Lecture réelle avec les disquettes et le Greaseweazle disponibles.
-- [ ] Tester l’Écriture sur une disquette sacrifiable, puis la relire et comparer.
-- [ ] Tester les conversions des captures physiques.
-- [ ] Tester le Visualisateur et l’Explorateur sur les captures obtenues.
-- [ ] Tester l’Effacement uniquement sur le support prévu.
-- [ ] Reporter les essais multi-contrôleurs physiques jusqu’à disponibilité du matériel nécessaire.
-## 9.5 Validation des entrées/sorties physiques internes
-
-- [ ] Raccorder l’onglet Écriture au service interne derrière une option explicite, puis valider sur disquettes de test Amiga, Atari ST, IBM, MSX, Apple, Commodore, Acorn/BBC, Amstrad, Epson et DEC avant de retirer le repli `gw.exe` pour une famille.
-- [ ] Raccorder l’onglet Lecture au service interne derrière une option explicite et valider checksum SCP, nombre de révolutions, pistes, décodage, annulation et reprise avant de retirer `gw.exe`.
+- [ ] 3. Valider progressivement les entrées et sorties physiques internes
+  - [ ] 3.1 Raccorder et vérifier l’Écriture interne
+    - [ ] Modifier le service de l’onglet Écriture derrière une option explicite, puis modifier `docs/reference/media-formats.md` après essais Amiga, Atari ST, IBM, MSX, Apple, Commodore, Acorn/BBC, Amstrad, Epson et DEC avant de retirer le repli `gw.exe` d’une famille.
+  - [ ] 3.2 Raccorder et vérifier la Lecture interne
+    - [ ] Modifier le service de l’onglet Lecture derrière une option explicite, puis modifier `docs/reference/media-formats.md` après vérification du checksum SCP, des révolutions, pistes, décodages, annulations et reprises avant de retirer le repli `gw.exe`.

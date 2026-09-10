@@ -57,9 +57,11 @@
 - Légende et barres Face 0/Face 1 visibles.
 - L’Explorateur partage l’image chargée et conserve ses trois colonnes : dossiers, contenu et informations.
 
-### Options et dialogues
+### Options, émulation et dialogues
 
-- Options persistantes dans une fenêtre à onglets horizontaux.
+- Les préférences générales restent dans une fenêtre à onglets horizontaux.
+- Le menu Émulation ouvre séparément les préférences communes et les paramètres dynamiques de chaque module.
+- Les mises à jour de l’application et des modules utilisent une fenêtre dédiée.
 - Diagnostics et Matériel restent des dialogues ponctuels.
 - Chaque dialogue montre résumé lisible, sortie brute repliable et ligne de commande en bas.
 - Sélecteur de lecteur dans chaque opération seulement si plusieurs lecteurs sont configurés.
