@@ -19,6 +19,11 @@ Les données sont synthétiques et les accès aux fichiers de données sont simu
 
 [GWGUI.LocalDiskImageTests](../../tests/GWGUI.LocalDiskImageTests/GWGUI.LocalDiskImageTests.csproj) contient les tests de reconnaissance, lecture, écriture, conversion et systèmes de fichiers des images disque. Il reste séparé de la solution principale et du workflow de release. Les tests utilisant le corpus privé nécessitent le dossier local `image_test`.
 
+Tout test qui dépend d'une image locale, d'un matériel, d'une application ou d'une DLL externe est
+une validation manuelle locale exécutée par le développeur qui possède cette ressource. Ces tests
+restent hors de `GWGUI.sln`, des workflows GitHub, des contrôles automatiques et de la fabrication
+des releases. Ils ne doivent jamais pouvoir bloquer ou déclencher une publication.
+
 ```powershell
 dotnet test tests/GWGUI.LocalDiskImageTests/GWGUI.LocalDiskImageTests.csproj
 ```

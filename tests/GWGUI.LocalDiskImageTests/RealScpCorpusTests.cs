@@ -1,4 +1,5 @@
 using GWGUI.App.Contracts.Rendering.Scp;
+using GWGUI.App.Enums.Rendering.Scp;
 using GWGUI.App.Interfaces.Rendering.Scp;
 using GWGUI.App.Rendering.Scp;
 using GWGUI.App.Views.Controls.Visualization;
@@ -56,7 +57,18 @@ public sealed class RealScpCorpusTests
 
             using var bitmap = new SKBitmap(512, 512);
             using var canvas = new SKCanvas(bitmap);
-            renderer.Render(canvas, new ScpRenderRequest(image, head, tracks[0], 512, 512, new SKPoint(256, 256), 1, "No data", $"Side {head}"));
+            renderer.Render(canvas, new ScpRenderRequest(
+                image,
+                head,
+                tracks[0],
+                null,
+                512,
+                512,
+                new SKPoint(256, 256),
+                1,
+                "No data",
+                $"Side {head}",
+                DiskMediaCategory.ThreeHalfDd));
             Assert.NotEqual(new SKColor(7, 10, 14), bitmap.GetPixel(256, 30));
         }
     }

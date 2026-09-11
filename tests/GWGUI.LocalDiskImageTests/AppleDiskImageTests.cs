@@ -207,7 +207,12 @@ public sealed class AppleDiskImageTests
             var output = Assert.Single(new ConversionPlanner(catalog).Plan(source, Path.GetDirectoryName(destination)!, Path.GetFileNameWithoutExtension(destination), [new(DiskImageFormatIds.AppleIIAppleDos140, new HashSet<string> { DiskImageFileExtensions.Woz })], false));
             var runner = new RecordingRunner();
             var command = new GwCommand("gw.exe", "convert", [source, destination]);
-            var result = await new ConversionBatchExecutor(runner).RunAsync(source, [(output, command)]);
+            var mediaEngine = MediaEngineComposition.CreateDefault();
+            var result = await new ConversionBatchExecutor(
+                runner,
+                mediaEngine.ReadingService,
+                mediaEngine.ConversionService,
+                mediaEngine.SequentialConversionService).RunAsync(source, [(output, command)]);
             Assert.True(ConversionBatchExecutor.IsInternal(output));
             Assert.Equal(DiskImageFormatIds.AppleIIAppleDos140, output.FormatId);
             Assert.Equal(0, runner.CallCount);
