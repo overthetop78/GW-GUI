@@ -57,4 +57,17 @@
   <data name="Explorer.DetectedFormats"><value>Tunnistettu: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable"><value>Host Tools ei voi tuottaa tutkittavaa alan kuvaa {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>Host Tools ei voinut purkaa kuvaa nimellä {0}.</value></data>
+  <data name="Explorer.Session"><value>Levyn istunto</value></data>
+  <data name="Explorer.Track"><value>Mediaraita</value></data>
+  <data name="Explorer.Layers"><value>Levykerrokset</value></data>
+  <data name="Explorer.Faces"><value>Median tallennussivut</value></data>
+  <data name="Explorer.PartitionType"><value>Jakautumistyyppi</value></data>
+  <data name="Explorer.PartitionId"><value>Jakautumistunniste</value></data>
+  <data name="Explorer.TrackMode"><value>Kappaletila</value></data>
+  <data name="Explorer.FirstSector"><value>Ensimmäinen sektori</value></data>
+  <data name="Explorer.SectorCount"><value>Alaluku</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Varastoidun sektorin koko</value></data>
+  <data name="Explorer.UserDataSize"><value>Käyttäjän tietojen koko</value></data>
+  <data name="Explorer.Subchannels"><value>Alakanavat</value></data>
+  <data name="Explorer.AudioTracks"><value>Ääniraidat</value></data>
 </root>

@@ -27,9 +27,22 @@ public sealed class BlockMediaVisualizationProvider : IMediaVisualizationProvide
         if (document.Representation is not BlockMediaImageRepresentation blocks)
             throw new NotSupportedException($"Representation '{document.Representation.RepresentationKind}' is not a block representation.");
 
-        var elements = blocks.Ranges
-            .Select(range => new MediaVisualizationElement(range.Address, 0, range.Length))
-            .ToArray();
+        var boundaries = new SortedSet<long> { 0, blocks.Capacity };
+        foreach (var range in blocks.Ranges)
+        {
+            boundaries.Add(range.Address);
+            boundaries.Add(checked(range.Address + range.Length));
+        }
+        foreach (var volume in document.Volumes)
+        {
+            if (volume.Start < blocks.Capacity) boundaries.Add(volume.Start);
+            var end = checked(volume.Start + volume.Length);
+            if (end <= blocks.Capacity) boundaries.Add(end);
+        }
+        var points = boundaries.ToArray();
+        var elements = new MediaVisualizationElement[points.Length - 1];
+        for (var index = 0; index < elements.Length; index++)
+            elements[index] = new MediaVisualizationElement(points[index], 0, points[index + 1] - points[index]);
         return new(
             MediaRepresentationKind.Blocks,
             [0],
@@ -37,4 +50,5 @@ public sealed class BlockMediaVisualizationProvider : IMediaVisualizationProvide
             MediaVisualizationDirection.Ascending,
             elements);
     }
+
 }

@@ -5,6 +5,7 @@ using GWGUI.App.Localization.Sources;
 using GWGUI.App.Presenters.Explorer;
 using GWGUI.App.ViewModels.Explorer;
 using System.Windows;
+using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Exploration.Results;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -17,6 +18,7 @@ public partial class ExplorerDetailsPanel : UserControl
     private ExploredMediaImage? _mediaDocument;
     private ExploredMediaVolume? _mediaVolume;
     private ExplorerContentItem? _item;
+    private OpticalTrackDescriptor? _opticalTrack;
     private string? _currentSystem;
 
     public ExplorerDetailsPanel()
@@ -28,7 +30,7 @@ public partial class ExplorerDetailsPanel : UserControl
     }
 
     public string DisplayedTitle => DetailsTitle.Text;
-    public bool IsShowingDisk => (_document is not null || _mediaDocument is not null) && _item is null;
+    public bool IsShowingDisk => (_document is not null || _mediaDocument is not null) && _item is null && _opticalTrack is null;
 
     public void Clear()
     {
@@ -36,6 +38,7 @@ public partial class ExplorerDetailsPanel : UserControl
         _mediaDocument = null;
         _mediaVolume = null;
         _item = null;
+        _opticalTrack = null;
         _currentSystem = null;
         DetailsIcon.Category = ExplorerIconCategory.DiskImage;
         DetailsTitle.Text = "\u2014";
@@ -49,6 +52,7 @@ public partial class ExplorerDetailsPanel : UserControl
         _mediaDocument = null;
         _mediaVolume = null;
         _item = null;
+        _opticalTrack = null;
         _currentSystem = currentSystem;
         Render();
     }
@@ -61,6 +65,7 @@ public partial class ExplorerDetailsPanel : UserControl
         _mediaDocument = document;
         _mediaVolume = volume;
         _item = null;
+        _opticalTrack = null;
         _currentSystem = currentSystem;
         Render();
     }
@@ -71,6 +76,7 @@ public partial class ExplorerDetailsPanel : UserControl
         _mediaDocument = null;
         _mediaVolume = null;
         _item = item;
+        _opticalTrack = null;
         Render();
     }
 
@@ -78,6 +84,17 @@ public partial class ExplorerDetailsPanel : UserControl
     {
         ArgumentNullException.ThrowIfNull(item);
         _item = item;
+        _opticalTrack = null;
+        Render();
+    }
+
+    public void ShowOpticalTrack(OpticalTrackDescriptor track)
+    {
+        ArgumentNullException.ThrowIfNull(track);
+        _document = null;
+        _mediaVolume = null;
+        _item = null;
+        _opticalTrack = track;
         Render();
     }
 
@@ -89,6 +106,12 @@ public partial class ExplorerDetailsPanel : UserControl
 
     private void Render()
     {
+        if (_opticalTrack is not null)
+        {
+            Apply(ExplorerDetailsPresenter.ForOpticalTrack(_opticalTrack));
+            return;
+        }
+
         if (_document is null && (_mediaDocument is null || _mediaVolume is null))
         {
             Clear();
@@ -136,9 +159,9 @@ public partial class ExplorerDetailsPanel : UserControl
 
     private void SetRows(IReadOnlyList<(string? Key, string? Value, bool IsSynthetic)> values)
     {
-        var rows = new[] { DetailRow1, DetailRow2, DetailRow3, DetailRow4, DetailRow5, DetailRow6, DetailRow7, DetailRow8 };
-        var labels = new[] { DetailLabel1, DetailLabel2, DetailLabel3, DetailLabel4, DetailLabel5, DetailLabel6, DetailLabel7, DetailLabel8 };
-        var displayedValues = new[] { DetailValue1, DetailValue2, DetailValue3, DetailValue4, DetailValue5, DetailValue6, DetailValue7, DetailValue8 };
+        var rows = new[] { DetailRow1, DetailRow2, DetailRow3, DetailRow4, DetailRow5, DetailRow6, DetailRow7, DetailRow8, DetailRow9, DetailRow10, DetailRow11, DetailRow12 };
+        var labels = new[] { DetailLabel1, DetailLabel2, DetailLabel3, DetailLabel4, DetailLabel5, DetailLabel6, DetailLabel7, DetailLabel8, DetailLabel9, DetailLabel10, DetailLabel11, DetailLabel12 };
+        var displayedValues = new[] { DetailValue1, DetailValue2, DetailValue3, DetailValue4, DetailValue5, DetailValue6, DetailValue7, DetailValue8, DetailValue9, DetailValue10, DetailValue11, DetailValue12 };
         for (var index = 0; index < rows.Length; index++)
         {
             var visible = index < values.Count && values[index].Key is not null;

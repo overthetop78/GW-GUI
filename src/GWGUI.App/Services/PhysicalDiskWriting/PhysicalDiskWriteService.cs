@@ -1,191 +1,90 @@
+using System.Globalization;
+using System.IO;
 using GWGUI.App.Contracts.Services.PhysicalDiskWriting;
 using GWGUI.App.Enums.Services.PhysicalDiskWriting;
-using GWGUI.App.Functions.Services.PhysicalDiskWriting;
-using GWGUI.App.Interfaces.Services.PhysicalDiskWriting;
-using System.IO;
-using GWGUI.Infrastructure.Hardware.Greaseweazle;
-using GWGUI.MediaEngine.Encoding;
-
-using GWGUI.MediaEngine.Formats.Floppy.Scp;
+using GWGUI.Domain.Constants;
+using GWGUI.Domain.Contracts;
+using GWGUI.Infrastructure.Constants;
+using GWGUI.Infrastructure.Hardware.Media;
 
 namespace GWGUI.App.Services.PhysicalDiskWriting;
 
-public sealed class PhysicalDiskWriteService(
-    IGreaseweazleWriteDevice device,
-    IPhysicalTrackVerifier? verifier = null)
+public sealed class PhysicalDiskWriteService(MediaPhysicalWriterRegistry writers)
 {
-    public Task<PhysicalDiskWriteResult> WriteAsync(
-        ScpImage image,
+    public async Task<PhysicalDiskWriteResult> WriteAsync(
+        MediaWritePlan plan,
         PhysicalDiskWriteOptions options,
         IProgress<PhysicalTrackWriteProgress>? progress = null,
         CancellationToken cancellationToken = default)
     {
-        ArgumentNullException.ThrowIfNull(image);
+        ArgumentNullException.ThrowIfNull(plan);
         ArgumentNullException.ThrowIfNull(options);
-        var tracks = CreateScpTracks(image, options.ScpRevolution);
-        return WriteTracksAsync(tracks, options, progress, cancellationToken);
-    }
-
-    public Task<PhysicalDiskWriteResult> WriteAsync(
-        IReadOnlyList<EncodedDiskTrack> encodedTracks,
-        PhysicalDiskWriteOptions options,
-        IProgress<PhysicalTrackWriteProgress>? progress = null,
-        CancellationToken cancellationToken = default)
-    {
-        ArgumentNullException.ThrowIfNull(encodedTracks);
-        ArgumentNullException.ThrowIfNull(options);
-        var tracks = encodedTracks.Select(track => new PhysicalDiskWriteTrack(
-            track.Cylinder,
-            track.Head,
-            track.Track.Revolution.FluxIntervals,
-            EncodedTrackTiming.TickNanoseconds,
-            track)).ToArray();
-        return WriteTracksAsync(tracks, options, progress, cancellationToken);
-    }
-
-    private async Task<PhysicalDiskWriteResult> WriteTracksAsync(
-        IReadOnlyList<PhysicalDiskWriteTrack> tracks,
-        PhysicalDiskWriteOptions options,
-        IProgress<PhysicalTrackWriteProgress>? progress,
-        CancellationToken cancellationToken)
-    {
-        var orderedTracks = tracks.OrderBy(track => track.Cylinder).ThenBy(track => track.Head).ToArray();
-        var validationFailure = Validate(orderedTracks, options);
-        if (validationFailure is not null) return new(0, orderedTracks.Length, false, [validationFailure]);
-
-        var written = 0;
-        var failures = new List<PhysicalTrackWriteFailure>();
-        try
+        if (string.IsNullOrWhiteSpace(options.PortName) || options.Verify)
         {
-            var firmware = await device.OpenAsync(options.PortName, cancellationToken);
-            await device.SetBusTypeAsync(options.BusType, cancellationToken);
-            await device.SelectDriveAsync(options.DriveUnit, cancellationToken);
-            await device.SetMotorAsync(true, cancellationToken);
-
-            foreach (var track in orderedTracks)
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-                try
-                {
-                    await device.SeekAsync(checked((short)track.Cylinder), checked((byte)track.Head), cancellationToken);
-                    var intervals = PrepareIntervals(track, options, firmware.SampleFrequency);
-                    await device.WriteFluxAsync(
-                        intervals,
-                        options.CueAtIndex,
-                        options.TerminateAtIndex,
-                        options.HardSectorTicks,
-                        cancellationToken);
-                    written++;
-                    progress?.Report(new(written, orderedTracks.Length, track.Cylinder, track.Head, false));
-
-                    if (!options.Verify) continue;
-                    progress?.Report(new(written, orderedTracks.Length, track.Cylinder, track.Head, true));
-                    if (!await verifier!.VerifyAsync(track.Cylinder, track.Head, intervals, cancellationToken))
-                    {
-                        failures.Add(new(track.Cylinder, track.Head, PhysicalDiskWriteFailureCategory.Verification));
-                        break;
-                    }
-                }
-                catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
-                {
-                    throw;
-                }
-                catch (Exception exception)
-                {
-                    failures.Add(MapFailure(track, exception));
-                    break;
-                }
-            }
+            var failure = new PhysicalTrackWriteFailure(
+                null,
+                null,
+                PhysicalDiskWriteFailureCategory.Validation);
+            return new PhysicalDiskWriteResult(0, plan.WriteOrder.Count, false, [failure]);
         }
-        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
-        {
-            return new(written, orderedTracks.Length, true, failures.AsReadOnly());
-        }
-        catch (Exception exception)
-        {
-            failures.Add(MapFailure(null, exception));
-        }
-        finally
-        {
-            try
-            {
-                await device.CloseAsync(CancellationToken.None);
-            }
-            catch (Exception exception)
-            {
-                failures.Add(new(null, null, PhysicalDiskWriteFailureCategory.Device, exception));
-            }
-        }
-
-        return new(written, orderedTracks.Length, false, failures.AsReadOnly());
+        var writeProgress = new Progress<MediaPhysicalWriteProgress>(value =>
+            ReportProgress(plan, value, progress));
+        var result = await writers.WriteAsync(
+            plan,
+            options.PortName,
+            CreateOptions(options),
+            writeProgress,
+            cancellationToken).ConfigureAwait(false);
+        var failures = result.Diagnostics.Select(MapFailure).ToArray();
+        return new PhysicalDiskWriteResult(
+            result.CompletedUnits,
+            result.TotalUnits,
+            result.Cancelled,
+            failures);
     }
 
-    private static IReadOnlyList<PhysicalDiskWriteTrack> CreateScpTracks(ScpImage image, int revolution)
-    {
-        if (revolution < 0) throw new ArgumentOutOfRangeException(nameof(revolution));
-        var tickNanoseconds = checked((uint)image.Header.ResolutionNanoseconds);
-        return image.Tracks.Select(track =>
+    private static IReadOnlyDictionary<string, string> CreateOptions(PhysicalDiskWriteOptions options) =>
+        new Dictionary<string, string>(StringComparer.Ordinal)
         {
-            if (revolution >= track.Revolutions.Count)
-                throw new InvalidDataException($"Track {track.Cylinder}.{track.Head} does not contain revolution {revolution}.");
-            return new PhysicalDiskWriteTrack(
-                track.Cylinder,
-                track.Head,
-                track.Revolutions[revolution].FluxIntervals,
-                tickNanoseconds);
-        }).ToArray();
-    }
-
-    private PhysicalTrackWriteFailure? Validate(
-        IReadOnlyList<PhysicalDiskWriteTrack> tracks,
-        PhysicalDiskWriteOptions options)
-    {
-        if (tracks.Count == 0)
-            return new(null, null, PhysicalDiskWriteFailureCategory.Validation);
-        if (string.IsNullOrWhiteSpace(options.PortName))
-            return new(null, null, PhysicalDiskWriteFailureCategory.Validation);
-        if (options.Verify && verifier is null)
-            return new(null, null, PhysicalDiskWriteFailureCategory.Validation);
-        if (options.Precompensation is { Count: > 0 } && tracks.Any(track => track.EncodedTrack is null))
-            return new(null, null, PhysicalDiskWriteFailureCategory.Validation);
-        if (tracks.Any(track => track.Cylinder is < 0 or > short.MaxValue || track.Head is < 0 or > byte.MaxValue))
-            return new(null, null, PhysicalDiskWriteFailureCategory.Validation);
-        return null;
-    }
-
-    private static uint[] PrepareIntervals(
-        PhysicalDiskWriteTrack track,
-        PhysicalDiskWriteOptions options,
-        uint sampleFrequency)
-    {
-        var precompensation = ResolvePrecompensation(options.Precompensation, track.Cylinder);
-        var source = precompensation > 0
-            ? EncodedTrackPrecompensationFunctions.Apply(track.EncodedTrack!, options.PrecompensationEncoding, precompensation)
-            : track.FluxIntervals;
-        return FluxTimingConversionFunctions.ToDeviceTicks(source, track.SourceTickNanoseconds, sampleFrequency);
-    }
-
-    private static double ResolvePrecompensation(
-        IReadOnlyList<PhysicalWritePrecompensationStep>? steps,
-        int cylinder) =>
-        steps?.Where(step => step.FromCylinder <= cylinder)
-            .OrderBy(step => step.FromCylinder)
-            .LastOrDefault()?.Nanoseconds ?? 0;
-
-    private static PhysicalTrackWriteFailure MapFailure(
-        PhysicalDiskWriteTrack? track,
-        Exception exception)
-    {
-        var kind = exception switch
-        {
-            GreaseweazleProtocolException
-            {
-                Acknowledgement: GreaseweazleAcknowledgement.WriteProtected
-            } => PhysicalDiskWriteFailureCategory.WriteProtected,
-            GreaseweazleProtocolException => PhysicalDiskWriteFailureCategory.Device,
-            ArgumentException or InvalidDataException or OverflowException => PhysicalDiskWriteFailureCategory.Validation,
-            _ => PhysicalDiskWriteFailureCategory.Unexpected
+            [GreaseweazleMediaOptionKeys.BusType] = options.BusType.ToString(),
+            [GreaseweazleMediaOptionKeys.DriveUnit] = options.DriveUnit.ToString(CultureInfo.InvariantCulture),
+            [GreaseweazleMediaOptionKeys.CueAtIndex] = options.CueAtIndex.ToString(CultureInfo.InvariantCulture),
+            [GreaseweazleMediaOptionKeys.TerminateAtIndex] = options.TerminateAtIndex.ToString(CultureInfo.InvariantCulture),
+            [GreaseweazleMediaOptionKeys.HardSectorTicks] = options.HardSectorTicks.ToString(CultureInfo.InvariantCulture)
         };
-        return new(track?.Cylinder, track?.Head, kind, exception);
+
+    private static void ReportProgress(
+        MediaWritePlan plan,
+        MediaPhysicalWriteProgress value,
+        IProgress<PhysicalTrackWriteProgress>? progress)
+    {
+        var unit = plan.DataUnits.FirstOrDefault(item => item.Position == value.Position);
+        var cylinder = unit is null ? 0 : ReadPosition(unit.Metadata, MediaPhysicalMetadataKeys.Cylinder);
+        var head = unit is null ? 0 : ReadPosition(unit.Metadata, MediaPhysicalMetadataKeys.Head);
+        progress?.Report(new PhysicalTrackWriteProgress(
+            value.CompletedUnits,
+            value.TotalUnits,
+            cylinder,
+            head,
+            value.Verifying));
+    }
+
+    private static int ReadPosition(IReadOnlyDictionary<string, string> metadata, string key) =>
+        metadata.TryGetValue(key, out var value)
+        && int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed)
+            ? parsed
+            : 0;
+
+    private static PhysicalTrackWriteFailure MapFailure(string diagnostic)
+    {
+        var category = diagnostic.Contains("WriteProtected", StringComparison.OrdinalIgnoreCase)
+            || diagnostic.Contains("write protected", StringComparison.OrdinalIgnoreCase)
+                ? PhysicalDiskWriteFailureCategory.WriteProtected
+                : PhysicalDiskWriteFailureCategory.Device;
+        return new PhysicalTrackWriteFailure(
+            null,
+            null,
+            category,
+            new IOException(diagnostic));
     }
 }

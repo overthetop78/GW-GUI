@@ -57,4 +57,17 @@
   <data name="Explorer.DetectedFormats"><value>Đã phát hiện: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable"><value>Công cụ máy không thể tạo ra ảnh phân khu dễ xem cho {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>Công cụ máy không thể giải mã ảnh như {0}.</value></data>
+  <data name="Explorer.Session"><value>Phiên chạy đĩa</value></data>
+  <data name="Explorer.Track"><value>Truyền thông</value></data>
+  <data name="Explorer.Layers"><value>Lớp đĩa</value></data>
+  <data name="Explorer.Faces"><value>Mặt ghi âm phương tiện</value></data>
+  <data name="Explorer.PartitionType"><value>Kiểu phân vùng</value></data>
+  <data name="Explorer.PartitionId"><value>Bộ nhận diện phân vùng</value></data>
+  <data name="Explorer.TrackMode"><value>Theo dõi</value></data>
+  <data name="Explorer.FirstSector"><value>Phần đầu</value></data>
+  <data name="Explorer.SectorCount"><value>Số lượng khu vực</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Kích cỡ phân khu lưu trữ</value></data>
+  <data name="Explorer.UserDataSize"><value>Kích cỡ dữ liệu người dùng</value></data>
+  <data name="Explorer.Subchannels"><value>Các tàu con</value></data>
+  <data name="Explorer.AudioTracks"><value>Các vết âm thanh</value></data>
 </root>

@@ -17,25 +17,41 @@ public sealed class FileSystemRegistry
     private readonly FrozenDictionary<MediaRepresentationKind, IReadOnlyList<IMediaFileSystemReader>> readersByRepresentation;
 
     /// <summary>Crée le registre à partir du catalogue par défaut.</summary>
-    public FileSystemRegistry() : this(FileSystemReaderCatalog.CreateDefault()) { }
+    public FileSystemRegistry() : this(FileSystemReaderCatalog.CreateDefault(), []) { }
 
     /// <summary>Crée le registre à partir d'une collection ordonnée de lecteurs.</summary>
     public FileSystemRegistry(IEnumerable<IFileSystemReader> readers)
+        : this(readers, [])
+    {
+    }
+
+    /// <summary>Creates a registry from existing sector readers and representation-independent media readers.</summary>
+    public FileSystemRegistry(
+        IEnumerable<IFileSystemReader> readers,
+        IEnumerable<IMediaFileSystemReader> mediaReaders)
     {
         ArgumentNullException.ThrowIfNull(readers);
+        ArgumentNullException.ThrowIfNull(mediaReaders);
         var copied = readers.ToArray();
         for (var index = 0; index < copied.Length; index++)
         {
             if (copied[index] is null) throw FileSystemRegistryExceptions.NullReader(index);
             if (string.IsNullOrWhiteSpace(copied[index].Id)) throw FileSystemRegistryExceptions.EmptyReaderId(index);
         }
-        var duplicate = copied.GroupBy(reader => reader.Id, StringComparer.OrdinalIgnoreCase).FirstOrDefault(group => group.Skip(1).Any());
+        var additional = mediaReaders.ToArray();
+        for (var index = 0; index < additional.Length; index++)
+        {
+            if (additional[index] is null) throw FileSystemRegistryExceptions.NullReader(copied.Length + index);
+            if (string.IsNullOrWhiteSpace(additional[index].Id)) throw FileSystemRegistryExceptions.EmptyReaderId(copied.Length + index);
+        }
+        var allMediaReaders = copied.Cast<IMediaFileSystemReader>().Concat(additional).ToArray();
+        var duplicate = allMediaReaders.GroupBy(reader => reader.Id, StringComparer.OrdinalIgnoreCase).FirstOrDefault(group => group.Skip(1).Any());
         if (duplicate is not null) throw FileSystemRegistryExceptions.DuplicateReaderId(duplicate.Key);
         Readers = Array.AsReadOnly(copied);
+        MediaReaders = Array.AsReadOnly(allMediaReaders);
         readersById = copied.ToFrozenDictionary(reader => reader.Id, StringComparer.OrdinalIgnoreCase);
         readersByFormatId = copied.SelectMany(reader => reader.CatalogFormatIds.Select(formatId => (formatId, reader))).GroupBy(item => item.formatId, StringComparer.OrdinalIgnoreCase).ToFrozenDictionary(group => group.Key, group => (IReadOnlyList<IFileSystemReader>)Array.AsReadOnly(group.Select(item => item.reader).ToArray()), StringComparer.OrdinalIgnoreCase);
-        readersByRepresentation = copied
-            .Cast<IMediaFileSystemReader>()
+        readersByRepresentation = allMediaReaders
             .SelectMany(reader => reader.RepresentationKinds.Select(kind => (kind, reader)))
             .GroupBy(item => item.kind)
             .ToFrozenDictionary(
@@ -46,6 +62,8 @@ public sealed class FileSystemRegistry
 
     /// <summary>Lecteurs copiés et exposés dans l'ordre du catalogue.</summary>
     public IReadOnlyList<IFileSystemReader> Readers { get; }
+    /// <summary>All readers available to representation-independent media exploration.</summary>
+    public IReadOnlyList<IMediaFileSystemReader> MediaReaders { get; }
     /// <summary>Ensemble immuable des formats de catalogue déclarés.</summary>
     public IReadOnlySet<string> SupportedFormatIds { get; }
 

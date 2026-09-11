@@ -57,4 +57,17 @@
   <data name="Explorer.DetectedFormats"><value>ตรวจพบ: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable"><value>เครื่องมือของโฮสต์ไม่สามารถสร้างภาพของภาคต่าง ๆ ที่สามารถขยายได้ {0}. .</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>เครื่องมือของโฮสต์ ไม่สามารถถอดรหัสภาพได้ {0}. .</value></data>
+  <data name="Explorer.Session"><value>วาระการเขียน</value></data>
+  <data name="Explorer.Track"><value>แทร็กสื่อ</value></data>
+  <data name="Explorer.Layers"><value>ชั้นแผ่น</value></data>
+  <data name="Explorer.Faces"><value>ด้านการบันทึกเสียงแบบสื่อ</value></data>
+  <data name="Explorer.PartitionType"><value>ประเภทพาร์ทิชัน</value></data>
+  <data name="Explorer.PartitionId"><value>ตัวระบุส่วนย่อย</value></data>
+  <data name="Explorer.TrackMode"><value>โหมดแทร็ก</value></data>
+  <data name="Explorer.FirstSector"><value>ส่วนแรก</value></data>
+  <data name="Explorer.SectorCount"><value>จํานวนส่วน</value></data>
+  <data name="Explorer.StoredSectorSize"><value>ขนาดส่วนที่เก็บไว้</value></data>
+  <data name="Explorer.UserDataSize"><value>ขนาดข้อมูลของผู้ใช้</value></data>
+  <data name="Explorer.Subchannels"><value>คําบรรยาย</value></data>
+  <data name="Explorer.AudioTracks"><value>แทร็กเสียง</value></data>
 </root>

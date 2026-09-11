@@ -1,18 +1,17 @@
 using GWGUI.App.Contracts.Services.PhysicalDiskWriting;
-using System.IO;
 using GWGUI.Infrastructure.Hardware.Greaseweazle;
-using GWGUI.MediaEngine.Encoding;
+using GWGUI.Infrastructure.Hardware.Media;
 using GWGUI.MediaEngine.Exploration;
-
-using GWGUI.MediaEngine.Formats.Floppy.Scp;
+using GWGUI.MediaEngine.PhysicalWriting;
 
 namespace GWGUI.App.Services.PhysicalDiskWriting;
 
 public sealed class InternalPhysicalDiskWriter(
     Func<IGreaseweazleWriteDevice> deviceFactory,
-    DiskImageExplorer? explorer = null)
+    FloppyMediaWritePlanningService? planningService = null)
 {
-    private readonly DiskImageExplorer _explorer = explorer ?? DiskImageExplorer.CreateDefault();
+    private readonly FloppyMediaWritePlanningService _planningService =
+        planningService ?? new FloppyMediaWritePlanningService(DiskImageExplorer.CreateDefault());
 
     public async Task<PhysicalDiskWriteResult> WriteAsync(
         InternalPhysicalDiskWriteRequest request,
@@ -23,17 +22,18 @@ public sealed class InternalPhysicalDiskWriter(
         ArgumentException.ThrowIfNullOrWhiteSpace(request.SourcePath);
         ArgumentException.ThrowIfNullOrWhiteSpace(request.FormatId);
 
-        await using var device = deviceFactory();
-        var service = new PhysicalDiskWriteService(device);
-        if (Path.GetExtension(request.SourcePath).Equals(".scp", StringComparison.OrdinalIgnoreCase))
-        {
-            var image = await new ScpReader().ReadAsync(request.SourcePath, cancellationToken);
-            return await service.WriteAsync(image, request.Options, progress, cancellationToken);
-        }
-
-        var explored = await _explorer.ExploreAsync(request.SourcePath, request.FormatId, cancellationToken);
-        var tracks = new SectorImageTrackEncoder().Encode(explored.Image, cancellationToken);
-        return await service.WriteAsync(tracks, request.Options, progress, cancellationToken);
+        var plan = await _planningService.CreatePlanAsync(
+            request.SourcePath,
+            request.FormatId,
+            request.Options.ScpRevolution,
+            cancellationToken).ConfigureAwait(false);
+        var writers = new MediaPhysicalWriterRegistry(
+            [new GreaseweazleMediaPhysicalWriter(deviceFactory)]);
+        return await new PhysicalDiskWriteService(writers).WriteAsync(
+            plan,
+            request.Options,
+            progress,
+            cancellationToken).ConfigureAwait(false);
     }
 
     public static InternalPhysicalDiskWriter CreateDefault() =>

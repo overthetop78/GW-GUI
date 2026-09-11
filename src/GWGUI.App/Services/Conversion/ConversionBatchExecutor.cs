@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.IO;
 using GWGUI.Domain.Contracts;
 using GWGUI.MediaEngine.Conversion;
+using GWGUI.MediaEngine.Conversion.Sequential;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Reading;
 
@@ -18,10 +19,12 @@ namespace GWGUI.App.Services.Conversion;
 public sealed class ConversionBatchExecutor(
     IGreaseweazleRunner runner,
     MediaImageReadingService mediaReader,
-    MediaConversionService conversionService)
+    MediaConversionService conversionService,
+    SequentialMediaConversionService sequentialConversionService)
 {
     private readonly MediaImageReadingService mediaReader = mediaReader ?? throw new ArgumentNullException(nameof(mediaReader));
     private readonly MediaConversionService conversionService = conversionService ?? throw new ArgumentNullException(nameof(conversionService));
+    private readonly SequentialMediaConversionService sequentialConversionService = sequentialConversionService ?? throw new ArgumentNullException(nameof(sequentialConversionService));
 
     public static bool IsInternal(ConversionOutput output) =>
         MediaEngineParityCatalog.Matrix.Rows.Any(row =>
@@ -42,7 +45,8 @@ public sealed class ConversionBatchExecutor(
         IProgress<GwOutputLine>? progress = null,
         Action<GwBatchItem>? itemStarting = null,
         CancellationToken cancellationToken = default,
-        OperationEngine engine = OperationEngine.Internal)
+        OperationEngine engine = OperationEngine.Internal,
+        bool acceptSequentialLosses = false)
     {
         var completed = new List<GwBatchItemResult>(items.Count);
         MediaImageDocument? sourceDocument = null;
@@ -58,23 +62,47 @@ public sealed class ConversionBatchExecutor(
                 continue;
             }
 
-            if (!IsInternal(sourcePath, output))
-            {
-                var line = Report(progress, GwOutputStream.Error, LocExtension.Get("Conversion.EngineInternalUnavailable", item.Label));
-                completed.Add(new(item, new(1, false, TimeSpan.Zero, [line])));
-                continue;
-            }
-
             var stopwatch = Stopwatch.StartNew();
             try
             {
-                Report(progress, GwOutputStream.Standard, LocExtension.Get("Conversion.EngineInternalStart", Path.GetFileName(sourcePath), item.Label));
                 sourceDocument ??= await mediaReader.ReadAsync(
                     new MediaSourceDescriptor(sourcePath, []),
                     cancellationToken).ConfigureAwait(false);
-                await conversionService.ConvertAsync(
-                    new MediaConversionRequest(sourceDocument, output.OutputPath, output.FormatId),
-                    cancellationToken).ConfigureAwait(false);
+                var isDirectMediaEngineDestination = conversionService.GetAvailableDestinations(sourceDocument).Any(destination =>
+                    destination.FormatId.Equals(output.FormatId, StringComparison.OrdinalIgnoreCase)
+                    && destination.Extension.Equals(output.Extension, StringComparison.OrdinalIgnoreCase));
+                var isSequentialDestination = false;
+                if (!isDirectMediaEngineDestination)
+                {
+                    var sequentialDestinations = await sequentialConversionService
+                        .GetAvailableDestinationsAsync(sourceDocument, cancellationToken: cancellationToken)
+                        .ConfigureAwait(false);
+                    isSequentialDestination = sequentialDestinations.Any(destination =>
+                        destination.FormatId.Equals(output.FormatId, StringComparison.OrdinalIgnoreCase)
+                        && destination.Extension.Equals(output.Extension, StringComparison.OrdinalIgnoreCase));
+                }
+                if (!isDirectMediaEngineDestination && !isSequentialDestination)
+                {
+                    var line = Report(progress, GwOutputStream.Error, LocExtension.Get("Conversion.EngineInternalUnavailable", item.Label));
+                    completed.Add(new(item, new(1, false, stopwatch.Elapsed, [line])));
+                    continue;
+                }
+                Report(progress, GwOutputStream.Standard, LocExtension.Get("Conversion.EngineInternalStart", Path.GetFileName(sourcePath), item.Label));
+                if (isSequentialDestination)
+                {
+                    await sequentialConversionService.ConvertAsync(
+                        sourcePath,
+                        output.OutputPath,
+                        output.FormatId,
+                        acceptLosses: acceptSequentialLosses,
+                        cancellationToken: cancellationToken).ConfigureAwait(false);
+                }
+                else
+                {
+                    await conversionService.ConvertAsync(
+                        new MediaConversionRequest(sourceDocument, output.OutputPath, output.FormatId),
+                        cancellationToken).ConfigureAwait(false);
+                }
                 Report(progress, GwOutputStream.Standard, LocExtension.Get("Conversion.EngineInternalComplete", item.Label));
                 completed.Add(new(item, new(0, false, stopwatch.Elapsed, [])));
             }

@@ -57,4 +57,17 @@
   <data name="Explorer.ExternalEngineUnavailable"><value>Hostitelské nástroje nemohou produkovat vysvětlující obraz odvětví pro {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>Hostitelské nástroje nemohly dekódovat obrázek jako {0}.</value></data>
   <data name="Explorer.Type.Program"><value>Program</value></data>
+  <data name="Explorer.Session"><value>Disková relace</value></data>
+  <data name="Explorer.Track"><value>Media track</value></data>
+  <data name="Explorer.Layers"><value>Vrstvy disků</value></data>
+  <data name="Explorer.Faces"><value>Strany záznamu médií</value></data>
+  <data name="Explorer.PartitionType"><value>Typ rozdělení</value></data>
+  <data name="Explorer.PartitionId"><value>Identifikátor oddílu</value></data>
+  <data name="Explorer.TrackMode"><value>Režim koleje</value></data>
+  <data name="Explorer.FirstSector"><value>První sektor</value></data>
+  <data name="Explorer.SectorCount"><value>Počet sektorů</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Velikost skladovaného sektoru</value></data>
+  <data name="Explorer.UserDataSize"><value>Velikost uživatelských dat</value></data>
+  <data name="Explorer.Subchannels"><value>Subkanály</value></data>
+  <data name="Explorer.AudioTracks"><value>Zvukové stopy</value></data>
 </root>

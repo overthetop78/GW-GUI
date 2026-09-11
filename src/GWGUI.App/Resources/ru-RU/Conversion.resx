@@ -86,4 +86,6 @@
   <data name="Conversion.EngineInternalComplete"><value>Внутренняя конверсия завершена: {0}.</value></data>
   <data name="Conversion.EngineInternalUnavailable"><value>Внутренний двигатель не поддерживает эту конверсию: {0}.</value></data>
   <data name="Conversion.EngineInternalFailed"><value>Внутренняя конверсия не удалась {0}: {1}</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>Потенциальная потеря данных</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>Это преобразование не может сохранить всю исходную информацию:&#xA;&#xA;{0}&#xA;&#xA;Хочешь продолжить?</value></data>
 </root>

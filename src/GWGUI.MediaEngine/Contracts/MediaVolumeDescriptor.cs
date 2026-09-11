@@ -10,13 +10,18 @@ public sealed record MediaVolumeDescriptor
         string? partitionScheme = null,
         int? partitionNumber = null,
         int? sessionNumber = null,
-        string? fileSystemId = null)
+        int? trackNumber = null,
+        string? fileSystemId = null,
+        string? partitionType = null,
+        string? partitionId = null,
+        string? name = null)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(start);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(length);
         if (string.IsNullOrWhiteSpace(origin)) throw new ArgumentException("A volume origin is required.", nameof(origin));
         if (partitionNumber is <= 0) throw new ArgumentOutOfRangeException(nameof(partitionNumber));
         if (sessionNumber is <= 0) throw new ArgumentOutOfRangeException(nameof(sessionNumber));
+        if (trackNumber is <= 0) throw new ArgumentOutOfRangeException(nameof(trackNumber));
 
         Start = start;
         Length = length;
@@ -24,7 +29,11 @@ public sealed record MediaVolumeDescriptor
         PartitionScheme = partitionScheme;
         PartitionNumber = partitionNumber;
         SessionNumber = sessionNumber;
+        TrackNumber = trackNumber;
         FileSystemId = fileSystemId;
+        PartitionType = partitionType;
+        PartitionId = partitionId;
+        Name = name;
     }
 
     public long Start { get; }
@@ -39,5 +48,13 @@ public sealed record MediaVolumeDescriptor
 
     public int? SessionNumber { get; }
 
+    public int? TrackNumber { get; }
+
     public string? FileSystemId { get; }
+
+    public string? PartitionType { get; }
+
+    public string? PartitionId { get; }
+
+    public string? Name { get; }
 }

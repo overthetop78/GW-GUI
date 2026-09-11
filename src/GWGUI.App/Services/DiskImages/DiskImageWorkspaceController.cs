@@ -525,6 +525,8 @@ internal sealed class DiskImageWorkspaceController : IDisposable
         }
 
         cancellationToken.ThrowIfCancellationRequested();
+        var explored = await _mediaExplorer.ExploreAsync(document, cancellationToken);
+        document = explored.Document;
         _visualizationDescriptor = _visualizationProviders?.CreateDescriptor(document);
         if (_visualizationDescriptor is not null)
         {
@@ -550,7 +552,7 @@ internal sealed class DiskImageWorkspaceController : IDisposable
             }
             _visualizer.ShowDocument(document, _visualizationDescriptor);
         }
-        return _mediaExplorer.Explore(document);
+        return explored;
     }
 
     private void HandleSectorSelected(int surface, GWGUI.App.Contracts.Rendering.Sectors.SectorMediaElement? sector) =>

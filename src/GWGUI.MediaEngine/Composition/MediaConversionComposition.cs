@@ -2,7 +2,11 @@ using GWGUI.Domain.Enums;
 using GWGUI.MediaEngine.Conversion;
 using GWGUI.MediaEngine.Conversion.Atari;
 using GWGUI.MediaEngine.Conversion.Scp;
+using GWGUI.MediaEngine.Conversion.Optical;
+using GWGUI.MediaEngine.Conversion.Sequential;
+using GWGUI.MediaEngine.Decoding.Sequential;
 using GWGUI.MediaEngine.Encoding;
+using GWGUI.MediaEngine.Encoding.Sequential;
 using GWGUI.MediaEngine.Formats.Floppy.Adf;
 using GWGUI.MediaEngine.Formats.Floppy.Atr;
 using GWGUI.MediaEngine.Formats.Floppy.Raw;
@@ -15,12 +19,17 @@ namespace GWGUI.MediaEngine.Composition;
 /// <summary>Provides the registered in-memory media representation converters.</summary>
 public sealed class MediaConversionComposition
 {
+    private readonly MediaRecognitionComposition recognition;
+
     internal MediaConversionComposition(
         MediaRecognitionComposition recognition,
-        ScpSectorDecodingComposition scpDecoding)
+        ScpSectorDecodingComposition scpDecoding,
+        SequentialMediaComposition sequentialMedia)
     {
         ArgumentNullException.ThrowIfNull(recognition);
         ArgumentNullException.ThrowIfNull(scpDecoding);
+        ArgumentNullException.ThrowIfNull(sequentialMedia);
+        this.recognition = recognition;
         var sectorFormatIds = new HashSet<string>(
             recognition.Readers
                 .Where(reader => reader.RepresentationKinds.Contains(MediaRepresentationKind.Sectors))
@@ -37,6 +46,8 @@ public sealed class MediaConversionComposition
             sectorToFlux
         ];
         Registry = new MediaRepresentationConverterRegistry(Converters);
+        SequentialDecoders = sequentialMedia.Decoders;
+        SequentialEncoders = sequentialMedia.Encoders;
         AmigaAdfRuntimeConverter = new AmigaAdfConversionService(
             scpDecoding.AmigaReader,
             new AdfReader(),
@@ -51,7 +62,31 @@ public sealed class MediaConversionComposition
 
     public MediaRepresentationConverterRegistry Registry { get; }
 
+    public SequentialDecoderRegistry SequentialDecoders { get; }
+
+    public SequentialEncoderRegistry SequentialEncoders { get; }
+
     public AmigaAdfConversionService AmigaAdfRuntimeConverter { get; }
 
     public AtariScpRuntimeConversionService AtariScpRuntimeConverter { get; }
+
+    public OpticalImageConversionService CreateOpticalImageConverter(MediaWritingComposition writing)
+    {
+        ArgumentNullException.ThrowIfNull(writing);
+        return new OpticalImageConversionService(
+            recognition.ReadingService,
+            writing.Registry,
+            writing.WritingService);
+    }
+
+    public SequentialMediaConversionService CreateSequentialMediaConverter(MediaWritingComposition writing)
+    {
+        ArgumentNullException.ThrowIfNull(writing);
+        return new SequentialMediaConversionService(
+            recognition.ReadingService,
+            SequentialDecoders,
+            SequentialEncoders,
+            writing.Registry,
+            writing.WritingService);
+    }
 }

@@ -86,4 +86,6 @@
   <data name="Conversion.EngineInternalComplete"><value>Hoàn tất việc chuyển đổi nội bộ: {0}.</value></data>
   <data name="Conversion.EngineInternalUnavailable"><value>Cơ chế nội bộ không hỗ trợ việc chuyển đổi này: {0}.</value></data>
   <data name="Conversion.EngineInternalFailed"><value>Việc chuyển đổi nội bộ bị lỗi {0}: {1}</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>Mất dữ liệu tiềm năng</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>Việc chuyển đổi này không thể bảo tồn mọi thông tin về nguồn:&#xA;&#xA;{0}&#xA;&#xA;Bạn có muốn tiếp tục không?</value></data>
 </root>

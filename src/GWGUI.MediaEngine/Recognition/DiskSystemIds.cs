@@ -29,6 +29,8 @@ public static class DiskSystemIds
     public const string EpsonQx10 = "epson-qx10";
     /// <summary>Système MSX.</summary>
     public const string Msx = "msx";
+    /// <summary>Sinclair ZX Spectrum system.</summary>
+    public const string Spectrum = "spectrum";
     /// <summary>Systèmes DEC.</summary>
     public const string Dec = "dec";
     /// <summary>Système COHERENT.</summary>

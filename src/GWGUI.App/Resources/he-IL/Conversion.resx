@@ -86,4 +86,6 @@
   <data name="Conversion.EngineInternalComplete"><value>המרה פנימית הושלמה: {0}.</value></data>
   <data name="Conversion.EngineInternalUnavailable"><value>המנוע הפנימי אינו תומך בהמרות זו: {0}.</value></data>
   <data name="Conversion.EngineInternalFailed"><value>המרה פנימית נכשלה {0}: {1}</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>אובדן נתונים פוטנציאלי</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>המרה זו אינה יכולה לשמור על כל מידע המקור:&#xA;&#xA;{0}&#xA;&#xA;רוצים להמשיך?</value></data>
 </root>

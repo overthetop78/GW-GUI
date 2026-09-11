@@ -62,12 +62,14 @@ internal sealed class ReadTabController(
     Func<string, Exception?>? deleteCancelledOutput = null,
     Action? selectOutputName = null,
     Func<string, Task<GWGUI.MediaEngine.Exploration.ScpCaptureInfo>>? readCaptureInfo = null,
-    Action<Exception, string>? logError = null)
+    Action<Exception, string>? logError = null,
+    Func<InternalPhysicalDiskReader>? internalReaderFactory = null)
 {
     private readonly Func<string?, bool> exists = fileExists ?? File.Exists;
     private readonly Func<string, Exception?> deleteOutput = deleteCancelledOutput ?? CancelledOutputCleaner.TryDelete;
     private readonly Func<string, Task<GWGUI.MediaEngine.Exploration.ScpCaptureInfo>> captureInfo = readCaptureInfo ?? (path => GWGUI.MediaEngine.Exploration.ScpCaptureInfoReader.ReadAsync(path));
     private readonly Action<Exception, string> reportError = logError ?? ((error, context) => ErrorLog.Write(error, context));
+    private readonly Func<InternalPhysicalDiskReader> createInternalReader = internalReaderFactory ?? InternalPhysicalDiskReader.CreateDefault;
     private ComboBox ProfileCombo => view.ProfileBlock.ProfileCombo;
     private RadioButton RawScpRadio => view.ImageBlock.RawScpRadio;
     private RadioButton KnownFormatRadio => view.ImageBlock.KnownFormatRadio;
@@ -433,7 +435,7 @@ internal sealed class ReadTabController(
         lastInternalReadProgressLine = null;
         var outcome = await operation.RunAsync(async token =>
         {
-            var reader = InternalPhysicalDiskReader.CreateDefault();
+            var reader = createInternalReader();
             var readProgress = new Progress<PhysicalDiskReadOperationProgress>(ReportInternalProgress);
             capture = await reader.ReadAsync(options, target, readProgress, token);
             return new GwExecutionResult(0, false, stopwatch.Elapsed, []);

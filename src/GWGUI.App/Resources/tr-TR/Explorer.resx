@@ -57,4 +57,17 @@
   <data name="Explorer.ExternalEngineUnavailable"><value>Host Tools, uygun bir sektör imajı üretemez {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>Host Tools, görüntüyü olarak kodlayamadı {0}.</value></data>
   <data name="Explorer.Type.Program"><value>Program Programı Programı Programı Programı Programı Programı Programı Programı Programı Programı Programı Programı</value></data>
+  <data name="Explorer.Session"><value>Disiplin seansı</value></data>
+  <data name="Explorer.Track"><value>Media track</value></data>
+  <data name="Explorer.Layers"><value>Disk tabakaları</value></data>
+  <data name="Explorer.Faces"><value>Media Records side side</value></data>
+  <data name="Explorer.PartitionType"><value>Katılımcı türü</value></data>
+  <data name="Explorer.PartitionId"><value>Katılımcı tanımlayıcı</value></data>
+  <data name="Explorer.TrackMode"><value>Track modu</value></data>
+  <data name="Explorer.FirstSector"><value>İlk sektör</value></data>
+  <data name="Explorer.SectorCount"><value>Sektör sayi</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Mağazacılık büyüklüğü</value></data>
+  <data name="Explorer.UserDataSize"><value>Kullanıcı Verileri Boyut</value></data>
+  <data name="Explorer.Subchannels"><value>Subchannels</value></data>
+  <data name="Explorer.AudioTracks"><value>Ses parçaları</value></data>
 </root>

@@ -57,4 +57,17 @@
   <data name="Explorer.DetectedFormats"><value>检测到：{0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable"><value>主机工具无法生成可扩展扇形图像 {0}. . . . . . . . . . . .</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>主机工具无法解码图像为 {0}. . . . . . . . . . . .</value></data>
+  <data name="Explorer.Session"><value>磁盘会话</value></data>
+  <data name="Explorer.Track"><value>媒体轨道</value></data>
+  <data name="Explorer.Layers"><value>磁盘层</value></data>
+  <data name="Explorer.Faces"><value>媒体录音侧面</value></data>
+  <data name="Explorer.PartitionType"><value>分区类型</value></data>
+  <data name="Explorer.PartitionId"><value>分区标识符</value></data>
+  <data name="Explorer.TrackMode"><value>音轨模式</value></data>
+  <data name="Explorer.FirstSector"><value>第一部门</value></data>
+  <data name="Explorer.SectorCount"><value>区数</value></data>
+  <data name="Explorer.StoredSectorSize"><value>存储的扇区大小</value></data>
+  <data name="Explorer.UserDataSize"><value>用户数据大小</value></data>
+  <data name="Explorer.Subchannels"><value>子频道</value></data>
+  <data name="Explorer.AudioTracks"><value>音频音轨</value></data>
 </root>

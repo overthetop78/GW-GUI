@@ -86,4 +86,6 @@
   <data name="Conversion.More"><value> ( ) {0} conversion(s)</value></data>
   <data name="Conversion.Title"><value>Conversion</value></data>
   <data name="Conversion.Source"><value>Source</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>Perte potentielle de données</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>Cette conversion ne peut pas préserver toutes les informations sources :&#xA;&#xA;{0}&#xA;&#xA;Tu veux continuer ?</value></data>
 </root>

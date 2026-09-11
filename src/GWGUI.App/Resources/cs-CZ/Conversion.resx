@@ -86,4 +86,6 @@
   <data name="Conversion.EngineInternalComplete"><value>Interní převod dokončen: {0}.</value></data>
   <data name="Conversion.EngineInternalUnavailable"><value>Vnitřní motor nepodporuje tuto konverzi: {0}.</value></data>
   <data name="Conversion.EngineInternalFailed"><value>Interní konverze selhala {0}: {1}</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>Potenciální ztráta dat</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>Tato přeměna nemůže uchovat všechny zdrojové informace:&#xA;&#xA;{0}&#xA;&#xA;Chceš pokračovat?</value></data>
 </root>

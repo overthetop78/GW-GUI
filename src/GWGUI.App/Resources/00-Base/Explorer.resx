@@ -60,4 +60,17 @@
   <data name="Explorer.DataBlocks"><value>Data blocks</value></data>
   <data name="Explorer.ExternalEngineUnavailable" xml:space="preserve"><value>Host Tools cannot produce an explorable sector image for {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed" xml:space="preserve"><value>Host Tools could not decode the image as {0}.</value></data>
+  <data name="Explorer.Session"><value>Session</value></data>
+  <data name="Explorer.Track"><value>Track</value></data>
+  <data name="Explorer.Layers"><value>Layers</value></data>
+  <data name="Explorer.Faces"><value>Faces</value></data>
+  <data name="Explorer.PartitionType"><value>Partition type</value></data>
+  <data name="Explorer.PartitionId"><value>Partition identifier</value></data>
+  <data name="Explorer.TrackMode"><value>Track mode</value></data>
+  <data name="Explorer.FirstSector"><value>First sector</value></data>
+  <data name="Explorer.SectorCount"><value>Sector count</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Stored sector size</value></data>
+  <data name="Explorer.UserDataSize"><value>User data size</value></data>
+  <data name="Explorer.Subchannels"><value>Subchannels</value></data>
+  <data name="Explorer.AudioTracks"><value>Audio tracks</value></data>
 </root>

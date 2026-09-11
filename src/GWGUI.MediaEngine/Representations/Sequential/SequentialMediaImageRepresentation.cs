@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using GWGUI.Domain.Enums;
+using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Interfaces;
 
 namespace GWGUI.MediaEngine.Representations.Sequential;
@@ -10,7 +11,7 @@ public sealed class SequentialMediaImageRepresentation : IMediaImageRepresentati
     public SequentialMediaImageRepresentation(
         long? logicalLength,
         TimeSpan? duration = null,
-        IReadOnlyList<(int? FaceNumber, int? TrackNumber, int? ChannelNumber, TimeSpan Start, TimeSpan Duration)>? segments = null)
+        IReadOnlyList<SequentialMediaSegment>? segments = null)
     {
         if (logicalLength is < 0) throw new ArgumentOutOfRangeException(nameof(logicalLength));
         if (duration is { } declaredDuration && declaredDuration < TimeSpan.Zero) throw new ArgumentOutOfRangeException(nameof(duration));
@@ -22,12 +23,12 @@ public sealed class SequentialMediaImageRepresentation : IMediaImageRepresentati
                 if (segment.FaceNumber is < 0) throw new ArgumentOutOfRangeException(nameof(segments), segment, "A face number cannot be negative.");
                 if (segment.TrackNumber is < 0) throw new ArgumentOutOfRangeException(nameof(segments), segment, "A track number cannot be negative.");
                 if (segment.ChannelNumber is < 0) throw new ArgumentOutOfRangeException(nameof(segments), segment, "A channel number cannot be negative.");
-                if (segment.Start < TimeSpan.Zero) throw new ArgumentOutOfRangeException(nameof(segments), segment, "A segment start cannot be negative.");
-                if (segment.Duration <= TimeSpan.Zero) throw new ArgumentOutOfRangeException(nameof(segments), segment, "A segment duration must be positive.");
-                if (duration is { } totalDuration && segment.Start + segment.Duration > totalDuration) throw new ArgumentOutOfRangeException(nameof(segments), segment, "A segment exceeds the declared duration.");
+                if (duration is { } totalDuration && segment.Start is { } start && segment.Duration is { } segmentDuration
+                    && start + segmentDuration > totalDuration)
+                    throw new ArgumentOutOfRangeException(nameof(segments), segment, "A segment exceeds the declared duration.");
             }
 
-            Segments = new ReadOnlyCollection<(int? FaceNumber, int? TrackNumber, int? ChannelNumber, TimeSpan Start, TimeSpan Duration)>(segments.ToArray());
+            Segments = new ReadOnlyCollection<SequentialMediaSegment>(segments.ToArray());
             Faces = ValuesOrNull(segments.Select(segment => segment.FaceNumber));
             Tracks = ValuesOrNull(segments.Select(segment => segment.TrackNumber));
             Channels = ValuesOrNull(segments.Select(segment => segment.ChannelNumber));
@@ -53,7 +54,7 @@ public sealed class SequentialMediaImageRepresentation : IMediaImageRepresentati
 
     public IReadOnlyList<int>? Channels { get; }
 
-    public IReadOnlyList<(int? FaceNumber, int? TrackNumber, int? ChannelNumber, TimeSpan Start, TimeSpan Duration)>? Segments { get; }
+    public IReadOnlyList<SequentialMediaSegment>? Segments { get; }
 
     private static IReadOnlyList<int>? ValuesOrNull(IEnumerable<int?> values)
     {

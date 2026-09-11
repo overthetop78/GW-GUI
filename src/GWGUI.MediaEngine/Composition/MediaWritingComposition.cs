@@ -23,6 +23,23 @@ using GWGUI.MediaEngine.Formats.Floppy.Scp;
 using GWGUI.MediaEngine.Formats.Floppy.St;
 using GWGUI.MediaEngine.Formats.Floppy.TeleDisk;
 using GWGUI.MediaEngine.Formats.Floppy.TwoImg;
+using GWGUI.MediaEngine.Formats.HardDisk.Raw;
+using GWGUI.MediaEngine.Formats.HardDisk.Chd;
+using GWGUI.MediaEngine.Formats.HardDisk.Qcow2;
+using GWGUI.MediaEngine.Formats.HardDisk.Vdi;
+using GWGUI.MediaEngine.Formats.HardDisk.Vhd;
+using GWGUI.MediaEngine.Formats.HardDisk.Vhdx;
+using GWGUI.MediaEngine.Formats.HardDisk.Vmdk;
+using GWGUI.MediaEngine.Formats.Optical.BinCue;
+using GWGUI.MediaEngine.Formats.Optical.Iso;
+using GWGUI.MediaEngine.Formats.Tape.AtariCas;
+using GWGUI.MediaEngine.Formats.Tape.CommodoreTap;
+using GWGUI.MediaEngine.Formats.Tape.MsxCas;
+using GWGUI.MediaEngine.Formats.Tape.Simh;
+using GWGUI.MediaEngine.Formats.Tape.SpectrumTap;
+using GWGUI.MediaEngine.Formats.Tape.Tzx;
+using GWGUI.MediaEngine.Formats.Tape.Uef;
+using GWGUI.MediaEngine.Formats.Tape.Wav;
 using GWGUI.MediaEngine.Interfaces.Writing;
 using GWGUI.MediaEngine.Representations.Flux;
 using GWGUI.MediaEngine.Representations.Sectors;
@@ -74,6 +91,23 @@ public sealed class MediaWritingComposition
         var td0 = new Td0Writer();
         var scp = new ScpWriter();
         var hfe = new HfeWriter();
+        var hardDiskRaw = new RawHardDiskWriter();
+        var hardDiskQcow2 = new Qcow2Writer();
+        var hardDiskVhd = new VhdWriter();
+        var hardDiskVhdx = new VhdxWriter();
+        var hardDiskVdi = new VdiWriter();
+        var hardDiskVmdk = new VmdkWriter();
+        var hardDiskChd = new ChdHardDiskWriter();
+        var opticalIso = new IsoWriter();
+        var opticalBinCue = new BinCueWriter();
+        var tapeWav = new WavTapeWriter();
+        var tapeAtariCas = new AtariCasWriter();
+        var tapeTzx = new TzxWriter();
+        var tapeSpectrumTap = new SpectrumTapWriter();
+        var tapeCommodoreTap = new CommodoreTapWriter();
+        var tapeMsxCas = new MsxCasWriter();
+        var tapeUef = new UefWriter();
+        var tapeSimh = new SimhTapeWriter();
 
         IMediaImageWriter[] writers =
         [
@@ -116,7 +150,24 @@ public sealed class MediaWritingComposition
             Flux(MediaImageWriterIds.Scp, DiskImageFormatIds.RawScp, DiskImageFileExtensions.Scp,
                 (image, metadata, path, token) => WriteSingleAsync(scp.WriteAsync(path, ProtectedTrackScpImageAdapter.Create(image, metadata), token), path)),
             Flux(MediaImageWriterIds.Hfe, DiskImageFormatIds.RawHfe, DiskImageFileExtensions.Hfe,
-                (image, metadata, path, token) => WriteSingleAsync(hfe.WriteAsync(ProtectedTrackHfeImageAdapter.Create(image, metadata), path, token), path))
+                (image, metadata, path, token) => WriteSingleAsync(hfe.WriteAsync(ProtectedTrackHfeImageAdapter.Create(image, metadata), path, token), path)),
+            hardDiskRaw,
+            hardDiskQcow2,
+            hardDiskVhd,
+            hardDiskVhdx,
+            hardDiskVdi,
+            hardDiskVmdk,
+            hardDiskChd,
+            opticalIso,
+            opticalBinCue,
+            tapeWav,
+            tapeAtariCas,
+            tapeTzx,
+            tapeSpectrumTap,
+            tapeCommodoreTap,
+            tapeMsxCas,
+            tapeUef,
+            tapeSimh
         ];
         return new MediaWritingComposition(writers);
     }

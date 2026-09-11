@@ -57,4 +57,17 @@
   <data name="Explorer.DetectedFormats"><value>Обнаружено: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable"><value>Host Tools не может создать образ сектора для поиска. {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>Host Tools не смогли расшифровать изображение {0}.</value></data>
+  <data name="Explorer.Session"><value>Диск-сессия</value></data>
+  <data name="Explorer.Track"><value>Медиа-трек</value></data>
+  <data name="Explorer.Layers"><value>Дисковые слои</value></data>
+  <data name="Explorer.Faces"><value>Ступени для записи медиа</value></data>
+  <data name="Explorer.PartitionType"><value>Тип раздела</value></data>
+  <data name="Explorer.PartitionId"><value>Идентификатор раздела</value></data>
+  <data name="Explorer.TrackMode"><value>Режим отслеживания</value></data>
+  <data name="Explorer.FirstSector"><value>Первый сектор</value></data>
+  <data name="Explorer.SectorCount"><value>Секторальный счет</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Размер складского сектора</value></data>
+  <data name="Explorer.UserDataSize"><value>Размер данных пользователя</value></data>
+  <data name="Explorer.Subchannels"><value>Подканалы</value></data>
+  <data name="Explorer.AudioTracks"><value>Аудио треки</value></data>
 </root>

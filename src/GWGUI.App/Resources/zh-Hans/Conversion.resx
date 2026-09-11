@@ -86,4 +86,6 @@
   <data name="Conversion.EngineInternalComplete"><value>完成内部转换: {0}. . . . . . . . . . . .</value></data>
   <data name="Conversion.EngineInternalUnavailable"><value>内部引擎不支持此转换 : {0}. . . . . . . . . . . .</value></data>
   <data name="Conversion.EngineInternalFailed"><value>内部转换失败 {0}: 调取 {1}</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>潜在数据损失</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>此转换无法保存所有源信息 :&#xA;&#xA;{0}&#xA;&#xA;你想继续吗?</value></data>
 </root>

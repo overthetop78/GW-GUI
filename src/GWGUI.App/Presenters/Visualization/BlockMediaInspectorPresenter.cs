@@ -2,7 +2,9 @@ using GWGUI.App.Constants.Controls.Visual;
 using GWGUI.App.Contracts.Rendering.Blocks;
 using GWGUI.App.Contracts.ViewModels.Visualization;
 using GWGUI.App.Enums.Rendering.Blocks;
+using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Representations.Blocks;
 using System.IO;
 
@@ -18,27 +20,50 @@ public sealed class BlockMediaInspectorPresenter(Func<string, object[], string> 
         var logicalLength = blocks.LogicalLength
             ?? throw new InvalidDataException("A block media representation must declare its logical length.");
 
-        var ranges = new List<BlockMediaRange>();
-        long cursor = 0;
-        foreach (var sourceRange in blocks.Ranges.OrderBy(range => range.Address))
+        var boundaries = new SortedSet<long> { 0, logicalLength };
+        foreach (var sourceRange in blocks.Ranges)
         {
-            if (sourceRange.Address > cursor)
-                ranges.Add(new(cursor, sourceRange.Address - cursor, BlockMediaRangeState.Unknown));
+            boundaries.Add(sourceRange.Address);
+            boundaries.Add(checked(sourceRange.Address + sourceRange.Length));
+        }
+        foreach (var volume in document.Volumes)
+        {
+            boundaries.Add(volume.Start);
+            boundaries.Add(checked(volume.Start + volume.Length));
+        }
+
+        var points = boundaries.Where(point => point >= 0 && point <= logicalLength).ToArray();
+        var ranges = new List<BlockMediaRange>();
+        for (var index = 0; index < points.Length - 1; index++)
+        {
+            var start = points[index];
+            var end = points[index + 1];
+            if (end <= start) continue;
+            var sourceRange = blocks.Ranges.FirstOrDefault(item =>
+                item.Address <= start && item.Address + item.Length >= end);
             var volume = document.Volumes.FirstOrDefault(item =>
-                item.Start <= sourceRange.Address && item.Start + item.Length >= sourceRange.Address + sourceRange.Length);
-            ranges.Add(new(
-                sourceRange.Address,
-                sourceRange.Length,
-                BlockMediaRangeState.Available,
+                item.Start <= start && item.Start + item.Length >= end);
+            var state = sourceRange is null || sourceRange.Kind == MediaDataRangeKind.Unavailable
+                ? BlockMediaRangeState.Unknown
+                : volume?.PartitionScheme is PartitionSchemeIds.Mbr or PartitionSchemeIds.Gpt
+                    ? BlockMediaRangeState.Allocated
+                    : BlockMediaRangeState.Available;
+            AddRange(ranges, new BlockMediaRange(
+                start / blocks.LogicalBlockSize,
+                (end - start) / blocks.LogicalBlockSize,
+                state,
                 volume?.PartitionScheme,
                 volume?.PartitionNumber,
                 volume?.FileSystemId));
-            cursor = sourceRange.Address + sourceRange.Length;
         }
-        if (cursor < logicalLength)
-            ranges.Add(new(cursor, logicalLength - cursor, BlockMediaRangeState.Unknown));
 
-        return new(logicalLength, ranges);
+        var geometry = blocks.Geometry is null
+            ? null
+            : new BlockMediaGeometry(
+                blocks.Geometry.Cylinders,
+                blocks.Geometry.Heads,
+                blocks.Geometry.SectorsPerTrack);
+        return new(blocks.LogicalBlockCount, ranges, geometry);
     }
 
     public MediaInspectorModel BuildInspectorModel(BlockMediaRenderModel model, BlockMediaRange? range, int? surface = null)
@@ -90,4 +115,23 @@ public sealed class BlockMediaInspectorPresenter(Func<string, object[], string> 
     }
 
     private string Localize(string key, params object[] arguments) => localize(key, arguments);
+
+    private static void AddRange(List<BlockMediaRange> ranges, BlockMediaRange range)
+    {
+        if (range.Length <= 0) return;
+        if (ranges.Count > 0)
+        {
+            var previous = ranges[^1];
+            if (previous.Start + previous.Length == range.Start
+                && previous.State == range.State
+                && previous.PartitionScheme == range.PartitionScheme
+                && previous.PartitionNumber == range.PartitionNumber
+                && previous.FileSystemId == range.FileSystemId)
+            {
+                ranges[^1] = previous with { Length = previous.Length + range.Length };
+                return;
+            }
+        }
+        ranges.Add(range);
+    }
 }

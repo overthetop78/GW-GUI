@@ -57,4 +57,17 @@
   <data name="Explorer.Volume"><value>Volume</value></data>
   <data name="Explorer.Entries"><value>Items</value></data>
   <data name="Explorer.Type"><value>Type</value></data>
+  <data name="Explorer.Session"><value>Schijfsessie</value></data>
+  <data name="Explorer.Track"><value>Mediatrack</value></data>
+  <data name="Explorer.Layers"><value>Schijflagen</value></data>
+  <data name="Explorer.Faces"><value>Media-opnames</value></data>
+  <data name="Explorer.PartitionType"><value>Partitietype</value></data>
+  <data name="Explorer.PartitionId"><value>Partitie-identificatie</value></data>
+  <data name="Explorer.TrackMode"><value>Trackmodus</value></data>
+  <data name="Explorer.FirstSector"><value>Eerste sector</value></data>
+  <data name="Explorer.SectorCount"><value>Aantal sectoren</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Opgeslagen sectorgrootte</value></data>
+  <data name="Explorer.UserDataSize"><value>Grootte gebruikersgegevens</value></data>
+  <data name="Explorer.Subchannels"><value>Subkanalen</value></data>
+  <data name="Explorer.AudioTracks"><value>Audiotracks</value></data>
 </root>

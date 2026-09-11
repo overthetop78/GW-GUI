@@ -57,4 +57,17 @@
   <data name="Explorer.ExternalEngineUnavailable"><value>A Host Tools nem tud magyarázható ágazati képet alkotni {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>A Host Tools nem tudta dekódolni a képet {0}.</value></data>
   <data name="Explorer.Type.Program"><value>Program</value></data>
+  <data name="Explorer.Session"><value>Lemezülés</value></data>
+  <data name="Explorer.Track"><value>Médiatávolság</value></data>
+  <data name="Explorer.Layers"><value>Lemezrétegek</value></data>
+  <data name="Explorer.Faces"><value>Médiafelvevő oldalak</value></data>
+  <data name="Explorer.PartitionType"><value>Felosztás típusa</value></data>
+  <data name="Explorer.PartitionId"><value>Részesedés azonosítója</value></data>
+  <data name="Explorer.TrackMode"><value>A pálya üzemmódja</value></data>
+  <data name="Explorer.FirstSector"><value>Első ágazat</value></data>
+  <data name="Explorer.SectorCount"><value>Szektor száma</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Tárolt szektor mérete</value></data>
+  <data name="Explorer.UserDataSize"><value>Felhasználói adatok mérete</value></data>
+  <data name="Explorer.Subchannels"><value>Alcsatornák</value></data>
+  <data name="Explorer.AudioTracks"><value>Hangsáv</value></data>
 </root>

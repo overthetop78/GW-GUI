@@ -1,6 +1,9 @@
 using System.Collections.ObjectModel;
 using GWGUI.Domain.Enums;
+using GWGUI.MediaEngine.Contracts;
+using GWGUI.MediaEngine.Enums;
 using GWGUI.MediaEngine.Interfaces;
+using GWGUI.MediaEngine.Reading.Sources;
 
 namespace GWGUI.MediaEngine.Representations.Optical;
 
@@ -9,7 +12,7 @@ public sealed class OpticalMediaImageRepresentation : IMediaImageRepresentation
 {
     public OpticalMediaImageRepresentation(
         long? logicalLength,
-        IReadOnlyList<(int SessionNumber, int TrackNumber, long FirstSector, long SectorCount)>? tracks = null,
+        IReadOnlyList<OpticalTrackDescriptor>? tracks = null,
         int? layerCount = null,
         int? faceCount = null,
         IReadOnlyList<string>? associatedFiles = null)
@@ -20,15 +23,7 @@ public sealed class OpticalMediaImageRepresentation : IMediaImageRepresentation
 
         if (tracks is not null)
         {
-            foreach (var track in tracks)
-            {
-                ArgumentOutOfRangeException.ThrowIfNegativeOrZero(track.SessionNumber);
-                ArgumentOutOfRangeException.ThrowIfNegativeOrZero(track.TrackNumber);
-                ArgumentOutOfRangeException.ThrowIfNegative(track.FirstSector);
-                ArgumentOutOfRangeException.ThrowIfNegativeOrZero(track.SectorCount);
-            }
-
-            Tracks = new ReadOnlyCollection<(int SessionNumber, int TrackNumber, long FirstSector, long SectorCount)>(tracks.ToArray());
+            Tracks = new ReadOnlyCollection<OpticalTrackDescriptor>(tracks.ToArray());
             Sessions = new ReadOnlyCollection<int>(tracks.Select(track => track.SessionNumber).Distinct().Order().ToArray());
         }
 
@@ -36,6 +31,23 @@ public sealed class OpticalMediaImageRepresentation : IMediaImageRepresentation
         LayerCount = layerCount;
         FaceCount = faceCount;
         AssociatedFiles = associatedFiles is null ? null : new ReadOnlyCollection<string>(associatedFiles.ToArray());
+    }
+
+    /// <summary>Creates a metadata-only representation for callers using the former tuple-based track contract.</summary>
+    public OpticalMediaImageRepresentation(
+        long? logicalLength,
+        IReadOnlyList<(int SessionNumber, int TrackNumber, long FirstSector, long SectorCount)> tracks,
+        int? layerCount = null,
+        int? faceCount = null,
+        IReadOnlyList<string>? associatedFiles = null)
+        : this(
+            logicalLength,
+            tracks.Select(CreateCompatibilityTrack).ToArray(),
+            layerCount,
+            faceCount,
+            associatedFiles)
+    {
+        ArgumentNullException.ThrowIfNull(tracks);
     }
 
     public MediaRepresentationKind RepresentationKind => MediaRepresentationKind.OpticalTracks;
@@ -48,11 +60,29 @@ public sealed class OpticalMediaImageRepresentation : IMediaImageRepresentation
 
     public IReadOnlyList<int>? Sessions { get; }
 
-    public IReadOnlyList<(int SessionNumber, int TrackNumber, long FirstSector, long SectorCount)>? Tracks { get; }
+    public IReadOnlyList<OpticalTrackDescriptor>? Tracks { get; }
 
     public int? LayerCount { get; }
 
     public int? FaceCount { get; }
 
     public IReadOnlyList<string>? AssociatedFiles { get; }
+
+    private static OpticalTrackDescriptor CreateCompatibilityTrack(
+        (int SessionNumber, int TrackNumber, long FirstSector, long SectorCount) track)
+    {
+        const int sectorSize = 2048;
+        var length = checked(track.SectorCount * sectorSize);
+        return new OpticalTrackDescriptor(
+            track.SessionNumber,
+            track.TrackNumber,
+            OpticalTrackMode.Mode1Data2048,
+            track.FirstSector,
+            track.SectorCount,
+            sectorSize,
+            0,
+            sectorSize,
+            new UnavailableRandomAccessData(length),
+            0);
+    }
 }

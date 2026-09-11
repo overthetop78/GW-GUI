@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using GWGUI.MediaEngine.FileSystems;
 using GWGUI.MediaEngine.Exploration.Results;
+using GWGUI.MediaEngine.Representations.Optical;
 
 
 namespace GWGUI.App.Views.Controls.Explorer;
@@ -29,6 +30,8 @@ public partial class ExplorerSection : UserControl
     private IReadOnlyList<string> _detectedFormatIds = [];
     private readonly ObservableCollection<ExplorerFolderItem> _visibleFolders = [];
     private bool _applyDetectionOnDisplay;
+    private bool _updatingVolumeSelector;
+    private bool _updatingSessionSelector;
 
     public ExplorerSection()
     {
@@ -38,6 +41,8 @@ public partial class ExplorerSection : UserControl
         Classification.ValueChanged += (_, _) => FormatChanged?.Invoke(this, EventArgs.Empty);
         OpenButton.Click += (_, e) => OpenRequested?.Invoke(this, e);
         ReadDiskButton.Click += (_, e) => ReadDiskRequested?.Invoke(this, e);
+        SessionSelector.SelectionChanged += SessionSelector_SelectionChanged;
+        AudioTrackList.SelectionChanged += AudioTrackList_SelectionChanged;
     }
 
     public event RoutedEventHandler? OpenRequested;
@@ -84,6 +89,16 @@ public partial class ExplorerSection : UserControl
         _document = null;
         _mediaDocument = null;
         _mediaVolume = null;
+        _updatingVolumeSelector = true;
+        VolumeSelector.ItemsSource = null;
+        VolumeSelector.Visibility = Visibility.Collapsed;
+        _updatingVolumeSelector = false;
+        _updatingSessionSelector = true;
+        SessionSelector.ItemsSource = null;
+        SessionSelector.Visibility = Visibility.Collapsed;
+        _updatingSessionSelector = false;
+        AudioTrackList.ItemsSource = null;
+        OpticalTracksSection.Visibility = Visibility.Collapsed;
         _rootEntries = [];
         _visibleFolders.Clear();
         ContentsList.ItemsSource = null;
@@ -96,6 +111,16 @@ public partial class ExplorerSection : UserControl
         _document = document;
         _mediaDocument = null;
         _mediaVolume = null;
+        _updatingSessionSelector = true;
+        SessionSelector.ItemsSource = null;
+        SessionSelector.Visibility = Visibility.Collapsed;
+        _updatingSessionSelector = false;
+        AudioTrackList.ItemsSource = null;
+        OpticalTracksSection.Visibility = Visibility.Collapsed;
+        _updatingVolumeSelector = true;
+        VolumeSelector.ItemsSource = null;
+        VolumeSelector.Visibility = Visibility.Collapsed;
+        _updatingVolumeSelector = false;
         PathText.Text = document.SourcePath;
         _detectedFormatIds = _detectedFormatIds
             .Concat(ReportedFormats(document))
@@ -137,8 +162,6 @@ public partial class ExplorerSection : UserControl
         ArgumentNullException.ThrowIfNull(document);
         _document = null;
         _mediaDocument = document;
-        _mediaVolume = document.Volumes.FirstOrDefault(volume => volume.FileSystem is not null)
-            ?? document.Volumes.FirstOrDefault();
         PathText.Text = document.Document.Source.PrimaryPath;
         _detectedFormatIds = _detectedFormatIds
             .Append(document.Document.FormatId)
@@ -152,12 +175,83 @@ public partial class ExplorerSection : UserControl
             Classification.ApplyDetection(document.Document.FormatId, null, _detectedFormatIds);
         _applyDetectionOnDisplay = false;
 
+        var selectedVolume = document.Volumes.FirstOrDefault(volume => volume.FileSystem is not null)
+            ?? document.Volumes.FirstOrDefault();
+        ConfigureSessions(selectedVolume?.Descriptor.SessionNumber);
+        ConfigureVolumesAndAudio(selectedVolume);
+    }
+
+    private void ConfigureSessions(int? preferredSession)
+    {
+        _updatingSessionSelector = true;
+        if (_mediaDocument?.Document.Representation is not OpticalMediaImageRepresentation { Tracks: { } tracks })
+        {
+            SessionSelector.ItemsSource = null;
+            SessionSelector.Visibility = Visibility.Collapsed;
+            _updatingSessionSelector = false;
+            return;
+        }
+        var choices = tracks.Select(track => track.SessionNumber)
+            .Distinct()
+            .Order()
+            .Select(number => new ExplorerOpticalSessionChoice(
+                number,
+                $"{LocExtension.Get("Explorer.Session")} {number}"))
+            .ToArray();
+        SessionSelector.ItemsSource = choices;
+        SessionSelector.Visibility = choices.Length == 0 ? Visibility.Collapsed : Visibility.Visible;
+        SessionSelector.SelectedItem = choices.FirstOrDefault(choice => choice.SessionNumber == preferredSession)
+            ?? choices.FirstOrDefault();
+        _updatingSessionSelector = false;
+    }
+
+    private void ConfigureVolumesAndAudio(ExploredMediaVolume? preferredVolume)
+    {
+        if (_mediaDocument is null) return;
+        var session = (SessionSelector.SelectedItem as ExplorerOpticalSessionChoice)?.SessionNumber;
+        var volumes = _mediaDocument.Volumes
+            .Where(volume => session is null || volume.Descriptor.SessionNumber is null || volume.Descriptor.SessionNumber == session)
+            .ToArray();
+        var choices = volumes
+            .Select((volume, index) => new ExplorerMediaVolumeChoice(volume, VolumeChoiceName(volume, index)))
+            .ToArray();
+        var selectedVolume = preferredVolume is not null && volumes.Contains(preferredVolume)
+            ? preferredVolume
+            : volumes.FirstOrDefault(volume => volume.FileSystem is not null) ?? volumes.FirstOrDefault();
+        _updatingVolumeSelector = true;
+        VolumeSelector.ItemsSource = choices;
+        VolumeSelector.Visibility = choices.Length > 1 ? Visibility.Visible : Visibility.Collapsed;
+        VolumeSelector.SelectedItem = choices.FirstOrDefault(choice => ReferenceEquals(choice.Volume, selectedVolume));
+        _updatingVolumeSelector = false;
+
+        var audioTracks = (_mediaDocument.Document.Representation as OpticalMediaImageRepresentation)?.Tracks?
+            .Where(track => track.IsAudio && (session is null || track.SessionNumber == session))
+            .Select(track => new ExplorerOpticalTrackChoice(
+                track,
+                $"{LocExtension.Get("Explorer.Track")} {track.TrackNumber} \u00b7 {LocExtension.Get("Explorer.Audio")}"))
+            .ToArray() ?? [];
+        AudioTrackList.ItemsSource = audioTracks;
+        AudioTrackList.SelectedItem = null;
+        OpticalTracksSection.Visibility = audioTracks.Length == 0 ? Visibility.Collapsed : Visibility.Visible;
+        DisplayMediaVolume(selectedVolume);
+    }
+
+    private void DisplayMediaVolume(ExploredMediaVolume? exploredVolume)
+    {
+        if (_mediaDocument is null) return;
+        _mediaVolume = exploredVolume;
+
         var volume = _mediaVolume?.FileSystem;
-        var syntheticName = string.IsNullOrWhiteSpace(volume?.Name);
-        var volumeName = syntheticName ? $"({LocExtension.Get("Explorer.Unnamed")})" : volume!.Name;
+        var descriptorName = _mediaVolume?.Descriptor.Name;
+        var syntheticName = string.IsNullOrWhiteSpace(volume?.Name) && string.IsNullOrWhiteSpace(descriptorName);
+        var volumeName = !string.IsNullOrWhiteSpace(volume?.Name)
+            ? volume.Name
+            : !string.IsNullOrWhiteSpace(descriptorName)
+                ? descriptorName
+                : $"({LocExtension.Get("Explorer.Unnamed")})";
         VolumeNameText.Foreground = BrushFor(syntheticName);
         VolumeNameText.Text = volumeName;
-        SystemText.Text = CurrentSystem(document);
+        SystemText.Text = CurrentSystem(_mediaDocument);
         ProtectionText.Text = LocExtension.Get("Explorer.Metadata.None");
         FileSystemText.Text = volume?.FileSystemId ?? ControlVisualConstants.EmptyValue;
         var capacity = volume?.Capacity ?? _mediaVolume?.Descriptor.Length;
@@ -172,9 +266,45 @@ public partial class ExplorerSection : UserControl
         FolderList.SelectedItem = _rootFolder;
         ShowContents(_rootEntries);
 
-        var issues = _mediaVolume is null ? document.Diagnostics : ExplorerIssueBuilder.Build(document, _mediaVolume);
+        if (_mediaVolume is not null)
+            DetailsPanel.ShowMedia(_mediaDocument, _mediaVolume, CurrentSystem(_mediaDocument));
+        else
+            DetailsPanel.Clear();
+        var issues = _mediaVolume is null ? _mediaDocument.Diagnostics : ExplorerIssueBuilder.Build(_mediaDocument, _mediaVolume);
         WarningsButton.Visibility = issues.Count == 0 ? Visibility.Collapsed : Visibility.Visible;
         WarningsText.Text = $"{LocExtension.Get("Explorer.Warnings")} : {issues.Count}";
+    }
+
+    private static string VolumeChoiceName(ExploredMediaVolume volume, int index)
+    {
+        var name = volume.FileSystem?.Name ?? volume.Descriptor.Name;
+        var prefix = string.IsNullOrWhiteSpace(name) ? $"{LocExtension.Get("Explorer.Volume")} {index + 1}" : name;
+        var partition = volume.Descriptor.PartitionNumber is { } number ? $" · #{number}" : string.Empty;
+        var track = volume.Descriptor.TrackNumber is { } trackNumber
+            ? $" \u00b7 {LocExtension.Get("Explorer.Track")} {trackNumber}"
+            : string.Empty;
+        return $"{prefix}{partition}{track} \u00b7 {StorageSizeFormatter.FormatBytes(volume.Descriptor.Length)}";
+    }
+
+    private void SessionSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (_updatingSessionSelector) return;
+        ConfigureVolumesAndAudio(null);
+    }
+
+    private void VolumeSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (_updatingVolumeSelector || VolumeSelector.SelectedItem is not ExplorerMediaVolumeChoice choice) return;
+        AudioTrackList.SelectedItem = null;
+        DisplayMediaVolume(choice.Volume);
+    }
+
+    private void AudioTrackList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (AudioTrackList.SelectedItem is ExplorerOpticalTrackChoice choice)
+            DetailsPanel.ShowOpticalTrack(choice.Track);
+        else if (_mediaDocument is not null && _mediaVolume is not null)
+            DetailsPanel.ShowMedia(_mediaDocument, _mediaVolume, CurrentSystem(_mediaDocument));
     }
 
     private static IReadOnlyList<string> ReportedFormats(ExploredDiskImage document)

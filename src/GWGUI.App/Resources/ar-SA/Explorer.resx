@@ -57,4 +57,17 @@
   <data name="Explorer.DetectedFormats"><value>المكتشف: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable"><value>لا يمكن لأدوات المضيف أن تنتج صورة قطاعية قابلة للاستهلاك {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>لا يمكن لأدوات الرهائن أن تفكك الصورة على أنها {0}.</value></data>
+  <data name="Explorer.Session"><value>الدورة</value></data>
+  <data name="Explorer.Track"><value>مسار وسائط الإعلام</value></data>
+  <data name="Explorer.Layers"><value>طبقات العزل</value></data>
+  <data name="Explorer.Faces"><value>تسجيل وسائط الإعلام</value></data>
+  <data name="Explorer.PartitionType"><value>نوع التجزئة</value></data>
+  <data name="Explorer.PartitionId"><value>جهاز تحديد هوية القطع</value></data>
+  <data name="Explorer.TrackMode"><value>طريقة المسار</value></data>
+  <data name="Explorer.FirstSector"><value>القطاع الأول</value></data>
+  <data name="Explorer.SectorCount"><value>عدد القطاعات</value></data>
+  <data name="Explorer.StoredSectorSize"><value>حجم القطاع المخزن</value></data>
+  <data name="Explorer.UserDataSize"><value>حجم بيانات المستعملين</value></data>
+  <data name="Explorer.Subchannels"><value>الشاشات الفرعية</value></data>
+  <data name="Explorer.AudioTracks"><value>مسارات الصوت</value></data>
 </root>

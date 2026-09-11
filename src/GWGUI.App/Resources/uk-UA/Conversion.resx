@@ -86,4 +86,6 @@
   <data name="Conversion.EngineInternalComplete"><value>Вбудований конверт завершено: {0}.</value></data>
   <data name="Conversion.EngineInternalUnavailable"><value>Внутрішній двигун не підтримує цю конвертацію: {0}.</value></data>
   <data name="Conversion.EngineInternalFailed"><value>Внутрішнє перетворення не вдалося для {0}: {1}</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>Потенційні втрати даних</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>Ця конвертація не може зберігати всю інформацію про джерело:&#xA;&#xA;{0}&#xA;&#xA;Ви хочете продовжити?</value></data>
 </root>

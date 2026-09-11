@@ -3,6 +3,12 @@ namespace GWGUI.MediaEngine.FileSystems.Definitions;
 /// <summary>Définit les identifiants techniques stables des systèmes de fichiers.</summary>
 public static class FileSystemIds
 {
+    public const string Iso9660 = "iso9660";
+    public const string Joliet = "iso9660-joliet";
+    public const string RockRidge = "iso9660-rock-ridge";
+    public const string Udf = "udf";
+    /// <summary>Identifies decoded sequential media content exposed for exploration.</summary>
+    public const string SequentialContent = "sequential-content";
     /// <summary>Identifie Acorn ADFS/FileCore.</summary>
     public const string AcornAdfs = "acorn-adfs";
     /// <summary>Identifie Acorn DFS.</summary>

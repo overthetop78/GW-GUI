@@ -5,6 +5,12 @@ namespace GWGUI.MediaEngine.Formats.Floppy.Scp;
 /// </summary>
 public static class ScpFormatConstants
 {
+    /// <summary>Version written for an SCP image reconstructed from an internal physical acquisition.</summary>
+    public const byte InternalCaptureVersion = 0x19;
+
+    /// <summary>Resolution index used for an SCP image reconstructed from nanosecond flux intervals.</summary>
+    public const byte InternalCaptureResolution = 0;
+
     /// <summary>Convertit une adresse cylindre/tête en numéro de piste SCP.</summary>
     public static byte ToTrackNumber(int cylinder, int head) => checked((byte)(cylinder * 2 + head));
     /// <summary>Position du premier octet d’un conteneur SCP.</summary>

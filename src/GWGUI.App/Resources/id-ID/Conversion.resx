@@ -86,4 +86,6 @@
   <data name="Conversion.EngineInternalFailed"><value>Konversi internal gagal untuk {0}: {1}</value></data>
   <data name="Migration.Severity"><value>Severity</value></data>
   <data name="Migration.Blocking"><value>Blocking</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>Kehilangan data potensial</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>Konversi ini tidak dapat menyimpan semua informasi sumber:&#xA;&#xA;{0}&#xA;&#xA;Apakah Anda ingin melanjutkan?</value></data>
 </root>

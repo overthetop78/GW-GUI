@@ -5,6 +5,7 @@ using GWGUI.App.Enums.Rendering.Sequential;
 using GWGUI.App.Enums.ViewModels.Visualization;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Representations.Sequential;
+using RenderSegment = GWGUI.App.Contracts.Rendering.Sequential.SequentialMediaSegment;
 
 namespace GWGUI.App.Presenters.Visualization;
 
@@ -15,19 +16,19 @@ public sealed class SequentialMediaInspectorPresenter(Func<string, object[], str
         ArgumentNullException.ThrowIfNull(document);
         if (document.Representation is not SequentialMediaImageRepresentation sequential)
             throw new ArgumentException("A sequential media representation is required.", nameof(document));
-        var segments = sequential.Segments?.Select(segment => new SequentialMediaSegment(
-            segment.Start.Ticks,
+        var segments = sequential.Segments?.Select(segment => new RenderSegment(
+            segment.Position,
             segment.ChannelNumber ?? segment.TrackNumber ?? segment.FaceNumber ?? 0,
-            segment.Start,
-            segment.Duration,
-            SequentialSegmentKind.Unknown,
+            segment.Start ?? TimeSpan.Zero,
+            segment.Duration ?? TimeSpan.Zero,
+            MapKind(segment.Kind),
             segment.FaceNumber,
             segment.TrackNumber,
             segment.ChannelNumber)).ToArray() ?? [];
         return new(sequential.LogicalLength, sequential.Duration, segments);
     }
 
-    public MediaInspectorModel BuildInspectorModel(SequentialMediaRenderModel model, SequentialMediaSegment? segment)
+    public MediaInspectorModel BuildInspectorModel(SequentialMediaRenderModel model, RenderSegment? segment)
     {
         ArgumentNullException.ThrowIfNull(model);
         var summaryEntries = new List<MediaInspectorEntry>();
@@ -69,4 +70,15 @@ public sealed class SequentialMediaInspectorPresenter(Func<string, object[], str
     }
 
     private string Localize(string key, params object[] arguments) => localize(key, arguments);
+
+    private static SequentialSegmentKind MapKind(GWGUI.MediaEngine.Enums.SequentialSegmentKind kind) => kind switch
+    {
+        GWGUI.MediaEngine.Enums.SequentialSegmentKind.Samples or
+        GWGUI.MediaEngine.Enums.SequentialSegmentKind.Pulse or
+        GWGUI.MediaEngine.Enums.SequentialSegmentKind.Carrier => SequentialSegmentKind.Signal,
+        GWGUI.MediaEngine.Enums.SequentialSegmentKind.Silence => SequentialSegmentKind.Silence,
+        GWGUI.MediaEngine.Enums.SequentialSegmentKind.DataBlock or
+        GWGUI.MediaEngine.Enums.SequentialSegmentKind.Record => SequentialSegmentKind.DecodedBlock,
+        _ => SequentialSegmentKind.Unknown
+    };
 }

@@ -97,4 +97,6 @@
   <data name="Conversion.EngineInternalComplete" xml:space="preserve"><value>Internal conversion completed: {0}.</value></data>
   <data name="Conversion.EngineInternalUnavailable" xml:space="preserve"><value>The internal engine does not support this conversion: {0}.</value></data>
   <data name="Conversion.EngineInternalFailed" xml:space="preserve"><value>Internal conversion failed for {0}: {1}</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>Potential data loss</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>This conversion cannot preserve all source information:&#xA;&#xA;{0}&#xA;&#xA;Do you want to continue?</value></data>
 </root>

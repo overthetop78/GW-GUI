@@ -57,4 +57,17 @@
   <data name="Explorer.DetectedFormats"><value>זוהה: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable"><value>כלי מארח לא יכולים לייצר תמונה של מגזר בלתי מוסבר {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>כלי מארח לא יכלו לפענח את התמונה כמו {0}.</value></data>
+  <data name="Explorer.Session"><value>דיון</value></data>
+  <data name="Explorer.Track"><value>עקבו אחרי Media track</value></data>
+  <data name="Explorer.Layers"><value>שכבות</value></data>
+  <data name="Explorer.Faces"><value>סיקור מדיה</value></data>
+  <data name="Explorer.PartitionType"><value>סוג חלוקת</value></data>
+  <data name="Explorer.PartitionId"><value>מזהה חלוקת</value></data>
+  <data name="Explorer.TrackMode"><value>המונחים:</value></data>
+  <data name="Explorer.FirstSector"><value>המגזר הראשון</value></data>
+  <data name="Explorer.SectorCount"><value>ספירת</value></data>
+  <data name="Explorer.StoredSectorSize"><value>גודל המגזר</value></data>
+  <data name="Explorer.UserDataSize"><value>גודל הנתונים של המשתמש</value></data>
+  <data name="Explorer.Subchannels"><value>ערוצים</value></data>
+  <data name="Explorer.AudioTracks"><value>עקבו אחרי Audio</value></data>
 </root>

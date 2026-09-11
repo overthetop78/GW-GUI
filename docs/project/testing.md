@@ -107,6 +107,68 @@ Le script a terminé avec succès et la présence de
   Readers HDD, CD/DVD/optiques et cassette/bande des feuilles suivantes fourniront ces
   représentations.
 
+## Validation automatisée des autres familles de médias
+
+Les Readers, structures et parcours d'Explorateur ajoutés pour les disques durs, les médias
+optiques et les médias séquentiels ont été validés séparément en configuration `Debug`. Ces
+contrôles ne dépendent pas du corpus privé `image_test` et ne constituent pas les essais manuels
+finaux des images réelles.
+
+```powershell
+dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj --no-restore --filter "FullyQualifiedName~RawHardDiskMediaTests"
+dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj --no-restore --filter "FullyQualifiedName~OpticalMediaTests"
+dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj --no-restore --filter "FullyQualifiedName~SequentialMediaTests"
+dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj --no-restore --filter "FullyQualifiedName~OtherMediaExplorerScenarios"
+```
+
+Résultats obtenus :
+
+- HDD : **5 réussites**, couvrant l'adressage 64 bits, MBR, EBR, GPT et le volume direct sans
+  géométrie connue ;
+- CD/DVD et optique : **4 réussites**, couvrant les déclarations BIN/CUE, les fichiers associés,
+  les secteurs bruts, les sessions, les pistes et un volume ISO 9660 minimal ;
+- cassette et bande : **3 réussites**, couvrant une chronologie WAV stéréo, les pistes et faces
+  déclarées ainsi que les segments non décodés ;
+- Explorateur : **3 réussites**, couvrant le changement de partition HDD, le filtrage des pistes
+  par session optique et l'affichage d'un contenu séquentiel.
+
+Les images HDD et ISO 9660 ainsi que les documents de représentation sont construits en mémoire.
+Le scénario WAV crée un fichier synthétique minimal dans le dossier temporaire du système parce
+que le Reader WAV valide un véritable conteneur RIFF ; ce fichier est supprimé par le scénario dans
+tous les cas. Aucun fichier du dossier `image_test` n'est lu par ces commandes.
+
+La construction Debug complète exécutée après ces validations a également réussi :
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Debug
+```
+
+Le script a produit l'application sans module d'émulation préinstallé. La présence de
+`build/Debug/GW GUI/gwgui.exe` a été vérifiée après sa terminaison.
+
+## Validation autonome des compléments HDD
+
+Les tests généraux des services HDD d'émulation et des Readers, Writers et conversions HDD de
+MediaEngine ont été exécutés ensemble en configuration `Debug`, sans utiliser `image_test` :
+
+```powershell
+dotnet test tests/GWGUI.Tests/GWGUI.Tests.csproj -c Debug --no-restore --filter "FullyQualifiedName~GWGUI.Tests.Emulation.HardDisks|FullyQualifiedName~GWGUI.Tests.MediaEngine.HardDisk" --nologo -v:quiet
+```
+
+Résultat : **422 réussites, 0 échec et 0 test ignoré**. Cet ensemble couvre notamment les capacités
+et compositions HDD, les variantes de conteneurs et systèmes de fichiers, les dépendances par
+chemin, UUID ou SHA-1, la publication et la suppression collectives ainsi que la conversion par
+plages avec annulation et préservation de la destination.
+
+Le build Debug standard exécuté après ces validations a terminé avec succès :
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1 -Configuration Debug
+```
+
+Le script a produit l'application sans module d'émulation préinstallé. La présence de
+`build/Debug/GW GUI/gwgui.exe` a été vérifiée après sa terminaison.
+
 ## Ancien contrôle interactif, manuel uniquement
 
 `scripts/test-app-accessibility.ps1` reste disponible pour ouvrir l’exécutable empaqueté, contrôler son redimensionnement avec le DPI Windows et inspecter les noms accessibles. Ce script nécessite un bureau ; il n’est plus appelé par le workflow de release ni par `GWGUI.Tests`. Les tests hors écran ne sont pas présentés comme un remplacement de sa vérification du cadre natif.

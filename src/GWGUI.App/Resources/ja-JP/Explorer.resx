@@ -57,4 +57,17 @@
   <data name="Explorer.DetectedFormats"><value>検出: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable"><value>ホストツールは、探知可能なセクターイメージを生成できません。 {0}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>ホストツールはイメージをそのままデコードできません {0}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</value></data>
+  <data name="Explorer.Session"><value>ディスクセッション</value></data>
+  <data name="Explorer.Track"><value>メディアトラック</value></data>
+  <data name="Explorer.Layers"><value>ディスク層</value></data>
+  <data name="Explorer.Faces"><value>メディア録画の側面</value></data>
+  <data name="Explorer.PartitionType"><value>仕切りのタイプ</value></data>
+  <data name="Explorer.PartitionId"><value>パーティション識別子</value></data>
+  <data name="Explorer.TrackMode"><value>モードを追跡して下さい</value></data>
+  <data name="Explorer.FirstSector"><value>第一次セクター</value></data>
+  <data name="Explorer.SectorCount"><value>セクターカウント</value></data>
+  <data name="Explorer.StoredSectorSize"><value>保存されたセクターのサイズ</value></data>
+  <data name="Explorer.UserDataSize"><value>ユーザーデータサイズ</value></data>
+  <data name="Explorer.Subchannels"><value>サブチャネル</value></data>
+  <data name="Explorer.AudioTracks"><value>オーディオトラック</value></data>
 </root>

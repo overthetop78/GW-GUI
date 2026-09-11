@@ -1,6 +1,6 @@
-using GWGUI.MediaEngine.Constants;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Exploration.Results;
+using GWGUI.MediaEngine.Exploration.Partitioning;
 using GWGUI.MediaEngine.FileSystems;
 
 namespace GWGUI.MediaEngine.Exploration;
@@ -9,46 +9,42 @@ namespace GWGUI.MediaEngine.Exploration;
 public sealed class MediaExplorer
 {
     private readonly FileSystemRegistry fileSystems;
+    private readonly MediaVolumeDetectorRegistry volumeDetectors;
 
     public MediaExplorer(FileSystemRegistry fileSystems)
+        : this(fileSystems, new MediaVolumeDetectorRegistry([new WholeMediaVolumeDetector()]))
+    {
+    }
+
+    public MediaExplorer(FileSystemRegistry fileSystems, MediaVolumeDetectorRegistry volumeDetectors)
     {
         ArgumentNullException.ThrowIfNull(fileSystems);
+        ArgumentNullException.ThrowIfNull(volumeDetectors);
         this.fileSystems = fileSystems;
+        this.volumeDetectors = volumeDetectors;
     }
 
     public ExploredMediaImage Explore(MediaImageDocument document)
+        => ExploreAsync(document).AsTask().GetAwaiter().GetResult();
+
+    public async ValueTask<ExploredMediaImage> ExploreAsync(
+        MediaImageDocument document,
+        CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(document);
-        var volumes = ResolveVolumes(document, out var volumeDiagnostic);
-        var explored = volumes.Select(volume => fileSystems.Explore(document, volume)).ToArray();
-        var diagnostics = volumeDiagnostic is null
-            ? document.Diagnostics
-            : document.Diagnostics.Append(volumeDiagnostic).ToArray();
-        return new(document, explored, diagnostics);
+        var detection = await volumeDetectors.DetectAsync(document, cancellationToken).ConfigureAwait(false);
+        var enrichedDocument = document.Volumes.SequenceEqual(detection.Volumes)
+            ? document
+            : new MediaImageDocument(
+                document.Source,
+                document.FormatId,
+                document.MediaKind,
+                document.Representation,
+                detection.Volumes,
+                document.Diagnostics,
+                document.Metadata);
+        var explored = detection.Volumes.Select(volume => fileSystems.Explore(enrichedDocument, volume)).ToArray();
+        var diagnostics = document.Diagnostics.Concat(detection.Diagnostics).ToArray();
+        return new(enrichedDocument, explored, diagnostics);
     }
-
-    private static IReadOnlyList<MediaVolumeDescriptor> ResolveVolumes(
-        MediaImageDocument document,
-        out string? diagnostic)
-    {
-        if (document.Volumes.Count > 0)
-        {
-            diagnostic = null;
-            return document.Volumes;
-        }
-
-        var length = document.Representation.LogicalLength ??
-                     document.Source.KnownLength ??
-                     SourceLength(document.Source.PrimaryPath);
-        if (length is null or <= 0)
-        {
-            diagnostic = "The media representation does not expose an addressable volume length.";
-            return [];
-        }
-
-        diagnostic = null;
-        return [new MediaVolumeDescriptor(0, length.Value, MediaVolumeOrigins.WholeMedia)];
-    }
-
-    private static long? SourceLength(string path) => File.Exists(path) ? new FileInfo(path).Length : null;
 }

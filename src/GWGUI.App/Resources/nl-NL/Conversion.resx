@@ -86,4 +86,6 @@
   <data name="Conversion.EngineInternalUnavailable"><value>De interne motor ondersteunt deze conversie niet: {0}.</value></data>
   <data name="Conversion.EngineInternalFailed"><value>Interne conversie mislukt voor {0}: {1}</value></data>
   <data name="Migration.Severity"><value>Severity</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>Potentiële gegevensverlies</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>Deze conversie kan niet alle brongegevens behouden:&#xA;&#xA;{0}&#xA;&#xA;Wil je doorgaan?</value></data>
 </root>

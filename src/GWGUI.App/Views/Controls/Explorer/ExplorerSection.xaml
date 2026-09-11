@@ -82,6 +82,7 @@
         <common:CardSection Grid.Row="1" Padding="12" Margin="0,0,0,12">
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="1.2*"/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -91,14 +92,23 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel><TextBlock Text="{l:Loc Explorer.Volume}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="VolumeNameText" FontSize="18" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
-                <StackPanel Grid.Column="1"><TextBlock Text="{l:Loc Explorer.System}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="SystemText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
-                <StackPanel Grid.Column="2"><TextBlock Text="{l:Loc Explorer.Protection}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="ProtectionText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
-                <StackPanel Grid.Column="3"><TextBlock Text="{l:Loc Explorer.FileSystem}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="FileSystemText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
-                <StackPanel Grid.Column="4"><TextBlock Text="{l:Loc Explorer.Capacity}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="CapacityText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
-                <StackPanel Grid.Column="5"><TextBlock Text="{l:Loc Explorer.Free}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="FreeText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
-                <StackPanel Grid.Column="6"><TextBlock Text="{l:Loc Explorer.Entries}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="EntryCountText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
-                <Button x:Name="WarningsButton" Grid.Column="7" Visibility="Collapsed" Background="#FFF5DA" BorderBrush="#D99A19"
+                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                    <TextBlock Text="{l:Loc Explorer.Session}" Foreground="{DynamicResource MutedTextBrush}"/>
+                    <ComboBox x:Name="SessionSelector" Margin="0,4,0,0" MinWidth="135" DisplayMemberPath="DisplayName" Visibility="Collapsed"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{l:Loc Explorer.Volume}" Foreground="{DynamicResource MutedTextBrush}"/>
+                    <TextBlock x:Name="VolumeNameText" FontSize="18" FontWeight="SemiBold" Text="&#x2014;"/>
+                    <ComboBox x:Name="VolumeSelector" Margin="0,4,10,0" MinWidth="190" DisplayMemberPath="DisplayName"
+                              Visibility="Collapsed" SelectionChanged="VolumeSelector_SelectionChanged"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2"><TextBlock Text="{l:Loc Explorer.System}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="SystemText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="3"><TextBlock Text="{l:Loc Explorer.Protection}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="ProtectionText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="4"><TextBlock Text="{l:Loc Explorer.FileSystem}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="FileSystemText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="5"><TextBlock Text="{l:Loc Explorer.Capacity}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="CapacityText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="6"><TextBlock Text="{l:Loc Explorer.Free}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="FreeText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <StackPanel Grid.Column="7"><TextBlock Text="{l:Loc Explorer.Entries}" Foreground="{DynamicResource MutedTextBrush}"/><TextBlock x:Name="EntryCountText" FontWeight="SemiBold" Text="&#x2014;"/></StackPanel>
+                <Button x:Name="WarningsButton" Grid.Column="8" Visibility="Collapsed" Background="#FFF5DA" BorderBrush="#D99A19"
                         BorderThickness="1" Padding="10,4" MinHeight="0" VerticalAlignment="Center" Click="WarningsButton_Click">
                     <TextBlock x:Name="WarningsText" Foreground="#8A5A00"/>
                 </Button>
@@ -106,6 +116,10 @@
         </common:CardSection>
 
         <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="270"/>
                 <ColumnDefinition Width="12"/>
@@ -113,7 +127,18 @@
                 <ColumnDefinition Width="12"/>
                 <ColumnDefinition Width="340"/>
             </Grid.ColumnDefinitions>
-            <common:CardSection Padding="8">
+            <common:CardSection x:Name="OpticalTracksSection" Grid.ColumnSpan="5" Padding="8" Margin="0,0,0,12" Visibility="Collapsed">
+                <DockPanel>
+                    <TextBlock Text="{l:Loc Explorer.AudioTracks}" FontWeight="SemiBold" VerticalAlignment="Center" Margin="4,0,12,0"/>
+                    <ListBox x:Name="AudioTrackList" DisplayMemberPath="DisplayName" BorderThickness="0" Background="Transparent"
+                             ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate><StackPanel Orientation="Horizontal"/></ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                </DockPanel>
+            </common:CardSection>
+            <common:CardSection Grid.Row="1" Padding="8">
                 <ListBox x:Name="FolderList" BorderThickness="0" Background="Transparent" ItemContainerStyle="{StaticResource ExplorerFolderItemStyle}" SelectionChanged="FolderList_SelectionChanged">
                     <ListBox.ItemTemplate>
                         <DataTemplate DataType="{x:Type viewModels:ExplorerFolderItem}">
@@ -139,7 +164,7 @@
                 </ListBox>
             </common:CardSection>
 
-            <common:CardSection Grid.Column="2" Padding="8">
+            <common:CardSection Grid.Row="1" Grid.Column="2" Padding="8">
                 <ListView x:Name="ContentsList" BorderThickness="0" Background="Transparent" ItemContainerStyle="{StaticResource ExplorerContentItemStyle}" SelectionChanged="ContentsList_SelectionChanged" MouseDoubleClick="ContentsList_MouseDoubleClick">
                     <ListView.View>
                         <GridView AllowsColumnReorder="False">
@@ -154,7 +179,7 @@
                 </ListView>
             </common:CardSection>
 
-            <common:CardSection Grid.Column="4" Padding="0">
+            <common:CardSection Grid.Row="1" Grid.Column="4" Padding="0">
                 <explorer:ExplorerDetailsPanel x:Name="DetailsPanel"/>
             </common:CardSection>
         </Grid>

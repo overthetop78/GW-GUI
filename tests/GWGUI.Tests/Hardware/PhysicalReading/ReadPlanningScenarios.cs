@@ -1,4 +1,6 @@
 using GWGUI.App.Services.PhysicalDiskReading;
+using GWGUI.Domain.Enums;
+using GWGUI.Infrastructure.Hardware.Greaseweazle;
 
 namespace GWGUI.Tests.Hardware.PhysicalReading;
 
@@ -40,7 +42,13 @@ internal static class ReadPlanningScenarios
             _ => options with { Tracks = [new(0, 0), new(0, 0, 1, 1)] }
         };
         var device = new ReadAcquisitionScenarios.Device();
-        await Assert.ThrowsAnyAsync<ArgumentException>(() => new PhysicalDiskFluxAcquisitionService(device).AcquireAsync(options));
+        var provider = new GreaseweazleMediaAcquisitionProvider(() => device);
+        var acquire = () => provider.AcquireAsync(
+                MediaKind.Floppy,
+                options.PortName,
+                ReadAcquisitionScenarios.CreateProviderOptions(options));
+        if (variant == 0) await Assert.ThrowsAsync<NotSupportedException>(acquire);
+        else await Assert.ThrowsAnyAsync<ArgumentException>(acquire);
         Assert.Empty(device.Calls);
     }
 }

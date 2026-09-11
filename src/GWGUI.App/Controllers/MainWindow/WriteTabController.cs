@@ -62,9 +62,12 @@ internal sealed class WriteTabController(
     Action updateProfileStatus,
     Func<string?, bool>? fileExists = null,
     Func<string, DetectedImageFormat>? detectSource = null,
-    Func<string, Task>? analyzeSource = null)
+    Func<string, Task>? analyzeSource = null,
+    Func<InternalPhysicalDiskWriter>? internalWriterFactory = null)
 {
     private readonly Func<string?, bool> exists = fileExists ?? File.Exists;
+    private readonly Func<InternalPhysicalDiskWriter> createInternalWriter =
+        internalWriterFactory ?? InternalPhysicalDiskWriter.CreateDefault;
     private DetectedImageFormat? detectedFormat;
     private bool UsesInternal => settings().Engines.PhysicalWrite == OperationEngine.Internal;
     private ComboBox FormatCombo => view.FormatBlock.FormatCombo;
@@ -181,7 +184,7 @@ internal sealed class WriteTabController(
         var stopwatch = Stopwatch.StartNew();
         var outcome = await operation.RunAsync(async token =>
         {
-            var writer = InternalPhysicalDiskWriter.CreateDefault();
+            var writer = createInternalWriter();
             var selection = GreaseweazleDriveSelectionFunctions.Resolve(hardware.Drive.Selection);
             var options = new PhysicalDiskWriteOptions(hardware.Port, selection.BusType, selection.Unit, Verify: false);
             var result = await writer.WriteAsync(new InternalPhysicalDiskWriteRequest(view.SourceBlock.Input.Text, selected.Id, options), new Progress<PhysicalTrackWriteProgress>(operationProgress.Accept), token);

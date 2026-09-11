@@ -57,4 +57,17 @@
   <data name="Explorer.DetectedFormats"><value>Εντοπίστηκε: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable"><value>Τα εργαλεία υποδοχής δεν μπορούν να παράγουν μια εκρηκτική εικόνα τομέα για {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>Τα εργαλεία υποδοχής δεν μπορούν να αποκωδικοποιήσουν την εικόνα ως {0}.</value></data>
+  <data name="Explorer.Session"><value>Συνεδρία δίσκων</value></data>
+  <data name="Explorer.Track"><value>Κομμάτι πολυμέσων</value></data>
+  <data name="Explorer.Layers"><value>Στρώματα δίσκων</value></data>
+  <data name="Explorer.Faces"><value>Πλευρές καταγραφής μέσων</value></data>
+  <data name="Explorer.PartitionType"><value>Τύπος κατατμήματος</value></data>
+  <data name="Explorer.PartitionId"><value>Αναγνωριστικός κωδικός κατατμήσεως</value></data>
+  <data name="Explorer.TrackMode"><value>Λειτουργία κομματιού</value></data>
+  <data name="Explorer.FirstSector"><value>Πρώτος τομέας</value></data>
+  <data name="Explorer.SectorCount"><value>Αριθμός τομέων</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Μέγεθος του τομέα που αποθηκεύεται</value></data>
+  <data name="Explorer.UserDataSize"><value>Μέγεθος δεδομένων χρήστη</value></data>
+  <data name="Explorer.Subchannels"><value>Υποκανάλια</value></data>
+  <data name="Explorer.AudioTracks"><value>Κομμάτια ήχου</value></data>
 </root>

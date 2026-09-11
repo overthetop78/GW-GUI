@@ -57,4 +57,17 @@
   <data name="Explorer.ExternalEngineUnavailable"><value>As ferramentas da máquina não podem produzir uma imagem do setor expansível para {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>Ferramentas da máquina não foi possível decodificar a imagem como {0}.</value></data>
   <data name="Explorer.Volume"><value>Volume</value></data>
+  <data name="Explorer.Session"><value>Sessão de disco</value></data>
+  <data name="Explorer.Track"><value>Faixa de mídia</value></data>
+  <data name="Explorer.Layers"><value>Camadas de discos</value></data>
+  <data name="Explorer.Faces"><value>Lados de gravação dos meios de comunicação</value></data>
+  <data name="Explorer.PartitionType"><value>Tipo de partição</value></data>
+  <data name="Explorer.PartitionId"><value>Identificador da partição</value></data>
+  <data name="Explorer.TrackMode"><value>Modo de faixa</value></data>
+  <data name="Explorer.FirstSector"><value>Primeiro sector</value></data>
+  <data name="Explorer.SectorCount"><value>Contagem sectorial</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Tamanho do setor armazenado</value></data>
+  <data name="Explorer.UserDataSize"><value>Tamanho dos dados do usuário</value></data>
+  <data name="Explorer.Subchannels"><value>Subcanais</value></data>
+  <data name="Explorer.AudioTracks"><value>Faixas de áudio</value></data>
 </root>

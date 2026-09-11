@@ -1,0 +1,48 @@
+using GWGUI.MediaEngine.Decoding.Sequential;
+using GWGUI.MediaEngine.Decoding.Sequential.Acorn;
+using GWGUI.MediaEngine.Decoding.Sequential.Atari;
+using GWGUI.MediaEngine.Decoding.Sequential.Commodore;
+using GWGUI.MediaEngine.Decoding.Sequential.Msx;
+using GWGUI.MediaEngine.Decoding.Sequential.Spectrum;
+using GWGUI.MediaEngine.Encoding.Sequential;
+using GWGUI.MediaEngine.Encoding.Sequential.Acorn;
+using GWGUI.MediaEngine.Encoding.Sequential.Atari;
+using GWGUI.MediaEngine.Encoding.Sequential.Commodore;
+using GWGUI.MediaEngine.Encoding.Sequential.Msx;
+using GWGUI.MediaEngine.Encoding.Sequential.Spectrum;
+
+namespace GWGUI.MediaEngine.Composition;
+
+/// <summary>Assembles the sequential media codecs shared by conversion and exploration.</summary>
+public sealed class SequentialMediaComposition
+{
+    private SequentialMediaComposition(
+        SequentialDecoderRegistry decoders,
+        SequentialEncoderRegistry encoders)
+    {
+        Decoders = decoders;
+        Encoders = encoders;
+    }
+
+    public SequentialDecoderRegistry Decoders { get; }
+
+    public SequentialEncoderRegistry Encoders { get; }
+
+    public static SequentialMediaComposition CreateDefault() => new(
+        new SequentialDecoderRegistry(
+        [
+            new AtariCassetteDecoder(),
+            new SpectrumTapeDecoder(),
+            new CommodoreTapeDecoder(),
+            new MsxTapeDecoder(),
+            new AcornTapeDecoder()
+        ]),
+        new SequentialEncoderRegistry(
+        [
+            new AtariCassetteEncoder(),
+            new SpectrumTapeEncoder(),
+            new CommodoreTapeEncoder(),
+            new MsxTapeEncoder(),
+            new AcornTapeEncoder()
+        ]));
+}

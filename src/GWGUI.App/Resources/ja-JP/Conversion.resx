@@ -86,4 +86,6 @@
   <data name="Conversion.EngineInternalComplete"><value>内部変換が完了しました: {0}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</value></data>
   <data name="Conversion.EngineInternalUnavailable"><value>社内エンジンはこの変換をサポートしていません。 {0}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</value></data>
   <data name="Conversion.EngineInternalFailed"><value>内部変換が失敗しました {0}: : : : {1}</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>潜在的なデータ損失</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>この変換は、すべてのソース情報を保存できません。&#xA;&#xA;{0}&#xA;&#xA;続行したいですか?</value></data>
 </root>

@@ -14,21 +14,21 @@ Après l’ouverture de l’image, il doit trouver le traitement correspondant a
 
 ### Traitement nécessaire avant l’affichage
 
-Le fichier ouvert doit être dirigé vers le lecteur correspondant à son format. Ce lecteur doit fournir toutes les informations nécessaires pour identifier le support et construire son affichage : type de média, organisation des données, nombre de faces, pistes, secteurs, plateaux, bandes, couches ou autres éléments réellement décrits par le format.
+Le fichier ouvert est dirigé vers le Reader correspondant à son format. Ce Reader fournit les informations disponibles pour identifier le support et construire son affichage : type de média, organisation des données, nombre de faces, pistes, secteurs, bandes, couches ou autres éléments réellement décrits par le format.
 
-La reconnaissance du format et le choix du lecteur doivent être réunis dans un orchestrateur commun. Celui-ci doit remplacer la détection séparée actuellement réalisée par `ImageFormatDetector`, `DiskImageRecognitionRegistry` et les cas particuliers traités dans l’application. Chaque lecteur doit déclarer les extensions et signatures qu’il reconnaît, la famille du média concerné et la représentation qu’il produit.
+La reconnaissance du format et le choix du Reader sont réunis dans `MediaRecognitionRegistry`. Chaque Reader déclare les extensions et signatures qu’il reconnaît, les fichiers associés, la famille du média concerné et la représentation qu’il produit. `GWGUI.App` utilise `MediaImageReadingService` et ne choisit plus un Reader à partir d'une condition propre à un format.
 
-Le résultat de lecture doit distinguer explicitement une capture physique de flux d’une image de données organisée en secteurs ou en blocs. Une capture SCP doit conserver ses transitions, ses révolutions et ses pistes physiques. Une image sectorielle comme ADF, ST, MSA ou IMA doit conserver ses secteurs et sa géométrie logique. Elle ne doit plus être transformée en SCP synthétique pour être affichée.
+`MediaImageDocument` distingue explicitement une capture physique de flux, une image sectorielle, une image par blocs, une image à pistes optiques et un contenu séquentiel. SCP conserve ses transitions, ses révolutions et ses pistes physiques. ADF, ST, MSA ou IMA conservent leurs secteurs et leur géométrie logique et ne sont plus transformés en SCP synthétique pour être affichés.
 
-Le résultat doit également indiquer le type de graphique à utiliser et sa méthode de remplissage : par piste, par secteur ou selon une autre unité adaptée au support. Il doit préciser l’ordre des éléments, leur point de départ, leur direction, ainsi que leur répartition entre les faces, plateaux, pistes, bandes ou couches.
+`MediaVisualizationDescriptor` indique la représentation à afficher et sa méthode de progression : piste de flux, piste sectorielle, plage de blocs, piste optique ou segment séquentiel. Il précise l’ordre, la direction et la répartition entre les surfaces ou lignes réellement connues.
 
-Ces informations dépendent du format. Une image de disquette doit notamment fournir ses faces et ses pistes. Une image de disque dur doit fournir en priorité son organisation CHS ou LBA et le nombre de plateaux seulement lorsque cette information existe réellement. Une image de CD ou DVD doit décrire ses pistes, sessions, couches et faces disponibles. Une image de cassette ou de bande doit décrire ses faces, pistes, canaux, segments et sens de lecture lorsque son format les conserve. Les formats constitués de plusieurs fichiers doivent être réunis en une seule description cohérente du média.
+Ces informations dépendent du format. Une image de disquette fournit ses faces et ses pistes. Une image de disque dur fournit son espace logique LBA 64 bits et sa géométrie CHS seulement lorsqu'elle existe. Une image de CD ou DVD décrit ses pistes, sessions, couches et faces disponibles. Une image de cassette ou de bande décrit ses faces, pistes, canaux, segments et sens de lecture lorsque son format les conserve. Les formats constitués de plusieurs fichiers sont réunis dans une seule source cohérente.
 
 ### Lecture interne et conversion
 
-La Lecture interne doit pouvoir transmettre directement son résultat décodé ou reconstruit aux convertisseurs internes. Lorsqu’un Writer interne sait produire le format choisi, la conversion doit utiliser les données déjà obtenues pendant la lecture, sans relire le fichier final et sans lancer `gw.exe`. Le fichier final reste la source utilisée lorsque l’utilisateur ouvre ensuite séparément le Visualiseur ou l’Explorateur.
+La Lecture interne peut transmettre directement son résultat décodé ou reconstruit aux convertisseurs internes. Lorsqu’un Writer interne sait produire le format choisi, la conversion utilise le `MediaImageDocument` déjà obtenu, sans relire le fichier final et sans lancer `gw.exe`. Le fichier final reste la source utilisée lorsque l’utilisateur ouvre ensuite séparément le Visualiseur ou l’Explorateur.
 
-Les services de conversion interne déjà présents doivent être raccordés à ce résultat commun. Le recours à un outil externe reste réservé aux couples source-cible qui ne disposent pas encore d’un Reader et d’un Writer internes compatibles.
+Les services de conversion internes sont raccordés à ce résultat commun. Le recours à un outil externe reste réservé aux couples source-cible qui ne disposent pas d’un Reader et d’un Writer internes compatibles.
 
 ### Répartition entre les DLL
 
@@ -43,7 +43,7 @@ Les fichiers doivent suivre la même séparation à l’intérieur de chaque pro
 
 ### Structure hybride cible de MediaEngine
 
-`GWGUI.MediaEngine` doit employer une structure hybride. Les types véritablement partagés sont rangés par nature à la racine du projet. Les implémentations propres à un format sont rangées par support, puis directement par format. Une famille de machines ou une variante ne crée un niveau supplémentaire que lorsqu’elle possède réellement plusieurs fichiers spécialisés.
+`GWGUI.MediaEngine` emploie une structure hybride. Les types véritablement partagés sont rangés par nature à la racine du projet. Les implémentations propres à un format sont rangées par support, puis directement par format. Une famille de machines ou une variante ne crée un niveau supplémentaire que lorsqu’elle possède réellement plusieurs fichiers spécialisés.
 
 ```text
 GWGUI.MediaEngine/
@@ -172,7 +172,7 @@ Les décodeurs, encodeurs et reconstructeurs suivent également un système de r
 
 L’Explorateur reçoit le document média, détecte ses volumes, puis confie chaque volume à un Reader de système de fichiers. Le Visualiseur choisit son fournisseur à partir de la représentation du document et non de l’extension du fichier. Les rendus Skia et les vues WPF restent dans `GWGUI.App` ; `GWGUI.MediaEngine` fournit seulement les données structurées nécessaires au rendu.
 
-La composition doit être divisée par fonction ou famille de médias afin de remplacer la factory générale actuelle. Elle enregistre les composants disponibles, mais ne contient aucun algorithme de format. L’ajout d’un format consiste ainsi à ajouter ses composants et leur enregistrement, sans modifier les services généraux ni ajouter de nouvelle chaîne conditionnelle dans l’application.
+La composition est divisée par fonction : reconnaissance, exploration, conversion, écriture, visualisation, décodage SCP et codecs séquentiels. Elle enregistre les composants disponibles, mais ne contient aucun algorithme de format. L’ajout d’un format consiste à ajouter ses composants et leur enregistrement, sans modifier les services généraux ni ajouter de nouvelle chaîne conditionnelle dans l’application. `MediaEngineFactory` subsiste seulement pour les consommateurs de compatibilité qui n'ont pas encore été retirés.
 
 Les modules d’émulation restent responsables des décisions propres à leurs émulateurs. Le module Amiga décide qu’une capture SCP doit devenir un ADF temporaire et gère le nom ainsi que le cache de ce fichier. Le module Atari choisit ATR ou ST selon la famille de machine et gère son média de session. Les Readers, décodeurs, transformations et Writers utilisés pour produire ces fichiers restent dans `GWGUI.MediaEngine`. Après le remplacement de la factory générale, les modules changent seulement leur appel vers le nouveau point d’entrée commun de MediaEngine; cette adaptation ne justifie pas de restructurer les projets d’émulation ni d’ajouter un contrat au SDK tant qu’aucun besoin public distinct n’est établi.
 
@@ -180,34 +180,30 @@ Pour les supports physiques futurs, les pilotes et appels aux appareils restent 
 
 ### Représentations visuelles distinctes
 
-Le Visualiseur doit choisir le rendu à partir de la représentation réellement fournie par le lecteur :
+Le Visualiseur choisit le rendu à partir de la représentation réellement fournie par le Reader :
 
 - une vue de flux pour une capture comme SCP, fondée sur les transitions, les révolutions et les pistes physiques réellement enregistrées ;
 - une vue sectorielle pour une image de données comme ADF, ST, MSA ou IMA, fondée sur les faces, les pistes, les secteurs et leur contenu logique ;
-- plus tard, les vues propres aux blocs de disques durs, aux pistes et sessions optiques, ainsi qu’aux segments temporels des cassettes et bandes.
+- une vue par plages de blocs pour les disques durs ;
+- une vue par pistes et sessions pour les médias optiques ;
+- une vue temporelle par segments et lignes pour les cassettes et bandes.
 
 La vue sectorielle ne doit pas simuler un flux qui n’existe pas dans le fichier. Les deux vues peuvent partager le contrôleur de préparation progressive, la sélection, le zoom et les interactions communes, mais elles doivent conserver leurs données et leur moteur de rendu propres.
 
 ### Fonctionnement actuel pour les disquettes
 
-Le fonctionnement actuel ne fournit pas encore cette description générale :
+Le fonctionnement actuel fournit deux parcours distincts :
 
-- la reconnaissance des formats est répartie entre `ImageFormatDetector`, utilisé par certains onglets, et les politiques de reconnaissance de `GWGUI.MediaEngine`, utilisées pour charger le Visualiseur ;
-- les images sectorielles sont représentées par `SectorImage`, qui fournit des cylindres, des têtes, des secteurs par piste et des blocs, mais ne décrit pas le type de graphique à utiliser ;
-- les captures SCP fournissent leurs pistes, leurs faces et leurs révolutions, mais elles sont traitées par un chemin particulier ;
-- `DiskImageWorkspaceController` choisit lui-même le rendu : un SCP est chargé directement, tandis qu’une image sectorielle est transformée en SCP synthétique avec `SectorImageFluxVisualizer` ;
-- le Visualiseur utilise donc toujours `ScpDiskView`, même lorsque le fichier d’origine ne contient aucun flux ;
-- le type de média transmis au rendu ne couvre que les catégories de disquettes utilisées pour dessiner leur enveloppe ;
-- les pistes sont ordonnées par cylindre croissant et dessinées de l’extérieur vers l’intérieur, la piste zéro étant placée à l’extérieur ;
-- il n’existe aucun résultat commun indiquant au Visualiseur le support, le graphique, l’unité de remplissage, le nombre de surfaces et leur ordre.
+- `FluxMediaImageRepresentation` conserve les captures, faces, pistes et révolutions d'un vrai flux ;
+- `SectorMediaImageRepresentation` conserve les cylindres, faces, pistes, secteurs, tailles et états logiques d'une image de données ;
+- `FluxMediaVisualizationProvider` et `SectorMediaVisualizationProvider` créent des descripteurs distincts ;
+- `DiskImageWorkspaceController` sélectionne `ScpDiskView` ou `SectorMediaView` à partir de la représentation ;
+- `SkiaScpRenderer` et `SkiaSectorMediaRenderer` dessinent leurs données propres ;
+- aucune image sectorielle n'est convertie en faux SCP pour l'affichage.
 
 ### Préparation progressive de l’affichage
 
-Actuellement, le fichier image est entièrement lu et transformé en données internes par `GWGUI.MediaEngine`. `GWGUI.App` prépare ensuite progressivement le rendu SCP, piste par piste, avec `SkiaScpRenderer`. Cette progression est donc liée au visualiseur SCP et à son moteur de rendu.
-
-Avant d’étendre le Visualiseur aux autres représentations et aux autres supports, ce fonctionnement doit être réorganisé. Le contrôleur du Visualiseur doit piloter une préparation progressive commune, tandis que chaque visualiseur fournit les éléments graphiques propres au format et au support concernés. `SkiaScpRenderer` doit rester responsable du dessin du rendu SCP, sans porter à lui seul le principe général de progression.
-
-Cette réorganisation concerne le contrôleur du Visualiseur, le contrat utilisé par les moteurs de rendu, la préparation et le cache de `SkiaScpRenderer`, ainsi que les tests du chargement, de l’annulation, du zoom et de la sélection. Elle ne demande pas de refaire la lecture des formats ni l’ensemble de l’interface.
+Le fichier image est entièrement lu et transformé en données internes par `GWGUI.MediaEngine`. Le contrôleur commun prépare ensuite les éléments du descripteur progressivement. Chaque vue conserve son moteur de rendu, son cache, sa sélection et ses interactions. La progression ne dépend donc plus exclusivement de `SkiaScpRenderer`.
 
 ### Choix graphiques de base
 
@@ -264,4 +260,18 @@ physique supposé.
 
 ## Explorateur
 
-L’Explorateur doit ouvrir une image, reconnaître son format, extraire son système de fichiers, puis afficher son contenu sous forme de dossiers et de fichiers.
+L’Explorateur ouvre la même image par `MediaImageReadingService`, détecte ses volumes puis demande à `FileSystemRegistry` le Reader de système de fichiers compatible. Il affiche les dossiers, fichiers, contenus et diagnostics sans relire le format dans l'interface. Les partitions MBR, EBR et GPT, les pistes optiques, ISO 9660, Joliet, Rock Ridge, UDF et les contenus séquentiels décodés sont raccordés au parcours commun.
+
+## Questions encore ouvertes
+
+Les décisions suivantes nécessitent les images réelles du corpus ou du matériel et restent donc à vérifier plus tard :
+
+- quelles variantes réelles de RAW, QCOW2, VHD, VHDX, VDI, VMDK et CHD exigent encore des métadonnées ou des chemins de données supplémentaires ;
+- quels systèmes de fichiers de disques durs doivent être ajoutés après les premiers essais réels ;
+- quelles variantes de sessions, pistes, index, sous-canaux, couches et faces sont réellement présentes dans les images CD/DVD disponibles ;
+- quelles extensions optiques autres qu’ISO 9660, Joliet, Rock Ridge et UDF sont nécessaires ;
+- quels formats de cassettes ou bandes doivent exposer plusieurs faces, pistes ou canaux et comment leurs fichiers doivent être nommés dans l’Explorateur ;
+- quels seuils d’agrégation, couleurs et niveaux de détail restent lisibles avec de très grandes images ;
+- quels appareils physiques pourront être utilisés pour les disques durs, les supports optiques et les bandes, et quelles capacités réelles ils déclareront ;
+- quelles conversions entraînent une perte acceptable de métadonnées physiques, optiques ou temporelles ;
+- quels écarts apparaissent lors des essais manuels du corpus `image_test`.

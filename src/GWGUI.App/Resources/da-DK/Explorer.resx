@@ -57,4 +57,17 @@
   <data name="Explorer.Type"><value>Type</value></data>
   <data name="Explorer.Type.Program"><value>Program</value></data>
   <data name="Explorer.System"><value>System</value></data>
+  <data name="Explorer.Session"><value>Disk- session</value></data>
+  <data name="Explorer.Track"><value>Mediespor</value></data>
+  <data name="Explorer.Layers"><value>Disklag</value></data>
+  <data name="Explorer.Faces"><value>Medieindspilningssider</value></data>
+  <data name="Explorer.PartitionType"><value>Fordelingstype</value></data>
+  <data name="Explorer.PartitionId"><value>Partitionsidentifikator</value></data>
+  <data name="Explorer.TrackMode"><value>Sportilstand</value></data>
+  <data name="Explorer.FirstSector"><value>Første sektor</value></data>
+  <data name="Explorer.SectorCount"><value>Sektor antal</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Opført sektorstørrelse</value></data>
+  <data name="Explorer.UserDataSize"><value>Brugerdatastørrelse</value></data>
+  <data name="Explorer.Subchannels"><value>Underkanaler</value></data>
+  <data name="Explorer.AudioTracks"><value>Lydspor</value></data>
 </root>

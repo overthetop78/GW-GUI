@@ -86,4 +86,6 @@
   <data name="Conversion.EngineInternalComplete"><value>استكمل التحويل الداخلي: {0}.</value></data>
   <data name="Conversion.EngineInternalUnavailable"><value>لا يدعم المحرك الداخلي هذا التحويل: {0}.</value></data>
   <data name="Conversion.EngineInternalFailed"><value>فشل التحويل الداخلي {0}: {1}</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>الخسائر المحتملة في البيانات</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>ولا يمكن لهذا التحويل أن يحفظ جميع المعلومات المصدرية:&#xA;&#xA;{0}&#xA;&#xA;هل تريد أن تستمر؟</value></data>
 </root>

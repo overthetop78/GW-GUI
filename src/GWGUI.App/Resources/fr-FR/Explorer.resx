@@ -57,4 +57,17 @@
   <data name="Explorer.Type.Archive"><value>Archive</value></data>
   <data name="Explorer.Protection"><value>Protection</value></data>
   <data name="Explorer.Modification"><value>Modification</value></data>
+  <data name="Explorer.Session"><value>Session</value></data>
+  <data name="Explorer.Track"><value>Piste</value></data>
+  <data name="Explorer.Layers"><value>Couches</value></data>
+  <data name="Explorer.Faces"><value>Faces</value></data>
+  <data name="Explorer.PartitionType"><value>Type de cloisonnement</value></data>
+  <data name="Explorer.PartitionId"><value>identificateur de la partition</value></data>
+  <data name="Explorer.TrackMode"><value>Mode piste</value></data>
+  <data name="Explorer.FirstSector"><value>Premier secteur</value></data>
+  <data name="Explorer.SectorCount"><value>Nombre de secteurs</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Taille du secteur stocké</value></data>
+  <data name="Explorer.UserDataSize"><value>Taille des données de l'utilisateur</value></data>
+  <data name="Explorer.Subchannels"><value>Sous-canaux</value></data>
+  <data name="Explorer.AudioTracks"><value>Pistes audio</value></data>
 </root>

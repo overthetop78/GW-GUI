@@ -57,4 +57,17 @@
   <data name="Explorer.FileSystem"><value>Sistema file</value></data>
   <data name="Explorer.Volume"><value>Volume</value></data>
   <data name="Explorer.File"><value>File</value></data>
+  <data name="Explorer.Session"><value>Sessione discografica</value></data>
+  <data name="Explorer.Track"><value>Traccia media</value></data>
+  <data name="Explorer.Layers"><value>Strati a disco</value></data>
+  <data name="Explorer.Faces"><value>Media dei lati di registrazione</value></data>
+  <data name="Explorer.PartitionType"><value>Tipo di partizione</value></data>
+  <data name="Explorer.PartitionId"><value>Identificatore di partizione</value></data>
+  <data name="Explorer.TrackMode"><value>Modalità di tracciamento</value></data>
+  <data name="Explorer.FirstSector"><value>Primo settore</value></data>
+  <data name="Explorer.SectorCount"><value>Contesto del settore</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Dimensioni del settore memorizzate</value></data>
+  <data name="Explorer.UserDataSize"><value>Dimensione dei dati utente</value></data>
+  <data name="Explorer.Subchannels"><value>Sottocanale</value></data>
+  <data name="Explorer.AudioTracks"><value>Audio tracce</value></data>
 </root>

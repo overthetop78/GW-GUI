@@ -57,4 +57,17 @@
   <data name="Explorer.DetectedFormats"><value>Виявлено: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable"><value>Інструменти не можуть виробляти розширюваний сектор зображення для {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>Інструменти хост не можуть декодувати зображення як {0}.</value></data>
+  <data name="Explorer.Session"><value>Засідання диска</value></data>
+  <data name="Explorer.Track"><value>Медіа-трекер</value></data>
+  <data name="Explorer.Layers"><value>Дискові шари</value></data>
+  <data name="Explorer.Faces"><value>З боку медіазапису</value></data>
+  <data name="Explorer.PartitionType"><value>Тип заготовки</value></data>
+  <data name="Explorer.PartitionId"><value>Ідентифікатор Partition</value></data>
+  <data name="Explorer.TrackMode"><value>Режим треку</value></data>
+  <data name="Explorer.FirstSector"><value>Перший сектор</value></data>
+  <data name="Explorer.SectorCount"><value>Кількість секторів</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Розмір сектора</value></data>
+  <data name="Explorer.UserDataSize"><value>Розмір даних користувачів</value></data>
+  <data name="Explorer.Subchannels"><value>Підканали</value></data>
+  <data name="Explorer.AudioTracks"><value>Аудіо треки</value></data>
 </root>

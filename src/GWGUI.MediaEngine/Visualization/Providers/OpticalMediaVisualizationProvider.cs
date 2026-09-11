@@ -27,15 +27,22 @@ public sealed class OpticalMediaVisualizationProvider : IMediaVisualizationProvi
         if (document.Representation is not OpticalMediaImageRepresentation optical)
             throw new NotSupportedException($"Representation '{document.Representation.RepresentationKind}' is not an optical representation.");
 
-        var surfaces = Enumerable.Range(0, optical.FaceCount ?? 1).ToArray();
+        var surfaces = optical.FaceCount is { } faceCount ? Enumerable.Range(0, faceCount).ToArray() : [];
+        var layers = optical.LayerCount is { } layerCount ? Enumerable.Range(0, layerCount).ToArray() : null;
         var knownSurface = surfaces.Length == 1 ? 0 : (int?)null;
         var elements = optical.Tracks?.Select(track =>
-            new MediaVisualizationElement(track.FirstSector, knownSurface, track.SectorCount)).ToArray() ?? [];
+            new MediaVisualizationElement(
+                track.FirstSector,
+                knownSurface,
+                track.SectorCount,
+                track.SessionNumber,
+                track.TrackNumber)).ToArray() ?? [];
         return new(
             MediaRepresentationKind.OpticalTracks,
             surfaces,
             MediaVisualizationProgressUnit.OpticalTrack,
             MediaVisualizationDirection.Ascending,
-            elements);
+            elements,
+            layers);
     }
 }

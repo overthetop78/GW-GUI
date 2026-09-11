@@ -86,4 +86,6 @@
   <data name="Conversion.EngineInternalComplete"><value>การแปลงภายในเสร็จสมบูรณ์แล้ว: {0}. .</value></data>
   <data name="Conversion.EngineInternalUnavailable"><value>เครื่องยนต์ภายในไม่รองรับการแปลงนี้: {0}. .</value></data>
   <data name="Conversion.EngineInternalFailed"><value>การแปลงภายในล้มเหลว {0}: {1}</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>อาจมีข้อมูลสูญหาย</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>การแปลงนี้ไม่สามารถคงข้อมูลแหล่งกําเนิดทั้งหมด:&#xA;&#xA;{0}&#xA;&#xA;คุณต้องการจะทําต่อไปหรือไม่?</value></data>
 </root>

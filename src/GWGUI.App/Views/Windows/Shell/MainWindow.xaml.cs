@@ -330,7 +330,7 @@ public partial class MainWindow : Window
         _conversionTab = new ConversionTabController(
             this, ConvertTabBlock, _viewModel, _profileController, _conversionFormatPresenter,
             () => _formatCatalog, () => _formatDetector, () => _settings, _commandBuilder, _runner,
-            _mediaEngine.ReadingService, _mediaEngine.ConversionService,
+            _mediaEngine.ReadingService, _mediaEngine.ConversionService, _mediaEngine.SequentialConversionService,
             _fileDialogs, _businessDialogs, _dialogs, _diskDefinitionsController, _operation, _consoleLog,
             _diskImageWorkspace, ReadFolder, CommandPreview, LogOutput, () => MainTabs?.SelectedIndex ?? -1,
             index => MainTabs.SelectedIndex = index, path => _diskImageWorkspace.LoadAsync(path),

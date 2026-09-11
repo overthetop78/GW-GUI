@@ -7,6 +7,9 @@ using GWGUI.App.Localization.Extensions;
 using GWGUI.App.ViewModels.Explorer;
 using GWGUI.App.Views.Controls.Explorer;
 using GWGUI.MediaEngine.Exploration.Results;
+using GWGUI.MediaEngine.Constants;
+using GWGUI.MediaEngine.Contracts;
+using GWGUI.MediaEngine.Representations.Optical;
 
 
 namespace GWGUI.App.Presenters.Explorer;
@@ -76,13 +79,54 @@ public static class ExplorerDetailsPresenter
             new("Explorer.Volume", volumeName, syntheticName),
             new("Explorer.System", currentSystem ?? document.Document.MediaKind.ToString()),
             new("Explorer.Protection", LocExtension.Get("Explorer.Metadata.None")),
-            new("Explorer.FileSystem", volume?.FileSystemId ?? ControlVisualConstants.EmptyValue),
-            new("Explorer.Capacity", StorageSizeFormatter.FormatBytes(capacity)),
-            new("Explorer.Free", volume?.FreeSpaceKnown == true ? StorageSizeFormatter.FormatBytes(volume.FreeBytes) : ControlVisualConstants.EmptyValue),
-            new("Explorer.Entries", ExplorerSection.CountEntries(entries).ToString()),
-            new("Explorer.Warnings", ExplorerIssueBuilder.Build(document, exploredVolume).Count.ToString())
+            new("Explorer.FileSystem", volume?.FileSystemId ?? ControlVisualConstants.EmptyValue)
         };
+        var descriptor = exploredVolume.Descriptor;
+        if (descriptor.SessionNumber is { } sessionNumber)
+            rows.Add(new("Explorer.Session", sessionNumber.ToString()));
+        if (descriptor.TrackNumber is { } trackNumber)
+            rows.Add(new("Explorer.Track", trackNumber.ToString()));
+        if (document.Document.Representation is OpticalMediaImageRepresentation optical)
+        {
+            if (optical.LayerCount is { } layerCount)
+                rows.Add(new("Explorer.Layers", layerCount.ToString()));
+            if (optical.FaceCount is { } faceCount)
+                rows.Add(new("Explorer.Faces", faceCount.ToString()));
+        }
+        if (!string.IsNullOrWhiteSpace(descriptor.PartitionScheme)
+            && descriptor.Origin != MediaVolumeOrigins.OpticalTrack)
+            rows.Add(new("Visual.PartitionSchemeLabel", descriptor.PartitionScheme));
+        if (descriptor.PartitionNumber is { } partitionNumber)
+            rows.Add(new("Visual.PartitionNumberLabel", partitionNumber.ToString()));
+        if (!string.IsNullOrWhiteSpace(descriptor.PartitionType))
+            rows.Add(new("Explorer.PartitionType", descriptor.PartitionType));
+        if (!string.IsNullOrWhiteSpace(descriptor.PartitionId))
+            rows.Add(new("Explorer.PartitionId", descriptor.PartitionId));
+        rows.Add(new("Explorer.Capacity", StorageSizeFormatter.FormatBytes(capacity)));
+        rows.Add(new("Explorer.Free", volume?.FreeSpaceKnown == true ? StorageSizeFormatter.FormatBytes(volume.FreeBytes) : ControlVisualConstants.EmptyValue));
+        rows.Add(new("Explorer.Entries", ExplorerSection.CountEntries(entries).ToString()));
+        rows.Add(new("Explorer.Warnings", ExplorerIssueBuilder.Build(document, exploredVolume).Count.ToString()));
         return new(volumeName, ExplorerIconCategory.DiskImage, rows, syntheticName);
+    }
+
+    public static ExplorerDetailsPresentation ForOpticalTrack(OpticalTrackDescriptor track)
+    {
+        ArgumentNullException.ThrowIfNull(track);
+        var rows = new List<ExplorerDetailRow>
+        {
+            new("Explorer.Session", track.SessionNumber.ToString()),
+            new("Explorer.Track", track.TrackNumber.ToString()),
+            new("Explorer.TrackMode", track.Mode.ToString()),
+            new("Explorer.FirstSector", track.FirstSector.ToString()),
+            new("Explorer.SectorCount", track.SectorCount.ToString()),
+            new("Explorer.StoredSectorSize", StorageSizeFormatter.FormatBytes(track.StoredSectorSize)),
+            new("Explorer.UserDataSize", StorageSizeFormatter.FormatBytes(track.UserDataLength)),
+            new("Explorer.Subchannels", track.HasSubchannels ? LocExtension.Get("Common.Yes") : LocExtension.Get("Common.No"))
+        };
+        return new(
+            $"{LocExtension.Get("Explorer.Track")} {track.TrackNumber}",
+            track.IsAudio ? ExplorerIconCategory.Audio : ExplorerIconCategory.DiskImage,
+            rows);
     }
 
     public static ExplorerDetailsPresentation ForItem(ExplorerContentItem item)

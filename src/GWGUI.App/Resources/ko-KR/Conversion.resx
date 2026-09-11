@@ -86,4 +86,6 @@
   <data name="Conversion.EngineInternalComplete"><value>내부 변환 완료: {0}.</value></data>
   <data name="Conversion.EngineInternalUnavailable"><value>내부 엔진은 이 변환을 지원하지 않습니다: {0}.</value></data>
   <data name="Conversion.EngineInternalFailed"><value>내부 변환은 실패 {0}:: {1}</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>잠재적인 데이터 손실</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>이 변환은 모든 소스 정보를 보존할 수 없습니다:&#xA;&#xA;{0}&#xA;&#xA;계속하시겠습니까?</value></data>
 </root>

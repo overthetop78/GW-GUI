@@ -28,20 +28,34 @@ public sealed class SequentialMediaVisualizationProvider : IMediaVisualizationPr
             throw new NotSupportedException($"Representation '{document.Representation.RepresentationKind}' is not a sequential representation.");
 
         var segments = sequential.Segments ?? [];
-        var surfaces = segments.Select(Lane).Distinct().Order().ToArray();
-        if (surfaces.Length == 0) surfaces = [0];
+        var lanes = segments
+            .Select(segment => (segment.FaceNumber, segment.TrackNumber, segment.ChannelNumber))
+            .Distinct()
+            .OrderBy(lane => lane.FaceNumber ?? int.MaxValue)
+            .ThenBy(lane => lane.TrackNumber ?? int.MaxValue)
+            .ThenBy(lane => lane.ChannelNumber ?? int.MaxValue)
+            .ToArray();
+        var laneNumbers = lanes
+            .Select((lane, index) => (lane, index))
+            .ToDictionary(item => item.lane, item => item.index);
+        var surfaces = Enumerable.Range(0, lanes.Length).ToArray();
         var elements = segments.Select(segment => new MediaVisualizationElement(
-            segment.Start.Ticks,
-            Lane(segment),
-            segment.Duration.Ticks)).ToArray();
+            segment.Start?.Ticks ?? segment.Position,
+            surface: laneNumbers[(segment.FaceNumber, segment.TrackNumber, segment.ChannelNumber)],
+            length: segment.Duration?.Ticks ?? segment.Length,
+            trackNumber: segment.TrackNumber,
+            faceNumber: segment.FaceNumber,
+            channelNumber: segment.ChannelNumber)).ToArray();
+        var direction = segments.Count == 0 || segments.All(segment => segment.Direction == SequentialTravelDirection.Forward)
+            ? MediaVisualizationDirection.Ascending
+            : segments.All(segment => segment.Direction == SequentialTravelDirection.Reverse)
+                ? MediaVisualizationDirection.Descending
+                : MediaVisualizationDirection.SourceDefined;
         return new(
             MediaRepresentationKind.Sequential,
             surfaces,
             MediaVisualizationProgressUnit.Segment,
-            MediaVisualizationDirection.Ascending,
+            direction,
             elements);
     }
-
-    private static int Lane((int? FaceNumber, int? TrackNumber, int? ChannelNumber, TimeSpan Start, TimeSpan Duration) segment) =>
-        segment.ChannelNumber ?? segment.TrackNumber ?? segment.FaceNumber ?? 0;
 }

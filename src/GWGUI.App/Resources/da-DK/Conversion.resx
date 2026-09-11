@@ -86,4 +86,6 @@
   <data name="Conversion.EngineInternalComplete"><value>Intern konvertering afsluttet: {0}.</value></data>
   <data name="Conversion.EngineInternalUnavailable"><value>Den interne motor understøtter ikke denne konvertering: {0}.</value></data>
   <data name="Conversion.EngineInternalFailed"><value>Intern konvertering mislykkedes for {0}: {1}</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>Potentielt tab af data</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>Denne konvertering kan ikke bevare alle kildeoplysninger:&#xA;&#xA;{0}&#xA;&#xA;Vil du fortsætte?</value></data>
 </root>

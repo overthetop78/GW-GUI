@@ -276,9 +276,10 @@ public sealed class HardDiskDriveConfigurationDialog : Window
                 MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
-        if (byteSize > SelectedFormat.MaximumBytes || byteSize < 512 || byteSize % 512 != 0)
+        if (!IsSupportedCapacity(byteSize, SelectedFormat))
         { ShowError(_limits.Text); return; }
-        HardDiskImageCreation.Create(path, byteSize, SelectedFormat, _preallocate.IsChecked == true,
+        HardDiskImageCreation.Create(path, byteSize, SelectedFormat,
+            SelectedFormat.SupportsFixedAllocation && _preallocate.IsChecked == true,
             _preparation.SelectedValue is HardDiskPreparation preparation ? preparation : HardDiskPreparation.Blank);
         SupportPath = path;
         InterfaceId = SelectedFormat.InterfaceName;
@@ -293,15 +294,18 @@ public sealed class HardDiskDriveConfigurationDialog : Window
     private void SetSizeChoices()
     {
         var format = SelectedFormat;
-        _preparation.ItemsSource = (format.Preparations ?? [HardDiskPreparation.Blank])
+        _preparation.ItemsSource = format.SupportedPreparations
             .Select(value => new { Value = value, Label = LocExtension.Get("Emulation.Hdd.Prepare." + value) }).ToArray();
         _preparation.SelectedIndex = 0;
         _limits.Text = LocExtension.Get("Emulation.Hdd.Limits", StorageSizeFormatter.FormatCapacity(format.MaximumBytes));
-        _sizePreset.ItemsSource = new long[] { 20, 40, 80, 120, 250, 500, 1024, 2047 }
-            .Where(size => size * 1024 * 1024 <= format.MaximumBytes)
+        _preallocate.IsEnabled = format.SupportsFixedAllocation;
+        if (!format.SupportsFixedAllocation) _preallocate.IsChecked = false;
+        var sizeChoices = new long[] { 20, 40, 80, 120, 250, 500, 1024, 2047 }
+            .Where(size => IsSupportedCapacity(size * 1024 * 1024, format))
             .Select(size => new DiskSizeChoice(size, StorageSizeFormatter.FormatCapacity(size * 1024 * 1024)))
             .Append(new DiskSizeChoice(null, LocExtension.Get("Emulation.Storage.Geometry.CustomSize"))).ToArray();
-        _sizePreset.SelectedIndex = 1;
+        _sizePreset.ItemsSource = sizeChoices;
+        _sizePreset.SelectedIndex = sizeChoices.Length > 1 ? 1 : 0;
         UpdateDiskGeometry();
     }
 
@@ -317,9 +321,11 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         _bytesPerSector.IsEnabled = !automatic;
         if (automatic && TryGetSelectedSize(out var byteSize))
         {
-            const long heads = 1;
-            const long sectors = 32;
-            const long bytesPerSector = EmulationControlDefaults.HardDiskBytesPerSector;
+            var heads = SelectedFormat.Geometry?.Heads ?? 1;
+            var sectors = SelectedFormat.Geometry?.SectorsPerTrack ?? 32;
+            var bytesPerSector = SelectedFormat.LogicalSectorSizes.Contains(EmulationControlDefaults.HardDiskBytesPerSector)
+                ? EmulationControlDefaults.HardDiskBytesPerSector
+                : SelectedFormat.LogicalSectorSizes.Min();
             _heads.Text = heads.ToString();
             _sectors.Text = sectors.ToString();
             _bytesPerSector.Text = bytesPerSector.ToString();
@@ -374,6 +380,11 @@ public sealed class HardDiskDriveConfigurationDialog : Window
         byteSize = 0;
         return false;
     }
+
+    private static bool IsSupportedCapacity(long byteSize, HardDiskImageFormat format) =>
+        byteSize >= format.MinimumBytes &&
+        byteSize <= format.MaximumBytes &&
+        format.LogicalSectorSizes.Any(sectorSize => byteSize % sectorSize == 0);
 
 }
 

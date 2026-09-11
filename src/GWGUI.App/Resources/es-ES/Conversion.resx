@@ -86,4 +86,6 @@
   <data name="Conversion.EngineInternalComplete"><value>Conversión interna terminada: {0}.</value></data>
   <data name="Conversion.EngineInternalUnavailable"><value>El motor interno no soporta esta conversión: {0}.</value></data>
   <data name="Conversion.EngineInternalFailed"><value>La conversión interna falló {0}: {1}</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>Pérdida de datos potenciales</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>Esta conversión no puede preservar toda la información de origen:&#xA;&#xA;{0}&#xA;&#xA;¿Quieres continuar?</value></data>
 </root>

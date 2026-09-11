@@ -6,6 +6,70 @@ Ce catalogue est organisé par structures de stockage. Il ne dépend pas des mac
 
 **Implémenté** signifie qu’un constructeur existe pour les seules variantes indiquées. **À couvrir** signifie qu’aucune création de cette variante n’est annoncée. **À étudier** demande de préciser la spécification, les variantes HDD pertinentes et une méthode de validation avant l’implémentation. Les listes groupées sont des familles à décomposer, pas une promesse de compatibilité uniforme.
 
+### État après l'orchestration commune des médias
+
+Les états détaillés des tableaux ci-dessous décrivent la **création** par
+`GWGUI.Emulation.HardDisks.DiskFormatRegistry`. Cette création ne doit pas être confondue avec les
+capacités de lecture, d'écriture et d'exploration du document commun de MediaEngine.
+
+Après l'orchestration commune :
+
+- les Readers HDD de MediaEngine reconnaissent RAW, QCOW2, VHD, VHDX, VDI, VMDK et CHD HDD et
+  produisent `BlockMediaImageRepresentation` avec des adresses 64 bits ;
+- les Writers communs produisent les mêmes sept familles à partir d'une représentation par blocs ;
+- `MbrVolumeDetector` détecte les partitions primaires et les chaînes EBR, tandis que
+  `GptVolumeDetector` valide les en-têtes et tables GPT ;
+- `WholeMediaVolumeDetector` conserve un volume direct lorsque aucune table prise en charge n'est
+  reconnue ;
+- le Visualiseur affiche les plages, partitions et volumes par LBA et propose une géométrie CHS
+  uniquement lorsqu'elle est déclarée par le Reader ;
+- l'Explorateur sait sélectionner les volumes détectés, mais ses Readers de systèmes de fichiers
+  HDD restent ceux réellement enregistrés dans `FileSystemReaderCatalog` ; la présence d'un
+  formateur de création dans `DiskFormatRegistry` ne signifie pas automatiquement que son système
+  de fichiers peut déjà être exploré ;
+- le service de conversion commun copie les blocs par plages vers les Writers HDD et préserve la
+  destination lorsqu'une conversion est annulée ou échoue ;
+- les parents par chemin, UUID VDI ou SHA-1 CHD et les membres VMDK sont résolus avant une
+  suppression ; les ensembles VMDK et sparsebundle sont verrouillés, validés et supprimés
+  collectivement.
+
+Les autres conteneurs et ensembles marqués « Implémenté » dans les tableaux restent donc
+constructibles par le registre HDD historique, mais ne sont pas annoncés comme lisibles ou
+convertibles par le parcours commun tant qu'un Reader et un Writer MediaEngine correspondants ne
+sont pas enregistrés. Les organisations AHDI, ICD, RDB, APM, BSD, VTOC et SGI sont constructibles,
+mais la détection commune actuellement validée couvre MBR, EBR, GPT et le volume direct.
+
+### Capacités exposées aux consommateurs
+
+`HardDiskImageFormat` expose désormais séparément l'identifiant, l'extension, l'interface, les
+capacités minimale, maximale et par défaut, les tailles de secteurs logiques, la géométrie CHS
+éventuelle, les préparations permises, les opérations et la possibilité d'une allocation fixe.
+Ces valeurs ne sont plus à extraire du libellé présenté à l'utilisateur.
+
+`DiskFormatRegistry.Describe` croise un format propre à un émulateur avec les capacités du
+conteneur enregistré. Le résultat conserve la limite la plus stricte, l'intersection des tailles de
+secteurs et la prise en charge réelle de l'allocation fixe. Les limites de conteneur actuellement
+exposées comprennent notamment 2 040 Gio pour VHD, 64 Tio pour VHDX, 1 Tio pour QCOW/QCOW2 et
+Parallels, 4 Tio pour QED, la limite 32 bits de 2IMG et la limite d'unités de CHD. Les conteneurs
+gzip, VMDK sparse, QCOW/QCOW2, QED, CHD et Parallels déclarent qu'ils ne fournissent pas
+d'allocation fixe dans les profils enregistrés.
+
+`DiskImagePlan` fige sa liste de volumes et rejette immédiatement les capacités nulles ou les
+identifiants absents. `ValidateComposition` permet ensuite de faire valider, avant écriture, le
+conteneur, la table, les volumes, leurs tailles de secteurs et le profil du consommateur par le
+registre choisi.
+
+Les catalogues des modules ne fabriquent plus une seconde description des capacités du conteneur.
+Amiga conserve ses deux combinaisons UAE validées : HDF brut avec Blank, OFS, FFS, RDB/OFS ou
+RDB/FFS, et HDZ gzip avec Blank, OFS ou FFS. Atari conserve, uniquement pour les machines ST qui
+déclarent l'interface correspondante, ACSI ou IDE avec Blank ou AHDI/FAT16. Les plafonds propres
+aux machines restent appliqués avant le croisement avec `DiskFormatRegistry.Describe`.
+
+La fenêtre de création consomme le résultat décrit : minimum et maximum, tailles de secteurs,
+préparations et allocation fixe. Elle désactive la préallocation pour HDZ/gzip et refuse une
+capacité qui n'est alignée sur aucune taille de secteur annoncée. Elle ne déduit aucune de ces
+règles du nom ou de l'extension affichés.
+
 ## 1. Conteneurs et représentation des secteurs
 
 | Format | État | Variantes et points à traiter |
@@ -14,17 +78,17 @@ Ce catalogue est organisé par structures de stockage. Il ne dépend pas des mac
 | gzip | Implémenté | Compression d’un flux RAW ; accès aléatoire et persistance des modifications à traiter séparément. |
 | VHD | Fixe, dynamique et chaînes différentielles implémentés | Jusqu’à 64 ancêtres fournis sur flux, identités et capacités vérifiées, base autonome exigée, ancêtres en lecture seule. Références suivies par le contrôle de suppression. Sélection dans l’application et variantes supplémentaires à intégrer. |
 | VHDX | Fixe, dynamique et chaînes différentielles, secteurs logiques 512 ou 4096 implémentés | Secteurs physiques de 4096 octets dans ces profils. Registre `vhdx` ou `vhdx-4kn`, GPT et volumes cohérents requis. Jusqu’à 64 ancêtres avec identités, capacités et secteurs concordants. Sélection et autres variantes à couvrir. |
-| VDI | Fixe et dynamique implémentés | Variantes différentielles à couvrir. |
-| VMDK | Monolithique sparse, streamOptimized, monolithicFlat, split flat/sparse et VMFS flat/sparse implémentés | streamOptimized autonome : grains zlib de 64 Kio, tables et footer finaux, lecture seule du résultat, jusqu’à 1 Tio. Split : extents de 64 Kio à 2 Gio, 2 047 Mio par défaut, au plus 1 024 extents ; plafond de profil 1 Tio. Publication par dossier et suivi des références présents ; sélection dans l’application à intégrer. Construction de chaînes de parents et autres variantes à couvrir. |
+| VDI | Fixe et dynamique implémentés | Le contrôle de dépendances lit l'UUID de création à `0x188` et l'UUID du parent à `0x1A8` pour les images différentielles de type 4. Il retrouve le parent dans les VDI voisins avant une suppression. L'ouverture du contenu différentiel par MediaEngine reste à couvrir. |
+| VMDK | Monolithique sparse, streamOptimized, monolithicFlat, split flat/sparse et VMFS flat/sparse implémentés | streamOptimized autonome : grains zlib de 64 Kio, tables et footer finaux, lecture seule du résultat, jusqu’à 1 Tio. Split : extents de 64 Kio à 2 Gio, 2 047 Mio par défaut, au plus 1 024 extents ; plafond de profil 1 Tio. Le descripteur et ses extents de même dossier sont conservés comme un seul ensemble logique, puis supprimés collectivement après validation. Sélection dans l’application, construction de chaînes de parents et autres variantes restent à couvrir. |
 | QCOW2 | V2 et V3 autonomes implémentés | Clusters de 512 octets à 2 Mio paramétrables dans le constructeur, 64 Kio par défaut ; refcounts 16 bits et table sur plusieurs clusters. Plafond 1 Tio et L1 limitée à 32 Mio. Compression, snapshots, parents, autres refcounts et chiffrement à couvrir. |
 | QCOW v1 | Autonome implémenté | Clusters de 64 Kio, tables L2 de 8 192 entrées ; jusqu’à 1 Tio. Compression, chiffrement et parents à couvrir. |
 | QED | Autonome implémenté | Clusters de 64 Kio, tables d’un cluster, capacité jusqu’à 4 Tio ; parents et autres paramètres à couvrir. |
 | Parallels | Image extensible v2 implémentée | Variante `WithouFreSpacExt`, clusters de 1 Mio, jusqu’à 1 Tio. Descripteur XML, fichiers associés, parents et autres variantes à couvrir. |
-| CHD HDD | V5 autonome non compressé implémenté | Hunks de 64 Kio, unités de 512 octets, métadonnées GDDD et géométrie explicite dans le constructeur ; plafond `Int32.MaxValue × 512` octets. SHA-1 absent pour ce profil inscriptible. Compression, parents et anciennes versions à couvrir. |
+| CHD HDD | V5 autonome non compressé implémenté | Hunks de 64 Kio, unités de 512 octets, métadonnées GDDD et géométrie explicite dans le constructeur ; plafond `Int32.MaxValue × 512` octets. Le contrôle de dépendances lit le SHA-1 combiné propre à `0x54` et celui du parent à `0x68`, puis retrouve le parent dans les CHD voisins. Le Writer autonome ne produit aucun de ces hash. Ouverture du contenu avec parent, compression et anciennes versions restent à couvrir. |
 | 2IMG / 2MG | V1 à blocs de 512 octets implémenté | En-tête de 64 octets, sans commentaire ; limite du constructeur inférieure à 2 Gio. Autres variantes à couvrir. |
 | UDIF / DMG | V4 autonome RAW ou zlib implémenté | Table `blkx` XML, blocs de 8 Mio, zones nulles explicites, jusqu’à 1 Tio. Aucun checksum installé dans ce profil. Structures, décompression et contenu des fichiers vérifiés en mémoire ; pas de certification de montage par un système externe. Chiffrement, segmentation, autres codecs et checksums à couvrir. |
 | sparseimage | V3 autonome non chiffré, un en-tête d’index implémenté | 1 008 bandes au maximum, de 1 à 128 Mio par puissances de deux ; profil enregistré à bandes de 8 Mio, soit 7,875 Gio maximum. Références big-endian, bandes nulles omises. En-têtes de continuation et variantes supplémentaires à couvrir. |
-| sparsebundle | V1 autonome non chiffré implémenté | Bandes de 1 à 128 Mio par puissances de deux, 8 Mio par défaut ; jusqu’à 1 Tio. Métadonnées dupliquées, token et bandes hexadécimales. Composition et publication par dossier présentes ; suivi détaillé des membres, sélection et suppression collective restent à intégrer. |
+| sparsebundle | V1 autonome non chiffré implémenté | Bandes de 1 à 128 Mio par puissances de deux, 8 Mio par défaut ; jusqu’à 1 Tio. Métadonnées dupliquées, token et bandes hexadécimales. La publication par dossier exige le point d'entrée complet. La suppression vérifie les métadonnées, le token, les bandes hexadécimales et l'absence de membre inattendu avant de verrouiller et supprimer collectivement l'ensemble. La sélection dans l'application reste à intégrer. |
 | DHD | Représentation RAW existante | Organisation CMD interne et installation distinctes du conteneur ; leur constructeur reste à couvrir. |
 | D90 | Représentation RAW et formatage DOS implémentés | Deux capacités : 5 013 504 et 7 520 256 octets ; géométrie 153 cylindres, quatre ou six têtes, 32 secteurs de 256 octets. Configuration, liste de défauts vide, BAM et répertoire construits séparément du conteneur. |
 | HDI | En-tête de 4096 octets implémenté | Géométrie explicite ; capacité limitée au champ 32 bits en octets. Secteurs de 128 à 4096 octets dans le constructeur. |
@@ -38,6 +102,15 @@ Ce catalogue est organisé par structures de stockage. Il ne dépend pas des mac
 | Autres conteneurs historiques ou propriétaires | À inventorier | Ajouter une entrée identifiée et sourcée par format et variante. |
 
 Les variantes de conteneurs documentées par [QEMU](https://www.qemu.org/docs/master/system/images), la [spécification QCOW2](https://www.qemu.org/docs/master/interop/qcow2.html) et celle de [Parallels](https://www.qemu.org/docs/master/interop/prl-xml.html) servent de références pour leurs entrées respectives.
+
+`DiskImageDependencyReader` expose séparément les chemins de fichiers, UUID VDI et SHA-1 CHD.
+`DiskImageDependencyIndex` vérifie l'identité du fichier trouvé avant de suivre la chaîne, limite les
+chaînes à 64 niveaux et l'index à 4 096 images, et refuse les cycles, identifiants absents, résultats
+ambigus et identités discordantes. Pour VDI et CHD, l'inventaire de l'application examine le dossier
+de l'enfant, ses sous-dossiers sans suivre les points de réanalyse, puis le niveau parent immédiat.
+Une image rangée hors de ce voisinage n'est donc pas devinée et bloque le contrôle jusqu'à ce que
+l'ensemble soit regroupé ou qu'un inventaire plus large soit fourni. UDIF segmenté et les sous-types
+Bochs qui exigent des informations externes restent refusés explicitement.
 
 La documentation de [CHD](https://docs.mamedev.org/tools/chdman.html) distingue la création HDD des autres médias. La [spécification 2IMG](https://ciderpress2.com/formatdoc/TwoIMG-notes.html) distingue également plusieurs représentations. Les structures [DHD et D90](https://vice-emu.sourceforge.io/vice_17.html) ont leur propre documentation.
 
@@ -107,14 +180,43 @@ Les [implémentations de tables de partitions](https://android.googlesource.com/
 | F2FS, systèmes compressés ou embarqués | À étudier | Pertinence pour un périphérique bloc et paramètres attendus. |
 | Autres systèmes propriétaires ou historiques | À inventorier | Ajouter les variantes documentées ; ne pas les ramener arbitrairement à FAT. |
 
+## 4. Décisions sur les variantes historiques examinées
+
+### Pascal
+
+Le profil conservé reste le volume UCSD/Apple Pascal en blocs de 512 octets, avec le répertoire
+aux blocs 2 à 5, 77 entrées de fichiers et les champs 16 bits little-endian. Le
+[manuel UCSD Pascal II.0](https://bitsavers.org/pdf/univOfCalSanDiego/UCSD_PASCAL_II.0_Users_Manual_Mar79.pdf)
+et les références primaires recensées dans la
+[description Apple Pascal](https://ciderpress2.com/formatdoc/Pascal-notes.html) confirment cette
+organisation. Ils ne définissent pas une variante HDD générale big-endian ni une autre taille de
+répertoire que GW GUI pourrait annoncer sans format ou machine cible précis. Aucune variante
+Pascal supplémentaire n'est donc retenue dans cette phase.
+
+Ces références servent uniquement à vérifier la structure ; aucun code tiers n'est incorporé et
+aucune licence logicielle supplémentaire ne s'applique au projet.
+
+### Chaînes EBR
+
+La disposition LBA déjà produite par GW GUI place chaque EBR avant son volume logique et le lien
+vers l'EBR suivant après la fin du volume courant. Elle correspond à la règle publiée par
+[Microsoft pour la manipulation des EBR](https://learn.microsoft.com/windows/win32/api/winioctl/ni-winioctl-ioctl_disk_set_drive_layout_ex).
+Le profil CHS historique distinct utilise déjà le type étendu `0x05`, l'alignement sur les pistes
+et les adresses CHS absolues documentées dans ce catalogue.
+
+Aucune autre disposition n'est ajoutée sans système cible, spécification et image de validation
+identifiés. Cette vérification documentaire ne reprend aucun code externe et n'ajoute donc aucune
+dépendance ni licence.
+
 Références de structures : [HFS+ et HFSX](https://developer.apple.com/library/archive/technotes/tn/tn1150.html), [comparaison APFS/HFS+](https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/APFS_Guide/VolumeFormatComparison/VolumeFormatComparison.html), [formats documentés par CiderPress](https://ciderpress2.com/doc-index.html), [systèmes de fichiers du noyau Linux](https://docs.kernel.org/filesystems/), [FATX](https://free60.org/System-Software/Systems/FATX/), [PFS](https://github.com/ps2dev/ps2sdk/tree/master/iop/hdd/pfs) et [paramètres CP/M](https://www.cpm.z80.de/manuals/cpm22-m.pdf).
 
-## 4. État du socle de création
+## 5. État final du socle HDD
 
 Le socle sépare les registres de conteneurs, partitionnements et systèmes de fichiers. Il compose les
 volumes et leurs options, valide les zones réservées et publie les ensembles de plusieurs fichiers par
-un dossier temporaire. Les dépendances connues de VHD/VHDX, VMDK, QCOW et QED participent au contrôle
-de suppression.
+une zone temporaire appartenant à l'opération. Les dépendances connues de VHD/VHDX, VMDK, QCOW, QED,
+VDI et CHD participent au contrôle de suppression. Les ensembles VMDK et sparsebundle sont résolus et
+supprimés collectivement seulement après validation et verrouillage de tous leurs membres.
 
 Les constructeurs et formateurs déjà couverts comprennent notamment GPT, APM, RDB, MBR avec chaînes
 EBR, XGM, ICD/Supra, QCOW2, VHD/VHDX, plusieurs variantes VMDK, sparsebundle, sparseimage, CHD, QED,
@@ -123,9 +225,11 @@ BFS, PFS3, Pascal, D90, SWAPSPACE2 et les labels Sun/SGI. Les validations automa
 structures sérialisées et leur relecture en mémoire; elles ne prouvent pas l’amorçage par tous les
 consommateurs externes.
 
-Les capacités manquantes, variantes historiques, dépendances supplémentaires et validations encore à
-faire sont suivies dans [`../tasks/hard-disk-images.md`](../tasks/hard-disk-images.md). Le présent
-catalogue décrit les formats et l’état confirmé; il ne sert plus de checklist.
+Les **422 tests autonomes** des espaces `Emulation.HardDisks` et `MediaEngine.HardDisk` valident les
+structures, leurs relectures synthétiques, la résolution des dépendances, les publications et
+suppressions collectives ainsi que la conversion par plages. Les variantes marquées « À couvrir » ou
+« À étudier » et les essais sur les images réelles restent les seules limites indiquées par ce
+catalogue ; celui-ci décrit l'état confirmé et ne sert pas de checklist.
 Références supplémentaires : [cloop v2](https://github.com/qemu/qemu/blob/master/block/cloop.c), [structures V7FS](https://github.com/NetBSD/src/blob/trunk/sys/fs/v7fs/v7fs.h) et [ordres d’octets V7FS](https://github.com/NetBSD/src/blob/trunk/sys/fs/v7fs/v7fs_endian.c).
 
 Le profil BFS suit les [structures du système de fichiers](https://github.com/torvalds/linux/blob/master/include/uapi/linux/bfs_fs.h) et les contraintes du [formateur de référence](https://github.com/util-linux/util-linux/blob/master/disk-utils/mkfs.bfs.c). Ses tests relisent les métadonnées en mémoire ; aucun essai de montage externe n’est annoncé.

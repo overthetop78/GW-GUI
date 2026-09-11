@@ -86,4 +86,6 @@
   <data name="Conversion.EngineInternalComplete"><value>Conversia internă finalizată: {0}.</value></data>
   <data name="Conversion.EngineInternalUnavailable"><value>Motorul intern nu suportă această conversie: {0}.</value></data>
   <data name="Conversion.EngineInternalFailed"><value>Conversia internă a eșuat pentru {0}: {1}</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>Pierderea potențială a datelor</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>Această conversie nu poate păstra toate informațiile sursă:&#xA;&#xA;{0}&#xA;&#xA;Vrei să continui?</value></data>
 </root>

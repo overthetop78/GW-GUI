@@ -57,4 +57,17 @@
   <data name="Explorer.DetectedFormats"><value>감지됨: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable"><value>호스트 도구는 탐험 가능한 섹터 이미지를 만들 수 없습니다 {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>호스트 도구는 이미지를 디코딩 할 수 없습니다. {0}.</value></data>
+  <data name="Explorer.Session"><value>디스크 세션</value></data>
+  <data name="Explorer.Track"><value>미디어 트랙</value></data>
+  <data name="Explorer.Layers"><value>디스크 레이어</value></data>
+  <data name="Explorer.Faces"><value>미디어 녹음 측</value></data>
+  <data name="Explorer.PartitionType"><value>파티션 유형</value></data>
+  <data name="Explorer.PartitionId"><value>파티션 식별자</value></data>
+  <data name="Explorer.TrackMode"><value>트랙 모드</value></data>
+  <data name="Explorer.FirstSector"><value>첫 번째 부문</value></data>
+  <data name="Explorer.SectorCount"><value>분야 조사</value></data>
+  <data name="Explorer.StoredSectorSize"><value>매장된 섹터 크기</value></data>
+  <data name="Explorer.UserDataSize"><value>사용자 데이터 크기</value></data>
+  <data name="Explorer.Subchannels"><value>서브 채널</value></data>
+  <data name="Explorer.AudioTracks"><value>오디오 트랙</value></data>
 </root>

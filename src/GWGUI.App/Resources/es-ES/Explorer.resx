@@ -57,4 +57,17 @@
   <data name="Explorer.DetectedFormats"><value>Detectado: {0}</value></data>
   <data name="Explorer.ExternalEngineUnavailable"><value>Herramientas de Host no pueden producir una imagen del sector explorable {0}.</value></data>
   <data name="Explorer.ExternalEngineFailed"><value>Herramientas de host no pueden decodificar la imagen como {0}.</value></data>
+  <data name="Explorer.Session"><value>Período de sesiones de debate</value></data>
+  <data name="Explorer.Track"><value>Carretera de medios</value></data>
+  <data name="Explorer.Layers"><value>Capas de disco</value></data>
+  <data name="Explorer.Faces"><value>Grabación de medios</value></data>
+  <data name="Explorer.PartitionType"><value>Tipo de partición</value></data>
+  <data name="Explorer.PartitionId"><value>Nombre identificador de la partición</value></data>
+  <data name="Explorer.TrackMode"><value>Modo de seguimiento</value></data>
+  <data name="Explorer.FirstSector"><value>Primer sector</value></data>
+  <data name="Explorer.SectorCount"><value>Conteo sectorial</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Tamaño del sector almacenado</value></data>
+  <data name="Explorer.UserDataSize"><value>Tamaño de datos del usuario</value></data>
+  <data name="Explorer.Subchannels"><value>Subcanales</value></data>
+  <data name="Explorer.AudioTracks"><value>Carriles de audio</value></data>
 </root>

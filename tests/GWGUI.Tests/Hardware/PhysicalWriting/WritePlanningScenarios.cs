@@ -2,6 +2,9 @@ using GWGUI.App.Contracts.Services.PhysicalDiskWriting;
 using GWGUI.App.Enums.Services.PhysicalDiskWriting;
 using GWGUI.App.Services.PhysicalDiskWriting;
 using GWGUI.Infrastructure.Hardware.Greaseweazle;
+using GWGUI.Infrastructure.Hardware.Media;
+using GWGUI.MediaEngine.Exploration;
+using GWGUI.MediaEngine.PhysicalWriting;
 
 using GWGUI.MediaEngine.Formats.Floppy.Scp;
 
@@ -11,10 +14,16 @@ internal static class WritePlanningScenarios
     internal static PhysicalDiskWriteOptions Options => new("virtual", (GreaseweazleBusType)1, 1, CueAtIndex: false, HardSectorTicks: 200);
     internal static ScpImage Image => new(new ScpHeader(0x24,0,1,0,3,ScpFlags.None,ScpBitCellEncoding.Default16Bit,ScpHeadSelection.Both,0,0),
         [new ScpTrack(3,1,1,[new ScpRevolution(1000,2,new uint[]{80,160})]), new ScpTrack(0,0,0,[new ScpRevolution(1000,2,new uint[]{40,120})])],true,0);
+    internal static GWGUI.Domain.Contracts.MediaWritePlan Plan =>
+        new FloppyMediaWritePlanningService(DiskImageExplorer.CreateDefault()).CreatePlan(Image, 0);
+
+    internal static PhysicalDiskWriteService CreateService(Device device) => new(
+        new MediaPhysicalWriterRegistry([new GreaseweazleMediaPhysicalWriter(() => device)]));
+
     public static async Task Order()
     {
         var device = new Device();
-        var result = await new PhysicalDiskWriteService(device).WriteAsync(Image, Options);
+        var result = await CreateService(device).WriteAsync(Plan, Options);
         Assert.True(result.IsSuccess);
         Assert.Equal(2, result.WrittenTracks);
         Assert.Equal(new[] { "open:virtual", "bus:1", "select:1", "motor:True", "seek:0:0", "write", "seek:1:1", "write", "close" }, device.Calls);
@@ -25,7 +34,7 @@ internal static class WritePlanningScenarios
     {
         var device = new Device();
         var options = verify ? Options with { Verify = true } : Options with { PortName = " " };
-        var result = await new PhysicalDiskWriteService(device).WriteAsync(Image, options);
+        var result = await CreateService(device).WriteAsync(Plan, options);
         Assert.False(result.IsSuccess);
         Assert.Equal(0, result.WrittenTracks);
         Assert.Equal(PhysicalDiskWriteFailureCategory.Validation, Assert.Single(result.Failures).Category);
@@ -44,7 +53,7 @@ internal static class WritePlanningScenarios
         public ValueTask SeekAsync(short cylinder, byte head, CancellationToken cancellationToken = default) { Calls.Add($"seek:{cylinder}:{head}"); return ValueTask.CompletedTask; }
         public ValueTask ResetAsync(CancellationToken cancellationToken = default) => throw new InvalidOperationException();
         public ValueTask CloseAsync(CancellationToken cancellationToken = default) { Assert.False(cancellationToken.IsCancellationRequested); Calls.Add("close"); return ValueTask.CompletedTask; }
-        public ValueTask DisposeAsync() => throw new InvalidOperationException();
+        public ValueTask DisposeAsync() => ValueTask.CompletedTask;
         public ValueTask WriteFluxAsync(ReadOnlyMemory<uint> intervals, bool cueAtIndex, bool terminateAtIndex, uint hardSectorTicks = 0, CancellationToken cancellationToken = default)
         {
             Assert.False(cueAtIndex); Assert.True(terminateAtIndex); Assert.Equal(200u, hardSectorTicks);

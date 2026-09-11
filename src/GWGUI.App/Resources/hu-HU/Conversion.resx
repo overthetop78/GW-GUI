@@ -86,4 +86,6 @@
   <data name="Conversion.EngineInternalUnavailable"><value>A belső motor nem támogatja ezt az átalakítást: {0}.</value></data>
   <data name="Conversion.EngineInternalFailed"><value>A belső konverzió sikertelen volt {0}: {1}</value></data>
   <data name="Conversion.LimitTracks"><value>Határértékek</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>Potenciális adatvesztés</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>Ez az átalakítás nem őrizheti meg az összes forrásinformációt:&#xA;&#xA;{0}&#xA;&#xA;Folytatni akarod?</value></data>
 </root>

@@ -86,4 +86,6 @@
   <data name="Conversion.EngineInternalComplete"><value>Εσωτερική μετατροπή ολοκληρώθηκε: {0}.</value></data>
   <data name="Conversion.EngineInternalUnavailable"><value>Ο εσωτερικός κινητήρας δεν υποστηρίζει αυτή τη μετατροπή: {0}.</value></data>
   <data name="Conversion.EngineInternalFailed"><value>Αποτυχία εσωτερικής μετατροπής για {0}: {1}</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>Πιθανή απώλεια δεδομένων</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>Αυτή η μετατροπή δεν μπορεί να διατηρήσει όλες τις πληροφορίες πηγής:&#xA;&#xA;{0}&#xA;&#xA;Θέλεις να συνεχίσεις;</value></data>
 </root>

@@ -22,6 +22,20 @@ LANGUAGE_CODES = {
     "vi-VN": "vi", "zh-Hans": "zh", "zh-Hant": "zh",
 }
 BASE_ONLY_CATALOGS = {"Icons.resx"}
+CONTEXTUAL_LABEL_SOURCES = {
+    "Explorer.Session": "Disc session",
+    "Explorer.Track": "Media track",
+    "Explorer.Layers": "Disc layers",
+    "Explorer.Faces": "Media recording sides",
+}
+CONTEXTUAL_LABEL_OVERRIDES = {
+    "fr-FR": {
+        "Explorer.Session": "Session",
+        "Explorer.Track": "Piste",
+        "Explorer.Layers": "Couches",
+        "Explorer.Faces": "Faces",
+    },
+}
 
 PLACEHOLDER_PATTERN = re.compile(r"\{[^{}\r\n]+\}")
 STRUCTURAL_TOKEN_PATTERN = re.compile(
@@ -141,6 +155,22 @@ def translate_preserving_placeholders(
                 parts.append(leading + translated_segments[index] + trailing)
         translated_texts.append("".join(parts))
     return translated_texts
+
+
+def translate_entries(
+    entries: list[tuple[str, str]], tokenizer, translator: ctranslate2.Translator,
+    culture: str | None = None,
+    force_context: bool = False,
+) -> list[str]:
+    sources = [CONTEXTUAL_LABEL_SOURCES.get(key, english) for key, english in entries]
+    translated = translate_preserving_placeholders(
+        sources,
+        tokenizer,
+        translator,
+        force_context=force_context,
+    )
+    overrides = CONTEXTUAL_LABEL_OVERRIDES.get(culture or "", {})
+    return [overrides.get(key, value) for (key, _), value in zip(entries, translated)]
 
 
 def remove_fallback_entries(
@@ -442,10 +472,11 @@ def main() -> None:
                 print(f"{culture}: repaired=0", flush=True)
                 continue
             translator = ctranslate2.Translator(str(installed_package.package_path / "model"))
-            translated_values = translate_preserving_placeholders(
-                [english for _, _, english in pending],
+            translated_values = translate_entries(
+                [(key, english) for _, key, english in pending],
                 installed_package.tokenizer,
                 translator,
+                culture=culture,
                 force_context=True,
             )
             for (target_path, key, _), value in zip(pending, translated_values):
@@ -509,8 +540,8 @@ def main() -> None:
                     if not is_invariant_entry(key, english) and (current is None or current == english):
                         pending.append((target_path, key, english))
 
-            translated_values = translate_preserving_placeholders(
-                [english for _, _, english in pending], tokenizer, translator
+            translated_values = translate_entries(
+                [(key, english) for _, key, english in pending], tokenizer, translator, culture=culture
             )
             updates_by_path: dict[Path, list[tuple[str, str]]] = {}
             for (target_path, key, _), value in zip(pending, translated_values):
@@ -565,8 +596,8 @@ def main() -> None:
             raise RuntimeError(f"Missing Argos model en -> {language_code}")
         translator = ctranslate2.Translator(str(installed_package.package_path / "model"))
         tokenizer = installed_package.tokenizer
-        translated_values = translate_preserving_placeholders(
-            [english for _, english in translatable_entries], tokenizer, translator
+        translated_values = translate_entries(
+            translatable_entries, tokenizer, translator, culture=culture
         )
         for (key, _), value in zip(translatable_entries, translated_values):
             insert(root / culture / args.resource, key, value, args.replace)

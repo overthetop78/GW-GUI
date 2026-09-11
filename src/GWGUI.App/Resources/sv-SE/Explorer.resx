@@ -57,4 +57,17 @@
   <data name="Explorer.ExternalEngineFailed"><value>Värdverktyg kunde inte avkoda bilden som {0}.</value></data>
   <data name="Explorer.Type.Program"><value>Programprogram</value></data>
   <data name="Explorer.Format"><value>Format</value></data>
+  <data name="Explorer.Session"><value>Disc session</value></data>
+  <data name="Explorer.Track"><value>Media Track</value></data>
+  <data name="Explorer.Layers"><value>Disc skikt</value></data>
+  <data name="Explorer.Faces"><value>Media inspelning sidor</value></data>
+  <data name="Explorer.PartitionType"><value>Partitionstyp</value></data>
+  <data name="Explorer.PartitionId"><value>Partitionsidentifierare</value></data>
+  <data name="Explorer.TrackMode"><value>Spårläge</value></data>
+  <data name="Explorer.FirstSector"><value>Första sektorn</value></data>
+  <data name="Explorer.SectorCount"><value>sektor räkna</value></data>
+  <data name="Explorer.StoredSectorSize"><value>Lagrad sektorstorlek</value></data>
+  <data name="Explorer.UserDataSize"><value>Användardatastorlek</value></data>
+  <data name="Explorer.Subchannels"><value>Subchannels</value></data>
+  <data name="Explorer.AudioTracks"><value>Audio spår</value></data>
 </root>

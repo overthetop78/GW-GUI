@@ -123,7 +123,7 @@ internal static class ConversionOperationScenarios
                 SecondStarted.TrySetResult();
                 return SecondPending?.Task ?? Task.FromResult(new GwExecutionResult(0, false, TimeSpan.Zero, []));
             });
-            Controller = new(new Window(), View, Model, null!, new ConversionFormatPresenter(), () => catalog, null!, () => settings, new GwCommandBuilder(), runner, null!, null!, files, business, dialogs,
+            Controller = new(new Window(), View, Model, null!, new ConversionFormatPresenter(), () => catalog, null!, () => settings, new GwCommandBuilder(), runner, null!, null!, null!, files, business, dialogs,
                 definitions, Operation, log, null!, new TextBox { Text = "virtual-folder" }, new TextBox(), Output, () => 0, _ => { }, null!, Operation.RequestCancellation, (_, _) => throw new InvalidOperationException(), () => { }, Dispatcher.CurrentDispatcher,
                 path => path is "virtual-tool" or "virtual-source.scp" || conflicts && path is not null && !path.Contains("(2)"));
         }

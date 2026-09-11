@@ -15,6 +15,26 @@ using GWGUI.MediaEngine.Formats.Floppy.Rx02;
 using GWGUI.MediaEngine.Formats.Floppy.Scp;
 using GWGUI.MediaEngine.Formats.Floppy.St;
 using GWGUI.MediaEngine.Formats.Floppy.TeleDisk;
+using GWGUI.MediaEngine.Formats.HardDisk.Raw;
+using GWGUI.MediaEngine.Formats.HardDisk.Chd;
+using GWGUI.MediaEngine.Formats.HardDisk.Qcow2;
+using GWGUI.MediaEngine.Formats.HardDisk.Vdi;
+using GWGUI.MediaEngine.Formats.HardDisk.Vhd;
+using GWGUI.MediaEngine.Formats.HardDisk.Vhdx;
+using GWGUI.MediaEngine.Formats.HardDisk.Vmdk;
+using GWGUI.MediaEngine.Formats.Optical.BinCue;
+using GWGUI.MediaEngine.Formats.Optical.CloneCd;
+using GWGUI.MediaEngine.Formats.Optical.Chd;
+using GWGUI.MediaEngine.Formats.Optical.Iso;
+using GWGUI.MediaEngine.Formats.Optical.Alcohol;
+using GWGUI.MediaEngine.Formats.Tape.AtariCas;
+using GWGUI.MediaEngine.Formats.Tape.CommodoreTap;
+using GWGUI.MediaEngine.Formats.Tape.MsxCas;
+using GWGUI.MediaEngine.Formats.Tape.Simh;
+using GWGUI.MediaEngine.Formats.Tape.SpectrumTap;
+using GWGUI.MediaEngine.Formats.Tape.Tzx;
+using GWGUI.MediaEngine.Formats.Tape.Uef;
+using GWGUI.MediaEngine.Formats.Tape.Wav;
 using GWGUI.MediaEngine.Interfaces.Reading;
 using GWGUI.MediaEngine.Reading;
 using GWGUI.MediaEngine.Recognition;
@@ -68,7 +88,27 @@ public sealed class MediaRecognitionComposition
                 new EpsonQx10RawImageReader(),
                 new UcsdRawImageReader(),
                 new Formats.Floppy.Hfe.HfeReader(),
-                scpReader
+                scpReader,
+                new BinCueReader(),
+                new CloneCdReader(),
+                new AlcoholMdsReader(),
+                new ChdOpticalReader(),
+                new IsoReader(),
+                new WavTapeReader(),
+                new UefReader(),
+                new AtariCasReader(),
+                new TzxReader(),
+                new CommodoreTapReader(),
+                new MsxCasReader(),
+                new SpectrumTapReader(),
+                new SimhTapeReader(),
+                new Qcow2Reader(),
+                new VhdxReader(),
+                new VhdReader(),
+                new VdiReader(),
+                new VmdkReader(),
+                new ChdHardDiskReader(),
+                new RawHardDiskReader()
             ]);
     }
 }

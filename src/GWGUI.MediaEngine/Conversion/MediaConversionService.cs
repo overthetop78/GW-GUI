@@ -1,4 +1,5 @@
 using GWGUI.MediaEngine.Writing;
+using GWGUI.MediaEngine.Contracts;
 
 namespace GWGUI.MediaEngine.Conversion;
 
@@ -20,6 +21,24 @@ public sealed class MediaConversionService
         this.converters = converters;
         this.writers = writers;
         this.writingService = writingService;
+    }
+
+    public IReadOnlyList<MediaConversionDestination> GetAvailableDestinations(MediaImageDocument document)
+    {
+        ArgumentNullException.ThrowIfNull(document);
+        return writers.Writers
+            .SelectMany(writer => writer.FormatIds.SelectMany(formatId =>
+                writer.ProducedFileExtensions.Select(extension => (Writer: writer, FormatId: formatId, Extension: extension))))
+            .Where(candidate => candidate.Writer.CanWrite(document, candidate.FormatId, candidate.Extension))
+            .Select(candidate => new MediaConversionDestination(
+                candidate.FormatId,
+                candidate.Extension,
+                candidate.Writer.Id,
+                candidate.Writer.ProducesMultipleFiles))
+            .Distinct()
+            .OrderBy(destination => destination.FormatId, StringComparer.OrdinalIgnoreCase)
+            .ThenBy(destination => destination.Extension, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
     }
 
     public async Task<MediaConversionResult> ConvertAsync(

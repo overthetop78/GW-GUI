@@ -19,6 +19,9 @@ public sealed class DiskFormatRegistry
     {
         public DiskFormatIdentity? Identity { get; init; }
         public IReadOnlySet<int>? LogicalSectorSizes { get; init; }
+        public long MinimumBytes { get; init; } = 512;
+        public long MaximumBytes { get; init; } = long.MaxValue;
+        public bool SupportsFixedAllocation { get; init; } = true;
         public DiskFormatOperations Operations => DiskFormatOperations.Create;
     }
     public sealed record FileSystem(string Id, Action<DiskVolumePlan> Validate,
@@ -78,6 +81,29 @@ public sealed class DiskFormatRegistry
     internal ImageSet GetImageSet(string id) => imageSets.TryGetValue(id, out var value) ? value : throw new NotSupportedException($"Unknown image set: {id}");
     internal FileSystem GetFileSystem(string id) => fileSystems.TryGetValue(id, out var value) ? value : throw new NotSupportedException($"Unknown filesystem: {id}");
     internal PartitionTable GetPartitionTable(string id) => partitionTables.TryGetValue(id, out var value) ? value : throw new NotSupportedException($"Unknown partition table: {id}");
+
+    public HardDiskImageFormat Describe(HardDiskImageFormat format)
+    {
+        ArgumentNullException.ThrowIfNull(format);
+        var container = GetContainer(format.Container.ToString().ToLowerInvariant());
+        var sectorSizes = container.LogicalSectorSizes is null
+            ? format.LogicalSectorSizes
+            : format.LogicalSectorSizes.Intersect(container.LogicalSectorSizes).ToFrozenSet();
+        if (sectorSizes.Count == 0)
+            throw new NotSupportedException($"Container '{container.Id}' and format '{format.Id}' have no common logical sector size.");
+        var minimum = Math.Max(format.MinimumBytes, container.MinimumBytes);
+        var maximum = Math.Min(format.MaximumBytes, container.MaximumBytes);
+        if (maximum < minimum || format.DefaultBytes < minimum || format.DefaultBytes > maximum)
+            throw new ArgumentOutOfRangeException(nameof(format), "The format capacity limits are incompatible with its container.");
+        return format with
+        {
+            MinimumBytes = minimum,
+            MaximumBytes = maximum,
+            LogicalSectorSizes = sectorSizes,
+            Operations = format.Operations | container.Operations,
+            SupportsFixedAllocation = format.SupportsFixedAllocation && container.SupportsFixedAllocation
+        };
+    }
 
     public static DiskFormatRegistry CreateDefault()
     {
@@ -284,7 +310,18 @@ public sealed class DiskFormatRegistry
             registry.containers[value.Id] = value with
             {
                 Identity = value.Identity ?? DefaultDiskFormatIdentities.Container(value.Id),
-                LogicalSectorSizes = value.LogicalSectorSizes ?? (value.Id is "raw" or "gzip" ? new[] { 128, 256, 512, 1024, 2048, 4096 }.ToFrozenSet() : null)
+                LogicalSectorSizes = value.LogicalSectorSizes ?? (value.Id is "raw" or "gzip" ? new[] { 128, 256, 512, 1024, 2048, 4096 }.ToFrozenSet() : null),
+                MaximumBytes = value.Id switch
+                {
+                    "vhd" => VhdImageWriter.MaximumCapacity,
+                    "vhdx" => VhdxImageWriter.MaximumCapacity,
+                    "qcow2" or "qcow" or "parallels" => 1L << 40,
+                    "twoimg" => int.MaxValue - 64L,
+                    "qed" => 1L << 42,
+                    "chd" => ChdImageWriter.MaximumCapacity,
+                    _ => value.MaximumBytes
+                },
+                SupportsFixedAllocation = value.Id is not ("gzip" or "vmdk" or "qcow2" or "qed" or "chd" or "parallels" or "qcow")
             };
         foreach (var value in registry.FileSystems)
             registry.fileSystems[value.Id] = value with { Identity = value.Identity ?? DefaultDiskFormatIdentities.FileSystem(value.Id) };

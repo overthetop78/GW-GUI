@@ -4,4 +4,8 @@ namespace GWGUI.MediaEngine.Constants;
 public static class MediaVolumeOrigins
 {
     public const string WholeMedia = "whole-media";
+    public const string DirectVolume = "direct-volume";
+    public const string Partition = "partition";
+    public const string OpticalTrack = "optical-track";
+    public const string SequentialContent = "sequential-content";
 }

@@ -13,6 +13,7 @@ using GWGUI.Domain.Enums;
 using GWGUI.MediaEngine.Contracts;
 using GWGUI.MediaEngine.Representations.Optical;
 using SkiaSharp;
+using RenderSequentialMediaSegment = GWGUI.App.Contracts.Rendering.Sequential.SequentialMediaSegment;
 
 namespace GWGUI.Tests.Interface.VisualizerViews;
 
@@ -59,7 +60,7 @@ public sealed class OtherMediaVisualizationTests
     [Fact]
     public void SequentialSelectionUsesLaneAndTime()
     {
-        var segment = new SequentialMediaSegment(
+        var segment = new RenderSequentialMediaSegment(
             0, 2, TimeSpan.Zero, TimeSpan.FromSeconds(10), SequentialSegmentKind.Signal,
             ChannelNumber: 2);
         var model = new SequentialMediaRenderModel(null, TimeSpan.FromSeconds(10), [segment]);

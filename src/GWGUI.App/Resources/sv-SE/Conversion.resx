@@ -86,4 +86,6 @@
   <data name="Conversion.EngineInternalComplete"><value>Intern konvertering slutförd: {0}.</value></data>
   <data name="Conversion.EngineInternalUnavailable"><value>Den interna motorn stöder inte denna omvandling: {0}.</value></data>
   <data name="Conversion.EngineInternalFailed"><value>Intern omvandling misslyckades för {0}:: :: {1}</value></data>
+  <data name="Conversion.SequentialLossesTitle"><value>Potentiell dataförlust</value></data>
+  <data name="Conversion.SequentialLossesConfirm"><value>Denna omvandling kan inte bevara all källinformation:&#xA;&#xA;{0}&#xA;&#xA;Vill du fortsätta?</value></data>
 </root>
